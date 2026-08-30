@@ -14,7 +14,8 @@ const byId={}; CH.forEach(c=>byId[c.id]=c);
 
 /* ---------------- storage ---------------- */
 const KEY='aifz2027';
-let S={done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{},drill:{},sittings:[],theme:null,
+const defaults=()=>({done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{},drill:{},
+  sittings:[],theme:null,
   /* tracker state */
   sk:{},      // per-skill mastery {m,n,ok,last,hist,peak}
   srs:{},     // per-item schedule {ease,ivl,reps,due,seen}
@@ -23,11 +24,13 @@ let S={done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{},drill:{},sit
   sess:[],    // session log
   ex:{},      // exercise iterations
   proc:{}     // process runs
-};
+});
+let S=defaults();
 try{const raw=localStorage.getItem(KEY); if(raw)S=Object.assign(S,JSON.parse(raw));}catch(e){}
 /* keep last session's state recoverable before this one writes over it */
 try{window.SYNC&&window.SYNC.takeSessionBackup();}catch(e){}
-let saveT, suspended=false;
+let saveT, suspended=false, lastBody=null;
+try{ const u=S.updatedAt; delete S.updatedAt; lastBody=JSON.stringify(S); S.updatedAt=u; }catch(e){}
 /* After progress is replaced underneath us (import, restore, erase) the page is
    about to reload, and the in-memory copy is stale. Writing it on the way out —
    pagehide fires on reload — would silently undo the replacement. */
@@ -35,6 +38,13 @@ function suspend(){suspended=true;clearTimeout(saveT);saveT=null;}
 function writeNow(){
   if(suspended)return;
   clearTimeout(saveT); saveT=null;
+  /* updatedAt must mark a real change, not merely a write. Navigation and tab
+     switches call this too, and bumping the clock on those made an idle device
+     look newer than the server — which pushed stale progress over newer work. */
+  const keep=S.updatedAt; delete S.updatedAt;
+  const body=JSON.stringify(S);
+  if(body===lastBody){ S.updatedAt=keep; return; }
+  lastBody=body;
   S.updatedAt=Date.now();
   try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){
     /* quota or a browser blocking storage: tell the user rather than losing work silently */
@@ -51,12 +61,23 @@ function writeNow(){
 function save(){clearTimeout(saveT);saveT=setTimeout(writeNow,250);}
 /* A debounced write loses the last answer if the tab is closed or navigated
    within the debounce window, so flush on every way out. */
-addEventListener('pagehide',writeNow);
+addEventListener('pagehide',()=>{writeNow();if(window.SYNC)window.SYNC.pushOnExit();});
 addEventListener('beforeunload',writeNow);
 addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')writeNow();});
 addEventListener('hashchange',writeNow);
 /* views.js and engine.js read state through here */
-window.STORE={get S(){return S;}, save, flush:writeNow, suspend, KEY};
+/* Swap state contents in place — views and the engine hold a reference to S,
+   so reassigning the binding would leave them pointing at the old object. */
+function replace(data){
+  const theme=S.theme;
+  Object.keys(S).forEach(k=>{delete S[k];});
+  Object.assign(S, defaults(), data||{});
+  if(theme && !data.theme) S.theme=theme;
+  suspended=false;
+  const u=S.updatedAt; delete S.updatedAt; lastBody=JSON.stringify(S); S.updatedAt=u;
+  try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}
+}
+window.STORE={get S(){return S;}, save, flush:writeNow, suspend, replace, KEY};
 function flash(node){if(!node)return;node.classList.add('show');setTimeout(()=>node.classList.remove('show'),1400);}
 
 /* ---------------- block renderer ---------------- */
@@ -869,6 +890,7 @@ function boot(){
         h('a',{class:'savewarn',id:'savewarn',hidden:'hidden',href:'#/data',
           text:'⚠ Progress is not being saved — open Progress & Backup'}),
         h('span',{class:'sp'}),
+        h('a',{class:'syncpill',id:'syncpill',href:'#/data',hidden:'hidden'}),
         h('button',{class:'sm',onclick:openPal},'Search  ⌘K'),
         h('button',{class:'sm',id:'themebtn',onclick:()=>{
           S.theme=S.theme==='dark'?'light':S.theme==='light'?null:'dark';save();applyTheme();}},'Theme')]),
@@ -889,6 +911,31 @@ function boot(){
   applyTheme();
   window.addEventListener('hashchange',route);
   route();
+  runAutoSync();
+}
+function setSyncPill(state,text,cls){
+  const el=$('#syncpill'); if(!el)return;
+  if(state==='off'){el.hidden=true;return;}
+  el.hidden=false; el.textContent=text;
+  el.className='syncpill'+(cls?' '+cls:'');
+}
+window.REFRESH_SYNC=function(){ runAutoSync(); };
+function runAutoSync(){
+  if(!window.SYNC)return;
+  const c=window.SYNC.gh.config();
+  if(!c.token){setSyncPill('off');return;}
+  setSyncPill('busy','syncing…','busy');
+  window.SYNC.autoSync().then(r=>{
+    if(r.state==='pulled'){
+      setSyncPill('ok','synced — pulled newer progress','ok');
+      route();                                   // re-render with the pulled state
+    }
+    else if(r.state==='pushed') setSyncPill('ok','synced','ok');
+    else if(r.state==='synced') setSyncPill('ok','synced','ok');
+    else if(r.state==='conflict') setSyncPill('warn','this device and your gist differ — compare','warn');
+    else if(r.state==='behind') setSyncPill('warn','newer progress in your gist — open to pull','warn');
+    else setSyncPill('warn','sync failed — open','warn');
+  }).catch(()=>setSyncPill('warn','sync failed — open','warn'));
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
 })();

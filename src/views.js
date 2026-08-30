@@ -868,7 +868,9 @@ function data(){
   const sec3=h('section',{class:'part'});
   sec3.appendChild(sectionHead2('03','Sync across devices','optional, free, no server'));
   sec3.appendChild(h('p',{class:'prose',style:'font-size:1rem',
-    html:'Stores your progress in a <strong>secret GitHub Gist</strong> that only you can see. Laptop and phone then share one record. There is no server and no cost — your browser talks straight to GitHub.'}));
+    html:'This — not the choice of web host — is what lets you pick up where you left off on another machine. '+
+      'Your progress is kept in a <strong>secret GitHub Gist</strong> only you can see, pulled when you open the app and pushed when you close it. '+
+      'There is no server and no cost: your browser talks straight to GitHub.'}));
   sec3.appendChild(ghPanel());
   w.appendChild(sec3);
 
@@ -928,11 +930,26 @@ function ghPanel(){
           const t=inp.value.trim(); if(!t)return;
           say(true,'Checking…');
           try{
-            const login=await SY.gh.verify(t);
-            SY.gh.save({token:t, auto:auto.checked});
-            const r=await SY.gh.push();
-            say(true,'Connected as '+login,'Progress pushed to a secret gist.');
-            setTimeout(render,1200);
+            const r=await SY.gh.connect(t, auto.checked);
+            if(r.action==='pulled'){
+              say(true,'Connected as '+r.login,
+                'Found your existing record and loaded it: '+r.summary.skills+
+                ' skills, '+r.summary.attempts+' answers. Reloading…');
+              setTimeout(()=>location.reload(),1400); return;
+            }
+            if(r.action==='conflict'){
+              say(false,'Connected as '+r.login+' — but both sides have work',
+                'Your gist holds '+r.summary.skills+' skills / '+r.summary.attempts+
+                ' answers, and this browser has its own progress. Nothing has been '+
+                'changed. Use “Compare with gist” below to choose which one wins.');
+              if(window.REFRESH_SYNC)window.REFRESH_SYNC();
+              setTimeout(render,2600); return;
+            }
+            say(true,'Connected as '+r.login,
+              r.action==='created' ? 'Created a secret gist and pushed your progress.'
+                                   : 'Progress pushed to your existing gist.');
+            if(window.REFRESH_SYNC)window.REFRESH_SYNC();
+            setTimeout(render,1400);
           }catch(e){ say(false,'Could not connect',e.message); }
         }},'Connect')]));
       box.appendChild(h('p',{class:'labnote',html:
@@ -955,6 +972,7 @@ function ghPanel(){
       h('button',{class:'primary',onclick:async()=>{
         say(true,'Pushing…');
         try{const r=await SY.gh.push(); say(true,'Pushed',(r.bytes/1024).toFixed(1)+' KB saved to your gist.');
+          if(window.REFRESH_SYNC)window.REFRESH_SYNC();
           setTimeout(render,1200);}
         catch(e){say(false,'Push failed',e.message);}
       }},'Push now'),
@@ -997,8 +1015,11 @@ function ghPanel(){
     box.appendChild(remoteBox);
     box.appendChild(msg);
     box.appendChild(h('p',{class:'labnote',html:
-      'On a second device: open the hosted link, come to this page, paste the same token, then use <strong>Compare with gist</strong> and pull. '+
-      'Sync is deliberately explicit in one direction — it will not silently overwrite a device that has newer work on it.'}));
+      '<strong>On a second device:</strong> open the same link, come to this page and paste the same token. '+
+      'It finds this gist automatically and loads your progress — no ids to copy. After that, each device pulls newer '+
+      'work when you open it and pushes when you close it.<br><br>'+
+      'If both devices have unsynced work, nothing is overwritten: you are shown both and you choose. '+
+      'A snapshot is kept locally before any replacement.'}));
   }
   function row(l,a,b){return h('tr',{},[h('td',{text:l}),
     h('td',{class:'num',text:String(a)}),h('td',{class:'num',text:String(b)})]);}

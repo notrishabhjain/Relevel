@@ -641,6 +641,12 @@ button:disabled{opacity:.4;cursor:not-allowed}
   padding:.2rem .55rem;border-radius:var(--r);text-decoration:none;white-space:nowrap;
   overflow:hidden;text-overflow:ellipsis;max-width:46vw}
 .savewarn:hover{opacity:.9}
+.syncpill{font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;text-decoration:none;
+  padding:.2rem .5rem;border-radius:var(--r);border:1px solid var(--rule);color:var(--muted);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:44vw}
+.syncpill.ok{color:var(--verified);border-color:var(--verified)}
+.syncpill.warn{color:var(--red);border-color:var(--red)}
+.syncpill.busy{opacity:.6}
 
 </style>
 <script>
@@ -4453,6 +4459,49 @@ async function ghVerify(token){
   return u.login;
 }
 
+/* A second device knows the token but not the gist id, so find the existing one
+   rather than creating a rival. Without this, setting up a phone would make a new
+   empty gist and the laptop's record would be orphaned. */
+async function ghFindGist(){
+  const list = await ghCall('/gists?per_page=100');
+  if(!Array.isArray(list)) return null;
+  const hit = list.find(g => g && g.files && g.files[FILE]);
+  return hit ? hit.id : null;
+}
+
+/* Connecting must never blindly upload: on a fresh device that would push an
+   empty state over everything already synced. Adopt first, decide second. */
+async function ghConnect(token, auto){
+  ghSave({token: token, auto: !!auto});
+  let login;
+  try{ login = await ghVerify(token); }
+  catch(e){ ghClear(); throw e; }
+  let id;
+  try{ id = await ghFindGist(); }
+  catch(e){ ghClear(); throw e; }
+
+  const local = window.STORE ? window.STORE.S : {};
+  if(id){
+    const c = ghConfig(); c.gistId = id; ghSave(c);
+    const rem = await ghRemote();
+    const remoteHasWork = rem && !isEmptyState(rem.data);
+    if(remoteHasWork && isEmptyState(local)){
+      takeSessionBackup();
+      if(window.STORE && window.STORE.replace){
+        window.STORE.replace(rem.data); markSynced();
+        return {login, action:'pulled', summary:rem.summary};
+      }
+      return {login, action:'behind', summary:rem.summary};
+    }
+    if(remoteHasWork && !isEmptyState(local))
+      return {login, action:'conflict', summary:rem.summary};
+    await ghPush();
+    return {login, action:'pushed'};
+  }
+  await ghPush();
+  return {login, action:'created'};
+}
+
 async function ghPush(){
   if(window.STORE) window.STORE.flush();
   const c = ghConfig();
@@ -4467,10 +4516,10 @@ async function ghPush(){
       public:false, files})});
     c.gistId = g.id;
   }
-  c.lastSync = Date.now();
   c.lastPushAt = Date.now();
   ghSave(c);
-  return {id:c.gistId, url:g.html_url, bytes:content.length, at:c.lastSync};
+  markSynced();
+  return {id:c.gistId, url:g.html_url, bytes:content.length, at:Date.now()};
 }
 
 async function ghRemote(){
@@ -4492,25 +4541,111 @@ async function ghPull(){
   const rem = await ghRemote();
   if(!rem) throw new Error('Nothing synced yet — push first.');
   applyState(rem.data);
-  const c = ghConfig(); c.lastSync = Date.now(); c.lastPullAt = Date.now(); ghSave(c);
+  const c = ghConfig();
+  c.lastPullAt = Date.now();
+  c.syncedAt = rem.data.updatedAt || 0;      // STORE is suspended; mark from the payload
+  c.lastSync = Date.now();
+  ghSave(c);
   return rem.summary;
 }
 
-/* Is it safe to overwrite local with remote, or the other way round?
-   Compares the local clock against the last sync so a straight overwrite is
-   never silent when both sides have moved. */
+/* Has this device moved since the last successful sync?
+   Compared by exact marker, not by clock: a time tolerance either swallows real
+   changes made moments after a sync, or reports phantom ones. `syncedAt` records
+   the precise S.updatedAt value that was last pushed or pulled. */
+function markSynced(){
+  const c = ghConfig();
+  const d = window.STORE ? window.STORE.S : {};
+  c.syncedAt = d.updatedAt || 0;
+  c.lastSync = Date.now();
+  ghSave(c);
+}
+/* A device with nothing on it cannot lose anything, so pulling into it is always
+   safe — this is the ordinary "set up my phone" case, where there is no sync
+   marker yet and the general rule would otherwise cry conflict. */
+function isEmptyState(d){
+  if(!d) return true;
+  if((d.att||[]).length) return false;
+  if(Object.values(d.sk||{}).some(s=>s && s.n>0)) return false;
+  if(Object.values(d.notes||{}).some(v=>v && String(v).trim())) return false;
+  if(Object.keys(d.ex||{}).length) return false;
+  if(Object.keys(d.proc||{}).length) return false;
+  if((d.pred||[]).length) return false;
+  if(Object.keys(d.marks||{}).some(k=>d.marks[k])) return false;
+  return true;
+}
 function localChangedSinceSync(){
   const c = ghConfig();
   const d = window.STORE ? window.STORE.S : {};
   if(!c.lastSync) return true;
-  return (d.updatedAt || 0) > c.lastSync;
+  return (d.updatedAt || 0) !== (c.syncedAt || 0);
+}
+
+/* Push on the way out. keepalive lets the request outlive the page, which a
+   plain fetch does not; sendBeacon cannot carry an Authorization header. */
+function pushOnExit(){
+  const c = ghConfig();
+  if(!c.token || !c.auto || !c.gistId) return;
+  if(!localChangedSinceSync()) return;
+  try{
+    const files = {}; files[FILE] = {content: exportText()};
+    fetch(API + '/gists/' + c.gistId, {
+      method:'PATCH', keepalive:true, body:JSON.stringify({files}),
+      headers:{'Authorization':'Bearer ' + c.token,
+               'Accept':'application/vnd.github+json'}});
+    markSynced();
+  }catch(e){}
+}
+
+/* Runs once on load when sync is connected.
+     remote ahead, local untouched since last sync  → pull silently (lossless)
+     local ahead, remote unchanged                  → push
+     both moved                                     → conflict, hand it to the user
+   Returns a status the toolbar renders. */
+async function autoSync(){
+  const c = ghConfig();
+  if(!c.token) return {state:'off'};
+  if(!c.gistId){
+    try{ await ghPush(); return {state:'synced', at:Date.now()}; }
+    catch(e){ return {state:'error', msg:e.message}; }
+  }
+  let rem;
+  try{ rem = await ghRemote(); }
+  catch(e){ return {state:'error', msg:e.message}; }
+  if(!rem) return {state:'error', msg:'Gist is empty.'};
+
+  const local = window.STORE ? window.STORE.S : {};
+  const localEmpty = isEmptyState(local);
+  const localMoved = !localEmpty && localChangedSinceSync();
+  const remoteAhead = localEmpty
+    ? !isEmptyState(rem.data)
+    : (rem.exportedAt || 0) > (local.updatedAt || 0);
+
+  if(remoteAhead && !localMoved){
+    if(window.STORE && window.STORE.replace){
+      takeSessionBackup();
+      window.STORE.replace(rem.data);
+      markSynced();
+      return {state:'pulled', at:Date.now(), summary:rem.summary};
+    }
+    return {state:'behind', summary:rem.summary};
+  }
+  if(remoteAhead && localMoved) return {state:'conflict', summary:rem.summary};
+  if(localMoved && c.auto){
+    try{ await ghPush(); return {state:'pushed', at:Date.now()}; }
+    catch(e){ return {state:'error', msg:e.message}; }
+  }
+  return {state:'synced', at:c.lastSync};
 }
 
 return {takeSessionBackup, backupInfo, restoreBackup,
         exportFile, exportText, exportName, canDownload, copyText,
         importText, snapshot, summarise,
         stats, usable, requestPersistence,
+        /* entry points the app calls on boot and on the way out */
+        autoSync, pushOnExit,
         gh:{config:ghConfig, save:ghSave, clear:ghClear, verify:ghVerify,
+            connect:ghConnect, find:ghFindGist,
             push:ghPush, pull:ghPull, remote:ghRemote, localChangedSinceSync}};
 })();
 
@@ -5384,7 +5519,9 @@ function data(){
   const sec3=h('section',{class:'part'});
   sec3.appendChild(sectionHead2('03','Sync across devices','optional, free, no server'));
   sec3.appendChild(h('p',{class:'prose',style:'font-size:1rem',
-    html:'Stores your progress in a <strong>secret GitHub Gist</strong> that only you can see. Laptop and phone then share one record. There is no server and no cost — your browser talks straight to GitHub.'}));
+    html:'This — not the choice of web host — is what lets you pick up where you left off on another machine. '+
+      'Your progress is kept in a <strong>secret GitHub Gist</strong> only you can see, pulled when you open the app and pushed when you close it. '+
+      'There is no server and no cost: your browser talks straight to GitHub.'}));
   sec3.appendChild(ghPanel());
   w.appendChild(sec3);
 
@@ -5444,11 +5581,26 @@ function ghPanel(){
           const t=inp.value.trim(); if(!t)return;
           say(true,'Checking…');
           try{
-            const login=await SY.gh.verify(t);
-            SY.gh.save({token:t, auto:auto.checked});
-            const r=await SY.gh.push();
-            say(true,'Connected as '+login,'Progress pushed to a secret gist.');
-            setTimeout(render,1200);
+            const r=await SY.gh.connect(t, auto.checked);
+            if(r.action==='pulled'){
+              say(true,'Connected as '+r.login,
+                'Found your existing record and loaded it: '+r.summary.skills+
+                ' skills, '+r.summary.attempts+' answers. Reloading…');
+              setTimeout(()=>location.reload(),1400); return;
+            }
+            if(r.action==='conflict'){
+              say(false,'Connected as '+r.login+' — but both sides have work',
+                'Your gist holds '+r.summary.skills+' skills / '+r.summary.attempts+
+                ' answers, and this browser has its own progress. Nothing has been '+
+                'changed. Use “Compare with gist” below to choose which one wins.');
+              if(window.REFRESH_SYNC)window.REFRESH_SYNC();
+              setTimeout(render,2600); return;
+            }
+            say(true,'Connected as '+r.login,
+              r.action==='created' ? 'Created a secret gist and pushed your progress.'
+                                   : 'Progress pushed to your existing gist.');
+            if(window.REFRESH_SYNC)window.REFRESH_SYNC();
+            setTimeout(render,1400);
           }catch(e){ say(false,'Could not connect',e.message); }
         }},'Connect')]));
       box.appendChild(h('p',{class:'labnote',html:
@@ -5471,6 +5623,7 @@ function ghPanel(){
       h('button',{class:'primary',onclick:async()=>{
         say(true,'Pushing…');
         try{const r=await SY.gh.push(); say(true,'Pushed',(r.bytes/1024).toFixed(1)+' KB saved to your gist.');
+          if(window.REFRESH_SYNC)window.REFRESH_SYNC();
           setTimeout(render,1200);}
         catch(e){say(false,'Push failed',e.message);}
       }},'Push now'),
@@ -5513,8 +5666,11 @@ function ghPanel(){
     box.appendChild(remoteBox);
     box.appendChild(msg);
     box.appendChild(h('p',{class:'labnote',html:
-      'On a second device: open the hosted link, come to this page, paste the same token, then use <strong>Compare with gist</strong> and pull. '+
-      'Sync is deliberately explicit in one direction — it will not silently overwrite a device that has newer work on it.'}));
+      '<strong>On a second device:</strong> open the same link, come to this page and paste the same token. '+
+      'It finds this gist automatically and loads your progress — no ids to copy. After that, each device pulls newer '+
+      'work when you open it and pushes when you close it.<br><br>'+
+      'If both devices have unsynced work, nothing is overwritten: you are shown both and you choose. '+
+      'A snapshot is kept locally before any replacement.'}));
   }
   function row(l,a,b){return h('tr',{},[h('td',{text:l}),
     h('td',{class:'num',text:String(a)}),h('td',{class:'num',text:String(b)})]);}
@@ -5541,7 +5697,8 @@ const byId={}; CH.forEach(c=>byId[c.id]=c);
 
 /* ---------------- storage ---------------- */
 const KEY='aifz2027';
-let S={done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{},drill:{},sittings:[],theme:null,
+const defaults=()=>({done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{},drill:{},
+  sittings:[],theme:null,
   /* tracker state */
   sk:{},      // per-skill mastery {m,n,ok,last,hist,peak}
   srs:{},     // per-item schedule {ease,ivl,reps,due,seen}
@@ -5550,11 +5707,13 @@ let S={done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{},drill:{},sit
   sess:[],    // session log
   ex:{},      // exercise iterations
   proc:{}     // process runs
-};
+});
+let S=defaults();
 try{const raw=localStorage.getItem(KEY); if(raw)S=Object.assign(S,JSON.parse(raw));}catch(e){}
 /* keep last session's state recoverable before this one writes over it */
 try{window.SYNC&&window.SYNC.takeSessionBackup();}catch(e){}
-let saveT, suspended=false;
+let saveT, suspended=false, lastBody=null;
+try{ const u=S.updatedAt; delete S.updatedAt; lastBody=JSON.stringify(S); S.updatedAt=u; }catch(e){}
 /* After progress is replaced underneath us (import, restore, erase) the page is
    about to reload, and the in-memory copy is stale. Writing it on the way out —
    pagehide fires on reload — would silently undo the replacement. */
@@ -5562,6 +5721,13 @@ function suspend(){suspended=true;clearTimeout(saveT);saveT=null;}
 function writeNow(){
   if(suspended)return;
   clearTimeout(saveT); saveT=null;
+  /* updatedAt must mark a real change, not merely a write. Navigation and tab
+     switches call this too, and bumping the clock on those made an idle device
+     look newer than the server — which pushed stale progress over newer work. */
+  const keep=S.updatedAt; delete S.updatedAt;
+  const body=JSON.stringify(S);
+  if(body===lastBody){ S.updatedAt=keep; return; }
+  lastBody=body;
   S.updatedAt=Date.now();
   try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){
     /* quota or a browser blocking storage: tell the user rather than losing work silently */
@@ -5578,12 +5744,23 @@ function writeNow(){
 function save(){clearTimeout(saveT);saveT=setTimeout(writeNow,250);}
 /* A debounced write loses the last answer if the tab is closed or navigated
    within the debounce window, so flush on every way out. */
-addEventListener('pagehide',writeNow);
+addEventListener('pagehide',()=>{writeNow();if(window.SYNC)window.SYNC.pushOnExit();});
 addEventListener('beforeunload',writeNow);
 addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')writeNow();});
 addEventListener('hashchange',writeNow);
 /* views.js and engine.js read state through here */
-window.STORE={get S(){return S;}, save, flush:writeNow, suspend, KEY};
+/* Swap state contents in place — views and the engine hold a reference to S,
+   so reassigning the binding would leave them pointing at the old object. */
+function replace(data){
+  const theme=S.theme;
+  Object.keys(S).forEach(k=>{delete S[k];});
+  Object.assign(S, defaults(), data||{});
+  if(theme && !data.theme) S.theme=theme;
+  suspended=false;
+  const u=S.updatedAt; delete S.updatedAt; lastBody=JSON.stringify(S); S.updatedAt=u;
+  try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}
+}
+window.STORE={get S(){return S;}, save, flush:writeNow, suspend, replace, KEY};
 function flash(node){if(!node)return;node.classList.add('show');setTimeout(()=>node.classList.remove('show'),1400);}
 
 /* ---------------- block renderer ---------------- */
@@ -6396,6 +6573,7 @@ function boot(){
         h('a',{class:'savewarn',id:'savewarn',hidden:'hidden',href:'#/data',
           text:'⚠ Progress is not being saved — open Progress & Backup'}),
         h('span',{class:'sp'}),
+        h('a',{class:'syncpill',id:'syncpill',href:'#/data',hidden:'hidden'}),
         h('button',{class:'sm',onclick:openPal},'Search  ⌘K'),
         h('button',{class:'sm',id:'themebtn',onclick:()=>{
           S.theme=S.theme==='dark'?'light':S.theme==='light'?null:'dark';save();applyTheme();}},'Theme')]),
@@ -6416,6 +6594,31 @@ function boot(){
   applyTheme();
   window.addEventListener('hashchange',route);
   route();
+  runAutoSync();
+}
+function setSyncPill(state,text,cls){
+  const el=$('#syncpill'); if(!el)return;
+  if(state==='off'){el.hidden=true;return;}
+  el.hidden=false; el.textContent=text;
+  el.className='syncpill'+(cls?' '+cls:'');
+}
+window.REFRESH_SYNC=function(){ runAutoSync(); };
+function runAutoSync(){
+  if(!window.SYNC)return;
+  const c=window.SYNC.gh.config();
+  if(!c.token){setSyncPill('off');return;}
+  setSyncPill('busy','syncing…','busy');
+  window.SYNC.autoSync().then(r=>{
+    if(r.state==='pulled'){
+      setSyncPill('ok','synced — pulled newer progress','ok');
+      route();                                   // re-render with the pulled state
+    }
+    else if(r.state==='pushed') setSyncPill('ok','synced','ok');
+    else if(r.state==='synced') setSyncPill('ok','synced','ok');
+    else if(r.state==='conflict') setSyncPill('warn','this device and your gist differ — compare','warn');
+    else if(r.state==='behind') setSyncPill('warn','newer progress in your gist — open to pull','warn');
+    else setSyncPill('warn','sync failed — open','warn');
+  }).catch(()=>setSyncPill('warn','sync failed — open','warn'));
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
 })();

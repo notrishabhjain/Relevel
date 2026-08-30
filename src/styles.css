@@ -636,3 +636,9 @@ button:disabled{opacity:.4;cursor:not-allowed}
   padding:.2rem .55rem;border-radius:var(--r);text-decoration:none;white-space:nowrap;
   overflow:hidden;text-overflow:ellipsis;max-width:46vw}
 .savewarn:hover{opacity:.9}
+.syncpill{font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;text-decoration:none;
+  padding:.2rem .5rem;border-radius:var(--r);border:1px solid var(--rule);color:var(--muted);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:44vw}
+.syncpill.ok{color:var(--verified);border-color:var(--verified)}
+.syncpill.warn{color:var(--red);border-color:var(--red)}
+.syncpill.busy{opacity:.6}

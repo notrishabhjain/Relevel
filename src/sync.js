@@ -169,6 +169,49 @@ async function ghVerify(token){
   return u.login;
 }
 
+/* A second device knows the token but not the gist id, so find the existing one
+   rather than creating a rival. Without this, setting up a phone would make a new
+   empty gist and the laptop's record would be orphaned. */
+async function ghFindGist(){
+  const list = await ghCall('/gists?per_page=100');
+  if(!Array.isArray(list)) return null;
+  const hit = list.find(g => g && g.files && g.files[FILE]);
+  return hit ? hit.id : null;
+}
+
+/* Connecting must never blindly upload: on a fresh device that would push an
+   empty state over everything already synced. Adopt first, decide second. */
+async function ghConnect(token, auto){
+  ghSave({token: token, auto: !!auto});
+  let login;
+  try{ login = await ghVerify(token); }
+  catch(e){ ghClear(); throw e; }
+  let id;
+  try{ id = await ghFindGist(); }
+  catch(e){ ghClear(); throw e; }
+
+  const local = window.STORE ? window.STORE.S : {};
+  if(id){
+    const c = ghConfig(); c.gistId = id; ghSave(c);
+    const rem = await ghRemote();
+    const remoteHasWork = rem && !isEmptyState(rem.data);
+    if(remoteHasWork && isEmptyState(local)){
+      takeSessionBackup();
+      if(window.STORE && window.STORE.replace){
+        window.STORE.replace(rem.data); markSynced();
+        return {login, action:'pulled', summary:rem.summary};
+      }
+      return {login, action:'behind', summary:rem.summary};
+    }
+    if(remoteHasWork && !isEmptyState(local))
+      return {login, action:'conflict', summary:rem.summary};
+    await ghPush();
+    return {login, action:'pushed'};
+  }
+  await ghPush();
+  return {login, action:'created'};
+}
+
 async function ghPush(){
   if(window.STORE) window.STORE.flush();
   const c = ghConfig();
@@ -183,10 +226,10 @@ async function ghPush(){
       public:false, files})});
     c.gistId = g.id;
   }
-  c.lastSync = Date.now();
   c.lastPushAt = Date.now();
   ghSave(c);
-  return {id:c.gistId, url:g.html_url, bytes:content.length, at:c.lastSync};
+  markSynced();
+  return {id:c.gistId, url:g.html_url, bytes:content.length, at:Date.now()};
 }
 
 async function ghRemote(){
@@ -208,24 +251,110 @@ async function ghPull(){
   const rem = await ghRemote();
   if(!rem) throw new Error('Nothing synced yet — push first.');
   applyState(rem.data);
-  const c = ghConfig(); c.lastSync = Date.now(); c.lastPullAt = Date.now(); ghSave(c);
+  const c = ghConfig();
+  c.lastPullAt = Date.now();
+  c.syncedAt = rem.data.updatedAt || 0;      // STORE is suspended; mark from the payload
+  c.lastSync = Date.now();
+  ghSave(c);
   return rem.summary;
 }
 
-/* Is it safe to overwrite local with remote, or the other way round?
-   Compares the local clock against the last sync so a straight overwrite is
-   never silent when both sides have moved. */
+/* Has this device moved since the last successful sync?
+   Compared by exact marker, not by clock: a time tolerance either swallows real
+   changes made moments after a sync, or reports phantom ones. `syncedAt` records
+   the precise S.updatedAt value that was last pushed or pulled. */
+function markSynced(){
+  const c = ghConfig();
+  const d = window.STORE ? window.STORE.S : {};
+  c.syncedAt = d.updatedAt || 0;
+  c.lastSync = Date.now();
+  ghSave(c);
+}
+/* A device with nothing on it cannot lose anything, so pulling into it is always
+   safe — this is the ordinary "set up my phone" case, where there is no sync
+   marker yet and the general rule would otherwise cry conflict. */
+function isEmptyState(d){
+  if(!d) return true;
+  if((d.att||[]).length) return false;
+  if(Object.values(d.sk||{}).some(s=>s && s.n>0)) return false;
+  if(Object.values(d.notes||{}).some(v=>v && String(v).trim())) return false;
+  if(Object.keys(d.ex||{}).length) return false;
+  if(Object.keys(d.proc||{}).length) return false;
+  if((d.pred||[]).length) return false;
+  if(Object.keys(d.marks||{}).some(k=>d.marks[k])) return false;
+  return true;
+}
 function localChangedSinceSync(){
   const c = ghConfig();
   const d = window.STORE ? window.STORE.S : {};
   if(!c.lastSync) return true;
-  return (d.updatedAt || 0) > c.lastSync;
+  return (d.updatedAt || 0) !== (c.syncedAt || 0);
+}
+
+/* Push on the way out. keepalive lets the request outlive the page, which a
+   plain fetch does not; sendBeacon cannot carry an Authorization header. */
+function pushOnExit(){
+  const c = ghConfig();
+  if(!c.token || !c.auto || !c.gistId) return;
+  if(!localChangedSinceSync()) return;
+  try{
+    const files = {}; files[FILE] = {content: exportText()};
+    fetch(API + '/gists/' + c.gistId, {
+      method:'PATCH', keepalive:true, body:JSON.stringify({files}),
+      headers:{'Authorization':'Bearer ' + c.token,
+               'Accept':'application/vnd.github+json'}});
+    markSynced();
+  }catch(e){}
+}
+
+/* Runs once on load when sync is connected.
+     remote ahead, local untouched since last sync  → pull silently (lossless)
+     local ahead, remote unchanged                  → push
+     both moved                                     → conflict, hand it to the user
+   Returns a status the toolbar renders. */
+async function autoSync(){
+  const c = ghConfig();
+  if(!c.token) return {state:'off'};
+  if(!c.gistId){
+    try{ await ghPush(); return {state:'synced', at:Date.now()}; }
+    catch(e){ return {state:'error', msg:e.message}; }
+  }
+  let rem;
+  try{ rem = await ghRemote(); }
+  catch(e){ return {state:'error', msg:e.message}; }
+  if(!rem) return {state:'error', msg:'Gist is empty.'};
+
+  const local = window.STORE ? window.STORE.S : {};
+  const localEmpty = isEmptyState(local);
+  const localMoved = !localEmpty && localChangedSinceSync();
+  const remoteAhead = localEmpty
+    ? !isEmptyState(rem.data)
+    : (rem.exportedAt || 0) > (local.updatedAt || 0);
+
+  if(remoteAhead && !localMoved){
+    if(window.STORE && window.STORE.replace){
+      takeSessionBackup();
+      window.STORE.replace(rem.data);
+      markSynced();
+      return {state:'pulled', at:Date.now(), summary:rem.summary};
+    }
+    return {state:'behind', summary:rem.summary};
+  }
+  if(remoteAhead && localMoved) return {state:'conflict', summary:rem.summary};
+  if(localMoved && c.auto){
+    try{ await ghPush(); return {state:'pushed', at:Date.now()}; }
+    catch(e){ return {state:'error', msg:e.message}; }
+  }
+  return {state:'synced', at:c.lastSync};
 }
 
 return {takeSessionBackup, backupInfo, restoreBackup,
         exportFile, exportText, exportName, canDownload, copyText,
         importText, snapshot, summarise,
         stats, usable, requestPersistence,
+        /* entry points the app calls on boot and on the way out */
+        autoSync, pushOnExit,
         gh:{config:ghConfig, save:ghSave, clear:ghClear, verify:ghVerify,
+            connect:ghConnect, find:ghFindGist,
             push:ghPush, pull:ghPull, remote:ghRemote, localChangedSinceSync}};
 })();

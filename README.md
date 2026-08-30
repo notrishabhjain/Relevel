@@ -94,6 +94,11 @@ No dependencies, no bundler. One file out, everything inlined.
 The whole app is one static HTML file, so any static host works and none of them
 charge for it.
 
+**The host does not affect your progress.** Every option below is a *static* host —
+none of them store anything. Progress lives in your browser, and what carries it
+between devices is Gist sync (below), which works identically on all of them. Pick
+whichever is least hassle.
+
 ### GitHub Pages (no new accounts)
 
 `.github/workflows/pages.yml` builds and deploys on every push to `main`. Enable it once:
@@ -130,10 +135,15 @@ but fragile, so **Progress & Backup** in the app offers three defences:
    account. This is the dependable one.
 2. **Persistent storage** — one click asks the browser not to evict this origin, plus an
    automatic snapshot of the previous session kept locally.
-3. **Gist sync** — optional. Stores progress in a *secret* GitHub Gist so a laptop and a
-   phone share one record. No server, no cost; the browser talks directly to GitHub with
-   a token scoped to gists alone. Sync is explicit in one direction and will not silently
-   overwrite a device holding newer work.
+3. **Gist sync** — the cross-device answer. Progress is kept in a *secret* GitHub Gist,
+   pulled when you open the app and pushed when you close it, so a laptop and a phone
+   share one record. No server, no cost; the browser talks directly to GitHub with a
+   token scoped to gists alone.
+
+   Connecting a second device finds the existing gist automatically — there are no ids
+   to copy, and a fresh device never uploads its empty state over your record. When two
+   devices both have unsynced work, nothing is overwritten: both are shown and you
+   choose. A local snapshot is taken before any replacement.
 
 > `localStorage` is scoped to the exact address, so the Claude artifact link and your
 > hosted link keep **separate** progress. Export from one and import into the other to
