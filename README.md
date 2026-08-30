@@ -89,65 +89,85 @@ Concatenates `src/` into:
 
 No dependencies, no bundler. One file out, everything inlined.
 
-## Hosting it free
+## Running it as a real app
 
-The whole app is one static HTML file, so any static host works and none of them
-charge for it.
+The tracker has a backend: a **Cloudflare Worker** with a **D1** database and GitHub
+sign-in. Signed in, your progress lives on the server — open the site on any device,
+sign in, and your record is simply there. No files, no tokens, no copying.
 
-**The host does not affect your progress.** Every option below is a *static* host —
-none of them store anything. Progress lives in your browser, and what carries it
-between devices is Gist sync (below), which works identically on all of them. Pick
-whichever is least hassle.
+Everything below fits inside free tiers, and the free plan needs no card.
 
-### GitHub Pages (no new accounts)
+```
+browser --+-- static app     served from the edge
+          +-- /api/*         Worker  ->  D1 (users, sessions, state, history)
+```
 
-`.github/workflows/pages.yml` builds and deploys on every push to `main`. Enable it once:
+### Setup, once
 
-**Settings → Pages → Build and deployment → Source: GitHub Actions**
+**1. A GitHub OAuth app** — <https://github.com/settings/developers> -> New OAuth App.
+Homepage `https://<your-worker>.workers.dev`, callback
+`https://<your-worker>.workers.dev/api/auth/callback`. Note the client ID and generate
+a client secret.
 
-Your site lands at `https://<user>.github.io/Relevel/`.
+**2. Cloudflare**
 
-> **On a Free plan, Pages requires the repository to be public.** The repo holds only
-> the app source — your progress never leaves your browser — but making it public is
-> your call. If you would rather not, use the option below.
+```bash
+npx wrangler login
+npx wrangler d1 create aifz             # paste the printed database_id into wrangler.toml
+npx wrangler d1 execute aifz --remote --file worker/schema.sql
+npx wrangler secret put GITHUB_CLIENT_ID
+npx wrangler secret put GITHUB_CLIENT_SECRET
+node build.js && npx wrangler deploy
+```
 
-### Cloudflare Pages (keeps the repo private)
+`ALLOWED_LOGINS` in `wrangler.toml` restricts sign-in to your own GitHub account. Leave
+it empty to let any GitHub user create their own record.
 
-Free, supports private repos. Connect the repo, then:
+### Running it locally
 
-- Build command: `node build.js`
-- Output directory: `dist/site`
+```bash
+node build.js
+npx wrangler dev
+npx wrangler d1 execute aifz --local --file worker/schema.sql   # first run only
+```
 
-Netlify's free tier works identically with the same two settings.
+### How syncing behaves
 
-### Offline and on a phone
+- Opening the app **pulls** your record; changes **push** a couple of seconds later, and
+  again as you leave the page.
+- Writes carry the version they were based on. If another device saved first the write is
+  **refused, not applied** — you are shown both copies and you choose.
+- The server keeps the **last 20 versions**, restorable from inside the app.
+- Offline, the app keeps working from its local copy and syncs when the network returns.
 
-The deploy directory ships a web app manifest and a service worker, so once loaded the
-tracker works with no network. On a phone use **Add to Home Screen** — it installs as a
-standalone app, and installed apps are far less likely to have their storage evicted.
+### API
 
-## Keeping progress
+| Route | Purpose |
+| --- | --- |
+| `GET /api/health` | liveness, and whether sign-in is configured |
+| `GET /api/auth/login`, `/callback`, `POST /logout` | GitHub OAuth session |
+| `GET /api/me` | current user |
+| `GET /api/state`, `PUT /api/state` | read / write progress, version-guarded |
+| `GET /api/history`, `POST /api/restore` | recent versions, roll back |
 
-Progress is stored in `localStorage` and never sent anywhere by default. That is private
-but fragile, so **Progress & Backup** in the app offers three defences:
+Sessions are cookies (`HttpOnly`, `SameSite=Lax`); the token is stored **hashed**, so a
+leaked database row cannot be replayed as a login. Writes require a custom header that a
+cross-site page cannot set.
 
-1. **Backup file** — export/import everything as one JSON file. Works anywhere, needs no
-   account. This is the dependable one.
-2. **Persistent storage** — one click asks the browser not to evict this origin, plus an
-   automatic snapshot of the previous session kept locally.
-3. **Gist sync** — the cross-device answer. Progress is kept in a *secret* GitHub Gist,
-   pulled when you open the app and pushed when you close it, so a laptop and a phone
-   share one record. No server, no cost; the browser talks directly to GitHub with a
-   token scoped to gists alone.
+## Hosting it as a static site
 
-   Connecting a second device finds the existing gist automatically — there are no ids
-   to copy, and a fresh device never uploads its empty state over your record. When two
-   devices both have unsynced work, nothing is overwritten: both are shown and you
-   choose. A local snapshot is taken before any replacement.
+The app also runs with no backend at all — from a file, from GitHub Pages, from any
+static host. Progress then lives in the browser, with three fallbacks in
+**Progress & Backup**: a JSON backup file, an automatic previous-session snapshot, and
+optional sync through a secret GitHub Gist.
 
-> `localStorage` is scoped to the exact address, so the Claude artifact link and your
-> hosted link keep **separate** progress. Export from one and import into the other to
-> move across.
+- **GitHub Pages** — `.github/workflows/pages.yml` deploys `dist/site` on push to `main`.
+  Enable it at Settings -> Pages -> Source: GitHub Actions. On a Free plan Pages requires
+  a public repository.
+- **Any other static host** — build command `node build.js`, output directory `dist/site`.
+
+The deploy directory ships a web app manifest and a service worker, so the tracker works
+offline and installs via **Add to Home Screen**.
 
 ## Source layout
 
@@ -160,11 +180,17 @@ src/
 │   ├── part1-3.js      Chapters 1-18 (the library)
 │   └── reference.js    Setup, glossary, vendor deck, LATER page, red-map nodes
 ├── engine.js           Mastery + decay, SM-2, calibration, session building
+├── remote.js           Account-backed storage client
 ├── sync.js             Backup, export/import, Gist sync, storage diagnostics
 ├── views.js            Dashboard, practice runner, matrix, analytics, work trackers
 ├── labs.js             16 interactive labs
 ├── app.js              Routing, persistence, chapter rendering
 └── styles.css          Design tokens and layout
+
+worker/
+├── index.js            Worker: auth, state API, static asset passthrough
+└── schema.sql          D1 tables
+wrangler.toml           Deployment config
 ```
 
 Content is data, not markup. A chapter is an object using a small block grammar

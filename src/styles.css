@@ -642,3 +642,9 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .syncpill.ok{color:var(--verified);border-color:var(--verified)}
 .syncpill.warn{color:var(--red);border-color:var(--red)}
 .syncpill.busy{opacity:.6}
+.acct{display:flex;gap:.8rem;align-items:center;background:var(--raised);border:1px solid var(--rule);
+  border-radius:var(--r);padding:.75rem .9rem;margin-bottom:1rem}
+.avatar{width:38px;height:38px;border-radius:50%;flex:none;border:1px solid var(--rule)}
+.btnlink{display:inline-block;background:var(--ink);color:var(--paper);text-decoration:none;
+  font-family:var(--sans);font-size:.85rem;padding:.5rem 1rem;border-radius:var(--r)}
+.btnlink:hover{opacity:.88}

@@ -54,6 +54,7 @@ function writeNow(){
       if(b)b.hidden=false;}
     return;
   }
+  if(window.ACCOUNT) window.ACCOUNT.onChange();
   if(window.SYNC){const c=window.SYNC.gh.config();
     if(c.auto&&c.token){clearTimeout(writeNow._push);
       writeNow._push=setTimeout(()=>{window.SYNC.gh.push().catch(()=>{});},20000);}}
@@ -61,7 +62,10 @@ function writeNow(){
 function save(){clearTimeout(saveT);saveT=setTimeout(writeNow,250);}
 /* A debounced write loses the last answer if the tab is closed or navigated
    within the debounce window, so flush on every way out. */
-addEventListener('pagehide',()=>{writeNow();if(window.SYNC)window.SYNC.pushOnExit();});
+addEventListener('pagehide',()=>{writeNow();
+  if(window.ACCOUNT)window.ACCOUNT.flush();
+  if(window.SYNC)window.SYNC.pushOnExit();});
+addEventListener('online',()=>{if(window.ACCOUNT)window.ACCOUNT.onChange(true);});
 addEventListener('beforeunload',writeNow);
 addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')writeNow();});
 addEventListener('hashchange',writeNow);
@@ -911,7 +915,7 @@ function boot(){
   applyTheme();
   window.addEventListener('hashchange',route);
   route();
-  runAutoSync();
+  ACCOUNT.boot().then(()=>{ if(ACCOUNT.state==='off') runAutoSync(); });
 }
 function setSyncPill(state,text,cls){
   const el=$('#syncpill'); if(!el)return;
@@ -919,6 +923,133 @@ function setSyncPill(state,text,cls){
   el.hidden=false; el.textContent=text;
   el.className='syncpill'+(cls?' '+cls:'');
 }
+/* ---------------- account sync ----------------
+   The server is the record when signed in; this device is a cache. On open we
+   pull, on change we push, and a version mismatch means another device wrote
+   first — we never resolve that silently. */
+const ACCOUNT=(function(){
+  let state='off';          // off | signedout | syncing | ok | offline | conflict | error
+  let detail='';
+  let pushT=null, inFlight=false, dirty=false, serverCopy=null;
+
+  const M=()=>window.REMOTE.meta();
+  const setM=m=>window.REMOTE.setMeta(m);
+  const marker=()=>S.updatedAt||0;
+  const localChanged=()=>{const m=M(); return !m.version || (S.updatedAt||0)!==(m.marker||0);};
+
+  function show(st,d){ state=st; detail=d||''; paint(); }
+  function paint(){
+    const el=$('#syncpill'); if(!el)return;
+    const map={
+      off:      null,
+      signedout:['Sign in to sync','warn'],
+      syncing:  ['syncing…','busy'],
+      ok:       ['synced','ok'],
+      pulled:   ['synced — loaded your latest','ok'],
+      offline:  ['offline — will sync later','warn'],
+      conflict: ['another device wrote first — open','warn'],
+      error:    ['sync problem — open','warn']
+    };
+    const v=map[state];
+    if(!v){el.hidden=true;return;}
+    el.hidden=false; el.textContent=v[0]; el.className='syncpill '+v[1];
+  }
+
+  /* The page renders before this probe resolves, so any view that shows account
+     state has to be redrawn once we know it. */
+  function reroute(){ if(location.hash.indexOf('#/data')===0) route(); }
+  async function boot(){
+    if(!window.REMOTE) return;
+    const a=await window.REMOTE.probe();
+    if(!a){ show('off'); reroute(); return; }
+    const u=await window.REMOTE.me();
+    if(!u){ clearIfStale(); show('signedout'); reroute(); return; }
+    show('syncing');
+    try{
+      const srv=await window.REMOTE.pull();
+      if(srv.signedOut){ show('signedout'); return; }
+      await reconcile(srv);
+    }catch(e){ show(navigator.onLine?'error':'offline', e.message); }
+    reroute();
+  }
+  /* Signed out on a device that had synced: keep the data, drop the pointer. */
+  function clearIfStale(){ const m=M(); if(m.version) window.REMOTE.clearMeta(); }
+
+  async function reconcile(srv){
+    const m=M();
+    const localEmpty=window.SYNC.isEmptyState(S);
+    const serverEmpty=!srv.data || window.SYNC.isEmptyState(srv.data);
+
+    if(serverEmpty && !localEmpty) return pushNow(srv.version, 'ok');
+    if(serverEmpty && localEmpty){ setM({version:srv.version, marker:marker()}); return show('ok'); }
+
+    if(localEmpty || !localChanged()){
+      window.SYNC.takeSessionBackup();
+      replace(srv.data);
+      setM({version:srv.version, marker:marker()});
+      route();
+      return show(localEmpty?'pulled':'ok');
+    }
+    /* both sides moved */
+    if((m.version||0) === srv.version) return pushNow(srv.version, 'ok');
+    serverCopy=srv; show('conflict');
+  }
+
+  async function pushNow(baseVersion, okState){
+    if(inFlight){ dirty=true; return; }
+    inFlight=true;
+    try{
+      const r=await window.REMOTE.push(S, baseVersion);
+      if(r.signedOut){ show('signedout'); return; }
+      if(r.tooLarge){ show('error','Progress is too large to save.'); return; }
+      if(r.conflict){ serverCopy=r.server; show('conflict'); return; }
+      setM({version:r.version, marker:marker()});
+      show(okState||'ok');
+    }catch(e){ show(navigator.onLine?'error':'offline', e.message); }
+    finally{
+      inFlight=false;
+      if(dirty){ dirty=false; onChange(true); }
+    }
+  }
+
+  function onChange(immediate){
+    if(state==='off'||state==='signedout'||state==='conflict') return;
+    clearTimeout(pushT);
+    const go=()=>{ const m=M(); if(m.version==null) return; pushNow(m.version); };
+    if(immediate) go(); else pushT=setTimeout(go, 2500);
+  }
+  function flush(){
+    if(state==='off'||state==='signedout'||state==='conflict') return;
+    const m=M(); if(m.version==null) return;
+    clearTimeout(pushT);
+    /* keepalive lets this outlive the page so the last answers are not stranded */
+    try{
+      fetch('/api/state',{method:'PUT',keepalive:true,credentials:'same-origin',
+        headers:{'content-type':'application/json','x-aifz':'1'},
+        body:JSON.stringify({baseVersion:m.version,data:S,device:window.REMOTE.deviceName()})});
+    }catch(e){}
+  }
+
+  async function takeServer(){
+    if(!serverCopy) return;
+    window.SYNC.takeSessionBackup();
+    replace(serverCopy.data);
+    setM({version:serverCopy.version, marker:marker()});
+    serverCopy=null; route(); show('pulled');
+  }
+  async function takeLocal(){
+    if(!serverCopy) return;
+    const v=serverCopy.version; serverCopy=null;
+    await pushNow(v,'ok');
+  }
+
+  return {boot, onChange, flush, paint, takeServer, takeLocal,
+    get state(){return state;}, get detail(){return detail;},
+    get server(){return serverCopy;}, get user(){return window.REMOTE&&window.REMOTE.user;},
+    refresh:boot};
+})();
+window.ACCOUNT=ACCOUNT;
+
 window.REFRESH_SYNC=function(){ runAutoSync(); };
 function runAutoSync(){
   if(!window.SYNC)return;

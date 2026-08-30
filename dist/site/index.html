@@ -663,6 +663,12 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .syncpill.ok{color:var(--verified);border-color:var(--verified)}
 .syncpill.warn{color:var(--red);border-color:var(--red)}
 .syncpill.busy{opacity:.6}
+.acct{display:flex;gap:.8rem;align-items:center;background:var(--raised);border:1px solid var(--rule);
+  border-radius:var(--r);padding:.75rem .9rem;margin-bottom:1rem}
+.avatar{width:38px;height:38px;border-radius:50%;flex:none;border:1px solid var(--rule)}
+.btnlink{display:inline-block;background:var(--ink);color:var(--paper);text-decoration:none;
+  font-family:var(--sans);font-size:.85rem;padding:.5rem 1rem;border-radius:var(--r)}
+.btnlink:hover{opacity:.88}
 
 </style>
 <script>
@@ -3268,6 +3274,118 @@ window.PROCESSES = [
    ['Update the system card and pin the new version','With the migration date and the numbers.']]}]}
 ];
 
+/* Account-backed storage.
+
+   When the app is served by its Worker and you are signed in, the server holds
+   your progress and this device is a cache. Every write goes up; every open
+   pulls down. Sign in on a new machine and your record is simply there.
+
+   When there is no backend (opened from disk, or the Claude artifact) every
+   call here fails fast and the app keeps working on localStorage alone. */
+
+window.REMOTE = (function(){
+const KEY  = () => (window.STORE && window.STORE.KEY) || 'aifz2027';
+const MKEY = () => KEY() + ':srv';        // {version, marker, pending}
+
+let available = null;                     // null = not probed yet
+let user = null;
+
+function meta(){
+  try{ return JSON.parse(localStorage.getItem(MKEY()) || '{}'); }catch(e){ return {}; }
+}
+function setMeta(m){
+  try{ localStorage.setItem(MKEY(), JSON.stringify(m)); }catch(e){}
+}
+function clearMeta(){ try{ localStorage.removeItem(MKEY()); }catch(e){} }
+
+function deviceName(){
+  const ua = navigator.userAgent || '';
+  const os = /iPhone|iPad/.test(ua) ? 'iPhone/iPad'
+           : /Android/.test(ua)     ? 'Android'
+           : /Mac OS X/.test(ua)    ? 'Mac'
+           : /Windows/.test(ua)     ? 'Windows'
+           : /Linux/.test(ua)       ? 'Linux' : 'device';
+  const br = /Edg\//.test(ua) ? 'Edge' : /Chrome\//.test(ua) ? 'Chrome'
+           : /Safari\//.test(ua) ? 'Safari' : /Firefox\//.test(ua) ? 'Firefox' : 'browser';
+  return os + ' · ' + br;
+}
+
+async function api(path, opts){
+  const o = Object.assign({ credentials:'same-origin', headers:{} }, opts||{});
+  o.headers = Object.assign({ 'x-aifz':'1' }, o.headers);
+  if(o.body && typeof o.body !== 'string'){
+    o.headers['content-type'] = 'application/json';
+    o.body = JSON.stringify(o.body);
+  }
+  const res = await fetch(path, o);
+  let body = null;
+  try{ body = await res.json(); }catch(e){}
+  return { ok: res.ok, status: res.status, body };
+}
+
+/* Is there a backend behind this page at all? One probe per load. */
+async function probe(){
+  if(available !== null) return available;
+  try{
+    const r = await api('/api/health');
+    available = !!(r.ok && r.body && r.body.ok);
+    if(available) available = { signIn: !!r.body.signIn };
+  }catch(e){ available = false; }
+  return available;
+}
+
+async function me(){
+  const a = await probe();
+  if(!a) return null;
+  try{
+    const r = await api('/api/me');
+    user = (r.ok && r.body && r.body.user) ? r.body.user : null;
+    return user;
+  }catch(e){ return null; }
+}
+
+const loginUrl = () => '/api/auth/login';
+async function logout(){
+  try{ await api('/api/auth/logout', {method:'POST'}); }catch(e){}
+  clearMeta(); user = null;
+}
+
+async function pull(){
+  const r = await api('/api/state');
+  if(r.status === 401) return {signedOut:true};
+  if(!r.ok) throw new Error('load failed (' + r.status + ')');
+  return r.body;                          // {version, updatedAt, data}
+}
+
+/* Writes carry the version they were based on, so a device that has been idle
+   cannot overwrite newer work from another one — the server refuses and returns
+   its copy instead. */
+async function push(data, baseVersion){
+  const r = await api('/api/state', {method:'PUT',
+    body:{ baseVersion, data, device: deviceName() }});
+  if(r.status === 401) return {signedOut:true};
+  if(r.status === 409) return {conflict:true, server:r.body};
+  if(r.status === 413) return {tooLarge:true};
+  if(!r.ok) throw new Error('save failed (' + r.status + ')');
+  return {version:r.body.version, updatedAt:r.body.updatedAt};
+}
+
+async function history(){
+  const r = await api('/api/history');
+  return r.ok && r.body ? (r.body.versions || []) : [];
+}
+async function restore(version){
+  const r = await api('/api/restore', {method:'POST', body:{version}});
+  if(!r.ok) throw new Error('restore failed (' + r.status + ')');
+  return r.body;
+}
+
+return { probe, me, logout, loginUrl, pull, push, history, restore,
+         meta, setMeta, clearMeta, deviceName,
+         get user(){ return user; },
+         get available(){ return available; } };
+})();
+
 /* Interactive labs. Everything here runs offline — no API key, no network.
    Simulations are shaped to reproduce the *behaviour* each chapter teaches,
    so a reader without credits still meets the failure with their own hands. */
@@ -4659,7 +4777,7 @@ return {takeSessionBackup, backupInfo, restoreBackup,
         importText, snapshot, summarise,
         stats, usable, requestPersistence,
         /* entry points the app calls on boot and on the way out */
-        autoSync, pushOnExit,
+        autoSync, pushOnExit, markSynced, isEmptyState,
         gh:{config:ghConfig, save:ghSave, clear:ghClear, verify:ghVerify,
             connect:ghConnect, find:ghFindGist,
             push:ghPush, pull:ghPull, remote:ghRemote, localChangedSinceSync}};
@@ -5435,8 +5553,11 @@ function processes(){
 function data(){
   const st=S(), SY=window.SYNC;
   const w=h('div',{class:'wrap'});
-  w.appendChild(phead('Durability','Progress & Backup',
-    'Your progress lives in this browser and is never sent anywhere by default. That makes it private — and it makes it fragile, because it is tied to this one browser on this one device. Here is how to make it survive.'));
+  const signedIn = window.ACCOUNT && window.ACCOUNT.user;
+  w.appendChild(phead('Your data','Progress & Backup',
+    signedIn
+      ? 'Your progress is stored against your account, so it follows you to any device you sign in on. This browser keeps a copy so the app still works offline, and everything below is the safety net under that.'
+      : 'Right now your progress lives in this browser only. That makes it private — and fragile, because it is tied to one browser on one device. Sign in below to make it follow you instead.'));
 
   const s0=SY.stats();
   w.appendChild(h('div',{class:'stats'},[
@@ -5447,15 +5568,21 @@ function data(){
     tile('answers logged',s0.summary.attempts),
     tile('last local backup',s0.backup?rel(s0.backup.at):'none',s0.backup?'':'red')]));
 
-  w.appendChild(h('div',{class:'callout'},[
+  if(!signedIn) w.appendChild(h('div',{class:'callout'},[
     h('span',{class:'lbl',text:'Where this data lives'}),
-    h('p',{html:'<code>'+esc2(s0.origin)+'</code> — browser storage is scoped to the exact address. '+
-      'Progress saved on the Claude artifact link and progress saved on your hosted link are <strong>separate stores</strong>. '+
-      'To move between them, export here and import there.'})]));
+    h('p',{html:'<code>'+esc2(s0.origin)+'</code> — without an account, browser storage is scoped to the exact address. '+
+      'Progress saved on one link and on another are <strong>separate stores</strong>. '+
+      'Signing in removes that problem entirely; until then, export here and import there.'})]));
+
+  /* --- account --- */
+  const secA=h('section',{class:'part'});
+  secA.appendChild(sectionHead2('01','Your account','how it follows you'));
+  secA.appendChild(accountPanel());
+  w.appendChild(secA);
 
   /* --- file backup --- */
   const sec1=h('section',{class:'part'});
-  sec1.appendChild(sectionHead2('01','Backup file','works everywhere, no account'));
+  sec1.appendChild(sectionHead2('02','Backup file','works everywhere, no account'));
   sec1.appendChild(h('p',{class:'prose',style:'font-size:1rem',
     html:'The dependable one. Downloads everything — mastery, answers, calibration, notebook, exercises, processes — as a single JSON file. Keep it wherever you keep things: Drive, Dropbox, email to yourself.'}));
   const impMsg=h('div');
@@ -5518,7 +5645,7 @@ function data(){
 
   /* --- keep on device --- */
   const sec2=h('section',{class:'part'});
-  sec2.appendChild(sectionHead2('02','Keep it on this device','one click'));
+  sec2.appendChild(sectionHead2('03','Keep it on this device','one click'));
   sec2.appendChild(h('p',{class:'prose',style:'font-size:1rem',
     html:'Browsers evict storage from sites they consider disposable. Asking for persistent storage tells this one not to.'}));
   const persistMsg=h('span',{class:'dim',style:'font-size:.85rem'});
@@ -5533,7 +5660,7 @@ function data(){
 
   /* --- gist sync --- */
   const sec3=h('section',{class:'part'});
-  sec3.appendChild(sectionHead2('03','Sync across devices','optional, free, no server'));
+  sec3.appendChild(sectionHead2('04','Sync without an account','for static hosting'));
   sec3.appendChild(h('p',{class:'prose',style:'font-size:1rem',
     html:'This — not the choice of web host — is what lets you pick up where you left off on another machine. '+
       'Your progress is kept in a <strong>secret GitHub Gist</strong> only you can see, pulled when you open the app and pushed when you close it. '+
@@ -5543,7 +5670,7 @@ function data(){
 
   /* --- danger --- */
   const sec4=h('section',{class:'part'});
-  sec4.appendChild(sectionHead2('04','Reset',''));
+  sec4.appendChild(sectionHead2('05','Reset',''));
   sec4.appendChild(h('div',{style:'display:flex;gap:.5rem;flex-wrap:wrap'},[
     h('button',{class:'red',onclick:()=>{
       if(!confirm('Erase all progress in this browser? Download a backup first if you want to keep it.'))return;
@@ -5553,6 +5680,107 @@ function data(){
     }},'Erase all progress')]));
   w.appendChild(sec4);
   return w;
+}
+
+function accountPanel(){
+  const box=h('div');
+  const A=window.ACCOUNT, R=window.REMOTE;
+  if(!A || !R || A.state==='off'){
+    box.appendChild(h('p',{class:'prose',style:'font-size:1rem',
+      html:'This copy is running without its backend — from a file, from the Claude artifact, or from a plain static host. '+
+        'Progress is kept in this browser only. Deploy the Worker (see the README) and this becomes an account: '+
+        'sign in anywhere and your record follows you.'}));
+    return box;
+  }
+  const u=A.user;
+  if(A.state==='signedout' || !u){
+    const configured = R.available && R.available.signIn;
+    box.appendChild(h('p',{class:'prose',style:'font-size:1rem',
+      html:'Sign in and your progress lives on the server instead of in this browser. '+
+        'Open the site on any device, sign in, and it is simply there — no files, no tokens, no copying.'}));
+    if(configured){
+      box.appendChild(h('div',{style:'display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin-top:1rem'},[
+        h('a',{class:'btnlink',href:R.loginUrl()},'Sign in with GitHub'),
+        h('span',{class:'dim',style:'font-size:.82rem',
+          text:'Reads your username only. No repository access.'})]));
+    } else {
+      box.appendChild(h('div',{class:'callout',style:'border-left-color:var(--red)'},[
+        h('span',{class:'lbl',text:'Sign-in is not configured on this deployment'}),
+        h('p',{html:'The backend is running, but no GitHub OAuth app is set. Add the two secrets and redeploy:'+
+          '<br><code>npx wrangler secret put GITHUB_CLIENT_ID</code>'+
+          '<br><code>npx wrangler secret put GITHUB_CLIENT_SECRET</code>'+
+          '<br>The README has the four-step setup.'})]));
+    }
+    const q=new URLSearchParams(location.hash.split('?')[1]||'');
+    const err=q.get('signin');
+    if(err && err!=='ok') box.appendChild(h('div',{class:'verdict bad',style:'margin-top:.9rem'},[
+      h('span',{class:'vt',text:'Sign-in did not complete'}),
+      h('span',{class:'vs',text:{bad_state:'The sign-in link expired — try again.',
+        no_token:'GitHub did not return a token.',profile_failed:'Could not read your GitHub profile.',
+        not_allowed:'That GitHub account is not on this app\'s allow list.'}[err]||err})]));
+    return box;
+  }
+
+  const m=R.meta();
+  box.appendChild(h('div',{class:'acct'},[
+    u.avatar?h('img',{class:'avatar',src:u.avatar,alt:''}):null,
+    h('div',{style:'flex:1;min-width:0'},[
+      h('strong',{text:u.name||u.login}),
+      h('div',{class:'dim',style:'font-size:.82rem',text:'@'+u.login+' · '+R.deviceName()})]),
+    h('span',{class:'pill '+(A.state==='conflict'?'red':'ok'),
+      text:{ok:'synced',pulled:'synced',syncing:'syncing',offline:'offline',
+            conflict:'needs attention',error:'sync problem'}[A.state]||A.state})]));
+
+  box.appendChild(h('div',{class:'stats'},[
+    tile('server version',m.version!=null?'v'+m.version:'—'),
+    tile('this device',A.state==='ok'||A.state==='pulled'?'up to date':A.state),
+    tile('kept on server','last 20 versions','','automatic')]));
+
+  if(A.state==='conflict' && A.server){
+    const srv=A.server, local=window.SYNC.summarise(S());
+    const rem=window.SYNC.summarise(srv.data||{});
+    box.appendChild(h('div',{class:'callout',style:'border-left-color:var(--red)'},[
+      h('span',{class:'lbl',text:'Another device saved first'}),
+      h('p',{html:'Nothing has been overwritten. Choose which copy to keep — the other is still '+
+        'recoverable from the server history and from your local snapshot.'})]));
+    const t=h('table');
+    t.appendChild(h('thead',{},h('tr',{},[h('th',{text:''}),h('th',{text:'This device'}),h('th',{text:'Server'})])));
+    t.appendChild(h('tbody',{},[
+      h('tr',{},[h('td',{text:'skills measured'}),h('td',{class:'num',text:String(local.skills)}),h('td',{class:'num',text:String(rem.skills)})]),
+      h('tr',{},[h('td',{text:'answers logged'}),h('td',{class:'num',text:String(local.attempts)}),h('td',{class:'num',text:String(rem.attempts)})]),
+      h('tr',{},[h('td',{text:'exercises'}),h('td',{class:'num',text:String(local.exercises)}),h('td',{class:'num',text:String(rem.exercises)})])]));
+    box.appendChild(h('div',{class:'tblwrap',style:'margin:.8rem 0'},t));
+    box.appendChild(h('div',{style:'display:flex;gap:.5rem;flex-wrap:wrap'},[
+      h('button',{class:'primary',onclick:()=>{A.takeServer();setTimeout(()=>location.reload(),400);}},'Keep the server copy'),
+      h('button',{class:'red',onclick:()=>{A.takeLocal();setTimeout(()=>location.reload(),600);}},'Keep this device and overwrite')]));
+  }
+
+  const histBox=h('div');
+  box.appendChild(h('div',{style:'display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem'},[
+    h('button',{onclick:async()=>{
+      histBox.innerHTML='';
+      const vs=await R.history();
+      if(!vs.length){histBox.appendChild(h('p',{class:'empty',text:'No saved versions yet.'}));return;}
+      const t=h('table');
+      t.appendChild(h('thead',{},h('tr',{},['version','saved','from','size',''].map(x=>h('th',{text:x})))));
+      t.appendChild(h('tbody',{},vs.map(v=>h('tr',{},[
+        h('td',{class:'num',text:'v'+v.version}),
+        h('td',{text:new Date(v.saved_at).toLocaleString()}),
+        h('td',{text:v.device||'—'}),
+        h('td',{class:'num',text:(v.bytes/1024).toFixed(1)+' KB'}),
+        h('td',{},h('button',{class:'sm',onclick:async()=>{
+          if(!confirm('Restore v'+v.version+'? Current progress is kept in the history too.'))return;
+          try{ await R.restore(v.version); location.reload(); }
+          catch(e){ alert(e.message); }
+        }},'Restore'))]))));
+      histBox.appendChild(h('div',{class:'tblwrap',style:'margin-top:.8rem'},t));
+    }},'Show server history'),
+    h('button',{onclick:async()=>{ await R.logout(); location.reload(); }},'Sign out')]));
+  box.appendChild(histBox);
+  box.appendChild(h('p',{class:'labnote',html:
+    'Progress is saved to your account a couple of seconds after each change, and again as you leave the page. '+
+    'If a different device saved while this one was open, the write is refused rather than applied — you are shown both and you choose.'}));
+  return box;
 }
 
 function esc2(s){return String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));}
@@ -5753,6 +5981,7 @@ function writeNow(){
       if(b)b.hidden=false;}
     return;
   }
+  if(window.ACCOUNT) window.ACCOUNT.onChange();
   if(window.SYNC){const c=window.SYNC.gh.config();
     if(c.auto&&c.token){clearTimeout(writeNow._push);
       writeNow._push=setTimeout(()=>{window.SYNC.gh.push().catch(()=>{});},20000);}}
@@ -5760,7 +5989,10 @@ function writeNow(){
 function save(){clearTimeout(saveT);saveT=setTimeout(writeNow,250);}
 /* A debounced write loses the last answer if the tab is closed or navigated
    within the debounce window, so flush on every way out. */
-addEventListener('pagehide',()=>{writeNow();if(window.SYNC)window.SYNC.pushOnExit();});
+addEventListener('pagehide',()=>{writeNow();
+  if(window.ACCOUNT)window.ACCOUNT.flush();
+  if(window.SYNC)window.SYNC.pushOnExit();});
+addEventListener('online',()=>{if(window.ACCOUNT)window.ACCOUNT.onChange(true);});
 addEventListener('beforeunload',writeNow);
 addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')writeNow();});
 addEventListener('hashchange',writeNow);
@@ -6610,7 +6842,7 @@ function boot(){
   applyTheme();
   window.addEventListener('hashchange',route);
   route();
-  runAutoSync();
+  ACCOUNT.boot().then(()=>{ if(ACCOUNT.state==='off') runAutoSync(); });
 }
 function setSyncPill(state,text,cls){
   const el=$('#syncpill'); if(!el)return;
@@ -6618,6 +6850,133 @@ function setSyncPill(state,text,cls){
   el.hidden=false; el.textContent=text;
   el.className='syncpill'+(cls?' '+cls:'');
 }
+/* ---------------- account sync ----------------
+   The server is the record when signed in; this device is a cache. On open we
+   pull, on change we push, and a version mismatch means another device wrote
+   first — we never resolve that silently. */
+const ACCOUNT=(function(){
+  let state='off';          // off | signedout | syncing | ok | offline | conflict | error
+  let detail='';
+  let pushT=null, inFlight=false, dirty=false, serverCopy=null;
+
+  const M=()=>window.REMOTE.meta();
+  const setM=m=>window.REMOTE.setMeta(m);
+  const marker=()=>S.updatedAt||0;
+  const localChanged=()=>{const m=M(); return !m.version || (S.updatedAt||0)!==(m.marker||0);};
+
+  function show(st,d){ state=st; detail=d||''; paint(); }
+  function paint(){
+    const el=$('#syncpill'); if(!el)return;
+    const map={
+      off:      null,
+      signedout:['Sign in to sync','warn'],
+      syncing:  ['syncing…','busy'],
+      ok:       ['synced','ok'],
+      pulled:   ['synced — loaded your latest','ok'],
+      offline:  ['offline — will sync later','warn'],
+      conflict: ['another device wrote first — open','warn'],
+      error:    ['sync problem — open','warn']
+    };
+    const v=map[state];
+    if(!v){el.hidden=true;return;}
+    el.hidden=false; el.textContent=v[0]; el.className='syncpill '+v[1];
+  }
+
+  /* The page renders before this probe resolves, so any view that shows account
+     state has to be redrawn once we know it. */
+  function reroute(){ if(location.hash.indexOf('#/data')===0) route(); }
+  async function boot(){
+    if(!window.REMOTE) return;
+    const a=await window.REMOTE.probe();
+    if(!a){ show('off'); reroute(); return; }
+    const u=await window.REMOTE.me();
+    if(!u){ clearIfStale(); show('signedout'); reroute(); return; }
+    show('syncing');
+    try{
+      const srv=await window.REMOTE.pull();
+      if(srv.signedOut){ show('signedout'); return; }
+      await reconcile(srv);
+    }catch(e){ show(navigator.onLine?'error':'offline', e.message); }
+    reroute();
+  }
+  /* Signed out on a device that had synced: keep the data, drop the pointer. */
+  function clearIfStale(){ const m=M(); if(m.version) window.REMOTE.clearMeta(); }
+
+  async function reconcile(srv){
+    const m=M();
+    const localEmpty=window.SYNC.isEmptyState(S);
+    const serverEmpty=!srv.data || window.SYNC.isEmptyState(srv.data);
+
+    if(serverEmpty && !localEmpty) return pushNow(srv.version, 'ok');
+    if(serverEmpty && localEmpty){ setM({version:srv.version, marker:marker()}); return show('ok'); }
+
+    if(localEmpty || !localChanged()){
+      window.SYNC.takeSessionBackup();
+      replace(srv.data);
+      setM({version:srv.version, marker:marker()});
+      route();
+      return show(localEmpty?'pulled':'ok');
+    }
+    /* both sides moved */
+    if((m.version||0) === srv.version) return pushNow(srv.version, 'ok');
+    serverCopy=srv; show('conflict');
+  }
+
+  async function pushNow(baseVersion, okState){
+    if(inFlight){ dirty=true; return; }
+    inFlight=true;
+    try{
+      const r=await window.REMOTE.push(S, baseVersion);
+      if(r.signedOut){ show('signedout'); return; }
+      if(r.tooLarge){ show('error','Progress is too large to save.'); return; }
+      if(r.conflict){ serverCopy=r.server; show('conflict'); return; }
+      setM({version:r.version, marker:marker()});
+      show(okState||'ok');
+    }catch(e){ show(navigator.onLine?'error':'offline', e.message); }
+    finally{
+      inFlight=false;
+      if(dirty){ dirty=false; onChange(true); }
+    }
+  }
+
+  function onChange(immediate){
+    if(state==='off'||state==='signedout'||state==='conflict') return;
+    clearTimeout(pushT);
+    const go=()=>{ const m=M(); if(m.version==null) return; pushNow(m.version); };
+    if(immediate) go(); else pushT=setTimeout(go, 2500);
+  }
+  function flush(){
+    if(state==='off'||state==='signedout'||state==='conflict') return;
+    const m=M(); if(m.version==null) return;
+    clearTimeout(pushT);
+    /* keepalive lets this outlive the page so the last answers are not stranded */
+    try{
+      fetch('/api/state',{method:'PUT',keepalive:true,credentials:'same-origin',
+        headers:{'content-type':'application/json','x-aifz':'1'},
+        body:JSON.stringify({baseVersion:m.version,data:S,device:window.REMOTE.deviceName()})});
+    }catch(e){}
+  }
+
+  async function takeServer(){
+    if(!serverCopy) return;
+    window.SYNC.takeSessionBackup();
+    replace(serverCopy.data);
+    setM({version:serverCopy.version, marker:marker()});
+    serverCopy=null; route(); show('pulled');
+  }
+  async function takeLocal(){
+    if(!serverCopy) return;
+    const v=serverCopy.version; serverCopy=null;
+    await pushNow(v,'ok');
+  }
+
+  return {boot, onChange, flush, paint, takeServer, takeLocal,
+    get state(){return state;}, get detail(){return detail;},
+    get server(){return serverCopy;}, get user(){return window.REMOTE&&window.REMOTE.user;},
+    refresh:boot};
+})();
+window.ACCOUNT=ACCOUNT;
+
 window.REFRESH_SYNC=function(){ runAutoSync(); };
 function runAutoSync(){
   if(!window.SYNC)return;

@@ -25,6 +25,7 @@ const js = [
   'src/data/items2.js',
   'src/data/items3.js',
   'src/data/work.js',
+  'src/remote.js',
   'src/labs.js',
   'src/engine.js',
   'src/sync.js',
@@ -129,6 +130,7 @@ self.addEventListener('fetch', e => {
   if (r.method !== 'GET') return;
   const u = new URL(r.url);
   if (u.origin !== location.origin) return;          // fonts, GitHub API: leave alone
+  if (u.pathname.startsWith('/api/')) return;        // never cache account calls
   e.respondWith(
     fetch(r).then(res => {
       const copy = res.clone();
