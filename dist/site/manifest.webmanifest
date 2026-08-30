@@ -1,0 +1,19 @@
+{
+  "name": "AI From Zero — Skill Tracker",
+  "short_name": "AI From Zero",
+  "description": "A skill tracker for AI product managers: 30 measured competencies, a 137-question bank, spaced repetition and calibration scoring.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#ECEEEA",
+  "theme_color": "#ECEEEA",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

@@ -630,3 +630,9 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .pstep strong{display:block;font-size:.86rem;font-weight:600;margin-bottom:.1rem}
 .pstep .ph{display:block;font-size:.78rem;color:var(--muted);line-height:1.45}
 .procbody .bar{margin:.8rem 0 0}
+
+/* ---- save warning + backup page ---- */
+.savewarn{font-family:var(--sans);font-size:.75rem;color:#fff;background:var(--red);
+  padding:.2rem .55rem;border-radius:var(--r);text-decoration:none;white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis;max-width:46vw}
+.savewarn:hover{opacity:.9}
