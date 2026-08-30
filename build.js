@@ -14,7 +14,14 @@ const js = [
   'src/data/part2.js',
   'src/data/part3.js',
   'src/data/reference.js',
+  'src/data/skills.js',
+  'src/data/items1.js',
+  'src/data/items2.js',
+  'src/data/items3.js',
+  'src/data/work.js',
   'src/labs.js',
+  'src/engine.js',
+  'src/views.js',
   'src/app.js'
 ].map(read).join('\n');
 

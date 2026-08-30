@@ -1,15 +1,41 @@
 # AI From Zero — 2027 Edition
 
-A hands-on AI curriculum for product managers, delivered as a single self-contained
-web portal. It extends the original seven-chapter *AI From Zero* (v2.0, General
-Edition) to eighteen chapters covering the topics a PM needs in 2027, and adds the
-instruments the original book asks readers to keep on paper.
+An interactive **skill tracker** for product managers working on AI, delivered as a
+single self-contained web portal. The primary object is a *skill*, not a chapter:
+thirty tracked competencies whose mastery is earned by measured evidence, decays
+without practice, and is drilled through a 137-item assessment bank.
+
+The eighteen-chapter curriculum — the original seven-chapter *AI From Zero* (v2.0)
+extended to cover 2027 topics — is the reference library behind it. You do not read
+it front to back; the dashboard sends you to the chapter that moves the skill you are
+weakest in.
 
 **The thesis it is built around:** vocabulary acquired before experience becomes
 jargon; vocabulary acquired after experience becomes testimony. Nothing is named
 until it has been built and broken.
 
-## What's here
+## The loop
+
+    placement check  →  weakest skills surfaced  →  drill / read / do an exercise
+          ↑                                                        │
+          └──────────  re-measure, watch the delta  ←──────────────┘
+
+Every answer carries a confidence rating, so the system tracks not just whether you
+were right but whether you *knew* you were — and reports your overconfidence in points.
+
+## Tracking
+
+| Layer | What it does |
+| --- | --- |
+| **30 skills** in 6 domains | Each with behavioural L1–L4 descriptors, mapped to chapters, labs and exercises |
+| **137 assessment items** | Five types: multiple choice, select-all, numeric estimation, ordering, and open judgment scored against a model answer. 60% are analysis-level |
+| **Mastery model** | Gain scales with item difficulty and shrinks as mastery rises; decays to a 70% floor with time since practice |
+| **Spaced repetition** | SM-2 scheduler per item, with a 21-day review forecast |
+| **Calibration** | Brier score and a calibration curve; tells you if your confidence is systematically wrong |
+| **14 exercises** | Applied deliverables, rubric-scored and **versioned** — do it again in six weeks and watch the score move |
+| **5 processes** | Repeatable PM workflows (evaluation cycle, corpus onboarding, vendor decision, incident response, model migration) with run counters |
+
+## Curriculum
 
 | Part | Chapters | Subject |
 | --- | --- | --- |
@@ -24,7 +50,7 @@ notes must be rough, predict before you measure.
 
 ### Instruments
 
-Nine tools that make the book's paper exercises persistent and checkable:
+Tools that make the book's paper exercises persistent and checkable:
 
 - **The Labs** — 16 interactive simulations (tokenizer and receipt, temperature,
   chunking damage report, meaning map, precision–recall dial, schema trap, agent loop,
@@ -64,18 +90,22 @@ Concatenates `src/` into two outputs:
 ```
 src/
 ├── data/
-│   ├── part1.js      Chapters 1–7
-│   ├── part2.js      Chapters 8–13
-│   ├── part3.js      Chapters 14–18
-│   └── reference.js  Setup, glossary, vendor deck, LATER page, red-map nodes
-├── labs.js           The 16 interactive labs
-├── app.js            Routing, rendering, persistence, stateful instruments
-└── styles.css        Design tokens and layout
+│   ├── skills.js       30 skills, 6 domains, L1-L4 descriptors
+│   ├── items1-3.js     137-item assessment bank
+│   ├── work.js         14 exercises with rubrics, 5 processes
+│   ├── part1-3.js      Chapters 1-18 (the library)
+│   └── reference.js    Setup, glossary, vendor deck, LATER page, red-map nodes
+├── engine.js           Mastery + decay, SM-2, calibration, session building
+├── views.js            Dashboard, practice runner, matrix, analytics, work trackers
+├── labs.js             16 interactive labs
+├── app.js              Routing, persistence, chapter rendering
+└── styles.css          Design tokens and layout
 ```
 
-Chapter content is data, not markup. Each chapter is an object with a small block
-grammar (`p`, `key`, `c`, `l`, `n`, `tb`, `code`, `x`) rendered by `blocks()` in
-`app.js`, so adding a chapter means adding an object — no HTML.
+Content is data, not markup. A chapter is an object using a small block grammar
+(`p`, `key`, `c`, `l`, `n`, `tb`, `code`, `x`); an assessment item is a single array
+`[id, skill, difficulty, type, stem, options, answer, why]`. Adding a chapter, a skill
+or a question means adding an object — no HTML, no templates.
 
 ## Design
 

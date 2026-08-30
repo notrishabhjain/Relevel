@@ -14,11 +14,31 @@ const byId={}; CH.forEach(c=>byId[c.id]=c);
 
 /* ---------------- storage ---------------- */
 const KEY='aifz2027';
-let S={done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{},drill:{},sittings:[],theme:null};
+let S={done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{},drill:{},sittings:[],theme:null,
+  /* tracker state */
+  sk:{},      // per-skill mastery {m,n,ok,last,hist,peak}
+  srs:{},     // per-item schedule {ease,ivl,reps,due,seen}
+  att:[],     // attempt log
+  cal:[],     // calibration log {t,c,k}
+  sess:[],    // session log
+  ex:{},      // exercise iterations
+  proc:{}     // process runs
+};
 try{const raw=localStorage.getItem(KEY); if(raw)S=Object.assign(S,JSON.parse(raw));}catch(e){}
 let saveT;
-function save(){clearTimeout(saveT);saveT=setTimeout(()=>{
-  try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}},250);}
+function writeNow(){
+  clearTimeout(saveT); saveT=null;
+  try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}
+}
+function save(){clearTimeout(saveT);saveT=setTimeout(writeNow,250);}
+/* A debounced write loses the last answer if the tab is closed or navigated
+   within the debounce window, so flush on every way out. */
+addEventListener('pagehide',writeNow);
+addEventListener('beforeunload',writeNow);
+addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')writeNow();});
+addEventListener('hashchange',writeNow);
+/* views.js and engine.js read state through here */
+window.STORE={get S(){return S;}, save, flush:writeNow};
 function flash(node){if(!node)return;node.classList.add('show');setTimeout(()=>node.classList.remove('show'),1400);}
 
 /* ---------------- block renderer ---------------- */
@@ -242,14 +262,14 @@ function pageHome(){
   const w=h('div',{class:'wrap-wide'});
   const doneN=CH.filter(c=>S.done[c.id]).length;
   w.appendChild(h('header',{class:'hero'},[
-    h('div',{class:'kicker',text:'Version 3.0 · 2027 Edition · Product Management Track'}),
-    h('h1',{text:'AI From Zero'}),
-    h('p',{class:'sub',html:'Learn how modern AI systems actually work — by building one with your own hands, breaking it in eighteen predictable ways, and measuring every failure yourself.'}),
+    h('div',{class:'kicker',text:'Reference library · 18 chapters'}),
+    h('h1',{text:'The Library'}),
+    h('p',{class:'sub',html:'The knowledge base behind the tracker. You do not read it front to back — the dashboard sends you to the chapter that moves the skill you are weakest in.'}),
     h('div',{style:'display:flex;gap:.6rem;flex-wrap:wrap'},[
-      h('a',{class:'chip',href:'#/setup',style:'padding:.5rem .9rem'},'Start with Setup →'),
+      h('a',{class:'chip',href:'#/',style:'padding:.5rem .9rem'},'← Dashboard'),
+      h('a',{class:'chip',href:'#/setup',style:'padding:.5rem .9rem'},'Setup (once, 45 min)'),
       h('a',{class:'chip',href:'#/ch/'+(CH.find(c=>!S.done[c.id])||CH[0]).id,style:'padding:.5rem .9rem'},
-        doneN?'Continue where you left off':'Go to Chapter 1'),
-      h('a',{class:'chip',href:'#/map',style:'padding:.5rem .9rem'},'The Red-Mark Map')])]));
+        doneN?'Continue reading':'Chapter 1')])]));
 
   w.appendChild(h('div',{class:'meta'},[
     h('div',{},[h('span',{class:'l',text:'For'}),h('span',{class:'v',text:'Product managers, analysts, consultants, team leads'})]),
@@ -673,12 +693,13 @@ function pageLabs(){
 /* ---------------- shell ---------------- */
 function renderRail(){
   const r=$('#rail');r.innerHTML='';
-  const doneN=CH.filter(c=>S.done[c.id]).length;
+  const m=window.ENG?window.ENG.overall(S):0;
+  const tested=window.ENG?window.SKILLS.filter(s=>window.ENG.skillState(S,s.id).n>0).length:0;
   r.appendChild(h('div',{class:'brand'},[
     h('a',{href:'#/',style:'text-decoration:none;color:inherit'},[h('h1',{text:'AI From Zero'})]),
-    h('span',{class:'ed',text:'2027 Edition · PM Track'}),
-    h('div',{class:'prog'},[h('div',{class:'bar'},[h('i',{style:'width:'+(doneN/CH.length*100)+'%'})]),
-      h('span',{class:'pct',text:doneN+' of '+CH.length+' chapters'})])]));
+    h('span',{class:'ed',text:'Skill tracker · 2027'}),
+    h('div',{class:'prog'},[h('div',{class:'bar'},[h('i',{style:'width:'+m+'%'})]),
+      h('span',{class:'pct',text:Math.round(m)+'% mastery · '+tested+'/'+window.SKILLS.length+' skills measured'})])]));
   const sec=(title,items)=>{
     const s=h('div',{class:'railsec'},[h('h2',{text:title})]);
     s.appendChild(h('ul',{class:'navlist'},items.map(([href,num,label])=>
@@ -686,46 +707,73 @@ function renderRail(){
         h('span',{class:'nnum',text:num}),h('span',{style:'flex:1',text:label}),
         (href.startsWith('#/ch/')&&S.done[href.slice(5)])?h('span',{class:'ndone',text:'✓'}):null])]))));
     return s;};
-  r.appendChild(sec('Begin',[['#/','—','Overview'],['#/setup','A','Setup']]));
-  window.PARTS.forEach(p=>{
-    r.appendChild(sec('Part '+['I','II','III'][p.n-1]+' · '+p.title,
-      CH.filter(c=>c.part===p.n).map(c=>['#/ch/'+c.id,String(c.num),c.title])));
-  });
-  r.appendChild(sec('Instruments',[
-    ['#/labs','◧','The Labs'],['#/map','◆','Red-Mark Map'],['#/ledger','∆','Prediction Ledger'],
-    ['#/notebook','▤','Notebook'],['#/card','▣','System Card'],['#/vendor','⌗','Vendor Deck'],
-    ['#/glossary','∎','Glossary'],['#/later','⋯','LATER Page'],['#/progress','◐','Where You Are']]));
+  const dueN=window.ENG?window.ENG.dueList(S).length:0;
+  r.appendChild(sec('Track',[
+    ['#/','◉','Dashboard'],
+    ['#/practice','▶','Practice'+(dueN?'  ('+dueN+' due)':'')],
+    ['#/skills','▦','Skill Matrix'],
+    ['#/analytics','◔','Analytics']]));
+  r.appendChild(sec('Do',[
+    ['#/exercises','✎','Exercises'],
+    ['#/processes','⟳','Processes'],
+    ['#/labs','◧','The Labs'],
+    ['#/map','◆','Red-Mark Map'],
+    ['#/ledger','∆','Prediction Ledger'],
+    ['#/card','▣','System Card']]));
+  r.appendChild(sec('Reference',[
+    ['#/library','▤','Library — 18 chapters'],['#/setup','A','Setup'],
+    ['#/vendor','⌗','Vendor Deck'],['#/glossary','∎','Glossary'],
+    ['#/notebook','✐','Notebook'],['#/later','⋯','LATER Page']]));
 }
 
 function updateProgress(){
-  const doneN=CH.filter(c=>S.done[c.id]).length;
+  const m=window.ENG?window.ENG.overall(S):0;
+  const tested=window.ENG?window.SKILLS.filter(s=>window.ENG.skillState(S,s.id).n>0).length:0;
   const b=$('.brand .bar i'),p=$('.brand .pct');
-  if(b)b.style.width=(doneN/CH.length*100)+'%';
-  if(p)p.textContent=doneN+' of '+CH.length+' chapters';
+  if(b)b.style.width=m+'%';
+  if(p)p.textContent=Math.round(m)+'% mastery · '+tested+'/'+window.SKILLS.length+' skills measured';
 }
 
-const ROUTES={'':pageHome,'setup':pageSetup,'notebook':pageNotebook,'ledger':pageLedger,
+const V=()=>window.VIEWS;
+const ROUTES={'':()=>V().dashboard(),'library':pageHome,
+  'skills':()=>V().skills(),'analytics':()=>V().analytics(),
+  'exercises':()=>V().exercises(),'processes':()=>V().processes(),
+  'setup':pageSetup,'notebook':pageNotebook,'ledger':pageLedger,
   'later':pageLater,'glossary':pageGlossary,'vendor':pageVendor,'map':pageMap,'card':pageCard,
   'progress':pageProgress,'labs':pageLabs};
+const CRUMB={'':'Dashboard','library':'Library','skills':'Skill Matrix','analytics':'Analytics',
+  'exercises':'Exercises','processes':'Processes','practice':'Practice','skill':'Skill'};
 
 function route(){
-  const hash=location.hash.replace(/^#\/?/,'');
+  const hash=location.hash.replace(/^#\/?/,'').split('#')[0];
   const parts=hash.split('/').filter(Boolean);
   const main=$('#main');main.innerHTML='';
-  let node,crumb='Overview';
+  let node,crumb='Dashboard';
   if(parts[0]==='ch'&&byId[parts[1]]){
     const c=byId[parts[1]];node=renderChapter(c);
     crumb='Part '+['I','II','III'][c.part-1]+' · Chapter '+c.num;
     document.title=c.num+'. '+c.title+' — AI From Zero';
+  } else if(parts[0]==='practice'){
+    node = parts[1] ? V().practice(parts[1],parts[2]) : V().practiceMenu();
+    crumb='Practice'+(parts[1]?' · '+parts[1]:'');
+    document.title='Practice — AI From Zero';
+  } else if(parts[0]==='skill'&&parts[1]){
+    node=V().skillPage(parts[1]);
+    crumb='Skill · '+parts[1];
+    document.title='Skill — AI From Zero';
   } else {
     const f=ROUTES[parts[0]||''];
-    node=(f||pageHome)();
-    crumb=parts[0]?parts[0][0].toUpperCase()+parts[0].slice(1):'Overview';
+    node=(f||(()=>V().dashboard()))();
+    crumb=CRUMB[parts[0]||'']||(parts[0]?parts[0][0].toUpperCase()+parts[0].slice(1):'Dashboard');
     document.title='AI From Zero — 2027 Edition';
   }
   main.appendChild(node);
   const cb=$('#crumb');if(cb)cb.textContent=crumb;
   renderRail();
+  /* a secondary hash (#/exercises#E01) targets an element on the rendered page */
+  const anchor=location.hash.split('#')[2];
+  if(anchor){const el=document.getElementById(anchor);
+    if(el){el.scrollIntoView({block:'start'});return;}}
   window.scrollTo(0,0);
   $('#rail').classList.remove('open');
 }
@@ -733,7 +781,11 @@ function route(){
 /* ---------------- command palette ---------------- */
 function buildIndex(){
   const idx=[];
-  idx.push({k:'page',t:'Overview',h:'#/'},{k:'page',t:'Setup',h:'#/setup'},
+  idx.push({k:'page',t:'Dashboard',h:'#/'},{k:'page',t:'Practice',h:'#/practice'},
+    {k:'page',t:'Skill Matrix',h:'#/skills'},{k:'page',t:'Analytics',h:'#/analytics'},
+    {k:'page',t:'Exercises',h:'#/exercises'},{k:'page',t:'Processes',h:'#/processes'},
+    {k:'page',t:'Library — 18 chapters',h:'#/library'},
+    {k:'page',t:'Setup',h:'#/setup'},
     {k:'page',t:'The Labs',h:'#/labs'},{k:'page',t:'Red-Mark Map',h:'#/map'},
     {k:'page',t:'Prediction Ledger',h:'#/ledger'},{k:'page',t:'Notebook',h:'#/notebook'},
     {k:'page',t:'System Card',h:'#/card'},{k:'page',t:'Vendor Deck',h:'#/vendor'},
@@ -746,6 +798,9 @@ function buildIndex(){
   });
   window.VENDOR.forEach(v=>idx.push({k:'claim',t:v.claim,d:'Ch '+v.ch,h:'#/vendor'}));
   window.REDMARKS.forEach(r=>idx.push({k:'failure',t:r.t,d:'Ch '+r.ch,h:'#/map'}));
+  window.SKILLS.forEach(s=>idx.push({k:'skill',t:s.n,d:s.core,h:'#/skill/'+s.id}));
+  window.EXERCISES.forEach(e=>idx.push({k:'exercise',t:e.t,d:'~'+e.mins+' min',h:'#/exercises#'+e.id}));
+  window.PROCESSES.forEach(p=>idx.push({k:'process',t:p.n,d:p.cad,h:'#/processes#'+p.id}));
   return idx;
 }
 let IDX=null,palCur=0,palItems=[];
