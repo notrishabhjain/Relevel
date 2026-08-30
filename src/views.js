@@ -814,10 +814,29 @@ function data(){
     };
     r.readAsText(f);
   });
-  sec1.appendChild(h('div',{style:'display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0'},[
-    h('button',{class:'primary',onclick:()=>SY.exportFile()},'Download backup'),
+  const textBox=h('textarea',{rows:6,readonly:'readonly',hidden:'hidden',
+    style:'margin-top:.8rem;font-size:.72rem'});
+  const copyMsg=h('span',{class:'dim',style:'font-size:.82rem'});
+  const dl=SY.canDownload();
+  sec1.appendChild(h('div',{style:'display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0;align-items:center'},[
+    dl?h('button',{class:'primary',onclick:()=>SY.exportFile()},'Download backup'):null,
+    h('button',{class:dl?'':'primary',onclick:async()=>{
+      const t=SY.exportText();
+      const ok=await SY.copyText(t);
+      copyMsg.textContent = ok ? 'Copied — paste it into a file named '+SY.exportName()
+                               : 'Could not reach the clipboard. Use “Show as text” and copy it by hand.';
+      if(!ok){textBox.hidden=false;textBox.value=t;textBox.focus();textBox.select();}
+    }},'Copy backup to clipboard'),
+    h('button',{onclick:()=>{
+      if(textBox.hidden){textBox.value=SY.exportText();textBox.hidden=false;
+        textBox.focus();textBox.select();}else{textBox.hidden=true;}
+    }},'Show as text'),
     h('button',{onclick:()=>fileIn.click()},'Import a backup file'),
-    fileIn]));
+    fileIn, copyMsg]));
+  sec1.appendChild(textBox);
+  if(!dl) sec1.appendChild(h('p',{class:'labnote',html:
+    'This viewer does not allow pages to save files, so <strong>copy to clipboard</strong> is the export route here. '+
+    'On your hosted link you get a normal download button.'}));
   sec1.appendChild(impMsg);
   if(s0.backup) sec1.appendChild(h('p',{class:'labnote',html:
     'A local snapshot from <strong>'+rel(s0.backup.at)+'</strong> is also kept automatically in this browser. '+

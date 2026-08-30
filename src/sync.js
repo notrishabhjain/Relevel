@@ -50,15 +50,46 @@ function snapshot(){
   return {app:'ai-from-zero', v:1, exportedAt:Date.now(),
     data: window.STORE ? window.STORE.S : JSON.parse(localStorage.getItem(KEY())||'{}')};
 }
-function exportFile(){
+function exportText(){
   if(window.STORE) window.STORE.flush();
-  const s = JSON.stringify(snapshot(), null, 2);
+  return JSON.stringify(snapshot(), null, 2);
+}
+function exportName(){
+  return 'ai-from-zero-' + new Date().toISOString().slice(0,10) + '.json';
+}
+/* Some hosts (the Claude artifact viewer among them) never grant a page
+   download permission, so a link click is inert. Callers must offer the
+   clipboard path as well — see canDownload. */
+function exportFile(){
+  const s = exportText();
   const a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob([s],{type:'application/json'}));
-  a.download = 'ai-from-zero-' + new Date().toISOString().slice(0,10) + '.json';
+  a.download = exportName();
   document.body.appendChild(a); a.click();
   setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove();},0);
   return s.length;
+}
+function canDownload(){
+  /* the artifact viewer runs the page in a sandboxed frame without downloads */
+  try{
+    if(window.self !== window.top) return false;
+  }catch(e){ return false; }
+  return 'download' in document.createElement('a');
+}
+async function copyText(text){
+  try{
+    if(navigator.clipboard && window.isSecureContext){
+      await navigator.clipboard.writeText(text); return true;
+    }
+  }catch(e){}
+  try{
+    const ta=document.createElement('textarea');
+    ta.value=text; ta.setAttribute('readonly','');
+    ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    const ok=document.execCommand('copy'); ta.remove();
+    return ok;
+  }catch(e){ return false; }
 }
 function parsePayload(text){
   const j = JSON.parse(text);
@@ -192,7 +223,8 @@ function localChangedSinceSync(){
 }
 
 return {takeSessionBackup, backupInfo, restoreBackup,
-        exportFile, importText, snapshot, summarise,
+        exportFile, exportText, exportName, canDownload, copyText,
+        importText, snapshot, summarise,
         stats, usable, requestPersistence,
         gh:{config:ghConfig, save:ghSave, clear:ghClear, verify:ghVerify,
             push:ghPush, pull:ghPull, remote:ghRemote, localChangedSinceSync}};

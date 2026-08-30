@@ -4334,15 +4334,46 @@ function snapshot(){
   return {app:'ai-from-zero', v:1, exportedAt:Date.now(),
     data: window.STORE ? window.STORE.S : JSON.parse(localStorage.getItem(KEY())||'{}')};
 }
-function exportFile(){
+function exportText(){
   if(window.STORE) window.STORE.flush();
-  const s = JSON.stringify(snapshot(), null, 2);
+  return JSON.stringify(snapshot(), null, 2);
+}
+function exportName(){
+  return 'ai-from-zero-' + new Date().toISOString().slice(0,10) + '.json';
+}
+/* Some hosts (the Claude artifact viewer among them) never grant a page
+   download permission, so a link click is inert. Callers must offer the
+   clipboard path as well — see canDownload. */
+function exportFile(){
+  const s = exportText();
   const a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob([s],{type:'application/json'}));
-  a.download = 'ai-from-zero-' + new Date().toISOString().slice(0,10) + '.json';
+  a.download = exportName();
   document.body.appendChild(a); a.click();
   setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove();},0);
   return s.length;
+}
+function canDownload(){
+  /* the artifact viewer runs the page in a sandboxed frame without downloads */
+  try{
+    if(window.self !== window.top) return false;
+  }catch(e){ return false; }
+  return 'download' in document.createElement('a');
+}
+async function copyText(text){
+  try{
+    if(navigator.clipboard && window.isSecureContext){
+      await navigator.clipboard.writeText(text); return true;
+    }
+  }catch(e){}
+  try{
+    const ta=document.createElement('textarea');
+    ta.value=text; ta.setAttribute('readonly','');
+    ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    const ok=document.execCommand('copy'); ta.remove();
+    return ok;
+  }catch(e){ return false; }
 }
 function parsePayload(text){
   const j = JSON.parse(text);
@@ -4476,7 +4507,8 @@ function localChangedSinceSync(){
 }
 
 return {takeSessionBackup, backupInfo, restoreBackup,
-        exportFile, importText, snapshot, summarise,
+        exportFile, exportText, exportName, canDownload, copyText,
+        importText, snapshot, summarise,
         stats, usable, requestPersistence,
         gh:{config:ghConfig, save:ghSave, clear:ghClear, verify:ghVerify,
             push:ghPush, pull:ghPull, remote:ghRemote, localChangedSinceSync}};
@@ -5298,10 +5330,29 @@ function data(){
     };
     r.readAsText(f);
   });
-  sec1.appendChild(h('div',{style:'display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0'},[
-    h('button',{class:'primary',onclick:()=>SY.exportFile()},'Download backup'),
+  const textBox=h('textarea',{rows:6,readonly:'readonly',hidden:'hidden',
+    style:'margin-top:.8rem;font-size:.72rem'});
+  const copyMsg=h('span',{class:'dim',style:'font-size:.82rem'});
+  const dl=SY.canDownload();
+  sec1.appendChild(h('div',{style:'display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0;align-items:center'},[
+    dl?h('button',{class:'primary',onclick:()=>SY.exportFile()},'Download backup'):null,
+    h('button',{class:dl?'':'primary',onclick:async()=>{
+      const t=SY.exportText();
+      const ok=await SY.copyText(t);
+      copyMsg.textContent = ok ? 'Copied — paste it into a file named '+SY.exportName()
+                               : 'Could not reach the clipboard. Use “Show as text” and copy it by hand.';
+      if(!ok){textBox.hidden=false;textBox.value=t;textBox.focus();textBox.select();}
+    }},'Copy backup to clipboard'),
+    h('button',{onclick:()=>{
+      if(textBox.hidden){textBox.value=SY.exportText();textBox.hidden=false;
+        textBox.focus();textBox.select();}else{textBox.hidden=true;}
+    }},'Show as text'),
     h('button',{onclick:()=>fileIn.click()},'Import a backup file'),
-    fileIn]));
+    fileIn, copyMsg]));
+  sec1.appendChild(textBox);
+  if(!dl) sec1.appendChild(h('p',{class:'labnote',html:
+    'This viewer does not allow pages to save files, so <strong>copy to clipboard</strong> is the export route here. '+
+    'On your hosted link you get a normal download button.'}));
   sec1.appendChild(impMsg);
   if(s0.backup) sec1.appendChild(h('p',{class:'labnote',html:
     'A local snapshot from <strong>'+rel(s0.backup.at)+'</strong> is also kept automatically in this browser. '+
