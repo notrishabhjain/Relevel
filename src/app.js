@@ -25,10 +25,28 @@ let S={done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{},drill:{},sit
   proc:{}     // process runs
 };
 try{const raw=localStorage.getItem(KEY); if(raw)S=Object.assign(S,JSON.parse(raw));}catch(e){}
-let saveT;
+/* keep last session's state recoverable before this one writes over it */
+try{window.SYNC&&window.SYNC.takeSessionBackup();}catch(e){}
+let saveT, suspended=false;
+/* After progress is replaced underneath us (import, restore, erase) the page is
+   about to reload, and the in-memory copy is stale. Writing it on the way out —
+   pagehide fires on reload — would silently undo the replacement. */
+function suspend(){suspended=true;clearTimeout(saveT);saveT=null;}
 function writeNow(){
+  if(suspended)return;
   clearTimeout(saveT); saveT=null;
-  try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}
+  S.updatedAt=Date.now();
+  try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){
+    /* quota or a browser blocking storage: tell the user rather than losing work silently */
+    if(!writeNow._warned){writeNow._warned=true;
+      console.warn('Progress could not be saved to this browser.',e);
+      const b=document.getElementById('savewarn');
+      if(b)b.hidden=false;}
+    return;
+  }
+  if(window.SYNC){const c=window.SYNC.gh.config();
+    if(c.auto&&c.token){clearTimeout(writeNow._push);
+      writeNow._push=setTimeout(()=>{window.SYNC.gh.push().catch(()=>{});},20000);}}
 }
 function save(){clearTimeout(saveT);saveT=setTimeout(writeNow,250);}
 /* A debounced write loses the last answer if the tab is closed or navigated
@@ -38,7 +56,7 @@ addEventListener('beforeunload',writeNow);
 addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')writeNow();});
 addEventListener('hashchange',writeNow);
 /* views.js and engine.js read state through here */
-window.STORE={get S(){return S;}, save, flush:writeNow};
+window.STORE={get S(){return S;}, save, flush:writeNow, suspend, KEY};
 function flash(node){if(!node)return;node.classList.add('show');setTimeout(()=>node.classList.remove('show'),1400);}
 
 /* ---------------- block renderer ---------------- */
@@ -719,7 +737,8 @@ function renderRail(){
     ['#/labs','◧','The Labs'],
     ['#/map','◆','Red-Mark Map'],
     ['#/ledger','∆','Prediction Ledger'],
-    ['#/card','▣','System Card']]));
+    ['#/card','▣','System Card'],
+    ['#/data','⇄','Progress & Backup']]));
   r.appendChild(sec('Reference',[
     ['#/library','▤','Library — 18 chapters'],['#/setup','A','Setup'],
     ['#/vendor','⌗','Vendor Deck'],['#/glossary','∎','Glossary'],
@@ -740,9 +759,10 @@ const ROUTES={'':()=>V().dashboard(),'library':pageHome,
   'exercises':()=>V().exercises(),'processes':()=>V().processes(),
   'setup':pageSetup,'notebook':pageNotebook,'ledger':pageLedger,
   'later':pageLater,'glossary':pageGlossary,'vendor':pageVendor,'map':pageMap,'card':pageCard,
-  'progress':pageProgress,'labs':pageLabs};
+  'progress':pageProgress,'labs':pageLabs,'data':()=>V().data()};
 const CRUMB={'':'Dashboard','library':'Library','skills':'Skill Matrix','analytics':'Analytics',
-  'exercises':'Exercises','processes':'Processes','practice':'Practice','skill':'Skill'};
+  'exercises':'Exercises','processes':'Processes','practice':'Practice','skill':'Skill',
+  'data':'Progress & Backup'};
 
 function route(){
   const hash=location.hash.replace(/^#\/?/,'').split('#')[0];
@@ -785,6 +805,7 @@ function buildIndex(){
     {k:'page',t:'Skill Matrix',h:'#/skills'},{k:'page',t:'Analytics',h:'#/analytics'},
     {k:'page',t:'Exercises',h:'#/exercises'},{k:'page',t:'Processes',h:'#/processes'},
     {k:'page',t:'Library — 18 chapters',h:'#/library'},
+    {k:'page',t:'Progress & Backup',h:'#/data'},
     {k:'page',t:'Setup',h:'#/setup'},
     {k:'page',t:'The Labs',h:'#/labs'},{k:'page',t:'Red-Mark Map',h:'#/map'},
     {k:'page',t:'Prediction Ledger',h:'#/ledger'},{k:'page',t:'Notebook',h:'#/notebook'},
@@ -844,7 +865,10 @@ function boot(){
     h('div',{},[
       h('div',{class:'tbar'},[
         h('button',{class:'sm railtoggle',onclick:()=>$('#rail').classList.toggle('open')},'☰'),
-        h('span',{class:'crumb',id:'crumb'}),h('span',{class:'sp'}),
+        h('span',{class:'crumb',id:'crumb'}),
+        h('a',{class:'savewarn',id:'savewarn',hidden:'hidden',href:'#/data',
+          text:'⚠ Progress is not being saved — open Progress & Backup'}),
+        h('span',{class:'sp'}),
         h('button',{class:'sm',onclick:openPal},'Search  ⌘K'),
         h('button',{class:'sm',id:'themebtn',onclick:()=>{
           S.theme=S.theme==='dark'?'light':S.theme==='light'?null:'dark';save();applyTheme();}},'Theme')]),

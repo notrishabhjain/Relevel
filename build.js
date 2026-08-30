@@ -1,12 +1,18 @@
 #!/usr/bin/env node
-/* Concatenates src/* into a single self-contained page.
-   - dist/index.html  : Artifact-ready (no doctype/html/head/body — the host wraps it)
-   - dist/preview.html: full document, for opening locally in a browser */
+/* Builds three things from src/:
+     dist/index.html    full standalone document — what gets hosted, and what
+                        you can open straight off disk
+     dist/artifact.html body-only fragment for publishing as a Claude Artifact
+                        (the host supplies doctype/html/head/body)
+     dist/site/         the deploy directory: index.html + PWA manifest +
+                        service worker + .nojekyll                            */
 const fs = require('fs');
 const p = require('path');
 
 const R = __dirname;
 const read = f => fs.readFileSync(p.join(R, f), 'utf8');
+const out = (f, s) => { fs.mkdirSync(p.dirname(p.join(R, f)), { recursive: true });
+  fs.writeFileSync(p.join(R, f), s); };
 
 const css = read('src/styles.css');
 const js = [
@@ -21,16 +27,28 @@ const js = [
   'src/data/work.js',
   'src/labs.js',
   'src/engine.js',
+  'src/sync.js',
   'src/views.js',
   'src/app.js'
 ].map(read).join('\n');
+
+const TITLE = 'AI From Zero';
+const DESC = 'A skill tracker for AI product managers: 30 measured competencies, ' +
+             'a 137-question bank, spaced repetition and calibration scoring.';
 
 const FONTS =
 `<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">`;
 
-const TITLE = 'AI From Zero';
+/* the mark: a filled square on a rule, the "measured" green */
+const ICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<rect width="64" height="64" rx="10" fill="#14181C"/>
+<rect x="14" y="40" width="36" height="3" rx="1.5" fill="#3D454A"/>
+<rect x="14" y="30" width="9" height="9" fill="#1F6F5C"/>
+<rect x="27" y="24" width="9" height="15" fill="#4FB89A"/>
+<rect x="40" y="16" width="9" height="23" fill="#B33A2B"/>
+</svg>`;
 
 const body =
 `<title>${TITLE}</title>
@@ -42,16 +60,86 @@ ${css}
 ${js}
 </script>`;
 
-fs.mkdirSync(p.join(R, 'dist'), { recursive: true });
-fs.writeFileSync(p.join(R, 'dist/index.html'), body);
+/* ---- artifact fragment ---- */
+out('dist/artifact.html', body);
 
-fs.writeFileSync(p.join(R, 'dist/preview.html'),
-`<!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<style>:root{color-scheme:light dark}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style>
+/* ---- standalone document (hosting + local) ---- */
+const head = extra =>
+`<!doctype html><html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="${DESC}">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ECEEEA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121517" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,${encodeURIComponent(ICON)}">
+<link rel="apple-touch-icon" href="data:image/svg+xml,${encodeURIComponent(ICON)}">
+${extra}
+<style>html{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 ${body}
-</head><body></body></html>`);
+</head><body></body></html>`;
 
-const kb = n => (fs.statSync(p.join(R, n)).size / 1024).toFixed(0) + ' KB';
-console.log('built dist/index.html   ' + kb('dist/index.html'));
-console.log('built dist/preview.html ' + kb('dist/preview.html'));
+out('dist/index.html', head(''));
+
+/* ---- deploy directory ---- */
+const SITE_HEAD =
+`<link rel="manifest" href="manifest.webmanifest">
+<script>
+if('serviceWorker' in navigator)addEventListener('load',function(){
+  navigator.serviceWorker.register('sw.js').catch(function(){});
+});
+</script>`;
+out('dist/site/index.html', head(SITE_HEAD));
+out('dist/site/icon.svg', ICON);
+out('dist/site/.nojekyll', '');
+out('dist/site/manifest.webmanifest', JSON.stringify({
+  name: 'AI From Zero — Skill Tracker',
+  short_name: 'AI From Zero',
+  description: DESC,
+  start_url: './',
+  scope: './',
+  display: 'standalone',
+  orientation: 'any',
+  background_color: '#ECEEEA',
+  theme_color: '#ECEEEA',
+  icons: [{ src: 'icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any' }]
+}, null, 2));
+
+/* Network-first for the page so a deploy is picked up on the next online load,
+   cache as fallback so the tracker works on a train. Progress lives in
+   localStorage and is never touched by the cache. */
+const VERSION = 'aifz-' + require('crypto').createHash('sha1')
+  .update(css + js).digest('hex').slice(0, 12);
+out('dist/site/sw.js',
+`/* generated by build.js — cache name changes whenever the app changes */
+const C = '${VERSION}';
+const ASSETS = ['./', './index.html', './manifest.webmanifest', './icon.svg'];
+
+self.addEventListener('install', e => {
+  self.skipWaiting();
+  e.waitUntil(caches.open(C).then(c => c.addAll(ASSETS)).catch(() => {}));
+});
+self.addEventListener('activate', e => {
+  e.waitUntil(caches.keys()
+    .then(ks => Promise.all(ks.filter(k => k !== C).map(k => caches.delete(k))))
+    .then(() => self.clients.claim()));
+});
+self.addEventListener('fetch', e => {
+  const r = e.request;
+  if (r.method !== 'GET') return;
+  const u = new URL(r.url);
+  if (u.origin !== location.origin) return;          // fonts, GitHub API: leave alone
+  e.respondWith(
+    fetch(r).then(res => {
+      const copy = res.clone();
+      caches.open(C).then(c => c.put(r, copy)).catch(() => {});
+      return res;
+    }).catch(() => caches.match(r).then(m => m || caches.match('./index.html')))
+  );
+});
+`);
+
+const kb = f => (fs.statSync(p.join(R, f)).size / 1024).toFixed(0) + ' KB';
+console.log('dist/index.html     ' + kb('dist/index.html') + '   (standalone / hosting)');
+console.log('dist/artifact.html  ' + kb('dist/artifact.html') + '   (Claude Artifact)');
+console.log('dist/site/          deploy directory, sw version ' + VERSION);

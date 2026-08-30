@@ -764,5 +764,228 @@ function processes(){
   return w;
 }
 
-return {dashboard, practice, practiceMenu, skills, skillPage, analytics, exercises, processes};
+/* ================= PROGRESS & BACKUP ================= */
+function data(){
+  const st=S(), SY=window.SYNC;
+  const w=h('div',{class:'wrap'});
+  w.appendChild(phead('Durability','Progress & Backup',
+    'Your progress lives in this browser and is never sent anywhere by default. That makes it private — and it makes it fragile, because it is tied to this one browser on this one device. Here is how to make it survive.'));
+
+  const s0=SY.stats();
+  w.appendChild(h('div',{class:'stats'},[
+    tile('storage',s0.ok?'working':'blocked',s0.ok?'ok':'red',
+      s0.ok?'':'private window or blocked cookies'),
+    tile('progress size',(s0.bytes/1024).toFixed(1)+' KB'),
+    tile('skills measured',s0.summary.skills+' / 30'),
+    tile('answers logged',s0.summary.attempts),
+    tile('last local backup',s0.backup?rel(s0.backup.at):'none',s0.backup?'':'red')]));
+
+  w.appendChild(h('div',{class:'callout'},[
+    h('span',{class:'lbl',text:'Where this data lives'}),
+    h('p',{html:'<code>'+esc2(s0.origin)+'</code> — browser storage is scoped to the exact address. '+
+      'Progress saved on the Claude artifact link and progress saved on your hosted link are <strong>separate stores</strong>. '+
+      'To move between them, export here and import there.'})]));
+
+  /* --- file backup --- */
+  const sec1=h('section',{class:'part'});
+  sec1.appendChild(sectionHead2('01','Backup file','works everywhere, no account'));
+  sec1.appendChild(h('p',{class:'prose',style:'font-size:1rem',
+    html:'The dependable one. Downloads everything — mastery, answers, calibration, notebook, exercises, processes — as a single JSON file. Keep it wherever you keep things: Drive, Dropbox, email to yourself.'}));
+  const impMsg=h('div');
+  const fileIn=h('input',{type:'file',accept:'application/json,.json',style:'display:none'});
+  fileIn.addEventListener('change',()=>{
+    const f=fileIn.files[0]; if(!f)return;
+    const r=new FileReader();
+    r.onload=()=>{
+      try{
+        const sum=SY.importText(String(r.result));
+        impMsg.innerHTML='';
+        impMsg.appendChild(h('div',{class:'verdict good'},[
+          h('span',{class:'vt',text:'Imported'}),
+          h('span',{class:'vs',text:sum.skills+' skills, '+sum.attempts+' answers, '+
+            sum.exercises+' exercises. Reloading…'})]));
+        setTimeout(()=>location.reload(),900);
+      }catch(e){
+        impMsg.innerHTML='';
+        impMsg.appendChild(h('div',{class:'verdict bad'},[
+          h('span',{class:'vt',text:'Could not import'}),h('span',{class:'vs',text:e.message})]));
+      }
+      fileIn.value='';
+    };
+    r.readAsText(f);
+  });
+  sec1.appendChild(h('div',{style:'display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0'},[
+    h('button',{class:'primary',onclick:()=>SY.exportFile()},'Download backup'),
+    h('button',{onclick:()=>fileIn.click()},'Import a backup file'),
+    fileIn]));
+  sec1.appendChild(impMsg);
+  if(s0.backup) sec1.appendChild(h('p',{class:'labnote',html:
+    'A local snapshot from <strong>'+rel(s0.backup.at)+'</strong> is also kept automatically in this browser. '+
+    '<button class="sm" id="restorebak">Restore it</button> — use only if something looks wrong; it replaces current progress.'}));
+  w.appendChild(sec1);
+  setTimeout(()=>{const b=document.getElementById('restorebak');
+    if(b)b.addEventListener('click',()=>{
+      if(!confirm('Replace current progress with the snapshot from '+rel(s0.backup.at)+'?'))return;
+      try{const at=SY.restoreBackup();alert('Restored from '+new Date(at).toLocaleString());location.reload();}
+      catch(e){alert(e.message);}
+    });},60);
+
+  /* --- keep on device --- */
+  const sec2=h('section',{class:'part'});
+  sec2.appendChild(sectionHead2('02','Keep it on this device','one click'));
+  sec2.appendChild(h('p',{class:'prose',style:'font-size:1rem',
+    html:'Browsers evict storage from sites they consider disposable. Asking for persistent storage tells this one not to.'}));
+  const persistMsg=h('span',{class:'dim',style:'font-size:.85rem'});
+  sec2.appendChild(h('div',{style:'display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin-top:.8rem'},[
+    h('button',{onclick:()=>{SY.requestPersistence().then(ok=>{
+      persistMsg.textContent = ok ? 'Granted — this browser will not evict your progress automatically.'
+        : 'The browser declined for now. It often grants this once the site is installed or revisited a few times.';
+    });}},'Request persistent storage'), persistMsg]));
+  sec2.appendChild(h('p',{class:'labnote',html:
+    'On a phone, use your browser’s <strong>Add to Home Screen</strong> on the hosted version — it installs as an app, works offline, and makes eviction far less likely.'}));
+  w.appendChild(sec2);
+
+  /* --- gist sync --- */
+  const sec3=h('section',{class:'part'});
+  sec3.appendChild(sectionHead2('03','Sync across devices','optional, free, no server'));
+  sec3.appendChild(h('p',{class:'prose',style:'font-size:1rem',
+    html:'Stores your progress in a <strong>secret GitHub Gist</strong> that only you can see. Laptop and phone then share one record. There is no server and no cost — your browser talks straight to GitHub.'}));
+  sec3.appendChild(ghPanel());
+  w.appendChild(sec3);
+
+  /* --- danger --- */
+  const sec4=h('section',{class:'part'});
+  sec4.appendChild(sectionHead2('04','Reset',''));
+  sec4.appendChild(h('div',{style:'display:flex;gap:.5rem;flex-wrap:wrap'},[
+    h('button',{class:'red',onclick:()=>{
+      if(!confirm('Erase all progress in this browser? Download a backup first if you want to keep it.'))return;
+      if(!confirm('Really erase? This cannot be undone.'))return;
+      window.STORE.suspend();
+      localStorage.removeItem(window.STORE.KEY); location.reload();
+    }},'Erase all progress')]));
+  w.appendChild(sec4);
+  return w;
+}
+
+function esc2(s){return String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));}
+function sectionHead2(idx,title,note){
+  return h('div',{class:'parthead'},[h('span',{class:'idx',text:idx}),h('h2',{text:title}),
+    note?h('span',{class:'t',text:note}):null]);
+}
+function rel(t){
+  if(!t)return 'never';
+  const s=(Date.now()-t)/1000;
+  if(s<90)return 'just now';
+  if(s<5400)return Math.round(s/60)+' min ago';
+  if(s<172800)return Math.round(s/3600)+' h ago';
+  return Math.round(s/86400)+' days ago';
+}
+
+function ghPanel(){
+  const SY=window.SYNC;
+  const box=h('div');
+  function render(){
+    box.innerHTML='';
+    const c=SY.gh.config();
+    const msg=h('div',{style:'margin-top:.9rem'});
+    const say=(ok,t,d)=>{msg.innerHTML='';
+      msg.appendChild(h('div',{class:'verdict '+(ok?'good':'bad')},
+        [h('span',{class:'vt',text:t}),d?h('span',{class:'vs',text:d}):null]));};
+
+    if(!c.token){
+      box.appendChild(h('div',{class:'exsteps'},[
+        h('span',{class:'lbl',text:'One-time setup'}),
+        h('ol',{class:'num'},[
+          h('li',{html:'Open <a href="https://github.com/settings/tokens/new?scopes=gist&description=AI%20From%20Zero%20progress%20sync" target="_blank" rel="noopener">github.com/settings/tokens/new</a> — the link pre-selects the right scope.'}),
+          h('li',{html:'Tick <strong>gist</strong> only. Nothing else. Set an expiry you are happy with.'}),
+          h('li',{text:'Generate, copy the token, and paste it below.'})])]));
+      const inp=h('input',{type:'password',placeholder:'ghp_… (stored only in this browser)'});
+      const auto=h('input',{type:'checkbox',checked:'checked'});
+      box.appendChild(h('div',{style:'display:grid;gap:.6rem;max-width:460px'},[
+        h('div',{},[h('label',{text:'GitHub token (gist scope)'}),inp]),
+        h('label',{style:'display:flex;gap:.5rem;align-items:center;text-transform:none;letter-spacing:0;font-family:var(--sans);font-size:.85rem;color:var(--ink)'},
+          [auto,document.createTextNode('Push automatically after changes')]),
+        h('button',{class:'primary',onclick:async()=>{
+          const t=inp.value.trim(); if(!t)return;
+          say(true,'Checking…');
+          try{
+            const login=await SY.gh.verify(t);
+            SY.gh.save({token:t, auto:auto.checked});
+            const r=await SY.gh.push();
+            say(true,'Connected as '+login,'Progress pushed to a secret gist.');
+            setTimeout(render,1200);
+          }catch(e){ say(false,'Could not connect',e.message); }
+        }},'Connect')]));
+      box.appendChild(h('p',{class:'labnote',html:
+        '<strong>What this token can do:</strong> read and write <em>your gists</em>, nothing else — not your repositories, not your account. '+
+        'It is stored in this browser only. Anyone with access to this browser profile could read it, so use a token with an expiry and '+
+        '<a href="https://github.com/settings/tokens" target="_blank" rel="noopener">revoke it</a> if the device is lost. '+
+        'Sync does not work inside the Claude artifact — its content policy blocks outbound requests — so use your hosted link.'}));
+      box.appendChild(msg);
+      return;
+    }
+
+    /* connected */
+    const stat=h('div',{class:'stats'},[
+      tile('status','connected','ok'),
+      tile('last sync',rel(c.lastSync)),
+      tile('auto-push',c.auto?'on':'off',c.auto?'ok':'')]);
+    box.appendChild(stat);
+    const remoteBox=h('div');
+    box.appendChild(h('div',{style:'display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.9rem'},[
+      h('button',{class:'primary',onclick:async()=>{
+        say(true,'Pushing…');
+        try{const r=await SY.gh.push(); say(true,'Pushed',(r.bytes/1024).toFixed(1)+' KB saved to your gist.');
+          setTimeout(render,1200);}
+        catch(e){say(false,'Push failed',e.message);}
+      }},'Push now'),
+      h('button',{onclick:async()=>{
+        say(true,'Checking the gist…');
+        try{
+          const rem=await SY.gh.remote();
+          if(!rem){say(false,'Nothing stored yet','Push first.');return;}
+          const local=SY.stats().summary;
+          const risky=SY.gh.localChangedSinceSync();
+          remoteBox.innerHTML='';
+          remoteBox.appendChild(h('div',{class:'tblwrap',style:'margin-top:.8rem'},[(()=>{
+            const t=h('table');
+            t.appendChild(h('thead',{},h('tr',{},[h('th',{text:''}),h('th',{text:'This browser'}),h('th',{text:'In the gist'})])));
+            t.appendChild(h('tbody',{},[
+              row('skills measured',local.skills,rem.summary.skills),
+              row('answers logged',local.attempts,rem.summary.attempts),
+              row('exercises',local.exercises,rem.summary.exercises),
+              row('last written',rel(local.updatedAt),rel(rem.exportedAt))]));
+            return t;})()]));
+          remoteBox.appendChild(h('div',{style:'display:flex;gap:.5rem;margin-top:.7rem;flex-wrap:wrap;align-items:center'},[
+            h('button',{class:'red',onclick:async()=>{
+              if(risky&&!confirm('This browser has changes made since the last sync. Pulling replaces them with the gist copy. A local snapshot is kept. Continue?'))return;
+              try{const sum=await SY.gh.pull();
+                alert('Pulled: '+sum.skills+' skills, '+sum.attempts+' answers. Reloading.');
+                location.reload();}
+              catch(e){say(false,'Pull failed',e.message);}
+            }},'Replace this browser with the gist copy'),
+            risky?h('span',{class:'pill red',text:'local has unsynced changes'}):null]));
+          say(true,'Compared','Choose which copy wins.');
+        }catch(e){say(false,'Could not read the gist',e.message);}
+      }},'Compare with gist'),
+      h('button',{onclick:()=>{
+        const cc=SY.gh.config(); cc.auto=!cc.auto; SY.gh.save(cc); render();
+      }},c.auto?'Turn auto-push off':'Turn auto-push on'),
+      h('button',{class:'red',onclick:()=>{
+        if(!confirm('Disconnect sync? The gist and your progress both stay where they are; only the saved token is removed from this browser.'))return;
+        SY.gh.clear(); render();
+      }},'Disconnect')]));
+    box.appendChild(remoteBox);
+    box.appendChild(msg);
+    box.appendChild(h('p',{class:'labnote',html:
+      'On a second device: open the hosted link, come to this page, paste the same token, then use <strong>Compare with gist</strong> and pull. '+
+      'Sync is deliberately explicit in one direction — it will not silently overwrite a device that has newer work on it.'}));
+  }
+  function row(l,a,b){return h('tr',{},[h('td',{text:l}),
+    h('td',{class:'num',text:String(a)}),h('td',{class:'num',text:String(b)})]);}
+  render();
+  return box;
+}
+
+return {dashboard, practice, practiceMenu, skills, skillPage, analytics, exercises, processes, data};
 })();

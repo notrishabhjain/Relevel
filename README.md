@@ -79,11 +79,65 @@ anywhere.
 node build.js
 ```
 
-Concatenates `src/` into two outputs:
+Concatenates `src/` into:
 
-- `dist/index.html` — the published page (no `<!doctype>`/`<html>`/`<head>`/`<body>`; the
-  Artifact host supplies those)
-- `dist/preview.html` — a complete document for opening locally in a browser
+| Output | What it is |
+| --- | --- |
+| `dist/index.html` | Full standalone document — hosting, or open it straight off disk |
+| `dist/artifact.html` | Body-only fragment for publishing as a Claude Artifact |
+| `dist/site/` | Deploy directory: `index.html` + PWA manifest + service worker + `.nojekyll` |
+
+No dependencies, no bundler. One file out, everything inlined.
+
+## Hosting it free
+
+The whole app is one static HTML file, so any static host works and none of them
+charge for it.
+
+### GitHub Pages (no new accounts)
+
+`.github/workflows/pages.yml` builds and deploys on every push to `main`. Enable it once:
+
+**Settings → Pages → Build and deployment → Source: GitHub Actions**
+
+Your site lands at `https://<user>.github.io/Relevel/`.
+
+> **On a Free plan, Pages requires the repository to be public.** The repo holds only
+> the app source — your progress never leaves your browser — but making it public is
+> your call. If you would rather not, use the option below.
+
+### Cloudflare Pages (keeps the repo private)
+
+Free, supports private repos. Connect the repo, then:
+
+- Build command: `node build.js`
+- Output directory: `dist/site`
+
+Netlify's free tier works identically with the same two settings.
+
+### Offline and on a phone
+
+The deploy directory ships a web app manifest and a service worker, so once loaded the
+tracker works with no network. On a phone use **Add to Home Screen** — it installs as a
+standalone app, and installed apps are far less likely to have their storage evicted.
+
+## Keeping progress
+
+Progress is stored in `localStorage` and never sent anywhere by default. That is private
+but fragile, so **Progress & Backup** in the app offers three defences:
+
+1. **Backup file** — export/import everything as one JSON file. Works anywhere, needs no
+   account. This is the dependable one.
+2. **Persistent storage** — one click asks the browser not to evict this origin, plus an
+   automatic snapshot of the previous session kept locally.
+3. **Gist sync** — optional. Stores progress in a *secret* GitHub Gist so a laptop and a
+   phone share one record. No server, no cost; the browser talks directly to GitHub with
+   a token scoped to gists alone. Sync is explicit in one direction and will not silently
+   overwrite a device holding newer work.
+
+> `localStorage` is scoped to the exact address, so the Claude artifact link and your
+> hosted link keep **separate** progress. Export from one and import into the other to
+> move across.
 
 ## Source layout
 
@@ -96,6 +150,7 @@ src/
 │   ├── part1-3.js      Chapters 1-18 (the library)
 │   └── reference.js    Setup, glossary, vendor deck, LATER page, red-map nodes
 ├── engine.js           Mastery + decay, SM-2, calibration, session building
+├── sync.js             Backup, export/import, Gist sync, storage diagnostics
 ├── views.js            Dashboard, practice runner, matrix, analytics, work trackers
 ├── labs.js             16 interactive labs
 ├── app.js              Routing, persistence, chapter rendering
