@@ -462,6 +462,28 @@ function renderChapter(c){
     h('h1',{text:c.title}),
     h('p',{class:'concept',text:c.concept})]));
 
+  /* What this chapter stands on.
+
+     A word you do not know announces itself; a concept you missed three
+     chapters ago does not — the sentence still parses, so you read on and
+     understand a little less each paragraph until the whole thing feels like it
+     was written for somebody else. Naming the load-bearing ideas up front makes
+     losing the thread visible, and going back a normal move rather than an
+     admission. */
+  if((c.needs||[]).length){
+    const nd=h('section',{class:'needs'});
+    nd.appendChild(h('div',{class:'needshead'},[
+      h('span',{class:'cplbl',text:'This chapter stands on'}),
+      h('span',{class:'dim',style:'font-size:.78rem',
+        text:'if any of these are blank, go back first — that is the fast route, not the slow one'})]));
+    nd.appendChild(h('ul',{class:'needlist'},c.needs.map(([what,why,ch])=>
+      h('li',{},[
+        h('div',{},[h('strong',{text:what}),
+          h('span',{class:'needwhy',text:' — '+why})]),
+        h('a',{class:'chip',href:'#/ch/ch'+ch,text:'Chapter '+ch+' →'})]))));
+    w.appendChild(nd);
+  }
+
   /* A chapter is not a thing you read to the end of; it is a thing you answer
      your way through. This says how far through the answering you are. */
   const cpStrip=h('div',{class:'cpstrip'});

@@ -171,6 +171,10 @@ window.PART1 = [
   id:'ch2', num:2, part:1, minutes:60, labs:['temperature'],
   title:'Instructions, Moods, and Confident Lies',
   concept:'You control the AI\'s behaviour with a standing instruction and a dial — and you meet its most dangerous habit.',
+  needs:[
+    ['The model has no memory','Every request starts from nothing. Anything it should know has to be sent again, every single time.',1],
+    ['It predicts, it does not look up','It continues text plausibly. There is no database behind it to consult.',1],
+  ],
   story:[
     ['p','Chapter 1 left us with an amnesiac prediction machine — and that creates an immediate puzzle. If the model forgets everything between letters, how does any AI product maintain a consistent personality? How does a bank\'s assistant never discuss competitors, a legal tool always add disclaimers, or a service bot stay relentlessly polite?'],
     ['p','The answer is almost comically simple: <strong>the app re-briefs the model in every single envelope.</strong> Picture a brilliant employee with no long-term memory who joins your office fresh every morning. You would hand him the same one-page briefing at the door every day: <em>You are the compliance desk officer. Speak formally. Never speculate. When unsure, say so and point to the official document.</em> He reads it, performs the day flawlessly in character, forgets everything overnight, and reads the same page again tomorrow.'],
@@ -252,6 +256,10 @@ window.PART1 = [
   id:'ch3', num:3, part:1, minutes:60, labs:['chunker'],
   title:'Why Documents Must Be Cut, and Why Every Cut Hurts',
   concept:'Chunking as a design decision — no computer needed this chapter, scissors only.',
+  needs:[
+    ['The envelope has a ceiling, and a meter','Everything you send counts against a size limit and against the bill, on every request.',1],
+    ['It invents at the edge of what it knows','Asked something it has no evidence for, it produces something fluent rather than admitting the gap.',2],
+  ],
   story:[
     ['p','Chapter 2 ended on a cliff: the machine lies confidently at the edge of its knowledge, and a briefing page cannot fully stop it. The structural cure suggests itself immediately — give it the real documents. If the model could read your actual policy manual before answering, it would not need to invent. Put the truth in the envelope.'],
     ['p','Why not paste your entire corpus into every envelope, every time? You already own both reasons — they were Chapter 1\'s two hard facts. First, the envelope has a ceiling. Second, even what fits is metered: every page is tokens, and tokens are money, per query, every query, forever. And shipping sixty pages to answer one two-line question is worse than expensive — burying the relevant paragraph under fifty-nine irrelevant ones measurably degrades the answer.'],
@@ -324,6 +332,10 @@ window.PART1 = [
   id:'ch4', num:4, part:1, minutes:50, labs:[],
   title:'Finding the Right Piece, the Hard Way',
   concept:'You become the search engine, run word-matching by hand, and map precisely where it goes blind. No code — the struggle is deliberate.',
+  needs:[
+    ['Documents get cut into chunks','You cannot send everything, so the corpus is cut into pieces and only a few are sent per question.',3],
+    ['Every cut costs you something','There is no correct chunk size — only failure modes you choose between.',3],
+  ],
   story:[
     ['p','You now have a document cut into twenty pieces. A question arrives. Somewhere in those pieces sits the answer. The act of finding the right piece — fetching, from everything stored, the few most likely to answer a given question — is called <strong>retrieval</strong>. It is the beating heart of every document-answering AI system. Get retrieval wrong and nothing downstream can save you: the most eloquent model, handed the wrong page, will eloquently summarize the wrong page.'],
     ['p','This chapter you perform retrieval yourself, by hand, using the method you would invent in ten seconds — and the method most enterprise search systems actually use today: <strong>keyword matching</strong>. Look at the words in the question; find the pieces containing those same words; rank by how many match. Ctrl-F with a scoreboard. Fast, cheap, decades old. And blind in one very specific way.'],
@@ -392,6 +404,10 @@ window.PART1 = [
   id:'ch5', num:5, part:1, minutes:70, labs:['meaningmap'],
   title:'The Map of Meaning',
   concept:'Turning meaning into geometry so that “reimbursement” and “disbursement of approved amounts” become neighbours — the heart of the book.',
+  needs:[
+    ['You matched words by hand, and watched it fail','Keyword matching sees spelling, not meaning, so the user\'s words and the document\'s words never meet.',4],
+    ['Retrieval never says “nothing here”','It ranks everything and hands you a top result, whether or not the answer exists.',4],
+  ],
   story:[
     ['p','You wrote the job description yourself, pinned to a page in your notebook: <em>match what words mean, not how they are spelled — across dialects and languages.</em> This chapter delivers the candidate.'],
     ['p','Imagine a colossal map — not of places, but of meanings. Every possible piece of text has an address on this map, and the map has one property: texts that mean similar things live in the same neighbourhood. “Reimbursement” and “disbursement of approved claim amounts” — different spellings, same locality. “Contract,” “agreement,” “MoU” — a tight cluster. “Sandwich” — a distant suburb. Across languages, when the mapmaker has done its job, a word and its translation land as neighbours, because the map was drawn by meaning, not script.'],
@@ -464,6 +480,10 @@ window.PART1 = [
   id:'ch6', num:6, part:1, minutes:70, labs:['prdial'],
   title:'Define Good',
   concept:'How to know whether the system actually works — converting “the demo looked impressive” into numbers you computed yourself.',
+  needs:[
+    ['Meaning became geometry','Every piece of text gets an address, and texts that mean the same thing land near each other.',5],
+    ['Something is always rank one','Including for questions your documents cannot answer. That is what makes measurement necessary.',4],
+  ],
   story:[
     ['p','Every AI initiative eventually arrives at one question, asked by the most senior person in the room: <em>Is it good?</em> In almost every room, the answers offered are emotional — the demo was impressive, it answered my questions, the team likes it. The professional counter-move is two words: <strong>Define good.</strong>'],
     ['p','The machinery behind those two words is not new to anyone who has written test cases or acceptance criteria: verified expectations written before the trial, pass/fail grading against them, and agreed sign-off thresholds. Evaluating an AI system is exactly that discipline. This chapter aims a skill many professionals already possess at a target most of them never think to point it at.'],
@@ -546,6 +566,10 @@ window.PART1 = [
   id:'ch7', num:7, part:1, minutes:70, labs:['redmap'],
   title:'The Map, and the Machine Assembled',
   concept:'Nothing new — that is the point. Draw the complete system from memory, mark where it breaks, then staple six chapters into one working function.',
+  needs:[
+    ['Cutting, addressing, finding, judging','Chunking (3), keyword search and its blindness (4), the meaning map (5), and ground truth with precision and recall (6).',3],
+    ['Good belongs to the use case','Which failure is cheap and which is fatal is a product decision, not a technical one.',6],
+  ],
   story:[
     ['p','There is a name this book has deliberately withheld from you for six chapters. You have earned it now.'],
     ['p','The pipeline you have been building — cut documents into chunks (Ch. 3); give every chunk an address on the meaning map (Ch. 5); take an incoming question and retrieve the nearest chunks (Ch. 4–5); pack them into the envelope alongside a briefing page (Ch. 1–2); have the machine answer from that supplied text rather than from its imagination (Ch. 2) — with quality you can measure (Ch. 6) — is called, by the entire industry, <strong>RAG: Retrieval-Augmented Generation</strong>.'],

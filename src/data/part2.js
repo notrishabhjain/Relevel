@@ -7,6 +7,10 @@ window.PART2 = [
   id:'ch8', num:8, part:2, minutes:60, labs:['schema'],
   title:'Making the Machine Fill Forms',
   concept:'The moment output stops being a paragraph and becomes a record with named fields — where a demo becomes a feature.',
+  needs:[
+    ['The machine produces prose','Everything so far ends in text a human reads and judges.',1],
+    ['It invents when pressed','And an instruction discourages that behaviour without removing its cause.',2],
+  ],
   story:[
     ['p','Everything you have built so far ends in prose. A human reads it, judges it, and acts. That is a fine product — and it is also the reason most AI demos never become features.'],
     ['p','Software does not read prose. A workflow that routes a claim, updates a record, or opens a ticket needs <em>fields</em>: a decision, an amount, a date, a reference. The leap from chat to feature is the moment the model stops writing a letter and starts filling in a form.'],
@@ -92,6 +96,10 @@ window.PART2 = [
   id:'ch9', num:9, part:2, minutes:70, labs:['agentloop'],
   title:'When the Machine Acts',
   concept:'A tool is a lever you let the model pull. An "agent" is a while-loop with a language model inside — and a budget.',
+  needs:[
+    ['A schema forces a shape','You can require the output to be structured rather than asking politely for it.',8],
+    ['Every request re-sends everything','Which is why anything that loops gets expensive faster than it looks.',1],
+  ],
   story:[
     ['p','Until now the machine only spoke. Everything it produced was text for a human to read or a field for your code to store. This chapter it starts <em>doing</em> things, and the risk profile of everything you have built changes permanently.'],
     ['p','The mechanism has no magic in it, and you can hold all of it in your head at once:'],
@@ -174,6 +182,10 @@ window.PART2 = [
   id:'ch10', num:10, part:2, minutes:65, labs:['contextrot','cache'],
   title:'The Envelope Grew Up',
   concept:'The ceiling became enormous, so the question stopped being "will it fit" and became "does it help".',
+  needs:[
+    ['The context window is a size limit','Not memory. It is how much fits in one envelope, and it is emptied afterwards.',1],
+    ['Chunking exists because of that limit','The whole discipline of Chapter 3 was built around not being able to send everything.',3],
+  ],
   story:[
     ['p','Chapter 1 taught you the envelope has a ceiling, and Chapter 3 built an entire discipline — chunking — around that ceiling being small. Since then, ceilings have grown to hundreds of thousands and in some models millions of tokens. A reasonable person concludes: the problem is solved, put everything in, delete the retrieval code.'],
     ['p','That conclusion is wrong, and the two reasons it is wrong are the substance of this chapter.'],
@@ -259,6 +271,10 @@ window.PART2 = [
   id:'ch11', num:11, part:2, minutes:60, labs:['reasoning'],
   title:'Paying for Thought',
   concept:'A second dial appeared: buy accuracy with money and latency at query time. Most production traffic should not buy any.',
+  needs:[
+    ['Tokens are the billing unit','You pay for what goes in and what comes out, per request.',1],
+    ['The envelope is a budget with lines in it','System prompt, tools, retrieved chunks, history, answer — each one is a decision.',10],
+  ],
   story:[
     ['p','For most of this book, a model answered immediately. A newer class of model does something else first: it generates a long private working-out — trying approaches, checking itself, discarding lines — and only then writes the answer you see. You pay for that working-out in tokens and in seconds.'],
     ['p','The formal name for what you are buying is <strong>test-time compute</strong>: rather than accuracy being fixed at training time, you can purchase more of it, per query, at the moment of asking. That is a genuinely new product lever, and it is the first one in this book that a product manager controls directly with a number.'],
@@ -342,6 +358,10 @@ window.PART2 = [
   id:'ch12', num:12, part:2, minutes:75, labs:['fusion'],
   title:'Retrieval, Grown Up',
   concept:'The LATER page, unlocked. Hybrid search, reranking and contextual retrieval — each aimed at a failure you personally measured.',
+  needs:[
+    ['The LATER page','Every technique you deliberately parked since Chapter 3 is collected here.',3],
+    ['Precision and recall pull against each other','Raise k and you find more and dilute more. That trade is what these techniques attack.',6],
+  ],
   story:[
     ['p','Since Chapter 3 you have been writing names on a page titled LATER and abandoning them. Tonight you collect. Every technique in this chapter is a cure for a specific injury you observed with your own hands — which is why they will be memorable rather than decorative.'],
     ['p','<strong>Hybrid search</strong> cures the injury from Chapter 5\'s homework: your exact-string question, which keyword search nailed and semantic search fumbled. You have two scoreboards, each blind where the other sees. Merging them is the entire idea. The standard merge is <em>reciprocal rank fusion</em>, and its plain-language form is: a document\'s score is the sum, across both lists, of one-over-its-rank. Rank 1 contributes a lot; rank 40 contributes almost nothing; appearing respectably on both lists beats winning one. There is no learning in it and no magic — a single line of arithmetic that is very hard to beat.'],
@@ -427,6 +447,11 @@ window.PART2 = [
   id:'ch13', num:13, part:2, minutes:75, labs:['injection','trifecta'],
   title:'The Confused Deputy',
   concept:'In Chapter 2 the pressure came from the user. Now it comes from inside the documents — and there is no complete fix.',
+  needs:[
+    ['A guardrail is an instruction','You wrote one in Chapter 2 and then broke it yourself.',2],
+    ['Retrieved text goes into the envelope','Whatever is in your documents reaches the model as part of the request.',3],
+    ['Tools let the model act','Reading is recoverable. Sending, paying and deleting are not.',9],
+  ],
   story:[
     ['p','This is the most important chapter in Part II, and it begins by finishing a sentence you started in Chapter 2.'],
     ['p','There you wrote a guardrail and then broke it, by applying social pressure as the user. You concluded, correctly, that a briefing page is a polite request rather than a law of physics. Here is the harder version of that lesson: <strong>the pressure does not have to come from the user.</strong>'],

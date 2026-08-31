@@ -790,3 +790,15 @@ button:disabled{opacity:.4;cursor:not-allowed}
   color:var(--muted)}
 .stucknote{font-size:.8rem;color:var(--muted);flex-basis:100%;line-height:1.5;margin:.2rem 0 0}
 .qparked{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;font-size:.85rem;color:var(--muted)}
+
+/* ---------- what a chapter stands on ---------- */
+.needs{margin:0 0 1.6rem;padding:.9rem 1.1rem;background:var(--sunk);
+  border:1px solid var(--rule);border-radius:var(--r)}
+.needshead{display:flex;gap:.7rem;align-items:baseline;flex-wrap:wrap;margin-bottom:.6rem}
+.needlist{list-style:none;margin:0;padding:0;display:grid;gap:.55rem}
+.needlist li{display:flex;gap:.8rem;align-items:flex-start;flex-wrap:wrap;
+  font-size:.88rem;line-height:1.55}
+.needlist li>div{flex:1;min-width:200px}
+.needlist strong{font-weight:600}
+.needwhy{color:var(--ink-2)}
+.needlist .chip{flex:none;font-size:.7rem}

@@ -7,6 +7,10 @@ window.PART3 = [
   id:'ch14', num:14, part:3, minutes:70, labs:['judge'],
   title:'The Judge and the Flywheel',
   concept:'Ten questions and a pencil do not scale to ten thousand queries a week. Build a grader — then grade the grader.',
+  needs:[
+    ['Ground truth is written before the exam','An answer key you produced, or you are not measuring anything.',6],
+    ['Precision, recall, and which one is fatal','The trade-off, and the fact that choosing between them is yours.',6],
+  ],
   story:[
     ['p','Chapter 6 gave you the only honest foundation: verified expectations, written before the trial. It also gave you a method that stops working at about fifty rows. Real products receive thousands of queries a week, ship weekly, and change models twice a year. Something has to scale, and it cannot be your evenings.'],
     ['p','There are exactly three ways to grade an AI output, and every evaluation system in existence is a blend of them.'],
@@ -103,6 +107,10 @@ window.PART3 = [
   id:'ch15', num:15, part:3, minutes:60, labs:['costmodel'],
   title:'The Meter',
   concept:'Chapter 1 gave you the receipt. Build the bill — including the four multipliers nobody puts in the business case.',
+  needs:[
+    ['Cost per query, from the receipt','Tokens in, tokens out, times a rate. The arithmetic you did in Chapter 1.',1],
+    ['The four things that multiply it','Retrieved volume (3, 12), retries (8), agent steps (9), reasoning tokens (11).',11],
+  ],
   story:[
     ['p','You have read a receipt since Chapter 1. Now you build the bill, because at some point somebody senior will ask what this costs at scale, and the answer “it depends on tokens” ends careers slowly.'],
     ['p','The base formula is arithmetic:'],
@@ -194,6 +202,10 @@ window.PART3 = [
   id:'ch16', num:16, part:3, minutes:55, labs:[],
   title:'Beyond the Text Box',
   concept:'Your corpus is not text. It is pages — with tables, stamps, signatures and scans that clean-text chunking silently destroys.',
+  needs:[
+    ['Everything so far assumed text','Chapter 3 asked you to paste text into a file. That instruction hid an entire step.',3],
+    ['Latency is a product constraint','p95, not the average — the number that decides whether a surface works.',11],
+  ],
   story:[
     ['p','Chapter 3 asked you to paste your document\'s text into an editable file. That instruction concealed an assumption, and in most real organisations the assumption is false.'],
     ['p','Real corpora are pages. Scanned contracts with signatures and stamps. Financial statements whose meaning lives entirely in a table\'s row-column geometry. Manuals where the safety warning is a red box beside a diagram. Screenshots pasted into tickets. Forms with handwriting in the margins.'],
@@ -279,6 +291,11 @@ window.PART3 = [
   id:'ch17', num:17, part:3, minutes:60, labs:['systemcard'],
   title:'The Paper Trail',
   concept:'In 2027 an AI feature ships with documents attached. Most of them are product decisions wearing legal costume — which makes them yours.',
+  needs:[
+    ['You can measure it, so you can state it','Ground truth and error analysis are what turn a claim into a number.',14],
+    ['Metadata is a filter, not a score','Version and access are decided before ranking, which is why they are the only guarantees.',12],
+    ['No complete defence exists','Which is why controls sit outside the model rather than inside the prompt.',13],
+  ],
   story:[
     ['p','A conventional feature ships with code, tests, and a release note. An AI feature increasingly ships with a file of documents as well, and there is a common and expensive misunderstanding about who writes them.'],
     ['key','Almost every question in an AI governance file is a product question. What is it for, who does it affect, what happens when it is wrong, who reviews what, and what evidence exists that it works — these are not legal questions with legal answers. They are product decisions being written down, usually by someone who was not in the room when they were made.'],
@@ -372,6 +389,11 @@ window.PART3 = [
   id:'ch18', num:18, part:3, minutes:90, labs:['redmap','prd'],
   title:'The Instrument Panel Assembled',
   concept:'Nothing new — again, that is the point. Draw the 2027 system from memory, mark every place you broke it, and write the PRD.',
+  needs:[
+    ['An eval suite, and a taxonomy from your own traffic','The instruments that make an acceptance criterion a number.',14],
+    ['A loaded cost model','The real per-query figure, with its four multipliers.',15],
+    ['A risk tier and an oversight design','What ships alongside the code.',17],
+  ],
   story:[
     ['p','Chapter 7 ended with a pipeline and a red pen. This chapter ends with an instrument panel and a document — and, as before, nothing in it is new.'],
     ['p','A conventional PRD assumes deterministic behaviour: given this input, produce that output; QA verifies; done. Every assumption in that sentence fails here. Given this input, an AI feature produces a <em>distribution</em> of outputs, whose shape shifts when the provider updates a model you do not control.'],

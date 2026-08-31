@@ -286,6 +286,23 @@ ok((await r0.page.locator('.cp-try').first().locator('textarea').inputValue()).l
 ok(/3 \/ \d+/.test(await text(r0.page, '.cpstrip')), 'all three kinds count towards the chapter',
    await text(r0.page, '.cpstrip'));
 
+console.log('\n— you cannot silently lose the thread —');
+const n1 = await newDevice(false);
+await boot(n1.page, '#/ch/ch13');
+ok(await n1.page.locator('.needs').count() === 1, 'a later chapter says what it stands on');
+ok(await n1.page.locator('.needlist li').count() === 3, 'naming each idea it depends on',
+   await n1.page.locator('.needlist li').count());
+const nd = await text(n1.page, '.needs');
+ok(/go back first/.test(nd), 'and says going back is the fast route, not an admission', nd.slice(0, 100));
+ok(await n1.page.locator('.needs a[href="#/ch/ch2"]').count() === 1,
+   'with a link straight to the chapter it came from');
+ok((await n1.page.locator('.needs').evaluate(e => {
+  const story = document.querySelector('#story');
+  return e.compareDocumentPosition(story) & Node.DOCUMENT_POSITION_FOLLOWING; })) > 0,
+  'placed before the reading starts, not after it');
+await boot(n1.page, '#/ch/ch0');
+ok(await n1.page.locator('.needs').count() === 0, 'the ground-floor chapter stands on nothing');
+
 console.log('\n— the app makes it hard to quit —');
 const q1 = await newDevice(true, 'quitter');
 await boot(q1.page, '#/');

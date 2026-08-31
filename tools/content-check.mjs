@@ -80,6 +80,15 @@ for (const s of C.skills) if (!C.items.some(i => i[1] === s.id)) fail(`skill ${s
 const silent = C.chapters.filter(c => !blocksOf(c).some(b => Array.isArray(b) && ['q','pred','try'].includes(b[0])));
 
 const chapterNums = new Set(C.chapters.map(c => c.num));
+for (const c of C.chapters) {
+  if (c.num < 2) continue;
+  if (!(c.needs || []).length) fail(`${c.id} does not say what it stands on`);
+  for (const [what, why, ch] of c.needs || []) {
+    if (!what || !why) fail(`${c.id} has an incomplete prerequisite`);
+    if (!chapterNums.has(ch)) fail(`${c.id} points back to chapter ${ch}, which does not exist`);
+    if (ch >= c.num) fail(`${c.id} says it stands on chapter ${ch}, which comes later`);
+  }
+}
 for (const s of C.skills)
   for (const n of s.ch || [])
     if (!chapterNums.has(n)) fail(`skill ${s.id} cites chapter ${n}, which does not exist`);

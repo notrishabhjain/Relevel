@@ -796,6 +796,18 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .stucknote{font-size:.8rem;color:var(--muted);flex-basis:100%;line-height:1.5;margin:.2rem 0 0}
 .qparked{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;font-size:.85rem;color:var(--muted)}
 
+/* ---------- what a chapter stands on ---------- */
+.needs{margin:0 0 1.6rem;padding:.9rem 1.1rem;background:var(--sunk);
+  border:1px solid var(--rule);border-radius:var(--r)}
+.needshead{display:flex;gap:.7rem;align-items:baseline;flex-wrap:wrap;margin-bottom:.6rem}
+.needlist{list-style:none;margin:0;padding:0;display:grid;gap:.55rem}
+.needlist li{display:flex;gap:.8rem;align-items:flex-start;flex-wrap:wrap;
+  font-size:.88rem;line-height:1.55}
+.needlist li>div{flex:1;min-width:200px}
+.needlist strong{font-weight:600}
+.needwhy{color:var(--ink-2)}
+.needlist .chip{flex:none;font-size:.7rem}
+
 </style>
 <script>
 /* Part I — Foundations (Chapters 1–7)
@@ -971,6 +983,10 @@ window.PART1 = [
   id:'ch2', num:2, part:1, minutes:60, labs:['temperature'],
   title:'Instructions, Moods, and Confident Lies',
   concept:'You control the AI\'s behaviour with a standing instruction and a dial — and you meet its most dangerous habit.',
+  needs:[
+    ['The model has no memory','Every request starts from nothing. Anything it should know has to be sent again, every single time.',1],
+    ['It predicts, it does not look up','It continues text plausibly. There is no database behind it to consult.',1],
+  ],
   story:[
     ['p','Chapter 1 left us with an amnesiac prediction machine — and that creates an immediate puzzle. If the model forgets everything between letters, how does any AI product maintain a consistent personality? How does a bank\'s assistant never discuss competitors, a legal tool always add disclaimers, or a service bot stay relentlessly polite?'],
     ['p','The answer is almost comically simple: <strong>the app re-briefs the model in every single envelope.</strong> Picture a brilliant employee with no long-term memory who joins your office fresh every morning. You would hand him the same one-page briefing at the door every day: <em>You are the compliance desk officer. Speak formally. Never speculate. When unsure, say so and point to the official document.</em> He reads it, performs the day flawlessly in character, forgets everything overnight, and reads the same page again tomorrow.'],
@@ -1052,6 +1068,10 @@ window.PART1 = [
   id:'ch3', num:3, part:1, minutes:60, labs:['chunker'],
   title:'Why Documents Must Be Cut, and Why Every Cut Hurts',
   concept:'Chunking as a design decision — no computer needed this chapter, scissors only.',
+  needs:[
+    ['The envelope has a ceiling, and a meter','Everything you send counts against a size limit and against the bill, on every request.',1],
+    ['It invents at the edge of what it knows','Asked something it has no evidence for, it produces something fluent rather than admitting the gap.',2],
+  ],
   story:[
     ['p','Chapter 2 ended on a cliff: the machine lies confidently at the edge of its knowledge, and a briefing page cannot fully stop it. The structural cure suggests itself immediately — give it the real documents. If the model could read your actual policy manual before answering, it would not need to invent. Put the truth in the envelope.'],
     ['p','Why not paste your entire corpus into every envelope, every time? You already own both reasons — they were Chapter 1\'s two hard facts. First, the envelope has a ceiling. Second, even what fits is metered: every page is tokens, and tokens are money, per query, every query, forever. And shipping sixty pages to answer one two-line question is worse than expensive — burying the relevant paragraph under fifty-nine irrelevant ones measurably degrades the answer.'],
@@ -1124,6 +1144,10 @@ window.PART1 = [
   id:'ch4', num:4, part:1, minutes:50, labs:[],
   title:'Finding the Right Piece, the Hard Way',
   concept:'You become the search engine, run word-matching by hand, and map precisely where it goes blind. No code — the struggle is deliberate.',
+  needs:[
+    ['Documents get cut into chunks','You cannot send everything, so the corpus is cut into pieces and only a few are sent per question.',3],
+    ['Every cut costs you something','There is no correct chunk size — only failure modes you choose between.',3],
+  ],
   story:[
     ['p','You now have a document cut into twenty pieces. A question arrives. Somewhere in those pieces sits the answer. The act of finding the right piece — fetching, from everything stored, the few most likely to answer a given question — is called <strong>retrieval</strong>. It is the beating heart of every document-answering AI system. Get retrieval wrong and nothing downstream can save you: the most eloquent model, handed the wrong page, will eloquently summarize the wrong page.'],
     ['p','This chapter you perform retrieval yourself, by hand, using the method you would invent in ten seconds — and the method most enterprise search systems actually use today: <strong>keyword matching</strong>. Look at the words in the question; find the pieces containing those same words; rank by how many match. Ctrl-F with a scoreboard. Fast, cheap, decades old. And blind in one very specific way.'],
@@ -1192,6 +1216,10 @@ window.PART1 = [
   id:'ch5', num:5, part:1, minutes:70, labs:['meaningmap'],
   title:'The Map of Meaning',
   concept:'Turning meaning into geometry so that “reimbursement” and “disbursement of approved amounts” become neighbours — the heart of the book.',
+  needs:[
+    ['You matched words by hand, and watched it fail','Keyword matching sees spelling, not meaning, so the user\'s words and the document\'s words never meet.',4],
+    ['Retrieval never says “nothing here”','It ranks everything and hands you a top result, whether or not the answer exists.',4],
+  ],
   story:[
     ['p','You wrote the job description yourself, pinned to a page in your notebook: <em>match what words mean, not how they are spelled — across dialects and languages.</em> This chapter delivers the candidate.'],
     ['p','Imagine a colossal map — not of places, but of meanings. Every possible piece of text has an address on this map, and the map has one property: texts that mean similar things live in the same neighbourhood. “Reimbursement” and “disbursement of approved claim amounts” — different spellings, same locality. “Contract,” “agreement,” “MoU” — a tight cluster. “Sandwich” — a distant suburb. Across languages, when the mapmaker has done its job, a word and its translation land as neighbours, because the map was drawn by meaning, not script.'],
@@ -1264,6 +1292,10 @@ window.PART1 = [
   id:'ch6', num:6, part:1, minutes:70, labs:['prdial'],
   title:'Define Good',
   concept:'How to know whether the system actually works — converting “the demo looked impressive” into numbers you computed yourself.',
+  needs:[
+    ['Meaning became geometry','Every piece of text gets an address, and texts that mean the same thing land near each other.',5],
+    ['Something is always rank one','Including for questions your documents cannot answer. That is what makes measurement necessary.',4],
+  ],
   story:[
     ['p','Every AI initiative eventually arrives at one question, asked by the most senior person in the room: <em>Is it good?</em> In almost every room, the answers offered are emotional — the demo was impressive, it answered my questions, the team likes it. The professional counter-move is two words: <strong>Define good.</strong>'],
     ['p','The machinery behind those two words is not new to anyone who has written test cases or acceptance criteria: verified expectations written before the trial, pass/fail grading against them, and agreed sign-off thresholds. Evaluating an AI system is exactly that discipline. This chapter aims a skill many professionals already possess at a target most of them never think to point it at.'],
@@ -1346,6 +1378,10 @@ window.PART1 = [
   id:'ch7', num:7, part:1, minutes:70, labs:['redmap'],
   title:'The Map, and the Machine Assembled',
   concept:'Nothing new — that is the point. Draw the complete system from memory, mark where it breaks, then staple six chapters into one working function.',
+  needs:[
+    ['Cutting, addressing, finding, judging','Chunking (3), keyword search and its blindness (4), the meaning map (5), and ground truth with precision and recall (6).',3],
+    ['Good belongs to the use case','Which failure is cheap and which is fatal is a product decision, not a technical one.',6],
+  ],
   story:[
     ['p','There is a name this book has deliberately withheld from you for six chapters. You have earned it now.'],
     ['p','The pipeline you have been building — cut documents into chunks (Ch. 3); give every chunk an address on the meaning map (Ch. 5); take an incoming question and retrieve the nearest chunks (Ch. 4–5); pack them into the envelope alongside a briefing page (Ch. 1–2); have the machine answer from that supplied text rather than from its imagination (Ch. 2) — with quality you can measure (Ch. 6) — is called, by the entire industry, <strong>RAG: Retrieval-Augmented Generation</strong>.'],
@@ -1414,6 +1450,10 @@ window.PART2 = [
   id:'ch8', num:8, part:2, minutes:60, labs:['schema'],
   title:'Making the Machine Fill Forms',
   concept:'The moment output stops being a paragraph and becomes a record with named fields — where a demo becomes a feature.',
+  needs:[
+    ['The machine produces prose','Everything so far ends in text a human reads and judges.',1],
+    ['It invents when pressed','And an instruction discourages that behaviour without removing its cause.',2],
+  ],
   story:[
     ['p','Everything you have built so far ends in prose. A human reads it, judges it, and acts. That is a fine product — and it is also the reason most AI demos never become features.'],
     ['p','Software does not read prose. A workflow that routes a claim, updates a record, or opens a ticket needs <em>fields</em>: a decision, an amount, a date, a reference. The leap from chat to feature is the moment the model stops writing a letter and starts filling in a form.'],
@@ -1499,6 +1539,10 @@ window.PART2 = [
   id:'ch9', num:9, part:2, minutes:70, labs:['agentloop'],
   title:'When the Machine Acts',
   concept:'A tool is a lever you let the model pull. An "agent" is a while-loop with a language model inside — and a budget.',
+  needs:[
+    ['A schema forces a shape','You can require the output to be structured rather than asking politely for it.',8],
+    ['Every request re-sends everything','Which is why anything that loops gets expensive faster than it looks.',1],
+  ],
   story:[
     ['p','Until now the machine only spoke. Everything it produced was text for a human to read or a field for your code to store. This chapter it starts <em>doing</em> things, and the risk profile of everything you have built changes permanently.'],
     ['p','The mechanism has no magic in it, and you can hold all of it in your head at once:'],
@@ -1581,6 +1625,10 @@ window.PART2 = [
   id:'ch10', num:10, part:2, minutes:65, labs:['contextrot','cache'],
   title:'The Envelope Grew Up',
   concept:'The ceiling became enormous, so the question stopped being "will it fit" and became "does it help".',
+  needs:[
+    ['The context window is a size limit','Not memory. It is how much fits in one envelope, and it is emptied afterwards.',1],
+    ['Chunking exists because of that limit','The whole discipline of Chapter 3 was built around not being able to send everything.',3],
+  ],
   story:[
     ['p','Chapter 1 taught you the envelope has a ceiling, and Chapter 3 built an entire discipline — chunking — around that ceiling being small. Since then, ceilings have grown to hundreds of thousands and in some models millions of tokens. A reasonable person concludes: the problem is solved, put everything in, delete the retrieval code.'],
     ['p','That conclusion is wrong, and the two reasons it is wrong are the substance of this chapter.'],
@@ -1666,6 +1714,10 @@ window.PART2 = [
   id:'ch11', num:11, part:2, minutes:60, labs:['reasoning'],
   title:'Paying for Thought',
   concept:'A second dial appeared: buy accuracy with money and latency at query time. Most production traffic should not buy any.',
+  needs:[
+    ['Tokens are the billing unit','You pay for what goes in and what comes out, per request.',1],
+    ['The envelope is a budget with lines in it','System prompt, tools, retrieved chunks, history, answer — each one is a decision.',10],
+  ],
   story:[
     ['p','For most of this book, a model answered immediately. A newer class of model does something else first: it generates a long private working-out — trying approaches, checking itself, discarding lines — and only then writes the answer you see. You pay for that working-out in tokens and in seconds.'],
     ['p','The formal name for what you are buying is <strong>test-time compute</strong>: rather than accuracy being fixed at training time, you can purchase more of it, per query, at the moment of asking. That is a genuinely new product lever, and it is the first one in this book that a product manager controls directly with a number.'],
@@ -1749,6 +1801,10 @@ window.PART2 = [
   id:'ch12', num:12, part:2, minutes:75, labs:['fusion'],
   title:'Retrieval, Grown Up',
   concept:'The LATER page, unlocked. Hybrid search, reranking and contextual retrieval — each aimed at a failure you personally measured.',
+  needs:[
+    ['The LATER page','Every technique you deliberately parked since Chapter 3 is collected here.',3],
+    ['Precision and recall pull against each other','Raise k and you find more and dilute more. That trade is what these techniques attack.',6],
+  ],
   story:[
     ['p','Since Chapter 3 you have been writing names on a page titled LATER and abandoning them. Tonight you collect. Every technique in this chapter is a cure for a specific injury you observed with your own hands — which is why they will be memorable rather than decorative.'],
     ['p','<strong>Hybrid search</strong> cures the injury from Chapter 5\'s homework: your exact-string question, which keyword search nailed and semantic search fumbled. You have two scoreboards, each blind where the other sees. Merging them is the entire idea. The standard merge is <em>reciprocal rank fusion</em>, and its plain-language form is: a document\'s score is the sum, across both lists, of one-over-its-rank. Rank 1 contributes a lot; rank 40 contributes almost nothing; appearing respectably on both lists beats winning one. There is no learning in it and no magic — a single line of arithmetic that is very hard to beat.'],
@@ -1834,6 +1890,11 @@ window.PART2 = [
   id:'ch13', num:13, part:2, minutes:75, labs:['injection','trifecta'],
   title:'The Confused Deputy',
   concept:'In Chapter 2 the pressure came from the user. Now it comes from inside the documents — and there is no complete fix.',
+  needs:[
+    ['A guardrail is an instruction','You wrote one in Chapter 2 and then broke it yourself.',2],
+    ['Retrieved text goes into the envelope','Whatever is in your documents reaches the model as part of the request.',3],
+    ['Tools let the model act','Reading is recoverable. Sending, paying and deleting are not.',9],
+  ],
   story:[
     ['p','This is the most important chapter in Part II, and it begins by finishing a sentence you started in Chapter 2.'],
     ['p','There you wrote a guardrail and then broke it, by applying social pressure as the user. You concluded, correctly, that a briefing page is a polite request rather than a law of physics. Here is the harder version of that lesson: <strong>the pressure does not have to come from the user.</strong>'],
@@ -1938,6 +1999,10 @@ window.PART3 = [
   id:'ch14', num:14, part:3, minutes:70, labs:['judge'],
   title:'The Judge and the Flywheel',
   concept:'Ten questions and a pencil do not scale to ten thousand queries a week. Build a grader — then grade the grader.',
+  needs:[
+    ['Ground truth is written before the exam','An answer key you produced, or you are not measuring anything.',6],
+    ['Precision, recall, and which one is fatal','The trade-off, and the fact that choosing between them is yours.',6],
+  ],
   story:[
     ['p','Chapter 6 gave you the only honest foundation: verified expectations, written before the trial. It also gave you a method that stops working at about fifty rows. Real products receive thousands of queries a week, ship weekly, and change models twice a year. Something has to scale, and it cannot be your evenings.'],
     ['p','There are exactly three ways to grade an AI output, and every evaluation system in existence is a blend of them.'],
@@ -2034,6 +2099,10 @@ window.PART3 = [
   id:'ch15', num:15, part:3, minutes:60, labs:['costmodel'],
   title:'The Meter',
   concept:'Chapter 1 gave you the receipt. Build the bill — including the four multipliers nobody puts in the business case.',
+  needs:[
+    ['Cost per query, from the receipt','Tokens in, tokens out, times a rate. The arithmetic you did in Chapter 1.',1],
+    ['The four things that multiply it','Retrieved volume (3, 12), retries (8), agent steps (9), reasoning tokens (11).',11],
+  ],
   story:[
     ['p','You have read a receipt since Chapter 1. Now you build the bill, because at some point somebody senior will ask what this costs at scale, and the answer “it depends on tokens” ends careers slowly.'],
     ['p','The base formula is arithmetic:'],
@@ -2125,6 +2194,10 @@ window.PART3 = [
   id:'ch16', num:16, part:3, minutes:55, labs:[],
   title:'Beyond the Text Box',
   concept:'Your corpus is not text. It is pages — with tables, stamps, signatures and scans that clean-text chunking silently destroys.',
+  needs:[
+    ['Everything so far assumed text','Chapter 3 asked you to paste text into a file. That instruction hid an entire step.',3],
+    ['Latency is a product constraint','p95, not the average — the number that decides whether a surface works.',11],
+  ],
   story:[
     ['p','Chapter 3 asked you to paste your document\'s text into an editable file. That instruction concealed an assumption, and in most real organisations the assumption is false.'],
     ['p','Real corpora are pages. Scanned contracts with signatures and stamps. Financial statements whose meaning lives entirely in a table\'s row-column geometry. Manuals where the safety warning is a red box beside a diagram. Screenshots pasted into tickets. Forms with handwriting in the margins.'],
@@ -2210,6 +2283,11 @@ window.PART3 = [
   id:'ch17', num:17, part:3, minutes:60, labs:['systemcard'],
   title:'The Paper Trail',
   concept:'In 2027 an AI feature ships with documents attached. Most of them are product decisions wearing legal costume — which makes them yours.',
+  needs:[
+    ['You can measure it, so you can state it','Ground truth and error analysis are what turn a claim into a number.',14],
+    ['Metadata is a filter, not a score','Version and access are decided before ranking, which is why they are the only guarantees.',12],
+    ['No complete defence exists','Which is why controls sit outside the model rather than inside the prompt.',13],
+  ],
   story:[
     ['p','A conventional feature ships with code, tests, and a release note. An AI feature increasingly ships with a file of documents as well, and there is a common and expensive misunderstanding about who writes them.'],
     ['key','Almost every question in an AI governance file is a product question. What is it for, who does it affect, what happens when it is wrong, who reviews what, and what evidence exists that it works — these are not legal questions with legal answers. They are product decisions being written down, usually by someone who was not in the room when they were made.'],
@@ -2303,6 +2381,11 @@ window.PART3 = [
   id:'ch18', num:18, part:3, minutes:90, labs:['redmap','prd'],
   title:'The Instrument Panel Assembled',
   concept:'Nothing new — again, that is the point. Draw the 2027 system from memory, mark every place you broke it, and write the PRD.',
+  needs:[
+    ['An eval suite, and a taxonomy from your own traffic','The instruments that make an acceptance criterion a number.',14],
+    ['A loaded cost model','The real per-query figure, with its four multipliers.',15],
+    ['A risk tier and an oversight design','What ships alongside the code.',17],
+  ],
   story:[
     ['p','Chapter 7 ended with a pipeline and a red pen. This chapter ends with an instrument panel and a document — and, as before, nothing in it is new.'],
     ['p','A conventional PRD assumes deterministic behaviour: given this input, produce that output; QA verifies; done. Every assumption in that sentence fails here. Given this input, an AI feature produces a <em>distribution</em> of outputs, whose shape shifts when the provider updates a model you do not control.'],
@@ -2414,6 +2497,10 @@ window.PART4 = [
   id:'ch19', num:19, part:4, minutes:55, labs:['costmodel'],
   title:'Prompt, Retrieve, Tune, or Switch',
   concept:'Four levers for making a model fit your problem — and the diagnosis that says which one you actually need.',
+  needs:[
+    ['A failure taxonomy with counts','You cannot choose a lever without knowing which failure you have and how often.',14],
+    ['An eval you trust','Every lever in this chapter is invisible without one.',6],
+  ],
   red:['Reaching for fine-tuning to fix a knowledge gap','Choosing a lever before naming the failure'],
   story:[
     ['p','At some point — usually in a roadmap review, usually from the most senior person present — you will be asked: <em>should we fine-tune?</em> It is almost always asked before anyone has said what is actually wrong, which is what makes it hard to answer well. Answering <em>yes</em> commits a quarter. Answering <em>no</em> sounds unambitious. The professional answer is neither, and this chapter is how you earn it.'],
@@ -2503,6 +2590,11 @@ window.PART4 = [
   id:'ch20', num:20, part:4, minutes:55, labs:[],
   title:'The Interface Contract',
   concept:'Your users cannot see your evals. What they can see is the only thing that makes an uncertain system usable.',
+  needs:[
+    ['A quote field beats a confidence score','Requiring the model to cite the span it used is what makes checking cheap.',8],
+    ['p95 is the latency that matters','The slow fifth of your users, not the typical one.',11],
+    ['A kill switch is not a rollback','Rolling back code does not undo a behaviour both versions share.',18],
+  ],
   red:['Presenting an uncertain output with a certain interface','Citations that do not resolve','A feedback control that collects nothing usable'],
   story:[
     ['p','Everything up to here has been about making the machine right more often. This chapter is about the rest of the time — and the rest of the time is not a residual. At 90% accuracy, one interaction in ten is wrong, and no amount of further engineering removes the category. What decides whether the feature is usable is not the ten percent; it is what the interface does about it.'],
@@ -8389,6 +8481,28 @@ function renderChapter(c){
     h('div',{class:'chnum',text:String(c.num).padStart(2,'0')}),
     h('h1',{text:c.title}),
     h('p',{class:'concept',text:c.concept})]));
+
+  /* What this chapter stands on.
+
+     A word you do not know announces itself; a concept you missed three
+     chapters ago does not — the sentence still parses, so you read on and
+     understand a little less each paragraph until the whole thing feels like it
+     was written for somebody else. Naming the load-bearing ideas up front makes
+     losing the thread visible, and going back a normal move rather than an
+     admission. */
+  if((c.needs||[]).length){
+    const nd=h('section',{class:'needs'});
+    nd.appendChild(h('div',{class:'needshead'},[
+      h('span',{class:'cplbl',text:'This chapter stands on'}),
+      h('span',{class:'dim',style:'font-size:.78rem',
+        text:'if any of these are blank, go back first — that is the fast route, not the slow one'})]));
+    nd.appendChild(h('ul',{class:'needlist'},c.needs.map(([what,why,ch])=>
+      h('li',{},[
+        h('div',{},[h('strong',{text:what}),
+          h('span',{class:'needwhy',text:' — '+why})]),
+        h('a',{class:'chip',href:'#/ch/ch'+ch,text:'Chapter '+ch+' →'})]))));
+    w.appendChild(nd);
+  }
 
   /* A chapter is not a thing you read to the end of; it is a thing you answer
      your way through. This says how far through the answering you are. */

@@ -11,6 +11,10 @@ window.PART4 = [
   id:'ch19', num:19, part:4, minutes:55, labs:['costmodel'],
   title:'Prompt, Retrieve, Tune, or Switch',
   concept:'Four levers for making a model fit your problem — and the diagnosis that says which one you actually need.',
+  needs:[
+    ['A failure taxonomy with counts','You cannot choose a lever without knowing which failure you have and how often.',14],
+    ['An eval you trust','Every lever in this chapter is invisible without one.',6],
+  ],
   red:['Reaching for fine-tuning to fix a knowledge gap','Choosing a lever before naming the failure'],
   story:[
     ['p','At some point — usually in a roadmap review, usually from the most senior person present — you will be asked: <em>should we fine-tune?</em> It is almost always asked before anyone has said what is actually wrong, which is what makes it hard to answer well. Answering <em>yes</em> commits a quarter. Answering <em>no</em> sounds unambitious. The professional answer is neither, and this chapter is how you earn it.'],
@@ -100,6 +104,11 @@ window.PART4 = [
   id:'ch20', num:20, part:4, minutes:55, labs:[],
   title:'The Interface Contract',
   concept:'Your users cannot see your evals. What they can see is the only thing that makes an uncertain system usable.',
+  needs:[
+    ['A quote field beats a confidence score','Requiring the model to cite the span it used is what makes checking cheap.',8],
+    ['p95 is the latency that matters','The slow fifth of your users, not the typical one.',11],
+    ['A kill switch is not a rollback','Rolling back code does not undo a behaviour both versions share.',18],
+  ],
   red:['Presenting an uncertain output with a certain interface','Citations that do not resolve','A feedback control that collects nothing usable'],
   story:[
     ['p','Everything up to here has been about making the machine right more often. This chapter is about the rest of the time — and the rest of the time is not a residual. At 90% accuracy, one interaction in ten is wrong, and no amount of further engineering removes the category. What decides whether the feature is usable is not the ten percent; it is what the interface does about it.'],
