@@ -1,0 +1,22 @@
+{
+  "name": "ai-from-zero",
+  "private": true,
+  "version": "2.0.0",
+  "description": "A skill tracker for AI product managers, with its curriculum stored in a database and edited from the app itself.",
+  "type": "module",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "node build.js && node tools/dev-server.js",
+    "test": "node build.js && node tools/test.mjs",
+    "test:api": "node build.js && node tools/test.mjs api",
+    "test:browser": "node build.js && node tools/test.mjs browser"
+  },
+  "dependencies": {
+    "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.2.17",
+    "playwright": "^1.49.0"
+  },
+  "engines": { "node": ">=20" }
+}

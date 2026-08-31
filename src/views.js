@@ -903,8 +903,28 @@ function accountPanel(){
   if(!A || !R || A.state==='off'){
     box.appendChild(h('p',{class:'prose',style:'font-size:1rem',
       html:'This copy is running without its backend — from a file, from the Claude artifact, or from a plain static host. '+
-        'Progress is kept in this browser only. Deploy the Worker (see the README) and this becomes an account: '+
-        'sign in anywhere and your record follows you.'}));
+        'Progress is kept in this browser only. Deploy it with a database (the README walks through it, '+
+        'entirely in a browser) and this becomes an account: sign in anywhere and your record follows you.'}));
+    return box;
+  }
+  /* Functions are up but no database is attached: every call would fail, and the
+     reason is one environment variable, so say exactly that. */
+  if(R.available && R.available.database === false){
+    box.appendChild(h('div',{class:'callout',style:'border-left-color:var(--red)'},[
+      h('span',{class:'lbl',text:'No database is attached to this deployment'}),
+      h('p',{html:'The app is served and its API is running, but there is no <code>DATABASE_URL</code>, '+
+        'so there is nowhere to keep your record. Create a free Postgres (Neon, Supabase, Railway or '+
+        'Vercel Postgres), paste its connection string into your hosting dashboard as '+
+        '<code>DATABASE_URL</code>, and redeploy. Until then progress stays in this browser and the '+
+        'backups below are what protects it.'})]));
+    return box;
+  }
+  if(R.available && R.available.database && !R.available.dbReady){
+    box.appendChild(h('div',{class:'callout',style:'border-left-color:var(--red)'},[
+      h('span',{class:'lbl',text:'The database is not answering'}),
+      h('p',{html:'A database is configured but the app could not reach it'+
+        (R.available.dbError?(' — <code>'+esc2(R.available.dbError)+'</code>'):'')+
+        '. Progress is being kept in this browser in the meantime.'})]));
     return box;
   }
   const u=A.user;
@@ -921,10 +941,11 @@ function accountPanel(){
     } else {
       box.appendChild(h('div',{class:'callout',style:'border-left-color:var(--red)'},[
         h('span',{class:'lbl',text:'Sign-in is not configured on this deployment'}),
-        h('p',{html:'The backend is running, but no GitHub OAuth app is set. Add the two secrets and redeploy:'+
-          '<br><code>npx wrangler secret put GITHUB_CLIENT_ID</code>'+
-          '<br><code>npx wrangler secret put GITHUB_CLIENT_SECRET</code>'+
-          '<br>The README has the four-step setup.'})]));
+        h('p',{html:'The backend and its database are running, but no GitHub OAuth app is set, so there is '+
+          'nothing to sign in with. Create one at <code>github.com/settings/developers</code> with a callback '+
+          'of <code>'+esc2(location.origin)+'/api/auth/callback</code>, then add '+
+          '<code>GITHUB_CLIENT_ID</code> and <code>GITHUB_CLIENT_SECRET</code> to your hosting dashboard and '+
+          'redeploy. The README walks through it — no terminal needed.'})]));
     }
     const q=new URLSearchParams(location.hash.split('?')[1]||'');
     const err=q.get('signin');
@@ -932,7 +953,9 @@ function accountPanel(){
       h('span',{class:'vt',text:'Sign-in did not complete'}),
       h('span',{class:'vs',text:{bad_state:'The sign-in link expired — try again.',
         no_token:'GitHub did not return a token.',profile_failed:'Could not read your GitHub profile.',
-        not_allowed:'That GitHub account is not on this app\'s allow list.'}[err]||err})]));
+        not_allowed:'That GitHub account is not on this app\'s allow list.',
+        no_database:'This deployment has no database attached, so there is no account to sign in to.',
+        server_error:'Something failed on the server during sign-in. Try again.'}[err]||err})]));
     return box;
   }
 

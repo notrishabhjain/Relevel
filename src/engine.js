@@ -3,12 +3,23 @@
    session construction, and the analytics the dashboard reads. */
 
 window.ENG = (function(){
-const ITEMS = [].concat(window.ITEMS1, window.ITEMS2, window.ITEMS3).map(a=>({
-  id:a[0], sk:a[1], diff:a[2], type:a[3], stem:a[4], opts:a[5], ans:a[6], why:a[7]
-}));
-const byItem={}; ITEMS.forEach(i=>byItem[i.id]=i);
-const bySkill={}; ITEMS.forEach(i=>(bySkill[i.sk]=bySkill[i.sk]||[]).push(i));
-const SK={}; window.SKILLS.forEach(s=>SK[s.id]=s);
+/* Content is loaded before boot and can be re-edited from the portal, so these
+   are rebuilt on demand rather than captured when this file parses. The
+   containers are mutated in place: views hold references to them. */
+let ITEMS=[];
+const byItem={}, bySkill={}, SK={};
+function reinit(){
+  const raw = window.ALL_ITEMS ||
+    [].concat(window.ITEMS1||[], window.ITEMS2||[], window.ITEMS3||[]);
+  ITEMS = raw.map(a=>({id:a[0], sk:a[1], diff:a[2], type:a[3],
+                       stem:a[4], opts:a[5], ans:a[6], why:a[7]}));
+  Object.keys(byItem).forEach(k=>delete byItem[k]);
+  Object.keys(bySkill).forEach(k=>delete bySkill[k]);
+  Object.keys(SK).forEach(k=>delete SK[k]);
+  ITEMS.forEach(i=>{ byItem[i.id]=i; (bySkill[i.sk]=bySkill[i.sk]||[]).push(i); });
+  (window.SKILLS||[]).forEach(s=>SK[s.id]=s);
+}
+reinit();
 
 const DAY=86400000;
 const now=()=>Date.now();
@@ -312,7 +323,7 @@ function exScore(e, iter){
   return Math.round(vals.reduce((a,b)=>a+b,0)/(e.rubric.length*3)*100);
 }
 
-return {ITEMS, byItem, bySkill, SK, DAY,
+return {get ITEMS(){return ITEMS;}, byItem, bySkill, SK, DAY, reinit,
   shown, levelOf, nextBand, skillState, decayFactor,
   buildSession, grade, submit, scheduleItem, srs, dueList, dueForecast,
   calibrationCurve, brier, overconfidence, CONF,

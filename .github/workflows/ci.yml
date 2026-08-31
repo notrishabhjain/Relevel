@@ -1,0 +1,32 @@
+# Builds the app and runs both test suites.
+#
+# There is nothing to deploy here: hosting is Vercel, which builds from this
+# repository on its own. The tests need no database — tools/dev-server.js runs
+# Postgres in-process — so this workflow needs no secrets.
+name: Build and test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install
+      - run: npx playwright install --with-deps chromium
+      - run: node build.js
+      - name: Check the build produced a page
+        run: |
+          test -s dist/site/index.html
+          test -s dist/site/sw.js
+          test -s content/defaults.json
+          grep -q "window.STUDIO" dist/site/index.html
+      - name: Tests
+        run: node tools/test.mjs

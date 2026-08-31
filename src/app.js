@@ -9,8 +9,20 @@ const h=(t,a,c)=>{const e=document.createElement(t);
 const $=(s,r)=>(r||document).querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
 
-const CH=[].concat(window.PART1,window.PART2,window.PART3);
-const byId={}; CH.forEach(c=>byId[c.id]=c);
+/* Rebuilt from whatever content was loaded, before the first render. */
+let CH=[];
+const byId={};
+let IDX=null;                     // command palette index, rebuilt with content
+function bindContent(){
+  CH = window.CHAPTERS ||
+       [].concat(window.PART1||[], window.PART2||[], window.PART3||[]);
+  Object.keys(byId).forEach(k=>delete byId[k]);
+  CH.forEach(c=>byId[c.id]=c);
+  if(window.ENG && window.ENG.reinit) window.ENG.reinit();
+  IDX=null;                       // command palette index is content-derived
+}
+bindContent();
+window.BIND_CONTENT=bindContent;
 
 /* ---------------- storage ---------------- */
 const KEY='aifz2027';
@@ -764,6 +776,9 @@ function renderRail(){
     ['#/ledger','∆','Prediction Ledger'],
     ['#/card','▣','System Card'],
     ['#/data','⇄','Progress & Backup']]));
+  const nd=window.STUDIO?window.STUDIO.dirtyKinds().length:0;
+  r.appendChild(sec('Author',[
+    ['#/studio','✦','Content Studio'+(nd?'  ('+nd+' draft'+(nd>1?'s':'')+')':'')]]));
   r.appendChild(sec('Reference',[
     ['#/library','▤','Library — 18 chapters'],['#/setup','A','Setup'],
     ['#/vendor','⌗','Vendor Deck'],['#/glossary','∎','Glossary'],
@@ -784,10 +799,11 @@ const ROUTES={'':()=>V().dashboard(),'library':pageHome,
   'exercises':()=>V().exercises(),'processes':()=>V().processes(),
   'setup':pageSetup,'notebook':pageNotebook,'ledger':pageLedger,
   'later':pageLater,'glossary':pageGlossary,'vendor':pageVendor,'map':pageMap,'card':pageCard,
-  'progress':pageProgress,'labs':pageLabs,'data':()=>V().data()};
+  'progress':pageProgress,'labs':pageLabs,'data':()=>V().data(),
+  'studio':()=>window.STUDIO.studio([])};
 const CRUMB={'':'Dashboard','library':'Library','skills':'Skill Matrix','analytics':'Analytics',
   'exercises':'Exercises','processes':'Processes','practice':'Practice','skill':'Skill',
-  'data':'Progress & Backup'};
+  'data':'Progress & Backup','studio':'Content Studio'};
 
 function route(){
   const hash=location.hash.replace(/^#\/?/,'').split('#')[0];
@@ -802,6 +818,10 @@ function route(){
     node = parts[1] ? V().practice(parts[1],parts[2]) : V().practiceMenu();
     crumb='Practice'+(parts[1]?' · '+parts[1]:'');
     document.title='Practice — AI From Zero';
+  } else if(parts[0]==='studio'){
+    node=window.STUDIO.studio(parts);
+    crumb='Content Studio'+(parts[1]?' · '+parts[1]:'');
+    document.title='Content Studio — AI From Zero';
   } else if(parts[0]==='skill'&&parts[1]){
     node=V().skillPage(parts[1]);
     crumb='Skill · '+parts[1];
@@ -831,6 +851,7 @@ function buildIndex(){
     {k:'page',t:'Exercises',h:'#/exercises'},{k:'page',t:'Processes',h:'#/processes'},
     {k:'page',t:'Library — 18 chapters',h:'#/library'},
     {k:'page',t:'Progress & Backup',h:'#/data'},
+    {k:'page',t:'Content Studio — edit the curriculum',h:'#/studio'},
     {k:'page',t:'Setup',h:'#/setup'},
     {k:'page',t:'The Labs',h:'#/labs'},{k:'page',t:'Red-Mark Map',h:'#/map'},
     {k:'page',t:'Prediction Ledger',h:'#/ledger'},{k:'page',t:'Notebook',h:'#/notebook'},
@@ -849,7 +870,7 @@ function buildIndex(){
   window.PROCESSES.forEach(p=>idx.push({k:'process',t:p.n,d:p.cad,h:'#/processes#'+p.id}));
   return idx;
 }
-let IDX=null,palCur=0,palItems=[];
+let palCur=0,palItems=[];
 function openPal(){
   const p=$('#pal');p.classList.add('open');
   const i=$('#palinput');i.value='';i.focus();palSearch('');
@@ -1068,5 +1089,15 @@ function runAutoSync(){
     else setSyncPill('warn','sync failed — open','warn');
   }).catch(()=>setSyncPill('warn','sync failed — open','warn'));
 }
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
+/* Content first, then render — the whole app is built from it. */
+function start(){
+  const go=()=>{
+    const p = window.CONTENT ? window.CONTENT.load() : Promise.resolve({source:'built-in'});
+    p.then(()=>{ bindContent(); boot(); })
+     .catch(()=>{ bindContent(); boot(); });
+  };
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',go);
+  else go();
+}
+start();
 })();

@@ -282,6 +282,16 @@ function isEmptyState(d){
   if(Object.keys(d.proc||{}).length) return false;
   if((d.pred||[]).length) return false;
   if(Object.keys(d.marks||{}).some(k=>d.marks[k])) return false;
+  /* Reading is work too. Chapters marked done, chapter self-grades, parked
+     LATER questions, the system card, glossary drills and reading sittings are
+     all things a person would be dismayed to lose, so a record holding only
+     those is not an empty one. */
+  if(Object.keys(d.done||{}).some(k=>d.done[k])) return false;
+  if(Object.keys(d.grades||{}).some(k=>d.grades[k])) return false;
+  if(Object.keys(d.later||{}).some(k=>d.later[k])) return false;
+  if(Object.keys(d.card||{}).some(k=>d.card[k])) return false;
+  if(Object.keys(d.drill||{}).some(k=>d.drill[k])) return false;
+  if((d.sittings||[]).length) return false;
   return true;
 }
 function localChangedSinceSync(){

@@ -1,11 +1,11 @@
 /* Account-backed storage.
 
-   When the app is served by its Worker and you are signed in, the server holds
+   When the app is served with its API and you are signed in, the database holds
    your progress and this device is a cache. Every write goes up; every open
    pulls down. Sign in on a new machine and your record is simply there.
 
-   When there is no backend (opened from disk, or the Claude artifact) every
-   call here fails fast and the app keeps working on localStorage alone. */
+   When there is no backend (opened from disk, or on a static host) every call
+   here fails fast and the app keeps working on localStorage alone. */
 
 window.REMOTE = (function(){
 const KEY  = () => (window.STORE && window.STORE.KEY) || 'aifz2027';
@@ -53,7 +53,8 @@ async function probe(){
   try{
     const r = await api('/api/health');
     available = !!(r.ok && r.body && r.body.ok);
-    if(available) available = { signIn: !!r.body.signIn };
+    if(available) available = { signIn: !!r.body.signIn,
+      database: !!r.body.database, dbReady: !!r.body.dbReady, dbError: r.body.dbError || null };
   }catch(e){ available = false; }
   return available;
 }
