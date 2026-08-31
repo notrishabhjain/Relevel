@@ -28,12 +28,55 @@ function lvlPill(m,n){
   return h('span',{class:'pill lv'+L, text:n?LN()[L]:'L'+L});
 }
 
+/* ---------------- resume, and coming back ---------------- */
+function resumePanel(st, eng){
+  const r=eng.resume(st);
+  const box=h('section',{class:'resume'});
+  const lapsed=r.lapsedDays;
+
+  /* Coming back after a gap is the most fragile moment there is, so it does not
+     open with what decayed. */
+  if(lapsed!=null && lapsed>=5){
+    box.appendChild(h('div',{class:'backhead'},[
+      h('h2',{text:lapsed>=30?'Welcome back.':'Good to see you again.'}),
+      h('p',{html:'It has been '+lapsed+' days. Nothing is lost — every answer you '+
+        'gave is still there, and the questions you had started to forget have simply '+
+        'come back round for review, which is what they were always going to do. '+
+        '<strong>You do not restart anything.</strong>'})]));
+  }
+
+  const lead=r.steps[0];
+  if(!lead){
+    box.appendChild(h('p',{class:'prose',text:'You have finished everything currently queued. The review items will come back on their own.'}));
+    return box;
+  }
+  box.appendChild(h('div',{class:'resumelead'},[
+    h('div',{style:'flex:1;min-width:0'},[
+      h('span',{class:'cplbl',text:lapsed!=null&&lapsed>=5?'Start again here':'Next'}),
+      h('h3',{text:lead.title}),
+      h('p',{text:lead.d})]),
+    h('div',{class:'resumego'},[
+      h('span',{class:'mins',text:'~'+lead.mins+' min'}),
+      h('a',{class:'btnlink',href:lead.h,text:'Open →'})])]));
+
+  if(r.tiny) box.appendChild(h('div',{class:'tiny'},[
+    h('span',{class:'tinylbl',text:'Not tonight?'}),
+    h('p',{html:'Then do the smallest version instead. <strong>'+esc2(r.tiny.title)+
+      '</strong> — '+esc2(r.tiny.d)}),
+    h('a',{class:'chip',href:r.tiny.h,text:'Two minutes →'})]));
+
+  if(r.steps.length>1) box.appendChild(h('div',{class:'alsorow'},
+    r.steps.slice(1,3).map(s2=>h('a',{class:'chip',href:s2.h,
+      text:s2.title+' · ~'+s2.mins+' min'}))));
+  return box;
+}
+
 /* ================= DASHBOARD ================= */
 function dashboard(){
   const st=S(), eng=E();
   const w=h('div',{class:'wrap-wide'});
   const ov=eng.overall(st), dm=eng.domainMastery(st);
-  const due=eng.dueList(st).length, str=eng.streak(st);
+  const due=eng.dueList(st).length, sd=eng.streakDetail(st);
   const tested=window.SKILLS.filter(s=>eng.skillState(st,s.id).n>0).length;
   const oc=eng.overconfidence(st);
   const vel=eng.velocity(st);
@@ -46,10 +89,20 @@ function dashboard(){
       h('p',{class:'dash-sub',html:window.SKILLS.length+' tracked skills. Mastery moves on measured evidence and decays without practice — so this number is a claim about <em>now</em>, not a record of what you once read.'})]),
     h('div',{class:'bigring'},[ring(ov), h('span',{class:'ringlab',text:'overall mastery'})])]));
 
+  /* The one thing to do next, named and timed.
+
+     The dashboard used to open with numbers, which is fine on a good day and
+     actively repelling on a bad one — a wall of measurements you are behind on
+     is a reason to close the tab. This comes first instead: one action, one
+     time estimate, and a smaller version of it for an evening with nothing
+     left in it. */
+  w.appendChild(resumePanel(st, eng));
+
   w.appendChild(h('div',{class:'stats'},[
     tile('skills measured',tested+' / '+window.SKILLS.length,tested===30?'ok':''),
     tile('due for review',due,due>0?'red':'ok',due?'decaying now':'all current'),
-    tile('day streak',str,str>=3?'ok':''),
+    tile('day streak',sd.days,sd.days>=3?'ok':'',
+      sd.rest?'one rest day, still counting':(sd.today?'today counts':'')),
     tile('7-day gain',(vel.now>=0?'+':'')+Math.round(vel.now),vel.now>vel.prev?'ok':'',
       'prev '+(vel.prev>=0?'+':'')+Math.round(vel.prev)),
     tile('calibration',oc==null?'—':(oc>0?'+':'')+Math.round(oc*100)+'%',

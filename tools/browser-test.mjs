@@ -286,6 +286,79 @@ ok((await r0.page.locator('.cp-try').first().locator('textarea').inputValue()).l
 ok(/3 \/ \d+/.test(await text(r0.page, '.cpstrip')), 'all three kinds count towards the chapter',
    await text(r0.page, '.cpstrip'));
 
+console.log('\n— the app makes it hard to quit —');
+const q1 = await newDevice(true, 'quitter');
+await boot(q1.page, '#/');
+await q1.page.waitForSelector('.resume');
+const fresh = await text(q1.page, '.resume');
+ok(/~\d+ min/.test(fresh), 'the next step is named with a time on it', fresh.slice(0, 90));
+ok(/Not tonight/i.test(fresh), 'and there is a smaller version for a bad evening');
+ok(/Two minutes/i.test(fresh), 'which is two minutes, not a chapter');
+ok((await q1.page.evaluate(() => {
+  const r = document.querySelector('.resume'), s = document.querySelector('.stats');
+  return r.compareDocumentPosition(s) & Node.DOCUMENT_POSITION_FOLLOWING; })) > 0,
+  'what to do next comes before how you are doing');
+
+console.log('\n— being stuck has somewhere to go —');
+await boot(q1.page, '#/ch/ch1');
+const slot = q1.page.locator('.qslot').first();
+await slot.scrollIntoViewIfNeeded();
+ok(await slot.locator('.stuck').count() === 1, 'every checkpoint question offers a way out');
+await slot.getByText('Show me the answer').click();
+await q1.page.waitForTimeout(300);
+ok((await slot.innerText()).includes('not scored'), 'showing the answer says it was not scored');
+ok(await q1.page.evaluate(() => Object.keys(window.STORE.S.sk).length) === 0,
+   'and mastery is genuinely untouched by it');
+ok(await q1.page.evaluate(() => Object.keys(window.STORE.S.srs).length) === 1,
+   'while the question is scheduled to come back');
+await revisit(q1.page);
+ok(/answer shown/i.test(await q1.page.locator('.qslot').first().innerText()),
+   'the shown state survives a reload');
+ok(/1 \/ \d+/.test(await text(q1.page, '.cpstrip')), 'and it counts as progress through the chapter',
+   await text(q1.page, '.cpstrip'));
+await q1.page.locator('.qslot').first().getByText('Try it properly now').click();
+await q1.page.waitForTimeout(250);
+ok(await q1.page.locator('.qslot').first().locator('.opt').count() > 0,
+   'and you can still choose to answer it properly');
+
+console.log('\n— parking is not failing —');
+const slot2 = q1.page.locator('.qslot').first();
+await slot2.getByText('Park it and move on').click();
+await q1.page.waitForTimeout(250);
+ok(/parked for later/i.test(await slot2.innerText()), 'a parked question says so');
+ok((await slot2.innerText()).includes('not a gap in your record'), 'and says it is not held against you');
+
+console.log('\n— coming back after a month —');
+await q1.page.evaluate(() => {
+  const ago = Date.now() - 30 * 86400000;
+  window.STORE.S.att = [{ t: ago, i: 'I001', sk: 'S01', k: 1, c: 0.75, ms: 900, d: 1 }];
+  window.STORE.S.sk = { S01: { m: 40, n: 1, ok: 1, last: ago, hist: [], peak: 40 } };
+  window.STORE.S.cp = {}; window.STORE.S.sess = []; window.STORE.S.sittings = [];
+  window.STORE.flush();
+});
+await boot(q1.page, '#/');
+await q1.page.waitForSelector('.resume');
+const back = await text(q1.page, '.resume');
+ok(/Welcome back/.test(back), 'a long gap is met with a welcome, not a scolding', back.slice(0, 80));
+ok(/Nothing is lost/.test(back), 'it says explicitly that nothing was lost');
+ok(/do not restart/i.test(back), 'and that nothing has to be started again');
+ok(/~\d+ min/.test(back), 'and still names one concrete step with a time on it');
+
+console.log('\n— a streak that survives one bad day —');
+ok(await q1.page.evaluate(() => {
+  const DAY = 86400000, t = Date.now();
+  /* active today, yesterday, nothing the day before, then two more */
+  window.STORE.S.att = [0, 1, 3, 4].map(d => ({ t: t - d * DAY, i: 'I001', sk: 'S01', k: 1, c: 0.75, ms: 9, d: 1 }));
+  return window.ENG.streakDetail(window.STORE.S).days;
+}) === 4, 'one missed day does not reset the streak');
+ok(await q1.page.evaluate(() => window.ENG.streakDetail(window.STORE.S).rest) === 1,
+   'and the rest day is reported rather than hidden');
+ok(await q1.page.evaluate(() => {
+  const DAY = 86400000, t = Date.now();
+  window.STORE.S.att = [0, 1, 4, 5].map(d => ({ t: t - d * DAY, i: 'I001', sk: 'S01', k: 1, c: 0.75, ms: 9, d: 1 }));
+  return window.ENG.streakDetail(window.STORE.S).days;
+}) === 2, 'two missed days do end it — the number stays honest');
+
 console.log('\n— reading the app does not write to it —');
 /* Its own account, so nothing above can move the version underneath it. */
 const r1 = await newDevice(true, 'reader');

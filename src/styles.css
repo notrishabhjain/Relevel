@@ -764,3 +764,29 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .termpop p{margin:0 0 .5rem;color:var(--ink-2)}
 .termahead{font-size:.8rem;color:var(--amber)!important;border-left:2px solid var(--amber);padding-left:.5rem}
 .termpop button{margin-top:.1rem}
+
+/* ---------- resume: the one next step ---------- */
+.resume{margin:1.6rem 0 2rem;padding:1.1rem 1.25rem;background:var(--raised);
+  border:1px solid var(--rule);border-left:2px solid var(--verified);border-radius:var(--r)}
+.backhead{margin-bottom:1rem;padding-bottom:.9rem;border-bottom:1px solid var(--rule)}
+.backhead h2{font-family:var(--serif);font-size:1.3rem;margin:0 0 .4rem;font-weight:400}
+.backhead p{margin:0;font-size:.92rem;color:var(--ink-2);line-height:1.6}
+.resumelead{display:flex;gap:1.2rem;align-items:flex-start;flex-wrap:wrap}
+.resumelead h3{font-family:var(--serif);font-size:1.25rem;font-weight:400;margin:.15rem 0 .35rem}
+.resumelead p{margin:0;color:var(--ink-2);font-size:.9rem;line-height:1.55}
+.resumego{display:flex;flex-direction:column;gap:.5rem;align-items:flex-end;flex:none}
+.mins{font-family:var(--mono);font-size:.7rem;color:var(--muted);white-space:nowrap}
+.tiny{margin-top:1rem;padding-top:.9rem;border-top:1px dashed var(--rule);
+  display:flex;gap:.7rem;align-items:center;flex-wrap:wrap}
+.tinylbl{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--amber);flex:none}
+.tiny p{margin:0;flex:1;min-width:180px;font-size:.85rem;color:var(--ink-2);line-height:1.5}
+.alsorow{display:flex;gap:.45rem;flex-wrap:wrap;margin-top:.9rem}
+
+/* ---------- stuck ---------- */
+.stuck{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;margin-top:.9rem;
+  padding-top:.75rem;border-top:1px dashed var(--rule)}
+.stucklbl{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted)}
+.stucknote{font-size:.8rem;color:var(--muted);flex-basis:100%;line-height:1.5;margin:.2rem 0 0}
+.qparked{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;font-size:.85rem;color:var(--muted)}

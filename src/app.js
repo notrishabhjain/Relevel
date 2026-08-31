@@ -269,6 +269,22 @@ function qSlot(id){
     slot.innerHTML='';
     const it=window.ENG&&window.ENG.byItem[id];
     if(!it){slot.appendChild(h('p',{class:'dim',text:'Question '+id+' is not in the bank.'}));return;}
+    const shown=force?null:S.cp['shown:'+id];
+    if(shown && !lastAttempt(id)){
+      slot.appendChild(h('div',{class:'qdone'},[
+        h('div',{class:'qparked'},[
+          h('span',{class:'pill',text:shown.skipped?'parked for later':'answer shown'}),
+          h('span',{text:shown.skipped
+            ? 'You set this aside. It is not a gap in your record — it will come back.'
+            : 'Shown rather than answered, so nothing was scored against you.'})]),
+        h('div',{class:'qstem qsm',html:it.stem}),
+        shown.skipped?null:h('div',{class:'why'},[
+          h('span',{class:'lbl',text:it.type==='judge'?'Model answer':'Why'}),
+          h('p',{html:it.type==='judge'?it.ans:(it.why||'')})]),
+        h('button',{class:'sm',onclick:()=>{delete S.cp['shown:'+id];save();draw(true);
+          updateProgress();refreshCpBars();}},'Try it properly now')]));
+      return;
+    }
     const a=force?null:lastAttempt(id);
     if(a){
       slot.appendChild(h('div',{class:'qdone'},[
@@ -281,8 +297,38 @@ function qSlot(id){
         h('button',{class:'sm',onclick:()=>draw(true)},'Ask me again')]));
       return;
     }
-    slot.appendChild(window.VIEWS.questionCard(it,{inline:true,
-      onSettled:()=>{updateProgress();refreshCpBars();}}));
+    const card=window.VIEWS.questionCard(it,{inline:true,
+      onSettled:()=>{updateProgress();refreshCpBars();}});
+    slot.appendChild(card);
+    /* The way out that is not the close button.
+
+       Being stuck on a question is the moment people leave, and the only thing
+       that reliably prevents it is somewhere else to go that is still inside
+       the app. Neither of these is scored: being shown a worked answer is not
+       the same as claiming you knew it, so mastery is untouched and the
+       question comes back later, which is what you would want anyway. */
+    const stuck=h('div',{class:'stuck'},[h('span',{class:'stucklbl',text:'Stuck?'})]);
+    const note=h('p',{class:'stucknote'});
+    stuck.append(
+      h('button',{class:'sm',onclick:()=>{
+        S.cp['shown:'+id]={v:'shown',at:Date.now()};
+        if(window.ENG.scheduleItem) window.ENG.scheduleItem(S,id,2);   // resurface soon
+        save();
+        card.querySelectorAll('button,input,textarea').forEach(x=>x.disabled=true);
+        card.appendChild(h('div',{class:'why'},[
+          h('span',{class:'lbl',text:it.type==='judge'?'Model answer':'The answer, and why'}),
+          h('p',{html:it.type==='judge'?it.ans:(it.why||'')})]));
+        stuck.querySelectorAll('button').forEach(b=>b.remove());
+        note.textContent='Shown, not scored — your mastery is untouched. It will come back in a day or two, and you will probably have it then.';
+        updateProgress(); refreshCpBars();
+      }},'Show me the answer'),
+      h('button',{class:'sm',onclick:()=>{
+        S.cp['shown:'+id]={v:'parked',skipped:true,at:Date.now()};
+        save(); draw();
+        updateProgress(); refreshCpBars();
+      }},'Park it and move on'),
+      note);
+    slot.appendChild(stuck);
   }
   draw();
   return slot;
@@ -381,7 +427,7 @@ function cpWalk(c){
 function cpProgress(c){
   const all=cpWalk(c);
   const done=all.filter(x=>x.k==='q'
-    ? !!lastAttempt(x.id)
+    ? (!!lastAttempt(x.id) || !!S.cp['shown:'+x.id])
     : !!(S.cp[x.id]&&String(S.cp[x.id].v||'').trim())).length;
   return {total:all.length, done};
 }

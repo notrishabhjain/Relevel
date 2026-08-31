@@ -786,6 +786,32 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .termahead{font-size:.8rem;color:var(--amber)!important;border-left:2px solid var(--amber);padding-left:.5rem}
 .termpop button{margin-top:.1rem}
 
+/* ---------- resume: the one next step ---------- */
+.resume{margin:1.6rem 0 2rem;padding:1.1rem 1.25rem;background:var(--raised);
+  border:1px solid var(--rule);border-left:2px solid var(--verified);border-radius:var(--r)}
+.backhead{margin-bottom:1rem;padding-bottom:.9rem;border-bottom:1px solid var(--rule)}
+.backhead h2{font-family:var(--serif);font-size:1.3rem;margin:0 0 .4rem;font-weight:400}
+.backhead p{margin:0;font-size:.92rem;color:var(--ink-2);line-height:1.6}
+.resumelead{display:flex;gap:1.2rem;align-items:flex-start;flex-wrap:wrap}
+.resumelead h3{font-family:var(--serif);font-size:1.25rem;font-weight:400;margin:.15rem 0 .35rem}
+.resumelead p{margin:0;color:var(--ink-2);font-size:.9rem;line-height:1.55}
+.resumego{display:flex;flex-direction:column;gap:.5rem;align-items:flex-end;flex:none}
+.mins{font-family:var(--mono);font-size:.7rem;color:var(--muted);white-space:nowrap}
+.tiny{margin-top:1rem;padding-top:.9rem;border-top:1px dashed var(--rule);
+  display:flex;gap:.7rem;align-items:center;flex-wrap:wrap}
+.tinylbl{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--amber);flex:none}
+.tiny p{margin:0;flex:1;min-width:180px;font-size:.85rem;color:var(--ink-2);line-height:1.5}
+.alsorow{display:flex;gap:.45rem;flex-wrap:wrap;margin-top:.9rem}
+
+/* ---------- stuck ---------- */
+.stuck{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;margin-top:.9rem;
+  padding-top:.75rem;border-top:1px dashed var(--rule)}
+.stucklbl{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted)}
+.stucknote{font-size:.8rem;color:var(--muted);flex-basis:100%;line-height:1.5;margin:.2rem 0 0}
+.qparked{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;font-size:.85rem;color:var(--muted)}
+
 </style>
 <script>
 /* Part I — Foundations (Chapters 1–7)
@@ -6112,13 +6138,111 @@ function accuracyByDay(S, nDays){
   }
   return out;
 }
-function streak(S){
-  const set=new Set(S.att.map(x=>Math.floor(x.t/DAY)));
+/* A streak that snaps on one missed evening is a reason to stop entirely — the
+   day after you break it, the cost of returning has gone up rather than down.
+   So one rest day is absorbed rather than fatal, and reported honestly. */
+function activeDays(S){
+  const set=new Set((S.att||[]).map(x=>Math.floor(x.t/DAY)));
   (S.sess||[]).forEach(s=>set.add(Math.floor(s.t/DAY)));
-  let d=Math.floor(now()/DAY), n=0;
+  (S.sittings||[]).forEach(s=>set.add(Math.floor(s.at/DAY)));
+  Object.values(S.cp||{}).forEach(v=>{ if(v&&v.at) set.add(Math.floor(v.at/DAY)); });
+  return set;
+}
+function streak(S){
+  const set=activeDays(S);
+  let d=Math.floor(now()/DAY), n=0, rest=0;
   if(!set.has(d)) d--;                       // today not yet practised is fine
-  while(set.has(d)){ n++; d--; }
+  while(true){
+    if(set.has(d)){ n++; d--; continue; }
+    if(!rest && n && set.has(d-1)){ rest=1; d--; continue; }   // one rest day
+    break;
+  }
   return n;
+}
+/* the same walk, but saying whether a rest day is holding it together */
+function streakDetail(S){
+  const set=activeDays(S);
+  let d=Math.floor(now()/DAY), n=0, rest=0;
+  if(!set.has(d)) d--;
+  while(true){
+    if(set.has(d)){ n++; d--; continue; }
+    if(!rest && n && set.has(d-1)){ rest=1; d--; continue; }
+    break;
+  }
+  return {days:n, rest, today:set.has(Math.floor(now()/DAY))};
+}
+function daysSinceActive(S){
+  const set=activeDays(S);
+  if(!set.size) return null;
+  return Math.floor(now()/DAY) - Math.max(...set);
+}
+
+/* ---------- the smallest next step ----------
+   Never a wall. Whatever state the tracker is in, there is one concrete action
+   with a name and a number of minutes on it, plus a two-minute version of the
+   same for an evening with nothing left in it. */
+function chapterBlocks(c){
+  const out=[];
+  (c.story||[]).forEach(b=>{ if(Array.isArray(b)) out.push(b); });
+  (c.handson||[]).forEach(s=>(s.b||[]).forEach(b=>{ if(Array.isArray(b)) out.push(b); }));
+  return out;
+}
+const MINUTES={q:1.5, pred:1, try:3};
+function chapterProgress(S, c){
+  let total=0, done=0, mins=0, firstOpen=null;
+  chapterBlocks(c).forEach(b=>{
+    const kind=b[0];
+    if(kind==='q'){
+      b.slice(1).flat().forEach(id=>{
+        total++; mins+=MINUTES.q;
+        const seen=(S.att||[]).some(a=>a.i===id) || (S.cp||{})['shown:'+id];
+        if(seen) done++; else if(!firstOpen) firstOpen={kind:'q', id};
+      });
+    } else if(kind==='pred'||kind==='try'){
+      total++; mins+=MINUTES[kind];
+      const v=(S.cp||{})[b[1]&&b[1].id];
+      if(v && (String(v.v||'').trim()||v.skipped)) done++;
+      else if(!firstOpen) firstOpen={kind, id:b[1]&&b[1].id};
+    }
+  });
+  const left=total-done;
+  return {total, done, left, firstOpen,
+    minutesLeft: Math.max(1, Math.round(total?mins*(left/total):0))};
+}
+/* The chapter you are in the middle of, else the next one you have not finished. */
+function currentChapter(S){
+  const chs=(window.CHAPTERS||[]).slice().sort((a,b)=>a.num-b.num);
+  let firstUnfinished=null;
+  for(const c of chs){
+    const p=chapterProgress(S,c);
+    if(p.done>0 && p.left>0) return {c, p, started:true};
+    if(!firstUnfinished && (p.left>0 || !S.done[c.id])) firstUnfinished={c, p, started:false};
+  }
+  return firstUnfinished;
+}
+function resume(S){
+  const due=dueList(S).length;
+  const cur=currentChapter(S);
+  const steps=[];
+  if(cur && cur.started) steps.push({
+    lead:true, kind:'chapter',
+    title:'Pick up Chapter '+cur.c.num,
+    d:cur.p.left+' checkpoint'+(cur.p.left>1?'s':'')+' left in “'+cur.c.title+'”',
+    mins:cur.p.minutesLeft, h:'#/ch/'+cur.c.id});
+  if(due) steps.push({kind:'due', title:due+' due for review',
+    d:'Questions you have met before, resurfacing before they fade.',
+    mins:Math.max(1,Math.round(due*1.5)), h:'#/practice/due'});
+  if(cur && !cur.started) steps.push({
+    lead:!steps.length, kind:'chapter', title:(cur.c.num===0?'Start here':'Begin Chapter '+cur.c.num),
+    d:'“'+cur.c.title+'” — '+cur.p.total+' checkpoints as you read',
+    mins:cur.c.minutes||30, h:'#/ch/'+cur.c.id});
+  /* the version for an evening with nothing left in it */
+  const tiny = due
+    ? {title:'One question', d:'A single review item. Two minutes, and the day counts.', mins:2, h:'#/practice/due'}
+    : cur ? {title:'One checkpoint', d:'Open Chapter '+cur.c.num+' and answer the next box. Then stop.',
+        mins:2, h:'#/ch/'+cur.c.id}
+      : null;
+  return {steps, tiny, lapsedDays: daysSinceActive(S)};
 }
 function domainMastery(S){
   return window.DOMAINS.map(dm=>{
@@ -6197,6 +6321,7 @@ function exScore(e, iter){
 
 return {get ITEMS(){return ITEMS;}, byItem, bySkill, SK, DAY, reinit,
   shown, levelOf, nextBand, skillState, decayFactor,
+  streakDetail, daysSinceActive, chapterProgress, currentChapter, resume,
   buildSession, grade, submit, scheduleItem, srs, dueList, dueForecast,
   calibrationCurve, brier, overconfidence, CONF,
   accuracyByDay, streak, domainMastery, overall, velocity, timeInvested,
@@ -6605,12 +6730,55 @@ function lvlPill(m,n){
   return h('span',{class:'pill lv'+L, text:n?LN()[L]:'L'+L});
 }
 
+/* ---------------- resume, and coming back ---------------- */
+function resumePanel(st, eng){
+  const r=eng.resume(st);
+  const box=h('section',{class:'resume'});
+  const lapsed=r.lapsedDays;
+
+  /* Coming back after a gap is the most fragile moment there is, so it does not
+     open with what decayed. */
+  if(lapsed!=null && lapsed>=5){
+    box.appendChild(h('div',{class:'backhead'},[
+      h('h2',{text:lapsed>=30?'Welcome back.':'Good to see you again.'}),
+      h('p',{html:'It has been '+lapsed+' days. Nothing is lost — every answer you '+
+        'gave is still there, and the questions you had started to forget have simply '+
+        'come back round for review, which is what they were always going to do. '+
+        '<strong>You do not restart anything.</strong>'})]));
+  }
+
+  const lead=r.steps[0];
+  if(!lead){
+    box.appendChild(h('p',{class:'prose',text:'You have finished everything currently queued. The review items will come back on their own.'}));
+    return box;
+  }
+  box.appendChild(h('div',{class:'resumelead'},[
+    h('div',{style:'flex:1;min-width:0'},[
+      h('span',{class:'cplbl',text:lapsed!=null&&lapsed>=5?'Start again here':'Next'}),
+      h('h3',{text:lead.title}),
+      h('p',{text:lead.d})]),
+    h('div',{class:'resumego'},[
+      h('span',{class:'mins',text:'~'+lead.mins+' min'}),
+      h('a',{class:'btnlink',href:lead.h,text:'Open →'})])]));
+
+  if(r.tiny) box.appendChild(h('div',{class:'tiny'},[
+    h('span',{class:'tinylbl',text:'Not tonight?'}),
+    h('p',{html:'Then do the smallest version instead. <strong>'+esc2(r.tiny.title)+
+      '</strong> — '+esc2(r.tiny.d)}),
+    h('a',{class:'chip',href:r.tiny.h,text:'Two minutes →'})]));
+
+  if(r.steps.length>1) box.appendChild(h('div',{class:'alsorow'},
+    r.steps.slice(1,3).map(s2=>h('a',{class:'chip',href:s2.h,
+      text:s2.title+' · ~'+s2.mins+' min'}))));
+  return box;
+}
+
 /* ================= DASHBOARD ================= */
 function dashboard(){
   const st=S(), eng=E();
   const w=h('div',{class:'wrap-wide'});
   const ov=eng.overall(st), dm=eng.domainMastery(st);
-  const due=eng.dueList(st).length, str=eng.streak(st);
+  const due=eng.dueList(st).length, sd=eng.streakDetail(st);
   const tested=window.SKILLS.filter(s=>eng.skillState(st,s.id).n>0).length;
   const oc=eng.overconfidence(st);
   const vel=eng.velocity(st);
@@ -6623,10 +6791,20 @@ function dashboard(){
       h('p',{class:'dash-sub',html:window.SKILLS.length+' tracked skills. Mastery moves on measured evidence and decays without practice — so this number is a claim about <em>now</em>, not a record of what you once read.'})]),
     h('div',{class:'bigring'},[ring(ov), h('span',{class:'ringlab',text:'overall mastery'})])]));
 
+  /* The one thing to do next, named and timed.
+
+     The dashboard used to open with numbers, which is fine on a good day and
+     actively repelling on a bad one — a wall of measurements you are behind on
+     is a reason to close the tab. This comes first instead: one action, one
+     time estimate, and a smaller version of it for an evening with nothing
+     left in it. */
+  w.appendChild(resumePanel(st, eng));
+
   w.appendChild(h('div',{class:'stats'},[
     tile('skills measured',tested+' / '+window.SKILLS.length,tested===30?'ok':''),
     tile('due for review',due,due>0?'red':'ok',due?'decaying now':'all current'),
-    tile('day streak',str,str>=3?'ok':''),
+    tile('day streak',sd.days,sd.days>=3?'ok':'',
+      sd.rest?'one rest day, still counting':(sd.today?'today counts':'')),
     tile('7-day gain',(vel.now>=0?'+':'')+Math.round(vel.now),vel.now>vel.prev?'ok':'',
       'prev '+(vel.prev>=0?'+':'')+Math.round(vel.prev)),
     tile('calibration',oc==null?'—':(oc>0?'+':'')+Math.round(oc*100)+'%',
@@ -8035,6 +8213,22 @@ function qSlot(id){
     slot.innerHTML='';
     const it=window.ENG&&window.ENG.byItem[id];
     if(!it){slot.appendChild(h('p',{class:'dim',text:'Question '+id+' is not in the bank.'}));return;}
+    const shown=force?null:S.cp['shown:'+id];
+    if(shown && !lastAttempt(id)){
+      slot.appendChild(h('div',{class:'qdone'},[
+        h('div',{class:'qparked'},[
+          h('span',{class:'pill',text:shown.skipped?'parked for later':'answer shown'}),
+          h('span',{text:shown.skipped
+            ? 'You set this aside. It is not a gap in your record — it will come back.'
+            : 'Shown rather than answered, so nothing was scored against you.'})]),
+        h('div',{class:'qstem qsm',html:it.stem}),
+        shown.skipped?null:h('div',{class:'why'},[
+          h('span',{class:'lbl',text:it.type==='judge'?'Model answer':'Why'}),
+          h('p',{html:it.type==='judge'?it.ans:(it.why||'')})]),
+        h('button',{class:'sm',onclick:()=>{delete S.cp['shown:'+id];save();draw(true);
+          updateProgress();refreshCpBars();}},'Try it properly now')]));
+      return;
+    }
     const a=force?null:lastAttempt(id);
     if(a){
       slot.appendChild(h('div',{class:'qdone'},[
@@ -8047,8 +8241,38 @@ function qSlot(id){
         h('button',{class:'sm',onclick:()=>draw(true)},'Ask me again')]));
       return;
     }
-    slot.appendChild(window.VIEWS.questionCard(it,{inline:true,
-      onSettled:()=>{updateProgress();refreshCpBars();}}));
+    const card=window.VIEWS.questionCard(it,{inline:true,
+      onSettled:()=>{updateProgress();refreshCpBars();}});
+    slot.appendChild(card);
+    /* The way out that is not the close button.
+
+       Being stuck on a question is the moment people leave, and the only thing
+       that reliably prevents it is somewhere else to go that is still inside
+       the app. Neither of these is scored: being shown a worked answer is not
+       the same as claiming you knew it, so mastery is untouched and the
+       question comes back later, which is what you would want anyway. */
+    const stuck=h('div',{class:'stuck'},[h('span',{class:'stucklbl',text:'Stuck?'})]);
+    const note=h('p',{class:'stucknote'});
+    stuck.append(
+      h('button',{class:'sm',onclick:()=>{
+        S.cp['shown:'+id]={v:'shown',at:Date.now()};
+        if(window.ENG.scheduleItem) window.ENG.scheduleItem(S,id,2);   // resurface soon
+        save();
+        card.querySelectorAll('button,input,textarea').forEach(x=>x.disabled=true);
+        card.appendChild(h('div',{class:'why'},[
+          h('span',{class:'lbl',text:it.type==='judge'?'Model answer':'The answer, and why'}),
+          h('p',{html:it.type==='judge'?it.ans:(it.why||'')})]));
+        stuck.querySelectorAll('button').forEach(b=>b.remove());
+        note.textContent='Shown, not scored — your mastery is untouched. It will come back in a day or two, and you will probably have it then.';
+        updateProgress(); refreshCpBars();
+      }},'Show me the answer'),
+      h('button',{class:'sm',onclick:()=>{
+        S.cp['shown:'+id]={v:'parked',skipped:true,at:Date.now()};
+        save(); draw();
+        updateProgress(); refreshCpBars();
+      }},'Park it and move on'),
+      note);
+    slot.appendChild(stuck);
   }
   draw();
   return slot;
@@ -8147,7 +8371,7 @@ function cpWalk(c){
 function cpProgress(c){
   const all=cpWalk(c);
   const done=all.filter(x=>x.k==='q'
-    ? !!lastAttempt(x.id)
+    ? (!!lastAttempt(x.id) || !!S.cp['shown:'+x.id])
     : !!(S.cp[x.id]&&String(S.cp[x.id].v||'').trim())).length;
   return {total:all.length, done};
 }
