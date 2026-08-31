@@ -130,6 +130,121 @@ function blocks(list){
   return f;
 }
 
+/* ---------------- never a dead end ----------------
+
+   The single most common moment a reader gives up is meeting a word they do not
+   know and having nowhere to go with it. So the first time a chapter uses a
+   term that is defined anywhere in this book, the word itself becomes tappable:
+   a plain-language definition appears in place, with the chapter that teaches it
+   properly. Forward references are marked as such rather than hidden, because
+   "you will build this in Chapter 7" is itself an answer — it tells you that not
+   knowing it yet is expected rather than a gap in you. */
+
+let TERMS=null;
+function termIndex(){
+  if(TERMS) return TERMS;
+  const map=new Map();
+  const add=(raw,def,ch)=>{
+    /* "Model / LLM" and "Top-k (k)" name the same idea more than one way */
+    String(raw).split(/\s*\/\s*/).forEach(part=>{
+      const forms=[part.replace(/\s*\([^)]*\)\s*/g,' ').trim()];
+      const paren=part.match(/\(([^)]+)\)/);
+      if(paren) forms.push(paren[1].trim());
+      forms.filter(f=>f.length>2).forEach(f=>{
+        const k=f.toLowerCase();
+        if(!map.has(k)) map.set(k,{term:f,def,ch});
+      });
+    });
+  };
+  (window.GLOSSARY||[]).forEach(([t,d,ch])=>add(t,d,ch));
+  /* a chapter's own vocabulary list covers anything the glossary misses */
+  (window.CHAPTERS||[]).forEach(c=>(c.words||[]).forEach(([t,d])=>{
+    if(!map.has(String(t).toLowerCase())) add(t,d,c.num);
+  }));
+  TERMS=[...map.values()].sort((a,b)=>b.term.length-a.term.length);
+  return TERMS;
+}
+
+let popEl=null;
+function closeTerm(){ if(popEl){popEl.remove();popEl=null;} }
+document.addEventListener('click',e=>{ if(popEl && !popEl.contains(e.target) && !e.target.closest('.term')) closeTerm(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeTerm(); });
+
+function openTerm(btn,entry,here){
+  closeTerm();
+  const ahead = entry.ch && here && entry.ch > here;
+  popEl=h('div',{class:'termpop'},[
+    h('div',{class:'termhead'},[
+      h('strong',{text:entry.term}),
+      entry.ch?h('a',{class:'termch',href:'#/ch/ch'+entry.ch,
+        text:(ahead?'you build this in ':'explained in ')+'Chapter '+entry.ch}):null]),
+    h('p',{html:entry.def}),
+    ahead?h('p',{class:'termahead',
+      text:'You are not meant to know this yet. Carry the one-line version and keep going.'}):null,
+    h('button',{class:'sm',onclick:closeTerm},'Got it')]);
+  btn.appendChild(popEl);
+  /* keep it on screen on a narrow phone */
+  const r=popEl.getBoundingClientRect();
+  if(r.right>innerWidth-8) popEl.style.left=Math.max(8-btn.getBoundingClientRect().left,-r.width+60)+'px';
+}
+
+const SKIP_TERMS=new Set(['PRE','CODE','BUTTON','A','TEXTAREA','INPUT','DT','SUMMARY']);
+/* Enough marks that nothing goes unexplained, few enough that a paragraph still
+   reads as prose rather than as a field of links. */
+const PER_BLOCK=4;
+/* `seen` is shared across a whole chapter, so a term is marked once — enough to
+   be discoverable, not so often the page looks like a minefield. */
+function markTerms(root, seen, here){
+  const terms=termIndex();
+  if(!terms.length) return root;
+  const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{
+    acceptNode(n){
+      if(!n.nodeValue||n.nodeValue.length<3) return NodeFilter.FILTER_REJECT;
+      for(let p=n.parentNode;p&&p!==root;p=p.parentNode)
+        if(SKIP_TERMS.has(p.nodeName)||(p.classList&&p.classList.contains('noterm')))
+          return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;
+    }});
+  const targets=[];
+  while(walker.nextNode()) targets.push(walker.currentNode);
+  const esc=t=>t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  const button=(entry,word)=>{
+    const btn=h('button',{class:'term',type:'button',title:'What does this mean?',
+      onclick:e=>{e.stopPropagation();
+        if(btn.querySelector('.termpop')) closeTerm(); else openTerm(btn,entry,here);}},word);
+    return btn;
+  };
+  targets.forEach(node=>{
+    const text=node.nodeValue;
+    const marks=[];
+    for(const entry of terms){
+      if(marks.length>=PER_BLOCK) break;
+      const k=entry.term.toLowerCase();
+      if(seen.has(k)) continue;
+      const m=new RegExp('\\b'+esc(entry.term)+'\\b','i').exec(text);
+      if(!m) continue;
+      const start=m.index, end=start+m[0].length;
+      /* terms are sorted longest first, so a longer phrase claims its span
+         before a word inside it can */
+      if(marks.some(x=>start<x.end&&end>x.start)) continue;
+      marks.push({start,end,entry,word:m[0]});
+      seen.add(k);
+    }
+    if(!marks.length) return;
+    marks.sort((a,b)=>a.start-b.start);
+    const frag=document.createDocumentFragment();
+    let pos=0;
+    marks.forEach(mk=>{
+      if(mk.start>pos) frag.appendChild(document.createTextNode(text.slice(pos,mk.start)));
+      frag.appendChild(button(mk.entry,mk.word));
+      pos=mk.end;
+    });
+    if(pos<text.length) frag.appendChild(document.createTextNode(text.slice(pos)));
+    node.parentNode.replaceChild(frag,node);
+  });
+  return root;
+}
+
 /* ---------------- inline checkpoints ---------------- */
 function lastAttempt(id){
   for(let i=S.att.length-1;i>=0;i--) if(S.att[i].i===id) return S.att[i];
@@ -325,13 +440,14 @@ function renderChapter(c){
   // Story
   const story=h('section',{class:'part',id:'story'});
   story.appendChild(sectionHead(c.num+'.'+n++,'The Story'));
-  story.appendChild(h('div',{class:'prose'},[blocks(c.story)]));
+  const seenTerms=new Set();
+  story.appendChild(markTerms(h('div',{class:'prose'},[blocks(c.story)]),seenTerms,c.num));
   w.appendChild(story);
 
   // Words
   const words=h('section',{class:'part',id:'words'});
   words.appendChild(sectionHead(c.num+'.'+n++,'Words You Now Own'));
-  words.appendChild(h('dl',{class:'words'},c.words.map(([t,d])=>
+  words.appendChild(h('dl',{class:'words noterm'},c.words.map(([t,d])=>
     h('div',{class:'word'},[h('dt',{text:t}),h('dd',{html:d})]))));
   w.appendChild(words);
 
@@ -340,7 +456,7 @@ function renderChapter(c){
   ho.appendChild(sectionHead(c.num+'.'+n++,'Hands-On','~'+Math.round(c.minutes*0.6)+' min'));
   c.handson.forEach(s=>{
     const st=h('div',{class:'step'},[h('h3',{text:s.h})]);
-    st.appendChild(h('div',{class:'prose'},[blocks(s.b)]));
+    st.appendChild(markTerms(h('div',{class:'prose'},[blocks(s.b)]),seenTerms,c.num));
     ho.appendChild(st);
   });
   (c.labs||[]).forEach(k=>{const b=k==='redmap'?redMapBlock():labBlock(k);if(b)ho.appendChild(b);});

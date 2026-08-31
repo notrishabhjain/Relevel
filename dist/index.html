@@ -760,6 +760,27 @@ button:disabled{opacity:.4;cursor:not-allowed}
   color:var(--ink-2)}
 .qdone .why{margin-bottom:.7rem}
 
+/* ---------- tap a word you do not know ---------- */
+.term{
+  display:inline; background:none; border:0; padding:0; margin:0; font:inherit;
+  color:inherit; cursor:help; position:relative;
+  border-bottom:1px dashed var(--muted); border-radius:0; line-height:inherit;
+}
+.term:hover{background:var(--sunk);border-bottom-color:var(--ink)}
+.termpop{
+  position:absolute; z-index:60; left:0; top:1.6em; width:min(21rem,calc(100vw - 2rem));
+  background:var(--paper); border:1px solid var(--rule); border-radius:var(--r);
+  box-shadow:var(--shadow); padding:.75rem .85rem; cursor:auto;
+  font-family:var(--sans); font-size:.85rem; line-height:1.55; text-align:left;
+  white-space:normal; font-style:normal; font-weight:400;
+}
+.termhead{display:flex;gap:.6rem;align-items:baseline;flex-wrap:wrap;margin-bottom:.35rem}
+.termhead strong{font-size:.9rem}
+.termch{font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;color:var(--muted)}
+.termpop p{margin:0 0 .5rem;color:var(--ink-2)}
+.termahead{font-size:.8rem;color:var(--amber)!important;border-left:2px solid var(--amber);padding-left:.5rem}
+.termpop button{margin-top:.1rem}
+
 </style>
 <script>
 /* Part I — Foundations (Chapters 1–7)
@@ -768,6 +789,86 @@ button:disabled{opacity:.4;cursor:not-allowed}
    n=numbered, tb=table[head,rows], code, x=expected result. */
 
 window.PART1 = [
+{
+  id:'ch0', num:0, part:1, minutes:30, labs:[],
+  title:'Start Here',
+  concept:'Nothing in this book assumes you already know anything. This chapter proves it.',
+  red:[],
+  story:[
+    ['p','This chapter exists because of one observation about how people fail at technical subjects. They almost never fail because the material was too hard. They fail because, somewhere on page three, a word went past that everyone else seemed to understand — and rather than stop and ask, they kept reading, understood a little less of the next paragraph, and a little less of the one after that. Eventually the whole thing felt like it was written for someone else, and they closed it.'],
+    ['key','If that has happened to you before, it was not a verdict on you. It was a failure of the writing. This book is built so it cannot happen here.'],
+    ['p','Two things make that promise real, and both are on this page right now.'],
+    ['p','<strong>The first: every word is tappable.</strong> Anywhere in this book, the first time a term appears that is defined somewhere, it carries a faint dotted underline. Tap it and a plain-language explanation appears in place — you never leave the page and never lose your spot. Some terms will say <em>you build this in Chapter 9</em>. That is not a gap in you. It means the book has deliberately named something before teaching it, and the one-line version is all you need for now.'],
+    ['p','Try it now on this sentence: an <strong>app</strong> sends a <strong>prompt</strong> to a <strong>model</strong> using an <strong>API</strong>, and the reply is billed in <strong>tokens</strong>. Five words, five underlines. Tap each one before reading on.'],
+    ['try',{id:'ch0-tap',mins:2,min:12,rows:2,
+      task:'Did you tap them? Write, in your own words and roughly, what the difference is between the <em>app</em> and the <em>model</em>. Two lines is plenty. Getting it slightly wrong here costs nothing — that is the whole point of writing it down before you are told.',
+      ph:'The app is … the model is …',
+      after:'The app is the thing with buttons that a person uses — your product. The model is a program on somebody else’s computers that takes text and returns text. It has no buttons, no memory, and no idea a person exists. Everything a user experiences as “the AI” is actually your app arranging things around a model that does exactly one narrow thing. Holding those two apart is most of what separates a product manager who can hold a design conversation from one who cannot.'}],
+    ['p','<strong>The second: the book stops and asks.</strong> Every few paragraphs you will meet a box like the one you just used. Some ask you to commit a guess before you are told the answer. Some ask you to write something. Some are real questions that count towards a score. They exist because reading and understanding feel identical from the inside, and only one of them is real. The boxes are how you tell the difference — and how the tracker knows what you actually have.'],
+    ['c','On getting a question wrong','Getting a checkpoint wrong is worth more to you than getting it right, and the app treats it that way: a wrong answer with high confidence is recorded as the most useful thing you did that day, because it found a belief you did not know was false. Nobody sees any of it. There is no grade, no pass mark, and nothing is reported anywhere.'],
+    ['p','Now the vocabulary. Not all of it — just the six words that everything else rests on. Read these once. You are not expected to remember them; they are all tappable everywhere else in the book, forever.'],
+    ['tb',['Word','What it actually means','What it is not'],[
+      ['Model','A program that takes text and gives back text, running on a provider’s computers. It was built by reading an enormous quantity of writing and getting very good at predicting what comes next.','It is not a database, not a search engine, and not a thing that looks anything up.'],
+      ['App','Your product. The buttons, screens and code that decide what to send the model and what to do with the reply.','It is not the model. Almost every design decision in this book belongs to the app.'],
+      ['API','The way your app sends a message to the model over the internet and gets a reply back.','Not something a user sees. Not a place. It is a doorway.'],
+      ['Prompt','The text your app sends. Both the user’s question and any standing instructions you attach to it.','Not a magic phrase. Mostly it is ordinary English.'],
+      ['Token','The unit the model reads and bills in — roughly a word-piece, about ¾ of an English word.','Not a character, not a word, and not a fixed price.'],
+      ['Context','Everything the model can see at once for a single request: instructions, conversation, attached documents, and the answer being written.','Not memory. It is emptied completely after every reply.']
+    ]],
+    ['pred',{id:'ch0-cost',short:true,ph:'Yes or no, and why',
+      ask:'One prediction before you go further, and there is no trick in it. If the model has no memory between requests, does a long chat conversation cost more per message than a short one?',
+      reveal:'Yes — considerably. Because the model remembers nothing, your app has to re-send the entire conversation with every new message so the reply makes sense. Message fifty carries messages one to forty-nine inside it, and you pay for all of them again, every single time.',
+      then:'That is a real product decision hiding inside a technical detail, and it is the shape of most of this book: a fact about how the machine works turns out to be a fact about your bill, your latency, or your risk. Chapter 1 starts here.'}],
+    ['p','A word about the shape of what follows. There are twenty chapters in four parts. Part I builds the machine from nothing. Part II is the modern stack — what changed by 2027. Part III is the instrument panel: measurement, money, governance, shipping. Part IV is the two decisions that are yours alone. You do not need to read them in one stretch, and you are asked not to.'],
+    ['c','The standing rules, and why they are protective rather than strict','One chapter per sitting, never two. Park every side-quest on the LATER page instead of chasing it. Keep your notes rough — five messy bullets, never a formatted page. Predict before you measure. These exist because the most common way to abandon a course is to have an enormous first week and then never return. Stopping while you still have energy left is a technique, not a lack of discipline.'],
+    ['key','You will hit a chapter that feels too hard. That is scheduled, not exceptional — Chapters 5, 13 and 14 do it to almost everyone. When it happens, the thing to do is not to push through and not to stop. It is to take the smallest next step available and let the day end there.'],
+    ['try',{id:'ch0-quit',mins:4,min:50,rows:4,
+      task:'Since you already know it will happen, decide now what you will do about it — while it is easy to think clearly. Write your plan for the evening you do not want to open this. What is the smallest thing you would still be willing to do? Where will you leave a note to yourself? And what will you tell yourself about the day you skipped?',
+      ph:'When I do not want to open this, I will …',
+      after:'The plans that survive contact with a bad evening share three properties. The smallest step is genuinely tiny — one checkpoint, not one chapter; two minutes, not forty. The note to yourself is written in advance and says exactly where to resume, because deciding what to do next is the expensive part when you are tired. And the story about the skipped day is decided now, in advance: a missed day is a missed day. It is not evidence of anything, and it does not mean starting again. The people who finish are not the ones who never lapse — everyone lapses. They are the ones who had already decided that lapsing was allowed.'}],
+    ['p','That is the whole of this chapter. Nothing here needs remembering. Turn the page.']
+  ],
+  words:[
+    ['Model','A program that takes text and returns text, built by learning to predict what comes next. Runs on the provider’s computers, not yours.'],
+    ['App','Your product — the screens and code around the model. Where nearly every decision in this book lives.'],
+    ['API','The doorway your app sends a request through to reach the model.'],
+    ['Prompt','The text sent to the model: the user’s question plus whatever standing instructions you attach.'],
+    ['Token','The word-piece the model reads and bills in. Roughly ¾ of an English word.'],
+    ['Context','Everything the model can see for one request. Emptied completely afterwards.']
+  ],
+  handson:[
+    {h:'Step 1 — Look at a reply without using it',b:[
+      ['p','Open any AI chat product you already have — the free tier of anything is fine. Ask it something you genuinely know the answer to, about your own work.'],
+      ['p','Do not judge whether the answer is good. Instead notice three things and write them down: how long you waited before the first word appeared, whether the answer said anything you could check, and whether it hedged or sounded certain.'],
+      ['x','A wait of somewhere between half a second and several seconds, an answer that sounds equally confident whether or not it is right, and — this is the one that matters — very little you could actually verify without already knowing the answer. Those three observations are Chapters 11, 2 and 20 respectively. You have now met the whole book in ninety seconds.']
+    ]},
+    {h:'Step 2 — Ask it something it cannot know',b:[
+      ['p','Now ask the same product about something it has no way of knowing: your company’s internal refund policy, a document on your laptop, what you did last Tuesday.'],
+      ['p','Watch carefully whether it says it does not know, or produces something plausible instead. Try it twice more, phrasing the question as though the answer obviously exists.'],
+      ['x','Most of the time you will get a refusal, because modern products are trained hard to refuse. But push slightly — assume the fact in your question rather than asking for it — and something invented usually appears, delivered in exactly the same tone as everything true it has said. That gap between the tone and the reliability is the single most important thing in this field, and Chapter 2 is entirely about it.']
+    ]},
+    {h:'Step 3 — Set up your workspace, or decide not to yet',b:[
+      ['p','From Chapter 1 there are places where you type a few lines and watch what happens. That needs a <strong>notebook</strong> — a free web page that runs small pieces of code. The Setup page on this site walks through it, and nothing you do there can break anything or cost anything.'],
+      ['p','If that feels like a lot right now, skip it. Chapters 3, 4, 6, 7, 19 and 20 need no code at all, and you can come back for the rest. Deciding to skip something on purpose is different from stalling on it, and only the second one ends courses.'],
+      ['x','Either a working notebook, or a deliberate decision to do it later — written down. Both are acceptable outcomes of this step. Neither is a reason to stop.']
+    ]}
+  ],
+  wrong:[
+    ['“I do not know what half these words mean”','Expected on the first read — the words are introduced as they become useful, not in advance','Tap any dotted word. If a word has no underline and you do not know it, that is a fault in the book worth reporting'],
+    ['“I have not opened this in three weeks”','Ordinary, and planned for','Open the dashboard and do the single smallest thing it offers. Nothing is lost and nothing needs restarting'],
+    ['“This chapter felt too easy”','Also expected — this is the on-ramp','Go to Chapter 1. It starts properly there']
+  ],
+  homework:[
+    ['Nothing','Genuinely nothing. This chapter has no homework, because the first thing a course asks of you should not be a chore.'],
+    ['Optional, if you want one thing','Decide which evening this week you will read Chapter 1, and write it somewhere you will see it. A named evening is roughly twice as likely to happen as an intention.']
+  ],
+  check:[
+    ['What is the difference between the app and the model?','The model takes text and returns text, on someone else’s computers, with no memory and no interface. The app is your product — the screens and code that decide what to send and what to do with the reply. Nearly every decision in this book belongs to the app.'],
+    ['Why does a long conversation cost more per message than a short one?','Because the model remembers nothing between requests, so your app re-sends the whole conversation every time. You pay for all of it again with each new message.'],
+    ['What should you do when you meet a word you do not know?','Tap it. Every defined term is underlined at its first use in a chapter and explains itself in place. If it says you build it in a later chapter, the one-line version is all you need for now.'],
+    ['What is the plan for the evening you do not want to open this?','Whatever you wrote above — the point is that it exists and was decided in advance. The smallest step, a note saying where to resume, and a decision made now that a missed day is only a missed day.']
+  ]
+},
 {
   id:'ch1', num:1, part:1, minutes:60, labs:['tokenizer','receipt'],
   title:'What Actually Happens When We Ask The AI',
@@ -2597,7 +2698,37 @@ window.GLOSSARY = [
   ['AI PRD','A product specification whose acceptance criteria are eval thresholds on a named dataset.',18],
   ['Model pinning','Fixing an exact model version so behaviour does not change beneath you.',18],
   ['Deprecation migration','The re-evaluation required when a provider retires your model.',18],
-  ['Kill switch','An immediate flag routing traffic to the non-AI path. Not a rollback.',18]
+  ['Kill switch','An immediate flag routing traffic to the non-AI path. Not a rollback.',18],
+
+  /* Ground-floor vocabulary. None of these are AI terms — they are the words
+     engineers use around AI and never stop to define, which is exactly why a
+     reader who is new to the field stalls on them. */
+  ['App','A program someone uses. The thing with buttons. It is the app that talks to the model — the model itself has no interface, no memory and no idea a person exists.',0],
+  ['API','A way for one program to ask another program to do something, over the internet. You never see it. When this book says your app "calls the API", it means your app sent a message to the model provider’s computers and waited for a reply.',0],
+  ['API call','One such request and its reply. One question in, one answer out — and one charge on the bill.',0],
+  ['JSON','A plain-text way of writing structured information so a program can read it: labels and values inside curly braces, like {"role": "user", "content": "hello"}. It is not code and not a database. It is the format the envelope is written in.',0],
+  ['Endpoint','The specific web address a program sends its request to. Different endpoints do different jobs — one for chat, one for embeddings.',0],
+  ['Payload','Whatever is inside the request or reply. The contents of the envelope, as opposed to the envelope itself.',0],
+  ['Parameter','A setting you pass with a request — temperature, maximum length, which model. Confusingly, the same word also means the billions of internal numbers a model was trained with. In this book it means the setting unless it says otherwise.',0],
+  ['Notebook','A web page where you can type a few lines of code, press a button, and see what happens underneath. It is the tool this book uses so you never have to install anything. Nothing you do in one can break anything.',0],
+  ['Runtime','The machine actually running your notebook code. Free notebooks give you one for a few hours and then take it back, which is why your key sometimes needs re-entering.',0],
+  ['Deploy','To put a change where real users can reach it. Until something is deployed it exists only on your machine.',0],
+  ['Rollback','Putting the previous version back after a bad deploy. It undoes your code. It does not undo a model’s behaviour, which is why Chapter 18 insists a kill switch is a different thing.',0],
+  ['Corpus','All the documents your system is allowed to answer from, taken together. Your set of source material. Plural: corpora.',0],
+  ['Index','A prepared copy of your corpus, arranged so searching it is fast. Building one is called indexing. Nothing can be retrieved until it has been indexed.',0],
+  ['Pipeline','A sequence of steps where each one’s output is the next one’s input. Documents in at one end, an answer out at the other. Chapter 7 draws yours.',0],
+  ['Latency','How long the user waits. Measured in seconds, and a product decision rather than a technical detail.',0],
+  ['p95','The wait that 95 out of 100 people get or better — so it describes the slow fifth of your users rather than the typical one. Averages hide these people; p95 is what you design for.',0],
+  ['SLA','Service-level agreement. A supplier’s written promise about uptime or speed, with a consequence attached if they break it. A promise without a consequence is a marketing claim, not an SLA.',0],
+  ['Deterministic','Same input, same output, every time. Ordinary software is deterministic. A language model is not, which is the source of most of the surprise in this field.',0],
+  ['Orchestration','Coordinating several steps or several models so they run in the right order and hand results to each other.',0],
+  ['Taxonomy','A named set of categories. In Chapter 14 it means your list of the ways your system fails, in your own words, with a count against each.',0],
+  ['Ground truth','The answer key: questions with verified correct answers, written before you test anything. Without one, "is it good?" has no answer.',6],
+  ['Fine-tuning','Continuing a model’s training on your own examples so it adopts a behaviour. Teaches shape and register, not durable facts. Chapter 19 is the decision.',19],
+  ['Rubric','A scoring guide written in advance: what each level of quality looks like, so two people grading the same thing agree.',6],
+  ['Drift','When behaviour changes over time without anyone changing the code — a model updated, a corpus grown, traffic shifted.',14],
+  ['Audit trail','A record of what the system did and why, kept so someone can check it afterwards.',17],
+  ['Refusal path','What the product does when it should not answer. Designed on purpose, or it happens by accident.',20]
 ];
 
 /* ---------- Vendor Interrogation Deck ---------- */
@@ -6484,7 +6615,7 @@ function dashboard(){
       h('div',{class:'eyebrow'},[h('span',{text:'Skill tracker'}),h('span',{class:'dot'}),
         h('span',{text:new Date().toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'long'})})]),
       h('h1',{text:'Where you actually are'}),
-      h('p',{class:'dash-sub',html:'Thirty tracked skills. Mastery moves on measured evidence and decays without practice — so this number is a claim about <em>now</em>, not a record of what you once read.'})]),
+      h('p',{class:'dash-sub',html:window.SKILLS.length+' tracked skills. Mastery moves on measured evidence and decays without practice — so this number is a claim about <em>now</em>, not a record of what you once read.'})]),
     h('div',{class:'bigring'},[ring(ov), h('span',{class:'ringlab',text:'overall mastery'})])]));
 
   w.appendChild(h('div',{class:'stats'},[
@@ -7760,6 +7891,121 @@ function blocks(list){
   return f;
 }
 
+/* ---------------- never a dead end ----------------
+
+   The single most common moment a reader gives up is meeting a word they do not
+   know and having nowhere to go with it. So the first time a chapter uses a
+   term that is defined anywhere in this book, the word itself becomes tappable:
+   a plain-language definition appears in place, with the chapter that teaches it
+   properly. Forward references are marked as such rather than hidden, because
+   "you will build this in Chapter 7" is itself an answer — it tells you that not
+   knowing it yet is expected rather than a gap in you. */
+
+let TERMS=null;
+function termIndex(){
+  if(TERMS) return TERMS;
+  const map=new Map();
+  const add=(raw,def,ch)=>{
+    /* "Model / LLM" and "Top-k (k)" name the same idea more than one way */
+    String(raw).split(/\s*\/\s*/).forEach(part=>{
+      const forms=[part.replace(/\s*\([^)]*\)\s*/g,' ').trim()];
+      const paren=part.match(/\(([^)]+)\)/);
+      if(paren) forms.push(paren[1].trim());
+      forms.filter(f=>f.length>2).forEach(f=>{
+        const k=f.toLowerCase();
+        if(!map.has(k)) map.set(k,{term:f,def,ch});
+      });
+    });
+  };
+  (window.GLOSSARY||[]).forEach(([t,d,ch])=>add(t,d,ch));
+  /* a chapter's own vocabulary list covers anything the glossary misses */
+  (window.CHAPTERS||[]).forEach(c=>(c.words||[]).forEach(([t,d])=>{
+    if(!map.has(String(t).toLowerCase())) add(t,d,c.num);
+  }));
+  TERMS=[...map.values()].sort((a,b)=>b.term.length-a.term.length);
+  return TERMS;
+}
+
+let popEl=null;
+function closeTerm(){ if(popEl){popEl.remove();popEl=null;} }
+document.addEventListener('click',e=>{ if(popEl && !popEl.contains(e.target) && !e.target.closest('.term')) closeTerm(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeTerm(); });
+
+function openTerm(btn,entry,here){
+  closeTerm();
+  const ahead = entry.ch && here && entry.ch > here;
+  popEl=h('div',{class:'termpop'},[
+    h('div',{class:'termhead'},[
+      h('strong',{text:entry.term}),
+      entry.ch?h('a',{class:'termch',href:'#/ch/ch'+entry.ch,
+        text:(ahead?'you build this in ':'explained in ')+'Chapter '+entry.ch}):null]),
+    h('p',{html:entry.def}),
+    ahead?h('p',{class:'termahead',
+      text:'You are not meant to know this yet. Carry the one-line version and keep going.'}):null,
+    h('button',{class:'sm',onclick:closeTerm},'Got it')]);
+  btn.appendChild(popEl);
+  /* keep it on screen on a narrow phone */
+  const r=popEl.getBoundingClientRect();
+  if(r.right>innerWidth-8) popEl.style.left=Math.max(8-btn.getBoundingClientRect().left,-r.width+60)+'px';
+}
+
+const SKIP_TERMS=new Set(['PRE','CODE','BUTTON','A','TEXTAREA','INPUT','DT','SUMMARY']);
+/* Enough marks that nothing goes unexplained, few enough that a paragraph still
+   reads as prose rather than as a field of links. */
+const PER_BLOCK=4;
+/* `seen` is shared across a whole chapter, so a term is marked once — enough to
+   be discoverable, not so often the page looks like a minefield. */
+function markTerms(root, seen, here){
+  const terms=termIndex();
+  if(!terms.length) return root;
+  const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{
+    acceptNode(n){
+      if(!n.nodeValue||n.nodeValue.length<3) return NodeFilter.FILTER_REJECT;
+      for(let p=n.parentNode;p&&p!==root;p=p.parentNode)
+        if(SKIP_TERMS.has(p.nodeName)||(p.classList&&p.classList.contains('noterm')))
+          return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;
+    }});
+  const targets=[];
+  while(walker.nextNode()) targets.push(walker.currentNode);
+  const esc=t=>t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  const button=(entry,word)=>{
+    const btn=h('button',{class:'term',type:'button',title:'What does this mean?',
+      onclick:e=>{e.stopPropagation();
+        if(btn.querySelector('.termpop')) closeTerm(); else openTerm(btn,entry,here);}},word);
+    return btn;
+  };
+  targets.forEach(node=>{
+    const text=node.nodeValue;
+    const marks=[];
+    for(const entry of terms){
+      if(marks.length>=PER_BLOCK) break;
+      const k=entry.term.toLowerCase();
+      if(seen.has(k)) continue;
+      const m=new RegExp('\\b'+esc(entry.term)+'\\b','i').exec(text);
+      if(!m) continue;
+      const start=m.index, end=start+m[0].length;
+      /* terms are sorted longest first, so a longer phrase claims its span
+         before a word inside it can */
+      if(marks.some(x=>start<x.end&&end>x.start)) continue;
+      marks.push({start,end,entry,word:m[0]});
+      seen.add(k);
+    }
+    if(!marks.length) return;
+    marks.sort((a,b)=>a.start-b.start);
+    const frag=document.createDocumentFragment();
+    let pos=0;
+    marks.forEach(mk=>{
+      if(mk.start>pos) frag.appendChild(document.createTextNode(text.slice(pos,mk.start)));
+      frag.appendChild(button(mk.entry,mk.word));
+      pos=mk.end;
+    });
+    if(pos<text.length) frag.appendChild(document.createTextNode(text.slice(pos)));
+    node.parentNode.replaceChild(frag,node);
+  });
+  return root;
+}
+
 /* ---------------- inline checkpoints ---------------- */
 function lastAttempt(id){
   for(let i=S.att.length-1;i>=0;i--) if(S.att[i].i===id) return S.att[i];
@@ -7955,13 +8201,14 @@ function renderChapter(c){
   // Story
   const story=h('section',{class:'part',id:'story'});
   story.appendChild(sectionHead(c.num+'.'+n++,'The Story'));
-  story.appendChild(h('div',{class:'prose'},[blocks(c.story)]));
+  const seenTerms=new Set();
+  story.appendChild(markTerms(h('div',{class:'prose'},[blocks(c.story)]),seenTerms,c.num));
   w.appendChild(story);
 
   // Words
   const words=h('section',{class:'part',id:'words'});
   words.appendChild(sectionHead(c.num+'.'+n++,'Words You Now Own'));
-  words.appendChild(h('dl',{class:'words'},c.words.map(([t,d])=>
+  words.appendChild(h('dl',{class:'words noterm'},c.words.map(([t,d])=>
     h('div',{class:'word'},[h('dt',{text:t}),h('dd',{html:d})]))));
   w.appendChild(words);
 
@@ -7970,7 +8217,7 @@ function renderChapter(c){
   ho.appendChild(sectionHead(c.num+'.'+n++,'Hands-On','~'+Math.round(c.minutes*0.6)+' min'));
   c.handson.forEach(s=>{
     const st=h('div',{class:'step'},[h('h3',{text:s.h})]);
-    st.appendChild(h('div',{class:'prose'},[blocks(s.b)]));
+    st.appendChild(markTerms(h('div',{class:'prose'},[blocks(s.b)]),seenTerms,c.num));
     ho.appendChild(st);
   });
   (c.labs||[]).forEach(k=>{const b=k==='redmap'?redMapBlock():labBlock(k);if(b)ho.appendChild(b);});

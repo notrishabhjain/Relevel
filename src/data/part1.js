@@ -5,6 +5,86 @@
 
 window.PART1 = [
 {
+  id:'ch0', num:0, part:1, minutes:30, labs:[],
+  title:'Start Here',
+  concept:'Nothing in this book assumes you already know anything. This chapter proves it.',
+  red:[],
+  story:[
+    ['p','This chapter exists because of one observation about how people fail at technical subjects. They almost never fail because the material was too hard. They fail because, somewhere on page three, a word went past that everyone else seemed to understand — and rather than stop and ask, they kept reading, understood a little less of the next paragraph, and a little less of the one after that. Eventually the whole thing felt like it was written for someone else, and they closed it.'],
+    ['key','If that has happened to you before, it was not a verdict on you. It was a failure of the writing. This book is built so it cannot happen here.'],
+    ['p','Two things make that promise real, and both are on this page right now.'],
+    ['p','<strong>The first: every word is tappable.</strong> Anywhere in this book, the first time a term appears that is defined somewhere, it carries a faint dotted underline. Tap it and a plain-language explanation appears in place — you never leave the page and never lose your spot. Some terms will say <em>you build this in Chapter 9</em>. That is not a gap in you. It means the book has deliberately named something before teaching it, and the one-line version is all you need for now.'],
+    ['p','Try it now on this sentence: an <strong>app</strong> sends a <strong>prompt</strong> to a <strong>model</strong> using an <strong>API</strong>, and the reply is billed in <strong>tokens</strong>. Five words, five underlines. Tap each one before reading on.'],
+    ['try',{id:'ch0-tap',mins:2,min:12,rows:2,
+      task:'Did you tap them? Write, in your own words and roughly, what the difference is between the <em>app</em> and the <em>model</em>. Two lines is plenty. Getting it slightly wrong here costs nothing — that is the whole point of writing it down before you are told.',
+      ph:'The app is … the model is …',
+      after:'The app is the thing with buttons that a person uses — your product. The model is a program on somebody else’s computers that takes text and returns text. It has no buttons, no memory, and no idea a person exists. Everything a user experiences as “the AI” is actually your app arranging things around a model that does exactly one narrow thing. Holding those two apart is most of what separates a product manager who can hold a design conversation from one who cannot.'}],
+    ['p','<strong>The second: the book stops and asks.</strong> Every few paragraphs you will meet a box like the one you just used. Some ask you to commit a guess before you are told the answer. Some ask you to write something. Some are real questions that count towards a score. They exist because reading and understanding feel identical from the inside, and only one of them is real. The boxes are how you tell the difference — and how the tracker knows what you actually have.'],
+    ['c','On getting a question wrong','Getting a checkpoint wrong is worth more to you than getting it right, and the app treats it that way: a wrong answer with high confidence is recorded as the most useful thing you did that day, because it found a belief you did not know was false. Nobody sees any of it. There is no grade, no pass mark, and nothing is reported anywhere.'],
+    ['p','Now the vocabulary. Not all of it — just the six words that everything else rests on. Read these once. You are not expected to remember them; they are all tappable everywhere else in the book, forever.'],
+    ['tb',['Word','What it actually means','What it is not'],[
+      ['Model','A program that takes text and gives back text, running on a provider’s computers. It was built by reading an enormous quantity of writing and getting very good at predicting what comes next.','It is not a database, not a search engine, and not a thing that looks anything up.'],
+      ['App','Your product. The buttons, screens and code that decide what to send the model and what to do with the reply.','It is not the model. Almost every design decision in this book belongs to the app.'],
+      ['API','The way your app sends a message to the model over the internet and gets a reply back.','Not something a user sees. Not a place. It is a doorway.'],
+      ['Prompt','The text your app sends. Both the user’s question and any standing instructions you attach to it.','Not a magic phrase. Mostly it is ordinary English.'],
+      ['Token','The unit the model reads and bills in — roughly a word-piece, about ¾ of an English word.','Not a character, not a word, and not a fixed price.'],
+      ['Context','Everything the model can see at once for a single request: instructions, conversation, attached documents, and the answer being written.','Not memory. It is emptied completely after every reply.']
+    ]],
+    ['pred',{id:'ch0-cost',short:true,ph:'Yes or no, and why',
+      ask:'One prediction before you go further, and there is no trick in it. If the model has no memory between requests, does a long chat conversation cost more per message than a short one?',
+      reveal:'Yes — considerably. Because the model remembers nothing, your app has to re-send the entire conversation with every new message so the reply makes sense. Message fifty carries messages one to forty-nine inside it, and you pay for all of them again, every single time.',
+      then:'That is a real product decision hiding inside a technical detail, and it is the shape of most of this book: a fact about how the machine works turns out to be a fact about your bill, your latency, or your risk. Chapter 1 starts here.'}],
+    ['p','A word about the shape of what follows. There are twenty chapters in four parts. Part I builds the machine from nothing. Part II is the modern stack — what changed by 2027. Part III is the instrument panel: measurement, money, governance, shipping. Part IV is the two decisions that are yours alone. You do not need to read them in one stretch, and you are asked not to.'],
+    ['c','The standing rules, and why they are protective rather than strict','One chapter per sitting, never two. Park every side-quest on the LATER page instead of chasing it. Keep your notes rough — five messy bullets, never a formatted page. Predict before you measure. These exist because the most common way to abandon a course is to have an enormous first week and then never return. Stopping while you still have energy left is a technique, not a lack of discipline.'],
+    ['key','You will hit a chapter that feels too hard. That is scheduled, not exceptional — Chapters 5, 13 and 14 do it to almost everyone. When it happens, the thing to do is not to push through and not to stop. It is to take the smallest next step available and let the day end there.'],
+    ['try',{id:'ch0-quit',mins:4,min:50,rows:4,
+      task:'Since you already know it will happen, decide now what you will do about it — while it is easy to think clearly. Write your plan for the evening you do not want to open this. What is the smallest thing you would still be willing to do? Where will you leave a note to yourself? And what will you tell yourself about the day you skipped?',
+      ph:'When I do not want to open this, I will …',
+      after:'The plans that survive contact with a bad evening share three properties. The smallest step is genuinely tiny — one checkpoint, not one chapter; two minutes, not forty. The note to yourself is written in advance and says exactly where to resume, because deciding what to do next is the expensive part when you are tired. And the story about the skipped day is decided now, in advance: a missed day is a missed day. It is not evidence of anything, and it does not mean starting again. The people who finish are not the ones who never lapse — everyone lapses. They are the ones who had already decided that lapsing was allowed.'}],
+    ['p','That is the whole of this chapter. Nothing here needs remembering. Turn the page.']
+  ],
+  words:[
+    ['Model','A program that takes text and returns text, built by learning to predict what comes next. Runs on the provider’s computers, not yours.'],
+    ['App','Your product — the screens and code around the model. Where nearly every decision in this book lives.'],
+    ['API','The doorway your app sends a request through to reach the model.'],
+    ['Prompt','The text sent to the model: the user’s question plus whatever standing instructions you attach.'],
+    ['Token','The word-piece the model reads and bills in. Roughly ¾ of an English word.'],
+    ['Context','Everything the model can see for one request. Emptied completely afterwards.']
+  ],
+  handson:[
+    {h:'Step 1 — Look at a reply without using it',b:[
+      ['p','Open any AI chat product you already have — the free tier of anything is fine. Ask it something you genuinely know the answer to, about your own work.'],
+      ['p','Do not judge whether the answer is good. Instead notice three things and write them down: how long you waited before the first word appeared, whether the answer said anything you could check, and whether it hedged or sounded certain.'],
+      ['x','A wait of somewhere between half a second and several seconds, an answer that sounds equally confident whether or not it is right, and — this is the one that matters — very little you could actually verify without already knowing the answer. Those three observations are Chapters 11, 2 and 20 respectively. You have now met the whole book in ninety seconds.']
+    ]},
+    {h:'Step 2 — Ask it something it cannot know',b:[
+      ['p','Now ask the same product about something it has no way of knowing: your company’s internal refund policy, a document on your laptop, what you did last Tuesday.'],
+      ['p','Watch carefully whether it says it does not know, or produces something plausible instead. Try it twice more, phrasing the question as though the answer obviously exists.'],
+      ['x','Most of the time you will get a refusal, because modern products are trained hard to refuse. But push slightly — assume the fact in your question rather than asking for it — and something invented usually appears, delivered in exactly the same tone as everything true it has said. That gap between the tone and the reliability is the single most important thing in this field, and Chapter 2 is entirely about it.']
+    ]},
+    {h:'Step 3 — Set up your workspace, or decide not to yet',b:[
+      ['p','From Chapter 1 there are places where you type a few lines and watch what happens. That needs a <strong>notebook</strong> — a free web page that runs small pieces of code. The Setup page on this site walks through it, and nothing you do there can break anything or cost anything.'],
+      ['p','If that feels like a lot right now, skip it. Chapters 3, 4, 6, 7, 19 and 20 need no code at all, and you can come back for the rest. Deciding to skip something on purpose is different from stalling on it, and only the second one ends courses.'],
+      ['x','Either a working notebook, or a deliberate decision to do it later — written down. Both are acceptable outcomes of this step. Neither is a reason to stop.']
+    ]}
+  ],
+  wrong:[
+    ['“I do not know what half these words mean”','Expected on the first read — the words are introduced as they become useful, not in advance','Tap any dotted word. If a word has no underline and you do not know it, that is a fault in the book worth reporting'],
+    ['“I have not opened this in three weeks”','Ordinary, and planned for','Open the dashboard and do the single smallest thing it offers. Nothing is lost and nothing needs restarting'],
+    ['“This chapter felt too easy”','Also expected — this is the on-ramp','Go to Chapter 1. It starts properly there']
+  ],
+  homework:[
+    ['Nothing','Genuinely nothing. This chapter has no homework, because the first thing a course asks of you should not be a chore.'],
+    ['Optional, if you want one thing','Decide which evening this week you will read Chapter 1, and write it somewhere you will see it. A named evening is roughly twice as likely to happen as an intention.']
+  ],
+  check:[
+    ['What is the difference between the app and the model?','The model takes text and returns text, on someone else’s computers, with no memory and no interface. The app is your product — the screens and code that decide what to send and what to do with the reply. Nearly every decision in this book belongs to the app.'],
+    ['Why does a long conversation cost more per message than a short one?','Because the model remembers nothing between requests, so your app re-sends the whole conversation every time. You pay for all of it again with each new message.'],
+    ['What should you do when you meet a word you do not know?','Tap it. Every defined term is underlined at its first use in a chapter and explains itself in place. If it says you build it in a later chapter, the one-line version is all you need for now.'],
+    ['What is the plan for the evening you do not want to open this?','Whatever you wrote above — the point is that it exists and was decided in advance. The smallest step, a note saying where to resume, and a decision made now that a missed day is only a missed day.']
+  ]
+},
+{
   id:'ch1', num:1, part:1, minutes:60, labs:['tokenizer','receipt'],
   title:'What Actually Happens When We Ask The AI',
   concept:'An AI request is a letter, a receipt, and a case of total amnesia.',

@@ -743,3 +743,24 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .qdone .qstem.qsm{font-family:var(--serif);font-size:.98rem;line-height:1.5;margin:.5rem 0 .7rem;
   color:var(--ink-2)}
 .qdone .why{margin-bottom:.7rem}
+
+/* ---------- tap a word you do not know ---------- */
+.term{
+  display:inline; background:none; border:0; padding:0; margin:0; font:inherit;
+  color:inherit; cursor:help; position:relative;
+  border-bottom:1px dashed var(--muted); border-radius:0; line-height:inherit;
+}
+.term:hover{background:var(--sunk);border-bottom-color:var(--ink)}
+.termpop{
+  position:absolute; z-index:60; left:0; top:1.6em; width:min(21rem,calc(100vw - 2rem));
+  background:var(--paper); border:1px solid var(--rule); border-radius:var(--r);
+  box-shadow:var(--shadow); padding:.75rem .85rem; cursor:auto;
+  font-family:var(--sans); font-size:.85rem; line-height:1.55; text-align:left;
+  white-space:normal; font-style:normal; font-weight:400;
+}
+.termhead{display:flex;gap:.6rem;align-items:baseline;flex-wrap:wrap;margin-bottom:.35rem}
+.termhead strong{font-size:.9rem}
+.termch{font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;color:var(--muted)}
+.termpop p{margin:0 0 .5rem;color:var(--ink-2)}
+.termahead{font-size:.8rem;color:var(--amber)!important;border-left:2px solid var(--amber);padding-left:.5rem}
+.termpop button{margin-top:.1rem}

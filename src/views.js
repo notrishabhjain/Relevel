@@ -43,7 +43,7 @@ function dashboard(){
       h('div',{class:'eyebrow'},[h('span',{text:'Skill tracker'}),h('span',{class:'dot'}),
         h('span',{text:new Date().toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'long'})})]),
       h('h1',{text:'Where you actually are'}),
-      h('p',{class:'dash-sub',html:'Thirty tracked skills. Mastery moves on measured evidence and decays without practice — so this number is a claim about <em>now</em>, not a record of what you once read.'})]),
+      h('p',{class:'dash-sub',html:window.SKILLS.length+' tracked skills. Mastery moves on measured evidence and decays without practice — so this number is a claim about <em>now</em>, not a record of what you once read.'})]),
     h('div',{class:'bigring'},[ring(ov), h('span',{class:'ringlab',text:'overall mastery'})])]));
 
   w.appendChild(h('div',{class:'stats'},[
