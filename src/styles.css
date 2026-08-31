@@ -703,3 +703,105 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .sitemt{font-size:.9rem;color:var(--ink)}
 .sitemd{font-size:.76rem;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .sitemm{font-size:.7rem;flex:none}
+
+/* ---------- inline checkpoints ---------- */
+.cpstrip{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin:0 0 2rem;
+  padding:.6rem .85rem;background:var(--raised);border:1px solid var(--rule);border-radius:var(--r)}
+.cplbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted)}
+.cpcount{font-size:.78rem;font-variant-numeric:tabular-nums;color:var(--ink-2)}
+
+/* A checkpoint interrupts the prose deliberately: it should look like the page
+   stopping to ask you something, not like another box of text. */
+.cp{margin:1.9rem 0;padding:1rem 1.15rem;background:var(--raised);
+  border:1px solid var(--rule);border-left:2px solid var(--ink-2);border-radius:var(--r)}
+.cp-pred{border-left-color:var(--amber)}
+.cp-try{border-left-color:var(--verified)}
+.cphead{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap;margin-bottom:.7rem}
+.cpk{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink);border:1px solid var(--rule);border-radius:2px;padding:.15rem .4rem}
+.cp-pred .cpk{color:var(--amber);border-color:var(--amber)}
+.cp-try .cpk{color:var(--verified);border-color:var(--verified)}
+.cpn{font-size:.72rem;color:var(--muted)}
+.cp .cpq{font-family:var(--serif);font-size:1.02rem;line-height:1.6;margin-bottom:.8rem}
+.cp .cpq p{margin:0 0 .5rem}
+.cp textarea,.cp input[type=text]{width:100%;margin-bottom:.6rem}
+.cprow{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+.cpans{background:var(--paper);border:1px solid var(--rule);border-radius:var(--r);
+  padding:.6rem .8rem;margin-bottom:.7rem}
+.cpans .lbl{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);display:block;margin-bottom:.25rem}
+.cpans p{margin:0;font-size:.9rem;white-space:pre-wrap}
+.cpthen{font-size:.92rem;color:var(--ink-2);margin:.7rem 0 0}
+
+/* The question widget, when it appears inline rather than in a drill. */
+.qcard.inline{max-width:none}
+.qcard.inline .qstem{font-size:1.05rem;margin-bottom:1rem}
+.qcard.inline .qmeta{margin-bottom:.7rem}
+.qcard.inline button.big{padding:.45rem 1rem;font-size:.85rem}
+.qslot+.qslot{margin-top:1.4rem;padding-top:1.2rem;border-top:1px solid var(--rule)}
+.qdone .qstem.qsm{font-family:var(--serif);font-size:.98rem;line-height:1.5;margin:.5rem 0 .7rem;
+  color:var(--ink-2)}
+.qdone .why{margin-bottom:.7rem}
+
+/* ---------- tap a word you do not know ---------- */
+.term{
+  display:inline; background:none; border:0; padding:0; margin:0; font:inherit;
+  color:inherit; cursor:help; position:relative;
+  border-bottom:1px dashed var(--muted); border-radius:0; line-height:inherit;
+}
+.term:hover{background:var(--sunk);border-bottom-color:var(--ink)}
+.termpop{
+  position:absolute; z-index:60; left:0; top:1.6em; width:min(21rem,calc(100vw - 2rem));
+  background:var(--paper); border:1px solid var(--rule); border-radius:var(--r);
+  box-shadow:var(--shadow); padding:.75rem .85rem; cursor:auto;
+  font-family:var(--sans); font-size:.85rem; line-height:1.55; text-align:left;
+  white-space:normal; font-style:normal; font-weight:400;
+}
+.termhead{display:flex;gap:.6rem;align-items:baseline;flex-wrap:wrap;margin-bottom:.35rem}
+.termhead strong{font-size:.9rem}
+.termch{font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;color:var(--muted)}
+.termpop p{margin:0 0 .5rem;color:var(--ink-2)}
+.termahead{font-size:.8rem;color:var(--amber)!important;border-left:2px solid var(--amber);padding-left:.5rem}
+.termpop button{margin-top:.1rem}
+
+/* ---------- resume: the one next step ---------- */
+.resume{margin:1.6rem 0 2rem;padding:1.1rem 1.25rem;background:var(--raised);
+  border:1px solid var(--rule);border-left:2px solid var(--verified);border-radius:var(--r)}
+.backhead{margin-bottom:1rem;padding-bottom:.9rem;border-bottom:1px solid var(--rule)}
+.backhead h2{font-family:var(--serif);font-size:1.3rem;margin:0 0 .4rem;font-weight:400}
+.backhead p{margin:0;font-size:.92rem;color:var(--ink-2);line-height:1.6}
+.resumelead{display:flex;gap:1.2rem;align-items:flex-start;flex-wrap:wrap}
+.resumelead h3{font-family:var(--serif);font-size:1.25rem;font-weight:400;margin:.15rem 0 .35rem}
+.resumelead p{margin:0;color:var(--ink-2);font-size:.9rem;line-height:1.55}
+.resumego{display:flex;flex-direction:column;gap:.5rem;align-items:flex-end;flex:none}
+.mins{font-family:var(--mono);font-size:.7rem;color:var(--muted);white-space:nowrap}
+.tiny{margin-top:1rem;padding-top:.9rem;border-top:1px dashed var(--rule);
+  display:flex;gap:.7rem;align-items:center;flex-wrap:wrap}
+.tinylbl{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--amber);flex:none}
+.tiny p{margin:0;flex:1;min-width:180px;font-size:.85rem;color:var(--ink-2);line-height:1.5}
+.alsorow{display:flex;gap:.45rem;flex-wrap:wrap;margin-top:.9rem}
+
+/* ---------- stuck ---------- */
+.stuck{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;margin-top:.9rem;
+  padding-top:.75rem;border-top:1px dashed var(--rule)}
+.stucklbl{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted)}
+.stucknote{font-size:.8rem;color:var(--muted);flex-basis:100%;line-height:1.5;margin:.2rem 0 0}
+.qparked{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;font-size:.85rem;color:var(--muted)}
+
+/* ---------- what a chapter stands on ---------- */
+.needs{margin:0 0 1.6rem;padding:.9rem 1.1rem;background:var(--sunk);
+  border:1px solid var(--rule);border-radius:var(--r)}
+.needshead{display:flex;gap:.7rem;align-items:baseline;flex-wrap:wrap;margin-bottom:.6rem}
+.needlist{list-style:none;margin:0;padding:0;display:grid;gap:.55rem}
+.needlist li{display:flex;gap:.8rem;align-items:flex-start;flex-wrap:wrap;
+  font-size:.88rem;line-height:1.55}
+.needlist li>div{flex:1;min-width:200px}
+.needlist strong{font-weight:600}
+.needwhy{color:var(--ink-2)}
+.needlist .chip{flex:none;font-size:.7rem}
+.alsoref{margin-top:.7rem;padding-top:.6rem;border-top:1px dashed var(--rule);
+  font-size:.83rem;line-height:1.6;color:var(--ink-2)}
+.alsoref a{white-space:nowrap}

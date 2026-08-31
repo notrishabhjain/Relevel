@@ -29,6 +29,19 @@ function validate(kind, data) {
     });
     const ids = data.map(c => c.id);
     if (new Set(ids).size !== ids.length) fail('chapter ids must be unique');
+    /* Checkpoint blocks store an answer under their id, so a missing or
+       duplicated one silently loses or mixes up what somebody wrote. */
+    const cp = new Set();
+    for (const c of data) {
+      for (const b of chapterBlocks(c)) {
+        if (b[0] !== 'pred' && b[0] !== 'try') continue;
+        const o = b[1];
+        if (!o || typeof o.id !== 'string' || !o.id)
+          fail(`a ${b[0]} checkpoint in ${c.id} needs an id`);
+        if (cp.has(o.id)) fail(`two checkpoints share the id ${o.id}`);
+        cp.add(o.id);
+      }
+    }
   }
   if (kind === 'items') {
     if (!Array.isArray(data) || !data.length) fail('items must be a non-empty array');
@@ -83,20 +96,47 @@ function validate(kind, data) {
   if (kind === 'reference' && (!data || typeof data !== 'object')) fail('reference must be an object');
 }
 
+/* Every block in a chapter, including the ones nested inside a hands-on step. */
+function chapterBlocks(c) {
+  const out = [];
+  for (const b of c.story || []) if (Array.isArray(b)) out.push(b);
+  for (const st of c.handson || []) for (const b of (st && st.b) || []) if (Array.isArray(b)) out.push(b);
+  return out;
+}
+
 /* Cross-references the editors can break: a question pointing at a skill that
-   no longer exists would vanish from every drill without saying so. */
+   no longer exists would vanish from every drill without saying so, and a
+   checkpoint pointing at a deleted question would quietly stop asking. */
 async function crossCheck(kind, data) {
-  if (kind !== 'items' && kind !== 'skills') return [];
-  const rows = await query('SELECT kind, data FROM content WHERE kind IN ($1,$2)', ['items', 'skills']);
+  if (!['items', 'skills', 'chapters'].includes(kind)) return [];
+  const rows = await query('SELECT kind, data FROM content WHERE kind IN ($1,$2,$3)',
+    ['items', 'skills', 'chapters']);
   const map = Object.fromEntries(rows.map(r => [r.kind, r.data]));
   const items = kind === 'items' ? data : map.items || [];
   const skills = kind === 'skills' ? data : map.skills || [];
-  const ids = new Set(skills.map(s => s.id));
-  const orphans = [...new Set(items.filter(it => !ids.has(it[1])).map(it => it[1]))];
-  const empty = skills.filter(s => !items.some(it => it[1] === s.id)).map(s => s.id);
+  const chapters = kind === 'chapters' ? data : map.chapters || [];
   const warn = [];
+
+  const skillIds = new Set(skills.map(s => s.id));
+  const orphans = [...new Set(items.filter(it => !skillIds.has(it[1])).map(it => it[1]))];
   if (orphans.length) warn.push(`questions reference missing skills: ${orphans.join(', ')}`);
+  const empty = skills.filter(s => !items.some(it => it[1] === s.id)).map(s => s.id);
   if (empty.length) warn.push(`skills with no questions: ${empty.join(', ')}`);
+
+  const itemIds = new Set(items.map(it => it[0]));
+  const asked = new Set();
+  const missing = new Set();
+  for (const c of chapters) {
+    for (const b of chapterBlocks(c)) {
+      if (b[0] !== 'q') continue;
+      for (const id of b.slice(1).flat()) {
+        asked.add(id);
+        if (!itemIds.has(id)) missing.add(`${id} (${c.id})`);
+      }
+    }
+  }
+  if (missing.size)
+    warn.push(`chapter checkpoints ask questions that are not in the bank: ${[...missing].join(', ')}`);
   return warn;
 }
 

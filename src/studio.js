@@ -213,12 +213,20 @@ function csvField(label,arr,on,hint,numeric){
 
 /* ============ prose blocks ============ */
 const BLOCKS=[['p','Paragraph'],['key','Key line'],['l','Bullets'],['n','Numbered'],
-  ['c','Callout'],['code','Code'],['x','What you should see'],['tb','Table']];
+  ['c','Callout'],['code','Code'],['x','What you should see'],['tb','Table'],
+  ['q','Checkpoint — questions'],['pred','Checkpoint — predict'],
+  ['try','Checkpoint — your turn'],['lab','Interactive lab']];
+/* The interactive blocks carry an object or an id list rather than prose, so
+   converting one to a paragraph cannot keep its text. */
+const INTERACTIVE=['q','pred','try','lab'];
 function blockText(b){
   if(b[0]==='l'||b[0]==='n') return (b[1]||[]).join('\n');
   if(b[0]==='c') return b[2]||'';
-  if(b[0]==='tb') return '';
+  if(b[0]==='tb'||INTERACTIVE.includes(b[0])) return '';
   return b[1]||'';
+}
+function newId(prefix){
+  return prefix + '-' + Math.random().toString(36).slice(2,7);
 }
 function recast(b,t){
   const txt=blockText(b);
@@ -226,6 +234,12 @@ function recast(b,t){
   if(t==='l'||t==='n') b.push(txt?txt.split('\n'):['']);
   else if(t==='c') b.push('A note',txt);
   else if(t==='tb') b.push(['Column A','Column B'],[['','']]);
+  else if(t==='q') b.push((window.ALL_ITEMS&&window.ALL_ITEMS[0]&&window.ALL_ITEMS[0][0])||'I001');
+  else if(t==='lab') b.push(Object.keys(window.LABS||{})[0]||'tokenizer');
+  else if(t==='pred') b.push({id:newId('pred'),short:true,ask:txt||'What do you think happens?',
+    reveal:'What actually happens.',ph:'Your prediction'});
+  else if(t==='try') b.push({id:newId('try'),task:txt||'Write the thing.',ph:'Write it here',
+    after:'What a strong answer contains.',rows:4});
   else b.push(txt);
 }
 function tableEditor(b,on){
@@ -252,6 +266,67 @@ function tableEditor(b,on){
   };
   draw(); return box;
 }
+/* A checkpoint question is a reference into the question bank, not a copy of
+   one — so it is edited once, in the question editor, and stays the same
+   measured item wherever it is asked. */
+function questionRefEditor(b,on){
+  const box=h('div');
+  const ids=b.slice(1).flat();
+  const draw=()=>{
+    box.innerHTML='';
+    const known=window.ENG?window.ENG.byItem:{};
+    box.appendChild(fld('question ids',inp(ids.join(', '),v=>{
+      const list=v.split(',').map(x=>x.trim()).filter(Boolean);
+      b.length=1; list.forEach(x=>b.push(x));
+      ids.length=0; list.forEach(x=>ids.push(x));
+      on(); preview();
+    },'I001, I002'),'From the question bank. Several ids ask them one after another.'));
+    const pv=h('div',{class:'slist'});
+    box.appendChild(pv);
+    function preview(){
+      pv.innerHTML='';
+      b.slice(1).flat().forEach(id=>{
+        const it=known[id];
+        pv.appendChild(h('div',{class:'sitem'},[
+          h('span',{class:'sitemm mono '+(it?'dim':'')  ,text:id}),
+          h('span',{class:'sitemd',style:'flex:1',
+            text:it?String(it.stem).replace(/<[^>]+>/g,'').slice(0,90)
+                  :'not in the bank — this checkpoint will not render'}),
+          it?h('a',{class:'backlink',href:'#/studio/items/'+encodeURIComponent(id),text:'edit'}):null]));
+      });
+    }
+    preview();
+  };
+  draw(); return box;
+}
+
+function checkpointEditor(b,on){
+  const o=b[1]||(b[1]={});
+  const box=h('div',{class:'sform',style:'gap:.7rem'});
+  box.appendChild(fld('id',inp(o.id,v=>{o.id=v;on();}),
+    'Where the answer is stored. Changing it forgets what was written here.'));
+  if(b[0]==='pred'){
+    box.appendChild(fld('what to predict',ta(o.ask,v=>{o.ask=v;on();},3),'HTML allowed.'));
+    box.appendChild(fld('what actually happens',ta(o.reveal,v=>{o.reveal=v;on();},4),
+      'Shown only after they commit.'));
+    box.appendChild(fld('and therefore',ta(o.then,v=>{o.then=v;on();},2),
+      'Optional. The consequence worth carrying forward.'));
+    box.appendChild(h('div',{class:'sgrid2'},[
+      fld('placeholder',inp(o.ph,v=>{o.ph=v;on();})),
+      fld('input',sel(o.short?'1':'0',[['1','One line'],['0','A few lines']],
+        v=>{o.short=v==='1';on();}))]));
+  } else {
+    box.appendChild(fld('the task',ta(o.task,v=>{o.task=v;on();},4),'HTML allowed.'));
+    box.appendChild(fld('what a strong answer contains',ta(o.after,v=>{o.after=v;on();},4),
+      'Unlocks once they have written something of their own.'));
+    box.appendChild(h('div',{class:'sgrid3'},[
+      fld('placeholder',inp(o.ph,v=>{o.ph=v;on();})),
+      fld('minutes',numin(o.mins,v=>{o.mins=v;on();})),
+      fld('box height',numin(o.rows,v=>{o.rows=v;on();}),'Rows.')]));
+  }
+  return box;
+}
+
 function blockEditor(b,on){
   const box=h('div',{class:'sblock'});
   const draw=()=>{
@@ -273,6 +348,14 @@ function blockEditor(b,on){
       box.appendChild(ta(b[2],v=>{b[2]=v;on();},3,'Callout text'));
     } else if(b[0]==='tb'){
       box.appendChild(tableEditor(b,on));
+    } else if(b[0]==='q'){
+      box.appendChild(questionRefEditor(b,on));
+    } else if(b[0]==='lab'){
+      const labs=Object.keys(window.LABS||{}).map(k=>[k,(window.LABS[k].title||k)]);
+      box.appendChild(fld('which lab',sel(b[1],labs.length?labs:[[b[1],b[1]]],v=>{b[1]=v;on();}),
+        'Dropped into the reading at this point.'));
+    } else if(b[0]==='pred'||b[0]==='try'){
+      box.appendChild(checkpointEditor(b,on));
     } else {
       box.appendChild(ta(b[1],v=>{b[1]=v;on();},b[0]==='code'?6:4));
     }

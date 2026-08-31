@@ -3,6 +3,11 @@
    The second device is a separate browser context, not a second tab: tabs share
    storage and would pass even if nothing reached the database. */
 import { chromium } from 'playwright';
+import { readFileSync } from 'node:fs';
+/* Expected counts come from the build output rather than being typed here, so
+   adding a chapter does not mean editing the tests to agree with it. */
+const EXPECT = JSON.parse(readFileSync(new URL('../content/defaults.json', import.meta.url), 'utf8'));
+const N = { chapters: EXPECT.chapters.length, items: EXPECT.items.length, skills: EXPECT.skills.length };
 
 const B = process.env.BASE || 'http://127.0.0.1:8788';
 let pass = 0, fail = 0;
@@ -28,6 +33,13 @@ const newDevice = async (signedIn, login = 'localdev') => {
 const text = (page, sel) => page.evaluate(s => {
   const e = document.querySelector(s); return e ? e.textContent.trim() : '(missing)'; }, sel);
 const mainText = page => text(page, '#main');
+/* Going to the hash the page is already on fires no hashchange, so nothing
+   re-renders. A revisit has to be a real load. */
+const revisit = async page => {
+  await page.reload();
+  await page.waitForFunction(() => window.CONTENT && window.STUDIO && document.querySelector('#main'));
+  await page.waitForTimeout(300);
+};
 const boot = async (page, hash = '') => {
   await page.goto(B + '/' + hash);
   await page.waitForFunction(() => window.CONTENT && window.STUDIO && document.querySelector('#main'));
@@ -38,9 +50,9 @@ console.log('\n— the app loads from the database —');
 const a = await newDevice(false);
 await boot(a.page);
 ok(await a.page.evaluate(() => window.CONTENT.source) === 'server', 'content came from the server, not the bundle');
-ok(await a.page.evaluate(() => window.CHAPTERS.length) === 18, 'all 18 chapters arrived');
-ok(await a.page.evaluate(() => window.ENG.ITEMS.length) === 137, 'the engine sees all 137 questions');
-ok(await a.page.evaluate(() => window.SKILLS.length) === 30, 'all 30 skills arrived');
+ok(await a.page.evaluate(() => window.CHAPTERS.length) === N.chapters, `all ${N.chapters} chapters arrived`);
+ok(await a.page.evaluate(() => window.ENG.ITEMS.length) === N.items, `the engine sees all ${N.items} questions`);
+ok(await a.page.evaluate(() => window.SKILLS.length) === N.skills, `all ${N.skills} skills arrived`);
 
 console.log('\n— the studio is read-only when signed out —');
 await boot(a.page, '#/studio');
@@ -49,7 +61,7 @@ ok(await a.page.locator('.domcard').count() === 6, 'six kinds of content are lis
 ok(await text(a.page, '.callout .lbl') === 'Read-only', 'a read-only banner explains why',
    await text(a.page, '.callout .lbl'));
 await boot(a.page, '#/studio/items');
-ok(await a.page.locator('.sitem').count() === 137, 'the question list shows every question');
+ok(await a.page.locator('.sitem').count() === N.items, 'the question list shows every question');
 ok(await a.page.locator('.sbar button.primary').isDisabled(), 'publish is off for a signed-out visitor');
 
 console.log('\n— an editor edits a question —');
@@ -86,7 +98,7 @@ const c = await newDevice(false);
 await boot(c.page);
 ok(await c.page.evaluate(() => window.ENG.byItem['I001'].stem) === 'How many tokens is a 300-word answer, roughly?',
    'a browser that never saw the edit gets the new text');
-ok(await c.page.evaluate(() => window.ENG.ITEMS.length) === 137, 'and the rest of the bank is intact');
+ok(await c.page.evaluate(() => window.ENG.ITEMS.length) === N.items, 'and the rest of the bank is intact');
 
 console.log('\n— two editors cannot overwrite each other —');
 const d = await newDevice(true);
@@ -126,7 +138,7 @@ ok(/one option marked correct/.test(await text(b.page, '.sbarmsg.bad')),
 
 console.log('\n— the structured editors, not just the JSON —');
 await boot(b.page, '#/studio/chapters');
-ok(await b.page.locator('.sitem').count() === 18, 'every chapter is listed');
+ok(await b.page.locator('.sitem').count() === N.chapters, 'every chapter is listed');
 await b.page.locator('.sitem .sitemmain').first().click();
 await b.page.waitForSelector('.sform');
 const titleBox = b.page.locator('.sform > .sfield:has(> label:text-is("title")) input');
@@ -180,7 +192,7 @@ await b.page.locator('.sbar button.primary').first().click();
 await b.page.waitForSelector('.sbar .sbarmsg.ok', { timeout: 15000 });
 const pubmsg = await text(b.page, '.sbar .sbarmsg.ok');
 ok(/Published/.test(pubmsg), 'the new question publishes', pubmsg);
-ok(await b.page.evaluate(() => window.ENG.ITEMS.length) === 138, 'the engine picked it up');
+ok(await b.page.evaluate(() => window.ENG.ITEMS.length) === N.items + 1, 'the engine picked it up');
 ok((await b.page.evaluate(sk => (window.ENG.bySkill[sk] || []).length, skillId)) === 1,
    'and filed it under the new skill, so that skill can now be practised');
 
@@ -207,9 +219,173 @@ console.log('\n— everything above survives on a device that was never touched 
 const g = await newDevice(false);
 await boot(g.page);
 ok(await g.page.evaluate(() => window.SKILLS.length) === before + 1, 'the new skill is there');
-ok(await g.page.evaluate(() => window.ENG.ITEMS.length) === 138, 'the new question is there');
+ok(await g.page.evaluate(() => window.ENG.ITEMS.length) === N.items + 1, 'the new question is there');
 ok(await g.page.evaluate(() => window.CHAPTERS[0].title) === 'What Actually Happens When You Ask',
    'the retitled chapter is there');
+
+console.log('\n— the reading asks questions, and they count —');
+const r0 = await newDevice(true, 'chapterreader');   // its own account: the section below asserts a clean one
+await boot(r0.page, '#/ch/ch1');
+await r0.page.waitForSelector('.chead');
+ok(await r0.page.locator('.cp').count() >= 5, 'chapter 1 interleaves checkpoints through the reading',
+   await r0.page.locator('.cp').count());
+ok(/0 \/ \d+/.test(await text(r0.page, '.cpstrip')), 'and the header counts them',
+   await text(r0.page, '.cpstrip'));
+const inlineQ = r0.page.locator('.cp .qcard').first();
+await inlineQ.scrollIntoViewIfNeeded();
+const stem = await inlineQ.locator('.qstem').innerText();
+await inlineQ.locator('.opt').first().click();
+await inlineQ.locator('.conf').first().click();
+await inlineQ.locator('button.primary.big').click();
+await r0.page.waitForTimeout(400);
+ok(await r0.page.locator('.cp .verdict').count() >= 1, 'answering one gives a verdict there and then');
+ok(await r0.page.locator('.cp .why').count() >= 1, 'with the explanation attached');
+ok(await r0.page.evaluate(() => Object.values(window.STORE.S.sk).some(x => x && x.n > 0)),
+   'a question answered while reading moves real mastery');
+ok(await r0.page.evaluate(() => window.STORE.S.att.length) === 1,
+   'and lands in the attempt log like any other answer');
+ok(await r0.page.evaluate(() => Object.keys(window.STORE.S.srs).length) === 1,
+   'and schedules itself for review');
+ok(/1 \/ \d+/.test(await text(r0.page, '.cpstrip')), 'the header count moves as you answer',
+   await text(r0.page, '.cpstrip'));
+
+console.log('\n— a checkpoint is not asked twice by accident —');
+await revisit(r0.page);
+ok(await r0.page.locator('.qdone').count() === 1, 'on the next visit it shows as already answered');
+ok((await r0.page.locator('.qdone').innerText()).includes(stem.slice(0, 30)),
+   'with the question and its explanation still there');
+ok(await r0.page.evaluate(() => window.STORE.S.att.length) === 1,
+   'and re-reading did not re-score it');
+
+console.log('\n— predict before you look —');
+const pred = r0.page.locator('.cp-pred').first();
+await pred.scrollIntoViewIfNeeded();
+ok(await pred.locator('.why').count() === 0, 'the answer is hidden until a prediction is committed');
+await pred.locator('input, textarea').first().fill('It makes something up');
+await pred.locator('button.primary').click();
+await r0.page.waitForTimeout(300);
+ok(await pred.locator('.why').count() === 1, 'committing reveals what actually happens');
+ok((await pred.innerText()).includes('It makes something up'), 'and keeps your prediction beside it');
+await revisit(r0.page);
+ok((await r0.page.locator('.cp-pred').first().innerText()).includes('It makes something up'),
+   'a committed prediction survives a reload');
+
+console.log('\n— your turn —');
+const tryb = r0.page.locator('.cp-try').first();
+await tryb.scrollIntoViewIfNeeded();
+const reveal = tryb.getByText('Show what a strong answer contains');
+ok(await reveal.isDisabled(), 'the model answer is locked until you write your own');
+await tryb.locator('textarea').fill('It forgets everything between messages, so we resend the whole conversation each time and pay for it.');
+await r0.page.waitForTimeout(700);
+ok(!(await reveal.isDisabled()), 'writing something unlocks it');
+await reveal.click();
+ok(await tryb.locator('.why').count() === 1, 'and it appears');
+await revisit(r0.page);
+ok((await r0.page.locator('.cp-try').first().locator('textarea').inputValue()).length > 20,
+   'what you wrote is still there next time');
+ok(/3 \/ \d+/.test(await text(r0.page, '.cpstrip')), 'all three kinds count towards the chapter',
+   await text(r0.page, '.cpstrip'));
+
+console.log('\n— you cannot silently lose the thread —');
+const n1 = await newDevice(false);
+await boot(n1.page, '#/ch/ch13');
+ok(await n1.page.locator('.needs').count() === 1, 'a later chapter says what it stands on');
+ok(await n1.page.locator('.needlist li').count() === 3, 'naming each idea it depends on',
+   await n1.page.locator('.needlist li').count());
+const nd = await text(n1.page, '.needs');
+ok(/go back first/.test(nd), 'and says going back is the fast route, not an admission', nd.slice(0, 100));
+ok(await n1.page.locator('.needs a[href="#/ch/ch2"]').count() === 1,
+   'with a link straight to the chapter it came from');
+ok((await n1.page.locator('.needs').evaluate(e => {
+  const story = document.querySelector('#story');
+  return e.compareDocumentPosition(story) & Node.DOCUMENT_POSITION_FOLLOWING; })) > 0,
+  'placed before the reading starts, not after it');
+ok(await n1.page.locator('.alsoref a').count() >= 2,
+   'every other chapter it leans on is surfaced and linked too',
+   await n1.page.locator('.alsoref a').count());
+ok(/second tab rather than pushing on/.test(await text(n1.page, '.alsoref')),
+   'with the instruction to go and look rather than push through');
+/* derived from the prose, so it cannot drift from what the chapter says */
+ok(await n1.page.evaluate(() => {
+  const nums = [...document.querySelectorAll('.alsoref a')].map(a => +a.textContent.match(/\d+/)[0]);
+  const body = document.querySelector('#main').textContent;
+  return nums.length > 0 && nums.every(n => new RegExp('Chapters?\\s*\\.?\\s*(\\d+[^.]{0,12})?\\b' + n + '\\b').test(body));
+}), 'and each one is a chapter the prose genuinely names');
+await boot(n1.page, '#/ch/ch0');
+ok(await n1.page.locator('.needs').count() === 0, 'the ground-floor chapter stands on nothing');
+
+console.log('\n— the app makes it hard to quit —');
+const q1 = await newDevice(true, 'quitter');
+await boot(q1.page, '#/');
+await q1.page.waitForSelector('.resume');
+const fresh = await text(q1.page, '.resume');
+ok(/~\d+ min/.test(fresh), 'the next step is named with a time on it', fresh.slice(0, 90));
+ok(/Not tonight/i.test(fresh), 'and there is a smaller version for a bad evening');
+ok(/Two minutes/i.test(fresh), 'which is two minutes, not a chapter');
+ok((await q1.page.evaluate(() => {
+  const r = document.querySelector('.resume'), s = document.querySelector('.stats');
+  return r.compareDocumentPosition(s) & Node.DOCUMENT_POSITION_FOLLOWING; })) > 0,
+  'what to do next comes before how you are doing');
+
+console.log('\n— being stuck has somewhere to go —');
+await boot(q1.page, '#/ch/ch1');
+const slot = q1.page.locator('.qslot').first();
+await slot.scrollIntoViewIfNeeded();
+ok(await slot.locator('.stuck').count() === 1, 'every checkpoint question offers a way out');
+await slot.getByText('Show me the answer').click();
+await q1.page.waitForTimeout(300);
+ok((await slot.innerText()).includes('not scored'), 'showing the answer says it was not scored');
+ok(await q1.page.evaluate(() => Object.keys(window.STORE.S.sk).length) === 0,
+   'and mastery is genuinely untouched by it');
+ok(await q1.page.evaluate(() => Object.keys(window.STORE.S.srs).length) === 1,
+   'while the question is scheduled to come back');
+await revisit(q1.page);
+ok(/answer shown/i.test(await q1.page.locator('.qslot').first().innerText()),
+   'the shown state survives a reload');
+ok(/1 \/ \d+/.test(await text(q1.page, '.cpstrip')), 'and it counts as progress through the chapter',
+   await text(q1.page, '.cpstrip'));
+await q1.page.locator('.qslot').first().getByText('Try it properly now').click();
+await q1.page.waitForTimeout(250);
+ok(await q1.page.locator('.qslot').first().locator('.opt').count() > 0,
+   'and you can still choose to answer it properly');
+
+console.log('\n— parking is not failing —');
+const slot2 = q1.page.locator('.qslot').first();
+await slot2.getByText('Park it and move on').click();
+await q1.page.waitForTimeout(250);
+ok(/parked for later/i.test(await slot2.innerText()), 'a parked question says so');
+ok((await slot2.innerText()).includes('not a gap in your record'), 'and says it is not held against you');
+
+console.log('\n— coming back after a month —');
+await q1.page.evaluate(() => {
+  const ago = Date.now() - 30 * 86400000;
+  window.STORE.S.att = [{ t: ago, i: 'I001', sk: 'S01', k: 1, c: 0.75, ms: 900, d: 1 }];
+  window.STORE.S.sk = { S01: { m: 40, n: 1, ok: 1, last: ago, hist: [], peak: 40 } };
+  window.STORE.S.cp = {}; window.STORE.S.sess = []; window.STORE.S.sittings = [];
+  window.STORE.flush();
+});
+await boot(q1.page, '#/');
+await q1.page.waitForSelector('.resume');
+const back = await text(q1.page, '.resume');
+ok(/Welcome back/.test(back), 'a long gap is met with a welcome, not a scolding', back.slice(0, 80));
+ok(/Nothing is lost/.test(back), 'it says explicitly that nothing was lost');
+ok(/do not restart/i.test(back), 'and that nothing has to be started again');
+ok(/~\d+ min/.test(back), 'and still names one concrete step with a time on it');
+
+console.log('\n— a streak that survives one bad day —');
+ok(await q1.page.evaluate(() => {
+  const DAY = 86400000, t = Date.now();
+  /* active today, yesterday, nothing the day before, then two more */
+  window.STORE.S.att = [0, 1, 3, 4].map(d => ({ t: t - d * DAY, i: 'I001', sk: 'S01', k: 1, c: 0.75, ms: 9, d: 1 }));
+  return window.ENG.streakDetail(window.STORE.S).days;
+}) === 4, 'one missed day does not reset the streak');
+ok(await q1.page.evaluate(() => window.ENG.streakDetail(window.STORE.S).rest) === 1,
+   'and the rest day is reported rather than hidden');
+ok(await q1.page.evaluate(() => {
+  const DAY = 86400000, t = Date.now();
+  window.STORE.S.att = [0, 1, 4, 5].map(d => ({ t: t - d * DAY, i: 'I001', sk: 'S01', k: 1, c: 0.75, ms: 9, d: 1 }));
+  return window.ENG.streakDetail(window.STORE.S).days;
+}) === 2, 'two missed days do end it — the number stays honest');
 
 console.log('\n— reading the app does not write to it —');
 /* Its own account, so nothing above can move the version underneath it. */
@@ -281,7 +457,7 @@ await e.page.waitForFunction(() => window.STORE.S.done && window.STORE.S.done.ch
   null, { timeout: 20000 });
 ok(await e.page.evaluate(() => !!window.STORE.S.done.chSync),
    'a chapter marked done on one device shows up on another');
-ok(await e.page.evaluate(() => window.ENG.ITEMS.length) === 138,
+ok(await e.page.evaluate(() => window.ENG.ITEMS.length) === N.items + 1,
    'and that device has the edited curriculum too — one account, both halves');
 
 console.log('\n— telling the truth about a half-configured deployment —');
@@ -310,7 +486,7 @@ const f = await newDevice(false);
 await f.ctx.route('**/api/content*', r => r.abort());
 await f.page.goto(B + '/');
 await f.page.waitForFunction(() => window.CONTENT && window.CHAPTERS);
-ok(await f.page.evaluate(() => window.CHAPTERS.length) === 18, 'the app still opens with a full curriculum');
+ok(await f.page.evaluate(() => window.CHAPTERS.length) === N.chapters, 'the app still opens with a full curriculum');
 ok(['built-in', 'cache'].includes(await f.page.evaluate(() => window.CONTENT.source)), 'and says where the content came from');
 
 await browser.close();

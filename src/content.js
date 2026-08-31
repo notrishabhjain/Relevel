@@ -15,9 +15,9 @@ let editor = false;
 
 /* The built-ins, captured before anything overwrites the globals. */
 const BUILT_IN = {
-  chapters: [].concat(window.PART1 || [], window.PART2 || [], window.PART3 || []),
+  chapters: (window.PARTS || []).reduce((a, p) => a.concat(window['PART' + p.n] || []), []),
   skills: window.SKILLS || [],
-  items: [].concat(window.ITEMS1 || [], window.ITEMS2 || [], window.ITEMS3 || []),
+  items: [].concat(window.ITEMS1 || [], window.ITEMS2 || [], window.ITEMS3 || [], window.ITEMS4 || []),
   exercises: window.EXERCISES || [],
   processes: window.PROCESSES || [],
   reference: {
@@ -32,9 +32,9 @@ const BUILT_IN = {
 function apply(c){
   const ch = c.chapters && c.chapters.length ? c.chapters : BUILT_IN.chapters;
   window.CHAPTERS = ch;
-  window.PART1 = ch.filter(x => x.part === 1);
-  window.PART2 = ch.filter(x => x.part === 2);
-  window.PART3 = ch.filter(x => x.part === 3);
+  /* Republish one global per part, however many parts there are. */
+  const parts = (c.reference && c.reference.PARTS) || BUILT_IN.reference.PARTS || [];
+  parts.forEach(p => { window['PART' + p.n] = ch.filter(x => x.part === p.n); });
   window.SKILLS = (c.skills && c.skills.length) ? c.skills : BUILT_IN.skills;
   window.ALL_ITEMS = (c.items && c.items.length) ? c.items : BUILT_IN.items;
   window.EXERCISES = c.exercises || BUILT_IN.exercises;

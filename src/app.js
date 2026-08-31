@@ -9,13 +9,17 @@ const h=(t,a,c)=>{const e=document.createElement(t);
 const $=(s,r)=>(r||document).querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
 
+/* Parts are data, so the numeral has to be computed rather than looked up in a
+   list of three. */
+const ROMAN=n=>['','I','II','III','IV','V','VI','VII','VIII','IX','X'][n]||String(n);
+
 /* Rebuilt from whatever content was loaded, before the first render. */
 let CH=[];
 const byId={};
 let IDX=null;                     // command palette index, rebuilt with content
 function bindContent(){
   CH = window.CHAPTERS ||
-       [].concat(window.PART1||[], window.PART2||[], window.PART3||[]);
+       (window.PARTS||[]).reduce((a,p)=>a.concat(window['PART'+p.n]||[]),[]);
   Object.keys(byId).forEach(k=>delete byId[k]);
   CH.forEach(c=>byId[c.id]=c);
   if(window.ENG && window.ENG.reinit) window.ENG.reinit();
@@ -27,6 +31,7 @@ window.BIND_CONTENT=bindContent;
 /* ---------------- storage ---------------- */
 const KEY='aifz2027';
 const defaults=()=>({done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{},drill:{},
+  cp:{},       // inline checkpoint answers: predictions and written activities
   sittings:[],theme:null,
   /* tracker state */
   sk:{},      // per-skill mastery {m,n,ok,last,hist,peak}
@@ -114,9 +119,320 @@ function blocks(list){
       t.appendChild(h('tbody',{},r[1].map(row=>h('tr',{},row.map(c=>h('td',{html:c}))))));
       f.appendChild(h('div',{class:'tblwrap'},t));
     }
+    /* The interactive blocks. A paragraph can teach a thing; only one of these
+       can tell you whether you took it. They sit inline, where the idea was
+       just explained, rather than being saved up for the end of the chapter. */
+    else if(k==='q')f.appendChild(cpQuestion(r.flat()));
+    else if(k==='pred')f.appendChild(cpPredict(r[0]));
+    else if(k==='try')f.appendChild(cpTry(r[0]));
+    else if(k==='lab'){const b=r[0]==='redmap'?redMapBlock():labBlock(r[0]); if(b)f.appendChild(b);}
   });
   return f;
 }
+
+/* ---------------- never a dead end ----------------
+
+   The single most common moment a reader gives up is meeting a word they do not
+   know and having nowhere to go with it. So the first time a chapter uses a
+   term that is defined anywhere in this book, the word itself becomes tappable:
+   a plain-language definition appears in place, with the chapter that teaches it
+   properly. Forward references are marked as such rather than hidden, because
+   "you will build this in Chapter 7" is itself an answer — it tells you that not
+   knowing it yet is expected rather than a gap in you. */
+
+let TERMS=null;
+function termIndex(){
+  if(TERMS) return TERMS;
+  const map=new Map();
+  const add=(raw,def,ch)=>{
+    /* "Model / LLM" and "Top-k (k)" name the same idea more than one way */
+    String(raw).split(/\s*\/\s*/).forEach(part=>{
+      const forms=[part.replace(/\s*\([^)]*\)\s*/g,' ').trim()];
+      const paren=part.match(/\(([^)]+)\)/);
+      if(paren) forms.push(paren[1].trim());
+      forms.filter(f=>f.length>2).forEach(f=>{
+        const k=f.toLowerCase();
+        if(!map.has(k)) map.set(k,{term:f,def,ch});
+      });
+    });
+  };
+  (window.GLOSSARY||[]).forEach(([t,d,ch])=>add(t,d,ch));
+  /* a chapter's own vocabulary list covers anything the glossary misses */
+  (window.CHAPTERS||[]).forEach(c=>(c.words||[]).forEach(([t,d])=>{
+    if(!map.has(String(t).toLowerCase())) add(t,d,c.num);
+  }));
+  TERMS=[...map.values()].sort((a,b)=>b.term.length-a.term.length);
+  return TERMS;
+}
+
+let popEl=null;
+function closeTerm(){ if(popEl){popEl.remove();popEl=null;} }
+document.addEventListener('click',e=>{ if(popEl && !popEl.contains(e.target) && !e.target.closest('.term')) closeTerm(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeTerm(); });
+
+function openTerm(btn,entry,here){
+  closeTerm();
+  const ahead = entry.ch && here && entry.ch > here;
+  popEl=h('div',{class:'termpop'},[
+    h('div',{class:'termhead'},[
+      h('strong',{text:entry.term}),
+      entry.ch?h('a',{class:'termch',href:'#/ch/ch'+entry.ch,
+        text:(ahead?'you build this in ':'explained in ')+'Chapter '+entry.ch}):null]),
+    h('p',{html:entry.def}),
+    ahead?h('p',{class:'termahead',
+      text:'You are not meant to know this yet. Carry the one-line version and keep going.'}):null,
+    h('button',{class:'sm',onclick:closeTerm},'Got it')]);
+  btn.appendChild(popEl);
+  /* keep it on screen on a narrow phone */
+  const r=popEl.getBoundingClientRect();
+  if(r.right>innerWidth-8) popEl.style.left=Math.max(8-btn.getBoundingClientRect().left,-r.width+60)+'px';
+}
+
+const SKIP_TERMS=new Set(['PRE','CODE','BUTTON','A','TEXTAREA','INPUT','DT','SUMMARY']);
+/* Enough marks that nothing goes unexplained, few enough that a paragraph still
+   reads as prose rather than as a field of links. */
+const PER_BLOCK=4;
+/* `seen` is shared across a whole chapter, so a term is marked once — enough to
+   be discoverable, not so often the page looks like a minefield. */
+function markTerms(root, seen, here){
+  const terms=termIndex();
+  if(!terms.length) return root;
+  const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{
+    acceptNode(n){
+      if(!n.nodeValue||n.nodeValue.length<3) return NodeFilter.FILTER_REJECT;
+      for(let p=n.parentNode;p&&p!==root;p=p.parentNode)
+        if(SKIP_TERMS.has(p.nodeName)||(p.classList&&p.classList.contains('noterm')))
+          return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;
+    }});
+  const targets=[];
+  while(walker.nextNode()) targets.push(walker.currentNode);
+  const esc=t=>t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  const button=(entry,word)=>{
+    const btn=h('button',{class:'term',type:'button',title:'What does this mean?',
+      onclick:e=>{e.stopPropagation();
+        if(btn.querySelector('.termpop')) closeTerm(); else openTerm(btn,entry,here);}},word);
+    return btn;
+  };
+  targets.forEach(node=>{
+    const text=node.nodeValue;
+    const marks=[];
+    for(const entry of terms){
+      if(marks.length>=PER_BLOCK) break;
+      const k=entry.term.toLowerCase();
+      if(seen.has(k)) continue;
+      const m=new RegExp('\\b'+esc(entry.term)+'\\b','i').exec(text);
+      if(!m) continue;
+      const start=m.index, end=start+m[0].length;
+      /* terms are sorted longest first, so a longer phrase claims its span
+         before a word inside it can */
+      if(marks.some(x=>start<x.end&&end>x.start)) continue;
+      marks.push({start,end,entry,word:m[0]});
+      seen.add(k);
+    }
+    if(!marks.length) return;
+    marks.sort((a,b)=>a.start-b.start);
+    const frag=document.createDocumentFragment();
+    let pos=0;
+    marks.forEach(mk=>{
+      if(mk.start>pos) frag.appendChild(document.createTextNode(text.slice(pos,mk.start)));
+      frag.appendChild(button(mk.entry,mk.word));
+      pos=mk.end;
+    });
+    if(pos<text.length) frag.appendChild(document.createTextNode(text.slice(pos)));
+    node.parentNode.replaceChild(frag,node);
+  });
+  return root;
+}
+
+/* ---------------- inline checkpoints ---------------- */
+function lastAttempt(id){
+  for(let i=S.att.length-1;i>=0;i--) if(S.att[i].i===id) return S.att[i];
+  return null;
+}
+function cpHead(kind, note){
+  return h('div',{class:'cphead'},[h('span',{class:'cpk',text:kind}),
+    note?h('span',{class:'cpn',text:note}):null]);
+}
+
+/* A real question from the bank, asked here. Same engine as a drill: it moves
+   mastery, schedules its own review, and records how sure you were. */
+function cpQuestion(ids){
+  const box=h('div',{class:'cp'});
+  box.appendChild(cpHead('checkpoint', ids.length>1?ids.length+' questions':'counts towards your mastery'));
+  ids.forEach(id=>box.appendChild(qSlot(id)));
+  return box;
+}
+function qSlot(id){
+  const slot=h('div',{class:'qslot'});
+  function draw(force){
+    slot.innerHTML='';
+    const it=window.ENG&&window.ENG.byItem[id];
+    if(!it){slot.appendChild(h('p',{class:'dim',text:'Question '+id+' is not in the bank.'}));return;}
+    const shown=force?null:S.cp['shown:'+id];
+    if(shown && !lastAttempt(id)){
+      slot.appendChild(h('div',{class:'qdone'},[
+        h('div',{class:'qparked'},[
+          h('span',{class:'pill',text:shown.skipped?'parked for later':'answer shown'}),
+          h('span',{text:shown.skipped
+            ? 'You set this aside. It is not a gap in your record — it will come back.'
+            : 'Shown rather than answered, so nothing was scored against you.'})]),
+        h('div',{class:'qstem qsm',html:it.stem}),
+        shown.skipped?null:h('div',{class:'why'},[
+          h('span',{class:'lbl',text:it.type==='judge'?'Model answer':'Why'}),
+          h('p',{html:it.type==='judge'?it.ans:(it.why||'')})]),
+        h('button',{class:'sm',onclick:()=>{delete S.cp['shown:'+id];save();draw(true);
+          updateProgress();refreshCpBars();}},'Try it properly now')]));
+      return;
+    }
+    const a=force?null:lastAttempt(id);
+    if(a){
+      slot.appendChild(h('div',{class:'qdone'},[
+        h('div',{class:'qmeta'},[
+          h('span',{class:'pill '+(a.k?'ok':'red'),text:a.k?'answered · correct':'answered · missed'}),
+          h('span',{class:'dim',style:'font-size:.75rem',text:relTime(a.t)})]),
+        h('div',{class:'qstem qsm',html:it.stem}),
+        h('div',{class:'why'},[h('span',{class:'lbl',text:it.type==='judge'?'Model answer':'Why'}),
+          h('p',{html:it.type==='judge'?it.ans:(it.why||'')})]),
+        h('button',{class:'sm',onclick:()=>draw(true)},'Ask me again')]));
+      return;
+    }
+    const card=window.VIEWS.questionCard(it,{inline:true,
+      onSettled:()=>{updateProgress();refreshCpBars();}});
+    slot.appendChild(card);
+    /* The way out that is not the close button.
+
+       Being stuck on a question is the moment people leave, and the only thing
+       that reliably prevents it is somewhere else to go that is still inside
+       the app. Neither of these is scored: being shown a worked answer is not
+       the same as claiming you knew it, so mastery is untouched and the
+       question comes back later, which is what you would want anyway. */
+    const stuck=h('div',{class:'stuck'},[h('span',{class:'stucklbl',text:'Stuck?'})]);
+    const note=h('p',{class:'stucknote'});
+    stuck.append(
+      h('button',{class:'sm',onclick:()=>{
+        S.cp['shown:'+id]={v:'shown',at:Date.now()};
+        if(window.ENG.scheduleItem) window.ENG.scheduleItem(S,id,2);   // resurface soon
+        save();
+        card.querySelectorAll('button,input,textarea').forEach(x=>x.disabled=true);
+        card.appendChild(h('div',{class:'why'},[
+          h('span',{class:'lbl',text:it.type==='judge'?'Model answer':'The answer, and why'}),
+          h('p',{html:it.type==='judge'?it.ans:(it.why||'')})]));
+        stuck.querySelectorAll('button').forEach(b=>b.remove());
+        note.textContent='Shown, not scored — your mastery is untouched. It will come back in a day or two, and you will probably have it then.';
+        updateProgress(); refreshCpBars();
+      }},'Show me the answer'),
+      h('button',{class:'sm',onclick:()=>{
+        S.cp['shown:'+id]={v:'parked',skipped:true,at:Date.now()};
+        save(); draw();
+        updateProgress(); refreshCpBars();
+      }},'Park it and move on'),
+      note);
+    slot.appendChild(stuck);
+  }
+  draw();
+  return slot;
+}
+
+/* Predict, then look. Writing a number down before you see the answer is what
+   turns reading into a measurement of your own intuition — and the gap between
+   the two is the thing worth knowing. */
+function cpPredict(o){
+  const box=h('div',{class:'cp cp-pred'});
+  function draw(){
+    box.innerHTML='';
+    box.appendChild(cpHead('predict','commit before you look'));
+    box.appendChild(h('div',{class:'prose cpq',html:o.ask}));
+    const cur=S.cp[o.id];
+    if(cur&&cur.v!=null){
+      box.appendChild(h('div',{class:'cpans'},[
+        h('span',{class:'lbl',text:'You predicted'}),h('p',{text:cur.v})]));
+      box.appendChild(h('div',{class:'why'},[
+        h('span',{class:'lbl',text:'What actually happens'}),h('p',{html:o.reveal})]));
+      if(o.then)box.appendChild(h('p',{class:'prose cpthen',html:o.then}));
+      box.appendChild(h('button',{class:'sm',onclick:()=>{delete S.cp[o.id];save();draw();refreshCpBars();}},
+        'Predict again'));
+      return;
+    }
+    const inp=o.short
+      ? h('input',{type:'text',placeholder:o.ph||'Your prediction'})
+      : h('textarea',{rows:3,placeholder:o.ph||'Your prediction — one line is enough'});
+    const go=h('button',{class:'primary',disabled:'true',onclick:()=>{
+      S.cp[o.id]={v:inp.value.trim(),at:Date.now()};save();draw();updateProgress();refreshCpBars();}},
+      'Commit prediction');
+    inp.addEventListener('input',()=>{go.disabled=inp.value.trim().length<1;});
+    box.append(inp,go);
+  }
+  draw();
+  return box;
+}
+
+/* A small piece of work, done here, kept. Not graded — the point is that you
+   produced something rather than recognised something. */
+function cpTry(o){
+  const box=h('div',{class:'cp cp-try'});
+  function draw(){
+    box.innerHTML='';
+    box.appendChild(cpHead('your turn', o.mins?('~'+o.mins+' min'):null));
+    box.appendChild(h('div',{class:'prose cpq',html:o.task}));
+    const cur=S.cp[o.id]||{};
+    const ta=h('textarea',{rows:o.rows||4,placeholder:o.ph||'Write it here'});
+    ta.value=cur.v||'';
+    const saved=h('span',{class:'saved',text:'saved'});
+    let t=null;
+    ta.addEventListener('input',()=>{
+      clearTimeout(t);
+      t=setTimeout(()=>{S.cp[o.id]={v:ta.value,at:Date.now()};save();flash(saved);
+        gate();updateProgress();refreshCpBars();},400);
+    });
+    box.appendChild(ta);
+    const row=h('div',{class:'cprow'});
+    const rev=h('button',{class:'sm',onclick:()=>{
+      rev.remove();
+      box.appendChild(h('div',{class:'why'},[
+        h('span',{class:'lbl',text:'What a strong answer contains'}),h('p',{html:o.after})]));
+    }},'Show what a strong answer contains');
+    function gate(){
+      const enough=(ta.value||'').trim().length>=(o.min||15);
+      rev.disabled=!enough;
+      rev.title=enough?'':'Write your own answer first — that is the whole exercise.';
+    }
+    if(o.after){row.appendChild(rev);gate();}
+    row.appendChild(saved);
+    box.appendChild(row);
+  }
+  draw();
+  return box;
+}
+
+function relTime(t){
+  const s=Math.floor((Date.now()-t)/1000);
+  if(s<3600)return Math.max(1,Math.floor(s/60))+' min ago';
+  if(s<86400)return Math.floor(s/3600)+' h ago';
+  return Math.floor(s/86400)+' d ago';
+}
+
+/* Every interactive block in a chapter, and how many are behind you. */
+function cpWalk(c){
+  const out=[];
+  const scan=list=>(list||[]).forEach(b=>{
+    if(!Array.isArray(b))return;
+    if(b[0]==='q')b.slice(1).flat().forEach(id=>out.push({k:'q',id}));
+    else if(b[0]==='pred'||b[0]==='try')out.push({k:b[0],id:b[1].id});
+  });
+  scan(c.story);
+  (c.handson||[]).forEach(st=>scan(st.b));
+  return out;
+}
+function cpProgress(c){
+  const all=cpWalk(c);
+  const done=all.filter(x=>x.k==='q'
+    ? (!!lastAttempt(x.id) || !!S.cp['shown:'+x.id])
+    : !!(S.cp[x.id]&&String(S.cp[x.id].v||'').trim())).length;
+  return {total:all.length, done};
+}
+let cpBars=[];
+function refreshCpBars(){ cpBars.forEach(f=>{try{f();}catch(e){}}); }
 
 function labBlock(key){
   const L=(window.LABS||{})[key]; if(!L)return null;
@@ -137,25 +453,109 @@ function sectionHead(idx,title,time){
 function renderChapter(c){
   const w=h('div',{class:'wrap'});
   const part=window.PARTS[c.part-1];
+  cpBars=[];                       // stale refreshers from the last chapter
   w.appendChild(h('header',{class:'chead'},[
-    h('div',{class:'eyebrow'},[h('span',{text:'Part '+['I','II','III'][c.part-1]+' · '+part.title}),
+    h('div',{class:'eyebrow'},[h('span',{text:'Part '+ROMAN(c.part)+' · '+part.title}),
       h('span',{class:'dot'}),h('span',{text:'~'+c.minutes+' min'}),
       h('span',{class:'dot'}),h('span',{text:'one sitting'})]),
     h('div',{class:'chnum',text:String(c.num).padStart(2,'0')}),
     h('h1',{text:c.title}),
     h('p',{class:'concept',text:c.concept})]));
 
+  /* What this chapter stands on.
+
+     A word you do not know announces itself; a concept you missed three
+     chapters ago does not — the sentence still parses, so you read on and
+     understand a little less each paragraph until the whole thing feels like it
+     was written for somebody else. Naming the load-bearing ideas up front makes
+     losing the thread visible, and going back a normal move rather than an
+     admission. */
+  /* The declared prerequisites are the two or three ideas you genuinely cannot
+     proceed without — a curated list, because a wall of ten is its own way of
+     losing someone. But a chapter also mentions others in passing, and a
+     reader who does not recognise one of those has the same problem in a
+     smaller size. So the rest are derived from the prose itself, every render:
+     nothing to maintain, and it cannot drift from what the chapter actually
+     says. */
+  const alsoRefs=(()=>{
+    const declared=new Set((c.needs||[]).map(n=>n[2]));
+    const text=[];
+    const push=b=>{ if(!Array.isArray(b))return; const [k,...r]=b;
+      if(k==='p'||k==='key'||k==='x')text.push(String(r[0]||''));
+      else if(k==='l'||k==='n')text.push((r[0]||[]).join(' '));
+      else if(k==='c')text.push(String(r[1]||''));
+      else if(k==='pred')text.push([r[0].ask,r[0].reveal,r[0].then].filter(Boolean).join(' '));
+      else if(k==='try')text.push([r[0].task,r[0].after].filter(Boolean).join(' ')); };
+    (c.story||[]).forEach(push);
+    (c.handson||[]).forEach(st=>(st.b||[]).forEach(push));
+    const joined=text.join(' ').replace(/<[^>]+>/g,' ');
+    const found=new Set();
+    const re=/Chapters?\s*\.?\s*\d+(?:\s*(?:,|and|to|–|-)\s*\d+)*/gi;
+    let m;
+    while((m=re.exec(joined))!==null)
+      (m[0].match(/\d+/g)||[]).forEach(n=>{const v=+n;
+        if(v<c.num && !declared.has(v) && byId['ch'+v]) found.add(v);});
+    return [...found].sort((a,b)=>a-b);
+  })();
+
+  if((c.needs||[]).length||alsoRefs.length){
+    const nd=h('section',{class:'needs'});
+    nd.appendChild(h('div',{class:'needshead'},[
+      h('span',{class:'cplbl',text:'This chapter stands on'}),
+      h('span',{class:'dim',style:'font-size:.78rem',
+        text:'if any of these are blank, go back first — that is the fast route, not the slow one'})]));
+    if((c.needs||[]).length)
+      nd.appendChild(h('ul',{class:'needlist'},c.needs.map(([what,why,ch])=>
+        h('li',{},[
+          h('div',{},[h('strong',{text:what}),
+            h('span',{class:'needwhy',text:' — '+why})]),
+          h('a',{class:'chip',href:'#/ch/ch'+ch,text:'Chapter '+ch+' →'})]))));
+    if(alsoRefs.length){
+      const row=h('div',{class:'alsoref'},[
+        h('span',{class:'needwhy',text:'It also refers back to '})]);
+      alsoRefs.forEach((n,i)=>{
+        row.appendChild(h('a',{href:'#/ch/ch'+n,text:'Chapter '+n}));
+        if(i<alsoRefs.length-2) row.appendChild(document.createTextNode(', '));
+        else if(i===alsoRefs.length-2) row.appendChild(document.createTextNode(' and '));
+      });
+      row.appendChild(document.createTextNode('. Any of those a blank? Open it in a second tab rather than pushing on.'));
+      nd.appendChild(row);
+    }
+    w.appendChild(nd);
+  }
+
+  /* A chapter is not a thing you read to the end of; it is a thing you answer
+     your way through. This says how far through the answering you are. */
+  const cpStrip=h('div',{class:'cpstrip'});
+  const drawStrip=()=>{
+    const {total,done}=cpProgress(c);
+    cpStrip.innerHTML='';
+    if(!total){cpStrip.hidden=true;return;}
+    cpStrip.hidden=false;
+    cpStrip.append(
+      h('span',{class:'cplbl',text:'Checkpoints'}),
+      h('span',{class:'bar',style:'flex:1;max-width:220px'},
+        [h('i',{style:'width:'+Math.round(done/total*100)+'%'})]),
+      h('span',{class:'cpcount mono',text:done+' / '+total}),
+      h('span',{class:'dim',style:'font-size:.78rem',
+        text:done>=total?'all done — the questions still come back for review'
+          :'answer them as you meet them, not at the end'}));
+  };
+  drawStrip(); cpBars.push(drawStrip);
+  w.appendChild(cpStrip);
+
   let n=1;
   // Story
   const story=h('section',{class:'part',id:'story'});
   story.appendChild(sectionHead(c.num+'.'+n++,'The Story'));
-  story.appendChild(h('div',{class:'prose'},[blocks(c.story)]));
+  const seenTerms=new Set();
+  story.appendChild(markTerms(h('div',{class:'prose'},[blocks(c.story)]),seenTerms,c.num));
   w.appendChild(story);
 
   // Words
   const words=h('section',{class:'part',id:'words'});
   words.appendChild(sectionHead(c.num+'.'+n++,'Words You Now Own'));
-  words.appendChild(h('dl',{class:'words'},c.words.map(([t,d])=>
+  words.appendChild(h('dl',{class:'words noterm'},c.words.map(([t,d])=>
     h('div',{class:'word'},[h('dt',{text:t}),h('dd',{html:d})]))));
   w.appendChild(words);
 
@@ -164,7 +564,7 @@ function renderChapter(c){
   ho.appendChild(sectionHead(c.num+'.'+n++,'Hands-On','~'+Math.round(c.minutes*0.6)+' min'));
   c.handson.forEach(s=>{
     const st=h('div',{class:'step'},[h('h3',{text:s.h})]);
-    st.appendChild(h('div',{class:'prose'},[blocks(s.b)]));
+    st.appendChild(markTerms(h('div',{class:'prose'},[blocks(s.b)]),seenTerms,c.num));
     ho.appendChild(st);
   });
   (c.labs||[]).forEach(k=>{const b=k==='redmap'?redMapBlock():labBlock(k);if(b)ho.appendChild(b);});
@@ -317,7 +717,7 @@ function pageHome(){
   const w=h('div',{class:'wrap-wide'});
   const doneN=CH.filter(c=>S.done[c.id]).length;
   w.appendChild(h('header',{class:'hero'},[
-    h('div',{class:'kicker',text:'Reference library · 18 chapters'}),
+    h('div',{class:'kicker',text:'Reference library · '+CH.length+' chapters'}),
     h('h1',{text:'The Library'}),
     h('p',{class:'sub',html:'The knowledge base behind the tracker. You do not read it front to back — the dashboard sends you to the chapter that moves the skill you are weakest in.'}),
     h('div',{style:'display:flex;gap:.6rem;flex-wrap:wrap'},[
@@ -328,7 +728,7 @@ function pageHome(){
 
   w.appendChild(h('div',{class:'meta'},[
     h('div',{},[h('span',{class:'l',text:'For'}),h('span',{class:'v',text:'Product managers, analysts, consultants, team leads'})]),
-    h('div',{},[h('span',{class:'l',text:'Length'}),h('span',{class:'v',text:'18 chapters · one per sitting'})]),
+    h('div',{},[h('span',{class:'l',text:'Length'}),h('span',{class:'v',text:CH.length+' chapters · one per sitting'})]),
     h('div',{},[h('span',{class:'l',text:'Prerequisites'}),h('span',{class:'v',text:'A browser, a Google account, a willingness to type'})]),
     h('div',{},[h('span',{class:'l',text:'Cost'}),h('span',{class:'v',text:'None — free tiers throughout'})])]));
 
@@ -341,7 +741,7 @@ function pageHome(){
   window.PARTS.forEach(p=>{
     const chs=CH.filter(c=>c.part===p.n);
     w.appendChild(h('div',{class:'partcard'},[
-      h('div',{class:'pn',text:'Part '+['I','II','III'][p.n-1]+' — Chapters '+chs[0].num+'–'+chs[chs.length-1].num}),
+      h('div',{class:'pn',text:'Part '+ROMAN(p.n)+' — Chapters '+chs[0].num+'–'+chs[chs.length-1].num}),
       h('h3',{text:p.title}),h('p',{text:p.blurb}),
       h('div',{class:'chips'},chs.map(c=>h('a',{class:'chip'+(S.done[c.id]?' done':''),
         href:'#/ch/'+c.id,text:c.num+'. '+c.title})))]));
@@ -696,7 +1096,7 @@ function pageProgress(){
     const d=chs.filter(c=>S.done[c.id]).length;
     byPart.appendChild(h('div',{class:'card'},[
       h('div',{style:'display:flex;align-items:baseline;gap:.6rem'},[
-        h('h3',{style:'flex:1',text:'Part '+['I','II','III'][p.n-1]+' — '+p.title}),
+        h('h3',{style:'flex:1',text:'Part '+ROMAN(p.n)+' — '+p.title}),
         h('span',{class:'mono dim',style:'font-size:.75rem',text:d+'/'+chs.length})]),
       h('div',{class:'bar',style:'margin:.5rem 0 .7rem'},
         [h('i',{style:'width:'+(d/chs.length*100)+'%'})]),
@@ -780,7 +1180,7 @@ function renderRail(){
   r.appendChild(sec('Author',[
     ['#/studio','✦','Content Studio'+(nd?'  ('+nd+' draft'+(nd>1?'s':'')+')':'')]]));
   r.appendChild(sec('Reference',[
-    ['#/library','▤','Library — 18 chapters'],['#/setup','A','Setup'],
+    ['#/library','▤','Library — '+CH.length+' chapters'],['#/setup','A','Setup'],
     ['#/vendor','⌗','Vendor Deck'],['#/glossary','∎','Glossary'],
     ['#/notebook','✐','Notebook'],['#/later','⋯','LATER Page']]));
 }
@@ -812,7 +1212,7 @@ function route(){
   let node,crumb='Dashboard';
   if(parts[0]==='ch'&&byId[parts[1]]){
     const c=byId[parts[1]];node=renderChapter(c);
-    crumb='Part '+['I','II','III'][c.part-1]+' · Chapter '+c.num;
+    crumb='Part '+ROMAN(c.part)+' · Chapter '+c.num;
     document.title=c.num+'. '+c.title+' — AI From Zero';
   } else if(parts[0]==='practice'){
     node = parts[1] ? V().practice(parts[1],parts[2]) : V().practiceMenu();
@@ -849,7 +1249,7 @@ function buildIndex(){
   idx.push({k:'page',t:'Dashboard',h:'#/'},{k:'page',t:'Practice',h:'#/practice'},
     {k:'page',t:'Skill Matrix',h:'#/skills'},{k:'page',t:'Analytics',h:'#/analytics'},
     {k:'page',t:'Exercises',h:'#/exercises'},{k:'page',t:'Processes',h:'#/processes'},
-    {k:'page',t:'Library — 18 chapters',h:'#/library'},
+    {k:'page',t:'Library — '+CH.length+' chapters',h:'#/library'},
     {k:'page',t:'Progress & Backup',h:'#/data'},
     {k:'page',t:'Content Studio — edit the curriculum',h:'#/studio'},
     {k:'page',t:'Setup',h:'#/setup'},

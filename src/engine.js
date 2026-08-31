@@ -245,13 +245,111 @@ function accuracyByDay(S, nDays){
   }
   return out;
 }
-function streak(S){
-  const set=new Set(S.att.map(x=>Math.floor(x.t/DAY)));
+/* A streak that snaps on one missed evening is a reason to stop entirely — the
+   day after you break it, the cost of returning has gone up rather than down.
+   So one rest day is absorbed rather than fatal, and reported honestly. */
+function activeDays(S){
+  const set=new Set((S.att||[]).map(x=>Math.floor(x.t/DAY)));
   (S.sess||[]).forEach(s=>set.add(Math.floor(s.t/DAY)));
-  let d=Math.floor(now()/DAY), n=0;
+  (S.sittings||[]).forEach(s=>set.add(Math.floor(s.at/DAY)));
+  Object.values(S.cp||{}).forEach(v=>{ if(v&&v.at) set.add(Math.floor(v.at/DAY)); });
+  return set;
+}
+function streak(S){
+  const set=activeDays(S);
+  let d=Math.floor(now()/DAY), n=0, rest=0;
   if(!set.has(d)) d--;                       // today not yet practised is fine
-  while(set.has(d)){ n++; d--; }
+  while(true){
+    if(set.has(d)){ n++; d--; continue; }
+    if(!rest && n && set.has(d-1)){ rest=1; d--; continue; }   // one rest day
+    break;
+  }
   return n;
+}
+/* the same walk, but saying whether a rest day is holding it together */
+function streakDetail(S){
+  const set=activeDays(S);
+  let d=Math.floor(now()/DAY), n=0, rest=0;
+  if(!set.has(d)) d--;
+  while(true){
+    if(set.has(d)){ n++; d--; continue; }
+    if(!rest && n && set.has(d-1)){ rest=1; d--; continue; }
+    break;
+  }
+  return {days:n, rest, today:set.has(Math.floor(now()/DAY))};
+}
+function daysSinceActive(S){
+  const set=activeDays(S);
+  if(!set.size) return null;
+  return Math.floor(now()/DAY) - Math.max(...set);
+}
+
+/* ---------- the smallest next step ----------
+   Never a wall. Whatever state the tracker is in, there is one concrete action
+   with a name and a number of minutes on it, plus a two-minute version of the
+   same for an evening with nothing left in it. */
+function chapterBlocks(c){
+  const out=[];
+  (c.story||[]).forEach(b=>{ if(Array.isArray(b)) out.push(b); });
+  (c.handson||[]).forEach(s=>(s.b||[]).forEach(b=>{ if(Array.isArray(b)) out.push(b); }));
+  return out;
+}
+const MINUTES={q:1.5, pred:1, try:3};
+function chapterProgress(S, c){
+  let total=0, done=0, mins=0, firstOpen=null;
+  chapterBlocks(c).forEach(b=>{
+    const kind=b[0];
+    if(kind==='q'){
+      b.slice(1).flat().forEach(id=>{
+        total++; mins+=MINUTES.q;
+        const seen=(S.att||[]).some(a=>a.i===id) || (S.cp||{})['shown:'+id];
+        if(seen) done++; else if(!firstOpen) firstOpen={kind:'q', id};
+      });
+    } else if(kind==='pred'||kind==='try'){
+      total++; mins+=MINUTES[kind];
+      const v=(S.cp||{})[b[1]&&b[1].id];
+      if(v && (String(v.v||'').trim()||v.skipped)) done++;
+      else if(!firstOpen) firstOpen={kind, id:b[1]&&b[1].id};
+    }
+  });
+  const left=total-done;
+  return {total, done, left, firstOpen,
+    minutesLeft: Math.max(1, Math.round(total?mins*(left/total):0))};
+}
+/* The chapter you are in the middle of, else the next one you have not finished. */
+function currentChapter(S){
+  const chs=(window.CHAPTERS||[]).slice().sort((a,b)=>a.num-b.num);
+  let firstUnfinished=null;
+  for(const c of chs){
+    const p=chapterProgress(S,c);
+    if(p.done>0 && p.left>0) return {c, p, started:true};
+    if(!firstUnfinished && (p.left>0 || !S.done[c.id])) firstUnfinished={c, p, started:false};
+  }
+  return firstUnfinished;
+}
+function resume(S){
+  const due=dueList(S).length;
+  const cur=currentChapter(S);
+  const steps=[];
+  if(cur && cur.started) steps.push({
+    lead:true, kind:'chapter',
+    title:'Pick up Chapter '+cur.c.num,
+    d:cur.p.left+' checkpoint'+(cur.p.left>1?'s':'')+' left in “'+cur.c.title+'”',
+    mins:cur.p.minutesLeft, h:'#/ch/'+cur.c.id});
+  if(due) steps.push({kind:'due', title:due+' due for review',
+    d:'Questions you have met before, resurfacing before they fade.',
+    mins:Math.max(1,Math.round(due*1.5)), h:'#/practice/due'});
+  if(cur && !cur.started) steps.push({
+    lead:!steps.length, kind:'chapter', title:(cur.c.num===0?'Start here':'Begin Chapter '+cur.c.num),
+    d:'“'+cur.c.title+'” — '+cur.p.total+' checkpoints as you read',
+    mins:cur.c.minutes||30, h:'#/ch/'+cur.c.id});
+  /* the version for an evening with nothing left in it */
+  const tiny = due
+    ? {title:'One question', d:'A single review item. Two minutes, and the day counts.', mins:2, h:'#/practice/due'}
+    : cur ? {title:'One checkpoint', d:'Open Chapter '+cur.c.num+' and answer the next box. Then stop.',
+        mins:2, h:'#/ch/'+cur.c.id}
+      : null;
+  return {steps, tiny, lapsedDays: daysSinceActive(S)};
 }
 function domainMastery(S){
   return window.DOMAINS.map(dm=>{
@@ -330,6 +428,7 @@ function exScore(e, iter){
 
 return {get ITEMS(){return ITEMS;}, byItem, bySkill, SK, DAY, reinit,
   shown, levelOf, nextBand, skillState, decayFactor,
+  streakDetail, daysSinceActive, chapterProgress, currentChapter, resume,
   buildSession, grade, submit, scheduleItem, srs, dueList, dueForecast,
   calibrationCurve, brier, overconfidence, CONF,
   accuracyByDay, streak, domainMastery, overall, velocity, timeInvested,

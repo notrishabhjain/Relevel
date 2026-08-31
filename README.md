@@ -2,10 +2,11 @@
 
 An interactive **skill tracker** for product managers working on AI, delivered as a
 single self-contained web portal. The primary object is a *skill*, not a chapter:
-thirty tracked competencies whose mastery is earned by measured evidence, decays
-without practice, and is drilled through a 137-item assessment bank.
+thirty-two tracked competencies whose mastery is earned by measured evidence, decays
+without practice, and is drilled through a 149-item assessment bank — most of which
+you meet inside the reading rather than only in a separate drill.
 
-The eighteen-chapter curriculum — the original seven-chapter *AI From Zero* (v2.0)
+The twenty-chapter curriculum — the original seven-chapter *AI From Zero* (v2.0)
 extended to cover 2027 topics — is the reference library behind it. You do not read
 it front to back; the dashboard sends you to the chapter that moves the skill you are
 weakest in.
@@ -27,8 +28,9 @@ were right but whether you *knew* you were — and reports your overconfidence i
 
 | Layer | What it does |
 | --- | --- |
-| **30 skills** in 6 domains | Each with behavioural L1–L4 descriptors, mapped to chapters, labs and exercises |
-| **137 assessment items** | Five types: multiple choice, select-all, numeric estimation, ordering, and open judgment scored against a model answer. 60% are analysis-level |
+| **32 skills** in 6 domains | Each with behavioural L1–L4 descriptors, mapped to chapters, labs and exercises |
+| **149 assessment items** | Five types: multiple choice, select-all, numeric estimation, ordering, and open judgment scored against a model answer. 60% are analysis-level |
+| **173 checkpoints in the reading** | Chapters interrupt themselves: a question from the bank where the idea was just explained, a prediction committed before the answer unlocks, or a short piece of writing whose model answer stays locked until you have written your own |
 | **Mastery model** | Gain scales with item difficulty and shrinks as mastery rises; decays to a 70% floor with time since practice |
 | **Spaced repetition** | SM-2 scheduler per item, with a 21-day review forecast |
 | **Calibration** | Brier score and a calibration curve; tells you if your confidence is systematically wrong |
@@ -42,6 +44,7 @@ were right but whether you *knew* you were — and reports your overconfidence i
 | I — Foundations | 1–7 | The envelope, the briefing page, chunking, retrieval, embeddings, evaluation, RAG. Faithful to the source book. |
 | II — The Modern Stack | 8–13 | Structured output, tools and agents, context engineering, reasoning models, grown-up retrieval, prompt injection. |
 | III — The Instrument Panel | 14–18 | Evals at scale, unit economics, multimodal, governance, the AI PRD. |
+| IV — The Decisions That Stay Yours | 19–20 | Prompt vs. retrieve vs. tune vs. switch, and the interface contract for a system that is sometimes wrong. |
 
 Every new chapter follows the source book's seven-part structure exactly — The Story,
 Words You Now Own, Hands-On, If Something Goes Wrong, Homework, Check Yourself, Close
@@ -247,10 +250,10 @@ Home Screen** either way.
 ```
 src/
 ├── data/
-│   ├── skills.js       30 skills, 6 domains, L1-L4 descriptors
-│   ├── items1-3.js     137-item assessment bank
+│   ├── skills.js       32 skills, 6 domains, L1-L4 descriptors
+│   ├── items1-4.js     149-item assessment bank
 │   ├── work.js         14 exercises with rubrics, 5 processes
-│   ├── part1-3.js      Chapters 1-18 (the library)
+│   ├── part1-4.js      Chapters 1-20 (the library)
 │   └── reference.js    Setup, glossary, vendor deck, LATER page, red-map nodes
 ├── engine.js           Mastery + decay, SM-2, calibration, session building
 ├── remote.js           Account-backed storage client
@@ -271,6 +274,7 @@ api/
 └── content.js          the curriculum: public read, editor write, validated
 
 tools/
+├── content-check.mjs   structural checks on the curriculum itself
 ├── dev-server.js       local host with Postgres running in-process
 ├── api-test.mjs        API suite
 ├── browser-test.mjs    browser suite
@@ -281,7 +285,8 @@ vercel.json             build, function and header config
 ```
 
 Content is data, not markup. A chapter is an object using a small block grammar
-(`p`, `key`, `c`, `l`, `n`, `tb`, `code`, `x`); an assessment item is a single array
+(`p`, `key`, `c`, `l`, `n`, `tb`, `code`, `x`, plus the interactive `q`, `pred`, `try`
+and `lab`); an assessment item is a single array
 `[id, skill, difficulty, type, stem, options, answer, why]`. Adding a chapter, a skill
 or a question means adding an object — no HTML, no templates. The files under `src/data/`
 are the *defaults*: the build turns them into `content/defaults.json`, the database is

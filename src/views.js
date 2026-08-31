@@ -28,12 +28,55 @@ function lvlPill(m,n){
   return h('span',{class:'pill lv'+L, text:n?LN()[L]:'L'+L});
 }
 
+/* ---------------- resume, and coming back ---------------- */
+function resumePanel(st, eng){
+  const r=eng.resume(st);
+  const box=h('section',{class:'resume'});
+  const lapsed=r.lapsedDays;
+
+  /* Coming back after a gap is the most fragile moment there is, so it does not
+     open with what decayed. */
+  if(lapsed!=null && lapsed>=5){
+    box.appendChild(h('div',{class:'backhead'},[
+      h('h2',{text:lapsed>=30?'Welcome back.':'Good to see you again.'}),
+      h('p',{html:'It has been '+lapsed+' days. Nothing is lost — every answer you '+
+        'gave is still there, and the questions you had started to forget have simply '+
+        'come back round for review, which is what they were always going to do. '+
+        '<strong>You do not restart anything.</strong>'})]));
+  }
+
+  const lead=r.steps[0];
+  if(!lead){
+    box.appendChild(h('p',{class:'prose',text:'You have finished everything currently queued. The review items will come back on their own.'}));
+    return box;
+  }
+  box.appendChild(h('div',{class:'resumelead'},[
+    h('div',{style:'flex:1;min-width:0'},[
+      h('span',{class:'cplbl',text:lapsed!=null&&lapsed>=5?'Start again here':'Next'}),
+      h('h3',{text:lead.title}),
+      h('p',{text:lead.d})]),
+    h('div',{class:'resumego'},[
+      h('span',{class:'mins',text:'~'+lead.mins+' min'}),
+      h('a',{class:'btnlink',href:lead.h,text:'Open →'})])]));
+
+  if(r.tiny) box.appendChild(h('div',{class:'tiny'},[
+    h('span',{class:'tinylbl',text:'Not tonight?'}),
+    h('p',{html:'Then do the smallest version instead. <strong>'+esc2(r.tiny.title)+
+      '</strong> — '+esc2(r.tiny.d)}),
+    h('a',{class:'chip',href:r.tiny.h,text:'Two minutes →'})]));
+
+  if(r.steps.length>1) box.appendChild(h('div',{class:'alsorow'},
+    r.steps.slice(1,3).map(s2=>h('a',{class:'chip',href:s2.h,
+      text:s2.title+' · ~'+s2.mins+' min'}))));
+  return box;
+}
+
 /* ================= DASHBOARD ================= */
 function dashboard(){
   const st=S(), eng=E();
   const w=h('div',{class:'wrap-wide'});
   const ov=eng.overall(st), dm=eng.domainMastery(st);
-  const due=eng.dueList(st).length, str=eng.streak(st);
+  const due=eng.dueList(st).length, sd=eng.streakDetail(st);
   const tested=window.SKILLS.filter(s=>eng.skillState(st,s.id).n>0).length;
   const oc=eng.overconfidence(st);
   const vel=eng.velocity(st);
@@ -43,13 +86,23 @@ function dashboard(){
       h('div',{class:'eyebrow'},[h('span',{text:'Skill tracker'}),h('span',{class:'dot'}),
         h('span',{text:new Date().toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'long'})})]),
       h('h1',{text:'Where you actually are'}),
-      h('p',{class:'dash-sub',html:'Thirty tracked skills. Mastery moves on measured evidence and decays without practice — so this number is a claim about <em>now</em>, not a record of what you once read.'})]),
+      h('p',{class:'dash-sub',html:window.SKILLS.length+' tracked skills. Mastery moves on measured evidence and decays without practice — so this number is a claim about <em>now</em>, not a record of what you once read.'})]),
     h('div',{class:'bigring'},[ring(ov), h('span',{class:'ringlab',text:'overall mastery'})])]));
+
+  /* The one thing to do next, named and timed.
+
+     The dashboard used to open with numbers, which is fine on a good day and
+     actively repelling on a bad one — a wall of measurements you are behind on
+     is a reason to close the tab. This comes first instead: one action, one
+     time estimate, and a smaller version of it for an evening with nothing
+     left in it. */
+  w.appendChild(resumePanel(st, eng));
 
   w.appendChild(h('div',{class:'stats'},[
     tile('skills measured',tested+' / '+window.SKILLS.length,tested===30?'ok':''),
     tile('due for review',due,due>0?'red':'ok',due?'decaying now':'all current'),
-    tile('day streak',str,str>=3?'ok':''),
+    tile('day streak',sd.days,sd.days>=3?'ok':'',
+      sd.rest?'one rest day, still counting':(sd.today?'today counts':'')),
     tile('7-day gain',(vel.now>=0?'+':'')+Math.round(vel.now),vel.now>vel.prev?'ok':'',
       'prev '+(vel.prev>=0?'+':'')+Math.round(vel.prev)),
     tile('calibration',oc==null?'—':(oc>0?'+':'')+Math.round(oc*100)+'%',
@@ -132,6 +185,152 @@ function dayBars(acc){
 }
 
 /* ================= PRACTICE RUNNER ================= */
+/* One question, asked properly.
+
+   The same ask -> commit -> verdict -> explanation loop wherever a question
+   appears: in a drill, and inline in the middle of a chapter. Sharing it is the
+   whole point — a question met while reading is the same measured thing as one
+   met in a drill. It moves the same mastery, enters the same review schedule,
+   and lands in the same calibration record. There is no such thing here as a
+   question that does not count. */
+function questionCard(it, o){
+  o = o || {};
+  const st=S(), eng=E();
+  const card=h('div',{class:'qcard'+(o.inline?' inline':'')});
+  if(!it){ card.appendChild(h('p',{class:'empty',text:'That question is not in the bank.'})); return card; }
+  const sk=eng.SK[it.sk];
+  const qt0=Date.now();
+
+  const meta=h('div',{class:'qmeta'});
+  if(o.showSkill!==false && sk) meta.appendChild(h('a',{class:'pill',href:'#/skill/'+sk.id,text:sk.n}));
+  meta.appendChild(h('span',{class:'pill d'+it.diff,
+    text:['recall','application','analysis'][it.diff-1]}));
+  card.appendChild(meta);
+  card.appendChild(h('div',{class:'qstem',html:it.stem}));
+
+  let response=null, conf=null;
+  const body=h('div',{class:'qbody'});
+
+  if(it.type==='mcq'){
+    it.opts.forEach((op,i)=>{
+      const b=h('button',{class:'opt',onclick:()=>{response=i;
+        [...body.querySelectorAll('.opt')].forEach(x=>x.classList.remove('sel'));
+        b.classList.add('sel'); enable();}},
+        [h('span',{class:'ok',text:String.fromCharCode(65+i)}),h('span',{html:op})]);
+      body.appendChild(b);
+    });
+  } else if(it.type==='multi'){
+    response=[];
+    card.appendChild(h('p',{class:'qhint',text:'Select all that apply.'}));
+    it.opts.forEach((op,i)=>{
+      const b=h('button',{class:'opt',onclick:()=>{
+        const p=response.indexOf(i);
+        if(p<0){response.push(i);b.classList.add('sel');}else{response.splice(p,1);b.classList.remove('sel');}
+        enable();}},[h('span',{class:'ok',text:'✓'}),h('span',{html:op})]);
+      body.appendChild(b);
+    });
+  } else if(it.type==='num'){
+    const inp=h('input',{type:'number',step:'any',placeholder:it.opts[1]||'Your answer'});
+    inp.addEventListener('input',()=>{response=inp.value;enable();});
+    body.appendChild(h('div',{class:'numrow'},[inp,h('span',{class:'unit',text:it.opts[0]||''})]));
+    if(it.opts[1])body.appendChild(h('p',{class:'qhint',text:it.opts[1]}));
+  } else if(it.type==='order'){
+    response=[];
+    card.appendChild(h('p',{class:'qhint',text:'Click in order, highest first.'}));
+    const pool=h('div',{class:'orderpool'});
+    it.opts.forEach((op,i)=>{
+      const b=h('button',{class:'opt',onclick:()=>{
+        if(response.includes(i))return;
+        response.push(i); b.classList.add('sel');
+        b.querySelector('.ok').textContent=response.length; enable();}},
+        [h('span',{class:'ok',text:'·'}),h('span',{html:op})]);
+      pool.appendChild(b);
+    });
+    body.appendChild(pool);
+    body.appendChild(h('button',{class:'sm',style:'margin-top:.5rem',onclick:()=>{
+      response=[];[...pool.querySelectorAll('.opt')].forEach(x=>{x.classList.remove('sel');
+        x.querySelector('.ok').textContent='·';});enable();}},'Reset order'));
+  } else if(it.type==='judge'){
+    const ta=h('textarea',{rows:o.inline?5:6,
+      placeholder:'Write your answer before revealing the model answer. Rough is fine — this is judged on reasoning, not polish.'});
+    ta.addEventListener('input',()=>{response=ta.value;enable();});
+    body.appendChild(ta);
+  }
+  card.appendChild(body);
+
+  const confRow=h('div',{class:'confrow'},[h('span',{class:'clab',text:'How sure are you?'})]);
+  ['Guessing','Leaning','Fairly sure','Certain'].forEach((l,i)=>{
+    const b=h('button',{class:'sm conf',onclick:()=>{conf=eng.CONF[i];
+      [...confRow.querySelectorAll('.conf')].forEach(x=>x.classList.remove('on'));
+      b.classList.add('on');enable();}},l);
+    confRow.appendChild(b);
+  });
+  card.appendChild(confRow);
+
+  const go=h('button',{class:'primary big',disabled:'true',onclick:()=>reveal()},
+    it.type==='judge'?'Reveal model answer':'Submit');
+  card.appendChild(go);
+
+  function enable(){
+    const has = it.type==='multi'||it.type==='order' ? response.length>0
+      : it.type==='judge' ? (response||'').trim().length>10
+      : response!==null && response!=='';
+    go.disabled = !(has && conf!=null);
+  }
+
+  function reveal(){
+    const ms=Date.now()-qt0;
+    go.remove(); confRow.remove();
+    card.querySelectorAll('button,input,textarea').forEach(x=>x.disabled=true);
+
+    if(it.type==='judge'){
+      card.appendChild(h('div',{class:'model'},[
+        h('span',{class:'lbl',text:'Model answer'}),h('p',{html:it.ans})]));
+      const sc=h('div',{class:'selfscore'},[h('span',{class:'clab',text:'How did yours compare?'})]);
+      ['Missed it','Partial','Solid','Sharper than the model'].forEach((l,i)=>{
+        sc.appendChild(h('button',{class:'sm',onclick:()=>{
+          const ok=eng.submit(st,it,response,conf,ms,i);
+          save(); sc.remove(); if(o.onAnswered)o.onAnswered(ok,it,conf); after(ok);}},l));
+      });
+      card.appendChild(sc);
+      return;
+    }
+
+    const ok=eng.submit(st,it,response,conf,ms,null);
+    save();
+    const opts=[...card.querySelectorAll('.opt')];
+    if(it.type==='mcq') opts.forEach((x,i)=>{
+      if(i===it.ans)x.classList.add('right');
+      else if(i===response)x.classList.add('wrong');});
+    if(it.type==='multi') opts.forEach((x,i)=>{
+      if(it.ans.includes(i))x.classList.add('right');
+      else if(response.includes(i))x.classList.add('wrong');});
+    if(it.type==='order') opts.forEach((x,i)=>{
+      x.querySelector('.ok').textContent=it.ans.indexOf(i)+1;
+      x.classList.add(response[it.ans.indexOf(i)]===i?'right':'wrong');});
+    if(o.onAnswered)o.onAnswered(ok,it,conf);
+    after(ok);
+  }
+
+  function after(ok){
+    card.appendChild(h('div',{class:'verdict '+(ok?'good':'bad')},[
+      h('span',{class:'vt',text:ok?'Correct':'Not quite'}),
+      it.type==='num'&&!ok?h('span',{class:'vs',text:'Answer: '+it.ans[0]+' (±'+it.ans[1]+'%)'}):null,
+      conf>=0.75&&!ok?h('span',{class:'vs',text:'— and you were confident. Worth noting.'}):null,
+      conf<=0.5&&ok?h('span',{class:'vs',text:'— correct but unsure. Also worth noting.'}):null]));
+    if(it.why) card.appendChild(h('div',{class:'why'},[
+      h('span',{class:'lbl',text:'Why'}),h('p',{html:it.why})]));
+    if(o.onNext) card.appendChild(h('button',{class:'primary big',onclick:o.onNext},
+      o.nextLabel||'Next question'));
+    if(o.scrollOnReveal) card.scrollIntoView({block:'start'});
+    if(o.onSettled) o.onSettled(ok);
+    if(window.updateProgress) window.updateProgress();
+  }
+
+  enable();
+  return card;
+}
+
 function practice(mode, arg){
   const st=S(), eng=E();
   const w=h('div',{class:'wrap'});
@@ -163,135 +362,12 @@ function practice(mode, arg){
     stage.innerHTML='';
     bar.querySelector('i').style.width=(idx/items.length*100)+'%';
     head.querySelector('.qcount').textContent=(idx+1)+' / '+items.length;
-    const sk=eng.SK[it.sk];
-    const qt0=Date.now();
-
-    stage.appendChild(h('div',{class:'qmeta'},[
-      h('span',{class:'pill',text:sk.n}),
-      h('span',{class:'pill d'+it.diff,text:['recall','application','analysis'][it.diff-1]})]));
-    stage.appendChild(h('div',{class:'qstem',html:it.stem}));
-
-    let response=null;
-    const body=h('div',{class:'qbody'});
-
-    if(it.type==='mcq'){
-      it.opts.forEach((o,i)=>{
-        const b=h('button',{class:'opt',onclick:()=>{response=i;
-          [...body.querySelectorAll('.opt')].forEach(x=>x.classList.remove('sel'));
-          b.classList.add('sel'); enable();}},[h('span',{class:'ok',text:String.fromCharCode(65+i)}),
-          h('span',{html:o})]);
-        body.appendChild(b);
-      });
-    } else if(it.type==='multi'){
-      response=[];
-      stage.appendChild(h('p',{class:'qhint',text:'Select all that apply.'}));
-      it.opts.forEach((o,i)=>{
-        const b=h('button',{class:'opt',onclick:()=>{
-          const p=response.indexOf(i);
-          if(p<0){response.push(i);b.classList.add('sel');}else{response.splice(p,1);b.classList.remove('sel');}
-          enable();}},[h('span',{class:'ok',text:'✓'}),h('span',{html:o})]);
-        body.appendChild(b);
-      });
-    } else if(it.type==='num'){
-      const inp=h('input',{type:'number',step:'any',placeholder:it.opts[1]||'Your answer'});
-      inp.addEventListener('input',()=>{response=inp.value;enable();});
-      body.appendChild(h('div',{class:'numrow'},[inp,h('span',{class:'unit',text:it.opts[0]||''})]));
-      if(it.opts[1])body.appendChild(h('p',{class:'qhint',text:it.opts[1]}));
-    } else if(it.type==='order'){
-      response=[];
-      stage.appendChild(h('p',{class:'qhint',text:'Click in order, highest first.'}));
-      const pool=h('div',{class:'orderpool'});
-      it.opts.forEach((o,i)=>{
-        const b=h('button',{class:'opt',onclick:()=>{
-          if(response.includes(i))return;
-          response.push(i); b.classList.add('sel');
-          b.querySelector('.ok').textContent=response.length; enable();}},
-          [h('span',{class:'ok',text:'·'}),h('span',{html:o})]);
-        pool.appendChild(b);
-      });
-      body.appendChild(pool);
-      body.appendChild(h('button',{class:'sm',style:'margin-top:.5rem',onclick:()=>{
-        response=[];[...pool.querySelectorAll('.opt')].forEach(x=>{x.classList.remove('sel');
-          x.querySelector('.ok').textContent='·';});enable();}},'Reset order'));
-    } else if(it.type==='judge'){
-      const ta=h('textarea',{rows:6,placeholder:'Write your answer before revealing the model answer. Rough is fine — this is judged on reasoning, not polish.'});
-      ta.addEventListener('input',()=>{response=ta.value;enable();});
-      body.appendChild(ta);
-    }
-    stage.appendChild(body);
-
-    /* confidence */
-    let conf=null;
-    const confRow=h('div',{class:'confrow'},[h('span',{class:'clab',text:'How sure are you?'})]);
-    ['Guessing','Leaning','Fairly sure','Certain'].forEach((l,i)=>{
-      const b=h('button',{class:'sm conf',onclick:()=>{conf=eng.CONF[i];
-        [...confRow.querySelectorAll('.conf')].forEach(x=>x.classList.remove('on'));
-        b.classList.add('on');enable();}},l);
-      confRow.appendChild(b);
-    });
-    stage.appendChild(confRow);
-
-    const go=h('button',{class:'primary big',disabled:'true',onclick:()=>reveal()},
-      it.type==='judge'?'Reveal model answer':'Submit');
-    stage.appendChild(go);
-    function enable(){
-      const has = it.type==='multi'||it.type==='order' ? response.length>0
-        : it.type==='judge' ? (response||'').trim().length>10
-        : response!==null && response!=='';
-      go.disabled = !(has && conf!=null);
-    }
-
-    function reveal(){
-      const ms=Date.now()-qt0;
-      go.remove(); confRow.remove();
-      body.querySelectorAll('button,input,textarea').forEach(x=>x.disabled=true);
-
-      if(it.type==='judge'){
-        stage.appendChild(h('div',{class:'model'},[
-          h('span',{class:'lbl',text:'Model answer'}),h('p',{html:it.ans})]));
-        const sc=h('div',{class:'selfscore'},[h('span',{class:'clab',text:'How did yours compare?'})]);
-        ['Missed it','Partial','Solid','Sharper than the model'].forEach((l,i)=>{
-          sc.appendChild(h('button',{class:'sm',onclick:()=>{
-            const ok=eng.submit(st,it,response,conf,ms,i);
-            results.push({it,ok,conf});
-            if(ok)correctN++;
-            save(); sc.remove(); after(ok);}},l));
-        });
-        stage.appendChild(sc);
-        return;
-      }
-
-      const ok=eng.submit(st,it,response,conf,ms,null);
-      results.push({it,ok,conf});
-      if(ok)correctN++;
-      save();
-      /* mark options */
-      const opts=[...body.querySelectorAll('.opt')];
-      if(it.type==='mcq') opts.forEach((o,i)=>{
-        if(i===it.ans)o.classList.add('right');
-        else if(i===response)o.classList.add('wrong');});
-      if(it.type==='multi') opts.forEach((o,i)=>{
-        if(it.ans.includes(i))o.classList.add('right');
-        else if(response.includes(i))o.classList.add('wrong');});
-      if(it.type==='order') opts.forEach((o,i)=>{
-        o.querySelector('.ok').textContent=it.ans.indexOf(i)+1;
-        o.classList.add(response[it.ans.indexOf(i)]===i?'right':'wrong');});
-      after(ok);
-    }
-
-    function after(ok){
-      stage.appendChild(h('div',{class:'verdict '+(ok?'good':'bad')},[
-        h('span',{class:'vt',text:ok?'Correct':'Not quite'}),
-        it.type==='num'&&!ok?h('span',{class:'vs',text:'Answer: '+it.ans[0]+' (±'+it.ans[1]+'%)'}):null,
-        conf>=0.75&&!ok?h('span',{class:'vs',text:'— and you were confident. Worth noting.'}):null,
-        conf<=0.5&&ok?h('span',{class:'vs',text:'— correct but unsure. Also worth noting.'}):null]));
-      stage.appendChild(h('div',{class:'why'},[
-        h('span',{class:'lbl',text:'Why'}),h('p',{html:it.why})]));
-      stage.appendChild(h('button',{class:'primary big',onclick:()=>{
-        idx++; if(idx>=items.length)finish(); else render();}},
-        idx+1>=items.length?'See results':'Next question'));
-      stage.scrollIntoView({block:'start'});
-    }
+    stage.appendChild(questionCard(it,{
+      onAnswered:(ok,item,c)=>{ results.push({it:item, ok, conf:c}); if(ok)correctN++; },
+      nextLabel: idx+1>=items.length?'See results':'Next question',
+      onNext:()=>{ idx++; if(idx>=items.length)finish(); else render(); },
+      scrollOnReveal:true
+    }));
   }
 
   function finish(){
@@ -779,7 +855,7 @@ function data(){
     tile('storage',s0.ok?'working':'blocked',s0.ok?'ok':'red',
       s0.ok?'':'private window or blocked cookies'),
     tile('progress size',(s0.bytes/1024).toFixed(1)+' KB'),
-    tile('skills measured',s0.summary.skills+' / 30'),
+    tile('skills measured',s0.summary.skills+' / '+window.SKILLS.length),
     tile('answers logged',s0.summary.attempts),
     tile('last local backup',s0.backup?rel(s0.backup.at):'none',s0.backup?'':'red')]));
 
@@ -1160,5 +1236,6 @@ function ghPanel(){
   return box;
 }
 
-return {dashboard, practice, practiceMenu, skills, skillPage, analytics, exercises, processes, data};
+return {dashboard, practice, practiceMenu, skills, skillPage, analytics, exercises, processes, data,
+  questionCard};
 })();

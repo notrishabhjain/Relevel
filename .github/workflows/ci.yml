@@ -28,5 +28,9 @@ jobs:
           test -s dist/site/sw.js
           test -s content/defaults.json
           grep -q "window.STUDIO" dist/site/index.html
+      - name: Content check
+        run: |
+          node tools/content-check.mjs
+          node tools/jargon-check.mjs
       - name: Tests
         run: node tools/test.mjs

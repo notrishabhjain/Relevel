@@ -292,6 +292,7 @@ function isEmptyState(d){
   if(Object.keys(d.card||{}).some(k=>d.card[k])) return false;
   if(Object.keys(d.drill||{}).some(k=>d.drill[k])) return false;
   if((d.sittings||[]).length) return false;
+  if(Object.values(d.cp||{}).some(v=>v && String(v.v||'').trim())) return false;
   return true;
 }
 function localChangedSinceSync(){

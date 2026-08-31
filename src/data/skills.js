@@ -206,7 +206,20 @@ window.SKILLS = [
  L:['Can describe the standard pipeline',
     'Can identify which component causes a given symptom',
     'Can choose between options and name what each costs',
-    'Can sequence a roadmap by measured impact and defend it under challenge']}
+    'Can sequence a roadmap by measured impact and defend it under challenge']},
+
+  {id:'S31', d:'prod', n:'Adaptation strategy', ch:[19], labs:['costmodel'],
+    core:'Diagnose which of prompting, retrieval, tuning or a different model a failure actually calls for — and defend the choice with a measurement.',
+    L:['Can name the four levers',
+       'Can say which lever suits a described failure',
+       'Can diagnose a real failure from evidence and pick the lever, naming what would prove it right',
+       'Can turn “should we fine-tune?” into a costed decision with owners, an eval and a deprecation plan']},
+  {id:'S32', d:'prod', n:'Interface design for uncertainty', ch:[20], labs:[],
+    core:'Design what a user is shown when the system is confident, unsure, wrong, or switched off.',
+    L:['Knows an uncertain answer should not look like a certain one',
+       'Can specify citations, streaming and a correction path',
+       'Can design confidence as routing rather than as a displayed number',
+       'Can write all four states, including refusal and graceful degradation, and time the correction path against the manual workaround']}
 ];
 
 window.LEVEL_NAMES = ['Untested','Aware','Working','Proficient','Authoritative'];

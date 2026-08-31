@@ -137,7 +137,37 @@ window.GLOSSARY = [
   ['AI PRD','A product specification whose acceptance criteria are eval thresholds on a named dataset.',18],
   ['Model pinning','Fixing an exact model version so behaviour does not change beneath you.',18],
   ['Deprecation migration','The re-evaluation required when a provider retires your model.',18],
-  ['Kill switch','An immediate flag routing traffic to the non-AI path. Not a rollback.',18]
+  ['Kill switch','An immediate flag routing traffic to the non-AI path. Not a rollback.',18],
+
+  /* Ground-floor vocabulary. None of these are AI terms — they are the words
+     engineers use around AI and never stop to define, which is exactly why a
+     reader who is new to the field stalls on them. */
+  ['App','A program someone uses. The thing with buttons. It is the app that talks to the model — the model itself has no interface, no memory and no idea a person exists.',0],
+  ['API','A way for one program to ask another program to do something, over the internet. You never see it. When this book says your app "calls the API", it means your app sent a message to the model provider’s computers and waited for a reply.',0],
+  ['API call','One such request and its reply. One question in, one answer out — and one charge on the bill.',0],
+  ['JSON','A plain-text way of writing structured information so a program can read it: labels and values inside curly braces, like {"role": "user", "content": "hello"}. It is not code and not a database. It is the format the envelope is written in.',0],
+  ['Endpoint','The specific web address a program sends its request to. Different endpoints do different jobs — one for chat, one for embeddings.',0],
+  ['Payload','Whatever is inside the request or reply. The contents of the envelope, as opposed to the envelope itself.',0],
+  ['Parameter','A setting you pass with a request — temperature, maximum length, which model. Confusingly, the same word also means the billions of internal numbers a model was trained with. In this book it means the setting unless it says otherwise.',0],
+  ['Notebook','A web page where you can type a few lines of code, press a button, and see what happens underneath. It is the tool this book uses so you never have to install anything. Nothing you do in one can break anything.',0],
+  ['Runtime','The machine actually running your notebook code. Free notebooks give you one for a few hours and then take it back, which is why your key sometimes needs re-entering.',0],
+  ['Deploy','To put a change where real users can reach it. Until something is deployed it exists only on your machine.',0],
+  ['Rollback','Putting the previous version back after a bad deploy. It undoes your code. It does not undo a model’s behaviour, which is why Chapter 18 insists a kill switch is a different thing.',0],
+  ['Corpus','All the documents your system is allowed to answer from, taken together. Your set of source material. Plural: corpora.',0],
+  ['Index','A prepared copy of your corpus, arranged so searching it is fast. Building one is called indexing. Nothing can be retrieved until it has been indexed.',0],
+  ['Pipeline','A sequence of steps where each one’s output is the next one’s input. Documents in at one end, an answer out at the other. Chapter 7 draws yours.',0],
+  ['Latency','How long the user waits. Measured in seconds, and a product decision rather than a technical detail.',0],
+  ['p95','The wait that 95 out of 100 people get or better — so it describes the slow fifth of your users rather than the typical one. Averages hide these people; p95 is what you design for.',0],
+  ['SLA','Service-level agreement. A supplier’s written promise about uptime or speed, with a consequence attached if they break it. A promise without a consequence is a marketing claim, not an SLA.',0],
+  ['Deterministic','Same input, same output, every time. Ordinary software is deterministic. A language model is not, which is the source of most of the surprise in this field.',0],
+  ['Orchestration','Coordinating several steps or several models so they run in the right order and hand results to each other.',0],
+  ['Taxonomy','A named set of categories. In Chapter 14 it means your list of the ways your system fails, in your own words, with a count against each.',0],
+  ['Ground truth','The answer key: questions with verified correct answers, written before you test anything. Without one, "is it good?" has no answer.',6],
+  ['Fine-tuning','Continuing a model’s training on your own examples so it adopts a behaviour. Teaches shape and register, not durable facts. Chapter 19 is the decision.',19],
+  ['Rubric','A scoring guide written in advance: what each level of quality looks like, so two people grading the same thing agree.',6],
+  ['Drift','When behaviour changes over time without anyone changing the code — a model updated, a corpus grown, traffic shifted.',14],
+  ['Audit trail','A record of what the system did and why, kept so someone can check it afterwards.',17],
+  ['Refusal path','What the product does when it should not answer. Designed on purpose, or it happens by accident.',20]
 ];
 
 /* ---------- Vendor Interrogation Deck ---------- */
@@ -289,7 +319,9 @@ window.REDMARKS = [
 window.PARTS = [
   {n:1, title:'Foundations', blurb:'The envelope, the briefing page, the scissors, the map of meaning, the answer key — and the name withheld until you have earned it.'},
   {n:2, title:'The Modern Stack', blurb:'Structure, action, context, thought, grown-up retrieval, and the adversary. Everything you parked on the LATER page, collected.'},
-  {n:3, title:'The Instrument Panel', blurb:'Measurement at scale, money, modality, the paper trail, and shipping. The half that is product management rather than engineering.'}
+  {n:3, title:'The Instrument Panel', blurb:'Measurement at scale, money, modality, the paper trail, and shipping. The half that is product management rather than engineering.'},
+  {n:4, title:'The Decisions That Stay Yours',
+    blurb:'Which lever to pull when the machine is not good enough, and what the person on the other side of the screen is shown when it is wrong. Neither is an engineering decision.'}
 ];
 
 /* Rules and pacing */

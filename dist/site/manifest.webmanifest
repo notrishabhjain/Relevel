@@ -1,7 +1,7 @@
 {
   "name": "AI From Zero — Skill Tracker",
   "short_name": "AI From Zero",
-  "description": "A skill tracker for AI product managers: 30 measured competencies, a 137-question bank, spaced repetition and calibration scoring.",
+  "description": "A skill tracker for AI product managers: measured competencies, a question bank asked inside the reading, spaced repetition and calibration scoring.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
