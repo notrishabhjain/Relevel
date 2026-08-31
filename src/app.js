@@ -9,13 +9,17 @@ const h=(t,a,c)=>{const e=document.createElement(t);
 const $=(s,r)=>(r||document).querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
 
+/* Parts are data, so the numeral has to be computed rather than looked up in a
+   list of three. */
+const ROMAN=n=>['','I','II','III','IV','V','VI','VII','VIII','IX','X'][n]||String(n);
+
 /* Rebuilt from whatever content was loaded, before the first render. */
 let CH=[];
 const byId={};
 let IDX=null;                     // command palette index, rebuilt with content
 function bindContent(){
   CH = window.CHAPTERS ||
-       [].concat(window.PART1||[], window.PART2||[], window.PART3||[]);
+       (window.PARTS||[]).reduce((a,p)=>a.concat(window['PART'+p.n]||[]),[]);
   Object.keys(byId).forEach(k=>delete byId[k]);
   CH.forEach(c=>byId[c.id]=c);
   if(window.ENG && window.ENG.reinit) window.ENG.reinit();
@@ -290,7 +294,7 @@ function renderChapter(c){
   const part=window.PARTS[c.part-1];
   cpBars=[];                       // stale refreshers from the last chapter
   w.appendChild(h('header',{class:'chead'},[
-    h('div',{class:'eyebrow'},[h('span',{text:'Part '+['I','II','III'][c.part-1]+' · '+part.title}),
+    h('div',{class:'eyebrow'},[h('span',{text:'Part '+ROMAN(c.part)+' · '+part.title}),
       h('span',{class:'dot'}),h('span',{text:'~'+c.minutes+' min'}),
       h('span',{class:'dot'}),h('span',{text:'one sitting'})]),
     h('div',{class:'chnum',text:String(c.num).padStart(2,'0')}),
@@ -489,7 +493,7 @@ function pageHome(){
   const w=h('div',{class:'wrap-wide'});
   const doneN=CH.filter(c=>S.done[c.id]).length;
   w.appendChild(h('header',{class:'hero'},[
-    h('div',{class:'kicker',text:'Reference library · 18 chapters'}),
+    h('div',{class:'kicker',text:'Reference library · '+CH.length+' chapters'}),
     h('h1',{text:'The Library'}),
     h('p',{class:'sub',html:'The knowledge base behind the tracker. You do not read it front to back — the dashboard sends you to the chapter that moves the skill you are weakest in.'}),
     h('div',{style:'display:flex;gap:.6rem;flex-wrap:wrap'},[
@@ -500,7 +504,7 @@ function pageHome(){
 
   w.appendChild(h('div',{class:'meta'},[
     h('div',{},[h('span',{class:'l',text:'For'}),h('span',{class:'v',text:'Product managers, analysts, consultants, team leads'})]),
-    h('div',{},[h('span',{class:'l',text:'Length'}),h('span',{class:'v',text:'18 chapters · one per sitting'})]),
+    h('div',{},[h('span',{class:'l',text:'Length'}),h('span',{class:'v',text:CH.length+' chapters · one per sitting'})]),
     h('div',{},[h('span',{class:'l',text:'Prerequisites'}),h('span',{class:'v',text:'A browser, a Google account, a willingness to type'})]),
     h('div',{},[h('span',{class:'l',text:'Cost'}),h('span',{class:'v',text:'None — free tiers throughout'})])]));
 
@@ -513,7 +517,7 @@ function pageHome(){
   window.PARTS.forEach(p=>{
     const chs=CH.filter(c=>c.part===p.n);
     w.appendChild(h('div',{class:'partcard'},[
-      h('div',{class:'pn',text:'Part '+['I','II','III'][p.n-1]+' — Chapters '+chs[0].num+'–'+chs[chs.length-1].num}),
+      h('div',{class:'pn',text:'Part '+ROMAN(p.n)+' — Chapters '+chs[0].num+'–'+chs[chs.length-1].num}),
       h('h3',{text:p.title}),h('p',{text:p.blurb}),
       h('div',{class:'chips'},chs.map(c=>h('a',{class:'chip'+(S.done[c.id]?' done':''),
         href:'#/ch/'+c.id,text:c.num+'. '+c.title})))]));
@@ -868,7 +872,7 @@ function pageProgress(){
     const d=chs.filter(c=>S.done[c.id]).length;
     byPart.appendChild(h('div',{class:'card'},[
       h('div',{style:'display:flex;align-items:baseline;gap:.6rem'},[
-        h('h3',{style:'flex:1',text:'Part '+['I','II','III'][p.n-1]+' — '+p.title}),
+        h('h3',{style:'flex:1',text:'Part '+ROMAN(p.n)+' — '+p.title}),
         h('span',{class:'mono dim',style:'font-size:.75rem',text:d+'/'+chs.length})]),
       h('div',{class:'bar',style:'margin:.5rem 0 .7rem'},
         [h('i',{style:'width:'+(d/chs.length*100)+'%'})]),
@@ -952,7 +956,7 @@ function renderRail(){
   r.appendChild(sec('Author',[
     ['#/studio','✦','Content Studio'+(nd?'  ('+nd+' draft'+(nd>1?'s':'')+')':'')]]));
   r.appendChild(sec('Reference',[
-    ['#/library','▤','Library — 18 chapters'],['#/setup','A','Setup'],
+    ['#/library','▤','Library — '+CH.length+' chapters'],['#/setup','A','Setup'],
     ['#/vendor','⌗','Vendor Deck'],['#/glossary','∎','Glossary'],
     ['#/notebook','✐','Notebook'],['#/later','⋯','LATER Page']]));
 }
@@ -984,7 +988,7 @@ function route(){
   let node,crumb='Dashboard';
   if(parts[0]==='ch'&&byId[parts[1]]){
     const c=byId[parts[1]];node=renderChapter(c);
-    crumb='Part '+['I','II','III'][c.part-1]+' · Chapter '+c.num;
+    crumb='Part '+ROMAN(c.part)+' · Chapter '+c.num;
     document.title=c.num+'. '+c.title+' — AI From Zero';
   } else if(parts[0]==='practice'){
     node = parts[1] ? V().practice(parts[1],parts[2]) : V().practiceMenu();
@@ -1021,7 +1025,7 @@ function buildIndex(){
   idx.push({k:'page',t:'Dashboard',h:'#/'},{k:'page',t:'Practice',h:'#/practice'},
     {k:'page',t:'Skill Matrix',h:'#/skills'},{k:'page',t:'Analytics',h:'#/analytics'},
     {k:'page',t:'Exercises',h:'#/exercises'},{k:'page',t:'Processes',h:'#/processes'},
-    {k:'page',t:'Library — 18 chapters',h:'#/library'},
+    {k:'page',t:'Library — '+CH.length+' chapters',h:'#/library'},
     {k:'page',t:'Progress & Backup',h:'#/data'},
     {k:'page',t:'Content Studio — edit the curriculum',h:'#/studio'},
     {k:'page',t:'Setup',h:'#/setup'},

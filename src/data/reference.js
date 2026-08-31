@@ -289,7 +289,9 @@ window.REDMARKS = [
 window.PARTS = [
   {n:1, title:'Foundations', blurb:'The envelope, the briefing page, the scissors, the map of meaning, the answer key — and the name withheld until you have earned it.'},
   {n:2, title:'The Modern Stack', blurb:'Structure, action, context, thought, grown-up retrieval, and the adversary. Everything you parked on the LATER page, collected.'},
-  {n:3, title:'The Instrument Panel', blurb:'Measurement at scale, money, modality, the paper trail, and shipping. The half that is product management rather than engineering.'}
+  {n:3, title:'The Instrument Panel', blurb:'Measurement at scale, money, modality, the paper trail, and shipping. The half that is product management rather than engineering.'},
+  {n:4, title:'The Decisions That Stay Yours',
+    blurb:'Which lever to pull when the machine is not good enough, and what the person on the other side of the screen is shown when it is wrong. Neither is an engineering decision.'}
 ];
 
 /* Rules and pacing */

@@ -802,7 +802,7 @@ function data(){
     tile('storage',s0.ok?'working':'blocked',s0.ok?'ok':'red',
       s0.ok?'':'private window or blocked cookies'),
     tile('progress size',(s0.bytes/1024).toFixed(1)+' KB'),
-    tile('skills measured',s0.summary.skills+' / 30'),
+    tile('skills measured',s0.summary.skills+' / '+window.SKILLS.length),
     tile('answers logged',s0.summary.attempts),
     tile('last local backup',s0.backup?rel(s0.backup.at):'none',s0.backup?'':'red')]));
 

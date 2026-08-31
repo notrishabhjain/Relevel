@@ -1,4 +1,6 @@
 /* Exercises the API against the dev server. `node tools/api-test.mjs` */
+import { readFileSync } from 'node:fs';
+const EXPECT = JSON.parse(readFileSync(new URL('../content/defaults.json', import.meta.url), 'utf8'));
 const B = process.env.BASE || 'http://127.0.0.1:8788';
 let pass = 0, fail = 0;
 const ok = (c, m, extra) => { c ? pass++ : (fail++, console.log('  FAIL', m, extra ?? '')); 
@@ -24,7 +26,8 @@ ok(r.status === 200 && r.body.user === null, 'me is null when signed out', r.bod
 r = await api('/api/state');
 ok(r.status === 401, 'progress needs a session', r.status);
 r = await api('/api/content');
-ok(r.status === 200 && r.body.content.items.data.length === 137, 'content reads without a session');
+ok(r.status === 200 && r.body.content.items.data.length === EXPECT.items.length,
+  'content reads without a session');
 ok(r.body.editor === false, 'anonymous is not an editor');
 const v0 = r.body.content.items.version;
 r = await api('/api/content', { method: 'PUT', body: { kind: 'items', baseVersion: v0, data: [] } });

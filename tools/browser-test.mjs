@@ -3,6 +3,11 @@
    The second device is a separate browser context, not a second tab: tabs share
    storage and would pass even if nothing reached the database. */
 import { chromium } from 'playwright';
+import { readFileSync } from 'node:fs';
+/* Expected counts come from the build output rather than being typed here, so
+   adding a chapter does not mean editing the tests to agree with it. */
+const EXPECT = JSON.parse(readFileSync(new URL('../content/defaults.json', import.meta.url), 'utf8'));
+const N = { chapters: EXPECT.chapters.length, items: EXPECT.items.length, skills: EXPECT.skills.length };
 
 const B = process.env.BASE || 'http://127.0.0.1:8788';
 let pass = 0, fail = 0;
@@ -45,9 +50,9 @@ console.log('\n— the app loads from the database —');
 const a = await newDevice(false);
 await boot(a.page);
 ok(await a.page.evaluate(() => window.CONTENT.source) === 'server', 'content came from the server, not the bundle');
-ok(await a.page.evaluate(() => window.CHAPTERS.length) === 18, 'all 18 chapters arrived');
-ok(await a.page.evaluate(() => window.ENG.ITEMS.length) === 137, 'the engine sees all 137 questions');
-ok(await a.page.evaluate(() => window.SKILLS.length) === 30, 'all 30 skills arrived');
+ok(await a.page.evaluate(() => window.CHAPTERS.length) === N.chapters, `all ${N.chapters} chapters arrived`);
+ok(await a.page.evaluate(() => window.ENG.ITEMS.length) === N.items, `the engine sees all ${N.items} questions`);
+ok(await a.page.evaluate(() => window.SKILLS.length) === N.skills, `all ${N.skills} skills arrived`);
 
 console.log('\n— the studio is read-only when signed out —');
 await boot(a.page, '#/studio');
@@ -56,7 +61,7 @@ ok(await a.page.locator('.domcard').count() === 6, 'six kinds of content are lis
 ok(await text(a.page, '.callout .lbl') === 'Read-only', 'a read-only banner explains why',
    await text(a.page, '.callout .lbl'));
 await boot(a.page, '#/studio/items');
-ok(await a.page.locator('.sitem').count() === 137, 'the question list shows every question');
+ok(await a.page.locator('.sitem').count() === N.items, 'the question list shows every question');
 ok(await a.page.locator('.sbar button.primary').isDisabled(), 'publish is off for a signed-out visitor');
 
 console.log('\n— an editor edits a question —');
@@ -93,7 +98,7 @@ const c = await newDevice(false);
 await boot(c.page);
 ok(await c.page.evaluate(() => window.ENG.byItem['I001'].stem) === 'How many tokens is a 300-word answer, roughly?',
    'a browser that never saw the edit gets the new text');
-ok(await c.page.evaluate(() => window.ENG.ITEMS.length) === 137, 'and the rest of the bank is intact');
+ok(await c.page.evaluate(() => window.ENG.ITEMS.length) === N.items, 'and the rest of the bank is intact');
 
 console.log('\n— two editors cannot overwrite each other —');
 const d = await newDevice(true);
@@ -133,7 +138,7 @@ ok(/one option marked correct/.test(await text(b.page, '.sbarmsg.bad')),
 
 console.log('\n— the structured editors, not just the JSON —');
 await boot(b.page, '#/studio/chapters');
-ok(await b.page.locator('.sitem').count() === 18, 'every chapter is listed');
+ok(await b.page.locator('.sitem').count() === N.chapters, 'every chapter is listed');
 await b.page.locator('.sitem .sitemmain').first().click();
 await b.page.waitForSelector('.sform');
 const titleBox = b.page.locator('.sform > .sfield:has(> label:text-is("title")) input');
@@ -187,7 +192,7 @@ await b.page.locator('.sbar button.primary').first().click();
 await b.page.waitForSelector('.sbar .sbarmsg.ok', { timeout: 15000 });
 const pubmsg = await text(b.page, '.sbar .sbarmsg.ok');
 ok(/Published/.test(pubmsg), 'the new question publishes', pubmsg);
-ok(await b.page.evaluate(() => window.ENG.ITEMS.length) === 138, 'the engine picked it up');
+ok(await b.page.evaluate(() => window.ENG.ITEMS.length) === N.items + 1, 'the engine picked it up');
 ok((await b.page.evaluate(sk => (window.ENG.bySkill[sk] || []).length, skillId)) === 1,
    'and filed it under the new skill, so that skill can now be practised');
 
@@ -214,7 +219,7 @@ console.log('\n— everything above survives on a device that was never touched 
 const g = await newDevice(false);
 await boot(g.page);
 ok(await g.page.evaluate(() => window.SKILLS.length) === before + 1, 'the new skill is there');
-ok(await g.page.evaluate(() => window.ENG.ITEMS.length) === 138, 'the new question is there');
+ok(await g.page.evaluate(() => window.ENG.ITEMS.length) === N.items + 1, 'the new question is there');
 ok(await g.page.evaluate(() => window.CHAPTERS[0].title) === 'What Actually Happens When You Ask',
    'the retitled chapter is there');
 
@@ -351,7 +356,7 @@ await e.page.waitForFunction(() => window.STORE.S.done && window.STORE.S.done.ch
   null, { timeout: 20000 });
 ok(await e.page.evaluate(() => !!window.STORE.S.done.chSync),
    'a chapter marked done on one device shows up on another');
-ok(await e.page.evaluate(() => window.ENG.ITEMS.length) === 138,
+ok(await e.page.evaluate(() => window.ENG.ITEMS.length) === N.items + 1,
    'and that device has the edited curriculum too — one account, both halves');
 
 console.log('\n— telling the truth about a half-configured deployment —');
@@ -380,7 +385,7 @@ const f = await newDevice(false);
 await f.ctx.route('**/api/content*', r => r.abort());
 await f.page.goto(B + '/');
 await f.page.waitForFunction(() => window.CONTENT && window.CHAPTERS);
-ok(await f.page.evaluate(() => window.CHAPTERS.length) === 18, 'the app still opens with a full curriculum');
+ok(await f.page.evaluate(() => window.CHAPTERS.length) === N.chapters, 'the app still opens with a full curriculum');
 ok(['built-in', 'cache'].includes(await f.page.evaluate(() => window.CONTENT.source)), 'and says where the content came from');
 
 await browser.close();
