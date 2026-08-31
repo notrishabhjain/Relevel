@@ -28,6 +28,13 @@ const newDevice = async (signedIn, login = 'localdev') => {
 const text = (page, sel) => page.evaluate(s => {
   const e = document.querySelector(s); return e ? e.textContent.trim() : '(missing)'; }, sel);
 const mainText = page => text(page, '#main');
+/* Going to the hash the page is already on fires no hashchange, so nothing
+   re-renders. A revisit has to be a real load. */
+const revisit = async page => {
+  await page.reload();
+  await page.waitForFunction(() => window.CONTENT && window.STUDIO && document.querySelector('#main'));
+  await page.waitForTimeout(300);
+};
 const boot = async (page, hash = '') => {
   await page.goto(B + '/' + hash);
   await page.waitForFunction(() => window.CONTENT && window.STUDIO && document.querySelector('#main'));
@@ -210,6 +217,69 @@ ok(await g.page.evaluate(() => window.SKILLS.length) === before + 1, 'the new sk
 ok(await g.page.evaluate(() => window.ENG.ITEMS.length) === 138, 'the new question is there');
 ok(await g.page.evaluate(() => window.CHAPTERS[0].title) === 'What Actually Happens When You Ask',
    'the retitled chapter is there');
+
+console.log('\n— the reading asks questions, and they count —');
+const r0 = await newDevice(true, 'chapterreader');   // its own account: the section below asserts a clean one
+await boot(r0.page, '#/ch/ch1');
+await r0.page.waitForSelector('.chead');
+ok(await r0.page.locator('.cp').count() >= 5, 'chapter 1 interleaves checkpoints through the reading',
+   await r0.page.locator('.cp').count());
+ok(/0 \/ \d+/.test(await text(r0.page, '.cpstrip')), 'and the header counts them',
+   await text(r0.page, '.cpstrip'));
+const inlineQ = r0.page.locator('.cp .qcard').first();
+await inlineQ.scrollIntoViewIfNeeded();
+const stem = await inlineQ.locator('.qstem').innerText();
+await inlineQ.locator('.opt').first().click();
+await inlineQ.locator('.conf').first().click();
+await inlineQ.locator('button.primary.big').click();
+await r0.page.waitForTimeout(400);
+ok(await r0.page.locator('.cp .verdict').count() >= 1, 'answering one gives a verdict there and then');
+ok(await r0.page.locator('.cp .why').count() >= 1, 'with the explanation attached');
+ok(await r0.page.evaluate(() => Object.values(window.STORE.S.sk).some(x => x && x.n > 0)),
+   'a question answered while reading moves real mastery');
+ok(await r0.page.evaluate(() => window.STORE.S.att.length) === 1,
+   'and lands in the attempt log like any other answer');
+ok(await r0.page.evaluate(() => Object.keys(window.STORE.S.srs).length) === 1,
+   'and schedules itself for review');
+ok(/1 \/ \d+/.test(await text(r0.page, '.cpstrip')), 'the header count moves as you answer',
+   await text(r0.page, '.cpstrip'));
+
+console.log('\n— a checkpoint is not asked twice by accident —');
+await revisit(r0.page);
+ok(await r0.page.locator('.qdone').count() === 1, 'on the next visit it shows as already answered');
+ok((await r0.page.locator('.qdone').innerText()).includes(stem.slice(0, 30)),
+   'with the question and its explanation still there');
+ok(await r0.page.evaluate(() => window.STORE.S.att.length) === 1,
+   'and re-reading did not re-score it');
+
+console.log('\n— predict before you look —');
+const pred = r0.page.locator('.cp-pred').first();
+await pred.scrollIntoViewIfNeeded();
+ok(await pred.locator('.why').count() === 0, 'the answer is hidden until a prediction is committed');
+await pred.locator('input, textarea').first().fill('It makes something up');
+await pred.locator('button.primary').click();
+await r0.page.waitForTimeout(300);
+ok(await pred.locator('.why').count() === 1, 'committing reveals what actually happens');
+ok((await pred.innerText()).includes('It makes something up'), 'and keeps your prediction beside it');
+await revisit(r0.page);
+ok((await r0.page.locator('.cp-pred').first().innerText()).includes('It makes something up'),
+   'a committed prediction survives a reload');
+
+console.log('\n— your turn —');
+const tryb = r0.page.locator('.cp-try').first();
+await tryb.scrollIntoViewIfNeeded();
+const reveal = tryb.getByText('Show what a strong answer contains');
+ok(await reveal.isDisabled(), 'the model answer is locked until you write your own');
+await tryb.locator('textarea').fill('It forgets everything between messages, so we resend the whole conversation each time and pay for it.');
+await r0.page.waitForTimeout(700);
+ok(!(await reveal.isDisabled()), 'writing something unlocks it');
+await reveal.click();
+ok(await tryb.locator('.why').count() === 1, 'and it appears');
+await revisit(r0.page);
+ok((await r0.page.locator('.cp-try').first().locator('textarea').inputValue()).length > 20,
+   'what you wrote is still there next time');
+ok(/3 \/ \d+/.test(await text(r0.page, '.cpstrip')), 'all three kinds count towards the chapter',
+   await text(r0.page, '.cpstrip'));
 
 console.log('\n— reading the app does not write to it —');
 /* Its own account, so nothing above can move the version underneath it. */

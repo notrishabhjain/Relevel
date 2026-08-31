@@ -709,6 +709,46 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .sitemd{font-size:.76rem;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .sitemm{font-size:.7rem;flex:none}
 
+/* ---------- inline checkpoints ---------- */
+.cpstrip{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin:0 0 2rem;
+  padding:.6rem .85rem;background:var(--raised);border:1px solid var(--rule);border-radius:var(--r)}
+.cplbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted)}
+.cpcount{font-size:.78rem;font-variant-numeric:tabular-nums;color:var(--ink-2)}
+
+/* A checkpoint interrupts the prose deliberately: it should look like the page
+   stopping to ask you something, not like another box of text. */
+.cp{margin:1.9rem 0;padding:1rem 1.15rem;background:var(--raised);
+  border:1px solid var(--rule);border-left:2px solid var(--ink-2);border-radius:var(--r)}
+.cp-pred{border-left-color:var(--amber)}
+.cp-try{border-left-color:var(--verified)}
+.cphead{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap;margin-bottom:.7rem}
+.cpk{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink);border:1px solid var(--rule);border-radius:2px;padding:.15rem .4rem}
+.cp-pred .cpk{color:var(--amber);border-color:var(--amber)}
+.cp-try .cpk{color:var(--verified);border-color:var(--verified)}
+.cpn{font-size:.72rem;color:var(--muted)}
+.cp .cpq{font-family:var(--serif);font-size:1.02rem;line-height:1.6;margin-bottom:.8rem}
+.cp .cpq p{margin:0 0 .5rem}
+.cp textarea,.cp input[type=text]{width:100%;margin-bottom:.6rem}
+.cprow{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+.cpans{background:var(--paper);border:1px solid var(--rule);border-radius:var(--r);
+  padding:.6rem .8rem;margin-bottom:.7rem}
+.cpans .lbl{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);display:block;margin-bottom:.25rem}
+.cpans p{margin:0;font-size:.9rem;white-space:pre-wrap}
+.cpthen{font-size:.92rem;color:var(--ink-2);margin:.7rem 0 0}
+
+/* The question widget, when it appears inline rather than in a drill. */
+.qcard.inline{max-width:none}
+.qcard.inline .qstem{font-size:1.05rem;margin-bottom:1rem}
+.qcard.inline .qmeta{margin-bottom:.7rem}
+.qcard.inline button.big{padding:.45rem 1rem;font-size:.85rem}
+.qslot+.qslot{margin-top:1.4rem;padding-top:1.2rem;border-top:1px solid var(--rule)}
+.qdone .qstem.qsm{font-family:var(--serif);font-size:.98rem;line-height:1.5;margin:.5rem 0 .7rem;
+  color:var(--ink-2)}
+.qdone .why{margin-bottom:.7rem}
+
 </style>
 <script>
 /* Part I — Foundations (Chapters 1–7)
@@ -725,16 +765,34 @@ window.PART1 = [
     ['p','Begin with something already in your pocket: your phone keyboard. When you type <em>See you at the</em> and it suggests <em>office</em>, <em>meeting</em>, or <em>airport</em> — that is a small program predicting your next word from patterns it has absorbed. It is not thinking. It is pattern-matching at modest scale.'],
     ['p','A modern AI model is that same idea grown monstrous. It has been trained on a very large slice of human text, and it has become so skilled at predicting the next small piece of text that entire essays, explanations, and working programs fall out of it, one piece at a time. This is why the technology is formally called a <strong>large language model</strong>, or LLM — a very large machine for predicting language.'],
     ['key','An LLM is a prediction machine, not a knowledge database. It does not look things up. It continues text plausibly. The difference between those two is the central drama of every chapter that follows.'],
+    ['pred',{id:'ch1-guess',short:true,ph:'One line',
+      ask:'Before you read on, commit to an answer. If a prediction machine is asked for a fact it has never seen — the refund policy of a company that does not exist — what does it do?',
+      reveal:'It produces a fluent, confident, entirely invented answer. Not because it is lying, but because “continue this text plausibly” has no branch for “I have nothing here.” Saying <em>I don’t know</em> is a behaviour that has to be trained in on top; it is not what the machine does by default.',
+      then:'Hold on to that. It is the whole of Chapter 2, and the reason Chapters 3 to 7 exist at all.'}],
     ['p','Mechanically, what happens when an app asks the AI a question?'],
     ['p','<strong>It mails a letter.</strong> Your app packs your message into a standard envelope format and sends it over the internet to computers owned by an AI provider. The envelope format is JSON — plain structured text with labels and values in curly braces. Inside sits a list called <code>messages</code>: the conversation so far, each entry tagged with who said it — <code>user</code> for the human, <code>assistant</code> for the AI.'],
     ['p','<strong>The reply comes back with a receipt attached.</strong> The response arrives in the same envelope format: the answer, plus a small section called <code>usage</code> counting exactly how much text was read and how much was written. Not in words — in tokens.'],
     ['p','<strong>A token is a word-piece</strong> — the syllable the machine reads in. Common short words are usually one token each; longer or rarer words are split into several pieces. Rule of thumb: one token ≈ three-quarters of an English word. Tokens are the currency of the entire industry. Every service bills like a prepaid mobile plan — a rate per million tokens read in, and a higher rate per million written out. When a vendor quotes a per-query cost, they are quoting tokens with a margin on top.'],
+    ['lab','tokenizer'],
+    ['pred',{id:'ch1-tok',short:true,ph:'A number',
+      ask:'Write a number down, then check it. How many tokens is <em>See you at the office tomorrow</em>? Type it into the tokenizer above.',
+      reveal:'Six — one per word. Common short English words are usually a token each, which is why ordinary English prose lands near ¾ of a token per word. Now try <em>Chandrasekaran</em>, and then <em>अनुबंध</em>. Rare strings and non-Latin scripts shatter into many more pieces.',
+      then:'That last observation has a bill attached: the same sentence in Hindi or Tamil can cost several times what it costs in English. If your product serves India, that is a line in your cost model, not a curiosity.'}],
+    ['q','I001'],
     ['p','<strong>The envelope has a maximum size.</strong> Everything going in — your question, the conversation history, any documents you attach — plus everything coming out must fit within a fixed ceiling called the <strong>context window</strong>. Different models have different ceilings; every model has one. The context window is not memory. It is the size of a single envelope.'],
+    ['q','I006','I119'],
     ['p','Which brings us to the strangest and most consequential fact in this chapter:'],
     ['key','The AI has total amnesia. The moment it mails its reply, it forgets you completely. Every request starts from absolute zero. The formal word is <strong>stateless</strong>.'],
+    ['q','I010'],
+    ['try',{id:'ch1-explain',mins:3,min:40,rows:3,
+      task:'Your engineering lead says the assistant is <em>stateless</em>. A director asks what that means. Write the two sentences you would actually say out loud — no jargon, and no analogy you could not defend if someone pushed on it.',
+      ph:'Two sentences.',
+      after:'A strong answer carries the mechanism <em>and</em> the consequence. Mechanism: the model is sent the entire conversation again with every single message, because it retains nothing between requests. Consequence: memory is therefore something <em>we</em> store and re-send — so it costs us money on every message, and it is our engineering problem rather than a feature we can buy from the vendor.'}],
+    ['q','I111'],
     ['p','This prompts an obvious question: how does a chat assistant seem to remember what you told it five messages ago? The answer is a stage trick performed by the app, not the model. Every time you send a new message, the app silently stuffs the entire previous conversation into the new envelope. The model re-reads the whole history from scratch, every time, and predicts what comes next. The illusion of memory is manufactured by an ever-fatter envelope.'],
     ['p','The practical consequences are architectural, not merely interesting:'],
     ['l',['<strong>Long conversations get progressively expensive.</strong> Message 50 carries messages 1–49 inside it; you pay tokens for all of them, every time.','<strong>Long conversations eventually hit the ceiling.</strong> The envelope fills, and something must be discarded — which is why assistants visibly forget the beginning of very long exchanges.','<strong>Any memory feature in any AI product is engineering built around the model</strong>, never the model itself. When a vendor claims their assistant remembers each user\'s history, the correct questions are: where is that history stored, who controls that storage, and what does re-sending it cost per query at scale? One is a privacy question; the other is a cost question.']],
+    ['q','I011','I002'],
     ['c','A note you will need in Chapter 10','Everything above stays true in 2027 — but the ceiling got enormous, and that changed which half of the problem matters. Park the thought; it is Chapter 10\'s entire subject.']
   ],
   words:[
@@ -3762,12 +3820,20 @@ function csvField(label,arr,on,hint,numeric){
 
 /* ============ prose blocks ============ */
 const BLOCKS=[['p','Paragraph'],['key','Key line'],['l','Bullets'],['n','Numbered'],
-  ['c','Callout'],['code','Code'],['x','What you should see'],['tb','Table']];
+  ['c','Callout'],['code','Code'],['x','What you should see'],['tb','Table'],
+  ['q','Checkpoint — questions'],['pred','Checkpoint — predict'],
+  ['try','Checkpoint — your turn'],['lab','Interactive lab']];
+/* The interactive blocks carry an object or an id list rather than prose, so
+   converting one to a paragraph cannot keep its text. */
+const INTERACTIVE=['q','pred','try','lab'];
 function blockText(b){
   if(b[0]==='l'||b[0]==='n') return (b[1]||[]).join('\n');
   if(b[0]==='c') return b[2]||'';
-  if(b[0]==='tb') return '';
+  if(b[0]==='tb'||INTERACTIVE.includes(b[0])) return '';
   return b[1]||'';
+}
+function newId(prefix){
+  return prefix + '-' + Math.random().toString(36).slice(2,7);
 }
 function recast(b,t){
   const txt=blockText(b);
@@ -3775,6 +3841,12 @@ function recast(b,t){
   if(t==='l'||t==='n') b.push(txt?txt.split('\n'):['']);
   else if(t==='c') b.push('A note',txt);
   else if(t==='tb') b.push(['Column A','Column B'],[['','']]);
+  else if(t==='q') b.push((window.ALL_ITEMS&&window.ALL_ITEMS[0]&&window.ALL_ITEMS[0][0])||'I001');
+  else if(t==='lab') b.push(Object.keys(window.LABS||{})[0]||'tokenizer');
+  else if(t==='pred') b.push({id:newId('pred'),short:true,ask:txt||'What do you think happens?',
+    reveal:'What actually happens.',ph:'Your prediction'});
+  else if(t==='try') b.push({id:newId('try'),task:txt||'Write the thing.',ph:'Write it here',
+    after:'What a strong answer contains.',rows:4});
   else b.push(txt);
 }
 function tableEditor(b,on){
@@ -3801,6 +3873,67 @@ function tableEditor(b,on){
   };
   draw(); return box;
 }
+/* A checkpoint question is a reference into the question bank, not a copy of
+   one — so it is edited once, in the question editor, and stays the same
+   measured item wherever it is asked. */
+function questionRefEditor(b,on){
+  const box=h('div');
+  const ids=b.slice(1).flat();
+  const draw=()=>{
+    box.innerHTML='';
+    const known=window.ENG?window.ENG.byItem:{};
+    box.appendChild(fld('question ids',inp(ids.join(', '),v=>{
+      const list=v.split(',').map(x=>x.trim()).filter(Boolean);
+      b.length=1; list.forEach(x=>b.push(x));
+      ids.length=0; list.forEach(x=>ids.push(x));
+      on(); preview();
+    },'I001, I002'),'From the question bank. Several ids ask them one after another.'));
+    const pv=h('div',{class:'slist'});
+    box.appendChild(pv);
+    function preview(){
+      pv.innerHTML='';
+      b.slice(1).flat().forEach(id=>{
+        const it=known[id];
+        pv.appendChild(h('div',{class:'sitem'},[
+          h('span',{class:'sitemm mono '+(it?'dim':'')  ,text:id}),
+          h('span',{class:'sitemd',style:'flex:1',
+            text:it?String(it.stem).replace(/<[^>]+>/g,'').slice(0,90)
+                  :'not in the bank — this checkpoint will not render'}),
+          it?h('a',{class:'backlink',href:'#/studio/items/'+encodeURIComponent(id),text:'edit'}):null]));
+      });
+    }
+    preview();
+  };
+  draw(); return box;
+}
+
+function checkpointEditor(b,on){
+  const o=b[1]||(b[1]={});
+  const box=h('div',{class:'sform',style:'gap:.7rem'});
+  box.appendChild(fld('id',inp(o.id,v=>{o.id=v;on();}),
+    'Where the answer is stored. Changing it forgets what was written here.'));
+  if(b[0]==='pred'){
+    box.appendChild(fld('what to predict',ta(o.ask,v=>{o.ask=v;on();},3),'HTML allowed.'));
+    box.appendChild(fld('what actually happens',ta(o.reveal,v=>{o.reveal=v;on();},4),
+      'Shown only after they commit.'));
+    box.appendChild(fld('and therefore',ta(o.then,v=>{o.then=v;on();},2),
+      'Optional. The consequence worth carrying forward.'));
+    box.appendChild(h('div',{class:'sgrid2'},[
+      fld('placeholder',inp(o.ph,v=>{o.ph=v;on();})),
+      fld('input',sel(o.short?'1':'0',[['1','One line'],['0','A few lines']],
+        v=>{o.short=v==='1';on();}))]));
+  } else {
+    box.appendChild(fld('the task',ta(o.task,v=>{o.task=v;on();},4),'HTML allowed.'));
+    box.appendChild(fld('what a strong answer contains',ta(o.after,v=>{o.after=v;on();},4),
+      'Unlocks once they have written something of their own.'));
+    box.appendChild(h('div',{class:'sgrid3'},[
+      fld('placeholder',inp(o.ph,v=>{o.ph=v;on();})),
+      fld('minutes',numin(o.mins,v=>{o.mins=v;on();})),
+      fld('box height',numin(o.rows,v=>{o.rows=v;on();}),'Rows.')]));
+  }
+  return box;
+}
+
 function blockEditor(b,on){
   const box=h('div',{class:'sblock'});
   const draw=()=>{
@@ -3822,6 +3955,14 @@ function blockEditor(b,on){
       box.appendChild(ta(b[2],v=>{b[2]=v;on();},3,'Callout text'));
     } else if(b[0]==='tb'){
       box.appendChild(tableEditor(b,on));
+    } else if(b[0]==='q'){
+      box.appendChild(questionRefEditor(b,on));
+    } else if(b[0]==='lab'){
+      const labs=Object.keys(window.LABS||{}).map(k=>[k,(window.LABS[k].title||k)]);
+      box.appendChild(fld('which lab',sel(b[1],labs.length?labs:[[b[1],b[1]]],v=>{b[1]=v;on();}),
+        'Dropped into the reading at this point.'));
+    } else if(b[0]==='pred'||b[0]==='try'){
+      box.appendChild(checkpointEditor(b,on));
     } else {
       box.appendChild(ta(b[1],v=>{b[1]=v;on();},b[0]==='code'?6:4));
     }
@@ -5701,6 +5842,7 @@ function isEmptyState(d){
   if(Object.keys(d.card||{}).some(k=>d.card[k])) return false;
   if(Object.keys(d.drill||{}).some(k=>d.drill[k])) return false;
   if((d.sittings||[]).length) return false;
+  if(Object.values(d.cp||{}).some(v=>v && String(v.v||'').trim())) return false;
   return true;
 }
 function localChangedSinceSync(){
@@ -5912,6 +6054,152 @@ function dayBars(acc){
 }
 
 /* ================= PRACTICE RUNNER ================= */
+/* One question, asked properly.
+
+   The same ask -> commit -> verdict -> explanation loop wherever a question
+   appears: in a drill, and inline in the middle of a chapter. Sharing it is the
+   whole point — a question met while reading is the same measured thing as one
+   met in a drill. It moves the same mastery, enters the same review schedule,
+   and lands in the same calibration record. There is no such thing here as a
+   question that does not count. */
+function questionCard(it, o){
+  o = o || {};
+  const st=S(), eng=E();
+  const card=h('div',{class:'qcard'+(o.inline?' inline':'')});
+  if(!it){ card.appendChild(h('p',{class:'empty',text:'That question is not in the bank.'})); return card; }
+  const sk=eng.SK[it.sk];
+  const qt0=Date.now();
+
+  const meta=h('div',{class:'qmeta'});
+  if(o.showSkill!==false && sk) meta.appendChild(h('a',{class:'pill',href:'#/skill/'+sk.id,text:sk.n}));
+  meta.appendChild(h('span',{class:'pill d'+it.diff,
+    text:['recall','application','analysis'][it.diff-1]}));
+  card.appendChild(meta);
+  card.appendChild(h('div',{class:'qstem',html:it.stem}));
+
+  let response=null, conf=null;
+  const body=h('div',{class:'qbody'});
+
+  if(it.type==='mcq'){
+    it.opts.forEach((op,i)=>{
+      const b=h('button',{class:'opt',onclick:()=>{response=i;
+        [...body.querySelectorAll('.opt')].forEach(x=>x.classList.remove('sel'));
+        b.classList.add('sel'); enable();}},
+        [h('span',{class:'ok',text:String.fromCharCode(65+i)}),h('span',{html:op})]);
+      body.appendChild(b);
+    });
+  } else if(it.type==='multi'){
+    response=[];
+    card.appendChild(h('p',{class:'qhint',text:'Select all that apply.'}));
+    it.opts.forEach((op,i)=>{
+      const b=h('button',{class:'opt',onclick:()=>{
+        const p=response.indexOf(i);
+        if(p<0){response.push(i);b.classList.add('sel');}else{response.splice(p,1);b.classList.remove('sel');}
+        enable();}},[h('span',{class:'ok',text:'✓'}),h('span',{html:op})]);
+      body.appendChild(b);
+    });
+  } else if(it.type==='num'){
+    const inp=h('input',{type:'number',step:'any',placeholder:it.opts[1]||'Your answer'});
+    inp.addEventListener('input',()=>{response=inp.value;enable();});
+    body.appendChild(h('div',{class:'numrow'},[inp,h('span',{class:'unit',text:it.opts[0]||''})]));
+    if(it.opts[1])body.appendChild(h('p',{class:'qhint',text:it.opts[1]}));
+  } else if(it.type==='order'){
+    response=[];
+    card.appendChild(h('p',{class:'qhint',text:'Click in order, highest first.'}));
+    const pool=h('div',{class:'orderpool'});
+    it.opts.forEach((op,i)=>{
+      const b=h('button',{class:'opt',onclick:()=>{
+        if(response.includes(i))return;
+        response.push(i); b.classList.add('sel');
+        b.querySelector('.ok').textContent=response.length; enable();}},
+        [h('span',{class:'ok',text:'·'}),h('span',{html:op})]);
+      pool.appendChild(b);
+    });
+    body.appendChild(pool);
+    body.appendChild(h('button',{class:'sm',style:'margin-top:.5rem',onclick:()=>{
+      response=[];[...pool.querySelectorAll('.opt')].forEach(x=>{x.classList.remove('sel');
+        x.querySelector('.ok').textContent='·';});enable();}},'Reset order'));
+  } else if(it.type==='judge'){
+    const ta=h('textarea',{rows:o.inline?5:6,
+      placeholder:'Write your answer before revealing the model answer. Rough is fine — this is judged on reasoning, not polish.'});
+    ta.addEventListener('input',()=>{response=ta.value;enable();});
+    body.appendChild(ta);
+  }
+  card.appendChild(body);
+
+  const confRow=h('div',{class:'confrow'},[h('span',{class:'clab',text:'How sure are you?'})]);
+  ['Guessing','Leaning','Fairly sure','Certain'].forEach((l,i)=>{
+    const b=h('button',{class:'sm conf',onclick:()=>{conf=eng.CONF[i];
+      [...confRow.querySelectorAll('.conf')].forEach(x=>x.classList.remove('on'));
+      b.classList.add('on');enable();}},l);
+    confRow.appendChild(b);
+  });
+  card.appendChild(confRow);
+
+  const go=h('button',{class:'primary big',disabled:'true',onclick:()=>reveal()},
+    it.type==='judge'?'Reveal model answer':'Submit');
+  card.appendChild(go);
+
+  function enable(){
+    const has = it.type==='multi'||it.type==='order' ? response.length>0
+      : it.type==='judge' ? (response||'').trim().length>10
+      : response!==null && response!=='';
+    go.disabled = !(has && conf!=null);
+  }
+
+  function reveal(){
+    const ms=Date.now()-qt0;
+    go.remove(); confRow.remove();
+    card.querySelectorAll('button,input,textarea').forEach(x=>x.disabled=true);
+
+    if(it.type==='judge'){
+      card.appendChild(h('div',{class:'model'},[
+        h('span',{class:'lbl',text:'Model answer'}),h('p',{html:it.ans})]));
+      const sc=h('div',{class:'selfscore'},[h('span',{class:'clab',text:'How did yours compare?'})]);
+      ['Missed it','Partial','Solid','Sharper than the model'].forEach((l,i)=>{
+        sc.appendChild(h('button',{class:'sm',onclick:()=>{
+          const ok=eng.submit(st,it,response,conf,ms,i);
+          save(); sc.remove(); if(o.onAnswered)o.onAnswered(ok,it,conf); after(ok);}},l));
+      });
+      card.appendChild(sc);
+      return;
+    }
+
+    const ok=eng.submit(st,it,response,conf,ms,null);
+    save();
+    const opts=[...card.querySelectorAll('.opt')];
+    if(it.type==='mcq') opts.forEach((x,i)=>{
+      if(i===it.ans)x.classList.add('right');
+      else if(i===response)x.classList.add('wrong');});
+    if(it.type==='multi') opts.forEach((x,i)=>{
+      if(it.ans.includes(i))x.classList.add('right');
+      else if(response.includes(i))x.classList.add('wrong');});
+    if(it.type==='order') opts.forEach((x,i)=>{
+      x.querySelector('.ok').textContent=it.ans.indexOf(i)+1;
+      x.classList.add(response[it.ans.indexOf(i)]===i?'right':'wrong');});
+    if(o.onAnswered)o.onAnswered(ok,it,conf);
+    after(ok);
+  }
+
+  function after(ok){
+    card.appendChild(h('div',{class:'verdict '+(ok?'good':'bad')},[
+      h('span',{class:'vt',text:ok?'Correct':'Not quite'}),
+      it.type==='num'&&!ok?h('span',{class:'vs',text:'Answer: '+it.ans[0]+' (±'+it.ans[1]+'%)'}):null,
+      conf>=0.75&&!ok?h('span',{class:'vs',text:'— and you were confident. Worth noting.'}):null,
+      conf<=0.5&&ok?h('span',{class:'vs',text:'— correct but unsure. Also worth noting.'}):null]));
+    if(it.why) card.appendChild(h('div',{class:'why'},[
+      h('span',{class:'lbl',text:'Why'}),h('p',{html:it.why})]));
+    if(o.onNext) card.appendChild(h('button',{class:'primary big',onclick:o.onNext},
+      o.nextLabel||'Next question'));
+    if(o.scrollOnReveal) card.scrollIntoView({block:'start'});
+    if(o.onSettled) o.onSettled(ok);
+    if(window.updateProgress) window.updateProgress();
+  }
+
+  enable();
+  return card;
+}
+
 function practice(mode, arg){
   const st=S(), eng=E();
   const w=h('div',{class:'wrap'});
@@ -5943,135 +6231,12 @@ function practice(mode, arg){
     stage.innerHTML='';
     bar.querySelector('i').style.width=(idx/items.length*100)+'%';
     head.querySelector('.qcount').textContent=(idx+1)+' / '+items.length;
-    const sk=eng.SK[it.sk];
-    const qt0=Date.now();
-
-    stage.appendChild(h('div',{class:'qmeta'},[
-      h('span',{class:'pill',text:sk.n}),
-      h('span',{class:'pill d'+it.diff,text:['recall','application','analysis'][it.diff-1]})]));
-    stage.appendChild(h('div',{class:'qstem',html:it.stem}));
-
-    let response=null;
-    const body=h('div',{class:'qbody'});
-
-    if(it.type==='mcq'){
-      it.opts.forEach((o,i)=>{
-        const b=h('button',{class:'opt',onclick:()=>{response=i;
-          [...body.querySelectorAll('.opt')].forEach(x=>x.classList.remove('sel'));
-          b.classList.add('sel'); enable();}},[h('span',{class:'ok',text:String.fromCharCode(65+i)}),
-          h('span',{html:o})]);
-        body.appendChild(b);
-      });
-    } else if(it.type==='multi'){
-      response=[];
-      stage.appendChild(h('p',{class:'qhint',text:'Select all that apply.'}));
-      it.opts.forEach((o,i)=>{
-        const b=h('button',{class:'opt',onclick:()=>{
-          const p=response.indexOf(i);
-          if(p<0){response.push(i);b.classList.add('sel');}else{response.splice(p,1);b.classList.remove('sel');}
-          enable();}},[h('span',{class:'ok',text:'✓'}),h('span',{html:o})]);
-        body.appendChild(b);
-      });
-    } else if(it.type==='num'){
-      const inp=h('input',{type:'number',step:'any',placeholder:it.opts[1]||'Your answer'});
-      inp.addEventListener('input',()=>{response=inp.value;enable();});
-      body.appendChild(h('div',{class:'numrow'},[inp,h('span',{class:'unit',text:it.opts[0]||''})]));
-      if(it.opts[1])body.appendChild(h('p',{class:'qhint',text:it.opts[1]}));
-    } else if(it.type==='order'){
-      response=[];
-      stage.appendChild(h('p',{class:'qhint',text:'Click in order, highest first.'}));
-      const pool=h('div',{class:'orderpool'});
-      it.opts.forEach((o,i)=>{
-        const b=h('button',{class:'opt',onclick:()=>{
-          if(response.includes(i))return;
-          response.push(i); b.classList.add('sel');
-          b.querySelector('.ok').textContent=response.length; enable();}},
-          [h('span',{class:'ok',text:'·'}),h('span',{html:o})]);
-        pool.appendChild(b);
-      });
-      body.appendChild(pool);
-      body.appendChild(h('button',{class:'sm',style:'margin-top:.5rem',onclick:()=>{
-        response=[];[...pool.querySelectorAll('.opt')].forEach(x=>{x.classList.remove('sel');
-          x.querySelector('.ok').textContent='·';});enable();}},'Reset order'));
-    } else if(it.type==='judge'){
-      const ta=h('textarea',{rows:6,placeholder:'Write your answer before revealing the model answer. Rough is fine — this is judged on reasoning, not polish.'});
-      ta.addEventListener('input',()=>{response=ta.value;enable();});
-      body.appendChild(ta);
-    }
-    stage.appendChild(body);
-
-    /* confidence */
-    let conf=null;
-    const confRow=h('div',{class:'confrow'},[h('span',{class:'clab',text:'How sure are you?'})]);
-    ['Guessing','Leaning','Fairly sure','Certain'].forEach((l,i)=>{
-      const b=h('button',{class:'sm conf',onclick:()=>{conf=eng.CONF[i];
-        [...confRow.querySelectorAll('.conf')].forEach(x=>x.classList.remove('on'));
-        b.classList.add('on');enable();}},l);
-      confRow.appendChild(b);
-    });
-    stage.appendChild(confRow);
-
-    const go=h('button',{class:'primary big',disabled:'true',onclick:()=>reveal()},
-      it.type==='judge'?'Reveal model answer':'Submit');
-    stage.appendChild(go);
-    function enable(){
-      const has = it.type==='multi'||it.type==='order' ? response.length>0
-        : it.type==='judge' ? (response||'').trim().length>10
-        : response!==null && response!=='';
-      go.disabled = !(has && conf!=null);
-    }
-
-    function reveal(){
-      const ms=Date.now()-qt0;
-      go.remove(); confRow.remove();
-      body.querySelectorAll('button,input,textarea').forEach(x=>x.disabled=true);
-
-      if(it.type==='judge'){
-        stage.appendChild(h('div',{class:'model'},[
-          h('span',{class:'lbl',text:'Model answer'}),h('p',{html:it.ans})]));
-        const sc=h('div',{class:'selfscore'},[h('span',{class:'clab',text:'How did yours compare?'})]);
-        ['Missed it','Partial','Solid','Sharper than the model'].forEach((l,i)=>{
-          sc.appendChild(h('button',{class:'sm',onclick:()=>{
-            const ok=eng.submit(st,it,response,conf,ms,i);
-            results.push({it,ok,conf});
-            if(ok)correctN++;
-            save(); sc.remove(); after(ok);}},l));
-        });
-        stage.appendChild(sc);
-        return;
-      }
-
-      const ok=eng.submit(st,it,response,conf,ms,null);
-      results.push({it,ok,conf});
-      if(ok)correctN++;
-      save();
-      /* mark options */
-      const opts=[...body.querySelectorAll('.opt')];
-      if(it.type==='mcq') opts.forEach((o,i)=>{
-        if(i===it.ans)o.classList.add('right');
-        else if(i===response)o.classList.add('wrong');});
-      if(it.type==='multi') opts.forEach((o,i)=>{
-        if(it.ans.includes(i))o.classList.add('right');
-        else if(response.includes(i))o.classList.add('wrong');});
-      if(it.type==='order') opts.forEach((o,i)=>{
-        o.querySelector('.ok').textContent=it.ans.indexOf(i)+1;
-        o.classList.add(response[it.ans.indexOf(i)]===i?'right':'wrong');});
-      after(ok);
-    }
-
-    function after(ok){
-      stage.appendChild(h('div',{class:'verdict '+(ok?'good':'bad')},[
-        h('span',{class:'vt',text:ok?'Correct':'Not quite'}),
-        it.type==='num'&&!ok?h('span',{class:'vs',text:'Answer: '+it.ans[0]+' (±'+it.ans[1]+'%)'}):null,
-        conf>=0.75&&!ok?h('span',{class:'vs',text:'— and you were confident. Worth noting.'}):null,
-        conf<=0.5&&ok?h('span',{class:'vs',text:'— correct but unsure. Also worth noting.'}):null]));
-      stage.appendChild(h('div',{class:'why'},[
-        h('span',{class:'lbl',text:'Why'}),h('p',{html:it.why})]));
-      stage.appendChild(h('button',{class:'primary big',onclick:()=>{
-        idx++; if(idx>=items.length)finish(); else render();}},
-        idx+1>=items.length?'See results':'Next question'));
-      stage.scrollIntoView({block:'start'});
-    }
+    stage.appendChild(questionCard(it,{
+      onAnswered:(ok,item,c)=>{ results.push({it:item, ok, conf:c}); if(ok)correctN++; },
+      nextLabel: idx+1>=items.length?'See results':'Next question',
+      onNext:()=>{ idx++; if(idx>=items.length)finish(); else render(); },
+      scrollOnReveal:true
+    }));
   }
 
   function finish(){
@@ -6940,7 +7105,8 @@ function ghPanel(){
   return box;
 }
 
-return {dashboard, practice, practiceMenu, skills, skillPage, analytics, exercises, processes, data};
+return {dashboard, practice, practiceMenu, skills, skillPage, analytics, exercises, processes, data,
+  questionCard};
 })();
 
 /* Engine: routing, rendering, persistence, and the stateful instruments
@@ -6972,6 +7138,7 @@ window.BIND_CONTENT=bindContent;
 /* ---------------- storage ---------------- */
 const KEY='aifz2027';
 const defaults=()=>({done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{},drill:{},
+  cp:{},       // inline checkpoint answers: predictions and written activities
   sittings:[],theme:null,
   /* tracker state */
   sk:{},      // per-skill mastery {m,n,ok,last,hist,peak}
@@ -7059,9 +7226,159 @@ function blocks(list){
       t.appendChild(h('tbody',{},r[1].map(row=>h('tr',{},row.map(c=>h('td',{html:c}))))));
       f.appendChild(h('div',{class:'tblwrap'},t));
     }
+    /* The interactive blocks. A paragraph can teach a thing; only one of these
+       can tell you whether you took it. They sit inline, where the idea was
+       just explained, rather than being saved up for the end of the chapter. */
+    else if(k==='q')f.appendChild(cpQuestion(r.flat()));
+    else if(k==='pred')f.appendChild(cpPredict(r[0]));
+    else if(k==='try')f.appendChild(cpTry(r[0]));
+    else if(k==='lab'){const b=r[0]==='redmap'?redMapBlock():labBlock(r[0]); if(b)f.appendChild(b);}
   });
   return f;
 }
+
+/* ---------------- inline checkpoints ---------------- */
+function lastAttempt(id){
+  for(let i=S.att.length-1;i>=0;i--) if(S.att[i].i===id) return S.att[i];
+  return null;
+}
+function cpHead(kind, note){
+  return h('div',{class:'cphead'},[h('span',{class:'cpk',text:kind}),
+    note?h('span',{class:'cpn',text:note}):null]);
+}
+
+/* A real question from the bank, asked here. Same engine as a drill: it moves
+   mastery, schedules its own review, and records how sure you were. */
+function cpQuestion(ids){
+  const box=h('div',{class:'cp'});
+  box.appendChild(cpHead('checkpoint', ids.length>1?ids.length+' questions':'counts towards your mastery'));
+  ids.forEach(id=>box.appendChild(qSlot(id)));
+  return box;
+}
+function qSlot(id){
+  const slot=h('div',{class:'qslot'});
+  function draw(force){
+    slot.innerHTML='';
+    const it=window.ENG&&window.ENG.byItem[id];
+    if(!it){slot.appendChild(h('p',{class:'dim',text:'Question '+id+' is not in the bank.'}));return;}
+    const a=force?null:lastAttempt(id);
+    if(a){
+      slot.appendChild(h('div',{class:'qdone'},[
+        h('div',{class:'qmeta'},[
+          h('span',{class:'pill '+(a.k?'ok':'red'),text:a.k?'answered · correct':'answered · missed'}),
+          h('span',{class:'dim',style:'font-size:.75rem',text:relTime(a.t)})]),
+        h('div',{class:'qstem qsm',html:it.stem}),
+        h('div',{class:'why'},[h('span',{class:'lbl',text:it.type==='judge'?'Model answer':'Why'}),
+          h('p',{html:it.type==='judge'?it.ans:(it.why||'')})]),
+        h('button',{class:'sm',onclick:()=>draw(true)},'Ask me again')]));
+      return;
+    }
+    slot.appendChild(window.VIEWS.questionCard(it,{inline:true,
+      onSettled:()=>{updateProgress();refreshCpBars();}}));
+  }
+  draw();
+  return slot;
+}
+
+/* Predict, then look. Writing a number down before you see the answer is what
+   turns reading into a measurement of your own intuition — and the gap between
+   the two is the thing worth knowing. */
+function cpPredict(o){
+  const box=h('div',{class:'cp cp-pred'});
+  function draw(){
+    box.innerHTML='';
+    box.appendChild(cpHead('predict','commit before you look'));
+    box.appendChild(h('div',{class:'prose cpq',html:o.ask}));
+    const cur=S.cp[o.id];
+    if(cur&&cur.v!=null){
+      box.appendChild(h('div',{class:'cpans'},[
+        h('span',{class:'lbl',text:'You predicted'}),h('p',{text:cur.v})]));
+      box.appendChild(h('div',{class:'why'},[
+        h('span',{class:'lbl',text:'What actually happens'}),h('p',{html:o.reveal})]));
+      if(o.then)box.appendChild(h('p',{class:'prose cpthen',html:o.then}));
+      box.appendChild(h('button',{class:'sm',onclick:()=>{delete S.cp[o.id];save();draw();refreshCpBars();}},
+        'Predict again'));
+      return;
+    }
+    const inp=o.short
+      ? h('input',{type:'text',placeholder:o.ph||'Your prediction'})
+      : h('textarea',{rows:3,placeholder:o.ph||'Your prediction — one line is enough'});
+    const go=h('button',{class:'primary',disabled:'true',onclick:()=>{
+      S.cp[o.id]={v:inp.value.trim(),at:Date.now()};save();draw();updateProgress();refreshCpBars();}},
+      'Commit prediction');
+    inp.addEventListener('input',()=>{go.disabled=inp.value.trim().length<1;});
+    box.append(inp,go);
+  }
+  draw();
+  return box;
+}
+
+/* A small piece of work, done here, kept. Not graded — the point is that you
+   produced something rather than recognised something. */
+function cpTry(o){
+  const box=h('div',{class:'cp cp-try'});
+  function draw(){
+    box.innerHTML='';
+    box.appendChild(cpHead('your turn', o.mins?('~'+o.mins+' min'):null));
+    box.appendChild(h('div',{class:'prose cpq',html:o.task}));
+    const cur=S.cp[o.id]||{};
+    const ta=h('textarea',{rows:o.rows||4,placeholder:o.ph||'Write it here'});
+    ta.value=cur.v||'';
+    const saved=h('span',{class:'saved',text:'saved'});
+    let t=null;
+    ta.addEventListener('input',()=>{
+      clearTimeout(t);
+      t=setTimeout(()=>{S.cp[o.id]={v:ta.value,at:Date.now()};save();flash(saved);
+        gate();updateProgress();refreshCpBars();},400);
+    });
+    box.appendChild(ta);
+    const row=h('div',{class:'cprow'});
+    const rev=h('button',{class:'sm',onclick:()=>{
+      rev.remove();
+      box.appendChild(h('div',{class:'why'},[
+        h('span',{class:'lbl',text:'What a strong answer contains'}),h('p',{html:o.after})]));
+    }},'Show what a strong answer contains');
+    function gate(){
+      const enough=(ta.value||'').trim().length>=(o.min||15);
+      rev.disabled=!enough;
+      rev.title=enough?'':'Write your own answer first — that is the whole exercise.';
+    }
+    if(o.after){row.appendChild(rev);gate();}
+    row.appendChild(saved);
+    box.appendChild(row);
+  }
+  draw();
+  return box;
+}
+
+function relTime(t){
+  const s=Math.floor((Date.now()-t)/1000);
+  if(s<3600)return Math.max(1,Math.floor(s/60))+' min ago';
+  if(s<86400)return Math.floor(s/3600)+' h ago';
+  return Math.floor(s/86400)+' d ago';
+}
+
+/* Every interactive block in a chapter, and how many are behind you. */
+function cpWalk(c){
+  const out=[];
+  const scan=list=>(list||[]).forEach(b=>{
+    if(!Array.isArray(b))return;
+    if(b[0]==='q')b.slice(1).flat().forEach(id=>out.push({k:'q',id}));
+    else if(b[0]==='pred'||b[0]==='try')out.push({k:b[0],id:b[1].id});
+  });
+  scan(c.story);
+  (c.handson||[]).forEach(st=>scan(st.b));
+  return out;
+}
+function cpProgress(c){
+  const all=cpWalk(c);
+  const done=all.filter(x=>x.k==='q'
+    ? !!lastAttempt(x.id)
+    : !!(S.cp[x.id]&&String(S.cp[x.id].v||'').trim())).length;
+  return {total:all.length, done};
+}
+let cpBars=[];
+function refreshCpBars(){ cpBars.forEach(f=>{try{f();}catch(e){}}); }
 
 function labBlock(key){
   const L=(window.LABS||{})[key]; if(!L)return null;
@@ -7082,6 +7399,7 @@ function sectionHead(idx,title,time){
 function renderChapter(c){
   const w=h('div',{class:'wrap'});
   const part=window.PARTS[c.part-1];
+  cpBars=[];                       // stale refreshers from the last chapter
   w.appendChild(h('header',{class:'chead'},[
     h('div',{class:'eyebrow'},[h('span',{text:'Part '+['I','II','III'][c.part-1]+' · '+part.title}),
       h('span',{class:'dot'}),h('span',{text:'~'+c.minutes+' min'}),
@@ -7089,6 +7407,26 @@ function renderChapter(c){
     h('div',{class:'chnum',text:String(c.num).padStart(2,'0')}),
     h('h1',{text:c.title}),
     h('p',{class:'concept',text:c.concept})]));
+
+  /* A chapter is not a thing you read to the end of; it is a thing you answer
+     your way through. This says how far through the answering you are. */
+  const cpStrip=h('div',{class:'cpstrip'});
+  const drawStrip=()=>{
+    const {total,done}=cpProgress(c);
+    cpStrip.innerHTML='';
+    if(!total){cpStrip.hidden=true;return;}
+    cpStrip.hidden=false;
+    cpStrip.append(
+      h('span',{class:'cplbl',text:'Checkpoints'}),
+      h('span',{class:'bar',style:'flex:1;max-width:220px'},
+        [h('i',{style:'width:'+Math.round(done/total*100)+'%'})]),
+      h('span',{class:'cpcount mono',text:done+' / '+total}),
+      h('span',{class:'dim',style:'font-size:.78rem',
+        text:done>=total?'all done — the questions still come back for review'
+          :'answer them as you meet them, not at the end'}));
+  };
+  drawStrip(); cpBars.push(drawStrip);
+  w.appendChild(cpStrip);
 
   let n=1;
   // Story

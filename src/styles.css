@@ -703,3 +703,43 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .sitemt{font-size:.9rem;color:var(--ink)}
 .sitemd{font-size:.76rem;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .sitemm{font-size:.7rem;flex:none}
+
+/* ---------- inline checkpoints ---------- */
+.cpstrip{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin:0 0 2rem;
+  padding:.6rem .85rem;background:var(--raised);border:1px solid var(--rule);border-radius:var(--r)}
+.cplbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted)}
+.cpcount{font-size:.78rem;font-variant-numeric:tabular-nums;color:var(--ink-2)}
+
+/* A checkpoint interrupts the prose deliberately: it should look like the page
+   stopping to ask you something, not like another box of text. */
+.cp{margin:1.9rem 0;padding:1rem 1.15rem;background:var(--raised);
+  border:1px solid var(--rule);border-left:2px solid var(--ink-2);border-radius:var(--r)}
+.cp-pred{border-left-color:var(--amber)}
+.cp-try{border-left-color:var(--verified)}
+.cphead{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap;margin-bottom:.7rem}
+.cpk{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink);border:1px solid var(--rule);border-radius:2px;padding:.15rem .4rem}
+.cp-pred .cpk{color:var(--amber);border-color:var(--amber)}
+.cp-try .cpk{color:var(--verified);border-color:var(--verified)}
+.cpn{font-size:.72rem;color:var(--muted)}
+.cp .cpq{font-family:var(--serif);font-size:1.02rem;line-height:1.6;margin-bottom:.8rem}
+.cp .cpq p{margin:0 0 .5rem}
+.cp textarea,.cp input[type=text]{width:100%;margin-bottom:.6rem}
+.cprow{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+.cpans{background:var(--paper);border:1px solid var(--rule);border-radius:var(--r);
+  padding:.6rem .8rem;margin-bottom:.7rem}
+.cpans .lbl{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);display:block;margin-bottom:.25rem}
+.cpans p{margin:0;font-size:.9rem;white-space:pre-wrap}
+.cpthen{font-size:.92rem;color:var(--ink-2);margin:.7rem 0 0}
+
+/* The question widget, when it appears inline rather than in a drill. */
+.qcard.inline{max-width:none}
+.qcard.inline .qstem{font-size:1.05rem;margin-bottom:1rem}
+.qcard.inline .qmeta{margin-bottom:.7rem}
+.qcard.inline button.big{padding:.45rem 1rem;font-size:.85rem}
+.qslot+.qslot{margin-top:1.4rem;padding-top:1.2rem;border-top:1px solid var(--rule)}
+.qdone .qstem.qsm{font-family:var(--serif);font-size:.98rem;line-height:1.5;margin:.5rem 0 .7rem;
+  color:var(--ink-2)}
+.qdone .why{margin-bottom:.7rem}

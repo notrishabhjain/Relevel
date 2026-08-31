@@ -27,6 +27,7 @@ window.BIND_CONTENT=bindContent;
 /* ---------------- storage ---------------- */
 const KEY='aifz2027';
 const defaults=()=>({done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{},drill:{},
+  cp:{},       // inline checkpoint answers: predictions and written activities
   sittings:[],theme:null,
   /* tracker state */
   sk:{},      // per-skill mastery {m,n,ok,last,hist,peak}
@@ -114,9 +115,159 @@ function blocks(list){
       t.appendChild(h('tbody',{},r[1].map(row=>h('tr',{},row.map(c=>h('td',{html:c}))))));
       f.appendChild(h('div',{class:'tblwrap'},t));
     }
+    /* The interactive blocks. A paragraph can teach a thing; only one of these
+       can tell you whether you took it. They sit inline, where the idea was
+       just explained, rather than being saved up for the end of the chapter. */
+    else if(k==='q')f.appendChild(cpQuestion(r.flat()));
+    else if(k==='pred')f.appendChild(cpPredict(r[0]));
+    else if(k==='try')f.appendChild(cpTry(r[0]));
+    else if(k==='lab'){const b=r[0]==='redmap'?redMapBlock():labBlock(r[0]); if(b)f.appendChild(b);}
   });
   return f;
 }
+
+/* ---------------- inline checkpoints ---------------- */
+function lastAttempt(id){
+  for(let i=S.att.length-1;i>=0;i--) if(S.att[i].i===id) return S.att[i];
+  return null;
+}
+function cpHead(kind, note){
+  return h('div',{class:'cphead'},[h('span',{class:'cpk',text:kind}),
+    note?h('span',{class:'cpn',text:note}):null]);
+}
+
+/* A real question from the bank, asked here. Same engine as a drill: it moves
+   mastery, schedules its own review, and records how sure you were. */
+function cpQuestion(ids){
+  const box=h('div',{class:'cp'});
+  box.appendChild(cpHead('checkpoint', ids.length>1?ids.length+' questions':'counts towards your mastery'));
+  ids.forEach(id=>box.appendChild(qSlot(id)));
+  return box;
+}
+function qSlot(id){
+  const slot=h('div',{class:'qslot'});
+  function draw(force){
+    slot.innerHTML='';
+    const it=window.ENG&&window.ENG.byItem[id];
+    if(!it){slot.appendChild(h('p',{class:'dim',text:'Question '+id+' is not in the bank.'}));return;}
+    const a=force?null:lastAttempt(id);
+    if(a){
+      slot.appendChild(h('div',{class:'qdone'},[
+        h('div',{class:'qmeta'},[
+          h('span',{class:'pill '+(a.k?'ok':'red'),text:a.k?'answered · correct':'answered · missed'}),
+          h('span',{class:'dim',style:'font-size:.75rem',text:relTime(a.t)})]),
+        h('div',{class:'qstem qsm',html:it.stem}),
+        h('div',{class:'why'},[h('span',{class:'lbl',text:it.type==='judge'?'Model answer':'Why'}),
+          h('p',{html:it.type==='judge'?it.ans:(it.why||'')})]),
+        h('button',{class:'sm',onclick:()=>draw(true)},'Ask me again')]));
+      return;
+    }
+    slot.appendChild(window.VIEWS.questionCard(it,{inline:true,
+      onSettled:()=>{updateProgress();refreshCpBars();}}));
+  }
+  draw();
+  return slot;
+}
+
+/* Predict, then look. Writing a number down before you see the answer is what
+   turns reading into a measurement of your own intuition — and the gap between
+   the two is the thing worth knowing. */
+function cpPredict(o){
+  const box=h('div',{class:'cp cp-pred'});
+  function draw(){
+    box.innerHTML='';
+    box.appendChild(cpHead('predict','commit before you look'));
+    box.appendChild(h('div',{class:'prose cpq',html:o.ask}));
+    const cur=S.cp[o.id];
+    if(cur&&cur.v!=null){
+      box.appendChild(h('div',{class:'cpans'},[
+        h('span',{class:'lbl',text:'You predicted'}),h('p',{text:cur.v})]));
+      box.appendChild(h('div',{class:'why'},[
+        h('span',{class:'lbl',text:'What actually happens'}),h('p',{html:o.reveal})]));
+      if(o.then)box.appendChild(h('p',{class:'prose cpthen',html:o.then}));
+      box.appendChild(h('button',{class:'sm',onclick:()=>{delete S.cp[o.id];save();draw();refreshCpBars();}},
+        'Predict again'));
+      return;
+    }
+    const inp=o.short
+      ? h('input',{type:'text',placeholder:o.ph||'Your prediction'})
+      : h('textarea',{rows:3,placeholder:o.ph||'Your prediction — one line is enough'});
+    const go=h('button',{class:'primary',disabled:'true',onclick:()=>{
+      S.cp[o.id]={v:inp.value.trim(),at:Date.now()};save();draw();updateProgress();refreshCpBars();}},
+      'Commit prediction');
+    inp.addEventListener('input',()=>{go.disabled=inp.value.trim().length<1;});
+    box.append(inp,go);
+  }
+  draw();
+  return box;
+}
+
+/* A small piece of work, done here, kept. Not graded — the point is that you
+   produced something rather than recognised something. */
+function cpTry(o){
+  const box=h('div',{class:'cp cp-try'});
+  function draw(){
+    box.innerHTML='';
+    box.appendChild(cpHead('your turn', o.mins?('~'+o.mins+' min'):null));
+    box.appendChild(h('div',{class:'prose cpq',html:o.task}));
+    const cur=S.cp[o.id]||{};
+    const ta=h('textarea',{rows:o.rows||4,placeholder:o.ph||'Write it here'});
+    ta.value=cur.v||'';
+    const saved=h('span',{class:'saved',text:'saved'});
+    let t=null;
+    ta.addEventListener('input',()=>{
+      clearTimeout(t);
+      t=setTimeout(()=>{S.cp[o.id]={v:ta.value,at:Date.now()};save();flash(saved);
+        gate();updateProgress();refreshCpBars();},400);
+    });
+    box.appendChild(ta);
+    const row=h('div',{class:'cprow'});
+    const rev=h('button',{class:'sm',onclick:()=>{
+      rev.remove();
+      box.appendChild(h('div',{class:'why'},[
+        h('span',{class:'lbl',text:'What a strong answer contains'}),h('p',{html:o.after})]));
+    }},'Show what a strong answer contains');
+    function gate(){
+      const enough=(ta.value||'').trim().length>=(o.min||15);
+      rev.disabled=!enough;
+      rev.title=enough?'':'Write your own answer first — that is the whole exercise.';
+    }
+    if(o.after){row.appendChild(rev);gate();}
+    row.appendChild(saved);
+    box.appendChild(row);
+  }
+  draw();
+  return box;
+}
+
+function relTime(t){
+  const s=Math.floor((Date.now()-t)/1000);
+  if(s<3600)return Math.max(1,Math.floor(s/60))+' min ago';
+  if(s<86400)return Math.floor(s/3600)+' h ago';
+  return Math.floor(s/86400)+' d ago';
+}
+
+/* Every interactive block in a chapter, and how many are behind you. */
+function cpWalk(c){
+  const out=[];
+  const scan=list=>(list||[]).forEach(b=>{
+    if(!Array.isArray(b))return;
+    if(b[0]==='q')b.slice(1).flat().forEach(id=>out.push({k:'q',id}));
+    else if(b[0]==='pred'||b[0]==='try')out.push({k:b[0],id:b[1].id});
+  });
+  scan(c.story);
+  (c.handson||[]).forEach(st=>scan(st.b));
+  return out;
+}
+function cpProgress(c){
+  const all=cpWalk(c);
+  const done=all.filter(x=>x.k==='q'
+    ? !!lastAttempt(x.id)
+    : !!(S.cp[x.id]&&String(S.cp[x.id].v||'').trim())).length;
+  return {total:all.length, done};
+}
+let cpBars=[];
+function refreshCpBars(){ cpBars.forEach(f=>{try{f();}catch(e){}}); }
 
 function labBlock(key){
   const L=(window.LABS||{})[key]; if(!L)return null;
@@ -137,6 +288,7 @@ function sectionHead(idx,title,time){
 function renderChapter(c){
   const w=h('div',{class:'wrap'});
   const part=window.PARTS[c.part-1];
+  cpBars=[];                       // stale refreshers from the last chapter
   w.appendChild(h('header',{class:'chead'},[
     h('div',{class:'eyebrow'},[h('span',{text:'Part '+['I','II','III'][c.part-1]+' · '+part.title}),
       h('span',{class:'dot'}),h('span',{text:'~'+c.minutes+' min'}),
@@ -144,6 +296,26 @@ function renderChapter(c){
     h('div',{class:'chnum',text:String(c.num).padStart(2,'0')}),
     h('h1',{text:c.title}),
     h('p',{class:'concept',text:c.concept})]));
+
+  /* A chapter is not a thing you read to the end of; it is a thing you answer
+     your way through. This says how far through the answering you are. */
+  const cpStrip=h('div',{class:'cpstrip'});
+  const drawStrip=()=>{
+    const {total,done}=cpProgress(c);
+    cpStrip.innerHTML='';
+    if(!total){cpStrip.hidden=true;return;}
+    cpStrip.hidden=false;
+    cpStrip.append(
+      h('span',{class:'cplbl',text:'Checkpoints'}),
+      h('span',{class:'bar',style:'flex:1;max-width:220px'},
+        [h('i',{style:'width:'+Math.round(done/total*100)+'%'})]),
+      h('span',{class:'cpcount mono',text:done+' / '+total}),
+      h('span',{class:'dim',style:'font-size:.78rem',
+        text:done>=total?'all done — the questions still come back for review'
+          :'answer them as you meet them, not at the end'}));
+  };
+  drawStrip(); cpBars.push(drawStrip);
+  w.appendChild(cpStrip);
 
   let n=1;
   // Story

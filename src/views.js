@@ -132,6 +132,152 @@ function dayBars(acc){
 }
 
 /* ================= PRACTICE RUNNER ================= */
+/* One question, asked properly.
+
+   The same ask -> commit -> verdict -> explanation loop wherever a question
+   appears: in a drill, and inline in the middle of a chapter. Sharing it is the
+   whole point — a question met while reading is the same measured thing as one
+   met in a drill. It moves the same mastery, enters the same review schedule,
+   and lands in the same calibration record. There is no such thing here as a
+   question that does not count. */
+function questionCard(it, o){
+  o = o || {};
+  const st=S(), eng=E();
+  const card=h('div',{class:'qcard'+(o.inline?' inline':'')});
+  if(!it){ card.appendChild(h('p',{class:'empty',text:'That question is not in the bank.'})); return card; }
+  const sk=eng.SK[it.sk];
+  const qt0=Date.now();
+
+  const meta=h('div',{class:'qmeta'});
+  if(o.showSkill!==false && sk) meta.appendChild(h('a',{class:'pill',href:'#/skill/'+sk.id,text:sk.n}));
+  meta.appendChild(h('span',{class:'pill d'+it.diff,
+    text:['recall','application','analysis'][it.diff-1]}));
+  card.appendChild(meta);
+  card.appendChild(h('div',{class:'qstem',html:it.stem}));
+
+  let response=null, conf=null;
+  const body=h('div',{class:'qbody'});
+
+  if(it.type==='mcq'){
+    it.opts.forEach((op,i)=>{
+      const b=h('button',{class:'opt',onclick:()=>{response=i;
+        [...body.querySelectorAll('.opt')].forEach(x=>x.classList.remove('sel'));
+        b.classList.add('sel'); enable();}},
+        [h('span',{class:'ok',text:String.fromCharCode(65+i)}),h('span',{html:op})]);
+      body.appendChild(b);
+    });
+  } else if(it.type==='multi'){
+    response=[];
+    card.appendChild(h('p',{class:'qhint',text:'Select all that apply.'}));
+    it.opts.forEach((op,i)=>{
+      const b=h('button',{class:'opt',onclick:()=>{
+        const p=response.indexOf(i);
+        if(p<0){response.push(i);b.classList.add('sel');}else{response.splice(p,1);b.classList.remove('sel');}
+        enable();}},[h('span',{class:'ok',text:'✓'}),h('span',{html:op})]);
+      body.appendChild(b);
+    });
+  } else if(it.type==='num'){
+    const inp=h('input',{type:'number',step:'any',placeholder:it.opts[1]||'Your answer'});
+    inp.addEventListener('input',()=>{response=inp.value;enable();});
+    body.appendChild(h('div',{class:'numrow'},[inp,h('span',{class:'unit',text:it.opts[0]||''})]));
+    if(it.opts[1])body.appendChild(h('p',{class:'qhint',text:it.opts[1]}));
+  } else if(it.type==='order'){
+    response=[];
+    card.appendChild(h('p',{class:'qhint',text:'Click in order, highest first.'}));
+    const pool=h('div',{class:'orderpool'});
+    it.opts.forEach((op,i)=>{
+      const b=h('button',{class:'opt',onclick:()=>{
+        if(response.includes(i))return;
+        response.push(i); b.classList.add('sel');
+        b.querySelector('.ok').textContent=response.length; enable();}},
+        [h('span',{class:'ok',text:'·'}),h('span',{html:op})]);
+      pool.appendChild(b);
+    });
+    body.appendChild(pool);
+    body.appendChild(h('button',{class:'sm',style:'margin-top:.5rem',onclick:()=>{
+      response=[];[...pool.querySelectorAll('.opt')].forEach(x=>{x.classList.remove('sel');
+        x.querySelector('.ok').textContent='·';});enable();}},'Reset order'));
+  } else if(it.type==='judge'){
+    const ta=h('textarea',{rows:o.inline?5:6,
+      placeholder:'Write your answer before revealing the model answer. Rough is fine — this is judged on reasoning, not polish.'});
+    ta.addEventListener('input',()=>{response=ta.value;enable();});
+    body.appendChild(ta);
+  }
+  card.appendChild(body);
+
+  const confRow=h('div',{class:'confrow'},[h('span',{class:'clab',text:'How sure are you?'})]);
+  ['Guessing','Leaning','Fairly sure','Certain'].forEach((l,i)=>{
+    const b=h('button',{class:'sm conf',onclick:()=>{conf=eng.CONF[i];
+      [...confRow.querySelectorAll('.conf')].forEach(x=>x.classList.remove('on'));
+      b.classList.add('on');enable();}},l);
+    confRow.appendChild(b);
+  });
+  card.appendChild(confRow);
+
+  const go=h('button',{class:'primary big',disabled:'true',onclick:()=>reveal()},
+    it.type==='judge'?'Reveal model answer':'Submit');
+  card.appendChild(go);
+
+  function enable(){
+    const has = it.type==='multi'||it.type==='order' ? response.length>0
+      : it.type==='judge' ? (response||'').trim().length>10
+      : response!==null && response!=='';
+    go.disabled = !(has && conf!=null);
+  }
+
+  function reveal(){
+    const ms=Date.now()-qt0;
+    go.remove(); confRow.remove();
+    card.querySelectorAll('button,input,textarea').forEach(x=>x.disabled=true);
+
+    if(it.type==='judge'){
+      card.appendChild(h('div',{class:'model'},[
+        h('span',{class:'lbl',text:'Model answer'}),h('p',{html:it.ans})]));
+      const sc=h('div',{class:'selfscore'},[h('span',{class:'clab',text:'How did yours compare?'})]);
+      ['Missed it','Partial','Solid','Sharper than the model'].forEach((l,i)=>{
+        sc.appendChild(h('button',{class:'sm',onclick:()=>{
+          const ok=eng.submit(st,it,response,conf,ms,i);
+          save(); sc.remove(); if(o.onAnswered)o.onAnswered(ok,it,conf); after(ok);}},l));
+      });
+      card.appendChild(sc);
+      return;
+    }
+
+    const ok=eng.submit(st,it,response,conf,ms,null);
+    save();
+    const opts=[...card.querySelectorAll('.opt')];
+    if(it.type==='mcq') opts.forEach((x,i)=>{
+      if(i===it.ans)x.classList.add('right');
+      else if(i===response)x.classList.add('wrong');});
+    if(it.type==='multi') opts.forEach((x,i)=>{
+      if(it.ans.includes(i))x.classList.add('right');
+      else if(response.includes(i))x.classList.add('wrong');});
+    if(it.type==='order') opts.forEach((x,i)=>{
+      x.querySelector('.ok').textContent=it.ans.indexOf(i)+1;
+      x.classList.add(response[it.ans.indexOf(i)]===i?'right':'wrong');});
+    if(o.onAnswered)o.onAnswered(ok,it,conf);
+    after(ok);
+  }
+
+  function after(ok){
+    card.appendChild(h('div',{class:'verdict '+(ok?'good':'bad')},[
+      h('span',{class:'vt',text:ok?'Correct':'Not quite'}),
+      it.type==='num'&&!ok?h('span',{class:'vs',text:'Answer: '+it.ans[0]+' (±'+it.ans[1]+'%)'}):null,
+      conf>=0.75&&!ok?h('span',{class:'vs',text:'— and you were confident. Worth noting.'}):null,
+      conf<=0.5&&ok?h('span',{class:'vs',text:'— correct but unsure. Also worth noting.'}):null]));
+    if(it.why) card.appendChild(h('div',{class:'why'},[
+      h('span',{class:'lbl',text:'Why'}),h('p',{html:it.why})]));
+    if(o.onNext) card.appendChild(h('button',{class:'primary big',onclick:o.onNext},
+      o.nextLabel||'Next question'));
+    if(o.scrollOnReveal) card.scrollIntoView({block:'start'});
+    if(o.onSettled) o.onSettled(ok);
+    if(window.updateProgress) window.updateProgress();
+  }
+
+  enable();
+  return card;
+}
+
 function practice(mode, arg){
   const st=S(), eng=E();
   const w=h('div',{class:'wrap'});
@@ -163,135 +309,12 @@ function practice(mode, arg){
     stage.innerHTML='';
     bar.querySelector('i').style.width=(idx/items.length*100)+'%';
     head.querySelector('.qcount').textContent=(idx+1)+' / '+items.length;
-    const sk=eng.SK[it.sk];
-    const qt0=Date.now();
-
-    stage.appendChild(h('div',{class:'qmeta'},[
-      h('span',{class:'pill',text:sk.n}),
-      h('span',{class:'pill d'+it.diff,text:['recall','application','analysis'][it.diff-1]})]));
-    stage.appendChild(h('div',{class:'qstem',html:it.stem}));
-
-    let response=null;
-    const body=h('div',{class:'qbody'});
-
-    if(it.type==='mcq'){
-      it.opts.forEach((o,i)=>{
-        const b=h('button',{class:'opt',onclick:()=>{response=i;
-          [...body.querySelectorAll('.opt')].forEach(x=>x.classList.remove('sel'));
-          b.classList.add('sel'); enable();}},[h('span',{class:'ok',text:String.fromCharCode(65+i)}),
-          h('span',{html:o})]);
-        body.appendChild(b);
-      });
-    } else if(it.type==='multi'){
-      response=[];
-      stage.appendChild(h('p',{class:'qhint',text:'Select all that apply.'}));
-      it.opts.forEach((o,i)=>{
-        const b=h('button',{class:'opt',onclick:()=>{
-          const p=response.indexOf(i);
-          if(p<0){response.push(i);b.classList.add('sel');}else{response.splice(p,1);b.classList.remove('sel');}
-          enable();}},[h('span',{class:'ok',text:'✓'}),h('span',{html:o})]);
-        body.appendChild(b);
-      });
-    } else if(it.type==='num'){
-      const inp=h('input',{type:'number',step:'any',placeholder:it.opts[1]||'Your answer'});
-      inp.addEventListener('input',()=>{response=inp.value;enable();});
-      body.appendChild(h('div',{class:'numrow'},[inp,h('span',{class:'unit',text:it.opts[0]||''})]));
-      if(it.opts[1])body.appendChild(h('p',{class:'qhint',text:it.opts[1]}));
-    } else if(it.type==='order'){
-      response=[];
-      stage.appendChild(h('p',{class:'qhint',text:'Click in order, highest first.'}));
-      const pool=h('div',{class:'orderpool'});
-      it.opts.forEach((o,i)=>{
-        const b=h('button',{class:'opt',onclick:()=>{
-          if(response.includes(i))return;
-          response.push(i); b.classList.add('sel');
-          b.querySelector('.ok').textContent=response.length; enable();}},
-          [h('span',{class:'ok',text:'·'}),h('span',{html:o})]);
-        pool.appendChild(b);
-      });
-      body.appendChild(pool);
-      body.appendChild(h('button',{class:'sm',style:'margin-top:.5rem',onclick:()=>{
-        response=[];[...pool.querySelectorAll('.opt')].forEach(x=>{x.classList.remove('sel');
-          x.querySelector('.ok').textContent='·';});enable();}},'Reset order'));
-    } else if(it.type==='judge'){
-      const ta=h('textarea',{rows:6,placeholder:'Write your answer before revealing the model answer. Rough is fine — this is judged on reasoning, not polish.'});
-      ta.addEventListener('input',()=>{response=ta.value;enable();});
-      body.appendChild(ta);
-    }
-    stage.appendChild(body);
-
-    /* confidence */
-    let conf=null;
-    const confRow=h('div',{class:'confrow'},[h('span',{class:'clab',text:'How sure are you?'})]);
-    ['Guessing','Leaning','Fairly sure','Certain'].forEach((l,i)=>{
-      const b=h('button',{class:'sm conf',onclick:()=>{conf=eng.CONF[i];
-        [...confRow.querySelectorAll('.conf')].forEach(x=>x.classList.remove('on'));
-        b.classList.add('on');enable();}},l);
-      confRow.appendChild(b);
-    });
-    stage.appendChild(confRow);
-
-    const go=h('button',{class:'primary big',disabled:'true',onclick:()=>reveal()},
-      it.type==='judge'?'Reveal model answer':'Submit');
-    stage.appendChild(go);
-    function enable(){
-      const has = it.type==='multi'||it.type==='order' ? response.length>0
-        : it.type==='judge' ? (response||'').trim().length>10
-        : response!==null && response!=='';
-      go.disabled = !(has && conf!=null);
-    }
-
-    function reveal(){
-      const ms=Date.now()-qt0;
-      go.remove(); confRow.remove();
-      body.querySelectorAll('button,input,textarea').forEach(x=>x.disabled=true);
-
-      if(it.type==='judge'){
-        stage.appendChild(h('div',{class:'model'},[
-          h('span',{class:'lbl',text:'Model answer'}),h('p',{html:it.ans})]));
-        const sc=h('div',{class:'selfscore'},[h('span',{class:'clab',text:'How did yours compare?'})]);
-        ['Missed it','Partial','Solid','Sharper than the model'].forEach((l,i)=>{
-          sc.appendChild(h('button',{class:'sm',onclick:()=>{
-            const ok=eng.submit(st,it,response,conf,ms,i);
-            results.push({it,ok,conf});
-            if(ok)correctN++;
-            save(); sc.remove(); after(ok);}},l));
-        });
-        stage.appendChild(sc);
-        return;
-      }
-
-      const ok=eng.submit(st,it,response,conf,ms,null);
-      results.push({it,ok,conf});
-      if(ok)correctN++;
-      save();
-      /* mark options */
-      const opts=[...body.querySelectorAll('.opt')];
-      if(it.type==='mcq') opts.forEach((o,i)=>{
-        if(i===it.ans)o.classList.add('right');
-        else if(i===response)o.classList.add('wrong');});
-      if(it.type==='multi') opts.forEach((o,i)=>{
-        if(it.ans.includes(i))o.classList.add('right');
-        else if(response.includes(i))o.classList.add('wrong');});
-      if(it.type==='order') opts.forEach((o,i)=>{
-        o.querySelector('.ok').textContent=it.ans.indexOf(i)+1;
-        o.classList.add(response[it.ans.indexOf(i)]===i?'right':'wrong');});
-      after(ok);
-    }
-
-    function after(ok){
-      stage.appendChild(h('div',{class:'verdict '+(ok?'good':'bad')},[
-        h('span',{class:'vt',text:ok?'Correct':'Not quite'}),
-        it.type==='num'&&!ok?h('span',{class:'vs',text:'Answer: '+it.ans[0]+' (±'+it.ans[1]+'%)'}):null,
-        conf>=0.75&&!ok?h('span',{class:'vs',text:'— and you were confident. Worth noting.'}):null,
-        conf<=0.5&&ok?h('span',{class:'vs',text:'— correct but unsure. Also worth noting.'}):null]));
-      stage.appendChild(h('div',{class:'why'},[
-        h('span',{class:'lbl',text:'Why'}),h('p',{html:it.why})]));
-      stage.appendChild(h('button',{class:'primary big',onclick:()=>{
-        idx++; if(idx>=items.length)finish(); else render();}},
-        idx+1>=items.length?'See results':'Next question'));
-      stage.scrollIntoView({block:'start'});
-    }
+    stage.appendChild(questionCard(it,{
+      onAnswered:(ok,item,c)=>{ results.push({it:item, ok, conf:c}); if(ok)correctN++; },
+      nextLabel: idx+1>=items.length?'See results':'Next question',
+      onNext:()=>{ idx++; if(idx>=items.length)finish(); else render(); },
+      scrollOnReveal:true
+    }));
   }
 
   function finish(){
@@ -1160,5 +1183,6 @@ function ghPanel(){
   return box;
 }
 
-return {dashboard, practice, practiceMenu, skills, skillPage, analytics, exercises, processes, data};
+return {dashboard, practice, practiceMenu, skills, skillPage, analytics, exercises, processes, data,
+  questionCard};
 })();
