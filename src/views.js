@@ -768,8 +768,11 @@ function processes(){
 function data(){
   const st=S(), SY=window.SYNC;
   const w=h('div',{class:'wrap'});
-  w.appendChild(phead('Durability','Progress & Backup',
-    'Your progress lives in this browser and is never sent anywhere by default. That makes it private — and it makes it fragile, because it is tied to this one browser on this one device. Here is how to make it survive.'));
+  const signedIn = window.ACCOUNT && window.ACCOUNT.user;
+  w.appendChild(phead('Your data','Progress & Backup',
+    signedIn
+      ? 'Your progress is stored against your account, so it follows you to any device you sign in on. This browser keeps a copy so the app still works offline, and everything below is the safety net under that.'
+      : 'Right now your progress lives in this browser only. That makes it private — and fragile, because it is tied to one browser on one device. Sign in below to make it follow you instead.'));
 
   const s0=SY.stats();
   w.appendChild(h('div',{class:'stats'},[
@@ -780,15 +783,21 @@ function data(){
     tile('answers logged',s0.summary.attempts),
     tile('last local backup',s0.backup?rel(s0.backup.at):'none',s0.backup?'':'red')]));
 
-  w.appendChild(h('div',{class:'callout'},[
+  if(!signedIn) w.appendChild(h('div',{class:'callout'},[
     h('span',{class:'lbl',text:'Where this data lives'}),
-    h('p',{html:'<code>'+esc2(s0.origin)+'</code> — browser storage is scoped to the exact address. '+
-      'Progress saved on the Claude artifact link and progress saved on your hosted link are <strong>separate stores</strong>. '+
-      'To move between them, export here and import there.'})]));
+    h('p',{html:'<code>'+esc2(s0.origin)+'</code> — without an account, browser storage is scoped to the exact address. '+
+      'Progress saved on one link and on another are <strong>separate stores</strong>. '+
+      'Signing in removes that problem entirely; until then, export here and import there.'})]));
+
+  /* --- account --- */
+  const secA=h('section',{class:'part'});
+  secA.appendChild(sectionHead2('01','Your account','how it follows you'));
+  secA.appendChild(accountPanel());
+  w.appendChild(secA);
 
   /* --- file backup --- */
   const sec1=h('section',{class:'part'});
-  sec1.appendChild(sectionHead2('01','Backup file','works everywhere, no account'));
+  sec1.appendChild(sectionHead2('02','Backup file','works everywhere, no account'));
   sec1.appendChild(h('p',{class:'prose',style:'font-size:1rem',
     html:'The dependable one. Downloads everything — mastery, answers, calibration, notebook, exercises, processes — as a single JSON file. Keep it wherever you keep things: Drive, Dropbox, email to yourself.'}));
   const impMsg=h('div');
@@ -851,7 +860,7 @@ function data(){
 
   /* --- keep on device --- */
   const sec2=h('section',{class:'part'});
-  sec2.appendChild(sectionHead2('02','Keep it on this device','one click'));
+  sec2.appendChild(sectionHead2('03','Keep it on this device','one click'));
   sec2.appendChild(h('p',{class:'prose',style:'font-size:1rem',
     html:'Browsers evict storage from sites they consider disposable. Asking for persistent storage tells this one not to.'}));
   const persistMsg=h('span',{class:'dim',style:'font-size:.85rem'});
@@ -866,15 +875,17 @@ function data(){
 
   /* --- gist sync --- */
   const sec3=h('section',{class:'part'});
-  sec3.appendChild(sectionHead2('03','Sync across devices','optional, free, no server'));
+  sec3.appendChild(sectionHead2('04','Sync without an account','for static hosting'));
   sec3.appendChild(h('p',{class:'prose',style:'font-size:1rem',
-    html:'Stores your progress in a <strong>secret GitHub Gist</strong> that only you can see. Laptop and phone then share one record. There is no server and no cost — your browser talks straight to GitHub.'}));
+    html:'This — not the choice of web host — is what lets you pick up where you left off on another machine. '+
+      'Your progress is kept in a <strong>secret GitHub Gist</strong> only you can see, pulled when you open the app and pushed when you close it. '+
+      'There is no server and no cost: your browser talks straight to GitHub.'}));
   sec3.appendChild(ghPanel());
   w.appendChild(sec3);
 
   /* --- danger --- */
   const sec4=h('section',{class:'part'});
-  sec4.appendChild(sectionHead2('04','Reset',''));
+  sec4.appendChild(sectionHead2('05','Reset',''));
   sec4.appendChild(h('div',{style:'display:flex;gap:.5rem;flex-wrap:wrap'},[
     h('button',{class:'red',onclick:()=>{
       if(!confirm('Erase all progress in this browser? Download a backup first if you want to keep it.'))return;
@@ -884,6 +895,130 @@ function data(){
     }},'Erase all progress')]));
   w.appendChild(sec4);
   return w;
+}
+
+function accountPanel(){
+  const box=h('div');
+  const A=window.ACCOUNT, R=window.REMOTE;
+  if(!A || !R || A.state==='off'){
+    box.appendChild(h('p',{class:'prose',style:'font-size:1rem',
+      html:'This copy is running without its backend — from a file, from the Claude artifact, or from a plain static host. '+
+        'Progress is kept in this browser only. Deploy it with a database (the README walks through it, '+
+        'entirely in a browser) and this becomes an account: sign in anywhere and your record follows you.'}));
+    return box;
+  }
+  /* Functions are up but no database is attached: every call would fail, and the
+     reason is one environment variable, so say exactly that. */
+  if(R.available && R.available.database === false){
+    box.appendChild(h('div',{class:'callout',style:'border-left-color:var(--red)'},[
+      h('span',{class:'lbl',text:'No database is attached to this deployment'}),
+      h('p',{html:'The app is served and its API is running, but there is no <code>DATABASE_URL</code>, '+
+        'so there is nowhere to keep your record. Create a free Postgres (Neon, Supabase, Railway or '+
+        'Vercel Postgres), paste its connection string into your hosting dashboard as '+
+        '<code>DATABASE_URL</code>, and redeploy. Until then progress stays in this browser and the '+
+        'backups below are what protects it.'})]));
+    return box;
+  }
+  if(R.available && R.available.database && !R.available.dbReady){
+    box.appendChild(h('div',{class:'callout',style:'border-left-color:var(--red)'},[
+      h('span',{class:'lbl',text:'The database is not answering'}),
+      h('p',{html:'A database is configured but the app could not reach it'+
+        (R.available.dbError?(' — <code>'+esc2(R.available.dbError)+'</code>'):'')+
+        '. Progress is being kept in this browser in the meantime.'})]));
+    return box;
+  }
+  const u=A.user;
+  if(A.state==='signedout' || !u){
+    const configured = R.available && R.available.signIn;
+    box.appendChild(h('p',{class:'prose',style:'font-size:1rem',
+      html:'Sign in and your progress lives on the server instead of in this browser. '+
+        'Open the site on any device, sign in, and it is simply there — no files, no tokens, no copying.'}));
+    if(configured){
+      box.appendChild(h('div',{style:'display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin-top:1rem'},[
+        h('a',{class:'btnlink',href:R.loginUrl()},'Sign in with GitHub'),
+        h('span',{class:'dim',style:'font-size:.82rem',
+          text:'Reads your username only. No repository access.'})]));
+    } else {
+      box.appendChild(h('div',{class:'callout',style:'border-left-color:var(--red)'},[
+        h('span',{class:'lbl',text:'Sign-in is not configured on this deployment'}),
+        h('p',{html:'The backend and its database are running, but no GitHub OAuth app is set, so there is '+
+          'nothing to sign in with. Create one at <code>github.com/settings/developers</code> with a callback '+
+          'of <code>'+esc2(location.origin)+'/api/auth/callback</code>, then add '+
+          '<code>GITHUB_CLIENT_ID</code> and <code>GITHUB_CLIENT_SECRET</code> to your hosting dashboard and '+
+          'redeploy. The README walks through it — no terminal needed.'})]));
+    }
+    const q=new URLSearchParams(location.hash.split('?')[1]||'');
+    const err=q.get('signin');
+    if(err && err!=='ok') box.appendChild(h('div',{class:'verdict bad',style:'margin-top:.9rem'},[
+      h('span',{class:'vt',text:'Sign-in did not complete'}),
+      h('span',{class:'vs',text:{bad_state:'The sign-in link expired — try again.',
+        no_token:'GitHub did not return a token.',profile_failed:'Could not read your GitHub profile.',
+        not_allowed:'That GitHub account is not on this app\'s allow list.',
+        no_database:'This deployment has no database attached, so there is no account to sign in to.',
+        server_error:'Something failed on the server during sign-in. Try again.'}[err]||err})]));
+    return box;
+  }
+
+  const m=R.meta();
+  box.appendChild(h('div',{class:'acct'},[
+    u.avatar?h('img',{class:'avatar',src:u.avatar,alt:''}):null,
+    h('div',{style:'flex:1;min-width:0'},[
+      h('strong',{text:u.name||u.login}),
+      h('div',{class:'dim',style:'font-size:.82rem',text:'@'+u.login+' · '+R.deviceName()})]),
+    h('span',{class:'pill '+(A.state==='conflict'?'red':'ok'),
+      text:{ok:'synced',pulled:'synced',syncing:'syncing',offline:'offline',
+            conflict:'needs attention',error:'sync problem'}[A.state]||A.state})]));
+
+  box.appendChild(h('div',{class:'stats'},[
+    tile('server version',m.version!=null?'v'+m.version:'—'),
+    tile('this device',A.state==='ok'||A.state==='pulled'?'up to date':A.state),
+    tile('kept on server','last 20 versions','','automatic')]));
+
+  if(A.state==='conflict' && A.server){
+    const srv=A.server, local=window.SYNC.summarise(S());
+    const rem=window.SYNC.summarise(srv.data||{});
+    box.appendChild(h('div',{class:'callout',style:'border-left-color:var(--red)'},[
+      h('span',{class:'lbl',text:'Another device saved first'}),
+      h('p',{html:'Nothing has been overwritten. Choose which copy to keep — the other is still '+
+        'recoverable from the server history and from your local snapshot.'})]));
+    const t=h('table');
+    t.appendChild(h('thead',{},h('tr',{},[h('th',{text:''}),h('th',{text:'This device'}),h('th',{text:'Server'})])));
+    t.appendChild(h('tbody',{},[
+      h('tr',{},[h('td',{text:'skills measured'}),h('td',{class:'num',text:String(local.skills)}),h('td',{class:'num',text:String(rem.skills)})]),
+      h('tr',{},[h('td',{text:'answers logged'}),h('td',{class:'num',text:String(local.attempts)}),h('td',{class:'num',text:String(rem.attempts)})]),
+      h('tr',{},[h('td',{text:'exercises'}),h('td',{class:'num',text:String(local.exercises)}),h('td',{class:'num',text:String(rem.exercises)})])]));
+    box.appendChild(h('div',{class:'tblwrap',style:'margin:.8rem 0'},t));
+    box.appendChild(h('div',{style:'display:flex;gap:.5rem;flex-wrap:wrap'},[
+      h('button',{class:'primary',onclick:()=>{A.takeServer();setTimeout(()=>location.reload(),400);}},'Keep the server copy'),
+      h('button',{class:'red',onclick:()=>{A.takeLocal();setTimeout(()=>location.reload(),600);}},'Keep this device and overwrite')]));
+  }
+
+  const histBox=h('div');
+  box.appendChild(h('div',{style:'display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem'},[
+    h('button',{onclick:async()=>{
+      histBox.innerHTML='';
+      const vs=await R.history();
+      if(!vs.length){histBox.appendChild(h('p',{class:'empty',text:'No saved versions yet.'}));return;}
+      const t=h('table');
+      t.appendChild(h('thead',{},h('tr',{},['version','saved','from','size',''].map(x=>h('th',{text:x})))));
+      t.appendChild(h('tbody',{},vs.map(v=>h('tr',{},[
+        h('td',{class:'num',text:'v'+v.version}),
+        h('td',{text:new Date(v.saved_at).toLocaleString()}),
+        h('td',{text:v.device||'—'}),
+        h('td',{class:'num',text:(v.bytes/1024).toFixed(1)+' KB'}),
+        h('td',{},h('button',{class:'sm',onclick:async()=>{
+          if(!confirm('Restore v'+v.version+'? Current progress is kept in the history too.'))return;
+          try{ await R.restore(v.version); location.reload(); }
+          catch(e){ alert(e.message); }
+        }},'Restore'))]))));
+      histBox.appendChild(h('div',{class:'tblwrap',style:'margin-top:.8rem'},t));
+    }},'Show server history'),
+    h('button',{onclick:async()=>{ await R.logout(); location.reload(); }},'Sign out')]));
+  box.appendChild(histBox);
+  box.appendChild(h('p',{class:'labnote',html:
+    'Progress is saved to your account a couple of seconds after each change, and again as you leave the page. '+
+    'If a different device saved while this one was open, the write is refused rather than applied — you are shown both and you choose.'}));
+  return box;
 }
 
 function esc2(s){return String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));}
@@ -928,11 +1063,26 @@ function ghPanel(){
           const t=inp.value.trim(); if(!t)return;
           say(true,'Checking…');
           try{
-            const login=await SY.gh.verify(t);
-            SY.gh.save({token:t, auto:auto.checked});
-            const r=await SY.gh.push();
-            say(true,'Connected as '+login,'Progress pushed to a secret gist.');
-            setTimeout(render,1200);
+            const r=await SY.gh.connect(t, auto.checked);
+            if(r.action==='pulled'){
+              say(true,'Connected as '+r.login,
+                'Found your existing record and loaded it: '+r.summary.skills+
+                ' skills, '+r.summary.attempts+' answers. Reloading…');
+              setTimeout(()=>location.reload(),1400); return;
+            }
+            if(r.action==='conflict'){
+              say(false,'Connected as '+r.login+' — but both sides have work',
+                'Your gist holds '+r.summary.skills+' skills / '+r.summary.attempts+
+                ' answers, and this browser has its own progress. Nothing has been '+
+                'changed. Use “Compare with gist” below to choose which one wins.');
+              if(window.REFRESH_SYNC)window.REFRESH_SYNC();
+              setTimeout(render,2600); return;
+            }
+            say(true,'Connected as '+r.login,
+              r.action==='created' ? 'Created a secret gist and pushed your progress.'
+                                   : 'Progress pushed to your existing gist.');
+            if(window.REFRESH_SYNC)window.REFRESH_SYNC();
+            setTimeout(render,1400);
           }catch(e){ say(false,'Could not connect',e.message); }
         }},'Connect')]));
       box.appendChild(h('p',{class:'labnote',html:
@@ -955,6 +1105,7 @@ function ghPanel(){
       h('button',{class:'primary',onclick:async()=>{
         say(true,'Pushing…');
         try{const r=await SY.gh.push(); say(true,'Pushed',(r.bytes/1024).toFixed(1)+' KB saved to your gist.');
+          if(window.REFRESH_SYNC)window.REFRESH_SYNC();
           setTimeout(render,1200);}
         catch(e){say(false,'Push failed',e.message);}
       }},'Push now'),
@@ -997,8 +1148,11 @@ function ghPanel(){
     box.appendChild(remoteBox);
     box.appendChild(msg);
     box.appendChild(h('p',{class:'labnote',html:
-      'On a second device: open the hosted link, come to this page, paste the same token, then use <strong>Compare with gist</strong> and pull. '+
-      'Sync is deliberately explicit in one direction — it will not silently overwrite a device that has newer work on it.'}));
+      '<strong>On a second device:</strong> open the same link, come to this page and paste the same token. '+
+      'It finds this gist automatically and loads your progress — no ids to copy. After that, each device pulls newer '+
+      'work when you open it and pushes when you close it.<br><br>'+
+      'If both devices have unsynced work, nothing is overwritten: you are shown both and you choose. '+
+      'A snapshot is kept locally before any replacement.'}));
   }
   function row(l,a,b){return h('tr',{},[h('td',{text:l}),
     h('td',{class:'num',text:String(a)}),h('td',{class:'num',text:String(b)})]);}

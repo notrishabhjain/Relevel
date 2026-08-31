@@ -636,3 +636,70 @@ button:disabled{opacity:.4;cursor:not-allowed}
   padding:.2rem .55rem;border-radius:var(--r);text-decoration:none;white-space:nowrap;
   overflow:hidden;text-overflow:ellipsis;max-width:46vw}
 .savewarn:hover{opacity:.9}
+.syncpill{font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;text-decoration:none;
+  padding:.2rem .5rem;border-radius:var(--r);border:1px solid var(--rule);color:var(--muted);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:44vw}
+.syncpill.ok{color:var(--verified);border-color:var(--verified)}
+.syncpill.warn{color:var(--red);border-color:var(--red)}
+.syncpill.busy{opacity:.6}
+.acct{display:flex;gap:.8rem;align-items:center;background:var(--raised);border:1px solid var(--rule);
+  border-radius:var(--r);padding:.75rem .9rem;margin-bottom:1rem}
+.avatar{width:38px;height:38px;border-radius:50%;flex:none;border:1px solid var(--rule)}
+.btnlink{display:inline-block;background:var(--ink);color:var(--paper);text-decoration:none;
+  font-family:var(--sans);font-size:.85rem;padding:.5rem 1rem;border-radius:var(--r)}
+.btnlink:hover{opacity:.88}
+
+/* ---------- content studio ---------- */
+.sp{flex:1}
+.plain{list-style:none;margin:.4rem 0 0;padding:0;display:grid;gap:.35rem}
+.plain li{font-size:.85rem;color:var(--ink-2);padding-left:1rem;position:relative}
+.plain li::before{content:'—';position:absolute;left:0;color:var(--muted)}
+.backlink{font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;color:var(--muted)}
+.backlink:hover{color:var(--ink)}
+
+.sbar{position:sticky;top:calc(var(--tbarh,3rem));z-index:15;display:flex;gap:.5rem;
+  align-items:center;flex-wrap:wrap;padding:.6rem .75rem;margin:1rem 0 1.4rem;
+  background:var(--raised);border:1px solid var(--rule);border-radius:var(--r)}
+.sbarmsg{font-size:.78rem;color:var(--muted);flex-basis:100%;order:9}
+.sbarmsg.ok{color:var(--verified)}
+.sbarmsg.bad{color:var(--red)}
+
+.sform{display:grid;gap:1.35rem;margin-top:.5rem}
+.sfield{display:grid;gap:.3rem;min-width:0}
+.sfield>label{margin:0}
+.shint{font-size:.74rem;color:var(--muted);line-height:1.45}
+.sgrid2,.sgrid3,.sgrid4{display:grid;gap:.6rem;min-width:0}
+.sgrid2{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.sgrid3{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.sgrid4{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+.sgrid2>*,.sgrid3>*,.sgrid4>*{min-width:0;align-content:start}
+
+.srepeat{display:grid;gap:.5rem;min-width:0}
+.srepeat>button{justify-self:start}
+.srow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.6rem;align-items:start;
+  padding:.6rem;background:var(--raised);border:1px solid var(--rule-soft);border-radius:var(--r)}
+/* Body first, controls on the right, so a one-line entry stays one line tall. */
+.srowtools{grid-area:1/2;display:flex;gap:.2rem;align-items:center}
+.srowbody{grid-area:1/1;display:grid;gap:.45rem;min-width:0}
+.srowbody>*{min-width:0}
+.sidx{font-family:var(--mono);font-size:.62rem;color:var(--muted);padding-bottom:.15rem}
+.srowtools button{padding:.1rem .35rem;font-size:.7rem;line-height:1.2}
+
+.sblock{display:grid;gap:.4rem;min-width:0}
+.sblockhead{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+.sblockhead select{max-width:180px}
+.stable{display:grid;gap:.3rem;overflow-x:auto}
+.stbrow{display:grid;gap:.3rem;align-items:center;min-width:0}
+.stbrow>*{min-width:0}
+.sopt{display:flex;gap:.55rem;align-items:center;min-width:0}
+.sopt input[type=radio],.sopt input[type=checkbox]{width:auto;flex:none;margin:0}
+.sopt input[type=text]{flex:1;min-width:0}
+
+.slist{display:grid;gap:.35rem;margin:1rem 0}
+.sitem{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;padding:.55rem .75rem;
+  background:var(--raised);border:1px solid var(--rule-soft);border-radius:var(--r)}
+.sitemmain{display:grid;gap:.1rem;flex:1;min-width:200px;text-decoration:none;color:inherit}
+.sitemmain:hover .sitemt{color:var(--red)}
+.sitemt{font-size:.9rem;color:var(--ink)}
+.sitemd{font-size:.76rem;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sitemm{font-size:.7rem;flex:none}

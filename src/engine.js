@@ -3,12 +3,23 @@
    session construction, and the analytics the dashboard reads. */
 
 window.ENG = (function(){
-const ITEMS = [].concat(window.ITEMS1, window.ITEMS2, window.ITEMS3).map(a=>({
-  id:a[0], sk:a[1], diff:a[2], type:a[3], stem:a[4], opts:a[5], ans:a[6], why:a[7]
-}));
-const byItem={}; ITEMS.forEach(i=>byItem[i.id]=i);
-const bySkill={}; ITEMS.forEach(i=>(bySkill[i.sk]=bySkill[i.sk]||[]).push(i));
-const SK={}; window.SKILLS.forEach(s=>SK[s.id]=s);
+/* Content is loaded before boot and can be re-edited from the portal, so these
+   are rebuilt on demand rather than captured when this file parses. The
+   containers are mutated in place: views hold references to them. */
+let ITEMS=[];
+const byItem={}, bySkill={}, SK={};
+function reinit(){
+  const raw = window.ALL_ITEMS ||
+    [].concat(window.ITEMS1||[], window.ITEMS2||[], window.ITEMS3||[]);
+  ITEMS = raw.map(a=>({id:a[0], sk:a[1], diff:a[2], type:a[3],
+                       stem:a[4], opts:a[5], ans:a[6], why:a[7]}));
+  Object.keys(byItem).forEach(k=>delete byItem[k]);
+  Object.keys(bySkill).forEach(k=>delete bySkill[k]);
+  Object.keys(SK).forEach(k=>delete SK[k]);
+  ITEMS.forEach(i=>{ byItem[i.id]=i; (bySkill[i.sk]=bySkill[i.sk]||[]).push(i); });
+  (window.SKILLS||[]).forEach(s=>SK[s.id]=s);
+}
+reinit();
 
 const DAY=86400000;
 const now=()=>Date.now();
@@ -22,10 +33,15 @@ function decayFactor(daysSince){
   if(daysSince<=3) return 1;
   return 1 - 0.30*(1 - Math.exp(-(daysSince-3)/45));
 }
-function skillState(S, id){
-  const st = S.sk[id] || (S.sk[id]={m:0, n:0, ok:0, last:0, hist:[], peak:0});
-  return st;
-}
+const blankSkill = () => ({m:0, n:0, ok:0, last:0, hist:[], peak:0});
+/* Reading must not write. The dashboard and the matrix ask for all thirty
+   skills on every render; creating a zeroed record for each one made the state
+   look changed on a page view, which saved it, pushed it, and bumped the
+   server's version for a device that had done nothing — and that version churn
+   made other devices collide over work neither had done. */
+function skillState(S, id){ return S.sk[id] || blankSkill(); }
+/* The one place a record is meant to come into existence. */
+function skillRecord(S, id){ return S.sk[id] || (S.sk[id] = blankSkill()); }
 function shown(S, id){
   const st=skillState(S,id);
   if(!st.n) return 0;
@@ -45,7 +61,7 @@ function nextBand(m){
 /* Gain is larger for harder items and smaller as mastery rises, so the last
    twenty points require analysis-level items rather than more recall items. */
 function applyResult(S, item, correct){
-  const st=skillState(S, item.sk);
+  const st=skillRecord(S, item.sk);
   const head = Math.max(0, 100 - st.m) / 100;
   if(correct){
     const gain = (3.5 + item.diff*3.2) * (0.35 + 0.65*head);
@@ -312,7 +328,7 @@ function exScore(e, iter){
   return Math.round(vals.reduce((a,b)=>a+b,0)/(e.rubric.length*3)*100);
 }
 
-return {ITEMS, byItem, bySkill, SK, DAY,
+return {get ITEMS(){return ITEMS;}, byItem, bySkill, SK, DAY, reinit,
   shown, levelOf, nextBand, skillState, decayFactor,
   buildSession, grade, submit, scheduleItem, srs, dueList, dueForecast,
   calibrationCurve, brier, overconfidence, CONF,

@@ -70,8 +70,9 @@ Tools that make the book's paper exercises persistent and checkable:
 - **LATER Page** — parked side-quests that unlock as the covering chapter is completed.
 - **Progress dashboard** with a one-chapter-per-sitting guard.
 
-All state is stored in the reader's own browser via `localStorage`. Nothing is sent
-anywhere.
+Signed in, all of this state lives in your database and follows you between devices.
+Signed out — or on a host with no backend — it stays in the browser and nothing leaves
+the machine.
 
 ## Build
 
@@ -86,58 +87,160 @@ Concatenates `src/` into:
 | `dist/index.html` | Full standalone document — hosting, or open it straight off disk |
 | `dist/artifact.html` | Body-only fragment for publishing as a Claude Artifact |
 | `dist/site/` | Deploy directory: `index.html` + PWA manifest + service worker + `.nojekyll` |
+| `content/defaults.json` | The whole curriculum as data — what seeds the database on first boot |
 
-No dependencies, no bundler. One file out, everything inlined.
+No bundler, and the build itself has no dependencies. `pg` is the only thing the
+deployed app installs.
 
-## Hosting it free
+## Running it as a real app
 
-The whole app is one static HTML file, so any static host works and none of them
-charge for it.
+The curriculum and your progress both live in a **Postgres database**, behind serverless
+functions. Two things follow from that:
 
-### GitHub Pages (no new accounts)
+- **Your progress is the account's, not the browser's.** Open the site anywhere, sign in,
+  and your record is there — no files, no tokens, no copying.
+- **The content is editable from inside the app.** Chapters, skills, questions, exercises,
+  processes and reference tables are rows, not code. Edit them in the Content Studio and
+  press Publish; the change is live on the next load, on every device. There is no
+  rebuild and no redeploy.
 
-`.github/workflows/pages.yml` builds and deploys on every push to `main`. Enable it once:
+```
+browser --+-- static app    served from the CDN
+          +-- /api/*        serverless functions -> Postgres
+                              users, sessions, progress, progress_history,
+                              content, content_history
+```
 
-**Settings → Pages → Build and deployment → Source: GitHub Actions**
+The schema creates itself on the first request and seeds the content from
+`content/defaults.json`, so there is no migration to run and no SQL to paste.
 
-Your site lands at `https://<user>.github.io/Relevel/`.
+### Setup, once — and entirely in a browser
 
-> **On a Free plan, Pages requires the repository to be public.** The repo holds only
-> the app source — your progress never leaves your browser — but making it public is
-> your call. If you would rather not, use the option below.
+Nothing below needs a terminal, Node, `psql`, or any software installed on your machine.
+Everything is a web page. All of it fits inside free tiers that do not ask for a card.
 
-### Cloudflare Pages (keeps the repo private)
+**1 · A database.** Sign in at [neon.tech](https://neon.tech) with GitHub, create a
+project, and copy the connection string it shows you (`postgresql://…`). Supabase,
+Railway and Vercel Postgres work identically — anything that hands you a Postgres URL.
 
-Free, supports private repos. Connect the repo, then:
+**2 · The app.** At [vercel.com](https://vercel.com), *Add New → Project*, import this
+repository. Vercel reads `vercel.json` and needs nothing configured. Before you press
+Deploy, add one environment variable:
 
-- Build command: `node build.js`
-- Output directory: `dist/site`
+| Name | Value |
+| --- | --- |
+| `DATABASE_URL` | the connection string from step 1 |
 
-Netlify's free tier works identically with the same two settings.
+Press Deploy. When it finishes, open the URL: the app is running, the tables exist, and
+the curriculum is in the database.
 
-### Offline and on a phone
+**3 · Sign-in.** At <https://github.com/settings/developers> → *New OAuth App*:
 
-The deploy directory ships a web app manifest and a service worker, so once loaded the
-tracker works with no network. On a phone use **Add to Home Screen** — it installs as a
-standalone app, and installed apps are far less likely to have their storage evicted.
+| Field | Value |
+| --- | --- |
+| Homepage URL | `https://<your-app>.vercel.app` |
+| Authorization callback URL | `https://<your-app>.vercel.app/api/auth/callback` |
 
-## Keeping progress
+Generate a client secret, then in Vercel → *Settings → Environment Variables* add:
 
-Progress is stored in `localStorage` and never sent anywhere by default. That is private
-but fragile, so **Progress & Backup** in the app offers three defences:
+| Name | Value |
+| --- | --- |
+| `GITHUB_CLIENT_ID` | from the OAuth app |
+| `GITHUB_CLIENT_SECRET` | from the OAuth app |
+| `ALLOWED_LOGINS` | your GitHub username, to keep the deployment to yourself |
+| `CONTENT_EDITORS` | your GitHub username — who may publish content |
 
-1. **Backup file** — export/import everything as one JSON file. Works anywhere, needs no
-   account. This is the dependable one.
-2. **Persistent storage** — one click asks the browser not to evict this origin, plus an
-   automatic snapshot of the previous session kept locally.
-3. **Gist sync** — optional. Stores progress in a *secret* GitHub Gist so a laptop and a
-   phone share one record. No server, no cost; the browser talks directly to GitHub with
-   a token scoped to gists alone. Sync is explicit in one direction and will not silently
-   overwrite a device holding newer work.
+Redeploy from the Vercel dashboard (*Deployments → ⋯ → Redeploy*) so the functions pick
+the variables up. Sign in, and you are done.
 
-> `localStorage` is scoped to the exact address, so the Claude artifact link and your
-> hosted link keep **separate** progress. Export from one and import into the other to
-> move across.
+Leave `ALLOWED_LOGINS` unset and any GitHub user may sign in and keep their own separate
+record; that never grants edit rights, which come only from `CONTENT_EDITORS` (and fall
+back to `ALLOWED_LOGINS` if you have not set it).
+
+### The Content Studio
+
+`#/studio` in the sidebar under **Author**. It edits the six kinds of content the app is
+built from, and it is the reason nothing needs redeploying to change what the app teaches.
+
+- **Structured editors** for each kind — a chapter form with its story, vocabulary,
+  hands-on steps, error table, homework and comprehension checks; a question form that
+  changes shape with the question type; skills with their four level descriptors;
+  exercises with their four-level rubrics; processes with their phases.
+- **A block editor** for prose: paragraphs, key lines, bullets, callouts, code, expected
+  output, and tables.
+- **Raw JSON** per kind, for a bulk paste or a find-and-replace.
+- **Drafts** are held in your browser until you publish, so a half-written chapter
+  survives a closed tab.
+- **Publishing is version-guarded.** Your draft carries the version it was based on; if
+  someone published first, the save is refused and you are told, rather than one of you
+  losing work silently.
+- **Validation** runs in the browser and again on the server. Content that would leave the
+  app unable to render is rejected with the reason, not saved.
+- **Cross-reference warnings** — a question pointing at a skill that no longer exists, or
+  a skill with no questions, is reported on publish.
+- **Undo** — the last thirty versions of each kind are kept, and any kind can be reset to
+  the copy that shipped with the build.
+
+### How syncing behaves
+
+- Opening the app **pulls** your record; changes **push** a couple of seconds later, and
+  again as you leave the page.
+- Writes carry the version they were based on. If another device saved first the write is
+  **refused, not applied** — you are shown both copies and you choose.
+- The server keeps the **last 20 versions** of your progress, restorable from inside the app.
+- Content is fetched on load and cached in the browser. If the database cannot be reached
+  the app falls back to that cache, and then to the copy built into the page — it never
+  fails to open, and it says at the top of the Studio which of the three you are looking at.
+
+### API
+
+| Route | Purpose |
+| --- | --- |
+| `GET /api/health` | liveness, whether a database is configured, whether sign-in is |
+| `GET /api/auth/login`, `/callback`, `POST /logout` | GitHub OAuth session |
+| `GET /api/me` | current user, and whether they may edit content |
+| `GET /api/state`, `PUT /api/state` | read / write progress, version-guarded |
+| `GET /api/history`, `POST /api/restore` | recent versions, roll back |
+| `GET /api/content` | the curriculum — public, so the app works signed out |
+| `PUT /api/content`, `POST /api/content?reset=` | publish or reset a kind — editors only |
+
+Sessions are cookies (`HttpOnly`, `SameSite=Lax`); the token is stored **hashed**, so a
+leaked database row cannot be replayed as a login. Every mutating request requires a
+custom header that a cross-site page cannot set without a preflight the browser will not
+grant.
+
+## Developing and testing it
+
+Only if you want to work on the code — none of this is needed to run the app.
+
+```bash
+npm install
+npm run dev      # build, then serve on :8788 with Postgres running in-process
+npm test         # both suites: the API, then the app in a real browser
+```
+
+`tools/dev-server.js` serves `dist/site` and routes `/api/*` into the same handler files
+the host runs, backed by [PGlite](https://pglite.dev) — Postgres compiled to WebAssembly,
+running inside the Node process. So the schema, the seeding, the version conflicts and the
+publish flow are all exercised for real, with no database to install. `/api/dev/login`
+mints a session locally, standing in for the GitHub round trip.
+
+The browser suite drives the built page in Chromium and uses **separate browser contexts**
+for each device, not tabs — tabs share storage and would pass even if nothing reached the
+database.
+
+## Running it without a backend
+
+The app still runs from a file, or from any static host, with no database at all. It then
+uses the curriculum built into the page, and progress lives in the browser with three
+fallbacks in **Progress & Backup**: a JSON backup file, an automatic previous-session
+snapshot, and optional sync through a secret GitHub Gist. The Content Studio still opens
+and still keeps drafts, but says plainly that there is nowhere to publish them to, and
+offers each kind as a JSON download instead.
+
+Build command `node build.js`, output directory `dist/site`. That directory ships a web
+app manifest and a service worker, so the tracker works offline and installs via **Add to
+Home Screen** either way.
 
 ## Source layout
 
@@ -150,17 +253,40 @@ src/
 │   ├── part1-3.js      Chapters 1-18 (the library)
 │   └── reference.js    Setup, glossary, vendor deck, LATER page, red-map nodes
 ├── engine.js           Mastery + decay, SM-2, calibration, session building
+├── remote.js           Account-backed storage client
 ├── sync.js             Backup, export/import, Gist sync, storage diagnostics
 ├── views.js            Dashboard, practice runner, matrix, analytics, work trackers
 ├── labs.js             16 interactive labs
 ├── app.js              Routing, persistence, chapter rendering
+├── content.js          Loads the curriculum: server, then cache, then built-in
+├── studio.js           The Content Studio
 └── styles.css          Design tokens and layout
+
+api/
+├── _lib/db.js          Pool, self-creating schema, first-boot seeding
+├── _lib/auth.js        Sessions, editor rights, the guard every route wraps in
+├── health.js  me.js    liveness and current user
+├── auth/*.js           GitHub OAuth
+├── state.js  history.js  restore.js   progress, version-guarded
+└── content.js          the curriculum: public read, editor write, validated
+
+tools/
+├── dev-server.js       local host with Postgres running in-process
+├── api-test.mjs        API suite
+├── browser-test.mjs    browser suite
+└── test.mjs            runs both, each against a fresh database
+
+content/defaults.json   emitted by the build; seeds the database on first boot
+vercel.json             build, function and header config
 ```
 
 Content is data, not markup. A chapter is an object using a small block grammar
 (`p`, `key`, `c`, `l`, `n`, `tb`, `code`, `x`); an assessment item is a single array
 `[id, skill, difficulty, type, stem, options, answer, why]`. Adding a chapter, a skill
-or a question means adding an object — no HTML, no templates.
+or a question means adding an object — no HTML, no templates. The files under `src/data/`
+are the *defaults*: the build turns them into `content/defaults.json`, the database is
+seeded from that once, and from then on the database is the source of truth and the
+Studio is how you change it.
 
 ## Design
 

@@ -641,6 +641,73 @@ button:disabled{opacity:.4;cursor:not-allowed}
   padding:.2rem .55rem;border-radius:var(--r);text-decoration:none;white-space:nowrap;
   overflow:hidden;text-overflow:ellipsis;max-width:46vw}
 .savewarn:hover{opacity:.9}
+.syncpill{font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;text-decoration:none;
+  padding:.2rem .5rem;border-radius:var(--r);border:1px solid var(--rule);color:var(--muted);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:44vw}
+.syncpill.ok{color:var(--verified);border-color:var(--verified)}
+.syncpill.warn{color:var(--red);border-color:var(--red)}
+.syncpill.busy{opacity:.6}
+.acct{display:flex;gap:.8rem;align-items:center;background:var(--raised);border:1px solid var(--rule);
+  border-radius:var(--r);padding:.75rem .9rem;margin-bottom:1rem}
+.avatar{width:38px;height:38px;border-radius:50%;flex:none;border:1px solid var(--rule)}
+.btnlink{display:inline-block;background:var(--ink);color:var(--paper);text-decoration:none;
+  font-family:var(--sans);font-size:.85rem;padding:.5rem 1rem;border-radius:var(--r)}
+.btnlink:hover{opacity:.88}
+
+/* ---------- content studio ---------- */
+.sp{flex:1}
+.plain{list-style:none;margin:.4rem 0 0;padding:0;display:grid;gap:.35rem}
+.plain li{font-size:.85rem;color:var(--ink-2);padding-left:1rem;position:relative}
+.plain li::before{content:'—';position:absolute;left:0;color:var(--muted)}
+.backlink{font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;color:var(--muted)}
+.backlink:hover{color:var(--ink)}
+
+.sbar{position:sticky;top:calc(var(--tbarh,3rem));z-index:15;display:flex;gap:.5rem;
+  align-items:center;flex-wrap:wrap;padding:.6rem .75rem;margin:1rem 0 1.4rem;
+  background:var(--raised);border:1px solid var(--rule);border-radius:var(--r)}
+.sbarmsg{font-size:.78rem;color:var(--muted);flex-basis:100%;order:9}
+.sbarmsg.ok{color:var(--verified)}
+.sbarmsg.bad{color:var(--red)}
+
+.sform{display:grid;gap:1.35rem;margin-top:.5rem}
+.sfield{display:grid;gap:.3rem;min-width:0}
+.sfield>label{margin:0}
+.shint{font-size:.74rem;color:var(--muted);line-height:1.45}
+.sgrid2,.sgrid3,.sgrid4{display:grid;gap:.6rem;min-width:0}
+.sgrid2{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.sgrid3{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.sgrid4{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+.sgrid2>*,.sgrid3>*,.sgrid4>*{min-width:0;align-content:start}
+
+.srepeat{display:grid;gap:.5rem;min-width:0}
+.srepeat>button{justify-self:start}
+.srow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.6rem;align-items:start;
+  padding:.6rem;background:var(--raised);border:1px solid var(--rule-soft);border-radius:var(--r)}
+/* Body first, controls on the right, so a one-line entry stays one line tall. */
+.srowtools{grid-area:1/2;display:flex;gap:.2rem;align-items:center}
+.srowbody{grid-area:1/1;display:grid;gap:.45rem;min-width:0}
+.srowbody>*{min-width:0}
+.sidx{font-family:var(--mono);font-size:.62rem;color:var(--muted);padding-bottom:.15rem}
+.srowtools button{padding:.1rem .35rem;font-size:.7rem;line-height:1.2}
+
+.sblock{display:grid;gap:.4rem;min-width:0}
+.sblockhead{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+.sblockhead select{max-width:180px}
+.stable{display:grid;gap:.3rem;overflow-x:auto}
+.stbrow{display:grid;gap:.3rem;align-items:center;min-width:0}
+.stbrow>*{min-width:0}
+.sopt{display:flex;gap:.55rem;align-items:center;min-width:0}
+.sopt input[type=radio],.sopt input[type=checkbox]{width:auto;flex:none;margin:0}
+.sopt input[type=text]{flex:1;min-width:0}
+
+.slist{display:grid;gap:.35rem;margin:1rem 0}
+.sitem{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;padding:.55rem .75rem;
+  background:var(--raised);border:1px solid var(--rule-soft);border-radius:var(--r)}
+.sitemmain{display:grid;gap:.1rem;flex:1;min-width:200px;text-decoration:none;color:inherit}
+.sitemmain:hover .sitemt{color:var(--red)}
+.sitemt{font-size:.9rem;color:var(--ink)}
+.sitemd{font-size:.76rem;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sitemm{font-size:.7rem;flex:none}
 
 </style>
 <script>
@@ -3246,6 +3313,1048 @@ window.PROCESSES = [
    ['Update the system card and pin the new version','With the migration date and the numbers.']]}]}
 ];
 
+/* Account-backed storage.
+
+   When the app is served with its API and you are signed in, the database holds
+   your progress and this device is a cache. Every write goes up; every open
+   pulls down. Sign in on a new machine and your record is simply there.
+
+   When there is no backend (opened from disk, or on a static host) every call
+   here fails fast and the app keeps working on localStorage alone. */
+
+window.REMOTE = (function(){
+const KEY  = () => (window.STORE && window.STORE.KEY) || 'aifz2027';
+const MKEY = () => KEY() + ':srv';        // {version, marker, pending}
+
+let available = null;                     // null = not probed yet
+let user = null;
+
+function meta(){
+  try{ return JSON.parse(localStorage.getItem(MKEY()) || '{}'); }catch(e){ return {}; }
+}
+function setMeta(m){
+  try{ localStorage.setItem(MKEY(), JSON.stringify(m)); }catch(e){}
+}
+function clearMeta(){ try{ localStorage.removeItem(MKEY()); }catch(e){} }
+
+function deviceName(){
+  const ua = navigator.userAgent || '';
+  const os = /iPhone|iPad/.test(ua) ? 'iPhone/iPad'
+           : /Android/.test(ua)     ? 'Android'
+           : /Mac OS X/.test(ua)    ? 'Mac'
+           : /Windows/.test(ua)     ? 'Windows'
+           : /Linux/.test(ua)       ? 'Linux' : 'device';
+  const br = /Edg\//.test(ua) ? 'Edge' : /Chrome\//.test(ua) ? 'Chrome'
+           : /Safari\//.test(ua) ? 'Safari' : /Firefox\//.test(ua) ? 'Firefox' : 'browser';
+  return os + ' · ' + br;
+}
+
+async function api(path, opts){
+  const o = Object.assign({ credentials:'same-origin', headers:{} }, opts||{});
+  o.headers = Object.assign({ 'x-aifz':'1' }, o.headers);
+  if(o.body && typeof o.body !== 'string'){
+    o.headers['content-type'] = 'application/json';
+    o.body = JSON.stringify(o.body);
+  }
+  const res = await fetch(path, o);
+  let body = null;
+  try{ body = await res.json(); }catch(e){}
+  return { ok: res.ok, status: res.status, body };
+}
+
+/* Is there a backend behind this page at all? One probe per load. */
+async function probe(){
+  if(available !== null) return available;
+  try{
+    const r = await api('/api/health');
+    available = !!(r.ok && r.body && r.body.ok);
+    if(available) available = { signIn: !!r.body.signIn,
+      database: !!r.body.database, dbReady: !!r.body.dbReady, dbError: r.body.dbError || null };
+  }catch(e){ available = false; }
+  return available;
+}
+
+async function me(){
+  const a = await probe();
+  if(!a) return null;
+  try{
+    const r = await api('/api/me');
+    user = (r.ok && r.body && r.body.user) ? r.body.user : null;
+    return user;
+  }catch(e){ return null; }
+}
+
+const loginUrl = () => '/api/auth/login';
+async function logout(){
+  try{ await api('/api/auth/logout', {method:'POST'}); }catch(e){}
+  clearMeta(); user = null;
+}
+
+async function pull(){
+  const r = await api('/api/state');
+  if(r.status === 401) return {signedOut:true};
+  if(!r.ok) throw new Error('load failed (' + r.status + ')');
+  return r.body;                          // {version, updatedAt, data}
+}
+
+/* Writes carry the version they were based on, so a device that has been idle
+   cannot overwrite newer work from another one — the server refuses and returns
+   its copy instead. */
+async function push(data, baseVersion){
+  const r = await api('/api/state', {method:'PUT',
+    body:{ baseVersion, data, device: deviceName() }});
+  if(r.status === 401) return {signedOut:true};
+  if(r.status === 409) return {conflict:true, server:r.body};
+  if(r.status === 413) return {tooLarge:true};
+  if(!r.ok) throw new Error('save failed (' + r.status + ')');
+  return {version:r.body.version, updatedAt:r.body.updatedAt};
+}
+
+async function history(){
+  const r = await api('/api/history');
+  return r.ok && r.body ? (r.body.versions || []) : [];
+}
+async function restore(version){
+  const r = await api('/api/restore', {method:'POST', body:{version}});
+  if(!r.ok) throw new Error('restore failed (' + r.status + ')');
+  return r.body;
+}
+
+return { probe, me, logout, loginUrl, pull, push, history, restore,
+         meta, setMeta, clearMeta, deviceName,
+         get user(){ return user; },
+         get available(){ return available; } };
+})();
+
+/* Where the curriculum comes from.
+
+   The chapters, skills, questions, exercises and processes are data, not code.
+   When a backend is present they are loaded from its database, so editing them
+   in the portal takes effect on the next load — no rebuild, no redeploy. The
+   copy bundled into this file is the fallback: it is what a backend-less build
+   uses, what seeds the database on first boot, and what the app falls back to
+   if the network is unavailable before the cache is warm. */
+
+window.CONTENT = (function(){
+const CKEY = 'aifz2027:content';
+let source = 'built-in';        // built-in | server | cache
+let versions = {};
+let editor = false;
+
+/* The built-ins, captured before anything overwrites the globals. */
+const BUILT_IN = {
+  chapters: [].concat(window.PART1 || [], window.PART2 || [], window.PART3 || []),
+  skills: window.SKILLS || [],
+  items: [].concat(window.ITEMS1 || [], window.ITEMS2 || [], window.ITEMS3 || []),
+  exercises: window.EXERCISES || [],
+  processes: window.PROCESSES || [],
+  reference: {
+    DOMAINS: window.DOMAINS, PARTS: window.PARTS, RULES: window.RULES,
+    SETUP: window.SETUP, GLOSSARY: window.GLOSSARY, VENDOR: window.VENDOR,
+    LATER: window.LATER, PIPELINE: window.PIPELINE, REDMARKS: window.REDMARKS,
+    LEVEL_NAMES: window.LEVEL_NAMES, LEVEL_BANDS: window.LEVEL_BANDS
+  }
+};
+
+/* Publish a content set into the globals the rest of the app reads. */
+function apply(c){
+  const ch = c.chapters && c.chapters.length ? c.chapters : BUILT_IN.chapters;
+  window.CHAPTERS = ch;
+  window.PART1 = ch.filter(x => x.part === 1);
+  window.PART2 = ch.filter(x => x.part === 2);
+  window.PART3 = ch.filter(x => x.part === 3);
+  window.SKILLS = (c.skills && c.skills.length) ? c.skills : BUILT_IN.skills;
+  window.ALL_ITEMS = (c.items && c.items.length) ? c.items : BUILT_IN.items;
+  window.EXERCISES = c.exercises || BUILT_IN.exercises;
+  window.PROCESSES = c.processes || BUILT_IN.processes;
+  const ref = c.reference || BUILT_IN.reference;
+  Object.keys(BUILT_IN.reference).forEach(k => {
+    window[k] = ref[k] !== undefined ? ref[k] : BUILT_IN.reference[k];
+  });
+}
+
+function cached(){
+  try{ return JSON.parse(localStorage.getItem(CKEY) || 'null'); }catch(e){ return null; }
+}
+function cache(c, v){
+  try{ localStorage.setItem(CKEY, JSON.stringify({at:Date.now(), versions:v, content:c})); }
+  catch(e){ /* quota: the built-ins still work */ }
+}
+
+async function fetchServer(){
+  const r = await fetch('/api/content', {credentials:'same-origin', headers:{'x-aifz':'1'}});
+  if(!r.ok) throw new Error('content ' + r.status);
+  const j = await r.json();
+  const c = {}, v = {};
+  Object.entries(j.content || {}).forEach(([kind, row]) => { c[kind] = row.data; v[kind] = row; });
+  if(!Object.keys(c).length) throw new Error('content empty');
+  editor = !!j.editor;
+  return {content:c, versions:v};
+}
+
+/* Called once before the app boots. Never rejects: the built-ins always work. */
+async function load(){
+  const c0 = cached();
+  try{
+    const {content, versions:v} = await fetchServer();
+    versions = v; source = 'server';
+    apply(content); cache(content, v);
+    return {source};
+  }catch(e){
+    if(c0 && c0.content){
+      versions = c0.versions || {}; source = 'cache';
+      apply(c0.content);
+      return {source, error:e.message};
+    }
+    source = 'built-in';
+    apply(BUILT_IN);
+    return {source, error:e.message};
+  }
+}
+
+/* Editor writes. Returns {version} or throws with a readable message. */
+async function save(kind, data, baseVersion){
+  const r = await fetch('/api/content', {method:'PUT', credentials:'same-origin',
+    headers:{'content-type':'application/json','x-aifz':'1'},
+    body: JSON.stringify({kind, baseVersion, data})});
+  const j = await r.json().catch(() => ({}));
+  if(r.status === 403) throw new Error('You are not an editor on this deployment.');
+  if(r.status === 422) throw new Error(j.detail || 'That content did not validate.');
+  if(r.status === 409) throw new Error('Someone else saved this first — reload and redo your edit.');
+  if(!r.ok) throw new Error(j.error || ('save failed (' + r.status + ')'));
+  versions[kind] = Object.assign(versions[kind] || {}, {version:j.version, updatedAt:j.updatedAt});
+  return j;
+}
+async function reset(kind){
+  const r = await fetch('/api/content?reset=' + encodeURIComponent(kind),
+    {method:'POST', credentials:'same-origin', headers:{'x-aifz':'1'}});
+  if(!r.ok) throw new Error('reset failed (' + r.status + ')');
+  return r.json();
+}
+function current(kind){
+  const live = {chapters:window.CHAPTERS, skills:window.SKILLS, items:window.ALL_ITEMS,
+    exercises:window.EXERCISES, processes:window.PROCESSES};
+  if(kind === 'reference'){
+    const o = {}; Object.keys(BUILT_IN.reference).forEach(k => o[k] = window[k]); return o;
+  }
+  return live[kind];
+}
+function versionOf(kind){ return (versions[kind] || {}).version || 0; }
+
+return {load, save, reset, apply, current, versionOf, BUILT_IN,
+  get source(){ return source; },
+  get versions(){ return versions; },
+  get editor(){ return editor; }};
+})();
+
+/* The Content Studio.
+
+   Everything the app teaches — chapters, skills, questions, exercises,
+   processes, reference tables — is data held in the database, not code baked
+   into the bundle. This is the screen that edits it. A save here is a row
+   update; the next page load anywhere reads it. Nothing is rebuilt and nothing
+   is redeployed.
+
+   Edits are held as a local draft first, so a half-finished chapter survives a
+   closed tab and nobody publishes a paragraph by accident. Publishing sends the
+   whole kind with the version it was based on, so two editors cannot silently
+   overwrite each other. */
+
+window.STUDIO = (function(){
+const h=(t,a,c)=>{const e=document.createElement(t);
+  if(a)for(const k in a){if(k==='html')e.innerHTML=a[k];else if(k==='text')e.textContent=a[k];
+    else if(k.startsWith('on'))e.addEventListener(k.slice(2),a[k]);else if(a[k]!=null)e.setAttribute(k,a[k]);}
+  if(c)(Array.isArray(c)?c:[c]).forEach(x=>{if(x!=null)e.appendChild(typeof x==='string'?document.createTextNode(x):x);});
+  return e;};
+const CT=()=>window.CONTENT;
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+const clone=x=>JSON.parse(JSON.stringify(x));
+const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+
+const KINDS=[
+  ['chapters','Chapters','The reading. Each one is a story, a vocabulary list, hands-on steps, homework and comprehension questions.'],
+  ['skills'  ,'Skills'  ,'The thirty things you are actually trying to get good at. Mastery is tracked per skill, so this list is the spine of the tracker.'],
+  ['items'   ,'Questions','The practice bank. Every question names the skill it measures and the difficulty it sits at.'],
+  ['exercises','Exercises','Longer pieces of real work, with a rubric you score yourself against.'],
+  ['processes','Processes','Recurring loops you run on a cadence rather than finish once.'],
+  ['reference','Reference','The supporting tables: domains, glossary, vendor claims, failure map, setup, level names.']];
+const KINDNAME=Object.fromEntries(KINDS.map(k=>[k[0],k[1]]));
+
+/* ============ draft store ============ */
+const DKEY='aifz2027:drafts';
+let drafts={};
+try{ drafts=JSON.parse(localStorage.getItem(DKEY)||'{}')||{}; }catch(e){ drafts={}; }
+function persist(){ try{ localStorage.setItem(DKEY,JSON.stringify(drafts)); }catch(e){} }
+
+const pub=kind=>CT()?CT().current(kind):null;
+function draft(kind){
+  if(!drafts[kind]) drafts[kind]={base:CT().versionOf(kind),at:Date.now(),data:clone(pub(kind))};
+  return drafts[kind].data;
+}
+function touch(kind){ if(drafts[kind]){drafts[kind].at=Date.now();persist();} }
+function dirty(kind){ return !!drafts[kind]&&!same(drafts[kind].data,pub(kind)); }
+function discard(kind){ delete drafts[kind]; persist(); }
+const dirtyKinds=()=>KINDS.map(k=>k[0]).filter(dirty);
+
+/* The published copy this device knows about may have moved on while a draft
+   sat here. Rebasing is only safe when the draft has not diverged. */
+function staleDraft(kind){
+  return !!drafts[kind]&&drafts[kind].base!==CT().versionOf(kind);
+}
+
+/* Publishing republishes into the running app too, so the change is visible on
+   the very next click rather than after a reload. */
+async function publish(kind){
+  const d=drafts[kind];
+  if(!d) throw new Error('nothing to publish');
+  const bad=validate(kind,d.data);
+  if(bad.length) throw new Error(bad[0]);
+  const res=await CT().save(kind,d.data,d.base);
+  const all={};
+  KINDS.forEach(k=>all[k[0]]=pub(k[0]));
+  all[kind]=clone(d.data);
+  CT().apply(all);
+  if(window.BIND_CONTENT) window.BIND_CONTENT();
+  discard(kind);
+  return res;
+}
+
+/* ============ validation (mirrors the server, so errors show before a save) ============ */
+const TYPES=['mcq','multi','num','order','judge'];
+function validate(kind,data){
+  const e=[];
+  const need=(c,m)=>{ if(!c) e.push(m); };
+  if(kind==='chapters'){
+    need(Array.isArray(data)&&data.length,'Chapters must be a non-empty list.');
+    (data||[]).forEach((c,i)=>{
+      ['id','title','concept'].forEach(k=>need(typeof c[k]==='string'&&c[k],`Chapter ${i+1} needs a ${k}.`));
+      need(typeof c.num==='number',`Chapter ${c.id||i+1} needs a number.`);
+      ['story','words','handson','homework','check'].forEach(k=>
+        need(Array.isArray(c[k]),`Chapter ${c.id||i+1} needs ${k} as a list.`));
+    });
+    const ids=(data||[]).map(c=>c.id);
+    need(new Set(ids).size===ids.length,'Two chapters share an id.');
+  }
+  if(kind==='skills'){
+    need(Array.isArray(data)&&data.length,'Skills must be a non-empty list.');
+    (data||[]).forEach((s,i)=>{
+      need(typeof s.id==='string'&&s.id,`Skill ${i+1} needs an id.`);
+      need(typeof s.n==='string'&&s.n,`Skill ${s.id||i+1} needs a name.`);
+      need(Array.isArray(s.L)&&s.L.length===4,`Skill ${s.id||i+1} needs four level descriptions.`);
+    });
+  }
+  if(kind==='items'){
+    need(Array.isArray(data)&&data.length,'Questions must be a non-empty list.');
+    const seen=new Set();
+    (data||[]).forEach((it,i)=>{
+      if(!Array.isArray(it)||it.length<7){ e.push(`Question ${i+1} is malformed.`); return; }
+      const [id,sk,diff,type,stem,opts,ans]=it;
+      need(typeof id==='string'&&id,`Question ${i+1} needs an id.`);
+      need(!seen.has(id),`Two questions share the id ${id}.`); seen.add(id);
+      need([1,2,3].includes(diff),`Question ${id} needs a difficulty of 1, 2 or 3.`);
+      need(TYPES.includes(type),`Question ${id} has an unknown type.`);
+      need(typeof stem==='string'&&stem,`Question ${id} needs a question.`);
+      if(type==='mcq'){
+        need(Array.isArray(opts)&&opts.length>=2,`Question ${id} needs at least two options.`);
+        need(typeof ans==='number'&&ans>=0&&ans<(opts||[]).length,`Question ${id} needs one option marked correct.`);
+      }
+      if(type==='multi'){
+        need(Array.isArray(opts)&&Array.isArray(ans)&&ans.length,`Question ${id} needs at least one correct option.`);
+      }
+      if(type==='order'){
+        need(Array.isArray(opts)&&Array.isArray(ans)&&ans.length===opts.length,`Question ${id}'s order answer must cover every option.`);
+      }
+      if(type==='num') need(Array.isArray(ans)&&typeof ans[0]==='number',`Question ${id} needs a numeric answer.`);
+      if(type==='judge') need(typeof ans==='string'&&ans,`Question ${id} needs a model answer.`);
+      else need(typeof it[7]==='string'&&it[7],`Question ${id} needs an explanation.`);
+    });
+  }
+  if(kind==='exercises'){
+    need(Array.isArray(data),'Exercises must be a list.');
+    (data||[]).forEach((x,i)=>{
+      need(typeof x.id==='string'&&x.id,`Exercise ${i+1} needs an id.`);
+      need(Array.isArray(x.rubric),`Exercise ${x.id||i+1} needs a rubric.`);
+      (x.rubric||[]).forEach(r=>need(Array.isArray(r.l)&&r.l.length===4,
+        `A rubric row in ${x.id||i+1} does not have four levels.`));
+    });
+  }
+  if(kind==='processes') need(Array.isArray(data),'Processes must be a list.');
+  if(kind==='reference') need(data&&typeof data==='object'&&!Array.isArray(data),'Reference must be an object.');
+  return e;
+}
+/* Links the editors can break without noticing. */
+function warnings(){
+  const items=pub('items')||[], skills=pub('skills')||[], chs=pub('chapters')||[];
+  const dI=drafts.items?drafts.items.data:items, dS=drafts.skills?drafts.skills.data:skills;
+  const ids=new Set(dS.map(s=>s.id));
+  const w=[];
+  const orph=[...new Set(dI.filter(it=>!ids.has(it[1])).map(it=>it[1]))];
+  if(orph.length) w.push('Questions point at skills that do not exist: '+orph.join(', '));
+  const bare=dS.filter(s=>!dI.some(it=>it[1]===s.id)).map(s=>s.id);
+  if(bare.length) w.push('Skills with no questions, so mastery can never be measured: '+bare.join(', '));
+  const nums=new Set(chs.map(c=>c.num));
+  const badRef=[...new Set(dS.flatMap(s=>(s.ch||[])).filter(n=>!nums.has(n)))];
+  if(badRef.length) w.push('Skills cite chapters that do not exist: '+badRef.join(', '));
+  return w;
+}
+
+/* ============ small form pieces ============ */
+function fld(label,node,hint){
+  return h('div',{class:'sfield'},[h('label',{text:label}),node,
+    hint?h('span',{class:'shint',text:hint}):null]);
+}
+function inp(v,on,ph){
+  const e=h('input',{type:'text',placeholder:ph||null}); e.value=v==null?'':String(v);
+  e.addEventListener('input',()=>on(e.value)); return e;
+}
+function ta(v,on,rows,ph){
+  const e=h('textarea',{rows:String(rows||4),placeholder:ph||null}); e.value=v==null?'':String(v);
+  e.addEventListener('input',()=>on(e.value)); return e;
+}
+function numin(v,on,step,ph){
+  const e=h('input',{type:'number',step:step||'1',placeholder:ph||null});
+  e.value=v==null?'':String(v);
+  e.addEventListener('input',()=>on(e.value===''?null:Number(e.value))); return e;
+}
+function sel(v,opts,on){
+  const e=h('select',{});
+  opts.forEach(([val,lab])=>{
+    const o=h('option',{value:String(val),text:lab});
+    if(String(val)===String(v))o.setAttribute('selected','selected');
+    e.appendChild(o);});
+  e.value=String(v);
+  e.addEventListener('change',()=>on(e.value)); return e;
+}
+const btn=(label,on,cls)=>h('button',{class:cls||'sm',onclick:on},label);
+
+/* A repeating list with add, delete and reorder. `row(item,i)` renders one
+   entry's editor; `blank()` makes a new one. */
+function repeat(arr,row,blank,on,label,hint,addLabel){
+  const box=h('div',{class:'srepeat'});
+  const draw=()=>{
+    box.innerHTML='';
+    arr.forEach((it,i)=>{
+      box.appendChild(h('div',{class:'srow'},[
+        h('div',{class:'srowtools'},[
+          h('span',{class:'sidx',text:String(i+1)}),
+          btn('↑',()=>{if(i){arr.splice(i-1,0,arr.splice(i,1)[0]);on();draw();}}),
+          btn('↓',()=>{if(i<arr.length-1){arr.splice(i+1,0,arr.splice(i,1)[0]);on();draw();}}),
+          btn('×',()=>{arr.splice(i,1);on();draw();},'sm red')]),
+        h('div',{class:'srowbody'},[row(it,i)])]));
+    });
+    box.appendChild(btn('+ '+(addLabel||'Add'),()=>{arr.push(blank());on();draw();}));
+  };
+  draw();
+  return label?fld(label,box,hint):box;
+}
+/* Plain list of strings, one per line — the cheapest editor that fits. */
+function linesField(label,arr,on,hint,rows){
+  return fld(label,ta(arr.join('\n'),v=>{
+    arr.length=0; v.split('\n').forEach(x=>arr.push(x)); on();},rows||4),
+    hint||'One per line.');
+}
+function csvField(label,arr,on,hint,numeric){
+  return fld(label,inp(arr.join(', '),v=>{
+    const parts=v.split(',').map(s=>s.trim()).filter(Boolean);
+    arr.length=0; parts.forEach(x=>arr.push(numeric?Number(x):x)); on();}),
+    hint||'Comma separated.');
+}
+
+/* ============ prose blocks ============ */
+const BLOCKS=[['p','Paragraph'],['key','Key line'],['l','Bullets'],['n','Numbered'],
+  ['c','Callout'],['code','Code'],['x','What you should see'],['tb','Table']];
+function blockText(b){
+  if(b[0]==='l'||b[0]==='n') return (b[1]||[]).join('\n');
+  if(b[0]==='c') return b[2]||'';
+  if(b[0]==='tb') return '';
+  return b[1]||'';
+}
+function recast(b,t){
+  const txt=blockText(b);
+  b.length=0; b.push(t);
+  if(t==='l'||t==='n') b.push(txt?txt.split('\n'):['']);
+  else if(t==='c') b.push('A note',txt);
+  else if(t==='tb') b.push(['Column A','Column B'],[['','']]);
+  else b.push(txt);
+}
+function tableEditor(b,on){
+  const heads=b[1]||(b[1]=['Column A','Column B']);
+  const rows =b[2]||(b[2]=[]);
+  const box=h('div',{class:'stable'});
+  const draw=()=>{
+    box.innerHTML='';
+    const g='grid-template-columns:repeat('+heads.length+',minmax(110px,1fr)) 2.2rem';
+    const hr=h('div',{class:'stbrow',style:g});
+    heads.forEach((x,i)=>hr.appendChild(inp(x,v=>{heads[i]=v;on();},'Heading')));
+    hr.appendChild(btn('−',()=>{ if(heads.length>1){heads.pop();rows.forEach(r=>r.pop());on();draw();} },'sm red'));
+    box.appendChild(hr);
+    rows.forEach((r,ri)=>{
+      while(r.length<heads.length) r.push('');
+      const rr=h('div',{class:'stbrow',style:g});
+      heads.forEach((_,ci)=>rr.appendChild(inp(r[ci],v=>{r[ci]=v;on();})));
+      rr.appendChild(btn('×',()=>{rows.splice(ri,1);on();draw();},'sm red'));
+      box.appendChild(rr);
+    });
+    box.appendChild(h('div',{class:'srowtools'},[
+      btn('+ Row',()=>{rows.push(heads.map(()=>''));on();draw();}),
+      btn('+ Column',()=>{heads.push('Column '+(heads.length+1));rows.forEach(r=>r.push(''));on();draw();})]));
+  };
+  draw(); return box;
+}
+function blockEditor(b,on){
+  const box=h('div',{class:'sblock'});
+  const draw=()=>{
+    box.innerHTML='';
+    box.appendChild(h('div',{class:'sblockhead'},[
+      sel(b[0],BLOCKS,v=>{recast(b,v);on();draw();}),
+      h('span',{class:'shint',text:
+        b[0]==='p'?'HTML is allowed: <em>, <strong>, <code>.':
+        b[0]==='key'?'Pulled out as the sentence that must survive.':
+        b[0]==='c'?'A boxed aside with its own small heading.':
+        b[0]==='x'?'What the learner should see after running the step.':
+        b[0]==='code'?'Shown as a copyable code block.':''})]));
+    if(b[0]==='l'||b[0]==='n'){
+      const arr=b[1]||(b[1]=['']);
+      box.appendChild(ta(arr.join('\n'),v=>{arr.length=0;v.split('\n').forEach(x=>arr.push(x));on();},4));
+      box.appendChild(h('span',{class:'shint',text:'One bullet per line. HTML allowed.'}));
+    } else if(b[0]==='c'){
+      box.appendChild(inp(b[1],v=>{b[1]=v;on();},'Callout heading'));
+      box.appendChild(ta(b[2],v=>{b[2]=v;on();},3,'Callout text'));
+    } else if(b[0]==='tb'){
+      box.appendChild(tableEditor(b,on));
+    } else {
+      box.appendChild(ta(b[1],v=>{b[1]=v;on();},b[0]==='code'?6:4));
+    }
+  };
+  draw(); return box;
+}
+const blocksField=(label,arr,on,hint)=>
+  repeat(arr,b=>blockEditor(b,on),()=>['p',''],on,label,hint,'Block');
+
+/* ============ page furniture ============ */
+function phead(eyebrow,title,sub){
+  return h('header',{class:'phead'},[
+    h('div',{class:'eyebrow'},[h('span',{text:eyebrow})]),
+    h('h1',{text:title}), sub?h('p',{html:sub}):null]);
+}
+function rel(t){
+  if(!t) return 'never';
+  const s=Math.floor((Date.now()-t)/1000);
+  if(s<60) return 'just now';
+  if(s<3600) return Math.floor(s/60)+' min ago';
+  if(s<86400) return Math.floor(s/3600)+' h ago';
+  return Math.floor(s/86400)+' d ago';
+}
+const reroute=()=>{ window.dispatchEvent(new HashChangeEvent('hashchange')); };
+
+/* The one place that explains, in plain terms, why an edit may not be publishable. */
+function statusBanner(){
+  const c=CT();
+  const src=c?c.source:'built-in';
+  const editor=!!(c&&c.editor);
+  if(src==='server'&&editor) return null;
+  const lines=[];
+  if(src==='built-in') lines.push(
+    'This page is not talking to a database — it is running on the copy built into the file. '+
+    'Edits below are kept in this browser and can be downloaded as JSON, but there is nowhere to publish them to.');
+  else if(src==='cache') lines.push(
+    'The database did not answer, so this is the last copy this browser saw. Publishing is off until it responds again.');
+  else if(!editor) lines.push(
+    'You are reading the live content but you are not an editor on this deployment, so Publish is off. '+
+    'Add your GitHub login to the <code>CONTENT_EDITORS</code> environment variable (or <code>ALLOWED_LOGINS</code>) '+
+    'in your hosting dashboard and sign in again. Your drafts are kept here in the meantime.');
+  return h('div',{class:'callout'},[
+    h('span',{class:'lbl',text:'Read-only'}),
+    h('p',{html:lines.join(' ')})]);
+}
+
+function draftBar(kind,onChanged){
+  const bar=h('div',{class:'sbar'});
+  /* Held outside draw() so the result of a publish survives the redraw that
+     follows it — otherwise the one message worth reading disappears. */
+  let note={cls:'',text:''};
+  const draw=()=>{
+    bar.innerHTML='';
+    const d=dirty(kind), c=CT(), can=c&&c.source==='server'&&c.editor;
+    const errs=d?validate(kind,drafts[kind].data):[];
+    const msg=h('span',{class:'sbarmsg '+note.cls,text:note.text});
+    bar.appendChild(h('span',{class:'pill '+(d?'red':'ok'),
+      text:d?'unpublished draft':'published v'+(c?c.versionOf(kind):0)}));
+    if(d&&staleDraft(kind)) bar.appendChild(h('span',{class:'pill red',text:'based on an older version'}));
+    bar.appendChild(h('span',{class:'sp'}));
+    if(errs.length) bar.appendChild(h('span',{class:'sbarmsg bad',text:errs.length+' problem'+(errs.length>1?'s':'')+' — '+errs[0]}));
+    bar.appendChild(msg);
+    const pubBtn=h('button',{class:'primary sm',onclick:async()=>{
+      pubBtn.disabled=true;
+      note={cls:'',text:'Publishing…'}; msg.className='sbarmsg'; msg.textContent=note.text;
+      try{
+        const r=await publish(kind);
+        note={cls:'ok',text:'Published as v'+r.version+
+          ((r.warnings&&r.warnings.length)?' — '+r.warnings.join('; '):'')};
+        if(onChanged)onChanged();
+        draw();
+      }catch(err){
+        note={cls:'bad',text:err.message};
+        msg.className='sbarmsg bad'; msg.textContent=note.text; pubBtn.disabled=false;
+      }
+    }},'Publish');
+    if(!d||!can||errs.length) pubBtn.disabled=true;
+    pubBtn.setAttribute('title', !d?'No changes to publish':
+      !can?'Publishing needs a database and editor rights':
+      errs.length?'Fix the problems first':'Send this to the database');
+    bar.appendChild(pubBtn);
+    if(d) bar.appendChild(btn('Discard draft',()=>{
+      if(!confirm('Throw away your unpublished changes to '+KINDNAME[kind].toLowerCase()+'?'))return;
+      discard(kind); note={cls:'',text:''}; if(onChanged)onChanged(); draw(); reroute();},'sm red'));
+    bar.appendChild(btn('Download JSON',()=>download(kind)));
+  };
+  draw(); return bar;
+}
+
+function download(kind){
+  const data=dirty(kind)?drafts[kind].data:pub(kind);
+  const text=JSON.stringify(data,null,2);
+  try{
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(new Blob([text],{type:'application/json'}));
+    a.download='aifz-'+kind+'.json'; a.click();
+    setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+  }catch(e){
+    navigator.clipboard&&navigator.clipboard.writeText(text);
+    alert('Download is blocked here, so the JSON was copied to your clipboard instead.');
+  }
+}
+
+/* ============ overview ============ */
+function overview(){
+  const w=h('div',{class:'wrap-wide'});
+  const c=CT();
+  w.appendChild(phead('Content','Studio',
+    'Everything this app teaches is stored as data, not baked into the page. Edit it here and publish; '+
+    'the change is live on the next load, on every device. There is no build step and nothing to redeploy.'));
+  const b=statusBanner(); if(b) w.appendChild(b);
+
+  const counts={chapters:(pub('chapters')||[]).length,skills:(pub('skills')||[]).length,
+    items:(pub('items')||[]).length,exercises:(pub('exercises')||[]).length,
+    processes:(pub('processes')||[]).length,
+    reference:Object.keys(pub('reference')||{}).length};
+  const unit={chapters:'chapters',skills:'skills',items:'questions',exercises:'exercises',
+    processes:'processes',reference:'tables'};
+
+  const warn=warnings();
+  if(warn.length) w.appendChild(h('div',{class:'callout'},[
+    h('span',{class:'lbl',text:'Worth a look'}),
+    h('ul',{class:'plain'},warn.map(x=>h('li',{text:x})))]));
+
+  const grid=h('div',{class:'domgrid',style:'margin:1.5rem 0'});
+  KINDS.forEach(([kind,name,blurb])=>{
+    const v=c?(c.versions[kind]||{}):{};
+    grid.appendChild(h('a',{class:'domcard',href:'#/studio/'+kind},[
+      h('div',{class:'domtop'},[
+        h('h3',{style:'margin:0;font-size:1rem',text:name}),
+        h('span',{class:'sp'}),
+        dirty(kind)?h('span',{class:'pill red',text:'draft'}):null,
+        h('span',{class:'dommet',text:counts[kind]+' '+unit[kind]})]),
+      h('p',{class:'domblurb',text:blurb}),
+      h('span',{class:'domsub',text:v.version?('v'+v.version+' · '+(v.updatedBy||'unknown')+' · '+rel(v.updatedAt))
+        :'built-in, never edited'})]));
+  });
+  w.appendChild(grid);
+
+  const d=dirtyKinds();
+  const sec=h('section',{class:'part'});
+  sec.appendChild(h('div',{class:'parthead'},[h('h2',{text:'Publishing'})]));
+  if(!d.length) sec.appendChild(h('p',{class:'empty',text:'No unpublished drafts. What you see in the app is what is in the database.'}));
+  else{
+    const msg=h('div');
+    sec.appendChild(h('p',{class:'prose',style:'font-size:1rem',
+      html:'Unpublished drafts in <strong>'+d.map(k=>esc(KINDNAME[k].toLowerCase())).join(', ')+
+      '</strong>. They live in this browser until you publish them.'}));
+    const all=h('button',{class:'primary',onclick:async()=>{
+      all.disabled=true; msg.innerHTML='';
+      for(const k of d){
+        try{ const r=await publish(k);
+          msg.appendChild(h('div',{class:'verdict good'},[h('span',{class:'vt',text:KINDNAME[k]}),
+            h('span',{class:'vs',text:'published as v'+r.version})])); }
+        catch(err){ msg.appendChild(h('div',{class:'verdict bad'},[h('span',{class:'vt',text:KINDNAME[k]}),
+            h('span',{class:'vs',text:err.message})])); }
+      }
+      all.disabled=false; reroute();
+    }},'Publish everything');
+    if(!(c&&c.source==='server'&&c.editor)) all.disabled=true;
+    sec.appendChild(h('div',{style:'display:flex;gap:.5rem;flex-wrap:wrap;margin:.9rem 0'},[all,
+      btn('Discard all drafts',()=>{ if(!confirm('Throw away every unpublished change?'))return;
+        drafts={};persist();reroute();},'red')]));
+    sec.appendChild(msg);
+  }
+  w.appendChild(sec);
+
+  const sec2=h('section',{class:'part'});
+  sec2.appendChild(h('div',{class:'parthead'},[h('h2',{text:'How this works'})]));
+  sec2.appendChild(h('dl',{class:'words'},[
+    row2('Where content lives','A row per kind in the database, holding the whole list as JSON with a version number.'),
+    row2('What Publish does','Sends your draft with the version it was based on. If someone else published first, the save is refused rather than overwriting them.'),
+    row2('Who can publish','Anyone whose GitHub login is in CONTENT_EDITORS (or ALLOWED_LOGINS if that is unset) in your hosting dashboard.'),
+    row2('If the database is down','The app falls back to the last copy this browser saw, and then to the copy built into the page. It never fails to open.'),
+    row2('Undo','Every publish keeps the previous thirty versions server-side, and each kind can be reset to the copy shipped with the build.')]));
+  w.appendChild(sec2);
+  return w;
+}
+function row2(a,b){ return h('div',{class:'word'},[h('dt',{text:a}),h('dd',{html:b})]); }
+
+/* ============ list pages ============ */
+function kindPage(kind){
+  if(kind==='reference') return referencePage();
+  const w=h('div',{class:'wrap-wide'});
+  const arr=draft(kind);
+  const on=()=>touch(kind);
+  w.appendChild(phead('Studio · '+KINDNAME[kind],KINDNAME[kind],
+    'Editing a draft. Nothing here reaches the database until you publish.'));
+  const b=statusBanner(); if(b) w.appendChild(b);
+  w.appendChild(h('p',{},[h('a',{href:'#/studio',class:'backlink',text:'← All content'})]));
+  const bar=draftBar(kind); w.appendChild(bar);
+
+  const list=h('div',{class:'slist'});
+  const q=h('input',{type:'search',placeholder:'Filter…',style:'margin:1rem 0 .5rem;max-width:340px'});
+  const drawList=()=>{
+    list.innerHTML='';
+    const f=q.value.toLowerCase().trim();
+    const rows=arr.map((x,i)=>({x,i})).filter(({x})=>!f||summary(kind,x).join(' ').toLowerCase().includes(f));
+    if(!rows.length) list.appendChild(h('div',{class:'empty',text:'Nothing matches.'}));
+    rows.forEach(({x,i})=>{
+      const [t,d,m]=summary(kind,x);
+      list.appendChild(h('div',{class:'sitem'},[
+        h('a',{class:'sitemmain',href:'#/studio/'+kind+'/'+encodeURIComponent(idOf(kind,x,i))},[
+          h('span',{class:'sitemt',text:t}),
+          h('span',{class:'sitemd',text:d})]),
+        h('span',{class:'sitemm mono dim',text:m||''}),
+        btn('Duplicate',()=>{ const c2=clone(x); reid(kind,c2,arr); arr.splice(i+1,0,c2); on(); drawList(); }),
+        btn('Delete',()=>{ if(confirm('Delete "'+t+'" from your draft?')){arr.splice(i,1);on();drawList();
+          bar.replaceWith(draftBar(kind));} },'sm red')]));
+    });
+  };
+  q.addEventListener('input',drawList);
+  drawList();
+  w.appendChild(h('div',{style:'display:flex;gap:.5rem;align-items:center;flex-wrap:wrap'},[q,
+    h('span',{class:'sp'}),
+    btn('+ New '+KINDNAME[kind].replace(/s$/,'').toLowerCase(),()=>{
+      const n=blankOf(kind,arr); arr.push(n); on();
+      location.hash='#/studio/'+kind+'/'+encodeURIComponent(idOf(kind,n,arr.length-1));},'primary sm'),
+    btn('Edit as JSON',()=>{location.hash='#/studio/'+kind+'/~json';})]));
+  w.appendChild(list);
+  return w;
+}
+function idOf(kind,x,i){ return x&&x.id!=null?x.id:(Array.isArray(x)?x[0]:String(i)); }
+function summary(kind,x){
+  if(kind==='chapters') return [x.num+'. '+x.title,x.concept||'',(x.story||[]).length+' blocks · '+(x.check||[]).length+' checks'];
+  if(kind==='skills')   return [x.id+' · '+x.n,x.core||'',(x.ch||[]).join(', ')];
+  if(kind==='items')    return [x[0]+' · '+String(x[4]||'').slice(0,90),(x[1]||'')+' · '+(x[3]||''),'L'+x[2]];
+  if(kind==='exercises')return [x.id+' · '+x.t,x.brief||'',(x.mins||0)+' min'];
+  if(kind==='processes')return [x.id+' · '+x.n,x.why||'',x.cad||''];
+  return [String(x),'',''];
+}
+function nextId(prefix,taken,width){
+  let n=1; const pad=v=>String(v).padStart(width,'0');
+  while(taken.has(prefix+pad(n))) n++;
+  return prefix+pad(n);
+}
+function blankOf(kind,arr){
+  if(kind==='chapters'){
+    const nums=arr.map(c=>c.num||0);
+    const n=(nums.length?Math.max.apply(null,nums):0)+1;
+    return {id:nextId('ch',new Set(arr.map(c=>c.id)),0)||('ch'+n),num:n,part:1,minutes:45,labs:[],
+      title:'Untitled chapter',concept:'One sentence a reader could repeat a week later.',
+      story:[['p','']],words:[],handson:[],wrong:[],homework:[],check:[],red:[]};
+  }
+  if(kind==='skills') return {id:nextId('S',new Set(arr.map(s=>s.id)),2),d:(window.DOMAINS&&window.DOMAINS[0]||{}).id||'mech',
+    n:'Untitled skill',ch:[],labs:[],core:'What someone can do when they have this.',
+    L:['Has heard of it','Can follow it with help','Can do it unaided','Can defend it under challenge']};
+  if(kind==='items') return [nextId('I',new Set(arr.map(i=>i[0])),3),
+    (window.SKILLS&&window.SKILLS[0]||{}).id||'S01',1,'mcq','New question',
+    ['Option A','Option B'],0,'Why the right answer is right.'];
+  if(kind==='exercises') return {id:nextId('E',new Set(arr.map(x=>x.id)),2),t:'Untitled exercise',
+    sk:[],ch:1,mins:30,tier:1,brief:'',deliverable:'',steps:[],
+    rubric:[{c:'A dimension to score yourself on',l:['Not yet','Partly','Solidly','Convincingly']}],iterate:''};
+  return {id:nextId('P',new Set(arr.map(x=>x.id)),2),n:'Untitled process',cad:'Weekly',
+    why:'',metric:'',phases:[{n:'Phase one',s:[['Step','What to actually do.']]}]};
+}
+function reid(kind,x,arr){
+  if(kind==='items') x[0]=nextId('I',new Set(arr.map(i=>i[0])),3);
+  else if(x.id) x.id=nextId(x.id.replace(/[0-9]+$/,''),new Set(arr.map(y=>y.id)),
+    (x.id.match(/[0-9]+$/)||[''])[0].length||2);
+  if(kind==='chapters') x.num=(arr.length?Math.max.apply(null,arr.map(c=>c.num||0)):0)+1;
+}
+
+/* ============ record editors ============ */
+function recordPage(kind,id){
+  if(id==='~json') return jsonPage(kind);
+  if(kind==='reference') return referenceKeyPage(id);
+  const arr=draft(kind);
+  const i=arr.findIndex((x,n)=>String(idOf(kind,x,n))===String(id));
+  const w=h('div',{class:'wrap-wide'});
+  if(i<0){ w.appendChild(h('div',{class:'empty',text:'No such record in your draft.'}));
+    w.appendChild(h('p',{},[h('a',{href:'#/studio/'+kind,text:'← Back'})])); return w; }
+  const x=arr[i];
+  const on=()=>{ touch(kind); bar.replaceWith(bar=draftBar(kind)); };
+  const [t]=summary(kind,x);
+  w.appendChild(phead('Studio · '+KINDNAME[kind],t,'Every change here is saved to your draft as you type.'));
+  w.appendChild(h('p',{},[h('a',{href:'#/studio/'+kind,class:'backlink',text:'← All '+KINDNAME[kind].toLowerCase()}),
+    h('span',{class:'dim',text:'  ·  '}),
+    h('a',{href:'#/studio/'+kind+'/~json',class:'backlink',text:'Edit the whole list as JSON'})]));
+  let bar=draftBar(kind); w.appendChild(bar);
+  const form=h('div',{class:'sform'});
+  ({chapters:chapterForm,skills:skillForm,items:itemForm,
+    exercises:exerciseForm,processes:processForm}[kind])(form,x,on,arr);
+  w.appendChild(form);
+  return w;
+}
+
+function chapterForm(f,c,on){
+  f.appendChild(h('div',{class:'sgrid4'},[
+    fld('id',inp(c.id,v=>{c.id=v;on();}),'Used in links. Changing it breaks bookmarks.'),
+    fld('number',numin(c.num,v=>{c.num=v;on();})),
+    fld('part',sel(c.part,[[1,'I — Foundations'],[2,'II — Building'],[3,'III — Judgement']],v=>{c.part=Number(v);on();})),
+    fld('minutes',numin(c.minutes,v=>{c.minutes=v;on();}),'Honest reading + doing time.')]));
+  f.appendChild(fld('title',inp(c.title,v=>{c.title=v;on();})));
+  f.appendChild(fld('concept',ta(c.concept,v=>{c.concept=v;on();},2),
+    'The one sentence someone should still be able to say a week later.'));
+  f.appendChild(csvField('labs',c.labs||(c.labs=[]),on,'Ids of interactive labs shown in this chapter.'));
+  f.appendChild(linesField('red marks',c.red||(c.red=[]),on,'Failure modes this chapter teaches you to spot. One per line.',3));
+  f.appendChild(h('hr',{class:'hr'}));
+  f.appendChild(blocksField('The reading',c.story||(c.story=[]),on,
+    'The narrative. Mix paragraphs, key lines, callouts and tables.'));
+  f.appendChild(repeat(c.words||(c.words=[]),wd=>h('div',{class:'sgrid2'},[
+      inp(wd[0],v=>{wd[0]=v;on();},'Term'), ta(wd[1],v=>{wd[1]=v;on();},2,'Plain-language definition')]),
+    ()=>['',''],on,'Vocabulary','Words the reader must own before moving on.','Word'));
+  f.appendChild(repeat(c.handson||(c.handson=[]),st=>h('div',{},[
+      inp(st.h,v=>{st.h=v;on();},'Step heading'),
+      blocksField('',st.b||(st.b=[]),on)]),
+    ()=>({h:'New step',b:[['p','']]}),on,'Hands-on','The part where they type things and see output.','Step'));
+  f.appendChild(repeat(c.wrong||(c.wrong=[]),wr=>h('div',{class:'sgrid3'},[
+      inp(wr[0],v=>{wr[0]=v;on();},'What they see'),
+      inp(wr[1],v=>{wr[1]=v;on();},'Why'),
+      inp(wr[2],v=>{wr[2]=v;on();},'Fix')]),
+    ()=>['','',''],on,'When it goes wrong','Real errors, their cause, and the fix.','Error'));
+  f.appendChild(repeat(c.homework||(c.homework=[]),hw=>h('div',{},[
+      inp(hw[0],v=>{hw[0]=v;on();},'Title'), ta(hw[1],v=>{hw[1]=v;on();},3,'What to do')]),
+    ()=>['',''],on,'Homework','Work done away from the page.','Task'));
+  f.appendChild(repeat(c.check||(c.check=[]),ck=>h('div',{},[
+      ta(ck[0],v=>{ck[0]=v;on();},2,'Question'), ta(ck[1],v=>{ck[1]=v;on();},3,'The answer they should have reached')]),
+    ()=>['',''],on,'Comprehension check','Answered from memory, then revealed.','Question'));
+}
+
+function skillForm(f,s,on){
+  const doms=(window.DOMAINS||[]).map(d=>[d.id,d.name]);
+  f.appendChild(h('div',{class:'sgrid3'},[
+    fld('id',inp(s.id,v=>{s.id=v;on();}),'Questions point at this.'),
+    fld('domain',sel(s.d,doms.length?doms:[[s.d,s.d]],v=>{s.d=v;on();})),
+    fld('name',inp(s.n,v=>{s.n=v;on();}))]));
+  f.appendChild(fld('what it means',ta(s.core,v=>{s.core=v;on();},2),
+    'Finish the sentence "someone with this skill can…".'));
+  f.appendChild(h('div',{class:'sgrid2'},[
+    csvField('chapters',s.ch||(s.ch=[]),on,'Chapter numbers that teach it.',true),
+    csvField('labs',s.labs||(s.labs=[]),on,'Lab ids that exercise it.')]));
+  f.appendChild(h('hr',{class:'hr'}));
+  f.appendChild(h('p',{class:'shint',text:'The four levels. Mastery is reported against these, so write them as things a person can be seen doing — not as feelings of confidence.'}));
+  const names=(window.LEVEL_NAMES||['Level 1','Level 2','Level 3','Level 4']);
+  (s.L||(s.L=['','','',''])).forEach((_,i)=>
+    f.appendChild(fld(names[i]||('level '+(i+1)),ta(s.L[i],v=>{s.L[i]=v;on();},2))));
+}
+
+function itemForm(f,it,on){
+  const skills=(window.SKILLS||[]).map(s=>[s.id,s.id+' · '+s.n]);
+  f.appendChild(h('div',{class:'sgrid4'},[
+    fld('id',inp(it[0],v=>{it[0]=v;on();})),
+    fld('skill',sel(it[1],skills.length?skills:[[it[1],it[1]]],v=>{it[1]=v;on();})),
+    fld('difficulty',sel(it[2],[[1,'1 — recall'],[2,'2 — apply'],[3,'3 — judge']],v=>{it[2]=Number(v);on();})),
+    fld('type',sel(it[3],[['mcq','One right answer'],['multi','Several right answers'],
+      ['num','A number'],['order','Put in order'],['judge','Written, self-scored']],
+      v=>{ retype(it,v); on(); redraw(); }))]));
+  f.appendChild(fld('question',ta(it[4],v=>{it[4]=v;on();},3),'HTML allowed.'));
+  const body=h('div'); f.appendChild(body);
+  const why=h('div');
+  function redraw(){
+    body.innerHTML=''; why.innerHTML='';
+    const type=it[3];
+    if(type==='mcq'||type==='multi'){
+      const opts=it[5]||(it[5]=['','']);
+      if(type==='mcq'&&typeof it[6]!=='number') it[6]=0;
+      if(type==='multi'&&!Array.isArray(it[6])) it[6]=[];
+      body.appendChild(repeat(opts,(o,i)=>{
+        const mark=h('input',{type:type==='mcq'?'radio':'checkbox',name:'ans'});
+        mark.checked=type==='mcq'?it[6]===i:(it[6]||[]).includes(i);
+        mark.addEventListener('change',()=>{
+          if(type==='mcq'){ it[6]=i; redraw(); }
+          else{ const set=new Set(it[6]||[]);
+            mark.checked?set.add(i):set.delete(i); it[6]=[...set].sort((a,b)=>a-b); }
+          on();});
+        return h('div',{class:'sopt'},[mark,inp(o,v=>{opts[i]=v;on();},'Option text')]);
+      },()=>'',on,'Options',
+        type==='mcq'?'Tick the one that is right. Wrong options should be wrong for a reason worth explaining.'
+                   :'Tick every option that is right.','Option'));
+    }
+    if(type==='num'){
+      const o=it[5]||(it[5]=['','']);
+      if(!Array.isArray(it[6])) it[6]=[0,10];
+      body.appendChild(h('div',{class:'sgrid4'},[
+        fld('unit',inp(o[0],v=>{o[0]=v;on();},'e.g. paise')),
+        fld('hint',inp(o[1],v=>{o[1]=v;on();},'The formula, shown as a nudge')),
+        fld('answer',numin(it[6][0],v=>{it[6][0]=v;on();},'any')),
+        fld('tolerance %',numin(it[6][1],v=>{it[6][1]=v;on();}),'How far off still counts.')]));
+    }
+    if(type==='order'){
+      const opts=it[5]||(it[5]=['','']);
+      it[6]=opts.map((_,i)=>i);
+      body.appendChild(repeat(opts,(o,i)=>inp(o,v=>{opts[i]=v;on();},'Item'),
+        ()=>'',()=>{it[6]=(it[5]||[]).map((_,i)=>i);on();},'Correct order',
+        'List them in the right order — the app shuffles them before asking.','Item'));
+    }
+    if(type==='judge'){
+      it[5]=null;
+      body.appendChild(fld('model answer',ta(it[6],v=>{it[6]=v;on();},6),
+        'What a strong answer contains. Shown after they commit theirs, to score against.'));
+    }
+    if(type!=='judge') why.appendChild(fld('explanation',ta(it[7],v=>{it[7]=v;on();},4),
+      'Shown after answering, right or wrong. This is where the teaching happens.'));
+  }
+  redraw(); f.appendChild(why);
+}
+function retype(it,t){
+  const from=it[3]; if(from===t) return;
+  it[3]=t;
+  if(t==='mcq'){ if(!Array.isArray(it[5]))it[5]=['','']; it[6]=Array.isArray(it[6])?(it[6][0]||0):0; }
+  else if(t==='multi'){ if(!Array.isArray(it[5]))it[5]=['','']; it[6]=typeof it[6]==='number'?[it[6]]:[]; }
+  else if(t==='order'){ if(!Array.isArray(it[5]))it[5]=['','']; it[6]=it[5].map((_,i)=>i); }
+  else if(t==='num'){ it[5]=['','']; it[6]=[0,10]; }
+  else if(t==='judge'){ it[5]=null; it[6]=typeof it[6]==='string'?it[6]:(it[7]||''); }
+  if(t!=='judge'&&typeof it[7]!=='string') it[7]='';
+}
+
+function exerciseForm(f,x,on){
+  const skills=(window.SKILLS||[]).map(s=>s.id);
+  f.appendChild(h('div',{class:'sgrid4'},[
+    fld('id',inp(x.id,v=>{x.id=v;on();})),
+    fld('chapter',numin(x.ch,v=>{x.ch=v;on();})),
+    fld('minutes',numin(x.mins,v=>{x.mins=v;on();})),
+    fld('tier',sel(x.tier,[[1,'1 — do first'],[2,'2 — builds on tier 1'],[3,'3 — capstone']],v=>{x.tier=Number(v);on();}))]));
+  f.appendChild(fld('title',inp(x.t,v=>{x.t=v;on();})));
+  f.appendChild(csvField('skills it exercises',x.sk||(x.sk=[]),on,
+    'Skill ids'+(skills.length?' — e.g. '+skills.slice(0,3).join(', '):'')+'.'));
+  f.appendChild(fld('brief',ta(x.brief,v=>{x.brief=v;on();},3),'Why this is worth 45 minutes.'));
+  f.appendChild(fld('deliverable',ta(x.deliverable,v=>{x.deliverable=v;on();},2),
+    'The artifact that exists at the end. Be concrete enough to check.'));
+  f.appendChild(linesField('steps',x.steps||(x.steps=[]),on,'One step per line.',6));
+  f.appendChild(repeat(x.rubric||(x.rubric=[]),r=>h('div',{},[
+      inp(r.c,v=>{r.c=v;on();},'What is being scored'),
+      h('div',{class:'sgrid4'},(r.l||(r.l=['','','',''])).map((_,i)=>
+        inp(r.l[i],v=>{r.l[i]=v;on();},'Level '+(i+1))))]),
+    ()=>({c:'',l:['','','','']}),on,'Rubric',
+    'Four levels per row, worst to best. Self-scored, so make the difference between levels observable.','Row'));
+  f.appendChild(fld('how to iterate',ta(x.iterate,v=>{x.iterate=v;on();},3),
+    'What version 2 and 3 of this artifact should change.'));
+}
+
+function processForm(f,p,on){
+  f.appendChild(h('div',{class:'sgrid3'},[
+    fld('id',inp(p.id,v=>{p.id=v;on();})),
+    fld('name',inp(p.n,v=>{p.n=v;on();})),
+    fld('cadence',inp(p.cad,v=>{p.cad=v;on();},'e.g. Every release'))]));
+  f.appendChild(fld('why it exists',ta(p.why,v=>{p.why=v;on();},3)));
+  f.appendChild(fld('what it moves',ta(p.metric,v=>{p.metric=v;on();},2),
+    'The number that should change if the loop is working.'));
+  f.appendChild(repeat(p.phases||(p.phases=[]),ph=>h('div',{},[
+      inp(ph.n,v=>{ph.n=v;on();},'Phase name'),
+      repeat(ph.s||(ph.s=[]),st=>h('div',{class:'sgrid2'},[
+          inp(st[0],v=>{st[0]=v;on();},'Step'),
+          ta(st[1],v=>{st[1]=v;on();},2,'What doing it actually involves')]),
+        ()=>['',''],on,'','','Step')]),
+    ()=>({n:'New phase',s:[['','']]}),on,'Phases','','Phase'));
+}
+
+/* ============ reference + raw JSON ============ */
+function referencePage(){
+  const w=h('div',{class:'wrap-wide'});
+  const ref=draft('reference');
+  w.appendChild(phead('Studio · Reference','Reference tables',
+    'The supporting data the app reads directly. These are edited as JSON because their shapes differ from each other.'));
+  const b=statusBanner(); if(b) w.appendChild(b);
+  w.appendChild(h('p',{},[h('a',{href:'#/studio',class:'backlink',text:'← All content'})]));
+  w.appendChild(draftBar('reference'));
+  const list=h('div',{class:'slist'});
+  Object.keys(ref).sort().forEach(k=>{
+    const v=ref[k];
+    list.appendChild(h('div',{class:'sitem'},[
+      h('a',{class:'sitemmain',href:'#/studio/reference/'+encodeURIComponent(k)},[
+        h('span',{class:'sitemt',text:k}),
+        h('span',{class:'sitemd',text:REFNOTE[k]||''})]),
+      h('span',{class:'sitemm mono dim',text:Array.isArray(v)?v.length+' rows':typeof v})]));
+  });
+  w.appendChild(list);
+  return w;
+}
+const REFNOTE={DOMAINS:'The five skill domains and their blurbs.',PARTS:'Part titles and descriptions.',
+  RULES:'The working rules shown on the dashboard.',SETUP:'The setup walkthrough.',
+  GLOSSARY:'Every term, defined once.',VENDOR:'Vendor claims and what to ask instead.',
+  LATER:'The LATER page — parked questions.',PIPELINE:'Stages of the red-mark map.',
+  REDMARKS:'Known failure modes, by stage.',LEVEL_NAMES:'What the four mastery levels are called.',
+  LEVEL_BANDS:'The mastery cutoffs between levels.'};
+
+function referenceKeyPage(key){
+  const w=h('div',{class:'wrap-wide'});
+  const ref=draft('reference');
+  if(!(key in ref)){ w.appendChild(h('div',{class:'empty',text:'No such table.'})); return w; }
+  w.appendChild(phead('Studio · Reference',key,REFNOTE[key]||''));
+  w.appendChild(h('p',{},[h('a',{href:'#/studio/reference',class:'backlink',text:'← All reference tables'})]));
+  let bar=draftBar('reference'); w.appendChild(bar);
+  w.appendChild(editorFor(()=>ref[key],v=>{ref[key]=v;touch('reference');bar.replaceWith(bar=draftBar('reference'));}));
+  return w;
+}
+function jsonPage(kind){
+  const w=h('div',{class:'wrap-wide'});
+  const d=draft(kind);
+  w.appendChild(phead('Studio · '+KINDNAME[kind],KINDNAME[kind]+' as JSON',
+    'The whole list at once. Useful for a bulk paste, a find-and-replace, or moving content between deployments.'));
+  w.appendChild(h('p',{},[h('a',{href:'#/studio/'+kind,class:'backlink',text:'← Back to the list'})]));
+  let bar=draftBar(kind); w.appendChild(bar);
+  w.appendChild(editorFor(()=>drafts[kind].data,v=>{drafts[kind].data=v;touch(kind);
+    bar.replaceWith(bar=draftBar(kind));},kind));
+  return w;
+}
+/* A JSON textarea that refuses to hand back anything unparseable. */
+function editorFor(get,set,kind){
+  const box=h('div');
+  const t=h('textarea',{rows:'26',spellcheck:'false',style:'width:100%'});
+  t.value=JSON.stringify(get(),null,2);
+  const msg=h('div',{class:'sbarmsg'});
+  const apply=()=>{
+    let v; try{ v=JSON.parse(t.value); }
+    catch(err){ msg.className='sbarmsg bad'; msg.textContent='Not valid JSON: '+err.message; return; }
+    if(kind){ const errs=validate(kind,v);
+      if(errs.length){ msg.className='sbarmsg bad'; msg.textContent=errs[0]; return; } }
+    set(v); msg.className='sbarmsg ok'; msg.textContent='Applied to your draft. Publish to make it live.';
+  };
+  box.appendChild(t);
+  box.appendChild(h('div',{style:'display:flex;gap:.5rem;margin:.6rem 0;align-items:center;flex-wrap:wrap'},[
+    h('button',{class:'sm primary',onclick:apply},'Apply to draft'),
+    btn('Reformat',()=>{ try{ t.value=JSON.stringify(JSON.parse(t.value),null,2);
+      msg.className='sbarmsg';msg.textContent=''; }catch(e){ msg.className='sbarmsg bad';msg.textContent='Not valid JSON.'; } }),
+    btn('Revert',()=>{ t.value=JSON.stringify(get(),null,2); msg.className='sbarmsg'; msg.textContent=''; }),
+    msg]));
+  return box;
+}
+
+/* ============ entry ============ */
+function studio(parts){
+  if(!window.CONTENT) return h('div',{class:'wrap',text:'Content layer unavailable.'});
+  const kind=parts[1];
+  if(!kind) return overview();
+  if(!KINDS.some(k=>k[0]===kind)) return overview();
+  if(parts[2]!=null) return recordPage(kind,decodeURIComponent(parts.slice(2).join('/')));
+  return kindPage(kind);
+}
+return {studio, dirtyKinds, KINDS};
+})();
+
 /* Interactive labs. Everything here runs offline — no API key, no network.
    Simulations are shaped to reproduce the *behaviour* each chapter teaches,
    so a reader without credits still meets the failure with their own hands. */
@@ -3965,12 +5074,23 @@ window.LABS=LABS;
    session construction, and the analytics the dashboard reads. */
 
 window.ENG = (function(){
-const ITEMS = [].concat(window.ITEMS1, window.ITEMS2, window.ITEMS3).map(a=>({
-  id:a[0], sk:a[1], diff:a[2], type:a[3], stem:a[4], opts:a[5], ans:a[6], why:a[7]
-}));
-const byItem={}; ITEMS.forEach(i=>byItem[i.id]=i);
-const bySkill={}; ITEMS.forEach(i=>(bySkill[i.sk]=bySkill[i.sk]||[]).push(i));
-const SK={}; window.SKILLS.forEach(s=>SK[s.id]=s);
+/* Content is loaded before boot and can be re-edited from the portal, so these
+   are rebuilt on demand rather than captured when this file parses. The
+   containers are mutated in place: views hold references to them. */
+let ITEMS=[];
+const byItem={}, bySkill={}, SK={};
+function reinit(){
+  const raw = window.ALL_ITEMS ||
+    [].concat(window.ITEMS1||[], window.ITEMS2||[], window.ITEMS3||[]);
+  ITEMS = raw.map(a=>({id:a[0], sk:a[1], diff:a[2], type:a[3],
+                       stem:a[4], opts:a[5], ans:a[6], why:a[7]}));
+  Object.keys(byItem).forEach(k=>delete byItem[k]);
+  Object.keys(bySkill).forEach(k=>delete bySkill[k]);
+  Object.keys(SK).forEach(k=>delete SK[k]);
+  ITEMS.forEach(i=>{ byItem[i.id]=i; (bySkill[i.sk]=bySkill[i.sk]||[]).push(i); });
+  (window.SKILLS||[]).forEach(s=>SK[s.id]=s);
+}
+reinit();
 
 const DAY=86400000;
 const now=()=>Date.now();
@@ -3984,10 +5104,15 @@ function decayFactor(daysSince){
   if(daysSince<=3) return 1;
   return 1 - 0.30*(1 - Math.exp(-(daysSince-3)/45));
 }
-function skillState(S, id){
-  const st = S.sk[id] || (S.sk[id]={m:0, n:0, ok:0, last:0, hist:[], peak:0});
-  return st;
-}
+const blankSkill = () => ({m:0, n:0, ok:0, last:0, hist:[], peak:0});
+/* Reading must not write. The dashboard and the matrix ask for all thirty
+   skills on every render; creating a zeroed record for each one made the state
+   look changed on a page view, which saved it, pushed it, and bumped the
+   server's version for a device that had done nothing — and that version churn
+   made other devices collide over work neither had done. */
+function skillState(S, id){ return S.sk[id] || blankSkill(); }
+/* The one place a record is meant to come into existence. */
+function skillRecord(S, id){ return S.sk[id] || (S.sk[id] = blankSkill()); }
 function shown(S, id){
   const st=skillState(S,id);
   if(!st.n) return 0;
@@ -4007,7 +5132,7 @@ function nextBand(m){
 /* Gain is larger for harder items and smaller as mastery rises, so the last
    twenty points require analysis-level items rather than more recall items. */
 function applyResult(S, item, correct){
-  const st=skillState(S, item.sk);
+  const st=skillRecord(S, item.sk);
   const head = Math.max(0, 100 - st.m) / 100;
   if(correct){
     const gain = (3.5 + item.diff*3.2) * (0.35 + 0.65*head);
@@ -4274,7 +5399,7 @@ function exScore(e, iter){
   return Math.round(vals.reduce((a,b)=>a+b,0)/(e.rubric.length*3)*100);
 }
 
-return {ITEMS, byItem, bySkill, SK, DAY,
+return {get ITEMS(){return ITEMS;}, byItem, bySkill, SK, DAY, reinit,
   shown, levelOf, nextBand, skillState, decayFactor,
   buildSession, grade, submit, scheduleItem, srs, dueList, dueForecast,
   calibrationCurve, brier, overconfidence, CONF,
@@ -4453,6 +5578,49 @@ async function ghVerify(token){
   return u.login;
 }
 
+/* A second device knows the token but not the gist id, so find the existing one
+   rather than creating a rival. Without this, setting up a phone would make a new
+   empty gist and the laptop's record would be orphaned. */
+async function ghFindGist(){
+  const list = await ghCall('/gists?per_page=100');
+  if(!Array.isArray(list)) return null;
+  const hit = list.find(g => g && g.files && g.files[FILE]);
+  return hit ? hit.id : null;
+}
+
+/* Connecting must never blindly upload: on a fresh device that would push an
+   empty state over everything already synced. Adopt first, decide second. */
+async function ghConnect(token, auto){
+  ghSave({token: token, auto: !!auto});
+  let login;
+  try{ login = await ghVerify(token); }
+  catch(e){ ghClear(); throw e; }
+  let id;
+  try{ id = await ghFindGist(); }
+  catch(e){ ghClear(); throw e; }
+
+  const local = window.STORE ? window.STORE.S : {};
+  if(id){
+    const c = ghConfig(); c.gistId = id; ghSave(c);
+    const rem = await ghRemote();
+    const remoteHasWork = rem && !isEmptyState(rem.data);
+    if(remoteHasWork && isEmptyState(local)){
+      takeSessionBackup();
+      if(window.STORE && window.STORE.replace){
+        window.STORE.replace(rem.data); markSynced();
+        return {login, action:'pulled', summary:rem.summary};
+      }
+      return {login, action:'behind', summary:rem.summary};
+    }
+    if(remoteHasWork && !isEmptyState(local))
+      return {login, action:'conflict', summary:rem.summary};
+    await ghPush();
+    return {login, action:'pushed'};
+  }
+  await ghPush();
+  return {login, action:'created'};
+}
+
 async function ghPush(){
   if(window.STORE) window.STORE.flush();
   const c = ghConfig();
@@ -4467,10 +5635,10 @@ async function ghPush(){
       public:false, files})});
     c.gistId = g.id;
   }
-  c.lastSync = Date.now();
   c.lastPushAt = Date.now();
   ghSave(c);
-  return {id:c.gistId, url:g.html_url, bytes:content.length, at:c.lastSync};
+  markSynced();
+  return {id:c.gistId, url:g.html_url, bytes:content.length, at:Date.now()};
 }
 
 async function ghRemote(){
@@ -4492,25 +5660,121 @@ async function ghPull(){
   const rem = await ghRemote();
   if(!rem) throw new Error('Nothing synced yet — push first.');
   applyState(rem.data);
-  const c = ghConfig(); c.lastSync = Date.now(); c.lastPullAt = Date.now(); ghSave(c);
+  const c = ghConfig();
+  c.lastPullAt = Date.now();
+  c.syncedAt = rem.data.updatedAt || 0;      // STORE is suspended; mark from the payload
+  c.lastSync = Date.now();
+  ghSave(c);
   return rem.summary;
 }
 
-/* Is it safe to overwrite local with remote, or the other way round?
-   Compares the local clock against the last sync so a straight overwrite is
-   never silent when both sides have moved. */
+/* Has this device moved since the last successful sync?
+   Compared by exact marker, not by clock: a time tolerance either swallows real
+   changes made moments after a sync, or reports phantom ones. `syncedAt` records
+   the precise S.updatedAt value that was last pushed or pulled. */
+function markSynced(){
+  const c = ghConfig();
+  const d = window.STORE ? window.STORE.S : {};
+  c.syncedAt = d.updatedAt || 0;
+  c.lastSync = Date.now();
+  ghSave(c);
+}
+/* A device with nothing on it cannot lose anything, so pulling into it is always
+   safe — this is the ordinary "set up my phone" case, where there is no sync
+   marker yet and the general rule would otherwise cry conflict. */
+function isEmptyState(d){
+  if(!d) return true;
+  if((d.att||[]).length) return false;
+  if(Object.values(d.sk||{}).some(s=>s && s.n>0)) return false;
+  if(Object.values(d.notes||{}).some(v=>v && String(v).trim())) return false;
+  if(Object.keys(d.ex||{}).length) return false;
+  if(Object.keys(d.proc||{}).length) return false;
+  if((d.pred||[]).length) return false;
+  if(Object.keys(d.marks||{}).some(k=>d.marks[k])) return false;
+  /* Reading is work too. Chapters marked done, chapter self-grades, parked
+     LATER questions, the system card, glossary drills and reading sittings are
+     all things a person would be dismayed to lose, so a record holding only
+     those is not an empty one. */
+  if(Object.keys(d.done||{}).some(k=>d.done[k])) return false;
+  if(Object.keys(d.grades||{}).some(k=>d.grades[k])) return false;
+  if(Object.keys(d.later||{}).some(k=>d.later[k])) return false;
+  if(Object.keys(d.card||{}).some(k=>d.card[k])) return false;
+  if(Object.keys(d.drill||{}).some(k=>d.drill[k])) return false;
+  if((d.sittings||[]).length) return false;
+  return true;
+}
 function localChangedSinceSync(){
   const c = ghConfig();
   const d = window.STORE ? window.STORE.S : {};
   if(!c.lastSync) return true;
-  return (d.updatedAt || 0) > c.lastSync;
+  return (d.updatedAt || 0) !== (c.syncedAt || 0);
+}
+
+/* Push on the way out. keepalive lets the request outlive the page, which a
+   plain fetch does not; sendBeacon cannot carry an Authorization header. */
+function pushOnExit(){
+  const c = ghConfig();
+  if(!c.token || !c.auto || !c.gistId) return;
+  if(!localChangedSinceSync()) return;
+  try{
+    const files = {}; files[FILE] = {content: exportText()};
+    fetch(API + '/gists/' + c.gistId, {
+      method:'PATCH', keepalive:true, body:JSON.stringify({files}),
+      headers:{'Authorization':'Bearer ' + c.token,
+               'Accept':'application/vnd.github+json'}});
+    markSynced();
+  }catch(e){}
+}
+
+/* Runs once on load when sync is connected.
+     remote ahead, local untouched since last sync  → pull silently (lossless)
+     local ahead, remote unchanged                  → push
+     both moved                                     → conflict, hand it to the user
+   Returns a status the toolbar renders. */
+async function autoSync(){
+  const c = ghConfig();
+  if(!c.token) return {state:'off'};
+  if(!c.gistId){
+    try{ await ghPush(); return {state:'synced', at:Date.now()}; }
+    catch(e){ return {state:'error', msg:e.message}; }
+  }
+  let rem;
+  try{ rem = await ghRemote(); }
+  catch(e){ return {state:'error', msg:e.message}; }
+  if(!rem) return {state:'error', msg:'Gist is empty.'};
+
+  const local = window.STORE ? window.STORE.S : {};
+  const localEmpty = isEmptyState(local);
+  const localMoved = !localEmpty && localChangedSinceSync();
+  const remoteAhead = localEmpty
+    ? !isEmptyState(rem.data)
+    : (rem.exportedAt || 0) > (local.updatedAt || 0);
+
+  if(remoteAhead && !localMoved){
+    if(window.STORE && window.STORE.replace){
+      takeSessionBackup();
+      window.STORE.replace(rem.data);
+      markSynced();
+      return {state:'pulled', at:Date.now(), summary:rem.summary};
+    }
+    return {state:'behind', summary:rem.summary};
+  }
+  if(remoteAhead && localMoved) return {state:'conflict', summary:rem.summary};
+  if(localMoved && c.auto){
+    try{ await ghPush(); return {state:'pushed', at:Date.now()}; }
+    catch(e){ return {state:'error', msg:e.message}; }
+  }
+  return {state:'synced', at:c.lastSync};
 }
 
 return {takeSessionBackup, backupInfo, restoreBackup,
         exportFile, exportText, exportName, canDownload, copyText,
         importText, snapshot, summarise,
         stats, usable, requestPersistence,
+        /* entry points the app calls on boot and on the way out */
+        autoSync, pushOnExit, markSynced, isEmptyState,
         gh:{config:ghConfig, save:ghSave, clear:ghClear, verify:ghVerify,
+            connect:ghConnect, find:ghFindGist,
             push:ghPush, pull:ghPull, remote:ghRemote, localChangedSinceSync}};
 })();
 
@@ -5284,8 +6548,11 @@ function processes(){
 function data(){
   const st=S(), SY=window.SYNC;
   const w=h('div',{class:'wrap'});
-  w.appendChild(phead('Durability','Progress & Backup',
-    'Your progress lives in this browser and is never sent anywhere by default. That makes it private — and it makes it fragile, because it is tied to this one browser on this one device. Here is how to make it survive.'));
+  const signedIn = window.ACCOUNT && window.ACCOUNT.user;
+  w.appendChild(phead('Your data','Progress & Backup',
+    signedIn
+      ? 'Your progress is stored against your account, so it follows you to any device you sign in on. This browser keeps a copy so the app still works offline, and everything below is the safety net under that.'
+      : 'Right now your progress lives in this browser only. That makes it private — and fragile, because it is tied to one browser on one device. Sign in below to make it follow you instead.'));
 
   const s0=SY.stats();
   w.appendChild(h('div',{class:'stats'},[
@@ -5296,15 +6563,21 @@ function data(){
     tile('answers logged',s0.summary.attempts),
     tile('last local backup',s0.backup?rel(s0.backup.at):'none',s0.backup?'':'red')]));
 
-  w.appendChild(h('div',{class:'callout'},[
+  if(!signedIn) w.appendChild(h('div',{class:'callout'},[
     h('span',{class:'lbl',text:'Where this data lives'}),
-    h('p',{html:'<code>'+esc2(s0.origin)+'</code> — browser storage is scoped to the exact address. '+
-      'Progress saved on the Claude artifact link and progress saved on your hosted link are <strong>separate stores</strong>. '+
-      'To move between them, export here and import there.'})]));
+    h('p',{html:'<code>'+esc2(s0.origin)+'</code> — without an account, browser storage is scoped to the exact address. '+
+      'Progress saved on one link and on another are <strong>separate stores</strong>. '+
+      'Signing in removes that problem entirely; until then, export here and import there.'})]));
+
+  /* --- account --- */
+  const secA=h('section',{class:'part'});
+  secA.appendChild(sectionHead2('01','Your account','how it follows you'));
+  secA.appendChild(accountPanel());
+  w.appendChild(secA);
 
   /* --- file backup --- */
   const sec1=h('section',{class:'part'});
-  sec1.appendChild(sectionHead2('01','Backup file','works everywhere, no account'));
+  sec1.appendChild(sectionHead2('02','Backup file','works everywhere, no account'));
   sec1.appendChild(h('p',{class:'prose',style:'font-size:1rem',
     html:'The dependable one. Downloads everything — mastery, answers, calibration, notebook, exercises, processes — as a single JSON file. Keep it wherever you keep things: Drive, Dropbox, email to yourself.'}));
   const impMsg=h('div');
@@ -5367,7 +6640,7 @@ function data(){
 
   /* --- keep on device --- */
   const sec2=h('section',{class:'part'});
-  sec2.appendChild(sectionHead2('02','Keep it on this device','one click'));
+  sec2.appendChild(sectionHead2('03','Keep it on this device','one click'));
   sec2.appendChild(h('p',{class:'prose',style:'font-size:1rem',
     html:'Browsers evict storage from sites they consider disposable. Asking for persistent storage tells this one not to.'}));
   const persistMsg=h('span',{class:'dim',style:'font-size:.85rem'});
@@ -5382,15 +6655,17 @@ function data(){
 
   /* --- gist sync --- */
   const sec3=h('section',{class:'part'});
-  sec3.appendChild(sectionHead2('03','Sync across devices','optional, free, no server'));
+  sec3.appendChild(sectionHead2('04','Sync without an account','for static hosting'));
   sec3.appendChild(h('p',{class:'prose',style:'font-size:1rem',
-    html:'Stores your progress in a <strong>secret GitHub Gist</strong> that only you can see. Laptop and phone then share one record. There is no server and no cost — your browser talks straight to GitHub.'}));
+    html:'This — not the choice of web host — is what lets you pick up where you left off on another machine. '+
+      'Your progress is kept in a <strong>secret GitHub Gist</strong> only you can see, pulled when you open the app and pushed when you close it. '+
+      'There is no server and no cost: your browser talks straight to GitHub.'}));
   sec3.appendChild(ghPanel());
   w.appendChild(sec3);
 
   /* --- danger --- */
   const sec4=h('section',{class:'part'});
-  sec4.appendChild(sectionHead2('04','Reset',''));
+  sec4.appendChild(sectionHead2('05','Reset',''));
   sec4.appendChild(h('div',{style:'display:flex;gap:.5rem;flex-wrap:wrap'},[
     h('button',{class:'red',onclick:()=>{
       if(!confirm('Erase all progress in this browser? Download a backup first if you want to keep it.'))return;
@@ -5400,6 +6675,130 @@ function data(){
     }},'Erase all progress')]));
   w.appendChild(sec4);
   return w;
+}
+
+function accountPanel(){
+  const box=h('div');
+  const A=window.ACCOUNT, R=window.REMOTE;
+  if(!A || !R || A.state==='off'){
+    box.appendChild(h('p',{class:'prose',style:'font-size:1rem',
+      html:'This copy is running without its backend — from a file, from the Claude artifact, or from a plain static host. '+
+        'Progress is kept in this browser only. Deploy it with a database (the README walks through it, '+
+        'entirely in a browser) and this becomes an account: sign in anywhere and your record follows you.'}));
+    return box;
+  }
+  /* Functions are up but no database is attached: every call would fail, and the
+     reason is one environment variable, so say exactly that. */
+  if(R.available && R.available.database === false){
+    box.appendChild(h('div',{class:'callout',style:'border-left-color:var(--red)'},[
+      h('span',{class:'lbl',text:'No database is attached to this deployment'}),
+      h('p',{html:'The app is served and its API is running, but there is no <code>DATABASE_URL</code>, '+
+        'so there is nowhere to keep your record. Create a free Postgres (Neon, Supabase, Railway or '+
+        'Vercel Postgres), paste its connection string into your hosting dashboard as '+
+        '<code>DATABASE_URL</code>, and redeploy. Until then progress stays in this browser and the '+
+        'backups below are what protects it.'})]));
+    return box;
+  }
+  if(R.available && R.available.database && !R.available.dbReady){
+    box.appendChild(h('div',{class:'callout',style:'border-left-color:var(--red)'},[
+      h('span',{class:'lbl',text:'The database is not answering'}),
+      h('p',{html:'A database is configured but the app could not reach it'+
+        (R.available.dbError?(' — <code>'+esc2(R.available.dbError)+'</code>'):'')+
+        '. Progress is being kept in this browser in the meantime.'})]));
+    return box;
+  }
+  const u=A.user;
+  if(A.state==='signedout' || !u){
+    const configured = R.available && R.available.signIn;
+    box.appendChild(h('p',{class:'prose',style:'font-size:1rem',
+      html:'Sign in and your progress lives on the server instead of in this browser. '+
+        'Open the site on any device, sign in, and it is simply there — no files, no tokens, no copying.'}));
+    if(configured){
+      box.appendChild(h('div',{style:'display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin-top:1rem'},[
+        h('a',{class:'btnlink',href:R.loginUrl()},'Sign in with GitHub'),
+        h('span',{class:'dim',style:'font-size:.82rem',
+          text:'Reads your username only. No repository access.'})]));
+    } else {
+      box.appendChild(h('div',{class:'callout',style:'border-left-color:var(--red)'},[
+        h('span',{class:'lbl',text:'Sign-in is not configured on this deployment'}),
+        h('p',{html:'The backend and its database are running, but no GitHub OAuth app is set, so there is '+
+          'nothing to sign in with. Create one at <code>github.com/settings/developers</code> with a callback '+
+          'of <code>'+esc2(location.origin)+'/api/auth/callback</code>, then add '+
+          '<code>GITHUB_CLIENT_ID</code> and <code>GITHUB_CLIENT_SECRET</code> to your hosting dashboard and '+
+          'redeploy. The README walks through it — no terminal needed.'})]));
+    }
+    const q=new URLSearchParams(location.hash.split('?')[1]||'');
+    const err=q.get('signin');
+    if(err && err!=='ok') box.appendChild(h('div',{class:'verdict bad',style:'margin-top:.9rem'},[
+      h('span',{class:'vt',text:'Sign-in did not complete'}),
+      h('span',{class:'vs',text:{bad_state:'The sign-in link expired — try again.',
+        no_token:'GitHub did not return a token.',profile_failed:'Could not read your GitHub profile.',
+        not_allowed:'That GitHub account is not on this app\'s allow list.',
+        no_database:'This deployment has no database attached, so there is no account to sign in to.',
+        server_error:'Something failed on the server during sign-in. Try again.'}[err]||err})]));
+    return box;
+  }
+
+  const m=R.meta();
+  box.appendChild(h('div',{class:'acct'},[
+    u.avatar?h('img',{class:'avatar',src:u.avatar,alt:''}):null,
+    h('div',{style:'flex:1;min-width:0'},[
+      h('strong',{text:u.name||u.login}),
+      h('div',{class:'dim',style:'font-size:.82rem',text:'@'+u.login+' · '+R.deviceName()})]),
+    h('span',{class:'pill '+(A.state==='conflict'?'red':'ok'),
+      text:{ok:'synced',pulled:'synced',syncing:'syncing',offline:'offline',
+            conflict:'needs attention',error:'sync problem'}[A.state]||A.state})]));
+
+  box.appendChild(h('div',{class:'stats'},[
+    tile('server version',m.version!=null?'v'+m.version:'—'),
+    tile('this device',A.state==='ok'||A.state==='pulled'?'up to date':A.state),
+    tile('kept on server','last 20 versions','','automatic')]));
+
+  if(A.state==='conflict' && A.server){
+    const srv=A.server, local=window.SYNC.summarise(S());
+    const rem=window.SYNC.summarise(srv.data||{});
+    box.appendChild(h('div',{class:'callout',style:'border-left-color:var(--red)'},[
+      h('span',{class:'lbl',text:'Another device saved first'}),
+      h('p',{html:'Nothing has been overwritten. Choose which copy to keep — the other is still '+
+        'recoverable from the server history and from your local snapshot.'})]));
+    const t=h('table');
+    t.appendChild(h('thead',{},h('tr',{},[h('th',{text:''}),h('th',{text:'This device'}),h('th',{text:'Server'})])));
+    t.appendChild(h('tbody',{},[
+      h('tr',{},[h('td',{text:'skills measured'}),h('td',{class:'num',text:String(local.skills)}),h('td',{class:'num',text:String(rem.skills)})]),
+      h('tr',{},[h('td',{text:'answers logged'}),h('td',{class:'num',text:String(local.attempts)}),h('td',{class:'num',text:String(rem.attempts)})]),
+      h('tr',{},[h('td',{text:'exercises'}),h('td',{class:'num',text:String(local.exercises)}),h('td',{class:'num',text:String(rem.exercises)})])]));
+    box.appendChild(h('div',{class:'tblwrap',style:'margin:.8rem 0'},t));
+    box.appendChild(h('div',{style:'display:flex;gap:.5rem;flex-wrap:wrap'},[
+      h('button',{class:'primary',onclick:()=>{A.takeServer();setTimeout(()=>location.reload(),400);}},'Keep the server copy'),
+      h('button',{class:'red',onclick:()=>{A.takeLocal();setTimeout(()=>location.reload(),600);}},'Keep this device and overwrite')]));
+  }
+
+  const histBox=h('div');
+  box.appendChild(h('div',{style:'display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem'},[
+    h('button',{onclick:async()=>{
+      histBox.innerHTML='';
+      const vs=await R.history();
+      if(!vs.length){histBox.appendChild(h('p',{class:'empty',text:'No saved versions yet.'}));return;}
+      const t=h('table');
+      t.appendChild(h('thead',{},h('tr',{},['version','saved','from','size',''].map(x=>h('th',{text:x})))));
+      t.appendChild(h('tbody',{},vs.map(v=>h('tr',{},[
+        h('td',{class:'num',text:'v'+v.version}),
+        h('td',{text:new Date(v.saved_at).toLocaleString()}),
+        h('td',{text:v.device||'—'}),
+        h('td',{class:'num',text:(v.bytes/1024).toFixed(1)+' KB'}),
+        h('td',{},h('button',{class:'sm',onclick:async()=>{
+          if(!confirm('Restore v'+v.version+'? Current progress is kept in the history too.'))return;
+          try{ await R.restore(v.version); location.reload(); }
+          catch(e){ alert(e.message); }
+        }},'Restore'))]))));
+      histBox.appendChild(h('div',{class:'tblwrap',style:'margin-top:.8rem'},t));
+    }},'Show server history'),
+    h('button',{onclick:async()=>{ await R.logout(); location.reload(); }},'Sign out')]));
+  box.appendChild(histBox);
+  box.appendChild(h('p',{class:'labnote',html:
+    'Progress is saved to your account a couple of seconds after each change, and again as you leave the page. '+
+    'If a different device saved while this one was open, the write is refused rather than applied — you are shown both and you choose.'}));
+  return box;
 }
 
 function esc2(s){return String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));}
@@ -5444,11 +6843,26 @@ function ghPanel(){
           const t=inp.value.trim(); if(!t)return;
           say(true,'Checking…');
           try{
-            const login=await SY.gh.verify(t);
-            SY.gh.save({token:t, auto:auto.checked});
-            const r=await SY.gh.push();
-            say(true,'Connected as '+login,'Progress pushed to a secret gist.');
-            setTimeout(render,1200);
+            const r=await SY.gh.connect(t, auto.checked);
+            if(r.action==='pulled'){
+              say(true,'Connected as '+r.login,
+                'Found your existing record and loaded it: '+r.summary.skills+
+                ' skills, '+r.summary.attempts+' answers. Reloading…');
+              setTimeout(()=>location.reload(),1400); return;
+            }
+            if(r.action==='conflict'){
+              say(false,'Connected as '+r.login+' — but both sides have work',
+                'Your gist holds '+r.summary.skills+' skills / '+r.summary.attempts+
+                ' answers, and this browser has its own progress. Nothing has been '+
+                'changed. Use “Compare with gist” below to choose which one wins.');
+              if(window.REFRESH_SYNC)window.REFRESH_SYNC();
+              setTimeout(render,2600); return;
+            }
+            say(true,'Connected as '+r.login,
+              r.action==='created' ? 'Created a secret gist and pushed your progress.'
+                                   : 'Progress pushed to your existing gist.');
+            if(window.REFRESH_SYNC)window.REFRESH_SYNC();
+            setTimeout(render,1400);
           }catch(e){ say(false,'Could not connect',e.message); }
         }},'Connect')]));
       box.appendChild(h('p',{class:'labnote',html:
@@ -5471,6 +6885,7 @@ function ghPanel(){
       h('button',{class:'primary',onclick:async()=>{
         say(true,'Pushing…');
         try{const r=await SY.gh.push(); say(true,'Pushed',(r.bytes/1024).toFixed(1)+' KB saved to your gist.');
+          if(window.REFRESH_SYNC)window.REFRESH_SYNC();
           setTimeout(render,1200);}
         catch(e){say(false,'Push failed',e.message);}
       }},'Push now'),
@@ -5513,8 +6928,11 @@ function ghPanel(){
     box.appendChild(remoteBox);
     box.appendChild(msg);
     box.appendChild(h('p',{class:'labnote',html:
-      'On a second device: open the hosted link, come to this page, paste the same token, then use <strong>Compare with gist</strong> and pull. '+
-      'Sync is deliberately explicit in one direction — it will not silently overwrite a device that has newer work on it.'}));
+      '<strong>On a second device:</strong> open the same link, come to this page and paste the same token. '+
+      'It finds this gist automatically and loads your progress — no ids to copy. After that, each device pulls newer '+
+      'work when you open it and pushes when you close it.<br><br>'+
+      'If both devices have unsynced work, nothing is overwritten: you are shown both and you choose. '+
+      'A snapshot is kept locally before any replacement.'}));
   }
   function row(l,a,b){return h('tr',{},[h('td',{text:l}),
     h('td',{class:'num',text:String(a)}),h('td',{class:'num',text:String(b)})]);}
@@ -5536,12 +6954,25 @@ const h=(t,a,c)=>{const e=document.createElement(t);
 const $=(s,r)=>(r||document).querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
 
-const CH=[].concat(window.PART1,window.PART2,window.PART3);
-const byId={}; CH.forEach(c=>byId[c.id]=c);
+/* Rebuilt from whatever content was loaded, before the first render. */
+let CH=[];
+const byId={};
+let IDX=null;                     // command palette index, rebuilt with content
+function bindContent(){
+  CH = window.CHAPTERS ||
+       [].concat(window.PART1||[], window.PART2||[], window.PART3||[]);
+  Object.keys(byId).forEach(k=>delete byId[k]);
+  CH.forEach(c=>byId[c.id]=c);
+  if(window.ENG && window.ENG.reinit) window.ENG.reinit();
+  IDX=null;                       // command palette index is content-derived
+}
+bindContent();
+window.BIND_CONTENT=bindContent;
 
 /* ---------------- storage ---------------- */
 const KEY='aifz2027';
-let S={done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{},drill:{},sittings:[],theme:null,
+const defaults=()=>({done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{},drill:{},
+  sittings:[],theme:null,
   /* tracker state */
   sk:{},      // per-skill mastery {m,n,ok,last,hist,peak}
   srs:{},     // per-item schedule {ease,ivl,reps,due,seen}
@@ -5550,11 +6981,13 @@ let S={done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{},drill:{},sit
   sess:[],    // session log
   ex:{},      // exercise iterations
   proc:{}     // process runs
-};
+});
+let S=defaults();
 try{const raw=localStorage.getItem(KEY); if(raw)S=Object.assign(S,JSON.parse(raw));}catch(e){}
 /* keep last session's state recoverable before this one writes over it */
 try{window.SYNC&&window.SYNC.takeSessionBackup();}catch(e){}
-let saveT, suspended=false;
+let saveT, suspended=false, lastBody=null;
+try{ const u=S.updatedAt; delete S.updatedAt; lastBody=JSON.stringify(S); S.updatedAt=u; }catch(e){}
 /* After progress is replaced underneath us (import, restore, erase) the page is
    about to reload, and the in-memory copy is stale. Writing it on the way out —
    pagehide fires on reload — would silently undo the replacement. */
@@ -5562,6 +6995,13 @@ function suspend(){suspended=true;clearTimeout(saveT);saveT=null;}
 function writeNow(){
   if(suspended)return;
   clearTimeout(saveT); saveT=null;
+  /* updatedAt must mark a real change, not merely a write. Navigation and tab
+     switches call this too, and bumping the clock on those made an idle device
+     look newer than the server — which pushed stale progress over newer work. */
+  const keep=S.updatedAt; delete S.updatedAt;
+  const body=JSON.stringify(S);
+  if(body===lastBody){ S.updatedAt=keep; return; }
+  lastBody=body;
   S.updatedAt=Date.now();
   try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){
     /* quota or a browser blocking storage: tell the user rather than losing work silently */
@@ -5571,6 +7011,7 @@ function writeNow(){
       if(b)b.hidden=false;}
     return;
   }
+  if(window.ACCOUNT) window.ACCOUNT.onChange();
   if(window.SYNC){const c=window.SYNC.gh.config();
     if(c.auto&&c.token){clearTimeout(writeNow._push);
       writeNow._push=setTimeout(()=>{window.SYNC.gh.push().catch(()=>{});},20000);}}
@@ -5578,12 +7019,26 @@ function writeNow(){
 function save(){clearTimeout(saveT);saveT=setTimeout(writeNow,250);}
 /* A debounced write loses the last answer if the tab is closed or navigated
    within the debounce window, so flush on every way out. */
-addEventListener('pagehide',writeNow);
+addEventListener('pagehide',()=>{writeNow();
+  if(window.ACCOUNT)window.ACCOUNT.flush();
+  if(window.SYNC)window.SYNC.pushOnExit();});
+addEventListener('online',()=>{if(window.ACCOUNT)window.ACCOUNT.onChange(true);});
 addEventListener('beforeunload',writeNow);
 addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')writeNow();});
 addEventListener('hashchange',writeNow);
 /* views.js and engine.js read state through here */
-window.STORE={get S(){return S;}, save, flush:writeNow, suspend, KEY};
+/* Swap state contents in place — views and the engine hold a reference to S,
+   so reassigning the binding would leave them pointing at the old object. */
+function replace(data){
+  const theme=S.theme;
+  Object.keys(S).forEach(k=>{delete S[k];});
+  Object.assign(S, defaults(), data||{});
+  if(theme && !data.theme) S.theme=theme;
+  suspended=false;
+  const u=S.updatedAt; delete S.updatedAt; lastBody=JSON.stringify(S); S.updatedAt=u;
+  try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}
+}
+window.STORE={get S(){return S;}, save, flush:writeNow, suspend, replace, KEY};
 function flash(node){if(!node)return;node.classList.add('show');setTimeout(()=>node.classList.remove('show'),1400);}
 
 /* ---------------- block renderer ---------------- */
@@ -6266,6 +7721,9 @@ function renderRail(){
     ['#/ledger','∆','Prediction Ledger'],
     ['#/card','▣','System Card'],
     ['#/data','⇄','Progress & Backup']]));
+  const nd=window.STUDIO?window.STUDIO.dirtyKinds().length:0;
+  r.appendChild(sec('Author',[
+    ['#/studio','✦','Content Studio'+(nd?'  ('+nd+' draft'+(nd>1?'s':'')+')':'')]]));
   r.appendChild(sec('Reference',[
     ['#/library','▤','Library — 18 chapters'],['#/setup','A','Setup'],
     ['#/vendor','⌗','Vendor Deck'],['#/glossary','∎','Glossary'],
@@ -6286,10 +7744,11 @@ const ROUTES={'':()=>V().dashboard(),'library':pageHome,
   'exercises':()=>V().exercises(),'processes':()=>V().processes(),
   'setup':pageSetup,'notebook':pageNotebook,'ledger':pageLedger,
   'later':pageLater,'glossary':pageGlossary,'vendor':pageVendor,'map':pageMap,'card':pageCard,
-  'progress':pageProgress,'labs':pageLabs,'data':()=>V().data()};
+  'progress':pageProgress,'labs':pageLabs,'data':()=>V().data(),
+  'studio':()=>window.STUDIO.studio([])};
 const CRUMB={'':'Dashboard','library':'Library','skills':'Skill Matrix','analytics':'Analytics',
   'exercises':'Exercises','processes':'Processes','practice':'Practice','skill':'Skill',
-  'data':'Progress & Backup'};
+  'data':'Progress & Backup','studio':'Content Studio'};
 
 function route(){
   const hash=location.hash.replace(/^#\/?/,'').split('#')[0];
@@ -6304,6 +7763,10 @@ function route(){
     node = parts[1] ? V().practice(parts[1],parts[2]) : V().practiceMenu();
     crumb='Practice'+(parts[1]?' · '+parts[1]:'');
     document.title='Practice — AI From Zero';
+  } else if(parts[0]==='studio'){
+    node=window.STUDIO.studio(parts);
+    crumb='Content Studio'+(parts[1]?' · '+parts[1]:'');
+    document.title='Content Studio — AI From Zero';
   } else if(parts[0]==='skill'&&parts[1]){
     node=V().skillPage(parts[1]);
     crumb='Skill · '+parts[1];
@@ -6333,6 +7796,7 @@ function buildIndex(){
     {k:'page',t:'Exercises',h:'#/exercises'},{k:'page',t:'Processes',h:'#/processes'},
     {k:'page',t:'Library — 18 chapters',h:'#/library'},
     {k:'page',t:'Progress & Backup',h:'#/data'},
+    {k:'page',t:'Content Studio — edit the curriculum',h:'#/studio'},
     {k:'page',t:'Setup',h:'#/setup'},
     {k:'page',t:'The Labs',h:'#/labs'},{k:'page',t:'Red-Mark Map',h:'#/map'},
     {k:'page',t:'Prediction Ledger',h:'#/ledger'},{k:'page',t:'Notebook',h:'#/notebook'},
@@ -6351,7 +7815,7 @@ function buildIndex(){
   window.PROCESSES.forEach(p=>idx.push({k:'process',t:p.n,d:p.cad,h:'#/processes#'+p.id}));
   return idx;
 }
-let IDX=null,palCur=0,palItems=[];
+let palCur=0,palItems=[];
 function openPal(){
   const p=$('#pal');p.classList.add('open');
   const i=$('#palinput');i.value='';i.focus();palSearch('');
@@ -6396,6 +7860,7 @@ function boot(){
         h('a',{class:'savewarn',id:'savewarn',hidden:'hidden',href:'#/data',
           text:'⚠ Progress is not being saved — open Progress & Backup'}),
         h('span',{class:'sp'}),
+        h('a',{class:'syncpill',id:'syncpill',href:'#/data',hidden:'hidden'}),
         h('button',{class:'sm',onclick:openPal},'Search  ⌘K'),
         h('button',{class:'sm',id:'themebtn',onclick:()=>{
           S.theme=S.theme==='dark'?'light':S.theme==='light'?null:'dark';save();applyTheme();}},'Theme')]),
@@ -6416,8 +7881,177 @@ function boot(){
   applyTheme();
   window.addEventListener('hashchange',route);
   route();
+  ACCOUNT.boot().then(()=>{ if(ACCOUNT.state==='off') runAutoSync(); });
 }
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
+function setSyncPill(state,text,cls){
+  const el=$('#syncpill'); if(!el)return;
+  if(state==='off'){el.hidden=true;return;}
+  el.hidden=false; el.textContent=text;
+  el.className='syncpill'+(cls?' '+cls:'');
+}
+/* ---------------- account sync ----------------
+   The server is the record when signed in; this device is a cache. On open we
+   pull, on change we push, and a version mismatch means another device wrote
+   first — we never resolve that silently. */
+const ACCOUNT=(function(){
+  let state='off';          // off | signedout | syncing | ok | offline | conflict | error
+  let detail='';
+  let pushT=null, inFlight=false, dirty=false, serverCopy=null;
+
+  const M=()=>window.REMOTE.meta();
+  const setM=m=>window.REMOTE.setMeta(m);
+  const marker=()=>S.updatedAt||0;
+  /* version 0 is a real, synced state — the server simply has no row yet — so
+     "never synced" has to be the absence of a version, not a falsy one. */
+  const localChanged=()=>{const m=M();
+    return m.version==null || (S.updatedAt||0)!==(m.marker||0);};
+
+  function show(st,d){ state=st; detail=d||''; paint(); }
+  function paint(){
+    const el=$('#syncpill'); if(!el)return;
+    const map={
+      off:      null,
+      signedout:['Sign in to sync','warn'],
+      syncing:  ['syncing…','busy'],
+      ok:       ['synced','ok'],
+      pulled:   ['synced — loaded your latest','ok'],
+      offline:  ['offline — will sync later','warn'],
+      conflict: ['another device wrote first — open','warn'],
+      error:    ['sync problem — open','warn']
+    };
+    const v=map[state];
+    if(!v){el.hidden=true;return;}
+    el.hidden=false; el.textContent=v[0]; el.className='syncpill '+v[1];
+  }
+
+  /* The page renders before this probe resolves, so any view that shows account
+     state has to be redrawn once we know it. */
+  function reroute(){ if(location.hash.indexOf('#/data')===0) route(); }
+  async function boot(){
+    if(!window.REMOTE) return;
+    const a=await window.REMOTE.probe();
+    if(!a){ show('off'); reroute(); return; }
+    const u=await window.REMOTE.me();
+    if(!u){ clearIfStale(); show('signedout'); reroute(); return; }
+    show('syncing');
+    try{
+      const srv=await window.REMOTE.pull();
+      if(srv.signedOut){ show('signedout'); return; }
+      await reconcile(srv);
+    }catch(e){ show(navigator.onLine?'error':'offline', e.message); }
+    reroute();
+  }
+  /* Signed out on a device that had synced: keep the data, drop the pointer. */
+  function clearIfStale(){ const m=M(); if(m.version) window.REMOTE.clearMeta(); }
+
+  async function reconcile(srv){
+    const m=M();
+    const localEmpty=window.SYNC.isEmptyState(S);
+    const serverEmpty=!srv.data || window.SYNC.isEmptyState(srv.data);
+
+    if(serverEmpty && !localEmpty) return pushNow(srv.version, 'ok');
+    if(serverEmpty && localEmpty){ setM({version:srv.version, marker:marker()}); return show('ok'); }
+
+    if(localEmpty || !localChanged()){
+      window.SYNC.takeSessionBackup();
+      replace(srv.data);
+      setM({version:srv.version, marker:marker()});
+      route();
+      return show(localEmpty?'pulled':'ok');
+    }
+    /* both sides moved */
+    if((m.version||0) === srv.version) return pushNow(srv.version, 'ok');
+    serverCopy=srv; show('conflict');
+  }
+
+  async function pushNow(baseVersion, okState){
+    if(inFlight){ dirty=true; return; }
+    inFlight=true;
+    try{
+      const r=await window.REMOTE.push(S, baseVersion);
+      if(r.signedOut){ show('signedout'); return; }
+      if(r.tooLarge){ show('error','Progress is too large to save.'); return; }
+      if(r.conflict){ serverCopy=r.server; show('conflict'); return; }
+      setM({version:r.version, marker:marker()});
+      show(okState||'ok');
+    }catch(e){ show(navigator.onLine?'error':'offline', e.message); }
+    finally{
+      inFlight=false;
+      if(dirty){ dirty=false; onChange(true); }
+    }
+  }
+
+  /* Nothing to send is not the same as something to send. Coming back online,
+     or leaving a page, used to push an unchanged copy — which spent a version
+     and could collide with a device that had actually done some work. */
+  function onChange(immediate){
+    if(state==='off'||state==='signedout'||state==='conflict') return;
+    clearTimeout(pushT);
+    const go=()=>{ const m=M();
+      if(m.version==null || !localChanged()) return; pushNow(m.version); };
+    if(immediate) go(); else pushT=setTimeout(go, 2500);
+  }
+  function flush(){
+    if(state==='off'||state==='signedout'||state==='conflict') return;
+    const m=M(); if(m.version==null || !localChanged()) return;
+    clearTimeout(pushT);
+    /* keepalive lets this outlive the page so the last answers are not stranded */
+    try{
+      fetch('/api/state',{method:'PUT',keepalive:true,credentials:'same-origin',
+        headers:{'content-type':'application/json','x-aifz':'1'},
+        body:JSON.stringify({baseVersion:m.version,data:S,device:window.REMOTE.deviceName()})});
+    }catch(e){}
+  }
+
+  async function takeServer(){
+    if(!serverCopy) return;
+    window.SYNC.takeSessionBackup();
+    replace(serverCopy.data);
+    setM({version:serverCopy.version, marker:marker()});
+    serverCopy=null; route(); show('pulled');
+  }
+  async function takeLocal(){
+    if(!serverCopy) return;
+    const v=serverCopy.version; serverCopy=null;
+    await pushNow(v,'ok');
+  }
+
+  return {boot, onChange, flush, paint, takeServer, takeLocal,
+    get state(){return state;}, get detail(){return detail;},
+    get server(){return serverCopy;}, get user(){return window.REMOTE&&window.REMOTE.user;},
+    refresh:boot};
+})();
+window.ACCOUNT=ACCOUNT;
+
+window.REFRESH_SYNC=function(){ runAutoSync(); };
+function runAutoSync(){
+  if(!window.SYNC)return;
+  const c=window.SYNC.gh.config();
+  if(!c.token){setSyncPill('off');return;}
+  setSyncPill('busy','syncing…','busy');
+  window.SYNC.autoSync().then(r=>{
+    if(r.state==='pulled'){
+      setSyncPill('ok','synced — pulled newer progress','ok');
+      route();                                   // re-render with the pulled state
+    }
+    else if(r.state==='pushed') setSyncPill('ok','synced','ok');
+    else if(r.state==='synced') setSyncPill('ok','synced','ok');
+    else if(r.state==='conflict') setSyncPill('warn','this device and your gist differ — compare','warn');
+    else if(r.state==='behind') setSyncPill('warn','newer progress in your gist — open to pull','warn');
+    else setSyncPill('warn','sync failed — open','warn');
+  }).catch(()=>setSyncPill('warn','sync failed — open','warn'));
+}
+/* Content first, then render — the whole app is built from it. */
+function start(){
+  const go=()=>{
+    const p = window.CONTENT ? window.CONTENT.load() : Promise.resolve({source:'built-in'});
+    p.then(()=>{ bindContent(); boot(); })
+     .catch(()=>{ bindContent(); boot(); });
+  };
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',go);
+  else go();
+}
+start();
 })();
 
 </script>
