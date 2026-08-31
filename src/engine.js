@@ -33,10 +33,15 @@ function decayFactor(daysSince){
   if(daysSince<=3) return 1;
   return 1 - 0.30*(1 - Math.exp(-(daysSince-3)/45));
 }
-function skillState(S, id){
-  const st = S.sk[id] || (S.sk[id]={m:0, n:0, ok:0, last:0, hist:[], peak:0});
-  return st;
-}
+const blankSkill = () => ({m:0, n:0, ok:0, last:0, hist:[], peak:0});
+/* Reading must not write. The dashboard and the matrix ask for all thirty
+   skills on every render; creating a zeroed record for each one made the state
+   look changed on a page view, which saved it, pushed it, and bumped the
+   server's version for a device that had done nothing — and that version churn
+   made other devices collide over work neither had done. */
+function skillState(S, id){ return S.sk[id] || blankSkill(); }
+/* The one place a record is meant to come into existence. */
+function skillRecord(S, id){ return S.sk[id] || (S.sk[id] = blankSkill()); }
 function shown(S, id){
   const st=skillState(S,id);
   if(!st.n) return 0;
@@ -56,7 +61,7 @@ function nextBand(m){
 /* Gain is larger for harder items and smaller as mastery rises, so the last
    twenty points require analysis-level items rather than more recall items. */
 function applyResult(S, item, correct){
-  const st=skillState(S, item.sk);
+  const st=skillRecord(S, item.sk);
   const head = Math.max(0, 100 - st.m) / 100;
   if(correct){
     const gain = (3.5 + item.diff*3.2) * (0.35 + 0.65*head);

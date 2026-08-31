@@ -5115,10 +5115,15 @@ function decayFactor(daysSince){
   if(daysSince<=3) return 1;
   return 1 - 0.30*(1 - Math.exp(-(daysSince-3)/45));
 }
-function skillState(S, id){
-  const st = S.sk[id] || (S.sk[id]={m:0, n:0, ok:0, last:0, hist:[], peak:0});
-  return st;
-}
+const blankSkill = () => ({m:0, n:0, ok:0, last:0, hist:[], peak:0});
+/* Reading must not write. The dashboard and the matrix ask for all thirty
+   skills on every render; creating a zeroed record for each one made the state
+   look changed on a page view, which saved it, pushed it, and bumped the
+   server's version for a device that had done nothing — and that version churn
+   made other devices collide over work neither had done. */
+function skillState(S, id){ return S.sk[id] || blankSkill(); }
+/* The one place a record is meant to come into existence. */
+function skillRecord(S, id){ return S.sk[id] || (S.sk[id] = blankSkill()); }
 function shown(S, id){
   const st=skillState(S,id);
   if(!st.n) return 0;
@@ -5138,7 +5143,7 @@ function nextBand(m){
 /* Gain is larger for harder items and smaller as mastery rises, so the last
    twenty points require analysis-level items rather than more recall items. */
 function applyResult(S, item, correct){
-  const st=skillState(S, item.sk);
+  const st=skillRecord(S, item.sk);
   const head = Math.max(0, 100 - st.m) / 100;
   if(correct){
     const gain = (3.5 + item.diff*3.2) * (0.35 + 0.65*head);
@@ -7907,7 +7912,10 @@ const ACCOUNT=(function(){
   const M=()=>window.REMOTE.meta();
   const setM=m=>window.REMOTE.setMeta(m);
   const marker=()=>S.updatedAt||0;
-  const localChanged=()=>{const m=M(); return !m.version || (S.updatedAt||0)!==(m.marker||0);};
+  /* version 0 is a real, synced state — the server simply has no row yet — so
+     "never synced" has to be the absence of a version, not a falsy one. */
+  const localChanged=()=>{const m=M();
+    return m.version==null || (S.updatedAt||0)!==(m.marker||0);};
 
   function show(st,d){ state=st; detail=d||''; paint(); }
   function paint(){
@@ -7984,15 +7992,19 @@ const ACCOUNT=(function(){
     }
   }
 
+  /* Nothing to send is not the same as something to send. Coming back online,
+     or leaving a page, used to push an unchanged copy — which spent a version
+     and could collide with a device that had actually done some work. */
   function onChange(immediate){
     if(state==='off'||state==='signedout'||state==='conflict') return;
     clearTimeout(pushT);
-    const go=()=>{ const m=M(); if(m.version==null) return; pushNow(m.version); };
+    const go=()=>{ const m=M();
+      if(m.version==null || !localChanged()) return; pushNow(m.version); };
     if(immediate) go(); else pushT=setTimeout(go, 2500);
   }
   function flush(){
     if(state==='off'||state==='signedout'||state==='conflict') return;
-    const m=M(); if(m.version==null) return;
+    const m=M(); if(m.version==null || !localChanged()) return;
     clearTimeout(pushT);
     /* keepalive lets this outlive the page so the last answers are not stranded */
     try{

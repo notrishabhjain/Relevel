@@ -956,7 +956,10 @@ const ACCOUNT=(function(){
   const M=()=>window.REMOTE.meta();
   const setM=m=>window.REMOTE.setMeta(m);
   const marker=()=>S.updatedAt||0;
-  const localChanged=()=>{const m=M(); return !m.version || (S.updatedAt||0)!==(m.marker||0);};
+  /* version 0 is a real, synced state — the server simply has no row yet — so
+     "never synced" has to be the absence of a version, not a falsy one. */
+  const localChanged=()=>{const m=M();
+    return m.version==null || (S.updatedAt||0)!==(m.marker||0);};
 
   function show(st,d){ state=st; detail=d||''; paint(); }
   function paint(){
@@ -1033,15 +1036,19 @@ const ACCOUNT=(function(){
     }
   }
 
+  /* Nothing to send is not the same as something to send. Coming back online,
+     or leaving a page, used to push an unchanged copy — which spent a version
+     and could collide with a device that had actually done some work. */
   function onChange(immediate){
     if(state==='off'||state==='signedout'||state==='conflict') return;
     clearTimeout(pushT);
-    const go=()=>{ const m=M(); if(m.version==null) return; pushNow(m.version); };
+    const go=()=>{ const m=M();
+      if(m.version==null || !localChanged()) return; pushNow(m.version); };
     if(immediate) go(); else pushT=setTimeout(go, 2500);
   }
   function flush(){
     if(state==='off'||state==='signedout'||state==='conflict') return;
-    const m=M(); if(m.version==null) return;
+    const m=M(); if(m.version==null || !localChanged()) return;
     clearTimeout(pushT);
     /* keepalive lets this outlive the page so the last answers are not stranded */
     try{

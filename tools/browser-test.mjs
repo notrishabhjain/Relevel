@@ -14,14 +14,14 @@ const ok = (c, m, extra) => { c ? (pass++, console.log('  ok  ', m))
 import fs from 'node:fs';
 const HERE = '/opt/pw-browsers/chromium';
 const browser = await chromium.launch(fs.existsSync(HERE) ? { executablePath: HERE } : {});
-const newDevice = async (signedIn) => {
+const newDevice = async (signedIn, login = 'localdev') => {
   const ctx = await browser.newContext({ serviceWorkers: 'block' });
   /* The page pulls webfonts from Google; there is no egress here and each
      attempt costs seconds, so nothing leaves localhost during a test. */
   await ctx.route('**/*', r => r.request().url().startsWith(B) ? r.continue() : r.abort());
   const page = await ctx.newPage();
   page.on('pageerror', e => console.log('    [page error]', e.message));
-  if (signedIn) { await page.goto(B + '/api/dev/login?login=localdev'); }
+  if (signedIn) { await page.goto(B + '/api/dev/login?login=' + login); }
   return { ctx, page };
 };
 /* .pill and .lbl are CSS-uppercased, so read the DOM text, not the rendered text. */
@@ -211,6 +211,52 @@ ok(await g.page.evaluate(() => window.ENG.ITEMS.length) === 138, 'the new questi
 ok(await g.page.evaluate(() => window.CHAPTERS[0].title) === 'What Actually Happens When You Ask',
    'the retitled chapter is there');
 
+console.log('\n— reading the app does not write to it —');
+/* Its own account, so nothing above can move the version underneath it. */
+const r1 = await newDevice(true, 'reader');
+const srvVersion = p => p.evaluate(async () =>
+  (await (await fetch('/api/state', { headers: { 'x-aifz': '1' } })).json()).version);
+await boot(r1.page);
+await r1.page.waitForFunction(() => ['ok', 'pulled'].includes(window.ACCOUNT.state), null, { timeout: 20000 });
+for (const hash of ['#/skills', '#/analytics', '#/practice', '#/library', '#/']) await boot(r1.page, hash);
+await r1.page.waitForTimeout(3500);          // longer than the 2.5s push debounce
+ok(await srvVersion(r1.page) === 0, 'browsing five pages saved nothing to the server',
+   await srvVersion(r1.page));
+ok(await r1.page.evaluate(() => Object.keys(window.STORE.S.sk).length) === 0,
+   'and wrote no skill records for skills that were only looked at',
+   await r1.page.evaluate(() => Object.keys(window.STORE.S.sk).length));
+await r1.page.evaluate(async () => {
+  window.dispatchEvent(new Event('online'));
+  await new Promise(r => setTimeout(r, 1200));
+});
+ok(await srvVersion(r1.page) === 0, 'and coming back online with nothing to send pushes nothing',
+   await srvVersion(r1.page));
+/* But a real change still goes up, so the guard is not simply switching pushing off. */
+await r1.page.evaluate(async () => {
+  window.STORE.S.done = Object.assign({}, window.STORE.S.done, { chReal: Date.now() });
+  window.STORE.flush();
+  window.ACCOUNT.onChange(true);
+  await new Promise(r => setTimeout(r, 2000));
+});
+ok(await srvVersion(r1.page) === 1, 'while actual work is still pushed', await srvVersion(r1.page));
+
+/* And the record a real answer is supposed to create still gets created. */
+await boot(r1.page, '#/practice/mixed');
+await r1.page.waitForSelector('.qstem');
+const askedSkill = await r1.page.evaluate(() => window.STORE.S.sk);
+ok(Object.keys(askedSkill).length === 0, 'opening a drill has still written nothing');
+await r1.page.locator('.qbody .opt, .qbody input, .qbody button').first().click();
+await r1.page.locator('.confrow .conf').first().click();
+await r1.page.locator('button.primary.big').first().click();
+await r1.page.waitForTimeout(400);
+const measured = await r1.page.evaluate(() => window.STORE.S.sk);
+ok(Object.values(measured).some(x => x && x.n > 0),
+   'answering one question does record mastery against its skill',
+   JSON.stringify(measured).slice(0, 160));
+await r1.page.waitForTimeout(3500);
+ok(await srvVersion(r1.page) === 2, 'and that answer reaches the server on its own',
+   await srvVersion(r1.page));
+
 console.log('\n— progress still syncs across devices —');
 /* A fresh pair, because b and d have deliberately diverged above. */
 const settled = () => ['ok', 'pulled'].includes(window.ACCOUNT.state);
@@ -219,12 +265,16 @@ await boot(h1.page, '#/practice');
 await h1.page.waitForFunction(settled, null, { timeout: 20000 });
 await h1.page.evaluate(async () => {
   window.STORE.S.done = Object.assign({}, window.STORE.S.done, { chSync: Date.now() });
-  window.STORE.save();
-  window.ACCOUNT.onChange(true);
+  window.STORE.flush();            // write now rather than on the 250ms debounce
+  window.ACCOUNT.onChange(true);   // and push it rather than 2.5s later
   await new Promise(r => setTimeout(r, 2000));
 });
 ok(await h1.page.evaluate(settled), 'the push left the account in sync',
-   await h1.page.evaluate(() => window.ACCOUNT.state + ' / ' + window.ACCOUNT.detail));
+   await h1.page.evaluate(async () => {
+     const srv = await (await fetch('/api/state', { headers: { 'x-aifz': '1' } })).json();
+     return JSON.stringify({ state: window.ACCOUNT.state, detail: window.ACCOUNT.detail,
+       meta: window.REMOTE.meta(), serverVersion: srv.version, serverDevice: srv.device,
+       serverDone: srv.data && Object.keys(srv.data.done || {}) }); }));
 const e = await newDevice(true);
 await boot(e.page);
 await e.page.waitForFunction(() => window.STORE.S.done && window.STORE.S.done.chSync,
