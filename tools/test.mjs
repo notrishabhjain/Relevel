@@ -35,6 +35,14 @@ async function withServer(fn) {
   } finally { server.kill('SIGKILL'); }
 }
 
+/* The curriculum is data, and its failures are silent — check it before
+   spending two minutes booting browsers. */
+{
+  const code = await new Promise(res =>
+    spawn(process.execPath, ['tools/content-check.mjs'], { stdio: 'inherit' }).on('exit', res));
+  if (code) { console.error('\ncontent check failed\n'); process.exit(1); }
+}
+
 const only = process.argv[2];
 const suites = [['api', 'tools/api-test.mjs'], ['browser', 'tools/browser-test.mjs']]
   .filter(([n]) => !only || n === only);
