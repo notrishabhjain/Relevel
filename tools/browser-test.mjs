@@ -300,6 +300,17 @@ ok((await n1.page.locator('.needs').evaluate(e => {
   const story = document.querySelector('#story');
   return e.compareDocumentPosition(story) & Node.DOCUMENT_POSITION_FOLLOWING; })) > 0,
   'placed before the reading starts, not after it');
+ok(await n1.page.locator('.alsoref a').count() >= 2,
+   'every other chapter it leans on is surfaced and linked too',
+   await n1.page.locator('.alsoref a').count());
+ok(/second tab rather than pushing on/.test(await text(n1.page, '.alsoref')),
+   'with the instruction to go and look rather than push through');
+/* derived from the prose, so it cannot drift from what the chapter says */
+ok(await n1.page.evaluate(() => {
+  const nums = [...document.querySelectorAll('.alsoref a')].map(a => +a.textContent.match(/\d+/)[0]);
+  const body = document.querySelector('#main').textContent;
+  return nums.length > 0 && nums.every(n => new RegExp('Chapters?\\s*\\.?\\s*(\\d+[^.]{0,12})?\\b' + n + '\\b').test(body));
+}), 'and each one is a chapter the prose genuinely names');
 await boot(n1.page, '#/ch/ch0');
 ok(await n1.page.locator('.needs').count() === 0, 'the ground-floor chapter stands on nothing');
 

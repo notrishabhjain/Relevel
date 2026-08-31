@@ -802,3 +802,6 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .needlist strong{font-weight:600}
 .needwhy{color:var(--ink-2)}
 .needlist .chip{flex:none;font-size:.7rem}
+.alsoref{margin-top:.7rem;padding-top:.6rem;border-top:1px dashed var(--rule);
+  font-size:.83rem;line-height:1.6;color:var(--ink-2)}
+.alsoref a{white-space:nowrap}

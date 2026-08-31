@@ -470,17 +470,57 @@ function renderChapter(c){
      was written for somebody else. Naming the load-bearing ideas up front makes
      losing the thread visible, and going back a normal move rather than an
      admission. */
-  if((c.needs||[]).length){
+  /* The declared prerequisites are the two or three ideas you genuinely cannot
+     proceed without — a curated list, because a wall of ten is its own way of
+     losing someone. But a chapter also mentions others in passing, and a
+     reader who does not recognise one of those has the same problem in a
+     smaller size. So the rest are derived from the prose itself, every render:
+     nothing to maintain, and it cannot drift from what the chapter actually
+     says. */
+  const alsoRefs=(()=>{
+    const declared=new Set((c.needs||[]).map(n=>n[2]));
+    const text=[];
+    const push=b=>{ if(!Array.isArray(b))return; const [k,...r]=b;
+      if(k==='p'||k==='key'||k==='x')text.push(String(r[0]||''));
+      else if(k==='l'||k==='n')text.push((r[0]||[]).join(' '));
+      else if(k==='c')text.push(String(r[1]||''));
+      else if(k==='pred')text.push([r[0].ask,r[0].reveal,r[0].then].filter(Boolean).join(' '));
+      else if(k==='try')text.push([r[0].task,r[0].after].filter(Boolean).join(' ')); };
+    (c.story||[]).forEach(push);
+    (c.handson||[]).forEach(st=>(st.b||[]).forEach(push));
+    const joined=text.join(' ').replace(/<[^>]+>/g,' ');
+    const found=new Set();
+    const re=/Chapters?\s*\.?\s*\d+(?:\s*(?:,|and|to|–|-)\s*\d+)*/gi;
+    let m;
+    while((m=re.exec(joined))!==null)
+      (m[0].match(/\d+/g)||[]).forEach(n=>{const v=+n;
+        if(v<c.num && !declared.has(v) && byId['ch'+v]) found.add(v);});
+    return [...found].sort((a,b)=>a-b);
+  })();
+
+  if((c.needs||[]).length||alsoRefs.length){
     const nd=h('section',{class:'needs'});
     nd.appendChild(h('div',{class:'needshead'},[
       h('span',{class:'cplbl',text:'This chapter stands on'}),
       h('span',{class:'dim',style:'font-size:.78rem',
         text:'if any of these are blank, go back first — that is the fast route, not the slow one'})]));
-    nd.appendChild(h('ul',{class:'needlist'},c.needs.map(([what,why,ch])=>
-      h('li',{},[
-        h('div',{},[h('strong',{text:what}),
-          h('span',{class:'needwhy',text:' — '+why})]),
-        h('a',{class:'chip',href:'#/ch/ch'+ch,text:'Chapter '+ch+' →'})]))));
+    if((c.needs||[]).length)
+      nd.appendChild(h('ul',{class:'needlist'},c.needs.map(([what,why,ch])=>
+        h('li',{},[
+          h('div',{},[h('strong',{text:what}),
+            h('span',{class:'needwhy',text:' — '+why})]),
+          h('a',{class:'chip',href:'#/ch/ch'+ch,text:'Chapter '+ch+' →'})]))));
+    if(alsoRefs.length){
+      const row=h('div',{class:'alsoref'},[
+        h('span',{class:'needwhy',text:'It also refers back to '})]);
+      alsoRefs.forEach((n,i)=>{
+        row.appendChild(h('a',{href:'#/ch/ch'+n,text:'Chapter '+n}));
+        if(i<alsoRefs.length-2) row.appendChild(document.createTextNode(', '));
+        else if(i===alsoRefs.length-2) row.appendChild(document.createTextNode(' and '));
+      });
+      row.appendChild(document.createTextNode('. Any of those a blank? Open it in a second tab rather than pushing on.'));
+      nd.appendChild(row);
+    }
     w.appendChild(nd);
   }
 
