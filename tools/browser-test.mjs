@@ -81,7 +81,7 @@ console.log('\n— a draft survives a reload —');
 await boot(b.page, '#/studio/items');
 ok(await text(b.page, '.sbar .pill') === 'unpublished draft', 'the draft is still there after a reload',
    await text(b.page, '.sbar .pill'));
-ok(/1 draft/.test(await b.page.locator('.rail').innerText()), 'the sidebar says a draft is waiting');
+ok(/1 draft/i.test(await b.page.locator('.rail').innerText()), 'the sidebar says a draft is waiting');
 
 console.log('\n— publishing —');
 await b.page.locator('.sbar button.primary').first().click();

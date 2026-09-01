@@ -2,21 +2,21 @@
 
 window.SETUP = {
   title: 'Setup',
-  blurb: 'Complete once, before Chapter 1. Purely plumbing — configuring a kitchen before you cook. Follow it mechanically; understanding begins in Chapter 1.',
+  blurb: 'Optional. Only if you want to run real code. Entirely optional. Every chapter teaches what it teaches without any of this, and the interactive tools in each chapter need no setup at all. Do this only if you want to see the same ideas as real code.',
   oneline: 'You need a free online coding environment (Google Colab) and a free API key (NVIDIA Build) that lets your programs talk to AI models. Forty-five minutes, once, done permanently.',
   sections: [
-    {h:'A1. Google Colab — your kitchen', t:'~10 min', b:[
+    {h:'A1. Google Colab — a free place to run code', t:'~10 min', b:[
       ['p','Colab is a free service giving you a temporary computer in Google\'s datacentre, controlled from a browser tab. Nothing is installed on your machine.'],
       ['n',['Go to <code>colab.research.google.com</code> and sign in with any Google account.','Click <strong>+ New notebook</strong>.','You see an empty grey box. That box is a <strong>cell</strong> — type an instruction and press <kbd>Shift</kbd>+<kbd>Enter</kbd> to run it.','Type <code>print("hello")</code> and press <kbd>Shift</kbd>+<kbd>Enter</kbd>.']],
       ['x','The word <code>hello</code> appears below the cell with a small green tick. That was a program. You wrote it and ran it.'],
       ['l',['Cells run top to bottom and remember each other — a value made in cell 1 is usable in cell 5, as long as the machine is on.','The machine switches off when idle, roughly 90 minutes. Your typed cells survive; only their results vanish. Fix: <strong>Runtime → Run all</strong>. This is weather, not failure.','Rename each notebook by clicking its name at top-left: <code>chapter-1</code>, <code>chapter-2</code>, and so on.']]
     ]},
-    {h:'A2. The NVIDIA API key — your gas connection', t:'~15 min', b:[
+    {h:'A2. An API key — your access code to the AI', t:'~15 min', b:[
       ['p','NVIDIA\'s Build platform provides free access to a large catalogue of models with no credit card. This book needs well under 400 requests; the free allowance is roughly 1,000. It also lets you swap models with a one-line change — a genuinely useful skill.'],
       ['n',['Go to <code>build.nvidia.com</code>. Sign up or log in with any email.','Search <code>llama-3.1-8b-instruct</code> and open the model page.','Find <strong>Get API Key</strong> (on some pages: <em>Build with this NIM → Generate Key</em>). Click it.','A long code beginning <code>nvapi-</code> appears. Copy it somewhere private immediately — a password manager or private note. Treat it like an ATM PIN.']],
       ['c','Why this matters professionally','Keys embedded in code get copied, shared, and leaked — one of the most common security failures in software. Knowing how to store them correctly, and why, is itself meeting-grade knowledge.']
     ]},
-    {h:'A3. Giving the key to Colab safely', t:'~10 min', b:[
+    {h:'A3. Storing the key so it is not visible', t:'~10 min', b:[
       ['p','Never paste an API key into a code cell. Colab has a secrets locker for exactly this.'],
       ['n',['Click the key icon (🔑) in the left sidebar.','Click <strong>+ Add new secret</strong>. Name: <code>NVIDIA_API_KEY</code> exactly. Value: your <code>nvapi-…</code> code.','Switch <strong>Notebook access</strong> ON.']],
       ['code','from google.colab import userdata\nkey = userdata.get("NVIDIA_API_KEY")\nprint("Key loaded, starts with:", key[:8])'],
@@ -162,6 +162,13 @@ window.GLOSSARY = [
   ['Deterministic','Same input, same output, every time. Ordinary software is deterministic. A language model is not, which is the source of most of the surprise in this field.',0],
   ['Orchestration','Coordinating several steps or several models so they run in the right order and hand results to each other.',0],
   ['Taxonomy','A named set of categories. In Chapter 14 it means your list of the ways your system fails, in your own words, with a count against each.',0],
+  ['Prompt','The text your app sends to the model — the user’s question plus any standing instructions attached to it. Mostly ordinary English, not a magic phrase.',1],
+  ['Vector','A list of numbers. When this course says a piece of text has a “position” on the meaning map, the position is a vector — a few hundred numbers describing where it sits. You never look at them.',5],
+  ['Embedding','The position a piece of text gets on the meaning map, written as a list of numbers. Produced by a small AI whose only job is placing text.',5],
+  ['Chunk','One piece of a document after it has been cut up. The unit that gets stored, searched and sent.',3],
+  ['System prompt','A standing instruction sent invisibly with every message, saying how the AI should behave.',2],
+  ['Temperature','The dial deciding whether the AI always picks its most likely next guess, or sometimes takes a less likely one. Low means repeatable, not truthful.',2],
+  ['Hallucination','When the AI produces something fluent and invented because it had no evidence. Not a malfunction — the normal behaviour of a guessing machine with nothing to go on.',2],
   ['Ground truth','The answer key: questions with verified correct answers, written before you test anything. Without one, "is it good?" has no answer.',6],
   ['Fine-tuning','Continuing a model’s training on your own examples so it adopts a behaviour. Teaches shape and register, not durable facts. Chapter 19 is the decision.',19],
   ['Rubric','A scoring guide written in advance: what each level of quality looks like, so two people grading the same thing agree.',6],
