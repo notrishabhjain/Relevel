@@ -31,6 +31,7 @@ window.BIND_CONTENT=bindContent;
 /* ---------------- storage ---------------- */
 const KEY='aifz2027';
 const defaults=()=>({done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{},drill:{},
+  railmore:false,   // the rest of the instruments, out of the way until wanted
   cp:{},       // inline checkpoint answers: predictions and written activities
   sittings:[],theme:null,
   /* tracker state */
@@ -221,7 +222,9 @@ function markTerms(root, seen, here){
       if(marks.length>=PER_BLOCK) break;
       const k=entry.term.toLowerCase();
       if(seen.has(k)) continue;
-      const m=new RegExp('\\b'+esc(entry.term)+'\\b','i').exec(text);
+      /* Prose says "tokens" and "chunks"; the glossary lists the singular. */
+      const plural=entry.term.length>3&&!/s$/i.test(entry.term)?'s?':'';
+      const m=new RegExp('\\b'+esc(entry.term)+plural+'\\b','i').exec(text);
       if(!m) continue;
       const start=m.index, end=start+m[0].length;
       /* terms are sorted longest first, so a longer phrase claims its span
@@ -547,28 +550,51 @@ function renderChapter(c){
   let n=1;
   // Story
   const story=h('section',{class:'part',id:'story'});
-  story.appendChild(sectionHead(c.num+'.'+n++,'The Story'));
+  /* A chapter with nothing but its reading is one flow, so it gets no section
+     headings to navigate between — there is only one place to be. */
+  const plain=!((c.words||[]).length||(c.wrong||[]).length||(c.homework||[]).length
+    ||(c.check||[]).length);
+  if(!plain) story.appendChild(sectionHead(c.num+'.'+n++,'The Story'));
   const seenTerms=new Set();
   story.appendChild(markTerms(h('div',{class:'prose'},[blocks(c.story)]),seenTerms,c.num));
   w.appendChild(story);
 
   // Words
+  if((c.words||[]).length){
   const words=h('section',{class:'part',id:'words'});
   words.appendChild(sectionHead(c.num+'.'+n++,'Words You Now Own'));
   words.appendChild(h('dl',{class:'words noterm'},c.words.map(([t,d])=>
     h('div',{class:'word'},[h('dt',{text:t}),h('dd',{html:d})]))));
   w.appendChild(words);
+  }
 
   // Hands-on
+  /* The labs run here, in the page, needing nothing. The notebook work needs a
+     Colab account, an API key and knowing what a cell is — none of which this
+     course hands you, and all of which used to sit under a heading that read
+     like the main event. It is a genuine extra, and now says so. */
+  if((c.labs||[]).length){
+    const lb=h('section',{class:'part',id:'tools'});
+    lb.appendChild(sectionHead(c.num+'.'+n++,'Try it yourself'));
+    (c.labs||[]).forEach(k=>{const b=k==='redmap'?redMapBlock():labBlock(k);if(b)lb.appendChild(b);});
+    w.appendChild(lb);
+  }
+  if((c.handson||[]).length){
   const ho=h('section',{class:'part',id:'handson'});
-  ho.appendChild(sectionHead(c.num+'.'+n++,'Hands-On','~'+Math.round(c.minutes*0.6)+' min'));
+  ho.appendChild(sectionHead(c.num+'.'+n++,'Optional — the same thing in real code'));
+  ho.appendChild(h('div',{class:'callout'},[
+    h('span',{class:'lbl',text:'You can skip all of this'}),
+    h('p',{html:'Everything this chapter teaches is above, and the checkpoints have already measured it. '+
+      'What follows writes the same ideas as a few lines of Python, which some people find makes it stick. '+
+      'It needs a free Google Colab account and an API key — about twenty minutes, once, from the '+
+      '<a href="#/setup">setup page</a>. If you do not want to, skip to the next chapter. Nothing later depends on it.'})]));
   c.handson.forEach(s=>{
     const st=h('div',{class:'step'},[h('h3',{text:s.h})]);
     st.appendChild(markTerms(h('div',{class:'prose'},[blocks(s.b)]),seenTerms,c.num));
     ho.appendChild(st);
   });
-  (c.labs||[]).forEach(k=>{const b=k==='redmap'?redMapBlock():labBlock(k);if(b)ho.appendChild(b);});
   w.appendChild(ho);
+  }
 
   // If something goes wrong
   if(c.wrong&&c.wrong.length){
@@ -583,6 +609,7 @@ function renderChapter(c){
   }
 
   // Homework
+  if((c.homework||[]).length){
   const hw=h('section',{class:'part',id:'homework'});
   hw.appendChild(sectionHead(c.num+'.'+n++,'Homework'));
   hw.appendChild(h('div',{class:'cards'},c.homework.map(([t,d])=>
@@ -590,8 +617,10 @@ function renderChapter(c){
   hw.appendChild(notebookBlock(c,'hw','Homework notes — rough, five bullets maximum',
     'The Rough-Notes Law applies. If it looks presentable it cost too much.'));
   w.appendChild(hw);
+  }
 
   // Check yourself
+  if((c.check||[]).length){
   const cy=h('section',{class:'part',id:'check'});
   cy.appendChild(sectionHead(c.num+'.'+n++,'Check Yourself'));
   cy.appendChild(h('p',{class:'dim',style:'font-size:.87rem;margin:0 0 1rem',
@@ -610,14 +639,22 @@ function renderChapter(c){
       h('summary',{text:qa[0]}),h('div',{class:'ans',html:qa[1]}),gwrap]));
   });
   w.appendChild(cy);
+  }
 
   // Close the sitting
   const cs=h('section',{class:'part',id:'close'});
-  cs.appendChild(sectionHead(c.num+'.'+n++,'Close the Sitting'));
-  cs.appendChild(h('p',{class:'prose',html:'Three rough lines, then stop — even if you feel like continuing. <em>Especially</em> if you feel like continuing. That leftover energy is what brings you back next sitting.'}));
-  cs.appendChild(notebookBlock(c,'close','Three lines: what confused me / what clicked / what to try next',
-    'Three minutes. Then close it.'));
+  if(!plain){
+    cs.appendChild(sectionHead(c.num+'.'+n++,'Close the Sitting'));
+    cs.appendChild(h('p',{class:'prose',html:'Three rough lines, then stop — even if you feel like continuing. <em>Especially</em> if you feel like continuing. That leftover energy is what brings you back next sitting.'}));
+    cs.appendChild(notebookBlock(c,'close','Three lines: what confused me / what clicked / what to try next',
+      'Three minutes. Then close it.'));
+  }
 
+  if((c.takeaway||[]).length){
+    cs.appendChild(h('div',{class:'takeaway'},[
+      h('span',{class:'cplbl',text:'You can now'}),
+      h('ul',{class:'plain'},c.takeaway.map(t=>h('li',{html:t})))]));
+  }
   const doneRow=h('div',{style:'display:flex;gap:.6rem;align-items:center;margin-top:1.2rem;flex-wrap:wrap'});
   const db=h('button',{class:'primary',onclick:()=>{
     S.done[c.id]=!S.done[c.id];
@@ -1163,26 +1200,48 @@ function renderRail(){
         (href.startsWith('#/ch/')&&S.done[href.slice(5)])?h('span',{class:'ndone',text:'✓'}):null])]))));
     return s;};
   const dueN=window.ENG?window.ENG.dueList(S).length:0;
-  r.appendChild(sec('Track',[
-    ['#/','◉','Dashboard'],
+  /* Four things to start with.
+
+     There were sixteen, in four groups, several named after metaphors from the
+     book — Red-Mark Map, LATER Page, Prediction Ledger. You had to learn the
+     app before you could learn anything in it. The instruments are still all
+     here; they are just not in the way until you go looking. */
+  r.appendChild(sec('',[
+    ['#/','◉','Continue'],
+    ['#/library','▤','Chapters'],
     ['#/practice','▶','Practice'+(dueN?'  ('+dueN+' due)':'')],
-    ['#/skills','▦','Skill Matrix'],
-    ['#/analytics','◔','Analytics']]));
-  r.appendChild(sec('Do',[
-    ['#/exercises','✎','Exercises'],
-    ['#/processes','⟳','Processes'],
-    ['#/labs','◧','The Labs'],
-    ['#/map','◆','Red-Mark Map'],
-    ['#/ledger','∆','Prediction Ledger'],
-    ['#/card','▣','System Card'],
-    ['#/data','⇄','Progress & Backup']]));
-  const nd=window.STUDIO?window.STUDIO.dirtyKinds().length:0;
-  r.appendChild(sec('Author',[
-    ['#/studio','✦','Content Studio'+(nd?'  ('+nd+' draft'+(nd>1?'s':'')+')':'')]]));
-  r.appendChild(sec('Reference',[
-    ['#/library','▤','Library — '+CH.length+' chapters'],['#/setup','A','Setup'],
-    ['#/vendor','⌗','Vendor Deck'],['#/glossary','∎','Glossary'],
-    ['#/notebook','✐','Notebook'],['#/later','⋯','LATER Page']]));
+    ['#/skills','▦','My progress']]));
+
+  const openMore=!!S.railmore;
+  const nDraft=window.STUDIO?window.STUDIO.dirtyKinds().length:0;
+  const more=h('div',{class:'railsec'});
+  /* An unpublished draft is not something to hide behind a disclosure. */
+  const tog=h('button',{class:'railtog',onclick:()=>{S.railmore=!S.railmore;save();renderRail();}},
+    (openMore?'▾ ':'▸ ')+'Everything else'+
+    (nDraft?('  ('+nDraft+' draft'+(nDraft>1?'s':'')+')'):''));
+  more.appendChild(tog);
+  if(openMore){
+    const list=(items)=>more.appendChild(h('ul',{class:'navlist'},items.map(([href,num,label])=>
+      h('li',{},[h('a',{href,class:location.hash===href?'on':''},[
+        h('span',{class:'nnum',text:num}),h('span',{style:'flex:1',text:label})])]))));
+    const nd=nDraft;
+    list([
+      ['#/analytics','◔','How I am doing over time'],
+      ['#/exercises','✎','Longer exercises'],
+      ['#/labs','◧','Interactive tools'],
+      ['#/glossary','∎','Glossary of every term'],
+      ['#/data','⇄','My data and backups'],
+      ['#/processes','⟳','Repeatable work routines'],
+      ['#/map','◆','Where AI systems break'],
+      ['#/ledger','∆','My predictions vs reality'],
+      ['#/card','▣','Governance doc builder'],
+      ['#/vendor','⌗','Questions to ask vendors'],
+      ['#/notebook','✐','My notes'],
+      ['#/later','⋯','Topics I parked'],
+      ['#/setup','A','Optional — running real code'],
+      ['#/studio','✦','Edit this course'+(nd?'  ('+nd+' draft'+(nd>1?'s':'')+')':'')]]);
+  }
+  r.appendChild(more);
 }
 
 function updateProgress(){

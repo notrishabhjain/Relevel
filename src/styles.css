@@ -805,3 +805,16 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .alsoref{margin-top:.7rem;padding-top:.6rem;border-top:1px dashed var(--rule);
   font-size:.83rem;line-height:1.6;color:var(--ink-2)}
 .alsoref a{white-space:nowrap}
+
+/* ---------- a chapter that ends on what it gave you ---------- */
+.takeaway{margin:1.2rem 0;padding:.9rem 1.1rem;background:var(--verified-wash);
+  border:1px solid var(--verified);border-radius:var(--r)}
+.takeaway .plain li{color:var(--ink);font-size:.92rem;line-height:1.6}
+.takeaway .plain li::before{content:'✓';color:var(--verified)}
+
+/* ---------- a sidebar you do not have to learn ---------- */
+.railtog{width:100%;text-align:left;background:none;border:0;padding:.15rem 0 .4rem;
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);cursor:pointer}
+.railtog:hover{color:var(--ink);background:none}
+.railsec h2:empty{display:none}

@@ -80,8 +80,9 @@ function validate(kind,data){
     (data||[]).forEach((c,i)=>{
       ['id','title','concept'].forEach(k=>need(typeof c[k]==='string'&&c[k],`Chapter ${i+1} needs a ${k}.`));
       need(typeof c.num==='number',`Chapter ${c.id||i+1} needs a number.`);
-      ['story','words','handson','homework','check'].forEach(k=>
-        need(Array.isArray(c[k]),`Chapter ${c.id||i+1} needs ${k} as a list.`));
+      need(Array.isArray(c.story)&&c.story.length,`Chapter ${c.id||i+1} needs a story.`);
+      ['words','handson','homework','check','wrong','takeaway','labs'].forEach(k=>
+        need(c[k]===undefined||Array.isArray(c[k]),`Chapter ${c.id||i+1} has ${k} but it is not a list.`));
     });
     const ids=(data||[]).map(c=>c.id);
     need(new Set(ids).size===ids.length,'Two chapters share an id.');

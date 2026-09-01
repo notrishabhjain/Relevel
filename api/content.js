@@ -24,8 +24,13 @@ function validate(kind, data) {
       if (!c || typeof c !== 'object') fail(`chapter ${i} is not an object`);
       ['id', 'title', 'concept'].forEach(k => { if (typeof c[k] !== 'string' || !c[k]) fail(`chapter ${i} needs ${k}`); });
       if (typeof c.num !== 'number') fail(`chapter ${i} needs a numeric num`);
-      ['story', 'words', 'handson', 'homework', 'check'].forEach(k => {
-        if (!Array.isArray(c[k])) fail(`chapter ${c.id} needs ${k} as an array`); });
+      /* Only the reading is required. A chapter that is one flow simply omits
+         the vocabulary list, the code track and the rest, and the renderer
+         shows what is there. */
+      if (!Array.isArray(c.story) || !c.story.length) fail(`chapter ${c.id} needs a story`);
+      ['words', 'handson', 'homework', 'check', 'wrong', 'takeaway', 'labs'].forEach(k => {
+        if (c[k] !== undefined && !Array.isArray(c[k]))
+          fail(`chapter ${c.id} has ${k} but it is not a list`); });
     });
     const ids = data.map(c => c.id);
     if (new Set(ids).size !== ids.length) fail('chapter ids must be unique');
