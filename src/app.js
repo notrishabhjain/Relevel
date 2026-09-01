@@ -573,10 +573,17 @@ function renderChapter(c){
      Colab account, an API key and knowing what a cell is — none of which this
      course hands you, and all of which used to sit under a heading that read
      like the main event. It is a genuine extra, and now says so. */
-  if((c.labs||[]).length){
+  /* A lab placed inline in the reading must not appear a second time in its own
+     section — the same tool twice on one page reads as a mistake, and is. */
+  const inlineLabs=new Set();
+  const scanLabs=list=>(list||[]).forEach(b=>{ if(Array.isArray(b)&&b[0]==='lab') inlineLabs.add(b[1]); });
+  scanLabs(c.story);
+  (c.handson||[]).forEach(st=>scanLabs(st.b));
+  const spareLabs=(c.labs||[]).filter(k=>!inlineLabs.has(k));
+  if(spareLabs.length){
     const lb=h('section',{class:'part',id:'tools'});
     lb.appendChild(sectionHead(c.num+'.'+n++,'Try it yourself'));
-    (c.labs||[]).forEach(k=>{const b=k==='redmap'?redMapBlock():labBlock(k);if(b)lb.appendChild(b);});
+    spareLabs.forEach(k=>{const b=k==='redmap'?redMapBlock():labBlock(k);if(b)lb.appendChild(b);});
     w.appendChild(lb);
   }
   if((c.handson||[]).length){
