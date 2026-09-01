@@ -648,7 +648,7 @@ function chapterForm(f,c,on){
   f.appendChild(h('div',{class:'sgrid4'},[
     fld('id',inp(c.id,v=>{c.id=v;on();}),'Used in links. Changing it breaks bookmarks.'),
     fld('number',numin(c.num,v=>{c.num=v;on();})),
-    fld('part',sel(c.part,[[1,'I — Foundations'],[2,'II — Building'],[3,'III — Judgement']],v=>{c.part=Number(v);on();})),
+    fld('part',sel(c.part,[[1,'I — The basics'],[2,'II — What real systems add'],[3,'III — Measuring, costing, shipping'],[4,'IV — The decisions that stay yours']],v=>{c.part=Number(v);on();})),
     fld('minutes',numin(c.minutes,v=>{c.minutes=v;on();}),'Honest reading + doing time.')]));
   f.appendChild(fld('title',inp(c.title,v=>{c.title=v;on();})));
   f.appendChild(fld('concept',ta(c.concept,v=>{c.concept=v;on();},2),

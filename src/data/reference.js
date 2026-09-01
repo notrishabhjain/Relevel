@@ -174,7 +174,28 @@ window.GLOSSARY = [
   ['Rubric','A scoring guide written in advance: what each level of quality looks like, so two people grading the same thing agree.',6],
   ['Drift','When behaviour changes over time without anyone changing the code — a model updated, a corpus grown, traffic shifted.',14],
   ['Audit trail','A record of what the system did and why, kept so someone can check it afterwards.',17],
-  ['Refusal path','What the product does when it should not answer. Designed on purpose, or it happens by accident.',20]
+  ['Refusal path','What the product does when it should not answer. Designed on purpose, or it happens by accident.',20],
+  ['Pairwise comparison','Asking which of two answers is better, instead of scoring one answer out of ten. More reliable, because people and models are better at comparing than at grading.',14],
+  ['Verbosity bias','A grader’s habit of scoring longer answers higher, even when they say nothing extra.',14],
+  ['Position bias','A grader’s habit of preferring whichever answer it was shown first.',14],
+  ['Blended rate','What you pay per query on average once traffic is spread across several models at different prices.',15],
+  ['Cache hit rate','The share of your input that the provider recognised from a previous request and charged less for.',15],
+  ['Vision model','A model that reads pictures as well as text — so you can hand it a page image instead of extracted text.',16],
+  ['OCR','Software that turns a picture of a page into text. It keeps the words and throws away the layout.',16],
+  ['Layout','Where things sit on a page — rows, columns, boxes. It carries meaning that plain text loses.',16],
+  ['Barge-in','A person talking over the system mid-sentence. Voice interfaces have to handle it; text ones never face it.',16],
+  ['System card','A short document describing what an AI feature is for, what it was measured at, where it fails, and who checks it.',17],
+  ['Data residency','Which country your data is physically stored and processed in.',17],
+  ['Subprocessor','Another company your provider passes your data to. Their risk becomes yours.',17],
+  ['Eval threshold','The number a release has to hit before it ships. An acceptance criterion with a figure in it.',18],
+  ['Staged rollout','Releasing to a small slice of users first and watching the numbers before going wider.',18],
+  ['Distillation','Training a small model to copy a large one on one narrow job. Most of the quality, a fraction of the cost.',19],
+  ['Portability','Whether an improvement survives changing providers. A better prompt and index travel with you; a tuned model does not.',19],
+  ['Diagnosis','Naming which kind of wrong you have, with counts, before choosing what to change.',19],
+  ['Interface contract','What the product promises to show at each level of certainty — and what it lets the user do about it.',20],
+  ['Resolvable citation','A source link that opens the exact passage the claim came from, not just the name of a document.',20],
+  ['Correction path','How a user fixes a wrong output, and what that fix records for you.',20],
+  ['Graceful degradation','What the feature still does with the AI part switched off.',20]
 ];
 
 /* ---------- Vendor Interrogation Deck ---------- */
@@ -324,11 +345,11 @@ window.REDMARKS = [
 ];
 
 window.PARTS = [
-  {n:1, title:'Foundations', blurb:'The envelope, the briefing page, the scissors, the map of meaning, the answer key — and the name withheld until you have earned it.'},
-  {n:2, title:'The Modern Stack', blurb:'Structure, action, context, thought, grown-up retrieval, and the adversary. Everything you parked on the LATER page, collected.'},
-  {n:3, title:'The Instrument Panel', blurb:'Measurement at scale, money, modality, the paper trail, and shipping. The half that is product management rather than engineering.'},
-  {n:4, title:'The Decisions That Stay Yours',
-    blurb:'Which lever to pull when the machine is not good enough, and what the person on the other side of the screen is shown when it is wrong. Neither is an engineering decision.'}
+  {n:1, title:'The basics', blurb:'What actually happens when your app asks an AI something, why it invents things, how documents get cut up and found again, and how to tell whether any of it works.'},
+  {n:2, title:'What real systems add', blurb:'Getting answers in a fixed shape, letting it act, the size limit, paying it to think first, better search — and the attack that has no fix.'},
+  {n:3, title:'Measuring it, costing it, shipping it', blurb:'Checking quality when there is too much of it to read, what it really costs, documents that are pictures, the paperwork, and the spec.'},
+  {n:4, title:'The decisions that stay yours',
+    blurb:'What to change when it is not good enough, and what the user sees when it is wrong. Neither one is an engineering decision.'}
 ];
 
 /* Rules and pacing */

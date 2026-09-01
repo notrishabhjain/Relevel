@@ -41,10 +41,10 @@ were right but whether you *knew* you were — and reports your overconfidence i
 
 | Part | Chapters | Subject |
 | --- | --- | --- |
-| I — Foundations | 1–7 | The envelope, the briefing page, chunking, retrieval, embeddings, evaluation, RAG. Faithful to the source book. |
-| II — The Modern Stack | 8–13 | Structured output, tools and agents, context engineering, reasoning models, grown-up retrieval, prompt injection. |
-| III — The Instrument Panel | 14–18 | Evals at scale, unit economics, multimodal, governance, the AI PRD. |
-| IV — The Decisions That Stay Yours | 19–20 | Prompt vs. retrieve vs. tune vs. switch, and the interface contract for a system that is sometimes wrong. |
+| I — The basics | 0–7 | What happens on an API call, why it invents things, chunking, retrieval, embeddings, how to tell if it works, and the whole thing assembled. |
+| II — What real systems add | 8–13 | Structured output, tools and agents, the context window, reasoning models, hybrid retrieval and reranking, prompt injection. |
+| III — Measuring it, costing it, shipping it | 14–18 | Evals at scale and model-as-judge, unit economics, documents that are pictures, governance, the AI spec. |
+| IV — The decisions that stay yours | 19–20 | What to change when it is not good enough, and what the interface shows when it is wrong. |
 
 Every new chapter follows the source book's seven-part structure exactly — The Story,
 Words You Now Own, Hands-On, If Something Goes Wrong, Homework, Check Yourself, Close

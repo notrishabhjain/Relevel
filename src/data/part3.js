@@ -1,63 +1,59 @@
-/* Part III — The Instrument Panel (Chapters 14–18)
-   The product-management half: measurement at scale, money, modality,
-   the paper trail, and shipping. */
+/* Part III — Measuring it, costing it, shipping it (Chapters 14–18)
+   The product half: checking quality at volume, what it really costs,
+   documents that are pictures, the paperwork, and the spec. */
 
 window.PART3 = [
 {
-  id:'ch14', num:14, part:3, minutes:70, labs:['judge'],
-  title:'The Judge and the Flywheel',
-  concept:'Ten questions and a pencil do not scale to ten thousand queries a week. Build a grader — then grade the grader.',
+
+  id:'ch14', num:14, part:3, minutes:35, labs:['judge'],
+  title:'Checking quality when there is too much of it to read',
+  concept:'Ten questions and a pencil stop working at about fifty. Here is what replaces them, and why the replacement has to be checked itself.',
   needs:[
-    ['Ground truth is written before the exam','An answer key you produced, or you are not measuring anything.',6],
-    ['Precision, recall, and which one is fatal','The trade-off, and the fact that choosing between them is yours.',6],
+    ['You wrote the answers down first','Ten questions with correct answers, written before you tested anything.',6],
+    ['Catching more means catching more junk','The trade you made in Chapter 6, and the fact that choosing is yours.',6],
   ],
+  takeaway:[
+    'Name the three ways to grade an AI answer and say what each one is good at.',
+    'Explain why a grader made of AI is worthless until you have measured how often it agrees with you.',
+    'Describe what reading a hundred real outputs gets you that another benchmark never will.'
+  ],
+  red:['A grader nobody checked against human marking','Longer answers scoring higher for no reason','Testing on questions that look nothing like real ones'],
   story:[
-    ['p','Chapter 6 gave you the only honest foundation: verified expectations, written before the trial. It also gave you a method that stops working at about fifty rows. Real products receive thousands of queries a week, ship weekly, and change models twice a year. Something has to scale, and it cannot be your evenings.'],
-    ['p','There are exactly three ways to grade an AI output, and every evaluation system in existence is a blend of them.'],
-    ['tb',['Grader','Cost','Where it works','Where it fails'],[
-      ['<strong>Programmatic</strong> — code checks the output','Nearly free','Schema validity, required citations, forbidden strings, numeric tolerance, latency','Anything requiring judgement'],
-      ['<strong>Human</strong> — a person reads and grades','Very expensive','Everything. The gold standard by definition','Slow, inconsistent between graders, cannot run on every release'],
-      ['<strong>Model-as-judge</strong> — an LLM grades the output','Cheap and fast','Fluency, relevance, groundedness, rubric adherence, pairwise preference','Systematically biased in ways you must measure']
+
+    ['p','In Chapter 6 you wrote ten questions, wrote the correct answers first, and marked the system yourself. That is still the only honest way to know whether something works. It also stops working at about fifty questions, and a real product gets thousands a week.'],
+    ['p','So something else has to do the marking. There are exactly three things that can. Every quality process you will ever be shown is a mix of them.'],
+    ['tb',['Who marks it','Cost','Good at','Bad at'],[
+      ['<strong>Code</strong>','Nearly free','Right shape? Cited anything? Number in a sane range? Fast enough?','Anything needing a judgement call'],
+      ['<strong>A person</strong>','Very expensive','Everything. This is what correct means','Slow, and two people disagree'],
+      ['<strong>Another AI</strong>','Cheap and fast','Is this grounded in the source? Which of these two is better?','Biased in specific ways you have to measure']
     ]],
-    ['p','Programmatic checks are underrated and should carry more of your suite than they do. A great many quality failures are shape failures: no citation, a fabricated chunk id, a number outside a plausible range, an answer to a question the system should have refused. All of that is code, and code is free to run on every commit.'],
+    ['p','Start with code, because it is free and almost nobody uses enough of it. A lot of bad answers are bad in ways a program can spot: no citation, a citation pointing at a document that was never retrieved, a quote that appears nowhere in the source, a number outside any plausible range. That is a few lines of code, and code can run on every change forever.'],
     ['q','I041','I042'],
-    ['p','Model-as-judge is where the leverage is, and it comes with one non-negotiable condition.'],
-    ['key','A judge you have not evaluated is not a measurement instrument. It is a second opinion from the same species of machine that produced the answer.'],
+    ['p','The third row is where the leverage is, and it comes with one condition that is skipped almost everywhere.'],
+    ['key','A grader you have not checked is not a measurement. It is a second guess from the same kind of machine that produced the first one.'],
     ['lab','judge'],
     ['q','I048'],
-    ['p','The condition is <strong>agreement</strong>: grade some set — fifty is a decent start — by hand, have the judge grade the same set, and compute how often they concur. Below rough agreement with your own labels, the judge\'s output is noise wearing a percentage sign. This step is skipped almost universally, and it is the difference between an eval suite and a comfort blanket.'],
+    ['p','Checking it means <strong>agreement</strong>. Mark fifty answers yourself. Have the model mark the same fifty. Count how often you and it said the same thing. Below rough agreement with your own marking, its percentages are noise with a decimal point.'],
     ['pred',{id:'ch14-agree',short:true,ph:'A fraction, like 7/10',
-      ask:'Commit before you build one. You write a judge prompt, grade fifty outputs by hand, and have the judge grade the same fifty. How often will it agree with you the first time?',
-      reveal:'Six or seven out of ten is typical for a first attempt, and it is not a disaster — it is data. What matters far more than the number is the <em>shape</em> of the disagreement. If the misses cluster (“it marks every hedged answer as correct”), you have found a fixable bias. If they are scattered with no pattern, your own grading criteria are ambiguous, and no amount of judge-prompt tuning will fix that.',
-      then:'That distinction — clustered versus scattered disagreement — decides whether you fix the judge or fix your definition of good.'}],
+      ask:'Guess before you build one. You write a grading prompt, mark fifty answers by hand, and have the model mark the same fifty. How often will it agree with you on the first attempt?',
+      reveal:'Six or seven out of ten is normal for a first attempt, and it is not a failure. It is information. What matters more than the number is the <em>pattern</em> of the disagreements. If they cluster — it marks every hedged answer as correct — you have found something you can fix. If they are scattered with no pattern at all, your own idea of a good answer is fuzzy, and no amount of tweaking the grading prompt will fix that.',
+      then:'Clustered or scattered. That is what tells you whether to fix the grader or fix your own definition.'}],
     ['q','I051'],
-    ['p','Judges carry known, reproducible biases, and you should expect to find them tonight: <strong>verbosity bias</strong> (longer answers score higher, all else equal), <strong>position bias</strong> (in a pairwise comparison, whichever is shown first wins more often), <strong>self-preference</strong> (a model favours text in its own style), and <strong>leniency drift</strong> on vague rubrics. The mitigations are unglamorous and effective: a specific rubric with concrete criteria instead of “rate 1–10”; pairwise comparison instead of absolute scoring; randomised presentation order; and a requirement that the judge cite the span it based its verdict on.'],
+    ['p','Model graders have known habits. They score <strong>longer answers higher</strong> even when the extra words say nothing, and in a head-to-head they favour <strong>whichever answer they saw first</strong>. The fixes are dull and they work: ask about one specific thing instead of overall quality, compare two answers rather than scoring one, shuffle which goes first, and make the grader quote the exact sentence it based its verdict on.'],
     ['q','I049','I050'],
-    ['p','Now the part that produces most of the improvement, and it is not a technique.'],
-    ['key','<strong>Error analysis</strong> — reading a hundred real outputs and writing down what went wrong in your own words, then clustering those notes into a taxonomy — is the highest-leverage activity in applied AI. It is reading, not coding, and it is the one thing almost nobody does.'],
+    ['p','Now the part that produces most of the actual improvement, and it is not a technique.'],
+    ['key','Read a hundred real outputs. Write down what went wrong in each one, in your own words. Then group the notes and name the groups. That is the highest-value thing anyone does in this field, it is reading rather than engineering, and almost nobody does it.'],
     ['q','I052','I125'],
     ['try',{id:'ch14-taxonomy',mins:8,min:70,rows:6,
-      task:'Do a miniature version now. Take ten real outputs from something you own — support replies, search results, generated summaries, anything. For each, write one sentence in your own words about what went wrong, or “fine”. Then group the sentences and name the groups. Write the groups and their counts here.',
+      task:'Do a small version now. Take ten real outputs from something you own or use — support replies, search results, generated summaries. For each one write a single sentence about what went wrong, or “fine”. Then group the sentences and name the groups. Write the groups and their counts here.',
       ph:'group — count — one example sentence',
-      after:'The discipline that makes this work is writing the sentence <em>before</em> reaching for a category, because a category chosen first quietly reshapes what you see. Real taxonomies come out lumpy and specific — “retrieved the right document but the wrong clause: 4”, “answered a question the user did not ask on follow-ups: 3”, “correct but cites a chunk that does not contain the claim: 2”. That lumpiness is the value: it is a ranked list of what to fix, derived from your traffic rather than someone else’s benchmark, and the counts are your roadmap.'}],
+      after:'The one rule that makes this work is writing the sentence <em>before</em> reaching for a category, because picking a category first quietly changes what you notice. Real groups come out lumpy and specific — “right document, wrong clause: 4”, “answered a question the user did not ask: 3”, “cited a source that does not contain the claim: 2”. That lumpiness is the point: it is a ranked list of what to fix, built from your traffic, and the counts are your roadmap.'}],
     ['q','I053','I126'],
-    ['p','Your clusters become your eval suite. A failure taxonomy derived from your own traffic — “retrieved the right document but the wrong version,” “answered a question the user did not ask,” “correct but unusable format,” “refused when it should have answered” — tells you exactly what to fix and gives you the categories to measure. Generic benchmarks cannot do this, because they do not have your users.'],
-    ['p','That is the <strong>flywheel</strong>: production traffic → error analysis → new eval cases → a fix → measured improvement → more traffic. Each turn makes the eval suite a better model of reality, which is the only asset in an AI product that appreciates. Models change every few months; your ground truth and failure taxonomy are what survive.'],
+    ['p','Those groups become your test set. A generic benchmark cannot do this for you, because it does not have your users or your documents.'],
+    ['p','And that is the loop: real traffic → read the failures → new test cases → a fix → a measured improvement → more traffic. Each turn makes your test set a better picture of reality. Models change every few months. Your answer key and your list of failures are the parts that survive.'],
     ['q','I054'],
-    ['c','Offline and online are different questions','Offline eval asks “does it pass the answer key?” before release. Online eval asks “are users better off?” after — measured in resolution rate, escalation rate, edit distance between draft and sent version, task completion. Offline eval can be perfect while the feature fails online. Both are required; only the second one pays.'],
+    ['c','Two different questions','Before release you ask: does it pass the answer key? After release you ask: are users better off — fewer escalations, fewer edits, more tasks finished? The first can be perfect while the second fails. You need both, and only the second one pays.'],
     ['q','I043'],
-  ],
-  words:[
-    ['LLM-as-judge','Using a model to grade outputs against a rubric.'],
-    ['Judge agreement','How often the judge concurs with human labels on the same set. The number that makes a judge usable.'],
-    ['Rubric','Explicit, concrete grading criteria. Replaces “rate 1–10.”'],
-    ['Pairwise comparison','Judging “which of these two is better” rather than assigning an absolute score. More reliable.'],
-    ['Verbosity / position bias','Judges favour longer answers, and whichever candidate is presented first.'],
-    ['Error analysis','Reading real outputs and open-coding failures into a taxonomy. The highest-leverage activity in the field.'],
-    ['Failure taxonomy','Your named categories of failure, derived from your own traffic.'],
-    ['Regression suite','The fixed set of cases that must pass before any release ships.'],
-    ['Offline vs online eval','Against an answer key before release, versus user outcomes after.'],
-    ['Drift','Quality changing over time as inputs, users, or the provider\'s model change beneath you.']
   ],
   handson:[
     {h:'Step 1 — Free Checks First', b:[
@@ -84,74 +80,61 @@ window.PART3 = [
       ['x','You will end with 4–7 named clusters. That is your failure taxonomy, and it is worth more than any benchmark. Count each cluster; the largest is your next sprint. Pin the list — Chapter 17 needs it as your known-limitations section and Chapter 18 needs it as your regression suite.']
     ]}
   ],
-  wrong:[
-    ['Judge returns prose instead of JSON','No schema constraint','Apply Chapter 8. A judge is a structured-output task like any other.'],
-    ['Judge agrees with you 10/10','Set too easy or too small','Add borderline cases — partially grounded answers are where judges and humans actually diverge. Perfect agreement on easy cases is not evidence.'],
-    ['Judge and human disagree wildly','Rubric is vague, or the judge model is too small','Narrow to one dimension per judge call and require the offending quote. If it persists, the judge model is not adequate — a real, reportable finding.']
-  ],
-  homework:[
-    ['The eval pyramid','Draw three tiers for your feature: programmatic checks (run on every commit), judge evals (run on every release), human review (run on a sample, weekly). Put a number and a frequency on each tier. Most teams have only the middle one, and it is the most expensive place to live.'],
-    ['Five blocking cases','From your taxonomy, write the five cases that would block a release. Each needs a precise pass condition — not “answers well” but “returns found=false and cites nothing.” These five are the most durable artifact in this chapter; they will outlive the model you wrote them for.'],
-    ['Explain it upward','4–5 sentences — why an AI feature needs a regression suite even though nobody changed the code, and what changed instead.']
-  ],
-  check:[
-    ['Someone proposes replacing human review with an LLM judge to save time. What is the one condition?','Measured agreement with human labels on a representative set, including borderline cases. Without that number the judge is not an instrument, and the saving is imaginary.'],
-    ['Name two judge biases and the mitigation for each.','Verbosity bias — use a rubric on a single dimension and require the offending quote, not a holistic score. Position bias — use pairwise comparison with randomised order, and run both orders.'],
-    ['Why does error analysis beat adding more benchmark evals?','Because benchmarks measure someone else\'s failure distribution. Your taxonomy comes from your users, your documents, and your corpus\'s specific pathologies — and it tells you what to fix, not just that something is wrong.'],
-    ['Your offline eval is at 92% and users are complaining. What is the most likely explanation?','Your ground truth does not resemble real traffic. Offline and online measure different questions; the fix is to sample real queries into the eval set — which is the flywheel turning.']
-  ],
-  red:['Judge never validated against human labels','Verbosity bias inflating eval scores','Offline eval that does not resemble real traffic']
 },
-
 {
-  id:'ch15', num:15, part:3, minutes:60, labs:['costmodel'],
-  title:'The Meter',
-  concept:'Chapter 1 gave you the receipt. Build the bill — including the four multipliers nobody puts in the business case.',
+
+  id:'ch15', num:15, part:3, minutes:30, labs:['costmodel'],
+  title:'What it actually costs',
+  concept:'The figure in most business cases is wrong by three to twenty times. The arithmetic is fine. Four things are missing from it.',
   needs:[
-    ['Cost per query, from the receipt','Tokens in, tokens out, times a rate. The arithmetic you did in Chapter 1.',1],
-    ['The four things that multiply it','Retrieved volume (3, 12), retries (8), agent steps (9), reasoning tokens (11).',11],
+    ['You can read the receipt','Tokens in, tokens out, times a rate. The arithmetic from Chapter 1.',1],
+    ['You know what multiplies it','How much you retrieve (3, 12), retries (8), agent steps (9), thinking tokens (11).',11],
   ],
+  takeaway:[
+    'Name the four things that make a naive cost estimate wrong, and which chapter each comes from.',
+    'Explain what a cascade is and why it usually works.',
+    'Say what you would ask a vendor who quotes you a price per query.'
+  ],
+  red:['A cost estimate missing the four multipliers','A feature that loses money on every query at scale'],
   story:[
-    ['p','You have read a receipt since Chapter 1. Now you build the bill, because at some point somebody senior will ask what this costs at scale, and the answer “it depends on tokens” ends careers slowly.'],
-    ['p','The base formula is arithmetic:'],
-    ['code','cost_per_query = (input_tokens  × input_rate)\n               + (output_tokens × output_rate)\n\nmonthly = cost_per_query × queries_per_month'],
-    ['p','That is the number in most business cases, and it is wrong by a factor that is routinely between three and twenty. The error is never in the formula. It is in what gets left out of <code>input_tokens</code> and out of <code>queries</code>.'],
+
+    ['p','You have been reading the receipt since Chapter 1. Now you build the bill, because at some point someone senior asks what this costs at scale, and “it depends on tokens” is not an answer.'],
+    ['p','The base sum is simple:'],
+    ['code','cost per query = (tokens in  × rate for input)\n              + (tokens out × rate for output)\n\nmonthly = cost per query × queries per month'],
+    ['p','That is the number in most business cases, and it is routinely wrong by between three and twenty times. The sum is not wrong. It is being done on the wrong quantities.'],
     ['pred',{id:'ch15-mult',short:true,ph:'A multiple, like 5×',
-      ask:'Commit a number. A business case quotes cost per query using only input tokens × rate plus output tokens × rate. By what factor is that figure typically wrong once the system is real?',
-      reveal:'Routinely between three and twenty times too low. The base formula is not wrong arithmetic — it is arithmetic over the wrong quantities, because it prices a single clean call and real features do not make single clean calls.',
-      then:'The four multipliers that close the gap are all chapters you have already done: retrieved volume, retries, agent steps, and reasoning tokens. Each is a decision someone made, which means each is a lever.'}],
-    ['p','<strong>The four multipliers.</strong> Each is a chapter you have already done:'],
-    ['tb',['Multiplier','Where it comes from','Typical effect'],[
-      ['<strong>k</strong> — retrieved chunks','Ch. 6','k=8 instead of k=3 nearly triples input tokens on every query, forever'],
-      ['<strong>Retries</strong>','Ch. 8','A 10% validation-retry rate re-sends the whole envelope — more than 10% added cost'],
-      ['<strong>Agent steps</strong>','Ch. 9','A 6-step agent re-sends a growing conversation 6 times — often 10–20× a single call'],
-      ['<strong>Reasoning tokens</strong>','Ch. 11','Billed at output rates and frequently exceeding the visible answer several times over']
+      ask:'Commit to a number. A business case prices a query using only tokens in times a rate plus tokens out times a rate. Once the thing is actually built, by what factor is that figure usually too low?',
+      reveal:'Between three and twenty times. The formula prices one clean call, and real features do not make one clean call. They retrieve several documents, retry when the output is malformed, take several steps, and pay for thinking the user never sees.',
+      then:'All four of those are chapters you have already done. Which means all four are things somebody chose, and anything somebody chose is a lever.'}],
+    ['p','<strong>The four things that multiply it.</strong> You have met every one:'],
+    ['tb',['What multiplies it','Where it came from','What it does'],[
+      ['How many documents you retrieve','Ch. 6','Retrieving 8 instead of 3 nearly triples the input on every query, forever'],
+      ['Retries when the output is malformed','Ch. 8','A retry re-sends the whole request, so a 10% retry rate costs more than 10%'],
+      ['Agent steps','Ch. 9','Six steps re-send a growing conversation six times — often 10–20× one call'],
+      ['Thinking tokens','Ch. 11','Charged at the output rate, and often several times longer than the visible answer']
     ]],
     ['lab','costmodel'],
     ['q','I003'],
-    ['p','A feature quoted at ₹0.40 per query using the base formula, with k=8, a 12% retry rate, a 4-step agent, and reasoning on by default, does not cost ₹0.50. It costs several rupees. That gap is the difference between a viable feature and one quietly killed in month four.'],
+    ['p','A feature quoted at 40 paise a query, retrieving eight documents, retrying one time in eight, taking four steps and thinking by default, does not cost 50 paise. It costs several rupees. That gap is the difference between a feature that survives and one quietly killed in month four.'],
     ['q','I100'],
-    ['p','<strong>The five levers</strong> that move the number, roughly in order of how much they move it:'],
-    ['l',['<strong>Model choice.</strong> Rates across a provider\'s catalogue vary by one to two orders of magnitude. This dwarfs every other lever, which is why it deserves the measurement in Chapter 11 rather than a preference.','<strong>Routing and cascades.</strong> Send everything to a cheap model first; escalate only what fails a check. If 80% of traffic is a lookup (and Chapter 11 told you it is), you are paying premium rates for work a small model does correctly.','<strong>k and context size.</strong> Every token you do not send is free forever. Chapter 12\'s reranker lets you cut k while <em>raising</em> quality — the rare lever that improves both sides.','<strong>Caching.</strong> Chapter 10\'s stable-first ordering. Free money, requiring only that you order the envelope correctly.','<strong>Batching.</strong> Where latency permits, batch endpoints are often materially cheaper. Overnight enrichment does not need an interactive price.']],
+    ['p','<strong>Five things that move the number</strong>, roughly in order of how much:'],
+    ['n',[
+      '<strong>Which model.</strong> Prices across one provider’s range differ by ten to a hundred times. This dwarfs everything else on the list.',
+      '<strong>Cheap first, expensive only when needed.</strong> Send everything to a small model, and only send on what fails a check. Chapter 11 told you most real requests are simple lookups — so you are paying premium rates for work a small model gets right.',
+      '<strong>Retrieve less.</strong> Every token you do not send is free forever. Chapter 12’s reranking lets you retrieve fewer documents <em>and</em> raise quality — the rare change that improves both sides.',
+      '<strong>Caching.</strong> Chapter 10: put the parts that never change at the front. Free money for getting the order right.',
+      '<strong>Batching.</strong> Where nobody is waiting, batch jobs are often much cheaper. Overnight work does not need interactive pricing.'
+    ]],
     ['q','I099','I004'],
     ['try',{id:'ch15-model',mins:6,min:60,rows:5,
-      task:'Build the loaded number for something real. Pick a feature. Estimate input and output tokens per query, apply the four multipliers with the values your design actually uses, multiply by your monthly volume — then write the one sentence you would say to a finance director, including what would make the number wrong.',
-      ph:'base … × k … × retries … × steps … × reasoning … = per query … monthly … and it is wrong if …',
-      after:'A strong answer is defensible rather than precise. It states the assumptions as assumptions, names which multiplier dominates (usually retrieved volume or agent steps), and says what would falsify it — a change in traffic mix, a higher retry rate than tested, a model price change. The sentence that earns trust is not “it costs ₹4 lakh a month”; it is “it costs ₹4 lakh a month at 300,000 queries with k=8 and a 12% retry rate, and the number moves most if retries exceed 20%.”'}],
-    ['c','Latency is a cost too','p95, not median — Chapter 11. A feature that is cheap and slow can fail commercially exactly as thoroughly as one that is fast and expensive. Put both on the same page: cost per query, p50, p95. Three numbers, one line, every AI feature you ever propose.'],
+      task:'Build the real number for something real. Pick a feature. Estimate tokens in and out per query, apply the four multipliers using the values your design actually uses, multiply by monthly volume — then write the one sentence you would say to a finance director, including what would make the number wrong.',
+      ph:'base … × retrieved … × retries … × steps … × thinking … = per query … monthly … and it is wrong if …',
+      after:'A good answer is defensible rather than precise. It states the assumptions as assumptions, names which multiplier dominates (usually how much you retrieve, or agent steps), and says what would prove it wrong — different traffic, more retries than you tested, a price change. The sentence that earns trust is not “it costs four lakh a month”; it is “four lakh a month at 300,000 queries retrieving eight documents with a 12% retry rate, and the number moves most if retries go above 20%.”'}],
+    ['c','Slow is a cost too','Report the slow fifth, not the average — Chapter 11. A feature that is cheap and slow fails commercially just as thoroughly as one that is fast and expensive. Put all three on one line, every time: cost per query, typical time, slow-case time.'],
     ['q','I101'],
-    ['p','And the question that actually kills AI features, which has nothing to do with tokens: <strong>what is the gross margin at scale?</strong> If your feature costs ₹3 per query and the revenue it defends is ₹2, no amount of prompt optimisation saves it. That calculation belongs to the product manager, on day one, before the pilot — not to the engineer in month six.'],
+    ['p','And the question that actually kills AI features has nothing to do with tokens: <strong>does it make money at scale?</strong> If a query costs three rupees and the revenue it protects is two, no amount of prompt tuning saves it. That sum belongs to you, on day one, before the pilot — not to an engineer in month six.'],
     ['q','I005'],
     ['q','I102'],
-  ],
-  words:[
-    ['Cost per query','The full loaded cost of one user-visible request, including retries and agent steps.'],
-    ['Blended rate','Effective average cost across a mixed workload spanning multiple models.'],
-    ['Cache hit rate','Fraction of input tokens served from a cached prefix.'],
-    ['Model routing','Choosing a model per request based on the request\'s difficulty.'],
-    ['Cascade','Cheap model first; escalate on a failed check. The main production cost pattern.'],
-    ['p50 / p95 latency','Median and slow-tail response times. Users experience the tail.'],
-    ['Unit economics','Cost and revenue per unit of use — the number that decides whether a feature survives.']
   ],
   handson:[
     {h:'Step 1 — Measure, Don\'t Estimate', b:[
@@ -179,70 +162,52 @@ window.PART3 = [
       ['x','If the second number is not comfortably larger than the first, you have learned something before the pilot rather than after it. That is the entire purpose of this chapter.']
     ]}
   ],
-  wrong:[
-    ['Token counts vary wildly between questions','Normal — chunk sizes and answer lengths differ','Use the mean for planning and the maximum for capacity. Report both; a mean alone hides your worst case.'],
-    ['Cascade escalates almost everything','Escalation trigger too strict','Loosen the check, or accept that your cheap model is genuinely unsuitable — which is itself the finding.'],
-    ['Published rates do not match your bill','Reasoning tokens, cached tokens, and batch tiers priced differently','Exactly why this chapter exists. Ask the provider which token classes are billed at which rate — it is a real and answerable question.']
-  ],
-  homework:[
-    ['The one-page unit economics memo','Your Step 4 table, the loaded-versus-naive ratio, the recommended configuration, and the margin line. One page. This is the document that gets AI features funded, and almost nobody writes it.'],
-    ['The traffic mix','Estimate what fraction of your requests are simple lookups. Model the cascade saving at that mix. If you did Chapter 11\'s 2×2, you already have the number.'],
-    ['Explain it upward','4–5 sentences — why the per-query cost in the vendor\'s slide is a floor, not an estimate, and what four things sit between it and your actual bill.']
-  ],
-  check:[
-    ['Name the four multipliers that make a naive cost estimate wrong, with their chapters.','k / context size (Ch.6), validation retries (Ch.8), agent steps (Ch.9), reasoning tokens (Ch.11). Each multiplies the base, and they compound.'],
-    ['What is a cascade and why does it usually work?','Route to a cheap model first and escalate only what fails a check. It works because the traffic distribution is lopsided — most production requests are lookups and extractions that a small model handles correctly (Ch.11\'s 2×2 measured this).'],
-    ['Which lever improves both cost and quality at once?','Reranking (Ch.12) — it lets you lower k, which cuts tokens, while raising precision. Almost every other lever trades one against the other.'],
-    ['A vendor quotes ₹0.30 per query. What do you ask?','At what k, with what retry rate, how many model calls per user-visible request, are reasoning tokens included, is that cached or uncached, and what is the p95 latency at that price? A per-query price without its configuration is not a price.']
-  ],
-  red:['Naive cost estimate missing the four multipliers','Feature with negative unit economics at scale']
 },
-
 {
-  id:'ch16', num:16, part:3, minutes:55, labs:[],
-  title:'Beyond the Text Box',
-  concept:'Your corpus is not text. It is pages — with tables, stamps, signatures and scans that clean-text chunking silently destroys.',
+
+  id:'ch16', num:16, part:3, minutes:25, labs:[],
+  title:'When your documents are pictures, not text',
+  concept:'Chapter 3 told you to paste your text into a file. That one instruction hid the step where most real document projects fail.',
   needs:[
-    ['Everything so far assumed text','Chapter 3 asked you to paste text into a file. That instruction hid an entire step.',3],
-    ['Latency is a product constraint','p95, not the average — the number that decides whether a surface works.',11],
+    ['Everything so far assumed clean text','Chapter 3 handed you the text. Somebody had to produce it.',3],
+    ['Slow is a product problem','The slow fifth of responses, not the average.',11],
   ],
+  takeaway:[
+    'Explain why a table is the most dangerous thing in a document, and why no metric catches it.',
+    'Say what you would ask a vendor who claims to support all document formats.',
+    'Explain why voice changes the architecture and not just the interface.'
+  ],
+  red:['Table rows and columns destroyed when the text was extracted','Right page found, wrong number quoted','A corpus assumed to be clean text'],
   story:[
-    ['p','Chapter 3 asked you to paste your document\'s text into an editable file. That instruction concealed an assumption, and in most real organisations the assumption is false.'],
-    ['p','Real corpora are pages. Scanned contracts with signatures and stamps. Financial statements whose meaning lives entirely in a table\'s row-column geometry. Manuals where the safety warning is a red box beside a diagram. Screenshots pasted into tickets. Forms with handwriting in the margins.'],
-    ['key','Everything you built assumes extracted text. The extraction step you skipped is where most real document-AI projects actually fail — quietly, upstream of anything you measured.'],
+
+    ['p','Chapter 3 asked you to paste your document’s text into a file. That hid an assumption, and in most real organisations the assumption is false.'],
+    ['p','Real document collections are pages, not text. Scanned contracts with signatures and stamps on them. Financial statements where the whole meaning is in which row meets which column. Manuals where the safety warning is a red box next to a diagram. Screenshots pasted into tickets. Forms with handwriting in the margin.'],
+    ['key','Everything you have built assumes someone already turned those pages into text. That step — the one Chapter 3 skipped for you — is where most real document projects quietly fail, upstream of anything you measured.'],
     ['pred',{id:'ch16-clean',short:true,ph:'A percentage',
-      ask:'Commit before the chapter tells you. For a real enterprise corpus — contracts, statements, policies, scanned correspondence — what fraction is clean, digital, correctly-ordered text that needs no extraction work at all?',
-      reveal:'Usually far less than a proposal assumes. A large share is scanned, and a large share of what is digital still has structure that plain text extraction destroys — multi-column layouts, tables, headers repeating on every page. The number matters because every estimate downstream of it inherits its error.',
-      then:'This is the audit nobody runs, and it is the cheapest way to stop a document-AI project failing six weeks in.'}],
-    ['p','The classic failure is the table, and it is worth understanding precisely because it is invisible. A text extractor reading a three-column table often produces a single flat line of numbers. The values all survive. The <em>relationships</em> — this number is this row\'s figure for this year — do not. Retrieval then works perfectly, the model answers fluently from the retrieved chunk, and the number it quotes belongs to the wrong column. Nothing in your pipeline can detect this, because nothing downstream of extraction ever sees the page.'],
+      ask:'Commit before the chapter tells you. In a real company’s document collection — contracts, statements, policies, scanned letters — what fraction is clean, digital, correctly-ordered text that needs no work at all?',
+      reveal:'Usually far less than a proposal assumes. A large share is scanned images. A large share of what is digital still has structure that plain extraction destroys — two columns, tables, headers repeating on every page. The number matters because every estimate downstream of it inherits the error.',
+      then:'This is the check nobody runs, and it is the cheapest way to stop a project failing six weeks in.'}],
+    ['p','The classic failure is a table, and it matters because it is invisible. A text extractor reading a three-column table often produces one flat line of numbers. Every value survives. What does not survive is the <em>relationship</em> — this figure belongs to this row, for this year.'],
+    ['p','Then retrieval works perfectly, the model answers fluently from the retrieved text, and the number it quotes belongs to the wrong column. Nothing in your pipeline can catch this, because nothing after extraction ever sees the page.'],
     ['q','I078','I079'],
-    ['p','Two approaches, and the choice is a real one:'],
-    ['tb',['','OCR → text → your pipeline','Page image → vision model'],[
+    ['p','There are two ways to handle pages, and the choice is real:'],
+    ['tb',['','Turn the page into text first','Give the model the page image'],[
       ['Cost','Cheap','Higher per page'],
-      ['Layout, tables, figures','Frequently destroyed','Largely preserved'],
-      ['Chunking','Your Chapter 3 discipline applies','A page becomes the natural chunk'],
-      ['Exact strings','Preserved well','Occasional misreads — 0/O, 1/l, 5/S'],
-      ['Auditability','Text is quotable and diffable','Needs a citation back to the page region']
+      ['Tables and layout','Often destroyed','Mostly preserved'],
+      ['Cutting it up','Chapter 3 applies as written','A page is the natural piece'],
+      ['Exact codes and IDs','Kept accurately','Occasional misreads — 0 for O, 1 for l'],
+      ['Checking it later','Text can be quoted and compared','You need a way to point back at the page']
     ]],
     ['q','I080'],
-    ['p','A practical middle path is common and effective: extract text for retrieval, and hand the model the <em>page image</em> for the final answer when the question concerns a table, figure, or form. Cheap search, accurate reading.'],
-    ['p','<strong>Voice changes a different variable entirely.</strong> Not accuracy — latency. In text, a two-second response is fine. In speech, a two-second silence is a conversational failure; people start talking over it. The realtime stack budgets for the whole round trip — speech in, model, speech out — and the product problems are conversational rather than linguistic: when has the user finished speaking, what happens when they interrupt, what does the system say while it is thinking. Chapter 11\'s reasoning models are, for most voice surfaces, simply unaffordable at any accuracy.'],
+    ['p','A middle path is common and works well: extract text for searching, and hand the model the <em>page image</em> for the final answer whenever the question is about a table, a figure or a form. Cheap search, accurate reading.'],
+    ['p','<strong>Voice changes a different thing entirely.</strong> Not accuracy — time. In text, a two-second wait is fine. In speech, two seconds of silence is a conversational failure; people start talking over it. The whole round trip has to fit in that budget: speech in, model, speech out. So the problems become conversational rather than linguistic — how do you know the person has finished speaking, what happens when they interrupt, what does the system say while it is thinking. And Chapter 11’s thinking models are simply unaffordable here, at any accuracy.'],
     ['q','I076'],
-    ['c','The audit nobody runs','Before any document-AI proposal: what fraction of the corpus is clean digital text, what fraction is scanned, and what fraction of the <em>answers people actually need</em> live inside tables and figures? That third number is usually the highest and is almost never asked. It decides the architecture, and it is one afternoon with a sample of fifty documents.'],
+    ['c','The check nobody runs','Before any document-AI proposal, get three numbers: what fraction of the collection is clean digital text, what fraction is scanned, and what fraction of the <em>answers people actually need</em> live inside tables and figures. The third is usually the highest and is almost never asked. It decides the architecture, and it is one afternoon with fifty documents.'],
     ['try',{id:'ch16-audit',mins:6,min:60,rows:4,
-      task:'Run the audit on a corpus you actually have. What fraction is clean digital text, what fraction is scanned, and what fraction contains tables or layout that carries meaning? Estimate if you must, but say how you would measure it properly — and what you would do differently if the scanned fraction turned out to be half.',
+      task:'Run that check on a document collection you actually have. What fraction is clean digital text, what fraction is scanned, and what fraction has tables or layout carrying the meaning? Estimate if you must, but say how you would measure it properly — and what you would do differently if the scanned fraction turned out to be half.',
       ph:'clean … scanned … layout-bearing … how I would measure … what changes if scanned is 50%',
-      after:'Measuring it properly means sampling — fifty documents drawn at random from real traffic, not fifty chosen by whoever is enthusiastic. If the scanned fraction is high, the architecture changes rather than the effort estimate: OCR quality becomes a first-class metric with its own ground truth, the extraction step needs its own eval, and the timeline gains a phase that most proposals leave out entirely. Saying this before the project starts is worth more than any retrieval technique in this book.'}],
+      after:'Measuring it properly means sampling: fifty documents picked at random from real traffic, not fifty picked by whoever is enthusiastic. If a lot of it is scanned, the architecture changes rather than the timeline — extraction quality becomes a number you have to measure with its own answer key, and the project gains a phase most proposals leave out. Saying that before the project starts is worth more than any retrieval technique in this course.'}],
     ['q','I081'],
-  ],
-  words:[
-    ['Vision-language model (VLM)','A model that reads images and text together.'],
-    ['OCR','Optical character recognition — converting page images to text, discarding most layout.'],
-    ['Page-as-chunk','Treating a rendered page as the retrieval unit rather than a text span.'],
-    ['Layout preservation','Keeping the spatial relationships — rows, columns, callouts — that carry meaning.'],
-    ['Modality gap','Information present on the page but absent from its extracted text.'],
-    ['Turn detection','Deciding when a speaker has finished — the core problem of voice interfaces.'],
-    ['Barge-in','A user interrupting mid-response, which the system must handle gracefully.']
   ],
   handson:[
     {h:'Step 1 — Find Your Own Silent Error', b:[
@@ -268,76 +233,55 @@ window.PART3 = [
       ['x','Two percentages. They decide whether your architecture is text-first, vision-first, or hybrid — and they take one afternoon to obtain instead of one quarter to discover.']
     ]}
   ],
-  wrong:[
-    ['No vision model available','Catalogue varies','Do Steps 1, 2 and 5 anyway — the extraction failure and the corpus audit are the transferable lessons, and neither needs a vision model.'],
-    ['Image rejected as too large','Resolution or payload limits','Downscale to ~1500px on the long edge. Note the trade: too small and small print becomes unreadable, which is itself a finding about your corpus.'],
-    ['Vision model misreads a code as O/0','A known, permanent class of error','Exactly why hybrid matters — Chapter 12\'s keyword leg is strong on exact strings precisely where vision is weak.']
-  ],
-  homework:[
-    ['The corpus audit','Your two percentages from Step 5, with the method written down. One paragraph. Almost no AI proposal in your organisation will contain this, and it changes cost estimates by multiples.'],
-    ['The extraction error rate','Your Step 4 cell-level number, with the specific cell types that failed. This is what “supports all document formats” should have to mean.'],
-    ['Explain it upward','4–5 sentences — why a system can retrieve the right page and still quote the wrong number, and what that means for reviewing financial or tabular outputs.']
-  ],
-  check:[
-    ['Why is a table the most dangerous thing in a document-AI corpus?','Because text extraction preserves the values while destroying the row-column relationships, producing a fluent, confident, wrong answer that every retrieval metric scores as a success.'],
-    ['A vendor says “we support all document formats.” What do you ask?','Show extraction on ten of <em>our</em> worst pages — scanned, multi-column, tabular — and give me the cell-level error rate. Format support is a file-opening claim; extraction fidelity is the one that matters.'],
-    ['Why does voice change the architecture rather than just the interface?','Because the latency budget collapses. A two-second pause is a conversational failure, which rules out reasoning models, long agent loops, and large retrieval passes on most voice surfaces.'],
-    ['What is the cheapest thing you can demand of a vision model reading a table?','That it quote the row and column labels it used. It converts an unverifiable number into a four-second check — Chapter 8\'s supporting quote, in two dimensions.']
-  ],
-  red:['Table relationships destroyed at extraction','Right page retrieved, wrong cell quoted','Corpus assumed to be clean text']
 },
-
 {
-  id:'ch17', num:17, part:3, minutes:60, labs:['systemcard'],
-  title:'The Paper Trail',
-  concept:'In 2027 an AI feature ships with documents attached. Most of them are product decisions wearing legal costume — which makes them yours.',
+
+  id:'ch17', num:17, part:3, minutes:30, labs:['systemcard'],
+  title:'The paperwork, and why it is yours',
+  concept:'An AI feature now ships with documents attached. Almost every question in them is a product decision wearing legal costume.',
   needs:[
-    ['You can measure it, so you can state it','Ground truth and error analysis are what turn a claim into a number.',14],
-    ['Metadata is a filter, not a score','Version and access are decided before ranking, which is why they are the only guarantees.',12],
-    ['No complete defence exists','Which is why controls sit outside the model rather than inside the prompt.',13],
+    ['You measured it, so you can state it','An answer key and a list of real failures are what turn a claim into a number.',14],
+    ['Version and access are decided before ranking','Which is why they are the only guarantees you can make.',12],
+    ['There is no complete defence','Which is why the controls sit outside the model, not inside the prompt.',13],
   ],
+  takeaway:[
+    'Explain why the same system can be low risk for one use and high risk for another.',
+    'Say which section of a governance document is hardest to fake, and why that makes it valuable.',
+    'Describe what oversight has to include before it counts as oversight at all.'
+  ],
+  red:['A governance file full of adjectives instead of numbers','Oversight written down but impossible to actually do','Data sitting in places you cannot delete from'],
   story:[
-    ['p','A conventional feature ships with code, tests, and a release note. An AI feature increasingly ships with a file of documents as well, and there is a common and expensive misunderstanding about who writes them.'],
-    ['key','Almost every question in an AI governance file is a product question. What is it for, who does it affect, what happens when it is wrong, who reviews what, and what evidence exists that it works — these are not legal questions with legal answers. They are product decisions being written down, usually by someone who was not in the room when they were made.'],
+
+    ['p','A normal feature ships with code, tests and a release note. An AI feature increasingly ships with a folder of documents as well — and there is a common, expensive misunderstanding about who writes them.'],
+    ['key','Almost every question in that folder is a product question. What is this for, who does it affect, what happens when it is wrong, who checks it, and what evidence exists that it works. Those are not legal questions with legal answers. They are product decisions being written down, usually by someone who was not in the room when they were made.'],
     ['lab','systemcard'],
     ['q','I090'],
-    ['p','The regulatory shape most of the world is converging on is <strong>risk tiering</strong>: obligations scale with the consequences of being wrong, not with the technology used. The EU AI Act made this shape famous, but the shape matters far beyond its jurisdiction, because it is simply a sensible way to allocate scrutiny — and because it is what your enterprise customers\' procurement teams have started asking about regardless of where you operate.'],
-    ['tb',['Tier','Shape of the obligation','Typical examples'],[
-      ['Prohibited','Not permitted at all','Social scoring, certain biometric categorisation'],
-      ['High risk','Documentation, human oversight, accuracy evidence, logging, conformity assessment','Employment screening, credit, education access, essential services'],
-      ['Limited / transparency','Disclose that it is AI; label synthetic content','Chatbots, generated media'],
-      ['Minimal','General good practice','Most internal productivity tools']
+    ['p','The shape most regulation is converging on is simple: <strong>how much you have to do depends on how bad it is when you are wrong</strong>, not on which technology you used. The EU AI Act made this shape famous, but the shape travels — your enterprise customers’ procurement teams now ask these questions wherever you operate.'],
+    ['tb',['Level','What is required','Typical examples'],[
+      ['Not allowed','Nothing makes it acceptable','Social scoring, some biometric sorting'],
+      ['High risk','Documentation, a real human check, evidence of accuracy, logging, formal assessment','Hiring, credit, education access, essential services'],
+      ['Transparency only','Say it is AI; label generated media','Chatbots, generated images'],
+      ['Minimal','Ordinary good practice','Most internal productivity tools']
     ]],
-    ['p','Two things follow that most teams learn late. First, <strong>the tier is decided by the use case, not the model</strong> — the same RAG system is minimal-risk for internal FAQ and high-risk for benefit eligibility. Second, <strong>the tier changes when the use case changes</strong>, and use cases drift after launch without anyone re-opening the file.'],
+    ['p','Two things follow, and teams learn both late. <strong>The level is set by the use, not the model</strong> — the same system you built in Chapter 7 is minimal risk for an internal FAQ and high risk for deciding benefit eligibility. And <strong>the level changes when the use changes</strong>, which happens after launch without anyone reopening the folder.'],
     ['q','I091','I092'],
-    ['p','What must exist, in practice, for anything above minimal risk:'],
-    ['l',['<strong>A stated purpose and scope</strong>, including what the system is explicitly <em>not</em> for. The out-of-scope list prevents the drift above.','<strong>Data lineage.</strong> Which documents, obtained how, under what right to use, retained how long, and where physically stored.','<strong>An evaluation record.</strong> Your Chapter 6 ground truth, your Chapter 14 taxonomy, and the measured numbers with their k and their date. This is the part that does not exist unless someone did Chapters 6 and 14 — which is why so many governance files contain adjectives instead of numbers.','<strong>A human oversight design.</strong> Not “a human reviews the output,” but: which outputs, at what point, with what information visible, with the authority and the time to overrule. Oversight that cannot realistically be exercised is not oversight.','<strong>Known limitations.</strong> Your red-marked map, in prose. The single most credibility-generating section in any AI document.','<strong>Logging and an incident path.</strong> What is recorded per request, retained how long, and who does what when it goes wrong.','<strong>Change control.</strong> Model version pinned, system prompt versioned, eval re-run on change. Chapter 18\'s subject, written down here.']],
+    ['p','For anything above minimal, this is what has to exist:'],
+    ['l',['<strong>What it is for</strong>, and what it is explicitly <em>not</em> for. The out-of-scope list is what stops the drift above.','<strong>Where the data came from</strong> — which documents, under what right to use, kept how long, stored in which country.','<strong>What you measured</strong> — your Chapter 6 answer key and your Chapter 14 failure list, with the actual numbers and the date. This part does not exist unless somebody did those chapters, which is why so many of these folders contain adjectives.','<strong>Who checks it</strong> — not “a human reviews the output”, but which outputs, seeing what, with the authority and the time to overrule.','<strong>What is known to break</strong> — your red marks, in plain sentences. The most credible section in any AI document.','<strong>What gets logged</strong>, for how long, and who does what when it goes wrong.','<strong>How change is controlled</strong> — model version pinned, prompts versioned, tests re-run. That is Chapter 18, written down here.']],
     ['q','I094','I131'],
     ['try',{id:'ch17-oversight',mins:6,min:60,rows:4,
-      task:'Design oversight that survives contact with volume. Four thousand outputs a day, one reviewer. Write what that reviewer actually sees, which outputs reach them, and what they are able to do about it — then say why “a human reviews every output” is not an answer.',
+      task:'Design a human check that survives real volume. Four thousand outputs a day, one reviewer. Write what that reviewer actually sees, which outputs reach them, and what they can do about it — then say why “a human reviews every output” is not an answer.',
       ph:'they see … routed by … can do … and reviewing everything fails because …',
-      after:'Reviewing everything at that volume is a fiction that reads well in a governance file and is abandoned in week two — which is worse than not claiming it, because the file now misrepresents the control. The workable design is targeted: route by confidence, by risk tier of the action, and by disagreement between retrieval and answer. The reviewer must see the output <em>and</em> the evidence it came from — the retrieved chunks with their sources — because approving an answer you cannot check is not oversight. And they must be able to reject and correct, not merely observe; a review point with no lever attached is theatre.'}],
+      after:'Reviewing everything at that volume is a fiction that reads well and is abandoned in week two — worse than not claiming it, because now the document misrepresents the control. What works is targeted: route by confidence, by how bad the action is, and by disagreement between what was retrieved and what was answered. The reviewer has to see the evidence as well as the output, because approving an answer you cannot check is not checking — and has to be able to reject it, not just watch.'}],
     ['q','I096','I132'],
-    ['c','The deletion drill','A person exercises a deletion right. Their data sits in: the source document store, the chunk store, the vector index, the prompt cache, provider-side logs, your own request logs, and any eval set you built from real traffic. Trace all seven. Most teams discover at least two they cannot reach — and it is far better to discover that on a Tuesday afternoon than in response to a regulator.'],
+    ['c','The deletion drill','Someone asks you to delete their data. It is in: the original document store, the cut-up pieces, the search index, the cache, the provider’s logs, your own logs, and any test set you built from real traffic. Trace all seven. Most teams find at least two they cannot reach — and Tuesday afternoon is a much better time to find that out than during a regulator’s letter.'],
     ['pred',{id:'ch17-delete',short:true,ph:'Name the store',
-      ask:'A person exercises a deletion right. Their data is in the source document store, the chunk store, the vector index, your logs, your eval sets, and any cache. Before reading on: which one do teams forget?',
-      reveal:'Eval sets and logs, most often — because they were copied for a good reason by someone who was not thinking about deletion, and nothing points back from them to the person. Caches are a close third, and prompt caches are the most invisible of all: they hold fragments of documents with no index by subject at all.',
-      then:'This is why lineage is recorded at ingestion rather than reconstructed later. A deletion request you cannot satisfy is not a technical inconvenience; it is a compliance failure with a date attached.'}],
+      ask:'Someone exercises a deletion right. Their data is in the document store, the chunk store, the search index, your logs, your test sets and the cache. Before reading on: which one do teams forget?',
+      reveal:'Test sets and logs, most often — because they were copied for a good reason by someone not thinking about deletion, and nothing in them points back to a person. Caches are a close third, and the provider’s cache is the most invisible of all: it holds fragments of documents with no index by subject at all.',
+      then:'This is why you record where data came from when you take it in, rather than reconstructing it later. A deletion request you cannot satisfy is not an inconvenience. It is a failure with a date on it.'}],
     ['q','I097','I098'],
     ['q','I134','I135'],
-    ['p','Finally, the thing that is already happening in your organisation whether or not anyone has written it down: <strong>shadow AI</strong>. Staff are pasting internal documents into consumer chat tools right now. Prohibition does not work, because the tools are useful. A sanctioned, adequate alternative plus clear guidance about what may be pasted works considerably better, and “we banned it” is a statement about policy rather than about behaviour.'],
+    ['p','And the thing already happening whether anyone wrote it down or not: staff are pasting internal documents into consumer chat tools right now. Banning it does not work, because the tools are useful. A sanctioned alternative that is good enough, plus clear guidance on what may be pasted, works far better. “We banned it” is a statement about policy, not about behaviour.'],
     ['q','I093'],
-  ],
-  words:[
-    ['Risk tier','Obligation level set by consequence of error, not by technology.'],
-    ['System card / model card','A structured document describing purpose, data, evaluation, limitations and oversight.'],
-    ['Data lineage','Where data came from, under what right, held where, for how long.'],
-    ['Human oversight','A specified, exercisable review point with authority to overrule.'],
-    ['DPIA','A documented assessment of privacy impact before deployment.'],
-    ['Subprocessor','A third party your provider passes data to. Inherited risk.'],
-    ['Data residency','The physical jurisdiction where data is stored and processed.'],
-    ['Audit trail','Durable records sufficient to reconstruct what happened and why.'],
-    ['Shadow AI','Unsanctioned tool use by staff. A measurable reality, not a hypothetical.']
   ],
   handson:[
     {h:'Step 1 — Tier Your Own System', b:[
@@ -366,74 +310,54 @@ window.PART3 = [
       ['x','That last one is routinely omitted and is the subject of Chapter 18. A 30-day deprecation notice on a model your high-risk system is validated against is an operational emergency scheduled in advance.']
     ]}
   ],
-  wrong:[
-    ['“This is legal\'s job”','Common and expensive','Legal can assess a described system. They cannot describe it. Every factual line in the file comes from the product and engineering side, and the evaluation numbers come from nowhere else.'],
-    ['“We are not in the EU”','Scope confusion','Your enterprise customers\' procurement questionnaires have converged on this shape regardless. The file is commercially useful even where it is not legally required.'],
-    ['Cannot obtain evaluation numbers','Nobody built ground truth','Then the honest system card says “not evaluated,” which is itself the most useful sentence you could write. Go and do Chapter 6.']
-  ],
-  homework:[
-    ['The completed system card','One page, all eight headings, real numbers from your own chapters. Of everything produced in this book, this is the artifact most likely to be read by someone senior.'],
-    ['The deletion drill result','Your table with honest yes/no answers, plus one sentence per gap on what it would take to close it.'],
-    ['Explain it upward','4–5 sentences — why AI governance paperwork is mostly product decisions being written down, and what cannot be written without having measured something first.']
-  ],
-  check:[
-    ['Two teams deploy the identical RAG system. One is minimal risk, one is high risk. What differs?','The use case and its consequences. Internal FAQ versus benefit eligibility. Tier follows impact, never technology — which is why the tier can change without a line of code changing.'],
-    ['Which section of a system card is hardest to fake, and why does that make it valuable?','Known limitations. Real ones come from having broken the system yourself and recorded the evidence. Generic ones read as generic instantly to anyone who has done the work — and the specific ones signal that everything else in the document was measured too.'],
-    ['A vendor is SOC 2 certified. What does that tell you about their AI risk?','That they have security controls and audited processes. It says nothing about hallucination rate, retrieval quality, prompt-injection resistance, or model deprecation policy. Different question entirely — SOC 2 is about how they run their company, not how their model behaves.'],
-    ['Your oversight design says a human reviews every output, at 4,000 outputs a day. What is wrong?','It is not exercisable, so it is not oversight — it is a sentence. Real designs sample, or review only outputs failing a programmatic check, and give the reviewer the retrieved evidence and the time to act on it.']
-  ],
-  red:['Governance file with adjectives instead of measurements','Oversight specified but not physically exercisable','Data reachable in stores you cannot delete from']
 },
-
 {
-  id:'ch18', num:18, part:3, minutes:90, labs:['redmap','prd'],
-  title:'The Instrument Panel Assembled',
-  concept:'Nothing new — again, that is the point. Draw the 2027 system from memory, mark every place you broke it, and write the PRD.',
+
+  id:'ch18', num:18, part:3, minutes:45, labs:['redmap','prd'],
+  title:'Writing the spec, and keeping it alive',
+  concept:'Nothing new in this chapter. Draw the whole system from memory, mark every place you have watched it break, and write the document.',
   needs:[
-    ['An eval suite, and a taxonomy from your own traffic','The instruments that make an acceptance criterion a number.',14],
-    ['A loaded cost model','The real per-query figure, with its four multipliers.',15],
-    ['A risk tier and an oversight design','What ships alongside the code.',17],
+    ['A test set and a list of your own failures','The instruments that turn an acceptance criterion into a number.',14],
+    ['A real cost figure','The loaded number, with its four multipliers.',15],
+    ['A risk level and a human check','What ships alongside the code.',17],
   ],
+  takeaway:[
+    'Explain what replaces pass/fail acceptance criteria in an AI spec, and why.',
+    'List what you re-run when your provider retires the model you built on.',
+    'Explain why a kill switch is not the same thing as a rollback.'
+  ],
+  red:[],
   story:[
-    ['p','Chapter 7 ended with a pipeline and a red pen. This chapter ends with an instrument panel and a document — and, as before, nothing in it is new.'],
-    ['p','A conventional PRD assumes deterministic behaviour: given this input, produce that output; QA verifies; done. Every assumption in that sentence fails here. Given this input, an AI feature produces a <em>distribution</em> of outputs, whose shape shifts when the provider updates a model you do not control.'],
-    ['key','An AI PRD does not specify behaviour. It specifies a measured distribution of behaviour, the evidence that it was measured, and what happens when it drifts.'],
+
+    ['p','Chapter 7 ended with a diagram and a red pen. This chapter ends with a document — and again, nothing in it is new.'],
+    ['p','A normal spec assumes the same input gives the same output: do this, get that, QA checks it, done. Every part of that sentence fails here. The same input gives a <em>range</em> of outputs, and the shape of that range moves when your provider updates a model you do not control.'],
+    ['key','An AI spec does not describe behaviour. It describes a measured range of behaviour, the evidence that you measured it, and what happens when it drifts.'],
     ['q','I107'],
-    ['p','Four things change concretely, and you have already built all four:'],
-    ['tb',['Conventional PRD','AI PRD','Built in'],[
-      ['Acceptance criteria as pass/fail','Eval thresholds on a named ground-truth set at a stated k','Ch. 6, 14'],
-      ['QA test plan','Regression suite plus programmatic checks, run per release','Ch. 8, 14'],
-      ['“Done” when features work','“Done” when measured at stated numbers, with known limitations written','Ch. 6, 17'],
-      ['Rollback = redeploy previous build','Rollback = pinned model version, versioned prompts, and a kill switch','Ch. 10, 17']
+    ['p','Four things change, and you have already built all four:'],
+    ['tb',['Normal spec','AI spec','Built in'],[
+      ['Acceptance criteria as pass/fail','A required score on a named answer key, at stated settings','Ch. 6, 14'],
+      ['A QA test plan','A fixed set of cases that must pass, plus the free code checks, run every release','Ch. 8, 14'],
+      ['Done when the features work','Done when it is measured at stated numbers, with known failures written down','Ch. 6, 17'],
+      ['Rollback means redeploy the last build','Rollback means a pinned model version, versioned prompts, and a switch that turns the AI off','Ch. 10, 17']
     ]],
     ['lab','prd'],
     ['q','I117'],
-    ['p','<strong>The deprecation treadmill</strong> deserves its own paragraph because it surprises everyone exactly once. Your provider will retire the model you validated against, on their schedule, with a notice period you did not negotiate. The migration is not a configuration change. It is a re-evaluation: run the ground truth, re-run the regression suite, re-test injection resistance, re-measure cost and latency, update the system card. Teams that own Chapter 6 do this in an afternoon. Teams that do not, discover during the migration that they never knew whether the old model was any good either.'],
+    ['p','<strong>Your model will be retired.</strong> On your provider’s schedule, with a notice period you did not negotiate. Moving is not a configuration change — it is a re-measurement. Run the answer key again, run your fixed case set again, re-test whether it can be talked into misbehaving, re-measure cost and speed. Teams that did Chapter 6 do this in an afternoon. Teams that did not discover during the move that they never knew whether the old model was any good either.'],
     ['pred',{id:'ch18-deprecate',rows:3,ph:'What you re-run, and what you do not',
       ask:'Your provider gives you thirty days’ notice that the model behind your live feature is being retired. Before reading on: write what you re-run, in order, and what you can safely skip.',
-      reveal:'Everything that was measured against the old model, because a model change invalidates measurements rather than merely shifting them: the full eval suite against ground truth, the judge’s agreement with your human labels (the judge is itself a model call), your cost model at the new rates and token behaviour, and your latency profile at p95. What you cannot skip is the judge — a judge validated against the old model is an uncalibrated instrument on the new one.',
-      then:'This is why the eval suite is infrastructure rather than a launch artefact. Teams without one do not discover the problem in thirty days; they discover it in production.'}],
+      reveal:'Everything you measured against the old model, because changing the model invalidates measurements rather than just nudging them: the full test set against your answer key, the grader’s agreement with your own marking (the grader is itself a model call), your cost figures at the new rates, and your speed at the slow end. The one you cannot skip is the grader — a grader checked against the old model is an uncalibrated instrument on the new one.',
+      then:'This is why a test set is infrastructure, not a launch artefact. Teams without one do not find the problem in thirty days. They find it in production.'}],
     ['q','I109'],
-    ['p','<strong>Feedback instrumentation</strong> is where most AI products waste their most valuable asset. A thumbs-down with no context is nearly worthless: you cannot reproduce it, you do not know what was retrieved, and you cannot tell a wrong answer from a correct answer the user disliked. A thumbs-down attached to the full trace — query, retrieved chunk ids, scores, prompt version, model version, output — is a ready-made eval case. The difference is two days of engineering and it decides whether your flywheel (Chapter 14) turns at all.'],
+    ['p','<strong>Feedback is where most AI products throw away their best asset.</strong> A thumbs-down on its own is nearly worthless: you cannot reproduce it, and you cannot tell a wrong answer from a correct one the user disliked. A thumbs-down attached to the whole trace — the question, what was retrieved, which prompt and model version, the output — is a ready-made test case. That difference is about two days of engineering, and it decides whether Chapter 14’s loop turns at all.'],
     ['q','I110'],
-    ['p','And the staged rollout, which is ordinary product practice with one addition: <strong>the kill switch is not a rollback.</strong> A rollback takes a deploy cycle; a kill switch is a flag that routes traffic to the non-AI path immediately. Every AI feature needs the non-AI path to still exist, and needs someone to have tested it recently.'],
+    ['p','And the staged rollout, which is ordinary product practice with one addition: <strong>a kill switch is not a rollback.</strong> A rollback takes a deploy cycle. A kill switch is a flag that sends traffic to the non-AI path immediately. Which means the non-AI path has to still exist, and someone has to have tested it recently.'],
     ['q','I108'],
     ['try',{id:'ch18-prd',mins:10,min:100,rows:8,
-      task:'Write the acceptance criteria section of an AI PRD for one feature you own. Not prose — the numbers. What is measured, against which ground truth, at what threshold, and what happens when a number falls below it. Then add the one line most PRDs omit: what the kill switch turns off, and what the product still does afterwards.',
-      ph:'metric — ground truth — threshold — action on breach … kill switch: …',
-      after:'A strong section is falsifiable by someone who does not like you. It names the ground-truth set and who wrote it, gives thresholds as numbers rather than adjectives, and attaches an action to each breach — block release, page someone, degrade to a safe mode. The kill-switch line is the one that separates people who have run an AI feature from people who have specified one: a rollback returns to previous code, which does not help when the failure is a model behaviour that both versions share. A kill switch turns the AI path off and leaves a product that still functions — search without generated answers, a form without extraction, a queue without routing.'}],
+      task:'Write the acceptance criteria for one feature you own. Not prose — the numbers. What is measured, against which answer key, at what threshold, and what happens when a number falls below it. Then add the line most specs leave out: what the kill switch turns off, and what the product still does afterwards.',
+      ph:'metric — answer key — threshold — what happens on breach … kill switch: …',
+      after:'A good section can be checked by someone who does not like you. It names the answer key and who wrote it, gives thresholds as numbers instead of adjectives, and attaches an action to each breach — block the release, page someone, drop to a safe mode. The kill-switch line is what separates people who have run an AI feature from people who have only specified one: a rollback returns to previous code, which does not help when the failure is a behaviour both versions share.'}],
     ['q','I118'],
-    ['c','What this book did not teach you','Training and post-training. GPU economics and self-hosting. Multi-agent orchestration at scale. Formal verification. Synthetic data generation. Part IV takes up two things this list used to contain — the decision about fine-tuning and small models, and the interface a user actually meets — because both are yours to make rather than an engineer’s. The 2027 LATER page is on this site, and it is now, finally, permitted reading. Knowing precisely what you have not covered is the difference between a narrow expert and a pretender — and you can now name your gaps in your own handwriting rather than in someone else\'s marketing.']
-  ],
-  words:[
-    ['AI PRD','A product specification whose acceptance criteria are eval thresholds on a named dataset.'],
-    ['Eval threshold','The measured number required before release — acceptance criteria with teeth.'],
-    ['Regression suite','Cases that must pass on every release, derived from real failures.'],
-    ['Model pinning','Fixing an exact model version so behaviour does not change beneath you.'],
-    ['Deprecation migration','The re-evaluation required when a provider retires your model.'],
-    ['Kill switch','An immediate flag routing traffic to the non-AI path. Not a rollback.'],
-    ['Canary / staged rollout','Releasing to a small traffic slice with online metrics watched.'],
-    ['Trace','Query, retrieval, prompt version, model version, output — captured per request. The unit of debugging and of feedback.']
+    ['c','What this course did not teach you','Training and post-training. GPU economics and self-hosting. Orchestrating many agents at scale. Formal verification. Generating synthetic data. Part IV picks up two things that used to be on this list — the decision about fine-tuning and smaller models, and what the user actually sees — because both are yours to make rather than an engineer’s. The 2027 LATER page on this site is now, finally, permitted reading. Being able to name what you have not covered is the difference between knowing your limits and pretending you have none.']
   ],
   handson:[
     {h:'Act 1 — The 2027 Map, From Memory', b:[
@@ -473,21 +397,6 @@ window.PART3 = [
       ['x','Then return to the very first page of your notebook — your Chapter 1 predictions. The distance between that page and this one is the only measurement of this book that matters.']
     ]}
   ],
-  wrong:[
-    ['“I can\'t remember twenty failure points”','Normal on the first attempt','Draw what you have, then open the Red-Mark Map. The ones you missed are your revision list — that is the exercise working, not failing.'],
-    ['“My organisation won\'t accept eval thresholds as acceptance criteria”','Unfamiliarity, usually','Bring the Chapter 6 table and the Chapter 15 three numbers. Objections to eval thresholds dissolve on contact with a demonstration that the alternative is vibes.']
-  ],
-  homework:[
-    ['The findings page','As above. One page, both halves, rough.'],
-    ['The three deltas, second edition','From Chapter 7 you wrote three beliefs that changed. Write three more, from Part II and III: “I believed X; I measured Y; the difference changes how I will treat Z.”'],
-    ['The final explain-it-upward','The entire 2027 system, six sentences, zero jargon — then, permitted at last, the closing line naming RAG, agents, evals and injection in one breath. Read it aloud once. That voice — plain, precise, unimpressed by hexagons — is what these eighteen chapters were for.']
-  ],
-  check:[
-    ['What replaces pass/fail acceptance criteria in an AI PRD, and why?','Eval thresholds on a named ground-truth set at a stated k, because the system produces a distribution of outputs rather than a fixed one. “It works” is not a testable claim; “91% at k=3 on the November ground truth, with zero unsupported-citation failures” is.'],
-    ['Your provider deprecates your model in 30 days. What are the four things you re-run?','The ground truth (Ch.6), the regression suite and judge (Ch.14), the injection tests (Ch.13), and the cost and latency measurements (Ch.15). Then update the system card (Ch.17). If you own those artifacts it is an afternoon.'],
-    ['Why is a kill switch not the same as a rollback?','A rollback takes a deploy cycle; a kill switch immediately routes traffic to the non-AI path. Which means the non-AI path must still exist and must have been tested recently — a requirement teams forget within two quarters of launch.'],
-    ['Of all eighteen chapters, which single artifact would you carry into a board-level AI discussion?','The red-marked map with evidence lines, or the Chapter 15 three-number table. Both demonstrate the same rare thing: first-hand measurement of where this specific system breaks and what it costs. Anyone can draw the boxes. The red ink is still the credential.']
-  ],
-  red:[]
 }
+
 ];

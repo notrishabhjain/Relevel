@@ -1,4 +1,4 @@
-/* Part I — Foundations (Chapters 1–7)
+/* Part I — The basics (Chapters 0–7)
    Adapted from "AI From Zero", v2.0 General Edition.
    Block grammar: p=para, key=thesis line, c=callout[label,text], l=bullets,
    n=numbered, tb=table[head,rows], code, x=expected result. */
