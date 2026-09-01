@@ -1,4 +1,4 @@
-/* Part II — The Modern Stack (Chapters 8–13)
+/* Part II — What real systems add (Chapters 8–13)
    New material, written to the same seven-part structure and the same
    standing rules: hands before names, predict then measure, break your own fix. */
 
