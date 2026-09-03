@@ -28,7 +28,8 @@ const KINDS=[
   ['items'   ,'Questions','The practice bank. Every question names the skill it measures and the difficulty it sits at.'],
   ['exercises','Exercises','Longer pieces of real work, with a rubric you score yourself against.'],
   ['processes','Processes','Recurring loops you run on a cadence rather than finish once.'],
-  ['reference','Reference','The supporting tables: domains, glossary, vendor claims, failure map, setup, level names.']];
+  ['reference','Reference','The supporting tables: domains, glossary, vendor claims, failure map, setup, level names.'],
+  ['hinglish','Hinglish','The Hinglish reading layer: one English line in, its Hinglish line out. Anything absent reads in English.']];
 const KINDNAME=Object.fromEntries(KINDS.map(k=>[k[0],k[1]]));
 
 /* ============ draft store ============ */
@@ -132,6 +133,12 @@ function validate(kind,data){
   }
   if(kind==='processes') need(Array.isArray(data),'Processes must be a list.');
   if(kind==='reference') need(data&&typeof data==='object'&&!Array.isArray(data),'Reference must be an object.');
+  if(kind==='hinglish'){
+    need(data&&typeof data==='object'&&!Array.isArray(data),'Hinglish must be an object.');
+    Object.entries(data||{}).forEach(([k,v])=>{
+      need(typeof v==='string','Hinglish entry for "'+k.slice(0,40)+'" must be text.');
+      need(String(k).trim().length>0,'Hinglish has an entry with an empty English key.'); });
+  }
   return e;
 }
 /* Links the editors can break without noticing. */
@@ -472,7 +479,8 @@ function overview(){
   const counts={chapters:(pub('chapters')||[]).length,skills:(pub('skills')||[]).length,
     items:(pub('items')||[]).length,exercises:(pub('exercises')||[]).length,
     processes:(pub('processes')||[]).length,
-    reference:Object.keys(pub('reference')||{}).length};
+    reference:Object.keys(pub('reference')||{}).length,
+    hinglish:Object.keys(pub('hinglish')||{}).length};
   const unit={chapters:'chapters',skills:'skills',items:'questions',exercises:'exercises',
     processes:'processes',reference:'tables'};
 
@@ -537,9 +545,80 @@ function overview(){
 }
 function row2(a,b){ return h('div',{class:'word'},[h('dt',{text:a}),h('dd',{html:b})]); }
 
+/* ============ the Hinglish layer ============
+
+   Not a list of records but a lookup, so it gets its own page: every line the
+   course can show, with its Hinglish underneath. Lines with no translation are
+   listed too — they are the work remaining, and they are the reason the reader
+   sees English in the middle of a Hinglish page. */
+function hinglishPage(){
+  const w=h('div',{class:'wrap-wide'});
+  const map=draft('hinglish');
+  w.appendChild(phead('Studio · Hinglish','Hinglish',
+    'One English line in, its Hinglish line out. Anything you leave blank reads in English.'));
+  const b=statusBanner(); if(b) w.appendChild(b);
+  w.appendChild(h('p',{},[h('a',{href:'#/studio',class:'backlink',text:'← All content'}),
+    h('span',{class:'dim',text:'  ·  '}),
+    h('a',{href:'#/studio/hinglish/~json',class:'backlink',text:'Edit the whole map as JSON'})]));
+  let bar=draftBar('hinglish'); w.appendChild(bar);
+  const on=()=>{ touch('hinglish'); bar.replaceWith(bar=draftBar('hinglish')); };
+
+  const groups=(window.HINGSTRINGS?window.HINGSTRINGS():[]);
+  const q=h('input',{placeholder:'Search the English…',style:'max-width:340px'});
+  const only=h('select',{},[h('option',{value:'all'},'Everything'),
+    h('option',{value:'todo'},'Not translated yet'),
+    h('option',{value:'done'},'Translated')]);
+  const body=h('div');
+
+  function render(){
+    const f=q.value.trim().toLowerCase(), mode=only.value;
+    body.innerHTML='';
+    let shown=0;
+    groups.forEach(g2=>{
+      const rows=g2.strings.filter(k=>{
+        const has=typeof map[k]==='string'&&map[k].trim().length>0;
+        if(mode==='todo'&&has)return false;
+        if(mode==='done'&&!has)return false;
+        return !f||k.toLowerCase().includes(f)||String(map[k]||'').toLowerCase().includes(f);
+      });
+      if(!rows.length)return;
+      const done=g2.strings.filter(k=>map[k]!==undefined).length;
+      const sec=h('section',{class:'part'});
+      sec.appendChild(h('div',{class:'parthead'},[h('h2',{text:g2.label}),
+        h('span',{class:'t',text:done+' / '+g2.strings.length+' translated'})]));
+      rows.slice(0,300).forEach(k=>{
+        shown++;
+        const ta=h('textarea',{rows:Math.min(8,Math.max(2,Math.ceil(k.length/90)+1)),
+          placeholder:'Hinglish for this line — leave blank to keep the English'});
+        ta.value=map[k]||'';
+        let t=null;
+        ta.addEventListener('input',()=>{ clearTimeout(t); t=setTimeout(()=>{
+          const v=ta.value.trim();
+          if(v) map[k]=ta.value; else delete map[k];
+          on(); },350); });
+        sec.appendChild(h('div',{class:'word',style:'display:block;margin-bottom:1rem'},[
+          h('div',{class:'dim',style:'font-size:.86rem;line-height:1.5;margin-bottom:.35rem',html:k}),
+          ta]));
+      });
+      if(rows.length>300)sec.appendChild(h('p',{class:'dim',
+        text:(rows.length-300)+' more in this group — narrow the search to reach them.'}));
+      body.appendChild(sec);
+    });
+    if(!shown)body.appendChild(h('div',{class:'empty',text:'Nothing matches that.'}));
+  }
+  q.addEventListener('input',render);
+  only.addEventListener('change',render);
+  const fld2=(l,n)=>h('div',{},[h('label',{text:l}),n]);
+  w.appendChild(h('div',{class:'ctl'},[fld2('search',q),fld2('show',only)]));
+  w.appendChild(body);
+  render();
+  return w;
+}
+
 /* ============ list pages ============ */
 function kindPage(kind){
   if(kind==='reference') return referencePage();
+  if(kind==='hinglish') return hinglishPage();
   const w=h('div',{class:'wrap-wide'});
   const arr=draft(kind);
   const on=()=>touch(kind);

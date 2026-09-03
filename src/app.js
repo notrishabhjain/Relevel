@@ -33,7 +33,7 @@ const KEY='aifz2027';
 const defaults=()=>({done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{},drill:{},
   railmore:false,   // the rest of the instruments, out of the way until wanted
   cp:{},       // inline checkpoint answers: predictions and written activities
-  sittings:[],theme:null,
+  sittings:[],theme:null,lang:null,   // null = English; 'hi' = Hinglish
   /* tracker state */
   sk:{},      // per-skill mastery {m,n,ok,last,hist,peak}
   srs:{},     // per-item schedule {ease,ivl,reps,due,seen}
@@ -102,22 +102,44 @@ function replace(data){
 window.STORE={get S(){return S;}, save, flush:writeNow, suspend, replace, KEY};
 function flash(node){if(!node)return;node.classList.add('show');setTimeout(()=>node.classList.remove('show'),1400);}
 
+/* ---------------- language ----------------
+
+   The course is written in English. It can also be read in Hinglish — the
+   English-Hindi mix people in Indian offices actually speak — because a
+   familiar register lowers the effort of reading, and effort spent on the
+   sentence is effort not spent on the idea.
+
+   It is a lookup on the English string rather than a second copy of the
+   curriculum: a line with no translation yet renders in English, so coverage
+   can grow one paragraph at a time and nothing is ever missing from the page.
+   Industry terms — token, prompt, retrieval, eval, latency — are deliberately
+   left in English inside the translations. They are what the rest of the
+   industry says, and translating them would teach a vocabulary nobody else
+   uses. */
+function T(s){
+  if(S.lang!=='hi'||s==null)return s;
+  const v=(window.HING||{})[String(s).trim()];
+  return v===undefined?s:v;
+}
+function Tl(list){ return (list||[]).map(T); }
+window.T=T;
+
 /* ---------------- block renderer ---------------- */
 function blocks(list){
   const f=document.createDocumentFragment();
   (list||[]).forEach(b=>{
     const [k,...r]=b;
-    if(k==='p')f.appendChild(h('p',{html:r[0]}));
-    else if(k==='key')f.appendChild(h('div',{class:'keyline',html:r[0]}));
-    else if(k==='c')f.appendChild(h('div',{class:'callout'},[h('span',{class:'lbl',text:r[0]}),h('p',{html:r[1]})]));
-    else if(k==='l')f.appendChild(h('ul',{class:'bul'},r[0].map(i=>h('li',{html:i}))));
-    else if(k==='n')f.appendChild(h('ol',{class:'num'},r[0].map(i=>h('li',{html:i}))));
+    if(k==='p')f.appendChild(h('p',{html:T(r[0])}));
+    else if(k==='key')f.appendChild(h('div',{class:'keyline',html:T(r[0])}));
+    else if(k==='c')f.appendChild(h('div',{class:'callout'},[h('span',{class:'lbl',text:T(r[0])}),h('p',{html:T(r[1])})]));
+    else if(k==='l')f.appendChild(h('ul',{class:'bul'},Tl(r[0]).map(i=>h('li',{html:i}))));
+    else if(k==='n')f.appendChild(h('ol',{class:'num'},Tl(r[0]).map(i=>h('li',{html:i}))));
     else if(k==='code')f.appendChild(h('pre',{},h('code',{text:r[0]})));
-    else if(k==='x')f.appendChild(h('div',{class:'expect'},[h('div',{class:'tag',text:'expect'}),h('div',{html:r[0]})]));
+    else if(k==='x')f.appendChild(h('div',{class:'expect'},[h('div',{class:'tag',text:'expect'}),h('div',{html:T(r[0])})]));
     else if(k==='tb'){
       const t=h('table');
-      t.appendChild(h('thead',{},h('tr',{},r[0].map(c=>h('th',{html:c})))));
-      t.appendChild(h('tbody',{},r[1].map(row=>h('tr',{},row.map(c=>h('td',{html:c}))))));
+      t.appendChild(h('thead',{},h('tr',{},Tl(r[0]).map(c=>h('th',{html:c})))));
+      t.appendChild(h('tbody',{},r[1].map(row=>h('tr',{},Tl(row).map(c=>h('td',{html:c}))))));
       f.appendChild(h('div',{class:'tblwrap'},t));
     }
     /* The interactive blocks. A paragraph can teach a thing; only one of these
@@ -179,7 +201,7 @@ function openTerm(btn,entry,here){
       h('strong',{text:entry.term}),
       entry.ch?h('a',{class:'termch',href:'#/ch/ch'+entry.ch,
         text:(ahead?'you build this in ':'explained in ')+'Chapter '+entry.ch}):null]),
-    h('p',{html:entry.def}),
+    h('p',{html:T(entry.def)}),
     ahead?h('p',{class:'termahead',
       text:'You are not meant to know this yet. Carry the one-line version and keep going.'}):null,
     h('button',{class:'sm',onclick:closeTerm},'Got it')]);
@@ -345,21 +367,21 @@ function cpPredict(o){
   function draw(){
     box.innerHTML='';
     box.appendChild(cpHead('predict','commit before you look'));
-    box.appendChild(h('div',{class:'prose cpq',html:o.ask}));
+    box.appendChild(h('div',{class:'prose cpq',html:T(o.ask)}));
     const cur=S.cp[o.id];
     if(cur&&cur.v!=null){
       box.appendChild(h('div',{class:'cpans'},[
         h('span',{class:'lbl',text:'You predicted'}),h('p',{text:cur.v})]));
       box.appendChild(h('div',{class:'why'},[
-        h('span',{class:'lbl',text:'What actually happens'}),h('p',{html:o.reveal})]));
-      if(o.then)box.appendChild(h('p',{class:'prose cpthen',html:o.then}));
+        h('span',{class:'lbl',text:'What actually happens'}),h('p',{html:T(o.reveal)})]));
+      if(o.then)box.appendChild(h('p',{class:'prose cpthen',html:T(o.then)}));
       box.appendChild(h('button',{class:'sm',onclick:()=>{delete S.cp[o.id];save();draw();refreshCpBars();}},
         'Predict again'));
       return;
     }
     const inp=o.short
-      ? h('input',{type:'text',placeholder:o.ph||'Your prediction'})
-      : h('textarea',{rows:3,placeholder:o.ph||'Your prediction — one line is enough'});
+      ? h('input',{type:'text',placeholder:T(o.ph)||'Your prediction'})
+      : h('textarea',{rows:3,placeholder:T(o.ph)||'Your prediction — one line is enough'});
     const go=h('button',{class:'primary',disabled:'true',onclick:()=>{
       S.cp[o.id]={v:inp.value.trim(),at:Date.now()};save();draw();updateProgress();refreshCpBars();}},
       'Commit prediction');
@@ -377,9 +399,9 @@ function cpTry(o){
   function draw(){
     box.innerHTML='';
     box.appendChild(cpHead('your turn', o.mins?('~'+o.mins+' min'):null));
-    box.appendChild(h('div',{class:'prose cpq',html:o.task}));
+    box.appendChild(h('div',{class:'prose cpq',html:T(o.task)}));
     const cur=S.cp[o.id]||{};
-    const ta=h('textarea',{rows:o.rows||4,placeholder:o.ph||'Write it here'});
+    const ta=h('textarea',{rows:o.rows||4,placeholder:T(o.ph)||'Write it here'});
     ta.value=cur.v||'';
     const saved=h('span',{class:'saved',text:'saved'});
     let t=null;
@@ -393,7 +415,7 @@ function cpTry(o){
     const rev=h('button',{class:'sm',onclick:()=>{
       rev.remove();
       box.appendChild(h('div',{class:'why'},[
-        h('span',{class:'lbl',text:'What a strong answer contains'}),h('p',{html:o.after})]));
+        h('span',{class:'lbl',text:'What a strong answer contains'}),h('p',{html:T(o.after)})]));
     }},'Show what a strong answer contains');
     function gate(){
       const enough=(ta.value||'').trim().length>=(o.min||15);
@@ -441,15 +463,15 @@ function labBlock(key){
   const L=(window.LABS||{})[key]; if(!L)return null;
   const body=h('div',{class:'labbody'});
   const box=h('div',{class:'lab'},[
-    h('div',{class:'labhead'},[h('span',{class:'k',text:L.k||'lab'}),h('h4',{text:L.title})]),body]);
+    h('div',{class:'labhead'},[h('span',{class:'k',text:L.k||'lab'}),h('h4',{text:T(L.title)})]),body]);
   try{L.render(body);}catch(e){body.appendChild(h('p',{class:'dim',text:'Lab unavailable.'}));}
-  if(L.note)body.appendChild(h('p',{class:'labnote',html:L.note}));
+  if(L.note)body.appendChild(h('p',{class:'labnote',html:T(L.note)}));
   return box;
 }
 
 /* ---------------- chapter page ---------------- */
 function sectionHead(idx,title,time){
-  return h('div',{class:'parthead'},[h('span',{class:'idx',text:idx}),h('h2',{text:title}),
+  return h('div',{class:'parthead'},[h('span',{class:'idx',text:idx}),h('h2',{text:T(title)}),
     time?h('span',{class:'t',text:time}):null]);
 }
 
@@ -458,12 +480,12 @@ function renderChapter(c){
   const part=window.PARTS[c.part-1];
   cpBars=[];                       // stale refreshers from the last chapter
   w.appendChild(h('header',{class:'chead'},[
-    h('div',{class:'eyebrow'},[h('span',{text:'Part '+ROMAN(c.part)+' · '+part.title}),
+    h('div',{class:'eyebrow'},[h('span',{text:'Part '+ROMAN(c.part)+' · '+T(part.title)}),
       h('span',{class:'dot'}),h('span',{text:'~'+c.minutes+' min'}),
       h('span',{class:'dot'}),h('span',{text:'one sitting'})]),
     h('div',{class:'chnum',text:String(c.num).padStart(2,'0')}),
-    h('h1',{text:c.title}),
-    h('p',{class:'concept',text:c.concept})]));
+    h('h1',{text:T(c.title)}),
+    h('p',{class:'concept',text:T(c.concept)})]));
 
   /* What this chapter stands on.
 
@@ -510,8 +532,8 @@ function renderChapter(c){
     if((c.needs||[]).length)
       nd.appendChild(h('ul',{class:'needlist'},c.needs.map(([what,why,ch])=>
         h('li',{},[
-          h('div',{},[h('strong',{text:what}),
-            h('span',{class:'needwhy',text:' — '+why})]),
+          h('div',{},[h('strong',{text:T(what)}),
+            h('span',{class:'needwhy',text:' — '+T(why)})]),
           h('a',{class:'chip',href:'#/ch/ch'+ch,text:'Chapter '+ch+' →'})]))));
     if(alsoRefs.length){
       const row=h('div',{class:'alsoref'},[
@@ -596,7 +618,7 @@ function renderChapter(c){
       'It needs a free Google Colab account and an API key — about twenty minutes, once, from the '+
       '<a href="#/setup">setup page</a>. If you do not want to, skip to the next chapter. Nothing later depends on it.'})]));
   c.handson.forEach(s=>{
-    const st=h('div',{class:'step'},[h('h3',{text:s.h})]);
+    const st=h('div',{class:'step'},[h('h3',{text:T(s.h)})]);
     st.appendChild(markTerms(h('div',{class:'prose'},[blocks(s.b)]),seenTerms,c.num));
     ho.appendChild(st);
   });
@@ -610,7 +632,7 @@ function renderChapter(c){
     const t=h('table');
     t.appendChild(h('thead',{},h('tr',{},[h('th',{text:'What you see'}),
       h('th',{text:'Most likely cause'}),h('th',{text:'Fix'})])));
-    t.appendChild(h('tbody',{},c.wrong.map(r=>h('tr',{},r.map(x=>h('td',{html:x}))))));
+    t.appendChild(h('tbody',{},c.wrong.map(r=>h('tr',{},Tl(r).map(x=>h('td',{html:x}))))));
     sw.appendChild(h('div',{class:'tblwrap'},t));
     w.appendChild(sw);
   }
@@ -620,7 +642,7 @@ function renderChapter(c){
   const hw=h('section',{class:'part',id:'homework'});
   hw.appendChild(sectionHead(c.num+'.'+n++,'Homework'));
   hw.appendChild(h('div',{class:'cards'},c.homework.map(([t,d])=>
-    h('div',{class:'card'},[h('h3',{text:t}),h('p',{html:d})]))));
+    h('div',{class:'card'},[h('h3',{text:T(t)}),h('p',{html:T(d)})]))));
   hw.appendChild(notebookBlock(c,'hw','Homework notes — rough, five bullets maximum',
     'The Rough-Notes Law applies. If it looks presentable it cost too much.'));
   w.appendChild(hw);
@@ -643,7 +665,7 @@ function renderChapter(c){
       return b;};
     gwrap.append(h('span',{text:'self-grade'}),mk('Got it','y',''),mk('Shaky','m',''),mk('Missed','n','red'));
     cy.appendChild(h('details',{class:'qa'},[
-      h('summary',{text:qa[0]}),h('div',{class:'ans',html:qa[1]}),gwrap]));
+      h('summary',{text:T(qa[0])}),h('div',{class:'ans',html:T(qa[1])}),gwrap]));
   });
   w.appendChild(cy);
   }
@@ -660,7 +682,7 @@ function renderChapter(c){
   if((c.takeaway||[]).length){
     cs.appendChild(h('div',{class:'takeaway'},[
       h('span',{class:'cplbl',text:'You can now'}),
-      h('ul',{class:'plain'},c.takeaway.map(t=>h('li',{html:t})))]));
+      h('ul',{class:'plain'},c.takeaway.map(t=>h('li',{html:T(t)})))]));
   }
   const doneRow=h('div',{style:'display:flex;gap:.6rem;align-items:center;margin-top:1.2rem;flex-wrap:wrap'});
   const db=h('button',{class:'primary',onclick:()=>{
@@ -675,7 +697,7 @@ function renderChapter(c){
   const next=CH[CH.indexOf(c)+1];
   doneRow.append(db);
   if(next)doneRow.appendChild(h('a',{class:'chip',href:'#/ch/'+next.id,
-    text:'Next: '+next.num+'. '+next.title+' →'}));
+    text:'Next: '+next.num+'. '+T(next.title)+' →'}));
   cs.appendChild(doneRow);
   const guard=h('div',{style:'margin-top:.8rem',html:sittingGuard()});
   cs.appendChild(guard);
@@ -683,8 +705,8 @@ function renderChapter(c){
 
   w.appendChild(h('div',{class:'foot'},[
     CH[CH.indexOf(c)-1]?h('a',{href:'#/ch/'+CH[CH.indexOf(c)-1].id,
-      text:'← '+CH[CH.indexOf(c)-1].num+'. '+CH[CH.indexOf(c)-1].title}):h('span'),
-    next?h('a',{href:'#/ch/'+next.id,text:next.num+'. '+next.title+' →'}):h('span')]));
+      text:'← '+CH[CH.indexOf(c)-1].num+'. '+T(CH[CH.indexOf(c)-1].title)}):h('span'),
+    next?h('a',{href:'#/ch/'+next.id,text:next.num+'. '+T(next.title)+' →'}):h('span')]));
   return w;
 }
 
@@ -786,9 +808,9 @@ function pageHome(){
     const chs=CH.filter(c=>c.part===p.n);
     w.appendChild(h('div',{class:'partcard'},[
       h('div',{class:'pn',text:'Part '+ROMAN(p.n)+' — Chapters '+chs[0].num+'–'+chs[chs.length-1].num}),
-      h('h3',{text:p.title}),h('p',{text:p.blurb}),
+      h('h3',{text:T(p.title)}),h('p',{text:T(p.blurb)}),
       h('div',{class:'chips'},chs.map(c=>h('a',{class:'chip'+(S.done[c.id]?' done':''),
-        href:'#/ch/'+c.id,text:c.num+'. '+c.title})))]));
+        href:'#/ch/'+c.id,text:c.num+'. '+T(c.title)})))]));
   });
 
   w.appendChild(h('h2',{style:'font-family:var(--serif);font-size:1.5rem;font-weight:500;margin:2.5rem 0 1rem',text:'The standing rules'}));
@@ -803,9 +825,9 @@ function pageSetup(){
   w.appendChild(h('header',{class:'phead'},[
     h('div',{class:'eyebrow'},[h('span',{text:'Before Chapter 1'}),h('span',{class:'dot'}),
       h('span',{text:'~45 min, once'})]),
-    h('h1',{text:S2.title}),h('p',{text:S2.blurb})]));
+    h('h1',{text:T(S2.title)}),h('p',{text:T(S2.blurb)})]));
   w.appendChild(h('div',{class:'callout'},[h('span',{class:'lbl',text:'In one sentence'}),
-    h('p',{text:S2.oneline})]));
+    h('p',{text:T(S2.oneline)})]));
   S2.sections.forEach((s,i)=>{
     const sec=h('section',{class:'part'});
     sec.appendChild(sectionHead(String(i+1).padStart(2,'0'),s.h,s.t));
@@ -814,7 +836,7 @@ function pageSetup(){
   });
   const t=h('table');
   t.appendChild(h('thead',{},h('tr',{},[h('th',{text:'Error'}),h('th',{text:'Likely cause'}),h('th',{text:'Fix'})])));
-  t.appendChild(h('tbody',{},S2.trouble.map(r=>h('tr',{},r.map(x=>h('td',{html:x}))))));
+  t.appendChild(h('tbody',{},S2.trouble.map(r=>h('tr',{},Tl(r).map(x=>h('td',{html:x}))))));
   const sec=h('section',{class:'part'});
   sec.appendChild(sectionHead('★','Universal Troubleshooting'));
   sec.appendChild(h('div',{class:'tblwrap'},t));
@@ -839,7 +861,7 @@ function pageNotebook(){
     if(!hw&&!cl)return; any=true;
     w.appendChild(h('div',{class:'nbentry'},[
       h('h3',{},[h('a',{href:'#/ch/'+c.id,style:'text-decoration:none',
-        text:c.num+'. '+c.title})]),
+        text:c.num+'. '+T(c.title)})]),
       hw?h('div',{},[h('label',{text:'homework'}),
         h('div',{class:'mono',style:'font-size:.82rem;white-space:pre-wrap;line-height:1.6;color:var(--ink-2)',text:hw})]):null,
       cl?h('div',{style:'margin-top:.7rem'},[h('label',{text:'close the sitting'}),
@@ -997,7 +1019,7 @@ function pageGlossary(){
       items.forEach(([t,d,ch])=>{
         const key=t;
         const ans=h('div',{class:'ans',style:'display:none'},[
-          h('div',{html:d}),h('div',{class:'dim',style:'margin-top:.4rem;font-size:.82rem',
+          h('div',{html:T(d)}),h('div',{class:'dim',style:'margin-top:.4rem;font-size:.82rem',
             text:'Built in Chapter '+ch})]);
         const btns=h('div',{class:'grade',style:'display:none'},[
           h('span',{text:'did you have it?'}),
@@ -1018,7 +1040,7 @@ function pageGlossary(){
       t.appendChild(h('thead',{},h('tr',{},[h('th',{text:'Term'}),h('th',{text:'Plain definition'}),
         h('th',{text:'Built in'})])));
       t.appendChild(h('tbody',{},items.map(([term,d,ch])=>h('tr',{},[
-        h('td',{},h('strong',{text:term})),h('td',{html:d}),
+        h('td',{},h('strong',{text:term})),h('td',{html:T(d)}),
         h('td',{},h('a',{class:'chip',href:'#/ch/ch'+ch,text:'Ch '+ch}))]))));
       body.appendChild(h('div',{class:'tblwrap'},t));
     }
@@ -1140,7 +1162,7 @@ function pageProgress(){
     const d=chs.filter(c=>S.done[c.id]).length;
     byPart.appendChild(h('div',{class:'card'},[
       h('div',{style:'display:flex;align-items:baseline;gap:.6rem'},[
-        h('h3',{style:'flex:1',text:'Part '+ROMAN(p.n)+' — '+p.title}),
+        h('h3',{style:'flex:1',text:'Part '+ROMAN(p.n)+' — '+T(p.title)}),
         h('span',{class:'mono dim',style:'font-size:.75rem',text:d+'/'+chs.length})]),
       h('div',{class:'bar',style:'margin:.5rem 0 .7rem'},
         [h('i',{style:'width:'+(d/chs.length*100)+'%'})]),
@@ -1217,7 +1239,13 @@ function renderRail(){
     ['#/','◉','Continue'],
     ['#/library','▤','Chapters'],
     ['#/practice','▶','Practice'+(dueN?'  ('+dueN+' due)':'')],
-    ['#/skills','▦','My progress']]));
+    ['#/skills','▦','My progress'],
+    /* Setup was in the drawer with everything else, on the reasoning that it is
+       optional. It is — but it is also the one thing you cannot start without
+       if you do want the code, and a reader who cannot find it concludes the
+       course expects an environment they were never told how to build. */
+    ['#/setup','⚙','Set up Colab + API key'],
+    ['#/install','▢','Install on iPad or phone']]));
 
   const openMore=!!S.railmore;
   const nDraft=window.STUDIO?window.STUDIO.dirtyKinds().length:0;
@@ -1245,7 +1273,7 @@ function renderRail(){
       ['#/vendor','⌗','Questions to ask vendors'],
       ['#/notebook','✐','My notes'],
       ['#/later','⋯','Topics I parked'],
-      ['#/setup','A','Optional — running real code'],
+      ['#/language','अ','Language — English or Hinglish'],
       ['#/studio','✦','Edit this course'+(nd?'  ('+nd+' draft'+(nd>1?'s':'')+')':'')]]);
   }
   r.appendChild(more);
@@ -1259,17 +1287,165 @@ function updateProgress(){
   if(p)p.textContent=Math.round(m)+'% mastery · '+tested+'/'+window.SKILLS.length+' skills measured';
 }
 
+/* ---------------- install as an app ----------------
+
+   The tracker is a web page that also installs to a home screen, which matters
+   more than it sounds: installed, it opens full-screen with no address bar, it
+   keeps working on a train, and it sits next to everything else you actually
+   open. Android and desktop Chrome offer this themselves. iPhone and iPad never
+   prompt — the only route is Share → Add to Home Screen, and a reader who does
+   not know that concludes the app simply does not support their tablet. */
+let deferredInstall=null;
+window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferredInstall=e;
+  const b=$('#installnow'); if(b)b.hidden=false; });
+
+function platformGuess(){
+  const ua=navigator.userAgent||'';
+  const ios=/iPad|iPhone|iPod/.test(ua) ||
+    (navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);   // iPadOS says Mac
+  if(ios)return 'ios';
+  if(/Android/.test(ua))return 'android';
+  return 'desktop';
+}
+function isInstalled(){
+  return window.matchMedia('(display-mode: standalone)').matches || navigator.standalone===true;
+}
+
+function pageInstall(){
+  const w=h('div',{class:'wrap'});
+  const here=platformGuess();
+  w.appendChild(h('header',{class:'phead'},[
+    h('div',{class:'eyebrow'},[h('span',{text:'Two minutes'}),h('span',{class:'dot'}),
+      h('span',{text:'nothing to download'})]),
+    h('h1',{text:'Put this on your home screen'}),
+    h('p',{text:'It installs as an app — full screen, no address bar, opens offline. '+
+      'There is no app store involved and nothing is downloaded; the page you are reading becomes the app.'})]));
+
+  if(isInstalled())
+    w.appendChild(h('div',{class:'callout'},[h('span',{class:'lbl',text:'Already installed'}),
+      h('p',{text:'You are reading this inside the installed app. Nothing left to do.'})]));
+
+  const step=(title,tag,mine,lines,note)=>{
+    const sec=h('section',{class:'part'});
+    sec.appendChild(h('div',{class:'parthead'},[
+      h('span',{class:'idx',text:tag}),h('h2',{text:title}),
+      mine?h('span',{class:'t',text:'you are on this'}):null]));
+    const d=h('div',{class:'prose'});
+    d.appendChild(h('ol',{class:'num'},lines.map(l=>h('li',{html:l}))));
+    if(note)d.appendChild(h('div',{class:'callout'},[h('span',{class:'lbl',text:'Worth knowing'}),h('p',{html:note})]));
+    sec.appendChild(d);
+    return sec;
+  };
+
+  const order=[here].concat(['ios','android','desktop'].filter(x=>x!==here));
+  const cards={
+    ios: ()=>step('iPad and iPhone','◲',here==='ios',[
+      'Open this site in <strong>Safari</strong>. Chrome on iOS cannot add to the home screen reliably — Safari can.',
+      'Tap the <strong>Share</strong> button — the square with an arrow coming out of the top. On an iPad it is in the top toolbar; on an iPhone it is at the bottom.',
+      'Scroll the share sheet down and tap <strong>Add to Home Screen</strong>.',
+      'Tap <strong>Add</strong>. The icon appears on your home screen.'],
+      'iOS gives an installed app its own storage, separate from Safari. So the first time you open it from the home screen, sign in again on the <a href="#/data">Progress &amp; Backup</a> page — after that both stay in step, because progress syncs through your account rather than through the browser.'),
+    android: ()=>step('Android','◱',here==='android',[
+      'Open this site in <strong>Chrome</strong>.',
+      'Chrome usually offers <strong>Install app</strong> by itself. If it does, take it and you are done.',
+      'Otherwise open the <strong>⋮</strong> menu and choose <strong>Install app</strong> (older versions say <em>Add to Home screen</em>).'],
+      null),
+    desktop: ()=>step('Windows and Mac','▭',here==='desktop',[
+      'In <strong>Chrome</strong> or <strong>Edge</strong>, look for the install icon at the right-hand end of the address bar — a small screen with an arrow.',
+      'Or open the menu and choose <strong>Install AI From Zero</strong>. It then opens in its own window, like any other application.'],
+      'Safari on a Mac does not install web apps this way. Add it to your Favourites instead, or use Chrome or Edge for the installed version.')
+  };
+  const btn=h('button',{class:'primary',id:'installnow',hidden:deferredInstall?null:'hidden',
+    onclick:async()=>{ if(!deferredInstall)return; deferredInstall.prompt();
+      await deferredInstall.userChoice; deferredInstall=null; btn.hidden=true; }},
+    'Install it now');
+  w.appendChild(h('div',{style:'margin:0 0 1.4rem'},[btn]));
+  order.forEach(k=>w.appendChild(cards[k]()));
+
+  const sec=h('section',{class:'part'});
+  sec.appendChild(sectionHead('★','If it does not work'));
+  const t=h('table');
+  t.appendChild(h('thead',{},h('tr',{},[h('th',{text:'What you see'}),h('th',{text:'Why'}),h('th',{text:'Fix'})])));
+  t.appendChild(h('tbody',{},[
+    ['No <em>Add to Home Screen</em> in the share sheet','You are in Chrome or another browser on iOS, or in an in-app browser opened from WhatsApp or Gmail','Open the address in Safari itself — tap the ⋯ or the compass icon and choose <em>Open in Safari</em>'],
+    ['The icon is a grey screenshot of the page','An older copy of the site is cached on the device','Pull down to refresh the page once, then add it again'],
+    ['Installed app shows no progress','Installed apps get their own storage on iOS','Sign in inside the installed app on the <a href="#/data">Progress &amp; Backup</a> page. Your progress is on your account, not on the device'],
+    ['No install option on desktop','Safari and Firefox do not install web apps','Use Chrome or Edge, or just bookmark it — everything works the same in a normal tab']
+  ].map(r=>h('tr',{},r.map(x=>h('td',{html:x}))))));
+  sec.appendChild(h('div',{class:'tblwrap'},t));
+  w.appendChild(sec);
+
+  w.appendChild(h('div',{class:'foot'},[h('span'),h('a',{href:'#/setup',text:'Set up Colab + API key →'})]));
+  return w;
+}
+
+/* ---------------- language ---------------- */
+function pageLanguage(){
+  const w=h('div',{class:'wrap'});
+  const cov=hingCoverage();
+  w.appendChild(h('header',{class:'phead'},[
+    h('div',{class:'eyebrow'},[h('span',{text:'Reading language'})]),
+    h('h1',{text:'English or Hinglish'}),
+    h('p',{text:'The course is written in English. It can also be read in Hinglish — the '+
+      'English-Hindi mix people actually speak at work. The ideas, the questions and the '+
+      'order are identical; only the sentences change.'})]));
+
+  const pick=(label,sub,val)=>{
+    const on=(S.lang||null)===val;
+    return h('button',{class:'opt'+(on?' sel':''),style:'text-align:left',
+      onclick:()=>{ S.lang=val; save(); applyLang(); }},
+      [h('span',{class:'ok',text:on?'✓':'·'}),
+       h('span',{},[h('strong',{text:label}),h('span',{class:'needwhy',text:' — '+sub})])]);
+  };
+  w.appendChild(h('div',{class:'qbody',style:'margin-bottom:1.6rem'},[
+    pick('English','As written. Every line, everywhere.',null),
+    pick('Hinglish','Roman script. Technical terms stay in English on purpose.','hi')]));
+
+  w.appendChild(h('div',{class:'callout'},[h('span',{class:'lbl',text:'Which words stay in English'}),
+    h('p',{html:'Token, prompt, context, retrieval, embedding, chunk, eval, latency, '+
+      'hallucination, agent, injection — and every other term the industry uses. '+
+      'Translating those would teach you a vocabulary nobody else speaks, and the whole '+
+      'point of the glossary is that you can use these words in a meeting. '+
+      'The explanation around them is what changes.'})]));
+
+  const sec=h('section',{class:'part'});
+  sec.appendChild(sectionHead('☰','How much is translated so far'));
+  sec.appendChild(h('p',{class:'dim',style:'font-size:.87rem;margin:0 0 1rem',
+    text:'Hinglish is being added a section at a time. Anything not translated yet is shown '+
+      'in English rather than left blank, so nothing is ever missing from a page — you will '+
+      'just see the two mixed while this fills in.'}));
+  const bar=(label,o)=>{
+    const pct=o.total?Math.round(o.have*100/o.total):0;
+    return h('div',{class:'skrow'},[
+      h('span',{class:'skn'},[h('strong',{text:label})]),
+      h('span',{class:'skm'},[
+        h('span',{class:'meter'},[h('i',{class:pct>=70?'ok':pct>=30?'':'low',
+          style:'width:'+Math.max(2,pct)+'%'})]),
+        h('span',{class:'skpct',text:pct+'%'})])]);
+  };
+  const list=h('div',{class:'skrows'});
+  cov.groups.forEach(o=>list.appendChild(bar(o.label,o)));
+  sec.appendChild(list);
+  sec.appendChild(h('div',{class:'stats',style:'margin-top:1rem'},[
+    tile('overall',cov.pct+'%',cov.pct>66?'ok':''),
+    tile('lines translated',cov.have+' / '+cov.total,'')]));
+  w.appendChild(sec);
+  return w;
+}
+
 const V=()=>window.VIEWS;
 const ROUTES={'':()=>V().dashboard(),'library':pageHome,
   'skills':()=>V().skills(),'analytics':()=>V().analytics(),
   'exercises':()=>V().exercises(),'processes':()=>V().processes(),
-  'setup':pageSetup,'notebook':pageNotebook,'ledger':pageLedger,
+  'setup':pageSetup,'install':pageInstall,'language':pageLanguage,
+  'notebook':pageNotebook,'ledger':pageLedger,
   'later':pageLater,'glossary':pageGlossary,'vendor':pageVendor,'map':pageMap,'card':pageCard,
   'progress':pageProgress,'labs':pageLabs,'data':()=>V().data(),
   'studio':()=>window.STUDIO.studio([])};
 const CRUMB={'':'Dashboard','library':'Library','skills':'Skill Matrix','analytics':'Analytics',
   'exercises':'Exercises','processes':'Processes','practice':'Practice','skill':'Skill',
-  'data':'Progress & Backup','studio':'Content Studio'};
+  'data':'Progress & Backup','studio':'Content Studio','install':'Install as an app',
+  'language':'Language','setup':'Setup'};
 
 function route(){
   const hash=location.hash.replace(/^#\/?/,'').split('#')[0];
@@ -1325,7 +1501,7 @@ function buildIndex(){
     {k:'page',t:'Glossary',h:'#/glossary'},{k:'page',t:'LATER Page',h:'#/later'},
     {k:'page',t:'Where You Are',h:'#/progress'});
   CH.forEach(c=>{
-    idx.push({k:'ch '+c.num,t:c.title,d:c.concept,h:'#/ch/'+c.id});
+    idx.push({k:'ch '+c.num,t:T(c.title),d:T(c.concept),h:'#/ch/'+c.id});
     c.words.forEach(([t,d])=>idx.push({k:'term',t,d:'Ch '+c.num+' · '+d.replace(/<[^>]+>/g,''),h:'#/ch/'+c.id}));
     c.check.forEach(q=>idx.push({k:'question',t:q[0],d:'Ch '+c.num,h:'#/ch/'+c.id}));
   });
@@ -1370,6 +1546,76 @@ function applyTheme(){
   if(b)b.textContent=S.theme==='dark'?'Light':S.theme==='light'?'Dark':'Theme';
 }
 
+/* The button says the language you would switch to, like the theme button. */
+function applyLang(reroute){
+  const b=$('#langbtn');
+  if(b){ b.textContent=S.lang==='hi'?'English':'Hinglish'; b.classList.toggle('on',S.lang==='hi'); }
+  document.documentElement.setAttribute('data-lang',S.lang==='hi'?'hi':'en');
+  if(reroute!==false){ TERMS=null; route(); renderRail(); }
+}
+
+/* Every line the Hinglish layer could carry, in reading order, grouped the way
+   a reader thinks about the course. Derived from the content itself rather than
+   listed by hand, so it cannot drift — it is what drives both the coverage
+   figures on the Language page and the editor in the Studio. */
+function hingStrings(){
+  const groups=[], seen=new Set();
+  const g=label=>{ const o={label,strings:[]}; groups.push(o); return o; };
+  const add=(o,v)=>{ if(typeof v!=='string')return; const k=v.trim();
+    if(!k||seen.has(k))return; seen.add(k); o.strings.push(k); };
+  /* An id is a key, not a sentence: translating "ch0-tap" would break the
+     checkpoint it names. */
+  const SKIPKEY=new Set(['id']);
+  const walk=(o,v)=>{ if(typeof v==='string')return add(o,v);
+    if(Array.isArray(v))return v.forEach(x=>walk(o,x));
+    if(v&&typeof v==='object')
+      Object.keys(v).forEach(k=>{ if(!SKIPKEY.has(k))walk(o,v[k]); }); };
+
+  (window.PARTS||[]).forEach(p=>{
+    const o=g('Part '+ROMAN(p.n)+' — '+p.title);
+    add(o,p.title); add(o,p.blurb);
+    CH.filter(c=>c.part===p.n).forEach(c=>{
+      add(o,c.title); add(o,c.concept);
+      walk(o,c.takeaway);
+      (c.needs||[]).forEach(n=>{ add(o,n[0]); add(o,n[1]); });
+      /* code samples are code, and a lab or question block is only an id */
+      (c.story||[]).forEach(b=>{ if(['code','lab','q'].includes(b[0]))return; walk(o,b.slice(1)); });
+      (c.handson||[]).forEach(st=>{ add(o,st.h);
+        (st.b||[]).forEach(b=>{ if(b[0]==='code')return; walk(o,b.slice(1)); }); });
+    });
+  });
+
+  const q=g('Practice questions');
+  ((window.ENG&&window.ENG.ITEMS)||[]).forEach(i=>{
+    add(q,i.stem); add(q,i.why);
+    if(i.type==='judge') add(q,i.ans);
+    else if(i.type!=='num') walk(q,i.opts);
+  });
+
+  const su=g('Setup walkthrough');
+  const S2=window.SETUP||{};
+  add(su,S2.title); add(su,S2.blurb); add(su,S2.oneline);
+  (S2.sections||[]).forEach(x=>{ add(su,x.h);
+    (x.b||[]).forEach(b=>{ if(b[0]==='code')return; walk(su,b.slice(1)); }); });
+  walk(su,S2.trouble);
+
+  const lb=g('In-page tools');
+  Object.values(window.LABS||{}).forEach(l=>{ add(lb,l.title); add(lb,l.note); });
+
+  const gl=g('Glossary definitions');
+  (window.GLOSSARY||[]).forEach(x=>add(gl,x[1]));
+  return groups;
+}
+window.HINGSTRINGS=hingStrings;
+
+function hingCoverage(){
+  const H=window.HING||{};
+  const groups=hingStrings().map(o=>({label:o.label,total:o.strings.length,
+    have:o.strings.filter(k=>H[k]!==undefined).length}));
+  const have=groups.reduce((a,o)=>a+o.have,0), total=groups.reduce((a,o)=>a+o.total,0);
+  return {groups,have,total,pct:total?Math.round(have*100/total):0};
+}
+
 /* ---------------- boot ---------------- */
 function boot(){
   document.body.appendChild(h('div',{class:'shell'},[
@@ -1383,6 +1629,8 @@ function boot(){
         h('span',{class:'sp'}),
         h('a',{class:'syncpill',id:'syncpill',href:'#/data',hidden:'hidden'}),
         h('button',{class:'sm',onclick:openPal},'Search  ⌘K'),
+        h('button',{class:'sm',id:'langbtn',onclick:()=>{
+          S.lang=S.lang==='hi'?null:'hi';save();applyLang();}}),
         h('button',{class:'sm',id:'themebtn',onclick:()=>{
           S.theme=S.theme==='dark'?'light':S.theme==='light'?null:'dark';save();applyTheme();}},'Theme')]),
       h('main',{class:'main',id:'main'})])]));
@@ -1400,6 +1648,7 @@ function boot(){
     else if(e.key==='Enter'){const a=$('#palres a.cur');if(a){location.hash=a.getAttribute('href');closePal();}}
   });
   applyTheme();
+  applyLang(false);
   window.addEventListener('hashchange',route);
   route();
   ACCOUNT.boot().then(()=>{ if(ACCOUNT.state==='off') runAutoSync(); });

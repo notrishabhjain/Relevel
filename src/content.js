@@ -20,6 +20,7 @@ const BUILT_IN = {
   items: [].concat(window.ITEMS1 || [], window.ITEMS2 || [], window.ITEMS3 || [], window.ITEMS4 || []),
   exercises: window.EXERCISES || [],
   processes: window.PROCESSES || [],
+  hinglish: window.HING || {},
   reference: {
     DOMAINS: window.DOMAINS, PARTS: window.PARTS, RULES: window.RULES,
     SETUP: window.SETUP, GLOSSARY: window.GLOSSARY, VENDOR: window.VENDOR,
@@ -39,6 +40,7 @@ function apply(c){
   window.ALL_ITEMS = (c.items && c.items.length) ? c.items : BUILT_IN.items;
   window.EXERCISES = c.exercises || BUILT_IN.exercises;
   window.PROCESSES = c.processes || BUILT_IN.processes;
+  window.HING = c.hinglish || BUILT_IN.hinglish;
   const ref = c.reference || BUILT_IN.reference;
   Object.keys(BUILT_IN.reference).forEach(k => {
     window[k] = ref[k] !== undefined ? ref[k] : BUILT_IN.reference[k];
@@ -105,7 +107,7 @@ async function reset(kind){
 }
 function current(kind){
   const live = {chapters:window.CHAPTERS, skills:window.SKILLS, items:window.ALL_ITEMS,
-    exercises:window.EXERCISES, processes:window.PROCESSES};
+    exercises:window.EXERCISES, processes:window.PROCESSES, hinglish:window.HING};
   if(kind === 'reference'){
     const o = {}; Object.keys(BUILT_IN.reference).forEach(k => o[k] = window[k]); return o;
   }

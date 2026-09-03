@@ -93,7 +93,21 @@ for (const s of C.skills)
   for (const n of s.ch || [])
     if (!chapterNums.has(n)) fail(`skill ${s.id} cites chapter ${n}, which does not exist`);
 
+/* The Hinglish layer is keyed on the English line. Edit that line in English
+   and the translation silently stops applying — the page still reads correctly,
+   just in the wrong language, which is exactly the kind of failure nobody
+   notices. So every key has to still exist somewhere in the content. */
+const hing = C.hinglish || {};
+const hay = JSON.stringify(C) + fs.readFileSync(path.join(ROOT, 'src/labs.js'), 'utf8');
+const stale = Object.keys(hing).filter(k =>
+  !hay.includes(JSON.stringify(k).slice(1, -1)) && !hay.includes(k));
+if (stale.length) {
+  fail(`${stale.length} Hinglish translation(s) key off English that no longer appears in the course` +
+       ` — first: "${stale[0].slice(0, 70)}…"`);
+}
+
 console.log(`${C.chapters.length} chapters · ${C.items.length} questions · ${C.skills.length} skills`);
+console.log(`${Object.keys(hing).length} lines carry a Hinglish translation`);
 console.log(`${checkpoints} checkpoints across the reading · ${asked.size} of the bank asked in a chapter`);
 if (silent.length) console.log(`chapters with no checkpoints yet: ${silent.map(c => c.num).join(', ')}`);
 if (problems.length) {
