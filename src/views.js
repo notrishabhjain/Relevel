@@ -476,7 +476,7 @@ function skills(){
       return h('a',{class:'skrow',href:'#/skill/'+s.id},[
         h('span',{class:'skid',text:s.id}),
         h('span',{class:'skn'},[h('strong',{text:s.n}),
-          h('span',{class:'skcore',text:s.core})]),
+          h('span',{class:'skcore',text:TR(s.core)})]),
         dueN?h('span',{class:'pill red',text:dueN+' due'}):null,
         h('span',{class:'skm'},[meter(m,m>=70?'ok':m>=45?'':'low'),
           h('span',{class:'skpct',text:stt.n?pct(m):'—'})]),
@@ -497,7 +497,7 @@ function skillPage(id){
   w.appendChild(h('header',{class:'chead'},[
     h('div',{class:'eyebrow'},[h('span',{text:dom.name}),h('span',{class:'dot'}),h('span',{text:s.id})]),
     h('h1',{text:s.n}),
-    h('p',{class:'concept',text:s.core})]));
+    h('p',{class:'concept',text:TR(s.core)})]));
 
   w.appendChild(h('div',{class:'stats'},[
     tile('mastery',stt.n?pct(m):'untested',m>=70?'ok':m>=45?'':'red'),
@@ -513,7 +513,7 @@ function skillPage(id){
   w.appendChild(h('div',{class:'levels'},s.L.map((d,i)=>
     h('div',{class:'lvrow'+(L===i+1?' cur':'')+(L>i+1?' past':'')},[
       h('span',{class:'pill lv'+(i+1),text:'L'+(i+1)+' '+LN()[i+1]}),
-      h('span',{text:d}),
+      h('span',{text:TR(d)}),
       L===i+1?h('span',{class:'pill ok',text:'you are here'}):null]))));
 
   w.appendChild(h('h2',{class:'sec',text:'How to move it'}));

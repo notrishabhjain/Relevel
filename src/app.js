@@ -1411,9 +1411,13 @@ function pageLanguage(){
   const sec=h('section',{class:'part'});
   sec.appendChild(sectionHead('☰','How much is translated so far'));
   sec.appendChild(h('p',{class:'dim',style:'font-size:.87rem;margin:0 0 1rem',
-    text:'Hinglish is being added a section at a time. Anything not translated yet is shown '+
-      'in English rather than left blank, so nothing is ever missing from a page — you will '+
-      'just see the two mixed while this fills in.'}));
+    text: cov.pct >= 100
+      ? 'Every line of the course has a Hinglish version. If a line is ever edited in English '+
+        'its translation stops applying and that line reads in English again — never blank, '+
+        'and the figure below will say so.'
+      : 'Hinglish is being added a section at a time. Anything not translated yet is shown '+
+        'in English rather than left blank, so nothing is ever missing from a page — you will '+
+        'just see the two mixed while this fills in.'}));
   const bar=(label,o)=>{
     const pct=o.total?Math.round(o.have*100/o.total):0;
     return h('div',{class:'skrow'},[
@@ -1598,6 +1602,14 @@ function hingStrings(){
   (S2.sections||[]).forEach(x=>{ add(su,x.h);
     (x.b||[]).forEach(b=>{ if(b[0]==='code')return; walk(su,b.slice(1)); }); });
   walk(su,S2.trouble);
+
+  /* What each skill claims you can do, and the ladder of levels under it. The
+     names of skills and domains are labels rather than prose, and stay in
+     English along with the rest of the interface. */
+  const sk=g('Skills and levels');
+  (window.DOMAINS||[]).forEach(d=>add(sk,d.blurb));
+  (window.SKILLS||[]).forEach(x=>{ add(sk,x.core); walk(sk,x.L); });
+  (window.LEVEL_NAMES||[]).forEach(x=>add(sk,x));
 
   const lb=g('In-page tools');
   Object.values(window.LABS||{}).forEach(l=>{ add(lb,l.title); add(lb,l.note); });

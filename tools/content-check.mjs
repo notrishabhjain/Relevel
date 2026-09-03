@@ -98,6 +98,50 @@ for (const s of C.skills)
    just in the wrong language, which is exactly the kind of failure nobody
    notices. So every key has to still exist somewhere in the content. */
 const hing = C.hinglish || {};
+
+/* The other half: every line the reader can be shown needs a Hinglish version,
+   or the page mixes the two languages. This walks the same shapes app.js does,
+   so the two cannot disagree about what counts as translatable. */
+const need = new Set();
+const wantAdd = v => { if (typeof v === 'string' && v.trim()) need.add(v.trim()); };
+const wantWalk = v => {
+  if (typeof v === 'string') return wantAdd(v);
+  if (Array.isArray(v)) return v.forEach(wantWalk);
+  if (v && typeof v === 'object')
+    Object.keys(v).forEach(k => { if (k !== 'id') wantWalk(v[k]); });
+};
+const prose = b => { if (!Array.isArray(b)) return;
+  if (['code', 'lab', 'q'].includes(b[0])) return; wantWalk(b.slice(1)); };
+(C.reference.PARTS || []).forEach(p => { wantAdd(p.title); wantAdd(p.blurb); });
+C.chapters.forEach(c => {
+  wantAdd(c.title); wantAdd(c.concept); wantWalk(c.takeaway);
+  (c.needs || []).forEach(n => { wantAdd(n[0]); wantAdd(n[1]); });
+  (c.story || []).forEach(prose);
+  (c.handson || []).forEach(st => { wantAdd(st.h); (st.b || []).forEach(prose); });
+});
+C.items.forEach(([, , , type, stem, opts, ans, why]) => {
+  wantAdd(stem); wantAdd(why);
+  if (type === 'judge') wantAdd(ans);
+  else if (type !== 'num') wantWalk(opts);
+});
+const SU = C.reference.SETUP || {};
+wantAdd(SU.title); wantAdd(SU.blurb); wantAdd(SU.oneline);
+(SU.sections || []).forEach(x => { wantAdd(x.h); (x.b || []).forEach(prose); });
+wantWalk(SU.trouble);
+(C.reference.DOMAINS || []).forEach(d => wantAdd(d.blurb));
+C.skills.forEach(x => { wantAdd(x.core); wantWalk(x.L); });
+(C.reference.LEVEL_NAMES || []).forEach(wantAdd);
+/* Labs live in code rather than in the content rows. */
+const labsSrc = fs.readFileSync(path.join(ROOT, 'src/labs.js'), 'utf8');
+for (const m of labsSrc.matchAll(/\b(?:title|note):\s*'((?:[^'\\]|\\.)*)'/g))
+  wantAdd(m[1].replace(/\\(['\\])/g, '$1'));
+(C.reference.GLOSSARY || []).forEach(x => wantAdd(x[1]));
+
+const untranslated = [...need].filter(k => hing[k] === undefined);
+if (untranslated.length) {
+  fail(`${untranslated.length} line(s) of ${need.size} have no Hinglish translation` +
+       ` — first: "${untranslated[0].slice(0, 70)}…"`);
+}
 const hay = JSON.stringify(C) + fs.readFileSync(path.join(ROOT, 'src/labs.js'), 'utf8');
 const stale = Object.keys(hing).filter(k =>
   !hay.includes(JSON.stringify(k).slice(1, -1)) && !hay.includes(k));
@@ -107,7 +151,7 @@ if (stale.length) {
 }
 
 console.log(`${C.chapters.length} chapters · ${C.items.length} questions · ${C.skills.length} skills`);
-console.log(`${Object.keys(hing).length} lines carry a Hinglish translation`);
+console.log(`${need.size - untranslated.length} of ${need.size} lines carry a Hinglish translation`);
 console.log(`${checkpoints} checkpoints across the reading · ${asked.size} of the bank asked in a chapter`);
 if (silent.length) console.log(`chapters with no checkpoints yet: ${silent.map(c => c.num).join(', ')}`);
 if (problems.length) {

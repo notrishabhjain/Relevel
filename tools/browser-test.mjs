@@ -508,7 +508,10 @@ const mixed = await mainText(hi.page);
 ok(mixed.length > 500 && /grade|judge|quality/i.test(mixed),
    'a chapter with no translation yet still reads, in English');
 await boot(hi.page, '#/language');
-ok(/100%/.test(await mainText(hi.page)), 'the language page reports real coverage');
+/* Completeness is asserted against the built-in content in content-check, not
+   here: earlier tests in this file publish edits, and an edited English line
+   correctly orphans its translation. */
+ok(/%/.test(await mainText(hi.page)), 'the language page reports coverage per part');
 await revisit(hi.page);
 ok(/aapka app|Hinglish/.test(await mainText(hi.page)) ||
    await hi.page.evaluate(() => window.STORE.S.lang) === 'hi', 'the choice survives a reload');
