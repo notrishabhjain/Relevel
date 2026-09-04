@@ -103,7 +103,13 @@ r = await api('/api/content?reset=items', { method: 'POST' });
 ok(r.status === 200, 'reset succeeds', r.status);
 r = await api('/api/content?kind=items');
 ok(r.body.content.items.data[0][4] !== 'EDITED STEM', 'reset restored the built-in text');
-ok(/reset/.test(r.body.content.items.updatedBy || ''), 'the reset is recorded in the row', r.body.content.items.updatedBy);
+/* A reset hands the kind back to the build, so the live row goes back to
+   being built-in-owned and later deploys may update it again — which is the
+   whole point of resetting. Who asked for it is recorded in the history entry
+   (there is no endpoint that reads content history, so the seeding suite
+   covers the ownership rule end to end instead). */
+ok(r.body.content.items.updatedBy === 'built-in',
+   'reset hands the kind back to the build', r.body.content.items.updatedBy);
 
 console.log('\n— signing out —');
 await api('/api/auth/logout', { method: 'POST' });

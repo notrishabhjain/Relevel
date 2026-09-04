@@ -512,6 +512,20 @@ await boot(hi.page, '#/language');
    here: earlier tests in this file publish edits, and an edited English line
    correctly orphans its translation. */
 ok(/%/.test(await mainText(hi.page)), 'the language page reports coverage per part');
+/* The bug this guards: a device reading content the translations were not
+   written against showed every line in English, and looked exactly like the
+   switch doing nothing. */
+await boot(hi.page, '#/ch/ch2');
+await hi.page.evaluate(() => { window.HING = {}; location.hash = '#/ch/ch3'; });
+await hi.page.waitForTimeout(400);
+ok(/nothing here is translated/.test(await mainText(hi.page)),
+   'Hinglish with no matching translations says so instead of silently reading English');
+ok(/#\/language/.test(await hi.page.content()), 'and points at the page that explains why');
+await hi.page.evaluate(() => { location.hash = '#/ch/ch1'; });
+await hi.page.waitForTimeout(400);
+const both = await hi.page.evaluate(() =>
+  [...document.querySelectorAll('#langbtn .lgo')].map(x => x.textContent).join(''));
+ok(both === 'ENHI', 'the toggle shows both languages rather than only the other one', both);
 await revisit(hi.page);
 ok(/aapka app|Hinglish/.test(await mainText(hi.page)) ||
    await hi.page.evaluate(() => window.STORE.S.lang) === 'hi', 'the choice survives a reload');

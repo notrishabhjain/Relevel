@@ -238,6 +238,14 @@ button.red{color:var(--red);border-color:var(--red)}
 button.red.on{background:var(--red);color:#fff}
 button.sm{font-size:.72rem;padding:.24rem .55rem}
 
+/* Reading-language toggle: both languages on show, the live one filled in, so
+   the control never reads as a label for the language you are already in. */
+button.langtog{display:inline-flex;gap:0;padding:.16rem;align-items:center}
+button.langtog .lgo{font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;
+  padding:.1rem .38rem;border-radius:calc(var(--r) - 3px);color:var(--muted);
+  transition:background .15s,color .15s}
+button.langtog .lgo.on{background:var(--verified);color:var(--paper)}
+
 input,textarea,select{font-family:var(--sans);font-size:.88rem;background:var(--paper);
   color:var(--ink);border:1px solid var(--rule);border-radius:var(--r);padding:.45rem .6rem;
   width:100%}
