@@ -10,7 +10,8 @@ import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
-const CONTENT_KINDS = ['chapters', 'skills', 'items', 'exercises', 'processes', 'reference'];
+const CONTENT_KINDS = ['chapters', 'skills', 'items', 'exercises', 'processes', 'reference',
+  'hinglish'];
 
 let pool = null;
 let readyPromise = null;

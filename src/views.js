@@ -9,6 +9,8 @@ const h=(t,a,c)=>{const e=document.createElement(t);
   return e;};
 const E=()=>window.ENG;
 const S=()=>window.STORE.S;
+/* Hinglish lookup, defined in app.js (later in the bundle, so reached lazily). */
+const TR=s=>(window.T?window.T(s):s);
 const save=()=>window.STORE.save();
 const pct=v=>Math.round(v)+'%';
 const LN=()=>window.LEVEL_NAMES;
@@ -53,7 +55,7 @@ function resumePanel(st, eng){
   box.appendChild(h('div',{class:'resumelead'},[
     h('div',{style:'flex:1;min-width:0'},[
       h('span',{class:'cplbl',text:lapsed!=null&&lapsed>=5?'Start again here':'Next'}),
-      h('h3',{text:lead.title}),
+      h('h3',{text:TR(lead.title)}),
       h('p',{text:lead.d})]),
     h('div',{class:'resumego'},[
       h('span',{class:'mins',text:'~'+lead.mins+' min'}),
@@ -61,13 +63,13 @@ function resumePanel(st, eng){
 
   if(r.tiny) box.appendChild(h('div',{class:'tiny'},[
     h('span',{class:'tinylbl',text:'Not tonight?'}),
-    h('p',{html:'Then do the smallest version instead. <strong>'+esc2(r.tiny.title)+
+    h('p',{html:'Then do the smallest version instead. <strong>'+esc2(TR(r.tiny.title))+
       '</strong> — '+esc2(r.tiny.d)}),
     h('a',{class:'chip',href:r.tiny.h,text:'Two minutes →'})]));
 
   if(r.steps.length>1) box.appendChild(h('div',{class:'alsorow'},
     r.steps.slice(1,3).map(s2=>h('a',{class:'chip',href:s2.h,
-      text:s2.title+' · ~'+s2.mins+' min'}))));
+      text:TR(s2.title)+' · ~'+s2.mins+' min'}))));
   return box;
 }
 
@@ -129,7 +131,7 @@ function dashboard(){
         h('h3',{text:d.name}),
         h('span',{class:'dommet',text:pct(d.m)})]),
       meter(d.m, d.m>=70?'ok':d.m>=45?'':'low'),
-      h('p',{class:'domblurb',text:d.blurb}),
+      h('p',{class:'domblurb',text:TR(d.blurb)}),
       h('div',{class:'sparks'},sk.map(s=>{
         const m=eng.shown(st,s.id);
         return h('span',{class:'spark l'+eng.levelOf(m),title:s.n+' — '+pct(m)});
@@ -202,11 +204,11 @@ function questionCard(it, o){
   const qt0=Date.now();
 
   const meta=h('div',{class:'qmeta'});
-  if(o.showSkill!==false && sk) meta.appendChild(h('a',{class:'pill',href:'#/skill/'+sk.id,text:sk.n}));
+  if(o.showSkill!==false && sk) meta.appendChild(h('a',{class:'pill',href:'#/skill/'+sk.id,text:TR(sk.n)}));
   meta.appendChild(h('span',{class:'pill d'+it.diff,
     text:['recall','application','analysis'][it.diff-1]}));
   card.appendChild(meta);
-  card.appendChild(h('div',{class:'qstem',html:it.stem}));
+  card.appendChild(h('div',{class:'qstem',html:TR(it.stem)}));
 
   let response=null, conf=null;
   const body=h('div',{class:'qbody'});
@@ -216,7 +218,7 @@ function questionCard(it, o){
       const b=h('button',{class:'opt',onclick:()=>{response=i;
         [...body.querySelectorAll('.opt')].forEach(x=>x.classList.remove('sel'));
         b.classList.add('sel'); enable();}},
-        [h('span',{class:'ok',text:String.fromCharCode(65+i)}),h('span',{html:op})]);
+        [h('span',{class:'ok',text:String.fromCharCode(65+i)}),h('span',{html:TR(op)})]);
       body.appendChild(b);
     });
   } else if(it.type==='multi'){
@@ -226,14 +228,14 @@ function questionCard(it, o){
       const b=h('button',{class:'opt',onclick:()=>{
         const p=response.indexOf(i);
         if(p<0){response.push(i);b.classList.add('sel');}else{response.splice(p,1);b.classList.remove('sel');}
-        enable();}},[h('span',{class:'ok',text:'✓'}),h('span',{html:op})]);
+        enable();}},[h('span',{class:'ok',text:'✓'}),h('span',{html:TR(op)})]);
       body.appendChild(b);
     });
   } else if(it.type==='num'){
-    const inp=h('input',{type:'number',step:'any',placeholder:it.opts[1]||'Your answer'});
+    const inp=h('input',{type:'number',step:'any',placeholder:TR(it.opts[1])||'Your answer'});
     inp.addEventListener('input',()=>{response=inp.value;enable();});
     body.appendChild(h('div',{class:'numrow'},[inp,h('span',{class:'unit',text:it.opts[0]||''})]));
-    if(it.opts[1])body.appendChild(h('p',{class:'qhint',text:it.opts[1]}));
+    if(it.opts[1])body.appendChild(h('p',{class:'qhint',text:TR(it.opts[1])}));
   } else if(it.type==='order'){
     response=[];
     card.appendChild(h('p',{class:'qhint',text:'Click in order, highest first.'}));
@@ -243,7 +245,7 @@ function questionCard(it, o){
         if(response.includes(i))return;
         response.push(i); b.classList.add('sel');
         b.querySelector('.ok').textContent=response.length; enable();}},
-        [h('span',{class:'ok',text:'·'}),h('span',{html:op})]);
+        [h('span',{class:'ok',text:'·'}),h('span',{html:TR(op)})]);
       pool.appendChild(b);
     });
     body.appendChild(pool);
@@ -285,7 +287,7 @@ function questionCard(it, o){
 
     if(it.type==='judge'){
       card.appendChild(h('div',{class:'model'},[
-        h('span',{class:'lbl',text:'Model answer'}),h('p',{html:it.ans})]));
+        h('span',{class:'lbl',text:'Model answer'}),h('p',{html:TR(it.ans)})]));
       const sc=h('div',{class:'selfscore'},[h('span',{class:'clab',text:'How did yours compare?'})]);
       ['Missed it','Partial','Solid','Sharper than the model'].forEach((l,i)=>{
         sc.appendChild(h('button',{class:'sm',onclick:()=>{
@@ -319,7 +321,7 @@ function questionCard(it, o){
       conf>=0.75&&!ok?h('span',{class:'vs',text:'— and you were confident. Worth noting.'}):null,
       conf<=0.5&&ok?h('span',{class:'vs',text:'— correct but unsure. Also worth noting.'}):null]));
     if(it.why) card.appendChild(h('div',{class:'why'},[
-      h('span',{class:'lbl',text:'Why'}),h('p',{html:it.why})]));
+      h('span',{class:'lbl',text:'Why'}),h('p',{html:TR(it.why)})]));
     if(o.onNext) card.appendChild(h('button',{class:'primary big',onclick:o.onNext},
       o.nextLabel||'Next question'));
     if(o.scrollOnReveal) card.scrollIntoView({block:'start'});
@@ -474,7 +476,7 @@ function skills(){
       return h('a',{class:'skrow',href:'#/skill/'+s.id},[
         h('span',{class:'skid',text:s.id}),
         h('span',{class:'skn'},[h('strong',{text:s.n}),
-          h('span',{class:'skcore',text:s.core})]),
+          h('span',{class:'skcore',text:TR(s.core)})]),
         dueN?h('span',{class:'pill red',text:dueN+' due'}):null,
         h('span',{class:'skm'},[meter(m,m>=70?'ok':m>=45?'':'low'),
           h('span',{class:'skpct',text:stt.n?pct(m):'—'})]),
@@ -495,7 +497,7 @@ function skillPage(id){
   w.appendChild(h('header',{class:'chead'},[
     h('div',{class:'eyebrow'},[h('span',{text:dom.name}),h('span',{class:'dot'}),h('span',{text:s.id})]),
     h('h1',{text:s.n}),
-    h('p',{class:'concept',text:s.core})]));
+    h('p',{class:'concept',text:TR(s.core)})]));
 
   w.appendChild(h('div',{class:'stats'},[
     tile('mastery',stt.n?pct(m):'untested',m>=70?'ok':m>=45?'':'red'),
@@ -511,7 +513,7 @@ function skillPage(id){
   w.appendChild(h('div',{class:'levels'},s.L.map((d,i)=>
     h('div',{class:'lvrow'+(L===i+1?' cur':'')+(L>i+1?' past':'')},[
       h('span',{class:'pill lv'+(i+1),text:'L'+(i+1)+' '+LN()[i+1]}),
-      h('span',{text:d}),
+      h('span',{text:TR(d)}),
       L===i+1?h('span',{class:'pill ok',text:'you are here'}):null]))));
 
   w.appendChild(h('h2',{class:'sec',text:'How to move it'}));
@@ -527,13 +529,13 @@ function skillPage(id){
   s.ch.forEach(c=>{
     const ch=(window.PART1.concat(window.PART2,window.PART3)).find(x=>x.num===c);
     if(ch)res.appendChild(h('a',{class:'card act',href:'#/ch/'+ch.id},[
-      h('h3',{text:'Read: Chapter '+c+' — '+ch.title}),h('p',{text:ch.concept}),
+      h('h3',{text:'Read: Chapter '+c+' — '+TR(ch.title)}),h('p',{text:TR(ch.concept)}),
       h('span',{class:'go',text:'~'+ch.minutes+' min →'})]));
   });
   (s.labs||[]).forEach(k=>{
     const l=(window.LABS||{})[k]; if(!l)return;
     res.appendChild(h('a',{class:'card act',href:'#/labs',
-      onclick:()=>{}},[h('h3',{text:'Lab: '+l.title}),
+      onclick:()=>{}},[h('h3',{text:'Lab: '+TR(l.title)}),
       h('p',{text:(l.note||'').slice(0,120)+'…'}),h('span',{class:'go',text:'Open →'})]));
   });
   w.appendChild(res);

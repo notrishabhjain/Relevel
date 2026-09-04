@@ -37,6 +37,36 @@ were right but whether you *knew* you were — and reports your overconfidence i
 | **14 exercises** | Applied deliverables, rubric-scored and **versioned** — do it again in six weeks and watch the score move |
 | **5 processes** | Repeatable PM workflows (evaluation cycle, corpus onboarding, vendor decision, incident response, model migration) with run counters |
 
+## Reading it in Hinglish
+
+The whole course — chapters, questions, setup walkthrough, glossary, in-page tools,
+skill descriptions — can be read in Hinglish, the English-Hindi mix people actually
+speak at work. There is a toggle in the top bar and a **Language** page that reports
+live coverage per part.
+
+It is a lookup keyed on the English line rather than a second copy of the curriculum,
+so a line with no translation renders in English and nothing is ever missing from a
+page. Industry terms — token, prompt, context, retrieval, embedding, chunk, eval,
+latency, hallucination, agent, injection — deliberately stay in English inside the
+translations: they are what the rest of the industry says, and the point of the
+glossary is being able to use them in a meeting. The application's own furniture
+(buttons, menus, page headings) stays in English too.
+
+Both `content-check` and CI fail if a line has no translation, or if a translation
+keys off English that no longer appears in the course — so the two languages cannot
+drift apart quietly.
+
+## Installing it on a phone or tablet
+
+It is a progressive web app: **Install on iPad or phone** in the nav gives the
+Share → Add to Home Screen route for iOS (Safari only — Chrome on iOS cannot do it),
+Chrome's own install prompt on Android and desktop, and a troubleshooting table.
+The build rasterises the mark to real PNGs, because iOS ignores an SVG in
+`apple-touch-icon` and draws a screenshot of the page instead.
+
+On iOS an installed app gets its own storage, so you sign in once inside it — progress
+lives on the account, not in the browser.
+
 ## Curriculum
 
 | Part | Chapters | Subject |
@@ -253,14 +283,15 @@ src/
 │   ├── skills.js       32 skills, 6 domains, L1-L4 descriptors
 │   ├── items1-4.js     149-item assessment bank
 │   ├── work.js         14 exercises with rubrics, 5 processes
-│   ├── part1-4.js      Chapters 1-20 (the library)
+│   ├── part1-4.js      Chapters 0-20 (the library)
+│   ├── hing-*.js       the Hinglish reading layer, keyed on the English line
 │   └── reference.js    Setup, glossary, vendor deck, LATER page, red-map nodes
 ├── engine.js           Mastery + decay, SM-2, calibration, session building
 ├── remote.js           Account-backed storage client
 ├── sync.js             Backup, export/import, Gist sync, storage diagnostics
 ├── views.js            Dashboard, practice runner, matrix, analytics, work trackers
 ├── labs.js             16 interactive labs
-├── app.js              Routing, persistence, chapter rendering
+├── app.js              Routing, persistence, chapter rendering, language switch
 ├── content.js          Loads the curriculum: server, then cache, then built-in
 ├── studio.js           The Content Studio
 └── styles.css          Design tokens and layout

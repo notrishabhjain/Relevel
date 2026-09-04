@@ -57,7 +57,7 @@ ok(await a.page.evaluate(() => window.SKILLS.length) === N.skills, `all ${N.skil
 console.log('\n— the studio is read-only when signed out —');
 await boot(a.page, '#/studio');
 ok(await text(a.page, '.phead h1') === 'Studio', 'the studio renders', await text(a.page, '.phead h1'));
-ok(await a.page.locator('.domcard').count() === 6, 'six kinds of content are listed');
+ok(await a.page.locator('.domcard').count() === 7, 'seven kinds of content are listed, Hinglish among them');
 ok(await text(a.page, '.callout .lbl') === 'Read-only', 'a read-only banner explains why',
    await text(a.page, '.callout .lbl'));
 await boot(a.page, '#/studio/items');
@@ -488,6 +488,64 @@ await f.page.goto(B + '/');
 await f.page.waitForFunction(() => window.CONTENT && window.CHAPTERS);
 ok(await f.page.evaluate(() => window.CHAPTERS.length) === N.chapters, 'the app still opens with a full curriculum');
 ok(['built-in', 'cache'].includes(await f.page.evaluate(() => window.CONTENT.source)), 'and says where the content came from');
+
+console.log('\n— reading it in Hinglish —');
+const hi = await newDevice(false, 'hindireader');
+await boot(hi.page, '#/ch/ch1');
+const enTitle = await text(hi.page, '.chead h1');
+ok(/What happens when your app asks/.test(enTitle), 'a chapter opens in English by default', enTitle);
+await hi.page.locator('#langbtn').click();
+await hi.page.waitForTimeout(400);
+const hiTitle = await text(hi.page, '.chead h1');
+ok(hiTitle !== enTitle && /aapka app/.test(hiTitle), 'switching reads the same chapter in Hinglish', hiTitle);
+const hiBody = await mainText(hi.page);
+ok(/tokens/.test(hiBody) && /context window/.test(hiBody),
+   'and the industry terms are still in English inside it');
+/* The whole design rests on this: an untranslated line is shown in English
+   rather than being blank, so partial coverage is never a hole in the page. */
+await boot(hi.page, '#/ch/ch14');
+const mixed = await mainText(hi.page);
+ok(mixed.length > 500 && /grade|judge|quality/i.test(mixed),
+   'a chapter with no translation yet still reads, in English');
+await boot(hi.page, '#/language');
+/* Completeness is asserted against the built-in content in content-check, not
+   here: earlier tests in this file publish edits, and an edited English line
+   correctly orphans its translation. */
+ok(/%/.test(await mainText(hi.page)), 'the language page reports coverage per part');
+await revisit(hi.page);
+ok(/aapka app|Hinglish/.test(await mainText(hi.page)) ||
+   await hi.page.evaluate(() => window.STORE.S.lang) === 'hi', 'the choice survives a reload');
+
+console.log('\n— installing it on a phone or tablet —');
+const inst = await newDevice(false);
+await boot(inst.page, '#/install');
+const it = await mainText(inst.page);
+ok(/Add to Home Screen/.test(it), 'the iPad route is spelled out');
+ok(/Safari/.test(it), 'and names the browser that can do it');
+ok(/Progress & Backup|Progress &amp; Backup/.test(it),
+   'and warns that an installed app needs signing in again');
+const man = await (await fetch(B + '/manifest.webmanifest')).json();
+ok(man.display === 'standalone', 'the manifest asks for a standalone window');
+ok(man.icons.some(i => i.type === 'image/png' && i.sizes === '192x192'),
+   'a 192px PNG icon is declared');
+ok(man.icons.some(i => i.purpose === 'maskable'), 'and a maskable one for Android');
+const apple = await fetch(B + '/icon-180.png');
+ok(apple.ok && apple.headers.get('content-type') === 'image/png',
+   'the Apple touch icon is a real PNG, which is the only kind iOS reads');
+const html = await (await fetch(B + '/')).text();
+ok(/apple-touch-icon" sizes="180x180" href="icon-180.png"/.test(html),
+   'and the page points at it');
+ok(/apple-mobile-web-app-capable/.test(html), 'iOS is told the page is app-capable');
+
+console.log('\n— setup is reachable without hunting for it —');
+const nav = await newDevice(false);
+await boot(nav.page);
+/* The first nav list is the short one shown without opening anything; the
+   drawer's list only exists once "Everything else" is expanded. */
+const top = await nav.page.evaluate(() =>
+  [...document.querySelectorAll('#rail .navlist')[0].querySelectorAll('a')].map(a => a.textContent));
+ok(top.some(t => /Set up Colab/.test(t)), 'the setup page is in the main nav, not the drawer', top.join(' | '));
+ok(top.some(t => /Install on iPad/.test(t)), 'and so is the install page');
 
 await browser.close();
 console.log('\n' + pass + ' passed, ' + fail + ' failed\n');

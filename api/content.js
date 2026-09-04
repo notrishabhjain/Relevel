@@ -99,6 +99,16 @@ function validate(kind, data) {
   }
   if (kind === 'processes' && !Array.isArray(data)) fail('processes must be an array');
   if (kind === 'reference' && (!data || typeof data !== 'object')) fail('reference must be an object');
+  /* The Hinglish layer is a flat lookup: English line in, Hinglish line out.
+     Anything missing simply reads in English, so a partial map is valid — but a
+     non-string on either side would render as "[object Object]" in the page. */
+  if (kind === 'hinglish') {
+    if (!data || typeof data !== 'object' || Array.isArray(data)) fail('hinglish must be an object');
+    for (const [k, v] of Object.entries(data)) {
+      if (typeof v !== 'string') fail(`hinglish entry for "${k.slice(0, 40)}" is not text`);
+      if (!k.trim()) fail('hinglish has an entry with an empty English key');
+    }
+  }
 }
 
 /* Every block in a chapter, including the ones nested inside a hands-on step. */
