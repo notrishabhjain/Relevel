@@ -40,7 +40,11 @@ function apply(c){
   window.ALL_ITEMS = (c.items && c.items.length) ? c.items : BUILT_IN.items;
   window.EXERCISES = c.exercises || BUILT_IN.exercises;
   window.PROCESSES = c.processes || BUILT_IN.processes;
-  window.HING = c.hinglish || BUILT_IN.hinglish;
+  /* The one content kind that merges rather than replaces. It is a lookup, so
+     a server copy that is empty or half-written should add to what shipped in
+     the page, never wipe it — a missing translation must always fall back to
+     the built-in one before it falls back to English. */
+  window.HING = Object.assign({}, BUILT_IN.hinglish, c.hinglish || {});
   const ref = c.reference || BUILT_IN.reference;
   Object.keys(BUILT_IN.reference).forEach(k => {
     window[k] = ref[k] !== undefined ? ref[k] : BUILT_IN.reference[k];

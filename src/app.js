@@ -116,10 +116,12 @@ function flash(node){if(!node)return;node.classList.add('show');setTimeout(()=>n
    left in English inside the translations. They are what the rest of the
    industry says, and translating them would teach a vocabulary nobody else
    uses. */
+let Thit=0, Tmiss=0;
 function T(s){
   if(S.lang!=='hi'||s==null)return s;
   const v=(window.HING||{})[String(s).trim()];
-  return v===undefined?s:v;
+  if(v===undefined){ Tmiss++; return s; }
+  Thit++; return v;
 }
 function Tl(list){ return (list||[]).map(T); }
 window.T=T;
@@ -1455,6 +1457,7 @@ function route(){
   const hash=location.hash.replace(/^#\/?/,'').split('#')[0];
   const parts=hash.split('/').filter(Boolean);
   const main=$('#main');main.innerHTML='';
+  Thit=0; Tmiss=0;
   let node,crumb='Dashboard';
   if(parts[0]==='ch'&&byId[parts[1]]){
     const c=byId[parts[1]];node=renderChapter(c);
@@ -1479,6 +1482,19 @@ function route(){
     document.title='AI From Zero — 2027 Edition';
   }
   main.appendChild(node);
+  /* Hinglish on and not one line of this page had a translation. That is a
+     real fault — most likely this device is reading content the translations
+     were not written against — and it used to look exactly like the switch
+     doing nothing. Say so, on the page, rather than leaving it to be guessed. */
+  if(S.lang==='hi' && Thit===0 && Tmiss>3){
+    const warn=h('div',{class:'callout',style:'border-color:var(--red);margin-bottom:1.2rem'},[
+      h('span',{class:'lbl',text:'Hinglish is on, but nothing here is translated'}),
+      h('p',{html:'Every line on this page fell back to English. That normally means the '+
+        'text on this device is not the text the translations were written against. '+
+        '<a href="#/language">The Language page</a> shows how much of the course this '+
+        'device can actually translate.'})]);
+    main.insertBefore(warn, main.firstChild);
+  }
   const cb=$('#crumb');if(cb)cb.textContent=crumb;
   renderRail();
   /* a secondary hash (#/exercises#E01) targets an element on the rendered page */
@@ -1553,7 +1569,9 @@ function applyTheme(){
 /* The button says the language you would switch to, like the theme button. */
 function applyLang(reroute){
   const b=$('#langbtn');
-  if(b){ b.textContent=S.lang==='hi'?'English':'Hinglish'; b.classList.toggle('on',S.lang==='hi'); }
+  if(b){ const o=b.querySelectorAll('.lgo');
+    if(o[0])o[0].classList.toggle('on',S.lang!=='hi');
+    if(o[1])o[1].classList.toggle('on',S.lang==='hi'); }
   document.documentElement.setAttribute('data-lang',S.lang==='hi'?'hi':'en');
   if(reroute!==false){ TERMS=null; route(); renderRail(); }
 }
@@ -1641,8 +1659,12 @@ function boot(){
         h('span',{class:'sp'}),
         h('a',{class:'syncpill',id:'syncpill',href:'#/data',hidden:'hidden'}),
         h('button',{class:'sm',onclick:openPal},'Search  ⌘K'),
-        h('button',{class:'sm',id:'langbtn',onclick:()=>{
-          S.lang=S.lang==='hi'?null:'hi';save();applyLang();}}),
+        /* Both languages, always visible, the live one filled in. The old
+           button showed only the one you would switch to, which read as a
+           label for the language you were already in. */
+        h('button',{class:'sm langtog',id:'langbtn',title:'Reading language',
+          onclick:()=>{ S.lang=S.lang==='hi'?null:'hi';save();applyLang(); }},
+          [h('span',{class:'lgo',text:'EN'}),h('span',{class:'lgo',text:'HI'})]),
         h('button',{class:'sm',id:'themebtn',onclick:()=>{
           S.theme=S.theme==='dark'?'light':S.theme==='light'?null:'dark';save();applyTheme();}},'Theme')]),
       h('main',{class:'main',id:'main'})])]));

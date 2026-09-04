@@ -8,6 +8,7 @@
    Reading is public so the app works for a signed-out visitor; writing needs
    an editor. */
 
+import { createHash } from 'node:crypto';
 import { query, send, readJson, defaults, CONTENT_KINDS } from './_lib/db.js';
 import { guard, isEditor } from './_lib/auth.js';
 
@@ -175,7 +176,9 @@ export default guard(async (req, res, user) => {
     const kind = url.searchParams.get('reset');
     if (!CONTENT_KINDS.includes(kind)) return send(res, 400, { error: 'unknown_kind' });
     const d = await defaults();
-    return await writeKind(res, kind, d[kind], user, 'reset to built-in');
+    /* Reset means "follow the build again", so the row goes back to being
+       built-in-owned. Who asked for it is recorded in the history entry. */
+    return await writeKind(res, kind, d[kind], user, 'reset to built-in', null, true);
   }
 
   if (req.method !== 'PUT') return send(res, 405, { error: 'method' });
@@ -201,21 +204,28 @@ export default guard(async (req, res, user) => {
   return await writeKind(res, kind, data, user, null, warnings);
 }, { auth: false, write: true });
 
-async function writeKind(res, kind, data, user, note, warnings) {
+async function writeKind(res, kind, data, user, note, warnings, toBuiltIn) {
   const t = Date.now();
-  const by = (user ? user.login : 'system') + (note ? ' · ' + note : '');
+  const who = (user ? user.login : 'system') + (note ? ' · ' + note : '');
+  /* A reset hands the kind back to the build, so the live row is marked
+     built-in and later deploys may update it again. Who asked for that is not
+     lost — it is what the history entry records. */
+  const by = toBuiltIn ? 'built-in' : who;
   const s = JSON.stringify(data);
+  const hash = createHash('sha1').update(s).digest('hex');
   const cur = (await query('SELECT version FROM content WHERE kind=$1', [kind]))[0];
   const next = (cur ? cur.version : 0) + 1;
   if (cur) {
-    await query('UPDATE content SET version=$1, updated_at=$2, updated_by=$3, data=$4 WHERE kind=$5',
-      [next, t, by, s, kind]);
+    await query(`UPDATE content SET version=$1, updated_at=$2, updated_by=$3, data=$4,
+                        defaults_hash=$5 WHERE kind=$6`,
+      [next, t, by, s, toBuiltIn ? hash : null, kind]);
   } else {
-    await query('INSERT INTO content (kind,version,updated_at,updated_by,data) VALUES ($1,$2,$3,$4,$5)',
-      [kind, next, t, by, s]);
+    await query(`INSERT INTO content (kind,version,updated_at,updated_by,data,defaults_hash)
+                 VALUES ($1,$2,$3,$4,$5,$6)`,
+      [kind, next, t, by, s, toBuiltIn ? hash : null]);
   }
   await query('INSERT INTO content_history (kind,version,saved_at,updated_by,data) VALUES ($1,$2,$3,$4,$5)',
-    [kind, next, t, by, s]);
+    [kind, next, t, who, s]);
   await query(
     `DELETE FROM content_history WHERE kind=$1 AND id NOT IN
        (SELECT id FROM content_history WHERE kind=$1 ORDER BY id DESC LIMIT $2)`, [kind, KEEP]);
