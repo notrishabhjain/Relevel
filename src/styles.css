@@ -563,6 +563,22 @@ button:disabled{opacity:.4;cursor:not-allowed}
   font-variant-numeric:tabular-nums}
 .move .md.up{color:var(--verified)} .move .md.down{color:var(--red)}
 
+/* ---- a hands-on beat, inline in the reading ---- */
+.dostep{border:1px solid var(--verified);border-left-width:3px;border-radius:var(--r);
+  background:var(--verified-wash);margin:1.5rem 0;overflow:hidden}
+.dohead{display:flex;gap:.6rem;align-items:baseline;padding:.7rem .95rem .1rem}
+.dotag{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--verified);flex:none}
+.dohead h4{margin:0;font-size:.97rem;font-weight:600;line-height:1.4}
+.dobody{padding:.2rem .95rem .8rem}
+.dobody>p:first-child{margin-top:.4rem}
+.dobody pre{margin:.7rem 0}
+@media (max-width:620px){.dohead{flex-direction:column;gap:.15rem}}
+
+/* ---- the chapter's capstone ---- */
+.capstone .parthead h2{color:var(--verified)}
+.capstone .concept{font-size:1.02rem}
+
 /* ---- skill matrix ---- */
 .skrows{display:grid;gap:.35rem}
 .skrow{display:flex;gap:.75rem;align-items:center;padding:.55rem .8rem;background:var(--raised);

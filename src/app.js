@@ -151,6 +151,16 @@ function blocks(list){
     else if(k==='pred')f.appendChild(cpPredict(r[0]));
     else if(k==='try')f.appendChild(cpTry(r[0]));
     else if(k==='lab'){const b=r[0]==='redmap'?redMapBlock():labBlock(r[0]); if(b)f.appendChild(b);}
+    /* A hands-on beat, inline. The whole point is that it sits here, right
+       after the idea it proves, rather than being saved up for a section at
+       the end that a reader meets four concepts too late. */
+    else if(k==='do'){
+      const d=h('section',{class:'dostep'},[
+        h('div',{class:'dohead'},[h('span',{class:'dotag',text:'do this'}),
+          h('h4',{html:T(r[0])})])]);
+      d.appendChild(h('div',{class:'dobody'},[blocks(r[1])]));
+      f.appendChild(d);
+    }
   });
   return f;
 }
@@ -536,7 +546,10 @@ function renderChapter(c){
         h('li',{},[
           h('div',{},[h('strong',{text:T(what)}),
             h('span',{class:'needwhy',text:' — '+T(why)})]),
-          h('a',{class:'chip',href:'#/ch/ch'+ch,text:'Chapter '+ch+' →'})]))));
+          /* A chapter can also stand on the setup, which is not a chapter. */
+          ch==='setup'
+            ? h('a',{class:'chip',href:'#/setup',text:'Setup →'})
+            : h('a',{class:'chip',href:'#/ch/ch'+ch,text:'Chapter '+ch+' →'})]))));
     if(alsoRefs.length){
       const row=h('div',{class:'alsoref'},[
         h('span',{class:'needwhy',text:'It also refers back to '})]);
@@ -625,6 +638,24 @@ function renderChapter(c){
     ho.appendChild(st);
   });
   w.appendChild(ho);
+  }
+
+  /* One project per chapter that uses everything in it. Homework is a list of
+     tasks; a capstone is a thing you have built and can check. */
+  if(c.capstone){
+    const cp=c.capstone;
+    const cs2=h('section',{class:'part capstone',id:'capstone'});
+    cs2.appendChild(sectionHead(c.num+'.'+n++,'Capstone — '+T(cp.title)));
+    cs2.appendChild(h('div',{class:'prose'},[h('p',{class:'concept',html:T(cp.brief)})]));
+    if((cp.steps||[]).length)
+      cs2.appendChild(h('div',{class:'prose'},[h('ol',{class:'num'},cp.steps.map(x=>h('li',{html:T(x)})))]));
+    if((cp.done||[]).length)
+      cs2.appendChild(h('div',{class:'takeaway'},[
+        h('span',{class:'cplbl',text:'It is finished when'}),
+        h('ul',{class:'plain'},cp.done.map(x=>h('li',{html:T(x)})))]));
+    cs2.appendChild(notebookBlock(c,'capstone','What you built, and anything that surprised you',
+      'Rough notes. The build is the deliverable, not the write-up.'));
+    w.appendChild(cs2);
   }
 
   // If something goes wrong
@@ -1601,9 +1632,14 @@ function hingStrings(){
       walk(o,c.takeaway);
       (c.needs||[]).forEach(n=>{ add(o,n[0]); add(o,n[1]); });
       /* code samples are code, and a lab or question block is only an id */
-      (c.story||[]).forEach(b=>{ if(['code','lab','q'].includes(b[0]))return; walk(o,b.slice(1)); });
-      (c.handson||[]).forEach(st=>{ add(o,st.h);
-        (st.b||[]).forEach(b=>{ if(b[0]==='code')return; walk(o,b.slice(1)); }); });
+      const prose=b=>{ if(!Array.isArray(b))return;
+        if(['code','lab','q'].includes(b[0]))return;
+        if(b[0]==='do'){ add(o,b[1]); (b[2]||[]).forEach(prose); return; }
+        walk(o,b.slice(1)); };
+      (c.story||[]).forEach(prose);
+      (c.handson||[]).forEach(st=>{ add(o,st.h); (st.b||[]).forEach(prose); });
+      if(c.capstone){ add(o,c.capstone.title); add(o,c.capstone.brief);
+        walk(o,c.capstone.steps); walk(o,c.capstone.done); }
     });
   });
 
