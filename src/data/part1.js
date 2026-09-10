@@ -372,6 +372,386 @@ window.PART1 = [
 },
 
 {
+  /* Arc 1, the missing craft. The course taught system prompts, temperature and
+     hallucination, and then never taught how to write the prompt — a search of
+     the whole course found no worked examples, no output shape, no test set.
+     For a product manager that is the thing they touch most days.
+
+     Four new terms, not eight. Opens by using Chapter 2's result. Ends on the
+     gap Chapter 2.2 fills. */
+  id:'ch21', num:2.1, part:1, minutes:25, labs:[],
+  title:'Writing a prompt that works',
+  concept:'The four moves that turn a request into an instruction — and the one that does most of the work.',
+  needs:[
+    ['A briefing changes behaviour','One sentence of standing instruction visibly suppressed a lie.',2],
+    ['Instructions bend under pressure','So wording is a real tool with a real ceiling.',2],
+    ['A notebook and a key','You will run six or seven prompts today.','setup'],
+  ],
+  takeaway:[
+    'Turn a vague request into an instruction that produces the same shape every time.',
+    'Say which of the four moves is doing the work in any prompt somebody shows you.',
+    'Show a model the output you want instead of describing it.'
+  ],
+  story:[
+    ['c','Before you start','Open <code>chapter-2-1</code> and run the warm-up cells. Have your briefing page from the Chapter 2 capstone open beside you — the first thing you do today is find out how well it actually holds.'],
+
+    ['do','Re-run yesterday’s briefing on a task it was not written for',[
+      ['p','Take the briefing you wrote at the end of Chapter 2 and use it as the system message. But instead of asking about a fake scheme, ask it to do a real job: pull three specific facts out of a paragraph from your own work.'],
+      ['x','It does something reasonable and formats it however it likes. The briefing controlled <em>tone and honesty</em>, which is what you wrote it for. It said nothing about what the answer should look like — so you got a paragraph when you probably wanted three fields.'],
+      ['key','That gap is this chapter. A briefing governs behaviour. A prompt governs the job.']
+    ]],
+
+    ['p','Almost everybody writes their first prompt as a request: <em>please summarise this and pull out the key dates.</em> It works often enough to be encouraging and fails often enough to be useless, and the reason is that a request leaves four things unsaid.'],
+    ['key','A prompt is not a question you ask. It is a specification you hand over — and like any specification, most of its value is in the parts people skip.'],
+
+    ['p','<strong>Move one: show, do not describe.</strong> This is the one that does most of the work, and it is the one people reach for last. Describing the output you want in words gives the model your words to imitate. Giving it a completed example gives it the shape.'],
+    ['do','Describe it, then show it',[
+      ['p','Run the same job twice. First, describe the output you want in a sentence.'],
+      ['code',"described = \"\"\"Extract the parties, the effective date and\nthe notice period. Return it as a short structured\nsummary.\n\nText: {text}\"\"\""],
+      ['p','Then delete the description and show it one finished example instead.'],
+      ['code',"shown = \"\"\"Text: Acme Ltd and Baraka Traders agreed terms\non 3 March 2024, cancellable with 30 days notice.\nparties: Acme Ltd; Baraka Traders\neffective: 2024-03-03\nnotice_days: 30\n\nText: {text}\"\"\""],
+      ['x','The described version drifts — labels change, dates come back in three different formats across five runs. The shown version comes back in your format, including the date style, because you never asked for it in words at all. You demonstrated it.'],
+      ['key','One worked example is worth a paragraph of instruction. The industry calls this a <strong>few-shot example</strong>, and two or three are usually enough.'],
+      ['snag',[
+        'A red box saying something <em>is not defined</em>',
+        'You have run a cell that needs something an earlier cell made, without running that earlier one first. Scroll to the top, run the warm-up cells in order, then come back to this one. This is the most common thing that goes wrong in a notebook, it happens to everybody, and it says nothing about your code.',
+        'It runs, but your numbers are not the ones printed above',
+        'Expected, and not a mistake. Models change and your text is not my text. What matters is the direction and the rough size of the gap, never matching a figure exactly. If your numbers move the same way mine do, the experiment worked.'
+      ]]
+    ]],
+    ['pred',{id:'ch21-shots',short:true,ph:'Better, worse, or no change — and why',
+      ask:'You add a second worked example, and you deliberately make it an awkward case — a document where the notice period is missing. What happens to the answers on <em>normal</em> documents?',
+      reveal:'They usually get better, not worse. The awkward example is the one that teaches the boundary: it shows what to do when a field is absent, which the tidy example never could.',
+      then:'This is why the examples you choose matter more than how many you use. Two well-chosen ones — a typical case and an awkward one — beat six that all look the same, and cost a fraction as much to send.'}],
+
+    ['p','<strong>Move two: say what the job is, not what you want.</strong> "Summarise this" is a wish. "You are reading a support ticket and producing the one line that a triage agent needs" is a job — and the difference in output is larger than the difference in effort.'],
+    ['do','Give the same text a job description',[
+      ['p','Take a paragraph from your work and prompt it twice: once with a bare verb, once with the job named and the reader named.'],
+      ['code',"bare = \"Summarise this.\\n\\n{text}\"\n\njob  = (\"You are preparing a one-line note for a \"\n        \"colleague who has thirty seconds and has to \"\n        \"decide whether to escalate this today.\\n\\n{text}\")"],
+      ['x','The bare version produces a competent, useless summary that compresses everything evenly. The job version throws away most of the text and keeps the part that bears on the decision — because you told it what the reader has to do next.']
+    ]],
+
+    ['p','<strong>Move three: break the job into steps.</strong> When a task has parts, asking for the finished thing makes the model do all the parts at once, badly. Asking for the parts in order costs a few more pieces and produces work you can check.'],
+    ['do','Make it show its working',[
+      ['p','Ask for a judgement on something from your own field — is this claim complete, does this request meet the policy — first directly, then in steps.'],
+      ['code',"steps = (\"First list the conditions the policy requires.\\n\"\n         \"Then quote where the document meets each one.\\n\"\n         \"Then state which are unmet.\\n\"\n         \"Only then give the verdict.\\n\\n{text}\")"],
+      ['x','The verdict is often the same. What changed is that you can now see <em>why</em>, and check each step against the document. When it is wrong, you can point at which step went wrong instead of disagreeing with a conclusion.'],
+      ['key','You did not make it smarter. You made it auditable, which for anything a person has to stand behind is worth more.']
+    ]],
+
+    ['p','<strong>Move four: say what not to do — sparingly.</strong> Prohibitions are the weakest of the four, for exactly the reason Chapter 2 proved: an instruction discourages, it does not prevent. They are worth writing for the one or two failures you have actually seen, and not worth stacking.'],
+    ['try',{id:'ch21-four',mins:5,min:60,rows:4,
+      task:'Take a real request you would make of an AI at work and write it out four times, adding one move each time: the job, then the steps, then a worked example, then one prohibition. Note after each version what changed.',
+      ph:'v1 the job … v2 the steps … v3 the example … v4 the one thing it must not do',
+      after:'Most people find the worked example produces the biggest single jump, the job description the second, and the prohibition almost nothing measurable — which is the opposite of the order people write them in. The usual first draft is a wish plus a pile of prohibitions. Notice also that your version four is long: every one of those moves is pieces you pay for on every single call, forever. That is the trade this chapter hands you, and Chapter 15 puts a number on it.'}],
+    ['q','I013','I014'],
+
+    ['key','Four moves, in order of how much they buy you: show an example, name the job, break it into steps, forbid what you have actually seen go wrong.'],
+    ['p','Which raises the question this chapter cannot answer. You have four versions of a prompt and an impression that version three was best. An impression, formed by reading a handful of outputs, is exactly the evidence Chapter 2 taught you to distrust — and it is how nearly every prompt in production got chosen.']
+  ],
+  capstone:{
+    title:'A prompt you can defend',
+    brief:'You have four moves and a real task. Build the prompt properly, write down what each move is doing, and hand it to somebody else — because a prompt that only works when you are in the room is not a specification, it is a habit.',
+    steps:[
+      'Name one real task at your work, and the decision the output feeds. One line each.',
+      'Write the job description: who reads this, what they do next, and what they can ignore.',
+      'Choose two worked examples — one typical, one awkward. The awkward one should show what to do when something is missing.',
+      'Add the steps, if the task has parts. Keep the order the order a careful person would work in.',
+      'Add at most two prohibitions, and only for failures you have actually watched happen.',
+      'Give the prompt and five real inputs to a colleague, and have them run it without you explaining anything.'
+    ],
+    done:[
+      'Somebody else ran it and got what you expected, without asking you a question.',
+      'You can point at each move in your prompt and say what it is doing.',
+      'You know roughly how many pieces your prompt costs before the input is even added.'
+    ]
+  }
+},
+{
+  /* Opens on the gap Chapter 2.1 ends on: four versions and an impression.
+     Three new terms. The whole chapter is one hands-on loop. */
+  id:'ch22', num:2.2, part:1, minutes:25, labs:[],
+  title:'Making a prompt reliable',
+  concept:'How to know which version is better, when reading a few answers is exactly the evidence you should not trust.',
+  needs:[
+    ['Four moves that shape a prompt','And four versions of one, with no way to choose between them.',2.1],
+    ['Fluency is free','A confident answer is no evidence at all that it is right.',2],
+    ['A notebook and a key','You will run one prompt many times today.','setup'],
+  ],
+  takeaway:[
+    'Build a small test set for a prompt in under half an hour, from real inputs.',
+    'Change one thing at a time and say whether it actually helped, with a number.',
+    'Explain why a prompt that looked better in a demo often is not.'
+  ],
+  story:[
+    ['c','Before you start','Open <code>chapter-2-2</code> and bring the four prompt versions you wrote yesterday. Today you find out which one is actually better, which is a different question from which one felt better.'],
+
+    ['do','Prove the problem first',[
+      ['p','Take your best prompt from yesterday and run it on the <em>same input</em> five times. Print all five outputs.'],
+      ['code',"for i in range(5):\n    out = ask(best_prompt.format(text=sample))\n    print(i, \"|\", out[:120])"],
+      ['x','Five outputs that are not identical — different wording, sometimes a different emphasis, occasionally a different answer. Now ask yourself how you were planning to tell a good prompt from a bad one by looking at one output each.'],
+      ['key','This is why prompt-picking by reading a few answers fails. You are sampling a distribution with a sample size of one, and then deciding.']
+    ]],
+
+    ['p','The fix is the same instrument Chapter 6 will build for retrieval, in miniature, and you can build it in twenty minutes: a small set of real inputs, and what a good answer looks like for each.'],
+    ['key','You cannot improve what you cannot measure twice.'],
+
+    ['do','Build the test set',[
+      ['p','Collect ten real inputs for your task. Not invented ones — real, including the two ugliest you can find. For each, write down what a good answer contains. Not the exact words: the two or three things that must be there.'],
+      ['n',[
+        'Six ordinary cases, chosen without looking at how the prompt does on them.',
+        'Two awkward ones — missing information, unusual format, wrong language.',
+        'Two that should be refused or escalated rather than answered.'
+      ]],
+      ['x','A ten-row table: input, and what a good answer must contain. It takes about twenty minutes and it is the single highest-value artefact in this whole chapter — everything below is just running things against it.']
+    ]],
+
+    ['do','Score all four versions against it',[
+      ['p','Run each of your four prompt versions across all ten inputs and mark each output pass or fail against what you wrote down. Forty judgements, by hand, and they go quickly.'],
+      ['code',"for name, prompt in versions.items():\n    for row in testset:\n        out = ask(prompt.format(text=row[\"input\"]))\n        print(name, \"|\", row[\"id\"], \"|\", out[:90])"],
+      ['x','The ranking is usually not the one you expected, and the gap between the best and worst is usually smaller than it felt. The two refusal rows are where versions differ most, and those are the rows nobody demos.']
+    ]],
+    ['pred',{id:'ch22-one',short:true,ph:'What goes wrong',
+      ask:'You have a promising version. You change the job description, add a third example and drop a prohibition, then re-run and the score improves. What have you learnt?',
+      reveal:'That the combination is better. Nothing about which of the three changes did it — and one of them may well be making things worse while the other two carry it.',
+      then:'So change one thing, re-run, record. It is slower and it is the entire difference between improving a prompt and stirring it. When somebody tells you they "tuned the prompt", this is the question to ask.'}],
+
+    ['do','Change one thing',[
+      ['p','Take the winner. Make exactly one change — swap one example for a better one. Re-run all ten. Record the score beside the old one.'],
+      ['x','A number that moved, or did not. Either is a result. A change that does not move the score on ten real inputs is a change you can drop, and dropping it makes the prompt cheaper on every call forever.'],
+      ['key','Keep the table. When the model version changes underneath you — and it will — this table is how you find out in an afternoon instead of from a customer.']
+    ]],
+    ['q','I015','I020'],
+
+    ['p','You now have something most teams shipping AI features do not: a prompt chosen on evidence, and the means to re-check it when anything moves.'],
+    ['p','And a limit worth seeing before Chapter 3. Everything you have built works on text you paste in. The moment the answer depends on a document too big to paste — a policy, a contract, a handbook — none of these four moves can help you, because the model has never seen the document at all.']
+  ],
+  capstone:{
+    title:'The test set, and what it caught',
+    brief:'A prompt without a test set is a habit. Build the instrument properly for one real task, use it to make a decision, and keep it — this is the artefact you will re-run every time anything underneath you changes.',
+    steps:[
+      'Build the ten-row test set for a real task, including two refusal rows and the two ugliest real inputs you can find.',
+      'Score your current best prompt against it and write the number down. That is your baseline.',
+      'Make three improvements, one at a time, re-scoring after each. Record all four numbers.',
+      'Find one change that made no difference and remove it. Note what that saves per call.',
+      'Run the whole set against a cheaper or smaller model and record what actually falls over.',
+      'Write the half-page you would send a colleague: the prompt, the number, and the two rows it still fails.'
+    ],
+    done:[
+      'You have four scores from four one-at-a-time changes, not one score from a rewrite.',
+      'You removed something because it did not earn its place, and you know what that saves.',
+      'You can say which rows your prompt still fails, and whether shipping it that way is acceptable.'
+    ]
+  }
+},
+{
+  /* Arc 2 opens. 2.2 ended on a limit — everything so far works on text you
+     paste. That is still true here, deliberately: before the course spends
+     five chapters teaching retrieval, it is worth knowing that a large share
+     of real requests never needed it. */
+  id:'ch23', num:2.3, part:1, minutes:20, labs:[],
+  title:'Which shape is this problem?',
+  concept:'Five shapes cover almost everything anyone asks an AI to do — and picking the right one decides how measurable the result can ever be.',
+  needs:[
+    ['A prompt is a specification','Four moves that shape what comes back.',2.1],
+    ['A test set, and one change at a time','How you tell better from different.',2.2],
+  ],
+  takeaway:[
+    'Name which of the five shapes a request actually is, before designing anything.',
+    'Say why two of the shapes can be graded automatically and three cannot.',
+    'Turn a vague ask from a colleague into the narrowest shape that still solves their problem.'
+  ],
+  story:[
+    ['c','Before you start','No new setup. Bring the test set you built in Chapter 2.2 — you will use it once more, and then see why its rows were easy to grade for a reason you had not noticed.'],
+
+    ['p','People bring you requests in the language of outcomes. <em>Can the AI handle our inbox. Can it help with contracts. Can it make the team faster.</em> None of those is a task. Underneath almost every one of them is one of five shapes, and which shape it is decides more than which model you pick.'],
+    ['key','Choosing the shape is the first design decision, it is made in a sentence, and it is the one most often skipped.'],
+    ['tb',['shape','the job','can a machine grade it?'],[
+      ['<strong>Classify</strong>','put this into one of these buckets','Yes — there is a right answer'],
+      ['<strong>Extract</strong>','pull these specific fields out','Yes — the value is in the document or it is not'],
+      ['<strong>Summarise</strong>','make this shorter without losing what matters','No — depends who is reading'],
+      ['<strong>Rewrite</strong>','same meaning, different form or tone','No — but you can check what must not change'],
+      ['<strong>Generate</strong>','produce something that was not there','No — and this is where most projects start']
+    ]],
+    ['p','The first two have right answers. That is not a small property — it is the difference between a feature you can measure on Monday and one you argue about for a quarter.'],
+
+    ['do','Sort real requests into the five',[
+      ['p','Write down six things people at your work have actually asked for from AI. Real requests, in their words, including the vague ones. Then put each into one of the five shapes.'],
+      ['x','Two things usually happen. Several requests turn out to be the same shape wearing different words. And at least one refuses to sit in any single box — which means it is not one task, it is two or three stapled together.'],
+      ['key','A request that will not fit one shape is not a hard problem. It is an unsplit problem.']
+    ]],
+
+    ['p','That last point is the whole value of this chapter. "Handle the inbox" is not a task. Underneath it is usually: <em>classify</em> the message by type, <em>extract</em> the account number, and <em>generate</em> a draft reply. Three shapes, three different difficulties, three different ways of failing — and only the first two can be measured without a human reading the output.'],
+
+    ['do','Split the one that would not fit',[
+      ['p','Take the request that refused to sit in a box and break it into steps that each have exactly one shape. Write them in the order they would have to happen.'],
+      ['x','Three or four steps, and a surprise: usually only the last one is the hard, unmeasurable part. The rest are classification and extraction, which are cheap and checkable — and if the first steps are reliable, the last one has a much easier job.'],
+      ['p','This is also where the cost falls. A classification step can run on a small cheap model. Only the last step needs an expensive one, and only for the cases that reach it.']
+    ]],
+    ['pred',{id:'ch23-shape',short:true,ph:'Which shape, and what changes',
+      ask:'A colleague asks for "an AI that reviews contracts and flags risky clauses." Which shape is that, really?',
+      reveal:'Mostly classify, with extract underneath it. Each clause gets a bucket — standard, unusual, missing — and the risky ones need their text pulled out to show. Almost none of it is generation.',
+      then:'Which changes everything about how you would build it. Classification has right answers, so you can build an answer key from a hundred clauses a lawyer has already judged, and know your quality before shipping. Had you taken "reviews contracts" at face value and built a generator, there would be nothing to measure and no way to defend it.'}],
+
+    ['q','I059'],
+    ['key','Ask "which shape?" before "which model?" — and if the answer is more than one shape, you have found the design, not a complication.'],
+    ['p','Two of these shapes are worth a chapter each, because they are the two you will meet most and the two where a small amount of care produces a large amount of reliability. The next chapter takes the one with a right answer.']
+  ],
+  capstone:{
+    title:'The shape map for one real request',
+    brief:'Take the vaguest AI request anyone has actually made of you and turn it into something buildable — which is mostly a matter of naming shapes and putting them in order.',
+    steps:[
+      'Write the request down in the exact words it was asked in. Do not tidy it.',
+      'Name what the person actually wants to happen differently on a Tuesday. One sentence.',
+      'Break it into steps, each with exactly one shape, in the order they must run.',
+      'Mark which steps have a right answer and which do not. Those are your measurable and unmeasurable halves.',
+      'For each measurable step, say where an answer key would come from — who already makes that judgement today, and on what.',
+      'Write the one-paragraph reply you would send the person, describing what you would build first and why it is the smallest useful thing.'
+    ],
+    done:[
+      'Every step in your breakdown has exactly one shape.',
+      'You can point at the steps that can be graded without a human reading the output.',
+      'The thing you propose building first is measurable, and you can say what you would measure it against.'
+    ]
+  }
+},
+{
+  id:'ch24', num:2.4, part:1, minutes:25, labs:[],
+  title:'Classification, the cheap reliable one',
+  concept:'The shape with a right answer — which makes it the only one you can improve on purpose rather than by feel.',
+  needs:[
+    ['Five shapes, and which have right answers','Classification is the one that can be graded.',2.3],
+    ['A test set is how you tell better from different','Here it becomes an answer key with real numbers.',2.2],
+    ['A notebook and a key','You will run one classifier many times.','setup'],
+  ],
+  takeaway:[
+    'Build a classifier for a real category set and measure it honestly.',
+    'Say which class your system is worst at, and what that costs the business.',
+    'Explain why an overall accuracy figure usually hides the failure that matters.'
+  ],
+  story:[
+    ['c','Before you start','Open <code>chapter-2-4</code>, run the warm-up cells, and bring twenty real examples of something at your work that gets sorted into categories — tickets by type, documents by department, requests by urgency.'],
+
+    ['do','Re-read your own test set with new eyes',[
+      ['p','Open the ten-row test set from Chapter 2.2 and look at what you wrote in the "good answer contains" column.'],
+      ['x','If your task was classification or extraction, those rows are crisp — a value, a bucket, a yes. If it was summarisation, they are woolly, and grading them took judgement. That difference was never about your writing. It was the shape.']
+    ]],
+
+    ['p','Classification is putting a thing into one of a fixed set of buckets. It is unglamorous, it is most of what useful software does, and it has the property no other shape has: somebody can say whether the answer was right.'],
+    ['key','A right answer means you can count. Counting means you can improve on purpose instead of by feel — which is the entire difference between engineering and hoping.'],
+
+    ['do','Build one, badly, on purpose',[
+      ['p','Write the simplest possible version: the categories, one line of instruction, no examples.'],
+      ['code',"LABELS = [\"billing\", \"technical\", \"account\", \"other\"]\n\ndef classify(text):\n    out = ask(\n        \"Classify the message into exactly one of: \"\n        + \", \".join(LABELS)\n        + \". Reply with the label only.\\n\\n\" + text)\n    return out.strip().lower()\n\nfor row in examples[:10]:\n    print(classify(row[\"text\"]), \"|\", row[\"truth\"])"],
+      ['x','Mostly right, and two kinds of wrong. Some genuinely misread. But some come back as <code>Billing.</code> or <code>the category is billing</code> — not a wrong answer, an unusable one. You asked for a label and got a sentence.'],
+      ['snag',[
+        'A red box saying something <em>is not defined</em>',
+        'You have run a cell that needs something an earlier cell made, without running that earlier one first. Scroll to the top, run the warm-up cells in order, then come back to this one. This is the most common thing that goes wrong in a notebook, it happens to everybody, and it says nothing about your code.',
+        'It runs, but your numbers are not the ones printed above',
+        'Expected, and not a mistake. Models change and your text is not my text. What matters is the direction and the rough size of the gap, never matching a figure exactly. If your numbers move the same way mine do, the experiment worked.'
+      ]]
+    ]],
+    ['p','Fix the format problem with the move you already know — show it, do not describe it. Two worked examples, one of them an awkward case, and the shape stops drifting. Chapter 8 will remove the possibility entirely rather than discouraging it, but two examples get you most of the way today.'],
+
+    ['do','Now count properly',[
+      ['p','Grade all twenty against what you know the answer to be, and count per class rather than overall.'],
+      ['code',"from collections import Counter\nhit, miss = Counter(), Counter()\nfor row in examples:\n    got = classify(row[\"text\"])\n    (hit if got == row[\"truth\"] else miss)[row[\"truth\"]] += 1\nfor c in LABELS:\n    n = hit[c] + miss[c]\n    if n: print(c, hit[c], \"/\", n)"],
+      ['x','An overall figure that looks respectable — and one class that is far worse than the rest. It is almost always the rare one, or the one whose boundary with its neighbour is genuinely blurry.'],
+      ['key','The overall number is the one that gets quoted and the per-class numbers are the ones that matter. A system that is 92 per cent right overall and 40 per cent right on the urgent category is not a 92 per cent system.']
+    ]],
+    ['try',{id:'ch24-cost',mins:4,min:40,rows:3,
+      task:'Take your worst class. Write what actually happens to a real person when a message of that class is sent to the wrong bucket — and what happens in the reverse direction, when something else is wrongly sent to it.',
+      ph:'When a … is missed, … . When something is wrongly marked …, … .',
+      after:'The two directions almost never cost the same. Missing an urgent complaint and wrongly flagging a routine one as urgent are both errors, and one of them is cheap. Once you can say which, you can deliberately make the system lean the cheap way — by making the boundary case fall into the safer bucket. That is a product decision, made with numbers, and it belongs to you rather than to whoever wrote the prompt.'}],
+    ['q','I061'],
+
+    ['p','Notice how little of this was about AI. An answer key, per-class counts, and a judgement about which error is cheaper — the same instrument you would use to evaluate a hiring process or a triage desk.'],
+    ['p','The next shape has no right answer at all, which is why almost everybody who builds it ships it without knowing whether it works.']
+  ],
+  capstone:{
+    title:'A classifier you would let route real work',
+    brief:'Build a classifier for a real category set at your work, measure it per class, and decide — with numbers — whether it is good enough to act on rather than merely to suggest.',
+    steps:[
+      'Fix the categories. Include an <em>other</em> or <em>unclear</em> bucket; a set with no escape hatch forces wrong answers.',
+      'Collect fifty real examples and label them yourself, before running anything.',
+      'Build the classifier with two worked examples, one of which is a boundary case.',
+      'Measure per class, not overall. Write the table.',
+      'For your worst class, write what each direction of error costs, and adjust the instruction so the boundary falls the cheaper way. Re-measure.',
+      'Decide the threshold: above what per-class number would you let this route work automatically, and below what would it only ever suggest?'
+    ],
+    done:[
+      'You have per-class numbers from fifty examples you labelled before testing.',
+      'You made one deliberate change to which way a boundary case falls, and measured the effect.',
+      'You can state the number at which you would let it act unsupervised — and you are not currently above it, or you are and can say so.'
+    ]
+  }
+},
+{
+  id:'ch25', num:2.5, part:1, minutes:25, labs:[],
+  title:'Summarising without losing the point',
+  concept:'The most requested feature, and the one whose failure is hardest to see — because a summary that lost the crucial line still reads beautifully.',
+  needs:[
+    ['Some shapes have no right answer','Summarising is the first one you meet.',2.3],
+    ['Per-class counting beats an overall number','The same instinct, applied where counting is harder.',2.4],
+    ['A notebook and a key','You will summarise the same document several ways.','setup'],
+  ],
+  takeaway:[
+    'Say what a summary is for before writing the prompt that makes one.',
+    'Test a summariser for the failure that matters — the thing it left out.',
+    'Explain why "it reads well" is the least useful thing you can say about a summary.'
+  ],
+  story:[
+    ['c','Before you start','Open <code>chapter-2-5</code> and bring one real document with something consequential buried in it — a deadline, an exception, a liability, a number somebody would be angry to miss.'],
+
+    ['do','Watch a good summary fail',[
+      ['p','Summarise your document with the plainest possible instruction, then go looking for the buried thing.'],
+      ['code',"print(ask(\"Summarise the following document.\\n\\n\" + doc))"],
+      ['x','A well-organised, fluent, entirely reasonable summary — which very often does not contain the buried line. It is not wrong. Nothing in it is false. It simply made an even compression of a document whose value was not evenly distributed.'],
+      ['key','That is the failure mode, and it is invisible. A summary that lost the one line that mattered looks exactly like a summary that kept it.']
+    ]],
+
+    ['p','Which is why the first question is never "how do I summarise this?" It is "who reads this, and what will they do next?" A summary has no quality on its own. It only has fitness for a decision.'],
+
+    ['do','Same document, three readers',[
+      ['p','Summarise it three times, naming a different reader and decision each time.'],
+      ['code',"readers = [\n  \"a manager deciding whether to escalate today\",\n  \"a lawyer checking what we are committed to\",\n  \"a new joiner who needs the background\",\n]\nfor r in readers:\n    print(\"===\", r)\n    print(ask(f\"Summarise for {r}.\\n\\n{doc}\")[:400])"],
+      ['x','Three genuinely different documents. The lawyer version keeps the obligations and drops the story; the new joiner version does the reverse. Neither is better. They are answers to different questions, and the plain version was silently an answer to none of them.']
+    ]],
+
+    ['p','So a summariser can be tested after all — not by grading the prose, but by asking whether specific things survived.'],
+    ['key','You cannot grade a summary. You can absolutely test whether it kept the five things a reader would be angry to lose.'],
+
+    ['do','Build the survival test',[
+      ['p','For five real documents, write down the two or three facts a reader must not lose. Then check each summary for them mechanically.'],
+      ['code',"must_keep = {\n  \"doc1\": [\"30 days\", \"Baraka Traders\", \"auto-renew\"],\n  # …five documents…\n}\nfor name, facts in must_keep.items():\n    s = summarise(docs[name])\n    missing = [f for f in facts if f.lower() not in s.lower()]\n    print(name, \"missing:\", missing or \"none\")"],
+      ['x','A concrete miss rate, on the only thing that matters. Crude — a summary can carry a fact in different words and this will not see it — and still far more useful than reading five summaries and feeling good about them.'],
+      ['p','Now change one thing. Add <em>"keep every date, amount and named party exactly as written"</em> and re-run.'],
+      ['x','The miss rate usually drops sharply, and the summaries get slightly longer and slightly duller. That is the trade, it is yours to make, and you now have both numbers.']
+    ]],
+    ['q','I043'],
+
+    ['p','Two chapters, two shapes, one method: decide what would count as failure, then measure that specific thing rather than reading output and forming an impression.'],
+    ['p','And a wall. Everything in this arc works on a document you can paste into the request. The moment the answer lives somewhere across a hundred documents — a handbook, a policy library, five years of contracts — none of it applies, because the model has never seen any of them.']
+  ],
+  capstone:{
+    title:'A summariser with a survival test',
+    brief:'Build a summariser for a real document type and the specific test that proves it keeps what matters. The test is the deliverable — the prompt is easy and everybody has one.',
+    steps:[
+      'Name the reader and the decision. If you cannot name a decision, the summary has no purpose and no test.',
+      'Take ten real documents and write down, for each, the two or three facts a reader would be angry to lose.',
+      'Build the summariser and run the survival check across all ten. Record the miss rate.',
+      'Make one change — an instruction about what must be preserved verbatim — and re-measure.',
+      'Find a document where a fact survived in different wording and your check missed it. Note what that means about your number.',
+      'Write the note to whoever asked for this feature: what it keeps, what it drops, and the miss rate you measured.'
+    ],
+    done:[
+      'You have a miss rate from ten documents, before and after one change.',
+      'You found at least one case your own test scores unfairly, and you say so.',
+      'The note names what the summary is for, so somebody else could test it the same way next quarter.'
+    ]
+  }
+},
+{
   id:'ch3', num:3, part:1, minutes:20, labs:['chunker'],
   title:'Why documents have to be cut up',
   concept:'And why every way of cutting them loses something. Choosing which loss is your job.',

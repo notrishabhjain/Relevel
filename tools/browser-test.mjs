@@ -641,6 +641,41 @@ ok(/happens to everybody|not a mistake/.test(
      await ramp.page.$$eval('details.snag', ns => ns.map(n => n.textContent).join(' '))),
    'and it tells the reader the failure is normal, not their fault');
 
+/* Reset cleared localStorage and reloaded — and the reload's own beforeunload
+   handler wrote the still-populated in-memory state straight back. Nothing
+   was reset, and nothing reported an error. */
+console.log('\n— resetting progress actually resets it —');
+const rst = await newDevice(false);
+await boot(rst.page);
+await boot(rst.page, '#/ch/ch0');
+/* leave real state behind: an answered checkpoint and a note */
+await rst.page.evaluate(() => {
+  const S = window.STORE.S;
+  S.notes['ch0:close'] = 'a note that must not survive a reset';
+  S.att = (S.att || []).concat([{ id: 'I013', ok: 1, at: Date.now() }]);
+  window.STORE.flush();
+});
+const hadState = await rst.page.evaluate(() =>
+  (localStorage.getItem(window.STORE.KEY) || '').includes('must not survive'));
+ok(hadState, 'progress is on the device to begin with');
+
+await rst.page.evaluate(() => { window.confirm = () => true; });
+await boot(rst.page, '#/progress');
+await rst.page.evaluate(() => {
+  const b = [...document.querySelectorAll('button')].find(x => /Reset everything/.test(x.textContent));
+  b.click();
+});
+await rst.page.waitForTimeout(1200);
+const wiped = await rst.page.evaluate(() => ({
+  stored: (localStorage.getItem(window.STORE.KEY) || ''),
+  notes: Object.keys(window.STORE.S.notes || {}).length,
+  att: (window.STORE.S.att || []).length
+}));
+ok(!wiped.stored.includes('must not survive'),
+   'the note is gone from storage after the reload', wiped.stored.slice(0, 80));
+ok(wiped.notes === 0 && wiped.att === 0,
+   'and the live state is empty too', 'notes=' + wiped.notes + ' att=' + wiped.att);
+
 await browser.close();
 console.log('\n' + pass + ' passed, ' + fail + ' failed\n');
 process.exit(fail ? 1 : 0);

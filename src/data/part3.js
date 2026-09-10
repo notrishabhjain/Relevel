@@ -350,6 +350,71 @@ window.PART3 = [
   ],
 },
 {
+  /* Arc 5. Governance in ch17 is about the file you produce. This is the
+     question that actually stops people on a Tuesday. */
+  id:'ch165', num:16.5, part:3, minutes:20, labs:[],
+  title:'What you may send',
+  concept:'The question nobody puts in a design doc and everybody asks at their desk: am I allowed to paste this in?',
+  needs:[
+    ['Everything you send leaves your building','And you pay for it by the piece.',1],
+    ['A corpus is not what you think it is','You audited what your documents actually contain.',16],
+  ],
+  takeaway:[
+    'Decide, for a specific document, whether it may be sent — and say what the decision rests on.',
+    'Name the three questions that settle it, in the order that resolves most cases fastest.',
+    'Design a way for colleagues to get this right without asking you.'
+  ],
+  story:[
+    ['c','Before you start','No code. Bring three real documents from your work: one you are certain is fine to send, one you are certain is not, and one you genuinely do not know about. The third is the useful one.'],
+
+    ['p','Every chapter so far has assumed you may send the text. For most of what you will build, that assumption is either fine or catastrophic, and the difference is not technical.'],
+    ['key','This is not a legal chapter and you are not being asked to become a lawyer. It is a chapter about knowing which three questions to ask, and who owns the answer to each.'],
+
+    ['do','Sort your three, and notice where the difficulty is',[
+      ['p','For each of the three documents, answer in one line each: does it contain information about an identifiable person; is it commercially confidential; and did somebody outside your organisation give it to you under terms?'],
+      ['x','The two easy documents resolve on the first question. The uncertain one almost always turns on the third — something a customer or supplier sent you, where the terms you agreed to are somewhere nobody has read recently.'],
+      ['key','The hard cases are rarely about personal data. They are about obligations somebody else’s contract put on you.']
+    ]],
+
+    ['p','Three questions, in the order that settles most cases with least effort.'],
+    ['n',[
+      '<strong>Is there a person in it?</strong> Names, contact details, case references, anything that identifies somebody. This has rules attached wherever you are, and they are not optional.',
+      '<strong>Whose secret is it?</strong> Yours is a business decision. Somebody else’s is a contractual one, and the answer may be no regardless of how careful the vendor is.',
+      '<strong>What does the vendor do with it?</strong> Retention, whether it trains on it, which country it sits in. All three are usually answerable from the terms in ten minutes, and all three change with the plan you are on.'
+    ]],
+    ['p','The third question is where product managers add the most value, because it is the one engineers assume is settled and vendors describe in language designed to sound settled.'],
+
+    ['do','Read the actual terms for one tool you already use',[
+      ['p','Pick a tool your team already sends text to. Find, in its own documentation, the answers to: how long is it kept, is it used to improve the model, and which country is it processed in.'],
+      ['x','Two of the three are usually easy to find and one takes real digging. Note the plan those answers apply to — the free and paid tiers frequently differ on exactly the question that matters, and people sign up on the free one.'],
+      ['p','Write the three answers down with the date. This is the beginning of the vendor file Chapter 17 asks for, and now it exists because you needed it rather than because a form demanded it.']
+    ]],
+    ['try',{id:'ch165-rule',mins:5,min:50,rows:4,
+      task:'Write the rule a colleague could follow without asking you. Not a policy — three or four lines that resolve the common cases and say clearly what to do with the rest.',
+      ph:'You may send … . Never send … . If it came from a customer, … . If unsure, … .',
+      after:'The rules that work share a shape: they resolve the frequent cases outright, they name one clear category that is never sent, and they give an explicit route for the uncertain ones that does not depend on someone’s judgement in the moment. The rules that fail are the ones that say "use discretion" — because a person who is unsure and in a hurry will read that as permission. The escape hatch has to be a person or a channel, named.'}],
+
+    ['p','One more thing, and it is the one that catches careful teams. Retrieval sends whatever it retrieves. You may have decided carefully what goes into the corpus and then built a system that pulls three chunks at random from it into every request. The decision you made about the corpus is the decision you made about every query.']
+  ],
+  capstone:{
+    title:'The rule, and the file behind it',
+    brief:'Produce the one-page answer to "may I send this?" for your own team, backed by what the vendor actually says rather than what everyone assumes.',
+    steps:[
+      'List the document types your team would realistically want to send. Six to ten.',
+      'Run each through the three questions and mark it may-send, never-send, or ask.',
+      'For the ask column, name who is asked and how long they take. If that answer is unpleasant, the column is too big.',
+      'Find and write down, with dates, what your main vendor says about retention, training and location — for the plan you are actually on.',
+      'Check the retrieval case: what is in your corpus, and would every item in it pass your own rule?',
+      'Write the one page, and give it to a colleague to use on a document you have not seen.'
+    ],
+    done:[
+      'A colleague used it on a real document without asking you a question.',
+      'The vendor answers are quoted with a date and a plan name, not remembered.',
+      'You checked the corpus against your own rule and either it passes or you know what has to come out.'
+    ]
+  }
+},
+{
 
   id:'ch17', num:17, part:3, minutes:30, labs:['systemcard'],
   title:'The paperwork, and why it is yours',
