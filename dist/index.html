@@ -583,6 +583,22 @@ button:disabled{opacity:.4;cursor:not-allowed}
   font-variant-numeric:tabular-nums}
 .move .md.up{color:var(--verified)} .move .md.down{color:var(--red)}
 
+/* ---- a hands-on beat, inline in the reading ---- */
+.dostep{border:1px solid var(--verified);border-left-width:3px;border-radius:var(--r);
+  background:var(--verified-wash);margin:1.5rem 0;overflow:hidden}
+.dohead{display:flex;gap:.6rem;align-items:baseline;padding:.7rem .95rem .1rem}
+.dotag{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--verified);flex:none}
+.dohead h4{margin:0;font-size:.97rem;font-weight:600;line-height:1.4}
+.dobody{padding:.2rem .95rem .8rem}
+.dobody>p:first-child{margin-top:.4rem}
+.dobody pre{margin:.7rem 0}
+@media (max-width:620px){.dohead{flex-direction:column;gap:.15rem}}
+
+/* ---- the chapter's capstone ---- */
+.capstone .parthead h2{color:var(--verified)}
+.capstone .concept{font-size:1.02rem}
+
 /* ---- skill matrix ---- */
 .skrows{display:grid;gap:.35rem}
 .skrow{display:flex;gap:.75rem;align-items:center;padding:.55rem .8rem;background:var(--raised);
@@ -891,28 +907,46 @@ window.PART1 = [
   ]
 },
 {
-  id:'ch1', num:1, part:1, minutes:20, labs:[],
+  id:'ch1', num:1, part:1, minutes:45, labs:[],
   title:'What happens when your app asks an AI something',
-  concept:'Three facts about the machine. Each one decides something you will have to design around.',
+  concept:'Three facts about the machine. You will prove each one on your own screen before the next one arrives.',
+  needs:[
+    ['Colab open and your key working','The five minutes of setup, done once. Chapter 1 is the first thing that uses it.','setup'],
+  ],
   takeaway:[
     'Explain why an AI can sound completely certain and be completely wrong.',
-    'Say what a company is actually billed for when someone uses an AI feature.',
-    'Explain why a long chat costs more per message than a short one — and why that is a product decision, not a technical detail.'
+    'Read the receipt on a call and say what a company is actually billed for.',
+    'Build, with your own hands, the memory trick every chat product sells — and say what it costs.'
   ],
   story:[
+    ['c','Before you start','Open a new Colab notebook and name it <code>chapter-1</code>. Run the three warm-up cells from <a href="#/setup">Setup</a> — the key, the install, the client — so they are ready above everything you write today. From here on, every idea is followed by the code that proves it. Run each block before reading on; that is the whole method.'],
+
     ['p','Start with your phone keyboard. You type <em>See you at the</em> and it offers <em>office</em>, <em>station</em>, <em>airport</em>. It is guessing the next word from patterns in what people usually type. It is not thinking about your evening.'],
     ['p','An AI model is that, made enormous. It was built by reading a very large amount of writing and getting extremely good at one narrow trick: guessing what text comes next. Do that trick over and over and whole paragraphs come out. That is genuinely all it does.'],
     ['key','It is guessing, not looking up. There is no database behind it that it consults. This one fact causes most of the surprises in this field.'],
+    ['do','Make your first call',[
+      ['code','response = client.chat.completions.create(\n    model="meta/llama-3.1-8b-instruct",\n    messages=[{\n        "role": "user",\n        "content": "What is compound interest, in two sentences?"\n    }]\n)\nprint(response.choices[0].message.content)'],
+      ['x','A fluent two-sentence answer. Notice what you did <em>not</em> do: you never gave it a database to search. It composed that from pattern. The first idea is now on your screen rather than on this page.']
+    ]],
     ['pred',{id:'ch1-guess',short:true,ph:'One line — what do you think it does?',
-      ask:'So: you ask it about a refund policy at a company that does not exist. It has never seen anything about it. What comes back?',
+      ask:'Now the harder version. You ask it about a refund policy at a company that does not exist. It has never seen anything about it. What comes back?',
       reveal:'A confident, well-written, completely invented policy. Not because it is lying — because “guess what text comes next” has no option for “I have nothing here.” Saying <em>I don’t know</em> is a behaviour that has to be added on top, and it does not always hold.',
-      then:'This is why you cannot judge an AI answer by how confident it sounds. It sounds identical either way. Chapter 2 is entirely about this.'}],
+      then:'This is why you cannot judge an AI answer by how confident it sounds. It sounds identical either way. Chapter 2 makes you order one of these lies deliberately.'}],
 
     ['p','Now the practical part: what actually gets sent, and what you get charged for.'],
-    ['p','Your app sends text. The AI sends text back. You are billed for both — for how much went in, and how much came out. Not by the word, though. By something slightly smaller.'],
-    ['p','Text gets chopped into pieces called <strong>tokens</strong>. Roughly, a token is about three-quarters of an English word. Common words are usually one token each; unusual words and other scripts break into several. Try it — this is the actual thing, running here:'],
+    ['p','What you just sent travelled as a structured envelope — labels and values in curly braces, a format called <strong>JSON</strong> — carrying a list called <code>messages</code>. Each entry is tagged with a role: <code>user</code> for you, <code>assistant</code> for the reply. Your app sends text, the AI sends text back, and you are billed for both.'],
+    ['do','Read the receipt',[
+      ['p','Every reply carries one, in a block called <code>usage</code>. Add this to the same cell:'],
+      ['code','print("---")\nprint("tokens read:   ", response.usage.prompt_tokens)\nprint("tokens written:", response.usage.completion_tokens)'],
+      ['x','Two numbers, something like <code>tokens read: 18 / tokens written: 55</code>. That is the receipt, and it rides inside every single reply you will ever get.']
+    ]],
+    ['p','Not by the word, though. By something slightly smaller. Text gets chopped into pieces called <strong>tokens</strong> — roughly three-quarters of an English word each. Common words are usually one token; unusual words and other scripts break into several. This runs right here, no setup needed:'],
     ['lab','tokenizer'],
-    ['p','Type a normal sentence and watch it split. Then try your own name, and then something in Hindi or Tamil if you have it. Notice how many more pieces those become. Every extra piece is money.'],
+    ['do','Watch the bill move',[
+      ['p','Paste a long paragraph from one of your own corpus documents and ask for a summary:'],
+      ['code','response = client.chat.completions.create(\n    model="meta/llama-3.1-8b-instruct",\n    messages=[{\n        "role": "user",\n        "content": "Summarize this: [paste a paragraph]"\n    }]\n)\nprint("tokens read:", response.usage.prompt_tokens)'],
+      ['x','<code>prompt_tokens</code> jumps into the hundreds. You just watched a bill grow in real time. Now do the opposite — ask a short question but demand a long answer (“explain in 400 words”) and watch <code>completion_tokens</code> jump instead. Both sides of the receipt are real to you now.']
+    ]],
     ['q','I001'],
 
     ['p','Second fact: there is a size limit. Everything sent in one go — the question, any instructions you attach, any documents, plus the answer coming back — has to fit inside a ceiling. The industry calls that ceiling the <strong>context window</strong>.'],
@@ -920,10 +954,19 @@ window.PART1 = [
     ['q','I006'],
 
     ['p','Which brings us to the third fact, and the strangest one.'],
-    ['key','The AI forgets you completely the moment it replies. Every request starts from nothing. It has no idea you spoke to it a minute ago.'],
+    ['key','The AI forgets you completely the moment it replies. Every request starts from nothing. It has no idea you spoke to it a minute ago. The formal word is <strong>stateless</strong>.'],
+    ['do','Catch the amnesia red-handed',[
+      ['p','Two separate calls, one after the other:'],
+      ['code','MODEL = "meta/llama-3.1-8b-instruct"\n\nr1 = client.chat.completions.create(\n    model=MODEL,\n    messages=[{"role": "user",\n               "content": "My name is Sam. Remember it."}]\n)\nprint(r1.choices[0].message.content)\n\nr2 = client.chat.completions.create(\n    model=MODEL,\n    messages=[{"role": "user",\n               "content": "What is my name?"}]\n)\nprint(r2.choices[0].message.content)'],
+      ['x','The second reply has no idea. Not a bug, not a setting — the machine genuinely has nothing between one call and the next.']
+    ]],
     ['p','That raises an obvious question: so how does a chat assistant seem to remember what you said five messages back?'],
-    ['p','It does not. The app re-sends the entire conversation every single time. When you type message six, the app quietly sends messages one to five along with it, so the reply makes sense. The memory is a trick performed by the app, not a property of the AI.'],
-    ['p','And since you pay for everything you send — you pay for that whole history again, on every message. Watch it happen:'],
+    ['p','It does not. The app re-sends the entire conversation every single time. The memory is a trick performed by the app, not a property of the AI. And you are about to perform it yourself.'],
+    ['do','Perform the trick',[
+      ['code','r3 = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {"role": "user",\n         "content": "My name is Sam. Remember it."},\n        {"role": "assistant",\n         "content": r1.choices[0].message.content},\n        {"role": "user",\n         "content": "What is my name?"}\n    ]\n)\nprint(r3.choices[0].message.content)\nprint("tokens read now:", r3.usage.prompt_tokens)'],
+      ['x','Now it knows — Sam. And <code>prompt_tokens</code> is bigger than before, because you paid to re-send the whole history. Sit on that for a second: you have just built, by hand, the illusion every chat product in the world sells, and you can see exactly what it costs per message.']
+    ]],
+    ['p','Watch that cost curve without typing anything:'],
     ['lab','receipt'],
     ['q','I010','I011'],
 
@@ -934,11 +977,27 @@ window.PART1 = [
       '<strong>It forgets.</strong> So memory is something your product builds and pays for, message by message — not a feature you get from the vendor.'
     ]],
     ['try',{id:'ch1-explain',mins:3,min:40,rows:3,
-      task:'Last thing, and it is the one that sticks. Write the two sentences you would say to a colleague who asks why a long chat with an AI costs more than a short one. Plain words — no jargon, and nothing you could not defend if they pushed back.',
+      task:'Write the two sentences you would say to a colleague who asks why a long chat with an AI costs more than a short one. Plain words — no jargon, and nothing you could not defend if they pushed back.',
       ph:'Two sentences.',
-      after:'A good answer has both halves: what happens, and what it means. What happens — the AI remembers nothing, so the app sends the whole conversation again with every message. What it means — the cost of a conversation grows the longer it gets, and that cost is ours, not the vendor’s. If you got both halves, you understand this chapter better than most people who have shipped an AI feature.'}],
-    ['c','Optional, if you want one thing to try','Open any AI chat you already use. Ask it something about your own company that it could not possibly know — phrased as though the answer obviously exists. See whether it refuses or invents. That is the whole of Chapter 2, and it takes two minutes.']
-  ]
+      after:'A good answer has both halves: what happens, and what it means. What happens — the AI remembers nothing, so the app sends the whole conversation again with every message. What it means — the cost of a conversation grows the longer it gets, and that cost is ours, not the vendor’s. If you got both halves, you understand this chapter better than most people who have shipped an AI feature.'}]
+  ],
+  capstone:{
+    title:'The meter on a real feature',
+    brief:'Everything in this chapter exists to answer one question a finance director will eventually ask you: <em>what does this cost?</em> You now have every instrument needed to answer it with a number you produced yourself, rather than a number a vendor gave you.',
+    steps:[
+      'Pick one small feature you could imagine your own team shipping — a summariser for support tickets, a drafting aid, an FAQ answerer. One sentence describing what it does.',
+      'Write the actual request it would send, as a real call in your <code>chapter-1</code> notebook, using a real example from your work. Run it.',
+      'Record the receipt: <code>prompt_tokens</code> and <code>completion_tokens</code>. Do this for three different realistic inputs, not one, and take the average.',
+      'Now make it a conversation. Re-send the growing history five turns deep, printing <code>prompt_tokens</code> at every turn. Plot or simply list the five numbers.',
+      'Find your provider’s published rate per million tokens and turn your averages into a cost per query, then a cost per 1,000 conversations.',
+      'Write the one sentence you would say out loud in a budget meeting — the figure, and the single assumption most likely to make it wrong.'
+    ],
+    done:[
+      'You have five token counts from a five-turn conversation, and they go up.',
+      'You have a cost per query you can derive again in front of someone, from numbers on your own screen.',
+      'You can name the assumption that would break the estimate — and it is not “the model might change”.'
+    ]
+  }
 },
 {
   id:'ch2', num:2, part:1, minutes:20, labs:['temperature'],
@@ -4529,6 +4588,91 @@ Object.assign(window.HING = window.HING || {}, {
     'Documents saaf karna aur kaatne ka tareeka theek karna lagbhag hamesha jeette hain, aur uske baad re-ranking pass sabse sasta bada sudhaar hai. Zyada mehnga model aam taur par sabse mehnga option hai aur sabse chhota faayda — kyunki dikkat kabhi yeh thi hi nahi ki AI padh nahi paa raha tha. Dikkat yeh thi ki sahi evidence us tak pahuncha hi nahi.',
   'Why keep the name back for six chapters? Because a word you learn before the thing becomes jargon — something you can repeat but not defend. A word you learn after becomes testimony. When you say <em>RAG</em> from now on, it will not be a term you picked up. It will be a thing you built, and more usefully, a thing you have broken.':
     'Naam chhah chapter tak kyun rok kar rakha? Kyunki cheez se pehle seekha gaya shabd jargon ban jaata hai — jise aap doharaa to sakte hain lekin defend nahi kar sakte. Cheez ke baad seekha gaya shabd gawahi ban jaata hai. Ab se jab aap <em>RAG</em> bolenge, to woh koi uthaya hua term nahi hoga. Woh ek cheez hogi jo aapne banayi hai, aur usse bhi zyada kaam ki baat — jise aapne toda hai.'
+});
+
+/* Hinglish: Part I, the interleaved rebuild.
+
+   Same rule as the rest of the layer — the key is the English line exactly as
+   the course shows it, and code is never translated. */
+Object.assign(window.HING = window.HING || {}, {
+  'Three facts about the machine. You will prove each one on your own screen before the next one arrives.':
+    'Machine ke teen facts. Agla aane se pehle har ek ko aap apni screen par saabit karenge.',
+  'Read the receipt on a call and say what a company is actually billed for.':
+    'Ek call ki receipt padhkar batana ki company ka bill asal mein kis cheez ka banta hai.',
+  'Build, with your own hands, the memory trick every chat product sells — and say what it costs.':
+    'Woh memory wala khel apne haathon se banana jo har chat product bechta hai — aur batana ki uski keemat kya hai.',
+  'Colab open and your key working':
+    'Colab khula ho aur aapki key chal rahi ho',
+  'The five minutes of setup, done once. Chapter 1 is the first thing that uses it.':
+    'Paanch minute ka setup, ek baar. Chapter 1 pehli cheez hai jo use istemaal karta hai.',
+  'Before you start':
+    'Shuru karne se pehle',
+  'Open a new Colab notebook and name it <code>chapter-1</code>. Run the three warm-up cells from <a href="#/setup">Setup</a> — the key, the install, the client — so they are ready above everything you write today. From here on, every idea is followed by the code that proves it. Run each block before reading on; that is the whole method.':
+    'Ek naya Colab notebook kholiye aur uska naam <code>chapter-1</code> rakhiye. <a href="#/setup">Setup</a> se teen warm-up cells chala lijiye — key, install, client — taaki aaj jo bhi likhen uske upar woh taiyaar rahein. Ab se har idea ke turant baad woh code aata hai jo use saabit karta hai. Aage padhne se pehle har block chalaiye; poora tareeka yahi hai.',
+  'Make your first call':
+    'Apna pehla call kijiye',
+  'A fluent two-sentence answer. Notice what you did <em>not</em> do: you never gave it a database to search. It composed that from pattern. The first idea is now on your screen rather than on this page.':
+    'Do sentence ka ek fluent jawaab. Dhyaan dijiye aapne kya <em>nahi</em> kiya: aapne use dhoondhne ke liye koi database diya hi nahi. Usne yeh pattern se banaya. Pehla idea ab is page par nahi, aapki screen par hai.',
+  'Now the harder version. You ask it about a refund policy at a company that does not exist. It has never seen anything about it. What comes back?':
+    'Ab mushkil roop. Aap ise ek aisi company ki refund policy ke baare mein poochhte hain jo hai hi nahi. Usne uske baare mein kabhi kuchh dekha hi nahi. Kya wapas aayega?',
+  'This is why you cannot judge an AI answer by how confident it sounds. It sounds identical either way. Chapter 2 makes you order one of these lies deliberately.':
+    'Isiliye aap AI ke jawaab ko uske confident lehje se nahi jaanch sakte. Dono haalat mein woh bilkul ek jaisa sunai deta hai. Chapter 2 mein aap aisa ek jhooth jaanbujhkar order karenge.',
+  'What you just sent travelled as a structured envelope — labels and values in curly braces, a format called <strong>JSON</strong> — carrying a list called <code>messages</code>. Each entry is tagged with a role: <code>user</code> for you, <code>assistant</code> for the reply. Your app sends text, the AI sends text back, and you are billed for both.':
+    'Aapne abhi jo bheja woh ek structured envelope ki tarah gaya — curly braces mein labels aur values, is format ka naam <strong>JSON</strong> hai — jisme <code>messages</code> naam ki ek list thi. Har entry par ek role laga hota hai: aapke liye <code>user</code>, jawaab ke liye <code>assistant</code>. Aapka app text bhejta hai, AI text wapas bhejta hai, aur bill dono ka banta hai.',
+  'Read the receipt':
+    'Receipt padhiye',
+  'Every reply carries one, in a block called <code>usage</code>. Add this to the same cell:':
+    'Har jawaab ke saath ek aati hai, <code>usage</code> naam ke block mein. Isi cell mein yeh jodiye:',
+  'Two numbers, something like <code>tokens read: 18 / tokens written: 55</code>. That is the receipt, and it rides inside every single reply you will ever get.':
+    'Do numbers, kuchh aise <code>tokens read: 18 / tokens written: 55</code>. Wahi receipt hai, aur woh aapko milne wale har ek jawaab ke andar aati hai.',
+  'Not by the word, though. By something slightly smaller. Text gets chopped into pieces called <strong>tokens</strong> — roughly three-quarters of an English word each. Common words are usually one token; unusual words and other scripts break into several. This runs right here, no setup needed:':
+    'Lekin shabd ke hisaab se nahi. Usse thodi chhoti cheez ke hisaab se. Text ko tukdon mein kaat diya jaata hai jinhe <strong>tokens</strong> kehte hain — har ek motamoti ek English word ka teen-chauthai. Aam shabd aksar ek token hote hain; anokhe shabd aur doosri lipiyan kai tukdon mein toot jaate hain. Yeh yahin chalta hai, koi setup nahi chahiye:',
+  'Watch the bill move':
+    'Bill ko hilte hue dekhiye',
+  'Paste a long paragraph from one of your own corpus documents and ask for a summary:':
+    'Apne corpus ke kisi document se ek lamba paragraph paste kijiye aur summary maangiye:',
+  '<code>prompt_tokens</code> jumps into the hundreds. You just watched a bill grow in real time. Now do the opposite — ask a short question but demand a long answer (“explain in 400 words”) and watch <code>completion_tokens</code> jump instead. Both sides of the receipt are real to you now.':
+    '<code>prompt_tokens</code> sau ke paar chala jaata hai. Aapne abhi bill ko asli waqt mein badhte dekha. Ab ulta kijiye — chhota sawaal poochhiye lekin lamba jawaab maangiye (“400 shabdon mein samjhaiye”) aur is baar <code>completion_tokens</code> ko uchhalte dekhiye. Receipt ke dono pehlu ab aapke liye asli hain.',
+  'The AI forgets you completely the moment it replies. Every request starts from nothing. It has no idea you spoke to it a minute ago. The formal word is <strong>stateless</strong>.':
+    'Jawaab dete hi AI aapko poori tarah bhool jaata hai. Har request shoonya se shuru hoti hai. Use andaaza bhi nahi ki ek minute pehle aap usse baat kar rahe the. Iska formal shabd hai <strong>stateless</strong>.',
+  'Catch the amnesia red-handed':
+    'Amnesia ko rangey haath pakadiye',
+  'Two separate calls, one after the other:':
+    'Do alag calls, ek ke baad ek:',
+  'The second reply has no idea. Not a bug, not a setting — the machine genuinely has nothing between one call and the next.':
+    'Doosre jawaab ko kuchh pata hi nahi. Na yeh bug hai na koi setting — machine ke paas ek call aur agli call ke beech sach mein kuchh hota hi nahi.',
+  'It does not. The app re-sends the entire conversation every single time. The memory is a trick performed by the app, not a property of the AI. And you are about to perform it yourself.':
+    'Rehti nahi hai. App har baar poori conversation dobara bhejta hai. Yeh memory app ka kiya hua khel hai, AI ka gun nahi. Aur ab aap yeh khel khud karne wale hain.',
+  'Perform the trick':
+    'Khel khud kijiye',
+  'Now it knows — Sam. And <code>prompt_tokens</code> is bigger than before, because you paid to re-send the whole history. Sit on that for a second: you have just built, by hand, the illusion every chat product in the world sells, and you can see exactly what it costs per message.':
+    'Ab use pata hai — Sam. Aur <code>prompt_tokens</code> pehle se bada hai, kyunki aapne poori history dobara bhejne ka paisa diya. Ek pal ruk kar sochiye: aapne abhi apne haathon se woh bhram bana liya jo duniya ka har chat product bechta hai, aur aap saaf dekh sakte hain ki har message par uski keemat kya hai.',
+  'Watch that cost curve without typing anything:':
+    'Woh cost curve bina kuchh type kiye dekhiye:',
+  'Write the two sentences you would say to a colleague who asks why a long chat with an AI costs more than a short one. Plain words — no jargon, and nothing you could not defend if they pushed back.':
+    'Woh do sentence likhiye jo aap us saathi se kahenge jo poochhta hai ki AI se lambi chat chhoti chat se mehngi kyun padti hai. Saade shabd — koi jargon nahi, aur kuchh aisa nahi jise woh khodein to aap defend na kar paayein.',
+  'The meter on a real feature':
+    'Ek asli feature par meter',
+  'Everything in this chapter exists to answer one question a finance director will eventually ask you: <em>what does this cost?</em> You now have every instrument needed to answer it with a number you produced yourself, rather than a number a vendor gave you.':
+    'Is chapter ki har cheez ek hi sawaal ka jawaab dene ke liye hai, jo koi finance director aapse kabhi na kabhi poochhega: <em>iski cost kya hai?</em> Ab aapke paas har woh auzaar hai jisse aap jawaab apne nikaale hue number se de sakein, kisi vendor ke diye number se nahi.',
+  'Pick one small feature you could imagine your own team shipping — a summariser for support tickets, a drafting aid, an FAQ answerer. One sentence describing what it does.':
+    'Ek chhota feature chuniye jise aapki apni team ship kar sakti ho — support tickets ka summariser, draft banane wala sahayak, FAQ ka jawaab dene wala. Ek sentence mein likhiye ki woh kya karta hai.',
+  'Write the actual request it would send, as a real call in your <code>chapter-1</code> notebook, using a real example from your work. Run it.':
+    'Woh asli request likhiye jo yeh bhejta, apne <code>chapter-1</code> notebook mein ek asli call ki tarah, apne kaam ke ek asli udaharan ke saath. Use chalaiye.',
+  'Record the receipt: <code>prompt_tokens</code> and <code>completion_tokens</code>. Do this for three different realistic inputs, not one, and take the average.':
+    'Receipt likhiye: <code>prompt_tokens</code> aur <code>completion_tokens</code>. Yeh ek nahi, teen alag-alag asli jaise inputs ke liye kijiye, aur average lijiye.',
+  'Now make it a conversation. Re-send the growing history five turns deep, printing <code>prompt_tokens</code> at every turn. Plot or simply list the five numbers.':
+    'Ab ise conversation banaiye. Badhti hui history ko paanch turn tak dobara bhejiye, har turn par <code>prompt_tokens</code> print karte hue. Paanchon numbers ka chart banaiye ya bas list kar lijiye.',
+  'Find your provider’s published rate per million tokens and turn your averages into a cost per query, then a cost per 1,000 conversations.':
+    'Apne provider ka prati million tokens wala published rate dhoondhiye aur apne averages ko per query cost mein, phir 1,000 conversations ki cost mein badaliye.',
+  'Write the one sentence you would say out loud in a budget meeting — the figure, and the single assumption most likely to make it wrong.':
+    'Woh ek sentence likhiye jo aap budget meeting mein bolenge — aankda, aur woh ek maanyata jiske galat hone ki sambhavna sabse zyada hai.',
+  'You have five token counts from a five-turn conversation, and they go up.':
+    'Aapke paas paanch turn ki conversation se paanch token counts hain, aur woh badhte jaate hain.',
+  'You have a cost per query you can derive again in front of someone, from numbers on your own screen.':
+    'Aapke paas ek per query cost hai jise aap kisi ke saamne, apni screen ke numbers se, dobara nikaal sakte hain.',
+  'You can name the assumption that would break the estimate — and it is not “the model might change”.':
+    'Aap us maanyata ka naam le sakte hain jo estimate ko tod degi — aur woh “model badal sakta hai” nahi hai.'
 });
 
 /* Hinglish: the in-page tools.
@@ -12230,6 +12374,16 @@ function blocks(list){
     else if(k==='pred')f.appendChild(cpPredict(r[0]));
     else if(k==='try')f.appendChild(cpTry(r[0]));
     else if(k==='lab'){const b=r[0]==='redmap'?redMapBlock():labBlock(r[0]); if(b)f.appendChild(b);}
+    /* A hands-on beat, inline. The whole point is that it sits here, right
+       after the idea it proves, rather than being saved up for a section at
+       the end that a reader meets four concepts too late. */
+    else if(k==='do'){
+      const d=h('section',{class:'dostep'},[
+        h('div',{class:'dohead'},[h('span',{class:'dotag',text:'do this'}),
+          h('h4',{html:T(r[0])})])]);
+      d.appendChild(h('div',{class:'dobody'},[blocks(r[1])]));
+      f.appendChild(d);
+    }
   });
   return f;
 }
@@ -12615,7 +12769,10 @@ function renderChapter(c){
         h('li',{},[
           h('div',{},[h('strong',{text:T(what)}),
             h('span',{class:'needwhy',text:' — '+T(why)})]),
-          h('a',{class:'chip',href:'#/ch/ch'+ch,text:'Chapter '+ch+' →'})]))));
+          /* A chapter can also stand on the setup, which is not a chapter. */
+          ch==='setup'
+            ? h('a',{class:'chip',href:'#/setup',text:'Setup →'})
+            : h('a',{class:'chip',href:'#/ch/ch'+ch,text:'Chapter '+ch+' →'})]))));
     if(alsoRefs.length){
       const row=h('div',{class:'alsoref'},[
         h('span',{class:'needwhy',text:'It also refers back to '})]);
@@ -12704,6 +12861,24 @@ function renderChapter(c){
     ho.appendChild(st);
   });
   w.appendChild(ho);
+  }
+
+  /* One project per chapter that uses everything in it. Homework is a list of
+     tasks; a capstone is a thing you have built and can check. */
+  if(c.capstone){
+    const cp=c.capstone;
+    const cs2=h('section',{class:'part capstone',id:'capstone'});
+    cs2.appendChild(sectionHead(c.num+'.'+n++,'Capstone — '+T(cp.title)));
+    cs2.appendChild(h('div',{class:'prose'},[h('p',{class:'concept',html:T(cp.brief)})]));
+    if((cp.steps||[]).length)
+      cs2.appendChild(h('div',{class:'prose'},[h('ol',{class:'num'},cp.steps.map(x=>h('li',{html:T(x)})))]));
+    if((cp.done||[]).length)
+      cs2.appendChild(h('div',{class:'takeaway'},[
+        h('span',{class:'cplbl',text:'It is finished when'}),
+        h('ul',{class:'plain'},cp.done.map(x=>h('li',{html:T(x)})))]));
+    cs2.appendChild(notebookBlock(c,'capstone','What you built, and anything that surprised you',
+      'Rough notes. The build is the deliverable, not the write-up.'));
+    w.appendChild(cs2);
   }
 
   // If something goes wrong
@@ -13680,9 +13855,14 @@ function hingStrings(){
       walk(o,c.takeaway);
       (c.needs||[]).forEach(n=>{ add(o,n[0]); add(o,n[1]); });
       /* code samples are code, and a lab or question block is only an id */
-      (c.story||[]).forEach(b=>{ if(['code','lab','q'].includes(b[0]))return; walk(o,b.slice(1)); });
-      (c.handson||[]).forEach(st=>{ add(o,st.h);
-        (st.b||[]).forEach(b=>{ if(b[0]==='code')return; walk(o,b.slice(1)); }); });
+      const prose=b=>{ if(!Array.isArray(b))return;
+        if(['code','lab','q'].includes(b[0]))return;
+        if(b[0]==='do'){ add(o,b[1]); (b[2]||[]).forEach(prose); return; }
+        walk(o,b.slice(1)); };
+      (c.story||[]).forEach(prose);
+      (c.handson||[]).forEach(st=>{ add(o,st.h); (st.b||[]).forEach(prose); });
+      if(c.capstone){ add(o,c.capstone.title); add(o,c.capstone.brief);
+        walk(o,c.capstone.steps); walk(o,c.capstone.done); }
     });
   });
 

@@ -40,28 +40,46 @@ window.PART1 = [
   ]
 },
 {
-  id:'ch1', num:1, part:1, minutes:20, labs:[],
+  id:'ch1', num:1, part:1, minutes:45, labs:[],
   title:'What happens when your app asks an AI something',
-  concept:'Three facts about the machine. Each one decides something you will have to design around.',
+  concept:'Three facts about the machine. You will prove each one on your own screen before the next one arrives.',
+  needs:[
+    ['Colab open and your key working','The five minutes of setup, done once. Chapter 1 is the first thing that uses it.','setup'],
+  ],
   takeaway:[
     'Explain why an AI can sound completely certain and be completely wrong.',
-    'Say what a company is actually billed for when someone uses an AI feature.',
-    'Explain why a long chat costs more per message than a short one — and why that is a product decision, not a technical detail.'
+    'Read the receipt on a call and say what a company is actually billed for.',
+    'Build, with your own hands, the memory trick every chat product sells — and say what it costs.'
   ],
   story:[
+    ['c','Before you start','Open a new Colab notebook and name it <code>chapter-1</code>. Run the three warm-up cells from <a href="#/setup">Setup</a> — the key, the install, the client — so they are ready above everything you write today. From here on, every idea is followed by the code that proves it. Run each block before reading on; that is the whole method.'],
+
     ['p','Start with your phone keyboard. You type <em>See you at the</em> and it offers <em>office</em>, <em>station</em>, <em>airport</em>. It is guessing the next word from patterns in what people usually type. It is not thinking about your evening.'],
     ['p','An AI model is that, made enormous. It was built by reading a very large amount of writing and getting extremely good at one narrow trick: guessing what text comes next. Do that trick over and over and whole paragraphs come out. That is genuinely all it does.'],
     ['key','It is guessing, not looking up. There is no database behind it that it consults. This one fact causes most of the surprises in this field.'],
+    ['do','Make your first call',[
+      ['code','response = client.chat.completions.create(\n    model="meta/llama-3.1-8b-instruct",\n    messages=[{\n        "role": "user",\n        "content": "What is compound interest, in two sentences?"\n    }]\n)\nprint(response.choices[0].message.content)'],
+      ['x','A fluent two-sentence answer. Notice what you did <em>not</em> do: you never gave it a database to search. It composed that from pattern. The first idea is now on your screen rather than on this page.']
+    ]],
     ['pred',{id:'ch1-guess',short:true,ph:'One line — what do you think it does?',
-      ask:'So: you ask it about a refund policy at a company that does not exist. It has never seen anything about it. What comes back?',
+      ask:'Now the harder version. You ask it about a refund policy at a company that does not exist. It has never seen anything about it. What comes back?',
       reveal:'A confident, well-written, completely invented policy. Not because it is lying — because “guess what text comes next” has no option for “I have nothing here.” Saying <em>I don’t know</em> is a behaviour that has to be added on top, and it does not always hold.',
-      then:'This is why you cannot judge an AI answer by how confident it sounds. It sounds identical either way. Chapter 2 is entirely about this.'}],
+      then:'This is why you cannot judge an AI answer by how confident it sounds. It sounds identical either way. Chapter 2 makes you order one of these lies deliberately.'}],
 
     ['p','Now the practical part: what actually gets sent, and what you get charged for.'],
-    ['p','Your app sends text. The AI sends text back. You are billed for both — for how much went in, and how much came out. Not by the word, though. By something slightly smaller.'],
-    ['p','Text gets chopped into pieces called <strong>tokens</strong>. Roughly, a token is about three-quarters of an English word. Common words are usually one token each; unusual words and other scripts break into several. Try it — this is the actual thing, running here:'],
+    ['p','What you just sent travelled as a structured envelope — labels and values in curly braces, a format called <strong>JSON</strong> — carrying a list called <code>messages</code>. Each entry is tagged with a role: <code>user</code> for you, <code>assistant</code> for the reply. Your app sends text, the AI sends text back, and you are billed for both.'],
+    ['do','Read the receipt',[
+      ['p','Every reply carries one, in a block called <code>usage</code>. Add this to the same cell:'],
+      ['code','print("---")\nprint("tokens read:   ", response.usage.prompt_tokens)\nprint("tokens written:", response.usage.completion_tokens)'],
+      ['x','Two numbers, something like <code>tokens read: 18 / tokens written: 55</code>. That is the receipt, and it rides inside every single reply you will ever get.']
+    ]],
+    ['p','Not by the word, though. By something slightly smaller. Text gets chopped into pieces called <strong>tokens</strong> — roughly three-quarters of an English word each. Common words are usually one token; unusual words and other scripts break into several. This runs right here, no setup needed:'],
     ['lab','tokenizer'],
-    ['p','Type a normal sentence and watch it split. Then try your own name, and then something in Hindi or Tamil if you have it. Notice how many more pieces those become. Every extra piece is money.'],
+    ['do','Watch the bill move',[
+      ['p','Paste a long paragraph from one of your own corpus documents and ask for a summary:'],
+      ['code','response = client.chat.completions.create(\n    model="meta/llama-3.1-8b-instruct",\n    messages=[{\n        "role": "user",\n        "content": "Summarize this: [paste a paragraph]"\n    }]\n)\nprint("tokens read:", response.usage.prompt_tokens)'],
+      ['x','<code>prompt_tokens</code> jumps into the hundreds. You just watched a bill grow in real time. Now do the opposite — ask a short question but demand a long answer (“explain in 400 words”) and watch <code>completion_tokens</code> jump instead. Both sides of the receipt are real to you now.']
+    ]],
     ['q','I001'],
 
     ['p','Second fact: there is a size limit. Everything sent in one go — the question, any instructions you attach, any documents, plus the answer coming back — has to fit inside a ceiling. The industry calls that ceiling the <strong>context window</strong>.'],
@@ -69,10 +87,19 @@ window.PART1 = [
     ['q','I006'],
 
     ['p','Which brings us to the third fact, and the strangest one.'],
-    ['key','The AI forgets you completely the moment it replies. Every request starts from nothing. It has no idea you spoke to it a minute ago.'],
+    ['key','The AI forgets you completely the moment it replies. Every request starts from nothing. It has no idea you spoke to it a minute ago. The formal word is <strong>stateless</strong>.'],
+    ['do','Catch the amnesia red-handed',[
+      ['p','Two separate calls, one after the other:'],
+      ['code','MODEL = "meta/llama-3.1-8b-instruct"\n\nr1 = client.chat.completions.create(\n    model=MODEL,\n    messages=[{"role": "user",\n               "content": "My name is Sam. Remember it."}]\n)\nprint(r1.choices[0].message.content)\n\nr2 = client.chat.completions.create(\n    model=MODEL,\n    messages=[{"role": "user",\n               "content": "What is my name?"}]\n)\nprint(r2.choices[0].message.content)'],
+      ['x','The second reply has no idea. Not a bug, not a setting — the machine genuinely has nothing between one call and the next.']
+    ]],
     ['p','That raises an obvious question: so how does a chat assistant seem to remember what you said five messages back?'],
-    ['p','It does not. The app re-sends the entire conversation every single time. When you type message six, the app quietly sends messages one to five along with it, so the reply makes sense. The memory is a trick performed by the app, not a property of the AI.'],
-    ['p','And since you pay for everything you send — you pay for that whole history again, on every message. Watch it happen:'],
+    ['p','It does not. The app re-sends the entire conversation every single time. The memory is a trick performed by the app, not a property of the AI. And you are about to perform it yourself.'],
+    ['do','Perform the trick',[
+      ['code','r3 = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {"role": "user",\n         "content": "My name is Sam. Remember it."},\n        {"role": "assistant",\n         "content": r1.choices[0].message.content},\n        {"role": "user",\n         "content": "What is my name?"}\n    ]\n)\nprint(r3.choices[0].message.content)\nprint("tokens read now:", r3.usage.prompt_tokens)'],
+      ['x','Now it knows — Sam. And <code>prompt_tokens</code> is bigger than before, because you paid to re-send the whole history. Sit on that for a second: you have just built, by hand, the illusion every chat product in the world sells, and you can see exactly what it costs per message.']
+    ]],
+    ['p','Watch that cost curve without typing anything:'],
     ['lab','receipt'],
     ['q','I010','I011'],
 
@@ -83,11 +110,27 @@ window.PART1 = [
       '<strong>It forgets.</strong> So memory is something your product builds and pays for, message by message — not a feature you get from the vendor.'
     ]],
     ['try',{id:'ch1-explain',mins:3,min:40,rows:3,
-      task:'Last thing, and it is the one that sticks. Write the two sentences you would say to a colleague who asks why a long chat with an AI costs more than a short one. Plain words — no jargon, and nothing you could not defend if they pushed back.',
+      task:'Write the two sentences you would say to a colleague who asks why a long chat with an AI costs more than a short one. Plain words — no jargon, and nothing you could not defend if they pushed back.',
       ph:'Two sentences.',
-      after:'A good answer has both halves: what happens, and what it means. What happens — the AI remembers nothing, so the app sends the whole conversation again with every message. What it means — the cost of a conversation grows the longer it gets, and that cost is ours, not the vendor’s. If you got both halves, you understand this chapter better than most people who have shipped an AI feature.'}],
-    ['c','Optional, if you want one thing to try','Open any AI chat you already use. Ask it something about your own company that it could not possibly know — phrased as though the answer obviously exists. See whether it refuses or invents. That is the whole of Chapter 2, and it takes two minutes.']
-  ]
+      after:'A good answer has both halves: what happens, and what it means. What happens — the AI remembers nothing, so the app sends the whole conversation again with every message. What it means — the cost of a conversation grows the longer it gets, and that cost is ours, not the vendor’s. If you got both halves, you understand this chapter better than most people who have shipped an AI feature.'}]
+  ],
+  capstone:{
+    title:'The meter on a real feature',
+    brief:'Everything in this chapter exists to answer one question a finance director will eventually ask you: <em>what does this cost?</em> You now have every instrument needed to answer it with a number you produced yourself, rather than a number a vendor gave you.',
+    steps:[
+      'Pick one small feature you could imagine your own team shipping — a summariser for support tickets, a drafting aid, an FAQ answerer. One sentence describing what it does.',
+      'Write the actual request it would send, as a real call in your <code>chapter-1</code> notebook, using a real example from your work. Run it.',
+      'Record the receipt: <code>prompt_tokens</code> and <code>completion_tokens</code>. Do this for three different realistic inputs, not one, and take the average.',
+      'Now make it a conversation. Re-send the growing history five turns deep, printing <code>prompt_tokens</code> at every turn. Plot or simply list the five numbers.',
+      'Find your provider’s published rate per million tokens and turn your averages into a cost per query, then a cost per 1,000 conversations.',
+      'Write the one sentence you would say out loud in a budget meeting — the figure, and the single assumption most likely to make it wrong.'
+    ],
+    done:[
+      'You have five token counts from a five-turn conversation, and they go up.',
+      'You have a cost per query you can derive again in front of someone, from numbers on your own screen.',
+      'You can name the assumption that would break the estimate — and it is not “the model might change”.'
+    ]
+  }
 },
 {
   id:'ch2', num:2, part:1, minutes:20, labs:['temperature'],

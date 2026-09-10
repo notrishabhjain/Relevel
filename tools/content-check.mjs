@@ -34,6 +34,13 @@ const blocksOf = c => [
   ...(c.handson || []).flatMap(s => s.b || [])
 ];
 
+/* A chapter must not go back to having a hands-on section bolted on the end.
+   The whole content rule is that doing is interleaved with reading. */
+for (const c of C.chapters) {
+  if ((c.handson || []).length && (c.story || []).some(b => Array.isArray(b) && b[0] === 'do'))
+    fail(`${c.id} has both inline hands-on beats and a separate hands-on section`);
+}
+
 const cpIds = new Map();
 const asked = new Set();
 let checkpoints = 0;
@@ -85,6 +92,7 @@ for (const c of C.chapters) {
   if (!(c.needs || []).length) fail(`${c.id} does not say what it stands on`);
   for (const [what, why, ch] of c.needs || []) {
     if (!what || !why) fail(`${c.id} has an incomplete prerequisite`);
+    if (ch === 'setup') continue;              // the environment, not a chapter
     if (!chapterNums.has(ch)) fail(`${c.id} points back to chapter ${ch}, which does not exist`);
     if (ch >= c.num) fail(`${c.id} says it stands on chapter ${ch}, which comes later`);
   }
@@ -111,7 +119,10 @@ const wantWalk = v => {
     Object.keys(v).forEach(k => { if (k !== 'id') wantWalk(v[k]); });
 };
 const prose = b => { if (!Array.isArray(b)) return;
-  if (['code', 'lab', 'q'].includes(b[0])) return; wantWalk(b.slice(1)); };
+  if (['code', 'lab', 'q'].includes(b[0])) return;
+  /* a hands-on beat is a label plus its own blocks — the code inside stays code */
+  if (b[0] === 'do') { wantAdd(b[1]); (b[2] || []).forEach(prose); return; }
+  wantWalk(b.slice(1)); };
 (C.reference.PARTS || []).forEach(p => { wantAdd(p.title); wantAdd(p.blurb); });
 C.chapters.forEach(c => {
   wantAdd(c.title); wantAdd(c.concept); wantWalk(c.takeaway);

@@ -530,6 +530,37 @@ await revisit(hi.page);
 ok(/aapka app|Hinglish/.test(await mainText(hi.page)) ||
    await hi.page.evaluate(() => window.STORE.S.lang) === 'hi', 'the choice survives a reload');
 
+console.log('\n— theory and hands-on are one sequence —');
+const il = await newDevice(false, 'interleaved');
+await boot(il.page, '#/ch/ch1');
+const shape = await il.page.evaluate(() => {
+  const main = document.querySelector('#main');
+  /* Where the hands-on beats sit relative to the prose is the whole point:
+     interleaved, not gathered into a section at the end. */
+  const nodes = [...main.querySelectorAll('.prose > p, .dostep, #capstone')];
+  const kinds = nodes.map(n => n.classList.contains('dostep') ? 'do'
+    : n.id === 'capstone' ? 'capstone' : 'read');
+  const firstDo = kinds.indexOf('do'), lastDo = kinds.lastIndexOf('do');
+  return { total: kinds.length, dos: kinds.filter(k => k === 'do').length,
+    firstDo, lastDo, readsAfterFirstDo: kinds.slice(firstDo, lastDo).filter(k => k === 'read').length,
+    hasCapstone: kinds.includes('capstone'),
+    hasOldSection: !!main.querySelector('#handson') };
+});
+ok(shape.dos >= 4, `the chapter has ${shape.dos} hands-on beats in the reading`);
+ok(!shape.hasOldSection, 'and no separate hands-on section');
+ok(shape.firstDo > 0 && shape.firstDo < shape.total / 3,
+   'the first one arrives early, not after all the theory', 'at ' + shape.firstDo);
+ok(shape.readsAfterFirstDo > 3,
+   'and reading continues between the beats rather than ending at them',
+   shape.readsAfterFirstDo);
+ok(shape.hasCapstone, 'the chapter ends with a capstone');
+const capText = await il.page.evaluate(() =>
+  document.querySelector('#capstone')?.textContent || '');
+ok(/It is finished when/.test(capText), 'which says what finished means');
+const gate = await mainText(il.page);
+ok(/Before you start/.test(gate) && /chapter-1/.test(gate),
+   'and the chapter opens by naming the notebook to have open');
+
 console.log('\n— installing it on a phone or tablet —');
 const inst = await newDevice(false);
 await boot(inst.page, '#/install');
