@@ -47,7 +47,7 @@ Object.assign(window.HING = window.HING || {}, {
     'Memory feature ke teen hisse bata sakta hai: store, chunav, budget',
   'Can interrogate a vendor memory claim on storage, control and per-query cost':
     'Vendor ke memory ke daawe ko storage, niyantran aur per-query cost par khod sakta hai',
-  'Write a briefing page that behaves, and know precisely what it cannot do.':
+  'Write a briefing page that behaves, and know exactly what it cannot do.':
     'Aisa briefing page likhna jo kaam kare, aur theek-theek jaanna ki woh kya nahi kar sakta.',
   'Knows the system prompt sets standing behaviour':
     'Jaanta hai ki system prompt sthir behaviour tay karta hai',
@@ -156,7 +156,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Can cluster notes into a taxonomy and count each cluster':
     'Notes ko guchhon mein baant sakta hai aur har guchha gin sakta hai',
   'Can drive a roadmap from cluster size and convert clusters into regression cases':
-    'Guchhe ke aakaar se roadmap chala sakta hai aur guchhon ko regression cases mein badal sakta hai',
+    'Guchhe ke size se roadmap chala sakta hai aur guchhon ko regression cases mein badal sakta hai',
   'Know how wrong your intuitions are, numerically, and correct for it.':
     'Yeh jaanna ki aapki apni samajh kitni galat hai, numbers mein, aur uske hisaab se sudhaarna.',
   'Writes a prediction before measuring':
@@ -246,7 +246,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Can complete a system card with measured numbers':
     'Naape hue numbers ke saath system card poora kar sakta hai',
   'Can spot a governance file that contains adjectives where evidence belongs':
-    'Aisi governance file pakad sakta hai jisme sabooot ki jagah visheshan hain',
+    'Aisi governance file pakad sakta hai jisme sabooot ki jagah adjectives hain',
   'Specify review that can actually be exercised at real volume.':
     'Aisa review tay karna jo asli volume par sach mein ho sake.',
   'Knows a human should review high-risk output':
@@ -297,7 +297,7 @@ Object.assign(window.HING = window.HING || {}, {
     'Poora set likh sakta hai, bina-jawaab wale aur doosri bhaasha wale mamle samet',
   'Can write the whole PRD: thresholds, regression, rollout, kill switch, migration':
     'Poora PRD likh sakta hai: thresholds, regression, rollout, kill switch, migration',
-  'Make a senior non-technical person genuinely able to repeat it.':
+  'Make a senior non-technical person really able to repeat it.':
     'Kisi senior non-technical insaan ko sach mein is layak banana ki woh use dohraa sake.',
   'Can define terms accurately':
     'Shabdon ko theek se define kar sakta hai',

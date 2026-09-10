@@ -41,6 +41,16 @@ for (const c of C.chapters) {
     fail(`${c.id} has both inline hands-on beats and a separate hands-on section`);
 }
 
+/* The course used to carry an optional "same thing in real code" section, and
+   the text that sold it as skippable outlived the section itself. Doing is not
+   an appendix any more, and nothing may tell a reader it is. */
+const SKIPPABLE = /\b(optional section|you can ignore it completely|nothing later depends on it|entirely optional|feel free to skip)\b/i;
+for (const c of C.chapters)
+  for (const b of blocksOf(c)) {
+    const m = SKIPPABLE.exec(JSON.stringify(b));
+    if (m) fail(`${c.id} still describes the hands-on work as skippable: "${m[0]}"`);
+  }
+
 const cpIds = new Map();
 const asked = new Set();
 let checkpoints = 0;
@@ -126,6 +136,9 @@ const prose = b => { if (!Array.isArray(b)) return;
 (C.reference.PARTS || []).forEach(p => { wantAdd(p.title); wantAdd(p.blurb); });
 C.chapters.forEach(c => {
   wantAdd(c.title); wantAdd(c.concept); wantWalk(c.takeaway);
+  /* the capstone renders through the same translator the story does */
+  if (c.capstone) { wantAdd(c.capstone.title); wantAdd(c.capstone.brief);
+    wantWalk(c.capstone.steps); wantWalk(c.capstone.done); }
   (c.needs || []).forEach(n => { wantAdd(n[0]); wantAdd(n[1]); });
   (c.story || []).forEach(prose);
   (c.handson || []).forEach(st => { wantAdd(st.h); (st.b || []).forEach(prose); });
@@ -147,6 +160,16 @@ const labsSrc = fs.readFileSync(path.join(ROOT, 'src/labs.js'), 'utf8');
 for (const m of labsSrc.matchAll(/\b(?:title|note):\s*'((?:[^'\\]|\\.)*)'/g))
   wantAdd(m[1].replace(/\\(['\\])/g, '$1'));
 (C.reference.GLOSSARY || []).forEach(x => wantAdd(x[1]));
+
+/* Hinglish is Hindi written in the Roman alphabet. A Devanagari character in
+   a translation is always a typing slip — it has happened twice — and it reads
+   as a broken glyph mid-word rather than as an error anybody would report. */
+const devanagari = Object.entries(hing)
+  .filter(([, v]) => /[\u0900-\u097F]/.test(String(v)))
+  .map(([, v]) => (String(v).match(/\S*[\u0900-\u097F]\S*/) || [''])[0]);
+if (devanagari.length)
+  fail(`${devanagari.length} Hinglish line(s) contain Devanagari characters` +
+       ` — first: "${devanagari[0]}"`);
 
 const untranslated = [...need].filter(k => hing[k] === undefined);
 if (untranslated.length) {

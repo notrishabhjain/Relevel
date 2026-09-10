@@ -47,7 +47,7 @@ Object.assign(window.HING = window.HING || {}, {
     'Amnesia ko rangey haath pakadiye',
   'Two separate calls, one after the other:':
     'Do alag calls, ek ke baad ek:',
-  'The second reply has no idea. Not a bug, not a setting — the machine genuinely has nothing between one call and the next.':
+  'The second reply has no idea. Not a bug, not a setting — the machine really has nothing between one call and the next.':
     'Doosre jawaab ko kuchh pata hi nahi. Na yeh bug hai na koi setting — machine ke paas ek call aur agli call ke beech sach mein kuchh hota hi nahi.',
   'It does not. The app re-sends the entire conversation every single time. The memory is a trick performed by the app, not a property of the AI. And you are about to perform it yourself.':
     'Rehti nahi hai. App har baar poori conversation dobara bhejta hai. Yeh memory app ka kiya hua khel hai, AI ka gun nahi. Aur ab aap yeh khel khud karne wale hain.',
@@ -74,11 +74,11 @@ Object.assign(window.HING = window.HING || {}, {
   'Find your provider’s published rate per million tokens and turn your averages into a cost per query, then a cost per 1,000 conversations.':
     'Apne provider ka prati million tokens wala published rate dhoondhiye aur apne averages ko per query cost mein, phir 1,000 conversations ki cost mein badaliye.',
   'Write the one sentence you would say out loud in a budget meeting — the figure, and the single assumption most likely to make it wrong.':
-    'Woh ek sentence likhiye jo aap budget meeting mein bolenge — aankda, aur woh ek maanyata jiske galat hone ki sambhavna sabse zyada hai.',
+    'Woh ek sentence likhiye jo aap budget meeting mein bolenge — aankda, aur woh ek assumption jiske galat hone ki sambhavna sabse zyada hai.',
   'You have five token counts from a five-turn conversation, and they go up.':
     'Aapke paas paanch turn ki conversation se paanch token counts hain, aur woh badhte jaate hain.',
   'You have a cost per query you can derive again in front of someone, from numbers on your own screen.':
     'Aapke paas ek per query cost hai jise aap kisi ke saamne, apni screen ke numbers se, dobara nikaal sakte hain.',
   'You can name the assumption that would break the estimate — and it is not “the model might change”.':
-    'Aap us maanyata ka naam le sakte hain jo estimate ko tod degi — aur woh “model badal sakta hai” nahi hai.'
+    'Aap us assumption ka naam le sakte hain jo estimate ko tod degi — aur woh “model badal sakta hai” nahi hai.'
 });

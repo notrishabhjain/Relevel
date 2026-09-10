@@ -53,7 +53,24 @@ inside the translations on purpose. `tools/content-check.mjs` fails the build
 if a line has no translation, or if a translation keys off English that no
 longer appears.
 
-Change the English and you own the translation in the same change.
+Change the English and you own the translation in the same change. A
+meaning-preserving edit keeps its translation — but the translation is keyed on
+the English line, so the key has to move with it in the same commit, or the
+line silently falls back to English.
+
+## 6a. Both languages are written to be read, not admired
+
+Plain words beat impressive ones in both directions. In English that means
+cutting the intensifiers that add nothing — a thing is not *genuinely* simple,
+it is simple. In Hinglish it means the opposite of translating hard: where the
+English word is the one an Indian professional would actually say out loud,
+use the English word. `assumption`, not *maanyata*; `oversight`, not
+*nigraani*. Industry terms stay English by design; so does anything the reader
+already says in English every day.
+
+Hinglish is Hindi in the Roman alphabet. A Devanagari character in a
+translation is a typing slip, and `tools/content-check.mjs` fails the build on
+one, because it reads as a broken glyph rather than as an error anyone reports.
 
 ## 7. Content lives in the database, and the build owns it until someone edits it
 

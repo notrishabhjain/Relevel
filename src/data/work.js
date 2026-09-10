@@ -7,7 +7,7 @@ window.EXERCISES = [
  brief:'Build ground truth for a document you know cold. This is the single most reused artifact in the whole system — Chapters 12, 14 and 18 all run against it, and every migration re-runs it.',
  deliverable:'Ten questions with verified answers and chunk locations, including at least one that is unanswerable from the corpus.',
  steps:['Pick one document, 5–15 pages, that you know without looking.',
-   'Write five questions a real user would genuinely ask. Operational ones — the kind that actually arrive.',
+   'Write five questions a real user would really ask. Operational ones — the kind that actually arrive.',
    'Add three "assassins": a synonym question, a plain-language newcomer question, and one in a second language if you have one.',
    'Add two more, of which at least one must be unanswerable from this document. Correct answer: "not in this corpus."',
    'For each, verify the answer against the document — not from memory — and record which chunk contains it.',

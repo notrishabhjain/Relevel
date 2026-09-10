@@ -168,7 +168,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Where data came from, under what right, held where, for how long.':
     'Data kahan se aaya, kis haq se, kahan rakha hai, kitne samay ke liye.',
   'A specified, exercisable review point with authority to overrule.':
-    'Ek tay kiya hua review point jo sach mein use ho sake, aur jise overrule karne ka adhikaar ho.',
+    'Ek tay kiya hua review point jo sach mein use ho sake, aur jise overrule karne ka authority ho.',
   'Unsanctioned tool use by staff. A measurable reality, not a hypothetical.':
     'Staff ka bina permission ke tools istemaal karna. Yeh naapne layak sachchai hai, koi kalpana nahi.',
   'A product specification whose acceptance criteria are eval thresholds on a named dataset.':

@@ -41,7 +41,7 @@ window.ITEMS3 = [
 /* ---- S15 Calibration ---- */
 ['I127','S15',2,'mcq','What does a Brier score measure?',
  ['How often you are correct','How well your stated confidence matches your actual accuracy','How fast you answer','How difficult the questions were'],1,
- 'It rewards being right AND being appropriately confident. Confidently wrong is penalised hardest, which is precisely the failure mode this whole system is built to surface.'],
+ 'It rewards being right AND being appropriately confident. Confidently wrong is penalised hardest, which is exactly the failure mode this whole system is built to surface.'],
 ['I128','S15',3,'mcq','You are consistently correct but always mark "leaning" rather than "fairly sure". What does this cost you?',
  ['Nothing — caution is free','It is a real miscalibration: you under-claim knowledge you have, which matters in rooms where you are the only one who measured anything','It lowers your accuracy','It slows down practice'],1,
  'Underconfidence is a calibration error like any other. The professional cost is that you defer to more confident people who have less evidence.'],
@@ -60,7 +60,7 @@ window.ITEMS3 = [
  'Reviewing an answer without its evidence is reviewing fluency. The reviewer needs what the answer was supposedly based on.'],
 ['I132','S24',3,'mcq','Volume is 4,000 outputs a day and you have one reviewer. What is the workable design?',
  ['Review a random 1% and hope','Route only outputs failing a programmatic check to review, and sample the rest','Ask the model to review itself','Reduce output volume'],1,
- 'Structured output plus programmatic checks turn "review everything" into "review the few percent that failed a check" — which one person can genuinely do, with authority and time.'],
+ 'Structured output plus programmatic checks turn "review everything" into "review the few percent that failed a check" — which one person can really do, with authority and time.'],
 
 /* ---- S25 Data lifecycle ---- */
 ['I133','S25',2,'mcq','Why is data lineage worth recording at ingestion rather than later?',
@@ -69,7 +69,7 @@ window.ITEMS3 = [
 ['I134','S25',3,'mcq','Your prompt cache holds fragments of a document a customer asked you to delete. What is the honest position?',
  ['Caches expire, so no action is needed','It is a store holding their data; you need a documented expiry or an invalidation path, and if you have neither, that is a finding','Caches are the provider\'s responsibility','Only the vector index matters'],1,
  'A cache is a copy. Either you can invalidate it, or you can state a bounded expiry, or you have a gap to report — "it expires eventually" is not a retention policy.'],
-['I135','S25',3,'multi','Which of these make a deletion request genuinely hard to satisfy in a RAG system?',
+['I135','S25',3,'multi','Which of these make a deletion request hard to satisfy in a RAG system?',
  ['The same passage was embedded into a vector index','Fragments sit in provider-side request logs you do not control','Real queries and outputs were sampled into an eval set','The source file is in object storage'],[0,1,2],
  'The source file is the easy one. Derived copies — vectors, third-party logs, eval sets — are where deletion drills fail, and the eval set is the one nobody remembers.'],
 

@@ -33,7 +33,7 @@ Object.assign(window.HING = window.HING || {}, {
     'Har notebook ka naam upar-baayen uske naam par click karke badal dijiye: <code>chapter-1</code>, <code>chapter-2</code>, waghairah.',
   'A2. An API key — your access code to the AI':
     'A2. Ek API key — AI tak pahunchne ka aapka code',
-  'NVIDIA\'s Build platform provides free access to a large catalogue of models with no credit card. This book needs well under 400 requests; the free allowance is roughly 1,000. It also lets you swap models with a one-line change — a genuinely useful skill.':
+  'NVIDIA\'s Build platform provides free access to a large catalogue of models with no credit card. This book needs well under 400 requests; the free allowance is roughly 1,000. It also lets you swap models with a one-line change — a useful skill.':
     'NVIDIA ka Build platform bina credit card ke bahut saare models tak free access deta hai. Is course mein 400 se kaafi kam requests lagti hain; free allowance lagbhag 1,000 hai. Ismein ek line badalkar model swap karna bhi aata hai — sach mein kaam ki skill.',
   'Go to <code>build.nvidia.com</code>. Sign up or log in with any email.':
     '<code>build.nvidia.com</code> kholiye. Kisi bhi email se sign up ya log in kijiye.',

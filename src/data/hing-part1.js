@@ -23,7 +23,7 @@ Object.assign(window.HING = window.HING || {}, {
     'Agar aapke saath pehle aisa hua hai, to galti likhne wale ki thi, aapki nahi. Yahan do cheezein isi ko rokne ke liye banayi gayi hain.',
   '<strong>Every word is tappable.</strong> The first time a term appears that means something specific, it gets a faint dotted underline. Tap it, and a plain explanation appears right there — you never leave the page or lose your place.':
     '<strong>Har shabd tappable hai.</strong> Jab bhi koi aisa term pehli baar aata hai jiska koi khaas matlab hai, uske neeche halki dotted line aa jaati hai. Us par tap kijiye, aur saaf-saaf matlab wahin dikh jaayega — aapko page chhodna nahi padta aur jagah nahi khoti.',
-  'Try it on this sentence, which contains four of them: an <strong>app</strong> sends a <strong>prompt</strong> to a <strong>model</strong> and is billed in <strong>tokens</strong>. Tap each one now, before reading on. Some will say <em>you build this in Chapter 9</em> — that means the course has named it early on purpose, and the one-line version is genuinely all you need.':
+  'Try it on this sentence, which contains four of them: an <strong>app</strong> sends a <strong>prompt</strong> to a <strong>model</strong> and is billed in <strong>tokens</strong>. Tap each one now, before reading on. Some will say <em>you build this in Chapter 9</em> — that means the course has named it early on purpose, and the one-line version is all you need.':
     'Isi sentence par try kijiye, ismein chaar hain: ek <strong>app</strong> ek <strong>prompt</strong> ek <strong>model</strong> ko bhejta hai aur bill <strong>tokens</strong> mein banta hai. Aage padhne se pehle abhi har ek par tap kijiye. Kuchh kahenge <em>you build this in Chapter 9</em> — matlab course ne use jaanbujhkar jaldi naam de diya hai, aur ek line wala matlab hi abhi kaafi hai.',
   'The app is … the model is …':
     'App … hai, model … hai',
@@ -37,8 +37,16 @@ Object.assign(window.HING = window.HING || {}, {
     'Yeh isliye hain kyunki andar se padhna aur samajhna ek jaisa hi lagta hai, lekin sach sirf ek hota hai. Aur galat hona sahi hone se zyada kaam ka hai — jis jawaab par aapko bharosa tha aur woh galat nikla, usne aapki ek aisi soch pakad li jo aapko galat lagti hi nahi thi. Padhai ki baithak mein isse behtar kuchh nahi hota. Yeh sab kisi ko dikhta nahi. Na koi grade hai, na pass marks.',
   'That is all you need to use this. A few practical notes, and then Chapter 1.':
     'Ise istemaal karne ke liye bas itna hi chahiye. Kuchh practical baatein, phir Chapter 1.',
-  '<strong>Nothing to install.</strong> The interactive tools in each chapter run right here in the page. There is an optional section in some chapters showing the same ideas as real code — it needs a free account and about twenty minutes of setup, and you can ignore it completely. Nothing later depends on it.':
-    '<strong>Kuchh install nahi karna.</strong> Har chapter ke interactive tools yahin page ke andar chalte hain. Kuchh chapters mein ek optional section hai jo wahi ideas asli code mein dikhata hai — uske liye ek free account aur bees minute ka setup chahiye, aur aap use poori tarah chhod sakte hain. Aage kuchh bhi us par tika nahi hai.',
+  '<strong>Still nothing to install.</strong> Everything runs in your browser — the tools built into each chapter, and a free Google notebook for the chapters that use code. Setting that notebook up takes about twenty minutes, once, and the next page walks you through every click.':
+    '<strong>Ab bhi kuchh install nahi karna.</strong> Sab kuchh aapke browser mein hi chalta hai — har chapter ke andar bane tools, aur jin chapters mein code hai unke liye ek free Google notebook. Us notebook ka setup ek baar mein lagbhag bees minute leta hai, aur agla page aapko har click dikhata hai.',
+  '<strong>The doing is not optional.</strong> Each chapter alternates: an idea, then the thing that proves it, marked <em>Do this</em>. Those beats are where the learning actually happens — skip them and you are left with the feeling of having understood, which is the one thing this course is built to stop.':
+    '<strong>Karna optional nahi hai.</strong> Har chapter baari-baari chalta hai: ek idea, phir wahi cheez jo use saabit karti hai, jis par <em>Do this</em> likha hota hai. Seekhna asal mein wahin hota hai — inhe chhod dijiye to sirf samajh aane ka ehsaas bachta hai, aur yeh course usi ek cheez ko rokne ke liye bana hai.',
+  'Do this before Chapter 1':
+    'Chapter 1 se pehle yeh kar lijiye',
+  'Chapter 1 asks you to make a real call to a real model within its first few minutes. Set the notebook and the key up now — <a href="#/setup">Set up Colab + API key</a> — so that when you get there you are pasting one line, not signing up for things.':
+    'Chapter 1 apne pehle kuchh minute mein hi aapse ek asli model ko asli call karwata hai. Notebook aur key abhi set kar lijiye — <a href="#/setup">Set up Colab + API key</a> — taaki wahan pahunch kar aap ek line paste kar rahe hon, na ki cheezon ke liye sign up.',
+  'That is the whole chapter. Nothing here needs remembering. Set the notebook up, and then Chapter 1 starts properly.':
+    'Bas itna hi chapter hai. Yahan kuchh yaad rakhne ki zaroorat nahi. Notebook set kar lijiye, aur phir Chapter 1 theek se shuru hota hai.',
   '<strong>One chapter per sitting.</strong> They are fifteen to twenty-five minutes. Stopping while you still have energy is what brings you back tomorrow; a huge first week followed by nothing is the usual way this ends.':
     '<strong>Ek baithak mein ek chapter.</strong> Har ek pandrah se pachchees minute ka hai. Energy bachi rehte hue rukna hi aapko kal wapas laata hai; pehle hafte mein sab kuchh aur uske baad kuchh nahi — yeh iska aam ant hai.',
   '<strong>Your progress follows you.</strong> Signed in, everything saves against your account, so you can read on your phone and carry on at your desk.':
@@ -49,10 +57,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Jab man na kare kholne ka, tab main …',
   'Decide it now, while it is easy to think clearly. What will you do on the evening you do not want to open this? What is the smallest thing you would still be willing to do — and what will you tell yourself about the day you skipped?':
     'Abhi tay kar lijiye, jab saaf sochna aasaan hai. Jis shaam aapka man is app ko kholne ka nahi hoga, tab aap kya karenge? Sabse chhota kaam kya hai jo tab bhi aap kar lenge — aur chhoote hue din ke baare mein aap apne aap ko kya kahenge?',
-  'The plans that survive a bad evening share three things. The smallest step is genuinely tiny — one question, two minutes, not a chapter. You know where to resume without having to decide, because deciding is the expensive part when you are tired. And the story about the missed day is settled in advance: a missed day is a missed day. It is not evidence of anything and it does not mean starting again. Everybody lapses. The people who finish are the ones who had already decided that lapsing was allowed.':
+  'The plans that survive a bad evening share three things. The smallest step is tiny — one question, two minutes, not a chapter. You know where to resume without having to decide, because deciding is the expensive part when you are tired. And the story about the missed day is settled in advance: a missed day is a missed day. It is not evidence of anything and it does not mean starting again. Everybody lapses. The people who finish are the ones who had already decided that lapsing was allowed.':
     'Jo plan kharaab shaam mein bhi tikte hain unme teen cheezein common hoti hain. Sabse chhota kadam sach mein bahut chhota hota hai — ek sawaal, do minute, poora chapter nahi. Aapko pata hota hai ki wapas kahan se shuru karna hai, kyunki thake hue sabse mehnga kaam decide karna hi hota hai. Aur chhoote hue din ki kahani pehle se tay hoti hai: chhoota din bas chhoota din hai. Woh kisi baat ka sabooot nahi hai aur uska matlab dobara shuru karna nahi hai. Sabse lapse hota hai. Poora karne wale wahi log hain jinhone pehle hi tay kar liya tha ki lapse allowed hai.',
-  'That is the whole chapter. Nothing here needs remembering. Chapter 1 starts properly.':
-    'Bas itna hi chapter hai. Yahan kuchh yaad rakhne layak nahi hai. Chapter 1 se asli shuruaat hai.',
   'What happens when your app asks an AI something':
     'Jab aapka app AI se kuchh poochhta hai to hota kya hai',
   'Three facts about the machine. Each one decides something you will have to design around.':
@@ -65,7 +71,7 @@ Object.assign(window.HING = window.HING || {}, {
     'Yeh samjhana ki lambi chat mein har message chhoti chat se mehnga kyun padta hai — aur yeh technical detail nahi, product decision kyun hai.',
   'Start with your phone keyboard. You type <em>See you at the</em> and it offers <em>office</em>, <em>station</em>, <em>airport</em>. It is guessing the next word from patterns in what people usually type. It is not thinking about your evening.':
     'Apne phone ke keyboard se shuru kijiye. Aap likhte hain <em>See you at the</em> aur woh sujhaata hai <em>office</em>, <em>station</em>, <em>airport</em>. Woh log aam taur par kya likhte hain, usi pattern se agla shabd guess kar raha hai. Aapki shaam ke baare mein soch nahi raha.',
-  'An AI model is that, made enormous. It was built by reading a very large amount of writing and getting extremely good at one narrow trick: guessing what text comes next. Do that trick over and over and whole paragraphs come out. That is genuinely all it does.':
+  'An AI model is that, made enormous. It was built by reading a very large amount of writing and getting extremely good at one narrow trick: guessing what text comes next. Do that trick over and over and whole paragraphs come out. That is all it does.':
     'AI model wahi cheez hai, bas bahut badi. Use bahut saara likha hua padhwakar ek hi narrow trick mein bahut maahir banaya gaya hai: agla text kya aayega, yeh guess karna. Yeh trick baar-baar kijiye aur poore paragraph nikal aate hain. Sach mein bas itna hi karta hai.',
   'It is guessing, not looking up. There is no database behind it that it consults. This one fact causes most of the surprises in this field.':
     'Yeh guess kar raha hai, dhoondh nahi raha. Iske peechhe koi database nahi hai jise yeh dekhta ho. Is field ki zyadatar hairaani ki jad yahi ek fact hai.',
@@ -139,9 +145,9 @@ Object.assign(window.HING = window.HING || {}, {
     'Jo bhi use pata hona chahiye, woh har baar dobara bhejna padta hai.',
   'Chapter 1 left you with a machine that forgets everything the moment it replies. Which raises a practical problem: if it forgets, how does a company make it behave a particular way — always polite, always in English, never discussing competitors?':
     'Chapter 1 aapko ek aisi machine ke saath chhod gaya jo jawaab dete hi sab bhool jaati hai. Isse ek practical dikkat khadi hoti hai: agar woh bhool jaati hai, to koi company use ek khaas tareeke se kaise chalati hai — hamesha polite, hamesha English mein, competitors par kabhi baat nahi?',
-  'The answer is unglamorous. The app just re-sends the instructions every time, along with everything else. That standing instruction has a name: the <strong>system prompt</strong>. It is a paragraph of ordinary English, sent invisibly with every message, saying who the AI is meant to be and what it must not do.':
+  'The answer is plain. The app just re-sends the instructions every time, along with everything else. That standing instruction has a name: the <strong>system prompt</strong>. It is a paragraph of ordinary English, sent invisibly with every message, saying who the AI is meant to be and what it must not do.':
     'Jawaab bilkul saada hai. App bas har baar instructions dobara bhej deta hai, baaki sab ke saath. Us standing instruction ka ek naam hai: <strong>system prompt</strong>. Yeh saadi English ka ek paragraph hai, har message ke saath chupchaap jaata hai, aur batata hai ki AI ko kaun banna hai aur kya nahi karna hai.',
-  'It is worth knowing how ordinary this is, because you will hear it dressed up. When a vendor says they have "customised the AI for your organisation," the honest translation is usually: <em>we wrote a paragraph of instructions.</em> Sometimes that is genuinely all it is.':
+  'It is worth knowing how ordinary this is, because you will hear it dressed up. When a vendor says they have "customised the AI for your organisation," the honest translation is usually: <em>we wrote a paragraph of instructions.</em> Sometimes that is all it is.':
     'Yeh kitni aam cheez hai, yeh jaan lena zaroori hai, kyunki aapko ise saja-dhaja kar bataya jaayega. Jab koi vendor kehta hai ki unhone "AI ko aapke organisation ke liye customise kiya hai", uska imaandaar tarjuma aksar yeh hota hai: <em>humne instructions ka ek paragraph likha hai.</em> Kabhi-kabhi sach mein bas itna hi hota hai.',
   'The second control is a dial. Remember that the machine is guessing the next piece of text — and at each step several guesses are plausible. The dial decides whether it always takes the most likely one, or occasionally picks something less likely.':
     'Doosra control ek dial hai. Yaad rakhiye ki machine text ka agla tukda guess kar rahi hai — aur har step par kai guess plausible hote hain. Yeh dial tay karta hai ki woh hamesha sabse likely wala le, ya kabhi-kabhi kam likely bhi.',
@@ -161,9 +167,9 @@ Object.assign(window.HING = window.HING || {}, {
     'Yeh aapko bata hi nahi sakta ki use nahi pata. Isliye nahi ki woh kuchh chhupa raha hai — balki isliye ki "text ka agla tukda guess karo" mein chup rehne ka option hai hi nahi. Mana karna upar se train karna padta hai, aur woh hamesha tikta bhi nahi.',
   'You predicted this in Chapter 1. Here is why it matters more than it first appears: the invented answer is not obviously worse than a true one. It has the same structure, the same calm tone, the same specificity. It will cite a clause number. It will give a percentage. Everything that normally signals that someone knows what they are talking about is still there, because those signals are patterns in text, and patterns in text are exactly what the machine reproduces.':
     'Aapne Chapter 1 mein iska guess laga liya tha. Yeh pehli nazar se zyada kyun maayne rakhta hai: bana hua jawaab sachche jawaab se saaf kharaab nahi dikhta. Wahi structure, wahi shaant lehja, wahi barikiyan. Woh clause number bata dega. Woh percentage de dega. Jo bhi cheezein aam taur par batati hain ki bolne wale ko pata hai, woh sab maujood hain — kyunki woh sab text ke patterns hain, aur text ke patterns hi to machine dobara bana deti hai.',
-  'The industry word for this is <strong>hallucination</strong>, which is a slightly unfortunate name — it suggests a malfunction. It is not one. It is the machine doing precisely what it was built to do, in a situation where you wanted something else.':
+  'The industry word for this is <strong>hallucination</strong>, which is a slightly unfortunate name — it suggests a malfunction. It is not one. It is the machine doing exactly what it was built to do, in a situation where you wanted something else.':
     'Industry ismein <strong>hallucination</strong> shabd istemaal karti hai, jo thoda galat naam hai — isse lagta hai ki kuchh kharaab ho gaya. Kharaab kuchh nahi hua. Machine theek wahi kar rahi hai jiske liye woh bani hai, aise mauke par jab aapko kuchh aur chahiye tha.',
-  'So the obvious move is to add an instruction: <em>only answer from the documents provided; if the answer is not there, say you do not know.</em> That helps. It genuinely reduces how often this happens.':
+  'So the obvious move is to add an instruction: <em>only answer from the documents provided; if the answer is not there, say you do not know.</em> That helps. It really reduces how often this happens.':
     'To seedha kadam yeh hai ki ek instruction jod dijiye: <em>sirf diye gaye documents se jawaab do; agar jawaab wahan nahi hai to keh do ki nahi pata.</em> Isse madad milti hai. Yeh sach mein kam kar deta hai ki aisa kitni baar hota hai.',
   'It does not fix it, and the reason is worth holding on to.':
     'Yeh isse theek nahi karta, aur wajah pakad kar rakhne layak hai.',
@@ -203,7 +209,7 @@ Object.assign(window.HING = window.HING || {}, {
     'Aap chahte hain ki AI aapki company ke documents par sawaalon ke jawaab de. Seedha tareeka yeh lagta hai ki use documents bhej diye jaayein. Yeh turant fail ho jaata hai, do alag wajahon se jo aap pehle se jaante hain.',
   'It will not fit — there is a ceiling on how much goes in one request. And you pay for every piece of text you send, on every single question, forever. Even where a huge document would technically fit, sending your entire library to answer one question is a bill you would not survive.':
     'Woh ayega hi nahi — ek request mein kitna ja sakta hai iski ceiling hai. Aur aap har text ke tukde ka paisa dete hain, har ek sawaal par, hamesha. Jahan koi bada document technically aa bhi jaaye, wahan ek sawaal ke liye poori library bhejna aisa bill hai jo aap jhel nahi paayenge.',
-  'So everyone does the same thing: cut the documents into pieces, keep the pieces, and send only the few that look relevant to whatever was asked. The pieces are called <strong>chunks</strong>, and the cutting is called chunking. That is the whole idea, and it is genuinely that simple.':
+  'So everyone does the same thing: cut the documents into pieces, keep the pieces, and send only the few that look relevant to whatever was asked. The pieces are called <strong>chunks</strong>, and the cutting is called chunking. That is the whole idea, and it is that simple.':
     'To sab log wahi karte hain: documents ko tukdon mein kaat lo, tukde rakh lo, aur sirf woh chand bhejo jo poochhe gaye sawaal se related lagte hain. In tukdon ko <strong>chunks</strong> kehte hain, aur kaatne ko chunking. Bas yahi poora idea hai, aur sach mein itna hi simple hai.',
   'What is not simple is where to cut. Try it — cut a document three ways and see what breaks:':
     'Simple nahi hai to yeh ki kaatna kahan hai. Try kijiye — ek document ko teen tareeke se kaatiye aur dekhiye kya tootta hai:',
@@ -233,7 +239,7 @@ Object.assign(window.HING = window.HING || {}, {
     'Sahi tukda dhoondhna — seedha tareeka, aur woh fail kyun hota hai',
   'Matching words is the first thing anyone tries. Watching exactly where it breaks is the point of this chapter.':
     'Shabd milaana pehli cheez hai jo koi bhi try karta hai. Woh theek kahan tootta hai, yeh dekhna hi is chapter ka maksad hai.',
-  'Explain why matching words fails precisely for the users who most need help.':
+  'Explain why matching words fails exactly for the users who most need help.':
     'Yeh samjhana ki shabd milaana theek un users ke liye fail hota hai jinhe madad ki sabse zyada zaroorat hai.',
   'Name the one thing word-matching does better than anything cleverer.':
     'Woh ek cheez batana jo shabd milaana kisi bhi chalaak tareeke se behtar karta hai.',
@@ -245,7 +251,7 @@ Object.assign(window.HING = window.HING || {}, {
     'Tukde aap rakhte hain aur sirf kaam ke chand bhejte hain.',
   'Some pieces stop making sense alone':
     'Kuchh tukdon ka akele matlab nahi rehta',
-  '“The aforesaid amount” has lost its antecedent.':
+  '“The aforesaid amount” has lost whatever it pointed at.':
     '“The aforesaid amount” ka sandarbh kho chuka hai.',
 
   /* Part I — The basics */
@@ -275,7 +281,7 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek aur baat, aur yahi aage asli nuksaan karti hai.',
   'One line':
     'Ek line',
-  'A user asks something your documents genuinely do not cover at all. What comes back from the search step?':
+  'A user asks something your documents really do not cover at all. What comes back from the search step?':
     'User kuchh aisa poochhta hai jo aapke documents mein sach mein hai hi nahi. Search step se kya wapas aayega?',
   'Now put that together with Chapter 2. The irrelevant piece gets handed to the machine as though it were evidence, and the machine writes a fluent answer from it. Neither step fails. Nothing errors. You get a confident, wrong answer, and no part of the system noticed.':
     'Ab ise Chapter 2 ke saath jodiye. Woh bekaar tukda machine ko aise pakda diya jaata hai jaise woh evidence ho, aur machine usse ek fluent jawaab likh deti hai. Koi bhi step fail nahi hota. Kahin error nahi aata. Aapko ek confident, galat jawaab milta hai, aur system ke kisi hisse ne kuchh notice nahi kiya.',
@@ -301,7 +307,7 @@ Object.assign(window.HING = window.HING || {}, {
     'Search kabhi nahi kehta “yahan kuchh nahi hai”',
   'It ranks everything and hands you a number one regardless.':
     'Woh sab kuchh rank karke aapko ek number one thama deta hai.',
-  'You need something that matches meaning rather than spelling. That sounds like it needs the machine to understand language, which sounds impossible. It is simpler than that, and the trick is genuinely elegant.':
+  'You need something that matches meaning rather than spelling. That sounds like it needs the machine to understand language, which sounds impossible. It is simpler than that, and the trick is elegant.':
     'Aapko aisa kuchh chahiye jo spelling nahi, matlab milaaye. Sunne mein lagta hai ki machine ko bhaasha samajhni padegi, jo namumkin lagta hai. Yeh usse simple hai, aur trick sach mein sundar hai.',
   'Imagine an enormous map. Not of places — of meanings. Every possible sentence has a position on it. Sentences that mean similar things sit close together; sentences about unrelated things sit far apart. <em>When do I get my money back</em> and <em>reimbursement of approved claims</em> are neighbours, despite sharing no words, because they mean nearly the same thing.':
     'Ek bahut bade naksha ki kalpana kijiye. Jagahon ka nahi — matlabon ka. Har mumkin sentence ki us par ek jagah hai. Jin sentences ka matlab milta-julta hai woh paas baithte hain; alag matlab wale door. <em>When do I get my money back</em> aur <em>reimbursement of approved claims</em> padosi hain, bina koi shabd share kiye, kyunki dono ka matlab lagbhag ek hai.',
@@ -329,7 +335,7 @@ Object.assign(window.HING = window.HING || {}, {
     'Dhoondhiye ki yeh aapke liye kahan fail hoga. Aapka asli domain, aapke asli users. Zyadatar English internet text se bana naksha kin do cheezon ko paas rakh dega jinhe aapke users bilkul alag maante hain — ya kin do cheezon ko door kar dega jinka aapke users ke liye matlab ek hi hai?',
   'Indian financial and legal vocabulary is full of these: <em>lakh</em> and <em>crore</em>, NEFT versus IMPS, government scheme names differing by one word and by enormous sums. Regional languages typed in English letters — <em>paisa kab milega</em> — are another. So is anything internal: two product codenames mean unrelated things to you and nothing at all to the map, so it places them by their spelling. The test of whether you understand this is whether you can name the failure before a user finds it.':
     'Bhartiya financial aur legal vocabulary inse bhari hai: <em>lakh</em> aur <em>crore</em>, NEFT versus IMPS, sarkari scheme ke naam jo ek shabd alag hote hain aur raqam mein zameen-aasmaan. English akshron mein likhi regional bhaashaayein — <em>paisa kab milega</em> — ek aur misaal hain. Aur internal cheezein bhi: do product codenames aapke liye alag-alag hain aur naksha ke liye kuchh bhi nahi, to woh unhe spelling se jagah de deta hai. Aapko yeh samajh aaya ya nahi, iska imtihaan yeh hai ki user se pehle aap failure ka naam le paate hain ya nahi.',
-  'This technique is the foundation of nearly every "chat with your documents" product you will ever be shown. It is genuinely good. Note what it still does not do, though: it finds the nearest pieces, always, even when nothing is close. Chapter 4’s problem has not gone anywhere. Which is why the next chapter is about measurement, and why it is the most important one in Part I.':
+  'This technique is the foundation of nearly every "chat with your documents" product you will ever be shown. It is good. Note what it still does not do, though: it finds the nearest pieces, always, even when nothing is close. Chapter 4’s problem has not gone anywhere. Which is why the next chapter is about measurement, and why it is the most important one in Part I.':
     'Yeh technique lagbhag har us "chat with your documents" product ki neev hai jo aapko kabhi dikhaya jaayega. Yeh sach mein achchi hai. Lekin dhyaan dijiye yeh ab bhi kya nahi karti: yeh hamesha sabse paas ke tukde deti hai, tab bhi jab kuchh paas hai hi nahi. Chapter 4 ki dikkat kahin gayi nahi hai. Isiliye agla chapter naapne ke baare mein hai, aur isiliye woh Part I ka sabse zaroori chapter hai.',
   'How to know if it actually works':
     'Yeh kaise pata chale ki kaam kar bhi raha hai',

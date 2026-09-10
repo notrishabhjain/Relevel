@@ -144,7 +144,7 @@ Object.assign(window.HING = window.HING || {}, {
   'You can read the receipt':
     'Aap receipt padh sakte hain',
   'Tokens in, tokens out, times a rate. The arithmetic from Chapter 1.':
-    'Tokens andar, tokens bahar, rate se guna. Chapter 1 ka ganit.',
+    'Tokens andar, tokens bahar, rate se guna. Chapter 1 ka maths.',
   'You know what multiplies it':
     'Aap jaante hain ise kya guna karta hai',
   'How much you retrieve (3, 12), retries (8), agent steps (9), thinking tokens (11).':
@@ -214,7 +214,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Build the real number for something real. Pick a feature. Estimate tokens in and out per query, apply the four multipliers using the values your design actually uses, multiply by monthly volume — then write the one sentence you would say to a finance director, including what would make the number wrong.':
     'Kisi asli cheez ka asli number banaiye. Ek feature chuniye. Per query tokens in aur out ka andaaza lagaiye, apne design ke asli values ke saath chaaron multipliers lagaiye, monthly volume se guna kijiye — phir woh ek sentence likhiye jo aap finance director se kahenge, ismein yeh bhi ki number galat kis wajah se ho sakta hai.',
   'A good answer is defensible rather than precise. It states the assumptions as assumptions, names which multiplier dominates (usually how much you retrieve, or agent steps), and says what would prove it wrong — different traffic, more retries than you tested, a price change. The sentence that earns trust is not “it costs four lakh a month”; it is “four lakh a month at 300,000 queries retrieving eight documents with a 12% retry rate, and the number moves most if retries go above 20%.”':
-    'Achcha jawaab bilkul theek hone se zyada defend karne layak hota hai. Woh maanyataon ko maanyata kehta hai, batata hai ki kaunsa multiplier sabse bhaari hai (aam taur par kitna retrieve karte hain, ya agent steps), aur yeh bhi ki use kya jhoothla dega — alag traffic, test se zyada retries, daam mein badlav. Bharosa jitne wala sentence "iski cost mahine ke chaar laakh hai" nahi hai; woh hai "300,000 queries par, aath documents retrieve karte hue, 12% retry rate ke saath, mahine ke chaar laakh — aur number sabse zyada tab hilega jab retries 20% se upar jaayein."',
+    'Achcha jawaab bilkul theek hone se zyada defend karne layak hota hai. Woh assumptions ko assumption kehta hai, batata hai ki kaunsa multiplier sabse bhaari hai (aam taur par kitna retrieve karte hain, ya agent steps), aur yeh bhi ki use kya jhoothla dega — alag traffic, test se zyada retries, daam mein badlav. Bharosa jitne wala sentence "iski cost mahine ke chaar laakh hai" nahi hai; woh hai "300,000 queries par, aath documents retrieve karte hue, 12% retry rate ke saath, mahine ke chaar laakh — aur number sabse zyada tab hilega jab retries 20% se upar jaayein."',
   'Slow is a cost too':
     'Dheema hona bhi ek cost hai',
   'Report the slow fifth, not the average — Chapter 11. A feature that is cheap and slow fails commercially just as thoroughly as one that is fast and expensive. Put all three on one line, every time: cost per query, typical time, slow-case time.':
@@ -226,7 +226,7 @@ Object.assign(window.HING = window.HING || {}, {
   'New notebook <code>chapter-15</code>. Run your Chapter 12 pipeline over the ten ground-truth questions and record real token counts.':
     'Naya notebook <code>chapter-15</code>. Apna Chapter 12 wala pipeline das ground-truth sawaalon par chalaiye aur asli token counts likhiye.',
   'Real numbers from your real corpus. Everything after this is arithmetic on measured input rather than a guess dressed as a forecast.':
-    'Aapke apne corpus se asli numbers. Iske baad sab kuchh naapi hui input par ganit hai, forecast ke kapdon mein andaaza nahi.',
+    'Aapke apne corpus se asli numbers. Iske baad sab kuchh naapi hui input par maths hai, forecast ke kapdon mein andaaza nahi.',
   'Step 2 — Build the Bill, With the Multipliers':
     'Step 2 — Multipliers ke saath bill banaiye',
   'A ratio commonly between 8× and 20×. Write it down. That single number is the most useful thing you can carry into a budget conversation, and it is why “we estimated the token cost” is not the same as “we estimated the cost.”':
@@ -268,7 +268,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Step 5 — The Margin Question':
     'Step 5 — Margin ka sawaal',
   'One line of arithmetic, done honestly: what does this feature cost per user per month at your expected usage, and what is it worth per user per month?':
-    'Ek line ka ganit, imaandaari se: aapke ummeed ke istemaal par yeh feature har user par mahine ka kitna kharch karta hai, aur har user par mahine ka kitna kamaata hai?',
+    'Ek line ka maths, imaandaari se: aapke ummeed ke istemaal par yeh feature har user par mahine ka kitna kharch karta hai, aur har user par mahine ka kitna kamaata hai?',
   'If the second number is not comfortably larger than the first, you have learned something before the pilot rather than after it. That is the entire purpose of this chapter.':
     'Agar doosra number pehle se aaram se bada nahi hai, to aapne pilot ke baad nahi, pehle kuchh seekh liya. Is chapter ka poora maksad yahi hai.',
   'When your documents are pictures, not text':
@@ -290,7 +290,7 @@ Object.assign(window.HING = window.HING || {}, {
   'The slow fifth of responses, not the average.':
     'Responses ka dheema paanchva hissa, average nahi.',
   'Chapter 3 asked you to paste your document’s text into a file. That hid an assumption, and in most real organisations the assumption is false.':
-    'Chapter 3 ne aapse kaha tha ki apne document ka text ek file mein paste kar dijiye. Usne ek maanyata chhupa li, aur zyadatar asli organisations mein woh maanyata galat hai.',
+    'Chapter 3 ne aapse kaha tha ki apne document ka text ek file mein paste kar dijiye. Usne ek assumption chhupa li, aur zyadatar asli organisations mein woh assumption galat hai.',
   'Real document collections are pages, not text. Scanned contracts with signatures and stamps on them. Financial statements where the whole meaning is in which row meets which column. Manuals where the safety warning is a red box next to a diagram. Screenshots pasted into tickets. Forms with handwriting in the margin.':
     'Asli document collections pages hain, text nahi. Scan kiye hue contracts, jin par dastkhat aur mohar hain. Financial statements jinka poora matlab isme hai ki kaunsi row kaunse column se milti hai. Manuals jahan safety warning ek diagram ke bagal mein laal box mein hai. Tickets mein paste kiye gaye screenshots. Forms jinke hashiye par haath se likha hai.',
   'Everything you have built assumes someone already turned those pages into text. That step — the one Chapter 3 skipped for you — is where most real document projects quietly fail, upstream of anything you measured.':
@@ -454,9 +454,9 @@ Object.assign(window.HING = window.HING || {}, {
   '<strong>Where the data came from</strong> — which documents, under what right to use, kept how long, stored in which country.':
     '<strong>Data kahan se aaya</strong> — kaunse documents, kis haq se, kitne samay tak rakha, kis desh mein.',
   '<strong>What you measured</strong> — your Chapter 6 answer key and your Chapter 14 failure list, with the actual numbers and the date. This part does not exist unless somebody did those chapters, which is why so many of these folders contain adjectives.':
-    '<strong>Aapne kya naapa</strong> — aapki Chapter 6 ki answer key aur Chapter 14 ki failure list, asli numbers aur date ke saath. Yeh hissa tab tak hota hi nahi jab tak kisi ne woh chapters kiye na hon, isiliye in folders mein itne visheshan bhare hote hain.',
+    '<strong>Aapne kya naapa</strong> — aapki Chapter 6 ki answer key aur Chapter 14 ki failure list, asli numbers aur date ke saath. Yeh hissa tab tak hota hi nahi jab tak kisi ne woh chapters kiye na hon, isiliye in folders mein itne adjectives bhare hote hain.',
   '<strong>Who checks it</strong> — not “a human reviews the output”, but which outputs, seeing what, with the authority and the time to overrule.':
-    '<strong>Kaun jaanchta hai</strong> — "ek insaan output review karta hai" nahi, balki kaunse outputs, kya dekhte hue, kitne adhikaar aur kitne samay ke saath ki woh palat sake.',
+    '<strong>Kaun jaanchta hai</strong> — "ek insaan output review karta hai" nahi, balki kaunse outputs, kya dekhte hue, kitne authority aur kitne samay ke saath ki woh palat sake.',
   '<strong>What is known to break</strong> — your red marks, in plain sentences. The most credible section in any AI document.':
     '<strong>Kya toota hua jaana-maana hai</strong> — aapke laal nishaan, saade sentences mein. Kisi bhi AI document ka sabse vishwasniya hissa.',
   '<strong>What gets logged</strong>, for how long, and who does what when it goes wrong.':
@@ -482,7 +482,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Test sets and logs, most often — because they were copied for a good reason by someone not thinking about deletion, and nothing in them points back to a person. Caches are a close third, and the provider’s cache is the most invisible of all: it holds fragments of documents with no index by subject at all.':
     'Aksar test sets aur logs — kyunki unhe kisi ne kisi achchi wajah se copy kiya tha, deletion ke baare mein soche bina, aur unme se kuchh bhi kisi insaan par wapas ishaara nahi karta. Caches teesre number par hain, aur provider ka cache sabse zyada anadekha hai: usme documents ke tukde padey hain, bina kisi vishay ke index ke.',
   'And the thing already happening whether anyone wrote it down or not: staff are pasting internal documents into consumer chat tools right now. Banning it does not work, because the tools are useful. A sanctioned alternative that is good enough, plus clear guidance on what may be pasted, works far better. “We banned it” is a statement about policy, not about behaviour.':
-    'Aur woh cheez jo pehle se ho rahi hai chahe kisi ne likhi ho ya nahi: staff abhi is waqt internal documents consumer chat tools mein paste kar raha hai. Rok lagana kaam nahi karta, kyunki tools kaam ke hain. Ek maanyata prapt vikalp jo sach mein achcha ho, plus saaf nirdesh ki kya paste kiya ja sakta hai — yeh kahin behtar chalta hai. "Humne rok lagayi hai" policy ke baare mein bayaan hai, vyavhaar ke baare mein nahi.',
+    'Aur woh cheez jo pehle se ho rahi hai chahe kisi ne likhi ho ya nahi: staff abhi is waqt internal documents consumer chat tools mein paste kar raha hai. Rok lagana kaam nahi karta, kyunki tools kaam ke hain. Ek assumption prapt vikalp jo sach mein achcha ho, plus saaf nirdesh ki kya paste kiya ja sakta hai — yeh kahin behtar chalta hai. "Humne rok lagayi hai" policy ke baare mein bayaan hai, vyavhaar ke baare mein nahi.',
   'Step 1 — Tier Your Own System':
     'Step 1 — Apne system ko tier dijiye',
   'Take the RAG system you built in Chapter 7 and place it in a real use case from your organisation. Assign a tier, and write one sentence justifying it. Then change the use case — internal FAQ to customer eligibility — and re-tier.':
@@ -504,7 +504,7 @@ Object.assign(window.HING = window.HING || {}, {
   '<strong>Known limitations</strong> — your red marks, in plain sentences, each with the evidence that produced it.':
     '<strong>Jaani hui seemayein</strong> — aapke laal nishaan, saade sentences mein, har ek ke saath woh sabooot jisse woh nikla.',
   '<strong>Human oversight</strong> — which outputs are reviewed, by whom, seeing what, with what authority.':
-    '<strong>Insaani jaanch</strong> — kaunse outputs review hote hain, kaun karta hai, kya dekhkar, kis adhikaar ke saath.',
+    '<strong>Insaani jaanch</strong> — kaunse outputs review hote hain, kaun karta hai, kya dekhkar, kis authority ke saath.',
   '<strong>Logging &amp; incidents</strong> — what is recorded, retained how long, escalation path.':
     '<strong>Logging aur incidents</strong> — kya record hota hai, kitne samay tak, escalation ka raasta kya hai.',
   '<strong>Change control</strong> — model pinned to a version, prompts versioned, eval re-run on change.':
@@ -539,7 +539,7 @@ Object.assign(window.HING = window.HING || {}, {
     'Un rows ko giniye jahan imaandaar jawaab nahi hai. Wahi ginti aaj batane layak khoj hai.',
   'Step 4 — Design Oversight That Can Be Exercised':
     'Step 4 — Aisi oversight banaiye jo sach mein ho sake',
-  'Take your highest-risk output. Specify the review point precisely: which outputs are reviewed (all, sampled, or those failing a check), what the reviewer sees (answer only, or answer plus retrieved chunks plus quote), how long they have, and whether they can actually overrule.':
+  'Take your highest-risk output. Specify the review point exactly: which outputs are reviewed (all, sampled, or those failing a check), what the reviewer sees (answer only, or answer plus retrieved chunks plus quote), how long they have, and whether they can actually overrule.':
     'Apna sabse high-risk output lijiye. Review point theek se likhiye: kaunse outputs review honge (sab, sample, ya jo check fail karein), reviewer kya dekhega (sirf jawaab, ya jawaab plus retrieve hue chunks plus quote), uske paas kitna samay hai, aur kya woh sach mein palat sakta hai.',
   'Then ask the honest question: at your expected volume, is this review physically possible? A review of every output at 4,000 per day is not oversight; it is a sentence in a document. Chapter 8\'s structured output and Chapter 14\'s programmatic checks are what make sampled, targeted review real.':
     'Phir imaandaar sawaal poochhiye: aapke ummeed ke volume par kya yeh review physically mumkin hai? Roz 4,000 par har output ka review oversight nahi hai; woh ek document mein likha ek sentence hai. Chapter 8 ka structured output aur Chapter 14 ke programmatic checks hi sample aur nishaane wale review ko asli banate hain.',
@@ -637,7 +637,7 @@ Object.assign(window.HING = window.HING || {}, {
     'Training aur post-training. GPU ki economics aur self-hosting. Kai agents ko scale par chalana. Formal verification. Synthetic data banana. Part IV do cheezein uthata hai jo pehle isi list mein thi — fine-tuning aur chhote models ka faisla, aur user asal mein kya dekhta hai — kyunki dono aapke hain, kisi engineer ke nahi. Is site ka 2027 LATER page ab, aakhirkar, padhne ki ijaazat hai. Jo aapne nahi padha uska naam le paana hi apni seemayein jaanne aur yeh dikhaane ke beech ka farq hai ki aapki koi seema hai hi nahi.',
   'Act 1 — The 2027 Map, From Memory':
     'Act 1 — 2027 ka naksha, yaad se',
-  'Close everything. Blank page. Draw the full system — considerably larger than Chapter 7\'s.':
+  'Close everything. Blank page. Draw the full system — much larger than Chapter 7\'s.':
     'Sab kuchh band kijiye. Khaali page. Poora system banaiye — Chapter 7 wale se kaafi bada.',
   'Beside every arrow, one line in your own words. Then take the red pen and mark every place you have <em>personally watched this fail</em>, with the chapter. Aim for twenty. You have earned more than twenty.':
     'Har teer ke bagal mein apne shabdon mein ek line. Phir laal pen uthaiye aur har us jagah nishaan lagaiye jahan aapne <em>khud ise fail hote dekha hai</em>, chapter ke saath. Bees ka lakshya rakhiye. Aapne bees se zyada kama liye hain.',
