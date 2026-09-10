@@ -101,6 +101,20 @@ The retrieval arc, unchanged in substance: it is the strongest part of the
 course and it is already a chain. The interactive labs. The spaced-repetition
 engine, which is good and under-used. The zero-setup on-ramp. Both languages.
 
+## Where this has got to
+
+All nine missing chapters are written, and every chapter in the course now has
+hands-on beats and a capstone. The methodology rules are applied to the new
+chapters and the four-term cap is enforced against every chapter, with the five
+that predate it named as debt.
+
+What the renumber still owes: the five arcs are the reading order, but the
+course is still divided into the original four *parts*, because a chapter's
+place is decided by its number and the arcs cut across those numbers. Chapter 8
+belongs with the task shapes and sits in Part II; Chapter 12 belongs with
+retrieval and sits in Part II as well. That misalignment is cosmetic — the
+reading order is right — and it resolves when the numbers do.
+
 ## Numbering
 
 New chapters are inserted with decimal numbers (`2.1`, `2.2`) rather than

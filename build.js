@@ -45,6 +45,7 @@ const js = [
   'src/data/hing-onramp.js',
   'src/data/hing-ui.js',
   'src/data/hing-prompting.js',
+  'src/data/hing-arcs.js',
   'src/data/hing-items.js',
   'src/data/hing-skills.js',
   'src/remote.js',

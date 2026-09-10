@@ -7,6 +7,69 @@
 
 window.PART4 = [
 {
+  id:'ch185', num:18.5, part:4, minutes:25, labs:[],
+  title:'Build or buy',
+  concept:'The commonest real decision, and the small number of things that actually settle it.',
+  needs:[
+    ['A spec is a measured range','So you can state what "good enough" means before shopping.',18],
+    ['You can measure retrieval yourself','Which is what lets you test a vendor rather than believe one.',6],
+  ],
+  takeaway:[
+    'Run the same evaluation against a vendor and against your own build, and compare like with like.',
+    'Name what you are really buying, which is usually not the model.',
+    'Say what would make you change the decision later, before you make it.'
+  ],
+  story:[
+    ['c','Before you start','No new setup. Bring the acceptance criteria from Chapter 18 and the answer key from Chapter 6. Those two artefacts are what turn this from an opinion into a comparison.'],
+
+    ['p','Somebody will propose buying a product that does what you have spent this course learning to build. The conversation usually turns on price and demo quality, and both are close to irrelevant.'],
+    ['key','You are almost never buying the model. Everybody has the same models. You are buying the connectors, the permissions, the audit trail, the support contract, and somebody else carrying the on-call.'],
+
+    ['do','Run your own answer key against the vendor',[
+      ['p','Ask for a trial, put your ten real questions through it, and grade them against the key you already have. Not their demo questions. Yours.'],
+      ['x','Almost always worse than the demo suggested and better than you feared. And the two rows that matter — the unanswerable question and the one in another language — are usually where the gap is widest, because those are the rows nobody optimises for.'],
+      ['key','You are the only person in this negotiation who can run this test, because you are the only one with the answer key.']
+    ]],
+
+    ['p','Then the part that decides it, which has nothing to do with quality.'],
+    ['tb',['question','why it settles things'],[
+      ['Is this a core capability or a supporting one?','If your product’s reason to exist is this, owning it is not optional. If it is plumbing, buying is almost always right.'],
+      ['How fast does it need to change?','Something you will tune weekly against your own data is painful to buy. Something stable is painful to build.'],
+      ['Who is on call at 2am?','A real cost, usually left out, and often larger than the licence.'],
+      ['What happens if they are acquired or shut down?','Ask what you would need to leave, and how long it would take. If nobody can answer, that is the answer.']
+    ]],
+
+    ['do','Cost both sides honestly',[
+      ['p','Write the two-year cost of each. For build, include what you learnt in Chapter 15 plus the parts nobody puts in: evaluation, the person maintaining it, and doing the migration rehearsal every time the model underneath changes.'],
+      ['x','The build column is usually two to four times the number people first say, and the buy column has a growth clause somebody has not read. Neither of those surprises should arrive after the decision.'],
+      ['p','Then the number that is not money: how long until each option is in front of a user. A build that is cheaper over two years and six months later can still be the wrong answer.']
+    ]],
+    ['try',{id:'ch185-flip',mins:5,min:50,rows:3,
+      task:'Write down what would make you change your mind — in both directions. What evidence would turn your build recommendation into a buy, and what would turn a buy into a build?',
+      ph:'I would switch to buying if … . I would switch to building if … .',
+      after:'Writing this before deciding is what stops the decision from becoming an identity. The usual triggers for switching to buy are the maintenance cost landing on one person and the capability turning out to be commodity. The usual triggers the other way are the vendor’s roadmap diverging from your need, the price step at the next tier, and discovering that the thing you thought was plumbing is the thing customers actually choose you for. Put a date on when you will re-read this.'}],
+
+    ['p','And one shape worth knowing, because it is often the correct answer and rarely the one proposed: buy the plumbing, build the part that is yours. Somebody else’s connectors and permissions, your retrieval and your evaluation.']
+  ],
+  capstone:{
+    title:'The recommendation, with its own expiry date',
+    brief:'Make a real build-or-buy recommendation on evidence you generated, including the conditions under which it stops being right.',
+    steps:[
+      'State the capability in one line, and whether it is core or supporting to what your product is for.',
+      'Run your answer key against at least one vendor trial and record the numbers beside your own build’s.',
+      'Cost both over two years, including evaluation, maintenance and the on-call.',
+      'Add time-to-user for both. Say which matters more here and why.',
+      'Write the exit answer for the buy option: what you would need to leave, and how long it would take.',
+      'Write the two triggers that would reverse the decision, and the date you will re-read them.'
+    ],
+    done:[
+      'Both options were measured against the same answer key, by you.',
+      'The build cost includes the maintenance and evaluation, not just the tokens.',
+      'The recommendation names what would make it wrong, with a date attached.'
+    ]
+  }
+},
+{
 
   id:'ch19', num:19, part:4, minutes:30, labs:['costmodel'],
   title:'“Should we fine-tune?” — and how to answer it well',
@@ -166,6 +229,71 @@ window.PART4 = [
     ['p','And one more thing, which is not a design choice but a floor: what the feature does when the AI is switched off. Chapter 18 separated a rollback from a kill switch; this is the consequence. A kill switch is only usable if there is something underneath it — search without generated answers, a form without extraction, a queue without routing. If turning the AI off leaves a blank screen, you do not have a kill switch. You have a single point of failure with a switch attached.'],
     ['q','I149']
   ],
+},
+{
+  id:'ch205', num:20.5, part:4, minutes:25, labs:[],
+  title:'Proving it helped',
+  concept:'System quality and business impact are different measurements, and the course has so far only taught the first.',
+  needs:[
+    ['You can measure the system','Recall, precision, judges, per-class counts.',14],
+    ['The interface has four states','What the user sees decides whether quality reaches them.',20],
+  ],
+  takeaway:[
+    'Design a pilot that could actually show the feature did not help.',
+    'Name the one number the business cares about, and how the feature would move it.',
+    'Explain why a measurably good system can produce no measurable benefit.'
+  ],
+  story:[
+    ['c','Before you start','No code. Bring a feature you have measured — yours or one from the course — and the name of whoever pays for it.'],
+
+    ['p','Everything the course has measured so far is the system: is the retrieval right, is the judge trustworthy, is the classifier accurate per class. All necessary. None of it answers the question that gets the next round of funding.'],
+    ['key','A system can be 94 per cent accurate and change nothing, because nobody uses it, or because the thing it accelerates was never the slow part.'],
+
+    ['do','Find the slow part before you speed anything up',[
+      ['p','Take the workflow your feature sits inside and time it, honestly, end to end. Every step, including the waiting-for-someone-else steps.'],
+      ['x','The AI step is almost never the biggest number. Very often the largest block is waiting for a person, or a handover between two systems, and a feature that makes a four-minute step into a one-minute step inside a three-day process has done nothing anyone will notice.'],
+      ['key','This is the cheapest study in the whole course and it is the one most often skipped, because it can tell you not to build the thing.']
+    ]],
+
+    ['p','If the step you are accelerating is genuinely on the critical path, then you can design a pilot. A pilot is not a launch with a smaller audience. It is a question with a stated answer that would disappoint you.'],
+    ['n',[
+      '<strong>The number.</strong> One measure the business already tracks — handling time, first-contact resolution, backlog age, error rate. Not a new metric invented for this.',
+      '<strong>The comparison.</strong> Same team before and after is weak; two comparable groups over the same period is much stronger, and usually possible.',
+      '<strong>The floor.</strong> The movement below which you would call it a failure, written down before you start.',
+      '<strong>The window.</strong> Long enough for novelty to wear off. The first two weeks of any tool flatter it.'
+    ]],
+
+    ['do','Write the disappointing result in advance',[
+      ['p','Before running anything, write the sentence you would have to say if the pilot showed no effect. Actually write it, in the words you would use to the person who funded it.'],
+      ['x','Two things fall out. You discover whether you have the floor number at all — most pilots do not. And you find out whether the pilot could ever have produced that sentence, or whether it was designed so every outcome reads as success.'],
+      ['key','A pilot that cannot fail is not a pilot. It is a launch with a nicer name, and everyone in the room knows it.']
+    ]],
+    ['try',{id:'ch205-adopt',mins:5,min:50,rows:3,
+      task:'Your pilot shows the system works well and the business number does not move. Write the three explanations you would investigate first, in the order you would check them.',
+      ph:'1 … 2 … 3 …',
+      after:'The order that usually pays: first, are they using it — adoption is the commonest answer and the easiest to check. Second, does the output arrive where the decision is made, or in a separate tool somebody has to remember to open. Third, was the step you accelerated actually on the critical path. Only after those three is it worth questioning the system quality, which is the one most teams check first because it is the one they know how to measure.'}],
+    ['q','I102'],
+
+    ['p','That is the whole course, and the shape of it is one idea repeated at larger and larger scale: decide what would count as failure, then measure that specific thing, rather than looking at output and forming an impression. You did it to a prompt, to a retriever, to a judge, to a bill, and now to a business case.'],
+    ['key','Everything else here is technique. That habit is the transferable part, and it will outlast every model named in these chapters.']
+  ],
+  capstone:{
+    title:'The pilot, designed so it could fail',
+    brief:'Design a pilot for a real feature — with a number the business already tracks, a comparison, a floor, and a window. Then get somebody senior to agree the floor before it runs.',
+    steps:[
+      'Time the whole workflow end to end and mark where your feature sits. If it is not on the critical path, say so and stop here.',
+      'Choose the business number. It must be one that already exists and that somebody already looks at.',
+      'Design the comparison: which two groups, over which period, and what makes them comparable.',
+      'Write the floor — the movement below which you would call this a failure — and the window before you would judge.',
+      'Write the disappointing sentence in advance, in the words you would say to whoever funded it.',
+      'Get the person who funds it to agree the floor <em>before</em> the pilot runs, in writing.'
+    ],
+    done:[
+      'The number is one the business already tracked before you arrived.',
+      'The floor is agreed in writing by the person who would be disappointed by it.',
+      'You can describe an outcome that would make you recommend switching the feature off.'
+    ]
+  }
 }
 
 ];

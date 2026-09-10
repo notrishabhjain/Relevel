@@ -437,6 +437,76 @@ window.PART2 = [
   ],
 },
 {
+  /* Arc 4. Chapter 11 measures thinking time as a cost. Nobody had yet asked
+     what the person on the other end is doing during it. */
+  id:'ch115', num:11.5, part:2, minutes:20, labs:[],
+  title:'Latency, and what the user does while waiting',
+  concept:'Why the same number of seconds can feel fast or broken, and what you put on the screen in between.',
+  needs:[
+    ['Thinking is a purchase','You measured what it costs in money and in seconds.',11],
+    ['A schema fixes the shape of a reply','Which is what makes a partial reply safe to show.',8],
+  ],
+  takeaway:[
+    'Say why streaming changes felt speed without changing actual speed.',
+    'Choose what to show during a wait, for a specific feature, and say what it costs to be wrong.',
+    'Name the wait your own product cannot make shorter, and what you would do instead.'
+  ],
+  story:[
+    ['c','Before you start','Open <code>chapter-11-5</code> and use whichever feature you costed in Chapter 11. You will time the same call twice and change nothing about how fast it is.'],
+
+    ['do','Time it, then feel it',[
+      ['p','Run one realistic request and time it end to end. Then run the same request streamed, and time when the <em>first</em> characters arrive.'],
+      ['code',"import time\nt0 = time.time()\nfull = ask(prompt)\nprint(\"whole answer:\", round(time.time() - t0, 1), \"s\")\n\nt0 = time.time()\nfirst = None\nfor chunk in ask_stream(prompt):\n    if first is None:\n        first = time.time() - t0\nprint(\"first words:\", round(first, 1), \"s\",\n      \"| whole answer:\", round(time.time() - t0, 1), \"s\")"],
+      ['x','The total is the same or very slightly worse. The first words arrive in a fraction of it. Nothing got faster and the experience is completely different, because waiting with evidence that something is happening is a different act from waiting at a blank screen.'],
+      ['snag',[
+        'A red box saying something <em>is not defined</em>',
+        'You have run a cell that needs something an earlier cell made, without running that earlier one first. Scroll to the top, run the warm-up cells in order, then come back to this one. This is the most common thing that goes wrong in a notebook, it happens to everybody, and it says nothing about your code.',
+        'Your provider or model does not stream',
+        'Some endpoints and some reasoning modes return only the finished answer. That is itself the finding: it means this feature cannot use the cheapest trick available for felt speed, and the rest of the chapter is what you do instead.'
+      ]]
+    ]],
+    ['key','Perceived speed is about when something starts, not when it finishes. Almost every wait you can improve, you improve at the front.'],
+
+    ['p','Which gives you three honest options for any wait, and they are not equally good.'],
+    ['n',[
+      '<strong>Start early.</strong> Stream, or show the first step of a multi-step job as it completes. Costs nothing and helps most.',
+      '<strong>Say what is happening.</strong> Not a spinner — the actual step. “Reading 6 documents” tells a person the wait is proportionate to the job.',
+      '<strong>Take the wait somewhere else.</strong> If it is genuinely long, stop pretending it is interactive. Do it in the background and tell them when it is done.'
+    ]],
+    ['p','The third is the one teams avoid, because it feels like an admission. It is usually the right answer for anything over about ten seconds, and it removes the problem rather than dressing it.'],
+
+    ['do','Watch a spinner lie',[
+      ['p','Take the slowest realistic request you have and run it while looking at a clock. Now imagine two screens: one with a spinner, one with the words <em>reading 6 documents · comparing against policy</em> and a step counter.'],
+      ['x','The same seconds. In the first, the user cannot tell a slow answer from a broken one, so their honest move at eight seconds is to reload — which costs you the whole call and starts it again. In the second, they can see it is working and roughly how far along.'],
+      ['key','An undifferentiated spinner is not a neutral choice. It teaches people to reload, and every reload is a call you paid for twice.']
+    ]],
+    ['pred',{id:'ch115-cliff',short:true,ph:'What you would change',
+      ask:'Your feature takes nine seconds and cannot be made faster. You can stream the answer, or move it to the background and notify. Which, and on what does it depend?',
+      reveal:'On whether the answer is useful in pieces. If reading the first sentence starts the person’s work — a draft, an explanation, a summary — stream it. If it is only useful complete — a decision, a routed ticket, a filled form — streaming shows them a half-answer they must not act on, and the background is safer.',
+      then:'This is why the chapter needed the schema chapter behind it. A partial reply is safe to show precisely when its shape means the visible part is already true. A half-streamed <em>decision</em> field is not a decision, it is a hazard.'}],
+    ['q','I005'],
+
+    ['p','None of this made anything faster. All of it changed whether nine seconds is acceptable, which is the only version of the question your users are actually asking.']
+  ],
+  capstone:{
+    title:'The wait, designed',
+    brief:'Take the slowest thing you would ship and design its wait properly — with a measured number at the front, not a spinner and a hope.',
+    steps:[
+      'Measure the real distribution, not one run: time twenty realistic requests and write down the median and the worst.',
+      'Split the total into its parts — retrieval, thinking, generation — and mark which parts you could actually shorten.',
+      'Decide whether the answer is useful in pieces. That decides streaming versus background, and write down why.',
+      'Design what is on the screen at second one, second three, and second ten. Actual words, not a placeholder.',
+      'Decide what happens at your worst case, and what the user can do about it.',
+      'Write the acceptance line: at what measured time does this feature stop being interactive and have to move to the background?'
+    ],
+    done:[
+      'Your numbers are a median and a worst case from twenty runs, not an average of three.',
+      'The screen has real words on it at three different moments.',
+      'You can say the threshold at which you would change the whole interaction, and it is a number.'
+    ]
+  }
+},
+{
   id:'ch12', num:12, part:2, minutes:45, labs:['fusion'],
   title:'Making retrieval actually good',
   concept:'Everything you deliberately parked since Chapter 3, collected. Four techniques, and the dull one beats the clever ones.',

@@ -345,11 +345,11 @@ window.REDMARKS = [
 ];
 
 window.PARTS = [
-  {n:1, title:'The basics', blurb:'What actually happens when your app asks an AI something, why it invents things, how documents get cut up and found again, and how to tell whether any of it works.'},
-  {n:2, title:'What real systems add', blurb:'Getting answers in a fixed shape, letting it act, the size limit, paying it to think first, better search — and the attack that has no fix.'},
-  {n:3, title:'Measuring it, costing it, shipping it', blurb:'Checking quality when there is too much of it to read, what it really costs, documents that are pictures, the paperwork, and the spec.'},
+  {n:1, title:'The basics', blurb:'A real result before you install anything. Then what actually happens when your app asks an AI something, how to write a prompt that behaves and prove it does, which shape a task really is — and how documents get cut up, found again, and measured.'},
+  {n:2, title:'What real systems add', blurb:'Getting answers in a fixed shape, letting it act, the size limit, paying it to think first, what the user does while waiting, better search — and the attack that has no fix.'},
+  {n:3, title:'Measuring it, costing it, shipping it', blurb:'Checking quality when there is too much of it to read, what it really costs, documents that are pictures, what you are allowed to send at all, the paperwork, and the spec.'},
   {n:4, title:'The decisions that stay yours',
-    blurb:'What to change when it is not good enough, and what the user sees when it is wrong. Neither one is an engineering decision.'}
+    blurb:'Whether to build it or buy it, what to change when it is not good enough, what the user sees when it is wrong — and how to prove any of it helped. None of these is an engineering decision.'}
 ];
 
 /* Rules and pacing */

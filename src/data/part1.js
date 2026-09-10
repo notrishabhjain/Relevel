@@ -545,6 +545,213 @@ window.PART1 = [
   }
 },
 {
+  /* Arc 2 opens. 2.2 ended on a limit — everything so far works on text you
+     paste. That is still true here, deliberately: before the course spends
+     five chapters teaching retrieval, it is worth knowing that a large share
+     of real requests never needed it. */
+  id:'ch23', num:2.3, part:1, minutes:20, labs:[],
+  title:'Which shape is this problem?',
+  concept:'Five shapes cover almost everything anyone asks an AI to do — and picking the right one decides how measurable the result can ever be.',
+  needs:[
+    ['A prompt is a specification','Four moves that shape what comes back.',2.1],
+    ['A test set, and one change at a time','How you tell better from different.',2.2],
+  ],
+  takeaway:[
+    'Name which of the five shapes a request actually is, before designing anything.',
+    'Say why two of the shapes can be graded automatically and three cannot.',
+    'Turn a vague ask from a colleague into the narrowest shape that still solves their problem.'
+  ],
+  story:[
+    ['c','Before you start','No new setup. Bring the test set you built in Chapter 2.2 — you will use it once more, and then see why its rows were easy to grade for a reason you had not noticed.'],
+
+    ['p','People bring you requests in the language of outcomes. <em>Can the AI handle our inbox. Can it help with contracts. Can it make the team faster.</em> None of those is a task. Underneath almost every one of them is one of five shapes, and which shape it is decides more than which model you pick.'],
+    ['key','Choosing the shape is the first design decision, it is made in a sentence, and it is the one most often skipped.'],
+    ['tb',['shape','the job','can a machine grade it?'],[
+      ['<strong>Classify</strong>','put this into one of these buckets','Yes — there is a right answer'],
+      ['<strong>Extract</strong>','pull these specific fields out','Yes — the value is in the document or it is not'],
+      ['<strong>Summarise</strong>','make this shorter without losing what matters','No — depends who is reading'],
+      ['<strong>Rewrite</strong>','same meaning, different form or tone','No — but you can check what must not change'],
+      ['<strong>Generate</strong>','produce something that was not there','No — and this is where most projects start']
+    ]],
+    ['p','The first two have right answers. That is not a small property — it is the difference between a feature you can measure on Monday and one you argue about for a quarter.'],
+
+    ['do','Sort real requests into the five',[
+      ['p','Write down six things people at your work have actually asked for from AI. Real requests, in their words, including the vague ones. Then put each into one of the five shapes.'],
+      ['x','Two things usually happen. Several requests turn out to be the same shape wearing different words. And at least one refuses to sit in any single box — which means it is not one task, it is two or three stapled together.'],
+      ['key','A request that will not fit one shape is not a hard problem. It is an unsplit problem.']
+    ]],
+
+    ['p','That last point is the whole value of this chapter. "Handle the inbox" is not a task. Underneath it is usually: <em>classify</em> the message by type, <em>extract</em> the account number, and <em>generate</em> a draft reply. Three shapes, three different difficulties, three different ways of failing — and only the first two can be measured without a human reading the output.'],
+
+    ['do','Split the one that would not fit',[
+      ['p','Take the request that refused to sit in a box and break it into steps that each have exactly one shape. Write them in the order they would have to happen.'],
+      ['x','Three or four steps, and a surprise: usually only the last one is the hard, unmeasurable part. The rest are classification and extraction, which are cheap and checkable — and if the first steps are reliable, the last one has a much easier job.'],
+      ['p','This is also where the cost falls. A classification step can run on a small cheap model. Only the last step needs an expensive one, and only for the cases that reach it.']
+    ]],
+    ['pred',{id:'ch23-shape',short:true,ph:'Which shape, and what changes',
+      ask:'A colleague asks for "an AI that reviews contracts and flags risky clauses." Which shape is that, really?',
+      reveal:'Mostly classify, with extract underneath it. Each clause gets a bucket — standard, unusual, missing — and the risky ones need their text pulled out to show. Almost none of it is generation.',
+      then:'Which changes everything about how you would build it. Classification has right answers, so you can build an answer key from a hundred clauses a lawyer has already judged, and know your quality before shipping. Had you taken "reviews contracts" at face value and built a generator, there would be nothing to measure and no way to defend it.'}],
+
+    ['q','I059'],
+    ['key','Ask "which shape?" before "which model?" — and if the answer is more than one shape, you have found the design, not a complication.'],
+    ['p','Two of these shapes are worth a chapter each, because they are the two you will meet most and the two where a small amount of care produces a large amount of reliability. The next chapter takes the one with a right answer.']
+  ],
+  capstone:{
+    title:'The shape map for one real request',
+    brief:'Take the vaguest AI request anyone has actually made of you and turn it into something buildable — which is mostly a matter of naming shapes and putting them in order.',
+    steps:[
+      'Write the request down in the exact words it was asked in. Do not tidy it.',
+      'Name what the person actually wants to happen differently on a Tuesday. One sentence.',
+      'Break it into steps, each with exactly one shape, in the order they must run.',
+      'Mark which steps have a right answer and which do not. Those are your measurable and unmeasurable halves.',
+      'For each measurable step, say where an answer key would come from — who already makes that judgement today, and on what.',
+      'Write the one-paragraph reply you would send the person, describing what you would build first and why it is the smallest useful thing.'
+    ],
+    done:[
+      'Every step in your breakdown has exactly one shape.',
+      'You can point at the steps that can be graded without a human reading the output.',
+      'The thing you propose building first is measurable, and you can say what you would measure it against.'
+    ]
+  }
+},
+{
+  id:'ch24', num:2.4, part:1, minutes:25, labs:[],
+  title:'Classification, the cheap reliable one',
+  concept:'The shape with a right answer — which makes it the only one you can improve on purpose rather than by feel.',
+  needs:[
+    ['Five shapes, and which have right answers','Classification is the one that can be graded.',2.3],
+    ['A test set is how you tell better from different','Here it becomes an answer key with real numbers.',2.2],
+    ['A notebook and a key','You will run one classifier many times.','setup'],
+  ],
+  takeaway:[
+    'Build a classifier for a real category set and measure it honestly.',
+    'Say which class your system is worst at, and what that costs the business.',
+    'Explain why an overall accuracy figure usually hides the failure that matters.'
+  ],
+  story:[
+    ['c','Before you start','Open <code>chapter-2-4</code>, run the warm-up cells, and bring twenty real examples of something at your work that gets sorted into categories — tickets by type, documents by department, requests by urgency.'],
+
+    ['do','Re-read your own test set with new eyes',[
+      ['p','Open the ten-row test set from Chapter 2.2 and look at what you wrote in the "good answer contains" column.'],
+      ['x','If your task was classification or extraction, those rows are crisp — a value, a bucket, a yes. If it was summarisation, they are woolly, and grading them took judgement. That difference was never about your writing. It was the shape.']
+    ]],
+
+    ['p','Classification is putting a thing into one of a fixed set of buckets. It is unglamorous, it is most of what useful software does, and it has the property no other shape has: somebody can say whether the answer was right.'],
+    ['key','A right answer means you can count. Counting means you can improve on purpose instead of by feel — which is the entire difference between engineering and hoping.'],
+
+    ['do','Build one, badly, on purpose',[
+      ['p','Write the simplest possible version: the categories, one line of instruction, no examples.'],
+      ['code',"LABELS = [\"billing\", \"technical\", \"account\", \"other\"]\n\ndef classify(text):\n    out = ask(\n        \"Classify the message into exactly one of: \"\n        + \", \".join(LABELS)\n        + \". Reply with the label only.\\n\\n\" + text)\n    return out.strip().lower()\n\nfor row in examples[:10]:\n    print(classify(row[\"text\"]), \"|\", row[\"truth\"])"],
+      ['x','Mostly right, and two kinds of wrong. Some genuinely misread. But some come back as <code>Billing.</code> or <code>the category is billing</code> — not a wrong answer, an unusable one. You asked for a label and got a sentence.'],
+      ['snag',[
+        'A red box saying something <em>is not defined</em>',
+        'You have run a cell that needs something an earlier cell made, without running that earlier one first. Scroll to the top, run the warm-up cells in order, then come back to this one. This is the most common thing that goes wrong in a notebook, it happens to everybody, and it says nothing about your code.',
+        'It runs, but your numbers are not the ones printed above',
+        'Expected, and not a mistake. Models change and your text is not my text. What matters is the direction and the rough size of the gap, never matching a figure exactly. If your numbers move the same way mine do, the experiment worked.'
+      ]]
+    ]],
+    ['p','Fix the format problem with the move you already know — show it, do not describe it. Two worked examples, one of them an awkward case, and the shape stops drifting. Chapter 8 will remove the possibility entirely rather than discouraging it, but two examples get you most of the way today.'],
+
+    ['do','Now count properly',[
+      ['p','Grade all twenty against what you know the answer to be, and count per class rather than overall.'],
+      ['code',"from collections import Counter\nhit, miss = Counter(), Counter()\nfor row in examples:\n    got = classify(row[\"text\"])\n    (hit if got == row[\"truth\"] else miss)[row[\"truth\"]] += 1\nfor c in LABELS:\n    n = hit[c] + miss[c]\n    if n: print(c, hit[c], \"/\", n)"],
+      ['x','An overall figure that looks respectable — and one class that is far worse than the rest. It is almost always the rare one, or the one whose boundary with its neighbour is genuinely blurry.'],
+      ['key','The overall number is the one that gets quoted and the per-class numbers are the ones that matter. A system that is 92 per cent right overall and 40 per cent right on the urgent category is not a 92 per cent system.']
+    ]],
+    ['try',{id:'ch24-cost',mins:4,min:40,rows:3,
+      task:'Take your worst class. Write what actually happens to a real person when a message of that class is sent to the wrong bucket — and what happens in the reverse direction, when something else is wrongly sent to it.',
+      ph:'When a … is missed, … . When something is wrongly marked …, … .',
+      after:'The two directions almost never cost the same. Missing an urgent complaint and wrongly flagging a routine one as urgent are both errors, and one of them is cheap. Once you can say which, you can deliberately make the system lean the cheap way — by making the boundary case fall into the safer bucket. That is a product decision, made with numbers, and it belongs to you rather than to whoever wrote the prompt.'}],
+    ['q','I061'],
+
+    ['p','Notice how little of this was about AI. An answer key, per-class counts, and a judgement about which error is cheaper — the same instrument you would use to evaluate a hiring process or a triage desk.'],
+    ['p','The next shape has no right answer at all, which is why almost everybody who builds it ships it without knowing whether it works.']
+  ],
+  capstone:{
+    title:'A classifier you would let route real work',
+    brief:'Build a classifier for a real category set at your work, measure it per class, and decide — with numbers — whether it is good enough to act on rather than merely to suggest.',
+    steps:[
+      'Fix the categories. Include an <em>other</em> or <em>unclear</em> bucket; a set with no escape hatch forces wrong answers.',
+      'Collect fifty real examples and label them yourself, before running anything.',
+      'Build the classifier with two worked examples, one of which is a boundary case.',
+      'Measure per class, not overall. Write the table.',
+      'For your worst class, write what each direction of error costs, and adjust the instruction so the boundary falls the cheaper way. Re-measure.',
+      'Decide the threshold: above what per-class number would you let this route work automatically, and below what would it only ever suggest?'
+    ],
+    done:[
+      'You have per-class numbers from fifty examples you labelled before testing.',
+      'You made one deliberate change to which way a boundary case falls, and measured the effect.',
+      'You can state the number at which you would let it act unsupervised — and you are not currently above it, or you are and can say so.'
+    ]
+  }
+},
+{
+  id:'ch25', num:2.5, part:1, minutes:25, labs:[],
+  title:'Summarising without losing the point',
+  concept:'The most requested feature, and the one whose failure is hardest to see — because a summary that lost the crucial line still reads beautifully.',
+  needs:[
+    ['Some shapes have no right answer','Summarising is the first one you meet.',2.3],
+    ['Per-class counting beats an overall number','The same instinct, applied where counting is harder.',2.4],
+    ['A notebook and a key','You will summarise the same document several ways.','setup'],
+  ],
+  takeaway:[
+    'Say what a summary is for before writing the prompt that makes one.',
+    'Test a summariser for the failure that matters — the thing it left out.',
+    'Explain why "it reads well" is the least useful thing you can say about a summary.'
+  ],
+  story:[
+    ['c','Before you start','Open <code>chapter-2-5</code> and bring one real document with something consequential buried in it — a deadline, an exception, a liability, a number somebody would be angry to miss.'],
+
+    ['do','Watch a good summary fail',[
+      ['p','Summarise your document with the plainest possible instruction, then go looking for the buried thing.'],
+      ['code',"print(ask(\"Summarise the following document.\\n\\n\" + doc))"],
+      ['x','A well-organised, fluent, entirely reasonable summary — which very often does not contain the buried line. It is not wrong. Nothing in it is false. It simply made an even compression of a document whose value was not evenly distributed.'],
+      ['key','That is the failure mode, and it is invisible. A summary that lost the one line that mattered looks exactly like a summary that kept it.']
+    ]],
+
+    ['p','Which is why the first question is never "how do I summarise this?" It is "who reads this, and what will they do next?" A summary has no quality on its own. It only has fitness for a decision.'],
+
+    ['do','Same document, three readers',[
+      ['p','Summarise it three times, naming a different reader and decision each time.'],
+      ['code',"readers = [\n  \"a manager deciding whether to escalate today\",\n  \"a lawyer checking what we are committed to\",\n  \"a new joiner who needs the background\",\n]\nfor r in readers:\n    print(\"===\", r)\n    print(ask(f\"Summarise for {r}.\\n\\n{doc}\")[:400])"],
+      ['x','Three genuinely different documents. The lawyer version keeps the obligations and drops the story; the new joiner version does the reverse. Neither is better. They are answers to different questions, and the plain version was silently an answer to none of them.']
+    ]],
+
+    ['p','So a summariser can be tested after all — not by grading the prose, but by asking whether specific things survived.'],
+    ['key','You cannot grade a summary. You can absolutely test whether it kept the five things a reader would be angry to lose.'],
+
+    ['do','Build the survival test',[
+      ['p','For five real documents, write down the two or three facts a reader must not lose. Then check each summary for them mechanically.'],
+      ['code',"must_keep = {\n  \"doc1\": [\"30 days\", \"Baraka Traders\", \"auto-renew\"],\n  # …five documents…\n}\nfor name, facts in must_keep.items():\n    s = summarise(docs[name])\n    missing = [f for f in facts if f.lower() not in s.lower()]\n    print(name, \"missing:\", missing or \"none\")"],
+      ['x','A concrete miss rate, on the only thing that matters. Crude — a summary can carry a fact in different words and this will not see it — and still far more useful than reading five summaries and feeling good about them.'],
+      ['p','Now change one thing. Add <em>"keep every date, amount and named party exactly as written"</em> and re-run.'],
+      ['x','The miss rate usually drops sharply, and the summaries get slightly longer and slightly duller. That is the trade, it is yours to make, and you now have both numbers.']
+    ]],
+    ['q','I043'],
+
+    ['p','Two chapters, two shapes, one method: decide what would count as failure, then measure that specific thing rather than reading output and forming an impression.'],
+    ['p','And a wall. Everything in this arc works on a document you can paste into the request. The moment the answer lives somewhere across a hundred documents — a handbook, a policy library, five years of contracts — none of it applies, because the model has never seen any of them.']
+  ],
+  capstone:{
+    title:'A summariser with a survival test',
+    brief:'Build a summariser for a real document type and the specific test that proves it keeps what matters. The test is the deliverable — the prompt is easy and everybody has one.',
+    steps:[
+      'Name the reader and the decision. If you cannot name a decision, the summary has no purpose and no test.',
+      'Take ten real documents and write down, for each, the two or three facts a reader would be angry to lose.',
+      'Build the summariser and run the survival check across all ten. Record the miss rate.',
+      'Make one change — an instruction about what must be preserved verbatim — and re-measure.',
+      'Find a document where a fact survived in different wording and your check missed it. Note what that means about your number.',
+      'Write the note to whoever asked for this feature: what it keeps, what it drops, and the miss rate you measured.'
+    ],
+    done:[
+      'You have a miss rate from ten documents, before and after one change.',
+      'You found at least one case your own test scores unfairly, and you say so.',
+      'The note names what the summary is for, so somebody else could test it the same way next quarter.'
+    ]
+  }
+},
+{
   id:'ch3', num:3, part:1, minutes:20, labs:['chunker'],
   title:'Why documents have to be cut up',
   concept:'And why every way of cutting them loses something. Choosing which loss is your job.',
