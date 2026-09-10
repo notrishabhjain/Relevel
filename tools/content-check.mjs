@@ -129,6 +129,29 @@ for (const s of C.skills)
    and the translation silently stops applying — the page still reads correctly,
    just in the wrong language, which is exactly the kind of failure nobody
    notices. So every key has to still exist somewhere in the content. */
+/* Step size. The methodology caps a chapter at four new terms: a chapter that
+   needs eight is two chapters. The chapters below predate the rule and carry
+   the debt openly — the list only ever gets shorter, and a chapter not on it
+   must obey the cap. */
+const TERM_DEBT = new Set(['ch1', 'ch8', 'ch14', 'ch18', 'ch7']);
+{
+  const seen = new Set();
+  const owed = [];
+  for (const c of C.chapters) {
+    const text = JSON.stringify(c);
+    const fresh = [...new Set((C.reference.GLOSSARY || []).map(g => g[0]))]
+      .filter(t => !seen.has(t) &&
+        new RegExp('\\b' + t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'i').test(text));
+    fresh.forEach(t => seen.add(t));
+    if (fresh.length > 4) {
+      if (TERM_DEBT.has(c.id)) owed.push(`${c.id}:${fresh.length}`);
+      else fail(`${c.id} introduces ${fresh.length} new terms in one chapter` +
+                ` — the cap is four, so this is two chapters: ${fresh.join(', ')}`);
+    }
+  }
+  if (owed.length) console.log(`chapters still over the four-term cap: ${owed.join(' ')}`);
+}
+
 const hing = C.hinglish || {};
 
 /* The other half: every line the reader can be shown needs a Hinglish version,
