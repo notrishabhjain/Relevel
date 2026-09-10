@@ -189,6 +189,45 @@ window.PART1 = [
     ]],
     ['q','I001'],
 
+    ['key','Two facts so far, and both land on your desk rather than an engineer’s. It guesses, so a confident tone is no evidence. And you pay by the piece, so every word of instruction you add is rent, charged on every call forever.'],
+    ['p','There is a third fact, and it is the strangest of the three. It explains why a long chat costs more than a short one, why “memory” features are not memory, and why the next chapter exists.']
+  ],
+  capstone:{
+    title:'The receipt for one real request',
+    brief:'You can now read the meter. Point it at something real and small, before the chapter that makes it complicated.',
+    steps:[
+      'Take one realistic request from your own work and run it, exactly as you would send it.',
+      'Record <code>prompt_tokens</code> and <code>completion_tokens</code> from the receipt.',
+      'Run it twice more with different realistic inputs, and take the average of the three.',
+      'Find your provider’s published rate per million pieces and turn your average into a cost for one request.',
+      'Now add a paragraph of instruction to the prompt and re-run. Note what that paragraph costs, per call, forever.'
+    ],
+    done:[
+      'You have a cost for one request that came from your own runs.',
+      'You can say what one extra paragraph of instruction costs at a thousand requests a day.',
+      'You did it on a real input, not an invented one.'
+    ]
+  }
+},
+{
+  /* Chapter 1 taught three facts and eight new terms in one sitting — the
+     steepest step in the course, at the worst possible place. The third fact
+     is a chapter of its own, and the two now fit the four-term cap. */
+  id:'ch15b', num:1.5, part:1, minutes:25, labs:['receipt'],
+  title:'The ceiling, and the forgetting',
+  concept:'Why a long conversation costs more than a short one — and why every “memory” feature you will be shown is a trick performed by the app.',
+  needs:[
+    ['It guesses rather than looks up','So a confident tone is no evidence of anything.',1],
+    ['You pay by the piece','And you have read the receipt yourself.',1],
+    ['A notebook and a key','You will run a growing conversation and watch the bill.','setup'],
+  ],
+  takeaway:[
+    'Explain the size limit as a delivery, not as memory — and say what it does not protect you from.',
+    'Explain any “memory” feature as the engineering it actually is.',
+    'Predict what a long conversation costs before anybody builds it.'
+  ],
+  story:[
+    ['c','Before you start','Stay in <code>chapter-1</code>. The receipt code you wrote last time is what you need — today you run it in a loop and watch a number climb.'],
     ['p','Second fact: there is a size limit. Everything sent in one go — the question, any instructions you attach, any documents, plus the answer coming back — has to fit inside a ceiling. The industry calls that ceiling the <strong>context window</strong>.'],
     ['p','It is worth being precise about what it is not. It is not memory. It is the size of one delivery.'],
     ['q','I006'],

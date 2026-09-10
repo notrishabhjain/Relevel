@@ -19,20 +19,19 @@ window.PART3 = [
   ],
   red:['A grader nobody checked against human marking','Longer answers scoring higher for no reason','Testing on questions that look nothing like real ones'],
   capstone:{
-    title:'A grader you have actually checked',
-    brief:'You have written a judge and then graded the judge, which is the step almost everyone skips. Build the evaluation you would run before every release of something real — including the part that says how much to trust it.',
+    title:'A judge you have actually graded',
+    brief:'Build the automated grader and, more importantly, the evidence for how far it can be trusted. A grader nobody has checked is not a measurement.',
     steps:[
-      'Pick one output your team produces with AI, and write the rubric a careful human would use to grade it.',
-      'Run the free checks first — format, length, forbidden content, required fields — and see how many failures never need a judge at all.',
-      'Build the judge against your rubric, then grade fifty outputs by hand as well.',
-      'Compare the two. Report agreement honestly, including where the judge is systematically kinder or harsher than you.',
-      'Test it for verbosity bias on your own data: same substance, twice the words, and see whether the score moves.',
-      'Read a hundred real outputs by hand and group what actually went wrong. Compare that list to what your judge measures.',
+      'Write the rubric a careful human would use on one output your team produces.',
+      'Run the free checks first — format, length, required fields — and count how many failures never need a judge at all.',
+      'Build the judge against your rubric and grade fifty outputs by hand as well.',
+      'Report agreement honestly, including where the judge is systematically kinder or harsher than you.',
+      'Test it for verbosity bias on your own data: same substance, twice the words, and see whether the score moves.'
     ],
     done:[
       'You have an agreement figure between the judge and your own grading on the same fifty items.',
-      'You know whether your judge rewards length, from a test you ran.',
-      'Your error-analysis list names at least one failure the judge does not currently catch.',
+      'You know whether your judge rewards length, from a test you ran rather than an assumption.',
+      'You can state the score band in which you would not trust the judge without reading the output yourself.'
     ]
   },
   story:[
@@ -107,6 +106,45 @@ window.PART3 = [
       ['p','Take one correct, concise answer. Produce a padded version — same claims, three times the words, more hedging and structure. Judge both.'],
       ['x','The padded version frequently scores at least as well, often better, despite containing no additional correct information. You have now personally measured a bias that invalidates a great many published evaluation numbers.']
     ]],
+    ['key','A judge you have graded is an instrument. A judge you have not graded is a second opinion from the same kind of machine that produced the first one, and it will agree with itself.'],
+    ['p','That gets you scale. It does not tell you <em>what</em> is wrong — only how often something is. The single highest-value thing in this subject is the next chapter, and it needs no machine at all.']
+  ]
+},
+{
+  /* ch14 carried seven new terms and did two different jobs: building a
+     grader that scales, and reading failures by hand, which scales to
+     nothing and produces most of the improvement. They are two chapters. */
+  id:'ch145', num:14.5, part:3, minutes:25, labs:[],
+  title:'Reading a hundred failures by hand',
+  concept:'The highest-value activity in the subject — no machine, no budget, no permission needed — and it is skipped almost everywhere.',
+  needs:[
+    ['A judge can grade at scale','And you know how far yours can be trusted.',14],
+    ['An answer key is written before testing','The same discipline, pointed at failures instead of questions.',6],
+  ],
+  takeaway:[
+    'Turn a pile of real failures into named, countable groups.',
+    'Say which group to fix first, on the numbers rather than on the drama.',
+    'Explain why a generic benchmark cannot do this for you.'
+  ],
+  capstone:{
+    title:'The failure taxonomy for something real',
+    brief:'Read a hundred real outputs, name what went wrong in your own words, and turn the notes into groups somebody can count. This is the artefact that tells a team what to fix next, and no benchmark can produce it for you.',
+    steps:[
+      'Collect a hundred real outputs from something you own or use. Real traffic, not a sample you curated.',
+      'Read them and write, in your own words, what went wrong in each one that went wrong. Do not group yet — grouping early hides the categories you had not thought of.',
+      'Now group the notes and name the groups. Count each one.',
+      'Rank the groups by count multiplied by how badly each one hurts a real person.',
+      'For the top group, write down what would have to change — and whether it is a prompt, retrieval, a field, or something that is not an AI problem at all.',
+      'Turn the top two groups into rows in your test set, so the next change is measured against them.'
+    ],
+    done:[
+      'The groups came out of the reading rather than being decided in advance.',
+      'Every group has a count, and the ranking uses consequence as well as frequency.',
+      'At least two new rows are in your test set, taken from real failures.'
+    ]
+  },
+  story:[
+    ['c','Before you start','No code and no notebook. You need real outputs from something you own or use — support replies, generated summaries, search results — and about an hour. Bring a pen.'],
     ['p','Now the part that produces most of the actual improvement, and it is not a technique.'],
     ['key','Read a hundred real outputs. Write down what went wrong in each one, in your own words. Then group the notes and name the groups. That is the highest-value thing anyone does in this field, it is reading rather than engineering, and almost nobody does it.'],
     ['q','I052','I125'],
