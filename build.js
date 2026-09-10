@@ -41,6 +41,7 @@ const js = [
   'src/data/hing-part2.js',
   'src/data/hing-part3.js',
   'src/data/hing-part4.js',
+  'src/data/hing-interleaved.js',
   'src/data/hing-items.js',
   'src/data/hing-skills.js',
   'src/remote.js',
