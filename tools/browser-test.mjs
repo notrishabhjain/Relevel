@@ -676,6 +676,57 @@ ok(!wiped.stored.includes('must not survive'),
 ok(wiped.notes === 0 && wiped.att === 0,
    'and the live state is empty too', 'notes=' + wiped.notes + ' att=' + wiped.att);
 
+/* The reset test above runs signed out, which is why it passed while reset was
+   still broken for a real user. Progress lives in three places and the account
+   on the server is the one that matters: reconcile() on the next boot sees an
+   empty device against a full server row, correctly reads that as a new
+   device, and pulls everything back. */
+console.log('\n— and resets the signed-in account, not just the device —');
+const ra = await newDevice(true, 'resetter');
+await boot(ra.page);
+await ra.page.evaluate(async () => {
+  const S = window.STORE.S;
+  S.notes['ch1:close'] = 'server-side note that must not survive';
+  S.att = (S.att || []).concat([{ id: 'I013', ok: 1, at: Date.now() }]);
+  window.STORE.flush();
+  await window.ACCOUNT.flush();          // get it onto the server
+});
+await ra.page.waitForTimeout(600);
+const onServer = await ra.page.evaluate(async () => {
+  const r = await window.REMOTE.pull();
+  return JSON.stringify(r.data || {}).includes('must not survive');
+});
+ok(onServer, 'the note reached the server to begin with');
+
+await ra.page.evaluate(() => { window.confirm = () => true; });
+await boot(ra.page, '#/progress');
+await ra.page.evaluate(() => {
+  [...document.querySelectorAll('button')].find(x => /Reset everything/.test(x.textContent)).click();
+});
+await ra.page.waitForTimeout(2000);
+const afterReset = await ra.page.evaluate(async () => {
+  const r = await window.REMOTE.pull();
+  return {
+    server: JSON.stringify(r.data || {}).includes('must not survive'),
+    local: Object.keys(window.STORE.S.notes || {}).length,
+    att: (window.STORE.S.att || []).length
+  };
+});
+ok(!afterReset.server, 'the server copy is emptied by the reset');
+ok(afterReset.local === 0 && afterReset.att === 0,
+   'and the device is empty after the reload',
+   'notes=' + afterReset.local + ' att=' + afterReset.att);
+/* the real regression: a second load must not bring it back */
+await boot(ra.page);
+await ra.page.waitForTimeout(1200);
+const nextLoad = await ra.page.evaluate(() => ({
+  notes: Object.keys(window.STORE.S.notes || {}).length,
+  att: (window.STORE.S.att || []).length
+}));
+ok(nextLoad.notes === 0 && nextLoad.att === 0,
+   'and it is still empty on the load after that, which is where it came back before',
+   'notes=' + nextLoad.notes + ' att=' + nextLoad.att);
+
 await browser.close();
 console.log('\n' + pass + ' passed, ' + fail + ' failed\n');
 process.exit(fail ? 1 : 0);
