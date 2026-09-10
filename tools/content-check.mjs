@@ -41,6 +41,16 @@ for (const c of C.chapters) {
     fail(`${c.id} has both inline hands-on beats and a separate hands-on section`);
 }
 
+/* The course used to carry an optional "same thing in real code" section, and
+   the text that sold it as skippable outlived the section itself. Doing is not
+   an appendix any more, and nothing may tell a reader it is. */
+const SKIPPABLE = /\b(optional section|you can ignore it completely|nothing later depends on it|entirely optional|feel free to skip)\b/i;
+for (const c of C.chapters)
+  for (const b of blocksOf(c)) {
+    const m = SKIPPABLE.exec(JSON.stringify(b));
+    if (m) fail(`${c.id} still describes the hands-on work as skippable: "${m[0]}"`);
+  }
+
 const cpIds = new Map();
 const asked = new Set();
 let checkpoints = 0;

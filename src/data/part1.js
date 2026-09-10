@@ -27,7 +27,8 @@ window.PART1 = [
 
     ['p','That is all you need to use this. A few practical notes, and then Chapter 1.'],
     ['l',[
-      '<strong>Nothing to install.</strong> The interactive tools in each chapter run right here in the page. There is an optional section in some chapters showing the same ideas as real code — it needs a free account and about twenty minutes of setup, and you can ignore it completely. Nothing later depends on it.',
+      '<strong>Still nothing to install.</strong> Everything runs in your browser — the tools built into each chapter, and a free Google notebook for the chapters that use code. Setting that notebook up takes about twenty minutes, once, and the next page walks you through every click.',
+      '<strong>The doing is not optional.</strong> Each chapter alternates: an idea, then the thing that proves it, marked <em>Do this</em>. Those beats are where the learning actually happens — skip them and you are left with the feeling of having understood, which is the one thing this course is built to stop.',
       '<strong>One chapter per sitting.</strong> They are fifteen to twenty-five minutes. Stopping while you still have energy is what brings you back tomorrow; a huge first week followed by nothing is the usual way this ends.',
       '<strong>Your progress follows you.</strong> Signed in, everything saves against your account, so you can read on your phone and carry on at your desk.'
     ]],
@@ -36,7 +37,8 @@ window.PART1 = [
       task:'Decide it now, while it is easy to think clearly. What will you do on the evening you do not want to open this? What is the smallest thing you would still be willing to do — and what will you tell yourself about the day you skipped?',
       ph:'When I do not want to open this, I will …',
       after:'The plans that survive a bad evening share three things. The smallest step is genuinely tiny — one question, two minutes, not a chapter. You know where to resume without having to decide, because deciding is the expensive part when you are tired. And the story about the missed day is settled in advance: a missed day is a missed day. It is not evidence of anything and it does not mean starting again. Everybody lapses. The people who finish are the ones who had already decided that lapsing was allowed.'}],
-    ['p','That is the whole chapter. Nothing here needs remembering. Chapter 1 starts properly.']
+    ['c','Do this before Chapter 1','Chapter 1 asks you to make a real call to a real model within its first few minutes. Set the notebook and the key up now — <a href="#/setup">Set up Colab + API key</a> — so that when you get there you are pasting one line, not signing up for things.'],
+    ['p','That is the whole chapter. Nothing here needs remembering. Set the notebook up, and then Chapter 1 starts properly.']
   ]
 },
 {

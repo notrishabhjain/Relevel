@@ -899,7 +899,8 @@ window.PART1 = [
 
     ['p','That is all you need to use this. A few practical notes, and then Chapter 1.'],
     ['l',[
-      '<strong>Nothing to install.</strong> The interactive tools in each chapter run right here in the page. There is an optional section in some chapters showing the same ideas as real code — it needs a free account and about twenty minutes of setup, and you can ignore it completely. Nothing later depends on it.',
+      '<strong>Still nothing to install.</strong> Everything runs in your browser — the tools built into each chapter, and a free Google notebook for the chapters that use code. Setting that notebook up takes about twenty minutes, once, and the next page walks you through every click.',
+      '<strong>The doing is not optional.</strong> Each chapter alternates: an idea, then the thing that proves it, marked <em>Do this</em>. Those beats are where the learning actually happens — skip them and you are left with the feeling of having understood, which is the one thing this course is built to stop.',
       '<strong>One chapter per sitting.</strong> They are fifteen to twenty-five minutes. Stopping while you still have energy is what brings you back tomorrow; a huge first week followed by nothing is the usual way this ends.',
       '<strong>Your progress follows you.</strong> Signed in, everything saves against your account, so you can read on your phone and carry on at your desk.'
     ]],
@@ -908,7 +909,8 @@ window.PART1 = [
       task:'Decide it now, while it is easy to think clearly. What will you do on the evening you do not want to open this? What is the smallest thing you would still be willing to do — and what will you tell yourself about the day you skipped?',
       ph:'When I do not want to open this, I will …',
       after:'The plans that survive a bad evening share three things. The smallest step is genuinely tiny — one question, two minutes, not a chapter. You know where to resume without having to decide, because deciding is the expensive part when you are tired. And the story about the missed day is settled in advance: a missed day is a missed day. It is not evidence of anything and it does not mean starting again. Everybody lapses. The people who finish are the ones who had already decided that lapsing was allowed.'}],
-    ['p','That is the whole chapter. Nothing here needs remembering. Chapter 1 starts properly.']
+    ['c','Do this before Chapter 1','Chapter 1 asks you to make a real call to a real model within its first few minutes. Set the notebook and the key up now — <a href="#/setup">Set up Colab + API key</a> — so that when you get there you are pasting one line, not signing up for things.'],
+    ['p','That is the whole chapter. Nothing here needs remembering. Set the notebook up, and then Chapter 1 starts properly.']
   ]
 },
 {
@@ -4195,8 +4197,16 @@ Object.assign(window.HING = window.HING || {}, {
     'Yeh isliye hain kyunki andar se padhna aur samajhna ek jaisa hi lagta hai, lekin sach sirf ek hota hai. Aur galat hona sahi hone se zyada kaam ka hai — jis jawaab par aapko bharosa tha aur woh galat nikla, usne aapki ek aisi soch pakad li jo aapko galat lagti hi nahi thi. Padhai ki baithak mein isse behtar kuchh nahi hota. Yeh sab kisi ko dikhta nahi. Na koi grade hai, na pass marks.',
   'That is all you need to use this. A few practical notes, and then Chapter 1.':
     'Ise istemaal karne ke liye bas itna hi chahiye. Kuchh practical baatein, phir Chapter 1.',
-  '<strong>Nothing to install.</strong> The interactive tools in each chapter run right here in the page. There is an optional section in some chapters showing the same ideas as real code — it needs a free account and about twenty minutes of setup, and you can ignore it completely. Nothing later depends on it.':
-    '<strong>Kuchh install nahi karna.</strong> Har chapter ke interactive tools yahin page ke andar chalte hain. Kuchh chapters mein ek optional section hai jo wahi ideas asli code mein dikhata hai — uske liye ek free account aur bees minute ka setup chahiye, aur aap use poori tarah chhod sakte hain. Aage kuchh bhi us par tika nahi hai.',
+  '<strong>Still nothing to install.</strong> Everything runs in your browser — the tools built into each chapter, and a free Google notebook for the chapters that use code. Setting that notebook up takes about twenty minutes, once, and the next page walks you through every click.':
+    '<strong>Ab bhi kuchh install nahi karna.</strong> Sab kuchh aapke browser mein hi chalta hai — har chapter ke andar bane tools, aur jin chapters mein code hai unke liye ek free Google notebook. Us notebook ka setup ek baar mein lagbhag bees minute leta hai, aur agla page aapko har click dikhata hai.',
+  '<strong>The doing is not optional.</strong> Each chapter alternates: an idea, then the thing that proves it, marked <em>Do this</em>. Those beats are where the learning actually happens — skip them and you are left with the feeling of having understood, which is the one thing this course is built to stop.':
+    '<strong>Karna optional nahi hai.</strong> Har chapter baari-baari chalta hai: ek idea, phir wahi cheez jo use saabit karti hai, jis par <em>Do this</em> likha hota hai. Seekhna asal mein wahin hota hai — inhe chhod dijiye to sirf samajh aane ka ehsaas bachta hai, aur yeh course usi ek cheez ko rokne ke liye bana hai.',
+  'Do this before Chapter 1':
+    'Chapter 1 se pehle yeh kar lijiye',
+  'Chapter 1 asks you to make a real call to a real model within its first few minutes. Set the notebook and the key up now — <a href="#/setup">Set up Colab + API key</a> — so that when you get there you are pasting one line, not signing up for things.':
+    'Chapter 1 apne pehle kuchh minute mein hi aapse ek asli model ko asli call karwata hai. Notebook aur key abhi set kar lijiye — <a href="#/setup">Set up Colab + API key</a> — taaki wahan pahunch kar aap ek line paste kar rahe hon, na ki cheezon ke liye sign up.',
+  'That is the whole chapter. Nothing here needs remembering. Set the notebook up, and then Chapter 1 starts properly.':
+    'Bas itna hi chapter hai. Yahan kuchh yaad rakhne ki zaroorat nahi. Notebook set kar lijiye, aur phir Chapter 1 theek se shuru hota hai.',
   '<strong>One chapter per sitting.</strong> They are fifteen to twenty-five minutes. Stopping while you still have energy is what brings you back tomorrow; a huge first week followed by nothing is the usual way this ends.':
     '<strong>Ek baithak mein ek chapter.</strong> Har ek pandrah se pachchees minute ka hai. Energy bachi rehte hue rukna hi aapko kal wapas laata hai; pehle hafte mein sab kuchh aur uske baad kuchh nahi — yeh iska aam ant hai.',
   '<strong>Your progress follows you.</strong> Signed in, everything saves against your account, so you can read on your phone and carry on at your desk.':
@@ -4209,8 +4219,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Abhi tay kar lijiye, jab saaf sochna aasaan hai. Jis shaam aapka man is app ko kholne ka nahi hoga, tab aap kya karenge? Sabse chhota kaam kya hai jo tab bhi aap kar lenge — aur chhoote hue din ke baare mein aap apne aap ko kya kahenge?',
   'The plans that survive a bad evening share three things. The smallest step is genuinely tiny — one question, two minutes, not a chapter. You know where to resume without having to decide, because deciding is the expensive part when you are tired. And the story about the missed day is settled in advance: a missed day is a missed day. It is not evidence of anything and it does not mean starting again. Everybody lapses. The people who finish are the ones who had already decided that lapsing was allowed.':
     'Jo plan kharaab shaam mein bhi tikte hain unme teen cheezein common hoti hain. Sabse chhota kadam sach mein bahut chhota hota hai — ek sawaal, do minute, poora chapter nahi. Aapko pata hota hai ki wapas kahan se shuru karna hai, kyunki thake hue sabse mehnga kaam decide karna hi hota hai. Aur chhoote hue din ki kahani pehle se tay hoti hai: chhoota din bas chhoota din hai. Woh kisi baat ka sabooot nahi hai aur uska matlab dobara shuru karna nahi hai. Sabse lapse hota hai. Poora karne wale wahi log hain jinhone pehle hi tay kar liya tha ki lapse allowed hai.',
-  'That is the whole chapter. Nothing here needs remembering. Chapter 1 starts properly.':
-    'Bas itna hi chapter hai. Yahan kuchh yaad rakhne layak nahi hai. Chapter 1 se asli shuruaat hai.',
   'What happens when your app asks an AI something':
     'Jab aapka app AI se kuchh poochhta hai to hota kya hai',
   'Three facts about the machine. Each one decides something you will have to design around.':
