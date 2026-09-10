@@ -31,8 +31,22 @@ const labIds = new Set(Object.keys(C.reference.LABKEYS || {}).length
 
 const blocksOf = c => [
   ...(c.story || []),
+  ...(c.story || []).filter(b => Array.isArray(b) && b[0] === 'do').flatMap(b => b[2] || []),
   ...(c.handson || []).flatMap(s => s.b || [])
 ];
+
+/* A missing comma between two block literals does not throw. Between two
+   top-level blocks it leaves a hole, which is caught below; inside a hands-on
+   beat it parses as an index into the previous block instead, and the block
+   simply disappears from the page. That has happened three times. */
+for (const c of C.chapters)
+  for (const b of c.story || [])
+    if (Array.isArray(b) && b[0] === 'do')
+      (b[2] || []).forEach((x, i) => {
+        if (x == null)
+          fail(`${c.id}: beat "${b[1]}" has an empty block at ${i}` +
+               ` — a missing comma after the block before it`);
+      });
 
 /* A chapter must not go back to having a hands-on section bolted on the end.
    The whole content rule is that doing is interleaved with reading. */
@@ -176,7 +190,8 @@ if (untranslated.length) {
   fail(`${untranslated.length} line(s) of ${need.size} have no Hinglish translation` +
        ` — first: "${untranslated[0].slice(0, 70)}…"`);
 }
-const hay = JSON.stringify(C) + fs.readFileSync(path.join(ROOT, 'src/labs.js'), 'utf8');
+const hay = JSON.stringify(C) + fs.readFileSync(path.join(ROOT, 'src/labs.js'), 'utf8')
+  + fs.readFileSync(path.join(ROOT, 'src/app.js'), 'utf8');   /* chrome that T() translates */
 const stale = Object.keys(hing).filter(k =>
   !hay.includes(JSON.stringify(k).slice(1, -1)) && !hay.includes(k));
 if (stale.length) {

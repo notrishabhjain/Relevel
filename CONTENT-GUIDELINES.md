@@ -27,6 +27,34 @@ A reader must not meet their first code block before knowing where to run it.
 Chapters that use code open by saying which notebook to open and which warm-up
 cells to run.
 
+## 2a. The first real work costs nothing
+
+Chapter 0 is ten gentle minutes, Setup is forty-five minutes of plumbing, and
+Chapter 1 opens with real code and eight new terms. That staircase is where a
+beginner quits, and they quit at the plumbing — because at that point they have
+been given nothing to show for it.
+
+So Chapter 0.5 comes first and needs no account, no key and no install. Real
+experiments, on the reader's own text, producing a finding they could take to a
+meeting. Setup is then something they want rather than a toll gate.
+
+Anything added to the front of the course keeps that property: **no reader
+should have to create an account before they have done something worth doing.**
+
+## 2b. Being stuck must always have a way out
+
+Every hands-on beat that runs code carries an *If it does not work* panel — the
+errors that actually happen, what each one means, and the fact that it happens
+to everybody. The last entry always says that output which does not match the
+page is normal rather than a mistake, because a beginner reads a different
+number as evidence they broke something.
+
+Closed by default. There when it is needed, invisible when it is not.
+
+A chapter also has to be honest about what it costs: the stated minutes are
+what the chapter actually takes, including running the code. Under-stating them
+teaches the reader that they are slow.
+
 ## 3. Hands-on does not mean code
 
 Some of the best hands-on work in this course is done with a printed document
