@@ -136,6 +136,9 @@ const prose = b => { if (!Array.isArray(b)) return;
 (C.reference.PARTS || []).forEach(p => { wantAdd(p.title); wantAdd(p.blurb); });
 C.chapters.forEach(c => {
   wantAdd(c.title); wantAdd(c.concept); wantWalk(c.takeaway);
+  /* the capstone renders through the same translator the story does */
+  if (c.capstone) { wantAdd(c.capstone.title); wantAdd(c.capstone.brief);
+    wantWalk(c.capstone.steps); wantWalk(c.capstone.done); }
   (c.needs || []).forEach(n => { wantAdd(n[0]); wantAdd(n[1]); });
   (c.story || []).forEach(prose);
   (c.handson || []).forEach(st => { wantAdd(st.h); (st.b || []).forEach(prose); });
