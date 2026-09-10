@@ -591,6 +591,55 @@ const top = await nav.page.evaluate(() =>
   [...document.querySelectorAll('#rail .navlist')[0].querySelectorAll('a')].map(a => a.textContent));
 ok(top.some(t => /Set up Colab/.test(t)), 'the setup page is in the main nav, not the drawer', top.join(' | '));
 ok(top.some(t => /Install on iPad/.test(t)), 'and so is the install page');
+ok(top.some(t => /Not yet/.test(t)),
+   'and so is the page that says what you can safely ignore', top.join(' | '));
+
+/* The on-ramp. Chapter 0 was ten gentle minutes with no code, then Setup was
+   forty-five minutes of plumbing with nothing to show for it, then Chapter 1
+   opened with real code and eight new terms. People quit at the plumbing. This
+   chapter has to give a real result before anything is installed, or it is not
+   doing its job. */
+console.log('\n— the on-ramp asks for nothing before it gives something —');
+const ramp = await newDevice(false);
+await boot(ramp.page);
+await boot(ramp.page, '#/ch/ch05');
+const rampText = await ramp.page.evaluate(() => document.body.innerText);
+ok(/Ten minutes, and nothing to set up/.test(rampText), 'it is reachable and titled plainly');
+ok(/No account, no key, no download, no card/.test(rampText),
+   'and it says up front that it costs nothing to start');
+const rampBeats = await ramp.page.$$eval('.dostep h4', ns => ns.map(n => n.textContent));
+ok(rampBeats.length >= 3, 'it has hands-on work of its own, not just reassurance',
+   rampBeats.join(' | '));
+const rampLabs = await ramp.page.$$eval('.dostep .lab', ns => ns.length);
+ok(rampLabs >= 3, 'and every beat runs inside the page, needing no notebook', rampLabs);
+ok(!/#\/setup/.test(await ramp.page.$eval('.dostep', e => e.innerHTML)),
+   'the first beat does not send you to setup before you have done anything');
+ok(/capstone/i.test(rampText), 'and it still ends with a capstone');
+
+/* A lab used inside a beat was also being listed again under "Try it
+   yourself", so the same widget rendered twice on one page. */
+const dupes = await ramp.page.evaluate(() => {
+  const keys = [...document.querySelectorAll('[data-lab]')].map(n => n.dataset.lab);
+  return keys.filter((k, i) => keys.indexOf(k) !== i);
+});
+ok(dupes.length === 0, 'no interactive tool is rendered twice on the same page', dupes.join(','));
+
+/* Being stuck with a red error and no idea whether you broke something is
+   where a beginner stops for good. */
+console.log('\n— every code beat says what to do when it breaks —');
+await boot(ramp.page, '#/ch/ch1');
+const snags = await ramp.page.$$eval('details.snag', ns => ns.length);
+const codeBeats = await ramp.page.$$eval('.dostep', ns =>
+  ns.filter(n => n.querySelector('pre')).length);
+ok(snags === codeBeats && snags > 0,
+   'each beat that runs code carries a recovery panel', snags + ' of ' + codeBeats);
+const shut = await ramp.page.$$eval('details.snag', ns => ns.every(n => !n.open));
+ok(shut, 'closed by default, so it is there without being noise');
+/* textContent, not innerText: a closed <details> renders nothing, so innerText
+   would only ever return the summary. */
+ok(/happens to everybody|not a mistake/.test(
+     await ramp.page.$$eval('details.snag', ns => ns.map(n => n.textContent).join(' '))),
+   'and it tells the reader the failure is normal, not their fault');
 
 await browser.close();
 console.log('\n' + pass + ' passed, ' + fail + ' failed\n');

@@ -842,3 +842,20 @@ button:disabled{opacity:.4;cursor:not-allowed}
   color:var(--muted);cursor:pointer}
 .railtog:hover{color:var(--ink);background:none}
 .railsec h2:empty{display:none}
+
+/* The "if it does not work" panel on a hands-on beat. Quiet and shut until
+   somebody needs it; being stuck with no way out is where beginners stop. */
+.snag{margin:.7rem 0 .2rem;border:1px dashed var(--line);border-radius:var(--r);
+  background:var(--bg)}
+.snag>summary{cursor:pointer;padding:.5rem .8rem;font-size:.84rem;color:var(--dim);
+  list-style:none;user-select:none}
+.snag>summary::-webkit-details-marker{display:none}
+.snag>summary::before{content:'?';display:inline-block;width:1.05em;height:1.05em;
+  margin-right:.5rem;border:1px solid var(--line);border-radius:50%;text-align:center;
+  line-height:1.05em;font-size:.78em}
+.snag[open]>summary{color:var(--fg);border-bottom:1px dashed var(--line)}
+.snagbody{padding:.2rem .9rem .7rem}
+.snagbody dl{margin:0}
+.snagbody dt{margin:.65rem 0 .15rem;font-weight:600;font-size:.87rem}
+.snagbody dt:first-child{margin-top:.4rem}
+.snagbody dd{margin:0;font-size:.89rem;color:var(--dim);line-height:1.55}

@@ -138,6 +138,18 @@ function blocks(list){
     else if(k==='n')f.appendChild(h('ol',{class:'num'},Tl(r[0]).map(i=>h('li',{html:i}))));
     else if(k==='code')f.appendChild(h('pre',{},h('code',{text:r[0]})));
     else if(k==='x')f.appendChild(h('div',{class:'expect'},[h('div',{class:'tag',text:'expect'}),h('div',{html:T(r[0])})]));
+    /* What to do when it does not work. Being stuck with a red error and no
+       idea whether you broke something is where a beginner stops for good, so
+       every code beat says in advance what is likely to go wrong, what it
+       means, and that it is normal. Closed by default: it should be there when
+       you need it and invisible when you do not. */
+    else if(k==='snag'){
+      const body=h('div',{class:'snagbody'},[h('dl',{},Tl(r[0]).flatMap((v,i)=>
+        i%2===0?[h('dt',{html:v})]:[h('dd',{html:v})]))]);
+      const d=h('details',{class:'snag'},[
+        h('summary',{text:T('If it does not work')}),body]);
+      f.appendChild(d);
+    }
     else if(k==='tb'){
       const t=h('table');
       t.appendChild(h('thead',{},h('tr',{},Tl(r[0]).map(c=>h('th',{html:c})))));
@@ -476,6 +488,7 @@ function labBlock(key){
   const body=h('div',{class:'labbody'});
   const box=h('div',{class:'lab'},[
     h('div',{class:'labhead'},[h('span',{class:'k',text:L.k||'lab'}),h('h4',{text:T(L.title)})]),body]);
+  box.dataset.lab=key;          /* so a duplicate on one page is detectable */
   try{L.render(body);}catch(e){body.appendChild(h('p',{class:'dim',text:'Lab unavailable.'}));}
   if(L.note)body.appendChild(h('p',{class:'labnote',html:T(L.note)}));
   return box;
@@ -613,31 +626,21 @@ function renderChapter(c){
   /* A lab placed inline in the reading must not appear a second time in its own
      section — the same tool twice on one page reads as a mistake, and is. */
   const inlineLabs=new Set();
-  const scanLabs=list=>(list||[]).forEach(b=>{ if(Array.isArray(b)&&b[0]==='lab') inlineLabs.add(b[1]); });
+  /* Descends into hands-on beats too — a lab used inside one is still used,
+     and listing it again under "Try it yourself" renders the same widget twice
+     on the same page. */
+  const scanLabs=list=>(list||[]).forEach(b=>{
+    if(!Array.isArray(b))return;
+    if(b[0]==='lab') inlineLabs.add(b[1]);
+    else if(b[0]==='do') scanLabs(b[2]);
+  });
   scanLabs(c.story);
-  (c.handson||[]).forEach(st=>scanLabs(st.b));
   const spareLabs=(c.labs||[]).filter(k=>!inlineLabs.has(k));
   if(spareLabs.length){
     const lb=h('section',{class:'part',id:'tools'});
     lb.appendChild(sectionHead(c.num+'.'+n++,'Try it yourself'));
     spareLabs.forEach(k=>{const b=k==='redmap'?redMapBlock():labBlock(k);if(b)lb.appendChild(b);});
     w.appendChild(lb);
-  }
-  if((c.handson||[]).length){
-  const ho=h('section',{class:'part',id:'handson'});
-  ho.appendChild(sectionHead(c.num+'.'+n++,'Optional — the same thing in real code'));
-  ho.appendChild(h('div',{class:'callout'},[
-    h('span',{class:'lbl',text:'You can skip all of this'}),
-    h('p',{html:'Everything this chapter teaches is above, and the checkpoints have already measured it. '+
-      'What follows writes the same ideas as a few lines of Python, which some people find makes it stick. '+
-      'It needs a free Google Colab account and an API key — about twenty minutes, once, from the '+
-      '<a href="#/setup">setup page</a>. If you do not want to, skip to the next chapter. Nothing later depends on it.'})]));
-  c.handson.forEach(s=>{
-    const st=h('div',{class:'step'},[h('h3',{text:T(s.h)})]);
-    st.appendChild(markTerms(h('div',{class:'prose'},[blocks(s.b)]),seenTerms,c.num));
-    ho.appendChild(st);
-  });
-  w.appendChild(ho);
   }
 
   /* One project per chapter that uses everything in it. Homework is a list of
@@ -1002,9 +1005,9 @@ function ctlL(l,n){return h('div',{},[h('label',{text:l}),n]);}
 function pageLater(){
   const w=h('div',{class:'wrap'});
   w.appendChild(h('header',{class:'phead'},[
-    h('div',{class:'eyebrow'},[h('span',{text:'Standing rule two'})]),
-    h('h1',{text:'The LATER Page'}),
-    h('p',{html:'Every temptation to explore gets written here and immediately abandoned. These topics are not unimportant; they are valuable only after the path is solid. Items unlock as the chapter that covers them is completed — the rest stay parked, deliberately.'})]));
+    h('div',{class:'eyebrow'},[h('span',{text:T('Permission to not know things')})]),
+    h('h1',{text:T('Not yet')}),
+    h('p',{html:T('Everything on this page is something you will hear people say, and none of it is something you need today. That is the whole point of the page: the anxious feeling that everyone else knows a list of things you do not is the main reason people give up on a subject, and the list is usually shorter and later than it feels. Items unlock as the chapter covering them is finished. The rest stay parked, deliberately.')})]));
   const unlocked=window.LATER.filter(l=>l.resolved&&S.done['ch'+l.resolved]);
   const pending=window.LATER.filter(l=>l.resolved&&!S.done['ch'+l.resolved]);
   const parked=window.LATER.filter(l=>!l.resolved);
@@ -1278,6 +1281,7 @@ function renderRail(){
        if you do want the code, and a reader who cannot find it concludes the
        course expects an environment they were never told how to build. */
     ['#/setup','⚙','Set up Colab + API key'],
+    ['#/later','◔','Not yet — what to ignore for now'],
     ['#/install','▢','Install on iPad or phone']]));
 
   const openMore=!!S.railmore;
@@ -1549,7 +1553,7 @@ function buildIndex(){
     {k:'page',t:'The Labs',h:'#/labs'},{k:'page',t:'Red-Mark Map',h:'#/map'},
     {k:'page',t:'Prediction Ledger',h:'#/ledger'},{k:'page',t:'Notebook',h:'#/notebook'},
     {k:'page',t:'System Card',h:'#/card'},{k:'page',t:'Vendor Deck',h:'#/vendor'},
-    {k:'page',t:'Glossary',h:'#/glossary'},{k:'page',t:'LATER Page',h:'#/later'},
+    {k:'page',t:'Glossary',h:'#/glossary'},
     {k:'page',t:'Where You Are',h:'#/progress'});
   CH.forEach(c=>{
     idx.push({k:'ch '+c.num,t:T(c.title),d:T(c.concept),h:'#/ch/'+c.id});

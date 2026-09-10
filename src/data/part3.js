@@ -49,7 +49,17 @@ window.PART3 = [
     ['do','Free checks first',[
       ['p','New notebook <code>chapter-14</code>. Before any judge, write the programmatic checks your Chapter 8 structured output makes possible.'],
       ['code','def programmatic_checks(record, retrieved_ids):\n    issues = []\n    if record["found"] and not record.get("source_chunk_ids"):\n        issues.append("claimed found but cited nothing")\n    for cid in record.get("source_chunk_ids", []):\n        if cid not in retrieved_ids:\n            issues.append(f"cited chunk {cid} that was never retrieved")\n    q = record.get("supporting_quote", "")\n    if q and not any(q[:40] in chunks[i] for i in retrieved_ids):\n        issues.append("quote not found verbatim in any retrieved chunk")\n    return issues'],
-      ['x','Run it over your ten Chapter 6 answers. That last check — quote-not-verbatim — catches fabricated citations for free, forever, on every release. It is the cheapest quality control in this entire book and it required no judge at all.']
+      ['x','Run it over your ten Chapter 6 answers. That last check — quote-not-verbatim — catches fabricated citations for free, forever, on every release. It is the cheapest quality control in this entire book and it required no judge at all.'],
+      ['snag',[
+        'A red box saying something <em>is not defined</em>',
+        'You have run a cell that needs something an earlier cell made, without running that earlier one first. Scroll to the top, run the warm-up cells in order, then come back to this one. This is the most common thing that goes wrong in a notebook, it happens to everybody, and it says nothing about your code.',
+        'An authentication error, or the number 401',
+        'The key did not reach the code. Re-run the cell that loads it, and check the name you saved it under matches <a href="#/setup">Setup</a> exactly — capital letters count.',
+        'A message about a module not being found',
+        'The install cell has not run in this session. Notebooks forget their installs whenever they disconnect, which they do after a while of being left alone. Run it again and carry on.',
+        'It runs, but your numbers are not the ones printed above',
+        'Expected, and not a mistake. Models change and your text is not my text. What matters is the direction and the rough size of the gap, never matching a figure exactly. If your numbers move the same way mine do, the experiment worked.'
+      ]],
     ]],
     ['p','The third row is where the leverage is, and it comes with one condition that is skipped almost everywhere.'],
     ['key','A grader you have not checked is not a measurement. It is a second guess from the same kind of machine that produced the first one.'],
@@ -57,7 +67,17 @@ window.PART3 = [
     ['q','I048'],
     ['do','Write a judge with a rubric',[
       ['code','JUDGE = """You are grading an answer against a source passage.\n\nPassage:\n{ctx}\n\nQuestion: {q}\nAnswer: {a}\n\nGrade GROUNDEDNESS only — is every claim in the answer supported by the passage?\nRespond as JSON:\n{{"verdict": "grounded" | "partially_grounded" | "unsupported",\n  "unsupported_claim": "<quote the first unsupported claim, or empty>"}}\nDo not reward length, fluency, or confidence."""\n\ndef judge(q, a, ctx):\n    r = client.chat.completions.create(\n        model="meta/llama-3.1-8b-instruct", temperature=0,\n        messages=[{"role":"user","content":JUDGE.format(ctx=ctx, q=q, a=a)}]\n    )\n    return json.loads(r.choices[0].message.content)'],
-      ['x','Note the design: one narrow dimension, a forced quote of the offending claim, and an explicit instruction against the known biases. A judge asked to “rate quality 1–10” would produce numbers you cannot act on.']
+      ['x','Note the design: one narrow dimension, a forced quote of the offending claim, and an explicit instruction against the known biases. A judge asked to “rate quality 1–10” would produce numbers you cannot act on.'],
+      ['snag',[
+        'A red box saying something <em>is not defined</em>',
+        'You have run a cell that needs something an earlier cell made, without running that earlier one first. Scroll to the top, run the warm-up cells in order, then come back to this one. This is the most common thing that goes wrong in a notebook, it happens to everybody, and it says nothing about your code.',
+        'An authentication error, or the number 401',
+        'The key did not reach the code. Re-run the cell that loads it, and check the name you saved it under matches <a href="#/setup">Setup</a> exactly — capital letters count.',
+        'A message about a module not being found',
+        'The install cell has not run in this session. Notebooks forget their installs whenever they disconnect, which they do after a while of being left alone. Run it again and carry on.',
+        'It runs, but your numbers are not the ones printed above',
+        'Expected, and not a mistake. Models change and your text is not my text. What matters is the direction and the rough size of the gap, never matching a figure exactly. If your numbers move the same way mine do, the experiment worked.'
+      ]],
     ]],
     ['p','Checking it means <strong>agreement</strong>. Mark fifty answers yourself. Have the model mark the same fifty. Count how often you and it said the same thing. Below rough agreement with your own marking, its percentages are noise with a decimal point.'],
     ['pred',{id:'ch14-agree',short:true,ph:'A fraction, like 7/10',
@@ -69,7 +89,17 @@ window.PART3 = [
       ['p','This is the step everyone skips. Hand-label all ten of your Chapter 6 answers as grounded / partially / unsupported. Then run the judge on the same ten and compare.'],
       ['code','agree = sum(1 for i in range(10) if human_labels[i] == judge_labels[i])\nprint(f"agreement: {agree}/10")\nfor i in range(10):\n    if human_labels[i] != judge_labels[i]:\n        print(f"  Q{i}: human={human_labels[i]} judge={judge_labels[i]}")'],
       ['x','Look at the disagreements specifically — they are more informative than the score. A judge that is systematically lenient on one failure type is usable if you know that; a judge whose errors are random is not usable at all.'],
-      ['c','Predict first','Before running: what agreement will you get out of 10? Log it. Then note whether your disagreements are systematic or scattered.']
+      ['c','Predict first','Before running: what agreement will you get out of 10? Log it. Then note whether your disagreements are systematic or scattered.'],
+      ['snag',[
+        'A red box saying something <em>is not defined</em>',
+        'You have run a cell that needs something an earlier cell made, without running that earlier one first. Scroll to the top, run the warm-up cells in order, then come back to this one. This is the most common thing that goes wrong in a notebook, it happens to everybody, and it says nothing about your code.',
+        'An authentication error, or the number 401',
+        'The key did not reach the code. Re-run the cell that loads it, and check the name you saved it under matches <a href="#/setup">Setup</a> exactly — capital letters count.',
+        'A message about a module not being found',
+        'The install cell has not run in this session. Notebooks forget their installs whenever they disconnect, which they do after a while of being left alone. Run it again and carry on.',
+        'It runs, but your numbers are not the ones printed above',
+        'Expected, and not a mistake. Models change and your text is not my text. What matters is the direction and the rough size of the gap, never matching a figure exactly. If your numbers move the same way mine do, the experiment worked.'
+      ]],
     ]],
     ['p','Model graders have known habits. They score <strong>longer answers higher</strong> even when the extra words say nothing, and in a head-to-head they favour <strong>whichever answer they saw first</strong>. The fixes are dull and they work: ask about one specific thing instead of overall quality, compare two answers rather than scoring one, shuffle which goes first, and make the grader quote the exact sentence it based its verdict on.'],
     ['q','I049','I050'],
@@ -150,14 +180,34 @@ window.PART3 = [
     ['do','Measure, don\'t estimate',[
       ['p','New notebook <code>chapter-15</code>. Run your Chapter 12 pipeline over the ten ground-truth questions and record real token counts.'],
       ['code','rows = []\nfor q in ground_truth_questions:\n    r = rag_answer_instrumented(q, k=3)   # returns .usage alongside the answer\n    rows.append({"q": q, "in": r.usage.prompt_tokens,\n                 "out": r.usage.completion_tokens})\n\navg_in  = sum(r["in"]  for r in rows) / len(rows)\navg_out = sum(r["out"] for r in rows) / len(rows)\nprint(f"avg in {avg_in:.0f} / avg out {avg_out:.0f} tokens per query")'],
-      ['x','Real numbers from your real corpus. Everything after this is arithmetic on measured input rather than a guess dressed as a forecast.']
+      ['x','Real numbers from your real corpus. Everything after this is arithmetic on measured input rather than a guess dressed as a forecast.'],
+      ['snag',[
+        'A red box saying something <em>is not defined</em>',
+        'You have run a cell that needs something an earlier cell made, without running that earlier one first. Scroll to the top, run the warm-up cells in order, then come back to this one. This is the most common thing that goes wrong in a notebook, it happens to everybody, and it says nothing about your code.',
+        'An authentication error, or the number 401',
+        'The key did not reach the code. Re-run the cell that loads it, and check the name you saved it under matches <a href="#/setup">Setup</a> exactly — capital letters count.',
+        'A message about a module not being found',
+        'The install cell has not run in this session. Notebooks forget their installs whenever they disconnect, which they do after a while of being left alone. Run it again and carry on.',
+        'It runs, but your numbers are not the ones printed above',
+        'Expected, and not a mistake. Models change and your text is not my text. What matters is the direction and the rough size of the gap, never matching a figure exactly. If your numbers move the same way mine do, the experiment worked.'
+      ]],
     ]],
     ['p','A feature quoted at 40 paise a query, retrieving eight documents, retrying one time in eight, taking four steps and thinking by default, does not cost 50 paise. It costs several rupees. That gap is the difference between a feature that survives and one quietly killed in month four.'],
     ['q','I100'],
     ['do','Build the bill, with the multipliers',[
       ['code','def monthly_cost(avg_in, avg_out, queries,\n                 in_rate, out_rate,           # per 1M tokens\n                 retry_rate=0.0, agent_steps=1,\n                 reasoning_ratio=0.0, cache_hit=0.0):\n    eff_in  = avg_in * agent_steps * (1 - cache_hit * 0.9)\n    eff_out = avg_out * agent_steps * (1 + reasoning_ratio)\n    per_q = (eff_in/1e6)*in_rate + (eff_out/1e6)*out_rate\n    per_q *= (1 + retry_rate)\n    return per_q, per_q * queries\n\nbase = monthly_cost(avg_in, avg_out, 10_000, 0.20, 0.60)\nreal = monthly_cost(avg_in, avg_out, 10_000, 0.20, 0.60,\n                    retry_rate=0.10, agent_steps=4,\n                    reasoning_ratio=2.0, cache_hit=0.0)\nprint(f"naive: {base[1]:.2f}   with multipliers: {real[1]:.2f}   ratio {real[1]/base[1]:.1f}x")'],
       ['x','A ratio commonly between 8× and 20×. Write it down. That single number is the most useful thing you can carry into a budget conversation, and it is why “we estimated the token cost” is not the same as “we estimated the cost.”'],
-      ['c','Predict first','Before running Step 2: what multiple will the loaded cost be over the naive one? Log your guess.']
+      ['c','Predict first','Before running Step 2: what multiple will the loaded cost be over the naive one? Log your guess.'],
+      ['snag',[
+        'A red box saying something <em>is not defined</em>',
+        'You have run a cell that needs something an earlier cell made, without running that earlier one first. Scroll to the top, run the warm-up cells in order, then come back to this one. This is the most common thing that goes wrong in a notebook, it happens to everybody, and it says nothing about your code.',
+        'An authentication error, or the number 401',
+        'The key did not reach the code. Re-run the cell that loads it, and check the name you saved it under matches <a href="#/setup">Setup</a> exactly — capital letters count.',
+        'A message about a module not being found',
+        'The install cell has not run in this session. Notebooks forget their installs whenever they disconnect, which they do after a while of being left alone. Run it again and carry on.',
+        'It runs, but your numbers are not the ones printed above',
+        'Expected, and not a mistake. Models change and your text is not my text. What matters is the direction and the rough size of the gap, never matching a figure exactly. If your numbers move the same way mine do, the experiment worked.'
+      ]],
     ]],
     ['p','<strong>Five things that move the number</strong>, roughly in order of how much:'],
     ['n',[
@@ -171,7 +221,17 @@ window.PART3 = [
     ['do','Build the cascade',[
       ['p','Route cheaply first, escalate on a failed check. Use your Chapter 8 structured output — <code>found: false</code> or a missing quote — as the escalation trigger.'],
       ['code','def cascade(question, k=3):\n    small = rag_answer(question, k=k, model=CHEAP_MODEL)\n    if small["found"] and programmatic_checks(small, small["source_chunk_ids"]) == []:\n        return small, "cheap"\n    return rag_answer(question, k=k, model=STRONG_MODEL), "escalated"\n\nesc = sum(1 for q in ground_truth_questions if cascade(q)[1] == "escalated")\nprint(f"escalation rate: {esc}/{len(ground_truth_questions)}")'],
-      ['x','An escalation rate — commonly 20–40%. Compute the blended cost and re-grade accuracy against your Chapter 6 key. You now have both halves of the trade: what the cascade saved, and what (if anything) it cost in quality.']
+      ['x','An escalation rate — commonly 20–40%. Compute the blended cost and re-grade accuracy against your Chapter 6 key. You now have both halves of the trade: what the cascade saved, and what (if anything) it cost in quality.'],
+      ['snag',[
+        'A red box saying something <em>is not defined</em>',
+        'You have run a cell that needs something an earlier cell made, without running that earlier one first. Scroll to the top, run the warm-up cells in order, then come back to this one. This is the most common thing that goes wrong in a notebook, it happens to everybody, and it says nothing about your code.',
+        'An authentication error, or the number 401',
+        'The key did not reach the code. Re-run the cell that loads it, and check the name you saved it under matches <a href="#/setup">Setup</a> exactly — capital letters count.',
+        'A message about a module not being found',
+        'The install cell has not run in this session. Notebooks forget their installs whenever they disconnect, which they do after a while of being left alone. Run it again and carry on.',
+        'It runs, but your numbers are not the ones printed above',
+        'Expected, and not a mistake. Models change and your text is not my text. What matters is the direction and the rough size of the gap, never matching a figure exactly. If your numbers move the same way mine do, the experiment worked.'
+      ]],
     ]],
     ['try',{id:'ch15-model',mins:6,min:60,rows:5,
       task:'Build the real number for something real. Pick a feature. Estimate tokens in and out per query, apply the four multipliers using the values your design actually uses, multiply by monthly volume — then write the one sentence you would say to a finance director, including what would make the number wrong.',
@@ -258,7 +318,17 @@ window.PART3 = [
     ['do','Hand it the page instead',[
       ['p','Render the same page as an image and give it to a vision-capable model with the same question.'],
       ['code','import base64\nwith open("page.png","rb") as f:\n    b64 = base64.b64encode(f.read()).decode()\n\nr = client.chat.completions.create(\n    model=VISION_MODEL, temperature=0,\n    messages=[{"role":"user","content":[\n        {"type":"text","text":"Answer only from this page. "\n                              "Quote the row and column labels you used."},\n        {"type":"image_url",\n         "image_url":{"url":f"data:image/png;base64,{b64}"}}\n    ]}]\n)\nprint(r.choices[0].message.content)'],
-      ['x','Usually correct, and — because you demanded the row and column labels — checkable in seconds. That demand is Chapter 8\'s supporting-quote idea, translated into two dimensions.']
+      ['x','Usually correct, and — because you demanded the row and column labels — checkable in seconds. That demand is Chapter 8\'s supporting-quote idea, translated into two dimensions.'],
+      ['snag',[
+        'A red box saying something <em>is not defined</em>',
+        'You have run a cell that needs something an earlier cell made, without running that earlier one first. Scroll to the top, run the warm-up cells in order, then come back to this one. This is the most common thing that goes wrong in a notebook, it happens to everybody, and it says nothing about your code.',
+        'An authentication error, or the number 401',
+        'The key did not reach the code. Re-run the cell that loads it, and check the name you saved it under matches <a href="#/setup">Setup</a> exactly — capital letters count.',
+        'A message about a module not being found',
+        'The install cell has not run in this session. Notebooks forget their installs whenever they disconnect, which they do after a while of being left alone. Run it again and carry on.',
+        'It runs, but your numbers are not the ones printed above',
+        'Expected, and not a mistake. Models change and your text is not my text. What matters is the direction and the rough size of the gap, never matching a figure exactly. If your numbers move the same way mine do, the experiment worked.'
+      ]],
     ]],
     ['p','A middle path is common and works well: extract text for searching, and hand the model the <em>page image</em> for the final answer whenever the question is about a table, a figure or a form. Cheap search, accurate reading.'],
     ['p','<strong>Voice changes a different thing entirely.</strong> Not accuracy — time. In text, a two-second wait is fine. In speech, two seconds of silence is a conversational failure; people start talking over it. The whole round trip has to fit in that budget: speech in, model, speech out. So the problems become conversational rather than linguistic — how do you know the person has finished speaking, what happens when they interrupt, what does the system say while it is thinking. And Chapter 11’s thinking models are simply unaffordable here, at any accuracy.'],
@@ -414,7 +484,17 @@ window.PART3 = [
       ['p','Close everything. Blank page. Draw the full system — much larger than Chapter 7\'s.'],
       ['code','ingestion (extraction? layout? Ch.16)\n  → chunking + situating sentence (Ch.3, 12)\n  → embeddings + metadata (Ch.5, 12)\n  → [ query rewrite → hybrid retrieve → filter → rerank ] (Ch.12)\n  → context assembly: stable prefix | chunks | question (Ch.10)\n  → model call: routed cheap→strong, structured output (Ch.8, 11, 15)\n  → [ tools + step budget + write boundary ] (Ch.9)\n  → programmatic checks → judge → trace logged (Ch.14)\n  → human oversight point (Ch.17)\n  → answer + citation'],
       ['p','Beside every arrow, one line in your own words. Then take the red pen and mark every place you have <em>personally watched this fail</em>, with the chapter. Aim for twenty. You have earned more than twenty.'],
-      ['x','Use the Red-Mark Map on this site to check yourself afterwards — but draw it on paper first. The gap between what you produced from memory and what the map lists is your revision plan.']
+      ['x','Use the Red-Mark Map on this site to check yourself afterwards — but draw it on paper first. The gap between what you produced from memory and what the map lists is your revision plan.'],
+      ['snag',[
+        'A red box saying something <em>is not defined</em>',
+        'You have run a cell that needs something an earlier cell made, without running that earlier one first. Scroll to the top, run the warm-up cells in order, then come back to this one. This is the most common thing that goes wrong in a notebook, it happens to everybody, and it says nothing about your code.',
+        'An authentication error, or the number 401',
+        'The key did not reach the code. Re-run the cell that loads it, and check the name you saved it under matches <a href="#/setup">Setup</a> exactly — capital letters count.',
+        'A message about a module not being found',
+        'The install cell has not run in this session. Notebooks forget their installs whenever they disconnect, which they do after a while of being left alone. Run it again and carry on.',
+        'It runs, but your numbers are not the ones printed above',
+        'Expected, and not a mistake. Models change and your text is not my text. What matters is the direction and the rough size of the gap, never matching a figure exactly. If your numbers move the same way mine do, the experiment worked.'
+      ]],
     ]],
     ['p','Four things change, and you have already built all four:'],
     ['tb',['Normal spec','AI spec','Built in'],[
@@ -450,7 +530,17 @@ window.PART3 = [
     ['do','Design the feedback capture',[
       ['p','Specify exactly what a single thumbs-down must capture for it to become an eval case without any further investigation.'],
       ['code','{ "query": "...", "rewritten_query": "...",\n  "retrieved": [{"chunk_id": 12, "score": 0.71}, ...],\n  "prompt_version": "v4", "model": "meta/llama-3.1-8b-instruct",\n  "k": 3, "output": {...}, "checks_failed": [],\n  "user_comment": "...", "timestamp": "..." }'],
-      ['x','Compare against what your organisation currently captures. The gap is usually total, and closing it is the cheapest thing on this page.']
+      ['x','Compare against what your organisation currently captures. The gap is usually total, and closing it is the cheapest thing on this page.'],
+      ['snag',[
+        'A red box saying something <em>is not defined</em>',
+        'You have run a cell that needs something an earlier cell made, without running that earlier one first. Scroll to the top, run the warm-up cells in order, then come back to this one. This is the most common thing that goes wrong in a notebook, it happens to everybody, and it says nothing about your code.',
+        'An authentication error, or the number 401',
+        'The key did not reach the code. Re-run the cell that loads it, and check the name you saved it under matches <a href="#/setup">Setup</a> exactly — capital letters count.',
+        'A message about a module not being found',
+        'The install cell has not run in this session. Notebooks forget their installs whenever they disconnect, which they do after a while of being left alone. Run it again and carry on.',
+        'It runs, but your numbers are not the ones printed above',
+        'Expected, and not a mistake. Models change and your text is not my text. What matters is the direction and the rough size of the gap, never matching a figure exactly. If your numbers move the same way mine do, the experiment worked.'
+      ]],
     ]],
     ['p','<strong>Feedback is where most AI products throw away their best asset.</strong> A thumbs-down on its own is nearly worthless: you cannot reproduce it, and you cannot tell a wrong answer from a correct one the user disliked. A thumbs-down attached to the whole trace — the question, what was retrieved, which prompt and model version, the output — is a ready-made test case. That difference is about two days of engineering, and it decides whether Chapter 14’s loop turns at all.'],
     ['q','I110'],
