@@ -12,7 +12,7 @@ window.SETUP = {
       ['l',['Cells run top to bottom and remember each other — a value made in cell 1 is usable in cell 5, as long as the machine is on.','The machine switches off when idle, roughly 90 minutes. Your typed cells survive; only their results vanish. Fix: <strong>Runtime → Run all</strong>. This is weather, not failure.','Rename each notebook by clicking its name at top-left: <code>chapter-1</code>, <code>chapter-2</code>, and so on.']]
     ]},
     {h:'A2. An API key — your access code to the AI', t:'~15 min', b:[
-      ['p','NVIDIA\'s Build platform provides free access to a large catalogue of models with no credit card. This book needs well under 400 requests; the free allowance is roughly 1,000. It also lets you swap models with a one-line change — a genuinely useful skill.'],
+      ['p','NVIDIA\'s Build platform provides free access to a large catalogue of models with no credit card. This book needs well under 400 requests; the free allowance is roughly 1,000. It also lets you swap models with a one-line change — a useful skill.'],
       ['n',['Go to <code>build.nvidia.com</code>. Sign up or log in with any email.','Search <code>llama-3.1-8b-instruct</code> and open the model page.','Find <strong>Get API Key</strong> (on some pages: <em>Build with this NIM → Generate Key</em>). Click it.','A long code beginning <code>nvapi-</code> appears. Copy it somewhere private immediately — a password manager or private note. Treat it like an ATM PIN.']],
       ['c','Why this matters professionally','Keys embedded in code get copied, shared, and leaked — one of the most common security failures in software. Knowing how to store them correctly, and why, is itself meeting-grade knowledge.']
     ]},
@@ -293,7 +293,7 @@ window.LATER = [
   {t:'GPU hosting, self-hosting, inference economics', resolved:null, note:'Still parked. Revisit after Chapter 15 gives you a number to beat.'},
   {t:'Synthetic data generation for evals', resolved:null, note:'Still parked. Tempting shortcut past Chapter 14\'s error analysis; it is not one.'},
   {t:'Orchestration frameworks — LangChain, LlamaIndex and rivals', resolved:null, note:'Still parked, deliberately. Open their docs and ask, pain by pain: which of my hand-felt problems is this abstraction curing? That is framework literacy without framework dependency.'},
-  {t:'Formal verification and guaranteed-safe agents', resolved:null, note:'Still parked. Research-stage; worth watching precisely because Chapter 13 has no complete fix.'},
+  {t:'Formal verification and guaranteed-safe agents', resolved:null, note:'Still parked. Research-stage; worth watching exactly because Chapter 13 has no complete fix.'},
   {t:'“AI strategy” think-pieces and trend articles', resolved:null, note:'Permanently parked.'}
 ];
 

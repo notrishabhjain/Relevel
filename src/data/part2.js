@@ -21,7 +21,7 @@ window.PART2 = [
     brief:'You have watched a schema remove a failure rather than discourage it — and watched a badly designed schema <em>cause</em> one. Now build a real extractor for a document type you actually handle, designed so that the failure you most fear has nowhere to live.',
     steps:[
       'Pick a document type from your own work and the decision something downstream makes from it.',
-      'Write the schema: every field, its type, and which are genuinely required. Use fixed choices wherever free text would drift.',
+      'Write the schema: every field, its type, and which are required. Use fixed choices wherever free text would drift.',
       'Give uncertainty somewhere to go — a needs_review branch, a nullable field, an explicit “not stated” boolean — so the model is never cornered into inventing.',
       'Require a quote field carrying the exact words each extracted value came from, and check it on ten real documents.',
       'Run twenty documents through it, including three that deliberately omit the field people most want. Count the invented values.',
@@ -88,7 +88,7 @@ window.PART2 = [
       after:'The move is to make “no amount” a proper answer rather than a gap the machine feels obliged to fill. Let <em>amount</em> be empty and not required. Add <em>amount_stated</em> as a true/false, so the absence is asserted rather than inferred. Require a <em>quote</em> field carrying the exact words the number came from. Limit <em>decision</em> to a fixed set that includes <em>needs_review</em>, so uncertainty has somewhere to go that is not a wrong answer. Notice that none of that is a better instruction. It is a shape that has no room for the failure.'}],
     ['q','I062'],
     ['do','Wire it to Chapter 7',[
-      ['p','Change <code>rag_answer</code> to return a record instead of a paragraph: <code>answer</code>, <code>found</code> (boolean), <code>source_chunk_ids</code> (array), <code>supporting_quote</code>. Then re-run the three ceremonial questions.'],
+      ['p','Change <code>rag_answer</code> to return a record instead of a paragraph: <code>answer</code>, <code>found</code> (boolean), <code>source_chunk_ids</code> (array), <code>supporting_quote</code>. Then re-run the three set questions.'],
       ['x','The cricket question now returns <code>found: false</code> — a value your code can branch on, rather than a sentence your code has to pattern-match. Notice what you gained: “Not found in the provided documents” was a string a human had to read; <code>found: false</code> is a routing decision.']
     ]],
   ],
@@ -110,7 +110,7 @@ window.PART2 = [
     title:'The agent, and the blast radius you gave it',
     brief:'You have built the loop, sabotaged its descriptions, fed it an error and removed its budget. An agent is not defined by how well it works on a good day — it is defined by what it can do on a bad one. Specify one for a real task, with its limits written down before its capabilities.',
     steps:[
-      'Name a task in your own work worth automating, and the two or three tools it would genuinely need.',
+      'Name a task in your own work worth automating, and the two or three tools it would really need.',
       'Write each tool description as if it were the only documentation — because to the model, it is.',
       'Before capabilities, write the blast radius: the worst thing this agent can do if every call it makes is wrong.',
       'Set the budget — maximum steps, maximum spend, and what happens when it runs out.',
@@ -260,7 +260,7 @@ window.PART2 = [
       ['p','Take a 20-turn conversation. Summarise turns 1–15 into 150 words, keep 16–20 verbatim, and re-ask three questions whose answers lived in the summarised region.'],
       ['x','Thematic questions survive compaction. Questions about specific figures, names, or dates usually do not. Write down which of your three broke — that is the compaction trade-off in your own handwriting.']
     ]],
-    ['p','And the thing this chapter finally lets you say precisely: when someone says their assistant “remembers” a user, ask where that memory physically lives. It is a store you built, re-sent on every message, and paid for every time.'],
+    ['p','And the thing this chapter finally lets you say exactly: when someone says their assistant “remembers” a user, ask where that memory physically lives. It is a store you built, re-sent on every message, and paid for every time.'],
     ['q','I120','I121']
   ],
 },
@@ -299,7 +299,7 @@ window.PART2 = [
     ['p','The formal name for what you are buying is <strong>test-time compute</strong>, which is jargon for a simple idea: instead of accuracy being fixed when the model was built, you can buy more of it per question by letting it work longer.'],
     ['q','I073'],
     ['do','Two tasks, two settings, four cells',[
-      ['p','New notebook <code>chapter-11</code>. Pick a reasoning-capable model from build.nvidia.com. Build two tasks from your own domain: one pure lookup, one genuinely multi-step (an eligibility calculation with conditions, a reconciliation across three figures).'],
+      ['p','New notebook <code>chapter-11</code>. Pick a reasoning-capable model from build.nvidia.com. Build two tasks from your own domain: one pure lookup, one multi-step (an eligibility calculation with conditions, a reconciliation across three figures).'],
       ['code','import time\n\ndef timed(model, prompt, **kw):\n    t0 = time.time()\n    r = client.chat.completions.create(\n        model=model, temperature=0,\n        messages=[{"role":"user","content":prompt}], **kw)\n    dt = time.time() - t0\n    u = r.usage\n    return {"answer": r.choices[0].message.content,\n            "in": u.prompt_tokens, "out": u.completion_tokens,\n            "secs": round(dt,1)}\n\nfor name, prompt in [("lookup", LOOKUP_TASK), ("multistep", MULTISTEP_TASK)]:\n    fast = timed(FAST_MODEL, prompt)\n    slow = timed(REASONING_MODEL, prompt)\n    print(f"{name:10s} fast: {fast[\'out\']:>5} out / {fast[\'secs\']:>5}s"\n          f"  reasoning: {slow[\'out\']:>5} out / {slow[\'secs\']:>5}s")'],
       ['x','On the lookup: near-identical answers, with the reasoning model spending several times the output tokens and seconds. On the multi-step: often a correctness difference, sometimes decisive. That asymmetry is the whole chapter, in one printout.'],
       ['c','Predict first','Before running: how many times more output tokens will the reasoning model spend on the <em>lookup</em>? Write the multiple down. Most people say 2×. Log it.']
@@ -307,7 +307,7 @@ window.PART2 = [
     ['key','Thinking is not a quality setting you turn up. It is a purchase, made on every single question, in money and in waiting time. And for a great many tasks you are buying nothing at all.'],
     ['lab','reasoning'],
     ['pred',{id:'ch11-where',rows:3,ph:'Two that gain, two that do not',
-      ask:'From your own product: name two tasks that would genuinely get better with thinking, and two that would get slower and more expensive with no gain whatsoever.',
+      ask:'From your own product: name two tasks that would really get better with thinking, and two that would get slower and more expensive with no gain whatsoever.',
       reveal:'It pays on multi-step logic, arithmetic where each stage depends on the last, code, planning, and genuine ambiguity that needs resolving. It wastes on looking things up, pulling fields out of a document, sorting things into categories, formatting, routing, and summarising a passage you handed it.',
       then:'The pattern: thinking helps when the answer has to be worked out. It does nothing when the answer is already present and just needs finding or reshaping.'}],
     ['q','I074'],
@@ -440,7 +440,7 @@ window.PART2 = [
   ],
   takeaway:[
     'Explain why the model cannot tell your instructions apart from text it was asked to read.',
-    'Name the three things that, held together, make a system genuinely dangerous.',
+    'Name the three things that, held together, make a system dangerous.',
     'Tell the difference between a defence that lowers a probability and one that removes a capability — and why only the second survives a determined attempt.'
   ],
   capstone:{
@@ -450,7 +450,7 @@ window.PART2 = [
       'Pick a real system — yours, or one you are being sold — that reads text somebody outside your organisation can influence.',
       'Map the trifecta: what untrusted content it reads, what private data it can reach, and how anything can leave.',
       'Write the specific attack. Not “injection is possible” — the actual text you would place, where you would place it, and what you would expect back.',
-      'Try to fix it with wording, and document precisely how your own fix loses.',
+      'Try to fix it with wording, and document exactly how your own fix loses.',
       'Break one leg instead: remove a capability, cut an egress path, or put a human in front of the irreversible step. Say what the product loses.',
       'Write the exposure note: what is possible today, what your mitigation reduces, and what remains true regardless.',
     ],
@@ -474,7 +474,7 @@ window.PART2 = [
     ]],
 
     ['p','Now put that together with Chapter 9, and it stops being about wrong answers.'],
-    ['c','The three things that make a system dangerous','A system becomes genuinely dangerous when it has all three of: access to private data, exposure to text somebody outside your company can influence, and a way to send something outward. Any two are usually survivable. All three, and a successful instruction hidden in a document can read your data and post it somewhere.'],
+    ['c','The three things that make a system dangerous','A system becomes dangerous when it has all three of: access to private data, exposure to text somebody outside your company can influence, and a way to send something outward. Any two are usually survivable. All three, and a successful instruction hidden in a document can read your data and post it somewhere.'],
     ['lab','trifecta'],
     ['q','I084'],
     ['do','Try to fix it with words',[
@@ -508,7 +508,7 @@ window.PART2 = [
       ['x','The injection still succeeds — the model still tries — and the exfiltration fails anyway. This is the difference between a control that depends on the model behaving and one that does not. Note which of your defences so far are in which category.']
     ]],
     ['lab','injection'],
-    ['p','What genuinely helps, none of it perfect and all of it worth doing: never grant all three at once; require a person to approve anything irreversible; give the system the narrowest access that still works; log what it did so you can find out afterwards; and treat every retrieved document as untrusted, because it is.'],
+    ['p','What really helps, none of it perfect and all of it worth doing: never grant all three at once; require a person to approve anything irreversible; give the system the narrowest access that still works; log what it did so you can find out afterwards; and treat every retrieved document as untrusted, because it is.'],
     ['q','I129','I086'],
     ['do','Audit something real',[
       ['p','Take an AI system that exists or is proposed in your organisation. Answer three questions honestly, in writing.'],

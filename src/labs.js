@@ -491,7 +491,7 @@ LABS.cache={title:'Stable first, volatile last',k:'lab 10.2',
 
 /* ---------------- 11. Reasoning 2x2 ---------------- */
 LABS.reasoning={title:'What thought costs',k:'lab 11.1',
-  note:'Two task types, two settings. The asymmetry is the entire chapter: on lookups you pay several times over for nothing, and on genuinely multi-step work you occasionally buy the only correct answer available.',
+  note:'Two task types, two settings. The asymmetry is the entire chapter: on lookups you pay several times over for nothing, and on multi-step work you occasionally buy the only correct answer available.',
   render(el){
     const task=h('select',{},[h('option',{value:'lookup'},'Lookup — "what is the travel limit?"'),
       h('option',{value:'multi'},'Multi-step — eligibility across three conditions'),
@@ -515,7 +515,7 @@ LABS.reasoning={title:'What thought costs',k:'lab 11.1',
       const msgs={
         lookup:eff.value==='off'?'Correct, fast, cheap. This is most of your production traffic.'
           :'Identical answer, several times the tokens and latency. This is the waste cell of the 2×2.',
-        multi:eff.value==='off'?'The fast model fails a genuinely multi-step task. This is the one cell that justifies the spend.'
+        multi:eff.value==='off'?'The fast model fails a multi-step task. This is the one cell that justifies the spend.'
           :'Correct — and worth paying for. Note the latency: unusable in chat, fine in batch.',
         bad:'Wrong at every setting, and <strong>longer and more persuasive</strong> at high effort. Reasoning cannot manufacture evidence — this is a retrieval problem wearing a thinking costume.'};
       note.innerHTML='<p class="labnote">'+msgs[task.value]+'</p>';

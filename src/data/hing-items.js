@@ -20,7 +20,7 @@ Object.assign(window.HING = window.HING || {}, {
   'A RAG query sends 1,800 input tokens and produces 240 output tokens. Input is ₹0.20 per million tokens, output ₹0.60 per million. What is the cost of one query, in paise (1 rupee = 100 paise)?':
     'Ek RAG query 1,800 input tokens bhejti hai aur 240 output tokens banati hai. Input ₹0.20 prati million tokens, output ₹0.60 prati million. Ek query ki cost paise mein kitni hai (1 rupaya = 100 paise)?',
   '(1800/1,000,000 × 0.20) + (240/1,000,000 × 0.60) = 0.00036 + 0.000144 = ₹0.000504 ≈ 0.05 paise. The point is not the arithmetic; it is that per-query costs look negligible until multiplied by volume and the four multipliers.':
-    '(1800/1,000,000 × 0.20) + (240/1,000,000 × 0.60) = 0.00036 + 0.000144 = ₹0.000504 ≈ 0.05 paise. Baat ganit ki nahi hai; baat yeh hai ki per-query cost tab tak mamooli lagti hai jab tak use volume aur chaar multipliers se guna na kiya jaaye.',
+    '(1800/1,000,000 × 0.20) + (240/1,000,000 × 0.60) = 0.00036 + 0.000144 = ₹0.000504 ≈ 0.05 paise. Baat maths ki nahi hai; baat yeh hai ki per-query cost tab tak mamooli lagti hai jab tak use volume aur chaar multipliers se guna na kiya jaaye.',
   'A business case quotes ₹0.30 per query using input tokens × rate + output tokens × rate. Which of these would make the real bill higher than that figure?':
     'Ek business case ₹0.30 per query batata hai, input tokens × rate + output tokens × rate se. Inme se kaunsi cheezein asli bill ko us aankde se upar le jaayengi?',
   'k, retries, agent steps and reasoning tokens are the four multipliers, and they compound. Caching is the one item that moves cost *down*.':
@@ -73,7 +73,7 @@ Object.assign(window.HING = window.HING || {}, {
     'Aap kitne documents store kar sakte hain',
   'A vendor argues that a two-million-token context makes your retrieval layer unnecessary. What is the strongest single rebuttal?':
     'Ek vendor kehta hai ki bees laakh token ka context aapki retrieval layer ko bekaar kar deta hai. Sabse mazboot ek jawaab kya hai?',
-  'Two independent objections — measured quality degradation (context rot) and per-query cost — and neither is a matter of opinion. The last option overclaims: on some multi-section questions, stuffing genuinely wins.':
+  'Two independent objections — measured quality degradation (context rot) and per-query cost — and neither is a matter of opinion. The last option overclaims: on some multi-section questions, stuffing really wins.':
     'Do alag-alag aapattiyan — naapi hui quality ki girawat (context rot) aur per-query cost — aur dono rai ki baat nahi hain. Aakhri option zyada daawa karta hai: kuchh multi-section sawaalon par sab kuchh bhar dena sach mein jeet jaata hai.',
   'Large contexts are slower':
     'Bade contexts dheeme hote hain',
@@ -259,9 +259,9 @@ Object.assign(window.HING = window.HING || {}, {
     'Chunk bahut bada ho jaayega',
   'Embeddings will be less accurate':
     'Embeddings kam sahi honge',
-  'Your corpus is service contracts with numbered clauses, provisos and annexures. Describe your chunking rule and what it sacrifices.':
+  'Your corpus is service contracts with numbered clauses, exceptions and annexures. Describe your chunking rule and what it sacrifices.':
     'Aapka corpus service contracts hai, numbered clauses, provisos aur annexures ke saath. Apna chunking rule batayiye aur yeh bhi ki woh kya kurbaan karta hai.',
-  'Cut on clause boundaries so each piece carries a complete rule with its provisos attached — semantic chunking following the document\'s own anatomy. Pieces will be unequal in size, which is a feature: meaning does not come in uniform sizes. Sacrifices: cross-clause definitions ("as defined in clause 2") still orphan, so add a situating sentence (contextual retrieval); very long clauses may exceed a comfortable retrieval unit and need sub-splitting with overlap. A strong answer names the residual failure, not just the rule.':
+  'Cut on clause boundaries so each piece carries a complete rule with its exceptions attached — semantic chunking following the document\'s own anatomy. Pieces will be unequal in size, which is a feature: meaning does not come in uniform sizes. Sacrifices: cross-clause definitions ("as defined in clause 2") still orphan, so add a situating sentence (contextual retrieval); very long clauses may exceed a comfortable retrieval unit and need sub-splitting with overlap. A strong answer names the residual failure, not just the rule.':
     'Clause ki boundaries par kaatiye taaki har tukda ek poora niyam apne provisos ke saath le jaaye — yaani document ki apni banawat ke hisaab se semantic chunking. Tukde alag-alag size ke honge, aur yeh khoobi hai: matlab ek jaise size mein nahi aata. Kurbaani: clause ke paar wali definitions ("as defined in clause 2") phir bhi orphan rahengi, isliye ek situating sentence jodiye (contextual retrieval); bahut lambe clauses ek aaram se retrieve hone wale tukde se bade ho sakte hain aur unhe overlap ke saath aage baantna padega. Achcha jawaab sirf rule nahi, bacha hua failure bhi batata hai.',
   'Keyword search is blind to:':
     'Keyword search kis cheez ke prati andha hai:',
@@ -354,7 +354,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Reciprocal rank fusion, in plain words:':
     'Reciprocal rank fusion, saade shabdon mein:',
   'Rank 1 contributes a lot, rank 40 almost nothing, and appearing respectably on both lists beats winning one. No learning, one line of arithmetic, hard to beat.':
-    'Rank 1 bahut yogdaan deta hai, rank 40 lagbhag kuchh nahi, aur dono lists mein theek-thaak aana ek mein jeetne se behtar hai. Koi learning nahi, ek line ka ganit, haraana mushkil.',
+    'Rank 1 bahut yogdaan deta hai, rank 40 lagbhag kuchh nahi, aur dono lists mein theek-thaak aana ek mein jeetne se behtar hai. Koi learning nahi, ek line ka maths, haraana mushkil.',
   'Averages the similarity scores of both methods':
     'Dono tareekon ke similarity scores ka average nikaalta hai',
   'Sums one-over-rank across both ranked lists, so placing well on either earns points':
@@ -555,7 +555,7 @@ Object.assign(window.HING = window.HING || {}, {
     'Insaan galat hain',
   'Error analysis, done properly, is mostly:':
     'Theek se ki gayi error analysis zyadatar kya hai:',
-  'It is reading, not coding — and it is the highest-leverage activity in applied AI precisely because almost nobody does it.':
+  'It is reading, not coding — and it is the highest-leverage activity in applied AI exactly because almost nobody does it.':
     'Yeh padhna hai, coding nahi — aur applied AI mein yeh sabse zyada faaydemand kaam theek isliye hai ki lagbhag koi ise karta nahi.',
   'Writing evaluation code':
     'Evaluation code likhna',
@@ -620,7 +620,7 @@ Object.assign(window.HING = window.HING || {}, {
   'You predicted 8 of 9 questions would retrieve a correct chunk at k=3. You measured 6. Write the one sentence this gap earns.':
     'Aapne andaaza lagaya tha ki 9 mein se 8 sawaal k=3 par sahi chunk laayenge. Aapne 6 naapa. Yeh farq jo ek sentence kamaata hai, woh likhiye.',
   'Something in the shape of: "I over-predicted retrieval quality by 22 percentage points on documents I know well, which means my intuition about whether a demo is working is unreliable and I will not accept a demo as evidence again." The strong answers name the size of the gap, the direction, and a behavioural consequence — not just "I was wrong."':
-    'Kuchh is roop mein: "Jin documents ko main achchi tarah jaanta hoon unhi par maine retrieval quality ka 22 percentage point zyada andaaza lagaya, matlab demo chal raha hai ya nahi, is baare mein meri samajh bharose layak nahi hai, aur main aage demo ko sabooot nahi maanunga." Achche jawaab farq ka aakaar, disha, aur ek vyavhaarik nateeja batate hain — sirf "main galat tha" nahi.',
+    'Kuchh is roop mein: "Jin documents ko main achchi tarah jaanta hoon unhi par maine retrieval quality ka 22 percentage point zyada andaaza lagaya, matlab demo chal raha hai ya nahi, is baare mein meri samajh bharose layak nahi hai, aur main aage demo ko sabooot nahi maanunga." Achche jawaab farq ka size, disha, aur ek vyavhaarik nateeja batate hain — sirf "main galat tha" nahi.',
   'Constrained decoding guarantees that output is:':
     'Constrained decoding guarantee deta hai ki output:',
   'Shape, types, required fields — nothing more. A perfectly-shaped record can carry a hallucinated amount in a correctly-typed number field. Shape is not truth.':
@@ -916,7 +916,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Rendering a remote image from a URL the model chose counts as:':
     'Model ke chune hue URL se door ki image render karna kya hai:',
   'The URL itself carries data. Any outbound request the model can influence is a channel, and this one is routinely overlooked.':
-    'URL khud data le jaata hai. Koi bhi bahar jaane wali request jise model prabhavit kar sakta hai, ek channel hai, aur yeh wala aksar anadekha reh jaata hai.',
+    'URL khud data le jaata hai. Koi bhi bahar jaane wali request jise model par asar daal sakta hai, ek channel hai, aur yeh wala aksar anadekha reh jaata hai.',
   'A display feature, not a risk':
     'Dikhane ka feature hai, risk nahi',
   'An external communication channel — an exfiltration path':
@@ -1002,7 +1002,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Your governance file says the system is "highly accurate and thoroughly tested." What is wrong, and what replaces it?':
     'Aapki governance file kehti hai ki system "highly accurate and thoroughly tested" hai. Kya galat hai, aur uski jagah kya aata hai?',
   'Adjectives sit where evidence belongs. Replace with measured numbers and their configuration: e.g. "7/9 correct-chunk hits at k=3 and 41% precision, measured 12 November against a 10-question ground truth including one unanswerable question, judged by a rubric with 8/10 human agreement." Also name the known limitations with the evidence that produced each. A strong answer notes that these numbers do not exist unless someone actually built ground truth — which is why so many governance files contain adjectives.':
-    'Jahan sabooot aana chahiye wahan visheshan baithe hain. Unki jagah naape hue numbers aur unki configuration rakhiye: jaise "k=3 par 7/9 sahi-chunk hits aur 41% precision, 12 November ko naapa gaya, ek 10-sawaal ki ground truth ke against jisme ek aisa sawaal bhi hai jiska jawaab nahi hai, aur judge ka rubric insaani labels se 8/10 sehmat hai." Saath hi jaani hui seemayein batayiye, har ek ke saath woh sabooot jisse woh nikli. Achcha jawaab yeh bhi kehta hai ki yeh numbers hote hi nahi jab tak kisi ne sach mein ground truth banayi na ho — isiliye itni saari governance files visheshanon se bhari hoti hain.',
+    'Jahan sabooot aana chahiye wahan adjectives baithe hain. Unki jagah naape hue numbers aur unki configuration rakhiye: jaise "k=3 par 7/9 sahi-chunk hits aur 41% precision, 12 November ko naapa gaya, ek 10-sawaal ki ground truth ke against jisme ek aisa sawaal bhi hai jiska jawaab nahi hai, aur judge ka rubric insaani labels se 8/10 sehmat hai." Saath hi jaani hui seemayein batayiye, har ek ke saath woh sabooot jisse woh nikli. Achcha jawaab yeh bhi kehta hai ki yeh numbers hote hi nahi jab tak kisi ne sach mein ground truth banayi na ho — isiliye itni saari governance files visheshanon se bhari hoti hain.',
   'Your oversight design says a human reviews every output, at 4,000 outputs a day. What is wrong?':
     'Aapka oversight design kehta hai ki har output ek insaan review karta hai, roz 4,000 outputs par. Kya galat hai?',
   'Real designs sample, or review only outputs failing a programmatic check, and give the reviewer the retrieved evidence and the time to act.':
@@ -1015,16 +1015,16 @@ Object.assign(window.HING = window.HING || {}, {
     'Do insaan hone chahiye',
   'Review should be automated':
     'Review automated hona chahiye',
-  'What makes a review point genuinely exercisable?':
+  'What makes a review point exercisable?':
     'Ek review point ko sach mein karne layak kya banata hai?',
   'Evidence, feasible volume and real authority. Universal domain expertise is neither achievable nor necessary if the first three hold.':
-    'Evidence, sambhav volume aur asli adhikaar. Har mamle mein domain expert hona na to mumkin hai na zaroori, agar pehli teen cheezein maujood hain.',
+    'Evidence, sambhav volume aur asli authority. Har mamle mein domain expert hona na to mumkin hai na zaroori, agar pehli teen cheezein maujood hain.',
   'The reviewer sees the retrieved evidence and supporting quote, not just the answer':
     'Reviewer ko sirf jawaab nahi, retrieve hua evidence aur supporting quote bhi dikhta hai',
   'The volume routed to review is feasible in the time available':
     'Review mein bheja gaya volume maujood samay mein sambhav hai',
   'The reviewer has authority to overrule the system':
-    'Reviewer ke paas system ko palatne ka adhikaar hai',
+    'Reviewer ke paas system ko palatne ka authority hai',
   'The reviewer is a domain expert in every case':
     'Reviewer har mamle mein domain expert hai',
   'Which pair of earlier techniques makes targeted human review possible at scale?':
@@ -1206,7 +1206,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Explain, in four sentences a non-technical director could repeat, how a document assistant can retrieve the right page and still quote the wrong number.':
     'Chaar sentence mein, jinhe koi non-technical director dohraa sake, samjhaiye ki document assistant sahi page nikaalkar bhi galat number kaise bata sakta hai.',
   'Something like: "The system finds the right page reliably. But when we convert a page into text for the computer to read, tables lose their shape — the numbers survive, but which row and column each belongs to does not. The assistant then reads a flat list of numbers and confidently picks the wrong one, and it sounds exactly as certain as when it is right. So for anything involving a table, we require the system to quote the row and column heading it used, which lets a person check it in seconds." Strong answers avoid every technical term and end on the control, not the problem.':
-    'Kuchh aisa: "System sahi page bharose se dhoondh leta hai. Lekin jab hum page ko computer ke padhne ke liye text banate hain, tab tables apna aakaar kho deti hain — numbers bach jaate hain, lekin kaunsa number kis row aur column ka hai woh nahi bachta. Phir assistant numbers ki ek chapti list padhta hai aur poore confidence se galat number utha leta hai, aur woh bilkul utna hi pakka sunai deta hai jitna sahi hone par. Isliye jahan bhi table ho, hum system se kehte hain ki woh row aur column ka heading quote kare, jisse koi bhi seconds mein jaanch le." Achche jawaab har technical shabd se bachte hain aur samasya par nahi, control par khatam hote hain.',
+    'Kuchh aisa: "System sahi page bharose se dhoondh leta hai. Lekin jab hum page ko computer ke padhne ke liye text banate hain, tab tables apna size kho deti hain — numbers bach jaate hain, lekin kaunsa number kis row aur column ka hai woh nahi bachta. Phir assistant numbers ki ek chapti list padhta hai aur poore confidence se galat number utha leta hai, aur woh bilkul utna hi pakka sunai deta hai jitna sahi hone par. Isliye jahan bhi table ho, hum system se kehte hain ki woh row aur column ka heading quote kare, jisse koi bhi seconds mein jaanch le." Achche jawaab har technical shabd se bachte hain aur samasya par nahi, control par khatam hote hain.',
   'Users report the assistant answers a different question than they asked, but only on follow-ups like "and for contractors?" Which component is at fault?':
     'Users batate hain ki assistant unke poochhe sawaal ki jagah koi doosra sawaal jawaab deta hai, lekin sirf follow-up par jaise "aur contractors ke liye?" Kaunsa hissa galti par hai?',
   'A conversational fragment carries no meaning on its own map. For a conversational product, query rewriting is not optional.':
@@ -1357,7 +1357,7 @@ Object.assign(window.HING = window.HING || {}, {
     'Jaldi jeet ke liye sabse chhote guchhe pehle theek kijiye',
   'What does a Brier score measure?':
     'Brier score kya naapta hai?',
-  'It rewards being right AND being appropriately confident. Confidently wrong is penalised hardest, which is precisely the failure mode this whole system is built to surface.':
+  'It rewards being right AND being appropriately confident. Confidently wrong is penalised hardest, which is exactly the failure mode this whole system is built to surface.':
     'Yeh sahi hone AUR theek utna hi confident hone — dono ko inaam deta hai. Confident hokar galat hona sabse zyada dandit hota hai, aur theek wahi failure hai jise yeh poora system saamne laane ke liye bana hai.',
   'How often you are correct':
     'Aap kitni baar sahi hote hain',
@@ -1415,8 +1415,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Confidence score',
   'Volume is 4,000 outputs a day and you have one reviewer. What is the workable design?':
     'Volume roz 4,000 outputs ka hai aur aapke paas ek reviewer hai. Chalne wala design kya hai?',
-  'Structured output plus programmatic checks turn "review everything" into "review the few percent that failed a check" — which one person can genuinely do, with authority and time.':
-    'Structured output plus programmatic checks "sab review karo" ko "un chand percent ko review karo jo check fail kar gaye" bana dete hain — jo ek insaan sach mein kar sakta hai, adhikaar aur samay ke saath.',
+  'Structured output plus programmatic checks turn "review everything" into "review the few percent that failed a check" — which one person can really do, with authority and time.':
+    'Structured output plus programmatic checks "sab review karo" ko "un chand percent ko review karo jo check fail kar gaye" bana dete hain — jo ek insaan sach mein kar sakta hai, authority aur samay ke saath.',
 
   /* Practice questions */
   'Review a random 1% and hope':
@@ -1451,7 +1451,7 @@ Object.assign(window.HING = window.HING || {}, {
     'Caches provider ki zimmedari hain',
   'Only the vector index matters':
     'Sirf vector index maayne rakhta hai',
-  'Which of these make a deletion request genuinely hard to satisfy in a RAG system?':
+  'Which of these make a deletion request hard to satisfy in a RAG system?':
     'Inme se kaunsi cheezein RAG system mein deletion request ko sach mein mushkil bana deti hain?',
   'The source file is the easy one. Derived copies — vectors, third-party logs, eval sets — are where deletion drills fail, and the eval set is the one nobody remembers.':
     'Source file aasaan wali hai. Usse bani copies — vectors, teesre paksh ke logs, eval sets — wahin deletion drills fail hoti hain, aur eval set woh hai jise koi yaad nahi rakhta.',
@@ -1539,7 +1539,7 @@ Object.assign(window.HING = window.HING || {}, {
     'Finance se approve hua budget',
   'A senior stakeholder asks, in a roadmap review, "why aren’t we fine-tuning?" Write the reply that turns the question into a decision rather than a preference.':
     'Roadmap review mein ek senior stakeholder poochhta hai, "hum fine-tune kyun nahi kar rahe?" Woh jawaab likhiye jo is sawaal ko pasand ki jagah faisla bana de.',
-  'A strong reply refuses both the yes and the no, and asks what kind of wrong the system currently is. Roughly: “Tell me the failure you want fixed and I will tell you which lever fixes it. If it does not know something, that is retrieval — and tuning would bake in a fact that changes. If it knows but answers in the wrong shape or register, that is prompting first and tuning second, and I can test prompting this week. If it cannot do the reasoning, that is a different model or a thinking budget. Right now our error taxonomy says the top cluster is retrieving the right document and the wrong clause, which no amount of tuning touches. When a cluster shows up that is genuinely behavioural, tuning is the right tool and I will need a labelled set and an owner to maintain it, because it has to be re-run every time the base model is deprecated.”':
+  'A strong reply refuses both the yes and the no, and asks what kind of wrong the system currently is. Roughly: “Tell me the failure you want fixed and I will tell you which lever fixes it. If it does not know something, that is retrieval — and tuning would bake in a fact that changes. If it knows but answers in the wrong shape or register, that is prompting first and tuning second, and I can test prompting this week. If it cannot do the reasoning, that is a different model or a thinking budget. Right now our error taxonomy says the top cluster is retrieving the right document and the wrong clause, which no amount of tuning touches. When a cluster shows up that is behavioural, tuning is the right tool and I will need a labelled set and an owner to maintain it, because it has to be re-run every time the base model is deprecated.”':
     'Achcha jawaab haan aur naa dono se inkaar karta hai, aur poochhta hai ki system abhi kis kism ka galat hai. Motamoti: "Mujhe woh failure batayiye jo aap theek karwana chahte hain, aur main bataunga ki kaunsa lever use theek karega. Agar use kuchh pata nahi hai, to woh retrieval hai — aur tuning ek aisa fact pakka kar degi jo badalta rehta hai. Agar use pata hai lekin jawaab galat shape ya lehje mein hai, to pehle prompting hai aur phir tuning, aur main prompting isi hafte test kar sakta hoon. Agar woh soch hi nahi paata, to woh alag model ya thinking budget hai. Abhi hamari error taxonomy kehti hai ki sabse bada guchha hai sahi document aur galat clause, jise tuning chhooti hi nahi. Jab koi aisa guchha aayega jo sach mein behaviour ka hai, tab tuning sahi auzaar hai aur mujhe ek labelled set aur use sambhalne wala ek maalik chahiye hoga, kyunki base model band hone par har baar use dobara chalana padega."',
   'A distilled small model most reliably beats a frontier model when the task is:':
     'Distilled chhota model frontier model se sabse bharose se tab jeetta hai jab kaam:',
@@ -1555,7 +1555,7 @@ Object.assign(window.HING = window.HING || {}, {
     'Reasoning se bhara ho, kai aapas mein judi steps ke saath',
   'The primary purpose of showing sources beside an AI-generated answer is:':
     'AI ke bane jawaab ke bagal mein sources dikhane ka mukhya maqsad kya hai:',
-  'Citations exist so that checking is cheaper than trusting. That is why a citation which does not resolve to the actual passage is worse than none at all: it buys the appearance of verifiability while removing the ability to verify, which is precisely the trade a user cannot detect.':
+  'Citations exist so that checking is cheaper than trusting. That is why a citation which does not resolve to the actual passage is worse than none at all: it buys the appearance of verifiability while removing the ability to verify, which is exactly the trade a user cannot detect.':
     'Citations isliye hoti hain ki jaanchna bharosa karne se sasta ho jaaye. Isiliye aisi citation jo asli passage tak nahi le jaati, bilkul na hone se bhi buri hai: woh jaanche jaane ka dikhawa kharid leti hai aur jaanchne ki kshamata chheen leti hai, aur theek yahi sauda user pakad hi nahi sakta.',
   'To signal sophistication':
     'Barhaai dikhane ke liye',
@@ -1589,9 +1589,9 @@ Object.assign(window.HING = window.HING || {}, {
     'Us par route kijiye — zyada confidence par seedha jawaab, kam par pehle evidence ya ek sawaal',
   'Hide it; users find numbers confusing':
     'Use chhupa dijiye; users ko numbers confuse karte hain',
-  'What makes a correction path genuinely valuable rather than decorative?':
+  'What makes a correction path valuable rather than decorative?':
     'Correction path ko sajaawat ki jagah sach mein keemti kya banata hai?',
-  'A thumbs-down with no context is close to worthless: it says something was wrong and nothing about what. A correction that captures the expected answer and the evidence the system was working from converts a complaint into an eval case. And if correcting is slower than doing it by hand, nobody corrects — so the path has to be genuinely cheaper than the workaround, or you collect nothing.':
+  'A thumbs-down with no context is close to worthless: it says something was wrong and nothing about what. A correction that captures the expected answer and the evidence the system was working from converts a complaint into an eval case. And if correcting is slower than doing it by hand, nobody corrects — so the path has to be cheaper than the workaround, or you collect nothing.':
     'Bina context ke thumbs-down lagbhag bekaar hai: woh kehta hai ki kuchh galat tha aur kya galat tha uske baare mein kuchh nahi. Aisa correction jo ummeed kiya gaya jawaab aur woh evidence pakadta hai jis par system chal raha tha, ek shikaayat ko eval case bana deta hai. Aur agar sudhaarna haath se karne se dheema hai, to koi sudhaarta hi nahi — isliye woh raasta jugaad se sach mein sasta hona chahiye, warna aapko kuchh nahi milta.',
   'It captures what the user expected instead, not only that they were unhappy':
     'Woh pakadta hai ki user ko iski jagah kya chahiye tha, sirf yeh nahi ki woh naakhush tha',

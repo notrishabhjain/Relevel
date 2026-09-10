@@ -16,7 +16,7 @@ window.PART1 = [
     ['p','Most people who give up on a technical subject do not give up because it was hard. They give up because a word went past on page three that everyone else seemed to understand, and rather than stop, they kept reading — understanding a little less each paragraph until the whole thing felt like it was written for somebody else.'],
     ['key','If that has happened to you before, it was the writing’s fault, not yours. Two things here are built to stop it.'],
     ['p','<strong>Every word is tappable.</strong> The first time a term appears that means something specific, it gets a faint dotted underline. Tap it, and a plain explanation appears right there — you never leave the page or lose your place.'],
-    ['p','Try it on this sentence, which contains four of them: an <strong>app</strong> sends a <strong>prompt</strong> to a <strong>model</strong> and is billed in <strong>tokens</strong>. Tap each one now, before reading on. Some will say <em>you build this in Chapter 9</em> — that means the course has named it early on purpose, and the one-line version is genuinely all you need.'],
+    ['p','Try it on this sentence, which contains four of them: an <strong>app</strong> sends a <strong>prompt</strong> to a <strong>model</strong> and is billed in <strong>tokens</strong>. Tap each one now, before reading on. Some will say <em>you build this in Chapter 9</em> — that means the course has named it early on purpose, and the one-line version is all you need.'],
     ['try',{id:'ch0-tap',mins:2,min:12,rows:2,
       task:'Now write it back, roughly. What is the difference between the <em>app</em> and the <em>model</em>? Two lines. Getting it half-wrong here costs nothing — writing before being told is the whole point.',
       ph:'The app is … the model is …',
@@ -36,7 +36,7 @@ window.PART1 = [
     ['try',{id:'ch0-quit',mins:3,min:40,rows:3,
       task:'Decide it now, while it is easy to think clearly. What will you do on the evening you do not want to open this? What is the smallest thing you would still be willing to do — and what will you tell yourself about the day you skipped?',
       ph:'When I do not want to open this, I will …',
-      after:'The plans that survive a bad evening share three things. The smallest step is genuinely tiny — one question, two minutes, not a chapter. You know where to resume without having to decide, because deciding is the expensive part when you are tired. And the story about the missed day is settled in advance: a missed day is a missed day. It is not evidence of anything and it does not mean starting again. Everybody lapses. The people who finish are the ones who had already decided that lapsing was allowed.'}],
+      after:'The plans that survive a bad evening share three things. The smallest step is tiny — one question, two minutes, not a chapter. You know where to resume without having to decide, because deciding is the expensive part when you are tired. And the story about the missed day is settled in advance: a missed day is a missed day. It is not evidence of anything and it does not mean starting again. Everybody lapses. The people who finish are the ones who had already decided that lapsing was allowed.'}],
     ['c','Do this before Chapter 1','Chapter 1 asks you to make a real call to a real model within its first few minutes. Set the notebook and the key up now — <a href="#/setup">Set up Colab + API key</a> — so that when you get there you are pasting one line, not signing up for things.'],
     ['p','That is the whole chapter. Nothing here needs remembering. Set the notebook up, and then Chapter 1 starts properly.']
   ]
@@ -57,7 +57,7 @@ window.PART1 = [
     ['c','Before you start','Open a new Colab notebook and name it <code>chapter-1</code>. Run the three warm-up cells from <a href="#/setup">Setup</a> — the key, the install, the client — so they are ready above everything you write today. From here on, every idea is followed by the code that proves it. Run each block before reading on; that is the whole method.'],
 
     ['p','Start with your phone keyboard. You type <em>See you at the</em> and it offers <em>office</em>, <em>station</em>, <em>airport</em>. It is guessing the next word from patterns in what people usually type. It is not thinking about your evening.'],
-    ['p','An AI model is that, made enormous. It was built by reading a very large amount of writing and getting extremely good at one narrow trick: guessing what text comes next. Do that trick over and over and whole paragraphs come out. That is genuinely all it does.'],
+    ['p','An AI model is that, made enormous. It was built by reading a very large amount of writing and getting extremely good at one narrow trick: guessing what text comes next. Do that trick over and over and whole paragraphs come out. That is all it does.'],
     ['key','It is guessing, not looking up. There is no database behind it that it consults. This one fact causes most of the surprises in this field.'],
     ['do','Make your first call',[
       ['code','response = client.chat.completions.create(\n    model="meta/llama-3.1-8b-instruct",\n    messages=[{\n        "role": "user",\n        "content": "What is compound interest, in two sentences?"\n    }]\n)\nprint(response.choices[0].message.content)'],
@@ -93,7 +93,7 @@ window.PART1 = [
     ['do','Catch the amnesia red-handed',[
       ['p','Two separate calls, one after the other:'],
       ['code','MODEL = "meta/llama-3.1-8b-instruct"\n\nr1 = client.chat.completions.create(\n    model=MODEL,\n    messages=[{"role": "user",\n               "content": "My name is Sam. Remember it."}]\n)\nprint(r1.choices[0].message.content)\n\nr2 = client.chat.completions.create(\n    model=MODEL,\n    messages=[{"role": "user",\n               "content": "What is my name?"}]\n)\nprint(r2.choices[0].message.content)'],
-      ['x','The second reply has no idea. Not a bug, not a setting — the machine genuinely has nothing between one call and the next.']
+      ['x','The second reply has no idea. Not a bug, not a setting — the machine really has nothing between one call and the next.']
     ]],
     ['p','That raises an obvious question: so how does a chat assistant seem to remember what you said five messages back?'],
     ['p','It does not. The app re-sends the entire conversation every single time. The memory is a trick performed by the app, not a property of the AI. And you are about to perform it yourself.'],
@@ -168,8 +168,8 @@ window.PART1 = [
   story:[
     ['c','Before you start','Open a new notebook and call it <code>chapter-2</code>. Run the same three warm-up cells from <a href="#/setup">Setup</a> — the key, the install, the client — so they sit above everything you write today. You will make three calls in this chapter, and each one proves the paragraph in front of it.'],
     ['p','Chapter 1 left you with a machine that forgets everything the moment it replies. Which raises a practical problem: if it forgets, how does a company make it behave a particular way — always polite, always in English, never discussing competitors?'],
-    ['p','The answer is unglamorous. The app just re-sends the instructions every time, along with everything else. That standing instruction has a name: the <strong>system prompt</strong>. It is a paragraph of ordinary English, sent invisibly with every message, saying who the AI is meant to be and what it must not do.'],
-    ['p','It is worth knowing how ordinary this is, because you will hear it dressed up. When a vendor says they have "customised the AI for your organisation," the honest translation is usually: <em>we wrote a paragraph of instructions.</em> Sometimes that is genuinely all it is.'],
+    ['p','The answer is plain. The app just re-sends the instructions every time, along with everything else. That standing instruction has a name: the <strong>system prompt</strong>. It is a paragraph of ordinary English, sent invisibly with every message, saying who the AI is meant to be and what it must not do.'],
+    ['p','It is worth knowing how ordinary this is, because you will hear it dressed up. When a vendor says they have "customised the AI for your organisation," the honest translation is usually: <em>we wrote a paragraph of instructions.</em> Sometimes that is all it is.'],
     ['q','I013','I014'],
 
     ['p','The second control is a dial. Remember that the machine is guessing the next piece of text — and at each step several guesses are plausible. The dial decides whether it always takes the most likely one, or occasionally picks something less likely.'],
@@ -184,7 +184,7 @@ window.PART1 = [
     ['p','Which brings us to the thing that makes this whole field difficult.'],
     ['key','It cannot tell you it does not know. Not because it is hiding something — because "guess the next piece of text" has no option for silence. Refusing has to be trained in on top, and it does not always hold.'],
     ['p','You predicted this in Chapter 1. Here is why it matters more than it first appears: the invented answer is not obviously worse than a true one. It has the same structure, the same calm tone, the same specificity. It will cite a clause number. It will give a percentage. Everything that normally signals that someone knows what they are talking about is still there, because those signals are patterns in text, and patterns in text are exactly what the machine reproduces.'],
-    ['p','The industry word for this is <strong>hallucination</strong>, which is a slightly unfortunate name — it suggests a malfunction. It is not one. It is the machine doing precisely what it was built to do, in a situation where you wanted something else.'],
+    ['p','The industry word for this is <strong>hallucination</strong>, which is a slightly unfortunate name — it suggests a malfunction. It is not one. It is the machine doing exactly what it was built to do, in a situation where you wanted something else.'],
     ['do','Order a lie',[
       ['p','Do not take my word for any of that. Ask it about something that does not exist, with the dial turned all the way down, so nothing can be blamed on randomness.'],
       ['code',"response = client.chat.completions.create(\n    model=\"meta/llama-3.1-8b-instruct\",\n    temperature=0,\n    messages=[{\n      \"role\": \"user\",\n      \"content\": \"Summarize the eligibility criteria of the \"\n                 \"Global Skills Advancement Credit Scheme 2024.\"\n    }]\n)\nprint(response.choices[0].message.content)"],
@@ -192,7 +192,7 @@ window.PART1 = [
     ]],
     ['q','I017','I019'],
 
-    ['p','So the obvious move is to add an instruction: <em>only answer from the documents provided; if the answer is not there, say you do not know.</em> That helps. It genuinely reduces how often this happens.'],
+    ['p','So the obvious move is to add an instruction: <em>only answer from the documents provided; if the answer is not there, say you do not know.</em> That helps. It really reduces how often this happens.'],
     ['do','Suppress it with one sentence',[
       ['p','Send the same question again, with one line of standing instruction in front of it.'],
       ['code',"response = client.chat.completions.create(\n    model=\"meta/llama-3.1-8b-instruct\",\n    temperature=0,\n    messages=[\n      {\"role\": \"system\", \"content\":\n        \"You are an information assistant. If you are not \"\n        \"certain a scheme, document or fact exists, say \"\n        \"clearly that you cannot verify it. Never invent \"\n        \"names, numbers, dates or criteria.\"},\n      {\"role\": \"user\", \"content\":\n        \"Summarize the eligibility criteria of the \"\n        \"Global Skills Advancement Credit Scheme 2024.\"}\n    ]\n)\nprint(response.choices[0].message.content)"],
@@ -234,7 +234,7 @@ window.PART1 = [
     title:'The cutting rule for your own documents',
     brief:'You have now cut one document three ways and felt what each one breaks. A real system needs a rule that someone else can follow on <em>thousands</em> of documents without you standing over them. Write that rule, and prove it survives contact with the ugliest document you can find.',
     steps:[
-      'Name the most structured document type in your field — the one with clauses, provisos, numbered procedures, warnings.',
+      'Name the most structured document type in your field — the one with clauses, exceptions, numbered procedures, warnings.',
       'Describe its anatomy in three or four lines. What are its natural joints, and what must never be separated from what?',
       'Write the cutting rule as instructions to another person, not a description. Where to cut, where never to cut, what to do with a piece that would be orphaned.',
       'Find the worst-behaved real example you can — a badly formatted one, a scanned one, one with tables — and apply your rule to it by hand.',
@@ -248,7 +248,7 @@ window.PART1 = [
     ]
   },
   story:[
-    ['c','Before you start','No code today. Print one real document you know well — a policy, a contract, a procedure, five to fifteen pages — and find a pair of scissors and a pen. Everything in this chapter is proved by your own hands, which is slower than a script and considerably harder to forget.'],
+    ['c','Before you start','No code today. Print one real document you know well — a policy, a contract, a procedure, five to fifteen pages — and find a pair of scissors and a pen. Everything in this chapter is proved by your own hands, which is slower than a script and much harder to forget.'],
     ['do','Write the exam before you cut anything',[
       ['p','Before a single cut, write five specific questions a real user would ask this document. Not themes — questions, of the kind someone types when they are annoyed and in a hurry.'],
       ['x','Five questions on paper. This is your measuring instrument for the whole chapter, and every round below is scored against it. Writing them after cutting would let you fool yourself, which is exactly why they come first.']
@@ -257,12 +257,12 @@ window.PART1 = [
     ['p','It will not fit — there is a ceiling on how much goes in one request. And you pay for every piece of text you send, on every single question, forever. Even where a huge document would technically fit, sending your entire library to answer one question is a bill you would not survive.'],
     ['q','I021'],
 
-    ['p','So everyone does the same thing: cut the documents into pieces, keep the pieces, and send only the few that look relevant to whatever was asked. The pieces are called <strong>chunks</strong>, and the cutting is called chunking. That is the whole idea, and it is genuinely that simple.'],
+    ['p','So everyone does the same thing: cut the documents into pieces, keep the pieces, and send only the few that look relevant to whatever was asked. The pieces are called <strong>chunks</strong>, and the cutting is called chunking. That is the whole idea, and it is that simple.'],
     ['p','What is not simple is where to cut. Try it — cut a document three ways and see what breaks:'],
     ['lab','chunker'],
     ['do','Round 1 — three giant slabs',[
       ['p','Cut your document into three rough pieces. Ignore the structure entirely; just cut it in thirds. Then take your five questions one at a time and find which slab holds each answer.'],
-      ['x','Every answer is complete — and to deliver a two-line answer you are couriering a third of a filing cabinet. Note roughly how much irrelevant text rides along with each one. That ride is paid for on every question, forever.']
+      ['x','Every answer is complete — and to deliver a two-line answer you are carrying a third of a filing cabinet. Note roughly how much irrelevant text rides along with each one. That ride is paid for on every question, forever.']
     ]],
     ['do','Round 2 — twenty index cards',[
       ['p','Re-cut the same document into fifteen or twenty pieces, mechanically, roughly every 150 words, cutting mid-sentence where it falls. Run your five questions again, hunting for two specific injuries.'],
@@ -299,10 +299,10 @@ window.PART1 = [
   concept:'Matching words is the first thing anyone tries. Watching exactly where it breaks is the point of this chapter.',
   needs:[
     ['Documents get cut into pieces','You keep the pieces and send only the relevant few.',3],
-    ['Some pieces stop making sense alone','“The aforesaid amount” has lost its antecedent.',3],
+    ['Some pieces stop making sense alone','“The aforesaid amount” has lost whatever it pointed at.',3],
   ],
   takeaway:[
-    'Explain why matching words fails precisely for the users who most need help.',
+    'Explain why matching words fails exactly for the users who most need help.',
     'Name the one thing word-matching does better than anything cleverer.',
     'Say what a search system returns when the answer is not in your documents at all — and why that is dangerous.'
   ],
@@ -313,7 +313,7 @@ window.PART1 = [
       'Tabulate all eight questions — your original five plus the three assassins — with the rank the correct card actually received.',
       'Beside each failure, write the one-sentence version of what information the scoreboard did not have.',
       'Add the exact-string question and its result, so the table shows the method winning as well as losing.',
-      'Write a short paragraph on your own field: which real query types are synonym-heavy or plain-language, and which are genuinely exact-string.',
+      'Write a short paragraph on your own field: which real query types are synonym-heavy or plain-language, and which are exact-string.',
       'Estimate what fraction of your users ask in the document’s dialect versus their own. Say how you would find out for real.',
       'Finish with four or five sentences you could say to a non-technical colleague explaining why “we already have a search box” is not the same claim as “users can find answers.”'
     ],
@@ -344,7 +344,7 @@ window.PART1 = [
       ['n',[
         'The <strong>synonym assassin</strong> — a formal term from the document, reworded the way a normal person says it.',
         'The <strong>plain-language assassin</strong> — how a first-time user, who does not know the document’s vocabulary, would actually type it.',
-        'The <strong>second-language assassin</strong> — the same question in another language your users genuinely use.'
+        'The <strong>second-language assassin</strong> — the same question in another language your users really use.'
       ]],
       ['p','Score all three by hand, the same way, no common sense.'],
       ['x','Carnage. Near-zero scores on the cards that plainly hold the answer — and yet something still comes out on top, at a score of zero. For each assassin write one precise sentence: what did the scoreboard not have?']
@@ -367,7 +367,7 @@ window.PART1 = [
 
     ['p','One more property, and this is the one that causes real damage later.'],
     ['pred',{id:'ch4-norank',short:true,ph:'One line',
-      ask:'A user asks something your documents genuinely do not cover at all. What comes back from the search step?',
+      ask:'A user asks something your documents really do not cover at all. What comes back from the search step?',
       reveal:'Twenty pieces, ranked, with something sitting at number one. Searching has no concept of “nothing here” — it scores everything and sorts. The top result for an unanswerable question is just the least-bad of a bad set.',
       then:'Now put that together with Chapter 2. The irrelevant piece gets handed to the machine as though it were evidence, and the machine writes a fluent answer from it. Neither step fails. Nothing errors. You get a confident, wrong answer, and no part of the system noticed.'}],
     ['q','I028'],
@@ -413,7 +413,7 @@ window.PART1 = [
   },
   story:[
     ['c','Before you start','Open a notebook called <code>chapter-5</code> and run the three warm-up cells from <a href="#/setup">Setup</a>. Keep the twenty cards from Chapter 3 and the three assassins from Chapter 4 beside you — today you cure them. This is the longest run of hands-on work in Part I, so give it one unhurried sitting rather than two rushed ones.'],
-    ['p','You need something that matches meaning rather than spelling. That sounds like it needs the machine to understand language, which sounds impossible. It is simpler than that, and the trick is genuinely elegant.'],
+    ['p','You need something that matches meaning rather than spelling. That sounds like it needs the machine to understand language, which sounds impossible. It is simpler than that, and the trick is elegant.'],
     ['p','Imagine an enormous map. Not of places — of meanings. Every possible sentence has a position on it. Sentences that mean similar things sit close together; sentences about unrelated things sit far apart. <em>When do I get my money back</em> and <em>reimbursement of approved claims</em> are neighbours, despite sharing no words, because they mean nearly the same thing.'],
     ['p','A separate, smaller AI does the positioning. You give it text, it gives back that text’s coordinates — a long list of numbers. The list is called an <strong>embedding</strong>, and the model that produces it an embedding model. That is all it does: text in, position out.'],
     ['q','I029'],
@@ -441,9 +441,9 @@ window.PART1 = [
       ['x','The assassin that scored zero yesterday now surfaces the correct card at or near rank one. Run all three and compare against your handwritten rankings. Whatever happens on the second-language one is a real finding about your users — write the actual numbers down rather than the impression.']
     ]],
     ['do','Watch the old disease change dialect',[
-      ['p','Ask it something the document genuinely cannot answer. Not a hard question — an unrelated one.'],
+      ['p','Ask it something the document really cannot answer. Not a hard question — an unrelated one.'],
       ['code',"retrieve(\"what does this document say about cricket?\")"],
-      ['x','Three chunks arrive anyway, with scores around 0.2 to 0.4 that do not obviously look wrong. Retrieval still never says no; it has only got better at hiding it. And with no instrument, you cannot yet tell a low score from a normal one — which is precisely what Chapter 6 builds.']
+      ['x','Three chunks arrive anyway, with scores around 0.2 to 0.4 that do not obviously look wrong. Retrieval still never says no; it has only got better at hiding it. And with no instrument, you cannot yet tell a low score from a normal one — which is exactly what Chapter 6 builds.']
     ]],
     ['p','<strong>The map is only as good as whoever made it.</strong> It was built by reading text — overwhelmingly English text from the internet. Where your vocabulary was not well represented in that reading, the map gets it wrong. Two things your users consider completely different end up neighbours, or two things they consider identical end up far apart.'],
     ['try',{id:'ch5-map',mins:4,min:40,rows:3,
@@ -452,7 +452,7 @@ window.PART1 = [
       after:'Indian financial and legal vocabulary is full of these: <em>lakh</em> and <em>crore</em>, NEFT versus IMPS, government scheme names differing by one word and by enormous sums. Regional languages typed in English letters — <em>paisa kab milega</em> — are another. So is anything internal: two product codenames mean unrelated things to you and nothing at all to the map, so it places them by their spelling. The test of whether you understand this is whether you can name the failure before a user finds it.'}],
     ['q','I031'],
 
-    ['p','This technique is the foundation of nearly every "chat with your documents" product you will ever be shown. It is genuinely good. Note what it still does not do, though: it finds the nearest pieces, always, even when nothing is close. Chapter 4’s problem has not gone anywhere. Which is why the next chapter is about measurement, and why it is the most important one in Part I.']
+    ['p','This technique is the foundation of nearly every "chat with your documents" product you will ever be shown. It is good. Note what it still does not do, though: it finds the nearest pieces, always, even when nothing is close. Chapter 4’s problem has not gone anywhere. Which is why the next chapter is about measurement, and why it is the most important one in Part I.']
   ]
 },
 {
@@ -494,7 +494,7 @@ window.PART1 = [
     ['p','Ten to thirty questions is enough to start. They have to be real ones, in the words users actually use — not questions you wrote after reading the documents, which will use the documents’ vocabulary and quietly test nothing.'],
     ['q','I040'],
     ['do','Write the answer key',[
-      ['p','From your Chapter 3 document, build ten questions: the eight you already have, plus two new ones. One of the new ones must be genuinely unanswerable — something the document simply does not cover.'],
+      ['p','From your Chapter 3 document, build ten questions: the eight you already have, plus two new ones. One of the new ones must be unanswerable — something the document simply does not cover.'],
       ['p','For every question record the verified answer and the card number or numbers it lives in. Verified means you looked. Not remembered.'],
       ['x','A ten-row table, written before any measuring happens. This is ground truth, and it is the single thing that separates an opinion about quality from a measurement of it. The unanswerable row earns a permanent seat in every answer key you will ever write.']
     ]],

@@ -16,7 +16,7 @@ window.PART4 = [
     ['A test set you trust','Every change in this chapter is invisible without one.',6],
   ],
   takeaway:[
-    'Name the four things you can change, and what each one genuinely fixes.',
+    'Name the four things you can change, and what each one really fixes.',
     'Explain why fine-tuning is the wrong tool for “it does not know our new policy”.',
     'Say what has to exist before the question can be answered at all.'
   ],
@@ -45,8 +45,8 @@ window.PART4 = [
     ['pred',{id:'ch19-lever',rows:3,ph:'Which one, and why',
       ask:'Commit before the table. Your assistant confidently says the refund window is 30 days. The correct figure, published last month, is 45. Which of the four fixes it — and which one will a room full of people reach for?',
       reveal:'Better evidence. The system does not have the current policy, so it is producing a plausible number from what it absorbed in training, exactly as Chapter 2 said it would. The room will often reach for training it on examples, because “teach the model our policies” sounds like the shape of the problem. It is not: a trained model needs retraining the next time the number changes, and it still cannot show the user where 45 came from.',
-      then:'This is the single most common misdiagnosis in this field, and it is expensive precisely because the wrong answer sounds so reasonable.'}],
-    ['tb',['What you change','What it genuinely fixes','What it cannot fix','Cost to try, and to undo'],[
+      then:'This is the single most common misdiagnosis in this field, and it is expensive exactly because the wrong answer sounds so reasonable.'}],
+    ['tb',['What you change','What it really fixes','What it cannot fix','Cost to try, and to undo'],[
       ['Instructions','Format, tone, when to refuse, how the task is framed','Missing knowledge; genuine reasoning limits','Minutes. Undone instantly'],
       ['Evidence','Missing, changing or private knowledge; citations','Behaviour and format problems','Days. Undone by rebuilding the index'],
       ['Training on examples','Consistent shape and register, cheaply; a small model doing one job well','Facts that change; bad retrieval','Weeks, plus upkeep forever. Not undone — retrained'],
@@ -76,7 +76,7 @@ window.PART4 = [
       task:'Diagnose something real. Take a failure you have actually seen in an AI feature — yours, or one you use. Write what the user saw, then say which of the four kinds of wrong it is, then name the fix. Then write the one measurement that would prove you picked right.',
       ph:'the user saw … kind of wrong … the fix … I would know I was right if …',
       after:'The classification is the whole exercise, and it is harder than it looks because failures arrive mixed together. “It gave a confident wrong figure” could be any of the four until you look at what was retrieved. Right passage retrieved and misread: behaviour or reasoning. Wrong passage retrieved: nothing but better retrieval helps. Right passage not in the collection at all: the fix is upstream of everything in this course. And the measurement matters as much as the diagnosis — “the right passage is retrieved 9 times in 10 instead of 6” is a claim someone can check. “It feels better” is not.'}],
-    ['p','What training on examples genuinely buys, because it does buy real things: <strong>consistency</strong> — the same structure and register across thousands of outputs, more reliably than any instruction; a <strong>small model doing a narrow job</strong> about as well as a large one, which is where most of the money is; and conventions that are tedious to describe but easy to demonstrate, like house style.'],
+    ['p','What training on examples really buys, because it does buy real things: <strong>consistency</strong> — the same structure and register across thousands of outputs, more reliably than any instruction; a <strong>small model doing a narrow job</strong> about as well as a large one, which is where most of the money is; and conventions that are tedious to describe but easy to demonstrate, like house style.'],
     ['p','And the costs nobody puts in the proposal: examples somebody must build and then <em>keep</em>; a test set that has to already exist, or you cannot tell whether it helped; a full re-run every time the base model is retired — Chapter 18’s treadmill, now with your training data attached; and a quiet loss of portability, because your improvement now lives inside one provider’s artefact instead of in your prompt and your index.'],
     ['q','I141'],
     ['do','Try switching down',[
@@ -149,7 +149,7 @@ window.PART4 = [
       ['x','The third and fourth are the hard ones, and the ones that do not exist in most specs. If you cannot write them, they do not exist in the product either — they are whatever the code happens to do.']
     ]],
     ['p','<strong>Three: make correcting it easy.</strong> When the system is wrong, what the user does next is simultaneously your most valuable data and the thing most products throw away. A thumbs-down records that something was wrong and nothing about what.'],
-    ['p','A correction path earns its place when it captures what the user expected <em>instead</em>, keeps the evidence the system was working from, and is genuinely faster than giving up and doing the task by hand. That last condition fails silently: if correcting takes longer than the workaround, nobody corrects, and you read an empty feedback table as satisfaction.'],
+    ['p','A correction path earns its place when it captures what the user expected <em>instead</em>, keeps the evidence the system was working from, and is faster than giving up and doing the task by hand. That last condition fails silently: if correcting takes longer than the workaround, nobody corrects, and you read an empty feedback table as satisfaction.'],
     ['q','I147'],
     ['do','Time the correction',[
       ['p','Measure, with a clock: how long does correcting a wrong output take, versus doing the task manually from scratch? Do it three times.'],

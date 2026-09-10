@@ -29,7 +29,7 @@ window.ITEMS4 = [
 
 ['I142','S31',3,'judge','A senior stakeholder asks, in a roadmap review, "why aren’t we fine-tuning?" Write the reply that turns the question into a decision rather than a preference.',
  null,
- 'A strong reply refuses both the yes and the no, and asks what kind of wrong the system currently is. Roughly: “Tell me the failure you want fixed and I will tell you which lever fixes it. If it does not know something, that is retrieval — and tuning would bake in a fact that changes. If it knows but answers in the wrong shape or register, that is prompting first and tuning second, and I can test prompting this week. If it cannot do the reasoning, that is a different model or a thinking budget. Right now our error taxonomy says the top cluster is retrieving the right document and the wrong clause, which no amount of tuning touches. When a cluster shows up that is genuinely behavioural, tuning is the right tool and I will need a labelled set and an owner to maintain it, because it has to be re-run every time the base model is deprecated.”'],
+ 'A strong reply refuses both the yes and the no, and asks what kind of wrong the system currently is. Roughly: “Tell me the failure you want fixed and I will tell you which lever fixes it. If it does not know something, that is retrieval — and tuning would bake in a fact that changes. If it knows but answers in the wrong shape or register, that is prompting first and tuning second, and I can test prompting this week. If it cannot do the reasoning, that is a different model or a thinking budget. Right now our error taxonomy says the top cluster is retrieving the right document and the wrong clause, which no amount of tuning touches. When a cluster shows up that is behavioural, tuning is the right tool and I will need a labelled set and an owner to maintain it, because it has to be re-run every time the base model is deprecated.”'],
 
 ['I143','S31',3,'mcq','A distilled small model most reliably beats a frontier model when the task is:',
  ['Open-ended and varied, with high accuracy demands',
@@ -41,7 +41,7 @@ window.ITEMS4 = [
 ['I144','S32',1,'mcq','The primary purpose of showing sources beside an AI-generated answer is:',
  ['To signal sophistication','To let the user verify the claim cheaply',
   'To satisfy the legal team','To improve the model’s accuracy'],1,
- 'Citations exist so that checking is cheaper than trusting. That is why a citation which does not resolve to the actual passage is worse than none at all: it buys the appearance of verifiability while removing the ability to verify, which is precisely the trade a user cannot detect.'],
+ 'Citations exist so that checking is cheaper than trusting. That is why a citation which does not resolve to the actual passage is worse than none at all: it buys the appearance of verifiability while removing the ability to verify, which is exactly the trade a user cannot detect.'],
 
 ['I145','S32',2,'mcq','Which output should NOT be streamed token by token as it is generated?',
  ['A long explanatory answer','A drafted email the user will edit',
@@ -56,13 +56,13 @@ window.ITEMS4 = [
   'Hide it; users find numbers confusing'],2,
  'A displayed confidence number transfers the judgement to a user who has no way to calibrate it, and model-reported confidence is frequently poorly calibrated anyway. The value of the score is as a routing signal inside your product: it changes what the interface does — answer, show evidence, ask a clarifying question, or hand to a human — rather than what it says.'],
 
-['I147','S32',3,'multi','What makes a correction path genuinely valuable rather than decorative?',
+['I147','S32',3,'multi','What makes a correction path valuable rather than decorative?',
  ['It captures what the user expected instead, not only that they were unhappy',
   'It records the retrieved evidence alongside the correction',
   'It is faster than abandoning the feature and doing the task manually',
   'It feeds the failure taxonomy that drives the roadmap',
   'It thanks the user for their feedback'],[0,1,2,3],
- 'A thumbs-down with no context is close to worthless: it says something was wrong and nothing about what. A correction that captures the expected answer and the evidence the system was working from converts a complaint into an eval case. And if correcting is slower than doing it by hand, nobody corrects — so the path has to be genuinely cheaper than the workaround, or you collect nothing.'],
+ 'A thumbs-down with no context is close to worthless: it says something was wrong and nothing about what. A correction that captures the expected answer and the evidence the system was working from converts a complaint into an eval case. And if correcting is slower than doing it by hand, nobody corrects — so the path has to be cheaper than the workaround, or you collect nothing.'],
 
 ['I148','S32',3,'mcq','Which screen most determines whether users trust an AI feature over time?',
  ['The successful answer','The loading state',

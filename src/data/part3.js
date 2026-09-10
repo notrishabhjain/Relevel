@@ -353,7 +353,7 @@ window.PART3 = [
       after:'Reviewing everything at that volume is a fiction that reads well and is abandoned in week two — worse than not claiming it, because now the document misrepresents the control. What works is targeted: route by confidence, by how bad the action is, and by disagreement between what was retrieved and what was answered. The reviewer has to see the evidence as well as the output, because approving an answer you cannot check is not checking — and has to be able to reject it, not just watch.'}],
     ['q','I096','I132'],
     ['do','Design oversight that can be exercised',[
-      ['p','Take your highest-risk output. Specify the review point precisely: which outputs are reviewed (all, sampled, or those failing a check), what the reviewer sees (answer only, or answer plus retrieved chunks plus quote), how long they have, and whether they can actually overrule.'],
+      ['p','Take your highest-risk output. Specify the review point exactly: which outputs are reviewed (all, sampled, or those failing a check), what the reviewer sees (answer only, or answer plus retrieved chunks plus quote), how long they have, and whether they can actually overrule.'],
       ['x','Then ask the honest question: at your expected volume, is this review physically possible? A review of every output at 4,000 per day is not oversight; it is a sentence in a document. Chapter 8\'s structured output and Chapter 14\'s programmatic checks are what make sampled, targeted review real.']
     ]],
     ['c','The deletion drill','Someone asks you to delete their data. It is in: the original document store, the cut-up pieces, the search index, the cache, the provider’s logs, your own logs, and any test set you built from real traffic. Trace all seven. Most teams find at least two they cannot reach — and Tuesday afternoon is a much better time to find that out than during a regulator’s letter.'],
@@ -411,7 +411,7 @@ window.PART3 = [
     ['key','An AI spec does not describe behaviour. It describes a measured range of behaviour, the evidence that you measured it, and what happens when it drifts.'],
     ['q','I107'],
     ['do','The 2027 map, from memory',[
-      ['p','Close everything. Blank page. Draw the full system — considerably larger than Chapter 7\'s.'],
+      ['p','Close everything. Blank page. Draw the full system — much larger than Chapter 7\'s.'],
       ['code','ingestion (extraction? layout? Ch.16)\n  → chunking + situating sentence (Ch.3, 12)\n  → embeddings + metadata (Ch.5, 12)\n  → [ query rewrite → hybrid retrieve → filter → rerank ] (Ch.12)\n  → context assembly: stable prefix | chunks | question (Ch.10)\n  → model call: routed cheap→strong, structured output (Ch.8, 11, 15)\n  → [ tools + step budget + write boundary ] (Ch.9)\n  → programmatic checks → judge → trace logged (Ch.14)\n  → human oversight point (Ch.17)\n  → answer + citation'],
       ['p','Beside every arrow, one line in your own words. Then take the red pen and mark every place you have <em>personally watched this fail</em>, with the chapter. Aim for twenty. You have earned more than twenty.'],
       ['x','Use the Red-Mark Map on this site to check yourself afterwards — but draw it on paper first. The gap between what you produced from memory and what the map lists is your revision plan.']

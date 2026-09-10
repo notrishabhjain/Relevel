@@ -16,7 +16,7 @@ Object.assign(window.HING = window.HING || {}, {
   'The variety dial':
     'Variety ka dial',
   'Real sampling mathematics on a fixed candidate set. At 0 the top continuation wins every time; raise it and the distribution flattens until the unlikely becomes routine.':
-    'Ek tay candidate set par asli sampling ka ganit. 0 par sabse upar wala continuation har baar jeetta hai; badhaiye to distribution phailta jaata hai jab tak kam-likely cheez aam na ho jaaye.',
+    'Ek tay candidate set par asli sampling ka maths. 0 par sabse upar wala continuation har baar jeetta hai; badhaiye to distribution phailta jaata hai jab tak kam-likely cheez aam na ho jaaye.',
   'Scissors, with a damage report':
     'Kainchi, nuksaan ki report ke saath',
   'Paste your own document. The orphan test flags chunks opening with a back-reference; the boundary test flags chunks that begin or end mid-sentence. These are the two injuries Chapter 3 asks you to hunt by hand.':
@@ -47,7 +47,7 @@ Object.assign(window.HING = window.HING || {}, {
     'Wahi tokens, wahi jawaab, do order. Inme se sirf ek cacheable hai — jisse envelope ka order style ka nahi, cost ka decision ban jaata hai.',
   'What thought costs':
     'Sochne ki keemat',
-  'Two task types, two settings. The asymmetry is the entire chapter: on lookups you pay several times over for nothing, and on genuinely multi-step work you occasionally buy the only correct answer available.':
+  'Two task types, two settings. The asymmetry is the entire chapter: on lookups you pay several times over for nothing, and on multi-step work you occasionally buy the only correct answer available.':
     'Do kism ke kaam, do settings. Poora chapter isi asamaanta mein hai: lookups par aap kai guna paisa dete hain bina kuchh paaye, aur sach mein multi-step kaam par kabhi-kabhi aap ekmatra sahi jawaab kharid lete hain.',
   'Two scoreboards, one list':
     'Do scoreboard, ek list',

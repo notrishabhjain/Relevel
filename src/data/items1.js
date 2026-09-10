@@ -31,7 +31,7 @@ window.ITEMS1 = [
  'It is a per-request envelope size — everything in plus everything out. It is not memory and has nothing to do with storage.'],
 ['I007','S02',3,'mcq','A vendor argues that a two-million-token context makes your retrieval layer unnecessary. What is the strongest single rebuttal?',
  ['Large contexts are slower','Accuracy degrades with context length, and you pay for the full envelope on every query, forever','Two million tokens will not fit our corpus','Retrieval is more accurate than long context in all cases'],1,
- 'Two independent objections — measured quality degradation (context rot) and per-query cost — and neither is a matter of opinion. The last option overclaims: on some multi-section questions, stuffing genuinely wins.'],
+ 'Two independent objections — measured quality degradation (context rot) and per-query cost — and neither is a matter of opinion. The last option overclaims: on some multi-section questions, stuffing really wins.'],
 ['I008','S02',2,'order','Order these by how reliably a model recovers a specific fact placed at that position in a long context, most reliable first.',
  ['At 5% depth (near the start)','At 95% depth (near the end)','At 50% depth (the middle)'],[0,1,2],
  'Edges are recovered far more reliably than the middle. Start and end are close; the middle sags. This is the "lost in the middle" pattern, and it worsens as total length grows.'],
@@ -86,8 +86,8 @@ window.ITEMS1 = [
 ['I023','S06',3,'mcq','A chunk boundary falls between a rule and its exception. What is the most dangerous consequence?',
  ['Retrieval will be slower','The system can present the rule without its exception — confidently incomplete','The chunk will be too large','Embeddings will be less accurate'],1,
  'In compliance and legal contexts, confidently incomplete is often worse than absent, because it produces a wrong action rather than a request for help.'],
-['I024','S06',3,'judge','Your corpus is service contracts with numbered clauses, provisos and annexures. Describe your chunking rule and what it sacrifices.',null,
- 'Cut on clause boundaries so each piece carries a complete rule with its provisos attached — semantic chunking following the document\'s own anatomy. Pieces will be unequal in size, which is a feature: meaning does not come in uniform sizes. Sacrifices: cross-clause definitions ("as defined in clause 2") still orphan, so add a situating sentence (contextual retrieval); very long clauses may exceed a comfortable retrieval unit and need sub-splitting with overlap. A strong answer names the residual failure, not just the rule.'],
+['I024','S06',3,'judge','Your corpus is service contracts with numbered clauses, exceptions and annexures. Describe your chunking rule and what it sacrifices.',null,
+ 'Cut on clause boundaries so each piece carries a complete rule with its exceptions attached — semantic chunking following the document\'s own anatomy. Pieces will be unequal in size, which is a feature: meaning does not come in uniform sizes. Sacrifices: cross-clause definitions ("as defined in clause 2") still orphan, so add a situating sentence (contextual retrieval); very long clauses may exceed a comfortable retrieval unit and need sub-splitting with overlap. A strong answer names the residual failure, not just the rule.'],
 
 /* ================= S07 Keyword vs semantic ================= */
 ['I025','S07',1,'mcq','Keyword search is blind to:',
@@ -184,7 +184,7 @@ window.ITEMS1 = [
 /* ================= S14 Error analysis ================= */
 ['I052','S14',2,'mcq','Error analysis, done properly, is mostly:',
  ['Writing evaluation code','Reading real outputs against their sources and writing plain-language notes','Running benchmark suites','Tuning retrieval parameters'],1,
- 'It is reading, not coding — and it is the highest-leverage activity in applied AI precisely because almost nobody does it.'],
+ 'It is reading, not coding — and it is the highest-leverage activity in applied AI exactly because almost nobody does it.'],
 ['I053','S14',3,'mcq','Why does a failure taxonomy from your own traffic beat adding more benchmark evals?',
  ['Benchmarks are poorly constructed','Benchmarks measure someone else\'s failure distribution, not your users, documents or corpus pathologies','Benchmarks are expensive','Taxonomies are faster to build'],1,
  'Your taxonomy tells you what to fix and gives you countable categories. A benchmark tells you that something is wrong, on someone else\'s data.'],

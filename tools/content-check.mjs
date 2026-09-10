@@ -161,6 +161,16 @@ for (const m of labsSrc.matchAll(/\b(?:title|note):\s*'((?:[^'\\]|\\.)*)'/g))
   wantAdd(m[1].replace(/\\(['\\])/g, '$1'));
 (C.reference.GLOSSARY || []).forEach(x => wantAdd(x[1]));
 
+/* Hinglish is Hindi written in the Roman alphabet. A Devanagari character in
+   a translation is always a typing slip — it has happened twice — and it reads
+   as a broken glyph mid-word rather than as an error anybody would report. */
+const devanagari = Object.entries(hing)
+  .filter(([, v]) => /[\u0900-\u097F]/.test(String(v)))
+  .map(([, v]) => (String(v).match(/\S*[\u0900-\u097F]\S*/) || [''])[0]);
+if (devanagari.length)
+  fail(`${devanagari.length} Hinglish line(s) contain Devanagari characters` +
+       ` — first: "${devanagari[0]}"`);
+
 const untranslated = [...need].filter(k => hing[k] === undefined);
 if (untranslated.length) {
   fail(`${untranslated.length} line(s) of ${need.size} have no Hinglish translation` +

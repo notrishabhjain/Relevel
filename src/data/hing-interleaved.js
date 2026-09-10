@@ -54,7 +54,7 @@ Object.assign(window.HING = window.HING || {}, {
     'Aapke apne documents ke liye cutting rule',
   'You have now cut one document three ways and felt what each one breaks. A real system needs a rule that someone else can follow on <em>thousands</em> of documents without you standing over them. Write that rule, and prove it survives contact with the ugliest document you can find.':
     'Ab tak aap ek document ko teen tareeke se kaat chuke hain aur mehsoos kar chuke hain ki har tareeka kya todta hai. Asli system ko aisa rule chahiye jise koi doosra <em>hazaaron</em> documents par bina aapke sar par khade hue laagu kar sake. Woh rule likhiye, aur saabit kijiye ki woh sabse gande document se takra kar bhi bacha rehta hai.',
-  'Name the most structured document type in your field — the one with clauses, provisos, numbered procedures, warnings.':
+  'Name the most structured document type in your field — the one with clauses, exceptions, numbered procedures, warnings.':
     'Apne field ka sabse structured document type chuniye — jismein clauses, provisos, numbered procedures aur warnings hote hain.',
   'Describe its anatomy in three or four lines. What are its natural joints, and what must never be separated from what?':
     'Teen-chaar line me uski anatomy likhiye. Uske natural jod kahan hain, aur kis cheez ko kis se kabhi alag nahi karna chahiye?',
@@ -71,8 +71,8 @@ Object.assign(window.HING = window.HING || {}, {
   'You have applied it to a document that fights back, and amended it once as a result.':
     'Aapne use ek aise document par laagu kiya hai jo aasaani se haar nahi maanta, aur uske chalte rule ko ek baar sudhaara hai.',
   'You can name the specific meaning your rule still risks splitting, and say why you accept that.':
-    'Aap naam le sakte hain ki aapka rule ab bhi kis matlab ko todne ka khatra rakhta hai, aur bata sakte hain ki aap use kyun sweekaar kar rahe hain.',
-  'No code today. Print one real document you know well — a policy, a contract, a procedure, five to fifteen pages — and find a pair of scissors and a pen. Everything in this chapter is proved by your own hands, which is slower than a script and considerably harder to forget.':
+    'Aap naam le sakte hain ki aapka rule ab bhi kis matlab ko todne ka khatra rakhta hai, aur bata sakte hain ki aap use kyun accept kar rahe hain.',
+  'No code today. Print one real document you know well — a policy, a contract, a procedure, five to fifteen pages — and find a pair of scissors and a pen. Everything in this chapter is proved by your own hands, which is slower than a script and much harder to forget.':
     'Aaj koi code nahi. Ek asli document print kijiye jise aap achchhi tarah jaante hain — koi policy, contract ya procedure, paanch se pandrah page — aur ek kainchi aur pen le aaiye. Is chapter ki har baat aapke apne haathon se saabit hoti hai, jo script se dheema hai aur bhoolne me kaafi zyada mushkil.',
   'Write the exam before you cut anything':
     'Kaatne se pehle exam likhiye',
@@ -84,7 +84,7 @@ Object.assign(window.HING = window.HING || {}, {
     'Round 1 — teen bade slabs',
   'Cut your document into three rough pieces. Ignore the structure entirely; just cut it in thirds. Then take your five questions one at a time and find which slab holds each answer.':
     'Apne document ko teen mote tukdon me kaatiye. Structure bilkul ignore kijiye; bas teen hisson me kaat dijiye. Phir apne paanch sawaal ek-ek karke lijiye aur dhoondhiye ki har jawaab kis slab me hai.',
-  'Every answer is complete — and to deliver a two-line answer you are couriering a third of a filing cabinet. Note roughly how much irrelevant text rides along with each one. That ride is paid for on every question, forever.':
+  'Every answer is complete — and to deliver a two-line answer you are carrying a third of a filing cabinet. Note roughly how much irrelevant text rides along with each one. That ride is paid for on every question, forever.':
     'Har jawaab poora hai — aur do line ka jawaab dene ke liye aap ek tihaai filing cabinet dhokar la rahe hain. Motay taur par note kijiye ki har jawaab ke saath kitna bemtlab text saath aata hai. Us saath aane ka daam har sawaal par, hamesha chukana padta hai.',
   'Round 2 — twenty index cards':
     'Round 2 — bees index cards',
@@ -112,7 +112,7 @@ Object.assign(window.HING = window.HING || {}, {
     'Har failure ke saath ek vaakya me likhiye ki scoreboard ke paas kaunsi jaankaari nahi thi.',
   'Add the exact-string question and its result, so the table shows the method winning as well as losing.':
     'Exact-string wala sawaal aur uska nateeja bhi jodiye, taaki table me tareeka haarta hi nahi, jeetta bhi dikhe.',
-  'Write a short paragraph on your own field: which real query types are synonym-heavy or plain-language, and which are genuinely exact-string.':
+  'Write a short paragraph on your own field: which real query types are synonym-heavy or plain-language, and which are exact-string.':
     'Apne field par ek chhota paragraph likhiye: kaunse asli query types synonym-heavy ya plain-language hain, aur kaunse sach me exact-string.',
   'Estimate what fraction of your users ask in the document’s dialect versus their own. Say how you would find out for real.':
     'Andaaza lagaiye ki aapke kitne users document ki bhasha me poochhte hain aur kitne apni. Batayiye ki aap sach me kaise pata karenge.',
@@ -144,7 +144,7 @@ Object.assign(window.HING = window.HING || {}, {
     '<strong>Synonym assassin</strong> — document ka koi formal term, us tarah dobara likha gaya jaise aam insaan kehta hai.',
   'The <strong>plain-language assassin</strong> — how a first-time user, who does not know the document’s vocabulary, would actually type it.':
     '<strong>Plain-language assassin</strong> — pehli baar aaya user, jo document ki vocabulary nahi jaanta, use asal me kaise type karega.',
-  'The <strong>second-language assassin</strong> — the same question in another language your users genuinely use.':
+  'The <strong>second-language assassin</strong> — the same question in another language your users really use.':
     '<strong>Second-language assassin</strong> — wahi sawaal us doosri bhasha me jo aapke users sach me istemaal karte hain.',
   'Score all three by hand, the same way, no common sense.':
     'Teenon ko haath se, usi tareeke se, bina common sense ke score kijiye.',
@@ -193,7 +193,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Type this one slowly. It is the most important code in Part I, and it does two things: turns text into an address, and measures whether two addresses point the same way.':
     'Ise dheere-dheere type kijiye. Part I ka sabse zaroori code yahi hai, aur yeh do kaam karta hai: text ko address me badalta hai, aur naapta hai ki do addresses ek hi disha me ishaara karte hain ya nahi.',
   '1024 numbers per address. Then <code>contract</code>, <code>agreement</code> and <code>MoU</code> pairing high with each other — somewhere around 0.5 to 0.8 — while every pairing involving <code>sandwich</code> sits clearly lower. The map is not a metaphor. It is on your screen, from one line of arithmetic you just ran.':
-    'Har address me 1024 numbers. Phir <code>contract</code>, <code>agreement</code> aur <code>MoU</code> aapas me ooncha score karte hue — lagbhag 0.5 se 0.8 ke beech — jabki <code>sandwich</code> wali har jodi saaf neeche baithti hai. Map koi upma nahi hai. Woh aapki screen par hai, us ek line ke ganit se jo aapne abhi chalayi.',
+    'Har address me 1024 numbers. Phir <code>contract</code>, <code>agreement</code> aur <code>MoU</code> aapas me ooncha score karte hue — lagbhag 0.5 se 0.8 ke beech — jabki <code>sandwich</code> wali har jodi saaf neeche baithti hai. Map koi metaphor nahi hai. Woh aapki screen par hai, us ek line ke maths se jo aapne abhi chalayi.',
   'Cure Chapter 4':
     'Chapter 4 ka ilaaj kijiye',
   'Paste in the actual cards you cut in Chapter 3 — the text of each one, as a list — and give the whole set addresses.':
@@ -202,14 +202,14 @@ Object.assign(window.HING = window.HING || {}, {
     'Jo assassin kal zero par tha, woh ab sahi card ko rank one ya uske aas-paas le aata hai. Teenon chalaiye aur apni haath se banayi rankings se milaiye. Second-language wale par jo bhi hota hai woh aapke users ke baare me ek asli khoj hai — impression nahi, asli numbers likhiye.',
   'Watch the old disease change dialect':
     'Purani bimaari ko bhasha badalte dekhiye',
-  'Ask it something the document genuinely cannot answer. Not a hard question — an unrelated one.':
+  'Ask it something the document really cannot answer. Not a hard question — an unrelated one.':
     'Usse aisa kuchh poochhiye jiska jawaab document me hai hi nahi. Mushkil sawaal nahi — bilkul alag sawaal.',
-  'Three chunks arrive anyway, with scores around 0.2 to 0.4 that do not obviously look wrong. Retrieval still never says no; it has only got better at hiding it. And with no instrument, you cannot yet tell a low score from a normal one — which is precisely what Chapter 6 builds.':
+  'Three chunks arrive anyway, with scores around 0.2 to 0.4 that do not obviously look wrong. Retrieval still never says no; it has only got better at hiding it. And with no instrument, you cannot yet tell a low score from a normal one — which is exactly what Chapter 6 builds.':
     'Phir bhi teen chunks aa jaate hain, 0.2 se 0.4 ke aas-paas score ke saath, jo dekhne me saaf galat nahi lagte. Retrieval abhi bhi “nahi” nahi kehta; usne bas chhupana behtar seekh liya hai. Aur bina instrument ke aap abhi kam score aur normal score ka farq nahi bata sakte — Chapter 6 theek yahi banata hai.',
   'The ship-it memo':
     'Ship-it memo',
   'You have numbers now — real ones, from your own documents, at three settings. The job of this capstone is to turn them into a recommendation somebody could act on, including the part most memos dodge: naming which failure you have decided is acceptable, and on whose authority.':
-    'Ab aapke paas numbers hain — asli, aapke apne documents se, teen settings par. Is capstone ka kaam unhe aisi sifaarish me badalna hai jis par koi amal kar sake, us hisse samet jise zyadatar memo tal jaate hain: yeh naam lena ki aapne kaunsi failure sweekaar ki hai, aur kis adhikaar se.',
+    'Ab aapke paas numbers hain — asli, aapke apne documents se, teen settings par. Is capstone ka kaam unhe aisi sifaarish me badalna hai jis par koi amal kar sake, us hisse samet jise zyadatar memo tal jaate hain: yeh naam lena ki aapne kaunsi failure accept ki hai, aur kis authority se.',
   'State the use case in one line, and who carries the consequence when it is wrong.':
     'Use case ek line me likhiye, aur yeh ki galat hone par nateeja kaun bhugatta hai.',
   'Put your table in: the three values of k, with hits and relevant fraction at each.':
@@ -221,7 +221,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Add the cost line: what k does to tokens per query, and therefore to the monthly bill at a realistic volume.':
     'Cost wali line jodiye: k har query ke tokens par kya asar daalta hai, aur isliye asli volume par maheene ke bill par.',
   'Close with the gap between your circled prediction and the measured result, and what you now think a demo is worth as evidence.':
-    'Ant me apni ghere hui bhavishyavaani aur naape gaye nateeje ka farq likhiye, aur yeh ki ab aap demo ko sabooot ke taur par kitna maante hain.',
+    'Ant me apni ghere hui prediction aur naape gaye nateeje ka farq likhiye, aur yeh ki ab aap demo ko sabooot ke taur par kitna maante hain.',
   'Every number in the memo came from a run you did, not from a source you are quoting.':
     'Memo ka har number kisi aise run se aaya hai jo aapne chalaya, kisi hawaale se nahi.',
   'The two recommended values of k differ, and the reason is about consequences rather than technology.':
@@ -232,7 +232,7 @@ Object.assign(window.HING = window.HING || {}, {
     'Zyadatar kaagaz aur pen, saath me naapne ke liye <code>chapter-5</code> notebook khuli rakhiye. Aapko Chapter 3 ka document aur kal likha <code>retrieve</code> function chahiye. Aaj aap ek instrument bana rahe hain, aur instruments banane me boring hote hain aur baad me unse behes karna namumkin.',
   'Write the answer key':
     'Answer key likhiye',
-  'From your Chapter 3 document, build ten questions: the eight you already have, plus two new ones. One of the new ones must be genuinely unanswerable — something the document simply does not cover.':
+  'From your Chapter 3 document, build ten questions: the eight you already have, plus two new ones. One of the new ones must be unanswerable — something the document simply does not cover.':
     'Apne Chapter 3 ke document se das sawaal banaiye: jo aath aapke paas pehle se hain, aur do naye. Naye me se ek ka jawaab document me sach me nahi hona chahiye — aisa kuchh jise document chhoota hi nahi.',
   'For every question record the verified answer and the card number or numbers it lives in. Verified means you looked. Not remembered.':
     'Har sawaal ke liye verified jawaab aur us card ka number likhiye jisme woh rehta hai. Verified matlab aapne dekha. Yaad kiya nahi.',
@@ -245,7 +245,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Grade the run against your key: how many of the nine succeeded, how many of the twenty-seven fetched cards were actually relevant, and what came back for the unanswerable one — with its top score.':
     'Run ko apni key ke against jaanchiye: nau me se kitne kaamyaab hue, sattaais laaye gaye cards me se kitne sach me relevant the, aur jis sawaal ka jawaab nahi tha uske liye kya aaya — apne top score ke saath.',
   'Compare the real number to your circled one. Most people over-predict, often badly. Write one sentence about the size of your own gap: that sentence is why a demo should never again close a decision while you are in the room.':
-    'Asli number ko apne ghere hue number se milaiye. Zyadatar log zyada ka andaaza lagate hain, aksar bahut zyada. Apne gap ke aakaar par ek vaakya likhiye: wahi vaakya wajah hai ki aapke kamre me hote hue koi demo dobara kabhi faisla na kare.',
+    'Asli number ko apne ghere hue number se milaiye. Zyadatar log zyada ka andaaza lagate hain, aksar bahut zyada. Apne gap ke size par ek vaakya likhiye: wahi vaakya wajah hai ki aapke kamre me hote hue koi demo dobara kabhi faisla na kare.',
   'Turn the dial and watch it trade':
     'Dial ghumaiye aur sauda hote dekhiye',
   'Re-grade the same ten questions at <code>k=1</code> and then <code>k=8</code>, and fill this in by hand:':
@@ -279,7 +279,7 @@ Object.assign(window.HING = window.HING || {}, {
   'For each failure, add the question you would ask a vendor to find out whether they have solved it or hidden it.':
     'Har failure ke saath woh sawaal jodiye jo aap vendor se poochhenge yeh jaanne ke liye ki unhone use hal kiya hai ya chhupaya hai.',
   'Go back to your Chapter 1 predictions. Name the three beliefs that changed most, and what changed them.':
-    'Apni Chapter 1 ki bhavishyavaaniyon par waapas jaaiye. Un teen maanyataon ka naam lijiye jo sabse zyada badlin, aur unhe kisne badla.',
+    'Apni Chapter 1 ki predictions par waapas jaaiye. Un teen assumptions ka naam lijiye jo sabse zyada badlin, aur unhe kisne badla.',
   'Write the pipeline in five sentences with no jargon at all — then, at the very end, add: “the industry calls this RAG.”':
     'Poori pipeline ko paanch vaakyon me, bilkul bina jargon ke likhiye — aur phir, bilkul ant me, jodiye: “industry ise RAG kehti hai.”',
   'Now list what these seven chapters did <em>not</em> teach you: choosing an embedding model, vector databases, reranking, hybrid search in practice, agents, fine-tuning, deployment.':
@@ -289,7 +289,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Every failure on the page carries evidence you generated yourself.':
     'Page ki har failure ke saath woh sabooot hai jo aapne khud banaya.',
   'The five-sentence explanation survives being read aloud to someone with no technical background.':
-    'Paanch vaakyon wali vyakhya kisi bhi non-technical insaan ko zor se padh kar sunaane par tik jaati hai.',
+    'Paanch vaakyon wali explanation kisi bhi non-technical insaan ko zor se padh kar sunaane par tik jaati hai.',
   'Your next-syllabus list is ordered by consequence, not by how interesting the topics sound.':
     'Aapki agli-syllabus list nateeje ke hisaab se lagi hai, is hisaab se nahi ki kaunsa topic sunne me dilchasp lagta hai.',
   'You assemble the whole machine today, so the environment has to be ready.':
@@ -326,7 +326,7 @@ Object.assign(window.HING = window.HING || {}, {
     'Aapne dekha ki schema ek failure ko rokta nahi, hata deta hai — aur yeh bhi dekha ki kharaab bana schema use <em>paida</em> kar deta hai. Ab us document type ke liye asli extractor banaiye jise aap sach me handle karte hain, is tarah bana hua ki jis failure se aap sabse zyada darte hain uske liye jagah hi na bache.',
   'Pick a document type from your own work and the decision something downstream makes from it.':
     'Apne kaam se ek document type chuniye aur woh faisla jo uske aage koi system leta hai.',
-  'Write the schema: every field, its type, and which are genuinely required. Use fixed choices wherever free text would drift.':
+  'Write the schema: every field, its type, and which are required. Use fixed choices wherever free text would drift.':
     'Schema likhiye: har field, uska type, aur kaunse sach me zaroori hain. Jahan free text bhatak sakta hai, wahan fixed choices rakhiye.',
   'Give uncertainty somewhere to go — a needs_review branch, a nullable field, an explicit “not stated” boolean — so the model is never cornered into inventing.':
     'Anishchitta ko jaane ki jagah dijiye — ek needs_review branch, ek nullable field, ek saaf “not stated” boolean — taaki model kabhi gadhne ke liye majboor na ho.',
@@ -355,8 +355,8 @@ Object.assign(window.HING = window.HING || {}, {
   'The agent, and the blast radius you gave it':
     'Agent, aur woh blast radius jo aapne use diya',
   'You have built the loop, sabotaged its descriptions, fed it an error and removed its budget. An agent is not defined by how well it works on a good day — it is defined by what it can do on a bad one. Specify one for a real task, with its limits written down before its capabilities.':
-    'Aapne loop banaya, uske descriptions bigade, use error khilaya aur uska budget cheen liya. Agent ki pehchaan is se nahi hoti ki achchhe din woh kitna achchha chalta hai — pehchaan is se hoti hai ki bure din woh kya kar sakta hai. Ek asli kaam ke liye agent likhiye, jiski seemaayein uski kaabiliyaton se pehle likhi hon.',
-  'Name a task in your own work worth automating, and the two or three tools it would genuinely need.':
+    'Aapne loop banaya, uske descriptions bigade, use error khilaya aur uska budget cheen liya. Agent ki pehchaan is se nahi hoti ki achchhe din woh kitna achchha chalta hai — pehchaan is se hoti hai ki bure din woh kya kar sakta hai. Ek asli kaam ke liye agent likhiye, jiski limits uski kaabiliyaton se pehle likhi hon.',
+  'Name a task in your own work worth automating, and the two or three tools it would really need.':
     'Apne kaam ka koi aisa task chuniye jise automate karna waajib ho, aur woh do-teen tools jinki use sach me zaroorat hogi.',
   'Write each tool description as if it were the only documentation — because to the model, it is.':
     'Har tool ka description aise likhiye jaise wahi ekmatra documentation ho — kyunki model ke liye wahi hai.',
@@ -387,11 +387,11 @@ Object.assign(window.HING = window.HING || {}, {
   'The context budget for one real feature':
     'Ek asli feature ka context budget',
   'Enormous context windows changed the marketing and almost nothing about the engineering. You have measured attention against capacity, and retrieval against paste-everything. Turn that into a defensible budget for something you might actually ship.':
-    'Bahut bade context windows ne marketing badli aur engineering me lagbhag kuchh nahi. Aapne dhyaan ko kshamta ke against naapa hai, aur retrieval ko sab-kuchh-paste-karo ke against. Ab use aise budget me badliye jise aap sach me ship kar sakte hain.',
+    'Bahut bade context windows ne marketing badli aur engineering me lagbhag kuchh nahi. Aapne dhyaan ko capacity ke against naapa hai, aur retrieval ko sab-kuchh-paste-karo ke against. Ab use aise budget me badliye jise aap sach me ship kar sakte hain.',
   'Pick one feature and describe what has to be in the envelope for it to answer well.':
     'Ek feature chuniye aur bataiye ki achchha jawaab dene ke liye envelope me kya-kya hona chahiye.',
   'Measure, at three sizes, what fraction of your questions get answered correctly — with the needle at the start, the middle and the end.':
-    'Teen aakaaron par naapiye ki aapke kitne pratishat sawaalon ka sahi jawaab milta hai — sui shuru me, beech me, aur ant me rakh kar.',
+    'Teen aakaaron par naapiye ki aapke kitne percent sawaalon ka sahi jawaab milta hai — sui shuru me, beech me, aur ant me rakh kar.',
   'Run the head-to-head: everything pasted in, against retrieval of the few relevant pieces. Record accuracy, tokens and wall-clock for both.':
     'Aamne-saamne chalaiye: sab kuchh paste kiya hua, banaam sirf kuchh relevant tukdon ka retrieval. Dono ke liye accuracy, tokens aur ghadi ka samay note kijiye.',
   'Order the envelope for caching: what is stable across queries goes first, what varies goes last. Measure what that saves.':
@@ -483,12 +483,12 @@ Object.assign(window.HING = window.HING || {}, {
   'This is the one failure in the course with no complete fix. That makes the deliverable different: not a solution, but an honest account of exposure that somebody senior can act on. Audit something real.':
     'Poore course me yahi ek failure hai jiska poora hal nahi hai. Isliye is baar deliverable alag hai: hal nahi, balki exposure ka imaandaar hisaab jis par koi senior amal kar sake. Kisi asli cheez ka audit kijiye.',
   'Pick a real system — yours, or one you are being sold — that reads text somebody outside your organisation can influence.':
-    'Koi asli system chuniye — apna, ya jo aapko becha ja raha hai — jo aisa text padhta hai jise aapke sangathan ke bahar ka koi insaan prabhavit kar sakta hai.',
+    'Koi asli system chuniye — apna, ya jo aapko becha ja raha hai — jo aisa text padhta hai jise aapke organisation ke bahar ka koi insaan par asar daal sakta hai.',
   'Map the trifecta: what untrusted content it reads, what private data it can reach, and how anything can leave.':
     'Trifecta ka naksha banaiye: woh kaunsa bharosa-rahit content padhta hai, kis niji data tak pahunch sakta hai, aur kuchh bhi bahar kaise ja sakta hai.',
   'Write the specific attack. Not “injection is possible” — the actual text you would place, where you would place it, and what you would expect back.':
     'Theek-theek hamla likhiye. “Injection mumkin hai” nahi — woh asli text jo aap rakhenge, kahan rakhenge, aur kya waapas aane ki ummeed karenge.',
-  'Try to fix it with wording, and document precisely how your own fix loses.':
+  'Try to fix it with wording, and document exactly how your own fix loses.':
     'Use shabdon se theek karne ki koshish kijiye, aur saaf likhiye ki aapka apna fix kaise haarta hai.',
   'Break one leg instead: remove a capability, cut an egress path, or put a human in front of the irreversible step. Say what the product loses.':
     'Uske bajaay ek taang todiye: koi kaabiliyat hataiye, bahar jaane ka ek raasta band kijiye, ya jo kadam palta nahi ja sakta uske aage insaan bithaiye. Likhiye ki product isme kya khota hai.',
@@ -563,7 +563,7 @@ Object.assign(window.HING = window.HING || {}, {
   'The cascade has a real escalation rate, not an assumed one.':
     'Cascade ki escalation rate asli hai, maani hui nahi.',
   'You can name the single assumption most likely to make the whole model wrong.':
-    'Aap us ek maanyata ka naam le sakte hain jiske chalte poora model galat hone ki sabse zyada sambhaavna hai.',
+    'Aap us ek assumption ka naam le sakte hain jiske chalte poora model galat hone ki sabse zyada chance hai.',
   'Measure, don\'t estimate':
     'Naapiye, andaaza mat lagaiye',
   'Build the bill, with the multipliers':
@@ -613,11 +613,11 @@ Object.assign(window.HING = window.HING || {}, {
   'Tier your system honestly: what could it affect, and how badly, and who bears it.':
     'Apne system ko imaandaari se tier kijiye: yeh kis par asar daal sakta hai, kitna bura, aur bhugatta kaun hai.',
   'Write the system card: purpose, data, limits, known failure modes, and what it must never be used for.':
-    'System card likhiye: maksad, data, seemaayein, maloom failure modes, aur woh kaam jinke liye ise kabhi istemaal nahi karna.',
+    'System card likhiye: maksad, data, limits, maloom failure modes, aur woh kaam jinke liye ise kabhi istemaal nahi karna.',
   'Run the deletion drill. Someone asks for their data to be removed — follow it through every store and log, and time it.':
     'Deletion drill chalaiye. Koi apna data hataane ko kehta hai — use har store aur har log tak follow kijiye, aur samay naapiye.',
   'Design oversight that can actually be exercised: who can override, how they find out there is something to override, and what they see.':
-    'Aisi nigraani banaiye jise sach me istemaal kiya ja sake: kaun palat sakta hai, use kaise pata chalega ki palatne ko kuchh hai, aur use dikhta kya hai.',
+    'Aisi oversight banaiye jise sach me istemaal kiya ja sake: kaun palat sakta hai, use kaise pata chalega ki palatne ko kuchh hai, aur use dikhta kya hai.',
   'Build the vendor file: what you would need from a supplier to answer all of the above about their component.':
     'Vendor file banaiye: kisi supplier se aapko kya chahiye hoga taaki upar ki har baat unke hisse ke baare me jawaab di ja sake.',
   'Give the card to someone who did not build the system and ask them what is still unclear.':
@@ -627,7 +627,7 @@ Object.assign(window.HING = window.HING || {}, {
   'The oversight route is one a named person could use tomorrow without asking you.':
     'Nigraani ka raasta aisa hai jise ek naamzad insaan kal, aapse poochhe bina, istemaal kar sakta hai.',
   'A colleague read the card and could explain the system’s limits back to you.':
-    'Kisi saathi ne card padha aur system ki seemaayein aapko waapas samjha paaya.',
+    'Kisi saathi ne card padha aur system ki limits aapko waapas samjha paaya.',
   'Tier your own system':
     'Apne system ko tier kijiye',
   'Write the system card':
@@ -635,7 +635,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Run the deletion drill':
     'Deletion drill chalaiye',
   'Design oversight that can be exercised':
-    'Aisi nigraani banaiye jise istemaal kiya ja sake',
+    'Aisi oversight banaiye jise istemaal kiya ja sake',
   'The vendor file':
     'Vendor file',
   'The spec that survives the model changing':
@@ -655,7 +655,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Write the findings page — what you now know breaks, with the evidence chapter for each.':
     'Findings page likhiye — ab aap jaante hain kya tootta hai, har ek ke saath uska sabooot wala chapter.',
   'The acceptance criteria are ranges with numbers, not adjectives.':
-    'Acceptance criteria numbers wali ranges hain, visheshan nahi.',
+    'Acceptance criteria numbers wali ranges hain, adjectives nahi.',
   'The migration rehearsal names the tests you would re-run and the threshold that blocks the change.':
     'Migration ki rehearsal un tests ka naam leti hai jo aap dobara chalayenge, aur woh threshold jo badlaav ko rok deti hai.',
   'Every failure state in the spec has a defined interface behaviour.':
@@ -671,13 +671,13 @@ Object.assign(window.HING = window.HING || {}, {
   'The findings page':
     'Findings page',
   'The tuning proposal, answered with evidence':
-    'Tuning ka prastaav, sabooot ke saath jawaab diya gaya',
+    'Tuning ka proposal, sabooot ke saath jawaab diya gaya',
   'Somebody will propose fine-tuning, and it will sound like the serious answer. Your job is to find out which of the four kinds of failure they actually have — and to cost the proposal honestly, including the part nobody puts on the slide.':
-    'Koi na koi fine-tuning ka prastaav rakhega, aur woh gambhir jawaab lagega. Aapka kaam yeh pata karna hai ki unke paas chaar me se kaunsi kism ki failure sach me hai — aur prastaav ka imaandaar kharch nikaalna, us hisse samet jo koi slide par nahi daalta.',
+    'Koi na koi fine-tuning ka proposal rakhega, aur woh gambhir jawaab lagega. Aapka kaam yeh pata karna hai ki unke paas chaar me se kaunsi kism ki failure sach me hai — aur proposal ka imaandaar kharch nikaalna, us hisse samet jo koi slide par nahi daalta.',
   'Collect twenty real failures from something you run, and sort them into the four kinds.':
     'Apni chalayi hui kisi cheez se bees asli failures jama kijiye, aur unhe chaar kismon me baantiye.',
   'Count them. The distribution usually settles the argument before any technical discussion starts.':
-    'Unhe giniye. Ginti hi aksar bahes ko kisi bhi technical charcha se pehle khatm kar deti hai.',
+    'Unhe giniye. Ginti hi aksar bahes ko kisi bhi technical discussion se pehle khatm kar deti hai.',
   'For the largest group, name the cheapest intervention that would address it, and why it is cheaper.':
     'Sabse bade group ke liye us sabse saste upaay ka naam lijiye jo use theek karta, aur bataiye ki woh sasta kyun hai.',
   'Cost the tuning proposal properly: data preparation, the training itself, evaluation, and the cost of doing it again every time the base model moves.':
@@ -695,7 +695,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Sort real failures into the four kinds':
     'Asli failures ko chaar kismon me baantiye',
   'Cost the tuning proposal honestly':
-    'Tuning ke prastaav ka imaandaar kharch nikaaliye',
+    'Tuning ke proposal ka imaandaar kharch nikaaliye',
   'Try switching down':
     'Neeche utar kar dekhiye',
   'The four states, designed':
