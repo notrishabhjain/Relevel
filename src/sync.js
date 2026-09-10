@@ -364,7 +364,7 @@ return {takeSessionBackup, backupInfo, restoreBackup,
         importText, snapshot, summarise,
         stats, usable, requestPersistence,
         /* entry points the app calls on boot and on the way out */
-        autoSync, pushOnExit, markSynced, isEmptyState,
+        autoSync, pushOnExit, markSynced, isEmptyState, takeSessionBackup,
         gh:{config:ghConfig, save:ghSave, clear:ghClear, verify:ghVerify,
             connect:ghConnect, find:ghFindGist,
             push:ghPush, pull:ghPull, remote:ghRemote, localChangedSinceSync}};

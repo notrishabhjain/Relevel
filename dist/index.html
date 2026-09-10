@@ -13117,7 +13117,7 @@ return {takeSessionBackup, backupInfo, restoreBackup,
         importText, snapshot, summarise,
         stats, usable, requestPersistence,
         /* entry points the app calls on boot and on the way out */
-        autoSync, pushOnExit, markSynced, isEmptyState,
+        autoSync, pushOnExit, markSynced, isEmptyState, takeSessionBackup,
         gh:{config:ghConfig, save:ghSave, clear:ghClear, verify:ghVerify,
             connect:ghConnect, find:ghFindGist,
             push:ghPush, pull:ghPull, remote:ghRemote, localChangedSinceSync}};
@@ -15590,10 +15590,41 @@ function pageProgress(){
   }
   w.appendChild(h('div',{style:'display:flex;gap:.5rem;margin-top:2rem;flex-wrap:wrap'},[
     h('button',{class:'primary',onclick:exportNotebook},'Export findings + notebook'),
-    h('button',{onclick:()=>{if(confirm('Reset ALL progress, notes, marks and predictions? This cannot be undone.')){
-      localStorage.removeItem(KEY);location.reload();}}},'Reset everything')]));
+    h('button',{onclick:()=>resetEverything()},'Reset everything')]));
   return w;
 }
+/* Reset used to clear localStorage and reload, and it did not work — twice
+   over.
+
+   Reloading fires pagehide and beforeunload, both of which call writeNow, and
+   writeNow wrote the still-populated in-memory state straight back into the
+   key that had just been removed. The page came back with everything intact.
+
+   And for anyone signed in it could not have worked anyway: on the next boot
+   autoSync sees an empty local against a full remote, treats that as a device
+   with nothing on it, and pulls the whole lot back down. Wiping the synced
+   copy is therefore part of resetting, not an extra. */
+async function resetEverything(){
+  const synced = !!(window.SYNC && window.SYNC.gh && window.SYNC.gh.config().gistId);
+  const msg = synced
+    ? 'Reset ALL progress, notes, marks and predictions — on this device and in your synced copy?\n\n' +
+      'Clearing the synced copy too is what stops it coming back on the next load. This cannot be undone.'
+    : 'Reset ALL progress, notes, marks and predictions? This cannot be undone.';
+  if(!confirm(msg)) return;
+  try{ if(window.SYNC && window.SYNC.takeSessionBackup) window.SYNC.takeSessionBackup(); }catch(e){}
+  /* replace() swaps the contents of the live state object, so the engine and
+     views keep working against the same reference, and writes the blank
+     through — which is what the reload will then read. */
+  window.STORE.replace({});
+  if(synced){
+    try{ await window.SYNC.gh.push(); }
+    catch(e){ alert('Cleared on this device, but the synced copy could not be reached:\n' +
+                    e.message + '\n\nIt will overwrite this device again on the next load ' +
+                    'unless you reset once more while online.'); }
+  }
+  location.reload();
+}
+
 function tile(l,v,cls,s){return h('div',{class:'stat'},[h('span',{class:'l',text:l}),
   h('span',{class:'v '+(cls||''),text:v}),s?h('span',{class:'s',text:s}):h('span')]);}
 
