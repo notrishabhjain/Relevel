@@ -25,6 +25,26 @@ function connectionString() {
          process.env.POSTGRES_PRISMA_URL || process.env.NEON_DATABASE_URL || '';
 }
 
+/* Which deployment this is. Vercel sets VERCEL_ENV on every deployment;
+   anything else (a local dev server, a test) counts as its own world and owns
+   whatever database it is pointed at. */
+export function role() {
+  return process.env.VERCEL_ENV || 'standalone';
+}
+/* Preview deployments are built from a branch but, unless they have been given
+   a database of their own, they connect to the same one production uses. That
+   makes every preview visit a write to the live course: the branch's chapters
+   would replace production's, and the next production request would replace
+   them right back. Nobody sees an error; the site just serves whichever
+   deployment was touched last.
+
+   So only production refreshes rows that already exist. A preview still
+   creates any kind that is missing, which is what an empty database of its own
+   needs, and it still reads and serves everything normally. */
+function ownsExistingRows() {
+  return role() !== 'preview';
+}
+
 function getPool() {
   if (pool) return pool;
   const cs = connectionString();
@@ -155,6 +175,7 @@ export function ready() {
           [kind, t, s, hash]);
         continue;
       }
+      if (!ownsExistingRows()) continue;                 // a preview never rewrites live content
       if (row.updated_by !== 'built-in') continue;       // a person owns this now
       if (row.defaults_hash === hash) continue;          // already the shipped copy
       /* A null hash means the row predates this column: it is still marked

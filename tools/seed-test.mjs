@@ -32,12 +32,18 @@ const pool = { async query(sql, params) {
 
 /* A cold instance: a module registry of its own, so ready() and the defaults
    cache both start from nothing, exactly as on a newly deployed build. */
-async function deploy(content) {
+async function deploy(content, env) {
   fs.writeFileSync(LIVE, JSON.stringify(content));
-  const db = await import('../api/_lib/db.js?v=' + Math.random());
-  db.setPool(pool);
-  await db.ready();
-  return db;
+  const was = process.env.VERCEL_ENV;
+  if (env === undefined) delete process.env.VERCEL_ENV; else process.env.VERCEL_ENV = env;
+  try {
+    const db = await import('../api/_lib/db.js?v=' + Math.random());
+    db.setPool(pool);
+    await db.ready();
+    return db;
+  } finally {
+    if (was === undefined) delete process.env.VERCEL_ENV; else process.env.VERCEL_ENV = was;
+  }
 }
 const row = async kind => (await pool.query(
   'SELECT kind, version, updated_by, data FROM content WHERE kind=$1', [kind])).rows[0];
@@ -89,6 +95,27 @@ try {
   await deploy(newer);
   ok(title(await row('chapters')) === 'EDITED IN THE PORTAL',
      'a published edit survives every deploy after it', title(await row('chapters')));
+
+  console.log('\n— a preview deployment never rewrites live content —');
+  /* A preview is built from a branch but, unless it has been given a database
+     of its own, it connects to production's. Left to seed, every preview visit
+     would swap the live chapters for the branch's and the next production
+     request would swap them back. */
+  const liveNow = await row('chapters');
+  const branch = JSON.parse(shipped);
+  branch.chapters = branch.chapters.map(c =>
+    c.id === 'ch1' ? { ...c, title: 'A BRANCH NOBODY MERGED' } : c);
+  await deploy(branch, 'preview');
+  const afterPreview = await row('chapters');
+  ok(title(afterPreview) !== 'A BRANCH NOBODY MERGED',
+     'a branch build does not replace what production serves', title(afterPreview));
+  ok(afterPreview.version === liveNow.version,
+     'and it does not even bump the version', afterPreview.version);
+  await pool.query("DELETE FROM content WHERE kind='processes'");
+  await deploy(branch, 'preview');
+  ok(!!(await row('processes')),
+     'but a preview against an empty database of its own still seeds what is missing');
+  await deploy(now, 'production');
 
   console.log('\n— resetting a kind hands it back to the build —');
   const r = await row('chapters');

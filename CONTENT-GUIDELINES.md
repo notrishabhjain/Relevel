@@ -61,7 +61,23 @@ Change the English and you own the translation in the same change.
 row nobody has published over. Publish something in the Studio and it is yours
 from then on — no deploy overwrites it, and the per-kind reset hands it back.
 
-`tools/seed-test.mjs` covers both halves. It exists because a deploy once
+Only the **production** deployment owns those rows. A Vercel preview is built
+from a branch but, unless it has been given a database of its own, it connects
+to the one production uses — so a preview left free to seed would swap the live
+chapters for the branch's, and the next production request would swap them
+back. Previews therefore read and serve normally, and create a kind that is
+missing, but never rewrite a row that already exists.
+
+The practical consequence: **a preview URL is not where you review a content
+change.** It shows whatever production's database holds. Content changes are
+reviewed after merge, or in the Studio.
+
+`/api/health` reports what the deployment is actually serving — the chapters
+row's version, who owns it, whether it matches the running build, and the shape
+of chapter 1. Open it in a browser when the site looks wrong; it needs no
+sign-in.
+
+`tools/seed-test.mjs` covers all of it. It exists because a deploy once
 silently failed to update a database that already had content, and the live app
 served chapters from months earlier while CI stayed green.
 
