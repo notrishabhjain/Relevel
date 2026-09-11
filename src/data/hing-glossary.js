@@ -7,8 +7,6 @@ Object.assign(window.HING = window.HING || {}, {
   /* Glossary definitions */
   'A prediction machine trained on large quantities of text. It continues text plausibly — it does not look things up.':
     'Ek prediction machine, jo bahut saare text par train hui hai. Yeh text ko aage plausibly badhaati hai — kuchh look up nahi karti.',
-  'Sending the envelope (a JSON request) to the model and receiving the reply.':
-    'Envelope (ek JSON request) model ko bhejna aur uska reply lena.',
   'A word-piece — the unit the model reads, writes, and bills in. Roughly ¾ of an English word.':
     'Ek word-piece — yahi unit model padhta hai, likhta hai, aur isi par bill banta hai. Lagbhag ek English word ka ¾.',
   'The maximum size of one envelope: everything in plus everything out.':
@@ -17,16 +15,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Poori amnesia — model ki taraf do requests ke beech kuchh bhi nahi bachta.',
   'The receipt: prompt tokens read in, completion tokens written out.':
     'Receipt: kitne prompt tokens andar padhe gaye, kitne completion tokens bahar likhe gaye.',
-  'The standing briefing page placed in every envelope before the user\'s message.':
-    'Woh standing briefing page jo har envelope mein user ke message se pehle rakha jaata hai.',
-  'The variety dial, 0 to ~1. Zero = consistent; high = creative.':
-    'Variety ka dial, 0 se ~1 tak. Zero = consistent; high = creative.',
-  'Confident generation of plausible-but-false content. The default behaviour at the edge of knowledge, not a glitch.':
-    'Plausible dikhne wala lekin galat content, poore confidence ke saath. Knowledge ke kinare par yeh normal behaviour hai, glitch nahi.',
   'Any mechanism reducing harmful or wrong outputs. The humblest is a sentence in the system prompt.':
     'Koi bhi tareeka jo harmful ya galat output kam kare. Sabse simple guardrail system prompt ka ek sentence hai.',
-  'One piece of a cut-up document — the unit stored and retrieved.':
-    'Kaate gaye document ka ek tukda — yahi unit store aur retrieve hota hai.',
   'The cutting itself — a design decision wearing the costume of a chore.':
     'Kaatna khud — ek design decision jo dikhta chhote se kaam jaisa hai.',
   'Cutting every N words regardless of meaning.':
@@ -45,8 +35,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Keyword aur semantic search dono saath chalaana, phir results ko merge karna.',
   'Take the best k results — the dial between recall and precision.':
     'Top k results lena — recall aur precision ke beech ka dial.',
-  'A text\'s address on the meaning map — a list of ~1024 numbers.':
-    'Meaning map par ek text ka pata — lagbhag 1024 numbers ki list.',
   'The mapmaker — reads text, outputs its address.':
     'Naksha banane wala — text padhta hai, uska pata deta hai.',
   'The one-line neighbour test — higher = closer in meaning.':
@@ -59,8 +47,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Aisa system jo embeddings store karta hai aur nearest neighbours tezi se dhoondhta hai.',
   'Grading the system against verified expectations — acceptance testing, aimed at AI.':
     'System ko verified expectations ke against jaanchna — AI ke liye acceptance testing.',
-  'The pre-verified answer key: questions, correct answers, locations.':
-    'Pehle se verify kiya hua answer key: sawaal, sahi jawaab, aur woh kahan likhe hain.',
   'Of what mattered, how much was fetched? Low = missed files.':
     'Jo zaroori tha usme se kitna aaya? Kam matlab files chhoot rahi hain.',
   'Of what was fetched, how much mattered? Low = buried desk.':
@@ -77,8 +63,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Har step par sirf woh tokens allowed jo schema ke hisaab se sahi hain. Isse invalid output impossible ho jaata hai, sirf kam-likely nahi.',
   'A field restricted to a fixed list of allowed values.':
     'Aisa field jisme sirf ek fixed list ke values chal sakte hain.',
-  'A legal, structured way to report "cannot determine" — the alternative to compelling invention.':
-    '"Pata nahi" bolne ka ek proper, structured tareeka — warna model ko banane par majboor karna padta hai.',
+  'What the product does when it should not answer: a structured way to report "cannot determine" instead of inventing something. Designed on purpose, or it happens by accident.':
+    'Jab product ko jawaab nahi dena chahiye tab woh kya karta hai: kuch bana dene ki jagah "pata nahi" bolne ka ek structured tareeka. Ya to soch-samajh kar banaya jaata hai, ya apne aap ho jaata hai.',
   'Parse → validate → on failure re-ask with the error attached.':
     'Parse karo → validate karo → fail ho to error ke saath dobara poochho.',
   'Describing callable functions so the model can request one instead of answering in prose.':
@@ -163,8 +149,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Yeh tay karna ki bolne wala kab ruk gaya — voice interfaces ki sabse badi samasya.',
   'Obligation level set by consequence of error, not by technology.':
     'Obligation ka level galti ke nateeje se tay hota hai, technology se nahi.',
-  'A structured document: purpose, data, evaluation, limitations, oversight.':
-    'Ek structured document: maqsad, data, evaluation, limitations, oversight.',
   'Where data came from, under what right, held where, for how long.':
     'Data kahan se aaya, kis haq se, kahan rakha hai, kitne samay ke liye.',
   'A specified, exercisable review point with authority to overrule.':
@@ -183,8 +167,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Woh program jo koi istemaal karta hai. Buttons wali cheez. App hi model se baat karta hai — model ka apna koi interface, memory ya insaan ka andaaza nahi hota.',
   'A way for one program to ask another program to do something, over the internet. You never see it. When this book says your app "calls the API", it means your app sent a message to the model provider’s computers and waited for a reply.':
     'Ek tareeka jisse ek program doosre program se internet par kaam karwaata hai. Aap ise kabhi dekhte nahi. Jab is course mein likha ho ki aapka app "API call karta hai", matlab aapke app ne model provider ke computers ko message bheja aur jawaab ka intezaar kiya.',
-  'One such request and its reply. One question in, one answer out — and one charge on the bill.':
-    'Ek aisi hi request aur uska reply. Ek sawaal andar, ek jawaab bahar — aur bill par ek charge.',
+  'One question in, one answer out — and one charge on the bill. Your app sends a request to the model\'s servers and waits for the reply.':
+    'Ek sawaal andar, ek jawaab bahar — aur bill par ek charge. Aapka app model ke servers ko ek request bhejta hai aur jawaab ka intezaar karta hai.',
   'A plain-text way of writing structured information so a program can read it: labels and values inside curly braces, like {"role": "user", "content": "hello"}. It is not code and not a database. It is the format the envelope is written in.':
     'Structured information likhne ka ek plain-text tareeka jise program padh sake: curly braces ke andar labels aur values, jaise {"role": "user", "content": "hello"}. Yeh na code hai na database. Envelope isi format mein likha jaata hai.',
   'The specific web address a program sends its request to. Different endpoints do different jobs — one for chat, one for embeddings.':
@@ -243,8 +227,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Jab behaviour samay ke saath badal jaaye bina kisi ke code chhue — model update ho gaya, corpus bada ho gaya, traffic badal gaya.',
   'A record of what the system did and why, kept so someone can check it afterwards.':
     'System ne kya kiya aur kyun, iska record, taaki baad mein koi jaanch sake.',
-  'What the product does when it should not answer. Designed on purpose, or it happens by accident.':
-    'Jab product ko jawaab nahi dena chahiye tab woh kya karta hai. Ya to soch-samajh kar banaya jaata hai, ya apne aap ho jaata hai.',
   'Asking which of two answers is better, instead of scoring one answer out of ten. More reliable, because people and models are better at comparing than at grading.':
     'Do jawaabon mein se behtar poochhna, ek jawaab ko das mein se number dene ki jagah. Yeh zyada bharosemand hai, kyunki log aur models dono compare karne mein grade karne se behtar hain.',
   'A grader’s habit of scoring longer answers higher, even when they say nothing extra.':
