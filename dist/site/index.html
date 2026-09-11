@@ -4039,16 +4039,16 @@ window.SETUP = {
 /* ---------- Glossary. `ch` is the chapter where you BUILT it. ---------- */
 window.GLOSSARY = [
   ['Model / LLM','A prediction machine trained on large quantities of text. It continues text plausibly — it does not look things up.',1],
-  ['API call','Sending the envelope (a JSON request) to the model and receiving the reply.',1],
+  ['API call','One question in, one answer out — and one charge on the bill. Your app sends a request to the model\'s servers and waits for the reply.',1],
   ['Token','A word-piece — the unit the model reads, writes, and bills in. Roughly ¾ of an English word.',1],
-  ['Context window','The maximum size of one envelope: everything in plus everything out.',1],
-  ['Stateless','Total amnesia — nothing survives between requests on the model\'s side.',1],
+  ['Context window','The maximum size of one envelope: everything in plus everything out.',1.5],
+  ['Stateless','Total amnesia — nothing survives between requests on the model\'s side.',1.5],
   ['usage','The receipt: prompt tokens read in, completion tokens written out.',1],
-  ['System prompt','The standing briefing page placed in every envelope before the user\'s message.',2],
-  ['Temperature','The variety dial, 0 to ~1. Zero = consistent; high = creative.',2],
-  ['Hallucination','Confident generation of plausible-but-false content. The default behaviour at the edge of knowledge, not a glitch.',2],
+  ['System prompt','A standing instruction sent invisibly with every message, saying how the AI should behave.',2],
+  ['Temperature','The dial deciding whether the AI always picks its most likely next guess, or sometimes takes a less likely one. Low means repeatable, not truthful.',2],
+  ['Hallucination','When the AI produces something fluent and invented because it had no evidence. Not a malfunction — the normal behaviour of a guessing machine with nothing to go on.',2],
   ['Guardrail','Any mechanism reducing harmful or wrong outputs. The humblest is a sentence in the system prompt.',2],
-  ['Chunk','One piece of a cut-up document — the unit stored and retrieved.',3],
+  ['Chunk','One piece of a document after it has been cut up. The unit that gets stored, searched and sent.',3],
   ['Chunking','The cutting itself — a design decision wearing the costume of a chore.',3],
   ['Fixed-size chunking','Cutting every N words regardless of meaning.',3],
   ['Semantic chunking','Cutting along the document\'s own structure.',3],
@@ -4058,14 +4058,14 @@ window.GLOSSARY = [
   ['Query','The incoming question.',4],
   ['Hybrid search','Keyword and semantic search run together, results merged.',4],
   ['Top-k','Take the best k results — the dial between recall and precision.',4],
-  ['Embedding','A text\'s address on the meaning map — a list of ~1024 numbers.',5],
+  ['Embedding','The position a piece of text gets on the meaning map, written as a list of numbers. Produced by a small AI whose only job is placing text.',5],
   ['Embedding model','The mapmaker — reads text, outputs its address.',5],
   ['Cosine similarity','The one-line neighbour test — higher = closer in meaning.',5],
   ['Semantic search','Retrieval by meaning-map addresses instead of spelling.',5],
   ['query vs. passage','The declaration of whether you are embedding a question or a document piece. Skip it and quality degrades silently.',5],
   ['Vector database','A system that stores embeddings and finds nearest neighbours fast.',5],
   ['Evaluation','Grading the system against verified expectations — acceptance testing, aimed at AI.',6],
-  ['Ground truth','The pre-verified answer key: questions, correct answers, locations.',6],
+  ['Ground truth','The answer key: questions with verified correct answers, written before you test anything. Without one, "is it good?" has no answer.',6],
   ['Recall','Of what mattered, how much was fetched? Low = missed files.',6],
   ['Precision','Of what was fetched, how much mattered? Low = buried desk.',6],
   ['Acceptance criteria','Pre-agreed numbers and behaviours required before go-live.',6],
@@ -4074,7 +4074,7 @@ window.GLOSSARY = [
   ['Structured output','Model output constrained to a schema rather than free prose.',8],
   ['Constrained decoding','Only schema-valid tokens permitted at each step. Makes invalid output impossible, not merely unlikely.',8],
   ['Enum','A field restricted to a fixed list of allowed values.',8],
-  ['Refusal path','A legal, structured way to report "cannot determine" — the alternative to compelling invention.',8],
+  ['Refusal path','What the product does when it should not answer: a structured way to report "cannot determine" instead of inventing something. Designed on purpose, or it happens by accident.',8],
   ['Validation loop','Parse → validate → on failure re-ask with the error attached.',8],
   ['Tool / function calling','Describing callable functions so the model can request one instead of answering in prose.',9],
   ['Agent loop','model → tool request → your code executes → result back → repeat.',9],
@@ -4104,9 +4104,9 @@ window.GLOSSARY = [
   ['Allowlist','A closed set of permitted destinations. Survives a successful injection.',13],
   ['LLM-as-judge','Using a model to grade outputs against a rubric.',14],
   ['Judge agreement','How often the judge concurs with human labels. The number that makes a judge usable.',14],
-  ['Error analysis','Reading real outputs and open-coding failures into a taxonomy. The highest-leverage activity in the field.',14],
-  ['Failure taxonomy','Your named categories of failure, derived from your own traffic.',14],
-  ['Regression suite','Cases that must pass before any release ships.',14],
+  ['Error analysis','Reading real outputs and open-coding failures into a taxonomy. The highest-leverage activity in the field.',14.5],
+  ['Failure taxonomy','Your named categories of failure, derived from your own traffic.',14.5],
+  ['Regression suite','Cases that must pass before any release ships.',14.5],
   ['Offline vs online eval','Against an answer key before release, versus user outcomes after.',14],
   ['Cost per query','The full loaded cost of one user-visible request, including retries and agent steps.',15],
   ['Cascade','Cheap model first, escalate on a failed check. The main production cost pattern.',15],
@@ -4117,7 +4117,7 @@ window.GLOSSARY = [
   ['Modality gap','Information present on the page but absent from its extracted text.',16],
   ['Turn detection','Deciding when a speaker has finished — the core problem of voice interfaces.',16],
   ['Risk tier','Obligation level set by consequence of error, not by technology.',17],
-  ['System card','A structured document: purpose, data, evaluation, limitations, oversight.',17],
+  ['System card','A short document describing what an AI feature is for, what it was measured at, where it fails, and who checks it.',17],
   ['Data lineage','Where data came from, under what right, held where, for how long.',17],
   ['Human oversight','A specified, exercisable review point with authority to overrule.',17],
   ['Shadow AI','Unsanctioned tool use by staff. A measurable reality, not a hypothetical.',17],
@@ -4131,7 +4131,6 @@ window.GLOSSARY = [
      reader who is new to the field stalls on them. */
   ['App','A program someone uses. The thing with buttons. It is the app that talks to the model — the model itself has no interface, no memory and no idea a person exists.',0],
   ['API','A way for one program to ask another program to do something, over the internet. You never see it. When this book says your app "calls the API", it means your app sent a message to the model provider’s computers and waited for a reply.',0],
-  ['API call','One such request and its reply. One question in, one answer out — and one charge on the bill.',0],
   ['JSON','A plain-text way of writing structured information so a program can read it: labels and values inside curly braces, like {"role": "user", "content": "hello"}. It is not code and not a database. It is the format the envelope is written in.',0],
   ['Endpoint','The specific web address a program sends its request to. Different endpoints do different jobs — one for chat, one for embeddings.',0],
   ['Payload','Whatever is inside the request or reply. The contents of the envelope, as opposed to the envelope itself.',0],
@@ -4151,17 +4150,10 @@ window.GLOSSARY = [
   ['Taxonomy','A named set of categories. In Chapter 14 it means your list of the ways your system fails, in your own words, with a count against each.',0],
   ['Prompt','The text your app sends to the model — the user’s question plus any standing instructions attached to it. Mostly ordinary English, not a magic phrase.',1],
   ['Vector','A list of numbers. When this course says a piece of text has a “position” on the meaning map, the position is a vector — a few hundred numbers describing where it sits. You never look at them.',5],
-  ['Embedding','The position a piece of text gets on the meaning map, written as a list of numbers. Produced by a small AI whose only job is placing text.',5],
-  ['Chunk','One piece of a document after it has been cut up. The unit that gets stored, searched and sent.',3],
-  ['System prompt','A standing instruction sent invisibly with every message, saying how the AI should behave.',2],
-  ['Temperature','The dial deciding whether the AI always picks its most likely next guess, or sometimes takes a less likely one. Low means repeatable, not truthful.',2],
-  ['Hallucination','When the AI produces something fluent and invented because it had no evidence. Not a malfunction — the normal behaviour of a guessing machine with nothing to go on.',2],
-  ['Ground truth','The answer key: questions with verified correct answers, written before you test anything. Without one, "is it good?" has no answer.',6],
   ['Fine-tuning','Continuing a model’s training on your own examples so it adopts a behaviour. Teaches shape and register, not durable facts. Chapter 19 is the decision.',19],
   ['Rubric','A scoring guide written in advance: what each level of quality looks like, so two people grading the same thing agree.',6],
   ['Drift','When behaviour changes over time without anyone changing the code — a model updated, a corpus grown, traffic shifted.',14],
   ['Audit trail','A record of what the system did and why, kept so someone can check it afterwards.',17],
-  ['Refusal path','What the product does when it should not answer. Designed on purpose, or it happens by accident.',20],
   ['Pairwise comparison','Asking which of two answers is better, instead of scoring one answer out of ten. More reliable, because people and models are better at comparing than at grading.',14],
   ['Verbosity bias','A grader’s habit of scoring longer answers higher, even when they say nothing extra.',14],
   ['Position bias','A grader’s habit of preferring whichever answer it was shown first.',14],
@@ -4171,7 +4163,6 @@ window.GLOSSARY = [
   ['OCR','Software that turns a picture of a page into text. It keeps the words and throws away the layout.',16],
   ['Layout','Where things sit on a page — rows, columns, boxes. It carries meaning that plain text loses.',16],
   ['Barge-in','A person talking over the system mid-sentence. Voice interfaces have to handle it; text ones never face it.',16],
-  ['System card','A short document describing what an AI feature is for, what it was measured at, where it fails, and who checks it.',17],
   ['Data residency','Which country your data is physically stored and processed in.',17],
   ['Subprocessor','Another company your provider passes your data to. Their risk becomes yours.',17],
   ['Eval threshold','The number a release has to hit before it ships. An acceptance criterion with a figure in it.',18],
@@ -5484,8 +5475,6 @@ Object.assign(window.HING = window.HING || {}, {
   /* Glossary definitions */
   'A prediction machine trained on large quantities of text. It continues text plausibly — it does not look things up.':
     'Ek prediction machine, jo bahut saare text par train hui hai. Yeh text ko aage plausibly badhaati hai — kuchh look up nahi karti.',
-  'Sending the envelope (a JSON request) to the model and receiving the reply.':
-    'Envelope (ek JSON request) model ko bhejna aur uska reply lena.',
   'A word-piece — the unit the model reads, writes, and bills in. Roughly ¾ of an English word.':
     'Ek word-piece — yahi unit model padhta hai, likhta hai, aur isi par bill banta hai. Lagbhag ek English word ka ¾.',
   'The maximum size of one envelope: everything in plus everything out.':
@@ -5494,16 +5483,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Poori amnesia — model ki taraf do requests ke beech kuchh bhi nahi bachta.',
   'The receipt: prompt tokens read in, completion tokens written out.':
     'Receipt: kitne prompt tokens andar padhe gaye, kitne completion tokens bahar likhe gaye.',
-  'The standing briefing page placed in every envelope before the user\'s message.':
-    'Woh standing briefing page jo har envelope mein user ke message se pehle rakha jaata hai.',
-  'The variety dial, 0 to ~1. Zero = consistent; high = creative.':
-    'Variety ka dial, 0 se ~1 tak. Zero = consistent; high = creative.',
-  'Confident generation of plausible-but-false content. The default behaviour at the edge of knowledge, not a glitch.':
-    'Plausible dikhne wala lekin galat content, poore confidence ke saath. Knowledge ke kinare par yeh normal behaviour hai, glitch nahi.',
   'Any mechanism reducing harmful or wrong outputs. The humblest is a sentence in the system prompt.':
     'Koi bhi tareeka jo harmful ya galat output kam kare. Sabse simple guardrail system prompt ka ek sentence hai.',
-  'One piece of a cut-up document — the unit stored and retrieved.':
-    'Kaate gaye document ka ek tukda — yahi unit store aur retrieve hota hai.',
   'The cutting itself — a design decision wearing the costume of a chore.':
     'Kaatna khud — ek design decision jo dikhta chhote se kaam jaisa hai.',
   'Cutting every N words regardless of meaning.':
@@ -5522,8 +5503,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Keyword aur semantic search dono saath chalaana, phir results ko merge karna.',
   'Take the best k results — the dial between recall and precision.':
     'Top k results lena — recall aur precision ke beech ka dial.',
-  'A text\'s address on the meaning map — a list of ~1024 numbers.':
-    'Meaning map par ek text ka pata — lagbhag 1024 numbers ki list.',
   'The mapmaker — reads text, outputs its address.':
     'Naksha banane wala — text padhta hai, uska pata deta hai.',
   'The one-line neighbour test — higher = closer in meaning.':
@@ -5536,8 +5515,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Aisa system jo embeddings store karta hai aur nearest neighbours tezi se dhoondhta hai.',
   'Grading the system against verified expectations — acceptance testing, aimed at AI.':
     'System ko verified expectations ke against jaanchna — AI ke liye acceptance testing.',
-  'The pre-verified answer key: questions, correct answers, locations.':
-    'Pehle se verify kiya hua answer key: sawaal, sahi jawaab, aur woh kahan likhe hain.',
   'Of what mattered, how much was fetched? Low = missed files.':
     'Jo zaroori tha usme se kitna aaya? Kam matlab files chhoot rahi hain.',
   'Of what was fetched, how much mattered? Low = buried desk.':
@@ -5554,8 +5531,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Har step par sirf woh tokens allowed jo schema ke hisaab se sahi hain. Isse invalid output impossible ho jaata hai, sirf kam-likely nahi.',
   'A field restricted to a fixed list of allowed values.':
     'Aisa field jisme sirf ek fixed list ke values chal sakte hain.',
-  'A legal, structured way to report "cannot determine" — the alternative to compelling invention.':
-    '"Pata nahi" bolne ka ek proper, structured tareeka — warna model ko banane par majboor karna padta hai.',
+  'What the product does when it should not answer: a structured way to report "cannot determine" instead of inventing something. Designed on purpose, or it happens by accident.':
+    'Jab product ko jawaab nahi dena chahiye tab woh kya karta hai: kuch bana dene ki jagah "pata nahi" bolne ka ek structured tareeka. Ya to soch-samajh kar banaya jaata hai, ya apne aap ho jaata hai.',
   'Parse → validate → on failure re-ask with the error attached.':
     'Parse karo → validate karo → fail ho to error ke saath dobara poochho.',
   'Describing callable functions so the model can request one instead of answering in prose.':
@@ -5640,8 +5617,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Yeh tay karna ki bolne wala kab ruk gaya — voice interfaces ki sabse badi samasya.',
   'Obligation level set by consequence of error, not by technology.':
     'Obligation ka level galti ke nateeje se tay hota hai, technology se nahi.',
-  'A structured document: purpose, data, evaluation, limitations, oversight.':
-    'Ek structured document: maqsad, data, evaluation, limitations, oversight.',
   'Where data came from, under what right, held where, for how long.':
     'Data kahan se aaya, kis haq se, kahan rakha hai, kitne samay ke liye.',
   'A specified, exercisable review point with authority to overrule.':
@@ -5660,8 +5635,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Woh program jo koi istemaal karta hai. Buttons wali cheez. App hi model se baat karta hai — model ka apna koi interface, memory ya insaan ka andaaza nahi hota.',
   'A way for one program to ask another program to do something, over the internet. You never see it. When this book says your app "calls the API", it means your app sent a message to the model provider’s computers and waited for a reply.':
     'Ek tareeka jisse ek program doosre program se internet par kaam karwaata hai. Aap ise kabhi dekhte nahi. Jab is course mein likha ho ki aapka app "API call karta hai", matlab aapke app ne model provider ke computers ko message bheja aur jawaab ka intezaar kiya.',
-  'One such request and its reply. One question in, one answer out — and one charge on the bill.':
-    'Ek aisi hi request aur uska reply. Ek sawaal andar, ek jawaab bahar — aur bill par ek charge.',
+  'One question in, one answer out — and one charge on the bill. Your app sends a request to the model\'s servers and waits for the reply.':
+    'Ek sawaal andar, ek jawaab bahar — aur bill par ek charge. Aapka app model ke servers ko ek request bhejta hai aur jawaab ka intezaar karta hai.',
   'A plain-text way of writing structured information so a program can read it: labels and values inside curly braces, like {"role": "user", "content": "hello"}. It is not code and not a database. It is the format the envelope is written in.':
     'Structured information likhne ka ek plain-text tareeka jise program padh sake: curly braces ke andar labels aur values, jaise {"role": "user", "content": "hello"}. Yeh na code hai na database. Envelope isi format mein likha jaata hai.',
   'The specific web address a program sends its request to. Different endpoints do different jobs — one for chat, one for embeddings.':
@@ -5720,8 +5695,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Jab behaviour samay ke saath badal jaaye bina kisi ke code chhue — model update ho gaya, corpus bada ho gaya, traffic badal gaya.',
   'A record of what the system did and why, kept so someone can check it afterwards.':
     'System ne kya kiya aur kyun, iska record, taaki baad mein koi jaanch sake.',
-  'What the product does when it should not answer. Designed on purpose, or it happens by accident.':
-    'Jab product ko jawaab nahi dena chahiye tab woh kya karta hai. Ya to soch-samajh kar banaya jaata hai, ya apne aap ho jaata hai.',
   'Asking which of two answers is better, instead of scoring one answer out of ten. More reliable, because people and models are better at comparing than at grading.':
     'Do jawaabon mein se behtar poochhna, ek jawaab ko das mein se number dene ki jagah. Yeh zyada bharosemand hai, kyunki log aur models dono compare karne mein grade karne se behtar hain.',
   'A grader’s habit of scoring longer answers higher, even when they say nothing extra.':
