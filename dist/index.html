@@ -15663,12 +15663,11 @@ function data(){
   const sec4=h('section',{class:'part'});
   sec4.appendChild(sectionHead2('05','Reset',''));
   sec4.appendChild(h('div',{style:'display:flex;gap:.5rem;flex-wrap:wrap'},[
-    h('button',{class:'red',onclick:()=>{
-      if(!confirm('Erase all progress in this browser? Download a backup first if you want to keep it.'))return;
-      if(!confirm('Really erase? This cannot be undone.'))return;
-      window.STORE.suspend();
-      localStorage.removeItem(window.STORE.KEY); location.reload();
-    }},'Erase all progress')]));
+    /* Calls the shared reset rather than clearing localStorage here. Clearing
+       only the device looks like it worked and then the account restores the
+       lot on the next load, which is exactly the bug this button had. */
+    h('button',{class:'red',onclick:()=>window.RESET_EVERYTHING()},
+      'Erase all progress')]));
   w.appendChild(sec4);
   return w;
 }
@@ -17214,6 +17213,11 @@ async function resetEverything(){
   }
   location.reload();
 }
+/* The one reset path. There used to be a second, inline on the data page, and
+   it still did the original localStorage.removeItem + reload — so fixing this
+   function fixed the button nobody presses while the one under the heading
+   "Reset" stayed broken. Anything offering to reset calls this. */
+window.RESET_EVERYTHING = resetEverything;
 
 function tile(l,v,cls,s){return h('div',{class:'stat'},[h('span',{class:'l',text:l}),
   h('span',{class:'v '+(cls||''),text:v}),s?h('span',{class:'s',text:s}):h('span')]);}

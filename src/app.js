@@ -1272,6 +1272,11 @@ async function resetEverything(){
   }
   location.reload();
 }
+/* The one reset path. There used to be a second, inline on the data page, and
+   it still did the original localStorage.removeItem + reload — so fixing this
+   function fixed the button nobody presses while the one under the heading
+   "Reset" stayed broken. Anything offering to reset calls this. */
+window.RESET_EVERYTHING = resetEverything;
 
 function tile(l,v,cls,s){return h('div',{class:'stat'},[h('span',{class:'l',text:l}),
   h('span',{class:'v '+(cls||''),text:v}),s?h('span',{class:'s',text:s}):h('span')]);}
