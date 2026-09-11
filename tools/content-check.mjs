@@ -203,6 +203,42 @@ wantWalk(SU.trouble);
 C.skills.forEach(x => { wantAdd(x.core); wantWalk(x.L); });
 (C.reference.LEVEL_NAMES || []).forEach(wantAdd);
 /* Labs live in code rather than in the content rows. */
+/* One reset path, and only one.
+
+   Reset was reported broken three times. Twice the report was right and I was
+   fixing the wrong thing: there were TWO reset buttons — "Reset everything" on
+   #/progress and the red "Erase all progress" under the heading "Reset" on
+   #/data — and the second one cleared localStorage and reloaded, which the
+   signed-in account then restored on the next boot. Fixing one and testing
+   that same one is how it survived two rounds.
+
+   So: anything that offers to reset routes through RESET_EVERYTHING, and
+   nothing outside the store itself deletes the progress key. */
+{
+  const srcs = fs.readdirSync(path.join(ROOT, 'src'))
+    .filter(f => f.endsWith('.js'))
+    .map(f => [f, fs.readFileSync(path.join(ROOT, 'src', f), 'utf8')]);
+  for (const [name, src] of srcs) {
+    if (name === 'app.js') continue;          // the store and the reset live here
+    if (/removeItem\s*\(\s*(window\.)?STORE\.KEY/.test(src))
+      fail(`src/${name} deletes the progress key directly — progress also lives` +
+           ' in the account and the gist, so clearing one store is the bug that' +
+           ' made reset look broken. Call window.RESET_EVERYTHING() instead.');
+  }
+  /* Every button that says it resets must actually call the shared reset. */
+  for (const [name, src] of srcs) {
+    const re = /h\('button'[\s\S]{0,400}?'((?:Erase|Reset)[^']*)'\)/g;
+    let m;
+    while ((m = re.exec(src))) {
+      const decl = m[0];
+      if (/Reset order/.test(decl)) continue;           // re-ordering a drill, not progress
+      if (!/RESET_EVERYTHING|resetEverything/.test(decl))
+        fail(`src/${name}: the "${m[1]}" button does not call the shared reset` +
+             ' — a second reset path is what left the real button broken twice.');
+    }
+  }
+}
+
 const labsSrc = fs.readFileSync(path.join(ROOT, 'src/labs.js'), 'utf8');
 for (const m of labsSrc.matchAll(/\b(?:title|note):\s*'((?:[^'\\]|\\.)*)'/g))
   wantAdd(m[1].replace(/\\(['\\])/g, '$1'));

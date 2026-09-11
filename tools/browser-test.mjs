@@ -750,6 +750,59 @@ ok(nextLoad.notes === 0 && nextLoad.att === 0,
    'and it is still empty on the load after that, which is where it came back before',
    'notes=' + nextLoad.notes + ' att=' + nextLoad.att);
 
+/* There were TWO reset buttons, and the tests above only ever pressed one.
+   "Reset everything" lives on #/progress; the red "Erase all progress" under
+   the heading "Reset" on #/data is the one a user actually finds — and it was
+   still running the original localStorage.removeItem + reload, which the
+   account restores on the next boot. Fixing one button and testing that same
+   button is how this survived two rounds of "it is still broken". */
+console.log('\n— the Reset button on the data page resets just as hard —');
+const rd = await newDevice(true, 'eraser');
+await boot(rd.page);
+await rd.page.evaluate(async () => {
+  const S = window.STORE.S;
+  S.notes['ch2:close'] = 'erased from the data page, must not survive';
+  S.att = (S.att || []).concat([{ id: 'I013', ok: 1, at: Date.now() }]);
+  window.STORE.flush();
+  await window.ACCOUNT.flush();
+});
+await rd.page.waitForTimeout(600);
+ok(await rd.page.evaluate(async () => {
+     const r = await window.REMOTE.pull();
+     return JSON.stringify(r.data || {}).includes('must not survive');
+   }), 'the note reached the server to begin with');
+
+await rd.page.evaluate(() => { window.confirm = () => true; });
+await boot(rd.page, '#/data');
+const foundBtn = await rd.page.evaluate(() => {
+  const b = [...document.querySelectorAll('button')]
+    .find(x => /Erase all progress/i.test(x.textContent));
+  if (!b) return false;
+  b.click(); return true;
+});
+ok(foundBtn, 'the data page still offers a reset button to press');
+await rd.page.waitForTimeout(2000);
+const erased = await rd.page.evaluate(async () => {
+  const r = await window.REMOTE.pull();
+  return {
+    server: JSON.stringify(r.data || {}).includes('must not survive'),
+    notes: Object.keys(window.STORE.S.notes || {}).length
+  };
+});
+ok(!erased.server, 'the server copy is emptied by the data-page reset too');
+ok(erased.notes === 0, 'and the device is empty after the reload',
+   'notes=' + erased.notes);
+/* the actual user-visible bug: it all came back on the next load */
+await boot(rd.page);
+await rd.page.waitForTimeout(1200);
+const rdNext = await rd.page.evaluate(() => ({
+  notes: Object.keys(window.STORE.S.notes || {}).length,
+  att: (window.STORE.S.att || []).length
+}));
+ok(rdNext.notes === 0 && rdNext.att === 0,
+   'and it is still empty on the load after that',
+   'notes=' + rdNext.notes + ' att=' + rdNext.att);
+
 await browser.close();
 console.log('\n' + pass + ' passed, ' + fail + ' failed\n');
 process.exit(fail ? 1 : 0);
