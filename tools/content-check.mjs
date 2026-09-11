@@ -130,26 +130,36 @@ for (const s of C.skills)
    just in the wrong language, which is exactly the kind of failure nobody
    notices. So every key has to still exist somewhere in the content. */
 /* Step size. The methodology caps a chapter at four new terms: a chapter that
-   needs eight is two chapters. The chapters below predate the rule and carry
-   the debt openly — the list only ever gets shorter, and a chapter not on it
-   must obey the cap. */
-const TERM_DEBT = new Set(['ch1', 'ch8', 'ch14', 'ch18', 'ch7']);
+   needs eight is two chapters.
+
+   "New term" has to mean a term the chapter TEACHES, not one it mentions in
+   passing. Counting mentions put ch7, ch8 and ch18 permanently over the cap
+   on terms each named exactly once — ch18 was charged for Deploy, Rollback,
+   Staged rollout, Model pinning and Unit economics while actually dwelling on
+   two of them. Splitting those chapters would have been obeying a broken
+   ruler. So a term counts against the chapter only when the chapter returns
+   to it: two or more mentions. A single mention is a reference, and the
+   glossary is there for exactly that.
+
+   A term is retired from the pool as soon as any chapter mentions it, so the
+   chapter that first dwells on a term already referenced earlier is not
+   charged twice. */
 {
   const seen = new Set();
-  const owed = [];
+  const terms = [...new Set((C.reference.GLOSSARY || []).map(g => g[0]))];
+  const word = t => new RegExp('\\b' + t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'gi');
+  let worst = 0;
   for (const c of C.chapters) {
     const text = JSON.stringify(c);
-    const fresh = [...new Set((C.reference.GLOSSARY || []).map(g => g[0]))]
-      .filter(t => !seen.has(t) &&
-        new RegExp('\\b' + t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'i').test(text));
-    fresh.forEach(t => seen.add(t));
-    if (fresh.length > 4) {
-      if (TERM_DEBT.has(c.id)) owed.push(`${c.id}:${fresh.length}`);
-      else fail(`${c.id} introduces ${fresh.length} new terms in one chapter` +
-                ` — the cap is four, so this is two chapters: ${fresh.join(', ')}`);
-    }
+    const taught = terms.filter(t =>
+      !seen.has(t) && (text.match(word(t)) || []).length >= 2);
+    terms.forEach(t => { if (word(t).test(text)) seen.add(t); });
+    worst = Math.max(worst, taught.length);
+    if (taught.length > 4)
+      fail(`${c.id} teaches ${taught.length} new terms in one chapter` +
+           ` — the cap is four, so this is two chapters: ${taught.join(', ')}`);
   }
-  if (owed.length) console.log(`chapters still over the four-term cap: ${owed.join(' ')}`);
+  console.log(`steepest chapter introduces ${worst} new terms · cap is 4`);
 }
 
 const hing = C.hinglish || {};

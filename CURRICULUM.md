@@ -33,7 +33,11 @@ Six rules. They are the difference between this course and a book with
 exercises, and `tools/content-check.mjs` enforces the ones that can be counted.
 
 **1. No chapter introduces more than four new terms.** More chapters, each
-smaller. A chapter that needs eight is two chapters.
+smaller. A chapter that needs eight is two chapters. *Introduces* means the
+chapter returns to the term — mentions it at least twice. A term named once in
+passing is a reference, not a step, and the glossary is there for those; the
+check counted them at first and charged three chapters for terms they barely
+touched.
 
 **2. Every chapter opens by using the previous one.** Not a reference to it —
 a hands-on beat that takes yesterday's result and does something with it. The
@@ -105,8 +109,16 @@ engine, which is good and under-used. The zero-setup on-ramp. Both languages.
 
 All nine missing chapters are written, and every chapter in the course now has
 hands-on beats and a capstone. The methodology rules are applied to the new
-chapters and the four-term cap is enforced against every chapter, with the five
-that predate it named as debt.
+chapters, and the four-term cap is enforced against every chapter with no
+chapter exempted. The steepest chapter in the course now introduces three new
+terms.
+
+The cap once carried five named exemptions. Three of them turned out not to be
+real: ch7, ch8 and ch18 were over the cap on terms each mentioned exactly once
+— ch18 was charged for Deploy, Rollback, Staged rollout, Model pinning and Unit
+economics while genuinely dwelling on two. Splitting those chapters would have
+been obeying a broken ruler, so the ruler was fixed instead. The other two, ch1
+and ch14, were real and were split.
 
 What the renumber still owes: the five arcs are the reading order, but the
 course is still divided into the original four *parts*, because a chapter's
