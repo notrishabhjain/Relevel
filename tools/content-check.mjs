@@ -167,18 +167,18 @@ const hing = C.hinglish || {};
 /* The other half: every line the reader can be shown needs a Hinglish version,
    or the page mixes the two languages. This walks the same shapes app.js does,
    so the two cannot disagree about what counts as translatable. */
-/* v4.1 of the workbook landed in English first, by request: the applied track
-   (Part V), its questions and exercises, the appendices, and the lab-first
-   `plan` block that now opens every rewritten chapter.
+/* Part V and the lab-first plan blocks arrived in English and have since been
+   translated, so nothing is exempt any more: every line of the course is
+   walked and must carry a Hinglish line.
 
-   The parity guard still has to protect the 3,000-odd lines that ARE
-   translated — a chapter edited in English silently stops showing its
-   translation, which reads as correct text in the wrong language and is
-   exactly the failure nobody reports. So the walk skips the declared
-   English-only content rather than the rule being softened: anything outside
-   this set must still be translated, and the count of what is awaiting
-   translation is printed every run so the debt stays visible. */
-const ENGLISH_ONLY_FROM_PART = 5;
+   The machinery below is kept rather than deleted because the next tranche of
+   new content will land the same way — English first, translated after. Set
+   ENGLISH_ONLY_FROM_PART to the first untranslated part number and the walk
+   skips it while still protecting everything before it; set it past the last
+   part, as now, and the guard covers the whole course. A part left exempt
+   prints its outstanding line count on every run, so the debt cannot go
+   quiet. */
+const ENGLISH_ONLY_FROM_PART = 99;
 const englishOnlyChapter = c => c.part >= ENGLISH_ONLY_FROM_PART;
 /* Which questions belong to the English-only track. An item row carries a
    difficulty, not a chapter — a chapter claims its questions through the
@@ -228,9 +228,9 @@ const prose = b => { if (!Array.isArray(b)) return;
   wantAdd(p.title); wantAdd(p.blurb);
 });
 C.chapters.forEach(c => {
-  /* The lab-first plan is English-only on every chapter, translated or not. */
-  if (c.plan) walkAwaiting(c.plan);
+  if (c.plan) { if (englishOnlyChapter(c)) walkAwaiting(c.plan); else wantWalk(c.plan); }
   if (englishOnlyChapter(c)) { walkAwaiting({ ...c, plan: undefined }); return; }
+  (c.words || []).forEach(([t, d]) => { wantAdd(t); wantAdd(d); });
   wantAdd(c.title); wantAdd(c.concept); wantWalk(c.takeaway);
   /* the capstone renders through the same translator the story does */
   if (c.capstone) { wantAdd(c.capstone.title); wantAdd(c.capstone.brief);
@@ -295,6 +295,15 @@ const labsSrc = fs.readFileSync(path.join(ROOT, 'src/labs.js'), 'utf8');
 for (const m of labsSrc.matchAll(/\b(?:title|note):\s*'((?:[^'\\]|\\.)*)'/g))
   wantAdd(m[1].replace(/\\(['\\])/g, '$1'));
 (C.reference.GLOSSARY || []).forEach(x => wantAdd(x[1]));
+/* The appendices and the parking-lot page render through the same translator
+   the chapters do. They were rendering in English with Hinglish on, which
+   looked exactly like the language switch being broken. */
+const AP = C.reference.APPENDIX || {};
+(AP.competency || []).forEach(wantAdd);
+(AP.review || []).forEach(wantAdd);
+(AP.columns || []).forEach(col => (Array.isArray(col) ? col.forEach(wantAdd) : wantAdd(col)));
+(AP.sources || []).forEach(([who, what]) => { wantAdd(who); wantAdd(what); });
+(C.reference.LATER || []).forEach(l => { wantAdd(l.t); wantAdd(l.note); });
 
 /* Hinglish is Hindi written in the Roman alphabet. A Devanagari character in
    a translation is always a typing slip — it has happened twice — and it reads
@@ -323,7 +332,7 @@ if (stale.length) {
 console.log(`${C.chapters.length} chapters · ${C.items.length} questions · ${C.skills.length} skills`);
 console.log(`${need.size - untranslated.length} of ${need.size} lines carry a Hinglish translation`);
 if (awaiting)
-  console.log(`${awaiting} line(s) of the v4.1 applied track are English-only, awaiting translation`);
+  console.log(`${awaiting} line(s) are English-only, awaiting translation`);
 console.log(`${checkpoints} checkpoints across the reading · ${asked.size} of the bank asked in a chapter`);
 if (silent.length) console.log(`chapters with no checkpoints yet: ${silent.map(c => c.num).join(', ')}`);
 if (problems.length) {

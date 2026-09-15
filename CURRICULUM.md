@@ -125,12 +125,23 @@ ground from Parts I–IV it starts from that result instead of re-teaching it:
 the depth pass, not a second first pass. That is methodology rule 5 doing its
 job rather than duplication.
 
-Part V is English-only for now, by request. The parity guard was not softened
-to allow it — the walk skips declared English-only content and still fails on
-any translated line that loses its translation, and the count awaiting
-translation prints on every run so the debt stays visible. A reader with
-Hinglish on is told, on the page, that the part has not been translated yet,
-because silence there looks exactly like the language switch being broken.
+Part V is now translated, and so are the plan blocks, the appendices and the
+parking-lot page — the last two had never been translated in any earlier pass
+and rendered in English with Hinglish on. Parity is 4,107 of 4,107 with no
+part exempt. The exemption machinery in `tools/content-check.mjs` is kept
+rather than deleted, because the next tranche will land the same way: set
+`ENGLISH_ONLY_FROM_PART` to the first untranslated part and the guard still
+protects everything before it, printing the outstanding count every run.
+
+The language itself was measured rather than judged. Part V came out of a
+professional workbook at **44.7 abstract nouns per 1,000 words** against
+20–27 for Parts I–IV, with every one of the eight densest chapters in it. The
+worst offenders were bare vocabulary dumps — twelve nouns in a row that teach
+nothing — which are now either a short grouped list of the questions behind
+them, or deleted in favour of the per-chapter *words you now own*. Each
+chapter opens on something ordinary instead: a restaurant kitchen, a bank
+teller, a plug socket, a railway timetable, a missing parcel. Part V now sits
+at **22**, inside the range of the rest of the book.
 
 The appendices live at `#/appendix`: the competency worksheet is interactive
 and persists, the design-review questions and the research basis are
