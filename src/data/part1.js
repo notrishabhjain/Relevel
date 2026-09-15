@@ -120,6 +120,13 @@ window.PART1 = [
   id:'ch1', num:1, part:1, minutes:45, labs:[],
   title:'What happens when your app asks an AI something',
   concept:'Three facts about the machine. You will prove each one on your own screen before the next one arrives.',
+  plan:{
+    first:"Open a notebook and make one model API call before reading anything. Predict first: is it retrieving an answer, or generating one?",
+    build:"Run a short question, then a long input, and save the raw response and the usage block from each.",
+    brk:"Ask for something it cannot know and watch what arrives anyway.",
+    artifact:"A one-page request anatomy: input → model → output → tokens → cost.",
+    gate:"Explain the request lifecycle without once saying “the AI just knows”."
+  },
   needs:[
     ['Colab open and your key working','The five minutes of setup, done once. Chapter 1 is the first thing that uses it.','setup'],
   ],
@@ -216,6 +223,13 @@ window.PART1 = [
   id:'ch15b', num:1.5, part:1, minutes:25, labs:['receipt'],
   title:'The ceiling, and the forgetting',
   concept:'Why a long conversation costs more than a short one — and why every “memory” feature you will be shown is a trick performed by the app.',
+  plan:{
+    first:"Predict how the input token count changes when a conversation's history is re-sent on every turn.",
+    build:"Make two independent calls, then a third that resends the history, and compare the receipts.",
+    brk:"Test whether anything survives between calls on the model's side. It does not — catch it red-handed.",
+    artifact:"The same request anatomy, now with context and statelessness on it.",
+    gate:"Explain why a fifty-message chat costs more per message than a two-message one."
+  },
   needs:[
     ['It guesses rather than looks up','So a confident tone is no evidence of anything.',1],
     ['You pay by the piece','And you have read the receipt yourself.',1],
@@ -302,6 +316,13 @@ window.PART1 = [
   id:'ch2', num:2, part:1, minutes:35, labs:['temperature'],
   title:'Telling it how to behave — and watching it lie',
   concept:'You get two controls over the AI. Neither of them makes it truthful.',
+  plan:{
+    first:"Ask about a policy or document you know to be fictional, and save exactly what it claims.",
+    build:"Compare three runs: no guardrail, a verification guardrail, and an evidence-only instruction. Then test low and high sampling.",
+    brk:"Apply social pressure to the guardrail that worked, then hand it the real source text.",
+    artifact:"A hallucination and guardrail test matrix.",
+    gate:"Explain why prompting influences behaviour but is not a security boundary."
+  },
   needs:[
     ['It guesses, it does not look up','There is no database behind it. It continues text plausibly.',1],
     ['It forgets between messages','Anything it should know has to be sent again every time.',1],
@@ -794,6 +815,13 @@ window.PART1 = [
   id:'ch3', num:3, part:1, minutes:20, labs:['chunker'],
   title:'Why documents have to be cut up',
   concept:'And why every way of cutting them loses something. Choosing which loss is your job.',
+  plan:{
+    first:"Pick a document of five to fifteen pages and write five questions. Cut it into three giant pieces and predict what retrieval will do.",
+    build:"Re-cut into fifteen or twenty fixed-size pieces, then into human-sized ones. Record completeness and boundary damage each time.",
+    brk:"Find a rule severed from its exception, or a procedure severed from its warning.",
+    artifact:"A three-round chunking experiment sheet, and the rule you derived from it.",
+    gate:"Defend your chunking strategy from the evidence, not from a default."
+  },
   needs:[
     ['There is a size limit','Everything sent in one go has to fit inside a ceiling.',1],
     ['You pay for everything you send','Per piece of text, every time.',1],
@@ -871,6 +899,13 @@ window.PART1 = [
   id:'ch4', num:4, part:1, minutes:20, labs:[],
   title:'Finding the right piece — the obvious way, and why it fails',
   concept:'Matching words is the first thing anyone tries. Watching exactly where it breaks is the point of this chapter.',
+  plan:{
+    first:"Using only Ctrl-F and your own eyes, rank your chapter 3 questions against your chunks. No common sense allowed.",
+    build:"Add a synonym question, a plain-language question, a second-language question, and one containing an exact identifier.",
+    brk:"Ask something the document genuinely cannot answer, and find the chunk that still ranks first.",
+    artifact:"A retrieval failure map.",
+    gate:"Explain why returning a result does not mean an answer exists."
+  },
   needs:[
     ['Documents get cut into pieces','You keep the pieces and send only the relevant few.',3],
     ['Some pieces stop making sense alone','“The aforesaid amount” has lost whatever it pointed at.',3],
@@ -958,6 +993,13 @@ window.PART1 = [
   id:'ch5', num:5, part:1, minutes:25, labs:['meaningmap'],
   title:'Matching meaning instead of words',
   concept:'How “when do I get my money back” finds a paragraph about disbursement. This is the idea the whole industry is built on.',
+  plan:{
+    first:"Predict which of your chapter 4 failures meaning-matching will cure, and which will survive it.",
+    build:"Embed the chunks and the questions, score them by nearness, retrieve the top few and compare the ranks against yesterday's.",
+    brk:"Test the exact-identifier question, the unanswerable one, and the second-language one.",
+    artifact:"A keyword-versus-semantic leaderboard, and your own hybrid-search hypothesis.",
+    gate:"Explain embeddings from the results you observed, not from the definition."
+  },
   needs:[
     ['A notebook and a key','This is the chapter where the map becomes real code, so the environment has to be ready.','setup'],
     ['Word matching is blind to meaning','Two sentences meaning the same thing with no shared words are strangers to it.',4],
@@ -1063,6 +1105,13 @@ window.PART1 = [
   id:'ch6', num:6, part:1, minutes:25, labs:['prdial'],
   title:'How to know if it actually works',
   concept:'Turning “the demo looked good” into a number you produced yourself. This is the chapter that makes you useful.',
+  plan:{
+    first:"Predict how many of ten questions will retrieve correctly at k=3. Write the number down and circle it.",
+    build:"Build ground truth including one unanswerable case, then measure at k=1, k=3 and k=8.",
+    brk:"Change one retrieval variable and re-run the whole set.",
+    artifact:"An evaluation table, acceptance criteria, and a release threshold.",
+    gate:"Defend why the quality bar depends on what the failure costs, not on the technology."
+  },
   needs:[
     ['Search never says “nothing here”','It hands back a ranked list whatever you ask it.',4],
     ['Meaning matching finds near neighbours','Which is not the same as finding the right answer.',5],
@@ -1158,6 +1207,13 @@ window.PART1 = [
   id:'ch7', num:7, part:1, minutes:25, labs:['redmap'],
   title:'The whole thing, assembled',
   concept:'Nothing new here. You have already built every piece — this is where it gets its name and you see where it breaks.',
+  plan:{
+    first:"Draw the complete system from memory and mark every failure you have personally watched happen.",
+    build:"Implement the smallest end-to-end retrieval answer function, with evidence ids and the usage block.",
+    brk:"Test a no-answer question, poisoned retrieved content, and the system with its instruction removed.",
+    artifact:"A red-marked architecture and failure map, plus a working demo.",
+    gate:"Explain every layer without hiding behind a framework."
+  },
   needs:[
     ['A notebook and a key','You assemble the whole machine today, so the environment has to be ready.','setup'],
     ['Documents get cut into pieces','Because of the size limit and the bill.',3],

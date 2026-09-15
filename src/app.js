@@ -17,11 +17,20 @@ const ROMAN=n=>['','I','II','III','IV','V','VI','VII','VIII','IX','X'][n]||Strin
 let CH=[];
 const byId={};
 let IDX=null;                     // command palette index, rebuilt with content
+/* Chapter number to chapter id. Links used to be built as 'ch'+num, which
+   only works while every id happens to be its number — it stopped being true
+   the moment chapters were split (1.5 lives at ch15b, not ch1.5) and stopped
+   again for Part V, where fourteen chapters carry the book's own ids. A link
+   to a chapter that does not exist renders as a chip that goes nowhere, and
+   nothing reports it. */
+const byNum={};
+const chHref=n=>byNum[n]?'#/ch/'+byNum[n].id:null;
 function bindContent(){
   CH = window.CHAPTERS ||
        (window.PARTS||[]).reduce((a,p)=>a.concat(window['PART'+p.n]||[]),[]);
   Object.keys(byId).forEach(k=>delete byId[k]);
-  CH.forEach(c=>byId[c.id]=c);
+  Object.keys(byNum).forEach(k=>delete byNum[k]);
+  CH.forEach(c=>{byId[c.id]=c; byNum[c.num]=c;});
   if(window.ENG && window.ENG.reinit) window.ENG.reinit();
   IDX=null;                       // command palette index is content-derived
 }
@@ -31,6 +40,7 @@ window.BIND_CONTENT=bindContent;
 /* ---------------- storage ---------------- */
 const KEY='aifz2027';
 const defaults=()=>({done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{},drill:{},
+  appx:{},     // appendix A competency worksheet: 'row:col' -> 1
   railmore:false,   // the rest of the instruments, out of the way until wanted
   cp:{},       // inline checkpoint answers: predictions and written activities
   sittings:[],theme:null,lang:null,   // null = English; 'hi' = Hinglish
@@ -512,6 +522,44 @@ function renderChapter(c){
     h('h1',{text:T(c.title)}),
     h('p',{class:'concept',text:T(c.concept)})]));
 
+  /* Part V arrived from the newest edition in English only, deliberately. On
+     those chapters a reader with Hinglish on gets English and no explanation,
+     which looks exactly like the switch being broken — the fault this course
+     has already been told about once. Say it plainly instead. */
+  if(S.lang==='hi' && c.part>=5){
+    w.appendChild(h('div',{class:'callout',style:'margin-bottom:1.2rem'},[
+      h('span',{class:'lbl',text:'This part is English-only for now'}),
+      h('p',{html:'Part V came from the newest edition of the workbook and has not been '+
+        'translated yet, so it reads in English whichever switch is set. Parts I to IV '+
+        'are unaffected. <a href="#/language">The Language page</a> shows what is covered.'})]));
+  }
+
+  /* The lab-first plan, from v4.1 of the workbook.
+
+     The edition's whole argument is that you open the notebook before you
+     read, not after: predict, build, break, keep the artifact, and know what
+     you have to be able to do before the chapter counts as finished. It sits
+     above the prerequisites because it is what you do first, and it is
+     deliberately terse — five lines you can act on, not a summary.
+
+     English-only for now, by request, so it is not part of the translated
+     walk. */
+  if(c.plan){
+    const rows=[['Lab first',c.plan.first],['Build',c.plan.build],
+                ['Break',c.plan.brk],['Artifact',c.plan.artifact],
+                ['Exit gate',c.plan.gate]].filter(r=>r[1]);
+    if(rows.length){
+      const pl=h('section',{class:'plan'});
+      pl.appendChild(h('div',{class:'planhead'},[
+        h('span',{class:'cplbl',text:'Before you read'}),
+        h('span',{class:'dim',style:'font-size:.78rem',
+          text:'open the notebook first — the reading is here to explain what you just watched happen'})]));
+      pl.appendChild(h('dl',{class:'planlist'},rows.flatMap(([k,v])=>[
+        h('dt',{text:k}),h('dd',{html:v})])));
+      w.appendChild(pl);
+    }
+  }
+
   /* What this chapter stands on.
 
      A word you do not know announces itself; a concept you missed three
@@ -544,7 +592,7 @@ function renderChapter(c){
     let m;
     while((m=re.exec(joined))!==null)
       (m[0].match(/\d+/g)||[]).forEach(n=>{const v=+n;
-        if(v<c.num && !declared.has(v) && byId['ch'+v]) found.add(v);});
+        if(v<c.num && !declared.has(v) && byNum[v]) found.add(v);});
     return [...found].sort((a,b)=>a-b);
   })();
 
@@ -562,12 +610,12 @@ function renderChapter(c){
           /* A chapter can also stand on the setup, which is not a chapter. */
           ch==='setup'
             ? h('a',{class:'chip',href:'#/setup',text:'Setup →'})
-            : h('a',{class:'chip',href:'#/ch/ch'+ch,text:'Chapter '+ch+' →'})]))));
+            : h('a',{class:'chip',href:chHref(ch)||'#/map',text:'Chapter '+ch+' →'})]))));
     if(alsoRefs.length){
       const row=h('div',{class:'alsoref'},[
         h('span',{class:'needwhy',text:'It also refers back to '})]);
       alsoRefs.forEach((n,i)=>{
-        row.appendChild(h('a',{href:'#/ch/ch'+n,text:'Chapter '+n}));
+        row.appendChild(h('a',{href:chHref(n)||'#/map',text:'Chapter '+n}));
         if(i<alsoRefs.length-2) row.appendChild(document.createTextNode(', '));
         else if(i===alsoRefs.length-2) row.appendChild(document.createTextNode(' and '));
       });
@@ -1020,7 +1068,7 @@ function pageLater(){
         h('span',{class:'mc',text:l.resolved?'Ch '+l.resolved:'—'}),
         h('span',{class:'mt'},[h('strong',{text:l.t}),
           h('div',{class:'dim',style:'font-size:.8rem;margin-top:.2rem',text:l.note})]),
-        l.resolved?h('a',{class:'chip',href:'#/ch/ch'+l.resolved,text:'Ch '+l.resolved}):null]))));
+        l.resolved?h('a',{class:'chip',href:chHref(l.resolved)||'#/map',text:'Ch '+l.resolved}):null]))));
     return sec;};
   const g1=group('Collected — you did the chapter',unlocked,'got');if(g1)w.appendChild(g1);
   const g2=group('Unlocks later in this book',pending);if(g2)w.appendChild(g2);
@@ -1028,6 +1076,79 @@ function pageLater(){
   w.appendChild(h('div',{class:'callout',style:'margin-top:2rem'},[
     h('span',{class:'lbl',text:'The rough-notes law'}),
     h('p',{html:'Five bullets maximum. No formatting. No headings. No polish. If a note looks presentable, it consumed time and energy that belonged to the next experiment. For professionals whose working life rewards polished output, this is the hardest rule in the book — and the most protective.'})]));
+  return w;
+}
+
+/* ---------------- the v4.1 appendices ----------------
+
+   Appendix A is the only one that is worth making interactive: it is a
+   worksheet, and the workbook is explicit that a row gets ticked when you can
+   demonstrate it, not when you have watched a video about it. So the four
+   columns are real checkboxes and the state persists like everything else.
+
+   B and C are reference. They sit on the same page because a design review is
+   where you would want both: the questions to ask, and where the claims in
+   this course came from. English-only for now, by request. */
+function pageAppendix(){
+  const A=window.APPENDIX||{};
+  const rows=A.competency||[], cols=A.columns||[];
+  const w=h('div',{class:'wrap-wide'});
+  w.appendChild(h('header',{class:'phead'},[
+    h('div',{class:'eyebrow'},[h('span',{text:'Appendices'})]),
+    h('h1',{text:'The worksheet, the questions, and the sources'}),
+    h('p',{html:'Three things the workbook keeps at the back. The worksheet is your running dashboard \u2014 mark a row only when you could demonstrate it on demand, not when you have read about it. The questions are what to take into a design review, yours or somebody else\u2019s. The sources are where the applied chapters came from, so you can check a claim rather than take it.'})]));
+
+  S.appx = S.appx || {};
+  const total=rows.length*cols.length;
+  const count=()=>rows.reduce((n,_,i)=>n+cols.reduce((m,__,j)=>m+(S.appx[i+':'+j]?1:0),0),0);
+  const tally=h('span',{class:'v',text:count()+' / '+total});
+
+  const secA=h('section',{class:'part'});
+  secA.appendChild(sectionHead('A','Master competency worksheet'));
+  secA.appendChild(h('div',{class:'stat',style:'margin-bottom:.9rem'},[
+    h('span',{class:'l',text:'demonstrable'}),tally,
+    h('span',{class:'s',text:'four ways to own one idea: explain it, build it, measure it, defend it'})]));
+  const t=h('table',{class:'cmptable'});
+  t.appendChild(h('thead',{},h('tr',{},[h('th',{text:'Competency'})]
+    .concat(cols.map(c=>h('th',{class:'cmpcol'},[
+      h('span',{class:'cmplong',text:c[0]}),
+      h('span',{class:'cmpshort',text:c[1]})]))))));
+  t.appendChild(h('tbody',{},rows.map((r,i)=>h('tr',{},[h('td',{text:r})]
+    .concat(cols.map((c,j)=>{
+      const key=i+':'+j;
+      const box=h('input',{type:'checkbox',
+        'aria-label':r+' \u2014 '+c[0],
+        onchange:e=>{ if(e.target.checked) S.appx[key]=1; else delete S.appx[key];
+          save(); tally.textContent=count()+' / '+total; }});
+      if(S.appx[key]) box.checked=true;
+      return h('td',{class:'cmpcell'},box);
+    }))))));
+  secA.appendChild(h('div',{class:'tblwrap'},t));
+  w.appendChild(secA);
+
+  const secB=h('section',{class:'part'});
+  secB.appendChild(sectionHead('B','AI system design review questions'));
+  secB.appendChild(h('p',{class:'prose',style:'font-size:1rem',
+    html:'Fifteen questions. You do not need all of them in every review \u2014 but any one of them that cannot be answered is a finding, and several of them have stopped systems that demonstrated beautifully.'}));
+  secB.appendChild(h('ol',{class:'num'},(A.review||[]).map(q=>h('li',{text:q}))));
+  w.appendChild(secB);
+
+  const secC=h('section',{class:'part'});
+  secC.appendChild(sectionHead('C','Research basis'));
+  secC.appendChild(h('p',{class:'prose',style:'font-size:1rem',
+    html:'The applied chapters were shaped from current public material. Treat this as a living reference set rather than a bibliography: provider APIs and model capabilities change faster than books do, and a source that was current when this was written may not be when you read it.'}));
+  secC.appendChild(h('div',{class:'marks'},(A.sources||[]).map(([who,what,url])=>
+    h('div',{class:'mark'},[
+      h('span',{class:'mt'},[h('strong',{text:who}),
+        h('div',{class:'dim',style:'font-size:.8rem;margin-top:.2rem',text:what})]),
+      h('a',{class:'chip',href:url,target:'_blank',rel:'noopener noreferrer',text:'open \u2197'})]))));
+  w.appendChild(secC);
+
+  const secD=h('section',{class:'part'});
+  secD.appendChild(sectionHead('D','The parking lot'));
+  secD.appendChild(h('p',{class:'prose',style:'font-size:1rem',
+    html:'Appendix D lives on the <a href="#/later">Not yet</a> page with everything else you have deliberately parked, because splitting one parking lot across two pages defeats the purpose of having one.'}));
+  w.appendChild(secD);
   return w;
 }
 
@@ -1077,7 +1198,7 @@ function pageGlossary(){
         h('th',{text:'Built in'})])));
       t.appendChild(h('tbody',{},items.map(([term,d,ch])=>h('tr',{},[
         h('td',{},h('strong',{text:term})),h('td',{html:T(d)}),
-        h('td',{},h('a',{class:'chip',href:'#/ch/ch'+ch,text:'Ch '+ch}))]))));
+        h('td',{},h('a',{class:'chip',href:chHref(ch)||'#/map',text:'Ch '+ch}))]))));
       body.appendChild(h('div',{class:'tblwrap'},t));
     }
   }
@@ -1361,6 +1482,7 @@ function renderRail(){
       ['#/ledger','∆','My predictions vs reality'],
       ['#/card','▣','Governance doc builder'],
       ['#/vendor','⌗','Questions to ask vendors'],
+      ['#/appendix','≡','Worksheet, review questions, sources'],
       ['#/notebook','✐','My notes'],
       ['#/later','⋯','Topics I parked'],
       ['#/language','अ','Language — English or Hinglish'],
@@ -1534,12 +1656,13 @@ const ROUTES={'':()=>V().dashboard(),'library':pageHome,
   'setup':pageSetup,'install':pageInstall,'language':pageLanguage,
   'notebook':pageNotebook,'ledger':pageLedger,
   'later':pageLater,'glossary':pageGlossary,'vendor':pageVendor,'map':pageMap,'card':pageCard,
+  'appendix':pageAppendix,
   'progress':pageProgress,'labs':pageLabs,'data':()=>V().data(),
   'studio':()=>window.STUDIO.studio([])};
 const CRUMB={'':'Dashboard','library':'Library','skills':'Skill Matrix','analytics':'Analytics',
   'exercises':'Exercises','processes':'Processes','practice':'Practice','skill':'Skill',
   'data':'Progress & Backup','studio':'Content Studio','install':'Install as an app',
-  'language':'Language','setup':'Setup'};
+  'language':'Language','setup':'Setup','appendix':'Appendices'};
 
 function route(){
   const hash=location.hash.replace(/^#\/?/,'').split('#')[0];
@@ -1610,8 +1733,10 @@ function buildIndex(){
     {k:'page',t:'Where You Are',h:'#/progress'});
   CH.forEach(c=>{
     idx.push({k:'ch '+c.num,t:T(c.title),d:T(c.concept),h:'#/ch/'+c.id});
-    c.words.forEach(([t,d])=>idx.push({k:'term',t,d:'Ch '+c.num+' · '+d.replace(/<[^>]+>/g,''),h:'#/ch/'+c.id}));
-    c.check.forEach(q=>idx.push({k:'question',t:q[0],d:'Ch '+c.num,h:'#/ch/'+c.id}));
+    /* Guarded: a chapter is allowed to carry neither, and an unguarded read
+       here took down the whole command palette rather than that one chapter. */
+    (c.words||[]).forEach(([t,d])=>idx.push({k:'term',t,d:'Ch '+c.num+' · '+d.replace(/<[^>]+>/g,''),h:'#/ch/'+c.id}));
+    (c.check||[]).forEach(q=>idx.push({k:'question',t:q[0],d:'Ch '+c.num,h:'#/ch/'+c.id}));
   });
   window.VENDOR.forEach(v=>idx.push({k:'claim',t:v.claim,d:'Ch '+v.ch,h:'#/vendor'}));
   window.REDMARKS.forEach(r=>idx.push({k:'failure',t:r.t,d:'Ch '+r.ch,h:'#/map'}));

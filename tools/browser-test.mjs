@@ -803,6 +803,87 @@ ok(rdNext.notes === 0 && rdNext.att === 0,
    'and it is still empty on the load after that',
    'notes=' + rdNext.notes + ' att=' + rdNext.att);
 
+/* v4.1 of the workbook: the lab-first plan on every rewritten chapter, the
+   applied track appended as Part V, and the appendices. Content this large
+   arriving at once is exactly the case where "it built, so it works" has
+   already been wrong twice in this repo. */
+console.log('\n— the lab-first plan opens a chapter —');
+const v4 = await newDevice(false);
+await boot(v4.page, '#/ch/ch3');
+const planCh3 = await v4.page.evaluate(() => ({
+  labels: [...document.querySelectorAll('.planlist dt')].map(n => n.textContent),
+  first: (document.querySelector('.planlist dd') || {}).textContent || '',
+  beforeNeeds: (() => {
+    const pl = document.querySelector('.plan'), nd = document.querySelector('.needs');
+    return !!(pl && nd) && !!(pl.compareDocumentPosition(nd) & Node.DOCUMENT_POSITION_FOLLOWING);
+  })()
+}));
+ok(planCh3.labels.join('|') === 'Lab first|Build|Break|Artifact|Exit gate',
+   'all five lab-first rows render, in order', planCh3.labels.join('|'));
+ok(/Pick a document/.test(planCh3.first),
+   'and the first row is the instruction to open the notebook', planCh3.first.slice(0, 50));
+ok(planCh3.beforeNeeds,
+   'it sits above the prerequisites, because it is what you do first');
+
+console.log('\n— Part V is reachable and complete —');
+const partV = await v4.page.evaluate(() =>
+  window.CHAPTERS.filter(c => c.part === 5).map(c => c.id));
+ok(partV.length === 14, 'all fourteen applied-track chapters are present', String(partV.length));
+let missingPlan = 0, missingCap = 0, missingWords = 0;
+for (const id of ['ch8f', 'ch13a', 'ch18s', 'ch21cap']) {
+  await boot(v4.page, '#/ch/' + id);
+  const r = await v4.page.evaluate(() => ({
+    plan: document.querySelectorAll('.planlist dt').length,
+    cap: /capstone/i.test(document.body.innerText),
+    words: document.querySelectorAll('.words .word').length,
+    /* a chapter link that resolves nowhere renders as a chip to the map */
+    dead: [...document.querySelectorAll('.needs a.chip, .alsoref a')]
+            .filter(a => a.getAttribute('href') === '#/map').length,
+    overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth
+  }));
+  if (r.plan !== 5) missingPlan++;
+  if (!r.cap) missingCap++;
+  if (!r.words) missingWords++;
+  ok(r.dead === 0, id + ' has no chapter link that goes nowhere', 'dead=' + r.dead);
+}
+ok(!missingPlan, 'every sampled applied chapter carries its lab-first plan');
+ok(!missingCap, 'and a capstone — the thing a split dropped silently last time');
+ok(!missingWords, 'and the words it hands you');
+
+console.log('\n— the appendices —');
+await boot(v4.page, '#/appendix');
+const appx = await v4.page.evaluate(() => ({
+  rows: document.querySelectorAll('.cmptable tbody tr').length,
+  boxes: document.querySelectorAll('.cmptable input[type=checkbox]').length,
+  questions: document.querySelectorAll('ol.num li').length,
+  sources: document.querySelectorAll('.marks .mark').length
+}));
+ok(appx.rows === 19 && appx.boxes === 76,
+   'the competency worksheet is nineteen rows by four columns',
+   'rows=' + appx.rows + ' boxes=' + appx.boxes);
+ok(appx.questions === 15, 'the fifteen design-review questions are there', String(appx.questions));
+ok(appx.sources === 13, 'and the research basis is listed', String(appx.sources));
+await v4.page.click('.cmptable tbody tr:first-child input[type=checkbox]');
+await v4.page.waitForTimeout(350);
+await revisit(v4.page);
+ok(await v4.page.$eval('.cmptable tbody tr:first-child input[type=checkbox]', e => e.checked),
+   'a ticked row survives a reload, because a worksheet that forgets is not one');
+
+console.log('\n— English-only is stated, not left to look broken —');
+await v4.page.evaluate(() => { window.STORE.S.lang = 'hi'; window.STORE.flush(); });
+await boot(v4.page, '#/ch/ch13a');
+ok((await mainText(v4.page)).includes('English-only for now'),
+   'an applied chapter says so when Hinglish is on');
+await boot(v4.page, '#/ch/ch3');
+const ch3hi = await mainText(v4.page);
+ok(!ch3hi.includes('English-only for now'),
+   'a translated chapter does not claim it');
+ok(/Shuru|kar|hai/.test(ch3hi), 'and still reads in Hinglish');
+await v4.page.evaluate(() => { window.STORE.S.lang = null; window.STORE.flush(); });
+await boot(v4.page, '#/ch/ch13a');
+ok(!(await mainText(v4.page)).includes('English-only for now'),
+   'and the notice is absent when English is the chosen language');
+
 await browser.close();
 console.log('\n' + pass + ' passed, ' + fail + ' failed\n');
 process.exit(fail ? 1 : 0);
