@@ -285,7 +285,20 @@ window.LATER = [
   {t:'Synthetic data generation for evals', resolved:null, note:'Still parked. Tempting shortcut past Chapter 14\'s error analysis; it is not one.'},
   {t:'Orchestration frameworks — LangChain, LlamaIndex and rivals', resolved:null, note:'Still parked, deliberately. Open their docs and ask, pain by pain: which of my hand-felt problems is this abstraction curing? That is framework literacy without framework dependency.'},
   {t:'Formal verification and guaranteed-safe agents', resolved:null, note:'Still parked. Research-stage; worth watching exactly because Chapter 13 has no complete fix.'},
-  {t:'“AI strategy” think-pieces and trend articles', resolved:null, note:'Permanently parked.'}
+  {t:'“AI strategy” think-pieces and trend articles', resolved:null, note:'Permanently parked.'},
+
+  /* Appendix D of v4.1 — the parking lot for the applied track. These have no
+     resolving chapter on purpose: they stay parked until a project you are
+     actually building has a concrete reason to need one. */
+  {t:'Deep transformer internals', note:'Attention as \u201cwhich parts of the context matter right now\u201d is enough to hold an architecture conversation. The rest is for when you are training models, not shipping them.'},
+  {t:'Distributed GPU training and custom CUDA', note:'A different profession. Interesting, and not on the path between you and a working system.'},
+  {t:'Advanced LoRA and PEFT research', note:'Chapter 22 gives you the fine-tuning boundary. Everything past that boundary waits until you have a stable, repeated behaviour worth changing weights for.'},
+  {t:'Benchmark archaeology', note:'Chasing which model topped which leaderboard in which month. Your ten cases beat all of it for your decision.'},
+  {t:'Vector database vendor internals', note:'You built retrieval with arithmetic. Product internals matter when scale or filtering forces the question, and not before.'},
+  {t:'Advanced knowledge graphs', note:'A real technique with a real cost. Park it until retrieval measured on your own ground truth has actually plateaued.'},
+  {t:'Custom rerankers', note:'Chapter 24 asks whether an off-the-shelf reranker earned its latency. Training your own is two steps past that answer.'},
+  {t:'Advanced multi-agent research', note:'Chapter 26 says start with one model and explicit tools. This is where you look only after evaluation shows the simpler design cannot get there.'},
+  {t:'Training a model from scratch, and reproducing frontier papers', note:'Neither is on the route to an applied system you can defend. Both are excellent reasons to never ship one.'}
 ];
 
 /* ---------- Red-Mark Map: the pipeline and its known bleeding points ---------- */
@@ -340,8 +353,82 @@ window.PARTS = [
   {n:2, title:'What real systems add', blurb:'Getting answers in a fixed shape, letting it act, the size limit, paying it to think first, what the user does while waiting, better search — and the attack that has no fix.'},
   {n:3, title:'Measuring it, costing it, shipping it', blurb:'Checking quality when there is too much of it to read, what it really costs, documents that are pictures, what you are allowed to send at all, the paperwork, and the spec.'},
   {n:4, title:'The decisions that stay yours',
-    blurb:'Whether to build it or buy it, what to change when it is not good enough, what the user sees when it is wrong — and how to prove any of it helped. None of these is an engineering decision.'}
+    blurb:'Whether to build it or buy it, what to change when it is not good enough, what the user sees when it is wrong — and how to prove any of it helped. None of these is an engineering decision.'},
+  /* The v4.1 workbook's chapters 8–21, appended rather than merged. Where a
+     chapter here revisits ground from Parts I–IV it starts from that result
+     instead of re-teaching it — the depth pass, not a second first pass. */
+  {n:5, title:'The applied track — production depth',
+    blurb:'The engineering floor under all of it, then model choice on evidence, context as a designed budget, retrieval as a real system, tools and agents with the steering wheel kept, a protocol boundary, input that is not text, evaluation as a release gate, running it in production, security you can prove, the specification, the architecture — and one capstone system you can defend.'}
 ];
+
+/* ---------- The v4.1 appendices ----------
+
+   Appendix A is a worksheet, so it is stored as rows and rendered as one you
+   can actually tick. Appendix B is the question list to take into a design
+   review. Appendix C is the source set the expanded chapters were built from
+   — kept because "reviewed in September 2026" is a claim a reader is entitled
+   to check, and because provider APIs move faster than books do.
+   Appendix D is merged into the LATER page below rather than duplicated. */
+window.APPENDIX = {
+  competency: [
+    'LLM / API fundamentals',
+    'Tokens, context and statelessness',
+    'Prompt and context engineering',
+    'Structured outputs',
+    'RAG and retrieval',
+    'Embeddings and vector search',
+    'Hybrid search and reranking',
+    'Tool calling',
+    'Agents and orchestration',
+    'MCP and interoperability',
+    'Multimodal and voice',
+    'Evaluation and LLM-as-judge',
+    'Observability and LLMOps',
+    'Security and red teaming',
+    'Governance and AI risk',
+    'AI PRD and acceptance criteria',
+    'Cloud architecture and deployment',
+    'Vendor strategy and total cost of ownership',
+    'Portfolio evidence'
+  ],
+  review: [
+    'What is the simplest architecture that can meet the acceptance criteria?',
+    'What does the model know, versus what must be retrieved or supplied?',
+    'What is the exact context going into the model?',
+    'Which failures are acceptable, and which are fatal?',
+    'What is the ground truth, and how is it maintained?',
+    'What happens when there is no answer?',
+    'What happens when the user asks in another language?',
+    'Which tools can the AI call, and with what permissions?',
+    'Where is human confirmation required?',
+    'How will prompt, model and index changes be regression-tested?',
+    'How will latency and cost behave at ten times and a hundred times the traffic?',
+    'How do we roll back the model, the prompt, the tool schema or the index?',
+    'What evidence proves the vendor claim?',
+    'How do we protect sensitive data in prompts, in retrieval and in traces?',
+    'What is the exit plan if the model or provider changes its terms or its quality?'
+  ],
+  sources: [
+    ['OpenAI developer documentation','Model guidance, evaluation and retrieval APIs','https://developers.openai.com/api/docs/'],
+    ['Anthropic','Prompting practice and agentic systems','https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview'],
+    ['Hugging Face','The agents course, and the think-act-observe loop','https://huggingface.co/learn/agents-course/unit0/introduction'],
+    ['Microsoft Azure Architecture Center','AI technology overview and context engineering','https://learn.microsoft.com/en-us/azure/architecture/ai-ml/ai-overview'],
+    ['Microsoft Azure Architecture Center','RAG design and evaluation','https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide'],
+    ['Microsoft Azure Architecture Center','Agentic RAG','https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-agentic'],
+    ['Microsoft Azure Architecture Center','Agent orchestration patterns','https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns'],
+    ['Model Context Protocol','Specification and architecture','https://modelcontextprotocol.io/specification/2025-06-18'],
+    ['Agent2Agent Protocol','Version 1.0, and how it sits alongside MCP','https://a2a-protocol.org/v1.0.0/'],
+    ['NIST','AI Risk Management Framework and the generative AI profile','https://airc.nist.gov/'],
+    ['OWASP','GenAI Security Project','https://genai.owasp.org/'],
+    ['MLflow','GenAI evaluation and observability','https://mlflow.org/docs/latest/genai/'],
+    ['Hiring signals','Applied AI PM and AI engineering roles \u2014 market signals, not standards','https://aipmframework.com/']
+  ],
+  /* Two labels per column: the full one reads properly on a laptop, the short
+     one is what lets all four columns fit on a phone instead of the last one
+     hanging off the edge of a scrolling table. */
+  columns: [['Can explain','Explain'],['Can build','Build'],
+            ['Can evaluate','Measure'],['Can defend','Defend']]
+};
 
 /* Rules and pacing */
 window.RULES = [

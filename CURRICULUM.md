@@ -105,6 +105,38 @@ The retrieval arc, unchanged in substance: it is the strongest part of the
 course and it is already a chain. The interactive labs. The spaced-repetition
 engine, which is good and under-used. The zero-setup on-ramp. Both languages.
 
+## v4.1 — the lab-first edition, and the applied track
+
+The workbook was rewritten as *Applied AI PM/Engineer Integrated Edition
+v4.1 (Lab-First)*, and two things changed.
+
+**Every chapter now opens before you read it.** LAB FIRST, BUILD, BREAK,
+ARTIFACT, EXIT GATE — five lines that say what to run, what to make, what to
+break, what you keep, and what you have to be able to do before the chapter
+counts as finished. It sits above the prerequisites, because it is what you
+do first. Chapters 1 to 7 carry it; so does every chapter in the new part.
+
+**Chapters 8–21 of the book are a different, deeper track** than the portal's
+existing 8–20, and they are appended as **Part V** (portal chapters 21–34)
+rather than merged. Merging would have meant rewriting thirteen differently
+organised chapters and renumbering the whole course, which orphans every
+"Chapter N" in prose and every Hinglish key. Where a Part V chapter revisits
+ground from Parts I–IV it starts from that result instead of re-teaching it:
+the depth pass, not a second first pass. That is methodology rule 5 doing its
+job rather than duplication.
+
+Part V is English-only for now, by request. The parity guard was not softened
+to allow it — the walk skips declared English-only content and still fails on
+any translated line that loses its translation, and the count awaiting
+translation prints on every run so the debt stays visible. A reader with
+Hinglish on is told, on the page, that the part has not been translated yet,
+because silence there looks exactly like the language switch being broken.
+
+The appendices live at `#/appendix`: the competency worksheet is interactive
+and persists, the design-review questions and the research basis are
+reference, and Appendix D was merged into the existing *Not yet* page rather
+than becoming a second parking lot.
+
 ## Where this has got to
 
 All nine missing chapters are written, and every chapter in the course now has

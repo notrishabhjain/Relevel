@@ -167,6 +167,49 @@ const hing = C.hinglish || {};
 /* The other half: every line the reader can be shown needs a Hinglish version,
    or the page mixes the two languages. This walks the same shapes app.js does,
    so the two cannot disagree about what counts as translatable. */
+/* v4.1 of the workbook landed in English first, by request: the applied track
+   (Part V), its questions and exercises, the appendices, and the lab-first
+   `plan` block that now opens every rewritten chapter.
+
+   The parity guard still has to protect the 3,000-odd lines that ARE
+   translated — a chapter edited in English silently stops showing its
+   translation, which reads as correct text in the wrong language and is
+   exactly the failure nobody reports. So the walk skips the declared
+   English-only content rather than the rule being softened: anything outside
+   this set must still be translated, and the count of what is awaiting
+   translation is printed every run so the debt stays visible. */
+const ENGLISH_ONLY_FROM_PART = 5;
+const englishOnlyChapter = c => c.part >= ENGLISH_ONLY_FROM_PART;
+/* Which questions belong to the English-only track. An item row carries a
+   difficulty, not a chapter — a chapter claims its questions through the
+   ['q', ...] blocks in its own story — so this is derived from the claims
+   rather than from anything on the item itself. */
+const englishOnlyItems = new Set();
+{
+  const claim = b => {
+    if (!Array.isArray(b)) return;
+    if (b[0] === 'q') b.slice(1).flat().forEach(id => englishOnlyItems.add(id));
+    else if (b[0] === 'do') (b[2] || []).forEach(claim);
+  };
+  C.chapters.filter(englishOnlyChapter).forEach(c => (c.story || []).forEach(claim));
+  /* An item asked by a translated chapter too must stay translated. */
+  const elsewhere = new Set();
+  const claim2 = b => {
+    if (!Array.isArray(b)) return;
+    if (b[0] === 'q') b.slice(1).flat().forEach(id => elsewhere.add(id));
+    else if (b[0] === 'do') (b[2] || []).forEach(claim2);
+  };
+  C.chapters.filter(c => !englishOnlyChapter(c)).forEach(c => (c.story || []).forEach(claim2));
+  elsewhere.forEach(id => englishOnlyItems.delete(id));
+}
+let awaiting = 0;
+const countAwaiting = v => { if (typeof v === 'string' && v.trim()) awaiting++; };
+const walkAwaiting = v => {
+  if (typeof v === 'string') return countAwaiting(v);
+  if (Array.isArray(v)) return v.forEach(walkAwaiting);
+  if (v && typeof v === 'object') Object.keys(v).forEach(k => walkAwaiting(v[k]));
+};
+
 const need = new Set();
 const wantAdd = v => { if (typeof v === 'string' && v.trim()) need.add(v.trim()); };
 const wantWalk = v => {
@@ -180,8 +223,14 @@ const prose = b => { if (!Array.isArray(b)) return;
   /* a hands-on beat is a label plus its own blocks — the code inside stays code */
   if (b[0] === 'do') { wantAdd(b[1]); (b[2] || []).forEach(prose); return; }
   wantWalk(b.slice(1)); };
-(C.reference.PARTS || []).forEach(p => { wantAdd(p.title); wantAdd(p.blurb); });
+(C.reference.PARTS || []).forEach(p => {
+  if (p.n >= ENGLISH_ONLY_FROM_PART) { walkAwaiting([p.title, p.blurb]); return; }
+  wantAdd(p.title); wantAdd(p.blurb);
+});
 C.chapters.forEach(c => {
+  /* The lab-first plan is English-only on every chapter, translated or not. */
+  if (c.plan) walkAwaiting(c.plan);
+  if (englishOnlyChapter(c)) { walkAwaiting({ ...c, plan: undefined }); return; }
   wantAdd(c.title); wantAdd(c.concept); wantWalk(c.takeaway);
   /* the capstone renders through the same translator the story does */
   if (c.capstone) { wantAdd(c.capstone.title); wantAdd(c.capstone.brief);
@@ -190,7 +239,10 @@ C.chapters.forEach(c => {
   (c.story || []).forEach(prose);
   (c.handson || []).forEach(st => { wantAdd(st.h); (st.b || []).forEach(prose); });
 });
-C.items.forEach(([, , , type, stem, opts, ans, why]) => {
+C.items.forEach(([id, , , type, stem, opts, ans, why]) => {
+  if (englishOnlyItems.has(id)) {
+    walkAwaiting([stem, why, type === 'judge' ? ans : opts]); return;
+  }
   wantAdd(stem); wantAdd(why);
   if (type === 'judge') wantAdd(ans);
   else if (type !== 'num') wantWalk(opts);
@@ -270,6 +322,8 @@ if (stale.length) {
 
 console.log(`${C.chapters.length} chapters · ${C.items.length} questions · ${C.skills.length} skills`);
 console.log(`${need.size - untranslated.length} of ${need.size} lines carry a Hinglish translation`);
+if (awaiting)
+  console.log(`${awaiting} line(s) of the v4.1 applied track are English-only, awaiting translation`);
 console.log(`${checkpoints} checkpoints across the reading · ${asked.size} of the bank asked in a chapter`);
 if (silent.length) console.log(`chapters with no checkpoints yet: ${silent.map(c => c.num).join(', ')}`);
 if (problems.length) {
