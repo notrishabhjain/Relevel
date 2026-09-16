@@ -545,17 +545,20 @@ function renderChapter(c){
      English-only for now, by request, so it is not part of the translated
      walk. */
   if(c.plan){
-    const rows=[['Lab first',c.plan.first],['Build',c.plan.build],
-                ['Break',c.plan.brk],['Artifact',c.plan.artifact],
-                ['Exit gate',c.plan.gate]].filter(r=>r[1]);
+    /* Every line here goes through the translator like the rest of the
+       chapter. It did not at first, so the plan stayed in English on a
+       translated page — which reads as the language switch half-working. */
+    const rows=[[T('Lab first'),c.plan.first],[T('Build'),c.plan.build],
+                [T('Break'),c.plan.brk],[T('Artifact'),c.plan.artifact],
+                [T('Exit gate'),c.plan.gate]].filter(r=>r[1]);
     if(rows.length){
       const pl=h('section',{class:'plan'});
       pl.appendChild(h('div',{class:'planhead'},[
-        h('span',{class:'cplbl',text:'Before you read'}),
+        h('span',{class:'cplbl',text:T('Before you read')}),
         h('span',{class:'dim',style:'font-size:.78rem',
-          text:'open the notebook first — the reading is here to explain what you just watched happen'})]));
+          text:T('open the notebook first — the reading is here to explain what you just watched happen')})]));
       pl.appendChild(h('dl',{class:'planlist'},rows.flatMap(([k,v])=>[
-        h('dt',{text:k}),h('dd',{html:v})])));
+        h('dt',{text:k}),h('dd',{html:T(v)})])));
       w.appendChild(pl);
     }
   }
@@ -884,13 +887,22 @@ function pageHome(){
 
   w.appendChild(h('div',{class:'prose',style:'max-width:66ch'},[blocks([
     ['p','This book has one purpose: getting you to the point where you can hold a credible, evidence-based conversation about AI systems — not by reading about them, but by building one yourself, then breaking it on purpose and writing down what happened.'],
-    ['p','Parts I and II build and then interrogate a document-answering system. Part III is the half most curricula omit entirely: what it costs, how you prove it works, what paperwork it ships with, and what happens when your provider retires the model underneath you.'],
+    ['p','Parts I and II build and then interrogate a document-answering system. Part III is the half most curricula omit entirely: what it costs, how you prove it works, what paperwork it ships with, and what happens when your provider retires the model underneath you. Part IV is the decisions that stay yours whoever builds it.'],
+    ['p','Part V is a separate track, added later and deeper: the same subjects taken to the depth you would need to defend a production system in a design review. Start it once Part I has actually been done rather than read — it assumes the system you built there exists.'],
     ['key','Vocabulary acquired before experience becomes jargon — words you can recognize but cannot defend. Vocabulary acquired after experience becomes testimony.']
   ])]));
 
   window.PARTS.forEach(p=>{
     const chs=CH.filter(c=>c.part===p.n);
-    w.appendChild(h('div',{class:'partcard'},[
+    if(!chs.length) return;
+    /* Part V is its own track rather than more of the same book, and a reader
+       who cannot tell that from the page will either start it too early or
+       never find it at all. */
+    const sep=p.n>=5;
+    if(sep) w.appendChild(h('h2',{class:'tracksep'},[
+      h('span',{text:'A separate track'}),
+      h('em',{text:'deeper versions of the same subjects — start after Part I is built, not read'})]));
+    w.appendChild(h('div',{class:'partcard'+(sep?' track':'')},[
       h('div',{class:'pn',text:'Part '+ROMAN(p.n)+' — Chapters '+chs[0].num+'–'+chs[chs.length-1].num}),
       h('h3',{text:T(p.title)}),h('p',{text:T(p.blurb)}),
       h('div',{class:'chips'},chs.map(c=>h('a',{class:'chip'+(S.done[c.id]?' done':''),
@@ -1066,8 +1078,8 @@ function pageLater(){
     sec.appendChild(h('div',{class:'marks'},items.map(l=>
       h('div',{class:'mark'+(cls==='got'?' got':'')},[
         h('span',{class:'mc',text:l.resolved?'Ch '+l.resolved:'—'}),
-        h('span',{class:'mt'},[h('strong',{text:l.t}),
-          h('div',{class:'dim',style:'font-size:.8rem;margin-top:.2rem',text:l.note})]),
+        h('span',{class:'mt'},[h('strong',{text:T(l.t)}),
+          h('div',{class:'dim',style:'font-size:.8rem;margin-top:.2rem',text:T(l.note)})]),
         l.resolved?h('a',{class:'chip',href:chHref(l.resolved)||'#/map',text:'Ch '+l.resolved}):null]))));
     return sec;};
   const g1=group('Collected — you did the chapter',unlocked,'got');if(g1)w.appendChild(g1);
@@ -1094,9 +1106,9 @@ function pageAppendix(){
   const rows=A.competency||[], cols=A.columns||[];
   const w=h('div',{class:'wrap-wide'});
   w.appendChild(h('header',{class:'phead'},[
-    h('div',{class:'eyebrow'},[h('span',{text:'Appendices'})]),
-    h('h1',{text:'The worksheet, the questions, and the sources'}),
-    h('p',{html:'Three things the workbook keeps at the back. The worksheet is your running dashboard \u2014 mark a row only when you could demonstrate it on demand, not when you have read about it. The questions are what to take into a design review, yours or somebody else\u2019s. The sources are where the applied chapters came from, so you can check a claim rather than take it.'})]));
+    h('div',{class:'eyebrow'},[h('span',{text:T('Appendices')})]),
+    h('h1',{text:T('The worksheet, the questions, and the sources')}),
+    h('p',{html:T('Three things the workbook keeps at the back. The worksheet is your running dashboard \u2014 mark a row only when you could demonstrate it on demand, not when you have read about it. The questions are what to take into a design review, yours or somebody else\u2019s. The sources are where the applied chapters came from, so you can check a claim rather than take it.')})]));
 
   S.appx = S.appx || {};
   const total=rows.length*cols.length;
@@ -1104,16 +1116,16 @@ function pageAppendix(){
   const tally=h('span',{class:'v',text:count()+' / '+total});
 
   const secA=h('section',{class:'part'});
-  secA.appendChild(sectionHead('A','Master competency worksheet'));
+  secA.appendChild(sectionHead('A',T('Master competency worksheet')));
   secA.appendChild(h('div',{class:'stat',style:'margin-bottom:.9rem'},[
-    h('span',{class:'l',text:'demonstrable'}),tally,
-    h('span',{class:'s',text:'four ways to own one idea: explain it, build it, measure it, defend it'})]));
+    h('span',{class:'l',text:T('demonstrable')}),tally,
+    h('span',{class:'s',text:T('four ways to own one idea: explain it, build it, measure it, defend it')})]));
   const t=h('table',{class:'cmptable'});
-  t.appendChild(h('thead',{},h('tr',{},[h('th',{text:'Competency'})]
+  t.appendChild(h('thead',{},h('tr',{},[h('th',{text:T('Competency')})]
     .concat(cols.map(c=>h('th',{class:'cmpcol'},[
-      h('span',{class:'cmplong',text:c[0]}),
-      h('span',{class:'cmpshort',text:c[1]})]))))));
-  t.appendChild(h('tbody',{},rows.map((r,i)=>h('tr',{},[h('td',{text:r})]
+      h('span',{class:'cmplong',text:T(c[0])}),
+      h('span',{class:'cmpshort',text:T(c[1])})]))))));
+  t.appendChild(h('tbody',{},rows.map((r,i)=>h('tr',{},[h('td',{text:T(r)})]
     .concat(cols.map((c,j)=>{
       const key=i+':'+j;
       const box=h('input',{type:'checkbox',
@@ -1127,27 +1139,27 @@ function pageAppendix(){
   w.appendChild(secA);
 
   const secB=h('section',{class:'part'});
-  secB.appendChild(sectionHead('B','AI system design review questions'));
+  secB.appendChild(sectionHead('B',T('AI system design review questions')));
   secB.appendChild(h('p',{class:'prose',style:'font-size:1rem',
-    html:'Fifteen questions. You do not need all of them in every review \u2014 but any one of them that cannot be answered is a finding, and several of them have stopped systems that demonstrated beautifully.'}));
-  secB.appendChild(h('ol',{class:'num'},(A.review||[]).map(q=>h('li',{text:q}))));
+    html:T('Fifteen questions. You do not need all of them in every review \u2014 but any one of them that cannot be answered is a finding, and several of them have stopped systems that demonstrated beautifully.')}));
+  secB.appendChild(h('ol',{class:'num'},(A.review||[]).map(q=>h('li',{text:T(q)}))));
   w.appendChild(secB);
 
   const secC=h('section',{class:'part'});
-  secC.appendChild(sectionHead('C','Research basis'));
+  secC.appendChild(sectionHead('C',T('Research basis')));
   secC.appendChild(h('p',{class:'prose',style:'font-size:1rem',
-    html:'The applied chapters were shaped from current public material. Treat this as a living reference set rather than a bibliography: provider APIs and model capabilities change faster than books do, and a source that was current when this was written may not be when you read it.'}));
+    html:T('The applied chapters were shaped from current public material. Treat this as a living reference set rather than a bibliography: provider APIs and model capabilities change faster than books do, and a source that was current when this was written may not be when you read it.')}));
   secC.appendChild(h('div',{class:'marks'},(A.sources||[]).map(([who,what,url])=>
     h('div',{class:'mark'},[
-      h('span',{class:'mt'},[h('strong',{text:who}),
-        h('div',{class:'dim',style:'font-size:.8rem;margin-top:.2rem',text:what})]),
+      h('span',{class:'mt'},[h('strong',{text:T(who)}),
+        h('div',{class:'dim',style:'font-size:.8rem;margin-top:.2rem',text:T(what)})]),
       h('a',{class:'chip',href:url,target:'_blank',rel:'noopener noreferrer',text:'open \u2197'})]))));
   w.appendChild(secC);
 
   const secD=h('section',{class:'part'});
-  secD.appendChild(sectionHead('D','The parking lot'));
+  secD.appendChild(sectionHead('D',T('The parking lot')));
   secD.appendChild(h('p',{class:'prose',style:'font-size:1rem',
-    html:'Appendix D lives on the <a href="#/later">Not yet</a> page with everything else you have deliberately parked, because splitting one parking lot across two pages defeats the purpose of having one.'}));
+    html:T('Appendix D lives on the <a href="#/later">Not yet</a> page with everything else you have deliberately parked, because splitting one parking lot across two pages defeats the purpose of having one.')}));
   w.appendChild(secD);
   return w;
 }

@@ -14,6 +14,7 @@ const TR=s=>(window.T?window.T(s):s);
 const save=()=>window.STORE.save();
 const pct=v=>Math.round(v)+'%';
 const LN=()=>window.LEVEL_NAMES;
+const ROMAN2=n=>['','I','II','III','IV','V','VI','VII','VIII','IX','X'][n]||String(n);
 
 function tile(l,v,cls,s){return h('div',{class:'stat'},[h('span',{class:'l',text:l}),
   h('span',{class:'v '+(cls||''),text:String(v)}),s?h('span',{class:'s',text:s}):h('span')]);}
@@ -139,6 +140,32 @@ function dashboard(){
       h('span',{class:'domsub',text:d.tested+' of '+d.total+' skills measured'})]));
   });
   w.appendChild(grid);
+
+  /* The book itself, reachable from the page people actually land on.
+
+     The dashboard is a tracker, so it only ever pointed at the single next
+     action. That is right for a returning reader and useless for one who
+     wants to see what is in here — Part V was added and could not be found
+     from the landing page at all, because nothing on it lists the parts. */
+  w.appendChild(h('h2',{class:'sec',text:'The book'}));
+  const partRow=h('div',{class:'partrows'});
+  window.PARTS.forEach(p2=>{
+    const chs=(window.CHAPTERS||[]).filter(c=>c.part===p2.n);
+    if(!chs.length) return;
+    const doneN=chs.filter(c=>st.done[c.id]).length;
+    const next=chs.find(c=>!st.done[c.id])||chs[0];
+    partRow.appendChild(h('a',{class:'partrow'+(doneN===chs.length?' done':''),
+      href:'#/ch/'+next.id},[
+      h('div',{class:'prn',text:'Part '+ROMAN2(p2.n)}),
+      h('div',{style:'flex:1;min-width:0'},[
+        h('h3',{text:TR(p2.title)}),
+        h('p',{text:'Chapters '+chs[0].num+'\u2013'+chs[chs.length-1].num+
+          ' \u00b7 '+doneN+' of '+chs.length+' done'})]),
+      h('span',{class:'go',text:doneN?'Continue \u2192':'Open \u2192'})]));
+  });
+  w.appendChild(partRow);
+  w.appendChild(h('p',{class:'dim',style:'font-size:.85rem;margin:.6rem 0 0'},
+    [h('a',{href:'#/library',text:'All 49 chapters, listed \u2192'})]));
 
   /* recent activity */
   const acc=eng.accuracyByDay(st,21);
