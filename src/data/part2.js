@@ -161,7 +161,7 @@ window.PART2 = [
     ['do','The universal fallback — validate and re-ask',[
       ['p','Not every model, provider, or endpoint supports constrained decoding. The portable pattern is a loop that treats the validation error as a new prompt.'],
       ['code','def ask_validated(text, tries=3):\n    msgs = [{"role":"user","content":PROMPT.format(text=text)}]\n    for attempt in range(tries):\n        out = client.chat.completions.create(\n            model="meta/llama-3.1-8b-instruct",\n            temperature=0, messages=msgs\n        ).choices[0].message.content\n        try:\n            data = json.loads(out)\n            assert data["decision"] in ("approved","rejected","unclear")\n            return data, attempt + 1\n        except Exception as e:\n            msgs += [{"role":"assistant","content":out},\n                     {"role":"user","content":f"That was invalid: {e}. Return only valid JSON."}]\n    raise ValueError("no valid output after retries")\n\nprint(ask_validated(sample))'],
-      ['x','It returns on attempt 1 most of the time, attempt 2 occasionally. Note the cost: <strong>every retry re-sends the whole conversation</strong> (Chapter 1). A 10% retry rate is a 10%+ cost increase you must put in the model of Chapter 15.'],
+      ['x','It returns on attempt 1 most of the time, attempt 2 occasionally. Note the cost: <strong>every retry re-sends the context this implementation supplies</strong> (Chapter 1). A 10% retry rate is a 10%+ cost increase you must put in the model of Chapter 15.'],
       ['snag',[
         'A red box saying something <em>is not defined</em>',
         'You have run a cell that needs something an earlier cell made, without running that earlier one first. Scroll to the top, run the warm-up cells in order, then come back to this one. This is the most common thing that goes wrong in a notebook, it happens to everybody, and it says nothing about your code.',
@@ -253,7 +253,7 @@ window.PART2 = [
   concept:'An agent is a loop with a model in it. Knowing that is most of what protects you from the word.',
   needs:[
     ['It could not take two steps on its own','The second gap you found. This closes it.',7.5],
-    ['It re-sends everything every time','Which is why anything that loops gets expensive faster than it looks.',1],
+    ['It sends whichever context the application chooses each invocation','Which is why anything that loops gets expensive faster than it looks.',1],
     ['A schema forces a shape','You can require structured output rather than asking for it.',8],
   ],
   takeaway:[
@@ -335,10 +335,10 @@ window.PART2 = [
       ['x','Wrong tool, or no tool, or the right tool with a nonsense category argument. Nothing about the model changed. You edited one sentence of English and degraded the system. File this permanently: <strong>tool descriptions are code.</strong>']
     ]],
 
-    ['p','<strong>Every step multiplies the bill.</strong> Chapter 1 told you each request re-sends the whole conversation. A loop makes that compound.'],
+    ['p','<strong>Every step multiplies the bill.</strong> Chapter 1 showed that a request includes application-supplied context. A loop can compound cost when it keeps replaying a growing transcript.'],
     ['pred',{id:'ch9-cost',short:true,ph:'A multiple, like 4×',
       ask:'A single call sends about 1,200 pieces of text. A six-step agent re-sends a growing conversation at every step. Roughly how many times the single-call cost is the whole run?',
-      reveal:'Far more than six. Each step re-sends everything before it plus whatever the last step returned, so the cost grows with the square of the number of steps rather than in a straight line. Six steps commonly lands near fifteen to twenty-five times a single call.',
+      reveal:'It depends on the messages, tool outputs, summaries, caching and model pricing. If this loop replays a growing transcript, its input can grow faster than the step count. Instrument actual input/output tokens per step; do not rely on a universal multiplier.',
       then:'Which is why an agent that “only” adds two more steps can double a bill. Step count is a product decision with a number attached, not an implementation detail.'}],
     ['q','I068'],
     ['do','Return an error and watch the narration',[
