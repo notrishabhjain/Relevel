@@ -66,6 +66,7 @@ const js = [
   'src/data/hing-part5m.js',
   'src/data/hing-part5n.js',
   'src/data/hing-part5o.js',
+  'src/data/hing-v31.js',
   'src/data/hing-items.js',
   'src/data/hing-skills.js',
   'src/remote.js',

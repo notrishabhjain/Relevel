@@ -43,7 +43,7 @@ window.ITEMS1 = [
  ['Your conversation history','Nothing','A summary of prior turns','Your preferences only'],1,
  'Stateless — total amnesia. All apparent memory is the application re-sending history inside a fatter envelope.'],
 ['I011','S03',2,'mcq','Why does the 50th message of a chat cost far more than the 2nd?',
- ['Later messages are longer','Each request re-sends the entire prior conversation','The model works harder as context builds','Rate limits raise the price'],1,
+ ['Later messages are longer','The application chooses what prior context, summary, memory or task state to send','The model works harder as context builds','Rate limits raise the price'],1,
  'Message 50 pays to re-read messages 1–49. Cost grows with accumulated conversation length, not with message count.'],
 ['I012','S03',3,'multi','A vendor says "our assistant remembers each user\'s full history." Which questions actually test the claim?',
  ['Where is that history stored and who controls it?','What does re-sending it cost per query at scale?','How is it selected into the envelope when it exceeds the budget?','How many parameters does the model have?'],[0,1,2],
@@ -87,7 +87,7 @@ window.ITEMS1 = [
  ['Retrieval will be slower','The system can present the rule without its exception — confidently incomplete','The chunk will be too large','Embeddings will be less accurate'],1,
  'In compliance and legal contexts, confidently incomplete is often worse than absent, because it produces a wrong action rather than a request for help.'],
 ['I024','S06',3,'judge','Your corpus is service contracts with numbered clauses, exceptions and annexures. Describe your chunking rule and what it sacrifices.',null,
- 'Cut on clause boundaries so each piece carries a complete rule with its exceptions attached — semantic chunking following the document\'s own anatomy. Pieces will be unequal in size, which is a feature: meaning does not come in uniform sizes. Sacrifices: cross-clause definitions ("as defined in clause 2") still orphan, so add a situating sentence (contextual retrieval); very long clauses may exceed a comfortable retrieval unit and need sub-splitting with overlap. A strong answer names the residual failure, not just the rule.'],
+ 'Cut on clause boundaries so each piece carries a complete rule with its exceptions attached — structure-aware chunking following the document\'s own anatomy. Semantic chunking is a separate meaning-based strategy. Pieces will be unequal in size, which is a feature: meaning does not come in uniform sizes. Sacrifices: cross-clause definitions ("as defined in clause 2") still orphan, so add a situating sentence (contextual retrieval); very long clauses may exceed a comfortable retrieval unit and need sub-splitting with overlap. A strong answer names the residual failure, not just the rule.'],
 
 /* ================= S07 Keyword vs semantic ================= */
 ['I025','S07',1,'mcq','Keyword search is blind to:',
@@ -115,7 +115,7 @@ window.ITEMS1 = [
  'Dimensionality is a specification, not evidence. Retrieval quality on your documents and your users\' phrasing is the claim that needs numbers.'],
 ['I032','S08',3,'num','Two texts have cosine similarity 0.78, and a third pair scores 0.19. Roughly how many of these pairs would you expect to be near-synonyms in the same professional domain? Answer with a count (0, 1 or 2).',
  ['pairs','Judge from the scores'],[1,1],
- 'One. High cosine (commonly 0.5–0.8 for related domain terms) indicates the same neighbourhood; 0.19 is a distant suburb. Exact thresholds vary by model — what matters is the gap, not the absolute number.'],
+ 'No count can be inferred from cosine values alone. Similarity distributions are model-, corpus-, and task-dependent; label examples from your own retrieval task and calibrate a threshold or ranking policy there.'],
 
 /* ================= S09 Hybrid / rerank ================= */
 ['I033','S09',2,'mcq','Reciprocal rank fusion, in plain words:',
@@ -159,8 +159,8 @@ window.ITEMS1 = [
  ['Precision','Recall','Accuracy','F1'],1,
  'Recall = missed files. Precision = buried desk. The office-assistant story keeps them straight.'],
 ['I045','S12',2,'mcq','You raise k from 3 to 8. What happens?',
- ['Both precision and recall rise','Recall rises, precision falls, token cost rises','Precision rises, recall falls','Nothing changes without re-indexing'],1,
- 'Fetch more and you miss fewer but bury deeper — and you pay roughly 8× the retrieval tokens per query, forever.'],
+ ['Both precision and recall rise','Coverage may improve and relevance density may fall; measure Hit@k, Recall@k where defined, Precision@k, prompt tokens, latency and cost','Precision rises, recall falls','Nothing changes without re-indexing'],1,
+ 'More candidates can improve coverage and lower relevance density, but neither is guaranteed. Retrieved text can grow with k; actual cost depends on chunk size, prompt overhead, output tokens, caching, truncation and pricing, so measure it.'],
 ['I046','S12',3,'mcq','For a customer-facing answer bot, which failure is the more expensive one?',
  ['"I could not find this — please contact us"','A confidently wrong answer about eligibility','Slightly slow responses','Retrieving four chunks instead of three'],1,
  'Wrong answers are catastrophic customer-facing and survivable internally; "cannot find" is the reverse. That asymmetry decides your k — and the decision belongs to whoever owns the use case.'],

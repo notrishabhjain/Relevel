@@ -7,7 +7,7 @@
   "scripts": {
     "build": "node build.js",
     "dev": "node build.js && node tools/dev-server.js",
-    "test": "node build.js && node tools/test.mjs",
+    "test": "node build.js && node tools/content-check.mjs && node tools/v31-content-check.mjs && node tools/test.mjs",
     "test:api": "node build.js && node tools/test.mjs api",
     "test:browser": "node build.js && node tools/test.mjs browser"
   },
@@ -18,5 +18,7 @@
     "@electric-sql/pglite": "^0.2.17",
     "playwright": "^1.49.0"
   },
-  "engines": { "node": ">=20" }
+  "engines": {
+    "node": ">=20"
+  }
 }

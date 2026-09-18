@@ -1039,14 +1039,14 @@ window.PART1 = [
     ]],
     ['pred',{id:'ch05-cost',short:true,ph:'Cheaper, about the same, or more expensive?',
       ask:'Your text, in an Indian language rather than English, would be split into how many pieces — fewer, about the same, or more?',
-      reveal:'Almost always more, often two or three times more, for the same meaning. The pieces were worked out mostly from English text on the internet, so English is the cheapest thing you can say.',
-      then:'That is not a detail. It means a product answering in Hindi, Tamil or Bengali costs meaningfully more per answer than the same product in English — and nobody puts that on a pricing page. You found it in four minutes, with no account.'}],
+      reveal:'There is no universal multiplier. Token counts depend on the tokenizer, the language, the exact text and the model. Run the same meaning in English and the Indian language you use, record both counts, and use that measurement rather than a rule of thumb.',
+      then:'That can affect cost, but it is not a universal pricing claim. Your experiment tells you what this tokenizer did to your text; repeat it with the model/API you are considering before you estimate a multilingual feature.'}],
 
-    ['p','<strong>Two: it forgets, so the app keeps re-sending everything.</strong> A model has no memory between messages. For a chat to feel continuous, the app quietly sends the entire conversation again on every single turn.'],
+    ['p','<strong>Two: the model only sees the context it is given.</strong> A model has no memory between invocations. An app can maintain continuity by sending prior messages, sending a summary, retrieving saved facts, or keeping task state elsewhere. You are about to measure one common choice: re-sending history.'],
     ['do','Watch the bill grow while you do nothing',[
       ['p','Step through a conversation below and keep your eye on the number, not the messages.'],
       ['lab','receipt'],
-      ['x','The cost of each turn climbs, even when your messages stay the same length — because every turn re-sends everything said before it. A long conversation gets expensive at the end for reasons that have nothing to do with what you are asking.']
+      ['x','In this history-replay experiment, the cost of each turn climbs because prior messages are sent again. Other applications may summarize, retrieve selected memories, or store task state externally, so measure the context they actually supply rather than assuming one architecture.']
     ]],
     ['q','I001'],
 
@@ -1054,7 +1054,7 @@ window.PART1 = [
     ['do','Turn it yourself',[
       ['p','Move it up and down and watch what changes about the answers.'],
       ['lab','temperature'],
-      ['x','Low gives you the same answer every time. High gives you variety. Notice what neither end does: it never makes the answer more <em>true</em>. A wrong answer at the low setting is wrong identically, every single time.']
+      ['x','Lower temperature generally reduces sampling variation; higher temperature generally permits more. Neither setting makes an answer more <em>true</em>, and low temperature does not guarantee identical output. Run the same prompt several times and record what your model actually does.']
     ]],
 
     ['key','You have now done three real experiments and produced at least one finding your organisation probably does not have written down anywhere. Nothing was installed. Nobody asked for a card.'],
@@ -1229,10 +1229,10 @@ window.PART1 = [
       ]],
     ]],
     ['p','That raises an obvious question: so how does a chat assistant seem to remember what you said five messages back?'],
-    ['p','It does not. The app re-sends the entire conversation every single time. The memory is a trick performed by the app, not a property of the AI. And you are about to perform it yourself.'],
+    ['p','Not by itself. The model sees only the messages in this invocation. An application may replay prior messages, send a summary, retrieve persistent user memory, or store task state externally. This experiment uses replayed messages, one common way to create continuity.'],
     ['do','Perform the trick',[
       ['code','r3 = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {"role": "user",\n         "content": "My name is Sam. Remember it."},\n        {"role": "assistant",\n         "content": r1.choices[0].message.content},\n        {"role": "user",\n         "content": "What is my name?"}\n    ]\n)\nprint(r3.choices[0].message.content)\nprint("tokens read now:", r3.usage.prompt_tokens)'],
-      ['x','Now it knows — Sam. And <code>prompt_tokens</code> is bigger than before, because you paid to re-send the whole history. Sit on that for a second: you have just built, by hand, the illusion every chat product in the world sells, and you can see exactly what it costs per message.'],
+      ['x','Now it knows — Sam — because this invocation includes the earlier message. <code>prompt_tokens</code> is bigger because this experiment replayed history. You have built one common continuity pattern and measured its cost; production apps may choose summaries, retrieval, persistent memory, or task state instead.'],
       ['snag',[
         'A red box saying something <em>is not defined</em>',
         'You have run a cell that needs something an earlier cell made, without running that earlier one first. Scroll to the top, run the warm-up cells in order, then come back to this one. This is the most common thing that goes wrong in a notebook, it happens to everybody, and it says nothing about your code.',
@@ -1257,7 +1257,7 @@ window.PART1 = [
     ['try',{id:'ch1-explain',mins:3,min:40,rows:3,
       task:'Write the two sentences you would say to a colleague who asks why a long chat with an AI costs more than a short one. Plain words — no jargon, and nothing you could not defend if they pushed back.',
       ph:'Two sentences.',
-      after:'A good answer has both halves: what happens, and what it means. What happens — the AI remembers nothing, so the app sends the whole conversation again with every message. What it means — the cost of a conversation grows the longer it gets, and that cost is ours, not the vendor’s. If you got both halves, you understand this chapter better than most people who have shipped an AI feature.'}]
+      after:'A good answer has both halves: what happens, and what it means. What happens — the model only sees context the application supplies; replaying a growing history makes the prompt larger. What it means — conversation cost depends on that context-management design, so it must be measured rather than assumed. If you got both halves, you understand this chapter better than most people who have shipped an AI feature.'}]
   ],
   capstone:{
     title:'The meter on a real feature',
@@ -1849,7 +1849,7 @@ window.PART1 = [
     ['p','Documents are full of this. Legal text especially, but also anything with "the above", "this scheme", "such cases". Human writing assumes you read the preceding paragraph. Chunks do not get one.'],
     ['do','Round 3 — cut like a human',[
       ['p','Cut a fresh copy the way you actually think it should be cut. Do not overthink it. Then stop and watch what your own hands did.'],
-      ['x','They followed headings and clause numbers, and produced pieces of wildly unequal size that are each individually complete. Write one sentence describing the rule you just used without being taught it. That sentence is what the industry calls semantic chunking — and you derived it rather than memorised it.']
+      ['x','They followed headings and clause numbers, and produced pieces of wildly unequal size that are each individually complete. Write one sentence describing the rule you just used without being taught it. That is a structure-aware (or document-aware) chunking rule: it follows the document’s anatomy. Semantic chunking is a separate approach that groups text by meaning changes. You derived the distinction by doing it rather than memorising it.']
     ]],
     ['key','There is no correct chunk size. There are only different failures, and you choose between them based on what your documents look like and what your users ask.'],
     ['p','That sentence, said out loud in a design review, is the difference between someone who has read about this and someone who has done it. Everyone wants to be told the right number. There isn’t one.'],
@@ -1935,7 +1935,7 @@ window.PART1 = [
     ['p','It is worth being fair to it, because you will meet people who over-correct. Word matching is excellent at some things and nothing beats it there: exact codes, section numbers, policy IDs, part numbers, someone’s name. If a user types <em>clause 14.2</em> they want clause 14.2, and no amount of cleverness improves on finding that exact string.'],
     ['do','And the one it wins outright',[
       ['p','Now ask a question containing an exact code, section number, or defined term lifted straight from the document.'],
-      ['x','Instant, perfect, rank one — and no method that works on meaning will ever beat it here. This is the half of what the industry calls hybrid search that never dies, and you have just watched it earn its place.']
+      ['x','A distinctive exact code or defined term often ranks strongly under keyword retrieval. Record its actual rank rather than assuming it will win: this is the lexical strength that semantic retrieval may complement, not erase.']
     ]],
     ['q','I026'],
 
@@ -2029,7 +2029,7 @@ window.PART1 = [
     ['do','Cure Chapter 4',[
       ['p','Paste in the actual cards you cut in Chapter 3 — the text of each one, as a list — and give the whole set addresses.'],
       ['code',"chunks = [\n    \"…paste the text of card 1…\",\n    \"…card 2…\",\n    # …all fifteen or twenty of them…\n]\nchunk_vecs = embed(chunks, \"passage\")\n\ndef retrieve(question, k=3):\n    q = embed([question], \"query\")[0]\n    scores = [cosine(q, cv) for cv in chunk_vecs]\n    ranked = sorted(range(len(chunks)),\n                    key=lambda i: scores[i], reverse=True)\n    for i in ranked[:k]:\n        print(round(scores[i], 3), \"| chunk\", i,\n              \"|\", chunks[i][:80], \"…\")\n\nretrieve(\"your synonym assassin from Chapter 4\")"],
-      ['x','The assassin that scored zero yesterday now surfaces the correct card at or near rank one. Run all three and compare against your handwritten rankings. Whatever happens on the second-language one is a real finding about your users — write the actual numbers down rather than the impression.'],
+      ['x','The assassin that scored zero yesterday may now surface the correct card much higher. Run all three and compare against your handwritten rankings. The second-language result is a finding about this model and your corpus — write the actual ranks and scores down rather than assuming a universal outcome.'],
       ['snag',[
         'A red box saying something <em>is not defined</em>',
         'You have run a cell that needs something an earlier cell made, without running that earlier one first. Scroll to the top, run the warm-up cells in order, then come back to this one. This is the most common thing that goes wrong in a notebook, it happens to everybody, and it says nothing about your code.',
@@ -2140,7 +2140,7 @@ window.PART1 = [
       ]],
     ]],
     ['p','<strong>Two: there are two ways to fail, and they pull against each other.</strong> Picture asking an assistant to fetch the files relevant to a meeting. They can fail two ways: leave out something that mattered, or bury you in things that did not.'],
-    ['p','Leaving out what mattered is called poor <strong>recall</strong>. Burying you in irrelevance is poor <strong>precision</strong>. The lever between them is how many pieces you fetch per question — usually written <strong>k</strong>. Fetch more and you miss less, but more of what you fetch is junk. Fetch fewer and everything you get is relevant, but you miss things.'],
+    ['p','Leaving out what mattered is called poor <strong>recall</strong>. Burying you in irrelevance is poor <strong>precision</strong>. The lever between them is how many pieces you fetch per question — usually written <strong>k</strong>. Fetching more can improve coverage and can lower relevance density; fetching fewer can do the reverse. These are empirical trade-offs, not guarantees, so grade them using explicit relevance judgments on your own question set.'],
     ['p','You cannot have both. Move the lever and see:'],
     ['do','Turn the dial and watch it trade',[
       ['p','Re-grade the same ten questions at <code>k=1</code> and then <code>k=8</code>, and fill this in by hand:'],
@@ -2149,7 +2149,7 @@ window.PART1 = [
         ['3','… / 9','… / 27'],
         ['8','… / 9','… / 72']
       ]],
-      ['x','Hits rise as you widen. The relevant fraction falls. And from Chapter 1 you already know the third axis nobody puts on the chart: <code>k=8</code> costs eight times the tokens of <code>k=1</code> on every query, forever. You have just built the most-cited trade-off in applied AI, by hand, on your own documents.']
+      ['x','Increasing k often improves coverage while relevance density can fall, but measure both on your corpus. Retrieved text volume may rise with k; actual cost also depends on chunk sizes, prompt overhead, output tokens, caching, truncation, provider pricing and architecture. Record the real prompt tokens and latency before deciding.']
     ]],
     ['lab','prdial'],
     ['q','I044','I045'],
@@ -2228,8 +2228,8 @@ window.PART1 = [
       ['code',"def rag_answer(question, k=3):\n    q = embed([question], \"query\")[0]          # Ch 5\n    scores = [cosine(q, cv) for cv in chunk_vecs]\n    ranked = sorted(range(len(chunks)),\n                    key=lambda i: scores[i], reverse=True)\n    context = \"\\n\\n\".join(              # Ch 3 and 6 — the k dial\n        chunks[i] for i in ranked[:k])\n    resp = client.chat.completions.create(     # Ch 1\n        model=\"meta/llama-3.1-8b-instruct\",\n        temperature=0,                         # Ch 2\n        messages=[\n          {\"role\": \"system\", \"content\":         # Ch 2 briefing\n            \"Answer ONLY from the provided context. If the \"\n            \"answer is not in the context, reply exactly: \"\n            \"'Not found in the provided documents.' \"\n            \"Never invent details.\"},\n          {\"role\": \"user\", \"content\":\n            f\"Context:\\n{context}\\n\\nQuestion: {question}\"}\n        ]\n    )\n    return resp.choices[0].message.content"],
       ['p','Then run it three times, on three deliberately different questions:'],
       ['code',"print(rag_answer(\"something your document CAN answer\"))\nprint(rag_answer(\"your Chapter 4 synonym assassin\"))\nprint(rag_answer(\"what does this say about cricket?\"))"],
-      ['x','Run one: grounded, and checkable against your source. Run two: correctly answered — the question keyword search could not touch. Run three: <code>Not found in the provided documents.</code>'],
-      ['key','Stop on that third line for a moment. In Chapter 2 this same machine invented an entire fake scheme rather than admit ignorance. That one sentence is a hallucination in a cage — built out of retrieval you wrote, a briefing you wrote, and a test you thought to run.'],
+      ['x','Run one should be checked against your source. Run two tests whether semantic retrieval surfaced evidence that keyword matching missed. Run three tests the no-answer path. The exact refusal is not guaranteed: record what actually happens. Retrieval plus instructions can reduce unsupported answers, not eliminate them.'],
+      ['key','Treat that third run as a test result, not proof of safety. The retrieved evidence and briefing reduce risk, but either can fail. Keep the question in your evaluation set and measure no-answer behaviour whenever the model, prompt, retrieval or corpus changes.'],
       ['snag',[
         'A red box saying something <em>is not defined</em>',
         'You have run a cell that needs something an earlier cell made, without running that earlier one first. Scroll to the top, run the warm-up cells in order, then come back to this one. This is the most common thing that goes wrong in a notebook, it happens to everybody, and it says nothing about your code.',
@@ -2425,7 +2425,7 @@ window.PART2 = [
     ['do','The universal fallback — validate and re-ask',[
       ['p','Not every model, provider, or endpoint supports constrained decoding. The portable pattern is a loop that treats the validation error as a new prompt.'],
       ['code','def ask_validated(text, tries=3):\n    msgs = [{"role":"user","content":PROMPT.format(text=text)}]\n    for attempt in range(tries):\n        out = client.chat.completions.create(\n            model="meta/llama-3.1-8b-instruct",\n            temperature=0, messages=msgs\n        ).choices[0].message.content\n        try:\n            data = json.loads(out)\n            assert data["decision"] in ("approved","rejected","unclear")\n            return data, attempt + 1\n        except Exception as e:\n            msgs += [{"role":"assistant","content":out},\n                     {"role":"user","content":f"That was invalid: {e}. Return only valid JSON."}]\n    raise ValueError("no valid output after retries")\n\nprint(ask_validated(sample))'],
-      ['x','It returns on attempt 1 most of the time, attempt 2 occasionally. Note the cost: <strong>every retry re-sends the whole conversation</strong> (Chapter 1). A 10% retry rate is a 10%+ cost increase you must put in the model of Chapter 15.'],
+      ['x','It returns on attempt 1 most of the time, attempt 2 occasionally. Note the cost: <strong>every retry re-sends the context this implementation supplies</strong> (Chapter 1). A 10% retry rate is a 10%+ cost increase you must put in the model of Chapter 15.'],
       ['snag',[
         'A red box saying something <em>is not defined</em>',
         'You have run a cell that needs something an earlier cell made, without running that earlier one first. Scroll to the top, run the warm-up cells in order, then come back to this one. This is the most common thing that goes wrong in a notebook, it happens to everybody, and it says nothing about your code.',
@@ -2517,7 +2517,7 @@ window.PART2 = [
   concept:'An agent is a loop with a model in it. Knowing that is most of what protects you from the word.',
   needs:[
     ['It could not take two steps on its own','The second gap you found. This closes it.',7.5],
-    ['It re-sends everything every time','Which is why anything that loops gets expensive faster than it looks.',1],
+    ['It sends whichever context the application chooses each invocation','Which is why anything that loops gets expensive faster than it looks.',1],
     ['A schema forces a shape','You can require structured output rather than asking for it.',8],
   ],
   takeaway:[
@@ -2599,10 +2599,10 @@ window.PART2 = [
       ['x','Wrong tool, or no tool, or the right tool with a nonsense category argument. Nothing about the model changed. You edited one sentence of English and degraded the system. File this permanently: <strong>tool descriptions are code.</strong>']
     ]],
 
-    ['p','<strong>Every step multiplies the bill.</strong> Chapter 1 told you each request re-sends the whole conversation. A loop makes that compound.'],
+    ['p','<strong>Every step multiplies the bill.</strong> Chapter 1 showed that a request includes application-supplied context. A loop can compound cost when it keeps replaying a growing transcript.'],
     ['pred',{id:'ch9-cost',short:true,ph:'A multiple, like 4×',
       ask:'A single call sends about 1,200 pieces of text. A six-step agent re-sends a growing conversation at every step. Roughly how many times the single-call cost is the whole run?',
-      reveal:'Far more than six. Each step re-sends everything before it plus whatever the last step returned, so the cost grows with the square of the number of steps rather than in a straight line. Six steps commonly lands near fifteen to twenty-five times a single call.',
+      reveal:'It depends on the messages, tool outputs, summaries, caching and model pricing. If this loop replays a growing transcript, its input can grow faster than the step count. Instrument actual input/output tokens per step; do not rely on a universal multiplier.',
       then:'Which is why an agent that “only” adds two more steps can double a bill. Step count is a product decision with a number attached, not an implementation detail.'}],
     ['q','I068'],
     ['do','Return an error and watch the narration',[
@@ -3357,7 +3357,7 @@ window.PART3 = [
     ['p','<strong>The four things that multiply it.</strong> You have met every one:'],
     ['tb',['What multiplies it','Where it came from','What it does'],[
       ['How many documents you retrieve','Ch. 6','Retrieving 8 instead of 3 nearly triples the input on every query, forever'],
-      ['Retries when the output is malformed','Ch. 8','A retry re-sends the whole request, so a 10% retry rate costs more than 10%'],
+      ['Retries when the output is malformed','Ch. 8','A retry repeats the request context this implementation sends, so record the actual retry token and latency overhead'],
       ['Agent steps','Ch. 9','Six steps re-send a growing conversation six times — often 10–20× one call'],
       ['Thinking tokens','Ch. 11','Charged at the output rate, and often several times longer than the visible answer']
     ]],
@@ -5880,7 +5880,7 @@ window.ITEMS1 = [
  ['Your conversation history','Nothing','A summary of prior turns','Your preferences only'],1,
  'Stateless — total amnesia. All apparent memory is the application re-sending history inside a fatter envelope.'],
 ['I011','S03',2,'mcq','Why does the 50th message of a chat cost far more than the 2nd?',
- ['Later messages are longer','Each request re-sends the entire prior conversation','The model works harder as context builds','Rate limits raise the price'],1,
+ ['Later messages are longer','The application chooses what prior context, summary, memory or task state to send','The model works harder as context builds','Rate limits raise the price'],1,
  'Message 50 pays to re-read messages 1–49. Cost grows with accumulated conversation length, not with message count.'],
 ['I012','S03',3,'multi','A vendor says "our assistant remembers each user\'s full history." Which questions actually test the claim?',
  ['Where is that history stored and who controls it?','What does re-sending it cost per query at scale?','How is it selected into the envelope when it exceeds the budget?','How many parameters does the model have?'],[0,1,2],
@@ -5924,7 +5924,7 @@ window.ITEMS1 = [
  ['Retrieval will be slower','The system can present the rule without its exception — confidently incomplete','The chunk will be too large','Embeddings will be less accurate'],1,
  'In compliance and legal contexts, confidently incomplete is often worse than absent, because it produces a wrong action rather than a request for help.'],
 ['I024','S06',3,'judge','Your corpus is service contracts with numbered clauses, exceptions and annexures. Describe your chunking rule and what it sacrifices.',null,
- 'Cut on clause boundaries so each piece carries a complete rule with its exceptions attached — semantic chunking following the document\'s own anatomy. Pieces will be unequal in size, which is a feature: meaning does not come in uniform sizes. Sacrifices: cross-clause definitions ("as defined in clause 2") still orphan, so add a situating sentence (contextual retrieval); very long clauses may exceed a comfortable retrieval unit and need sub-splitting with overlap. A strong answer names the residual failure, not just the rule.'],
+ 'Cut on clause boundaries so each piece carries a complete rule with its exceptions attached — structure-aware chunking following the document\'s own anatomy. Semantic chunking is a separate meaning-based strategy. Pieces will be unequal in size, which is a feature: meaning does not come in uniform sizes. Sacrifices: cross-clause definitions ("as defined in clause 2") still orphan, so add a situating sentence (contextual retrieval); very long clauses may exceed a comfortable retrieval unit and need sub-splitting with overlap. A strong answer names the residual failure, not just the rule.'],
 
 /* ================= S07 Keyword vs semantic ================= */
 ['I025','S07',1,'mcq','Keyword search is blind to:',
@@ -5952,7 +5952,7 @@ window.ITEMS1 = [
  'Dimensionality is a specification, not evidence. Retrieval quality on your documents and your users\' phrasing is the claim that needs numbers.'],
 ['I032','S08',3,'num','Two texts have cosine similarity 0.78, and a third pair scores 0.19. Roughly how many of these pairs would you expect to be near-synonyms in the same professional domain? Answer with a count (0, 1 or 2).',
  ['pairs','Judge from the scores'],[1,1],
- 'One. High cosine (commonly 0.5–0.8 for related domain terms) indicates the same neighbourhood; 0.19 is a distant suburb. Exact thresholds vary by model — what matters is the gap, not the absolute number.'],
+ 'No count can be inferred from cosine values alone. Similarity distributions are model-, corpus-, and task-dependent; label examples from your own retrieval task and calibrate a threshold or ranking policy there.'],
 
 /* ================= S09 Hybrid / rerank ================= */
 ['I033','S09',2,'mcq','Reciprocal rank fusion, in plain words:',
@@ -5996,8 +5996,8 @@ window.ITEMS1 = [
  ['Precision','Recall','Accuracy','F1'],1,
  'Recall = missed files. Precision = buried desk. The office-assistant story keeps them straight.'],
 ['I045','S12',2,'mcq','You raise k from 3 to 8. What happens?',
- ['Both precision and recall rise','Recall rises, precision falls, token cost rises','Precision rises, recall falls','Nothing changes without re-indexing'],1,
- 'Fetch more and you miss fewer but bury deeper — and you pay roughly 8× the retrieval tokens per query, forever.'],
+ ['Both precision and recall rise','Coverage may improve and relevance density may fall; measure Hit@k, Recall@k where defined, Precision@k, prompt tokens, latency and cost','Precision rises, recall falls','Nothing changes without re-indexing'],1,
+ 'More candidates can improve coverage and lower relevance density, but neither is guaranteed. Retrieved text can grow with k; actual cost depends on chunk size, prompt overhead, output tokens, caching, truncation and pricing, so measure it.'],
 ['I046','S12',3,'mcq','For a customer-facing answer bot, which failure is the more expensive one?',
  ['"I could not find this — please contact us"','A confidently wrong answer about eligibility','Slightly slow responses','Retrieving four chunks instead of three'],1,
  'Wrong answers are catastrophic customer-facing and survivable internally; "cannot find" is the reverse. That asymmetry decides your k — and the decision belongs to whoever owns the use case.'],
@@ -13927,6 +13927,77 @@ Object.assign(window.HING = window.HING || {}, {
 
 });
 
+/* Hinglish — v3.1 technical-correction pass. Kept separate so the corrected
+   concepts remain easy to audit against the canonical book. */
+window.HING = Object.assign(window.HING || {}, {
+  'There is no universal multiplier. Token counts depend on the tokenizer, the language, the exact text and the model. Run the same meaning in English and the Indian language you use, record both counts, and use that measurement rather than a rule of thumb.':
+    'Koi universal multiplier nahi hota. Token count tokenizer, language, exact text aur model par depend karta hai. Ek hi meaning ko English aur jis Indian language ko aap use karte hain usmein chala kar dono counts likhiye; rule of thumb yaad karne ke bajaay isi measurement par bharosa kijiye.',
+  'That can affect cost, but it is not a universal pricing claim. Your experiment tells you what this tokenizer did to your text; repeat it with the model/API you are considering before you estimate a multilingual feature.':
+    'Isse cost par asar ho sakta hai, par yeh universal pricing claim nahi hai. Aapka experiment bas batata hai ki is tokenizer ne aapke text ke saath kya kiya; multilingual feature ka estimate banane se pehle target model/API par ise dobara measure kijiye.',
+  '<strong>Two: the model only sees the context it is given.</strong> A model has no memory between invocations. An app can maintain continuity by sending prior messages, sending a summary, retrieving saved facts, or keeping task state elsewhere. You are about to measure one common choice: re-sending history.':
+    '<strong>Do: model ko sirf wahi context dikhta hai jo is invocation mein diya gaya hai.</strong> Model ke paas invocations ke beech memory nahi hoti. App previous messages bhej kar, summary bhej kar, saved facts retrieve karke, ya task state kahin aur rakh kar continuity bana sakta hai. Ab aap ek common choice — history re-send karna — measure karenge.',
+  'In this history-replay experiment, the cost of each turn climbs because prior messages are sent again. Other applications may summarize, retrieve selected memories, or store task state externally, so measure the context they actually supply rather than assuming one architecture.':
+    'Is history-replay experiment mein har turn ki cost badhti hai kyunki purane messages phir se bheje ja rahe hain. Doosre apps summary bhej sakte hain, selected memories retrieve kar sakte hain, ya task state externally rakh sakte hain; isliye ek architecture assume karne ke bajaay dekhiye ki app sach mein kya context bhej raha hai.',
+  'Lower temperature generally reduces sampling variation; higher temperature generally permits more. Neither setting makes an answer more <em>true</em>, and low temperature does not guarantee identical output. Run the same prompt several times and record what your model actually does.':
+    'Lower temperature aam taur par sampling variation kam karta hai; higher temperature zyada variation allow karta hai. Koi bhi setting answer ko zyada <em>true</em> nahi banati, aur low temperature bhi identical output ki guarantee nahi deta. Same prompt ko kai baar chala kar dekhiye aapka model asal mein kya karta hai.',
+  'Not by itself. The model sees only the messages in this invocation. An application may replay prior messages, send a summary, retrieve persistent user memory, or store task state externally. This experiment uses replayed messages, one common way to create continuity.':
+    'Apne aap nahi. Model ko sirf is invocation ke messages dikhte hain. Application prior messages replay kar sakta hai, summary bhej sakta hai, persistent user memory retrieve kar sakta hai, ya task state externally rakh sakta hai. Yeh experiment continuity banane ka ek common tareeqa, replayed messages, use karta hai.',
+  'Now it knows — Sam — because this invocation includes the earlier message. <code>prompt_tokens</code> is bigger because this experiment replayed history. You have built one common continuity pattern and measured its cost; production apps may choose summaries, retrieval, persistent memory, or task state instead.':
+    'Ab ise Sam pata hai kyunki is invocation mein pehle wala message bhi hai. <code>prompt_tokens</code> zyada hai kyunki experiment ne history replay ki. Aapne continuity ka ek common pattern bana kar uski cost measure ki; production apps iske badle summaries, retrieval, persistent memory ya task state choose kar sakte hain.',
+  'What happens — the model only sees context the application supplies; replaying a growing history makes the prompt larger. What it means — conversation cost depends on that context-management design, so it must be measured rather than assumed.':
+    'Kya hota hai — model ko app ka diya hua context hi dikhta hai; growing history replay karne se prompt bada hota hai. Iska matlab — conversation cost context-management design par depend karti hai, isliye assume nahi, measure karni chahiye.',
+  'That is a structure-aware (or document-aware) chunking rule: it follows the document’s anatomy. Semantic chunking is a separate approach that groups text by meaning changes. You derived the distinction by doing it rather than memorising it.':
+    'Yeh structure-aware, ya document-aware, chunking rule hai: yeh document ki anatomy follow karta hai. Semantic chunking alag approach hai jo meaning ke changes ke hisaab se text group karta hai. Aapne yeh farq ratne ke bajaay karke samjha.',
+  'Increasing k often improves coverage while relevance density can fall, but measure both on your corpus. Retrieved text volume may rise with k; actual cost also depends on chunk sizes, prompt overhead, output tokens, caching, truncation, provider pricing and architecture. Record the real prompt tokens and latency before deciding.':
+    'k badhane se coverage aksar improve hoti hai aur relevance density gir sakti hai, par dono apne corpus par measure kijiye. Retrieved text k ke saath badh sakta hai; actual cost chunk sizes, prompt overhead, output tokens, caching, truncation, provider pricing aur architecture par bhi depend karta hai. Decision se pehle real prompt tokens aur latency likhiye.',
+  'Fetching more can improve coverage and can lower relevance density; fetching fewer can do the reverse. These are empirical trade-offs, not guarantees, so grade them using explicit relevance judgments on your own question set.':
+    'Zyada fetch karne se coverage improve ho sakti hai aur relevance density kam ho sakti hai; kam fetch karne par iska ulta ho sakta hai. Yeh empirical trade-offs hain, guarantee nahi; apne question set par explicit relevance judgments ke saath inhe grade kijiye.',
+  'A simplified history-replay model, metered. It assumes each turn re-sends prior messages; real apps may summarize, retrieve selected memories, cache prefixes, or keep state externally. Use it to see why context design matters, then measure your own request shape.':
+    'Yeh metered simplified history-replay model hai. Yeh maanta hai ki har turn prior messages phir se bhejta hai; real apps summaries, selected memories, cached prefixes ya external state use kar sakte hain. Isse samjhiye context design kyun matter karta hai, phir apne request shape ko measure kijiye.',
+  'A simplified sampling illustration on a fixed candidate set. Lower temperature concentrates probability and higher temperature spreads it. Provider decoding settings can still produce variation, so this is direction, not a determinism guarantee.':
+    'Fixed candidate set par yeh simplified sampling illustration hai. Lower temperature probability ko concentrate karta hai aur higher temperature use spread karta hai. Provider decoding settings phir bhi variation la sakti hain, isliye yeh direction samjhata hai, determinism guarantee nahi.',
+  'Move k and inspect Hit@k, judged relevance density, and the retrieved-text estimate. This toy ranking illustrates a common trade-off; a real corpus needs explicit relevance judgments and measured prompt tokens, latency, and cost.':
+    'k badal kar Hit@k, judged relevance density aur retrieved-text estimate dekhiye. Yeh toy ranking ek common trade-off dikhati hai; real corpus ko explicit relevance judgments aur measured prompt tokens, latency aur cost chahiye.',
+  'No count can be inferred from cosine values alone. Similarity distributions are model-, corpus-, and task-dependent; label examples from your own retrieval task and calibrate a threshold or ranking policy there.':
+    'Sirf cosine values se koi count infer nahi kiya ja sakta. Similarity distribution model, corpus aur task par depend karti hai; apne retrieval task ke examples label karke wahi threshold ya ranking policy calibrate kijiye.',
+  'More candidates can improve coverage and lower relevance density, but neither is guaranteed. Retrieved text can grow with k; actual cost depends on chunk size, prompt overhead, output tokens, caching, truncation and pricing, so measure it.':
+    'Zyada candidates coverage improve aur relevance density kam kar sakte hain, par dono guaranteed nahi hain. Retrieved text k ke saath badh sakta hai; actual cost chunk size, prompt overhead, output tokens, caching, truncation aur pricing par depend karta hai, isliye use measure kijiye.',
+  'A good answer has both halves: what happens, and what it means. What happens — the model only sees context the application supplies; replaying a growing history makes the prompt larger. What it means — conversation cost depends on that context-management design, so it must be measured rather than assumed. If you got both halves, you understand this chapter better than most people who have shipped an AI feature.':
+    'Achche answer mein dono hisse hote hain: kya hota hai aur uska matlab kya hai. Model ko app ka diya context hi dikhta hai; growing history replay karne se prompt bada hota hai. Conversation cost context-management design par depend karti hai, isliye measure honi chahiye. Yeh dono keh paaye to aap is chapter ko zyadatar shipped AI feature waalon se behtar samajhte hain.',
+  'They followed headings and clause numbers, and produced pieces of wildly unequal size that are each individually complete. Write one sentence describing the rule you just used without being taught it. That is a structure-aware (or document-aware) chunking rule: it follows the document’s anatomy. Semantic chunking is a separate approach that groups text by meaning changes. You derived the distinction by doing it rather than memorising it.':
+    'Aapke cuts headings aur clause numbers follow karke alag size ke, lekin individually complete, pieces banaate hain. Yeh structure-aware ya document-aware chunking hai: document ki anatomy follow hoti hai. Semantic chunking alag approach hai jo meaning change par text group karti hai. Aapne farq karke samjha, ratkar nahi.',
+  'Leaving out what mattered is called poor <strong>recall</strong>. Burying you in irrelevance is poor <strong>precision</strong>. The lever between them is how many pieces you fetch per question — usually written <strong>k</strong>. Fetching more can improve coverage and can lower relevance density; fetching fewer can do the reverse. These are empirical trade-offs, not guarantees, so grade them using explicit relevance judgments on your own question set.':
+    'Jo matter karta tha use chhod dena poor <strong>recall</strong> hai. Irrelevant cheezon mein daba dena poor <strong>precision</strong> hai. Inke beech ka lever har question par fetch hone wale pieces ki sankhya, <strong>k</strong>, hai. Zyada fetch coverage improve aur relevance density kam kar sakta hai; kam fetch mein ulta ho sakta hai. Yeh guarantee nahi, empirical trade-offs hain; apne questions par explicit relevance judgments se grade kijiye.',
+  'It returns on attempt 1 most of the time, attempt 2 occasionally. Note the cost: <strong>every retry re-sends the context this implementation supplies</strong> (Chapter 1). A 10% retry rate is a 10%+ cost increase you must put in the model of Chapter 15.':
+    'Aksar attempt 1 par return hota hai, kabhi attempt 2 par. Cost note kijiye: <strong>har retry wahi context phir bhejti hai jo yeh implementation supply karta hai</strong> (Chapter 1). 10% retry rate ka actual token aur latency overhead Chapter 15 ke model mein measure kijiye.',
+  'It sends whichever context the application chooses each invocation':
+    'Har invocation mein app jo context choose karta hai, wahi bhejta hai',
+  '<strong>Every step multiplies the bill.</strong> Chapter 1 showed that a request includes application-supplied context. A loop can compound cost when it keeps replaying a growing transcript.':
+    '<strong>Har step bill ko badha sakta hai.</strong> Chapter 1 ne dikhaya ki request mein app-supplied context hota hai. Growing transcript ko baar-baar replay karne wala loop cost compound kar sakta hai.',
+  'It depends on the messages, tool outputs, summaries, caching and model pricing. If this loop replays a growing transcript, its input can grow faster than the step count. Instrument actual input/output tokens per step; do not rely on a universal multiplier.':
+    'Yeh messages, tool outputs, summaries, caching aur model pricing par depend karta hai. Agar loop growing transcript replay karta hai to input step count se tez badh sakta hai. Har step ke actual input/output tokens instrument kijiye; universal multiplier par bharosa mat kijiye.',
+  'A retry repeats the request context this implementation sends, so record the actual retry token and latency overhead':
+    'Retry is implementation ka bheja hua request context repeat karta hai, isliye actual retry token aur latency overhead record kijiye',
+  'The application chooses what prior context, summary, memory or task state to send':
+    'Application choose karta hai ki prior context, summary, memory ya task state mein se kya bhejna hai',
+  'Coverage may improve and relevance density may fall; measure Hit@k, Recall@k where defined, Precision@k, prompt tokens, latency and cost':
+    'Coverage improve aur relevance density kam ho sakti hai; Hit@k, jahan defined ho Recall@k, Precision@k, prompt tokens, latency aur cost measure kijiye',
+  'Nine answerable questions with the correct chunks planted at realistic depths. Move k and inspect Hit@k, judged relevance density, and the retrieved-text estimate. This toy ranking illustrates a common trade-off; a real corpus needs explicit relevance judgments and measured prompt tokens, latency, and cost.':
+    'Nau answerable questions mein correct chunks realistic depths par rakhe hain. k badal kar Hit@k, judged relevance density aur retrieved-text estimate dekhiye. Yeh toy ranking common trade-off dikhati hai; real corpus ko explicit relevance judgments aur measured prompt tokens, latency aur cost chahiye.',
+  'A distinctive exact code or defined term often ranks strongly under keyword retrieval. Record its actual rank rather than assuming it will win: this is the lexical strength that semantic retrieval may complement, not erase.':
+    'Distinctive exact code ya defined term keyword retrieval mein aksar strongly rank karta hai. Jeet assume karne ke bajaay actual rank record kijiye: yeh lexical strength hai jise semantic retrieval complement kar sakta hai, mita nahi deta.',
+  'The assassin that scored zero yesterday may now surface the correct card much higher. Run all three and compare against your handwritten rankings. The second-language result is a finding about this model and your corpus — write the actual ranks and scores down rather than assuming a universal outcome.':
+    'Jo assassin kal zero score kar raha tha, aaj correct card ko kaafi upar la sakta hai. Teeno run karke handwritten rankings se compare kijiye. Second-language result is model aur aapke corpus ki finding hai; universal outcome assume karne ke bajaay actual ranks aur scores likhiye.',
+  'Cut on clause boundaries so each piece carries a complete rule with its exceptions attached — structure-aware chunking following the document\'s own anatomy. Semantic chunking is a separate meaning-based strategy. Pieces will be unequal in size, which is a feature: meaning does not come in uniform sizes. Sacrifices: cross-clause definitions ("as defined in clause 2") still orphan, so add a situating sentence (contextual retrieval); very long clauses may exceed a comfortable retrieval unit and need sub-splitting with overlap. A strong answer names the residual failure, not just the rule.':
+    'Clause boundaries par cut kijiye taaki har piece complete rule aur exception saath rakhe — yeh document ki anatomy follow karne wali structure-aware chunking hai. Semantic chunking alag meaning-based strategy hai. Pieces unequal honge, aur yeh feature hai. Cross-clause definitions phir bhi orphan ho sakti hain; situating sentence aur zarurat par overlap use kijiye. Strong answer residual failure bhi naam se batata hai.',
+  'Cut on clause boundaries so each piece carries a complete rule with its exceptions attached — structure-aware chunking following the document\'s own anatomy. Semantic chunking is a separate meaning-based strategy. Pieces will be unequal in size, which is a feature: meaning does not come in uniform sizes. Sacrifices: cross-clause definitions ("as defined in clause 2") still orphan, so add a situating sentence (contextual retrieval); very long clauses may exceed a comfortable retrieval unit and need sub-splitting with overlap. A strong answer names the residual failure, not just the rule.':
+    'Clause boundaries par cut kijiye taaki har piece complete rule aur exceptions saath rakhe — yeh document anatomy follow karne wali structure-aware chunking hai. Semantic chunking alag meaning-based strategy hai. Pieces unequal honge. Cross-clause definitions orphan reh sakti hain; situating sentence aur overlap use kijiye. Strong answer residual failure bhi batata hai.',
+  'Run one should be checked against your source. Run two tests whether semantic retrieval surfaced evidence that keyword matching missed. Run three tests the no-answer path. The exact refusal is not guaranteed: record what actually happens. Retrieval plus instructions can reduce unsupported answers, not eliminate them.':
+    'Run one ko source ke against check kijiye. Run two test karta hai semantic retrieval ne keyword matching se miss hua evidence nikala ya nahi. Run three no-answer path test karta hai. Exact refusal guaranteed nahi hai: jo hota hai use record kijiye. Retrieval aur instructions unsupported answers ko reduce kar sakte hain, eliminate nahi.',
+  'Treat that third run as a test result, not proof of safety. The retrieved evidence and briefing reduce risk, but either can fail. Keep the question in your evaluation set and measure no-answer behaviour whenever the model, prompt, retrieval or corpus changes.':
+    'Third run ko safety proof nahi, test result samjhiye. Retrieved evidence aur briefing risk reduce karte hain, par dono fail ho sakte hain. Question ko evaluation set mein rakhiye aur model, prompt, retrieval ya corpus badle to no-answer behaviour measure kijiye.'
+});
+
 /* Hinglish: the practice question bank.
 
    Generated alongside the English source: the key is the English line exactly
@@ -17190,7 +17261,7 @@ LABS.tokenizer={title:'The receipt, read live',k:'lab 1.1',
   }};
 
 LABS.receipt={title:'Why message 50 costs more than message 1',k:'lab 1.2',
-  note:'The stage trick, metered. Each turn re-sends everything before it, so cost grows with the square of the conversation — not with the number of messages.',
+  note:'A simplified history-replay model, metered. It assumes each turn re-sends prior messages; real apps may summarize, retrieve selected memories, cache prefixes, or keep state externally. Use it to see why context design matters, then measure your own request shape.',
   render(el){
     const n=h('span',{class:'readout',text:'30'}), per=h('span',{class:'readout',text:'180'});
     const cv=h('canvas',{height:'150'}); cv.style.width='100%';
@@ -17232,7 +17303,7 @@ LABS.receipt={title:'Why message 50 costs more than message 1',k:'lab 1.2',
 
 /* ---------------- 2. Temperature ---------------- */
 LABS.temperature={title:'The variety dial',k:'lab 2.1',
-  note:'Real sampling mathematics on a fixed candidate set. At 0 the top continuation wins every time; raise it and the distribution flattens until the unlikely becomes routine.',
+  note:'A simplified sampling illustration on a fixed candidate set. Lower temperature concentrates probability and higher temperature spreads it. Provider decoding settings can still produce variation, so this is direction, not a determinism guarantee.',
   render(el){
     const CAND=[['Move More. Live Better.',3.2],['Fit for Work, Fit for Life',2.6],
       ['Your Health, Our Priority',2.1],['Step Up Every Day',1.7],['Stronger Together at Work',1.2],
@@ -17398,7 +17469,7 @@ const TOYQ=[
 // simulated ranking: correct chunks appear at varying depths
 const RANKS=[[1,4],[1],[2],[3],[6],[1,8],[4],[2],[7]];
 LABS.prdial={title:'The trade-off, under your own hand',k:'lab 6.1',
-  note:'Nine answerable questions with the correct chunks planted at realistic depths. Move k and watch recall climb while precision — and your bill — move the other way. This is the most-cited chart in applied AI, produced in one slider.',
+  note:'Nine answerable questions with the correct chunks planted at realistic depths. Move k and inspect Hit@k, judged relevance density, and the retrieved-text estimate. This toy ranking illustrates a common trade-off; a real corpus needs explicit relevance judgments and measured prompt tokens, latency, and cost.',
   render(el){
     const kk=h('span',{class:'readout',text:'3'}); const out=h('div'),tbl=h('div');
     let K=3;
@@ -17415,9 +17486,9 @@ LABS.prdial={title:'The trade-off, under your own hand',k:'lab 6.1',
       out.innerHTML='';
       out.appendChild(stats([
         ['k',K],
-        ['recall-style',hits+'/9',recall>=.78?'ok':'red',(recall*100).toFixed(0)+'%'],
-        ['precision-style',rel+'/'+fetched,prec>=.35?'ok':'red',(prec*100).toFixed(0)+'%'],
-        ['token cost','×'+K,'red','vs k=1, forever']
+        ['Hit@k',hits+'/9',recall>=.78?'ok':'red',(recall*100).toFixed(0)+'% answerable queries with ≥1 relevant chunk'],
+        ['judged Precision@k',rel+'/'+fetched,prec>=.35?'ok':'red',(prec*100).toFixed(0)+'% of retrieved chunks judged relevant'],
+        ['retrieved-text estimate','×'+K,'red','equal-size toy chunks; measure real prompt tokens']
       ]));
       tbl.innerHTML='';
       const t=h('table');
