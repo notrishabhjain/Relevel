@@ -4,11 +4,9 @@
    as it appears in the course, so a line that is later edited in English falls
    back to English rather than showing a translation of something else. */
 Object.assign(window.HING = window.HING || {}, {
-  /* Part I — The basics */
+
   'The basics':
     'Basics',
-  'What actually happens when your app asks an AI something, why it invents things, how documents get cut up and found again, and how to tell whether any of it works.':
-    'Jab aapka app AI se kuchh poochhta hai to asal mein hota kya hai, woh cheezein banata kyun hai, documents kaise kaate aur dobara dhoondhe jaate hain, aur yeh kaise pata chale ki kuchh kaam bhi kar raha hai.',
   'Start here':
     'Yahin se shuru kijiye',
   'Ten minutes. Nothing to install, nothing to sign up for, and no prior knowledge assumed.':
@@ -47,8 +45,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Chapter 1 apne pehle kuchh minute mein hi aapse ek asli model ko asli call karwata hai. Notebook aur key abhi set kar lijiye — <a href="#/setup">Set up Colab + API key</a> — taaki wahan pahunch kar aap ek line paste kar rahe hon, na ki cheezon ke liye sign up.',
   'That is the whole chapter. Nothing here needs remembering. Set the notebook up, and then Chapter 1 starts properly.':
     'Bas itna hi chapter hai. Yahan kuchh yaad rakhne ki zaroorat nahi. Notebook set kar lijiye, aur phir Chapter 1 theek se shuru hota hai.',
-  '<strong>One chapter per sitting.</strong> They are fifteen to twenty-five minutes. Stopping while you still have energy is what brings you back tomorrow; a huge first week followed by nothing is the usual way this ends.':
-    '<strong>Ek baithak mein ek chapter.</strong> Har ek pandrah se pachchees minute ka hai. Energy bachi rehte hue rukna hi aapko kal wapas laata hai; pehle hafte mein sab kuchh aur uske baad kuchh nahi — yeh iska aam ant hai.',
   '<strong>Your progress follows you.</strong> Signed in, everything saves against your account, so you can read on your phone and carry on at your desk.':
     '<strong>Aapki progress aapke saath chalti hai.</strong> Sign in hone par sab kuchh aapke account mein save hota hai, to aap phone par padh sakte hain aur desk par aage badha sakte hain.',
   'You will hit a chapter that feels too hard. That is scheduled, not exceptional. When it happens, the move is neither to push through nor to stop — it is to take the smallest step available and let the day end there. Every question has a “Stuck?” button that shows you the answer without counting it against you.':
@@ -61,14 +57,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Jo plan kharaab shaam mein bhi tikte hain unme teen cheezein common hoti hain. Sabse chhota kadam sach mein bahut chhota hota hai — ek sawaal, do minute, poora chapter nahi. Aapko pata hota hai ki wapas kahan se shuru karna hai, kyunki thake hue sabse mehnga kaam decide karna hi hota hai. Aur chhoote hue din ki kahani pehle se tay hoti hai: chhoota din bas chhoota din hai. Woh kisi baat ka sabooot nahi hai aur uska matlab dobara shuru karna nahi hai. Sabse lapse hota hai. Poora karne wale wahi log hain jinhone pehle hi tay kar liya tha ki lapse allowed hai.',
   'What happens when your app asks an AI something':
     'Jab aapka app AI se kuchh poochhta hai to hota kya hai',
-  'Three facts about the machine. Each one decides something you will have to design around.':
-    'Machine ke teen facts. Har ek aisi cheez tay karta hai jiske aas-paas aapko design karna padega.',
   'Explain why an AI can sound completely certain and be completely wrong.':
     'Yeh samjha paana ki AI poore confidence ke saath bilkul galat kaise ho sakta hai.',
-  'Say what a company is actually billed for when someone uses an AI feature.':
-    'Yeh batana ki jab koi AI feature istemaal karta hai to company ka bill asal mein kis cheez ka banta hai.',
-  'Explain why a long chat costs more per message than a short one — and why that is a product decision, not a technical detail.':
-    'Yeh samjhana ki lambi chat mein har message chhoti chat se mehnga kyun padta hai — aur yeh technical detail nahi, product decision kyun hai.',
   'Start with your phone keyboard. You type <em>See you at the</em> and it offers <em>office</em>, <em>station</em>, <em>airport</em>. It is guessing the next word from patterns in what people usually type. It is not thinking about your evening.':
     'Apne phone ke keyboard se shuru kijiye. Aap likhte hain <em>See you at the</em> aur woh sujhaata hai <em>office</em>, <em>station</em>, <em>airport</em>. Woh log aam taur par kya likhte hain, usi pattern se agla shabd guess kar raha hai. Aapki shaam ke baare mein soch nahi raha.',
   'An AI model is that, made enormous. It was built by reading a very large amount of writing and getting extremely good at one narrow trick: guessing what text comes next. Do that trick over and over and whole paragraphs come out. That is all it does.':
@@ -77,34 +67,18 @@ Object.assign(window.HING = window.HING || {}, {
     'Yeh guess kar raha hai, dhoondh nahi raha. Iske peechhe koi database nahi hai jise yeh dekhta ho. Is field ki zyadatar hairaani ki jad yahi ek fact hai.',
   'One line — what do you think it does?':
     'Ek line — aapko kya lagta hai yeh kya karega?',
-  'So: you ask it about a refund policy at a company that does not exist. It has never seen anything about it. What comes back?':
-    'To: aap ise ek aisi company ki refund policy ke baare mein poochhte hain jo hai hi nahi. Usne uske baare mein kabhi kuchh dekha hi nahi. Kya wapas aayega?',
-  'This is why you cannot judge an AI answer by how confident it sounds. It sounds identical either way. Chapter 2 is entirely about this.':
-    'Isiliye aap AI ke jawaab ko uske confident lehje se nahi jaanch sakte. Dono haalat mein woh bilkul ek jaisa sunai deta hai. Chapter 2 poora isi par hai.',
   'A confident, well-written, completely invented policy. Not because it is lying — because “guess what text comes next” has no option for “I have nothing here.” Saying <em>I don’t know</em> is a behaviour that has to be added on top, and it does not always hold.':
     'Ek confident, achchhi tarah likhi hui, poori tarah bana di gayi policy. Isliye nahi ki woh jhooth bol raha hai — balki isliye ki “agla text guess karo” mein “mere paas kuchh nahi hai” wala option hai hi nahi. <em>Mujhe nahi pata</em> kehna ek behaviour hai jo upar se jodna padta hai, aur woh hamesha tikta bhi nahi.',
   'Now the practical part: what actually gets sent, and what you get charged for.':
     'Ab practical hissa: asal mein bheja kya jaata hai, aur paisa kis cheez ka lagta hai.',
-  'Your app sends text. The AI sends text back. You are billed for both — for how much went in, and how much came out. Not by the word, though. By something slightly smaller.':
-    'Aapka app text bhejta hai. AI text wapas bhejta hai. Bill dono ka banta hai — kitna andar gaya, aur kitna bahar aaya. Lekin shabd ke hisaab se nahi. Usse thodi chhoti cheez ke hisaab se.',
-  'Text gets chopped into pieces called <strong>tokens</strong>. Roughly, a token is about three-quarters of an English word. Common words are usually one token each; unusual words and other scripts break into several. Try it — this is the actual thing, running here:':
-    'Text ko tukdon mein kaat diya jaata hai jinhe <strong>tokens</strong> kehte hain. Motamoti, ek token ek English word ka teen-chauthai hota hai. Aam shabd aksar ek-ek token hote hain; anokhe shabd aur doosri lipiyan kai tukdon mein toot jaate hain. Khud dekhiye — yeh asli cheez hai, yahin chal rahi hai:',
-  'Type a normal sentence and watch it split. Then try your own name, and then something in Hindi or Tamil if you have it. Notice how many more pieces those become. Every extra piece is money.':
-    'Ek normal sentence likhiye aur use tootte hue dekhiye. Phir apna naam likhiye, aur phir Hindi ya Tamil mein kuchh, agar aata ho. Dhyaan dijiye ki unke kitne zyada tukde bante hain. Har extra tukda paisa hai.',
   'Second fact: there is a size limit. Everything sent in one go — the question, any instructions you attach, any documents, plus the answer coming back — has to fit inside a ceiling. The industry calls that ceiling the <strong>context window</strong>.':
     'Doosra fact: ek size limit hai. Ek baar mein bheji gayi har cheez — sawaal, saath lagi instructions, koi bhi documents, aur wapas aane wala jawaab — sab ek ceiling ke andar aana chahiye. Industry us ceiling ko <strong>context window</strong> kehti hai.',
   'It is worth being precise about what it is not. It is not memory. It is the size of one delivery.':
     'Yeh saaf kar lena zaroori hai ki yeh kya nahi hai. Yeh memory nahi hai. Yeh ek delivery ka size hai.',
   'Which brings us to the third fact, and the strangest one.':
     'Aur isse teesra fact aata hai, jo sabse ajeeb hai.',
-  'The AI forgets you completely the moment it replies. Every request starts from nothing. It has no idea you spoke to it a minute ago.':
-    'Jawaab dete hi AI aapko poori tarah bhool jaata hai. Har request shoonya se shuru hoti hai. Use andaaza bhi nahi ki ek minute pehle aap usse baat kar rahe the.',
   'That raises an obvious question: so how does a chat assistant seem to remember what you said five messages back?':
     'To ek seedha sawaal uthta hai: phir chat assistant ko paanch message pehle ki baat yaad kaise rehti hai?',
-  'It does not. The app re-sends the entire conversation every single time. When you type message six, the app quietly sends messages one to five along with it, so the reply makes sense. The memory is a trick performed by the app, not a property of the AI.':
-    'Rehti nahi hai. App har baar poori conversation dobara bhejta hai. Jab aap chhatha message likhte hain, app chupchaap message ek se paanch bhi saath bhej deta hai, taaki jawaab mein matlab bane. Yeh memory app ka kiya hua khel hai, AI ka gun nahi.',
-  'And since you pay for everything you send — you pay for that whole history again, on every message. Watch it happen:':
-    'Aur kyunki aap jo bhejte hain uska paisa dete hain — woh poora history har message par dobara aapke bill mein aata hai. Hote hue dekhiye:',
   'That is the chapter. Three facts, and each one lands on your desk rather than an engineer’s:':
     'Bas yahi chapter hai. Teen facts, aur teenon kisi engineer ki nahi, aapki mez par aate hain:',
   '<strong>It guesses.</strong> So “does it sound confident?” tells you nothing, and you will need a way to actually check answers.':
@@ -115,16 +89,6 @@ Object.assign(window.HING = window.HING || {}, {
     '<strong>Yeh bhool jaata hai.</strong> To memory woh cheez hai jo aapka product banata hai aur har message par uska paisa deta hai — vendor se milne wala feature nahi.',
   'Two sentences.':
     'Do sentence.',
-  'Last thing, and it is the one that sticks. Write the two sentences you would say to a colleague who asks why a long chat with an AI costs more than a short one. Plain words — no jargon, and nothing you could not defend if they pushed back.':
-    'Aakhri cheez, aur yahi tikti hai. Woh do sentence likhiye jo aap us colleague se kahenge jo poochhta hai ki AI se lambi chat chhoti chat se mehngi kyun padti hai. Saade shabd — koi jargon nahi, aur kuchh aisa nahi jise woh khodein to aap defend na kar paayein.',
-  'A good answer has both halves: what happens, and what it means. What happens — the AI remembers nothing, so the app sends the whole conversation again with every message. What it means — the cost of a conversation grows the longer it gets, and that cost is ours, not the vendor’s. If you got both halves, you understand this chapter better than most people who have shipped an AI feature.':
-    'Achchhe jawaab mein dono hisse hote hain: hota kya hai, aur uska matlab kya hai. Hota kya hai — AI ko kuchh yaad nahi rehta, isliye app har message ke saath poori conversation dobara bhejta hai. Matlab kya hai — jitni lambi conversation, utni badhti hui cost, aur woh cost hamari hai, vendor ki nahi. Agar dono hisse aa gaye, to aap is chapter ko un logon se behtar samajhte hain jinhone AI feature ship kiya hua hai.',
-  'Optional, if you want one thing to try':
-    'Optional, agar ek cheez try karni ho',
-  'Open any AI chat you already use. Ask it something about your own company that it could not possibly know — phrased as though the answer obviously exists. See whether it refuses or invents. That is the whole of Chapter 2, and it takes two minutes.':
-    'Koi bhi AI chat kholiye jo aap pehle se istemaal karte hain. Usse apni company ke baare mein kuchh aisa poochhiye jo use kisi bhi haal mein pata nahi ho sakta — aise poochhiye jaise jawaab hona to zaroor chahiye. Dekhiye woh mana karta hai ya bana deta hai. Poora Chapter 2 yahi hai, aur ismein do minute lagte hain.',
-
-  /* Part I — The basics */
   'Telling it how to behave — and watching it lie':
     'Use behaviour batana — aur use jhooth bolte dekhna',
   'You get two controls over the AI. Neither of them makes it truthful.':
@@ -253,8 +217,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Kuchh tukdon ka akele matlab nahi rehta',
   '“The aforesaid amount” has lost whatever it pointed at.':
     '“The aforesaid amount” ka sandarbh kho chuka hai.',
-
-  /* Part I — The basics */
   'You have a document cut into twenty pieces. A question arrives. Something has to decide which pieces to send.':
     'Aapke paas ek document bees tukdon mein kata hua hai. Ek sawaal aata hai. Kisi ko tay karna hai ki kaunse tukde bhejne hain.',
   'The obvious method, and the one every search box used for thirty years: look for the words. The question says <em>refund</em>, so find the pieces containing <em>refund</em>. It is fast, it is cheap, and it needs nothing clever.':
@@ -365,8 +327,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek fraction, jaise 6/10',
   'You build a search step, write ten honest questions, and run them. How many will find the right piece on the first attempt?':
     'Aap ek search step banate hain, das imaandaar sawaal likhte hain, aur chalate hain. Pehli koshish mein kitne sahi tukda dhoondh paayenge?',
-
-  /* Part I — The basics */
   'And if you got nine or ten, the likeliest explanation is not that your system is excellent. It is that you wrote the questions after reading the documents, so you tested whether your search can find text using its own words. That is a mirror, not a test.':
     'Aur agar nau ya das aaye, to sabse likely wajah yeh nahi hai ki aapka system zabardast hai. Wajah yeh hai ki aapne sawaal documents padhne ke baad likhe, to aapne yeh test kiya ki aapka search apne hi shabdon se text dhoondh paata hai ya nahi. Woh aaina hai, test nahi.',
   'Six or seven out of ten is a normal, healthy first result. Genuinely — that is what a working system looks like on day one.':
@@ -375,8 +335,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Isse aapko woh ek sabse kaam ka sawaal bhi mil jaata hai jo aap kisi bhi number batane wale vendor se poochh sakte hain. "94% kaise aaya?" nahi, balki: <em>kis answer key ke against, kisne likhi thi, aur kya main sawaal dekh sakta hoon?</em> Zyadatar dikha nahi paate. Wahi aapka jawaab hai.',
   '<strong>Two: there are two ways to fail, and they pull against each other.</strong> Picture asking an assistant to fetch the files relevant to a meeting. They can fail two ways: leave out something that mattered, or bury you in things that did not.':
     '<strong>Do: fail hone ke do tareeke hain, aur woh ek doosre ko kheenchte hain.</strong> Sochiye ki aapne kisi assistant se meeting se judi files mangwayin. Woh do tareeke se fail ho sakta hai: kaam ki cheez chhod de, ya bekaar cheezon ka dher laga de.',
-  'Leaving out what mattered is called poor <strong>recall</strong>. Burying you in irrelevance is poor <strong>precision</strong>. The lever between them is how many pieces you fetch per question — usually written <strong>k</strong>. Fetch more and you miss less, but more of what you fetch is junk. Fetch fewer and everything you get is relevant, but you miss things.':
-    'Kaam ki cheez chhod dena kamzor <strong>recall</strong> kehlata hai. Bekaar cheezon ka dher lagana kamzor <strong>precision</strong>. Dono ke beech ka lever yeh hai ki har sawaal par kitne tukde nikaale jaayein — ise aam taur par <strong>k</strong> likhte hain. Zyada nikaaliye to kam chhootega, lekin jo aaya usme kachra zyada hoga. Kam nikaaliye to jo aaya woh sab kaam ka hoga, lekin cheezein chhootengi.',
   'You cannot have both. Move the lever and see:':
     'Dono ek saath nahi mil sakte. Lever hilakar dekhiye:',
   '<strong>Three: which failure is worse depends entirely on what you are building.</strong> And this is where it stops being an engineering question.':
@@ -441,4 +399,5 @@ Object.assign(window.HING = window.HING || {}, {
     'Documents saaf karna aur kaatne ka tareeka theek karna lagbhag hamesha jeette hain, aur uske baad re-ranking pass sabse sasta bada sudhaar hai. Zyada mehnga model aam taur par sabse mehnga option hai aur sabse chhota faayda — kyunki dikkat kabhi yeh thi hi nahi ki AI padh nahi paa raha tha. Dikkat yeh thi ki sahi evidence us tak pahuncha hi nahi.',
   'Why keep the name back for six chapters? Because a word you learn before the thing becomes jargon — something you can repeat but not defend. A word you learn after becomes testimony. When you say <em>RAG</em> from now on, it will not be a term you picked up. It will be a thing you built, and more usefully, a thing you have broken.':
     'Naam chhah chapter tak kyun rok kar rakha? Kyunki cheez se pehle seekha gaya shabd jargon ban jaata hai — jise aap doharaa to sakte hain lekin defend nahi kar sakte. Cheez ke baad seekha gaya shabd gawahi ban jaata hai. Ab se jab aap <em>RAG</em> bolenge, to woh koi uthaya hua term nahi hoga. Woh ek cheez hogi jo aapne banayi hai, aur usse bhi zyada kaam ki baat — jise aapne toda hai.'
+
 });

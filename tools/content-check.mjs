@@ -366,10 +366,34 @@ if (untranslated.length) {
   fail(`${untranslated.length} line(s) of ${need.size} have no Hinglish translation` +
        ` — first: "${untranslated[0].slice(0, 70)}…"`);
 }
-const hay = JSON.stringify(C) + fs.readFileSync(path.join(ROOT, 'src/labs.js'), 'utf8')
-  + fs.readFileSync(path.join(ROOT, 'src/app.js'), 'utf8');   /* chrome that T() translates */
-const stale = Object.keys(hing).filter(k =>
-  !hay.includes(JSON.stringify(k).slice(1, -1)) && !hay.includes(k));
+/* The haystack must not contain the translation map, whose keys are the very
+   strings being tested: with C.hinglish in here every key matched itself and
+   this check could never fail. */
+const { hinglish: _translations, ...contentWithoutTranslations } = C;
+/* Stale translations: a key whose English no longer appears anywhere, so the
+   lookup can never fire and the page silently falls back to English. That is
+   the failure this catches — a small edit to a line of English quietly turns
+   off its translation, and nothing else would report it.
+
+   Two things this check got wrong before and must not get wrong again:
+
+   - It searched the whole content bundle, which CONTAINS the translation map,
+     so every key matched itself and the check could never fail at all.
+   - A substring search over raw source is too blunt: it missed a live line
+     whose English is assembled in code, and source writes an em dash as the
+     six characters \u2014 while the key holds the character.
+
+   So the content side is tested against `need` — the set this file already
+   built by walking the real structures, which is exactly the strings that
+   render and ask for translation — and only the chrome, which is literals in
+   code, falls back to a text search, with the escapes decoded first. */
+const unescapeU = s => s.replace(/\\u([0-9a-fA-F]{4})/g,
+  (_, h) => String.fromCharCode(parseInt(h, 16)));
+/* views.js wraps T() as TR(), studio.js and speech.js carry chrome of their
+   own; leaving any of them out reports live translations as dead. */
+const chrome = ['src/labs.js', 'src/app.js', 'src/views.js', 'src/studio.js', 'src/speech.js']
+  .map(f => unescapeU(fs.readFileSync(path.join(ROOT, f), 'utf8'))).join('');
+const stale = Object.keys(hing).filter(k => !need.has(k) && !chrome.includes(k));
 if (stale.length) {
   fail(`${stale.length} Hinglish translation(s) key off English that no longer appears in the course` +
        ` — first: "${stale[0].slice(0, 70)}…"`);

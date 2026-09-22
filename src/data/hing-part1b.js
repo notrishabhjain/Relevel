@@ -3,6 +3,7 @@
    Same rule as the rest of the layer — the key is the English line exactly as
    the course shows it, and code is never translated. */
 Object.assign(window.HING = window.HING || {}, {
+
   'Three facts about the machine. You will prove each one on your own screen before the next one arrives.':
     'Machine ke teen facts. Agla aane se pehle har ek ko aap apni screen par saabit karenge.',
   'Read the receipt on a call and say what a company is actually billed for.':
@@ -49,12 +50,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Do alag calls, ek ke baad ek:',
   'The second reply has no idea. Not a bug, not a setting — the machine really has nothing between one call and the next.':
     'Doosre jawaab ko kuchh pata hi nahi. Na yeh bug hai na koi setting — machine ke paas ek call aur agli call ke beech sach mein kuchh hota hi nahi.',
-  'It does not. The app re-sends the entire conversation every single time. The memory is a trick performed by the app, not a property of the AI. And you are about to perform it yourself.':
-    'Rehti nahi hai. App har baar poori conversation dobara bhejta hai. Yeh memory app ka kiya hua khel hai, AI ka gun nahi. Aur ab aap yeh khel khud karne wale hain.',
   'Perform the trick':
     'Khel khud kijiye',
-  'Now it knows — Sam. And <code>prompt_tokens</code> is bigger than before, because you paid to re-send the whole history. Sit on that for a second: you have just built, by hand, the illusion every chat product in the world sells, and you can see exactly what it costs per message.':
-    'Ab use pata hai — Sam. Aur <code>prompt_tokens</code> pehle se bada hai, kyunki aapne poori history dobara bhejne ka paisa diya. Ek pal ruk kar sochiye: aapne abhi apne haathon se woh bhram bana liya jo duniya ka har chat product bechta hai, aur aap saaf dekh sakte hain ki har message par uski keemat kya hai.',
   'Watch that cost curve without typing anything:':
     'Woh cost curve bina kuchh type kiye dekhiye:',
   'Write the two sentences you would say to a colleague who asks why a long chat with an AI costs more than a short one. Plain words — no jargon, and nothing you could not defend if they pushed back.':
@@ -81,4 +78,5 @@ Object.assign(window.HING = window.HING || {}, {
     'Aapke paas ek per query cost hai jise aap kisi ke saamne, apni screen ke numbers se, dobara nikaal sakte hain.',
   'You can name the assumption that would break the estimate — and it is not “the model might change”.':
     'Aap us assumption ka naam le sakte hain jo estimate ko tod degi — aur woh “model badal sakta hai” nahi hai.'
+
 });

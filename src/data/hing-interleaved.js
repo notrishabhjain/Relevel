@@ -4,6 +4,13 @@
    as it appears in the course, so a line that is later edited in English falls
    back to English rather than showing a translation of something else. */
 Object.assign(window.HING = window.HING || {}, {
+
+  '1':
+    '1',
+  '3':
+    '3',
+  '8':
+    '8',
   'The briefing page':
     'Briefing page',
   'You have seen a single sentence suppress a lie, and a single pushy user undo it. A real product does not get one sentence — it gets a written briefing, reviewed like any other operating procedure, because it <em>is</em> the product’s behaviour. Write that briefing. Chapter 7 uses it again, unchanged.':
@@ -100,8 +107,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Round 3 — insaan ki tarah kaatiye',
   'Cut a fresh copy the way you actually think it should be cut. Do not overthink it. Then stop and watch what your own hands did.':
     'Ek nayi copy ko us tarah kaatiye jaise aapko sach me lagta hai ki kaatni chahiye. Zyada mat sochiye. Phir ruk kar dekhiye ki aapke apne haathon ne kya kiya.',
-  'They followed headings and clause numbers, and produced pieces of wildly unequal size that are each individually complete. Write one sentence describing the rule you just used without being taught it. That sentence is what the industry calls semantic chunking — and you derived it rather than memorised it.':
-    'Unhone headings aur clause numbers ka peechha kiya, aur bilkul alag-alag size ke tukde banaye jo har ek apne aap me poore hain. Ek vaakya likhiye jo us rule ko bataye jo aapne bina sikhe istemaal kiya. Industry usi ko semantic chunking kehti hai — aur aapne use ratne ke bajaay khud nikaala hai.',
   'The failure map':
     'Failure map',
   'You have just run an experiment that most people who buy search software have never run: you scored a real method, by hand, on real questions, against a real document. The output is not a feeling about keyword search. It is evidence. Write it up so it can be used in a room where somebody is trying to sell you something.':
@@ -154,8 +159,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Aur woh ek jismein yeh saaf jeetta hai',
   'Now ask a question containing an exact code, section number, or defined term lifted straight from the document.':
     'Ab aisa sawaal poochhiye jismein document se seedha uthaya hua exact code, section number ya defined term ho.',
-  'Instant, perfect, rank one — and no method that works on meaning will ever beat it here. This is the half of what the industry calls hybrid search that never dies, and you have just watched it earn its place.':
-    'Turant, bilkul theek, rank one — aur matlab par kaam karne wala koi tareeka yahan kabhi ise nahi hara payega. Yeh us cheez ka aadha hissa hai jise industry hybrid search kehti hai, aur jo kabhi nahi marta. Aapne abhi use apni jagah kamaate dekha hai.',
   'Name the vacancy':
     'Khaali jagah ko naam dijiye',
   'Take your three assassins and compress what they share into a single sentence describing the capability that is missing. Not the fix — the gap.':
@@ -198,8 +201,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Chapter 4 ka ilaaj kijiye',
   'Paste in the actual cards you cut in Chapter 3 — the text of each one, as a list — and give the whole set addresses.':
     'Chapter 3 me kaate hue asli cards paste kijiye — har ek ka text, ek list ki tarah — aur poore set ko addresses dijiye.',
-  'The assassin that scored zero yesterday now surfaces the correct card at or near rank one. Run all three and compare against your handwritten rankings. Whatever happens on the second-language one is a real finding about your users — write the actual numbers down rather than the impression.':
-    'Jo assassin kal zero par tha, woh ab sahi card ko rank one ya uske aas-paas le aata hai. Teenon chalaiye aur apni haath se banayi rankings se milaiye. Second-language wale par jo bhi hota hai woh aapke users ke baare me ek asli khoj hai — impression nahi, asli numbers likhiye.',
   'Watch the old disease change dialect':
     'Purani bimaari ko bhasha badalte dekhiye',
   'Ask it something the document really cannot answer. Not a hard question — an unrelated one.':
@@ -256,20 +257,12 @@ Object.assign(window.HING = window.HING || {}, {
     'sahi card mile (9 me se)',
   'relevant / total fetched':
     'relevant / kul laaye gaye',
-  '1':
-    '1',
   '… / 9':
     '… / 9',
-  '3':
-    '3',
   '… / 27':
     '… / 27',
-  '8':
-    '8',
   '… / 72':
     '… / 72',
-  'Hits rise as you widen. The relevant fraction falls. And from Chapter 1 you already know the third axis nobody puts on the chart: <code>k=8</code> costs eight times the tokens of <code>k=1</code> on every query, forever. You have just built the most-cited trade-off in applied AI, by hand, on your own documents.':
-    'Jaise-jaise aap chauda karte hain, hits badhte hain. Relevant fraction girta hai. Aur Chapter 1 se aap teesra axis pehle se jaante hain jise koi chart par nahi daalta: <code>k=8</code> har query par <code>k=1</code> se aath guna tokens leta hai, hamesha. Aapne abhi applied AI ka sabse zyada hawaale me aane wala trade-off, haath se, apne documents par bana liya hai.',
   'The findings page, and your next syllabus':
     'Findings page, aur aapka agla syllabus',
   'This is the last capstone in Part I, and it is deliberately not a build. You have a working system and, more valuable, a list of the ways you have personally watched it break. Write the document you would want to have in front of you the next time somebody demonstrates one of these and asks for a budget.':
@@ -310,10 +303,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Pehle apne Chapter 5 ke tukde paste kijiye. Phir yeh — aur dhyaan dijiye ki iski har line woh cheez hai jo aap pehle bana chuke hain, us chapter me jo saath likha hai.',
   'Then run it three times, on three deliberately different questions:':
     'Phir ise teen baar chalaiye, teen jaan-boojh kar alag sawaalon par:',
-  'Run one: grounded, and checkable against your source. Run two: correctly answered — the question keyword search could not touch. Run three: <code>Not found in the provided documents.</code>':
-    'Pehla run: zameen se juda hua, aur aapke source ke against jaancha ja sakta hai. Doosra run: sahi jawaab — woh sawaal jise keyword search chhoo bhi nahi sakti thi. Teesra run: <code>Not found in the provided documents.</code>',
-  'Stop on that third line for a moment. In Chapter 2 this same machine invented an entire fake scheme rather than admit ignorance. That one sentence is a hallucination in a cage — built out of retrieval you wrote, a briefing you wrote, and a test you thought to run.':
-    'Us teesri line par ek pal rukiye. Chapter 2 me yahi machine apni nadaani maanne ke bajaay ek poori nakli scheme gadh laayi thi. Woh ek vaakya pinjre me band hallucination hai — banaya gaya us retrieval se jo aapne likhi, us briefing se jo aapne likhi, aur us test se jo aapne socha.',
   'Prove the cage has two locks':
     'Saabit kijiye ki pinjre me do taale hain',
   'Delete the system message. Keep everything else. Ask about cricket again.':
@@ -322,26 +311,14 @@ Object.assign(window.HING = window.HING || {}, {
     'Woh khushi-khushi un teen bemtlab chunks ka summary bana deta hai jo sabse upar aa gaye. Pinjra kabhi akeli retrieval nahi thi — briefing aur sabooot do alag taale hain, aur inme se koi ek hataao to pinjra khul jaata hai. Briefing waapas lagaiye.',
   'The extractor that cannot guess':
     'Woh extractor jo andaaza laga hi nahi sakta',
-  'You have watched a schema remove a failure rather than discourage it — and watched a badly designed schema <em>cause</em> one. Now build a real extractor for a document type you actually handle, designed so that the failure you most fear has nowhere to live.':
-    'Aapne dekha ki schema ek failure ko rokta nahi, hata deta hai — aur yeh bhi dekha ki kharaab bana schema use <em>paida</em> kar deta hai. Ab us document type ke liye asli extractor banaiye jise aap sach me handle karte hain, is tarah bana hua ki jis failure se aap sabse zyada darte hain uske liye jagah hi na bache.',
   'Pick a document type from your own work and the decision something downstream makes from it.':
     'Apne kaam se ek document type chuniye aur woh faisla jo uske aage koi system leta hai.',
-  'Write the schema: every field, its type, and which are required. Use fixed choices wherever free text would drift.':
-    'Schema likhiye: har field, uska type, aur kaunse sach me zaroori hain. Jahan free text bhatak sakta hai, wahan fixed choices rakhiye.',
   'Give uncertainty somewhere to go — a needs_review branch, a nullable field, an explicit “not stated” boolean — so the model is never cornered into inventing.':
     'Anishchitta ko jaane ki jagah dijiye — ek needs_review branch, ek nullable field, ek saaf “not stated” boolean — taaki model kabhi gadhne ke liye majboor na ho.',
   'Require a quote field carrying the exact words each extracted value came from, and check it on ten real documents.':
     'Ek quote field zaroori kijiye jismein wahi shabd hon jahan se har value aayi, aur use das asli documents par jaanchiye.',
   'Run twenty documents through it, including three that deliberately omit the field people most want. Count the invented values.':
     'Bees documents ise se chalaiye, jinme teen aise hon jo jaan-boojh kar wahi field chhod dete hain jo logon ko sabse zyada chahiye. Gadhi hui values giniye.',
-  'Add the validate-and-re-ask loop, then write down what a retry costs you in tokens and latency.':
-    'Validate-aur-dobara-poochho wala loop jodiye, phir likhiye ki ek retry aapko tokens aur latency me kya padta hai.',
-  'Twenty runs produce twenty parseable records, and you know the failure rate rather than assuming it.':
-    'Bees runs bees parse ho sakne wale records dete hain, aur aap failure rate maan nahi rahe, jaante hain.',
-  'On the documents that omit the key field, nothing is invented — and you can point at the schema line that prevents it.':
-    'Jin documents me woh field nahi hai, unme kuchh gadha nahi jaata — aur aap schema ki us line par ungli rakh sakte hain jo ise rokti hai.',
-  'You can state which errors your schema still cannot catch, and what would catch them instead.':
-    'Aap bata sakte hain ki aapka schema ab bhi kaunsi galtiyaan nahi pakad sakta, aur unhe kya pakadta.',
   'Break the polite request':
     'Vinamra request ko todiye',
   'Impose the schema':
@@ -510,28 +487,10 @@ Object.assign(window.HING = window.HING || {}, {
     'Trifecta ki ek taang todiye',
   'Audit something real':
     'Kisi asli cheez ka audit kijiye',
-  'A grader you have actually checked':
-    'Woh grader jise aapne sach me jaancha hai',
-  'You have written a judge and then graded the judge, which is the step almost everyone skips. Build the evaluation you would run before every release of something real — including the part that says how much to trust it.':
-    'Aapne ek judge likha aur phir us judge ko jaancha, aur yahi woh kadam hai jise lagbhag sab chhod dete hain. Woh evaluation banaiye jise aap kisi asli cheez ke har release se pehle chalayenge — us hisse samet jo batata hai ki us par kitna bharosa karna hai.',
-  'Pick one output your team produces with AI, and write the rubric a careful human would use to grade it.':
-    'Ek aisa output chuniye jo aapki team AI se banati hai, aur woh rubric likhiye jise ek dhyaan se kaam karne wala insaan uske liye istemaal karta.',
-  'Run the free checks first — format, length, forbidden content, required fields — and see how many failures never need a judge at all.':
-    'Pehle muft check chalaiye — format, lambai, mana kiya hua content, zaroori fields — aur dekhiye kitni failures ko judge ki zaroorat hi nahi padti.',
-  'Build the judge against your rubric, then grade fifty outputs by hand as well.':
-    'Apne rubric ke hisaab se judge banaiye, phir wahi pachaas outputs haath se bhi jaanchiye.',
-  'Compare the two. Report agreement honestly, including where the judge is systematically kinder or harsher than you.':
-    'Dono ko milaiye. Sehmati imaandaari se batayiye, yeh bhi ki judge aapse kahan lagataar zyada narm ya zyada sakht hai.',
   'Test it for verbosity bias on your own data: same substance, twice the words, and see whether the score moves.':
     'Apne hi data par verbosity bias jaanchiye: wahi baat, do guna shabdon me, aur dekhiye ki score hilta hai ya nahi.',
-  'Read a hundred real outputs by hand and group what actually went wrong. Compare that list to what your judge measures.':
-    'Sau asli outputs haath se padhiye aur jo sach me galat hua use groups me baantiye. Us list ko us se milaiye jo aapka judge naapta hai.',
   'You have an agreement figure between the judge and your own grading on the same fifty items.':
     'Aapke paas judge aur aapki apni jaanch ke beech, unhi pachaas cheezon par, sehmati ka aankda hai.',
-  'You know whether your judge rewards length, from a test you ran.':
-    'Aap jaante hain ki aapka judge lambai ko inaam deta hai ya nahi, us test se jo aapne chalaya.',
-  'Your error-analysis list names at least one failure the judge does not currently catch.':
-    'Aapki error-analysis list me kam se kam ek aisi failure hai jise judge abhi pakadta nahi.',
   'Free checks first':
     'Pehle muft check',
   'Write a judge with a rubric':
@@ -726,4 +685,5 @@ Object.assign(window.HING = window.HING || {}, {
     'Chaaron states likhiye',
   'Time the correction':
     'Sudhaar ka samay naapiye'
+
 });
