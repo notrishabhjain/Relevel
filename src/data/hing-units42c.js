@@ -55,8 +55,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Bhaari ya na palat sakne wale kaam se pehle saaf manzoori ka kadam daaliye.',
   'Human-in-the-loop is an architecture boundary, not a polite UI popup.':
     'Insaan ka beech mein hona architecture ki lakeer hai, koi shishta UI popup nahi.',
-  'Build draft ® review ® approve ® execute.':
-    'Draft ® jaanch ® manzoori ® kaam — yeh kram banaiye.',
+  'Build draft → review → approve → execute.':
+    'Draft → jaanch → manzoori → kaam — yeh kram banaiye.',
   'Log who approved, what was approved and which exact payload was executed.':
     'Likhiye kisne manzoori di, kis cheez ki, aur theek kaunsa payload chala.',
   'Change the payload after approval and verify execution is blocked.':
@@ -89,8 +89,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Workflow samajhne ke baad hi hum model ko raasta chunne dete hain.',
   'The agent loop':
     'Agent ka loop',
-  'Understand goal ® model decision ® tool call ® observation ® updated context ® stop/continue.':
-    'Samajhiye: lakshya ® model ka faisla ® tool call ® observation ® naya context ® rukna ya chalte rehna.',
+  'Understand goal → model decision → tool call → observation → updated context → stop/continue.':
+    'Samajhiye: lakshya → model ka faisla → tool call → observation → naya context → rukna ya chalte rehna.',
   'The loop is the architecture; “agent” is not magic.':
     'Loop hi architecture hai; “agent” koi jaadu nahi.',
   'Draw the loop and label every state and transition before coding.':
@@ -221,8 +221,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Host, client, server, tool, resource, prompt aur kshamta ki baatcheet — sab samjhaiye.',
   'A protocol standardizes interaction patterns; it does not remove the need for authorization or safe design.':
     'Protocol lein-dein ka tareeka ek jaisa banata hai; woh permission ya surakshit design ki zaroorat khatam nahi karta.',
-  'Draw host ® client ® server ® tool/resource flow.':
-    'Host ® client ® server ® tool ya resource ka bahaav banaiye.',
+  'Draw host → client → server → tool/resource flow.':
+    'Host → client → server → tool ya resource ka bahaav banaiye.',
   'Inspect one real or local protocol exchange.':
     'Ek asli ya local protocol ke lein-dein ko dekhiye.',
   'Ask what happens when a server advertises a capability the user is not authorized to use.':

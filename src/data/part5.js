@@ -599,7 +599,7 @@ window.PART5 = [
     ['unit',"12.5","Human approval",{
       goal:"Insert explicit confirmation before consequential or irreversible actions.",
       idea:"Human-in-the-loop is an architecture boundary, not a polite UI popup.",
-      prove:"Build draft ® review ® approve ® execute.",
+      prove:"Build draft → review → approve → execute.",
       build:"Log who approved, what was approved and which exact payload was executed.",
       brk:"Change the payload after approval and verify execution is blocked.",
       artifact:"Approval Workflow Diagram + audit schema.",
@@ -683,7 +683,7 @@ window.PART5 = [
     ['p','An <strong>agent</strong> is a system that keeps going by itself: decide, do something, look at the result, decide again. Everyone teaches that loop. The part that gets skipped is that every loop needs a way to stop — and almost all the trouble lives there rather than in how clever the model is.'],
     
     ['unit',"13.1","The agent loop",{
-      goal:"Understand goal ® model decision ® tool call ® observation ® updated context ® stop/continue.",
+      goal:"Understand goal → model decision → tool call → observation → updated context → stop/continue.",
       idea:"The loop is the architecture; “agent” is not magic.",
       prove:"Draw the loop and label every state and transition before coding.",
       build:"Implement a three-step toy loop with explicit state.",
@@ -818,7 +818,7 @@ window.PART5 = [
     ['unit',"14.1","MCP mental model",{
       goal:"Explain host, client, server, tools, resources, prompts and capability negotiation.",
       idea:"A protocol standardizes interaction patterns; it does not remove the need for authorization or safe design.",
-      prove:"Draw host ® client ® server ® tool/resource flow.",
+      prove:"Draw host → client → server → tool/resource flow.",
       build:"Inspect one real or local protocol exchange.",
       brk:"Ask what happens when a server advertises a capability the user is not authorized to use.",
       artifact:"MCP Trust-Boundary Diagram.",
@@ -942,7 +942,7 @@ window.PART5 = [
       lens:"Visual claims should be traceable to the source image."
     }],
     ['unit',"15.3","Audio and speech pipelines",{
-      goal:"Understand capture ® ASR ® normalization ® extraction ® confirmation ® action.",
+      goal:"Understand capture → ASR → normalization → extraction → confirmation → action.",
       idea:"Voice AI is a pipeline with multiple failure surfaces, not one model call.",
       prove:"Use a short audio sample and inspect transcript quality.",
       build:"Extract tasks from the transcript into structured JSON.",
@@ -1749,7 +1749,7 @@ window.PART5 = [
     ['unit',"21.2","Build the vertical slice",{
       goal:"Create the smallest end-to-end working system before adding sophistication.",
       idea:"A vertical slice proves architecture across boundaries.",
-      prove:"Implement input ® retrieval/context ® model ® structured answer ® citation.",
+      prove:"Implement input → retrieval/context → model → structured answer → citation.",
       build:"Add one tool only when needed.",
       brk:"Use an unanswerable query and record the baseline failure.",
       artifact:"Running repository + architecture v1.",

@@ -103,8 +103,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Tasveer par aadharit daawe mool tasveer tak peechha kiye ja sakne chahiye.',
   'Audio and speech pipelines':
     'Audio aur bolne ki pipeline',
-  'Understand capture ® ASR ® normalization ® extraction ® confirmation ® action.':
-    'Samajhiye: rikord karna ® ASR ® seedha karna ® nikaalna ® pushti ® kaam.',
+  'Understand capture → ASR → normalization → extraction → confirmation → action.':
+    'Samajhiye: rikord karna → ASR → seedha karna → nikaalna → pushti → kaam.',
   'Voice AI is a pipeline with multiple failure surfaces, not one model call.':
     'Voice AI kai jagah tootne wali ek pipeline hai, ek model call nahi.',
   'Use a short audio sample and inspect transcript quality.':
