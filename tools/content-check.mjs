@@ -222,6 +222,9 @@ const prose = b => { if (!Array.isArray(b)) return;
   if (['code', 'lab', 'q'].includes(b[0])) return;
   /* a hands-on beat is a label plus its own blocks — the code inside stays code */
   if (b[0] === 'do') { wantAdd(b[1]); (b[2] || []).forEach(prose); return; }
+  /* a v4.2 unit is ['unit', number, title, {eight rows}]. The number is an
+     identifier, not prose, so it is not walked; everything else is. */
+  if (b[0] === 'unit') { wantAdd(b[2]); wantWalk(b[3]); return; }
   wantWalk(b.slice(1)); };
 (C.reference.PARTS || []).forEach(p => {
   if (p.n >= ENGLISH_ONLY_FROM_PART) { walkAwaiting([p.title, p.blurb]); return; }
@@ -303,6 +306,49 @@ const AP = C.reference.APPENDIX || {};
 (AP.review || []).forEach(wantAdd);
 (AP.columns || []).forEach(col => (Array.isArray(col) ? col.forEach(wantAdd) : wantAdd(col)));
 (AP.sources || []).forEach(([who, what]) => { wantAdd(who); wantAdd(what); });
+/* The v4.2 appendices: a study map, a 22-row artifact tracker, nine fillable
+   templates, a question bank and the exit test. Every one of these renders
+   through T(), including the placeholder inside each template field — a form
+   whose labels translate and whose hints do not is worse than one that does
+   neither, because it looks finished. */
+(AP.studymap || []).forEach(b => { wantAdd(b.when); wantAdd(b.focus); wantAdd(b.evidence); });
+(AP.artifacts || []).forEach(([, title, detail]) => { wantAdd(title); wantAdd(detail); });
+(AP.templates || []).forEach(t => {
+  wantAdd(t.name); wantAdd(t.why);
+  (t.fields || []).forEach(([label, hint]) => { wantAdd(label); if (hint) wantAdd(hint); });
+});
+(AP.questions || []).forEach(wantAdd);
+(AP.exit || []).forEach(wantAdd);
+if (AP.exitNote) wantAdd(AP.exitNote);
+
+/* Every artifact must name a chapter that exists and a template that exists,
+   and every template must name a chapter. A chip pointing at a chapter id that
+   was renamed renders as a link that silently goes nowhere. */
+{
+  const chIds = new Set(C.chapters.map(c => c.id));
+  const tplKeys = new Set((AP.templates || []).map(t => t.key));
+  for (const b of AP.studymap || [])
+    for (const id of b.chs || [])
+      if (!chIds.has(id)) fail(`study map block "${b.when}" points at unknown chapter ${id}`);
+  for (const a of AP.artifacts || []) {
+    if (!chIds.has(a[3])) fail(`artifact ${a[0]} ("${a[1]}") points at unknown chapter ${a[3]}`);
+    if (!tplKeys.has(a[4])) fail(`artifact ${a[0]} ("${a[1]}") points at unknown template ${a[4]}`);
+  }
+  for (const t of AP.templates || [])
+    if (!chIds.has(t.ch)) fail(`template ${t.key} points at unknown chapter ${t.ch}`);
+  /* A template has to be reachable from the reading, not only from the index
+     of templates — otherwise it is a form nobody is ever sent to. Two routes
+     count: an artifact names it, or the chapter it belongs to offers it. The
+     vendor scorecard has no artifact row in the book's own index and is
+     reached the second way, which is why this is reachability rather than
+     "every template shapes an artifact". */
+  const used = new Set((AP.artifacts || []).map(a => a[4]));
+  const offered = new Set((AP.templates || []).filter(t => chIds.has(t.ch)).map(t => t.key));
+  for (const t of AP.templates || [])
+    if (!used.has(t.key) && !offered.has(t.key))
+      fail(`template ${t.key} ("${t.name}") is unreachable — no artifact names it` +
+           ' and no chapter offers it');
+}
 (C.reference.LATER || []).forEach(l => { wantAdd(l.t); wantAdd(l.note); });
 
 /* Hinglish is Hindi written in the Roman alphabet. A Devanagari character in

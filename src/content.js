@@ -17,15 +17,20 @@ let editor = false;
 const BUILT_IN = {
   chapters: (window.PARTS || []).reduce((a, p) => a.concat(window['PART' + p.n] || []), []),
   skills: window.SKILLS || [],
-  items: [].concat(window.ITEMS1 || [], window.ITEMS2 || [], window.ITEMS3 || [], window.ITEMS4 || []),
-  exercises: window.EXERCISES || [],
+  /* Part V's bank and exercises live in their own files; leaving them out here
+     meant an offline fall-back to the built-ins quietly served a course with
+     fourteen fewer questions than the one on screen. */
+  items: [].concat(window.ITEMS1 || [], window.ITEMS2 || [], window.ITEMS3 || [],
+                   window.ITEMS4 || [], window.ITEMS5 || []),
+  exercises: [].concat(window.EXERCISES || [], window.EXERCISES5 || []),
   processes: window.PROCESSES || [],
   hinglish: window.HING || {},
   reference: {
     DOMAINS: window.DOMAINS, PARTS: window.PARTS, RULES: window.RULES,
     SETUP: window.SETUP, GLOSSARY: window.GLOSSARY, VENDOR: window.VENDOR,
     LATER: window.LATER, PIPELINE: window.PIPELINE, REDMARKS: window.REDMARKS,
-    LEVEL_NAMES: window.LEVEL_NAMES, LEVEL_BANDS: window.LEVEL_BANDS
+    LEVEL_NAMES: window.LEVEL_NAMES, LEVEL_BANDS: window.LEVEL_BANDS,
+    APPENDIX: window.APPENDIX
   }
 };
 
