@@ -1006,6 +1006,132 @@ ok(await wb.page.locator('.card.door[href="#/evidence"]').count() === 1,
 ok(await wb.page.locator('.card.door[href="#/templates"]').count() === 1,
    'and the workbench');
 
+/* Reading the page aloud. This container has the whole speech API and no voice
+   installed, which is also a real user's machine, so the audio itself is not
+   what is tested here: the chunking is (what gets read, in what order, and
+   what is deliberately not read), along with the transport and the honest
+   message when no voice exists. */
+console.log('\n— the page can be read aloud —');
+const sp = await newDevice(false);
+/* Chapter 7 is the one that has all three of the things worth asserting on:
+   a lab-first plan block, code blocks, and a closed "if it does not work". */
+await boot(sp.page, '#/ch/ch7');
+ok(await sp.page.locator('#listenbtn').count() === 1, 'the toolbar offers to read the page');
+const chunks = await sp.page.evaluate(() => {
+  const c = window.SPEECH.collect(document.getElementById('main'));
+  return {
+    n: c.length,
+    first: c[0].text,
+    firstTag: c[0].el.tagName.toLowerCase(),
+    order: c.slice(0, 40).every((x, i, a) => i === 0 ||
+      (a[i - 1].el.compareDocumentPosition(x.el) & Node.DOCUMENT_POSITION_FOLLOWING) > 0 ||
+      a[i - 1].el === x.el),
+    codeMarkers: c.filter(x => /^Code block, \d+ line/.test(x.text)).length,
+    codeLiterals: c.filter(x => /[{};]\s*$/.test(x.text)).length,
+    longest: Math.max(...c.map(x => x.text.length)),
+    /* the PDF import left ® where arrows belonged; a voice reads that as
+       "registered trademark" in the middle of a pipeline */
+    registered: c.filter(x => x.text.includes('\u00ae')).length,
+    danglingArrow: c.filter(x => /\u2192/.test(x.text)).length,
+    pairs: c.filter(x => /^(Lab first|Build|Break|Artifact|Exit gate): ./.test(x.text)).length
+  };
+});
+ok(chunks.n > 20, 'the chapter breaks into chunks to speak', String(chunks.n));
+ok(chunks.firstTag === 'h1', 'starting at the title, in document order', chunks.firstTag);
+ok(chunks.order, 'and every chunk follows the one before it on the page');
+ok(chunks.longest <= 420, 'no chunk is longer than one comfortable breath', String(chunks.longest));
+ok(chunks.codeMarkers > 0 && chunks.codeLiterals === 0,
+   'code is announced and skipped rather than spelled out',
+   'markers=' + chunks.codeMarkers + ' literals=' + chunks.codeLiterals);
+ok(chunks.registered === 0, 'no ® survives into speech', String(chunks.registered));
+ok(chunks.danglingArrow === 0, 'and no arrow is left for the voice to stumble over');
+ok(chunks.pairs > 0, 'a plan label is spoken with its own line, not orphaned',
+   String(chunks.pairs));
+
+/* Text hidden behind a closed <details> is on the page but not on the screen.
+   Narrating it loses the listener completely. */
+const hidden = await sp.page.evaluate(() => {
+  const d = document.querySelector('#main details:not([open])');
+  if (!d) return { probe: '' };
+  const inside = (d.querySelector('dt,p,li') || {}).textContent || '';
+  const before = window.SPEECH.collect(document.getElementById('main'))
+    .some(x => inside && x.text.includes(inside.trim().slice(0, 30)));
+  d.open = true;
+  const after = window.SPEECH.collect(document.getElementById('main'))
+    .some(x => inside && x.text.includes(inside.trim().slice(0, 30)));
+  d.open = false;
+  return { before, after, probe: inside.trim().slice(0, 30) };
+});
+ok(hidden.probe && !hidden.before && hidden.after,
+   'a closed disclosure is not read, and an open one is', JSON.stringify(hidden));
+
+console.log('\n— the transport —');
+await sp.page.click('#listenbtn');
+await sp.page.waitForTimeout(300);
+ok(await sp.page.locator('#player').count() === 1, 'the player appears');
+ok((await text(sp.page, '.ppos')).startsWith('1 /'), 'starting at the first chunk');
+await sp.page.click('.prow button[title="Next paragraph"]');
+await sp.page.waitForTimeout(200);
+ok((await text(sp.page, '.ppos')).startsWith('2 /'), 'next moves forward one');
+ok(await sp.page.locator('.nowreading').count() === 1,
+   'and exactly one paragraph is marked as the one being read');
+await sp.page.click('.prow button[title="Previous paragraph"]');
+await sp.page.waitForTimeout(200);
+ok((await text(sp.page, '.ppos')).startsWith('1 /'), 'previous moves back one');
+
+/* With no voice installed the button would otherwise flip back to Play and
+   look broken; the watchdog has to say what is actually wrong. */
+const noVoice = await sp.page.evaluate(() => speechSynthesis.getVoices().length === 0);
+if (noVoice) {
+  await sp.page.waitForTimeout(2800);
+  ok((await text(sp.page, '.pnow')).includes('no speech voice'),
+     'a device with no voice installed is told so, not left guessing',
+     await text(sp.page, '.pnow'));
+}
+
+/* Speed is a preference about how you read, so it follows you to another
+   device; the voice cannot, because it may not exist there. */
+await sp.page.selectOption('.prate', '1.5');
+await sp.page.waitForTimeout(350);
+await revisit(sp.page);
+await sp.page.click('#listenbtn');
+await sp.page.waitForTimeout(300);
+ok(await sp.page.locator('.prate').inputValue() === '1.5', 'the chosen speed survives a reload');
+ok(await sp.page.evaluate(() => window.STORE.S.tts.rate) === 1.5,
+   'because it lives in the synced state, not in this browser only');
+
+/* A page change invalidates every chunk: they point at nodes that are gone. */
+const nWas = await sp.page.evaluate(() => window.SPEECH.state().n);
+await boot(sp.page, '#/ch/ch3');
+await sp.page.waitForTimeout(300);
+const nNow = await sp.page.evaluate(() => window.SPEECH.state().n);
+ok(nNow > 0 && nNow !== nWas,
+   'moving to another chapter reloads what there is to read', nWas + ' → ' + nNow);
+ok(await sp.page.evaluate(() =>
+     window.SPEECH.state().n === window.SPEECH.collect(document.getElementById('main')).length),
+   'and the count matches the page now on screen');
+
+/* The toolbar is built once at boot and never re-rendered, so its one
+   translated control has to be refreshed when the language switches — it kept
+   the language it booted with until this was noticed. */
+await sp.page.click('#langbtn');
+await sp.page.waitForTimeout(400);
+ok((await text(sp.page, '#listenbtn')).includes('Suniye'),
+   'the Listen button follows the language switch', await text(sp.page, '#listenbtn'));
+await revisit(sp.page);
+ok((await text(sp.page, '#listenbtn')).includes('Suniye'),
+   'and is still translated after a reload', await text(sp.page, '#listenbtn'));
+await sp.page.click('#langbtn');
+await sp.page.waitForTimeout(400);
+ok((await text(sp.page, '#listenbtn')).includes('Listen'),
+   'and switches back', await text(sp.page, '#listenbtn'));
+await sp.page.click('#listenbtn');
+await sp.page.waitForTimeout(300);
+await sp.page.click('.prow button[title="Stop listening"]');
+await sp.page.waitForTimeout(200);
+ok(!(await sp.page.locator('#player').count()), 'closing removes the player');
+ok(!(await sp.page.locator('.nowreading').count()), 'and takes the highlight with it');
+
 console.log('\n— the applied track reads in Hinglish —');
 await navp.page.evaluate(() => { window.STORE.S.lang = 'hi'; window.STORE.flush(); });
 await boot(navp.page, '#/ch/ch13a');

@@ -4,11 +4,9 @@
    as it appears in the course, so a line that is later edited in English falls
    back to English rather than showing a translation of something else. */
 Object.assign(window.HING = window.HING || {}, {
-  /* Part III — Measuring it, costing it, shipping it */
+
   'Measuring it, costing it, shipping it':
     'Naapna, cost nikaalna, ship karna',
-  'Checking quality when there is too much of it to read, what it really costs, documents that are pictures, the paperwork, and the spec.':
-    'Jab itna zyada ho ki padha na ja sake tab quality kaise jaanchein, asli cost kya hai, woh documents jo tasveerein hain, kaagzi kaam, aur spec.',
   'Checking quality when there is too much of it to read':
     'Jab itna zyada ho ki padha na ja sake tab quality jaanchna',
   'Ten questions and a pencil stop working at about fifty. Here is what replaces them, and why the replacement has to be checked itself.':
@@ -99,38 +97,26 @@ Object.assign(window.HING = window.HING || {}, {
     'Do alag sawaal',
   'Before release you ask: does it pass the answer key? After release you ask: are users better off — fewer escalations, fewer edits, more tasks finished? The first can be perfect while the second fails. You need both, and only the second one pays.':
     'Release se pehle aap poochhte hain: kya yeh answer key pass karta hai? Release ke baad aap poochhte hain: kya users ka bhala hua — kam escalations, kam edits, zyada kaam poore? Pehla perfect ho sakta hai jabki doosra fail ho. Dono chahiye, aur paisa sirf doosra deta hai.',
-  'Step 1 — Free Checks First':
-    'Step 1 — Pehle muft ke checks',
   'New notebook <code>chapter-14</code>. Before any judge, write the programmatic checks your Chapter 8 structured output makes possible.':
     'Naya notebook <code>chapter-14</code>. Kisi judge se pehle woh programmatic checks likhiye jo aapka Chapter 8 wala structured output mumkin banata hai.',
   'Run it over your ten Chapter 6 answers. That last check — quote-not-verbatim — catches fabricated citations for free, forever, on every release. It is the cheapest quality control in this entire book and it required no judge at all.':
     'Ise apne Chapter 6 ke das jawaabon par chalaiye. Aakhri check — quote hu-ba-hu nahi hai — bani hui citations ko muft mein, hamesha, har release par pakadta hai. Poore course mein sabse sasta quality control yahi hai aur ismein koi judge laga hi nahi.',
-  'Step 2 — Write a Judge With a Rubric':
-    'Step 2 — Rubric ke saath ek judge likhiye',
   'Note the design: one narrow dimension, a forced quote of the offending claim, and an explicit instruction against the known biases. A judge asked to “rate quality 1–10” would produce numbers you cannot act on.':
     'Design dhyaan se dekhiye: ek sankri dimension, dosh wale claim ka quote zaroori, aur jaani-pehchani biases ke khilaaf saaf instruction. Jis judge se "quality ko 1–10 mein rate karo" kaha jaaye woh aise numbers dega jin par aap kuchh kar hi nahi sakte.',
-  'Step 3 — Grade the Judge':
-    'Step 3 — Judge ko grade kijiye',
   'This is the step everyone skips. Hand-label all ten of your Chapter 6 answers as grounded / partially / unsupported. Then run the judge on the same ten and compare.':
     'Yahi step sab chhod dete hain. Apne Chapter 6 ke saare das jawaabon ko khud grounded / partially / unsupported mein baantiye. Phir judge ko unhi das par chalaiye aur tulna kijiye.',
   'Look at the disagreements specifically — they are more informative than the score. A judge that is systematically lenient on one failure type is usable if you know that; a judge whose errors are random is not usable at all.':
     'Khaaskar asehmatiyon ko dekhiye — woh score se zyada batati hain. Jo judge ek khaas kism ki galti par lagataar naram hai woh istemaal layak hai agar aapko yeh pata ho; jis judge ki galtiyan random hain woh bilkul istemaal layak nahi.',
   'Before running: what agreement will you get out of 10? Log it. Then note whether your disagreements are systematic or scattered.':
     'Chalane se pehle: das mein se kitni sehmati aayegi? Note kijiye. Phir dekhiye ki aapki asehmatiyan tay pattern mein hain ya bikhri hui.',
-  'Step 4 — Prove Verbosity Bias On Your Own Judge':
-    'Step 4 — Apne hi judge par verbosity bias saabit kijiye',
   'Take one correct, concise answer. Produce a padded version — same claims, three times the words, more hedging and structure. Judge both.':
     'Ek sahi, chhota jawaab lijiye. Uska phoola hua version banaiye — wahi baatein, teen guna shabd, zyada hedging aur structure. Dono ko judge karwaiye.',
   'The padded version frequently scores at least as well, often better, despite containing no additional correct information. You have now personally measured a bias that invalidates a great many published evaluation numbers.':
     'Phoola hua version aksar kam se kam utna hi, aur kai baar zyada score karta hai, jabki usme ek bhi extra sahi jaankaari nahi hai. Aapne abhi khud woh bias naapa hai jo bahut saare published evaluation numbers ko bekaar kar deta hai.',
-  'Step 5 — Error Analysis, By Hand':
-    'Step 5 — Error analysis, haath se',
   'Collect 20 outputs from your Chapter 12 pipeline over varied questions. Read every one against its source. For each failure write a plain-language note — <em>not</em> a category, a sentence. Then cluster the notes.':
     'Apne Chapter 12 wale pipeline se alag-alag sawaalon par 20 outputs jama kijiye. Har ek ko uske source ke saamne rakhkar padhiye. Har failure ke liye saadi bhaasha mein ek note likhiye — <em>category nahi</em>, ek sentence. Phir notes ko guchhon mein baantiye.',
   'You will end with 4–7 named clusters. That is your failure taxonomy, and it is worth more than any benchmark. Count each cluster; the largest is your next sprint. Pin the list — Chapter 17 needs it as your known-limitations section and Chapter 18 needs it as your regression suite.':
     'Aapko 4–7 naam wale guchhe milenge. Wahi aapki failure taxonomy hai, aur woh kisi bhi benchmark se zyada keemti hai. Har guchhe ko giniye; sabse bada hi aapka agla sprint hai. List sambhal kar rakhiye — Chapter 17 mein yeh aapka known-limitations hissa hai aur Chapter 18 mein aapka regression suite.',
-
-  /* Part III — Measuring it, costing it, shipping it */
   'What it actually costs':
     'Asal mein iski cost kya hai',
   'The figure in most business cases is wrong by three to twenty times. The arithmetic is fine. Four things are missing from it.':
@@ -181,8 +167,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Output kharaab hone par retries',
   'Ch. 8':
     'Ch. 8',
-  'A retry re-sends the whole request, so a 10% retry rate costs more than 10%':
-    'Retry poori request dobara bhejta hai, isliye 10% retry rate ki cost 10% se zyada hai',
   'Agent steps':
     'Agent steps',
   'Ch. 9':
@@ -221,26 +205,18 @@ Object.assign(window.HING = window.HING || {}, {
     'Average nahi, dheema paanchva hissa batayiye — Chapter 11. Jo feature sasta aur dheema hai woh commercially utna hi poori tarah fail hota hai jitna tez aur mehnga wala. Teenon hamesha ek line mein rakhiye: cost per query, aam samay, dheema samay.',
   'And the question that actually kills AI features has nothing to do with tokens: <strong>does it make money at scale?</strong> If a query costs three rupees and the revenue it protects is two, no amount of prompt tuning saves it. That sum belongs to you, on day one, before the pilot — not to an engineer in month six.':
     'Aur jo sawaal sach mein AI features ki jaan leta hai uska tokens se koi lena-dena nahi: <strong>kya yeh scale par paisa banata hai?</strong> Agar ek query ki cost teen rupaye hai aur woh do rupaye ki aamdani bachaata hai, to kitni bhi prompt tuning use nahi bacha sakti. Yeh hisaab pehle din, pilot se pehle, aapka hai — chhathe mahine kisi engineer ka nahi.',
-  'Step 1 — Measure, Don\'t Estimate':
-    'Step 1 — Naapiye, andaaza mat lagaiye',
   'New notebook <code>chapter-15</code>. Run your Chapter 12 pipeline over the ten ground-truth questions and record real token counts.':
     'Naya notebook <code>chapter-15</code>. Apna Chapter 12 wala pipeline das ground-truth sawaalon par chalaiye aur asli token counts likhiye.',
   'Real numbers from your real corpus. Everything after this is arithmetic on measured input rather than a guess dressed as a forecast.':
     'Aapke apne corpus se asli numbers. Iske baad sab kuchh naapi hui input par maths hai, forecast ke kapdon mein andaaza nahi.',
-  'Step 2 — Build the Bill, With the Multipliers':
-    'Step 2 — Multipliers ke saath bill banaiye',
   'A ratio commonly between 8× and 20×. Write it down. That single number is the most useful thing you can carry into a budget conversation, and it is why “we estimated the token cost” is not the same as “we estimated the cost.”':
     'Ratio aam taur par 8× se 20× ke beech. Ise likh lijiye. Budget ki baatcheet mein le jaane ke liye wahi ek number sabse kaam ka hai, aur isiliye "humne token cost ka andaaza lagaya" aur "humne cost ka andaaza lagaya" ek baat nahi hai.',
   'Before running Step 2: what multiple will the loaded cost be over the naive one? Log your guess.':
     'Step 2 chalane se pehle: loaded cost naadaan cost ka kitna guna hoga? Apna andaaza likh lijiye.',
-  'Step 3 — Build the Cascade':
-    'Step 3 — Cascade banaiye',
   'Route cheaply first, escalate on a failed check. Use your Chapter 8 structured output — <code>found: false</code> or a missing quote — as the escalation trigger.':
     'Pehle saste par bhejiye, check fail hone par upar bhejiye. Escalation ka trigger apne Chapter 8 wale structured output ko banaiye — <code>found: false</code> ya gayab quote.',
   'An escalation rate — commonly 20–40%. Compute the blended cost and re-grade accuracy against your Chapter 6 key. You now have both halves of the trade: what the cascade saved, and what (if anything) it cost in quality.':
     'Ek escalation rate — aam taur par 20–40%. Blended cost nikaaliye aur apni Chapter 6 key ke against accuracy dobara jaanchiye. Ab aapke paas trade ke dono hisse hain: cascade ne kya bachaya, aur quality mein (agar kuchh) kya gaya.',
-  'Step 4 — The Three Numbers':
-    'Step 4 — Teen numbers',
   'For each configuration you have built — naive, k=8, cascade, reasoning-on — record exactly three numbers.':
     'Aapne jo bhi configuration banayi hai — naadaan, k=8, cascade, reasoning-on — har ek ke liye theek teen numbers likhiye.',
   'Configuration':
@@ -255,8 +231,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Accuracy (9 mein se)',
   'Baseline k=3':
     'Baseline k=3',
-
-  /* Part III — Measuring it, costing it, shipping it */
   'k=8':
     'k=8',
   'Cascade':
@@ -265,8 +239,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Reasoning hamesha on',
   'This table is your Chapter 15 deliverable. It converts an architecture debate into a decision with a defensible basis, and it fits on one slide.':
     'Yeh table hi aapka Chapter 15 ka deliverable hai. Yeh architecture ki bahas ko ek aise faisle mein badal deta hai jiska aadhaar defend kiya ja sakta hai, aur yeh ek slide mein aa jaata hai.',
-  'Step 5 — The Margin Question':
-    'Step 5 — Margin ka sawaal',
   'One line of arithmetic, done honestly: what does this feature cost per user per month at your expected usage, and what is it worth per user per month?':
     'Ek line ka maths, imaandaari se: aapke ummeed ke istemaal par yeh feature har user par mahine ka kitna kharch karta hai, aur har user par mahine ka kitna kamaata hai?',
   'If the second number is not comfortably larger than the first, you have learned something before the pilot rather than after it. That is the entire purpose of this chapter.':
@@ -353,34 +325,24 @@ Object.assign(window.HING = window.HING || {}, {
     'Yeh jaanch apne paas maujood kisi document collection par kijiye. Kitna hissa saaf digital text hai, kitna scan kiya hua, aur kitne mein tables ya layout matlab le kar chalte hain? Andaaza lagana pade to lagaiye, lekin batayiye ki aap ise theek se kaise naapenge — aur agar scan kiya hua hissa aadha nikla to aap kya alag karenge.',
   'Measuring it properly means sampling: fifty documents picked at random from real traffic, not fifty picked by whoever is enthusiastic. If a lot of it is scanned, the architecture changes rather than the timeline — extraction quality becomes a number you have to measure with its own answer key, and the project gains a phase most proposals leave out. Saying that before the project starts is worth more than any retrieval technique in this course.':
     'Theek se naapne ka matlab hai sampling: asli traffic se randomly chune gaye pachaas documents, na ki utsaahi bande ke chune hue pachaas. Agar bahut kuchh scan kiya hua hai, to timeline nahi, architecture badalta hai — extraction quality ek aisa number ban jaata hai jise aapko apni answer key ke saath naapna hoga, aur project mein ek aisa charan judta hai jo zyadatar proposals chhod dete hain. Project shuru hone se pehle yeh keh dena is course ki kisi bhi retrieval technique se zyada keemti hai.',
-  'Step 1 — Find Your Own Silent Error':
-    'Step 1 — Apni chupchaap galti dhoondhiye',
   'New notebook <code>chapter-16</code>. Take one page from your corpus containing a real table — financial, eligibility bands, a rate card. Extract its text with whatever tool you have, and look at the extracted string.':
     'Naya notebook <code>chapter-16</code>. Apne corpus se ek aisa page lijiye jisme asli table ho — financial, eligibility bands, rate card. Jo bhi tool ho usse uska text nikaaliye, aur nikli hui string dekhiye.',
   'Read it as a machine would. Can you reconstruct which figure belongs to which row and column from the text alone? Frequently: no. Write down the specific relationship that was destroyed.':
     'Use waise padhiye jaise machine padhegi. Kya aap sirf text se bata sakte hain ki kaunsa aankda kis row aur kis column ka hai? Aksar: nahi. Woh khaas rishta likh lijiye jo nasht ho gaya.',
-  'Step 2 — Ask a Question Only the Table Answers':
-    'Step 2 — Aisa sawaal poochhiye jiska jawaab sirf table deti ho',
   'Run that extracted text through your Chapter 7 pipeline with a question whose answer sits at a specific row-column intersection.':
     'Us nikale hue text ko apne Chapter 7 wale pipeline mein chalaiye, aise sawaal ke saath jiska jawaab kisi khaas row-column ke milan par baitha ho.',
   'A confident answer, frequently with a number from an adjacent column or row. This is the compound failure of Chapters 2 and 4 arriving through a route you had not instrumented — and note that every metric in your Chapter 6 evaluation would have scored this as a retrieval success.':
     'Ek confident jawaab, aksar bagal ke column ya row ke number ke saath. Yeh Chapter 2 aur 4 ka joda hua failure hai, jo ek aise raste se aaya jahan aapne koi meter nahi lagaya tha — aur dhyaan dijiye, aapke Chapter 6 ke har metric ne ise retrieval ki safalta hi gina hota.',
   'Before running: will your pipeline get the table question right? Log your prediction. This is one of the few in this book where confidence is usually misplaced in the other direction — people expect failure and are surprised by how <em>fluent</em> the wrong answer is.':
     'Chalane se pehle: kya aapka pipeline table wala sawaal sahi karega? Apna andaaza note kijiye. Is course ke un chand maukon mein se ek hai jahan bharosa aam taur par ulti disha mein galat hota hai — log failure ki ummeed karte hain aur yeh dekhkar chaunk jaate hain ki galat jawaab kitna <em>fluent</em> hai.',
-  'Step 3 — Hand It the Page Instead':
-    'Step 3 — Uske badle page de dijiye',
   'Render the same page as an image and give it to a vision-capable model with the same question.':
     'Wahi page image bana kar ek vision wale model ko usi sawaal ke saath dijiye.',
   'Usually correct, and — because you demanded the row and column labels — checkable in seconds. That demand is Chapter 8\'s supporting-quote idea, translated into two dimensions.':
     'Aam taur par sahi, aur — kyunki aapne row aur column ke labels maange the — second bhar mein jaancha ja sakta hai. Woh maang Chapter 8 wale supporting-quote ka hi idea hai, do dimension mein.',
-  'Step 4 — Verify Every Cell':
-    'Step 4 — Har cell jaanchiye',
   'Ask the vision model to transcribe the entire table into a structured record (Chapter 8\'s schema). Then check every single cell against the page by eye.':
     'Vision model se poori table ko ek structured record mein likhwaiye (Chapter 8 ka schema). Phir har ek cell ko page ke saamne rakhkar aankhon se jaanchiye.',
   'Expect a small number of errors — often in the least visually distinct cells: merged headers, footnote markers, empty-versus-zero. Count them. That error rate <em>is</em> your extraction quality number, and it belongs in every document-AI proposal you ever review.':
     'Thodi galtiyon ki ummeed rakhiye — aksar un cells mein jo dikhne mein sabse kam alag hain: jude hue headers, footnote ke nishaan, khaali versus zero. Unhe giniye. Wahi error rate <em>hi</em> aapka extraction quality number hai, aur woh har document-AI proposal mein hona chahiye jise aap kabhi review karein.',
-  'Step 5 — Audit the Corpus':
-    'Step 5 — Corpus ka audit kijiye',
   'Sample 30 documents. Classify each: clean digital text, scanned image, or mixed. Then, separately and more importantly, sample 20 questions people actually ask and mark how many need a table or figure to answer.':
     '30 documents ka sample lijiye. Har ek ko baantiye: saaf digital text, scan ki hui image, ya mila-jula. Phir, alag se aur zyada zaroori, 20 aise sawaalon ka sample lijiye jo log sach mein poochhte hain aur nishaan lagaiye ki kitnon ke jawaab ke liye table ya figure chahiye.',
   'Two percentages. They decide whether your architecture is text-first, vision-first, or hybrid — and they take one afternoon to obtain instead of one quarter to discover.':
@@ -401,8 +363,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Answer key aur asli failures ki list hi daawe ko number banati hain.',
   'Version and access are decided before ranking':
     'Version aur access ranking se pehle tay hote hain',
-
-  /* Part III — Measuring it, costing it, shipping it */
   'Which is why they are the only guarantees you can make.':
     'Isiliye yahi ekmatra guarantee hain jo aap de sakte hain.',
   'There is no complete defence':
@@ -483,14 +443,10 @@ Object.assign(window.HING = window.HING || {}, {
     'Aksar test sets aur logs — kyunki unhe kisi ne kisi achchi wajah se copy kiya tha, deletion ke baare mein soche bina, aur unme se kuchh bhi kisi insaan par wapas ishaara nahi karta. Caches teesre number par hain, aur provider ka cache sabse zyada anadekha hai: usme documents ke tukde padey hain, bina kisi vishay ke index ke.',
   'And the thing already happening whether anyone wrote it down or not: staff are pasting internal documents into consumer chat tools right now. Banning it does not work, because the tools are useful. A sanctioned alternative that is good enough, plus clear guidance on what may be pasted, works far better. “We banned it” is a statement about policy, not about behaviour.':
     'Aur woh cheez jo pehle se ho rahi hai chahe kisi ne likhi ho ya nahi: staff abhi is waqt internal documents consumer chat tools mein paste kar raha hai. Rok lagana kaam nahi karta, kyunki tools kaam ke hain. Ek assumption prapt vikalp jo sach mein achcha ho, plus saaf nirdesh ki kya paste kiya ja sakta hai — yeh kahin behtar chalta hai. "Humne rok lagayi hai" policy ke baare mein bayaan hai, vyavhaar ke baare mein nahi.',
-  'Step 1 — Tier Your Own System':
-    'Step 1 — Apne system ko tier dijiye',
   'Take the RAG system you built in Chapter 7 and place it in a real use case from your organisation. Assign a tier, and write one sentence justifying it. Then change the use case — internal FAQ to customer eligibility — and re-tier.':
     'Chapter 7 mein banaya hua RAG system lijiye aur use apne organisation ke kisi asli use case mein rakhiye. Ek tier dijiye, aur ek sentence mein use jaayaz thehraiye. Phir use case badliye — internal FAQ se customer eligibility — aur dobara tier dijiye.',
   'The same code moves tiers. That is the lesson, and it is why tiering is a product conversation and not an engineering one.':
     'Wahi code tier badal deta hai. Yahi sabak hai, aur isiliye tiering product ki baatcheet hai, engineering ki nahi.',
-  'Step 2 — Write the System Card':
-    'Step 2 — System card likhiye',
   'This is the chapter\'s deliverable, and it is mostly a matter of collecting what you already produced. Use the generator on this page, or write it by hand under these headings.':
     'Yahi is chapter ka deliverable hai, aur yeh zyadatar us cheez ko jama karna hai jo aap pehle hi bana chuke hain. Is page ka generator istemaal kijiye, ya in headings ke neeche khud likhiye.',
   '<strong>Purpose</strong> — what it does, for whom. Two sentences.':
@@ -511,8 +467,6 @@ Object.assign(window.HING = window.HING || {}, {
     '<strong>Change control</strong> — model ek version par pinned, prompts ka version, badlav par eval dobara.',
   'One page. Notice what just happened: every section was already in your notebook. Chapters 6, 12, 13, 14 and 15 were the research; this is the write-up. Someone who skipped those chapters can only fill this page with adjectives.':
     'Ek page. Dhyaan dijiye abhi kya hua: har hissa pehle se aapke notebook mein tha. Chapter 6, 12, 13, 14 aur 15 research the; yeh likhaai hai. Jisne woh chapters chhode, woh is page ko sirf visheshanon se bhar sakta hai.',
-  'Step 3 — Run the Deletion Drill':
-    'Step 3 — Deletion drill chalaiye',
   'Pick one document in your corpus. List every place a copy or derivative of it exists, and beside each write the mechanism for removing it.':
     'Apne corpus se ek document chuniye. Har woh jagah likhiye jahan uski copy ya usse bani cheez maujood hai, aur har ek ke saamne use hataane ka tareeka likhiye.',
   'Location':
@@ -537,14 +491,10 @@ Object.assign(window.HING = window.HING || {}, {
     'Traffic se bana eval set',
   'Count the rows where the honest answer is no. That count is a finding worth reporting today.':
     'Un rows ko giniye jahan imaandaar jawaab nahi hai. Wahi ginti aaj batane layak khoj hai.',
-  'Step 4 — Design Oversight That Can Be Exercised':
-    'Step 4 — Aisi oversight banaiye jo sach mein ho sake',
   'Take your highest-risk output. Specify the review point exactly: which outputs are reviewed (all, sampled, or those failing a check), what the reviewer sees (answer only, or answer plus retrieved chunks plus quote), how long they have, and whether they can actually overrule.':
     'Apna sabse high-risk output lijiye. Review point theek se likhiye: kaunse outputs review honge (sab, sample, ya jo check fail karein), reviewer kya dekhega (sirf jawaab, ya jawaab plus retrieve hue chunks plus quote), uske paas kitna samay hai, aur kya woh sach mein palat sakta hai.',
   'Then ask the honest question: at your expected volume, is this review physically possible? A review of every output at 4,000 per day is not oversight; it is a sentence in a document. Chapter 8\'s structured output and Chapter 14\'s programmatic checks are what make sampled, targeted review real.':
     'Phir imaandaar sawaal poochhiye: aapke ummeed ke volume par kya yeh review physically mumkin hai? Roz 4,000 par har output ka review oversight nahi hai; woh ek document mein likha ek sentence hai. Chapter 8 ka structured output aur Chapter 14 ke programmatic checks hi sample aur nishaane wale review ko asli banate hain.',
-  'Step 5 — The Vendor File':
-    'Step 5 — Vendor ki file',
   'For any AI vendor in your organisation, obtain four things in writing: the subprocessor list, the data-residency statement, whether your data trains their models and how to opt out, and the model-deprecation notice period.':
     'Apne organisation ke har AI vendor se chaar cheezein likhit mein lijiye: subprocessor list, data-residency ka bayaan, kya aapka data unke models ko train karta hai aur usse bahar kaise nikalna hai, aur model band karne ka notice period.',
   'That last one is routinely omitted and is the subject of Chapter 18. A 30-day deprecation notice on a model your high-risk system is validated against is an operational emergency scheduled in advance.':
@@ -555,8 +505,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Is chapter mein naya kuchh nahi. Poora system yaad se banaiye, har woh jagah nishaan lagaiye jahan aapne use tootte dekha hai, aur document likhiye.',
   'Explain what replaces pass/fail acceptance criteria in an AI spec, and why.':
     'Yeh samjhana ki AI spec mein pass/fail acceptance criteria ki jagah kya aata hai, aur kyun.',
-
-  /* Part III — Measuring it, costing it, shipping it */
   'List what you re-run when your provider retires the model you built on.':
     'Yeh batana ki jab provider aapka model band kar de tab aap kya-kya dobara chalate hain.',
   'Explain why a kill switch is not the same thing as a rollback.':
@@ -635,16 +583,12 @@ Object.assign(window.HING = window.HING || {}, {
     'Yeh course aapko kya nahi sikhaya',
   'Training and post-training. GPU economics and self-hosting. Orchestrating many agents at scale. Formal verification. Generating synthetic data. Part IV picks up two things that used to be on this list — the decision about fine-tuning and smaller models, and what the user actually sees — because both are yours to make rather than an engineer’s. The 2027 LATER page on this site is now, finally, permitted reading. Being able to name what you have not covered is the difference between knowing your limits and pretending you have none.':
     'Training aur post-training. GPU ki economics aur self-hosting. Kai agents ko scale par chalana. Formal verification. Synthetic data banana. Part IV do cheezein uthata hai jo pehle isi list mein thi — fine-tuning aur chhote models ka faisla, aur user asal mein kya dekhta hai — kyunki dono aapke hain, kisi engineer ke nahi. Is site ka 2027 LATER page ab, aakhirkar, padhne ki ijaazat hai. Jo aapne nahi padha uska naam le paana hi apni seemayein jaanne aur yeh dikhaane ke beech ka farq hai ki aapki koi seema hai hi nahi.',
-  'Act 1 — The 2027 Map, From Memory':
-    'Act 1 — 2027 ka naksha, yaad se',
   'Close everything. Blank page. Draw the full system — much larger than Chapter 7\'s.':
     'Sab kuchh band kijiye. Khaali page. Poora system banaiye — Chapter 7 wale se kaafi bada.',
   'Beside every arrow, one line in your own words. Then take the red pen and mark every place you have <em>personally watched this fail</em>, with the chapter. Aim for twenty. You have earned more than twenty.':
     'Har teer ke bagal mein apne shabdon mein ek line. Phir laal pen uthaiye aur har us jagah nishaan lagaiye jahan aapne <em>khud ise fail hote dekha hai</em>, chapter ke saath. Bees ka lakshya rakhiye. Aapne bees se zyada kama liye hain.',
   'Use the Red-Mark Map on this site to check yourself afterwards — but draw it on paper first. The gap between what you produced from memory and what the map lists is your revision plan.':
     'Baad mein khud ko jaanchne ke liye is site ka Red-Mark Map istemaal kijiye — lekin pehle kaagaz par banaiye. Yaad se banayi cheez aur naksha jo batata hai, unke beech ka farq hi aapka revision plan hai.',
-  'Act 2 — Write the PRD':
-    'Act 2 — PRD likhiye',
   'One real feature. Every section drawn from an artifact you already own — this is an assembly job, not a writing job.':
     'Ek asli feature. Har hissa kisi aisi cheez se jo aapke paas pehle se hai — yeh jodne ka kaam hai, likhne ka nahi.',
   'Section':
@@ -691,20 +635,14 @@ Object.assign(window.HING = window.HING || {}, {
     'Aapka laal naksha',
   'Read the finished document once. Every number in it was measured by you, on your documents. That is not a common property of PRDs in this field.':
     'Poora document ek baar padhiye. Usme ka har number aapne, apne documents par naapa hai. Is field ke PRDs mein yeh aam baat nahi hai.',
-  'Act 3 — Design the Feedback Capture':
-    'Act 3 — Feedback capture ka design kijiye',
   'Specify exactly what a single thumbs-down must capture for it to become an eval case without any further investigation.':
     'Theek-theek likhiye ki ek thumbs-down mein kya-kya aana chahiye taaki woh bina kisi aur jaanch ke ek eval case ban jaaye.',
   'Compare against what your organisation currently captures. The gap is usually total, and closing it is the cheapest thing on this page.':
     'Apna organisation abhi kya capture karta hai, uski tulna kijiye. Farq aam taur par poora hota hai, aur is page ki sabse sasti cheez usi farq ko paatna hai.',
-  'Act 4 — Rehearse the Migration':
-    'Act 4 — Migration ki rehearsal kijiye',
   'Assume your model is deprecated in 30 days. Write the runbook: which suites re-run, which numbers must match within what tolerance, who signs off, what the rollback is if the new model is worse.':
     'Maan lijiye aapka model 30 din mein band ho raha hai. Runbook likhiye: kaunse suites dobara chalenge, kaunse numbers kitni chhoot ke andar milne chahiye, kaun sign off karega, aur naya model kharaab nikla to rollback kya hai.',
   'Time-box the estimate. If your answer exceeds two days, the missing piece is Chapter 6 — a ground truth is what turns a migration from an ordeal into an afternoon.':
     'Andaaze ko samay mein baandhiye. Agar jawaab do din se zyada aata hai, to jo hissa gayab hai woh Chapter 6 hai — ground truth hi migration ko museebat se ek dopahar bana deti hai.',
-  'Act 5 — The Findings Page':
-    'Act 5 — Findings ka page',
   'The last exercise in the book. One page, two halves.':
     'Course ka aakhri abhyaas. Ek page, do hisse.',
   '<strong>What I now know breaks</strong> — your red marks, each with its evidence line: <em>saw it, Chapter X, my document, my numbers.</em>':
@@ -713,4 +651,5 @@ Object.assign(window.HING = window.HING || {}, {
     '<strong>Ab bhi main kya nahi jaanch sakta</strong> — imaandaar list. Yeh iqbal-e-jurm nahi hai: yeh aapka agla syllabus hai, aapki apni likhaai mein.',
   'Then return to the very first page of your notebook — your Chapter 1 predictions. The distance between that page and this one is the only measurement of this book that matters.':
     'Phir apne notebook ke sabse pehle page par lautiye — aapke Chapter 1 ke andaaze. Us page aur is page ke beech ki doori hi is course ki ekmatra maayne rakhne wali naap hai.'
+
 });

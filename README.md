@@ -54,7 +54,37 @@ glossary is being able to use them in a meeting. The application's own furniture
 
 Both `content-check` and CI fail if a line has no translation, or if a translation
 keys off English that no longer appears in the course — so the two languages cannot
-drift apart quietly.
+drift apart quietly. The second of those had never been able to fire: it searched a
+haystack that contained the translation map itself, so every key matched itself. It now
+tests against the set of strings the checker builds by walking the real content, and
+against the code that renders translated chrome.
+
+## Listening to it
+
+Every page has a **Listen** button in the top bar. It reads the page aloud, one
+paragraph at a time, highlighting the line being spoken and scrolling only when the
+voice has left the screen — so glancing back at the tab puts you exactly where it is.
+There are controls for speed, voice, and stepping a paragraph back or forward, and
+moving to the next chapter keeps it reading.
+
+It is built on the browser's own speech synthesis, so there is nothing to install, no
+key, no cost, and it works offline. What it reads is the rendered page rather than the
+source: headings, prose, lists, table rows, the lab-first plan (a label is spoken with
+its own line, not orphaned from it), and the eight rows of a hands-on unit. Code blocks
+are announced and skipped — you cannot type from a spoken bracket, but silence would
+hide that anything was skipped. Text behind a closed disclosure is not read, because
+narrating what is not on screen loses the listener.
+
+**The one real limitation.** A phone browser stops speech synthesis when the screen
+locks or the tab goes to the background, so this is not podcast-in-your-pocket playback.
+On a laptop it runs happily behind other windows. The player says so on a touch device
+rather than leaving it to be found halfway down a chapter. True background playback
+would need generated audio files from a server-side voice, which is a different feature
+with a running cost.
+
+Speed is stored with your progress, so it follows you to another device. The chosen
+voice is not — a voice installed on a laptop does not exist on a phone — so it is kept
+in that browser alone.
 
 ## Installing it on a phone or tablet
 
@@ -292,6 +322,7 @@ src/
 ├── views.js            Dashboard, practice runner, matrix, analytics, work trackers
 ├── labs.js             16 interactive labs
 ├── app.js              Routing, persistence, chapter rendering, language switch
+├── speech.js           Read-aloud: page to spoken chunks, transport, highlight
 ├── content.js          Loads the curriculum: server, then cache, then built-in
 ├── studio.js           The Content Studio
 └── styles.css          Design tokens and layout

@@ -4,6 +4,7 @@
    as it appears in the course, so a line that is later edited in English falls
    back to English rather than showing a translation of something else. */
 Object.assign(window.HING = window.HING || {}, {
+
   '<strong>One chapter per sitting.</strong> Most run twenty to forty-five minutes, and every chapter says which before you start — so if one takes longer than the number, that is the chapter being long, not you being slow. Stopping while you still have energy is what brings you back tomorrow; a huge first week followed by nothing is the usual way this ends.':
     '<strong>Ek baithak me ek chapter.</strong> Zyadatar bees se paintaalis minute lete hain, aur har chapter shuru hone se pehle apna number bata deta hai — to agar kisi me us number se zyada samay lage, to chapter lamba hai, aap dheeme nahi. Jab tak energy bachi ho tabhi ruk jaana hi aapko kal waapas laata hai; pehle hafte me bahut sara aur uske baad kuchh nahi — yahi is safar ke khatm hone ka aam tareeka hai.',
   'Ten minutes, and nothing to set up':
@@ -62,26 +63,16 @@ Object.assign(window.HING = window.HING || {}, {
     'Sasta, lagbhag utna hi, ya mehnga?',
   'Your text, in an Indian language rather than English, would be split into how many pieces — fewer, about the same, or more?':
     'Aapka text, English ke bajaay kisi Indian bhasha me, kitne tukdon me bantega — kam, lagbhag utne hi, ya zyada?',
-  'Almost always more, often two or three times more, for the same meaning. The pieces were worked out mostly from English text on the internet, so English is the cheapest thing you can say.':
-    'Lagbhag hamesha zyada, aksar do se teen guna zyada, wahi matlab kehne ke liye. Tukde zyadatar internet ke English text se nikaale gaye the, isliye English hi sabse sasti cheez hai jo aap keh sakte hain.',
-  'That is not a detail. It means a product answering in Hindi, Tamil or Bengali costs meaningfully more per answer than the same product in English — and nobody puts that on a pricing page. You found it in four minutes, with no account.':
-    'Yeh koi chhoti baat nahi. Iska matlab hai ki Hindi, Tamil ya Bengali me jawaab dene wala product usi product ke English version se har jawaab par kaafi zyada kharch karta hai — aur yeh koi pricing page par nahi likhta. Aapne ise chaar minute me, bina account ke dhoondh liya.',
-  '<strong>Two: it forgets, so the app keeps re-sending everything.</strong> A model has no memory between messages. For a chat to feel continuous, the app quietly sends the entire conversation again on every single turn.':
-    '<strong>Do: woh bhool jaata hai, isliye app sab kuchh dobara bhejta rehta hai.</strong> Model ke paas messages ke beech koi yaaddasht nahi hoti. Chat continuous mehsoos ho, iske liye app har ek turn par poori baatcheet chupchaap dobara bhej deta hai.',
   'Watch the bill grow while you do nothing':
     'Kuchh kiye bina bill badhte dekhiye',
   'Step through a conversation below and keep your eye on the number, not the messages.':
     'Neeche ek baatcheet me aage badhiye aur nazar messages par nahi, number par rakhiye.',
-  'The cost of each turn climbs, even when your messages stay the same length — because every turn re-sends everything said before it. A long conversation gets expensive at the end for reasons that have nothing to do with what you are asking.':
-    'Har turn ka kharch chadhta jaata hai, chaahe aapke messages utne hi lambe rahein — kyunki har turn apne se pehle kahi gayi har baat dobara bhejta hai. Lambi baatcheet ant me mehngi ho jaati hai, aur uski wajah us se koi lena-dena nahi rakhti jo aap poochh rahe hain.',
   '<strong>Three: the one dial everybody asks about.</strong> Sooner or later somebody will tell you they can make the AI more accurate by adjusting a setting. There is a dial. It is worth knowing exactly what it does.':
     '<strong>Teen: woh ek dial jiske baare me sab poochhte hain.</strong> Der-sawer koi aapse kahega ki woh ek setting badal kar AI ko zyada sahi bana sakta hai. Ek dial hai. Yeh jaan lena zaroori hai ki woh karta theek kya hai.',
   'Turn it yourself':
     'Khud ghuma kar dekhiye',
   'Move it up and down and watch what changes about the answers.':
     'Ise upar-neeche kijiye aur dekhiye ki jawaabon me kya badalta hai.',
-  'Low gives you the same answer every time. High gives you variety. Notice what neither end does: it never makes the answer more <em>true</em>. A wrong answer at the low setting is wrong identically, every single time.':
-    'Neeche rakhne par har baar wahi jawaab. Upar rakhne par variety. Dhyaan dijiye ki dono me se koi bhi sira kya nahi karta: yeh jawaab ko kabhi zyada <em>sachcha</em> nahi banata. Neeche wale setting par galat jawaab har baar bilkul ek jaisa galat rehta hai.',
   'You have now done three real experiments and produced at least one finding your organisation probably does not have written down anywhere. Nothing was installed. Nobody asked for a card.':
     'Aap ab teen asli experiment kar chuke hain aur kam se kam ek aisi finding nikaal chuke hain jo shayad aapke organisation me kahin likhi hi nahi hai. Kuchh install nahi hua. Kisi ne card nahi maanga.',
   'That is what this course is: you do the thing, then the words for it arrive afterwards and stick, because they are labels for something you watched rather than definitions you were handed.':
@@ -110,4 +101,5 @@ Object.assign(window.HING = window.HING || {}, {
     'Chalta to hai, lekin aapke numbers wahi nahi hain jo upar chhape hain',
   'Expected, and not a mistake. Models change and your text is not my text. What matters is the direction and the rough size of the gap, never matching a figure exactly. If your numbers move the same way mine do, the experiment worked.':
     'Yahi ummeed thi, aur yeh galti nahi hai. Models badalte rehte hain aur aapka text mera text nahi hai. Maayne yeh rakhta hai ki farq kis disha me hai aur motay taur par kitna bada — kabhi yeh nahi ki aankda hoobahoo mile. Agar aapke numbers usi disha me hilte hain jis disha me mere, to experiment kaam kar gaya.'
+
 });

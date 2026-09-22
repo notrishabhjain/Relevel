@@ -4,11 +4,9 @@
    as it appears in the course, so a line that is later edited in English falls
    back to English rather than showing a translation of something else. */
 Object.assign(window.HING = window.HING || {}, {
-  /* Part IV — The decisions that stay yours */
+
   'The decisions that stay yours':
     'Woh faisle jo aapke hi rehte hain',
-  'What to change when it is not good enough, and what the user sees when it is wrong. Neither one is an engineering decision.':
-    'Jab yeh kaafi achcha na ho tab kya badlein, aur galat hone par user ko kya dikhta hai. In dono mein se koi engineering ka faisla nahi hai.',
   '“Should we fine-tune?” — and how to answer it well':
     '"Kya humein fine-tune karna chahiye?" — aur iska achcha jawaab kaise dein',
   'There are four things you can change when a model is not good enough. The hard part is not picking one. It is naming what is actually wrong first.':
@@ -111,22 +109,16 @@ Object.assign(window.HING = window.HING || {}, {
     'Chaaron mein se ek chupchaap sabse bhaari ho gaya hai, aur woh us disha mein hai jahan teams dekhti hi nahi. <strong>Chhote par jaana</strong> — ek sasta, tez model, aksar aapke kaam par bade model ki nakal karne ke liye train kiya hua — wahin high-volume feature ki economics tay hoti hai. Ek sankra, dohraaya jaane wala, high-volume kaam jisme samay ki seema ho, theek wahi hai jahan chhota model jeetta hai, aur theek wahi hai jise koi test nahi karta, kyunki mehnga wala pehle se chal raha tha.',
   'Every one of the four is a change whose effect is invisible without a test set. So this chapter is not really about fine-tuning. It is about the fact that a team with an answer key can settle “should we fine-tune?” in a week, and a team without one cannot settle it at all.':
     'Chaaron mein se har ek aisa badlav hai jiska asar bina test set ke dikhta hi nahi. Isliye yeh chapter asal mein fine-tuning ke baare mein hai hi nahi. Yeh is baare mein hai ki jis team ke paas answer key hai woh "kya humein fine-tune karna chahiye?" ek hafte mein sulajha leti hai, aur jiske paas nahi hai woh bilkul nahi sulajha sakti.',
-  'Step 1 — Sort real failures into the four kinds':
-    'Step 1 — Asli failures ko chaar kismon mein baantiye',
   'No notebook this chapter. Open your error taxonomy from Chapter 14 — or, if you do not have one yet, ten real outputs from any AI feature you use daily.':
     'Is chapter mein notebook nahi. Chapter 14 wali apni error taxonomy kholiye — ya agar abhi nahi hai, to roz istemaal hone wale kisi bhi AI feature se das asli outputs lijiye.',
   'Against each failure, write one of four letters: <strong>K</strong> (does not know), <strong>B</strong> (behaves wrong), <strong>R</strong> (cannot work it out), <strong>E</strong> (uneconomic). Force a single letter even when it is hard; the hard ones are the interesting ones.':
     'Har failure ke saamne chaar mein se ek akshar likhiye: <strong>K</strong> (pata nahi), <strong>B</strong> (behaviour galat), <strong>R</strong> (nikaal nahi paata), <strong>E</strong> (mehnga). Mushkil ho tab bhi ek hi akshar chuniye; mushkil waale hi dilchasp hote hain.',
   'A lopsided distribution. Almost every real taxonomy is dominated by K and B, which is why retrieval and prompting carry most of the improvement in most products — and why tuning proposals so often fail to move the number they promised.':
     'Ek ek-tarfa baantwara. Lagbhag har asli taxonomy mein K aur B hi chhaye rehte hain, isiliye zyadatar products mein sudhaar ka zyadatar hissa retrieval aur prompting se aata hai — aur isiliye tuning ke proposals aksar us number ko hilaa hi nahi paate jiska vaada unhone kiya tha.',
-  'Step 2 — Cost the tuning proposal honestly':
-    'Step 2 — Tuning proposal ki imaandaar cost nikaaliye',
   'Take the most plausible tuning candidate from your list and write the full cost, not the training bill: how many labelled examples, who writes them, who maintains them when the product changes, what eval proves it worked, and what happens to all of it when the base model is deprecated in eighteen months.':
     'Apni list se sabse plausible tuning candidate lijiye aur poori cost likhiye, sirf training ka bill nahi: kitne labelled examples, unhe kaun likhega, product badalne par unhe kaun sambhalega, kaunsa eval saabit karega ki faayda hua, aur atharah mahine mein base model band hone par in sab ka kya hoga.',
   'A number several times larger than the one in the vendor’s pricing page — and, more usefully, a list of owners. A tuning proposal with no named owner for dataset maintenance is a proposal to build something that decays.':
     'Ek aisa number jo vendor ke pricing page wale se kai guna bada hai — aur usse zyada kaam ki, maalikon ki ek list. Jis tuning proposal mein dataset sambhalne ka koi naam nahi likha, woh aisi cheez banane ka proposal hai jo sadti jaayegi.',
-  'Step 3 — Try switching down':
-    'Step 3 — Chhote par jaakar dekhiye',
   'Pick the narrowest, highest-volume task in your product — routing, classification, extraction, a short summary. Estimate its share of total query volume, then compute what it would cost on a model one or two tiers cheaper using the Chapter 15 model above.':
     'Apne product ka sabse sankra, sabse zyada volume wala kaam chuniye — routing, classification, extraction, ek chhota summary. Poore query volume mein uska hissa aankiye, phir upar wale Chapter 15 ke model se nikaaliye ki ek ya do tier saste model par uski cost kya hoti.',
   'Frequently the largest single saving available to you, sitting in the least glamorous part of the product. This is the lever that most teams never test.':
@@ -193,24 +185,19 @@ Object.assign(window.HING = window.HING || {}, {
     'Jo system kehta hai "main iska jawaab nahi de sakta" aur kisi insaan tak ka raasta deta hai, us par usse zyada bharosa hota hai — aur theek hota hai — jo hamesha kuchh na kuchh bana deta hai. Users refusals se hi aankte hain. Jo feature kabhi mana nahi karta woh unhe sikha deta hai ki uske confidence ka koi matlab nahi.',
   'And one more thing, which is not a design choice but a floor: what the feature does when the AI is switched off. Chapter 18 separated a rollback from a kill switch; this is the consequence. A kill switch is only usable if there is something underneath it — search without generated answers, a form without extraction, a queue without routing. If turning the AI off leaves a blank screen, you do not have a kill switch. You have a single point of failure with a switch attached.':
     'Aur ek aakhri baat, jo design ka chunav nahi balki ek farsh hai: AI band kar dene par feature kya karta hai. Chapter 18 ne rollback aur kill switch ko alag kiya tha; yeh uska nateeja hai. Kill switch tabhi kaam ka hai jab uske neeche kuchh ho — bane hue jawaabon ke bina search, extraction ke bina form, routing ke bina queue. Agar AI band karne par khaali screen bachti hai, to aapke paas kill switch nahi hai. Aapke paas ek single point of failure hai jis par ek switch laga hai.',
-  'Step 1 — Audit an AI feature you use daily':
-    'Step 1 — Roz istemaal hone wale kisi AI feature ka audit kijiye',
   'Pick one — a search assistant, an email drafter, a coding assistant, anything. Ask it something it will get wrong, deliberately, at the edge of what it knows.':
     'Ek chuniye — search assistant, email likhne wala, coding assistant, kuchh bhi. Usse jaanbujhkar kuchh aisa poochhiye jo woh galat karega, uski jaankaari ke kinare par.',
   'Then answer four questions in writing. Could you check the claim, and how many seconds did it take? Did the interface treat the wrong answer differently from a right one in any way at all? What could you do about it? And what happened to your correction?':
     'Phir chaar sawaalon ke jawaab likh kar dijiye. Kya aap daawe ko jaanch sake, aur ismein kitne second lage? Kya interface ne galat jawaab ko sahi jawaab se kisi bhi tarah alag dikhaya? Aap uska kya kar sakte the? Aur aapke sudhaar ka kya hua?',
   'Most well-known products fail at least two of the four. Note which — this is the standard your own feature will be held to by users who have used those products.':
     'Zyadatar mashhoor products chaar mein se kam se kam do mein fail hote hain. Note kijiye kaunse — aapke apne feature ko wahi maapdand un users se milega jinhone woh products istemaal kiye hain.',
-  'Step 2 — Write the four states':
-    'Step 2 — Chaar sthitiyaan likhiye',
   'For one feature you own, write what the user sees in each of four states: confident answer, low-confidence answer, refusal, and AI path disabled. Actual screen content, not a description of a philosophy.':
     'Apne ek feature ke liye likhiye ki chaar sthitiyon mein user ko kya dikhta hai: confident jawaab, kam-confidence jawaab, refusal, aur AI band. Asli screen ka content, kisi soch ka varnan nahi.',
   'The third and fourth are the hard ones, and the ones that do not exist in most specs. If you cannot write them, they do not exist in the product either — they are whatever the code happens to do.':
     'Teesri aur chauthi hi mushkil hain, aur wahi hain jo zyadatar specs mein hoti hi nahi. Agar aap unhe likh nahi sakte, to woh product mein bhi nahi hain — woh bas wahi hain jo code ittefaaq se kar deta hai.',
-  'Step 3 — Time the correction':
-    'Step 3 — Sudhaar ka samay naapiye',
   'Measure, with a clock: how long does correcting a wrong output take, versus doing the task manually from scratch? Do it three times.':
     'Ghadi se naapiye: galat output sudhaarne mein kitna samay lagta hai, bnaam shuru se khud kaam karne mein? Teen baar kijiye.',
   'If correcting is slower, your feedback table will stay empty and you will misread that as satisfaction. This single measurement explains most “our users never give feedback” conversations.':
     'Agar sudhaarna dheema hai, to aapki feedback table khaali rahegi aur aap use santushti samajh lenge. Yahi ek naap "hamare users kabhi feedback nahi dete" wali zyadatar baatcheeton ko samjha deti hai.'
+
 });

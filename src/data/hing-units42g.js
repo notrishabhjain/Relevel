@@ -109,8 +109,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Kuch bhi chatur jodne se pehle sabse chhota poora chalta hua system banaiye.',
   'A vertical slice proves architecture across boundaries.':
     'Ek poori kaat saari lakeeron ke aar-paar architecture ko sabit kar deti hai.',
-  'Implement input ® retrieval/context ® model ® structured answer ® citation.':
-    'Banaiye: input ® retrieval ya context ® model ® dhaanche wala jawaab ® hawaala.',
+  'Implement input → retrieval/context → model → structured answer → citation.':
+    'Banaiye: input → retrieval ya context → model → dhaanche wala jawaab → hawaala.',
   'Add one tool only when needed.':
     'Ek tool tabhi jodiye jab sach mein zaroorat ho.',
   'Use an unanswerable query and record the baseline failure.':

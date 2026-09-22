@@ -4,7 +4,7 @@
    as it appears in the course, so a line that is later edited in English falls
    back to English rather than showing a translation of something else. */
 Object.assign(window.HING = window.HING || {}, {
-  /* Practice questions */
+
   'A 300-word English answer is roughly how many tokens?':
     '300 shabd ka English jawaab motamoti kitne tokens ka hota hai?',
   'The working rule is ~1 token ≈ ¾ of an English word, so words × 1.33. 300 × 1.33 ≈ 400 — careful: the question asks tokens for 300 words, which is ~400. The trap answer is 225 (dividing instead of multiplying).':
@@ -115,8 +115,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Message 50 message 1–49 ko dobara padhne ka paisa deta hai. Cost jama hui conversation ki lambaai se badhti hai, messages ki ginti se nahi.',
   'Later messages are longer':
     'Baad ke messages lambe hote hain',
-  'Each request re-sends the entire prior conversation':
-    'Har request poori pichhli conversation dobara bhejti hai',
   'The model works harder as context builds':
     'Context badhne par model zyada mehnat karta hai',
   'Rate limits raise the price':
@@ -185,8 +183,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Kharaab training data ka nishaan',
   'A failure of the retrieval layer only':
     'Sirf retrieval layer ki galti',
-
-  /* Practice questions */
   'You require an "amount" field, typed strictly as a number, and feed a document containing no amount. The model returns 42000. What caused this?':
     'Aap ek "amount" field zaroori karte hain, sakhti se number type ki, aur aisa document dete hain jisme koi amount hai hi nahi. Model 42000 lauta deta hai. Iski wajah kya hai?',
   'You compelled the invention by design. A nullable field or a status enum including insufficient_evidence removes the compulsion. Schema design is a hallucination control.':
@@ -261,8 +257,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Embeddings kam sahi honge',
   'Your corpus is service contracts with numbered clauses, exceptions and annexures. Describe your chunking rule and what it sacrifices.':
     'Aapka corpus service contracts hai, numbered clauses, provisos aur annexures ke saath. Apna chunking rule batayiye aur yeh bhi ki woh kya kurbaan karta hai.',
-  'Cut on clause boundaries so each piece carries a complete rule with its exceptions attached — semantic chunking following the document\'s own anatomy. Pieces will be unequal in size, which is a feature: meaning does not come in uniform sizes. Sacrifices: cross-clause definitions ("as defined in clause 2") still orphan, so add a situating sentence (contextual retrieval); very long clauses may exceed a comfortable retrieval unit and need sub-splitting with overlap. A strong answer names the residual failure, not just the rule.':
-    'Clause ki boundaries par kaatiye taaki har tukda ek poora niyam apne provisos ke saath le jaaye — yaani document ki apni banawat ke hisaab se semantic chunking. Tukde alag-alag size ke honge, aur yeh khoobi hai: matlab ek jaise size mein nahi aata. Kurbaani: clause ke paar wali definitions ("as defined in clause 2") phir bhi orphan rahengi, isliye ek situating sentence jodiye (contextual retrieval); bahut lambe clauses ek aaram se retrieve hone wale tukde se bade ho sakte hain aur unhe overlap ke saath aage baantna padega. Achcha jawaab sirf rule nahi, bacha hua failure bhi batata hai.',
   'Keyword search is blind to:':
     'Keyword search kis cheez ke prati andha hai:',
   'It matches shared letters, not shared sense. "Reimbursement" and "disbursement of approved amounts" are strangers to it.':
@@ -349,8 +343,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Ise quality ka sanket maan lijiye',
   'Two texts have cosine similarity 0.78, and a third pair scores 0.19. Roughly how many of these pairs would you expect to be near-synonyms in the same professional domain? Answer with a count (0, 1 or 2).':
     'Do texts ki cosine similarity 0.78 hai, aur ek teesri jodi 0.19 par hai. Motamoti in jodiyon mein se kitni ek hi professional domain mein lagbhag paryayvaachi hongi? Ginti mein jawaab dijiye (0, 1 ya 2).',
-  'One. High cosine (commonly 0.5–0.8 for related domain terms) indicates the same neighbourhood; 0.19 is a distant suburb. Exact thresholds vary by model — what matters is the gap, not the absolute number.':
-    'Ek. Zyada cosine (juda hue domain terms ke liye aam taur par 0.5–0.8) ek hi mohalle ka sanket hai; 0.19 door ka ilaaka hai. Exact thresholds model ke hisaab se badalte hain — maayne farq rakhta hai, absolute number nahi.',
   'Reciprocal rank fusion, in plain words:':
     'Reciprocal rank fusion, saade shabdon mein:',
   'Rank 1 contributes a lot, rank 40 almost nothing, and appearing respectably on both lists beats winning one. No learning, one line of arithmetic, hard to beat.':
@@ -387,8 +379,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Contextual retrieval — embed karne se pehle aage joda gaya ek situating sentence',
   'Raising k':
     'k badhana',
-
-  /* Practice questions */
   'Which lever improves cost and quality simultaneously?':
     'Kaunsa lever cost aur quality dono ek saath sudhaarta hai?',
   'Almost every other lever trades one against the other. Retrieve wide, rerank narrow, then send fewer but better chunks.':
@@ -479,12 +469,8 @@ Object.assign(window.HING = window.HING || {}, {
     'F1',
   'You raise k from 3 to 8. What happens?':
     'Aap k ko 3 se 8 kar dete hain. Kya hota hai?',
-  'Fetch more and you miss fewer but bury deeper — and you pay roughly 8× the retrieval tokens per query, forever.':
-    'Zyada nikaaliye to kam chhootega lekin dher gehra hoga — aur aap har query par lagbhag 8× retrieval tokens denge, hamesha.',
   'Both precision and recall rise':
     'Precision aur recall dono badhte hain',
-  'Recall rises, precision falls, token cost rises':
-    'Recall badhta hai, precision girta hai, token cost badhti hai',
   'Precision rises, recall falls':
     'Precision badhta hai, recall girta hai',
   'Nothing changes without re-indexing':
@@ -589,8 +575,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Suite mein jode gaye naye eval cases',
   'A targeted fix':
     'Ek nishaana laga hua ilaaj',
-
-  /* Practice questions */
   'Measured improvement':
     'Naapa hua sudhaar',
   'Why does the book insist you write a prediction before every measurement?':
@@ -791,8 +775,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Is course ka pehla product lever jise PM seedhe ek number se niyantrit karta hai.',
   'Compute spent training the model':
     'Model ko train karne mein laga compute',
-
-  /* Practice questions */
   'Buying accuracy per query at inference time, in money and latency':
     'Har query par, paise aur intezaar dekar, accuracy kharidna',
   'Running tests before deployment':
@@ -993,8 +975,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Unka model surakshit hai',
   'They have audited security controls — nothing about hallucination rate, retrieval quality, injection resistance or deprecation policy':
     'Unke security controls audit hue hain — hallucination rate, retrieval quality, injection ke saamne tikne ya deprecation policy ke baare mein kuchh nahi',
-
-  /* Practice questions */
   'They meet AI regulation':
     'Woh AI regulation poora karte hain',
   'Their data is encrypted at rest only':
@@ -1215,8 +1195,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Generation model',
   'Query rewriting — the fragment is being embedded without being made standalone':
     'Query rewriting — tukde ko akela khada kiye bina embed kiya ja raha hai',
-
-  /* Practice questions */
   'Chunking':
     'Chunking',
   'The system prompt':
@@ -1417,8 +1395,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Volume roz 4,000 outputs ka hai aur aapke paas ek reviewer hai. Chalne wala design kya hai?',
   'Structured output plus programmatic checks turn "review everything" into "review the few percent that failed a check" — which one person can really do, with authority and time.':
     'Structured output plus programmatic checks "sab review karo" ko "un chand percent ko review karo jo check fail kar gaye" bana dete hain — jo ek insaan sach mein kar sakta hai, authority aur samay ke saath.',
-
-  /* Practice questions */
   'Review a random 1% and hope':
     'Random 1% review kijiye aur ummeed rakhiye',
   'Route only outputs failing a programmatic check to review, and sample the rest':
@@ -1619,4 +1595,5 @@ Object.assign(window.HING = window.HING || {}, {
     'Apne jaane hue kisi AI feature ke liye interface contract likhiye: jab woh confident ho tab kya dikhata hai, jab na ho tab kya, galat hone par user kya kar sakta hai, aur AI path band hone par feature phir bhi kya karta hai.',
   'A strong answer treats uncertainty as a design input rather than an engineering embarrassment. Confident: the answer with resolvable citations, and an action the user can take directly. Unconfident: the evidence first with the answer framed as a draft, or a clarifying question rather than a guess — and never the same visual treatment as a confident answer. Wrong: an edit path that captures the expected answer and the evidence, faster than doing the task manually, feeding the failure taxonomy. Off: the feature degrades to something that still works — search without generated answers, a form without extraction, a queue without routing — because the kill switch is only usable if there is a product underneath it.':
     'Achcha jawaab anishchitata ko engineering ki sharmindagi nahi, design ka input maanta hai. Confident: jawaab, aise citations ke saath jo asli passage kholein, aur ek kaam jo user seedhe kar sake. Kam confident: pehle evidence, aur jawaab draft ke roop mein, ya andaaze ki jagah ek saaf karne wala sawaal — aur kabhi bhi confident jawaab jaisa dikhaawa nahi. Galat: ek edit ka raasta jo ummeed kiya gaya jawaab aur evidence pakde, haath se karne se tez ho, aur failure taxonomy ko bhare. Band: feature girkar kisi aisi cheez par aa jaaye jo phir bhi chalti ho — bane hue jawaabon ke bina search, extraction ke bina form, routing ke bina queue — kyunki kill switch tabhi kaam ka hai jab uske neeche koi product ho.'
+
 });

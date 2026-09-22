@@ -4,19 +4,15 @@
    as it appears in the course, so a line that is later edited in English falls
    back to English rather than showing a translation of something else. */
 Object.assign(window.HING = window.HING || {}, {
-  /* In-page tools */
+
   'The receipt, read live':
     'Receipt, live padhiye',
   'A close approximation of how models split text. The exact boundaries vary by model; the ratio does not. Notice which words survive whole and which shatter — and try a sentence in a second language.':
     'Models text kaise kaatte hain, uska kaafi paas ka roop. Exact boundaries model ke hisaab se badalti hain; ratio nahi badalta. Dhyaan dijiye kaunse shabd saabut bachte hain aur kaunse bikhar jaate hain — aur ek sentence doosri bhaasha mein bhi try kijiye.',
   'Why message 50 costs more than message 1':
     'Message 50 message 1 se mehnga kyun padta hai',
-  'The stage trick, metered. Each turn re-sends everything before it, so cost grows with the square of the conversation — not with the number of messages.':
-    'Woh stage wala khel, meter ke saath. Har turn apne se pehle ka sab kuchh dobara bhejta hai, isliye cost conversation ke square ke hisaab se badhti hai — messages ki ginti ke hisaab se nahi.',
   'The variety dial':
     'Variety ka dial',
-  'Real sampling mathematics on a fixed candidate set. At 0 the top continuation wins every time; raise it and the distribution flattens until the unlikely becomes routine.':
-    'Ek tay candidate set par asli sampling ka maths. 0 par sabse upar wala continuation har baar jeetta hai; badhaiye to distribution phailta jaata hai jab tak kam-likely cheez aam na ho jaaye.',
   'Scissors, with a damage report':
     'Kainchi, nuksaan ki report ke saath',
   'Paste your own document. The orphan test flags chunks opening with a back-reference; the boundary test flags chunks that begin or end mid-sentence. These are the two injuries Chapter 3 asks you to hunt by hand.':
@@ -27,8 +23,6 @@ Object.assign(window.HING = window.HING || {}, {
     '1024-dimension wale naksha ka do-dimension wala roop, jisme padoas waise hi rakhe gaye hain jaise ek asli embedding model banata hai. Koi bhi do terms chuniye; cosine live nikalta hai, bilkul waise hi jaise chapter ki ek line ke code mein.',
   'The trade-off, under your own hand':
     'Trade-off, aapke apne haath mein',
-  'Nine answerable questions with the correct chunks planted at realistic depths. Move k and watch recall climb while precision — and your bill — move the other way. This is the most-cited chart in applied AI, produced in one slider.':
-    'Nau aise sawaal jinke jawaab hain, aur sahi chunks realistic gehraai par rakhe hue. k hilaiye aur dekhiye recall chadhta hai jabki precision — aur aapka bill — doosri taraf jaate hain. Applied AI ka sabse zyada dikhaya jaane wala chart, ek slider se bana hua.',
   'The trap you build yourself':
     'Woh jaal jo aap khud banate hain',
   'Twenty simulated extractions against a document that contains no amount. Watch the invention rate respond to one schema decision — whether the model has a legal way to say "not present".':
@@ -69,4 +63,5 @@ Object.assign(window.HING = window.HING || {}, {
     'Bill, chaaron multipliers ke saath',
   'Start with the naive estimate everyone puts in the business case, then switch on the four things that are always left out. The ratio at the bottom is the number to carry into a budget meeting.':
     'Us naadaan estimate se shuru kijiye jo sab business case mein daalte hain, phir woh chaar cheezein on kijiye jo hamesha chhoot jaati hain. Neeche jo ratio hai, wahi number budget meeting mein le jaana hai.'
+
 });
