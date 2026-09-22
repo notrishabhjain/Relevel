@@ -66,6 +66,15 @@ const js = [
   'src/data/hing-part5m.js',
   'src/data/hing-part5n.js',
   'src/data/hing-part5o.js',
+  'src/data/hing-appx42.js',
+  'src/data/hing-ui42.js',
+  'src/data/hing-units42a.js',
+  'src/data/hing-units42b.js',
+  'src/data/hing-units42c.js',
+  'src/data/hing-units42d.js',
+  'src/data/hing-units42e.js',
+  'src/data/hing-units42f.js',
+  'src/data/hing-units42g.js',
   'src/data/hing-v31.js',
   'src/data/hing-items.js',
   'src/data/hing-skills.js',
@@ -314,7 +323,11 @@ const defaults = {
     DOMAINS: W.DOMAINS, PARTS: W.PARTS, RULES: W.RULES, SETUP: W.SETUP,
     GLOSSARY: W.GLOSSARY, VENDOR: W.VENDOR, LATER: W.LATER,
     PIPELINE: W.PIPELINE, REDMARKS: W.REDMARKS,
-    LEVEL_NAMES: W.LEVEL_NAMES, LEVEL_BANDS: W.LEVEL_BANDS
+    LEVEL_NAMES: W.LEVEL_NAMES, LEVEL_BANDS: W.LEVEL_BANDS,
+    /* The appendices were left out of this bundle when they were added, which
+       meant the content-check's translation rules for them walked an empty
+       object and passed silently, and the Studio could not see them at all. */
+    APPENDIX: W.APPENDIX
   }
 };
 for (const [k, v] of Object.entries(defaults))

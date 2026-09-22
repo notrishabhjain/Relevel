@@ -47,19 +47,59 @@ window.PART5 = [
     ['p','AI features are the same. You have spent twenty chapters looking at the model. This chapter looks at the ordinary plumbing around it, so that when an engineer shows you a system diagram you see parts you recognise instead of fog.'],
     ['c','Why this comes first','Applied AI work expects hands-on contact with APIs, Python, cloud services, retrieval, evaluation and production systems. You cannot challenge an architecture if JSON, HTTP, environment variables, tests and logs still feel like someone else\u2019s language. This is the floor, not the ceiling.'],
     ['key','An AI system is a software system with a probabilistic component. Everything you already know about software going wrong still applies \u2014 and now there is one more thing that can go wrong, quietly, without raising an error.'],
-    ['do','Make request-response-JSON-field boring',[
-      ['p','Call a public endpoint and pull one field out of what comes back. No AI involved. The point is to make the shape of the thing familiar enough to stop noticing it.'],
-      ['code','import requests\n\nr = requests.get(\n  "https://api.github.com/repos/openai/openai-python")\nprint(r.status_code)\nprint(r.json()["full_name"])'],
-      ['x','<code>200</code>, then <code>openai/openai-python</code>. That is the whole shape of every call you have made in this course: a status that says whether it worked, and a body you reach into for the part you wanted.']
-    ]],
+    
+    ['unit',"8.1","Python as an experiment instrument",{
+      goal:"Write small Python programs, functions, lists, dictionaries and loops well enough to modify experiments without depending on generated code.",
+      idea:"Python is the lab notebook of applied AI: the value is not language mastery but the ability to express an experiment precisely.",
+      prove:"Create variables, a function, a loop and a dictionary; print each intermediate result.",
+      build:"Build a script that reads ten questions from a list and records a result object for each question.",
+      brk:"Intentionally pass a missing key, empty list and wrong type. Observe the errors.",
+      artifact:"A <code>chapter-8/python-basics.py</code> file plus a one-page error log.",
+      check:"Can you explain a function, dictionary, loop and exception without opening documentation?",
+      lens:"Use your own code for the harness before introducing a framework."
+    }],
+    ['unit',"8.2","HTTP, JSON and API contracts",{
+      goal:"Understand request/response, status codes, headers, JSON payloads and contract failures.",
+      idea:"An AI API is still an API. The model is probabilistic, but the network interface is software engineering.",
+      prove:"Call a safe public JSON endpoint and print status code plus two fields.",
+      build:"Build a fake endpoint response with missing and unexpected fields and handle both.",
+      brk:"Simulate 401, 404, 429 and 500 cases and decide which are retryable.",
+      artifact:"An API contract sheet listing request, response, errors and retry policy.",
+      check:"What is the difference between a bad request, unavailable dependency and server failure?",
+      lens:"This is the vocabulary you need to challenge “the API failed” as a complete explanation."
+    }],
+    ['unit',"8.3","Environments, secrets and Git",{
+      goal:"Use environment variables/secrets, virtual environments and basic Git workflow.",
+      idea:"A working prototype that leaks a key or cannot be reproduced is not a credible engineering artifact.",
+      prove:"Store a secret outside source code and print only a masked prefix.",
+      build:"Create a repository with README, requirements and a repeatable run command.",
+      brk:"Commit a deliberately broken change, identify it, and revert to the previous working version.",
+      artifact:"Reproducible repo skeleton with <code>.gitignore</code>, README and experiment log.",
+      check:"Could another person run your experiment without asking what you did manually?",
+      lens:"Reproducibility is a PM concern because it turns a demo into evidence."
+    }],
+    ['unit',"8.4","Errors, logging and tests",{
+      goal:"Read stack traces, add structured logs and write small tests.",
+      idea:"An AI system is judged by what happens when things go wrong, not only by the happy path.",
+      prove:"Create three tests: expected answer, missing input, malformed response.",
+      build:"Add request ID, timestamp, model and status to each experiment record.",
+      brk:"Force a timeout and malformed output; trace the failure from input to exception.",
+      artifact:"Mini test suite plus failure log with root cause and fix.",
+      check:"Can you distinguish an application bug from a provider/model failure?",
+      lens:"This becomes the base for evaluation and observability later."
+    }],
+    ['unit',"8.5","Build the experiment harness",{
+      goal:"Create a reusable runner that records inputs, outputs, configuration, latency and errors.",
+      idea:"The harness is the bridge from “I tried it” to “I measured it.”",
+      prove:"Run one prompt twice and save both runs as structured JSON.",
+      build:"Add experiment name, version, model, prompt version, input/output tokens when available, latency and notes.",
+      brk:"Change one variable and verify the logs make the comparison obvious.",
+      artifact:"<code>experiment_runner/</code> with schema, runner, sample runs and README.",
+      check:"Can you reproduce yesterday’s result and explain what changed?",
+      lens:"Every later chapter should plug into this harness instead of inventing a new way to record evidence."
+    }],
     ['q','I401'],
     ['p','The second reflex is about what happens when the shape is not what you expected. An AI application is assembled out of contracts \u2014 this field will be here, it will be a number, the list will not be empty \u2014 and every one of those is an assumption that will eventually be wrong in production.'],
-    ['do','Break a contract on purpose',[
-      ['p','Reach for a field that is not there, and catch the failure rather than letting it travel.'],
-      ['code','data = {"status": "ok", "items": [1, 2, 3]}\nprint(type(data), type(data["items"]))\n\ntry:\n    print(data["missing"])\nexcept KeyError as e:\n    print("contract failure:", e)'],
-      ['x','A clear <code>KeyError</code>. That is the good outcome. The dangerous version is the system that finds nothing there, substitutes a blank, and carries on producing confident output built on a hole.'],
-      ['snag',['<code>ModuleNotFoundError: requests</code>','Run <code>!pip -q install requests</code> in a cell above, then re-run.','The GitHub call returns 403','You have hit the unauthenticated rate limit. Wait a minute, or point it at any other public JSON endpoint \u2014 the field name is the only thing that changes.']]
-    ]],
     ['key','Production systems need to detect contract failures rather than silently continue. Most of the AI incidents you will actually meet look like this: nothing threw, and the answer was built on nothing.'],
     ['p','So what is “enough”? Not much, and it is a fixed list rather than an endless one. You have the floor when none of these makes you want to leave the room:'],
     ['l',['Writing a small function, and keeping a few labelled values together in one place.',
@@ -70,13 +110,9 @@ window.PART5 = [
       'Reading an error message from the bottom up, where the real cause usually sits.',
       'Writing a test that fails on purpose, so you know it is actually checking something.']],
     ['p','That is the list. Two more ideas — jobs that run in the background, and queues that hold work until something is free to do it — you only need as ideas, not as code.'],
-    ['do','Build the recorder you will reuse for the rest of the track',[
-      ['p','A small command-line tool that sends one prompt, saves the request metadata and the response to a JSON file, and can replay that request later. This is the first version of your experiment harness, and several later chapters run on it.'],
-      ['l',['Record: an id, a timestamp, the model, the prompt, the full response, latency, token usage, and any error.','Save one JSON file per run, named by id.','Add a replay flag that re-sends a saved request and writes a second record.']],
-      ['x','You can explain what every line does without asking an AI to explain your own code back to you. That is the bar for this chapter, and it is a real bar \u2014 code you cannot explain is code you cannot defend in a review.']
-    ]],
     ['try',{id:'ch21-guess',mins:6,min:60,rows:4,task:'Take the last AI feature you were shown a demo of. Write down, in plain words, what its request probably contained and what its response probably looked like. Where are you guessing?',after:'The places you had to guess are the questions to ask the team that built it. That list is the whole skill this chapter teaches.'}],
-    ['key','Explain it upward: a model API call is a normal software dependency. The engineering risk lives in interfaces, failure handling, secrets, retries, observability and contracts \u2014 at least as much as it lives in the model.']
+    ['key','Explain it upward: a model API call is a normal software dependency. The engineering risk lives in interfaces, failure handling, secrets, retries, observability and contracts \u2014 at least as much as it lives in the model.'],
+    ['key',"The next lesson reuses the artifact you just created."]
   ],
   capstone:{
     title:'The experiment harness, in version control',
@@ -128,17 +164,69 @@ window.PART5 = [
     ['p','Nobody buys a car because it won a magazine award. You want to know whether it fits your family, survives your roads, and what it costs to run for a year. You would test-drive it.'],
     ['p','Models are the same, and almost nobody test-drives them. A leaderboard tells you how a model did on somebody else\u2019s task. This chapter is about getting your own numbers, on your own questions, in one afternoon — which turns out to be enough.'],
     ['key','Models differ along several axes at once: capability, latency, context size, tool-use behaviour and cost. A model that wins on one can lose badly on another, and which axis matters is a property of your use case, not of the model.'],
-    ['do','Run a benchmark small enough that you will actually run it',[
-      ['p','Five questions, two models, one table. Use the harness from chapter 21 so the records survive.'],
-      ['l',['One factual question where you know the answer cold.','One that needs a short chain of reasoning.','One extraction task \u2014 pull three fields out of a paragraph.','One in a second language you can judge.','One that should be refused or answered "I cannot verify that".']],
-      ['x','For each: latency, token usage, whether the answer was right, and what kind of wrong it was when it was wrong. The kind of wrong matters more than the count \u2014 a model that fails by refusing is a different product risk from one that fails by inventing.']
-    ]],
+    
+    ['unit',"9.1","What an LLM is doing at inference",{
+      goal:"Explain tokens, transformer-based context processing, generation and the difference between training and inference.",
+      idea:"Inference is the execution phase: the model receives context and generates output; training changes the model parameters.",
+      prove:"Compare two prompts with different context lengths and record input/output token counts and latency.",
+      build:"Create a tiny table of context length versus observed latency/cost.",
+      brk:"Add irrelevant context and see whether cost, latency or answer quality changes.",
+      artifact:"Inference observation sheet.",
+      check:"Why is a larger prompt not automatically a better prompt?",
+      lens:"Ask engineers where the cost and latency are actually coming from before debating model brand."
+    }],
+    ['unit',"9.2","Sampling and output variability",{
+      goal:"Understand sampling controls as probability-distribution controls rather than “creativity sliders.”",
+      idea:"Lower sampling generally reduces variation; it does not turn a model into a guaranteed deterministic or factual system.",
+      prove:"Run the same prompt multiple times under two sampling configurations supported by your provider.",
+      build:"Count distinct outputs and note qualitative differences.",
+      brk:"Use a factual task and a creative task; compare whether variability matters equally.",
+      artifact:"Sampling experiment table with raw outputs.",
+      check:"What changed: factuality, diversity, or merely variation?",
+      lens:"Do not promise “temperature zero means always identical.” Measure the actual provider behavior."
+    }],
+    ['unit',"9.3","Model tiers and routing",{
+      goal:"Understand why smaller, faster, cheaper models may be appropriate for some tasks and larger models for others.",
+      idea:"Model selection is an optimization problem across quality, latency, cost, context, tool reliability and operational constraints.",
+      prove:"Create a 10-case benchmark spanning extraction, reasoning, multilingual and refusal tasks.",
+      build:"Run two available models or model configurations through the same cases.",
+      brk:"Route easy cases to the cheaper model and hard cases to the stronger model; compare cost and quality.",
+      artifact:"Model Selection Card.",
+      check:"Which acceptance metric justified the choice?",
+      lens:"The “best model” is undefined until the task, quality bar and cost ceiling are defined."
+    }],
+    ['unit',"9.4","Reasoning, context and fine-tuning boundaries",{
+      goal:"Distinguish prompting, context/RAG and fine-tuning as different levers.",
+      idea:"Use context when the system needs changing knowledge; prompting for instruction/behavior; fine-tuning when repeated stable behavior is worth encoding in weights.",
+      prove:"Take one task and write three proposed solutions: prompt-only, retrieval/context, fine-tune hypothesis.",
+      build:"Identify the data, expected benefit, maintenance cost and evaluation needed for each.",
+      brk:"Invent a case where fine-tuning looks attractive but retrieval is cheaper because knowledge changes weekly.",
+      artifact:"Decision matrix: Prompt vs Context/RAG vs Fine-tune.",
+      check:"Is the gap knowledge, behavior, or both?",
+      lens:"This prevents architecture discussions from collapsing into “let’s fine-tune it.”"
+    }],
+    ['unit',"9.5","Benchmarking without fooling yourself",{
+      goal:"Learn why small demos can produce misleading conclusions and how to design a balanced task set.",
+      idea:"A benchmark is a measurement instrument; biased cases produce biased decisions.",
+      prove:"Create categories, sample cases and expected outputs before testing.",
+      build:"Run blind or consistently ordered comparisons where practical.",
+      brk:"Add adversarial, ambiguous and no-answer cases and see whether the ranking changes.",
+      artifact:"10–30 case model benchmark with category breakdown.",
+      check:"Would your benchmark detect the failure you care about most?",
+      lens:"A PM should challenge the test set before challenging the score."
+    }],
+    ['unit',"9.6","Model Selection Card",{
+      goal:"Turn the evidence into a decision artifact engineers and stakeholders can review.",
+      idea:"The card records constraints, evidence, fallback and unresolved risks in one place.",
+      prove:"Fill task, quality target, data sensitivity, latency target and cost ceiling.",
+      build:"Add model options, benchmark evidence and fallback strategy.",
+      brk:"Remove the benchmark results and try to make the decision; note how much becomes opinion.",
+      artifact:"Versioned Model Selection Card.",
+      check:"Can a reviewer see exactly why the selected model was chosen?",
+      lens:"This is portfolio evidence of technical judgment, not a leaderboard screenshot."
+    }],
     ['q','I402'],
     ['p','Then change exactly one thing. This is the discipline that separates a benchmark from an anecdote: if you change the model and the prompt together and the result improves, you have learned nothing about either.'],
-    ['do','Watch sampling move the distribution',[
-      ['code','for t in [0, 0.9]:\n    print("TEMPERATURE", t)\n    # call your provider three times here\n    # and record each output'],
-      ['x','Low sampling, less variation. High sampling, more. You saw this in chapter 2 \u2014 but the lesson this time is not "temperature equals creativity". It is that model outputs are <strong>distributions</strong>, and configuration changes the distribution rather than picking a different answer.']
-    ]],
     ['key','The literacy you need is real but bounded: supervised versus unsupervised learning, classification versus regression, train/validation/test, overfitting, precision and recall, embeddings, transformers at the level of an idea, attention as \u201cwhich parts of the context matter right now\u201d, inference versus training, and pretraining versus fine-tuning versus retrieval. That is the list. You do not need more to hold your own in an architecture conversation.'],
     ['p','The question that comes up in every one of those conversations is whether to fine-tune. There is a usable rule, as long as you hold it as a hypothesis to be tested rather than a law.'],
     ['l',[
@@ -152,7 +240,8 @@ window.PART5 = [
       ['Reasoning level','Does more reasoning move the acceptance metric?','Paying for more reasoning without measuring it'],
       ['Context size','Do we genuinely need the larger window?','Treating a big window as a substitute for retrieval']
     ]],
-    ['try',{id:'ch22-leader',mins:6,min:60,rows:4,task:'Write the one sentence you would say if a stakeholder asked you to switch to the model that just topped a leaderboard.',after:'The sentence that works is some version of: on which of our cases, and at what latency and cost? A leaderboard is a result on someone else\u2019s test set.'}]
+    ['try',{id:'ch22-leader',mins:6,min:60,rows:4,task:'Write the one sentence you would say if a stakeholder asked you to switch to the model that just topped a leaderboard.',after:'The sentence that works is some version of: on which of our cases, and at what latency and cost? A leaderboard is a result on someone else\u2019s test set.'}],
+    ['key',"Next, we learn to engineer the context around whichever model we selected."]
   ],
   capstone:{
     title:'A Model Selection Card',
@@ -205,23 +294,73 @@ window.PART5 = [
     ['p','Imagine briefing a new colleague who is brilliant, fast, and has no memory of yesterday. Every morning you hand them a folder. What you put in that folder — the standing instructions, the examples, the file they need today, the note about what happened last week — decides entirely how well they do.'],
     ['p','You cannot make the folder infinitely thick, and you pay by the page. That is this chapter. People call the interesting part “prompt engineering”, but the prompt is one page in the folder. Deciding what else goes in, and what gets left out, is the bigger job.'],
     ['key','A good prompt is an interface contract, not a paragraph of wishes. Role, task, constraints, examples, output schema, refusal behaviour. Everything in that list is something a caller downstream is depending on.'],
-    ['do','Rewrite one vague instruction as a contract',[
-      ['p','Take an instruction you have actually used. Give it all six parts, and be specific about the last one \u2014 what should it do when it cannot comply?'],
-      ['x','The rewrite is longer, and it is the length that does the work. You will also notice you had to make decisions you had previously left to the model, which is precisely the point.']
-    ]],
+    
+    ['unit',"10.1","Prompt as an interface contract",{
+      goal:"Design prompts with explicit task, constraints, input definitions, output expectations and failure behavior.",
+      idea:"A prompt is an interface contract between application and model.",
+      prove:"Rewrite a vague instruction into role, task, constraints, examples and output requirements.",
+      build:"Run old and new versions on the same 10 cases.",
+      brk:"Add contradictory instructions and observe which behavior is stable and which is not.",
+      artifact:"Prompt version diff + benchmark result.",
+      check:"What requirement became measurable after the rewrite?",
+      lens:"Prompt changes should be versioned like code."
+    }],
+    ['unit',"10.2","Structured outputs and schemas",{
+      goal:"Make model output machine-consumable and validate it before downstream use.",
+      idea:"Natural-language output is flexible; application interfaces need predictable structure.",
+      prove:"Define a small JSON schema for a task extraction object.",
+      build:"Generate outputs, parse them and reject invalid structures.",
+      brk:"Remove a required field and insert a wrong type; verify the application catches it.",
+      artifact:"Schema + validation tests + sample valid/invalid payloads.",
+      check:"Does the schema prevent unsafe values or only formatting mistakes?",
+      lens:"Structured output is an interface control, not a truth guarantee."
+    }],
+    ['unit',"10.3","Context budget",{
+      goal:"Measure how much of the context is instructions, history, retrieved text and tool output.",
+      idea:"Context is a finite resource with quality, latency and cost implications.",
+      prove:"Record token counts for each context component where the provider exposes them or estimate consistently.",
+      build:"Create a budget policy: what gets kept, summarized or dropped first.",
+      brk:"Flood the context with irrelevant history and compare answer quality and cost.",
+      artifact:"Context Budget Worksheet.",
+      check:"What is the first thing you would remove under pressure?",
+      lens:"A PM should be able to ask “what is in the context?” and get an exact answer."
+    }],
+    ['unit',"10.4","State, history and memory",{
+      goal:"Separate request context, conversation history, durable user data and task state.",
+      idea:"“Memory” is not one feature; it is an application architecture with storage, retention and authorization.",
+      prove:"Draw three stores: session history, user profile, task state.",
+      build:"Specify fields, owner, retention, access and deletion path for each.",
+      brk:"Introduce stale or conflicting memory and define precedence rules.",
+      artifact:"Memory/State Design Sheet.",
+      check:"What data should never be injected into a prompt by default?",
+      lens:"This is where privacy and product design meet context engineering."
+    }],
+    ['unit',"10.5","Provenance and citations",{
+      goal:"Make evidence traceable from answer to source, chunk and version.",
+      idea:"A citation is useful only if it lets the user or auditor trace the claim to evidence.",
+      prove:"Attach source ID, section and chunk ID to each retrieved passage.",
+      build:"Generate an answer that cites those identifiers.",
+      brk:"Delete or change a source version and test whether old citations remain valid.",
+      artifact:"Provenance schema + citation examples.",
+      check:"Can you reproduce the exact source used for an answer?",
+      lens:"Traceability is essential in regulated or policy-heavy systems."
+    }],
+    ['unit',"10.6","Context failure clinic",{
+      goal:"Diagnose wrong answers caused by missing, stale, irrelevant, contradictory or malicious context.",
+      idea:"Many “model failures” are actually context-construction failures.",
+      prove:"Create five intentionally bad context packages and predict the failure.",
+      build:"Fix one issue at a time and rerun the same test set.",
+      brk:"Mix stale policy, unrelated text and prompt injection into the context.",
+      artifact:"Context Failure Taxonomy.",
+      check:"What failed: retrieval, assembly, authorization, instruction hierarchy, or generation?",
+      lens:"This prepares you for production RAG and security."
+    }],
     ['p','Structured output removes ambiguity downstream, which matters because the thing downstream is usually code that will not cope with prose.'],
-    ['do','Demand a shape, then feed it an edge case',[
-      ['code','schema = {\n  "type": "object",\n  "properties": {\n    "decision":   {"type": "string"},\n    "confidence": {"type": "number"},\n    "reason":     {"type": "string"}\n  },\n  "required": ["decision", "confidence", "reason"]\n}\nprint(schema)\n# then use your provider\u2019s structured-output mechanism'],
-      ['x','Either your parser receives a predictable object, or it receives a clear schema-validation failure. Both are acceptable. What is not acceptable is a paragraph that happens to contain the answer somewhere inside it.']
-    ]],
     ['q','I403'],
     ['key','\u201cMemory\u201d is an architecture choice, not a feature the model has. Every product that claims memory has built one \u2014 and which one it built determines what it can delete when someone asks.'],
-    ['do','Design three memories, on paper',[
-      ['p','Conversation history, a long-term user profile, and task state. For each one write down four things: where it is stored, how long it is kept, who can read it, and how it gets deleted.'],
-      ['x','Three different stores with three different retention rules \u2014 not one magical memory box. The deletion path is the row people forget, and it is the row a regulator asks about first.']
-    ]],
     ['p','You will hear a lot of names for parts of that folder — caching, compression, few-shot examples, instruction hierarchy. They are all answers to the same two questions: what goes in, and what comes out first when it will not fit. Hold the questions; the names follow on their own.'],
-    ['try',{id:'ch23-budget',mins:6,min:60,rows:4,task:'For one assistant you know, estimate the tokens spent on system instructions, on history, on retrieved passages, and on tool output. Then decide what gets dropped first when the budget is tight.',after:'Almost everyone drops history first and evidence last. If your ordering is different, write down why \u2014 that reasoning is the design.'}]
+    ['try',{id:'ch23-budget',mins:6,min:60,rows:4,task:'For one assistant you know, estimate the tokens spent on system instructions, on history, on retrieved passages, and on tool output. Then decide what gets dropped first when the budget is tight.',after:'Almost everyone drops history first and evidence last. If your ordering is different, write down why \u2014 that reasoning is the design.'}],
+    ['key',"Now the context package becomes the input to a real retrieval architecture."]
   ],
   capstone:{
     title:'A context budget for one assistant',
@@ -275,28 +414,97 @@ window.PART5 = [
     ['p','Your chapter 7 system is the home kitchen. It works because you chose every document and you are the only user. In production, scans come in crooked, permissions change after you indexed, the same contract gets uploaded twice under two names, and one day your provider quietly updates the model underneath you.'],
     ['c','Seven places it can go wrong, not one','Reading the document in, cutting it up, adding labels, mapping the meaning, searching, building the envelope, and checking the answer. Each of those is a dial somebody can turn — which also means each one is a candidate when quality drops and nobody changed the code.'],
     ['key','Whatever gets lost while reading the document in is lost for good. No amount of clever searching later brings back a table your parser flattened, or a page it skipped because the scan was crooked.'],
-    ['do','Inventory three real documents',[
-      ['p','For each one record: the parser you would use, the pages and sections, the metadata available, whether there are tables, the language, any identifiers, and the access-control label.'],
-      ['x','Most people discover at least one document whose access label is genuinely unclear. That document is a production incident waiting to happen, and you found it on paper instead of in a log.']
-    ]],
-    ['do','Measure the three retrieval strategies against each other',[
-      ['p','Use your question set from chapters 3 to 5. Record the rank of the correct chunk under each strategy.'],
-      ['code','results = {"keyword": [], "semantic": [], "hybrid": []}\n# fill with your measured rankings,\n# one entry per question'],
-      ['x','Exact identifiers tend to favour lexical retrieval. Paraphrases tend to favour semantic. Hybrid is usually the more robust baseline \u2014 but you now have the numbers to say so about <em>your</em> corpus rather than repeating it.']
-    ]],
+    
+    ['unit',"11.1","Parsing and document ingestion",{
+      goal:"Treat document ingestion as an engineering pipeline rather than “upload PDF.”",
+      idea:"Garbage or lost structure at ingestion becomes retrieval garbage later.",
+      prove:"Take three PDFs/documents and compare extracted text with the human-visible source.",
+      build:"Record page, section, table, language and parser notes.",
+      brk:"Use a scanned page, table-heavy page and malformed document. Record what is lost.",
+      artifact:"Ingestion Quality Report.",
+      check:"Which information disappeared before retrieval even started?",
+      lens:"Ask for parser/OCR quality before blaming embeddings."
+    }],
+    ['unit',"11.2","Metadata and document identity",{
+      goal:"Design stable document and chunk identifiers plus metadata needed for filtering and provenance.",
+      idea:"Metadata is part of retrieval logic, not decoration.",
+      prove:"Create fields: document_id, version, section, language, access_label, effective_date.",
+      build:"Assign stable chunk IDs and preserve parent relationships.",
+      brk:"Create duplicate and superseded versions and test retrieval filters.",
+      artifact:"Document Metadata Contract.",
+      check:"Can the system distinguish current from obsolete evidence?",
+      lens:"Versioning and identity become critical when policy changes."
+    }],
+    ['unit',"11.3","Chunking families",{
+      goal:"Compare fixed, recursive/structure-aware, semantic and hierarchical chunking without treating any as universally best.",
+      idea:"Chunking is a hypothesis about what unit of evidence users will need.",
+      prove:"Chunk the same document three ways and inspect boundaries.",
+      build:"Create 10 questions that require different evidence granularity.",
+      brk:"Test a question whose answer crosses a chunk boundary.",
+      artifact:"Chunking Experiment with before/after examples.",
+      check:"Which chunking strategy matched your question set and why?",
+      lens:"The right question is not “which chunking is best?” but “best for what corpus and query distribution?”"
+    }],
+    ['unit',"11.4","Sparse retrieval",{
+      goal:"Understand exact lexical retrieval and why it remains valuable.",
+      idea:"Identifiers, names, codes and exact phrases are often retrieval strengths for lexical methods.",
+      prove:"Build a small keyword/BM25-style search experiment or use a library after understanding the scoring idea.",
+      build:"Measure rank of known target passages.",
+      brk:"Use paraphrased questions and synonym-heavy questions to expose weaknesses.",
+      artifact:"Sparse Retrieval Benchmark.",
+      check:"Where did exact matching win?",
+      lens:"Do not replace strong deterministic signals merely because embeddings are fashionable."
+    }],
+    ['unit',"11.5","Dense, hybrid and vector search",{
+      goal:"Understand embeddings as an indexable representation and combine sparse/dense evidence.",
+      idea:"Dense retrieval helps when meaning is similar despite wording differences; hybrid retrieval combines different failure modes.",
+      prove:"Run the Chapter 4–5 question set through lexical, dense and hybrid retrieval.",
+      build:"Record rank of relevant evidence for each query.",
+      brk:"Create exact-ID, synonym, multilingual and ambiguous cases.",
+      artifact:"Retrieval Benchmark with per-query evidence.",
+      check:"Which query categories benefit from which retriever?",
+      lens:"Architecture decisions should follow your error distribution."
+    }],
+    ['unit',"11.6","Reranking",{
+      goal:"Understand a second-stage relevance model and measure whether its benefit justifies cost/latency.",
+      idea:"First-stage retrieval optimizes candidate recall; reranking can improve ordering among candidates.",
+      prove:"Retrieve 10 candidates and apply a second scoring stage using an available reranker or measured substitute.",
+      build:"Compare Recall@10, Precision@3 and latency before/after.",
+      brk:"Include cases where the reranker confidently misorders evidence.",
+      artifact:"Reranking Experiment Report.",
+      check:"Did the improvement affect the final task or only an intermediate metric?",
+      lens:"Never add reranking because a reference architecture contains it; prove its value."
+    }],
+    ['unit',"11.7","Query rewriting, parent-child retrieval and abstention",{
+      goal:"Improve the retrieval query and context granularity while preserving user intent.",
+      idea:"Retrieval is a pipeline: query formulation, candidate search, filtering, ranking, context assembly and answer policy.",
+      prove:"Rewrite ambiguous questions into explicit search queries and compare results.",
+      build:"Retrieve child chunks while returning parent context for readability.",
+      brk:"Test an unanswerable query and a query where rewriting changes the intended meaning.",
+      artifact:"Query Strategy + Abstention Test Set.",
+      check:"When should the system ask a clarification question rather than retrieve?",
+      lens:"Abstention is a product behavior, not merely a prompt sentence."
+    }],
+    ['unit',"11.8","Authorization, freshness and rollback",{
+      goal:"Make retrieval permission-aware and operationally reversible.",
+      idea:"A correct answer from unauthorized data is still a security failure.",
+      prove:"Add an access label to chunks and filter by a test user role.",
+      build:"Simulate document deletion, permission change and index rebuild.",
+      brk:"Query immediately after revocation and verify stale index content is inaccessible.",
+      artifact:"Production RAG Architecture + ACL/Freshness/Rollback checklist.",
+      check:"Can you prove an unauthorized user cannot retrieve the chunk?",
+      lens:"Authorization belongs at the application/data layer, not only in model instructions."
+    }],
     ['q','I404'],
     ['key','Reranking is a second opinion, not a magic fix. Retrieve ten candidates, rescore them, and then be honest: did recall at ten and precision at three improve enough to justify the latency and cost it added?'],
-    ['do','Rewrite a query and watch the problem change',[
-      ['p','Take a short user question that is missing context \u2014 the kind real users actually type. Rewrite it into an explicit search query, and compare retrieval before and after.'],
-      ['x','Query rewriting often beats a better index, for a fraction of the effort. It also introduces a new failure: a rewrite that changes what the user meant. Keep one example of each.']
-    ]],
     ['p','There is a long list of things production retrieval has to handle, and memorising it is not the point. It falls into four honest questions, and every item on any vendor\u2019s feature list is an answer to one of them:'],
     ['n',['<strong>Did we read the document properly?</strong> Scanning, tables, the bits a parser drops.',
       '<strong>Is the reader allowed to see this?</strong> Permissions, separate customers, documents that were deleted.',
       '<strong>Did we find the right piece?</strong> Word matching, meaning matching, rewriting the question, re-ranking what came back.',
       '<strong>Can we prove where the answer came from?</strong> Chunk ids, citations, and what happens when there is genuinely no answer.']],
     ['p','When someone demonstrates a retrieval product, those four questions are your whole interview.'],
-    ['try',{id:'ch24-delete',mins:6,min:60,rows:4,task:'A document is deleted from the source system at 10am. Walk through what has to happen for the assistant to stop quoting it, and by when.',after:'If the answer involves a nightly rebuild, then between 10am and the rebuild your system is quoting a document that no longer exists. That window is a decision, so make it deliberately.'}]
+    ['try',{id:'ch24-delete',mins:6,min:60,rows:4,task:'A document is deleted from the source system at 10am. Walk through what has to happen for the assistant to stop quoting it, and by when.',after:'If the answer involves a nightly rebuild, then between 10am and the rebuild your system is quoting a document that no longer exists. That window is a decision, so make it deliberately.'}],
+    ['key',"Next, the model gets controlled access to actions rather than only evidence."]
   ],
   capstone:{
     title:'An enterprise retrieval architecture, on one page',
@@ -347,15 +555,68 @@ window.PART5 = [
   story:[
     ['p','A bank teller can look up your balance. They cannot approve a loan on their own, and they certainly cannot wire money out on a customer\u2019s say-so. Nobody wrote that rule because tellers are untrustworthy. They wrote it because the consequences of some actions leave the building.'],
     ['p','Giving an AI a <strong>tool</strong> is the same decision. A tool lets it do something real — look up an invoice, send an email, change a record. So the interesting question is never “can it?” It is: what exactly may it do, with what, and who checks.'],
-    ['do','Write one tool contract before writing any model code',[
-      ['p','Take something small and real \u2014 <code>get_invoice_status(invoice_id)</code>. Write its JSON schema, its required fields, the error states it is allowed to return, and the access rule that governs it.'],
-      ['x','You will find yourself deciding things the model would otherwise have decided by accident: what an invalid id does, whether a not-found is an error or a result, and who is allowed to ask.']
-    ]],
+    
+    ['unit',"12.1","Tool schemas",{
+      goal:"Define a tool as a constrained contract with name, description, parameters, errors and permissions.",
+      idea:"Good tool definitions are part of the model’s operating interface.",
+      prove:"Write a schema for <code>get_invoice_status(invoice_id)</code>.",
+      build:"Add required fields, allowed formats and explicit error states.",
+      brk:"Try missing IDs, invalid formats and an unauthorized invoice.",
+      artifact:"Tool Contract Specification.",
+      check:"Could a new engineer understand exactly what the tool can and cannot do?",
+      lens:"Tool descriptions deserve the same care as API documentation."
+    }],
+    ['unit',"12.2","Tool selection",{
+      goal:"Measure whether the model selects the correct capability for each task.",
+      idea:"Tool use should be justified by decision value, not novelty.",
+      prove:"Create 20 tool-selection test cases across two or three tools.",
+      build:"Record selected tool, arguments and expected tool.",
+      brk:"Add near-duplicate tool names and ambiguous requests.",
+      artifact:"Tool Selection Benchmark.",
+      check:"What percentage of calls are correct, unnecessary or unsafe?",
+      lens:"This becomes a measurable quality dimension in agent systems."
+    }],
+    ['unit',"12.3","Validation, retries and timeouts",{
+      goal:"Separate model-generated arguments from deterministic execution controls.",
+      idea:"The model is not the authorization layer.",
+      prove:"Validate every argument before execution and implement timeout/retry policy.",
+      build:"Simulate transient and permanent failures.",
+      brk:"Return malformed tool results and test downstream behavior.",
+      artifact:"Tool Failure-State Table.",
+      check:"Which failures are retryable and which require user intervention?",
+      lens:"A PM should ask for timeout, retry and failure semantics for every external dependency."
+    }],
+    ['unit',"12.4","Idempotency and side effects",{
+      goal:"Understand why repeated tool calls can duplicate actions.",
+      idea:"A retry is safe only when the operation is safe to repeat or protected by an idempotency mechanism.",
+      prove:"Design an idempotency key for a purchase/request submission.",
+      build:"Run the same action twice and verify only one business effect occurs.",
+      brk:"Simulate a network timeout after the server accepted the request.",
+      artifact:"Side-Effect Safety Checklist.",
+      check:"What happens if the client never receives the success response?",
+      lens:"This is essential when AI can trigger payments, tickets, messages or records."
+    }],
+    ['unit',"12.5","Human approval",{
+      goal:"Insert explicit confirmation before consequential or irreversible actions.",
+      idea:"Human-in-the-loop is an architecture boundary, not a polite UI popup.",
+      prove:"Build draft ® review ® approve ® execute.",
+      build:"Log who approved, what was approved and which exact payload was executed.",
+      brk:"Change the payload after approval and verify execution is blocked.",
+      artifact:"Approval Workflow Diagram + audit schema.",
+      check:"What exactly did the human approve?",
+      lens:"The approval object must bind to the action, not just to a vague conversation."
+    }],
+    ['unit',"12.6","Workflow patterns",{
+      goal:"Implement sequential, routing, parallel and evaluator-optimizer workflows.",
+      idea:"A workflow is a predefined control path with model calls inside it.",
+      prove:"Build one simple sequential workflow and one routing workflow.",
+      build:"Measure latency, cost and task success.",
+      brk:"Introduce a wrong route and observe downstream failure.",
+      artifact:"Workflow Pattern Comparison.",
+      check:"Which pattern adds value and which adds unnecessary complexity?",
+      lens:"Use the simplest composable pattern that meets the acceptance criteria."
+    }],
     ['key','A workflow is often safer than an autonomous agent. If the sequence of steps is known, fix the sequence in code and let the model do only the part that genuinely needs judgement.'],
-    ['do','Build a three-step deterministic flow',[
-      ['p','Classify the request, retrieve the data, draft the response. Only the drafting is probabilistic. The order is not up for negotiation.'],
-      ['x','The flow is boring and it works. Keep this as your baseline: chapter 26 will ask you to prove that an agent beats it before you are allowed to build one.']
-    ]],
     ['q','I405'],
     ['p','The checklist below is the one to run over any tool before it ships. It is short, and every line on it has been the cause of a real incident somewhere.'],
     ['l',[
@@ -369,7 +630,8 @@ window.PART5 = [
       'Destructive actions require confirmation.'
     ]],
     ['key','Do not hand the model a tool just because it can have one. Every tool expands the attack surface and adds latency, cost and failure modes. The model should decide what to call only where the decision is worth something.'],
-    ['try',{id:'ch25-cross',mins:6,min:60,rows:4,task:'List the tools you would give a support assistant. Now cross out every one where a fixed rule would pick correctly more than 95% of the time.',after:'What is left is the set where the model\u2019s judgement earns its risk. It is usually much shorter than the first list.'}]
+    ['try',{id:'ch25-cross',mins:6,min:60,rows:4,task:'List the tools you would give a support assistant. Now cross out every one where a fixed rule would pick correctly more than 95% of the time.',after:'What is left is the set where the model\u2019s judgement earns its risk. It is usually much shorter than the first list.'}],
+    ['key',"Only after workflows are understood do we allow the model to control the path."]
   ],
   capstone:{
     title:'A workflow that drafts but cannot submit',
@@ -419,17 +681,78 @@ window.PART5 = [
   story:[
     ['p','Send a junior colleague to find one number. A good one comes back in ten minutes with the number, or comes back and says they could not find it. A worse outcome is the one where they never come back at all, still looking, three hours later.'],
     ['p','An <strong>agent</strong> is a system that keeps going by itself: decide, do something, look at the result, decide again. Everyone teaches that loop. The part that gets skipped is that every loop needs a way to stop — and almost all the trouble lives there rather than in how clever the model is.'],
-    ['do','Draw the loop before you write it',[
-      ['p','From memory: goal \u2192 model decision \u2192 tool call \u2192 observation \u2192 updated context \u2192 stop or continue. Then add the two things beginners leave out.'],
-      ['x','A diagram with explicit stopping conditions and explicit error paths. If your drawing has no arrow labelled \u201cgive up\u201d, it is not finished.']
-    ]],
+    
+    ['unit',"13.1","The agent loop",{
+      goal:"Understand goal ® model decision ® tool call ® observation ® updated context ® stop/continue.",
+      idea:"The loop is the architecture; “agent” is not magic.",
+      prove:"Draw the loop and label every state and transition before coding.",
+      build:"Implement a three-step toy loop with explicit state.",
+      brk:"Force a tool failure and inspect whether the loop recovers or spirals.",
+      artifact:"Agent State Diagram.",
+      check:"Where can the loop stop safely?",
+      lens:"If you cannot draw the loop, you cannot defend the architecture."
+    }],
+    ['unit',"13.2","Planning and tool choice",{
+      goal:"Understand model-driven planning and when it is actually useful.",
+      idea:"Agents trade predictability for flexibility.",
+      prove:"Give the agent three tools and 20 tasks; record tool selection.",
+      build:"Compare one fixed workflow against the agent on the same tasks.",
+      brk:"Include tasks that require no tool and tasks with ambiguous tool options.",
+      artifact:"Agent vs Workflow Comparison.",
+      check:"Did autonomy improve the acceptance metric enough to justify it?",
+      lens:"A workflow that passes may be better than an agent that merely looks impressive."
+    }],
+    ['unit',"13.3","State and context management",{
+      goal:"Keep task state explicit and control context growth.",
+      idea:"Long-running loops can accumulate stale, irrelevant or contradictory context.",
+      prove:"Define a state object containing goal, steps, observations, approvals and status.",
+      build:"Persist state between iterations and summarize only when necessary.",
+      brk:"Add repeated observations and irrelevant tool output; measure context growth.",
+      artifact:"Agent State Schema + Context Policy.",
+      check:"Which fields are authoritative?",
+      lens:"Explicit state makes incidents explainable."
+    }],
+    ['unit',"13.4","Stopping conditions",{
+      goal:"Bound steps, time, cost and unsafe action classes.",
+      idea:"An agent without stop conditions is an unbounded production dependency.",
+      prove:"Set max steps, timeout, cost ceiling and “cannot resolve” state.",
+      build:"Log why each run stopped.",
+      brk:"Create a loop that never finds an answer and prove it terminates.",
+      artifact:"Agent Control Policy.",
+      check:"Can you prove the system terminates under failure?",
+      lens:"This is a reliability and cost requirement, not just an engineering detail."
+    }],
+    ['unit',"13.5","Human checkpoints",{
+      goal:"Add human intervention at ambiguity, high impact and irreversible transitions.",
+      idea:"Autonomy should be proportional to reversibility and confidence.",
+      prove:"Mark each tool/action as read-only, reversible-write or irreversible-write.",
+      build:"Require approval for the last category.",
+      brk:"Try to bypass approval through a prompt or tool argument.",
+      artifact:"Agent Approval Matrix.",
+      check:"Which actions are never autonomous?",
+      lens:"The business owner should approve the autonomy boundary."
+    }],
+    ['unit',"13.6","Multi-agent patterns",{
+      goal:"Understand handoffs, orchestrator-worker and multi-agent collaboration without assuming they are superior.",
+      idea:"Multiple agents create additional state, latency, cost and failure surfaces.",
+      prove:"Solve a task with one agent first. Then prototype a two-role decomposition.",
+      build:"Compare task success and operational complexity.",
+      brk:"Introduce conflicting outputs and unclear ownership.",
+      artifact:"Multi-Agent Decision Record.",
+      check:"What measurable problem did the second agent solve?",
+      lens:"Complexity must buy a measurable capability."
+    }],
+    ['unit',"13.7","Agent exit gate",{
+      goal:"Make “use an agent” a hypothesis requiring evidence.",
+      idea:"The right architecture is the simplest one that meets requirements.",
+      prove:"Create a 20-task benchmark comparing direct call, workflow and agent.",
+      build:"Score quality, tool accuracy, latency, cost and safety.",
+      brk:"Remove one capability at a time and see whether the agent still adds value.",
+      artifact:"Agent Architecture Decision Record.",
+      check:"Would you still choose an agent if nobody called it “agentic AI”?",
+      lens:"That question protects you from architecture-by-hype."
+    }],
     ['key','Agent failure is usually a control problem, not an intelligence problem. The model did not become stupid; it was given an unbounded number of chances to be wrong.'],
-    ['do','Build one with a hard ceiling',[
-      ['p','Three tool calls maximum, a timeout budget, and an explicit \u201ccannot resolve\u201d exit that is a normal outcome rather than a crash.'],
-      ['code','MAX_STEPS = 3\n\nfor step in range(MAX_STEPS):\n    print("agent step", step + 1)\n    # model decision, tool call, observation\n    # break when the goal is met\nelse:\n    print("cannot resolve within budget")'],
-      ['x','The agent always has a bounded execution path. Run it on a task it cannot do and confirm it exits cleanly rather than circling.'],
-      ['snag',['It keeps calling the same tool with the same arguments','That is the classic loop. Add the previous calls to the context so it can see what it already tried.','It stops on the first step every time','Your stop condition is too loose \u2014 it is matching on any tool result rather than on a satisfied goal.']]
-    ]],
     ['q','I406'],
     ['tb',['Pattern','Use it when','Main risk'],[
       ['Sequential workflow','The steps are known','Rigid when the problem shifts'],
@@ -439,7 +762,8 @@ window.PART5 = [
       ['Orchestrator-worker','The plan decomposes into subtasks','Cost, loops, state complexity']
     ]],
     ['key','Start with one model and a short list of tools it may use. Add a second agent only when you have measured something the simpler version could not do. Complexity is a budget you spend, not a sign of sophistication.'],
-    ['try',{id:'ch26-compare',mins:6,min:60,rows:4,task:'Take the twenty tasks from your chapter 25 workflow and run them through the agent. Count: how many did the agent get right, how many tool calls did it take, and what did it cost?',after:'If the agent is not clearly better on a metric you care about, the workflow wins. That is a real and respectable result to bring to a review.'}]
+    ['try',{id:'ch26-compare',mins:6,min:60,rows:4,task:'Take the twenty tasks from your chapter 25 workflow and run them through the agent. Count: how many did the agent get right, how many tool calls did it take, and what did it cost?',after:'If the agent is not clearly better on a metric you care about, the workflow wins. That is a real and respectable result to bring to a review.'}],
+    ['key',"Next, we examine interoperability standards around tools and agents."]
   ],
   capstone:{
     title:'An agent, measured against the workflow it wants to replace',
@@ -490,19 +814,63 @@ window.PART5 = [
     ['p','A plug socket is a standard. It means any appliance from any company fits your wall without a conversation. What it does not do is promise the appliance is safe, or that a child should be allowed to switch it on.'],
     ['p','That is exactly what a protocol like MCP is, and exactly what it is not. You will never need to build one. You do need to see the line it draws — because all the interesting questions sit on that line.'],
     ['c','What the specification actually defines','A host, a client and a server, with standardised primitives: resources, prompts and tools. It also states security and user-consent considerations explicitly, which is unusual and worth reading. Agent-to-agent protocols are emerging separately, as a layer for agents to exchange tasks rather than for a model to reach a tool.'],
-    ['do','Draw the flow and mark the controls',[
-      ['p','Host \u2192 client \u2192 server \u2192 resource or tool. Then mark four things on the drawing: where consent is obtained, where authentication happens, where policy is applied, and where the audit record is written.'],
-      ['x','You can point at the trust boundary and name the component that should be enforcing user authorisation. If the answer is \u201cthe model\u201d, the drawing is wrong.']
-    ]],
+    
+    ['unit',"14.1","MCP mental model",{
+      goal:"Explain host, client, server, tools, resources, prompts and capability negotiation.",
+      idea:"A protocol standardizes interaction patterns; it does not remove the need for authorization or safe design.",
+      prove:"Draw host ® client ® server ® tool/resource flow.",
+      build:"Inspect one real or local protocol exchange.",
+      brk:"Ask what happens when a server advertises a capability the user is not authorized to use.",
+      artifact:"MCP Trust-Boundary Diagram.",
+      check:"Where does identity live and where is authorization enforced?",
+      lens:"Protocol knowledge lets you challenge “MCP makes it secure” claims."
+    }],
+    ['unit',"14.2","Expose a tiny capability",{
+      goal:"Build a tiny local capability provider exposing one safe tool/resource.",
+      idea:"The best way to understand a protocol is to inspect a small working implementation.",
+      prove:"Expose a read-only function such as looking up a local record.",
+      build:"Invoke it from a compatible client or local mock.",
+      brk:"Return malformed arguments and server errors.",
+      artifact:"MCP Mini-Demo repository.",
+      check:"Can you trace discovery, invocation and response?",
+      lens:"Keep the demo read-only to focus on protocol understanding."
+    }],
+    ['unit',"14.3","Consent and authorization",{
+      goal:"Separate capability discovery from permission to act.",
+      idea:"A discoverable tool is not automatically an authorized tool.",
+      prove:"Create an authorization matrix for read, write and privileged tools.",
+      build:"Add a policy check before invocation.",
+      brk:"Attempt an unauthorized invocation and record the denial.",
+      artifact:"Authorization Matrix + test evidence.",
+      check:"Who makes the final authorization decision?",
+      lens:"Server-side authorization must not depend on the model following instructions."
+    }],
+    ['unit',"14.4","MCP security and prompt injection",{
+      goal:"Treat resources and tool outputs as untrusted content.",
+      idea:"Interoperability can increase the number of external trust boundaries.",
+      prove:"Inject a malicious instruction into a resource and test the client workflow.",
+      build:"Separate data from control instructions and enforce tool policies.",
+      brk:"Try indirect injection through a retrieved resource.",
+      artifact:"MCP Security Test Sheet.",
+      check:"Can untrusted content cause a privileged action?",
+      lens:"This connects directly to the security chapter."
+    }],
+    ['unit',"14.5","Agent-to-agent interoperability",{
+      goal:"Understand A2A-style concepts: identity, delegation, task exchange, trust and observability.",
+      idea:"Inter-agent protocols solve interoperability problems, not fundamental autonomy risks.",
+      prove:"Draw a two-agent exchange with identity and delegation boundaries.",
+      build:"Define what data and authority may cross the boundary.",
+      brk:"Create a malicious or confused handoff and identify the control that should stop it.",
+      artifact:"Agent Interoperability Trust Model.",
+      check:"What does the receiving agent actually trust?",
+      lens:"Keep the focus on architecture and governance, not protocol trivia."
+    }],
     ['key','A standardised tool interface does not make an unsafe tool safe. The protocol carries the call; it does not decide whether the call should have been allowed.'],
-    ['do','List what must be true before a tool executes',[
-      ['p','Take a hypothetical <code>send_email</code> tool. Write the checks required before it is allowed to run.'],
-      ['x','Who is asking. Whether they are allowed to do this particular thing. Whether the details they gave make sense. A cap so nobody can do it a thousand times. A yes/no step if it cannot be undone. And a note in a log saying it happened. Now count how many of those the protocol gave you for free — none of them.']
-    ]],
     ['q','I407'],
     ['p','One thing worth saying plainly, because it is a common mix-up: MCP is a <strong>protocol</strong>, not a framework that builds agents for you. It standardises the socket. What gets plugged in, and who is allowed to switch it on, is still entirely your design.'],
     ['p','Agent-to-agent work adds a further layer \u2014 instead of exposing a tool to one model runtime, agents may need discoverable ways to exchange tasks and results. For product purposes the questions are identity, delegation, trust, permissions, error semantics and observability, rather than the field names.'],
-    ['try',{id:'ch27-classify',mins:6,min:60,rows:4,task:'Classify five tools from a system you know into read-only, reversible-write, irreversible-write, privileged, and prohibited.',after:'The line between reversible and irreversible is where human confirmation belongs. If you found it hard to place a tool, that tool needs a smaller scope.'}]
+    ['try',{id:'ch27-classify',mins:6,min:60,rows:4,task:'Classify five tools from a system you know into read-only, reversible-write, irreversible-write, privileged, and prohibited.',after:'The line between reversible and irreversible is where human confirmation belongs. If you found it hard to place a tool, that tool needs a smaller scope.'}],
+    ['key',"The next chapter changes the input modality while preserving the same context/evaluation architecture."]
   ],
   capstone:{
     title:'A tool access policy',
@@ -552,22 +920,62 @@ window.PART5 = [
   story:[
     ['p','Take a photo of a railway timetable and read out only the words, in order, to somebody on the phone. They will hear every station name and not one useful departure time — because the meaning was in the columns, and columns do not survive being read aloud.'],
     ['p','That is what happens when a program pulls plain text out of a PDF. A PDF is text, layout, tables, pictures and hidden notes all at once. Reading the words alone flattens four of those five into nothing, silently.'],
-    ['do','Compare the extraction against what a human sees',[
-      ['p','Take one real PDF from your corpus. Extract its text. Then put the extraction and the page side by side and find three pieces of information that did not survive.'],
-      ['x','Typically: the table structure, the meaning carried by position \u2014 a heading over a column, a footnote marker \u2014 and anything that was in an image. Each of those is an answer your assistant will get wrong later.']
-    ]],
+    
+    ['unit',"15.1","Document understanding",{
+      goal:"Understand why a PDF is a layout object, not just a text file.",
+      idea:"Text extraction can lose tables, reading order, images, headers and spatial meaning.",
+      prove:"Compare extracted text with the rendered page.",
+      build:"Record information lost and design a fallback.",
+      brk:"Use a scan and a table-heavy page.",
+      artifact:"Document Understanding Gap Report.",
+      check:"Which questions cannot be answered from plain text?",
+      lens:"This is a retrieval-quality problem before it is an LLM problem."
+    }],
+    ['unit',"15.2","Vision and image evidence",{
+      goal:"Use image evidence with explicit provenance and evaluation.",
+      idea:"Vision models can interpret visual information, but interpretation is still probabilistic.",
+      prove:"Ask five questions about an image/table and label the evidence region.",
+      build:"Record source image, question, answer and human verification.",
+      brk:"Use low-resolution or ambiguous images.",
+      artifact:"Vision Evaluation Set.",
+      check:"Which outputs require human verification?",
+      lens:"Visual claims should be traceable to the source image."
+    }],
+    ['unit',"15.3","Audio and speech pipelines",{
+      goal:"Understand capture ® ASR ® normalization ® extraction ® confirmation ® action.",
+      idea:"Voice AI is a pipeline with multiple failure surfaces, not one model call.",
+      prove:"Use a short audio sample and inspect transcript quality.",
+      build:"Extract tasks from the transcript into structured JSON.",
+      brk:"Test accents, overlapping speech, names and mixed-language content.",
+      artifact:"Voice Pipeline Spec + 10-case audio eval set.",
+      check:"Where can an error first enter the pipeline?",
+      lens:"For meeting/task automation, confirmation and privacy are part of the product."
+    }],
+    ['unit',"15.4","Streaming and latency",{
+      goal:"Understand why voice and interactive multimodal systems care about partial results and time-to-first-response.",
+      idea:"Users perceive latency differently from servers; streaming can improve perceived responsiveness without changing total work.",
+      prove:"Measure stage-by-stage latency for a sample request.",
+      build:"Separate capture, transcription, model and action latency.",
+      brk:"Add artificial delay to one stage and identify the UX effect.",
+      artifact:"Latency Budget for Multimodal Flow.",
+      check:"What latency target is actually user-visible?",
+      lens:"Do not optimize the fastest component while the user waits on another."
+    }],
+    ['unit',"15.5","Multimodal RAG evaluation",{
+      goal:"Design tests where the answer depends on modality-specific evidence.",
+      idea:"A text-only evaluation set can hide multimodal failures.",
+      prove:"Create five text-only, five visual/table and five audio cases.",
+      build:"Score evidence correctness, extraction correctness and end-to-end task success.",
+      brk:"Add a poor scan, noisy audio and multilingual case.",
+      artifact:"Modality-specific Evaluation Matrix.",
+      check:"Which failure belongs to extraction versus reasoning?",
+      lens:"The metric stack should reveal the broken component, not just the final answer."
+    }],
     ['key','Voice systems are pipelines, not a single model. Every stage adds latency and every stage adds a place for the meaning to shift.'],
-    ['do','Draw the voice pipeline and time it',[
-      ['p','Draw it as a chain: the microphone hears it, something turns it into text, the text gets tidied up, something works out what was actually being asked for, the person confirms, and only then does anything happen. Mark which links in that chain the user is sitting there waiting through.'],
-      ['x','The confirmation step is the one people try to remove to save time. It is also the only thing standing between a misheard name and an action taken on the wrong record.']
-    ]],
     ['q','I408'],
-    ['do','Build a modality-aware evaluation set',[
-      ['p','Write five questions: some answerable only from text, some only from a table or an image, some only from layout. For each, decide which component has to supply the ground truth.'],
-      ['x','You cannot mark a question about a table by checking it against the words alone. Whoever can actually read the table — a person, usually — has to write that answer down first.']
-    ]],
     ['p','Each of these has a name you will hear — reading text off a picture, turning speech into text, working out who said which line. The names are in the list at the end of the chapter. The thing to carry is simpler: every one of them is a step where meaning can quietly go missing, and every step needs its own way of being checked.'],
-    ['try',{id:'ch28-attrib',mins:6,min:60,rows:4,task:'For a meeting assistant: who said what, how long is the transcript kept, and what happens when two people talk over each other?',after:'Speaker attribution is the part that looks like a technical detail and behaves like a privacy decision.'}]
+    ['try',{id:'ch28-attrib',mins:6,min:60,rows:4,task:'For a meeting assistant: who said what, how long is the transcript kept, and what happens when two people talk over each other?',after:'Speaker attribution is the part that looks like a technical detail and behaves like a privacy decision.'}],
+    ['key',"Now we need a systematic way to prove whether all these components work."]
   ],
   capstone:{
     title:'A voice assistant for meeting follow-up, specified',
@@ -620,20 +1028,79 @@ window.PART5 = [
     ['p','A school does not decide whether a student has learned by watching them answer one question well. There is a paper, the same paper for everyone, marked the same way, with a pass mark agreed before anyone sat down.'],
     ['p','Chapter 6 gave you one answer key. This chapter turns that into the thing that decides whether a change ships: a fixed set of questions, a consistent way of marking, and a pass mark set in advance — so that “the demo looked better” stops being an argument anyone can win.'],
     ['key','Every AI feature needs a test dataset, and it needs to be versioned. An evaluation you cannot re-run after a change is an anecdote with a number attached.'],
-    ['do','Build thirty cases, not five',[
-      ['p','Happy path, paraphrase, ambiguity, no-answer, multilingual, adversarial, long-context, tool-use, and policy edge cases. Aim for thirty; the exact number matters less than the coverage.'],
-      ['x','A set of test cases you can run again after any change, kept with the code rather than on somebody’s laptop. A test set only one person has is not a test set.']
-    ]],
+    
+    ['unit',"16.1","Golden datasets",{
+      goal:"Create a versioned set of representative, edge and failure cases.",
+      idea:"A golden dataset is the memory of what “good” means for your application.",
+      prove:"Create at least 30 cases across happy path, paraphrase, ambiguity, no-answer, multilingual, adversarial and tool-use.",
+      build:"Store expected behavior and evidence IDs where possible.",
+      brk:"Remove a category and see which regressions become invisible.",
+      artifact:"Golden Dataset v1.0.",
+      check:"Does the set represent actual user risk, not just easy demos?",
+      lens:"The dataset becomes the product-quality contract."
+    }],
+    ['unit',"16.2","Error taxonomy",{
+      goal:"Classify failures so fixes target causes rather than symptoms.",
+      idea:"“Wrong answer” is too coarse to guide engineering.",
+      prove:"Create categories: retrieval miss, wrong chunk, stale data, instruction failure, schema failure, tool failure, authorization failure, hallucination.",
+      build:"Label 20 real failures.",
+      brk:"Ask two people to label the same failures and compare disagreements.",
+      artifact:"Error Taxonomy + labeled examples.",
+      check:"Which categories are actionable?",
+      lens:"A useful taxonomy changes what the team does next."
+    }],
+    ['unit',"16.3","Retrieval metrics",{
+      goal:"Measure Recall@k, Precision@k and related ranking measures with explicit relevance labels.",
+      idea:"Metrics only mean something when the relevance definition is clear.",
+      prove:"For each query, mark which chunks are relevant. Calculate Recall@k and Precision@k.",
+      build:"Compare k=1, 3, 5 and 10.",
+      brk:"Add distractor chunks and observe metric changes.",
+      artifact:"Retrieval Evaluation Notebook.",
+      check:"What exactly counts as relevant?",
+      lens:"Never report a retrieval metric without its relevance policy."
+    }],
+    ['unit',"16.4","Generation and task success",{
+      goal:"Evaluate whether the final answer is correct, grounded, complete and useful for the task.",
+      idea:"A good retrieval score can coexist with a bad answer.",
+      prove:"Define binary or graded criteria for answer correctness and groundedness.",
+      build:"Score a fixed sample with human labels.",
+      brk:"Include partially correct and overconfident answers.",
+      artifact:"Generation Rubric + labeled sample.",
+      check:"Can two evaluators apply the rubric consistently?",
+      lens:"Acceptance criteria should be observable, not “sounds good.”"
+    }],
+    ['unit',"16.5","LLM-as-judge",{
+      goal:"Use model-based judges where deterministic checks are insufficient, then validate them against human labels.",
+      idea:"A judge is another probabilistic component, not an oracle.",
+      prove:"Have a judge score 20 examples for groundedness or relevance.",
+      build:"Compare judge decisions with human labels and calculate disagreement.",
+      brk:"Swap answer order or vary verbosity to test position/verbosity bias.",
+      artifact:"Judge Validation Report.",
+      check:"Where does the judge disagree and why?",
+      lens:"Never let an unvalidated judge silently become your release authority."
+    }],
+    ['unit',"16.6","Regression and CI gates",{
+      goal:"Run evaluation automatically when prompts, models, indexes or tools change.",
+      idea:"AI systems can regress without a code compile error.",
+      prove:"Create a command that runs the golden set and outputs a summary.",
+      build:"Set thresholds and fail the run when quality or safety falls below them.",
+      brk:"Change a prompt and verify CI catches the regression.",
+      artifact:"Automated Evaluation Suite + Release Gate.",
+      check:"What exact condition blocks release?",
+      lens:"This is the AI equivalent of a test suite with probabilistic behavior."
+    }],
+    ['unit',"16.7","Evaluation release decision",{
+      goal:"Combine quality, safety, latency and cost into a release decision without hiding trade-offs.",
+      idea:"Shipping is a multi-dimensional decision; one aggregate score can hide unacceptable failures.",
+      prove:"Define quality threshold, safety threshold, latency SLO, cost ceiling and rollback trigger.",
+      build:"Run a candidate release through the gate.",
+      brk:"Create a model that improves quality but violates cost or safety.",
+      artifact:"Release Decision Record.",
+      check:"Which threshold is non-negotiable?",
+      lens:"A PM owns the decision framework even when engineers own the implementation."
+    }],
     ['q','I409'],
     ['key','You need several levels of evaluation at once. A good end-to-end score can sit on top of a badly broken retriever, because a fluent model can cover for missing evidence often enough to look fine in a demo.'],
-    ['do','Score one feature at three levels',[
-      ['p','Retrieval, component behaviour, and the end-to-end answer. Record all three for the same run.'],
-      ['x','When the end-to-end number is good and the retrieval number is bad, you have found a system that is guessing well. That is the most dangerous state a RAG product can be in, and only the layered score reveals it.']
-    ]],
-    ['do','Measure how much you can trust the judge',[
-      ['p','Take twenty answers. Let a model mark them, then mark the same twenty yourself, and count how often the two of you disagree.'],
-      ['x','A number you can quote. LLM-as-judge is a scorer, not an oracle — and now you know, for your task, how far its scores can be trusted before a human has to look.']
-    ]],
     ['tb',['Layer','Example metric','The release question it answers'],[
       ['Retrieval','Recall@k, Precision@k','Did we fetch the right evidence?'],
       ['Generation','Groundedness, task success','Did the answer use the evidence correctly?'],
@@ -642,7 +1109,8 @@ window.PART5 = [
       ['Safety','Attack success rate','Can adversarial input break the controls?']
     ]],
     ['p','There are a lot of names in this area, and they are all answers to three questions: <strong>what do we test on</strong> (a fixed set you keep, real cases where you can get them), <strong>who marks it</strong> (an exact check where one is possible, a person where it matters, a model where neither scales), and <strong>what score lets it ship</strong>. Any evaluation tool you are shown is selling one of those three.'],
-    ['try',{id:'ch29-stop',mins:6,min:60,rows:4,task:'Write the sentence that stops a release. Not a policy — the actual sentence, with numbers in it, that you would say in the room.',after:'If your sentence contains the word "seems", it will not stop anything. Thresholds stop releases; impressions do not.'}]
+    ['try',{id:'ch29-stop',mins:6,min:60,rows:4,task:'Write the sentence that stops a release. Not a policy — the actual sentence, with numbers in it, that you would say in the room.',after:'If your sentence contains the word "seems", it will not stop anything. Thresholds stop releases; impressions do not.'}],
+    ['key',"Once evaluation exists, we need to observe the system continuously."]
   ],
   capstone:{
     title:'A release gate',
@@ -695,20 +1163,73 @@ window.PART5 = [
     ['p','When a parcel goes missing, the courier can tell you where it was last scanned. Not because anyone expected that parcel to go missing — because they scan every parcel, everywhere, all the time. Without that, every lost parcel is a shrug.'],
     ['p','Your system will give a wrong answer one day, and somebody will ask why. Everything in this chapter exists so the answer is not “we cannot tell”.'],
     ['key','A trace is a map of one request through the system. If you can only see what went in and what came out, every diagnosis is speculation.'],
-    ['do','Build one trace record by hand',[
-      ['p','Take one retrieval request and write down everything that would let a stranger reconstruct it a week later.'],
-      ['code','trace = {\n  "request_id": "demo-001",\n  "model": "example-model",\n  "prompt_version": "v3",\n  "retrieved_chunks": ["c17", "c04"],\n  "tool_calls": [],\n  "latency_ms": {"retrieval": 120, "generation": 860},\n  "tokens": {"input": 900, "output": 180},\n  "answer": "...",\n  "eval": {"grounded": True}\n}\nprint(trace)'],
-      ['x','One structured object per request. The two fields people leave out are <code>prompt_version</code> and <code>retrieved_chunks</code> — and those are exactly the two you need when the answer is wrong but the code has not changed.']
-    ]],
+    
+    ['unit',"17.1","Trace one request",{
+      goal:"Build a structured trace for one AI request.",
+      idea:"A trace is a timeline and evidence bundle for one execution.",
+      prove:"Record request ID, model, prompt version, retrieved IDs, tools, latency, tokens and outcome.",
+      build:"Persist the trace as JSON.",
+      brk:"Remove one field and ask whether you could still reproduce the incident.",
+      artifact:"Trace Schema v1.0.",
+      check:"What minimum evidence is required for debugging?",
+      lens:"Observability requirements should be written before production incidents."
+    }],
+    ['unit',"17.2","Latency and throughput",{
+      goal:"Measure stage-level latency and distinguish p50 from p95.",
+      idea:"Average latency can hide slow tails that users experience.",
+      prove:"Measure retrieval, reranking, model and tool stages.",
+      build:"Calculate p50 and p95 for a small run or larger sample where available.",
+      brk:"Add an artificial slow dependency and identify its effect on p95.",
+      artifact:"Latency Budget + p50/p95 report.",
+      check:"Which stage owns the tail?",
+      lens:"SLOs should map to user experience, not just server metrics."
+    }],
+    ['unit',"17.3","Token and cost telemetry",{
+      goal:"Track input/output tokens and other variable costs at task level.",
+      idea:"Cost is an architecture metric because context, model, retries and routing change spend.",
+      prove:"Calculate cost per request using current provider pricing when implementing the lab.",
+      build:"Compare two model/context strategies.",
+      brk:"Add retries and large context to see cost growth.",
+      artifact:"Unit Economics Model v1.0.",
+      check:"What is cost per successful task, not merely cost per call?",
+      lens:"Finance conversations become easier when every architecture choice has a measurable cost impact."
+    }],
+    ['unit',"17.4","Drift and feedback",{
+      goal:"Detect quality changes after data, prompt, model or user behavior changes.",
+      idea:"AI degradation may occur without a code change.",
+      prove:"Create a baseline evaluation and compare a later sample.",
+      build:"Track complaint type, no-answer rate, escalation and task success.",
+      brk:"Inject a changed document format or new user phrasing.",
+      artifact:"Drift/Feedback Report.",
+      check:"Which signal tells you quality changed before complaints explode?",
+      lens:"Online signals complement offline evaluation."
+    }],
+    ['unit',"17.5","Versioning and rollback",{
+      goal:"Version prompts, models, indexes, schemas and tool contracts.",
+      idea:"If an AI system cannot be rolled back component-wise, debugging becomes guesswork.",
+      prove:"Create version IDs for prompt, model, index and tool schema.",
+      build:"Run two versions side by side.",
+      brk:"Simulate a bad prompt release and roll back.",
+      artifact:"Version Matrix + Rollback Procedure.",
+      check:"Can you identify exactly what changed?",
+      lens:"Versioning is a delivery-control mechanism, not paperwork."
+    }],
+    ['unit',"17.6","Production dashboard",{
+      goal:"Turn the telemetry into a six-panel operational view: quality, safety, latency, cost, traffic, failures.",
+      idea:"A dashboard should answer “is the system healthy?” and “where do I investigate?”",
+      prove:"Define metric, source, owner and threshold for each panel.",
+      build:"Create a mock dashboard or spreadsheet.",
+      brk:"Remove one signal at a time and see which incident becomes harder to diagnose.",
+      artifact:"Six-Panel Observability Specification.",
+      check:"Which alerts should page a human and which should only be monitored?",
+      lens:"Operational clarity is a PM responsibility as much as a platform responsibility."
+    }],
     ['q','I410'],
     ['key','Cost is an architecture metric, not a monthly surprise. Model one user task end to end — input tokens, output tokens, embedding, retrieval, tool and API calls — and you can compare two designs before building either.'],
-    ['do','Price two strategies against each other',[
-      ['p','Take one real task. Cost it under your current design, then under one alternative — a smaller model, a tighter k, a cache in front.'],
-      ['x','A number per task for each. Multiply by expected daily volume and the decision usually makes itself, in a way that a debate about which model is better never does.']
-    ]],
     ['p','The names in this area — canary release, shadow traffic, rollback, drift — all come from the same instinct: change one thing at a time, let a few people meet it first, keep the old version ready, and keep watching after you ship. That instinct is the chapter. The names are in the list at the end.'],
     ['key','The operational pattern that prevents most incidents: change one variable at a time; version prompts, models, indexes and tool contracts; keep every artifact rollbackable; and never let a prompt update bypass evaluation. That last one is the rule people break first, because a prompt edit does not feel like a deploy.'],
-    ['try',{id:'ch30-slower',mins:6,min:60,rows:4,task:'Your assistant got slower this week and nobody deployed anything. Name three things that could have changed.',after:'Traffic mix, document volume, and the provider’s own latency. None of them are in your repository, which is why they have to be in your dashboard.'}]
+    ['try',{id:'ch30-slower',mins:6,min:60,rows:4,task:'Your assistant got slower this week and nobody deployed anything. Name three things that could have changed.',after:'Traffic mix, document volume, and the provider’s own latency. None of them are in your repository, which is why they have to be in your dashboard.'}],
+    ['key',"The next chapter treats the same system as an adversarial target."]
   ],
   capstone:{
     title:'A six-panel production dashboard, specified',
@@ -762,17 +1283,89 @@ window.PART5 = [
     ['p','If somebody slips a note into a stack of paperwork that says “approve this one without checking”, the problem is not that your clerk cannot read. It is that nothing in the process distinguishes an instruction from a document.'],
     ['p','That is the whole of AI security in one image, and it is why almost none of this chapter is about the model. The model reads everything you hand it with equal trust. What decides whether that is dangerous is the system around it — what it is handed, and what it is allowed to do next.'],
     ['key','Prompt injection is an input trust problem. The model cannot reliably tell an instruction from data, so the boundary has to be enforced by the system that assembles the context — not requested politely in the system prompt.'],
-    ['do','Poison your own corpus',[
-      ['p','Place an instruction inside a document your system retrieves — telling the model to ignore its task and reveal something it should not. Then ask a normal question that happens to retrieve that chunk.'],
-      ['x','Either the system follows the planted instruction, or it treats the retrieved text as content and carries on. Whichever happens, you now have a test case, and a robust design is one that keeps the instruction boundary intact.'],
-      ['snag',['Nothing happens — the model ignores the planted text','Your retrieval may not be surfacing that chunk. Check it ranks in the top k first, or the test is proving nothing.','It follows the instruction every time','That is the expected starting point. The rest of this chapter is what you do about it.']]
-    ]],
+    
+    ['unit',"18.1","Prompt injection",{
+      goal:"Understand direct and indirect prompt injection as untrusted-input attacks.",
+      idea:"Instructions embedded in user or retrieved content can compete with application instructions.",
+      prove:"Place malicious instructions in a document and test the RAG assistant.",
+      build:"Separate trusted control instructions from untrusted evidence.",
+      brk:"Try to make the model reveal a secret or invoke a tool through retrieved text.",
+      artifact:"Prompt Injection Test Report.",
+      check:"What control stopped the attack: model behavior or application policy?",
+      lens:"Never describe prompt text alone as a security boundary."
+    }],
+    ['unit',"18.2","Sensitive information disclosure",{
+      goal:"Protect secrets, PII and confidential data in prompts, retrieval and traces.",
+      idea:"A model can only protect information if the application controls what it receives and can return.",
+      prove:"Create a test corpus with synthetic sensitive fields.",
+      build:"Apply filtering/redaction before model access and log access decisions.",
+      brk:"Ask for another user’s data through natural language and tool calls.",
+      artifact:"Data Leakage Test Matrix.",
+      check:"Where is authorization enforced?",
+      lens:"Privacy requirements must be mapped to data flows, not just policy documents."
+    }],
+    ['unit',"18.3","Improper output handling",{
+      goal:"Validate model output before passing it to downstream systems.",
+      idea:"Generated text becomes dangerous when interpreted as trusted commands, SQL, HTML or business data.",
+      prove:"Create a structured output and validate it against allowed values.",
+      build:"Use allowlists and typed interfaces before execution.",
+      brk:"Inject malicious strings into generated fields.",
+      artifact:"Output Validation Checklist + tests.",
+      check:"What downstream component could interpret the output?",
+      lens:"Treat model output as untrusted input."
+    }],
+    ['unit',"18.4","Excessive agency",{
+      goal:"Limit the tools and actions available to autonomous systems.",
+      idea:"More permissions increase blast radius.",
+      prove:"Classify each tool by privilege and reversibility.",
+      build:"Remove unnecessary tools and compare task success.",
+      brk:"Try a task that requests an irreversible action.",
+      artifact:"Agency Permission Matrix.",
+      check:"What is the maximum damage if the model is wrong?",
+      lens:"Autonomy should be bounded by business risk."
+    }],
+    ['unit',"18.5","Retrieval authorization",{
+      goal:"Enforce ACLs and tenant boundaries before evidence reaches generation.",
+      idea:"Correct retrieval from the wrong tenant is a security breach.",
+      prove:"Create two users and two document groups.",
+      build:"Apply metadata filters server-side.",
+      brk:"Attempt cross-tenant and stale-permission retrieval.",
+      artifact:"ACL Retrieval Test Report.",
+      check:"Can the model ever see evidence it is not authorized to access?",
+      lens:"The model should not be asked to “remember” authorization rules as the only control."
+    }],
+    ['unit',"18.6","Audit logging",{
+      goal:"Capture enough evidence to reconstruct security-relevant actions.",
+      idea:"An audit trail should show who, what, when, which policy, which tool, and what happened.",
+      prove:"Design an audit record for a tool action.",
+      build:"Write approval and execution events separately.",
+      brk:"Modify a payload after approval and verify the mismatch is visible.",
+      artifact:"Audit Log Schema + sample trail.",
+      check:"Could an incident responder reconstruct the action?",
+      lens:"Auditability is part of production readiness."
+    }],
+    ['unit',"18.7","Governance and risk register",{
+      goal:"Translate security and AI risks into owners, controls and evidence.",
+      idea:"Governance becomes useful when each risk has a testable control and owner.",
+      prove:"Create risk, impact, likelihood, control, owner, evidence and residual risk fields.",
+      build:"Review the register with the capstone architecture.",
+      brk:"Mark one control “policy only” and ask what evidence is missing.",
+      artifact:"AI Risk Register.",
+      check:"Which risks remain after controls?",
+      lens:"A risk register is an operational artifact, not a compliance decoration."
+    }],
+    ['unit',"18.8","Security release gate",{
+      goal:"Turn red-team findings into release criteria.",
+      idea:"Security tests must block release when the residual risk exceeds the agreed threshold.",
+      prove:"Define mandatory checks for injection, leakage, authorization and unsafe actions.",
+      build:"Run the test suite before and after a prompt/model change.",
+      brk:"Create a change that improves quality but weakens security.",
+      artifact:"Security Go/No-Go Checklist.",
+      check:"What is an automatic blocker?",
+      lens:"Security belongs in the same release process as quality and cost."
+    }],
     ['q','I411'],
     ['key','Least privilege applies to agents too. An agent with a tool it never needs is an agent that can be persuaded to use it.'],
-    ['do','Remove permissions until something breaks',[
-      ['p','For every tool in your chapter 26 agent, define the minimum permission the task actually requires. Then take the extra permissions away and re-run the task.'],
-      ['x','Either the task still works — and the permission was never needed — or it breaks, and you have documented precisely why that permission exists. Both outcomes are useful; the undocumented middle is what you are eliminating.']
-    ]],
     ['tb',['Risk','Example control','The evidence that it works'],[
       ['Prompt injection','Content separation, tool allowlist, confirmation','Red-team test results'],
       ['Data leakage','Access-aware retrieval, redaction, log controls','Access tests and trace samples'],
@@ -781,7 +1374,8 @@ window.PART5 = [
       ['Unsafe output','Policy filter and human escalation','Safety test set results']
     ]],
     ['key','A safeguard nobody has ever tested is just a sentence in a document. Write beside each one the test that proves it works — and then run it.'],
-    ['try',{id:'ch31-evidence',mins:6,min:60,rows:4,task:'Pick one control your organisation already claims to have. Write down what evidence would prove it works, and whether that evidence exists.',after:'The gap between the claim and the evidence is the actual risk position. That gap is what a risk register is for.'}]
+    ['try',{id:'ch31-evidence',mins:6,min:60,rows:4,task:'Pick one control your organisation already claims to have. Write down what evidence would prove it works, and whether that evidence exists.',after:'The gap between the claim and the evidence is the actual risk position. That gap is what a risk register is for.'}],
+    ['key',"Now convert the technical system into a product specification."]
   ],
   capstone:{
     title:'An AI risk register with evidence',
@@ -835,19 +1429,78 @@ window.PART5 = [
     ['p','“The train will arrive at 9:04” is a promise a railway cannot keep, and everybody knows it. So real railways publish something else: the share of trains arriving within a stated few minutes, measured, every month. That number is honest, and you can actually plan around it.'],
     ['p','AI features need the same move. “It returns the right document” is a promise nothing probabilistic can keep. What you can write down is: how often, measured on which set of cases, and what the system does the rest of the time — because the rest of the time is never zero.'],
     ['key','“Done” is a distribution, not a single deterministic output.'],
-    ['do','Rewrite one acceptance criterion',[
-      ['p','Start from the traditional form and convert it.'],
-      ['l',[
-        '<strong>Traditional:</strong> “The system always returns the correct document.”',
-        '<strong>AI version:</strong> “On the approved 200-case test set, retrieval Recall@5 ≥ 0.90 and no-answer precision ≥ 0.98; end-to-end grounded answer success ≥ 0.85.”'
-      ]],
-      ['x','A metric, a test set, and a stated tolerance for failure. Notice that the second version is the only one an engineer can actually build against, and the only one that can ever be shown to have been met.']
-    ]],
+    
+    ['unit',"19.1","AI problem framing",{
+      goal:"Decide whether AI is justified and define the user outcome.",
+      idea:"Start with the workflow and pain, not the model.",
+      prove:"Write current process, user pain, baseline and measurable outcome.",
+      build:"Build a non-AI baseline where possible.",
+      brk:"Compare the AI idea with a deterministic alternative.",
+      artifact:"Problem Framing One-Pager.",
+      check:"Why AI instead of ordinary software?",
+      lens:"This prevents “AI-first” solutioning."
+    }],
+    ['unit',"19.2","AI acceptance criteria",{
+      goal:"Convert vague “correctness” into measurable thresholds.",
+      idea:"AI output is variable, so “done” must define distributions and tolerances.",
+      prove:"Write retrieval, generation, safety, latency and cost criteria.",
+      build:"Attach each criterion to a test set and measurement method.",
+      brk:"Create a case where quality improves but latency violates the SLO.",
+      artifact:"AI Acceptance Criteria Sheet.",
+      check:"Can engineering run the test without asking what “good” means?",
+      lens:"Acceptance criteria are the contract between product and engineering."
+    }],
+    ['unit',"19.3","Failure-first UX",{
+      goal:"Design around uncertainty, ambiguity and failure rather than hiding them.",
+      idea:"A good AI UX makes the system’s limits understandable and actionable.",
+      prove:"Design confident, uncertain and failed states.",
+      build:"Add citations, clarification and fallback paths.",
+      brk:"Remove citations/uncertainty cues and compare user interpretation.",
+      artifact:"Failure-First UX Flow.",
+      check:"What does the user do when the AI cannot answer?",
+      lens:"The fallback is part of the feature, not an afterthought."
+    }],
+    ['unit',"19.4","Human-in-the-loop UX",{
+      goal:"Specify when a human reviews, approves, edits or overrides AI output.",
+      idea:"Human involvement should be targeted at high-risk or ambiguous transitions.",
+      prove:"Map decision points and approval payloads.",
+      build:"Measure review time and override rate.",
+      brk:"Create an approval that no longer matches the action.",
+      artifact:"HITL Decision Map.",
+      check:"What does the human uniquely contribute?",
+      lens:"HITL should reduce risk without becoming meaningless rubber-stamping."
+    }],
+    ['unit',"19.5","Metrics and experimentation",{
+      goal:"Separate business outcomes from model and operational metrics.",
+      idea:"Task completion is not the same as groundedness, and both differ from cost.",
+      prove:"Create a metric tree with business, quality, safety, latency and cost layers.",
+      build:"Define an A/B or controlled comparison where appropriate.",
+      brk:"Improve a model metric while worsening the business outcome.",
+      artifact:"Metric Map + Experiment Plan.",
+      check:"Which metric decides whether the product is useful?",
+      lens:"A PM must prevent teams from optimizing a proxy."
+    }],
+    ['unit',"19.6","Unit economics",{
+      goal:"Model token, retrieval, tool, infrastructure and human-review costs.",
+      idea:"The real unit is often cost per successful task, not cost per request.",
+      prove:"Create a spreadsheet with volume, token usage, model cost, retries, tools and review time.",
+      build:"Compare model routing and caching scenarios.",
+      brk:"Increase context or retry rate and see the margin effect.",
+      artifact:"AI Unit Economics Model.",
+      check:"What happens at 10× volume?",
+      lens:"Cost belongs in architecture decisions from day one."
+    }],
+    ['unit',"19.7","AI PRD and release plan",{
+      goal:"Write a PRD an engineer can implement and a leader can evaluate.",
+      idea:"An AI PRD must specify context, failure behavior, evaluation and operating constraints.",
+      prove:"Complete problem, scope, inputs, context, tools, model behavior, failures, human role, metrics, safety, latency, cost, rollout and rollback.",
+      build:"Run a review against the system you built.",
+      brk:"Ask a reviewer to find a failure your PRD did not specify.",
+      artifact:"AI PRD + Release Gate + Metric Map.",
+      check:"Can the PRD answer “what happens when it is wrong?”",
+      lens:"This becomes one of your strongest portfolio artifacts."
+    }],
     ['q','I412'],
-    ['do','Design the three states',[
-      ['p','Sketch three screens: one where it is sure and shows you where it got that; one where the question was unclear and it asks you back; one where it is about to do something and waits for a yes.'],
-      ['x','The second and third states are where products are won or lost. Most teams design the first one beautifully and let the other two fall out of the code by accident.']
-    ]],
     ['p','Here is a spec outline you can copy. It is long because each line is a question somebody will ask you later, and answering it now is cheaper:'],
     ['n',['The user’s problem, and how it is handled today without AI.',
       'Why AI is the right answer to it — and what is explicitly out of scope.',
@@ -864,7 +1517,8 @@ window.PART5 = [
       ['Model A or B','Which wins for this task?','A task-specific benchmark'],
       ['Human in the loop','Where is autonomy unsafe?','Error cost and reversibility']
     ]],
-    ['try',{id:'ch32-trigger',mins:6,min:60,rows:4,task:'Write the one-line rollback trigger for a feature you would like to ship. It has to be specific enough that someone could act on it at 2am without calling you.',after:'If it needs your judgement to interpret, it is not a trigger. It is a hope.'}]
+    ['try',{id:'ch32-trigger',mins:6,min:60,rows:4,task:'Write the one-line rollback trigger for a feature you would like to ship. It has to be specific enough that someone could act on it at 2am without calling you.',after:'If it needs your judgement to interpret, it is not a trigger. It is a hope.'}],
+    ['key',"Next, we turn the product into a production architecture and delivery plan."]
   ],
   capstone:{
     title:'An AI PRD for a policy assistant',
@@ -918,15 +1572,88 @@ window.PART5 = [
   story:[
     ['p','A dish you cook well for two people is not a menu item. The recipe survives; almost nothing else does — you now need consistent supply, a price that works, someone else able to cook it, and a plan for the night four hundred people order it.'],
     ['p','Everything you have built so far runs because you are the only user and you forgive it. Production takes away both of those at once. This chapter is the list of what that actually costs.'],
-    ['do','Write the production delta',[
-      ['p','Take what you built and write down everything it does not have yet. A way to know who the user is. A cap so one person cannot hammer it. Retrying when something fails. Somewhere to queue work when it is busy. Saving things that must survive a restart. Somewhere to look when it misbehaves. Keys kept out of the code. Backups. A way to put a new version out, and a way to take it back off.'],
-      ['x','The list is longer than the thing you built. That ratio is normal, and being able to state it is most of what separates a demo from a proposal.']
-    ]],
+    
+    ['unit',"20.1","Production delta",{
+      goal:"Inventory everything missing between notebook and service.",
+      idea:"Production adds identity, persistence, retries, queues, monitoring, secrets, deployment, backups, ACLs and rollback.",
+      prove:"Write a production delta list from your prototype.",
+      build:"Group items by must-have, should-have and later.",
+      brk:"Remove one control and describe the resulting failure.",
+      artifact:"Production Delta Checklist.",
+      check:"What would prevent you from going live tomorrow?",
+      lens:"This is the bridge between PM delivery and engineering reality."
+    }],
+    ['unit',"20.2","Reliability and resilience",{
+      goal:"Design for provider errors, dependency failures, retries and graceful degradation.",
+      idea:"AI systems depend on services outside your control.",
+      prove:"Create failure scenarios for model, retrieval, tool and network.",
+      build:"Define timeout, retry, fallback and user-visible behavior.",
+      brk:"Simulate provider outage and rate limiting.",
+      artifact:"Reliability/Fallback Matrix.",
+      check:"What is the user experience during partial failure?",
+      lens:"A graceful degraded mode can be more valuable than a larger model."
+    }],
+    ['unit',"20.3","Scalability and queues",{
+      goal:"Understand synchronous versus asynchronous work and scaling bottlenecks.",
+      idea:"Not every AI task belongs in the request/response path.",
+      prove:"Map a long-running document ingestion job.",
+      build:"Separate upload, processing, indexing and status reporting.",
+      brk:"Simulate 10× workload and identify the bottleneck.",
+      artifact:"Scalability Sketch + Capacity Assumptions.",
+      check:"Which component scales first and why?",
+      lens:"Capacity planning should include model limits and external quotas."
+    }],
+    ['unit',"20.4","Deployment and environments",{
+      goal:"Separate development, staging and production with controlled configuration.",
+      idea:"A production AI system needs reproducible configuration and safe rollout.",
+      prove:"Define environment variables, model versions, prompts and index versions per environment.",
+      build:"Create a deployment checklist and rollback command/process.",
+      brk:"Deploy a deliberately bad prompt to staging and verify production remains unchanged.",
+      artifact:"Environment Strategy + Rollout Checklist.",
+      check:"What can change without a code deployment?",
+      lens:"Configuration is part of the system and must be versioned."
+    }],
+    ['unit',"20.5","CI/CD and AI regression",{
+      goal:"Combine software tests with evaluation gates.",
+      idea:"A green build is not enough if the model behavior regressed.",
+      prove:"Add deterministic tests plus the golden evaluation suite to CI.",
+      build:"Define blocking thresholds.",
+      brk:"Change model/prompt/index and verify CI detects the regression.",
+      artifact:"AI CI/CD Pipeline Spec.",
+      check:"What evidence is required before release?",
+      lens:"This is how probabilistic systems become manageable delivery units."
+    }],
+    ['unit',"20.6","Architecture Decision Records",{
+      goal:"Record alternatives, decision, evidence, consequences and revisit triggers.",
+      idea:"Architecture decisions are hypotheses with trade-offs, not eternal truths.",
+      prove:"Write ADRs for model, retrieval strategy, workflow/agent and storage.",
+      build:"Include rejected alternatives and evidence.",
+      brk:"Create a new requirement that invalidates one decision.",
+      artifact:"ADR Set.",
+      check:"What would cause you to revisit the decision?",
+      lens:"ADRs protect institutional memory and make technical PM reasoning visible."
+    }],
+    ['unit',"20.7","Vendor and TCO strategy",{
+      goal:"Evaluate provider/model choices across quality, cost, region, data controls, tooling and exit cost.",
+      idea:"Vendor choice is a multi-objective architecture decision.",
+      prove:"Score at least three realistic options or two providers plus a self-hosted hypothesis.",
+      build:"Estimate migration and exit cost.",
+      brk:"Model a 2× price change or capability removal.",
+      artifact:"Model/Vendor Scorecard + Exit Plan.",
+      check:"What is the cost of switching?",
+      lens:"Vendor lock-in is an economic and architectural risk."
+    }],
+    ['unit',"20.8","Technical decision pack",{
+      goal:"Package the whole system for a design review.",
+      idea:"A strong PM-engineer artifact lets different audiences inspect the same evidence at different depths.",
+      prove:"Create problem, baseline, architecture, alternatives, evaluation, security, cost, rollout and risks.",
+      build:"Add one architecture diagram and one decision table.",
+      brk:"Ask a reviewer to challenge three assumptions.",
+      artifact:"10-slide Technical Decision Pack.",
+      check:"Can you defend every major box and arrow?",
+      lens:"This is the portfolio bridge to real AI technical PM interviews."
+    }],
     ['key','Latency is a budget spent across the whole chain. Retrieval, reranking, tool calls, model reasoning and final generation each take a share, and the largest contributor is rarely the one people optimise first.'],
-    ['do','Find where the time actually goes',[
-      ['p','Estimate p50 and p95 for each stage, then measure them with the traces from chapter 30 and compare against your estimate.'],
-      ['x','One stage dominates. Write down whether it was the one you expected — the gap between the estimate and the measurement is the same lesson chapter 6 taught about quality, arriving again in a different costume.']
-    ]],
     ['q','I413'],
     ['tb',['Layer','Typical responsibility','The question to ask about it'],[
       ['Client and UI','User interaction','What uncertainty or approval must the user see?'],
@@ -939,7 +1666,8 @@ window.PART5 = [
     ]],
     ['key','Vendor selection is a multi-objective decision: quality, data controls, latency, cost, region, tooling, interoperability, support and exit cost. A provider that wins on the first two and loses badly on the last one is a decision you make once and live inside for years.'],
     ['p','Teams that ship AI well tend to keep four dull habits, and the names attached to them matter less than the habits: <strong>write down why you chose things</strong>, so nobody re-litigates it in six months; <strong>have somewhere safe to try changes</strong> before real users meet them; <strong>be able to switch it off</strong>, quickly, without a meeting; and <strong>know what you would do</strong> if the provider changed the deal tomorrow.'],
-    ['try',{id:'ch33-reprice',mins:6,min:60,rows:4,task:'Your provider doubles its price on ninety days’ notice. Write what you would do in the first week.',after:'If the answer requires re-running an evaluation you do not have, the exit plan is the evaluation set. That is usually the finding.'}]
+    ['try',{id:'ch33-reprice',mins:6,min:60,rows:4,task:'Your provider doubles its price on ninety days’ notice. Write what you would do in the first week.',after:'If the answer requires re-running an evaluation you do not have, the exit plan is the evaluation set. That is usually the finding.'}],
+    ['key',"The capstone now assembles the whole system into one coherent portfolio project."]
   ],
   capstone:{
     title:'A ten-slide technical decision pack',
@@ -1007,14 +1735,67 @@ window.PART5 = [
       ['Explain','Five-minute executive explanation, twenty-minute technical defence']
     ]],
     ['key','A portfolio project becomes credible when you can explain the failures. Anyone can show a system that works on the demo path.'],
-    ['do','Write the findings page',[
-      ['p','Exactly these columns, and nothing decorative: what broke, the evidence, the root cause, the fix, the residual risk, the metric before and after, and what you deliberately did not solve.'],
-      ['x','Keep it rough and keep it factual. The moment it starts sounding like a brochure it stops being proof of anything — and proof is the only reason the page exists.']
-    ]],
-    ['do','Write ten assumptions before the demo',[
-      ['p','A design review starts with assumptions, not slides. Write ten, then mark each one true, false or unproven as you test.'],
-      ['x','The false ones are the most valuable thing you will bring to the review, and the unproven ones are your next sprint.']
-    ]],
+    
+    ['unit',"21.1","Define the problem and PRD",{
+      goal:"Select one enterprise use case and make the acceptance criteria measurable.",
+      idea:"A capstone becomes credible when the problem and failure cost are clear.",
+      prove:"Choose: enterprise policy/compliance intelligence, developer productivity workflow, or controlled customer operations workflow.",
+      build:"Write user, pain, baseline, scope, non-goals, data, tools, risks and metrics.",
+      brk:"Challenge the idea with “why not deterministic software?”",
+      artifact:"Capstone AI PRD.",
+      check:"Can you state the business outcome in one sentence?",
+      lens:"This is the product anchor."
+    }],
+    ['unit',"21.2","Build the vertical slice",{
+      goal:"Create the smallest end-to-end working system before adding sophistication.",
+      idea:"A vertical slice proves architecture across boundaries.",
+      prove:"Implement input ® retrieval/context ® model ® structured answer ® citation.",
+      build:"Add one tool only when needed.",
+      brk:"Use an unanswerable query and record the baseline failure.",
+      artifact:"Running repository + architecture v1.",
+      check:"Can you run the system from a clean environment?",
+      lens:"A working small system beats a large diagram."
+    }],
+    ['unit',"21.3","Add evaluation and observability",{
+      goal:"Turn the capstone into a measurable system.",
+      idea:"Every change should leave evidence.",
+      prove:"Create 30–50 evaluation cases and traces.",
+      build:"Add retrieval, answer, tool, safety, latency and cost measurements.",
+      brk:"Run a model/prompt/index change and reproduce the regression.",
+      artifact:"Golden dataset, evaluation harness and observability report.",
+      check:"Can you explain why the latest version is better?",
+      lens:"This is where the project becomes engineering evidence."
+    }],
+    ['unit',"21.4","Break it deliberately",{
+      goal:"Reproduce at least ten failure classes.",
+      idea:"A portfolio project is more credible when you can explain what broke.",
+      prove:"Test unanswerable query, poisoned document, prompt injection, unauthorized tool, malformed tool call, stale permission, multilingual input, poor scan/audio, model swap and traffic/cost increase.",
+      build:"For each, capture evidence, root cause and control.",
+      brk:"Do not fix immediately; first preserve the failure.",
+      artifact:"Security/red-team report + failure findings table.",
+      check:"Which three failures surprised you?",
+      lens:"Your failure log is often more valuable than your happy-path demo."
+    }],
+    ['unit',"21.5","Optimize and quantify",{
+      goal:"Apply targeted fixes and measure before/after.",
+      idea:"Optimization is meaningful only when the delta is visible.",
+      prove:"Try reranking, prompt restructuring, schema validation, caching, routing or context reduction where justified.",
+      build:"Change one variable at a time and rerun the relevant eval slice.",
+      brk:"Keep a fix that improves one metric but worsens another and document the trade-off.",
+      artifact:"Before/After Optimization Report + ADRs.",
+      check:"Which improvement is statistically or operationally meaningful for your sample?",
+      lens:"Avoid “optimization theater.”"
+    }],
+    ['unit',"21.6","Defend the system",{
+      goal:"Present the architecture, evidence, security, cost and residual risk to two audiences.",
+      idea:"The final skill is not building; it is explaining and defending the system.",
+      prove:"Prepare a five-minute executive briefing and twenty-minute technical defense.",
+      build:"Include three failures, three quantified improvements, residual risks and explicit non-goals.",
+      brk:"Have a peer challenge your model choice, agent choice, security and cost assumptions.",
+      artifact:"Final repository, architecture, PRD, risk register, evaluation pack, observability dashboard, vendor scorecard and executive deck.",
+      check:"Can you explain every major decision without saying “the framework handles it”?",
+      lens:"This is the credential you carry into interviews and design reviews."
+    }],
     ['q','I414'],
     ['p','You are done when all of this is true:'],
     ['l',['It runs on a machine that is not yours.',
@@ -1024,7 +1805,8 @@ window.PART5 = [
       'You attacked your own safeguards and wrote down what happened.',
       'You know how to take it back off if it goes wrong.',
       'You can explain every big choice without saying “the framework handles that”.']],
-    ['key','Final self-test, from memory: why the model is stateless; why retrieval can fail; why embeddings help; why retrieval never naturally says no; why top-k is a trade-off; when a workflow beats an agent; why tools are a security boundary; why evaluation must precede release; why tracing matters; how to calculate cost per task; and what makes an AI specification different from a normal one.']
+    ['key','Final self-test, from memory: why the model is stateless; why retrieval can fail; why embeddings help; why retrieval never naturally says no; why top-k is a trade-off; when a workflow beats an agent; why tools are a security boundary; why evaluation must precede release; why tracing matters; how to calculate cost per task; and what makes an AI specification different from a normal one.'],
+    ['key',"After this chapter, the appendices turn the artifacts into reusable portfolio templates."]
   ],
   capstone:{
     title:'Applied AI findings — what I built, what broke, what the evidence says',

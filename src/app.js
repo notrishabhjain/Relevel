@@ -41,6 +41,10 @@ window.BIND_CONTENT=bindContent;
 const KEY='aifz2027';
 const defaults=()=>({done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{},drill:{},
   appx:{},     // appendix A competency worksheet: 'row:col' -> 1
+  tpl:{},      // Appendix C template copies: '<key>:<n>' -> {v,at,done}
+  arts:{},     // Appendix B artifact tracker: '<n>' -> {s:0|1|2, where}
+  smap:{},     // Appendix A study map: block index -> 1
+  exit:{},     // final exit test: capability index -> 1
   railmore:false,   // the rest of the instruments, out of the way until wanted
   cp:{},       // inline checkpoint answers: predictions and written activities
   sittings:[],theme:null,lang:null,   // null = English; 'hi' = Hinglish
@@ -173,6 +177,38 @@ function blocks(list){
     else if(k==='pred')f.appendChild(cpPredict(r[0]));
     else if(k==='try')f.appendChild(cpTry(r[0]));
     else if(k==='lab'){const b=r[0]==='redmap'?redMapBlock():labBlock(r[0]); if(b)f.appendChild(b);}
+    /* A hands-on unit, from v4.2 of the workbook.
+
+       The applied chapters are now numbered sub-sections, and every one is a
+       complete cycle rather than a paragraph with an exercise attached: what
+       you are here to be able to do, the idea, the thing that proves it, the
+       thing you build, the way you break it, the artifact you keep, the
+       question you answer without notes, and what a PM does with it.
+
+       The eight rows are deliberately all visible. Collapsing BREAK or
+       ARTIFACT behind a disclosure is how they stop being done — and they
+       are the two that separate this from a tutorial. */
+    else if(k==='unit'){
+      const u=r[2]||{};
+      const row=(lbl,val,cls)=>val?h('div',{class:'urow'+(cls?' '+cls:'')},[
+        h('span',{class:'ulbl',text:T(lbl)}),h('div',{class:'uval',html:T(val)})]):null;
+      const sec=h('section',{class:'unit'},[
+        h('div',{class:'uhead'},[
+          h('span',{class:'unum',text:r[0]}),
+          h('h4',{html:T(r[1])})])]);
+      const body=h('div',{class:'ubody'},[
+        row('To be able to',u.goal,'ugoal'),
+        row('Idea',u.idea),
+        row('Prove it',u.prove,'udo'),
+        row('Build',u.build,'udo'),
+        row('Break it',u.brk,'udo'),
+        row('Keep',u.artifact,'ukeep'),
+        row('Check yourself',u.check,'ucheck'),
+        row('As a PM',u.lens,'ulens')
+      ].filter(Boolean));
+      sec.appendChild(body);
+      f.appendChild(sec);
+    }
     /* A hands-on beat, inline. The whole point is that it sits here, right
        after the idea it proves, rather than being saved up for a section at
        the end that a reader meets four concepts too late. */
@@ -757,6 +793,14 @@ function renderChapter(c){
   w.appendChild(cy);
   }
 
+  /* What this chapter owes the evidence pack. The artifact index is useless as
+     a list at the back of a book — it becomes work when it appears in the
+     chapter that produces the thing, with the template that shapes it one tap
+     away. Chapters that produce nothing get nothing. */
+  const ev=evidenceBlock(c);
+  if(ev){ ev.insertBefore(sectionHead(c.num+'.'+n++,'What this chapter leaves you holding'),ev.firstChild);
+    w.appendChild(ev); }
+
   // Close the sitting
   const cs=h('section',{class:'part',id:'close'});
   if(!plain){
@@ -795,6 +839,49 @@ function renderChapter(c){
       text:'← '+CH[CH.indexOf(c)-1].num+'. '+T(CH[CH.indexOf(c)-1].title)}):h('span'),
     next?h('a',{href:'#/ch/'+next.id,text:next.num+'. '+T(next.title)+' →'}):h('span')]));
   return w;
+}
+
+/* The artifacts this chapter produces and the templates that shape them,
+   rendered inside the chapter rather than only on the tracker page. The status
+   button writes the same S.arts row the tracker reads, so ticking it here
+   moves the count there. */
+function evidenceBlock(c){
+  const A=window.APPENDIX||{};
+  const mine=(A.artifacts||[]).filter(a=>a[3]===c.id);
+  const tpls=(A.templates||[]).filter(t=>t.ch===c.id);
+  if(!mine.length&&!tpls.length)return null;
+  S.arts=S.arts||{}; S.tpl=S.tpl||{};
+  const sec=h('section',{class:'part',id:'evidence'});
+  sec.appendChild(h('p',{class:'prose',
+    html:T('Not notes \u2014 things. Each one goes in the pack you finish the course with; mark it here and it moves on <a href="#/evidence">the artifact index</a> too.')}));
+  const list=h('div',{class:'arts'});
+  mine.forEach(([num,title,detail,,tplKey])=>{
+    const st=S.arts[num]=S.arts[num]||{s:0,where:''};
+    const tpl=tplById(tplKey);
+    const row=h('div',{class:'art s'+st.s});
+    const label=()=>[T('Not started'),T('In progress'),T('Finished')][st.s];
+    const cyc=h('button',{class:'artstate',title:T('Change status'),text:label()});
+    cyc.addEventListener('click',()=>{st.s=(st.s+1)%3;cyc.textContent=label();
+      row.className='art s'+st.s;save();});
+    row.appendChild(h('div',{class:'artn',text:String(num)}));
+    row.appendChild(h('div',{class:'artmain'},[
+      h('div',{class:'arttitle'},[h('strong',{text:T(title)})]),
+      h('div',{class:'dim',style:'font-size:.82rem;margin:.15rem 0 .45rem',text:T(detail)}),
+      h('div',{class:'chiprow'},[
+        tpl?h('a',{class:'chip',href:'#/templates/'+tpl.key,
+          text:T('template')+' \u00b7 '+T(tpl.name)}):null])]));
+    row.appendChild(cyc);
+    list.appendChild(row);
+  });
+  if(mine.length)sec.appendChild(list);
+  if(tpls.length){
+    sec.appendChild(h('p',{class:'prose',style:'font-size:.95rem;margin-top:1rem',
+      html:T('Templates this chapter puts in your hands:')}));
+    sec.appendChild(h('div',{class:'chiprow'},tpls.map(t=>
+      h('a',{class:'chip',href:'#/templates/'+t.key,
+        text:T(t.name)+(tplCopies(t.key).length?' \u00b7 '+tplCopies(t.key).length:'')}))));
+  }
+  return sec;
 }
 
 function sittingGuard(){
@@ -1091,24 +1178,43 @@ function pageLater(){
   return w;
 }
 
-/* ---------------- the v4.1 appendices ----------------
+/* ---------------- the appendices ----------------
 
-   Appendix A is the only one that is worth making interactive: it is a
-   worksheet, and the workbook is explicit that a row gets ticked when you can
-   demonstrate it, not when you have watched a video about it. So the four
-   columns are real checkboxes and the state persists like everything else.
-
-   B and C are reference. They sit on the same page because a design review is
-   where you would want both: the questions to ask, and where the claims in
-   this course came from. English-only for now, by request. */
+   Three of the six are instruments rather than pages, and they live at
+   #/evidence and #/templates: a worksheet is ticked when you can demonstrate
+   the row, an artifact index is worked through, and a template is filled. What
+   is left on this page is the competency worksheet — same principle, real
+   checkboxes — the question bank, the sources, and a pointer at the parking
+   lot, which is one list and therefore lives in one place. */
 function pageAppendix(){
   const A=window.APPENDIX||{};
   const rows=A.competency||[], cols=A.columns||[];
   const w=h('div',{class:'wrap-wide'});
   w.appendChild(h('header',{class:'phead'},[
     h('div',{class:'eyebrow'},[h('span',{text:T('Appendices')})]),
-    h('h1',{text:T('The worksheet, the questions, and the sources')}),
-    h('p',{html:T('Three things the workbook keeps at the back. The worksheet is your running dashboard \u2014 mark a row only when you could demonstrate it on demand, not when you have read about it. The questions are what to take into a design review, yours or somebody else\u2019s. The sources are where the applied chapters came from, so you can check a claim rather than take it.')})]));
+    h('h1',{text:T('The back of the book')}),
+    h('p',{html:T('Six appendices. Three of them are not reading at all — the study map, the artifact index and the templates are things you fill in, so they have pages of their own. What is left here is the worksheet you mark yourself against, the questions to take into a design review, and where the claims came from.')})]));
+
+  /* The two appendices that became instruments rather than pages. They are at
+     the top because reading about a tracker is not the point of it. */
+  const doors=h('div',{class:'cards doors',style:'margin-bottom:2rem'});
+  const artsDone=(A.artifacts||[]).filter(a=>(S.arts&&S.arts[a[0]]||{}).s===2).length;
+  const tplCount=Object.keys(S.tpl||{}).length;
+  doors.appendChild(h('a',{class:'card door',href:'#/evidence'},[
+    h('div',{class:'eyebrow'},[h('span',{text:T('Appendices A and B')})]),
+    h('h3',{text:T('The evidence pack')}),
+    h('p',{class:'dim',style:'font-size:.85rem',
+      html:T('The sixteen-week map, and the twenty-two artifacts you finish holding — each linked to the chapter that produces it.')}),
+    h('span',{class:'mono dim',style:'font-size:.75rem',
+      text:artsDone+' / '+(A.artifacts||[]).length+' '+T('finished')})]));
+  doors.appendChild(h('a',{class:'card door',href:'#/templates'},[
+    h('div',{class:'eyebrow'},[h('span',{text:T('Appendix C')})]),
+    h('h3',{text:T('The workbench')}),
+    h('p',{class:'dim',style:'font-size:.85rem',
+      html:T('Nine reusable templates — experiment records, failure findings, decision records, the AI PRD — as forms you fill and export.')}),
+    h('span',{class:'mono dim',style:'font-size:.75rem',
+      text:tplCount+' '+T(tplCount===1?'copy started':'copies started')})]));
+  w.appendChild(doors);
 
   S.appx = S.appx || {};
   const total=rows.length*cols.length;
@@ -1116,7 +1222,7 @@ function pageAppendix(){
   const tally=h('span',{class:'v',text:count()+' / '+total});
 
   const secA=h('section',{class:'part'});
-  secA.appendChild(sectionHead('A',T('Master competency worksheet')));
+  secA.appendChild(sectionHead('◍',T('Master competency worksheet')));
   secA.appendChild(h('div',{class:'stat',style:'margin-bottom:.9rem'},[
     h('span',{class:'l',text:T('demonstrable')}),tally,
     h('span',{class:'s',text:T('four ways to own one idea: explain it, build it, measure it, defend it')})]));
@@ -1129,7 +1235,7 @@ function pageAppendix(){
     .concat(cols.map((c,j)=>{
       const key=i+':'+j;
       const box=h('input',{type:'checkbox',
-        'aria-label':r+' \u2014 '+c[0],
+        'aria-label':r+' — '+c[0],
         onchange:e=>{ if(e.target.checked) S.appx[key]=1; else delete S.appx[key];
           save(); tally.textContent=count()+' / '+total; }});
       if(S.appx[key]) box.checked=true;
@@ -1138,32 +1244,43 @@ function pageAppendix(){
   secA.appendChild(h('div',{class:'tblwrap'},t));
   w.appendChild(secA);
 
-  const secB=h('section',{class:'part'});
-  secB.appendChild(sectionHead('B',T('AI system design review questions')));
-  secB.appendChild(h('p',{class:'prose',style:'font-size:1rem',
-    html:T('Fifteen questions. You do not need all of them in every review \u2014 but any one of them that cannot be answered is a finding, and several of them have stopped systems that demonstrated beautifully.')}));
-  secB.appendChild(h('ol',{class:'num'},(A.review||[]).map(q=>h('li',{text:T(q)}))));
-  w.appendChild(secB);
+  /* Appendix D is thirty-one questions, and the fifteen that were here before
+     are the subset you can actually get through in one live review. Both, with
+     the short list first, because that is the one somebody needs on a Tuesday. */
+  const secD=h('section',{class:'part'});
+  secD.appendChild(sectionHead('D',T('The question bank')));
+  secD.appendChild(h('p',{class:'prose',style:'font-size:1rem',
+    html:T('Fifteen for a live review, thirty-one to study against. You do not need all of them every time — but any one that cannot be answered is a finding, and several of these have stopped systems that demonstrated beautifully.')}));
+  secD.appendChild(h('h3',{class:'subh',text:T('The short list, for a design review')}));
+  secD.appendChild(h('ol',{class:'num'},(A.review||[]).map(q=>h('li',{text:T(q)}))));
+  const bank=h('details',{class:'qa'},[
+    h('summary',{},[h('span',{text:T('The full bank — thirty-one questions')}),
+      h('span',{class:'pill',style:'margin-left:auto',text:String((A.questions||[]).length)})]),
+    h('ol',{class:'num',style:'margin-top:.6rem'},(A.questions||[]).map(q=>h('li',{text:T(q)})))]);
+  secD.appendChild(bank);
+  w.appendChild(secD);
 
-  const secC=h('section',{class:'part'});
-  secC.appendChild(sectionHead('C',T('Research basis')));
-  secC.appendChild(h('p',{class:'prose',style:'font-size:1rem',
-    html:T('The applied chapters were shaped from current public material. Treat this as a living reference set rather than a bibliography: provider APIs and model capabilities change faster than books do, and a source that was current when this was written may not be when you read it.')}));
-  secC.appendChild(h('div',{class:'marks'},(A.sources||[]).map(([who,what,url])=>
+  const secE=h('section',{class:'part'});
+  secE.appendChild(sectionHead('E',T('Current reference points')));
+  secE.appendChild(h('p',{class:'prose',style:'font-size:1rem',
+    html:T('Where the applied chapters came from. Treat this as a living set rather than a bibliography, and use the current official documentation when you run a provider- or protocol-specific lab — model names, pricing, context limits, protocol versions and free-tier terms all move faster than a book does.')}));
+  secE.appendChild(h('div',{class:'marks'},(A.sources||[]).map(([who,what,url])=>
     h('div',{class:'mark'},[
       h('span',{class:'mt'},[h('strong',{text:T(who)}),
         h('div',{class:'dim',style:'font-size:.8rem;margin-top:.2rem',text:T(what)})]),
-      h('a',{class:'chip',href:url,target:'_blank',rel:'noopener noreferrer',text:'open \u2197'})]))));
-  w.appendChild(secC);
+      h('a',{class:'chip',href:url,target:'_blank',rel:'noopener noreferrer',text:'open ↗'})]))));
+  secE.appendChild(h('div',{class:'callout',style:'margin-top:1.2rem'},[
+    h('span',{class:'lbl',text:T('Before you cite any of this')}),
+    h('p',{html:T('A reference is not a substitute for running the experiment. Every one of these was current when this edition was written; verify the detail you are about to rely on at the time you rely on it.')})]));
+  w.appendChild(secE);
 
-  const secD=h('section',{class:'part'});
-  secD.appendChild(sectionHead('D',T('The parking lot')));
-  secD.appendChild(h('p',{class:'prose',style:'font-size:1rem',
-    html:T('Appendix D lives on the <a href="#/later">Not yet</a> page with everything else you have deliberately parked, because splitting one parking lot across two pages defeats the purpose of having one.')}));
-  w.appendChild(secD);
+  const secF=h('section',{class:'part'});
+  secF.appendChild(sectionHead('F',T('The parking lot')));
+  secF.appendChild(h('p',{class:'prose',style:'font-size:1rem',
+    html:T('Appendix F lives on the <a href="#/later">Not yet</a> page with everything else you have deliberately parked, because splitting one parking lot across two pages defeats the purpose of having one. The rule there is the rule here: a topic stays parked until the thing you are building has a measurable reason to need it.')}));
+  w.appendChild(secF);
   return w;
 }
-
 function pageGlossary(){
   const w=h('div',{class:'wrap-wide'});
   w.appendChild(h('header',{class:'phead'},[
@@ -1494,7 +1611,9 @@ function renderRail(){
       ['#/ledger','∆','My predictions vs reality'],
       ['#/card','▣','Governance doc builder'],
       ['#/vendor','⌗','Questions to ask vendors'],
-      ['#/appendix','≡','Worksheet, review questions, sources'],
+      ['#/evidence','▤','The 22 artifacts I owe, and the study map'],
+      ['#/templates','▧','Fill-in templates for experiments and decisions'],
+      ['#/appendix','≡','Worksheet, question bank, sources'],
       ['#/notebook','✐','My notes'],
       ['#/later','⋯','Topics I parked'],
       ['#/language','अ','Language — English or Hinglish'],
@@ -1661,6 +1780,267 @@ function pageLanguage(){
   return w;
 }
 
+
+/* ---------- The workbench: Appendix C as forms rather than headings ----------
+
+   The book prints nine templates as lists of field names. Printed, they are
+   read once and never filled; the whole point of an Experiment Record is that
+   there are forty of them by the end. So each one here is a form you can take
+   a fresh copy of, every copy persists like everything else, and every copy
+   exports as markdown you can paste into a repository.
+
+   State shape: S.tpl['exp:3'] = {v:{'0':'…'}, at:<ms>, done:0}. The copy id
+   carries the template key so a template can be removed from the book without
+   orphaning somebody's filled-in copies under a numeric index. */
+const TPL=()=>((window.APPENDIX||{}).templates||[]);
+const tplById=k=>TPL().filter(t=>t.key===k)[0];
+function tplCopies(key){
+  return Object.keys(S.tpl||{}).filter(id=>id.slice(0,id.indexOf(':'))===key)
+    .sort((a,b)=>(S.tpl[a].at||0)-(S.tpl[b].at||0));
+}
+function tplNew(key){
+  let n=1; while(S.tpl[key+':'+n]) n++;
+  S.tpl[key+':'+n]={v:{},at:Date.now(),done:0};
+  save(); return key+':'+n;
+}
+function tplFilled(id){
+  const c=S.tpl[id]; if(!c)return 0;
+  return Object.values(c.v||{}).filter(v=>v&&String(v).trim()).length;
+}
+function tplMarkdown(id){
+  const t=tplById(id.slice(0,id.indexOf(':'))), c=S.tpl[id];
+  if(!t||!c)return '';
+  let md='# '+t.name+'\n\n_'+new Date(c.at||Date.now()).toISOString().slice(0,10)+'_\n\n';
+  t.fields.forEach((f,i)=>{md+='## '+f[0]+'\n\n'+((c.v[i]||'').trim()||'_Not filled in._')+'\n\n';});
+  return md;
+}
+/* A template copy, as a form. Returns the node; the caller decides where it
+   sits, because this is rendered both on the workbench and inline on a
+   chapter page. */
+function tplForm(id,onGone,onEdit){
+  const key=id.slice(0,id.indexOf(':')), t=tplById(key), c=S.tpl[id];
+  if(!t||!c)return h('div');
+  const fields=h('div',{class:'fields'});
+  t.fields.forEach((f,i)=>{
+    const saved=h('span',{class:'saved',text:T('saved')});
+    const long=f[2]==='long';
+    const el=long?h('textarea',{rows:3,placeholder:T(f[1]||'')},c.v[i]||'')
+                 :h('input',{placeholder:T(f[1]||''),value:c.v[i]||''});
+    el.addEventListener('input',()=>{
+      if(el.value.trim())c.v[i]=el.value; else delete c.v[i];
+      save();flash(saved);
+      if(count)count.textContent=tplFilled(id)+' / '+t.fields.length;
+      /* The collapsed summary carries the copy's name and how much of it is
+         filled. Both are computed at render, so without this they stayed at
+         "Copy 1 · 0 / 11" for the whole sitting and only came right on a
+         reload — which reads as the form not saving. */
+      if(onEdit)onEdit();});
+    fields.appendChild(h('div',{},[
+      h('label',{},[document.createTextNode(T(f[0])),saved]),el]));
+  });
+  const count=h('span',{class:'mono dim',style:'font-size:.75rem',
+    text:tplFilled(id)+' / '+t.fields.length});
+  const tools=h('div',{class:'tplbar'},[
+    count,
+    h('button',{class:'sm',onclick:()=>download(
+      key+'-'+id.split(':')[1]+'.md',tplMarkdown(id))},T('Export')),
+    h('button',{class:'sm red',onclick:()=>{
+      if(tplFilled(id)&&!confirm(T('Delete this copy? What you typed into it is not kept anywhere else.')))return;
+      delete S.tpl[id];save();if(onGone)onGone();}},T('Delete'))]);
+  return h('div',{class:'nbentry'},[fields,tools]);
+}
+
+function pageTemplates(which){
+  const w=h('div',{class:'wrap-wide'});
+  S.tpl=S.tpl||{};
+  const all=TPL();
+  const copies=Object.keys(S.tpl).length;
+  const filled=Object.keys(S.tpl).filter(id=>tplFilled(id)).length;
+  w.appendChild(h('header',{class:'phead'},[
+    h('div',{class:'eyebrow'},[h('span',{text:T('Appendix C')})]),
+    h('h1',{text:T('The workbench')}),
+    h('p',{html:T('Nine shapes that the work of this course keeps taking. Take a fresh copy whenever you run an experiment, find a failure, or make a decision you would not want to re-argue in six months. Every copy is saved on this device and exports as markdown, so the evidence pack at the end is something you assemble rather than something you write.')})]));
+  w.appendChild(h('div',{class:'stats'},[
+    tile(T('copies started'),String(copies)),
+    tile(T('copies with something in them'),String(filled),filled?'ok':''),
+    tile(T('templates used'),new Set(Object.keys(S.tpl).map(k=>k.split(':')[0])).size+' / '+all.length)]));
+
+  const jump=h('div',{class:'chiprow',style:'margin:1rem 0 1.6rem'});
+  all.forEach(t=>jump.appendChild(h('a',{class:'chip',href:'#/templates/'+t.key,
+    text:T(t.name)+(tplCopies(t.key).length?' · '+tplCopies(t.key).length:'')})));
+  w.appendChild(jump);
+
+  const list=all.filter(t=>!which||t.key===which);
+  if(which&&!list.length) return pageTemplates(null);
+  if(which) w.appendChild(h('div',{style:'margin-bottom:1rem'},
+    h('a',{class:'chip',href:'#/templates',text:T('← All nine templates')})));
+
+  list.forEach(t=>{
+    const sec=h('section',{class:'part tplsec',id:'t-'+t.key});
+    const body=h('div');
+    const redraw=()=>{
+      body.innerHTML='';
+      const mine=tplCopies(t.key);
+      if(!mine.length){
+        body.appendChild(h('p',{class:'dim',style:'font-size:.85rem;margin:.2rem 0 .6rem',
+          text:T('What it asks for:')}));
+        body.appendChild(h('ul',{class:'tplpeek'},
+          t.fields.map(f=>h('li',{text:T(f[0])}))));
+      } else {
+        mine.forEach(id=>{
+          const n=tplFilled(id), tot=t.fields.length;
+          const first=(S.tpl[id].v[0]||'').trim();
+          const name=h('span',{text:first||(T('Copy')+' '+id.split(':')[1])});
+          const pill=h('span',{class:'pill '+(n===tot?'ok':n?'':'red'),
+            style:'margin-left:auto',text:n+' / '+tot});
+          const sum=h('summary',{},[name,pill]);
+          const refresh=()=>{
+            const f=tplFilled(id), v=(S.tpl[id].v[0]||'').trim();
+            name.textContent=v||(T('Copy')+' '+id.split(':')[1]);
+            pill.textContent=f+' / '+tot;
+            pill.className='pill '+(f===tot?'ok':f?'':'red');};
+          const det=h('details',{class:'qa tplcopy'},[sum]);
+          let built=false;
+          det.addEventListener('toggle',()=>{
+            if(det.open&&!built){built=true;det.appendChild(tplForm(id,redraw,refresh));}});
+          body.appendChild(det);
+        });
+      }
+      body.appendChild(h('div',{class:'tplbar'},[
+        h('button',{class:'primary sm',onclick:()=>{
+          const id=tplNew(t.key);redraw();
+          const d=body.querySelector('details.tplcopy:last-of-type');
+          if(d)d.open=true;}},T(tplCopies(t.key).length?'Another copy':'Start one')),
+        tplCopies(t.key).length>1?h('button',{class:'sm',onclick:()=>download(
+          t.key+'-all.md',tplCopies(t.key).map(tplMarkdown).join('\n---\n\n'))},
+          T('Export all')):null]));
+    };
+    sec.appendChild(sectionHead(String(all.indexOf(t)+1),t.name));
+    sec.appendChild(h('p',{class:'prose',style:'font-size:1rem',html:T(t.why)}));
+    const ch=byId[t.ch];
+    if(ch)sec.appendChild(h('div',{class:'chiprow',style:'margin:.2rem 0 .8rem'},
+      h('a',{class:'chip',href:'#/ch/'+ch.id,
+        text:T('Built in')+' · '+ch.num+'. '+T(ch.title)})));
+    sec.appendChild(body);
+    redraw();
+    w.appendChild(sec);
+  });
+  return w;
+}
+
+/* ---------- The evidence pack: appendices A and B, plus the exit test ----------
+
+   Appendix A is a calendar and appendix B is a list of twenty-two things you
+   are meant to finish holding. Neither is reading material. Both are here as
+   trackers, and every artifact row links to the chapter that produces it and
+   the template that shapes it — which is the only thing that turns a list of
+   nouns into something you can work through. */
+function pageEvidence(){
+  const A=window.APPENDIX||{};
+  const map=A.studymap||[], arts=A.artifacts||[], exit=A.exit||[];
+  S.arts=S.arts||{}; S.smap=S.smap||{}; S.exit=S.exit||{};
+  const w=h('div',{class:'wrap-wide'});
+  w.appendChild(h('header',{class:'phead'},[
+    h('div',{class:'eyebrow'},[h('span',{text:T('Appendices A and B')})]),
+    h('h1',{text:T('The evidence pack')}),
+    h('p',{html:T('What you finish this course holding is not a certificate. It is twenty-two things you built, broke and measured — and the honest note about what is still unsolved. This page is the running list, the sixteen-week map it sits on, and the thirteen things you should be able to do at the end.')})]));
+
+  const artDone=()=>arts.filter(a=>(S.arts[a[0]]||{}).s===2).length;
+  const artWip=()=>arts.filter(a=>(S.arts[a[0]]||{}).s===1).length;
+  const stats=h('div',{class:'stats'});
+  const redrawStats=()=>{stats.innerHTML='';
+    [tile(T('artifacts finished'),artDone()+' / '+arts.length,artDone()===arts.length?'ok':''),
+     tile(T('in progress'),String(artWip())),
+     tile(T('study blocks cleared'),Object.values(S.smap).filter(Boolean).length+' / '+map.length),
+     tile(T('exit test'),Object.values(S.exit).filter(Boolean).length+' / '+exit.length,
+       Object.values(S.exit).filter(Boolean).length===exit.length?'ok':'')]
+      .forEach(t=>stats.appendChild(t));};
+  redrawStats();
+  w.appendChild(stats);
+
+  /* ---- B first: it is the one people come back to ---- */
+  const secB=h('section',{class:'part'});
+  secB.appendChild(sectionHead('B',T('Master artifact index')));
+  secB.appendChild(h('p',{class:'prose',style:'font-size:1rem',
+    html:T('Twenty-two artifacts. Mark one finished only when someone else could pick it up and see what you did — the measurement, not the claim. <em>Where it lives</em> is for the repository path or the link, so that the pack assembles itself.')}));
+  const artList=h('div',{class:'arts'});
+  arts.forEach(([n,title,detail,chId,tplKey])=>{
+    const st=S.arts[n]=S.arts[n]||{s:0,where:''};
+    const ch=byId[chId], tpl=tplById(tplKey);
+    const row=h('div',{class:'art s'+st.s});
+    const cyc=h('button',{class:'artstate',title:T('Change status')});
+    const label=()=>[T('Not started'),T('In progress'),T('Finished')][st.s];
+    cyc.textContent=label();
+    cyc.addEventListener('click',()=>{st.s=(st.s+1)%3;cyc.textContent=label();
+      row.className='art s'+st.s;save();redrawStats();});
+    const saved=h('span',{class:'saved',text:T('saved')});
+    const where=h('input',{class:'artwhere',placeholder:T('where it lives — a path or a link'),
+      value:st.where||''});
+    where.addEventListener('input',()=>{st.where=where.value;save();flash(saved);});
+    row.appendChild(h('div',{class:'artn',text:String(n)}));
+    row.appendChild(h('div',{class:'artmain'},[
+      h('div',{class:'arttitle'},[h('strong',{text:T(title)}),saved]),
+      h('div',{class:'dim',style:'font-size:.82rem;margin:.15rem 0 .45rem',text:T(detail)}),
+      h('div',{class:'chiprow'},[
+        ch?h('a',{class:'chip',href:'#/ch/'+ch.id,text:ch.num+'. '+T(ch.title)}):null,
+        tpl?h('a',{class:'chip',href:'#/templates/'+tpl.key,
+          text:T('template')+' · '+T(tpl.name)}):null]),
+      where]));
+    row.appendChild(cyc);
+    artList.appendChild(row);
+  });
+  secB.appendChild(artList);
+  w.appendChild(secB);
+
+  /* ---- A: the calendar the artifacts hang off ---- */
+  const secA=h('section',{class:'part'});
+  secA.appendChild(sectionHead('A',T('Sixteen-week study map')));
+  secA.appendChild(h('p',{class:'prose',style:'font-size:1rem',
+    html:T('Sixteen weeks is the pace this was written for, not a deadline. The useful column is the last one: a block is cleared when the evidence exists, not when the weeks have passed.')}));
+  const mapList=h('div',{class:'smap'});
+  map.forEach((b,i)=>{
+    const box=h('input',{type:'checkbox','aria-label':b.when+' — '+b.focus});
+    if(S.smap[i])box.checked=true;
+    box.addEventListener('change',()=>{
+      if(box.checked)S.smap[i]=1; else delete S.smap[i];
+      save();redrawStats();row.classList.toggle('on',!!S.smap[i]);});
+    const chips=h('div',{class:'chiprow'},(b.chs||[]).map(id=>byId[id]
+      ?h('a',{class:'chip',href:'#/ch/'+id,text:String(byId[id].num)}):null));
+    const row=h('div',{class:'smaprow'+(S.smap[i]?' on':'')},[
+      h('label',{class:'smapbox'},box),
+      h('div',{class:'smapbody'},[
+        h('div',{class:'smapwhen'},[h('strong',{text:T(b.when)}),
+          h('span',{class:'dim',text:' — '+T(b.focus)})]),
+        h('div',{class:'smapev',html:T(b.evidence)}),
+        chips])]);
+    mapList.appendChild(row);
+  });
+  secA.appendChild(mapList);
+  w.appendChild(secA);
+
+  /* ---- the exit test ---- */
+  const secX=h('section',{class:'part'});
+  secX.appendChild(sectionHead('✓',T('Final exit test')));
+  secX.appendChild(h('p',{class:'prose',style:'font-size:1rem',
+    html:T('Thirteen things, each of which is something you do rather than something you know. Tick one when you could do it in front of a stranger, with an unfamiliar system, without reaching for jargon.')}));
+  const xl=h('ol',{class:'xtest'});
+  exit.forEach((e,i)=>{
+    const box=h('input',{type:'checkbox','aria-label':e});
+    if(S.exit[i])box.checked=true;
+    const li=h('li',{class:S.exit[i]?'on':''},[h('label',{},[box,h('span',{text:T(e)})])]);
+    box.addEventListener('change',()=>{
+      if(box.checked)S.exit[i]=1; else delete S.exit[i];
+      li.classList.toggle('on',box.checked);save();redrawStats();});
+    xl.appendChild(li);
+  });
+  secX.appendChild(xl);
+  if(A.exitNote)secX.appendChild(h('div',{class:'callout',style:'margin-top:1.2rem'},[
+    h('span',{class:'lbl',text:T('What you end up with')}),
+    h('p',{html:T(A.exitNote)})]));
+  w.appendChild(secX);
+  return w;
+}
+
 const V=()=>window.VIEWS;
 const ROUTES={'':()=>V().dashboard(),'library':pageHome,
   'skills':()=>V().skills(),'analytics':()=>V().analytics(),
@@ -1668,13 +2048,14 @@ const ROUTES={'':()=>V().dashboard(),'library':pageHome,
   'setup':pageSetup,'install':pageInstall,'language':pageLanguage,
   'notebook':pageNotebook,'ledger':pageLedger,
   'later':pageLater,'glossary':pageGlossary,'vendor':pageVendor,'map':pageMap,'card':pageCard,
-  'appendix':pageAppendix,
+  'appendix':pageAppendix,'evidence':pageEvidence,
   'progress':pageProgress,'labs':pageLabs,'data':()=>V().data(),
   'studio':()=>window.STUDIO.studio([])};
 const CRUMB={'':'Dashboard','library':'Library','skills':'Skill Matrix','analytics':'Analytics',
   'exercises':'Exercises','processes':'Processes','practice':'Practice','skill':'Skill',
   'data':'Progress & Backup','studio':'Content Studio','install':'Install as an app',
-  'language':'Language','setup':'Setup','appendix':'Appendices'};
+  'language':'Language','setup':'Setup','appendix':'Appendices',
+  'evidence':'Evidence pack','templates':'The workbench'};
 
 function route(){
   const hash=location.hash.replace(/^#\/?/,'').split('#')[0];
@@ -1694,6 +2075,11 @@ function route(){
     node=window.STUDIO.studio(parts);
     crumb='Content Studio'+(parts[1]?' · '+parts[1]:'');
     document.title='Content Studio — AI From Zero';
+  } else if(parts[0]==='templates'){
+    node=pageTemplates(parts[1]||null);
+    const t=parts[1]?tplById(parts[1]):null;
+    crumb='The workbench'+(t?' \u00b7 '+t.name:'');
+    document.title='The workbench — AI From Zero';
   } else if(parts[0]==='skill'&&parts[1]){
     node=V().skillPage(parts[1]);
     crumb='Skill · '+parts[1];
@@ -1742,7 +2128,16 @@ function buildIndex(){
     {k:'page',t:'Prediction Ledger',h:'#/ledger'},{k:'page',t:'Notebook',h:'#/notebook'},
     {k:'page',t:'System Card',h:'#/card'},{k:'page',t:'Vendor Deck',h:'#/vendor'},
     {k:'page',t:'Glossary',h:'#/glossary'},
-    {k:'page',t:'Where You Are',h:'#/progress'});
+    {k:'page',t:'Where You Are',h:'#/progress'},
+    {k:'page',t:'Appendices',h:'#/appendix'},
+    {k:'page',t:'The Evidence Pack \u2014 22 artifacts and the study map',h:'#/evidence'},
+    {k:'page',t:'The Workbench \u2014 fill-in templates',h:'#/templates'});
+  /* Each template and each artifact is findable by its own name \u2014 the point
+     of the palette is that you do not have to remember which page holds it. */
+  ((window.APPENDIX||{}).templates||[]).forEach(t=>idx.push(
+    {k:'template',t:T(t.name),d:T(t.why),h:'#/templates/'+t.key}));
+  ((window.APPENDIX||{}).artifacts||[]).forEach(a=>idx.push(
+    {k:'artifact',t:T(a[1]),d:T(a[2]),h:'#/evidence'}));
   CH.forEach(c=>{
     idx.push({k:'ch '+c.num,t:T(c.title),d:T(c.concept),h:'#/ch/'+c.id});
     /* Guarded: a chapter is allowed to carry neither, and an unguarded read

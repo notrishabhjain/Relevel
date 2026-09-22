@@ -198,7 +198,11 @@ ok((await b.page.evaluate(sk => (window.ENG.bySkill[sk] || []).length, skillId))
 
 console.log('\n— reference tables —');
 await boot(b.page, '#/studio/reference');
-ok(await b.page.locator('.sitem').count() === 11, 'all eleven reference tables are listed');
+/* Counted from the bundle rather than typed here, so adding a reference table
+   — the appendices were the twelfth — is not also a test edit. */
+const refTables = Object.keys(EXPECT.reference).length;
+ok(await b.page.locator('.sitem').count() === refTables,
+   `all ${refTables} reference tables are listed`);
 const glossBefore = await b.page.evaluate(() => window.GLOSSARY.length);
 await boot(b.page, '#/studio/reference/GLOSSARY');
 const grown = await b.page.evaluate(() => {
@@ -855,14 +859,22 @@ await boot(v4.page, '#/appendix');
 const appx = await v4.page.evaluate(() => ({
   rows: document.querySelectorAll('.cmptable tbody tr').length,
   boxes: document.querySelectorAll('.cmptable input[type=checkbox]').length,
-  questions: document.querySelectorAll('ol.num li').length,
-  sources: document.querySelectorAll('.marks .mark').length
+  /* Two question lists now: the short list for a live review, and the full
+     bank folded into a <details> behind it. Counted separately so that losing
+     one of them cannot be hidden by the other. */
+  shortlist: document.querySelectorAll('.part > ol.num li').length,
+  bank: document.querySelectorAll('.qa ol.num li').length,
+  sources: document.querySelectorAll('.marks .mark').length,
+  doors: [...document.querySelectorAll('.card.door')].map(a => a.getAttribute('href'))
 }));
 ok(appx.rows === 19 && appx.boxes === 76,
    'the competency worksheet is nineteen rows by four columns',
    'rows=' + appx.rows + ' boxes=' + appx.boxes);
-ok(appx.questions === 15, 'the fifteen design-review questions are there', String(appx.questions));
-ok(appx.sources === 13, 'and the research basis is listed', String(appx.sources));
+ok(appx.shortlist === 15, 'the fifteen design-review questions are there', String(appx.shortlist));
+ok(appx.bank === 31, 'and the full question bank behind them', String(appx.bank));
+ok(appx.sources === 16, 'and the research basis is listed', String(appx.sources));
+ok(appx.doors.join() === '#/evidence,#/templates',
+   'with the two instruments one tap away', appx.doors.join());
 await v4.page.click('.cmptable tbody tr:first-child input[type=checkbox]');
 await v4.page.waitForTimeout(350);
 await revisit(v4.page);
@@ -905,6 +917,95 @@ await boot(navp.page, '#/library');
 ok(await navp.page.$('.tracksep'),
    'the library marks Part V as a separate track');
 
+/* The v4.2 appendices are instruments, not pages: the artifact index is a
+   tracker and the nine templates are forms. Both write to the same store
+   everything else does, so both have to survive a reload — which is the part
+   that silently did not work the first time a "persisted" form was added. */
+console.log('\n— the workbench keeps what you type —');
+const wb = await newDevice(false);
+await boot(wb.page, '#/templates/exp');
+ok(await wb.page.locator('#t-exp').count() === 1, 'a single template opens on its own URL');
+ok(await wb.page.locator('#t-exp .tplpeek li').count() > 5,
+   'and lists what it asks for before you commit to filling it');
+await wb.page.click('#t-exp .tplbar button.primary');
+await wb.page.waitForTimeout(200);
+ok(await wb.page.locator('#t-exp details.tplcopy[open]').count() === 1,
+   'starting a copy opens it straight away');
+await wb.page.fill('#t-exp details.tplcopy input >> nth=0', 'exp-001 · chunk size');
+await wb.page.fill('#t-exp details.tplcopy textarea >> nth=0', 'Smaller chunks will win.');
+await wb.page.waitForTimeout(400);
+ok((await text(wb.page, '#t-exp details.tplcopy summary span')).includes('exp-001'),
+   'the copy retitles itself as you type, without waiting for a reload');
+/* boot() to the hash the page is already on is a same-document navigation and
+   re-renders nothing, so a persistence test has to be a real reload. */
+await revisit(wb.page);
+ok((await text(wb.page, '#t-exp details.tplcopy summary span')).includes('exp-001'),
+   'and after a reload it is still there, titled by its first field');
+await wb.page.click('#t-exp details.tplcopy summary');
+await wb.page.waitForTimeout(200);
+ok(await wb.page.locator('#t-exp details.tplcopy textarea').first().inputValue()
+   === 'Smaller chunks will win.', 'with every field still filled in');
+ok((await text(wb.page, '#t-exp details.tplcopy summary .pill')).startsWith('2 /'),
+   'and the counter reports what is filled, not what exists');
+
+console.log('\n— the artifact index is a tracker, not a list —');
+await boot(wb.page, '#/evidence');
+const arts = await wb.page.locator('.art').count();
+ok(arts === 22, 'all twenty-two artifacts are listed', String(arts));
+ok(await wb.page.locator('.art .chiprow a[href^="#/ch/"]').count() === 22,
+   'each one links to the chapter that produces it');
+ok(await wb.page.locator('.art .chiprow a[href^="#/templates/"]').count() === 22,
+   'and to the template that shapes it');
+ok(await wb.page.locator('.smaprow').count() === 10, 'the sixteen-week map has all ten blocks');
+ok(await wb.page.locator('.xtest li').count() === 13, 'and the exit test has thirteen capabilities');
+const deadLinks = await wb.page.evaluate(() =>
+  [...document.querySelectorAll('a[href^="#/ch/"], a[href^="#/templates/"]')]
+    .map(a => a.getAttribute('href'))
+    .filter(href => href.startsWith('#/ch/')
+      ? !window.CHAPTERS.some(c => c.id === href.slice(5))
+      : href.length > 12 && !(window.APPENDIX.templates || [])
+          .some(t => t.key === href.slice(12))));
+ok(!deadLinks.length, 'and not one chip on the page goes nowhere', deadLinks.join(','));
+await wb.page.locator('.art').first().locator('.artstate').click();
+await wb.page.locator('.art').first().locator('.artwhere').fill('repo/notebooks/');
+await wb.page.locator('.xtest input[type=checkbox]').first().check();
+await wb.page.locator('.smaprow input[type=checkbox]').first().check();
+await wb.page.waitForTimeout(400);
+await boot(wb.page, '#/evidence');
+ok((await wb.page.locator('.art').first().getAttribute('class')).includes('s1'),
+   'a status survives a reload');
+ok(await wb.page.locator('.art').first().locator('.artwhere').inputValue() === 'repo/notebooks/',
+   'so does where the artifact lives');
+ok(await wb.page.locator('.xtest input[type=checkbox]').first().isChecked(),
+   'so does the exit-test tick');
+ok(await wb.page.locator('.smaprow input[type=checkbox]').first().isChecked(),
+   'so does the study-map block');
+
+/* The point of all of it: the artifact index is worth nothing at the back of a
+   book. It has to appear inside the chapter that produces the thing. */
+console.log('\n— the evidence appears inside the chapter that produces it —');
+await boot(wb.page, '#/ch/ch1');
+ok((await wb.page.locator('#evidence .art').first().getAttribute('class')).includes('s1'),
+   'a status set on the tracker page shows through in the chapter that owes it');
+await boot(wb.page, '#/ch/ch11r');
+ok(await wb.page.locator('#evidence .art').count() === 4,
+   'chapter 24 shows the four artifacts it owes the pack');
+await wb.page.locator('#evidence .art').first().locator('.artstate').click();
+await wb.page.waitForTimeout(400);
+await boot(wb.page, '#/evidence');
+ok((await wb.page.locator('.art').nth(1).getAttribute('class')).includes('s1'),
+   'and a status set in the chapter shows through on the tracker');
+await boot(wb.page, '#/ch/ch8f');
+ok(await wb.page.locator('#evidence .chiprow a[href^="#/templates/"]').count() > 0,
+   'a chapter that hands you a template links to it');
+
+console.log('\n— the reference page routes to both instruments —');
+await boot(wb.page, '#/appendix');
+ok(await wb.page.locator('.card.door[href="#/evidence"]').count() === 1,
+   'the appendix page opens the evidence pack');
+ok(await wb.page.locator('.card.door[href="#/templates"]').count() === 1,
+   'and the workbench');
+
 console.log('\n— the applied track reads in Hinglish —');
 await navp.page.evaluate(() => { window.STORE.S.lang = 'hi'; window.STORE.flush(); });
 await boot(navp.page, '#/ch/ch13a');
@@ -926,7 +1027,8 @@ const hiAp = await navp.page.evaluate(() => ({
   head: (document.querySelector('.phead h1') || {}).textContent || ''
 }));
 ok(!hiAp.fallback, 'the appendices no longer fall back to English wholesale');
-ok(/Worksheet, sawaal/.test(hiAp.head), 'their heading is translated too', hiAp.head);
+ok(!/back of the book/.test(hiAp.head) && hiAp.head.length > 8,
+   'their heading is translated too', hiAp.head);
 await navp.page.evaluate(() => { window.STORE.S.lang = null; window.STORE.flush(); });
 await boot(navp.page, '#/ch/ch13a');
 ok((await navp.page.evaluate(() =>

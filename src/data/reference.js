@@ -421,7 +421,10 @@ window.APPENDIX = {
     ['NIST','AI Risk Management Framework and the generative AI profile','https://airc.nist.gov/'],
     ['OWASP','GenAI Security Project','https://genai.owasp.org/'],
     ['MLflow','GenAI evaluation and observability','https://mlflow.org/docs/latest/genai/'],
-    ['Hiring signals','Applied AI PM and AI engineering roles \u2014 market signals, not standards','https://aipmframework.com/']
+    ['Hiring signals','Applied AI PM and AI engineering roles \u2014 market signals, not standards','https://aipmframework.com/'],
+    ['Anthropic','Building Effective Agents \u2014 workflows versus agents, and tool design','https://www.anthropic.com/engineering/building-effective-agents'],
+    ['Anthropic','Building Effective AI Agents \u2014 the longer write-up','https://resources.anthropic.com/building-effective-ai-agents'],
+    ['OWASP','GenAI / LLM Top 10, 2026 edition','https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/']
   ],
   /* Two labels per column: the full one reads properly on a laptop, the short
      one is what lets all four columns fit on a phone instead of the last one
@@ -429,6 +432,298 @@ window.APPENDIX = {
   columns: [['Can explain','Explain'],['Can build','Build'],
             ['Can evaluate','Measure'],['Can defend','Defend']]
 };
+
+/* ---------- The v4.2 appendices ----------
+
+   Three of these are not reference at all, which is why they are not on the
+   reference page. The study map says what evidence a block of weeks owes; the
+   artifact index is the list of twenty-two things you are meant to finish
+   holding; the templates are the shapes those things take. Reading them does
+   nothing. So the portal renders the first two as trackers you tick and the
+   third as forms you fill, and the chapter that produces each artifact links
+   straight to the template that shapes it.
+
+   ch: is a portal chapter id, not a book chapter number — the portal split
+   several chapters in two, so 'the chapter that produces this' has to be
+   named rather than computed. */
+Object.assign(window.APPENDIX, {
+
+  /* Appendix A — the 16-week study map. 'from'/'to' are portal chapter ids;
+     a block spanning several chapters shows them as a range of links. */
+  studymap: [
+    {when:'Weeks 1–4', focus:'Foundations and the engineer’s floor',
+     chs:['ch1','ch2','ch3','ch4','ch5','ch6','ch7','ch8f'],
+     evidence:'Seven foundation notebooks, and an experiment harness you can re-run.'},
+    {when:'Weeks 5–6', focus:'Model choice and context engineering',
+     chs:['ch9m','ch10c'],
+     evidence:'A Model Selection Card, a context budget, and a memory and state design.'},
+    {when:'Weeks 7–8', focus:'Retrieval at production depth',
+     chs:['ch11r'],
+     evidence:'Chunking, retrieval, hybrid search, reranking, permissions and provenance — each with a measurement.'},
+    {when:'Weeks 9–10', focus:'Tools, workflows and agents',
+     chs:['ch12t','ch13a'],
+     evidence:'A tool contract, a workflow, and a bounded agent measured against that workflow.'},
+    {when:'Week 11', focus:'MCP and interoperability',
+     chs:['ch14p'],
+     evidence:'An MCP mini-demo, and the authorisation matrix that says who may call what.'},
+    {when:'Week 12', focus:'Input that is not text',
+     chs:['ch15mm'],
+     evidence:'A multimodal pipeline, and an evaluation set with cases only that modality can fail.'},
+    {when:'Weeks 13–14', focus:'Evaluation and observability',
+     chs:['ch16e','ch17o'],
+     evidence:'A golden set, an automated evaluation suite, judge validation, traces and a dashboard.'},
+    {when:'Week 15', focus:'Security and product',
+     chs:['ch18s','ch19pm'],
+     evidence:'A risk register, a red-team report, an AI PRD, and unit economics.'},
+    {when:'Week 16', focus:'Architecture and delivery',
+     chs:['ch20d'],
+     evidence:'A technical decision pack, a set of ADRs, and a rollout and rollback plan.'},
+    {when:'Capstone', focus:'Build, break, measure, defend',
+     chs:['ch21cap'],
+     evidence:'The complete portfolio evidence pack.'}
+  ],
+
+  /* Appendix B — the master artifact index, as a tracker. Each row names the
+     chapter that produces it and the template that shapes it, because an
+     artifact list with neither is a list of nouns. */
+  artifacts: [
+    [1,'Seven foundation notebooks','One per foundation chapter — the smallest working thing, kept.','ch1','exp'],
+    [2,'Chunking experiment','The strategy, worked examples, a question set, and the measured effect on retrieval.','ch11r','exp'],
+    [3,'Retrieval benchmark','Lexical, dense and hybrid, scored per query rather than in aggregate.','ch11r','exp'],
+    [4,'Reranking experiment','Candidate recall, precision at k, added latency, and the decision you took.','ch11r','exp'],
+    [5,'Production-style RAG','Ingestion, metadata, permissions, provenance, retrieval, generation and a rollback path.','ch11r','adr'],
+    [6,'Tool-calling demo','The tool schema, argument validation, and what happens when the call fails.','ch12t','exp'],
+    [7,'Workflow demo','Deterministic control flow, with the state transitions written down.','ch12t','adr'],
+    [8,'Bounded agent demo','Tools, state, a step limit, a timeout, an approval point, and named stop reasons.','ch13a','adr'],
+    [9,'MCP mini-demo','Capability discovery and invocation, plus evidence of where the trust boundary sits.','ch14p','exp'],
+    [10,'Multimodal or voice pipeline','Extraction, provenance, and tests that only this modality can fail.','ch15mm','exp'],
+    [11,'Golden dataset','Versioned cases with the expected behaviour and the evidence each one rests on.','ch16e','evalcase'],
+    [12,'Error taxonomy','Labelled failures, grouped by root cause rather than by symptom.','ch16e','fail'],
+    [13,'Automated evaluation suite','Retrieval, generation, tool, schema, safety and regression checks in one run.','ch16e','evalcase'],
+    [14,'LLM-judge validation','How often the judge agrees with a human, and which way it is biased.','ch16e','exp'],
+    [15,'Observability and trace report','A trace schema, latency, cost, and a dashboard you would actually open.','ch17o','trace'],
+    [16,'AI PRD','Problem, scope, context, tools, failures, metrics, safety, rollout and rollback.','ch19pm','prd'],
+    [17,'Unit-economics model','Cost per call and cost per successful task, with scenarios.','ch19pm','gate'],
+    [18,'Security and red-team report','Attack cases, the controls, the evidence, and the risk you are accepting.','ch18s','risk'],
+    [19,'Architecture Decision Records','The major decisions, their alternatives, the evidence, and what would reopen them.','ch20d','adr'],
+    [20,'Production architecture','A system diagram, the trust boundaries, deployment and operations.','ch20d','adr'],
+    [21,'Final capstone repository','Reproducible code, tests, evaluation and documentation.','ch21cap','gate'],
+    [22,'Executive briefing deck','Five minutes on the outcome, twenty minutes of technical defence.','ch21cap','prd']
+  ],
+
+  /* Appendix C — the reusable templates. Fields marked 'long' get a text area
+     rather than a line, because those are the ones people actually write
+     paragraphs into. The placeholder is the teaching: a blank field labelled
+     "Residual risk" is a field most people leave blank. */
+  templates: [
+    {key:'exp', name:'Experiment Record', ch:'ch8f',
+     why:'Fill one every time you change one thing and measure. It is the difference between an experiment and an afternoon.',
+     fields:[
+      ['Experiment ID and date','exp-014 · 12 March'],
+      ['Hypothesis','What you think will happen, and why', 'long'],
+      ['Input set','Which cases you ran it on, and how many'],
+      ['Model and configuration','Model, version, temperature, anything else that could move the result'],
+      ['The one thing you changed','Exactly one. If it is two, this is two experiments'],
+      ['What you expected','Write the number down before you look', 'long'],
+      ['What actually happened','', 'long'],
+      ['Failures you saw','The interesting part', 'long'],
+      ['Metric before and after','0.62 → 0.71 on Recall@5'],
+      ['Conclusion','What you now believe that you did not believe this morning', 'long'],
+      ['Next experiment','The one this result makes obvious']]},
+
+    {key:'fail', name:'Failure Finding', ch:'ch16e',
+     why:'One per failure you find yourself. A pile of these is the most convincing thing you can bring to a review.',
+     fields:[
+      ['What broke','One sentence a stranger would understand'],
+      ['The exact input','Paste it, do not describe it', 'long'],
+      ['What it produced','', 'long'],
+      ['What it should have produced','', 'long'],
+      ['Evidence or trace','Request id, trace link, or the log line'],
+      ['Root cause — your first guess','', 'long'],
+      ['Root cause — confirmed','What you proved, not what you suspect', 'long'],
+      ['The fix','', 'long'],
+      ['Metric before and after','Proof the fix did something'],
+      ['Residual risk','What can still go wrong here', 'long'],
+      ['Still unsolved','The honest line that makes the rest credible', 'long']]},
+
+    {key:'adr', name:'Architecture Decision Record', ch:'ch20d',
+     why:'Write one when a decision would be expensive to reverse. Six months later this is the only record of why.',
+     fields:[
+      ['Decision','One sentence, in the past tense: "We chose …"'],
+      ['Context','What situation forced a decision at all', 'long'],
+      ['Requirements','What the answer had to satisfy', 'long'],
+      ['Options considered','Including the one you rejected quickly', 'long'],
+      ['Evidence','The measurement, not the opinion', 'long'],
+      ['Why this one','', 'long'],
+      ['Trade-offs accepted','What you gave up', 'long'],
+      ['Security implications','', 'long'],
+      ['Cost and latency implications','']
+      ,['Consequences','What this now forces or forbids downstream', 'long'],
+      ['What would reopen this','A number or an event, not "if things change"'],
+      ['Owner and date','']]},
+
+    {key:'prd', name:'AI PRD', ch:'ch19pm',
+     why:'The specification for a system whose behaviour is probabilistic. Most of these rows do not exist in an ordinary PRD, and they are the rows that decide whether it ships.',
+     fields:[
+      ['User and problem','Who, and what is going wrong for them today', 'long'],
+      ['Current baseline','What happens now, with a number attached'],
+      ['Why AI','What makes deterministic software the wrong tool here', 'long'],
+      ['Scope and non-goals','The non-goals are the load-bearing half', 'long'],
+      ['Inputs and data','Where it comes from, who owns it, how fresh it is', 'long'],
+      ['Context strategy','What goes into the model, and what gets evicted first', 'long'],
+      ['Model strategy','Which model, and what would make you change it'],
+      ['Retrieval strategy','Or "none", stated deliberately', 'long'],
+      ['Tools and actions','What it can do, not just what it can say', 'long'],
+      ['The human’s role','Where a person confirms, and where they cannot', 'long'],
+      ['Failure modes','Which are acceptable and which are fatal', 'long'],
+      ['Acceptance criteria','A metric, a test set and a tolerance. All three', 'long'],
+      ['Evaluation dataset','Which set, how many cases, who owns it'],
+      ['Safety and security','', 'long'],
+      ['Latency SLO','p95, not average'],
+      ['Cost ceiling','Per successful task, not per call'],
+      ['Instrumentation','What you will be able to see on a bad Tuesday', 'long'],
+      ['Rollout','', 'long'],
+      ['Rollback','What exactly you would turn off, and how fast', 'long'],
+      ['Ownership','Who is called when it breaks']]},
+
+    {key:'risk', name:'AI Risk Register', ch:'ch18s',
+     why:'One row per risk. The row that matters most is the last one, because a register without residual risk is a wish list.',
+     fields:[
+      ['Risk ID',''],
+      ['Asset or data at stake',''],
+      ['Threat','What someone could do, in plain words', 'long'],
+      ['Impact if it happens','', 'long'],
+      ['Likelihood','And what that estimate is based on'],
+      ['Control','What actually stops it — an enforced boundary, not a prompt', 'long'],
+      ['Evidence or test','How you know the control works'],
+      ['Owner',''],
+      ['Residual risk','What is still true after the control', 'long'],
+      ['Treatment','Accept, mitigate further, transfer, or avoid'],
+      ['Review date','']]},
+
+    {key:'vendor', name:'Model and Vendor Scorecard', ch:'ch20d',
+     why:'Fill one per option, then compare. Exit cost is on here deliberately — it is the row nobody scores until the price changes.',
+     fields:[
+      ['Option','Model or provider'],
+      ['Task quality','Your ten cases, not a leaderboard'],
+      ['Safety and data controls','What happens to your data', 'long'],
+      ['Latency','p95 at your payload size'],
+      ['Cost','Per successful task'],
+      ['Context and tool capability','', 'long'],
+      ['Region and compliance fit',''],
+      ['Support','What you get when it breaks at 2am'],
+      ['Interoperability','How much of your code assumes this vendor', 'long'],
+      ['Migration and exit cost','A number of weeks, honestly estimated'],
+      ['Benchmark evidence','Link to the run', 'long'],
+      ['Decision','']]},
+
+    {key:'evalcase', name:'Evaluation Case', ch:'ch16e',
+     why:'One row per case in your golden set. Write the expected behaviour before you see what the model does — afterwards is not evaluation.',
+     fields:[
+      ['Case ID',''],
+      ['Category','Happy path, edge, no-answer, adversarial…'],
+      ['Input','Exactly as a user would send it', 'long'],
+      ['Expected behaviour','', 'long'],
+      ['Evidence it should use','Chunk or document ids'],
+      ['Expected tool call','Or "none"'],
+      ['Safety expectation','What it must refuse or flag'],
+      ['Ground truth','And where it came from', 'long'],
+      ['Model output','', 'long'],
+      ['Automated checks','Which ones ran, and what they said'],
+      ['Human score',''],
+      ['Judge score',''],
+      ['Pass or fail',''],
+      ['Notes','', 'long']]},
+
+    {key:'trace', name:'Observability Trace Schema', ch:'ch17o',
+     why:'Not a form to fill by hand — a list of fields your system must emit. Design it here, then check a real trace against it.',
+     fields:[
+      ['Request ID',''],
+      ['Timestamp',''],
+      ['User or tenant policy context','Which permissions were in force'],
+      ['Model and version','Changes without a deploy'],
+      ['Prompt version','Also changes without a deploy'],
+      ['Retrieved chunk IDs','The field most often left out, and the one you will need'],
+      ['Tool calls','With arguments and results', 'long'],
+      ['Latency by stage','Not one total'],
+      ['Input and output tokens',''],
+      ['Cost estimate',''],
+      ['Final output','', 'long'],
+      ['Evaluation result','If anything scored it'],
+      ['Error or status',''],
+      ['Trace links','Upstream and downstream']]},
+
+    {key:'gate', name:'Release Gate', ch:'ch16e',
+     why:'Agree these numbers before the release meeting. A gate negotiated during the meeting is not a gate.',
+     fields:[
+      ['Retrieval threshold','Recall@k ≥ …'],
+      ['Generation or task-success threshold',''],
+      ['Safety threshold',''],
+      ['Tool and schema threshold','Valid-call rate'],
+      ['p95 latency limit',''],
+      ['Cost per successful task ceiling',''],
+      ['Regression tolerance','How much worse a single case may get'],
+      ['Known risks accepted','Named, with an owner', 'long'],
+      ['Rollback trigger','The number that means turn it off', 'long'],
+      ['Approver','']]}
+  ],
+
+  /* Appendix D — the question bank. The fifteen in `review` are the short list
+     for a live review; these thirty-one are the full set to study against. */
+  questions: [
+    'What user problem are we solving?',
+    'Why AI instead of ordinary deterministic software?',
+    'What is the simplest architecture that could work?',
+    'What does the model already know, and what must be supplied or retrieved?',
+    'What exactly is in the model’s context?',
+    'What is the ground truth?',
+    'How do we handle the cases where there is no answer?',
+    'Which retrieval failures matter most?',
+    'Why this chunking strategy and not another?',
+    'Why hybrid search?',
+    'Why reranking?',
+    'What data can this particular user access?',
+    'How are those permissions enforced, and where?',
+    'Which tools can the AI call?',
+    'What side effects can each tool cause?',
+    'Where is human approval required?',
+    'Why a workflow instead of an agent?',
+    'Why an agent instead of a workflow?',
+    'What stops an agent from looping forever?',
+    'How are prompts, models, indexes and tools versioned?',
+    'How do we reproduce a bad result from last Tuesday?',
+    'How will quality be measured?',
+    'How will the evaluation set grow as we learn?',
+    'How do we know the LLM judge can be trusted?',
+    'What happens at ten times the traffic?',
+    'What is the cost per successful task?',
+    'What is the rollback plan?',
+    'What is the plan if we have to leave this provider?',
+    'How does the system behave under prompt injection?',
+    'What happens when the model or provider is unavailable?',
+    'What evidence justifies releasing this?'
+  ],
+
+  /* The final exit test. Thirteen things, each of which is a demonstration
+     rather than a topic — so they are checkboxes, like the worksheet. */
+  exit: [
+    'Explain the model, API and context lifecycle end to end.',
+    'Draw a simple architecture and point at the trust boundaries.',
+    'Build a small working proof of the core behaviour.',
+    'Define an evaluation set with ground truth behind it.',
+    'Name the retrieval, generation, tool and security failure modes.',
+    'Choose between a direct call, RAG, a workflow and an agent — on evidence.',
+    'Define tool contracts, permissions, approvals and stop conditions.',
+    'Instrument latency, tokens, cost and traces.',
+    'Write AI acceptance criteria, and the PRD around them.',
+    'Estimate cost per successful task and explain what drives it.',
+    'Produce a security risk register with red-team evidence.',
+    'Define release, rollback and vendor-exit criteria.',
+    'Explain the trade-offs to an engineer and to a business stakeholder, differently.'
+  ],
+
+  exitNote: 'The final artifact is not a certificate. It is your repository plus the evidence pack: what you built, what broke, what you measured, what you changed, and what is still unresolved.'
+});
 
 /* Rules and pacing */
 window.RULES = [
