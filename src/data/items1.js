@@ -14,7 +14,7 @@ window.ITEMS1 = [
  'The working rule is ~1 token ≈ ¾ of an English word, so words × 1.33. 300 × 1.33 ≈ 400 — careful: the question asks tokens for 300 words, which is ~400. The trap answer is 225 (dividing instead of multiplying).'],
 ['I002','S01',2,'num','A RAG query sends 1,800 input tokens and produces 240 output tokens. Input is ₹0.20 per million tokens, output ₹0.60 per million. What is the cost of one query, in paise (1 rupee = 100 paise)?',
  ['paise','(1800/1e6)×0.20 + (240/1e6)×0.60, converted to paise'],[0.0504,15],
- '(1800/1,000,000 × 0.20) + (240/1,000,000 × 0.60) = 0.00036 + 0.000144 = ₹0.000504 ≈ 0.05 paise. The point is not the arithmetic; it is that per-query costs look negligible until multiplied by volume and the four multipliers.'],
+ '(1800/1,000,000 × 0.20) + (240/1,000,000 × 0.60) = 0.00036 + 0.000144 = ₹0.000504 ≈ 0.05 paise. The arithmetic is easy. The lesson is that per-query costs look negligible until you multiply by volume and the four multipliers.'],
 ['I003','S01',3,'multi','A business case quotes ₹0.30 per query using input tokens × rate + output tokens × rate. Which of these would make the real bill higher than that figure?',
  ['Raising k from 3 to 8','A 12% schema-validation retry rate','A 4-step agent loop','Reasoning enabled by default','Prompt caching with a stable prefix'],[0,1,2,3],
  'k, retries, agent steps and reasoning tokens are the four multipliers, and they compound. Caching is the one item that moves cost *down*.'],
@@ -170,7 +170,7 @@ window.ITEMS1 = [
 /* ================= S13 Judge design ================= */
 ['I048','S13',2,'mcq','Before trusting an LLM judge, the one non-negotiable step is:',
  ['Using the largest available model','Measuring its agreement with human labels on a representative set','Running it at temperature 0','Averaging three judges'],1,
- 'A judge you have not evaluated is not a measurement instrument. It is a second opinion from the same species of machine that produced the answer.'],
+ 'Check a judge against human labels before you use it to measure anything. Unchecked, it is only a second opinion from the same kind of system that produced the answer.'],
 ['I049','S13',3,'mcq','You pad a correct answer with hedging and structure, changing no claims. The judge\'s score rises. This is:',
  ['Correct behaviour — clearer answers are better','Verbosity bias','Position bias','Self-preference bias'],1,
  'Longer answers score higher all else equal. It invalidates a great many published evaluation numbers, and you can reproduce it in five minutes.'],

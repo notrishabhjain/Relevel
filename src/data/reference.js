@@ -53,10 +53,10 @@ window.SETUP = {
 window.GLOSSARY = [
   /* Track A and B terms carry the lettered chapter where they are taught. */
   ['Artifact','Something you made that another person can open and check: a document, a spreadsheet, a notebook, a prototype or a dashboard. In this book, progress is measured in artifacts, not in pages read.','A1'],
-  ['Mastery gate','The check at the end of every chapter: score each artifact 0–3, and move on only when all of them score at least 2 and no safety, privacy or evidence item scores 0.','A1'],
+  ['Mastery gate','The check at the end of every chapter. Score each artifact 0–3. Move on only when all score at least 2 and no safety, privacy or evidence item scores 0.','A1'],
   ['Decision log','A running file where you record each decision with its date, the evidence behind it, and what would make you change it.','A1'],
   ['B2B / B2C','Business-to-business and business-to-consumer. In B2B you sell to companies, and the people who pay, use and approve the product are often different people. In B2C you sell to individuals, who usually pay and use it themselves.','A2'],
-  ['Product sense','The habit of checking an idea against four risks before building it: will people want it (value), can they use it (usability), can we build it (feasibility), and does it work for the business (viability).','A2'],
+  ['Product sense','The habit of checking an idea against four risks before building it. Will people want it (value)? Can they use it (usability)? Can we build it (feasibility)? Does it work for the business (viability)?','A2'],
   ['Jobs to be done','The idea that people “hire” a product to make progress in a particular situation. Written as: “When [situation], I want to [motivation], so I can [outcome].”','A3'],
   ['Leading question','An interview question that suggests the answer the interviewer wants, such as “Isn’t it frustrating when…?” People tend to agree, so the answer is weak evidence.','A3'],
   ['Persona','A short description of a type of user, their goals, workflow and pains. Useful only when every line traces back to real interviews.','A3'],
@@ -207,7 +207,7 @@ window.GLOSSARY = [
      reader who is new to the field stalls on them. */
   ['App','A program someone uses. The thing with buttons. It is the app that talks to the model — the model itself has no interface, no memory and no idea a person exists.',0],
   ['API','A way for one program to ask another program to do something, over the internet. You never see it. When this book says your app "calls the API", it means your app sent a message to the model provider’s computers and waited for a reply.',0],
-  ['JSON','A plain-text way of writing structured information so a program can read it: labels and values inside curly braces, like {"role": "user", "content": "hello"}. It is not code and not a database. It is the format the envelope is written in.',0],
+  ['JSON','A plain-text way of writing structured information so a program can read it: labels and values inside curly braces, like {"role": "user", "content": "hello"}. It is a data format, not code or a database. API requests and responses are written in it.',0],
   ['Endpoint','The specific web address a program sends its request to. Different endpoints do different jobs — one for chat, one for embeddings.',0],
   ['Payload','Whatever is inside the request or reply. The contents of the envelope, as opposed to the envelope itself.',0],
   ['Parameter','A setting you pass with a request — temperature, maximum length, which model. Confusingly, the same word also means the billions of internal numbers a model was trained with. In this book it means the setting unless it says otherwise.',0],
@@ -418,19 +418,19 @@ window.REDMARKS = [
    already stored under 1–5 moves. */
 window.PARTS = [
   {n:6, label:'A', track:true, title:'Product foundations',
-    blurb:'How to learn with this book, then the product-management ground the rest stands on: product sense, talking to users, researching a market, strategy and prioritisation, roadmaps and alignment, specs and prototypes — and the ideas behind generative AI.'},
-  {n:1, label:'I', title:'The basics', blurb:'A real result before you install anything. Then what actually happens when your app asks an AI something, how to write a prompt that behaves and prove it does, which shape a task really is — and how documents get cut up, found again, and measured.'},
-  {n:2, label:'II', title:'What real systems add', blurb:'Getting answers in a fixed shape, letting it act, the size limit, paying it to think first, what the user does while waiting, better search — and the attack that has no fix.'},
-  {n:3, label:'III', title:'Measuring it, costing it, shipping it', blurb:'Checking quality when there is too much of it to read, what it really costs, documents that are pictures, what you are allowed to send at all, the paperwork, and the spec.'},
+    blurb:'How to use this course, then the product management basics the rest builds on: product sense, user interviews, market research, strategy and prioritisation, roadmaps and OKRs, specs and prototypes, and how generative AI models work.'},
+  {n:1, label:'I', title:'The basics', blurb:'Your first API call, tokens and cost, system prompts and temperature, writing and testing prompts, the five task types, and a complete RAG system: chunking, keyword and embedding search, and evaluation.'},
+  {n:2, label:'II', title:'What real systems add', blurb:'Structured output and schema design, tool calling and agents, long context and context engineering, reasoning models, latency, better retrieval, and prompt injection.'},
+  {n:3, label:'III', title:'Measuring it, costing it, shipping it', blurb:'Evaluation at scale with code checks and LLM judges, error analysis, cost modelling, document extraction, data handling, governance, and the AI PRD.'},
   {n:4, label:'IV', title:'The decisions that stay yours',
-    blurb:'Whether to build it or buy it, what to change when it is not good enough, what the user sees when it is wrong — and how to prove any of it helped. None of these is an engineering decision.'},
+    blurb:'Build or buy, whether to fine-tune, designing for wrong answers, and measuring business impact with a pilot. These are product decisions, not engineering ones.'},
   /* The v4.1 workbook's chapters 8–21, appended rather than merged. Where a
      chapter here revisits ground from Parts I–IV it starts from that result
      instead of re-teaching it — the depth pass, not a second first pass. */
   {n:5, label:'V', title:'The applied track — production depth',
-    blurb:'The engineering floor under all of it, then model choice on evidence, context as a designed budget, retrieval as a real system, tools and agents with the steering wheel kept, a protocol boundary, input that is not text, evaluation as a release gate, running it in production, security you can prove, the specification, the architecture — and one capstone system you can defend.'},
+    blurb:'Software basics, choosing a model, context engineering, production RAG, tools and workflows, agents, MCP, multimodal input, evaluation and release gates, observability, security, AI product specs, production architecture, and a capstone system you can defend.'},
   {n:7, label:'B', track:true, title:'Business, growth and shipping',
-    blurb:'Pricing and unit economics, growth and onboarding, product analytics and experiments, the tools an applied AI PM actually uses, the harness around a model, shipping to real users and learning from them, getting hired — and one capstone that goes from a real problem to a live product with evidence.'}
+    blurb:'Pricing and unit economics, growth and onboarding, product analytics and experiments, the AI PM toolchain, harness engineering, shipping to real users, career readiness, and an integrated capstone from real problem to live product.'}
 ];
 
 /* ---------- The v4.1 appendices ----------
@@ -794,7 +794,7 @@ Object.assign(window.APPENDIX, {
     'Explain the trade-offs to an engineer and to a business stakeholder, differently.'
   ],
 
-  exitNote: 'The final artifact is not a certificate. It is your repository plus the evidence pack: what you built, what broke, what you measured, what you changed, and what is still unresolved.'
+  exitNote: 'The final artifact is your repository plus the evidence pack: what you built, what broke, what you measured, what you changed, and what is still unresolved.'
 });
 
 /* Rules and pacing */

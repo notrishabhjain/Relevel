@@ -21,39 +21,50 @@
 window.PART6 = [
 {
   id:'ch0', num:0, part:6, minutes:10, labs:[],
-  title:'Start here',
-  concept:'Ten minutes. Nothing to install, nothing to sign up for, and no prior knowledge assumed.',
+  title:'Start here: how this course works',
+  concept:'Ten minutes on how to use this site. Nothing to install, no account needed, and no prior knowledge assumed.',
   takeaway:[
-    'Tell the difference between the app and the model — which is most of what lets you hold a design conversation.',
-    'Know that you can tap any underlined word to find out what it means, without leaving the page.'
+    'Tell the difference between the app and the model.',
+    'Tap any underlined word to see what it means, without leaving the page.',
+    'Plan what you will do on a day you do not feel like studying.'
   ],
   story:[
-    ['p','Most people who give up on a technical subject do not give up because it was hard. They give up because a word went past on page three that everyone else seemed to understand, and rather than stop, they kept reading — understanding a little less each paragraph until the whole thing felt like it was written for somebody else.'],
-    ['key','If that has happened to you before, it was the writing’s fault, not yours. Two things here are built to stop it.'],
-    ['p','<strong>Every word is tappable.</strong> The first time a term appears that means something specific, it gets a faint dotted underline. Tap it, and a plain explanation appears right there — you never leave the page or lose your place.'],
-    ['p','Try it on this sentence, which contains four of them: an <strong>app</strong> sends a <strong>prompt</strong> to a <strong>model</strong> and is billed in <strong>tokens</strong>. Tap each one now, before reading on. Some will say <em>you build this in Chapter 9</em> — that means the course has named it early on purpose, and the one-line version is all you need.'],
-    ['try',{id:'ch0-tap',mins:2,min:12,rows:2,
-      task:'Now write it back, roughly. What is the difference between the <em>app</em> and the <em>model</em>? Two lines. Getting it half-wrong here costs nothing — writing before being told is the whole point.',
-      ph:'The app is … the model is …',
-      after:'The model is a program on somebody else’s computers that takes text and returns text. No buttons, no memory, no idea a person exists. The app is your product — the screens and the code that decide what to send it and what to do with the reply. Everything a user experiences as “the AI” is really your app arranging things around a model that does one narrow thing. Holding those two apart is most of what separates a product manager who can hold a design conversation from one who cannot.'}],
-
-    ['p','<strong>The second thing: this course stops and asks.</strong> Every few paragraphs there is a box like the one you just used. Some ask you to guess before you are told. Some ask you to write something. Some are real questions that count.'],
-    ['p','They exist because reading and understanding feel identical from the inside, and only one of them is real. And getting one wrong is worth more than getting it right — a wrong answer you were confident about has found a belief you did not know was false, which is the most useful thing that can happen in a study session. Nobody sees any of it. There is no grade and no pass mark.'],
-
-    ['p','That is all you need to use this. A few practical notes, and then Chapter 1.'],
-    ['l',[
-      '<strong>Still nothing to install.</strong> Everything runs in your browser — the tools built into each chapter, and a free Google notebook for the chapters that use code. Setting that notebook up takes about twenty minutes, once, and the next page walks you through every click.',
-      '<strong>The doing is not optional.</strong> Each chapter alternates: an idea, then the thing that proves it, marked <em>Do this</em>. Those beats are where the learning actually happens — skip them and you are left with the feeling of having understood, which is the one thing this course is built to stop.',
-      '<strong>One chapter per sitting.</strong> Most run twenty to forty-five minutes, and every chapter says which before you start — so if one takes longer than the number, that is the chapter being long, not you being slow. Stopping while you still have energy is what brings you back tomorrow; a huge first week followed by nothing is the usual way this ends.',
-      '<strong>Your progress follows you.</strong> Signed in, everything saves against your account, so you can read on your phone and carry on at your desk.'
-    ]],
-    ['key','You will hit a chapter that feels too hard. That is scheduled, not exceptional. When it happens, the move is neither to push through nor to stop — it is to take the smallest step available and let the day end there. Every question has a “Stuck?” button that shows you the answer without counting it against you.'],
-    ['try',{id:'ch0-quit',mins:3,min:40,rows:3,
-      task:'Decide it now, while it is easy to think clearly. What will you do on the evening you do not want to open this? What is the smallest thing you would still be willing to do — and what will you tell yourself about the day you skipped?',
-      ph:'When I do not want to open this, I will …',
-      after:'The plans that survive a bad evening share three things. The smallest step is tiny — one question, two minutes, not a chapter. You know where to resume without having to decide, because deciding is the expensive part when you are tired. And the story about the missed day is settled in advance: a missed day is a missed day. It is not evidence of anything and it does not mean starting again. Everybody lapses. The people who finish are the ones who had already decided that lapsing was allowed.'}],
-    ['c','Do this before Chapter 1','Chapter 1 asks you to make a real call to a real model within its first few minutes. Set the notebook and the key up now — <a href="#/setup">Set up Colab + API key</a> — so that when you get there you are pasting one line, not signing up for things.'],
-    ['p','That is the whole chapter. Nothing here needs remembering. Set the notebook up, and then Chapter 1 starts properly.']
+    ['p','This course is built for people who have not studied AI before. Many people give up on a technical subject because an unfamiliar word goes past early on and they keep reading without it. This site has two features to prevent that.'],
+    ['h','Tap any underlined word'],
+    ['p','The first time a technical term appears in a chapter, it has a dotted underline. Tap it to see a short explanation in place. You do not leave the page or lose your position.'],
+    ['p','Try it on this sentence, which has four of them: an <strong>app</strong> sends a <strong>prompt</strong> to a <strong>model</strong> and is billed in <strong>tokens</strong>. Tap each one now. Some explanations say <em>you build this in Chapter 9</em>. That means the term is introduced early on purpose, and the one-line version is all you need for now.'],
+    [
+      'try',
+      {id:'ch0-tap',
+       mins:2,
+       min:12,
+       rows:2,
+       task:'Write it back in your own words. What is the difference between the <em>app</em> and the <em>model</em>? Two lines. It does not matter if you get it partly wrong; writing before reading the answer is the point.',
+       ph:'The app is … the model is …',
+       after:'The model is a program on someone else’s computers that takes text in and returns text. It has no buttons, no memory and no idea a person is involved. The app is your product: the screens and code that decide what to send the model and what to do with the reply. What users experience as “the AI” is mostly your app arranging things around a model that does one narrow job. Keeping these two apart is the basis of most design discussions about AI features.'}
+    ],
+    ['h','The course asks you questions'],
+    ['p','Every few paragraphs there is a box like the one above. Some ask you to predict before you are told. Some ask you to write something. Some are graded questions.'],
+    ['p','They are there because reading and understanding feel the same, but only understanding lasts. A wrong answer you were confident about is useful: it shows you a belief that was not true. Nobody else sees your answers, and there is no pass mark.'],
+    ['h','How to use the course'],
+    [
+      'l',
+      ['<strong>You do not need to install anything.</strong> Everything runs in your browser: the tools built into each chapter, and a free Google notebook for chapters with code. Setting up the notebook takes about twenty minutes, once, and the setup page walks you through every step.','<strong>Do the hands-on steps.</strong> Each chapter alternates between an idea and a step that shows it, marked <em>Do this</em> or <em>Prove it now</em>. Most of the learning happens in those steps.','<strong>Do one chapter per sitting.</strong> Every chapter shows its time estimate. If one takes longer, that is the chapter, not you. Stopping while you still have energy makes it easier to come back tomorrow.','<strong>Your progress is saved.</strong> When you sign in, your progress is stored in your account, so you can read on your phone and continue on your computer.']
+    ],
+    ['h','Plan for the hard days'],
+    ['key','Some chapters will feel too hard. That is normal. When it happens, do the smallest step you can and stop for the day. Every question has a “Stuck?” button that shows the answer without counting against you.'],
+    [
+      'try',
+      {id:'ch0-quit',
+       mins:3,
+       min:40,
+       rows:3,
+       task:'Decide now, while it is easy. What will you do on an evening when you do not want to open this? What is the smallest step you would still take, and what will you tell yourself about a day you skip?',
+       ph:'When I do not want to open this, I will …',
+       after:'Plans that work have three things in common. The smallest step is tiny: one question, two minutes, not a chapter. You know where to restart without deciding, because deciding is hard when you are tired. And you have already decided what a missed day means: nothing. It does not mean starting again. Everyone misses days; the people who finish expected that.'}
+    ],
+    ['c','Before you start','Chapter 1 asks you to call a real model in its first few minutes. Set up the notebook and API key now so you are ready: <a href="#/setup">Set up Colab and your API key</a>.'],
+    ['p','That is all for this chapter. Set up the notebook, then start Track A with Chapter A1.']
   ]
 },
 

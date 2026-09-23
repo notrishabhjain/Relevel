@@ -40,7 +40,7 @@ window.PART1 = [
        short:true,
        ph:'Fewer, about the same, or more?',
        ask:'Predict: if you wrote the same text in an Indian language instead of English, would it split into fewer tokens, about the same, or more?',
-       reveal:'There is no fixed multiplier. The count depends on the tokenizer, the language, the exact text and the model. Try the same meaning in English and in the Indian language you use, and record both counts. Use that measurement instead of a rule of thumb.',
+       reveal:'There is no fixed multiplier. Token counts depend on the tokenizer, the language, the exact text and the model. Try the same meaning in English and in the Indian language you use, and record both counts. Use that measurement instead of a rule of thumb.',
        then:'The difference can change your costs. Your result only tells you what this tokenizer did with your text, so repeat the test with the model you plan to use before you estimate the cost of a multilingual feature.'}
     ],
     ['h','Experiment 2: The model only sees what you send'],
@@ -209,7 +209,7 @@ window.PART1 = [
     ]],
     ['h','How chat apps create memory'],
     ['p','So how does a chat assistant seem to remember what you said five messages ago? The app sends it again. The model only sees the messages in the current call.'],
-    ['p','An app can do this in several ways: send the full history, send a summary, look up saved facts about the user, or keep the task state somewhere else. This next step uses the simplest one: sending the history again.'],
+    ['p','An app can do this in several ways: send the full history, send a summary, look up persistent user memory, or store task state externally. This next step uses the simplest one: sending the history again.'],
     ['do','Build a simple chat memory',[
       ['code','r3 = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {"role": "user",\n         "content": "My name is Sam. Remember it."},\n        {"role": "assistant",\n         "content": r1.choices[0].message.content},\n        {"role": "user",\n         "content": "What is my name?"}\n    ]\n)\nprint(r3.choices[0].message.content)\nprint("tokens read now:", r3.usage.prompt_tokens)'],
       ['x','Now it knows your name is Sam, because this call includes the earlier message. <code>prompt_tokens</code> is higher, because you sent the history again. You have built the most common memory pattern and measured its cost. Production apps may use summaries, saved facts or task state instead.'],
@@ -1038,7 +1038,7 @@ window.PART1 = [
         ['k','correct-card hits (of 9)','relevant / total fetched'],
         [['1','… / 9','… / 9'],['3','… / 9','… / 27'],['8','… / 9','… / 72']]
       ],
-      ['x','A higher k often finds more correct cards but returns a lower share of relevant ones. Measure both on your documents. More chunks also means more tokens per request; the actual cost depends on chunk size, prompt length, output length, caching and pricing. Record real token counts and latency before deciding.']
+      ['x','A higher k often finds more correct cards but returns a lower share of relevant ones. Measure both on your documents. More chunks also means more tokens per request; the actual cost also depends on chunk sizes, prompt length, output length, caching and pricing. Record real token counts and latency before deciding.']
     ]],
     ['lab','prdial'],
     ['q','I044','I045'],
@@ -1118,7 +1118,7 @@ window.PART1 = [
       ['code','def rag_answer(question, k=3):\n    q = embed([question], "query")[0]          # Ch 5\n    scores = [cosine(q, cv) for cv in chunk_vecs]\n    ranked = sorted(range(len(chunks)),\n                    key=lambda i: scores[i], reverse=True)\n    context = "\\n\\n".join(              # Ch 3 and 6 — the k dial\n        chunks[i] for i in ranked[:k])\n    resp = client.chat.completions.create(     # Ch 1\n        model="meta/llama-3.1-8b-instruct",\n        temperature=0,                         # Ch 2\n        messages=[\n          {"role": "system", "content":         # Ch 2 briefing\n            "Answer ONLY from the provided context. If the "\n            "answer is not in the context, reply exactly: "\n            "\'Not found in the provided documents.\' "\n            "Never invent details."},\n          {"role": "user", "content":\n            f"Context:\\n{context}\\n\\nQuestion: {question}"}\n        ]\n    )\n    return resp.choices[0].message.content'],
       ['p','Run it three times, with three different kinds of question:'],
       ['code','print(rag_answer("something your document CAN answer"))\nprint(rag_answer("your Chapter 4 synonym assassin"))\nprint(rag_answer("what does this say about cricket?"))'],
-      ['x','Check the first answer against your source document. The second tests whether meaning search found evidence that keyword search missed. The third tests what happens when there is no answer. A refusal is not guaranteed, so record what actually happens. Retrieval plus instructions reduce unsupported answers; they do not eliminate them.'],
+      ['x','Check the first answer against your source document. The second tests whether meaning search found evidence that keyword search missed. The third tests what happens when there is no answer. A refusal is not guaranteed, so record what actually happens. Retrieval plus instructions can reduce unsupported answers, not eliminate them.'],
       ['key','Treat the third run as a test result, not proof of safety. Keep that question in your test set, and rerun it whenever the model, prompt, retrieval or documents change.'],
       [
         'snag',

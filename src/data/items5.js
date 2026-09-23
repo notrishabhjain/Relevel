@@ -121,7 +121,7 @@ window.ITEMS5 = [
   'Prompts and configuration kept under version control',
   'A strong preference among the team for the current provider'],
  [0,1,2],
- 'The first three are the exit plan, whether or not anyone called it that. An evaluation set is the thing that turns "can we switch?" from a debate into a week of work — which is why the usual finding is that the exit plan and the evaluation set are the same artifact.'],
+ 'The first three are the exit plan, whether or not anyone called it that. An evaluation set turns "can we switch?" from a debate into a week of work. So the exit plan and the evaluation set usually turn out to be the same artifact.'],
 
 ['I414','S30',1,'mcq',
  'What makes a capstone credible in a design review?',
@@ -130,6 +130,6 @@ window.ITEMS5 = [
   'Failures you found yourself, with before-and-after numbers and stated residual risk',
   'Coverage of every topic in the book'],
  2,
- 'Anyone can demonstrate the happy path. The evidence that you understand a system is that you know where it breaks, can show the measurement that proves you fixed some of it, and can say plainly what you did not solve.']
+ 'Anyone can demonstrate the happy path. You show you understand a system by knowing where it breaks. Show the measurement that proves you fixed some of it, and say plainly what you did not solve.']
 
 ];

@@ -654,9 +654,9 @@ function renderChapter(c){
   if((c.needs||[]).length||alsoRefs.length){
     const nd=h('section',{class:'needs'});
     nd.appendChild(h('div',{class:'needshead'},[
-      h('span',{class:'cplbl',text:'This chapter stands on'}),
+      h('span',{class:'cplbl',text:T('Prerequisites')}),
       h('span',{class:'dim',style:'font-size:.78rem',
-        text:'if any of these are blank, go back first — that is the fast route, not the slow one'})]));
+        text:T('If any of these are unfamiliar, review them first. It saves time.')})]));
     if((c.needs||[]).length)
       nd.appendChild(h('ul',{class:'needlist'},c.needs.map(([what,why,ch])=>
         h('li',{},[
@@ -668,13 +668,13 @@ function renderChapter(c){
             : h('a',{class:'chip',href:chHref(ch)||'#/map',text:'Chapter '+ch+' →'})]))));
     if(alsoRefs.length){
       const row=h('div',{class:'alsoref'},[
-        h('span',{class:'needwhy',text:'It also refers back to '})]);
+        h('span',{class:'needwhy',text:T('It also refers back to')+' '})]);
       alsoRefs.forEach((n,i)=>{
         row.appendChild(h('a',{href:chHref(n)||'#/map',text:'Chapter '+n}));
         if(i<alsoRefs.length-2) row.appendChild(document.createTextNode(', '));
         else if(i===alsoRefs.length-2) row.appendChild(document.createTextNode(' and '));
       });
-      row.appendChild(document.createTextNode('. Any of those a blank? Open it in a second tab rather than pushing on.'));
+      row.appendChild(document.createTextNode('. '+T('If any are unfamiliar, open them in another tab.')));
       nd.appendChild(row);
     }
     w.appendChild(nd);
@@ -707,7 +707,7 @@ function renderChapter(c){
      headings to navigate between — there is only one place to be. */
   const plain=!((c.words||[]).length||(c.wrong||[]).length||(c.homework||[]).length
     ||(c.check||[]).length);
-  if(!plain) story.appendChild(sectionHead(c.num+'.'+n++,'The Story'));
+  if(!plain) story.appendChild(sectionHead(c.num+'.'+n++,'Walkthrough'));
   const seenTerms=new Set();
   story.appendChild(markTerms(h('div',{class:'prose'},[blocks(c.story)]),seenTerms,c.num));
   w.appendChild(story);
@@ -715,7 +715,7 @@ function renderChapter(c){
   // Words
   if((c.words||[]).length){
   const words=h('section',{class:'part',id:'words'});
-  words.appendChild(sectionHead(c.num+'.'+n++,'Words You Now Own'));
+  words.appendChild(sectionHead(c.num+'.'+n++,'Key terms'));
   words.appendChild(h('dl',{class:'words noterm'},c.words.map(([t,d])=>
     h('div',{class:'word'},[h('dt',{text:t}),h('dd',{html:d})]))));
   w.appendChild(words);
@@ -767,7 +767,7 @@ function renderChapter(c){
   // If something goes wrong
   if(c.wrong&&c.wrong.length){
     const sw=h('section',{class:'part',id:'wrong'});
-    sw.appendChild(sectionHead(c.num+'.'+n++,'If Something Goes Wrong'));
+    sw.appendChild(sectionHead(c.num+'.'+n++,'Troubleshooting'));
     const t=h('table');
     t.appendChild(h('thead',{},h('tr',{},[h('th',{text:'What you see'}),
       h('th',{text:'Most likely cause'}),h('th',{text:'Fix'})])));
@@ -790,7 +790,7 @@ function renderChapter(c){
   // Check yourself
   if((c.check||[]).length){
   const cy=h('section',{class:'part',id:'check'});
-  cy.appendChild(sectionHead(c.num+'.'+n++,'Check Yourself'));
+  cy.appendChild(sectionHead(c.num+'.'+n++,'Check your understanding'));
   cy.appendChild(h('p',{class:'dim',style:'font-size:.87rem;margin:0 0 1rem',
     text:'Answer aloud before opening. Grade yourself honestly — this is private and nothing is reported anywhere.'}));
   c.check.forEach((qa,i)=>{
@@ -814,14 +814,14 @@ function renderChapter(c){
      chapter that produces the thing, with the template that shapes it one tap
      away. Chapters that produce nothing get nothing. */
   const ev=evidenceBlock(c);
-  if(ev){ ev.insertBefore(sectionHead(c.num+'.'+n++,'What this chapter leaves you holding'),ev.firstChild);
+  if(ev){ ev.insertBefore(sectionHead(c.num+'.'+n++,'What this chapter produces'),ev.firstChild);
     w.appendChild(ev); }
 
   // Close the sitting
   const cs=h('section',{class:'part',id:'close'});
   if(!plain){
-    cs.appendChild(sectionHead(c.num+'.'+n++,'Close the Sitting'));
-    cs.appendChild(h('p',{class:'prose',html:'Three rough lines, then stop — even if you feel like continuing. <em>Especially</em> if you feel like continuing. That leftover energy is what brings you back next sitting.'}));
+    cs.appendChild(sectionHead(c.num+'.'+n++,'Close the sitting'));
+    cs.appendChild(h('p',{class:'prose',html:T('Write three short lines, then stop, even if you want to keep going. Stopping with energy left makes it easier to come back next time.')}));
     cs.appendChild(notebookBlock(c,'close','Three lines: what confused me / what clicked / what to try next',
       'Three minutes. Then close it.'));
   }
@@ -989,10 +989,10 @@ function pageHome(){
     h('div',{},[h('span',{class:'l',text:'Cost'}),h('span',{class:'v',text:'None — free tiers throughout'})])]));
 
   w.appendChild(h('div',{class:'prose',style:'max-width:66ch'},[blocks([
-    ['p','This book has one purpose: getting you to the point where you can hold a credible, evidence-based conversation about AI systems — not by reading about them, but by building one yourself, then breaking it on purpose and writing down what happened.'],
-    ['p','Parts I and II build and then interrogate a document-answering system. Part III is the half most curricula omit entirely: what it costs, how you prove it works, what paperwork it ships with, and what happens when your provider retires the model underneath you. Part IV is the decisions that stay yours whoever builds it.'],
-    ['p','Part V is a separate track, added later and deeper: the same subjects taken to the depth you would need to defend a production system in a design review. Start it once Part I has actually been done rather than read — it assumes the system you built there exists.'],
-    ['key','Vocabulary acquired before experience becomes jargon — words you can recognize but cannot defend. Vocabulary acquired after experience becomes testimony.']
+    ['p','This course teaches you to build, test and discuss AI products using evidence. You build a system yourself, break it on purpose, and write down what happened.'],
+    ['p','Track A covers product management basics and how generative AI models work. Parts I and II build and then test a system that answers questions from documents. Part III covers evaluation, cost, governance and specs. Part IV covers the product decisions that stay yours.'],
+    ['p','Part V takes the same topics to production depth. Start it after you have done Part I, because it builds on that system. Track B then takes your product to real users, a real price and a real job.'],
+    ['key','Learn each term after you have seen the thing it names. A term learned first is easy to repeat but hard to defend.']
   ])]));
 
   window.PARTS.forEach(p=>{
@@ -1959,7 +1959,7 @@ function pageEvidence(){
   w.appendChild(h('header',{class:'phead'},[
     h('div',{class:'eyebrow'},[h('span',{text:T('Appendices A and B')})]),
     h('h1',{text:T('The evidence pack')}),
-    h('p',{html:T('What you finish this course holding is not a certificate. It is twenty-two things you built, broke and measured — and the honest note about what is still unsolved. This page is the running list, the sixteen-week map it sits on, and the thirteen things you should be able to do at the end.')})]));
+    h('p',{html:T('You finish this course with evidence: twenty-two things you built, broke and measured, plus an honest note about what is still unsolved. This page holds the running list, the sixteen-week map, and the thirteen things you should be able to do at the end.')})]));
 
   const artDone=()=>arts.filter(a=>(S.arts[a[0]]||{}).s===2).length;
   const artWip=()=>arts.filter(a=>(S.arts[a[0]]||{}).s===1).length;

@@ -37,7 +37,7 @@ window.ITEMS6 = [
   'Your own engineering team',
   'The AI model provider'],
  1,
- 'In B2B, the people who use a product are often not the people who approve it. Security, IT, legal and procurement can all say no, and for an AI tool the first question is usually where company data is sent and whether it is stored or used for training. Plan for that review from the start.'],
+ 'In B2B, the people who use a product are often not the people who approve it. Security, IT, legal and procurement can all say no. For an AI tool, their first question is usually where company data is sent, and whether it is stored or used for training. Plan for that review from the start.'],
 
 ['I505','S33',2,'multi',
  'Which of these are feasibility risks for an AI feature?',
