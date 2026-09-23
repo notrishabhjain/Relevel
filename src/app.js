@@ -12,6 +12,11 @@ const esc=s=>String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;',
 /* Parts are data, so the numeral has to be computed rather than looked up in a
    list of three. */
 const ROMAN=n=>['','I','II','III','IV','V','VI','VII','VIII','IX','X'][n]||String(n);
+/* A part is looked up by its number, never by its position: the playbook's two
+   lettered tracks sit either side of Parts I–V, so position and number no
+   longer agree. A track is named "Track A", a part "Part III". */
+const partOf=n=>(window.PARTS||[]).find(p=>p.n===n)||{};
+const partName=n=>{const p=partOf(n);return (p.track?'Track ':'Part ')+(p.label||ROMAN(n));};
 
 /* Rebuilt from whatever content was loaded, before the first render. */
 let CH=[];
@@ -24,13 +29,19 @@ let IDX=null;                     // command palette index, rebuilt with content
    to a chapter that does not exist renders as a chip that goes nowhere, and
    nothing reports it. */
 const byNum={};
+/* Reading order, by position. Chapter numbers stopped being arithmetic when the
+   playbook added A1–A8 before Chapter 1 and B1–B8 after Chapter 34, so "does
+   this come before that" is answered by where a chapter sits, not by its
+   number. */
+const ORDER={};
 const chHref=n=>byNum[n]?'#/ch/'+byNum[n].id:null;
 function bindContent(){
   CH = window.CHAPTERS ||
        (window.PARTS||[]).reduce((a,p)=>a.concat(window['PART'+p.n]||[]),[]);
   Object.keys(byId).forEach(k=>delete byId[k]);
   Object.keys(byNum).forEach(k=>delete byNum[k]);
-  CH.forEach(c=>{byId[c.id]=c; byNum[c.num]=c;});
+  Object.keys(ORDER).forEach(k=>delete ORDER[k]);
+  CH.forEach((c,i)=>{byId[c.id]=c; byNum[c.num]=c; ORDER[c.id]=i;});
   if(window.ENG && window.ENG.reinit) window.ENG.reinit();
   IDX=null;                       // command palette index is content-derived
 }
@@ -146,6 +157,10 @@ function blocks(list){
   (list||[]).forEach(b=>{
     const [k,...r]=b;
     if(k==='p')f.appendChild(h('p',{html:T(r[0])}));
+    /* A section heading inside the story. Chapters were one unbroken stream of
+       paragraphs; a reader who stops halfway finds their place by scanning
+       headings, which is how every technical book is laid out. */
+    else if(k==='h')f.appendChild(h('h3',{class:'sh',html:T(r[0])}));
     else if(k==='key')f.appendChild(h('div',{class:'keyline',html:T(r[0])}));
     else if(k==='c')f.appendChild(h('div',{class:'callout'},[h('span',{class:'lbl',text:T(r[0])}),h('p',{html:T(r[1])})]));
     else if(k==='l')f.appendChild(h('ul',{class:'bul'},Tl(r[0]).map(i=>h('li',{html:i}))));
@@ -281,7 +296,7 @@ function openTerm(btn,entry,here){
   if(r.right>innerWidth-8) popEl.style.left=Math.max(8-btn.getBoundingClientRect().left,-r.width+60)+'px';
 }
 
-const SKIP_TERMS=new Set(['PRE','CODE','BUTTON','A','TEXTAREA','INPUT','DT','SUMMARY']);
+const SKIP_TERMS=new Set(['PRE','CODE','BUTTON','A','TEXTAREA','INPUT','DT','SUMMARY','H3']);
 /* Enough marks that nothing goes unexplained, few enough that a paragraph still
    reads as prose rather than as a field of links. */
 const PER_BLOCK=4;
@@ -548,26 +563,27 @@ function sectionHead(idx,title,time){
 
 function renderChapter(c){
   const w=h('div',{class:'wrap'});
-  const part=window.PARTS[c.part-1];
+  const part=partOf(c.part);
   cpBars=[];                       // stale refreshers from the last chapter
   w.appendChild(h('header',{class:'chead'},[
-    h('div',{class:'eyebrow'},[h('span',{text:'Part '+ROMAN(c.part)+' · '+T(part.title)}),
-      h('span',{class:'dot'}),h('span',{text:'~'+c.minutes+' min'}),
-      h('span',{class:'dot'}),h('span',{text:'one sitting'})]),
+    h('div',{class:'eyebrow'},[h('span',{text:partName(c.part)+' · '+T(part.title)}),
+      h('span',{class:'dot'}),
+      /* The playbook's chapters are measured in hours of work, not minutes of
+         reading, and saying "one sitting" of a 14-hour chapter is a lie. */
+      h('span',{text:c.minutes>=120?'~'+Math.round(c.minutes/60)+' hours':'~'+c.minutes+' min'}),
+      h('span',{class:'dot'}),h('span',{text:c.minutes>=120?'several sittings':'one sitting'})]),
     h('div',{class:'chnum',text:String(c.num).padStart(2,'0')}),
     h('h1',{text:T(c.title)}),
     h('p',{class:'concept',text:T(c.concept)})]));
 
-  /* Part V arrived from the newest edition in English only, deliberately. On
-     those chapters a reader with Hinglish on gets English and no explanation,
-     which looks exactly like the switch being broken — the fault this course
-     has already been told about once. Say it plainly instead. */
-  if(S.lang==='hi' && c.part>=5){
-    w.appendChild(h('div',{class:'callout',style:'margin-bottom:1.2rem'},[
-      h('span',{class:'lbl',text:'This part is English-only for now'}),
-      h('p',{html:'Part V came from the newest edition of the workbook and has not been '+
-        'translated yet, so it reads in English whichever switch is set. Parts I to IV '+
-        'are unaffected. <a href="#/language">The Language page</a> shows what is covered.'})]));
+  /* What you will be able to do, before you start. The same list closes the
+     chapter as "You can now"; stating it at the top is what every technical
+     book does, because a reader who knows where a chapter is going can tell
+     when they have got there. */
+  if((c.takeaway||[]).length){
+    w.appendChild(h('section',{class:'learn'},[
+      h('span',{class:'cplbl',text:T('In this chapter')}),
+      h('ul',{class:'plain'},c.takeaway.map(t=>h('li',{html:T(t)})))]));
   }
 
   /* The lab-first plan, from v4.1 of the workbook.
@@ -631,8 +647,8 @@ function renderChapter(c){
     let m;
     while((m=re.exec(joined))!==null)
       (m[0].match(/\d+/g)||[]).forEach(n=>{const v=+n;
-        if(v<c.num && !declared.has(v) && byNum[v]) found.add(v);});
-    return [...found].sort((a,b)=>a-b);
+        if(byNum[v] && ORDER[byNum[v].id]<ORDER[c.id] && !declared.has(v)) found.add(v);});
+    return [...found].sort((a,b)=>ORDER[byNum[a].id]-ORDER[byNum[b].id]);
   })();
 
   if((c.needs||[]).length||alsoRefs.length){
@@ -990,7 +1006,7 @@ function pageHome(){
       h('span',{text:'A separate track'}),
       h('em',{text:'deeper versions of the same subjects — start after Part I is built, not read'})]));
     w.appendChild(h('div',{class:'partcard'+(sep?' track':'')},[
-      h('div',{class:'pn',text:'Part '+ROMAN(p.n)+' — Chapters '+chs[0].num+'–'+chs[chs.length-1].num}),
+      h('div',{class:'pn',text:partName(p.n)+' — Chapters '+chs[0].num+'–'+chs[chs.length-1].num}),
       h('h3',{text:T(p.title)}),h('p',{text:T(p.blurb)}),
       h('div',{class:'chips'},chs.map(c=>h('a',{class:'chip'+(S.done[c.id]?' done':''),
         href:'#/ch/'+c.id,text:c.num+'. '+T(c.title)})))]));
@@ -1448,7 +1464,7 @@ function pageProgress(){
     const d=chs.filter(c=>S.done[c.id]).length;
     byPart.appendChild(h('div',{class:'card'},[
       h('div',{style:'display:flex;align-items:baseline;gap:.6rem'},[
-        h('h3',{style:'flex:1',text:'Part '+ROMAN(p.n)+' — '+T(p.title)}),
+        h('h3',{style:'flex:1',text:partName(p.n)+' — '+T(p.title)}),
         h('span',{class:'mono dim',style:'font-size:.75rem',text:d+'/'+chs.length})]),
       h('div',{class:'bar',style:'margin:.5rem 0 .7rem'},
         [h('i',{style:'width:'+(d/chs.length*100)+'%'})]),
@@ -2066,7 +2082,7 @@ function route(){
   let node,crumb='Dashboard';
   if(parts[0]==='ch'&&byId[parts[1]]){
     const c=byId[parts[1]];node=renderChapter(c);
-    crumb='Part '+ROMAN(c.part)+' · Chapter '+c.num;
+    crumb=partName(c.part)+' · Chapter '+c.num;
     document.title=c.num+'. '+c.title+' — AI From Zero';
   } else if(parts[0]==='practice'){
     node = parts[1] ? V().practice(parts[1],parts[2]) : V().practiceMenu();
@@ -2215,7 +2231,7 @@ function hingStrings(){
       Object.keys(v).forEach(k=>{ if(!SKIPKEY.has(k))walk(o,v[k]); }); };
 
   (window.PARTS||[]).forEach(p=>{
-    const o=g('Part '+ROMAN(p.n)+' — '+p.title);
+    const o=g(partName(p.n)+' — '+p.title);
     add(o,p.title); add(o,p.blurb);
     CH.filter(c=>c.part===p.n).forEach(c=>{
       add(o,c.title); add(o,c.concept);

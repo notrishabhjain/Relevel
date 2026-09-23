@@ -318,7 +318,9 @@ function chapterProgress(S, c){
 }
 /* The chapter you are in the middle of, else the next one you have not finished. */
 function currentChapter(S){
-  const chs=(window.CHAPTERS||[]).slice().sort((a,b)=>a.num-b.num);
+  /* CHAPTERS is already in reading order. Sorting it by number stopped being
+     possible when the playbook's A1–A8 and B1–B8 arrived. */
+  const chs=(window.CHAPTERS||[]).slice();
   let firstUnfinished=null;
   for(const c of chs){
     const p=chapterProgress(S,c);

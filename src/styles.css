@@ -1046,3 +1046,21 @@ button:disabled{opacity:.4;cursor:not-allowed}
   .art{grid-template-columns:auto 1fr;gap:.5rem}
   .artstate{grid-column:2;justify-self:start;margin-top:.15rem}
 }
+
+/* ---------- the coding-book shape ---------- */
+
+/* "In this chapter": the takeaway, up front. Quieter than the closing "You can
+   now" box — it is a map, not a result — so no fill, just a rule. */
+.learn{margin:0 0 1.4rem;padding:.8rem 1.1rem;border:1px solid var(--rule);
+  border-left:3px solid var(--verified);border-radius:var(--r)}
+.learn .cplbl{display:block;margin-bottom:.35rem}
+.learn .plain{margin:0}
+.learn .plain li{font-size:.92rem;line-height:1.55;color:var(--ink)}
+.learn .plain li::before{content:'→';color:var(--verified)}
+
+/* A section heading inside the story, so a reader who stops halfway can find
+   their place by scanning. Sans, like every other heading a reader navigates
+   by, and with room above it to read as a break. */
+.prose h3.sh{font-family:var(--sans);font-size:1.02rem;font-weight:600;
+  line-height:1.35;margin:2rem 0 .6rem;color:var(--ink)}
+.prose h3.sh:first-child{margin-top:.4rem}

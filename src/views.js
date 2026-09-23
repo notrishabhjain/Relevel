@@ -15,6 +15,8 @@ const save=()=>window.STORE.save();
 const pct=v=>Math.round(v)+'%';
 const LN=()=>window.LEVEL_NAMES;
 const ROMAN2=n=>['','I','II','III','IV','V','VI','VII','VIII','IX','X'][n]||String(n);
+const partName2=n=>{const p=(window.PARTS||[]).find(x=>x.n===n)||{};
+  return (p.track?'Track ':'Part ')+(p.label||ROMAN2(n));};
 
 function tile(l,v,cls,s){return h('div',{class:'stat'},[h('span',{class:'l',text:l}),
   h('span',{class:'v '+(cls||''),text:String(v)}),s?h('span',{class:'s',text:s}):h('span')]);}
@@ -156,7 +158,7 @@ function dashboard(){
     const next=chs.find(c=>!st.done[c.id])||chs[0];
     partRow.appendChild(h('a',{class:'partrow'+(doneN===chs.length?' done':''),
       href:'#/ch/'+next.id},[
-      h('div',{class:'prn',text:'Part '+ROMAN2(p2.n)}),
+      h('div',{class:'prn',text:partName2(p2.n)}),
       h('div',{style:'flex:1;min-width:0'},[
         h('h3',{text:TR(p2.title)}),
         h('p',{text:'Chapters '+chs[0].num+'\u2013'+chs[chs.length-1].num+
@@ -165,7 +167,7 @@ function dashboard(){
   });
   w.appendChild(partRow);
   w.appendChild(h('p',{class:'dim',style:'font-size:.85rem;margin:.6rem 0 0'},
-    [h('a',{href:'#/library',text:'All 49 chapters, listed \u2192'})]));
+    [h('a',{href:'#/library',text:'All '+(window.CHAPTERS||[]).length+' chapters, listed \u2192'})]));
 
   /* recent activity */
   const acc=eng.accuracyByDay(st,21);

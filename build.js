@@ -20,11 +20,13 @@ const outBin = out;
 
 const css = read('src/styles.css');
 const js = [
+  'src/data/partA.js',
   'src/data/part1.js',
   'src/data/part2.js',
   'src/data/part3.js',
   'src/data/part4.js',
   'src/data/part5.js',
+  'src/data/partB.js',
   'src/data/reference.js',
   'src/data/skills.js',
   'src/data/items1.js',
@@ -32,6 +34,8 @@ const js = [
   'src/data/items3.js',
   'src/data/items4.js',
   'src/data/items5.js',
+  'src/data/items6.js',
+  'src/data/items7.js',
   'src/data/work.js',
   'src/data/exercises5.js',
   /* The Hinglish reading layer. Keyed on the English line, so these load after
@@ -313,7 +317,8 @@ const W = sandbox.window;
 const defaults = {
   chapters: (W.PARTS || []).reduce((a, p) => a.concat(W['PART' + p.n] || []), []),
   skills: W.SKILLS,
-  items: [].concat(W.ITEMS1, W.ITEMS2, W.ITEMS3, W.ITEMS4 || [], W.ITEMS5 || []),
+  items: [].concat(W.ITEMS1, W.ITEMS2, W.ITEMS3, W.ITEMS4 || [], W.ITEMS5 || [],
+                  W.ITEMS6 || [], W.ITEMS7 || []),
   exercises: [].concat(W.EXERCISES || [], W.EXERCISES5 || []),
   processes: W.PROCESSES,
   hinglish: W.HING || {},

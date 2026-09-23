@@ -110,17 +110,23 @@ for (const s of C.skills) if (!C.items.some(i => i[1] === s.id)) fail(`skill ${s
    the thing this whole design is meant to stop existing. */
 const silent = C.chapters.filter(c => !blocksOf(c).some(b => Array.isArray(b) && ['q','pred','try'].includes(b[0])));
 
+/* Reading order is position, not number: the playbook's A1–A8 come before
+   Chapter 1 and B1–B8 after Chapter 34, so "comes later" means "sits later". */
 const chapterNums = new Set(C.chapters.map(c => c.num));
-for (const c of C.chapters) {
-  if (c.num < 2) continue;
+const posOfNum = new Map(C.chapters.map((c, i) => [c.num, i]));
+/* The first chapters of the core (0, 0.5, 1) and the first of Track A stand on
+   nothing; every other chapter has to say what it builds on. */
+const standsOnNothing = c => (typeof c.num === 'number' && c.num < 2) || c.num === 'A1';
+C.chapters.forEach((c, pos) => {
+  if (standsOnNothing(c)) return;
   if (!(c.needs || []).length) fail(`${c.id} does not say what it stands on`);
   for (const [what, why, ch] of c.needs || []) {
     if (!what || !why) fail(`${c.id} has an incomplete prerequisite`);
     if (ch === 'setup') continue;              // the environment, not a chapter
     if (!chapterNums.has(ch)) fail(`${c.id} points back to chapter ${ch}, which does not exist`);
-    if (ch >= c.num) fail(`${c.id} says it stands on chapter ${ch}, which comes later`);
+    else if (posOfNum.get(ch) >= pos) fail(`${c.id} says it stands on chapter ${ch}, which comes later`);
   }
-}
+});
 for (const s of C.skills)
   for (const n of s.ch || [])
     if (!chapterNums.has(n)) fail(`skill ${s.id} cites chapter ${n}, which does not exist`);
@@ -154,6 +160,27 @@ for (const s of C.skills)
     const taught = terms.filter(t =>
       !seen.has(t) && (text.match(word(t)) || []).length >= 2);
     terms.forEach(t => { if (word(t).test(text)) seen.add(t); });
+    /* The playbook chapters (Tracks A and B) run ten hours or more over
+       several sittings, split by ['h'] headings into one idea per section.
+       There the step is the section, not the chapter: each term is charged
+       to the section that first mentions it, and each section gets the cap. */
+    const heads = (c.story || []).filter(b => Array.isArray(b) && b[0] === 'h');
+    if (c.minutes >= 120 && heads.length) {
+      const sections = [[]];
+      (c.story || []).forEach(b => { if (Array.isArray(b) && b[0] === 'h') sections.push([]); sections[sections.length - 1].push(b); });
+      const load = sections.map(() => []);
+      taught.forEach(t => {
+        const i = sections.findIndex(sec => word(t).test(JSON.stringify(sec)));
+        load[i < 0 ? 0 : i].push(t);
+      });
+      load.forEach((ts, i) => {
+        worst = Math.max(worst, ts.length);
+        if (ts.length > 4)
+          fail(`${c.id} section ${i} teaches ${ts.length} new terms` +
+               ` — the cap is four, so this is two sections: ${ts.join(', ')}`);
+      });
+      continue;
+    }
     worst = Math.max(worst, taught.length);
     if (taught.length > 4)
       fail(`${c.id} teaches ${taught.length} new terms in one chapter` +

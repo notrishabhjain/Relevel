@@ -126,6 +126,91 @@ sign-in.
 silently failed to update a database that already had content, and the live app
 served chapters from months earlier while CI stayed green.
 
+## 8. How it reads: the coding-book voice
+
+The course reads like a good programming book or engineering blog. The reader
+is following along with a notebook open, often in short sessions, and needs to
+know at every moment what they are about to do, what they just did, and why.
+Anything that makes them re-read a sentence to find its point is a cost.
+
+This replaces the essay voice the earlier editions used. That voice was
+enjoyable to read once. It is tiring to follow, because it withholds the point
+for effect and makes the reader dig for the instruction.
+
+### The shape of a chapter
+
+1. **A plain title that says what the chapter covers.** Name the topic, then
+   the task if it helps.
+   - Before: *Why documents have to be cut up*
+   - After: *Chunking: splitting documents into pieces*
+2. **A one- or two-sentence lede that says what you will do and why it
+   matters.** Not a teaser.
+   - Before: *And why every way of cutting them loses something. Choosing
+     which loss is your job.*
+   - After: *Models can only read a limited amount of text at once, so long
+     documents are split into smaller pieces called chunks. You will split one
+     document three ways and measure what each split loses.*
+3. **"In this chapter" at the top.** The `takeaway` list renders here as what
+   you will learn, and again at the end as the recap. Write each item as
+   something the reader will be able to *do*, starting with a verb.
+4. **Short sections with plain headings** (`['h', text]`), each covering one
+   idea. A reader who stops halfway should be able to find their place by
+   scanning the headings.
+5. **Steps for anything the reader does**, as numbered lists or `do` beats,
+   each starting with an imperative verb: *Open*, *Run*, *Write*, *Compare*.
+6. **Show, then explain.** Give the example or the code, then the expected
+   result, then a short *what just happened*.
+
+### Sentences
+
+- **Say the point first.** Lead with the plain statement, then the example.
+  An analogy can help, but it comes after the plain statement, never instead
+  of it.
+- **Second person, present tense, active voice.** *You send a prompt. The
+  model returns tokens.* Use *we* only for something the reader and the book
+  are doing together, and sparingly.
+- **One idea per paragraph, one to three sentences.** `style-check` fails a
+  paragraph over 75 words.
+- **Keep sentences short.** Aim for 12–16 words on average. Split any sentence
+  that needs a second em dash.
+- **No rhetorical inversions.** Do not withhold the point to make it land.
+  - Before: *That is not an answer. It is a performance.*
+  - After: *A demo that works on three questions does not tell you how often
+    the system is right.*
+  - Before: *There is no correct size, only which failure you prefer.*
+  - After: *No chunk size is correct for every document. Each size fails in a
+    different way, so choose the failure your users can live with.*
+- **No aphorisms as conclusions.** If a sentence sounds like it belongs on a
+  poster, rewrite it as an instruction or a fact.
+- **Define a term the first time you use it, in one plain sentence.** Then use
+  the same word every time. Do not rotate synonyms for variety.
+- **Numbers over adjectives.** *Around 750 words* rather than *a lot of text*.
+
+### Callouts
+
+Use `['c', label, text]` with one of these labels so the reader learns what
+each kind means:
+
+| label | use it for |
+|---|---|
+| **Note** | a fact worth knowing that is not on the main path |
+| **Tip** | a faster or better way to do the thing |
+| **Watch out** | a mistake people make here, and how to avoid it |
+| **Why this matters** | the product or business reason behind a technical point |
+| **Before you start** | what to open, run or have ready |
+
+`['key', text]` is the one sentence to remember from a section. Write it as a
+plain rule, not a flourish.
+
+### What the checker enforces
+
+`tools/style-check.mjs` measures every chapter and fails the build on:
+average sentence length over 18 words, more than 6% of sentences over 32
+words, any paragraph over 75 words, more than two em dashes in a paragraph,
+and any rhetorical inversion it can detect. It prints the offending sentences
+with `--flags`. It cannot tell whether an explanation is correct or an example
+is good. That is still a reader's job.
+
 ## The block grammar
 
 A chapter is data. `story` is a flat list of blocks read top to bottom:
@@ -133,6 +218,7 @@ A chapter is data. `story` is a flat list of blocks read top to bottom:
 | block | what it is |
 |---|---|
 | `['p', html]` | a paragraph |
+| `['h', text]` | a section heading inside the chapter |
 | `['key', html]` | the one sentence that matters |
 | `['c', label, html]` | an aside |
 | `['l', [...]]` / `['n', [...]]` | bulleted / numbered list |

@@ -51,6 +51,69 @@ window.SETUP = {
 
 /* ---------- Glossary. `ch` is the chapter where you BUILT it. ---------- */
 window.GLOSSARY = [
+  /* Track A and B terms carry the lettered chapter where they are taught. */
+  ['Artifact','Something you made that another person can open and check: a document, a spreadsheet, a notebook, a prototype or a dashboard. In this book, progress is measured in artifacts, not in pages read.','A1'],
+  ['Mastery gate','The check at the end of every chapter: score each artifact 0–3, and move on only when all of them score at least 2 and no safety, privacy or evidence item scores 0.','A1'],
+  ['Decision log','A running file where you record each decision with its date, the evidence behind it, and what would make you change it.','A1'],
+  ['B2B / B2C','Business-to-business and business-to-consumer. In B2B you sell to companies, and the people who pay, use and approve the product are often different people. In B2C you sell to individuals, who usually pay and use it themselves.','A2'],
+  ['Product sense','The habit of checking an idea against four risks before building it: will people want it (value), can they use it (usability), can we build it (feasibility), and does it work for the business (viability).','A2'],
+  ['Jobs to be done','The idea that people “hire” a product to make progress in a particular situation. Written as: “When [situation], I want to [motivation], so I can [outcome].”','A3'],
+  ['Leading question','An interview question that suggests the answer the interviewer wants, such as “Isn’t it frustrating when…?” People tend to agree, so the answer is weak evidence.','A3'],
+  ['Persona','A short description of a type of user, their goals, workflow and pains. Useful only when every line traces back to real interviews.','A3'],
+  ['Journey map','The steps a user goes through to get a job done, with what they do, think and feel at each step, and where the pain is.','A3'],
+  ['Riskiest unknown','The assumption that would do the most damage if it were wrong and that you are least sure of. Test it first.','A3'],
+  ['TAM / SAM / SOM','Three sizes of market. Total addressable market: everyone with the problem. Serviceable addressable market: the part you can actually serve. Serviceable obtainable market: what you could realistically win in a few years.','A4'],
+  ['Positioning statement','One or two sentences saying who a product is for, what it does for them, and how it differs from the main alternative.','A4'],
+  ['Moat','An advantage that is hard for competitors to copy, such as deep workflow integration, unique data or earned trust. A prompt or a newer model is not a moat.','A4'],
+  ['Opportunity solution tree','A diagram with an outcome at the top, the user needs and pains from interviews below it, then possible solutions, then tests. It stops you jumping straight to a solution.','A4'],
+  ['Wedge','The narrow first use case you can clearly win, chosen because it leads on to something bigger.','A5'],
+  ['North Star metric','The one number that best measures the value customers get from a product, such as “issues caught in their first week”. Chapter B3 covers it in detail.','A5'],
+  ['RICE','A prioritisation score: reach × impact × confidence ÷ effort. Useful for comparing options consistently, but only as good as the guesses you put in.','A5'],
+  ['Cost of delay','What you lose for every week an item waits. High when there is a deadline, such as a contract renewal.','A5'],
+  ['Outcome roadmap','A roadmap in three columns (now, next and later) where each item is an outcome to achieve rather than a feature with a date.','A6'],
+  ['Kill criterion','A result, decided in advance, that means you stop working on something. For example: “stop if fewer than half of design partners act on an alert within four weeks”.','A6'],
+  ['OKRs','Objectives and key results. The objective says what you want in words; the 3–4 key results are numbers that show you got there. Key results should be outcomes, not outputs.','A6'],
+  ['Guardrail metric','A number that must not get worse while you chase a goal, such as false-alarm rate or cost per customer. It stops a team hitting a target in a way that harms users.','A6'],
+  ['Stakeholder map','A grid of the people involved in a decision, placed by how much influence they have and how much they care. It shows who to work closely with and who can veto.','A6'],
+  ['Pre-mortem','Before starting, imagine the project has failed and write down why. It surfaces risks people would not raise about a live plan.','A6'],
+  ['PRD','Product requirements document: what to build, for whom and why, starting from the problem and its evidence. Chapter 18 covers the AI-specific version.','A7'],
+  ['User story','One piece of value from the user’s point of view: “As a [role], I want [action], so that [benefit].” Each story needs acceptance criteria and edge cases.','A7'],
+  ['MVP','Minimum viable product: the smallest thing that tests your riskiest assumption with real users. Not a small version of the whole product.','A7'],
+  ['Vertical slice','A thin version of a feature that goes through every layer, from input to user value, so a real user can try it early.','A7'],
+  ['Time-box','A fixed amount of time for uncertain work, with a result that counts as success and a plan if you do not reach it.','A7'],
+  ['Usability test','Watching a real user try to complete a task with your product, without helping, to see where they get stuck.','A7'],
+  ['Transformer','The model design behind today’s LLMs. It reads every token in the context at once and learns which earlier tokens matter for predicting the next one.','A8'],
+  ['Inference','Running a trained model to get an answer. Training changes the model; inference only uses it. Most of your bill is inference.','A8'],
+  ['Pre-training','The first, most expensive training stage: the model learns to predict the next token over a huge amount of text.','A8'],
+  ['Instruction tuning','Training after pre-training on examples of instructions and good answers, so the model follows requests instead of just continuing text.','A8'],
+  ['RLHF','Reinforcement learning from human feedback. People rank model answers, and the model is trained toward the answers they prefer.','A8'],
+  ['Open-weight model','A model whose trained weights are published, so you can download and run it yourself instead of calling a vendor’s API.','A8'],
+  ['Willingness to pay','The most a buyer would spend to solve a problem. It is set by what their current alternative costs them, not by your costs.','B1'],
+  ['Contribution margin','What each customer leaves you after the costs that grow with them, such as model calls and support. Usually shown as a percentage of revenue.','B1'],
+  ['Gross margin','Revenue minus the direct cost of delivering the product. For AI products, the model vendor’s bill is a large part of that cost.','B1'],
+  ['Flywheel','A loop where using the product makes it better, which brings more use. It can run on data, on workflow habits or on others building on you.','B1'],
+  ['Outcome pricing','Charging for each successful result, such as a resolved ticket, rather than for seats or usage. Needs an agreed way to measure success.','B1'],
+  ['AARRR','Five stages of growth: acquisition, activation, retention, referral and revenue. Each stage gets one event you can count.','B2'],
+  ['Activation moment','The first time a new user gets the value your product promises.','B2'],
+  ['Time-to-value','How long a new user takes to reach the activation moment, measured from sign-up.','B2'],
+  ['Growth loop','A cycle where one user’s actions bring in the next user, so the output feeds back into the input.','B2'],
+  ['Network effect','When a product gets better for existing users as more people use it. Different from virality, which only brings more people in.','B2'],
+  ['Virality','Users bringing in other users, for example by sharing. It helps growth, but does not make the product better for anyone.','B2'],
+  ['Dark pattern','A design that tricks users into acting against their own interest, such as a hidden cancel button or pre-ticked invitations.','B2'],
+  ['Product-led growth','A go-to-market motion where users sign up and get value on their own, and some upgrade to paid, without talking to sales.','B2'],
+  ['Input metric','A number the team can move directly, which you expect to move the North Star metric.','B3'],
+  ['Event taxonomy','The list of events a product logs, with a naming rule everyone follows, such as object_action.','B3'],
+  ['Tracking plan','The shared document listing every event, its properties, when it fires and who owns it.','B3'],
+  ['Funnel','The share of users who complete each step of a process in order. It shows where people drop off.','B2'],
+  ['Cohort','A group of users who started in the same period. Retention tables follow each cohort over time.','B3'],
+  ['Minimum detectable effect','The smallest change an experiment is designed to detect. It sets how many users the test needs.','B3'],
+  ['Selection bias','When the people in your data differ from the people you want to learn about, such as hand-picked early users.','B3'],
+  ['State machine','A workflow where code fixes every step and every transition. The failing step is always known.','B5'],
+  ['Bounded agent','An agent that chooses its own steps, but only from a fixed tool list and within a step budget and approval rules.','B5'],
+  ['Release gate','A check that must pass before a change reaches users. For AI products it includes eval thresholds as well as tests.',29],
+  ['Design partner','An early user who agrees to use an unfinished product and tell you what they find, with clear consent.','B6'],
+  ['Changelog','A short public note of what changed in each release, why, and what users should do differently.','B6'],
+  ['Role matrix','A grid of real job descriptions against the skills they ask for, used to find the skills the market wants and your gaps.','B7'],
   ['Model / LLM','A prediction machine trained on large quantities of text. It continues text plausibly — it does not look things up.',1],
   ['API call','One question in, one answer out — and one charge on the bill. Your app sends a request to the model\'s servers and waits for the reply.',1],
   ['Token','A word-piece — the unit the model reads, writes, and bills in. Roughly ¾ of an English word.',1],
@@ -348,17 +411,26 @@ window.REDMARKS = [
   {id:'r30', node:'index',   ch:15, t:'Naive cost estimate missing the four multipliers'}
 ];
 
+/* Reading order is this array's order, and a part is looked up by n, never by
+   position. The playbook adds two lettered tracks either side of Parts I–V:
+   Track A (product foundations) before Chapter 1, Track B (business, growth
+   and shipping) after Chapter 34. They are numbered 6 and 7 so that nothing
+   already stored under 1–5 moves. */
 window.PARTS = [
-  {n:1, title:'The basics', blurb:'A real result before you install anything. Then what actually happens when your app asks an AI something, how to write a prompt that behaves and prove it does, which shape a task really is — and how documents get cut up, found again, and measured.'},
-  {n:2, title:'What real systems add', blurb:'Getting answers in a fixed shape, letting it act, the size limit, paying it to think first, what the user does while waiting, better search — and the attack that has no fix.'},
-  {n:3, title:'Measuring it, costing it, shipping it', blurb:'Checking quality when there is too much of it to read, what it really costs, documents that are pictures, what you are allowed to send at all, the paperwork, and the spec.'},
-  {n:4, title:'The decisions that stay yours',
+  {n:6, label:'A', track:true, title:'Product foundations',
+    blurb:'How to learn with this book, then the product-management ground the rest stands on: product sense, talking to users, researching a market, strategy and prioritisation, roadmaps and alignment, specs and prototypes — and the ideas behind generative AI.'},
+  {n:1, label:'I', title:'The basics', blurb:'A real result before you install anything. Then what actually happens when your app asks an AI something, how to write a prompt that behaves and prove it does, which shape a task really is — and how documents get cut up, found again, and measured.'},
+  {n:2, label:'II', title:'What real systems add', blurb:'Getting answers in a fixed shape, letting it act, the size limit, paying it to think first, what the user does while waiting, better search — and the attack that has no fix.'},
+  {n:3, label:'III', title:'Measuring it, costing it, shipping it', blurb:'Checking quality when there is too much of it to read, what it really costs, documents that are pictures, what you are allowed to send at all, the paperwork, and the spec.'},
+  {n:4, label:'IV', title:'The decisions that stay yours',
     blurb:'Whether to build it or buy it, what to change when it is not good enough, what the user sees when it is wrong — and how to prove any of it helped. None of these is an engineering decision.'},
   /* The v4.1 workbook's chapters 8–21, appended rather than merged. Where a
      chapter here revisits ground from Parts I–IV it starts from that result
      instead of re-teaching it — the depth pass, not a second first pass. */
-  {n:5, title:'The applied track — production depth',
-    blurb:'The engineering floor under all of it, then model choice on evidence, context as a designed budget, retrieval as a real system, tools and agents with the steering wheel kept, a protocol boundary, input that is not text, evaluation as a release gate, running it in production, security you can prove, the specification, the architecture — and one capstone system you can defend.'}
+  {n:5, label:'V', title:'The applied track — production depth',
+    blurb:'The engineering floor under all of it, then model choice on evidence, context as a designed budget, retrieval as a real system, tools and agents with the steering wheel kept, a protocol boundary, input that is not text, evaluation as a release gate, running it in production, security you can prove, the specification, the architecture — and one capstone system you can defend.'},
+  {n:7, label:'B', track:true, title:'Business, growth and shipping',
+    blurb:'Pricing and unit economics, growth and onboarding, product analytics and experiments, the tools an applied AI PM actually uses, the harness around a model, shipping to real users and learning from them, getting hired — and one capstone that goes from a real problem to a live product with evidence.'}
 ];
 
 /* ---------- The v4.1 appendices ----------
