@@ -376,132 +376,72 @@ window.PART7 = [
 },
 
 {
-  id:'b4', num:'B4', part:7, curriculumTier:'reference', phase:0, prerequisites:['ch1','ch12t','a7'], nextUnits:['b5','b6'], minutes:960, labs:[],
-  title:'The applied AI PM toolchain',
-  concept:'Learn the tools an applied AI product manager uses to research, prototype, build, deliver and measure. You will use each group of tools on your capstone, and learn where each one stores data and when it breaks.',
+  id:'b4', num:'B4', part:7, curriculumTier:'reference', phase:0, prerequisites:['ch1','ch12t','a7'], nextUnits:['b5','b6'], minutes:150, labs:[],
+  title:'Choosing tools for an AI product workflow',
+  concept:'Treat this as one decision, made eleven times, not seventeen tools to learn: for each capability your workflow needs, what does a tool in that slot have to do for you, and what breaks if you skip it? Pick one tool per capability and learn the capability, not the brand.',
   takeaway:[
-    'Use AI research tools on sources you control, and audit what they claim.',
-    'Choose between no-code and code-assisted prototyping by speed, control, security and maintainability.',
-    'Use a coding agent and a workflow tool, and know which work each one suits.',
-    'Ship a small app from a repository to a live URL with authentication, data and analytics.',
-    'Know where your secrets and your users’ data live in every tool you use.'
+    'Name the eleven capabilities an AI product workflow needs tools for, without naming a specific brand for each.',
+    'Choose one tool per capability by what it must do and what it must never do, not by what is popular.',
+    'Know where every tool in your stack stores data and secrets, and audit what an AI research tool claims before trusting it.',
+    'Explain what breaks when a vendor changes an API, and how you would notice.'
   ],
-  needs:[['Your first API call','The workflow in Idea 3 makes one.',1],
-         ['Tool calling and workflows','n8n and coding agents use the same ideas.',25],
-         ['A prototype and a PRD','You will rebuild the prototype with two different tools.','A7'],
-         ['A tracking plan','Idea 5 implements it.','B3']],
+  needs:[['Your first API call','The capability table assumes you can already make one.',1],
+         ['Tool calling and workflows','The automation and coding capabilities use the same ideas.',25],
+         ['A prototype and a PRD','You already built one; this reframes how you chose the tool for it.','A7']],
   capstone:{
-    title:'Four builds, one per tool group',
-    brief:'Use the toolchain for real on your capstone, and write down what each tool is good at and where it breaks.',
+    title:'One tool per capability, written down and defended',
+    brief:'Do not tour seventeen tools. For each capability your capstone actually needs, name the one tool you chose and the one you rejected, and why.',
     steps:[
-      'Create a source-grounded research notebook in NotebookLM and a reusable Gem for interview synthesis. Check ten of their claims by hand against the sources.',
-      'Build the same thin prototype in one no-code tool and one code-assisted tool. Compare speed, control, security and maintainability.',
-      'Create an n8n workflow with one API call, validation, retry and human approval. Test the API call in Postman.',
-      'Deploy a small app from GitHub to Vercel with Supabase for authentication and data, then add PostHog. Sketch when AWS would replace or add to this stack.'
+      'List the capabilities your capstone stack actually uses — most projects need five or six of the eleven below, not all of them.',
+      'For each one, name the tool you picked, the job it does, and one you could have picked instead.',
+      'Run the claim audit once on an AI research tool, and the secrets-and-data audit once on your whole stack.'
     ],
     done:[
-      'The claim audit lists all ten claims, and marks each one supported, partly supported or unsupported.',
-      'The prototype comparison is a table with the four criteria, and a recommendation.',
-      'The workflow has a validation step, a retry limit and an approval step you have seen work.',
-      'The app is live, and a fresh clone of the repository builds and deploys by following the README.',
-      'Mastery gate: score each artifact 0–3. Move on only when every artifact scores at least 2 and no security or privacy item scores 0.'
+      'Every capability in your stack has one named tool and one stated reason, not a comparison of five options.',
+      'The claim audit lists ten claims, each marked supported, partly supported or unsupported.',
+      'You can say where every secret in your stack lives, and which tool stores user data under what policy.'
     ]
   },
   check:[
-    ['Can you reproduce the build from a clean repository?',
-     'Test it. Clone the repository into a new folder, follow only the README, and deploy. Anything you had to remember and did not write down is a gap. Common ones are environment variables, a database migration and a setting you changed in a dashboard.'],
+    ['Can you name the capability without naming the brand?',
+     'Cover the tool name and describe only the job: "something that deploys my app on every push to the main branch and lets me roll back." If you can only describe the brand’s interface, you have learned the tool, not the capability — and you will be stuck when it is discontinued or priced differently.'],
     ['Which tool stores user data, and under what policy?',
-     'List every tool in your stack and write down what it stores. For example, Supabase stores accounts and data, PostHog stores events, and the model provider receives prompts. For each one, find the data region, how long it keeps data, and whether it trains on it. Chapter 16.5 covers what you may send.'],
+     'List every tool in your stack and write down what it stores. A hosting tool stores code and logs, a database tool stores accounts and rows, an analytics tool stores events, and the model provider receives your prompts. For each one, find the data region, how long it keeps data, and whether it trains on it. Chapter 16.5 covers what you may send.'],
     ['Where are secrets stored?',
-     'In the platform’s environment variables, such as Vercel project settings or n8n credentials. They should never be in the repository, in the front-end code or in a shared document. Search your repository history for key prefixes to make sure none slipped in.'],
+     'In the platform’s environment variables or credential store — never in the repository, the front-end code or a shared document. Search your repository history for key prefixes to make sure none slipped in.'],
     ['What breaks when a vendor changes an API?',
      'Pick one dependency and trace it. If the model provider renames a field in its response, which step fails first, and would you notice? Good answers name a validation step that fails loudly, an alert, and a pinned version that gives you time to update.']
   ],
   story:[
-    ['c','Before you start','About sixteen hours, in four parts. You need free accounts on GitHub, Vercel, Supabase and PostHog, plus access to at least one no-code builder and one coding agent. Keep a short log of each tool: what it did well, what went wrong and how long it took.'],
-    ['p','Tools change every few months, so this chapter teaches the job each tool does. If a named tool is gone by the time you read this, use its replacement for the same job.'],
-
-    ['h','Idea 1: Research and synthesis'],
-    ['p','AI tools can read and summarise far more material than you can. They also state wrong things with confidence. Use them in a way that lets you check.'],
-    ['tb',['Tool','Good for','Watch out for'],[
-      ['ChatGPT or Claude','Brainstorming, first drafts, explaining unfamiliar topics','Claims with no source; confident errors'],
-      ['NotebookLM','Answering questions using only the sources you upload, with citations','Only as good as the sources; summaries can drop nuance'],
-      ['Gems or custom GPTs','Saving a prompt you reuse, such as “synthesise this interview into jobs, pains and quotes”','The instructions drift out of date; outputs still need checking']
-    ]],
-    ['p','The key habit is the <strong>claim audit</strong>. Pick ten claims from an AI summary, and check each one against its source. Mark it supported, partly supported or unsupported. If more than one or two fail, stop trusting that workflow for decisions.'],
+    ['c','Before you start','About two and a half hours. Tools change every few months; brands named below are one current example each, not a requirement. If a named tool is gone by the time you read this, pick its replacement for the same job.'],
+    ['p','An AI product workflow needs eleven capabilities, start to finish. Most projects use five or six of them, not all eleven. The mistake this chapter corrects is treating each one as a subject to master instead of a slot to fill.'],
+    ['h','The toolchain, by capability'],
+    [
+      'tb',
+      ['Capability','What a tool in this slot must do for you','One current example'],
+      [
+        ['LLM / reasoning','Answer, draft and reason over text you give it, on demand','ChatGPT, Claude'],
+        ['Research / source grounding','Answer only from the sources you upload, with citations you can check','NotebookLM'],
+        ['Prototyping','Turn a description into a working screen fast, so a user can try it','Lovable, Google AI Studio, or Figma for flow only'],
+        ['Coding','Read your repository, edit files and run commands under review','Claude Code, Cursor'],
+        ['Automation','Connect a trigger, a call, a validation and an approval into a workflow that runs the same way every time','n8n'],
+        ['API testing','Send an exact request, see the raw response, and save it as a repeatable check','Postman'],
+        ['Version control','Store code, review every change, and run checks before it merges','GitHub'],
+        ['Deployment','Deploy on every push to the main branch, and roll back in minutes','Vercel'],
+        ['Database','Sign-in, tables and row-level access rules, so one user cannot see another’s data','Supabase'],
+        ['Analytics','Record events and draw funnels and cohorts from real usage','PostHog'],
+        ['Observability','Trace one request end to end: what it cost, how long it took, what it returned','Chapter 30’s trace schema, in whatever tool renders it']
+      ]
+    ],
+    ['key','Pick one tool per capability and learn what that capability must do. The brand is replaceable; the capability is not.'],
+    ['h','Two habits that outlast every tool on this list'],
+    ['p','The <strong>claim audit</strong>: pick ten claims from an AI summary and check each one against its source. Mark it supported, partly supported or unsupported. If more than one or two fail, stop trusting that workflow for decisions — whichever research tool produced it.'],
+    ['p','The <strong>secrets-and-data audit</strong>: for every tool in your stack, write what it stores and where its keys live. Generated prototypes especially tend to put API keys in front-end code, where anyone can read them, and ship a database with no access rules. Check both before you share a link with anyone.'],
     ['do','Prove it now',[
-      ['p','Upload your five interview notes from A3 to NotebookLM. Ask it for the three most common problems. Check three of its citations.'],
-      ['x','Three claims, each marked supported or not. Counterexample: a question where a source-grounded tool would still mislead you, such as asking what users did not mention.']
-    ]],
-
-    ['h','Idea 2: Prototyping tools'],
-    ['p','You can now build a working prototype in an afternoon. There are two families of tools:'],
-    ['l',[
-      '<strong>Design tools</strong> such as Figma. You draw screens and link them. Fast for flows and layout. Nothing actually works behind them.',
-      '<strong>Prompt-to-app builders</strong> such as Lovable or Google AI Studio. You describe the app, and they generate working code. Fast to a real demo, but you control less of what they produce.'
-    ]],
-    ['p','Build the same thin slice twice, once with a no-code builder and once with a coding agent. Then compare:'],
-    ['tb',['Criterion','Question to ask'],[
-      ['Speed','How long until a user could try it?'],
-      ['Control','Could you change exactly what you wanted?'],
-      ['Security','Where are keys stored? Who can read the data?'],
-      ['Maintainability','Could an engineer take it over next week?']
-    ]],
-    ['c','Watch out','Generated apps often put API keys in front-end code, where anyone can read them. They may also ship a database with no access rules. Check both before you share a link with anyone.'],
-    ['do','Prove it now',[
-      ['p','Build your capstone’s main screen in a prompt-to-app builder. Then open the code and find where the model API key is stored.'],
-      ['x','A working screen and one sentence on where the key lives. If it is in the browser, write how you would move it to a server.']
+      ['p','Run the claim audit once, on any AI-summarised research you already have. Then list your own capstone’s stack and run the secrets-and-data audit on it.'],
+      ['x','Ten claims, each marked. A short stack list, each row naming what it stores and where its secrets live. Counterexample: a claim a source-grounded tool would still get wrong, such as what users did not mention.']
     ]],
     ['q','I610'],
-
-    ['h','Idea 3: Coding agents and workflow tools'],
-    ['p','Two kinds of tool let you build more than a prototype without being a full-time engineer.'],
-    ['l',[
-      '<strong>Coding agents</strong> such as Claude Code, Cursor or Antigravity. They read your repository, edit files and run commands. They work best with a clear task, tests to check against, and a human reviewing each change.',
-      '<strong>Workflow tools</strong> such as n8n. You connect steps on a canvas: a trigger, an API call, a check and an action. They suit fixed processes that run the same way every time.'
-    ]],
-    ['p','Here is the n8n workflow for the capstone task. It uses the same parts you saw in Chapter 25:'],
-    ['code','1. Trigger       Every Monday at 07:00\n2. HTTP request  Fetch last week’s tickets from the helpdesk API\n3. HTTP request  Send them to the model; ask for JSON themes\n4. Validate      Is it valid JSON with the expected fields?\n                 No → retry once, then alert a person\n5. Approval      Post the draft report to Slack with Approve / Reject\n6. Send          On approve, email the report to the lead'],
-    ['p','Test the model API call in Postman first. Postman lets you send the exact request, see the raw response and save it as a test. When something breaks later, you can tell whether the API changed or your workflow did.'],
-    ['do','Prove it now',[
-      ['p','Build steps 3 and 4 of the workflow above in n8n. Send it a response with a missing field and check that the retry fires.'],
-      ['x','A screenshot of a failed validation followed by a retry. Counterexample: a task where a coding agent would be a better choice than n8n.']
-    ]],
-
-    ['h','Idea 4: Delivery: GitHub, Jira, Vercel, Supabase and AWS'],
-    ['p','Shipping a real app needs a small set of services. This stack is free to start and common in AI startups:'],
-    ['tb',['Job','Tool','What you do there'],[
-      ['Code and history','GitHub','Store the code, review changes, run checks'],
-      ['Work tracking','Jira (or Linear)','Turn stories into tickets and track them'],
-      ['Hosting','Vercel','Deploy the app on every push to main'],
-      ['Auth and database','Supabase','Sign-in, tables and access rules'],
-      ['API testing','Postman','Check and save API calls']
-    ]],
-    ['p','AWS offers the same building blocks and many more. It gives you more control, fits larger companies’ security rules and can cost less at scale. It also takes more setup. A common path is to start on managed services, and move pieces to AWS when a customer or cost requires it.'],
-    ['n',[
-      'Push your prototype to a new GitHub repository.',
-      'Import the repository in Vercel. Add your model API key as an environment variable.',
-      'Create a Supabase project. Add sign-in and one table, with a rule that users only see their own rows.',
-      'Push a change and watch Vercel deploy it.'
-    ]],
-    ['do','Prove it now',[
-      ['p','Do the four steps above. Then sign in as two different test users and confirm neither can see the other’s rows.'],
-      ['x','A live URL and a note on the access test. If one user could see another’s data, fix the rule before going further.']
-    ]],
-    ['q','I611'],
-
-    ['h','Idea 5: Analytics tools'],
-    ['p','PostHog, Mixpanel and Google Analytics all record events and draw funnels. They differ in what they are best at.'],
-    ['tb',['Tool','Strength','Consider'],[
-      ['PostHog','Product analytics, session replay and feature flags together; can be self-hosted','Session replay can capture sensitive text unless masked'],
-      ['Mixpanel','Strong funnels, cohorts and group analytics','Pricing grows with event volume'],
-      ['Google Analytics','Marketing sites and acquisition sources','Built around sessions and pages rather than product events']
-    ]],
-    ['p','Add your B3 tracking plan to the deployed app. Send events from the server where you can, so ad blockers do not hide them. Attach the account ID to every event.'],
-    ['do','Prove it now',[
-      ['p','Add PostHog to your live app and log two events from your tracking plan. Check they arrive with the right properties.'],
-      ['x','Two events visible in PostHog. Then turn on input masking for session replay, or write why you left replay off.']
-    ]],
     ['try',{id:'b4-stack',mins:10,min:120,rows:6,
       task:'List every tool in your capstone stack. For each one, write what data it stores or receives, and where its secrets live.',
       ph:'GitHub: … Vercel: … Supabase: … PostHog: … Model provider: …',
