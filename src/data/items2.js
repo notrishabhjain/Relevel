@@ -123,7 +123,7 @@ window.ITEMS2 = [
 
 /* ================= S24 Oversight ================= */
 ['I094','S24',2,'mcq','Your oversight design says a human reviews every output, at 4,000 outputs a day. What is wrong?',
- ['Nothing — that is thorough','It is not exercisable, so it is not oversight; it is a sentence in a document','It should be two humans','Review should be automated'],1,
+ ['Nothing — that is thorough','Nobody can actually carry it out at that volume, so it only exists on paper','It should be two humans','Review should be automated'],1,
  'Real designs sample, or review only outputs failing a programmatic check, and give the reviewer the retrieved evidence and the time to act.'],
 ['I095','S24',3,'multi','What makes a review point exercisable?',
  ['The reviewer sees the retrieved evidence and supporting quote, not just the answer','The volume routed to review is feasible in the time available','The reviewer has authority to overrule the system','The reviewer is a domain expert in every case'],[0,1,2],

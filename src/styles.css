@@ -357,6 +357,10 @@ input[type=range]{padding:0;accent-color:var(--red)}
   text-decoration:none;color:var(--ink-2);background:var(--paper)}
 .chip:hover{border-color:var(--ink-2);color:var(--ink)}
 .chip.done{border-color:var(--verified);color:var(--verified)}
+/* The four v4.3 artifact classes, on the vault and the two logs — a label,
+   not a link, so it is styled flat rather than like the chips around it. */
+.chip.artcls{font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;
+  text-transform:uppercase;background:var(--sunk);cursor:default}
 
 /* ---------- notebook ---------- */
 .nbentry{border:1px solid var(--rule);border-radius:var(--r);background:var(--raised);
@@ -921,6 +925,13 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .partrow p{margin:.15rem 0 0;font-size:.8rem;color:var(--ink-2)}
 .partrow .go{font-size:.78rem;color:var(--ink-2);white-space:nowrap}
 .partrow.done{background:var(--verified-wash);border-color:var(--verified)}
+/* v4.3 curriculum-hierarchy cards on the dashboard: same shape as any other
+   partrow, plus a left rule so Core, the Capstone, Selective and Reference
+   read as four different kinds of thing at a glance, not four of the same. */
+.tiercard.tcore{border-left:3px solid var(--verified)}
+.tiercard.tcapstone{border-left:3px solid var(--ink)}
+.tiercard.tselective{border-left:3px solid var(--rule-strong,var(--ink-2))}
+.tiercard.treference{border-left:3px solid var(--rule)}
 @media (max-width:520px){
   .partrow{flex-wrap:wrap;gap:.35rem .8rem}
   .partrow .go{width:100%;text-align:right}
@@ -964,6 +975,24 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .urow.ukeep .ulbl,.urow.ukeep .uval{background:var(--raised)}
 .urow.ukeep .uval{font-weight:500}
 .urow.ulens .uval{color:var(--ink-2)}
+
+/* v4.3 mastery: one tap cycles not started → exposed → practiced → defended.
+   Completion says you read it; this says how well you can use it, so the two
+   never share a control. Inline on a unit, or once near "mark chapter
+   complete" on a chapter with no numbered units. */
+.mastery{display:flex;align-items:center;gap:.55rem;flex-wrap:wrap;
+  padding:.6rem .95rem;border-top:1px solid var(--rule-soft)}
+.mslbl{font-family:var(--mono);font-size:.6rem;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--ink-2)}
+.msbtn{font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;
+  text-transform:uppercase;padding:.3rem .6rem;border:1px solid var(--rule);
+  border-radius:999px;background:var(--paper);color:var(--ink-2);cursor:pointer}
+.mastery.m1 .msbtn{color:var(--red);border-color:var(--red)}
+.mastery.m2 .msbtn{color:var(--ink);border-color:var(--ink);background:var(--raised)}
+.mastery.m3 .msbtn{color:var(--verified);border-color:var(--verified);
+  background:var(--verified-wash);font-weight:600}
+.mshint{font-size:.76rem;color:var(--muted);flex-basis:100%}
+@media (max-width:620px){ .mshint{display:none} }
 @media (max-width:620px){
   .ubody{grid-template-columns:1fr}
   .urow .ulbl{padding:.6rem .95rem .1rem;border-top:1px solid var(--rule-soft)}
@@ -1047,41 +1076,20 @@ button:disabled{opacity:.4;cursor:not-allowed}
   .artstate{grid-column:2;justify-self:start;margin-top:.15rem}
 }
 
-/* ---------- read the page aloud ---------- */
+/* ---------- the coding-book shape ---------- */
 
-/* The paragraph being spoken. A left rule plus a wash rather than a highlight
-   colour: it has to be findable at a glance from across the room without
-   making the text itself harder to read when you look straight at it. */
-.nowreading{background:var(--verified-wash);box-shadow:-3px 0 0 0 var(--verified);
-  border-radius:0 3px 3px 0;transition:background .2s}
-.urow.nowreading .ulbl,.urow.nowreading .uval{
-  box-shadow:inset 0 2px 0 var(--verified),inset 0 -2px 0 var(--verified)}
-.urow.nowreading .ulbl{box-shadow:inset 0 2px 0 var(--verified),
-  inset 0 -2px 0 var(--verified),inset 3px 0 0 var(--verified)}
+/* "In this chapter": the takeaway, up front. Quieter than the closing "You can
+   now" box — it is a map, not a result — so no fill, just a rule. */
+.learn{margin:0 0 1.4rem;padding:.8rem 1.1rem;border:1px solid var(--rule);
+  border-left:3px solid var(--verified);border-radius:var(--r)}
+.learn .cplbl{display:block;margin-bottom:.35rem}
+.learn .plain{margin:0}
+.learn .plain li{font-size:.92rem;line-height:1.55;color:var(--ink)}
+.learn .plain li::before{content:'→';color:var(--verified)}
 
-.player{position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--paper);
-  border-top:1px solid var(--rule);box-shadow:0 -8px 24px -12px #0006;
-  padding:.6rem 1.75rem calc(.6rem + env(safe-area-inset-bottom));
-  backdrop-filter:blur(8px)}
-.prow{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
-.prow .pplay{min-width:5.2rem}
-.ppos{font-size:.68rem;color:var(--muted);white-space:nowrap;flex:none}
-.ptrack{flex:1;min-width:60px;height:3px;background:var(--rule);border-radius:2px;overflow:hidden}
-.ptrack i{display:block;height:100%;width:0;background:var(--verified);transition:width .25s}
-.prate,.pvoice{width:auto;padding:.25rem .4rem;font-size:.72rem;font-family:var(--mono);
-  background:var(--raised);flex:none}
-.pvoice{max-width:11rem}
-/* The line being spoken, under the transport. Two lines at most: this is a
-   glance target, not a transcript. */
-.pnow{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
-  margin-top:.4rem;font-size:.8rem;line-height:1.45;color:var(--ink-2)}
-.pnote{margin-top:.35rem;font-size:.7rem;color:var(--muted);line-height:1.4}
-/* Room for the bar, so the last paragraph of a chapter is not under it. */
-body.listening .main{padding-bottom:9rem}
-
-@media (max-width:620px){
-  .player{padding:.55rem 1rem calc(.55rem + env(safe-area-inset-bottom))}
-  .pvoice{max-width:7rem}
-  .ptrack{order:10;flex-basis:100%;min-width:0}
-}
-.pnow.perr{color:var(--red)}
+/* A section heading inside the story, so a reader who stops halfway can find
+   their place by scanning. Sans, like every other heading a reader navigates
+   by, and with room above it to read as a break. */
+.prose h3.sh{font-family:var(--sans);font-size:1.02rem;font-weight:600;
+  line-height:1.35;margin:2rem 0 .6rem;color:var(--ink)}
+.prose h3.sh:first-child{margin-top:.4rem}

@@ -80,7 +80,8 @@ function validate(kind,data){
     need(Array.isArray(data)&&data.length,'Chapters must be a non-empty list.');
     (data||[]).forEach((c,i)=>{
       ['id','title','concept'].forEach(k=>need(typeof c[k]==='string'&&c[k],`Chapter ${i+1} needs a ${k}.`));
-      need(typeof c.num==='number',`Chapter ${c.id||i+1} needs a number.`);
+      need(typeof c.num==='number'||/^[AB]\d{1,2}$/.test(String(c.num)),
+        `Chapter ${c.id||i+1} needs a number, or a track number like A3.`);
       need(Array.isArray(c.story)&&c.story.length,`Chapter ${c.id||i+1} needs a story.`);
       ['words','handson','homework','check','wrong','takeaway','labs'].forEach(k=>
         need(c[k]===undefined||Array.isArray(c[k]),`Chapter ${c.id||i+1} has ${k} but it is not a list.`));
@@ -674,8 +675,9 @@ function nextId(prefix,taken,width){
 }
 function blankOf(kind,arr){
   if(kind==='chapters'){
-    const nums=arr.map(c=>c.num||0);
-    const n=(nums.length?Math.max.apply(null,nums):0)+1;
+    /* Only the core chapters are numbered arithmetically; A3 and B7 are not. */
+    const nums=arr.map(c=>c.num).filter(v=>typeof v==='number');
+    const n=Math.floor(nums.length?Math.max.apply(null,nums):0)+1;
     return {id:nextId('ch',new Set(arr.map(c=>c.id)),0)||('ch'+n),num:n,part:1,minutes:45,labs:[],
       title:'Untitled chapter',concept:'One sentence a reader could repeat a week later.',
       story:[['p','']],words:[],handson:[],wrong:[],homework:[],check:[],red:[]};
@@ -696,7 +698,8 @@ function reid(kind,x,arr){
   if(kind==='items') x[0]=nextId('I',new Set(arr.map(i=>i[0])),3);
   else if(x.id) x.id=nextId(x.id.replace(/[0-9]+$/,''),new Set(arr.map(y=>y.id)),
     (x.id.match(/[0-9]+$/)||[''])[0].length||2);
-  if(kind==='chapters') x.num=(arr.length?Math.max.apply(null,arr.map(c=>c.num||0)):0)+1;
+  if(kind==='chapters'){ const nums=arr.map(c=>c.num).filter(v=>typeof v==='number');
+    x.num=Math.floor(nums.length?Math.max.apply(null,nums):0)+1; }
 }
 
 /* ============ record editors ============ */
@@ -726,8 +729,13 @@ function recordPage(kind,id){
 function chapterForm(f,c,on){
   f.appendChild(h('div',{class:'sgrid4'},[
     fld('id',inp(c.id,v=>{c.id=v;on();}),'Used in links. Changing it breaks bookmarks.'),
-    fld('number',numin(c.num,v=>{c.num=v;on();})),
-    fld('part',sel(c.part,[[1,'I — The basics'],[2,'II — What real systems add'],[3,'III — Measuring, costing, shipping'],[4,'IV — The decisions that stay yours']],v=>{c.part=Number(v);on();})),
+    /* A plain number for the core, or A3 / B7 for the playbook's two tracks. */
+    fld('number',inp(String(c.num),v=>{const t=v.trim();
+      c.num=/^\d+(\.\d+)?$/.test(t)?Number(t):t.toUpperCase();on();}),'A number, or A1–A8 / B1–B8.'),
+    /* Built from the parts themselves. It was a hard-coded list of four, so
+       Part V, added later, could never be chosen here. */
+    fld('part',sel(c.part,(window.PARTS||[]).map(p=>[p.n,(p.track?'Track ':'')+(p.label||p.n)+' — '+p.title]),
+      v=>{c.part=Number(v);on();})),
     fld('minutes',numin(c.minutes,v=>{c.minutes=v;on();}),'Honest reading + doing time.')]));
   f.appendChild(fld('title',inp(c.title,v=>{c.title=v;on();})));
   f.appendChild(fld('concept',ta(c.concept,v=>{c.concept=v;on();},2),

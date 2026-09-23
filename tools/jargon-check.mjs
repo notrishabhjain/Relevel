@@ -39,6 +39,7 @@ function proseOf(c) {
     else if (k === 'tb') out.push([...(r[0] || []), ...(r[1] || []).flat()].join(' '));
     else if (k === 'pred') out.push([r[0].ask, r[0].reveal, r[0].then].filter(Boolean).join(' '));
     else if (k === 'try') out.push([r[0].task, r[0].after].filter(Boolean).join(' '));
+    else if (k === 'h') out.push(String(r[0] || ''));
   };
   (c.story || []).forEach(push);
   (c.handson || []).forEach(s => { out.push(s.h || ''); (s.b || []).forEach(push); });
@@ -48,20 +49,25 @@ function proseOf(c) {
   return out.join('\n').replace(/<[^>]+>/g, ' ');
 }
 
+/* Positions in reading order, because chapter numbers are no longer
+   arithmetic: A1–A8 come before Chapter 1, and B1–B8 after Chapter 34. */
+const posOf = new Map(chapters.map((c, i) => [c.num, i]));
+const numAt = i => (i == null || i >= chapters.length ? i : chapters[i].num);
+
 /* Where each term is first explained to the reader. */
 const introducedIn = new Map();
 for (const c of chapters)
   for (const [term] of c.words || []) {
     /* "Model / LLM" and "Top-k (k)" name more than one form */
     for (const t of String(term).split(/\s*[/(]\s*/).map(s => s.replace(/\)$/, '').trim()).filter(Boolean))
-      if (!introducedIn.has(t.toLowerCase())) introducedIn.set(t.toLowerCase(), c.num);
+      if (!introducedIn.has(t.toLowerCase())) introducedIn.set(t.toLowerCase(), posOf.get(c.num));
   }
 for (const g of C.reference.GLOSSARY || []) {
   const [term, , ch] = g;
   for (const t of String(term).split(/\s*[/(]\s*/).map(s => s.replace(/\)$/, '').trim()).filter(Boolean)) {
     const k = t.toLowerCase();
     /* chapter 0 is the ground floor: available from the very first page */
-    const at = (ch == null ? 99 : ch);
+    const at = (ch == null ? 9999 : (posOf.has(ch) ? posOf.get(ch) : 9999));
     if (!introducedIn.has(k) || at < introducedIn.get(k)) introducedIn.set(k, at);
   }
 }
@@ -74,7 +80,7 @@ for (const c of chapters) {
   for (const term of introducedIn.keys()) {
     if (firstUse.has(term)) continue;
     const re = new RegExp('\\b' + escape(term) + (term.length > 3 ? 's?' : '') + '\\b', 'i');
-    if (re.test(text)) firstUse.set(term, c.num);
+    if (re.test(text)) firstUse.set(term, posOf.get(c.num));
   }
 }
 
@@ -82,18 +88,18 @@ const rows = [];
 for (const [term, intro] of introducedIn) {
   const used = firstUse.get(term);
   if (used == null) continue;
-  if (intro == null) rows.push({ term, used, intro: null, gap: 99 });
+  if (intro == null) rows.push({ term, used, intro: null, gap: 9999 });
   else if (used < intro) rows.push({ term, used, intro, gap: intro - used });
 }
 rows.sort((a, b) => a.used - b.used || b.gap - a.gap);
 
-const never = rows.filter(r => r.intro === null || r.intro === 99);
+const never = rows.filter(r => r.intro === null || r.intro === 9999);
 const early = rows.filter(r => !never.includes(r));
 
 console.log(`${introducedIn.size} terms tracked across ${chapters.length} chapters\n`);
 if (never.length) {
   console.log(`${never.length} term(s) used but never defined anywhere:`);
-  for (const r of never) console.log(`  ch${String(r.used).padStart(2)}  ${r.term}`);
+  for (const r of never) console.log(`  ch${String(numAt(r.used)).padStart(3)}  ${r.term}`);
   console.log('');
 }
 /* Naming a thing before teaching it is deliberate here — the book withholds
@@ -103,7 +109,7 @@ if (never.length) {
 if (early.length) {
   console.log(`${early.length} deliberate forward reference(s) — tappable at first use:`);
   for (const r of early)
-    console.log(`  ch${String(r.used).padStart(2)} → taught in ch${String(r.intro).padStart(2)}  ${r.term}`);
+    console.log(`  ch${String(numAt(r.used)).padStart(3)} → taught in ch${String(numAt(r.intro)).padStart(3)}  ${r.term}`);
 } else console.log('no term is used before it is explained');
 
 if (never.length) {

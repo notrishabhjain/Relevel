@@ -14,7 +14,6 @@ const TR=s=>(window.T?window.T(s):s);
 const save=()=>window.STORE.save();
 const pct=v=>Math.round(v)+'%';
 const LN=()=>window.LEVEL_NAMES;
-const ROMAN2=n=>['','I','II','III','IV','V','VI','VII','VIII','IX','X'][n]||String(n);
 
 function tile(l,v,cls,s){return h('div',{class:'stat'},[h('span',{class:'l',text:l}),
   h('span',{class:'v '+(cls||''),text:String(v)}),s?h('span',{class:'s',text:s}):h('span')]);}
@@ -141,31 +140,49 @@ function dashboard(){
   });
   w.appendChild(grid);
 
-  /* The book itself, reachable from the page people actually land on.
-
-     The dashboard is a tracker, so it only ever pointed at the single next
-     action. That is right for a returning reader and useless for one who
-     wants to see what is in here — Part V was added and could not be found
-     from the landing page at all, because nothing on it lists the parts. */
-  w.appendChild(h('h2',{class:'sec',text:'The book'}));
-  const partRow=h('div',{class:'partrows'});
-  window.PARTS.forEach(p2=>{
-    const chs=(window.CHAPTERS||[]).filter(c=>c.part===p2.n);
-    if(!chs.length) return;
-    const doneN=chs.filter(c=>st.done[c.id]).length;
-    const next=chs.find(c=>!st.done[c.id])||chs[0];
-    partRow.appendChild(h('a',{class:'partrow'+(doneN===chs.length?' done':''),
+  /* The curriculum, reachable from the page people actually land on — as
+     the v4.3 hierarchy, not the seven parts underneath it. A returning
+     reader already has the one action above; this is for "what is actually
+     in here, and how much of it is mine to finish". Four cards, not sixty-
+     five chapters or seven parts: Core (required), the Capstone (a fourth
+     block of its own, since it is one project rather than reading),
+     Selective (useful, depth is yours to control) and Reference (browse,
+     never forced). */
+  w.appendChild(h('h2',{class:'sec',text:'The curriculum'}));
+  const tierRow=h('div',{class:'partrows tiercards'});
+  const tierCard=(key,label,sub,tp)=>{
+    const next=tp.next||tp.chs[0];
+    if(!next) return null;
+    const done=tp.total>0&&tp.done===tp.total;
+    return h('a',{class:'partrow tiercard t'+key+(done?' done':''),
       href:'#/ch/'+next.id},[
-      h('div',{class:'prn',text:'Part '+ROMAN2(p2.n)}),
+      h('div',{class:'prn',text:label[0]}),
       h('div',{style:'flex:1;min-width:0'},[
-        h('h3',{text:TR(p2.title)}),
-        h('p',{text:'Chapters '+chs[0].num+'\u2013'+chs[chs.length-1].num+
-          ' \u00b7 '+doneN+' of '+chs.length+' done'})]),
-      h('span',{class:'go',text:doneN?'Continue \u2192':'Open \u2192'})]));
-  });
-  w.appendChild(partRow);
+        h('h3',{text:TR(label)}),
+        h('p',{text:sub+' \u00b7 '+(done?'all '+tp.total+' done':tp.done+' of '+tp.total+' done')})]),
+      h('span',{class:'go',text:done?'Complete \u2713':(tp.done?'Continue \u2192':'Start \u2192')})]);
+  };
+  const core=tierCard('core','Core track','Required competency path',eng.tierProgress(st,'core'));
+  if(core) tierRow.appendChild(core);
+  const cap=(window.CHAPTERS||[]).find(c=>c.id==='ch21cap');
+  if(cap){
+    const capDone=!!st.done[cap.id];
+    tierRow.appendChild(h('a',{class:'partrow tiercard tcapstone'+(capDone?' done':''),
+      href:'#/ch/'+cap.id},[
+      h('div',{class:'prn',text:'C'}),
+      h('div',{style:'flex:1;min-width:0'},[
+        h('h3',{text:TR('Capstone')}),
+        h('p',{text:'One integrated build-and-defend journey \u00b7 '+
+          (capDone?'done':'11 stages, discover to defend')})]),
+      h('span',{class:'go',text:capDone?'Revisit \u2192':'Open \u2192'})]));
+  }
+  const sel=tierCard('selective','Selective','Useful, depth is yours to control',eng.tierProgress(st,'selective'));
+  if(sel) tierRow.appendChild(sel);
+  const ref=tierCard('reference','Reference','Browse when needed \u2014 never forced',eng.tierProgress(st,'reference'));
+  if(ref) tierRow.appendChild(ref);
+  w.appendChild(tierRow);
   w.appendChild(h('p',{class:'dim',style:'font-size:.85rem;margin:.6rem 0 0'},
-    [h('a',{href:'#/library',text:'All 49 chapters, listed \u2192'})]));
+    [h('a',{href:'#/library',text:'All '+(window.CHAPTERS||[]).length+' chapters, listed \u2192'})]));
 
   /* recent activity */
   const acc=eng.accuracyByDay(st,21);

@@ -12,6 +12,11 @@ const esc=s=>String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;',
 /* Parts are data, so the numeral has to be computed rather than looked up in a
    list of three. */
 const ROMAN=n=>['','I','II','III','IV','V','VI','VII','VIII','IX','X'][n]||String(n);
+/* A part is looked up by its number, never by its position: the playbook's two
+   lettered tracks sit either side of Parts I–V, so position and number no
+   longer agree. A track is named "Track A", a part "Part III". */
+const partOf=n=>(window.PARTS||[]).find(p=>p.n===n)||{};
+const partName=n=>{const p=partOf(n);return (p.track?'Track ':'Part ')+(p.label||ROMAN(n));};
 
 /* Rebuilt from whatever content was loaded, before the first render. */
 let CH=[];
@@ -24,13 +29,19 @@ let IDX=null;                     // command palette index, rebuilt with content
    to a chapter that does not exist renders as a chip that goes nowhere, and
    nothing reports it. */
 const byNum={};
+/* Reading order, by position. Chapter numbers stopped being arithmetic when the
+   playbook added A1–A8 before Chapter 1 and B1–B8 after Chapter 34, so "does
+   this come before that" is answered by where a chapter sits, not by its
+   number. */
+const ORDER={};
 const chHref=n=>byNum[n]?'#/ch/'+byNum[n].id:null;
 function bindContent(){
   CH = window.CHAPTERS ||
        (window.PARTS||[]).reduce((a,p)=>a.concat(window['PART'+p.n]||[]),[]);
   Object.keys(byId).forEach(k=>delete byId[k]);
   Object.keys(byNum).forEach(k=>delete byNum[k]);
-  CH.forEach(c=>{byId[c.id]=c; byNum[c.num]=c;});
+  Object.keys(ORDER).forEach(k=>delete ORDER[k]);
+  CH.forEach((c,i)=>{byId[c.id]=c; byNum[c.num]=c; ORDER[c.id]=i;});
   if(window.ENG && window.ENG.reinit) window.ENG.reinit();
   IDX=null;                       // command palette index is content-derived
 }
@@ -42,8 +53,14 @@ const KEY='aifz2027';
 const defaults=()=>({done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{},drill:{},
   appx:{},     // appendix A competency worksheet: 'row:col' -> 1
   tpl:{},      // Appendix C template copies: '<key>:<n>' -> {v,at,done}
-  tts:{rate:1}, // read-aloud speed; the voice is per-device, in localStorage
   arts:{},     // Appendix B artifact tracker: '<n>' -> {s:0|1|2, where}
+  /* v4.3 mastery, self-rated per unit (key = its number, e.g. '8.1') or per
+     chapter (key = its id) where a chapter has no numbered units: 0 = not
+     started, 1 = exposed, 2 = practiced, 3 = defended. Distinct from `sk`
+     above, which is quiz-driven skill mastery with decay -- this is "have I
+     actually done the work on this lesson", set by the learner, not derived
+     from quiz answers. */
+  mastery:{},
   smap:{},     // Appendix A study map: block index -> 1
   exit:{},     // final exit test: capability index -> 1
   railmore:false,   // the rest of the instruments, out of the way until wanted
@@ -139,6 +156,48 @@ function T(s){
   Thit++; return v;
 }
 function Tl(list){ return (list||[]).map(T); }
+
+/* ---------------- mastery (v4.3) ----------------
+   Self-rated, per unit or per chapter, 0-3: not started / exposed / practiced
+   / defended. Completion (S.done) says you read it. Mastery says how well you
+   can actually use it -- a distinction this control exists to make visible
+   rather than let "read" quietly stand in for "learned". One tap cycles it;
+   there is nothing here to type, so it works the same on a phone as a laptop. */
+const MASTERY_LABEL=['Not started','Exposed','Practiced','Defended'];
+function masteryControl(key,hint){
+  S.mastery=S.mastery||{};
+  const wrap=h('div',{class:'mastery m'+(S.mastery[key]||0)});
+  const btn=h('button',{class:'msbtn',type:'button'});
+  const draw=()=>{
+    const lvl=S.mastery[key]||0;
+    wrap.className='mastery m'+lvl;
+    btn.textContent=MASTERY_LABEL[lvl];
+    btn.title=T('Mastery — tap to change')+': '+MASTERY_LABEL[lvl];
+  };
+  btn.addEventListener('click',()=>{
+    S.mastery[key]=((S.mastery[key]||0)+1)%4;
+    draw(); save();
+  });
+  draw();
+  wrap.appendChild(h('span',{class:'mslbl',text:T('Mastery')}));
+  wrap.appendChild(btn);
+  if(hint) wrap.appendChild(h('span',{class:'mshint',text:T(hint)}));
+  return wrap;
+}
+/* A chapter's own mastery summary: its units' average if it has any, else its
+   single chapter-level rating. Used by the dashboard and the chapter header. */
+function chapterMastery(c){
+  const units=[];
+  (c.story||[]).forEach(b=>{ if(Array.isArray(b)&&b[0]==='unit') units.push(b[1]); });
+  S.mastery=S.mastery||{};
+  if(units.length){
+    const sum=units.reduce((a,u)=>a+(S.mastery[u]||0),0);
+    return {level:sum/units.length, of:units.length, defended:units.filter(u=>(S.mastery[u]||0)===3).length};
+  }
+  const lvl=S.mastery[c.id]||0;
+  return {level:lvl, of:1, defended:lvl===3?1:0};
+}
+window.chapterMastery=chapterMastery;
 window.T=T;
 
 /* ---------------- block renderer ---------------- */
@@ -147,6 +206,10 @@ function blocks(list){
   (list||[]).forEach(b=>{
     const [k,...r]=b;
     if(k==='p')f.appendChild(h('p',{html:T(r[0])}));
+    /* A section heading inside the story. Chapters were one unbroken stream of
+       paragraphs; a reader who stops halfway finds their place by scanning
+       headings, which is how every technical book is laid out. */
+    else if(k==='h')f.appendChild(h('h3',{class:'sh',html:T(r[0])}));
     else if(k==='key')f.appendChild(h('div',{class:'keyline',html:T(r[0])}));
     else if(k==='c')f.appendChild(h('div',{class:'callout'},[h('span',{class:'lbl',text:T(r[0])}),h('p',{html:T(r[1])})]));
     else if(k==='l')f.appendChild(h('ul',{class:'bul'},Tl(r[0]).map(i=>h('li',{html:i}))));
@@ -208,6 +271,7 @@ function blocks(list){
         row('As a PM',u.lens,'ulens')
       ].filter(Boolean));
       sec.appendChild(body);
+      sec.appendChild(masteryControl(r[0],'Read it (1) → built or checked it (2) → could defend it cold (3)'));
       f.appendChild(sec);
     }
     /* A hands-on beat, inline. The whole point is that it sits here, right
@@ -282,7 +346,7 @@ function openTerm(btn,entry,here){
   if(r.right>innerWidth-8) popEl.style.left=Math.max(8-btn.getBoundingClientRect().left,-r.width+60)+'px';
 }
 
-const SKIP_TERMS=new Set(['PRE','CODE','BUTTON','A','TEXTAREA','INPUT','DT','SUMMARY']);
+const SKIP_TERMS=new Set(['PRE','CODE','BUTTON','A','TEXTAREA','INPUT','DT','SUMMARY','H3']);
 /* Enough marks that nothing goes unexplained, few enough that a paragraph still
    reads as prose rather than as a field of links. */
 const PER_BLOCK=4;
@@ -549,26 +613,27 @@ function sectionHead(idx,title,time){
 
 function renderChapter(c){
   const w=h('div',{class:'wrap'});
-  const part=window.PARTS[c.part-1];
+  const part=partOf(c.part);
   cpBars=[];                       // stale refreshers from the last chapter
   w.appendChild(h('header',{class:'chead'},[
-    h('div',{class:'eyebrow'},[h('span',{text:'Part '+ROMAN(c.part)+' · '+T(part.title)}),
-      h('span',{class:'dot'}),h('span',{text:'~'+c.minutes+' min'}),
-      h('span',{class:'dot'}),h('span',{text:'one sitting'})]),
+    h('div',{class:'eyebrow'},[h('span',{text:partName(c.part)+' · '+T(part.title)}),
+      h('span',{class:'dot'}),
+      /* The playbook's chapters are measured in hours of work, not minutes of
+         reading, and saying "one sitting" of a 14-hour chapter is a lie. */
+      h('span',{text:c.minutes>=120?'~'+Math.round(c.minutes/60)+' hours':'~'+c.minutes+' min'}),
+      h('span',{class:'dot'}),h('span',{text:c.minutes>=120?'several sittings':'one sitting'})]),
     h('div',{class:'chnum',text:String(c.num).padStart(2,'0')}),
     h('h1',{text:T(c.title)}),
     h('p',{class:'concept',text:T(c.concept)})]));
 
-  /* Part V arrived from the newest edition in English only, deliberately. On
-     those chapters a reader with Hinglish on gets English and no explanation,
-     which looks exactly like the switch being broken — the fault this course
-     has already been told about once. Say it plainly instead. */
-  if(S.lang==='hi' && c.part>=5){
-    w.appendChild(h('div',{class:'callout',style:'margin-bottom:1.2rem'},[
-      h('span',{class:'lbl',text:'This part is English-only for now'}),
-      h('p',{html:'Part V came from the newest edition of the workbook and has not been '+
-        'translated yet, so it reads in English whichever switch is set. Parts I to IV '+
-        'are unaffected. <a href="#/language">The Language page</a> shows what is covered.'})]));
+  /* What you will be able to do, before you start. The same list closes the
+     chapter as "You can now"; stating it at the top is what every technical
+     book does, because a reader who knows where a chapter is going can tell
+     when they have got there. */
+  if((c.takeaway||[]).length){
+    w.appendChild(h('section',{class:'learn'},[
+      h('span',{class:'cplbl',text:T('In this chapter')}),
+      h('ul',{class:'plain'},c.takeaway.map(t=>h('li',{html:T(t)})))]));
   }
 
   /* The lab-first plan, from v4.1 of the workbook.
@@ -632,16 +697,16 @@ function renderChapter(c){
     let m;
     while((m=re.exec(joined))!==null)
       (m[0].match(/\d+/g)||[]).forEach(n=>{const v=+n;
-        if(v<c.num && !declared.has(v) && byNum[v]) found.add(v);});
-    return [...found].sort((a,b)=>a-b);
+        if(byNum[v] && ORDER[byNum[v].id]<ORDER[c.id] && !declared.has(v)) found.add(v);});
+    return [...found].sort((a,b)=>ORDER[byNum[a].id]-ORDER[byNum[b].id]);
   })();
 
   if((c.needs||[]).length||alsoRefs.length){
     const nd=h('section',{class:'needs'});
     nd.appendChild(h('div',{class:'needshead'},[
-      h('span',{class:'cplbl',text:'This chapter stands on'}),
+      h('span',{class:'cplbl',text:T('Prerequisites')}),
       h('span',{class:'dim',style:'font-size:.78rem',
-        text:'if any of these are blank, go back first — that is the fast route, not the slow one'})]));
+        text:T('If any of these are unfamiliar, review them first. It saves time.')})]));
     if((c.needs||[]).length)
       nd.appendChild(h('ul',{class:'needlist'},c.needs.map(([what,why,ch])=>
         h('li',{},[
@@ -653,13 +718,13 @@ function renderChapter(c){
             : h('a',{class:'chip',href:chHref(ch)||'#/map',text:'Chapter '+ch+' →'})]))));
     if(alsoRefs.length){
       const row=h('div',{class:'alsoref'},[
-        h('span',{class:'needwhy',text:'It also refers back to '})]);
+        h('span',{class:'needwhy',text:T('It also refers back to')+' '})]);
       alsoRefs.forEach((n,i)=>{
         row.appendChild(h('a',{href:chHref(n)||'#/map',text:'Chapter '+n}));
         if(i<alsoRefs.length-2) row.appendChild(document.createTextNode(', '));
         else if(i===alsoRefs.length-2) row.appendChild(document.createTextNode(' and '));
       });
-      row.appendChild(document.createTextNode('. Any of those a blank? Open it in a second tab rather than pushing on.'));
+      row.appendChild(document.createTextNode('. '+T('If any are unfamiliar, open them in another tab.')));
       nd.appendChild(row);
     }
     w.appendChild(nd);
@@ -692,7 +757,7 @@ function renderChapter(c){
      headings to navigate between — there is only one place to be. */
   const plain=!((c.words||[]).length||(c.wrong||[]).length||(c.homework||[]).length
     ||(c.check||[]).length);
-  if(!plain) story.appendChild(sectionHead(c.num+'.'+n++,'The Story'));
+  if(!plain) story.appendChild(sectionHead(c.num+'.'+n++,'Walkthrough'));
   const seenTerms=new Set();
   story.appendChild(markTerms(h('div',{class:'prose'},[blocks(c.story)]),seenTerms,c.num));
   w.appendChild(story);
@@ -700,7 +765,7 @@ function renderChapter(c){
   // Words
   if((c.words||[]).length){
   const words=h('section',{class:'part',id:'words'});
-  words.appendChild(sectionHead(c.num+'.'+n++,'Words You Now Own'));
+  words.appendChild(sectionHead(c.num+'.'+n++,'Key terms'));
   words.appendChild(h('dl',{class:'words noterm'},c.words.map(([t,d])=>
     h('div',{class:'word'},[h('dt',{text:t}),h('dd',{html:d})]))));
   w.appendChild(words);
@@ -752,7 +817,7 @@ function renderChapter(c){
   // If something goes wrong
   if(c.wrong&&c.wrong.length){
     const sw=h('section',{class:'part',id:'wrong'});
-    sw.appendChild(sectionHead(c.num+'.'+n++,'If Something Goes Wrong'));
+    sw.appendChild(sectionHead(c.num+'.'+n++,'Troubleshooting'));
     const t=h('table');
     t.appendChild(h('thead',{},h('tr',{},[h('th',{text:'What you see'}),
       h('th',{text:'Most likely cause'}),h('th',{text:'Fix'})])));
@@ -775,7 +840,7 @@ function renderChapter(c){
   // Check yourself
   if((c.check||[]).length){
   const cy=h('section',{class:'part',id:'check'});
-  cy.appendChild(sectionHead(c.num+'.'+n++,'Check Yourself'));
+  cy.appendChild(sectionHead(c.num+'.'+n++,'Check your understanding'));
   cy.appendChild(h('p',{class:'dim',style:'font-size:.87rem;margin:0 0 1rem',
     text:'Answer aloud before opening. Grade yourself honestly — this is private and nothing is reported anywhere.'}));
   c.check.forEach((qa,i)=>{
@@ -799,14 +864,14 @@ function renderChapter(c){
      chapter that produces the thing, with the template that shapes it one tap
      away. Chapters that produce nothing get nothing. */
   const ev=evidenceBlock(c);
-  if(ev){ ev.insertBefore(sectionHead(c.num+'.'+n++,'What this chapter leaves you holding'),ev.firstChild);
+  if(ev){ ev.insertBefore(sectionHead(c.num+'.'+n++,'What this chapter produces'),ev.firstChild);
     w.appendChild(ev); }
 
   // Close the sitting
   const cs=h('section',{class:'part',id:'close'});
   if(!plain){
-    cs.appendChild(sectionHead(c.num+'.'+n++,'Close the Sitting'));
-    cs.appendChild(h('p',{class:'prose',html:'Three rough lines, then stop — even if you feel like continuing. <em>Especially</em> if you feel like continuing. That leftover energy is what brings you back next sitting.'}));
+    cs.appendChild(sectionHead(c.num+'.'+n++,'Close the sitting'));
+    cs.appendChild(h('p',{class:'prose',html:T('Write three short lines, then stop, even if you want to keep going. Stopping with energy left makes it easier to come back next time.')}));
     cs.appendChild(notebookBlock(c,'close','Three lines: what confused me / what clicked / what to try next',
       'Three minutes. Then close it.'));
   }
@@ -816,6 +881,11 @@ function renderChapter(c){
       h('span',{class:'cplbl',text:'You can now'}),
       h('ul',{class:'plain'},c.takeaway.map(t=>h('li',{html:T(t)})))]));
   }
+  /* Chapters built from numbered units carry their own per-unit mastery
+     control inline (see the 'unit' block renderer above); everything else
+     gets one chapter-level rating here instead of none at all. */
+  const hasUnits=(c.story||[]).some(b=>Array.isArray(b)&&b[0]==='unit');
+  if(!hasUnits) cs.appendChild(masteryControl(c.id,'Read it (1) → tried the exercises (2) → could defend it cold (3)'));
   const doneRow=h('div',{style:'display:flex;gap:.6rem;align-items:center;margin-top:1.2rem;flex-wrap:wrap'});
   const db=h('button',{class:'primary',onclick:()=>{
     S.done[c.id]=!S.done[c.id];
@@ -974,10 +1044,10 @@ function pageHome(){
     h('div',{},[h('span',{class:'l',text:'Cost'}),h('span',{class:'v',text:'None — free tiers throughout'})])]));
 
   w.appendChild(h('div',{class:'prose',style:'max-width:66ch'},[blocks([
-    ['p','This book has one purpose: getting you to the point where you can hold a credible, evidence-based conversation about AI systems — not by reading about them, but by building one yourself, then breaking it on purpose and writing down what happened.'],
-    ['p','Parts I and II build and then interrogate a document-answering system. Part III is the half most curricula omit entirely: what it costs, how you prove it works, what paperwork it ships with, and what happens when your provider retires the model underneath you. Part IV is the decisions that stay yours whoever builds it.'],
-    ['p','Part V is a separate track, added later and deeper: the same subjects taken to the depth you would need to defend a production system in a design review. Start it once Part I has actually been done rather than read — it assumes the system you built there exists.'],
-    ['key','Vocabulary acquired before experience becomes jargon — words you can recognize but cannot defend. Vocabulary acquired after experience becomes testimony.']
+    ['p','This course teaches you to build, test and discuss AI products using evidence. You build a system yourself, break it on purpose, and write down what happened.'],
+    ['p','Track A covers product management basics and how generative AI models work. Parts I and II build and then test a system that answers questions from documents. Part III covers evaluation, cost, governance and specs. Part IV covers the product decisions that stay yours.'],
+    ['p','Part V takes the same topics to production depth. Start it after you have done Part I, because it builds on that system. Track B then takes your product to real users, a real price and a real job.'],
+    ['key','Learn each term after you have seen the thing it names. A term learned first is easy to repeat but hard to defend.']
   ])]));
 
   window.PARTS.forEach(p=>{
@@ -991,7 +1061,7 @@ function pageHome(){
       h('span',{text:'A separate track'}),
       h('em',{text:'deeper versions of the same subjects — start after Part I is built, not read'})]));
     w.appendChild(h('div',{class:'partcard'+(sep?' track':'')},[
-      h('div',{class:'pn',text:'Part '+ROMAN(p.n)+' — Chapters '+chs[0].num+'–'+chs[chs.length-1].num}),
+      h('div',{class:'pn',text:partName(p.n)+' — Chapters '+chs[0].num+'–'+chs[chs.length-1].num}),
       h('h3',{text:T(p.title)}),h('p',{text:T(p.blurb)}),
       h('div',{class:'chips'},chs.map(c=>h('a',{class:'chip'+(S.done[c.id]?' done':''),
         href:'#/ch/'+c.id,text:c.num+'. '+T(c.title)})))]));
@@ -1449,7 +1519,7 @@ function pageProgress(){
     const d=chs.filter(c=>S.done[c.id]).length;
     byPart.appendChild(h('div',{class:'card'},[
       h('div',{style:'display:flex;align-items:baseline;gap:.6rem'},[
-        h('h3',{style:'flex:1',text:'Part '+ROMAN(p.n)+' — '+T(p.title)}),
+        h('h3',{style:'flex:1',text:partName(p.n)+' — '+T(p.title)}),
         h('span',{class:'mono dim',style:'font-size:.75rem',text:d+'/'+chs.length})]),
       h('div',{class:'bar',style:'margin:.5rem 0 .7rem'},
         [h('i',{style:'width:'+(d/chs.length*100)+'%'})]),
@@ -1612,7 +1682,9 @@ function renderRail(){
       ['#/ledger','∆','My predictions vs reality'],
       ['#/card','▣','Governance doc builder'],
       ['#/vendor','⌗','Questions to ask vendors'],
-      ['#/evidence','▤','The 22 artifacts I owe, and the study map'],
+      ['#/evidence','▤','The Artifact Vault — 22 artifacts and the study map'],
+      ['#/decisions','◈','Decision Log — every ADR I have written'],
+      ['#/failures','✗','Failure Log — what broke, and what I did about it'],
       ['#/templates','▧','Fill-in templates for experiments and decisions'],
       ['#/appendix','≡','Worksheet, question bank, sources'],
       ['#/notebook','✐','My notes'],
@@ -1936,6 +2008,94 @@ function pageTemplates(which){
    trackers, and every artifact row links to the chapter that produces it and
    the template that shapes it — which is the only thing that turns a list of
    nouns into something you can work through. */
+/* Which of the four v4.3 artifact classes a row belongs to, and how the vault
+   labels it. Kept here rather than only in data so a row with no class (an
+   older or hand-edited one) still renders instead of throwing. */
+const ARTCLASS={experiment:'Experiment',engineering:'Engineering',decision:'Decision',evidence:'Evidence'};
+
+/* ---------- Decision Log and Failure Log ----------
+
+   Both are the same shape: every copy of one Appendix C template (adr, fail),
+   read as a running log instead of one entry among nine templates. No second
+   state, no second form — S.tpl and tplForm are the only place either one is
+   ever written, so a decision or failure logged from a chapter page, the
+   workbench, or here all land in the same list. */
+function pageLog(key,opts){
+  const t=tplById(key);
+  const w=h('div',{class:'wrap-wide'});
+  if(!t) return w;
+  w.appendChild(h('header',{class:'phead'},[
+    h('div',{class:'eyebrow'},[h('span',{text:opts.eyebrow})]),
+    h('h1',{text:opts.title}),
+    h('p',{html:T(opts.blurb)})]));
+  const stats=h('div',{class:'stats'});
+  const redrawStats=()=>{
+    const mine=tplCopies(key);
+    const complete=mine.filter(id=>tplFilled(id)===t.fields.length).length;
+    stats.innerHTML='';
+    [tile(T('entries'),String(mine.length)),
+     tile(T('complete'),complete+' / '+mine.length,mine.length&&complete===mine.length?'ok':'')]
+      .forEach(x=>stats.appendChild(x));
+  };
+  redrawStats();
+  w.appendChild(stats);
+  const ch=byId[t.ch];
+  if(ch) w.appendChild(h('div',{class:'chiprow',style:'margin:.2rem 0 1rem'},
+    h('a',{class:'chip',href:'#/ch/'+ch.id,text:T('Usually starts in')+' · '+ch.num+'. '+T(ch.title)})));
+
+  const list=h('div',{class:'arts'});
+  const redraw=()=>{
+    list.innerHTML='';
+    const mine=tplCopies(key);
+    if(!mine.length){
+      list.appendChild(h('p',{class:'dim',style:'font-size:.9rem',text:opts.empty}));
+    }
+    mine.slice().reverse().forEach(id=>{
+      const c=S.tpl[id], n=tplFilled(id), tot=t.fields.length;
+      const headline=(c.v[0]||'').trim()||T('Untitled')+' — '+id.split(':')[1];
+      const when=new Date(c.at||Date.now()).toISOString().slice(0,10);
+      const det=h('details',{class:'qa tplcopy logentry'});
+      const pill=h('span',{class:'pill '+(n===tot?'ok':n?'':'red'),text:n+' / '+tot});
+      det.appendChild(h('summary',{},[
+        h('span',{class:'logwhen',text:when}),
+        h('span',{class:'logtitle',text:headline}),
+        pill]));
+      let built=false;
+      det.addEventListener('toggle',()=>{
+        if(det.open&&!built){built=true;det.appendChild(tplForm(id,redraw,()=>{}));}
+      });
+      list.appendChild(det);
+    });
+  };
+  redraw();
+  w.appendChild(list);
+  w.appendChild(h('div',{class:'tplbar',style:'margin-top:1rem'},[
+    h('button',{class:'primary sm',onclick:()=>{
+      tplNew(key);redraw();redrawStats();
+      const d=list.querySelector('details.tplcopy:first-of-type');
+      if(d)d.open=true;}},opts.cta),
+    h('a',{class:'sm chip',href:'#/templates/'+key,text:T('Open as a template instead')})]));
+  return w;
+}
+function pageDecisionLog(){
+  return pageLog('adr',{
+    eyebrow:T('Decision Log'),
+    title:T('Every decision you would not want to re-argue'),
+    blurb:T('One entry per Architecture Decision Record you have written — model choice, retrieval strategy, workflow versus agent, build versus buy, vendor risk, anything expensive to reverse. The same form the workbench uses; this page just reads it as a log instead of a template.'),
+    empty:T('No decisions logged yet. Write one the first time you catch yourself defending a choice out loud — that is the sign it belongs here.'),
+    cta:T('+ Log a decision')
+  });
+}
+function pageFailureLog(){
+  return pageLog('fail',{
+    eyebrow:T('Failure Log'),
+    title:T('What broke, and what you did about it'),
+    blurb:T('One entry per Failure Finding — the build-break-measure-fix loop this course keeps returning to, written down instead of just fixed and forgotten. A full failure log is often the most convincing thing you bring to a review.'),
+    empty:T('No failures logged yet. The first one you deliberately break in Chapter 21’s Break stage is a good place to start.'),
+    cta:T('+ Log a failure')
+  });
+}
+
 function pageEvidence(){
   const A=window.APPENDIX||{};
   const map=A.studymap||[], arts=A.artifacts||[], exit=A.exit||[];
@@ -1943,8 +2103,11 @@ function pageEvidence(){
   const w=h('div',{class:'wrap-wide'});
   w.appendChild(h('header',{class:'phead'},[
     h('div',{class:'eyebrow'},[h('span',{text:T('Appendices A and B')})]),
-    h('h1',{text:T('The evidence pack')}),
-    h('p',{html:T('What you finish this course holding is not a certificate. It is twenty-two things you built, broke and measured — and the honest note about what is still unsolved. This page is the running list, the sixteen-week map it sits on, and the thirteen things you should be able to do at the end.')})]));
+    h('h1',{text:T('The Artifact Vault')}),
+    h('p',{html:T('Everywhere the course tells you to build, break or decide something, it lands here: twenty-two artifacts, each one an experiment, a piece of engineering, a decision, or evidence. This page holds the running list, the sixteen-week map, and the thirteen things you should be able to do at the end. Your decisions and your failures also get a page of their own — they are the two kinds of artifact worth reading as a log rather than a list.')})]));
+  w.appendChild(h('div',{class:'chiprow',style:'margin:0 0 1.2rem'},[
+    h('a',{class:'chip',href:'#/decisions',text:T('→ Decision Log')}),
+    h('a',{class:'chip',href:'#/failures',text:T('→ Failure Log')})]));
 
   const artDone=()=>arts.filter(a=>(S.arts[a[0]]||{}).s===2).length;
   const artWip=()=>arts.filter(a=>(S.arts[a[0]]||{}).s===1).length;
@@ -1965,7 +2128,7 @@ function pageEvidence(){
   secB.appendChild(h('p',{class:'prose',style:'font-size:1rem',
     html:T('Twenty-two artifacts. Mark one finished only when someone else could pick it up and see what you did — the measurement, not the claim. <em>Where it lives</em> is for the repository path or the link, so that the pack assembles itself.')}));
   const artList=h('div',{class:'arts'});
-  arts.forEach(([n,title,detail,chId,tplKey])=>{
+  arts.forEach(([n,title,detail,chId,tplKey,cls])=>{
     const st=S.arts[n]=S.arts[n]||{s:0,where:''};
     const ch=byId[chId], tpl=tplById(tplKey);
     const row=h('div',{class:'art s'+st.s});
@@ -1983,6 +2146,7 @@ function pageEvidence(){
       h('div',{class:'arttitle'},[h('strong',{text:T(title)}),saved]),
       h('div',{class:'dim',style:'font-size:.82rem;margin:.15rem 0 .45rem',text:T(detail)}),
       h('div',{class:'chiprow'},[
+        ARTCLASS[cls]?h('span',{class:'chip artcls',text:T(ARTCLASS[cls])}):null,
         ch?h('a',{class:'chip',href:'#/ch/'+ch.id,text:ch.num+'. '+T(ch.title)}):null,
         tpl?h('a',{class:'chip',href:'#/templates/'+tpl.key,
           text:T('template')+' · '+T(tpl.name)}):null]),
@@ -2043,123 +2207,6 @@ function pageEvidence(){
 }
 
 
-/* ---------------- listen to the page ----------------
-
-   The engine is in src/speech.js; this is the bar you drive it with. It exists
-   only while you are listening — a transport control for something silent is
-   clutter — and it is rebuilt rather than hidden, so nothing stale survives a
-   page change. */
-function speechAvailable(){ return !!(window.SPEECH && window.SPEECH.supported); }
-let barCleanup=null;
-
-function playerBar(){
-  const SP=window.SPEECH;
-  let bar=$('#player');
-  if(bar) return bar;
-
-  const pos=h('span',{class:'ppos mono'});
-  const nowt=h('span',{class:'pnow'});
-  const playb=h('button',{class:'sm primary pplay',onclick:()=>{
-    const st=SP.state();
-    if(st.playing) SP.pause(); else SP.play();
-  }},T('Play'));
-
-  /* Speed rides in the synced state: it is a preference about how you read,
-     and it should follow you to another device. The voice does not — see the
-     note in speech.js. */
-  const rates=[0.8,1,1.15,1.3,1.5,1.75,2];
-  const rateSel=h('select',{class:'prate','aria-label':T('Speed'),
-    onchange:e=>{ S.tts=S.tts||{}; S.tts.rate=+e.target.value; save(); SP.setRate(S.tts.rate); }},
-    rates.map(r=>h('option',{value:String(r),text:r+'×'})));
-  rateSel.value=String((S.tts&&S.tts.rate)||1);
-
-  const voiceSel=h('select',{class:'pvoice','aria-label':T('Voice'),
-    onchange:e=>SP.setVoice(e.target.value)});
-  const fillVoices=()=>{
-    const list=SP.voices(S.lang==='hi');
-    voiceSel.innerHTML='';
-    if(!list.length){ voiceSel.appendChild(h('option',{text:T('Default voice')})); return; }
-    list.forEach(v=>voiceSel.appendChild(
-      h('option',{value:v.voiceURI,text:v.name+' · '+v.lang})));
-    const want=SP.savedVoiceURI();
-    if(want&&list.some(v=>v.voiceURI===want))voiceSel.value=want;
-  };
-  fillVoices();
-  /* Chrome loads the voice list asynchronously and fires this once it has one;
-     without it the picker is empty on a cold load and looks broken. */
-  const synth=window.speechSynthesis;
-  if(synth&&'onvoiceschanged' in synth){
-    synth.addEventListener('voiceschanged',fillVoices);
-    /* Dropped when the bar goes, or every open would leave another handler
-       behind holding on to a select that no longer exists. */
-    barCleanup=()=>synth.removeEventListener('voiceschanged',fillVoices);
-  }
-
-  const fill=h('i');
-  const track=h('div',{class:'ptrack'},fill);
-
-  bar=h('div',{class:'player',id:'player'},[
-    h('div',{class:'prow'},[
-      playb,
-      h('button',{class:'sm',title:T('Previous paragraph'),
-        onclick:()=>SP.seek(-1)},'⏮'),
-      h('button',{class:'sm',title:T('Next paragraph'),
-        onclick:()=>SP.seek(1)},'⏭'),
-      pos, track, rateSel, voiceSel,
-      h('button',{class:'sm',title:T('Stop listening'),
-        onclick:closePlayer},'✕')]),
-    nowt]);
-
-  /* Touch devices silence speech synthesis the moment the screen locks or the
-     tab goes to the background. Saying so here beats having it discovered
-     halfway down a chapter with the phone in a pocket. */
-  if(matchMedia('(hover:none)').matches)
-    bar.appendChild(h('div',{class:'pnote',
-      text:T('Keep this tab open and the screen on — phone browsers stop reading when the screen locks.')}));
-
-  SP.onchange=st=>{
-    playb.textContent=st.playing?T('Pause'):T('Play');
-    playb.classList.toggle('on',st.playing);
-    pos.textContent=(st.n?st.i+1:0)+' / '+st.n;
-    fill.style.width=st.n?((st.i+1)*100/st.n)+'%':'0%';
-    nowt.textContent=st.error?T(st.error):st.text;
-    nowt.classList.toggle('perr',!!st.error);
-  };
-  document.body.appendChild(bar);
-  document.body.classList.add('listening');
-  SP.onchange(SP.state());
-  return bar;
-}
-
-function openPlayer(){
-  if(!speechAvailable())return;
-  const n=window.SPEECH.load($('#main'));
-  playerBar();
-  if(!n){ window.SPEECH.onchange({playing:false,i:0,n:0,rate:1,
-    text:T('Nothing on this page to read aloud.')}); return; }
-  window.SPEECH.play();
-}
-function closePlayer(){
-  if(window.SPEECH)window.SPEECH.stop();
-  if(barCleanup){barCleanup();barCleanup=null;}
-  const bar=$('#player'); if(bar)bar.remove();
-  document.body.classList.remove('listening');
-}
-window.CLOSE_PLAYER=closePlayer;
-
-/* A page change invalidates every chunk, because they point at nodes that no
-   longer exist. If it was reading, carry on with the new page rather than
-   stopping silently — that is the behaviour that makes "next chapter" work
-   without touching the phone. */
-function speechOnRoute(){
-  if(!speechAvailable())return;
-  const bar=$('#player'); if(!bar)return;
-  const wasPlaying=window.SPEECH.reset();
-  const n=window.SPEECH.load($('#main'));
-  if(n&&wasPlaying)window.SPEECH.play();
-  else window.SPEECH.onchange(window.SPEECH.state());
-}
-
 const V=()=>window.VIEWS;
 const ROUTES={'':()=>V().dashboard(),'library':pageHome,
   'skills':()=>V().skills(),'analytics':()=>V().analytics(),
@@ -2168,13 +2215,15 @@ const ROUTES={'':()=>V().dashboard(),'library':pageHome,
   'notebook':pageNotebook,'ledger':pageLedger,
   'later':pageLater,'glossary':pageGlossary,'vendor':pageVendor,'map':pageMap,'card':pageCard,
   'appendix':pageAppendix,'evidence':pageEvidence,
+  'decisions':pageDecisionLog,'failures':pageFailureLog,
   'progress':pageProgress,'labs':pageLabs,'data':()=>V().data(),
   'studio':()=>window.STUDIO.studio([])};
 const CRUMB={'':'Dashboard','library':'Library','skills':'Skill Matrix','analytics':'Analytics',
   'exercises':'Exercises','processes':'Processes','practice':'Practice','skill':'Skill',
   'data':'Progress & Backup','studio':'Content Studio','install':'Install as an app',
   'language':'Language','setup':'Setup','appendix':'Appendices',
-  'evidence':'Evidence pack','templates':'The workbench'};
+  'evidence':'Artifact Vault','templates':'The workbench',
+  'decisions':'Decision Log','failures':'Failure Log'};
 
 function route(){
   const hash=location.hash.replace(/^#\/?/,'').split('#')[0];
@@ -2184,7 +2233,7 @@ function route(){
   let node,crumb='Dashboard';
   if(parts[0]==='ch'&&byId[parts[1]]){
     const c=byId[parts[1]];node=renderChapter(c);
-    crumb='Part '+ROMAN(c.part)+' · Chapter '+c.num;
+    crumb=partName(c.part)+' · Chapter '+c.num;
     document.title=c.num+'. '+c.title+' — AI From Zero';
   } else if(parts[0]==='practice'){
     node = parts[1] ? V().practice(parts[1],parts[2]) : V().practiceMenu();
@@ -2225,7 +2274,6 @@ function route(){
   }
   const cb=$('#crumb');if(cb)cb.textContent=crumb;
   renderRail();
-  speechOnRoute();
   /* a secondary hash (#/exercises#E01) targets an element on the rendered page */
   const anchor=location.hash.split('#')[2];
   if(anchor){const el=document.getElementById(anchor);
@@ -2250,7 +2298,9 @@ function buildIndex(){
     {k:'page',t:'Glossary',h:'#/glossary'},
     {k:'page',t:'Where You Are',h:'#/progress'},
     {k:'page',t:'Appendices',h:'#/appendix'},
-    {k:'page',t:'The Evidence Pack \u2014 22 artifacts and the study map',h:'#/evidence'},
+    {k:'page',t:'The Artifact Vault \u2014 22 artifacts and the study map',h:'#/evidence'},
+    {k:'page',t:'Decision Log \u2014 every ADR I have written',h:'#/decisions'},
+    {k:'page',t:'Failure Log \u2014 what broke, and what I did about it',h:'#/failures'},
     {k:'page',t:'The Workbench \u2014 fill-in templates',h:'#/templates'});
   /* Each template and each artifact is findable by its own name \u2014 the point
      of the palette is that you do not have to remember which page holds it. */
@@ -2312,11 +2362,6 @@ function applyLang(reroute){
   if(b){ const o=b.querySelectorAll('.lgo');
     if(o[0])o[0].classList.toggle('on',S.lang!=='hi');
     if(o[1])o[1].classList.toggle('on',S.lang==='hi'); }
-  /* The toolbar is built once at boot and never re-rendered, so anything in it
-     that goes through T() has to be refreshed here — otherwise it keeps the
-     language it happened to boot with and never changes when you switch. */
-  const lb=$('#listenbtn');
-  if(lb){ lb.textContent=T('\u25b6 Listen'); lb.title=T('Read this page aloud'); }
   document.documentElement.setAttribute('data-lang',S.lang==='hi'?'hi':'en');
   if(reroute!==false){ TERMS=null; route(); renderRail(); }
 }
@@ -2339,7 +2384,7 @@ function hingStrings(){
       Object.keys(v).forEach(k=>{ if(!SKIPKEY.has(k))walk(o,v[k]); }); };
 
   (window.PARTS||[]).forEach(p=>{
-    const o=g('Part '+ROMAN(p.n)+' — '+p.title);
+    const o=g(partName(p.n)+' — '+p.title);
     add(o,p.title); add(o,p.blurb);
     CH.filter(c=>c.part===p.n).forEach(c=>{
       add(o,c.title); add(o,c.concept);
@@ -2409,11 +2454,6 @@ function boot(){
         h('span',{class:'sp'}),
         h('a',{class:'syncpill',id:'syncpill',href:'#/data',hidden:'hidden'}),
         h('button',{class:'sm',onclick:openPal},'Search  ⌘K'),
-        /* Only shown where the browser can actually speak; a dead button that
-           does nothing is worse than no button. */
-        speechAvailable()?h('button',{class:'sm listenbtn',id:'listenbtn',
-          title:T('Read this page aloud'),
-          onclick:()=>{ $('#player')?closePlayer():openPlayer(); }},T('\u25b6 Listen')):null,
         /* Both languages, always visible, the live one filled in. The old
            button showed only the one you would switch to, which read as a
            label for the language you were already in. */
@@ -2430,11 +2470,7 @@ function boot(){
       h('div',{class:'palres',id:'palres'})])]));
   document.addEventListener('keydown',e=>{
     if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openPal();return;}
-    if(!$('#pal').classList.contains('open')){
-      /* Escape stops the voice when nothing else is open to close. */
-      if(e.key==='Escape'&&$('#player'))closePlayer();
-      return;
-    }
+    if(!$('#pal').classList.contains('open'))return;
     if(e.key==='Escape')closePal();
     else if(e.key==='ArrowDown'){e.preventDefault();palMove(1);}
     else if(e.key==='ArrowUp'){e.preventDefault();palMove(-1);}

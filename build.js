@@ -20,11 +20,13 @@ const outBin = out;
 
 const css = read('src/styles.css');
 const js = [
+  'src/data/partA.js',
   'src/data/part1.js',
   'src/data/part2.js',
   'src/data/part3.js',
   'src/data/part4.js',
   'src/data/part5.js',
+  'src/data/partB.js',
   'src/data/reference.js',
   'src/data/skills.js',
   'src/data/items1.js',
@@ -32,6 +34,8 @@ const js = [
   'src/data/items3.js',
   'src/data/items4.js',
   'src/data/items5.js',
+  'src/data/items6.js',
+  'src/data/items7.js',
   'src/data/work.js',
   'src/data/exercises5.js',
   /* The Hinglish reading layer. Keyed on the English line, so these load after
@@ -73,10 +77,13 @@ const js = [
   'src/data/hing-units42e.js',
   'src/data/hing-units42f.js',
   'src/data/hing-units42g.js',
-  'src/data/hing-speech.js',
   'src/data/hing-v31.js',
   'src/data/hing-items.js',
   'src/data/hing-skills.js',
+  /* The coding-book rewrite and the playbook tracks translate into files of
+     their own, one per batch; later files win, so they load last. */
+  ...fs.readdirSync(p.join(R, 'src/data')).filter(f => /^hing-rw-.*\.js$/.test(f)).sort()
+    .map(f => 'src/data/' + f),
   'src/remote.js',
   'src/content.js',
   'src/studio.js',
@@ -84,7 +91,6 @@ const js = [
   'src/engine.js',
   'src/sync.js',
   'src/views.js',
-  'src/speech.js',
   'src/app.js'
 ];
 const jsSource = js.map(read).join('\n');
@@ -315,7 +321,8 @@ const W = sandbox.window;
 const defaults = {
   chapters: (W.PARTS || []).reduce((a, p) => a.concat(W['PART' + p.n] || []), []),
   skills: W.SKILLS,
-  items: [].concat(W.ITEMS1, W.ITEMS2, W.ITEMS3, W.ITEMS4 || [], W.ITEMS5 || []),
+  items: [].concat(W.ITEMS1, W.ITEMS2, W.ITEMS3, W.ITEMS4 || [], W.ITEMS5 || [],
+                  W.ITEMS6 || [], W.ITEMS7 || []),
   exercises: [].concat(W.EXERCISES || [], W.EXERCISES5 || []),
   processes: W.PROCESSES,
   hinglish: W.HING || {},

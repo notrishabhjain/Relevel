@@ -195,7 +195,7 @@ window.EXERCISES = [
  iterate:'The PRD is a living document. Version it against each model change and each new failure cluster.'},
 
 {id:'E13', t:'Explain It Upward — Five Sentences', sk:['S29'], ch:7, mins:25, tier:2,
- brief:'The test is not whether you were understood. It is whether a senior non-technical person can repeat it accurately to someone else, without you in the room.',
+ brief:'The test: can a senior non-technical person repeat it accurately to someone else, without you in the room?',
  deliverable:'Five sentences, zero jargon, describing the full pipeline — then read aloud once.',
  steps:['Write the pipeline in five sentences with no technical term except, at the very end, the name.',
    'Strike every word your listener could not define. Rewrite.',

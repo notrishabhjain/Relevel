@@ -21,7 +21,8 @@ const BUILT_IN = {
      meant an offline fall-back to the built-ins quietly served a course with
      fourteen fewer questions than the one on screen. */
   items: [].concat(window.ITEMS1 || [], window.ITEMS2 || [], window.ITEMS3 || [],
-                   window.ITEMS4 || [], window.ITEMS5 || []),
+                   window.ITEMS4 || [], window.ITEMS5 || [], window.ITEMS6 || [],
+                   window.ITEMS7 || []),
   exercises: [].concat(window.EXERCISES || [], window.EXERCISES5 || []),
   processes: window.PROCESSES || [],
   hinglish: window.HING || {},

@@ -203,7 +203,7 @@ window.EXERCISES5 = [
 
 { id:'E26', t:'The AI PRD', sk:['S28'], ch:32, mins:90, tier:3,
   brief:'Two pages an engineer can build from and a leader can agree to deliberately.',
-  deliverable:'A PRD with problem, non-AI baseline, scope and non-goals, context and tools, failure modes, the human role, evaluation plan, quality bars, safety constraints, latency and cost goals, rollout, instrumentation, rollback and an owner.',
+  deliverable:'A PRD covering: problem, non-AI baseline, scope and non-goals, context and tools, failure modes and the human role. Also: evaluation plan, quality bars, safety limits, response-time and cost goals, rollout, instrumentation, rollback and an owner.',
   steps:[
     'Convert one traditional acceptance criterion into a metric, a test set and a tolerance.',
     'State the user problem and the non-AI baseline it has to beat.',
@@ -240,7 +240,7 @@ window.EXERCISES5 = [
 
 { id:'E28', t:'The Capstone Findings Report', sk:['S30'], ch:34, mins:120, tier:4,
   brief:'The single artifact that carries everything in this course. Keep it rough and factual — a findings document that reads like a brochure is not one.',
-  deliverable:'A running system plus an evidence pack: repository and README, architecture diagram, 30–50 evaluation cases with results, security attack results, trace samples, cost and latency, PRD, risk register, vendor scorecard, rollout and rollback plan, and the findings page.',
+  deliverable:'A running system plus an evidence pack. It contains the repository and README, architecture diagram, 30–50 evaluation cases with results, security attack results and trace samples. It also contains cost and response time, the PRD, risk register, vendor scorecard, rollout and rollback plan, and the findings page.',
   steps:[
     'Create the repository, the issue list, the evaluation dataset and the smallest vertical slice that works end to end. Do not start with slides.',
     'Expand it into one coherent system: permission-aware retrieval, structured outputs, two tools, a bounded agent step, one non-text input, evaluation, tracing and security controls.',
