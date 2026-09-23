@@ -964,6 +964,24 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .urow.ukeep .ulbl,.urow.ukeep .uval{background:var(--raised)}
 .urow.ukeep .uval{font-weight:500}
 .urow.ulens .uval{color:var(--ink-2)}
+
+/* v4.3 mastery: one tap cycles not started → exposed → practiced → defended.
+   Completion says you read it; this says how well you can use it, so the two
+   never share a control. Inline on a unit, or once near "mark chapter
+   complete" on a chapter with no numbered units. */
+.mastery{display:flex;align-items:center;gap:.55rem;flex-wrap:wrap;
+  padding:.6rem .95rem;border-top:1px solid var(--rule-soft)}
+.mslbl{font-family:var(--mono);font-size:.6rem;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--ink-2)}
+.msbtn{font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;
+  text-transform:uppercase;padding:.3rem .6rem;border:1px solid var(--rule);
+  border-radius:999px;background:var(--paper);color:var(--ink-2);cursor:pointer}
+.mastery.m1 .msbtn{color:var(--red);border-color:var(--red)}
+.mastery.m2 .msbtn{color:var(--ink);border-color:var(--ink);background:var(--raised)}
+.mastery.m3 .msbtn{color:var(--verified);border-color:var(--verified);
+  background:var(--verified-wash);font-weight:600}
+.mshint{font-size:.76rem;color:var(--muted);flex-basis:100%}
+@media (max-width:620px){ .mshint{display:none} }
 @media (max-width:620px){
   .ubody{grid-template-columns:1fr}
   .urow .ulbl{padding:.6rem .95rem .1rem;border-top:1px solid var(--rule-soft)}

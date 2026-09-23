@@ -54,6 +54,13 @@ const defaults=()=>({done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{
   appx:{},     // appendix A competency worksheet: 'row:col' -> 1
   tpl:{},      // Appendix C template copies: '<key>:<n>' -> {v,at,done}
   arts:{},     // Appendix B artifact tracker: '<n>' -> {s:0|1|2, where}
+  /* v4.3 mastery, self-rated per unit (key = its number, e.g. '8.1') or per
+     chapter (key = its id) where a chapter has no numbered units: 0 = not
+     started, 1 = exposed, 2 = practiced, 3 = defended. Distinct from `sk`
+     above, which is quiz-driven skill mastery with decay -- this is "have I
+     actually done the work on this lesson", set by the learner, not derived
+     from quiz answers. */
+  mastery:{},
   smap:{},     // Appendix A study map: block index -> 1
   exit:{},     // final exit test: capability index -> 1
   railmore:false,   // the rest of the instruments, out of the way until wanted
@@ -149,6 +156,48 @@ function T(s){
   Thit++; return v;
 }
 function Tl(list){ return (list||[]).map(T); }
+
+/* ---------------- mastery (v4.3) ----------------
+   Self-rated, per unit or per chapter, 0-3: not started / exposed / practiced
+   / defended. Completion (S.done) says you read it. Mastery says how well you
+   can actually use it -- a distinction this control exists to make visible
+   rather than let "read" quietly stand in for "learned". One tap cycles it;
+   there is nothing here to type, so it works the same on a phone as a laptop. */
+const MASTERY_LABEL=['Not started','Exposed','Practiced','Defended'];
+function masteryControl(key,hint){
+  S.mastery=S.mastery||{};
+  const wrap=h('div',{class:'mastery m'+(S.mastery[key]||0)});
+  const btn=h('button',{class:'msbtn',type:'button'});
+  const draw=()=>{
+    const lvl=S.mastery[key]||0;
+    wrap.className='mastery m'+lvl;
+    btn.textContent=MASTERY_LABEL[lvl];
+    btn.title=T('Mastery — tap to change')+': '+MASTERY_LABEL[lvl];
+  };
+  btn.addEventListener('click',()=>{
+    S.mastery[key]=((S.mastery[key]||0)+1)%4;
+    draw(); save();
+  });
+  draw();
+  wrap.appendChild(h('span',{class:'mslbl',text:T('Mastery')}));
+  wrap.appendChild(btn);
+  if(hint) wrap.appendChild(h('span',{class:'mshint',text:T(hint)}));
+  return wrap;
+}
+/* A chapter's own mastery summary: its units' average if it has any, else its
+   single chapter-level rating. Used by the dashboard and the chapter header. */
+function chapterMastery(c){
+  const units=[];
+  (c.story||[]).forEach(b=>{ if(Array.isArray(b)&&b[0]==='unit') units.push(b[1]); });
+  S.mastery=S.mastery||{};
+  if(units.length){
+    const sum=units.reduce((a,u)=>a+(S.mastery[u]||0),0);
+    return {level:sum/units.length, of:units.length, defended:units.filter(u=>(S.mastery[u]||0)===3).length};
+  }
+  const lvl=S.mastery[c.id]||0;
+  return {level:lvl, of:1, defended:lvl===3?1:0};
+}
+window.chapterMastery=chapterMastery;
 window.T=T;
 
 /* ---------------- block renderer ---------------- */
@@ -222,6 +271,7 @@ function blocks(list){
         row('As a PM',u.lens,'ulens')
       ].filter(Boolean));
       sec.appendChild(body);
+      sec.appendChild(masteryControl(r[0],'Read it (1) → built or checked it (2) → could defend it cold (3)'));
       f.appendChild(sec);
     }
     /* A hands-on beat, inline. The whole point is that it sits here, right
@@ -831,6 +881,11 @@ function renderChapter(c){
       h('span',{class:'cplbl',text:'You can now'}),
       h('ul',{class:'plain'},c.takeaway.map(t=>h('li',{html:T(t)})))]));
   }
+  /* Chapters built from numbered units carry their own per-unit mastery
+     control inline (see the 'unit' block renderer above); everything else
+     gets one chapter-level rating here instead of none at all. */
+  const hasUnits=(c.story||[]).some(b=>Array.isArray(b)&&b[0]==='unit');
+  if(!hasUnits) cs.appendChild(masteryControl(c.id,'Read it (1) → tried the exercises (2) → could defend it cold (3)'));
   const doneRow=h('div',{style:'display:flex;gap:.6rem;align-items:center;margin-top:1.2rem;flex-wrap:wrap'});
   const db=h('button',{class:'primary',onclick:()=>{
     S.done[c.id]=!S.done[c.id];
