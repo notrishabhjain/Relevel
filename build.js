@@ -80,6 +80,10 @@ const js = [
   'src/data/hing-v31.js',
   'src/data/hing-items.js',
   'src/data/hing-skills.js',
+  /* The coding-book rewrite and the playbook tracks translate into files of
+     their own, one per batch; later files win, so they load last. */
+  ...fs.readdirSync(p.join(R, 'src/data')).filter(f => /^hing-rw-.*\.js$/.test(f)).sort()
+    .map(f => 'src/data/' + f),
   'src/remote.js',
   'src/content.js',
   'src/studio.js',
