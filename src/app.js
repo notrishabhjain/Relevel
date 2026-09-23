@@ -42,7 +42,6 @@ const KEY='aifz2027';
 const defaults=()=>({done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{},drill:{},
   appx:{},     // appendix A competency worksheet: 'row:col' -> 1
   tpl:{},      // Appendix C template copies: '<key>:<n>' -> {v,at,done}
-  tts:{rate:1}, // read-aloud speed; the voice is per-device, in localStorage
   arts:{},     // Appendix B artifact tracker: '<n>' -> {s:0|1|2, where}
   smap:{},     // Appendix A study map: block index -> 1
   exit:{},     // final exit test: capability index -> 1
@@ -2043,123 +2042,6 @@ function pageEvidence(){
 }
 
 
-/* ---------------- listen to the page ----------------
-
-   The engine is in src/speech.js; this is the bar you drive it with. It exists
-   only while you are listening — a transport control for something silent is
-   clutter — and it is rebuilt rather than hidden, so nothing stale survives a
-   page change. */
-function speechAvailable(){ return !!(window.SPEECH && window.SPEECH.supported); }
-let barCleanup=null;
-
-function playerBar(){
-  const SP=window.SPEECH;
-  let bar=$('#player');
-  if(bar) return bar;
-
-  const pos=h('span',{class:'ppos mono'});
-  const nowt=h('span',{class:'pnow'});
-  const playb=h('button',{class:'sm primary pplay',onclick:()=>{
-    const st=SP.state();
-    if(st.playing) SP.pause(); else SP.play();
-  }},T('Play'));
-
-  /* Speed rides in the synced state: it is a preference about how you read,
-     and it should follow you to another device. The voice does not — see the
-     note in speech.js. */
-  const rates=[0.8,1,1.15,1.3,1.5,1.75,2];
-  const rateSel=h('select',{class:'prate','aria-label':T('Speed'),
-    onchange:e=>{ S.tts=S.tts||{}; S.tts.rate=+e.target.value; save(); SP.setRate(S.tts.rate); }},
-    rates.map(r=>h('option',{value:String(r),text:r+'×'})));
-  rateSel.value=String((S.tts&&S.tts.rate)||1);
-
-  const voiceSel=h('select',{class:'pvoice','aria-label':T('Voice'),
-    onchange:e=>SP.setVoice(e.target.value)});
-  const fillVoices=()=>{
-    const list=SP.voices(S.lang==='hi');
-    voiceSel.innerHTML='';
-    if(!list.length){ voiceSel.appendChild(h('option',{text:T('Default voice')})); return; }
-    list.forEach(v=>voiceSel.appendChild(
-      h('option',{value:v.voiceURI,text:v.name+' · '+v.lang})));
-    const want=SP.savedVoiceURI();
-    if(want&&list.some(v=>v.voiceURI===want))voiceSel.value=want;
-  };
-  fillVoices();
-  /* Chrome loads the voice list asynchronously and fires this once it has one;
-     without it the picker is empty on a cold load and looks broken. */
-  const synth=window.speechSynthesis;
-  if(synth&&'onvoiceschanged' in synth){
-    synth.addEventListener('voiceschanged',fillVoices);
-    /* Dropped when the bar goes, or every open would leave another handler
-       behind holding on to a select that no longer exists. */
-    barCleanup=()=>synth.removeEventListener('voiceschanged',fillVoices);
-  }
-
-  const fill=h('i');
-  const track=h('div',{class:'ptrack'},fill);
-
-  bar=h('div',{class:'player',id:'player'},[
-    h('div',{class:'prow'},[
-      playb,
-      h('button',{class:'sm',title:T('Previous paragraph'),
-        onclick:()=>SP.seek(-1)},'⏮'),
-      h('button',{class:'sm',title:T('Next paragraph'),
-        onclick:()=>SP.seek(1)},'⏭'),
-      pos, track, rateSel, voiceSel,
-      h('button',{class:'sm',title:T('Stop listening'),
-        onclick:closePlayer},'✕')]),
-    nowt]);
-
-  /* Touch devices silence speech synthesis the moment the screen locks or the
-     tab goes to the background. Saying so here beats having it discovered
-     halfway down a chapter with the phone in a pocket. */
-  if(matchMedia('(hover:none)').matches)
-    bar.appendChild(h('div',{class:'pnote',
-      text:T('Keep this tab open and the screen on — phone browsers stop reading when the screen locks.')}));
-
-  SP.onchange=st=>{
-    playb.textContent=st.playing?T('Pause'):T('Play');
-    playb.classList.toggle('on',st.playing);
-    pos.textContent=(st.n?st.i+1:0)+' / '+st.n;
-    fill.style.width=st.n?((st.i+1)*100/st.n)+'%':'0%';
-    nowt.textContent=st.error?T(st.error):st.text;
-    nowt.classList.toggle('perr',!!st.error);
-  };
-  document.body.appendChild(bar);
-  document.body.classList.add('listening');
-  SP.onchange(SP.state());
-  return bar;
-}
-
-function openPlayer(){
-  if(!speechAvailable())return;
-  const n=window.SPEECH.load($('#main'));
-  playerBar();
-  if(!n){ window.SPEECH.onchange({playing:false,i:0,n:0,rate:1,
-    text:T('Nothing on this page to read aloud.')}); return; }
-  window.SPEECH.play();
-}
-function closePlayer(){
-  if(window.SPEECH)window.SPEECH.stop();
-  if(barCleanup){barCleanup();barCleanup=null;}
-  const bar=$('#player'); if(bar)bar.remove();
-  document.body.classList.remove('listening');
-}
-window.CLOSE_PLAYER=closePlayer;
-
-/* A page change invalidates every chunk, because they point at nodes that no
-   longer exist. If it was reading, carry on with the new page rather than
-   stopping silently — that is the behaviour that makes "next chapter" work
-   without touching the phone. */
-function speechOnRoute(){
-  if(!speechAvailable())return;
-  const bar=$('#player'); if(!bar)return;
-  const wasPlaying=window.SPEECH.reset();
-  const n=window.SPEECH.load($('#main'));
-  if(n&&wasPlaying)window.SPEECH.play();
-  else window.SPEECH.onchange(window.SPEECH.state());
-}
-
 const V=()=>window.VIEWS;
 const ROUTES={'':()=>V().dashboard(),'library':pageHome,
   'skills':()=>V().skills(),'analytics':()=>V().analytics(),
@@ -2225,7 +2107,6 @@ function route(){
   }
   const cb=$('#crumb');if(cb)cb.textContent=crumb;
   renderRail();
-  speechOnRoute();
   /* a secondary hash (#/exercises#E01) targets an element on the rendered page */
   const anchor=location.hash.split('#')[2];
   if(anchor){const el=document.getElementById(anchor);
@@ -2312,11 +2193,6 @@ function applyLang(reroute){
   if(b){ const o=b.querySelectorAll('.lgo');
     if(o[0])o[0].classList.toggle('on',S.lang!=='hi');
     if(o[1])o[1].classList.toggle('on',S.lang==='hi'); }
-  /* The toolbar is built once at boot and never re-rendered, so anything in it
-     that goes through T() has to be refreshed here — otherwise it keeps the
-     language it happened to boot with and never changes when you switch. */
-  const lb=$('#listenbtn');
-  if(lb){ lb.textContent=T('\u25b6 Listen'); lb.title=T('Read this page aloud'); }
   document.documentElement.setAttribute('data-lang',S.lang==='hi'?'hi':'en');
   if(reroute!==false){ TERMS=null; route(); renderRail(); }
 }
@@ -2409,11 +2285,6 @@ function boot(){
         h('span',{class:'sp'}),
         h('a',{class:'syncpill',id:'syncpill',href:'#/data',hidden:'hidden'}),
         h('button',{class:'sm',onclick:openPal},'Search  ⌘K'),
-        /* Only shown where the browser can actually speak; a dead button that
-           does nothing is worse than no button. */
-        speechAvailable()?h('button',{class:'sm listenbtn',id:'listenbtn',
-          title:T('Read this page aloud'),
-          onclick:()=>{ $('#player')?closePlayer():openPlayer(); }},T('\u25b6 Listen')):null,
         /* Both languages, always visible, the live one filled in. The old
            button showed only the one you would switch to, which read as a
            label for the language you were already in. */
@@ -2430,11 +2301,7 @@ function boot(){
       h('div',{class:'palres',id:'palres'})])]));
   document.addEventListener('keydown',e=>{
     if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openPal();return;}
-    if(!$('#pal').classList.contains('open')){
-      /* Escape stops the voice when nothing else is open to close. */
-      if(e.key==='Escape'&&$('#player'))closePlayer();
-      return;
-    }
+    if(!$('#pal').classList.contains('open'))return;
     if(e.key==='Escape')closePal();
     else if(e.key==='ArrowDown'){e.preventDefault();palMove(1);}
     else if(e.key==='ArrowUp'){e.preventDefault();palMove(-1);}

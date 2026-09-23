@@ -1067,45 +1067,6 @@ button:disabled{opacity:.4;cursor:not-allowed}
   .artstate{grid-column:2;justify-self:start;margin-top:.15rem}
 }
 
-/* ---------- read the page aloud ---------- */
-
-/* The paragraph being spoken. A left rule plus a wash rather than a highlight
-   colour: it has to be findable at a glance from across the room without
-   making the text itself harder to read when you look straight at it. */
-.nowreading{background:var(--verified-wash);box-shadow:-3px 0 0 0 var(--verified);
-  border-radius:0 3px 3px 0;transition:background .2s}
-.urow.nowreading .ulbl,.urow.nowreading .uval{
-  box-shadow:inset 0 2px 0 var(--verified),inset 0 -2px 0 var(--verified)}
-.urow.nowreading .ulbl{box-shadow:inset 0 2px 0 var(--verified),
-  inset 0 -2px 0 var(--verified),inset 3px 0 0 var(--verified)}
-
-.player{position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--paper);
-  border-top:1px solid var(--rule);box-shadow:0 -8px 24px -12px #0006;
-  padding:.6rem 1.75rem calc(.6rem + env(safe-area-inset-bottom));
-  backdrop-filter:blur(8px)}
-.prow{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
-.prow .pplay{min-width:5.2rem}
-.ppos{font-size:.68rem;color:var(--muted);white-space:nowrap;flex:none}
-.ptrack{flex:1;min-width:60px;height:3px;background:var(--rule);border-radius:2px;overflow:hidden}
-.ptrack i{display:block;height:100%;width:0;background:var(--verified);transition:width .25s}
-.prate,.pvoice{width:auto;padding:.25rem .4rem;font-size:.72rem;font-family:var(--mono);
-  background:var(--raised);flex:none}
-.pvoice{max-width:11rem}
-/* The line being spoken, under the transport. Two lines at most: this is a
-   glance target, not a transcript. */
-.pnow{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
-  margin-top:.4rem;font-size:.8rem;line-height:1.45;color:var(--ink-2)}
-.pnote{margin-top:.35rem;font-size:.7rem;color:var(--muted);line-height:1.4}
-/* Room for the bar, so the last paragraph of a chapter is not under it. */
-body.listening .main{padding-bottom:9rem}
-
-@media (max-width:620px){
-  .player{padding:.55rem 1rem calc(.55rem + env(safe-area-inset-bottom))}
-  .pvoice{max-width:7rem}
-  .ptrack{order:10;flex-basis:100%;min-width:0}
-}
-.pnow.perr{color:var(--red)}
-
 </style>
 <script>
 /* Part I — The basics (Chapters 0–7)
@@ -17184,38 +17145,6 @@ Object.assign(window.HING = window.HING || {}, {
 
 });
 
-/* Hinglish: the read-aloud player's controls and its two honest warnings. */
-Object.assign(window.HING = window.HING || {}, {
-
-  'Play':
-    'Chalaiye',
-  'Pause':
-    'Rokiye',
-  'Speed':
-    'Raftaar',
-  'Voice':
-    'Awaaz',
-  'Default voice':
-    'Default awaaz',
-  'Previous paragraph':
-    'Pichhla paragraph',
-  'Next paragraph':
-    'Agla paragraph',
-  'Stop listening':
-    'Sunna band kijiye',
-  'Read this page aloud':
-    'Yeh panna padh kar sunaiye',
-  '▶ Listen':
-    '▶ Suniye',
-  'Nothing on this page to read aloud.':
-    'Is panne par padh kar sunaane laayak kuch nahi hai.',
-  'Keep this tab open and the screen on — phone browsers stop reading when the screen locks.':
-    'Yeh tab khula aur screen chaalu rakhiye — phone ka browser screen lock hote hi padhna band kar deta hai.',
-  'This device has no speech voice installed, so the page cannot be read aloud.':
-    'Is device par koi bolne wali awaaz install nahi hai, isliye panna padh kar sunaya nahi ja sakta.'
-
-});
-
 /* Hinglish — v3.1 technical-correction pass. Kept separate so the corrected
    concepts remain easy to audit against the canonical book. */
 Object.assign(window.HING = window.HING || {}, {
@@ -23241,365 +23170,6 @@ return {dashboard, practice, practiceMenu, skills, skillPage, analytics, exercis
   questionCard};
 })();
 
-/* Read the page aloud.
-
-   The point is to let a chapter be listened to while doing something else, so
-   this is built on the browser's own speech synthesis: nothing to install, no
-   key, no cost, and it works with the network off. The whole engine is one
-   idea — turn the rendered page into an ordered list of short spoken chunks,
-   speak them one at a time, and highlight the one being spoken so that looking
-   back at the screen puts you exactly where the voice is.
-
-   What it cannot do, stated here because it is the first thing anybody asks:
-   a phone browser stops speech synthesis when the screen locks or the tab goes
-   to the background. Real background playback needs an audio file, which needs
-   a server-side voice. On a laptop, with the tab open behind other windows,
-   this runs fine. The player says so on a touch device rather than leaving it
-   to be discovered halfway down a chapter. */
-(function(){
-const synth = window.speechSynthesis;
-const supported = !!(synth && window.SpeechSynthesisUtterance);
-
-/* ---------------- what gets read ----------------
-
-   A chunk is one visible thing with prose in it. The walk takes the outermost
-   element that qualifies and then skips its subtree, so a <li> inside a <ul>
-   inside a .callout is read once rather than three times. */
-const CHUNK_SEL = 'h1,h2,h3,h4,p,li,dt,dd,blockquote,.keyline,.concept,.urow,' +
-                  '.expect,summary,figcaption,.smapev,.arttitle,.stat';
-/* Read nothing from these. Code read aloud is noise — you cannot type from a
-   spoken bracket — but silence in its place is worse, because you would not
-   know you had skipped anything, so a code block becomes a one-line marker. */
-const SKIP_SEL = 'pre,code,script,style,svg,input,textarea,select,option,' +
-                 '.grade,.tplbar,.artstate,.saved,.cpbar,.foot,.mapwrap';
-
-const isHidden = el => {
-  if (el.hidden) return true;
-  /* A closed <details> is on the page but not on the screen. Reading it would
-     narrate text the reader cannot see, which is the fastest way to lose the
-     thread. An open one is fair game, summary included. */
-  const d = el.closest('details');
-  if (d && !d.open && !el.matches('summary') && !el.contains(d.querySelector('summary'))) return true;
-  return false;
-};
-
-/* textContent glues adjacent elements straight together, so a sentence ending
-   in a link comes out as "inside a ceiling.Chapter 1" — which a voice reads as
-   one slurred word. A separator at every element boundary is the whole fix. */
-function textOf(el){
-  let out = '';
-  for (const n of el.childNodes) {
-    if (n.nodeType === 3) { out += n.nodeValue; continue; }
-    if (n.nodeType !== 1) continue;
-    const inner = textOf(n);
-    if (!inner) continue;
-    if (out && !/\s$/.test(out) && !/^\s/.test(inner)) out += ' ';
-    out += inner;
-  }
-  return out;
-}
-
-/* Speech is not reading. These substitutions are the difference between a
-   sentence and a sequence of symbol names. */
-function speakable(raw){
-  let s = String(raw || '')
-    /* An arrow at either edge is a link decoration ("Chapter 1 →"), not a step
-       in a pipeline, so it is dropped rather than spoken. Only the ones
-       between two things mean "and then". */
-    .replace(/^[\s←→➜➔]+|[\s←→➜➔]+$/g, '')
-    .replace(/→|➔|⇒/g, ' then ')     /* → in a pipeline */
-    .replace(/←/g, ' back to ')
-    .replace(/(\w)@(\d)/g, '$1 at $2')              /* Recall@5 */
-    .replace(/≥/g, ' at least ')
-    .replace(/≤/g, ' at most ')
-    .replace(/(\d)\s*[×x]\s*(?=\s|$)/g, '$1 times ')  /* 10× traffic */
-    .replace(/\bp(\d{2})\b/g, 'p $1')               /* p95 → "p ninety-five" */
-    .replace(/\s*—\s*/g, ', ')                  /* em dash reads as a pause */
-    .replace(/…/g, '. ')
-    .replace(/[‘’]/g, "'")
-    .replace(/[“”]/g, '"')
-    /* Collapsed last, so a substitution that left a double space is tidied
-       rather than preserved. */
-    .replace(/\s+/g, ' ')
-    .replace(/\s+([,.;:!?])/g, '$1')
-    .trim();
-  return s;
-}
-
-/* One utterance per chunk reads most naturally, but a very long paragraph is
-   worth splitting: it makes the previous/next buttons useful, keeps the
-   highlight honest, and sidesteps the long-utterance cutoff some browsers
-   still have. Split on sentence ends only, never mid-clause. */
-function split(text, cap){
-  if (text.length <= cap) return [text];
-  const out = [];
-  let buf = '';
-  for (const piece of text.split(/(?<=[.!?])\s+/)) {
-    if (buf && (buf + ' ' + piece).length > cap) { out.push(buf); buf = piece; }
-    else buf = buf ? buf + ' ' + piece : piece;
-  }
-  if (buf) out.push(buf);
-  return out;
-}
-
-/* A .urow is a label and a value in a display:contents grid, so its two halves
-   are separate elements that belong in one spoken sentence. */
-function chunkText(el){
-  if (el.matches('.urow')) {
-    const l = el.querySelector('.ulbl'), v = el.querySelector('.uval');
-    return [l && textOf(l), v && textOf(v)].filter(Boolean).join(': ');
-  }
-  if (el.matches('.stat')) {
-    const l = el.querySelector('.l'), v = el.querySelector('.v');
-    return [l && textOf(l), v && textOf(v)].filter(Boolean).join(': ');
-  }
-  return textOf(el);
-}
-
-function collect(root){
-  const chunks = [];
-  const done = new Set();
-  const push = (el, text) => {
-    const s = speakable(text);
-    if (s.length < 2) return;
-    for (const part of split(s, 420)) chunks.push({ el, text: part });
-  };
-  const walk = el => {
-    for (const child of el.children) {
-      if (done.has(child)) continue;
-      if (child.matches(SKIP_SEL)) {
-        if (child.matches('pre')) {
-          const n = (child.textContent.match(/\n/g) || []).length + 1;
-          chunks.push({ el: child, text: 'Code block, ' + n + ' line' + (n === 1 ? '' : 's') +
-                                        '. Skipping — read this one on screen.' });
-        }
-        continue;
-      }
-      if (isHidden(child)) continue;
-      /* A term and its definition are one spoken sentence: "Break: test what
-         happens on deletion" rather than "Break" … "Test what happens on
-         deletion", which loses which label the sentence belongs to. */
-      if (child.matches('dt')) {
-        const dd = child.nextElementSibling;
-        if (dd && dd.matches('dd') && !isHidden(dd)) {
-          done.add(dd);
-          push(child, textOf(child) + ': ' + textOf(dd));
-          continue;
-        }
-      }
-      if (child.matches(CHUNK_SEL)) { push(child, chunkText(child)); continue; }
-      /* A table is rows, and a row of checkboxes has nothing to say. */
-      if (child.matches('tr')) {
-        const cells = [...child.children]
-          .map(c => textOf(c).trim()).filter(Boolean);
-        if (cells.length) push(child, cells.join(', '));
-        continue;
-      }
-      walk(child);
-    }
-  };
-  if (root) walk(root);
-  return chunks;
-}
-
-/* ---------------- voices ----------------
-
-   The Hinglish reading is Hindi written in the Roman alphabet, so a hi-IN
-   voice is the wrong choice: those voices expect Devanagari and mangle Latin
-   text. An Indian English voice reads Roman Hindi far closer to right than a
-   US English one does, so that is the preference order, and it is why the
-   language of the utterance is set from the reading language rather than from
-   the document. */
-function rank(v, hinglish){
-  const lang = (v.lang || '').replace('_', '-');
-  if (hinglish) {
-    if (lang === 'en-IN') return 0;
-    if (lang.startsWith('hi')) return 1;            /* better than nothing */
-    if (lang.startsWith('en')) return 2;
-    return 9;
-  }
-  if (lang.startsWith('en-GB')) return 0;
-  if (lang.startsWith('en-US')) return 1;
-  if (lang.startsWith('en')) return 2;
-  return 9;
-}
-function voices(hinglish){
-  if (!supported) return [];
-  return synth.getVoices()
-    .filter(v => /^(en|hi)/i.test(v.lang || ''))
-    .sort((a, b) => rank(a, hinglish) - rank(b, hinglish) ||
-                    a.name.localeCompare(b.name));
-}
-
-/* The chosen voice is a device fact, not a progress fact: a voice installed on
-   a laptop does not exist on a phone, so it is kept out of the synced state
-   that everything else lives in. */
-const VKEY = 'aifz-voice';
-const savedVoiceURI = () => { try { return localStorage.getItem(VKEY) || ''; } catch(e){ return ''; } };
-const saveVoiceURI = u => { try { u ? localStorage.setItem(VKEY, u) : localStorage.removeItem(VKEY); } catch(e){} };
-
-function pickVoice(hinglish){
-  const list = voices(hinglish);
-  if (!list.length) return null;
-  const want = savedVoiceURI();
-  return list.find(v => v.voiceURI === want) || list[0];
-}
-
-/* ---------------- the player ---------------- */
-const S = {
-  chunks: [], i: 0, playing: false, rate: 1,
-  onchange: null,      /* the UI subscribes here rather than polling */
-  pulse: null,         /* Chrome stops a long run unless it is nudged */
-  watchdog: null,
-  error: ''
-};
-
-function emit(){ if (S.onchange) S.onchange(state()); }
-function state(){
-  return { playing: S.playing, i: S.i, n: S.chunks.length, rate: S.rate,
-           error: S.error, text: (S.chunks[S.i] || {}).text || '' };
-}
-
-/* A machine with no speech engine installed — a bare Linux box, some locked
-   down work laptops — has the whole API and zero voices, so speak() accepts
-   the utterance and nothing ever happens. Left alone that reads as the button
-   being broken. If nothing has started speaking shortly after asking, say so.  */
-const NO_VOICE = 'This device has no speech voice installed, so the page cannot be read aloud.';
-function armWatchdog(){
-  clearWatchdog();
-  S.watchdog = setTimeout(() => {
-    if (S.playing && !synth.speaking && !synth.pending) fail(NO_VOICE);
-  }, 2500);
-}
-function clearWatchdog(){ if (S.watchdog) { clearTimeout(S.watchdog); S.watchdog = null; } }
-function fail(msg){
-  S.error = msg;
-  S.playing = false;
-  stopPulse(); clearWatchdog();
-  try { synth.cancel(); } catch(e){}
-  document.querySelectorAll('.nowreading').forEach(e => e.classList.remove('nowreading'));
-  emit();
-}
-
-function mark(){
-  document.querySelectorAll('.nowreading').forEach(e => e.classList.remove('nowreading'));
-  const c = S.chunks[S.i];
-  if (!c || !c.el || !c.el.isConnected) return;
-  c.el.classList.add('nowreading');
-  const r = c.el.getBoundingClientRect();
-  /* Only scroll when the voice has left the screen; scrolling on every
-     paragraph fights a reader who is following along with their eyes. */
-  if (r.top < 70 || r.bottom > window.innerHeight - 120)
-    c.el.scrollIntoView({ block: 'center', behavior: 'smooth' });
-}
-
-function speakCurrent(){
-  const c = S.chunks[S.i];
-  if (!c) { stop(); return; }
-  const hinglish = (window.STORE ? window.STORE.S.lang : null) === 'hi';
-  const u = new SpeechSynthesisUtterance(c.text);
-  const v = pickVoice(hinglish);
-  if (v) { u.voice = v; u.lang = v.lang; }
-  else u.lang = hinglish ? 'en-IN' : 'en-GB';
-  u.rate = S.rate;
-  u.onstart = () => { clearWatchdog(); if (S.error) { S.error = ''; emit(); } };
-  u.onend = () => {
-    if (!S.playing) return;
-    if (S.i + 1 < S.chunks.length) { S.i++; mark(); emit(); speakCurrent(); }
-    else stop(true);
-  };
-  /* 'interrupted' and 'canceled' are what a deliberate stop or skip looks
-     like; only a real failure should take the player down. */
-  u.onerror = e => {
-    if (e && (e.error === 'interrupted' || e.error === 'canceled')) return;
-    fail(e && (e.error === 'synthesis-unavailable' || e.error === 'synthesis-failed' ||
-               e.error === 'language-unavailable' || e.error === 'voice-unavailable')
-      ? NO_VOICE
-      : 'The browser stopped reading' + (e && e.error ? ' (' + e.error + ')' : '') + '.');
-  };
-  synth.speak(u);
-  armWatchdog();
-  mark(); emit();
-}
-
-/* Chrome stops speaking after about fifteen seconds unless something touches
-   the queue. pause()+resume() on a timer is the long-standing workaround; it
-   is a no-op in browsers that do not need it. */
-function startPulse(){
-  stopPulse();
-  S.pulse = setInterval(() => {
-    if (!S.playing) return;
-    if (synth.speaking && !synth.paused) { synth.pause(); synth.resume(); }
-  }, 10000);
-}
-function stopPulse(){ if (S.pulse) { clearInterval(S.pulse); S.pulse = null; } }
-
-function load(root){
-  S.chunks = collect(root || document.getElementById('main'));
-  S.i = 0;
-  return S.chunks.length;
-}
-
-function play(){
-  if (!supported) return;
-  if (!S.chunks.length) load();
-  if (!S.chunks.length) return;
-  synth.cancel();
-  S.error = '';
-  S.playing = true;
-  startPulse();
-  speakCurrent();
-}
-function pause(){
-  if (!S.playing) return;
-  S.playing = false;
-  stopPulse(); clearWatchdog();
-  synth.cancel();
-  emit();
-}
-function stop(finished){
-  S.playing = false;
-  stopPulse(); clearWatchdog();
-  synth.cancel();
-  if (finished) S.i = 0;
-  document.querySelectorAll('.nowreading').forEach(e => e.classList.remove('nowreading'));
-  emit();
-}
-function seek(delta){
-  const next = Math.min(Math.max(S.i + delta, 0), Math.max(S.chunks.length - 1, 0));
-  if (next === S.i && S.playing) return;
-  S.i = next;
-  if (S.playing) { synth.cancel(); speakCurrent(); }
-  else { mark(); emit(); }
-}
-function setRate(r){
-  S.rate = r;
-  if (S.playing) { synth.cancel(); speakCurrent(); }
-  else emit();
-}
-function setVoice(uri){
-  saveVoiceURI(uri);
-  if (S.playing) { synth.cancel(); speakCurrent(); }
-}
-
-/* A route change replaces everything the chunks point at, so keeping the old
-   list would highlight detached nodes and read the previous page. */
-function reset(){
-  const wasPlaying = S.playing;
-  stop();
-  S.chunks = []; S.i = 0;
-  return wasPlaying;
-}
-
-window.SPEECH = { supported, load, play, pause, stop, seek, setRate, setVoice,
-                  voices, reset, state, savedVoiceURI,
-                  /* exported for the tests, which assert on extraction rather
-                     than on audio nobody can hear in a headless browser */
-                  collect, speakable, split,
-                  set onchange(fn){ S.onchange = fn; },
-                  get onchange(){ return S.onchange; } };
-})();
-
 /* Engine: routing, rendering, persistence, and the stateful instruments
    (notebook, prediction ledger, red-mark map, glossary drill, system card). */
 (function(){
@@ -23644,7 +23214,6 @@ const KEY='aifz2027';
 const defaults=()=>({done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{},drill:{},
   appx:{},     // appendix A competency worksheet: 'row:col' -> 1
   tpl:{},      // Appendix C template copies: '<key>:<n>' -> {v,at,done}
-  tts:{rate:1}, // read-aloud speed; the voice is per-device, in localStorage
   arts:{},     // Appendix B artifact tracker: '<n>' -> {s:0|1|2, where}
   smap:{},     // Appendix A study map: block index -> 1
   exit:{},     // final exit test: capability index -> 1
@@ -25645,123 +25214,6 @@ function pageEvidence(){
 }
 
 
-/* ---------------- listen to the page ----------------
-
-   The engine is in src/speech.js; this is the bar you drive it with. It exists
-   only while you are listening — a transport control for something silent is
-   clutter — and it is rebuilt rather than hidden, so nothing stale survives a
-   page change. */
-function speechAvailable(){ return !!(window.SPEECH && window.SPEECH.supported); }
-let barCleanup=null;
-
-function playerBar(){
-  const SP=window.SPEECH;
-  let bar=$('#player');
-  if(bar) return bar;
-
-  const pos=h('span',{class:'ppos mono'});
-  const nowt=h('span',{class:'pnow'});
-  const playb=h('button',{class:'sm primary pplay',onclick:()=>{
-    const st=SP.state();
-    if(st.playing) SP.pause(); else SP.play();
-  }},T('Play'));
-
-  /* Speed rides in the synced state: it is a preference about how you read,
-     and it should follow you to another device. The voice does not — see the
-     note in speech.js. */
-  const rates=[0.8,1,1.15,1.3,1.5,1.75,2];
-  const rateSel=h('select',{class:'prate','aria-label':T('Speed'),
-    onchange:e=>{ S.tts=S.tts||{}; S.tts.rate=+e.target.value; save(); SP.setRate(S.tts.rate); }},
-    rates.map(r=>h('option',{value:String(r),text:r+'×'})));
-  rateSel.value=String((S.tts&&S.tts.rate)||1);
-
-  const voiceSel=h('select',{class:'pvoice','aria-label':T('Voice'),
-    onchange:e=>SP.setVoice(e.target.value)});
-  const fillVoices=()=>{
-    const list=SP.voices(S.lang==='hi');
-    voiceSel.innerHTML='';
-    if(!list.length){ voiceSel.appendChild(h('option',{text:T('Default voice')})); return; }
-    list.forEach(v=>voiceSel.appendChild(
-      h('option',{value:v.voiceURI,text:v.name+' · '+v.lang})));
-    const want=SP.savedVoiceURI();
-    if(want&&list.some(v=>v.voiceURI===want))voiceSel.value=want;
-  };
-  fillVoices();
-  /* Chrome loads the voice list asynchronously and fires this once it has one;
-     without it the picker is empty on a cold load and looks broken. */
-  const synth=window.speechSynthesis;
-  if(synth&&'onvoiceschanged' in synth){
-    synth.addEventListener('voiceschanged',fillVoices);
-    /* Dropped when the bar goes, or every open would leave another handler
-       behind holding on to a select that no longer exists. */
-    barCleanup=()=>synth.removeEventListener('voiceschanged',fillVoices);
-  }
-
-  const fill=h('i');
-  const track=h('div',{class:'ptrack'},fill);
-
-  bar=h('div',{class:'player',id:'player'},[
-    h('div',{class:'prow'},[
-      playb,
-      h('button',{class:'sm',title:T('Previous paragraph'),
-        onclick:()=>SP.seek(-1)},'⏮'),
-      h('button',{class:'sm',title:T('Next paragraph'),
-        onclick:()=>SP.seek(1)},'⏭'),
-      pos, track, rateSel, voiceSel,
-      h('button',{class:'sm',title:T('Stop listening'),
-        onclick:closePlayer},'✕')]),
-    nowt]);
-
-  /* Touch devices silence speech synthesis the moment the screen locks or the
-     tab goes to the background. Saying so here beats having it discovered
-     halfway down a chapter with the phone in a pocket. */
-  if(matchMedia('(hover:none)').matches)
-    bar.appendChild(h('div',{class:'pnote',
-      text:T('Keep this tab open and the screen on — phone browsers stop reading when the screen locks.')}));
-
-  SP.onchange=st=>{
-    playb.textContent=st.playing?T('Pause'):T('Play');
-    playb.classList.toggle('on',st.playing);
-    pos.textContent=(st.n?st.i+1:0)+' / '+st.n;
-    fill.style.width=st.n?((st.i+1)*100/st.n)+'%':'0%';
-    nowt.textContent=st.error?T(st.error):st.text;
-    nowt.classList.toggle('perr',!!st.error);
-  };
-  document.body.appendChild(bar);
-  document.body.classList.add('listening');
-  SP.onchange(SP.state());
-  return bar;
-}
-
-function openPlayer(){
-  if(!speechAvailable())return;
-  const n=window.SPEECH.load($('#main'));
-  playerBar();
-  if(!n){ window.SPEECH.onchange({playing:false,i:0,n:0,rate:1,
-    text:T('Nothing on this page to read aloud.')}); return; }
-  window.SPEECH.play();
-}
-function closePlayer(){
-  if(window.SPEECH)window.SPEECH.stop();
-  if(barCleanup){barCleanup();barCleanup=null;}
-  const bar=$('#player'); if(bar)bar.remove();
-  document.body.classList.remove('listening');
-}
-window.CLOSE_PLAYER=closePlayer;
-
-/* A page change invalidates every chunk, because they point at nodes that no
-   longer exist. If it was reading, carry on with the new page rather than
-   stopping silently — that is the behaviour that makes "next chapter" work
-   without touching the phone. */
-function speechOnRoute(){
-  if(!speechAvailable())return;
-  const bar=$('#player'); if(!bar)return;
-  const wasPlaying=window.SPEECH.reset();
-  const n=window.SPEECH.load($('#main'));
-  if(n&&wasPlaying)window.SPEECH.play();
-  else window.SPEECH.onchange(window.SPEECH.state());
-}
-
 const V=()=>window.VIEWS;
 const ROUTES={'':()=>V().dashboard(),'library':pageHome,
   'skills':()=>V().skills(),'analytics':()=>V().analytics(),
@@ -25827,7 +25279,6 @@ function route(){
   }
   const cb=$('#crumb');if(cb)cb.textContent=crumb;
   renderRail();
-  speechOnRoute();
   /* a secondary hash (#/exercises#E01) targets an element on the rendered page */
   const anchor=location.hash.split('#')[2];
   if(anchor){const el=document.getElementById(anchor);
@@ -25914,11 +25365,6 @@ function applyLang(reroute){
   if(b){ const o=b.querySelectorAll('.lgo');
     if(o[0])o[0].classList.toggle('on',S.lang!=='hi');
     if(o[1])o[1].classList.toggle('on',S.lang==='hi'); }
-  /* The toolbar is built once at boot and never re-rendered, so anything in it
-     that goes through T() has to be refreshed here — otherwise it keeps the
-     language it happened to boot with and never changes when you switch. */
-  const lb=$('#listenbtn');
-  if(lb){ lb.textContent=T('\u25b6 Listen'); lb.title=T('Read this page aloud'); }
   document.documentElement.setAttribute('data-lang',S.lang==='hi'?'hi':'en');
   if(reroute!==false){ TERMS=null; route(); renderRail(); }
 }
@@ -26011,11 +25457,6 @@ function boot(){
         h('span',{class:'sp'}),
         h('a',{class:'syncpill',id:'syncpill',href:'#/data',hidden:'hidden'}),
         h('button',{class:'sm',onclick:openPal},'Search  ⌘K'),
-        /* Only shown where the browser can actually speak; a dead button that
-           does nothing is worse than no button. */
-        speechAvailable()?h('button',{class:'sm listenbtn',id:'listenbtn',
-          title:T('Read this page aloud'),
-          onclick:()=>{ $('#player')?closePlayer():openPlayer(); }},T('\u25b6 Listen')):null,
         /* Both languages, always visible, the live one filled in. The old
            button showed only the one you would switch to, which read as a
            label for the language you were already in. */
@@ -26032,11 +25473,7 @@ function boot(){
       h('div',{class:'palres',id:'palres'})])]));
   document.addEventListener('keydown',e=>{
     if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openPal();return;}
-    if(!$('#pal').classList.contains('open')){
-      /* Escape stops the voice when nothing else is open to close. */
-      if(e.key==='Escape'&&$('#player'))closePlayer();
-      return;
-    }
+    if(!$('#pal').classList.contains('open'))return;
     if(e.key==='Escape')closePal();
     else if(e.key==='ArrowDown'){e.preventDefault();palMove(1);}
     else if(e.key==='ArrowUp'){e.preventDefault();palMove(-1);}

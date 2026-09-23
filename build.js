@@ -73,7 +73,6 @@ const js = [
   'src/data/hing-units42e.js',
   'src/data/hing-units42f.js',
   'src/data/hing-units42g.js',
-  'src/data/hing-speech.js',
   'src/data/hing-v31.js',
   'src/data/hing-items.js',
   'src/data/hing-skills.js',
@@ -84,7 +83,6 @@ const js = [
   'src/engine.js',
   'src/sync.js',
   'src/views.js',
-  'src/speech.js',
   'src/app.js'
 ];
 const jsSource = js.map(read).join('\n');
