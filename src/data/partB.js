@@ -873,114 +873,25 @@ window.PART7 = [
 },
 
 {
-  id:'b8', num:'B8', part:7, curriculumTier:'core', phase:6, prerequisites:['a7','ch21cap','b1'], nextUnits:[], minutes:1800, labs:[],
-  title:'The integrated capstone: discover, build, ship, measure and defend',
-  concept:'Bring the whole course together in one product. You will take a real problem through five gates, from discovery to a defence in front of an executive audience, with evidence at every step.',
+  id:'b8', num:'B8', part:7, curriculumTier:'core', phase:6, prerequisites:['ch21cap'], nextUnits:[], minutes:8, labs:[],
+  title:'The integrated capstone now lives in Chapter 21',
+  concept:'This chapter used to hold a second, separate capstone. Not any more. The technical capstone and this chapter’s five gates — discovery, strategy, build, ship, defend — are now one eleven-stage journey in Chapter 21, so a capstone is one coherent project instead of two.',
   takeaway:[
-    'Choose a real problem with users you can actually reach.',
-    'Design the product and the AI system together, end to end.',
-    'Show that it is accurate, safe, measured and viable as a business.',
-    'Launch to real users and improve it from evidence.',
-    'Tell the story of the project and defend its trade-offs under questions.'
+    'Do the capstone once, in Chapter 21 — not twice.',
+    'This page keeps one exercise from the old chapter so a saved answer here still has a home.'
   ],
-  needs:[['Every Track A artifact','Gates 1 and 2 reuse them.','A7'],
-         ['The technical capstone','Gate 3 builds on it.',34],
-         ['Pricing and unit economics','Gate 5 needs them.','B1'],
-         ['A live product with real users','Gate 4 extends it.','B6']],
-  capstone:{
-    title:'Five gates',
-    brief:'Take one real problem all the way from interviews to an executive defence. Each gate has to pass before you start the next.',
-    steps:[
-      'Gate 1, Discovery: five interviews, a jobs-to-be-done statement, a journey map, a market and competitor scan, and a problem brief backed by evidence.',
-      'Gate 2, Strategy: vision, strategy, roadmap, OKRs, stakeholder map, pricing hypothesis and kill criteria.',
-      'Gate 3, Build: PRD, prototype, vertical slice, a 30–50 case eval set, architecture, threat model, observability and a repository that builds cleanly from scratch.',
-      'Gate 4, Ship: live URL, analytics, 5–10 real users, a support log, a funnel and cohort, one evidence-based iteration and a tested rollback.',
-      'Gate 5, Defend: unit economics, growth loop, vendor scorecard, decision log, a 10-slide executive deck and a public case study.'
-    ],
-    done:[
-      'Discovery gate: the evidence is traceable, and at least one assumption changed.',
-      'Technical gate: evals, safety and failure handling pass the thresholds you documented.',
-      'Product gate: users complete the target task, and their behaviour is instrumented.',
-      'Business gate: the buyer, price, margin and acquisition logic are credible.',
-      'Defence gate: you can explain trade-offs, failures and the next decision without hiding uncertainty.',
-      'Mastery gate: score each artifact 0–3. Move on only when every artifact scores at least 2 and no safety, privacy or evidence item scores 0.'
-    ]
-  },
-  check:[
-    ['Discovery gate: is the evidence traceable, and did at least one assumption change?',
-     'Pick any claim in your problem brief and follow it back to an interview note or a data point. Then name the assumption you started with that the evidence changed. If nothing changed, you may have heard what you expected to hear.'],
-    ['Technical gate: do evals, safety and failure handling pass documented thresholds?',
-     'Show the thresholds you wrote before testing, and the results next to them. Include the safety cases, such as prompt injection and wrong-recipient tests, as well as quality. A threshold set after seeing the results does not count.'],
-    ['Product gate: do users complete the target task, and is behaviour instrumented?',
-     'Show the task success rate from observed sessions, and the funnel from analytics for the same task. The two should roughly agree. If they do not, find out why before you present.'],
-    ['Business gate: are the buyer, price, margin and acquisition logic credible?',
-     'Check that each one rests on evidence from this course. The buyer comes from interviews, the price from B1, the margin from your cost model at high usage, and acquisition from a growth loop you have seen work at least once.'],
-    ['Defence gate: can you explain trade-offs, failures and the next decision without hiding uncertainty?',
-     'Practise with someone who will push back. For each hard question, say what you know, what you do not, and what you would do next to find out. Admitting uncertainty clearly builds more trust than a confident answer that falls apart.']
-  ],
+  needs:[['The unified capstone','Everything that used to be here is now part of it.',34]],
   story:[
-    ['c','Before you start','About thirty hours, over four to six weeks. This chapter adds little new teaching. It asks you to use everything from the course on one product, and to show the evidence. You can continue with your capstone from earlier chapters, or start a new problem.'],
-    ['p','Work through the gates in order. Each gate ends with a review: score every artifact from 0 to 3 and fix anything below 2 before you move on. If you can, ask someone else to score it too.'],
-
-    ['h','Idea 1: A real problem with reachable users'],
-    ['p','Pick a problem where you can talk to five users within two weeks. The best capstones come from a job you have done, a team you know or a community you belong to. A good problem is frequent, costly and currently solved badly.'],
-    ['tb',['Test','Pass','Fail'],[
-      ['Reachable','I can book five interviews this week','I would need to find users first'],
-      ['Frequent','It happens weekly or more','It happens once a year'],
-      ['Costly','It costs hours or money today','It is mildly annoying'],
-      ['Fit for AI','It needs reading, sorting or writing text','A form or a formula would solve it']
+    ['c','This chapter moved','This used to be a second, separate capstone. It is not any more. Everything here is now part of one journey in Chapter 21.'],
+    ['p','If you already have progress on the old five gates, it maps directly onto Chapter 21’s eleven stages:'],
+    ['tb',['Old gate','New stage(s) in Chapter 21'],[
+      ['Gate 1, Discovery','21.1 Discover'],
+      ['Gate 2, Strategy','21.3 Design'],
+      ['Gate 3, Build','21.4 Build – 21.5 Evaluate'],
+      ['Gate 4, Ship','21.8 Ship'],
+      ['Gate 5, Defend','21.9 Measure – 21.11 Defend']
     ]],
-    ['do','Prove it now',[
-      ['p','Score your problem against the four tests. Book the first two interviews today.'],
-      ['x','Four passes, and two interviews in your calendar. Counterexample: a problem that passes all four and is still a poor capstone. What else would you check?']
-    ]],
-
-    ['h','Idea 2: Design the product and the AI system together'],
-    ['p','Product decisions and technical decisions depend on each other. Whether a user needs an answer in two seconds or by Monday decides the architecture. Design both on one page:'],
-    ['code','User and job        Support lead; understand what customers\n                     are struggling with this week\nActivation moment    Sees a theme they did not know about\nAI approach          Fixed workflow: classify → group → summarise\nWhy not an agent     Same steps every week; 19/20 vs 17/20 in tests\nEval                 50 labelled tickets; precision ≥ 85%\nBoundaries           Read-only helpdesk access; email needs approval\nCost                 ≈ $13 per customer per month at base usage\nNorth Star           Weekly teams that act on a theme'],
-    ['do','Prove it now',[
-      ['p','Write your one-page design using the nine lines above.'],
-      ['x','Nine filled lines. Check that each technical choice links to a product reason. Counterexample: one line that you chose because it was interesting rather than needed.']
-    ]],
-
-    ['h','Idea 3: Evaluation, security, analytics and business viability'],
-    ['p','Gate 3 and Gate 5 ask you to prove four different things. Each needs its own evidence:'],
-    ['tb',['Question','Evidence','Taught in'],[
-      ['Does it work?','Eval set of 30–50 cases with thresholds','Chapters 6 and 29'],
-      ['Is it safe?','Threat model, injection tests, data-flow diagram','Chapters 13 and 31'],
-      ['Do people use it?','Tracking plan, funnel, cohort','B3'],
-      ['Does it make money?','Cost model, pricing, margin at high usage','B1']
-    ]],
-    ['p','A common failure is strong evidence on one question and none on another. A beautifully evaluated product with no pricing logic will not pass Gate 5.'],
-    ['do','Prove it now',[
-      ['p','For each of the four questions, write one sentence on your current evidence, and rate it 0–3.'],
-      ['x','Four sentences and four scores. Your lowest score is where your next week goes.']
-    ]],
-    ['q','I619'],
-
-    ['h','Idea 4: Launch and iterate from evidence'],
-    ['p','Gate 4 repeats B6 on your final product. Launch to 5–10 real users, observe sessions, and ship at least one iteration based on what you find. Keep a support log from day one.'],
-    ['p','Test your rollback for real before launch. Deploy a harmless change, roll it back, and time it. A rollback you have never tried is only a plan.'],
-    ['do','Prove it now',[
-      ['p','Run the rollback test and write down how long it took.'],
-      ['x','A time in minutes. If it took longer than fifteen minutes, simplify it before launch.']
-    ]],
-
-    ['h','Idea 5: Tell the story and defend it'],
-    ['p','The last gate is a presentation to a senior audience. Ten slides is enough:'],
-    ['n',[
-      'The problem, and who has it.',
-      'The evidence it is real.',
-      'What you built, in one picture.',
-      'Does it work? Eval results against thresholds.',
-      'Is it safe? The main risks and how you handled them.',
-      'Do people use it? Funnel, retention and quotes.',
-      'Does it make money? Price, cost and margin.',
-      'What failed, and what you changed.',
-      'Trade-offs you made, and the ones you would revisit.',
-      'The decision you are asking for, and what comes next.'
-    ]],
-    ['p','Then write a public case study from the same material. It becomes the centrepiece of your portfolio from B7.'],
+    ['p','Go to <a href="#/ch/ch21cap">Chapter 21</a> and start from wherever your project actually is. There is nothing else to do on this page — except the one exercise below, kept here so an answer you already wrote is not lost.'],
     ['try',{id:'b8-defend',mins:12,min:120,rows:6,
       task:'Write your answer to the hardest question you expect in the defence. For example: “Why should we believe this works beyond your ten design partners?”',
       ph:'What we know… what we do not know yet… what we would do next…',

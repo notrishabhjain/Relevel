@@ -279,7 +279,7 @@ window.SKILLS = [
     'Can write an event taxonomy and tracking plan',
     'Can build a funnel and a retention cohort, and spot selection bias',
     'Can design an experiment with a guardrail, a minimum detectable effect and a stopping rule']},
-{id:'S42', d:'pm', n:'Shipping & the learning loop', ch:['B6','B8'], labs:[],
+{id:'S42', d:'pm', n:'Shipping & the learning loop', ch:['B6',34], labs:[],
  core:'Put a product in front of real users, observe what happens, and iterate from evidence.',
  L:['Knows a demo is not a launch',
     'Can ship to a stable URL with monitoring, a feedback path and a rollback plan',

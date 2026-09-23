@@ -1953,83 +1953,118 @@ window.PART5 = [
 
 /* --------------------------------------------------------------- 34 / bk 21 */
 {
-  id:'ch21cap', num:34, part:5, curriculumTier:'core', phase:6, prerequisites:['ch20d','ch18s'], nextUnits:['b8'], minutes:90, labs:['redmap'],
-  title:'Capstone: build, break, measure and defend a system',
-  concept:'Build one coherent applied AI system, not a folder of demos. Break it on purpose, measure the fixes, and write a findings document that shows what happened when you tested it.',
+  id:'ch21cap', num:34, part:5, curriculumTier:'core', phase:6, prerequisites:['ch20d','ch18s'], nextUnits:[], minutes:1800, labs:['redmap'],
+  title:'Capstone: discover, build, break, measure, ship and defend a system',
+  concept:'One integrated capstone, not two. Take a real problem, with users you can actually reach, all the way from discovery through a live launch to an executive and technical defence — building one coherent applied AI system, breaking it on purpose, measuring what you fixed, and proving it is viable as a product, not only as a demo.',
   plan:{
-    first:'Do not start with slides. Create the repository, the issue list, the evaluation dataset and the smallest vertical slice that works end to end.',
-    build:'Expand it into one Applied AI operations or policy copilot: permission-aware retrieval, structured outputs, two tools, a bounded agent step, one non-text input, an evaluation harness, tracing and cost instrumentation, and security controls.',
+    first:'Do not start with slides. Find a problem with a reachable user group, then create the repository, the issue list, the evaluation dataset and the smallest vertical slice that works end to end.',
+    build:'Expand it into one Applied AI operations or policy copilot: permission-aware retrieval, structured outputs, two tools, a bounded agent step, one non-text input, an evaluation harness, tracing and cost instrumentation, and security controls — then ship it to five to ten real users and iterate from what you observe.',
     brk:'Reproduce at least ten failure classes: unanswerable query, poisoned document, prompt injection, unauthorised tool request, malformed tool call, stale permission, multilingual query, poor scan or audio, a model swap, and a traffic or cost increase.',
-    artifact:'The running system plus an evidence pack: PRD, architecture, threat model, evaluation plan, dashboard, rollout and rollback plan, vendor scorecard and an executive explanation.',
-    gate:'Show three failures you found yourself, three quantified improvements, the residual risks, and your explicit non-goals.'
+    artifact:'The running system, a live URL with real users, and an evidence pack: PRD, architecture, threat model, evaluation plan, dashboard, unit economics, decision log, rollout and rollback plan, vendor scorecard and an executive explanation.',
+    gate:'Show three failures you found yourself, three quantified improvements, real user evidence, credible unit economics, the residual risks, and your explicit non-goals.'
   },
   needs:[
     ['Everything in Part V','The capstone combines all of it.',33],
-    ['A release gate and a risk register','Chapters 29 and 31 produce the evidence you defend with.',31]
+    ['A release gate and a risk register','Chapters 29 and 31 produce the evidence you defend with.',31],
+    ['Track A’s discovery and strategy artifacts','Helpful, not blocking — the discovery and design stages reuse them if you have them.','A7']
   ],
   words:[
     ["Findings document","A rough, factual record of what broke, the evidence, the root cause, the fix, and what you deliberately did not solve. The opposite of a brochure."],
     ["Failure class","A kind of failure rather than an instance of one — what makes ten tests meaningful instead of ten anecdotes."],
     ["Residual risk","What remains after a control is in place, stated rather than implied."],
-    ["Evidence pack","The set of artifacts that let somebody else check your claims instead of trusting them."]
+    ["Evidence pack","The set of artifacts that let somebody else check your claims instead of trusting them."],
+    ["Kill criteria","The condition, written down before you need it, that means you stop rather than keep iterating on a problem that evidence says will not work."]
   ],
   takeaway:[
+    'Take a real problem, with users you can reach, from discovery to a live product.',
     'Explain a system you built from first principles, without relying on a framework to explain it for you.',
-    'Show before-and-after numbers for failures you found and fixed.',
+    'Show before-and-after numbers for failures you found and fixed, and for the users who used it.',
+    'Defend the business case — unit economics, growth, vendor risk — as rigorously as the architecture.',
     'State what you deliberately did not solve.'
   ],
   story:[
-    ['c','Before you start','Collect every artifact from Part V: the harness, model selection card, context budget, retrieval architecture, tool policy, release gate, dashboard, risk register, PRD and decision pack.'],
-    ['p','Your credential from this course is a system you can explain without relying on anyone’s framework, and an honest page about what broke when you tested it. Employers ask what you can build, and then what goes wrong and what you do about it.'],
-    ['c','The brief','Build one applied AI system that combines at least four capabilities from Part V. A recommended baseline: permission-aware retrieval, tool calling, a bounded agent step, evaluation, tracing and security tests. Build one coherent system, not a set of separate demos.'],
+    ['c','Before you start','About thirty hours, over four to six weeks. This is the whole course brought together: the technical capstone and the product, business, real-user and defence work are one project now, not two.'],
+    ['p','Collect every artifact from Part V — the harness, model selection card, context budget, retrieval architecture, tool policy, release gate, dashboard, risk register, PRD and decision pack. Every stage below reuses one of them.'],
+    ['p','If you have already done any of Track B’s selective modules, reuse them too: B1’s cost model in the measure stage, B3’s tracking plan in the ship stage, B5’s release checklist in the observe stage, B6’s user sessions in the ship stage. None of them are required to start.'],
+    ['p','Your credential from this course is a system you can explain without relying on anyone’s framework, real users who used it, and an honest page about what broke when you tested it and what it costs to run. Employers ask what you can build, whether anyone wanted it, and then what goes wrong and what you do about it.'],
+    ['c','The brief','Take one real problem, with a user group you can actually reach within two weeks. Work through eleven stages: discover, define, design, build, evaluate, break, observe, ship, measure, iterate, defend.'],
+    ['p','Build one applied AI system that combines at least four capabilities from Part V — a recommended baseline is permission-aware retrieval, tool calling, a bounded agent step, evaluation, tracing and security tests. Ship it to real users before you defend it. One coherent journey, not a set of separate demos.'],
     ['lab','redmap'],
-    ['h','What each stage needs'],
+    ['h','The eleven stages'],
     [
       'tb',
       ['Stage','Required evidence'],
       [
-        ['Problem','User, pain, baseline, measurable outcome'],
-        ['Architecture','Diagram, decision log, trust boundaries'],
-        ['Build','Working code, tests, versioned prompts and config'],
-        ['Break','At least ten deliberate failure tests'],
-        ['Measure','Evaluation dataset, metrics, cost and latency'],
-        ['Secure','Threat model, controls, red-team results'],
-        ['Operate','Trace schema, dashboard, rollback plan'],
-        ['Productize','PRD, rollout, owner, ROI hypothesis'],
-        ['Explain','Five-minute executive explanation, twenty-minute technical defence']
+        ['21.1 Discover','Five interviews, a jobs-to-be-done statement, a market/competitor scan, an evidence-backed problem brief'],
+        ['21.2 Define','User, pain, baseline, scope, non-goals, data, tools, risks, a measurable acceptance criterion — the capstone AI PRD'],
+        ['21.3 Design','One-page product + system design, vision/strategy/roadmap/OKRs, stakeholder map, pricing hypothesis, kill criteria'],
+        ['21.4 Build','Working code, tests, versioned prompts and config, architecture diagram, threat model'],
+        ['21.5 Evaluate','30–50 evaluation cases, traces, retrieval/answer/tool/safety/latency/cost measurements'],
+        ['21.6 Break','At least ten deliberate failure tests, preserved before you fix anything'],
+        ['21.7 Observe','Security go/no-go checklist, six-panel observability dashboard wired to real traces'],
+        ['21.8 Ship','A live URL, monitoring, 5–10 real users, a support log, a timed rollback test'],
+        ['21.9 Measure','Before/after optimisation numbers, ADRs, a unit-economics model at base and high usage'],
+        ['21.10 Iterate','One evidence-based iteration, before/after product and AI metrics, a decision-log entry'],
+        ['21.11 Defend','Ten-slide executive deck, twenty-minute technical defence, public case study']
       ]
     ],
-    ['key','A portfolio project is credible when you can explain its failures. Anyone can show a system that works on the demo path.'],
+    ['key','A portfolio project is credible when you can explain its failures, prove someone wanted it, and show what it costs to run. Anyone can show a system that works on the demo path.'],
     ['h','Hands-on units'],
     [
       'unit',
       '21.1',
-      'Define the problem and PRD',
-      {goal:'Select one enterprise use case and make the acceptance criteria measurable.',
-       idea:'A capstone becomes credible when the problem and failure cost are clear.',
-       prove:'Choose: enterprise policy/compliance intelligence, developer productivity workflow, or controlled customer operations workflow.',
-       build:'Write user, pain, baseline, scope, non-goals, data, tools, risks and metrics.',
-       brk:'Challenge the idea with “why not deterministic software?”',
-       artifact:'Capstone AI PRD.',
-       check:'Can you state the business outcome in one sentence?',
-       lens:'This is the product anchor.'}
+      'Discover: a real problem with reachable users',
+      {goal:'Find a problem with a user group you can actually reach, and write an evidence-backed problem brief.',
+       idea:'The best capstones come from a job you have done, a team you know or a community you belong to — a problem that is frequent, costly and currently solved badly.',
+       prove:'Score your problem against four tests: reachable (you can book five interviews this week), frequent, costly, and a fit for AI rather than a form or a formula.',
+       build:'Run five interviews, write a jobs-to-be-done statement and a journey map, and scan the market and competitors.',
+       brk:'Challenge the idea with “why not deterministic software?” — a problem a form would solve is not a capstone.',
+       artifact:'Evidence-backed problem brief, with a jobs-to-be-done statement.',
+       check:'Can you follow any claim in your problem brief back to an interview note, and name the assumption the evidence changed?',
+       lens:'If nothing you believed changed after five interviews, you may have heard what you expected to hear.'}
     ],
     [
       'unit',
       '21.2',
-      'Build the vertical slice',
-      {goal:'Create the smallest end-to-end working system before adding sophistication.',
-       idea:'A vertical slice proves architecture across boundaries.',
-       prove:'Implement input → retrieval/context → model → structured answer → citation.',
-       build:'Add one tool only when needed.',
-       brk:'Use an unanswerable query and record the baseline failure.',
-       artifact:'Running repository + architecture v1.',
-       check:'Can you run the system from a clean environment?',
-       lens:'A working small system beats a large diagram.'}
+      'Define the problem and PRD',
+      {goal:'Turn the problem into a system with measurable acceptance criteria.',
+       idea:'A capstone becomes credible when the problem and failure cost are clear.',
+       prove:'Choose your own reachable problem, or one of: enterprise policy/compliance intelligence, developer productivity workflow, or controlled customer operations workflow.',
+       build:'Write user, pain, baseline, scope, non-goals, data, tools, risks and metrics.',
+       brk:'Challenge the idea again with “why not deterministic software?” — this time against your actual scope, not the general case.',
+       artifact:'Capstone AI PRD.',
+       check:'Can you state the business outcome in one sentence?',
+       lens:'This is the product anchor everything else below hangs off.'}
     ],
     [
       'unit',
       '21.3',
+      'Design the product and the system together',
+      {goal:'Design the product decision and the technical decision on one page, because each one constrains the other.',
+       idea:'Whether a user needs an answer in two seconds or by Monday decides the architecture; whether the architecture can hit a target decides what you can promise.',
+       prove:'Fill a nine-line design: user and job, activation moment, AI approach, why not an agent, evaluation, boundaries, cost, North Star.',
+       build:'Add vision, strategy, roadmap, OKRs, a stakeholder map, a pricing hypothesis and kill criteria — the condition that means you stop.',
+       brk:'Find one line in your design you chose because it was interesting rather than needed, and cut it.',
+       artifact:'One-page product + system design, plus a stakeholder map.',
+       check:'Does every technical choice on the page link to a product reason, and every product choice to something the system can actually do?',
+       lens:'Kill criteria written now, before you are attached to the idea, are the ones you will actually honour.'}
+    ],
+    [
+      'unit',
+      '21.4',
+      'Build the vertical slice',
+      {goal:'Create the smallest end-to-end working system before adding sophistication.',
+       idea:'A vertical slice proves architecture across boundaries; a threat model bolted on afterward is a rationalisation, not a control.',
+       prove:'Implement input → retrieval/context → model → structured answer → citation, with a threat model written alongside the first version, not after.',
+       build:'Add one tool only when needed. Keep the repository reproducible: README, requirements, a repeatable run command.',
+       brk:'Use an unanswerable query and record the baseline failure.',
+       artifact:'Running repository + architecture v1 + threat model.',
+       check:'Can you run the system from a clean environment, and could someone else run your experiment without asking what you did manually?',
+       lens:'A working small system beats a large diagram.'}
+    ],
+    [
+      'unit',
+      '21.5',
       'Add evaluation and observability',
       {goal:'Turn the capstone into a measurable system.',
        idea:'Every change should leave evidence.',
@@ -2042,7 +2077,7 @@ window.PART5 = [
     ],
     [
       'unit',
-      '21.4',
+      '21.6',
       'Break it deliberately',
       {goal:'Reproduce at least ten failure classes.',
        idea:'A portfolio project is more credible when you can explain what broke.',
@@ -2055,28 +2090,67 @@ window.PART5 = [
     ],
     [
       'unit',
-      '21.5',
-      'Optimize and quantify',
-      {goal:'Apply targeted fixes and measure before/after.',
-       idea:'Optimization is meaningful only when the delta is visible.',
-       prove:'Try reranking, prompt restructuring, schema validation, caching, routing or context reduction where justified.',
-       build:'Change one variable at a time and rerun the relevant eval slice.',
-       brk:'Keep a fix that improves one metric but worsens another and document the trade-off.',
-       artifact:'Before/After Optimization Report + ADRs.',
-       check:'Which improvement is statistically or operationally meaningful for your sample?',
-       lens:'Avoid “optimization theater.”'}
+      '21.7',
+      'Observe: prove it is inspectable before real users touch it',
+      {goal:'Prove the system is inspectable and its risk is bounded before you ship it to a real user.',
+       idea:'A system you cannot observe is a system you are guessing about, whatever it demos like.',
+       prove:'Run the security release-gate checks and the observability release thresholds against the current build.',
+       build:'Wire a six-panel dashboard — quality, safety, latency, cost, traffic, failures — to the real traces your evaluation and break stages produced.',
+       brk:'Pull one signal out of the dashboard and see which incident becomes invisible without it.',
+       artifact:'Security go/no-go checklist + observability dashboard.',
+       check:'Which alert should page a human, and which should only be logged?',
+       lens:'A stakeholder will ask "how would you know if this broke at 2am" — this stage is your answer.'}
     ],
     [
       'unit',
-      '21.6',
+      '21.8',
+      'Ship to real users',
+      {goal:'Launch to a real user group and prove the rollback actually works.',
+       idea:'Real users matter more than more theory — five to ten observed sessions beat another week of solo polishing.',
+       prove:'Deploy to a stable live URL with monitoring, analytics, a privacy notice, a feedback path and a rollback procedure.',
+       build:'Recruit five to ten real target users, observe at least five sessions, and keep a support log from day one.',
+       brk:'Test your rollback for real before launch: deploy a harmless change, roll it back, time it. A rollback you have never tried is only a plan.',
+       artifact:'Live URL + support log + funnel/cohort + a timed rollback test.',
+       check:'Do you have real user evidence, not teammate demo traffic?',
+       lens:'A beautifully evaluated system with no one who has used it has not passed this stage yet.'}
+    ],
+    [
+      'unit',
+      '21.9',
+      'Measure: optimize and quantify unit economics',
+      {goal:'Apply targeted fixes, measure before/after, and prove the economics work at scale.',
+       idea:'Optimization is meaningful only when the delta is visible, and viability is meaningful only when cost per successful task is visible too.',
+       prove:'Try reranking, prompt restructuring, schema validation, caching, routing or context reduction where justified, and model cost per successful task at low, base and high usage.',
+       build:'Change one variable at a time and rerun the relevant evaluation slice.',
+       brk:'Keep a fix that improves one metric but worsens another, and document the trade-off — and check what happens to margin at ten times the volume.',
+       artifact:'Before/After Optimization Report + ADRs + a unit-economics model.',
+       check:'Which improvement is statistically or operationally meaningful, and does revenue grow faster than inference and support cost?',
+       lens:'Avoid "optimization theater," and avoid a model that only works at your current, subsidised scale.'}
+    ],
+    [
+      'unit',
+      '21.10',
+      'Iterate from evidence',
+      {goal:'Ship one evidence-based iteration and log the decision behind it.',
+       idea:'An iteration earns its place only when it is tied to a measured problem, not a hunch.',
+       prove:'Pick your lowest-scoring evidence question from the stages above and ship one change against it.',
+       build:'Compare before/after product and AI metrics, and write the decision into the decision log: context, options considered, the approach you chose, the trade-offs, and what would reopen it.',
+       brk:'Have someone push back on the iteration you shipped, and answer from the metric, not from opinion.',
+       artifact:'A changelog + one populated decision-log entry.',
+       check:'Can you tie the iteration to a measured problem, not a preference?',
+       lens:'A decision log with no entries by this stage means every choice so far was undocumented, which is the thing a reviewer will ask about first.'}
+    ],
+    [
+      'unit',
+      '21.11',
       'Defend the system',
-      {goal:'Present the architecture, evidence, security, cost and residual risk to two audiences.',
-       idea:'The final skill is explaining and defending the system you built.',
-       prove:'Prepare a five-minute executive briefing and twenty-minute technical defense.',
-       build:'Include three failures, three quantified improvements, residual risks and explicit non-goals.',
+      {goal:'Present the architecture, evidence, security, cost, viability and residual risk to two audiences.',
+       idea:'The final skill this course tests is explaining and defending the system you built.',
+       prove:'Prepare a five-minute executive briefing and a twenty-minute technical defense.',
+       build:'Build a ten-slide deck and a public case study: the problem, the evidence it is real, what you built, whether it works, whether it is safe, whether people use it, whether it makes money, what failed, the trade-offs, and what you are asking for next.',
        brk:'Have a peer challenge your model choice, agent choice, security and cost assumptions.',
-       artifact:'Final repository, architecture, PRD, risk register, evaluation pack, observability dashboard, vendor scorecard and executive deck.',
-       check:'Can you explain every major decision without saying “the framework handles it”?',
+       artifact:'Final repository, architecture, PRD, risk register, evaluation pack, observability dashboard, vendor scorecard, decision log, executive deck and public case study.',
+       check:'Can you explain every major decision without saying "the framework handles it"?',
        lens:'This is the credential you carry into interviews and design reviews.'}
     ],
     ['q','I414'],
@@ -2084,20 +2158,20 @@ window.PART5 = [
     ['p','You are done when all of these are true:'],
     [
       'l',
-      ['It runs on a machine that is not yours.','Anyone can rerun the tests and get the same numbers.','You have broken it in at least three real ways, on purpose.','Three of your fixes have before and after numbers.','You attacked your own safeguards and recorded what happened.','You know how to roll it back if something goes wrong.','You can explain every major choice without saying “the framework handles that”.']
+      ['It runs on a machine that is not yours, at a live URL.','Anyone can rerun the tests and get the same numbers.','You have broken it in at least three real ways, on purpose.','Three of your fixes have before and after numbers.','You attacked your own safeguards and recorded what happened.','You know how to roll it back if something goes wrong, and you have timed it.','Five to ten real users have used it, and you have their evidence, not a teammate’s.','You can state cost per successful task, and what happens to margin at ten times the volume.','At least one iteration is tied to measured evidence, and logged as a decision.','You can explain every major choice without saying “the framework handles that”.']
     ],
     ['h','Final self-test'],
     ['p','Answer these from memory:'],
     [
       'l',
-      ['Why is the model stateless?','Why can retrieval fail, and why do embeddings help?','Why does retrieval never say “nothing here” on its own?','Why is top-k a trade-off?','When does a workflow beat an agent?','Why are tools a security boundary?','Why must evaluation come before release, and why does tracing matter?','How do you calculate cost per task?','What makes an AI specification different from a normal one?']
+      ['Why is the model stateless?','Why can retrieval fail, and why do embeddings help?','Why does retrieval never say “nothing here” on its own?','Why is top-k a trade-off?','When does a workflow beat an agent?','Why are tools a security boundary?','Why must evaluation come before release, and why does tracing matter?','How do you calculate cost per successful task, not per call?','What makes an AI specification different from a normal one?','Who is your buyer, and does your price cover what the model costs you?','What would make you kill this project rather than keep iterating on it?']
     ],
-    ['p','After this chapter, Track B takes the system to real users, a real price and a real job. The appendices turn your artifacts into reusable portfolio templates.']
+    ['p','This was the last required chapter. Track B’s B7 turns what you just built into interview-ready stories. The appendices turn your artifacts into reusable portfolio templates.']
   ],
-  capstone:{title:'Applied AI findings: what I built, what broke and what the evidence shows',
+  capstone:{title:'Applied AI findings: what I built, what broke, who used it and what the evidence shows',
    brief:'This single document carries everything from the course. Keep it plain and factual. A findings document that reads like a brochure is not doing its job.',
-   steps:['Ship the repository with a README that works on a clean machine.','Include the architecture diagram and the decision log.','Include 30 to 50 evaluation cases and their results.','Include the retrieval and end-to-end numbers, before and after your fixes.','Include the security attack results and sample traces.','Include cost and response-time measurements at expected volume.','Include the PRD, the risk register, the vendor scorecard, and the rollout and rollback plan.','End with the remaining risks and what is explicitly out of scope.'],
-   done:['Three failures you found yourself, each with evidence.','Three fixes with before and after numbers.','A five-minute explanation a non-technical leader could repeat.']}
+   steps:['Ship the repository with a README that works on a clean machine.','Include the architecture diagram and the decision log.','Include 30 to 50 evaluation cases and their results.','Include the retrieval and end-to-end numbers, before and after your fixes.','Include the security attack results and sample traces.','Include cost and response-time measurements at expected volume, and the unit-economics model.','Include the PRD, the risk register, the vendor scorecard, and the rollout and rollback plan.','Include the real-user evidence: session notes, the support log, and the one iteration you shipped from it.','End with the remaining risks and what is explicitly out of scope.'],
+   done:['Three failures you found yourself, each with evidence.','Three fixes with before and after numbers.','Real evidence from five to ten users who are not your teammates.','Cost per successful task, and what happens to it at ten times the volume.','A five-minute explanation a non-technical leader could repeat, and a twenty-minute one an engineer could not poke a hole in.']}
 }
 
 ];

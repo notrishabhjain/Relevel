@@ -550,9 +550,9 @@ Object.assign(window.APPENDIX, {
     {when:'Week 16', focus:'Architecture and delivery',
      chs:['ch20d'],
      evidence:'A technical decision pack, a set of ADRs, and a rollout and rollback plan.'},
-    {when:'Capstone', focus:'Build, break, measure, defend',
+    {when:'Capstone', focus:'Discover, build, break, measure, ship, defend — one integrated capstone',
      chs:['ch21cap'],
-     evidence:'The complete portfolio evidence pack.'}
+     evidence:'The complete portfolio evidence pack: technical, product, business and real-user evidence in one repository.'}
   ],
 
   /* Appendix B — the master artifact index, as a tracker. Each row names the
@@ -579,8 +579,8 @@ Object.assign(window.APPENDIX, {
     [18,'Security and red-team report','Attack cases, the controls, the evidence, and the risk you are accepting.','ch18s','risk'],
     [19,'Architecture Decision Records','The major decisions, their alternatives, the evidence, and what would reopen them.','ch20d','adr'],
     [20,'Production architecture','A system diagram, the trust boundaries, deployment and operations.','ch20d','adr'],
-    [21,'Final capstone repository','Reproducible code, tests, evaluation and documentation.','ch21cap','gate'],
-    [22,'Executive briefing deck','Five minutes on the outcome, twenty minutes of technical defence.','ch21cap','prd']
+    [21,'Final capstone repository','Reproducible code, tests, evaluation, real-user evidence and documentation.','ch21cap','gate'],
+    [22,'Executive briefing deck','Five minutes on the outcome, twenty minutes of technical defence, and a public case study.','ch21cap','prd']
   ],
 
   /* Appendix C — the reusable templates. Fields marked 'long' get a text area
