@@ -899,19 +899,22 @@ ok(!(await mainText(v4.page)).includes('English-only for now'),
 /* The applied track has since been translated, and every part has to be
    reachable from the page people actually land on — Part V was added and
    could not be found from the dashboard at all, because nothing on it listed
-   the parts. */
-console.log('\n— every part is reachable from the landing page —');
+   the parts. v4.3 replaced the flat seven-part list with four curriculum-tier
+   cards (core, the capstone, selective, reference), so this now checks that
+   grouping instead of counting parts directly. */
+console.log('\n— the curriculum hierarchy is reachable from the landing page —');
 const navp = await newDevice(false);
 await boot(navp.page);
-const parts = await navp.page.evaluate(() =>
-  [...document.querySelectorAll('.partrow')].map(a => ({
-    label: (a.querySelector('.prn') || {}).textContent,
+const tiers = await navp.page.evaluate(() =>
+  [...document.querySelectorAll('.tiercard')].map(a => ({
+    label: (a.querySelector('h3') || {}).textContent,
     href: a.getAttribute('href')
   })));
-ok(parts.length === 5, 'all five parts are listed on the dashboard', String(parts.length));
-ok(parts.some(p => /Part V/.test(p.label || '')),
-   'including Part V, which could not be found before');
-ok(parts.every(p => (p.href || '').startsWith('#/ch/')),
+ok(tiers.length === 4, 'the four curriculum tiers are all on the dashboard', String(tiers.length));
+ok(['Core track', 'Capstone', 'Selective', 'Reference'].every(want =>
+   tiers.some(t => t.label === want)),
+   'named Core track, Capstone, Selective and Reference', tiers.map(t => t.label).join(' | '));
+ok(tiers.every(t => (t.href || '').startsWith('#/ch/')),
    'and each one opens a chapter rather than going nowhere');
 await boot(navp.page, '#/library');
 ok(await navp.page.$('.tracksep'),

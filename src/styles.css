@@ -925,6 +925,13 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .partrow p{margin:.15rem 0 0;font-size:.8rem;color:var(--ink-2)}
 .partrow .go{font-size:.78rem;color:var(--ink-2);white-space:nowrap}
 .partrow.done{background:var(--verified-wash);border-color:var(--verified)}
+/* v4.3 curriculum-hierarchy cards on the dashboard: same shape as any other
+   partrow, plus a left rule so Core, the Capstone, Selective and Reference
+   read as four different kinds of thing at a glance, not four of the same. */
+.tiercard.tcore{border-left:3px solid var(--verified)}
+.tiercard.tcapstone{border-left:3px solid var(--ink)}
+.tiercard.tselective{border-left:3px solid var(--rule-strong,var(--ink-2))}
+.tiercard.treference{border-left:3px solid var(--rule)}
 @media (max-width:520px){
   .partrow{flex-wrap:wrap;gap:.35rem .8rem}
   .partrow .go{width:100%;text-align:right}

@@ -319,15 +319,38 @@ function chapterProgress(S, c){
 /* The chapter you are in the middle of, else the next one you have not finished. */
 function currentChapter(S){
   /* CHAPTERS is already in reading order. Sorting it by number stopped being
-     possible when the playbook's A1–A8 and B1–B8 arrived. */
+     possible when the playbook's A1–A8 and B1–B8 arrived.
+
+     v4.3: the required path is the core tier, so this walks core chapters
+     first (in their own reading order) and only reaches selective/reference
+     ones once every core chapter is done — the dashboard's one next action
+     should never park a learner on optional reading while required chapters
+     sit unfinished. A filter is stable, so within each group the order is
+     unchanged from before. */
   const chs=(window.CHAPTERS||[]).slice();
+  const ordered=chs.filter(c=>c.curriculumTier==='core')
+    .concat(chs.filter(c=>c.curriculumTier!=='core'));
   let firstUnfinished=null;
-  for(const c of chs){
+  for(const c of ordered){
     const p=chapterProgress(S,c);
     if(p.done>0 && p.left>0) return {c, p, started:true};
     if(!firstUnfinished && (p.left>0 || !S.done[c.id])) firstUnfinished={c, p, started:false};
   }
   return firstUnfinished;
+}
+/* All chapters in one curriculumTier, and how much of it is done — the
+   dashboard's Core/Selective/Reference/Capstone cards read this rather than
+   re-filtering CHAPTERS themselves. The capstone (ch21cap) is core but is
+   reported on its own, since v4.3 treats it as a fourth, distinct block
+   rather than folding it into the core count. */
+function tierChapters(tier){
+  return (window.CHAPTERS||[]).filter(c=>c.curriculumTier===tier && c.id!=='ch21cap');
+}
+function tierProgress(S,tier){
+  const chs=tierChapters(tier);
+  const done=chs.filter(c=>S.done[c.id]).length;
+  const next=chs.find(c=>!S.done[c.id])||chs[0]||null;
+  return {chs, done, total:chs.length, complete: chs.length>0 && done===chs.length, next};
 }
 function resume(S){
   const due=dueList(S).length;
@@ -431,6 +454,7 @@ function exScore(e, iter){
 return {get ITEMS(){return ITEMS;}, byItem, bySkill, SK, DAY, reinit,
   shown, levelOf, nextBand, skillState, decayFactor,
   streakDetail, daysSinceActive, chapterProgress, currentChapter, resume,
+  tierChapters, tierProgress,
   buildSession, grade, submit, scheduleItem, srs, dueList, dueForecast,
   calibrationCurve, brier, overconfidence, CONF,
   accuracyByDay, streak, domainMastery, overall, velocity, timeInvested,
