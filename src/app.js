@@ -1682,7 +1682,9 @@ function renderRail(){
       ['#/ledger','∆','My predictions vs reality'],
       ['#/card','▣','Governance doc builder'],
       ['#/vendor','⌗','Questions to ask vendors'],
-      ['#/evidence','▤','The 22 artifacts I owe, and the study map'],
+      ['#/evidence','▤','The Artifact Vault — 22 artifacts and the study map'],
+      ['#/decisions','◈','Decision Log — every ADR I have written'],
+      ['#/failures','✗','Failure Log — what broke, and what I did about it'],
       ['#/templates','▧','Fill-in templates for experiments and decisions'],
       ['#/appendix','≡','Worksheet, question bank, sources'],
       ['#/notebook','✐','My notes'],
@@ -2006,6 +2008,94 @@ function pageTemplates(which){
    trackers, and every artifact row links to the chapter that produces it and
    the template that shapes it — which is the only thing that turns a list of
    nouns into something you can work through. */
+/* Which of the four v4.3 artifact classes a row belongs to, and how the vault
+   labels it. Kept here rather than only in data so a row with no class (an
+   older or hand-edited one) still renders instead of throwing. */
+const ARTCLASS={experiment:'Experiment',engineering:'Engineering',decision:'Decision',evidence:'Evidence'};
+
+/* ---------- Decision Log and Failure Log ----------
+
+   Both are the same shape: every copy of one Appendix C template (adr, fail),
+   read as a running log instead of one entry among nine templates. No second
+   state, no second form — S.tpl and tplForm are the only place either one is
+   ever written, so a decision or failure logged from a chapter page, the
+   workbench, or here all land in the same list. */
+function pageLog(key,opts){
+  const t=tplById(key);
+  const w=h('div',{class:'wrap-wide'});
+  if(!t) return w;
+  w.appendChild(h('header',{class:'phead'},[
+    h('div',{class:'eyebrow'},[h('span',{text:opts.eyebrow})]),
+    h('h1',{text:opts.title}),
+    h('p',{html:T(opts.blurb)})]));
+  const stats=h('div',{class:'stats'});
+  const redrawStats=()=>{
+    const mine=tplCopies(key);
+    const complete=mine.filter(id=>tplFilled(id)===t.fields.length).length;
+    stats.innerHTML='';
+    [tile(T('entries'),String(mine.length)),
+     tile(T('complete'),complete+' / '+mine.length,mine.length&&complete===mine.length?'ok':'')]
+      .forEach(x=>stats.appendChild(x));
+  };
+  redrawStats();
+  w.appendChild(stats);
+  const ch=byId[t.ch];
+  if(ch) w.appendChild(h('div',{class:'chiprow',style:'margin:.2rem 0 1rem'},
+    h('a',{class:'chip',href:'#/ch/'+ch.id,text:T('Usually starts in')+' · '+ch.num+'. '+T(ch.title)})));
+
+  const list=h('div',{class:'arts'});
+  const redraw=()=>{
+    list.innerHTML='';
+    const mine=tplCopies(key);
+    if(!mine.length){
+      list.appendChild(h('p',{class:'dim',style:'font-size:.9rem',text:opts.empty}));
+    }
+    mine.slice().reverse().forEach(id=>{
+      const c=S.tpl[id], n=tplFilled(id), tot=t.fields.length;
+      const headline=(c.v[0]||'').trim()||T('Untitled')+' — '+id.split(':')[1];
+      const when=new Date(c.at||Date.now()).toISOString().slice(0,10);
+      const det=h('details',{class:'qa tplcopy logentry'});
+      const pill=h('span',{class:'pill '+(n===tot?'ok':n?'':'red'),text:n+' / '+tot});
+      det.appendChild(h('summary',{},[
+        h('span',{class:'logwhen',text:when}),
+        h('span',{class:'logtitle',text:headline}),
+        pill]));
+      let built=false;
+      det.addEventListener('toggle',()=>{
+        if(det.open&&!built){built=true;det.appendChild(tplForm(id,redraw,()=>{}));}
+      });
+      list.appendChild(det);
+    });
+  };
+  redraw();
+  w.appendChild(list);
+  w.appendChild(h('div',{class:'tplbar',style:'margin-top:1rem'},[
+    h('button',{class:'primary sm',onclick:()=>{
+      tplNew(key);redraw();redrawStats();
+      const d=list.querySelector('details.tplcopy:first-of-type');
+      if(d)d.open=true;}},opts.cta),
+    h('a',{class:'sm chip',href:'#/templates/'+key,text:T('Open as a template instead')})]));
+  return w;
+}
+function pageDecisionLog(){
+  return pageLog('adr',{
+    eyebrow:T('Decision Log'),
+    title:T('Every decision you would not want to re-argue'),
+    blurb:T('One entry per Architecture Decision Record you have written — model choice, retrieval strategy, workflow versus agent, build versus buy, vendor risk, anything expensive to reverse. The same form the workbench uses; this page just reads it as a log instead of a template.'),
+    empty:T('No decisions logged yet. Write one the first time you catch yourself defending a choice out loud — that is the sign it belongs here.'),
+    cta:T('+ Log a decision')
+  });
+}
+function pageFailureLog(){
+  return pageLog('fail',{
+    eyebrow:T('Failure Log'),
+    title:T('What broke, and what you did about it'),
+    blurb:T('One entry per Failure Finding — the build-break-measure-fix loop this course keeps returning to, written down instead of just fixed and forgotten. A full failure log is often the most convincing thing you bring to a review.'),
+    empty:T('No failures logged yet. The first one you deliberately break in Chapter 21’s Break stage is a good place to start.'),
+    cta:T('+ Log a failure')
+  });
+}
+
 function pageEvidence(){
   const A=window.APPENDIX||{};
   const map=A.studymap||[], arts=A.artifacts||[], exit=A.exit||[];
@@ -2013,8 +2103,11 @@ function pageEvidence(){
   const w=h('div',{class:'wrap-wide'});
   w.appendChild(h('header',{class:'phead'},[
     h('div',{class:'eyebrow'},[h('span',{text:T('Appendices A and B')})]),
-    h('h1',{text:T('The evidence pack')}),
-    h('p',{html:T('You finish this course with evidence: twenty-two things you built, broke and measured, plus an honest note about what is still unsolved. This page holds the running list, the sixteen-week map, and the thirteen things you should be able to do at the end.')})]));
+    h('h1',{text:T('The Artifact Vault')}),
+    h('p',{html:T('Everywhere the course tells you to build, break or decide something, it lands here: twenty-two artifacts, each one an experiment, a piece of engineering, a decision, or evidence. This page holds the running list, the sixteen-week map, and the thirteen things you should be able to do at the end. Your decisions and your failures also get a page of their own — they are the two kinds of artifact worth reading as a log rather than a list.')})]));
+  w.appendChild(h('div',{class:'chiprow',style:'margin:0 0 1.2rem'},[
+    h('a',{class:'chip',href:'#/decisions',text:T('→ Decision Log')}),
+    h('a',{class:'chip',href:'#/failures',text:T('→ Failure Log')})]));
 
   const artDone=()=>arts.filter(a=>(S.arts[a[0]]||{}).s===2).length;
   const artWip=()=>arts.filter(a=>(S.arts[a[0]]||{}).s===1).length;
@@ -2035,7 +2128,7 @@ function pageEvidence(){
   secB.appendChild(h('p',{class:'prose',style:'font-size:1rem',
     html:T('Twenty-two artifacts. Mark one finished only when someone else could pick it up and see what you did — the measurement, not the claim. <em>Where it lives</em> is for the repository path or the link, so that the pack assembles itself.')}));
   const artList=h('div',{class:'arts'});
-  arts.forEach(([n,title,detail,chId,tplKey])=>{
+  arts.forEach(([n,title,detail,chId,tplKey,cls])=>{
     const st=S.arts[n]=S.arts[n]||{s:0,where:''};
     const ch=byId[chId], tpl=tplById(tplKey);
     const row=h('div',{class:'art s'+st.s});
@@ -2053,6 +2146,7 @@ function pageEvidence(){
       h('div',{class:'arttitle'},[h('strong',{text:T(title)}),saved]),
       h('div',{class:'dim',style:'font-size:.82rem;margin:.15rem 0 .45rem',text:T(detail)}),
       h('div',{class:'chiprow'},[
+        ARTCLASS[cls]?h('span',{class:'chip artcls',text:T(ARTCLASS[cls])}):null,
         ch?h('a',{class:'chip',href:'#/ch/'+ch.id,text:ch.num+'. '+T(ch.title)}):null,
         tpl?h('a',{class:'chip',href:'#/templates/'+tpl.key,
           text:T('template')+' · '+T(tpl.name)}):null]),
@@ -2121,13 +2215,15 @@ const ROUTES={'':()=>V().dashboard(),'library':pageHome,
   'notebook':pageNotebook,'ledger':pageLedger,
   'later':pageLater,'glossary':pageGlossary,'vendor':pageVendor,'map':pageMap,'card':pageCard,
   'appendix':pageAppendix,'evidence':pageEvidence,
+  'decisions':pageDecisionLog,'failures':pageFailureLog,
   'progress':pageProgress,'labs':pageLabs,'data':()=>V().data(),
   'studio':()=>window.STUDIO.studio([])};
 const CRUMB={'':'Dashboard','library':'Library','skills':'Skill Matrix','analytics':'Analytics',
   'exercises':'Exercises','processes':'Processes','practice':'Practice','skill':'Skill',
   'data':'Progress & Backup','studio':'Content Studio','install':'Install as an app',
   'language':'Language','setup':'Setup','appendix':'Appendices',
-  'evidence':'Evidence pack','templates':'The workbench'};
+  'evidence':'Artifact Vault','templates':'The workbench',
+  'decisions':'Decision Log','failures':'Failure Log'};
 
 function route(){
   const hash=location.hash.replace(/^#\/?/,'').split('#')[0];
@@ -2202,7 +2298,9 @@ function buildIndex(){
     {k:'page',t:'Glossary',h:'#/glossary'},
     {k:'page',t:'Where You Are',h:'#/progress'},
     {k:'page',t:'Appendices',h:'#/appendix'},
-    {k:'page',t:'The Evidence Pack \u2014 22 artifacts and the study map',h:'#/evidence'},
+    {k:'page',t:'The Artifact Vault \u2014 22 artifacts and the study map',h:'#/evidence'},
+    {k:'page',t:'Decision Log \u2014 every ADR I have written',h:'#/decisions'},
+    {k:'page',t:'Failure Log \u2014 what broke, and what I did about it',h:'#/failures'},
     {k:'page',t:'The Workbench \u2014 fill-in templates',h:'#/templates'});
   /* Each template and each artifact is findable by its own name \u2014 the point
      of the palette is that you do not have to remember which page holds it. */

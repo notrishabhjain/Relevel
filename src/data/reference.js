@@ -558,29 +558,33 @@ Object.assign(window.APPENDIX, {
   /* Appendix B — the master artifact index, as a tracker. Each row names the
      chapter that produces it and the template that shapes it, because an
      artifact list with neither is a list of nouns. */
+  /* Column 6 is the v4.3 artifact class — experiment, engineering, decision
+     or evidence — kept as data here rather than inferred from the template
+     key in app code, since the two do not always agree (a workflow demo is
+     engineering even though an ADR is the template that shapes it). */
   artifacts: [
-    [1,'Seven foundation notebooks','One per foundation chapter — the smallest working thing, kept.','ch1','exp'],
-    [2,'Chunking experiment','The strategy, worked examples, a question set, and the measured effect on retrieval.','ch11r','exp'],
-    [3,'Retrieval benchmark','Lexical, dense and hybrid, scored per query rather than in aggregate.','ch11r','exp'],
-    [4,'Reranking experiment','Candidate recall, precision at k, added latency, and the decision you took.','ch11r','exp'],
-    [5,'Production-style RAG','Ingestion, metadata, permissions, provenance, retrieval, generation and a rollback path.','ch11r','adr'],
-    [6,'Tool-calling demo','The tool schema, argument validation, and what happens when the call fails.','ch12t','exp'],
-    [7,'Workflow demo','Deterministic control flow, with the state transitions written down.','ch12t','adr'],
-    [8,'Bounded agent demo','Tools, state, a step limit, a timeout, an approval point, and named stop reasons.','ch13a','adr'],
-    [9,'MCP mini-demo','Capability discovery and invocation, plus evidence of where the trust boundary sits.','ch14p','exp'],
-    [10,'Multimodal or voice pipeline','Extraction, provenance, and tests that only this modality can fail.','ch15mm','exp'],
-    [11,'Golden dataset','Versioned cases with the expected behaviour and the evidence each one rests on.','ch16e','evalcase'],
-    [12,'Error taxonomy','Labelled failures, grouped by root cause rather than by symptom.','ch16e','fail'],
-    [13,'Automated evaluation suite','Retrieval, generation, tool, schema, safety and regression checks in one run.','ch16e','evalcase'],
-    [14,'LLM-judge validation','How often the judge agrees with a human, and which way it is biased.','ch16e','exp'],
-    [15,'Observability and trace report','A trace schema, latency, cost, and a dashboard you would actually open.','ch17o','trace'],
-    [16,'AI PRD','Problem, scope, context, tools, failures, metrics, safety, rollout and rollback.','ch19pm','prd'],
-    [17,'Unit-economics model','Cost per call and cost per successful task, with scenarios.','ch19pm','gate'],
-    [18,'Security and red-team report','Attack cases, the controls, the evidence, and the risk you are accepting.','ch18s','risk'],
-    [19,'Architecture Decision Records','The major decisions, their alternatives, the evidence, and what would reopen them.','ch20d','adr'],
-    [20,'Production architecture','A system diagram, the trust boundaries, deployment and operations.','ch20d','adr'],
-    [21,'Final capstone repository','Reproducible code, tests, evaluation, real-user evidence and documentation.','ch21cap','gate'],
-    [22,'Executive briefing deck','Five minutes on the outcome, twenty minutes of technical defence, and a public case study.','ch21cap','prd']
+    [1,'Seven foundation notebooks','One per foundation chapter — the smallest working thing, kept.','ch1','exp','engineering'],
+    [2,'Chunking experiment','The strategy, worked examples, a question set, and the measured effect on retrieval.','ch11r','exp','experiment'],
+    [3,'Retrieval benchmark','Lexical, dense and hybrid, scored per query rather than in aggregate.','ch11r','exp','experiment'],
+    [4,'Reranking experiment','Candidate recall, precision at k, added latency, and the decision you took.','ch11r','exp','experiment'],
+    [5,'Production-style RAG','Ingestion, metadata, permissions, provenance, retrieval, generation and a rollback path.','ch11r','adr','engineering'],
+    [6,'Tool-calling demo','The tool schema, argument validation, and what happens when the call fails.','ch12t','exp','engineering'],
+    [7,'Workflow demo','Deterministic control flow, with the state transitions written down.','ch12t','adr','engineering'],
+    [8,'Bounded agent demo','Tools, state, a step limit, a timeout, an approval point, and named stop reasons.','ch13a','adr','engineering'],
+    [9,'MCP mini-demo','Capability discovery and invocation, plus evidence of where the trust boundary sits.','ch14p','exp','engineering'],
+    [10,'Multimodal or voice pipeline','Extraction, provenance, and tests that only this modality can fail.','ch15mm','exp','engineering'],
+    [11,'Golden dataset','Versioned cases with the expected behaviour and the evidence each one rests on.','ch16e','evalcase','evidence'],
+    [12,'Error taxonomy','Labelled failures, grouped by root cause rather than by symptom.','ch16e','fail','evidence'],
+    [13,'Automated evaluation suite','Retrieval, generation, tool, schema, safety and regression checks in one run.','ch16e','evalcase','engineering'],
+    [14,'LLM-judge validation','How often the judge agrees with a human, and which way it is biased.','ch16e','exp','experiment'],
+    [15,'Observability and trace report','A trace schema, latency, cost, and a dashboard you would actually open.','ch17o','trace','evidence'],
+    [16,'AI PRD','Problem, scope, context, tools, failures, metrics, safety, rollout and rollback.','ch19pm','prd','decision'],
+    [17,'Unit-economics model','Cost per call and cost per successful task, with scenarios.','ch19pm','gate','decision'],
+    [18,'Security and red-team report','Attack cases, the controls, the evidence, and the risk you are accepting.','ch18s','risk','evidence'],
+    [19,'Architecture Decision Records','The major decisions, their alternatives, the evidence, and what would reopen them.','ch20d','adr','decision'],
+    [20,'Production architecture','A system diagram, the trust boundaries, deployment and operations.','ch20d','adr','engineering'],
+    [21,'Final capstone repository','Reproducible code, tests, evaluation, real-user evidence and documentation.','ch21cap','gate','engineering'],
+    [22,'Executive briefing deck','Five minutes on the outcome, twenty minutes of technical defence, and a public case study.','ch21cap','prd','decision']
   ],
 
   /* Appendix C — the reusable templates. Fields marked 'long' get a text area

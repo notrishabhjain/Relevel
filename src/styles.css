@@ -357,6 +357,10 @@ input[type=range]{padding:0;accent-color:var(--red)}
   text-decoration:none;color:var(--ink-2);background:var(--paper)}
 .chip:hover{border-color:var(--ink-2);color:var(--ink)}
 .chip.done{border-color:var(--verified);color:var(--verified)}
+/* The four v4.3 artifact classes, on the vault and the two logs — a label,
+   not a link, so it is styled flat rather than like the chips around it. */
+.chip.artcls{font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;
+  text-transform:uppercase;background:var(--sunk);cursor:default}
 
 /* ---------- notebook ---------- */
 .nbentry{border:1px solid var(--rule);border-radius:var(--r);background:var(--raised);
