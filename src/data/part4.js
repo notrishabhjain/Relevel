@@ -7,7 +7,7 @@
 
 window.PART4 = [
 {
-  id:'ch185', num:18.5, part:4, minutes:25, labs:[],
+  id:'ch185', num:18.5, part:4, curriculumTier:'selective', phase:2, prerequisites:['ch18','ch6'], nextUnits:['ch20d','b1'], minutes:25, labs:[],
   title:'Build or buy: comparing a vendor with your own build',
   concept:'Build-or-buy decisions often turn on price and demo quality, which matter less than they seem. You will test a vendor with your own answer key, cost both options over two years, and write down in advance what would change your decision.',
   needs:[
@@ -65,7 +65,7 @@ window.PART4 = [
 },
 {
 
-  id:'ch19', num:19, part:4, minutes:30, labs:['costmodel'],
+  id:'ch19', num:19, part:4, curriculumTier:'selective', phase:2, prerequisites:['ch14','ch6'], nextUnits:[], minutes:30, labs:['costmodel'],
   title:'Fine-tuning or not: choosing what to change',
   concept:'When a model is not good enough, you can change the instructions, the evidence, the training or the model. You will sort real failures into four kinds, match each kind to its fix, and cost a fine-tuning proposal honestly.',
   needs:[
@@ -154,7 +154,7 @@ window.PART4 = [
 },
 {
 
-  id:'ch20', num:20, part:4, minutes:30, labs:[],
+  id:'ch20', num:20, part:4, curriculumTier:'selective', phase:2, prerequisites:['ch8','ch11','ch18'], nextUnits:['ch205','ch19pm'], minutes:30, labs:[],
   title:'Designing for wrong answers: evidence, confidence and refusals',
   concept:'At 90% accuracy, one answer in ten is wrong. Whether the feature is usable depends on what the screen does about that one. You will audit a real product, design four interface states, time a correction and design the refusal.',
   needs:[
@@ -233,7 +233,7 @@ window.PART4 = [
   ],
 },
 {
-  id:'ch205', num:20.5, part:4, minutes:25, labs:[],
+  id:'ch205', num:20.5, part:4, curriculumTier:'selective', phase:2, prerequisites:['ch14','ch20'], nextUnits:[], minutes:25, labs:[],
   title:'Measuring business impact: designing a pilot',
   concept:'A system can be accurate and still change nothing for the business. You will find the slow part of the workflow, then design a pilot with a business metric, a comparison, a failure threshold and a time window.',
   needs:[

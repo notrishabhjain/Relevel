@@ -17,7 +17,7 @@ window.PART5 = [
 
 /* ---------------------------------------------------------------- 21 / bk 8 */
 {
-  id:'ch8f', num:21, part:5, minutes:60, labs:[],
+  id:'ch8f', num:21, part:5, curriculumTier:'core', phase:2, prerequisites:['ch1','ch7'], nextUnits:['ch9m'], minutes:60, labs:[],
   title:'Software basics for AI work: Python, HTTP, Git and tests',
   concept:'An AI system is a software system with one unpredictable part. This chapter covers the software you need around it: Python, HTTP and JSON, secrets, Git, logs and tests. You will also build an experiment harness to reuse for the rest of Part V.',
   plan:{
@@ -147,7 +147,7 @@ window.PART5 = [
 
 /* ---------------------------------------------------------------- 22 / bk 9 */
 {
-  id:'ch9m', num:22, part:5, minutes:55, labs:['costmodel'],
+  id:'ch9m', num:22, part:5, curriculumTier:'core', phase:3, prerequisites:['ch2','ch6','ch8f'], nextUnits:['ch10c'], minutes:55, labs:['costmodel'],
   title:'Choosing a model: benchmark on your own cases',
   concept:'Leaderboards measure someone else’s task. You will learn what changes when you change the model, benchmark models on your own ten cases, and write a model selection card that records the evidence.',
   plan:{
@@ -299,7 +299,7 @@ window.PART5 = [
 
 /* --------------------------------------------------------------- 23 / bk 10 */
 {
-  id:'ch10c', num:23, part:5, minutes:55, labs:['contextrot'],
+  id:'ch10c', num:23, part:5, curriculumTier:'core', phase:3, prerequisites:['ch2','ch15b','ch8'], nextUnits:['ch11r'], minutes:55, labs:['contextrot'],
   title:'Context engineering: deciding what the model sees',
   concept:'Context engineering is deciding what goes into each request: instructions, examples, evidence, history and tool results, and in what format. You will treat the prompt as a contract, set a context budget, and design where memory is stored.',
   plan:{
@@ -435,7 +435,7 @@ window.PART5 = [
 
 /* --------------------------------------------------------------- 24 / bk 11 */
 {
-  id:'ch11r', num:24, part:5, minutes:60, labs:['fusion'],
+  id:'ch11r', num:24, part:5, curriculumTier:'core', phase:3, prerequisites:['ch7','ch12','ch6'], nextUnits:['ch12t'], minutes:60, labs:['fusion'],
   title:'Production RAG: ingestion, access control and freshness',
   concept:'A production retrieval system has several stages you can tune, from reading documents in to checking the answer. You will work through each stage, including permissions, deletion and rollback, and design an architecture you could defend in a review.',
   plan:{
@@ -602,7 +602,7 @@ window.PART5 = [
 
 /* --------------------------------------------------------------- 25 / bk 12 */
 {
-  id:'ch12t', num:25, part:5, minutes:50, labs:['schema'],
+  id:'ch12t', num:25, part:5, curriculumTier:'core', phase:3, prerequisites:['ch8','ch2','ch11r'], nextUnits:['ch13a','ch14p','ch18s','b4'], minutes:50, labs:['schema'],
   title:'Tool calling and workflows: contracts before agents',
   concept:'A tool lets the model do something real, so you must decide exactly what it may do and who checks it. You will write tool contracts, enforce permissions on the server, and prefer fixed workflows before allowing an agent.',
   plan:{
@@ -741,7 +741,7 @@ window.PART5 = [
 
 /* --------------------------------------------------------------- 26 / bk 13 */
 {
-  id:'ch13a', num:26, part:5, minutes:60, labs:['agentloop'],
+  id:'ch13a', num:26, part:5, curriculumTier:'core', phase:3, prerequisites:['ch12t','ch1'], nextUnits:['ch14p','b5'], minutes:60, labs:['agentloop'],
   title:'Agents: loops, stopping conditions and control',
   concept:'An agent chooses actions, checks the results and continues toward a goal. The hard part is control, not intelligence. You will build a bounded agent, add stopping conditions, and measure it against the fixed workflow from Chapter 25.',
   plan:{
@@ -899,7 +899,7 @@ window.PART5 = [
 
 /* --------------------------------------------------------------- 27 / bk 14 */
 {
-  id:'ch14p', num:27, part:5, minutes:45, labs:[],
+  id:'ch14p', num:27, part:5, curriculumTier:'core', phase:3, prerequisites:['ch12t','ch13a'], nextUnits:['ch15mm'], minutes:45, labs:[],
   title:'MCP and interoperability: standard connections to tools',
   concept:'MCP is a standard way for AI applications to connect to tools and data. You will map how it works, see what a standard does not make safe, and classify tools by what they are allowed to change.',
   plan:{
@@ -1021,7 +1021,7 @@ window.PART5 = [
 
 /* --------------------------------------------------------------- 28 / bk 15 */
 {
-  id:'ch15mm', num:28, part:5, minutes:50, labs:[],
+  id:'ch15mm', num:28, part:5, curriculumTier:'core', phase:3, prerequisites:['ch16','ch6','ch14p'], nextUnits:['ch16e'], minutes:50, labs:[],
   title:'Multimodal AI: documents, images and voice',
   concept:'When the input is a PDF, an image or audio, the architecture stays the same: context, tools, retrieval and evaluation. What changes is what counts as evidence and how you trace it. You will find what text extraction loses and design a voice pipeline.',
   plan:{
@@ -1142,7 +1142,7 @@ window.PART5 = [
 
 /* --------------------------------------------------------------- 29 / bk 16 */
 {
-  id:'ch16e', num:29, part:5, minutes:60, labs:['judge'],
+  id:'ch16e', num:29, part:5, curriculumTier:'core', phase:4, prerequisites:['ch6','ch14','ch145'], nextUnits:['ch17o','ch19pm','ch20d','b3'], minutes:60, labs:['judge'],
   title:'Evaluation engineering: test sets and release gates',
   concept:'Chapter 6 taught you to measure. This chapter turns measurement into a release process: a versioned test set, scores at several levels, and a gate that decides whether a change ships.',
   plan:{
@@ -1301,7 +1301,7 @@ window.PART5 = [
 
 /* --------------------------------------------------------------- 30 / bk 17 */
 {
-  id:'ch17o', num:30, part:5, minutes:55, labs:['cache'],
+  id:'ch17o', num:30, part:5, curriculumTier:'core', phase:4, prerequisites:['ch115','ch15','ch16e'], nextUnits:['ch18s','ch20d','b5'], minutes:55, labs:['cache'],
   title:'Observability and LLMOps: traces, cost and rollback',
   concept:'When an answer is wrong, slow or expensive, you need to find out why without guessing. You will design a trace record, treat cost as an architecture metric, and version every part so any change can be rolled back.',
   plan:{
@@ -1438,7 +1438,7 @@ window.PART5 = [
 
 /* --------------------------------------------------------------- 31 / bk 18 */
 {
-  id:'ch18s', num:31, part:5, minutes:55, labs:['injection','trifecta'],
+  id:'ch18s', num:31, part:5, curriculumTier:'core', phase:4, prerequisites:['ch13','ch12t','ch75'], nextUnits:['ch19pm','ch21cap','b5'], minutes:55, labs:['injection','trifecta'],
   title:'Security and governance: controls around an untrusted model',
   concept:'Assume the model will be manipulated. The application, retrieved content, tools, identity layer and data pipeline are all part of the attack surface. You will apply least privilege, and build a risk register where every control has a test.',
   plan:{
@@ -1611,7 +1611,7 @@ window.PART5 = [
 
 /* --------------------------------------------------------------- 32 / bk 19 */
 {
-  id:'ch19pm', num:32, part:5, minutes:55, labs:['prdial'],
+  id:'ch19pm', num:32, part:5, curriculumTier:'core', phase:5, prerequisites:['ch16e','ch6','ch20'], nextUnits:['ch20d','b7'], minutes:55, labs:['prdial'],
   title:'AI product management: specs for a probabilistic system',
   concept:'An AI feature cannot promise the same output every time, so its spec must describe how often it succeeds, on what test set, and what happens otherwise. You will write acceptance criteria as ranges, separate metric types, and design the interface states.',
   plan:{
@@ -1774,7 +1774,7 @@ window.PART5 = [
 
 /* --------------------------------------------------------------- 33 / bk 20 */
 {
-  id:'ch20d', num:33, part:5, minutes:55, labs:['costmodel'],
+  id:'ch20d', num:33, part:5, curriculumTier:'core', phase:5, prerequisites:['ch185','ch17o','ch16e'], nextUnits:['ch21cap','b7'], minutes:55, labs:['costmodel'],
   title:'Production architecture, delivery and vendor strategy',
   concept:'A prototype runs because you are the only user and you forgive its failures. Production removes both. You will list what a prototype is missing, treat response time as a budget across stages, and score vendors on more than price and quality.',
   plan:{
@@ -1953,7 +1953,7 @@ window.PART5 = [
 
 /* --------------------------------------------------------------- 34 / bk 21 */
 {
-  id:'ch21cap', num:34, part:5, minutes:90, labs:['redmap'],
+  id:'ch21cap', num:34, part:5, curriculumTier:'core', phase:6, prerequisites:['ch20d','ch18s'], nextUnits:['b8'], minutes:90, labs:['redmap'],
   title:'Capstone: build, break, measure and defend a system',
   concept:'Build one coherent applied AI system, not a folder of demos. Break it on purpose, measure the fixes, and write a findings document that shows what happened when you tested it.',
   plan:{

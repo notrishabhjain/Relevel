@@ -20,7 +20,7 @@
 
 window.PART6 = [
 {
-  id:'ch0', num:0, part:6, minutes:10, labs:[],
+  id:'ch0', num:0, part:6, curriculumTier:'core', phase:1, prerequisites:[], nextUnits:['ch05'], minutes:10, labs:[],
   title:'Start here: how this course works',
   concept:'Ten minutes on how to use this site. Nothing to install, no account needed, and no prior knowledge assumed.',
   takeaway:[
@@ -69,7 +69,7 @@ window.PART6 = [
 },
 
 {
-  id:'a1', num:'A1', part:6, minutes:360, labs:[],
+  id:'a1', num:'A1', part:6, curriculumTier:'reference', phase:0, prerequisites:[], nextUnits:['a2','a8'], minutes:360, labs:[],
   title:'Your learning system: role, evidence and a capstone problem',
   concept:'Set up how you will learn before you learn anything else. You will score yourself against the applied AI PM role, create one place for all your work, and choose the real problem you will build around for the rest of the book.',
   takeaway:[
@@ -214,7 +214,7 @@ window.PART6 = [
 },
 
 {
-  id:'a2', num:'A2', part:6, minutes:600, labs:[],
+  id:'a2', num:'A2', part:6, curriculumTier:'reference', phase:0, prerequisites:['a1'], nextUnits:['a3'], minutes:600, labs:[],
   title:'Product sense: how products win and lose',
   concept:'Learn the few ideas that every product decision rests on. You will map how a product reaches users, compare B2B with B2C, check an idea against four risks, and see where AI helps your judgement and where it does not.',
   takeaway:[
@@ -335,7 +335,7 @@ window.PART6 = [
 },
 
 {
-  id:'a3', num:'A3', part:6, minutes:840, labs:[],
+  id:'a3', num:'A3', part:6, curriculumTier:'reference', phase:0, prerequisites:['a2'], nextUnits:['a4','a7','b2','b6'], minutes:840, labs:[],
   title:'User discovery: interviews, jobs and problem statements',
   concept:'Find out what users actually do and need, from real conversations. You will write an interview guide, run five interviews, and turn what you hear into a job statement, an evidence-backed persona and a ranked problem brief.',
   takeaway:[
@@ -464,7 +464,7 @@ window.PART6 = [
 },
 
 {
-  id:'a4', num:'A4', part:6, minutes:600, labs:[],
+  id:'a4', num:'A4', part:6, curriculumTier:'reference', phase:0, prerequisites:['a3'], nextUnits:['a5','b1','b2'], minutes:600, labs:[],
   title:'Market research: sizing, competitors and opportunities',
   concept:'Work out how big the opportunity is and what you are really competing with. You will size a market from the bottom up, map every alternative a customer has, and turn your interview evidence into a ranked tree of opportunities.',
   takeaway:[
@@ -575,7 +575,7 @@ window.PART6 = [
 },
 
 {
-  id:'a5', num:'A5', part:6, minutes:720, labs:[],
+  id:'a5', num:'A5', part:6, curriculumTier:'reference', phase:0, prerequisites:['a4'], nextUnits:['a6','a8','b3'], minutes:720, labs:[],
   title:'Strategy and prioritisation: choosing what not to do',
   concept:'Turn research into choices. You will write a strategy that says which users you serve and what you will not do, score options with prioritisation frameworks while knowing their limits, and decide whether to build, buy or partner for the AI layer.',
   takeaway:[
@@ -693,7 +693,7 @@ window.PART6 = [
 },
 
 {
-  id:'a6', num:'A6', part:6, minutes:600, labs:[],
+  id:'a6', num:'A6', part:6, curriculumTier:'reference', phase:0, prerequisites:['a5'], nextUnits:['a7','b3'], minutes:600, labs:[],
   title:'Roadmaps, OKRs and getting stakeholders on board',
   concept:'Turn a strategy into something a team can execute and leaders can support. You will build an outcome roadmap, write OKRs that separate product outcomes from model metrics, map the people who can say no, and run a pre-mortem.',
   takeaway:[
@@ -818,7 +818,7 @@ window.PART6 = [
 },
 
 {
-  id:'a7', num:'A7', part:6, minutes:840, labs:[],
+  id:'a7', num:'A7', part:6, curriculumTier:'reference', phase:0, prerequisites:['a6','a3'], nextUnits:['b2','b4','b8'], minutes:840, labs:[],
   title:'Specs, stories and prototypes: from decision to delivery',
   concept:'Turn a decision into something engineering can build and users can test. You will write a problem-first PRD, break it into user stories with edge cases, slice an MVP end to end, plan two sprints, and test a clickable prototype with real users.',
   takeaway:[
@@ -949,7 +949,7 @@ window.PART6 = [
 },
 
 {
-  id:'a8', num:'A8', part:6, minutes:720, labs:[],
+  id:'a8', num:'A8', part:6, curriculumTier:'selective', phase:3, prerequisites:['a1','a5'], nextUnits:[], minutes:720, labs:[],
   title:'Generative AI foundations: how the models work',
   concept:'Learn how large language models are made and how they produce text, at the level a PM needs to make decisions. You will look inside attention, compare prompting with RAG and fine-tuning, and test two models on the same ten cases.',
   takeaway:[

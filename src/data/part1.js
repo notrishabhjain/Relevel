@@ -14,7 +14,7 @@ window.PART1 = [
      So this comes first: real work, real findings, on your own text, with no
      account, no key, and nothing installed. By the end of it Setup is
      something you want rather than a toll gate. */
-  id:'ch05', num:0.5, part:1, minutes:18, labs:['tokenizer','receipt','temperature'],
+  id:'ch05', num:0.5, part:1, curriculumTier:'core', phase:1, prerequisites:['ch0'], nextUnits:['ch1'], minutes:18, labs:['tokenizer','receipt','temperature'],
   title:'Try it in the browser: tokens, cost and temperature',
   concept:'Run three small experiments on your own text, with nothing to install and no account. You will see how text is split into tokens, why a long chat costs more, and what the temperature setting changes.',
   takeaway:[
@@ -82,7 +82,7 @@ window.PART1 = [
     ]}
 },
 {
-  id:'ch1', num:1, part:1, minutes:45, labs:[],
+  id:'ch1', num:1, part:1, curriculumTier:'core', phase:1, prerequisites:['ch05'], nextUnits:['ch15b','ch2','ch3','ch8'], minutes:45, labs:[],
   title:'Your first API call: how a model answers',
   concept:'You send a model a message and it sends text back. In this chapter you make your first API call, read what it cost, and see why a confident answer can still be wrong.',
   plan:{
@@ -170,7 +170,7 @@ window.PART1 = [
   /* Chapter 1 taught three facts and eight new terms in one sitting — the
      steepest step in the course, at the worst possible place. The third fact
      is a chapter of its own, and the two now fit the four-term cap. */
-  id:'ch15b', num:1.5, part:1, minutes:25, labs:['receipt'],
+  id:'ch15b', num:1.5, part:1, curriculumTier:'core', phase:1, prerequisites:['ch1'], nextUnits:['ch2','ch10c'], minutes:25, labs:['receipt'],
   title:'Context windows and statelessness: why models forget',
   concept:'Every call has a size limit, and the model forgets everything between calls. You will prove both in code, build a simple chat memory yourself, and measure what it costs.',
   plan:{
@@ -255,7 +255,7 @@ window.PART1 = [
     ]}
 },
 {
-  id:'ch2', num:2, part:1, minutes:35, labs:['temperature'],
+  id:'ch2', num:2, part:1, curriculumTier:'core', phase:1, prerequisites:['ch1','ch15b'], nextUnits:['ch21','ch22','ch3','ch8'], minutes:35, labs:['temperature'],
   title:'System prompts, temperature and hallucination',
   concept:'You have two main controls over a model: the system prompt and temperature. You will use both, make a model invent an answer, suppress it with an instruction, and then break your own fix.',
   plan:{
@@ -376,7 +376,7 @@ window.PART1 = [
 
      Four new terms, not eight. Opens by using Chapter 2's result. Ends on the
      gap Chapter 2.2 fills. */
-  id:'ch21', num:2.1, part:1, minutes:25, labs:[],
+  id:'ch21', num:2.1, part:1, curriculumTier:'core', phase:1, prerequisites:['ch2'], nextUnits:['ch22','ch23'], minutes:25, labs:[],
   title:'Writing prompts: four techniques that work',
   concept:'A good prompt is a specification, not a request. You will learn four techniques, in order of how much they help: show an example, name the job, break it into steps, and forbid the failures you have seen.',
   needs:[
@@ -461,7 +461,7 @@ window.PART1 = [
 {
   /* Opens on the gap Chapter 2.1 ends on: four versions and an impression.
      Three new terms. The whole chapter is one hands-on loop. */
-  id:'ch22', num:2.2, part:1, minutes:25, labs:[],
+  id:'ch22', num:2.2, part:1, curriculumTier:'core', phase:1, prerequisites:['ch21','ch2'], nextUnits:['ch23','ch24'], minutes:25, labs:[],
   title:'Testing prompts: build a small test set',
   concept:'Reading a few outputs is not a reliable way to choose between prompts. You will build a ten-row test set from real inputs, score each prompt version against it, and change one thing at a time.',
   needs:[
@@ -528,7 +528,7 @@ window.PART1 = [
      paste. That is still true here, deliberately: before the course spends
      five chapters teaching retrieval, it is worth knowing that a large share
      of real requests never needed it. */
-  id:'ch23', num:2.3, part:1, minutes:20, labs:[],
+  id:'ch23', num:2.3, part:1, curriculumTier:'core', phase:1, prerequisites:['ch21','ch22'], nextUnits:['ch24','ch25'], minutes:20, labs:[],
   title:'The five task types: classify, extract, summarise, rewrite, generate',
   concept:'Almost every request for AI falls into one of five task types. The type decides whether you can measure the result automatically, so name it before you design anything.',
   needs:[
@@ -589,7 +589,7 @@ window.PART1 = [
    done:['Every step in your breakdown has exactly one task type.','You can point to the steps that can be graded without a person reading the output.','The first thing you propose to build is measurable, and you can say what you would measure it against.']}
 },
 {
-  id:'ch24', num:2.4, part:1, minutes:25, labs:[],
+  id:'ch24', num:2.4, part:1, curriculumTier:'core', phase:1, prerequisites:['ch23','ch22'], nextUnits:['ch25'], minutes:25, labs:[],
   title:'Classification: sorting inputs into categories',
   concept:'Classification puts each input into one of a fixed set of categories. It has a right answer, so you can measure it and improve it on purpose. You will build a classifier, score it per category, and decide which errors are cheaper.',
   needs:[
@@ -650,7 +650,7 @@ window.PART1 = [
    done:['You have per-category scores from fifty examples you labelled before testing.','You made one deliberate change to how borderline cases fall, and measured the effect.','You can state the score at which you would let it act on its own, and whether it is above that score today.']}
 },
 {
-  id:'ch25', num:2.5, part:1, minutes:25, labs:[],
+  id:'ch25', num:2.5, part:1, curriculumTier:'core', phase:1, prerequisites:['ch23','ch24'], nextUnits:['ch3'], minutes:25, labs:[],
   title:'Summarisation: testing what a summary keeps',
   concept:'A summary that drops the most important line can still read well, so this failure is easy to miss. You will define who a summary is for, then build a test that checks whether the facts that matter survive.',
   needs:[
@@ -700,7 +700,7 @@ window.PART1 = [
    done:['You have a miss rate from ten documents, before and after one change.','You found at least one case your own test scores unfairly, and you say so.','The note says who the summary is for, so someone else could test it the same way later.']}
 },
 {
-  id:'ch3', num:3, part:1, minutes:20, labs:['chunker'],
+  id:'ch3', num:3, part:1, curriculumTier:'core', phase:1, prerequisites:['ch1','ch2','ch25'], nextUnits:['ch4','ch7','ch10','ch13'], minutes:20, labs:['chunker'],
   title:'Chunking: splitting documents into pieces',
   concept:'Models can only read a limited amount of text at once, so long documents are split into smaller pieces called chunks. You will split one document three ways by hand and see what each split loses.',
   plan:{
@@ -785,7 +785,7 @@ window.PART1 = [
   ]
 },
 {
-  id:'ch4', num:4, part:1, minutes:20, labs:[],
+  id:'ch4', num:4, part:1, curriculumTier:'core', phase:1, prerequisites:['ch3'], nextUnits:['ch5','ch6'], minutes:20, labs:[],
   title:'Keyword search: matching words, and where it fails',
   concept:'The first way to find the right chunk is to match the words in the question. You will run keyword search by hand on your own chunks, find exactly where it fails, and see the one case where it wins.',
   plan:{
@@ -877,7 +877,7 @@ window.PART1 = [
 },
 
 {
-  id:'ch5', num:5, part:1, minutes:25, labs:['meaningmap'],
+  id:'ch5', num:5, part:1, curriculumTier:'core', phase:1, prerequisites:['ch4'], nextUnits:['ch6','ch7','ch12'], minutes:25, labs:['meaningmap'],
   title:'Embeddings: searching by meaning',
   concept:'An embedding turns text into a list of numbers that places it on a map of meanings. Texts that mean similar things get similar numbers, even when they share no words. You will build this in code and use it on the questions keyword search failed.',
   plan:{
@@ -970,7 +970,7 @@ window.PART1 = [
   ]
 },
 {
-  id:'ch6', num:6, part:1, minutes:25, labs:['prdial'],
+  id:'ch6', num:6, part:1, curriculumTier:'core', phase:1, prerequisites:['ch4','ch5'], nextUnits:['ch7','ch75','ch12','ch14'], minutes:25, labs:['prdial'],
   title:'Evaluation: measuring whether search works',
   concept:'A good demo is not evidence. You will write an answer key before testing, measure how often search finds the right chunk, and see how precision and recall trade against each other.',
   plan:{
@@ -1064,7 +1064,7 @@ window.PART1 = [
 },
 
 {
-  id:'ch7', num:7, part:1, minutes:25, labs:['redmap'],
+  id:'ch7', num:7, part:1, curriculumTier:'core', phase:1, prerequisites:['ch3','ch5','ch6'], nextUnits:['ch75','ch8f','ch11r'], minutes:25, labs:['redmap'],
   title:'Putting it together: retrieval-augmented generation (RAG)',
   concept:'You have already built every part of a RAG system in Chapters 1–6. In this chapter you assemble them into one function, name the pattern, and mark every place it can fail without an error.',
   plan:{

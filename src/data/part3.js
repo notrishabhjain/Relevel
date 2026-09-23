@@ -5,7 +5,7 @@
 window.PART3 = [
 {
 
-  id:'ch14', num:14, part:3, minutes:35, labs:['judge'],
+  id:'ch14', num:14, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch6'], nextUnits:['ch145','ch17','ch18','ch19'], minutes:35, labs:['judge'],
   title:'Evaluation at scale: code checks and LLM judges',
   concept:'Grading by hand stops working at around fifty questions. You will combine free code checks with an LLM judge, then measure how often the judge agrees with you before you trust its scores.',
   needs:[
@@ -99,7 +99,7 @@ window.PART3 = [
   /* ch14 carried seven new terms and did two different jobs: building a
      grader that scales, and reading failures by hand, which scales to
      nothing and produces most of the improvement. They are two chapters. */
-  id:'ch145', num:14.5, part:3, minutes:25, labs:[],
+  id:'ch145', num:14.5, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch14','ch6'], nextUnits:['ch16e','b6'], minutes:25, labs:[],
   title:'Error analysis: reading failures by hand',
   concept:'Reading real outputs and naming what went wrong is the most useful quality activity there is, and it needs no model or budget. You will read failures, group them, count them, and turn the biggest groups into test cases.',
   needs:[
@@ -146,7 +146,7 @@ window.PART3 = [
 },
 {
 
-  id:'ch15', num:15, part:3, minutes:30, labs:['costmodel'],
+  id:'ch15', num:15, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch1','ch11'], nextUnits:['ch18','ch17o','b1'], minutes:30, labs:['costmodel'],
   title:'Cost modelling: what an AI feature really costs',
   concept:'Most business cases underestimate AI cost by three to twenty times, because they price one clean call. You will measure real token counts, apply the four multipliers, build a cheaper cascade, and answer the margin question.',
   needs:[
@@ -267,7 +267,7 @@ window.PART3 = [
 },
 {
 
-  id:'ch16', num:16, part:3, minutes:25, labs:[],
+  id:'ch16', num:16, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch3','ch11'], nextUnits:['ch165','ch15mm'], minutes:25, labs:[],
   title:'Document extraction: tables, scans and images',
   concept:'Real documents are often scans, tables and forms, not clean text. Converting them to text is where many document projects fail silently. You will find an extraction error in your own documents and compare text extraction with giving the model the page image.',
   needs:[
@@ -365,7 +365,7 @@ window.PART3 = [
 {
   /* Arc 5. Governance in ch17 is about the file you produce. This is the
      question that actually stops people on a Tuesday. */
-  id:'ch165', num:16.5, part:3, minutes:20, labs:[],
+  id:'ch165', num:16.5, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch1','ch16'], nextUnits:[], minutes:20, labs:[],
   title:'Data handling: what you are allowed to send',
   concept:'Before you send a document to a model, you need to know whether you are allowed to. Three questions settle most cases. You will sort real documents, read a vendor’s actual terms, and write a rule your colleagues can follow.',
   needs:[
@@ -420,7 +420,7 @@ window.PART3 = [
 },
 {
 
-  id:'ch17', num:17, part:3, minutes:30, labs:['systemcard'],
+  id:'ch17', num:17, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch14','ch12','ch13'], nextUnits:['ch18'], minutes:30, labs:['systemcard'],
   title:'AI governance: risk tiers, system cards and oversight',
   concept:'An AI feature now ships with governance documents, and almost every question in them is a product decision. You will tier your system by risk, write a system card, run a deletion drill and design oversight that works at real volume.',
   needs:[
@@ -532,7 +532,7 @@ window.PART3 = [
 },
 {
 
-  id:'ch18', num:18, part:3, minutes:45, labs:['redmap','prd'],
+  id:'ch18', num:18, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch14','ch15','ch17'], nextUnits:['ch185','ch20'], minutes:45, labs:['redmap','prd'],
   title:'The AI PRD: specs, migrations and kill switches',
   concept:'An AI spec describes a measured range of behaviour, not a fixed one. You will draw the full system from memory, assemble a PRD from the artifacts you already have, design feedback capture, and plan for the day your model is retired.',
   needs:[

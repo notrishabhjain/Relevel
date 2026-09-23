@@ -10,7 +10,7 @@ window.PART2 = [
      Part II reaches past its neighbours to Chapter 1 or 2, which is what
      "disconnected" meant. This is the hinge that makes Part II a
      continuation rather than a fresh start. */
-  id:'ch75', num:7.5, part:2, minutes:20, labs:['redmap'],
+  id:'ch75', num:7.5, part:2, curriculumTier:'selective', phase:2, prerequisites:['ch7','ch6'], nextUnits:['ch8','ch9','ch10','ch12'], minutes:20, labs:['redmap'],
   title:'Review: what your RAG system cannot do yet',
   concept:'Part I gave you a working RAG system. This chapter tests it four ways, finds four gaps, and maps each gap to the chapter that closes it.',
   needs:[
@@ -65,7 +65,7 @@ window.PART2 = [
    done:['Every gap on the page is one you triggered yourself.','The ranking is by consequence to your users, not by how interesting the topic is.','Your readiness answer includes a condition, not just yes or no.']}
 },
 {
-  id:'ch8', num:8, part:2, minutes:45, labs:['schema'],
+  id:'ch8', num:8, part:2, curriculumTier:'selective', phase:2, prerequisites:['ch75','ch1','ch2'], nextUnits:['ch85','ch9','ch115','ch20'], minutes:45, labs:['schema'],
   title:'Structured output: getting JSON you can trust',
   concept:'Software cannot act on a paragraph; it needs named, typed fields. You will see how often a polite request for JSON fails, then use a schema to make malformed output impossible, and add a validation loop for models that do not support schemas.',
   needs:[
@@ -144,7 +144,7 @@ window.PART2 = [
   /* ch8 carried eight new terms and two separable jobs: making the shape
      impossible to malform, and designing fields so the values inside it are
      not quietly invented. The second is where the product judgement is. */
-  id:'ch85', num:8.5, part:2, minutes:25, labs:['schema'],
+  id:'ch85', num:8.5, part:2, curriculumTier:'selective', phase:2, prerequisites:['ch8','ch2'], nextUnits:[], minutes:25, labs:['schema'],
   title:'Schema design: fields that do not force a guess',
   concept:'A schema fixes the format but not the content. A badly designed field can force the model to invent a value. You will cause a hallucination with a schema choice, then remove it with three design techniques.',
   needs:[
@@ -199,7 +199,7 @@ window.PART2 = [
   ],
 },
 {
-  id:'ch9', num:9, part:2, minutes:40, labs:['agentloop'],
+  id:'ch9', num:9, part:2, curriculumTier:'selective', phase:2, prerequisites:['ch75','ch1','ch8'], nextUnits:['ch13'], minutes:40, labs:['agentloop'],
   title:'Tool calling and agents: letting the model take actions',
   concept:'An agent is a loop: the model asks for a tool, your code runs it, and the result goes back to the model until it finishes. You will build that loop yourself, then break it four ways to see what an agent does on a bad day.',
   needs:[
@@ -294,7 +294,7 @@ window.PART2 = [
   ],
 },
 {
-  id:'ch10', num:10, part:2, minutes:35, labs:['contextrot','cache'],
+  id:'ch10', num:10, part:2, curriculumTier:'selective', phase:2, prerequisites:['ch75','ch1','ch3'], nextUnits:['ch11'], minutes:35, labs:['contextrot','cache'],
   title:'Long context windows and context engineering',
   concept:'Context windows are now very large, and vendors say this makes retrieval unnecessary. You will test that claim: measure how cost grows, find where the model stops using what you sent, and learn to budget, cache and compact context.',
   needs:[
@@ -384,7 +384,7 @@ window.PART2 = [
   ],
 },
 {
-  id:'ch11', num:11, part:2, minutes:25, labs:['reasoning'],
+  id:'ch11', num:11, part:2, curriculumTier:'selective', phase:2, prerequisites:['ch1','ch10'], nextUnits:['ch115','ch15','ch16','ch20'], minutes:25, labs:['reasoning'],
   title:'Reasoning models: when paying for thinking helps',
   concept:'Reasoning models work through a problem before answering, and you pay for that work on every request. You will measure when it improves answers and when it only adds cost and delay.',
   needs:[
@@ -475,7 +475,7 @@ window.PART2 = [
 {
   /* Arc 4. Chapter 11 measures thinking time as a cost. Nobody had yet asked
      what the person on the other end is doing during it. */
-  id:'ch115', num:11.5, part:2, minutes:20, labs:[],
+  id:'ch115', num:11.5, part:2, curriculumTier:'selective', phase:2, prerequisites:['ch11','ch8'], nextUnits:['ch17o'], minutes:20, labs:[],
   title:'Latency: designing for the wait',
   concept:'The same number of seconds can feel fast or broken, depending on what the screen shows. You will time a request, stream it, and choose between streaming, progress messages and background processing.',
   needs:[
@@ -530,7 +530,7 @@ window.PART2 = [
    done:['Your numbers are a median and a slowest case from twenty runs, not an average of three.','The screen has real words on it at three different moments.','You can state the time at which you would change the whole interaction, as a number.']}
 },
 {
-  id:'ch12', num:12, part:2, minutes:45, labs:['fusion'],
+  id:'ch12', num:12, part:2, curriculumTier:'selective', phase:2, prerequisites:['ch75','ch5','ch6'], nextUnits:['ch17','ch11r'], minutes:45, labs:['fusion'],
   title:'Better retrieval: hybrid search, reranking, context and filters',
   concept:'Your Part I retrieval is the simplest version that works. You will add four improvements, measure each against the same answer key, and find that the least exciting one, metadata filtering, prevents failures the others cannot.',
   needs:[
@@ -639,7 +639,7 @@ window.PART2 = [
   ],
 },
 {
-  id:'ch13', num:13, part:2, minutes:40, labs:['injection','trifecta'],
+  id:'ch13', num:13, part:2, curriculumTier:'selective', phase:2, prerequisites:['ch75','ch2','ch3'], nextUnits:['ch17','ch18s'], minutes:40, labs:['injection','trifecta'],
   title:'Prompt injection: when your documents give the orders',
   concept:'Text inside a document your system reads can give instructions to the model, and no known defence stops this completely. You will attack your own system, try to fix it with wording, and then use the one kind of control that holds: removing a capability.',
   needs:[

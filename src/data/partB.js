@@ -13,7 +13,7 @@
 
 window.PART7 = [
 {
-  id:'b1', num:'B1', part:7, minutes:720, labs:[],
+  id:'b1', num:'B1', part:7, curriculumTier:'selective', phase:6, prerequisites:['a4','ch15','ch185'], nextUnits:['b8'], minutes:720, labs:[],
   title:'Business models, pricing and unit economics',
   concept:'Work out who pays for your product, how to charge them, and whether each customer makes or loses money. You will model the real cost of an AI task, compare pricing models, and write a pricing recommendation with its risks.',
   takeaway:[
@@ -139,7 +139,7 @@ window.PART7 = [
 },
 
 {
-  id:'b2', num:'B2', part:7, minutes:720, labs:[],
+  id:'b2', num:'B2', part:7, curriculumTier:'reference', phase:0, prerequisites:['a3','a4','a7'], nextUnits:['b3'], minutes:720, labs:[],
   title:'Growth, onboarding and product marketing',
   concept:'Work out how people find your product, get value from it quickly and come back. You will define the events for each growth stage, test onboarding with real users, and design one growth loop you would be comfortable defending in public.',
   takeaway:[
@@ -252,7 +252,7 @@ window.PART7 = [
   ]
 },
 {
-  id:'b3', num:'B3', part:7, minutes:840, labs:[],
+  id:'b3', num:'B3', part:7, curriculumTier:'selective', phase:6, prerequisites:['a5','a6','b2'], nextUnits:['b4'], minutes:840, labs:[],
   title:'Product analytics and experiments',
   concept:'Measure what users actually do, and learn which changes helped. You will write a tracking plan, build a funnel and a retention cohort, and design an experiment that can give a clear answer.',
   takeaway:[
@@ -376,7 +376,7 @@ window.PART7 = [
 },
 
 {
-  id:'b4', num:'B4', part:7, minutes:960, labs:[],
+  id:'b4', num:'B4', part:7, curriculumTier:'reference', phase:0, prerequisites:['ch1','ch12t','a7'], nextUnits:['b5','b6'], minutes:960, labs:[],
   title:'The applied AI PM toolchain',
   concept:'Learn the tools an applied AI product manager uses to research, prototype, build, deliver and measure. You will use each group of tools on your capstone, and learn where each one stores data and when it breaks.',
   takeaway:[
@@ -509,7 +509,7 @@ window.PART7 = [
   ]
 },
 {
-  id:'b5', num:'B5', part:7, minutes:720, labs:[],
+  id:'b5', num:'B5', part:7, curriculumTier:'selective', phase:6, prerequisites:['ch13a','ch17o','ch18s'], nextUnits:['b6'], minutes:720, labs:[],
   title:'Harness engineering: the system around the model',
   concept:'The model is one part of an AI product. The rest is the harness: the code that assembles context, runs tools, keeps state, enforces rules, checks quality and records what happened. You will draw the harness around your capstone, build one workflow two ways, and write a release checklist.',
   takeaway:[
@@ -640,7 +640,7 @@ window.PART7 = [
 },
 
 {
-  id:'b6', num:'B6', part:7, minutes:1080, labs:[],
+  id:'b6', num:'B6', part:7, curriculumTier:'selective', phase:6, prerequisites:['b4','b5','ch145'], nextUnits:['b7','b8'], minutes:1080, labs:[],
   title:'Ship to real users and run the learning loop',
   concept:'Put your capstone in front of real users and learn from what they do. You will get it ready for production, recruit people ethically, combine what they say with what they do, and ship one improvement based on evidence.',
   takeaway:[
@@ -753,7 +753,7 @@ window.PART7 = [
   ]
 },
 {
-  id:'b7', num:'B7', part:7, minutes:720, labs:[],
+  id:'b7', num:'B7', part:7, curriculumTier:'selective', phase:7, prerequisites:['b6','ch20d','ch19pm'], nextUnits:[], minutes:720, labs:[],
   title:'Getting the job: career readiness for AI PM roles',
   concept:'Turn what you built in this course into evidence an employer can see. You will target the right roles, write case studies and a resume from your work, practise each kind of interview, and complete a timed take-home.',
   takeaway:[
@@ -873,7 +873,7 @@ window.PART7 = [
 },
 
 {
-  id:'b8', num:'B8', part:7, minutes:1800, labs:[],
+  id:'b8', num:'B8', part:7, curriculumTier:'core', phase:6, prerequisites:['a7','ch21cap','b1'], nextUnits:[], minutes:1800, labs:[],
   title:'The integrated capstone: discover, build, ship, measure and defend',
   concept:'Bring the whole course together in one product. You will take a real problem through five gates, from discovery to a defence in front of an executive audience, with evidence at every step.',
   takeaway:[

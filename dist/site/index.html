@@ -1114,7 +1114,7 @@ button:disabled{opacity:.4;cursor:not-allowed}
 
 window.PART6 = [
 {
-  id:'ch0', num:0, part:6, minutes:10, labs:[],
+  id:'ch0', num:0, part:6, curriculumTier:'core', phase:1, prerequisites:[], nextUnits:['ch05'], minutes:10, labs:[],
   title:'Start here: how this course works',
   concept:'Ten minutes on how to use this site. Nothing to install, no account needed, and no prior knowledge assumed.',
   takeaway:[
@@ -1163,7 +1163,7 @@ window.PART6 = [
 },
 
 {
-  id:'a1', num:'A1', part:6, minutes:360, labs:[],
+  id:'a1', num:'A1', part:6, curriculumTier:'reference', phase:0, prerequisites:[], nextUnits:['a2','a8'], minutes:360, labs:[],
   title:'Your learning system: role, evidence and a capstone problem',
   concept:'Set up how you will learn before you learn anything else. You will score yourself against the applied AI PM role, create one place for all your work, and choose the real problem you will build around for the rest of the book.',
   takeaway:[
@@ -1308,7 +1308,7 @@ window.PART6 = [
 },
 
 {
-  id:'a2', num:'A2', part:6, minutes:600, labs:[],
+  id:'a2', num:'A2', part:6, curriculumTier:'reference', phase:0, prerequisites:['a1'], nextUnits:['a3'], minutes:600, labs:[],
   title:'Product sense: how products win and lose',
   concept:'Learn the few ideas that every product decision rests on. You will map how a product reaches users, compare B2B with B2C, check an idea against four risks, and see where AI helps your judgement and where it does not.',
   takeaway:[
@@ -1429,7 +1429,7 @@ window.PART6 = [
 },
 
 {
-  id:'a3', num:'A3', part:6, minutes:840, labs:[],
+  id:'a3', num:'A3', part:6, curriculumTier:'reference', phase:0, prerequisites:['a2'], nextUnits:['a4','a7','b2','b6'], minutes:840, labs:[],
   title:'User discovery: interviews, jobs and problem statements',
   concept:'Find out what users actually do and need, from real conversations. You will write an interview guide, run five interviews, and turn what you hear into a job statement, an evidence-backed persona and a ranked problem brief.',
   takeaway:[
@@ -1558,7 +1558,7 @@ window.PART6 = [
 },
 
 {
-  id:'a4', num:'A4', part:6, minutes:600, labs:[],
+  id:'a4', num:'A4', part:6, curriculumTier:'reference', phase:0, prerequisites:['a3'], nextUnits:['a5','b1','b2'], minutes:600, labs:[],
   title:'Market research: sizing, competitors and opportunities',
   concept:'Work out how big the opportunity is and what you are really competing with. You will size a market from the bottom up, map every alternative a customer has, and turn your interview evidence into a ranked tree of opportunities.',
   takeaway:[
@@ -1669,7 +1669,7 @@ window.PART6 = [
 },
 
 {
-  id:'a5', num:'A5', part:6, minutes:720, labs:[],
+  id:'a5', num:'A5', part:6, curriculumTier:'reference', phase:0, prerequisites:['a4'], nextUnits:['a6','a8','b3'], minutes:720, labs:[],
   title:'Strategy and prioritisation: choosing what not to do',
   concept:'Turn research into choices. You will write a strategy that says which users you serve and what you will not do, score options with prioritisation frameworks while knowing their limits, and decide whether to build, buy or partner for the AI layer.',
   takeaway:[
@@ -1787,7 +1787,7 @@ window.PART6 = [
 },
 
 {
-  id:'a6', num:'A6', part:6, minutes:600, labs:[],
+  id:'a6', num:'A6', part:6, curriculumTier:'reference', phase:0, prerequisites:['a5'], nextUnits:['a7','b3'], minutes:600, labs:[],
   title:'Roadmaps, OKRs and getting stakeholders on board',
   concept:'Turn a strategy into something a team can execute and leaders can support. You will build an outcome roadmap, write OKRs that separate product outcomes from model metrics, map the people who can say no, and run a pre-mortem.',
   takeaway:[
@@ -1912,7 +1912,7 @@ window.PART6 = [
 },
 
 {
-  id:'a7', num:'A7', part:6, minutes:840, labs:[],
+  id:'a7', num:'A7', part:6, curriculumTier:'reference', phase:0, prerequisites:['a6','a3'], nextUnits:['b2','b4','b8'], minutes:840, labs:[],
   title:'Specs, stories and prototypes: from decision to delivery',
   concept:'Turn a decision into something engineering can build and users can test. You will write a problem-first PRD, break it into user stories with edge cases, slice an MVP end to end, plan two sprints, and test a clickable prototype with real users.',
   takeaway:[
@@ -2043,7 +2043,7 @@ window.PART6 = [
 },
 
 {
-  id:'a8', num:'A8', part:6, minutes:720, labs:[],
+  id:'a8', num:'A8', part:6, curriculumTier:'selective', phase:3, prerequisites:['a1','a5'], nextUnits:[], minutes:720, labs:[],
   title:'Generative AI foundations: how the models work',
   concept:'Learn how large language models are made and how they produce text, at the level a PM needs to make decisions. You will look inside attention, compare prompting with RAG and fine-tuning, and test two models on the same ten cases.',
   takeaway:[
@@ -2187,7 +2187,7 @@ window.PART1 = [
      So this comes first: real work, real findings, on your own text, with no
      account, no key, and nothing installed. By the end of it Setup is
      something you want rather than a toll gate. */
-  id:'ch05', num:0.5, part:1, minutes:18, labs:['tokenizer','receipt','temperature'],
+  id:'ch05', num:0.5, part:1, curriculumTier:'core', phase:1, prerequisites:['ch0'], nextUnits:['ch1'], minutes:18, labs:['tokenizer','receipt','temperature'],
   title:'Try it in the browser: tokens, cost and temperature',
   concept:'Run three small experiments on your own text, with nothing to install and no account. You will see how text is split into tokens, why a long chat costs more, and what the temperature setting changes.',
   takeaway:[
@@ -2255,7 +2255,7 @@ window.PART1 = [
     ]}
 },
 {
-  id:'ch1', num:1, part:1, minutes:45, labs:[],
+  id:'ch1', num:1, part:1, curriculumTier:'core', phase:1, prerequisites:['ch05'], nextUnits:['ch15b','ch2','ch3','ch8'], minutes:45, labs:[],
   title:'Your first API call: how a model answers',
   concept:'You send a model a message and it sends text back. In this chapter you make your first API call, read what it cost, and see why a confident answer can still be wrong.',
   plan:{
@@ -2343,7 +2343,7 @@ window.PART1 = [
   /* Chapter 1 taught three facts and eight new terms in one sitting — the
      steepest step in the course, at the worst possible place. The third fact
      is a chapter of its own, and the two now fit the four-term cap. */
-  id:'ch15b', num:1.5, part:1, minutes:25, labs:['receipt'],
+  id:'ch15b', num:1.5, part:1, curriculumTier:'core', phase:1, prerequisites:['ch1'], nextUnits:['ch2','ch10c'], minutes:25, labs:['receipt'],
   title:'Context windows and statelessness: why models forget',
   concept:'Every call has a size limit, and the model forgets everything between calls. You will prove both in code, build a simple chat memory yourself, and measure what it costs.',
   plan:{
@@ -2428,7 +2428,7 @@ window.PART1 = [
     ]}
 },
 {
-  id:'ch2', num:2, part:1, minutes:35, labs:['temperature'],
+  id:'ch2', num:2, part:1, curriculumTier:'core', phase:1, prerequisites:['ch1','ch15b'], nextUnits:['ch21','ch22','ch3','ch8'], minutes:35, labs:['temperature'],
   title:'System prompts, temperature and hallucination',
   concept:'You have two main controls over a model: the system prompt and temperature. You will use both, make a model invent an answer, suppress it with an instruction, and then break your own fix.',
   plan:{
@@ -2549,7 +2549,7 @@ window.PART1 = [
 
      Four new terms, not eight. Opens by using Chapter 2's result. Ends on the
      gap Chapter 2.2 fills. */
-  id:'ch21', num:2.1, part:1, minutes:25, labs:[],
+  id:'ch21', num:2.1, part:1, curriculumTier:'core', phase:1, prerequisites:['ch2'], nextUnits:['ch22','ch23'], minutes:25, labs:[],
   title:'Writing prompts: four techniques that work',
   concept:'A good prompt is a specification, not a request. You will learn four techniques, in order of how much they help: show an example, name the job, break it into steps, and forbid the failures you have seen.',
   needs:[
@@ -2634,7 +2634,7 @@ window.PART1 = [
 {
   /* Opens on the gap Chapter 2.1 ends on: four versions and an impression.
      Three new terms. The whole chapter is one hands-on loop. */
-  id:'ch22', num:2.2, part:1, minutes:25, labs:[],
+  id:'ch22', num:2.2, part:1, curriculumTier:'core', phase:1, prerequisites:['ch21','ch2'], nextUnits:['ch23','ch24'], minutes:25, labs:[],
   title:'Testing prompts: build a small test set',
   concept:'Reading a few outputs is not a reliable way to choose between prompts. You will build a ten-row test set from real inputs, score each prompt version against it, and change one thing at a time.',
   needs:[
@@ -2701,7 +2701,7 @@ window.PART1 = [
      paste. That is still true here, deliberately: before the course spends
      five chapters teaching retrieval, it is worth knowing that a large share
      of real requests never needed it. */
-  id:'ch23', num:2.3, part:1, minutes:20, labs:[],
+  id:'ch23', num:2.3, part:1, curriculumTier:'core', phase:1, prerequisites:['ch21','ch22'], nextUnits:['ch24','ch25'], minutes:20, labs:[],
   title:'The five task types: classify, extract, summarise, rewrite, generate',
   concept:'Almost every request for AI falls into one of five task types. The type decides whether you can measure the result automatically, so name it before you design anything.',
   needs:[
@@ -2762,7 +2762,7 @@ window.PART1 = [
    done:['Every step in your breakdown has exactly one task type.','You can point to the steps that can be graded without a person reading the output.','The first thing you propose to build is measurable, and you can say what you would measure it against.']}
 },
 {
-  id:'ch24', num:2.4, part:1, minutes:25, labs:[],
+  id:'ch24', num:2.4, part:1, curriculumTier:'core', phase:1, prerequisites:['ch23','ch22'], nextUnits:['ch25'], minutes:25, labs:[],
   title:'Classification: sorting inputs into categories',
   concept:'Classification puts each input into one of a fixed set of categories. It has a right answer, so you can measure it and improve it on purpose. You will build a classifier, score it per category, and decide which errors are cheaper.',
   needs:[
@@ -2823,7 +2823,7 @@ window.PART1 = [
    done:['You have per-category scores from fifty examples you labelled before testing.','You made one deliberate change to how borderline cases fall, and measured the effect.','You can state the score at which you would let it act on its own, and whether it is above that score today.']}
 },
 {
-  id:'ch25', num:2.5, part:1, minutes:25, labs:[],
+  id:'ch25', num:2.5, part:1, curriculumTier:'core', phase:1, prerequisites:['ch23','ch24'], nextUnits:['ch3'], minutes:25, labs:[],
   title:'Summarisation: testing what a summary keeps',
   concept:'A summary that drops the most important line can still read well, so this failure is easy to miss. You will define who a summary is for, then build a test that checks whether the facts that matter survive.',
   needs:[
@@ -2873,7 +2873,7 @@ window.PART1 = [
    done:['You have a miss rate from ten documents, before and after one change.','You found at least one case your own test scores unfairly, and you say so.','The note says who the summary is for, so someone else could test it the same way later.']}
 },
 {
-  id:'ch3', num:3, part:1, minutes:20, labs:['chunker'],
+  id:'ch3', num:3, part:1, curriculumTier:'core', phase:1, prerequisites:['ch1','ch2','ch25'], nextUnits:['ch4','ch7','ch10','ch13'], minutes:20, labs:['chunker'],
   title:'Chunking: splitting documents into pieces',
   concept:'Models can only read a limited amount of text at once, so long documents are split into smaller pieces called chunks. You will split one document three ways by hand and see what each split loses.',
   plan:{
@@ -2958,7 +2958,7 @@ window.PART1 = [
   ]
 },
 {
-  id:'ch4', num:4, part:1, minutes:20, labs:[],
+  id:'ch4', num:4, part:1, curriculumTier:'core', phase:1, prerequisites:['ch3'], nextUnits:['ch5','ch6'], minutes:20, labs:[],
   title:'Keyword search: matching words, and where it fails',
   concept:'The first way to find the right chunk is to match the words in the question. You will run keyword search by hand on your own chunks, find exactly where it fails, and see the one case where it wins.',
   plan:{
@@ -3050,7 +3050,7 @@ window.PART1 = [
 },
 
 {
-  id:'ch5', num:5, part:1, minutes:25, labs:['meaningmap'],
+  id:'ch5', num:5, part:1, curriculumTier:'core', phase:1, prerequisites:['ch4'], nextUnits:['ch6','ch7','ch12'], minutes:25, labs:['meaningmap'],
   title:'Embeddings: searching by meaning',
   concept:'An embedding turns text into a list of numbers that places it on a map of meanings. Texts that mean similar things get similar numbers, even when they share no words. You will build this in code and use it on the questions keyword search failed.',
   plan:{
@@ -3143,7 +3143,7 @@ window.PART1 = [
   ]
 },
 {
-  id:'ch6', num:6, part:1, minutes:25, labs:['prdial'],
+  id:'ch6', num:6, part:1, curriculumTier:'core', phase:1, prerequisites:['ch4','ch5'], nextUnits:['ch7','ch75','ch12','ch14'], minutes:25, labs:['prdial'],
   title:'Evaluation: measuring whether search works',
   concept:'A good demo is not evidence. You will write an answer key before testing, measure how often search finds the right chunk, and see how precision and recall trade against each other.',
   plan:{
@@ -3237,7 +3237,7 @@ window.PART1 = [
 },
 
 {
-  id:'ch7', num:7, part:1, minutes:25, labs:['redmap'],
+  id:'ch7', num:7, part:1, curriculumTier:'core', phase:1, prerequisites:['ch3','ch5','ch6'], nextUnits:['ch75','ch8f','ch11r'], minutes:25, labs:['redmap'],
   title:'Putting it together: retrieval-augmented generation (RAG)',
   concept:'You have already built every part of a RAG system in Chapters 1–6. In this chapter you assemble them into one function, name the pattern, and mark every place it can fail without an error.',
   plan:{
@@ -3335,7 +3335,7 @@ window.PART2 = [
      Part II reaches past its neighbours to Chapter 1 or 2, which is what
      "disconnected" meant. This is the hinge that makes Part II a
      continuation rather than a fresh start. */
-  id:'ch75', num:7.5, part:2, minutes:20, labs:['redmap'],
+  id:'ch75', num:7.5, part:2, curriculumTier:'selective', phase:2, prerequisites:['ch7','ch6'], nextUnits:['ch8','ch9','ch10','ch12'], minutes:20, labs:['redmap'],
   title:'Review: what your RAG system cannot do yet',
   concept:'Part I gave you a working RAG system. This chapter tests it four ways, finds four gaps, and maps each gap to the chapter that closes it.',
   needs:[
@@ -3390,7 +3390,7 @@ window.PART2 = [
    done:['Every gap on the page is one you triggered yourself.','The ranking is by consequence to your users, not by how interesting the topic is.','Your readiness answer includes a condition, not just yes or no.']}
 },
 {
-  id:'ch8', num:8, part:2, minutes:45, labs:['schema'],
+  id:'ch8', num:8, part:2, curriculumTier:'selective', phase:2, prerequisites:['ch75','ch1','ch2'], nextUnits:['ch85','ch9','ch115','ch20'], minutes:45, labs:['schema'],
   title:'Structured output: getting JSON you can trust',
   concept:'Software cannot act on a paragraph; it needs named, typed fields. You will see how often a polite request for JSON fails, then use a schema to make malformed output impossible, and add a validation loop for models that do not support schemas.',
   needs:[
@@ -3469,7 +3469,7 @@ window.PART2 = [
   /* ch8 carried eight new terms and two separable jobs: making the shape
      impossible to malform, and designing fields so the values inside it are
      not quietly invented. The second is where the product judgement is. */
-  id:'ch85', num:8.5, part:2, minutes:25, labs:['schema'],
+  id:'ch85', num:8.5, part:2, curriculumTier:'selective', phase:2, prerequisites:['ch8','ch2'], nextUnits:[], minutes:25, labs:['schema'],
   title:'Schema design: fields that do not force a guess',
   concept:'A schema fixes the format but not the content. A badly designed field can force the model to invent a value. You will cause a hallucination with a schema choice, then remove it with three design techniques.',
   needs:[
@@ -3524,7 +3524,7 @@ window.PART2 = [
   ],
 },
 {
-  id:'ch9', num:9, part:2, minutes:40, labs:['agentloop'],
+  id:'ch9', num:9, part:2, curriculumTier:'selective', phase:2, prerequisites:['ch75','ch1','ch8'], nextUnits:['ch13'], minutes:40, labs:['agentloop'],
   title:'Tool calling and agents: letting the model take actions',
   concept:'An agent is a loop: the model asks for a tool, your code runs it, and the result goes back to the model until it finishes. You will build that loop yourself, then break it four ways to see what an agent does on a bad day.',
   needs:[
@@ -3619,7 +3619,7 @@ window.PART2 = [
   ],
 },
 {
-  id:'ch10', num:10, part:2, minutes:35, labs:['contextrot','cache'],
+  id:'ch10', num:10, part:2, curriculumTier:'selective', phase:2, prerequisites:['ch75','ch1','ch3'], nextUnits:['ch11'], minutes:35, labs:['contextrot','cache'],
   title:'Long context windows and context engineering',
   concept:'Context windows are now very large, and vendors say this makes retrieval unnecessary. You will test that claim: measure how cost grows, find where the model stops using what you sent, and learn to budget, cache and compact context.',
   needs:[
@@ -3709,7 +3709,7 @@ window.PART2 = [
   ],
 },
 {
-  id:'ch11', num:11, part:2, minutes:25, labs:['reasoning'],
+  id:'ch11', num:11, part:2, curriculumTier:'selective', phase:2, prerequisites:['ch1','ch10'], nextUnits:['ch115','ch15','ch16','ch20'], minutes:25, labs:['reasoning'],
   title:'Reasoning models: when paying for thinking helps',
   concept:'Reasoning models work through a problem before answering, and you pay for that work on every request. You will measure when it improves answers and when it only adds cost and delay.',
   needs:[
@@ -3800,7 +3800,7 @@ window.PART2 = [
 {
   /* Arc 4. Chapter 11 measures thinking time as a cost. Nobody had yet asked
      what the person on the other end is doing during it. */
-  id:'ch115', num:11.5, part:2, minutes:20, labs:[],
+  id:'ch115', num:11.5, part:2, curriculumTier:'selective', phase:2, prerequisites:['ch11','ch8'], nextUnits:['ch17o'], minutes:20, labs:[],
   title:'Latency: designing for the wait',
   concept:'The same number of seconds can feel fast or broken, depending on what the screen shows. You will time a request, stream it, and choose between streaming, progress messages and background processing.',
   needs:[
@@ -3855,7 +3855,7 @@ window.PART2 = [
    done:['Your numbers are a median and a slowest case from twenty runs, not an average of three.','The screen has real words on it at three different moments.','You can state the time at which you would change the whole interaction, as a number.']}
 },
 {
-  id:'ch12', num:12, part:2, minutes:45, labs:['fusion'],
+  id:'ch12', num:12, part:2, curriculumTier:'selective', phase:2, prerequisites:['ch75','ch5','ch6'], nextUnits:['ch17','ch11r'], minutes:45, labs:['fusion'],
   title:'Better retrieval: hybrid search, reranking, context and filters',
   concept:'Your Part I retrieval is the simplest version that works. You will add four improvements, measure each against the same answer key, and find that the least exciting one, metadata filtering, prevents failures the others cannot.',
   needs:[
@@ -3964,7 +3964,7 @@ window.PART2 = [
   ],
 },
 {
-  id:'ch13', num:13, part:2, minutes:40, labs:['injection','trifecta'],
+  id:'ch13', num:13, part:2, curriculumTier:'selective', phase:2, prerequisites:['ch75','ch2','ch3'], nextUnits:['ch17','ch18s'], minutes:40, labs:['injection','trifecta'],
   title:'Prompt injection: when your documents give the orders',
   concept:'Text inside a document your system reads can give instructions to the model, and no known defence stops this completely. You will attack your own system, try to fix it with wording, and then use the one kind of control that holds: removing a capability.',
   needs:[
@@ -4095,7 +4095,7 @@ window.PART2 = [
 window.PART3 = [
 {
 
-  id:'ch14', num:14, part:3, minutes:35, labs:['judge'],
+  id:'ch14', num:14, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch6'], nextUnits:['ch145','ch17','ch18','ch19'], minutes:35, labs:['judge'],
   title:'Evaluation at scale: code checks and LLM judges',
   concept:'Grading by hand stops working at around fifty questions. You will combine free code checks with an LLM judge, then measure how often the judge agrees with you before you trust its scores.',
   needs:[
@@ -4189,7 +4189,7 @@ window.PART3 = [
   /* ch14 carried seven new terms and did two different jobs: building a
      grader that scales, and reading failures by hand, which scales to
      nothing and produces most of the improvement. They are two chapters. */
-  id:'ch145', num:14.5, part:3, minutes:25, labs:[],
+  id:'ch145', num:14.5, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch14','ch6'], nextUnits:['ch16e','b6'], minutes:25, labs:[],
   title:'Error analysis: reading failures by hand',
   concept:'Reading real outputs and naming what went wrong is the most useful quality activity there is, and it needs no model or budget. You will read failures, group them, count them, and turn the biggest groups into test cases.',
   needs:[
@@ -4236,7 +4236,7 @@ window.PART3 = [
 },
 {
 
-  id:'ch15', num:15, part:3, minutes:30, labs:['costmodel'],
+  id:'ch15', num:15, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch1','ch11'], nextUnits:['ch18','ch17o','b1'], minutes:30, labs:['costmodel'],
   title:'Cost modelling: what an AI feature really costs',
   concept:'Most business cases underestimate AI cost by three to twenty times, because they price one clean call. You will measure real token counts, apply the four multipliers, build a cheaper cascade, and answer the margin question.',
   needs:[
@@ -4357,7 +4357,7 @@ window.PART3 = [
 },
 {
 
-  id:'ch16', num:16, part:3, minutes:25, labs:[],
+  id:'ch16', num:16, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch3','ch11'], nextUnits:['ch165','ch15mm'], minutes:25, labs:[],
   title:'Document extraction: tables, scans and images',
   concept:'Real documents are often scans, tables and forms, not clean text. Converting them to text is where many document projects fail silently. You will find an extraction error in your own documents and compare text extraction with giving the model the page image.',
   needs:[
@@ -4455,7 +4455,7 @@ window.PART3 = [
 {
   /* Arc 5. Governance in ch17 is about the file you produce. This is the
      question that actually stops people on a Tuesday. */
-  id:'ch165', num:16.5, part:3, minutes:20, labs:[],
+  id:'ch165', num:16.5, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch1','ch16'], nextUnits:[], minutes:20, labs:[],
   title:'Data handling: what you are allowed to send',
   concept:'Before you send a document to a model, you need to know whether you are allowed to. Three questions settle most cases. You will sort real documents, read a vendor’s actual terms, and write a rule your colleagues can follow.',
   needs:[
@@ -4510,7 +4510,7 @@ window.PART3 = [
 },
 {
 
-  id:'ch17', num:17, part:3, minutes:30, labs:['systemcard'],
+  id:'ch17', num:17, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch14','ch12','ch13'], nextUnits:['ch18'], minutes:30, labs:['systemcard'],
   title:'AI governance: risk tiers, system cards and oversight',
   concept:'An AI feature now ships with governance documents, and almost every question in them is a product decision. You will tier your system by risk, write a system card, run a deletion drill and design oversight that works at real volume.',
   needs:[
@@ -4622,7 +4622,7 @@ window.PART3 = [
 },
 {
 
-  id:'ch18', num:18, part:3, minutes:45, labs:['redmap','prd'],
+  id:'ch18', num:18, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch14','ch15','ch17'], nextUnits:['ch185','ch20'], minutes:45, labs:['redmap','prd'],
   title:'The AI PRD: specs, migrations and kill switches',
   concept:'An AI spec describes a measured range of behaviour, not a fixed one. You will draw the full system from memory, assemble a PRD from the artifacts you already have, design feedback capture, and plan for the day your model is retired.',
   needs:[
@@ -4757,7 +4757,7 @@ window.PART3 = [
 
 window.PART4 = [
 {
-  id:'ch185', num:18.5, part:4, minutes:25, labs:[],
+  id:'ch185', num:18.5, part:4, curriculumTier:'selective', phase:2, prerequisites:['ch18','ch6'], nextUnits:['ch20d','b1'], minutes:25, labs:[],
   title:'Build or buy: comparing a vendor with your own build',
   concept:'Build-or-buy decisions often turn on price and demo quality, which matter less than they seem. You will test a vendor with your own answer key, cost both options over two years, and write down in advance what would change your decision.',
   needs:[
@@ -4815,7 +4815,7 @@ window.PART4 = [
 },
 {
 
-  id:'ch19', num:19, part:4, minutes:30, labs:['costmodel'],
+  id:'ch19', num:19, part:4, curriculumTier:'selective', phase:2, prerequisites:['ch14','ch6'], nextUnits:[], minutes:30, labs:['costmodel'],
   title:'Fine-tuning or not: choosing what to change',
   concept:'When a model is not good enough, you can change the instructions, the evidence, the training or the model. You will sort real failures into four kinds, match each kind to its fix, and cost a fine-tuning proposal honestly.',
   needs:[
@@ -4904,7 +4904,7 @@ window.PART4 = [
 },
 {
 
-  id:'ch20', num:20, part:4, minutes:30, labs:[],
+  id:'ch20', num:20, part:4, curriculumTier:'selective', phase:2, prerequisites:['ch8','ch11','ch18'], nextUnits:['ch205','ch19pm'], minutes:30, labs:[],
   title:'Designing for wrong answers: evidence, confidence and refusals',
   concept:'At 90% accuracy, one answer in ten is wrong. Whether the feature is usable depends on what the screen does about that one. You will audit a real product, design four interface states, time a correction and design the refusal.',
   needs:[
@@ -4983,7 +4983,7 @@ window.PART4 = [
   ],
 },
 {
-  id:'ch205', num:20.5, part:4, minutes:25, labs:[],
+  id:'ch205', num:20.5, part:4, curriculumTier:'selective', phase:2, prerequisites:['ch14','ch20'], nextUnits:[], minutes:25, labs:[],
   title:'Measuring business impact: designing a pilot',
   concept:'A system can be accurate and still change nothing for the business. You will find the slow part of the workflow, then design a pilot with a business metric, a comparison, a failure threshold and a time window.',
   needs:[
@@ -5059,7 +5059,7 @@ window.PART5 = [
 
 /* ---------------------------------------------------------------- 21 / bk 8 */
 {
-  id:'ch8f', num:21, part:5, minutes:60, labs:[],
+  id:'ch8f', num:21, part:5, curriculumTier:'core', phase:2, prerequisites:['ch1','ch7'], nextUnits:['ch9m'], minutes:60, labs:[],
   title:'Software basics for AI work: Python, HTTP, Git and tests',
   concept:'An AI system is a software system with one unpredictable part. This chapter covers the software you need around it: Python, HTTP and JSON, secrets, Git, logs and tests. You will also build an experiment harness to reuse for the rest of Part V.',
   plan:{
@@ -5189,7 +5189,7 @@ window.PART5 = [
 
 /* ---------------------------------------------------------------- 22 / bk 9 */
 {
-  id:'ch9m', num:22, part:5, minutes:55, labs:['costmodel'],
+  id:'ch9m', num:22, part:5, curriculumTier:'core', phase:3, prerequisites:['ch2','ch6','ch8f'], nextUnits:['ch10c'], minutes:55, labs:['costmodel'],
   title:'Choosing a model: benchmark on your own cases',
   concept:'Leaderboards measure someone else’s task. You will learn what changes when you change the model, benchmark models on your own ten cases, and write a model selection card that records the evidence.',
   plan:{
@@ -5341,7 +5341,7 @@ window.PART5 = [
 
 /* --------------------------------------------------------------- 23 / bk 10 */
 {
-  id:'ch10c', num:23, part:5, minutes:55, labs:['contextrot'],
+  id:'ch10c', num:23, part:5, curriculumTier:'core', phase:3, prerequisites:['ch2','ch15b','ch8'], nextUnits:['ch11r'], minutes:55, labs:['contextrot'],
   title:'Context engineering: deciding what the model sees',
   concept:'Context engineering is deciding what goes into each request: instructions, examples, evidence, history and tool results, and in what format. You will treat the prompt as a contract, set a context budget, and design where memory is stored.',
   plan:{
@@ -5477,7 +5477,7 @@ window.PART5 = [
 
 /* --------------------------------------------------------------- 24 / bk 11 */
 {
-  id:'ch11r', num:24, part:5, minutes:60, labs:['fusion'],
+  id:'ch11r', num:24, part:5, curriculumTier:'core', phase:3, prerequisites:['ch7','ch12','ch6'], nextUnits:['ch12t'], minutes:60, labs:['fusion'],
   title:'Production RAG: ingestion, access control and freshness',
   concept:'A production retrieval system has several stages you can tune, from reading documents in to checking the answer. You will work through each stage, including permissions, deletion and rollback, and design an architecture you could defend in a review.',
   plan:{
@@ -5644,7 +5644,7 @@ window.PART5 = [
 
 /* --------------------------------------------------------------- 25 / bk 12 */
 {
-  id:'ch12t', num:25, part:5, minutes:50, labs:['schema'],
+  id:'ch12t', num:25, part:5, curriculumTier:'core', phase:3, prerequisites:['ch8','ch2','ch11r'], nextUnits:['ch13a','ch14p','ch18s','b4'], minutes:50, labs:['schema'],
   title:'Tool calling and workflows: contracts before agents',
   concept:'A tool lets the model do something real, so you must decide exactly what it may do and who checks it. You will write tool contracts, enforce permissions on the server, and prefer fixed workflows before allowing an agent.',
   plan:{
@@ -5783,7 +5783,7 @@ window.PART5 = [
 
 /* --------------------------------------------------------------- 26 / bk 13 */
 {
-  id:'ch13a', num:26, part:5, minutes:60, labs:['agentloop'],
+  id:'ch13a', num:26, part:5, curriculumTier:'core', phase:3, prerequisites:['ch12t','ch1'], nextUnits:['ch14p','b5'], minutes:60, labs:['agentloop'],
   title:'Agents: loops, stopping conditions and control',
   concept:'An agent chooses actions, checks the results and continues toward a goal. The hard part is control, not intelligence. You will build a bounded agent, add stopping conditions, and measure it against the fixed workflow from Chapter 25.',
   plan:{
@@ -5941,7 +5941,7 @@ window.PART5 = [
 
 /* --------------------------------------------------------------- 27 / bk 14 */
 {
-  id:'ch14p', num:27, part:5, minutes:45, labs:[],
+  id:'ch14p', num:27, part:5, curriculumTier:'core', phase:3, prerequisites:['ch12t','ch13a'], nextUnits:['ch15mm'], minutes:45, labs:[],
   title:'MCP and interoperability: standard connections to tools',
   concept:'MCP is a standard way for AI applications to connect to tools and data. You will map how it works, see what a standard does not make safe, and classify tools by what they are allowed to change.',
   plan:{
@@ -6063,7 +6063,7 @@ window.PART5 = [
 
 /* --------------------------------------------------------------- 28 / bk 15 */
 {
-  id:'ch15mm', num:28, part:5, minutes:50, labs:[],
+  id:'ch15mm', num:28, part:5, curriculumTier:'core', phase:3, prerequisites:['ch16','ch6','ch14p'], nextUnits:['ch16e'], minutes:50, labs:[],
   title:'Multimodal AI: documents, images and voice',
   concept:'When the input is a PDF, an image or audio, the architecture stays the same: context, tools, retrieval and evaluation. What changes is what counts as evidence and how you trace it. You will find what text extraction loses and design a voice pipeline.',
   plan:{
@@ -6184,7 +6184,7 @@ window.PART5 = [
 
 /* --------------------------------------------------------------- 29 / bk 16 */
 {
-  id:'ch16e', num:29, part:5, minutes:60, labs:['judge'],
+  id:'ch16e', num:29, part:5, curriculumTier:'core', phase:4, prerequisites:['ch6','ch14','ch145'], nextUnits:['ch17o','ch19pm','ch20d','b3'], minutes:60, labs:['judge'],
   title:'Evaluation engineering: test sets and release gates',
   concept:'Chapter 6 taught you to measure. This chapter turns measurement into a release process: a versioned test set, scores at several levels, and a gate that decides whether a change ships.',
   plan:{
@@ -6343,7 +6343,7 @@ window.PART5 = [
 
 /* --------------------------------------------------------------- 30 / bk 17 */
 {
-  id:'ch17o', num:30, part:5, minutes:55, labs:['cache'],
+  id:'ch17o', num:30, part:5, curriculumTier:'core', phase:4, prerequisites:['ch115','ch15','ch16e'], nextUnits:['ch18s','ch20d','b5'], minutes:55, labs:['cache'],
   title:'Observability and LLMOps: traces, cost and rollback',
   concept:'When an answer is wrong, slow or expensive, you need to find out why without guessing. You will design a trace record, treat cost as an architecture metric, and version every part so any change can be rolled back.',
   plan:{
@@ -6480,7 +6480,7 @@ window.PART5 = [
 
 /* --------------------------------------------------------------- 31 / bk 18 */
 {
-  id:'ch18s', num:31, part:5, minutes:55, labs:['injection','trifecta'],
+  id:'ch18s', num:31, part:5, curriculumTier:'core', phase:4, prerequisites:['ch13','ch12t','ch75'], nextUnits:['ch19pm','ch21cap','b5'], minutes:55, labs:['injection','trifecta'],
   title:'Security and governance: controls around an untrusted model',
   concept:'Assume the model will be manipulated. The application, retrieved content, tools, identity layer and data pipeline are all part of the attack surface. You will apply least privilege, and build a risk register where every control has a test.',
   plan:{
@@ -6653,7 +6653,7 @@ window.PART5 = [
 
 /* --------------------------------------------------------------- 32 / bk 19 */
 {
-  id:'ch19pm', num:32, part:5, minutes:55, labs:['prdial'],
+  id:'ch19pm', num:32, part:5, curriculumTier:'core', phase:5, prerequisites:['ch16e','ch6','ch20'], nextUnits:['ch20d','b7'], minutes:55, labs:['prdial'],
   title:'AI product management: specs for a probabilistic system',
   concept:'An AI feature cannot promise the same output every time, so its spec must describe how often it succeeds, on what test set, and what happens otherwise. You will write acceptance criteria as ranges, separate metric types, and design the interface states.',
   plan:{
@@ -6816,7 +6816,7 @@ window.PART5 = [
 
 /* --------------------------------------------------------------- 33 / bk 20 */
 {
-  id:'ch20d', num:33, part:5, minutes:55, labs:['costmodel'],
+  id:'ch20d', num:33, part:5, curriculumTier:'core', phase:5, prerequisites:['ch185','ch17o','ch16e'], nextUnits:['ch21cap','b7'], minutes:55, labs:['costmodel'],
   title:'Production architecture, delivery and vendor strategy',
   concept:'A prototype runs because you are the only user and you forgive its failures. Production removes both. You will list what a prototype is missing, treat response time as a budget across stages, and score vendors on more than price and quality.',
   plan:{
@@ -6995,7 +6995,7 @@ window.PART5 = [
 
 /* --------------------------------------------------------------- 34 / bk 21 */
 {
-  id:'ch21cap', num:34, part:5, minutes:90, labs:['redmap'],
+  id:'ch21cap', num:34, part:5, curriculumTier:'core', phase:6, prerequisites:['ch20d','ch18s'], nextUnits:['b8'], minutes:90, labs:['redmap'],
   title:'Capstone: build, break, measure and defend a system',
   concept:'Build one coherent applied AI system, not a folder of demos. Break it on purpose, measure the fixes, and write a findings document that shows what happened when you tested it.',
   plan:{
@@ -7159,7 +7159,7 @@ window.PART5 = [
 
 window.PART7 = [
 {
-  id:'b1', num:'B1', part:7, minutes:720, labs:[],
+  id:'b1', num:'B1', part:7, curriculumTier:'selective', phase:6, prerequisites:['a4','ch15','ch185'], nextUnits:['b8'], minutes:720, labs:[],
   title:'Business models, pricing and unit economics',
   concept:'Work out who pays for your product, how to charge them, and whether each customer makes or loses money. You will model the real cost of an AI task, compare pricing models, and write a pricing recommendation with its risks.',
   takeaway:[
@@ -7285,7 +7285,7 @@ window.PART7 = [
 },
 
 {
-  id:'b2', num:'B2', part:7, minutes:720, labs:[],
+  id:'b2', num:'B2', part:7, curriculumTier:'reference', phase:0, prerequisites:['a3','a4','a7'], nextUnits:['b3'], minutes:720, labs:[],
   title:'Growth, onboarding and product marketing',
   concept:'Work out how people find your product, get value from it quickly and come back. You will define the events for each growth stage, test onboarding with real users, and design one growth loop you would be comfortable defending in public.',
   takeaway:[
@@ -7398,7 +7398,7 @@ window.PART7 = [
   ]
 },
 {
-  id:'b3', num:'B3', part:7, minutes:840, labs:[],
+  id:'b3', num:'B3', part:7, curriculumTier:'selective', phase:6, prerequisites:['a5','a6','b2'], nextUnits:['b4'], minutes:840, labs:[],
   title:'Product analytics and experiments',
   concept:'Measure what users actually do, and learn which changes helped. You will write a tracking plan, build a funnel and a retention cohort, and design an experiment that can give a clear answer.',
   takeaway:[
@@ -7522,7 +7522,7 @@ window.PART7 = [
 },
 
 {
-  id:'b4', num:'B4', part:7, minutes:960, labs:[],
+  id:'b4', num:'B4', part:7, curriculumTier:'reference', phase:0, prerequisites:['ch1','ch12t','a7'], nextUnits:['b5','b6'], minutes:960, labs:[],
   title:'The applied AI PM toolchain',
   concept:'Learn the tools an applied AI product manager uses to research, prototype, build, deliver and measure. You will use each group of tools on your capstone, and learn where each one stores data and when it breaks.',
   takeaway:[
@@ -7655,7 +7655,7 @@ window.PART7 = [
   ]
 },
 {
-  id:'b5', num:'B5', part:7, minutes:720, labs:[],
+  id:'b5', num:'B5', part:7, curriculumTier:'selective', phase:6, prerequisites:['ch13a','ch17o','ch18s'], nextUnits:['b6'], minutes:720, labs:[],
   title:'Harness engineering: the system around the model',
   concept:'The model is one part of an AI product. The rest is the harness: the code that assembles context, runs tools, keeps state, enforces rules, checks quality and records what happened. You will draw the harness around your capstone, build one workflow two ways, and write a release checklist.',
   takeaway:[
@@ -7786,7 +7786,7 @@ window.PART7 = [
 },
 
 {
-  id:'b6', num:'B6', part:7, minutes:1080, labs:[],
+  id:'b6', num:'B6', part:7, curriculumTier:'selective', phase:6, prerequisites:['b4','b5','ch145'], nextUnits:['b7','b8'], minutes:1080, labs:[],
   title:'Ship to real users and run the learning loop',
   concept:'Put your capstone in front of real users and learn from what they do. You will get it ready for production, recruit people ethically, combine what they say with what they do, and ship one improvement based on evidence.',
   takeaway:[
@@ -7899,7 +7899,7 @@ window.PART7 = [
   ]
 },
 {
-  id:'b7', num:'B7', part:7, minutes:720, labs:[],
+  id:'b7', num:'B7', part:7, curriculumTier:'selective', phase:7, prerequisites:['b6','ch20d','ch19pm'], nextUnits:[], minutes:720, labs:[],
   title:'Getting the job: career readiness for AI PM roles',
   concept:'Turn what you built in this course into evidence an employer can see. You will target the right roles, write case studies and a resume from your work, practise each kind of interview, and complete a timed take-home.',
   takeaway:[
@@ -8019,7 +8019,7 @@ window.PART7 = [
 },
 
 {
-  id:'b8', num:'B8', part:7, minutes:1800, labs:[],
+  id:'b8', num:'B8', part:7, curriculumTier:'core', phase:6, prerequisites:['a7','ch21cap','b1'], nextUnits:[], minutes:1800, labs:[],
   title:'The integrated capstone: discover, build, ship, measure and defend',
   concept:'Bring the whole course together in one product. You will take a real problem through five gates, from discovery to a defence in front of an executive audience, with evidence at every step.',
   takeaway:[
