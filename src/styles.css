@@ -819,6 +819,23 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .stucknote{font-size:.8rem;color:var(--muted);flex-basis:100%;line-height:1.5;margin:.2rem 0 0}
 .qparked{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;font-size:.85rem;color:var(--muted)}
 
+/* ---------- v4.3: tier badge, role-fit note, before/here/next ---------- */
+.pill.tier-selective{color:var(--ink-2);border-color:var(--ink-2)}
+.pill.tier-reference{color:var(--muted);border-color:var(--rule)}
+.pill.tier-parking-lot{color:var(--muted);border-color:var(--rule);font-style:italic}
+.rolefit{display:flex;gap:.7rem;align-items:baseline;flex-wrap:wrap;
+  margin:0 0 1.6rem;padding:.6rem .9rem;background:var(--sunk);
+  border:1px solid var(--rule);border-radius:var(--r);font-size:.85rem}
+.rolefit .lbl{font-family:var(--mono);font-size:.6rem;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--ink-2);white-space:nowrap}
+.rolefit p{margin:0;color:var(--ink-2);line-height:1.5}
+.chaintrail{margin:0 0 1.6rem;display:grid;gap:.5rem}
+.chainrow{display:flex;gap:.7rem;align-items:baseline;flex-wrap:wrap}
+.chainlbl{font-family:var(--mono);font-size:.6rem;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--muted);min-width:6.5rem}
+.hererow .chip{font-weight:600}
+@media (max-width:520px){ .chainlbl{min-width:100%} }
+
 /* ---------- what a chapter stands on ---------- */
 .needs{margin:0 0 1.6rem;padding:.9rem 1.1rem;background:var(--sunk);
   border:1px solid var(--rule);border-radius:var(--r)}

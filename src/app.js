@@ -611,20 +611,59 @@ function sectionHead(idx,title,time){
     time?h('span',{class:'t',text:time}):null]);
 }
 
+/* v4.3's role-fit note: a one-word badge naming the chapter's curriculumTier,
+   so a Selective or Reference chapter says so before you sink an hour into
+   it, rather than reading as one more required chapter like any other. */
+const TIER_LABEL={core:'Core',selective:'Selective',reference:'Reference','parking-lot':'Parking lot'};
+const TIER_NOTE={
+  selective:'Useful, but depth is yours to control — read the idea, skip what your project does not need.',
+  reference:'Reference. Browse when you need it; nothing here is required to finish the core track.',
+  'parking-lot':'Parked. Skip this until a real project of yours creates a specific need for it.'
+};
 function renderChapter(c){
   const w=h('div',{class:'wrap'});
   const part=partOf(c.part);
   cpBars=[];                       // stale refreshers from the last chapter
+  const tier=c.curriculumTier;
   w.appendChild(h('header',{class:'chead'},[
     h('div',{class:'eyebrow'},[h('span',{text:partName(c.part)+' · '+T(part.title)}),
       h('span',{class:'dot'}),
       /* The playbook's chapters are measured in hours of work, not minutes of
          reading, and saying "one sitting" of a 14-hour chapter is a lie. */
       h('span',{text:c.minutes>=120?'~'+Math.round(c.minutes/60)+' hours':'~'+c.minutes+' min'}),
-      h('span',{class:'dot'}),h('span',{text:c.minutes>=120?'several sittings':'one sitting'})]),
+      h('span',{class:'dot'}),h('span',{text:c.minutes>=120?'several sittings':'one sitting'}),
+      tier&&tier!=='core'?h('span',{class:'pill tier-'+tier,text:T(TIER_LABEL[tier]||tier)}):null]),
     h('div',{class:'chnum',text:String(c.num).padStart(2,'0')}),
     h('h1',{text:T(c.title)}),
     h('p',{class:'concept',text:T(c.concept)})]));
+  if(tier&&TIER_NOTE[tier]) w.appendChild(h('div',{class:'rolefit'},[
+    h('span',{class:'lbl',text:T(TIER_LABEL[tier])}),
+    h('p',{text:T(TIER_NOTE[tier])})]));
+
+  /* "Before this / You are here / Next": the v4.3 chapter graph, kept
+     separate from the richer prose "Prerequisites" section below — this is
+     the two-second version, prerequisites[]/nextUnits[] resolved straight to
+     chips, no explanation attached. Mobile-first on purpose: a strip of
+     chips, not a graph. */
+  {
+    const before=(c.prerequisites||[]).map(id=>byId[id]).filter(Boolean);
+    const after=(c.nextUnits||[]).map(id=>byId[id]).filter(Boolean);
+    if(before.length||after.length){
+      const trail=h('nav',{class:'chaintrail','aria-label':T('Chapter sequence')});
+      if(before.length) trail.appendChild(h('div',{class:'chainrow'},[
+        h('span',{class:'chainlbl',text:T('Before this')}),
+        h('div',{class:'chiprow'},before.map(b=>h('a',{class:'chip',href:'#/ch/'+b.id,
+          text:b.num+'. '+T(b.title)})))]));
+      trail.appendChild(h('div',{class:'chainrow hererow'},[
+        h('span',{class:'chainlbl',text:T('You are here')}),
+        h('span',{class:'chip done',text:c.num+'. '+T(c.title)})]));
+      if(after.length) trail.appendChild(h('div',{class:'chainrow'},[
+        h('span',{class:'chainlbl',text:T('Next')}),
+        h('div',{class:'chiprow'},after.map(a=>h('a',{class:'chip',href:'#/ch/'+a.id,
+          text:a.num+'. '+T(a.title)})))]));
+      w.appendChild(trail);
+    }
+  }
 
   /* What you will be able to do, before you start. The same list closes the
      chapter as "You can now"; stating it at the top is what every technical
