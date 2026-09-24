@@ -53,8 +53,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Insaan ki manzoori',
   'Insert explicit confirmation before consequential or irreversible actions.':
     'Bhaari ya na palat sakne wale kaam se pehle saaf manzoori ka kadam daaliye.',
-  'Human-in-the-loop is an architecture boundary, not a polite UI popup.':
-    'Insaan ka beech mein hona architecture ki lakeer hai, koi shishta UI popup nahi.',
   'Build draft → review → approve → execute.':
     'Draft → jaanch → manzoori → kaam — yeh kram banaiye.',
   'Log who approved, what was approved and which exact payload was executed.':
@@ -85,14 +83,10 @@ Object.assign(window.HING = window.HING || {}, {
     'Kaunsa pattern faayda deta hai aur kaunsa sirf bekaar ki uljhan?',
   'Use the simplest composable pattern that meets the acceptance criteria.':
     'Sabse saral jodne-laayak pattern istemaal kijiye jo acceptance criteria poora kar de.',
-  'Only after workflows are understood do we allow the model to control the path.':
-    'Workflow samajhne ke baad hi hum model ko raasta chunne dete hain.',
   'The agent loop':
     'Agent ka loop',
   'Understand goal → model decision → tool call → observation → updated context → stop/continue.':
     'Samajhiye: lakshya → model ka faisla → tool call → observation → naya context → rukna ya chalte rehna.',
-  'The loop is the architecture; “agent” is not magic.':
-    'Loop hi architecture hai; “agent” koi jaadu nahi.',
   'Draw the loop and label every state and transition before coding.':
     'Code likhne se pehle loop banaiye aur har state tatha har badlaav par naam likhiye.',
   'Implement a three-step toy loop with explicit state.':
@@ -213,8 +207,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Agar koi ise “agentic AI” na kehta, tab bhi aap agent chunte?',
   'That question protects you from architecture-by-hype.':
     'Yahi sawaal aapko shor ke bharose bane architecture se bachata hai.',
-  'Next, we examine interoperability standards around tools and agents.':
-    'Aage hum tool aur agent ke aas-paas ke aapasi maanak dekhenge.',
   'MCP mental model':
     'MCP ka mansik naksha',
   'Explain host, client, server, tools, resources, prompts and capability negotiation.':

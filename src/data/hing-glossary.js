@@ -4,7 +4,7 @@
    as it appears in the course, so a line that is later edited in English falls
    back to English rather than showing a translation of something else. */
 Object.assign(window.HING = window.HING || {}, {
-  /* Glossary definitions */
+
   'A prediction machine trained on large quantities of text. It continues text plausibly — it does not look things up.':
     'Ek prediction machine, jo bahut saare text par train hui hai. Yeh text ko aage plausibly badhaati hai — kuchh look up nahi karti.',
   'A word-piece — the unit the model reads, writes, and bills in. Roughly ¾ of an English word.':
@@ -169,8 +169,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek tareeka jisse ek program doosre program se internet par kaam karwaata hai. Aap ise kabhi dekhte nahi. Jab is course mein likha ho ki aapka app "API call karta hai", matlab aapke app ne model provider ke computers ko message bheja aur jawaab ka intezaar kiya.',
   'One question in, one answer out — and one charge on the bill. Your app sends a request to the model\'s servers and waits for the reply.':
     'Ek sawaal andar, ek jawaab bahar — aur bill par ek charge. Aapka app model ke servers ko ek request bhejta hai aur jawaab ka intezaar karta hai.',
-  'A plain-text way of writing structured information so a program can read it: labels and values inside curly braces, like {"role": "user", "content": "hello"}. It is not code and not a database. It is the format the envelope is written in.':
-    'Structured information likhne ka ek plain-text tareeka jise program padh sake: curly braces ke andar labels aur values, jaise {"role": "user", "content": "hello"}. Yeh na code hai na database. Envelope isi format mein likha jaata hai.',
   'The specific web address a program sends its request to. Different endpoints do different jobs — one for chat, one for embeddings.':
     'Woh exact web address jahan program apni request bhejta hai. Alag endpoints alag kaam karte hain — ek chat ke liye, ek embeddings ke liye.',
   'Whatever is inside the request or reply. The contents of the envelope, as opposed to the envelope itself.':
@@ -269,4 +267,5 @@ Object.assign(window.HING = window.HING || {}, {
     'User galat output ko kaise theek karta hai, aur woh sudhaar aapke liye kya record karta hai.',
   'What the feature still does with the AI part switched off.':
     'AI wala hissa band kar dene par bhi feature kya-kya karta rehta hai.'
+
 });

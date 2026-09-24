@@ -51,8 +51,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Kaunsi cheez apne-aap raasta rok deti hai?',
   'Security belongs in the same release process as quality and cost.':
     'Security ko gunvatta aur lagat wali usi release prakriya mein hona chahiye.',
-  'Now convert the technical system into a product specification.':
-    'Ab is technical system ko ek product ke specification mein badliye.',
   'AI problem framing':
     'AI ki samasya ko baandhna',
   'Decide whether AI is justified and define the user outcome.':
@@ -179,8 +177,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Kya PRD “galat hone par kya hoga?” ka jawaab deta hai?',
   'This becomes one of your strongest portfolio artifacts.':
     'Yeh aapke portfolio ki sabse majboot cheezon mein se ek ban jaata hai.',
-  'Next, we turn the product into a production architecture and delivery plan.':
-    'Aage hum is product ko production ke architecture aur delivery ki yojana mein badalte hain.',
   'Inventory everything missing between notebook and service.':
     'Notebook aur chalti hui service ke beech jo kuch bhi gayab hai, uski soochi banaiye.',
   'Production adds identity, persistence, retries, queues, monitoring, secrets, deployment, backups, ACLs and rollback.':

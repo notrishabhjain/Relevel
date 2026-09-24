@@ -245,22 +245,14 @@ Object.assign(window.HING = window.HING || {}, {
     'Agar aapki yojana ko aisa evaluation chahiye jo aapke paas nahi, to evaluation set hi aapka exit plan hai. Aam taur par yahi main finding hoti hai.',
   'Next, Chapter 34 brings the whole system together in one capstone project.':
     'Aage, Chapter 34 poore system ko ek capstone project mein jodta hai.',
-  'Capstone: build, break, measure and defend a system':
-    'Capstone: ek system banaiye, todiye, naapiye aur defend kijiye',
-  'Build one coherent applied AI system, not a folder of demos. Break it on purpose, measure the fixes, and write a findings document that shows what happened when you tested it.':
-    'Ek suljha hua applied AI system banaiye, demos ka folder nahi. Ise jaan-boojh kar todiye, fixes naapiye, aur findings document likhiye jo dikhaye ki test karne par kya hua.',
   'Explain a system you built from first principles, without relying on a framework to explain it for you.':
     'Apne banaaye system ko buniyaadi siddhaanton se samjhaana, kisi framework ke sahaare bina.',
-  'Applied AI findings: what I built, what broke and what the evidence shows':
-    'Applied AI findings: maine kya banaya, kya toota aur saboot kya dikhata hai',
   'This single document carries everything from the course. Keep it plain and factual. A findings document that reads like a brochure is not doing its job.':
     'Yeh ek document course ki har cheez samete hai. Ise saada aur tathyaatmak rakhiye. Brochure jaisa padhne wala findings document apna kaam nahi kar raha.',
   'Ship the repository with a README that works on a clean machine.':
     'Repository ek aise README ke saath ship kijiye jo saaf machine par kaam kare.',
   'Include the security attack results and sample traces.':
     'Security attack results aur sample traces shaamil kijiye.',
-  'Include cost and response-time measurements at expected volume.':
-    'Ummeed ke volume par cost aur response-time measurements shaamil kijiye.',
   'Include the PRD, the risk register, the vendor scorecard, and the rollout and rollback plan.':
     'PRD, risk register, vendor scorecard, aur rollout aur rollback plan shaamil kijiye.',
   'End with the remaining risks and what is explicitly out of scope.':
@@ -273,18 +265,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Capstone in sab ko jodta hai.',
   'Chapters 29 and 31 produce the evidence you defend with.':
     'Chapters 29 aur 31 woh saboot dete hain jisse aap defend karte hain.',
-  'Collect every artifact from Part V: the harness, model selection card, context budget, retrieval architecture, tool policy, release gate, dashboard, risk register, PRD and decision pack.':
-    'Part V ka har artifact ikattha kijiye: harness, model selection card, context budget, retrieval architecture, tool policy, release gate, dashboard, risk register, PRD aur decision pack.',
-  'Your credential from this course is a system you can explain without relying on anyone’s framework, and an honest page about what broke when you tested it. Employers ask what you can build, and then what goes wrong and what you do about it.':
-    'Is course se aapki pehchaan ek aisa system hai jise aap kisi framework ke sahaare bina samjha sakein, aur ek imaandaar page ki test karne par kya toota. Employers poochhte hain ki aap kya bana sakte hain, phir kya galat hota hai aur aap uska kya karte hain.',
-  'Build one applied AI system that combines at least four capabilities from Part V. A recommended baseline: permission-aware retrieval, tool calling, a bounded agent step, evaluation, tracing and security tests. Build one coherent system, not a set of separate demos.':
-    'Ek applied AI system banaiye jo Part V ki kam se kam chaar kshamataon ko jode. Sujhaaya gaya aadhaar: permission-aware retrieval, tool calling, ek seemit agent step, evaluation, tracing aur security tests. Ek suljha system banaiye, alag-alag demos ka set nahi.',
-  'What each stage needs':
-    'Har charan ko kya chahiye',
-  'A portfolio project is credible when you can explain its failures. Anyone can show a system that works on the demo path.':
-    'Portfolio project tab vishwasniya hai jab aap uske failures samjha sakein. Demo raaste par chalta system koi bhi dikha sakta hai.',
-  'The final skill is explaining and defending the system you built.':
-    'Aakhri hunar apne banaaye system ko samjhaana aur defend karna hai.',
   'When you are done':
     'Aapka kaam kab poora hai',
   'You are done when all of these are true:':
@@ -297,8 +277,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Aapke teen fixes ke pehle aur baad ke numbers hain.',
   'You attacked your own safeguards and recorded what happened.':
     'Aapne apne hi suraksha upaayon par attack kiya aur record kiya ki kya hua.',
-  'You know how to roll it back if something goes wrong.':
-    'Aapko pata hai ki kuchh galat hone par ise rollback kaise karna hai.',
   'You can explain every major choice without saying “the framework handles that”.':
     'Aap har bada faisla “framework sambhaal leta hai” kahe bina samjha sakte hain.',
   'Final self-test':
@@ -319,11 +297,7 @@ Object.assign(window.HING = window.HING || {}, {
     'Tools security seema kyun hain?',
   'Why must evaluation come before release, and why does tracing matter?':
     'Release se pehle evaluation kyun hona chahiye, aur tracing kyun maayne rakhti hai?',
-  'How do you calculate cost per task?':
-    'Per task cost kaise nikaalte hain?',
   'What makes an AI specification different from a normal one?':
-    'AI specification aam specification se alag kya banata hai?',
-  'After this chapter, Track B takes the system to real users, a real price and a real job. The appendices turn your artifacts into reusable portfolio templates.':
-    'Is chapter ke baad Track B system ko asli users, asli price aur asli naukri tak le jaata hai. Appendices aapke artifacts ko dobara use hone wale portfolio templates mein badalte hain.'
+    'AI specification aam specification se alag kya banata hai?'
 
 });

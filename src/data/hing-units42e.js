@@ -39,8 +39,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Kaunsi seema par koi mol-bhaav nahi?',
   'A PM owns the decision framework even when engineers own the implementation.':
     'Banane ka zimma engineer ka ho tab bhi faisle ka dhaancha PM ka hota hai.',
-  'Once evaluation exists, we need to observe the system continuously.':
-    'Evaluation ban jaane ke baad humein system par lagaataar nazar rakhni hoti hai.',
   'Trace one request':
     'Ek request ka trace',
   'Build a structured trace for one AI request.':
@@ -149,8 +147,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Kaunse alert par insaan ko jagana chahiye aur kaunse par sirf nazar rakhni chahiye?',
   'Operational clarity is a PM responsibility as much as a platform responsibility.':
     'Rozmarra ki saaf-saaf samajh jitni platform ki zimmedari hai utni hi PM ki.',
-  'The next chapter treats the same system as an adversarial target.':
-    'Agla chapter isi system ko hamle ke nishaane ki tarah dekhta hai.',
   'Understand direct and indirect prompt injection as untrusted-input attacks.':
     'Seedhe aur ghuma kar kiye gaye prompt injection ko bina-bharose ke input ka hamla maan kar samajhiye.',
   'Instructions embedded in user or retrieved content can compete with application instructions.':

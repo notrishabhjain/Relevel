@@ -65,8 +65,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Lene wala agent asal mein kis par bharosa kar raha hai?',
   'Keep the focus on architecture and governance, not protocol trivia.':
     'Dhyaan architecture aur governance par rakhiye, protocol ki chhoti baaton par nahi.',
-  'The next chapter changes the input modality while preserving the same context/evaluation architecture.':
-    'Agla chapter input ka roop badalta hai, lekin context aur evaluation ka wahi architecture bachaye rakhta hai.',
   'Understand why a PDF is a layout object, not just a text file.':
     'Samajhiye ki PDF ek layout ki cheez hai, sirf text ki file nahi.',
   'Text extraction can lose tables, reading order, images, headers and spatial meaning.':
@@ -155,8 +153,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Kaunsi galti nikaalne ki hai aur kaunsi soch ki?',
   'The metric stack should reveal the broken component, not just the final answer.':
     'Metric ki parton se toota hua hissa dikhna chahiye, sirf aakhri jawaab nahi.',
-  'Now we need a systematic way to prove whether all these components work.':
-    'Ab humein ek vyavasthit tareeka chahiye yeh sabit karne ka ki yeh saare hisse chalte hain ya nahi.',
   'Golden datasets':
     'Golden dataset',
   'Create a versioned set of representative, edge and failure cases.':
@@ -229,8 +225,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Acceptance criteria dikhne laayak hone chahiye, “achha lagta hai” nahi.',
   'Use model-based judges where deterministic checks are insufficient, then validate them against human labels.':
     'Jahan nishchit jaanch kaafi na ho wahan model wale judge istemaal kijiye — phir unhen insaan ke label ke saamne jaanchiye.',
-  'A judge is another probabilistic component, not an oracle.':
-    'Judge bhi sambhaavna par chalne wala ek hissa hai, koi devvaani nahi.',
   'Have a judge score 20 examples for groundedness or relevance.':
     'Kisi judge se bees udaharan ko saboot par tike hone ya kaam ke hone par score karwaiye.',
   'Compare judge decisions with human labels and calculate disagreement.':

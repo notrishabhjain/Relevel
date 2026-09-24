@@ -21,8 +21,6 @@ Object.assign(window.HING = window.HING || {}, {
     'State, itihaas aur memory',
   'Separate request context, conversation history, durable user data and task state.':
     'Request ka context, baatcheet ka itihaas, tikau user data aur kaam ki state — chaaron alag kijiye.',
-  '“Memory” is not one feature; it is an application architecture with storage, retention and authorization.':
-    '“Memory” koi ek feature nahi hai; woh ek poora application architecture hai — bhandaaran, kitne din rakhna, aur kaun dekh sakta hai.',
   'Draw three stores: session history, user profile, task state.':
     'Teen bhandaar banaiye: session ka itihaas, user ka profile, aur kaam ki state.',
   'Specify fields, owner, retention, access and deletion path for each.':
@@ -71,8 +69,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Kya fail hua: retrieval, jodna, permission, nirdeshon ka kram, ya generation?',
   'This prepares you for production RAG and security.':
     'Yeh aapko production RAG aur security ke liye taiyaar karta hai.',
-  'Now the context package becomes the input to a real retrieval architecture.':
-    'Ab yahi context package ek asli retrieval architecture ka input ban jaata hai.',
   'Parsing and document ingestion':
     'Parsing aur document ka andar lena',
   'Treat document ingestion as an engineering pipeline rather than “upload PDF.”':
@@ -215,8 +211,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Kya aap sabit kar sakte hain ki bina ijaazat wala user woh chunk nahi nikaal sakta?',
   'Authorization belongs at the application/data layer, not only in model instructions.':
     'Permission ki jagah application ya data ki parat hai, sirf model ke nirdesh nahi.',
-  'Next, the model gets controlled access to actions rather than only evidence.':
-    'Aage model ko sirf saboot nahi, kaam karne ki naapi-tuli chhoot bhi milti hai.',
   'Tool schemas':
     'Tool ke schema',
   'Define a tool as a constrained contract with name, description, parameters, errors and permissions.':
