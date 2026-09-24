@@ -209,7 +209,7 @@ window.PART3 = [
     ['p','<strong>The four things that multiply it.</strong> You have met every one:'],
     ['tb',['What multiplies it','Where it came from','What it does'],[
       ['How many documents you retrieve','Ch. 6','Retrieving 8 instead of 3 nearly triples the input on every query, forever'],
-      ['Retries when the output is malformed','Ch. 8','A retry re-sends the whole request, so a 10% retry rate costs more than 10%'],
+      ['Retries when the output is malformed','Ch. 8','A retry repeats the request context this implementation sends, so record the actual retry token and latency overhead'],
       ['Agent steps','Ch. 9','Six steps re-send a growing conversation six times — often 10–20× one call'],
       ['Thinking tokens','Ch. 11','Charged at the output rate, and often several times longer than the visible answer']
     ]],

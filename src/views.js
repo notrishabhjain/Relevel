@@ -101,6 +101,16 @@ function dashboard(){
      left in it. */
   w.appendChild(resumePanel(st, eng));
 
+  const chapters=(window.CHAPTERS||[]), tiers=['core','selective','reference','capstone','parking-lot'];
+  const tierMeta={core:['CORE','Required competency path'],selective:['SELECTIVE','Useful supporting material'],reference:['REFERENCE','Browse when needed'],capstone:['CAPSTONE','One integrated build-and-defend journey'], 'parking-lot':['PARKING LOT','Advanced specialist material']};
+  const core=chapters.filter(c=>c.curriculumTier==='core'); const coreDone=core.filter(c=>st.done[c.id]).length;
+  const nextCore=core.find(c=>!st.done[c.id]) || chapters.find(c=>c.curriculumTier==='capstone');
+  w.appendChild(h('section',{class:'path'},[
+    h('div',{class:'pathhead'},[h('div',{},[h('span',{class:'cplbl',text:'Your focused path'}),h('h2',{text:'Core first. Everything else has a job, not a quota.'})]),nextCore?h('a',{class:'btnlink',href:'#/ch/'+nextCore.id,text:'Continue core →'}):null]),
+    h('p',{class:'dim',text:coreDone+' of '+core.length+' core units complete. Reference and parking-lot material do not change this path.'}),
+    h('div',{class:'tier-grid'},tiers.map(t=>{const xs=chapters.filter(c=>c.curriculumTier===t);if(!xs.length)return null;const [label,desc]=tierMeta[t];const done=xs.filter(c=>st.done[c.id]).length;return h('a',{class:'tier-card '+t,href:'#/ch/'+(xs.find(c=>!st.done[c.id])||xs[0]).id},[h('span',{class:'cplbl',text:label}),h('strong',{text:desc}),h('small',{text:t==='core'?done+' / '+xs.length+' complete':xs.length+' units · '+done+' complete'})]);}).filter(Boolean))
+  ]));
+
   w.appendChild(h('div',{class:'stats'},[
     tile('skills measured',tested+' / '+window.SKILLS.length,tested===30?'ok':''),
     tile('due for review',due,due>0?'red':'ok',due?'decaying now':'all current'),

@@ -74,14 +74,14 @@ window.PART1 = [
     ]],
     ['pred',{id:'ch05-cost',short:true,ph:'Cheaper, about the same, or more expensive?',
       ask:'Your text, in an Indian language rather than English, would be split into how many pieces — fewer, about the same, or more?',
-      reveal:'Almost always more, often two or three times more, for the same meaning. The pieces were worked out mostly from English text on the internet, so English is the cheapest thing you can say.',
-      then:'That is not a detail. It means a product answering in Hindi, Tamil or Bengali costs meaningfully more per answer than the same product in English — and nobody puts that on a pricing page. You found it in four minutes, with no account.'}],
+      reveal:'There is no universal multiplier. Token counts depend on the tokenizer, the language, the exact text and the model. Run the same meaning in English and the Indian language you use, record both counts, and use that measurement rather than a rule of thumb.',
+      then:'That can affect cost, but it is not a universal pricing claim. Your experiment tells you what this tokenizer did to your text; repeat it with the model/API you are considering before you estimate a multilingual feature.'}],
 
-    ['p','<strong>Two: it forgets, so the app keeps re-sending everything.</strong> A model has no memory between messages. For a chat to feel continuous, the app quietly sends the entire conversation again on every single turn.'],
+    ['p','<strong>Two: the model only sees the context it is given.</strong> A model has no memory between invocations. An app can maintain continuity by sending prior messages, sending a summary, retrieving saved facts, or keeping task state elsewhere. You are about to measure one common choice: re-sending history.'],
     ['do','Watch the bill grow while you do nothing',[
       ['p','Step through a conversation below and keep your eye on the number, not the messages.'],
       ['lab','receipt'],
-      ['x','The cost of each turn climbs, even when your messages stay the same length — because every turn re-sends everything said before it. A long conversation gets expensive at the end for reasons that have nothing to do with what you are asking.']
+      ['x','In this history-replay experiment, the cost of each turn climbs because prior messages are sent again. Other applications may summarize, retrieve selected memories, or store task state externally, so measure the context they actually supply rather than assuming one architecture.']
     ]],
     ['q','I001'],
 
@@ -89,7 +89,7 @@ window.PART1 = [
     ['do','Turn it yourself',[
       ['p','Move it up and down and watch what changes about the answers.'],
       ['lab','temperature'],
-      ['x','Low gives you the same answer every time. High gives you variety. Notice what neither end does: it never makes the answer more <em>true</em>. A wrong answer at the low setting is wrong identically, every single time.']
+      ['x','Lower temperature generally reduces sampling variation; higher temperature generally permits more. Neither setting makes an answer more <em>true</em>, and low temperature does not guarantee identical output. Run the same prompt several times and record what your model actually does.']
     ]],
 
     ['key','You have now done three real experiments and produced at least one finding your organisation probably does not have written down anywhere. Nothing was installed. Nobody asked for a card.'],
@@ -264,10 +264,10 @@ window.PART1 = [
       ]],
     ]],
     ['p','That raises an obvious question: so how does a chat assistant seem to remember what you said five messages back?'],
-    ['p','It does not. The app re-sends the entire conversation every single time. The memory is a trick performed by the app, not a property of the AI. And you are about to perform it yourself.'],
+    ['p','Not by itself. The model sees only the messages in this invocation. An application may replay prior messages, send a summary, retrieve persistent user memory, or store task state externally. This experiment uses replayed messages, one common way to create continuity.'],
     ['do','Perform the trick',[
       ['code','r3 = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {"role": "user",\n         "content": "My name is Sam. Remember it."},\n        {"role": "assistant",\n         "content": r1.choices[0].message.content},\n        {"role": "user",\n         "content": "What is my name?"}\n    ]\n)\nprint(r3.choices[0].message.content)\nprint("tokens read now:", r3.usage.prompt_tokens)'],
-      ['x','Now it knows — Sam. And <code>prompt_tokens</code> is bigger than before, because you paid to re-send the whole history. Sit on that for a second: you have just built, by hand, the illusion every chat product in the world sells, and you can see exactly what it costs per message.'],
+      ['x','Now it knows — Sam — because this invocation includes the earlier message. <code>prompt_tokens</code> is bigger because this experiment replayed history. You have built one common continuity pattern and measured its cost; production apps may choose summaries, retrieval, persistent memory, or task state instead.'],
       ['snag',[
         'A red box saying something <em>is not defined</em>',
         'You have run a cell that needs something an earlier cell made, without running that earlier one first. Scroll to the top, run the warm-up cells in order, then come back to this one. This is the most common thing that goes wrong in a notebook, it happens to everybody, and it says nothing about your code.',
@@ -292,7 +292,7 @@ window.PART1 = [
     ['try',{id:'ch1-explain',mins:3,min:40,rows:3,
       task:'Write the two sentences you would say to a colleague who asks why a long chat with an AI costs more than a short one. Plain words — no jargon, and nothing you could not defend if they pushed back.',
       ph:'Two sentences.',
-      after:'A good answer has both halves: what happens, and what it means. What happens — the AI remembers nothing, so the app sends the whole conversation again with every message. What it means — the cost of a conversation grows the longer it gets, and that cost is ours, not the vendor’s. If you got both halves, you understand this chapter better than most people who have shipped an AI feature.'}]
+      after:'A good answer has both halves: what happens, and what it means. What happens — the model only sees context the application supplies; replaying a growing history makes the prompt larger. What it means — conversation cost depends on that context-management design, so it must be measured rather than assumed. If you got both halves, you understand this chapter better than most people who have shipped an AI feature.'}]
   ],
   capstone:{
     title:'The meter on a real feature',
@@ -884,7 +884,7 @@ window.PART1 = [
     ['p','Documents are full of this. Legal text especially, but also anything with "the above", "this scheme", "such cases". Human writing assumes you read the preceding paragraph. Chunks do not get one.'],
     ['do','Round 3 — cut like a human',[
       ['p','Cut a fresh copy the way you actually think it should be cut. Do not overthink it. Then stop and watch what your own hands did.'],
-      ['x','They followed headings and clause numbers, and produced pieces of wildly unequal size that are each individually complete. Write one sentence describing the rule you just used without being taught it. That sentence is what the industry calls semantic chunking — and you derived it rather than memorised it.']
+      ['x','They followed headings and clause numbers, and produced pieces of wildly unequal size that are each individually complete. Write one sentence describing the rule you just used without being taught it. That is a structure-aware (or document-aware) chunking rule: it follows the document’s anatomy. Semantic chunking is a separate approach that groups text by meaning changes. You derived the distinction by doing it rather than memorising it.']
     ]],
     ['key','There is no correct chunk size. There are only different failures, and you choose between them based on what your documents look like and what your users ask.'],
     ['p','That sentence, said out loud in a design review, is the difference between someone who has read about this and someone who has done it. Everyone wants to be told the right number. There isn’t one.'],
@@ -970,7 +970,7 @@ window.PART1 = [
     ['p','It is worth being fair to it, because you will meet people who over-correct. Word matching is excellent at some things and nothing beats it there: exact codes, section numbers, policy IDs, part numbers, someone’s name. If a user types <em>clause 14.2</em> they want clause 14.2, and no amount of cleverness improves on finding that exact string.'],
     ['do','And the one it wins outright',[
       ['p','Now ask a question containing an exact code, section number, or defined term lifted straight from the document.'],
-      ['x','Instant, perfect, rank one — and no method that works on meaning will ever beat it here. This is the half of what the industry calls hybrid search that never dies, and you have just watched it earn its place.']
+      ['x','A distinctive exact code or defined term often ranks strongly under keyword retrieval. Record its actual rank rather than assuming it will win: this is the lexical strength that semantic retrieval may complement, not erase.']
     ]],
     ['q','I026'],
 
@@ -1064,7 +1064,7 @@ window.PART1 = [
     ['do','Cure Chapter 4',[
       ['p','Paste in the actual cards you cut in Chapter 3 — the text of each one, as a list — and give the whole set addresses.'],
       ['code',"chunks = [\n    \"…paste the text of card 1…\",\n    \"…card 2…\",\n    # …all fifteen or twenty of them…\n]\nchunk_vecs = embed(chunks, \"passage\")\n\ndef retrieve(question, k=3):\n    q = embed([question], \"query\")[0]\n    scores = [cosine(q, cv) for cv in chunk_vecs]\n    ranked = sorted(range(len(chunks)),\n                    key=lambda i: scores[i], reverse=True)\n    for i in ranked[:k]:\n        print(round(scores[i], 3), \"| chunk\", i,\n              \"|\", chunks[i][:80], \"…\")\n\nretrieve(\"your synonym assassin from Chapter 4\")"],
-      ['x','The assassin that scored zero yesterday now surfaces the correct card at or near rank one. Run all three and compare against your handwritten rankings. Whatever happens on the second-language one is a real finding about your users — write the actual numbers down rather than the impression.'],
+      ['x','The assassin that scored zero yesterday may now surface the correct card much higher. Run all three and compare against your handwritten rankings. The second-language result is a finding about this model and your corpus — write the actual ranks and scores down rather than assuming a universal outcome.'],
       ['snag',[
         'A red box saying something <em>is not defined</em>',
         'You have run a cell that needs something an earlier cell made, without running that earlier one first. Scroll to the top, run the warm-up cells in order, then come back to this one. This is the most common thing that goes wrong in a notebook, it happens to everybody, and it says nothing about your code.',
@@ -1175,7 +1175,7 @@ window.PART1 = [
       ]],
     ]],
     ['p','<strong>Two: there are two ways to fail, and they pull against each other.</strong> Picture asking an assistant to fetch the files relevant to a meeting. They can fail two ways: leave out something that mattered, or bury you in things that did not.'],
-    ['p','Leaving out what mattered is called poor <strong>recall</strong>. Burying you in irrelevance is poor <strong>precision</strong>. The lever between them is how many pieces you fetch per question — usually written <strong>k</strong>. Fetch more and you miss less, but more of what you fetch is junk. Fetch fewer and everything you get is relevant, but you miss things.'],
+    ['p','Leaving out what mattered is called poor <strong>recall</strong>. Burying you in irrelevance is poor <strong>precision</strong>. The lever between them is how many pieces you fetch per question — usually written <strong>k</strong>. Fetching more can improve coverage and can lower relevance density; fetching fewer can do the reverse. These are empirical trade-offs, not guarantees, so grade them using explicit relevance judgments on your own question set.'],
     ['p','You cannot have both. Move the lever and see:'],
     ['do','Turn the dial and watch it trade',[
       ['p','Re-grade the same ten questions at <code>k=1</code> and then <code>k=8</code>, and fill this in by hand:'],
@@ -1184,7 +1184,7 @@ window.PART1 = [
         ['3','… / 9','… / 27'],
         ['8','… / 9','… / 72']
       ]],
-      ['x','Hits rise as you widen. The relevant fraction falls. And from Chapter 1 you already know the third axis nobody puts on the chart: <code>k=8</code> costs eight times the tokens of <code>k=1</code> on every query, forever. You have just built the most-cited trade-off in applied AI, by hand, on your own documents.']
+      ['x','Increasing k often improves coverage while relevance density can fall, but measure both on your corpus. Retrieved text volume may rise with k; actual cost also depends on chunk sizes, prompt overhead, output tokens, caching, truncation, provider pricing and architecture. Record the real prompt tokens and latency before deciding.']
     ]],
     ['lab','prdial'],
     ['q','I044','I045'],
@@ -1263,8 +1263,8 @@ window.PART1 = [
       ['code',"def rag_answer(question, k=3):\n    q = embed([question], \"query\")[0]          # Ch 5\n    scores = [cosine(q, cv) for cv in chunk_vecs]\n    ranked = sorted(range(len(chunks)),\n                    key=lambda i: scores[i], reverse=True)\n    context = \"\\n\\n\".join(              # Ch 3 and 6 — the k dial\n        chunks[i] for i in ranked[:k])\n    resp = client.chat.completions.create(     # Ch 1\n        model=\"meta/llama-3.1-8b-instruct\",\n        temperature=0,                         # Ch 2\n        messages=[\n          {\"role\": \"system\", \"content\":         # Ch 2 briefing\n            \"Answer ONLY from the provided context. If the \"\n            \"answer is not in the context, reply exactly: \"\n            \"'Not found in the provided documents.' \"\n            \"Never invent details.\"},\n          {\"role\": \"user\", \"content\":\n            f\"Context:\\n{context}\\n\\nQuestion: {question}\"}\n        ]\n    )\n    return resp.choices[0].message.content"],
       ['p','Then run it three times, on three deliberately different questions:'],
       ['code',"print(rag_answer(\"something your document CAN answer\"))\nprint(rag_answer(\"your Chapter 4 synonym assassin\"))\nprint(rag_answer(\"what does this say about cricket?\"))"],
-      ['x','Run one: grounded, and checkable against your source. Run two: correctly answered — the question keyword search could not touch. Run three: <code>Not found in the provided documents.</code>'],
-      ['key','Stop on that third line for a moment. In Chapter 2 this same machine invented an entire fake scheme rather than admit ignorance. That one sentence is a hallucination in a cage — built out of retrieval you wrote, a briefing you wrote, and a test you thought to run.'],
+      ['x','Run one should be checked against your source. Run two tests whether semantic retrieval surfaced evidence that keyword matching missed. Run three tests the no-answer path. The exact refusal is not guaranteed: record what actually happens. Retrieval plus instructions can reduce unsupported answers, not eliminate them.'],
+      ['key','Treat that third run as a test result, not proof of safety. The retrieved evidence and briefing reduce risk, but either can fail. Keep the question in your evaluation set and measure no-answer behaviour whenever the model, prompt, retrieval or corpus changes.'],
       ['snag',[
         'A red box saying something <em>is not defined</em>',
         'You have run a cell that needs something an earlier cell made, without running that earlier one first. Scroll to the top, run the warm-up cells in order, then come back to this one. This is the most common thing that goes wrong in a notebook, it happens to everybody, and it says nothing about your code.',

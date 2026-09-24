@@ -76,7 +76,7 @@ LABS.tokenizer={title:'The receipt, read live',k:'lab 1.1',
   }};
 
 LABS.receipt={title:'Why message 50 costs more than message 1',k:'lab 1.2',
-  note:'The stage trick, metered. Each turn re-sends everything before it, so cost grows with the square of the conversation — not with the number of messages.',
+  note:'A simplified history-replay model, metered. It assumes each turn re-sends prior messages; real apps may summarize, retrieve selected memories, cache prefixes, or keep state externally. Use it to see why context design matters, then measure your own request shape.',
   render(el){
     const n=h('span',{class:'readout',text:'30'}), per=h('span',{class:'readout',text:'180'});
     const cv=h('canvas',{height:'150'}); cv.style.width='100%';
@@ -118,7 +118,7 @@ LABS.receipt={title:'Why message 50 costs more than message 1',k:'lab 1.2',
 
 /* ---------------- 2. Temperature ---------------- */
 LABS.temperature={title:'The variety dial',k:'lab 2.1',
-  note:'Real sampling mathematics on a fixed candidate set. At 0 the top continuation wins every time; raise it and the distribution flattens until the unlikely becomes routine.',
+  note:'A simplified sampling illustration on a fixed candidate set. Lower temperature concentrates probability and higher temperature spreads it. Provider decoding settings can still produce variation, so this is direction, not a determinism guarantee.',
   render(el){
     const CAND=[['Move More. Live Better.',3.2],['Fit for Work, Fit for Life',2.6],
       ['Your Health, Our Priority',2.1],['Step Up Every Day',1.7],['Stronger Together at Work',1.2],
@@ -284,7 +284,7 @@ const TOYQ=[
 // simulated ranking: correct chunks appear at varying depths
 const RANKS=[[1,4],[1],[2],[3],[6],[1,8],[4],[2],[7]];
 LABS.prdial={title:'The trade-off, under your own hand',k:'lab 6.1',
-  note:'Nine answerable questions with the correct chunks planted at realistic depths. Move k and watch recall climb while precision — and your bill — move the other way. This is the most-cited chart in applied AI, produced in one slider.',
+  note:'Nine answerable questions with the correct chunks planted at realistic depths. Move k and inspect Hit@k, judged relevance density, and the retrieved-text estimate. This toy ranking illustrates a common trade-off; a real corpus needs explicit relevance judgments and measured prompt tokens, latency, and cost.',
   render(el){
     const kk=h('span',{class:'readout',text:'3'}); const out=h('div'),tbl=h('div');
     let K=3;
@@ -301,9 +301,9 @@ LABS.prdial={title:'The trade-off, under your own hand',k:'lab 6.1',
       out.innerHTML='';
       out.appendChild(stats([
         ['k',K],
-        ['recall-style',hits+'/9',recall>=.78?'ok':'red',(recall*100).toFixed(0)+'%'],
-        ['precision-style',rel+'/'+fetched,prec>=.35?'ok':'red',(prec*100).toFixed(0)+'%'],
-        ['token cost','×'+K,'red','vs k=1, forever']
+        ['Hit@k',hits+'/9',recall>=.78?'ok':'red',(recall*100).toFixed(0)+'% answerable queries with ≥1 relevant chunk'],
+        ['judged Precision@k',rel+'/'+fetched,prec>=.35?'ok':'red',(prec*100).toFixed(0)+'% of retrieved chunks judged relevant'],
+        ['retrieved-text estimate','×'+K,'red','equal-size toy chunks; measure real prompt tokens']
       ]));
       tbl.innerHTML='';
       const t=h('table');

@@ -51,7 +51,8 @@ const defaults=()=>({done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{
   cal:[],     // calibration log {t,c,k}
   sess:[],    // session log
   ex:{},      // exercise iterations
-  proc:{}     // process runs
+  proc:{},    // process runs
+  mastery:{}, evidence:{}, decisions:[], failures:[] // v4.3, separate from completion
 });
 let S=defaults();
 try{const raw=localStorage.getItem(KEY); if(raw)S=Object.assign(S,JSON.parse(raw));}catch(e){}
@@ -521,6 +522,20 @@ function renderChapter(c){
     h('div',{class:'chnum',text:String(c.num).padStart(2,'0')}),
     h('h1',{text:T(c.title)}),
     h('p',{class:'concept',text:T(c.concept)})]));
+
+  const tier = c.curriculumTier || 'selective';
+  const prereq=(c.prerequisites||[]).map(id=>byId[id]).filter(Boolean);
+  const nextUnit=(c.nextUnits||[]).map(id=>byId[id]).find(Boolean);
+  const ctx=h('section',{class:'chapter-context'},[
+    h('div',{class:'context-cell'},[h('span',{class:'cplbl',text:'Why this matters'}),h('p',{text:T(c.concept)})]),
+    prereq.length?h('div',{class:'context-cell'},[h('span',{class:'cplbl',text:'Prerequisites'}),h('p',{},prereq.map((x,i)=>[i?', ':'',h('a',{href:'#/ch/'+x.id,text:x.num+'. '+T(x.title)})]).flat())]):null,
+    h('div',{class:'context-cell'},[h('span',{class:'cplbl',text:'You are here'}),h('p',{text:(window.CURRICULUM_TIERS||{})[tier]+' · '+c.num+' of '+CH.length})]),
+    nextUnit?h('div',{class:'context-cell'},[h('span',{class:'cplbl',text:'Next'}),h('p',{},h('a',{href:'#/ch/'+nextUnit.id,text:nextUnit.num+'. '+T(nextUnit.title)+' →'}))]):null
+  ]); w.appendChild(ctx);
+  const mastery=S.mastery||(S.mastery={}); const levels=['Not started','Exposed','Practiced','Defended'];
+  const master=h('div',{class:'mastery-control'},[h('span',{class:'cplbl',text:'Self-rated mastery'})]);
+  levels.forEach((label,i)=>master.appendChild(h('button',{class:'sm '+(mastery[c.id]===i?'on':''),text:label,onclick:()=>{mastery[c.id]=i;save();[...master.querySelectorAll('button')].forEach((b,j)=>b.classList.toggle('on',j===i));}})));
+  w.appendChild(master);
 
   /* Part V arrived from the newest edition in English only, deliberately. On
      those chapters a reader with Hinglish on gets English and no explanation,
@@ -1460,6 +1475,7 @@ function renderRail(){
   r.appendChild(sec('',[
     ['#/','◉','Continue'],
     ['#/library','▤','Chapters'],
+    ['#/evidence','□','Artifact Vault'],['#/decisions','◇','Decision Log'],['#/failures','!','Failure Log'],
     ['#/practice','▶','Practice'+(dueN?'  ('+dueN+' due)':'')],
     ['#/skills','▦','My progress'],
     /* Setup was in the drawer with everything else, on the reasoning that it is
@@ -1661,6 +1677,18 @@ function pageLanguage(){
   return w;
 }
 
+function v43LogPage(kind,title,fields){
+  const w=h('div',{class:'wrap'}); const key=kind; const arr=S[key]||(S[key]=[]);
+  w.appendChild(phead('v4.3 learning evidence',title,kind==='evidence'?'Artifacts produced by the focused path. Completion and mastery remain separate.':'A working record for build → break → measure → fix.'));
+  const form=h('div',{class:'nbentry'}); const inputs={}; fields.forEach(([id,label])=>{const ta=h('textarea',{rows:2,placeholder:label});inputs[id]=ta;form.append(h('label',{text:label}),ta);});
+  form.appendChild(h('button',{class:'primary',text:'Save entry',onclick:()=>{const row={id:Date.now(),...Object.fromEntries(Object.entries(inputs).map(([k,v])=>[k,v.value]))};arr.unshift(row);save();route();}})); w.appendChild(form);
+  if(!arr.length)w.appendChild(h('p',{class:'empty',text:'No entries yet. Keep the evidence rough, specific and useful.'}));
+  arr.forEach(row=>w.appendChild(h('article',{class:'card'},Object.values(row).slice(1).filter(Boolean).map(v=>h('p',{text:v}))))); return w;
+}
+function pageEvidence(){ const w=v43LogPage('evidence','Artifact Vault',[['unit','Unit / chapter'],['artifact','Artifact and category: Experiment, Engineering, Decision or Evidence'],['proof','What you made or measured']]); return w; }
+function pageDecisions(){return v43LogPage('decisions','Decision Log',[['decision','Decision'],['options','Options considered'],['evidence','Evidence and trade-off'],['owner','Owner / review date']]);}
+function pageFailures(){return v43LogPage('failures','Failure Log',[['failed','What failed?'],['expected','Expected behaviour'],['actual','Actual behaviour / evidence'],['hypothesis','Root cause or hypothesis'],['change','Change made and result'],['lesson','Lesson learned']]);}
+
 const V=()=>window.VIEWS;
 const ROUTES={'':()=>V().dashboard(),'library':pageHome,
   'skills':()=>V().skills(),'analytics':()=>V().analytics(),
@@ -1668,7 +1696,7 @@ const ROUTES={'':()=>V().dashboard(),'library':pageHome,
   'setup':pageSetup,'install':pageInstall,'language':pageLanguage,
   'notebook':pageNotebook,'ledger':pageLedger,
   'later':pageLater,'glossary':pageGlossary,'vendor':pageVendor,'map':pageMap,'card':pageCard,
-  'appendix':pageAppendix,
+  'appendix':pageAppendix,'evidence':pageEvidence,'decisions':pageDecisions,'failures':pageFailures,
   'progress':pageProgress,'labs':pageLabs,'data':()=>V().data(),
   'studio':()=>window.STUDIO.studio([])};
 const CRUMB={'':'Dashboard','library':'Library','skills':'Skill Matrix','analytics':'Analytics',

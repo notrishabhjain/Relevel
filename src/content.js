@@ -30,8 +30,29 @@ const BUILT_IN = {
 };
 
 /* Publish a content set into the globals the rest of the app reads. */
+function enrichV43(ch){
+  /* v4.3 learning-path metadata is additive: it never changes chapter IDs,
+     completion state, or the exercise-level `tier` field. */
+  const core = ch.filter(x => x.num >= 1 && x.num <= 20).sort((a,b)=>a.num-b.num);
+  const cap = ch.find(x => x.id === 'ch21cap');
+  const selective = new Set(['ch8','ch9','ch11','ch12','ch13','ch14','ch15']);
+  const reference = new Set(['ch0','ch05','ch115','ch10','ch16','ch17','ch18']);
+  ch.forEach((x,i) => {
+    if (!x.curriculumTier) x.curriculumTier = x.id === 'ch21cap' ? 'capstone' :
+      reference.has(x.id) ? 'reference' : selective.has(x.id) ? 'selective' :
+      core.includes(x) ? 'core' : x.part >= 5 ? 'parking-lot' : 'selective';
+    if (!Array.isArray(x.prerequisites)) x.prerequisites = (x.needs || [])
+      .map(n => typeof n[2] === 'number' ? ch.find(y => y.num === n[2])?.id : null).filter(Boolean);
+    if (!Array.isArray(x.nextUnits)) x.nextUnits = [];
+  });
+  core.forEach((x,i) => { if (!x.nextUnits.length && core[i+1]) x.nextUnits=[core[i+1].id]; });
+  if (core.length && cap) { const last=core[core.length-1]; if (!last.nextUnits.length) last.nextUnits=[cap.id]; }
+  if (cap) { cap.curriculumTier='capstone'; cap.prerequisites=core.map(x=>x.id); cap.nextUnits=[]; }
+  window.CURRICULUM_TIERS={core:'CORE',selective:'SELECTIVE',reference:'REFERENCE',capstone:'CAPSTONE','parking-lot':'PARKING LOT'};
+}
 function apply(c){
   const ch = c.chapters && c.chapters.length ? c.chapters : BUILT_IN.chapters;
+  enrichV43(ch);
   window.CHAPTERS = ch;
   /* Republish one global per part, however many parts there are. */
   const parts = (c.reference && c.reference.PARTS) || BUILT_IN.reference.PARTS || [];
