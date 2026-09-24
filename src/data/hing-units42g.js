@@ -33,8 +33,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Isi tarah sambhaavna par chalne wale system sambhaale ja sakne wale delivery ke tukde ban jaate hain.',
   'Record alternatives, decision, evidence, consequences and revisit triggers.':
     'Vikalp, faisla, saboot, parinaam aur dobara dekhne ke kaaran — sab likhiye.',
-  'Architecture decisions are hypotheses with trade-offs, not eternal truths.':
-    'Architecture ke faisle samjhauton wale anumaan hain, shaashvat sach nahi.',
   'Write ADRs for model, retrieval strategy, workflow/agent and storage.':
     'Model, retrieval strategy, workflow ya agent, aur bhandaaran ke liye ADR likhiye.',
   'Include rejected alternatives and evidence.':
@@ -83,42 +81,22 @@ Object.assign(window.HING = window.HING || {}, {
     'Kya aap har bade box aur teer ka bachaav kar sakte hain?',
   'This is the portfolio bridge to real AI technical PM interviews.':
     'Yahi woh portfolio pul hai jo asli AI technical PM interview tak le jaata hai.',
-  'The capstone now assembles the whole system into one coherent portfolio project.':
-    'Ab capstone poore system ko ek jude hue portfolio project mein jod deta hai.',
   'Define the problem and PRD':
     'Samasya aur PRD tay kijiye',
-  'Select one enterprise use case and make the acceptance criteria measurable.':
-    'Ek enterprise use case chuniye aur acceptance criteria ko naapne laayak banaiye.',
   'A capstone becomes credible when the problem and failure cost are clear.':
     'Capstone tab bharosemand banta hai jab samasya aur galti ki keemat dono saaf hon.',
-  'Choose: enterprise policy/compliance intelligence, developer productivity workflow, or controlled customer operations workflow.':
-    'Chuniye: enterprise ki policy ya compliance ki samajh, developer ki utpaadakta ka workflow, ya grahak ke kaam ka niyantrit workflow.',
   'Write user, pain, baseline, scope, non-goals, data, tools, risks and metrics.':
     'User, takleef, baseline, daayra, jo nahi karna, data, tool, khatre aur metric likhiye.',
-  'Challenge the idea with “why not deterministic software?”':
-    'Apne hi vichaar se poochhiye: “saadharan nishchit software kyun nahi?”',
   'Capstone AI PRD.':
     'Capstone ka AI PRD.',
   'Can you state the business outcome in one sentence?':
     'Kya aap business ka nateeja ek vaakya mein keh sakte hain?',
-  'This is the product anchor.':
-    'Yahi product ka langar hai.',
   'Build the vertical slice':
     'Poori uparee-neechee kaat banaiye',
   'Create the smallest end-to-end working system before adding sophistication.':
     'Kuch bhi chatur jodne se pehle sabse chhota poora chalta hua system banaiye.',
-  'A vertical slice proves architecture across boundaries.':
-    'Ek poori kaat saari lakeeron ke aar-paar architecture ko sabit kar deti hai.',
-  'Implement input → retrieval/context → model → structured answer → citation.':
-    'Banaiye: input → retrieval ya context → model → dhaanche wala jawaab → hawaala.',
-  'Add one tool only when needed.':
-    'Ek tool tabhi jodiye jab sach mein zaroorat ho.',
   'Use an unanswerable query and record the baseline failure.':
     'Ek aisi query lijiye jiska jawaab hai hi nahi, aur shuruati galti likh lijiye.',
-  'Running repository + architecture v1.':
-    'Chalti hui repository aur architecture v1.',
-  'Can you run the system from a clean environment?':
-    'Kya aap system ko ek bilkul saaf environment se chala sakte hain?',
   'A working small system beats a large diagram.':
     'Chalta hua chhota system bade diagram se behtar hai.',
   'Add evaluation and observability':
@@ -157,43 +135,11 @@ Object.assign(window.HING = window.HING || {}, {
     'Kaunsi teen galtiyon ne aapko chaunka diya?',
   'Your failure log is often more valuable than your happy-path demo.':
     'Aapki galtiyon ka log aksar aapke seedhe-raaste wale demo se zyada keemti hota hai.',
-  'Optimize and quantify':
-    'Sudhaariye aur naapiye',
-  'Apply targeted fixes and measure before/after.':
-    'Nishaane par sudhaar lagaiye aur pehle-baad naapiye.',
-  'Optimization is meaningful only when the delta is visible.':
-    'Sudhaar ka matlab tabhi hai jab antar dikhe.',
-  'Try reranking, prompt restructuring, schema validation, caching, routing or context reduction where justified.':
-    'Jahan theek lage wahan reranking, prompt ka dhaancha badalna, schema ki jaanch, caching, routing ya context ghatana aazmaiye.',
-  'Change one variable at a time and rerun the relevant eval slice.':
-    'Ek-ek kar ke variable badliye aur sambandhit evaluation ka hissa dobara chalaiye.',
-  'Keep a fix that improves one metric but worsens another and document the trade-off.':
-    'Ek aisa sudhaar rakhiye jo ek metric behtar kare aur dusra bigaade — aur samjhaute ko likh lijiye.',
-  'Before/After Optimization Report + ADRs.':
-    'Pehle-baad ki sudhaar report aur ADR.',
-  'Which improvement is statistically or operationally meaningful for your sample?':
-    'Aapke namoone ke liye kaunsa sudhaar aankdon ya rozmarra ke hisaab se sach mein maayne rakhta hai?',
-  'Avoid “optimization theater.”':
-    '“Sudhaar ka natak” mat kijiye.',
   'Defend the system':
     'System ka bachaav kijiye',
-  'Present the architecture, evidence, security, cost and residual risk to two audiences.':
-    'Architecture, saboot, security, lagat aur bacha hua khatra do alag shrotaon ke saamne rakhiye.',
-  'The final skill is not building; it is explaining and defending the system.':
-    'Aakhri hunar banana nahi hai; system ko samjhana aur uska bachaav karna hai.',
-  'Prepare a five-minute executive briefing and twenty-minute technical defense.':
-    'Paanch minute ki executive briefing aur bees minute ka technical bachaav taiyaar kijiye.',
-  'Include three failures, three quantified improvements, residual risks and explicit non-goals.':
-    'Teen galtiyan, teen naape gaye sudhaar, bache hue khatre, aur saaf-saaf likha hua jo nahi karna — sab rakhiye.',
   'Have a peer challenge your model choice, agent choice, security and cost assumptions.':
     'Kisi saathi se apne model ke chunaav, agent ke chunaav, security aur lagat ke anumaanon par sawaal uthwaiye.',
-  'Final repository, architecture, PRD, risk register, evaluation pack, observability dashboard, vendor scorecard and executive deck.':
-    'Aakhri repository, architecture, PRD, risk register, evaluation pack, observability dashboard, vendor scorecard aur executive deck.',
-  'Can you explain every major decision without saying “the framework handles it”?':
-    'Kya aap har bade faisle ko bina “framework sambhaal leta hai” kahe samjha sakte hain?',
   'This is the credential you carry into interviews and design reviews.':
-    'Yahi woh saakh hai jo aap interview aur design review mein le jaate hain.',
-  'After this chapter, the appendices turn the artifacts into reusable portfolio templates.':
-    'Is chapter ke baad parishisht in cheezon ko baar-baar kaam aane wale portfolio template mein badal dete hain.'
+    'Yahi woh saakh hai jo aap interview aur design review mein le jaate hain.'
 
 });

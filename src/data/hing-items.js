@@ -19,8 +19,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Theek 300',
   'A RAG query sends 1,800 input tokens and produces 240 output tokens. Input is ₹0.20 per million tokens, output ₹0.60 per million. What is the cost of one query, in paise (1 rupee = 100 paise)?':
     'Ek RAG query 1,800 input tokens bhejti hai aur 240 output tokens banati hai. Input ₹0.20 prati million tokens, output ₹0.60 prati million. Ek query ki cost paise mein kitni hai (1 rupaya = 100 paise)?',
-  '(1800/1,000,000 × 0.20) + (240/1,000,000 × 0.60) = 0.00036 + 0.000144 = ₹0.000504 ≈ 0.05 paise. The point is not the arithmetic; it is that per-query costs look negligible until multiplied by volume and the four multipliers.':
-    '(1800/1,000,000 × 0.20) + (240/1,000,000 × 0.60) = 0.00036 + 0.000144 = ₹0.000504 ≈ 0.05 paise. Baat maths ki nahi hai; baat yeh hai ki per-query cost tab tak mamooli lagti hai jab tak use volume aur chaar multipliers se guna na kiya jaaye.',
   'A business case quotes ₹0.30 per query using input tokens × rate + output tokens × rate. Which of these would make the real bill higher than that figure?':
     'Ek business case ₹0.30 per query batata hai, input tokens × rate + output tokens × rate se. Inme se kaunsi cheezein asli bill ko us aankde se upar le jaayengi?',
   'k, retries, agent steps and reasoning tokens are the four multipliers, and they compound. Caching is the one item that moves cost *down*.':
@@ -493,8 +491,6 @@ Object.assign(window.HING = window.HING || {}, {
     'k=3 ya k=8, jhukav k=8 ki taraf. Drafting aide mein review karne wala professional adhoore drafts pakad leta hai, isliye bhari hui mez jhelne layak hai, jabki jo tool sahi material saamne hi nahi laata use log chhod dete hain. k=8 aakhri hit khareedta hai lekin k=3 se lagbhag 2.7× tokens leta hai ek hit ke liye, aur precision girkar 19% ho jaati hai — isliye achcha jawaab k=3 ko value ka chunav batata hai aur k=8 ko jaayaz, agar latency aur budget ijaazat dein, aur kehta hai ki woh reranker se dobara faisla karega taaki k=3 ke volume par k=8 wala recall mile.',
   'Before trusting an LLM judge, the one non-negotiable step is:':
     'LLM judge par bharosa karne se pehle jo ek kadam chhoda hi nahi ja sakta woh hai:',
-  'A judge you have not evaluated is not a measurement instrument. It is a second opinion from the same species of machine that produced the answer.':
-    'Jis judge ka evaluation nahi hua woh maapne ka auzaar nahi hai. Woh usi kism ki machine ki doosri rai hai jisne jawaab banaya tha.',
   'Using the largest available model':
     'Sabse bada maujood model istemaal karna',
   'Measuring its agreement with human labels on a representative set':
@@ -989,8 +985,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Asli design sample lete hain, ya sirf woh outputs review karte hain jo koi programmatic check fail karte hain, aur reviewer ko retrieve hua evidence aur kaam karne ka samay dete hain.',
   'Nothing — that is thorough':
     'Kuchh nahi — yeh to poora hai',
-  'It is not exercisable, so it is not oversight; it is a sentence in a document':
-    'Yeh kiya hi nahi ja sakta, isliye yeh oversight nahi hai; yeh ek document mein likha sentence hai',
   'It should be two humans':
     'Do insaan hone chahiye',
   'Review should be automated':
@@ -1465,8 +1459,6 @@ Object.assign(window.HING = window.HING || {}, {
     '"Yeh model par nirbhar hai"',
   'Fine-tuning a model primarily teaches it:':
     'Model ko fine-tune karna use mukhya roop se kya sikhata hai:',
-  'Fine-tuning adjusts the model’s behaviour from examples of inputs and desired outputs. It is extremely good at “always answer in this shape, in this register, following these conventions.” It is a poor and expensive way to install facts, because facts change and a tuned model has to be retrained to learn that they did.':
-    'Fine-tuning inputs aur chaahe gaye outputs ke examples se model ka behaviour badalti hai. Woh "hamesha is shape mein, is lehje mein, in riwaajon ke saath jawaab do" mein bahut achchi hai. Facts daalne ka yeh kharaab aur mehnga tareeka hai, kyunki facts badalte hain aur tuned model ko yeh jaanne ke liye dobara train karna padta hai ki woh badal gaye.',
   'New facts about your business':
     'Aapke business ke naye facts',
   'A behaviour — format, tone, structure, how to respond':
@@ -1477,8 +1469,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Zyada steps mein sochna',
   'Users complain the assistant does not know your 2026 policy, which was published last month. Which lever is the right one?':
     'Users shikaayat karte hain ki assistant ko aapki 2026 policy nahi pata, jo pichhle mahine chhapi thi. Sahi lever kaunsa hai?',
-  'This is a knowledge gap, and knowledge that changes belongs in retrieval where it can be updated, versioned and cited. Fine-tuning bakes it in until the next training run; a system prompt works only until the policy is long enough to crowd the envelope, and neither produces a citation the user can check.':
-    'Yeh jaankaari ki khaai hai, aur badalne wali jaankaari retrieval mein rehti hai jahan use update, version aur cite kiya ja sake. Fine-tuning use agli training tak pakka kar deti hai; lamba system prompt tabhi tak chalta hai jab tak policy envelope na bhar de, aur dono mein se koi aisi citation nahi deta jise user jaanch sake.',
   'Fine-tune on the new policy':
     'Nayi policy par fine-tune kijiye',
   'Retrieval — index the policy and cite it':
@@ -1489,8 +1479,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Bade model par jaiye',
   'What is the strongest reason to exhaust prompting and retrieval before fine-tuning?':
     'Fine-tuning se pehle prompting aur retrieval poori tarah aazmaane ka sabse mazboot kaaran kya hai?',
-  'The argument is not that tuning is bad — it is that the first two levers are cheap to try and cheap to undo, so they cost you a day to rule out. Tuning commits you to building and maintaining a labelled dataset, re-running it on every model change, and losing the ability to switch providers easily. Spend that only after the cheap levers have failed against a measurement.':
-    'Tark yeh nahi hai ki tuning kharaab hai — tark yeh hai ki pehle do lever aazmaane mein saste hain aur wapas lene mein bhi saste, isliye unhe hataane mein ek din lagta hai. Tuning aapko ek labelled dataset banane aur sambhalne, har model badlav par use dobara chalane, aur provider aasaani se badal paane ki kshamata khone se baandh deti hai. Woh paisa tabhi dijiye jab saste lever ek naap ke saamne fail ho chuke hon.',
   'Fine-tuning is technically difficult':
     'Fine-tuning technically mushkil hai',
   'They are reversible and measurable in hours; tuning adds a dataset, a training cycle and a dependency you must maintain':
@@ -1501,8 +1489,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Providers ise hatotsahit karte hain',
   'Which of these must already exist before "should we fine-tune?" is a question that can be answered?':
     '"Kya humein fine-tune karna chahiye?" ka jawaab dene layak hone se pehle inme se kya pehle se hona zaroori hai?',
-  'The first four are the decision. Without an eval you cannot tell whether tuning helped; without a named failure with counts you do not know what you are fixing; without a dataset there is nothing to tune on and no way to repeat it after the next model deprecation; and without having tried the reversible levers you are paying the expensive price first. Budget is a consequence of the decision, not an input to it.':
-    'Pehli chaar hi faisla hain. Eval ke bina aap bata hi nahi sakte ki tuning se faayda hua; ginti wale naam-diye failure ke bina aapko pata hi nahi ki aap kya theek kar rahe hain; dataset ke bina tune karne ko kuchh hai hi nahi aur agle model deprecation ke baad use dohraane ka koi raasta nahi; aur wapas liye ja sakne wale lever aazmaaye bina aap mehngi keemat pehle de rahe hain. Budget faisle ka nateeja hai, uska input nahi.',
   'An eval suite with ground truth you trust':
     'Ek eval suite jiski ground truth par aapko bharosa ho',
   'A named failure mode, with counts, from real traffic':
@@ -1531,8 +1517,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Reasoning se bhara ho, kai aapas mein judi steps ke saath',
   'The primary purpose of showing sources beside an AI-generated answer is:':
     'AI ke bane jawaab ke bagal mein sources dikhane ka mukhya maqsad kya hai:',
-  'Citations exist so that checking is cheaper than trusting. That is why a citation which does not resolve to the actual passage is worse than none at all: it buys the appearance of verifiability while removing the ability to verify, which is exactly the trade a user cannot detect.':
-    'Citations isliye hoti hain ki jaanchna bharosa karne se sasta ho jaaye. Isiliye aisi citation jo asli passage tak nahi le jaati, bilkul na hone se bhi buri hai: woh jaanche jaane ka dikhawa kharid leti hai aur jaanchne ki kshamata chheen leti hai, aur theek yahi sauda user pakad hi nahi sakta.',
   'To signal sophistication':
     'Barhaai dikhane ke liye',
   'To let the user verify the claim cheaply':
@@ -1555,8 +1539,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Kisi document ka summary',
   'Your model returns a confidence score. What is the strongest way to use it in the interface?':
     'Aapka model ek confidence score lautata hai. Interface mein use istemaal karne ka sabse mazboot tareeka kya hai?',
-  'A displayed confidence number transfers the judgement to a user who has no way to calibrate it, and model-reported confidence is frequently poorly calibrated anyway. The value of the score is as a routing signal inside your product: it changes what the interface does — answer, show evidence, ask a clarifying question, or hand to a human — rather than what it says.':
-    'Dikhaya gaya confidence number faisla us user ko de deta hai jiske paas use aankne ka koi tareeka nahi, aur model ka apna confidence waise bhi aksar theek calibrate nahi hota. Score ki keemat aapke product ke andar ek routing signal ke roop mein hai: woh badalta hai ki interface kya *karta* hai — jawaab de, evidence dikhaye, saaf karne wala sawaal poochhe, ya kisi insaan ko de — na ki woh kya kehta hai.',
   'Display it as a percentage next to the answer':
     'Use jawaab ke bagal mein percentage ke roop mein dikhaiye',
   'Colour the answer green, amber or red by threshold':
@@ -1581,8 +1563,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Woh user ko feedback ke liye dhanyavaad deta hai',
   'Which screen most determines whether users trust an AI feature over time?':
     'Samay ke saath users AI feature par bharosa karenge ya nahi, yeh sabse zyada kaunsi screen tay karti hai?',
-  'Every system is impressive when it works. Trust is built or destroyed by what happens when it cannot answer: a system that says “I don’t have that” with a route to a human is trusted more, and correctly, than one that always produces something. This screen is designed last or not at all, which is why so many AI features feel unreliable despite good average accuracy.':
-    'Har system tab shaandaar hota hai jab woh chalta hai. Bharosa tab banta ya tootta hai jab woh jawaab nahi de paata: jo system kehta hai "mere paas yeh nahi hai" aur kisi insaan tak ka raasta deta hai, us par zyada bharosa hota hai — aur theek hota hai — us se jo hamesha kuchh na kuchh bana deta hai. Yeh screen sabse aakhir mein banti hai ya banti hi nahi, isiliye achchi average accuracy ke baawajood itne AI features bharose layak nahi lagte.',
   'The successful answer':
     'Safal jawaab',
   'The loading state':
@@ -1591,8 +1571,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Refusal ya khaali sthiti — jab uske paas kehne ko kuchh achcha na ho tab woh kya dikhata hai',
   'The onboarding tour':
     'Onboarding ka tour',
-  'Write the interface contract for an AI feature you know: what it shows when it is confident, what it shows when it is not, what the user can do when it is wrong, and what the feature still does when the AI path is turned off.':
-    'Apne jaane hue kisi AI feature ke liye interface contract likhiye: jab woh confident ho tab kya dikhata hai, jab na ho tab kya, galat hone par user kya kar sakta hai, aur AI path band hone par feature phir bhi kya karta hai.',
   'A strong answer treats uncertainty as a design input rather than an engineering embarrassment. Confident: the answer with resolvable citations, and an action the user can take directly. Unconfident: the evidence first with the answer framed as a draft, or a clarifying question rather than a guess — and never the same visual treatment as a confident answer. Wrong: an edit path that captures the expected answer and the evidence, faster than doing the task manually, feeding the failure taxonomy. Off: the feature degrades to something that still works — search without generated answers, a form without extraction, a queue without routing — because the kill switch is only usable if there is a product underneath it.':
     'Achcha jawaab anishchitata ko engineering ki sharmindagi nahi, design ka input maanta hai. Confident: jawaab, aise citations ke saath jo asli passage kholein, aur ek kaam jo user seedhe kar sake. Kam confident: pehle evidence, aur jawaab draft ke roop mein, ya andaaze ki jagah ek saaf karne wala sawaal — aur kabhi bhi confident jawaab jaisa dikhaawa nahi. Galat: ek edit ka raasta jo ummeed kiya gaya jawaab aur evidence pakde, haath se karne se tez ho, aur failure taxonomy ko bhare. Band: feature girkar kisi aisi cheez par aa jaaye jo phir bhi chalti ho — bane hue jawaabon ke bina search, extraction ke bina form, routing ke bina queue — kyunki kill switch tabhi kaam ka hai jab uske neeche koi product ho.'
 

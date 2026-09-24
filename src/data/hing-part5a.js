@@ -6,13 +6,8 @@
    people actually say in the room. */
 Object.assign(window.HING = window.HING || {}, {
 
-  /* ---- Part V, the track itself ---- */
   'The applied track — production depth':
     'Applied track — production ki gehraai',
-  'The engineering floor under all of it, then model choice on evidence, context as a designed budget, retrieval as a real system, tools and agents with the steering wheel kept, a protocol boundary, input that is not text, evaluation as a release gate, running it in production, security you can prove, the specification, the architecture — and one capstone system you can defend.':
-    'Sabse neeche engineering ki zameen, phir evidence par model chunna, context ko ek soche-samjhe budget ki tarah dekhna, retrieval ko ek poore system ki tarah, tools aur agents jinme steering wheel aapke haath mein rahe, ek protocol ki boundary, aisa input jo text nahi hai, evaluation ko release ke gate ki tarah, ise production mein chalana, security jise aap saabit kar sakein, spec, architecture — aur ek capstone system jise aap defend kar sakein.',
-
-  /* ---- lab-first plan: chapters 1 to 7 ---- */
   'Open a notebook and make one model API call before reading anything. Predict first: is it retrieving an answer, or generating one?':
     'Notebook kholiye aur kuch bhi padhne se pehle ek model API call kijiye. Pehle andaaza lagaiye: yeh jawaab dhoondh raha hai, ya bana raha hai?',
   'Run a short question, then a long input, and save the raw response and the usage block from each.':
@@ -93,8 +88,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Laal nishaan lagi architecture aur failure ka naksha, saath mein ek chalta hua demo.',
   'Explain every layer without hiding behind a framework.':
     'Har layer samjhaiye, kisi framework ke peechhe chhipe bina.',
-
-  /* ---- chapter 21 — the engineer's floor ---- */
   'Open a notebook and write a Python program that reads JSON, calls an HTTP endpoint, handles a failure status and writes JSON back out — before you read a word below.':
     'Notebook kholiye aur ek Python program likhiye jo JSON padhe, ek HTTP endpoint ko call kare, failure status sambhaale aur JSON wapas likhe — neeche ek shabd padhne se pehle.',
   'Turn it into an experiment harness that records id, timestamp, model, prompt, response, latency, usage and errors.':
@@ -105,31 +98,7 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek Git repository jisme harness aur uske tests rakhe hon.',
   'Trace one failure from the input that caused it all the way to the error it produced.':
     'Ek failure ko poora traciye — jis input se hui thi wahan se us error tak jo usne banaya.',
-  'The engineer’s floor':
-    'Engineer ki zameen',
-  'Book chapter 8. Enough software depth to be dangerous — not to become a backend engineer again, but so that JSON, HTTP, secrets, tests and logs stop feeling foreign when you are interrogating someone else’s architecture.':
-    'Kitaab ka chapter 8. Itni software samajh ki aap khatarnaak ho jaayein — dobara backend engineer banne ke liye nahi, balki isliye ki jab aap kisi aur ka architecture kured rahe hon to JSON, HTTP, secrets, tests aur logs paraye na lagein.',
-  'Read a request, a response, a status code and a stack trace without flinching.':
-    'Ek request, ek response, ek status code aur ek stack trace bina ghabraaye padh lena.',
-  'Explain why an AI system is a software system with a probabilistic component, not a magic box.':
-    'Samjhaana ki AI system ek software system hai jisme ek hissa andaazon par chalta hai — koi jaadui dabba nahi.',
-  'Name where the engineering risk actually lives in an AI feature.':
-    'Batana ki AI feature mein engineering ka risk asal mein kahan baitha hota hai.',
-  'The experiment harness, in version control':
-    'Experiment harness, version control mein',
-  'Every later chapter in this track asks you to run something and compare it against something else. Doing that from scratch each time is how comparisons quietly stop being comparable. Build the harness once, put it in Git, and spend the rest of the track adding to it.':
-    'Is track ka har agla chapter aapse kuch chalane aur kisi aur cheez se milane ko kahega. Har baar shuru se karna hi woh tareeka hai jisse comparison chupke se bekaar ho jaate hain. Harness ek baar bana lijiye, Git mein daal dijiye, aur baaki track usme jodte rahiye.',
   'Write a 20-line utility that reads JSON from a file and filters rows by one field.':
-    'Ek 20 line ki utility likhiye jo file se JSON padhe aur ek field ke hisaab se rows chhaante.',
-  'Add three unit tests: the happy path, a missing field, and empty input.':
-    'Teen unit test joriye: sab theek waala case, ek gayab field, aur khaali input.',
-  'Wrap your AI request recorder around it so every run lands as a JSON record.':
-    'Apna AI request recorder iske upar lagaiye taaki har run ek JSON record ban jaaye.',
-  'Create a Git repository, commit the harness, and write a README that says how to run it from a clean machine.':
-    'Ek Git repository banaiye, harness commit kijiye, aur ek README likhiye jo bataaye ki naye computer par ise kaise chalayein.',
-  'Deliberately break one thing — a bad key, a timeout, a malformed response — and confirm the record still gets written with the error in it.':
-    'Jaanbujhkar ek cheez todiye — galat key, ek timeout, ek tuta response — aur pakka kijiye ki record phir bhi likha jaaye, error ke saath.',
-  'A repository that a stranger could clone and run.':
-    'Aisi repository jise koi anjaan aadmi clone karke chala le.'
+    'Ek 20 line ki utility likhiye jo file se JSON padhe aur ek field ke hisaab se rows chhaante.'
 
 });

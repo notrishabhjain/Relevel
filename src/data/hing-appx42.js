@@ -175,10 +175,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek technical decision pack, ADR ka ek set, aur rollout aur rollback ka plan.',
   'Capstone':
     'Capstone',
-  'Build, break, measure, defend':
-    'Banaiye, todiye, naapiye, bachaav kijiye',
-  'The complete portfolio evidence pack.':
-    'Poora portfolio evidence pack.',
   'Seven foundation notebooks':
     'Saat buniyaadi notebook',
   'One per foundation chapter — the smallest working thing, kept.':
@@ -257,12 +253,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek system diagram, bharose ki lakeerein, deployment aur operations.',
   'Final capstone repository':
     'Aakhri capstone repository',
-  'Reproducible code, tests, evaluation and documentation.':
-    'Dobara chalaya ja sakne wala code, test, evaluation aur documentation.',
   'Executive briefing deck':
     'Executive briefing deck',
-  'Five minutes on the outcome, twenty minutes of technical defence.':
-    'Paanch minute nateeje par, bees minute technical bachaav ke.',
   'Experiment Record':
     'Experiment Record',
   'Fill one every time you change one thing and measure. It is the difference between an experiment and an afternoon.':
@@ -752,8 +744,6 @@ Object.assign(window.HING = window.HING || {}, {
   'Define release, rollback and vendor-exit criteria.':
     'Release, rollback aur vendor chhodne ke criteria tay kijiye.',
   'Explain the trade-offs to an engineer and to a business stakeholder, differently.':
-    'Wahi samjhaute ek engineer ko aur ek business wale ko — alag-alag tareeke se samjhaiye.',
-  'The final artifact is not a certificate. It is your repository plus the evidence pack: what you built, what broke, what you measured, what you changed, and what is still unresolved.':
-    'Aakhri cheez koi certificate nahi hai. Woh aapki repository hai aur uske saath evidence pack: aapne kya banaya, kya toota, kya naapa, kya badla, aur kya ab bhi anasuljha hai.'
+    'Wahi samjhaute ek engineer ko aur ek business wale ko — alag-alag tareeke se samjhaiye.'
 
 });

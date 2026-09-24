@@ -5,8 +5,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Python, ek experiment ke auzaar ki tarah',
   'Write small Python programs, functions, lists, dictionaries and loops well enough to modify experiments without depending on generated code.':
     'Chhote Python program, function, list, dictionary aur loop itne achhe se likh lein ki aap experiment khud badal sakein, kisi ke banaye code par nirbhar hue bina.',
-  'Python is the lab notebook of applied AI: the value is not language mastery but the ability to express an experiment precisely.':
-    'Applied AI mein Python lab ki copy jaisa hai: baat bhasha par mahaarat ki nahi, experiment ko theek-theek likh paane ki hai.',
   'Create variables, a function, a loop and a dictionary; print each intermediate result.':
     'Variable, ek function, ek loop aur ek dictionary banaiye; beech ka har nateeja print kijiye.',
   'Build a script that reads ten questions from a list and records a result object for each question.':
@@ -91,8 +89,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Kya aap kal ka nateeja dobara nikaal kar bata sakte hain ki kya badla?',
   'Every later chapter should plug into this harness instead of inventing a new way to record evidence.':
     'Aage ka har chapter isi harness se judna chahiye — har baar saboot sahejne ka naya tareeka gadhne ke bajaay.',
-  'The next lesson reuses the artifact you just created.':
-    'Agla paath usi cheez ko dobara istemaal karta hai jo aapne abhi banayi.',
   'What an LLM is doing at inference':
     'Inference ke waqt LLM kar kya raha hota hai',
   'Explain tokens, transformer-based context processing, generation and the difference between training and inference.':
@@ -201,8 +197,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Kya dekhne wala theek-theek samajh sakta hai ki yahi model kyun chuna gaya?',
   'This is portfolio evidence of technical judgment, not a leaderboard screenshot.':
     'Yeh technical samajh ka portfolio saboot hai, koi leaderboard ka screenshot nahi.',
-  'Next, we learn to engineer the context around whichever model we selected.':
-    'Aage hum seekhenge ki jo bhi model chuna, uske aas-paas ka context kaise gadha jaaye.',
   'Prompt as an interface contract':
     'Prompt, ek interface contract ki tarah',
   'Design prompts with explicit task, constraints, input definitions, output expectations and failure behavior.':

@@ -83,8 +83,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek shuru kijiye',
   'Built in':
     'Bana yahan',
-  'What you finish this course holding is not a certificate. It is twenty-two things you built, broke and measured — and the honest note about what is still unsolved. This page is the running list, the sixteen-week map it sits on, and the thirteen things you should be able to do at the end.':
-    'Is course ke aakhir mein aapke haath mein koi certificate nahi hota. Baais cheezein hoti hain jo aapne banayin, todeen aur naapin — aur woh imaandaar note ki kya ab bhi anasuljha hai. Yeh panna wahi chalti hui soochi hai, woh solah hafton ka naksha jis par yeh tiki hai, aur woh terah kaam jo aapko aakhir mein aane chahiye.',
   'artifacts finished':
     'cheezein poori hueen',
   'in progress':

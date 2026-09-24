@@ -58,8 +58,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Assistant kam se kam utna achcha kare jitna aaj ka haath se hone waala tareeka',
   'Your provider announces a price increase on ninety days’ notice. Which of these make the switch tractable?':
     'Aapka provider nabbe din ka notice dekar daam badhane ka elaan karta hai. Inme se kya badalna aasaan banata hai?',
-  'The first three are the exit plan, whether or not anyone called it that. An evaluation set is the thing that turns "can we switch?" from a debate into a week of work — which is why the usual finding is that the exit plan and the evaluation set are the same artifact.':
-    'Pehli teen hi nikalne ki yojana hain, chaahe kisi ne unhe yeh naam diya ho ya nahi. Evaluation set wahi cheez hai jo "kya hum badal sakte hain?" ko bahas se ek hafte ke kaam mein badal deti hai — aur isiliye aam nateeja yeh nikalta hai ki nikalne ki yojana aur evaluation set ek hi cheez hain.',
   'An evaluation set you can re-run against a new provider':
     'Ek evaluation set jise aap naye provider par dobara chala sakein',
   'A provider scorecard that already included exit cost':
@@ -70,8 +68,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Team ki abhi waale provider ke liye mazboot pasand',
   'What makes a capstone credible in a design review?':
     'Design review mein capstone ko bharosemand kya banata hai?',
-  'Anyone can demonstrate the happy path. The evidence that you understand a system is that you know where it breaks, can show the measurement that proves you fixed some of it, and can say plainly what you did not solve.':
-    'Sab theek chalne waala raasta to koi bhi dikha sakta hai. Aap system samajhte hain iska saboot yeh hai ki aapko pata hai woh kahan tootta hai, aap woh naap dikha sakte hain jo saabit kare ki kuch aapne theek kiya, aur aap saaf keh sakte hain ki kya hal nahi kiya.',
   'A working demo on the happy path':
     'Sab theek chalne waale raaste par ek chalta demo',
   'A framework choice that matches what the team already uses':
@@ -80,8 +76,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Aapke khud dhoondhe hue failure, pehle-baad ke numbers aur likhe hue bache khatre ke saath',
   'Coverage of every topic in the book':
     'Kitaab ke har vishay ko chhoo lena',
-
-  /* ---- the "Not yet" parking lot ---- */
   'Choosing between embedding models':
     'Embedding models mein se chunna',
   'Measured on your own ground truth, not on a leaderboard.':
