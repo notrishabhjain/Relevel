@@ -31,14 +31,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Product ke AI hisse ke liye build, buy ya partner karna hai, yeh decide kijiye.',
   'Write the strategy and prioritise':
     'Strategy likhiye aur prioritise kijiye',
-  'Three artifacts that turn your research into decisions: a strategy memo, a scored list of opportunities, and a build/buy/partner decision for the AI layer.':
-    'Teen artifacts jo aapki research ko decisions mein badalte hain: ek strategy memo, opportunities ki ek scored list, aur AI layer ke liye ek build/buy/partner decision.',
-  'Write a one-to-two-page strategy memo covering the diagnosis, the chosen user, the wedge, the differentiated promise, the capabilities you need, the trade-offs, and your non-goals.':
-    'Ek se do page ka strategy memo likhiye jisme diagnosis, chuna hua user, wedge, differentiated promise, chahiye capabilities, trade-offs, aur aapke non-goals shaamil hon.',
-  'Score ten opportunities with RICE. Then override one score using your strategy, and explain why in one paragraph.':
-    'RICE se das opportunities score kijiye. Phir apni strategy use karke ek score override kijiye, aur ek paragraph mein samjhaiye kyun.',
-  'Write a build/buy/partner decision for the AI layer. Compare the options on quality, latency, cost, privacy, lock-in and time to market.':
-    'AI layer ke liye ek build/buy/partner decision likhiye. Options ko quality, latency, cost, privacy, lock-in aur time to market par compare kijiye.',
   'The memo has a non-goals section that rules out something tempting.':
     'Memo mein ek non-goals section hai jo kisi tempting cheez ko rule out karta hai.',
   'Every initiative in the memo traces back to the diagnosis.':

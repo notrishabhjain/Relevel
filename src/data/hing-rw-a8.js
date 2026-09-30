@@ -17,20 +17,6 @@ Object.assign(window.HING = window.HING || {}, {
     'AI market describe kijiye: model providers, open-weight models, infrastructure aur applications.',
   'Three experiments on how models work':
     'Models kaise kaam karte hain iske teen experiments',
-  'Three short experiments that turn the ideas in this chapter into evidence you have seen for yourself.':
-    'Teen chhote experiments jo is chapter ke ideas ko aisi evidence mein badalte hain jo aapne khud dekhi hai.',
-  'Use an attention visualiser (the notebook in Idea 2, or the Transformer Explainer website) to see which words influence a prediction. Write down what the demo shows and what it does not prove.':
-    'Ek attention visualiser use kijiye (Idea 2 ki notebook, ya Transformer Explainer website) yeh dekhne ke liye kaunse shabd ek prediction ko influence karte hain. Likhiye demo kya dikhata hai aur kya saabit nahi karta.',
-  'Build a decision table comparing prompt-only, RAG and fine-tuning across freshness, private data, style, cost, latency and evaluation. Fill it in for your capstone.':
-    'Prompt-only, RAG aur fine-tuning ko freshness, private data, style, cost, latency aur evaluation par compare karta ek decision table banayiye. Apne capstone ke liye ise bhariye.',
-  'Run the same ten test cases through two different model families using OpenRouter or Google AI Studio. Record quality, latency and cost for each.':
-    'OpenRouter ya Google AI Studio use karke wahi das test cases do alag model families se chalayiye. Har ek ke liye quality, latency aur cost record kijiye.',
-  'Your attention write-up says clearly what the visualisation does not show.':
-    'Aapka attention write-up saaf saaf batata hai ki visualisation kya nahi dikhata.',
-  'The decision table ends with a choice for your capstone and the reason for it.':
-    'Decision table aapke capstone ke liye ek choice aur uske reason par khatam hoti hai.',
-  'The model comparison uses the same ten cases for both models, and records all three measures.':
-    'Model comparison dono models ke liye wahi das cases use karta hai, aur teeno measures record karta hai.',
   'Rubric: conceptual accuracy 40%, experiment quality 30%, decision clarity 30%.':
     'Rubric: conceptual accuracy 40%, experiment quality 30%, decision clarity 30%.',
   'A candidate problem with an AI fit':

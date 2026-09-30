@@ -17,14 +17,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Interview evidence se ek opportunity solution tree banayiye, aur uski branches rank kijiye.',
   'Size the market and map the opportunities':
     'Market size kijiye aur opportunities map kijiye',
-  'Three artifacts that tell you whether your capstone problem is worth pursuing, and which part of it to start with.':
-    'Teen artifacts jo aapko batate hain ki aapka capstone problem pursue karne layak hai ya nahi, aur uska kaunsa hissa pehle shuru karna hai.',
-  'Build a competitor matrix with at least five alternatives, including “do nothing” and doing the task by hand. For each, note who it is for, the price, its strengths and its weaknesses.':
-    'Kam se kam paanch alternatives ke saath ek competitor matrix banayiye, "kuchh na karna" aur haath se task karna bhi shaamil. Har ek ke liye, note kijiye yeh kiske liye hai, price, uski strengths aur weaknesses.',
-  'Estimate TAM, SAM and SOM bottom-up: number of customers × realistic annual value per customer. List every assumption, and mark each as known or guessed.':
-    'TAM, SAM aur SOM bottom-up estimate kijiye: customers ki sankhya × har customer se realistic annual value. Har assumption list kijiye, aur har ek ko known ya guessed mark kijiye.',
-  'Build an opportunity solution tree from your interview evidence. Rank its branches by reach, pain, confidence and strategic fit.':
-    'Apni interview evidence se ek opportunity solution tree banayiye. Uski branches ko reach, pain, confidence aur strategic fit se rank kijiye.',
   'The competitor matrix includes the status quo, and says why it is hard to replace.':
     'Competitor matrix mein status quo shaamil hai, aur bataya hai usey replace karna mushkil kyun hai.',
   'Every number in the market estimate is labelled as known or assumed, with a source for the known ones.':
