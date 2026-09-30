@@ -82,6 +82,7 @@ window.PART6 = [
   capstone:{
     title:'Set up your learning system',
     brief:'Three artifacts that the rest of the book builds on: a scored role scorecard, a working repository, and a shortlist of capstone problems.',
+    where:'Written. A notes app or paper for the scorecard, and a repository (folders and files, not really code) for the rest.',
     steps:[
       'Write a one-page role scorecard covering the seven areas: discovery, strategy, technical fluency, delivery, analytics, business and leadership. Score yourself 0–3 in each, and write the evidence next to every score.',
       'Create the repository with the folders <code>/research</code>, <code>/product</code>, <code>/experiments</code>, <code>/evals</code>, <code>/analytics</code>, <code>/security</code> and <code>/portfolio</code>, plus a <code>decision-log.md</code> file. Add at least two decisions to the log.',
@@ -228,6 +229,7 @@ window.PART6 = [
   capstone:{
     title:'Map and tear down a product',
     brief:'Take one real product, understand why it works, and practise checking AI-generated analysis against evidence.',
+    where:'Written only. Use a product you already have on your phone or computer; no code required.',
     steps:[
       'Pick one product you use. Map its discovery, delivery and distribution. Mark the weakest of the three, with the evidence that makes you think so.',
       'Write a teardown with seven headings: target user, job, key moment, friction, business model, moat, and one improvement.',
@@ -350,6 +352,7 @@ window.PART6 = [
   capstone:{
     title:'Five interviews and a problem brief',
     brief:'Talk to five real people who have your capstone problem, and turn what they tell you into evidence you can build on.',
+    where:'Written only. Real conversations with real people, then written synthesis; no code required.',
     steps:[
       'Write a screener (three to five questions that decide who qualifies) and a 12-question interview guide. Replace every hypothetical or leading question with a question about past behaviour.',
       'Recruit and run five interviews with real target users. For each, record quotes, the steps of their workflow, their workarounds, how often the problem happens, how bad it is, and what they spend on it today.',
@@ -479,6 +482,7 @@ window.PART6 = [
   capstone:{
     title:'Size the market and map the opportunities',
     brief:'Three artifacts that tell you whether your capstone problem is worth pursuing, and which part of it to start with.',
+    where:'Written only. Research and a spreadsheet; no code required.',
     steps:[
       'Build a competitor matrix with at least five alternatives, including “do nothing” and doing the task by hand. For each, note who it is for, the price, its strengths and its weaknesses.',
       'Estimate TAM, SAM and SOM bottom-up: number of customers × realistic annual value per customer. List every assumption, and mark each as known or guessed.',
@@ -590,6 +594,7 @@ window.PART6 = [
   capstone:{
     title:'Write the strategy and prioritise',
     brief:'Three artifacts that turn your research into decisions: a strategy memo, a scored list of opportunities, and a build/buy/partner decision for the AI layer.',
+    where:'Written only. A memo and a scored spreadsheet; no code required.',
     steps:[
       'Write a one-to-two-page strategy memo covering the diagnosis, the chosen user, the wedge, the differentiated promise, the capabilities you need, the trade-offs, and your non-goals.',
       'Score ten opportunities with RICE. Then override one score using your strategy, and explain why in one paragraph.',
@@ -708,6 +713,7 @@ window.PART6 = [
   capstone:{
     title:'Roadmap, OKRs and a decision memo',
     brief:'Three artifacts that turn your strategy into a plan other people can support.',
+    where:'Written only. A memo and a stakeholder map; no code required.',
     steps:[
       'Turn your strategy into a now/next/later roadmap. For each item, record the outcome, the evidence behind it, an owner, dependencies and a kill criterion.',
       'Write one objective and 3–4 measurable key results. Keep product outcomes separate from model metrics, and add at least one guardrail metric.',
@@ -833,6 +839,7 @@ window.PART6 = [
   capstone:{
     title:'PRD, prototype and a sprint plan',
     brief:'Three artifacts that take your capstone from decision to delivery.',
+    where:'Written for the PRD and sprint plan, plus a no-code prototype in Figma, Lovable or Google AI Studio — no Python required.',
     steps:[
       'Write a PRD with these sections: problem evidence, users, scope, non-goals, UX states, AI behaviour, evaluations, metrics, rollout, security and open questions.',
       'Build a clickable prototype in Figma, Lovable or Google AI Studio. Test it with three target users using task prompts, and write down where each one got stuck.',
@@ -964,6 +971,7 @@ window.PART6 = [
   capstone:{
     title:'Three experiments on how models work',
     brief:'Three short experiments that turn the ideas in this chapter into evidence you have seen for yourself.',
+    where:'A free tool (the Transformer Explainer website) or, if you prefer, a Colab notebook for the attention demo. Write what you saw in the notes box below.',
     steps:[
       'Use an attention visualiser (the notebook in Idea 2, or the Transformer Explainer website) to see which words influence a prediction. Write down what the demo shows and what it does not prove.',
       'Build a decision table comparing prompt-only, RAG and fine-tuning across freshness, private data, style, cost, latency and evaluation. Fill it in for your capstone.',

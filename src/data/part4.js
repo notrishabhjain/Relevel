@@ -60,6 +60,7 @@ window.PART4 = [
   ],
   capstone:{title:'A build-or-buy recommendation with a review date',
    brief:'Make a real build-or-buy recommendation using evidence you gathered, including the conditions under which it stops being right.',
+   where:'Written, no code. Compare the vendor and your own build on paper, then write the recommendation in the notes box below.',
    steps:['State the capability in one line, and whether it is core or supporting for your product.','Run your answer key against at least one vendor trial, and record its results next to your own build’s.','Cost both over two years, including evaluation, maintenance and incident handling.','Add the time until each reaches users. Say which matters more here and why.','For the buy option, write what you would need in order to leave, and how long it would take.','Write the two triggers that would reverse the decision, and the date you will review them.'],
    done:['You measured both options against the same answer key.','The build cost includes maintenance and evaluation, not just tokens.','The recommendation names what would make it wrong, with a review date.']}
 },
@@ -80,6 +81,7 @@ window.PART4 = [
   red:['Reaching for fine-tuning to fix a knowledge gap','Choosing a fix before naming the failure'],
   capstone:{title:'Answer a fine-tuning proposal with evidence',
    brief:'Someone will propose fine-tuning, and it will sound like the serious option. Find out which kinds of failure they actually have, and cost the proposal honestly, including the parts that are usually left off the slide.',
+   where:'Written, no code. Cost the proposal on paper using numbers from earlier chapters, then write your answer in the notes box below.',
    steps:['Collect twenty real failures from something you run, and sort them into the four kinds.','Count them. The counts often settle the question before any technical discussion.','For the largest group, name the cheapest change that would address it, and explain why it is cheaper.','Cost the fine-tuning proposal properly: preparing data, training, evaluating, and repeating it every time the base model changes.','Try a smaller or cheaper model with better retrieval, and measure whether quality actually drops.','Write a one-page recommendation, using the failure counts as the main argument.'],
    done:['You sorted real failures into the four kinds, with counts.','The cost of fine-tuning includes the recurring cost, not just the first run.','You can say what evidence would change your recommendation.']},
   story:[
@@ -170,6 +172,7 @@ window.PART4 = [
   red:['An uncertain answer shown with a certain interface','Citations that do not open the passage','A feedback button that collects nothing usable'],
   capstone:{title:'Design the four states for a real feature',
    brief:'Many AI features use one interface for four different situations, so a confident wrong answer looks exactly like a confident right one. Design the states properly for a real feature, and time how long a correction takes.',
+   where:'Written, no code. Design the four states on paper, then time a real correction with a stopwatch and write the design in the notes box below.',
    steps:['Audit an AI feature you use every day. Note what it shows when it is confident, unsure, wrong and unable to answer.','Pick a feature you own or could own. Write the four states: what the user sees, and what they can do next, in each.','Design the “I cannot answer this” state as a real route to a person, not a dead end.','Decide what the interface shows when confidence is middling, so uncertainty is visible without being noisy.','Time the correction: from a user noticing a mistake to it being fixed. Count every step and hand-off.','Write down which of the four states your current design merges, and what that costs the user.'],
    done:['All four states are specified, including what the user can do in each.','The correction path is timed end to end, and the slowest step is identified.','You can name the state your product handles worst, and what you would change first.']},
   story:[
@@ -284,6 +287,7 @@ window.PART4 = [
   ],
   capstone:{title:'Design a pilot that could fail',
    brief:'Design a pilot for a real feature, with a number the business already tracks, a comparison, a failure threshold and a time window. Then get someone senior to agree the threshold before it runs.',
+   where:'Written, no code. Design the pilot on paper, then write it up and get it agreed before anything runs.',
    steps:['Time the whole workflow and mark where your feature fits. If it is not on the critical path, say so and stop here.','Choose the business number. It must already exist, and someone must already look at it.','Design the comparison: which two groups, over which period, and why they are comparable.','Write the failure threshold, the change below which you would call it a failure, and the time window before you judge.','Write the disappointing result in advance, in the words you would say to whoever funded it.','Get the person who funds it to agree the threshold in writing <em>before</em> the pilot runs.'],
    done:['The number is one the business was already tracking before the pilot.','The failure threshold is agreed in writing by the person who would be disappointed by it.','You can describe a result that would make you recommend switching the feature off.']}
 }
