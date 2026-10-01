@@ -61,26 +61,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Samjhaana ki chat ka beesvaan message pehle se mehnga kyun padta hai.',
   'Say what the temperature setting changes, and what it does not.':
     'Bata paana ki temperature setting kya badalti hai, aur kya nahi.',
-  'Estimate the cost of a feature using only this page':
-    'Sirf is page se ek feature ki cost ka andaaza lagaiye',
-  'Use the three tools in this chapter to estimate what a real feature would cost. The estimate will be rough, but you will know where every number came from.':
-    'Is chapter ke teen tools se andaaza lagaiye ki ek asli feature kitne ka padega. Andaaza mota-mota hoga, lekin aapko pata hoga ki har number kahan se aaya.',
-  'Pick a task from your own work that an AI could do, such as answering a common question, summarising a form or drafting a reply.':
-    'Apne kaam se ek aisa task chuniye jo AI kar sake, jaise ek common sawaal ka jawab dena, ek form summarise karna, ya reply ka draft banana.',
-  'Write one realistic example: what the user sends, and what a good answer looks like. Use real wording.':
-    'Ek realistic example likhiye: user kya bhejta hai, aur achha jawab kaisa dikhta hai. Asli wording use kijiye.',
-  'Run both through the tokenizer above and note the two counts.':
-    'Dono ko upar wale tokenizer se chalaiye aur dono counts note kijiye.',
-  'Imagine it as a five-turn conversation. Using what you saw in Experiment 2, estimate the token count at turn five.':
-    'Ise paanch turn ki baatcheet maaniye. Experiment 2 mein jo dekha uske aadhaar par paanchve turn ka token count andaaza lagaiye.',
-  'Look up one provider’s price per million tokens. Work out the cost of one answer, then of a thousand.':
-    'Kisi ek provider ka per million tokens price dekhiye. Ek jawab ki cost nikaaliye, phir hazaar jawabon ki.',
-  'Write two sentences answering: what would this cost, and what is most likely to make the estimate wrong?':
-    'Do sentences mein jawab likhiye: iski cost kya hogi, aur andaaze ko galat karne wali sabse sambhavit cheez kya hai?',
-  'You have a number, and you can say where each part of it came from.':
-    'Aapke paas ek number hai, aur aap bata sakte hain ki uska har hissa kahan se aaya.',
-  'You did it without creating any account.':
-    'Aapne yeh sab bina koi account banaaye kiya.',
   'You need nothing: no account, no API key, no download. Everything in this chapter runs in this page. Have a piece of your own writing ready, such as an email or a paragraph from a policy.':
     'Aapko kuchh nahi chahiye: na account, na API key, na download. Is chapter ka sab kuchh isi page mein chalta hai. Apna likha hua kuchh taiyaar rakhiye, jaise ek email ya kisi policy ka paragraph.',
   'Most courses start with setup. You install tools, create accounts and copy keys, and only then start learning. This chapter does it the other way round. You run three experiments first, so that when you do set things up, you know what each piece is for.':
@@ -151,26 +131,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Response ka usage block padh kar bata paana ki bill kis cheez ka aata hai.',
   'Estimate the cost of a request from its token counts.':
     'Token counts se ek request ki cost ka andaaza lagana.',
-  'Measure the cost of one real request':
-    'Ek asli request ki cost naapiye',
-  'Use the usage block to measure the cost of a small, real request from your own work.':
-    'Usage block se apne kaam ki ek chhoti, asli request ki cost naapiye.',
-  'Take one realistic request from your own work and run it exactly as you would send it.':
-    'Apne kaam ki ek realistic request lijiye aur use bilkul waise chalaiye jaise aap bhejte.',
-  'Record <code>prompt_tokens</code> and <code>completion_tokens</code> from the usage block.':
-    'Usage block se <code>prompt_tokens</code> aur <code>completion_tokens</code> record kijiye.',
-  'Run it twice more with different realistic inputs, and average the three.':
-    'Do aur alag realistic inputs ke saath chalaiye, aur teeno ka average nikaaliye.',
-  'Find your provider’s price per million tokens and work out the cost of one request.':
-    'Apne provider ka per million tokens price dhoondhiye aur ek request ki cost nikaaliye.',
-  'Add a paragraph of instructions to the prompt and run it again. Note what that paragraph adds to the cost of every call.':
-    'Prompt mein instructions ka ek paragraph jodiye aur phir chalaiye. Note kijiye ki woh paragraph har call ki cost mein kitna jodta hai.',
-  'You have a cost for one request, from your own runs.':
-    'Aapke paas apne runs se nikli ek request ki cost hai.',
-  'You can say what one extra paragraph of instructions costs at a thousand requests a day.':
-    'Aap bata sakte hain ki instructions ka ek extra paragraph roz hazaar requests par kitne ka padta hai.',
-  'You used a real input, not an invented one.':
-    'Aapne ek asli input use kiya, banaya hua nahi.',
   'Open a new Colab notebook and name it <code>chapter-1</code>. Run the three warm-up cells from <a href="#/setup">Setup</a> (the key, the install and the client), so they sit above everything you write today. Each idea in this chapter is followed by code that shows it. Run each block before you read on.':
     'Ek naya Colab notebook kholiye aur uska naam <code>chapter-1</code> rakhiye. <a href="#/setup">Setup</a> ke teen warm-up cells (key, install aur client) chalaiye, taaki woh aaj likhi har cheez ke upar rahein. Is chapter ka har idea code ke saath aata hai jo use dikhata hai. Aage padhne se pehle har block chalaiye.',
   'A model predicts the next piece of text':

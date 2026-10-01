@@ -11,22 +11,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek schema choice se hallucination paida karna, aur phir use hataana.',
   'Say what your schema still cannot catch, and what would catch it.':
     'Batana ki aapka schema ab bhi kya nahi pakad sakta, aur use kya pakdega.',
-  'An extractor that cannot guess':
-    'Aisa extractor jo andaaza na lagaye',
-  'You have seen a schema remove a failure, and a badly designed field cause one. Build a real extractor for a document type you handle, designed so the failure you worry about most has nowhere to appear.':
-    'Aapne dekha ki schema ek failure hataata hai, aur bura design kiya field ek failure paida karta hai. Apne kisi document type ke liye ek asli extractor banaiye, aise design ke saath ki jis failure se aap sabse zyada darte hain uske liye koi jagah na ho.',
-  'Give uncertainty somewhere to go, such as a needs_review option, an optional field or a “not stated” flag, so the model never has to invent.':
-    'Anishchitata ko jaane ki jagah dijiye, jaise needs_review option, optional field ya “not stated” flag, taaki model ko kabhi banaana na pade.',
-  'Require a quote field with the exact words each value came from, and check it on ten real documents.':
-    'Ek quote field zaroori kijiye jisme har value ke exact shabd hon, aur das asli documents par use check kijiye.',
-  'Run twenty documents through it, including three that leave out the field people most want. Count the invented values.':
-    'Bees documents chalaiye, jinme teen aise hon jinme woh field nahi jo log sabse zyada chahte hain. Banaayi hui values giniye.',
-  'For any invented value, change a field rather than the wording, and run it again.':
-    'Har banaayi hui value ke liye wording ki jagah field badaliye, aur phir chalaiye.',
-  'On documents that leave out the key field, nothing is invented, and you can point to the field definition that prevents it.':
-    'Key field na hone wale documents par kuchh nahi banaya jaata, aur aap us field definition par ungli rakh sakte hain jo ise rokti hai.',
-  'Every extracted value includes the words it came from.':
-    'Har nikaali gayi value mein woh shabd hain jahan se woh aayi.',
   'A schema removes malformed replies':
     'Schema kharaab replies hata deta hai',
   'The format is guaranteed. Nothing else is.':
@@ -75,28 +59,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Samjhaana ki chhe step ka agent chhe single calls se kahin zyada mehnga kyun ho sakta hai.',
   'Name what must be true before you let an agent take an action that cannot be undone.':
     'Batana ki agent ko wapas na hone wala action lene dene se pehle kya sach hona chahiye.',
-  'Specify an agent, starting with its limits':
-    'Ek agent specify kijiye, uski seemaon se shuru karke',
-  'You have built the loop, broken a description, fed it an error and removed its step limit. What matters most about an agent is what it can do on a bad day. Specify one for a real task, and write its limits before its capabilities.':
-    'Aapne loop banaya, ek description toda, use error diya aur uski step limit hataayi. Agent ke baare mein sabse zaroori yeh hai ki woh bure din par kya kar sakta hai. Ek asli task ke liye ek specify kijiye, aur uski kshamataon se pehle uski seemayein likhiye.',
-  'Name a task in your own work worth automating, and the two or three tools it would need.':
-    'Apne kaam ka ek automate karne laayak task bataiye, aur uske liye zaroori do-teen tools.',
-  'Write each tool description as if it were the only documentation, because for the model it is.':
-    'Har tool description aise likhiye jaise wahi akela documentation ho, kyunki model ke liye wahi hai.',
-  'Before listing capabilities, write the worst case: the worst thing this agent could do if every call it makes is wrong.':
-    'Kshamatayein list karne se pehle sabse bura case likhiye: agar yeh agent har call galat kare to sabse bura kya kar sakta hai.',
-  'Set the limits: maximum steps, maximum spend, and what happens when either runs out.':
-    'Seemayein tay kijiye: maximum steps, maximum kharcha, aur kisi ke khatam hone par kya hota hai.',
-  'Decide which actions need a person to approve them, and write the rule as a clear condition.':
-    'Tay kijiye ki kin actions ko insaan ki manzoori chahiye, aur rule ko ek saaf shart ki tarah likhiye.',
-  'Build it, then break it on purpose: make one description vague, force one error, and record what the agent said versus what it did.':
-    'Ise banaiye, phir jaan-boojh kar todiye: ek description dhundhla kijiye, ek error force kijiye, aur record kijiye ki agent ne kya kaha aur kya kiya.',
-  'The agent completes the task end to end, and stops cleanly when it reaches its limit.':
-    'Agent task ko shuru se ant tak poora karta hai, aur limit par pahunch kar saaf ruk jaata hai.',
-  'You have made it fail at least twice on purpose, and can describe how each failure looked from outside.':
-    'Aapne use kam se kam do baar jaan-boojh kar fail karaaya, aur bata sakte hain ki har failure bahar se kaisa dikha.',
-  'Someone who has never seen the code could read your worst-case paragraph and decide whether to allow the agent.':
-    'Jisne kabhi code nahi dekha, woh aapka sabse-bura-case paragraph padh kar tay kar sakta hai ki agent ko ijaazat de ya nahi.',
   'The second gap from Chapter 7.5. This chapter closes it.':
     'Chapter 7.5 ki doosri kami. Yeh chapter use band karta hai.',
   'The model sees only the context your app sends':

@@ -18,11 +18,26 @@ window.PART3 = [
     'Test your own judge for known biases, such as favouring longer answers.'
   ],
   red:['A grader nobody checked against human marking','Longer answers scoring higher for no reason','Testing on questions that look nothing like real ones'],
-  capstone:{title:'A judge you have checked',
-   brief:'Build an automated grader, and more importantly the evidence for how far it can be trusted. A grader nobody has checked is not a measurement.',
-   where:'Your <code>chapter-14</code> notebook, to build and run the judge. Grade the fifty outputs by hand, then write the agreement figure in the notes box below.',
-   steps:['Write the rubric a careful person would use to grade one type of output your team produces.','Run the free code checks first, such as format, length and required fields. Count how many failures never need a judge.','Build the judge from your rubric, and grade fifty outputs by hand as well.','Report agreement honestly, including where the judge is consistently more lenient or harsher than you.','Test it for length bias on your own data: the same content in twice the words. Does the score change?'],
-   done:['You have an agreement figure between the judge and your own grading on the same fifty items.','You know whether your judge rewards length, from a test you ran.','You can state the score range in which you would read the output yourself rather than trust the judge.']},
+  capstone:{
+    title:'Build an automatic marker, and check how far to trust it',
+    brief:'Marking every output by hand does not scale, so you will want a model to mark the tool’s output. But a marker nobody has checked is not a measurement. In this chapter you learned the three ways to grade an answer, and that you must test a judge against your own marking and against its known biases. Here you build a marker for the tool’s cleaned text and check it.',
+    where:'Your <code>chapter-14</code> notebook, to build and run the marker. Mark the fifty outputs by hand as well, and write the agreement figure in the notes box below.',
+    steps:[
+      'Write the marking rules a careful person would use for one question: “Is the cleaned text safe and still readable?” Spell out what counts as safe (every personal detail removed or masked) and what counts as readable (the sentence still makes sense).',
+      'Run the free checks first. Does any text shaped like a PAN or an Aadhaar number still appear in the cleaned text? Does the text still have its main words? Count how many outputs fail these checks without needing a model.',
+      'Build the model-based marker from your rules and let it mark fifty cleaned outputs. Mark the same fifty yourself, by hand.',
+      'Calculate how often the marker agrees with you. Look at the disagreements: is the marker too strict, too lenient, or both?',
+      'Test it for a bias towards length: take ten outputs and make each one twice as long without changing its meaning. Does the mark change?',
+      'Write the range of marks in which you would read the output yourself instead of trusting the marker.'
+    ],
+    done:[
+      'Your marking rules.',
+      'The number of outputs that failed the free checks.',
+      'The agreement between the marker and you on the same fifty outputs.',
+      'The result of the length test.',
+      'The range of marks where you would not trust the marker.'
+    ]
+  },
   story:[
     ['c','Before you start','Open a new notebook called <code>chapter-14</code>. Bring your structured RAG output from Chapter 8.5 and your Chapter 6 answer key.'],
     ['p','In Chapter 6 you wrote ten questions and their correct answers, then graded the system yourself. That is still the most reliable way to know whether something works. But it stops being practical at around fifty questions, and a real product gets thousands a week.'],
@@ -112,11 +127,25 @@ window.PART3 = [
     'Decide which group to fix first, based on counts and consequences.',
     'Explain why a generic benchmark cannot do this for your product.'
   ],
-  capstone:{title:'A failure taxonomy for a real system',
-   brief:'Read a hundred real outputs, describe what went wrong in your own words, and turn your notes into groups someone can count. This tells a team what to fix next, and no benchmark can produce it for you.',
-   where:'Written only, no code and no notebook. Read the hundred outputs on paper, group your notes, and write the ranked list in the notes box below.',
-   steps:['Collect a hundred real outputs from something you own or use. Use real traffic, not a sample you chose.','Read them. For each one that went wrong, write what went wrong in your own words. Do not group yet; grouping early hides categories you had not thought of.','Now group the notes, name the groups and count each one.','Rank the groups by count multiplied by how badly each one affects a real person.','For the top group, write what would need to change, and whether that is the prompt, retrieval, a field, or something that is not an AI problem at all.','Add the top two groups as rows in your test set, so the next change is measured against them.'],
-   done:['The groups came from the reading, not from a list decided in advance.','Every group has a count, and the ranking considers consequences as well as frequency.','At least two new rows from real failures are in your test set.']},
+  capstone:{
+    title:'Read a hundred real outputs, and name the ways the tool fails',
+    brief:'A scoreboard says how many mistakes the tool makes. It does not say why. In this chapter you learned to read real failures by hand, describe them in your own words, and only then group and count them. Here you do that for Bharat Privacy Guard, and use the result to grow the answer key.',
+    where:'Written only. No code and no notebook. Work on paper or in a spreadsheet.',
+    steps:[
+      'Collect a hundred outputs from the tool. Use sentences you or your interviewees wrote (made up, or with every real detail changed), not only the ones you already know it handles.',
+      'Read each output. Whenever the tool got something wrong, write one line in your own words about what went wrong. Do not group them yet, because grouping too early hides surprises.',
+      'Now group your notes. Give each group a name, for example “number split by a space”, “name in Devanagari missed” or “order number mistaken for Aadhaar”. Count each group.',
+      'Rank the groups by the count multiplied by how badly each failure hurts a real person.',
+      'For the top group, write what would have to change: the rules, the model’s instructions, the answer format, or something that is not an AI problem at all.',
+      'Add the top two groups as new rows to the answer key. Save it as <code>evals/answer-key-v3.csv</code>, with about 50 rows.'
+    ],
+    done:[
+      'A hundred outputs with a note on every one that went wrong.',
+      'A named, counted and ranked list of failure groups.',
+      'A note on what would need to change for the top group.',
+      'The answer key, version 3, with about 50 rows.'
+    ]
+  },
   story:[
     ['c','Before you start','No code and no notebook. You need real outputs from something you own or use, such as support replies, generated summaries or search results, and about an hour. Bring a pen.'],
     ['h','What error analysis is'],
@@ -161,11 +190,26 @@ window.PART3 = [
     'Say what you would ask a vendor who quotes a price per query.'
   ],
   red:['A cost estimate missing the four multipliers','A feature that loses money on every query at scale'],
-  capstone:{title:'A cost model built from measurements',
-   brief:'Answer the question many teams skip: what does this feature cost at real volume, and what happens to the margin when it succeeds? Build it from measurements, not estimates.',
-   where:'Your <code>chapter-15</code> notebook, to measure tokens and build the cascade; write the three cost numbers in the notes box below.',
-   steps:['Take one feature and measure the tokens it uses across twenty realistic requests. Average them.','Apply the multipliers people forget: retries, retrieved context, conversation history, and failed requests that get repeated.','Work out the cost per request, per thousand requests, and per month at a volume you would actually plan for.','Build a cascade (cheap model first, expensive one only when needed) and measure what share escalates.','Produce three numbers: cost today, cost at ten times the volume, and cost if the cheap path stops working.','Answer the margin question: at what price and usage does this feature stop making money?'],
-   done:['Every figure traces back to a measurement you took, and you can say which one.','The cascade has a measured escalation rate, not an assumed one.','You can name the assumption most likely to make the whole model wrong.']},
+  capstone:{
+    title:'Build a cost model from measurements',
+    brief:'Many teams skip the question “what does this cost at real volume, and what happens to our margin if it succeeds?” In this chapter you learned the four things that make a simple cost estimate wrong, and how a cascade (cheap first, expensive only when needed) saves money. Here you build the cost model for Bharat Privacy Guard from your own measurements, not from guesses.',
+    where:'Your <code>chapter-15</code> notebook, to measure the tokens and build the cascade. Write the three cost numbers in the notes box below.',
+    steps:[
+      'Choose the feature: a bank chat in which every customer message is checked. Measure the tokens your tool uses on twenty realistic messages from your answer key, and take the average.',
+      'Add the things people forget: retries, the policy text sent every time, the conversation history, and requests that fail and are sent again.',
+      'Work out the cost per message, per thousand messages, and per month at a volume you would really expect. Say how many messages you assume and why.',
+      'Build a cascade: send every message to the pattern checker first (it is free), and send only the unsure ones on to the model. Measure what share needs the model.',
+      'Produce three numbers: the cost today, the cost at ten times the volume, and the cost if the cheap path stops working and everything goes to the model.',
+      'Answer the margin question: if a company paid you a fixed price per message, at what price and volume would the tool stop making money?'
+    ],
+    done:[
+      'Average tokens from twenty real messages.',
+      'Cost per message, per thousand and per month, with your volume assumption.',
+      'The share of messages that reach the model in the cascade.',
+      'The three numbers: today, ten times the volume, and no cheap path.',
+      'The price below which the tool loses money.'
+    ]
+  },
   story:[
     ['c','Before you start','Open a new notebook called <code>chapter-15</code>. You need your Chapter 12 pipeline and your Chapter 6 answer key.'],
     ['p','At some point someone senior will ask what this feature costs at scale. “It depends on tokens” is not an answer. This chapter gives you a real one.'],
@@ -283,11 +327,26 @@ window.PART3 = [
     'Explain why voice changes the architecture, not just the interface.'
   ],
   red:['Table rows and columns destroyed when the text was extracted','Right page found, wrong number quoted','A corpus assumed to be clean text'],
-  capstone:{title:'Audit the extraction quality of a real document set',
-   brief:'Extraction errors are silent: text that was never read correctly produces confident answers, and nothing reports an error. Audit a real document set and find out how much of it is wrong.',
-   where:'Your <code>chapter-16</code> notebook, to extract and compare against the originals; write the estimated error rate in the notes box below.',
-   steps:['Take twenty pages of your own scanned or PDF documents. Choose messy ones, not clean ones.','Extract them the usual way, then read the output against the originals and mark every error.','Find the tables. Ask a question only a table can answer, and check what comes back.','Give the page image to a vision model, and compare its answers with the extracted text on the same questions.','Check every cell of one important table by hand. Record how long it took, because that is the real cost of trusting it.','Estimate the error rate across the whole set, and write what it means for anything built on top of it.'],
-   done:['You have a counted error rate from pages you checked yourself.','You can show at least one confident answer that is wrong because of an extraction error.','You have a rule for which documents can go in unchecked and which cannot.']},
+  capstone:{
+    title:'Test the tool on photos of ID cards',
+    brief:'Many personal details reach a website as photos, not as typed text. Reading text out of an image makes mistakes, and no error message warns you. In this chapter you learned why tables and scans are the weakest part of a document pipeline and why no metric catches the problem. Here you test the tool on text read from images of ID cards.',
+    where:'Your <code>chapter-16</code> notebook, to read the images and compare. Write the error rate in the notes box below.',
+    steps:[
+      'Collect ten images. Make them yourself: mock ID cards with made-up details, printed or handwritten and photographed. Never use a photo of a real person’s card.',
+      'Turn each image into text with an OCR tool (software that reads text from pictures). Compare the text with the original and mark every reading mistake.',
+      'Run the pattern checker on the text. For every ID in the original, record whether it was found. Note typical mistakes, such as the letter O read as the digit 0 or the letter l read as 1.',
+      'Give three of the images straight to a model that can read images, and ask it to list the IDs. Compare it with the OCR route on the same three.',
+      'Check every digit of one important field, such as each Aadhaar number, by hand. Write down how long this took. That is the real cost of trusting the result.',
+      'Add the scanned-text rows to the answer key and save it as <code>evals/answer-key-v4.csv</code>. Estimate the error rate for scanned text.'
+    ],
+    done:[
+      'Ten made-up ID images and the text read from them, with the mistakes marked.',
+      'For each ID, whether the pattern checker found it.',
+      'A comparison of the OCR route and the image-reading model on three images.',
+      'The time the hand-check took.',
+      'The answer key, version 4, and an estimated error rate for scanned text.'
+    ]
+  },
   story:[
     ['c','Before you start','Open a new notebook called <code>chapter-16</code>. Find one page from your own documents that contains a real table, such as financial figures, eligibility bands or a rate card.'],
     ['p','Chapter 3 asked you to paste your document’s text into a file. That assumed the text already existed. In most organisations, much of it does not.'],
@@ -417,11 +476,25 @@ window.PART3 = [
     ['h','Retrieval sends what it retrieves'],
     ['c','Watch out','Retrieval sends whatever it retrieves. You may have decided carefully what goes into your document store, and then built a system that sends three chunks from it with every request. Your decision about the document store is effectively a decision about every query.']
   ],
-  capstone:{title:'A “may I send this?” rule, with evidence',
-   brief:'Write a one-page answer to “may I send this?” for your team, based on what the vendor actually says rather than what everyone assumes.',
-   where:'Written, no code. The three real documents and the three questions from the chapter — write the one-page rule in the notes box below.',
-   steps:['List the document types your team would realistically want to send: six to ten.','Run each one through the three questions, and mark it may send, never send, or ask first.','For the “ask first” group, name who is asked and how long they take. If that answer is uncomfortable, the group is too big.','Find and write down, with dates, what your main vendor says about retention, training and location, for the plan you are actually on.','Check your retrieval documents: would every item pass your own rule?','Write the one page, and give it to a colleague to use on a document you have not seen.'],
-   done:['A colleague used it on a real document without asking you a question.','The vendor’s answers are quoted with a date and a plan name.','You checked your document store against your own rule, and either it passes or you know what has to be removed.']}
+  capstone:{
+    title:'Write the rule for what the tool may send to an outside provider',
+    brief:'Bharat Privacy Guard exists to protect people’s data, so it must not leak data itself. When the context judge calls an outside AI model, the text it sends is a risk. In this chapter you learned three questions that settle whether a document may be sent, and that the answer must come from what the provider actually says, not from what everyone assumes. Here you write that rule for your tool.',
+    where:'Written, no code. Use the three questions from the chapter. Write the one-page rule in the notes box below.',
+    steps:[
+      'List six to ten kinds of text the tool might send to the outside model: for example a sentence with no personal detail, a sentence with a name, a sentence with an Aadhaar number, a cleaned sentence with the details replaced by tags, and a whole chat history.',
+      'Take each kind through the three questions from the chapter, and mark it: may send, never send, or ask first.',
+      'For the “ask first” group, say who is asked and how long they take. If the answer is uncomfortable, the group is too big.',
+      'Find out what your chosen provider says about keeping your data, training on it, and where it is processed, for the plan you would really use. Write it down with the date you read it.',
+      'Check your own tool: would every message it sends outward pass your rule? If not, write what changes. For example: “Send only the cleaned sentence, never the original.”',
+      'Write the rule on one page and give it to a colleague to apply to three sentences they have not seen. Note where they hesitated.'
+    ],
+    done:[
+      'A table of six to ten kinds of text, each marked may send, never send or ask first.',
+      'What the provider says about retention, training and location, with the date.',
+      'A note on whether your own tool passes its rule, and the change needed if not.',
+      'The one-page rule, tried out by someone else.'
+    ]
+  }
 },
 {
 
@@ -439,11 +512,28 @@ window.PART3 = [
     'Describe what human oversight must include before it counts as oversight.'
   ],
   red:['A governance file full of adjectives instead of numbers','Oversight written down but impossible to actually do','Data sitting in places you cannot delete from'],
-  capstone:{title:'A system card for something you own',
-   brief:'Almost every compliance question turns out to be a product question. Write the document that answers them for a real system, and test the answers by carrying them out.',
-   where:'Written only. Gather what you already measured in earlier chapters, then write the system card in the notes box below.',
-   steps:['Assign an honest risk tier: what could the system affect, how badly, and who bears the harm?','Write the system card: purpose, data, limits, known failures, and what it must never be used for.','Run the deletion drill. Someone asks for their data to be removed. Follow it through every store and log, and time it.','Design oversight that can really happen: who can overrule, how they learn there is something to overrule, and what they see.','Build the vendor file: what you would need from a supplier to answer all of the above about their component.','Give the card to someone who did not build the system, and ask what is still unclear.'],
-   done:['You ran the deletion drill, and you know how long it takes and where it is incomplete.','A named person could use the oversight process tomorrow without asking you.','A colleague read the card and could explain the system’s limits back to you.']},
+  capstone:{
+    title:'Write the system card for Bharat Privacy Guard',
+    brief:'Almost every compliance question turns out to be a product question. A system card is the document that answers those questions for one system. In this chapter you learned that the same system can be low risk for one use and high risk for another, which section of a governance document is hardest to fake, and what human oversight must include to count as oversight. Here you write the system card for your own tool.',
+    where:'Written only. Gather the numbers and notes from earlier chapters, then write the card in the notes box below.',
+    steps:[
+      'Give the tool a risk level and say why. Ask: what could it affect, how badly, and who bears the harm? A tool that decides what is hidden before data goes to an AI is not low risk if it can miss an Aadhaar number.',
+      'Write the card with five headings: what it is for; what data it handles; what it can do, with its measured quality from your scoreboard; the failures you know about; and what it must never be used for.',
+      'Include this sentence: “This tool helps an organisation collect and pass on less personal data. It does not make anyone compliant with the DPDP Act.” Write two lines explaining why that sentence matters.',
+      'Run a deletion drill. Someone asks you to delete everything about them. Follow the request through every place the tool stores or logs anything, and time it. Write down where you could not tell.',
+      'Design the human oversight: who can overrule the tool, how they find out there is something to overrule, and what they see on their screen.',
+      'Write what you would need from an outside provider to answer all of the above about their part of the system.',
+      'Give the card to someone who did not build the tool and ask what is still unclear. Fix those parts.'
+    ],
+    done:[
+      'A risk level with a reason.',
+      'A system card with the five headings.',
+      'The sentence about not making anyone compliant, and why it matters.',
+      'The result of the deletion drill, with the time it took.',
+      'A description of the human oversight and a list of what you need from a provider.',
+      'The questions your reader still had, and your fixes.'
+    ]
+  },
   story:[
     ['c','Before you start','Have your Chapter 6 numbers, your Chapter 14.5 failure list and your Chapter 7 system available. Most of this chapter collects work you have already done.'],
     ['p','A normal feature ships with code, tests and release notes. An AI feature increasingly ships with a folder of governance documents too. Teams often assume the legal team writes them.'],
@@ -552,11 +642,26 @@ window.PART3 = [
     'Explain why a kill switch is different from a rollback.'
   ],
   red:[],
-  capstone:{title:'A spec that survives a model change',
-   brief:'An AI spec describes a measured range and what happens outside it. Write a real one for a feature you would ship, then rehearse the day the model underneath it changes.',
-   where:'Written only. Collect the artifacts named in the chapter, then write the PRD and the migration rehearsal in the notes box below.',
-   steps:['Draw the whole system from memory first. Then check it against the course and mark what you had forgotten.','Write the PRD: the job, the measured acceptance range, the failure states, and what the interface does in each.','Specify the feedback capture: what is logged on every request, so that next quarter you can tell whether quality got worse.','Rehearse the migration. The provider retires your model with sixty days’ notice. Write exactly what you rerun, and what result would stop you switching.','Name the three numbers you would put on a dashboard, and who watches them.','Write the findings page: what you now know breaks, with the chapter that showed it.'],
-   done:['The acceptance criteria are ranges with numbers.','The migration plan names the tests you would rerun and the threshold that blocks the change.','Every failure state in the spec has defined interface behaviour.']},
+  capstone:{
+    title:'Write a requirements document that survives a change of model',
+    brief:'An AI requirements document describes a measured range of quality and what happens outside it. In this chapter you learned what replaces pass or fail in an AI specification, what to rerun when a provider retires your model, and why a kill switch differs from a rollback. Here you write the requirements for Bharat Privacy Guard and rehearse the day its model changes.',
+    where:'Written only. Collect the notes and numbers named in the chapter, then write the document in the notes box below.',
+    steps:[
+      'Draw the whole system from memory first, without looking at your earlier diagrams. Then compare with your records and mark what you had forgotten.',
+      'Write the requirements document. In the quality section use ranges, not promises, for example: “finds at least 95 of every 100 Aadhaar numbers on the answer key, give or take 3.” For each failure, write what the user sees.',
+      'Specify what is recorded on every request, so that next quarter you can tell whether quality got worse.',
+      'Rehearse the day the model provider retires the model you use, with sixty days’ notice. Write exactly what you will rerun, and what result would stop you switching.',
+      'Name the three numbers you would put on a dashboard, and who watches them.',
+      'Write the findings page: what you now know breaks, with the chapter that showed you each one.'
+    ],
+    done:[
+      'A drawing from memory with the things you forgot marked.',
+      'A requirements document with measured ranges and a user-facing description of each failure.',
+      'What is recorded on every request.',
+      'The model-retirement rehearsal: what you rerun and what result would stop you.',
+      'The dashboard numbers and their owner, and the findings page.'
+    ]
+  },
   story:[
     ['c','Before you start','Collect your artifacts from earlier chapters: the answer key (Chapter 6), the failure taxonomy (14.5), the trifecta audit (13), the cost table (15) and the system card (17). This chapter assembles them.'],
     ['h','How an AI spec differs'],

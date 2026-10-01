@@ -23,18 +23,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Dikhaye gaye failures aur unhe theek karne ke before-and-after numbers, aur un users ke jinhone ise use kiya.',
   'Defend the business case — unit economics, growth, vendor risk — as rigorously as the architecture.':
     'Business case ko defend kijiye — unit economics, growth, vendor risk — utni hi rigour se jitni architecture ko.',
-  'Applied AI findings: what I built, what broke, who used it and what the evidence shows':
-    'Applied AI findings: maine kya banaya, kya toota, kisne use kiya aur evidence kya dikhata hai',
-  'Include cost and response-time measurements at expected volume, and the unit-economics model.':
-    'Expected volume par cost aur response-time measurements, aur unit-economics model shaamil kijiye.',
-  'Include the real-user evidence: session notes, the support log, and the one iteration you shipped from it.':
-    'Real-user evidence shaamil kijiye: session notes, support log, aur woh ek iteration jo aapne usse ship kiya.',
-  'Real evidence from five to ten users who are not your teammates.':
-    'Paanch se das users se real evidence jo aapke teammates nahi hain.',
-  'Cost per successful task, and what happens to it at ten times the volume.':
-    'Cost per successful task, aur das guna volume par isko kya hota hai.',
-  'A five-minute explanation a non-technical leader could repeat, and a twenty-minute one an engineer could not poke a hole in.':
-    'Ek paanch-minute ka explanation jise ek non-technical leader dobara keh sake, aur ek bees-minute wala jisme ek engineer chhed na dhoondh sake.',
   'Track A’s discovery and strategy artifacts':
     'Track A ke discovery aur strategy artifacts',
   'Helpful, not blocking — the discovery and design stages reuse them if you have them.':

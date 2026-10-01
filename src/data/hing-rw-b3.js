@@ -21,24 +21,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek guardrail, minimum detectable effect aur stopping rule ke saath ek A/B test design kijiye.',
   'Check your data before trusting it, and avoid claiming causes you have not shown.':
     'Trust karne se pehle apna data check kijiye, aur aise causes claim karne se bachiye jo aapne dikhaye nahi.',
-  'A tracking plan, a funnel and cohort, and an experiment design':
-    'Ek tracking plan, ek funnel aur cohort, aur ek experiment design',
-  'Instrument your capstone, read what the data says, and design one test that could change a decision.':
-    'Apna capstone instrument kijiye, dekhiye data kya kehta hai, aur ek aisa test design kijiye jo ek decision badal sake.',
-  'Write an event taxonomy and tracking plan. Implement it in PostHog, Mixpanel or Google Analytics.':
-    'Ek event taxonomy aur tracking plan likhiye. PostHog, Mixpanel ya Google Analytics mein implement kijiye.',
-  'Build one activation funnel, one retention cohort and two segments, from real or seeded data.':
-    'Real ya seeded data se ek activation funnel, ek retention cohort aur do segments banayiye.',
-  'Design an experiment with a hypothesis, unit of randomisation, primary metric, guardrails, minimum detectable effect and stopping rule.':
-    'Ek hypothesis, randomisation ki unit, primary metric, guardrails, minimum detectable effect aur stopping rule ke saath ek experiment design kijiye.',
-  'Every event in the plan answers a named product question.':
-    'Plan ka har event ek named product question ka jawab deta hai.',
-  'The funnel and cohort come from logged events, not from a spreadsheet you typed by hand.':
-    'Funnel aur cohort logged events se aate hain, haath se type ki spreadsheet se nahi.',
-  'The experiment says how many users it needs, and what you will do if you cannot get that many.':
-    'Experiment batata hai isey kitne users chahiye, aur agar itne na milein to aap kya karenge.',
-  'Rubric: instrumentation 30%, metric logic 25%, analysis 25%, decision 20%.':
-    'Rubric: instrumentation 30%, metric logic 25%, analysis 25%, decision 20%.',
   'A North Star metric':
     'Ek North Star metric',
   'Idea 1 turns it into something you can measure.':

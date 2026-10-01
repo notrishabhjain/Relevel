@@ -28,6 +28,7 @@ const js = [
   'src/data/part5.js',
   'src/data/partB.js',
   'src/data/reference.js',
+  'src/data/project.js',
   'src/data/skills.js',
   'src/data/items1.js',
   'src/data/items2.js',
@@ -54,7 +55,6 @@ const js = [
   'src/data/hing-prompting.js',
   'src/data/hing-arcs.js',
   'src/data/hing-bridges.js',
-  'src/data/hing-capstones2.js',
   'src/data/hing-part5a.js',
   'src/data/hing-part5b.js',
   'src/data/hing-part5c.js',
@@ -334,7 +334,7 @@ const defaults = {
     /* The appendices were left out of this bundle when they were added, which
        meant the content-check's translation rules for them walked an empty
        object and passed silently, and the Studio could not see them at all. */
-    APPENDIX: W.APPENDIX
+    APPENDIX: W.APPENDIX, PROJECT: W.PROJECT
   }
 };
 for (const [k, v] of Object.entries(defaults))

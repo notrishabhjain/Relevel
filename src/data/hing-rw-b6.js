@@ -15,26 +15,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Frequency, severity aur cost se agla fix prioritise kijiye.',
   'Tell users what changed, and turn support requests into product evidence.':
     'Users ko bataiye kya badla, aur support requests ko product evidence mein badaliye.',
-  'A live product, real users and one evidence-based iteration':
-    'Ek live product, real users aur ek evidence-based iteration',
-  'Launch to real people, watch what happens, change one thing because of what you saw, and show whether it helped.':
-    'Real logon ke liye launch kijiye, dekhiye kya hota hai, jo dekha usse ek cheez badaliye, aur dikhaiye usse madad mili ya nahi.',
-  'Deploy the capstone to a stable live URL. Add monitoring, analytics, a privacy notice, a way to send feedback and a rollback procedure.':
-    'Capstone ko ek stable live URL par deploy kijiye. Monitoring, analytics, ek privacy notice, feedback bhejne ka ek tareeka aur ek rollback procedure jodiye.',
-  'Recruit 5–10 real target users. Observe at least five sessions, and record task success, time, failures, quotes and whether they come back.':
-    '5–10 real target users recruit kijiye. Kam se kam paanch sessions observe kijiye, aur task success, time, failures, quotes aur woh wapas aate hain ya nahi, record kijiye.',
-  'Choose one iteration from the evidence, ship it, and compare product and AI metrics before and after. Publish a changelog.':
-    'Evidence se ek iteration chuniye, ship kijiye, aur before aur after product aur AI metrics compare kijiye. Ek changelog publish kijiye.',
-  'The users are real target users, not teammates or friends doing you a favour.':
-    'Users real target users hain, teammates ya friends jo aap par ehsaan kar rahe hain, nahi.',
-  'The iteration links to a specific problem you measured, with the numbers before and after.':
-    'Iteration ek specific problem se link karti hai jo aapne measure kiya, before aur after numbers ke saath.',
-  'The changelog says what changed, why, and what users should do differently.':
-    'Changelog batata hai kya badla, kyun, aur users ko kya alag karna chahiye.',
-  'Rubric: reliability 20%, user evidence 30%, iteration quality 30%, learning clarity 20%.':
-    'Rubric: reliability 20%, user evidence 30%, iteration quality 30%, learning clarity 20%.',
-  'Mastery gate: score each artifact 0–3. Move on only when every artifact scores at least 2 and no safety, privacy or evidence item scores 0.':
-    'Mastery gate: har artifact ko 0–3 score kijiye. Aage tabhi badhiye jab har artifact kam se kam 2 score kare aur koi safety, privacy ya evidence item 0 score na kare.',
   'A deployed app with analytics':
     'Analytics ke saath ek deployed app',
   'This chapter puts it in front of real users.':

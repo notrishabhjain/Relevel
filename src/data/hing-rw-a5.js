@@ -29,16 +29,6 @@ Object.assign(window.HING = window.HING || {}, {
     'RICE se options score kijiye, aur samjhaiye score ko kab override karna hai.',
   'Decide whether to build, buy or partner for the AI part of a product.':
     'Product ke AI hisse ke liye build, buy ya partner karna hai, yeh decide kijiye.',
-  'Write the strategy and prioritise':
-    'Strategy likhiye aur prioritise kijiye',
-  'The memo has a non-goals section that rules out something tempting.':
-    'Memo mein ek non-goals section hai jo kisi tempting cheez ko rule out karta hai.',
-  'Every initiative in the memo traces back to the diagnosis.':
-    'Memo ki har initiative wapas diagnosis tak trace karti hai.',
-  'The RICE override is argued from strategy, not preference.':
-    'RICE override strategy se argue kiya gaya hai, preference se nahi.',
-  'Rubric: coherence 30%, evidence 25%, trade-offs 25%, measurability 20%.':
-    'Rubric: coherence 30%, evidence 25%, trade-offs 25%, measurability 20%.',
   'A market estimate and competitor map':
     'Ek market estimate aur competitor map',
   'Strategy chooses where to compete.':

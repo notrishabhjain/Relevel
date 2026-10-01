@@ -15,24 +15,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Measured results se ek deterministic workflow aur ek bounded agent mein chuniye.',
   'Define release gates, a rollback trigger and who responds to an incident.':
     'Release gates, ek rollback trigger aur ek incident ka jawab kaun dega, define kijiye.',
-  'A harness diagram, a two-way build and a release checklist':
-    'Ek harness diagram, ek two-way build aur ek release checklist',
-  'Make the system around your model visible, measure one design choice, and prepare to ship it safely.':
-    'Apne model ke around ke system ko visible banayiye, ek design choice naapiye, aur safely ship karne ki taiyaari kijiye.',
-  'Draw the harness around your capstone: inputs, context assembly, tools, state, policies, eval gates, traces and fallbacks.':
-    'Apne capstone ke around harness draw kijiye: inputs, context assembly, tools, state, policies, eval gates, traces aur fallbacks.',
-  'Build one workflow twice: once as a deterministic state machine and once as a bounded agent. Compare failure rate, latency and how easy each is to debug.':
-    'Ek workflow do baar banayiye: ek baar ek deterministic state machine ki tarah aur ek baar ek bounded agent ki tarah. Failure rate, latency aur har ek debug karna kitna aasaan hai compare kijiye.',
-  'Threat-model the tool permissions, and write a release checklist with a rollback trigger and a named incident owner.':
-    'Tool permissions ka threat-model banayiye, aur ek rollback trigger aur ek named incident owner ke saath ek release checklist likhiye.',
-  'The diagram shows where model output crosses into an action, and what checks it on the way.':
-    'Diagram dikhata hai model output kahan ek action mein cross karta hai, aur raaste mein kya usey check karta hai.',
-  'The comparison uses the same test cases for both builds, and reports all three measures.':
-    'Comparison dono builds ke liye wahi test cases use karta hai, aur teeno measures report karta hai.',
-  'The rollback trigger is a number someone can check, and the incident owner is a named person.':
-    'Rollback trigger ek number hai jise koi check kar sake, aur incident owner ek named insaan hai.',
-  'Mastery gate: score each artifact 0–3. Move on only when every artifact scores at least 2 and no safety item scores 0.':
-    'Mastery gate: har artifact ko 0–3 score kijiye. Aage tabhi badhiye jab har artifact kam se kam 2 score kare aur koi safety item 0 score na kare.',
   'Agents':
     'Agents',
   'Idea 4 compares an agent with a fixed workflow.':

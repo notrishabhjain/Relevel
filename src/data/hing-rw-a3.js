@@ -15,20 +15,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Aise personas aur journey maps banayiye jahan har claim wapas ek interview note tak jaaye.',
   'Write a problem statement, list your assumptions and test the riskiest one first.':
     'Ek problem statement likhiye, apni assumptions list kijiye aur sabse riskiest ko pehle test kijiye.',
-  'Five interviews and a problem brief':
-    'Paanch interviews aur ek problem brief',
-  'Write a screener (three to five questions that decide who qualifies) and a 12-question interview guide. Replace every hypothetical or leading question with a question about past behaviour.':
-    'Ek screener likhiye (teen se paanch sawaal jo decide karte hain kaun qualify karta hai) aur ek 12-question interview guide. Har hypothetical ya leading sawaal ko past behaviour ke sawaal se replace kijiye.',
-  'Five interviews with real people who match your screener. AI-generated users do not count.':
-    'Paanch interviews real logon ke saath jo aapke screener se match karte hain. AI-generated users nahi ginte.',
-  'Every claim in the persona and journey map points to a specific interview note.':
-    'Persona aur journey map mein har claim ek specific interview note ki taraf point karta hai.',
-  'At least one assumption changed or was dropped because of what you heard.':
-    'Kam se kam ek assumption badli ya chhoot gayi kyunki aapne kuchh suna.',
-  'Rubric: evidence quality 30%, synthesis 25%, problem severity 25%, intellectual honesty 20%.':
-    'Rubric: evidence quality 30%, synthesis 25%, problem severity 25%, intellectual honesty 20%.',
-  'Mastery gate: score each artifact 0–3. Move on only when all score at least 2 and no evidence item scores 0.':
-    'Mastery gate: har artifact ko 0–3 score kijiye. Aage tabhi badhiye jab sab kam se kam 2 score karein aur koi evidence item 0 score na kare.',
   'Who pays, who uses, who can block':
     'Kaun paise deta hai, kaun use karta hai, kaun rok sakta hai',
   'Interviews need the right people.':

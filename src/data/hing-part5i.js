@@ -5,12 +5,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Kam se kam das tarah ke failure kar ke dikhaiye: bina-jawaab waala sawaal, zeher mila document, prompt injection, bina-ijazat tool ki maang, bigdi hui tool call, purani permission, doosri bhasha ka sawaal, kharaab scan ya audio, model badal jaana, aur traffic ya cost ka badhna.',
   'State what you deliberately did not solve.':
     'Batana ki aapne soch-samajh kar kya hal nahi kiya.',
-  'Include the architecture diagram and the decision log.':
-    'Architecture ka diagram aur faislon ka record shaamil kijiye.',
-  'Include 30 to 50 evaluation cases and their results.':
-    'Tees se pachaas evaluation cases aur unke nateeje shaamil kijiye.',
-  'Include the retrieval and end-to-end numbers, before and after your fixes.':
-    'Retrieval aur poore safar ke numbers dijiye — theek karne se pehle aur baad ke.',
   'Three failures you found yourself, each with evidence.':
     'Teen failure jo aapne khud dhoondhe, har ek saboot ke saath.',
   'A release gate and a risk register':

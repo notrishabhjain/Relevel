@@ -15,10 +15,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Kisi diye gaye problem ke liye prompting, RAG aur fine-tuning mein chuniye.',
   'Describe the AI market: model providers, open-weight models, infrastructure and applications.':
     'AI market describe kijiye: model providers, open-weight models, infrastructure aur applications.',
-  'Three experiments on how models work':
-    'Models kaise kaam karte hain iske teen experiments',
-  'Rubric: conceptual accuracy 40%, experiment quality 30%, decision clarity 30%.':
-    'Rubric: conceptual accuracy 40%, experiment quality 30%, decision clarity 30%.',
   'A candidate problem with an AI fit':
     'Ek candidate problem jiska AI fit hai',
   'This chapter decides which AI technique suits it.':

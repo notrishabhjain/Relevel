@@ -17,24 +17,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek real flywheel ko ek hopeful wale se alag bataiye, aur usey wahi tak rakhiye jispe users ne agree kiya.',
   'Name the ways a model vendor can squeeze your margin, and what you would do about each.':
     'Woh tareeke naam lijiye jinse ek model vendor aapka margin squeeze kar sakta hai, aur aap har ek ke baare mein kya karenge.',
-  'A pricing recommendation, backed by a cost model':
-    'Ek pricing recommendation, ek cost model se backed',
-  'Find out what your product is worth to a buyer, what it costs you to serve, and how to charge so the gap stays positive.':
-    'Pata lagayiye aapka product ek buyer ke liye kitne ka hai, aapko serve karne mein kya cost aata hai, aur kaise charge karein ki gap positive rahe.',
-  'Interview five prospects about their current alternatives, who owns the budget, and what the problem costs them. Do not ask “would you pay?”.':
-    'Paanch prospects se unke current alternatives, budget kiske paas hai, aur problem unhe kya cost karta hai, iske baare mein interview lijiye. "Kya aap pay karenge?" mat poochiye.',
-  'Model the cost per successful task at low, base and high usage. Include retries, human review and support time, not only model calls.':
-    'Low, base aur high usage par cost per successful task model kijiye. Retries, human review aur support time shaamil kijiye, sirf model calls nahi.',
-  'Design three pricing packages and a Van Westendorp-style survey plan. Then write a one-page pricing recommendation that lists its risks.':
-    'Teen pricing packages aur ek Van Westendorp-style survey plan design kijiye. Phir ek one-page pricing recommendation likhiye jo uske risks list kare.',
-  'Each interview names the current alternative and who signs off the spend.':
-    'Har interview current alternative aur spend kaun sign-off karta hai, naam leta hai.',
-  'The cost model has low, base and high rows, and support time appears as its own line.':
-    'Cost model mein low, base aur high rows hain, aur support time apni ek line ki tarah dikhta hai.',
-  'The recommendation states the contribution margin at high usage, and what happens if the model price doubles.':
-    'Recommendation high usage par contribution margin bataata hai, aur agar model price double ho jaaye to kya hoga.',
-  'Mastery gate: score each artifact 0 (absent), 1 (attempted), 2 (usable) or 3 (decision-grade). Move on only when every artifact scores at least 2 and no evidence item scores 0.':
-    'Mastery gate: har artifact ko 0 (absent), 1 (attempted), 2 (usable) ya 3 (decision-grade) score kijiye. Aage tabhi badhiye jab har artifact kam se kam 2 score kare aur koi evidence item 0 score na kare.',
   'A sized market and named alternatives':
     'Ek sized market aur named alternatives',
   'Price is set against what the customer would do instead.':

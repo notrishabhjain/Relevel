@@ -15,10 +15,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Tool calling aur workflows',
   'Write a tool contract that a reviewer could sign off.':
     'Aisa tool contract likhna jise koi reviewer sign kar sake.',
-  'A workflow that drafts but cannot submit':
-    'Aisa workflow jo draft banata hai par bhej nahi sakta',
-  'Every approval leaves a record naming a person.':
-    'Har approval ek record chhodti hai jisme kisi vyakti ka naam ho.',
   'The model invents when it has no evidence':
     'Saboot na ho to model gadh leta hai',
   'Destructive actions require confirmation.':
@@ -55,14 +51,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Samjhaana ki agent ke zyadatar failure control ki dikkat hain, akalmandi ki nahi.',
   'Say when to add a second agent, and when not to.':
     'Batana ki doosra agent kab jorna chahiye, aur kab nahi.',
-  'Give it exactly two tools and an explicit allowed list.':
-    'Use theek do tool dijiye aur ek saaf ijazat waali list.',
-  'Run the same twenty tasks through the agent and the workflow.':
-    'Wahi bees kaam agent se bhi chalaiye aur workflow se bhi.',
-  'Both systems ran the same twenty tasks.':
-    'Dono system ne wahi bees kaam kiye hon.',
-  'The recommendation names the metric that decided it.':
-    'Sifarish mein us number ka naam ho jisne faisla kiya.',
   'Every step costs tokens':
     'Har kadam par tokens lagte hain',
   'Pattern':

@@ -9,24 +9,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Tay karna ki koi specific document bheja ja sakta hai ya nahi, aur batana ki faisla kis par tika hai.',
   'Write a rule colleagues can follow without asking you.':
     'Aisa rule likhna jise colleagues bina aapse poochhe follow kar sakein.',
-  'A “may I send this?” rule, with evidence':
-    '“Kya main yeh bhej sakta hoon?” rule, saboot ke saath',
-  'Write a one-page answer to “may I send this?” for your team, based on what the vendor actually says rather than what everyone assumes.':
-    'Apni team ke liye “kya main yeh bhej sakta hoon?” ka ek page ka jawab likhiye, is par aadharit ki vendor sach mein kya kehta hai, na ki sab kya maante hain.',
-  'List the document types your team would realistically want to send: six to ten.':
-    'Un document types ki list banaiye jo aapki team sach mein bhejna chahegi: chhe se das.',
-  'Run each one through the three questions, and mark it may send, never send, or ask first.':
-    'Har ek ko teen sawaalon se guzaariye, aur bhej sakte hain, kabhi nahi, ya pehle poochhiye mark kijiye.',
-  'For the “ask first” group, name who is asked and how long they take. If that answer is uncomfortable, the group is too big.':
-    '“Pehle poochhiye” group ke liye bataiye ki kisse poochha jaata hai aur unhe kitna samay lagta hai. Agar jawab asahaj hai, to group bahut bada hai.',
-  'Find and write down, with dates, what your main vendor says about retention, training and location, for the plan you are actually on.':
-    'Apne main vendor ki retention, training aur location par kahi baatein, us plan ke liye jis par aap asal mein hain, dates ke saath dhoondh kar likhiye.',
-  'Check your retrieval documents: would every item pass your own rule?':
-    'Apne retrieval documents check kijiye: kya har item aapke apne rule se pass hoga?',
-  'The vendor’s answers are quoted with a date and a plan name.':
-    'Vendor ke jawab date aur plan ke naam ke saath quote kiye gaye hain.',
-  'You checked your document store against your own rule, and either it passes or you know what has to be removed.':
-    'Aapne apna document store apne rule se check kiya, aur ya to woh pass hai ya aapko pata hai ki kya hataana hai.',
   'Everything you send leaves your organisation':
     'Aap jo bhejte hain woh aapke organisation se bahar jaata hai',
   'And you pay for it per token.':
@@ -87,24 +69,6 @@ Object.assign(window.HING = window.HING || {}, {
     'AI feature ab governance documents ke saath ship hota hai, aur unka lagbhag har sawaal product decision hai. Aap apne system ko risk ke hisaab se tier karenge, system card likhenge, deletion drill chalaayenge aur aisa oversight design karenge jo asli volume par kaam kare.',
   'Describe what human oversight must include before it counts as oversight.':
     'Batana ki human oversight mein kya hona chahiye tabhi woh oversight maana jaaye.',
-  'A system card for something you own':
-    'Apni kisi cheez ke liye system card',
-  'Almost every compliance question turns out to be a product question. Write the document that answers them for a real system, and test the answers by carrying them out.':
-    'Lagbhag har compliance sawaal product sawaal nikalta hai. Ek asli system ke liye unka jawab dene wala document likhiye, aur jawabon ko amal mein laa kar test kijiye.',
-  'Assign an honest risk tier: what could the system affect, how badly, and who bears the harm?':
-    'Imaandaar risk tier dijiye: system kya prabhaavit kar sakta hai, kitna bura, aur nuksaan kaun uthata hai?',
-  'Write the system card: purpose, data, limits, known failures, and what it must never be used for.':
-    'System card likhiye: uddeshya, data, seemayein, jaane-maane failures, aur ise kabhi kis liye use nahi karna.',
-  'Run the deletion drill. Someone asks for their data to be removed. Follow it through every store and log, and time it.':
-    'Deletion drill chalaiye. Koi apna data hataane ko kehta hai. Ise har store aur log tak follow kijiye, aur samay naapiye.',
-  'Design oversight that can really happen: who can overrule, how they learn there is something to overrule, and what they see.':
-    'Aisa oversight design kijiye jo sach mein ho sake: kaun palat sakta hai, unhe kaise pata chalta hai ki kuchh palatna hai, aur woh kya dekhte hain.',
-  'Give the card to someone who did not build the system, and ask what is still unclear.':
-    'Card kisi aise insaan ko dijiye jisne system nahi banaya, aur poochhiye ki abhi kya saaf nahi.',
-  'You ran the deletion drill, and you know how long it takes and where it is incomplete.':
-    'Aapne deletion drill chalayi, aur aapko pata hai ki isme kitna samay lagta hai aur yeh kahan adhoori hai.',
-  'A named person could use the oversight process tomorrow without asking you.':
-    'Ek naam wala insaan kal bina aapse poochhe oversight process use kar sakta hai.',
   'An answer key and a failure list turn a claim into a number.':
     'Answer key aur failure list daave ko number mein badalte hain.',
   'Version and access filters are applied before ranking':
@@ -189,28 +153,8 @@ Object.assign(window.HING = window.HING || {}, {
     'List karna ki provider aapka model retire kare to aap kya dobara chalaayenge.',
   'Explain why a kill switch is different from a rollback.':
     'Samjhaana ki kill switch rollback se alag kyun hai.',
-  'A spec that survives a model change':
-    'Aisa spec jo model badalne par bhi tike',
-  'An AI spec describes a measured range and what happens outside it. Write a real one for a feature you would ship, then rehearse the day the model underneath it changes.':
-    'AI spec ek naapi hui range aur uske bahar kya hota hai describe karta hai. Jo feature aap ship karenge uske liye ek asli likhiye, phir us din ka abhyaas kijiye jab uske neeche ka model badlega.',
-  'Draw the whole system from memory first. Then check it against the course and mark what you had forgotten.':
-    'Pehle poora system yaad se draw kijiye. Phir use course se check kijiye aur mark kijiye ki aap kya bhool gaye the.',
-  'Write the PRD: the job, the measured acceptance range, the failure states, and what the interface does in each.':
-    'PRD likhiye: kaam, naapi acceptance range, failure states, aur har ek mein interface kya karta hai.',
-  'Specify the feedback capture: what is logged on every request, so that next quarter you can tell whether quality got worse.':
-    'Feedback capture specify kijiye: har request par kya log hota hai, taaki agle quarter aap bata sakein ki quality bigdi ya nahi.',
-  'Rehearse the migration. The provider retires your model with sixty days’ notice. Write exactly what you rerun, and what result would stop you switching.':
-    'Migration ka abhyaas kijiye. Provider saath din ke notice ke saath aapka model retire karta hai. Theek likhiye ki aap kya dobara chalaayenge, aur kaunsa result aapko switch karne se rokega.',
   'Name the three numbers you would put on a dashboard, and who watches them.':
     'Woh teen numbers bataiye jo aap dashboard par rakhenge, aur unhe kaun dekhta hai.',
-  'Write the findings page: what you now know breaks, with the chapter that showed it.':
-    'Findings page likhiye: ab aap jaante hain kya tootta hai, us chapter ke saath jisne dikhaya.',
-  'The acceptance criteria are ranges with numbers.':
-    'Acceptance criteria numbers wali ranges hain.',
-  'The migration plan names the tests you would rerun and the threshold that blocks the change.':
-    'Migration plan un tests ka naam leta hai jo aap dobara chalaayenge aur us threshold ka jo badlaav rokta hai.',
-  'Every failure state in the spec has defined interface behaviour.':
-    'Spec ke har failure state ka interface behaviour tay hai.',
   'These turn an acceptance criterion into a number.':
     'Yeh acceptance criterion ko number mein badalte hain.',
   'The full number, with its four multipliers.':

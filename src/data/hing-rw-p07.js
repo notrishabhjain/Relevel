@@ -11,26 +11,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Har step par ungli rakh kar batana ki wahan bina koi error dikhe kya galat ho sakta hai.',
   'Rank the usual fixes by how much they help, and explain why a bigger model is rarely the best one.':
     'Aam fixes ko is hisaab se rank karna ki woh kitni madad karte hain, aur samjhaana ki bada model shayad hi kabhi sabse achha fix kyun hota hai.',
-  'A findings page, and what to learn next':
-    'Findings ka page, aur aage kya seekhna hai',
-  'This is the last capstone in Part I, and it is not a build. You have a working system and a list of the ways you have seen it fail. Write the document you would want in front of you the next time someone demonstrates a RAG product and asks for budget.':
-    'Yeh Part I ka aakhri capstone hai, aur isme kuchh banaana nahi hai. Aapke paas ek chalta system hai aur un tareekon ki list jinme aapne use fail hote dekha. Woh document likhiye jo aap chahenge ki agli baar saamne ho jab koi RAG product demo kare aur budget maange.',
-  'List every failure from your red-marked diagram. Next to each one, note the chapter where you saw it and what you saw.':
-    'Apne laal-mark wale diagram ka har failure list kijiye. Har ek ke bagal mein woh chapter likhiye jahan aapne use dekha aur kya dekha.',
-  'Go back to your predictions from Chapter 1. Name the three beliefs that changed most, and what changed them.':
-    'Chapter 1 ke apne andaazon par wapas jaaiye. Woh teen dhaaranayein bataiye jo sabse zyada badli, aur kisne unhe badla.',
-  'Explain the pipeline in five sentences with no jargon. At the end, add: “This is called RAG.”':
-    'Pipeline ko bina jargon ke paanch sentences mein samjhaaiye. Aakhir mein jodiye: “Ise RAG kehte hain.”',
-  'List what Part I did <em>not</em> cover: choosing an embedding model, vector databases, reranking, hybrid search in practice, agents, fine-tuning and deployment.':
-    'Jo Part I ne cover <em>nahi</em> kiya uski list banaiye: embedding model chunna, vector databases, reranking, practice mein hybrid search, agents, fine-tuning aur deployment.',
-  'Put that list in order. Which topic would change an outcome you own, and why that one first?':
-    'Us list ko kram mein lagaiye. Kaunsa topic aapke kisi nateeje ko badlega, aur wahi pehle kyun?',
-  'Every failure on the page is backed by evidence you produced yourself.':
-    'Page ka har failure aapke khud ke nikaale saboot par tika hai.',
-  'The five-sentence explanation makes sense when read aloud to someone with no technical background.':
-    'Paanch sentences ki vyakhya bina technical background wale ko padh kar sunaane par samajh aati hai.',
-  'Your list of next topics is ordered by consequence, not by how interesting they sound.':
-    'Agle topics ki aapki list nateejon ke hisaab se lagi hai, is hisaab se nahi ki woh kitne dilchasp lagte hain.',
   'You assemble the whole system in this chapter.':
     'Is chapter mein aap poora system jodte hain.',
   'Because of the size limit and the cost.':
@@ -107,22 +87,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Batana ki chaar kamiyon mein se kaunsi aapke use case ko sabse pehle nuksaan pahunchaayegi.',
   'Use the rest of the course as fixes for gaps you found yourself.':
     'Baaki course ko un kamiyon ke fix ki tarah use karna jo aapne khud dhoondhi.',
-  'An inventory of your system':
-    'Aapke system ki soochi',
-  'Write one page on what you have built, what it cannot do, and which gaps matter most to you. This is the document you would want if someone handed you this system and asked whether it was ready.':
-    'Ek page likhiye ki aapne kya banaya, woh kya nahi kar sakta, aur kaunsi kamiyan aapke liye sabse zyada maayne rakhti hain. Yeh woh document hai jo aap chahenge agar koi aapko yeh system de aur poochhe ki kya yeh taiyaar hai.',
-  'Describe the system in five sentences with no jargon: split, embed, retrieve, prompt, answer.':
-    'System ko bina jargon ke paanch sentences mein bataiye: todna, embed karna, retrieve karna, prompt, jawab.',
-  'List the four gaps, with what you saw when you triggered each one.':
-    'Chaar kamiyan list kijiye, aur har ek ko trigger karne par aapne kya dekha.',
-  'Name the gap you would close first, and what closing it would take.':
-    'Woh kami bataiye jo aap pehle band karenge, aur usme kya lagega.',
-  'Write what you would say if someone asked “is it ready?”, including the conditions under which the answer is no.':
-    'Likhiye ki agar koi poochhe “kya yeh taiyaar hai?” to aap kya kahenge, un sharton samet jinme jawab nahi hai.',
-  'Every gap on the page is one you triggered yourself.':
-    'Page ki har kami aapne khud trigger ki.',
-  'Your readiness answer includes a condition, not just yes or no.':
-    'Aapke taiyaari wale jawab mein ek shart hai, sirf haan ya na nahi.',
   'Chunked, embedded, retrieved, prompted, generated and measured.':
     'Chunk kiya, embed kiya, retrieve kiya, prompt kiya, generate kiya aur naapa.',
   'An answer key, and a value of k you chose on purpose.':
@@ -197,28 +161,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Batana ki schema kya guarantee karta hai aur kya nahi.',
   'Turn a complaint like “it keeps making up amounts” into a specific field definition.':
     '“Yeh amounts banaata rehta hai” jaisi shikaayat ko ek specific field definition mein badalna.',
-  'Make one real extraction impossible to malform':
-    'Ek asli extraction ko kharaab hone se namumkin banaiye',
-  'Take one real extraction task at your work, make its output impossible to malform, and measure how often the polite version would have failed.':
-    'Apne kaam ka ek asli extraction task lijiye, uske output ko kharaab hone se namumkin banaiye, aur naapiye ki vinamra version kitni baar fail hota.',
-  'Pick a document type from your own work, and the decision another system makes from it.':
-    'Apne kaam ka ek document type chuniye, aur woh decision jo koi doosra system usse leta hai.',
-  'Write the polite version first, a well-worded request for JSON, and run it twenty times.':
-    'Pehle vinamra version likhiye, JSON ki achhi tarah likhi request, aur use bees baar chalaiye.',
-  'Count the malformed replies. That number is your argument for the rest of the steps.':
-    'Kharaab replies giniye. Yahi number baaki steps ke liye aapka tark hai.',
-  'Write the schema: every field, its type, and which fields are really required.':
-    'Schema likhiye: har field, uska type, aur kaunse fields sach mein zaroori hain.',
-  'Rerun the same twenty inputs and count again.':
-    'Wahi bees inputs dobara chalaiye aur phir giniye.',
-  'Add the validate-and-retry loop for endpoints that do not support schemas. Note what a retry costs in tokens and seconds.':
-    'Jo endpoints schema support nahi karte unke liye validate-and-retry loop jodiye. Note kijiye ki ek retry tokens aur seconds mein kitna padta hai.',
-  'You have a failure rate for the polite version from twenty real runs.':
-    'Aapke paas bees asli runs se vinamra version ka failure rate hai.',
-  'The schema version parses twenty times out of twenty.':
-    'Schema version bees mein se bees baar parse hota hai.',
-  'You can say what your fallback costs when it runs, and how often it runs.':
-    'Aap bata sakte hain ki aapka fallback chalne par kitna padta hai, aur kitni baar chalta hai.',
   'The first gap from Chapter 7.5. This chapter closes it.':
     'Chapter 7.5 ki pehli kami. Yeh chapter use band karta hai.',
   'Models predict the next piece of text':

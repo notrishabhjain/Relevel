@@ -11,28 +11,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Un teen kshamataon ka naam lena jo milkar system ko khatarnaak banaati hain.',
   'Tell the difference between a defence that lowers a probability and one that removes a capability.':
     'Sambhavna ghataane wale bachaav aur kshamata hataane wale bachaav ka farq bata paana.',
-  'A prompt injection audit':
-    'Prompt injection audit',
-  'This is the one failure in the course with no complete fix. So the deliverable is not a solution. It is an honest account of the exposure that someone senior can act on. Audit a real system.':
-    'Course ka yeh akela failure hai jiska koi poora fix nahi. Isliye deliverable koi hal nahi hai. Yeh khatre ka imaandaar byora hai jis par koi senior kaam kar sake. Ek asli system ka audit kijiye.',
-  'Pick a real system, yours or one you are being sold, that reads text someone outside your organisation can influence.':
-    'Ek asli system chuniye, aapka ya jo aapko becha ja raha hai, jo aisa text padhta hai jise aapke organisation ke bahar koi prabhaavit kar sake.',
-  'Map the trifecta: what untrusted content it reads, what private data it can reach, and how data could leave.':
-    'Trifecta map kijiye: yeh kaunsa avishwasniya content padhta hai, kaunsa private data tak pahunch sakta hai, aur data bahar kaise ja sakta hai.',
-  'Write the specific attack: the actual text you would plant, where you would plant it, and what you would expect to happen.':
-    'Specific attack likhiye: woh asli text jo aap daalenge, kahan daalenge, aur kya hone ki ummeed karenge.',
-  'Try to fix it with wording, and record exactly how your fix fails.':
-    'Ise wording se theek karne ki koshish kijiye, aur record kijiye ki aapka fix theek kaise fail hota hai.',
-  'Remove one part of the trifecta instead: remove a capability, block an outbound path, or require a person to approve the irreversible step. Say what the product loses.':
-    'Iski jagah trifecta ka ek hissa hataaiye: ek kshamata hataaiye, bahar jaane ka raasta band kijiye, ya wapas na hone wale step ke liye insaan ki manzoori zaroori kijiye. Bataiye ki product kya khota hai.',
-  'Write the exposure note: what is possible today, what your change reduces, and what remains true regardless.':
-    'Exposure note likhiye: aaj kya sambhav hai, aapka badlaav kya kam karta hai, aur kya har haal mein sach rehta hai.',
-  'The attack is written clearly enough that someone could run it.':
-    'Attack itna saaf likha hai ki koi use chala sake.',
-  'You have shown a wording defence failing, from your own attempt.':
-    'Aapne apni koshish se wording wale bachaav ko fail hote dikhaya.',
-  'The note separates what you fixed from what you only made harder, and says so plainly.':
-    'Note saaf-saaf batata hai ki aapne kya theek kiya aur kya sirf mushkil banaya.',
   'Text in your documents could give it instructions':
     'Aapke documents ka text use instructions de sakta tha',
   'The fourth gap from Chapter 7.5, and the one with no complete fix.':
@@ -137,24 +115,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Samjhaana ki LLM judge tab tak measurement nahi hai jab tak aap check na kar lein ki woh aapse kitni baar sehmat hota hai.',
   'Test your own judge for known biases, such as favouring longer answers.':
     'Apne judge ko jaane-maane biases ke liye test karna, jaise lambe jawabon ko pasand karna.',
-  'A judge you have checked':
-    'Aisa judge jise aapne check kiya ho',
-  'Build an automated grader, and more importantly the evidence for how far it can be trusted. A grader nobody has checked is not a measurement.':
-    'Ek automated grader banaiye, aur usse bhi zaroori, yeh saboot ki us par kitna bharosa kiya ja sakta hai. Jis grader ko kisi ne check nahi kiya woh measurement nahi hai.',
-  'Write the rubric a careful person would use to grade one type of output your team produces.':
-    'Woh rubric likhiye jo ek dhyaan se kaam karne wala insaan aapki team ke ek tarah ke output ko grade karne mein use karega.',
-  'Run the free code checks first, such as format, length and required fields. Count how many failures never need a judge.':
-    'Pehle muft code checks chalaiye, jaise format, lambaai aur zaroori fields. Giniye ki kitne failures ko kabhi judge ki zaroorat nahi padti.',
-  'Build the judge from your rubric, and grade fifty outputs by hand as well.':
-    'Apne rubric se judge banaiye, aur pachaas outputs haath se bhi grade kijiye.',
-  'Report agreement honestly, including where the judge is consistently more lenient or harsher than you.':
-    'Sehmati imaandaari se report kijiye, un jagahon samet jahan judge lagaataar aapse zyada naram ya sakht hai.',
-  'Test it for length bias on your own data: the same content in twice the words. Does the score change?':
-    'Apne data par length bias test kijiye: wahi content dugne shabdon mein. Kya score badalta hai?',
-  'You know whether your judge rewards length, from a test you ran.':
-    'Aapko apne chalaaye test se pata hai ki aapka judge lambaai ko inaam deta hai ya nahi.',
-  'You can state the score range in which you would read the output yourself rather than trust the judge.':
-    'Aap woh score range bata sakte hain jismein aap judge par bharosa karne ki jagah output khud padhenge.',
   'Ten questions with correct answers, written before testing.':
     'Das sawaal sahi jawabon ke saath, test se pehle likhe.',
   'The trade-off from Chapter 6, and the fact that the choice is yours.':

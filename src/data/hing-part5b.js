@@ -29,8 +29,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek Model Selection Card: quality, latency, cost, aur backup jab pehli pasand na mile.',
   'Recommend a model from evidence, and defend it against someone who prefers a different one.':
     'Evidence par ek model suggest kijiye, aur use us aadmi ke saamne defend kijiye jise doosra pasand hai.',
-  'State the task and the quality bar in measurable terms.':
-    'Kaam aur quality ka bar aise likhiye ki naapa jaa sake.',
   'An experiment harness that records runs':
     'Ek experiment harness jo runs likhta ho',
   '<strong>Retrieval</strong> when the problem is changing knowledge or private data.':

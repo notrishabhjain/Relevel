@@ -9,22 +9,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Batana ki fixed workflow model ko faisla karne dene se kab behtar hai.',
   'Name the checks that must happen before an important action runs.':
     'Un checks ka naam lena jo kisi zaroori action ke chalne se pehle hone chahiye.',
-  'Build an approval flow where the assistant can prepare a purchase request but can never send it. The key number is how often the model proposes the correct action when it is not allowed to act.':
-    'Aisa approval flow banaiye jahan assistant purchase request taiyaar kar sake lekin kabhi bhej na sake. Key number yeh hai ki action ki ijaazat na hone par model kitni baar sahi action suggest karta hai.',
-  'Write separate tool contracts for the draft action and the submit action.':
-    'Draft action aur submit action ke liye alag tool contracts likhiye.',
-  'Enforce the split on the server: the submit tool is not in the model’s allowed list at all.':
-    'Server par yeh bantwaara laagu kijiye: submit tool model ki allowed list mein hai hi nahi.',
-  'Add a human approval step, with an audit record of who approved what.':
-    'Ek human approval step jodiye, kisne kya manzoor kiya iske audit record ke saath.',
-  'Run twenty realistic requests, and record how often the proposed action was correct.':
-    'Bees realistic requests chalaiye, aur record kijiye ki suggest kiya action kitni baar sahi tha.',
-  'Test a malformed argument, an unauthorised request and a timeout. Record what the user saw each time.':
-    'Ek kharaab argument, ek bina-ijaazat request aur ek timeout test kijiye. Har baar user ne kya dekha record kijiye.',
-  'The model cannot submit, even if it asks to.':
-    'Model submit nahi kar sakta, maange tab bhi.',
-  'You have a measured figure for how often the proposed action was correct.':
-    'Suggest kiya action kitni baar sahi tha, iska aapke paas naapa hua figure hai.',
   'A schema makes the format reliable':
     'Schema format bharosemand banata hai',
   'From Chapter 8. A tool contract applies the same idea to actions.':
@@ -75,18 +59,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Agents: loops, rukne ki sharten aur control',
   'An agent chooses actions, checks the results and continues toward a goal. The hard part is control, not intelligence. You will build a bounded agent, add stopping conditions, and measure it against the fixed workflow from Chapter 25.':
     'Agent actions chunta hai, results check karta hai aur lakshya ki taraf badhta rehta hai. Mushkil hissa control hai, samajhdaari nahi. Aap ek seemit agent banayenge, rukne ki sharten jodenge, aur use Chapter 25 ke fixed workflow ke against naapenge.',
-  'An agent measured against the workflow it would replace':
-    'Jis workflow ki jagah le, uske against naapa gaya agent',
-  'Build an agent that searches your documents, calculates one fixed metric and gives a cited answer. Then test whether it beats the fixed workflow from Chapter 25.':
-    'Aisa agent banaiye jo aapke documents search kare, ek fixed metric nikaale aur cite kiya jawab de. Phir test kijiye ki kya yeh Chapter 25 ke fixed workflow ko harata hai.',
-  'Set limits: maximum steps, a timeout, and an exit for “cannot resolve”.':
-    'Seemayein tay kijiye: maximum steps, ek timeout, aur “hal nahi ho sakta” ke liye exit.',
-  'For each, record tool-selection accuracy, number of calls, response time and cost.':
-    'Har ek ke liye tool-selection accuracy, calls ki sankhya, response time aur cost record kijiye.',
-  'Write one paragraph recommending one of them, including the numbers.':
-    'Ek paragraph likhiye jo numbers samet un mein se ek ki salaah de.',
-  'You have four numbers for each system.':
-    'Har system ke liye aapke paas chaar numbers hain.',
   'Tool contracts and fixed workflows':
     'Tool contracts aur fixed workflows',
   'Chapter 25 built the workflow the agent is compared against.':
@@ -125,20 +97,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Host, client, server aur resource flow draw karna, aur mark karna ki consent aur authorisation kahan hote hain.',
   'Explain why a standard interface to an unsafe tool is still unsafe.':
     'Samjhaana ki asurakshit tool ka standard interface bhi asurakshit kyun hai.',
-  'Write a tool access policy for an AI assistant in a government setting, where “it seemed helpful” is not an acceptable reason for an action. The policy is the deliverable; the classification is the thinking.':
-    'Sarkaari setting mein ek AI assistant ke liye tool access policy likhiye, jahan “madadgaar laga” kisi action ka sweekaar kaaran nahi. Policy deliverable hai; classification soch hai.',
-  'Classify every tool as read-only, reversible write, irreversible write, privileged or prohibited.':
-    'Har tool ko read-only, reversible write, irreversible write, privileged ya prohibited classify kijiye.',
-  'For each class, state the authorisation required, and whether a person must confirm.':
-    'Har class ke liye zaroori authorisation bataiye, aur kya insaan ko confirm karna hai.',
-  'Build the authorisation matrix: roles down the side, tool classes across the top.':
-    'Authorisation matrix banaiye: roles side mein, tool classes upar.',
-  'Mark the trust boundary on your diagram, and say which component enforces it.':
-    'Apne diagram par trust boundary mark kijiye, aur bataiye kaunsa component use laagu karta hai.',
-  'Every irreversible action has a confirmation step.':
-    'Har irreversible action mein confirmation step hai.',
-  'The enforcing component is named, and it is not the model.':
-    'Laagu karne wale component ka naam hai, aur woh model nahi.',
   'A tool has a typed contract':
     'Tool ka typed contract hota hai',
   'From Chapter 25. MCP standardises how that contract is published.':
@@ -179,20 +137,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Voice pipeline draw karna aur response time par asar daalne wale steps mark karna.',
   'Say where the answer key for a multimodal question must come from.':
     'Batana ki multimodal sawaal ki answer key kahan se aani chahiye.',
-  'Specify a voice assistant for meeting follow-up':
-    'Meeting follow-up ke liye voice assistant specify kijiye',
-  'The technology is the easier half. Specify the half that gets systems stopped in review: privacy boundaries, retention, attribution and what a person must confirm.':
-    'Technology aasaan aadha hai. Woh aadha specify kijiye jo systems ko review mein rokta hai: privacy seemayein, retention, attribution aur insaan ko kya confirm karna hai.',
-  'Define the privacy boundary: whose audio, recorded where, with what notice.':
-    'Privacy seema define kijiye: kiska audio, kahan record hua, kis soochna ke saath.',
-  'Set how long transcripts are kept, and how they are deleted.':
-    'Tay kijiye ki transcripts kitne samay rakhe jaate hain, aur kaise delete hote hain.',
-  'Specify speaker attribution, and what happens when it is uncertain.':
-    'Speaker attribution specify kijiye, aur anishchit hone par kya hota hai.',
-  'Specify task extraction: what becomes an action item, and what confirmation is needed.':
-    'Task extraction specify kijiye: kya action item banta hai, aur kya confirmation chahiye.',
-  'Attribution has a measured accuracy figure and a defined behaviour when uncertain.':
-    'Attribution ka naapa hua accuracy figure hai aur anishchit hone par tay behaviour.',
   'Scanned documents need images, not just text':
     'Scan kiye documents ko sirf text nahi, images chahiye',
   'Chapter 16 covered this for images of text.':
@@ -231,18 +175,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Kai levels par score karna, taaki achha final number toote component ko chhupa na sake.',
   'Say where an LLM judge is acceptable and where it is not.':
     'Batana ki LLM judge kahan sweekaar hai aur kahan nahi.',
-  'The release gate makes every other measurement in Part V matter. Without it, evaluation is a report nobody has to act on.':
-    'Release gate Part V ke har doosre measurement ko maayne deta hai. Iske bina evaluation ek report hai jis par kisi ko kaam nahi karna.',
-  'Set the quality threshold: the metric, the test set and the number.':
-    'Quality threshold tay kijiye: metric, test set aur number.',
-  'Set the safety threshold, including the attack success rate.':
-    'Safety threshold tay kijiye, attack success rate samet.',
-  'Set the response-time target and the cost limit per task.':
-    'Har task ke liye response-time lakshya aur cost limit tay kijiye.',
-  'Set the regression tolerance: how much may a previously passing case get worse?':
-    'Regression tolerance tay kijiye: pehle pass hone wala case kitna bigad sakta hai?',
-  'Define the rollback trigger, and who is allowed to use it.':
-    'Rollback trigger define kijiye, aur kaun use use kar sakta hai.',
   'Answer keys, recall and precision':
     'Answer keys, recall aur precision',
   'Chapter 6 built the measurement this chapter scales up.':

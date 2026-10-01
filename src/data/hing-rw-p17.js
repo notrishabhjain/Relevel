@@ -7,24 +7,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Jab jawab galat, dheema ya mehnga ho, to aapko bina andaaze ke pata lagaana chahiye ki kyun. Aap ek trace record design karenge, cost ko architecture metric maanenge, aur har hisse ka version rakhenge taaki koi bhi badlaav palta ja sake.',
   'Design a trace record that can answer “why was this answer wrong?” after the fact.':
     'Aisa trace record design karna jo baad mein “yeh jawab galat kyun tha?” ka jawab de sake.',
-  'Specify a six-panel production dashboard':
-    'Chhe panel wala production dashboard specify kijiye',
-  'Specify six panels: quality, safety, response time, cost, traffic and failures. For every panel, name its data source. A panel with no source is only a wish.':
-    'Chhe panels specify kijiye: quality, safety, response time, cost, traffic aur failures. Har panel ke liye uska data source bataiye. Bina source ka panel sirf ek ichha hai.',
-  'Quality: which metric, calculated from what, and how often.':
-    'Quality: kaunsa metric, kisse nikaala, aur kitni baar.',
-  'Response time: median and 95th percentile, broken down by stage.':
-    'Response time: median aur 95th percentile, charan ke hisaab se toda hua.',
-  'Traffic: volume and mix, so you can see when the input changes.':
-    'Traffic: volume aur mix, taaki input badalne par dikhe.',
-  'Failures: error types with counts, not one error rate.':
-    'Failures: ginti ke saath error types, ek error rate nahi.',
-  'For each panel, write the threshold that triggers an investigation and the one that triggers a rollback.':
-    'Har panel ke liye woh threshold likhiye jo jaanch shuru karta hai aur woh jo rollback.',
-  'Response time is broken down by stage, not reported as one number.':
-    'Response time charan ke hisaab se toda gaya hai, ek number ki tarah report nahi.',
-  'Each panel has an investigation threshold and a rollback threshold.':
-    'Har panel mein jaanch threshold aur rollback threshold hai.',
   'Users notice response time':
     'Users response time notice karte hain',
   'From Chapter 11.5. A trace shows where the time went.':
@@ -67,24 +49,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Agent par least privilege laagu karna, aur dikhana ki kya tootta hai.',
   'Produce a risk register where every control has evidence next to it.':
     'Aisa risk register banaana jahan har control ke bagal mein saboot ho.',
-  'For each row, record the asset, threat, impact, likelihood, control, owner, test and remaining risk. Every row ends in a test, because a register that ends in controls is only a list of intentions.':
-    'Har row ke liye asset, threat, impact, sambhavna, control, owner, test aur bacha risk record kijiye. Har row test par khatam hoti hai, kyunki controls par khatam hone wala register sirf iraadon ki list hai.',
-  'List the assets: documents, credentials, tools, user data and traces.':
-    'Assets list kijiye: documents, credentials, tools, user data aur traces.',
-  'For each, name the threats you have actually reproduced, not only ones you read about.':
-    'Har ek ke liye un threats ka naam dijiye jo aapne sach mein dohraaye, sirf padhe hue nahi.',
-  'Record impact and likelihood on whatever scale your organisation uses.':
-    'Impact aur sambhavna us scale par record kijiye jo aapka organisation use karta hai.',
-  'Name the control and the owner: a person or role, not a team.':
-    'Control aur owner ka naam dijiye: ek insaan ya role, team nahi.',
-  'Record the risk that remains after the control, honestly.':
-    'Control ke baad bacha risk imaandaari se record kijiye.',
-  'Write the go/no-go checklist for a customer-facing agent: identity, secrets, tool permissions, audit trails, data retention, provider policy and incident response.':
-    'Customer-facing agent ke liye go/no-go checklist likhiye: identity, secrets, tool permissions, audit trails, data retention, provider policy aur incident response.',
-  'Every listed threat has been reproduced at least once.':
-    'Har list kiya threat kam se kam ek baar dohraaya gaya hai.',
-  'The remaining risk is stated explicitly.':
-    'Bacha risk saaf bataya gaya hai.',
   'Prompt injection has no complete fix':
     'Prompt injection ka koi poora fix nahi',
   'Chapter 13 showed this. This chapter builds the controls around it.':
@@ -129,24 +93,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Business outcomes, model metrics aur operating metrics ko alag rakhna.',
   'Design the three interface states an AI feature needs.':
     'Woh teen interface states design karna jo AI feature ko chahiye.',
-  'Write two pages. An engineer should be able to build from it, and a leader should be able to see the trade-off being made and agree to it on purpose.':
-    'Do page likhiye. Engineer isse bana sake, aur leader dekh sake ki kaunsa trade-off ho raha hai aur us par jaan-boojh kar sehmati de sake.',
-  'State the user problem, and the non-AI baseline it has to beat.':
-    'User problem bataiye, aur woh non-AI baseline jise harana hai.',
-  'Define the scope and, explicitly, what is out of scope.':
-    'Scope define kijiye aur saaf taur par bataiye ki kya scope se bahar hai.',
-  'Specify the context, the tools and the human role in the loop.':
-    'Context, tools aur loop mein insaan ki bhoomika specify kijiye.',
-  'List the failures you have actually seen in this course.':
-    'Course mein jo failures aapne sach mein dekhe unhe list kijiye.',
-  'Name the evaluation dataset and write a five-line evaluation plan.':
-    'Evaluation dataset ka naam dijiye aur paanch line ka evaluation plan likhiye.',
-  'Set quality bars, safety limits, response-time targets and cost goals.':
-    'Quality bars, safety seemayein, response-time lakshya aur cost lakshya tay kijiye.',
-  'What is out of scope is written down.':
-    'Scope se bahar kya hai, yeh likha hua hai.',
-  'Someone could act on the rollback trigger without you.':
-    'Koi aapke bina rollback trigger par kaam kar sakta hai.',
   'Chapter 29 built the gate this PRD refers to.':
     'Chapter 29 ne woh gate banaya jiska yeh PRD zikr karta hai.',
   'From Chapter 6. Choosing which failure to accept is a product decision.':
@@ -187,22 +133,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Response time ko charanon ki chain mein kharch hone wale budget ki tarah dekhna.',
   'Score providers on more criteria than price and quality.':
     'Providers ko price aur quality se zyada criteria par score karna.',
-  'Cover the problem, baseline, proposed architecture, alternatives, evaluation, security, cost, rollout, risks and decision. Draft it from memory first, then check it. The parts you cannot produce from memory are the parts you do not yet understand.':
-    'Problem, baseline, prastaavit architecture, vikalp, evaluation, security, cost, rollout, risks aur faisla cover kijiye. Pehle yaad se draft kijiye, phir check kijiye. Jo hisse yaad se nahi bana paate woh hisse hain jo aap abhi nahi samajhte.',
-  'Show two alternatives you rejected, and why.':
-    'Do khaarij kiye vikalp dikhaiye, aur kyun.',
-  'Add the evaluation results, with the test set named.':
-    'Test set ke naam ke saath evaluation results jodiye.',
-  'Summarise the security position and the remaining risks.':
-    'Security sthiti aur bache risks ka saar dijiye.',
-  'Give the cost per task and the cost at expected volume.':
-    'Per task cost aur ummeed ke volume par cost dijiye.',
-  'Score three providers against nine weighted criteria.':
-    'Teen providers ko nau weighted criteria par score kijiye.',
-  'Each rejected alternative was a real option with a reason to consider it.':
-    'Har khaarij vikalp ek asli vikalp tha jise sochne ki wajah thi.',
-  'The provider scorecard includes the cost of leaving.':
-    'Provider scorecard mein chhodne ki cost shaamil hai.',
   'Chapter 18.5 introduced it. Here the criteria get weights.':
     'Chapter 18.5 ne ise introduce kiya. Yahan criteria ko weights milte hain.',
   'Cost per task can be measured':
@@ -247,18 +177,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Aage, Chapter 34 poore system ko ek capstone project mein jodta hai.',
   'Explain a system you built from first principles, without relying on a framework to explain it for you.':
     'Apne banaaye system ko buniyaadi siddhaanton se samjhaana, kisi framework ke sahaare bina.',
-  'This single document carries everything from the course. Keep it plain and factual. A findings document that reads like a brochure is not doing its job.':
-    'Yeh ek document course ki har cheez samete hai. Ise saada aur tathyaatmak rakhiye. Brochure jaisa padhne wala findings document apna kaam nahi kar raha.',
-  'Ship the repository with a README that works on a clean machine.':
-    'Repository ek aise README ke saath ship kijiye jo saaf machine par kaam kare.',
-  'Include the security attack results and sample traces.':
-    'Security attack results aur sample traces shaamil kijiye.',
-  'Include the PRD, the risk register, the vendor scorecard, and the rollout and rollback plan.':
-    'PRD, risk register, vendor scorecard, aur rollout aur rollback plan shaamil kijiye.',
-  'End with the remaining risks and what is explicitly out of scope.':
-    'Bache risks aur saaf taur par scope se bahar ki cheezon ke saath khatam kijiye.',
-  'Three fixes with before and after numbers.':
-    'Pehle aur baad ke numbers ke saath teen fixes.',
   'Everything in Part V':
     'Part V ka sab kuchh',
   'The capstone combines all of it.':

@@ -11,26 +11,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Samjhaana ki do types automatically grade kyun ho sakte hain aur teen kyun nahi.',
   'Split a vague request into the narrowest task types that still solve the problem.':
     'Ek dhundhli request ko sabse sankare task types mein todna jo phir bhi problem hal karein.',
-  'Break down one real request':
-    'Ek asli request ko todiye',
-  'Take the vaguest AI request anyone has made of you and turn it into something you can build. Most of the work is naming task types and putting them in order.':
-    'Kisi ki aapse ki gayi sabse dhundhli AI request lijiye aur use kuchh aisa banaiye jise aap bana sakein. Zyadatar kaam task types ka naam dena aur unhe kram mein lagana hai.',
-  'Write one sentence on what the person wants to be different in their normal week.':
-    'Ek sentence likhiye ki woh insaan apne aam hafte mein kya alag chahta hai.',
-  'Break it into steps, each with exactly one task type, in the order they must run.':
-    'Ise steps mein todiye, har step mein theek ek task type, us kram mein jismein unhe chalna hai.',
-  'Mark which steps have a right answer and which do not. These are the parts you can and cannot measure automatically.':
-    'Mark kijiye ki kin steps ka sahi jawab hota hai aur kinka nahi. Yahi woh hisse hain jinhe aap automatically naap sakte hain aur nahi naap sakte.',
-  'For each measurable step, say where an answer key would come from: who makes that judgement today, and based on what.':
-    'Har naapne laayak step ke liye bataiye ki answer key kahan se aayegi: aaj woh judgement kaun karta hai, aur kis aadhaar par.',
-  'Write a one-paragraph reply to the person: what you would build first, and why it is the smallest useful piece.':
-    'Us insaan ko ek paragraph ka reply likhiye: aap pehle kya banayenge, aur woh sabse chhota kaam ka hissa kyun hai.',
-  'Every step in your breakdown has exactly one task type.':
-    'Aapke breakdown ke har step mein theek ek task type hai.',
-  'You can point to the steps that can be graded without a person reading the output.':
-    'Aap un steps par ungli rakh sakte hain jinhe bina kisi insaan ke output padhe grade kiya ja sakta hai.',
-  'The first thing you propose to build is measurable, and you can say what you would measure it against.':
-    'Jo pehli cheez aap banane ka prastaav dete hain woh naapne laayak hai, aur aap bata sakte hain ki use kiske against naapenge.',
   'Four techniques shape what comes back.':
     'Chaar techniques tay karti hain ki wapas kya aata hai.',
   'How you tell a better prompt from a different one.':
@@ -111,28 +91,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Woh category dhoondhna jismein aapka system sabse kharaab hai, aur batana ki business ko uski kya keemat padti hai.',
   'Explain why an overall accuracy figure often hides the failure that matters.':
     'Samjhaana ki overall accuracy figure aksar zaroori failure ko kyun chhupa deta hai.',
-  'A classifier you would trust to route real work':
-    'Aisa classifier jis par asli kaam route karne ka bharosa ho',
-  'Build a classifier for a real set of categories at your work, measure it per category, and decide with numbers whether it is good enough to act on its own or only to suggest.':
-    'Apne kaam ki categories ke ek asli set ke liye classifier banaiye, har category ke hisaab se naapiye, aur numbers ke saath tay kijiye ki woh khud faisla le sakta hai ya sirf suggest kar sakta hai.',
-  'Fix the categories. Include an <em>other</em> or <em>unclear</em> category, so the model is not forced into a wrong answer.':
-    'Categories tay kijiye. Ek <em>other</em> ya <em>unclear</em> category rakhiye, taaki model galat jawab dene par majboor na ho.',
-  'Collect fifty real examples and label them yourself before you run anything.':
-    'Kuchh bhi chalaane se pehle pachaas asli examples ikattha kijiye aur khud label kijiye.',
-  'Build the classifier with two worked examples, one of which is a borderline case.':
-    'Do worked examples ke saath classifier banaiye, jinme se ek borderline case ho.',
-  'Measure each category separately, not just overall. Write the results as a table.':
-    'Har category alag se naapiye, sirf overall nahi. Results ko table mein likhiye.',
-  'For your worst category, write what each direction of error costs. Change the instruction so borderline cases fall the cheaper way, and measure again.':
-    'Apni sabse kharaab category ke liye likhiye ki galti ki har disha ki kya keemat hai. Instruction badaliye taaki borderline cases saste taraf girein, aur phir naapiye.',
-  'Set a threshold: above what score per category would you let it route work automatically, and below what would it only suggest?':
-    'Threshold tay kijiye: har category mein kis score ke upar aap use automatically kaam route karne denge, aur kiske neeche woh sirf suggest karega?',
-  'You have per-category scores from fifty examples you labelled before testing.':
-    'Aapke paas test se pehle label kiye pachaas examples se har category ke scores hain.',
-  'You made one deliberate change to how borderline cases fall, and measured the effect.':
-    'Aapne borderline cases ke girne ke tareeke mein ek soch-samajh kar badlaav kiya, aur uska asar naapa.',
-  'You can state the score at which you would let it act on its own, and whether it is above that score today.':
-    'Aap woh score bata sakte hain jis par aap use khud kaam karne denge, aur kya woh aaj us score se upar hai.',
   'Five task types, and which have right answers':
     'Paanch task types, aur kinke sahi jawab hote hain',
   'Classification is one that can be graded.':
@@ -191,24 +149,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Summariser ko us failure ke liye test karna jo maayne rakhta hai: usne kya chhoda.',
   'Explain why “it reads well” tells you almost nothing about a summary.':
     'Samjhaana ki “achhi padhti hai” summary ke baare mein lagbhag kuchh nahi batata.',
-  'A summariser with a fact check':
-    'Fact check ke saath ek summariser',
-  'Build a summariser for a real document type, and the test that shows it keeps what matters. The test is the main deliverable. Anyone can write the prompt.':
-    'Ek asli document type ke liye summariser banaiye, aur woh test jo dikhaye ki woh zaroori baatein rakhta hai. Test hi main deliverable hai. Prompt koi bhi likh sakta hai.',
-  'Name the reader and the decision. If you cannot name a decision, you cannot say what the summary is for or how to test it.':
-    'Padhne wale aur decision ka naam dijiye. Agar aap decision ka naam nahi de sakte, to aap nahi bata sakte ki summary kis liye hai ya use kaise test karein.',
-  'Take ten real documents. For each, write down the two or three facts a reader would be upset to lose.':
-    'Das asli documents lijiye. Har ek ke liye woh do-teen facts likhiye jinke chhootne par padhne wala naraz hoga.',
-  'Build the summariser and run the fact check on all ten. Record the miss rate.':
-    'Summariser banaiye aur saare das par fact check chalaiye. Miss rate record kijiye.',
-  'Make one change, such as an instruction about what to keep word for word, and measure again.':
-    'Ek badlaav kijiye, jaise kya shabd-dar-shabd rakhna hai iski instruction, aur phir naapiye.',
-  'Find a document where a fact survived in different wording and your check missed it. Note what that means for your number.':
-    'Aisa document dhoondhiye jahan koi fact alag wording mein bacha aur aapka check use nahi pakad paaya. Note kijiye ki aapke number ke liye iska kya matlab hai.',
-  'Write a note to whoever asked for this feature: what it keeps, what it drops, and the miss rate you measured.':
-    'Jisne yeh feature maanga use note likhiye: yeh kya rakhta hai, kya chhodta hai, aur aapka naapa hua miss rate.',
-  'The note says who the summary is for, so someone else could test it the same way later.':
-    'Note batata hai ki summary kiske liye hai, taaki koi aur baad mein use isi tarah test kar sake.',
   'Some task types have no right answer':
     'Kuchh task types ka sahi jawab nahi hota',
   'Summarisation is the first you meet.':

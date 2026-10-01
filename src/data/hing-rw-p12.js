@@ -9,28 +9,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Ginti aur nateejon ke aadhaar par tay karna ki pehle kaunsa group theek karna hai.',
   'Explain why a generic benchmark cannot do this for your product.':
     'Samjhaana ki generic benchmark aapke product ke liye yeh kyun nahi kar sakta.',
-  'A failure taxonomy for a real system':
-    'Ek asli system ki failure taxonomy',
-  'Read a hundred real outputs, describe what went wrong in your own words, and turn your notes into groups someone can count. This tells a team what to fix next, and no benchmark can produce it for you.':
-    'Sau asli outputs padhiye, apne shabdon mein bataiye ki kya galat hua, aur apne notes ko aise groups mein badliye jinhe koi gin sake. Yeh team ko batata hai ki aage kya theek karna hai, aur koi benchmark yeh aapke liye nahi bana sakta.',
-  'Collect a hundred real outputs from something you own or use. Use real traffic, not a sample you chose.':
-    'Kisi aisi cheez ke sau asli outputs ikattha kijiye jo aapki hai ya jise aap use karte hain. Asli traffic use kijiye, apna chuna sample nahi.',
-  'Read them. For each one that went wrong, write what went wrong in your own words. Do not group yet; grouping early hides categories you had not thought of.':
-    'Unhe padhiye. Har galat wale ke liye apne shabdon mein likhiye ki kya galat hua. Abhi group mat banaiye; jaldi group banaane se woh categories chhup jaati hain jinke baare mein aapne socha nahi tha.',
-  'Now group the notes, name the groups and count each one.':
-    'Ab notes ke group banaiye, unka naam rakhiye aur har ek giniye.',
-  'Rank the groups by count multiplied by how badly each one affects a real person.':
-    'Groups ko ginti guna har ek ke asli insaan par bure asar se rank kijiye.',
-  'For the top group, write what would need to change, and whether that is the prompt, retrieval, a field, or something that is not an AI problem at all.':
-    'Top group ke liye likhiye ki kya badalna padega, aur kya woh prompt hai, retrieval, ek field, ya kuchh aisa jo AI problem hai hi nahi.',
-  'Add the top two groups as rows in your test set, so the next change is measured against them.':
-    'Top do groups ko apne test set mein rows ki tarah jodiye, taaki agla badlaav unke against naapa jaaye.',
-  'The groups came from the reading, not from a list decided in advance.':
-    'Groups padhne se nikle, pehle se tay list se nahi.',
-  'Every group has a count, and the ranking considers consequences as well as frequency.':
-    'Har group ki ginti hai, aur ranking frequency ke saath nateeje bhi dekhti hai.',
-  'At least two new rows from real failures are in your test set.':
-    'Aapke test set mein asli failures se kam se kam do nayi rows hain.',
   'An LLM judge can grade at scale':
     'LLM judge bade paimaane par grade kar sakta hai',
   'Write the answer key before testing':
@@ -75,26 +53,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Batana ki per query price batane wale vendor se aap kya poochhenge.',
   'A cost model built from measurements':
     'Measurements se bana cost model',
-  'Answer the question many teams skip: what does this feature cost at real volume, and what happens to the margin when it succeeds? Build it from measurements, not estimates.':
-    'Us sawaal ka jawab dijiye jise kai teams chhod deti hain: asli volume par is feature ki cost kya hai, aur safal hone par margin ka kya hota hai? Ise andaazon se nahi, measurements se banaiye.',
-  'Take one feature and measure the tokens it uses across twenty realistic requests. Average them.':
-    'Ek feature lijiye aur bees realistic requests mein uske use kiye tokens naapiye. Average nikaaliye.',
-  'Apply the multipliers people forget: retries, retrieved context, conversation history, and failed requests that get repeated.':
-    'Woh multipliers lagaiye jo log bhool jaate hain: retries, retrieved context, baatcheet ki history, aur dohraayi gayi fail requests.',
-  'Work out the cost per request, per thousand requests, and per month at a volume you would actually plan for.':
-    'Per request, per hazaar requests, aur us volume par per month cost nikaaliye jiski aap sach mein planning karenge.',
-  'Build a cascade (cheap model first, expensive one only when needed) and measure what share escalates.':
-    'Ek cascade banaiye (pehle sasta model, zaroorat hone par hi mehnga) aur naapiye ki kitna hissa aage badhta hai.',
-  'Produce three numbers: cost today, cost at ten times the volume, and cost if the cheap path stops working.':
-    'Teen numbers banaiye: aaj ki cost, das guna volume par cost, aur sasta raasta kaam karna band kare to cost.',
-  'Answer the margin question: at what price and usage does this feature stop making money?':
-    'Margin ka sawaal hal kijiye: kis price aur use par yeh feature paise kamaana band karta hai?',
-  'Every figure traces back to a measurement you took, and you can say which one.':
-    'Har figure aapke liye gaye measurement tak jaata hai, aur aap bata sakte hain kaunsa.',
-  'The cascade has a measured escalation rate, not an assumed one.':
-    'Cascade ka escalation rate naapa hua hai, maana hua nahi.',
-  'You can name the assumption most likely to make the whole model wrong.':
-    'Aap woh assumption bata sakte hain jo poore model ko galat banaane ki sabse zyada sambhavna rakhta hai.',
   'You can read the usage block':
     'Aap usage block padh sakte hain',
   'Tokens in, tokens out, times a price. The arithmetic from Chapter 1.':
@@ -201,24 +159,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Samjhaana ki tables document ka sabse zyada galti wala hissa kyun hain, aur koi metric galti kyun nahi pakadta.',
   'Explain why voice changes the architecture, not just the interface.':
     'Samjhaana ki voice sirf interface nahi, architecture kyun badalta hai.',
-  'Audit the extraction quality of a real document set':
-    'Ek asli document set ki extraction quality ka audit',
-  'Extraction errors are silent: text that was never read correctly produces confident answers, and nothing reports an error. Audit a real document set and find out how much of it is wrong.':
-    'Extraction errors chup rehte hain: kabhi theek se na padha gaya text confident jawab deta hai, aur koi error report nahi karta. Ek asli document set ka audit kijiye aur pata lagaiye ki uska kitna hissa galat hai.',
-  'Take twenty pages of your own scanned or PDF documents. Choose messy ones, not clean ones.':
-    'Apne scan kiye ya PDF documents ke bees pages lijiye. Gande wale chuniye, saaf nahi.',
-  'Extract them the usual way, then read the output against the originals and mark every error.':
-    'Unhe aam tareeke se extract kijiye, phir output ko originals se padh kar har galti mark kijiye.',
-  'Find the tables. Ask a question only a table can answer, and check what comes back.':
-    'Tables dhoondhiye. Aisa sawaal poochhiye jiska jawab sirf table de sake, aur check kijiye kya aata hai.',
-  'Give the page image to a vision model, and compare its answers with the extracted text on the same questions.':
-    'Page image vision model ko dijiye, aur usi sawaalon par uske jawabon ko extract kiye text se compare kijiye.',
-  'Check every cell of one important table by hand. Record how long it took, because that is the real cost of trusting it.':
-    'Ek zaroori table ka har cell haath se check kijiye. Kitna samay laga record kijiye, kyunki yahi us par bharose ki asli keemat hai.',
-  'Estimate the error rate across the whole set, and write what it means for anything built on top of it.':
-    'Poore set par error rate ka andaaza lagaiye, aur likhiye ki us par bani har cheez ke liye iska kya matlab hai.',
-  'You have a rule for which documents can go in unchecked and which cannot.':
-    'Aapke paas niyam hai ki kaunse documents bina check ke andar ja sakte hain aur kaunse nahi.',
   'Chapter 3 gave you the text. Someone had to produce it.':
     'Chapter 3 ne aapko text diya. Kisi ko use banaana pada.',
   'Slow responses are a product problem':

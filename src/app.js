@@ -640,6 +640,14 @@ function renderChapter(c){
     h('span',{class:'lbl',text:T(TIER_LABEL[tier])}),
     h('p',{text:T(TIER_NOTE[tier])})]));
 
+  /* Which stage of the project this chapter belongs to, with a way to see the
+     whole project. The capstone below is a question about that stage. */
+  const ps=stageOfChapter(c.id);
+  if(ps) w.appendChild(h('a',{class:'projline',href:'#/project#stage-'+ps.id},[
+    h('span',{class:'lbl',text:T('Your project')}),
+    h('span',{class:'pt',text:T('Bharat Privacy Guard')+' · '+T('Stage')+' '+ps.n+'/'+ps.total+' — '+T(ps.title)}),
+    h('span',{class:'go',text:T('See the whole project')+' →'})]));
+
   /* "Before this / You are here / Next": the v4.3 chapter graph, kept
      separate from the richer prose "Prerequisites" section below — this is
      the two-second version, prerequisites[]/nextUnits[] resolved straight to
@@ -841,23 +849,31 @@ function renderChapter(c){
     const cp=c.capstone;
     const cs2=h('section',{class:'part capstone',id:'capstone'});
     cs2.appendChild(sectionHead(c.num+'.'+n++,'Capstone — '+T(cp.title)));
-    cs2.appendChild(h('div',{class:'prose'},[h('p',{class:'concept',html:T(cp.brief)})]));
-    /* Steps alone left it ambiguous whether a given capstone meant open a
-       notebook or open a doc — a reader had to infer that from the chapter's
-       own "Before you start" line, several sections back. Naming it here,
-       next to the steps, removes the guess. */
+    /* Written like an exam question: the situation, then the task, then what to
+       hand in. Where the work happens is named next to the task, because a
+       step such as "write the schema" means different things in a notebook and
+       on paper. */
+    cs2.appendChild(h('div',{class:'qblock'},[
+      h('span',{class:'cplbl',text:T('The situation')}),
+      h('div',{class:'prose'},[h('p',{class:'concept',html:T(cp.brief)})])]));
     if(cp.where)
       cs2.appendChild(h('div',{class:'planhead'},[
-        h('span',{class:'cplbl',text:'Where you do this'}),
+        h('span',{class:'cplbl',text:T('Where you do this')}),
         h('span',{class:'dim',style:'font-size:.85rem',html:T(cp.where)})]));
     if((cp.steps||[]).length)
-      cs2.appendChild(h('div',{class:'prose'},[h('ol',{class:'num'},cp.steps.map(x=>h('li',{html:T(x)})))]));
+      cs2.appendChild(h('div',{class:'qblock'},[
+        h('span',{class:'cplbl',text:T('Your task')}),
+        h('div',{class:'prose'},[h('ol',{class:'num'},cp.steps.map(x=>h('li',{html:T(x)})))])]));
     if((cp.done||[]).length)
       cs2.appendChild(h('div',{class:'takeaway'},[
-        h('span',{class:'cplbl',text:'It is finished when'}),
+        h('span',{class:'cplbl',text:T('What to hand in')}),
         h('ul',{class:'plain'},cp.done.map(x=>h('li',{html:T(x)})))]));
-    cs2.appendChild(notebookBlock(c,'capstone','What you produced, and anything that surprised you',
-      'Rough notes. The artifact above — code or written — is the deliverable, not this box.'));
+    const pst=stageOfChapter(c.id);
+    if(pst) cs2.appendChild(h('p',{class:'dim projfoot'},[
+      document.createTextNode(T('This answer is part of Bharat Privacy Guard, stage')+' '+pst.n+': '),
+      h('a',{href:'#/project#stage-'+pst.id,text:T(pst.title)})]));
+    cs2.appendChild(notebookBlock(c,'capstone',T('What you produced, and anything that surprised you'),
+      T('Rough notes. The artifact above, code or written, is the deliverable, not this box.')));
     w.appendChild(cs2);
   }
 
@@ -1296,6 +1312,112 @@ function pageLater(){
   return w;
 }
 
+/* ---------------- the project ----------------
+
+   Every capstone is a question about one project. The chapter-to-stage table
+   lives in window.PROJECT.stages and nowhere else, so the chapter page, the
+   capstone and this page cannot disagree about where a chapter belongs. */
+function stageOfChapter(id){
+  const st=(window.PROJECT&&window.PROJECT.stages)||[];
+  const i=st.findIndex(x=>x.chapters.indexOf(id)>=0);
+  return i<0?null:Object.assign({n:i+1,total:st.length},st[i]);
+}
+function pageProject(){
+  const P=window.PROJECT||{};
+  const w=h('div',{class:'wrap'});
+  w.appendChild(h('header',{class:'phead'},[
+    h('div',{class:'eyebrow'},[h('span',{text:T(P.eyebrow)})]),
+    h('h1',{text:T(P.title)})].concat((P.lead||[]).map(t=>h('p',{html:T(t)})))));
+
+  const tbl=(head,rows,tr)=>{
+    const t=h('table');
+    t.appendChild(h('thead',{},h('tr',{},head.map(x=>h('th',{text:T(x)})))));
+    t.appendChild(h('tbody',{},rows.map(r=>h('tr',{},r.map((cell,i)=>
+      tr[i]?h('td',{html:T(String(cell))}):h('td',{text:String(cell)}))))));
+    return h('div',{class:'tblwrap'},t);};
+  const sec=(mark,title,id)=>{
+    const s=h('section',{class:'part'});
+    if(id)s.id=id;
+    s.appendChild(sectionHead(mark,title));
+    return s;};
+  const paras=(el,list)=>{ (list||[]).forEach(t=>el.appendChild(h('div',{class:'prose'},[h('p',{html:T(t)})]))); };
+  const bullets=(list)=>h('ul',{class:'plain'},(list||[]).map(x=>h('li',{html:T(x)})));
+
+  let s1=sec('◈',P.why.title); paras(s1,P.why.paras); w.appendChild(s1);
+  let s2=sec('◈',P.notThis.title); paras(s2,P.notThis.paras); w.appendChild(s2);
+
+  const hw=P.how;
+  let s3=sec('◈',hw.title);
+  s3.appendChild(h('div',{class:'prose'},[h('p',{html:T(hw.intro)})]));
+  const flow=h('div',{class:'flow'});
+  hw.flow.forEach((t,i)=>{
+    flow.appendChild(h('div',{class:'flowbox'+(i===0||i===hw.flow.length-1?' end':'')},T(t)));
+    if(i<hw.flow.length-1) flow.appendChild(h('span',{class:'flowarrow',text:'→'}));});
+  s3.appendChild(flow);
+  s3.appendChild(h('div',{class:'cards'},hw.parts.map((pt,i)=>
+    h('div',{class:'card'},[
+      h('h3',{text:(i+1)+'. '+T(pt.name)}),
+      h('p',{style:'font-weight:500;color:var(--ink)',text:T(pt.plain)}),
+      h('p',{style:'margin-top:.35rem',html:T(pt.body)}),
+      h('p',{class:'dim',style:'margin-top:.45rem;font-size:.78rem',text:T(pt.tech)})]))));
+  w.appendChild(s3);
+
+  const sc=P.scope;
+  let s4=sec('◈',sc.title);
+  s4.appendChild(h('div',{class:'prose'},[h('p',{html:T(sc.intro)})]));
+  s4.appendChild(h('div',{class:'scopegrid'},[
+    h('div',{class:'card scope-in'},[h('h3',{text:T(sc.inTitle)}),bullets(sc.inItems)]),
+    h('div',{class:'card'},[h('h3',{text:T(sc.designedTitle)}),bullets(sc.designedItems)]),
+    h('div',{class:'card'},[h('h3',{text:T(sc.laterTitle)}),bullets(sc.laterItems)])]));
+  w.appendChild(s4);
+
+  const ids=P.ids;
+  let s5=sec('◈',ids.title);
+  s5.appendChild(h('div',{class:'prose'},[h('p',{html:T(ids.intro)})]));
+  s5.appendChild(tbl(ids.head,ids.rows,[true,false,true]));
+  w.appendChild(s5);
+
+  const sm=P.samples;
+  let s6=sec('◈',sm.title,'samples');
+  s6.appendChild(h('div',{class:'prose'},[h('p',{html:T(sm.intro)})]));
+  s6.appendChild(tbl(sm.head,sm.rows,[false,true,false,true]));
+  w.appendChild(s6);
+
+  const ak=P.answerKey;
+  let s7=sec('◈',ak.title,'answer-key'); paras(s7,ak.paras);
+  s7.appendChild(tbl(ak.versionsHead,ak.versions,[false,false,true,true]));
+  s7.appendChild(h('h3',{class:'subhead',text:T(ak.trickyTitle)}));
+  s7.appendChild(bullets(ak.tricky));
+  w.appendChild(s7);
+
+  let s8=sec('◈',P.reading.title); paras(s8,P.reading.paras); w.appendChild(s8);
+
+  w.appendChild(h('div',{class:'prose',style:'margin-top:2.2rem'},[
+    h('h2',{class:'stagesh',text:T(P.stagesTitle)}),
+    h('p',{html:T(P.stagesIntro)})]));
+  (P.stages||[]).forEach((st,i)=>{
+    const chs=st.chapters.map(id=>byId[id]).filter(Boolean);
+    const done=chs.filter(c=>S.done[c.id]).length;
+    const box=h('section',{class:'part stagebox',id:'stage-'+st.id});
+    box.appendChild(sectionHead(String(i+1),st.title));
+    box.appendChild(h('div',{class:'prose'},[h('p',{html:T(st.plain)})]));
+    box.appendChild(h('div',{class:'chiprow'},chs.map(c=>
+      h('a',{class:'chip'+(S.done[c.id]?' done':''),href:'#/ch/'+c.id,
+        text:(S.done[c.id]?'✓ ':'')+c.num+'. '+T(c.title)}))));
+    box.appendChild(h('p',{class:'dim',style:'font-size:.8rem;margin:.6rem 0 0',
+      text:done+' / '+chs.length+' '+T('chapters finished')}));
+    box.appendChild(h('div',{class:'takeaway'},[
+      h('span',{class:'cplbl',text:T('When this stage is finished you will have')}),
+      bullets(st.endWith)]));
+    w.appendChild(box);});
+
+  let s9=sec('◈',P.wordsTitle);
+  s9.appendChild(h('dl',{class:'words noterm'},(P.words||[]).map(([t,d])=>
+    h('div',{class:'word'},[h('dt',{text:T(t)}),h('dd',{html:T(d)})]))));
+  w.appendChild(s9);
+  return w;
+}
+
 /* ---------------- the appendices ----------------
 
    Three of the six are instruments rather than pages, and they live at
@@ -1695,6 +1817,7 @@ function renderRail(){
   r.appendChild(sec('',[
     ['#/','◉','Continue'],
     ['#/library','▤','Chapters'],
+    ['#/project','◈','Your project: Bharat Privacy Guard'],
     ['#/practice','▶','Practice'+(dueN?'  ('+dueN+' due)':'')],
     ['#/skills','▦','My progress'],
     /* Setup was in the drawer with everything else, on the reasoning that it is
@@ -2260,6 +2383,7 @@ const ROUTES={'':()=>V().dashboard(),'library':pageHome,
   'exercises':()=>V().exercises(),'processes':()=>V().processes(),
   'setup':pageSetup,'install':pageInstall,'language':pageLanguage,
   'notebook':pageNotebook,'ledger':pageLedger,
+  'project':pageProject,
   'later':pageLater,'glossary':pageGlossary,'vendor':pageVendor,'map':pageMap,'card':pageCard,
   'appendix':pageAppendix,'evidence':pageEvidence,
   'decisions':pageDecisionLog,'failures':pageFailureLog,
@@ -2268,7 +2392,7 @@ const ROUTES={'':()=>V().dashboard(),'library':pageHome,
 const CRUMB={'':'Dashboard','library':'Library','skills':'Skill Matrix','analytics':'Analytics',
   'exercises':'Exercises','processes':'Processes','practice':'Practice','skill':'Skill',
   'data':'Progress & Backup','studio':'Content Studio','install':'Install as an app',
-  'language':'Language','setup':'Setup','appendix':'Appendices',
+  'language':'Language','setup':'Setup','appendix':'Appendices','project':'Your project',
   'evidence':'Artifact Vault','templates':'The workbench',
   'decisions':'Decision Log','failures':'Failure Log'};
 
@@ -2444,7 +2568,7 @@ function hingStrings(){
         walk(o,b.slice(1)); };
       (c.story||[]).forEach(prose);
       (c.handson||[]).forEach(st=>{ add(o,st.h); (st.b||[]).forEach(prose); });
-      if(c.capstone){ add(o,c.capstone.title); add(o,c.capstone.brief);
+      if(c.capstone){ add(o,c.capstone.title); add(o,c.capstone.brief); add(o,c.capstone.where);
         walk(o,c.capstone.steps); walk(o,c.capstone.done); }
     });
   });

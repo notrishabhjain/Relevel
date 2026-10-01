@@ -5,12 +5,6 @@
    back to English rather than showing a translation of something else. */
 Object.assign(window.HING = window.HING || {}, {
 
-  'State its measured quality: your numbers at your chosen k, from Chapter 6.':
-    'Uski naapi hui quality likhiye: Chapter 6 se, apne chune hue k par apne numbers.',
-  'Rank them for your use case, with one line each on what the failure costs a real person.':
-    'Unhe apne use case ke liye rank kijiye, har ek ke saath ek line ki us failure ka kisi asli insaan ko kya kharch hai.',
-  'The ranking is by consequence to your users, not by how interesting the topic is.':
-    'Rank aapke users par asar se lagi hai, is se nahi ki kaunsa topic dilchasp hai.',
   'You have a working RAG system':
     'Aapke paas ek chalta hua RAG system hai',
   'You know how to measure it':
