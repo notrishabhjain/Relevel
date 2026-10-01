@@ -317,7 +317,7 @@ ok(await n1.page.locator('.needs').count() === 1, 'a later chapter says what it 
 ok(await n1.page.locator('.needlist li').count() >= 3, 'naming each idea it depends on',
    await n1.page.locator('.needlist li').count());
 const nd = await text(n1.page, '.needs');
-ok(/go back first/.test(nd), 'and says going back is the fast route, not an admission', nd.slice(0, 100));
+ok(/review them first/.test(nd), 'and says going back is the fast route, not an admission', nd.slice(0, 100));
 ok(await n1.page.locator('.needs a[href="#/ch/ch2"]').count() === 1,
    'with a link straight to the chapter it came from');
 ok((await n1.page.locator('.needs').evaluate(e => {
@@ -327,7 +327,7 @@ ok((await n1.page.locator('.needs').evaluate(e => {
 ok(await n1.page.locator('.alsoref a').count() >= 1,
    'every other chapter it leans on is surfaced and linked too',
    await n1.page.locator('.alsoref a').count());
-ok(/second tab rather than pushing on/.test(await text(n1.page, '.alsoref')),
+ok(/open them in another tab/.test(await text(n1.page, '.alsoref')),
    'with the instruction to go and look rather than push through');
 /* derived from the prose, so it cannot drift from what the chapter says */
 ok(await n1.page.evaluate(() => {
@@ -517,11 +517,11 @@ console.log('\n— reading it in Hinglish —');
 const hi = await newDevice(false, 'hindireader');
 await boot(hi.page, '#/ch/ch1');
 const enTitle = await text(hi.page, '.chead h1');
-ok(/What happens when your app asks/.test(enTitle), 'a chapter opens in English by default', enTitle);
+ok(/Your first API call/.test(enTitle), 'a chapter opens in English by default', enTitle);
 await hi.page.locator('#langbtn').click();
 await hi.page.waitForTimeout(400);
 const hiTitle = await text(hi.page, '.chead h1');
-ok(hiTitle !== enTitle && /aapka app/.test(hiTitle), 'switching reads the same chapter in Hinglish', hiTitle);
+ok(hiTitle !== enTitle && /pehli API call/.test(hiTitle), 'switching reads the same chapter in Hinglish', hiTitle);
 const hiBody = await mainText(hi.page);
 ok(/tokens/.test(hiBody), 'and the industry terms are still in English inside it');
 await hi.page.goto(B + '/#/ch/ch15b');
@@ -631,8 +631,8 @@ const ramp = await newDevice(false);
 await boot(ramp.page);
 await boot(ramp.page, '#/ch/ch05');
 const rampText = await ramp.page.evaluate(() => document.body.innerText);
-ok(/Ten minutes, and nothing to set up/.test(rampText), 'it is reachable and titled plainly');
-ok(/No account, no key, no download, no card/.test(rampText),
+ok(/Try it in the browser/.test(rampText), 'it is reachable and titled plainly');
+ok(/no account, no API key, no download/.test(rampText),
    'and it says up front that it costs nothing to start');
 const rampBeats = await ramp.page.$$eval('.dostep h4', ns => ns.map(n => n.textContent));
 ok(rampBeats.length >= 3, 'it has hands-on work of its own, not just reassurance',
@@ -882,10 +882,13 @@ ok(await v4.page.$eval('.cmptable tbody tr:first-child input[type=checkbox]', e 
    'a ticked row survives a reload, because a worksheet that forgets is not one');
 
 console.log('\n— English-only is stated, not left to look broken —');
+/* The applied track has since been fully translated (content-check requires
+   100% Hinglish coverage), so no chapter is English-only any more — this
+   now asserts the notice's absence everywhere, not its presence somewhere. */
 await v4.page.evaluate(() => { window.STORE.S.lang = 'hi'; window.STORE.flush(); });
 await boot(v4.page, '#/ch/ch13a');
-ok((await mainText(v4.page)).includes('English-only for now'),
-   'an applied chapter says so when Hinglish is on');
+ok(!(await mainText(v4.page)).includes('English-only for now'),
+   'an applied chapter no longer needs the notice, now that translation is complete');
 await boot(v4.page, '#/ch/ch3');
 const ch3hi = await mainText(v4.page);
 ok(!ch3hi.includes('English-only for now'),
@@ -1015,7 +1018,10 @@ await boot(navp.page, '#/ch/ch13a');
 const hiCh = await navp.page.evaluate(() => ({
   labels: [...document.querySelectorAll('.planlist dt')].map(n => n.textContent).join(' '),
   plan: (document.querySelector('.planlist dd') || {}).textContent || '',
-  body: (document.querySelector('.prose p') || {}).textContent || '',
+  /* .prose > p (direct child) skips the "Before you start" callout's own
+     nested <p>, which is a short logistics line that may contain no "hai"
+     at all, and reaches the first real prose paragraph instead. */
+  body: (document.querySelector('.prose > p') || {}).textContent || '',
   notice: document.body.innerText.includes('English-only for now')
 }));
 ok(/Pehle lab/.test(hiCh.labels),
