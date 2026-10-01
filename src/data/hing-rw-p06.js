@@ -9,28 +9,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Seedhe shabdon mein samjhaana ki computer kaise bata sakta hai ki alag shabdon wale do sentences ka matlab ek hai.',
   'Name a place where embeddings would fail on your own company’s vocabulary.':
     'Aisi jagah bata paana jahan embeddings aapki company ki shabdavali par fail honge.',
-  'Compare keyword and meaning search on your own document':
-    'Apne document par keyword aur matlab wale search ki tulna kijiye',
-  'You have run both methods on the same cards with the same questions: by hand in Chapter 4, and in code here. Few people have this comparison for their own documents. Write it up properly, including any case where the new method does worse.':
-    'Aapne dono tareeke ek hi cards par ek hi sawaalon ke saath chalaaye: Chapter 4 mein haath se, aur yahan code mein. Kam logon ke paas apne documents ke liye yeh tulna hoti hai. Ise theek se likhiye, un cases samet jahan naya tareeka bura kare.',
-  'Make one table of all eight questions: the rank keyword search gave the correct card, and the rank meaning search gives it now.':
-    'Saare aath sawaalon ki ek table banaiye: keyword search ne sahi card ko kaunsa rank diya, aur matlab wala search ab kaunsa deta hai.',
-  'Check your exact-code question. If it got worse, that is a reason to combine both methods (hybrid search) on your data. Note it in one line.':
-    'Apna exact-code wala sawaal check kijiye. Agar woh bigda, to yeh aapke data par dono tareeke milaane (hybrid search) ki wajah hai. Ek line mein note kijiye.',
-  'Test your second language properly: embed a domain term and its translation, compute the similarity, then run two or three real questions in that language.':
-    'Apni doosri bhasha ko theek se test kijiye: ek domain term aur uske anuvaad ka embedding banaiye, similarity nikaaliye, phir us bhasha mein do-teen asli sawaal chalaiye.',
-  'Write the result in three bullets: where meaning search helps your users, where it is weak, and what you would check before trusting it in production.':
-    'Result teen bullets mein likhiye: matlab wala search aapke users ki kahan madad karta hai, kahan kamzor hai, aur production mein bharosa karne se pehle aap kya check karenge.',
-  'Ask three questions the document cannot answer, and record the top scores. Chapter 6 uses these numbers to set a threshold.':
-    'Teen aise sawaal poochhiye jinka jawab document nahi de sakta, aur top scores record kijiye. Chapter 6 in numbers se threshold tay karta hai.',
-  'Write four or five sentences a non-technical colleague could follow: how the system finds meaning, and why “it found something” does not mean “the answer exists”.':
-    'Chaar-paanch sentences likhiye jo ek non-technical colleague samajh sake: system matlab kaise dhoondhta hai, aur “kuchh mila” ka matlab “jawab maujood hai” kyun nahi.',
-  'The table has both ranks for all eight questions, from runs you did.':
-    'Table mein saare aath sawaalon ke dono ranks hain, aapke chalaaye runs se.',
-  'You have a measured number for how your second language behaves.':
-    'Aapki doosri bhasha kaise behave karti hai, iska aapke paas naapa hua number hai.',
-  'You can name one thing meaning search did not fix, and point to the run that shows it.':
-    'Aap ek cheez bata sakte hain jo matlab wale search ne theek nahi ki, aur us run par ungli rakh sakte hain jo ise dikhata hai.',
   'This chapter turns the idea into real code.':
     'Yeh chapter idea ko asli code mein badalta hai.',
   'Keyword search cannot see meaning':
@@ -105,28 +83,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Search step ke fail hone ke do tareeke batana, aur ek ko theek karne se doosra kyun bigadta hai.',
   'Decide which failure is worse for a feature you work on, and defend the choice.':
     'Apne feature ke liye tay karna ki kaunsa failure zyada bura hai, aur us choice ko defend karna.',
-  'Write a ship-or-not memo':
-    'Ship karein ya nahi, iska memo likhiye',
-  'You now have real numbers from your own documents at three settings. Turn them into a recommendation someone could act on. Include the part most memos avoid: which failure you have decided to accept, and who made that call.':
-    'Ab aapke paas teen settings par apne documents ke asli numbers hain. Unhe aisi recommendation mein badliye jis par koi kaam kar sake. Woh hissa bhi daaliye jo zyadatar memos taalte hain: aapne kaunsa failure sweekaar karne ka faisla kiya, aur yeh faisla kisne liya.',
-  'State the use case in one line, and who is affected when it is wrong.':
-    'Use case ek line mein bataiye, aur galat hone par kaun prabhaavit hota hai.',
-  'Add your table: the three values of k, with correct-card hits and the share of relevant chunks at each.':
-    'Apni table jodiye: k ki teen values, har ek par sahi-card hits aur relevant chunks ka hissa.',
-  'Recommend a k for a customer-facing assistant, and a different one for an internal drafting tool. If they are the same, reconsider.':
-    'Customer-facing assistant ke liye ek k suggest kijiye, aur internal drafting tool ke liye alag. Agar dono ek hain, to phir sochiye.',
-  'Write five acceptance criteria in the style of a test plan, including one for the unanswerable question and one for a second language.':
-    'Test plan ke style mein paanch acceptance criteria likhiye, jisme ek jawab na hone wale sawaal ke liye ho aur ek doosri bhasha ke liye.',
-  'Add the cost line: what k does to tokens per query, and to the monthly bill at a realistic volume.':
-    'Cost line jodiye: k per query tokens aur realistic volume par mahine ke bill ke saath kya karta hai.',
-  'End with the gap between your prediction and the measured result, and what you now think a demo is worth as evidence.':
-    'Apne andaaze aur naape gaye result ke gap ke saath khatam kijiye, aur ab aapke hisaab se demo saboot ke roop mein kitna maayne rakhta hai.',
-  'Every number in the memo came from a run you did.':
-    'Memo ka har number aapke chalaaye run se aaya.',
-  'The two recommended values of k differ, and the reason is about consequences, not technology.':
-    'Suggest ki gayi k ki dono values alag hain, aur wajah technology nahi, nateeje hain.',
-  'Someone could use your acceptance criteria to test a vendor’s system next week.':
-    'Koi agle hafte aapke acceptance criteria se ek vendor ke system ko test kar sakta hai.',
   'It returns a ranked list whatever you ask.':
     'Aap kuchh bhi poochhein, yeh rank ki hui list lautata hai.',
   'Embeddings find the nearest chunks':

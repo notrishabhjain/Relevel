@@ -5,8 +5,6 @@
    back to English rather than showing a translation of something else. */
 Object.assign(window.HING = window.HING || {}, {
 
-  'You can name at least one thing that would make the real bill higher than your estimate.':
-    'Aap kam se kam ek cheez ka naam le sakte hain jiske chalte asli bill aapke andaaze se zyada aayega.',
   'A red box saying something <em>is not defined</em>':
     'Laal box jismein likha ho ki koi cheez <em>is not defined</em> hai',
   'You have run a cell that needs something an earlier cell made, without running that earlier one first. Scroll to the top, run the warm-up cells in order, then come back to this one. This is the most common thing that goes wrong in a notebook, it happens to everybody, and it says nothing about your code.':

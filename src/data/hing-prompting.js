@@ -17,10 +17,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Aadhe ghante se kam me, asli inputs se, kisi prompt ke liye ek chhota test set bana lena.',
   'Explain why a prompt that looked better in a demo often is not.':
     'Yeh samjhana ki demo me behtar dikhne waala prompt aksar behtar hota kyun nahi.',
-  'Find one change that made no difference and remove it. Note what that saves per call.':
-    'Ek aisa badlaav dhoondhiye jisse koi farq nahi pada aur use hata dijiye. Note kijiye ki har call par usse kya bachta hai.',
-  'You have four scores from four one-at-a-time changes, not one score from a rewrite.':
-    'Aapke paas ek baar me ek badlaav ke chaar scores hain, ek dobara likhne ka ek score nahi.',
   'Build the test set':
     'Test set banaiye',
   'Six ordinary cases, chosen without looking at how the prompt does on them.':

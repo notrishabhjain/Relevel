@@ -11,26 +11,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Samjhaana ki koi bhi chat “memory” feature asal mein kaise kaam karta hai.',
   'Predict what a long conversation will cost before anyone builds it.':
     'Kisi ke banaane se pehle hi andaaza lagana ki lambi baatcheet kitne ki padegi.',
-  'Estimate the cost of a real feature':
-    'Ek asli feature ki cost ka andaaza lagaiye',
-  'Answer the question a finance director will eventually ask: what will this cost? Use numbers you produce yourself, not a vendor’s estimate.':
-    'Us sawaal ka jawab dijiye jo finance director kabhi na kabhi poochhega: iski cost kya hogi? Vendor ke andaaze ki jagah apne nikaale numbers use kijiye.',
-  'Pick one small feature your team could ship, such as a support-ticket summariser, a drafting aid or an FAQ bot. Describe it in one sentence.':
-    'Ek chhota feature chuniye jo aapki team ship kar sakti hai, jaise support-ticket summariser, drafting aid ya FAQ bot. Ek sentence mein uska varnan kijiye.',
-  'Write the request it would send as a real call in your <code>chapter-1</code> notebook, using a real example from your work. Run it.':
-    'Jo request woh bhejega use apne <code>chapter-1</code> notebook mein ek asli call ki tarah likhiye, apne kaam ke asli example ke saath. Chalaiye.',
-  'Record <code>prompt_tokens</code> and <code>completion_tokens</code>. Do this for three realistic inputs, and take the average.':
-    '<code>prompt_tokens</code> aur <code>completion_tokens</code> record kijiye. Teen realistic inputs ke saath kijiye, aur average nikaaliye.',
-  'Turn it into a conversation. Send the growing history for five turns, and print <code>prompt_tokens</code> at each turn. List the five numbers.':
-    'Ise baatcheet banaiye. Paanch turns tak badhti history bhejiye, aur har turn par <code>prompt_tokens</code> print kijiye. Paancho numbers likhiye.',
-  'Find your provider’s price per million tokens. Work out a cost per query, then a cost per 1,000 conversations.':
-    'Apne provider ka per million tokens price dhoondhiye. Per query cost nikaaliye, phir 1,000 baatcheeton ki cost.',
-  'Write the one sentence you would say in a budget meeting: the figure, and the assumption most likely to make it wrong.':
-    'Woh ek sentence likhiye jo aap budget meeting mein kahenge: figure, aur woh assumption jo use galat kar sakta hai.',
-  'You can recalculate the cost per query in front of someone, from numbers on your own screen.':
-    'Aap kisi ke saamne apni screen ke numbers se per query cost dobara nikaal sakte hain.',
-  'You can name the assumption most likely to break the estimate, and it is more specific than “the model might change”.':
-    'Aap woh assumption bata sakte hain jo andaaze ko sabse zyada tod sakta hai, aur woh “model badal sakta hai” se zyada specific hai.',
   'Models generate text, they do not look it up':
     'Models text banaate hain, dhoondhte nahi',
   'So a confident tone is not evidence.':
@@ -93,28 +73,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Samjhaana ki system prompt kya hai aur use har message ke saath kyun bheja jaata hai.',
   'Tell the difference between making a failure rarer and removing its cause.':
     'Failure ko kam hona aur uski wajah hatana, in dono ka farq bata paana.',
-  'Write a system prompt and test it':
-    'Ek system prompt likhiye aur test kijiye',
-  'A real product needs more than one sentence of instruction. It needs a written system prompt that is reviewed like any other procedure, because it defines how the product behaves. Write one. You will use it again in Chapter 7.':
-    'Asli product ko ek sentence ki instruction se zyada chahiye. Use ek likha hua system prompt chahiye jiska review kisi bhi procedure ki tarah ho, kyunki wahi tay karta hai ki product kaise behave karega. Ek likhiye. Chapter 7 mein aap ise phir use karenge.',
-  'Pick an assistant for your own field, such as a policy desk, a claims helper or an internal handbook bot. Write one line on who uses it and why.':
-    'Apne field ke liye ek assistant chuniye, jaise policy desk, claims helper ya internal handbook bot. Ek line likhiye ki use kaun use karta hai aur kyun.',
-  'Draft half a page: how it should sound, what it must never do, and the exact words it should use when it cannot verify something.':
-    'Aadhe page ka draft likhiye: woh kaisa sunna chahiye, use kya kabhi nahi karna, aur jab woh kuchh verify na kar sake to kaunse exact shabd use kare.',
-  'Cover the edge cases. What should it do with a question it can only partly answer? A question in another language? A user who insists?':
-    'Edge cases cover kijiye. Jis sawaal ka woh sirf aadha jawab de sake, uske saath kya kare? Doosri language ke sawaal ke saath? Zid karne wale user ke saath?',
-  'Put it in your <code>chapter-2</code> notebook as the system message, and run your fake-scheme question against it. Fix any wording that lets an invented answer through.':
-    'Ise apne <code>chapter-2</code> notebook mein system message ki tarah daaliye, aur uske khilaaf apna fake-scheme wala sawaal chalaiye. Jo wording banaaya hua jawab nikalne de, use theek kijiye.',
-  'Write three pushy user messages designed to beat your own system prompt. Run all three, and note which ones succeed.':
-    'Apne hi system prompt ko harane ke liye teen zor dene wale user messages likhiye. Teeno chalaiye, aur note kijiye ki kaunse safal hue.',
-  'Revise the system prompt once using what you learned. Save the final version for Chapter 7.':
-    'Jo seekha uske aadhaar par system prompt ek baar revise kijiye. Final version Chapter 7 ke liye save kijiye.',
-  'The system prompt is written down, and someone else could apply it without asking you questions.':
-    'System prompt likha hua hai, aur koi aur bina sawaal poochhe use apply kar sakta hai.',
-  'You have run at least three attacks against it and recorded which succeeded.':
-    'Aapne iske khilaaf kam se kam teen attacks chalaaye aur record kiya ki kaunse safal hue.',
-  'You can say in one sentence which failure your system prompt still cannot prevent, and why no wording could.':
-    'Aap ek sentence mein bata sakte hain ki aapka system prompt kaunsa failure ab bhi nahi rok sakta, aur koi wording kyun nahi rok sakti.',
   'There is nothing behind the model to check facts against.':
     'Model ke peechhe facts check karne ke liye kuchh nahi hai.',
   'Models forget between messages':

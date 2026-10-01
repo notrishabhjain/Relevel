@@ -15,10 +15,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek AI assistant se ek analysis draft karwaiye, phir har claim ko evidence ke against check kijiye.',
   'Map the hard and soft skills the applied AI PM role needs, and where you stand on each.':
     'Applied AI PM role ko chahiye hard aur soft skills map kijiye, aur har ek mein aap kahan khade hain.',
-  'In the AI teardown, every unsupported claim is marked, with a note on what evidence would settle it.':
-    'AI teardown mein, har unsupported claim mark hai, saath mein ek note ki kaunsa evidence usey settle karega.',
-  'Mastery gate: score each artifact 0–3. Move on only when all three score at least 2.':
-    'Mastery gate: har artifact ko 0–3 score kijiye. Aage tabhi badhiye jab teeno ka score kam se kam 2 ho.',
   'About ten hours across three or four sittings. Pick one product you use often and know well, such as Notion, Spotify, Swiggy, Slack or Canva. You will use it in every exercise.':
     'Teen ya chaar sittings mein lagbhag das ghante. Ek aisa product chuniye jo aap aksar use karte hain aur achhe se jaante hain, jaise Notion, Spotify, Swiggy, Slack ya Canva. Aap isey har exercise mein use karenge.',
   'Idea 1: Discovery, delivery and distribution are one loop':

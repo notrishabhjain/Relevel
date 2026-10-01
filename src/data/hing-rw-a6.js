@@ -15,14 +15,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Leadership ke liye ek decision memo likhiye aur shuru karne se pehle ek pre-mortem chalayiye.',
   'Track dependencies and risks before they turn into surprises.':
     'Dependencies aur risks ko surprises banne se pehle track kijiye.',
-  'Roadmap, OKRs and a decision memo':
-    'Roadmap, OKRs aur ek decision memo',
-  'Every roadmap item is an outcome, not a feature, and has a kill criterion.':
-    'Har roadmap item ek outcome hai, feature nahi, aur uska ek kill criterion hai.',
-  'At least one key result is a product outcome that a model metric alone could not achieve.':
-    'Kam se kam ek key result ek aisa product outcome hai jo akela model metric hasil nahi kar sakta.',
-  'The stakeholder map names who can veto the project, and what evidence they need.':
-    'Stakeholder map naam leta hai kaun project veto kar sakta hai, aur unhe kaunsa evidence chahiye.',
   'A written strategy':
     'Ek likhi hui strategy',
   'The roadmap turns it into sequenced outcomes.':

@@ -58,11 +58,25 @@ window.PART4 = [
     ],
     ['c','Tip','A common good answer is a mix: buy the plumbing and build the part that makes your product different. For example, use a vendor’s connectors and permissions, but own your retrieval and your evaluation.']
   ],
-  capstone:{title:'A build-or-buy recommendation with a review date',
-   brief:'Make a real build-or-buy recommendation using evidence you gathered, including the conditions under which it stops being right.',
-   where:'Written, no code. Compare the vendor and your own build on paper, then write the recommendation in the notes box below.',
-   steps:['State the capability in one line, and whether it is core or supporting for your product.','Run your answer key against at least one vendor trial, and record its results next to your own build’s.','Cost both over two years, including evaluation, maintenance and incident handling.','Add the time until each reaches users. Say which matters more here and why.','For the buy option, write what you would need in order to leave, and how long it would take.','Write the two triggers that would reverse the decision, and the date you will review them.'],
-   done:['You measured both options against the same answer key.','The build cost includes maintenance and evaluation, not just tokens.','The recommendation names what would make it wrong, with a review date.']}
+  capstone:{
+    title:'Recommend whether to build each part yourself or buy it',
+    brief:'For each part of the tool there is usually a ready-made option to buy or borrow, and your own build to compare it with. In this chapter you learned to run the same test on both, to name what you are really buying (often not the model), and to write down what would make you change your mind before you decide. Here you do that for two parts of Bharat Privacy Guard.',
+    where:'Mostly written. Use your answer key to test each option, in a notebook if the option has code, and write the recommendation in the notes box below.',
+    steps:[
+      'Choose two parts of the tool: the pattern checker and the name-and-place finder. For each part, write in one line what it must do and whether it is the heart of your product or a supporting piece.',
+      'For the pattern checker, compare your own rules with an existing library such as Presidio’s recognisers. For the name-and-place finder, compare a ready-made multilingual model with one you would train or adapt yourself. Run each option on your answer key and put the results in one table: quality on English, Hindi and Hinglish, speed, cost and effort.',
+      'Cost each option over two years, including testing, upkeep and the time to deal with incidents, not only the first build.',
+      'For each bought option, write what you would need in order to leave it later, and how long that would take.',
+      'Write what you are really buying. It is often updates, support and someone else carrying the responsibility, not the model itself.',
+      'Write your recommendation for each part in two sentences. Add the two conditions that would reverse it and the date you will review it. Write these before you decide, not afterwards.'
+    ],
+    done:[
+      'A table in which the options for each part were tested on the same answer key.',
+      'A two-year cost for each option that includes upkeep and testing.',
+      'A note on what it would take to leave each bought option.',
+      'Two recommendations, each with its reversing conditions and a review date.'
+    ]
+  }
 },
 {
 
@@ -79,11 +93,25 @@ window.PART4 = [
     'Say what must exist before the fine-tuning question can be answered.'
   ],
   red:['Reaching for fine-tuning to fix a knowledge gap','Choosing a fix before naming the failure'],
-  capstone:{title:'Answer a fine-tuning proposal with evidence',
-   brief:'Someone will propose fine-tuning, and it will sound like the serious option. Find out which kinds of failure they actually have, and cost the proposal honestly, including the parts that are usually left off the slide.',
-   where:'Written, no code. Cost the proposal on paper using numbers from earlier chapters, then write your answer in the notes box below.',
-   steps:['Collect twenty real failures from something you run, and sort them into the four kinds.','Count them. The counts often settle the question before any technical discussion.','For the largest group, name the cheapest change that would address it, and explain why it is cheaper.','Cost the fine-tuning proposal properly: preparing data, training, evaluating, and repeating it every time the base model changes.','Try a smaller or cheaper model with better retrieval, and measure whether quality actually drops.','Write a one-page recommendation, using the failure counts as the main argument.'],
-   done:['You sorted real failures into the four kinds, with counts.','The cost of fine-tuning includes the recurring cost, not just the first run.','You can say what evidence would change your recommendation.']},
+  capstone:{
+    title:'Answer a proposal to fine-tune a model, using evidence',
+    brief:'Someone suggests that the name-and-place finder be improved by training a small Indian-language model of your own (fine-tuning). It sounds like the serious option. In this chapter you learned the four things you can change in an AI system, what each one fixes, and that fine-tuning is the wrong tool for “it does not know our new policy”. Here you decide, with evidence, whether the proposal is right.',
+    where:'Written, no code. Use failures you already collected in earlier chapters and numbers you already measured. Write the answer in the notes box below.',
+    steps:[
+      'Collect twenty real failures from your tool. Take them from the list you made in Chapter 14.5.',
+      'Sort the twenty into the four kinds from this chapter: the model did not know something, the instructions were unclear, the right information was not found, or the format was wrong.',
+      'Count each kind. The counts often settle the question before any technical argument starts.',
+      'For the biggest group, name the cheapest change that would fix it and explain why it is cheaper than fine-tuning.',
+      'Cost the fine-tuning proposal honestly: preparing the data, training, testing, and doing all of it again every time the base model changes.',
+      'Write a one-page answer to whoever proposed it. Use the failure counts as the main argument, and say what evidence would change your mind.'
+    ],
+    done:[
+      'Twenty real failures sorted into the four kinds, with counts.',
+      'The cheapest alternative for the biggest group.',
+      'A cost for fine-tuning that includes the repeat cost.',
+      'A one-page answer, including what evidence would change your recommendation.'
+    ]
+  },
   story:[
     ['c','Before you start','No notebook for this chapter. Open your failure taxonomy from Chapter 14.5, or collect ten real outputs from an AI feature you use every day.'],
     ['p','At some point, usually in a roadmap review, someone will ask: <em>should we fine-tune?</em> It is usually asked before anyone has said what is wrong. Saying yes commits a quarter of work. Saying no can sound unambitious. The right answer starts with a diagnosis.'],
@@ -170,11 +198,25 @@ window.PART4 = [
     'Explain what must exist underneath a kill switch for it to be usable.'
   ],
   red:['An uncertain answer shown with a certain interface','Citations that do not open the passage','A feedback button that collects nothing usable'],
-  capstone:{title:'Design the four states for a real feature',
-   brief:'Many AI features use one interface for four different situations, so a confident wrong answer looks exactly like a confident right one. Design the states properly for a real feature, and time how long a correction takes.',
-   where:'Written, no code. Design the four states on paper, then time a real correction with a stopwatch and write the design in the notes box below.',
-   steps:['Audit an AI feature you use every day. Note what it shows when it is confident, unsure, wrong and unable to answer.','Pick a feature you own or could own. Write the four states: what the user sees, and what they can do next, in each.','Design the “I cannot answer this” state as a real route to a person, not a dead end.','Decide what the interface shows when confidence is middling, so uncertainty is visible without being noisy.','Time the correction: from a user noticing a mistake to it being fixed. Count every step and hand-off.','Write down which of the four states your current design merges, and what that costs the user.'],
-   done:['All four states are specified, including what the user can do in each.','The correction path is timed end to end, and the slowest step is identified.','You can name the state your product handles worst, and what you would change first.']},
+  capstone:{
+    title:'Design the four answers the tool can give',
+    brief:'Many AI features use the same screen when they are sure, when they are unsure, when they are wrong and when they cannot answer, so a confident wrong answer looks exactly like a confident right one. In this chapter you learned how a feature that is wrong one time in ten can still be trusted, and why a confidence number is usually the wrong thing to show. Here you design the four states for the developer kit.',
+    where:'Written, no code. Design on paper, time one correction with a stopwatch, and write the design in the notes box below.',
+    steps:[
+      'Look at an AI feature you use every day. Note what it shows when it is confident, unsure, wrong and unable to answer.',
+      'Now design the four states for Bharat Privacy Guard: found and removed with confidence, found but unsure, wrongly removed (a false alarm), and unable to decide. For each, write what the developer’s program receives, what the end user sees, and what each can do next.',
+      'Design the “unable to decide” state as a real way to reach a person, not a dead end. Say who the person is and how long they take.',
+      'Decide what the tool shows when it is only half sure, so that uncertainty is visible without being noisy. Do not show a bare confidence number.',
+      'Time one correction from start to finish: a user notices that a harmless word was hidden, to the rule being fixed. Count every step and hand-off.',
+      'Write which of the four states your current design merges together, and what that costs the user.'
+    ],
+    done:[
+      'All four states written out, including what each person can do in each.',
+      'The “unable to decide” route to a real person.',
+      'The correction path, timed end to end, with the slowest step marked.',
+      'The state your product handles worst, and the first thing you would change.'
+    ]
+  },
   story:[
     ['c','Before you start','No code. Pick an AI feature you use every day, and one feature you own or could own.'],
     ['p','So far the course has focused on making the model right more often. This chapter is about the rest of the time. At 90% accuracy, one interaction in ten is wrong, and no amount of engineering removes that entirely. What the screen does in that case decides whether the feature is usable.'],
@@ -285,11 +327,25 @@ window.PART4 = [
     ['p','The whole course repeats one idea at larger and larger scale: decide what counts as failure, then measure that specific thing, instead of looking at outputs and forming an impression. You have done it for a prompt, a retriever, a judge, a cost model and now a business case.'],
     ['key','The techniques will change as models change. The habit of defining failure first and then measuring it is what carries over.']
   ],
-  capstone:{title:'Design a pilot that could fail',
-   brief:'Design a pilot for a real feature, with a number the business already tracks, a comparison, a failure threshold and a time window. Then get someone senior to agree the threshold before it runs.',
-   where:'Written, no code. Design the pilot on paper, then write it up and get it agreed before anything runs.',
-   steps:['Time the whole workflow and mark where your feature fits. If it is not on the critical path, say so and stop here.','Choose the business number. It must already exist, and someone must already look at it.','Design the comparison: which two groups, over which period, and why they are comparable.','Write the failure threshold, the change below which you would call it a failure, and the time window before you judge.','Write the disappointing result in advance, in the words you would say to whoever funded it.','Get the person who funds it to agree the threshold in writing <em>before</em> the pilot runs.'],
-   done:['The number is one the business was already tracking before the pilot.','The failure threshold is agreed in writing by the person who would be disappointed by it.','You can describe a result that would make you recommend switching the feature off.']}
+  capstone:{
+    title:'Design a pilot that could fail',
+    brief:'A pilot that cannot fail proves nothing. In this chapter you learned to pick one number the business already tracks, to compare two groups, and to agree a failure threshold before the pilot starts. Here you design a pilot of the developer kit with five to ten real developers.',
+    where:'Written, no code. Design on paper, then write it up and get it agreed before anything runs.',
+    steps:[
+      'Time the whole workflow of a developer who handles user text, and mark where the kit fits. If it is not on the critical path, say so and stop here.',
+      'Choose the business number. It must already exist and someone must already look at it, for example the number of support tickets that mention personal data being pasted into a chat.',
+      'Design the comparison: which two groups of developers or which two periods, and why they are comparable.',
+      'Write the failure threshold, the change below which you will call the pilot a failure, and the time window before you judge.',
+      'Write the disappointing result in advance, in the words you would say to whoever funded it.',
+      'Get the person who funds it to agree the threshold in writing before the pilot runs.'
+    ],
+    done:[
+      'A business number that was already tracked before the pilot.',
+      'A comparison between two groups or periods, with a reason they are fair.',
+      'A failure threshold agreed in writing by the person who would be disappointed by it.',
+      'A description of a result that would make you recommend switching the kit off.'
+    ]
+  }
 }
 
 ];

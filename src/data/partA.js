@@ -80,19 +80,24 @@ window.PART6 = [
   ],
   needs:[],
   capstone:{
-    title:'Set up your learning system, and name your capstone: Bharat Privacy Guard',
-    brief:'Three artifacts that the rest of the book builds on: a scored role scorecard, a working repository, and the capstone problem — an Indian, multilingual privacy layer that detects personal and quasi-identifying information in English, Hindi and Hinglish before it reaches a website, an API or an LLM.',
-    where:'Written. A notes app or paper for the scorecard, and a repository (folders and files, not really code) for the rest.',
+    title:'Set up your workspace and name your project',
+    brief:'This is the first capstone of the course, so you start from nothing. By the end you will have three things: an honest picture of your own skills, a place to keep everything you make, and a clear statement of the project you will build all the way through. The project is Bharat Privacy Guard, a tool that finds personal details such as Aadhaar and PAN numbers in English, Hindi and Hinglish text and hides them before the text goes anywhere. Read <a href="#/project">the project page</a> first. It explains the idea in plain words.',
+    where:'Written. Use a notes app, a document or paper for the scorecard, and a repository (just folders and text files, no real code) for the rest.',
     steps:[
-      'Write a one-page role scorecard covering the seven areas: discovery, strategy, technical fluency, delivery, analytics, business and leadership. Score yourself 0–3 in each, and write the evidence next to every score.',
-      'Create the repository with the folders <code>/research</code>, <code>/product</code>, <code>/experiments</code>, <code>/evals</code>, <code>/analytics</code>, <code>/security</code> and <code>/portfolio</code>, plus a <code>decision-log.md</code> file. Add at least two decisions to the log.',
-      'Name your capstone problem: a privacy layer that detects PII and quasi-identifiers in Indian text (English, Hindi and Hinglish) and lets an application redact, mask or minimise it before the data goes anywhere. Name two alternative problems you considered instead, and write the specific reason each lost — a baseline number if you have one, and why AI may or may not belong in the winner.'
+      'Write a one-page scorecard of your own skills. List the seven areas of the product manager role from this chapter: discovery, strategy, technical understanding, delivery, analytics, business and leadership. Give yourself 0, 1, 2 or 3 in each area, and write one line of evidence next to every score. “I have run five customer interviews” is evidence. “I think I am good at this” is not.',
+      'Create a repository (for example on GitHub) with these folders: <code>research</code>, <code>product</code>, <code>experiments</code>, <code>evals</code>, <code>analytics</code>, <code>security</code> and <code>portfolio</code>. Add one file at the top called <code>decision-log.md</code>.',
+      'Open the decision log and write the first two decisions in it. Each entry has three lines: what you decided, why, and what would make you change your mind. Your first decision is “My capstone project is Bharat Privacy Guard”. Your second can be any choice you have already made, such as which notebook tool you will use.',
+      'Name two other projects you thought about instead, for example a tool that summarises customer-support tickets or a tool that spots fraud in payments. For each one, write two or three lines: who would use it, what they do today, and why you did not choose it.',
+      'Write one paragraph, in your own words and without jargon, that explains Bharat Privacy Guard to a friend who does not work in technology. Use starter sentence 7 on the project page as your example.',
+      'Write one sentence saying what would make you stop using AI for this project. For example: “If a plain rule can already find 99 out of 100 of these numbers, I do not need a model.”'
     ],
     done:[
-      'Every score on the scorecard has evidence next to it, not just a feeling.',
-      'Someone else can find any artifact in the repository in under two minutes.',
-      'You have written down the specific reason each rejected alternative lost, not just that the privacy layer "felt more interesting."',
-      'Mastery gate: score each artifact 0–3. Move on only when all three score at least 2.'
+      'A one-page scorecard with a line of evidence next to every score.',
+      'A repository with the seven folders, and a decision log that holds two decisions.',
+      'Two rejected project ideas, each with a reason.',
+      'A one-paragraph explanation of the project that your friend could repeat back to you.',
+      'The sentence that says what would make you drop AI for this problem.',
+      'A score from 0 to 3 for each of the items above, using the scale in this chapter. Move on only when every score is at least 2.'
     ]
   },
   check:[
@@ -227,19 +232,23 @@ window.PART6 = [
   ],
   needs:[['Your capstone','You apply every idea in this chapter to your capstone, and to the product it is closest to.','A1']],
   capstone:{
-    title:'Tear down Rampart',
-    brief:'Take the product your capstone is answering — Rampart, the PII-detection tool it is a response to — understand why it works and where it stops working, and practise checking AI-generated analysis against evidence.',
-    where:'Written only. Rampart’s own published model card and documentation; no code required.',
+    title:'Take Rampart apart, and check what an AI says about it',
+    brief:'Rampart is the existing tool that Bharat Privacy Guard answers. Before you build something better, you need to know exactly what Rampart does well, where it stops, and why. In this chapter you learned to map how a product wins and to check an AI’s analysis against evidence. Here you do both on Rampart.',
+    where:'Written only. Use Rampart’s own published description and model card. No code needed.',
     steps:[
-      'Map Rampart’s discovery, delivery and distribution as a product. Mark the weakest of the three, with the evidence that makes you think so.',
-      'Write a teardown with seven headings: target user, job, key moment, friction, business model, moat, and one improvement. For "moat," be specific about what its language scope protects it from and what it does not.',
-      'Ask ChatGPT (or any assistant) for a teardown of Rampart. Mark every claim it makes as supported, unsupported or wrong against the model card’s own stated numbers — including any claim about how well it handles Indian languages. Rewrite its teardown using your own evidence.'
+      'Find Rampart’s model card and its description online. Read them and write down, in your own words, three things: who it is for, what it does, and which languages it was built and tested for.',
+      'Map Rampart on the three links from this chapter: discovery (how a developer finds it), delivery (how they start using it) and distribution (how it spreads). Say which of the three is weakest and give one piece of evidence for your answer.',
+      'Find the model card’s figure for how well Rampart finds personal details in Hindi written in Devanagari script. Write the exact number and copy the sentence it came from. The project page says it is about 14 out of 100. Say whether you found the same number.',
+      'Write a teardown with seven headings: who it is for, the job it does, the key moment of use, friction, how it makes money, its moat (what protects it from copies), and one improvement. Under “moat”, say what its language coverage protects it from and what it does not.',
+      'Ask an AI assistant to write a teardown of Rampart. Go through it line by line and mark each claim as supported (you found the evidence), unsupported (no evidence either way) or wrong (the evidence says otherwise).',
+      'Rewrite the AI’s teardown using only claims you can back up. At the bottom, write one sentence saying which claim you were most tempted to believe without checking.'
     ],
     done:[
-      'The weakest link is backed by something you read in the model card or documentation, not a guess.',
-      'Your improvement is the one your own capstone is built to be, named precisely: which language(s) and which failure mode.',
-      'In the AI teardown, every unsupported claim is marked, with a note on what evidence would settle it.',
-      'Mastery gate: score each artifact 0–3. Move on only when all three score at least 2.'
+      'Your seven-heading teardown.',
+      'The exact Hindi-script figure from the model card, with the sentence it came from.',
+      'The AI’s teardown with every claim marked supported, unsupported or wrong.',
+      'Your corrected version, and the one sentence about the claim you nearly believed.',
+      'A score from 0 to 3 for each of the items above, using the scale in this chapter. Move on only when every score is at least 2.'
     ]
   },
   check:[
@@ -350,20 +359,25 @@ window.PART6 = [
   needs:[['Who pays, who uses, who can block','Interviews need the right people.','A2'],
          ['Claims need evidence','The whole point of interviews is to collect it.','A2']],
   capstone:{
-    title:'Five interviews and a problem brief',
-    brief:'Talk to five real people on five different sides of the privacy problem, and turn what they tell you into evidence you can build on.',
-    where:'Written only. Real conversations with real people, then written synthesis; no code required.',
+    title:'Interview five people and write up what you learned',
+    brief:'So far the project is only your idea. Now you find out whether other people really have the problem. In this chapter you learned to ask about what people did in the past instead of what they might do, and to turn the answers into a short problem statement. Here you hold five real interviews.',
+    where:'Written only. Real conversations with real people, then a written summary. No code needed.',
     steps:[
-      'Write a screener (three to five questions that decide who qualifies) and a 12-question interview guide. Replace every hypothetical or leading question with a question about past behaviour.',
-      'Recruit and run five interviews, one with each: a developer who handles user-entered data, a compliance or legal contact, a support agent who has seen personal information typed into a chat box, an end user, and a founder who has faced a build-vs-buy decision on privacy tooling. For each, record quotes, their workflow, their workarounds, how often the problem happens, how bad it is, and what they spend on it today.',
-      'Synthesise the interviews into a jobs-to-be-done statement, an evidence-backed persona for each side (the developer buying the SDK is not the same person as the end user it protects), a journey map, and a ranked problem brief. Include evidence that contradicts your expectations.'
+      'Choose five people, one from each group: a developer who handles information that users type in; someone in a compliance or legal role; a support agent who has seen customers type personal details into a chat; an ordinary user of Indian websites and apps; and a founder who has had to decide whether to build or buy privacy tools. Do not use an AI to play these people.',
+      'Write three to five screening questions that tell you whether someone really belongs to their group. For the support agent, for example: “In the last month, how many times did a customer type an ID number into a chat with you?”',
+      'Write twelve interview questions. Ask only about the past (“Tell me about the last time…”). Rewrite any question that suggests an answer, such as “Don’t you find it annoying when…?”.',
+      'Hold each interview for about thirty minutes. For each person, write down their exact words, the steps they follow today, any workaround they use, how often the problem happens, how bad it is, and what they spend on it.',
+      'For each of the five, write a short profile in which every sentence points back to a specific interview note, such as “(interview 3)”. Do not write anything that nobody told you.',
+      'Write the problem statement in two sentences: who has the problem, what it costs them, and your evidence. List your assumptions and mark the riskiest one. Say what you will do this week to test it.',
+      'Write down at least one thing you expected that the interviews contradicted, and what you changed because of it.'
     ],
     done:[
-      'Five interviews with real people who match your screener. AI-generated users do not count.',
-      'Every claim in the persona and journey map points to a specific interview note.',
-      'At least one assumption changed or was dropped because of what you heard.',
-      'Rubric: evidence quality 30%, synthesis 25%, problem severity 25%, intellectual honesty 20%.',
-      'Mastery gate: score each artifact 0–3. Move on only when all score at least 2 and no evidence item scores 0.'
+      'Your screening questions and your twelve interview questions.',
+      'Notes from five interviews with real people.',
+      'Five short profiles in which every sentence points to an interview note.',
+      'A two-sentence problem statement and a list of assumptions with the riskiest marked.',
+      'One expectation that turned out to be wrong, and what you changed.',
+      'A score from 0 to 3 for each of the items above, using the scale in this chapter. Move on only when every score is at least 2 and no evidence item scores 0.'
     ]
   },
   check:[
@@ -480,19 +494,23 @@ window.PART6 = [
   needs:[['Interview evidence','The opportunity tree is built from what users told you.','A3'],
          ['A job statement','Competitors are anything that does the same job.','A3']],
   capstone:{
-    title:'Size the market and map the opportunities',
-    brief:'Three artifacts that tell you whether Bharat Privacy Guard is worth pursuing, and which part of it to start with.',
-    where:'Written only. Research and a spreadsheet; no code required.',
+    title:'Estimate the market and compare the alternatives',
+    brief:'You now know who has the problem. This capstone asks whether enough of them would pay for a solution, and what they use instead today. In this chapter you learned to estimate a market from the bottom up and to treat “do nothing” as a competitor. Here you do both for Bharat Privacy Guard.',
+    where:'Written only. Research and a spreadsheet. No code needed.',
     steps:[
-      'Build a competitor matrix with at least five alternatives, including Rampart, Microsoft Presidio, at least one Indian DPDP-compliance startup, “do nothing”, and a developer hand-rolling their own regex. For each, note who it is for, the price, its strengths and its weaknesses — for Rampart and Presidio specifically, note their language coverage.',
-      'Estimate TAM, SAM and SOM bottom-up: number of Indian developer teams handling user PII × realistic annual value per team. List every assumption, and mark each as known or guessed.',
-      'Build an opportunity solution tree from your interview evidence. Rank its branches — the SDK, the Gateway, the browser extension — by reach, pain, confidence and strategic fit.'
+      'Make a table of at least five alternatives a developer could use today: Rampart; Microsoft Presidio (another open tool that finds personal details); at least one Indian company that sells data-protection tools; “do nothing”; and “write our own rules”. For each one write who it is for, its price, one strength and one weakness. For Rampart and Presidio, also write which languages they cover.',
+      'Estimate the market from the bottom up. Count how many Indian development teams handle personal data from users, and multiply by the amount a team might realistically pay each year for a tool like this. Show the multiplication, not only the answer.',
+      'Label each number in your estimate as “known” (and name the source) or “guessed”. Then write down the three guesses that would change the answer most if they were wrong.',
+      'Draw an opportunity tree from your interviews. Put the main problem at the top, the unmet needs from your interviews under it, and possible solutions under those. Include three solutions: the developer kit, the gateway and the browser extension.',
+      'Score each of the three solutions from 1 to 5 on how many people it reaches, how much pain it removes, how sure you are, and how well it fits what you can build. Choose the one to start with and say why.',
+      'Write a one-sentence positioning statement: “For [who], who [need], Bharat Privacy Guard is a [what] that [benefit], unlike [main alternative].”'
     ],
     done:[
-      'The competitor matrix includes the status quo, and says why it is hard to replace.',
-      'Every number in the market estimate is labelled as known or assumed, with a source for the known ones.',
-      'Every opportunity in the tree links to at least one interview.',
-      'Mastery gate: score each artifact 0–3. Move on only when all three score at least 2.'
+      'The comparison table with at least five rows, including “do nothing”, and the language coverage of Rampart and Presidio.',
+      'A market estimate in which every number is marked known or guessed.',
+      'An opportunity tree, and the scores for the three solutions.',
+      'Your positioning sentence.',
+      'A score from 0 to 3 for each of the items above, using the scale in this chapter. Move on only when every score is at least 2.'
     ]
   },
   check:[
@@ -592,20 +610,22 @@ window.PART6 = [
   needs:[['A market estimate and competitor map','Strategy chooses where to compete.','A4'],
          ['A ranked opportunity tree','Prioritisation starts from it.','A4']],
   capstone:{
-    title:'Write the strategy and prioritise',
-    brief:'Three artifacts that turn your research into decisions: a strategy memo choosing the SDK as the wedge, a scored list of opportunities, and a build/buy/partner decision for each detection layer.',
-    where:'Written only. A memo and a scored spreadsheet; no code required.',
+    title:'Write the strategy, and decide what not to do',
+    brief:'You know the problem, the people and the market. Now you decide what to do first and, just as important, what not to do. In this chapter you learned that a strategy needs a diagnosis, a guiding policy and actions that fit together. Here you write one for Bharat Privacy Guard, and decide for each part of the tool whether to build it yourself, use an existing tool, or pay a provider.',
+    where:'Written only. A memo and a scored spreadsheet. No code needed.',
     steps:[
-      'Write a one-to-two-page strategy memo covering the diagnosis, the chosen user (start with the developer, not the end user or the compliance buyer), the wedge — the SDK, not the Gateway or the browser extension, first — the differentiated promise, the capabilities you need, the trade-offs, and your non-goals.',
-      'Score ten opportunities with RICE, including the Gateway and the browser extension as two of them. Then override one score using your strategy, and explain why in one paragraph.',
-      'Write a build/buy/partner decision for each detection layer separately: hand-written regex versus an existing recognizer library for Layer 1, a hosted or open-source NER model versus one you train yourself for Layer 2, and which provider (if any) for Layer 3. Compare the options on quality, latency, cost, privacy, lock-in and time to market.'
+      'Write a strategy memo of one to two pages with six headings: the problem as you see it (the diagnosis); who you are building for first (start with the developer); the narrow first product (the developer kit, not the gateway or the browser extension); what makes it different; the trade-offs you accept; and what you will not do.',
+      'Under “what you will not do”, write at least one tempting thing you are ruling out, with the reason. For example: “I will not cover Tamil or Bengali in version 1, because I cannot yet test them.”',
+      'List ten possible pieces of work, including the gateway and the browser extension. Score each with RICE: Reach (how many people), Impact (how much), Confidence (how sure you are) and Effort (how much work). The score is Reach × Impact × Confidence ÷ Effort.',
+      'Choose one score and override it because your strategy says so. Write one paragraph explaining why the strategy is a better guide than the number in this case.',
+      'For each of the three finders in the project (the pattern checker, the name-and-place finder and the context judge), decide whether to build it yourself, use an existing tool, or pay a provider. Compare the options on quality, speed, cost, privacy, lock-in and time. Write one line of reasoning for each finder.'
     ],
     done:[
-      'The memo has a non-goals section that rules out something tempting.',
-      'Every initiative in the memo traces back to the diagnosis.',
-      'The RICE override is argued from strategy, not preference.',
-      'Rubric: coherence 30%, evidence 25%, trade-offs 25%, measurability 20%.',
-      'Mastery gate: score each artifact 0–3. Move on only when all three score at least 2.'
+      'A strategy memo with six headings, including a “will not do” section that rules something out.',
+      'A table of ten scored pieces of work, with one override explained.',
+      'A table showing the build, use or pay decision for each of the three finders.',
+      'Every item in the memo traces back to the diagnosis.',
+      'A score from 0 to 3 for each of the items above, using the scale in this chapter. Move on only when every score is at least 2.'
     ]
   },
   check:[
@@ -711,19 +731,25 @@ window.PART6 = [
   needs:[['A written strategy','The roadmap turns it into sequenced outcomes.','A5'],
          ['A prioritised list','It decides what goes in “now”.','A5']],
   capstone:{
-    title:'Roadmap, OKRs and a decision memo',
-    brief:'Three artifacts that turn your strategy into a plan other people can support — a roadmap that ends at the Part V capstone, where the SDK ships.',
-    where:'Written only. A memo and a stakeholder map; no code required.',
+    title:'Turn the strategy into a plan other people can back',
+    brief:'A strategy that nobody can follow changes nothing. Now you turn yours into a plan with dates and numbers, and you work out who has to agree to it. In this chapter you learned to write a roadmap of outcomes, objectives with measurable key results, and a decision memo. Here you do all three, ending the plan at the point where the developer kit is ready to demonstrate.',
+    where:'Written only. A plan, a memo and a map of people. No code needed.',
     steps:[
-      'Turn your strategy into a now/next/later roadmap against the rest of this course as your timeline, ending with a working SDK demo at the Part V capstone. For each item, record the outcome, the evidence behind it, an owner, dependencies and a kill criterion.',
-      'Write one objective and 3–4 measurable key results. Keep product outcomes (a developer successfully integrates the SDK) separate from model metrics (precision and recall per identifier type), and add at least one guardrail metric — a false-positive rate you will not let quality-chasing push past.',
-      'Create a stakeholder map — the developer who embeds the SDK, the compliance reviewer, the end user, a future employer reading your portfolio — and run a written pre-mortem. Then draft the one-page decision memo you would send to leadership.'
+      'Draw a roadmap with three columns: Now, Next and Later. Fit it to the rest of this course, so that Now is the next few chapters and Later ends with a working demo of the developer kit at the Part V capstone. Each item must be an outcome, such as “a developer can paste text and see it cleaned”, and not just the name of a feature.',
+      'For every roadmap item, write an owner, the evidence that it matters, what it depends on, and a stopping rule: the result that would make you give up on it. For example: “Stop if fewer than half of the pattern checker’s results are right on my answer key.”',
+      'Write one objective in words, and three or four key results that are numbers. Keep two kinds apart: product results, such as “five developers add the kit in under ten minutes”, and quality results, such as “the tool finds at least 90 of every 100 Aadhaar numbers”.',
+      'Add one guardrail: a number you refuse to let get worse while you chase the others. For example: “False alarms stay below 5 in every 100 sentences.”',
+      'Make a map of the people who will judge or be affected by the project: the developer who adds the kit, the compliance reviewer, the end user and an employer reading your portfolio. Mark each as high or low on influence, and high or low on interest. Name who could say no.',
+      'Imagine it is a year from now and the project failed. Write five reasons why. This is called a pre-mortem. For each reason, write one thing you will do now to make it less likely.',
+      'Write a one-page memo to a decision-maker asking for a yes or a no on the plan.'
     ],
     done:[
-      'Every roadmap item is an outcome, not a feature, and has a kill criterion.',
-      'At least one key result is a product outcome that a model metric alone could not achieve.',
-      'The stakeholder map names who can veto the project, and what evidence they need.',
-      'Mastery gate: score each artifact 0–3. Move on only when all three score at least 2.'
+      'A now, next and later roadmap in which every item is an outcome with a stopping rule.',
+      'One objective with three or four key results, and one guardrail.',
+      'A map of the people involved, with the person who could say no named.',
+      'A pre-mortem with five reasons and a response to each.',
+      'A one-page decision memo.',
+      'A score from 0 to 3 for each of the items above, using the scale in this chapter. Move on only when every score is at least 2.'
     ]
   },
   check:[
@@ -837,19 +863,23 @@ window.PART6 = [
   needs:[['An outcome roadmap','The PRD specifies its first “now” item.','A6'],
          ['Your riskiest unknown','The MVP should test it.','A3']],
   capstone:{
-    title:'PRD, prototype and a sprint plan',
-    brief:'Three artifacts that take Bharat Privacy Guard from decision to delivery — including the explicit MVP scope: English, Hindi and Hinglish; the SDK surface; and what is out of scope for this course.',
-    where:'Written for the PRD and sprint plan, plus a no-code prototype in Figma, Lovable or Google AI Studio — no Python required.',
+    title:'Write the requirements, test a first prototype and plan two sprints',
+    brief:'Now you describe exactly what version 1 of the developer kit must do, show a rough version to real people, and plan the work. In this chapter you learned to write a requirements document (a PRD) that starts from the problem, to choose how detailed a prototype should be, and to plan sprints that include uncertain work. Here you do all three.',
+    where:'Written for the requirements and the plan, plus a no-code prototype built in Google AI Studio or Lovable. No Python needed.',
     steps:[
-      'Write a PRD with these sections: problem evidence, users, scope, non-goals, UX states, AI behaviour, evaluations, metrics, rollout, security and open questions. State the MVP boundary explicitly: which languages, which identifiers, and which of the SDK, Gateway and browser extension you will actually build versus only specify.',
-      'Build a clickable prototype in Google AI Studio or Lovable: a page where a user pastes text and sees a mocked-up redacted version — the real detection engine comes later, this tests the interaction, not the accuracy. Test it with three target users, pasting their own realistic English, Hindi and Hinglish sentences, and write down where each one got stuck.',
-      'Create a two-sprint plan in Jira (or a spreadsheet) with stories, acceptance criteria, dependencies and a demo plan, sequenced against this course’s remaining chapters. After Sprint 1, run a retrospective and record what you will change.'
+      'Write a requirements document (a PRD) with these headings: the problem and the evidence for it; who it is for; what is in version 1; what is not in version 1; what the user sees in each situation, including when the tool is unsure or wrong; how the AI behaves; how you will test it; how you will measure success; how it will be released; security; and open questions.',
+      'In “what is in version 1” and “what is not in version 1”, draw the line clearly: which kinds of writing, which IDs, and which of the kit, the gateway and the extension you will really build.',
+      'Write six user stories in the form “As a [who], I want [what], so that [why]”. At least two must describe a failure, for example: “As a developer, I want to be told when the tool is unsure, so that I can ask the user.”',
+      'Build a clickable prototype in Google AI Studio or Lovable: a page with a text box, a button and a result area that shows the text with personal details replaced. The detection can be fake at this stage. You are testing the screen, not the accuracy.',
+      'Ask three real people to try it. Give each the same task, such as “paste this message and tell me what you think happened to it”, and do not help them. Write down where each person got stuck.',
+      'Plan two one-week sprints in a spreadsheet or in Jira. For each story write what counts as done, what it depends on, and what you will demonstrate at the end. After the first sprint, hold a short review and write down what you will change.'
     ],
     done:[
-      'An engineer could estimate the PRD without guessing what success looks like.',
-      'The acceptance criteria cover failure, uncertainty and refusal states, not just the happy path.',
-      'The prototype was tested with three real target users, and at least one change came from what they did.',
-      'Mastery gate: score each artifact 0–3. Move on only when all three score at least 2.'
+      'A requirements document that an engineer could estimate without asking you what success means.',
+      'Six user stories, at least two about things going wrong.',
+      'A clickable prototype, and notes from three people who tried it.',
+      'A two-sprint plan with a review after the first.',
+      'A score from 0 to 3 for each of the items above, using the scale in this chapter. Move on only when every score is at least 2.'
     ]
   },
   check:[
@@ -969,20 +999,23 @@ window.PART6 = [
   needs:[['A candidate problem with an AI fit','This chapter decides which AI technique suits it.','A1'],
          ['A build, buy or partner decision','This chapter explains what you are buying.','A5']],
   capstone:{
-    title:'Three experiments on how models work',
-    brief:'Three short experiments that turn the ideas in this chapter into evidence you have seen for yourself — run on the text your capstone actually has to handle: English, Hindi and Hinglish.',
+    title:'Run three experiments on how models treat Indian text',
+    brief:'Before you build, see for yourself how AI models behave on the kind of text your tool must handle. In this chapter you learned what tokens and attention are, and how to choose between prompting, retrieval and fine-tuning. Here you run three small experiments on English, Hindi and Hinglish sentences and write down what you saw.',
     where:'A free tool (the Transformer Explainer website) or, if you prefer, a Colab notebook for the attention demo. Write what you saw in the notes box below.',
     steps:[
-      'Use an attention visualiser (the notebook in Idea 2, or the Transformer Explainer website) on three versions of the same sentence containing a name and a phone number: in English, in Hindi (Devanagari), and in Hinglish. Write down what differs between the three and what the demo does not prove.',
-      'Build a decision table comparing prompt-only, RAG and fine-tuning across freshness, private data, style, cost, latency and evaluation. Fill it in for Layer 3 of your capstone specifically: the contextual/quasi-identifier detector.',
-      'Run the same ten sentences — a mix of English, Hindi and Hinglish, at least one containing an Aadhaar-shaped number — through two different model families using OpenRouter or Google AI Studio, asking each to find the PII. Record quality, latency and cost for each, and note which model missed the Hinglish rows.'
+      'Take starter sentences 1, 2 and 3 from the project page. They are the same kind of message in English, Hindi and Hinglish. Open a free attention viewer (the Transformer Explainer website, or the notebook shown in this chapter) and paste each sentence in turn.',
+      'For each sentence, write down how many pieces the text is cut into and which words the model pays most attention to when it reaches the name and the number. Then write two or three lines on what differs between the three sentences, and one line on what this viewer does not prove.',
+      'Fill in a table that compares three ways of making a model find personal details: just ask it with a prompt, let it look things up in your documents (retrieval), or train it further (fine-tuning). Compare them on freshness, private data, writing style, cost, speed and how easy they are to test. Fill it in for the third part of the tool, the context judge, and end with the option you choose and why.',
+      'Run starter sentences 1 to 8 through two different AI models, for example one on OpenRouter and one in Google AI Studio, with the same instruction: “List every piece of personal information in this sentence.”',
+      'For each model, record how many items it found correctly, how many it missed, how long it took and what it cost. Note which sentences it missed, and whether most of the misses were Hindi or Hinglish.',
+      'Write one paragraph: which model would you start with for this project, and what is the one thing you would test next before trusting it?'
     ],
     done:[
-      'Your attention write-up names a specific difference you saw between the English, Hindi and Hinglish versions, not just that they "worked differently."',
-      'The decision table ends with a choice for Layer 3 and the reason for it.',
-      'The model comparison uses the same ten cases for both models, and records all three measures, including the Hinglish-specific miss rate.',
-      'Rubric: conceptual accuracy 40%, experiment quality 30%, decision clarity 30%.',
-      'Mastery gate: score each artifact 0–3. Move on only when all three score at least 2.'
+      'An attention write-up that names a specific difference you saw between the English, Hindi and Hinglish sentences.',
+      'A decision table for the context judge, ending in a choice and a reason.',
+      'A comparison of two models on the same eight sentences, with found, missed, time and cost for each.',
+      'One paragraph naming the model you would start with and the one thing you would test next.',
+      'A score from 0 to 3 for each of the items above, using the scale in this chapter. Move on only when every score is at least 2.'
     ]
   },
   check:[

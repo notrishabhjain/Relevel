@@ -11,28 +11,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek thos example ke saath samjhaana ki document ko chunks mein todne par kya kho jaata hai.',
   'Choose a chunking approach by naming the failure you accept, since no chunk size is right for every document.':
     'Jo failure aap sweekaar karte hain uska naam lekar chunking ka tareeka chunna, kyunki koi ek chunk size har document ke liye sahi nahi.',
-  'A chunking rule for your own documents':
-    'Apne documents ke liye ek chunking rule',
-  'You have split one document three ways and seen what each split breaks. A real system needs a rule that someone else can apply to thousands of documents without you. Write that rule, and test it on the messiest document you can find.':
-    'Aapne ek document teen tarah toda aur dekha ki har tareeka kya todta hai. Asli system ko aisa rule chahiye jise koi aur aapke bina hazaaron documents par lagaa sake. Woh rule likhiye, aur use sabse gande document par test kijiye jo aapko mile.',
-  'Name the most structured document type in your field, such as one with clauses, exceptions, numbered procedures or warnings.':
-    'Apne field ka sabse structured document type bataiye, jaise clauses, exceptions, numbered procedures ya warnings wala.',
-  'Describe its structure in three or four lines. Where are its natural break points, and what must never be separated?':
-    'Teen-chaar lines mein uska structure bataiye. Uske natural break points kahan hain, aur kya kabhi alag nahi hona chahiye?',
-  'Write the chunking rule as instructions to another person: where to cut, where never to cut, and what to do with a piece that would lose its meaning.':
-    'Chunking rule ko doosre insaan ke liye instructions ki tarah likhiye: kahan kaatna hai, kahan kabhi nahi kaatna, aur us tukde ka kya karna hai jo apna matlab kho dega.',
-  'Find the messiest real example you can, such as a badly formatted, scanned or table-heavy document. Apply your rule to it by hand.':
-    'Sabse ganda asli example dhoondhiye, jaise bura format kiya hua, scan kiya hua ya tables se bhara document. Us par haath se apna rule lagaiye.',
-  'Record where your rule broke. Amend it, and note which of your five questions the first version would have answered wrongly.':
-    'Record kijiye ki aapka rule kahan toota. Use sudhaariye, aur note kijiye ki pehla version aapke paanch sawaalon mein se kinka galat jawab deta.',
-  'Write what you would say to a vendor who tells you their chunking is “automatic and optimal”.':
-    'Likhiye ki aap us vendor se kya kahenge jo kehta hai ki unki chunking “automatic aur optimal” hai.',
-  'Someone else could apply your rule and split a document the same way you would.':
-    'Koi aur aapka rule lagaa kar document ko waise hi tod sakta hai jaise aap todte.',
-  'You have applied it to a difficult document and amended it once as a result.':
-    'Aapne ise ek mushkil document par lagaaya aur uske baad ek baar sudhaara.',
-  'You can name the kind of content your rule still risks splitting, and say why you accept that.':
-    'Aap bata sakte hain ki aapka rule ab bhi kis tarah ke content ko todne ka risk leta hai, aur aap use kyun sweekaar karte hain.',
   'Everything sent in one call has to fit in the context window.':
     'Ek call mein bheja gaya sab kuchh context window mein aana chahiye.',
   'Per token, on every call.':
@@ -119,26 +97,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Us tarah ki query ka naam lena jise keyword search kisi bhi doosre tareeke se behtar sambhalta hai.',
   'Explain what search returns when the answer is not in your documents, and why that is dangerous.':
     'Samjhaana ki jab jawab aapke documents mein nahi hota to search kya lautata hai, aur yeh khatarnaak kyun hai.',
-  'Map where keyword search fails':
-    'Map kijiye ki keyword search kahan fail hota hai',
-  'You scored a search method by hand, on real questions, against a real document. Most people who buy search software never do this. Write up your results so you can use them when someone tries to sell you a search product.':
-    'Aapne ek search tareeke ko asli sawaalon par, asli document ke against, haath se score kiya. Search software khareedne wale zyadatar log yeh kabhi nahi karte. Apne results aise likhiye ki jab koi aapko search product beche to aap unka use kar sakein.',
-  'Make a table of all eight questions (your five plus the three harder ones), with the rank the correct card actually got.':
-    'Saare aath sawaalon ki table banaiye (aapke paanch aur teen mushkil wale), aur sahi card ko asal mein kaunsa rank mila.',
-  'Next to each failure, write one sentence on what information the scoring did not have.':
-    'Har failure ke bagal mein ek sentence likhiye ki scoring ke paas kaunsi jaankari nahi thi.',
-  'Add the exact-code question and its result, so the table shows where the method wins as well as where it fails.':
-    'Exact-code wala sawaal aur uska result jodiye, taaki table dikhaye ki tareeka kahan jeetta hai aur kahan haarta hai.',
-  'Write a short paragraph about your own field: which real queries use different words from the documents, and which use exact codes or terms?':
-    'Apne field ke baare mein ek chhota paragraph likhiye: kaunsi asli queries documents se alag shabd use karti hain, aur kaunsi exact codes ya terms?',
-  'Estimate what share of your users use the document’s vocabulary rather than their own. Say how you would measure this for real.':
-    'Andaaza lagaiye ki aapke kitne users apne shabdon ki jagah document ki shabdavali use karte hain. Bataiye ki ise sach mein kaise naapenge.',
-  'Write four or five sentences for a non-technical colleague explaining why “we already have a search box” does not mean “users can find answers”.':
-    'Ek non-technical colleague ke liye chaar-paanch sentences likhiye jo samjhaayein ki “hamare paas pehle se search box hai” ka matlab “users jawab dhoondh sakte hain” nahi hai.',
-  'Every failure has its one-sentence explanation, in your words.':
-    'Har failure ki aapke shabdon mein ek sentence ki vyakhya hai.',
-  'You could give the last paragraph to a senior colleague, and they would understand the risk without you there.':
-    'Aap aakhri paragraph kisi senior colleague ko de sakte hain, aur woh aapke bina risk samajh jaayenge.',
   'Documents are split into chunks':
     'Documents chunks mein tode jaate hain',
   'You store the chunks and send only the relevant few.':

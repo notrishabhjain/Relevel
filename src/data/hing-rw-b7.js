@@ -15,28 +15,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Evaluation, cost aur failure samet ek AI system-design question ke through kaam kijiye.',
   'Tell behavioural stories about your own decisions, and prepare to negotiate.':
     'Apne khud ke decisions ke baare mein behavioural stories bataiye, aur negotiate karne ki taiyaari kijiye.',
-  'A role matrix, two case studies, mock interviews and a take-home':
-    'Ek role matrix, do case studies, mock interviews aur ek take-home',
-  'Build the evidence and the practice that get you from applying to an offer.':
-    'Woh evidence aur practice banayiye jo aapko apply karne se offer tak le jaaye.',
-  'Build a role matrix from ten job descriptions. Find the skills that keep appearing, and the ones you cannot yet prove.':
-    'Das job descriptions se ek role matrix banayiye. Woh skills dhoondhiye jo baar-baar aati hain, aur woh jo aap abhi saabit nahi kar sakte.',
-  'Turn two projects into case studies. Show the problem evidence, your decisions, the trade-offs, the metrics, the failures and what you learned.':
-    'Do projects ko case studies mein badaliye. Problem evidence, aapke decisions, trade-offs, metrics, failures aur aapne kya seekha dikhaiye.',
-  'Rewrite your resume bullets as action + decision + measurable result. Record four mock interviews and score each one with a rubric.':
-    'Apne resume bullets ko action + decision + measurable result ki tarah dobara likhiye. Chaar mock interviews record kijiye aur har ek ko ek rubric se score kijiye.',
-  'Complete one 48-hour take-home within a fixed time limit. Then write a critique of your own answer.':
-    'Ek fixed time limit ke andar ek 48-hour take-home poora kijiye. Phir apne jawab ka ek critique likhiye.',
-  'The role matrix covers ten real job descriptions and marks each skill as proven, partly proven or missing.':
-    'Role matrix das real job descriptions cover karta hai aur har skill ko proven, partly proven ya missing mark karta hai.',
-  'Each case study includes at least one decision that turned out wrong, and what you did about it.':
-    'Har case study mein kam se kam ek decision shaamil hai jo galat nikla, aur aapne uske baare mein kya kiya.',
-  'Every resume bullet has a number or a concrete result.':
-    'Har resume bullet mein ek number ya ek concrete result hai.',
-  'The four mock interviews cover product sense, metrics, AI system design and behavioural questions.':
-    'Chaaron mock interviews product sense, metrics, AI system design aur behavioural questions cover karte hain.',
-  'Mastery gate: score each artifact 0–3. Move on only when every artifact scores at least 2.':
-    'Mastery gate: har artifact ko 0–3 score kijiye. Aage tabhi badhiye jab har artifact kam se kam 2 score kare.',
   'A shipped capstone with evidence':
     'Evidence ke saath ek shipped capstone',
   'Your case studies come from it.':

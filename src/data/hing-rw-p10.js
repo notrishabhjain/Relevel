@@ -11,26 +11,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek khaas feature ke intezaar mein kya dikhana hai chunna, aur galat hone ki keemat batana.',
   'Name a wait in your product you cannot shorten, and what you would do instead.':
     'Apne product ka ek aisa intezaar batana jise aap chhota nahi kar sakte, aur uski jagah aap kya karenge.',
-  'Design the wait for your slowest feature':
-    'Apne sabse dheeme feature ke intezaar ka design',
-  'Take the slowest thing you would ship and design its wait properly, starting from a measured number rather than a spinner.':
-    'Jo sabse dheemi cheez aap ship karenge use lijiye aur uske intezaar ka theek design kijiye, spinner se nahi, ek naape hue number se shuru karke.',
-  'Measure the spread, not one run: time twenty realistic requests, and write down the median and the slowest.':
-    'Ek run nahi, failaav naapiye: bees realistic requests ka time naapiye, aur median aur sabse dheema likhiye.',
-  'Split the total into parts, such as retrieval, reasoning and generation, and mark which parts you could shorten.':
-    'Kul ko hisson mein baantiye, jaise retrieval, reasoning aur generation, aur mark kijiye ki kaunse hisse aap chhote kar sakte hain.',
-  'Decide whether a partial answer is useful. That decides streaming or background. Write down why.':
-    'Tay kijiye ki aadha jawab kaam ka hai ya nahi. Yahi streaming ya background tay karta hai. Kyun, yeh likhiye.',
-  'Design what the screen shows at second one, second three and second ten. Write the actual words.':
-    'Design kijiye ki screen pehle, teesre aur dasve second par kya dikhati hai. Asli shabd likhiye.',
-  'Decide what happens in the slowest case, and what the user can do about it.':
-    'Tay kijiye ki sabse dheeme case mein kya hota hai, aur user uske baare mein kya kar sakta hai.',
-  'Write the acceptance line: at what measured time does this feature stop being interactive and move to the background?':
-    'Acceptance line likhiye: kis naape hue samay par yeh feature interactive nahi rehta aur background mein chala jaata hai?',
-  'Your numbers are a median and a slowest case from twenty runs, not an average of three.':
-    'Aapke numbers bees runs ka median aur sabse dheema case hain, teen ka average nahi.',
-  'You can state the time at which you would change the whole interaction, as a number.':
-    'Aap woh samay number ki tarah bata sakte hain jis par aap poora interaction badal denge.',
   'Reasoning is a purchase':
     'Reasoning ek khareed hai',
   'A schema fixes the format of a reply':
@@ -85,26 +65,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Batana ki kaunsi technique recall aur precision dono ek saath sudhaarti hai, aur uski keemat kya hai.',
   'Name the failure no ranking technique can fix, and the simple step that does.':
     'Woh failure batana jise koi ranking technique theek nahi kar sakti, aur woh simple step jo karta hai.',
-  'Improve retrieval and measure each change':
-    'Retrieval sudhaariye aur har badlaav naapiye',
-  'Chapter 6 gave you a way to measure retrieval. This chapter gave you four ways to improve it. Improve it on your own documents and show which change actually helped.':
-    'Chapter 6 ne retrieval naapne ka tareeka diya. Is chapter ne use sudhaarne ke chaar tareeke diye. Apne documents par ise sudhaariye aur dikhaiye ki kis badlaav ne sach mein madad ki.',
-  'Start from your Chapter 6 answer key and record today’s baseline: correct-card hits and share of relevant chunks at k=3.':
-    'Apni Chapter 6 answer key se shuru kijiye aur aaj ki baseline record kijiye: k=3 par sahi-card hits aur relevant chunks ka hissa.',
-  'Add keyword scoring alongside meaning scoring and combine the two. Measure again.':
-    'Matlab wali scoring ke saath keyword scoring jodiye aur dono ko milaaiye. Phir naapiye.',
-  'Fix the orphaned chunks by adding enough context for each to make sense alone. Measure again.':
-    'Anaath chunks ko itna context dekar theek kijiye ki har ek akele samajh aaye. Phir naapiye.',
-  'Fetch many chunks and rerank to a few. Measure again, and record what it costs in response time.':
-    'Bahut saare chunks laaiye aur rerank karke kuchh rakhiye. Phir naapiye, aur response time mein iski keemat record kijiye.',
-  'Add a metadata filter that removes chunks that can never be relevant. Measure again.':
-    'Ek metadata filter jodiye jo un chunks ko hataaye jo kabhi relevant nahi ho sakte. Phir naapiye.',
-  'Rank the four changes by how much each improved your number, and by what each costs to run.':
-    'Chaaron badlaavon ko rank kijiye: har ek ne aapka number kitna sudhaara, aur har ek ko chalaane ki keemat kya hai.',
-  'The ranking is based on measured results on your documents, not on reputation.':
-    'Ranking aapke documents par naape results par aadharit hai, reputation par nahi.',
-  'You can name the change that helped least, and say whether you would still ship it.':
-    'Aap sabse kam madad karne wala badlaav bata sakte hain, aur kya aap use phir bhi ship karenge.',
   'The limit from Chapter 7.5. This chapter improves it.':
     'Chapter 7.5 ki seema. Yeh chapter use sudhaarta hai.',
   'Keyword and meaning search fail differently':

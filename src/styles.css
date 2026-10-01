@@ -1110,3 +1110,46 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .prose h3.sh{font-family:var(--sans);font-size:1.02rem;font-weight:600;
   line-height:1.35;margin:2rem 0 .6rem;color:var(--ink)}
 .prose h3.sh:first-child{margin-top:.4rem}
+
+/* ---------- the project ---------- */
+
+/* Which stage of the project a chapter belongs to: a single line under the
+   chapter heading, the whole line a link. */
+.projline{display:flex;gap:.6rem;align-items:baseline;flex-wrap:wrap;margin:0 0 1.2rem;
+  padding:.55rem .8rem;border:1px solid var(--verified);border-radius:var(--r);
+  background:var(--verified-wash);text-decoration:none;color:inherit}
+.projline:hover{border-color:var(--ink-2)}
+.projline .lbl{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--verified)}
+.projline .pt{flex:1;min-width:14rem;font-size:.9rem;line-height:1.45;color:var(--ink)}
+.projline .go{font-family:var(--mono);font-size:.68rem;color:var(--ink-2)}
+
+/* A capstone question: a labelled block per part, so the situation, the task
+   and the hand-in read as separate things. */
+.qblock{margin:1rem 0}
+.qblock .cplbl{display:block;margin-bottom:.3rem}
+.qblock .prose{margin:0}
+.projfoot{font-size:.82rem;margin:.8rem 0 0}
+
+/* The project page */
+.phead p+p{margin-top:.8rem}
+.stagesh{font-family:var(--serif);font-size:1.5rem;font-weight:500;margin:0 0 .5rem}
+.stagebox{margin-top:1.6rem}
+.subhead{font-family:var(--sans);font-size:.9rem;font-weight:600;margin:1.2rem 0 .4rem}
+.scopegrid{display:grid;gap:.8rem;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));margin:1.2rem 0}
+.scopegrid .card.scope-in{border-color:var(--verified);background:var(--verified-wash)}
+.scopegrid .plain{margin:.3rem 0 0}
+.scopegrid .plain li{font-size:.85rem;line-height:1.5}
+
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:.4rem;margin:1.2rem 0}
+.flowbox{flex:1 1 8rem;padding:.6rem .7rem;border:1px solid var(--rule);border-radius:var(--r);
+  background:var(--raised);font-size:.82rem;line-height:1.4;text-align:center;
+  display:flex;align-items:center;justify-content:center}
+.flowbox.end{border-style:dashed;color:var(--ink-2)}
+.flowarrow{align-self:center;color:var(--muted);font-family:var(--mono)}
+@media (max-width:620px){
+  .flow{flex-direction:column}
+  .flowarrow{transform:rotate(90deg);align-self:center}
+  .flowbox{flex:0 0 auto}
+}
+.qblock .concept{font-style:normal;font-size:1rem;color:var(--ink);line-height:1.65}

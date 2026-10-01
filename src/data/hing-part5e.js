@@ -27,12 +27,6 @@ Object.assign(window.HING = window.HING || {}, {
     'MCP aur aapsi mel-jol',
   'Classify tools by what they are allowed to change.':
     'Tools ko is hisaab se baantna ki woh kya badal sakte hain.',
-  'A tool access policy':
-    'Tool access ki policy',
-  'Write what the audit record contains for an irreversible action.':
-    'Likhiye ki na palat-ne waale kaam ka record mein kya-kya hoga.',
-  'Every tool has exactly one class.':
-    'Har tool ki theek ek shreni ho.',
   'MCP':
     'MCP',
   'A protocol standardising how a host, a client and a server expose and invoke tools, resources and prompts. A protocol, not an agent framework.':
@@ -61,12 +55,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Batayiye ki provenance aur insaani jaanch kahan zaroori hain, kahan sirf achchi baat.',
   'Name three things plain-text extraction loses from a real PDF.':
     'Teen cheezein batana jo asli PDF se sirf text nikaalne par kho jaati hain.',
-  'Write the evaluation metrics, including one for attribution accuracy.':
-    'Evaluation ke numbers likhiye, jisme ek yeh bhi ho ki kaun bola yeh kitni baar sahi nikla.',
-  'A person can find out what was recorded about them and have it deleted.':
-    'Koi vyakti jaan sake ki uske baare mein kya record hua aur use mitwa sake.',
-  'No action is taken from audio without a confirmation step.':
-    'Awaaz ke aadhaar par koi kaam bina confirmation ke na ho.',
   'OCR':
     'OCR',
   'Reading text out of an image of text. It has a quality floor set by the scan, and it fails quietly on bad input.':

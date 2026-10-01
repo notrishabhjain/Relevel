@@ -15,14 +15,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Sprints plan kijiye, uncertain AI kaam ko time-boxes se estimate kijiye, aur ek retrospective chalayiye.',
   'Choose the right prototype fidelity and run a usability test without leading the user.':
     'Sahi prototype fidelity chuniye aur user ko lead kiye bina ek usability test chalayiye.',
-  'PRD, prototype and a sprint plan':
-    'PRD, prototype aur ek sprint plan',
-  'An engineer could estimate the PRD without guessing what success looks like.':
-    'Ek engineer bina yeh guess kiye ki success kaisa dikhta hai, PRD estimate kar sake.',
-  'The acceptance criteria cover failure, uncertainty and refusal states, not just the happy path.':
-    'Acceptance criteria failure, uncertainty aur refusal states cover karte hain, sirf happy path nahi.',
-  'The prototype was tested with three real target users, and at least one change came from what they did.':
-    'Prototype teen real target users ke saath test kiya gaya, aur kam se kam ek change unke kiye se aaya.',
   'An outcome roadmap':
     'Ek outcome roadmap',
   'The PRD specifies its first “now” item.':

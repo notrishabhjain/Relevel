@@ -11,8 +11,6 @@ Object.assign(window.HING = window.HING || {}, {
   'Before you start':
     'Shuru karne se pehle',
   'Make your first call':
-    'Apna pehla call kijiye',
-  'You have five token counts from a five-turn conversation, and they go up.':
-    'Aapke paas paanch turn ki conversation se paanch token counts hain, aur woh badhte jaate hain.'
+    'Apna pehla call kijiye'
 
 });

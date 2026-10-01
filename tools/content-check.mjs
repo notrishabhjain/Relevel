@@ -378,6 +378,58 @@ if (AP.exitNote) wantAdd(AP.exitNote);
 }
 (C.reference.LATER || []).forEach(l => { wantAdd(l.t); wantAdd(l.note); });
 
+/* The project page. Every sentence is prose and must translate, except what is
+   data on purpose: the starter sentences (some are in Devanagari and the Hindi
+   one has to stay Hindi), the made-up ID examples, and the chapter lists. */
+{
+  const P = C.reference.PROJECT;
+  if (!P || !Array.isArray(P.stages) || !P.stages.length) {
+    fail('the project page has no stages — C.reference.PROJECT is missing or empty');
+  } else {
+    wantAdd(P.eyebrow); wantAdd(P.title); wantWalk(P.lead);
+    wantAdd(P.why.title); wantWalk(P.why.paras);
+    wantAdd(P.notThis.title); wantWalk(P.notThis.paras);
+    wantAdd(P.how.title); wantAdd(P.how.intro); wantWalk(P.how.flow);
+    P.how.parts.forEach(x => { wantAdd(x.name); wantAdd(x.tech); wantAdd(x.plain); wantAdd(x.body); });
+    ['title', 'intro', 'inTitle', 'designedTitle', 'laterTitle'].forEach(k => wantAdd(P.scope[k]));
+    ['inItems', 'designedItems', 'laterItems'].forEach(k => wantWalk(P.scope[k]));
+    wantAdd(P.ids.title); wantAdd(P.ids.intro); wantWalk(P.ids.head);
+    P.ids.rows.forEach(r => { wantAdd(r[0]); wantAdd(r[2]); });
+    wantAdd(P.samples.title); wantAdd(P.samples.intro); wantWalk(P.samples.head);
+    P.samples.rows.forEach(r => { wantAdd(r[1]); wantAdd(r[3]); });
+    wantAdd(P.answerKey.title); wantWalk(P.answerKey.paras); wantWalk(P.answerKey.versionsHead);
+    P.answerKey.versions.forEach(r => { wantAdd(r[2]); wantAdd(r[3]); });
+    wantAdd(P.answerKey.trickyTitle); wantWalk(P.answerKey.tricky);
+    wantAdd(P.reading.title); wantWalk(P.reading.paras);
+    wantAdd(P.stagesTitle); wantAdd(P.stagesIntro);
+    P.stages.forEach(st => { wantAdd(st.title); wantAdd(st.plain); wantWalk(st.endWith); });
+    wantAdd(P.wordsTitle);
+    P.words.forEach(([t, d]) => { wantAdd(t); wantAdd(d); });
+
+    /* A chapter belongs to exactly one stage, the stages follow reading order,
+       and every chapter that ends in a capstone is in one — otherwise the
+       capstone cannot say which part of the project it answers. */
+    const order = new Map(C.chapters.map((c, i) => [c.id, i]));
+    const seen = new Map();
+    let last = -1;
+    for (const st of P.stages) {
+      if (!st.id || !st.title || !st.plain || !(st.endWith || []).length)
+        fail(`project stage ${st.id || '?'} is missing an id, title, plain description or hand-in list`);
+      for (const id of st.chapters || []) {
+        if (!order.has(id)) { fail(`project stage ${st.id} lists unknown chapter ${id}`); continue; }
+        if (seen.has(id)) fail(`chapter ${id} is in two project stages (${seen.get(id)} and ${st.id})`);
+        seen.set(id, st.id);
+        if (order.get(id) < last)
+          fail(`project stage ${st.id}: chapter ${id} is out of reading order`);
+        last = Math.max(last, order.get(id));
+      }
+    }
+    for (const c of C.chapters)
+      if (c.capstone && !seen.has(c.id))
+        fail(`chapter ${c.id} has a capstone but is in no project stage`);
+  }
+}
+
 /* Hinglish is Hindi written in the Roman alphabet. A Devanagari character in
    a translation is always a typing slip — it has happened twice — and it reads
    as a broken glyph mid-word rather than as an error anybody would report. */

@@ -583,10 +583,52 @@ ok(shape.readsAfterFirstDo >= 2,
 ok(shape.hasCapstone, 'the chapter ends with a capstone');
 const capText = await il.page.evaluate(() =>
   document.querySelector('#capstone')?.textContent || '');
-ok(/It is finished when/.test(capText), 'which says what finished means');
+ok(/The situation/.test(capText) && /Your task/.test(capText),
+   'which opens with the situation and then the task');
+ok(/What to hand in/.test(capText), 'and says exactly what to hand in');
+ok(/Where you do this/.test(capText), 'and where the work happens');
+const capLink = await il.page.evaluate(() =>
+  document.querySelector('#capstone .projfoot a')?.getAttribute('href') || '');
+ok(capLink === '#/project#stage-s2', 'and links to its stage of the project', capLink);
+const headLink = await il.page.evaluate(() => {
+  const a = document.querySelector('#main a.projline');
+  return a ? { href: a.getAttribute('href'), text: a.textContent } : null;
+});
+ok(headLink && headLink.href === '#/project#stage-s2',
+   'the chapter header points at the same stage', headLink && headLink.href);
+ok(headLink && /Stage 2\/13/.test(headLink.text), 'and says which stage of thirteen', headLink && headLink.text);
 const gate = await mainText(il.page);
 ok(/Before you start/.test(gate) && /chapter-1/.test(gate),
    'and the chapter opens by naming the notebook to have open');
+
+console.log('\n— the project is a section of the portal —');
+await il.page.evaluate(() => { location.hash = '#/project'; });
+await il.page.waitForTimeout(500);
+const proj = await il.page.evaluate(() => {
+  const m = document.querySelector('#main');
+  return { text: m.textContent,
+    stages: m.querySelectorAll('.stagebox').length,
+    samples: m.querySelectorAll('#samples tbody tr').length,
+    answerKey: !!m.querySelector('#answer-key'),
+    chips: m.querySelectorAll('.stagebox a.chip[href^="#/ch/"]').length };
+});
+ok(/Bharat Privacy Guard/.test(proj.text), 'the project page names the project');
+ok(proj.stages === 13, 'it lists the thirteen stages', proj.stages);
+ok(proj.samples === 10, 'it carries the ten starter sentences', proj.samples);
+ok(proj.answerKey, 'and explains the answer key');
+ok(/not a .DPDP compliance engine./i.test(proj.text), 'and says what the project is not');
+ok(proj.chips >= 60, 'every stage links to its chapters', proj.chips);
+const rail = await il.page.evaluate(() =>
+  [...document.querySelectorAll('#rail a, nav a')].some(a => a.getAttribute('href') === '#/project'));
+ok(rail, 'the project is in the navigation');
+await il.page.evaluate(() => { location.hash = '#/project#stage-s4'; });
+await il.page.waitForTimeout(500);
+ok(await il.page.evaluate(() => !!document.getElementById('stage-s4')),
+   'a stage can be linked to directly');
+await boot(hi.page, '#/project');
+const hiProj = await mainText(hi.page);
+ok(/Aapka project/.test(hiProj) && !/Why this project, and why not just use Rampart/.test(hiProj),
+   'the project page reads in Hinglish too');
 
 console.log('\n— installing it on a phone or tablet —');
 const inst = await newDevice(false);

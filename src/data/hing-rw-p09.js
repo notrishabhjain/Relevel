@@ -11,28 +11,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Samjhaana ki request mein document fit hone ka matlab yeh nahi ki model use use karega.',
   'Say what a token budget is, and which part you would cut first if the bill doubled.':
     'Batana ki token budget kya hai, aur bill doguna hone par aap pehle kaunsa hissa kaatenge.',
-  'A context budget for one real feature':
-    'Ek asli feature ke liye context budget',
-  'Large context windows changed the marketing more than the engineering. You have measured whether the model uses what you send, and compared retrieval with sending everything. Turn that into a budget you could defend for a real feature.':
-    'Badi context windows ne engineering se zyada marketing badli. Aapne naapa ki model bheje hue ka use karta hai ya nahi, aur retrieval ko sab kuchh bhejne se compare kiya. Ise ek asli feature ke liye aise budget mein badliye jise aap defend kar sakein.',
-  'Pick one feature and describe what must be in the request for it to answer well.':
-    'Ek feature chuniye aur bataiye ki achha jawab dene ke liye request mein kya hona zaroori hai.',
-  'At three request sizes, measure what share of your questions are answered correctly, with the key fact at the start, middle and end.':
-    'Teen request sizes par naapiye ki aapke kitne sawaalon ke sahi jawab aate hain, jab key fact shuru, beech aur ant mein ho.',
-  'Compare sending everything with retrieving the few relevant chunks. Record accuracy, tokens and response time for both.':
-    'Sab kuchh bhejne ko kuchh relevant chunks retrieve karne se compare kijiye. Dono ke liye accuracy, tokens aur response time record kijiye.',
-  'Order the request for caching: stable content first, changing content last. Measure what that saves.':
-    'Request ko caching ke liye kram mein lagaiye: sthir content pehle, badalne wala aakhir mein. Naapiye ki isse kitna bachta hai.',
-  'Write the compaction rule for a long conversation, and note what it loses.':
-    'Lambi baatcheet ke liye compaction rule likhiye, aur note kijiye ki woh kya khota hai.',
-  'Write the budget: tokens per query, cost per thousand queries, and the number you would defend in a planning meeting.':
-    'Budget likhiye: per query tokens, hazaar queries ki cost, aur woh number jise aap planning meeting mein defend karenge.',
-  'You have accuracy figures at three positions, from your own runs.':
-    'Aapke paas apne runs se teen positions par accuracy figures hain.',
-  'The comparison has real numbers for both approaches, including cost.':
-    'Tulna mein dono tareekon ke asli numbers hain, cost samet.',
-  'You can say which approach you would ship, and name the case where you would be wrong.':
-    'Aap bata sakte hain ki kaunsa tareeka ship karenge, aur us case ka naam le sakte hain jahan aap galat honge.',
   'The third gap from Chapter 7.5. This chapter explains why.':
     'Chapter 7.5 ki teesri kami. Yeh chapter samjhaata hai kyun.',
   'It limits one request; it is not memory.':
@@ -111,28 +89,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Do tasks batana jahan reasoning madad karta hai aur do jahan bekaar jaata hai.',
   'Explain why a reasoning model given bad evidence produces a more convincing wrong answer.':
     'Samjhaana ki bure saboot wala reasoning model zyada yakeen dilaane wala galat jawab kyun deta hai.',
-  'A reasoning decision table for your own requests':
-    'Apni requests ke liye reasoning decision table',
-  'Reasoning is a purchase, not a quality setting. You have paid for it on trivial tasks and seen it fail to fix bad retrieval. Build the decision table you would use to route real requests.':
-    'Reasoning ek khareed hai, quality setting nahi. Aapne mamooli tasks par iske paise diye aur ise bure retrieval ko theek na kar paate dekha. Woh decision table banaiye jisse aap asli requests route karenge.',
-  'Sort a week of realistic requests into two groups: ones with a clear right answer, and ones that need judgement.':
-    'Ek hafte ki realistic requests ko do groups mein baantiye: jinka saaf sahi jawab hai, aur jinme judgement chahiye.',
-  'Run both groups with reasoning on and off. That gives four cells of real outputs.':
-    'Dono groups ko reasoning on aur off ke saath chalaiye. Isse asli outputs ke chaar cells milte hain.',
-  'Record cost and response time for every cell, not only quality.':
-    'Har cell ke liye cost aur response time record kijiye, sirf quality nahi.',
-  'Find the point where the extra waiting time stops being worth the accuracy it buys for this use case.':
-    'Woh point dhoondhiye jahan is use case ke liye extra intezaar uski di accuracy ke laayak nahi rehta.',
-  'Find a request in your own data where reasoning does not change the answer at all but costs several times more.':
-    'Apne data mein ek aisi request dhoondhiye jahan reasoning jawab bilkul nahi badalta lekin kai guna mehnga padta hai.',
-  'Write the routing rule so an engineer could implement it: which requests take the expensive path, and based on what signal.':
-    'Routing rule aise likhiye ki engineer use implement kar sake: kaunsi requests mehnga raasta lengi, aur kis signal ke aadhaar par.',
-  'All four cells have numbers for quality, cost and response time.':
-    'Chaaron cells mein quality, cost aur response time ke numbers hain.',
-  'The routing rule is a clear condition.':
-    'Routing rule ek saaf shart hai.',
-  'You can name one request type where reasoning is wasted, and show the run that proves it.':
-    'Aap ek request type bata sakte hain jahan reasoning bekaar hai, aur woh run dikha sakte hain jo ise prove karta hai.',
   'Reasoning is text, so it has a cost.':
     'Reasoning text hai, isliye uski cost hai.',
   'A request is a budget with parts':

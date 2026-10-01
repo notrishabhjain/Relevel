@@ -19,12 +19,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek security report aur ek AI risk register.',
   'Explain why retrieved content is untrusted input, to someone who thinks it is their own data.':
     'Us aadmi ko samjhaiye, jo maanta hai ki yeh uska apna data hai, ki nikala gaya content bharose ke laayak input kyun nahi hai.',
-  'An AI risk register with evidence':
-    'Saboot ke saath ek AI risk register',
-  'Name the test that proves the control, and run it.':
-    'Us test ka naam likhiye jo control ko saabit karta hai, aur use chalaiye.',
-  'Every control has a test that has been run.':
-    'Har control ka ek test ho jo chalaya jaa chuka ho.',
   'Tools are a security boundary':
     'Tools ek suraksha ki seema hain',
   'Risk':
@@ -87,14 +81,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Engineer ise padhkar bana sake aur leader samajh sake ki isme kya len-den kiya jaa raha hai.',
   'AI product management':
     'AI product management',
-  'An AI PRD for a policy assistant':
-    'Ek policy assistant ke liye AI PRD',
-  'Write the rollout plan and a one-line rollback trigger.':
-    'Rollout ka plan aur ek line ki wapas lene ki shart likhiye.',
-  'Name the owner.':
-    'Zimmedaar ka naam likhiye.',
-  'Every quality claim is a number against a named test set.':
-    'Quality ka har daawa ek number ho, kisi naam waale test set ke against.',
   'Quality is a measured number against a test set':
     'Quality ek naapa hua number hai, kisi test set ke against',
   'Failure costs differ by use case':

@@ -13,16 +13,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Koi badlaav isliye nahi jaata ki demo achcha laga. Woh isliye jaata hai ki gate paar kiya.',
   'Evaluation engineering':
     'Evaluation engineering',
-  'A release gate':
-    'Ek release ka gate',
-  'Run the gate against your current system and record whether it passes today.':
-    'Gate ko apne aaj ke system par chalaiye aur likhiye ki aaj paas hota hai ya nahi.',
-  'Every threshold is a number against a named test set.':
-    'Har threshold ek number ho, kisi naam waale test set ke against.',
-  'The gate has been run at least once and produced a verdict.':
-    'Gate kam se kam ek baar chala ho aur faisla diya ho.',
-  'The rollback trigger names a person or a role.':
-    'Wapas lene ki shart mein kisi vyakti ya pad ka naam ho.',
   'A model can grade output at scale':
     'Model bade paimane par number de sakta hai',
   'Layer':
@@ -93,12 +83,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Cost ko finance ki report nahi, architecture ka number maanna.',
   'Name what must be versioned so a change can be rolled back.':
     'Batana ki kis-kis cheez ka version rakhna zaroori hai taaki badlaav wapas liya jaa sake.',
-  'Safety: attack success rate and refusal behaviour, from which test set.':
-    'Suraksha: hamla kitni baar chala aur mana karne ka bartav, kis test set se.',
-  'Cost: per task and per day, with the components visible.':
-    'Cost: har kaam ki aur har din ki, jisme hisse dikhte hon.',
-  'Every panel names its data source.':
-    'Har panel apne data ka source bataye.',
   'A release gate needs evidence':
     'Release ke gate ko saboot chahiye',
   'Trace':

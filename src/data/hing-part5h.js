@@ -53,16 +53,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Khud banayein ya khareedein, aur provider ka chunaav — dono ko pasand ki jagah tole hue maapdandon se defend kijiye.',
   'A ten-slide technical decision pack':
     'Das slide ka technical decision pack',
-  'State the problem and the baseline it must beat.':
-    'Samasya likhiye aur woh tareeka jise ise haraana hai.',
-  'Draw the proposed architecture on one slide.':
-    'Prastavit architecture ek slide par banaiye.',
-  'Give the rollout plan and the rollback trigger.':
-    'Rollout ka plan aur wapas lene ki shart likhiye.',
-  'End with the decision and who owns it.':
-    'Aakhir mein faisla likhiye aur uska zimmedaar kaun hai.',
-  'Someone else could present the pack from the slides alone.':
-    'Koi doosra sirf slides dekhkar yeh pack pesh kar sake.',
   'Build or buy is a decision with criteria':
     'Khud banayein ya khareedein — yeh maapdandon waala faisla hai',
   'A release gate decides what ships':

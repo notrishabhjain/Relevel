@@ -139,11 +139,25 @@ window.PART5 = [
     ['key','A model API call is a normal software dependency. The engineering risk sits in interfaces, error handling, secrets, retries, observability and contracts, at least as much as in the model.'],
     ['p','Next, Chapter 22 uses the harness you just built to compare models.']
   ],
-  capstone:{title:'An experiment harness in version control',
-   brief:'Every later chapter in Part V asks you to run something and compare it with something else. If you rebuild the setup each time, comparisons stop being comparable. Build the harness once, put it in Git, and keep adding to it.',
-   where:'A new notebook, or a local folder if you prefer. This is the harness you build in code and keep extending through Chapter 34 — the notes box below is for what surprised you, not the code itself.',
-   steps:['Write a 20-line utility that reads JSON from a file and filters rows by one field.','Add three unit tests: the normal case, a missing field, and empty input.','Wrap your AI request recorder around it, so every run is saved as a JSON record.','Create a Git repository, commit the harness, and write a README that explains how to run it on a clean machine.','Break one thing on purpose, such as a bad key, a timeout or a malformed response, and confirm the record is still written with the error in it.'],
-   done:['Someone else could clone the repository and run it.','Three tests pass, and one of them covers a failure.','You have one saved record from a run that failed.']}
+  capstone:{
+    title:'Build the test harness and keep it in Git',
+    brief:'From here on, almost every chapter asks you to run the tool on the answer key and compare the result with last time. If you set the test up again each time, the comparisons stop being fair. In this chapter you learned to read requests, responses and errors, and that an AI system is a software system with one unpredictable part. Here you build the harness once, put it in Git, and keep adding to it for the rest of the course.',
+    where:'A new notebook, or a local folder if you prefer. This is the harness you build in code and keep extending through Chapter 34. The notes box below is for what surprised you, not for the code.',
+    steps:[
+      'Write a function of about twenty lines that reads your answer key (a CSV file) and returns its rows. Let it filter by one column, for example “only the Hinglish rows”.',
+      'Add three tests for it: a normal file, a row with a missing field, and an empty file.',
+      'Write a function that runs one sentence through your current pipeline and saves a JSON record of the run: the sentence, the findings, the time, the tokens and any error.',
+      'Write a function that compares the findings with the answer key and prints recall and precision for each kind of ID and each kind of writing. This is the scoreboard you made by hand in Chapter 6.',
+      'Create a Git repository, commit the harness, and write a README that explains how to run it on a clean machine.',
+      'Break one thing on purpose, such as a bad key, a time-out or a broken reply, and check that the record is still written with the error in it.'
+    ],
+    done:[
+      'A repository that someone else can clone and run.',
+      'Three tests that pass, one of which covers a failure.',
+      'A scoreboard printed from the answer key.',
+      'One saved record from a run that failed.'
+    ]
+  }
 },
 
 /* ---------------------------------------------------------------- 22 / bk 9 */
@@ -292,11 +306,26 @@ window.PART5 = [
     ['h','Summary'],
     ['p','Next, Chapter 23 covers how to design the context you send to whichever model you chose.']
   ],
-  capstone:{title:'A model selection card',
-   brief:'Write one page a stakeholder can read and an engineer can act on, for an example government assistant. The card is the deliverable; the benchmark behind it is the evidence.',
-   where:'Your experiment harness from Chapter 21, to run the benchmark; write the one-page card in the notes box below.',
-   steps:['State the task and the quality bar in measurable terms.','State how sensitive the data is, and what that rules out immediately.','Set a response-time target and a cost limit per task.','Shortlist two or three models, with your ten-case results next to each.','Name the fallback: what runs when the first choice is down, degraded or repriced.','Name the dataset you will use to recheck the choice in three months.'],
-   done:['Every claim on the card traces back to a run in your harness.','A reader can see which constraint decided the choice.','The fallback is named, and you have tried it at least once.']}
+  capstone:{
+    title:'Choose the model, with a back-up, and write it on one page',
+    brief:'The name-and-place finder and the context judge both need a model, and the choice affects quality, cost, speed and privacy. In this chapter you learned that changing the model changes more than a benchmark score, and that a recommendation must answer “measured how?”. Here you test candidate models on your own answer key and write the one-page card that records the choice.',
+    where:'Your test harness from Chapter 21, to run the models. Write the one-page card in the notes box below.',
+    steps:[
+      'State the job and the quality bar in numbers. For example: “find at least 90 of every 100 names on the answer key, with no more than 5 false alarms in 100 sentences”.',
+      'State how sensitive the text is and what that rules out straight away. For example, a provider that trains on what you send is ruled out if sentences may contain real Aadhaar numbers.',
+      'Set a time limit and a cost limit for one message.',
+      'Choose two or three models. Run your harness on the answer key for each, and put the results side by side. Show the Hindi and Hinglish results separately from the English ones.',
+      'Name the back-up: what runs if the first choice is down, slow or more expensive. Try the back-up at least once.',
+      'Name the test set you will use to recheck this choice in three months.',
+      'Put it all on one page, the model selection card, so that a manager can read it and an engineer can act on it.'
+    ],
+    done:[
+      'Numbers for the quality bar, the time limit and the cost limit.',
+      'A side-by-side table of the models, with Hindi and Hinglish shown separately.',
+      'A named back-up that you have tried once.',
+      'The one-page card, where every claim traces back to a run in your harness.'
+    ]
+  }
 },
 
 /* --------------------------------------------------------------- 23 / bk 10 */
@@ -429,11 +458,25 @@ window.PART5 = [
     ['h','Summary'],
     ['p','Next, Chapter 24 uses this context design as the input to a production retrieval system.']
   ],
-  capstone:{title:'A context budget for one assistant',
-   brief:'Write one page that says exactly what goes into the request, what it costs, and what is removed first when space runs out. This makes a discussion about context windows concrete.',
-   where:'Written, using real token counts from an assistant you know. Measure what you can, then write the one page in the notes box below.',
-   steps:['List every part that enters the context: instructions, examples, retrieved evidence, history, tool results and user data.','Next to each, write a token count from a real run, not a guess.','Set a total limit and show the remaining headroom.','Define the removal order, and the rule behind it.','Write the schema the output must match, and what happens when it does not.','For each piece of stored data, say which of the three memory stores it belongs to.'],
-   done:['The numbers come from a real run.','The removal order has a stated reason.','Every stored field has a way to be deleted.']}
+  capstone:{
+    title:'Plan exactly what the model gets to see',
+    brief:'Every call to the context judge sends the model a bundle of text, and the bundle is limited and costs money. In this chapter you learned to treat a prompt as a contract, to decide what is removed first when space runs short, and to keep conversation history, user settings and task state apart. Here you write the one-page plan for the context judge’s call.',
+    where:'Written, using real token counts from a run of your harness. Write the page in the notes box below.',
+    steps:[
+      'List everything that goes into one call to the context judge: the instructions, the worked examples, the sentence to check, any earlier messages and any reference list.',
+      'Next to each item, write a token count from a real run, not a guess.',
+      'Set a total limit for the call and show how much room is left.',
+      'Write the order in which things are removed when space runs out, and the rule behind it. The sentence to check is never removed.',
+      'Write the exact shape the reply must have, which is your finding format, and what happens when a reply does not match.',
+      'For each piece of stored data (the chat so far, a user’s settings, the state of the current task), say which of the three kinds of memory it belongs to.'
+    ],
+    done:[
+      'A list of everything in the call with a real token count beside each item.',
+      'A total limit and the room left.',
+      'The removal order and the rule behind it.',
+      'The reply shape, and the three kinds of stored data sorted.'
+    ]
+  }
 },
 
 /* --------------------------------------------------------------- 24 / bk 11 */
@@ -597,11 +640,25 @@ window.PART5 = [
     ['h','Summary'],
     ['p','Next, Chapter 25 gives the model controlled access to actions, not only evidence.']
   ],
-  capstone:{title:'An enterprise retrieval architecture on one page',
-   brief:'Write one page that an engineer could build from and a security reviewer could challenge. Keep it to one page; if it does not fit, you have not made enough decisions.',
-   where:'Written only — a one-page architecture design, no code required.',
-   steps:['Draw ingestion, storage, index, retrieval, reranking and generation as separate stages.','Add authentication and authorisation, and mark where the access check happens.','Mark provenance: how an answer traces back to a chunk ID and a source document.','State the no-answer threshold, and what the user sees when it is reached.','State how the index and the embedding model are versioned.','State the rollback: what you do when a rebuild makes quality worse.'],
-   done:['Every arrow has a failure mode written next to it.','The access check is on the retrieval path, not only in the interface.','Rollback is a written procedure.']}
+  capstone:{
+    title:'Draw the gateway on one page',
+    brief:'The gateway is the version of Bharat Privacy Guard that sits in front of a company’s servers, logs and AI traffic. You will not build it, but you must be able to design it so that an engineer could build from your page and a security reviewer could challenge it. In this chapter you learned the stages of a production search pipeline, why the quality of the first stage caps everything after it, and what must happen to an index when a document is deleted or a permission changes. Here you apply that to the gateway’s rules and reference lists.',
+    where:'Written only. A one-page design. No code needed.',
+    steps:[
+      'Draw these stages as separate boxes: how a company’s rules and reference lists are loaded, where they are stored, how they are searched, how the right rule is chosen for a request, how the result is reordered if needed, and how the decision is applied.',
+      'Add who may do what: who can change a rule, who can read the logs, and who can switch the gateway off. Mark where the permission check happens.',
+      'Mark how an answer can be traced back: every decision should record which rule, in which version, produced it.',
+      'Write the “no answer” rule: what the gateway does when no rule applies, and what the user sees.',
+      'Write how the rules and the reference lists are versioned, and what happens to old decisions when a rule changes.',
+      'Write the rollback: what you do when a new rule version makes things worse.'
+    ],
+    done:[
+      'A one-page drawing with the stages as separate boxes and the permission check marked.',
+      'The trace from a decision back to a rule and version.',
+      'The “no rule applies” behaviour, the versioning plan and the rollback.',
+      'The page really fits on one page. If it does not, you have not made enough decisions yet.'
+    ]
+  }
 },
 
 /* --------------------------------------------------------------- 25 / bk 12 */
@@ -737,11 +794,25 @@ window.PART5 = [
     ['h','Summary'],
     ['p','Next, Chapter 26 lets the model control the sequence of steps: an agent.']
   ],
-  capstone:{title:'A workflow that drafts but cannot submit',
-   brief:'Build an approval flow where the assistant can prepare a purchase request but can never send it. The key number is how often the model proposes the correct action when it is not allowed to act.',
-   where:'Your experiment harness and agent loop, extended in code to build the approval flow; write the measured numbers in the notes box below.',
-   steps:['Write separate tool contracts for the draft action and the submit action.','Enforce the split on the server: the submit tool is not in the model’s allowed list at all.','Add a human approval step, with an audit record of who approved what.','Run twenty realistic requests, and record how often the proposed action was correct.','Test a malformed argument, an unauthorised request and a timeout. Record what the user saw each time.'],
-   done:['The model cannot submit, even if it asks to.','Every approval leaves a record naming a person.','You have a measured figure for how often the proposed action was correct.']}
+  capstone:{
+    title:'Build a workflow that proposes changes but cannot make risky ones alone',
+    brief:'Before you let a model act on its own, you write the contract for each action and decide which actions need a person. In this chapter you learned to write a tool contract a reviewer could sign, when a fixed workflow beats an agent, and which checks must happen before an important action runs. Here you build a workflow for the rule-keeper in which the model proposes what to do with each finding, but a person must approve the risky ones.',
+    where:'Your test harness from Chapter 21 and the agent loop from Chapter 9, extended in code. Write the measured numbers in the notes box below.',
+    steps:[
+      'Write the contract for the action “hide this detail”: its name, what it needs, what it returns, what it may change, and what it can never change. A reviewer should be able to sign it.',
+      'Decide which actions are risky enough to need approval. For example, letting any ID number through, or deleting a stored copy, always needs approval.',
+      'Build a fixed workflow: check the sentence, list the findings, propose an action for each finding, wait for approval on the risky ones, then apply the actions.',
+      'Prepare twenty test messages and decide in advance what the right proposal is for each.',
+      'Run them. Count how often the model proposes the correct action when it is not allowed to act on its own. Also count how many risky actions would have been applied without approval. That number must be zero.',
+      'Write the checks that must happen before an important action runs.'
+    ],
+    done:[
+      'A signed-off contract for the hide action.',
+      'A list of the actions that need approval.',
+      'A working workflow in which risky actions wait for approval.',
+      'Two numbers from twenty messages: how often the proposal was right, and how many risky actions ran without approval (zero).'
+    ]
+  }
 },
 
 /* --------------------------------------------------------------- 26 / bk 13 */
@@ -896,11 +967,24 @@ window.PART5 = [
     ['h','Summary'],
     ['p','Next, Chapter 27 looks at standards for connecting tools and agents.']
   ],
-  capstone:{title:'An agent measured against the workflow it would replace',
-   brief:'Build an agent that searches your documents, calculates one fixed metric and gives a cited answer. Then test whether it beats the fixed workflow from Chapter 25.',
-   where:'Your experiment harness, extended in code to build and test the agent; write the recommendation in the notes box below.',
-   steps:['Give it exactly two tools and an explicit allowed list.','Set limits: maximum steps, a timeout, and an exit for “cannot resolve”.','Run the same twenty tasks through the agent and the workflow.','For each, record tool-selection accuracy, number of calls, response time and cost.','Write one paragraph recommending one of them, including the numbers.'],
-   done:['Both systems ran the same twenty tasks.','You have four numbers for each system.','The recommendation names the metric that decided it.']}
+  capstone:{
+    title:'Test a fixed workflow against an agent',
+    brief:'You can build the rule-keeper as a fixed set of steps, or as an agent that chooses its own steps. In this chapter you learned to draw the agent loop with its stopping conditions, that most agent failures are control problems and not a lack of intelligence, and when to add a second agent and when not to. Here you build the agent and test whether it beats the fixed workflow from Chapter 25.',
+    where:'Your test harness from Chapter 21, extended in code. Write the recommendation in the notes box below.',
+    steps:[
+      'Give the agent exactly two tools: the pattern checker and the model-based finder. Write an explicit list of what it may use, and nothing else.',
+      'Set its limits: the most steps it may take, a time limit, and an exit for “cannot decide” that sends the sentence to a person.',
+      'Run the same twenty sentences through the agent and through the fixed workflow from Chapter 25.',
+      'For each run, record whether it chose the right tool, how many calls it made, how long it took and what it cost.',
+      'Write one paragraph recommending one of the two, with the numbers. Name the number that decided it.'
+    ],
+    done:[
+      'An agent with two tools and written limits.',
+      'The same twenty sentences run through both systems.',
+      'Four numbers for each system: tool choice, calls, time and cost.',
+      'A recommendation that names the number that decided it.'
+    ]
+  }
 },
 
 /* --------------------------------------------------------------- 27 / bk 14 */
@@ -1019,11 +1103,25 @@ window.PART5 = [
     ['h','Summary'],
     ['p','Next, Chapter 28 changes the type of input, from text to documents, images and audio, while keeping the same context and evaluation design.']
   ],
-  capstone:{title:'A tool access policy',
-   brief:'Write a tool access policy for an AI assistant in a government setting, where “it seemed helpful” is not an acceptable reason for an action. The policy is the deliverable; the classification is the thinking.',
-   where:'Written only. Classify the tools and write the policy — no new code is needed.',
-   steps:['Classify every tool as read-only, reversible write, irreversible write, privileged or prohibited.','For each class, state the authorisation required, and whether a person must confirm.','Build the authorisation matrix: roles down the side, tool classes across the top.','Mark the trust boundary on your diagram, and say which component enforces it.','Write what the audit record contains for an irreversible action.'],
-   done:['Every tool has exactly one class.','Every irreversible action has a confirmation step.','The enforcing component is named, and it is not the model.']}
+  capstone:{
+    title:'Write the tool access policy',
+    brief:'The gateway and the browser extension would be allowed to read forms, change text, call outside models and write logs. A standard connection to a tool makes things easier to plug in, but it does not make an unsafe tool safe. In this chapter you learned to mark where consent and authorisation happen and to classify tools by what they are allowed to change. Here you write the access policy for the gateway and the extension.',
+    where:'Written only. The policy is what you hand in. Classifying the tools is the thinking. No new code is needed.',
+    steps:[
+      'List every tool or action the gateway or the browser extension would need: read a form field, read a request body, write to a log, call an outside model, replace text, block a request, send an alert.',
+      'Sort each one into a class: read only; a change that can be undone; a change that cannot be undone; special permission needed; or forbidden.',
+      'For each class, write what authorisation it needs and whether a person must confirm.',
+      'Draw a table with roles down the side (the developer, the compliance reviewer, the end user and the tool itself) and the classes across the top. Mark who may do what.',
+      'Mark on a diagram where trust stops, and say which part enforces it.',
+      'Write what is recorded for an action that cannot be undone.'
+    ],
+    done:[
+      'Every tool sorted into one of the five classes.',
+      'A table of roles against classes.',
+      'A diagram with the trust boundary and the part that enforces it.',
+      'A description of the record kept for an action that cannot be undone.'
+    ]
+  }
 },
 
 /* --------------------------------------------------------------- 28 / bk 15 */
@@ -1140,11 +1238,26 @@ window.PART5 = [
     ['h','Summary'],
     ['p','Next, Chapter 29 builds a systematic way to prove whether all these components work.']
   ],
-  capstone:{title:'Specify a voice assistant for meeting follow-up',
-   brief:'The technology is the easier half. Specify the half that gets systems stopped in review: privacy boundaries, retention, attribution and what a person must confirm.',
-   where:'Written only — a specification, no code required.',
-   steps:['Define the privacy boundary: whose audio, recorded where, with what notice.','Set how long transcripts are kept, and how they are deleted.','Specify speaker attribution, and what happens when it is uncertain.','Specify task extraction: what becomes an action item, and what confirmation is needed.','Write the evaluation metrics, including one for attribution accuracy.'],
-   done:['A person can find out what was recorded about them and have it deleted.','No action is taken from audio without a confirmation step.','Attribution has a measured accuracy figure and a defined behaviour when uncertain.']}
+  capstone:{
+    title:'Specify how the tool handles images and voice',
+    brief:'Personal details arrive as photos of cards and as spoken words as well as typed text. In this chapter you learned what plain-text extraction loses from a real document, how a voice pipeline is put together, and where the answer key for a multimodal question must come from. Here you specify how Bharat Privacy Guard deals with scanned IDs and with typed-by-voice sentences.',
+    where:'Written only. A specification. No code needed.',
+    steps:[
+      'Name three things that are lost when text is simply pulled out of a scanned ID card or a PDF. For example: where the text sits on the page, a stamp, and a handwritten note.',
+      'Draw the path for a voice message: speech turned into text, then the tool, then the safe text. Mark the steps that add delay.',
+      'Write the privacy boundary: whose voice is recorded, where it is recorded, and what notice the person gets.',
+      'Write how long the typed-out speech is kept and how it is deleted.',
+      'Write what happens when the speech-to-text is unsure of a number, for example a digit it heard twice. Write the rule.',
+      'Say where the answer key for voice and images comes from, and write three made-up voice-typed sentences with no punctuation to add to it.',
+      'Write the measures you will track, including one for how often a spoken number is heard correctly.'
+    ],
+    done:[
+      'Three things lost by plain text extraction.',
+      'A voice path with the delays marked.',
+      'The privacy boundary and the keep-and-delete rule.',
+      'A rule for unsure numbers, three new answer-key rows, and the measures to track.'
+    ]
+  }
 }
 ,
 
@@ -1301,11 +1414,25 @@ window.PART5 = [
     ['h','Summary'],
     ['p','Next, Chapter 30 covers how to observe the system continuously once it is live.']
   ],
-  capstone:{title:'A release gate',
-   brief:'The release gate makes every other measurement in Part V matter. Without it, evaluation is a report nobody has to act on.',
-   where:'Your experiment harness, extended in code to build the gate itself.',
-   steps:['Set the quality threshold: the metric, the test set and the number.','Set the safety threshold, including the attack success rate.','Set the response-time target and the cost limit per task.','Set the regression tolerance: how much may a previously passing case get worse?','Define the rollback trigger, and who is allowed to use it.','Run the gate against your current system and record whether it passes today.'],
-   done:['Every threshold is a number against a named test set.','The gate has been run at least once and produced a verdict.','The rollback trigger names a person or a role.']}
+  capstone:{
+    title:'Build the release gate',
+    brief:'Without a release gate, measuring is a report that nobody has to act on. In this chapter you learned to build a test set that still works after a change of prompt, model or index, to score at several levels so that a good total cannot hide a broken part, and where an automatic marker is acceptable. Here you build the gate that a new version of the tool must pass before it ships.',
+    where:'Your test harness from Chapter 21, extended in code.',
+    steps:[
+      'Open your harness. Turn your answer key into a versioned test set: a file with a version number and a note listing what changed since the last version. Call it the final version for now.',
+      'Score at three levels: each finder on its own, the whole tool on whole sentences, and the cleaned text marked by your automatic marker from Chapter 14.',
+      'Write the gate. For each score, write the lowest number a new version may have in order to be released. Add a rule that the score for any single kind of ID may not drop, even if the overall score goes up.',
+      'Make the gate run with one command that prints PASS or FAIL.',
+      'Prove it works. Change one rule so that it breaks Aadhaar finding, run the gate, and show that it says FAIL.',
+      'Say where the automatic marker is acceptable in the gate and where only your own marking will do.'
+    ],
+    done:[
+      'A versioned test set with a change note.',
+      'Scores at three levels.',
+      'A gate with a minimum for every score and a rule for each kind of ID.',
+      'A one-command run that prints PASS or FAIL, and proof that it fails a broken change.'
+    ]
+  }
 },
 
 /* --------------------------------------------------------------- 30 / bk 17 */
@@ -1439,11 +1566,24 @@ window.PART5 = [
     ['h','Summary'],
     ['p','Next, Chapter 31 treats the same system as a target for attackers.']
   ],
-  capstone:{title:'Specify a six-panel production dashboard',
-   brief:'Specify six panels: quality, safety, response time, cost, traffic and failures. For every panel, name its data source. A panel with no source is only a wish.',
-   where:'Your experiment harness, extended in code to record full traces, then the written specification in the notes box below.',
-   steps:['Quality: which metric, calculated from what, and how often.','Safety: attack success rate and refusal behaviour, from which test set.','Response time: median and 95th percentile, broken down by stage.','Cost: per task and per day, with the components visible.','Traffic: volume and mix, so you can see when the input changes.','Failures: error types with counts, not one error rate.','For each panel, write the threshold that triggers an investigation and the one that triggers a rollback.'],
-   done:['Every panel names its data source.','Response time is broken down by stage, not reported as one number.','Each panel has an investigation threshold and a rollback threshold.']}
+  capstone:{
+    title:'Plan how to watch the tool once it is live',
+    brief:'A tool in use can go wrong in ways your tests never saw, and you will only know if you are watching. In this chapter you learned to design a trace that can answer “why was this answer wrong?” afterwards, to treat cost as an engineering number, and to name what must be versioned so a change can be undone. Here you plan six panels for watching Bharat Privacy Guard.',
+    where:'Your test harness from Chapter 21, extended in code to save full traces. Then write the plan in the notes box below.',
+    steps:[
+      'Extend your harness so that every run saves a full trace: the input, each step, each finding, the time, the tokens, the cost and any error. Never put the real personal details into a trace that is shown on a dashboard.',
+      'Design six panels: quality, safety, response time, cost, traffic and failures. For every panel, write which data feeds it and how often it is worked out. A panel with no data source is only a wish.',
+      'Fill in what each panel shows. Quality: which number, worked out from what. Safety: how often an attack from Chapter 13 gets through. Response time: the median and the slowest, split by stage. Cost: per message and per day, with the parts visible. Traffic: how many messages, and the mix of English, Hindi and Hinglish. Failures: counts by type, not one error rate.',
+      'For each panel, write the level that makes you investigate and the level that makes you roll back.',
+      'List what must be versioned so that a change can be undone: the rules, the model, the instructions, the reference lists and the answer key.'
+    ],
+    done:[
+      'Traces saved by your harness.',
+      'Six panels, each with a named data source.',
+      'An investigation level and a rollback level for every panel.',
+      'A list of what is versioned.'
+    ]
+  }
 },
 
 /* --------------------------------------------------------------- 31 / bk 18 */
@@ -1613,11 +1753,24 @@ window.PART5 = [
     ['h','Summary'],
     ['p','Next, Chapter 32 turns the technical system into a product specification.']
   ],
-  capstone:{title:'An AI risk register with evidence',
-   brief:'For each row, record the asset, threat, impact, likelihood, control, owner, test and remaining risk. Every row ends in a test, because a register that ends in controls is only a list of intentions.',
-   where:'Written only. The register draws on evidence from your earlier chapters; no new code is needed.',
-   steps:['List the assets: documents, credentials, tools, user data and traces.','For each, name the threats you have actually reproduced, not only ones you read about.','Record impact and likelihood on whatever scale your organisation uses.','Name the control and the owner: a person or role, not a team.','Name the test that proves the control, and run it.','Record the risk that remains after the control, honestly.','Write the go/no-go checklist for a customer-facing agent: identity, secrets, tool permissions, audit trails, data retention, provider policy and incident response.'],
-   done:['Every listed threat has been reproduced at least once.','Every control has a test that has been run.','The remaining risk is stated explicitly.']}
+  capstone:{
+    title:'Write the risk register, with a test for every control',
+    brief:'A risk register that ends in controls is only a list of good intentions. In this chapter you learned why retrieved text is untrusted input whoever owns it, how to apply least privilege to an agent, and to put evidence next to every control. Here you write the risk register for Bharat Privacy Guard.',
+    where:'Written only. The register draws on evidence from your earlier chapters. No new code is needed.',
+    steps:[
+      'For each risk, write eight things: the asset (what is at stake), the threat, the impact, how likely it is, the control, the owner, the test, and the risk that remains.',
+      'Include at least these eight risks: a missed Aadhaar number; a false alarm that blocks a real message; an attack hidden in the text reaching the model; the provider keeping your data; the model provider going down; the reference lists going out of date; the logs storing raw personal data; and a person with more access than they need.',
+      'For every control, write the test that shows it works, and run that test wherever you can. A control with no test is only an intention.',
+      'Apply least privilege to the tool. List what each part can reach, remove everything it does not need, and say what breaks.',
+      'Write two lines on why text retrieved from your own reference lists must still be treated as untrusted input.'
+    ],
+    done:[
+      'A register of at least eight risks with all eight columns filled in.',
+      'A test for every control, with the results of those you ran.',
+      'A least-privilege list and what broke when you removed access.',
+      'Two lines on why retrieved text is untrusted.'
+    ]
+  }
 },
 
 /* --------------------------------------------------------------- 32 / bk 19 */
@@ -1777,11 +1930,27 @@ window.PART5 = [
     ['h','Summary'],
     ['p','Next, Chapter 33 turns the product into a production architecture and delivery plan.']
   ],
-  capstone:{title:'An AI PRD for a policy assistant',
-   brief:'Write two pages. An engineer should be able to build from it, and a leader should be able to see the trade-off being made and agree to it on purpose.',
-   where:'Written only. The PRD draws on evidence from earlier chapters; no new code is needed.',
-   steps:['State the user problem, and the non-AI baseline it has to beat.','Define the scope and, explicitly, what is out of scope.','Specify the context, the tools and the human role in the loop.','List the failures you have actually seen in this course.','Name the evaluation dataset and write a five-line evaluation plan.','Set quality bars, safety limits, response-time targets and cost goals.','Write the rollout plan and a one-line rollback trigger.','Name the owner.'],
-   done:['Every quality claim is a number against a named test set.','What is out of scope is written down.','Someone could act on the rollback trigger without you.']}
+  capstone:{
+    title:'Write the full product requirements for Bharat Privacy Guard',
+    brief:'You now write the document that an engineer can build from and that a leader can read to see exactly what trade-off is being made. In this chapter you learned to write acceptance criteria as a rate with a tolerance, to keep business results, model measures and operating measures apart, and to design the three states an AI feature needs. Here you write two pages for your own tool.',
+    where:'Written only. The requirements draw on evidence from earlier chapters. No new code is needed.',
+    steps:[
+      'State the user’s problem, and the non-AI way your tool has to beat, for example a developer’s own hand-written rules.',
+      'Define the scope and, clearly, what is out of scope.',
+      'Specify what the models see, which tools they may use and what role a person plays.',
+      'List the failures you have really seen in this course.',
+      'Name the test set, and write a five-line test plan.',
+      'Set quality, safety, speed and cost targets as rates with a tolerance, for example: “finds 95 of every 100 Aadhaar numbers, give or take 3, on the answer key”.',
+      'Design the three screens the tool needs: sure, unsure and error.',
+      'Write the release plan, a one-line rollback trigger, and the name of the owner.'
+    ],
+    done:[
+      'Two pages that an engineer could build from.',
+      'Every quality claim written as a number against a named test set.',
+      'What is out of scope, written down.',
+      'A rollback trigger that someone could act on without asking you.'
+    ]
+  }
 },
 
 /* --------------------------------------------------------------- 33 / bk 20 */
@@ -1957,11 +2126,23 @@ window.PART5 = [
     ['h','Summary'],
     ['p','Next, Chapter 34 brings the whole system together in one capstone project.']
   ],
-  capstone:{title:'A ten-slide technical decision pack',
-   brief:'Cover the problem, baseline, proposed architecture, alternatives, evaluation, security, cost, rollout, risks and decision. Draft it from memory first, then check it. The parts you cannot produce from memory are the parts you do not yet understand.',
-   where:'Written only — a slide deck or document, drawing on your earlier measurements; no new code is needed.',
-   steps:['State the problem and the baseline it must beat.','Draw the proposed architecture on one slide.','Show two alternatives you rejected, and why.','Add the evaluation results, with the test set named.','Summarise the security position and the remaining risks.','Give the cost per task and the cost at expected volume.','Give the rollout plan and the rollback trigger.','Score three providers against nine weighted criteria.','End with the decision and who owns it.'],
-   done:['Each rejected alternative was a real option with a reason to consider it.','The provider scorecard includes the cost of leaving.','Someone else could present the pack from the slides alone.']}
+  capstone:{
+    title:'Make a ten-slide decision pack',
+    brief:'You now explain the whole design to people who must approve it. In this chapter you learned what a prototype lacks before it can go live, to treat response time as a budget spent across stages, and to score providers on more than price and quality. Here you make a ten-slide pack for Bharat Privacy Guard. The test of understanding: draft it from memory first, because the slides you cannot write from memory are the parts you do not yet understand.',
+    where:'Written only: a slide deck or a document that draws on your earlier measurements. No new code is needed.',
+    steps:[
+      'Without looking at your notes, write one line for each of the ten slides saying what it will say. Mark the slides you could not write from memory.',
+      'Make the ten slides: (1) the problem and what it must beat; (2) the architecture on one slide; (3) two alternatives you rejected and why; (4) the test results, with the test set named; (5) security and what remains risky; (6) cost per message and at the expected volume; (7) the rollout plan and the rollback trigger; (8) three providers scored on nine weighted criteria; (9) the decision and who owns it; (10) what you did not solve.',
+      'Check each slide against your earlier documents and fix any mismatch.',
+      'Ask someone else to present the deck from the slides alone. Write down where they stopped or hesitated, and fix those slides.'
+    ],
+    done:[
+      'The from-memory outline with the weak slides marked.',
+      'Ten slides in the order above.',
+      'A provider scorecard that includes the cost of leaving.',
+      'Evidence that someone else could present the deck from the slides alone.'
+    ]
+  }
 },
 
 /* --------------------------------------------------------------- 34 / bk 21 */
@@ -2181,11 +2362,30 @@ window.PART5 = [
     ],
     ['p','This was the last required chapter. Track B’s B7 turns what you just built into interview-ready stories. The appendices turn your artifacts into reusable portfolio templates.']
   ],
-  capstone:{title:'Applied AI findings: what I built, what broke, who used it and what the evidence shows',
-   brief:'This single document carries everything from the course. Keep it plain and factual. A findings document that reads like a brochure is not doing its job.',
-   where:'Your repository, for the working system and its README, plus a written findings document — both together are the deliverable.',
-   steps:['Ship the repository with a README that works on a clean machine.','Include the architecture diagram and the decision log.','Include 30 to 50 evaluation cases and their results.','Include the retrieval and end-to-end numbers, before and after your fixes.','Include the security attack results and sample traces.','Include cost and response-time measurements at expected volume, and the unit-economics model.','Include the PRD, the risk register, the vendor scorecard, and the rollout and rollback plan.','Include the real-user evidence: session notes, the support log, and the one iteration you shipped from it.','End with the remaining risks and what is explicitly out of scope.'],
-   done:['Three failures you found yourself, each with evidence.','Three fixes with before and after numbers.','Real evidence from five to ten users who are not your teammates.','Cost per successful task, and what happens to it at ten times the volume.','A five-minute explanation a non-technical leader could repeat, and a twenty-minute one an engineer could not poke a hole in.']}
+  capstone:{
+    title:'Ship Bharat Privacy Guard, and write the findings document',
+    brief:'This is the final capstone of the technical course. Everything you have made now comes together in one repository and one document. Keep the document plain and factual. A findings document that reads like a brochure is not doing its job. Describe the project as “a privacy tool that helps an organisation collect and share less personal data”, and never as making anyone compliant.',
+    where:'Your repository, for the working system and its README, plus a written findings document. Both together are what you hand in.',
+    steps:[
+      'Make the repository work on a clean machine. Someone else must be able to clone it, follow the README and run the answer key.',
+      'Add the architecture diagram and the decision log.',
+      'Add the final answer key and the scoreboard before and after your fixes.',
+      'Add the results of the attacks you tried in Chapter 13, and some sample traces.',
+      'Add the cost and speed at your expected volume, and what changes at ten times the volume.',
+      'Add the requirements, the risk register, the system card and the rollout and rollback plan.',
+      'Add real-user evidence: notes from sessions with five to ten people who are not your teammates, and the one change you made because of them.',
+      'Write the findings document: what you built, what broke, who used it and what the evidence shows. Include three failures you found yourself, each with evidence, and three fixes, each with numbers from before and after.',
+      'End with what remains risky and what is deliberately out of scope, such as other Indian languages, the gateway and the browser extension.'
+    ],
+    done:[
+      'A repository that works on a clean machine.',
+      'Three failures you found yourself, each with evidence.',
+      'Three fixes, each with before and after numbers.',
+      'Evidence from five to ten real users who are not your teammates.',
+      'The cost per message, and what happens to it at ten times the volume.',
+      'A five-minute explanation a non-technical leader could repeat, and a twenty-minute one that an engineer could not easily poke holes in.'
+    ]
+  }
 }
 
 ];

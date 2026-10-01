@@ -11,28 +11,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Kisi bhi prompt mein pehchaan paana ki chaar mein se kaunsi technique kaam kar rahi hai.',
   'Show a model the output you want with a worked example, instead of describing it.':
     'Jo output chahiye use describe karne ki jagah ek worked example se model ko dikhana.',
-  'Write a prompt someone else can use':
-    'Aisa prompt likhiye jise koi aur use kar sake',
-  'Build a prompt for a real task using the four techniques. Write down what each technique does, then hand it to someone else. A prompt that only works when you explain it is not finished.':
-    'Chaar techniques se ek asli task ka prompt banaiye. Likhiye ki har technique kya karti hai, phir use kisi aur ko de dijiye. Jo prompt sirf aapke samjhaane par chale, woh abhi poora nahi hua.',
-  'Name one real task at your work, and the decision its output feeds. One line each.':
-    'Apne kaam ka ek asli task likhiye, aur woh decision jise uska output feed karta hai. Har ek ki ek line.',
-  'Write the job description: who reads the output, what they do next, and what they can ignore.':
-    'Job description likhiye: output kaun padhta hai, woh aage kya karta hai, aur kya ignore kar sakta hai.',
-  'Choose two worked examples: one typical and one awkward. The awkward one should show what to do when something is missing.':
-    'Do worked examples chuniye: ek typical aur ek pechida. Pechida wala dikhaye ki kuchh missing ho to kya karna hai.',
-  'If the task has parts, add the steps, in the order a careful person would work.':
-    'Agar task ke hisse hain, to steps jodiye, us kram mein jismein ek dhyaan se kaam karne wala insaan karega.',
-  'Add at most two prohibitions, only for failures you have actually seen.':
-    'Zyada se zyada do mana-hi jodiye, sirf un failures ke liye jo aapne sach mein dekhe hain.',
-  'Give the prompt and five real inputs to a colleague. Have them run it without any explanation from you.':
-    'Prompt aur paanch asli inputs ek colleague ko dijiye. Unhe bina aapke samjhaaye chalaane dijiye.',
-  'Someone else ran it and got what you expected, without asking you a question.':
-    'Kisi aur ne ise chalaya aur bina sawaal poochhe wahi mila jo aapne socha tha.',
-  'You can point to each technique in your prompt and say what it does.':
-    'Aap apne prompt ki har technique par ungli rakh kar bata sakte hain ki woh kya karti hai.',
-  'You know roughly how many tokens your prompt costs before any input is added.':
-    'Aapko mota-mota pata hai ki kisi input ke bina aapka prompt kitne tokens ka hai.',
   'A system prompt changes behaviour':
     'System prompt behaviour badalta hai',
   'One sentence of instruction visibly reduced invented answers.':
@@ -113,24 +91,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Kuchh outputs padhna prompts ke beech chunne ka bharosemand tareeka nahi hai. Aap asli inputs se das rows ka test set banayenge, har prompt version ko us par score karenge, aur ek baar mein ek hi cheez badlenge.',
   'Change one thing at a time and measure whether it helped.':
     'Ek baar mein ek cheez badalna aur naapna ki usse madad mili ya nahi.',
-  'A test set, and what it found':
-    'Ek test set, aur usne kya pakda',
-  'Build a test set for one real task, use it to make a decision, and keep it. You will rerun it every time the model or prompt changes.':
-    'Ek asli task ka test set banaiye, usse ek decision lijiye, aur use sambhal kar rakhiye. Jab bhi model ya prompt badlega, aap ise dobara chalaayenge.',
-  'Build a ten-row test set for a real task. Include two rows that should be refused, and the two messiest real inputs you can find.':
-    'Ek asli task ke liye das rows ka test set banaiye. Do aisi rows rakhiye jinhe refuse hona chahiye, aur do sabse gande asli inputs jo aapko mil sakein.',
-  'Score your current best prompt against it and write the number down. This is your baseline.':
-    'Apne abhi ke sabse achhe prompt ko is par score kijiye aur number likh lijiye. Yeh aapki baseline hai.',
-  'Make three improvements, one at a time, rescoring after each. Record all four numbers.':
-    'Teen sudhaar kijiye, ek-ek karke, har baar dobara score karte hue. Chaaron numbers record kijiye.',
-  'Run the whole set against a cheaper or smaller model, and record which rows fail.':
-    'Poora set ek saste ya chhote model par chalaiye, aur record kijiye ki kaunsi rows fail hoti hain.',
-  'Write half a page for a colleague: the prompt, its score, and the two rows it still fails.':
-    'Colleague ke liye aadha page likhiye: prompt, uska score, aur woh do rows jo woh ab bhi fail karta hai.',
-  'You removed something that did not help, and you know what that saves.':
-    'Aapne kuchh aisa hataya jo madad nahi kar raha tha, aur aapko pata hai ki usse kitna bachta hai.',
-  'You can say which rows your prompt still fails, and whether it is acceptable to ship it that way.':
-    'Aap bata sakte hain ki aapka prompt ab bhi kaunsi rows fail karta hai, aur kya use aise hi ship karna theek hai.',
   'Four prompt techniques':
     'Chaar prompt techniques',
   'And four versions of one prompt, with no way yet to choose between them.':

@@ -27,19 +27,22 @@ window.PART7 = [
          ['Cost per query','The cost stack in Idea 3 starts from it.',15],
          ['Build or buy','Vendor dependence is the other side of that decision.',18.5]],
   capstone:{
-    title:'A pricing recommendation, backed by a cost model',
-    brief:'Find out what your product is worth to a buyer, what it costs you to serve, and how to charge so the gap stays positive.',
-    where:'Written. Interviews and a cost-model spreadsheet; no code required.',
+    title:'Decide how to charge, and prove the numbers',
+    brief:'A tool that people love but that loses money on every message will not survive. In this chapter you learned to separate the person who pays from the person who uses and the person who can block, to compare ways of pricing, and to work out the cost of one successful task including retries, human review and support. Here you decide how Bharat Privacy Guard should be priced.',
+    where:'Written. Interviews and a cost spreadsheet. No code needed.',
     steps:[
-      'Interview five prospects about their current alternatives, who owns the budget, and what the problem costs them. Do not ask “would you pay?”.',
-      'Model the cost per successful task at low, base and high usage. Include retries, human review and support time, not only model calls.',
-      'Design three pricing packages and a Van Westendorp-style survey plan. Then write a one-page pricing recommendation that lists its risks.'
+      'Interview five possible buyers, a mix of developers and compliance people. Ask what they use today, who owns the budget, and what the problem costs them. Do not ask “would you pay?”.',
+      'Build a cost table for one successfully cleaned message at low, base and high usage. Include retries, human review of unsure cases and support time as their own lines, not only the model calls.',
+      'Design three pricing packages, for example a free open-source kit, a paid hosted service, and a gateway for companies. For each, say who pays, what is counted, and who carries the risk if usage jumps.',
+      'Plan a short survey that asks people at what price the tool is too cheap, fair, expensive and too expensive.',
+      'Write a one-page pricing recommendation: the price, the margin at high usage, what happens to the margin if the model provider doubles its price, and the risks.'
     ],
     done:[
-      'Each interview names the current alternative and who signs off the spend.',
-      'The cost model has low, base and high rows, and support time appears as its own line.',
-      'The recommendation states the contribution margin at high usage, and what happens if the model price doubles.',
-      'Mastery gate: score each artifact 0 (absent), 1 (attempted), 2 (usable) or 3 (decision-grade). Move on only when every artifact scores at least 2 and no evidence item scores 0.'
+      'Five interviews, each naming the current alternative and who signs off the spend.',
+      'A cost table with low, base and high rows, and support time on its own line.',
+      'Three pricing packages and a survey plan.',
+      'A recommendation that states the margin at high usage and what a doubled model price does.',
+      'A score from 0 to 3 for each of the items above, using the scale in this chapter. Move on only when every score is at least 2 and no safety, privacy or evidence item scores 0.'
     ]
   },
   check:[
@@ -154,19 +157,22 @@ window.PART7 = [
          ['A positioning statement','Idea 5 builds on it.','A4'],
          ['A prototype','The onboarding test uses one.','A7']],
   capstone:{
-    title:'Growth events, an onboarding test and a growth loop',
-    brief:'Define how your product grows, test the first five minutes with real users, and design one loop you would be happy to explain to them.',
-    where:'Written. Use a no-code AI tool for a few days, then write the teardown; no code of your own required.',
+    title:'Plan how the tool grows, and test the first five minutes',
+    brief:'A good tool still needs a way for people to find it, try it and stay. In this chapter you learned to define the events of a growth funnel, to find the moment a user first gets value, and to tell a network effect from simple sharing. Here you plan growth for the developer kit and test the first five minutes with real developers.',
+    where:'Written, with a short test with real people. Use a no-code AI tool for a few days for the teardown. No code of your own is needed.',
     steps:[
-      'Define the acquisition, activation, retention, referral and revenue events for your capstone.',
-      'Prototype the onboarding and test it with five users. Measure time to first value and where people drop off.',
-      'Design one ethical growth loop. Then write a teardown of Cursor, Lovable, Grammarly or Notion AI, covering acquisition, activation, retention and monetisation.'
+      'For each stage of the funnel write one event you could log: acquisition (a developer visits the kit’s page), activation (the first successful cleaning), retention (still using it a week later), referral (shares it) and revenue (starts paying).',
+      'Name the activation moment for the kit and write the steps a new developer takes to reach it.',
+      'Test the first five minutes. Give five developers only the kit’s README and ask each to clean one message. Measure how long each takes to the first success, and note the step where most of them stopped.',
+      'Design one growth loop you would be happy to explain to your users, for example a small “protected by” badge that links to the tool. Name one dark pattern you refuse to use.',
+      'Write a teardown of how one AI tool (Cursor, Lovable, Grammarly or Notion AI) wins its users, covering acquisition, activation, retention and money.'
     ],
     done:[
-      'Each growth stage has one named event that you could log.',
-      'The onboarding test reports time to first value for each of the five users, and the step where most dropped off.',
-      'The growth loop names the dark pattern it refuses to use.',
-      'Mastery gate: score each artifact 0–3. Move on only when every artifact scores at least 2 and no privacy or evidence item scores 0.'
+      'One loggable event for each of the five funnel stages.',
+      'A report of the time to first success for each of the five developers, and the step where most stopped.',
+      'A growth loop that names the dark pattern it refuses to use.',
+      'A teardown of one AI tool.',
+      'A score from 0 to 3 for each of the items above, using the scale in this chapter. Move on only when every score is at least 2 and no safety, privacy or evidence item scores 0.'
     ]
   },
   check:[
@@ -269,20 +275,22 @@ window.PART7 = [
          ['Growth events','The tracking plan logs them.','B2'],
          ['Evaluation engineering','Idea 5 separates model quality from product analytics.',29]],
   capstone:{
-    title:'A tracking plan, a funnel and cohort, and an experiment design',
-    brief:'Instrument your capstone, read what the data says, and design one test that could change a decision.',
-    where:'A real analytics tool (PostHog, Mixpanel or Google Analytics) for the tracking snippet and funnel, then the written experiment design in the notes box below.',
+    title:'Plan the measurements, and design one experiment',
+    brief:'Once real people use the tool, you need to know what they do. In this chapter you learned to pick a number that matters most, to write clear event names, to read a funnel and a retention table, and to design a test with a guardrail and a stopping rule. Here you do all of that for Bharat Privacy Guard.',
+    where:'A real analytics tool (PostHog, Mixpanel or Google Analytics) for the tracking code and the charts, then the written experiment design in the notes box below.',
     steps:[
-      'Write an event taxonomy and tracking plan. Implement it in PostHog, Mixpanel or Google Analytics.',
-      'Build one activation funnel, one retention cohort and two segments, from real or seeded data.',
-      'Design an experiment with a hypothesis, unit of randomisation, primary metric, guardrails, minimum detectable effect and stopping rule.'
+      'Choose one number that matters most for the kit, for example “messages cleaned correctly per week by active developers”, and three input numbers that move it.',
+      'Write an event list with names like object_action, for example text_checked, detail_found, detail_masked and review_requested. For each event write the properties it carries (such as the kind of writing and the kind of ID) and the question it answers. Never record the personal details themselves.',
+      'Put the events into an analytics tool with a few lines of tracking code. If you have no users yet, use made-up data and say so.',
+      'Build one funnel (visit, first check, first success), one weekly retention table and two segments, for example English users against Hinglish users.',
+      'Design one experiment, for example: “showing a preview of what will be hidden makes more developers finish setup”. Write the hypothesis, who is randomly assigned, the main number, a guardrail, the smallest change you care about, how many users you need, and when you will stop.'
     ],
     done:[
-      'Every event in the plan answers a named product question.',
-      'The funnel and cohort come from logged events, not from a spreadsheet you typed by hand.',
-      'The experiment says how many users it needs, and what you will do if you cannot get that many.',
-      'Rubric: instrumentation 30%, metric logic 25%, analysis 25%, decision 20%.',
-      'Mastery gate: score each artifact 0–3. Move on only when every artifact scores at least 2 and no privacy or evidence item scores 0.'
+      'One main number with three input numbers.',
+      'An event list in which every event answers a named question and none records personal details.',
+      'A funnel, a retention table and two segments, built from logged events.',
+      'An experiment design that says how many users it needs, and what you will do if you cannot get that many.',
+      'A score from 0 to 3 for each of the items above, using the scale in this chapter. Move on only when every score is at least 2 and no safety, privacy or evidence item scores 0.'
     ]
   },
   check:[
@@ -392,18 +400,22 @@ window.PART7 = [
          ['Tool calling and workflows','The automation and coding capabilities use the same ideas.',25],
          ['A prototype and a PRD','You already built one; this reframes how you chose the tool for it.','A7']],
   capstone:{
-    title:'One tool per capability, written down and defended',
-    brief:'Do not tour seventeen tools. For each capability your capstone actually needs, name the one tool you chose and the one you rejected, and why.',
-    where:'Written only. Name the tools and run the two audits; no code required.',
+    title:'Choose one tool for each job, and check what each one does with your data',
+    brief:'Tools change every few months, but the jobs they do do not. In this chapter you learned to name the jobs first, to choose a tool by what it must do and must never do, and to know where each tool stores data and keys. Here you choose the tools for Bharat Privacy Guard and audit them.',
+    where:'Written only. Name the tools and run the two audits. No code needed.',
     steps:[
-      'List the capabilities your capstone stack actually uses — most projects need five or six of the eleven below, not all of them.',
-      'For each one, name the tool you picked, the job it does, and one you could have picked instead.',
-      'Run the claim audit once on an AI research tool, and the secrets-and-data audit once on your whole stack.'
+      'List the capabilities your project really uses from the eleven in this chapter: a language model, research, prototyping, coding help, automation, API testing, version control, deployment, a database, analytics and tracing. Most projects need five or six, not all eleven.',
+      'For each capability you use, write the tool you chose, the job it does for this project, and one tool you could have chosen instead.',
+      'Run a claim audit once: take an AI summary of your own research on this project, pick ten claims, and check each against its source. Mark each one supported, partly supported or unsupported.',
+      'Run a secrets-and-data audit on your whole stack. For every tool, write what data it stores and where its keys live. Check that no key sits in front-end code or in your repository.',
+      'Note any place where personal data could end up in a tool by accident, such as logs or analytics, and what stops it.'
     ],
     done:[
-      'Every capability in your stack has one named tool and one stated reason, not a comparison of five options.',
-      'The claim audit lists ten claims, each marked supported, partly supported or unsupported.',
-      'You can say where every secret in your stack lives, and which tool stores user data under what policy.'
+      'One chosen tool, one job and one alternative for each capability you use.',
+      'A claim audit of ten claims, each marked.',
+      'A note of where every key lives and what data each tool stores.',
+      'A list of the places personal data could leak into by accident, and how each is prevented.',
+      'A score from 0 to 3 for each of the items above, using the scale in this chapter. Move on only when every score is at least 2 and no safety, privacy or evidence item scores 0.'
     ]
   },
   check:[
@@ -468,19 +480,22 @@ window.PART7 = [
          ['Security and governance','Idea 3 applies it to tool permissions.',31],
          ['A coding agent','Idea 2 looks at how one works.','B4']],
   capstone:{
-    title:'A harness diagram, a two-way build and a release checklist',
-    brief:'Make the system around your model visible, measure one design choice, and prepare to ship it safely.',
-    where:'Code — build the workflow both ways in your capstone’s codebase; write the diagram and checklist in the notes box below.',
+    title:'Draw the harness around the model, and prepare a safe release',
+    brief:'The model is only one part of the product. Everything around it decides whether it is dependable: how the request is built, what the model may do, what is remembered, what is checked and what is recorded. In this chapter you learned the seven parts of that system, how to choose between a fixed workflow and a limited agent using measurements, and how to define release gates and a rollback trigger. Here you do that for Bharat Privacy Guard.',
+    where:'Code: build the rule-keeper both ways in your project’s own codebase. Write the diagram and the checklist in the notes box below.',
     steps:[
-      'Draw the harness around your capstone: inputs, context assembly, tools, state, policies, eval gates, traces and fallbacks.',
-      'Build one workflow twice: once as a deterministic state machine and once as a bounded agent. Compare failure rate, latency and how easy each is to debug.',
-      'Threat-model the tool permissions, and write a release checklist with a rollback trigger and a named incident owner.'
+      'Draw the harness around the tool: the inputs, how each request is put together, the tools, the stored state, the policies (such as your sharing rule), the test gates, the traces and the fallbacks.',
+      'Mark on the drawing every point where the model’s output turns into an action, and what checks it on the way.',
+      'Build the rule-keeper twice and run the same twenty sentences through both: once as a fixed set of steps and once as an agent with a step limit. Compare how often each fails, how long each takes and how easy each is to debug.',
+      'List the permissions each tool has, and the worst thing that could happen if each were misused.',
+      'Write a release checklist. It needs a rollback trigger that is a number someone can check, for example “roll back if missed Aadhaar numbers rise above 3 in 100”, and the name of the person who answers an incident.'
     ],
     done:[
-      'The diagram shows where model output crosses into an action, and what checks it on the way.',
-      'The comparison uses the same test cases for both builds, and reports all three measures.',
-      'The rollback trigger is a number someone can check, and the incident owner is a named person.',
-      'Mastery gate: score each artifact 0–3. Move on only when every artifact scores at least 2 and no safety item scores 0.'
+      'A harness diagram that shows where the model’s output becomes an action and what checks it.',
+      'A comparison of the two builds on the same twenty sentences, with all three measures.',
+      'A list of permissions and their worst cases.',
+      'A release checklist with a numeric rollback trigger and a named incident owner.',
+      'A score from 0 to 3 for each of the items above, using the scale in this chapter. Move on only when every score is at least 2 and no safety, privacy or evidence item scores 0.'
     ]
   },
   check:[
@@ -600,20 +615,23 @@ window.PART7 = [
          ['Reading failures by hand','Idea 4 builds a failure list the same way.',14.5],
          ['Interview skills','You observe sessions with the same care.','A3']],
   capstone:{
-    title:'A live product, real users and one evidence-based iteration',
-    brief:'Launch to real people, watch what happens, change one thing because of what you saw, and show whether it helped.',
-    where:'Code, to deploy and monitor the app, plus real user sessions; write the changelog in the notes box below.',
+    title:'Put it in front of real users and make one improvement from what you see',
+    brief:'A demo is not a launch. In this chapter you learned to check that a product is ready to run, to recruit testers honestly, to trust what people do over what they say, and to turn support requests into evidence. Here you put the developer kit demo online, watch real people use it, and make one change because of what you saw.',
+    where:'Code, to put the demo online and watch it, plus real user sessions. Write the change note in the notes box below.',
     steps:[
-      'Deploy the capstone to a stable live URL. Add monitoring, analytics, a privacy notice, a way to send feedback and a rollback procedure.',
-      'Recruit 5–10 real target users. Observe at least five sessions, and record task success, time, failures, quotes and whether they come back.',
-      'Choose one iteration from the evidence, ship it, and compare product and AI metrics before and after. Publish a changelog.'
+      'Put the demo on a stable web address. Add monitoring, usage tracking that never records personal details, a privacy notice, a way to send feedback and a way to roll back.',
+      'Recruit five to ten real target users, meaning developers or the people they build for. Ask for clear consent, explain what data is used, and let them stop at any time.',
+      'Watch at least five sessions. Record whether each person succeeded, how long it took, where it failed, what they said, and whether they came back.',
+      'Put the problems you saw in a list and score each by how often it happened, how bad it was and how costly it is to fix. Choose one to fix.',
+      'Fix it, ship it, and compare the numbers before and after. Write a short change note telling users what changed, why, and what they should do differently.',
+      'Start a simple support log with the date, who asked, the category and what you did, and review it every week.'
     ],
     done:[
-      'The users are real target users, not teammates or friends doing you a favour.',
-      'The iteration links to a specific problem you measured, with the numbers before and after.',
-      'The changelog says what changed, why, and what users should do differently.',
-      'Rubric: reliability 20%, user evidence 30%, iteration quality 30%, learning clarity 20%.',
-      'Mastery gate: score each artifact 0–3. Move on only when every artifact scores at least 2 and no safety, privacy or evidence item scores 0.'
+      'A live address with the safety items in place.',
+      'Notes from at least five sessions with real target users, not friends or teammates doing you a favour.',
+      'A scored problem list and the one you chose.',
+      'Before and after numbers for the change, and a change note for users.',
+      'A score from 0 to 3 for each of the items above, using the scale in this chapter. Move on only when every score is at least 2 and no safety, privacy or evidence item scores 0.'
     ]
   },
   check:[
@@ -713,21 +731,24 @@ window.PART7 = [
          ['Architecture and vendor strategy','System-design interviews ask about it.',33],
          ['AI product management','Interviewers expect its vocabulary.',32]],
   capstone:{
-    title:'A role matrix, two case studies, mock interviews and a take-home',
-    brief:'Build the evidence and the practice that get you from applying to an offer.',
-    where:'Written. A role matrix, case studies, a rewritten resume and recorded mock interviews; code only if your own capstone needs it for the take-home.',
+    title:'Turn the project into evidence for your next job',
+    brief:'You started this course to get ready for a job, and the project is now your best evidence. In this chapter you learned to build a role matrix from real job descriptions, to write case studies and resume lines that show your decisions and their results, and to answer interview questions with a clear structure. Here you turn Bharat Privacy Guard into the proof you will show.',
+    where:'Written, with recorded mock interviews. Code only if the role you apply for expects it in the take-home.',
     steps:[
-      'Build a role matrix from ten job descriptions. Find the skills that keep appearing, and the ones you cannot yet prove.',
-      'Turn two projects into case studies. Show the problem evidence, your decisions, the trade-offs, the metrics, the failures and what you learned.',
-      'Rewrite your resume bullets as action + decision + measurable result. Record four mock interviews and score each one with a rubric.',
-      'Complete one 48-hour take-home within a fixed time limit. Then write a critique of your own answer.'
+      'Collect ten real job descriptions for roles you would apply for. Make a table with the skills they ask for down the side and the descriptions across the top. Mark which skills appear again and again, and mark each as proven, partly proven or missing for you.',
+      'Write two case studies. One is Bharat Privacy Guard. Each must show the problem and your evidence for it, your decisions, the trade-offs, the numbers, the failures and what you learned. Include at least one decision that turned out wrong and what you did about it.',
+      'Rewrite your resume lines as action, decision and result, and give each one a number. For example: “Chose rules over a model for fixed-shape IDs, which cut the cost of checking a message by 80%.”',
+      'Answer this system-design question aloud in twenty-five minutes, and record yourself: “Design a privacy layer for Indian websites and AI chatbots.” Cover the users and the task, the approach, how you test it, how it fails, the cost and speed, and the rollout.',
+      'Record three more mock interviews, one each on product sense, metrics and a story about a decision of yours that went wrong. Score all four with a rubric.',
+      'Do one 48-hour take-home task within the time limit, and then write a critique of your own answer.'
     ],
     done:[
-      'The role matrix covers ten real job descriptions and marks each skill as proven, partly proven or missing.',
-      'Each case study includes at least one decision that turned out wrong, and what you did about it.',
-      'Every resume bullet has a number or a concrete result.',
-      'The four mock interviews cover product sense, metrics, AI system design and behavioural questions.',
-      'Mastery gate: score each artifact 0–3. Move on only when every artifact scores at least 2.'
+      'A role matrix covering ten real job descriptions, each skill marked proven, partly proven or missing.',
+      'Two case studies, each with a decision that went wrong and what you did about it.',
+      'Resume lines that each contain a number or a concrete result.',
+      'Four recorded mock interviews, each scored with a rubric.',
+      'A take-home answer and your own critique of it.',
+      'A score from 0 to 3 for each of the items above, using the scale in this chapter. Move on only when every score is at least 2 and no safety, privacy or evidence item scores 0.'
     ]
   },
   check:[

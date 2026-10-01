@@ -13,22 +13,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Jaaniye aapke stack ka har tool data aur secrets kahan store karta hai, aur trust karne se pehle check kijiye ek AI research tool kya claim karta hai.',
   'Explain what breaks when a vendor changes an API, and how you would notice.':
     'Samjhaiye jab ek vendor API badalta hai to kya toota hai, aur aapko yeh kaise pata chalega.',
-  'One tool per capability, written down and defended':
-    'Har capability ke liye ek tool, likha hua aur defended',
-  'Do not tour seventeen tools. For each capability your capstone actually needs, name the one tool you chose and the one you rejected, and why.':
-    'Satrah tools ka tour mat kijiye. Aapke capstone ko asal mein jo capability chahiye, har ek ke liye, woh ek tool naam lijiye jo aapne chuna aur ek jo reject kiya, aur kyun.',
-  'List the capabilities your capstone stack actually uses — most projects need five or six of the eleven below, not all of them.':
-    'Woh capabilities list kijiye jo aapka capstone stack asal mein use karta hai — zyadatar projects ko neeche di gayi gyarah mein se paanch ya chhe chahiye, saari nahi.',
-  'For each one, name the tool you picked, the job it does, and one you could have picked instead.':
-    'Har ek ke liye, woh tool naam lijiye jo aapne chuna, yeh kaunsa job karta hai, aur ek jo aap iski jagah chun sakte the.',
-  'Run the claim audit once on an AI research tool, and the secrets-and-data audit once on your whole stack.':
-    'Ek AI research tool par ek baar claim audit chalayiye, aur apne poore stack par ek baar secrets-and-data audit.',
-  'Every capability in your stack has one named tool and one stated reason, not a comparison of five options.':
-    'Aapke stack ki har capability ka ek named tool aur ek stated reason hai, paanch options ka comparison nahi.',
-  'The claim audit lists ten claims, each marked supported, partly supported or unsupported.':
-    'Claim audit das claims list karta hai, har ek supported, partly supported ya unsupported mark kiya hua.',
-  'You can say where every secret in your stack lives, and which tool stores user data under what policy.':
-    'Aap bata sakte hain aapke stack mein har secret kahan rehta hai, aur kaunsa tool kis policy ke under user data store karta hai.',
   'Your first API call':
     'Aapki pehli API call',
   'The capability table assumes you can already make one.':

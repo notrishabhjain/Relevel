@@ -15,24 +15,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Product-led, sales-led aur product-led sales motions mein chuniye.',
   'Tell a network effect from virality, and design an ethical growth loop.':
     'Ek network effect ko virality se alag bataiye, aur ek ethical growth loop design kijiye.',
-  'Growth events, an onboarding test and a growth loop':
-    'Growth events, ek onboarding test aur ek growth loop',
-  'Define how your product grows, test the first five minutes with real users, and design one loop you would be happy to explain to them.':
-    'Define kijiye aapka product kaise badhta hai, pehle paanch minute ko real users ke saath test kijiye, aur ek aisi loop design kijiye jise aap unhe samjhane mein khush hon.',
-  'Define the acquisition, activation, retention, referral and revenue events for your capstone.':
-    'Apne capstone ke liye acquisition, activation, retention, referral aur revenue events define kijiye.',
-  'Prototype the onboarding and test it with five users. Measure time to first value and where people drop off.':
-    'Onboarding ka prototype banayiye aur paanch users ke saath test kijiye. Pehli value tak time naapiye aur log kahan drop off karte hain.',
-  'Design one ethical growth loop. Then write a teardown of Cursor, Lovable, Grammarly or Notion AI, covering acquisition, activation, retention and monetisation.':
-    'Ek ethical growth loop design kijiye. Phir Cursor, Lovable, Grammarly ya Notion AI ka ek teardown likhiye, acquisition, activation, retention aur monetisation cover karte hue.',
-  'Each growth stage has one named event that you could log.':
-    'Har growth stage ka ek named event hai jise aap log kar sakte hain.',
-  'The onboarding test reports time to first value for each of the five users, and the step where most dropped off.':
-    'Onboarding test paanch users mein se har ek ke liye first value tak time report karta hai, aur woh step jahan zyadatar drop huye.',
-  'The growth loop names the dark pattern it refuses to use.':
-    'Growth loop naam leta hai woh dark pattern jise use karne se yeh mana karta hai.',
-  'Mastery gate: score each artifact 0–3. Move on only when every artifact scores at least 2 and no privacy or evidence item scores 0.':
-    'Mastery gate: har artifact ko 0–3 score kijiye. Aage tabhi badhiye jab har artifact kam se kam 2 score kare aur koi privacy ya evidence item 0 score na kare.',
   'Interview skills':
     'Interview skills',
   'You will watch five people go through onboarding.':

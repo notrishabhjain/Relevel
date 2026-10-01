@@ -15,14 +15,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Product ko AI value chain mein rakhiye aur judge kijiye uska advantage copy karna aasaan hai ya nahi.',
   'Build an opportunity solution tree from interview evidence, and rank its branches.':
     'Interview evidence se ek opportunity solution tree banayiye, aur uski branches rank kijiye.',
-  'Size the market and map the opportunities':
-    'Market size kijiye aur opportunities map kijiye',
-  'The competitor matrix includes the status quo, and says why it is hard to replace.':
-    'Competitor matrix mein status quo shaamil hai, aur bataya hai usey replace karna mushkil kyun hai.',
-  'Every number in the market estimate is labelled as known or assumed, with a source for the known ones.':
-    'Market estimate mein har number known ya assumed label hai, known walon ke liye ek source ke saath.',
-  'Every opportunity in the tree links to at least one interview.':
-    'Tree mein har opportunity kam se kam ek interview se link karti hai.',
   'Interview evidence':
     'Interview evidence',
   'The opportunity tree is built from what users told you.':

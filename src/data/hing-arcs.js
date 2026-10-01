@@ -5,8 +5,6 @@
    back to English rather than showing a translation of something else. */
 Object.assign(window.HING = window.HING || {}, {
 
-  'Write the request down in the exact words it was asked in. Do not tidy it.':
-    'Request ko un hi shabdon me likhiye jinme woh maangi gayi thi. Use sudhaariye mat.',
   'A prompt is a specification':
     'Prompt ek specification hai',
   'A test set, and one change at a time':
@@ -29,12 +27,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Aaj aap ek classifier kai baar chalayenge.',
   'When a … is missed, … . When something is wrongly marked …, … .':
     'Jab koi … chhoot jaata hai, … . Jab kisi cheez par galti se … ka nishaan lagta hai, … .',
-  'You have a miss rate from ten documents, before and after one change.':
-    'Aapke paas das documents se ek miss rate hai, ek badlaav se pehle aur baad ki.',
-  'You found at least one case your own test scores unfairly, and you say so.':
-    'Aapko kam se kam ek aisa case mila jise aapka apna test galat score deta hai, aur aap yeh keh dete hain.',
-  'The screen has real words on it at three different moments.':
-    'Screen par teen alag pal par asli shabd likhe hain.',
   'You measured what it costs in money and in seconds.':
     'Aapne naapa ki uska paise aur second dono me kya kharch hai.',
   'Which is what makes a partial reply safe to show.':
@@ -47,10 +39,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Aap kya badlenge',
   'Name the three questions that settle it, in the order that resolves most cases fastest.':
     'Un teen sawaalon ka naam lena jo ise tay karte hain, us kram me jo zyadatar cases sabse jaldi nipta de.',
-  'Write the one page, and give it to a colleague to use on a document you have not seen.':
-    'Ek page likhiye, aur use kisi saathi ko dijiye ki woh use aise document par istemaal kare jo aapne dekha hi nahi.',
-  'A colleague used it on a real document without asking you a question.':
-    'Kisi saathi ne use asli document par istemaal kiya, bina aapse ek bhi sawaal poochhe.',
   'You may send … . Never send … . If it came from a customer, … . If unsure, … .':
     'Aap bhej sakte hain … . Kabhi mat bhejiye … . Agar woh customer se aaya hai, … . Agar shak ho, … .',
   'Build or buy':

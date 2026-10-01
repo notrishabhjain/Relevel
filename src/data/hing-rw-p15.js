@@ -11,24 +11,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Samjhaana ki AI system ek probabilistic hisse wala software system kyun hai.',
   'Name where the engineering risk actually sits in an AI feature.':
     'Batana ki AI feature mein engineering risk asal mein kahan baitha hai.',
-  'An experiment harness in version control':
-    'Version control mein experiment harness',
-  'Every later chapter in Part V asks you to run something and compare it with something else. If you rebuild the setup each time, comparisons stop being comparable. Build the harness once, put it in Git, and keep adding to it.':
-    'Part V ka har agla chapter aapse kuchh chala kar kisi aur cheez se compare karwaata hai. Agar aap har baar setup dobara banaate hain, to tulnaayein tulniya nahi rehti. Harness ek baar banaiye, Git mein daaliye, aur usme jodte rahiye.',
-  'Add three unit tests: the normal case, a missing field, and empty input.':
-    'Teen unit tests jodiye: normal case, missing field, aur khaali input.',
-  'Wrap your AI request recorder around it, so every run is saved as a JSON record.':
-    'Apne AI request recorder ko iske chaaron taraf lapetiye, taaki har run JSON record ki tarah save ho.',
   'Create a Git repository, commit the harness, and write a README that explains how to run it on a clean machine.':
     'Git repository banaiye, harness commit kijiye, aur ek README likhiye jo saaf machine par ise chalaana samjhaaye.',
-  'Break one thing on purpose, such as a bad key, a timeout or a malformed response, and confirm the record is still written with the error in it.':
-    'Jaan-boojh kar ek cheez todiye, jaise galat key, timeout ya kharaab response, aur confirm kijiye ki record phir bhi error ke saath likha jaata hai.',
-  'Someone else could clone the repository and run it.':
-    'Koi aur repository clone karke ise chala sakta hai.',
-  'Three tests pass, and one of them covers a failure.':
-    'Teen tests pass hote hain, aur un mein se ek failure cover karta hai.',
-  'You have one saved record from a run that failed.':
-    'Aapke paas ek fail hue run ka save kiya record hai.',
   'You have made them since Chapter 1. This chapter covers the software around them.':
     'Aap Chapter 1 se inhe bana rahe hain. Yeh chapter unke aas-paas ka software cover karta hai.',
   'So a harness that records usage is worth building once.':
@@ -93,26 +77,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Batana ki retrieval, prompting aur fine-tuning har ek kab sahi choice hain.',
   'Write a model recommendation that answers the question “measured how?”.':
     'Aisi model recommendation likhna jo “kaise naapa?” sawaal ka jawab de.',
-  'A model selection card':
-    'Model selection card',
-  'Write one page a stakeholder can read and an engineer can act on, for an example government assistant. The card is the deliverable; the benchmark behind it is the evidence.':
-    'Ek example sarkaari assistant ke liye ek page likhiye jise stakeholder padh sake aur engineer us par kaam kar sake. Card deliverable hai; uske peechhe ka benchmark saboot hai.',
-  'State how sensitive the data is, and what that rules out immediately.':
-    'Bataiye data kitna sanvedansheel hai, aur yeh turant kya khaarij karta hai.',
-  'Set a response-time target and a cost limit per task.':
-    'Har task ke liye response-time lakshya aur cost limit tay kijiye.',
-  'Shortlist two or three models, with your ten-case results next to each.':
-    'Do-teen models shortlist kijiye, har ek ke bagal mein aapke das cases ke results.',
-  'Name the fallback: what runs when the first choice is down, degraded or repriced.':
-    'Fallback ka naam dijiye: pehli choice down, kamzor ya mehngi ho jaaye to kya chalta hai.',
-  'Name the dataset you will use to recheck the choice in three months.':
-    'Woh dataset bataiye jisse aap teen mahine mein choice dobara check karenge.',
-  'Every claim on the card traces back to a run in your harness.':
-    'Card ka har daava aapke harness ke ek run tak jaata hai.',
-  'A reader can see which constraint decided the choice.':
-    'Padhne wala dekh sakta hai ki kis seema ne choice tay ki.',
-  'The fallback is named, and you have tried it at least once.':
-    'Fallback ka naam hai, aur aapne use kam se kam ek baar try kiya hai.',
   'Temperature controls variation':
     'Temperature vividhta control karta hai',
   'You tested it in Chapter 2. Here it is one variable among several.':
@@ -155,26 +119,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Prompt ko requests ke paragraph ki jagah interface contract ki tarah dekhna.',
   'Say what gets removed first when the context budget is tight, and why.':
     'Batana ki context budget tang hone par pehle kya hataaya jaata hai, aur kyun.',
-  'Write one page that says exactly what goes into the request, what it costs, and what is removed first when space runs out. This makes a discussion about context windows concrete.':
-    'Ek page likhiye jo theek bataye ki request mein kya jaata hai, uski cost kya hai, aur jagah khatam hone par pehle kya hataaya jaata hai. Isse context windows ki charcha thos banti hai.',
-  'List every part that enters the context: instructions, examples, retrieved evidence, history, tool results and user data.':
-    'Context mein jaane wala har hissa list kijiye: instructions, examples, retrieve kiya saboot, history, tool results aur user data.',
-  'Next to each, write a token count from a real run, not a guess.':
-    'Har ek ke bagal mein asli run ka token count likhiye, andaaza nahi.',
-  'Set a total limit and show the remaining headroom.':
-    'Kul limit tay kijiye aur bachi jagah dikhaiye.',
-  'Define the removal order, and the rule behind it.':
-    'Hataane ka kram aur uske peechhe ka niyam tay kijiye.',
-  'Write the schema the output must match, and what happens when it does not.':
-    'Woh schema likhiye jisse output ko milna chahiye, aur na mile to kya hota hai.',
-  'For each piece of stored data, say which of the three memory stores it belongs to.':
-    'Har store kiye data ke tukde ke liye bataiye ki woh teen memory stores mein se kismein aata hai.',
-  'The numbers come from a real run.':
-    'Numbers asli run se aate hain.',
-  'The removal order has a stated reason.':
-    'Hataane ke kram ka ek bataya hua kaaran hai.',
-  'Every stored field has a way to be deleted.':
-    'Har store kiye field ko delete karne ka tareeka hai.',
   'From Chapter 2. Here it is one part of a designed context.':
     'Chapter 2 se. Yahan yeh design kiye context ka ek hissa hai.',
   'The context window has a limit':
@@ -221,24 +165,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Samjhaana ki ingestion quality retrieval quality ki upari seema kyun tay karti hai.',
   'Say what must happen to your index when a document is deleted or a permission changes.':
     'Batana ki document delete hone ya permission badalne par aapke index ke saath kya hona chahiye.',
-  'An enterprise retrieval architecture on one page':
-    'Ek page par enterprise retrieval architecture',
-  'Write one page that an engineer could build from and a security reviewer could challenge. Keep it to one page; if it does not fit, you have not made enough decisions.':
-    'Ek page likhiye jisse engineer bana sake aur security reviewer chunauti de sake. Ise ek page mein rakhiye; agar fit nahi hota, to aapne kaafi faisle nahi liye.',
-  'Draw ingestion, storage, index, retrieval, reranking and generation as separate stages.':
-    'Ingestion, storage, index, retrieval, reranking aur generation ko alag charanon ki tarah draw kijiye.',
-  'Mark provenance: how an answer traces back to a chunk ID and a source document.':
-    'Provenance mark kijiye: jawab chunk ID aur source document tak kaise pahunchta hai.',
-  'State the no-answer threshold, and what the user sees when it is reached.':
-    'No-answer threshold bataiye, aur us tak pahunchne par user kya dekhta hai.',
-  'State how the index and the embedding model are versioned.':
-    'Bataiye ki index aur embedding model ka version kaise rakha jaata hai.',
-  'Every arrow has a failure mode written next to it.':
-    'Har arrow ke bagal mein ek failure mode likha hai.',
-  'The access check is on the retrieval path, not only in the interface.':
-    'Access check retrieval raaste par hai, sirf interface mein nahi.',
-  'Rollback is a written procedure.':
-    'Rollback ek likhit procedure hai.',
   'Chapters 3 to 7. This chapter turns that into an architecture.':
     'Chapters 3 se 7. Yeh chapter use architecture mein badalta hai.',
   'Chapter 12 measured it. Here it becomes an ingestion and indexing decision.':

@@ -21,8 +21,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Context engineering',
   'Distinguish conversation history, user profile and task state as three different stores.':
     'Conversation history, user profile aur task state ko teen alag-alag store ki tarah alag karna.',
-  'A context budget for one assistant':
-    'Ek assistant ke liye context budget',
   'A system prompt is a standing instruction':
     'System prompt ek khada rehne waala nirdesh hai',
   'Deciding what the model receives at all — instructions, examples, evidence, history, tool results — and in what shape. Retrieval is one part of it.':
@@ -49,10 +47,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek production RAG architecture jisme access control, provenance, versioning, jawaab-nahi ki policy aur wapas jaane ka raasta ho.',
   'Name the first production retrieval failure you would investigate, and say why that one first.':
     'Batana ki production mein retrieval ke kis failure ko aap sabse pehle jaanchenge, aur wahi kyun.',
-  'Add authentication and authorisation, and mark where the access check happens.':
-    'Pehchaan aur ijazat joriye, aur nishaan lagaiye ki access ki jaanch kahan hoti hai.',
-  'State the rollback: what you do when a rebuild makes quality worse.':
-    'Wapas jaane ka tareeka likhiye: jab dobara banane se quality giri to aap kya karenge.',
   'You built retrieval by hand':
     'Aapne retrieval apne haath se banaya tha',
   'Ingestion':

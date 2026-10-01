@@ -97,8 +97,6 @@ Object.assign(window.HING = window.HING || {}, {
   'A Git repository holding the harness and its tests.':
     'Ek Git repository jisme harness aur uske tests rakhe hon.',
   'Trace one failure from the input that caused it all the way to the error it produced.':
-    'Ek failure ko poora traciye — jis input se hui thi wahan se us error tak jo usne banaya.',
-  'Write a 20-line utility that reads JSON from a file and filters rows by one field.':
-    'Ek 20 line ki utility likhiye jo file se JSON padhe aur ek field ke hisaab se rows chhaante.'
+    'Ek failure ko poora traciye — jis input se hui thi wahan se us error tak jo usne banaya.'
 
 });

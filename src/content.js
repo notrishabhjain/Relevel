@@ -31,7 +31,7 @@ const BUILT_IN = {
     SETUP: window.SETUP, GLOSSARY: window.GLOSSARY, VENDOR: window.VENDOR,
     LATER: window.LATER, PIPELINE: window.PIPELINE, REDMARKS: window.REDMARKS,
     LEVEL_NAMES: window.LEVEL_NAMES, LEVEL_BANDS: window.LEVEL_BANDS,
-    APPENDIX: window.APPENDIX
+    APPENDIX: window.APPENDIX, PROJECT: window.PROJECT
   }
 };
 

@@ -65,22 +65,25 @@ window.PART1 = [
     ['p','To send your own questions to a real model, you need two free things: a place to run code and an API key. Setting them up takes about forty-five minutes, once: <a href="#/setup">Set up Colab and your API key</a>.'],
     ['p','You can also keep reading first. Chapter 1 is easier with the notebook open, but you can follow it without.']
   ],
-  capstone:{title:'Estimate the cost of a feature using only this page',
-   brief:'Use the three tools in this chapter to estimate what a real feature would cost. The estimate will be rough, but you will know where every number came from.',
-   where:'The tools on this page — no notebook, no account. Write the final number and two sentences in the notes box below.',
-   steps:[
-      'Pick a task from your own work that an AI could do, such as answering a common question, summarising a form or drafting a reply.',
-      'Write one realistic example: what the user sends, and what a good answer looks like. Use real wording.',
-      'Run both through the tokenizer above and note the two counts.',
-      'Imagine it as a five-turn conversation. Using what you saw in Experiment 2, estimate the token count at turn five.',
-      'Look up one provider’s price per million tokens. Work out the cost of one answer, then of a thousand.',
-      'Write two sentences answering: what would this cost, and what is most likely to make the estimate wrong?'
+  capstone:{
+    title:'Compare what English, Hindi and Hinglish cost',
+    brief:'This is your first hands-on step in the project, and it needs no account, no key and no install. In this chapter you used three tools on this page: one that cuts text into pieces called tokens, one that shows how a conversation grows more expensive, and a temperature slider. Models charge by the token, so the first question for Bharat Privacy Guard is simple: does the same message cost more in Hindi and Hinglish than in English?',
+    where:'The tools on this page. No notebook and no account. Write your numbers in the notes box below.',
+    steps:[
+      'Open the starter sentences on the project page. Take starter sentences 1, 2 and 3. They are the same kind of message written in English, Hindi and Hinglish.',
+      'Paste each one into the token tool on this page and write down the token count. Make a small table with three rows (English, Hindi, Hinglish) and two columns (characters, tokens).',
+      'Work out how many tokens each kind of writing uses for every 100 characters. Which one costs the most for the same message?',
+      'Imagine the tool checks every message in a customer-support chat before it goes to an AI model. Use the conversation tool on this page to estimate the tokens at the fifth message of a chat. Remember that each turn sends the earlier messages again.',
+      'Look up one AI provider’s price per million tokens. Work out what it costs to check one message, and then one thousand messages, in each of the three kinds of writing.',
+      'Write two sentences: what would checking a thousand messages cost in the most expensive kind of writing, and what is that number most likely to be wrong about?'
     ],
-   done:[
-      'You have a number, and you can say where each part of it came from.',
-      'You can name at least one thing that would make the real bill higher than your estimate.',
-      'You did it without creating any account.'
-    ]}
+    done:[
+      'A table of characters and tokens for English, Hindi and Hinglish.',
+      'The cost of checking one message and a thousand messages, for each kind of writing.',
+      'Two sentences that state the cost and the thing most likely to make your estimate wrong.',
+      'All of it done without creating any account.'
+    ]
+  }
 },
 {
   id:'ch1', num:1, part:1, curriculumTier:'core', phase:1, prerequisites:['ch05'], nextUnits:['ch15b','ch2','ch3','ch8'], minutes:45, labs:[],
@@ -152,21 +155,25 @@ window.PART1 = [
     ['key','A model generates text, so a confident tone is not evidence that it is right. And you pay per token, so every line of instruction you add is charged again on every call.'],
     ['p','The next chapter adds a third fact: the model does not remember anything between calls. That explains why a long chat costs more than a short one, and how chat “memory” features work.']
   ],
-  capstone:{title:'Measure the cost of one real request',
-   brief:'Use the usage block to measure the cost of a small, real request from your own work.',
-   where:'Your <code>chapter-1</code> notebook. The usage numbers you print are the deliverable; the notes box below is for a short reflection, not a write-up.',
-   steps:[
-      'Take one realistic request from your own work and run it exactly as you would send it.',
-      'Record <code>prompt_tokens</code> and <code>completion_tokens</code> from the usage block.',
-      'Run it twice more with different realistic inputs, and average the three.',
-      'Find your provider’s price per million tokens and work out the cost of one request.',
-      'Add a paragraph of instructions to the prompt and run it again. Note what that paragraph adds to the cost of every call.'
+  capstone:{
+    title:'Make your first call and measure what it costs',
+    brief:'Now you move from the browser tools to a real model. In this chapter you learned to read the usage block that comes back with every answer, and what exactly you are billed for. Here you ask a real model to find the personal details in some of the starter sentences, check its answers yourself, and measure the cost.',
+    where:'Your <code>chapter-1</code> notebook. The numbers you print are what counts. The notes box below is for a short reflection, not a long write-up.',
+    steps:[
+      'In your <code>chapter-1</code> notebook, send starter sentence 7 (the one with Amit Sharma, the PAN and the HDFC account) to the model with the instruction: “List every piece of personal information in this message.”',
+      'Print the whole answer and the usage block. Write down the prompt_tokens and the completion_tokens.',
+      'Check the answer by hand. List what the model found correctly, what it missed, and anything it listed that is not personal. Do not trust it just because it sounds sure.',
+      'Repeat with starter sentences 4 and 9, so that you have three runs in total. Starter sentence 9 contains nothing personal, so a good answer says so. Average the token counts of the three runs.',
+      'Look up your provider’s price per million tokens and work out the cost of one check.',
+      'Add a paragraph of extra instructions to the prompt, for example “Answer as a table with the columns Item and Type”, and run starter sentence 7 again. Note how much that paragraph adds to the cost of every call, and what it would add to a thousand calls.'
     ],
-   done:[
-      'You have a cost for one request, from your own runs.',
-      'You can say what one extra paragraph of instructions costs at a thousand requests a day.',
-      'You used a real input, not an invented one.'
-    ]}
+    done:[
+      'Three runs on real starter sentences, with the token counts printed and averaged.',
+      'Your hand-check of each answer: found, missed and wrongly listed.',
+      'The cost of one check, calculated from your own numbers.',
+      'The extra cost of one added paragraph at a thousand calls.'
+    ]
+  }
 },
 {
   /* Chapter 1 taught three facts and eight new terms in one sitting — the
@@ -240,22 +247,25 @@ window.PART1 = [
        after:'A good answer covers what happens and what it means. <strong>What happens:</strong> the model only sees the context the app sends, and sending a growing history makes each request larger. <strong>What it means:</strong> the cost of a conversation depends on how the app manages that context, so you need to measure it rather than assume it.'}
     ]
   ],
-  capstone:{title:'Estimate the cost of a real feature',
-   brief:'Answer the question a finance director will eventually ask: what will this cost? Use numbers you produce yourself, not a vendor’s estimate.',
-   where:'Keep using your <code>chapter-1</code> notebook for the calls and token counts, then write the one-sentence budget answer in the notes box below.',
-   steps:[
-      'Pick one small feature your team could ship, such as a support-ticket summariser, a drafting aid or an FAQ bot. Describe it in one sentence.',
-      'Write the request it would send as a real call in your <code>chapter-1</code> notebook, using a real example from your work. Run it.',
-      'Record <code>prompt_tokens</code> and <code>completion_tokens</code>. Do this for three realistic inputs, and take the average.',
-      'Turn it into a conversation. Send the growing history for five turns, and print <code>prompt_tokens</code> at each turn. List the five numbers.',
-      'Find your provider’s price per million tokens. Work out a cost per query, then a cost per 1,000 conversations.',
-      'Write the one sentence you would say in a budget meeting: the figure, and the assumption most likely to make it wrong.'
+  capstone:{
+    title:'Work out what checking a long chat costs',
+    brief:'A model remembers nothing between calls. A chat feels continuous only because every earlier message is sent again, which makes long chats expensive. Bharat Privacy Guard will sit in front of chats like this, so you need to know what it costs to check one. In this chapter you learned how chat memory really works and how to predict a cost before anything is built. Here you do that for the project.',
+    where:'Keep using your <code>chapter-1</code> notebook for the calls and the token counts. Write the final sentence in the notes box below.',
+    steps:[
+      'Imagine a bank’s chat window in which every customer message goes through Bharat Privacy Guard before it reaches an AI model. Describe this feature in one sentence.',
+      'In your <code>chapter-1</code> notebook, write a five-message conversation using starter sentences 1, 3, 6, 7 and 9, in that order, as the customer’s messages. Send them one at a time, each time sending all the earlier messages as well.',
+      'After each message, print the prompt_tokens. Write the five numbers in a list and notice how they grow.',
+      'Do it again, but this time check only the newest message each time. Compare the total tokens for the whole conversation both ways.',
+      'Look up your provider’s price per million tokens. Work out the cost per conversation and the cost per 1,000 conversations for both ways.',
+      'Write the one sentence you would say in a budget meeting: the cost per 1,000 conversations, and the assumption most likely to be wrong.'
     ],
-   done:[
-      'You have five token counts from a five-turn conversation, and they go up.',
-      'You can recalculate the cost per query in front of someone, from numbers on your own screen.',
-      'You can name the assumption most likely to break the estimate, and it is more specific than “the model might change”.'
-    ]}
+    done:[
+      'The five prompt_tokens numbers, one for each message.',
+      'The total tokens for the whole chat, checked both ways.',
+      'The cost per 1,000 conversations for both ways.',
+      'Your one budget sentence.'
+    ]
+  }
 },
 {
   id:'ch2', num:2, part:1, curriculumTier:'core', phase:1, prerequisites:['ch1','ch15b'], nextUnits:['ch21','ch22','ch3','ch8'], minutes:35, labs:['temperature'],
@@ -282,22 +292,25 @@ window.PART1 = [
     'Explain why a confident tone tells you nothing about whether an answer is right.',
     'Tell the difference between making a failure rarer and removing its cause.'
   ],
-  capstone:{title:'Write a system prompt and test it',
-   brief:'A real product needs more than one sentence of instruction. It needs a written system prompt that is reviewed like any other procedure, because it defines how the product behaves. Write one. You will use it again in Chapter 7.',
-   where:'Your <code>chapter-2</code> notebook. Write the system prompt as the system message and test it there — you will reopen this same prompt in Chapter 2.1.',
-   steps:[
-      'Pick an assistant for your own field, such as a policy desk, a claims helper or an internal handbook bot. Write one line on who uses it and why.',
-      'Draft half a page: how it should sound, what it must never do, and the exact words it should use when it cannot verify something.',
-      'Cover the edge cases. What should it do with a question it can only partly answer? A question in another language? A user who insists?',
-      'Put it in your <code>chapter-2</code> notebook as the system message, and run your fake-scheme question against it. Fix any wording that lets an invented answer through.',
-      'Write three pushy user messages designed to beat your own system prompt. Run all three, and note which ones succeed.',
-      'Revise the system prompt once using what you learned. Save the final version for Chapter 7.'
+  capstone:{
+    title:'Write the instructions for the AI helper, and try to break them',
+    brief:'When the first two parts of the tool cannot settle a sentence, the third part (the context judge) asks an AI model. That model needs written instructions, called a system prompt, that are sent with every message. In this chapter you learned that a confident tone tells you nothing about whether an answer is right, and that a system prompt can make a failure rarer without removing its cause. Here you write the system prompt for the context judge and test it.',
+    where:'Your <code>chapter-2</code> notebook. Write the system prompt as the system message and test it there. You will use the same prompt again in Chapter 2.1.',
+    steps:[
+      'Write the system prompt in plain English. It must say: what the helper is for; what counts as personal information (names, ID numbers, phone numbers, addresses, and details that point to one person); what to answer when nothing personal is present; the exact format of the answer (for example a list with the item, its type and one word of reason); and what to do when it is not sure.',
+      'Add a rule that stops it from inventing: “If you are not sure, answer UNSURE. Never guess a number.”',
+      'Put your prompt in the notebook as the system message. Run starter sentences 1 to 9, one at a time, and save each answer.',
+      'Mark every answer correct, partly correct or wrong. Use the last column of the starter sentence table on the project page to see what is really hidden in each sentence.',
+      'Run starter sentence 8 (the diabetic patient) and starter sentence 9 (the driving licence) five times each. Does the answer change from one run to the next? Write down what you saw.',
+      'Find one sentence on which the prompt fails. Change the wording to fix it, run it again, and say whether you fixed the cause or only made the failure rarer.'
     ],
-   done:[
-      'The system prompt is written down, and someone else could apply it without asking you questions.',
-      'You have run at least three attacks against it and recorded which succeeded.',
-      'You can say in one sentence which failure your system prompt still cannot prevent, and why no wording could.'
-    ]},
+    done:[
+      'Your system prompt, saved in the notebook.',
+      'The nine answers, each marked correct, partly correct or wrong.',
+      'What happened when you ran sentences 8 and 9 five times each.',
+      'One failure, your fix, and a sentence on whether you removed the cause.'
+    ]
+  },
   story:[
     ['c','Before you start','Open a new notebook called <code>chapter-2</code>. Run the three warm-up cells from <a href="#/setup">Setup</a> (the key, the install and the client). You will make three calls in this chapter, and each one tests the idea just before it.'],
     ['h','The system prompt'],
@@ -457,11 +470,26 @@ window.PART1 = [
     ['key','Use the four techniques in this order of impact: show an example, name the job, break it into steps, and forbid only what you have seen go wrong.'],
     ['p','You now have four versions of a prompt and a feeling that one is best. A feeling based on reading a few outputs is weak evidence, as Chapter 2 showed. The next chapter shows how to measure which version is better.']
   ],
-  capstone:{title:'Write a prompt someone else can use',
-   brief:'Build a prompt for a real task using the four techniques. Write down what each technique does, then hand it to someone else. A prompt that only works when you explain it is not finished.',
-   where:'Your <code>chapter-2-1</code> notebook. Write and run the prompt there; the notes box below is for what your colleague said when they tried it without help.',
-   steps:['Name one real task at your work, and the decision its output feeds. One line each.','Write the job description: who reads the output, what they do next, and what they can ignore.','Choose two worked examples: one typical and one awkward. The awkward one should show what to do when something is missing.','If the task has parts, add the steps, in the order a careful person would work.','Add at most two prohibitions, only for failures you have actually seen.','Give the prompt and five real inputs to a colleague. Have them run it without any explanation from you.'],
-   done:['Someone else ran it and got what you expected, without asking you a question.','You can point to each technique in your prompt and say what it does.','You know roughly how many tokens your prompt costs before any input is added.']}
+  capstone:{
+    title:'Improve the instructions until a stranger can use them',
+    brief:'Your system prompt from Chapter 2 works for you, because you know what you meant. A good prompt works for someone else without any explanation. In this chapter you learned four techniques: describe the reader and the job, show worked examples, break the task into steps, and add a few firm “never” rules. Here you apply them to the context judge’s prompt and test the result on another person.',
+    where:'Your <code>chapter-2-1</code> notebook. Write and run the prompt there. The notes box below is for what the other person said when they tried it without help.',
+    steps:[
+      'Open your Chapter 2 system prompt in your <code>chapter-2-1</code> notebook and run it on starter sentences 4, 5 and 8 to see where it is weakest.',
+      'Add a short description of who reads the answer and what they do with it. For example: “A developer’s program reads your answer and decides whether to hide each item.”',
+      'Add two worked examples: one ordinary (starter sentence 3) and one awkward (starter sentence 4, where the mobile number is already partly hidden). For each, write out the answer you want, exactly as it should appear.',
+      'Add the steps in the order a careful person would take them: first look for numbers with a fixed shape, then names and places, then anything that points to one person without an ID.',
+      'Add at most two “never” rules, and only for failures you have actually seen. For example: “Never list a number that is already masked with x or *.”',
+      'Give the improved prompt and five starter sentences to a friend or colleague. Ask them to run it without any explanation from you, and write down anything that confused them.',
+      'Write one line for each of the four techniques saying what difference it made.'
+    ],
+    done:[
+      'Your improved prompt, with the reader, two examples, the steps and no more than two “never” rules.',
+      'The answers on starter sentences 4, 5 and 8, before and after.',
+      'What your friend or colleague found confusing.',
+      'One line for each technique saying what it changed.'
+    ]
+  }
 },
 {
   /* Opens on the gap Chapter 2.1 ends on: four versions and an impression.
@@ -523,11 +551,27 @@ window.PART1 = [
     ['p','You now have a prompt chosen on evidence, and a way to recheck it whenever something changes. Many teams shipping AI features do not have this.'],
     ['p','There is one limit. Everything so far works on text you paste into the prompt. When the answer depends on a document too big to paste, such as a policy, a contract or a handbook, none of these techniques help, because the model never sees the document. Chapter 3 starts on that problem.']
   ],
-  capstone:{title:'A test set, and what it found',
-   brief:'Build a test set for one real task, use it to make a decision, and keep it. You will rerun it every time the model or prompt changes.',
-   where:'Your <code>chapter-2-2</code> notebook. Build and score the test set in code; write the half-page summary in the notes box below.',
-   steps:['Build a ten-row test set for a real task. Include two rows that should be refused, and the two messiest real inputs you can find.','Score your current best prompt against it and write the number down. This is your baseline.','Make three improvements, one at a time, rescoring after each. Record all four numbers.','Find one change that made no difference and remove it. Note what that saves per call.','Run the whole set against a cheaper or smaller model, and record which rows fail.','Write half a page for a colleague: the prompt, its score, and the two rows it still fails.'],
-   done:['You have four scores from four one-at-a-time changes, not one score from a rewrite.','You removed something that did not help, and you know what that saves.','You can say which rows your prompt still fails, and whether it is acceptable to ship it that way.']}
+  capstone:{
+    title:'Build the answer key (version 1)',
+    brief:'Everything in this project is measured against one test file, the answer key. In this chapter you learned to build a small test set from real inputs, to change one thing at a time, and to score each change. Here you build version 1 of the answer key from the ten starter sentences, and use it to choose between versions of your prompt.',
+    where:'Your <code>chapter-2-2</code> notebook for scoring. The answer key itself is a spreadsheet that you save in your repository.',
+    steps:[
+      'Open the project page and copy the ten starter sentences into a spreadsheet. Add the columns described under “The answer key”: number, kind of writing, sentence, what should be found, what should happen, and a note.',
+      'For each row, write by hand what should be found (the kind and the exact words) and what should happen to it: remove it, mask it, or leave the sentence alone. Starter sentence 9 should say “nothing found”.',
+      'Add two more rows of your own that are messy. For example, a sentence with a spelling mistake in the word “Aadhaar”, and a sentence in which a number is split by spaces. Now you have twelve rows.',
+      'Save the spreadsheet as <code>evals/answer-key-v1.csv</code> in your repository.',
+      'Run your improved prompt from Chapter 2.1 on all twelve rows. Give one point for each row where the tool found everything and nothing extra. Write the score out of twelve. This is your baseline.',
+      'Make three changes to the prompt, one at a time, and score again after each. Write all four scores in a small table.',
+      'Find one change that made no difference and remove it. Write how much that saves per call. Then run the best prompt with a cheaper, smaller model and note which rows now fail.',
+      'Write half a page for a colleague: your prompt, its score, and the two rows it still gets wrong.'
+    ],
+    done:[
+      'The answer key, version 1, with twelve labelled rows, saved in your repository.',
+      'A table with the baseline score and the three changes.',
+      'The result with a cheaper model, and the rows that failed.',
+      'A half-page note with the prompt, the score and the two rows it still gets wrong.'
+    ]
+  }
 },
 {
   /* Arc 2 opens. 2.2 ended on a limit — everything so far works on text you
@@ -589,11 +633,25 @@ window.PART1 = [
     ['key','Ask “which task type?” before “which model?”. If the answer is more than one type, split the request into steps.'],
     ['p','The next two chapters cover the two types you will meet most often. Chapter 2.4 covers classification, the type with a right answer.']
   ],
-  capstone:{title:'Break down one real request',
-   brief:'Take the vaguest AI request anyone has made of you and turn it into something you can build. Most of the work is naming task types and putting them in order.',
-   where:'Written, no new code. Use the test set already in your <code>chapter-2-2</code> notebook, but the steps here are pen-and-paper thinking, not code.',
-   steps:['Write the request down in the exact words it was asked in. Do not tidy it.','Write one sentence on what the person wants to be different in their normal week.','Break it into steps, each with exactly one task type, in the order they must run.','Mark which steps have a right answer and which do not. These are the parts you can and cannot measure automatically.','For each measurable step, say where an answer key would come from: who makes that judgement today, and based on what.','Write a one-paragraph reply to the person: what you would build first, and why it is the smallest useful piece.'],
-   done:['Every step in your breakdown has exactly one task type.','You can point to the steps that can be graded without a person reading the output.','The first thing you propose to build is measurable, and you can say what you would measure it against.']}
+  capstone:{
+    title:'Break the whole tool down into small tasks',
+    brief:'“Find and hide personal details” sounds like one job. It is really several different jobs, and each one needs a different kind of test. In this chapter you learned the five task types (sorting into categories, picking out pieces, summarising, rewriting and writing something new) and which of them a computer can mark automatically. Here you break Bharat Privacy Guard down in that way.',
+    where:'Written only: pen and paper, or a document. No new code. You can look at your answer key for examples.',
+    steps:[
+      'Write the request in the plainest words: “Find and hide personal details in English, Hindi and Hinglish text before it reaches an AI model.” Do not tidy it up.',
+      'Write one sentence about what a developer using the tool wants to be different in their week.',
+      'Break the request into small steps, in the order they happen. For each step, write which of the five task types it is. For example, “decide whether a number is a PAN or an Aadhaar number” is sorting into categories; “pick out the exact words that are a name” is picking out pieces; “replace the details with [HIDDEN]” is rewriting.',
+      'Mark each step as one that has a clearly right answer (you can mark it automatically against the answer key) or one that needs a person’s judgement.',
+      'For each step that has a right answer, say where the answer key comes from: who decides what is correct, and on what basis.',
+      'Write a short paragraph to your future self: which single step will you build first, and why is it the smallest useful piece?'
+    ],
+    done:[
+      'The request in the plainest words, and the one-sentence aim.',
+      'A list of small steps, each marked with its task type.',
+      'Each step marked as automatically markable or needing judgement, with the source of the answer key.',
+      'The paragraph naming the first step to build and the reason.'
+    ]
+  }
 },
 {
   id:'ch24', num:2.4, part:1, curriculumTier:'core', phase:1, prerequisites:['ch23','ch22'], nextUnits:['ch25'], minutes:25, labs:[],
@@ -651,11 +709,26 @@ window.PART1 = [
     ['p','Most of this chapter was not about AI. An answer key, counts per category, and a judgement about which error is cheaper are the same tools you would use to evaluate a hiring process or a triage desk.'],
     ['p','The next task type, summarisation, has no single right answer. That is why many teams ship summarisers without knowing whether they work.']
   ],
-  capstone:{title:'A classifier you would trust to route real work',
-   brief:'Build a classifier for a real set of categories at your work, measure it per category, and decide with numbers whether it is good enough to act on its own or only to suggest.',
-   where:'Your <code>chapter-2-4</code> notebook. Build and measure the classifier there; note the per-category numbers in the notes box below.',
-   steps:['Fix the categories. Include an <em>other</em> or <em>unclear</em> category, so the model is not forced into a wrong answer.','Collect fifty real examples and label them yourself before you run anything.','Build the classifier with two worked examples, one of which is a borderline case.','Measure each category separately, not just overall. Write the results as a table.','For your worst category, write what each direction of error costs. Change the instruction so borderline cases fall the cheaper way, and measure again.','Set a threshold: above what score per category would you let it route work automatically, and below what would it only suggest?'],
-   done:['You have per-category scores from fifty examples you labelled before testing.','You made one deliberate change to how borderline cases fall, and measured the effect.','You can state the score at which you would let it act on its own, and whether it is above that score today.']}
+  capstone:{
+    title:'Build a sorter for the kind of ID, and measure it',
+    brief:'The tool often finds a string of digits and must decide what it is: an Aadhaar number, a bank account number, a phone number or a PIN code. This is a sorting job. In this chapter you learned to measure a sorter honestly, one category at a time, and to look for the category it is worst at. Here you build one and test it.',
+    where:'Your <code>chapter-2-4</code> notebook. Build and measure the sorter there. Write the numbers for each category in the notes box below.',
+    steps:[
+      'Write down the categories: Aadhaar, PAN, mobile number, bank account, PIN code, and “something else”.',
+      'Write twenty short examples, at least three for each category. Use made-up values like those on the project page. Put some inside sentences (“call me on 9876543210”) and some on their own.',
+      'Write the instruction that tells a model to sort a piece of text into exactly one category and to answer with only the name of the category.',
+      'Run all twenty examples through the model and record its answer next to the right answer.',
+      'Count, for each category, how many it got right. Make a small table: category, examples, correct, wrong.',
+      'Find the category it is worst at. Write one sentence on what a mistake there would cost. For example, a bank account number treated as a PIN code would pass through unhidden.',
+      'Decide: is the sorter good enough to act alone, or should it only suggest an answer for another part to check? Give your reason using the numbers.'
+    ],
+    done:[
+      'Twenty examples with the right answer next to each.',
+      'A table of examples, correct and wrong for each category.',
+      'The worst category and the cost of a mistake in it.',
+      'A decision with a reason: act alone, or only suggest.'
+    ]
+  }
 },
 {
   id:'ch25', num:2.5, part:1, curriculumTier:'core', phase:1, prerequisites:['ch23','ch24'], nextUnits:['ch3'], minutes:25, labs:[],
@@ -702,11 +775,27 @@ window.PART1 = [
     ['p','Chapters 2.4 and 2.5 use the same method for two task types: decide what counts as failure, then measure that specific failure instead of reading outputs and forming an impression.'],
     ['p','Everything so far works on a document you can paste into the request. Sometimes the answer is spread across a hundred documents, such as a handbook, a policy library or five years of contracts. These methods do not help there, because the model has never seen those documents. Chapter 3 starts solving that.']
   ],
-  capstone:{title:'A summariser with a fact check',
-   brief:'Build a summariser for a real document type, and the test that shows it keeps what matters. The test is the main deliverable. Anyone can write the prompt.',
-   where:'Your <code>chapter-2-5</code> notebook. Build the summariser and its fact check there; the notes box below is for what the check caught.',
-   steps:['Name the reader and the decision. If you cannot name a decision, you cannot say what the summary is for or how to test it.','Take ten real documents. For each, write down the two or three facts a reader would be upset to lose.','Build the summariser and run the fact check on all ten. Record the miss rate.','Make one change, such as an instruction about what to keep word for word, and measure again.','Find a document where a fact survived in different wording and your check missed it. Note what that means for your number.','Write a note to whoever asked for this feature: what it keeps, what it drops, and the miss rate you measured.'],
-   done:['You have a miss rate from ten documents, before and after one change.','You found at least one case your own test scores unfairly, and you say so.','The note says who the summary is for, so someone else could test it the same way later.']}
+  capstone:{
+    title:'Write a short privacy report, and check it against the facts',
+    brief:'After the tool has cleaned a batch of messages, a manager will want a short report of what was found and how often. A summary has one dangerous failure: it leaves out or invents something. In this chapter you learned to decide who a summary is for, and to test what it leaves out. Here you build and test a summary of what the tool found.',
+    where:'Your <code>chapter-2-5</code> notebook. Build the summary and its fact check there. Write what the check caught in the notes box below.',
+    steps:[
+      'Make a batch of ten results by hand, using starter sentences 1 to 10. For each, write the list of things the tool found and what it did to them.',
+      'Decide who will read the summary and what they will do next. For example: “A compliance manager reads it every Monday and decides whether to change a rule.” Write this in one line.',
+      'Write a prompt that asks a model to summarise the ten results in five lines for that reader.',
+      'Write down five facts the summary must contain, such as how many Aadhaar numbers were found, how many sentences had nothing found, and which sentence the tool was unsure about.',
+      'Run the summary and tick off each of the five facts. Mark any statement in the summary that is not in your ten results. That is an invented fact.',
+      'Run it again with one instruction changed. Did the missing or invented facts go away? Write what you changed and what happened.',
+      'Write one line explaining why “it reads well” was not a good test.'
+    ],
+    done:[
+      'Your ten hand-made results.',
+      'The five facts the summary had to contain, ticked off for each run.',
+      'Any invented facts you found.',
+      'What you changed on the second run and what it did.',
+      'The line about why “it reads well” is not a test.'
+    ]
+  }
 },
 {
   id:'ch3', num:3, part:1, curriculumTier:'core', phase:1, prerequisites:['ch1','ch2','ch25'], nextUnits:['ch4','ch7','ch10','ch13'], minutes:20, labs:['chunker'],
@@ -729,11 +818,25 @@ window.PART1 = [
     'Explain what is lost when a document is split into chunks, with a concrete example.',
     'Choose a chunking approach by naming the failure you accept, since no chunk size is right for every document.'
   ],
-  capstone:{title:'A chunking rule for your own documents',
-   brief:'You have split one document three ways and seen what each split breaks. A real system needs a rule that someone else can apply to thousands of documents without you. Write that rule, and test it on the messiest document you can find.',
-   where:'Written, no code. Pen, paper and scissors, as the chapter said — write the rule, then test it by hand on the messiest document you can find.',
-   steps:['Name the most structured document type in your field, such as one with clauses, exceptions, numbered procedures or warnings.','Describe its structure in three or four lines. Where are its natural break points, and what must never be separated?','Write the chunking rule as instructions to another person: where to cut, where never to cut, and what to do with a piece that would lose its meaning.','Find the messiest real example you can, such as a badly formatted, scanned or table-heavy document. Apply your rule to it by hand.','Record where your rule broke. Amend it, and note which of your five questions the first version would have answered wrongly.','Write what you would say to a vendor who tells you their chunking is “automatic and optimal”.'],
-   done:['Someone else could apply your rule and split a document the same way you would.','You have applied it to a difficult document and amended it once as a result.','You can name the kind of content your rule still risks splitting, and say why you accept that.']},
+  capstone:{
+    title:'Decide how to cut long text without splitting an ID in half',
+    brief:'People will paste long messages and whole documents into the tool. A long text has to be cut into pieces before it is checked, and a bad cut can split a number or a name in the middle so that no piece contains the whole thing. In this chapter you learned why text must be cut, what a cut loses, and that no piece size suits every document. Here you work out a cutting rule for the project, by hand.',
+    where:'Written, no code: pen, paper and scissors, as in the chapter. Write the rule in the notes box below.',
+    steps:[
+      'Write a realistic long message of about 15 lines, such as a customer complaint. Include a name, an address, an Aadhaar number written in groups of four (4321 5678 9012) and a mobile number, spread over different lines. Use made-up details. Print it.',
+      'Cut it into pieces in three ways: every five lines, at every full stop, and at every blank line or paragraph. Use scissors.',
+      'For each way of cutting, check every piece. Is any ID or name split across two pieces, so that neither piece contains the whole thing? Write down which cuts break what.',
+      'Try one more way: pieces that overlap, so that the last two lines of each piece are repeated at the start of the next one. Does it fix the broken IDs? What does it cost?',
+      'Write your cutting rule in three lines that someone else could follow on thousands of messages without asking you: the size of each piece, where a cut is allowed, and how much overlap to use.',
+      'Test the rule on the messiest message you can make, for example one with a number broken across two lines. Say what still goes wrong.'
+    ],
+    done:[
+      'Your long message, printed and cut in three ways.',
+      'A note on which cuts broke which details.',
+      'The overlap experiment and what it costs.',
+      'A three-line cutting rule, and the one case it still gets wrong.'
+    ]
+  },
   story:[
     ['c','Before you start','No code in this chapter. Print one real document you know well, such as a policy, a contract or a procedure of five to fifteen pages. Get a pair of scissors and a pen. You will do every step by hand.'],
     ['do','Write your test questions first',[
@@ -814,11 +917,25 @@ window.PART1 = [
     'Name the kind of query keyword search handles better than any other method.',
     'Explain what search returns when the answer is not in your documents, and why that is dangerous.'
   ],
-  capstone:{title:'Map where keyword search fails',
-   brief:'You scored a search method by hand, on real questions, against a real document. Most people who buy search software never do this. Write up your results so you can use them when someone tries to sell you a search product.',
-   where:'Written, no code. You are the search engine this time — score by hand and write up the results in the notes box below.',
-   steps:['Make a table of all eight questions (your five plus the three harder ones), with the rank the correct card actually got.','Next to each failure, write one sentence on what information the scoring did not have.','Add the exact-code question and its result, so the table shows where the method wins as well as where it fails.','Write a short paragraph about your own field: which real queries use different words from the documents, and which use exact codes or terms?','Estimate what share of your users use the document’s vocabulary rather than their own. Say how you would measure this for real.','Write four or five sentences for a non-technical colleague explaining why “we already have a search box” does not mean “users can find answers”.'],
-   done:['The table has a rank for every question, including the ones that worked.','Every failure has its one-sentence explanation, in your words.','You could give the last paragraph to a senior colleague, and they would understand the risk without you there.']},
+  capstone:{
+    title:'Write the pattern rules, and score them by hand',
+    brief:'The pattern checker is the first and cheapest part of the tool. It looks for details that always have the same shape, such as a PAN. In this chapter you acted as the search engine yourself, matching words by hand and seeing where that fails. Here you write the pattern checker’s rules in plain words, apply them by hand to your answer key, and record exactly where they fail.',
+    where:'Written, no code yet. You apply the rules by hand, as you did in the chapter. In Chapter 5 you turn them into code.',
+    steps:[
+      'Open the table of the eleven kinds of ID on the project page. For each kind, write a rule in plain words that someone could apply without thinking. For example: “A PAN is five capital letters, then four digits, then one capital letter.”',
+      'Add to each rule one thing it must not match. For example: “A PIN code is six digits, but a six-digit number straight after the word ‘account’ is not a PIN code.”',
+      'Take the twelve rows of your answer key (version 1). Read each sentence like a machine would, applying your rules strictly. In a new column, write the items your rules would find.',
+      'Compare your new column with the correct answers. Mark each row: everything found, something missed, or something wrongly found.',
+      'Pick the three failures that teach you the most. For each, describe the sentence and say why a fixed rule cannot cope. Look especially at starter sentence 4 (the partly hidden number), starter sentence 6 (names and addresses) and starter sentence 8 (no ID at all).',
+      'Write a short paragraph: for which kinds of detail do fixed rules work well, and for which should another approach take over?'
+    ],
+    done:[
+      'A plain-words rule for each of the eleven kinds of ID, each with something it must not match.',
+      'Your answer key with a new column of what the rules would find, and each row marked.',
+      'Three failures described, each with the reason a fixed rule cannot cope.',
+      'The paragraph on where rules work and where something else must take over.'
+    ]
+  },
   story:[
     ['c','Before you start','No code yet. Bring the twenty cards you cut in Chapter 3 and the five questions you wrote before cutting. In this chapter you act as the search engine.'],
     ['p','You have a document split into twenty chunks. A question arrives. Something has to decide which chunks to send to the model.'],
@@ -908,11 +1025,24 @@ window.PART1 = [
     'Say what a similarity score of 0.5 does and does not mean.',
     'Name a place where embeddings would fail on your own company’s vocabulary.'
   ],
-  capstone:{title:'Compare keyword and meaning search on your own document',
-   brief:'You have run both methods on the same cards with the same questions: by hand in Chapter 4, and in code here. Few people have this comparison for their own documents. Write it up properly, including any case where the new method does worse.',
-   where:'Your <code>chapter-5</code> notebook for the code comparison, next to the hand-scored results from Chapter 4. Write up the comparison in the notes box below.',
-   steps:['Make one table of all eight questions: the rank keyword search gave the correct card, and the rank meaning search gives it now.','Check your exact-code question. If it got worse, that is a reason to combine both methods (hybrid search) on your data. Note it in one line.','Test your second language properly: embed a domain term and its translation, compute the similarity, then run two or three real questions in that language.','Write the result in three bullets: where meaning search helps your users, where it is weak, and what you would check before trusting it in production.','Ask three questions the document cannot answer, and record the top scores. Chapter 6 uses these numbers to set a threshold.','Write four or five sentences a non-technical colleague could follow: how the system finds meaning, and why “it found something” does not mean “the answer exists”.'],
-   done:['The table has both ranks for all eight questions, from runs you did.','You have a measured number for how your second language behaves.','You can name one thing meaning search did not fix, and point to the run that shows it.']},
+  capstone:{
+    title:'Turn the rules into code, and compare them with finding by meaning',
+    brief:'You now have rules written on paper. In this chapter you learned that a computer can compare the meaning of sentences, not just their words, by turning them into lists of numbers called embeddings. Here you turn your pattern rules into code, then use meaning to find the sentences the rules cannot, and compare the two on your answer key.',
+    where:'Your <code>chapter-5</code> notebook, for the code and the comparison, next to your hand-scored results from Chapter 4. Write up the comparison in the notes box below.',
+    steps:[
+      'In your <code>chapter-5</code> notebook, turn your plain-word rules for PAN, Aadhaar, mobile number and email into code. Each is one short pattern. Run them over the twelve rows of the answer key and print what each finds.',
+      'Score the code: in how many of the twelve rows did it get exactly the right answer? Which rows did it miss or get wrong? Compare with your by-hand result from Chapter 4. Are they the same?',
+      'Write five sentences that give away a person without any ID, such as “I am the only diabetic patient in my village who had a transplant last year”. Write five harmless sentences too, such as “What documents do I need to renew my driving licence?”.',
+      'Use the embedding function from the chapter to turn all ten sentences into numbers. For each harmless sentence and each of the five giveaway sentences, find the closest of your five giveaway examples and print the similarity score.',
+      'Look at the scores. Where is the line between a harmless sentence and an identifying one? Choose a cut-off and count how many of the ten you sort correctly.',
+      'Write a comparison table for the rules and for meaning: what each finds well, what each misses, and what each costs. Include one case where meaning does worse than the rules.'
+    ],
+    done:[
+      'Your pattern rules as working code, with the score on the twelve rows.',
+      'Ten sentences, five identifying and five harmless, with their similarity scores and your chosen cut-off.',
+      'A comparison table of rules and meaning, including one case where meaning does worse.'
+    ]
+  },
   story:[
     ['c','Before you start','Open a notebook called <code>chapter-5</code> and run the three warm-up cells from <a href="#/setup">Setup</a>. Have the twenty cards from Chapter 3 and the three harder questions from Chapter 4 ready. This is the longest hands-on chapter in Part I, so give it one full sitting.'],
     ['h','A map of meanings'],
@@ -1001,11 +1131,25 @@ window.PART1 = [
     'Describe the two ways a search step fails, and why fixing one tends to worsen the other.',
     'Decide which failure is worse for a feature you work on, and defend the choice.'
   ],
-  capstone:{title:'Write a ship-or-not memo',
-   brief:'You now have real numbers from your own documents at three settings. Turn them into a recommendation someone could act on. Include the part most memos avoid: which failure you have decided to accept, and who made that call.',
-   where:'Pen and paper, plus your <code>chapter-5</code> notebook for the measurements. Write the memo itself in the notes box below.',
-   steps:['State the use case in one line, and who is affected when it is wrong.','Add your table: the three values of k, with correct-card hits and the share of relevant chunks at each.','Recommend a k for a customer-facing assistant, and a different one for an internal drafting tool. If they are the same, reconsider.','Write five acceptance criteria in the style of a test plan, including one for the unanswerable question and one for a second language.','Add the cost line: what k does to tokens per query, and to the monthly bill at a realistic volume.','End with the gap between your prediction and the measured result, and what you now think a demo is worth as evidence.'],
-   done:['Every number in the memo came from a run you did.','The two recommended values of k differ, and the reason is about consequences, not technology.','Someone could use your acceptance criteria to test a vendor’s system next week.']},
+  capstone:{
+    title:'Build the scoreboard, and write a ship-or-not note',
+    brief:'Until now you have judged the tool by looking at it. Now you give it a number. In this chapter you learned that a search can fail in two ways: it can miss something that was there, or return something that was not. For Bharat Privacy Guard these are a missed detail, which is a leak, and a false alarm, which is an annoyance. Here you measure both, for each kind of ID and each kind of writing, and decide whether this version is good enough to use.',
+    where:'Pen and paper for the thinking, plus your <code>chapter-5</code> notebook for the measurements. Write the note itself in the notes box below.',
+    steps:[
+      'Grow the answer key to version 2, with about 30 rows spread evenly across English, Hindi and Hinglish. Include at least five tricky rows from the list on the project page. Save it as <code>evals/answer-key-v2.csv</code>.',
+      'Run the pattern checker from Chapter 5 on all 30 rows. For every item that should be found, mark it found or missed. For every item the tool reported, mark it correct or a false alarm.',
+      'Calculate recall (the share of real items that were found) and precision (the share of reported items that were real) for each kind of ID, and for each kind of writing. Put the results in two small tables.',
+      'Run it at two settings of your choice, for example strict matching and loose matching. Record the numbers for both.',
+      'Decide which failure is worse for this tool, a missed detail or a false alarm, and explain why in two sentences. Think about what happens to a real person in each case.',
+      'Write the note. Recommend one setting, say which failure you have decided to accept and who made that decision, and say whether this version is good enough to use.'
+    ],
+    done:[
+      'The answer key, version 2, with about 30 rows, saved in your repository.',
+      'Two tables of recall and precision: one for each kind of ID and one for each kind of writing.',
+      'The numbers for two settings.',
+      'A note that recommends a setting, names the failure you accept and says whether this version is good enough.'
+    ]
+  },
   story:[
     ['c','Before you start','You need a pen and paper, plus your <code>chapter-5</code> notebook for the measurements. Bring the document from Chapter 3 and the <code>retrieve</code> function from Chapter 5.'],
     ['p','Every AI project reaches the point where someone senior asks: is it good? Often the answer is a demo of three questions that work. A demo that works on three questions does not tell you how often the system is right.'],
@@ -1098,11 +1242,26 @@ window.PART1 = [
     'Point to each step and say what can go wrong there without any error appearing.',
     'Rank the usual fixes by how much they help, and explain why a bigger model is rarely the best one.'
   ],
-  capstone:{title:'A findings page, and what to learn next',
-   brief:'This is the last capstone in Part I, and it is not a build. You have a working system and a list of the ways you have seen it fail. Write the document you would want in front of you the next time someone demonstrates a RAG product and asks for budget.',
-   where:'Written only — this capstone is not a build. Draw on your <code>chapter-7</code> notebook\'s results, and write the findings page in the notes box below.',
-   steps:['List every failure from your red-marked diagram. Next to each one, note the chapter where you saw it and what you saw.','For each failure, add the question you would ask a vendor to find out whether they have solved it or hidden it.','Go back to your predictions from Chapter 1. Name the three beliefs that changed most, and what changed them.','Explain the pipeline in five sentences with no jargon. At the end, add: “This is called RAG.”','List what Part I did <em>not</em> cover: choosing an embedding model, vector databases, reranking, hybrid search in practice, agents, fine-tuning and deployment.','Put that list in order. Which topic would change an outcome you own, and why that one first?'],
-   done:['Every failure on the page is backed by evidence you produced yourself.','The five-sentence explanation makes sense when read aloud to someone with no technical background.','Your list of next topics is ordered by consequence, not by how interesting they sound.']},
+  capstone:{
+    title:'Write the findings page for version 0',
+    brief:'You now have a first working version, which this course calls version 0, and a list of ways it fails. This capstone is not a build. It is the document you would want in front of you the next time someone demonstrates a privacy product and asks you to approve it. In this chapter you learned the standard parts of a system that answers from documents and where each one can fail without any error appearing. Here you describe what you built in the same way.',
+    where:'Written only. This capstone is not a build. Use your <code>chapter-7</code> notebook for the numbers, and write the page in the notes box below.',
+    steps:[
+      'Draw the tool as boxes and arrows on one page: text in, pattern checker, name-and-place finder, context judge, rule-keeper, safe text out. Mark which boxes exist today.',
+      'Under each box that exists, write what can go wrong without any error message appearing. For example: “A number split by a line break is silently missed.”',
+      'Write the scoreboard numbers from Chapter 6 on the page.',
+      'List the four biggest gaps you have seen. For each, write what you saw when you triggered it.',
+      'Rank the four gaps for a real user. In one line each, say what the failure would cost a real person.',
+      'Write what you will fix first and what it would take, in two sentences.'
+    ],
+    done:[
+      'A one-page drawing of the tool with the existing boxes marked.',
+      'A silent failure written under each existing box.',
+      'The scoreboard numbers.',
+      'The four biggest gaps, ranked, with the cost to a real person.',
+      'Two sentences on what you will fix first.'
+    ]
+  },
   story:[
     ['c','Before you start','Open a notebook called <code>chapter-7</code> and run the warm-up cells. Keep your <code>chapter-5</code> notebook open. You will copy across your <code>embed</code>, <code>cosine</code>, <code>chunks</code> and <code>chunk_vecs</code>. Nothing in this chapter is new.'],
     ['h','The pattern has a name: RAG'],

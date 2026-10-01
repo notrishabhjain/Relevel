@@ -11,26 +11,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Faisla lene se pehle likhna ki baad mein use kya badlega.',
   'A build-or-buy recommendation with a review date':
     'Review date ke saath build-or-buy recommendation',
-  'Make a real build-or-buy recommendation using evidence you gathered, including the conditions under which it stops being right.':
-    'Apne ikattha kiye saboot se asli build-or-buy recommendation dijiye, un sharton samet jinme woh sahi nahi rehti.',
-  'State the capability in one line, and whether it is core or supporting for your product.':
-    'Kshamata ek line mein bataiye, aur kya yeh aapke product ke liye core hai ya sahaayak.',
-  'Run your answer key against at least one vendor trial, and record its results next to your own build’s.':
-    'Kam se kam ek vendor trial par apni answer key chalaiye, aur uske results apne build ke results ke bagal mein record kijiye.',
-  'Cost both over two years, including evaluation, maintenance and incident handling.':
-    'Dono ki do saal ki cost nikaaliye, evaluation, maintenance aur incidents sambhaalne samet.',
-  'Add the time until each reaches users. Say which matters more here and why.':
-    'Har ek ke users tak pahunchne ka samay jodiye. Bataiye yahan kya zyada maayne rakhta hai aur kyun.',
-  'For the buy option, write what you would need in order to leave, and how long it would take.':
-    'Buy vikalp ke liye likhiye ki chhodne ke liye kya chahiye, aur kitna samay lagega.',
-  'Write the two triggers that would reverse the decision, and the date you will review them.':
-    'Woh do triggers likhiye jo faisla palat denge, aur woh date jab aap unka review karenge.',
-  'You measured both options against the same answer key.':
-    'Aapne dono vikalpon ko ek hi answer key se naapa.',
-  'The build cost includes maintenance and evaluation, not just tokens.':
-    'Build cost mein maintenance aur evaluation hai, sirf tokens nahi.',
-  'The recommendation names what would make it wrong, with a review date.':
-    'Recommendation review date ke saath batati hai ki use galat kya karega.',
   'A spec describes a measured range':
     'Spec ek naapi hui range describe karta hai',
   'So you can define “good enough” before you compare options.':
@@ -95,24 +75,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Un chaar cheezon ka naam lena jinhe aap badal sakte hain, aur har ek asal mein kya theek karti hai.',
   'Say what must exist before the fine-tuning question can be answered.':
     'Batana ki fine-tuning ke sawaal ka jawab dene se pehle kya maujood hona chahiye.',
-  'Answer a fine-tuning proposal with evidence':
-    'Saboot ke saath fine-tuning prastaav ka jawab dijiye',
-  'Someone will propose fine-tuning, and it will sound like the serious option. Find out which kinds of failure they actually have, and cost the proposal honestly, including the parts that are usually left off the slide.':
-    'Koi fine-tuning ka prastaav dega, aur woh gambhir vikalp lagega. Pata lagaiye ki unke paas asal mein kis kism ke failures hain, aur prastaav ki imaandaar cost nikaaliye, un hisson samet jo aam taur par slide se chhoot jaate hain.',
-  'Count them. The counts often settle the question before any technical discussion.':
-    'Unhe giniye. Ginti aksar kisi technical charcha se pehle sawaal tay kar deti hai.',
-  'For the largest group, name the cheapest change that would address it, and explain why it is cheaper.':
-    'Sabse bade group ke liye sabse sasta badlaav bataiye jo use sambhaale, aur samjhaaiye ki woh sasta kyun hai.',
-  'Cost the fine-tuning proposal properly: preparing data, training, evaluating, and repeating it every time the base model changes.':
-    'Fine-tuning prastaav ki theek cost nikaaliye: data taiyaar karna, training, evaluation, aur har baar base model badalne par ise dohraana.',
-  'Try a smaller or cheaper model with better retrieval, and measure whether quality actually drops.':
-    'Behtar retrieval ke saath chhota ya sasta model try kijiye, aur naapiye ki quality sach mein girti hai ya nahi.',
-  'Write a one-page recommendation, using the failure counts as the main argument.':
-    'Failure counts ko main tark banaate hue ek page ki recommendation likhiye.',
-  'You sorted real failures into the four kinds, with counts.':
-    'Aapne asli failures ko ginti ke saath chaar kismon mein baanta.',
-  'The cost of fine-tuning includes the recurring cost, not just the first run.':
-    'Fine-tuning ki cost mein baar-baar ki cost hai, sirf pehla run nahi.',
   'You cannot choose a fix without knowing what is wrong and how often.':
     'Kya galat hai aur kitni baar, yeh jaane bina aap fix nahi chun sakte.',
   'Without one, you cannot see the effect of any change in this chapter.':
@@ -193,24 +155,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Batana ki confidence score ka kya karna hai, aur use number ki tarah dikhana aam taur par galat kyun hai.',
   'Explain what must exist underneath a kill switch for it to be usable.':
     'Samjhaana ki kill switch use laayak hone ke liye uske neeche kya hona chahiye.',
-  'Design the four states for a real feature':
-    'Ek asli feature ke liye chaar states design kijiye',
-  'Many AI features use one interface for four different situations, so a confident wrong answer looks exactly like a confident right one. Design the states properly for a real feature, and time how long a correction takes.':
-    'Kai AI features chaar alag situations ke liye ek hi interface use karte hain, isliye confident galat jawab bilkul confident sahi jawab jaisa dikhta hai. Ek asli feature ke liye states theek se design kijiye, aur naapiye ki correction mein kitna samay lagta hai.',
-  'Audit an AI feature you use every day. Note what it shows when it is confident, unsure, wrong and unable to answer.':
-    'Roz use kiye kisi AI feature ka audit kijiye. Note kijiye ki woh confident, anishchit, galat aur jawab na de paane par kya dikhata hai.',
-  'Pick a feature you own or could own. Write the four states: what the user sees, and what they can do next, in each.':
-    'Apna ya ho sakne wala ek feature chuniye. Chaar states likhiye: har ek mein user kya dekhta hai, aur aage kya kar sakta hai.',
-  'Decide what the interface shows when confidence is middling, so uncertainty is visible without being noisy.':
-    'Tay kijiye ki beech ke confidence par interface kya dikhata hai, taaki anishchitata shor mache bina dikhe.',
-  'Time the correction: from a user noticing a mistake to it being fixed. Count every step and hand-off.':
-    'Correction ka samay naapiye: user ke galti notice karne se theek hone tak. Har step aur hand-off giniye.',
-  'Write down which of the four states your current design merges, and what that costs the user.':
-    'Likhiye ki aapka current design chaar mein se kaunse states mila deta hai, aur user ko iski kya keemat padti hai.',
-  'The correction path is timed end to end, and the slowest step is identified.':
-    'Correction ka raasta shuru se ant tak time kiya gaya hai, aur sabse dheema step pehchaana gaya hai.',
-  'You can name the state your product handles worst, and what you would change first.':
-    'Aap woh state bata sakte hain jise aapka product sabse bura sambhalta hai, aur aap pehle kya badlenge.',
   'A required quote makes checking cheap':
     'Zaroori quote check karna sasta banata hai',
   'A quote is more useful than a confidence number.':
@@ -295,26 +239,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Samjhaana ki achha naapne wala system bhi business fayda kyun nahi de sakta.',
   'Design a pilot that could fail':
     'Aisa pilot design kijiye jo fail ho sake',
-  'Design a pilot for a real feature, with a number the business already tracks, a comparison, a failure threshold and a time window. Then get someone senior to agree the threshold before it runs.':
-    'Ek asli feature ke liye pilot design kijiye, us number ke saath jo business pehle se track karta hai, ek tulna, ek failure threshold aur time window. Phir chalne se pehle kisi senior se threshold par sehmati lijiye.',
-  'Time the whole workflow and mark where your feature fits. If it is not on the critical path, say so and stop here.':
-    'Poore workflow ka samay naapiye aur mark kijiye ki aapka feature kahan fit hota hai. Agar yeh critical path par nahi, to yahi kahiye aur yahin rukiye.',
-  'Choose the business number. It must already exist, and someone must already look at it.':
-    'Business number chuniye. Yeh pehle se maujood hona chahiye, aur koi pehle se use dekhta ho.',
-  'Design the comparison: which two groups, over which period, and why they are comparable.':
-    'Tulna design kijiye: kaunse do groups, kis avadhi mein, aur woh tulniya kyun hain.',
-  'Write the failure threshold, the change below which you would call it a failure, and the time window before you judge.':
-    'Failure threshold likhiye, woh badlaav jiske neeche aap ise failure kahenge, aur faisle se pehle ki time window.',
   'Write the disappointing result in advance, in the words you would say to whoever funded it.':
     'Nirasha wala result pehle hi likhiye, un shabdon mein jo aap funding dene wale se kahenge.',
-  'Get the person who funds it to agree the threshold in writing <em>before</em> the pilot runs.':
-    'Funding dene wale se pilot chalne se <em>pehle</em> threshold par likhit sehmati lijiye.',
-  'The number is one the business was already tracking before the pilot.':
-    'Number woh hai jise business pilot se pehle track kar raha tha.',
-  'The failure threshold is agreed in writing by the person who would be disappointed by it.':
-    'Failure threshold par us insaan ki likhit sehmati hai jo usse niraash hoga.',
-  'You can describe a result that would make you recommend switching the feature off.':
-    'Aap aisa result bata sakte hain jo aapse feature band karne ki salaah dilwaaye.',
   'Recall, precision, judges and per-category scores.':
     'Recall, precision, judges aur per-category scores.',
   'No code. Bring a feature you have measured, yours or one from the course, and the name of whoever pays for it.':
