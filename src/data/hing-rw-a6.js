@@ -17,14 +17,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Dependencies aur risks ko surprises banne se pehle track kijiye.',
   'Roadmap, OKRs and a decision memo':
     'Roadmap, OKRs aur ek decision memo',
-  'Three artifacts that turn your strategy into a plan other people can support.':
-    'Teen artifacts jo aapki strategy ko ek aise plan mein badalte hain jise doosre log support kar sakein.',
-  'Turn your strategy into a now/next/later roadmap. For each item, record the outcome, the evidence behind it, an owner, dependencies and a kill criterion.':
-    'Apni strategy ko ek now/next/later roadmap mein badaliye. Har item ke liye, outcome, uske peeche ka evidence, ek owner, dependencies aur ek kill criterion record kijiye.',
-  'Write one objective and 3–4 measurable key results. Keep product outcomes separate from model metrics, and add at least one guardrail metric.':
-    'Ek objective aur 3–4 measurable key results likhiye. Product outcomes ko model metrics se alag rakhiye, aur kam se kam ek guardrail metric jodiye.',
-  'Create a stakeholder map and run a written pre-mortem. Then draft the one-page decision memo you would send to leadership.':
-    'Ek stakeholder map banayiye aur ek written pre-mortem chalayiye. Phir woh one-page decision memo draft kijiye jo aap leadership ko bhejenge.',
   'Every roadmap item is an outcome, not a feature, and has a kill criterion.':
     'Har roadmap item ek outcome hai, feature nahi, aur uska ek kill criterion hai.',
   'At least one key result is a product outcome that a model metric alone could not achieve.':

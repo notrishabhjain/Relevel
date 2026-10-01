@@ -29,6 +29,7 @@ window.PART7 = [
   capstone:{
     title:'A pricing recommendation, backed by a cost model',
     brief:'Find out what your product is worth to a buyer, what it costs you to serve, and how to charge so the gap stays positive.',
+    where:'Written. Interviews and a cost-model spreadsheet; no code required.',
     steps:[
       'Interview five prospects about their current alternatives, who owns the budget, and what the problem costs them. Do not ask “would you pay?”.',
       'Model the cost per successful task at low, base and high usage. Include retries, human review and support time, not only model calls.',
@@ -155,6 +156,7 @@ window.PART7 = [
   capstone:{
     title:'Growth events, an onboarding test and a growth loop',
     brief:'Define how your product grows, test the first five minutes with real users, and design one loop you would be happy to explain to them.',
+    where:'Written. Use a no-code AI tool for a few days, then write the teardown; no code of your own required.',
     steps:[
       'Define the acquisition, activation, retention, referral and revenue events for your capstone.',
       'Prototype the onboarding and test it with five users. Measure time to first value and where people drop off.',
@@ -269,6 +271,7 @@ window.PART7 = [
   capstone:{
     title:'A tracking plan, a funnel and cohort, and an experiment design',
     brief:'Instrument your capstone, read what the data says, and design one test that could change a decision.',
+    where:'A real analytics tool (PostHog, Mixpanel or Google Analytics) for the tracking snippet and funnel, then the written experiment design in the notes box below.',
     steps:[
       'Write an event taxonomy and tracking plan. Implement it in PostHog, Mixpanel or Google Analytics.',
       'Build one activation funnel, one retention cohort and two segments, from real or seeded data.',
@@ -391,6 +394,7 @@ window.PART7 = [
   capstone:{
     title:'One tool per capability, written down and defended',
     brief:'Do not tour seventeen tools. For each capability your capstone actually needs, name the one tool you chose and the one you rejected, and why.',
+    where:'Written only. Name the tools and run the two audits; no code required.',
     steps:[
       'List the capabilities your capstone stack actually uses — most projects need five or six of the eleven below, not all of them.',
       'For each one, name the tool you picked, the job it does, and one you could have picked instead.',
@@ -466,6 +470,7 @@ window.PART7 = [
   capstone:{
     title:'A harness diagram, a two-way build and a release checklist',
     brief:'Make the system around your model visible, measure one design choice, and prepare to ship it safely.',
+    where:'Code — build the workflow both ways in your capstone’s codebase; write the diagram and checklist in the notes box below.',
     steps:[
       'Draw the harness around your capstone: inputs, context assembly, tools, state, policies, eval gates, traces and fallbacks.',
       'Build one workflow twice: once as a deterministic state machine and once as a bounded agent. Compare failure rate, latency and how easy each is to debug.',
@@ -597,6 +602,7 @@ window.PART7 = [
   capstone:{
     title:'A live product, real users and one evidence-based iteration',
     brief:'Launch to real people, watch what happens, change one thing because of what you saw, and show whether it helped.',
+    where:'Code, to deploy and monitor the app, plus real user sessions; write the changelog in the notes box below.',
     steps:[
       'Deploy the capstone to a stable live URL. Add monitoring, analytics, a privacy notice, a way to send feedback and a rollback procedure.',
       'Recruit 5–10 real target users. Observe at least five sessions, and record task success, time, failures, quotes and whether they come back.',
@@ -709,6 +715,7 @@ window.PART7 = [
   capstone:{
     title:'A role matrix, two case studies, mock interviews and a take-home',
     brief:'Build the evidence and the practice that get you from applying to an offer.',
+    where:'Written. A role matrix, case studies, a rewritten resume and recorded mock interviews; code only if your own capstone needs it for the take-home.',
     steps:[
       'Build a role matrix from ten job descriptions. Find the skills that keep appearing, and the ones you cannot yet prove.',
       'Turn two projects into case studies. Show the problem evidence, your decisions, the trade-offs, the metrics, the failures and what you learned.',

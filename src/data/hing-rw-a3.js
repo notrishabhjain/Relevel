@@ -17,14 +17,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek problem statement likhiye, apni assumptions list kijiye aur sabse riskiest ko pehle test kijiye.',
   'Five interviews and a problem brief':
     'Paanch interviews aur ek problem brief',
-  'Talk to five real people who have your capstone problem, and turn what they tell you into evidence you can build on.':
-    'Paanch real logon se baat kijiye jinke paas aapka capstone problem hai, aur unhone jo bataya usey evidence mein badaliye jis par aap build kar sakein.',
   'Write a screener (three to five questions that decide who qualifies) and a 12-question interview guide. Replace every hypothetical or leading question with a question about past behaviour.':
     'Ek screener likhiye (teen se paanch sawaal jo decide karte hain kaun qualify karta hai) aur ek 12-question interview guide. Har hypothetical ya leading sawaal ko past behaviour ke sawaal se replace kijiye.',
-  'Recruit and run five interviews with real target users. For each, record quotes, the steps of their workflow, their workarounds, how often the problem happens, how bad it is, and what they spend on it today.':
-    'Real target users ke saath paanch interviews recruit aur chalaiye. Har ek ke liye, quotes, unke workflow ke steps, unke workarounds, problem kitni baar hota hai, kitna bura hai, aur aaj iss par woh kya kharch karte hain, record kijiye.',
-  'Synthesise the interviews into a jobs-to-be-done statement, an evidence-backed persona, a journey map and a ranked problem brief. Include evidence that contradicts your expectations.':
-    'Interviews ko ek jobs-to-be-done statement, ek evidence-backed persona, ek journey map aur ek ranked problem brief mein synthesise kijiye. Woh evidence bhi shaamil kijiye jo aapki expectations se contradict karta hai.',
   'Five interviews with real people who match your screener. AI-generated users do not count.':
     'Paanch interviews real logon ke saath jo aapke screener se match karte hain. AI-generated users nahi ginte.',
   'Every claim in the persona and journey map points to a specific interview note.':

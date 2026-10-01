@@ -263,7 +263,7 @@ C.chapters.forEach(c => {
   (c.words || []).forEach(([t, d]) => { wantAdd(t); wantAdd(d); });
   wantAdd(c.title); wantAdd(c.concept); wantWalk(c.takeaway);
   /* the capstone renders through the same translator the story does */
-  if (c.capstone) { wantAdd(c.capstone.title); wantAdd(c.capstone.brief);
+  if (c.capstone) { wantAdd(c.capstone.title); wantAdd(c.capstone.brief); wantAdd(c.capstone.where);
     wantWalk(c.capstone.steps); wantWalk(c.capstone.done); }
   (c.needs || []).forEach(n => { wantAdd(n[0]); wantAdd(n[1]); });
   (c.story || []).forEach(prose);

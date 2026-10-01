@@ -1200,17 +1200,18 @@ window.PART6 = [
   ],
   needs:[],
   capstone:{
-    title:'Set up your learning system',
-    brief:'Three artifacts that the rest of the book builds on: a scored role scorecard, a working repository, and a shortlist of capstone problems.',
+    title:'Set up your learning system, and name your capstone: Bharat Privacy Guard',
+    brief:'Three artifacts that the rest of the book builds on: a scored role scorecard, a working repository, and the capstone problem — an Indian, multilingual privacy layer that detects personal and quasi-identifying information in English, Hindi and Hinglish before it reaches a website, an API or an LLM.',
+    where:'Written. A notes app or paper for the scorecard, and a repository (folders and files, not really code) for the rest.',
     steps:[
       'Write a one-page role scorecard covering the seven areas: discovery, strategy, technical fluency, delivery, analytics, business and leadership. Score yourself 0–3 in each, and write the evidence next to every score.',
       'Create the repository with the folders <code>/research</code>, <code>/product</code>, <code>/experiments</code>, <code>/evals</code>, <code>/analytics</code>, <code>/security</code> and <code>/portfolio</code>, plus a <code>decision-log.md</code> file. Add at least two decisions to the log.',
-      'Choose three candidate problems where AI might reduce a pain you can measure. For each one, record the user, how they do the task today, a baseline number (time, cost or error rate), and why AI may or may not belong.'
+      'Name your capstone problem: a privacy layer that detects PII and quasi-identifiers in Indian text (English, Hindi and Hinglish) and lets an application redact, mask or minimise it before the data goes anywhere. Name two alternative problems you considered instead, and write the specific reason each lost — a baseline number if you have one, and why AI may or may not belong in the winner.'
     ],
     done:[
       'Every score on the scorecard has evidence next to it, not just a feeling.',
       'Someone else can find any artifact in the repository in under two minutes.',
-      'For at least one candidate problem, you have written down what would make you reject AI for it.',
+      'You have written down the specific reason each rejected alternative lost, not just that the privacy layer "felt more interesting."',
       'Mastery gate: score each artifact 0–3. Move on only when all three score at least 2.'
     ]
   },
@@ -1344,18 +1345,19 @@ window.PART6 = [
     'Use an AI assistant to draft an analysis, then check every claim against evidence.',
     'Map the hard and soft skills the applied AI PM role needs, and where you stand on each.'
   ],
-  needs:[['A capstone shortlist','You apply every idea in this chapter to one of your candidate problems.','A1']],
+  needs:[['Your capstone','You apply every idea in this chapter to your capstone, and to the product it is closest to.','A1']],
   capstone:{
-    title:'Map and tear down a product',
-    brief:'Take one real product, understand why it works, and practise checking AI-generated analysis against evidence.',
+    title:'Tear down Rampart',
+    brief:'Take the product your capstone is answering — Rampart, the PII-detection tool it is a response to — understand why it works and where it stops working, and practise checking AI-generated analysis against evidence.',
+    where:'Written only. Rampart’s own published model card and documentation; no code required.',
     steps:[
-      'Pick one product you use. Map its discovery, delivery and distribution. Mark the weakest of the three, with the evidence that makes you think so.',
-      'Write a teardown with seven headings: target user, job, key moment, friction, business model, moat, and one improvement.',
-      'Ask ChatGPT (or any assistant) for a teardown of the same product. Mark every claim it makes as supported, unsupported or wrong. Rewrite its teardown using your own evidence.'
+      'Map Rampart’s discovery, delivery and distribution as a product. Mark the weakest of the three, with the evidence that makes you think so.',
+      'Write a teardown with seven headings: target user, job, key moment, friction, business model, moat, and one improvement. For "moat," be specific about what its language scope protects it from and what it does not.',
+      'Ask ChatGPT (or any assistant) for a teardown of Rampart. Mark every claim it makes as supported, unsupported or wrong against the model card’s own stated numbers — including any claim about how well it handles Indian languages. Rewrite its teardown using your own evidence.'
     ],
     done:[
-      'The weakest link is backed by something you observed, not a guess.',
-      'Your improvement names who it helps and what would show it worked.',
+      'The weakest link is backed by something you read in the model card or documentation, not a guess.',
+      'Your improvement is the one your own capstone is built to be, named precisely: which language(s) and which failure mode.',
       'In the AI teardown, every unsupported claim is marked, with a note on what evidence would settle it.',
       'Mastery gate: score each artifact 0–3. Move on only when all three score at least 2.'
     ]
@@ -1469,11 +1471,12 @@ window.PART6 = [
          ['Claims need evidence','The whole point of interviews is to collect it.','A2']],
   capstone:{
     title:'Five interviews and a problem brief',
-    brief:'Talk to five real people who have your capstone problem, and turn what they tell you into evidence you can build on.',
+    brief:'Talk to five real people on five different sides of the privacy problem, and turn what they tell you into evidence you can build on.',
+    where:'Written only. Real conversations with real people, then written synthesis; no code required.',
     steps:[
       'Write a screener (three to five questions that decide who qualifies) and a 12-question interview guide. Replace every hypothetical or leading question with a question about past behaviour.',
-      'Recruit and run five interviews with real target users. For each, record quotes, the steps of their workflow, their workarounds, how often the problem happens, how bad it is, and what they spend on it today.',
-      'Synthesise the interviews into a jobs-to-be-done statement, an evidence-backed persona, a journey map and a ranked problem brief. Include evidence that contradicts your expectations.'
+      'Recruit and run five interviews, one with each: a developer who handles user-entered data, a compliance or legal contact, a support agent who has seen personal information typed into a chat box, an end user, and a founder who has faced a build-vs-buy decision on privacy tooling. For each, record quotes, their workflow, their workarounds, how often the problem happens, how bad it is, and what they spend on it today.',
+      'Synthesise the interviews into a jobs-to-be-done statement, an evidence-backed persona for each side (the developer buying the SDK is not the same person as the end user it protects), a journey map, and a ranked problem brief. Include evidence that contradicts your expectations.'
     ],
     done:[
       'Five interviews with real people who match your screener. AI-generated users do not count.',
@@ -1598,11 +1601,12 @@ window.PART6 = [
          ['A job statement','Competitors are anything that does the same job.','A3']],
   capstone:{
     title:'Size the market and map the opportunities',
-    brief:'Three artifacts that tell you whether your capstone problem is worth pursuing, and which part of it to start with.',
+    brief:'Three artifacts that tell you whether Bharat Privacy Guard is worth pursuing, and which part of it to start with.',
+    where:'Written only. Research and a spreadsheet; no code required.',
     steps:[
-      'Build a competitor matrix with at least five alternatives, including “do nothing” and doing the task by hand. For each, note who it is for, the price, its strengths and its weaknesses.',
-      'Estimate TAM, SAM and SOM bottom-up: number of customers × realistic annual value per customer. List every assumption, and mark each as known or guessed.',
-      'Build an opportunity solution tree from your interview evidence. Rank its branches by reach, pain, confidence and strategic fit.'
+      'Build a competitor matrix with at least five alternatives, including Rampart, Microsoft Presidio, at least one Indian DPDP-compliance startup, “do nothing”, and a developer hand-rolling their own regex. For each, note who it is for, the price, its strengths and its weaknesses — for Rampart and Presidio specifically, note their language coverage.',
+      'Estimate TAM, SAM and SOM bottom-up: number of Indian developer teams handling user PII × realistic annual value per team. List every assumption, and mark each as known or guessed.',
+      'Build an opportunity solution tree from your interview evidence. Rank its branches — the SDK, the Gateway, the browser extension — by reach, pain, confidence and strategic fit.'
     ],
     done:[
       'The competitor matrix includes the status quo, and says why it is hard to replace.',
@@ -1709,11 +1713,12 @@ window.PART6 = [
          ['A ranked opportunity tree','Prioritisation starts from it.','A4']],
   capstone:{
     title:'Write the strategy and prioritise',
-    brief:'Three artifacts that turn your research into decisions: a strategy memo, a scored list of opportunities, and a build/buy/partner decision for the AI layer.',
+    brief:'Three artifacts that turn your research into decisions: a strategy memo choosing the SDK as the wedge, a scored list of opportunities, and a build/buy/partner decision for each detection layer.',
+    where:'Written only. A memo and a scored spreadsheet; no code required.',
     steps:[
-      'Write a one-to-two-page strategy memo covering the diagnosis, the chosen user, the wedge, the differentiated promise, the capabilities you need, the trade-offs, and your non-goals.',
-      'Score ten opportunities with RICE. Then override one score using your strategy, and explain why in one paragraph.',
-      'Write a build/buy/partner decision for the AI layer. Compare the options on quality, latency, cost, privacy, lock-in and time to market.'
+      'Write a one-to-two-page strategy memo covering the diagnosis, the chosen user (start with the developer, not the end user or the compliance buyer), the wedge — the SDK, not the Gateway or the browser extension, first — the differentiated promise, the capabilities you need, the trade-offs, and your non-goals.',
+      'Score ten opportunities with RICE, including the Gateway and the browser extension as two of them. Then override one score using your strategy, and explain why in one paragraph.',
+      'Write a build/buy/partner decision for each detection layer separately: hand-written regex versus an existing recognizer library for Layer 1, a hosted or open-source NER model versus one you train yourself for Layer 2, and which provider (if any) for Layer 3. Compare the options on quality, latency, cost, privacy, lock-in and time to market.'
     ],
     done:[
       'The memo has a non-goals section that rules out something tempting.',
@@ -1827,11 +1832,12 @@ window.PART6 = [
          ['A prioritised list','It decides what goes in “now”.','A5']],
   capstone:{
     title:'Roadmap, OKRs and a decision memo',
-    brief:'Three artifacts that turn your strategy into a plan other people can support.',
+    brief:'Three artifacts that turn your strategy into a plan other people can support — a roadmap that ends at the Part V capstone, where the SDK ships.',
+    where:'Written only. A memo and a stakeholder map; no code required.',
     steps:[
-      'Turn your strategy into a now/next/later roadmap. For each item, record the outcome, the evidence behind it, an owner, dependencies and a kill criterion.',
-      'Write one objective and 3–4 measurable key results. Keep product outcomes separate from model metrics, and add at least one guardrail metric.',
-      'Create a stakeholder map and run a written pre-mortem. Then draft the one-page decision memo you would send to leadership.'
+      'Turn your strategy into a now/next/later roadmap against the rest of this course as your timeline, ending with a working SDK demo at the Part V capstone. For each item, record the outcome, the evidence behind it, an owner, dependencies and a kill criterion.',
+      'Write one objective and 3–4 measurable key results. Keep product outcomes (a developer successfully integrates the SDK) separate from model metrics (precision and recall per identifier type), and add at least one guardrail metric — a false-positive rate you will not let quality-chasing push past.',
+      'Create a stakeholder map — the developer who embeds the SDK, the compliance reviewer, the end user, a future employer reading your portfolio — and run a written pre-mortem. Then draft the one-page decision memo you would send to leadership.'
     ],
     done:[
       'Every roadmap item is an outcome, not a feature, and has a kill criterion.',
@@ -1952,11 +1958,12 @@ window.PART6 = [
          ['Your riskiest unknown','The MVP should test it.','A3']],
   capstone:{
     title:'PRD, prototype and a sprint plan',
-    brief:'Three artifacts that take your capstone from decision to delivery.',
+    brief:'Three artifacts that take Bharat Privacy Guard from decision to delivery — including the explicit MVP scope: English, Hindi and Hinglish; the SDK surface; and what is out of scope for this course.',
+    where:'Written for the PRD and sprint plan, plus a no-code prototype in Figma, Lovable or Google AI Studio — no Python required.',
     steps:[
-      'Write a PRD with these sections: problem evidence, users, scope, non-goals, UX states, AI behaviour, evaluations, metrics, rollout, security and open questions.',
-      'Build a clickable prototype in Figma, Lovable or Google AI Studio. Test it with three target users using task prompts, and write down where each one got stuck.',
-      'Create a two-sprint plan in Jira (or a spreadsheet) with stories, acceptance criteria, dependencies and a demo plan. After Sprint 1, run a retrospective and record what you will change.'
+      'Write a PRD with these sections: problem evidence, users, scope, non-goals, UX states, AI behaviour, evaluations, metrics, rollout, security and open questions. State the MVP boundary explicitly: which languages, which identifiers, and which of the SDK, Gateway and browser extension you will actually build versus only specify.',
+      'Build a clickable prototype in Google AI Studio or Lovable: a page where a user pastes text and sees a mocked-up redacted version — the real detection engine comes later, this tests the interaction, not the accuracy. Test it with three target users, pasting their own realistic English, Hindi and Hinglish sentences, and write down where each one got stuck.',
+      'Create a two-sprint plan in Jira (or a spreadsheet) with stories, acceptance criteria, dependencies and a demo plan, sequenced against this course’s remaining chapters. After Sprint 1, run a retrospective and record what you will change.'
     ],
     done:[
       'An engineer could estimate the PRD without guessing what success looks like.',
@@ -2083,16 +2090,17 @@ window.PART6 = [
          ['A build, buy or partner decision','This chapter explains what you are buying.','A5']],
   capstone:{
     title:'Three experiments on how models work',
-    brief:'Three short experiments that turn the ideas in this chapter into evidence you have seen for yourself.',
+    brief:'Three short experiments that turn the ideas in this chapter into evidence you have seen for yourself — run on the text your capstone actually has to handle: English, Hindi and Hinglish.',
+    where:'A free tool (the Transformer Explainer website) or, if you prefer, a Colab notebook for the attention demo. Write what you saw in the notes box below.',
     steps:[
-      'Use an attention visualiser (the notebook in Idea 2, or the Transformer Explainer website) to see which words influence a prediction. Write down what the demo shows and what it does not prove.',
-      'Build a decision table comparing prompt-only, RAG and fine-tuning across freshness, private data, style, cost, latency and evaluation. Fill it in for your capstone.',
-      'Run the same ten test cases through two different model families using OpenRouter or Google AI Studio. Record quality, latency and cost for each.'
+      'Use an attention visualiser (the notebook in Idea 2, or the Transformer Explainer website) on three versions of the same sentence containing a name and a phone number: in English, in Hindi (Devanagari), and in Hinglish. Write down what differs between the three and what the demo does not prove.',
+      'Build a decision table comparing prompt-only, RAG and fine-tuning across freshness, private data, style, cost, latency and evaluation. Fill it in for Layer 3 of your capstone specifically: the contextual/quasi-identifier detector.',
+      'Run the same ten sentences — a mix of English, Hindi and Hinglish, at least one containing an Aadhaar-shaped number — through two different model families using OpenRouter or Google AI Studio, asking each to find the PII. Record quality, latency and cost for each, and note which model missed the Hinglish rows.'
     ],
     done:[
-      'Your attention write-up says clearly what the visualisation does not show.',
-      'The decision table ends with a choice for your capstone and the reason for it.',
-      'The model comparison uses the same ten cases for both models, and records all three measures.',
+      'Your attention write-up names a specific difference you saw between the English, Hindi and Hinglish versions, not just that they "worked differently."',
+      'The decision table ends with a choice for Layer 3 and the reason for it.',
+      'The model comparison uses the same ten cases for both models, and records all three measures, including the Hinglish-specific miss rate.',
       'Rubric: conceptual accuracy 40%, experiment quality 30%, decision clarity 30%.',
       'Mastery gate: score each artifact 0–3. Move on only when all three score at least 2.'
     ]
@@ -2266,6 +2274,7 @@ window.PART1 = [
   ],
   capstone:{title:'Estimate the cost of a feature using only this page',
    brief:'Use the three tools in this chapter to estimate what a real feature would cost. The estimate will be rough, but you will know where every number came from.',
+   where:'The tools on this page — no notebook, no account. Write the final number and two sentences in the notes box below.',
    steps:[
       'Pick a task from your own work that an AI could do, such as answering a common question, summarising a form or drafting a reply.',
       'Write one realistic example: what the user sends, and what a good answer looks like. Use real wording.',
@@ -2352,6 +2361,7 @@ window.PART1 = [
   ],
   capstone:{title:'Measure the cost of one real request',
    brief:'Use the usage block to measure the cost of a small, real request from your own work.',
+   where:'Your <code>chapter-1</code> notebook. The usage numbers you print are the deliverable; the notes box below is for a short reflection, not a write-up.',
    steps:[
       'Take one realistic request from your own work and run it exactly as you would send it.',
       'Record <code>prompt_tokens</code> and <code>completion_tokens</code> from the usage block.',
@@ -2439,6 +2449,7 @@ window.PART1 = [
   ],
   capstone:{title:'Estimate the cost of a real feature',
    brief:'Answer the question a finance director will eventually ask: what will this cost? Use numbers you produce yourself, not a vendor’s estimate.',
+   where:'Keep using your <code>chapter-1</code> notebook for the calls and token counts, then write the one-sentence budget answer in the notes box below.',
    steps:[
       'Pick one small feature your team could ship, such as a support-ticket summariser, a drafting aid or an FAQ bot. Describe it in one sentence.',
       'Write the request it would send as a real call in your <code>chapter-1</code> notebook, using a real example from your work. Run it.',
@@ -2480,6 +2491,7 @@ window.PART1 = [
   ],
   capstone:{title:'Write a system prompt and test it',
    brief:'A real product needs more than one sentence of instruction. It needs a written system prompt that is reviewed like any other procedure, because it defines how the product behaves. Write one. You will use it again in Chapter 7.',
+   where:'Your <code>chapter-2</code> notebook. Write the system prompt as the system message and test it there — you will reopen this same prompt in Chapter 2.1.',
    steps:[
       'Pick an assistant for your own field, such as a policy desk, a claims helper or an internal handbook bot. Write one line on who uses it and why.',
       'Draft half a page: how it should sound, what it must never do, and the exact words it should use when it cannot verify something.',
@@ -2654,6 +2666,7 @@ window.PART1 = [
   ],
   capstone:{title:'Write a prompt someone else can use',
    brief:'Build a prompt for a real task using the four techniques. Write down what each technique does, then hand it to someone else. A prompt that only works when you explain it is not finished.',
+   where:'Your <code>chapter-2-1</code> notebook. Write and run the prompt there; the notes box below is for what your colleague said when they tried it without help.',
    steps:['Name one real task at your work, and the decision its output feeds. One line each.','Write the job description: who reads the output, what they do next, and what they can ignore.','Choose two worked examples: one typical and one awkward. The awkward one should show what to do when something is missing.','If the task has parts, add the steps, in the order a careful person would work.','Add at most two prohibitions, only for failures you have actually seen.','Give the prompt and five real inputs to a colleague. Have them run it without any explanation from you.'],
    done:['Someone else ran it and got what you expected, without asking you a question.','You can point to each technique in your prompt and say what it does.','You know roughly how many tokens your prompt costs before any input is added.']}
 },
@@ -2719,6 +2732,7 @@ window.PART1 = [
   ],
   capstone:{title:'A test set, and what it found',
    brief:'Build a test set for one real task, use it to make a decision, and keep it. You will rerun it every time the model or prompt changes.',
+   where:'Your <code>chapter-2-2</code> notebook. Build and score the test set in code; write the half-page summary in the notes box below.',
    steps:['Build a ten-row test set for a real task. Include two rows that should be refused, and the two messiest real inputs you can find.','Score your current best prompt against it and write the number down. This is your baseline.','Make three improvements, one at a time, rescoring after each. Record all four numbers.','Find one change that made no difference and remove it. Note what that saves per call.','Run the whole set against a cheaper or smaller model, and record which rows fail.','Write half a page for a colleague: the prompt, its score, and the two rows it still fails.'],
    done:['You have four scores from four one-at-a-time changes, not one score from a rewrite.','You removed something that did not help, and you know what that saves.','You can say which rows your prompt still fails, and whether it is acceptable to ship it that way.']}
 },
@@ -2784,6 +2798,7 @@ window.PART1 = [
   ],
   capstone:{title:'Break down one real request',
    brief:'Take the vaguest AI request anyone has made of you and turn it into something you can build. Most of the work is naming task types and putting them in order.',
+   where:'Written, no new code. Use the test set already in your <code>chapter-2-2</code> notebook, but the steps here are pen-and-paper thinking, not code.',
    steps:['Write the request down in the exact words it was asked in. Do not tidy it.','Write one sentence on what the person wants to be different in their normal week.','Break it into steps, each with exactly one task type, in the order they must run.','Mark which steps have a right answer and which do not. These are the parts you can and cannot measure automatically.','For each measurable step, say where an answer key would come from: who makes that judgement today, and based on what.','Write a one-paragraph reply to the person: what you would build first, and why it is the smallest useful piece.'],
    done:['Every step in your breakdown has exactly one task type.','You can point to the steps that can be graded without a person reading the output.','The first thing you propose to build is measurable, and you can say what you would measure it against.']}
 },
@@ -2845,6 +2860,7 @@ window.PART1 = [
   ],
   capstone:{title:'A classifier you would trust to route real work',
    brief:'Build a classifier for a real set of categories at your work, measure it per category, and decide with numbers whether it is good enough to act on its own or only to suggest.',
+   where:'Your <code>chapter-2-4</code> notebook. Build and measure the classifier there; note the per-category numbers in the notes box below.',
    steps:['Fix the categories. Include an <em>other</em> or <em>unclear</em> category, so the model is not forced into a wrong answer.','Collect fifty real examples and label them yourself before you run anything.','Build the classifier with two worked examples, one of which is a borderline case.','Measure each category separately, not just overall. Write the results as a table.','For your worst category, write what each direction of error costs. Change the instruction so borderline cases fall the cheaper way, and measure again.','Set a threshold: above what score per category would you let it route work automatically, and below what would it only suggest?'],
    done:['You have per-category scores from fifty examples you labelled before testing.','You made one deliberate change to how borderline cases fall, and measured the effect.','You can state the score at which you would let it act on its own, and whether it is above that score today.']}
 },
@@ -2895,6 +2911,7 @@ window.PART1 = [
   ],
   capstone:{title:'A summariser with a fact check',
    brief:'Build a summariser for a real document type, and the test that shows it keeps what matters. The test is the main deliverable. Anyone can write the prompt.',
+   where:'Your <code>chapter-2-5</code> notebook. Build the summariser and its fact check there; the notes box below is for what the check caught.',
    steps:['Name the reader and the decision. If you cannot name a decision, you cannot say what the summary is for or how to test it.','Take ten real documents. For each, write down the two or three facts a reader would be upset to lose.','Build the summariser and run the fact check on all ten. Record the miss rate.','Make one change, such as an instruction about what to keep word for word, and measure again.','Find a document where a fact survived in different wording and your check missed it. Note what that means for your number.','Write a note to whoever asked for this feature: what it keeps, what it drops, and the miss rate you measured.'],
    done:['You have a miss rate from ten documents, before and after one change.','You found at least one case your own test scores unfairly, and you say so.','The note says who the summary is for, so someone else could test it the same way later.']}
 },
@@ -2921,6 +2938,7 @@ window.PART1 = [
   ],
   capstone:{title:'A chunking rule for your own documents',
    brief:'You have split one document three ways and seen what each split breaks. A real system needs a rule that someone else can apply to thousands of documents without you. Write that rule, and test it on the messiest document you can find.',
+   where:'Written, no code. Pen, paper and scissors, as the chapter said — write the rule, then test it by hand on the messiest document you can find.',
    steps:['Name the most structured document type in your field, such as one with clauses, exceptions, numbered procedures or warnings.','Describe its structure in three or four lines. Where are its natural break points, and what must never be separated?','Write the chunking rule as instructions to another person: where to cut, where never to cut, and what to do with a piece that would lose its meaning.','Find the messiest real example you can, such as a badly formatted, scanned or table-heavy document. Apply your rule to it by hand.','Record where your rule broke. Amend it, and note which of your five questions the first version would have answered wrongly.','Write what you would say to a vendor who tells you their chunking is “automatic and optimal”.'],
    done:['Someone else could apply your rule and split a document the same way you would.','You have applied it to a difficult document and amended it once as a result.','You can name the kind of content your rule still risks splitting, and say why you accept that.']},
   story:[
@@ -3005,6 +3023,7 @@ window.PART1 = [
   ],
   capstone:{title:'Map where keyword search fails',
    brief:'You scored a search method by hand, on real questions, against a real document. Most people who buy search software never do this. Write up your results so you can use them when someone tries to sell you a search product.',
+   where:'Written, no code. You are the search engine this time — score by hand and write up the results in the notes box below.',
    steps:['Make a table of all eight questions (your five plus the three harder ones), with the rank the correct card actually got.','Next to each failure, write one sentence on what information the scoring did not have.','Add the exact-code question and its result, so the table shows where the method wins as well as where it fails.','Write a short paragraph about your own field: which real queries use different words from the documents, and which use exact codes or terms?','Estimate what share of your users use the document’s vocabulary rather than their own. Say how you would measure this for real.','Write four or five sentences for a non-technical colleague explaining why “we already have a search box” does not mean “users can find answers”.'],
    done:['The table has a rank for every question, including the ones that worked.','Every failure has its one-sentence explanation, in your words.','You could give the last paragraph to a senior colleague, and they would understand the risk without you there.']},
   story:[
@@ -3098,6 +3117,7 @@ window.PART1 = [
   ],
   capstone:{title:'Compare keyword and meaning search on your own document',
    brief:'You have run both methods on the same cards with the same questions: by hand in Chapter 4, and in code here. Few people have this comparison for their own documents. Write it up properly, including any case where the new method does worse.',
+   where:'Your <code>chapter-5</code> notebook for the code comparison, next to the hand-scored results from Chapter 4. Write up the comparison in the notes box below.',
    steps:['Make one table of all eight questions: the rank keyword search gave the correct card, and the rank meaning search gives it now.','Check your exact-code question. If it got worse, that is a reason to combine both methods (hybrid search) on your data. Note it in one line.','Test your second language properly: embed a domain term and its translation, compute the similarity, then run two or three real questions in that language.','Write the result in three bullets: where meaning search helps your users, where it is weak, and what you would check before trusting it in production.','Ask three questions the document cannot answer, and record the top scores. Chapter 6 uses these numbers to set a threshold.','Write four or five sentences a non-technical colleague could follow: how the system finds meaning, and why “it found something” does not mean “the answer exists”.'],
    done:['The table has both ranks for all eight questions, from runs you did.','You have a measured number for how your second language behaves.','You can name one thing meaning search did not fix, and point to the run that shows it.']},
   story:[
@@ -3190,6 +3210,7 @@ window.PART1 = [
   ],
   capstone:{title:'Write a ship-or-not memo',
    brief:'You now have real numbers from your own documents at three settings. Turn them into a recommendation someone could act on. Include the part most memos avoid: which failure you have decided to accept, and who made that call.',
+   where:'Pen and paper, plus your <code>chapter-5</code> notebook for the measurements. Write the memo itself in the notes box below.',
    steps:['State the use case in one line, and who is affected when it is wrong.','Add your table: the three values of k, with correct-card hits and the share of relevant chunks at each.','Recommend a k for a customer-facing assistant, and a different one for an internal drafting tool. If they are the same, reconsider.','Write five acceptance criteria in the style of a test plan, including one for the unanswerable question and one for a second language.','Add the cost line: what k does to tokens per query, and to the monthly bill at a realistic volume.','End with the gap between your prediction and the measured result, and what you now think a demo is worth as evidence.'],
    done:['Every number in the memo came from a run you did.','The two recommended values of k differ, and the reason is about consequences, not technology.','Someone could use your acceptance criteria to test a vendor’s system next week.']},
   story:[
@@ -3286,6 +3307,7 @@ window.PART1 = [
   ],
   capstone:{title:'A findings page, and what to learn next',
    brief:'This is the last capstone in Part I, and it is not a build. You have a working system and a list of the ways you have seen it fail. Write the document you would want in front of you the next time someone demonstrates a RAG product and asks for budget.',
+   where:'Written only — this capstone is not a build. Draw on your <code>chapter-7</code> notebook\'s results, and write the findings page in the notes box below.',
    steps:['List every failure from your red-marked diagram. Next to each one, note the chapter where you saw it and what you saw.','For each failure, add the question you would ask a vendor to find out whether they have solved it or hidden it.','Go back to your predictions from Chapter 1. Name the three beliefs that changed most, and what changed them.','Explain the pipeline in five sentences with no jargon. At the end, add: “This is called RAG.”','List what Part I did <em>not</em> cover: choosing an embedding model, vector databases, reranking, hybrid search in practice, agents, fine-tuning and deployment.','Put that list in order. Which topic would change an outcome you own, and why that one first?'],
    done:['Every failure on the page is backed by evidence you produced yourself.','The five-sentence explanation makes sense when read aloud to someone with no technical background.','Your list of next topics is ordered by consequence, not by how interesting they sound.']},
   story:[
@@ -3412,6 +3434,7 @@ window.PART2 = [
   ],
   capstone:{title:'An inventory of your system',
    brief:'Write one page on what you have built, what it cannot do, and which gaps matter most to you. This is the document you would want if someone handed you this system and asked whether it was ready.',
+   where:'Written only, no new code. Open your <code>chapter-7</code> notebook to check the numbers, then write the one-page inventory in the notes box below.',
    steps:['Describe the system in five sentences with no jargon: split, embed, retrieve, prompt, answer.','State its measured quality: your numbers at your chosen k, from Chapter 6.','List the four gaps, with what you saw when you triggered each one.','Rank them for your use case, with one line each on what the failure costs a real person.','Name the gap you would close first, and what closing it would take.','Write what you would say if someone asked “is it ready?”, including the conditions under which the answer is no.'],
    done:['Every gap on the page is one you triggered yourself.','The ranking is by consequence to your users, not by how interesting the topic is.','Your readiness answer includes a condition, not just yes or no.']}
 },
@@ -3431,6 +3454,7 @@ window.PART2 = [
   ],
   capstone:{title:'Make one real extraction impossible to malform',
    brief:'Take one real extraction task at your work, make its output impossible to malform, and measure how often the polite version would have failed.',
+   where:'Your <code>chapter-8</code> notebook. Run both versions and count the failures in code; write the final comparison in the notes box below.',
    steps:['Pick a document type from your own work, and the decision another system makes from it.','Write the polite version first, a well-worded request for JSON, and run it twenty times.','Count the malformed replies. That number is your argument for the rest of the steps.','Write the schema: every field, its type, and which fields are really required.','Rerun the same twenty inputs and count again.','Add the validate-and-retry loop for endpoints that do not support schemas. Note what a retry costs in tokens and seconds.'],
    done:['You have a failure rate for the polite version from twenty real runs.','The schema version parses twenty times out of twenty.','You can say what your fallback costs when it runs, and how often it runs.']},
   story:[
@@ -3509,6 +3533,7 @@ window.PART2 = [
   ],
   capstone:{title:'An extractor that cannot guess',
    brief:'You have seen a schema remove a failure, and a badly designed field cause one. Build a real extractor for a document type you handle, designed so the failure you worry about most has nowhere to appear.',
+   where:'Keep using your <code>chapter-8</code> notebook. Build and rerun the extractor there; note what your schema still cannot catch in the notes box below.',
    steps:['Pick a document type from your own work, and the decision another system makes from it.','Give uncertainty somewhere to go, such as a needs_review option, an optional field or a “not stated” flag, so the model never has to invent.','Require a quote field with the exact words each value came from, and check it on ten real documents.','Run twenty documents through it, including three that leave out the field people most want. Count the invented values.','For any invented value, change a field rather than the wording, and run it again.','Write down what your schema still cannot catch, and what would.'],
    done:['On documents that leave out the key field, nothing is invented, and you can point to the field definition that prevents it.','Every extracted value includes the words it came from.','You can name an error your schema cannot catch, and say what would catch it.']},
   story:[
@@ -3565,6 +3590,7 @@ window.PART2 = [
   ],
   capstone:{title:'Specify an agent, starting with its limits',
    brief:'You have built the loop, broken a description, fed it an error and removed its step limit. What matters most about an agent is what it can do on a bad day. Specify one for a real task, and write its limits before its capabilities.',
+   where:'Your <code>chapter-9</code> notebook. Build and break the agent in code; write the worst-case paragraph in the notes box below.',
    steps:['Name a task in your own work worth automating, and the two or three tools it would need.','Write each tool description as if it were the only documentation, because for the model it is.','Before listing capabilities, write the worst case: the worst thing this agent could do if every call it makes is wrong.','Set the limits: maximum steps, maximum spend, and what happens when either runs out.','Decide which actions need a person to approve them, and write the rule as a clear condition.','Build it, then break it on purpose: make one description vague, force one error, and record what the agent said versus what it did.'],
    done:['The agent completes the task end to end, and stops cleanly when it reaches its limit.','You have made it fail at least twice on purpose, and can describe how each failure looked from outside.','Someone who has never seen the code could read your worst-case paragraph and decide whether to allow the agent.']},
   story:[
@@ -3660,6 +3686,7 @@ window.PART2 = [
   ],
   capstone:{title:'A context budget for one real feature',
    brief:'Large context windows changed the marketing more than the engineering. You have measured whether the model uses what you send, and compared retrieval with sending everything. Turn that into a budget you could defend for a real feature.',
+   where:'Your <code>chapter-10</code> notebook for the measurements, then the written budget in the notes box below.',
    steps:['Pick one feature and describe what must be in the request for it to answer well.','At three request sizes, measure what share of your questions are answered correctly, with the key fact at the start, middle and end.','Compare sending everything with retrieving the few relevant chunks. Record accuracy, tokens and response time for both.','Order the request for caching: stable content first, changing content last. Measure what that saves.','Write the compaction rule for a long conversation, and note what it loses.','Write the budget: tokens per query, cost per thousand queries, and the number you would defend in a planning meeting.'],
    done:['You have accuracy figures at three positions, from your own runs.','The comparison has real numbers for both approaches, including cost.','You can say which approach you would ship, and name the case where you would be wrong.']},
   story:[
@@ -3749,6 +3776,7 @@ window.PART2 = [
   ],
   capstone:{title:'A reasoning decision table for your own requests',
    brief:'Reasoning is a purchase, not a quality setting. You have paid for it on trivial tasks and seen it fail to fix bad retrieval. Build the decision table you would use to route real requests.',
+   where:'Your <code>chapter-11</code> notebook, to run both groups and record the four cells; write the routing rule in the notes box below.',
    steps:['Sort a week of realistic requests into two groups: ones with a clear right answer, and ones that need judgement.','Run both groups with reasoning on and off. That gives four cells of real outputs.','Record cost and response time for every cell, not only quality.','Find the point where the extra waiting time stops being worth the accuracy it buys for this use case.','Find a request in your own data where reasoning does not change the answer at all but costs several times more.','Write the routing rule so an engineer could implement it: which requests take the expensive path, and based on what signal.'],
    done:['All four cells have numbers for quality, cost and response time.','The routing rule is a clear condition.','You can name one request type where reasoning is wasted, and show the run that proves it.']},
   story:[
@@ -3877,6 +3905,7 @@ window.PART2 = [
   ],
   capstone:{title:'Design the wait for your slowest feature',
    brief:'Take the slowest thing you would ship and design its wait properly, starting from a measured number rather than a spinner.',
+   where:'Your <code>chapter-11-5</code> notebook, to measure the twenty requests; write the acceptance line in the notes box below.',
    steps:['Measure the spread, not one run: time twenty realistic requests, and write down the median and the slowest.','Split the total into parts, such as retrieval, reasoning and generation, and mark which parts you could shorten.','Decide whether a partial answer is useful. That decides streaming or background. Write down why.','Design what the screen shows at second one, second three and second ten. Write the actual words.','Decide what happens in the slowest case, and what the user can do about it.','Write the acceptance line: at what measured time does this feature stop being interactive and move to the background?'],
    done:['Your numbers are a median and a slowest case from twenty runs, not an average of three.','The screen has real words on it at three different moments.','You can state the time at which you would change the whole interaction, as a number.']}
 },
@@ -3896,6 +3925,7 @@ window.PART2 = [
   ],
   capstone:{title:'Improve retrieval and measure each change',
    brief:'Chapter 6 gave you a way to measure retrieval. This chapter gave you four ways to improve it. Improve it on your own documents and show which change actually helped.',
+   where:'Your <code>chapter-12</code> notebook. Make each change and measure it in code; rank the four changes in the notes box below.',
    steps:['Start from your Chapter 6 answer key and record today’s baseline: correct-card hits and share of relevant chunks at k=3.','Add keyword scoring alongside meaning scoring and combine the two. Measure again.','Fix the orphaned chunks by adding enough context for each to make sense alone. Measure again.','Fetch many chunks and rerank to a few. Measure again, and record what it costs in response time.','Add a metadata filter that removes chunks that can never be relevant. Measure again.','Rank the four changes by how much each improved your number, and by what each costs to run.'],
    done:['You have five measurements against one unchanged answer key.','The ranking is based on measured results on your documents, not on reputation.','You can name the change that helped least, and say whether you would still ship it.']},
   story:[
@@ -4006,6 +4036,7 @@ window.PART2 = [
   ],
   capstone:{title:'A prompt injection audit',
    brief:'This is the one failure in the course with no complete fix. So the deliverable is not a solution. It is an honest account of the exposure that someone senior can act on. Audit a real system.',
+   where:'Your <code>chapter-13</code> notebook, to try the attack and the wording fix; write the exposure note in the notes box below.',
    steps:['Pick a real system, yours or one you are being sold, that reads text someone outside your organisation can influence.','Map the trifecta: what untrusted content it reads, what private data it can reach, and how data could leave.','Write the specific attack: the actual text you would plant, where you would plant it, and what you would expect to happen.','Try to fix it with wording, and record exactly how your fix fails.','Remove one part of the trifecta instead: remove a capability, block an outbound path, or require a person to approve the irreversible step. Say what the product loses.','Write the exposure note: what is possible today, what your change reduces, and what remains true regardless.'],
    done:['The attack is written clearly enough that someone could run it.','You have shown a wording defence failing, from your own attempt.','The note separates what you fixed from what you only made harder, and says so plainly.']},
   story:[
@@ -4136,6 +4167,7 @@ window.PART3 = [
   red:['A grader nobody checked against human marking','Longer answers scoring higher for no reason','Testing on questions that look nothing like real ones'],
   capstone:{title:'A judge you have checked',
    brief:'Build an automated grader, and more importantly the evidence for how far it can be trusted. A grader nobody has checked is not a measurement.',
+   where:'Your <code>chapter-14</code> notebook, to build and run the judge. Grade the fifty outputs by hand, then write the agreement figure in the notes box below.',
    steps:['Write the rubric a careful person would use to grade one type of output your team produces.','Run the free code checks first, such as format, length and required fields. Count how many failures never need a judge.','Build the judge from your rubric, and grade fifty outputs by hand as well.','Report agreement honestly, including where the judge is consistently more lenient or harsher than you.','Test it for length bias on your own data: the same content in twice the words. Does the score change?'],
    done:['You have an agreement figure between the judge and your own grading on the same fifty items.','You know whether your judge rewards length, from a test you ran.','You can state the score range in which you would read the output yourself rather than trust the judge.']},
   story:[
@@ -4229,6 +4261,7 @@ window.PART3 = [
   ],
   capstone:{title:'A failure taxonomy for a real system',
    brief:'Read a hundred real outputs, describe what went wrong in your own words, and turn your notes into groups someone can count. This tells a team what to fix next, and no benchmark can produce it for you.',
+   where:'Written only, no code and no notebook. Read the hundred outputs on paper, group your notes, and write the ranked list in the notes box below.',
    steps:['Collect a hundred real outputs from something you own or use. Use real traffic, not a sample you chose.','Read them. For each one that went wrong, write what went wrong in your own words. Do not group yet; grouping early hides categories you had not thought of.','Now group the notes, name the groups and count each one.','Rank the groups by count multiplied by how badly each one affects a real person.','For the top group, write what would need to change, and whether that is the prompt, retrieval, a field, or something that is not an AI problem at all.','Add the top two groups as rows in your test set, so the next change is measured against them.'],
    done:['The groups came from the reading, not from a list decided in advance.','Every group has a count, and the ranking considers consequences as well as frequency.','At least two new rows from real failures are in your test set.']},
   story:[
@@ -4277,6 +4310,7 @@ window.PART3 = [
   red:['A cost estimate missing the four multipliers','A feature that loses money on every query at scale'],
   capstone:{title:'A cost model built from measurements',
    brief:'Answer the question many teams skip: what does this feature cost at real volume, and what happens to the margin when it succeeds? Build it from measurements, not estimates.',
+   where:'Your <code>chapter-15</code> notebook, to measure tokens and build the cascade; write the three cost numbers in the notes box below.',
    steps:['Take one feature and measure the tokens it uses across twenty realistic requests. Average them.','Apply the multipliers people forget: retries, retrieved context, conversation history, and failed requests that get repeated.','Work out the cost per request, per thousand requests, and per month at a volume you would actually plan for.','Build a cascade (cheap model first, expensive one only when needed) and measure what share escalates.','Produce three numbers: cost today, cost at ten times the volume, and cost if the cheap path stops working.','Answer the margin question: at what price and usage does this feature stop making money?'],
    done:['Every figure traces back to a measurement you took, and you can say which one.','The cascade has a measured escalation rate, not an assumed one.','You can name the assumption most likely to make the whole model wrong.']},
   story:[
@@ -4398,6 +4432,7 @@ window.PART3 = [
   red:['Table rows and columns destroyed when the text was extracted','Right page found, wrong number quoted','A corpus assumed to be clean text'],
   capstone:{title:'Audit the extraction quality of a real document set',
    brief:'Extraction errors are silent: text that was never read correctly produces confident answers, and nothing reports an error. Audit a real document set and find out how much of it is wrong.',
+   where:'Your <code>chapter-16</code> notebook, to extract and compare against the originals; write the estimated error rate in the notes box below.',
    steps:['Take twenty pages of your own scanned or PDF documents. Choose messy ones, not clean ones.','Extract them the usual way, then read the output against the originals and mark every error.','Find the tables. Ask a question only a table can answer, and check what comes back.','Give the page image to a vision model, and compare its answers with the extracted text on the same questions.','Check every cell of one important table by hand. Record how long it took, because that is the real cost of trusting it.','Estimate the error rate across the whole set, and write what it means for anything built on top of it.'],
    done:['You have a counted error rate from pages you checked yourself.','You can show at least one confident answer that is wrong because of an extraction error.','You have a rule for which documents can go in unchecked and which cannot.']},
   story:[
@@ -4531,6 +4566,7 @@ window.PART3 = [
   ],
   capstone:{title:'A “may I send this?” rule, with evidence',
    brief:'Write a one-page answer to “may I send this?” for your team, based on what the vendor actually says rather than what everyone assumes.',
+   where:'Written, no code. The three real documents and the three questions from the chapter — write the one-page rule in the notes box below.',
    steps:['List the document types your team would realistically want to send: six to ten.','Run each one through the three questions, and mark it may send, never send, or ask first.','For the “ask first” group, name who is asked and how long they take. If that answer is uncomfortable, the group is too big.','Find and write down, with dates, what your main vendor says about retention, training and location, for the plan you are actually on.','Check your retrieval documents: would every item pass your own rule?','Write the one page, and give it to a colleague to use on a document you have not seen.'],
    done:['A colleague used it on a real document without asking you a question.','The vendor’s answers are quoted with a date and a plan name.','You checked your document store against your own rule, and either it passes or you know what has to be removed.']}
 },
@@ -4552,6 +4588,7 @@ window.PART3 = [
   red:['A governance file full of adjectives instead of numbers','Oversight written down but impossible to actually do','Data sitting in places you cannot delete from'],
   capstone:{title:'A system card for something you own',
    brief:'Almost every compliance question turns out to be a product question. Write the document that answers them for a real system, and test the answers by carrying them out.',
+   where:'Written only. Gather what you already measured in earlier chapters, then write the system card in the notes box below.',
    steps:['Assign an honest risk tier: what could the system affect, how badly, and who bears the harm?','Write the system card: purpose, data, limits, known failures, and what it must never be used for.','Run the deletion drill. Someone asks for their data to be removed. Follow it through every store and log, and time it.','Design oversight that can really happen: who can overrule, how they learn there is something to overrule, and what they see.','Build the vendor file: what you would need from a supplier to answer all of the above about their component.','Give the card to someone who did not build the system, and ask what is still unclear.'],
    done:['You ran the deletion drill, and you know how long it takes and where it is incomplete.','A named person could use the oversight process tomorrow without asking you.','A colleague read the card and could explain the system’s limits back to you.']},
   story:[
@@ -4664,6 +4701,7 @@ window.PART3 = [
   red:[],
   capstone:{title:'A spec that survives a model change',
    brief:'An AI spec describes a measured range and what happens outside it. Write a real one for a feature you would ship, then rehearse the day the model underneath it changes.',
+   where:'Written only. Collect the artifacts named in the chapter, then write the PRD and the migration rehearsal in the notes box below.',
    steps:['Draw the whole system from memory first. Then check it against the course and mark what you had forgotten.','Write the PRD: the job, the measured acceptance range, the failure states, and what the interface does in each.','Specify the feedback capture: what is logged on every request, so that next quarter you can tell whether quality got worse.','Rehearse the migration. The provider retires your model with sixty days’ notice. Write exactly what you rerun, and what result would stop you switching.','Name the three numbers you would put on a dashboard, and who watches them.','Write the findings page: what you now know breaks, with the chapter that showed it.'],
    done:['The acceptance criteria are ranges with numbers.','The migration plan names the tests you would rerun and the threshold that blocks the change.','Every failure state in the spec has defined interface behaviour.']},
   story:[
@@ -4836,6 +4874,7 @@ window.PART4 = [
   ],
   capstone:{title:'A build-or-buy recommendation with a review date',
    brief:'Make a real build-or-buy recommendation using evidence you gathered, including the conditions under which it stops being right.',
+   where:'Written, no code. Compare the vendor and your own build on paper, then write the recommendation in the notes box below.',
    steps:['State the capability in one line, and whether it is core or supporting for your product.','Run your answer key against at least one vendor trial, and record its results next to your own build’s.','Cost both over two years, including evaluation, maintenance and incident handling.','Add the time until each reaches users. Say which matters more here and why.','For the buy option, write what you would need in order to leave, and how long it would take.','Write the two triggers that would reverse the decision, and the date you will review them.'],
    done:['You measured both options against the same answer key.','The build cost includes maintenance and evaluation, not just tokens.','The recommendation names what would make it wrong, with a review date.']}
 },
@@ -4856,6 +4895,7 @@ window.PART4 = [
   red:['Reaching for fine-tuning to fix a knowledge gap','Choosing a fix before naming the failure'],
   capstone:{title:'Answer a fine-tuning proposal with evidence',
    brief:'Someone will propose fine-tuning, and it will sound like the serious option. Find out which kinds of failure they actually have, and cost the proposal honestly, including the parts that are usually left off the slide.',
+   where:'Written, no code. Cost the proposal on paper using numbers from earlier chapters, then write your answer in the notes box below.',
    steps:['Collect twenty real failures from something you run, and sort them into the four kinds.','Count them. The counts often settle the question before any technical discussion.','For the largest group, name the cheapest change that would address it, and explain why it is cheaper.','Cost the fine-tuning proposal properly: preparing data, training, evaluating, and repeating it every time the base model changes.','Try a smaller or cheaper model with better retrieval, and measure whether quality actually drops.','Write a one-page recommendation, using the failure counts as the main argument.'],
    done:['You sorted real failures into the four kinds, with counts.','The cost of fine-tuning includes the recurring cost, not just the first run.','You can say what evidence would change your recommendation.']},
   story:[
@@ -4946,6 +4986,7 @@ window.PART4 = [
   red:['An uncertain answer shown with a certain interface','Citations that do not open the passage','A feedback button that collects nothing usable'],
   capstone:{title:'Design the four states for a real feature',
    brief:'Many AI features use one interface for four different situations, so a confident wrong answer looks exactly like a confident right one. Design the states properly for a real feature, and time how long a correction takes.',
+   where:'Written, no code. Design the four states on paper, then time a real correction with a stopwatch and write the design in the notes box below.',
    steps:['Audit an AI feature you use every day. Note what it shows when it is confident, unsure, wrong and unable to answer.','Pick a feature you own or could own. Write the four states: what the user sees, and what they can do next, in each.','Design the “I cannot answer this” state as a real route to a person, not a dead end.','Decide what the interface shows when confidence is middling, so uncertainty is visible without being noisy.','Time the correction: from a user noticing a mistake to it being fixed. Count every step and hand-off.','Write down which of the four states your current design merges, and what that costs the user.'],
    done:['All four states are specified, including what the user can do in each.','The correction path is timed end to end, and the slowest step is identified.','You can name the state your product handles worst, and what you would change first.']},
   story:[
@@ -5060,6 +5101,7 @@ window.PART4 = [
   ],
   capstone:{title:'Design a pilot that could fail',
    brief:'Design a pilot for a real feature, with a number the business already tracks, a comparison, a failure threshold and a time window. Then get someone senior to agree the threshold before it runs.',
+   where:'Written, no code. Design the pilot on paper, then write it up and get it agreed before anything runs.',
    steps:['Time the whole workflow and mark where your feature fits. If it is not on the critical path, say so and stop here.','Choose the business number. It must already exist, and someone must already look at it.','Design the comparison: which two groups, over which period, and why they are comparable.','Write the failure threshold, the change below which you would call it a failure, and the time window before you judge.','Write the disappointing result in advance, in the words you would say to whoever funded it.','Get the person who funds it to agree the threshold in writing <em>before</em> the pilot runs.'],
    done:['The number is one the business was already tracking before the pilot.','The failure threshold is agreed in writing by the person who would be disappointed by it.','You can describe a result that would make you recommend switching the feature off.']}
 }
@@ -5209,6 +5251,7 @@ window.PART5 = [
   ],
   capstone:{title:'An experiment harness in version control',
    brief:'Every later chapter in Part V asks you to run something and compare it with something else. If you rebuild the setup each time, comparisons stop being comparable. Build the harness once, put it in Git, and keep adding to it.',
+   where:'A new notebook, or a local folder if you prefer. This is the harness you build in code and keep extending through Chapter 34 — the notes box below is for what surprised you, not the code itself.',
    steps:['Write a 20-line utility that reads JSON from a file and filters rows by one field.','Add three unit tests: the normal case, a missing field, and empty input.','Wrap your AI request recorder around it, so every run is saved as a JSON record.','Create a Git repository, commit the harness, and write a README that explains how to run it on a clean machine.','Break one thing on purpose, such as a bad key, a timeout or a malformed response, and confirm the record is still written with the error in it.'],
    done:['Someone else could clone the repository and run it.','Three tests pass, and one of them covers a failure.','You have one saved record from a run that failed.']}
 },
@@ -5361,6 +5404,7 @@ window.PART5 = [
   ],
   capstone:{title:'A model selection card',
    brief:'Write one page a stakeholder can read and an engineer can act on, for an example government assistant. The card is the deliverable; the benchmark behind it is the evidence.',
+   where:'Your experiment harness from Chapter 21, to run the benchmark; write the one-page card in the notes box below.',
    steps:['State the task and the quality bar in measurable terms.','State how sensitive the data is, and what that rules out immediately.','Set a response-time target and a cost limit per task.','Shortlist two or three models, with your ten-case results next to each.','Name the fallback: what runs when the first choice is down, degraded or repriced.','Name the dataset you will use to recheck the choice in three months.'],
    done:['Every claim on the card traces back to a run in your harness.','A reader can see which constraint decided the choice.','The fallback is named, and you have tried it at least once.']}
 },
@@ -5497,6 +5541,7 @@ window.PART5 = [
   ],
   capstone:{title:'A context budget for one assistant',
    brief:'Write one page that says exactly what goes into the request, what it costs, and what is removed first when space runs out. This makes a discussion about context windows concrete.',
+   where:'Written, using real token counts from an assistant you know. Measure what you can, then write the one page in the notes box below.',
    steps:['List every part that enters the context: instructions, examples, retrieved evidence, history, tool results and user data.','Next to each, write a token count from a real run, not a guess.','Set a total limit and show the remaining headroom.','Define the removal order, and the rule behind it.','Write the schema the output must match, and what happens when it does not.','For each piece of stored data, say which of the three memory stores it belongs to.'],
    done:['The numbers come from a real run.','The removal order has a stated reason.','Every stored field has a way to be deleted.']}
 },
@@ -5664,6 +5709,7 @@ window.PART5 = [
   ],
   capstone:{title:'An enterprise retrieval architecture on one page',
    brief:'Write one page that an engineer could build from and a security reviewer could challenge. Keep it to one page; if it does not fit, you have not made enough decisions.',
+   where:'Written only — a one-page architecture design, no code required.',
    steps:['Draw ingestion, storage, index, retrieval, reranking and generation as separate stages.','Add authentication and authorisation, and mark where the access check happens.','Mark provenance: how an answer traces back to a chunk ID and a source document.','State the no-answer threshold, and what the user sees when it is reached.','State how the index and the embedding model are versioned.','State the rollback: what you do when a rebuild makes quality worse.'],
    done:['Every arrow has a failure mode written next to it.','The access check is on the retrieval path, not only in the interface.','Rollback is a written procedure.']}
 },
@@ -5803,6 +5849,7 @@ window.PART5 = [
   ],
   capstone:{title:'A workflow that drafts but cannot submit',
    brief:'Build an approval flow where the assistant can prepare a purchase request but can never send it. The key number is how often the model proposes the correct action when it is not allowed to act.',
+   where:'Your experiment harness and agent loop, extended in code to build the approval flow; write the measured numbers in the notes box below.',
    steps:['Write separate tool contracts for the draft action and the submit action.','Enforce the split on the server: the submit tool is not in the model’s allowed list at all.','Add a human approval step, with an audit record of who approved what.','Run twenty realistic requests, and record how often the proposed action was correct.','Test a malformed argument, an unauthorised request and a timeout. Record what the user saw each time.'],
    done:['The model cannot submit, even if it asks to.','Every approval leaves a record naming a person.','You have a measured figure for how often the proposed action was correct.']}
 },
@@ -5961,6 +6008,7 @@ window.PART5 = [
   ],
   capstone:{title:'An agent measured against the workflow it would replace',
    brief:'Build an agent that searches your documents, calculates one fixed metric and gives a cited answer. Then test whether it beats the fixed workflow from Chapter 25.',
+   where:'Your experiment harness, extended in code to build and test the agent; write the recommendation in the notes box below.',
    steps:['Give it exactly two tools and an explicit allowed list.','Set limits: maximum steps, a timeout, and an exit for “cannot resolve”.','Run the same twenty tasks through the agent and the workflow.','For each, record tool-selection accuracy, number of calls, response time and cost.','Write one paragraph recommending one of them, including the numbers.'],
    done:['Both systems ran the same twenty tasks.','You have four numbers for each system.','The recommendation names the metric that decided it.']}
 },
@@ -6083,6 +6131,7 @@ window.PART5 = [
   ],
   capstone:{title:'A tool access policy',
    brief:'Write a tool access policy for an AI assistant in a government setting, where “it seemed helpful” is not an acceptable reason for an action. The policy is the deliverable; the classification is the thinking.',
+   where:'Written only. Classify the tools and write the policy — no new code is needed.',
    steps:['Classify every tool as read-only, reversible write, irreversible write, privileged or prohibited.','For each class, state the authorisation required, and whether a person must confirm.','Build the authorisation matrix: roles down the side, tool classes across the top.','Mark the trust boundary on your diagram, and say which component enforces it.','Write what the audit record contains for an irreversible action.'],
    done:['Every tool has exactly one class.','Every irreversible action has a confirmation step.','The enforcing component is named, and it is not the model.']}
 },
@@ -6203,6 +6252,7 @@ window.PART5 = [
   ],
   capstone:{title:'Specify a voice assistant for meeting follow-up',
    brief:'The technology is the easier half. Specify the half that gets systems stopped in review: privacy boundaries, retention, attribution and what a person must confirm.',
+   where:'Written only — a specification, no code required.',
    steps:['Define the privacy boundary: whose audio, recorded where, with what notice.','Set how long transcripts are kept, and how they are deleted.','Specify speaker attribution, and what happens when it is uncertain.','Specify task extraction: what becomes an action item, and what confirmation is needed.','Write the evaluation metrics, including one for attribution accuracy.'],
    done:['A person can find out what was recorded about them and have it deleted.','No action is taken from audio without a confirmation step.','Attribution has a measured accuracy figure and a defined behaviour when uncertain.']}
 }
@@ -6363,6 +6413,7 @@ window.PART5 = [
   ],
   capstone:{title:'A release gate',
    brief:'The release gate makes every other measurement in Part V matter. Without it, evaluation is a report nobody has to act on.',
+   where:'Your experiment harness, extended in code to build the gate itself.',
    steps:['Set the quality threshold: the metric, the test set and the number.','Set the safety threshold, including the attack success rate.','Set the response-time target and the cost limit per task.','Set the regression tolerance: how much may a previously passing case get worse?','Define the rollback trigger, and who is allowed to use it.','Run the gate against your current system and record whether it passes today.'],
    done:['Every threshold is a number against a named test set.','The gate has been run at least once and produced a verdict.','The rollback trigger names a person or a role.']}
 },
@@ -6500,6 +6551,7 @@ window.PART5 = [
   ],
   capstone:{title:'Specify a six-panel production dashboard',
    brief:'Specify six panels: quality, safety, response time, cost, traffic and failures. For every panel, name its data source. A panel with no source is only a wish.',
+   where:'Your experiment harness, extended in code to record full traces, then the written specification in the notes box below.',
    steps:['Quality: which metric, calculated from what, and how often.','Safety: attack success rate and refusal behaviour, from which test set.','Response time: median and 95th percentile, broken down by stage.','Cost: per task and per day, with the components visible.','Traffic: volume and mix, so you can see when the input changes.','Failures: error types with counts, not one error rate.','For each panel, write the threshold that triggers an investigation and the one that triggers a rollback.'],
    done:['Every panel names its data source.','Response time is broken down by stage, not reported as one number.','Each panel has an investigation threshold and a rollback threshold.']}
 },
@@ -6673,6 +6725,7 @@ window.PART5 = [
   ],
   capstone:{title:'An AI risk register with evidence',
    brief:'For each row, record the asset, threat, impact, likelihood, control, owner, test and remaining risk. Every row ends in a test, because a register that ends in controls is only a list of intentions.',
+   where:'Written only. The register draws on evidence from your earlier chapters; no new code is needed.',
    steps:['List the assets: documents, credentials, tools, user data and traces.','For each, name the threats you have actually reproduced, not only ones you read about.','Record impact and likelihood on whatever scale your organisation uses.','Name the control and the owner: a person or role, not a team.','Name the test that proves the control, and run it.','Record the risk that remains after the control, honestly.','Write the go/no-go checklist for a customer-facing agent: identity, secrets, tool permissions, audit trails, data retention, provider policy and incident response.'],
    done:['Every listed threat has been reproduced at least once.','Every control has a test that has been run.','The remaining risk is stated explicitly.']}
 },
@@ -6836,6 +6889,7 @@ window.PART5 = [
   ],
   capstone:{title:'An AI PRD for a policy assistant',
    brief:'Write two pages. An engineer should be able to build from it, and a leader should be able to see the trade-off being made and agree to it on purpose.',
+   where:'Written only. The PRD draws on evidence from earlier chapters; no new code is needed.',
    steps:['State the user problem, and the non-AI baseline it has to beat.','Define the scope and, explicitly, what is out of scope.','Specify the context, the tools and the human role in the loop.','List the failures you have actually seen in this course.','Name the evaluation dataset and write a five-line evaluation plan.','Set quality bars, safety limits, response-time targets and cost goals.','Write the rollout plan and a one-line rollback trigger.','Name the owner.'],
    done:['Every quality claim is a number against a named test set.','What is out of scope is written down.','Someone could act on the rollback trigger without you.']}
 },
@@ -7015,6 +7069,7 @@ window.PART5 = [
   ],
   capstone:{title:'A ten-slide technical decision pack',
    brief:'Cover the problem, baseline, proposed architecture, alternatives, evaluation, security, cost, rollout, risks and decision. Draft it from memory first, then check it. The parts you cannot produce from memory are the parts you do not yet understand.',
+   where:'Written only — a slide deck or document, drawing on your earlier measurements; no new code is needed.',
    steps:['State the problem and the baseline it must beat.','Draw the proposed architecture on one slide.','Show two alternatives you rejected, and why.','Add the evaluation results, with the test set named.','Summarise the security position and the remaining risks.','Give the cost per task and the cost at expected volume.','Give the rollout plan and the rollback trigger.','Score three providers against nine weighted criteria.','End with the decision and who owns it.'],
    done:['Each rejected alternative was a real option with a reason to consider it.','The provider scorecard includes the cost of leaving.','Someone else could present the pack from the slides alone.']}
 },
@@ -7238,6 +7293,7 @@ window.PART5 = [
   ],
   capstone:{title:'Applied AI findings: what I built, what broke, who used it and what the evidence shows',
    brief:'This single document carries everything from the course. Keep it plain and factual. A findings document that reads like a brochure is not doing its job.',
+   where:'Your repository, for the working system and its README, plus a written findings document — both together are the deliverable.',
    steps:['Ship the repository with a README that works on a clean machine.','Include the architecture diagram and the decision log.','Include 30 to 50 evaluation cases and their results.','Include the retrieval and end-to-end numbers, before and after your fixes.','Include the security attack results and sample traces.','Include cost and response-time measurements at expected volume, and the unit-economics model.','Include the PRD, the risk register, the vendor scorecard, and the rollout and rollback plan.','Include the real-user evidence: session notes, the support log, and the one iteration you shipped from it.','End with the remaining risks and what is explicitly out of scope.'],
    done:['Three failures you found yourself, each with evidence.','Three fixes with before and after numbers.','Real evidence from five to ten users who are not your teammates.','Cost per successful task, and what happens to it at ten times the volume.','A five-minute explanation a non-technical leader could repeat, and a twenty-minute one an engineer could not poke a hole in.']}
 }
@@ -7275,6 +7331,7 @@ window.PART7 = [
   capstone:{
     title:'A pricing recommendation, backed by a cost model',
     brief:'Find out what your product is worth to a buyer, what it costs you to serve, and how to charge so the gap stays positive.',
+    where:'Written. Interviews and a cost-model spreadsheet; no code required.',
     steps:[
       'Interview five prospects about their current alternatives, who owns the budget, and what the problem costs them. Do not ask “would you pay?”.',
       'Model the cost per successful task at low, base and high usage. Include retries, human review and support time, not only model calls.',
@@ -7401,6 +7458,7 @@ window.PART7 = [
   capstone:{
     title:'Growth events, an onboarding test and a growth loop',
     brief:'Define how your product grows, test the first five minutes with real users, and design one loop you would be happy to explain to them.',
+    where:'Written. Use a no-code AI tool for a few days, then write the teardown; no code of your own required.',
     steps:[
       'Define the acquisition, activation, retention, referral and revenue events for your capstone.',
       'Prototype the onboarding and test it with five users. Measure time to first value and where people drop off.',
@@ -7515,6 +7573,7 @@ window.PART7 = [
   capstone:{
     title:'A tracking plan, a funnel and cohort, and an experiment design',
     brief:'Instrument your capstone, read what the data says, and design one test that could change a decision.',
+    where:'A real analytics tool (PostHog, Mixpanel or Google Analytics) for the tracking snippet and funnel, then the written experiment design in the notes box below.',
     steps:[
       'Write an event taxonomy and tracking plan. Implement it in PostHog, Mixpanel or Google Analytics.',
       'Build one activation funnel, one retention cohort and two segments, from real or seeded data.',
@@ -7637,6 +7696,7 @@ window.PART7 = [
   capstone:{
     title:'One tool per capability, written down and defended',
     brief:'Do not tour seventeen tools. For each capability your capstone actually needs, name the one tool you chose and the one you rejected, and why.',
+    where:'Written only. Name the tools and run the two audits; no code required.',
     steps:[
       'List the capabilities your capstone stack actually uses — most projects need five or six of the eleven below, not all of them.',
       'For each one, name the tool you picked, the job it does, and one you could have picked instead.',
@@ -7712,6 +7772,7 @@ window.PART7 = [
   capstone:{
     title:'A harness diagram, a two-way build and a release checklist',
     brief:'Make the system around your model visible, measure one design choice, and prepare to ship it safely.',
+    where:'Code — build the workflow both ways in your capstone’s codebase; write the diagram and checklist in the notes box below.',
     steps:[
       'Draw the harness around your capstone: inputs, context assembly, tools, state, policies, eval gates, traces and fallbacks.',
       'Build one workflow twice: once as a deterministic state machine and once as a bounded agent. Compare failure rate, latency and how easy each is to debug.',
@@ -7843,6 +7904,7 @@ window.PART7 = [
   capstone:{
     title:'A live product, real users and one evidence-based iteration',
     brief:'Launch to real people, watch what happens, change one thing because of what you saw, and show whether it helped.',
+    where:'Code, to deploy and monitor the app, plus real user sessions; write the changelog in the notes box below.',
     steps:[
       'Deploy the capstone to a stable live URL. Add monitoring, analytics, a privacy notice, a way to send feedback and a rollback procedure.',
       'Recruit 5–10 real target users. Observe at least five sessions, and record task success, time, failures, quotes and whether they come back.',
@@ -7955,6 +8017,7 @@ window.PART7 = [
   capstone:{
     title:'A role matrix, two case studies, mock interviews and a take-home',
     brief:'Build the evidence and the practice that get you from applying to an offer.',
+    where:'Written. A role matrix, case studies, a rewritten resume and recorded mock interviews; code only if your own capstone needs it for the take-home.',
     steps:[
       'Build a role matrix from ten job descriptions. Find the skills that keep appearing, and the ones you cannot yet prove.',
       'Turn two projects into case studies. Show the problem evidence, your decisions, the trade-offs, the metrics, the failures and what you learned.',
@@ -17809,22 +17872,14 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek hafte ki padhai ko build-first blocks mein plan kijiye, aur 0–3 mastery gate se decide kijiye ki aage kab badhna hai.',
   'Shortlist three capstone problems and say, for each one, why AI may or may not help.':
     'Teen capstone problems shortlist kijiye aur har ek ke liye batayiye ki AI madad kar sakta hai ya nahi, aur kyun.',
-  'Set up your learning system':
-    'Apna learning system set up kijiye',
-  'Three artifacts that the rest of the book builds on: a scored role scorecard, a working repository, and a shortlist of capstone problems.':
-    'Teen artifacts jin par baaki kitaab banti hai: ek scored role scorecard, ek working repository, aur capstone problems ki ek shortlist.',
   'Write a one-page role scorecard covering the seven areas: discovery, strategy, technical fluency, delivery, analytics, business and leadership. Score yourself 0–3 in each, and write the evidence next to every score.':
     'Saat areas ko cover karte hue ek one-page role scorecard likhiye: discovery, strategy, technical fluency, delivery, analytics, business aur leadership. Har ek mein khud ko 0–3 score dijiye, aur har score ke saath evidence likhiye.',
   'Create the repository with the folders <code>/research</code>, <code>/product</code>, <code>/experiments</code>, <code>/evals</code>, <code>/analytics</code>, <code>/security</code> and <code>/portfolio</code>, plus a <code>decision-log.md</code> file. Add at least two decisions to the log.':
     '<code>/research</code>, <code>/product</code>, <code>/experiments</code>, <code>/evals</code>, <code>/analytics</code>, <code>/security</code> aur <code>/portfolio</code> folders ke saath repository banayiye, plus ek <code>decision-log.md</code> file. Log mein kam se kam do decisions add kijiye.',
-  'Choose three candidate problems where AI might reduce a pain you can measure. For each one, record the user, how they do the task today, a baseline number (time, cost or error rate), and why AI may or may not belong.':
-    'Teen candidate problems chuniye jahan AI ek measurable pain kam kar sakta hai. Har ek ke liye, user, woh aaj task kaise karte hain, ek baseline number (time, cost ya error rate), aur AI kyun sahi hai ya nahi, yeh record kijiye.',
   'Every score on the scorecard has evidence next to it, not just a feeling.':
     'Scorecard ke har score ke saath evidence hai, sirf ek feeling nahi.',
   'Someone else can find any artifact in the repository in under two minutes.':
     'Koi aur do minute se kam mein repository mein koi bhi artifact dhoondh sakta hai.',
-  'For at least one candidate problem, you have written down what would make you reject AI for it.':
-    'Kam se kam ek candidate problem ke liye, aapne likh diya hai ki kya cheez aapko usme AI reject karne par majboor karegi.',
   'Mastery gate: score each artifact 0–3. Move on only when all three score at least 2.':
     'Mastery gate: har artifact ko 0–3 score kijiye. Aage tabhi badhiye jab teeno ka score kam se kam 2 ho.',
   'This chapter takes about six hours across two or three sittings. Have a notes app or a paper notebook ready. You do not need any accounts to begin: the first task is a page of writing.':
@@ -18027,28 +18082,10 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek AI assistant se ek analysis draft karwaiye, phir har claim ko evidence ke against check kijiye.',
   'Map the hard and soft skills the applied AI PM role needs, and where you stand on each.':
     'Applied AI PM role ko chahiye hard aur soft skills map kijiye, aur har ek mein aap kahan khade hain.',
-  'Map and tear down a product':
-    'Ek product map aur tear down kijiye',
-  'Take one real product, understand why it works, and practise checking AI-generated analysis against evidence.':
-    'Ek real product lijiye, samjhiye woh kyun kaam karta hai, aur AI-generated analysis ko evidence ke against check karne ka practice kijiye.',
-  'Pick one product you use. Map its discovery, delivery and distribution. Mark the weakest of the three, with the evidence that makes you think so.':
-    'Ek product chuniye jo aap use karte hain. Uski discovery, delivery aur distribution map kijiye. Teeno mein se sabse kamzor mark kijiye, us evidence ke saath jo aapko yeh sochne par majboor karta hai.',
-  'Write a teardown with seven headings: target user, job, key moment, friction, business model, moat, and one improvement.':
-    'Saat headings ke saath ek teardown likhiye: target user, job, key moment, friction, business model, moat, aur ek improvement.',
-  'Ask ChatGPT (or any assistant) for a teardown of the same product. Mark every claim it makes as supported, unsupported or wrong. Rewrite its teardown using your own evidence.':
-    'ChatGPT (ya koi bhi assistant) se usi product ka ek teardown maangiye. Uske har claim ko supported, unsupported ya wrong mark kijiye. Apni evidence use karke uska teardown dobara likhiye.',
-  'The weakest link is backed by something you observed, not a guess.':
-    'Sabse kamzor link kisi aisi cheez se backed hai jo aapne observe ki, guess nahi.',
-  'Your improvement names who it helps and what would show it worked.':
-    'Aapka improvement batata hai kisko madad karega aur kya dikhayega ki woh kaam kiya.',
   'In the AI teardown, every unsupported claim is marked, with a note on what evidence would settle it.':
     'AI teardown mein, har unsupported claim mark hai, saath mein ek note ki kaunsa evidence usey settle karega.',
   'Mastery gate: score each artifact 0–3. Move on only when all three score at least 2.':
     'Mastery gate: har artifact ko 0–3 score kijiye. Aage tabhi badhiye jab teeno ka score kam se kam 2 ho.',
-  'A capstone shortlist':
-    'Ek capstone shortlist',
-  'You apply every idea in this chapter to one of your candidate problems.':
-    'Aap is chapter ka har idea apne candidate problems mein se ek par apply karte hain.',
   'About ten hours across three or four sittings. Pick one product you use often and know well, such as Notion, Spotify, Swiggy, Slack or Canva. You will use it in every exercise.':
     'Teen ya chaar sittings mein lagbhag das ghante. Ek aisa product chuniye jo aap aksar use karte hain aur achhe se jaante hain, jaise Notion, Spotify, Swiggy, Slack ya Canva. Aap isey har exercise mein use karenge.',
   'Idea 1: Discovery, delivery and distribution are one loop':
@@ -18241,14 +18278,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek problem statement likhiye, apni assumptions list kijiye aur sabse riskiest ko pehle test kijiye.',
   'Five interviews and a problem brief':
     'Paanch interviews aur ek problem brief',
-  'Talk to five real people who have your capstone problem, and turn what they tell you into evidence you can build on.':
-    'Paanch real logon se baat kijiye jinke paas aapka capstone problem hai, aur unhone jo bataya usey evidence mein badaliye jis par aap build kar sakein.',
   'Write a screener (three to five questions that decide who qualifies) and a 12-question interview guide. Replace every hypothetical or leading question with a question about past behaviour.':
     'Ek screener likhiye (teen se paanch sawaal jo decide karte hain kaun qualify karta hai) aur ek 12-question interview guide. Har hypothetical ya leading sawaal ko past behaviour ke sawaal se replace kijiye.',
-  'Recruit and run five interviews with real target users. For each, record quotes, the steps of their workflow, their workarounds, how often the problem happens, how bad it is, and what they spend on it today.':
-    'Real target users ke saath paanch interviews recruit aur chalaiye. Har ek ke liye, quotes, unke workflow ke steps, unke workarounds, problem kitni baar hota hai, kitna bura hai, aur aaj iss par woh kya kharch karte hain, record kijiye.',
-  'Synthesise the interviews into a jobs-to-be-done statement, an evidence-backed persona, a journey map and a ranked problem brief. Include evidence that contradicts your expectations.':
-    'Interviews ko ek jobs-to-be-done statement, ek evidence-backed persona, ek journey map aur ek ranked problem brief mein synthesise kijiye. Woh evidence bhi shaamil kijiye jo aapki expectations se contradict karta hai.',
   'Five interviews with real people who match your screener. AI-generated users do not count.':
     'Paanch interviews real logon ke saath jo aapke screener se match karte hain. AI-generated users nahi ginte.',
   'Every claim in the persona and journey map points to a specific interview note.':
@@ -18433,14 +18464,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Interview evidence se ek opportunity solution tree banayiye, aur uski branches rank kijiye.',
   'Size the market and map the opportunities':
     'Market size kijiye aur opportunities map kijiye',
-  'Three artifacts that tell you whether your capstone problem is worth pursuing, and which part of it to start with.':
-    'Teen artifacts jo aapko batate hain ki aapka capstone problem pursue karne layak hai ya nahi, aur uska kaunsa hissa pehle shuru karna hai.',
-  'Build a competitor matrix with at least five alternatives, including “do nothing” and doing the task by hand. For each, note who it is for, the price, its strengths and its weaknesses.':
-    'Kam se kam paanch alternatives ke saath ek competitor matrix banayiye, "kuchh na karna" aur haath se task karna bhi shaamil. Har ek ke liye, note kijiye yeh kiske liye hai, price, uski strengths aur weaknesses.',
-  'Estimate TAM, SAM and SOM bottom-up: number of customers × realistic annual value per customer. List every assumption, and mark each as known or guessed.':
-    'TAM, SAM aur SOM bottom-up estimate kijiye: customers ki sankhya × har customer se realistic annual value. Har assumption list kijiye, aur har ek ko known ya guessed mark kijiye.',
-  'Build an opportunity solution tree from your interview evidence. Rank its branches by reach, pain, confidence and strategic fit.':
-    'Apni interview evidence se ek opportunity solution tree banayiye. Uski branches ko reach, pain, confidence aur strategic fit se rank kijiye.',
   'The competitor matrix includes the status quo, and says why it is hard to replace.':
     'Competitor matrix mein status quo shaamil hai, aur bataya hai usey replace karna mushkil kyun hai.',
   'Every number in the market estimate is labelled as known or assumed, with a source for the known ones.':
@@ -18631,14 +18654,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Product ke AI hisse ke liye build, buy ya partner karna hai, yeh decide kijiye.',
   'Write the strategy and prioritise':
     'Strategy likhiye aur prioritise kijiye',
-  'Three artifacts that turn your research into decisions: a strategy memo, a scored list of opportunities, and a build/buy/partner decision for the AI layer.':
-    'Teen artifacts jo aapki research ko decisions mein badalte hain: ek strategy memo, opportunities ki ek scored list, aur AI layer ke liye ek build/buy/partner decision.',
-  'Write a one-to-two-page strategy memo covering the diagnosis, the chosen user, the wedge, the differentiated promise, the capabilities you need, the trade-offs, and your non-goals.':
-    'Ek se do page ka strategy memo likhiye jisme diagnosis, chuna hua user, wedge, differentiated promise, chahiye capabilities, trade-offs, aur aapke non-goals shaamil hon.',
-  'Score ten opportunities with RICE. Then override one score using your strategy, and explain why in one paragraph.':
-    'RICE se das opportunities score kijiye. Phir apni strategy use karke ek score override kijiye, aur ek paragraph mein samjhaiye kyun.',
-  'Write a build/buy/partner decision for the AI layer. Compare the options on quality, latency, cost, privacy, lock-in and time to market.':
-    'AI layer ke liye ek build/buy/partner decision likhiye. Options ko quality, latency, cost, privacy, lock-in aur time to market par compare kijiye.',
   'The memo has a non-goals section that rules out something tempting.':
     'Memo mein ek non-goals section hai jo kisi tempting cheez ko rule out karta hai.',
   'Every initiative in the memo traces back to the diagnosis.':
@@ -18835,14 +18850,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Dependencies aur risks ko surprises banne se pehle track kijiye.',
   'Roadmap, OKRs and a decision memo':
     'Roadmap, OKRs aur ek decision memo',
-  'Three artifacts that turn your strategy into a plan other people can support.':
-    'Teen artifacts jo aapki strategy ko ek aise plan mein badalte hain jise doosre log support kar sakein.',
-  'Turn your strategy into a now/next/later roadmap. For each item, record the outcome, the evidence behind it, an owner, dependencies and a kill criterion.':
-    'Apni strategy ko ek now/next/later roadmap mein badaliye. Har item ke liye, outcome, uske peeche ka evidence, ek owner, dependencies aur ek kill criterion record kijiye.',
-  'Write one objective and 3–4 measurable key results. Keep product outcomes separate from model metrics, and add at least one guardrail metric.':
-    'Ek objective aur 3–4 measurable key results likhiye. Product outcomes ko model metrics se alag rakhiye, aur kam se kam ek guardrail metric jodiye.',
-  'Create a stakeholder map and run a written pre-mortem. Then draft the one-page decision memo you would send to leadership.':
-    'Ek stakeholder map banayiye aur ek written pre-mortem chalayiye. Phir woh one-page decision memo draft kijiye jo aap leadership ko bhejenge.',
   'Every roadmap item is an outcome, not a feature, and has a kill criterion.':
     'Har roadmap item ek outcome hai, feature nahi, aur uska ek kill criterion hai.',
   'At least one key result is a product outcome that a model metric alone could not achieve.':
@@ -19045,14 +19052,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Sahi prototype fidelity chuniye aur user ko lead kiye bina ek usability test chalayiye.',
   'PRD, prototype and a sprint plan':
     'PRD, prototype aur ek sprint plan',
-  'Three artifacts that take your capstone from decision to delivery.':
-    'Teen artifacts jo aapke capstone ko decision se delivery tak le jaate hain.',
-  'Write a PRD with these sections: problem evidence, users, scope, non-goals, UX states, AI behaviour, evaluations, metrics, rollout, security and open questions.':
-    'In sections ke saath ek PRD likhiye: problem evidence, users, scope, non-goals, UX states, AI behaviour, evaluations, metrics, rollout, security aur open questions.',
-  'Build a clickable prototype in Figma, Lovable or Google AI Studio. Test it with three target users using task prompts, and write down where each one got stuck.':
-    'Figma, Lovable ya Google AI Studio mein ek clickable prototype banayiye. Teen target users ke saath task prompts se test kijiye, aur likhiye har ek kahan atka.',
-  'Create a two-sprint plan in Jira (or a spreadsheet) with stories, acceptance criteria, dependencies and a demo plan. After Sprint 1, run a retrospective and record what you will change.':
-    'Jira (ya ek spreadsheet) mein stories, acceptance criteria, dependencies aur ek demo plan ke saath do-sprint plan banayiye. Sprint 1 ke baad, ek retrospective chalayiye aur likhiye aap kya badlenge.',
   'An engineer could estimate the PRD without guessing what success looks like.':
     'Ek engineer bina yeh guess kiye ki success kaisa dikhta hai, PRD estimate kar sake.',
   'The acceptance criteria cover failure, uncertainty and refusal states, not just the happy path.':
@@ -19245,20 +19244,6 @@ Object.assign(window.HING = window.HING || {}, {
     'AI market describe kijiye: model providers, open-weight models, infrastructure aur applications.',
   'Three experiments on how models work':
     'Models kaise kaam karte hain iske teen experiments',
-  'Three short experiments that turn the ideas in this chapter into evidence you have seen for yourself.':
-    'Teen chhote experiments jo is chapter ke ideas ko aisi evidence mein badalte hain jo aapne khud dekhi hai.',
-  'Use an attention visualiser (the notebook in Idea 2, or the Transformer Explainer website) to see which words influence a prediction. Write down what the demo shows and what it does not prove.':
-    'Ek attention visualiser use kijiye (Idea 2 ki notebook, ya Transformer Explainer website) yeh dekhne ke liye kaunse shabd ek prediction ko influence karte hain. Likhiye demo kya dikhata hai aur kya saabit nahi karta.',
-  'Build a decision table comparing prompt-only, RAG and fine-tuning across freshness, private data, style, cost, latency and evaluation. Fill it in for your capstone.':
-    'Prompt-only, RAG aur fine-tuning ko freshness, private data, style, cost, latency aur evaluation par compare karta ek decision table banayiye. Apne capstone ke liye ise bhariye.',
-  'Run the same ten test cases through two different model families using OpenRouter or Google AI Studio. Record quality, latency and cost for each.':
-    'OpenRouter ya Google AI Studio use karke wahi das test cases do alag model families se chalayiye. Har ek ke liye quality, latency aur cost record kijiye.',
-  'Your attention write-up says clearly what the visualisation does not show.':
-    'Aapka attention write-up saaf saaf batata hai ki visualisation kya nahi dikhata.',
-  'The decision table ends with a choice for your capstone and the reason for it.':
-    'Decision table aapke capstone ke liye ek choice aur uske reason par khatam hoti hai.',
-  'The model comparison uses the same ten cases for both models, and records all three measures.':
-    'Model comparison dono models ke liye wahi das cases use karta hai, aur teeno measures record karta hai.',
   'Rubric: conceptual accuracy 40%, experiment quality 30%, decision clarity 30%.':
     'Rubric: conceptual accuracy 40%, experiment quality 30%, decision clarity 30%.',
   'A candidate problem with an AI fit':
@@ -20925,6 +20910,264 @@ Object.assign(window.HING = window.HING || {}, {
     'Hum kya jaante hain… hum abhi kya nahi jaante… hum aage kya karenge…',
   'A strong answer separates what is known from what is not. For example: <strong>We know</strong> that 8 of 10 design partners used it for four weeks in a row, and that precision held at 86% on their real tickets. <strong>We do not know yet</strong> whether it holds for teams on other helpdesks, or with more than 5,000 tickets a week, because none of our partners had those. <strong>Next,</strong> we would add two partners from each missing group, with the same eval set and thresholds, before any wider launch. The answer admits uncertainty and gives a clear way to reduce it.':
     'Ek strong jawab yeh batata hai ki kya pata hai aur kya nahi. Jaise: <strong>Hum jaante hain</strong> ki 10 mein se 8 design partners ne isey lagatar chaar hafte use kiya, aur unke real tickets par precision 86% par tiki rahi. <strong>Hum abhi yeh nahi jaante</strong> ki yeh doosre helpdesks wali teams ke liye bhi chalega ya nahi, ya 5,000 se zyada tickets har hafte wale case mein, kyunki hamare kisi bhi partner ke paas woh nahi tha. <strong>Aage,</strong> hum har missing group se do partners jodenge, wahi eval set aur thresholds ke saath, kisi bhi bade launch se pehle. Yeh jawab uncertainty ko maanta hai aur usey kam karne ka ek saaf raasta deta hai.'
+
+});
+
+/* Hinglish: Track A capstone rewrite for the Bharat Privacy Guard project.
+   Keyed on the exact English line. */
+Object.assign(window.HING = window.HING || {}, {
+
+  'Set up your learning system, and name your capstone: Bharat Privacy Guard':
+    'Apna learning system set up kijiye, aur apna capstone naam lijiye: Bharat Privacy Guard',
+
+  'Three artifacts that the rest of the book builds on: a scored role scorecard, a working repository, and the capstone problem — an Indian, multilingual privacy layer that detects personal and quasi-identifying information in English, Hindi and Hinglish before it reaches a website, an API or an LLM.':
+    'Teen artifacts jin par baaki book banti hai: ek scored role scorecard, ek working repository, aur capstone problem — ek Indian, multilingual privacy layer jo English, Hindi aur Hinglish mein personal aur quasi-identifying information ko detect karti hai, kisi website, API ya LLM tak pahunchne se pehle.',
+
+  'Name your capstone problem: a privacy layer that detects PII and quasi-identifiers in Indian text (English, Hindi and Hinglish) and lets an application redact, mask or minimise it before the data goes anywhere. Name two alternative problems you considered instead, and write the specific reason each lost — a baseline number if you have one, and why AI may or may not belong in the winner.':
+    'Apna capstone problem naam lijiye: ek privacy layer jo Indian text (English, Hindi aur Hinglish) mein PII aur quasi-identifiers detect karti hai, aur ek application ko data kahin jaane se pehle redact, mask ya minimise karne deti hai. Do alternative problems naam lijiye jo aapne iski jagah socha, aur likhiye har ek kyun haara — agar hai to ek baseline number, aur winner mein AI kyun belong karti hai ya nahi.',
+
+  'You have written down the specific reason each rejected alternative lost, not just that the privacy layer "felt more interesting."':
+    'Aapne likh diya hai ki har reject kiya gaya alternative kyun haara, sirf yeh nahi ki privacy layer "zyada interesting lagi."',
+
+  'Tear down Rampart':
+    'Rampart ka teardown kijiye',
+
+  'Take the product your capstone is answering — Rampart, the PII-detection tool it is a response to — understand why it works and where it stops working, and practise checking AI-generated analysis against evidence.':
+    'Woh product lijiye jiska jawab aapka capstone hai — Rampart, woh PII-detection tool jiska yeh response hai — samjhiye yeh kyun kaam karta hai aur kahan kaam karna band kar deta hai, aur AI-generated analysis ko evidence ke against check karne ki practice kijiye.',
+
+  'Written only. Rampart’s own published model card and documentation; no code required.':
+    'Sirf likha hua. Rampart ka khud ka published model card aur documentation; koi code nahi chahiye.',
+
+  'Map Rampart’s discovery, delivery and distribution as a product. Mark the weakest of the three, with the evidence that makes you think so.':
+    'Ek product ki tarah Rampart ki discovery, delivery aur distribution map kijiye. Teeno mein se sabse kamzor ko mark kijiye, us evidence ke saath jo aapko aisa sochne par majboor karta hai.',
+
+  'Write a teardown with seven headings: target user, job, key moment, friction, business model, moat, and one improvement. For "moat," be specific about what its language scope protects it from and what it does not.':
+    'Saat headings ke saath ek teardown likhiye: target user, job, key moment, friction, business model, moat, aur ek improvement. "Moat" ke liye, specific rahiye ki iska language scope isey kisse bachata hai aur kisse nahi.',
+
+  'Ask ChatGPT (or any assistant) for a teardown of Rampart. Mark every claim it makes as supported, unsupported or wrong against the model card’s own stated numbers — including any claim about how well it handles Indian languages. Rewrite its teardown using your own evidence.':
+    'ChatGPT (ya koi bhi assistant) se Rampart ka ek teardown maangiye. Woh jo bhi claim karta hai usey model card ke apne bataye numbers ke against supported, unsupported ya wrong mark kijiye — isme yeh claim bhi shaamil hai ki yeh Indian languages kitni achhi tarah handle karta hai. Apne khud ke evidence se uska teardown dobara likhiye.',
+
+  'The weakest link is backed by something you read in the model card or documentation, not a guess.':
+    'Sabse kamzor link kisi aisi cheez se backed hai jo aapne model card ya documentation mein padhi, ek guess se nahi.',
+
+  'Your improvement is the one your own capstone is built to be, named precisely: which language(s) and which failure mode.':
+    'Aapka improvement wahi hai jo aapka khud ka capstone banne ke liye bana hai, precisely naam liya hua: kaunsi language(s) aur kaunsa failure mode.',
+
+  'Your capstone':
+    'Aapka capstone',
+
+  'You apply every idea in this chapter to your capstone, and to the product it is closest to.':
+    'Is chapter ka har idea aap apne capstone par apply karte hain, aur us product par jiske yeh sabse kareeb hai.',
+
+  'Talk to five real people on five different sides of the privacy problem, and turn what they tell you into evidence you can build on.':
+    'Privacy problem ke paanch alag-alag sides par paanch real logon se baat kijiye, aur woh jo aapko batate hain usey aisa evidence banaiye jispar aap build kar sakein.',
+
+  'Recruit and run five interviews, one with each: a developer who handles user-entered data, a compliance or legal contact, a support agent who has seen personal information typed into a chat box, an end user, and a founder who has faced a build-vs-buy decision on privacy tooling. For each, record quotes, their workflow, their workarounds, how often the problem happens, how bad it is, and what they spend on it today.':
+    'Paanch interviews recruit karke chalaiye, har ek ke saath: ek developer jo user-entered data handle karta hai, ek compliance ya legal contact, ek support agent jisne personal information ko chat box mein type hote dekha hai, ek end user, aur ek founder jisne privacy tooling par build-vs-buy decision face kiya ho. Har ek ke liye, quotes, unka workflow, unke workarounds, problem kitni baar hoti hai, kitni buri hai, aur aaj woh isper kya kharch karte hain, record kijiye.',
+
+  'Synthesise the interviews into a jobs-to-be-done statement, an evidence-backed persona for each side (the developer buying the SDK is not the same person as the end user it protects), a journey map, and a ranked problem brief. Include evidence that contradicts your expectations.':
+    'Interviews ko ek jobs-to-be-done statement mein synthesise kijiye, har side ke liye ek evidence-backed persona (SDK khareedne wala developer wahi insaan nahi hai jisey yeh protect karta hai), ek journey map, aur ek ranked problem brief. Woh evidence shaamil kijiye jo aapki expectations se contradict karta hai.',
+
+  'Three artifacts that tell you whether Bharat Privacy Guard is worth pursuing, and which part of it to start with.':
+    'Teen artifacts jo aapko batate hain ki Bharat Privacy Guard pursue karne layak hai ya nahi, aur iska kaunsa hissa pehle shuru karna hai.',
+
+  'Build a competitor matrix with at least five alternatives, including Rampart, Microsoft Presidio, at least one Indian DPDP-compliance startup, “do nothing”, and a developer hand-rolling their own regex. For each, note who it is for, the price, its strengths and its weaknesses — for Rampart and Presidio specifically, note their language coverage.':
+    'Kam se kam paanch alternatives ke saath ek competitor matrix banaiye, jisme Rampart, Microsoft Presidio, kam se kam ek Indian DPDP-compliance startup, "kuchh na karna", aur ek developer jo khud apna regex hand-roll karta hai, shaamil hon. Har ek ke liye, note kijiye yeh kiske liye hai, price, iski strengths aur weaknesses — Rampart aur Presidio ke liye specifically, unki language coverage note kijiye.',
+
+  'Estimate TAM, SAM and SOM bottom-up: number of Indian developer teams handling user PII × realistic annual value per team. List every assumption, and mark each as known or guessed.':
+    'TAM, SAM aur SOM bottom-up estimate kijiye: user PII handle karne wale Indian developer teams ki sankhya × har team ki realistic annual value. Har assumption list kijiye, aur har ek ko known ya guessed mark kijiye.',
+
+  'Build an opportunity solution tree from your interview evidence. Rank its branches — the SDK, the Gateway, the browser extension — by reach, pain, confidence and strategic fit.':
+    'Apne interview evidence se ek opportunity solution tree banaiye. Iski branches — SDK, Gateway, browser extension — ko reach, pain, confidence aur strategic fit ke hisaab se rank kijiye.',
+
+  'Three artifacts that turn your research into decisions: a strategy memo choosing the SDK as the wedge, a scored list of opportunities, and a build/buy/partner decision for each detection layer.':
+    'Teen artifacts jo aapke research ko decisions mein badalte hain: ek strategy memo jo SDK ko wedge ki tarah chunta hai, opportunities ki ek scored list, aur har detection layer ke liye ek build/buy/partner decision.',
+
+  'Write a one-to-two-page strategy memo covering the diagnosis, the chosen user (start with the developer, not the end user or the compliance buyer), the wedge — the SDK, not the Gateway or the browser extension, first — the differentiated promise, the capabilities you need, the trade-offs, and your non-goals.':
+    'Ek se do page ka strategy memo likhiye jisme diagnosis, chuna hua user (developer se shuru kijiye, end user ya compliance buyer se nahi), wedge — pehle SDK, Gateway ya browser extension nahi — differentiated promise, chahiye wali capabilities, trade-offs, aur aapke non-goals shaamil hon.',
+
+  'Score ten opportunities with RICE, including the Gateway and the browser extension as two of them. Then override one score using your strategy, and explain why in one paragraph.':
+    'RICE se das opportunities score kijiye, jisme Gateway aur browser extension bhi do ki tarah shaamil hon. Phir apni strategy use karke ek score override kijiye, aur ek paragraph mein samjhaiye kyun.',
+
+  'Write a build/buy/partner decision for each detection layer separately: hand-written regex versus an existing recognizer library for Layer 1, a hosted or open-source NER model versus one you train yourself for Layer 2, and which provider (if any) for Layer 3. Compare the options on quality, latency, cost, privacy, lock-in and time to market.':
+    'Har detection layer ke liye alag-alag ek build/buy/partner decision likhiye: Layer 1 ke liye hand-written regex versus ek existing recognizer library, Layer 2 ke liye ek hosted ya open-source NER model versus ek jo aap khud train karein, aur Layer 3 ke liye kaunsa provider (agar koi ho). Options ko quality, latency, cost, privacy, lock-in aur time to market par compare kijiye.',
+
+  'Three artifacts that turn your strategy into a plan other people can support — a roadmap that ends at the Part V capstone, where the SDK ships.':
+    'Teen artifacts jo aapki strategy ko ek aise plan mein badalte hain jise doosre log support kar sakein — ek roadmap jo Part V ke capstone par khatam hoti hai, jahan SDK ship hota hai.',
+
+  'Turn your strategy into a now/next/later roadmap against the rest of this course as your timeline, ending with a working SDK demo at the Part V capstone. For each item, record the outcome, the evidence behind it, an owner, dependencies and a kill criterion.':
+    'Apni strategy ko is course ke baaki hisse ko apni timeline maankar ek now/next/later roadmap mein badaliye, jo Part V ke capstone par ek working SDK demo par khatam ho. Har item ke liye, outcome, uske peeche ka evidence, ek owner, dependencies aur ek kill criterion record kijiye.',
+
+  'Write one objective and 3–4 measurable key results. Keep product outcomes (a developer successfully integrates the SDK) separate from model metrics (precision and recall per identifier type), and add at least one guardrail metric — a false-positive rate you will not let quality-chasing push past.':
+    'Ek objective aur 3–4 measurable key results likhiye. Product outcomes (ek developer SDK ko successfully integrate karta hai) ko model metrics (har identifier type ka precision aur recall) se alag rakhiye, aur kam se kam ek guardrail metric jodiye — ek false-positive rate jise aap quality ke peeche bhaagte hue paar nahi hone denge.',
+
+  'Create a stakeholder map — the developer who embeds the SDK, the compliance reviewer, the end user, a future employer reading your portfolio — and run a written pre-mortem. Then draft the one-page decision memo you would send to leadership.':
+    'Ek stakeholder map banaiye — woh developer jo SDK embed karta hai, compliance reviewer, end user, aapka portfolio padhne wala ek future employer — aur ek likha hua pre-mortem chalaiye. Phir woh one-page decision memo draft kijiye jo aap leadership ko bhejenge.',
+
+  'Three artifacts that take Bharat Privacy Guard from decision to delivery — including the explicit MVP scope: English, Hindi and Hinglish; the SDK surface; and what is out of scope for this course.':
+    'Teen artifacts jo Bharat Privacy Guard ko decision se delivery tak le jaate hain — isme explicit MVP scope shaamil hai: English, Hindi aur Hinglish; SDK surface; aur is course ke liye kya out of scope hai.',
+
+  'Write a PRD with these sections: problem evidence, users, scope, non-goals, UX states, AI behaviour, evaluations, metrics, rollout, security and open questions. State the MVP boundary explicitly: which languages, which identifiers, and which of the SDK, Gateway and browser extension you will actually build versus only specify.':
+    'In sections ke saath ek PRD likhiye: problem evidence, users, scope, non-goals, UX states, AI behaviour, evaluations, metrics, rollout, security aur open questions. MVP boundary explicitly state kijiye: kaunsi languages, kaunse identifiers, aur SDK, Gateway aur browser extension mein se aap asal mein kya banayenge versus sirf specify karenge.',
+
+  'Build a clickable prototype in Google AI Studio or Lovable: a page where a user pastes text and sees a mocked-up redacted version — the real detection engine comes later, this tests the interaction, not the accuracy. Test it with three target users, pasting their own realistic English, Hindi and Hinglish sentences, and write down where each one got stuck.':
+    'Google AI Studio ya Lovable mein ek clickable prototype banaiye: ek page jahan user text paste karta hai aur ek mocked-up redacted version dekhta hai — real detection engine baad mein aata hai, yeh interaction test karta hai, accuracy nahi. Teen target users ke saath test kijiye, unke apne realistic English, Hindi aur Hinglish sentences paste karte hue, aur likhiye har ek kahan atka.',
+
+  'Create a two-sprint plan in Jira (or a spreadsheet) with stories, acceptance criteria, dependencies and a demo plan, sequenced against this course’s remaining chapters. After Sprint 1, run a retrospective and record what you will change.':
+    'Jira (ya ek spreadsheet) mein stories, acceptance criteria, dependencies aur ek demo plan ke saath ek two-sprint plan banaiye, is course ke baaki chapters ke against sequenced. Sprint 1 ke baad, ek retrospective chalaiye aur record kijiye aap kya badlenge.',
+
+  'Three short experiments that turn the ideas in this chapter into evidence you have seen for yourself — run on the text your capstone actually has to handle: English, Hindi and Hinglish.':
+    'Teen chhote experiments jo is chapter ke ideas ko aise evidence mein badalte hain jo aapne khud dekha ho — us text par chalaye gaye jise aapke capstone ko asal mein handle karna hai: English, Hindi aur Hinglish.',
+
+  'Use an attention visualiser (the notebook in Idea 2, or the Transformer Explainer website) on three versions of the same sentence containing a name and a phone number: in English, in Hindi (Devanagari), and in Hinglish. Write down what differs between the three and what the demo does not prove.':
+    'Ek naam aur ek phone number wale ek hi sentence ke teen versions par ek attention visualiser (Idea 2 ki notebook, ya Transformer Explainer website) use kijiye: English mein, Hindi (Devanagari) mein, aur Hinglish mein. Likhiye teeno mein kya alag hai aur demo kya saabit nahi karta.',
+
+  'Build a decision table comparing prompt-only, RAG and fine-tuning across freshness, private data, style, cost, latency and evaluation. Fill it in for Layer 3 of your capstone specifically: the contextual/quasi-identifier detector.':
+    'Freshness, private data, style, cost, latency aur evaluation ke across prompt-only, RAG aur fine-tuning compare karte hue ek decision table banaiye. Isey apne capstone ke Layer 3 ke liye specifically bhariye: contextual/quasi-identifier detector.',
+
+  'Run the same ten sentences — a mix of English, Hindi and Hinglish, at least one containing an Aadhaar-shaped number — through two different model families using OpenRouter or Google AI Studio, asking each to find the PII. Record quality, latency and cost for each, and note which model missed the Hinglish rows.':
+    'OpenRouter ya Google AI Studio use karte hue wahi das sentences — English, Hindi aur Hinglish ka mix, kam se kam ek mein ek Aadhaar-shaped number — do alag model families se chalaiye, har ek se PII dhoondhne ko kahiye. Har ek ke liye quality, latency aur cost record kijiye, aur note kijiye kaunsa model Hinglish rows miss kar gaya.',
+
+  'Your attention write-up names a specific difference you saw between the English, Hindi and Hinglish versions, not just that they "worked differently."':
+    'Aapka attention write-up ek specific difference naam leta hai jo aapne English, Hindi aur Hinglish versions ke beech dekha, sirf yeh nahi ki woh "alag kaam karte hain."',
+
+  'The decision table ends with a choice for Layer 3 and the reason for it.':
+    'Decision table Layer 3 ke liye ek choice aur uski reason ke saath khatam hoti hai.',
+
+  'The model comparison uses the same ten cases for both models, and records all three measures, including the Hinglish-specific miss rate.':
+    'Model comparison dono models ke liye wahi das cases use karta hai, aur teeno measures record karta hai, Hinglish-specific miss rate samet.',
+
+});
+
+/* Hinglish: capstone "Where you do this" lines, added so a learner knows
+   before starting whether a capstone means code in a notebook or a written
+   artifact. Keyed on the exact English line. */
+Object.assign(window.HING = window.HING || {}, {
+
+  'The tools on this page — no notebook, no account. Write the final number and two sentences in the notes box below.':
+    'Is page ke tools — na notebook, na account. Final number aur do sentences notes box mein likhiye.',
+  'Your <code>chapter-1</code> notebook. The usage numbers you print are the deliverable; the notes box below is for a short reflection, not a write-up.':
+    'Aapki <code>chapter-1</code> notebook. Jo usage numbers aap print karte hain woh deliverable hain; neeche ka notes box ek chhoti reflection ke liye hai, write-up ke liye nahi.',
+  'Keep using your <code>chapter-1</code> notebook for the calls and token counts, then write the one-sentence budget answer in the notes box below.':
+    'Calls aur token counts ke liye apni <code>chapter-1</code> notebook use karte rahiye, phir ek-sentence budget jawab neeche notes box mein likhiye.',
+  'Your <code>chapter-2</code> notebook. Write the system prompt as the system message and test it there — you will reopen this same prompt in Chapter 2.1.':
+    'Aapki <code>chapter-2</code> notebook. System prompt ko system message ki tarah likhiye aur wahin test kijiye — yahi prompt aap Chapter 2.1 mein dobara kholenge.',
+  'Your <code>chapter-2-1</code> notebook. Write and run the prompt there; the notes box below is for what your colleague said when they tried it without help.':
+    'Aapki <code>chapter-2-1</code> notebook. Prompt wahin likhiye aur chalaiye; neeche ka notes box iske liye hai ki jab aapke colleague ne bina madad ke try kiya to unhone kya kaha.',
+  'Your <code>chapter-2-2</code> notebook. Build and score the test set in code; write the half-page summary in the notes box below.':
+    'Aapki <code>chapter-2-2</code> notebook. Test set ko code mein banaiye aur score kijiye; half-page summary neeche notes box mein likhiye.',
+  'Written, no new code. Use the test set already in your <code>chapter-2-2</code> notebook, but the steps here are pen-and-paper thinking, not code.':
+    'Likha hua, koi naya code nahi. Apni <code>chapter-2-2</code> notebook mein pehle se maujood test set use kijiye, lekin yahan ke steps pen-and-paper sochna hai, code nahi.',
+  'Your <code>chapter-2-4</code> notebook. Build and measure the classifier there; note the per-category numbers in the notes box below.':
+    'Aapki <code>chapter-2-4</code> notebook. Classifier wahin banaiye aur naapiye; per-category numbers neeche notes box mein note kijiye.',
+  'Your <code>chapter-2-5</code> notebook. Build the summariser and its fact check there; the notes box below is for what the check caught.':
+    'Aapki <code>chapter-2-5</code> notebook. Summariser aur uska fact check wahin banaiye; neeche ka notes box iske liye hai ki check ne kya pakda.',
+  'Written, no code. Pen, paper and scissors, as the chapter said — write the rule, then test it by hand on the messiest document you can find.':
+    'Likha hua, koi code nahi. Pen, paper aur scissors, jaisa chapter ne kaha — rule likhiye, phir sabse messy document par haath se test kijiye.',
+  'Written, no code. You are the search engine this time — score by hand and write up the results in the notes box below.':
+    'Likha hua, koi code nahi. Is baar aap khud search engine hain — haath se score kijiye aur results neeche notes box mein likhiye.',
+  'Your <code>chapter-5</code> notebook for the code comparison, next to the hand-scored results from Chapter 4. Write up the comparison in the notes box below.':
+    'Code comparison ke liye aapki <code>chapter-5</code> notebook, Chapter 4 ke hand-scored results ke saath. Comparison neeche notes box mein likhiye.',
+  'Pen and paper, plus your <code>chapter-5</code> notebook for the measurements. Write the memo itself in the notes box below.':
+    'Pen aur paper, plus measurements ke liye aapki <code>chapter-5</code> notebook. Memo khud neeche notes box mein likhiye.',
+  'Written only — this capstone is not a build. Draw on your <code>chapter-7</code> notebook\'s results, and write the findings page in the notes box below.':
+    'Sirf likha hua — yeh capstone ek build nahi hai. Apni <code>chapter-7</code> notebook ke results use kijiye, aur findings page neeche notes box mein likhiye.',
+  'Written only, no new code. Open your <code>chapter-7</code> notebook to check the numbers, then write the one-page inventory in the notes box below.':
+    'Sirf likha hua, koi naya code nahi. Numbers check karne ke liye apni <code>chapter-7</code> notebook kholiye, phir one-page inventory neeche notes box mein likhiye.',
+  'Your <code>chapter-8</code> notebook. Run both versions and count the failures in code; write the final comparison in the notes box below.':
+    'Aapki <code>chapter-8</code> notebook. Dono versions chalaiye aur code mein failures count kijiye; final comparison neeche notes box mein likhiye.',
+  'Keep using your <code>chapter-8</code> notebook. Build and rerun the extractor there; note what your schema still cannot catch in the notes box below.':
+    'Apni <code>chapter-8</code> notebook use karte rahiye. Extractor wahin banaiye aur dobara chalaiye; aapka schema abhi bhi kya nahi pakad pata, neeche notes box mein note kijiye.',
+  'Your <code>chapter-9</code> notebook. Build and break the agent in code; write the worst-case paragraph in the notes box below.':
+    'Aapki <code>chapter-9</code> notebook. Agent ko code mein banaiye aur todiye; worst-case paragraph neeche notes box mein likhiye.',
+  'Your <code>chapter-10</code> notebook for the measurements, then the written budget in the notes box below.':
+    'Measurements ke liye aapki <code>chapter-10</code> notebook, phir likha hua budget neeche notes box mein.',
+  'Your <code>chapter-11</code> notebook, to run both groups and record the four cells; write the routing rule in the notes box below.':
+    'Aapki <code>chapter-11</code> notebook, dono groups chalane aur chaar cells record karne ke liye; routing rule neeche notes box mein likhiye.',
+  'Your <code>chapter-11-5</code> notebook, to measure the twenty requests; write the acceptance line in the notes box below.':
+    'Aapki <code>chapter-11-5</code> notebook, bees requests naapne ke liye; acceptance line neeche notes box mein likhiye.',
+  'Your <code>chapter-12</code> notebook. Make each change and measure it in code; rank the four changes in the notes box below.':
+    'Aapki <code>chapter-12</code> notebook. Har change kijiye aur code mein naapiye; chaaron changes ko neeche notes box mein rank kijiye.',
+  'Your <code>chapter-13</code> notebook, to try the attack and the wording fix; write the exposure note in the notes box below.':
+    'Aapki <code>chapter-13</code> notebook, attack aur wording fix try karne ke liye; exposure note neeche notes box mein likhiye.',
+  'Your <code>chapter-14</code> notebook, to build and run the judge. Grade the fifty outputs by hand, then write the agreement figure in the notes box below.':
+    'Aapki <code>chapter-14</code> notebook, judge banane aur chalane ke liye. Pachaas outputs haath se grade kijiye, phir agreement figure neeche notes box mein likhiye.',
+  'Written only, no code and no notebook. Read the hundred outputs on paper, group your notes, and write the ranked list in the notes box below.':
+    'Sirf likha hua, na code na notebook. Sau outputs paper par padhiye, apne notes group kijiye, aur ranked list neeche notes box mein likhiye.',
+  'Your <code>chapter-15</code> notebook, to measure tokens and build the cascade; write the three cost numbers in the notes box below.':
+    'Aapki <code>chapter-15</code> notebook, tokens naapne aur cascade banane ke liye; teen cost numbers neeche notes box mein likhiye.',
+  'Your <code>chapter-16</code> notebook, to extract and compare against the originals; write the estimated error rate in the notes box below.':
+    'Aapki <code>chapter-16</code> notebook, extract karne aur originals se compare karne ke liye; estimated error rate neeche notes box mein likhiye.',
+  'Written, no code. The three real documents and the three questions from the chapter — write the one-page rule in the notes box below.':
+    'Likha hua, koi code nahi. Chapter ke teen real documents aur teen sawaal — one-page rule neeche notes box mein likhiye.',
+  'Written only. Gather what you already measured in earlier chapters, then write the system card in the notes box below.':
+    'Sirf likha hua. Pichhle chapters mein jo naapa woh ikattha kijiye, phir system card neeche notes box mein likhiye.',
+  'Written only. Collect the artifacts named in the chapter, then write the PRD and the migration rehearsal in the notes box below.':
+    'Sirf likha hua. Chapter mein naam liye gaye artifacts collect kijiye, phir PRD aur migration rehearsal neeche notes box mein likhiye.',
+  'Written, no code. Compare the vendor and your own build on paper, then write the recommendation in the notes box below.':
+    'Likha hua, koi code nahi. Vendor aur apne build ko paper par compare kijiye, phir recommendation neeche notes box mein likhiye.',
+  'Written, no code. Cost the proposal on paper using numbers from earlier chapters, then write your answer in the notes box below.':
+    'Likha hua, koi code nahi. Pichhle chapters ke numbers use karke proposal ko paper par cost kijiye, phir apna jawab neeche notes box mein likhiye.',
+  'Written, no code. Design the four states on paper, then time a real correction with a stopwatch and write the design in the notes box below.':
+    'Likha hua, koi code nahi. Chaaron states ko paper par design kijiye, phir stopwatch se ek real correction time kijiye aur design neeche notes box mein likhiye.',
+  'Written, no code. Design the pilot on paper, then write it up and get it agreed before anything runs.':
+    'Likha hua, koi code nahi. Pilot ko paper par design kijiye, phir usey likhiye aur kuchh bhi chalne se pehle usse agree karwa lijiye.',
+  'A new notebook, or a local folder if you prefer. This is the harness you build in code and keep extending through Chapter 34 — the notes box below is for what surprised you, not the code itself.':
+    'Ek nayi notebook, ya agar aap chahein to ek local folder. Yeh woh harness hai jo aap code mein banate hain aur Chapter 34 tak extend karte rehte hain — neeche ka notes box iske liye hai ki aapko kya surprising laga, code ke liye nahi.',
+  'Your experiment harness from Chapter 21, to run the benchmark; write the one-page card in the notes box below.':
+    'Chapter 21 se aapka experiment harness, benchmark chalane ke liye; one-page card neeche notes box mein likhiye.',
+  'Written, using real token counts from an assistant you know. Measure what you can, then write the one page in the notes box below.':
+    'Likha hua, ek aapke jaane-pehchane assistant ke real token counts use karte hue. Jo naap sakte hain naapiye, phir ek page neeche notes box mein likhiye.',
+  'Written only — a one-page architecture design, no code required.':
+    'Sirf likha hua — ek one-page architecture design, koi code nahi chahiye.',
+  'Your experiment harness and agent loop, extended in code to build the approval flow; write the measured numbers in the notes box below.':
+    'Aapka experiment harness aur agent loop, approval flow banane ke liye code mein extend kiya hua; naape gaye numbers neeche notes box mein likhiye.',
+  'Your experiment harness, extended in code to build and test the agent; write the recommendation in the notes box below.':
+    'Aapka experiment harness, agent banane aur test karne ke liye code mein extend kiya hua; recommendation neeche notes box mein likhiye.',
+  'Written only. Classify the tools and write the policy — no new code is needed.':
+    'Sirf likha hua. Tools classify kijiye aur policy likhiye — koi naya code nahi chahiye.',
+  'Written only — a specification, no code required.':
+    'Sirf likha hua — ek specification, koi code nahi chahiye.',
+  'Your experiment harness, extended in code to build the gate itself.':
+    'Aapka experiment harness, gate khud banane ke liye code mein extend kiya hua.',
+  'Your experiment harness, extended in code to record full traces, then the written specification in the notes box below.':
+    'Aapka experiment harness, full traces record karne ke liye code mein extend kiya hua, phir likhi hui specification neeche notes box mein.',
+  'Written only. The register draws on evidence from your earlier chapters; no new code is needed.':
+    'Sirf likha hua. Register aapke pichhle chapters ke evidence se banta hai; koi naya code nahi chahiye.',
+  'Written only. The PRD draws on evidence from earlier chapters; no new code is needed.':
+    'Sirf likha hua. PRD pichhle chapters ke evidence se banta hai; koi naya code nahi chahiye.',
+  'Written only — a slide deck or document, drawing on your earlier measurements; no new code is needed.':
+    'Sirf likha hua — ek slide deck ya document, aapke pehle ke measurements use karte hue; koi naya code nahi chahiye.',
+  'Your repository, for the working system and its README, plus a written findings document — both together are the deliverable.':
+    'Aapki repository, working system aur uske README ke liye, plus ek likha hua findings document — dono saath mein deliverable hain.',
+  'Written. A notes app or paper for the scorecard, and a repository (folders and files, not really code) for the rest.':
+    'Likha hua. Scorecard ke liye ek notes app ya paper, aur baaki ke liye ek repository (folders aur files, asal code nahi).',
+  'Written only. Real conversations with real people, then written synthesis; no code required.':
+    'Sirf likha hua. Real logon ke saath real conversations, phir likha hua synthesis; koi code nahi chahiye.',
+  'Written only. Research and a spreadsheet; no code required.':
+    'Sirf likha hua. Research aur ek spreadsheet; koi code nahi chahiye.',
+  'Written only. A memo and a scored spreadsheet; no code required.':
+    'Sirf likha hua. Ek memo aur ek scored spreadsheet; koi code nahi chahiye.',
+  'Written only. A memo and a stakeholder map; no code required.':
+    'Sirf likha hua. Ek memo aur ek stakeholder map; koi code nahi chahiye.',
+  'Written for the PRD and sprint plan, plus a no-code prototype in Figma, Lovable or Google AI Studio — no Python required.':
+    'PRD aur sprint plan ke liye likha hua, plus Figma, Lovable ya Google AI Studio mein ek no-code prototype — koi Python nahi chahiye.',
+  'A free tool (the Transformer Explainer website) or, if you prefer, a Colab notebook for the attention demo. Write what you saw in the notes box below.':
+    'Ek free tool (Transformer Explainer website) ya, agar aap chahein, attention demo ke liye ek Colab notebook. Aapne kya dekha woh neeche notes box mein likhiye.',
+  'Written. Interviews and a cost-model spreadsheet; no code required.':
+    'Likha hua. Interviews aur ek cost-model spreadsheet; koi code nahi chahiye.',
+  'Written. Use a no-code AI tool for a few days, then write the teardown; no code of your own required.':
+    'Likha hua. Kuchh dinon ke liye ek no-code AI tool use kijiye, phir teardown likhiye; aapka khud ka koi code nahi chahiye.',
+  'A real analytics tool (PostHog, Mixpanel or Google Analytics) for the tracking snippet and funnel, then the written experiment design in the notes box below.':
+    'Tracking snippet aur funnel ke liye ek real analytics tool (PostHog, Mixpanel ya Google Analytics), phir likha hua experiment design neeche notes box mein.',
+  'Written only. Name the tools and run the two audits; no code required.':
+    'Sirf likha hua. Tools ka naam lijiye aur dono audits chalaiye; koi code nahi chahiye.',
+  'Code — build the workflow both ways in your capstone’s codebase; write the diagram and checklist in the notes box below.':
+    'Code — workflow ko apne capstone ke codebase mein dono tarike se banaiye; diagram aur checklist neeche notes box mein likhiye.',
+  'Code, to deploy and monitor the app, plus real user sessions; write the changelog in the notes box below.':
+    'Code, app deploy aur monitor karne ke liye, plus real user sessions; changelog neeche notes box mein likhiye.',
+  'Written. A role matrix, case studies, a rewritten resume and recorded mock interviews; code only if your own capstone needs it for the take-home.':
+    'Likha hua. Ek role matrix, case studies, ek dobara likha hua resume aur record kiye hue mock interviews; code sirf tab agar aapke capstone ko take-home ke liye chahiye.'
 
 });
 
@@ -31135,14 +31378,22 @@ function renderChapter(c){
     const cs2=h('section',{class:'part capstone',id:'capstone'});
     cs2.appendChild(sectionHead(c.num+'.'+n++,'Capstone — '+T(cp.title)));
     cs2.appendChild(h('div',{class:'prose'},[h('p',{class:'concept',html:T(cp.brief)})]));
+    /* Steps alone left it ambiguous whether a given capstone meant open a
+       notebook or open a doc — a reader had to infer that from the chapter's
+       own "Before you start" line, several sections back. Naming it here,
+       next to the steps, removes the guess. */
+    if(cp.where)
+      cs2.appendChild(h('div',{class:'planhead'},[
+        h('span',{class:'cplbl',text:'Where you do this'}),
+        h('span',{class:'dim',style:'font-size:.85rem',html:T(cp.where)})]));
     if((cp.steps||[]).length)
       cs2.appendChild(h('div',{class:'prose'},[h('ol',{class:'num'},cp.steps.map(x=>h('li',{html:T(x)})))]));
     if((cp.done||[]).length)
       cs2.appendChild(h('div',{class:'takeaway'},[
         h('span',{class:'cplbl',text:'It is finished when'}),
         h('ul',{class:'plain'},cp.done.map(x=>h('li',{html:T(x)})))]));
-    cs2.appendChild(notebookBlock(c,'capstone','What you built, and anything that surprised you',
-      'Rough notes. The build is the deliverable, not the write-up.'));
+    cs2.appendChild(notebookBlock(c,'capstone','What you produced, and anything that surprised you',
+      'Rough notes. The artifact above — code or written — is the deliverable, not this box.'));
     w.appendChild(cs2);
   }
 

@@ -20,6 +20,7 @@ window.PART3 = [
   red:['A grader nobody checked against human marking','Longer answers scoring higher for no reason','Testing on questions that look nothing like real ones'],
   capstone:{title:'A judge you have checked',
    brief:'Build an automated grader, and more importantly the evidence for how far it can be trusted. A grader nobody has checked is not a measurement.',
+   where:'Your <code>chapter-14</code> notebook, to build and run the judge. Grade the fifty outputs by hand, then write the agreement figure in the notes box below.',
    steps:['Write the rubric a careful person would use to grade one type of output your team produces.','Run the free code checks first, such as format, length and required fields. Count how many failures never need a judge.','Build the judge from your rubric, and grade fifty outputs by hand as well.','Report agreement honestly, including where the judge is consistently more lenient or harsher than you.','Test it for length bias on your own data: the same content in twice the words. Does the score change?'],
    done:['You have an agreement figure between the judge and your own grading on the same fifty items.','You know whether your judge rewards length, from a test you ran.','You can state the score range in which you would read the output yourself rather than trust the judge.']},
   story:[
@@ -113,6 +114,7 @@ window.PART3 = [
   ],
   capstone:{title:'A failure taxonomy for a real system',
    brief:'Read a hundred real outputs, describe what went wrong in your own words, and turn your notes into groups someone can count. This tells a team what to fix next, and no benchmark can produce it for you.',
+   where:'Written only, no code and no notebook. Read the hundred outputs on paper, group your notes, and write the ranked list in the notes box below.',
    steps:['Collect a hundred real outputs from something you own or use. Use real traffic, not a sample you chose.','Read them. For each one that went wrong, write what went wrong in your own words. Do not group yet; grouping early hides categories you had not thought of.','Now group the notes, name the groups and count each one.','Rank the groups by count multiplied by how badly each one affects a real person.','For the top group, write what would need to change, and whether that is the prompt, retrieval, a field, or something that is not an AI problem at all.','Add the top two groups as rows in your test set, so the next change is measured against them.'],
    done:['The groups came from the reading, not from a list decided in advance.','Every group has a count, and the ranking considers consequences as well as frequency.','At least two new rows from real failures are in your test set.']},
   story:[
@@ -161,6 +163,7 @@ window.PART3 = [
   red:['A cost estimate missing the four multipliers','A feature that loses money on every query at scale'],
   capstone:{title:'A cost model built from measurements',
    brief:'Answer the question many teams skip: what does this feature cost at real volume, and what happens to the margin when it succeeds? Build it from measurements, not estimates.',
+   where:'Your <code>chapter-15</code> notebook, to measure tokens and build the cascade; write the three cost numbers in the notes box below.',
    steps:['Take one feature and measure the tokens it uses across twenty realistic requests. Average them.','Apply the multipliers people forget: retries, retrieved context, conversation history, and failed requests that get repeated.','Work out the cost per request, per thousand requests, and per month at a volume you would actually plan for.','Build a cascade (cheap model first, expensive one only when needed) and measure what share escalates.','Produce three numbers: cost today, cost at ten times the volume, and cost if the cheap path stops working.','Answer the margin question: at what price and usage does this feature stop making money?'],
    done:['Every figure traces back to a measurement you took, and you can say which one.','The cascade has a measured escalation rate, not an assumed one.','You can name the assumption most likely to make the whole model wrong.']},
   story:[
@@ -282,6 +285,7 @@ window.PART3 = [
   red:['Table rows and columns destroyed when the text was extracted','Right page found, wrong number quoted','A corpus assumed to be clean text'],
   capstone:{title:'Audit the extraction quality of a real document set',
    brief:'Extraction errors are silent: text that was never read correctly produces confident answers, and nothing reports an error. Audit a real document set and find out how much of it is wrong.',
+   where:'Your <code>chapter-16</code> notebook, to extract and compare against the originals; write the estimated error rate in the notes box below.',
    steps:['Take twenty pages of your own scanned or PDF documents. Choose messy ones, not clean ones.','Extract them the usual way, then read the output against the originals and mark every error.','Find the tables. Ask a question only a table can answer, and check what comes back.','Give the page image to a vision model, and compare its answers with the extracted text on the same questions.','Check every cell of one important table by hand. Record how long it took, because that is the real cost of trusting it.','Estimate the error rate across the whole set, and write what it means for anything built on top of it.'],
    done:['You have a counted error rate from pages you checked yourself.','You can show at least one confident answer that is wrong because of an extraction error.','You have a rule for which documents can go in unchecked and which cannot.']},
   story:[
@@ -415,6 +419,7 @@ window.PART3 = [
   ],
   capstone:{title:'A “may I send this?” rule, with evidence',
    brief:'Write a one-page answer to “may I send this?” for your team, based on what the vendor actually says rather than what everyone assumes.',
+   where:'Written, no code. The three real documents and the three questions from the chapter — write the one-page rule in the notes box below.',
    steps:['List the document types your team would realistically want to send: six to ten.','Run each one through the three questions, and mark it may send, never send, or ask first.','For the “ask first” group, name who is asked and how long they take. If that answer is uncomfortable, the group is too big.','Find and write down, with dates, what your main vendor says about retention, training and location, for the plan you are actually on.','Check your retrieval documents: would every item pass your own rule?','Write the one page, and give it to a colleague to use on a document you have not seen.'],
    done:['A colleague used it on a real document without asking you a question.','The vendor’s answers are quoted with a date and a plan name.','You checked your document store against your own rule, and either it passes or you know what has to be removed.']}
 },
@@ -436,6 +441,7 @@ window.PART3 = [
   red:['A governance file full of adjectives instead of numbers','Oversight written down but impossible to actually do','Data sitting in places you cannot delete from'],
   capstone:{title:'A system card for something you own',
    brief:'Almost every compliance question turns out to be a product question. Write the document that answers them for a real system, and test the answers by carrying them out.',
+   where:'Written only. Gather what you already measured in earlier chapters, then write the system card in the notes box below.',
    steps:['Assign an honest risk tier: what could the system affect, how badly, and who bears the harm?','Write the system card: purpose, data, limits, known failures, and what it must never be used for.','Run the deletion drill. Someone asks for their data to be removed. Follow it through every store and log, and time it.','Design oversight that can really happen: who can overrule, how they learn there is something to overrule, and what they see.','Build the vendor file: what you would need from a supplier to answer all of the above about their component.','Give the card to someone who did not build the system, and ask what is still unclear.'],
    done:['You ran the deletion drill, and you know how long it takes and where it is incomplete.','A named person could use the oversight process tomorrow without asking you.','A colleague read the card and could explain the system’s limits back to you.']},
   story:[
@@ -548,6 +554,7 @@ window.PART3 = [
   red:[],
   capstone:{title:'A spec that survives a model change',
    brief:'An AI spec describes a measured range and what happens outside it. Write a real one for a feature you would ship, then rehearse the day the model underneath it changes.',
+   where:'Written only. Collect the artifacts named in the chapter, then write the PRD and the migration rehearsal in the notes box below.',
    steps:['Draw the whole system from memory first. Then check it against the course and mark what you had forgotten.','Write the PRD: the job, the measured acceptance range, the failure states, and what the interface does in each.','Specify the feedback capture: what is logged on every request, so that next quarter you can tell whether quality got worse.','Rehearse the migration. The provider retires your model with sixty days’ notice. Write exactly what you rerun, and what result would stop you switching.','Name the three numbers you would put on a dashboard, and who watches them.','Write the findings page: what you now know breaks, with the chapter that showed it.'],
    done:['The acceptance criteria are ranges with numbers.','The migration plan names the tests you would rerun and the threshold that blocks the change.','Every failure state in the spec has defined interface behaviour.']},
   story:[

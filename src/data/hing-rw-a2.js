@@ -15,28 +15,10 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek AI assistant se ek analysis draft karwaiye, phir har claim ko evidence ke against check kijiye.',
   'Map the hard and soft skills the applied AI PM role needs, and where you stand on each.':
     'Applied AI PM role ko chahiye hard aur soft skills map kijiye, aur har ek mein aap kahan khade hain.',
-  'Map and tear down a product':
-    'Ek product map aur tear down kijiye',
-  'Take one real product, understand why it works, and practise checking AI-generated analysis against evidence.':
-    'Ek real product lijiye, samjhiye woh kyun kaam karta hai, aur AI-generated analysis ko evidence ke against check karne ka practice kijiye.',
-  'Pick one product you use. Map its discovery, delivery and distribution. Mark the weakest of the three, with the evidence that makes you think so.':
-    'Ek product chuniye jo aap use karte hain. Uski discovery, delivery aur distribution map kijiye. Teeno mein se sabse kamzor mark kijiye, us evidence ke saath jo aapko yeh sochne par majboor karta hai.',
-  'Write a teardown with seven headings: target user, job, key moment, friction, business model, moat, and one improvement.':
-    'Saat headings ke saath ek teardown likhiye: target user, job, key moment, friction, business model, moat, aur ek improvement.',
-  'Ask ChatGPT (or any assistant) for a teardown of the same product. Mark every claim it makes as supported, unsupported or wrong. Rewrite its teardown using your own evidence.':
-    'ChatGPT (ya koi bhi assistant) se usi product ka ek teardown maangiye. Uske har claim ko supported, unsupported ya wrong mark kijiye. Apni evidence use karke uska teardown dobara likhiye.',
-  'The weakest link is backed by something you observed, not a guess.':
-    'Sabse kamzor link kisi aisi cheez se backed hai jo aapne observe ki, guess nahi.',
-  'Your improvement names who it helps and what would show it worked.':
-    'Aapka improvement batata hai kisko madad karega aur kya dikhayega ki woh kaam kiya.',
   'In the AI teardown, every unsupported claim is marked, with a note on what evidence would settle it.':
     'AI teardown mein, har unsupported claim mark hai, saath mein ek note ki kaunsa evidence usey settle karega.',
   'Mastery gate: score each artifact 0–3. Move on only when all three score at least 2.':
     'Mastery gate: har artifact ko 0–3 score kijiye. Aage tabhi badhiye jab teeno ka score kam se kam 2 ho.',
-  'A capstone shortlist':
-    'Ek capstone shortlist',
-  'You apply every idea in this chapter to one of your candidate problems.':
-    'Aap is chapter ka har idea apne candidate problems mein se ek par apply karte hain.',
   'About ten hours across three or four sittings. Pick one product you use often and know well, such as Notion, Spotify, Swiggy, Slack or Canva. You will use it in every exercise.':
     'Teen ya chaar sittings mein lagbhag das ghante. Ek aisa product chuniye jo aap aksar use karte hain aur achhe se jaante hain, jaise Notion, Spotify, Swiggy, Slack ya Canva. Aap isey har exercise mein use karenge.',
   'Idea 1: Discovery, delivery and distribution are one loop':

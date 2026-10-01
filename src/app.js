@@ -842,14 +842,22 @@ function renderChapter(c){
     const cs2=h('section',{class:'part capstone',id:'capstone'});
     cs2.appendChild(sectionHead(c.num+'.'+n++,'Capstone — '+T(cp.title)));
     cs2.appendChild(h('div',{class:'prose'},[h('p',{class:'concept',html:T(cp.brief)})]));
+    /* Steps alone left it ambiguous whether a given capstone meant open a
+       notebook or open a doc — a reader had to infer that from the chapter's
+       own "Before you start" line, several sections back. Naming it here,
+       next to the steps, removes the guess. */
+    if(cp.where)
+      cs2.appendChild(h('div',{class:'planhead'},[
+        h('span',{class:'cplbl',text:'Where you do this'}),
+        h('span',{class:'dim',style:'font-size:.85rem',html:T(cp.where)})]));
     if((cp.steps||[]).length)
       cs2.appendChild(h('div',{class:'prose'},[h('ol',{class:'num'},cp.steps.map(x=>h('li',{html:T(x)})))]));
     if((cp.done||[]).length)
       cs2.appendChild(h('div',{class:'takeaway'},[
         h('span',{class:'cplbl',text:'It is finished when'}),
         h('ul',{class:'plain'},cp.done.map(x=>h('li',{html:T(x)})))]));
-    cs2.appendChild(notebookBlock(c,'capstone','What you built, and anything that surprised you',
-      'Rough notes. The build is the deliverable, not the write-up.'));
+    cs2.appendChild(notebookBlock(c,'capstone','What you produced, and anything that surprised you',
+      'Rough notes. The artifact above — code or written — is the deliverable, not this box.'));
     w.appendChild(cs2);
   }
 

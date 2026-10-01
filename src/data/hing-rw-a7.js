@@ -17,14 +17,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Sahi prototype fidelity chuniye aur user ko lead kiye bina ek usability test chalayiye.',
   'PRD, prototype and a sprint plan':
     'PRD, prototype aur ek sprint plan',
-  'Three artifacts that take your capstone from decision to delivery.':
-    'Teen artifacts jo aapke capstone ko decision se delivery tak le jaate hain.',
-  'Write a PRD with these sections: problem evidence, users, scope, non-goals, UX states, AI behaviour, evaluations, metrics, rollout, security and open questions.':
-    'In sections ke saath ek PRD likhiye: problem evidence, users, scope, non-goals, UX states, AI behaviour, evaluations, metrics, rollout, security aur open questions.',
-  'Build a clickable prototype in Figma, Lovable or Google AI Studio. Test it with three target users using task prompts, and write down where each one got stuck.':
-    'Figma, Lovable ya Google AI Studio mein ek clickable prototype banayiye. Teen target users ke saath task prompts se test kijiye, aur likhiye har ek kahan atka.',
-  'Create a two-sprint plan in Jira (or a spreadsheet) with stories, acceptance criteria, dependencies and a demo plan. After Sprint 1, run a retrospective and record what you will change.':
-    'Jira (ya ek spreadsheet) mein stories, acceptance criteria, dependencies aur ek demo plan ke saath do-sprint plan banayiye. Sprint 1 ke baad, ek retrospective chalayiye aur likhiye aap kya badlenge.',
   'An engineer could estimate the PRD without guessing what success looks like.':
     'Ek engineer bina yeh guess kiye ki success kaisa dikhta hai, PRD estimate kar sake.',
   'The acceptance criteria cover failure, uncertainty and refusal states, not just the happy path.':

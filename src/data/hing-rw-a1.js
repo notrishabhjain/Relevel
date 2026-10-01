@@ -19,22 +19,14 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek hafte ki padhai ko build-first blocks mein plan kijiye, aur 0–3 mastery gate se decide kijiye ki aage kab badhna hai.',
   'Shortlist three capstone problems and say, for each one, why AI may or may not help.':
     'Teen capstone problems shortlist kijiye aur har ek ke liye batayiye ki AI madad kar sakta hai ya nahi, aur kyun.',
-  'Set up your learning system':
-    'Apna learning system set up kijiye',
-  'Three artifacts that the rest of the book builds on: a scored role scorecard, a working repository, and a shortlist of capstone problems.':
-    'Teen artifacts jin par baaki kitaab banti hai: ek scored role scorecard, ek working repository, aur capstone problems ki ek shortlist.',
   'Write a one-page role scorecard covering the seven areas: discovery, strategy, technical fluency, delivery, analytics, business and leadership. Score yourself 0–3 in each, and write the evidence next to every score.':
     'Saat areas ko cover karte hue ek one-page role scorecard likhiye: discovery, strategy, technical fluency, delivery, analytics, business aur leadership. Har ek mein khud ko 0–3 score dijiye, aur har score ke saath evidence likhiye.',
   'Create the repository with the folders <code>/research</code>, <code>/product</code>, <code>/experiments</code>, <code>/evals</code>, <code>/analytics</code>, <code>/security</code> and <code>/portfolio</code>, plus a <code>decision-log.md</code> file. Add at least two decisions to the log.':
     '<code>/research</code>, <code>/product</code>, <code>/experiments</code>, <code>/evals</code>, <code>/analytics</code>, <code>/security</code> aur <code>/portfolio</code> folders ke saath repository banayiye, plus ek <code>decision-log.md</code> file. Log mein kam se kam do decisions add kijiye.',
-  'Choose three candidate problems where AI might reduce a pain you can measure. For each one, record the user, how they do the task today, a baseline number (time, cost or error rate), and why AI may or may not belong.':
-    'Teen candidate problems chuniye jahan AI ek measurable pain kam kar sakta hai. Har ek ke liye, user, woh aaj task kaise karte hain, ek baseline number (time, cost ya error rate), aur AI kyun sahi hai ya nahi, yeh record kijiye.',
   'Every score on the scorecard has evidence next to it, not just a feeling.':
     'Scorecard ke har score ke saath evidence hai, sirf ek feeling nahi.',
   'Someone else can find any artifact in the repository in under two minutes.':
     'Koi aur do minute se kam mein repository mein koi bhi artifact dhoondh sakta hai.',
-  'For at least one candidate problem, you have written down what would make you reject AI for it.':
-    'Kam se kam ek candidate problem ke liye, aapne likh diya hai ki kya cheez aapko usme AI reject karne par majboor karegi.',
   'Mastery gate: score each artifact 0–3. Move on only when all three score at least 2.':
     'Mastery gate: har artifact ko 0–3 score kijiye. Aage tabhi badhiye jab teeno ka score kam se kam 2 ho.',
   'This chapter takes about six hours across two or three sittings. Have a notes app or a paper notebook ready. You do not need any accounts to begin: the first task is a page of writing.':

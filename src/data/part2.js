@@ -61,6 +61,7 @@ window.PART2 = [
   ],
   capstone:{title:'An inventory of your system',
    brief:'Write one page on what you have built, what it cannot do, and which gaps matter most to you. This is the document you would want if someone handed you this system and asked whether it was ready.',
+   where:'Written only, no new code. Open your <code>chapter-7</code> notebook to check the numbers, then write the one-page inventory in the notes box below.',
    steps:['Describe the system in five sentences with no jargon: split, embed, retrieve, prompt, answer.','State its measured quality: your numbers at your chosen k, from Chapter 6.','List the four gaps, with what you saw when you triggered each one.','Rank them for your use case, with one line each on what the failure costs a real person.','Name the gap you would close first, and what closing it would take.','Write what you would say if someone asked “is it ready?”, including the conditions under which the answer is no.'],
    done:['Every gap on the page is one you triggered yourself.','The ranking is by consequence to your users, not by how interesting the topic is.','Your readiness answer includes a condition, not just yes or no.']}
 },
@@ -80,6 +81,7 @@ window.PART2 = [
   ],
   capstone:{title:'Make one real extraction impossible to malform',
    brief:'Take one real extraction task at your work, make its output impossible to malform, and measure how often the polite version would have failed.',
+   where:'Your <code>chapter-8</code> notebook. Run both versions and count the failures in code; write the final comparison in the notes box below.',
    steps:['Pick a document type from your own work, and the decision another system makes from it.','Write the polite version first, a well-worded request for JSON, and run it twenty times.','Count the malformed replies. That number is your argument for the rest of the steps.','Write the schema: every field, its type, and which fields are really required.','Rerun the same twenty inputs and count again.','Add the validate-and-retry loop for endpoints that do not support schemas. Note what a retry costs in tokens and seconds.'],
    done:['You have a failure rate for the polite version from twenty real runs.','The schema version parses twenty times out of twenty.','You can say what your fallback costs when it runs, and how often it runs.']},
   story:[
@@ -158,6 +160,7 @@ window.PART2 = [
   ],
   capstone:{title:'An extractor that cannot guess',
    brief:'You have seen a schema remove a failure, and a badly designed field cause one. Build a real extractor for a document type you handle, designed so the failure you worry about most has nowhere to appear.',
+   where:'Keep using your <code>chapter-8</code> notebook. Build and rerun the extractor there; note what your schema still cannot catch in the notes box below.',
    steps:['Pick a document type from your own work, and the decision another system makes from it.','Give uncertainty somewhere to go, such as a needs_review option, an optional field or a “not stated” flag, so the model never has to invent.','Require a quote field with the exact words each value came from, and check it on ten real documents.','Run twenty documents through it, including three that leave out the field people most want. Count the invented values.','For any invented value, change a field rather than the wording, and run it again.','Write down what your schema still cannot catch, and what would.'],
    done:['On documents that leave out the key field, nothing is invented, and you can point to the field definition that prevents it.','Every extracted value includes the words it came from.','You can name an error your schema cannot catch, and say what would catch it.']},
   story:[
@@ -214,6 +217,7 @@ window.PART2 = [
   ],
   capstone:{title:'Specify an agent, starting with its limits',
    brief:'You have built the loop, broken a description, fed it an error and removed its step limit. What matters most about an agent is what it can do on a bad day. Specify one for a real task, and write its limits before its capabilities.',
+   where:'Your <code>chapter-9</code> notebook. Build and break the agent in code; write the worst-case paragraph in the notes box below.',
    steps:['Name a task in your own work worth automating, and the two or three tools it would need.','Write each tool description as if it were the only documentation, because for the model it is.','Before listing capabilities, write the worst case: the worst thing this agent could do if every call it makes is wrong.','Set the limits: maximum steps, maximum spend, and what happens when either runs out.','Decide which actions need a person to approve them, and write the rule as a clear condition.','Build it, then break it on purpose: make one description vague, force one error, and record what the agent said versus what it did.'],
    done:['The agent completes the task end to end, and stops cleanly when it reaches its limit.','You have made it fail at least twice on purpose, and can describe how each failure looked from outside.','Someone who has never seen the code could read your worst-case paragraph and decide whether to allow the agent.']},
   story:[
@@ -309,6 +313,7 @@ window.PART2 = [
   ],
   capstone:{title:'A context budget for one real feature',
    brief:'Large context windows changed the marketing more than the engineering. You have measured whether the model uses what you send, and compared retrieval with sending everything. Turn that into a budget you could defend for a real feature.',
+   where:'Your <code>chapter-10</code> notebook for the measurements, then the written budget in the notes box below.',
    steps:['Pick one feature and describe what must be in the request for it to answer well.','At three request sizes, measure what share of your questions are answered correctly, with the key fact at the start, middle and end.','Compare sending everything with retrieving the few relevant chunks. Record accuracy, tokens and response time for both.','Order the request for caching: stable content first, changing content last. Measure what that saves.','Write the compaction rule for a long conversation, and note what it loses.','Write the budget: tokens per query, cost per thousand queries, and the number you would defend in a planning meeting.'],
    done:['You have accuracy figures at three positions, from your own runs.','The comparison has real numbers for both approaches, including cost.','You can say which approach you would ship, and name the case where you would be wrong.']},
   story:[
@@ -398,6 +403,7 @@ window.PART2 = [
   ],
   capstone:{title:'A reasoning decision table for your own requests',
    brief:'Reasoning is a purchase, not a quality setting. You have paid for it on trivial tasks and seen it fail to fix bad retrieval. Build the decision table you would use to route real requests.',
+   where:'Your <code>chapter-11</code> notebook, to run both groups and record the four cells; write the routing rule in the notes box below.',
    steps:['Sort a week of realistic requests into two groups: ones with a clear right answer, and ones that need judgement.','Run both groups with reasoning on and off. That gives four cells of real outputs.','Record cost and response time for every cell, not only quality.','Find the point where the extra waiting time stops being worth the accuracy it buys for this use case.','Find a request in your own data where reasoning does not change the answer at all but costs several times more.','Write the routing rule so an engineer could implement it: which requests take the expensive path, and based on what signal.'],
    done:['All four cells have numbers for quality, cost and response time.','The routing rule is a clear condition.','You can name one request type where reasoning is wasted, and show the run that proves it.']},
   story:[
@@ -526,6 +532,7 @@ window.PART2 = [
   ],
   capstone:{title:'Design the wait for your slowest feature',
    brief:'Take the slowest thing you would ship and design its wait properly, starting from a measured number rather than a spinner.',
+   where:'Your <code>chapter-11-5</code> notebook, to measure the twenty requests; write the acceptance line in the notes box below.',
    steps:['Measure the spread, not one run: time twenty realistic requests, and write down the median and the slowest.','Split the total into parts, such as retrieval, reasoning and generation, and mark which parts you could shorten.','Decide whether a partial answer is useful. That decides streaming or background. Write down why.','Design what the screen shows at second one, second three and second ten. Write the actual words.','Decide what happens in the slowest case, and what the user can do about it.','Write the acceptance line: at what measured time does this feature stop being interactive and move to the background?'],
    done:['Your numbers are a median and a slowest case from twenty runs, not an average of three.','The screen has real words on it at three different moments.','You can state the time at which you would change the whole interaction, as a number.']}
 },
@@ -545,6 +552,7 @@ window.PART2 = [
   ],
   capstone:{title:'Improve retrieval and measure each change',
    brief:'Chapter 6 gave you a way to measure retrieval. This chapter gave you four ways to improve it. Improve it on your own documents and show which change actually helped.',
+   where:'Your <code>chapter-12</code> notebook. Make each change and measure it in code; rank the four changes in the notes box below.',
    steps:['Start from your Chapter 6 answer key and record today’s baseline: correct-card hits and share of relevant chunks at k=3.','Add keyword scoring alongside meaning scoring and combine the two. Measure again.','Fix the orphaned chunks by adding enough context for each to make sense alone. Measure again.','Fetch many chunks and rerank to a few. Measure again, and record what it costs in response time.','Add a metadata filter that removes chunks that can never be relevant. Measure again.','Rank the four changes by how much each improved your number, and by what each costs to run.'],
    done:['You have five measurements against one unchanged answer key.','The ranking is based on measured results on your documents, not on reputation.','You can name the change that helped least, and say whether you would still ship it.']},
   story:[
@@ -655,6 +663,7 @@ window.PART2 = [
   ],
   capstone:{title:'A prompt injection audit',
    brief:'This is the one failure in the course with no complete fix. So the deliverable is not a solution. It is an honest account of the exposure that someone senior can act on. Audit a real system.',
+   where:'Your <code>chapter-13</code> notebook, to try the attack and the wording fix; write the exposure note in the notes box below.',
    steps:['Pick a real system, yours or one you are being sold, that reads text someone outside your organisation can influence.','Map the trifecta: what untrusted content it reads, what private data it can reach, and how data could leave.','Write the specific attack: the actual text you would plant, where you would plant it, and what you would expect to happen.','Try to fix it with wording, and record exactly how your fix fails.','Remove one part of the trifecta instead: remove a capability, block an outbound path, or require a person to approve the irreversible step. Say what the product loses.','Write the exposure note: what is possible today, what your change reduces, and what remains true regardless.'],
    done:['The attack is written clearly enough that someone could run it.','You have shown a wording defence failing, from your own attempt.','The note separates what you fixed from what you only made harder, and says so plainly.']},
   story:[

@@ -141,6 +141,7 @@ window.PART5 = [
   ],
   capstone:{title:'An experiment harness in version control',
    brief:'Every later chapter in Part V asks you to run something and compare it with something else. If you rebuild the setup each time, comparisons stop being comparable. Build the harness once, put it in Git, and keep adding to it.',
+   where:'A new notebook, or a local folder if you prefer. This is the harness you build in code and keep extending through Chapter 34 — the notes box below is for what surprised you, not the code itself.',
    steps:['Write a 20-line utility that reads JSON from a file and filters rows by one field.','Add three unit tests: the normal case, a missing field, and empty input.','Wrap your AI request recorder around it, so every run is saved as a JSON record.','Create a Git repository, commit the harness, and write a README that explains how to run it on a clean machine.','Break one thing on purpose, such as a bad key, a timeout or a malformed response, and confirm the record is still written with the error in it.'],
    done:['Someone else could clone the repository and run it.','Three tests pass, and one of them covers a failure.','You have one saved record from a run that failed.']}
 },
@@ -293,6 +294,7 @@ window.PART5 = [
   ],
   capstone:{title:'A model selection card',
    brief:'Write one page a stakeholder can read and an engineer can act on, for an example government assistant. The card is the deliverable; the benchmark behind it is the evidence.',
+   where:'Your experiment harness from Chapter 21, to run the benchmark; write the one-page card in the notes box below.',
    steps:['State the task and the quality bar in measurable terms.','State how sensitive the data is, and what that rules out immediately.','Set a response-time target and a cost limit per task.','Shortlist two or three models, with your ten-case results next to each.','Name the fallback: what runs when the first choice is down, degraded or repriced.','Name the dataset you will use to recheck the choice in three months.'],
    done:['Every claim on the card traces back to a run in your harness.','A reader can see which constraint decided the choice.','The fallback is named, and you have tried it at least once.']}
 },
@@ -429,6 +431,7 @@ window.PART5 = [
   ],
   capstone:{title:'A context budget for one assistant',
    brief:'Write one page that says exactly what goes into the request, what it costs, and what is removed first when space runs out. This makes a discussion about context windows concrete.',
+   where:'Written, using real token counts from an assistant you know. Measure what you can, then write the one page in the notes box below.',
    steps:['List every part that enters the context: instructions, examples, retrieved evidence, history, tool results and user data.','Next to each, write a token count from a real run, not a guess.','Set a total limit and show the remaining headroom.','Define the removal order, and the rule behind it.','Write the schema the output must match, and what happens when it does not.','For each piece of stored data, say which of the three memory stores it belongs to.'],
    done:['The numbers come from a real run.','The removal order has a stated reason.','Every stored field has a way to be deleted.']}
 },
@@ -596,6 +599,7 @@ window.PART5 = [
   ],
   capstone:{title:'An enterprise retrieval architecture on one page',
    brief:'Write one page that an engineer could build from and a security reviewer could challenge. Keep it to one page; if it does not fit, you have not made enough decisions.',
+   where:'Written only — a one-page architecture design, no code required.',
    steps:['Draw ingestion, storage, index, retrieval, reranking and generation as separate stages.','Add authentication and authorisation, and mark where the access check happens.','Mark provenance: how an answer traces back to a chunk ID and a source document.','State the no-answer threshold, and what the user sees when it is reached.','State how the index and the embedding model are versioned.','State the rollback: what you do when a rebuild makes quality worse.'],
    done:['Every arrow has a failure mode written next to it.','The access check is on the retrieval path, not only in the interface.','Rollback is a written procedure.']}
 },
@@ -735,6 +739,7 @@ window.PART5 = [
   ],
   capstone:{title:'A workflow that drafts but cannot submit',
    brief:'Build an approval flow where the assistant can prepare a purchase request but can never send it. The key number is how often the model proposes the correct action when it is not allowed to act.',
+   where:'Your experiment harness and agent loop, extended in code to build the approval flow; write the measured numbers in the notes box below.',
    steps:['Write separate tool contracts for the draft action and the submit action.','Enforce the split on the server: the submit tool is not in the model’s allowed list at all.','Add a human approval step, with an audit record of who approved what.','Run twenty realistic requests, and record how often the proposed action was correct.','Test a malformed argument, an unauthorised request and a timeout. Record what the user saw each time.'],
    done:['The model cannot submit, even if it asks to.','Every approval leaves a record naming a person.','You have a measured figure for how often the proposed action was correct.']}
 },
@@ -893,6 +898,7 @@ window.PART5 = [
   ],
   capstone:{title:'An agent measured against the workflow it would replace',
    brief:'Build an agent that searches your documents, calculates one fixed metric and gives a cited answer. Then test whether it beats the fixed workflow from Chapter 25.',
+   where:'Your experiment harness, extended in code to build and test the agent; write the recommendation in the notes box below.',
    steps:['Give it exactly two tools and an explicit allowed list.','Set limits: maximum steps, a timeout, and an exit for “cannot resolve”.','Run the same twenty tasks through the agent and the workflow.','For each, record tool-selection accuracy, number of calls, response time and cost.','Write one paragraph recommending one of them, including the numbers.'],
    done:['Both systems ran the same twenty tasks.','You have four numbers for each system.','The recommendation names the metric that decided it.']}
 },
@@ -1015,6 +1021,7 @@ window.PART5 = [
   ],
   capstone:{title:'A tool access policy',
    brief:'Write a tool access policy for an AI assistant in a government setting, where “it seemed helpful” is not an acceptable reason for an action. The policy is the deliverable; the classification is the thinking.',
+   where:'Written only. Classify the tools and write the policy — no new code is needed.',
    steps:['Classify every tool as read-only, reversible write, irreversible write, privileged or prohibited.','For each class, state the authorisation required, and whether a person must confirm.','Build the authorisation matrix: roles down the side, tool classes across the top.','Mark the trust boundary on your diagram, and say which component enforces it.','Write what the audit record contains for an irreversible action.'],
    done:['Every tool has exactly one class.','Every irreversible action has a confirmation step.','The enforcing component is named, and it is not the model.']}
 },
@@ -1135,6 +1142,7 @@ window.PART5 = [
   ],
   capstone:{title:'Specify a voice assistant for meeting follow-up',
    brief:'The technology is the easier half. Specify the half that gets systems stopped in review: privacy boundaries, retention, attribution and what a person must confirm.',
+   where:'Written only — a specification, no code required.',
    steps:['Define the privacy boundary: whose audio, recorded where, with what notice.','Set how long transcripts are kept, and how they are deleted.','Specify speaker attribution, and what happens when it is uncertain.','Specify task extraction: what becomes an action item, and what confirmation is needed.','Write the evaluation metrics, including one for attribution accuracy.'],
    done:['A person can find out what was recorded about them and have it deleted.','No action is taken from audio without a confirmation step.','Attribution has a measured accuracy figure and a defined behaviour when uncertain.']}
 }
@@ -1295,6 +1303,7 @@ window.PART5 = [
   ],
   capstone:{title:'A release gate',
    brief:'The release gate makes every other measurement in Part V matter. Without it, evaluation is a report nobody has to act on.',
+   where:'Your experiment harness, extended in code to build the gate itself.',
    steps:['Set the quality threshold: the metric, the test set and the number.','Set the safety threshold, including the attack success rate.','Set the response-time target and the cost limit per task.','Set the regression tolerance: how much may a previously passing case get worse?','Define the rollback trigger, and who is allowed to use it.','Run the gate against your current system and record whether it passes today.'],
    done:['Every threshold is a number against a named test set.','The gate has been run at least once and produced a verdict.','The rollback trigger names a person or a role.']}
 },
@@ -1432,6 +1441,7 @@ window.PART5 = [
   ],
   capstone:{title:'Specify a six-panel production dashboard',
    brief:'Specify six panels: quality, safety, response time, cost, traffic and failures. For every panel, name its data source. A panel with no source is only a wish.',
+   where:'Your experiment harness, extended in code to record full traces, then the written specification in the notes box below.',
    steps:['Quality: which metric, calculated from what, and how often.','Safety: attack success rate and refusal behaviour, from which test set.','Response time: median and 95th percentile, broken down by stage.','Cost: per task and per day, with the components visible.','Traffic: volume and mix, so you can see when the input changes.','Failures: error types with counts, not one error rate.','For each panel, write the threshold that triggers an investigation and the one that triggers a rollback.'],
    done:['Every panel names its data source.','Response time is broken down by stage, not reported as one number.','Each panel has an investigation threshold and a rollback threshold.']}
 },
@@ -1605,6 +1615,7 @@ window.PART5 = [
   ],
   capstone:{title:'An AI risk register with evidence',
    brief:'For each row, record the asset, threat, impact, likelihood, control, owner, test and remaining risk. Every row ends in a test, because a register that ends in controls is only a list of intentions.',
+   where:'Written only. The register draws on evidence from your earlier chapters; no new code is needed.',
    steps:['List the assets: documents, credentials, tools, user data and traces.','For each, name the threats you have actually reproduced, not only ones you read about.','Record impact and likelihood on whatever scale your organisation uses.','Name the control and the owner: a person or role, not a team.','Name the test that proves the control, and run it.','Record the risk that remains after the control, honestly.','Write the go/no-go checklist for a customer-facing agent: identity, secrets, tool permissions, audit trails, data retention, provider policy and incident response.'],
    done:['Every listed threat has been reproduced at least once.','Every control has a test that has been run.','The remaining risk is stated explicitly.']}
 },
@@ -1768,6 +1779,7 @@ window.PART5 = [
   ],
   capstone:{title:'An AI PRD for a policy assistant',
    brief:'Write two pages. An engineer should be able to build from it, and a leader should be able to see the trade-off being made and agree to it on purpose.',
+   where:'Written only. The PRD draws on evidence from earlier chapters; no new code is needed.',
    steps:['State the user problem, and the non-AI baseline it has to beat.','Define the scope and, explicitly, what is out of scope.','Specify the context, the tools and the human role in the loop.','List the failures you have actually seen in this course.','Name the evaluation dataset and write a five-line evaluation plan.','Set quality bars, safety limits, response-time targets and cost goals.','Write the rollout plan and a one-line rollback trigger.','Name the owner.'],
    done:['Every quality claim is a number against a named test set.','What is out of scope is written down.','Someone could act on the rollback trigger without you.']}
 },
@@ -1947,6 +1959,7 @@ window.PART5 = [
   ],
   capstone:{title:'A ten-slide technical decision pack',
    brief:'Cover the problem, baseline, proposed architecture, alternatives, evaluation, security, cost, rollout, risks and decision. Draft it from memory first, then check it. The parts you cannot produce from memory are the parts you do not yet understand.',
+   where:'Written only — a slide deck or document, drawing on your earlier measurements; no new code is needed.',
    steps:['State the problem and the baseline it must beat.','Draw the proposed architecture on one slide.','Show two alternatives you rejected, and why.','Add the evaluation results, with the test set named.','Summarise the security position and the remaining risks.','Give the cost per task and the cost at expected volume.','Give the rollout plan and the rollback trigger.','Score three providers against nine weighted criteria.','End with the decision and who owns it.'],
    done:['Each rejected alternative was a real option with a reason to consider it.','The provider scorecard includes the cost of leaving.','Someone else could present the pack from the slides alone.']}
 },
@@ -2170,6 +2183,7 @@ window.PART5 = [
   ],
   capstone:{title:'Applied AI findings: what I built, what broke, who used it and what the evidence shows',
    brief:'This single document carries everything from the course. Keep it plain and factual. A findings document that reads like a brochure is not doing its job.',
+   where:'Your repository, for the working system and its README, plus a written findings document — both together are the deliverable.',
    steps:['Ship the repository with a README that works on a clean machine.','Include the architecture diagram and the decision log.','Include 30 to 50 evaluation cases and their results.','Include the retrieval and end-to-end numbers, before and after your fixes.','Include the security attack results and sample traces.','Include cost and response-time measurements at expected volume, and the unit-economics model.','Include the PRD, the risk register, the vendor scorecard, and the rollout and rollback plan.','Include the real-user evidence: session notes, the support log, and the one iteration you shipped from it.','End with the remaining risks and what is explicitly out of scope.'],
    done:['Three failures you found yourself, each with evidence.','Three fixes with before and after numbers.','Real evidence from five to ten users who are not your teammates.','Cost per successful task, and what happens to it at ten times the volume.','A five-minute explanation a non-technical leader could repeat, and a twenty-minute one an engineer could not poke a hole in.']}
 }

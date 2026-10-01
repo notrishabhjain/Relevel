@@ -67,6 +67,7 @@ window.PART1 = [
   ],
   capstone:{title:'Estimate the cost of a feature using only this page',
    brief:'Use the three tools in this chapter to estimate what a real feature would cost. The estimate will be rough, but you will know where every number came from.',
+   where:'The tools on this page — no notebook, no account. Write the final number and two sentences in the notes box below.',
    steps:[
       'Pick a task from your own work that an AI could do, such as answering a common question, summarising a form or drafting a reply.',
       'Write one realistic example: what the user sends, and what a good answer looks like. Use real wording.',
@@ -153,6 +154,7 @@ window.PART1 = [
   ],
   capstone:{title:'Measure the cost of one real request',
    brief:'Use the usage block to measure the cost of a small, real request from your own work.',
+   where:'Your <code>chapter-1</code> notebook. The usage numbers you print are the deliverable; the notes box below is for a short reflection, not a write-up.',
    steps:[
       'Take one realistic request from your own work and run it exactly as you would send it.',
       'Record <code>prompt_tokens</code> and <code>completion_tokens</code> from the usage block.',
@@ -240,6 +242,7 @@ window.PART1 = [
   ],
   capstone:{title:'Estimate the cost of a real feature',
    brief:'Answer the question a finance director will eventually ask: what will this cost? Use numbers you produce yourself, not a vendor’s estimate.',
+   where:'Keep using your <code>chapter-1</code> notebook for the calls and token counts, then write the one-sentence budget answer in the notes box below.',
    steps:[
       'Pick one small feature your team could ship, such as a support-ticket summariser, a drafting aid or an FAQ bot. Describe it in one sentence.',
       'Write the request it would send as a real call in your <code>chapter-1</code> notebook, using a real example from your work. Run it.',
@@ -281,6 +284,7 @@ window.PART1 = [
   ],
   capstone:{title:'Write a system prompt and test it',
    brief:'A real product needs more than one sentence of instruction. It needs a written system prompt that is reviewed like any other procedure, because it defines how the product behaves. Write one. You will use it again in Chapter 7.',
+   where:'Your <code>chapter-2</code> notebook. Write the system prompt as the system message and test it there — you will reopen this same prompt in Chapter 2.1.',
    steps:[
       'Pick an assistant for your own field, such as a policy desk, a claims helper or an internal handbook bot. Write one line on who uses it and why.',
       'Draft half a page: how it should sound, what it must never do, and the exact words it should use when it cannot verify something.',
@@ -455,6 +459,7 @@ window.PART1 = [
   ],
   capstone:{title:'Write a prompt someone else can use',
    brief:'Build a prompt for a real task using the four techniques. Write down what each technique does, then hand it to someone else. A prompt that only works when you explain it is not finished.',
+   where:'Your <code>chapter-2-1</code> notebook. Write and run the prompt there; the notes box below is for what your colleague said when they tried it without help.',
    steps:['Name one real task at your work, and the decision its output feeds. One line each.','Write the job description: who reads the output, what they do next, and what they can ignore.','Choose two worked examples: one typical and one awkward. The awkward one should show what to do when something is missing.','If the task has parts, add the steps, in the order a careful person would work.','Add at most two prohibitions, only for failures you have actually seen.','Give the prompt and five real inputs to a colleague. Have them run it without any explanation from you.'],
    done:['Someone else ran it and got what you expected, without asking you a question.','You can point to each technique in your prompt and say what it does.','You know roughly how many tokens your prompt costs before any input is added.']}
 },
@@ -520,6 +525,7 @@ window.PART1 = [
   ],
   capstone:{title:'A test set, and what it found',
    brief:'Build a test set for one real task, use it to make a decision, and keep it. You will rerun it every time the model or prompt changes.',
+   where:'Your <code>chapter-2-2</code> notebook. Build and score the test set in code; write the half-page summary in the notes box below.',
    steps:['Build a ten-row test set for a real task. Include two rows that should be refused, and the two messiest real inputs you can find.','Score your current best prompt against it and write the number down. This is your baseline.','Make three improvements, one at a time, rescoring after each. Record all four numbers.','Find one change that made no difference and remove it. Note what that saves per call.','Run the whole set against a cheaper or smaller model, and record which rows fail.','Write half a page for a colleague: the prompt, its score, and the two rows it still fails.'],
    done:['You have four scores from four one-at-a-time changes, not one score from a rewrite.','You removed something that did not help, and you know what that saves.','You can say which rows your prompt still fails, and whether it is acceptable to ship it that way.']}
 },
@@ -585,6 +591,7 @@ window.PART1 = [
   ],
   capstone:{title:'Break down one real request',
    brief:'Take the vaguest AI request anyone has made of you and turn it into something you can build. Most of the work is naming task types and putting them in order.',
+   where:'Written, no new code. Use the test set already in your <code>chapter-2-2</code> notebook, but the steps here are pen-and-paper thinking, not code.',
    steps:['Write the request down in the exact words it was asked in. Do not tidy it.','Write one sentence on what the person wants to be different in their normal week.','Break it into steps, each with exactly one task type, in the order they must run.','Mark which steps have a right answer and which do not. These are the parts you can and cannot measure automatically.','For each measurable step, say where an answer key would come from: who makes that judgement today, and based on what.','Write a one-paragraph reply to the person: what you would build first, and why it is the smallest useful piece.'],
    done:['Every step in your breakdown has exactly one task type.','You can point to the steps that can be graded without a person reading the output.','The first thing you propose to build is measurable, and you can say what you would measure it against.']}
 },
@@ -646,6 +653,7 @@ window.PART1 = [
   ],
   capstone:{title:'A classifier you would trust to route real work',
    brief:'Build a classifier for a real set of categories at your work, measure it per category, and decide with numbers whether it is good enough to act on its own or only to suggest.',
+   where:'Your <code>chapter-2-4</code> notebook. Build and measure the classifier there; note the per-category numbers in the notes box below.',
    steps:['Fix the categories. Include an <em>other</em> or <em>unclear</em> category, so the model is not forced into a wrong answer.','Collect fifty real examples and label them yourself before you run anything.','Build the classifier with two worked examples, one of which is a borderline case.','Measure each category separately, not just overall. Write the results as a table.','For your worst category, write what each direction of error costs. Change the instruction so borderline cases fall the cheaper way, and measure again.','Set a threshold: above what score per category would you let it route work automatically, and below what would it only suggest?'],
    done:['You have per-category scores from fifty examples you labelled before testing.','You made one deliberate change to how borderline cases fall, and measured the effect.','You can state the score at which you would let it act on its own, and whether it is above that score today.']}
 },
@@ -696,6 +704,7 @@ window.PART1 = [
   ],
   capstone:{title:'A summariser with a fact check',
    brief:'Build a summariser for a real document type, and the test that shows it keeps what matters. The test is the main deliverable. Anyone can write the prompt.',
+   where:'Your <code>chapter-2-5</code> notebook. Build the summariser and its fact check there; the notes box below is for what the check caught.',
    steps:['Name the reader and the decision. If you cannot name a decision, you cannot say what the summary is for or how to test it.','Take ten real documents. For each, write down the two or three facts a reader would be upset to lose.','Build the summariser and run the fact check on all ten. Record the miss rate.','Make one change, such as an instruction about what to keep word for word, and measure again.','Find a document where a fact survived in different wording and your check missed it. Note what that means for your number.','Write a note to whoever asked for this feature: what it keeps, what it drops, and the miss rate you measured.'],
    done:['You have a miss rate from ten documents, before and after one change.','You found at least one case your own test scores unfairly, and you say so.','The note says who the summary is for, so someone else could test it the same way later.']}
 },
@@ -722,6 +731,7 @@ window.PART1 = [
   ],
   capstone:{title:'A chunking rule for your own documents',
    brief:'You have split one document three ways and seen what each split breaks. A real system needs a rule that someone else can apply to thousands of documents without you. Write that rule, and test it on the messiest document you can find.',
+   where:'Written, no code. Pen, paper and scissors, as the chapter said — write the rule, then test it by hand on the messiest document you can find.',
    steps:['Name the most structured document type in your field, such as one with clauses, exceptions, numbered procedures or warnings.','Describe its structure in three or four lines. Where are its natural break points, and what must never be separated?','Write the chunking rule as instructions to another person: where to cut, where never to cut, and what to do with a piece that would lose its meaning.','Find the messiest real example you can, such as a badly formatted, scanned or table-heavy document. Apply your rule to it by hand.','Record where your rule broke. Amend it, and note which of your five questions the first version would have answered wrongly.','Write what you would say to a vendor who tells you their chunking is “automatic and optimal”.'],
    done:['Someone else could apply your rule and split a document the same way you would.','You have applied it to a difficult document and amended it once as a result.','You can name the kind of content your rule still risks splitting, and say why you accept that.']},
   story:[
@@ -806,6 +816,7 @@ window.PART1 = [
   ],
   capstone:{title:'Map where keyword search fails',
    brief:'You scored a search method by hand, on real questions, against a real document. Most people who buy search software never do this. Write up your results so you can use them when someone tries to sell you a search product.',
+   where:'Written, no code. You are the search engine this time — score by hand and write up the results in the notes box below.',
    steps:['Make a table of all eight questions (your five plus the three harder ones), with the rank the correct card actually got.','Next to each failure, write one sentence on what information the scoring did not have.','Add the exact-code question and its result, so the table shows where the method wins as well as where it fails.','Write a short paragraph about your own field: which real queries use different words from the documents, and which use exact codes or terms?','Estimate what share of your users use the document’s vocabulary rather than their own. Say how you would measure this for real.','Write four or five sentences for a non-technical colleague explaining why “we already have a search box” does not mean “users can find answers”.'],
    done:['The table has a rank for every question, including the ones that worked.','Every failure has its one-sentence explanation, in your words.','You could give the last paragraph to a senior colleague, and they would understand the risk without you there.']},
   story:[
@@ -899,6 +910,7 @@ window.PART1 = [
   ],
   capstone:{title:'Compare keyword and meaning search on your own document',
    brief:'You have run both methods on the same cards with the same questions: by hand in Chapter 4, and in code here. Few people have this comparison for their own documents. Write it up properly, including any case where the new method does worse.',
+   where:'Your <code>chapter-5</code> notebook for the code comparison, next to the hand-scored results from Chapter 4. Write up the comparison in the notes box below.',
    steps:['Make one table of all eight questions: the rank keyword search gave the correct card, and the rank meaning search gives it now.','Check your exact-code question. If it got worse, that is a reason to combine both methods (hybrid search) on your data. Note it in one line.','Test your second language properly: embed a domain term and its translation, compute the similarity, then run two or three real questions in that language.','Write the result in three bullets: where meaning search helps your users, where it is weak, and what you would check before trusting it in production.','Ask three questions the document cannot answer, and record the top scores. Chapter 6 uses these numbers to set a threshold.','Write four or five sentences a non-technical colleague could follow: how the system finds meaning, and why “it found something” does not mean “the answer exists”.'],
    done:['The table has both ranks for all eight questions, from runs you did.','You have a measured number for how your second language behaves.','You can name one thing meaning search did not fix, and point to the run that shows it.']},
   story:[
@@ -991,6 +1003,7 @@ window.PART1 = [
   ],
   capstone:{title:'Write a ship-or-not memo',
    brief:'You now have real numbers from your own documents at three settings. Turn them into a recommendation someone could act on. Include the part most memos avoid: which failure you have decided to accept, and who made that call.',
+   where:'Pen and paper, plus your <code>chapter-5</code> notebook for the measurements. Write the memo itself in the notes box below.',
    steps:['State the use case in one line, and who is affected when it is wrong.','Add your table: the three values of k, with correct-card hits and the share of relevant chunks at each.','Recommend a k for a customer-facing assistant, and a different one for an internal drafting tool. If they are the same, reconsider.','Write five acceptance criteria in the style of a test plan, including one for the unanswerable question and one for a second language.','Add the cost line: what k does to tokens per query, and to the monthly bill at a realistic volume.','End with the gap between your prediction and the measured result, and what you now think a demo is worth as evidence.'],
    done:['Every number in the memo came from a run you did.','The two recommended values of k differ, and the reason is about consequences, not technology.','Someone could use your acceptance criteria to test a vendor’s system next week.']},
   story:[
@@ -1087,6 +1100,7 @@ window.PART1 = [
   ],
   capstone:{title:'A findings page, and what to learn next',
    brief:'This is the last capstone in Part I, and it is not a build. You have a working system and a list of the ways you have seen it fail. Write the document you would want in front of you the next time someone demonstrates a RAG product and asks for budget.',
+   where:'Written only — this capstone is not a build. Draw on your <code>chapter-7</code> notebook\'s results, and write the findings page in the notes box below.',
    steps:['List every failure from your red-marked diagram. Next to each one, note the chapter where you saw it and what you saw.','For each failure, add the question you would ask a vendor to find out whether they have solved it or hidden it.','Go back to your predictions from Chapter 1. Name the three beliefs that changed most, and what changed them.','Explain the pipeline in five sentences with no jargon. At the end, add: “This is called RAG.”','List what Part I did <em>not</em> cover: choosing an embedding model, vector databases, reranking, hybrid search in practice, agents, fine-tuning and deployment.','Put that list in order. Which topic would change an outcome you own, and why that one first?'],
    done:['Every failure on the page is backed by evidence you produced yourself.','The five-sentence explanation makes sense when read aloud to someone with no technical background.','Your list of next topics is ordered by consequence, not by how interesting they sound.']},
   story:[
