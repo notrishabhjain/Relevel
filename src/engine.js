@@ -316,41 +316,35 @@ function chapterProgress(S, c){
   return {total, done, left, firstOpen,
     minutesLeft: Math.max(1, Math.round(total?mins*(left/total):0))};
 }
-/* The chapter you are in the middle of, else the next one you have not finished. */
-function currentChapter(S){
-  /* CHAPTERS is already in reading order. Sorting it by number stopped being
-     possible when the playbook's A1–A8 and B1–B8 arrived.
+/* The chapter you are in the middle of, else the next one you have not finished.
 
-     v4.3: the required path is the core tier, so this walks core chapters
-     first (in their own reading order) and only reaches selective/reference
-     ones once every core chapter is done — the dashboard's one next action
-     should never park a learner on optional reading while required chapters
-     sit unfinished. A filter is stable, so within each group the order is
-     unchanged from before. */
-  const chs=(window.CHAPTERS||[]).slice();
-  const ordered=chs.filter(c=>c.curriculumTier==='core')
-    .concat(chs.filter(c=>c.curriculumTier!=='core'));
+   CHAPTERS is in reading order and that order is the one path through the
+   course: the capstones build one project from the first chapter to the last,
+   so "next" is the next chapter in the list. It used to jump to a "core"
+   subset first, which sent a reader from chapter 7 to chapter 21 and left the
+   chapters between them, and every project stage they carry, unread. */
+function currentChapter(S){
   let firstUnfinished=null;
-  for(const c of ordered){
+  for(const c of (window.CHAPTERS||[])){
     const p=chapterProgress(S,c);
     if(p.done>0 && p.left>0) return {c, p, started:true};
     if(!firstUnfinished && (p.left>0 || !S.done[c.id])) firstUnfinished={c, p, started:false};
   }
   return firstUnfinished;
 }
-/* All chapters in one curriculumTier, and how much of it is done — the
-   dashboard's Core/Selective/Reference/Capstone cards read this rather than
-   re-filtering CHAPTERS themselves. The capstone (ch21cap) is core but is
-   reported on its own, since v4.3 treats it as a fourth, distinct block
-   rather than folding it into the core count. */
-function tierChapters(tier){
-  return (window.CHAPTERS||[]).filter(c=>c.curriculumTier===tier && c.id!=='ch21cap');
-}
-function tierProgress(S,tier){
-  const chs=tierChapters(tier);
-  const done=chs.filter(c=>S.done[c.id]).length;
-  const next=chs.find(c=>!S.done[c.id])||chs[0]||null;
-  return {chs, done, total:chs.length, complete: chs.length>0 && done===chs.length, next};
+/* The course as an ordered list of parts, each with how much of it is done and
+   the chapter to open next. Parts are listed in the order their first chapter
+   appears, which is the reading order. The dashboard, the course map and the
+   sidebar outline all read this one function, so they cannot disagree. */
+function partProgress(S){
+  const chs=window.CHAPTERS||[], order=[], by={};
+  chs.forEach(c=>{ if(!by[c.part]){ by[c.part]={part:(window.PARTS||[]).find(p=>p.n===c.part)||{n:c.part}, chs:[]}; order.push(c.part); }
+    by[c.part].chs.push(c); });
+  return order.map((n,i)=>{
+    const g=by[n], done=g.chs.filter(c=>S.done[c.id]).length;
+    return {n, step:i+1, part:g.part, chs:g.chs, done, total:g.chs.length,
+      complete:done===g.chs.length, next:g.chs.find(c=>!S.done[c.id])||null};
+  });
 }
 function resume(S){
   const due=dueList(S).length;
@@ -454,7 +448,7 @@ function exScore(e, iter){
 return {get ITEMS(){return ITEMS;}, byItem, bySkill, SK, DAY, reinit,
   shown, levelOf, nextBand, skillState, decayFactor,
   streakDetail, daysSinceActive, chapterProgress, currentChapter, resume,
-  tierChapters, tierProgress,
+  partProgress,
   buildSession, grade, submit, scheduleItem, srs, dueList, dueForecast,
   calibrationCurve, brier, overconfidence, CONF,
   accuracyByDay, streak, domainMastery, overall, velocity, timeInvested,

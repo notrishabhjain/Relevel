@@ -942,27 +942,11 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .partrow p{margin:.15rem 0 0;font-size:.8rem;color:var(--ink-2)}
 .partrow .go{font-size:.78rem;color:var(--ink-2);white-space:nowrap}
 .partrow.done{background:var(--verified-wash);border-color:var(--verified)}
-/* v4.3 curriculum-hierarchy cards on the dashboard: same shape as any other
-   partrow, plus a left rule so Core, the Capstone, Selective and Reference
-   read as four different kinds of thing at a glance, not four of the same. */
-.tiercard.tcore{border-left:3px solid var(--verified)}
-.tiercard.tcapstone{border-left:3px solid var(--ink)}
-.tiercard.tselective{border-left:3px solid var(--rule-strong,var(--ink-2))}
-.tiercard.treference{border-left:3px solid var(--rule)}
 @media (max-width:520px){
   .partrow{flex-wrap:wrap;gap:.35rem .8rem}
   .partrow .go{width:100%;text-align:right}
 }
 
-/* Part V is a separate track, not more of the same book. Saying so on the
-   library page stops a reader either starting it too early or missing it. */
-.tracksep{display:flex;flex-direction:column;gap:.2rem;margin:2.4rem 0 .9rem;
-  padding-top:1.2rem;border-top:2px solid var(--rule)}
-.tracksep span{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--verified)}
-.tracksep em{font-family:var(--serif);font-size:.95rem;font-style:italic;
-  color:var(--ink-2);font-weight:400}
-.partcard.track{border-left:3px solid var(--verified)}
 
 /* ---------- the hands-on unit (v4.2) ----------
 
@@ -1153,3 +1137,94 @@ button:disabled{opacity:.4;cursor:not-allowed}
   .flowbox{flex:0 0 auto}
 }
 .qblock .concept{font-style:normal;font-size:1rem;color:var(--ink);line-height:1.65}
+
+/* ---------- finding your way ----------
+
+   One path through the course: the sidebar outline, the course map, the
+   dashboard rows and the trail at the top of a chapter all show the same ordered
+   parts, so what you click is what you land on. */
+
+/* the trail at the top of a chapter */
+.chtrail{display:flex;flex-wrap:wrap;align-items:center;gap:.2rem .55rem;margin:0 0 1.1rem;
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.04em;color:var(--muted)}
+.chtrail a{color:var(--ink-2);text-decoration:none;border-bottom:1px solid var(--rule)}
+.chtrail a:hover{color:var(--ink);border-color:var(--ink-2)}
+.chtrail .sep{opacity:.5}
+.chtrail .sp{flex:1}
+.chtrail .tnav{border:1px solid var(--rule);border-radius:var(--r);padding:.22rem .6rem;color:var(--ink);white-space:nowrap}
+.chtrail .tnav:hover{background:var(--sunk)}
+
+/* the sidebar outline */
+.railcourse{padding-top:.6rem}
+.railcourse h2 a{color:inherit;text-decoration:none}
+.railpart{display:flex;width:100%;align-items:baseline;gap:.45rem;text-align:left;background:none;border:0;
+  border-radius:var(--r);padding:.34rem .4rem;margin:0 0 0 -.4rem;width:calc(100% + .4rem);cursor:pointer;
+  font:inherit;font-size:.8rem;line-height:1.3;color:var(--ink-2)}
+.railpart:hover{background:var(--sunk);color:var(--ink)}
+.railpart.cur{color:var(--ink)}
+.railpart .rpc{flex:none;width:.8em;color:var(--muted);font-size:.7rem}
+.railpart .rpt{flex:1;min-width:0}
+.railpart .rpt b{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);font-weight:500}
+.railpart .rpp{flex:none;font-family:var(--mono);font-size:.64rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.railpart.done .rpp{color:var(--verified)}
+.railchs{margin:0 0 .5rem .75rem;padding-left:.55rem;border-left:1px solid var(--rule)}
+.railchs a{font-size:.78rem;padding:.24rem .45rem}
+.railgrp{font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);font-weight:500;margin:.9rem 0 .3rem}
+
+/* the course map */
+.cmap .herecard{display:flex;flex-wrap:wrap;gap:.8rem 2rem;align-items:center;justify-content:space-between;
+  border:1px solid var(--verified);background:var(--verified-wash);border-radius:var(--r);
+  padding:1rem 1.2rem;margin:0 0 .9rem}
+.cmap .hl{display:flex;flex-direction:column;gap:.15rem;min-width:0;flex:1 1 18rem}
+.cmap .hl .ht{font-family:var(--serif);font-size:1.25rem;line-height:1.3;color:var(--ink);text-decoration:none}
+.cmap a.ht:hover{text-decoration:underline}
+.cmap .hp{display:flex;flex-direction:column;gap:.35rem;min-width:11rem;font-size:.8rem}
+.cpbar{display:inline-block;width:5.5rem;height:.4rem;border-radius:.2rem;background:var(--rule);overflow:hidden;flex:none}
+.cpbar i{display:block;height:100%;background:var(--verified)}
+.cpbar.big{width:100%;height:.5rem}
+.cmaplinks{margin:0 0 .4rem}
+.cpart{border:1px solid var(--rule);border-radius:var(--r);background:var(--paper);margin:0 0 .6rem}
+.cpart[open]{border-color:var(--ink-2)}
+.cpart.done{border-color:var(--verified)}
+.cpart summary{display:flex;align-items:center;gap:.9rem;padding:.8rem 1rem;cursor:pointer;list-style:none}
+.cpart summary::-webkit-details-marker{display:none}
+.cpart summary::after{content:"\25b8";color:var(--muted);flex:none;margin-left:.2rem}
+.cpart[open] summary::after{content:"\25be"}
+.mpn{flex:none;width:1.7rem;height:1.7rem;border-radius:50%;border:1px solid var(--ink-2);display:grid;
+  place-items:center;font-family:var(--mono);font-size:.72rem;color:var(--ink-2)}
+.cpart.done .mpn{background:var(--verified);border-color:var(--verified);color:var(--paper)}
+.cpt{flex:1;min-width:0;display:flex;flex-direction:column;gap:.1rem}
+.mpk{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.cph{font-family:var(--serif);font-size:1.15rem;line-height:1.3}
+.cpp{display:flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.7rem;color:var(--ink-2);flex:none}
+.cpb{margin:0;padding:0 1rem .7rem 3.6rem;font-size:.9rem;color:var(--ink-2);line-height:1.55}
+.crows{list-style:none;margin:0;padding:0 .5rem .6rem}
+.crow{display:flex;align-items:baseline;gap:.8rem;padding:.5rem .6rem;border-radius:var(--r);
+  text-decoration:none;color:var(--ink);font-size:.93rem;line-height:1.4}
+.crow:hover{background:var(--sunk)}
+.crn{flex:none;min-width:2.4rem;font-family:var(--mono);font-size:.74rem;color:var(--muted);
+  font-variant-numeric:tabular-nums}
+.crt{flex:1;min-width:0}
+.crm{flex:none;font-family:var(--mono);font-size:.68rem;color:var(--muted)}
+.crs{flex:none;min-width:2.6rem;text-align:right;font-family:var(--mono);font-size:.7rem;color:var(--verified)}
+.crow.next{background:var(--verified-wash)}
+.crow.next .crs{font-weight:600}
+.crow.done .crt{color:var(--ink-2)}
+.cabout{margin:1.4rem 0 0;border-top:1px solid var(--rule);padding-top:.8rem}
+.cabout summary{cursor:pointer;font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.cabout .meta{margin-top:1rem}
+.partrow.projrow{border-left:3px solid var(--ink)}
+
+/* the top bar, on a phone: keep the controls, drop the hint */
+.tbar button,.tbar .syncpill{white-space:nowrap;flex:none}
+.tbar .crumb{flex:1 1 0;min-width:0}
+@media (max-width:620px){
+  .tbar{gap:.35rem}
+  .tbar .kbd{display:none}
+  .crow .crm{display:none}
+  .cpp .cpbar{display:none}
+  .cpb{padding-left:1rem}
+  .cmap .hp{min-width:100%}
+}

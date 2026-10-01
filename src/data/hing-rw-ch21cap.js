@@ -43,40 +43,40 @@ Object.assign(window.HING = window.HING || {}, {
     'Gyarah stages',
   'Five interviews, a jobs-to-be-done statement, a market/competitor scan, an evidence-backed problem brief':
     'Paanch interviews, ek jobs-to-be-done statement, ek market/competitor scan, ek evidence-backed problem brief',
-  '21.2 Define':
-    '21.2 Define',
+  '34.2 Define':
+    '34.2 Define',
   'User, pain, baseline, scope, non-goals, data, tools, risks, a measurable acceptance criterion — the capstone AI PRD':
     'User, pain, baseline, scope, non-goals, data, tools, risks, ek measurable acceptance criterion — capstone AI PRD',
   'One-page product + system design, vision/strategy/roadmap/OKRs, stakeholder map, pricing hypothesis, kill criteria':
     'One-page product + system design, vision/strategy/roadmap/OKRs, stakeholder map, pricing hypothesis, kill criteria',
-  '21.4 Build':
-    '21.4 Build',
+  '34.4 Build':
+    '34.4 Build',
   'Working code, tests, versioned prompts and config, architecture diagram, threat model':
     'Working code, tests, versioned prompts aur config, architecture diagram, threat model',
-  '21.5 Evaluate':
-    '21.5 Evaluate',
+  '34.5 Evaluate':
+    '34.5 Evaluate',
   '30–50 evaluation cases, traces, retrieval/answer/tool/safety/latency/cost measurements':
     '30–50 evaluation cases, traces, retrieval/answer/tool/safety/latency/cost measurements',
-  '21.6 Break':
-    '21.6 Break',
+  '34.6 Break':
+    '34.6 Break',
   'At least ten deliberate failure tests, preserved before you fix anything':
     'Kam se kam das deliberate failure tests, kuchh bhi theek karne se pehle preserve kiye gaye',
-  '21.7 Observe':
-    '21.7 Observe',
+  '34.7 Observe':
+    '34.7 Observe',
   'Security go/no-go checklist, six-panel observability dashboard wired to real traces':
     'Security go/no-go checklist, real traces se wired six-panel observability dashboard',
   'A live URL, monitoring, 5–10 real users, a support log, a timed rollback test':
     'Ek live URL, monitoring, 5–10 real users, ek support log, ek timed rollback test',
-  '21.9 Measure':
-    '21.9 Measure',
+  '34.9 Measure':
+    '34.9 Measure',
   'Before/after optimisation numbers, ADRs, a unit-economics model at base and high usage':
     'Before/after optimisation numbers, ADRs, base aur high usage par ek unit-economics model',
-  '21.10 Iterate':
-    '21.10 Iterate',
+  '34.10 Iterate':
+    '34.10 Iterate',
   'One evidence-based iteration, before/after product and AI metrics, a decision-log entry':
     'Ek evidence-based iteration, before/after product aur AI metrics, ek decision-log entry',
-  '21.11 Defend':
-    '21.11 Defend',
+  '34.11 Defend':
+    '34.11 Defend',
   'Ten-slide executive deck, twenty-minute technical defence, public case study':
     'Ten-slide executive deck, twenty-minute technical defence, public case study',
   'A portfolio project is credible when you can explain its failures, prove someone wanted it, and show what it costs to run. Anyone can show a system that works on the demo path.':

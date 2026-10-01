@@ -842,24 +842,24 @@ window.PART7 = [
 
 {
   id:'b8', num:'B8', part:7, curriculumTier:'core', phase:6, prerequisites:['ch21cap'], nextUnits:[], minutes:8, labs:[],
-  title:'The integrated capstone now lives in Chapter 21',
-  concept:'This chapter used to hold a second, separate capstone. Not any more. The technical capstone and this chapter’s five gates — discovery, strategy, build, ship, defend — are now one eleven-stage journey in Chapter 21, so a capstone is one coherent project instead of two.',
+  title:'The integrated capstone now lives in Chapter 34',
+  concept:'This chapter used to hold a second, separate capstone. Not any more. The technical capstone and this chapter’s five gates — discovery, strategy, build, ship, defend — are now one eleven-stage journey in Chapter 34, so a capstone is one coherent project instead of two.',
   takeaway:[
-    'Do the capstone once, in Chapter 21 — not twice.',
+    'Do the capstone once, in Chapter 34 — not twice.',
     'This page keeps one exercise from the old chapter so a saved answer here still has a home.'
   ],
   needs:[['The unified capstone','Everything that used to be here is now part of it.',34]],
   story:[
     ['c','This chapter moved','This used to be a second, separate capstone. It is not any more. Everything here is now part of one journey in Chapter 21.'],
-    ['p','If you already have progress on the old five gates, it maps directly onto Chapter 21’s eleven stages:'],
-    ['tb',['Old gate','New stage(s) in Chapter 21'],[
-      ['Gate 1, Discovery','21.1 Discover'],
-      ['Gate 2, Strategy','21.3 Design'],
-      ['Gate 3, Build','21.4 Build – 21.5 Evaluate'],
-      ['Gate 4, Ship','21.8 Ship'],
-      ['Gate 5, Defend','21.9 Measure – 21.11 Defend']
+    ['p','If you already have progress on the old five gates, it maps directly onto Chapter 34’s eleven stages:'],
+    ['tb',['Old gate','New stage(s) in Chapter 34'],[
+      ['Gate 1, Discovery','34.1 Discover'],
+      ['Gate 2, Strategy','34.3 Design'],
+      ['Gate 3, Build','34.4 Build – 34.5 Evaluate'],
+      ['Gate 4, Ship','34.8 Ship'],
+      ['Gate 5, Defend','34.9 Measure – 34.11 Defend']
     ]],
-    ['p','Go to <a href="#/ch/ch21cap">Chapter 21</a> and start from wherever your project actually is. There is nothing else to do on this page — except the one exercise below, kept here so an answer you already wrote is not lost.'],
+    ['p','Go to <a href="#/ch/ch21cap">Chapter 34</a> and start from wherever your project actually is. There is nothing else to do on this page — except the one exercise below, kept here so an answer you already wrote is not lost.'],
     ['try',{id:'b8-defend',mins:12,min:120,rows:6,
       task:'Write your answer to the hardest question you expect in the defence. For example: “Why should we believe this works beyond your ten design partners?”',
       ph:'What we know… what we do not know yet… what we would do next…',
