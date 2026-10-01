@@ -2189,24 +2189,24 @@ window.PART5 = [
       'tb',
       ['Stage','Required evidence'],
       [
-        ['21.1 Discover','Five interviews, a jobs-to-be-done statement, a market/competitor scan, an evidence-backed problem brief'],
-        ['21.2 Define','User, pain, baseline, scope, non-goals, data, tools, risks, a measurable acceptance criterion — the capstone AI PRD'],
-        ['21.3 Design','One-page product + system design, vision/strategy/roadmap/OKRs, stakeholder map, pricing hypothesis, kill criteria'],
-        ['21.4 Build','Working code, tests, versioned prompts and config, architecture diagram, threat model'],
-        ['21.5 Evaluate','30–50 evaluation cases, traces, retrieval/answer/tool/safety/latency/cost measurements'],
-        ['21.6 Break','At least ten deliberate failure tests, preserved before you fix anything'],
-        ['21.7 Observe','Security go/no-go checklist, six-panel observability dashboard wired to real traces'],
-        ['21.8 Ship','A live URL, monitoring, 5–10 real users, a support log, a timed rollback test'],
-        ['21.9 Measure','Before/after optimisation numbers, ADRs, a unit-economics model at base and high usage'],
-        ['21.10 Iterate','One evidence-based iteration, before/after product and AI metrics, a decision-log entry'],
-        ['21.11 Defend','Ten-slide executive deck, twenty-minute technical defence, public case study']
+        ['34.1 Discover','Five interviews, a jobs-to-be-done statement, a market/competitor scan, an evidence-backed problem brief'],
+        ['34.2 Define','User, pain, baseline, scope, non-goals, data, tools, risks, a measurable acceptance criterion — the capstone AI PRD'],
+        ['34.3 Design','One-page product + system design, vision/strategy/roadmap/OKRs, stakeholder map, pricing hypothesis, kill criteria'],
+        ['34.4 Build','Working code, tests, versioned prompts and config, architecture diagram, threat model'],
+        ['34.5 Evaluate','30–50 evaluation cases, traces, retrieval/answer/tool/safety/latency/cost measurements'],
+        ['34.6 Break','At least ten deliberate failure tests, preserved before you fix anything'],
+        ['34.7 Observe','Security go/no-go checklist, six-panel observability dashboard wired to real traces'],
+        ['34.8 Ship','A live URL, monitoring, 5–10 real users, a support log, a timed rollback test'],
+        ['34.9 Measure','Before/after optimisation numbers, ADRs, a unit-economics model at base and high usage'],
+        ['34.10 Iterate','One evidence-based iteration, before/after product and AI metrics, a decision-log entry'],
+        ['34.11 Defend','Ten-slide executive deck, twenty-minute technical defence, public case study']
       ]
     ],
     ['key','A portfolio project is credible when you can explain its failures, prove someone wanted it, and show what it costs to run. Anyone can show a system that works on the demo path.'],
     ['h','Hands-on units'],
     [
       'unit',
-      '21.1',
+      '34.1',
       'Discover: a real problem with reachable users',
       {goal:'Find a problem with a user group you can actually reach, and write an evidence-backed problem brief.',
        idea:'The best capstones come from a job you have done, a team you know or a community you belong to — a problem that is frequent, costly and currently solved badly.',
@@ -2219,7 +2219,7 @@ window.PART5 = [
     ],
     [
       'unit',
-      '21.2',
+      '34.2',
       'Define the problem and PRD',
       {goal:'Turn the problem into a system with measurable acceptance criteria.',
        idea:'A capstone becomes credible when the problem and failure cost are clear.',
@@ -2232,7 +2232,7 @@ window.PART5 = [
     ],
     [
       'unit',
-      '21.3',
+      '34.3',
       'Design the product and the system together',
       {goal:'Design the product decision and the technical decision on one page, because each one constrains the other.',
        idea:'Whether a user needs an answer in two seconds or by Monday decides the architecture; whether the architecture can hit a target decides what you can promise.',
@@ -2245,7 +2245,7 @@ window.PART5 = [
     ],
     [
       'unit',
-      '21.4',
+      '34.4',
       'Build the vertical slice',
       {goal:'Create the smallest end-to-end working system before adding sophistication.',
        idea:'A vertical slice proves architecture across boundaries; a threat model bolted on afterward is a rationalisation, not a control.',
@@ -2258,7 +2258,7 @@ window.PART5 = [
     ],
     [
       'unit',
-      '21.5',
+      '34.5',
       'Add evaluation and observability',
       {goal:'Turn the capstone into a measurable system.',
        idea:'Every change should leave evidence.',
@@ -2271,7 +2271,7 @@ window.PART5 = [
     ],
     [
       'unit',
-      '21.6',
+      '34.6',
       'Break it deliberately',
       {goal:'Reproduce at least ten failure classes.',
        idea:'A portfolio project is more credible when you can explain what broke.',
@@ -2284,7 +2284,7 @@ window.PART5 = [
     ],
     [
       'unit',
-      '21.7',
+      '34.7',
       'Observe: prove it is inspectable before real users touch it',
       {goal:'Prove the system is inspectable and its risk is bounded before you ship it to a real user.',
        idea:'A system you cannot observe is a system you are guessing about, whatever it demos like.',
@@ -2297,7 +2297,7 @@ window.PART5 = [
     ],
     [
       'unit',
-      '21.8',
+      '34.8',
       'Ship to real users',
       {goal:'Launch to a real user group and prove the rollback actually works.',
        idea:'Real users matter more than more theory — five to ten observed sessions beat another week of solo polishing.',
@@ -2310,7 +2310,7 @@ window.PART5 = [
     ],
     [
       'unit',
-      '21.9',
+      '34.9',
       'Measure: optimize and quantify unit economics',
       {goal:'Apply targeted fixes, measure before/after, and prove the economics work at scale.',
        idea:'Optimization is meaningful only when the delta is visible, and viability is meaningful only when cost per successful task is visible too.',
@@ -2323,7 +2323,7 @@ window.PART5 = [
     ],
     [
       'unit',
-      '21.10',
+      '34.10',
       'Iterate from evidence',
       {goal:'Ship one evidence-based iteration and log the decision behind it.',
        idea:'An iteration earns its place only when it is tied to a measured problem, not a hunch.',
@@ -2336,7 +2336,7 @@ window.PART5 = [
     ],
     [
       'unit',
-      '21.11',
+      '34.11',
       'Defend the system',
       {goal:'Present the architecture, evidence, security, cost, viability and residual risk to two audiences.',
        idea:'The final skill this course tests is explaining and defending the system you built.',

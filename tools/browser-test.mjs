@@ -654,14 +654,40 @@ ok(/apple-mobile-web-app-capable/.test(html), 'iOS is told the page is app-capab
 console.log('\n— setup is reachable without hunting for it —');
 const nav = await newDevice(false);
 await boot(nav.page);
-/* The first nav list is the short one shown without opening anything; the
-   drawer's list only exists once "Everything else" is expanded. */
-const top = await nav.page.evaluate(() =>
-  [...document.querySelectorAll('#rail .navlist')[0].querySelectorAll('a')].map(a => a.textContent));
-ok(top.some(t => /Set up Colab/.test(t)), 'the setup page is in the main nav, not the drawer', top.join(' | '));
-ok(top.some(t => /Install on iPad/.test(t)), 'and so is the install page');
-ok(top.some(t => /Not yet/.test(t)),
-   'and so is the page that says what you can safely ignore', top.join(' | '));
+/* Everything in the sidebar that is visible without opening "More". */
+const railLinks = async page => page.evaluate(() =>
+  [...document.querySelectorAll('#rail .railsec a')].map(a => a.getAttribute('href')));
+const top = await railLinks(nav.page);
+ok(top.includes('#/setup'), 'the setup page is in the main nav, not the drawer', top.join(' | '));
+ok(top.includes('#/install'), 'and so is the install page');
+ok(top.includes('#/later'), 'and so is the page that says what you can safely ignore');
+ok(['#/', '#/library', '#/project', '#/practice', '#/skills'].every(h => top.includes(h)),
+   'the five daily places come first', top.slice(0, 6).join(' '));
+ok(top.length === new Set(top).size, 'no page is listed twice in the sidebar');
+ok(!top.includes('#/glossary'), 'the drawer is closed until asked for');
+
+console.log('\n— the sidebar is an outline of the course —');
+const outline = await nav.page.evaluate(() => ({
+  parts: document.querySelectorAll('#rail .railpart').length,
+  open: [...document.querySelectorAll('#rail .railpart')].filter(b => b.getAttribute('aria-expanded') === 'true').length,
+  chapters: document.querySelectorAll('#rail .railchs a').length,
+  firstPart: (document.querySelector('#rail .railpart') || {}).textContent
+}));
+ok(outline.parts === 7, 'all seven parts are listed in order', String(outline.parts));
+ok(outline.open === 1, 'only the part you are in is open', String(outline.open));
+ok(outline.chapters >= 9, 'and its chapters are one click away', String(outline.chapters));
+await nav.page.evaluate(() => { document.querySelectorAll('#rail .railpart')[3].click(); });
+const opened = await nav.page.evaluate(() =>
+  [...document.querySelectorAll('#rail .railpart')].filter(b => b.getAttribute('aria-expanded') === 'true').length);
+ok(opened === 2, 'a closed part opens on a click', String(opened));
+await nav.page.evaluate(() => { document.querySelector('#rail .railtog').click(); });
+const drawer = await railLinks(nav.page);
+ok(drawer.includes('#/glossary') && drawer.includes('#/notebook') && drawer.includes('#/data'),
+   'More opens the drawer');
+ok(await nav.page.evaluate(() => document.querySelectorAll('#rail .railgrp').length) === 4,
+   'grouped under four headings, not one list of eighteen');
+ok(drawer.length === new Set(drawer).size, 'and still nothing is listed twice');
+await nav.page.evaluate(() => { document.querySelector('#rail .railtog').click(); });
 
 /* The on-ramp. Chapter 0 was ten gentle minutes with no code, then Setup was
    forty-five minutes of plumbing with nothing to show for it, then Chapter 1
@@ -941,29 +967,50 @@ await boot(v4.page, '#/ch/ch13a');
 ok(!(await mainText(v4.page)).includes('English-only for now'),
    'and the notice is absent when English is the chosen language');
 
-/* The applied track has since been translated, and every part has to be
-   reachable from the page people actually land on — Part V was added and
-   could not be found from the dashboard at all, because nothing on it listed
-   the parts. v4.3 replaced the flat seven-part list with four curriculum-tier
-   cards (core, the capstone, selective, reference), so this now checks that
-   grouping instead of counting parts directly. */
-console.log('\n— the curriculum hierarchy is reachable from the landing page —');
+/* Every part has to be reachable from the page people actually land on, in
+   the order they are read. The dashboard lists the parts as one path; it does
+   not sort the course into tiers a reader has to decode. */
+console.log('\n— the course is one path, reachable from the landing page —');
 const navp = await newDevice(false);
 await boot(navp.page);
-const tiers = await navp.page.evaluate(() =>
-  [...document.querySelectorAll('.tiercard')].map(a => ({
+const rows = await navp.page.evaluate(() =>
+  [...document.querySelectorAll('.partrows .partrow')].map(a => ({
     label: (a.querySelector('h3') || {}).textContent,
     href: a.getAttribute('href')
   })));
-ok(tiers.length === 4, 'the four curriculum tiers are all on the dashboard', String(tiers.length));
-ok(['Core track', 'Capstone', 'Selective', 'Reference'].every(want =>
-   tiers.some(t => t.label === want)),
-   'named Core track, Capstone, Selective and Reference', tiers.map(t => t.label).join(' | '));
-ok(tiers.every(t => (t.href || '').startsWith('#/ch/')),
-   'and each one opens a chapter rather than going nowhere');
+ok(rows.filter(r => /^(Part|Track) /.test(r.label)).length === 7, 'all seven parts are on the dashboard',
+   rows.map(r => r.label).join(' | '));
+ok(/^Track A/.test(rows.find(r => /^(Part|Track) /.test(r.label)).label), 'in reading order, Track A first');
+ok(rows.every(r => /^#\/(ch\/|project)/.test(r.href || '')), 'and each one opens a chapter or the project, not nowhere');
+ok(!(await mainText(navp.page)).match(/Core track|Selective|Reference/), 'with no tier labels to decode');
+
+console.log('\n— the course map shows where you are —');
 await boot(navp.page, '#/library');
-ok(await navp.page.$('.tracksep'),
-   'the library marks Part V as a separate track');
+const map = await navp.page.evaluate(() => ({
+  parts: document.querySelectorAll('details.cpart').length,
+  open: document.querySelectorAll('details.cpart[open]').length,
+  rows: document.querySelectorAll('.crow').length,
+  next: document.querySelectorAll('.crow.next').length,
+  here: !!document.querySelector('.herecard a.ht'),
+  sep: !!document.querySelector('.tracksep')
+}));
+ok(map.parts === 7, 'the map has seven parts', String(map.parts));
+ok(map.open === 1, 'with only the current one open', String(map.open));
+ok(map.rows === 65, 'every chapter is a row', String(map.rows));
+ok(map.next === 1 && map.here, 'one chapter is marked next, and the card above says so');
+ok(!map.sep, 'and there is no "separate track" to puzzle over');
+await navp.page.evaluate(() => { location.hash = '#/library#part-5'; });
+await navp.page.waitForTimeout(400);
+ok(await navp.page.evaluate(() => document.getElementById('part-5').open),
+   'a link to a part opens that part');
+await boot(navp.page, '#/ch/ch2');
+const trail = await navp.page.evaluate(() => {
+  const t = document.querySelector('.chtrail');
+  return t ? { text: t.textContent, links: [...t.querySelectorAll('a')].map(a => a.getAttribute('href')) } : null;
+});
+ok(trail && /chapter 4 of 14/.test(trail.text), 'a chapter says where it sits in its part', trail && trail.text);
+ok(trail && trail.links.includes('#/library') && trail.links.includes('#/ch/ch15b') && trail.links.includes('#/ch/ch21'),
+   'with a way back to the map and to the chapters either side', trail && trail.links.join(' '));
 
 /* The v4.2 appendices are instruments, not pages: the artifact index is a
    tracker and the nine templates are forms. Both write to the same store

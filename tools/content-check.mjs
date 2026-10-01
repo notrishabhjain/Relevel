@@ -406,6 +406,27 @@ if (AP.exitNote) wantAdd(AP.exitNote);
     wantAdd(P.wordsTitle);
     P.words.forEach(([t, d]) => { wantAdd(t); wantAdd(d); });
 
+    /* The course is one path. Every chapter belongs to a part that exists, and
+       a part's chapters sit next to each other in reading order, because the
+       sidebar, the course map and the dashboard all list the parts in the order
+       they first appear. A chapter filed under a part that is listed elsewhere
+       would be read out of sequence, or twice. */
+    {
+      const partNs = new Set((C.reference.PARTS || []).map(p => p.n));
+      const closed = new Set();
+      let openPart = null;
+      for (const c of C.chapters) {
+        if (!partNs.has(c.part)) fail(`chapter ${c.id} is in part ${c.part}, which is not defined`);
+        if (c.part !== openPart) {
+          if (closed.has(c.part)) fail(`part ${c.part} is split: chapter ${c.id} (${c.num}) returns to it after another part began`);
+          if (openPart !== null) closed.add(openPart);
+          openPart = c.part;
+        }
+      }
+      for (const p of C.reference.PARTS || [])
+        if (!C.chapters.some(c => c.part === p.n)) fail(`part ${p.n} (${p.title}) has no chapters`);
+    }
+
     /* A chapter belongs to exactly one stage, the stages follow reading order,
        and every chapter that ends in a capstone is in one — otherwise the
        capstone cannot say which part of the project it answers. */

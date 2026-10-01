@@ -1,12 +1,12 @@
 /* Hinglish: b8 (coding-book rewrite and playbook tracks). Keyed on the exact English line. */
 Object.assign(window.HING = window.HING || {}, {
 
-  'The integrated capstone now lives in Chapter 21':
-    'Integrated capstone ab Chapter 21 mein hai',
-  'This chapter used to hold a second, separate capstone. Not any more. The technical capstone and this chapter’s five gates — discovery, strategy, build, ship, defend — are now one eleven-stage journey in Chapter 21, so a capstone is one coherent project instead of two.':
-    'Yeh chapter pehle ek dusra, alag capstone tha. Ab nahi hai. Technical capstone aur is chapter ke paanch gates — discovery, strategy, build, ship, defend — ab Chapter 21 mein ek gyarah-stage journey ban gaye hain, taaki capstone ek hi coherent project ho, do nahi.',
-  'Do the capstone once, in Chapter 21 — not twice.':
-    'Capstone ek baar kijiye, Chapter 21 mein — do baar nahi.',
+  'The integrated capstone now lives in Chapter 34':
+    'Integrated capstone ab Chapter 34 mein hai',
+  'This chapter used to hold a second, separate capstone. Not any more. The technical capstone and this chapter’s five gates — discovery, strategy, build, ship, defend — are now one eleven-stage journey in Chapter 34, so a capstone is one coherent project instead of two.':
+    'Yeh chapter pehle ek dusra, alag capstone tha. Ab nahi hai. Technical capstone aur is chapter ke paanch gates — discovery, strategy, build, ship, defend — ab Chapter 34 mein ek gyarah-stage journey ban gaye hain, taaki capstone ek hi coherent project ho, do nahi.',
+  'Do the capstone once, in Chapter 34 — not twice.':
+    'Capstone ek baar kijiye, Chapter 34 mein — do baar nahi.',
   'This page keeps one exercise from the old chapter so a saved answer here still has a home.':
     'Is page par purane chapter ka ek exercise rakha gaya hai, taaki yahan diya gaya saved jawab bhi kahin bana rahe.',
   'The unified capstone':
@@ -16,35 +16,35 @@ Object.assign(window.HING = window.HING || {}, {
   'This chapter moved':
     'Yeh chapter move ho gaya',
   'This used to be a second, separate capstone. It is not any more. Everything here is now part of one journey in Chapter 21.':
-    'Yeh pehle ek dusra, alag capstone tha. Ab aisa nahi hai. Yahan ka sab kuchh ab Chapter 21 ke ek hi journey ka hissa hai.',
-  'If you already have progress on the old five gates, it maps directly onto Chapter 21’s eleven stages:':
-    'Agar aapke paas purane paanch gates par pehle se progress hai, to woh seedhe Chapter 21 ke gyarah stages par map ho jaata hai:',
+    'Yeh pehle ek dusra, alag capstone tha. Ab aisa nahi hai. Yahan ka sab kuchh ab Chapter 34 ke ek hi journey ka hissa hai.',
+  'If you already have progress on the old five gates, it maps directly onto Chapter 34’s eleven stages:':
+    'Agar aapke paas purane paanch gates par pehle se progress hai, to woh seedhe Chapter 34 ke gyarah stages par map ho jaata hai:',
   'Old gate':
     'Purana gate',
-  'New stage(s) in Chapter 21':
-    'Chapter 21 mein naya stage',
+  'New stage(s) in Chapter 34':
+    'Chapter 34 mein naya stage',
   'Gate 1, Discovery':
     'Gate 1, Discovery',
-  '21.1 Discover':
-    '21.1 Discover',
+  '34.1 Discover':
+    '34.1 Discover',
   'Gate 2, Strategy':
     'Gate 2, Strategy',
-  '21.3 Design':
-    '21.3 Design',
+  '34.3 Design':
+    '34.3 Design',
   'Gate 3, Build':
     'Gate 3, Build',
-  '21.4 Build – 21.5 Evaluate':
-    '21.4 Build – 21.5 Evaluate',
+  '34.4 Build – 34.5 Evaluate':
+    '34.4 Build – 34.5 Evaluate',
   'Gate 4, Ship':
     'Gate 4, Ship',
-  '21.8 Ship':
-    '21.8 Ship',
+  '34.8 Ship':
+    '34.8 Ship',
   'Gate 5, Defend':
     'Gate 5, Defend',
-  '21.9 Measure – 21.11 Defend':
-    '21.9 Measure – 21.11 Defend',
-  'Go to <a href="#/ch/ch21cap">Chapter 21</a> and start from wherever your project actually is. There is nothing else to do on this page — except the one exercise below, kept here so an answer you already wrote is not lost.':
-    '<a href="#/ch/ch21cap">Chapter 21</a> par jaaiye aur wahin se shuru kijiye jahan aapka project abhi hai. Is page par aur kuchh karne ko nahi hai — sirf niche wala ek exercise chhodkar, jo isliye rakha hai taaki aapka likha hua jawab kho na jaaye.',
+  '34.9 Measure – 34.11 Defend':
+    '34.9 Measure – 34.11 Defend',
+  'Go to <a href="#/ch/ch21cap">Chapter 34</a> and start from wherever your project actually is. There is nothing else to do on this page — except the one exercise below, kept here so an answer you already wrote is not lost.':
+    '<a href="#/ch/ch21cap">Chapter 34</a> par jaaiye aur wahin se shuru kijiye jahan aapka project abhi hai. Is page par aur kuchh karne ko nahi hai — sirf niche wala ek exercise chhodkar, jo isliye rakha hai taaki aapka likha hua jawab kho na jaaye.',
   'Write your answer to the hardest question you expect in the defence. For example: “Why should we believe this works beyond your ten design partners?”':
     'Defence mein aapko jo sabse mushkil sawaal ka saamna karna pad sakta hai, uska jawab likhiye. Jaise: "Hum yeh kyun maanein ki yeh aapke das design partners se aage bhi kaam karega?"',
   'What we know… what we do not know yet… what we would do next…':

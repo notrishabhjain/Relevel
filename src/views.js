@@ -140,49 +140,33 @@ function dashboard(){
   });
   w.appendChild(grid);
 
-  /* The curriculum, reachable from the page people actually land on — as
-     the v4.3 hierarchy, not the seven parts underneath it. A returning
-     reader already has the one action above; this is for "what is actually
-     in here, and how much of it is mine to finish". Four cards, not sixty-
-     five chapters or seven parts: Core (required), the Capstone (a fourth
-     block of its own, since it is one project rather than reading),
-     Selective (useful, depth is yours to control) and Reference (browse,
-     never forced). */
-  w.appendChild(h('h2',{class:'sec',text:'The curriculum'}));
-  const tierRow=h('div',{class:'partrows tiercards'});
-  const tierCard=(key,label,sub,tp)=>{
-    const next=tp.next||tp.chs[0];
-    if(!next) return null;
-    const done=tp.total>0&&tp.done===tp.total;
-    return h('a',{class:'partrow tiercard t'+key+(done?' done':''),
-      href:'#/ch/'+next.id},[
-      h('div',{class:'prn',text:label[0]}),
+  /* The course, reachable from the page people actually land on: the same
+     ordered parts the course map and the sidebar show, with the project stage
+     you are in. One path, in order. Each row opens the next chapter in that
+     part that is not yet done. */
+  w.appendChild(h('h2',{class:'sec',text:TR('Your path through the course')}));
+  const rows=h('div',{class:'partrows'});
+  const curr=eng.currentChapter(st);
+  const stg=curr&&window.stageOfChapter?window.stageOfChapter(curr.c.id):null;
+  if(stg) rows.appendChild(h('a',{class:'partrow projrow',href:'#/project#stage-'+stg.id},[
+    h('div',{class:'prn',text:'\u25c8'}),
+    h('div',{style:'flex:1;min-width:0'},[
+      h('h3',{text:TR('Your project: Bharat Privacy Guard')}),
+      h('p',{text:TR('Stage')+' '+stg.n+' / '+stg.total+' \u00b7 '+TR(stg.title)})]),
+    h('span',{class:'go',text:TR('See the whole project')+' \u2192'})]));
+  eng.partProgress(st).forEach(pp=>{
+    const target=pp.next||pp.chs[0];
+    rows.appendChild(h('a',{class:'partrow'+(pp.complete?' done':''),href:'#/ch/'+target.id},[
+      h('div',{class:'prn',text:String(pp.step)}),
       h('div',{style:'flex:1;min-width:0'},[
-        h('h3',{text:TR(label)}),
-        h('p',{text:sub+' \u00b7 '+(done?'all '+tp.total+' done':tp.done+' of '+tp.total+' done')})]),
-      h('span',{class:'go',text:done?'Complete \u2713':(tp.done?'Continue \u2192':'Start \u2192')})]);
-  };
-  const core=tierCard('core','Core track','Required competency path',eng.tierProgress(st,'core'));
-  if(core) tierRow.appendChild(core);
-  const cap=(window.CHAPTERS||[]).find(c=>c.id==='ch21cap');
-  if(cap){
-    const capDone=!!st.done[cap.id];
-    tierRow.appendChild(h('a',{class:'partrow tiercard tcapstone'+(capDone?' done':''),
-      href:'#/ch/'+cap.id},[
-      h('div',{class:'prn',text:'C'}),
-      h('div',{style:'flex:1;min-width:0'},[
-        h('h3',{text:TR('Capstone')}),
-        h('p',{text:'One integrated build-and-defend journey \u00b7 '+
-          (capDone?'done':'11 stages, discover to defend')})]),
-      h('span',{class:'go',text:capDone?'Revisit \u2192':'Open \u2192'})]));
-  }
-  const sel=tierCard('selective','Selective','Useful, depth is yours to control',eng.tierProgress(st,'selective'));
-  if(sel) tierRow.appendChild(sel);
-  const ref=tierCard('reference','Reference','Browse when needed \u2014 never forced',eng.tierProgress(st,'reference'));
-  if(ref) tierRow.appendChild(ref);
-  w.appendChild(tierRow);
+        h('h3',{text:(pp.part.track?'Track ':'Part ')+(pp.part.label||pp.n)+' \u00b7 '+TR(pp.part.title||'')}),
+        h('p',{text:pp.complete?TR('All done')+' \u00b7 '+pp.total+' '+TR('chapters'):
+          pp.done+' / '+pp.total+' '+TR('chapters finished')})]),
+      h('span',{class:'go',text:pp.complete?TR('Revisit')+' \u2192':(pp.done?TR('Continue'):TR('Start'))+' \u2192'})]));
+  });
+  w.appendChild(rows);
   w.appendChild(h('p',{class:'dim',style:'font-size:.85rem;margin:.6rem 0 0'},
-    [h('a',{href:'#/library',text:'All '+(window.CHAPTERS||[]).length+' chapters, listed \u2192'})]));
+    [h('a',{href:'#/library',text:TR('Open the course map')+' \u2192'})]));
 
   /* recent activity */
   const acc=eng.accuracyByDay(st,21);
@@ -500,7 +484,7 @@ function practiceMenu(){
 function skills(){
   const st=S(), eng=E();
   const w=h('div',{class:'wrap-wide'});
-  w.appendChild(phead('30 tracked skills','Skill Matrix',
+  w.appendChild(phead('30 tracked skills','My progress',
     'Mastery is earned by measured evidence and decays without practice. A skill you have not exercised in six weeks is shown as it stands <em>today</em>, not at its peak.'));
   const legend=h('div',{class:'legend'},LN().map((n,i)=>
     h('span',{class:'lgi'},[h('span',{class:'spark l'+i}),h('span',{text:n})])));
@@ -612,7 +596,7 @@ function trendChart(hist){
 function analytics(){
   const st=S(), eng=E();
   const w=h('div',{class:'wrap-wide'});
-  w.appendChild(phead('Measurement','Analytics',
+  w.appendChild(phead('Measurement','How I am doing over time',
     'Four questions: is mastery rising, do you know when you know, where is the decay, and what has actually been practised.'));
   if(!st.att.length){
     w.appendChild(h('p',{class:'empty',text:'Nothing measured yet. Run the placement check and this fills in.'}));
@@ -744,7 +728,7 @@ function forecastBars(fc){
 function exercises(){
   const st=S(), eng=E();
   const w=h('div',{class:'wrap-wide'});
-  w.appendChild(phead('Applied work','Exercises',
+  w.appendChild(phead('Applied work','Longer exercises',
     'Fourteen deliverables you produce against your own documents. Each is scored on a rubric and <strong>versioned</strong> — the point is not to finish one, it is to do it again in six weeks and watch the score move.'));
   const done=window.EXERCISES.filter(e=>((st.ex[e.id]||{}).iters||[]).length).length;
   w.appendChild(h('div',{class:'stats'},[
@@ -835,7 +819,7 @@ function exercises(){
 function processes(){
   const st=S();
   const w=h('div',{class:'wrap-wide'});
-  w.appendChild(phead('Repeatable workflows','Processes',
+  w.appendChild(phead('Repeatable workflows','Repeatable work routines',
     'Five workflows you run on real work, not on exercises. Each has an iteration counter — the value is in running the same process a fourth time and finding it takes an afternoon instead of a fortnight.'));
   window.PROCESSES.forEach(p=>{
     const ps=st.proc[p.id]||(st.proc[p.id]={run:0,step:{},log:[]});
@@ -891,7 +875,7 @@ function data(){
   const st=S(), SY=window.SYNC;
   const w=h('div',{class:'wrap'});
   const signedIn = window.ACCOUNT && window.ACCOUNT.user;
-  w.appendChild(phead('Your data','Progress & Backup',
+  w.appendChild(phead('Your data','My data and backups',
     signedIn
       ? 'Your progress is stored against your account, so it follows you to any device you sign in on. This browser keeps a copy so the app still works offline, and everything below is the safety net under that.'
       : 'Right now your progress lives in this browser only. That makes it private — and fragile, because it is tied to one browser on one device. Sign in below to make it follow you instead.'));
