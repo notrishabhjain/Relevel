@@ -78,7 +78,7 @@ Imran ne use dekha.
 
 "Kuch customers message nahi likhte. Woh ek email paste kar dete hain. Poora thread, teen hazaar shabd. Guard ka jo hissa naam aur jagah dhoondhta hai woh ek baar mein sirf utna hi padh sakta hai. Toh use bhi thread ko tukdon mein kaatna padega."
 
-"Aur agar woh kisi number ke beech mein kaate..."
+"Aur agar woh kisi number ke beech mein kaate toh?"
 
 "Toh ek tukda *4321 56* par khatam hota hai aur agla *78 9012* se shuru, aur jo bhi unhe padhe uske liye dono mein se koi Aadhaar number nahi hai." Usne use whiteboard par banaya, ek number jo ek line ko paar kar raha tha, jaise sadak ki lane ke aar-paar khadi gaadi. "Woh seedha paas se nikal jaayega."
 
