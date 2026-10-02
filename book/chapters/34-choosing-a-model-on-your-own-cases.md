@@ -31,7 +31,7 @@ Mr. Bhatia raised an eyebrow, and then, to her relief, smiled. "Show me."
 
 Imran had been waiting for the question. A model is not better or worse in one dimension. They differ in several at once: how well they can do the task, how fast they answer, how much text they can take, how reliably they call functions and what they cost. One that wins on the first can lose on the next three. Which of these matters most is a fact about your use, not about the model.
 
-So the work, he said, was to define what *your* use needed and then to measure. He pulled up the harness, which had been waiting.
+So the work, he said, was to define what *your* use needed and then to measure. He pulled up the runner, which had been waiting.
 
 The task was the finder: read a message, list the personal details. The quality bar, written in the specification in May: at least ninety-eight in a hundred of the fixed-shape numbers, and as many as possible of the names. The data rule, written in July: nothing real could be sent outside the building. The speed bar: typically under a third of a second. The cost ceiling: under sixty paise a message in total.
 

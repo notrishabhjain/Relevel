@@ -9,7 +9,7 @@ terms:
   - environment variable | a value kept outside the code, in the place a program runs, which is where passwords and API keys belong | environment variables
   - Git | a tool that saves every version of your work, so you can see what changed and go back to any earlier version | 
   - repository | the folder, kept in Git, that holds all of a project's work and its history | repositories
-  - experiment harness | a reusable runner that records, for every experiment, the inputs, outputs, settings, timings and errors, so a result can be reproduced and compared | harness
+  - experiment runner | a reusable program that records, for every experiment, the inputs, outputs, settings, timings and errors, so a result can be reproduced and compared | 
   - data contract | the unspoken assumptions one part of a system makes about the data it receives, such as that a field will be present and a list will not be empty | 
 ---
 
@@ -76,7 +76,7 @@ And he added, as a coda, the thing that made it matter. Every record of every me
 
 The last thing he showed her was something he had been building for two months and had never shown anyone.
 
-It was an *experiment harness*: a reusable runner that records, for every experiment, the inputs, the outputs, the settings, the timings and the errors, all in a standard form. The point was to cross a particular bridge. Between *I tried it* and *I measured it* there is a gap, and most of the gap is bookkeeping. Run a prompt twice and save both runs. Change one thing. Look at the logs and see at once what changed.
+It was an *experiment runner*: a reusable program that records, for every experiment, the inputs, the outputs, the settings, the timings and the errors, all in a standard form. The point was to cross a particular bridge. Between *I tried it* and *I measured it* there is a gap, and most of the gap is bookkeeping. Run a prompt twice and save both runs. Change one thing. Look at the logs and see at once what changed.
 
 "If I can't reproduce yesterday's result, I haven't got a result," he said. "I've got an anecdote."
 
@@ -94,4 +94,4 @@ At the top of the page she added the sentence he had said at the start, because 
 
 ## What to carry forward
 
-An AI system is ordinary software with one unpredictable part, so everything that can break ordinary software can break it, and the engineering risk lies at least as much in interfaces, errors, secrets and retries as in the model. Programs talk through requests and replies, and the status code on a reply says whether the request was wrong or the other side failed. Keys belong outside the code, work belongs in a repository that records every change, and an error is read from the bottom. Every part of a system makes assumptions about the data it receives, and a good system stops when one is broken instead of carrying on with nothing. A harness that records every experiment turns "I tried it" into "I measured it", because a result you cannot reproduce is only an anecdote.
+An AI system is ordinary software with one unpredictable part, so everything that can break ordinary software can break it, and the engineering risk lies at least as much in interfaces, errors, secrets and retries as in the model. Programs talk through requests and replies, and the status code on a reply says whether the request was wrong or the other side failed. Keys belong outside the code, work belongs in a repository that records every change, and an error is read from the bottom. Every part of a system makes assumptions about the data it receives, and a good system stops when one is broken instead of carrying on with nothing. A runner that records every experiment turns "I tried it" into "I measured it", because a result you cannot reproduce is only an anecdote.
