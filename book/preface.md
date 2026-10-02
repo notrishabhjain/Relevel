@@ -20,7 +20,7 @@ Every one of those lessons is in the course app. Here you meet each one at the m
 
 Read the chapters in order. Each one picks up what the last one left unsettled, and each one uses words the earlier chapters have already explained. Nothing is used before it is taught; the book is checked for that.
 
-The first time a new word appears it is underlined with dots, and the plain meaning waits underneath. At the end of each chapter, a short box gathers the words that chapter taught. The back of the book has them all, in alphabetical order, with the chapter where each first appeared.
+The first time a new word appears it is softly highlighted, and the plain meaning waits underneath when you hover over it. At the end of each chapter, a short box gathers the words that chapter taught. The back of the book has them all, in alphabetical order, with the chapter where each first appeared.
 
 Under every chapter title there is a line saying which chapters of the course app it retells. If a chapter makes you want to try something with your own hands, that line is the door.
 

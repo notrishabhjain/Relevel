@@ -1,0 +1,17 @@
+{
+  "title": "AI From Zero",
+  "edition": "Padhne wala edition (Hinglish)",
+  "subtitle": "Pune ki ek chhoti si team ne ek privacy guard banaya, aur seekha ki AI products asal mein kaise bante hain",
+  "tagline": "Yeh kitaab padhne ke liye hai, course karne ke liye nahi. Wahi ideas, wahi kram, wahi shabd jo course app mein hain, bas ek lambi kahani ki tarah.",
+  "language": "hi",
+  "artLabel": "Ek chat message jisme personal details chhupa di gayi hain",
+  "sections": [
+    { "from": 1, "to": 7, "title": "Woh problem jo hal karne layak hai", "blurb": "Anaya ko chat mein kuch ajeeb dikhta hai, aur woh seekhti hai ki product wala insaan kaise tay karta hai ki kya banana hai aur kya chhod dena hai." },
+    { "from": 8, "to": 13, "title": "Machine se mulaqaat", "blurb": "Language model kya hai, usse baat kaise karte hain, aur kaise pata chalta hai ki usne achha kaam kiya ya nahi." },
+    { "from": 14, "to": 19, "title": "Cheezein dhoondhna, aur poori machine", "blurb": "Lambe documents, shabdon se aur matlab se search, aur kaise saare hisse milkar ek chalta hua system banate hain." },
+    { "from": 20, "to": 26, "title": "Machine ko kaam dena", "blurb": "Tools, sochne wale models, dushman text, hazaaron jawaabon ki grading, aur sab kuch kitne mein padta hai." },
+    { "from": 27, "to": 32, "title": "Asli duniya ki uljhanein", "blurb": "Scans aur photos, kya bhejna theek hai, niyam, badalte rehne wali cheez ki spec, aur galat jawaab ke liye design." },
+    { "from": 33, "to": 39, "title": "Bonnet ke neeche", "blurb": "Plumbing, model chunna, review mein tikne wala retrieval, agents, awaaz aur tasveerein, release gates, aur sabse bura maan kar chalna." },
+    { "from": 40, "to": 47, "title": "Ek asli product, aur ek naukri", "blurb": "Product ko ship karna, uski keemat tay karna, usse badhana, gina-na, asli users ke saath chalana, aur is kaam ke liye naukri paana." }
+  ]
+}
