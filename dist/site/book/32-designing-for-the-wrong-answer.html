@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Designing for the Wrong Answer · Chapter 32 · AI From Zero</title>
+<meta name="description" content="At ninety percent, one answer in ten is wrong, and what the screen does about that one decides whether the tool is trusted. Then a pilot that was designed to be able to fail does something stranger: it succeeds, and nothing changes.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
+<link rel="stylesheet" href="style.css">
+<script>try{var t=localStorage.getItem('aifz-book-theme');if(t)document.documentElement.setAttribute('data-theme',t);var s=localStorage.getItem('aifz-book-size');if(s)document.documentElement.style.setProperty('--fs',s+'rem')}catch(e){}</script>
+</head>
+<body class="is-chapter">
+<a class="skip" href="#text">Skip to the text</a>
+<div class="progress" id="progress" aria-hidden="true"><i></i></div>
+<header class="bar">
+  <a class="brand" href="index.html"><span class="mark">AI From Zero</span><span class="ed">The reading edition</span></a>
+  <span class="sp"></span>
+  <button class="b" id="size-down" type="button" aria-label="Smaller text" title="Smaller text">A−</button>
+  <button class="b" id="size-up" type="button" aria-label="Larger text" title="Larger text">A+</button>
+  <button class="b" id="theme" type="button" aria-label="Change colours" title="Change colours">◐</button>
+  <a class="b app" href="../" title="Open the course app">The course app →</a>
+</header>
+<div class="layout">
+<nav class="toc" aria-label="Contents"><details id="toc"><summary>Contents</summary><ol>
+<li><a href="index.html"><span class="t">Contents</span></a></li>
+<li><a href="preface.html"><span class="t">Before You Begin</span></a></li>
+<li><a href="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">The Number in the Chat</span></a></li>
+<li><a href="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Four Questions Before Building</span></a></li>
+<li><a href="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Asking About Yesterday</span></a></li>
+<li><a href="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Who Else Is Standing Here</span></a></li>
+<li><a href="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Choosing What Not to Do</span></a></li>
+<li><a href="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">A Plan Others Can Believe</span></a></li>
+<li><a href="07-writing-it-down.html"><span class="n">7</span><span class="t">Writing It Down So Others Can Build It</span></a></li>
+<li><a href="08-what-the-machine-is.html"><span class="n">8</span><span class="t">What the Machine Is</span></a></li>
+<li><a href="09-the-first-conversation.html"><span class="n">9</span><span class="t">The First Conversation</span></a></li>
+<li><a href="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">A Mind With No Memory</span></a></li>
+<li><a href="11-giving-instructions.html"><span class="n">11</span><span class="t">Giving Instructions</span></a></li>
+<li><a href="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Knowing Whether It Works</span></a></li>
+<li><a href="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Sorting and Summarising</span></a></li>
+<li><a href="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Too Long to Read at Once</span></a></li>
+<li><a href="15-finding-by-words.html"><span class="n">15</span><span class="t">Finding by Words</span></a></li>
+<li><a href="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Finding by Meaning</span></a></li>
+<li><a href="17-how-good-is-good.html"><span class="n">17</span><span class="t">How Good Is Good</span></a></li>
+<li><a href="18-the-whole-machine.html"><span class="n">18</span><span class="t">The Whole Machine</span></a></li>
+<li><a href="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Answers a Program Can Use</span></a></li>
+<li><a href="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Giving the Machine Hands</span></a></li>
+<li><a href="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Long Windows, Careful Rooms</span></a></li>
+<li><a href="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Machines That Think First</span></a></li>
+<li><a href="23-searching-better.html"><span class="n">23</span><span class="t">Searching Better</span></a></li>
+<li><a href="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">When the Page Gives Orders</span></a></li>
+<li><a href="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Grading a Thousand Answers</span></a></li>
+<li><a href="26-what-it-really-costs.html"><span class="n">26</span><span class="t">What It Really Costs</span></a></li>
+<li><a href="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Paper, Photos and Scans</span></a></li>
+<li><a href="28-what-you-may-send.html"><span class="n">28</span><span class="t">What You May Send</span></a></li>
+<li><a href="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Rules, Risk and Responsibility</span></a></li>
+<li><a href="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">The Spec for a Thing That Varies</span></a></li>
+<li><a href="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Build, Buy or Teach It</span></a></li>
+<li class="here"><a href="32-designing-for-the-wrong-answer.html" aria-current="page"><span class="n">32</span><span class="t">Designing for the Wrong Answer</span></a></li>
+<li><a href="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">The Plumbing Under the Magic</span></a></li>
+<li><a href="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Choosing a Model on Your Own Cases</span></a></li>
+<li><a href="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Retrieval That Survives a Review</span></a></li>
+<li><a href="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents and the Standard Plug</span></a></li>
+<li><a href="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Pictures and Voices</span></a></li>
+<li><a href="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces and Rollbacks</span></a></li>
+<li><a href="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Assuming the Worst</span></a></li>
+<li><a href="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">A Product, Not a Demo</span></a></li>
+<li><a href="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Shipping the Whole Thing</span></a></li>
+<li><a href="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Who Pays, and How Much</span></a></li>
+<li><a href="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">How People Find It and Stay</span></a></li>
+<li><a href="44-counting-what-matters.html"><span class="n">44</span><span class="t">Counting What Matters</span></a></li>
+<li><a href="45-tools-and-harness.html"><span class="n">45</span><span class="t">The Tools and the Harness</span></a></li>
+<li><a href="46-real-people-real-use.html"><span class="n">46</span><span class="t">Real People, Real Use</span></a></li>
+<li><a href="47-the-job.html"><span class="n">47</span><span class="t">The Work, and the Job</span></a></li>
+<li><a href="afterword.html"><span class="t">After the Book</span></a></li>
+<li><a href="glossary.html"><span class="t">Words, in plain language</span></a></li>
+</ol></details></nav>
+<main id="text">
+<article class="chapter" data-file="32-designing-for-the-wrong-answer.html" data-title="Designing for the Wrong Answer">
+<header class="chead"><p class="eyebrow">Chapter 32</p><h1>Designing for the Wrong Answer</h1><p class="dek">At ninety percent, one answer in ten is wrong, and what the screen does about that one decides whether the tool is trusted. Then a pilot that was designed to be able to fail does something stranger: it succeeds, and nothing changes.</p><p class="meta">8 minute read</p></header>
+<div class="prose">
+<p>&quot;If it is right nine times out of ten,&quot; said Farah, &quot;what do I tell my team about the tenth?&quot;</p>
+<p>She asked it standing, with a cup of tea, in the doorway of the glass room. It was the last week of August and the humidity had broken, and there was a new, thin light coming in through the blinds. Anaya had been waiting for this question for weeks. It was the one that decided whether the thing they had built would be used.</p>
+<p>At ninety percent, one in ten is wrong, and no amount of engineering removes the last tenth entirely. What the screen does when it is wrong decides whether the tool is trusted or abandoned. And that is not an engineering decision. An engineer can say that a confidence score exists. The product owner decides what the agent sees when it is low.</p>
+<h2>Four things on the screen</h2>
+<p>Anaya had sketched the agent's screen in April on paper. Now she did it again, with what she had learned, and found that it came down to four things.</p>
+<p><strong>Show the evidence.</strong> When the guard hid a number, the agent saw a small note: <em>1 detail hidden. Click to see why.</em> The click opened the exact words that had been hidden, and the reason. A bare claim, <em>something was hidden</em>, is only a demand to trust. A claim the reader can check in a second is evidence. This was why she had insisted on the quotation in the form: the evidence had to open.</p>
+<p><strong>Think about speed.</strong> She had learned this on the train. The decision to hide something could not be streamed, because a half-decision is a hazard. So nothing appeared on the agent's screen until the guard had finished. A number that appears and then changes as it is being written is worse than a spinner.</p>
+<p><strong>Use confidence to choose what to do, and do not display it.</strong> The finder produced a confidence figure for every finding. It would have been easy to show it. <em>Hidden: name (73%).</em> But a percentage next to an answer asks the agent to judge something they cannot calibrate, and the machine's own sense of how sure it is tends to be badly calibrated anyway. Used behind the scenes, though, it could change what the screen did. High confidence: hide it and say so. Middling: hide it, say <em>hidden to be safe</em>, and send it to a person later. Very low: leave the text alone but mark the message for review. Confidence became a choice among behaviours, not a number to look at.</p>
+<p><strong>Make correcting it quick.</strong> When the guard was wrong, what an agent did next was the most valuable data in the building, and most products throw it away. Anaya had the button, <em>the guard hid something I needed</em>. She sharpened it. It now offered to show the original for this chat only, asked what the agent had expected instead, and wrote down the question, the evidence and the answer together. If correcting took longer than doing the job by hand, nobody would correct, and an empty feedback table would look like satisfaction. Hers took one click and one line.</p>
+<p>&quot;A thumbs-down tells you something was wrong,&quot; she told Farah. &quot;This tells us what it should have said. That's a test case, written by your team, for nothing.&quot;</p>
+<p>Farah thought about it. &quot;So what do I say about the tenth one?&quot;</p>
+<p>&quot;You say: it will be visibly unsure about some of them, it will tell you why, and you can correct it faster than you can do it yourself. And the ones it gets wrong that you never see, we will find another way.&quot;</p>
+<h2>What it says when it cannot</h2>
+<p>There was one screen she had not designed, and she realised that she had been avoiding it.</p>
+<p>Every system looks good when it works. Trust is built on the screen that says <em>I can't</em>. Many products design it last, or never. She spent a Tuesday on it.</p>
+<p>For the guard, a <em><a class="term" href="glossary.html#t-refusal" title="a system saying plainly that it cannot do something and offering a route to a person, which is designed on purpose and not left as an accident">refusal</a></em> meant the moments when it could not safely do the thing. A customer attaches a photograph of an Aadhaar card to the free chat. The guard cannot yet black out a number in a picture. The honest design was not to pretend. The chat would say, in all three languages, written by Farah and approved by Lakshmi: <em>Please don't share identity cards here. Use the secure upload, or press this button to speak to a person.</em> A refusal that gives a route to a human earns more trust than a system that always produces something, because users judge it partly by what it declines. A feature that never refuses teaches them that its confidence means nothing.</p>
+<p>The last screen was the one for when the machine was off. She had already built the safe mode. She now designed what the agents saw when it was on: a thin yellow strip across the top, <em>Safe mode: names and addresses are not being hidden</em>. If turning off the machine left a blank screen, the switch would only replace one failure with another.</p>
+<h2>A test that could fail</h2>
+<p>By the end of the month the screens were done, and Lakshmi asked for a <a class="term" href="glossary.html#t-pilot" title="a limited trial designed to show whether a feature helps the business, which states in advance what result would count as failure">pilot</a>.</p>
+<p>&quot;I don't want a launch,&quot; she said. &quot;I want a test. And I want you to tell me in advance what would disappoint you.&quot;</p>
+<p>Everything the team had measured so far was about the system: whether the finder was right, whether the judge could be trusted, whether the sorter worked in every box. All necessary. None of it answered the question that decides whether anyone pays for the next quarter: did it help the business? A system can be ninety-four percent accurate and change nothing. Nobody may use it. Or the step it speeds up may never have been the slow part.</p>
+<p>So, first, find the slow part. Anaya and Farah timed a week of work in the support office, without changing anything. The agents spent almost no time on identity numbers. They did not read them, did not copy them, did not care. What was slow, and what worried Lakshmi, was elsewhere. Every month she ran a privacy sweep, a spot check of five hundred chats from the logs, to count how many still contained an unhidden identity number. In July, forty-six of the five hundred had.</p>
+<p>That was the number. A pilot rests on four decisions.</p>
+<p><em>The number.</em> One measure the business already tracks. Not a new metric invented for the occasion. The sweep count would do.</p>
+<p><em>The comparison.</em> The same team before and after is weak evidence. Two comparable groups over the same stretch is much stronger. Sahaj had two support teams: Pune and Nashik, doing the same work on the same chatbot. Pune would run with the guard. Nashik would run without.</p>
+<p><em>The <a class="term" href="glossary.html#t-failure-threshold" title="the result, written down before a pilot starts, below which you will call it a failure">failure threshold</a>.</em> This is the result below which the pilot is called a failure, written down before it starts. Hers read: <em>If after four weeks Pune's sweep count is not at least half of Nashik's, or if Pune's agents switch the guard off in more than two chats in ten, the pilot has failed.</em> She added a guardrail: agent handling time could not rise by more than five percent.</p>
+<p><em>The time window.</em> Long enough for the novelty to wear off. Any new tool looks better than it is in its first fortnight. Six weeks.</p>
+<p>Lakshmi read the page and, instead of signing it, handed it back. &quot;Add one more line. What will you tell me if it works and the number doesn't move?&quot;</p>
+<h2>The pilot that worked</h2>
+<p>The pilot began on the first of September. By the end of the second week Anaya was reading the dashboard with a feeling she did not trust.</p>
+<p>The guard was working. She could see it. In Pune it hid forty to fifty details a day. Agents used the button seldom. The scoreboard against the answer key was at its best ever. Handling time was flat.</p>
+<p>The sweep, which Lakshmi ran early to be sure, said that Pune had forty-one in five hundred, and Nashik forty-three.</p>
+<p>Nothing had changed.</p>
+<p>For a long minute she looked at the two numbers. The system worked, and the business number had not moved, and she had been told in advance that this was possible. It is the most disorienting result in the field, and the instinct, always, is to go back and improve the system, because that is what teams know how to measure.</p>
+<p>She resisted it. Lakshmi's line was on the page, and she had written under it an order of investigation, three questions, in the order that experience says is most likely to find the answer.</p>
+<p><em>First: are people using it? Low adoption is the commonest cause and the easiest to check.</em> They were. The guard was running on every chat.</p>
+<p><em>Second: does the output reach the place where the decision is made?</em> She sat very still.</p>
+<p><em>Third: was the step we sped up even on the critical path?</em></p>
+<p>The second question took her eleven minutes. She asked Imran where the sweep drew its five hundred chats from. He frowned, opened a diagram, and went quiet.</p>
+<p>&quot;The nightly job,&quot; he said. &quot;It copies from the raw table. The one that existed before the guard. The guard cleans the messages the agents see. It cleans the history we send on. But the logs the sweep reads are made from the original messages, written before the guard runs. We never touched that table.&quot;</p>
+<p>The guard had been protecting everything except the place Lakshmi looked.</p>
+<p>&quot;Clean before it is stored,&quot; said Anaya, in a flat voice. &quot;I wrote that in April.&quot;</p>
+<p>&quot;You wrote it for the history. I didn't apply it to the log.&quot;</p>
+<p>It took him two days to move the guard in front of the raw table. In the third week, Pune's sweep count fell to nine in five hundred. Nashik's stayed at forty-two.</p>
+<p>Anaya stood in the corridor a long time after she saw it. She had a number, and the number had moved, and the reason it had moved was that she had written a test that could fail and then insisted on believing it when it did.</p>
+<h2>What to carry forward</h2>
+<p>At ninety percent, one answer in ten is wrong, and the product owner decides what the screen does about it. Four things matter: show evidence that opens, think about speed, use confidence internally to choose behaviour and not as a number on the screen, and make correcting quicker than the manual way. A refusal is a screen to be designed on purpose, ending in a route to a person, and so is the screen for when the AI is switched off. To learn whether a system helps the business, find the slow part first, then run a pilot with one number the business already tracks, a comparison group, a failure threshold written in advance, and a window long enough for novelty to fade. And when it works but the number does not move, ask three things in order: is it used, does its output reach where the decision is made, and was that step the slow one.</p>
+</div>
+<aside class="wordsbox" aria-label="Words from this chapter"><h2>Words from this chapter</h2><dl><div><dt id="w-refusal">refusal</dt><dd>a system saying plainly that it cannot do something and offering a route to a person, which is designed on purpose and not left as an accident</dd></div><div><dt id="w-pilot">pilot</dt><dd>a limited trial designed to show whether a feature helps the business, which states in advance what result would count as failure</dd></div><div><dt id="w-failure-threshold">failure threshold</dt><dd>the result, written down before a pilot starts, below which you will call it a failure</dd></div></dl></aside>
+<p class="inapp">In the course app: <a href="../#/ch/ch20">Designing for wrong answers: evidence, confidence and refusals</a> · <a href="../#/ch/ch205">Measuring business impact: designing a pilot</a></p>
+<nav class="pager" aria-label="Previous and next"><a class="prev" href="31-build-buy-or-teach-it.html"><span class="dir">← Before</span><span class="nm">Chapter 31 · Build, Buy or Teach It</span></a><a class="next" href="33-the-plumbing-under-the-magic.html"><span class="dir">Next →</span><span class="nm">Chapter 33 · The Plumbing Under the Magic</span></a></nav>
+</article>
+</main>
+</div>
+<script src="reader.js"></script>
+</body>
+</html>

@@ -3,6 +3,10 @@
 Object.assign(window.HING = window.HING || {}, {
 
   'The course map': 'Course ka naqsha',
+  'Read it as a book': 'Ise kitaab ki tarah padhiye',
+  'Read it as a story': 'Ise kahani ki tarah padhiye',
+  'The same ideas as a story, in book chapter': 'Yahi ideas kahani ke roop mein, kitaab ke chapter',
+  'The book: the course as a story': 'Kitaab: course ek kahani ke roop mein',
   'The course': 'Course',
   'Home': 'Home',
   'Practice': 'Practice',

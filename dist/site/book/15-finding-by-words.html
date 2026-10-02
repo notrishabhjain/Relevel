@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Finding by Words · Chapter 15 · AI From Zero</title>
+<meta name="description" content="A product manager plays the part of the search box, learns why the oldest way of finding things fails the customers who most need help, and why it is still exactly right for an identity number.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
+<link rel="stylesheet" href="style.css">
+<script>try{var t=localStorage.getItem('aifz-book-theme');if(t)document.documentElement.setAttribute('data-theme',t);var s=localStorage.getItem('aifz-book-size');if(s)document.documentElement.style.setProperty('--fs',s+'rem')}catch(e){}</script>
+</head>
+<body class="is-chapter">
+<a class="skip" href="#text">Skip to the text</a>
+<div class="progress" id="progress" aria-hidden="true"><i></i></div>
+<header class="bar">
+  <a class="brand" href="index.html"><span class="mark">AI From Zero</span><span class="ed">The reading edition</span></a>
+  <span class="sp"></span>
+  <button class="b" id="size-down" type="button" aria-label="Smaller text" title="Smaller text">A−</button>
+  <button class="b" id="size-up" type="button" aria-label="Larger text" title="Larger text">A+</button>
+  <button class="b" id="theme" type="button" aria-label="Change colours" title="Change colours">◐</button>
+  <a class="b app" href="../" title="Open the course app">The course app →</a>
+</header>
+<div class="layout">
+<nav class="toc" aria-label="Contents"><details id="toc"><summary>Contents</summary><ol>
+<li><a href="index.html"><span class="t">Contents</span></a></li>
+<li><a href="preface.html"><span class="t">Before You Begin</span></a></li>
+<li><a href="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">The Number in the Chat</span></a></li>
+<li><a href="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Four Questions Before Building</span></a></li>
+<li><a href="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Asking About Yesterday</span></a></li>
+<li><a href="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Who Else Is Standing Here</span></a></li>
+<li><a href="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Choosing What Not to Do</span></a></li>
+<li><a href="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">A Plan Others Can Believe</span></a></li>
+<li><a href="07-writing-it-down.html"><span class="n">7</span><span class="t">Writing It Down So Others Can Build It</span></a></li>
+<li><a href="08-what-the-machine-is.html"><span class="n">8</span><span class="t">What the Machine Is</span></a></li>
+<li><a href="09-the-first-conversation.html"><span class="n">9</span><span class="t">The First Conversation</span></a></li>
+<li><a href="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">A Mind With No Memory</span></a></li>
+<li><a href="11-giving-instructions.html"><span class="n">11</span><span class="t">Giving Instructions</span></a></li>
+<li><a href="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Knowing Whether It Works</span></a></li>
+<li><a href="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Sorting and Summarising</span></a></li>
+<li><a href="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Too Long to Read at Once</span></a></li>
+<li class="here"><a href="15-finding-by-words.html" aria-current="page"><span class="n">15</span><span class="t">Finding by Words</span></a></li>
+<li><a href="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Finding by Meaning</span></a></li>
+<li><a href="17-how-good-is-good.html"><span class="n">17</span><span class="t">How Good Is Good</span></a></li>
+<li><a href="18-the-whole-machine.html"><span class="n">18</span><span class="t">The Whole Machine</span></a></li>
+<li><a href="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Answers a Program Can Use</span></a></li>
+<li><a href="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Giving the Machine Hands</span></a></li>
+<li><a href="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Long Windows, Careful Rooms</span></a></li>
+<li><a href="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Machines That Think First</span></a></li>
+<li><a href="23-searching-better.html"><span class="n">23</span><span class="t">Searching Better</span></a></li>
+<li><a href="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">When the Page Gives Orders</span></a></li>
+<li><a href="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Grading a Thousand Answers</span></a></li>
+<li><a href="26-what-it-really-costs.html"><span class="n">26</span><span class="t">What It Really Costs</span></a></li>
+<li><a href="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Paper, Photos and Scans</span></a></li>
+<li><a href="28-what-you-may-send.html"><span class="n">28</span><span class="t">What You May Send</span></a></li>
+<li><a href="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Rules, Risk and Responsibility</span></a></li>
+<li><a href="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">The Spec for a Thing That Varies</span></a></li>
+<li><a href="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Build, Buy or Teach It</span></a></li>
+<li><a href="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Designing for the Wrong Answer</span></a></li>
+<li><a href="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">The Plumbing Under the Magic</span></a></li>
+<li><a href="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Choosing a Model on Your Own Cases</span></a></li>
+<li><a href="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Retrieval That Survives a Review</span></a></li>
+<li><a href="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents and the Standard Plug</span></a></li>
+<li><a href="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Pictures and Voices</span></a></li>
+<li><a href="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces and Rollbacks</span></a></li>
+<li><a href="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Assuming the Worst</span></a></li>
+<li><a href="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">A Product, Not a Demo</span></a></li>
+<li><a href="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Shipping the Whole Thing</span></a></li>
+<li><a href="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Who Pays, and How Much</span></a></li>
+<li><a href="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">How People Find It and Stay</span></a></li>
+<li><a href="44-counting-what-matters.html"><span class="n">44</span><span class="t">Counting What Matters</span></a></li>
+<li><a href="45-tools-and-harness.html"><span class="n">45</span><span class="t">The Tools and the Harness</span></a></li>
+<li><a href="46-real-people-real-use.html"><span class="n">46</span><span class="t">Real People, Real Use</span></a></li>
+<li><a href="47-the-job.html"><span class="n">47</span><span class="t">The Work, and the Job</span></a></li>
+<li><a href="afterword.html"><span class="t">After the Book</span></a></li>
+<li><a href="glossary.html"><span class="t">Words, in plain language</span></a></li>
+</ol></details></nav>
+<main id="text">
+<article class="chapter" data-file="15-finding-by-words.html" data-title="Finding by Words">
+<header class="chead"><p class="eyebrow">Chapter 15</p><h1>Finding by Words</h1><p class="dek">A product manager plays the part of the search box, learns why the oldest way of finding things fails the customers who most need help, and why it is still exactly right for an identity number.</p><p class="meta">6 minute read</p></header>
+<div class="prose">
+<p>Anaya was the search engine, and Farah was the customer, and between them on the table were twenty cards.</p>
+<p>They were the scraps from last week, taped back onto index cards, each with a number in the corner and a half page of Sahaj's refund policy on its face. It was a wet Monday. The office smelled of damp umbrellas. Farah had put on a voice she used for imitations, slightly high and anxious, and Anaya had been given one rule: she could look only for the words Farah said.</p>
+<p>&quot;Ready?&quot;</p>
+<p>&quot;Ready.&quot;</p>
+<p>&quot;<em>Paisa kab milega?</em>&quot; said Farah. When will the money come?</p>
+<p>Anaya looked at the cards. She was looking for <em>paisa</em>. She was looking for <em>kab</em>. She was looking for <em>milega</em>. She went through all twenty, slowly, turning each one over, and found none of the three on any card.</p>
+<p>&quot;Nothing,&quot; she said.</p>
+<p>&quot;There is a card about it,&quot; said Farah. &quot;Card seven.&quot;</p>
+<p>Anaya turned over card seven. <em>Refund of an excess payment will be processed to the registered account within seven working days of the request being approved.</em> She read it twice. &quot;It's about exactly that. And there isn't a single word in common.&quot;</p>
+<h2>Spelling, not meaning</h2>
+<p>The oldest way to find things in a pile of text is to match words. A person types <em>refund</em>; the system finds every chunk containing <em>refund</em>. It has been the heart of search boxes for decades, and it is fast, cheap and well understood. It is called <em><a class="term" href="glossary.html#t-keyword-search" title="finding text by matching the words of the question against the words in the documents; it compares spelling, not meaning">keyword search</a></em>.</p>
+<p>Its flaw is built in. It compares spelling, not meaning. Two sentences that mean the same thing but share no words do not match at all, and the failure is not random. It happens in three places, all of which matter to a business.</p>
+<p>The first is the gap between formal and everyday language. The policy says <em>reimbursement</em>, <em>disbursement</em>, <em>credited to the registered account</em>; the customer says <em>money back</em>. The people who write documents are specialists, and the people who ask questions are not. The second is a worse consequence of the first. Someone who already knows the product uses its vocabulary and finds what they want. Someone confused uses their own words and finds nothing. A keyword search works best for the users with the fewest problems and worst for the ones with the most.</p>
+<p>The third is questions. <em>Why was I charged twice?</em> shares almost nothing with the paragraph explaining how a duplicate authorisation hold works. In Sahaj's case there was a fourth layer on top, and it was the one Farah cared about. Half her customers wrote in Hindi using English letters, and the policy was written in formal English. Even a perfect search for <em>paisa</em> would have found nothing.</p>
+<p>&quot;It's like asking for directions from someone who only understands the spelling of the street name,&quot; said Farah.</p>
+<h2>Where it is exactly right</h2>
+<p>Anaya was about to write the method off. Then Farah leaned forward and said, in her ordinary voice: &quot;<em>Clause 14.2.</em>&quot;</p>
+<p>Anaya looked through the cards. Card eleven began <em>14.2 Disputed charges.</em> She had found it in four seconds.</p>
+<p>&quot;There,&quot; said Farah. &quot;That is what it is for.&quot;</p>
+<p>Keyword search is excellent for exact things: a section number, a policy ID, a part number, a name. If someone types <em>clause 14.2</em> they want clause 14.2, not something that means roughly the same, and matching the exact text is precisely the right approach. It is also the one technique in this book that never invents a connection. If a word is there, it is found. If it is not, it is not.</p>
+<p>Imran, who had wandered over with a mug, made the connection before she did.</p>
+<p>&quot;That's your pattern checker,&quot; he said.</p>
+<p>&quot;Is it?&quot;</p>
+<p>&quot;A PAN is five letters, four digits, one letter. That is keyword search for a shape. It is exact, it is instant, it is free, and it can't be talked into anything. It is exactly the right tool for a thing that always looks the same.&quot; He sipped. &quot;The mistake would be to use the clever method where the plain one does. The plain one wins here.&quot;</p>
+<p>It was the second time he had said it, in different words, and she was beginning to see it as the central skill of his trade: knowing when not to be clever.</p>
+<h2>Where the plain method fails the guard</h2>
+<p>But the same limit applied to the guard, and Farah, with unnerving timing, provided the example.</p>
+<p>&quot;What about this?&quot; she said, and read from her phone. It was a message from last month, one of the real ones, and she had cleaned it herself before showing it to anyone. <em>Mera aadhaar number hai char teen do ek, paanch chhe saat aath, nau shunya ek do.</em></p>
+<p>Anaya read it twice. It was an Aadhaar number, twelve digits in groups of four, spoken as words: four three two one, five six seven eight, nine zero one two. Typed out, because the customer was dictating it to a voice keyboard, in Hinglish.</p>
+<p>&quot;The pattern checker would not see that,&quot; she said.</p>
+<p>&quot;There are no digits in it,&quot; said Imran. &quot;A rule that looks for twelve digits finds nothing.&quot;</p>
+<p>The shape was there. The spelling was not. This was the weakness of finding by words, turned inside out: the meaning is perfectly clear to any person, and a method that compares characters cannot see it. She wrote it on the board under the red line: <em>Spoken numbers. Row twelve.</em> She was building the answer key faster than she had expected, one embarrassment at a time.</p>
+<h2>The silent failure</h2>
+<p>There was one more property of keyword search, which Farah pointed out last, because she had seen it cause real trouble in the help centre two years ago.</p>
+<p>&quot;Ask it something that isn't in the documents.&quot;</p>
+<p>Anaya thought. &quot;<em>Can I pay my bill with a credit card on Diwali?</em>&quot;</p>
+<p>She went through the cards. The word <em>credit</em> appeared on three of them, in a section about interest. The word <em>card</em> appeared on five. The word <em>bill</em> appeared on nearly all. She ranked them by how many of the words they contained. Card six came out on top.</p>
+<p>Card six was about credit-card interest on late payments. It had nothing to do with Diwali, or with whether paying by card was allowed.</p>
+<p>&quot;It gave an answer,&quot; she said.</p>
+<p>&quot;It always does. There's no way for it to say <em>there is nothing here</em>. It scores everything and sorts it. The top card is just the least bad of a bad set.&quot; Farah folded her arms. &quot;And the chatbot takes that card and treats it as if it were evidence.&quot;</p>
+<p>That was the worry. Search never reports that it found nothing, and the machine that reads what it found does not know the difference. It writes a fluent answer from the least relevant card, in the voice of someone who has read the right one. No step reports an error. The system produces a confident, wrong answer, and nothing in it notices.</p>
+<p>Anaya put the cards back in their numbered order, slowly, as if they were something fragile.</p>
+<p>&quot;We'll need a way to measure that,&quot; she said.</p>
+<p>&quot;Yes,&quot; said Imran. &quot;But first, you should see what fixes the other half.&quot;</p>
+<h2>What to carry forward</h2>
+<p>Keyword search finds text by matching the words of a question against the words in the documents. It is fast and cheap, never invents a connection, and is the right method for exact things like section numbers, codes and names, and for details with a fixed shape like a PAN. But it compares spelling, not meaning, so it fails exactly where users use their own words instead of the document's, and therefore fails the people who most need help. It also never says it found nothing: it returns the least bad match, and whatever reads that match may take it for evidence.</p>
+</div>
+<aside class="wordsbox" aria-label="Words from this chapter"><h2>Words from this chapter</h2><dl><div><dt id="w-keyword-search">keyword search</dt><dd>finding text by matching the words of the question against the words in the documents; it compares spelling, not meaning</dd></div></dl></aside>
+<p class="inapp">In the course app: <a href="../#/ch/ch4">Keyword search: matching words, and where it fails</a></p>
+<nav class="pager" aria-label="Previous and next"><a class="prev" href="14-too-long-to-read-at-once.html"><span class="dir">← Before</span><span class="nm">Chapter 14 · Too Long to Read at Once</span></a><a class="next" href="16-finding-by-meaning.html"><span class="dir">Next →</span><span class="nm">Chapter 16 · Finding by Meaning</span></a></nav>
+</article>
+</main>
+</div>
+<script src="reader.js"></script>
+</body>
+</html>

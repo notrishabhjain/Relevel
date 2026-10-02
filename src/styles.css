@@ -1153,6 +1153,7 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .chtrail .sp{flex:1}
 .chtrail .tnav{border:1px solid var(--rule);border-radius:var(--r);padding:.22rem .6rem;color:var(--ink);white-space:nowrap}
 .chtrail .tnav:hover{background:var(--sunk)}
+.chtrail .tnav.story{border-style:dashed}
 
 /* the sidebar outline */
 .railcourse{padding-top:.6rem}

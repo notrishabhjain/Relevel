@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A Mind With No Memory · Chapter 10 · AI From Zero</title>
+<meta name="description" content="A sweet-shop owner who remembers every regular teaches a product manager why a chatbot does not, and what the difference does to her bill and to her problem.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
+<link rel="stylesheet" href="style.css">
+<script>try{var t=localStorage.getItem('aifz-book-theme');if(t)document.documentElement.setAttribute('data-theme',t);var s=localStorage.getItem('aifz-book-size');if(s)document.documentElement.style.setProperty('--fs',s+'rem')}catch(e){}</script>
+</head>
+<body class="is-chapter">
+<a class="skip" href="#text">Skip to the text</a>
+<div class="progress" id="progress" aria-hidden="true"><i></i></div>
+<header class="bar">
+  <a class="brand" href="index.html"><span class="mark">AI From Zero</span><span class="ed">The reading edition</span></a>
+  <span class="sp"></span>
+  <button class="b" id="size-down" type="button" aria-label="Smaller text" title="Smaller text">A−</button>
+  <button class="b" id="size-up" type="button" aria-label="Larger text" title="Larger text">A+</button>
+  <button class="b" id="theme" type="button" aria-label="Change colours" title="Change colours">◐</button>
+  <a class="b app" href="../" title="Open the course app">The course app →</a>
+</header>
+<div class="layout">
+<nav class="toc" aria-label="Contents"><details id="toc"><summary>Contents</summary><ol>
+<li><a href="index.html"><span class="t">Contents</span></a></li>
+<li><a href="preface.html"><span class="t">Before You Begin</span></a></li>
+<li><a href="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">The Number in the Chat</span></a></li>
+<li><a href="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Four Questions Before Building</span></a></li>
+<li><a href="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Asking About Yesterday</span></a></li>
+<li><a href="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Who Else Is Standing Here</span></a></li>
+<li><a href="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Choosing What Not to Do</span></a></li>
+<li><a href="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">A Plan Others Can Believe</span></a></li>
+<li><a href="07-writing-it-down.html"><span class="n">7</span><span class="t">Writing It Down So Others Can Build It</span></a></li>
+<li><a href="08-what-the-machine-is.html"><span class="n">8</span><span class="t">What the Machine Is</span></a></li>
+<li><a href="09-the-first-conversation.html"><span class="n">9</span><span class="t">The First Conversation</span></a></li>
+<li class="here"><a href="10-a-mind-with-no-memory.html" aria-current="page"><span class="n">10</span><span class="t">A Mind With No Memory</span></a></li>
+<li><a href="11-giving-instructions.html"><span class="n">11</span><span class="t">Giving Instructions</span></a></li>
+<li><a href="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Knowing Whether It Works</span></a></li>
+<li><a href="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Sorting and Summarising</span></a></li>
+<li><a href="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Too Long to Read at Once</span></a></li>
+<li><a href="15-finding-by-words.html"><span class="n">15</span><span class="t">Finding by Words</span></a></li>
+<li><a href="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Finding by Meaning</span></a></li>
+<li><a href="17-how-good-is-good.html"><span class="n">17</span><span class="t">How Good Is Good</span></a></li>
+<li><a href="18-the-whole-machine.html"><span class="n">18</span><span class="t">The Whole Machine</span></a></li>
+<li><a href="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Answers a Program Can Use</span></a></li>
+<li><a href="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Giving the Machine Hands</span></a></li>
+<li><a href="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Long Windows, Careful Rooms</span></a></li>
+<li><a href="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Machines That Think First</span></a></li>
+<li><a href="23-searching-better.html"><span class="n">23</span><span class="t">Searching Better</span></a></li>
+<li><a href="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">When the Page Gives Orders</span></a></li>
+<li><a href="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Grading a Thousand Answers</span></a></li>
+<li><a href="26-what-it-really-costs.html"><span class="n">26</span><span class="t">What It Really Costs</span></a></li>
+<li><a href="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Paper, Photos and Scans</span></a></li>
+<li><a href="28-what-you-may-send.html"><span class="n">28</span><span class="t">What You May Send</span></a></li>
+<li><a href="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Rules, Risk and Responsibility</span></a></li>
+<li><a href="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">The Spec for a Thing That Varies</span></a></li>
+<li><a href="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Build, Buy or Teach It</span></a></li>
+<li><a href="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Designing for the Wrong Answer</span></a></li>
+<li><a href="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">The Plumbing Under the Magic</span></a></li>
+<li><a href="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Choosing a Model on Your Own Cases</span></a></li>
+<li><a href="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Retrieval That Survives a Review</span></a></li>
+<li><a href="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents and the Standard Plug</span></a></li>
+<li><a href="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Pictures and Voices</span></a></li>
+<li><a href="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces and Rollbacks</span></a></li>
+<li><a href="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Assuming the Worst</span></a></li>
+<li><a href="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">A Product, Not a Demo</span></a></li>
+<li><a href="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Shipping the Whole Thing</span></a></li>
+<li><a href="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Who Pays, and How Much</span></a></li>
+<li><a href="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">How People Find It and Stay</span></a></li>
+<li><a href="44-counting-what-matters.html"><span class="n">44</span><span class="t">Counting What Matters</span></a></li>
+<li><a href="45-tools-and-harness.html"><span class="n">45</span><span class="t">The Tools and the Harness</span></a></li>
+<li><a href="46-real-people-real-use.html"><span class="n">46</span><span class="t">Real People, Real Use</span></a></li>
+<li><a href="47-the-job.html"><span class="n">47</span><span class="t">The Work, and the Job</span></a></li>
+<li><a href="afterword.html"><span class="t">After the Book</span></a></li>
+<li><a href="glossary.html"><span class="t">Words, in plain language</span></a></li>
+</ol></details></nav>
+<main id="text">
+<article class="chapter" data-file="10-a-mind-with-no-memory.html" data-title="A Mind With No Memory">
+<header class="chead"><p class="eyebrow">Chapter 10</p><h1>A Mind With No Memory</h1><p class="dek">A sweet-shop owner who remembers every regular teaches a product manager why a chatbot does not, and what the difference does to her bill and to her problem.</p><p class="meta">6 minute read</p></header>
+<div class="prose">
+<p>The man who owned the sweet shop downstairs had never, in nineteen years, asked a regular what she wanted.</p>
+<p>He knew. Mrs. Apte took a quarter kilo of kaju katli on Thursdays and would pretend each time to be surprised by the price. The boy from the pharmacy next door had one jalebi, hot, and paid in coins. If a stranger asked for &quot;the usual&quot;, the owner would look at them kindly and say, &quot;Forgive me, I don't know what that is yet.&quot;</p>
+<p>Imran and Anaya had come down at four, as they sometimes did, to eat something fried while a problem rested. Imran had brought the laptop and set it on the glass counter between a tray of barfi and a ledger with a red cloth cover.</p>
+<p>&quot;I promised to explain why it cannot remember you,&quot; he said. &quot;This is the best place in the building to do it.&quot;</p>
+<h2>Meeting the machine for the first time, again</h2>
+<p>He opened the window from last night. He typed: <em>My name is Anaya and I work on loans.</em> The answer was friendly. <em>Nice to meet you, Anaya! How can I help with your loans today?</em></p>
+<p>Then he cleared the window, as if starting a new conversation, and typed: <em>What is my name?</em></p>
+<p><em>I'm sorry, I don't have access to your name. Could you tell me?</em></p>
+<p>&quot;It was talking to you a second ago,&quot; said Anaya.</p>
+<p>&quot;It was talking to <em>somebody</em> a second ago. The second call had no idea.&quot; He waved a hand at the owner, who was weighing laddoos with his back to them. &quot;That man is stateful. He carries what happened yesterday into today. This is the opposite. It is <em><a class="term" href="glossary.html#t-stateless" title="keeping nothing between requests: every call starts from nothing, and the model does not know you spoke a moment ago">stateless</a></em>: it keeps nothing from one request to the next. Every call begins from nothing. It does not know you spoke to it a minute ago, and it does not know you at all.&quot;</p>
+<p>&quot;But the chatbot remembers,&quot; Anaya said. &quot;I have had a conversation with it. It remembers what I said three messages ago.&quot;</p>
+<p>&quot;It doesn't. We do.&quot;</p>
+<h2>The trick</h2>
+<p>He took the ledger from the counter, with a nod to the owner, who shrugged permission. It was a long book with a stiff spine. He opened it, flipped to a page full of columns, and held it up.</p>
+<p>&quot;Suppose you walked in and the man had no memory at all. Every time you spoke to him, you had to hand him this ledger first, open at the right page, so he could read what had been said. 'Aha. Mrs. Apte. Thursday. Kaju katli.' That is the trick. The model sees only what is on the table in the current request. So when you send your fifth message, the app sends the first four again, with the new one on the end.&quot;</p>
+<p>He typed it out in the window to show her. First, <em>My name is Anaya and I work on loans.</em> Then the reply it had given. Then <em>What is my name?</em> All in one request, three messages long. The answer came back at once. <em>Your name is Anaya.</em></p>
+<p>The earlier messages, pasted back in with each new one, are called the <em><a class="term" href="glossary.html#t-conversation-history" title="the earlier messages of a chat, which an app has to send again with each new message if it wants the model to seem to remember">conversation history</a></em>, and the whole experience of a machine that remembers is made of this resending. The model knows nothing about it. What looks like memory is the app, carefully, handing over the ledger.</p>
+<h2>What it costs to remember</h2>
+<p>Anaya, who had spent the past month thinking in terms of cost, saw it before he said it.</p>
+<p>&quot;Every message makes the next one bigger.&quot;</p>
+<p>&quot;Yes. And it is charged each time.&quot; Imran reached for a napkin; the shop was running out of them. &quot;Let us say the chatbot starts every request with three hundred tokens of its own instructions. Say each exchange, the customer's message and the reply, adds a hundred tokens.&quot;</p>
+<p>He wrote a short column.</p>
+<div class="tblwrap"><table><thead><tr><th>Message number</th><th>What is sent</th><th>Tokens</th></tr></thead><tbody><tr><td>1</td><td>the instructions and the first message</td><td>about 340</td></tr><tr><td>10</td><td>the instructions, nine earlier exchanges, the new message</td><td>about 1,240</td></tr><tr><td>20</td><td>the instructions, nineteen earlier exchanges, the new message</td><td>about 2,240</td></tr></tbody></table></div>
+<p>&quot;The twentieth message costs more than six times the first. And the whole twenty-message conversation, added up, is about 25,800 tokens sent. If it remembered nothing, it would be about 6,800.&quot; He underlined the difference. &quot;The cost of a conversation is not the cost of what the person typed. It is the cost of what the app has to carry.&quot;</p>
+<p>There is a second limit hiding in the same arithmetic, and Anaya found it by herself. The context window is a fixed size. A conversation that goes on long enough will stop fitting. At that point the app has to decide what to leave out, and the decision is the app's, never the model's. It can drop the oldest messages. It can replace them with a summary. It can look up a few saved facts about the customer and send only those. It can keep the state of the task in a database and send that. Every product that offers &quot;memory&quot; has chosen one of these and built it, and the model vendor supplied none of it.</p>
+<h2>The thing she had not seen</h2>
+<p>She finished her jalebi in silence. Then she put the napkin down, very carefully, as if it might spill.</p>
+<p>&quot;If the whole history is sent every time,&quot; she said, &quot;then the number a customer typed in message two is sent again with message three.&quot;</p>
+<p>&quot;Yes.&quot;</p>
+<p>&quot;And message four. And five.&quot;</p>
+<p>&quot;All the way to the end of the conversation. Yes.&quot;</p>
+<p>&quot;So if someone types their Aadhaar number in the second message of a chat that goes on for twenty…&quot;</p>
+<p>&quot;It is sent to the outside company eighteen more times.&quot; Imran said it gently, in the way people say things they have already realised on their own. &quot;I saw it last night, after you left. I wanted you to find it yourself.&quot;</p>
+<p>It changed the problem more than anything she had learned that month. She had been imagining the guard as a thing that looked at each new message. But a number hidden in message two and left visible in the history would be sent again, in full, with every message after it. The guard could not look only at the newest line. It had to treat the whole ledger, every time, as something that might contain a secret; or, better, it had to clean each line once, on arrival, so that the cleaned version was what went into the history. She wrote that down as a design rule: <em>clean it before it is stored, not just before it is sent.</em></p>
+<p>The owner, who had been listening to none of this, placed a small paper bag on the counter.</p>
+<p>&quot;For the lady,&quot; he said. &quot;Kaju katli. It is Thursday.&quot;</p>
+<p>Anaya looked at it, and at Imran, and laughed for the first time in some weeks.</p>
+<h2>What to carry forward</h2>
+<p>A model keeps nothing between requests; it is stateless, and every call starts from nothing. What feels like a chatbot remembering is the app sending the conversation history again, with the new message at the end. That makes every message cost more than the last, and a long enough conversation will stop fitting in the context window, at which point the app, not the model, has to choose what to leave out. Memory in any product is something the product builds and pays for. And it has a consequence for privacy that is easy to miss: a detail typed once is sent again with every later message, unless it is cleaned before it is stored.</p>
+</div>
+<aside class="wordsbox" aria-label="Words from this chapter"><h2>Words from this chapter</h2><dl><div><dt id="w-stateless">stateless</dt><dd>keeping nothing between requests: every call starts from nothing, and the model does not know you spoke a moment ago</dd></div><div><dt id="w-conversation-history">conversation history</dt><dd>the earlier messages of a chat, which an app has to send again with each new message if it wants the model to seem to remember</dd></div></dl></aside>
+<p class="inapp">In the course app: <a href="../#/ch/ch15b">Context windows and statelessness: why models forget</a></p>
+<nav class="pager" aria-label="Previous and next"><a class="prev" href="09-the-first-conversation.html"><span class="dir">← Before</span><span class="nm">Chapter 9 · The First Conversation</span></a><a class="next" href="11-giving-instructions.html"><span class="dir">Next →</span><span class="nm">Chapter 11 · Giving Instructions</span></a></nav>
+</article>
+</main>
+</div>
+<script src="reader.js"></script>
+</body>
+</html>

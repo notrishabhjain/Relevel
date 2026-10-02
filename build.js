@@ -11,6 +11,7 @@ import p from 'node:path';
 import crypto from 'node:crypto';
 import zlib from 'node:zlib';
 import { fileURLToPath } from 'node:url';
+import { loadBook, buildBook } from './book/build.mjs';
 
 const R = p.dirname(fileURLToPath(import.meta.url));
 const read = f => fs.readFileSync(p.join(R, f), 'utf8');
@@ -93,7 +94,17 @@ const js = [
   'src/views.js',
   'src/app.js'
 ];
-const jsSource = js.map(read).join('\n');
+/* The reading edition (book/) is built beside the app. The app only needs to
+   know which book chapter retells which course chapter, so it can offer the
+   story version from each chapter page. */
+const BOOK_SRC = loadBook(p.join(R, 'book'));
+const BOOK_MAP = { base: 'book/', title: BOOK_SRC.book.title, edition: BOOK_SRC.book.edition, chapters: {}, list: [] };
+for (const c of BOOK_SRC.chapters) {
+  BOOK_MAP.list.push({ n: c.n, file: c.file, title: c.title });
+  for (const id of c.course) BOOK_MAP.chapters[id] = { n: c.n, file: c.file, title: c.title };
+}
+const bookJs = 'window.BOOK=' + JSON.stringify(BOOK_MAP) + ';';
+const jsSource = js.map(f => f === 'src/app.js' ? bookJs + '\n' + read(f) : read(f)).join('\n');
 
 const TITLE = 'AI From Zero';
 const DESC = 'A skill tracker for AI product managers: measured competencies, ' +
@@ -342,10 +353,17 @@ for (const [k, v] of Object.entries(defaults))
     throw new Error('content defaults: ' + k + ' is empty — did a data file move?');
 out('content/defaults.json', JSON.stringify(defaults));
 
+/* ---- the reading edition ---- */
+const courseTitles = {};
+for (const c of defaults.chapters) courseTitles[c.id] = c.title;
+const builtBook = buildBook(p.join(R, 'book'), p.join(R, 'dist/site/book'),
+  { appUrl: '../', courseTitle: id => courseTitles[id] });
+
 const kb = f => (fs.statSync(p.join(R, f)).size / 1024).toFixed(0) + ' KB';
 console.log('dist/index.html     ' + kb('dist/index.html') + '   (standalone / hosting)');
 console.log('dist/artifact.html  ' + kb('dist/artifact.html') + '   (Claude Artifact)');
 console.log('dist/site/          deploy directory, sw version ' + VERSION);
+console.log('dist/site/book/      ' + builtBook.chapters.length + ' chapters, ' + builtBook.words + ' words');
 console.log('content/defaults.json ' + kb('content/defaults.json') + ' (' +
   defaults.chapters.length + ' chapters, ' + defaults.items.length + ' questions, ' +
   defaults.skills.length + ' skills)');
