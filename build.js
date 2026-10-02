@@ -98,7 +98,7 @@ const js = [
    know which book chapter retells which course chapter, so it can offer the
    story version from each chapter page. */
 const BOOK_SRC = loadBook(p.join(R, 'book'));
-const BOOK_MAP = { base: 'book/', title: BOOK_SRC.book.title, edition: BOOK_SRC.book.edition, chapters: {}, list: [] };
+const BOOK_MAP = { base: '/book/', hiBase: '/book/hi/', title: BOOK_SRC.book.title, edition: BOOK_SRC.book.edition, chapters: {}, list: [] };
 for (const c of BOOK_SRC.chapters) {
   BOOK_MAP.list.push({ n: c.n, file: c.file, title: c.title });
   for (const id of c.course) BOOK_MAP.chapters[id] = { n: c.n, file: c.file, title: c.title };
@@ -357,7 +357,7 @@ out('content/defaults.json', JSON.stringify(defaults));
 const courseTitles = {};
 for (const c of defaults.chapters) courseTitles[c.id] = c.title;
 const builtBook = buildBook(p.join(R, 'book'), p.join(R, 'dist/site/book'),
-  { appUrl: '../', courseTitle: id => courseTitles[id] });
+  { siteBase: '/book/', appUrl: '/', hasOther: fs.existsSync(p.join(R, 'book/hi/book.json')), courseTitle: id => courseTitles[id] });
 
 const kb = f => (fs.statSync(p.join(R, f)).size / 1024).toFixed(0) + ' KB';
 console.log('dist/index.html     ' + kb('dist/index.html') + '   (standalone / hosting)');

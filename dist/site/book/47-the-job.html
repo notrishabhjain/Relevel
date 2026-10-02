@@ -6,81 +6,102 @@
 <title>The Work, and the Job · Chapter 47 · AI From Zero</title>
 <meta name="description" content="A former bank analyst has built something real and has no idea how to show it. Over a few Sunday evenings Anaya helps her turn a year of work into a picture of the jobs she wants, a page of evidence, and a rehearsed way of answering the questions that decide whether she gets them.">
 <meta name="color-scheme" content="light dark">
-<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
+<link rel="stylesheet" href="/book/style.css">
 <script>try{var t=localStorage.getItem('aifz-book-theme');if(t)document.documentElement.setAttribute('data-theme',t);var s=localStorage.getItem('aifz-book-size');if(s)document.documentElement.style.setProperty('--fs',s+'rem')}catch(e){}</script>
 </head>
-<body class="is-chapter">
+<body class="is-chapter" data-lang="en" data-base="/book/" style="--hue:#2d5d8f">
 <a class="skip" href="#text">Skip to the text</a>
 <div class="progress" id="progress" aria-hidden="true"><i></i></div>
 <header class="bar">
-  <a class="brand" href="index.html"><span class="mark">AI From Zero</span><span class="ed">The reading edition</span></a>
+  <button class="b menu" id="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Contents"><span aria-hidden="true">☰</span><span class="lbl">Contents</span></button>
+  <a class="brand" href="/book/"><span class="mark">AI From Zero</span><span class="ed">The reading edition</span></a>
   <span class="sp"></span>
+  
   <button class="b" id="size-down" type="button" aria-label="Smaller text" title="Smaller text">A−</button>
   <button class="b" id="size-up" type="button" aria-label="Larger text" title="Larger text">A+</button>
   <button class="b" id="theme" type="button" aria-label="Change colours" title="Change colours">◐</button>
-  <a class="b app" href="../" title="Open the course app">The course app →</a>
+  <a class="b app" href="/" title="Open the course app">Course app →</a>
 </header>
 <div class="layout">
-<nav class="toc" aria-label="Contents"><details id="toc"><summary>Contents</summary><ol>
-<li><a href="index.html"><span class="t">Contents</span></a></li>
-<li><a href="preface.html"><span class="t">Before You Begin</span></a></li>
-<li><a href="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">The Number in the Chat</span></a></li>
-<li><a href="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Four Questions Before Building</span></a></li>
-<li><a href="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Asking About Yesterday</span></a></li>
-<li><a href="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Who Else Is Standing Here</span></a></li>
-<li><a href="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Choosing What Not to Do</span></a></li>
-<li><a href="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">A Plan Others Can Believe</span></a></li>
-<li><a href="07-writing-it-down.html"><span class="n">7</span><span class="t">Writing It Down So Others Can Build It</span></a></li>
-<li><a href="08-what-the-machine-is.html"><span class="n">8</span><span class="t">What the Machine Is</span></a></li>
-<li><a href="09-the-first-conversation.html"><span class="n">9</span><span class="t">The First Conversation</span></a></li>
-<li><a href="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">A Mind With No Memory</span></a></li>
-<li><a href="11-giving-instructions.html"><span class="n">11</span><span class="t">Giving Instructions</span></a></li>
-<li><a href="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Knowing Whether It Works</span></a></li>
-<li><a href="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Sorting and Summarising</span></a></li>
-<li><a href="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Too Long to Read at Once</span></a></li>
-<li><a href="15-finding-by-words.html"><span class="n">15</span><span class="t">Finding by Words</span></a></li>
-<li><a href="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Finding by Meaning</span></a></li>
-<li><a href="17-how-good-is-good.html"><span class="n">17</span><span class="t">How Good Is Good</span></a></li>
-<li><a href="18-the-whole-machine.html"><span class="n">18</span><span class="t">The Whole Machine</span></a></li>
-<li><a href="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Answers a Program Can Use</span></a></li>
-<li><a href="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Giving the Machine Hands</span></a></li>
-<li><a href="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Long Windows, Careful Rooms</span></a></li>
-<li><a href="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Machines That Think First</span></a></li>
-<li><a href="23-searching-better.html"><span class="n">23</span><span class="t">Searching Better</span></a></li>
-<li><a href="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">When the Page Gives Orders</span></a></li>
-<li><a href="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Grading a Thousand Answers</span></a></li>
-<li><a href="26-what-it-really-costs.html"><span class="n">26</span><span class="t">What It Really Costs</span></a></li>
-<li><a href="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Paper, Photos and Scans</span></a></li>
-<li><a href="28-what-you-may-send.html"><span class="n">28</span><span class="t">What You May Send</span></a></li>
-<li><a href="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Rules, Risk and Responsibility</span></a></li>
-<li><a href="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">The Spec for a Thing That Varies</span></a></li>
-<li><a href="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Build, Buy or Teach It</span></a></li>
-<li><a href="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Designing for the Wrong Answer</span></a></li>
-<li><a href="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">The Plumbing Under the Magic</span></a></li>
-<li><a href="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Choosing a Model on Your Own Cases</span></a></li>
-<li><a href="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Retrieval That Survives a Review</span></a></li>
-<li><a href="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents and the Standard Plug</span></a></li>
-<li><a href="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Pictures and Voices</span></a></li>
-<li><a href="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces and Rollbacks</span></a></li>
-<li><a href="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Assuming the Worst</span></a></li>
-<li><a href="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">A Product, Not a Demo</span></a></li>
-<li><a href="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Shipping the Whole Thing</span></a></li>
-<li><a href="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Who Pays, and How Much</span></a></li>
-<li><a href="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">How People Find It and Stay</span></a></li>
-<li><a href="44-counting-what-matters.html"><span class="n">44</span><span class="t">Counting What Matters</span></a></li>
-<li><a href="45-tools-and-harness.html"><span class="n">45</span><span class="t">The Tools and the Harness</span></a></li>
-<li><a href="46-real-people-real-use.html"><span class="n">46</span><span class="t">Real People, Real Use</span></a></li>
-<li class="here"><a href="47-the-job.html" aria-current="page"><span class="n">47</span><span class="t">The Work, and the Job</span></a></li>
-<li><a href="afterword.html"><span class="t">After the Book</span></a></li>
-<li><a href="glossary.html"><span class="t">Words, in plain language</span></a></li>
-</ol></details></nav>
+<nav class="toc" id="toc" aria-label="Contents">
+<div class="tochead"><label class="find"><span class="sr">Find a chapter or a word</span><input id="q" type="search" placeholder="Find a chapter or a word" autocomplete="off"></label></div>
+<ol>
+<li class="top"><a href="/book/"><span class="n dot"></span><span class="t">Contents</span></a></li>
+<li data-t="before you begin"><a href="/book/preface.html" data-file="preface.html"><span class="n dot"></span><span class="t">Before You Begin</span></a></li>
+<li class="sec" style="--hue:#b4492a"><span>The problem worth solving</span></li>
+<li style="--hue:#b4492a" data-t="the number in the chat"><a href="/book/01-the-number-in-the-chat.html" data-file="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">The Number in the Chat</span></a></li>
+<li style="--hue:#b4492a" data-t="four questions before building"><a href="/book/02-four-questions-before-building.html" data-file="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Four Questions Before Building</span></a></li>
+<li style="--hue:#b4492a" data-t="asking about yesterday"><a href="/book/03-asking-about-yesterday.html" data-file="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Asking About Yesterday</span></a></li>
+<li style="--hue:#b4492a" data-t="who else is standing here"><a href="/book/04-who-else-is-standing-here.html" data-file="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Who Else Is Standing Here</span></a></li>
+<li style="--hue:#b4492a" data-t="choosing what not to do"><a href="/book/05-choosing-what-not-to-do.html" data-file="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Choosing What Not to Do</span></a></li>
+<li style="--hue:#b4492a" data-t="a plan others can believe"><a href="/book/06-a-plan-others-can-believe.html" data-file="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">A Plan Others Can Believe</span></a></li>
+<li style="--hue:#b4492a" data-t="writing it down so others can build it"><a href="/book/07-writing-it-down.html" data-file="07-writing-it-down.html"><span class="n">7</span><span class="t">Writing It Down So Others Can Build It</span></a></li>
+<li class="sec" style="--hue:#2f6f73"><span>Meeting the machine</span></li>
+<li style="--hue:#2f6f73" data-t="what the machine is"><a href="/book/08-what-the-machine-is.html" data-file="08-what-the-machine-is.html"><span class="n">8</span><span class="t">What the Machine Is</span></a></li>
+<li style="--hue:#2f6f73" data-t="the first conversation"><a href="/book/09-the-first-conversation.html" data-file="09-the-first-conversation.html"><span class="n">9</span><span class="t">The First Conversation</span></a></li>
+<li style="--hue:#2f6f73" data-t="a mind with no memory"><a href="/book/10-a-mind-with-no-memory.html" data-file="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">A Mind With No Memory</span></a></li>
+<li style="--hue:#2f6f73" data-t="giving instructions"><a href="/book/11-giving-instructions.html" data-file="11-giving-instructions.html"><span class="n">11</span><span class="t">Giving Instructions</span></a></li>
+<li style="--hue:#2f6f73" data-t="knowing whether it works"><a href="/book/12-knowing-whether-it-works.html" data-file="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Knowing Whether It Works</span></a></li>
+<li style="--hue:#2f6f73" data-t="sorting and summarising"><a href="/book/13-sorting-and-summarising.html" data-file="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Sorting and Summarising</span></a></li>
+<li class="sec" style="--hue:#6b5ca5"><span>Finding things, and the whole machine</span></li>
+<li style="--hue:#6b5ca5" data-t="too long to read at once"><a href="/book/14-too-long-to-read-at-once.html" data-file="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Too Long to Read at Once</span></a></li>
+<li style="--hue:#6b5ca5" data-t="finding by words"><a href="/book/15-finding-by-words.html" data-file="15-finding-by-words.html"><span class="n">15</span><span class="t">Finding by Words</span></a></li>
+<li style="--hue:#6b5ca5" data-t="finding by meaning"><a href="/book/16-finding-by-meaning.html" data-file="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Finding by Meaning</span></a></li>
+<li style="--hue:#6b5ca5" data-t="how good is good"><a href="/book/17-how-good-is-good.html" data-file="17-how-good-is-good.html"><span class="n">17</span><span class="t">How Good Is Good</span></a></li>
+<li style="--hue:#6b5ca5" data-t="the whole machine"><a href="/book/18-the-whole-machine.html" data-file="18-the-whole-machine.html"><span class="n">18</span><span class="t">The Whole Machine</span></a></li>
+<li style="--hue:#6b5ca5" data-t="answers a program can use"><a href="/book/19-answers-a-program-can-use.html" data-file="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Answers a Program Can Use</span></a></li>
+<li class="sec" style="--hue:#9a7b1f"><span>Giving it work to do</span></li>
+<li style="--hue:#9a7b1f" data-t="giving the machine hands"><a href="/book/20-giving-the-machine-hands.html" data-file="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Giving the Machine Hands</span></a></li>
+<li style="--hue:#9a7b1f" data-t="long windows, careful rooms"><a href="/book/21-long-windows-careful-rooms.html" data-file="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Long Windows, Careful Rooms</span></a></li>
+<li style="--hue:#9a7b1f" data-t="machines that think first"><a href="/book/22-machines-that-think-first.html" data-file="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Machines That Think First</span></a></li>
+<li style="--hue:#9a7b1f" data-t="searching better"><a href="/book/23-searching-better.html" data-file="23-searching-better.html"><span class="n">23</span><span class="t">Searching Better</span></a></li>
+<li style="--hue:#9a7b1f" data-t="when the page gives orders"><a href="/book/24-when-the-page-gives-orders.html" data-file="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">When the Page Gives Orders</span></a></li>
+<li style="--hue:#9a7b1f" data-t="grading a thousand answers"><a href="/book/25-grading-a-thousand-answers.html" data-file="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Grading a Thousand Answers</span></a></li>
+<li style="--hue:#9a7b1f" data-t="what it really costs"><a href="/book/26-what-it-really-costs.html" data-file="26-what-it-really-costs.html"><span class="n">26</span><span class="t">What It Really Costs</span></a></li>
+<li class="sec" style="--hue:#3f7a4a"><span>The messy real world</span></li>
+<li style="--hue:#3f7a4a" data-t="paper, photos and scans"><a href="/book/27-paper-photos-and-scans.html" data-file="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Paper, Photos and Scans</span></a></li>
+<li style="--hue:#3f7a4a" data-t="what you may send"><a href="/book/28-what-you-may-send.html" data-file="28-what-you-may-send.html"><span class="n">28</span><span class="t">What You May Send</span></a></li>
+<li style="--hue:#3f7a4a" data-t="rules, risk and responsibility"><a href="/book/29-rules-risk-and-responsibility.html" data-file="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Rules, Risk and Responsibility</span></a></li>
+<li style="--hue:#3f7a4a" data-t="the spec for a thing that varies"><a href="/book/30-the-spec-for-a-thing-that-varies.html" data-file="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">The Spec for a Thing That Varies</span></a></li>
+<li style="--hue:#3f7a4a" data-t="build, buy or teach it"><a href="/book/31-build-buy-or-teach-it.html" data-file="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Build, Buy or Teach It</span></a></li>
+<li style="--hue:#3f7a4a" data-t="designing for the wrong answer"><a href="/book/32-designing-for-the-wrong-answer.html" data-file="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Designing for the Wrong Answer</span></a></li>
+<li class="sec" style="--hue:#a2455e"><span>Under the hood</span></li>
+<li style="--hue:#a2455e" data-t="the plumbing under the magic"><a href="/book/33-the-plumbing-under-the-magic.html" data-file="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">The Plumbing Under the Magic</span></a></li>
+<li style="--hue:#a2455e" data-t="choosing a model on your own cases"><a href="/book/34-choosing-a-model-on-your-own-cases.html" data-file="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Choosing a Model on Your Own Cases</span></a></li>
+<li style="--hue:#a2455e" data-t="retrieval that survives a review"><a href="/book/35-retrieval-that-survives-a-review.html" data-file="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Retrieval That Survives a Review</span></a></li>
+<li style="--hue:#a2455e" data-t="workflows, agents and the standard plug"><a href="/book/36-workflows-agents-and-the-standard-plug.html" data-file="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents and the Standard Plug</span></a></li>
+<li style="--hue:#a2455e" data-t="pages, pictures and voices"><a href="/book/37-pages-pictures-and-voices.html" data-file="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Pictures and Voices</span></a></li>
+<li style="--hue:#a2455e" data-t="gates, traces and rollbacks"><a href="/book/38-gates-traces-and-rollbacks.html" data-file="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces and Rollbacks</span></a></li>
+<li style="--hue:#a2455e" data-t="assuming the worst"><a href="/book/39-assuming-the-worst.html" data-file="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Assuming the Worst</span></a></li>
+<li class="sec" style="--hue:#2d5d8f"><span>A real product, and a job</span></li>
+<li style="--hue:#2d5d8f" data-t="a product, not a demo"><a href="/book/40-a-product-not-a-demo.html" data-file="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">A Product, Not a Demo</span></a></li>
+<li style="--hue:#2d5d8f" data-t="shipping the whole thing"><a href="/book/41-shipping-the-whole-thing.html" data-file="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Shipping the Whole Thing</span></a></li>
+<li style="--hue:#2d5d8f" data-t="who pays, and how much"><a href="/book/42-who-pays-and-how-much.html" data-file="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Who Pays, and How Much</span></a></li>
+<li style="--hue:#2d5d8f" data-t="how people find it and stay"><a href="/book/43-how-people-find-it-and-stay.html" data-file="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">How People Find It and Stay</span></a></li>
+<li style="--hue:#2d5d8f" data-t="counting what matters"><a href="/book/44-counting-what-matters.html" data-file="44-counting-what-matters.html"><span class="n">44</span><span class="t">Counting What Matters</span></a></li>
+<li style="--hue:#2d5d8f" data-t="the tools and the harness"><a href="/book/45-tools-and-harness.html" data-file="45-tools-and-harness.html"><span class="n">45</span><span class="t">The Tools and the Harness</span></a></li>
+<li style="--hue:#2d5d8f" data-t="real people, real use"><a href="/book/46-real-people-real-use.html" data-file="46-real-people-real-use.html"><span class="n">46</span><span class="t">Real People, Real Use</span></a></li>
+<li style="--hue:#2d5d8f" class="here" data-t="the work, and the job"><a href="/book/47-the-job.html" aria-current="page" data-file="47-the-job.html"><span class="n">47</span><span class="t">The Work, and the Job</span></a></li>
+<li data-t="after the book"><a href="/book/afterword.html" data-file="afterword.html"><span class="n dot"></span><span class="t">After the Book</span></a></li>
+<li data-t="words, in plain language"><a href="/book/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Words, in plain language</span></a></li>
+</ol>
+<p class="nomatch" hidden>Nothing matches that.</p>
+</nav>
+<div class="scrim" id="scrim" hidden></div>
 <main id="text">
-<article class="chapter" data-file="47-the-job.html" data-title="The Work, and the Job">
-<header class="chead"><p class="eyebrow">Chapter 47</p><h1>The Work, and the Job</h1><p class="dek">A former bank analyst has built something real and has no idea how to show it. Over a few Sunday evenings Anaya helps her turn a year of work into a picture of the jobs she wants, a page of evidence, and a rehearsed way of answering the questions that decide whether she gets them.</p><p class="meta">9 minute read</p></header>
+<article class="chapter" data-file="47-the-job.html" data-title="The Work, and the Job" data-n="47">
+<header class="chead">
+<p class="eyebrow"><span class="num">47</span><span>Chapter 47 <i>·</i> A real product, and a job</span></p>
+<h1>The Work, and the Job</h1><p class="dek">A former bank analyst has built something real and has no idea how to show it. Over a few Sunday evenings Anaya helps her turn a year of work into a picture of the jobs she wants, a page of evidence, and a rehearsed way of answering the questions that decide whether she gets them.</p>
+<p class="meta"><span>9 min read</span><span>6 new words</span></p>
+</header>
 <div class="prose">
 <p>Rhea Kapoor telephoned on a Sunday evening in June, and began, as people do who have rehearsed an apology, with the end of it. &quot;I know it's your only free night. I won't keep you.&quot;</p>
 <p>Anaya had met her in the autumn, at a meetup where Rhea had asked the one question that nobody else wanted to ask the speaker. She had been an operations analyst in a bank for six years. Since then she had spent a year working through every part of what Anaya had spent a year doing, on her own, at night, and she had built something of her own. It was a small tool that read a week of customer-support tickets, sorted them into themes, and wrote the report that her old manager used to spend a day on. Ten design partners had used it. She had shown the work to nobody who could give her a job.</p>
@@ -91,24 +112,24 @@
 <p>The first thing to understand, Anaya said, was that the title was a label stuck on at least four different jobs.</p>
 <p>One kind of company adds AI features to a product that already exists, for users it already has. It wants judgement, a record of shipping, and the ability to work with people who build models. Another kind builds something that would not exist without AI, and wants speed, prototyping, comfort with a thing that sometimes fails, and a habit of measuring. A third makes tools, interfaces and models for other teams to build on, and wants technical depth and an understanding of what a developer finds painful. The fourth builds AI for its own employees, and wants someone who can make people change how they work, keep it secure, and show hours saved.</p>
 <p>&quot;They ask for different evidence,&quot; said Anaya. &quot;So you can't write one resume for all ten.&quot;</p>
-<p>She asked Rhea to do something dull. Put the ten advertisements across the top of a sheet. Down the left, write every skill any of them mentions. Tick the box where a role asks for a skill. When she had finished, the rows with the most ticks showed what the market wanted, and the rows with none were noise. This was a <em><a class="term" href="glossary.html#t-role-matrix" title="a table with the skills that real job advertisements ask for down one side and the roles across the top, in which you mark each skill as proven, partly proven or missing for yourself">role matrix</a></em>. And for each row Rhea was to make one further mark, honestly: whether, for her, the skill was <em>proven</em>, <em>partly proven</em> or <em>missing</em>.</p>
+<p>She asked Rhea to do something dull. Put the ten advertisements across the top of a sheet. Down the left, write every skill any of them mentions. Tick the box where a role asks for a skill. When she had finished, the rows with the most ticks showed what the market wanted, and the rows with none were noise. This was a <em><a class="term" href="/book/glossary.html#t-role-matrix" title="a table with the skills that real job advertisements ask for down one side and the roles across the top, in which you mark each skill as proven, partly proven or missing for yourself">role matrix</a></em>. And for each row Rhea was to make one further mark, honestly: whether, for her, the skill was <em>proven</em>, <em>partly proven</em> or <em>missing</em>.</p>
 <p>It took Rhea three evenings. She sent the sheet back with a note. &quot;Most of what they want, I've done. I just haven't said it in a way they could check.&quot;</p>
 <p>&quot;Then say it,&quot; said Anaya, &quot;in terms of what you proved. 'I shipped an AI product to ten real users and raised its useful-result rate from fifty-eight percent to seventy-one' is a sentence. 'Passionate about AI' is a mood.&quot;</p>
 <h2>What goes on the page</h2>
 <p>They rewrote the resume over two Sundays, and the method was one sentence long. Every line was to say what she did, what she decided, and what happened.</p>
 <div class="tblwrap"><table><thead><tr><th>Before</th><th>After</th></tr></thead><tbody><tr><td>Worked on an AI tool for support teams</td><td>Built a theme-finding tool for support tickets; chose to ground every theme in quoted phrases, and raised the share of themes marked useful from 58% to 71% across ten partner teams</td></tr><tr><td>Responsible for testing</td><td>Wrote a fixed test set of twenty past weeks and used it to stop two releases that would have lowered accuracy</td></tr></tbody></table></div>
 <p>&quot;Look at the second one,&quot; said Anaya. &quot;It tells the reader you think about quality before you ship. They don't need you to say you do.&quot;</p>
-<p>Then the <a class="term" href="glossary.html#t-case-study" title="a one- or two-page account of a project: the problem and its evidence, your decisions and the options you rejected, the trade-offs, the results with numbers, what failed, and what you would do next">case study</a>. A <em>case study</em> is a one- or two-page account of one piece of work. Rhea's would answer, in order, six questions. What was the problem, and what evidence showed it was real? What did you decide, and what did you reject? What did you give up, knowingly? What happened, in numbers? What went wrong, and what did you change? What would you do next?</p>
+<p>Then the <a class="term" href="/book/glossary.html#t-case-study" title="a one- or two-page account of a project: the problem and its evidence, your decisions and the options you rejected, the trade-offs, the results with numbers, what failed, and what you would do next">case study</a>. A <em>case study</em> is a one- or two-page account of one piece of work. Rhea's would answer, in order, six questions. What was the problem, and what evidence showed it was real? What did you decide, and what did you reject? What did you give up, knowingly? What happened, in numbers? What went wrong, and what did you change? What would you do next?</p>
 <p>&quot;The fifth is the one that does the work,&quot; Anaya said. &quot;Anybody can describe a success. People hire someone who knows what broke.&quot;</p>
 <p>She advised two case studies and not six, put where a recruiter would find them: a small page of her own, linked from the top of her profile. The headline of the profile, she said, should name the job Rhea wanted and one thing she had proven. Nothing about being a lifelong learner.</p>
 <h2>The four questions that every loop asks</h2>
 <p>In the middle of June they began on the interviews, and Anaya started by telling her how most of the loops were built. There would be four kinds of question, and each had a shape.</p>
 <div class="tblwrap"><table><thead><tr><th>Kind</th><th>An example</th><th>A shape to follow</th></tr></thead><tbody><tr><td>Product sense</td><td>Design a product for busy parents</td><td>Clarify the goal, pick a user, list their problems, choose one, propose solutions, rank them, say how you would measure it</td></tr><tr><td>Strategy</td><td>Should we enter the Indian market?</td><td>Goal, market, customer, competitors, our advantage, then a recommendation and its risks</td></tr><tr><td>Metrics</td><td>Daily users fell ten percent. Why?</td><td>Check the data is right, internal or external cause, which segment, which step, hypotheses, how to test them</td></tr><tr><td>Execution</td><td>Two teams want the same engineer. What do you do?</td><td>What each is worth, the options, the trade-offs, a decision, how you tell people</td></tr></tbody></table></div>
-<p>The first, <em><a class="term" href="glossary.html#t-product-sense" title="the ability to choose a user, find their real problem and propose a sensible solution, which interviewers test with questions such as &quot;design a product for busy parents&quot;">product sense</a></em>, was the one that frightened people most, because it seemed to need an inspiration they did not have. It does not. It needs the habit of choosing a user before proposing anything, and Rhea's habit, after a year of work, was good.</p>
+<p>The first, <em><a class="term" href="/book/glossary.html#t-product-sense" title="the ability to choose a user, find their real problem and propose a sensible solution, which interviewers test with questions such as &quot;design a product for busy parents&quot;">product sense</a></em>, was the one that frightened people most, because it seemed to need an inspiration they did not have. It does not. It needs the habit of choosing a user before proposing anything, and Rhea's habit, after a year of work, was good.</p>
 <p>&quot;Say your structure out loud before you start,&quot; said Anaya. &quot;Something like 'I'll clarify, pick a user, find the problems and then choose.' The interviewer can follow you, and if they want you somewhere else they can say so in the first minute and not the fortieth.&quot; She stopped, and added the part she thought mattered more. &quot;And at the end, choose. They want to watch you commit to a decision and give your reasons. People who list five options and recommend none fail at this more than at anything.&quot;</p>
 <p>She ran the metrics question on her, one night, as a rehearsal. <em>Daily users fell ten percent.</em> Rhea began by asking whether the number itself could be wrong: a change to how it was counted, a broken event. That was the first correct move, and most candidates skip it.</p>
 <h2>Designing a system out loud</h2>
-<p>The question that was most special to the new kind of job, and the one Rhea feared, was the design interview. An interviewer would say: <em>design a support assistant for our product.</em> It is called a <em><a class="term" href="glossary.html#t-system-design-interview" title="a conversation in which you are asked to design an AI feature aloud, and judged on your reasoning about approach, evaluation, failure, cost and rollout, not on code">system-design interview</a></em>, and what is wanted is not code. It is a sign that you can think about an AI feature as a whole.</p>
+<p>The question that was most special to the new kind of job, and the one Rhea feared, was the design interview. An interviewer would say: <em>design a support assistant for our product.</em> It is called a <em><a class="term" href="/book/glossary.html#t-system-design-interview" title="a conversation in which you are asked to design an AI feature aloud, and judged on your reasoning about approach, evaluation, failure, cost and rollout, not on code">system-design interview</a></em>, and what is wanted is not code. It is a sign that you can think about an AI feature as a whole.</p>
 <p>Anaya gave her six steps, and Rhea wrote them down in the order she would say them.</p>
 <p>Users and the task, and what success looks like. The approach: ask the model alone, or give it documents to find answers in, or build a fixed workflow, or an agent, and why. How you would know it worked before and after launch. What happens when it is wrong, slow or attacked. A rough cost for one task, and the delay users will tolerate. And how you would roll it out: to whom first, what you would measure, and when you would turn it back.</p>
 <p>&quot;Use numbers,&quot; she said. &quot;Rough ones. Say, about two thousand words of context in and three hundred out for each question, so under a rupee. It shows you know the thing costs money each time it runs. I once watched a very good candidate lose a job by never mentioning cost.&quot;</p>
@@ -116,28 +137,28 @@
 <p>&quot;Everything. It is the same year.&quot;</p>
 <h2>Telling stories about yourself</h2>
 <p>The last class of question was the oldest. <em>Tell me about a time you disagreed with an engineer.</em> The interviewer is asking about your past because it is the best guide they have to your future.</p>
-<p>Anaya told her to prepare six to eight true stories from real work, and to tell each in the same four parts, which people call the <em><a class="term" href="glossary.html#t-star-method" title="a way to tell a story about your own past in four parts: situation, task, action and result, with most of the time spent on what you did">STAR method</a></em>: the situation, the task, the action, and the result. &quot;Spend most of the time on what you did,&quot; she said. &quot;Not what the team did. They're interviewing you.&quot;</p>
+<p>Anaya told her to prepare six to eight true stories from real work, and to tell each in the same four parts, which people call the <em><a class="term" href="/book/glossary.html#t-star-method" title="a way to tell a story about your own past in four parts: situation, task, action and result, with most of the time spent on what you did">STAR method</a></em>: the situation, the task, the action, and the result. &quot;Spend most of the time on what you did,&quot; she said. &quot;Not what the team did. They're interviewing you.&quot;</p>
 <p>They worked on one story for an hour. It was about a decision that had gone wrong, because those are the best.</p>
 <p><em>Situation: the first version of my tool let an agent choose the steps for the weekly report. Task: I owned making it reliable enough for ten design partners. Action: I expected the agent to cope better with unusual weeks, so I kept it. When three of my twenty test weeks failed, I built the same flow as a fixed workflow and ran both on the same weeks. Result: the workflow failed once in twenty and was twice as fast. I switched. I learned to measure both options before committing, and I do that now for every large design choice.</em></p>
 <p>&quot;It's good,&quot; said Anaya, &quot;because the wrong decision was real, and the repair was by measurement and not by apology.&quot;</p>
 <h2>Alone, and with other people</h2>
 <p>Two small things remained, and she gave them quickly.</p>
-<p>A <em><a class="term" href="glossary.html#t-take-home" title="a piece of work set by an employer to be done alone within a time limit, which tests how you work when no one is watching">take-home</a></em> is a task set by an employer to be done alone, in a stated time. Keep to the time. Put your assumptions at the top. End with what you would do with more time. Reviewers prefer a clear, honest answer to a long one, and a person who says what they left out is trusted more than one who pretends there was nothing.</p>
+<p>A <em><a class="term" href="/book/glossary.html#t-take-home" title="a piece of work set by an employer to be done alone within a time limit, which tests how you work when no one is watching">take-home</a></em> is a task set by an employer to be done alone, in a stated time. Keep to the time. Put your assumptions at the top. End with what you would do with more time. Reviewers prefer a clear, honest answer to a long one, and a person who says what they left out is trusted more than one who pretends there was nothing.</p>
 <p>And networking, which Rhea disliked, worked best when she had something to show. &quot;Don't ask people for a referral,&quot; said Anaya. &quot;Send a specific person your case study and ask one specific question about it. You'll get replies, because it's a question they can answer.&quot;</p>
 <p>Pay, she said, was a matter of preparation. Learn what the role usually pays in that city. Let the company make the first offer. Then ask once, politely, with a reason: another offer, or the size of the job.</p>
 <h2>What happened</h2>
 <p>It would be pleasant to report that Rhea was hired within the month. She was not. Two of the ten companies asked her back for a second round, once the resume and the case study had been rewritten as they had agreed. By the third week of July she was in a room with a woman who asked her to design a support assistant for the company's product.</p>
 <p>Rhea said, aloud and a little shakily, &quot;I'll start with who uses it and what a good outcome is.&quot;</p>
 <p>Anaya, who was not there, heard about it afterwards, in a telephone call, in which Rhea described the question and said that halfway through she had realised she was no longer rehearsing. She was explaining something she had made.</p>
-<h2>What to carry forward</h2>
-<p>&quot;AI product manager&quot; names at least four different jobs, so the useful first step is to put real job advertisements into a role matrix, mark each skill as proven, partly proven or missing, and position yourself on what you can prove. Each line of a resume says what you did, what you decided and what resulted; a case study adds the options rejected, the trade-offs, the numbers, what failed and what comes next. Loops ask four kinds of question, product sense, strategy, metrics and execution, each answered by naming a structure aloud and then committing to a choice. The system-design interview wants approach, evaluation, failure, cost and rollout, spoken with rough numbers. Stories about your past are told in four parts, with most of the time on your own action. A take-home states its assumptions and what it leaves out, networking starts with a specific question and a piece of work, and a negotiation begins with research and asks once.</p>
+<aside class="carry"><h2>What to carry forward</h2>
+<p>&quot;AI product manager&quot; names at least four different jobs, so the useful first step is to put real job advertisements into a role matrix, mark each skill as proven, partly proven or missing, and position yourself on what you can prove. Each line of a resume says what you did, what you decided and what resulted; a case study adds the options rejected, the trade-offs, the numbers, what failed and what comes next. Loops ask four kinds of question, product sense, strategy, metrics and execution, each answered by naming a structure aloud and then committing to a choice. The system-design interview wants approach, evaluation, failure, cost and rollout, spoken with rough numbers. Stories about your past are told in four parts, with most of the time on your own action. A take-home states its assumptions and what it leaves out, networking starts with a specific question and a piece of work, and a negotiation begins with research and asks once.</p></aside>
 </div>
-<aside class="wordsbox" aria-label="Words from this chapter"><h2>Words from this chapter</h2><dl><div><dt id="w-role-matrix">role matrix</dt><dd>a table with the skills that real job advertisements ask for down one side and the roles across the top, in which you mark each skill as proven, partly proven or missing for yourself</dd></div><div><dt id="w-case-study">case study</dt><dd>a one- or two-page account of a project: the problem and its evidence, your decisions and the options you rejected, the trade-offs, the results with numbers, what failed, and what you would do next</dd></div><div><dt id="w-product-sense">product sense</dt><dd>the ability to choose a user, find their real problem and propose a sensible solution, which interviewers test with questions such as &quot;design a product for busy parents&quot;</dd></div><div><dt id="w-system-design-interview">system-design interview</dt><dd>a conversation in which you are asked to design an AI feature aloud, and judged on your reasoning about approach, evaluation, failure, cost and rollout, not on code</dd></div><div><dt id="w-star-method">STAR method</dt><dd>a way to tell a story about your own past in four parts: situation, task, action and result, with most of the time spent on what you did</dd></div><div><dt id="w-take-home">take-home</dt><dd>a piece of work set by an employer to be done alone within a time limit, which tests how you work when no one is watching</dd></div></dl></aside>
-<p class="inapp">In the course app: <a href="../#/ch/b7">Getting the job: career readiness for AI PM roles</a></p>
-<nav class="pager" aria-label="Previous and next"><a class="prev" href="46-real-people-real-use.html"><span class="dir">← Before</span><span class="nm">Chapter 46 · Real People, Real Use</span></a><a class="next" href="afterword.html"><span class="dir">Next →</span><span class="nm">After the Book</span></a></nav>
+<aside class="wordsbox" aria-label="Words from this chapter"><h2>Words from this chapter</h2><p class="sub">Plain meanings, in the order you meet them.</p><dl><div><dt id="w-role-matrix">role matrix</dt><dd>a table with the skills that real job advertisements ask for down one side and the roles across the top, in which you mark each skill as proven, partly proven or missing for yourself</dd></div><div><dt id="w-case-study">case study</dt><dd>a one- or two-page account of a project: the problem and its evidence, your decisions and the options you rejected, the trade-offs, the results with numbers, what failed, and what you would do next</dd></div><div><dt id="w-product-sense">product sense</dt><dd>the ability to choose a user, find their real problem and propose a sensible solution, which interviewers test with questions such as &quot;design a product for busy parents&quot;</dd></div><div><dt id="w-system-design-interview">system-design interview</dt><dd>a conversation in which you are asked to design an AI feature aloud, and judged on your reasoning about approach, evaluation, failure, cost and rollout, not on code</dd></div><div><dt id="w-star-method">STAR method</dt><dd>a way to tell a story about your own past in four parts: situation, task, action and result, with most of the time spent on what you did</dd></div><div><dt id="w-take-home">take-home</dt><dd>a piece of work set by an employer to be done alone within a time limit, which tests how you work when no one is watching</dd></div></dl></aside>
+<aside class="inapp"><span class="lead">The same ideas, with the work to do, in the course app</span><span class="chips"><a href="/#/ch/b7">Getting the job: career readiness for AI PM roles<span aria-hidden="true"> →</span></a></span></aside>
+<nav class="pager" aria-label="Previous and next chapter"><a class="prev" href="/book/46-real-people-real-use.html" rel="prev"><span class="dir">← Before</span><span class="nm"><b>46</b>Real People, Real Use</span></a><a class="next" href="/book/afterword.html" rel="next"><span class="dir">Next →</span><span class="nm">After the Book</span></a></nav>
 </article>
 </main>
 </div>
-<script src="reader.js"></script>
+<script src="/book/reader.js" defer></script>
 </body>
 </html>

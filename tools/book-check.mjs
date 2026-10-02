@@ -101,17 +101,24 @@ for (const un of units) {
 const tmp = fs.mkdtempSync(p.join(os.tmpdir(), 'book-'));
 let built = null;
 try {
-  built = buildBook(p.join(R, 'book'), tmp, { appUrl: '../' });
+  built = buildBook(p.join(R, 'book'), tmp, { siteBase: '/book/', appUrl: '/', hasOther: false });
   for (const f of fs.readdirSync(tmp).filter(f => f.endsWith('.html'))) {
     const html = fs.readFileSync(p.join(tmp, f), 'utf8');
     const ids = new Set([...html.matchAll(/\sid="([^"]+)"/g)].map(m => m[1]));
+    for (const m of html.matchAll(/\ssrc="([^"]+)"/g)) if (!m[1].startsWith('/') && !/^https?:/.test(m[1])) fail(`${f}: relative script or image ${m[1]}`);
     for (const m of html.matchAll(/href="([^"#]*)(#[^"]*)?"/g)) {
       const [, file, hash] = m;
-      if (/^(https?:|mailto:)/.test(file) || file.startsWith('../')) continue;
-      if (file && !fs.existsSync(p.join(tmp, file))) fail(`${f}: links to ${file}, which does not exist`);
+      if (/^(https?:|mailto:)/.test(file)) continue;
+      /* a relative link breaks when the page is opened as /book (no slash) */
+      if (file && !file.startsWith('/')) fail(`${f}: relative link ${file}; every link must start from the site root`);
+      /* pages link from the site root: /book/x.html is a page of the book; anything else is the app */
+      if (file.startsWith('/') && !file.startsWith('/book/')) continue;
+      const rel = file.replace(/^\/book\//, '');
+      if (file.startsWith('/book/') && !rel) continue;
+      if (file) { if (!fs.existsSync(p.join(tmp, rel))) fail(`${f}: links to ${file}, which does not exist`); }
       if (!file && hash && hash.length > 1 && !ids.has(hash.slice(1))) fail(`${f}: links to ${hash}, which is not on the page`);
-      if (file && hash && hash.length > 1 && fs.existsSync(p.join(tmp, file))) {
-        const target = fs.readFileSync(p.join(tmp, file), 'utf8');
+      if (rel && hash && hash.length > 1 && fs.existsSync(p.join(tmp, rel))) {
+        const target = fs.readFileSync(p.join(tmp, rel), 'utf8');
         if (!target.includes(`id="${hash.slice(1)}"`)) fail(`${f}: links to ${file}${hash}, which is not on that page`);
       }
     }

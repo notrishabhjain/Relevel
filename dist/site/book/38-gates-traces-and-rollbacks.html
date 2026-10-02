@@ -6,81 +6,102 @@
 <title>Gates, Traces and Rollbacks · Chapter 38 · AI From Zero</title>
 <meta name="description" content="One edit to one instruction, made on a Friday night without a test, shows why a change that does not feel like a deployment must pass through a gate; and why, afterwards, you need to be able to answer &quot;why did it do that?&quot; in forty seconds.">
 <meta name="color-scheme" content="light dark">
-<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
+<link rel="stylesheet" href="/book/style.css">
 <script>try{var t=localStorage.getItem('aifz-book-theme');if(t)document.documentElement.setAttribute('data-theme',t);var s=localStorage.getItem('aifz-book-size');if(s)document.documentElement.style.setProperty('--fs',s+'rem')}catch(e){}</script>
 </head>
-<body class="is-chapter">
+<body class="is-chapter" data-lang="en" data-base="/book/" style="--hue:#a2455e">
 <a class="skip" href="#text">Skip to the text</a>
 <div class="progress" id="progress" aria-hidden="true"><i></i></div>
 <header class="bar">
-  <a class="brand" href="index.html"><span class="mark">AI From Zero</span><span class="ed">The reading edition</span></a>
+  <button class="b menu" id="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Contents"><span aria-hidden="true">☰</span><span class="lbl">Contents</span></button>
+  <a class="brand" href="/book/"><span class="mark">AI From Zero</span><span class="ed">The reading edition</span></a>
   <span class="sp"></span>
+  
   <button class="b" id="size-down" type="button" aria-label="Smaller text" title="Smaller text">A−</button>
   <button class="b" id="size-up" type="button" aria-label="Larger text" title="Larger text">A+</button>
   <button class="b" id="theme" type="button" aria-label="Change colours" title="Change colours">◐</button>
-  <a class="b app" href="../" title="Open the course app">The course app →</a>
+  <a class="b app" href="/" title="Open the course app">Course app →</a>
 </header>
 <div class="layout">
-<nav class="toc" aria-label="Contents"><details id="toc"><summary>Contents</summary><ol>
-<li><a href="index.html"><span class="t">Contents</span></a></li>
-<li><a href="preface.html"><span class="t">Before You Begin</span></a></li>
-<li><a href="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">The Number in the Chat</span></a></li>
-<li><a href="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Four Questions Before Building</span></a></li>
-<li><a href="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Asking About Yesterday</span></a></li>
-<li><a href="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Who Else Is Standing Here</span></a></li>
-<li><a href="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Choosing What Not to Do</span></a></li>
-<li><a href="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">A Plan Others Can Believe</span></a></li>
-<li><a href="07-writing-it-down.html"><span class="n">7</span><span class="t">Writing It Down So Others Can Build It</span></a></li>
-<li><a href="08-what-the-machine-is.html"><span class="n">8</span><span class="t">What the Machine Is</span></a></li>
-<li><a href="09-the-first-conversation.html"><span class="n">9</span><span class="t">The First Conversation</span></a></li>
-<li><a href="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">A Mind With No Memory</span></a></li>
-<li><a href="11-giving-instructions.html"><span class="n">11</span><span class="t">Giving Instructions</span></a></li>
-<li><a href="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Knowing Whether It Works</span></a></li>
-<li><a href="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Sorting and Summarising</span></a></li>
-<li><a href="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Too Long to Read at Once</span></a></li>
-<li><a href="15-finding-by-words.html"><span class="n">15</span><span class="t">Finding by Words</span></a></li>
-<li><a href="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Finding by Meaning</span></a></li>
-<li><a href="17-how-good-is-good.html"><span class="n">17</span><span class="t">How Good Is Good</span></a></li>
-<li><a href="18-the-whole-machine.html"><span class="n">18</span><span class="t">The Whole Machine</span></a></li>
-<li><a href="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Answers a Program Can Use</span></a></li>
-<li><a href="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Giving the Machine Hands</span></a></li>
-<li><a href="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Long Windows, Careful Rooms</span></a></li>
-<li><a href="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Machines That Think First</span></a></li>
-<li><a href="23-searching-better.html"><span class="n">23</span><span class="t">Searching Better</span></a></li>
-<li><a href="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">When the Page Gives Orders</span></a></li>
-<li><a href="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Grading a Thousand Answers</span></a></li>
-<li><a href="26-what-it-really-costs.html"><span class="n">26</span><span class="t">What It Really Costs</span></a></li>
-<li><a href="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Paper, Photos and Scans</span></a></li>
-<li><a href="28-what-you-may-send.html"><span class="n">28</span><span class="t">What You May Send</span></a></li>
-<li><a href="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Rules, Risk and Responsibility</span></a></li>
-<li><a href="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">The Spec for a Thing That Varies</span></a></li>
-<li><a href="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Build, Buy or Teach It</span></a></li>
-<li><a href="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Designing for the Wrong Answer</span></a></li>
-<li><a href="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">The Plumbing Under the Magic</span></a></li>
-<li><a href="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Choosing a Model on Your Own Cases</span></a></li>
-<li><a href="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Retrieval That Survives a Review</span></a></li>
-<li><a href="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents and the Standard Plug</span></a></li>
-<li><a href="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Pictures and Voices</span></a></li>
-<li class="here"><a href="38-gates-traces-and-rollbacks.html" aria-current="page"><span class="n">38</span><span class="t">Gates, Traces and Rollbacks</span></a></li>
-<li><a href="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Assuming the Worst</span></a></li>
-<li><a href="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">A Product, Not a Demo</span></a></li>
-<li><a href="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Shipping the Whole Thing</span></a></li>
-<li><a href="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Who Pays, and How Much</span></a></li>
-<li><a href="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">How People Find It and Stay</span></a></li>
-<li><a href="44-counting-what-matters.html"><span class="n">44</span><span class="t">Counting What Matters</span></a></li>
-<li><a href="45-tools-and-harness.html"><span class="n">45</span><span class="t">The Tools and the Harness</span></a></li>
-<li><a href="46-real-people-real-use.html"><span class="n">46</span><span class="t">Real People, Real Use</span></a></li>
-<li><a href="47-the-job.html"><span class="n">47</span><span class="t">The Work, and the Job</span></a></li>
-<li><a href="afterword.html"><span class="t">After the Book</span></a></li>
-<li><a href="glossary.html"><span class="t">Words, in plain language</span></a></li>
-</ol></details></nav>
+<nav class="toc" id="toc" aria-label="Contents">
+<div class="tochead"><label class="find"><span class="sr">Find a chapter or a word</span><input id="q" type="search" placeholder="Find a chapter or a word" autocomplete="off"></label></div>
+<ol>
+<li class="top"><a href="/book/"><span class="n dot"></span><span class="t">Contents</span></a></li>
+<li data-t="before you begin"><a href="/book/preface.html" data-file="preface.html"><span class="n dot"></span><span class="t">Before You Begin</span></a></li>
+<li class="sec" style="--hue:#b4492a"><span>The problem worth solving</span></li>
+<li style="--hue:#b4492a" data-t="the number in the chat"><a href="/book/01-the-number-in-the-chat.html" data-file="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">The Number in the Chat</span></a></li>
+<li style="--hue:#b4492a" data-t="four questions before building"><a href="/book/02-four-questions-before-building.html" data-file="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Four Questions Before Building</span></a></li>
+<li style="--hue:#b4492a" data-t="asking about yesterday"><a href="/book/03-asking-about-yesterday.html" data-file="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Asking About Yesterday</span></a></li>
+<li style="--hue:#b4492a" data-t="who else is standing here"><a href="/book/04-who-else-is-standing-here.html" data-file="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Who Else Is Standing Here</span></a></li>
+<li style="--hue:#b4492a" data-t="choosing what not to do"><a href="/book/05-choosing-what-not-to-do.html" data-file="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Choosing What Not to Do</span></a></li>
+<li style="--hue:#b4492a" data-t="a plan others can believe"><a href="/book/06-a-plan-others-can-believe.html" data-file="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">A Plan Others Can Believe</span></a></li>
+<li style="--hue:#b4492a" data-t="writing it down so others can build it"><a href="/book/07-writing-it-down.html" data-file="07-writing-it-down.html"><span class="n">7</span><span class="t">Writing It Down So Others Can Build It</span></a></li>
+<li class="sec" style="--hue:#2f6f73"><span>Meeting the machine</span></li>
+<li style="--hue:#2f6f73" data-t="what the machine is"><a href="/book/08-what-the-machine-is.html" data-file="08-what-the-machine-is.html"><span class="n">8</span><span class="t">What the Machine Is</span></a></li>
+<li style="--hue:#2f6f73" data-t="the first conversation"><a href="/book/09-the-first-conversation.html" data-file="09-the-first-conversation.html"><span class="n">9</span><span class="t">The First Conversation</span></a></li>
+<li style="--hue:#2f6f73" data-t="a mind with no memory"><a href="/book/10-a-mind-with-no-memory.html" data-file="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">A Mind With No Memory</span></a></li>
+<li style="--hue:#2f6f73" data-t="giving instructions"><a href="/book/11-giving-instructions.html" data-file="11-giving-instructions.html"><span class="n">11</span><span class="t">Giving Instructions</span></a></li>
+<li style="--hue:#2f6f73" data-t="knowing whether it works"><a href="/book/12-knowing-whether-it-works.html" data-file="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Knowing Whether It Works</span></a></li>
+<li style="--hue:#2f6f73" data-t="sorting and summarising"><a href="/book/13-sorting-and-summarising.html" data-file="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Sorting and Summarising</span></a></li>
+<li class="sec" style="--hue:#6b5ca5"><span>Finding things, and the whole machine</span></li>
+<li style="--hue:#6b5ca5" data-t="too long to read at once"><a href="/book/14-too-long-to-read-at-once.html" data-file="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Too Long to Read at Once</span></a></li>
+<li style="--hue:#6b5ca5" data-t="finding by words"><a href="/book/15-finding-by-words.html" data-file="15-finding-by-words.html"><span class="n">15</span><span class="t">Finding by Words</span></a></li>
+<li style="--hue:#6b5ca5" data-t="finding by meaning"><a href="/book/16-finding-by-meaning.html" data-file="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Finding by Meaning</span></a></li>
+<li style="--hue:#6b5ca5" data-t="how good is good"><a href="/book/17-how-good-is-good.html" data-file="17-how-good-is-good.html"><span class="n">17</span><span class="t">How Good Is Good</span></a></li>
+<li style="--hue:#6b5ca5" data-t="the whole machine"><a href="/book/18-the-whole-machine.html" data-file="18-the-whole-machine.html"><span class="n">18</span><span class="t">The Whole Machine</span></a></li>
+<li style="--hue:#6b5ca5" data-t="answers a program can use"><a href="/book/19-answers-a-program-can-use.html" data-file="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Answers a Program Can Use</span></a></li>
+<li class="sec" style="--hue:#9a7b1f"><span>Giving it work to do</span></li>
+<li style="--hue:#9a7b1f" data-t="giving the machine hands"><a href="/book/20-giving-the-machine-hands.html" data-file="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Giving the Machine Hands</span></a></li>
+<li style="--hue:#9a7b1f" data-t="long windows, careful rooms"><a href="/book/21-long-windows-careful-rooms.html" data-file="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Long Windows, Careful Rooms</span></a></li>
+<li style="--hue:#9a7b1f" data-t="machines that think first"><a href="/book/22-machines-that-think-first.html" data-file="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Machines That Think First</span></a></li>
+<li style="--hue:#9a7b1f" data-t="searching better"><a href="/book/23-searching-better.html" data-file="23-searching-better.html"><span class="n">23</span><span class="t">Searching Better</span></a></li>
+<li style="--hue:#9a7b1f" data-t="when the page gives orders"><a href="/book/24-when-the-page-gives-orders.html" data-file="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">When the Page Gives Orders</span></a></li>
+<li style="--hue:#9a7b1f" data-t="grading a thousand answers"><a href="/book/25-grading-a-thousand-answers.html" data-file="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Grading a Thousand Answers</span></a></li>
+<li style="--hue:#9a7b1f" data-t="what it really costs"><a href="/book/26-what-it-really-costs.html" data-file="26-what-it-really-costs.html"><span class="n">26</span><span class="t">What It Really Costs</span></a></li>
+<li class="sec" style="--hue:#3f7a4a"><span>The messy real world</span></li>
+<li style="--hue:#3f7a4a" data-t="paper, photos and scans"><a href="/book/27-paper-photos-and-scans.html" data-file="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Paper, Photos and Scans</span></a></li>
+<li style="--hue:#3f7a4a" data-t="what you may send"><a href="/book/28-what-you-may-send.html" data-file="28-what-you-may-send.html"><span class="n">28</span><span class="t">What You May Send</span></a></li>
+<li style="--hue:#3f7a4a" data-t="rules, risk and responsibility"><a href="/book/29-rules-risk-and-responsibility.html" data-file="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Rules, Risk and Responsibility</span></a></li>
+<li style="--hue:#3f7a4a" data-t="the spec for a thing that varies"><a href="/book/30-the-spec-for-a-thing-that-varies.html" data-file="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">The Spec for a Thing That Varies</span></a></li>
+<li style="--hue:#3f7a4a" data-t="build, buy or teach it"><a href="/book/31-build-buy-or-teach-it.html" data-file="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Build, Buy or Teach It</span></a></li>
+<li style="--hue:#3f7a4a" data-t="designing for the wrong answer"><a href="/book/32-designing-for-the-wrong-answer.html" data-file="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Designing for the Wrong Answer</span></a></li>
+<li class="sec" style="--hue:#a2455e"><span>Under the hood</span></li>
+<li style="--hue:#a2455e" data-t="the plumbing under the magic"><a href="/book/33-the-plumbing-under-the-magic.html" data-file="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">The Plumbing Under the Magic</span></a></li>
+<li style="--hue:#a2455e" data-t="choosing a model on your own cases"><a href="/book/34-choosing-a-model-on-your-own-cases.html" data-file="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Choosing a Model on Your Own Cases</span></a></li>
+<li style="--hue:#a2455e" data-t="retrieval that survives a review"><a href="/book/35-retrieval-that-survives-a-review.html" data-file="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Retrieval That Survives a Review</span></a></li>
+<li style="--hue:#a2455e" data-t="workflows, agents and the standard plug"><a href="/book/36-workflows-agents-and-the-standard-plug.html" data-file="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents and the Standard Plug</span></a></li>
+<li style="--hue:#a2455e" data-t="pages, pictures and voices"><a href="/book/37-pages-pictures-and-voices.html" data-file="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Pictures and Voices</span></a></li>
+<li style="--hue:#a2455e" class="here" data-t="gates, traces and rollbacks"><a href="/book/38-gates-traces-and-rollbacks.html" aria-current="page" data-file="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces and Rollbacks</span></a></li>
+<li style="--hue:#a2455e" data-t="assuming the worst"><a href="/book/39-assuming-the-worst.html" data-file="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Assuming the Worst</span></a></li>
+<li class="sec" style="--hue:#2d5d8f"><span>A real product, and a job</span></li>
+<li style="--hue:#2d5d8f" data-t="a product, not a demo"><a href="/book/40-a-product-not-a-demo.html" data-file="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">A Product, Not a Demo</span></a></li>
+<li style="--hue:#2d5d8f" data-t="shipping the whole thing"><a href="/book/41-shipping-the-whole-thing.html" data-file="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Shipping the Whole Thing</span></a></li>
+<li style="--hue:#2d5d8f" data-t="who pays, and how much"><a href="/book/42-who-pays-and-how-much.html" data-file="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Who Pays, and How Much</span></a></li>
+<li style="--hue:#2d5d8f" data-t="how people find it and stay"><a href="/book/43-how-people-find-it-and-stay.html" data-file="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">How People Find It and Stay</span></a></li>
+<li style="--hue:#2d5d8f" data-t="counting what matters"><a href="/book/44-counting-what-matters.html" data-file="44-counting-what-matters.html"><span class="n">44</span><span class="t">Counting What Matters</span></a></li>
+<li style="--hue:#2d5d8f" data-t="the tools and the harness"><a href="/book/45-tools-and-harness.html" data-file="45-tools-and-harness.html"><span class="n">45</span><span class="t">The Tools and the Harness</span></a></li>
+<li style="--hue:#2d5d8f" data-t="real people, real use"><a href="/book/46-real-people-real-use.html" data-file="46-real-people-real-use.html"><span class="n">46</span><span class="t">Real People, Real Use</span></a></li>
+<li style="--hue:#2d5d8f" data-t="the work, and the job"><a href="/book/47-the-job.html" data-file="47-the-job.html"><span class="n">47</span><span class="t">The Work, and the Job</span></a></li>
+<li data-t="after the book"><a href="/book/afterword.html" data-file="afterword.html"><span class="n dot"></span><span class="t">After the Book</span></a></li>
+<li data-t="words, in plain language"><a href="/book/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Words, in plain language</span></a></li>
+</ol>
+<p class="nomatch" hidden>Nothing matches that.</p>
+</nav>
+<div class="scrim" id="scrim" hidden></div>
 <main id="text">
-<article class="chapter" data-file="38-gates-traces-and-rollbacks.html" data-title="Gates, Traces and Rollbacks">
-<header class="chead"><p class="eyebrow">Chapter 38</p><h1>Gates, Traces and Rollbacks</h1><p class="dek">One edit to one instruction, made on a Friday night without a test, shows why a change that does not feel like a deployment must pass through a gate; and why, afterwards, you need to be able to answer &quot;why did it do that?&quot; in forty seconds.</p><p class="meta">7 minute read</p></header>
+<article class="chapter" data-file="38-gates-traces-and-rollbacks.html" data-title="Gates, Traces and Rollbacks" data-n="38">
+<header class="chead">
+<p class="eyebrow"><span class="num">38</span><span>Chapter 38 <i>·</i> Under the hood</span></p>
+<h1>Gates, Traces and Rollbacks</h1><p class="dek">One edit to one instruction, made on a Friday night without a test, shows why a change that does not feel like a deployment must pass through a gate; and why, afterwards, you need to be able to answer &quot;why did it do that?&quot; in forty seconds.</p>
+<p class="meta"><span>7 min read</span><span>7 new words</span></p>
+</header>
 <div class="prose">
 <p>The edit took forty seconds and was made at ten to eleven on a Friday night by someone who was only trying to help.</p>
 <p>It was an engineer from another team, borrowing the guard's configuration for a related project, and noticing that the instruction to the finder contained a line which he thought made it over-cautious. <em>If unsure, treat the detail as personal.</em> He softened it. He wrote <em>if reasonably unsure</em>. He changed one line in one file, pressed save, and went to bed, content that he had made a small thing slightly better.</p>
@@ -89,9 +110,9 @@
 <p>&quot;Editing an instruction does not feel like a deployment,&quot; said Imran. He said it flatly, like a man reading a diagnosis. &quot;It is. Teams break exactly that rule more than any other. A prompt change is a code change in disguise.&quot;</p>
 <h2>What a gate is</h2>
 <p>Anaya wrote in the log, with the date, what she wanted: <em>a way for this to be impossible.</em> And she turned to the part of the project she had been building since April, without ever having called it by its proper name.</p>
-<p>The answer key had two hundred and twenty rows by now. It grew every week. It was a set of cases with expected behaviour, versioned and kept. In the trade this is a <em><a class="term" href="glossary.html#t-golden-dataset" title="the versioned, representative set of cases, with expected behaviour, that defines what good means for a system; it needs a version number so a result can be rerun">golden dataset</a></em>, and Imran called it the memory of what &quot;good&quot; means for the product. Its value is in its coverage. It included the easy messages, the paraphrases, the ambiguous ones, the ones with no answer, the ones in other languages and the ones with injected instructions. It stood for the real risks, not the flattering demos. It had a version number, because an evaluation you cannot rerun after a change is only an anecdote.</p>
+<p>The answer key had two hundred and twenty rows by now. It grew every week. It was a set of cases with expected behaviour, versioned and kept. In the trade this is a <em><a class="term" href="/book/glossary.html#t-golden-dataset" title="the versioned, representative set of cases, with expected behaviour, that defines what good means for a system; it needs a version number so a result can be rerun">golden dataset</a></em>, and Imran called it the memory of what &quot;good&quot; means for the product. Its value is in its coverage. It included the easy messages, the paraphrases, the ambiguous ones, the ones with no answer, the ones in other languages and the ones with injected instructions. It stood for the real risks, not the flattering demos. It had a version number, because an evaluation you cannot rerun after a change is only an anecdote.</p>
 <p>Between the answer key and the world he wanted a door that only opened for changes that passed. He built it in a day.</p>
-<p>It was a single command. Run the golden dataset against the current instruction, grade it, and print the numbers. Compare each against a threshold written beforehand. If anything is below, the command fails, loudly, with the reason, and the change does not go out. It ran automatically whenever any file changed: the code, the instruction, the model's name, the index, a tool. This is a <em><a class="term" href="glossary.html#t-release-gate" title="an automatic check that runs the golden dataset against a change and blocks the release if any number falls below its threshold">release gate</a></em>. It catches a <em><a class="term" href="glossary.html#t-regression" title="a change that makes a system worse at something it used to do well">regression</a></em>, a change that makes something worse that used to be good, which can happen without a single line of code failing to compile.</p>
+<p>It was a single command. Run the golden dataset against the current instruction, grade it, and print the numbers. Compare each against a threshold written beforehand. If anything is below, the command fails, loudly, with the reason, and the change does not go out. It ran automatically whenever any file changed: the code, the instruction, the model's name, the index, a tool. This is a <em><a class="term" href="/book/glossary.html#t-release-gate" title="an automatic check that runs the golden dataset against a change and blocks the release if any number falls below its threshold">release gate</a></em>. It catches a <em><a class="term" href="/book/glossary.html#t-regression" title="a change that makes a system worse at something it used to do well">regression</a></em>, a change that makes something worse that used to be good, which can happen without a single line of code failing to compile.</p>
 <p>He ran it on the Friday edit.</p>
 <pre class="transcript">GATE FAILED
   Fixed-shape numbers found:  96.4%   (threshold 98.0%)
@@ -111,30 +132,30 @@
 <p>&quot;Why was Mrs. Kulkarni's address left visible in a chat on the sixteenth?&quot;</p>
 <p>Nobody knew. That was the first problem. The guard had made thousands of decisions that week, and each was recorded only as a line saying that something had been hidden or not. Searching through them was guesswork.</p>
 <p>Imran explained what was missing with an image from a post office. &quot;When a parcel goes missing,&quot; he said, &quot;the courier can tell you where it was last scanned, because they scan it at every step. Without that, you can't trace it.&quot;</p>
-<p>A <em><a class="term" href="glossary.html#t-trace-record" title="the saved record of one request's whole path through the system: input, versions, steps, timings, cost and outcome">trace record</a></em> is the scan log for one request. It holds the request's number, the versions of everything that touched it, the steps it went through, how long each took, what it cost and how it ended. <a class="term" href="glossary.html#t-observability" title="being able to see, from the records a system keeps, what it did and why, without guessing">Observability</a> is the name for being able to see, from records like these, what a system did and why, without guessing. If you can see only the input and the output, said Imran, every diagnosis is a guess.</p>
+<p>A <em><a class="term" href="/book/glossary.html#t-trace-record" title="the saved record of one request's whole path through the system: input, versions, steps, timings, cost and outcome">trace record</a></em> is the scan log for one request. It holds the request's number, the versions of everything that touched it, the steps it went through, how long each took, what it cost and how it ended. <a class="term" href="/book/glossary.html#t-observability" title="being able to see, from the records a system keeps, what it did and why, without guessing">Observability</a> is the name for being able to see, from records like these, what a system did and why, without guessing. If you can see only the input and the output, said Imran, every diagnosis is a guess.</p>
 <p>He had been building the trace records for a month, and the answer to Lakshmi's question took forty seconds. The message of the sixteenth had been long. It had been cut into three pieces. The finder had timed out on the second piece, and the system had fallen back, as designed, to safe mode for that piece, which did not know about addresses. The address had been in that piece.</p>
 <p>&quot;So it worked as designed,&quot; said Lakshmi.</p>
 <p>&quot;It did what we told it. We told it something that is not good enough.&quot; Imran wrote a new line on the board. <em>A timeout in safe mode should mask the whole piece, not just the numbers.</em> He fixed it before lunch.</p>
 <h2>The average that hid the tail</h2>
 <p>Anaya looked at the average time per message on the dashboard. A tenth of a second. Everything seemed fine.</p>
 <p>&quot;It isn't,&quot; said Imran. &quot;The average hides the tail.&quot;</p>
-<p>The measure that matters is <em><a class="term" href="glossary.html#t-p95" title="the time that 95 out of 100 requests beat; it shows the slow tail that an average hides">p95</a></em>: the time that ninety-five requests in a hundred beat. The average was 0.12 seconds. The p95 was 1.9. One message in twenty was slower than a second and a half, and users feel the tail much more than they feel the average. He measured each stage, and the tail belonged to one of them: the order lookup, which was occasionally slow. So that stage owned the tail, and the tail was where the work was.</p>
+<p>The measure that matters is <em><a class="term" href="/book/glossary.html#t-p95" title="the time that 95 out of 100 requests beat; it shows the slow tail that an average hides">p95</a></em>: the time that ninety-five requests in a hundred beat. The average was 0.12 seconds. The p95 was 1.9. One message in twenty was slower than a second and a half, and users feel the tail much more than they feel the average. He measured each stage, and the tail belonged to one of them: the order lookup, which was occasionally slow. So that stage owned the tail, and the tail was where the work was.</p>
 <p>The same went for cost, which he now tracked for every request. The thing worth knowing was not the cost of a call but the cost of a message successfully cleaned, with the retries and the extra rounds counted in.</p>
 <h2>What can change without anyone touching it</h2>
 <p>&quot;My assistant got slower this week,&quot; Imran said, &quot;and nobody deployed anything. Name three things that could have changed.&quot;</p>
 <p>Anaya had a guess in each category. The mix of traffic, which in October included more messages in Devanagari script. The number of documents. And the response time of the provider on the other side of the lookup. None of those is in the repository, which is the reason they must be on the dashboard.</p>
 <p>He showed her the dashboard as it now stood. Six panels. Quality, safety, speed, cost, traffic and failures. Each had a measure, a source, an owner and a threshold. Some alerts would wake a person. Others would only be watched. She had tried removing one panel at a time, to see which incident would become harder to diagnose. Every removal did, which was the point.</p>
-<p>There were two more habits he insisted on, both borrowed from the world of ordinary software. The first was to version every part separately, the instruction, the model, the index, the tool descriptions, so that anything could be rolled back by itself. The second was to show a change to a few people first, with the old version ready. That is a <em><a class="term" href="glossary.html#t-canary-release" title="showing a change first to a small share of users, with the old version ready, before everyone gets it">canary release</a></em>, from the old mining practice of sending the bird in first.</p>
+<p>There were two more habits he insisted on, both borrowed from the world of ordinary software. The first was to version every part separately, the instruction, the model, the index, the tool descriptions, so that anything could be rolled back by itself. The second was to show a change to a few people first, with the old version ready. That is a <em><a class="term" href="/book/glossary.html#t-canary-release" title="showing a change first to a small share of users, with the old version ready, before everyone gets it">canary release</a></em>, from the old mining practice of sending the bird in first.</p>
 <p>&quot;You want to be able to answer one question,&quot; said Imran, &quot;at any time. What exactly changed?&quot;</p>
-<h2>What to carry forward</h2>
-<p>A change to an instruction is a change to the system, though it does not feel like a deployment, and the cure is a release gate: a command that runs a versioned golden dataset against every change and blocks it if any number falls below a threshold set in advance. The gate measures at several levels, because a good final score can hide a broken part, and the sentence that stops a release contains numbers, not impressions. To answer &quot;why did it do that?&quot;, keep a trace record of every request's path, which is the difference between knowing and guessing. Averages hide the slow tail, so measure p95, and cost the whole task and not the call. Quality can change without anyone touching the code, because traffic, data and providers all move. So give each part its own version, so it can be rolled back by itself, and show changes to a few people first.</p>
+<aside class="carry"><h2>What to carry forward</h2>
+<p>A change to an instruction is a change to the system, though it does not feel like a deployment, and the cure is a release gate: a command that runs a versioned golden dataset against every change and blocks it if any number falls below a threshold set in advance. The gate measures at several levels, because a good final score can hide a broken part, and the sentence that stops a release contains numbers, not impressions. To answer &quot;why did it do that?&quot;, keep a trace record of every request's path, which is the difference between knowing and guessing. Averages hide the slow tail, so measure p95, and cost the whole task and not the call. Quality can change without anyone touching the code, because traffic, data and providers all move. So give each part its own version, so it can be rolled back by itself, and show changes to a few people first.</p></aside>
 </div>
-<aside class="wordsbox" aria-label="Words from this chapter"><h2>Words from this chapter</h2><dl><div><dt id="w-golden-dataset">golden dataset</dt><dd>the versioned, representative set of cases, with expected behaviour, that defines what good means for a system; it needs a version number so a result can be rerun</dd></div><div><dt id="w-regression">regression</dt><dd>a change that makes a system worse at something it used to do well</dd></div><div><dt id="w-release-gate">release gate</dt><dd>an automatic check that runs the golden dataset against a change and blocks the release if any number falls below its threshold</dd></div><div><dt id="w-observability">observability</dt><dd>being able to see, from the records a system keeps, what it did and why, without guessing</dd></div><div><dt id="w-trace-record">trace record</dt><dd>the saved record of one request's whole path through the system: input, versions, steps, timings, cost and outcome</dd></div><div><dt id="w-p95">p95</dt><dd>the time that 95 out of 100 requests beat; it shows the slow tail that an average hides</dd></div><div><dt id="w-canary-release">canary release</dt><dd>showing a change first to a small share of users, with the old version ready, before everyone gets it</dd></div></dl></aside>
-<p class="inapp">In the course app: <a href="../#/ch/ch16e">Evaluation engineering: test sets and release gates</a> · <a href="../#/ch/ch17o">Observability and LLMOps: traces, cost and rollback</a></p>
-<nav class="pager" aria-label="Previous and next"><a class="prev" href="37-pages-pictures-and-voices.html"><span class="dir">← Before</span><span class="nm">Chapter 37 · Pages, Pictures and Voices</span></a><a class="next" href="39-assuming-the-worst.html"><span class="dir">Next →</span><span class="nm">Chapter 39 · Assuming the Worst</span></a></nav>
+<aside class="wordsbox" aria-label="Words from this chapter"><h2>Words from this chapter</h2><p class="sub">Plain meanings, in the order you meet them.</p><dl><div><dt id="w-golden-dataset">golden dataset</dt><dd>the versioned, representative set of cases, with expected behaviour, that defines what good means for a system; it needs a version number so a result can be rerun</dd></div><div><dt id="w-regression">regression</dt><dd>a change that makes a system worse at something it used to do well</dd></div><div><dt id="w-release-gate">release gate</dt><dd>an automatic check that runs the golden dataset against a change and blocks the release if any number falls below its threshold</dd></div><div><dt id="w-observability">observability</dt><dd>being able to see, from the records a system keeps, what it did and why, without guessing</dd></div><div><dt id="w-trace-record">trace record</dt><dd>the saved record of one request's whole path through the system: input, versions, steps, timings, cost and outcome</dd></div><div><dt id="w-p95">p95</dt><dd>the time that 95 out of 100 requests beat; it shows the slow tail that an average hides</dd></div><div><dt id="w-canary-release">canary release</dt><dd>showing a change first to a small share of users, with the old version ready, before everyone gets it</dd></div></dl></aside>
+<aside class="inapp"><span class="lead">The same ideas, with the work to do, in the course app</span><span class="chips"><a href="/#/ch/ch16e">Evaluation engineering: test sets and release gates<span aria-hidden="true"> →</span></a><a href="/#/ch/ch17o">Observability and LLMOps: traces, cost and rollback<span aria-hidden="true"> →</span></a></span></aside>
+<nav class="pager" aria-label="Previous and next chapter"><a class="prev" href="/book/37-pages-pictures-and-voices.html" rel="prev"><span class="dir">← Before</span><span class="nm"><b>37</b>Pages, Pictures and Voices</span></a><a class="next" href="/book/39-assuming-the-worst.html" rel="next"><span class="dir">Next →</span><span class="nm"><b>39</b>Assuming the Worst</span></a></nav>
 </article>
 </main>
 </div>
-<script src="reader.js"></script>
+<script src="/book/reader.js" defer></script>
 </body>
 </html>

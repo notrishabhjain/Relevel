@@ -30,14 +30,16 @@ for (const f of pages) {
   for (const m of html.matchAll(/href="([^"]+)"/g)) {
     const u = m[1];
     if (/^(https?:|mailto:|#)/.test(u)) continue;
-    if (u.startsWith('../')) {                       // out to the course app
+    if (u.startsWith('/') && !u.startsWith('/book/')) {   // out to the course app, or its icon
       const hash = u.split('#')[1] || '';
       const m2 = hash.match(/^\/ch\/(.+)$/);
       if (m2 && !courseIds.has(m2[1])) broken.push(f + ' → course chapter ' + m2[1]);
       continue;
     }
-    const [file, anchor] = u.split('#');
-    if (file && !fs.existsSync(p.join(OUT, file))) { broken.push(f + ' → ' + u); continue; }
+    if (!u.startsWith('/book/') && !/^[^/]/.test(u)) continue;
+    const [fileRaw, anchor] = u.split('#');
+    const file = fileRaw.replace(/^\/book\//, '');
+    if (file && file !== '' && !fs.existsSync(p.join(OUT, file))) { broken.push(f + ' → ' + u); continue; }
     if (anchor) {
       const target = file ? read(file) : html;
       if (!target.includes(`id="${anchor}"`)) broken.push(f + ' → #' + anchor);
@@ -53,7 +55,8 @@ for (let i = 0; i < seq.length; i++) {
   const html = read(seq[i]);
   const prev = html.match(/class="prev"[^>]*href="([^"]+)"|href="([^"]+)"[^>]*class="prev"/);
   const next = html.match(/class="next"[^>]*href="([^"]+)"|href="([^"]+)"[^>]*class="next"/);
-  const pv = prev && (prev[1] || prev[2]), nx = next && (next[1] || next[2]);
+  const strip = s => s && s.replace(/^\/book\//, '');
+  const pv = strip(prev && (prev[1] || prev[2])), nx = strip(next && (next[1] || next[2]));
   if (i > 0 && pv !== seq[i - 1]) { pagerOk = false; why = seq[i] + ' prev=' + pv; break; }
   if (i < seq.length - 1 && nx !== seq[i + 1]) { pagerOk = false; why = seq[i] + ' next=' + nx; break; }
 }
@@ -71,7 +74,7 @@ ok(read(chapterWithTerms.file).includes('glossary.html#t-'), 'and a chapter link
 console.log('\n— both ways between the book and the app —');
 const covered = new Set(B.chapters.flatMap(c => c.course));
 ok([...courseIds].every(id => id === 'ch0' ? B.preface.course.includes('ch0') : covered.has(id)), 'every course chapter is retold in exactly the book chapters that say so');
-ok(read('index.html').includes('../'), 'the contents page links back to the app');
+ok(/href="\/"/.test(read('index.html')), 'the contents page links back to the app');
 const appJs = fs.readFileSync(p.join(ROOT, 'dist/site/index.html'), 'utf8');
 const bm = appJs.match(/window\.BOOK=(\{.*?\});/);
 const BOOK = bm && JSON.parse(bm[1]);
@@ -88,9 +91,22 @@ if (base) {
   const page = await ctx.newPage();
   page.on('pageerror', e => console.log('    [page error]', e.message));
 
+  /* The first hosted version broke when opened as /book with no slash: the
+     stylesheet, the script and every link were looked for at the site root. */
+  const failedLoads = [];
+  page.on('response', r => { if (r.url().startsWith(base) && r.status() >= 400) failedLoads.push(r.status() + ' ' + r.url()); });
+  await page.goto(base + '/book');
+  const bg = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
+  ok(bg !== 'rgb(255, 255, 255)' && bg !== 'rgba(0, 0, 0, 0)', 'opened as /book with no slash, the page still has its design', bg);
+  ok(await page.evaluate(() => !!document.querySelector('.progress') && typeof document.querySelector('.go') === 'object'), 'and its cover');
+  await page.click('#begin');
+  await page.waitForLoadState();
+  ok(new URL(page.url()).pathname === '/book/preface.html', 'and its links go to the right place', page.url());
+  ok(!failedLoads.length, 'and nothing it asks for is missing', failedLoads.join(' '));
+
   await page.goto(base + '/book/');
   ok(/AI From Zero/.test(await page.title()), 'the folder opens on the contents page', await page.title());
-  const rows = await page.locator('ol.contents li').count();
+  const rows = await page.locator('.cards li, .frontlist li').count();
   ok(rows === B.chapters.length + 3, 'which lists the preface, every chapter, the afterword and the glossary', String(rows));
 
   await page.goto(base + '/book/' + B.chapters[0].file);
@@ -108,14 +124,14 @@ if (base) {
   await page.waitForFunction(() => window.CONTENT && document.querySelector('#main'));
   ok(/#\/ch\//.test(page.url()), 'the link to the course app opens a chapter there', page.url());
   const trailLink = await page.evaluate(() => { const a = document.querySelector('.chtrail a.story'); return a && a.getAttribute('href'); });
-  ok(trailLink && trailLink.startsWith('book/'), 'and that chapter offers the story version', String(trailLink));
+  ok(trailLink && trailLink.startsWith('/book/'), 'and that chapter offers the story version', String(trailLink));
   await page.click('.chtrail a.story');
   await page.waitForLoadState();
   ok(/\/book\/\d\d-/.test(page.url()), 'which opens the book chapter', page.url());
 
   await page.goto(base + '/#/library');
   await page.waitForFunction(() => window.CONTENT && document.querySelector('#main'));
-  ok(await page.locator('.cmaplinks a[href="book/"]').count() === 1, 'the course map has a way into the book');
+  ok(await page.locator('.cmaplinks a[href="/book/"]').count() === 1, 'the course map has a way into the book');
 
   await page.goto(base + '/book/glossary.html');
   ok(await page.locator('dl dt').count() >= termList.length, 'the glossary page lists every word');
