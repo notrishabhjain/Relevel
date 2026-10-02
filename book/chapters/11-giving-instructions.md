@@ -91,7 +91,7 @@ Personal information: the customer's city of residence, likely Pune.
 
 "It doesn't know," said Imran. "It was asked for the personal information in a message and it felt that an answer was expected. The most likely text after that question is a list, and a list has to have something in it."
 
-This is the failure with the unfortunate name of *hallucination*. It is a confident, well-formed answer that is invented, and it looks exactly like a true one. The word suggests a fault, but the machine is working as designed: predicting likely text, in a situation where what was needed was silence. A model does not reliably tell you when it does not know. Refusal has to be trained in separately, and it does not always hold.
+This is the failure with the unfortunate name of *hallucination*. It is a confident, well-formed answer that is invented, and it looks exactly like a true one. The word suggests a fault, but the machine is working as designed: predicting likely text, in a situation where what was needed was silence. A model does not reliably tell you when it does not know. Saying "I do not know" has to be trained in separately, and it does not always hold.
 
 "For us, this is bad in a specific way," said Anaya slowly. "If it invents a detail, we hide something that was never there. And if the invention is wrong, nobody notices, because there is nothing to compare it to."
 
