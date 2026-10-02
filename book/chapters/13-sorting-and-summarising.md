@@ -3,7 +3,7 @@ title: Sorting and Summarising
 summary: One job with a right answer and one without. The team measures a sorter, finds the failure its single score was hiding, and then checks a summary for the thing it left out.
 course: ch24 ch25
 terms:
-  - classifier | a program that puts each input into one of a fixed set of categories, such as PAN, Aadhaar, mobile number or none of these | classifiers, classification
+  - classifier | a program that puts each input into one of a fixed set of categories, such as PAN, Aadhaar, mobile number or none of these | classifiers
   - must-keep list | for each document, the facts a reader must not lose, against which every summary is checked | must-keep lists
 ---
 
