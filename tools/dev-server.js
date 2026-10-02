@@ -84,6 +84,8 @@ http.createServer(async (req, res) => {
 
     let f = path.join(SITE, url.pathname === '/' ? 'index.html' : url.pathname.slice(1));
     if (!f.startsWith(SITE)) { res.statusCode = 403; return res.end('no'); }
+    /* Like the host: a folder serves its index page. */
+    if (fs.existsSync(f) && fs.statSync(f).isDirectory()) f = path.join(f, 'index.html');
     if (!fs.existsSync(f)) f = path.join(SITE, 'index.html');
     res.setHeader('content-type', MIME[path.extname(f)] || 'application/octet-stream');
     res.setHeader('cache-control', 'no-store');

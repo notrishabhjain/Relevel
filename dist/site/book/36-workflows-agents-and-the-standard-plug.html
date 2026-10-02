@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Workflows, Agents and the Standard Plug · Chapter 36 · AI From Zero</title>
+<meta name="description" content="A bank teller can look up your balance but cannot send your money on your word. Three questions about the support console, how much to let a model decide, how to stop it, and what a standard plug does and does not promise, are settled by crossing things out.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
+<link rel="stylesheet" href="style.css">
+<script>try{var t=localStorage.getItem('aifz-book-theme');if(t)document.documentElement.setAttribute('data-theme',t);var s=localStorage.getItem('aifz-book-size');if(s)document.documentElement.style.setProperty('--fs',s+'rem')}catch(e){}</script>
+</head>
+<body class="is-chapter">
+<a class="skip" href="#text">Skip to the text</a>
+<div class="progress" id="progress" aria-hidden="true"><i></i></div>
+<header class="bar">
+  <a class="brand" href="index.html"><span class="mark">AI From Zero</span><span class="ed">The reading edition</span></a>
+  <span class="sp"></span>
+  <button class="b" id="size-down" type="button" aria-label="Smaller text" title="Smaller text">A−</button>
+  <button class="b" id="size-up" type="button" aria-label="Larger text" title="Larger text">A+</button>
+  <button class="b" id="theme" type="button" aria-label="Change colours" title="Change colours">◐</button>
+  <a class="b app" href="../" title="Open the course app">The course app →</a>
+</header>
+<div class="layout">
+<nav class="toc" aria-label="Contents"><details id="toc"><summary>Contents</summary><ol>
+<li><a href="index.html"><span class="t">Contents</span></a></li>
+<li><a href="preface.html"><span class="t">Before You Begin</span></a></li>
+<li><a href="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">The Number in the Chat</span></a></li>
+<li><a href="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Four Questions Before Building</span></a></li>
+<li><a href="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Asking About Yesterday</span></a></li>
+<li><a href="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Who Else Is Standing Here</span></a></li>
+<li><a href="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Choosing What Not to Do</span></a></li>
+<li><a href="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">A Plan Others Can Believe</span></a></li>
+<li><a href="07-writing-it-down.html"><span class="n">7</span><span class="t">Writing It Down So Others Can Build It</span></a></li>
+<li><a href="08-what-the-machine-is.html"><span class="n">8</span><span class="t">What the Machine Is</span></a></li>
+<li><a href="09-the-first-conversation.html"><span class="n">9</span><span class="t">The First Conversation</span></a></li>
+<li><a href="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">A Mind With No Memory</span></a></li>
+<li><a href="11-giving-instructions.html"><span class="n">11</span><span class="t">Giving Instructions</span></a></li>
+<li><a href="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Knowing Whether It Works</span></a></li>
+<li><a href="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Sorting and Summarising</span></a></li>
+<li><a href="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Too Long to Read at Once</span></a></li>
+<li><a href="15-finding-by-words.html"><span class="n">15</span><span class="t">Finding by Words</span></a></li>
+<li><a href="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Finding by Meaning</span></a></li>
+<li><a href="17-how-good-is-good.html"><span class="n">17</span><span class="t">How Good Is Good</span></a></li>
+<li><a href="18-the-whole-machine.html"><span class="n">18</span><span class="t">The Whole Machine</span></a></li>
+<li><a href="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Answers a Program Can Use</span></a></li>
+<li><a href="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Giving the Machine Hands</span></a></li>
+<li><a href="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Long Windows, Careful Rooms</span></a></li>
+<li><a href="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Machines That Think First</span></a></li>
+<li><a href="23-searching-better.html"><span class="n">23</span><span class="t">Searching Better</span></a></li>
+<li><a href="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">When the Page Gives Orders</span></a></li>
+<li><a href="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Grading a Thousand Answers</span></a></li>
+<li><a href="26-what-it-really-costs.html"><span class="n">26</span><span class="t">What It Really Costs</span></a></li>
+<li><a href="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Paper, Photos and Scans</span></a></li>
+<li><a href="28-what-you-may-send.html"><span class="n">28</span><span class="t">What You May Send</span></a></li>
+<li><a href="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Rules, Risk and Responsibility</span></a></li>
+<li><a href="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">The Spec for a Thing That Varies</span></a></li>
+<li><a href="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Build, Buy or Teach It</span></a></li>
+<li><a href="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Designing for the Wrong Answer</span></a></li>
+<li><a href="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">The Plumbing Under the Magic</span></a></li>
+<li><a href="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Choosing a Model on Your Own Cases</span></a></li>
+<li><a href="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Retrieval That Survives a Review</span></a></li>
+<li class="here"><a href="36-workflows-agents-and-the-standard-plug.html" aria-current="page"><span class="n">36</span><span class="t">Workflows, Agents and the Standard Plug</span></a></li>
+<li><a href="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Pictures and Voices</span></a></li>
+<li><a href="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces and Rollbacks</span></a></li>
+<li><a href="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Assuming the Worst</span></a></li>
+<li><a href="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">A Product, Not a Demo</span></a></li>
+<li><a href="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Shipping the Whole Thing</span></a></li>
+<li><a href="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Who Pays, and How Much</span></a></li>
+<li><a href="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">How People Find It and Stay</span></a></li>
+<li><a href="44-counting-what-matters.html"><span class="n">44</span><span class="t">Counting What Matters</span></a></li>
+<li><a href="45-tools-and-harness.html"><span class="n">45</span><span class="t">The Tools and the Harness</span></a></li>
+<li><a href="46-real-people-real-use.html"><span class="n">46</span><span class="t">Real People, Real Use</span></a></li>
+<li><a href="47-the-job.html"><span class="n">47</span><span class="t">The Work, and the Job</span></a></li>
+<li><a href="afterword.html"><span class="t">After the Book</span></a></li>
+<li><a href="glossary.html"><span class="t">Words, in plain language</span></a></li>
+</ol></details></nav>
+<main id="text">
+<article class="chapter" data-file="36-workflows-agents-and-the-standard-plug.html" data-title="Workflows, Agents and the Standard Plug">
+<header class="chead"><p class="eyebrow">Chapter 36</p><h1>Workflows, Agents and the Standard Plug</h1><p class="dek">A bank teller can look up your balance but cannot send your money on your word. Three questions about the support console, how much to let a model decide, how to stop it, and what a standard plug does and does not promise, are settled by crossing things out.</p><p class="meta">8 minute read</p></header>
+<div class="prose">
+<p>&quot;A bank teller,&quot; said Imran, &quot;can look at your balance. A bank teller cannot send your money somewhere on your say-so.&quot;</p>
+<p>He said it to open a design review that nobody had asked for. It was the first week of October, the pilot was running, and Farah had come to him with a request which, at first hearing, sounded entirely reasonable. She wanted the support console to have an assistant of its own. It would help an agent work faster. It would look up orders. It would show a hidden detail again, if the agent had a good reason. It would, if it seemed right, send a customer a payment link. All of it by itself, in one smooth step.</p>
+<p>&quot;The teller can't do that last one alone,&quot; Imran went on, &quot;not because tellers are untrustworthy, but because some actions have consequences outside the bank. The rule is about the action, not the person.&quot;</p>
+<p>He wrote the three things Farah wanted on the board and, beside them, a heading in capitals. <em>WHAT MAY IT DO, WITH WHAT DATA, AND WHO CHECKS?</em></p>
+<h2>One function, written down</h2>
+<p>The first thing a machine needs, if it is to do anything real, is a function it may ask for. The second is a written agreement about that function so exact that a stranger could tell you what it can and cannot do. This is a <em><a class="term" href="glossary.html#t-tool-contract" title="the precise written agreement for one function a model may call: its name, what it does and does not do, its parameters, its errors, its side effects and who is allowed to call it">tool contract</a></em>.</p>
+<p>Anaya had met a version of this in the spring, when a vague description made the model pick the wrong function. A contract goes much further. It names the function and says what it returns and what it does not. It sets its parameters tightly, so that a field with a few legal values accepts only those. It lists its errors in a form a program can read. It states its side effects, and who is allowed to call it.</p>
+<p>That last item was the one he spent time on. &quot;The model is not the authorisation layer,&quot; he said. &quot;If the lookup function takes an order number, the server decides whether <em>this</em> agent may see <em>this</em> order. It decides on the logged-in session and not on anything the model says. We did that in the summer. The contract just writes it down.&quot;</p>
+<p>Then he asked a question she had to think about. &quot;What happens if the call runs twice?&quot;</p>
+<p>She thought of a customer pressing a button and the network faltering. The request had reached the server, and the reply had never come back. The app tried again. If the action was <em>show this detail again</em>, the second attempt did no harm. If it was <em>send a payment link</em>, the customer received two.</p>
+<p>An action that can safely be run twice has a name, <em><a class="term" href="glossary.html#t-idempotency" title="the property of an action that can safely be run twice, or is protected so that running it twice has only one effect; it decides whether a retry is safe">idempotency</a></em>. Some actions are naturally idempotent. Others are made so by giving each request a unique number, so that the server recognises a repeat and does nothing. A retry is only safe when the action is. He wrote a rule for the contract: <em>every action that changes something says what happens if it is repeated.</em></p>
+<h2>Cross out what a rule can do</h2>
+<p>&quot;Now the clever part,&quot; said Imran. &quot;Which of Farah's three should be a model's choice?&quot;</p>
+<p>He asked her to do an exercise that took five minutes and shortened the project by a month. Write down every function the assistant might have. Then cross out every one where a plain rule would pick correctly more than ninety-five times in a hundred.</p>
+<p>The order lookup: the agent presses a button; no judgement needed. Crossed out. Showing a hidden detail again: another button, with a reason typed into a box. Crossed out. Sending a payment link: a person decides, always. Crossed out.</p>
+<p>The list that remained was blank.</p>
+<p>&quot;That's the answer,&quot; said Imran, cheerfully. &quot;A <a class="term" href="glossary.html#t-fixed-workflow" title="a sequence of steps decided in advance and written into code, with a model used only for the steps that need judgement">fixed workflow</a>. The steps are known, so we fix them in code. The model does the part that needs judgement and nothing else.&quot; It meant a sequence decided in advance, with a model called inside it only where words had to be understood. Most real products are built this way, and it is safer than letting a model choose its own path, because every step is visible and every failure has a location. Give a model a tool only if its choice adds value. Each one adds a new way to be attacked, more delay, more cost and a new way to break.</p>
+<p>He listed the shapes that fixed workflows usually take. A sequence, one step after another. A router, which sends a message down one of several paths. Steps run side by side when they do not depend on each other. And a pair in which one step writes and another checks it. The rule for all of them was the same: use the simplest shape that meets the acceptance criteria.</p>
+<h2>The one job that was different</h2>
+<p>There was a task in Sahaj that did not fit a fixed path, and Anaya had been circling it for a month. Each night the guard left a queue of unsure cases, the few in a hundred it had hidden to be safe. Every morning someone had to decide, one by one, what should have happened. It involved a different amount of looking up each time. A fixed sequence did not suit it.</p>
+<p>So they let a model handle it, with limits. An <em>AI agent</em>, as she had learned, is a loop: decide, act, check, decide again. The loop makes it flexible. It also makes it dangerous, because most of what goes wrong with such a thing goes wrong at the stopping. &quot;The model did not get worse,&quot; as Imran put it, &quot;it was given unlimited chances to be wrong.&quot;</p>
+<p>A <em><a class="term" href="glossary.html#t-bounded-agent" title="an AI agent given hard limits on steps, time and cost, a state it keeps explicitly, and a &quot;cannot resolve&quot; ending, so that it always stops">bounded agent</a></em> has its limits written down before it starts. A maximum number of steps. A time. A cost ceiling. An explicit ending called <em>cannot resolve</em>, which it must use rather than guess. It keeps a visible record of where it is, a state with the goal, the steps taken, what it has seen and its status, not a growing pile of text it must reread. And it logs why each run ended.</p>
+<p>Anaya asked how to know the limits worked. Imran said to prove it: build a loop that can never find its answer and watch it stop. Then he said the thing she now thought of as the centre of the whole chapter. &quot;Mark every action as read-only, a write that can be undone, or a write that cannot. Require a person for the last. A person who approves must be approving something exact. If the payload changes after approval, the action must be blocked. Otherwise you have a popup, not a control.&quot;</p>
+<p>For the night queue, every action was read-only. The agent proposed. A person decided in the morning.</p>
+<p>&quot;And would you choose an agent,&quot; she said, &quot;if nobody called it that?&quot;</p>
+<p>&quot;Good. That's the question to ask. The twenty test nights say so.&quot; He had run them three ways: a single call, a fixed sequence and the bounded agent. The sequence did nearly as well as the agent on the ordinary nights, at a quarter of the cost. The agent did better only on the strange ones. &quot;So we use it for the strange ones.&quot;</p>
+<p>She asked whether a second agent might help. Imran said that extra complexity must buy something measurable, and that no second agent had yet been asked to.</p>
+<h2>The plug on the wall</h2>
+<p>On Thursday the console vendor emailed with an announcement. Its product could now be connected to AI assistants through <a class="term" href="glossary.html#t-mcp" title="Model Context Protocol: a standard for connecting AI applications to tools and data, so that any compliant tool fits any compliant application, like a plug and a socket">MCP</a>.</p>
+<p>&quot;What is that?&quot; Anaya asked.</p>
+<p>&quot;A plug socket,&quot; said Imran, who liked metaphors that were not interesting.</p>
+<p><em>MCP</em>, the Model Context Protocol, is a standard way to connect an AI application to tools and data. Any appliance fits a wall socket that follows the standard. In the same way, any tool built to it fits any application built to it. There are three parts: the application that holds the conversation, a small connector inside it, and a separate program on the other side that offers what it can do, its tools, its documents and its prepared instructions.</p>
+<p>&quot;What does the standard promise?&quot; said Anaya.</p>
+<p>&quot;That it fits. It does not promise that it is safe. And it does not decide who may switch it on.&quot;</p>
+<p>He opened the vendor's description of what its connector offered, and read down. <em>Look up an order. List a customer's payments. Issue a refund.</em></p>
+<p>&quot;There,&quot; said Imran. &quot;It advertises a refund.&quot;</p>
+<p>&quot;Does the agent have permission?&quot;</p>
+<p>&quot;That's the question, isn't it. Whether a tool is discoverable and whether you are allowed to use it are different things. The first is the protocol's business. The second is ours. And it has to be decided on the server, from who is logged in, not by asking the model nicely.&quot; He circled the word <em>advertised</em>. &quot;A standard interface to an unsafe tool is still an unsafe tool.&quot;</p>
+<p>She added to the list from the summer, under the rule about treating every document as untrusted. Whatever comes back through a connector is also text a stranger could have written. There was a protocol, he told her, for agents talking to agents; it had the same shape of problem, with identity and delegation in place of tools. &quot;It solves how they talk. It doesn't solve whether to trust what they say.&quot;</p>
+<p>By the end of the week, the console had no assistant of its own, and a night queue with a bounded agent that proposed and did not act, and a connector with the refund tool switched off.</p>
+<p>&quot;That's less than Farah asked for,&quot; said Anaya.</p>
+<p>&quot;It's what she needed,&quot; said Imran. &quot;She just didn't know it was an easier thing to build.&quot;</p>
+<h2>What to carry forward</h2>
+<p>A tool is a function a model may ask for, and each one needs a tool contract. The contract says exactly what the tool does and does not do, what it accepts, what errors it returns, what changes as a result and who may call it. Permissions are enforced by the server and never left to the model. An action that changes something must also say what happens if it runs twice, which is idempotency. Many features that seem to call for an agent are better as a fixed workflow, with a model used only where words must be understood, and a quick way to find out is to cross out every tool a plain rule would choose correctly nearly all the time. When an agent is warranted it should be bounded: limited steps, time and cost, explicit state, and a &quot;cannot resolve&quot; ending, with a person approving anything that cannot be undone. MCP is a standard plug, which promises that things fit and nothing about their safety, and a tool that is discoverable is not thereby authorised.</p>
+</div>
+<aside class="wordsbox" aria-label="Words from this chapter"><h2>Words from this chapter</h2><dl><div><dt id="w-tool-contract">tool contract</dt><dd>the precise written agreement for one function a model may call: its name, what it does and does not do, its parameters, its errors, its side effects and who is allowed to call it</dd></div><div><dt id="w-idempotency">idempotency</dt><dd>the property of an action that can safely be run twice, or is protected so that running it twice has only one effect; it decides whether a retry is safe</dd></div><div><dt id="w-fixed-workflow">fixed workflow</dt><dd>a sequence of steps decided in advance and written into code, with a model used only for the steps that need judgement</dd></div><div><dt id="w-bounded-agent">bounded agent</dt><dd>an AI agent given hard limits on steps, time and cost, a state it keeps explicitly, and a &quot;cannot resolve&quot; ending, so that it always stops</dd></div><div><dt id="w-mcp">MCP</dt><dd>Model Context Protocol: a standard for connecting AI applications to tools and data, so that any compliant tool fits any compliant application, like a plug and a socket</dd></div></dl></aside>
+<p class="inapp">In the course app: <a href="../#/ch/ch12t">Tool calling and workflows: contracts before agents</a> · <a href="../#/ch/ch13a">Agents: loops, stopping conditions and control</a> · <a href="../#/ch/ch14p">MCP and interoperability: standard connections to tools</a></p>
+<nav class="pager" aria-label="Previous and next"><a class="prev" href="35-retrieval-that-survives-a-review.html"><span class="dir">← Before</span><span class="nm">Chapter 35 · Retrieval That Survives a Review</span></a><a class="next" href="37-pages-pictures-and-voices.html"><span class="dir">Next →</span><span class="nm">Chapter 37 · Pages, Pictures and Voices</span></a></nav>
+</article>
+</main>
+</div>
+<script src="reader.js"></script>
+</body>
+</html>

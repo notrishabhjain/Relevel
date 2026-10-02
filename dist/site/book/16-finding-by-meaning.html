@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Finding by Meaning · Chapter 16 · AI From Zero</title>
+<meta name="description" content="A bazaar where stalls of the same trade stand in the same lane gives a product manager the picture she needs for the idea that rescued search, and a number to be suspicious of.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
+<link rel="stylesheet" href="style.css">
+<script>try{var t=localStorage.getItem('aifz-book-theme');if(t)document.documentElement.setAttribute('data-theme',t);var s=localStorage.getItem('aifz-book-size');if(s)document.documentElement.style.setProperty('--fs',s+'rem')}catch(e){}</script>
+</head>
+<body class="is-chapter">
+<a class="skip" href="#text">Skip to the text</a>
+<div class="progress" id="progress" aria-hidden="true"><i></i></div>
+<header class="bar">
+  <a class="brand" href="index.html"><span class="mark">AI From Zero</span><span class="ed">The reading edition</span></a>
+  <span class="sp"></span>
+  <button class="b" id="size-down" type="button" aria-label="Smaller text" title="Smaller text">A−</button>
+  <button class="b" id="size-up" type="button" aria-label="Larger text" title="Larger text">A+</button>
+  <button class="b" id="theme" type="button" aria-label="Change colours" title="Change colours">◐</button>
+  <a class="b app" href="../" title="Open the course app">The course app →</a>
+</header>
+<div class="layout">
+<nav class="toc" aria-label="Contents"><details id="toc"><summary>Contents</summary><ol>
+<li><a href="index.html"><span class="t">Contents</span></a></li>
+<li><a href="preface.html"><span class="t">Before You Begin</span></a></li>
+<li><a href="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">The Number in the Chat</span></a></li>
+<li><a href="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Four Questions Before Building</span></a></li>
+<li><a href="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Asking About Yesterday</span></a></li>
+<li><a href="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Who Else Is Standing Here</span></a></li>
+<li><a href="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Choosing What Not to Do</span></a></li>
+<li><a href="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">A Plan Others Can Believe</span></a></li>
+<li><a href="07-writing-it-down.html"><span class="n">7</span><span class="t">Writing It Down So Others Can Build It</span></a></li>
+<li><a href="08-what-the-machine-is.html"><span class="n">8</span><span class="t">What the Machine Is</span></a></li>
+<li><a href="09-the-first-conversation.html"><span class="n">9</span><span class="t">The First Conversation</span></a></li>
+<li><a href="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">A Mind With No Memory</span></a></li>
+<li><a href="11-giving-instructions.html"><span class="n">11</span><span class="t">Giving Instructions</span></a></li>
+<li><a href="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Knowing Whether It Works</span></a></li>
+<li><a href="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Sorting and Summarising</span></a></li>
+<li><a href="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Too Long to Read at Once</span></a></li>
+<li><a href="15-finding-by-words.html"><span class="n">15</span><span class="t">Finding by Words</span></a></li>
+<li class="here"><a href="16-finding-by-meaning.html" aria-current="page"><span class="n">16</span><span class="t">Finding by Meaning</span></a></li>
+<li><a href="17-how-good-is-good.html"><span class="n">17</span><span class="t">How Good Is Good</span></a></li>
+<li><a href="18-the-whole-machine.html"><span class="n">18</span><span class="t">The Whole Machine</span></a></li>
+<li><a href="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Answers a Program Can Use</span></a></li>
+<li><a href="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Giving the Machine Hands</span></a></li>
+<li><a href="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Long Windows, Careful Rooms</span></a></li>
+<li><a href="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Machines That Think First</span></a></li>
+<li><a href="23-searching-better.html"><span class="n">23</span><span class="t">Searching Better</span></a></li>
+<li><a href="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">When the Page Gives Orders</span></a></li>
+<li><a href="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Grading a Thousand Answers</span></a></li>
+<li><a href="26-what-it-really-costs.html"><span class="n">26</span><span class="t">What It Really Costs</span></a></li>
+<li><a href="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Paper, Photos and Scans</span></a></li>
+<li><a href="28-what-you-may-send.html"><span class="n">28</span><span class="t">What You May Send</span></a></li>
+<li><a href="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Rules, Risk and Responsibility</span></a></li>
+<li><a href="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">The Spec for a Thing That Varies</span></a></li>
+<li><a href="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Build, Buy or Teach It</span></a></li>
+<li><a href="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Designing for the Wrong Answer</span></a></li>
+<li><a href="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">The Plumbing Under the Magic</span></a></li>
+<li><a href="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Choosing a Model on Your Own Cases</span></a></li>
+<li><a href="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Retrieval That Survives a Review</span></a></li>
+<li><a href="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents and the Standard Plug</span></a></li>
+<li><a href="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Pictures and Voices</span></a></li>
+<li><a href="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces and Rollbacks</span></a></li>
+<li><a href="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Assuming the Worst</span></a></li>
+<li><a href="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">A Product, Not a Demo</span></a></li>
+<li><a href="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Shipping the Whole Thing</span></a></li>
+<li><a href="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Who Pays, and How Much</span></a></li>
+<li><a href="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">How People Find It and Stay</span></a></li>
+<li><a href="44-counting-what-matters.html"><span class="n">44</span><span class="t">Counting What Matters</span></a></li>
+<li><a href="45-tools-and-harness.html"><span class="n">45</span><span class="t">The Tools and the Harness</span></a></li>
+<li><a href="46-real-people-real-use.html"><span class="n">46</span><span class="t">Real People, Real Use</span></a></li>
+<li><a href="47-the-job.html"><span class="n">47</span><span class="t">The Work, and the Job</span></a></li>
+<li><a href="afterword.html"><span class="t">After the Book</span></a></li>
+<li><a href="glossary.html"><span class="t">Words, in plain language</span></a></li>
+</ol></details></nav>
+<main id="text">
+<article class="chapter" data-file="16-finding-by-meaning.html" data-title="Finding by Meaning">
+<header class="chead"><p class="eyebrow">Chapter 16</p><h1>Finding by Meaning</h1><p class="dek">A bazaar where stalls of the same trade stand in the same lane gives a product manager the picture she needs for the idea that rescued search, and a number to be suspicious of.</p><p class="meta">7 minute read</p></header>
+<div class="prose">
+<p>There is a lane in the old part of Pune where every shop sells brass.</p>
+<p>It runs behind the main road, narrow enough that a delivery cart must stop and apologise to a scooter, and from one end to the other there are lamps, bells, pots, steel plates and small idols, in shops that look the same and are different. A little further on is the lane of cloth. Beyond that the lane of dried fruit. A newcomer who wants a particular lamp does not need to know the name of the shop. She needs to know which lane to walk into, and the lane will contain what she is looking for, and also its near relatives.</p>
+<p>Imran had been born ten minutes from it, and he used it, without embarrassment, to explain what came next.</p>
+<h2>A map where nearness means meaning</h2>
+<p>&quot;Imagine the bazaar is a map,&quot; he said. &quot;Not of shops, but of meanings. Every sentence in the world has a place on it. Sentences that mean similar things stand in the same lane. <em>When do I get my money back</em> and <em>reimbursement of approved claims</em> are neighbours, even though they have no word in common. <em>What is the capital of Peru</em> is a very long walk away.&quot;</p>
+<p>Anaya thought of Farah's twenty cards, which had been lying on the table since Monday, each wholly unaware that it was about anything.</p>
+<p>&quot;Who draws the map?&quot;</p>
+<p>&quot;A machine. Not the big one. A separate, smaller model, built only for this.&quot; He tapped the page. &quot;You give it a piece of text. It gives back a long list of numbers, which are the text's coordinates on the map. That list is called an <em><a class="term" href="glossary.html#t-embedding" title="a long list of numbers that places a piece of text on a map of meanings, so that texts meaning similar things get similar numbers even when they share no words">embedding</a></em>. That is the whole of the trick. The machine does not need to understand your question. It needs to put it in a place.&quot;</p>
+<p>Once every card has a place, finding the relevant ones stops being a matter of spelling and becomes a matter of distance. Put the customer's question on the map, find the cards standing nearest to it, and send those.</p>
+<h2>The same twenty cards</h2>
+<p>He had already done it. He had run all twenty cards through the machine, once, and stored the coordinates in a small file, and now he typed the question that had defeated Anaya on Monday.</p>
+<p><em>Paisa kab milega?</em></p>
+<p>The question went through the same map. It landed, as such questions do, in the neighbourhood of waiting, money and returns. A second later the screen listed the three nearest cards. At the top was card seven, the one about refunds being processed within seven working days. Beside it was a number.</p>
+<p><em>0.71.</em></p>
+<p>&quot;That is the <a class="term" href="glossary.html#t-similarity-score" title="a number from about 0 to 1 saying how close two embeddings are; it means little until you know what clearly good and clearly bad matches score">similarity score</a>,&quot; said Imran. &quot;How close the question is to that card. It runs, roughly, from nought to one. Close to one is nearly identical in meaning. Close to nought is unrelated.&quot;</p>
+<p>&quot;Seventy-one. That is good.&quot;</p>
+<p>&quot;Is it?&quot; He seemed pleased that she had asked. &quot;Without asking what a bad match scores, I don't know.&quot;</p>
+<p>He ran the same question against a card about the interest on late payments, which was clearly irrelevant. <em>0.38.</em> Against a card about changing a registered mobile number: <em>0.31.</em> Against a card that said nothing but the company's address: <em>0.12.</em></p>
+<p>&quot;So real text hardly ever scores below about a tenth,&quot; he said. &quot;And the useful range is narrow. Fifty-one does not mean <em>half similar</em>. In this system fifty-one is near the bottom of the range. A similarity number means little until you know what clearly good matches score and what clearly bad ones do. I would not trust anyone who quotes me one by itself.&quot;</p>
+<h2>Things the map does badly</h2>
+<p>Anaya had begun to expect a <em>but</em>, and it came as it always did, unhurried.</p>
+<p>&quot;The map is only as good as what the machine learned from. Mostly that was English text from the internet. If your words were rare in it, it puts them in odd places. Two things your users see as different can end up neighbours. Two they see as the same can end up apart.&quot;</p>
+<p>He asked her to think of the words Sahaj's customers used. <em>Lakh</em> and <em>crore.</em> NEFT and IMPS, two kinds of transfer that an ordinary person lumps together and an accountant never would. The names of government schemes, which can differ by a single word and mean different sums. Hindi written in English letters, like <em>paisa kab milega</em>, which the machine had met less often than <em>when will I be refunded.</em> And Sahaj's own internal names: two product codenames that meant very different things to the people in the building and nothing at all to the machine, which would place them by how they were spelled.</p>
+<p>&quot;Name the failures before a user finds them for you,&quot; said Imran.</p>
+<p>There was a second, subtler thing to say about how the map is used. A question is short and phrased as a question. The passage that answers it is long and phrased as a statement. Good embedding models are trained with this in mind and expect to be told which one they are looking at. If you get that wrong nothing breaks. The results are simply worse in a way no error message mentions.</p>
+<h2>The guard, on the map</h2>
+<p>It was during this conversation that Anaya saw how the map might help the part of the guard that she had been calling, privately, the difficult one.</p>
+<p>She had written down, in a spreadsheet of her own, ten sentences. Five of them were of the kind that identify a person without containing a single number or name. <em>I am the only diabetic patient in my village who had a transplant last year. I am the sarpanch of Wadgaon and I also run the fair-price shop. My son is the only boy from our chawl to get into IIT Bombay this year.</em> Five were harmless: <em>What documents do I need to renew my driving licence?</em> and others like it.</p>
+<p>She asked the map to place all ten, then measured how close each one stood to the first.</p>
+<div class="tblwrap"><table><thead><tr><th>Sentence</th><th>Identifies one person?</th><th>Score against the first</th></tr></thead><tbody><tr><td>The sarpanch who also runs the shop</td><td>Yes</td><td>0.74</td></tr><tr><td>The only boy from the chawl at IIT</td><td>Yes</td><td>0.66</td></tr><tr><td>A woman who is the only vet in her taluka</td><td>Yes</td><td>0.54</td></tr><tr><td>What documents do I need to renew my driving licence?</td><td>No</td><td>0.41</td></tr><tr><td>A question about cash-on-delivery for a ration order</td><td>No</td><td>0.58</td></tr><tr><td>A complaint about a school fee refund</td><td>No</td><td>0.55</td></tr></tbody></table></div>
+<p>She studied it. The highest-scoring harmless sentence, 0.58, stood closer to the first than one of the identifying ones, 0.54. A threshold that caught the three identifying sentences would also have caught two harmless ones.</p>
+<p>&quot;It's grouping them by topic,&quot; she said. &quot;The first sentence is about a village, a person, and a hospital. The map puts neighbours in the same lane. A sentence about a ration order in a village lands near it, because it is about a village. But whether a sentence picks out one person isn't a matter of topic.&quot;</p>
+<p>&quot;No,&quot; said Imran. &quot;That is a different thing. Closeness is not risk.&quot;</p>
+<p>She did not feel defeated. She felt, if anything, more exact. The map was a good tool for finding things that <em>mean</em> what a question means. It did not follow that it could detect a quality such as <em>points to one human being</em>. She would need something else for that, or at least something added, and she did not yet know what.</p>
+<p>She did, however, know what to do with the finding. She wrote it up on the board under the red line, as the second row of a table she had started that week: where the rule-based method wins, and where the meaning-based method wins, and what neither can do.</p>
+<h2>What the map cannot say</h2>
+<p>There was one thing the map shared with the plain method. Ask it a question that none of the cards answered, and it still returned the nearest card, with a score, and the score was lower but not zero. Nothing in the system said <em>nobody here knows</em>. The least bad card would still be handed to the machine as if it were evidence.</p>
+<p>&quot;So the thing from Monday is still true,&quot; said Anaya.</p>
+<p>&quot;It is,&quot; said Imran. &quot;And now that we can find things by meaning as well as by words, we can finally find out how often we get it wrong. That is the next job. And it is the more important one.&quot;</p>
+<h2>What to carry forward</h2>
+<p>An embedding places a piece of text on a map of meanings, as a long list of numbers, so that texts that mean similar things stand close together even when they share no words. Finding the right pieces becomes a matter of distance, and the distance is reported as a similarity score, which is meaningless until you know what clearly good and clearly bad matches score. The map is only as good as the text it learned from, so it can place local vocabulary badly. Closeness on the map is about meaning, not about every quality a sentence might have, and a method that finds sentences about the same topic will not necessarily find the ones that identify a person.</p>
+</div>
+<aside class="wordsbox" aria-label="Words from this chapter"><h2>Words from this chapter</h2><dl><div><dt id="w-embedding">embedding</dt><dd>a long list of numbers that places a piece of text on a map of meanings, so that texts meaning similar things get similar numbers even when they share no words</dd></div><div><dt id="w-similarity-score">similarity score</dt><dd>a number from about 0 to 1 saying how close two embeddings are; it means little until you know what clearly good and clearly bad matches score</dd></div></dl></aside>
+<p class="inapp">In the course app: <a href="../#/ch/ch5">Embeddings: searching by meaning</a></p>
+<nav class="pager" aria-label="Previous and next"><a class="prev" href="15-finding-by-words.html"><span class="dir">← Before</span><span class="nm">Chapter 15 · Finding by Words</span></a><a class="next" href="17-how-good-is-good.html"><span class="dir">Next →</span><span class="nm">Chapter 17 · How Good Is Good</span></a></nav>
+</article>
+</main>
+</div>
+<script src="reader.js"></script>
+</body>
+</html>

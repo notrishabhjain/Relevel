@@ -1158,6 +1158,7 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .chtrail .sp{flex:1}
 .chtrail .tnav{border:1px solid var(--rule);border-radius:var(--r);padding:.22rem .6rem;color:var(--ink);white-space:nowrap}
 .chtrail .tnav:hover{background:var(--sunk)}
+.chtrail .tnav.story{border-style:dashed}
 
 /* the sidebar outline */
 .railcourse{padding-top:.6rem}
@@ -25012,6 +25013,10 @@ Object.assign(window.HING = window.HING || {}, {
 Object.assign(window.HING = window.HING || {}, {
 
   'The course map': 'Course ka naqsha',
+  'Read it as a book': 'Ise kitaab ki tarah padhiye',
+  'Read it as a story': 'Ise kahani ki tarah padhiye',
+  'The same ideas as a story, in book chapter': 'Yahi ideas kahani ke roop mein, kitaab ke chapter',
+  'The book: the course as a story': 'Kitaab: course ek kahani ke roop mein',
   'The course': 'Course',
   'Home': 'Home',
   'Practice': 'Practice',
@@ -33461,6 +33466,7 @@ return {dashboard, practice, practiceMenu, skills, skillPage, analytics, exercis
   questionCard};
 })();
 
+window.BOOK={"base":"book/","title":"AI From Zero","edition":"The reading edition","chapters":{"a1":{"n":1,"file":"01-the-number-in-the-chat.html","title":"The Number in the Chat"},"a2":{"n":2,"file":"02-four-questions-before-building.html","title":"Four Questions Before Building"},"a3":{"n":3,"file":"03-asking-about-yesterday.html","title":"Asking About Yesterday"},"a4":{"n":4,"file":"04-who-else-is-standing-here.html","title":"Who Else Is Standing Here"},"a5":{"n":5,"file":"05-choosing-what-not-to-do.html","title":"Choosing What Not to Do"},"a6":{"n":6,"file":"06-a-plan-others-can-believe.html","title":"A Plan Others Can Believe"},"a7":{"n":7,"file":"07-writing-it-down.html","title":"Writing It Down So Others Can Build It"},"a8":{"n":8,"file":"08-what-the-machine-is.html","title":"What the Machine Is"},"ch05":{"n":8,"file":"08-what-the-machine-is.html","title":"What the Machine Is"},"ch1":{"n":9,"file":"09-the-first-conversation.html","title":"The First Conversation"},"ch15b":{"n":10,"file":"10-a-mind-with-no-memory.html","title":"A Mind With No Memory"},"ch2":{"n":11,"file":"11-giving-instructions.html","title":"Giving Instructions"},"ch21":{"n":11,"file":"11-giving-instructions.html","title":"Giving Instructions"},"ch22":{"n":12,"file":"12-knowing-whether-it-works.html","title":"Knowing Whether It Works"},"ch23":{"n":12,"file":"12-knowing-whether-it-works.html","title":"Knowing Whether It Works"},"ch24":{"n":13,"file":"13-sorting-and-summarising.html","title":"Sorting and Summarising"},"ch25":{"n":13,"file":"13-sorting-and-summarising.html","title":"Sorting and Summarising"},"ch3":{"n":14,"file":"14-too-long-to-read-at-once.html","title":"Too Long to Read at Once"},"ch4":{"n":15,"file":"15-finding-by-words.html","title":"Finding by Words"},"ch5":{"n":16,"file":"16-finding-by-meaning.html","title":"Finding by Meaning"},"ch6":{"n":17,"file":"17-how-good-is-good.html","title":"How Good Is Good"},"ch7":{"n":18,"file":"18-the-whole-machine.html","title":"The Whole Machine"},"ch75":{"n":18,"file":"18-the-whole-machine.html","title":"The Whole Machine"},"ch8":{"n":19,"file":"19-answers-a-program-can-use.html","title":"Answers a Program Can Use"},"ch85":{"n":19,"file":"19-answers-a-program-can-use.html","title":"Answers a Program Can Use"},"ch9":{"n":20,"file":"20-giving-the-machine-hands.html","title":"Giving the Machine Hands"},"ch10":{"n":21,"file":"21-long-windows-careful-rooms.html","title":"Long Windows, Careful Rooms"},"ch11":{"n":22,"file":"22-machines-that-think-first.html","title":"Machines That Think First"},"ch115":{"n":22,"file":"22-machines-that-think-first.html","title":"Machines That Think First"},"ch12":{"n":23,"file":"23-searching-better.html","title":"Searching Better"},"ch13":{"n":24,"file":"24-when-the-page-gives-orders.html","title":"When the Page Gives Orders"},"ch14":{"n":25,"file":"25-grading-a-thousand-answers.html","title":"Grading a Thousand Answers"},"ch145":{"n":25,"file":"25-grading-a-thousand-answers.html","title":"Grading a Thousand Answers"},"ch15":{"n":26,"file":"26-what-it-really-costs.html","title":"What It Really Costs"},"ch16":{"n":27,"file":"27-paper-photos-and-scans.html","title":"Paper, Photos and Scans"},"ch165":{"n":28,"file":"28-what-you-may-send.html","title":"What You May Send"},"ch17":{"n":29,"file":"29-rules-risk-and-responsibility.html","title":"Rules, Risk and Responsibility"},"ch18":{"n":30,"file":"30-the-spec-for-a-thing-that-varies.html","title":"The Spec for a Thing That Varies"},"ch185":{"n":31,"file":"31-build-buy-or-teach-it.html","title":"Build, Buy or Teach It"},"ch19":{"n":31,"file":"31-build-buy-or-teach-it.html","title":"Build, Buy or Teach It"},"ch20":{"n":32,"file":"32-designing-for-the-wrong-answer.html","title":"Designing for the Wrong Answer"},"ch205":{"n":32,"file":"32-designing-for-the-wrong-answer.html","title":"Designing for the Wrong Answer"},"ch8f":{"n":33,"file":"33-the-plumbing-under-the-magic.html","title":"The Plumbing Under the Magic"},"ch9m":{"n":34,"file":"34-choosing-a-model-on-your-own-cases.html","title":"Choosing a Model on Your Own Cases"},"ch10c":{"n":34,"file":"34-choosing-a-model-on-your-own-cases.html","title":"Choosing a Model on Your Own Cases"},"ch11r":{"n":35,"file":"35-retrieval-that-survives-a-review.html","title":"Retrieval That Survives a Review"},"ch12t":{"n":36,"file":"36-workflows-agents-and-the-standard-plug.html","title":"Workflows, Agents and the Standard Plug"},"ch13a":{"n":36,"file":"36-workflows-agents-and-the-standard-plug.html","title":"Workflows, Agents and the Standard Plug"},"ch14p":{"n":36,"file":"36-workflows-agents-and-the-standard-plug.html","title":"Workflows, Agents and the Standard Plug"},"ch15mm":{"n":37,"file":"37-pages-pictures-and-voices.html","title":"Pages, Pictures and Voices"},"ch16e":{"n":38,"file":"38-gates-traces-and-rollbacks.html","title":"Gates, Traces and Rollbacks"},"ch17o":{"n":38,"file":"38-gates-traces-and-rollbacks.html","title":"Gates, Traces and Rollbacks"},"ch18s":{"n":39,"file":"39-assuming-the-worst.html","title":"Assuming the Worst"},"ch19pm":{"n":40,"file":"40-a-product-not-a-demo.html","title":"A Product, Not a Demo"},"ch20d":{"n":40,"file":"40-a-product-not-a-demo.html","title":"A Product, Not a Demo"},"ch21cap":{"n":41,"file":"41-shipping-the-whole-thing.html","title":"Shipping the Whole Thing"},"b8":{"n":41,"file":"41-shipping-the-whole-thing.html","title":"Shipping the Whole Thing"},"b1":{"n":42,"file":"42-who-pays-and-how-much.html","title":"Who Pays, and How Much"},"b2":{"n":43,"file":"43-how-people-find-it-and-stay.html","title":"How People Find It and Stay"},"b3":{"n":44,"file":"44-counting-what-matters.html","title":"Counting What Matters"},"b4":{"n":45,"file":"45-tools-and-harness.html","title":"The Tools and the Harness"},"b5":{"n":45,"file":"45-tools-and-harness.html","title":"The Tools and the Harness"},"b6":{"n":46,"file":"46-real-people-real-use.html","title":"Real People, Real Use"},"b7":{"n":47,"file":"47-the-job.html","title":"The Work, and the Job"}},"list":[{"n":1,"file":"01-the-number-in-the-chat.html","title":"The Number in the Chat"},{"n":2,"file":"02-four-questions-before-building.html","title":"Four Questions Before Building"},{"n":3,"file":"03-asking-about-yesterday.html","title":"Asking About Yesterday"},{"n":4,"file":"04-who-else-is-standing-here.html","title":"Who Else Is Standing Here"},{"n":5,"file":"05-choosing-what-not-to-do.html","title":"Choosing What Not to Do"},{"n":6,"file":"06-a-plan-others-can-believe.html","title":"A Plan Others Can Believe"},{"n":7,"file":"07-writing-it-down.html","title":"Writing It Down So Others Can Build It"},{"n":8,"file":"08-what-the-machine-is.html","title":"What the Machine Is"},{"n":9,"file":"09-the-first-conversation.html","title":"The First Conversation"},{"n":10,"file":"10-a-mind-with-no-memory.html","title":"A Mind With No Memory"},{"n":11,"file":"11-giving-instructions.html","title":"Giving Instructions"},{"n":12,"file":"12-knowing-whether-it-works.html","title":"Knowing Whether It Works"},{"n":13,"file":"13-sorting-and-summarising.html","title":"Sorting and Summarising"},{"n":14,"file":"14-too-long-to-read-at-once.html","title":"Too Long to Read at Once"},{"n":15,"file":"15-finding-by-words.html","title":"Finding by Words"},{"n":16,"file":"16-finding-by-meaning.html","title":"Finding by Meaning"},{"n":17,"file":"17-how-good-is-good.html","title":"How Good Is Good"},{"n":18,"file":"18-the-whole-machine.html","title":"The Whole Machine"},{"n":19,"file":"19-answers-a-program-can-use.html","title":"Answers a Program Can Use"},{"n":20,"file":"20-giving-the-machine-hands.html","title":"Giving the Machine Hands"},{"n":21,"file":"21-long-windows-careful-rooms.html","title":"Long Windows, Careful Rooms"},{"n":22,"file":"22-machines-that-think-first.html","title":"Machines That Think First"},{"n":23,"file":"23-searching-better.html","title":"Searching Better"},{"n":24,"file":"24-when-the-page-gives-orders.html","title":"When the Page Gives Orders"},{"n":25,"file":"25-grading-a-thousand-answers.html","title":"Grading a Thousand Answers"},{"n":26,"file":"26-what-it-really-costs.html","title":"What It Really Costs"},{"n":27,"file":"27-paper-photos-and-scans.html","title":"Paper, Photos and Scans"},{"n":28,"file":"28-what-you-may-send.html","title":"What You May Send"},{"n":29,"file":"29-rules-risk-and-responsibility.html","title":"Rules, Risk and Responsibility"},{"n":30,"file":"30-the-spec-for-a-thing-that-varies.html","title":"The Spec for a Thing That Varies"},{"n":31,"file":"31-build-buy-or-teach-it.html","title":"Build, Buy or Teach It"},{"n":32,"file":"32-designing-for-the-wrong-answer.html","title":"Designing for the Wrong Answer"},{"n":33,"file":"33-the-plumbing-under-the-magic.html","title":"The Plumbing Under the Magic"},{"n":34,"file":"34-choosing-a-model-on-your-own-cases.html","title":"Choosing a Model on Your Own Cases"},{"n":35,"file":"35-retrieval-that-survives-a-review.html","title":"Retrieval That Survives a Review"},{"n":36,"file":"36-workflows-agents-and-the-standard-plug.html","title":"Workflows, Agents and the Standard Plug"},{"n":37,"file":"37-pages-pictures-and-voices.html","title":"Pages, Pictures and Voices"},{"n":38,"file":"38-gates-traces-and-rollbacks.html","title":"Gates, Traces and Rollbacks"},{"n":39,"file":"39-assuming-the-worst.html","title":"Assuming the Worst"},{"n":40,"file":"40-a-product-not-a-demo.html","title":"A Product, Not a Demo"},{"n":41,"file":"41-shipping-the-whole-thing.html","title":"Shipping the Whole Thing"},{"n":42,"file":"42-who-pays-and-how-much.html","title":"Who Pays, and How Much"},{"n":43,"file":"43-how-people-find-it-and-stay.html","title":"How People Find It and Stay"},{"n":44,"file":"44-counting-what-matters.html","title":"Counting What Matters"},{"n":45,"file":"45-tools-and-harness.html","title":"The Tools and the Harness"},{"n":46,"file":"46-real-people-real-use.html","title":"Real People, Real Use"},{"n":47,"file":"47-the-job.html","title":"The Work, and the Job"}]};
 /* Engine: routing, rendering, persistence, and the stateful instruments
    (notebook, prediction ledger, red-mark map, glossary drill, system card). */
 (function(){
@@ -34084,9 +34090,19 @@ function sectionHead(idx,title,time){
    to the chapters either side. The reader is always told which part they are
    in, how far through it, and how to get to the next thing, without opening
    the sidebar. */
+/* The reading edition lives beside the app on the hosted site (book/). The
+   single-file build and the artifact have no such folder, so they never offer
+   the link; the hosted build is recognisable by its web manifest. */
+function bookHere(){
+  return !!(window.BOOK&&document.querySelector('link[rel="manifest"]'));
+}
+function bookEntry(id){
+  return bookHere()?window.BOOK.chapters[id]||null:null;
+}
 function chapterTrail(c){
   const part=partOf(c.part), inPart=CH.filter(x=>x.part===c.part);
   const i=CH.indexOf(c), prev=CH[i-1], next=CH[i+1];
+  const story=bookEntry(c.id);
   return h('nav',{class:'chtrail','aria-label':T('Where you are in the course')},[
     h('a',{href:'#/library',text:T('The course map')}),
     h('span',{class:'sep',text:'/'}),
@@ -34094,6 +34110,7 @@ function chapterTrail(c){
     h('span',{class:'sep',text:'/'}),
     h('span',{class:'here',text:T('chapter')+' '+(inPart.indexOf(c)+1)+' '+T('of')+' '+inPart.length}),
     h('span',{class:'sp'}),
+    story?h('a',{class:'tnav story',href:window.BOOK.base+story.file,title:T('The same ideas as a story, in book chapter')+' '+story.n+': '+story.title,text:'\u275d '+T('Read it as a story')}):null,
     prev?h('a',{class:'tnav',href:'#/ch/'+prev.id,title:prev.num+'. '+T(prev.title),text:'\u2190 '+T('Previous')}):null,
     next?h('a',{class:'tnav',href:'#/ch/'+next.id,title:next.num+'. '+T(next.title),text:T('Next')+' \u2192'}):null]);
 }
@@ -34586,6 +34603,7 @@ function pageHome(){
       h('span',{class:'dim',text:doneN+' / '+CH.length+' '+T('chapters finished')})])]));
   w.appendChild(h('div',{class:'chiprow cmaplinks'},[
     h('a',{class:'chip',href:'#/project',text:T('Your project: Bharat Privacy Guard')}),
+    bookHere()?h('a',{class:'chip',href:window.BOOK.base,text:T('Read it as a book')}):null,
     h('a',{class:'chip',href:'#/setup',text:T('Set up Colab + API key')}),
     h('a',{class:'chip',href:'#/later',text:T('Not yet \u2014 what to ignore for now')})]));
 
@@ -35394,6 +35412,7 @@ function renderRail(){
       ['#/evidence','\u25a4','Artifact vault']]);
     group('Look things up',[
       ['#/glossary','\u220e','Glossary of every term'],
+      ...(bookHere()?[[window.BOOK.base,'\u275d','The book: the course as a story']]:[]),
       ['#/appendix','\u2261','Worksheet, question bank, sources']]);
     group('Settings',[
       ['#/language','\u0905','Language: English or Hinglish'],

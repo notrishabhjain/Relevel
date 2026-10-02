@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How People Find It and Stay · Chapter 43 · AI From Zero</title>
+<meta name="description" content="A tool that nobody finds protects nobody. Five developers are handed a README and nothing else, a stopwatch records where they give up, and a spelling checker teaches a product manager where the first moment of value must happen.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
+<link rel="stylesheet" href="style.css">
+<script>try{var t=localStorage.getItem('aifz-book-theme');if(t)document.documentElement.setAttribute('data-theme',t);var s=localStorage.getItem('aifz-book-size');if(s)document.documentElement.style.setProperty('--fs',s+'rem')}catch(e){}</script>
+</head>
+<body class="is-chapter">
+<a class="skip" href="#text">Skip to the text</a>
+<div class="progress" id="progress" aria-hidden="true"><i></i></div>
+<header class="bar">
+  <a class="brand" href="index.html"><span class="mark">AI From Zero</span><span class="ed">The reading edition</span></a>
+  <span class="sp"></span>
+  <button class="b" id="size-down" type="button" aria-label="Smaller text" title="Smaller text">A−</button>
+  <button class="b" id="size-up" type="button" aria-label="Larger text" title="Larger text">A+</button>
+  <button class="b" id="theme" type="button" aria-label="Change colours" title="Change colours">◐</button>
+  <a class="b app" href="../" title="Open the course app">The course app →</a>
+</header>
+<div class="layout">
+<nav class="toc" aria-label="Contents"><details id="toc"><summary>Contents</summary><ol>
+<li><a href="index.html"><span class="t">Contents</span></a></li>
+<li><a href="preface.html"><span class="t">Before You Begin</span></a></li>
+<li><a href="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">The Number in the Chat</span></a></li>
+<li><a href="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Four Questions Before Building</span></a></li>
+<li><a href="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Asking About Yesterday</span></a></li>
+<li><a href="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Who Else Is Standing Here</span></a></li>
+<li><a href="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Choosing What Not to Do</span></a></li>
+<li><a href="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">A Plan Others Can Believe</span></a></li>
+<li><a href="07-writing-it-down.html"><span class="n">7</span><span class="t">Writing It Down So Others Can Build It</span></a></li>
+<li><a href="08-what-the-machine-is.html"><span class="n">8</span><span class="t">What the Machine Is</span></a></li>
+<li><a href="09-the-first-conversation.html"><span class="n">9</span><span class="t">The First Conversation</span></a></li>
+<li><a href="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">A Mind With No Memory</span></a></li>
+<li><a href="11-giving-instructions.html"><span class="n">11</span><span class="t">Giving Instructions</span></a></li>
+<li><a href="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Knowing Whether It Works</span></a></li>
+<li><a href="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Sorting and Summarising</span></a></li>
+<li><a href="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Too Long to Read at Once</span></a></li>
+<li><a href="15-finding-by-words.html"><span class="n">15</span><span class="t">Finding by Words</span></a></li>
+<li><a href="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Finding by Meaning</span></a></li>
+<li><a href="17-how-good-is-good.html"><span class="n">17</span><span class="t">How Good Is Good</span></a></li>
+<li><a href="18-the-whole-machine.html"><span class="n">18</span><span class="t">The Whole Machine</span></a></li>
+<li><a href="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Answers a Program Can Use</span></a></li>
+<li><a href="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Giving the Machine Hands</span></a></li>
+<li><a href="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Long Windows, Careful Rooms</span></a></li>
+<li><a href="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Machines That Think First</span></a></li>
+<li><a href="23-searching-better.html"><span class="n">23</span><span class="t">Searching Better</span></a></li>
+<li><a href="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">When the Page Gives Orders</span></a></li>
+<li><a href="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Grading a Thousand Answers</span></a></li>
+<li><a href="26-what-it-really-costs.html"><span class="n">26</span><span class="t">What It Really Costs</span></a></li>
+<li><a href="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Paper, Photos and Scans</span></a></li>
+<li><a href="28-what-you-may-send.html"><span class="n">28</span><span class="t">What You May Send</span></a></li>
+<li><a href="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Rules, Risk and Responsibility</span></a></li>
+<li><a href="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">The Spec for a Thing That Varies</span></a></li>
+<li><a href="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Build, Buy or Teach It</span></a></li>
+<li><a href="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Designing for the Wrong Answer</span></a></li>
+<li><a href="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">The Plumbing Under the Magic</span></a></li>
+<li><a href="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Choosing a Model on Your Own Cases</span></a></li>
+<li><a href="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Retrieval That Survives a Review</span></a></li>
+<li><a href="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents and the Standard Plug</span></a></li>
+<li><a href="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Pictures and Voices</span></a></li>
+<li><a href="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces and Rollbacks</span></a></li>
+<li><a href="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Assuming the Worst</span></a></li>
+<li><a href="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">A Product, Not a Demo</span></a></li>
+<li><a href="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Shipping the Whole Thing</span></a></li>
+<li><a href="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Who Pays, and How Much</span></a></li>
+<li class="here"><a href="43-how-people-find-it-and-stay.html" aria-current="page"><span class="n">43</span><span class="t">How People Find It and Stay</span></a></li>
+<li><a href="44-counting-what-matters.html"><span class="n">44</span><span class="t">Counting What Matters</span></a></li>
+<li><a href="45-tools-and-harness.html"><span class="n">45</span><span class="t">The Tools and the Harness</span></a></li>
+<li><a href="46-real-people-real-use.html"><span class="n">46</span><span class="t">Real People, Real Use</span></a></li>
+<li><a href="47-the-job.html"><span class="n">47</span><span class="t">The Work, and the Job</span></a></li>
+<li><a href="afterword.html"><span class="t">After the Book</span></a></li>
+<li><a href="glossary.html"><span class="t">Words, in plain language</span></a></li>
+</ol></details></nav>
+<main id="text">
+<article class="chapter" data-file="43-how-people-find-it-and-stay.html" data-title="How People Find It and Stay">
+<header class="chead"><p class="eyebrow">Chapter 43</p><h1>How People Find It and Stay</h1><p class="dek">A tool that nobody finds protects nobody. Five developers are handed a README and nothing else, a stopwatch records where they give up, and a spelling checker teaches a product manager where the first moment of value must happen.</p><p class="meta">7 minute read</p></header>
+<div class="prose">
+<p>The five developers sat in a row on one side of the table, each at a laptop, each wearing the faintly guilty look of people who have been asked to take part in an experiment and are not sure what they are being measured on.</p>
+<p>Anaya had given them one sheet of paper. It was the README, the first page of the instructions for the developer kit, and nothing else. No demonstration, no calls, no help. She had put a stopwatch on the table. She had said: &quot;Add this to a small chat program and clean one message. Tell me when you're done. I won't help you.&quot; And then she had gone to stand by the window with her hands behind her back like someone reviewing a parade, because it was the only way she could keep them still.</p>
+<p>It was the third week of January. The kit was live. Mr. Menon's company had signed a trial. Everything that mattered, in that moment, was whether anyone else could use it.</p>
+<h2>A funnel and its limits</h2>
+<p>Imran had warned her what she would learn, in a sentence he was fond of. <em>If they don't stay, more sign-ups only means losing people faster.</em></p>
+<p>Growth, she had read, has five stages with a memorable shorthand, <a class="term" href="glossary.html#t-aarrr" title="five stages of growth, each given one countable event: acquisition, activation, retention, referral and revenue">AARRR</a>: acquisition, activation, retention, referral and revenue. The first job in each is to name one event you can count.</p>
+<div class="tblwrap"><table><thead><tr><th>Stage</th><th>The question</th><th>The guard's event</th></tr></thead><tbody><tr><td>Acquisition</td><td>Did they arrive?</td><td>A developer opens the demo page and pastes a message</td></tr><tr><td>Activation</td><td>Did they get value?</td><td>The kit cleans a message inside their own project</td></tr><tr><td>Retention</td><td>Did they come back?</td><td>It is still running, and cleaning messages, four weeks later</td></tr><tr><td>Referral</td><td>Did they bring others?</td><td>A colleague at another company opens the demo page after a shared link</td></tr><tr><td>Revenue</td><td>Did they pay?</td><td>They move from the trial to a plan</td></tr></tbody></table></div>
+<p>She knew the picture was a simplification. It suggests a straight line, while real people arrive through shared links and come back after months. It also invites you to start fixing at the top of the funnel. Usually the stage that decides whether a product works is retention, and the funnel puts it fourth.</p>
+<h2>The first moment of value</h2>
+<p>The measure she cared about most that morning was the one that decides whether someone ever reaches the others.</p>
+<p>The <em><a class="term" href="glossary.html#t-activation-moment" title="the first time a user gets the value the product promises; everything before it is cost to the user">activation moment</a></em> is the first time a user gets the value the product promises. For the guard it was a developer seeing their own message, with an Aadhaar number in it, come out the other side with the number gone. Everything before that moment is cost to the user: effort spent before anything good has happened. How long it takes to reach is the <em><a class="term" href="glossary.html#t-time-to-value" title="how long a new user takes to reach the activation moment, measured from sign-up">time-to-value</a></em>, measured from the moment they start.</p>
+<p>The stopwatch told her. She wrote the times as they came.</p>
+<div class="tblwrap"><table><thead><tr><th>Step</th><th>Developers who finished</th><th>Median time</th></tr></thead><tbody><tr><td>Open the README</td><td>5 of 5</td><td>1 minute</td></tr><tr><td>Create an account and get a key</td><td>4 of 5</td><td>7 minutes</td></tr><tr><td>Install the kit</td><td>4 of 5</td><td>11 minutes</td></tr><tr><td>Clean the first message</td><td>3 of 5</td><td>24 minutes</td></tr></tbody></table></div>
+<p>One had stopped at the account. The fourth step had lost another. Three reached the moment, after twenty-four minutes at the median, and the one who had left at the first obstacle had written, as the others typed, a short note, which she read after they had gone. <em>I'd have left here too.</em></p>
+<p>&quot;The problem's early,&quot; said Imran, looking over her shoulder. &quot;People don't leave at the hard part. They leave before it.&quot;</p>
+<p>The remedy occurred to her over the following days. What if the first moment of value happened before the account? What if the demonstration page let a developer paste a message of their own and see it cleaned, with nothing to sign? The activation moment would come ahead of the hard step, and by the time they were asked for an email they would already have seen it work.</p>
+<h2>A teardown over dinner</h2>
+<p>That week she did something she had put off for three months. She picked a product that had solved this problem and took it apart.</p>
+<p>She chose one that Farah used constantly: a spelling and writing assistant that sat inside whatever she was typing. They sat on Farah's sofa with her laptop between them. They looked at it stage by stage, as the exercise says, with one line for what happened and one thing to copy.</p>
+<p>Acquisition came from people seeing its suggestions in the tools they already used, and from a free plan that spread it. Activation was the first underlined suggestion in her own writing, which arrived within seconds. Retention came from living where people already write, so that there was no new habit to form. Money came from keeping the more advanced suggestions behind a paid plan.</p>
+<p>&quot;What would you copy?&quot; asked Farah.</p>
+<p>&quot;The moment of value,&quot; said Anaya slowly. &quot;It happens in the user's own work. Not on a separate page. Not after a setup.&quot;</p>
+<p>It was a thing she could not unsee. The kit's value, she realised, was in the developer's own chat program. The demonstration page was a stand-in for that, and a good one, but the real activation would come when the kit was in the code. So the aim was to shorten the road between the first and the second.</p>
+<h2>What makes someone act</h2>
+<p>For retention she turned to a model that Meenakshi had once described, from the study of behaviour. A person does something when three things meet at the same instant: they want to, they are able to, and something prompts them. If it is not happening, said the <a class="term" href="glossary.html#t-fogg-behaviour-model" title="the idea that a behaviour happens when motivation, ability and a prompt meet at the same moment; if it is not happening, check them in reverse order">Fogg behaviour model</a>, check the three in reverse order. A missing prompt is the cheapest thing to fix. Then ability. Last, motivation, which is the hardest to move.</p>
+<p>For a compliance buyer, the prompt was easy to see. A Monday email with one line: <em>This week the guard hid 1,204 details across 87,000 messages. Two were flagged for review.</em> It took no effort to open, and it reminded the buyer why they had it. For a developer, the prompt was the best README they had ever read, and the ability was how little was left to do.</p>
+<p>They watched the retention curve too, for each week's new users: a line that falls and then flattens means something has found a lasting use. A line that falls to nothing means it has not.</p>
+<h2>How a customer arrives</h2>
+<p>She drew the three ways a customer can go from hearing of a product to paying for it. In <em><a class="term" href="glossary.html#t-product-led-growth" title="winning customers by letting users sign up and get value on their own, with some of them upgrading; it fits when value shows in minutes and the price is low">product-led growth</a></em> people sign up and get value on their own, and some of them upgrade. It fits when the value shows in minutes and the price is low. In a sales-led motion a person runs demonstrations and a contract, which fits when the deal is large or a security review is required. In between, in product-led sales, individuals adopt a product first and a salesperson arrives when their team grows.</p>
+<p>The guard sat in the middle. A single developer could try the demonstration alone. But connecting a whole chat system meant the Wall, the security lead, and that, she saw, was exactly when a person would be useful.</p>
+<h2>A badge, and a line she would not cross</h2>
+<p>The last thing was a loop. A <a class="term" href="glossary.html#t-growth-loop" title="a cycle in which one user's actions bring in the next user, so that the output feeds back into the input">growth loop</a> is a cycle in which one user's actions bring in the next, so that the output feeds back into the input. She thought of a small mark at the bottom of a chat window, <em>Protected by Bharat Privacy Guard</em>, with a link. A customer's customer would see it. Another developer might follow it.</p>
+<p>She was careful about two words. Users bringing in other users is <em><a class="term" href="glossary.html#t-virality" title="users bringing in other users">virality</a></em>. A product getting better for everyone as more people use it is a <em><a class="term" href="glossary.html#t-network-effect" title="the product getting better for everyone as more people use it, which is not the same as users bringing in other users">network effect</a></em>. Many products have the first and not the second, and she suspected hers was one of them. Positioning decided which loop could work at all: a badge made sense only because she was <em>the guard for companies that talk to customers in India</em>, and a company that wanted to be seen as careful would be glad of the mark.</p>
+<p>And then she wrote the rule, in the margin, in the same hand as <em>rarer is not fixed</em>.</p>
+<p><em><a class="term" href="glossary.html#t-dark-pattern" title="a design that tricks users into acting against their own interest, such as a pre-ticked box, false scarcity or a hidden cancellation">Dark patterns</a> are out.</em> A <em>dark pattern</em> is a design that tricks a user into acting against their own interest: a box ticked in advance, a made-up shortage, a cancellation button no one can find. They can lift a number for a quarter. They also destroy the trust that her whole product rested on.</p>
+<p>&quot;The badge can be switched off,&quot; she told Imran. &quot;By the customer. Without asking.&quot;</p>
+<p>&quot;That will cost us some visibility.&quot;</p>
+<p>&quot;Yes,&quot; said Anaya. &quot;We are a privacy tool. We shouldn't be the ones who hide the exit.&quot;</p>
+<h2>What to carry forward</h2>
+<p>Growth has five stages worth counting, acquisition, activation, retention, referral and revenue, and the one that usually decides whether a product works is the one that comes fourth. The activation moment, the first time a user gets the value promised, should come as early as possible, and everything before it is cost to them; time-to-value measures the road. The best place for that moment is inside the user's own work. A behaviour happens when motivation, ability and a prompt meet, so when it is not happening check them in reverse order. Customers may arrive by themselves, through a salesperson, or through both, and the right route depends on how quickly the value shows and how large the deal is. A growth loop can bring in users, but virality is not a network effect, and a design that tricks people, a dark pattern, may raise a number and destroys the trust that retention depends on.</p>
+</div>
+<aside class="wordsbox" aria-label="Words from this chapter"><h2>Words from this chapter</h2><dl><div><dt id="w-aarrr">AARRR</dt><dd>five stages of growth, each given one countable event: acquisition, activation, retention, referral and revenue</dd></div><div><dt id="w-activation-moment">activation moment</dt><dd>the first time a user gets the value the product promises; everything before it is cost to the user</dd></div><div><dt id="w-time-to-value">time-to-value</dt><dd>how long a new user takes to reach the activation moment, measured from sign-up</dd></div><div><dt id="w-fogg-behaviour-model">Fogg behaviour model</dt><dd>the idea that a behaviour happens when motivation, ability and a prompt meet at the same moment; if it is not happening, check them in reverse order</dd></div><div><dt id="w-product-led-growth">product-led growth</dt><dd>winning customers by letting users sign up and get value on their own, with some of them upgrading; it fits when value shows in minutes and the price is low</dd></div><div><dt id="w-growth-loop">growth loop</dt><dd>a cycle in which one user's actions bring in the next user, so that the output feeds back into the input</dd></div><div><dt id="w-network-effect">network effect</dt><dd>the product getting better for everyone as more people use it, which is not the same as users bringing in other users</dd></div><div><dt id="w-virality">virality</dt><dd>users bringing in other users</dd></div><div><dt id="w-dark-pattern">dark pattern</dt><dd>a design that tricks users into acting against their own interest, such as a pre-ticked box, false scarcity or a hidden cancellation</dd></div></dl></aside>
+<p class="inapp">In the course app: <a href="../#/ch/b2">Growth, onboarding and product marketing</a></p>
+<nav class="pager" aria-label="Previous and next"><a class="prev" href="42-who-pays-and-how-much.html"><span class="dir">← Before</span><span class="nm">Chapter 42 · Who Pays, and How Much</span></a><a class="next" href="44-counting-what-matters.html"><span class="dir">Next →</span><span class="nm">Chapter 44 · Counting What Matters</span></a></nav>
+</article>
+</main>
+</div>
+<script src="reader.js"></script>
+</body>
+</html>

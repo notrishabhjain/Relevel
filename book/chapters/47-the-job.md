@@ -29,7 +29,7 @@ One kind of company adds AI features to a product that already exists, for users
 
 "They ask for different evidence," said Anaya. "So you can't write one resume for all ten."
 
-She asked Rhea to do something dull. Put the ten advertisements across the top of a sheet. Down the left, write every skill any of them mentions. Tick the box where a role asks for a skill. When she had finished, the rows with the most ticks showed what the market wanted, and the rows with none were noise. This was a **role matrix**. And for each row Rhea was to make one further mark, honestly: whether, for her, the skill was *proven*, *partly proven* or *missing*.
+She asked Rhea to do something dull. Put the ten advertisements across the top of a sheet. Down the left, write every skill any of them mentions. Tick the box where a role asks for a skill. When she had finished, the rows with the most ticks showed what the market wanted, and the rows with none were noise. This was a *role matrix*. And for each row Rhea was to make one further mark, honestly: whether, for her, the skill was *proven*, *partly proven* or *missing*.
 
 It took Rhea three evenings. She sent the sheet back with a note. "Most of what they want, I've done. I just haven't said it in a way they could check."
 
@@ -46,7 +46,7 @@ They rewrote the resume over two Sundays, and the method was one sentence long. 
 
 "Look at the second one," said Anaya. "It tells the reader you think about quality before you ship. They don't need you to say you do."
 
-Then the case study. A **case study** is a one- or two-page account of one piece of work. Rhea's would answer, in order, six questions. What was the problem, and what evidence showed it was real? What did you decide, and what did you reject? What did you give up, knowingly? What happened, in numbers? What went wrong, and what did you change? What would you do next?
+Then the case study. A *case study* is a one- or two-page account of one piece of work. Rhea's would answer, in order, six questions. What was the problem, and what evidence showed it was real? What did you decide, and what did you reject? What did you give up, knowingly? What happened, in numbers? What went wrong, and what did you change? What would you do next?
 
 "The fifth is the one that does the work," Anaya said. "Anybody can describe a success. People hire someone who knows what broke."
 
@@ -63,7 +63,7 @@ In the middle of June they began on the interviews, and Anaya started by telling
 | Metrics | Daily users fell ten percent. Why? | Check the data is right, internal or external cause, which segment, which step, hypotheses, how to test them |
 | Execution | Two teams want the same engineer. What do you do? | What each is worth, the options, the trade-offs, a decision, how you tell people |
 
-The first, **product sense**, was the one that frightened people most, because it seemed to need an inspiration they did not have. It does not. It needs the habit of choosing a user before proposing anything, and Rhea's habit, after a year of work, was good.
+The first, *product sense*, was the one that frightened people most, because it seemed to need an inspiration they did not have. It does not. It needs the habit of choosing a user before proposing anything, and Rhea's habit, after a year of work, was good.
 
 "Say your structure out loud before you start," said Anaya. "Something like 'I'll clarify, pick a user, find the problems and then choose.' The interviewer can follow you, and if they want you somewhere else they can say so in the first minute and not the fortieth." She stopped, and added the part she thought mattered more. "And at the end, choose. They want to watch you commit to a decision and give your reasons. People who list five options and recommend none fail at this more than at anything."
 
@@ -71,7 +71,7 @@ She ran the metrics question on her, one night, as a rehearsal. *Daily users fel
 
 ## Designing a system out loud
 
-The question that was most special to the new kind of job, and the one Rhea feared, was the design interview. An interviewer would say: *design a support assistant for our product.* It is called a **system-design interview**, and what is wanted is not code. It is a sign that you can think about an AI feature as a whole.
+The question that was most special to the new kind of job, and the one Rhea feared, was the design interview. An interviewer would say: *design a support assistant for our product.* It is called a *system-design interview*, and what is wanted is not code. It is a sign that you can think about an AI feature as a whole.
 
 Anaya gave her six steps, and Rhea wrote them down in the order she would say them.
 
@@ -87,7 +87,7 @@ Users and the task, and what success looks like. The approach: ask the model alo
 
 The last class of question was the oldest. *Tell me about a time you disagreed with an engineer.* The interviewer is asking about your past because it is the best guide they have to your future.
 
-Anaya told her to prepare six to eight true stories from real work, and to tell each in the same four parts, which people call the **STAR method**: the situation, the task, the action, and the result. "Spend most of the time on what you did," she said. "Not what the team did. They're interviewing you."
+Anaya told her to prepare six to eight true stories from real work, and to tell each in the same four parts, which people call the *STAR method*: the situation, the task, the action, and the result. "Spend most of the time on what you did," she said. "Not what the team did. They're interviewing you."
 
 They worked on one story for an hour. It was about a decision that had gone wrong, because those are the best.
 
@@ -99,7 +99,7 @@ They worked on one story for an hour. It was about a decision that had gone wron
 
 Two small things remained, and she gave them quickly.
 
-A **take-home** is a task set by an employer to be done alone, in a stated time. Keep to the time. Put your assumptions at the top. End with what you would do with more time. Reviewers prefer a clear, honest answer to a long one, and a person who says what they left out is trusted more than one who pretends there was nothing.
+A *take-home* is a task set by an employer to be done alone, in a stated time. Keep to the time. Put your assumptions at the top. End with what you would do with more time. Reviewers prefer a clear, honest answer to a long one, and a person who says what they left out is trusted more than one who pretends there was nothing.
 
 And networking, which Rhea disliked, worked best when she had something to show. "Don't ask people for a referral," said Anaya. "Send a specific person your case study and ask one specific question about it. You'll get replies, because it's a question they can answer."
 

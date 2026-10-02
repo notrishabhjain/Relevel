@@ -208,7 +208,7 @@ function tocNav(B, current) {
     ...B.chapters.map(c => li(c.file, c.title, c.file, String(c.n))),
     B.afterword ? li('afterword.html', B.afterword.title, 'afterword', '') : '',
     li('glossary.html', 'Words, in plain language', 'glossary', '')].join('\n');
-  return `<nav class="toc" aria-label="Contents"><details id="toc"${''}><summary>Contents</summary><ol>
+  return `<nav class="toc" aria-label="Contents"><details id="toc"><summary>Contents</summary><ol>
 ${items}
 </ol></details></nav>`;
 }
@@ -294,10 +294,10 @@ ${letters.map(l => `<h2 id="a-${l}">${l}</h2><dl>${all.filter(t => t.term[0].toU
 <section aria-label="Contents">
 <h2 class="toch">Contents</h2>
 <ol class="contents">
-${B.preface ? `<li class="front"><a href="preface.html"><span class="n"></span><span class="b"><span class="ct">${esc(B.preface.title)}</span><span class="cs">${esc(B.preface.summary)}</span></span></a></li>` : ''}
-${B.chapters.map(c => `<li><a href="${c.file}"><span class="n">${c.n}</span><span class="b"><span class="ct">${esc(c.title)}</span><span class="cs">${esc(c.summary)}</span></span></a></li>`).join('\n')}
-${B.afterword ? `<li class="front"><a href="afterword.html"><span class="n"></span><span class="b"><span class="ct">${esc(B.afterword.title)}</span><span class="cs">${esc(B.afterword.summary)}</span></span></a></li>` : ''}
-<li class="front"><a href="glossary.html"><span class="n"></span><span class="b"><span class="ct">Words, in plain language</span><span class="cs">Every word the book teaches, with the chapter that explains it.</span></span></a></li>
+${B.preface ? `<li class="front"><a href="preface.html"><span class="n"></span><span class="bd"><span class="ct">${esc(B.preface.title)}</span><span class="cs">${esc(B.preface.summary)}</span></span></a></li>` : ''}
+${B.chapters.map(c => `<li><a href="${c.file}"><span class="n">${c.n}</span><span class="bd"><span class="ct">${esc(c.title)}</span><span class="cs">${esc(c.summary)}</span></span></a></li>`).join('\n')}
+${B.afterword ? `<li class="front"><a href="afterword.html"><span class="n"></span><span class="bd"><span class="ct">${esc(B.afterword.title)}</span><span class="cs">${esc(B.afterword.summary)}</span></span></a></li>` : ''}
+<li class="front"><a href="glossary.html"><span class="n"></span><span class="bd"><span class="ct">Words, in plain language</span><span class="cs">Every word the book teaches, with the chapter that explains it.</span></span></a></li>
 </ol>
 </section>
 <p class="inapp">This is the reading edition. The exercises, tools and tracking live in <a href="${book.appUrl}">the course app</a>, and every chapter here says which app chapters it retells.</p>

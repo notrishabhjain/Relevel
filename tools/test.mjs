@@ -57,8 +57,15 @@ async function withServer(fn) {
   if (code) { console.error('\nseeding check failed\n'); process.exit(1); }
 }
 
+/* The reading edition: its order, its words and its links, before any browser. */
+{
+  const code = await new Promise(res =>
+    spawn(process.execPath, ['tools/book-check.mjs'], { stdio: 'inherit' }).on('exit', res));
+  if (code) { console.error('\nbook check failed\n'); process.exit(1); }
+}
+
 const only = process.argv[2];
-const suites = [['api', 'tools/api-test.mjs'], ['browser', 'tools/browser-test.mjs']]
+const suites = [['api', 'tools/api-test.mjs'], ['browser', 'tools/browser-test.mjs'], ['book', 'tools/book-test.mjs']]
   .filter(([n]) => !only || n === only);
 if (!suites.length) { console.error('unknown suite: ' + only); process.exit(2); }
 

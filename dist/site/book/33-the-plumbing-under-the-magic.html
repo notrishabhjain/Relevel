@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Plumbing Under the Magic · Chapter 33 · AI From Zero</title>
+<meta name="description" content="A two-hour outage in which nothing raised an error persuades a product manager that she needs to understand, at the level of a plumber's diagram, the ordinary software around the one unpredictable part.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
+<link rel="stylesheet" href="style.css">
+<script>try{var t=localStorage.getItem('aifz-book-theme');if(t)document.documentElement.setAttribute('data-theme',t);var s=localStorage.getItem('aifz-book-size');if(s)document.documentElement.style.setProperty('--fs',s+'rem')}catch(e){}</script>
+</head>
+<body class="is-chapter">
+<a class="skip" href="#text">Skip to the text</a>
+<div class="progress" id="progress" aria-hidden="true"><i></i></div>
+<header class="bar">
+  <a class="brand" href="index.html"><span class="mark">AI From Zero</span><span class="ed">The reading edition</span></a>
+  <span class="sp"></span>
+  <button class="b" id="size-down" type="button" aria-label="Smaller text" title="Smaller text">A−</button>
+  <button class="b" id="size-up" type="button" aria-label="Larger text" title="Larger text">A+</button>
+  <button class="b" id="theme" type="button" aria-label="Change colours" title="Change colours">◐</button>
+  <a class="b app" href="../" title="Open the course app">The course app →</a>
+</header>
+<div class="layout">
+<nav class="toc" aria-label="Contents"><details id="toc"><summary>Contents</summary><ol>
+<li><a href="index.html"><span class="t">Contents</span></a></li>
+<li><a href="preface.html"><span class="t">Before You Begin</span></a></li>
+<li><a href="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">The Number in the Chat</span></a></li>
+<li><a href="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Four Questions Before Building</span></a></li>
+<li><a href="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Asking About Yesterday</span></a></li>
+<li><a href="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Who Else Is Standing Here</span></a></li>
+<li><a href="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Choosing What Not to Do</span></a></li>
+<li><a href="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">A Plan Others Can Believe</span></a></li>
+<li><a href="07-writing-it-down.html"><span class="n">7</span><span class="t">Writing It Down So Others Can Build It</span></a></li>
+<li><a href="08-what-the-machine-is.html"><span class="n">8</span><span class="t">What the Machine Is</span></a></li>
+<li><a href="09-the-first-conversation.html"><span class="n">9</span><span class="t">The First Conversation</span></a></li>
+<li><a href="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">A Mind With No Memory</span></a></li>
+<li><a href="11-giving-instructions.html"><span class="n">11</span><span class="t">Giving Instructions</span></a></li>
+<li><a href="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Knowing Whether It Works</span></a></li>
+<li><a href="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Sorting and Summarising</span></a></li>
+<li><a href="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Too Long to Read at Once</span></a></li>
+<li><a href="15-finding-by-words.html"><span class="n">15</span><span class="t">Finding by Words</span></a></li>
+<li><a href="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Finding by Meaning</span></a></li>
+<li><a href="17-how-good-is-good.html"><span class="n">17</span><span class="t">How Good Is Good</span></a></li>
+<li><a href="18-the-whole-machine.html"><span class="n">18</span><span class="t">The Whole Machine</span></a></li>
+<li><a href="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Answers a Program Can Use</span></a></li>
+<li><a href="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Giving the Machine Hands</span></a></li>
+<li><a href="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Long Windows, Careful Rooms</span></a></li>
+<li><a href="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Machines That Think First</span></a></li>
+<li><a href="23-searching-better.html"><span class="n">23</span><span class="t">Searching Better</span></a></li>
+<li><a href="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">When the Page Gives Orders</span></a></li>
+<li><a href="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Grading a Thousand Answers</span></a></li>
+<li><a href="26-what-it-really-costs.html"><span class="n">26</span><span class="t">What It Really Costs</span></a></li>
+<li><a href="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Paper, Photos and Scans</span></a></li>
+<li><a href="28-what-you-may-send.html"><span class="n">28</span><span class="t">What You May Send</span></a></li>
+<li><a href="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Rules, Risk and Responsibility</span></a></li>
+<li><a href="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">The Spec for a Thing That Varies</span></a></li>
+<li><a href="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Build, Buy or Teach It</span></a></li>
+<li><a href="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Designing for the Wrong Answer</span></a></li>
+<li class="here"><a href="33-the-plumbing-under-the-magic.html" aria-current="page"><span class="n">33</span><span class="t">The Plumbing Under the Magic</span></a></li>
+<li><a href="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Choosing a Model on Your Own Cases</span></a></li>
+<li><a href="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Retrieval That Survives a Review</span></a></li>
+<li><a href="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents and the Standard Plug</span></a></li>
+<li><a href="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Pictures and Voices</span></a></li>
+<li><a href="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces and Rollbacks</span></a></li>
+<li><a href="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Assuming the Worst</span></a></li>
+<li><a href="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">A Product, Not a Demo</span></a></li>
+<li><a href="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Shipping the Whole Thing</span></a></li>
+<li><a href="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Who Pays, and How Much</span></a></li>
+<li><a href="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">How People Find It and Stay</span></a></li>
+<li><a href="44-counting-what-matters.html"><span class="n">44</span><span class="t">Counting What Matters</span></a></li>
+<li><a href="45-tools-and-harness.html"><span class="n">45</span><span class="t">The Tools and the Harness</span></a></li>
+<li><a href="46-real-people-real-use.html"><span class="n">46</span><span class="t">Real People, Real Use</span></a></li>
+<li><a href="47-the-job.html"><span class="n">47</span><span class="t">The Work, and the Job</span></a></li>
+<li><a href="afterword.html"><span class="t">After the Book</span></a></li>
+<li><a href="glossary.html"><span class="t">Words, in plain language</span></a></li>
+</ol></details></nav>
+<main id="text">
+<article class="chapter" data-file="33-the-plumbing-under-the-magic.html" data-title="The Plumbing Under the Magic">
+<header class="chead"><p class="eyebrow">Chapter 33</p><h1>The Plumbing Under the Magic</h1><p class="dek">A two-hour outage in which nothing raised an error persuades a product manager that she needs to understand, at the level of a plumber's diagram, the ordinary software around the one unpredictable part.</p><p class="meta">8 minute read</p></header>
+<div class="prose">
+<p>On the second Thursday of September, for two hours, the guard hid every order number in Pune, and nobody noticed until a customer wrote in to ask what had happened to hers.</p>
+<p>It was a small incident. Farah's agents had been puzzled, then irritated, then inventive: for about forty minutes they had been asking customers to read their order numbers aloud over the phone. The dashboard stayed green. Imran, when he was told, said very little and began, with a pen, to draw.</p>
+<p>&quot;Nothing raised an error,&quot; he said, when the diagram was done. &quot;That's why it took two hours.&quot;</p>
+<h2>What happened</h2>
+<p>The thing was ordinary, and that was the lesson. The guard looked up each twelve-digit number in the order system, as it had been taught to do. The order system had been updated that morning by another team. In the old version, its reply called the field <em>order_id</em>. In the new one it was <em>orderId</em>, with a capital I.</p>
+<p>The guard asked for <em>order_id</em> and found nothing there. It did not stop. It did not shout. It had been written, reasonably, to treat an empty answer as &quot;no such order&quot;, and so it concluded, politely and about four hundred times, that no order existed with that number, and hid it as a suspected identity number.</p>
+<p>An AI application depends on a great many unspoken assumptions about the data it receives. This field will be there. It will be a number. This list will not be empty. These are <em><a class="term" href="glossary.html#t-data-contract" title="the unspoken assumptions one part of a system makes about the data it receives, such as that a field will be present and a list will not be empty">data contracts</a></em>, and in production every one of them is eventually broken. A well-built system notices when one is broken and stops. A badly built one carries on, and the answer it gives is built on missing data. Many real incidents in this field look exactly like this: no error, a green dashboard, and a result that is quietly wrong.</p>
+<p>&quot;This is not a machine-learning problem,&quot; said Imran. &quot;The machine was fine. This is an ordinary software failure that happens to sit next to a machine. And you can't ask the right question about it unless you can read the diagram.&quot;</p>
+<h2>The diagram</h2>
+<p>Anaya had been dreading this for months. She had been quietly proud of her ability to talk to engineers, and she knew exactly where the edge of it was. She could say &quot;the API&quot; and &quot;the logs&quot; without knowing what they were. She asked Imran, with some trepidation, whether he would give her an afternoon.</p>
+<p>He gave her two hours, a whiteboard, and a metaphor.</p>
+<p>&quot;You order food in an app,&quot; he said. &quot;You tap. A message goes to the restaurant. A reply comes back with a price. Your screen changes. It looks mysterious until you see the messages. Everything in this afternoon is one of those messages, or a place where one gets lost.&quot;</p>
+<p><em><a class="term" href="glossary.html#t-python" title="the programming language most AI work is written in; for a product manager, a way of saying exactly what an experiment does">Python</a></em> came first, and he reassured her at once that she would not become a programmer. It is the language most of this work is written in, and for her the point was only that it is a way of saying exactly what an experiment does. A small function. A dictionary, which keeps a few labelled values together: <em>name, address, kind</em>. A loop, which does the same thing to each of a list of things. &quot;Python is a lab notebook with grammar,&quot; he said. &quot;If you can read what it says, you can see whether the experiment is what you think it is.&quot;</p>
+<p><em><a class="term" href="glossary.html#t-http" title="the set of rules programs use to send requests and replies across the internet, with a number on each reply that says whether it worked">HTTP</a></em> is the set of rules by which programs talk across the internet. The part that mattered was a number on every reply, called a <em><a class="term" href="glossary.html#t-status-code" title="the number on an HTTP reply: 200 means it worked, a 4xx number means the request was wrong, and a 5xx number means the server failed">status code</a></em>. A 200 means it worked. Anything beginning with 4 means the request was wrong: 401, you are not who you say you are; 404, there is nothing here; 429, you are asking too fast, slow down. Anything beginning with 5 means the other side failed. &quot;The API failed&quot; is not an explanation, he said. It is a place to start asking. Was it a bad request, an absent dependency, or a failure on their side? Each has a different cure, and only some are worth trying again.</p>
+<p>The next piece was one she already knew, in the form of a cautionary tale. An <em><a class="term" href="glossary.html#t-environment-variable" title="a value kept outside the code, in the place a program runs, which is where passwords and API keys belong">environment variable</a></em> is a value kept outside the code, in the place a program runs. It is where passwords and API keys belong, never in the code and never in a shared folder. A prototype that leaks a key is not a credible piece of engineering.</p>
+<p><em><a class="term" href="glossary.html#t-git" title="a tool that saves every version of your work, so you can see what changed and go back to any earlier version">Git</a></em> was the one she had been looking forward to, and it did not disappoint. It is a tool that saves every version of your work, with a note about what changed and why, so that you can see the difference between yesterday's and today's and go back to either. The folder that holds all of it is a <em><a class="term" href="glossary.html#t-repository" title="the folder, kept in Git, that holds all of a project's work and its history">repository</a></em>. She had called her own work a notebook of record; this was the same idea made reliable. &quot;A time machine with a memory,&quot; he said. &quot;When something breaks, the first question is what changed. In Git you can answer it.&quot;</p>
+<p>She learned to read an error. This took ten minutes and might have been the most useful ten of the afternoon. When a program fails loudly, it prints a long block called a trace, and the instinct is to read it from the top, which is where the least useful part is. The real cause is almost always at the bottom.</p>
+<pre class="transcript">Traceback (most recent call last):
+  File &quot;guard.py&quot;, line 41, in clean_message
+    order = lookup[&quot;order_id&quot;]
+KeyError: 'order_id'</pre>
+<p>&quot;Last line first,&quot; said Imran. &quot;<em>KeyError, order_id.</em> The program asked for a field that wasn't there. Line forty-one. That's your whole story.&quot;</p>
+<p>&quot;But this one wasn't loud.&quot;</p>
+<p>&quot;No. This was the polite version. The real one asked with a method that returns <em>nothing</em> when the field is missing, and carried on. That is what we wrote.&quot; He rubbed the back of his neck. &quot;The loud version is a gift. It stops you.&quot;</p>
+<h2>A test that fails on purpose</h2>
+<p>He taught her the last piece with a game. Write a small test: give the function an order reply that has <em>order_id</em> in it, and check that it is recognised. It passes. Now give it a reply with <em>orderId</em>, and ask what should happen.</p>
+<p>&quot;What should happen?&quot;</p>
+<p>She thought about it. &quot;It should stop. It should say something's wrong with the order system, not with the number.&quot;</p>
+<p>&quot;Then write that as a test. Make it fail first, so you know it can.&quot; He wrote it, and ran it, and it failed with a satisfying red line. He fixed the code to check for the missing field and refuse to carry on, and ran it again. Green. &quot;A test that has never failed has never been shown to check anything.&quot;</p>
+<p>And he added, as a coda, the thing that made it matter. Every record of every message the guard had handled would now carry a request number, a time, the version of the code and the status. &quot;Then the next time the dashboard is green and a customer writes in, we don't draw diagrams. We search.&quot;</p>
+<h2>The runner that remembers</h2>
+<p>The last thing he showed her was something he had been building for two months and had never shown anyone.</p>
+<p>It was an <em><a class="term" href="glossary.html#t-experiment-runner" title="a reusable program that records, for every experiment, the inputs, outputs, settings, timings and errors, so a result can be reproduced and compared">experiment runner</a></em>: a reusable program that records, for every experiment, the inputs, the outputs, the settings, the timings and the errors, all in a standard form. The point was to cross a particular bridge. Between <em>I tried it</em> and <em>I measured it</em> there is a gap, and most of the gap is bookkeeping. Run a prompt twice and save both runs. Change one thing. Look at the logs and see at once what changed.</p>
+<p>&quot;If I can't reproduce yesterday's result, I haven't got a result,&quot; he said. &quot;I've got an anecdote.&quot;</p>
+<p>Anaya looked at the folder on his screen. It had a README. It had a list of what was needed to run it. It had a log of every experiment since May. She remembered the entry in her notebook of the first night, <em>nothing counts until someone else could check it</em>, and she understood that this was what she had meant, and that she had not known how to build it.</p>
+<h2>What enough looks like</h2>
+<p>At five o'clock he asked her what she had learned, and she did not give him a list of terms. She wrote, on the back of the diagram, the set of things she would now be able to do.</p>
+<p><em>I can read a request, a reply and a status code. I know where a key belongs. I can ask what changed, and find out. I read an error from the bottom. I know a test should fail once. And when someone says &quot;the API failed&quot;, I can ask which way.</em></p>
+<p>It was a short list. It was not nothing. It meant that when an engineer showed her a diagram, she would recognise the parts.</p>
+<p>At the top of the page she added the sentence he had said at the start, because it was the one she wanted to keep. An AI system is a software system with one unpredictable part. Everything that goes wrong in ordinary software can still go wrong. And one failure more, the quietest, produces no error.</p>
+<h2>What to carry forward</h2>
+<p>An AI system is ordinary software with one unpredictable part, so everything that can break ordinary software can break it, and the engineering risk lies at least as much in interfaces, errors, secrets and retries as in the model. Programs talk through requests and replies, and the status code on a reply says whether the request was wrong or the other side failed. Keys belong outside the code, work belongs in a repository that records every change, and an error is read from the bottom. Every part of a system makes assumptions about the data it receives, and a good system stops when one is broken instead of carrying on with nothing. A runner that records every experiment turns &quot;I tried it&quot; into &quot;I measured it&quot;, because a result you cannot reproduce is only an anecdote.</p>
+</div>
+<aside class="wordsbox" aria-label="Words from this chapter"><h2>Words from this chapter</h2><dl><div><dt id="w-python">Python</dt><dd>the programming language most AI work is written in; for a product manager, a way of saying exactly what an experiment does</dd></div><div><dt id="w-http">HTTP</dt><dd>the set of rules programs use to send requests and replies across the internet, with a number on each reply that says whether it worked</dd></div><div><dt id="w-status-code">status code</dt><dd>the number on an HTTP reply: 200 means it worked, a 4xx number means the request was wrong, and a 5xx number means the server failed</dd></div><div><dt id="w-environment-variable">environment variable</dt><dd>a value kept outside the code, in the place a program runs, which is where passwords and API keys belong</dd></div><div><dt id="w-git">Git</dt><dd>a tool that saves every version of your work, so you can see what changed and go back to any earlier version</dd></div><div><dt id="w-repository">repository</dt><dd>the folder, kept in Git, that holds all of a project's work and its history</dd></div><div><dt id="w-experiment-runner">experiment runner</dt><dd>a reusable program that records, for every experiment, the inputs, outputs, settings, timings and errors, so a result can be reproduced and compared</dd></div><div><dt id="w-data-contract">data contract</dt><dd>the unspoken assumptions one part of a system makes about the data it receives, such as that a field will be present and a list will not be empty</dd></div></dl></aside>
+<p class="inapp">In the course app: <a href="../#/ch/ch8f">Software basics for AI work: Python, HTTP, Git and tests</a></p>
+<nav class="pager" aria-label="Previous and next"><a class="prev" href="32-designing-for-the-wrong-answer.html"><span class="dir">← Before</span><span class="nm">Chapter 32 · Designing for the Wrong Answer</span></a><a class="next" href="34-choosing-a-model-on-your-own-cases.html"><span class="dir">Next →</span><span class="nm">Chapter 34 · Choosing a Model on Your Own Cases</span></a></nav>
+</article>
+</main>
+</div>
+<script src="reader.js"></script>
+</body>
+</html>

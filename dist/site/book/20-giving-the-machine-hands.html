@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Giving the Machine Hands · Chapter 20 · AI From Zero</title>
+<meta name="description" content="A twelve-digit order number looks exactly like an Aadhaar number, and the only way to tell them apart is to look it up. Letting a model do the looking teaches the team what a loop is, what one costs, and which of its actions need a human.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
+<link rel="stylesheet" href="style.css">
+<script>try{var t=localStorage.getItem('aifz-book-theme');if(t)document.documentElement.setAttribute('data-theme',t);var s=localStorage.getItem('aifz-book-size');if(s)document.documentElement.style.setProperty('--fs',s+'rem')}catch(e){}</script>
+</head>
+<body class="is-chapter">
+<a class="skip" href="#text">Skip to the text</a>
+<div class="progress" id="progress" aria-hidden="true"><i></i></div>
+<header class="bar">
+  <a class="brand" href="index.html"><span class="mark">AI From Zero</span><span class="ed">The reading edition</span></a>
+  <span class="sp"></span>
+  <button class="b" id="size-down" type="button" aria-label="Smaller text" title="Smaller text">A−</button>
+  <button class="b" id="size-up" type="button" aria-label="Larger text" title="Larger text">A+</button>
+  <button class="b" id="theme" type="button" aria-label="Change colours" title="Change colours">◐</button>
+  <a class="b app" href="../" title="Open the course app">The course app →</a>
+</header>
+<div class="layout">
+<nav class="toc" aria-label="Contents"><details id="toc"><summary>Contents</summary><ol>
+<li><a href="index.html"><span class="t">Contents</span></a></li>
+<li><a href="preface.html"><span class="t">Before You Begin</span></a></li>
+<li><a href="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">The Number in the Chat</span></a></li>
+<li><a href="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Four Questions Before Building</span></a></li>
+<li><a href="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Asking About Yesterday</span></a></li>
+<li><a href="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Who Else Is Standing Here</span></a></li>
+<li><a href="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Choosing What Not to Do</span></a></li>
+<li><a href="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">A Plan Others Can Believe</span></a></li>
+<li><a href="07-writing-it-down.html"><span class="n">7</span><span class="t">Writing It Down So Others Can Build It</span></a></li>
+<li><a href="08-what-the-machine-is.html"><span class="n">8</span><span class="t">What the Machine Is</span></a></li>
+<li><a href="09-the-first-conversation.html"><span class="n">9</span><span class="t">The First Conversation</span></a></li>
+<li><a href="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">A Mind With No Memory</span></a></li>
+<li><a href="11-giving-instructions.html"><span class="n">11</span><span class="t">Giving Instructions</span></a></li>
+<li><a href="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Knowing Whether It Works</span></a></li>
+<li><a href="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Sorting and Summarising</span></a></li>
+<li><a href="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Too Long to Read at Once</span></a></li>
+<li><a href="15-finding-by-words.html"><span class="n">15</span><span class="t">Finding by Words</span></a></li>
+<li><a href="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Finding by Meaning</span></a></li>
+<li><a href="17-how-good-is-good.html"><span class="n">17</span><span class="t">How Good Is Good</span></a></li>
+<li><a href="18-the-whole-machine.html"><span class="n">18</span><span class="t">The Whole Machine</span></a></li>
+<li><a href="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Answers a Program Can Use</span></a></li>
+<li class="here"><a href="20-giving-the-machine-hands.html" aria-current="page"><span class="n">20</span><span class="t">Giving the Machine Hands</span></a></li>
+<li><a href="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Long Windows, Careful Rooms</span></a></li>
+<li><a href="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Machines That Think First</span></a></li>
+<li><a href="23-searching-better.html"><span class="n">23</span><span class="t">Searching Better</span></a></li>
+<li><a href="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">When the Page Gives Orders</span></a></li>
+<li><a href="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Grading a Thousand Answers</span></a></li>
+<li><a href="26-what-it-really-costs.html"><span class="n">26</span><span class="t">What It Really Costs</span></a></li>
+<li><a href="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Paper, Photos and Scans</span></a></li>
+<li><a href="28-what-you-may-send.html"><span class="n">28</span><span class="t">What You May Send</span></a></li>
+<li><a href="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Rules, Risk and Responsibility</span></a></li>
+<li><a href="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">The Spec for a Thing That Varies</span></a></li>
+<li><a href="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Build, Buy or Teach It</span></a></li>
+<li><a href="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Designing for the Wrong Answer</span></a></li>
+<li><a href="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">The Plumbing Under the Magic</span></a></li>
+<li><a href="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Choosing a Model on Your Own Cases</span></a></li>
+<li><a href="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Retrieval That Survives a Review</span></a></li>
+<li><a href="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents and the Standard Plug</span></a></li>
+<li><a href="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Pictures and Voices</span></a></li>
+<li><a href="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces and Rollbacks</span></a></li>
+<li><a href="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Assuming the Worst</span></a></li>
+<li><a href="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">A Product, Not a Demo</span></a></li>
+<li><a href="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Shipping the Whole Thing</span></a></li>
+<li><a href="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Who Pays, and How Much</span></a></li>
+<li><a href="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">How People Find It and Stay</span></a></li>
+<li><a href="44-counting-what-matters.html"><span class="n">44</span><span class="t">Counting What Matters</span></a></li>
+<li><a href="45-tools-and-harness.html"><span class="n">45</span><span class="t">The Tools and the Harness</span></a></li>
+<li><a href="46-real-people-real-use.html"><span class="n">46</span><span class="t">Real People, Real Use</span></a></li>
+<li><a href="47-the-job.html"><span class="n">47</span><span class="t">The Work, and the Job</span></a></li>
+<li><a href="afterword.html"><span class="t">After the Book</span></a></li>
+<li><a href="glossary.html"><span class="t">Words, in plain language</span></a></li>
+</ol></details></nav>
+<main id="text">
+<article class="chapter" data-file="20-giving-the-machine-hands.html" data-title="Giving the Machine Hands">
+<header class="chead"><p class="eyebrow">Chapter 20</p><h1>Giving the Machine Hands</h1><p class="dek">A twelve-digit order number looks exactly like an Aadhaar number, and the only way to tell them apart is to look it up. Letting a model do the looking teaches the team what a loop is, what one costs, and which of its actions need a human.</p><p class="meta">7 minute read</p></header>
+<div class="prose">
+<p>The twelve-digit order number was the thing that would not die.</p>
+<p>It had shown up in the sorting test, four times, when the sorter called order numbers Aadhaar numbers and the guard would have hidden them. It had come up again in the list of edge cases. Farah's agents needed to see an order number to do their jobs. Customers typed them all the time. And an order number and an Aadhaar number, to the eye and to any rule, were identical: twelve digits, sometimes in groups of four, with nothing in them to show which was which.</p>
+<p>&quot;There's only one way to know,&quot; said Imran, on a Tuesday. He looked unusually pleased. &quot;You ask the order system.&quot;</p>
+<h2>A model that can ask</h2>
+<p>Until now the model had only done one kind of thing. It read text and wrote text, and a person or a program read what it wrote. What Imran proposed was different. He wanted the model to be able to say: <em>I am not sure what this number is. Please look it up in the orders table and tell me if it exists.</em></p>
+<p>It cannot do that itself. A model cannot run anything. It can only ask. The mechanism, which Imran sketched in five steps on a card, is simple enough to say aloud.</p>
+<p>You describe the available functions to the model in the request, each with a name, a purpose and the arguments it takes. That description is just more text. The model replies, if it wants one, with a request instead of prose: <em>call this function with these arguments.</em> Your own program, not the model, runs the function. You send the result back as another message. The model then either asks for another call or writes its final answer. This goes round until the model stops or you stop it.</p>
+<p>Doing this is called <em><a class="term" href="glossary.html#t-tool-calling" title="letting a model ask your program to run a function, by naming the function and its arguments; the program runs it and sends the result back">tool calling</a></em>. It is the mechanism behind everything that gets described as an AI &quot;taking actions&quot;: looking something up, booking a slot, updating a record. It is only text going back and forth, with ordinary code in the middle that does the actual work.</p>
+<p>A model, a set of functions it may ask for, a loop, and a rule for when to stop together make an <em><a class="term" href="glossary.html#t-ai-agent" title="a model, a set of functions it may ask for, a loop, and a rule for when to stop">AI agent</a></em>. (Farah's colleagues at the support desk were also called agents, and the word was going to cause confusion in the office for the rest of the year. Anaya settled it at once. Hers were <em>support agents</em>. The machine's were <em>AI agents</em>. Imran said no one would remember.)</p>
+<h2>The words on the label</h2>
+<p>Imran wrote the first function himself. It took a number and returned whether an order with that number existed, and which customer it belonged to. He gave it a description, one line long, and ran it.</p>
+<p>The model asked for the wrong function.</p>
+<p>There were two in the box: one that looked up an order, and one that looked up a payment. The description of the first said, in full, <em>Looks up information about a customer's number.</em> The model read it, as a model always does, as a plain sentence, and chose the second.</p>
+<p>&quot;It reads the label,&quot; said Imran. &quot;That is all the selection mechanism there is. No instinct. No intuition. It reads the label, and if the label is vague, it picks the wrong function. That's a writing bug, not a failure of intelligence.&quot;</p>
+<p>He rewrote it, and read the new one aloud. <em>Returns whether an order exists with this exact number, and the customer it belongs to. Does not return payment history, amounts, or addresses. For payments, use look_up_payment instead.</em></p>
+<p>A good description says what the function gives back, what it does not, and when to use another. Naming the similar function inside the description heads off the confusion that most teams find only after launch. It was, Imran said, the most underrated line of code in the system. The <em><a class="term" href="glossary.html#t-tool-description" title="the few lines of text that tell a model what a function does, what it returns and what it does not; the model chooses a function by reading them, so a vague one is a bug">tool description</a></em> is code written in English.</p>
+<h2>Each round costs more than the last</h2>
+<p>The loop worked. A message arrived with a twelve-digit number. The finder said it might be an Aadhaar number or an order number. The model asked for a lookup. The program ran it. The answer came back: <em>an order exists with that number.</em> The model decided it was an order number, and the guard left it alone.</p>
+<p>Then Anaya did what she had learned to do, and asked what it cost.</p>
+<p>&quot;A single call is about twelve hundred tokens,&quot; said Imran. &quot;But this is more than one call. Every time round the loop, the whole conversation so far is sent again, with the tool's answer added.&quot;</p>
+<p>He wrote down a run of six steps. Twelve hundred tokens in the first. Fifteen hundred in the second, with the model's request and the answer appended. Eighteen hundred. Twenty-one hundred. Twenty-four. Twenty-seven.</p>
+<p>Eleven thousand seven hundred tokens in all.</p>
+<p>&quot;Nearly ten times the cost of a single call,&quot; said Anaya. &quot;For six steps.&quot;</p>
+<p>&quot;For six steps, with these numbers. Measure your own. The rule is only that the input grows faster than the number of steps does, because each step carries all the ones before it.&quot; He tapped the card. &quot;An agent that does two more steps than you planned can double the bill. How many steps it is allowed to take is a decision, and it has a price.&quot;</p>
+<h2>Four bad days</h2>
+<p>The next afternoon Imran broke it on purpose, four ways, so that she could see what such a machine does when things go wrong.</p>
+<p>In the first, the order system was slow, and the lookup timed out. The model, told that the lookup had failed, tried again. And again. By the fourteenth try it was cheerfully requesting the same lookup, to no purpose, at growing cost.</p>
+<p>In the second, the function returned an error message. The model read it as if it were a result and wrote a confident sentence on the basis of it.</p>
+<p>In the third, it called a function that did not exist, which it had invented, with plausible-looking arguments.</p>
+<p>In the fourth, two functions undid each other. The model went back and forth between them without end.</p>
+<p>&quot;Every one of those is a control problem,&quot; said Imran. &quot;The model did not get dumber. It was given unlimited chances to be wrong.&quot; He opened a file and added one line near the top. <em>Maximum five rounds. After that, stop, and say you could not decide.</em></p>
+<p>That line is the <em><a class="term" href="glossary.html#t-step-limit" title="the maximum number of rounds an AI agent may take before it must stop, set by the program and not left to the model">step limit</a></em>, and it is the first thing to set in any loop. The model does not set it and cannot be trusted to; the program must. Teams forget it surprisingly often. A loop without a stopping rule is not an agent. It is a leak.</p>
+<h2>Reading and doing</h2>
+<p>At the end of the week Farah brought a suggestion, and with it the question that would shape the guard for good.</p>
+<p>&quot;If it can look up an order,&quot; she said, &quot;can it also send the customer a message? Like, 'Please don't share your Aadhaar here'? When it hides a number, it could tell them straight away.&quot;</p>
+<p>It was a kind idea. Anaya felt the pull of it. A customer who types an identity number should be told, gently, that it is not needed.</p>
+<p>Imran was already shaking his head, not at the idea but at the way she'd put it.</p>
+<p>&quot;There are two kinds of function,&quot; he said. &quot;Ones that read, and ones that do. A function that reads a table is recoverable. At worst, the machine gets bad information, and you try again. A function that sends a message, pays a bill, deletes a row or books a slot cannot be taken back. The message has gone. The customer has seen it.&quot;</p>
+<p>&quot;So the machine mustn't be allowed to send.&quot;</p>
+<p>&quot;Whether it may is a product decision. The question is where a human stands in the loop.&quot; He drew a line down the middle of the card. &quot;For reading, let it loose, within the step limit. For doing, either a person approves each one, or the action is something so small and so fixed that it cannot go wrong.&quot;</p>
+<p>They settled it quickly, because the second option was available. The guard would not write to customers at all. A short, fixed notice, written in advance by Farah in all three languages and approved by Lakshmi, would be shown whenever a number was hidden. The machine would decide <em>when</em>. Humans had decided <em>what</em> it said. Anaya found it a considerably better design than the one she had asked for.</p>
+<h2>What to carry forward</h2>
+<p>A model cannot run anything; it can only ask. In tool calling, the program describes the available functions, the model replies with a request to call one, the program runs it and sends back the result, and this repeats until the model writes a final answer or something stops it. The model chooses among functions by reading their descriptions, so a vague description is a bug. A loop of this kind is an AI agent, and each round sends everything that came before it, so the cost grows faster than the number of steps. Most agent failures are failures of control, not of intelligence, which is why a step limit set by the program is the first thing to write. And functions that only read can be left to run, while functions that act cannot be undone, and a human, or a fixed message written in advance, belongs there.</p>
+</div>
+<aside class="wordsbox" aria-label="Words from this chapter"><h2>Words from this chapter</h2><dl><div><dt id="w-tool-calling">tool calling</dt><dd>letting a model ask your program to run a function, by naming the function and its arguments; the program runs it and sends the result back</dd></div><div><dt id="w-tool-description">tool description</dt><dd>the few lines of text that tell a model what a function does, what it returns and what it does not; the model chooses a function by reading them, so a vague one is a bug</dd></div><div><dt id="w-ai-agent">AI agent</dt><dd>a model, a set of functions it may ask for, a loop, and a rule for when to stop</dd></div><div><dt id="w-step-limit">step limit</dt><dd>the maximum number of rounds an AI agent may take before it must stop, set by the program and not left to the model</dd></div></dl></aside>
+<p class="inapp">In the course app: <a href="../#/ch/ch9">Tool calling and agents: letting the model take actions</a></p>
+<nav class="pager" aria-label="Previous and next"><a class="prev" href="19-answers-a-program-can-use.html"><span class="dir">← Before</span><span class="nm">Chapter 19 · Answers a Program Can Use</span></a><a class="next" href="21-long-windows-careful-rooms.html"><span class="dir">Next →</span><span class="nm">Chapter 21 · Long Windows, Careful Rooms</span></a></nav>
+</article>
+</main>
+</div>
+<script src="reader.js"></script>
+</body>
+</html>

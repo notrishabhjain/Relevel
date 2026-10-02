@@ -621,9 +621,19 @@ function sectionHead(idx,title,time){
    to the chapters either side. The reader is always told which part they are
    in, how far through it, and how to get to the next thing, without opening
    the sidebar. */
+/* The reading edition lives beside the app on the hosted site (book/). The
+   single-file build and the artifact have no such folder, so they never offer
+   the link; the hosted build is recognisable by its web manifest. */
+function bookHere(){
+  return !!(window.BOOK&&document.querySelector('link[rel="manifest"]'));
+}
+function bookEntry(id){
+  return bookHere()?window.BOOK.chapters[id]||null:null;
+}
 function chapterTrail(c){
   const part=partOf(c.part), inPart=CH.filter(x=>x.part===c.part);
   const i=CH.indexOf(c), prev=CH[i-1], next=CH[i+1];
+  const story=bookEntry(c.id);
   return h('nav',{class:'chtrail','aria-label':T('Where you are in the course')},[
     h('a',{href:'#/library',text:T('The course map')}),
     h('span',{class:'sep',text:'/'}),
@@ -631,6 +641,7 @@ function chapterTrail(c){
     h('span',{class:'sep',text:'/'}),
     h('span',{class:'here',text:T('chapter')+' '+(inPart.indexOf(c)+1)+' '+T('of')+' '+inPart.length}),
     h('span',{class:'sp'}),
+    story?h('a',{class:'tnav story',href:window.BOOK.base+story.file,title:T('The same ideas as a story, in book chapter')+' '+story.n+': '+story.title,text:'\u275d '+T('Read it as a story')}):null,
     prev?h('a',{class:'tnav',href:'#/ch/'+prev.id,title:prev.num+'. '+T(prev.title),text:'\u2190 '+T('Previous')}):null,
     next?h('a',{class:'tnav',href:'#/ch/'+next.id,title:next.num+'. '+T(next.title),text:T('Next')+' \u2192'}):null]);
 }
@@ -1123,6 +1134,7 @@ function pageHome(){
       h('span',{class:'dim',text:doneN+' / '+CH.length+' '+T('chapters finished')})])]));
   w.appendChild(h('div',{class:'chiprow cmaplinks'},[
     h('a',{class:'chip',href:'#/project',text:T('Your project: Bharat Privacy Guard')}),
+    bookHere()?h('a',{class:'chip',href:window.BOOK.base,text:T('Read it as a book')}):null,
     h('a',{class:'chip',href:'#/setup',text:T('Set up Colab + API key')}),
     h('a',{class:'chip',href:'#/later',text:T('Not yet \u2014 what to ignore for now')})]));
 
@@ -1931,6 +1943,7 @@ function renderRail(){
       ['#/evidence','\u25a4','Artifact vault']]);
     group('Look things up',[
       ['#/glossary','\u220e','Glossary of every term'],
+      ...(bookHere()?[[window.BOOK.base,'\u275d','The book: the course as a story']]:[]),
       ['#/appendix','\u2261','Worksheet, question bank, sources']]);
     group('Settings',[
       ['#/language','\u0905','Language: English or Hinglish'],

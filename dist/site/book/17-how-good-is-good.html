@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How Good Is Good · Chapter 17 · AI From Zero</title>
+<meta name="description" content="Someone senior asks the question every AI project eventually meets. The answer is two numbers, a choice between them that is not an engineer's to make, and an uncomfortable look at a figure Anaya had quoted without checking.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
+<link rel="stylesheet" href="style.css">
+<script>try{var t=localStorage.getItem('aifz-book-theme');if(t)document.documentElement.setAttribute('data-theme',t);var s=localStorage.getItem('aifz-book-size');if(s)document.documentElement.style.setProperty('--fs',s+'rem')}catch(e){}</script>
+</head>
+<body class="is-chapter">
+<a class="skip" href="#text">Skip to the text</a>
+<div class="progress" id="progress" aria-hidden="true"><i></i></div>
+<header class="bar">
+  <a class="brand" href="index.html"><span class="mark">AI From Zero</span><span class="ed">The reading edition</span></a>
+  <span class="sp"></span>
+  <button class="b" id="size-down" type="button" aria-label="Smaller text" title="Smaller text">A−</button>
+  <button class="b" id="size-up" type="button" aria-label="Larger text" title="Larger text">A+</button>
+  <button class="b" id="theme" type="button" aria-label="Change colours" title="Change colours">◐</button>
+  <a class="b app" href="../" title="Open the course app">The course app →</a>
+</header>
+<div class="layout">
+<nav class="toc" aria-label="Contents"><details id="toc"><summary>Contents</summary><ol>
+<li><a href="index.html"><span class="t">Contents</span></a></li>
+<li><a href="preface.html"><span class="t">Before You Begin</span></a></li>
+<li><a href="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">The Number in the Chat</span></a></li>
+<li><a href="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Four Questions Before Building</span></a></li>
+<li><a href="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Asking About Yesterday</span></a></li>
+<li><a href="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Who Else Is Standing Here</span></a></li>
+<li><a href="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Choosing What Not to Do</span></a></li>
+<li><a href="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">A Plan Others Can Believe</span></a></li>
+<li><a href="07-writing-it-down.html"><span class="n">7</span><span class="t">Writing It Down So Others Can Build It</span></a></li>
+<li><a href="08-what-the-machine-is.html"><span class="n">8</span><span class="t">What the Machine Is</span></a></li>
+<li><a href="09-the-first-conversation.html"><span class="n">9</span><span class="t">The First Conversation</span></a></li>
+<li><a href="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">A Mind With No Memory</span></a></li>
+<li><a href="11-giving-instructions.html"><span class="n">11</span><span class="t">Giving Instructions</span></a></li>
+<li><a href="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Knowing Whether It Works</span></a></li>
+<li><a href="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Sorting and Summarising</span></a></li>
+<li><a href="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Too Long to Read at Once</span></a></li>
+<li><a href="15-finding-by-words.html"><span class="n">15</span><span class="t">Finding by Words</span></a></li>
+<li><a href="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Finding by Meaning</span></a></li>
+<li class="here"><a href="17-how-good-is-good.html" aria-current="page"><span class="n">17</span><span class="t">How Good Is Good</span></a></li>
+<li><a href="18-the-whole-machine.html"><span class="n">18</span><span class="t">The Whole Machine</span></a></li>
+<li><a href="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Answers a Program Can Use</span></a></li>
+<li><a href="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Giving the Machine Hands</span></a></li>
+<li><a href="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Long Windows, Careful Rooms</span></a></li>
+<li><a href="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Machines That Think First</span></a></li>
+<li><a href="23-searching-better.html"><span class="n">23</span><span class="t">Searching Better</span></a></li>
+<li><a href="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">When the Page Gives Orders</span></a></li>
+<li><a href="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Grading a Thousand Answers</span></a></li>
+<li><a href="26-what-it-really-costs.html"><span class="n">26</span><span class="t">What It Really Costs</span></a></li>
+<li><a href="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Paper, Photos and Scans</span></a></li>
+<li><a href="28-what-you-may-send.html"><span class="n">28</span><span class="t">What You May Send</span></a></li>
+<li><a href="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Rules, Risk and Responsibility</span></a></li>
+<li><a href="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">The Spec for a Thing That Varies</span></a></li>
+<li><a href="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Build, Buy or Teach It</span></a></li>
+<li><a href="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Designing for the Wrong Answer</span></a></li>
+<li><a href="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">The Plumbing Under the Magic</span></a></li>
+<li><a href="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Choosing a Model on Your Own Cases</span></a></li>
+<li><a href="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Retrieval That Survives a Review</span></a></li>
+<li><a href="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents and the Standard Plug</span></a></li>
+<li><a href="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Pictures and Voices</span></a></li>
+<li><a href="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces and Rollbacks</span></a></li>
+<li><a href="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Assuming the Worst</span></a></li>
+<li><a href="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">A Product, Not a Demo</span></a></li>
+<li><a href="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Shipping the Whole Thing</span></a></li>
+<li><a href="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Who Pays, and How Much</span></a></li>
+<li><a href="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">How People Find It and Stay</span></a></li>
+<li><a href="44-counting-what-matters.html"><span class="n">44</span><span class="t">Counting What Matters</span></a></li>
+<li><a href="45-tools-and-harness.html"><span class="n">45</span><span class="t">The Tools and the Harness</span></a></li>
+<li><a href="46-real-people-real-use.html"><span class="n">46</span><span class="t">Real People, Real Use</span></a></li>
+<li><a href="47-the-job.html"><span class="n">47</span><span class="t">The Work, and the Job</span></a></li>
+<li><a href="afterword.html"><span class="t">After the Book</span></a></li>
+<li><a href="glossary.html"><span class="t">Words, in plain language</span></a></li>
+</ol></details></nav>
+<main id="text">
+<article class="chapter" data-file="17-how-good-is-good.html" data-title="How Good Is Good">
+<header class="chead"><p class="eyebrow">Chapter 17</p><h1>How Good Is Good</h1><p class="dek">Someone senior asks the question every AI project eventually meets. The answer is two numbers, a choice between them that is not an engineer's to make, and an uncomfortable look at a figure Anaya had quoted without checking.</p><p class="meta">7 minute read</p></header>
+<div class="prose">
+<p>The question arrived, as it always does, from someone senior and in the middle of something else.</p>
+<p>It was the first week of May. The founders had stopped by the glass room on their way to lunch, and one of them, a cheerful man called Mr. Bhatia who owned an enormous number of identical shirts, looked at the whiteboard, looked at the scoreboard, and asked what everyone in every company eventually asks.</p>
+<p>&quot;Is it good?&quot;</p>
+<p>There was a pause that went on a second too long.</p>
+<p>&quot;It found fifteen of seventeen on the last run,&quot; said Imran.</p>
+<p>&quot;That's good, then.&quot;</p>
+<p>&quot;It is fifteen of seventeen on ten sentences we wrote ourselves,&quot; said Anaya.</p>
+<p>&quot;Is that not good?&quot;</p>
+<p>&quot;I don't know yet,&quot; said Anaya. &quot;That is the honest answer.&quot; She watched his face rearrange itself around the unfamiliar experience of being told so. &quot;I can tell you in a week, with a number.&quot;</p>
+<h2>A demo is not evidence</h2>
+<p>On the way to lunch he said something she did not expect, which was that this was the first time anyone had answered him that way. Usually the answer was a demonstration of three examples that worked. A demonstration of three examples that work tells you almost nothing about how often a system is right, because the three were chosen, and the ones that were not chosen are exactly the ones you needed to see.</p>
+<p>Imran had been working on that, not for the guard but for the thing the guard stood in front of. He had been measuring how well the chatbot found the right page of Sahaj's policies for a customer's question, and the lessons from that measurement turned out to apply almost word for word.</p>
+<p>The method comes down to three ideas.</p>
+<p>The first is to write the answers before you test. You cannot judge a system by asking it questions and seeing whether the answers look right, because they will look right: plausible text is exactly what the machine makes. So you begin with a list of real questions and the verified right answer to each. They are the same thing Anaya had already named, an answer key, written before the test and not after.</p>
+<p>Farah wrote ten questions for the chatbot's search. She wrote them in the words her customers used, before she opened the policy document, because a question written after reading the documents ends up using the documents' words, and makes the search look better than it is. <em>Paisa kab milega. Double charge hua hai. Mera loan reject kyun hua.</em> Then, only then, she and Imran went through the pages and marked which page held the answer to each.</p>
+<p>They ran it. Six out of ten questions found the right page on the first try.</p>
+<p>&quot;Is that bad?&quot; asked Anaya.</p>
+<p>&quot;It is a perfectly normal first result for a system that works,&quot; said Imran. &quot;If we'd got nine or ten, I'd have wanted to know whether somebody had cheated.&quot;</p>
+<h2>Two ways to fail</h2>
+<p>The second idea took Anaya longer, because it hid in plain sight.</p>
+<p>A search step can go wrong in two different ways, and they are opposites. It can leave out something that mattered. Or it can bring back a pile of things that did not. Imran made her imagine asking a colleague to fetch the files for a meeting. If they come back without the one file you needed, that is one kind of failure. If they come back with the whole cabinet, you cannot find the one you need among it, and that is the other.</p>
+<p>The first is poor <em><a class="term" href="glossary.html#t-recall" title="of all the real items there were to find, the share the tool found; if there were 100 and it found 90, recall is 90 percent">recall</a></em>: of all the real items there were to find, the tool found too few. If there were a hundred and it found ninety, recall is ninety percent. The second is poor <em><a class="term" href="glossary.html#t-precision" title="of everything the tool flagged, the share that really was what it claimed; if it flagged 100 and 80 were real, precision is 80 percent">precision</a></em>: of everything the tool brought back, too little was what it should be. If it flagged a hundred things and eighty were real, precision is eighty percent.</p>
+<p>The trouble is that the two pull against each other. Widen the net, and you catch more of what you want and more of what you do not. Narrow it, and you catch cleaner and miss more. Imran changed how many pages the search returned per question, from one to three to five, and the figures moved as he had said they would. More pages: better recall, worse precision. Fewer: the reverse. They were tendencies, not laws, and they had to be measured on the real questions.</p>
+<p>Anaya had been using these words for weeks without knowing it. She went back to the scoreboard.</p>
+<div class="tblwrap"><table><thead><tr><th>Version</th><th>Found</th><th>Missed</th><th>False alarms</th><th>Recall</th><th>Precision</th></tr></thead><tbody><tr><td>1</td><td>11</td><td>6</td><td>5</td><td>65%</td><td>69%</td></tr><tr><td>3</td><td>15</td><td>2</td><td>2</td><td>88%</td><td>88%</td></tr><tr><td>4</td><td>14</td><td>3</td><td>1</td><td>82%</td><td>93%</td></tr></tbody></table></div>
+<p>Recall was found divided by found-plus-missed. Precision was found divided by found-plus-false-alarms. They had been in the table all along under different names. &quot;Missed&quot; was poor recall, and &quot;false alarm&quot; was poor precision. She had not needed new words so much as the permission to use the old ones.</p>
+<h2>Whose decision is it</h2>
+<p>The third idea was the one that mattered, and it came, as the important ones tended to, at the end of an afternoon.</p>
+<p>&quot;Which is worse?&quot; asked Imran. &quot;For the guard. Missing something, or flagging something that wasn't.&quot;</p>
+<p>&quot;Missing,&quot; said Anaya at once. &quot;A number that gets through is in five systems for ever.&quot;</p>
+<p>&quot;For a different product the answer is the other way round.&quot; He told her about a legal tool he had once been shown, which found past cases for a lawyer. For that tool a missed case could lose a trial, and an extra irrelevant case cost thirty seconds of reading. And about a customer-facing chatbot that answered policy questions, where the dangerous failure was bringing back the wrong page. The machine would build a confident answer from it, and a wrong policy given to a customer was a liability the company would be held to. Missing an answer merely made a support ticket, which the company had been getting all along.</p>
+<p>&quot;So it depends on what happens to a real person,&quot; said Anaya.</p>
+<p>&quot;It depends entirely on that. And here is the point I most want to be clear on.&quot; Imran put his pencil down. &quot;Which failure to minimise is a product decision. It is not mine. If you ask the engineer who built it, he will give you the answer he can most easily deliver.&quot;</p>
+<p>She understood that this was the second time in a month that she had been handed a decision that no amount of technical skill could make for her. The first had been about leaning towards the cheaper mistake. This was its grown-up form, with names and percentages. She wrote what she would take to Lakshmi and Farah on Thursday.</p>
+<p><em>For identity numbers with a fixed shape, we want recall of at least 98 in 100. We will accept up to 3 false alarms in every 100 things the tool hides. If the two collide, recall wins, and I will say so in writing.</em></p>
+<p>It was a good deal easier to write than it would be to defend. That was fine. A number that has been argued over is worth more than one that was never questioned.</p>
+<h2>A number she had not checked</h2>
+<p>There was one more thing, and it was not comfortable, and she did it on a Friday night with the office empty.</p>
+<p>She went back to the figure she had quoted three times in meetings. Fourteen in a hundred: the share of personal details in Hindi that an existing tool, according to its own published report, was able to find. She had used it to say that the gap in the market was real. She had written it into the strategy memo.</p>
+<p><em>Against which answer key?</em> said a voice in her head, which sounded a good deal like Lakshmi. <em>Written by whom? Can I see the questions?</em></p>
+<p>She could not. She had read a sentence in a document and repeated it. It might be right. It might also be measured on a set of sentences that looked nothing like Sahaj's customers' writing, or on a script that was written in a different way. A number a vendor quotes, however honestly, is not evidence until you can see what it was measured against. That went for other people's numbers and it went for hers.</p>
+<p>She did not run the check that night. She wrote it on the list in the one place where it could not be quietly dropped, at the top of the page, with a promise: <em>Run the open tool on our answer key. Report whatever number comes out, including if it makes our case look weaker.</em></p>
+<p>She looked at the line for a while. It was the first time she had written a test whose result she was afraid of, and she understood, with a small chill, that this was what the discipline was for.</p>
+<h2>What to carry forward</h2>
+<p>A demo of a few examples that work says almost nothing about how often a system is right. To measure it you write the questions and their correct answers before you look at what the system says, in the words real users use, and then count. A tool can fail in two opposite ways: by missing things that mattered, which is poor recall, or by bringing back things that did not, which is poor precision. Pushing one up usually pushes the other down. Which to favour depends on what happens to a real person when each failure occurs, and that is a decision for whoever owns the product, not for the person who built it. And a figure that someone else quotes is not evidence until you can see what it was measured against.</p>
+</div>
+<aside class="wordsbox" aria-label="Words from this chapter"><h2>Words from this chapter</h2><dl><div><dt id="w-recall">recall</dt><dd>of all the real items there were to find, the share the tool found; if there were 100 and it found 90, recall is 90 percent</dd></div><div><dt id="w-precision">precision</dt><dd>of everything the tool flagged, the share that really was what it claimed; if it flagged 100 and 80 were real, precision is 80 percent</dd></div></dl></aside>
+<p class="inapp">In the course app: <a href="../#/ch/ch6">Evaluation: measuring whether search works</a></p>
+<nav class="pager" aria-label="Previous and next"><a class="prev" href="16-finding-by-meaning.html"><span class="dir">← Before</span><span class="nm">Chapter 16 · Finding by Meaning</span></a><a class="next" href="18-the-whole-machine.html"><span class="dir">Next →</span><span class="nm">Chapter 18 · The Whole Machine</span></a></nav>
+</article>
+</main>
+</div>
+<script src="reader.js"></script>
+</body>
+</html>

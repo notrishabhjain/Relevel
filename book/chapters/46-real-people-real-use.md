@@ -43,7 +43,7 @@ The first people to try the kit were not strangers. They were Anaya's sister's f
 
 She noticed, over several days, that nothing in the product changed because of what any of them said. Friends are too polite to be useful. They will tell you what they think you hope for, and they will not use the thing again.
 
-So she did what she had learned to do in the second month: she went back to the people she had interviewed in the spring, and to the people they knew, and looked for those who had the problem now and used the same sort of software. In the end she found six teams. A travel company in Kochi whose chat was full of passport numbers. A clinic-booking service in Indore. A small tutoring business in Bengaluru. Three others. She called them *design partners*, and the phrase mattered, because a **design partner** is an early user who agrees to use an unfinished product and to tell you honestly what they find. They are not customers yet, and they are not a test audience either.
+So she did what she had learned to do in the second month: she went back to the people she had interviewed in the spring, and to the people they knew, and looked for those who had the problem now and used the same sort of software. In the end she found six teams. A travel company in Kochi whose chat was full of passport numbers. A clinic-booking service in Indore. A small tutoring business in Bengaluru. Three others. She called them *design partners*, and the phrase mattered, because a *design partner* is an early user who agrees to use an unfinished product and to tell you honestly what they find. They are not customers yet, and they are not a test audience either.
 
 ## What she told them first
 
@@ -51,7 +51,7 @@ Before any of them touched the kit, she sent each a single page, which Lakshmi h
 
 It said that the product was early and might be wrong, and that it would sometimes miss a detail it should have hidden. It said exactly what the guard would receive, where it would be processed, what would be recorded, which was counts and kinds and never the text of a message, and how a partner could have everything deleted. It said that nothing would be used for any other purpose, and that no partner's messages would help another partner. It asked them to begin with a small sample of messages that they themselves chose and prepared, not with a live feed. And it said that they could stop at any time, without explanation and without awkwardness.
 
-This is **informed consent**. The agreement was not a click on a box. It was a person understanding what they were agreeing to and being told that they could leave.
+This is *informed consent*. The agreement was not a click on a box. It was a person understanding what they were agreeing to and being told that they could leave.
 
 Her offer in return was early access and a reduced price for the first year. She considered something larger, and Lakshmi stopped her. "If you pay them too much, they'll feel they owe you praise," she said. "You want people who are free to be unimpressed."
 
@@ -59,7 +59,7 @@ Her offer in return was early access and a reduced price for the first year. She
 
 In the first week of May she watched six people use the kit, and she did it the way she had watched five developers in January, with her hands behind her back.
 
-An **observation session** is exactly that: you give someone a real task, stay silent, and write down the same few things each time. How long the task took. Where they paused. What they said aloud. What they tried that she had not expected. Whether they finished.
+An *observation session* is exactly that: you give someone a real task, stay silent, and write down the same few things each time. How long the task took. Where they paused. What they said aloud. What they tried that she had not expected. Whether they finished.
 
 She found it almost physically painful. A man in Indore stared for forty seconds at the setting that decided which kinds of detail were hidden, plainly unsure what it did, and she wanted to speak so badly that she bit the inside of her cheek.
 
@@ -98,13 +98,13 @@ It rose to 67.
 
 ## Telling people what changed
 
-The change shipped on a Thursday, and she wrote about it in the way she had learned from the products she liked best. A **changelog** is the short public list of what changed in each release, written for the user and not the maker.
+The change shipped on a Thursday, and she wrote about it in the way she had learned from the products she liked best. A *changelog* is the short public list of what changed in each release, written for the user and not the maker.
 
 *New: "Why was this hidden?" Click the small question mark beside any masked detail and see the three phrases that led to the decision. If it was wrong, press Restore, and tell us.*
 
 It said what was new, how to use it and what to do if it misbehaved. It did not say "improved the explainability of the masking subsystem". Tanvi, who proofread it, crossed out only one word and put in a shorter one.
 
-She did one more thing that week, which had nothing to do with shipping. She started a **support log**. Every request for help, from any partner, went into one sheet with a category and an account. It cost nothing, and she realised after a month that it was the cheapest research she had ever done, since the users were telling her what they needed unprompted.
+She did one more thing that week, which had nothing to do with shipping. She started a *support log*. Every request for help, from any partner, went into one sheet with a category and an account. It cost nothing, and she realised after a month that it was the cheapest research she had ever done, since the users were telling her what they needed unprompted.
 
 On Mondays she and Karan read it beside the analytics. A trouble that appeared in the support log, in the observation sessions and in the numbers, all at once, was almost certainly real. A trouble in only one of them she watched.
 

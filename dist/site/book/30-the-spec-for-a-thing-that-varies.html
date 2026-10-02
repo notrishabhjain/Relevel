@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Spec for a Thing That Varies · Chapter 30 · AI From Zero</title>
+<meta name="description" content="A thirty-day notice that a model is being retired shows what a specification for software that does not behave the same way twice must actually contain, and what a switch for turning the AI off should leave running.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
+<link rel="stylesheet" href="style.css">
+<script>try{var t=localStorage.getItem('aifz-book-theme');if(t)document.documentElement.setAttribute('data-theme',t);var s=localStorage.getItem('aifz-book-size');if(s)document.documentElement.style.setProperty('--fs',s+'rem')}catch(e){}</script>
+</head>
+<body class="is-chapter">
+<a class="skip" href="#text">Skip to the text</a>
+<div class="progress" id="progress" aria-hidden="true"><i></i></div>
+<header class="bar">
+  <a class="brand" href="index.html"><span class="mark">AI From Zero</span><span class="ed">The reading edition</span></a>
+  <span class="sp"></span>
+  <button class="b" id="size-down" type="button" aria-label="Smaller text" title="Smaller text">A−</button>
+  <button class="b" id="size-up" type="button" aria-label="Larger text" title="Larger text">A+</button>
+  <button class="b" id="theme" type="button" aria-label="Change colours" title="Change colours">◐</button>
+  <a class="b app" href="../" title="Open the course app">The course app →</a>
+</header>
+<div class="layout">
+<nav class="toc" aria-label="Contents"><details id="toc"><summary>Contents</summary><ol>
+<li><a href="index.html"><span class="t">Contents</span></a></li>
+<li><a href="preface.html"><span class="t">Before You Begin</span></a></li>
+<li><a href="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">The Number in the Chat</span></a></li>
+<li><a href="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Four Questions Before Building</span></a></li>
+<li><a href="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Asking About Yesterday</span></a></li>
+<li><a href="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Who Else Is Standing Here</span></a></li>
+<li><a href="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Choosing What Not to Do</span></a></li>
+<li><a href="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">A Plan Others Can Believe</span></a></li>
+<li><a href="07-writing-it-down.html"><span class="n">7</span><span class="t">Writing It Down So Others Can Build It</span></a></li>
+<li><a href="08-what-the-machine-is.html"><span class="n">8</span><span class="t">What the Machine Is</span></a></li>
+<li><a href="09-the-first-conversation.html"><span class="n">9</span><span class="t">The First Conversation</span></a></li>
+<li><a href="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">A Mind With No Memory</span></a></li>
+<li><a href="11-giving-instructions.html"><span class="n">11</span><span class="t">Giving Instructions</span></a></li>
+<li><a href="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Knowing Whether It Works</span></a></li>
+<li><a href="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Sorting and Summarising</span></a></li>
+<li><a href="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Too Long to Read at Once</span></a></li>
+<li><a href="15-finding-by-words.html"><span class="n">15</span><span class="t">Finding by Words</span></a></li>
+<li><a href="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Finding by Meaning</span></a></li>
+<li><a href="17-how-good-is-good.html"><span class="n">17</span><span class="t">How Good Is Good</span></a></li>
+<li><a href="18-the-whole-machine.html"><span class="n">18</span><span class="t">The Whole Machine</span></a></li>
+<li><a href="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Answers a Program Can Use</span></a></li>
+<li><a href="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Giving the Machine Hands</span></a></li>
+<li><a href="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Long Windows, Careful Rooms</span></a></li>
+<li><a href="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Machines That Think First</span></a></li>
+<li><a href="23-searching-better.html"><span class="n">23</span><span class="t">Searching Better</span></a></li>
+<li><a href="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">When the Page Gives Orders</span></a></li>
+<li><a href="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Grading a Thousand Answers</span></a></li>
+<li><a href="26-what-it-really-costs.html"><span class="n">26</span><span class="t">What It Really Costs</span></a></li>
+<li><a href="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Paper, Photos and Scans</span></a></li>
+<li><a href="28-what-you-may-send.html"><span class="n">28</span><span class="t">What You May Send</span></a></li>
+<li><a href="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Rules, Risk and Responsibility</span></a></li>
+<li class="here"><a href="30-the-spec-for-a-thing-that-varies.html" aria-current="page"><span class="n">30</span><span class="t">The Spec for a Thing That Varies</span></a></li>
+<li><a href="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Build, Buy or Teach It</span></a></li>
+<li><a href="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Designing for the Wrong Answer</span></a></li>
+<li><a href="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">The Plumbing Under the Magic</span></a></li>
+<li><a href="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Choosing a Model on Your Own Cases</span></a></li>
+<li><a href="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Retrieval That Survives a Review</span></a></li>
+<li><a href="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents and the Standard Plug</span></a></li>
+<li><a href="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Pictures and Voices</span></a></li>
+<li><a href="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces and Rollbacks</span></a></li>
+<li><a href="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Assuming the Worst</span></a></li>
+<li><a href="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">A Product, Not a Demo</span></a></li>
+<li><a href="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Shipping the Whole Thing</span></a></li>
+<li><a href="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Who Pays, and How Much</span></a></li>
+<li><a href="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">How People Find It and Stay</span></a></li>
+<li><a href="44-counting-what-matters.html"><span class="n">44</span><span class="t">Counting What Matters</span></a></li>
+<li><a href="45-tools-and-harness.html"><span class="n">45</span><span class="t">The Tools and the Harness</span></a></li>
+<li><a href="46-real-people-real-use.html"><span class="n">46</span><span class="t">Real People, Real Use</span></a></li>
+<li><a href="47-the-job.html"><span class="n">47</span><span class="t">The Work, and the Job</span></a></li>
+<li><a href="afterword.html"><span class="t">After the Book</span></a></li>
+<li><a href="glossary.html"><span class="t">Words, in plain language</span></a></li>
+</ol></details></nav>
+<main id="text">
+<article class="chapter" data-file="30-the-spec-for-a-thing-that-varies.html" data-title="The Spec for a Thing That Varies">
+<header class="chead"><p class="eyebrow">Chapter 30</p><h1>The Spec for a Thing That Varies</h1><p class="dek">A thirty-day notice that a model is being retired shows what a specification for software that does not behave the same way twice must actually contain, and what a switch for turning the AI off should leave running.</p><p class="meta">8 minute read</p></header>
+<div class="prose">
+<p>The email arrived at ten past two in the morning, forwarded by Imran with a subject line that said only <em>Read this.</em></p>
+<p>It came from the outside company that wrote the chatbot's answers. <em>We are writing to let you know,</em> it began, in the tone of a letter from a bank, <em>that the model you are currently using will be retired in thirty days. Requests to it will fail after that date. We recommend migrating to its successor, which offers improved capability.</em></p>
+<p>Anaya read it lying down, with the phone held at arm's length. She was not frightened, exactly. What she felt was the cool arithmetic of someone who has been told that a staircase she has been living on is going to be removed on a particular date. She thought about it for twenty minutes. Then she got up, made tea, and opened the specification, because she had a feeling it was about to be tested.</p>
+<h2>A spec that expects a range</h2>
+<p>A normal specification assumes that the same input gives the same output. Do this, get that. A test person checks it. When it passes, it is done. For a machine that reads and writes text, none of that holds. The same input produces a range of outputs, and the range moves when the provider changes a model that you do not control.</p>
+<p>So a specification for such a thing has to say something different. It describes a measured range of behaviour, the evidence that someone measured it, and what happens when it drifts. Anaya had been writing one for six months without having called it that, and when she laid it out on the table the next morning it came to four changes.</p>
+<p>Acceptance, which in an ordinary spec is pass or fail, became a score on a named answer key, at stated settings. A test plan became a fixed set of cases that must pass on every release, along with the free code checks. &quot;Done when the features work&quot; became &quot;done when it is measured at these numbers, with the known failures written down&quot;. And the usual idea of returning to the previous version, which engineers call a <em><a class="term" href="glossary.html#t-rollback" title="returning to the previous version of the code, which needs a new deployment and does not help when both versions share the same bad behaviour">rollback</a></em>, became something larger: a <a class="term" href="glossary.html#t-pinned-version" title="a model version that you have fixed by name, so that the provider cannot change it underneath you without telling you">pinned version</a> of the model, versioned instructions, and a switch that turns the machine off.</p>
+<p>She did not need to invent any of them. Every one was already built.</p>
+<h2>What the numbers say</h2>
+<p>The part of a specification that does the most work, she had learned, is the table at the centre, and a good one can be checked by a sceptic. It says what is measured, against which key, at what threshold, and what happens if it falls short. She wrote it with Lakshmi's voice in her head.</p>
+<div class="tblwrap"><table><thead><tr><th>What is measured</th><th>Against</th><th>Threshold</th><th>If it falls below</th></tr></thead><tbody><tr><td>Fixed-shape numbers found</td><td>Answer key, current version</td><td>At least 98 in 100</td><td>Block the release</td></tr><tr><td>Things hidden that were not personal</td><td>Answer key, current version</td><td>No more than 3 in 100</td><td>Alert Anaya</td></tr><tr><td>Added time per message</td><td>Live timing</td><td>Typically under 0.3 seconds; slowest 1 in 20 under 1 second</td><td>Alert Imran</td></tr><tr><td>Attacks that change the output</td><td>50 injected messages</td><td>None</td><td>Block the release</td></tr><tr><td>Cost per message</td><td>Billing</td><td>Under 60 paise</td><td>Alert Anaya</td></tr></tbody></table></div>
+<p>At the bottom, in a different type, she wrote the line most specifications leave out. <em>What the <a class="term" href="glossary.html#t-kill-switch" title="a flag that sends traffic to a simple non-AI path immediately, with no new deployment; it only works if that path exists and has been tested recently">kill switch</a> turns off, and what the product still does afterwards.</em></p>
+<h2>Not the same as going back</h2>
+<p>This line needed more thought than she had expected, and Imran had to help.</p>
+<p>A rollback goes back to earlier code. It is a new deployment, and it takes time. It is no use at all when both versions share the same bad behaviour, for instance if the provider has changed the model beneath them, because the old code on the new model would be just as wrong. What is needed in that case is something faster and blunter: a switch, a flag in a configuration file, that sends traffic at once to a simple path that does not use the machine. That is a <em>kill switch</em>. It works only if the simple path still exists, and if someone has run it recently. A kill switch nobody has tested is a hope.</p>
+<p>&quot;What does it send traffic to?&quot; Anaya asked. &quot;For the chatbot, I know. Farah's team answer by hand. But the guard?&quot;</p>
+<p>Imran wrote slowly. &quot;If you turn off the guard entirely, nothing is hidden. That's the worst outcome. So the kill switch can't turn off the guard. It turns off the <em>models</em>.&quot;</p>
+<p>The safe mode would run only the pattern checker, which was plain rules and could not drift, and a deliberately blunt extra rule: hide any run of nine or more digits, whatever it was. It would miss every name and every address. On the answer key it would catch about ninety-six in a hundred of the numbers with a fixed shape. It would raise a lot of false alarms. It would never be pleasant to use. But it would be there, untouched by anything a provider did, and it could be switched on at three in the morning by a person who had never seen the code.</p>
+<p>She wrote it into the specification in full, with its numbers. <em>Safe mode: rules only. Finds about 96 in 100 fixed-shape numbers. Finds no names or addresses. Many false alarms. Tested weekly.</em> She underlined <em>weekly</em>.</p>
+<h2>Thirty days</h2>
+<p>The notice, Imran said, was a fair test of what they had built, and he told her what to rerun, in order. Switching models is not a change of settings. A new model invalidates everything measured against the old one.</p>
+<p>First, the whole answer key, to see what the guard did when the chatbot's summaries and replies came from the new model. Second, the fixed set of attacks, to see whether the new model could still be talked into misbehaving. Third, the agreement between the machine judge and Anaya's own marking. Imran insisted on this one. The judge is a model call too, and a judge that had been checked against the old model had not been checked against the new one. Fourth, the cost at the new prices. Fifth, the slowest responses.</p>
+<p>&quot;You skip nothing,&quot; he said. &quot;Teams without a test set don't find the problems in thirty days. They find them in production.&quot;</p>
+<p>It took the two of them one afternoon, which Imran said was the proof that the spring had not been wasted. The new model, which wrote its summaries in a slightly different style, put phone numbers in a format the old one never had: with a plus sign, a country code and a dash, like +91-98765-43210. The pattern checker had not seen it. Eleven rows of the answer key went red.</p>
+<p>&quot;Found in an afternoon,&quot; said Anaya.</p>
+<p>&quot;Found in an afternoon, with a key. Imagine finding it in September from a customer.&quot; Imran added the rule. &quot;That is what the key is for. It's not a document you write for launch. It's infrastructure.&quot;</p>
+<h2>Feedback that can be used</h2>
+<p>There was one more item in the specification, and it was Farah's. Her agents had a button on every chat, labelled <em>the guard hid something I needed.</em> So far it had saved nothing but a click.</p>
+<p>&quot;A thumbs-down on its own is almost worthless,&quot; said Imran. &quot;You can't reproduce it. You can't tell a wrong answer from a correct one the user didn't like. But a thumbs-down that arrives with the full record of what happened is a ready-made test case.&quot;</p>
+<p>The record meant the message, what the guard had found, what it had decided, and which versions of everything were running. The difference between the two buttons, he said, was about two days of engineering.</p>
+<p>Anaya was about to say yes when she saw the problem, and said it as plainly as she could. &quot;The record would contain the message.&quot;</p>
+<p>&quot;It would.&quot;</p>
+<p>&quot;And if the guard failed on that message, the record would contain the thing it was supposed to hide.&quot;</p>
+<p>&quot;Yes.&quot; Imran sat back. &quot;So the record has to be stored cleaned. We save the hidden version and the positions, and keep the raw one only where a very small number of people can reach it, for a short time, and write down who looked.&quot; It was an irritating addition to a simple idea, and it was the right one. A debugging aid that stores secrets recreates the problem it exists to solve.</p>
+<h2>Putting it in order</h2>
+<p>At the end of the week the notice had become a routine. The model was pinned to a named version at both ends. The safe mode was written, switched on in a test, switched off, and written up. The key had eleven new rows. And the specification, which had begun as a document about a feature, was now a document about a system that would change underneath itself, and said what to do when it did.</p>
+<p>Anaya added a last line to the log that had begun in March. <em>I would change my mind if: the provider can guarantee a model will never change.</em> She did not expect anyone to try.</p>
+<h2>What to carry forward</h2>
+<p>A specification for something that does not behave the same way twice describes a measured range of behaviour, the evidence it was measured, and what happens when it drifts. Its central table names the measurement, the answer key, the threshold, and the action when a number falls short. A rollback returns to earlier code, but when the model itself has changed, both versions share the problem, so you also need a pinned model version and a kill switch that sends traffic to a simple path immediately, which must exist and be tested. When a provider retires a model, everything measured against it has to be rerun, including the judge. And feedback is only useful when it arrives with the full record of what happened, which in a privacy tool must itself be stored cleaned.</p>
+</div>
+<aside class="wordsbox" aria-label="Words from this chapter"><h2>Words from this chapter</h2><dl><div><dt id="w-rollback">rollback</dt><dd>returning to the previous version of the code, which needs a new deployment and does not help when both versions share the same bad behaviour</dd></div><div><dt id="w-kill-switch">kill switch</dt><dd>a flag that sends traffic to a simple non-AI path immediately, with no new deployment; it only works if that path exists and has been tested recently</dd></div><div><dt id="w-pinned-version">pinned version</dt><dd>a model version that you have fixed by name, so that the provider cannot change it underneath you without telling you</dd></div></dl></aside>
+<p class="inapp">In the course app: <a href="../#/ch/ch18">The AI PRD: specs, migrations and kill switches</a></p>
+<nav class="pager" aria-label="Previous and next"><a class="prev" href="29-rules-risk-and-responsibility.html"><span class="dir">← Before</span><span class="nm">Chapter 29 · Rules, Risk and Responsibility</span></a><a class="next" href="31-build-buy-or-teach-it.html"><span class="dir">Next →</span><span class="nm">Chapter 31 · Build, Buy or Teach It</span></a></nav>
+</article>
+</main>
+</div>
+<script src="reader.js"></script>
+</body>
+</html>

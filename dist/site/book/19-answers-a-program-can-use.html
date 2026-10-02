@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Answers a Program Can Use · Chapter 19 · AI From Zero</title>
+<meta name="description" content="A paragraph is fine for a person and useless to a program. The team learns why &quot;reply in JSON, please&quot; is not good enough, and how to design a form so well that the model has no room to make things up.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
+<link rel="stylesheet" href="style.css">
+<script>try{var t=localStorage.getItem('aifz-book-theme');if(t)document.documentElement.setAttribute('data-theme',t);var s=localStorage.getItem('aifz-book-size');if(s)document.documentElement.style.setProperty('--fs',s+'rem')}catch(e){}</script>
+</head>
+<body class="is-chapter">
+<a class="skip" href="#text">Skip to the text</a>
+<div class="progress" id="progress" aria-hidden="true"><i></i></div>
+<header class="bar">
+  <a class="brand" href="index.html"><span class="mark">AI From Zero</span><span class="ed">The reading edition</span></a>
+  <span class="sp"></span>
+  <button class="b" id="size-down" type="button" aria-label="Smaller text" title="Smaller text">A−</button>
+  <button class="b" id="size-up" type="button" aria-label="Larger text" title="Larger text">A+</button>
+  <button class="b" id="theme" type="button" aria-label="Change colours" title="Change colours">◐</button>
+  <a class="b app" href="../" title="Open the course app">The course app →</a>
+</header>
+<div class="layout">
+<nav class="toc" aria-label="Contents"><details id="toc"><summary>Contents</summary><ol>
+<li><a href="index.html"><span class="t">Contents</span></a></li>
+<li><a href="preface.html"><span class="t">Before You Begin</span></a></li>
+<li><a href="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">The Number in the Chat</span></a></li>
+<li><a href="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Four Questions Before Building</span></a></li>
+<li><a href="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Asking About Yesterday</span></a></li>
+<li><a href="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Who Else Is Standing Here</span></a></li>
+<li><a href="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Choosing What Not to Do</span></a></li>
+<li><a href="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">A Plan Others Can Believe</span></a></li>
+<li><a href="07-writing-it-down.html"><span class="n">7</span><span class="t">Writing It Down So Others Can Build It</span></a></li>
+<li><a href="08-what-the-machine-is.html"><span class="n">8</span><span class="t">What the Machine Is</span></a></li>
+<li><a href="09-the-first-conversation.html"><span class="n">9</span><span class="t">The First Conversation</span></a></li>
+<li><a href="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">A Mind With No Memory</span></a></li>
+<li><a href="11-giving-instructions.html"><span class="n">11</span><span class="t">Giving Instructions</span></a></li>
+<li><a href="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Knowing Whether It Works</span></a></li>
+<li><a href="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Sorting and Summarising</span></a></li>
+<li><a href="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Too Long to Read at Once</span></a></li>
+<li><a href="15-finding-by-words.html"><span class="n">15</span><span class="t">Finding by Words</span></a></li>
+<li><a href="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Finding by Meaning</span></a></li>
+<li><a href="17-how-good-is-good.html"><span class="n">17</span><span class="t">How Good Is Good</span></a></li>
+<li><a href="18-the-whole-machine.html"><span class="n">18</span><span class="t">The Whole Machine</span></a></li>
+<li class="here"><a href="19-answers-a-program-can-use.html" aria-current="page"><span class="n">19</span><span class="t">Answers a Program Can Use</span></a></li>
+<li><a href="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Giving the Machine Hands</span></a></li>
+<li><a href="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Long Windows, Careful Rooms</span></a></li>
+<li><a href="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Machines That Think First</span></a></li>
+<li><a href="23-searching-better.html"><span class="n">23</span><span class="t">Searching Better</span></a></li>
+<li><a href="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">When the Page Gives Orders</span></a></li>
+<li><a href="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Grading a Thousand Answers</span></a></li>
+<li><a href="26-what-it-really-costs.html"><span class="n">26</span><span class="t">What It Really Costs</span></a></li>
+<li><a href="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Paper, Photos and Scans</span></a></li>
+<li><a href="28-what-you-may-send.html"><span class="n">28</span><span class="t">What You May Send</span></a></li>
+<li><a href="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Rules, Risk and Responsibility</span></a></li>
+<li><a href="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">The Spec for a Thing That Varies</span></a></li>
+<li><a href="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Build, Buy or Teach It</span></a></li>
+<li><a href="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Designing for the Wrong Answer</span></a></li>
+<li><a href="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">The Plumbing Under the Magic</span></a></li>
+<li><a href="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Choosing a Model on Your Own Cases</span></a></li>
+<li><a href="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Retrieval That Survives a Review</span></a></li>
+<li><a href="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents and the Standard Plug</span></a></li>
+<li><a href="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Pictures and Voices</span></a></li>
+<li><a href="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces and Rollbacks</span></a></li>
+<li><a href="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Assuming the Worst</span></a></li>
+<li><a href="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">A Product, Not a Demo</span></a></li>
+<li><a href="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Shipping the Whole Thing</span></a></li>
+<li><a href="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Who Pays, and How Much</span></a></li>
+<li><a href="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">How People Find It and Stay</span></a></li>
+<li><a href="44-counting-what-matters.html"><span class="n">44</span><span class="t">Counting What Matters</span></a></li>
+<li><a href="45-tools-and-harness.html"><span class="n">45</span><span class="t">The Tools and the Harness</span></a></li>
+<li><a href="46-real-people-real-use.html"><span class="n">46</span><span class="t">Real People, Real Use</span></a></li>
+<li><a href="47-the-job.html"><span class="n">47</span><span class="t">The Work, and the Job</span></a></li>
+<li><a href="afterword.html"><span class="t">After the Book</span></a></li>
+<li><a href="glossary.html"><span class="t">Words, in plain language</span></a></li>
+</ol></details></nav>
+<main id="text">
+<article class="chapter" data-file="19-answers-a-program-can-use.html" data-title="Answers a Program Can Use">
+<header class="chead"><p class="eyebrow">Chapter 19</p><h1>Answers a Program Can Use</h1><p class="dek">A paragraph is fine for a person and useless to a program. The team learns why &quot;reply in JSON, please&quot; is not good enough, and how to design a form so well that the model has no room to make things up.</p><p class="meta">7 minute read</p></header>
+<div class="prose">
+<p>For three weeks every answer the team had looked at was a paragraph, and for three weeks that had been fine, because the reader was a person.</p>
+<p>Then Imran tried to connect the finder to the rule-keeper, and the rule-keeper, which was a few hundred lines of ordinary code, went through the first reply like a spoon through a wall.</p>
+<p><em>I found the following personal details in this message. The customer's name appears to be Amit Sharma. There is also a PAN, which looks like ABCDE1234F. I would also consider the bank name, HDFC, to be potentially sensitive.</em></p>
+<p>&quot;It's a lovely paragraph,&quot; said Imran. &quot;My code needs to know: is there a PAN? Where does it start? Where does it end? What do I do with it? It can't read 'appears to be'.&quot;</p>
+<p>This is the difference between an answer a person reads and one a program uses. When the output of a model feeds another system, for example one that decides what to hide, a program needs fields: a kind, a value, a position, a decision. Each has a name and a type, and each must always be there. A paragraph, however well written, has none of these.</p>
+<h2>Reply in JSON, please</h2>
+<p>The obvious first move is to ask. Imran added a line to the instruction.</p>
+<p><em>Reply as JSON, with the fields kind, value and action.</em></p>
+<p>It worked, and it kept working, which is the danger. For a day nobody thought about it. Then he ran a thousand test messages through and counted how many replies were correctly formed.</p>
+<p>968 were. Thirty-two were not.</p>
+<p>Fourteen of the thirty-two began with an apology before the curly brace: <em>Certainly! Here is the JSON.</em> Nine were wrapped in a block of formatting symbols that the code did not expect. Six had a stray comma at the end of a list, the sort of thing a human eye skips and a program chokes on. And three were perfectly formed, every brace and quote in place, with a value in the &quot;kind&quot; field that the message did not contain.</p>
+<p>&quot;Ninety-six point eight percent,&quot; said Anaya. &quot;That sounds fine.&quot;</p>
+<p>&quot;It does. Do the next sum.&quot; He wrote on the napkin. &quot;Ten thousand messages a day, at ninety-seven percent, is three hundred failures a day. Silently. Into a field that another system trusts.&quot;</p>
+<p>She did not need the third line. She had felt the old arithmetic land: the failure rate that sounds small and the number it is multiplied by. A feature that goes wrong a few times in a hundred, with no one watching the hundred, is a feature that goes wrong all day.</p>
+<h2>Don't ask, constrain</h2>
+<p>The reliable fix, Imran said, was to stop asking and start constraining.</p>
+<p>Providers let you give a <em><a class="term" href="glossary.html#t-schema" title="a formal description of exactly what shape an answer must have, which the provider enforces while the model is writing">schema</a></em>: a formal description of exactly what shape the answer must have. It names every field, says what type it holds, and says which are required. While the model is writing, the provider's own software prevents it from producing anything that does not fit. An apology cannot appear before the brace. A stray comma cannot appear. The answer that comes back is not &quot;very probably well formed&quot;. It is incapable of being otherwise. Getting the answer in this shape is called <em><a class="term" href="glossary.html#t-structured-output" title="an answer in named, typed fields that a program can read, instead of a paragraph that a person reads">structured output</a></em>.</p>
+<p>The point was not lost on Anaya, who had by now a long memory of the difference.</p>
+<p>&quot;This is the first fix that removes the problem,&quot; she said. &quot;The others made it rarer.&quot;</p>
+<p>&quot;Yes. I wanted you to notice. A schema takes a whole family of errors and deletes them. The instruction in the system prompt only ever made them fewer.&quot; He pulled a face. &quot;It is rare, in this work, to be able to say 'that cannot happen'. Enjoy it.&quot;</p>
+<h2>Right shape, wrong thing</h2>
+<p>She enjoyed it for about a day. Then Imran ran another thousand messages and showed her the three that had survived.</p>
+<p>A message said, <em>mera naam Suresh hai, loan ka status batao.</em> The reply had perfect shape: a list with one entry, a kind, a value, an action. The value in the &quot;address&quot; field was <em>Pune.</em></p>
+<p>&quot;There's no address in that message,&quot; said Anaya.</p>
+<p>&quot;No. But the field is marked required, so the machine was never allowed to leave it empty. We told it, in effect, to make something up whenever the customer had said nothing.&quot; He leaned back. &quot;A schema guarantees the format and not the content. You will always get a number in the amount field. It may not be the right number, and there may have been no number in the document at all.&quot;</p>
+<p>It took Anaya a moment to see what a deadly sentence it was. Everything she had learned about the format of an answer had been about whether it could be read. Nothing in that said it was true. A well-formed lie is the most dangerous kind, because every check that looks only at the shape passes it.</p>
+<h2>A form with no room to lie</h2>
+<p>What followed was the part of the work she came to enjoy most, because it was a kind of design that needed no cleverness at all, only care. The question was not how to instruct the machine better. It was how to build a form in which the failure had nowhere to stand.</p>
+<p>Imran gave her three techniques, and they rebuilt the form.</p>
+<p><strong>Fixed choices in place of free text.</strong> The &quot;kind&quot; of a detail could be one of a short list: PAN, Aadhaar, mobile, email, bank account, name, address, other, unsure. It could not be <em>Aadhaar (probably)</em>. A free-text field drifts: it produces <em>Approved (pending)</em>, and the code that reads it falls over. A fixed list leaves it nowhere to drift.</p>
+<p><strong>Permission to say &quot;not stated&quot;.</strong> If a field is required, you have told the machine to invent a value whenever the message is silent. So the address could be empty. A separate yes-or-no field recorded whether an address was present at all, so that the absence was a fact on the page and not a gap to fill.</p>
+<p><strong>A quotation, every time.</strong> For each detail found, the machine had to copy the exact words from the message that it was based on. This was better than any confidence score. A person could check a quotation in a second, and so could a program: a single line of code could ask, <em>does this phrase actually appear in the message?</em> If the machine invented a detail, it now had to invent a quotation too, and an invented quotation does not appear in the message. The check catches it.</p>
+<p>The new form, in the end, looked like this.</p>
+<pre class="transcript">{
+  &quot;findings&quot;: [
+    { &quot;kind&quot;: &quot;name&quot;,
+      &quot;quote&quot;: &quot;Suresh&quot;,
+      &quot;action&quot;: &quot;hide&quot; }
+  ],
+  &quot;address_present&quot;: false
+}</pre>
+<p>She read it a few times. It was shorter than she had feared. It had no room for <em>Pune</em> anywhere.</p>
+<h2>Checking what arrives</h2>
+<p>Even so, Imran did not trust it entirely, and he showed why. Not every provider's machine could be held to a schema while it wrote. For those, and as a second line of defence for the rest, he added a small step called <em><a class="term" href="glossary.html#t-validation" title="checking an answer against rules after it arrives, for example whether a required field is present or a quoted phrase really appears in the message">validation</a></em>: after an answer arrives, check it against rules. Is every required field present? Is the kind one of the permitted ones? Does every quotation appear in the message? If anything fails, ask again, once, with the error stated, and if it fails again, hand the message to a person.</p>
+<p>&quot;It's a net under the wire,&quot; he said. &quot;I hope it never catches anything.&quot;</p>
+<p>Anaya added a column to the answer key, which she titled <em>what a quote should be</em>, and a new row near the bottom, which she was mildly proud of: a message that contained an address-shaped phrase inside a quotation, such as a customer writing <em>the building is near &quot;Sector 15&quot;</em> in a sentence about something else. A tool that found it would have to decide. It was an edge case that would not have occurred to her a month earlier.</p>
+<p>&quot;One more thing,&quot; she said. &quot;What this still cannot catch.&quot;</p>
+<p>&quot;Say it.&quot;</p>
+<p>&quot;A quote that really is in the message, in the right shape, but is not personal. An order number. The form cannot know.&quot;</p>
+<p>&quot;No,&quot; he said. &quot;That is what the answer key is for.&quot;</p>
+<h2>What to carry forward</h2>
+<p>When a program reads a model's output, the output has to be fields and not a paragraph. Asking politely for JSON works about ninety-seven times in a hundred, and at scale that is hundreds of silent failures a day. A schema, which the provider enforces while the model writes, makes badly formed output impossible, which is rare in this field: it removes a problem and does not merely reduce it. But a schema guarantees the shape of an answer, not its truth, and a required field forces an invention whenever the input is silent. Good forms use fixed choices, allow &quot;not stated&quot;, and ask for the exact words each value came from, because a quotation can be checked by a person in a second and by a program in a line. Validation after the fact is the net underneath.</p>
+</div>
+<aside class="wordsbox" aria-label="Words from this chapter"><h2>Words from this chapter</h2><dl><div><dt id="w-structured-output">structured output</dt><dd>an answer in named, typed fields that a program can read, instead of a paragraph that a person reads</dd></div><div><dt id="w-schema">schema</dt><dd>a formal description of exactly what shape an answer must have, which the provider enforces while the model is writing</dd></div><div><dt id="w-validation">validation</dt><dd>checking an answer against rules after it arrives, for example whether a required field is present or a quoted phrase really appears in the message</dd></div></dl></aside>
+<p class="inapp">In the course app: <a href="../#/ch/ch8">Structured output: getting JSON you can trust</a> · <a href="../#/ch/ch85">Schema design: fields that do not force a guess</a></p>
+<nav class="pager" aria-label="Previous and next"><a class="prev" href="18-the-whole-machine.html"><span class="dir">← Before</span><span class="nm">Chapter 18 · The Whole Machine</span></a><a class="next" href="20-giving-the-machine-hands.html"><span class="dir">Next →</span><span class="nm">Chapter 20 · Giving the Machine Hands</span></a></nav>
+</article>
+</main>
+</div>
+<script src="reader.js"></script>
+</body>
+</html>
