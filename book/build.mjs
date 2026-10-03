@@ -130,11 +130,18 @@ export function termRegex(t) {
   return new RegExp(`(?<![\\p{L}\\p{N}-])(?:${forms.join('|')})(?:s|es)?(?![\\p{L}\\p{N}-])`, 'iu');
 }
 
-function render(chapter, termsHere) {
+function render(chapter, termsHere, glossHref) {
   const bl = blocks(chapter.body);
-  const html = bl.map(b => {
+  /* the last heading, when only a paragraph or two follow it, is the chapter's closing summary */
+  let lastH2 = -1;
+  bl.forEach((b, i) => { if (b.t === 'h2') lastH2 = i; });
+  const tail = lastH2 >= 0 ? bl.slice(lastH2 + 1) : [];
+  const carry = lastH2 > 0 && tail.length > 0 && tail.length <= 2 && tail.every(b => b.t === 'p');
+  const html = bl.map((b, i) => {
+    if (carry && i === lastH2) return `<aside class="carry"><h2>${inline(b.text)}</h2>`;
+    if (carry && i > lastH2) return `<p>${inline(b.text)}</p>${i === bl.length - 1 ? '</aside>' : ''}`;
     switch (b.t) {
-      case 'break': return '<p class="scenebreak" aria-hidden="true">· · ·</p>';
+      case 'break': return '<p class="scenebreak" aria-hidden="true"><span></span></p>';
       case 'h2': return `<h2>${inline(b.text)}</h2>`;
       case 'h3': return `<h3>${inline(b.text)}</h3>`;
       case 'pre': return `<pre class="transcript">${esc(b.text)}</pre>`;
@@ -151,7 +158,7 @@ function render(chapter, termsHere) {
     const re = termRegex(t);
     for (let k = 0; k < html.length; k++) {
       if (!html[k].startsWith('<p>') && !html[k].startsWith('<blockquote>') && !html[k].startsWith('<li>')) continue;
-      const w = wrapFirst(html[k], re, m => `<a class="term" href="glossary.html#t-${slugify(t.term)}" title="${esc(t.plain)}">${m}</a>`);
+      const w = wrapFirst(html[k], re, m => `<a class="term" href="${glossHref}#t-${slugify(t.term)}" title="${esc(t.plain)}">${m}</a>`);
       if (w) { html[k] = w; break; }
     }
   }
@@ -160,149 +167,242 @@ function render(chapter, termsHere) {
 
 /* ---------- pages ---------- */
 
-const nn = n => String(n).padStart(2, '0');
+const UI = {
+  en: {
+    lang: 'en', edition: 'The reading edition', skip: 'Skip to the text', contents: 'Contents', smaller: 'Smaller text', larger: 'Larger text',
+    colours: 'Change colours', app: 'Course app', appTitle: 'Open the course app', chapter: 'Chapter', minRead: 'min read',
+    begin: 'Begin reading', resume: 'Continue', words: 'Words from this chapter', wordsSub: 'Plain meanings, in the order you meet them.',
+    inapp: 'The same ideas, with the work to do, in the course app', before: 'Before', next: 'Next', search: 'Find a chapter or a word',
+    searchNone: 'Nothing matches that.', read: 'read', ofN: 'of', chaptersRead: 'chapters read', preface: 'Preface', afterword: 'Afterword',
+    glossary: 'Words, in plain language', glossaryDek: n => `Every word the book teaches, in alphabetical order, with the chapter that first explains it. ${n} words.`,
+    glossaryShort: 'Every word the book teaches, with the chapter that explains it.', chapterWord: 'Chapter', chapters: 'chapters', approx: 'about', k: 'k words',
+    explained: 'words explained', switchTo: 'Hinglish', switchTitle: 'Read this in Hinglish', front: 'Front and back', theStory: 'The story',
+    scrollTop: 'Back to top', fromThe: 'From the book', readEdition: 'This is the reading edition. The exercises, tools and tracking live in the course app, and every chapter here says which app chapters it retells.',
+    openApp: 'Open the course app', otherEdition: 'Hinglish edition', carryHint: 'To take with you', meet: 'Words you will meet', pagerKinds: 'Previous and next chapter', filterOn: 'Showing chapters that match'
+  },
+  hi: {
+    lang: 'hi', edition: 'Padhne wala edition (Hinglish)', skip: 'Seedhe text par jaaiye', contents: 'Vishay-soochi', smaller: 'Chhota text', larger: 'Bada text',
+    colours: 'Rang badliye', app: 'Course app', appTitle: 'Course app kholiye', chapter: 'Chapter', minRead: 'min padhai',
+    begin: 'Padhna shuru kariye', resume: 'Wahin se jaari rakhiye', words: 'Is chapter ke shabd', wordsSub: 'Saral matlab, usi kram mein jis kram mein aap inse milenge.',
+    inapp: 'Yahi ideas, kaam ke saath, course app mein', before: 'Pichhla', next: 'Agla', search: 'Chapter ya shabd dhoondhiye',
+    searchNone: 'Kuch nahi mila.', read: 'padha', ofN: 'mein se', chaptersRead: 'chapter padhe gaye', preface: 'Shuruaat se pehle', afterword: 'Aakhri baat',
+    glossary: 'Shabd, saral bhasha mein', glossaryDek: n => `Kitaab mein sikhaaye gaye har shabd ka matlab, alphabet ke kram mein, us chapter ke saath jahan woh pehli baar samjhaya gaya. Kul ${n} shabd.`,
+    glossaryShort: 'Kitaab ke har shabd ka saral matlab, chapter ke saath.', chapterWord: 'Chapter', chapters: 'chapter', approx: 'lagbhag', k: ' hazaar shabd',
+    explained: 'shabd samjhaaye gaye', switchTo: 'English', switchTitle: 'Read this in English', front: 'Shuru aur ant', theStory: 'Kahani',
+    scrollTop: 'Upar jaaiye', fromThe: 'Kitaab se', readEdition: 'Yeh padhne wala edition hai. Exercises, tools aur tracking course app mein hain, aur har chapter batata hai ki woh app ke kaun se chapters ko kahani mein sunata hai.',
+    openApp: 'Course app kholiye', otherEdition: 'English edition', carryHint: 'Saath le jaane layak', meet: 'Jin shabdon se milenge', pagerKinds: 'Pichhla aur agla chapter', filterOn: 'Milte-julte chapter'
+  }
+};
 
-function shell({ book, title, desc, nav, main, bodyClass = '', current = '' }) {
-  return `<!doctype html>
-<html lang="en">
+const SECTION_HUES = ['#b4492a', '#2f6f73', '#6b5ca5', '#9a7b1f', '#3f7a4a', '#a2455e', '#2d5d8f'];
+
+function cover(book, ui) {
+  /* a chat message with the personal details covered, and a shield: the book in one picture */
+  return `<svg class="art" viewBox="0 0 420 320" role="img" aria-label="${esc(book.artLabel || 'A chat message with the personal details hidden behind bars')}">
+<defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--a1)"/><stop offset="1" stop-color="var(--a2)"/></linearGradient></defs>
+<rect x="18" y="26" width="300" height="190" rx="22" fill="var(--card)" stroke="var(--rule)"/>
+<circle cx="52" cy="62" r="14" fill="url(#g1)"/><rect x="76" y="54" width="92" height="9" rx="4.5" fill="var(--rule)"/><rect x="76" y="68" width="56" height="7" rx="3.5" fill="var(--rule)" opacity=".6"/>
+<rect x="44" y="96" width="228" height="74" rx="16" fill="var(--wash)"/>
+<rect x="60" y="112" width="84" height="9" rx="4.5" fill="var(--ink2)" opacity=".55"/><rect x="152" y="112" width="52" height="9" rx="4.5" fill="var(--ink2)" opacity=".55"/>
+<rect x="60" y="136" width="64" height="12" rx="3" fill="var(--ink)"/><rect x="130" y="136" width="64" height="12" rx="3" fill="var(--ink)"/><rect x="200" y="136" width="48" height="12" rx="3" fill="var(--accent)"/>
+<rect x="92" y="188" width="226" height="64" rx="16" fill="url(#g1)"/><rect x="112" y="206" width="150" height="8" rx="4" fill="#fff" opacity=".85"/><rect x="112" y="224" width="98" height="8" rx="4" fill="#fff" opacity=".6"/>
+<path d="M352 120l52 18v44c0 34-22 58-52 70-30-12-52-36-52-70v-44z" fill="var(--card)" stroke="url(#g1)" stroke-width="5"/>
+<path d="M330 184l16 16 30-34" fill="none" stroke="var(--accent)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="378" cy="48" r="7" fill="var(--a2)" opacity=".5"/><circle cx="398" cy="78" r="4" fill="var(--a1)" opacity=".5"/><circle cx="40" cy="282" r="6" fill="var(--a1)" opacity=".4"/>
+</svg>`;
+}
+
+export function buildBook(root, outDir, opts = {}) {
+  const B = loadBook(root);
+  const lang = B.book.language === 'hi' ? 'hi' : 'en';
+  const ui = UI[lang];
+  /* Everything links from the site root, so a page works whether it is opened
+     as /book, /book/ or /book/index.html. */
+  const siteBase = (opts.siteBase || '/book/').replace(/\/?$/, '/');
+  const assetBase = siteBase;
+  const pageBase = lang === 'hi' ? siteBase + 'hi/' : siteBase;
+  const otherBase = lang === 'hi' ? siteBase : siteBase + 'hi/';
+  const appUrl = opts.appUrl || '/';
+  const hasOther = opts.hasOther !== false;
+  const book = { ...B.book, appUrl };
+  const full = { ...B, book };
+  fs.mkdirSync(outDir, { recursive: true });
+  if (!opts.noAssets) {
+    const asset = p.join(opts.assetsFrom || root);
+    fs.copyFileSync(p.join(asset, 'style.css'), p.join(outDir, 'style.css'));
+    fs.copyFileSync(p.join(asset, 'reader.js'), p.join(outDir, 'reader.js'));
+  }
+  const write = (f, s) => fs.writeFileSync(p.join(outDir, f), s);
+  const href = f => pageBase + f;
+  const sections = (B.book.sections || []).map((s, i) => ({ ...s, hue: s.hue || SECTION_HUES[i % SECTION_HUES.length], i }));
+  const sectionOf = n => sections.find(s => n >= s.from && n <= s.to) || null;
+  const mins = c => Math.max(1, Math.round(c.words / 220));
+
+  const seq = [];
+  if (B.preface) seq.push({ file: B.preface.file, title: B.preface.title, kind: ui.preface });
+  B.chapters.forEach(c => seq.push({ file: c.file, title: c.title, n: c.n }));
+  if (B.afterword) seq.push({ file: B.afterword.file, title: B.afterword.title, kind: ui.afterword });
+  const around = f => { const i = seq.findIndex(x => x.file === f); return { prev: seq[i - 1], next: seq[i + 1] }; };
+
+  /* ----- the frame ----- */
+  const shell = ({ title, desc, nav, main, bodyClass = '', file, hue }) => `<!doctype html>
+<html lang="${lang === 'hi' ? 'hi-Latn' : 'en'}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 <meta name="color-scheme" content="light dark">
-<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+${hasOther ? `<link rel="alternate" hreflang="${lang === 'hi' ? 'en' : 'hi-Latn'}" href="${otherBase}${file === 'index.html' ? '' : file}">` : ''}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
+<link rel="stylesheet" href="${assetBase}style.css">
 <script>try{var t=localStorage.getItem('aifz-book-theme');if(t)document.documentElement.setAttribute('data-theme',t);var s=localStorage.getItem('aifz-book-size');if(s)document.documentElement.style.setProperty('--fs',s+'rem')}catch(e){}</script>
 </head>
-<body class="${bodyClass}">
-<a class="skip" href="#text">Skip to the text</a>
+<body class="${bodyClass}" data-lang="${lang}" data-base="${pageBase}" style="${hue ? `--hue:${hue}` : ''}">
+<a class="skip" href="#text">${ui.skip}</a>
 <div class="progress" id="progress" aria-hidden="true"><i></i></div>
 <header class="bar">
-  <a class="brand" href="index.html"><span class="mark">AI From Zero</span><span class="ed">The reading edition</span></a>
+  <button class="b menu" id="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="${ui.contents}"><span aria-hidden="true">☰</span><span class="lbl">${ui.contents}</span></button>
+  <a class="brand" href="${href('')}"><span class="mark">${esc(book.title)}</span><span class="ed">${ui.edition}</span></a>
   <span class="sp"></span>
-  <button class="b" id="size-down" type="button" aria-label="Smaller text" title="Smaller text">A−</button>
-  <button class="b" id="size-up" type="button" aria-label="Larger text" title="Larger text">A+</button>
-  <button class="b" id="theme" type="button" aria-label="Change colours" title="Change colours">◐</button>
-  <a class="b app" href="${book.appUrl}" title="Open the course app">The course app →</a>
+  ${hasOther ? `<a class="b lang" href="${otherBase}${file === 'index.html' ? '' : file}" hreflang="${lang === 'hi' ? 'en' : 'hi-Latn'}" title="${ui.switchTitle}" data-switch>${ui.switchTo}</a>` : ''}
+  <button class="b" id="size-down" type="button" aria-label="${ui.smaller}" title="${ui.smaller}">A−</button>
+  <button class="b" id="size-up" type="button" aria-label="${ui.larger}" title="${ui.larger}">A+</button>
+  <button class="b" id="theme" type="button" aria-label="${ui.colours}" title="${ui.colours}">◐</button>
+  <a class="b app" href="${appUrl}" title="${ui.appTitle}">${ui.app} →</a>
 </header>
 <div class="layout">
 ${nav}
+<div class="scrim" id="scrim" hidden></div>
 <main id="text">
 ${main}
 </main>
 </div>
-<script src="reader.js"></script>
+<script src="${assetBase}reader.js" defer></script>
 </body>
 </html>
 `;
-}
 
-function tocNav(B, current) {
-  const li = (href, label, key, n) => `<li${current === key ? ' class="here"' : ''}><a href="${href}"${current === key ? ' aria-current="page"' : ''}>${n ? `<span class="n">${n}</span>` : ''}<span class="t">${esc(label)}</span></a></li>`;
-  const items = [li('index.html', 'Contents', 'index', ''),
-    B.preface ? li('preface.html', B.preface.title, 'preface', '') : '',
-    ...B.chapters.map(c => li(c.file, c.title, c.file, String(c.n))),
-    B.afterword ? li('afterword.html', B.afterword.title, 'afterword', '') : '',
-    li('glossary.html', 'Words, in plain language', 'glossary', '')].join('\n');
-  return `<nav class="toc" aria-label="Contents"><details id="toc"><summary>Contents</summary><ol>
-${items}
-</ol></details></nav>`;
-}
+  const tocNav = current => {
+    const item = (url, label, key, n, extra = '') => `<li${current === key ? ' class="here"' : ''} data-t="${esc(label.toLowerCase())}"><a href="${url}"${current === key ? ' aria-current="page"' : ''} data-file="${key}">${n ? `<span class="n">${n}</span>` : '<span class="n dot"></span>'}<span class="t">${esc(label)}</span></a></li>${extra}`;
+    const parts = [`<li class="top${current === 'index.html' ? ' here' : ''}"><a href="${href('')}"><span class="n dot"></span><span class="t">${ui.contents}</span></a></li>`];
+    if (B.preface) parts.push(item(href(B.preface.file), B.preface.title, B.preface.file, ''));
+    let last = null;
+    for (const c of B.chapters) {
+      const s = sectionOf(c.n);
+      if (s && s !== last) { parts.push(`<li class="sec" style="--hue:${s.hue}"><span>${esc(s.title)}</span></li>`); last = s; }
+      parts.push(item(href(c.file), c.title, c.file, String(c.n)).replace('<li', `<li style="--hue:${s ? s.hue : 'var(--accent)'}"`));
+    }
+    if (B.afterword) parts.push(item(href(B.afterword.file), B.afterword.title, B.afterword.file, ''));
+    parts.push(item(href('glossary.html'), ui.glossary, 'glossary.html', ''));
+    return `<nav class="toc" id="toc" aria-label="${ui.contents}">
+<div class="tochead"><label class="find"><span class="sr">${ui.search}</span><input id="q" type="search" placeholder="${ui.search}" autocomplete="off"></label></div>
+<ol>
+${parts.join('\n')}
+</ol>
+<p class="nomatch" hidden>${ui.searchNone}</p>
+</nav>`;
+  };
 
-export function buildBook(root, outDir, opts = {}) {
-  const B = loadBook(root);
-  const book = { ...B.book, appUrl: opts.appUrl || '../' };
-  const full = { ...B, book };
-  fs.mkdirSync(outDir, { recursive: true });
-  fs.copyFileSync(p.join(root, 'style.css'), p.join(outDir, 'style.css'));
-  fs.copyFileSync(p.join(root, 'reader.js'), p.join(outDir, 'reader.js'));
-  const write = (f, s) => fs.writeFileSync(p.join(outDir, f), s);
-  const seq = [];
-  if (B.preface) seq.push({ file: B.preface.file, title: B.preface.title });
-  B.chapters.forEach(c => seq.push({ file: c.file, title: c.title, n: c.n }));
-  if (B.afterword) seq.push({ file: B.afterword.file, title: B.afterword.title });
-  const around = f => { const i = seq.findIndex(x => x.file === f); return { prev: seq[i - 1], next: seq[i + 1] }; };
   const pager = f => {
     const { prev, next } = around(f);
-    const side = (x, cls, dir) => x ? `<a class="${cls}" href="${x.file}"><span class="dir">${dir}</span><span class="nm">${x.n ? `Chapter ${x.n} · ` : ''}${esc(x.title)}</span></a>` : '<span></span>';
-    return `<nav class="pager" aria-label="Previous and next">${side(prev, 'prev', '← Before')}${side(next, 'next', 'Next →')}</nav>`;
+    const side = (x, cls, dir) => x ? `<a class="${cls}" href="${href(x.file)}" rel="${cls}"><span class="dir">${dir}</span><span class="nm">${x.n ? `<b>${x.n}</b>` : ''}${esc(x.title)}</span></a>` : '<span></span>';
+    return `<nav class="pager" aria-label="${ui.pagerKinds}">${side(prev, 'prev', '← ' + ui.before)}${side(next, 'next', ui.next + ' →')}</nav>`;
   };
   const courseLine = ids => ids && ids.length
-    ? `<p class="inapp">In the course app: ${ids.map(id => `<a href="${book.appUrl}#/ch/${id}">${esc(opts.courseTitle ? (opts.courseTitle(id) || id) : id)}</a>`).join(' · ')}</p>` : '';
-  const wordsBox = terms => terms.length ? `<aside class="wordsbox" aria-label="Words from this chapter"><h2>Words from this chapter</h2><dl>${
+    ? `<aside class="inapp"><span class="lead">${ui.inapp}</span><span class="chips">${ids.map(id => `<a href="${appUrl}#/ch/${id}">${esc(opts.courseTitle ? (opts.courseTitle(id) || id) : id)}<span aria-hidden="true"> →</span></a>`).join('')}</span></aside>` : '';
+  const wordsBox = terms => terms.length ? `<aside class="wordsbox" aria-label="${ui.words}"><h2>${ui.words}</h2><p class="sub">${ui.wordsSub}</p><dl>${
     terms.map(t => `<div><dt id="w-${slugify(t.term)}">${esc(t.term)}</dt><dd>${inline(t.plain)}</dd></div>`).join('')}</dl></aside>` : '';
 
-  /* chapters */
+  /* ----- chapters ----- */
+  const gloss = href('glossary.html');
   for (const c of B.chapters) {
-    const mins = Math.max(1, Math.round(c.words / 220));
-    const main = `<article class="chapter" data-file="${c.file}" data-title="${esc(c.title)}">
-<header class="chead"><p class="eyebrow">Chapter ${c.n}</p><h1>${esc(c.title)}</h1><p class="dek">${inline(c.summary)}</p><p class="meta">${mins} minute read</p></header>
+    const s = sectionOf(c.n);
+    const main = `<article class="chapter" data-file="${c.file}" data-title="${esc(c.title)}" data-n="${c.n}">
+<header class="chead">
+<p class="eyebrow"><span class="num">${c.n}</span><span>${ui.chapter} ${c.n}${s ? ` <i>·</i> ${esc(s.title)}` : ''}</span></p>
+<h1>${esc(c.title)}</h1><p class="dek">${inline(c.summary)}</p>
+<p class="meta"><span>${mins(c)} ${ui.minRead}</span>${c.terms.length ? `<span>${c.terms.length} ${lang === 'hi' ? 'naye shabd' : 'new words'}</span>` : ''}</p>
+</header>
 <div class="prose">
-${render(c, c.terms)}
+${render(c, c.terms, gloss)}
 </div>
 ${wordsBox(c.terms)}
 ${courseLine(c.course)}
 ${pager(c.file)}
 </article>`;
-    write(c.file, shell({ book, title: `${c.title} · Chapter ${c.n} · ${book.title}`, desc: c.summary, nav: tocNav(full, c.file), main, bodyClass: 'is-chapter' }));
+    write(c.file, shell({ title: `${c.title} · ${ui.chapter} ${c.n} · ${book.title}`, desc: c.summary, nav: tocNav(c.file), main, bodyClass: 'is-chapter', file: c.file, hue: s && s.hue }));
   }
 
-  /* preface and afterword */
+  /* ----- preface and afterword ----- */
   for (const pg of [B.preface, B.afterword]) {
     if (!pg) continue;
+    const kind = pg === B.preface ? ui.preface : ui.afterword;
     const main = `<article class="chapter plain" data-file="${pg.file}" data-title="${esc(pg.title)}">
-<header class="chead"><h1>${esc(pg.title)}</h1>${pg.summary ? `<p class="dek">${inline(pg.summary)}</p>` : ''}</header>
+<header class="chead"><p class="eyebrow"><span>${kind}</span></p><h1>${esc(pg.title)}</h1>${pg.summary ? `<p class="dek">${inline(pg.summary)}</p>` : ''}</header>
 <div class="prose">
-${render(pg, pg.terms)}
+${render(pg, pg.terms, gloss)}
 </div>
 ${courseLine(pg.course)}
 ${pager(pg.file)}
 </article>`;
-    write(pg.file, shell({ book, title: `${pg.title} · ${book.title}`, desc: pg.summary || book.subtitle, nav: tocNav(full, pg.file === 'preface.html' ? 'preface' : 'afterword'), main, bodyClass: 'is-front' }));
+    write(pg.file, shell({ title: `${pg.title} · ${book.title}`, desc: pg.summary || book.subtitle, nav: tocNav(pg.file), main, bodyClass: 'is-front', file: pg.file }));
   }
 
-  /* glossary */
+  /* ----- glossary ----- */
   const all = [];
   for (const c of B.chapters) for (const t of c.terms) all.push({ ...t, ch: c });
   all.sort((a, b) => a.term.localeCompare(b.term, 'en', { sensitivity: 'base' }));
   const letters = [...new Set(all.map(t => t.term[0].toUpperCase()))];
-  const gl = `<article class="chapter plain" data-file="glossary.html" data-title="Words, in plain language">
-<header class="chead"><h1>Words, in plain language</h1><p class="dek">Every word the book teaches, in the order of the alphabet, with the chapter that first explains it. ${all.length} words.</p></header>
+  const gl = `<article class="chapter plain glossary-page" data-file="glossary.html" data-title="${esc(ui.glossary)}">
+<header class="chead"><p class="eyebrow"><span>${ui.front}</span></p><h1>${esc(ui.glossary)}</h1><p class="dek">${ui.glossaryDek(all.length)}</p></header>
 <p class="azrow">${letters.map(l => `<a href="#a-${l}">${l}</a>`).join('')}</p>
 <div class="prose glossary">
 ${letters.map(l => `<h2 id="a-${l}">${l}</h2><dl>${all.filter(t => t.term[0].toUpperCase() === l).map(t =>
-  `<div id="t-${slugify(t.term)}"><dt>${esc(t.term)}</dt><dd>${inline(t.plain)} <a class="where" href="${t.ch.file}">Chapter ${t.ch.n}</a></dd></div>`).join('')}</dl>`).join('\n')}
+  `<div id="t-${slugify(t.term)}"><dt>${esc(t.term)}</dt><dd>${inline(t.plain)} <a class="where" href="${href(t.ch.file)}">${ui.chapter} ${t.ch.n}</a></dd></div>`).join('')}</dl>`).join('\n')}
 </div>
 </article>`;
-  write('glossary.html', shell({ book, title: `Words, in plain language · ${book.title}`, desc: 'Every word the book teaches, with its plain meaning.', nav: tocNav(full, 'glossary'), main: gl, bodyClass: 'is-front' }));
+  write('glossary.html', shell({ title: `${ui.glossary} · ${book.title}`, desc: ui.glossaryShort, nav: tocNav('glossary.html'), main: gl, bodyClass: 'is-front', file: 'glossary.html' }));
 
-  /* contents */
+  /* ----- the cover and contents ----- */
   const totalWords = B.chapters.reduce((a, c) => a + c.words, 0) + (B.preface ? B.preface.words : 0) + (B.afterword ? B.afterword.words : 0);
-  const idx = `<article class="cover" data-file="index.html" data-title="Contents">
-<header class="coverhead">
+  const card = c => {
+    const s = sectionOf(c.n);
+    return `<li style="--hue:${s ? s.hue : 'var(--accent)'}" data-t="${esc((c.title + ' ' + c.summary).toLowerCase())}" data-file="${c.file}"><a href="${href(c.file)}" data-file="${c.file}"><span class="n">${c.n}</span><span class="bd"><span class="ct">${esc(c.title)}</span><span class="cs">${esc(c.summary)}</span><span class="cm">${mins(c)} ${ui.minRead}<i class="tick" aria-label="${ui.read}">✓ ${ui.read}</i></span></span></a></li>`;
+  };
+  const front = (pg, kind) => pg ? `<li class="front" data-t="${esc((pg.title + ' ' + kind).toLowerCase())}"><a href="${href(pg.file)}" data-file="${pg.file}"><span class="n dot"></span><span class="bd"><span class="ct">${esc(pg.title)}</span><span class="cs">${esc(pg.summary)}</span></span></a></li>` : '';
+  const groups = sections.length
+    ? sections.map(s => `<section class="group" style="--hue:${s.hue}" data-sec><header><span class="rn">${s.i + 1}</span><div><h3>${esc(s.title)}</h3><p>${esc(s.blurb || '')}</p></div></header><ol class="cards">${B.chapters.filter(c => c.n >= s.from && c.n <= s.to).map(card).join('\n')}</ol></section>`).join('\n')
+    : `<ol class="cards">${B.chapters.map(card).join('\n')}</ol>`;
+  const idx = `<article class="cover" data-file="index.html" data-title="${esc(ui.contents)}">
+<header class="hero">
+<div class="herotext">
 <p class="eyebrow">${esc(book.edition)}</p>
 <h1>${esc(book.title)}</h1>
 <p class="subtitle">${esc(book.subtitle)}</p>
 <p class="tag">${esc(book.tagline)}</p>
-<p class="startrow"><a class="go" id="begin" href="${B.preface ? 'preface.html' : (B.chapters[0] ? B.chapters[0].file : '#')}">Begin reading</a><a class="go ghost" id="resume" href="#" hidden>Continue where you left off</a></p>
-<p class="meta">${B.chapters.length} chapters · about ${Math.round(totalWords / 1000)}k words · ${all.length} words explained in the glossary</p>
+<p class="startrow"><a class="go" id="begin" href="${href(B.preface ? B.preface.file : B.chapters[0].file)}">${ui.begin}</a><a class="go ghost" id="resume" href="#" hidden>${ui.resume}</a></p>
+<p class="meta"><span>${B.chapters.length} ${ui.chapters}</span><span>${ui.approx} ${Math.round(totalWords / 1000)}${ui.k}</span><span>${all.length} ${ui.explained}</span></p>
+<div class="prog" id="prog" hidden><span class="bar"><i></i></span><span class="txt"></span></div>
+</div>
+<div class="heroart">${cover(book, ui)}</div>
 </header>
-<section aria-label="Contents">
-<h2 class="toch">Contents</h2>
-<ol class="contents">
-${B.preface ? `<li class="front"><a href="preface.html"><span class="n"></span><span class="bd"><span class="ct">${esc(B.preface.title)}</span><span class="cs">${esc(B.preface.summary)}</span></span></a></li>` : ''}
-${B.chapters.map(c => `<li><a href="${c.file}"><span class="n">${c.n}</span><span class="bd"><span class="ct">${esc(c.title)}</span><span class="cs">${esc(c.summary)}</span></span></a></li>`).join('\n')}
-${B.afterword ? `<li class="front"><a href="afterword.html"><span class="n"></span><span class="bd"><span class="ct">${esc(B.afterword.title)}</span><span class="cs">${esc(B.afterword.summary)}</span></span></a></li>` : ''}
-<li class="front"><a href="glossary.html"><span class="n"></span><span class="bd"><span class="ct">Words, in plain language</span><span class="cs">Every word the book teaches, with the chapter that explains it.</span></span></a></li>
-</ol>
+<section aria-label="${ui.contents}" class="contents-wrap">
+<div class="tochd"><h2 class="toch">${ui.contents}</h2>
+<label class="find big"><span class="sr">${ui.search}</span><input id="q2" type="search" placeholder="${ui.search}" autocomplete="off"></label></div>
+<ol class="frontlist">${front(B.preface, ui.preface)}</ol>
+${groups}
+<ol class="frontlist">${front(B.afterword, ui.afterword)}<li class="front" data-t="${esc(ui.glossary.toLowerCase())}"><a href="${href('glossary.html')}" data-file="glossary.html"><span class="n dot"></span><span class="bd"><span class="ct">${esc(ui.glossary)}</span><span class="cs">${esc(ui.glossaryShort)}</span></span></a></li></ol>
+<p class="nomatch" id="nomatch" hidden>${ui.searchNone}</p>
 </section>
-<p class="inapp">This is the reading edition. The exercises, tools and tracking live in <a href="${book.appUrl}">the course app</a>, and every chapter here says which app chapters it retells.</p>
+<aside class="inapp end"><span class="lead">${ui.readEdition}</span><span class="chips"><a href="${appUrl}">${ui.openApp} →</a>${hasOther ? `<a href="${otherBase}">${ui.otherEdition} →</a>` : ''}</span></aside>
 </article>`;
-  write('index.html', shell({ book, title: `${book.title} · ${book.edition}`, desc: book.subtitle, nav: '', main: idx, bodyClass: 'is-cover' }));
+  write('index.html', shell({ title: `${book.title} · ${book.edition}`, desc: book.subtitle, nav: '', main: idx, bodyClass: 'is-cover', file: 'index.html' }));
 
   return { chapters: B.chapters.map(c => ({ n: c.n, file: c.file, title: c.title, course: c.course })), words: totalWords, terms: all.length };
 }

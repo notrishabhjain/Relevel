@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="hi-Latn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jaadu Ke Neeche Ki Plumbing · Chapter 33 · AI From Zero</title>
+<meta name="description" content="Do ghante ka ek outage jisme kisi ne error nahi uthaya, ek product manager ko manata hai ki use us aam software ko, ek plumber ke diagram ke star par, samajhna chahiye jo us ek anishchit hisse ke aas-paas hai.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="en" href="/book/33-the-plumbing-under-the-magic.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
+<link rel="stylesheet" href="/book/style.css">
+<script>try{var t=localStorage.getItem('aifz-book-theme');if(t)document.documentElement.setAttribute('data-theme',t);var s=localStorage.getItem('aifz-book-size');if(s)document.documentElement.style.setProperty('--fs',s+'rem')}catch(e){}</script>
+</head>
+<body class="is-chapter" data-lang="hi" data-base="/book/hi/" style="--hue:#a2455e">
+<a class="skip" href="#text">Seedhe text par jaaiye</a>
+<div class="progress" id="progress" aria-hidden="true"><i></i></div>
+<header class="bar">
+  <button class="b menu" id="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Vishay-soochi"><span aria-hidden="true">☰</span><span class="lbl">Vishay-soochi</span></button>
+  <a class="brand" href="/book/hi/"><span class="mark">AI From Zero</span><span class="ed">Padhne wala edition (Hinglish)</span></a>
+  <span class="sp"></span>
+  <a class="b lang" href="/book/33-the-plumbing-under-the-magic.html" hreflang="en" title="Read this in English" data-switch>English</a>
+  <button class="b" id="size-down" type="button" aria-label="Chhota text" title="Chhota text">A−</button>
+  <button class="b" id="size-up" type="button" aria-label="Bada text" title="Bada text">A+</button>
+  <button class="b" id="theme" type="button" aria-label="Rang badliye" title="Rang badliye">◐</button>
+  <a class="b app" href="/" title="Course app kholiye">Course app →</a>
+</header>
+<div class="layout">
+<nav class="toc" id="toc" aria-label="Vishay-soochi">
+<div class="tochead"><label class="find"><span class="sr">Chapter ya shabd dhoondhiye</span><input id="q" type="search" placeholder="Chapter ya shabd dhoondhiye" autocomplete="off"></label></div>
+<ol>
+<li class="top"><a href="/book/hi/"><span class="n dot"></span><span class="t">Vishay-soochi</span></a></li>
+<li data-t="shuru karne se pehle"><a href="/book/hi/preface.html" data-file="preface.html"><span class="n dot"></span><span class="t">Shuru karne se pehle</span></a></li>
+<li class="sec" style="--hue:#b4492a"><span>Woh problem jo hal karne layak hai</span></li>
+<li style="--hue:#b4492a" data-t="chat mein woh number"><a href="/book/hi/01-the-number-in-the-chat.html" data-file="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">Chat Mein Woh Number</span></a></li>
+<li style="--hue:#b4492a" data-t="banane se pehle chaar sawaal"><a href="/book/hi/02-four-questions-before-building.html" data-file="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Banane Se Pehle Chaar Sawaal</span></a></li>
+<li style="--hue:#b4492a" data-t="kal ke baare mein poochhna"><a href="/book/hi/03-asking-about-yesterday.html" data-file="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Kal Ke Baare Mein Poochhna</span></a></li>
+<li style="--hue:#b4492a" data-t="yahan aur kaun khada hai"><a href="/book/hi/04-who-else-is-standing-here.html" data-file="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Yahan Aur Kaun Khada Hai</span></a></li>
+<li style="--hue:#b4492a" data-t="kya nahi karna hai, yeh chunna"><a href="/book/hi/05-choosing-what-not-to-do.html" data-file="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Kya Nahi Karna Hai, Yeh Chunna</span></a></li>
+<li style="--hue:#b4492a" data-t="aisa plan jis par doosre bharosa karein"><a href="/book/hi/06-a-plan-others-can-believe.html" data-file="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">Aisa Plan Jis Par Doosre Bharosa Karein</span></a></li>
+<li style="--hue:#b4492a" data-t="likh kar rakhna taaki doosre bana sakein"><a href="/book/hi/07-writing-it-down.html" data-file="07-writing-it-down.html"><span class="n">7</span><span class="t">Likh Kar Rakhna Taaki Doosre Bana Sakein</span></a></li>
+<li class="sec" style="--hue:#2f6f73"><span>Machine se mulaqaat</span></li>
+<li style="--hue:#2f6f73" data-t="machine asal mein kya hai"><a href="/book/hi/08-what-the-machine-is.html" data-file="08-what-the-machine-is.html"><span class="n">8</span><span class="t">Machine Asal Mein Kya Hai</span></a></li>
+<li style="--hue:#2f6f73" data-t="pehli baatcheet"><a href="/book/hi/09-the-first-conversation.html" data-file="09-the-first-conversation.html"><span class="n">9</span><span class="t">Pehli Baatcheet</span></a></li>
+<li style="--hue:#2f6f73" data-t="ek dimaag jise kuch yaad nahi rehta"><a href="/book/hi/10-a-mind-with-no-memory.html" data-file="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">Ek Dimaag Jise Kuch Yaad Nahi Rehta</span></a></li>
+<li style="--hue:#2f6f73" data-t="nirdesh dena"><a href="/book/hi/11-giving-instructions.html" data-file="11-giving-instructions.html"><span class="n">11</span><span class="t">Nirdesh Dena</span></a></li>
+<li style="--hue:#2f6f73" data-t="kaise pata chale ki yeh kaam karta hai"><a href="/book/hi/12-knowing-whether-it-works.html" data-file="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Kaise Pata Chale Ki Yeh Kaam Karta Hai</span></a></li>
+<li style="--hue:#2f6f73" data-t="chhaantna aur saar likhna"><a href="/book/hi/13-sorting-and-summarising.html" data-file="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Chhaantna Aur Saar Likhna</span></a></li>
+<li class="sec" style="--hue:#6b5ca5"><span>Cheezein dhoondhna, aur poori machine</span></li>
+<li style="--hue:#6b5ca5" data-t="ek baar mein padhne ke liye bahut lamba"><a href="/book/hi/14-too-long-to-read-at-once.html" data-file="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Ek Baar Mein Padhne Ke Liye Bahut Lamba</span></a></li>
+<li style="--hue:#6b5ca5" data-t="shabdon se dhoondhna"><a href="/book/hi/15-finding-by-words.html" data-file="15-finding-by-words.html"><span class="n">15</span><span class="t">Shabdon Se Dhoondhna</span></a></li>
+<li style="--hue:#6b5ca5" data-t="matlab se dhoondhna"><a href="/book/hi/16-finding-by-meaning.html" data-file="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Matlab Se Dhoondhna</span></a></li>
+<li style="--hue:#6b5ca5" data-t="kitna achha, achha hota hai"><a href="/book/hi/17-how-good-is-good.html" data-file="17-how-good-is-good.html"><span class="n">17</span><span class="t">Kitna Achha, Achha Hota Hai</span></a></li>
+<li style="--hue:#6b5ca5" data-t="poori machine"><a href="/book/hi/18-the-whole-machine.html" data-file="18-the-whole-machine.html"><span class="n">18</span><span class="t">Poori Machine</span></a></li>
+<li style="--hue:#6b5ca5" data-t="aise jawaab jo program istemaal kar sake"><a href="/book/hi/19-answers-a-program-can-use.html" data-file="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Aise Jawaab Jo Program Istemaal Kar Sake</span></a></li>
+<li class="sec" style="--hue:#9a7b1f"><span>Machine ko kaam dena</span></li>
+<li style="--hue:#9a7b1f" data-t="machine ko haath dena"><a href="/book/hi/20-giving-the-machine-hands.html" data-file="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Machine Ko Haath Dena</span></a></li>
+<li style="--hue:#9a7b1f" data-t="lambi windows, saavdhaan kamre"><a href="/book/hi/21-long-windows-careful-rooms.html" data-file="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Lambi Windows, Saavdhaan Kamre</span></a></li>
+<li style="--hue:#9a7b1f" data-t="pehle sochne wali machines"><a href="/book/hi/22-machines-that-think-first.html" data-file="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Pehle Sochne Wali Machines</span></a></li>
+<li style="--hue:#9a7b1f" data-t="behtar search"><a href="/book/hi/23-searching-better.html" data-file="23-searching-better.html"><span class="n">23</span><span class="t">Behtar Search</span></a></li>
+<li style="--hue:#9a7b1f" data-t="jab page hukm dene lagta hai"><a href="/book/hi/24-when-the-page-gives-orders.html" data-file="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">Jab Page Hukm Dene Lagta Hai</span></a></li>
+<li style="--hue:#9a7b1f" data-t="hazaar jawaabon ki grading"><a href="/book/hi/25-grading-a-thousand-answers.html" data-file="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Hazaar Jawaabon Ki Grading</span></a></li>
+<li style="--hue:#9a7b1f" data-t="asal mein kitna kharcha hota hai"><a href="/book/hi/26-what-it-really-costs.html" data-file="26-what-it-really-costs.html"><span class="n">26</span><span class="t">Asal Mein Kitna Kharcha Hota Hai</span></a></li>
+<li class="sec" style="--hue:#3f7a4a"><span>Asli duniya ki uljhanein</span></li>
+<li style="--hue:#3f7a4a" data-t="kaagaz, photos aur scans"><a href="/book/hi/27-paper-photos-and-scans.html" data-file="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Kaagaz, Photos Aur Scans</span></a></li>
+<li style="--hue:#3f7a4a" data-t="aap kya bhej sakte hain"><a href="/book/hi/28-what-you-may-send.html" data-file="28-what-you-may-send.html"><span class="n">28</span><span class="t">Aap Kya Bhej Sakte Hain</span></a></li>
+<li style="--hue:#3f7a4a" data-t="niyam, risk aur zimmedaari"><a href="/book/hi/29-rules-risk-and-responsibility.html" data-file="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Niyam, Risk Aur Zimmedaari</span></a></li>
+<li style="--hue:#3f7a4a" data-t="badalti rehne wali cheez ki spec"><a href="/book/hi/30-the-spec-for-a-thing-that-varies.html" data-file="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">Badalti Rehne Wali Cheez Ki Spec</span></a></li>
+<li style="--hue:#3f7a4a" data-t="banao, kharido ya sikhao"><a href="/book/hi/31-build-buy-or-teach-it.html" data-file="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Banao, Kharido Ya Sikhao</span></a></li>
+<li style="--hue:#3f7a4a" data-t="galat jawaab ke liye design"><a href="/book/hi/32-designing-for-the-wrong-answer.html" data-file="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Galat Jawaab Ke Liye Design</span></a></li>
+<li class="sec" style="--hue:#a2455e"><span>Bonnet ke neeche</span></li>
+<li style="--hue:#a2455e" class="here" data-t="jaadu ke neeche ki plumbing"><a href="/book/hi/33-the-plumbing-under-the-magic.html" aria-current="page" data-file="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">Jaadu Ke Neeche Ki Plumbing</span></a></li>
+<li style="--hue:#a2455e" data-t="apne cases par model chunna"><a href="/book/hi/34-choosing-a-model-on-your-own-cases.html" data-file="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Apne Cases Par Model Chunna</span></a></li>
+<li style="--hue:#a2455e" data-t="review mein tikne wala retrieval"><a href="/book/hi/35-retrieval-that-survives-a-review.html" data-file="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Review Mein Tikne Wala Retrieval</span></a></li>
+<li style="--hue:#a2455e" data-t="workflows, agents aur standard plug"><a href="/book/hi/36-workflows-agents-and-the-standard-plug.html" data-file="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents Aur Standard Plug</span></a></li>
+<li style="--hue:#a2455e" data-t="pages, tasveerein aur awaazein"><a href="/book/hi/37-pages-pictures-and-voices.html" data-file="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Tasveerein Aur Awaazein</span></a></li>
+<li style="--hue:#a2455e" data-t="gates, traces aur rollbacks"><a href="/book/hi/38-gates-traces-and-rollbacks.html" data-file="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces Aur Rollbacks</span></a></li>
+<li style="--hue:#a2455e" data-t="sabse bure ko maan kar chalna"><a href="/book/hi/39-assuming-the-worst.html" data-file="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Sabse Bure Ko Maan Kar Chalna</span></a></li>
+<li class="sec" style="--hue:#2d5d8f"><span>Ek asli product, aur ek naukri</span></li>
+<li style="--hue:#2d5d8f" data-t="product, demo nahi"><a href="/book/hi/40-a-product-not-a-demo.html" data-file="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">Product, Demo Nahi</span></a></li>
+<li style="--hue:#2d5d8f" data-t="poori cheez ko ship karna"><a href="/book/hi/41-shipping-the-whole-thing.html" data-file="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Poori Cheez Ko Ship Karna</span></a></li>
+<li style="--hue:#2d5d8f" data-t="paisa kaun deta hai, aur kitna"><a href="/book/hi/42-who-pays-and-how-much.html" data-file="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Paisa Kaun Deta Hai, Aur Kitna</span></a></li>
+<li style="--hue:#2d5d8f" data-t="log ise kaise dhoondhte hain aur kyun rukte hain"><a href="/book/hi/43-how-people-find-it-and-stay.html" data-file="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">Log Ise Kaise Dhoondhte Hain Aur Kyun Rukte Hain</span></a></li>
+<li style="--hue:#2d5d8f" data-t="jo maayne rakhta hai use ginna"><a href="/book/hi/44-counting-what-matters.html" data-file="44-counting-what-matters.html"><span class="n">44</span><span class="t">Jo Maayne Rakhta Hai Use Ginna</span></a></li>
+<li style="--hue:#2d5d8f" data-t="tools aur harness"><a href="/book/hi/45-tools-and-harness.html" data-file="45-tools-and-harness.html"><span class="n">45</span><span class="t">Tools Aur Harness</span></a></li>
+<li style="--hue:#2d5d8f" data-t="asli log, asli istemaal"><a href="/book/hi/46-real-people-real-use.html" data-file="46-real-people-real-use.html"><span class="n">46</span><span class="t">Asli Log, Asli Istemaal</span></a></li>
+<li style="--hue:#2d5d8f" data-t="kaam, aur naukri"><a href="/book/hi/47-the-job.html" data-file="47-the-job.html"><span class="n">47</span><span class="t">Kaam, Aur Naukri</span></a></li>
+<li data-t="kitaab ke baad"><a href="/book/hi/afterword.html" data-file="afterword.html"><span class="n dot"></span><span class="t">Kitaab Ke Baad</span></a></li>
+<li data-t="shabd, saral bhasha mein"><a href="/book/hi/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Shabd, saral bhasha mein</span></a></li>
+</ol>
+<p class="nomatch" hidden>Kuch nahi mila.</p>
+</nav>
+<div class="scrim" id="scrim" hidden></div>
+<main id="text">
+<article class="chapter" data-file="33-the-plumbing-under-the-magic.html" data-title="Jaadu Ke Neeche Ki Plumbing" data-n="33">
+<header class="chead">
+<p class="eyebrow"><span class="num">33</span><span>Chapter 33 <i>·</i> Bonnet ke neeche</span></p>
+<h1>Jaadu Ke Neeche Ki Plumbing</h1><p class="dek">Do ghante ka ek outage jisme kisi ne error nahi uthaya, ek product manager ko manata hai ki use us aam software ko, ek plumber ke diagram ke star par, samajhna chahiye jo us ek anishchit hisse ke aas-paas hai.</p>
+<p class="meta"><span>8 min padhai</span><span>8 naye shabd</span></p>
+</header>
+<div class="prose">
+<p>September ke doosre Thursday ko, do ghante ke liye, guard ne Pune ka har order number chhupa diya, aur kisi ne notice nahi kiya jab tak ek customer ne yeh poochhne ke liye nahi likha ki uske sath kya hua.</p>
+<p>Yeh ek chhoti ghatna thi. Farah ke agents pehle hairaan the, phir chidhe hue, phir aavishkaarak: lagbhag chaalees minute tak unhone customers se phone par apne order numbers zor se padhne ko kaha tha. Dashboard hara raha. Imran ne, jab use bataya gaya, bahut kam kaha aur ek pen se banana shuru kar diya.</p>
+<p>&quot;Kisi ne error nahi uthaya,&quot; usne kaha, jab diagram poora hua. &quot;Isiliye do ghante lage.&quot;</p>
+<h2>Kya hua</h2>
+<p>Cheez saadharan thi, aur yahi sabak tha. Guard har barah ank ka number order system mein dhoondhta tha, jaisa use sikhaya gaya tha. Order system us subah kisi aur team dwara update kiya gaya tha. Purane version mein, uske jawaab mein field ka naam tha <em>order_id</em>. Naye mein <em>orderId</em> tha, ek bade I ke saath.</p>
+<p>Guard ne <em>order_id</em> maanga aur wahan kuch nahi paya. Woh ruka nahi. Usne chillaya nahi. Use, samajhdaari se, khaali jawaab ko &quot;aisa koi order nahi&quot; maanne ke liye likha gaya tha, aur isliye usne, shishtta se aur lagbhag chaar sau baar, nishkarsh nikaala ki us number ka koi order maujood nahi hai, aur use ek sandehaspad pehchaan ke number ki tarah chhupa diya.</p>
+<p>Ek AI application bahut si anakahi maanyataon par nirbhar karta hai jo data usse milta hai uske baare mein. Yeh field wahan hoga. Yeh ek number hoga. Yeh list khaali nahi hogi. Inhe <em><a class="term" href="/book/hi/glossary.html#t-data-contract" title="ek system ka ek hissa jo data usse milta hai uske baare mein jo anakahe maan leta hai, jaise ki ek field maujood hoga aur ek list khaali nahi hogi">data contracts</a></em> kehte hain, aur production mein inme se har ek aakhirkaar toot jaata hai. Achhi tarah bana system dekhta hai ki koi toota hai aur ruk jaata hai. Buri tarah bana aage chalta rehta hai, aur jo jawaab woh deta hai woh gaayab data par bana hota hai. Is kshetra ki bahut si asli ghatnayein bilkul aisi dikhti hain: koi error nahi, ek hara dashboard, aur ek nateeja jo chupchaap galat hai.</p>
+<p>&quot;Yeh machine-learning ki problem nahi hai,&quot; Imran ne kaha. &quot;Machine theek thi. Yeh ek aam software failure hai jo ittefaq se ek machine ke bagal mein baithi hai. Aur tum iske baare mein sahi sawaal tabhi poochh sakti ho jab tum diagram padh sako.&quot;</p>
+<h2>Diagram</h2>
+<p>Anaya mahino se isse dar rahi thi. Use engineers se baat kar paane ki apni kshamata par chupchaap garv tha, aur use theek-theek pata tha ki uski seema kahan hai. Woh &quot;API&quot; aur &quot;logs&quot; bina jaane keh sakti thi ki woh kya hain. Usne Imran se, kuch ghabrahat ke saath, poochha ki kya woh use ek dopahar dega.</p>
+<p>Usne use do ghante, ek whiteboard aur ek upama di.</p>
+<p>&quot;Tum ek app mein khaana order karti ho,&quot; usne kaha. &quot;Tum tap karti ho. Ek message restaurant ko jaata hai. Ek jawaab daam ke saath wapas aata hai. Tumhari screen badalti hai. Yeh rahasyamay lagta hai jab tak tum messages ko dekh nahi leti. Is dopahar ki har cheez unmein se ek message hai, ya woh jagah jahan ek kho jaata hai.&quot;</p>
+<p><em><a class="term" href="/book/hi/glossary.html#t-python" title="woh programming bhasha jisme zyadatar AI ka kaam likha jaata hai; ek product manager ke liye, yeh theek-theek kehne ka tareeka ki ek experiment kya karta hai">Python</a></em> pehle aaya, aur usne use turant aashwast kiya ki woh programmer nahi banegi. Yeh woh bhasha hai jisme is kaam ka zyadatar likha jaata hai, aur uske liye baat bas itni thi ki yeh theek-theek kehne ka tareeka hai ki ek experiment kya karta hai. Ek chhota function. Ek dictionary, jo kuch naam wali values ek saath rakhti hai: <em>naam, pata, kind</em>. Ek loop, jo ek list ki har cheez ke saath wahi karta hai. &quot;Python grammar wali ek lab notebook hai,&quot; usne kaha. &quot;Agar tum padh sakti ho ki woh kya kehta hai, toh tum dekh sakti ho ki experiment wahi hai jo tum sochti ho.&quot;</p>
+<p><em><a class="term" href="/book/hi/glossary.html#t-http" title="niyamon ka woh set jisse programs internet par requests aur jawaab bhejte hain, har jawaab par ek number ke saath jo batata hai ki kaam hua ya nahi">HTTP</a></em> niyamon ka woh set hai jisse programs internet par baat karte hain. Jo hissa maayne rakhta tha woh har jawaab par ek number tha, jise <em><a class="term" href="/book/hi/glossary.html#t-status-code" title="ek HTTP jawaab par ka number: 200 matlab kaam hua, 4xx number matlab request galat thi, aur 5xx number matlab server fail hua">status code</a></em> kehte hain. 200 ka matlab kaam hua. 4 se shuru hone wali koi bhi cheez matlab request galat thi: 401, tum woh nahi ho jo tum kehti ho; 404, yahan kuch nahi; 429, tum bahut tezi se maang rahi ho, dheere karo. 5 se shuru hone wali koi bhi cheez matlab doosri taraf fail hui. &quot;API fail ho gayi&quot; koi spashtikaran nahi hai, usne kaha. Yeh poochhne ki ek shuruaat hai. Kya yeh buri request thi, ek gair-maujood dependency, ya unki taraf ki failure? Har ek ka alag ilaaj hai, aur sirf kuch ko dobara aazmane layak hai.</p>
+<p>Agla hissa woh tha jo woh pehle se jaanti thi, ek chetawani bhari kahani ke roop mein. <em><a class="term" href="/book/hi/glossary.html#t-environment-variable" title="code ke bahar, us jagah rakhi ek value jahan program chalta hai, jahan passwords aur API keys ki jagah hai">Environment variable</a></em> code ke bahar, us jagah rakhi value hai jahan program chalta hai. Yahi woh jagah hai jahan passwords aur API keys hoti hain, kabhi code mein nahi aur kabhi shared folder mein nahi. Ek prototype jo key leak karta hai woh vishwasniya engineering ka tukda nahi hai.</p>
+<p><em><a class="term" href="/book/hi/glossary.html#t-git" title="ek tool jo aapke kaam ka har version save karta hai, taaki aap dekh sakein ki kya badla aur kisi bhi pichhle version par wapas ja sakein">Git</a></em> woh tha jiska woh intezaar kar rahi thi, aur usne niraash nahi kiya. Yeh ek tool hai jo aapke kaam ka har version save karta hai, kya badla aur kyun ka ek note ke saath, taaki aap kal aur aaj ke beech ka farak dekh sakein aur kisi bhi par wapas ja sakein. Woh folder jisme yeh sab hai ek <em><a class="term" href="/book/hi/glossary.html#t-repository" title="Git mein rakha woh folder jisme ek project ka saara kaam aur uski history hai">repository</a></em> hai. Usne apne kaam ko record ki notebook kaha tha; yeh wahi idea tha, vishwasniya banaya hua. &quot;Yaaddasht wali time machine,&quot; usne kaha. &quot;Jab kuch toote, toh pehla sawaal hota hai ki kya badla. Git mein tum jawaab de sakte ho.&quot;</p>
+<p>Usne error padhna seekha. Isme das minute lage aur shaayad dopahar ke sabse kaam ke das minute the. Jab koi program zor se fail hota hai, toh woh ek lamba block chhapta hai jise trace kehte hain, aur pravritti ise upar se padhne ki hoti hai, jahan sabse kam kaam ka hissa hai. Asli karan lagbhag hamesha neeche hota hai.</p>
+<pre class="transcript">Traceback (most recent call last):
+  File &quot;guard.py&quot;, line 41, in clean_message
+    order = lookup[&quot;order_id&quot;]
+KeyError: 'order_id'</pre>
+<p>&quot;Aakhri line pehle,&quot; Imran ne kaha. &quot;<em>KeyError, order_id.</em> Program ne ek aisa field maanga jo wahan tha hi nahi. Line ikatalees. Yahi tumhari poori kahani hai.&quot;</p>
+<p>&quot;Par yeh toh zor se nahi tha.&quot;</p>
+<p>&quot;Nahi. Yeh shishta version tha. Asli ne ek aise tareeke se maanga jo field gayab hone par <em>kuch nahi</em> lautata hai, aur aage badh gaya. Humne yahi likha tha.&quot; Usne gardan ke peeche ragda. &quot;Zor wala version ek tohfa hai. Woh tumhein rokta hai.&quot;</p>
+<h2>Ek test jo jaan-boojh kar fail hota hai</h2>
+<p>Usne use aakhri hissa ek khel se sikhaya. Ek chhota test likho: function ko ek aisa order jawaab do jisme <em>order_id</em> ho, aur jaancho ki woh pehchana gaya. Woh paas ho jaata hai. Ab use ek <em>orderId</em> wala jawaab do, aur poochho ki kya hona chahiye.</p>
+<p>&quot;Kya hona chahiye?&quot;</p>
+<p>Usne socha. &quot;Use rukna chahiye. Use kehna chahiye ki order system mein kuch galat hai, number mein nahi.&quot;</p>
+<p>&quot;Toh ise test ke roop mein likho. Pehle ise fail karao, taaki pata ho ki woh ho sakta hai.&quot; Usne use likha, aur chalaya, aur woh ek santusht karne wali laal line ke saath fail hua. Usne code theek kiya ki gayab field ko jaanche aur aage chalne se mana kare, aur phir chalaya. Hara. &quot;Jis test ne kabhi fail nahi kiya, use kabhi kuch jaanchta hua nahi dikhaya gaya.&quot;</p>
+<p>Aur usne ek aakhri baat joda, jo ise maayne deti thi. Guard ne jo bhi message sambhala uska har record ab ek request number, ek samay, code ka version aur status le jaata. &quot;Phir agli baar jab dashboard hara ho aur ek customer likhe, toh hum diagrams nahi banate. Hum search karte hain.&quot;</p>
+<h2>Runner jo yaad rakhta hai</h2>
+<p>Aakhri cheez jo usne use dikhayi woh woh thi jo woh do mahine se bana raha tha aur jo usne kabhi kisi ko dikhayi nahi thi.</p>
+<p>Yeh ek <em><a class="term" href="/book/hi/glossary.html#t-experiment-runner" title="ek dobara istemaal hone wala program jo har experiment ke liye inputs, outputs, settings, samay aur errors record karta hai, taaki ek nateeja dohraya aur tulna kiya ja sake">experiment runner</a></em> tha: ek dobara istemaal hone wala program jo har experiment ke liye inputs, outputs, settings, samay aur errors, sab ek standard roop mein record karta hai. Maqsad ek khaas pul paar karna tha. <em>Maine aazmaya</em> aur <em>maine naapa</em> ke beech ek khayi hai, aur khayi ka zyadatar hissa bookkeeping hai. Ek prompt do baar chalao aur dono runs save karo. Ek cheez badlo. Logs dekho aur turant dekho ki kya badla.</p>
+<p>&quot;Agar main kal ka nateeja dohra nahi sakta, toh mere paas nateeja nahi hai,&quot; usne kaha. &quot;Mere paas ek kissa hai.&quot;</p>
+<p>Anaya ne uski screen par folder dekha. Usme ek README tha. Usme ek list thi ki ise chalane ke liye kya chahiye. Usme May ke baad ke har experiment ka ek log tha. Use pehli raat ki apni notebook ki entry yaad aayi, <em>kuch bhi tab tak nahi ginta jab tak koi aur use jaanch na sake</em>, aur usne samjha ki woh yahi kehna chahti thi, aur ki use nahi pata tha ki ise kaise banayein.</p>
+<h2>Kaafi kaisa dikhta hai</h2>
+<p>Paanch baje usne usse poochha ki usne kya seekha, aur usne use shabdon ki list nahi di. Usne diagram ke peeche woh likha jo ab woh kar paayegi.</p>
+<p><em>Main ek request, ek jawaab aur ek status code padh sakti hoon. Mujhe pata hai ki key kahan jaati hai. Main poochh sakti hoon ki kya badla, aur pata laga sakti hoon. Main error neeche se padhti hoon. Mujhe pata hai ki test ko ek baar fail hona chahiye. Aur jab koi kahe &quot;API fail ho gayi&quot;, toh main poochh sakti hoon ki kis taraf.</em></p>
+<p>Yeh ek chhoti list thi. Yeh kuch nahi nahi thi. Iska matlab tha ki jab ek engineer use ek diagram dikhaye, woh hisson ko pehchaan legi.</p>
+<p>Page ke upar usne woh vaakya joda jo usne shuru mein kaha tha, kyunki wahi tha jo woh rakhna chahti thi. Ek AI system ek software system hai jisme ek anishchit hissa hai. Aam software mein jo kuch bhi galat ja sakta hai woh ab bhi ja sakta hai. Aur ek failure aur, sabse shaant, jo koi error paida nahi karta.</p>
+<aside class="carry"><h2>Saath le jaane layak baatein</h2>
+<p>Ek AI system aam software hai jisme ek anishchit hissa hai, isliye woh sab jo aam software ko tod sakta hai use tod sakta hai, aur engineering ka jokhim interfaces, errors, secrets aur retries mein utna hi hai jitna model mein. Programs requests aur jawaabon ke zariye baat karte hain, aur jawaab par ka status code batata hai ki request galat thi ya doosri taraf fail hui. Keys code ke bahar hoti hain, kaam ek repository mein hota hai jo har badlaav record karti hai, aur error neeche se padha jaata hai. System ka har hissa us data ke baare mein maanyataein rakhta hai jo usse milta hai, aur achha system tab ruk jaata hai jab koi toote, kuch nahi ke saath aage chalne ki jagah. Aur ek runner jo har experiment record karta hai &quot;maine aazmaya&quot; ko &quot;maine naapa&quot; mein badal deta hai, kyunki jo nateeja aap dohra nahi sakte woh sirf ek kissa hai.</p></aside>
+</div>
+<aside class="wordsbox" aria-label="Is chapter ke shabd"><h2>Is chapter ke shabd</h2><p class="sub">Saral matlab, usi kram mein jis kram mein aap inse milenge.</p><dl><div><dt id="w-python">Python</dt><dd>woh programming bhasha jisme zyadatar AI ka kaam likha jaata hai; ek product manager ke liye, yeh theek-theek kehne ka tareeka ki ek experiment kya karta hai</dd></div><div><dt id="w-http">HTTP</dt><dd>niyamon ka woh set jisse programs internet par requests aur jawaab bhejte hain, har jawaab par ek number ke saath jo batata hai ki kaam hua ya nahi</dd></div><div><dt id="w-status-code">status code</dt><dd>ek HTTP jawaab par ka number: 200 matlab kaam hua, 4xx number matlab request galat thi, aur 5xx number matlab server fail hua</dd></div><div><dt id="w-environment-variable">environment variable</dt><dd>code ke bahar, us jagah rakhi ek value jahan program chalta hai, jahan passwords aur API keys ki jagah hai</dd></div><div><dt id="w-git">Git</dt><dd>ek tool jo aapke kaam ka har version save karta hai, taaki aap dekh sakein ki kya badla aur kisi bhi pichhle version par wapas ja sakein</dd></div><div><dt id="w-repository">repository</dt><dd>Git mein rakha woh folder jisme ek project ka saara kaam aur uski history hai</dd></div><div><dt id="w-experiment-runner">experiment runner</dt><dd>ek dobara istemaal hone wala program jo har experiment ke liye inputs, outputs, settings, samay aur errors record karta hai, taaki ek nateeja dohraya aur tulna kiya ja sake</dd></div><div><dt id="w-data-contract">data contract</dt><dd>ek system ka ek hissa jo data usse milta hai uske baare mein jo anakahe maan leta hai, jaise ki ek field maujood hoga aur ek list khaali nahi hogi</dd></div></dl></aside>
+<aside class="inapp"><span class="lead">Yahi ideas, kaam ke saath, course app mein</span><span class="chips"><a href="/#/ch/ch8f">AI kaam ke liye software ki buniyaad: Python, HTTP, Git aur tests<span aria-hidden="true"> →</span></a></span></aside>
+<nav class="pager" aria-label="Pichhla aur agla chapter"><a class="prev" href="/book/hi/32-designing-for-the-wrong-answer.html" rel="prev"><span class="dir">← Pichhla</span><span class="nm"><b>32</b>Galat Jawaab Ke Liye Design</span></a><a class="next" href="/book/hi/34-choosing-a-model-on-your-own-cases.html" rel="next"><span class="dir">Agla →</span><span class="nm"><b>34</b>Apne Cases Par Model Chunna</span></a></nav>
+</article>
+</main>
+</div>
+<script src="/book/reader.js" defer></script>
+</body>
+</html>

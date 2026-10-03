@@ -28,5 +28,17 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/book",
+      "destination": "/book/",
+      "permanent": true
+    },
+    {
+      "source": "/book/hi",
+      "destination": "/book/hi/",
+      "permanent": true
+    }
   ]
 }

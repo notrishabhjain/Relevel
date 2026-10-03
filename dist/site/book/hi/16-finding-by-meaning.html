@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="hi-Latn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Matlab Se Dhoondhna · Chapter 16 · AI From Zero</title>
+<meta name="description" content="Ek bazaar jahan ek hi vyapar ki dukaanein ek hi gali mein hoti hain, ek product manager ko woh tasveer deta hai jo use us idea ke liye chahiye jisne search ko bachaya, aur ek aisa number jis par shak karna chahiye.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="en" href="/book/16-finding-by-meaning.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
+<link rel="stylesheet" href="/book/style.css">
+<script>try{var t=localStorage.getItem('aifz-book-theme');if(t)document.documentElement.setAttribute('data-theme',t);var s=localStorage.getItem('aifz-book-size');if(s)document.documentElement.style.setProperty('--fs',s+'rem')}catch(e){}</script>
+</head>
+<body class="is-chapter" data-lang="hi" data-base="/book/hi/" style="--hue:#6b5ca5">
+<a class="skip" href="#text">Seedhe text par jaaiye</a>
+<div class="progress" id="progress" aria-hidden="true"><i></i></div>
+<header class="bar">
+  <button class="b menu" id="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Vishay-soochi"><span aria-hidden="true">☰</span><span class="lbl">Vishay-soochi</span></button>
+  <a class="brand" href="/book/hi/"><span class="mark">AI From Zero</span><span class="ed">Padhne wala edition (Hinglish)</span></a>
+  <span class="sp"></span>
+  <a class="b lang" href="/book/16-finding-by-meaning.html" hreflang="en" title="Read this in English" data-switch>English</a>
+  <button class="b" id="size-down" type="button" aria-label="Chhota text" title="Chhota text">A−</button>
+  <button class="b" id="size-up" type="button" aria-label="Bada text" title="Bada text">A+</button>
+  <button class="b" id="theme" type="button" aria-label="Rang badliye" title="Rang badliye">◐</button>
+  <a class="b app" href="/" title="Course app kholiye">Course app →</a>
+</header>
+<div class="layout">
+<nav class="toc" id="toc" aria-label="Vishay-soochi">
+<div class="tochead"><label class="find"><span class="sr">Chapter ya shabd dhoondhiye</span><input id="q" type="search" placeholder="Chapter ya shabd dhoondhiye" autocomplete="off"></label></div>
+<ol>
+<li class="top"><a href="/book/hi/"><span class="n dot"></span><span class="t">Vishay-soochi</span></a></li>
+<li data-t="shuru karne se pehle"><a href="/book/hi/preface.html" data-file="preface.html"><span class="n dot"></span><span class="t">Shuru karne se pehle</span></a></li>
+<li class="sec" style="--hue:#b4492a"><span>Woh problem jo hal karne layak hai</span></li>
+<li style="--hue:#b4492a" data-t="chat mein woh number"><a href="/book/hi/01-the-number-in-the-chat.html" data-file="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">Chat Mein Woh Number</span></a></li>
+<li style="--hue:#b4492a" data-t="banane se pehle chaar sawaal"><a href="/book/hi/02-four-questions-before-building.html" data-file="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Banane Se Pehle Chaar Sawaal</span></a></li>
+<li style="--hue:#b4492a" data-t="kal ke baare mein poochhna"><a href="/book/hi/03-asking-about-yesterday.html" data-file="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Kal Ke Baare Mein Poochhna</span></a></li>
+<li style="--hue:#b4492a" data-t="yahan aur kaun khada hai"><a href="/book/hi/04-who-else-is-standing-here.html" data-file="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Yahan Aur Kaun Khada Hai</span></a></li>
+<li style="--hue:#b4492a" data-t="kya nahi karna hai, yeh chunna"><a href="/book/hi/05-choosing-what-not-to-do.html" data-file="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Kya Nahi Karna Hai, Yeh Chunna</span></a></li>
+<li style="--hue:#b4492a" data-t="aisa plan jis par doosre bharosa karein"><a href="/book/hi/06-a-plan-others-can-believe.html" data-file="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">Aisa Plan Jis Par Doosre Bharosa Karein</span></a></li>
+<li style="--hue:#b4492a" data-t="likh kar rakhna taaki doosre bana sakein"><a href="/book/hi/07-writing-it-down.html" data-file="07-writing-it-down.html"><span class="n">7</span><span class="t">Likh Kar Rakhna Taaki Doosre Bana Sakein</span></a></li>
+<li class="sec" style="--hue:#2f6f73"><span>Machine se mulaqaat</span></li>
+<li style="--hue:#2f6f73" data-t="machine asal mein kya hai"><a href="/book/hi/08-what-the-machine-is.html" data-file="08-what-the-machine-is.html"><span class="n">8</span><span class="t">Machine Asal Mein Kya Hai</span></a></li>
+<li style="--hue:#2f6f73" data-t="pehli baatcheet"><a href="/book/hi/09-the-first-conversation.html" data-file="09-the-first-conversation.html"><span class="n">9</span><span class="t">Pehli Baatcheet</span></a></li>
+<li style="--hue:#2f6f73" data-t="ek dimaag jise kuch yaad nahi rehta"><a href="/book/hi/10-a-mind-with-no-memory.html" data-file="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">Ek Dimaag Jise Kuch Yaad Nahi Rehta</span></a></li>
+<li style="--hue:#2f6f73" data-t="nirdesh dena"><a href="/book/hi/11-giving-instructions.html" data-file="11-giving-instructions.html"><span class="n">11</span><span class="t">Nirdesh Dena</span></a></li>
+<li style="--hue:#2f6f73" data-t="kaise pata chale ki yeh kaam karta hai"><a href="/book/hi/12-knowing-whether-it-works.html" data-file="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Kaise Pata Chale Ki Yeh Kaam Karta Hai</span></a></li>
+<li style="--hue:#2f6f73" data-t="chhaantna aur saar likhna"><a href="/book/hi/13-sorting-and-summarising.html" data-file="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Chhaantna Aur Saar Likhna</span></a></li>
+<li class="sec" style="--hue:#6b5ca5"><span>Cheezein dhoondhna, aur poori machine</span></li>
+<li style="--hue:#6b5ca5" data-t="ek baar mein padhne ke liye bahut lamba"><a href="/book/hi/14-too-long-to-read-at-once.html" data-file="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Ek Baar Mein Padhne Ke Liye Bahut Lamba</span></a></li>
+<li style="--hue:#6b5ca5" data-t="shabdon se dhoondhna"><a href="/book/hi/15-finding-by-words.html" data-file="15-finding-by-words.html"><span class="n">15</span><span class="t">Shabdon Se Dhoondhna</span></a></li>
+<li style="--hue:#6b5ca5" class="here" data-t="matlab se dhoondhna"><a href="/book/hi/16-finding-by-meaning.html" aria-current="page" data-file="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Matlab Se Dhoondhna</span></a></li>
+<li style="--hue:#6b5ca5" data-t="kitna achha, achha hota hai"><a href="/book/hi/17-how-good-is-good.html" data-file="17-how-good-is-good.html"><span class="n">17</span><span class="t">Kitna Achha, Achha Hota Hai</span></a></li>
+<li style="--hue:#6b5ca5" data-t="poori machine"><a href="/book/hi/18-the-whole-machine.html" data-file="18-the-whole-machine.html"><span class="n">18</span><span class="t">Poori Machine</span></a></li>
+<li style="--hue:#6b5ca5" data-t="aise jawaab jo program istemaal kar sake"><a href="/book/hi/19-answers-a-program-can-use.html" data-file="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Aise Jawaab Jo Program Istemaal Kar Sake</span></a></li>
+<li class="sec" style="--hue:#9a7b1f"><span>Machine ko kaam dena</span></li>
+<li style="--hue:#9a7b1f" data-t="machine ko haath dena"><a href="/book/hi/20-giving-the-machine-hands.html" data-file="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Machine Ko Haath Dena</span></a></li>
+<li style="--hue:#9a7b1f" data-t="lambi windows, saavdhaan kamre"><a href="/book/hi/21-long-windows-careful-rooms.html" data-file="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Lambi Windows, Saavdhaan Kamre</span></a></li>
+<li style="--hue:#9a7b1f" data-t="pehle sochne wali machines"><a href="/book/hi/22-machines-that-think-first.html" data-file="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Pehle Sochne Wali Machines</span></a></li>
+<li style="--hue:#9a7b1f" data-t="behtar search"><a href="/book/hi/23-searching-better.html" data-file="23-searching-better.html"><span class="n">23</span><span class="t">Behtar Search</span></a></li>
+<li style="--hue:#9a7b1f" data-t="jab page hukm dene lagta hai"><a href="/book/hi/24-when-the-page-gives-orders.html" data-file="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">Jab Page Hukm Dene Lagta Hai</span></a></li>
+<li style="--hue:#9a7b1f" data-t="hazaar jawaabon ki grading"><a href="/book/hi/25-grading-a-thousand-answers.html" data-file="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Hazaar Jawaabon Ki Grading</span></a></li>
+<li style="--hue:#9a7b1f" data-t="asal mein kitna kharcha hota hai"><a href="/book/hi/26-what-it-really-costs.html" data-file="26-what-it-really-costs.html"><span class="n">26</span><span class="t">Asal Mein Kitna Kharcha Hota Hai</span></a></li>
+<li class="sec" style="--hue:#3f7a4a"><span>Asli duniya ki uljhanein</span></li>
+<li style="--hue:#3f7a4a" data-t="kaagaz, photos aur scans"><a href="/book/hi/27-paper-photos-and-scans.html" data-file="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Kaagaz, Photos Aur Scans</span></a></li>
+<li style="--hue:#3f7a4a" data-t="aap kya bhej sakte hain"><a href="/book/hi/28-what-you-may-send.html" data-file="28-what-you-may-send.html"><span class="n">28</span><span class="t">Aap Kya Bhej Sakte Hain</span></a></li>
+<li style="--hue:#3f7a4a" data-t="niyam, risk aur zimmedaari"><a href="/book/hi/29-rules-risk-and-responsibility.html" data-file="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Niyam, Risk Aur Zimmedaari</span></a></li>
+<li style="--hue:#3f7a4a" data-t="badalti rehne wali cheez ki spec"><a href="/book/hi/30-the-spec-for-a-thing-that-varies.html" data-file="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">Badalti Rehne Wali Cheez Ki Spec</span></a></li>
+<li style="--hue:#3f7a4a" data-t="banao, kharido ya sikhao"><a href="/book/hi/31-build-buy-or-teach-it.html" data-file="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Banao, Kharido Ya Sikhao</span></a></li>
+<li style="--hue:#3f7a4a" data-t="galat jawaab ke liye design"><a href="/book/hi/32-designing-for-the-wrong-answer.html" data-file="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Galat Jawaab Ke Liye Design</span></a></li>
+<li class="sec" style="--hue:#a2455e"><span>Bonnet ke neeche</span></li>
+<li style="--hue:#a2455e" data-t="jaadu ke neeche ki plumbing"><a href="/book/hi/33-the-plumbing-under-the-magic.html" data-file="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">Jaadu Ke Neeche Ki Plumbing</span></a></li>
+<li style="--hue:#a2455e" data-t="apne cases par model chunna"><a href="/book/hi/34-choosing-a-model-on-your-own-cases.html" data-file="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Apne Cases Par Model Chunna</span></a></li>
+<li style="--hue:#a2455e" data-t="review mein tikne wala retrieval"><a href="/book/hi/35-retrieval-that-survives-a-review.html" data-file="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Review Mein Tikne Wala Retrieval</span></a></li>
+<li style="--hue:#a2455e" data-t="workflows, agents aur standard plug"><a href="/book/hi/36-workflows-agents-and-the-standard-plug.html" data-file="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents Aur Standard Plug</span></a></li>
+<li style="--hue:#a2455e" data-t="pages, tasveerein aur awaazein"><a href="/book/hi/37-pages-pictures-and-voices.html" data-file="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Tasveerein Aur Awaazein</span></a></li>
+<li style="--hue:#a2455e" data-t="gates, traces aur rollbacks"><a href="/book/hi/38-gates-traces-and-rollbacks.html" data-file="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces Aur Rollbacks</span></a></li>
+<li style="--hue:#a2455e" data-t="sabse bure ko maan kar chalna"><a href="/book/hi/39-assuming-the-worst.html" data-file="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Sabse Bure Ko Maan Kar Chalna</span></a></li>
+<li class="sec" style="--hue:#2d5d8f"><span>Ek asli product, aur ek naukri</span></li>
+<li style="--hue:#2d5d8f" data-t="product, demo nahi"><a href="/book/hi/40-a-product-not-a-demo.html" data-file="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">Product, Demo Nahi</span></a></li>
+<li style="--hue:#2d5d8f" data-t="poori cheez ko ship karna"><a href="/book/hi/41-shipping-the-whole-thing.html" data-file="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Poori Cheez Ko Ship Karna</span></a></li>
+<li style="--hue:#2d5d8f" data-t="paisa kaun deta hai, aur kitna"><a href="/book/hi/42-who-pays-and-how-much.html" data-file="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Paisa Kaun Deta Hai, Aur Kitna</span></a></li>
+<li style="--hue:#2d5d8f" data-t="log ise kaise dhoondhte hain aur kyun rukte hain"><a href="/book/hi/43-how-people-find-it-and-stay.html" data-file="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">Log Ise Kaise Dhoondhte Hain Aur Kyun Rukte Hain</span></a></li>
+<li style="--hue:#2d5d8f" data-t="jo maayne rakhta hai use ginna"><a href="/book/hi/44-counting-what-matters.html" data-file="44-counting-what-matters.html"><span class="n">44</span><span class="t">Jo Maayne Rakhta Hai Use Ginna</span></a></li>
+<li style="--hue:#2d5d8f" data-t="tools aur harness"><a href="/book/hi/45-tools-and-harness.html" data-file="45-tools-and-harness.html"><span class="n">45</span><span class="t">Tools Aur Harness</span></a></li>
+<li style="--hue:#2d5d8f" data-t="asli log, asli istemaal"><a href="/book/hi/46-real-people-real-use.html" data-file="46-real-people-real-use.html"><span class="n">46</span><span class="t">Asli Log, Asli Istemaal</span></a></li>
+<li style="--hue:#2d5d8f" data-t="kaam, aur naukri"><a href="/book/hi/47-the-job.html" data-file="47-the-job.html"><span class="n">47</span><span class="t">Kaam, Aur Naukri</span></a></li>
+<li data-t="kitaab ke baad"><a href="/book/hi/afterword.html" data-file="afterword.html"><span class="n dot"></span><span class="t">Kitaab Ke Baad</span></a></li>
+<li data-t="shabd, saral bhasha mein"><a href="/book/hi/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Shabd, saral bhasha mein</span></a></li>
+</ol>
+<p class="nomatch" hidden>Kuch nahi mila.</p>
+</nav>
+<div class="scrim" id="scrim" hidden></div>
+<main id="text">
+<article class="chapter" data-file="16-finding-by-meaning.html" data-title="Matlab Se Dhoondhna" data-n="16">
+<header class="chead">
+<p class="eyebrow"><span class="num">16</span><span>Chapter 16 <i>·</i> Cheezein dhoondhna, aur poori machine</span></p>
+<h1>Matlab Se Dhoondhna</h1><p class="dek">Ek bazaar jahan ek hi vyapar ki dukaanein ek hi gali mein hoti hain, ek product manager ko woh tasveer deta hai jo use us idea ke liye chahiye jisne search ko bachaya, aur ek aisa number jis par shak karna chahiye.</p>
+<p class="meta"><span>8 min padhai</span><span>2 naye shabd</span></p>
+</header>
+<div class="prose">
+<p>Pune ke purane hisse mein ek gali hai jahan har dukaan peetal bechti hai.</p>
+<p>Woh main sadak ke peeche se jaati hai, itni sankri ki delivery cart ko ruk kar scooter se maafi maangni padti hai, aur ek chhor se doosre tak diye, ghantiyan, bartan, steel ki thaliyan aur chhoti murtiyan hain, aisi dukaanon mein jo ek jaisi dikhti hain aur alag hain. Thoda aage kapde ki gali hai. Uske aage sookhe mewe ki gali. Jo naya aane wala koi khaas diya chahta hai use dukaan ka naam jaanne ki zaroorat nahi. Use bas yeh jaanna hai ki kaun si gali mein jaana hai, aur gali mein woh milega jo woh dhoondh rahi hai, aur uske qareebi rishtedaar bhi.</p>
+<p>Imran ka janm wahan se das minute ki doori par hua tha, aur usne use, bina sharmaye, samjhane ke liye istemaal kiya ki aage kya aane wala hai.</p>
+<h2>Ek naqsha jahan paas hona matlab hai</h2>
+<p>&quot;Kalpana karo ki bazaar ek naqsha hai,&quot; usne kaha. &quot;Dukaanon ka nahi, matlabon ka. Duniya ke har vaakya ki us par ek jagah hai. Milte-julte matlab wale vaakya ek hi gali mein khade hote hain. <em>Mera paisa kab wapas milega</em> aur <em>manzoor dawon ki pratipoorti</em> padosi hain, chahe unme ek bhi shabd saajha na ho. <em>Peru ki rajdhani kya hai</em> bahut lambi paidal doori par hai.&quot;</p>
+<p>Anaya ne Farah ke bees cards ke baare mein socha, jo Monday se mez par pade the, har ek ko is baat ka pata nahi tha ki woh kisi cheez ke baare mein hai.</p>
+<p>&quot;Naqsha banata kaun hai?&quot;</p>
+<p>&quot;Ek machine. Bada wala nahi. Ek alag, chhota model, sirf isi ke liye bana.&quot; Usne page par thapki di. &quot;Tum use text ka ek tukda dete ho. Woh numbers ki ek lambi list wapas deta hai, jo naqshe par us text ke coordinates hain. Us list ko <em><a class="term" href="/book/hi/glossary.html#t-embedding" title="numbers ki ek lambi list jo text ke ek tukde ko matlabon ke naqshe par ek jagah deti hai, taaki milte-julte matlab wale texts ko milte-julte numbers milein chahe unme koi shabd saajha na ho">embedding</a></em> kehte hain. Poori chaal bas yahi hai. Machine ko tumhara sawaal samajhne ki zaroorat nahi. Use bas use ek jagah par rakhna hai.&quot;</p>
+<p>Jab har card ko ek jagah mil jaaye, toh kaam ke cards dhoondhna spelling ka maamla nahi rehta, doori ka ho jaata hai. Customer ke sawaal ko naqshe par rakho, uske sabse qareeb khade cards dhoondho, aur woh bhejo.</p>
+<h2>Wahi bees cards</h2>
+<p>Usne yeh pehle hi kar liya tha. Usne saare bees cards machine se ek baar guzaare the, aur coordinates ek chhoti file mein rakh liye the, aur ab usne woh sawaal type kiya jisne Monday ko Anaya ko haraya tha.</p>
+<p><em>Paisa kab milega?</em></p>
+<p>Sawaal usi naqshe se guzra. Woh, jaisa aise sawaal karte hain, intezaar, paisa aur wapsi ke mohalle mein utra. Ek second baad screen ne teen sabse qareeb cards ki list di. Sabse upar card saat tha, woh jo saat kaam ke dinon mein refund process hone ke baare mein tha. Uske bagal mein ek number tha.</p>
+<p><em>0.71.</em></p>
+<p>&quot;Yeh <a class="term" href="/book/hi/glossary.html#t-similarity-score" title="lagbhag 0 se 1 ke beech ek number jo batata hai ki do embeddings kitne qareeb hain; iska kuch matlab tab tak nahi jab tak aap jaanein na ki saaf achhe aur saaf bure matches kitna score karte hain">similarity score</a> hai,&quot; Imran ne kaha. &quot;Sawaal us card ke kitna qareeb hai. Yeh, lagbhag, shoonya se ek tak chalta hai. Ek ke paas ka matlab matlab mein lagbhag ek jaisa. Shoonya ke paas ka matlab asambandhit.&quot;</p>
+<p>&quot;Ikhattar. Yeh achha hai.&quot;</p>
+<p>&quot;Hai kya?&quot; Woh khush lagta tha ki usne poochha. &quot;Bina yeh poochhe ki ek bura match kitna score karta hai, mujhe nahi pata.&quot;</p>
+<p>Usne wahi sawaal late payments par byaaj wale card se milaya, jo saaf-saaf asambandhit tha. <em>0.38.</em> Registered mobile number badalne wale card se: <em>0.31.</em> Aise card se jo sirf company ka pata batata tha: <em>0.12.</em></p>
+<p>&quot;Toh asli text shaayad hi kabhi lagbhag ek-dahaai se neeche score karta hai,&quot; usne kaha. &quot;Aur kaam ki range sankri hai. Ikyaavan ka matlab <em>aadha milta-julta</em> nahi hai. Is system mein ikyaavan range ke neeche ke paas hai. Similarity number ka kuch matlab tab tak nahi jab tak aap na jaanein ki saaf achhe matches kitna score karte hain aur saaf bure kitna. Main kisi ka bharosa nahi karunga jo mujhe ek akela number bataye.&quot;</p>
+<h2>Cheezein jo naqsha buri tarah karta hai</h2>
+<p>Anaya ko ek <em>lekin</em> ki umeed hone lagi thi, aur woh aaya jaise hamesha aata hai, bina jaldi ke.</p>
+<p>&quot;Naqsha utna hi achha hai jitna us text se jo machine ne seekha. Zyadatar woh internet ka English text tha. Agar tumhare shabd usme durlabh the, toh woh unhe ajeeb jagahon par rakhta hai. Do cheezein jo tumhare users alag dekhte hain padosi ban sakti hain. Do jo woh ek jaisi dekhte hain door ho sakti hain.&quot;</p>
+<p>Usne use Sahaj ke customers ke shabdon ke baare mein sochne ko kaha. <em>Lakh</em> aur <em>crore.</em> NEFT aur IMPS, transfer ke do kism jinhe aam insaan ek maan leta hai aur accountant kabhi nahi. Sarkari yojanaon ke naam, jo ek shabd se alag ho sakte hain aur alag rakam ka matlab. English akshron mein likhi Hindi, jaise <em>paisa kab milega</em>, jisse machine kam mili thi, <em>when will I be refunded</em> ke muqable. Aur Sahaj ke apne internal naam: do product codenames jinka building ke logon ke liye bahut alag matlab tha aur machine ke liye kuch nahi, jo unhe unki spelling ke hisaab se rakh deta.</p>
+<p>&quot;Failures ko naam do usse pehle ki koi user tumhare liye dhoondh de,&quot; Imran ne kaha.</p>
+<p>Naqshe ke istemaal ke baare mein ek doosri, bareek baat kehni thi. Sawaal chhota hota hai aur sawaal ki tarah likha hota hai. Jo passage use jawaab deta hai woh lamba hota hai aur bayaan ki tarah likha hota hai. Achhe embedding models ko yeh dhyaan mein rakh kar train kiya jaata hai aur unse umeed ki jaati hai ki unhe bataya jaaye ki woh kise dekh rahe hain. Agar aap yeh galat karte hain, toh kuch tootta nahi. Nateeje bas aise tareeke se kharab hote hain jiska koi error message zikr nahi karta.</p>
+<h2>Naqshe par guard</h2>
+<p>Isi baatcheet ke dauran Anaya ne dekha ki naqsha guard ke us hisse ki kaise madad kar sakta hai jise woh nijee taur par mushkil wala kehti thi.</p>
+<p>Usne apni khud ki spreadsheet mein das vaakya likhe the. Paanch aise the jo bina ek bhi number ya naam ke ek insaan ko pehchaan dete hain. <em>Main apne gaon ka akela diabetic patient hoon jiska pichhle saal transplant hua. Main Wadgaon ka sarpanch hoon aur saath mein fair-price shop bhi chalata hoon. Mera beta hamari chawl ka akela ladka hai jiska is saal IIT Bombay mein hua.</em> Paanch nirdosh the: <em>Mere driving licence ko renew karne ke liye mujhe kaun se documents chahiye?</em> aur aise hi doosre.</p>
+<p>Usne naqshe se saare das ko rakhwaya, phir naapa ki har ek pehle se kitna qareeb khada hai.</p>
+<div class="tblwrap"><table><thead><tr><th>Vaakya</th><th>Kya ek insaan ko pehchaanta hai?</th><th>Pehle ke khilaaf score</th></tr></thead><tbody><tr><td>Sarpanch jo dukaan bhi chalata hai</td><td>Haan</td><td>0.74</td></tr><tr><td>Chawl ka akela ladka jo IIT mein hua</td><td>Haan</td><td>0.66</td></tr><tr><td>Ek mahila jo apne taluka ki akeli vet hai</td><td>Haan</td><td>0.54</td></tr><tr><td>Mere driving licence ko renew karne ke liye mujhe kaun se documents chahiye?</td><td>Nahi</td><td>0.41</td></tr><tr><td>Ration order par cash-on-delivery ka ek sawaal</td><td>Nahi</td><td>0.58</td></tr><tr><td>School fee refund ki ek shikayat</td><td>Nahi</td><td>0.55</td></tr></tbody></table></div>
+<p>Usne use dekha. Sabse zyada score karne wala nirdosh vaakya, 0.58, pehle ke un pehchaanne wale vaakyon mein se ek, 0.54, se zyada qareeb khada tha. Aisa threshold jo teeno pehchaanne wale vaakyon ko pakadta, woh do nirdosh ko bhi pakad leta.</p>
+<p>&quot;Yeh unhe topic ke hisaab se group kar raha hai,&quot; usne kaha. &quot;Pehla vaakya ek gaon, ek insaan, aur ek aspatal ke baare mein hai. Naqsha padosiyon ko ek hi gali mein rakhta hai. Gaon mein ration order ke baare mein ek vaakya iske paas utarta hai, kyunki woh ek gaon ke baare mein hai. Lekin vaakya ek insaan ko pehchaanta hai ya nahi yeh topic ka sawaal nahi hai.&quot;</p>
+<p>&quot;Nahi,&quot; Imran ne kaha. &quot;Woh ek alag cheez hai. Paas hona risk nahi hai.&quot;</p>
+<p>Use haar ka ehsaas nahi hua. Agar kuch hua toh woh aur exact mehsoos karne lagi. Naqsha un cheezein dhoondhne ka achha tool tha jinka matlab sawaal ke matlab jaisa hai. Isse yeh nahi nikalta tha ki woh <em>ek insaan ki taraf ishaara karta hai</em> jaisi koi gunvatta pakad sakta hai. Uske liye use kuch aur chahiye hoga, ya kam se kam kuch jodna padega, aur use abhi nahi pata tha ki kya.</p>
+<p>Phir bhi use pata tha ki is finding ka kya karna hai. Usne ise board par laal line ke neeche likha, us table ki doosri row ke roop mein jo usne us hafte shuru ki thi: jahan niyam-aadharit tareeka jeetta hai, aur jahan matlab-aadharit tareeka jeetta hai, aur jo dono nahi kar sakte.</p>
+<h2>Jo naqsha nahi keh sakta</h2>
+<p>Ek cheez thi jo naqsha saade tareeke ke saath saajha karta tha. Ise aisa sawaal poochho jiska kisi card ne jawaab nahi diya, aur woh phir bhi sabse qareeb card lauta deta tha, ek score ke saath, aur score kam hota tha par shoonya nahi. System mein kuch nahi kehta tha ki <em>yahan kisi ko nahi pata</em>. Sabse kam bura card phir bhi machine ko saboot ki tarah thama diya jaata.</p>
+<p>&quot;Toh Monday wali baat ab bhi sach hai,&quot; Anaya ne kaha.</p>
+<p>&quot;Hai,&quot; Imran ne kaha. &quot;Aur ab jab hum cheezein shabdon ke saath-saath matlab se bhi dhoondh sakte hain, toh hum aakhirkaar pata kar sakte hain ki hum kitni baar galat hote hain. Agla kaam yahi hai. Aur yeh zyada zaroori hai.&quot;</p>
+<aside class="carry"><h2>Saath le jaane layak baatein</h2>
+<p>Embedding text ke ek tukde ko matlabon ke naqshe par numbers ki ek lambi list ke roop mein ek jagah deta hai, taaki milte-julte matlab wale texts paas-paas khade hon chahe unme koi shabd saajha na ho. Sahi tukde dhoondhna doori ka maamla ban jaata hai, aur doori similarity score ke roop mein batayi jaati hai, jo tab tak arthheen hai jab tak aap na jaanein ki saaf achhe aur saaf bure matches kitna score karte hain. Naqsha utna hi achha hai jitne text se usne seekha, isliye woh sthaaniya shabdavali ko buri tarah rakh sakta hai. Naqshe par paas hona matlab ke baare mein hai, har us gunvatta ke baare mein nahi jo vaakya mein ho sakti hai, aur jo tareeka ek hi topic ke vaakya dhoondhta hai woh zaroori nahi ki unhe dhoondhe jo ek insaan ko pehchaante hain.</p></aside>
+</div>
+<aside class="wordsbox" aria-label="Is chapter ke shabd"><h2>Is chapter ke shabd</h2><p class="sub">Saral matlab, usi kram mein jis kram mein aap inse milenge.</p><dl><div><dt id="w-embedding">embedding</dt><dd>numbers ki ek lambi list jo text ke ek tukde ko matlabon ke naqshe par ek jagah deti hai, taaki milte-julte matlab wale texts ko milte-julte numbers milein chahe unme koi shabd saajha na ho</dd></div><div><dt id="w-similarity-score">similarity score</dt><dd>lagbhag 0 se 1 ke beech ek number jo batata hai ki do embeddings kitne qareeb hain; iska kuch matlab tab tak nahi jab tak aap jaanein na ki saaf achhe aur saaf bure matches kitna score karte hain</dd></div></dl></aside>
+<aside class="inapp"><span class="lead">Yahi ideas, kaam ke saath, course app mein</span><span class="chips"><a href="/#/ch/ch5">Embeddings: matlab se search karna<span aria-hidden="true"> →</span></a></span></aside>
+<nav class="pager" aria-label="Pichhla aur agla chapter"><a class="prev" href="/book/hi/15-finding-by-words.html" rel="prev"><span class="dir">← Pichhla</span><span class="nm"><b>15</b>Shabdon Se Dhoondhna</span></a><a class="next" href="/book/hi/17-how-good-is-good.html" rel="next"><span class="dir">Agla →</span><span class="nm"><b>17</b>Kitna Achha, Achha Hota Hai</span></a></nav>
+</article>
+</main>
+</div>
+<script src="/book/reader.js" defer></script>
+</body>
+</html>

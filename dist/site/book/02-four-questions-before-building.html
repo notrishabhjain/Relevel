@@ -6,81 +6,102 @@
 <title>Four Questions Before Building · Chapter 2 · AI From Zero</title>
 <meta name="description" content="An engineer asks the question every idea should survive, and a feature nobody noticed teaches the team where products really fail.">
 <meta name="color-scheme" content="light dark">
-<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="hi-Latn" href="/book/hi/02-four-questions-before-building.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
+<link rel="stylesheet" href="/book/style.css">
 <script>try{var t=localStorage.getItem('aifz-book-theme');if(t)document.documentElement.setAttribute('data-theme',t);var s=localStorage.getItem('aifz-book-size');if(s)document.documentElement.style.setProperty('--fs',s+'rem')}catch(e){}</script>
 </head>
-<body class="is-chapter">
+<body class="is-chapter" data-lang="en" data-base="/book/" style="--hue:#b4492a">
 <a class="skip" href="#text">Skip to the text</a>
 <div class="progress" id="progress" aria-hidden="true"><i></i></div>
 <header class="bar">
-  <a class="brand" href="index.html"><span class="mark">AI From Zero</span><span class="ed">The reading edition</span></a>
+  <button class="b menu" id="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Contents"><span aria-hidden="true">☰</span><span class="lbl">Contents</span></button>
+  <a class="brand" href="/book/"><span class="mark">AI From Zero</span><span class="ed">The reading edition</span></a>
   <span class="sp"></span>
+  <a class="b lang" href="/book/hi/02-four-questions-before-building.html" hreflang="hi-Latn" title="Read this in Hinglish" data-switch>Hinglish</a>
   <button class="b" id="size-down" type="button" aria-label="Smaller text" title="Smaller text">A−</button>
   <button class="b" id="size-up" type="button" aria-label="Larger text" title="Larger text">A+</button>
   <button class="b" id="theme" type="button" aria-label="Change colours" title="Change colours">◐</button>
-  <a class="b app" href="../" title="Open the course app">The course app →</a>
+  <a class="b app" href="/" title="Open the course app">Course app →</a>
 </header>
 <div class="layout">
-<nav class="toc" aria-label="Contents"><details id="toc"><summary>Contents</summary><ol>
-<li><a href="index.html"><span class="t">Contents</span></a></li>
-<li><a href="preface.html"><span class="t">Before You Begin</span></a></li>
-<li><a href="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">The Number in the Chat</span></a></li>
-<li class="here"><a href="02-four-questions-before-building.html" aria-current="page"><span class="n">2</span><span class="t">Four Questions Before Building</span></a></li>
-<li><a href="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Asking About Yesterday</span></a></li>
-<li><a href="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Who Else Is Standing Here</span></a></li>
-<li><a href="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Choosing What Not to Do</span></a></li>
-<li><a href="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">A Plan Others Can Believe</span></a></li>
-<li><a href="07-writing-it-down.html"><span class="n">7</span><span class="t">Writing It Down So Others Can Build It</span></a></li>
-<li><a href="08-what-the-machine-is.html"><span class="n">8</span><span class="t">What the Machine Is</span></a></li>
-<li><a href="09-the-first-conversation.html"><span class="n">9</span><span class="t">The First Conversation</span></a></li>
-<li><a href="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">A Mind With No Memory</span></a></li>
-<li><a href="11-giving-instructions.html"><span class="n">11</span><span class="t">Giving Instructions</span></a></li>
-<li><a href="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Knowing Whether It Works</span></a></li>
-<li><a href="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Sorting and Summarising</span></a></li>
-<li><a href="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Too Long to Read at Once</span></a></li>
-<li><a href="15-finding-by-words.html"><span class="n">15</span><span class="t">Finding by Words</span></a></li>
-<li><a href="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Finding by Meaning</span></a></li>
-<li><a href="17-how-good-is-good.html"><span class="n">17</span><span class="t">How Good Is Good</span></a></li>
-<li><a href="18-the-whole-machine.html"><span class="n">18</span><span class="t">The Whole Machine</span></a></li>
-<li><a href="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Answers a Program Can Use</span></a></li>
-<li><a href="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Giving the Machine Hands</span></a></li>
-<li><a href="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Long Windows, Careful Rooms</span></a></li>
-<li><a href="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Machines That Think First</span></a></li>
-<li><a href="23-searching-better.html"><span class="n">23</span><span class="t">Searching Better</span></a></li>
-<li><a href="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">When the Page Gives Orders</span></a></li>
-<li><a href="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Grading a Thousand Answers</span></a></li>
-<li><a href="26-what-it-really-costs.html"><span class="n">26</span><span class="t">What It Really Costs</span></a></li>
-<li><a href="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Paper, Photos and Scans</span></a></li>
-<li><a href="28-what-you-may-send.html"><span class="n">28</span><span class="t">What You May Send</span></a></li>
-<li><a href="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Rules, Risk and Responsibility</span></a></li>
-<li><a href="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">The Spec for a Thing That Varies</span></a></li>
-<li><a href="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Build, Buy or Teach It</span></a></li>
-<li><a href="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Designing for the Wrong Answer</span></a></li>
-<li><a href="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">The Plumbing Under the Magic</span></a></li>
-<li><a href="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Choosing a Model on Your Own Cases</span></a></li>
-<li><a href="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Retrieval That Survives a Review</span></a></li>
-<li><a href="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents and the Standard Plug</span></a></li>
-<li><a href="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Pictures and Voices</span></a></li>
-<li><a href="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces and Rollbacks</span></a></li>
-<li><a href="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Assuming the Worst</span></a></li>
-<li><a href="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">A Product, Not a Demo</span></a></li>
-<li><a href="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Shipping the Whole Thing</span></a></li>
-<li><a href="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Who Pays, and How Much</span></a></li>
-<li><a href="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">How People Find It and Stay</span></a></li>
-<li><a href="44-counting-what-matters.html"><span class="n">44</span><span class="t">Counting What Matters</span></a></li>
-<li><a href="45-tools-and-harness.html"><span class="n">45</span><span class="t">The Tools and the Harness</span></a></li>
-<li><a href="46-real-people-real-use.html"><span class="n">46</span><span class="t">Real People, Real Use</span></a></li>
-<li><a href="47-the-job.html"><span class="n">47</span><span class="t">The Work, and the Job</span></a></li>
-<li><a href="afterword.html"><span class="t">After the Book</span></a></li>
-<li><a href="glossary.html"><span class="t">Words, in plain language</span></a></li>
-</ol></details></nav>
+<nav class="toc" id="toc" aria-label="Contents">
+<div class="tochead"><label class="find"><span class="sr">Find a chapter or a word</span><input id="q" type="search" placeholder="Find a chapter or a word" autocomplete="off"></label></div>
+<ol>
+<li class="top"><a href="/book/"><span class="n dot"></span><span class="t">Contents</span></a></li>
+<li data-t="before you begin"><a href="/book/preface.html" data-file="preface.html"><span class="n dot"></span><span class="t">Before You Begin</span></a></li>
+<li class="sec" style="--hue:#b4492a"><span>The problem worth solving</span></li>
+<li style="--hue:#b4492a" data-t="the number in the chat"><a href="/book/01-the-number-in-the-chat.html" data-file="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">The Number in the Chat</span></a></li>
+<li style="--hue:#b4492a" class="here" data-t="four questions before building"><a href="/book/02-four-questions-before-building.html" aria-current="page" data-file="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Four Questions Before Building</span></a></li>
+<li style="--hue:#b4492a" data-t="asking about yesterday"><a href="/book/03-asking-about-yesterday.html" data-file="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Asking About Yesterday</span></a></li>
+<li style="--hue:#b4492a" data-t="who else is standing here"><a href="/book/04-who-else-is-standing-here.html" data-file="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Who Else Is Standing Here</span></a></li>
+<li style="--hue:#b4492a" data-t="choosing what not to do"><a href="/book/05-choosing-what-not-to-do.html" data-file="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Choosing What Not to Do</span></a></li>
+<li style="--hue:#b4492a" data-t="a plan others can believe"><a href="/book/06-a-plan-others-can-believe.html" data-file="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">A Plan Others Can Believe</span></a></li>
+<li style="--hue:#b4492a" data-t="writing it down so others can build it"><a href="/book/07-writing-it-down.html" data-file="07-writing-it-down.html"><span class="n">7</span><span class="t">Writing It Down So Others Can Build It</span></a></li>
+<li class="sec" style="--hue:#2f6f73"><span>Meeting the machine</span></li>
+<li style="--hue:#2f6f73" data-t="what the machine is"><a href="/book/08-what-the-machine-is.html" data-file="08-what-the-machine-is.html"><span class="n">8</span><span class="t">What the Machine Is</span></a></li>
+<li style="--hue:#2f6f73" data-t="the first conversation"><a href="/book/09-the-first-conversation.html" data-file="09-the-first-conversation.html"><span class="n">9</span><span class="t">The First Conversation</span></a></li>
+<li style="--hue:#2f6f73" data-t="a mind with no memory"><a href="/book/10-a-mind-with-no-memory.html" data-file="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">A Mind With No Memory</span></a></li>
+<li style="--hue:#2f6f73" data-t="giving instructions"><a href="/book/11-giving-instructions.html" data-file="11-giving-instructions.html"><span class="n">11</span><span class="t">Giving Instructions</span></a></li>
+<li style="--hue:#2f6f73" data-t="knowing whether it works"><a href="/book/12-knowing-whether-it-works.html" data-file="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Knowing Whether It Works</span></a></li>
+<li style="--hue:#2f6f73" data-t="sorting and summarising"><a href="/book/13-sorting-and-summarising.html" data-file="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Sorting and Summarising</span></a></li>
+<li class="sec" style="--hue:#6b5ca5"><span>Finding things, and the whole machine</span></li>
+<li style="--hue:#6b5ca5" data-t="too long to read at once"><a href="/book/14-too-long-to-read-at-once.html" data-file="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Too Long to Read at Once</span></a></li>
+<li style="--hue:#6b5ca5" data-t="finding by words"><a href="/book/15-finding-by-words.html" data-file="15-finding-by-words.html"><span class="n">15</span><span class="t">Finding by Words</span></a></li>
+<li style="--hue:#6b5ca5" data-t="finding by meaning"><a href="/book/16-finding-by-meaning.html" data-file="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Finding by Meaning</span></a></li>
+<li style="--hue:#6b5ca5" data-t="how good is good"><a href="/book/17-how-good-is-good.html" data-file="17-how-good-is-good.html"><span class="n">17</span><span class="t">How Good Is Good</span></a></li>
+<li style="--hue:#6b5ca5" data-t="the whole machine"><a href="/book/18-the-whole-machine.html" data-file="18-the-whole-machine.html"><span class="n">18</span><span class="t">The Whole Machine</span></a></li>
+<li style="--hue:#6b5ca5" data-t="answers a program can use"><a href="/book/19-answers-a-program-can-use.html" data-file="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Answers a Program Can Use</span></a></li>
+<li class="sec" style="--hue:#9a7b1f"><span>Giving it work to do</span></li>
+<li style="--hue:#9a7b1f" data-t="giving the machine hands"><a href="/book/20-giving-the-machine-hands.html" data-file="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Giving the Machine Hands</span></a></li>
+<li style="--hue:#9a7b1f" data-t="long windows, careful rooms"><a href="/book/21-long-windows-careful-rooms.html" data-file="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Long Windows, Careful Rooms</span></a></li>
+<li style="--hue:#9a7b1f" data-t="machines that think first"><a href="/book/22-machines-that-think-first.html" data-file="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Machines That Think First</span></a></li>
+<li style="--hue:#9a7b1f" data-t="searching better"><a href="/book/23-searching-better.html" data-file="23-searching-better.html"><span class="n">23</span><span class="t">Searching Better</span></a></li>
+<li style="--hue:#9a7b1f" data-t="when the page gives orders"><a href="/book/24-when-the-page-gives-orders.html" data-file="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">When the Page Gives Orders</span></a></li>
+<li style="--hue:#9a7b1f" data-t="grading a thousand answers"><a href="/book/25-grading-a-thousand-answers.html" data-file="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Grading a Thousand Answers</span></a></li>
+<li style="--hue:#9a7b1f" data-t="what it really costs"><a href="/book/26-what-it-really-costs.html" data-file="26-what-it-really-costs.html"><span class="n">26</span><span class="t">What It Really Costs</span></a></li>
+<li class="sec" style="--hue:#3f7a4a"><span>The messy real world</span></li>
+<li style="--hue:#3f7a4a" data-t="paper, photos and scans"><a href="/book/27-paper-photos-and-scans.html" data-file="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Paper, Photos and Scans</span></a></li>
+<li style="--hue:#3f7a4a" data-t="what you may send"><a href="/book/28-what-you-may-send.html" data-file="28-what-you-may-send.html"><span class="n">28</span><span class="t">What You May Send</span></a></li>
+<li style="--hue:#3f7a4a" data-t="rules, risk and responsibility"><a href="/book/29-rules-risk-and-responsibility.html" data-file="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Rules, Risk and Responsibility</span></a></li>
+<li style="--hue:#3f7a4a" data-t="the spec for a thing that varies"><a href="/book/30-the-spec-for-a-thing-that-varies.html" data-file="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">The Spec for a Thing That Varies</span></a></li>
+<li style="--hue:#3f7a4a" data-t="build, buy or teach it"><a href="/book/31-build-buy-or-teach-it.html" data-file="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Build, Buy or Teach It</span></a></li>
+<li style="--hue:#3f7a4a" data-t="designing for the wrong answer"><a href="/book/32-designing-for-the-wrong-answer.html" data-file="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Designing for the Wrong Answer</span></a></li>
+<li class="sec" style="--hue:#a2455e"><span>Under the hood</span></li>
+<li style="--hue:#a2455e" data-t="the plumbing under the magic"><a href="/book/33-the-plumbing-under-the-magic.html" data-file="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">The Plumbing Under the Magic</span></a></li>
+<li style="--hue:#a2455e" data-t="choosing a model on your own cases"><a href="/book/34-choosing-a-model-on-your-own-cases.html" data-file="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Choosing a Model on Your Own Cases</span></a></li>
+<li style="--hue:#a2455e" data-t="retrieval that survives a review"><a href="/book/35-retrieval-that-survives-a-review.html" data-file="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Retrieval That Survives a Review</span></a></li>
+<li style="--hue:#a2455e" data-t="workflows, agents and the standard plug"><a href="/book/36-workflows-agents-and-the-standard-plug.html" data-file="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents and the Standard Plug</span></a></li>
+<li style="--hue:#a2455e" data-t="pages, pictures and voices"><a href="/book/37-pages-pictures-and-voices.html" data-file="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Pictures and Voices</span></a></li>
+<li style="--hue:#a2455e" data-t="gates, traces and rollbacks"><a href="/book/38-gates-traces-and-rollbacks.html" data-file="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces and Rollbacks</span></a></li>
+<li style="--hue:#a2455e" data-t="assuming the worst"><a href="/book/39-assuming-the-worst.html" data-file="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Assuming the Worst</span></a></li>
+<li class="sec" style="--hue:#2d5d8f"><span>A real product, and a job</span></li>
+<li style="--hue:#2d5d8f" data-t="a product, not a demo"><a href="/book/40-a-product-not-a-demo.html" data-file="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">A Product, Not a Demo</span></a></li>
+<li style="--hue:#2d5d8f" data-t="shipping the whole thing"><a href="/book/41-shipping-the-whole-thing.html" data-file="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Shipping the Whole Thing</span></a></li>
+<li style="--hue:#2d5d8f" data-t="who pays, and how much"><a href="/book/42-who-pays-and-how-much.html" data-file="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Who Pays, and How Much</span></a></li>
+<li style="--hue:#2d5d8f" data-t="how people find it and stay"><a href="/book/43-how-people-find-it-and-stay.html" data-file="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">How People Find It and Stay</span></a></li>
+<li style="--hue:#2d5d8f" data-t="counting what matters"><a href="/book/44-counting-what-matters.html" data-file="44-counting-what-matters.html"><span class="n">44</span><span class="t">Counting What Matters</span></a></li>
+<li style="--hue:#2d5d8f" data-t="the tools and the harness"><a href="/book/45-tools-and-harness.html" data-file="45-tools-and-harness.html"><span class="n">45</span><span class="t">The Tools and the Harness</span></a></li>
+<li style="--hue:#2d5d8f" data-t="real people, real use"><a href="/book/46-real-people-real-use.html" data-file="46-real-people-real-use.html"><span class="n">46</span><span class="t">Real People, Real Use</span></a></li>
+<li style="--hue:#2d5d8f" data-t="the work, and the job"><a href="/book/47-the-job.html" data-file="47-the-job.html"><span class="n">47</span><span class="t">The Work, and the Job</span></a></li>
+<li data-t="after the book"><a href="/book/afterword.html" data-file="afterword.html"><span class="n dot"></span><span class="t">After the Book</span></a></li>
+<li data-t="words, in plain language"><a href="/book/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Words, in plain language</span></a></li>
+</ol>
+<p class="nomatch" hidden>Nothing matches that.</p>
+</nav>
+<div class="scrim" id="scrim" hidden></div>
 <main id="text">
-<article class="chapter" data-file="02-four-questions-before-building.html" data-title="Four Questions Before Building">
-<header class="chead"><p class="eyebrow">Chapter 2</p><h1>Four Questions Before Building</h1><p class="dek">An engineer asks the question every idea should survive, and a feature nobody noticed teaches the team where products really fail.</p><p class="meta">9 minute read</p></header>
+<article class="chapter" data-file="02-four-questions-before-building.html" data-title="Four Questions Before Building" data-n="2">
+<header class="chead">
+<p class="eyebrow"><span class="num">2</span><span>Chapter 2 <i>·</i> The problem worth solving</span></p>
+<h1>Four Questions Before Building</h1><p class="dek">An engineer asks the question every idea should survive, and a feature nobody noticed teaches the team where products really fail.</p>
+<p class="meta"><span>9 min read</span><span>9 new words</span></p>
+</header>
 <div class="prose">
 <p>Imran read the printout the way he read everything, from the bottom up, with a pencil held like a cigarette.</p>
 <p>The conference room at Sahaj was a glass box with a whiteboard nobody trusted, because it still carried the ghost of a diagram from some meeting two years ago. Anaya had put the printout on the table, along with thirty-seven yellow flags, one per conversation. Imran's tea, which he had promised and brought, went cold beside his elbow while he worked through the flags one by one, saying nothing.</p>
@@ -95,24 +116,24 @@
 <p>Three months after launch, fewer than two in a hundred customers had turned it on.</p>
 <p>&quot;We never got the question right,&quot; he said. &quot;We asked, 'is the reminder good?' and it was. What we should have asked was 'does anyone know it exists?'. The switch was in settings, three screens down. Nobody ever went to settings.&quot;</p>
 <p>Anaya wrote the sentence down because it seemed to be the sort of thing she would need again. <em>A feature nobody finds has the same effect as a feature nobody built.</em></p>
-<p>What Imran had described was a loop with three parts, and every product goes around it, whether the people making it have noticed or not. The first part is <em><a class="term" href="glossary.html#t-discovery" title="the part of making a product where you find out whether a problem is real and worth solving">discovery</a></em>: finding out whether the problem is real, for whom, and how badly. The second is <em><a class="term" href="glossary.html#t-delivery" title="the part of making a product where you build it well: the plan, the specification, the code, the quality">delivery</a></em>: building the thing well, which means the plan, the written specification, the code and the checking. The third is <em><a class="term" href="glossary.html#t-distribution" title="the part of making a product where people find it, try it and keep using it">distribution</a></em>: getting people to find it, try it and keep coming back. The reminder had been a triumph of discovery and delivery and a failure of distribution, and the failure had cancelled the rest. Products usually die at the weakest of the three. The loop matters because what you learn at the third stage, who stays and who leaves, feeds the first stage again.</p>
+<p>What Imran had described was a loop with three parts, and every product goes around it, whether the people making it have noticed or not. The first part is <em><a class="term" href="/book/glossary.html#t-discovery" title="the part of making a product where you find out whether a problem is real and worth solving">discovery</a></em>: finding out whether the problem is real, for whom, and how badly. The second is <em><a class="term" href="/book/glossary.html#t-delivery" title="the part of making a product where you build it well: the plan, the specification, the code, the quality">delivery</a></em>: building the thing well, which means the plan, the written specification, the code and the checking. The third is <em><a class="term" href="/book/glossary.html#t-distribution" title="the part of making a product where people find it, try it and keep using it">distribution</a></em>: getting people to find it, try it and keep coming back. The reminder had been a triumph of discovery and delivery and a failure of distribution, and the failure had cancelled the rest. Products usually die at the weakest of the three. The loop matters because what you learn at the third stage, who stays and who leaves, feeds the first stage again.</p>
 <h2>Four ways to fail</h2>
 <p>&quot;Right,&quot; said Imran. &quot;Let's find out which of the four this one dies of.&quot;</p>
 <p>He turned to the whiteboard, found the one pen that worked, and wrote four words across the top. Anaya had seen the same four words in a book, but she had never seen anyone use them as a weapon.</p>
-<p><em>Value. <a class="term" href="glossary.html#t-usability" title="whether people can work out how to use something without help">Usability</a>. <a class="term" href="glossary.html#t-feasibility" title="whether the team can actually build it with the time, skills, data and money it has">Feasibility</a>. <a class="term" href="glossary.html#t-viability" title="whether the product works for the business: its revenue, its costs, the law and its reputation">Viability</a>.</em></p>
+<p><em>Value. <a class="term" href="/book/glossary.html#t-usability" title="whether people can work out how to use something without help">Usability</a>. <a class="term" href="/book/glossary.html#t-feasibility" title="whether the team can actually build it with the time, skills, data and money it has">Feasibility</a>. <a class="term" href="/book/glossary.html#t-viability" title="whether the product works for the business: its revenue, its costs, the law and its reputation">Viability</a>.</em></p>
 <p>&quot;Pick one,&quot; he said, &quot;and be hard on yourself.&quot;</p>
 <p>She started with value, because it came first and because she was nervous of the others. Would anyone choose to use this over whatever they did now? Today, nobody did anything. That was the trouble. Farah's team sometimes spotted a number in a chat and blanked it by hand in the export, when they remembered, and mostly they did not remember. &quot;Nothing&quot; is a competitor too, and a surprisingly tough one. People will put up with a lot before they change a habit. But Anaya had thirty-seven flags and Imran's own reaction to go on, and she was fairly sure value would hold.</p>
 <p>Usability was stranger. &quot;Who would be using it?&quot; Imran asked. Not the customers; they would never see it. Farah's team would see its effects, a number blurred here and there, a note saying something had been hidden. Engineers would have to connect it. The honest answer was that it would have almost no screen of its own, which meant that the people who used it would be the people who built things around it, and usability for them meant something quite different from buttons. She wrote: <em>Can an engineer who has never met me wire this in on a Friday afternoon without messaging me?</em></p>
 <p>Feasibility was the one she had been avoiding. &quot;Can we actually build it? With what time, what skills, what data, what money?&quot; She stopped. &quot;Twelve digits in groups of four, yes. I think I could write that myself. A name in Hindi typed in English letters? I have no idea.&quot;</p>
 <p>&quot;That is a very useful sentence,&quot; said Imran. &quot;'I have no idea.' Write it down. It is the most expensive kind of idea.&quot;</p>
 <p>Viability came last, and it came with a pencil tap on the table. &quot;Who pays? What does it cost every time it runs? What does Lakshmi say?&quot;</p>
-<p>The four are called, in the trade, <em><a class="term" href="glossary.html#t-product-risk" title="one of the four things that can sink a product: nobody wants it, nobody can use it, it cannot be built, or it cannot pay for itself">product risks</a></em>. Any one of them can sink a product on its own, and teams are good at checking the one they happen to like. Many failed features passed the test the team was focused on and failed the one they skipped. For a machine that reads and writes text, feasibility carries an extra question that ordinary software does not have: is it right often enough? A tool that is right four times in five is wonderful for suggesting titles for a birthday card. It is a disaster for the one job in the building where being wrong once could cost a customer their savings. The same accuracy can be good enough for one task and unusable for another, and nothing in the tool tells you which.</p>
+<p>The four are called, in the trade, <em><a class="term" href="/book/glossary.html#t-product-risk" title="one of the four things that can sink a product: nobody wants it, nobody can use it, it cannot be built, or it cannot pay for itself">product risks</a></em>. Any one of them can sink a product on its own, and teams are good at checking the one they happen to like. Many failed features passed the test the team was focused on and failed the one they skipped. For a machine that reads and writes text, feasibility carries an extra question that ordinary software does not have: is it right often enough? A tool that is right four times in five is wonderful for suggesting titles for a birthday card. It is a disaster for the one job in the building where being wrong once could cost a customer their savings. The same accuracy can be good enough for one task and unusable for another, and nothing in the tool tells you which.</p>
 <p>There was a second cost, too, which Anaya had half-noticed and now saw clearly. An ordinary feature costs almost nothing each time someone clicks it. A feature that reads and writes text costs real money every single time it runs. So viability depends not only on whether people will use it, but on how often, and on what they can be charged.</p>
 <h2>Who pays, who uses, who says no</h2>
 <p>&quot;One more thing,&quot; Imran said, &quot;because it changes everything and nobody tells you.&quot;</p>
 <p>He drew two boxes. In the first he wrote <em>customers pay Sahaj</em>. In the second, <em>companies pay a supplier</em>.</p>
-<p>Sahaj, he pointed out, sold to individuals: a woman paying an electricity bill, a man applying for a loan. That is <em><a class="term" href="glossary.html#t-b2c" title="business to consumer: a product sold to individual people, who are both the buyers and the users">B2C</a></em>, business to consumer. The person who pays is the person who uses the app, and they decide in minutes, mostly on whether it feels easy. If Anaya built a privacy tool only for Sahaj's own chatbot, the &quot;customer&quot; would be an internal team, and the sale would be a conversation in a corridor.</p>
-<p>But Anaya had already been thinking beyond Sahaj, and he could see it on her face. If the tool worked, other companies would want it: lenders, insurers, clinics, schools, anyone whose chat window collected more than it meant to. Selling to those would be <em><a class="term" href="glossary.html#t-b2b" title="business to business: a product sold to companies, where the person who pays is often not the person who uses it">B2B</a></em>, business to business, and B2B is a different game. The person who loves the demo is rarely the person who signs. Someone controls the budget, and often it is not the user. Someone in security or legal can block the sale and owes the user nothing. A single large customer can reorder a company's priorities, because if their security team needs something before they will sign, it moves to the top, whether or not one user ever asked.</p>
+<p>Sahaj, he pointed out, sold to individuals: a woman paying an electricity bill, a man applying for a loan. That is <em><a class="term" href="/book/glossary.html#t-b2c" title="business to consumer: a product sold to individual people, who are both the buyers and the users">B2C</a></em>, business to consumer. The person who pays is the person who uses the app, and they decide in minutes, mostly on whether it feels easy. If Anaya built a privacy tool only for Sahaj's own chatbot, the &quot;customer&quot; would be an internal team, and the sale would be a conversation in a corridor.</p>
+<p>But Anaya had already been thinking beyond Sahaj, and he could see it on her face. If the tool worked, other companies would want it: lenders, insurers, clinics, schools, anyone whose chat window collected more than it meant to. Selling to those would be <em><a class="term" href="/book/glossary.html#t-b2b" title="business to business: a product sold to companies, where the person who pays is often not the person who uses it">B2B</a></em>, business to business, and B2B is a different game. The person who loves the demo is rarely the person who signs. Someone controls the budget, and often it is not the user. Someone in security or legal can block the sale and owes the user nothing. A single large customer can reorder a company's priorities, because if their security team needs something before they will sign, it moves to the top, whether or not one user ever asked.</p>
 <p>&quot;So for every customer,&quot; he said, &quot;ask three questions. Who pays? Who uses it? Who can say no?&quot;</p>
 <p>Anaya looked at the whiteboard. For Sahaj the answers were: the company pays, Farah's team and the engineers use it, and Lakshmi can say no. She had not spoken to Lakshmi Iyer yet. She suspected she had, for the last half hour, been designing a product around the one person in the building who had the power to stop it, without once having asked her what she thought.</p>
 <h2>What the assistant wrote</h2>
@@ -127,15 +148,15 @@
 <p>That last question was not about technology at all. She had thirty-seven conversations and no idea what was going through the head of the person who typed the thirty-seventh. She had Imran's reaction and her own count, and neither of those was a customer.</p>
 <p>&quot;You can't answer that from here,&quot; Imran said, capping the pen. &quot;You'll have to go and ask them.&quot;</p>
 <p>Anaya nodded. She had interviewed people before, and she knew her own weakness: she asked questions the way people do when they are hoping the answer will be yes. That was going to be a problem.</p>
-<h2>What to carry forward</h2>
-<p>Every product goes round three stages: finding out whether the problem is real, building the thing well, and getting people to find and keep using it. It tends to die at the weakest. Before building, an idea is worth testing against four risks: that nobody wants it, that nobody can use it, that it cannot be built, and that it cannot pay for itself. Selling to consumers is a different job from selling to companies, because in the second the person who pays, the person who uses and the person who can say no are often three different people. And whatever an assistant tells you about your own customers is a draft, not a finding, until something real has checked it.</p>
+<aside class="carry"><h2>What to carry forward</h2>
+<p>Every product goes round three stages: finding out whether the problem is real, building the thing well, and getting people to find and keep using it. It tends to die at the weakest. Before building, an idea is worth testing against four risks: that nobody wants it, that nobody can use it, that it cannot be built, and that it cannot pay for itself. Selling to consumers is a different job from selling to companies, because in the second the person who pays, the person who uses and the person who can say no are often three different people. And whatever an assistant tells you about your own customers is a draft, not a finding, until something real has checked it.</p></aside>
 </div>
-<aside class="wordsbox" aria-label="Words from this chapter"><h2>Words from this chapter</h2><dl><div><dt id="w-discovery">discovery</dt><dd>the part of making a product where you find out whether a problem is real and worth solving</dd></div><div><dt id="w-delivery">delivery</dt><dd>the part of making a product where you build it well: the plan, the specification, the code, the quality</dd></div><div><dt id="w-distribution">distribution</dt><dd>the part of making a product where people find it, try it and keep using it</dd></div><div><dt id="w-b2c">B2C</dt><dd>business to consumer: a product sold to individual people, who are both the buyers and the users</dd></div><div><dt id="w-b2b">B2B</dt><dd>business to business: a product sold to companies, where the person who pays is often not the person who uses it</dd></div><div><dt id="w-product-risk">product risk</dt><dd>one of the four things that can sink a product: nobody wants it, nobody can use it, it cannot be built, or it cannot pay for itself</dd></div><div><dt id="w-usability">usability</dt><dd>whether people can work out how to use something without help</dd></div><div><dt id="w-feasibility">feasibility</dt><dd>whether the team can actually build it with the time, skills, data and money it has</dd></div><div><dt id="w-viability">viability</dt><dd>whether the product works for the business: its revenue, its costs, the law and its reputation</dd></div></dl></aside>
-<p class="inapp">In the course app: <a href="../#/ch/a2">Product sense: how products win and lose</a></p>
-<nav class="pager" aria-label="Previous and next"><a class="prev" href="01-the-number-in-the-chat.html"><span class="dir">← Before</span><span class="nm">Chapter 1 · The Number in the Chat</span></a><a class="next" href="03-asking-about-yesterday.html"><span class="dir">Next →</span><span class="nm">Chapter 3 · Asking About Yesterday</span></a></nav>
+<aside class="wordsbox" aria-label="Words from this chapter"><h2>Words from this chapter</h2><p class="sub">Plain meanings, in the order you meet them.</p><dl><div><dt id="w-discovery">discovery</dt><dd>the part of making a product where you find out whether a problem is real and worth solving</dd></div><div><dt id="w-delivery">delivery</dt><dd>the part of making a product where you build it well: the plan, the specification, the code, the quality</dd></div><div><dt id="w-distribution">distribution</dt><dd>the part of making a product where people find it, try it and keep using it</dd></div><div><dt id="w-b2c">B2C</dt><dd>business to consumer: a product sold to individual people, who are both the buyers and the users</dd></div><div><dt id="w-b2b">B2B</dt><dd>business to business: a product sold to companies, where the person who pays is often not the person who uses it</dd></div><div><dt id="w-product-risk">product risk</dt><dd>one of the four things that can sink a product: nobody wants it, nobody can use it, it cannot be built, or it cannot pay for itself</dd></div><div><dt id="w-usability">usability</dt><dd>whether people can work out how to use something without help</dd></div><div><dt id="w-feasibility">feasibility</dt><dd>whether the team can actually build it with the time, skills, data and money it has</dd></div><div><dt id="w-viability">viability</dt><dd>whether the product works for the business: its revenue, its costs, the law and its reputation</dd></div></dl></aside>
+<aside class="inapp"><span class="lead">The same ideas, with the work to do, in the course app</span><span class="chips"><a href="/#/ch/a2">Product sense: how products win and lose<span aria-hidden="true"> →</span></a></span></aside>
+<nav class="pager" aria-label="Previous and next chapter"><a class="prev" href="/book/01-the-number-in-the-chat.html" rel="prev"><span class="dir">← Before</span><span class="nm"><b>1</b>The Number in the Chat</span></a><a class="next" href="/book/03-asking-about-yesterday.html" rel="next"><span class="dir">Next →</span><span class="nm"><b>3</b>Asking About Yesterday</span></a></nav>
 </article>
 </main>
 </div>
-<script src="reader.js"></script>
+<script src="/book/reader.js" defer></script>
 </body>
 </html>
