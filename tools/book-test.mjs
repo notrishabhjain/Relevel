@@ -81,6 +81,34 @@ const BOOK = bm && JSON.parse(bm[1]);
 ok(BOOK && Object.keys(BOOK.chapters).length === [...covered].length, 'the app knows which book chapter retells which of its chapters');
 ok(BOOK && Object.values(BOOK.chapters).every(e => fs.existsSync(p.join(OUT, e.file))), 'and every one of those pages exists');
 
+console.log('\n— the Hinglish edition stands beside it —');
+const HI_DIR = p.join(OUT, 'hi');
+const HB = loadBook(p.join(ROOT, 'book/hi'));
+const hiPages = ['index.html', 'preface.html', ...HB.chapters.map(c => c.file), 'afterword.html', 'glossary.html'];
+ok(hiPages.every(f => fs.existsSync(p.join(HI_DIR, f))), 'every page exists in Hinglish too', hiPages.filter(f => !fs.existsSync(p.join(HI_DIR, f))).join(' '));
+ok(HB.chapters.length === B.chapters.length, 'with the same number of chapters, in the same order');
+const hiRead = f => fs.readFileSync(p.join(HI_DIR, f), 'utf8');
+const hiBroken = [];
+for (const f of hiPages) {
+  const html = hiRead(f);
+  for (const m of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
+    const u = m[1];
+    if (/^(https?:|mailto:|#)/.test(u)) continue;
+    if (!u.startsWith('/')) { hiBroken.push(f + ' relative ' + u); continue; }
+    if (!u.startsWith('/book/')) continue;
+    const [fileRaw, anchor] = u.split('#');
+    const rel = fileRaw.replace(/^\/book\//, '');
+    if (!rel) continue;
+    const target = p.join(OUT, rel);
+    if (!fs.existsSync(target)) { hiBroken.push(f + ' → ' + u); continue; }
+    if (anchor && target.endsWith('.html') && !fs.readFileSync(target, 'utf8').includes(`id="${anchor}"`)) hiBroken.push(f + ' → #' + anchor);
+  }
+}
+ok(!hiBroken.length, 'and no link on any Hinglish page is broken', hiBroken.slice(0, 5).join(' | '));
+ok(read('09-the-first-conversation.html').includes('href="/book/hi/09-the-first-conversation.html"'), 'each English page offers its Hinglish twin');
+ok(hiRead('09-the-first-conversation.html').includes('href="/book/09-the-first-conversation.html"'), 'and each Hinglish page offers its English twin');
+ok(BOOK && BOOK.hiBase === '/book/hi/', 'and the app knows where the Hinglish edition lives');
+
 const base = process.env.BASE;
 if (base) {
   console.log('\n— in a browser —');
@@ -135,6 +163,23 @@ if (base) {
 
   await page.goto(base + '/book/glossary.html');
   ok(await page.locator('dl dt').count() >= termList.length, 'the glossary page lists every word');
+
+  /* Hinglish: opened as /book/hi with no slash, switched both ways */
+  await page.goto(base + '/book/hi');
+  const hbg = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
+  ok(hbg !== 'rgb(255, 255, 255)' && hbg !== 'rgba(0, 0, 0, 0)', 'the Hinglish cover opened without a slash keeps its design', hbg);
+  ok(/Padhna shuru/.test(await page.locator('#begin').innerText()), 'and speaks Hinglish');
+  await page.goto(base + '/book/hi/' + HB.chapters[8].file);
+  await page.click('a[data-switch]');
+  await page.waitForLoadState();
+  ok(new URL(page.url()).pathname === '/book/' + HB.chapters[8].file, 'the switch goes to the same chapter in English', page.url());
+  await page.click('a[data-switch]');
+  await page.waitForLoadState();
+  ok(new URL(page.url()).pathname === '/book/hi/' + HB.chapters[8].file, 'and back to the Hinglish one', page.url());
+  await page.click('.pager .next');
+  await page.waitForLoadState();
+  ok(new URL(page.url()).pathname === '/book/hi/' + HB.chapters[9].file, 'Hinglish Next stays in Hinglish', page.url());
+  await page.evaluate(() => { try { localStorage.clear(); } catch (e) {} });
 
   await page.setViewportSize({ width: 390, height: 800 });
   await page.goto(base + '/book/' + B.chapters[2].file);

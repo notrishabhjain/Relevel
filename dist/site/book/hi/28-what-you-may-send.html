@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="hi-Latn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aap Kya Bhej Sakte Hain · Chapter 28 · AI From Zero</title>
+<meta name="description" content="Ab tak sab kuch maan kar chala ki text bheja ja sakta hai. Lakshmi mez par teen documents rakhti hai, ek tay kram mein teen sawaal poochhti hai, aur ek vendor ki terms of service mein aisi baatein nikalti hain jo kisi ne padhi nahi thin.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="en" href="/book/28-what-you-may-send.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
+<link rel="stylesheet" href="/book/style.css">
+<script>try{var t=localStorage.getItem('aifz-book-theme');if(t)document.documentElement.setAttribute('data-theme',t);var s=localStorage.getItem('aifz-book-size');if(s)document.documentElement.style.setProperty('--fs',s+'rem')}catch(e){}</script>
+</head>
+<body class="is-chapter" data-lang="hi" data-base="/book/hi/" style="--hue:#3f7a4a">
+<a class="skip" href="#text">Seedhe text par jaaiye</a>
+<div class="progress" id="progress" aria-hidden="true"><i></i></div>
+<header class="bar">
+  <button class="b menu" id="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Vishay-soochi"><span aria-hidden="true">☰</span><span class="lbl">Vishay-soochi</span></button>
+  <a class="brand" href="/book/hi/"><span class="mark">AI From Zero</span><span class="ed">Padhne wala edition (Hinglish)</span></a>
+  <span class="sp"></span>
+  <a class="b lang" href="/book/28-what-you-may-send.html" hreflang="en" title="Read this in English" data-switch>English</a>
+  <button class="b" id="size-down" type="button" aria-label="Chhota text" title="Chhota text">A−</button>
+  <button class="b" id="size-up" type="button" aria-label="Bada text" title="Bada text">A+</button>
+  <button class="b" id="theme" type="button" aria-label="Rang badliye" title="Rang badliye">◐</button>
+  <a class="b app" href="/" title="Course app kholiye">Course app →</a>
+</header>
+<div class="layout">
+<nav class="toc" id="toc" aria-label="Vishay-soochi">
+<div class="tochead"><label class="find"><span class="sr">Chapter ya shabd dhoondhiye</span><input id="q" type="search" placeholder="Chapter ya shabd dhoondhiye" autocomplete="off"></label></div>
+<ol>
+<li class="top"><a href="/book/hi/"><span class="n dot"></span><span class="t">Vishay-soochi</span></a></li>
+<li data-t="shuru karne se pehle"><a href="/book/hi/preface.html" data-file="preface.html"><span class="n dot"></span><span class="t">Shuru karne se pehle</span></a></li>
+<li class="sec" style="--hue:#b4492a"><span>Woh problem jo hal karne layak hai</span></li>
+<li style="--hue:#b4492a" data-t="chat mein woh number"><a href="/book/hi/01-the-number-in-the-chat.html" data-file="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">Chat Mein Woh Number</span></a></li>
+<li style="--hue:#b4492a" data-t="banane se pehle chaar sawaal"><a href="/book/hi/02-four-questions-before-building.html" data-file="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Banane Se Pehle Chaar Sawaal</span></a></li>
+<li style="--hue:#b4492a" data-t="kal ke baare mein poochhna"><a href="/book/hi/03-asking-about-yesterday.html" data-file="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Kal Ke Baare Mein Poochhna</span></a></li>
+<li style="--hue:#b4492a" data-t="yahan aur kaun khada hai"><a href="/book/hi/04-who-else-is-standing-here.html" data-file="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Yahan Aur Kaun Khada Hai</span></a></li>
+<li style="--hue:#b4492a" data-t="kya nahi karna hai, yeh chunna"><a href="/book/hi/05-choosing-what-not-to-do.html" data-file="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Kya Nahi Karna Hai, Yeh Chunna</span></a></li>
+<li style="--hue:#b4492a" data-t="aisa plan jis par doosre bharosa karein"><a href="/book/hi/06-a-plan-others-can-believe.html" data-file="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">Aisa Plan Jis Par Doosre Bharosa Karein</span></a></li>
+<li style="--hue:#b4492a" data-t="likh kar rakhna taaki doosre bana sakein"><a href="/book/hi/07-writing-it-down.html" data-file="07-writing-it-down.html"><span class="n">7</span><span class="t">Likh Kar Rakhna Taaki Doosre Bana Sakein</span></a></li>
+<li class="sec" style="--hue:#2f6f73"><span>Machine se mulaqaat</span></li>
+<li style="--hue:#2f6f73" data-t="machine asal mein kya hai"><a href="/book/hi/08-what-the-machine-is.html" data-file="08-what-the-machine-is.html"><span class="n">8</span><span class="t">Machine Asal Mein Kya Hai</span></a></li>
+<li style="--hue:#2f6f73" data-t="pehli baatcheet"><a href="/book/hi/09-the-first-conversation.html" data-file="09-the-first-conversation.html"><span class="n">9</span><span class="t">Pehli Baatcheet</span></a></li>
+<li style="--hue:#2f6f73" data-t="ek dimaag jise kuch yaad nahi rehta"><a href="/book/hi/10-a-mind-with-no-memory.html" data-file="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">Ek Dimaag Jise Kuch Yaad Nahi Rehta</span></a></li>
+<li style="--hue:#2f6f73" data-t="nirdesh dena"><a href="/book/hi/11-giving-instructions.html" data-file="11-giving-instructions.html"><span class="n">11</span><span class="t">Nirdesh Dena</span></a></li>
+<li style="--hue:#2f6f73" data-t="kaise pata chale ki yeh kaam karta hai"><a href="/book/hi/12-knowing-whether-it-works.html" data-file="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Kaise Pata Chale Ki Yeh Kaam Karta Hai</span></a></li>
+<li style="--hue:#2f6f73" data-t="chhaantna aur saar likhna"><a href="/book/hi/13-sorting-and-summarising.html" data-file="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Chhaantna Aur Saar Likhna</span></a></li>
+<li class="sec" style="--hue:#6b5ca5"><span>Cheezein dhoondhna, aur poori machine</span></li>
+<li style="--hue:#6b5ca5" data-t="ek baar mein padhne ke liye bahut lamba"><a href="/book/hi/14-too-long-to-read-at-once.html" data-file="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Ek Baar Mein Padhne Ke Liye Bahut Lamba</span></a></li>
+<li style="--hue:#6b5ca5" data-t="shabdon se dhoondhna"><a href="/book/hi/15-finding-by-words.html" data-file="15-finding-by-words.html"><span class="n">15</span><span class="t">Shabdon Se Dhoondhna</span></a></li>
+<li style="--hue:#6b5ca5" data-t="matlab se dhoondhna"><a href="/book/hi/16-finding-by-meaning.html" data-file="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Matlab Se Dhoondhna</span></a></li>
+<li style="--hue:#6b5ca5" data-t="kitna achha, achha hota hai"><a href="/book/hi/17-how-good-is-good.html" data-file="17-how-good-is-good.html"><span class="n">17</span><span class="t">Kitna Achha, Achha Hota Hai</span></a></li>
+<li style="--hue:#6b5ca5" data-t="poori machine"><a href="/book/hi/18-the-whole-machine.html" data-file="18-the-whole-machine.html"><span class="n">18</span><span class="t">Poori Machine</span></a></li>
+<li style="--hue:#6b5ca5" data-t="aise jawaab jo program istemaal kar sake"><a href="/book/hi/19-answers-a-program-can-use.html" data-file="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Aise Jawaab Jo Program Istemaal Kar Sake</span></a></li>
+<li class="sec" style="--hue:#9a7b1f"><span>Machine ko kaam dena</span></li>
+<li style="--hue:#9a7b1f" data-t="machine ko haath dena"><a href="/book/hi/20-giving-the-machine-hands.html" data-file="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Machine Ko Haath Dena</span></a></li>
+<li style="--hue:#9a7b1f" data-t="lambi windows, saavdhaan kamre"><a href="/book/hi/21-long-windows-careful-rooms.html" data-file="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Lambi Windows, Saavdhaan Kamre</span></a></li>
+<li style="--hue:#9a7b1f" data-t="pehle sochne wali machines"><a href="/book/hi/22-machines-that-think-first.html" data-file="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Pehle Sochne Wali Machines</span></a></li>
+<li style="--hue:#9a7b1f" data-t="behtar search"><a href="/book/hi/23-searching-better.html" data-file="23-searching-better.html"><span class="n">23</span><span class="t">Behtar Search</span></a></li>
+<li style="--hue:#9a7b1f" data-t="jab page hukm dene lagta hai"><a href="/book/hi/24-when-the-page-gives-orders.html" data-file="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">Jab Page Hukm Dene Lagta Hai</span></a></li>
+<li style="--hue:#9a7b1f" data-t="hazaar jawaabon ki grading"><a href="/book/hi/25-grading-a-thousand-answers.html" data-file="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Hazaar Jawaabon Ki Grading</span></a></li>
+<li style="--hue:#9a7b1f" data-t="asal mein kitna kharcha hota hai"><a href="/book/hi/26-what-it-really-costs.html" data-file="26-what-it-really-costs.html"><span class="n">26</span><span class="t">Asal Mein Kitna Kharcha Hota Hai</span></a></li>
+<li class="sec" style="--hue:#3f7a4a"><span>Asli duniya ki uljhanein</span></li>
+<li style="--hue:#3f7a4a" data-t="kaagaz, photos aur scans"><a href="/book/hi/27-paper-photos-and-scans.html" data-file="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Kaagaz, Photos Aur Scans</span></a></li>
+<li style="--hue:#3f7a4a" class="here" data-t="aap kya bhej sakte hain"><a href="/book/hi/28-what-you-may-send.html" aria-current="page" data-file="28-what-you-may-send.html"><span class="n">28</span><span class="t">Aap Kya Bhej Sakte Hain</span></a></li>
+<li style="--hue:#3f7a4a" data-t="niyam, risk aur zimmedaari"><a href="/book/hi/29-rules-risk-and-responsibility.html" data-file="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Niyam, Risk Aur Zimmedaari</span></a></li>
+<li style="--hue:#3f7a4a" data-t="badalti rehne wali cheez ki spec"><a href="/book/hi/30-the-spec-for-a-thing-that-varies.html" data-file="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">Badalti Rehne Wali Cheez Ki Spec</span></a></li>
+<li style="--hue:#3f7a4a" data-t="banao, kharido ya sikhao"><a href="/book/hi/31-build-buy-or-teach-it.html" data-file="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Banao, Kharido Ya Sikhao</span></a></li>
+<li style="--hue:#3f7a4a" data-t="galat jawaab ke liye design"><a href="/book/hi/32-designing-for-the-wrong-answer.html" data-file="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Galat Jawaab Ke Liye Design</span></a></li>
+<li class="sec" style="--hue:#a2455e"><span>Bonnet ke neeche</span></li>
+<li style="--hue:#a2455e" data-t="jaadu ke neeche ki plumbing"><a href="/book/hi/33-the-plumbing-under-the-magic.html" data-file="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">Jaadu Ke Neeche Ki Plumbing</span></a></li>
+<li style="--hue:#a2455e" data-t="apne cases par model chunna"><a href="/book/hi/34-choosing-a-model-on-your-own-cases.html" data-file="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Apne Cases Par Model Chunna</span></a></li>
+<li style="--hue:#a2455e" data-t="review mein tikne wala retrieval"><a href="/book/hi/35-retrieval-that-survives-a-review.html" data-file="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Review Mein Tikne Wala Retrieval</span></a></li>
+<li style="--hue:#a2455e" data-t="workflows, agents aur standard plug"><a href="/book/hi/36-workflows-agents-and-the-standard-plug.html" data-file="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents Aur Standard Plug</span></a></li>
+<li style="--hue:#a2455e" data-t="pages, tasveerein aur awaazein"><a href="/book/hi/37-pages-pictures-and-voices.html" data-file="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Tasveerein Aur Awaazein</span></a></li>
+<li style="--hue:#a2455e" data-t="gates, traces aur rollbacks"><a href="/book/hi/38-gates-traces-and-rollbacks.html" data-file="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces Aur Rollbacks</span></a></li>
+<li style="--hue:#a2455e" data-t="sabse bure ko maan kar chalna"><a href="/book/hi/39-assuming-the-worst.html" data-file="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Sabse Bure Ko Maan Kar Chalna</span></a></li>
+<li class="sec" style="--hue:#2d5d8f"><span>Ek asli product, aur ek naukri</span></li>
+<li style="--hue:#2d5d8f" data-t="product, demo nahi"><a href="/book/hi/40-a-product-not-a-demo.html" data-file="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">Product, Demo Nahi</span></a></li>
+<li style="--hue:#2d5d8f" data-t="poori cheez ko ship karna"><a href="/book/hi/41-shipping-the-whole-thing.html" data-file="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Poori Cheez Ko Ship Karna</span></a></li>
+<li style="--hue:#2d5d8f" data-t="paisa kaun deta hai, aur kitna"><a href="/book/hi/42-who-pays-and-how-much.html" data-file="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Paisa Kaun Deta Hai, Aur Kitna</span></a></li>
+<li style="--hue:#2d5d8f" data-t="log ise kaise dhoondhte hain aur kyun rukte hain"><a href="/book/hi/43-how-people-find-it-and-stay.html" data-file="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">Log Ise Kaise Dhoondhte Hain Aur Kyun Rukte Hain</span></a></li>
+<li style="--hue:#2d5d8f" data-t="jo maayne rakhta hai use ginna"><a href="/book/hi/44-counting-what-matters.html" data-file="44-counting-what-matters.html"><span class="n">44</span><span class="t">Jo Maayne Rakhta Hai Use Ginna</span></a></li>
+<li style="--hue:#2d5d8f" data-t="tools aur harness"><a href="/book/hi/45-tools-and-harness.html" data-file="45-tools-and-harness.html"><span class="n">45</span><span class="t">Tools Aur Harness</span></a></li>
+<li style="--hue:#2d5d8f" data-t="asli log, asli istemaal"><a href="/book/hi/46-real-people-real-use.html" data-file="46-real-people-real-use.html"><span class="n">46</span><span class="t">Asli Log, Asli Istemaal</span></a></li>
+<li style="--hue:#2d5d8f" data-t="kaam, aur naukri"><a href="/book/hi/47-the-job.html" data-file="47-the-job.html"><span class="n">47</span><span class="t">Kaam, Aur Naukri</span></a></li>
+<li data-t="kitaab ke baad"><a href="/book/hi/afterword.html" data-file="afterword.html"><span class="n dot"></span><span class="t">Kitaab Ke Baad</span></a></li>
+<li data-t="shabd, saral bhasha mein"><a href="/book/hi/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Shabd, saral bhasha mein</span></a></li>
+</ol>
+<p class="nomatch" hidden>Kuch nahi mila.</p>
+</nav>
+<div class="scrim" id="scrim" hidden></div>
+<main id="text">
+<article class="chapter" data-file="28-what-you-may-send.html" data-title="Aap Kya Bhej Sakte Hain" data-n="28">
+<header class="chead">
+<p class="eyebrow"><span class="num">28</span><span>Chapter 28 <i>·</i> Asli duniya ki uljhanein</span></p>
+<h1>Aap Kya Bhej Sakte Hain</h1><p class="dek">Ab tak sab kuch maan kar chala ki text bheja ja sakta hai. Lakshmi mez par teen documents rakhti hai, ek tay kram mein teen sawaal poochhti hai, aur ek vendor ki terms of service mein aisi baatein nikalti hain jo kisi ne padhi nahi thin.</p>
+<p class="meta"><span>8 min padhai</span><span>2 naye shabd</span></p>
+</header>
+<div class="prose">
+<p>Lakshmi ke desk par teen documents the, kinaare se barabar kiye hue, aur Anaya ne turant samjha ki yeh ek test hai aur use abhi vishay ka pakka pata nahi hai.</p>
+<p>&quot;Inme se ek,&quot; Lakshmi ne kaha, &quot;main kisi ko bhi bhej dungi. Ek main kabhi nahi bhejungi. Ek ke baare mein mujhe nahi pata. Main chahti hoon tum mujhe batao ki kaun sa kaun sa hai, aur kyun.&quot;</p>
+<p>July ka teesra Monday tha. Paani ka glass wahin tha jahan hamesha rehta tha. Anaya ne documents ek-ek karke palte.</p>
+<p>Pehla <em>Late Payment and Refund Policy</em> tha, barah pages jinhone glass room ke farsh par tukdon mein ek din bitaya tha. Woh Sahaj ki apni website par chhapa tha. Koi bhi use padh sakta tha.</p>
+<p>Doosra loan applications ki ek spreadsheet tha, jisme naam, pate, pehchaan ke number aur mahine ki aay saaf columns mein thi.</p>
+<p>Teesra pachaas support chats ka ek sangrah tha, analysis ke liye export kiya hua, jise haath se saaf kiya gaya tha. Ya aise cover note ne kaha.</p>
+<p>&quot;Pehla theek hai,&quot; Anaya ne kaha. &quot;Doosra nahi. Teesre ke baare mein mujhe pakka nahi pata.&quot;</p>
+<p>&quot;Doosra theek kyun nahi?&quot;</p>
+<p>&quot;Usme log bhare hain.&quot;</p>
+<p>&quot;Achha. Aur teesra?&quot;</p>
+<p>&quot;Cover note kehta hai ki saaf kiya gaya. Maine ginti ki hai ki jab hum haath se saaf karte hain toh kya chhoot jaata hai.&quot; Woh hichkichayi. &quot;Mujhe us par bharosa nahi.&quot;</p>
+<p>&quot;Mujhe bhi nahi,&quot; Lakshmi ne kaha. &quot;Wahi kaam ka hai. Ise theek se karte hain.&quot;</p>
+<h2>Teen sawaal, kram se</h2>
+<p>Ab tak ka har chapter maan kar chala tha ki text model ko bheja ja sakta hai: us bahari company ko jisne jawaab likhe, ya jisne matlabon ke naqshe banaye, ya jisne logs store kiye. Zyadatar features ke liye, Lakshmi ne kaha, yeh assumption ya toh bilkul theek hai ya ek gambhir problem, aur kaun sa hai yeh technical baat nahi hai. Yeh teen sawaalon ki baat hai.</p>
+<p>Usne kaha ki yeh kanooni vyakhyan nahi tha. Woh Anaya ko kanoon nahi sikhane wali thi. Woh bas chahti thi ki use pata ho ki kaun se teen sawaal poochhne hain, aur har ek ka jawaab kiska hai.</p>
+<p>Pehla sawaal: <em>Kya yeh kisi insaan ko pehchaanta hai?</em> Naam, sampark vivaran, case numbers, kuch bhi jo kisi ki taraf ishaara kare. Agar haan, toh niyam laagu hote hain, aap jahan bhi hon, aur woh vaikalpik nahi hain. Isne spreadsheet ko ek line mein tay kar diya.</p>
+<p>Doosra: <em>Yeh kiski gopniya jaankari hai?</em> Agar yeh aapki hai, toh ise bhejna ek business faisla hai, aur aap ise kar sakte hain. Agar yeh kisi aur ki hai, ek customer, ek supplier, ek partner, toh yeh ek contract ka sawaal hai, aur jawaab na ho sakta hai chahe vendor kitna bhi saavdhaan ho. Sahaj ke un banks ke saath samjhaute, jinke zariye woh loan deta tha, kuch aisa kehte the ki kuch data kahan jaa sakta hai, aur na Anaya ne na Imran ne unhe padha tha.</p>
+<p>Teesra: <em>Vendor ise kya karta hai?</em> Woh ise kitni der rakhte hain, kya woh ismein se seekhte hain, aur yeh kis desh mein store hota hai? Usne kaha ki product manager teesre sawaal par sabse zyada mulya jodta hai, kyunki engineers maan lete hain ki yeh tay ho chuka hai, aur vendors ise aashwast karne wali bhasha mein bayaan karte hain.</p>
+<p>&quot;Unhe isi kram mein poochho,&quot; Lakshmi ne kaha. &quot;Yeh zyadatar cases ko sabse kam mehnat mein tay kar deta hai.&quot;</p>
+<h2>Das minute ka padhna</h2>
+<p>Usne Anaya se kuch karne ko kaha jisme das minute lagte, aur jo Sahaj mein, jahan tak use pata tha, kisi ne nahi kiya tha.</p>
+<p>&quot;Bahari company ki terms padho. Asli wali. Website nahi.&quot;</p>
+<p>Anaya ko woh us dopahar mil gayi. Woh lambi aur saadharan thi. Doodh derh page mein, jaayaz istemaal wale hisse ke baad, teen cheezein thin jo usne bilkul waise hi likh li.</p>
+<p><em>Requests ko suraksha nigrani ke liye teess din tak rakha ja sakta hai.</em> Yeh <em><a class="term" href="/book/hi/glossary.html#t-retention" title="ek provider aapka bheja hua kitni der tak rakhta hai, jo jawaab dene mein lage samay se bahut zyada ho sakta hai">retention</a></em> tha: provider aapka bheja hua kitni der rakhta hai, jo aapko jawaab dene mein lage samay se bahut lamba ho sakta hai.</p>
+<p><em>Requests ko seva sudharne ke liye istemaal kiya ja sakta hai jab tak customer ne likhit mein anyatha sahmati na di ho.</em> Sahaj ne anyatha sahmati nahi di thi. Kisi se poochha nahi gaya tha.</p>
+<p><em>Requests ko nimnlikhit kshetron ke data centres mein process kiya jaata hai</em>, aur ek list, jisme se koi bhi India nahi tha. Yeh <em><a class="term" href="/book/hi/glossary.html#t-data-residency" title="woh desh ya kshetra jahan ek provider aapka bheja hua store aur process karta hai">data residency</a></em> thi: woh desh jahan jo aap bhejte hain woh store aur sambhaala jaata hai.</p>
+<p>Usne lines do baar padhin. Teeno aapke kharide plan ke saath badal sakti thin, aur, use shak tha, Sahaj ne sabse sasta kharida tha. Woh unhe Lakshmi ke paas le gayi, aur Lakshmi ne unhe khade-khade padha, baithe bina.</p>
+<p>&quot;Customer ka Aadhaar number March se isi ke adheen raha hai,&quot; usne kaha.</p>
+<p>&quot;Mujhe pata hai.&quot;</p>
+<p>&quot;Yeh tumhari galti nahi hai.&quot;</p>
+<p>&quot;Nahi. Par mujhe ise March mein padhna chahiye tha.&quot;</p>
+<p>&quot;Haan,&quot; Lakshmi ne kaha, aur use page wapas thama diya. &quot;Tum yahan pehli insaan hogi jisne padha hai.&quot;</p>
+<h2>Teesra document</h2>
+<p>Woh teeno documents par wapas gaye. Policy ne teeno sawaal ek saath paas kiye: koi insaan nahi, public, kuch gopniya nahi. Spreadsheet pehle mein fail hui.</p>
+<p>Teesra, chats, dilchasp case tha. Woh kisi bhi sawaal mein seedhe fail nahi hua, aur paas bhi nahi hua. Use haath se saaf kiya gaya tha, aur use pata tha ki haath ki safai kitni achhi tarah kaam karti hai: kuch, kabhi-kabhi. Imaandaar jawaab yeh tha ki chats mein log ho sakte the, kisi bank ki gopniya jaankari ho sakti thi, aur woh ek aise vendor ko jaati jiski terms page par thin. Use bhejna surakshit nahi tha. Use <em>abhi</em> bhejna surakshit nahi tha.</p>
+<p>&quot;Niyam kya hai?&quot; Lakshmi ne kaha. &quot;Woh jo ek naya joiner tumse poochhe bina follow kare.&quot;</p>
+<p>Anaya ne raaste mein is par socha tha. Aisa niyam jise log follow kar sakein uski ek khaas shape hoti hai. Woh aam cases ko itne shabdon mein tay karta hai. Woh ek category ka naam leta hai jo kabhi nahi bheji jaati. Aur woh anishchit cases ke liye ek khaas raasta deta hai, kyunki jo niyam kehta hai <em>apne vivek se kaam lo</em> woh fail hota hai. Jo insaan anishchit hai aur jaldi mein hai woh ise ijaazat ki tarah padhta hai.</p>
+<p>Usne ise kaagaz par likha.</p>
+<p><em>Aap bhej sakte hain: Sahaj ke prakashit help pages aur policies.</em> <em>Kabhi nahi bhejna: pehchaan ke numbers, bank vivaran, ya loan application ka kuch bhi.</em> <em>Agar customer se aaya hai: pehle guard se guzarega.</em> <em>Agar pakka nahi hain: data channel mein Lakshmi se poochho, aur jawaab ka intezaar karo.</em></p>
+<p>Chaar lines. Lakshmi ne unhe do baar padha aur ek shabd badla.</p>
+<p>&quot;Yeh woh niyam hai jise main deewar par laga dungi,&quot; usne kaha.</p>
+<h2>Retrieval kya bhejta hai</h2>
+<p>Ek aakhri baat thi, jo Imran ne hafte ke baad pakadi aur jo, baad mein, aisi lagi jaise saaf honi chahiye thi.</p>
+<p>Chatbot ke documents ka store saavdhaani se chuna gaya tha. Sirf policies aur help pages andar gaye the. Lekin woh sawaal ke liye kaam ke kuch tukde dhoondhne aur unhe har request ke saath bahari company ko bhejne ke liye banaya gaya tha. Store mein jo kuch tha woh dhoondha ja sakta tha, aur jo dhoondha gaya woh bheja gaya.</p>
+<p>&quot;Store ke baare mein humara faisla,&quot; Imran ne kaha, &quot;har us sawaal ka faisla hai jo kabhi poochha jayega.&quot;</p>
+<p>Yeh ek aisi baat thi jo use diagrams se samajh nahi aayi thi. Ek chunav jo ek baar kiya gaya, jab kisi ne ek folder system mein kheencha, woh lakhon baar dohraya jaane wala chunav nikla, chat ki raftaar par. Agar store mein kuch tha jo nahi jaana chahiye tha, toh woh jaata. Har tukde par labels, June ke Monday ka kaam, ise rokne ka tareeka dete the. Lekin yeh chunav ki andar kya daalna hai woh phir bhi pehla tha, aur woh ek insaan ka tha.</p>
+<p>Anaya ne deewar par diagram dekha, jisme Lakshmi ke chhe laal gheraav ab bhi halke se us sataha par dikhte the jahan board saaf kiya gaya tha.</p>
+<p>&quot;Guard is niyam ko laagu karta hai,&quot; usne dheere se kaha. &quot;Kaagaz par niyam kehta hai ki pehchaan ka number kabhi mat bhejo. Guard woh hai jo kisi ko ittefaq se aisa karne se rokta hai.&quot;</p>
+<p>&quot;Jo niyam logon ke yaad rakhne par nirbhar hai,&quot; Lakshmi ne kaha, &quot;woh sirf ek ichha hai.&quot;</p>
+<p>Usne specification mein is baare mein ek line jodi ki saavdhaan judge kahan chalega, aur uske bagal mein woh jawaab likha jo niyam pehle hi de chuka tha. Agar jo vaakya use padhna tha usme koi pehchaan ka number ho sakta tha, toh use building ke bahar koi nahi padh sakta tha, jab tak terms likhit mein aisa na kahein, jo abhi nahi kehti thin. Woh ek model hona chahiye jise Sahaj khud chalaye. Aise models the, use samajh aaya, aur agle chapters use dikhayenge ki woh kaise kaam karta hai.</p>
+<aside class="carry"><h2>Saath le jaane layak baatein</h2>
+<p>Text ka ek tukda vendor ko bheja ja sakta hai ya nahi, yeh teen sawaal tay karte hain, is kram mein poochhe gaye: kya yeh kisi insaan ko pehchaanta hai, yeh kiski gopniya jaankari hai, aur vendor ise kya karta hai. Teesra woh hai jahan product manager sabse zyada jodta hai, kyunki jawaab vendor ki asli terms mein hai, jo batati hain ki woh jo aap bhejte hain use kitni der rakhte hain (retention), kya woh usse seekhte hain, aur woh kahan store hota hai (data residency), aur yeh sab aap jo plan kharidte hain uske saath badal sakte hain. Jo niyam log follow kar sakein woh aam cases ko saaf shabdon mein tay karta hai, batata hai ki kya kabhi nahi bheja jaata, aur sandehaspad ke liye ek khaas raasta deta hai. Retrieval jo bhi dhoondhta hai woh bhejta hai, isliye store mein kya jaata hai yeh faisla har us sawaal ka faisla hai jo uske baare mein poochha jayega. Aur jo niyam logon ke yaad rakhne par nirbhar hai woh sirf ek ichha hai; jo tool use laagu karta hai woh ek control hai.</p></aside>
+</div>
+<aside class="wordsbox" aria-label="Is chapter ke shabd"><h2>Is chapter ke shabd</h2><p class="sub">Saral matlab, usi kram mein jis kram mein aap inse milenge.</p><dl><div><dt id="w-retention">retention</dt><dd>ek provider aapka bheja hua kitni der tak rakhta hai, jo jawaab dene mein lage samay se bahut zyada ho sakta hai</dd></div><div><dt id="w-data-residency">data residency</dt><dd>woh desh ya kshetra jahan ek provider aapka bheja hua store aur process karta hai</dd></div></dl></aside>
+<aside class="inapp"><span class="lead">Yahi ideas, kaam ke saath, course app mein</span><span class="chips"><a href="/#/ch/ch165">Data handling: aapko kya bhejne ki ijaazat hai<span aria-hidden="true"> →</span></a></span></aside>
+<nav class="pager" aria-label="Pichhla aur agla chapter"><a class="prev" href="/book/hi/27-paper-photos-and-scans.html" rel="prev"><span class="dir">← Pichhla</span><span class="nm"><b>27</b>Kaagaz, Photos Aur Scans</span></a><a class="next" href="/book/hi/29-rules-risk-and-responsibility.html" rel="next"><span class="dir">Agla →</span><span class="nm"><b>29</b>Niyam, Risk Aur Zimmedaari</span></a></nav>
+</article>
+</main>
+</div>
+<script src="/book/reader.js" defer></script>
+</body>
+</html>
