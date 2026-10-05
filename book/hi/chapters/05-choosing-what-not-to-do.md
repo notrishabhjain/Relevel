@@ -1,7 +1,12 @@
 ---
 title: Kya Nahi Karna Hai, Yeh Chunna
-summary: Ek Sunday ki call par ek retired teacher woh sawaal poochhti hain jo achhe ideas ke dher ko strategy mein badal deta hai, aur product ko apna naam mil jaata hai.
+summary: Nau achhe ideas ki list strategy nahi hoti. Ek retired teacher ka sawaal product manager ko strategy likhne, ek chhota pehla nishana aur safalta ka ek hi maapdand chunne, product ka naam rakhne, aur aise scores se kaam ko rank karne tak le jaata hai jinhe woh palatne ko taiyaar hai.
 course: a5
+goals:
+  - vision, strategy aur plan mein antar karna
+  - strategy ko teen hisson mein likhna aur company ka naam hata kar use parakhna
+  - ek wedge aur ek North Star chunna
+  - RICE se vikalp rank karna, MoSCoW se scope tay karna, aur cost of delay se kram tay karna
 terms:
   - diagnosis | strategy ka pehla hissa: challenge asal mein kya hai, iska imaandaar byora, yeh kehne se pehle ki uske baare mein kya karna hai | 
   - guiding policy | strategy ka doosra hissa: challenge ke liye aapka poora tareeka, jisme woh bhi shaamil hai jo aap karne se mana karenge | 
@@ -13,97 +18,89 @@ terms:
   - cost of delay | jo aap har us hafte khote hain jab tak koi option intezaar karta hai | 
 ---
 
-Sundays ko Anaya Kothrud ke apne flat ki balcony mein baithti thi, chai thandi hoti rehti thi aur phone speaker par hota tha, aur Bengaluru ki ek mahila use poochhti thi ki woh kya karne se mana kar rahi hai.
+Har Sunday subah Anaya Bengaluru mein rehne wali apni purani linguistics teacher Dr. Meenakshi Rao ko phone karti thi, jo ab retire ho chuki thi. March ke teesre hafte mein usne apne kaam ki list padhkar sunayi. Chatbot ka greeting dobara likho. Pehchaan ke numbers dhoondhne ka tool banao. Use naam aur pate tak badhao. Hindi mein kaam karwao. Hinglish mein kaam karwao. Photos padho. Voice notes padho. Doosri companies ko becho. Browser mein chalne wala chhota version banao.
 
-Dr. Meenakshi Rao ne ikatees saal linguistics padhayi thi aur, apne hisaab se, upanyaas padhne ke liye retire hui thi, aur uski jagah pichhle students se aise sawaal poochhne ki aadat daal li thi jinka jawaab unke paas nahi hota tha. Unke peeche kahin ek billi thi, jo aise pal mein apna ailaan karti thi jo chune hue lagte the.
+Meenakshi ne poochha ki un nau mein se woh kaun sa kaam karne se mana karegi. Anaya ne kaha ki woh sab karegi, aakhir mein. "Toh tumhare paas strategy nahi hai," Meenakshi ne kaha. "Tumhare paas ek calendar wali ummeed hai."
 
-"Tumhare paas ek list hai," Meenakshi ne kaha. "Tumhari awaaz mein mujhe woh list sunayi de rahi hai. Mujhe padh kar sunao."
+Yeh chapter samjhata hai ki strategy mein kya hota hai, team kahan se shuru karna chunti hai, aur woh aapas mein takraate kaam ko kaise rank karti hai bina formula ko faisla karne diye.
 
-Anaya ne padhi. Chatbot ki greeting dobara likho. Pehchaan ke numbers dhoondhne ka tool banao. Use naam aur pate tak badhao. Use Hindi mein chalao. Use Hinglish mein chalao. Photos dekho. Voice notes dekho. Doosri companies ko becho. Browser mein chalne wala ek chhota version banao.
+## 5.1 Case: nau achhe idea
 
-"Bahut achhi list hai," Meenakshi ne kaha. "Inmein se tum kya nahi karogi?"
+List ka har kaam theek tha, aur wahi mushkil thi. Jis list mein kuch bhi mana nahi kiya gaya, woh Monday subah faisla nahi karwa sakti, kyunki har kaam ka bachaav kiya ja sakta hai. Meenakshi ki baat vyavaharik thi, kathor nahi: strategy tab shuru hoti hai jab kisi ko list se bahar kiya jaata hai.
 
-"Sab karungi, aakhir mein."
+## 5.2 Vision, strategy aur plan
 
-"Toh tumhare paas strategy nahi hai. Tumhare paas calendar wali ek umeed hai." Billi ne kuch kaha. "Bura mat maano. Zyadatar logon ke paas nahi hoti. Umeed wahan se shuru hoti hai. Lekin strategy tab hoti hai jab tum chuno, aur chunne ka matlab hai ki kisi na kisi ko bahar rehna padega."
+Meenakshi ne Anaya se un teen cheezon ka antar bataane ko kaha jinhe aksar ek hi maan liya jaata hai.
 
-## Teen cheezein jo ek jaisi nahi hain
+Table: Vision, strategy aur plan
+| | Kaun sa sawaal | Samay seema | Guard ka roop |
+| --- | --- | --- | --- |
+| Vision | Hum kahan ja rahe hain? | Teen se paanch saal | Bharat mein customers se baat karne wali har company ki har team ek nazar mein dekh sake ki koi personal cheez utni door nahi ja rahi jitni jaani chahiye |
+| Strategy | Hum kaise jeetenge? | Ek se do saal | Sahaj ki apni chat se shuru karo aur kahin nahi, aur log asal mein jis mix mein type karte hain us mein desh ke sabse achhe bano |
+| Plan | Ab hum kya karenge? | Is quarter | Number dhoondhne wala hissa chat mein, support team ko, June ke ant tak ship karo |
 
-Meenakshi ne use farak zor se kehne par majboor kiya, waise hi jaise kabhi pehle saal ke bachchon se kriyaon ki roop-rekha bulwati thi.
+Vision bada ho sakta hai, aur plan likhna aasaan hai. Strategy mushkil hai, kyunki woh itni khaas honi chahiye ki galat ho sake aur use cheezein chhodni padti hain.
 
-*Vision* batata hai ki aap kahan ja rahe hain, teen se paanch saal baad. *India mein customers se baat karne wali har company ki har team ek nazar mein dekh sakti hai ki kuch bhi personal zaroorat se zyada aage nahi jaa raha.* Ise thoda bhavy hone ki ijaazat hai. *Strategy* batati hai ki aap agle ek-do saal mein kaise jeetenge, aur use itna khaas hona chahiye ki woh galat bhi ho sake. *Sirf Sahaj ki apni chat se shuru karo aur kahin nahi, aur log asal mein jo bhashaon ki khichdi type karte hain usme poore desh mein sabse achhe bano.* Plan batata hai ki is quarter mein aap kya karenge. *June ke ant tak number dhoondhne wala hissa, chat mein, support team ko ship karo.*
+## 5.3 Strategy ke hisse
 
-"Vision sab likhte hain," Meenakshi ne kaha. "Plan sab likh sakte hain. Strategy wahan hai jahan log naakhush ho jaate hain, kyunki use cheezein chhodni padti hain."
+Strategy ke teen hisse hote hain, aur har ek ki ek wajah hoti hai.
 
-## Asli challenge kya hai
+Pehla hai *diagnosis*, asli chunauti ka imaandaar vivaran, aise likha ki koi ussey asahmat ho sake. "Humein ek privacy samasya hai" diagnosis nahi hai. Anaya ka roop yeh tha: personal details wahan pahunch jaati hain jahan unhe nahi pahunchna chahiye kyunki customers unhe aazadi se type karte hain, chatbot unhe nyauta deta hai, unhe hataane ka koi saadhan nahi hai, aur maujooda tools ek lipi ke liye bane hain aur yahan ke logon ke likhne ke tareeke par fail hote hain. Ise pitch ki tarah na lagne mein chaar draft lage.
 
-Usne Anaya se kaha ki strategy waise likhe jaise is vishay ki ek kitaab ne use sikhaya tha, teen hisson mein, aur phir, Meenakshi hone ke naate, yeh samjhaye ki har hissa kyun hai.
+Doosra hai *guiding policy*, chunauti ka overall tareeka, jisme woh bhi aata hai jo mana kiya jaayega. Uska roop tha: pehle details ko unki shakl se pakdo, kyunki woh sasta aur pakka hai; phir naam aur pate sambhalo, kyunki doosre tools wahin fail hote hain; sab company ke andar aur logon ke likhne ke asli tareeke mein karo; aur har us cheez ko hal karne ki koshish mat karo jise privacy kaha ja sakta hai.
 
-Pehla hissa hai *diagnosis*: asal mein kya chal raha hai, iska imaandaar byora. "Humein privacy ki problem hai" nahi, balki kuch aisa jis se koi asahamat ho sake. Anaya ne likha: *Personal details aisi jagahon par pahunchti hain jahan unhe nahi pahunchna chahiye, kyunki customers unhe khule dil se type karte hain, chatbot unhe nyota deta hai, unhe hatane ka kisi ke paas zariya nahi, aur maujooda tools ek lipi ke liye bane hain aur yahan ke log jaise likhte hain usme fail ho jaate hain.* Use isko pitch jaisa sunayi dene se rokne mein chaar koshishein lagi.
+Teesra hai saath-saath chalne wale kaamon ka ek set, kuch khaas kadam jo policy ko poora karte hain aur ek doosre ko mazboot karte hain. Anaya ne chaar likhe, dekha ki do ek doosre par nirbhar nahi hain, aur unhe kaat diya.
 
-Doosra hai *guiding policy*: challenge ke liye poora tareeka. Yahi hissa na kehta hai. Uska likha tha: *Pehle details ko unki shape se pakdo, kyunki woh sasta aur pakka hai; phir naam aur pate sambhalo, kyunki wahan doosre tools fail hote hain; aur yeh sab company ke andar, jaise log asal mein likhte hain waise karo. Har us cheez ko hal karne ki koshish mat karo jise privacy kaha ja sakta hai.*
+::: watch Lakshya strategy nahi hai
+"Bharat ka sabse bada privacy platform banna" ek lakshya hai. Usme koi diagnosis nahi hai aur woh Monday ko kisi ko kuch nahi batata. Ek aasaan test hai strategy se company ka naam hata dena aur poochhna ki kya koi competitor use apne document mein bina dhyaan mein aaye chipka sakta hai. "Customer privacy ko bade paimaane par bachane ke liye sabse achhi technology ka istemaal karo" jaisa vaakya us test mein paas ho jaata hai, isliye woh abhi strategy nahi hai. Anaya ke doosre paragraph mein uska ek roop ghus aaya tha, aur usne use mita diya.
+:::
 
-Teesra hai ek doosre ko sahaara dene wale kadmon ka set: kuch khaas qadam jo policy ko amal mein laate hain aur ek doosre ko mazboot karte hain. Usne chaar likhe. Phir usne dekha ki unmein se do ko baaki ki zaroorat nahi thi, aur unhe kaat diya, jo use shaareerik taur par asuvidhajanak laga, jaise bilkul theek kursi phenk dena.
+## 5.4 Kiske liye, aur kahan se shuru
 
-"Ab test karo," Meenakshi ne kaha. "Sahaj ka naam hata do. Kya koi competitor tumhari strategy apne document mein paste kar sakta hai aur kisi ko pata na chale?"
+*Value proposition* ek saaf vaakya hai ki product kise serve karta hai, unke liye kaun sa kaam karta hai, aur woh unke paas jo hai usse behtar kyun hai. Pichhle chapter ka Anaya ka positioning statement iska pehla draft tha. Ab use bojh uthana tha, kyunki strategy us par tiki thi.
 
-Anaya ne dekha. *Scale par customer privacy ki raksha ke liye sabse achhi technology ka istemaal karo.* Nahi, yeh kisi aur ka vaakya tha; usne yeh likha nahi tha. Lekin uska ek roop uske doosre paragraph mein ghus aaya tha, aur usne use mita diya.
+Kahan se shuru karna alag faisla hai. Meenakshi ka niyam tha ki itne chhote se shuru karo ki kisi cheez mein sabse achhe ho sako, kyunki team baad mein faila sakti hai par har cheez mein sirf theek-thaak hone se ubar nahi sakti. Woh chhota pehla nishana jise product saaf taur par jeet sakta hai, uska *wedge* hai. Woh itna chhota hona chahiye ki us mein behtareen ho sako aur kisi bade se juda ho, taaki use jeetne se ek darwaza khule.
 
-"Goal strategy nahi hota," Meenakshi ne kaha. "'India ka sabse badi privacy platform banna' ek goal hai. Usme diagnosis nahi hai. Woh Monday ko kisi ko nahi batata ki kya karna hai."
+Wedge "Bharatiya companies ke liye privacy" nahi tha. Woh tha Sahaj ki apni support chat mein personal details ko log jin teen tareekon se likhte hain unmein dhoondhna aur chhupana. Woh vision se bahut chhota tha aur poori tarah jeeta ja sakta tha. Uska ek tayyar andar ka customer tha, asli messages ka ek zakheera, aur Farah Sheikh, jise ek hafte mein pata chal jaata ki woh kaam karta hai ya nahi.
 
-## Yeh kiske liye hai, aur shuruaat kahan se
+### Ek number
 
-*Value proposition* us baatcheet se lagbhag apne aap nikal aaya. Yeh ek saaf bayaan hai ki aap kiski seva karte hain, unke liye kaun sa kaam karte hain, aur unke paas jo hai usse behtar kyun hain. Uska pehla draft usne pichhle chapter mein positioning statement ke roop mein likha tha; ab use wazan uthana tha.
+Wedge ke saath ek *North Star* joda gaya: ek vaakya jo batata hai ki customer ko kya value milti hai, aur ek number jo use naapta hai. Vaakya tha ki messages chat se is tarah nikalte hain ki unme kuch personal nahi bachta. Naap tha un messages ka hissa jo aisa karte hain. Agar number badhta, toh kaam kaamyaab tha. Agar Anaya khud ko kisi aur number par behas karte paati, toh woh ruk kar poochhti ki kyun.
 
-Shuruaat ek alag baat hai. Meenakshi ka ek niyam tha jo woh dheele taur par apne ek purane teacher ko dete the: *itna chhota shuru karo ki kisi cheez mein sabse achhe ban sako.* Baad mein badha sakte ho; sab kuch mein bas kaafi-achhe hone se ubar nahi sakte. Woh chhoti pehli cheez jise product saaf-saaf jeet sakta hai, uska *wedge* kehlata hai. Use itna chhota hona chahiye ki usme kamaal ho sake, aur kisi badi cheez se juda hona chahiye, taaki use jeetna ek darwaza khol de.
+## 5.5 Product ka naam
 
-Wedge "Indian companies ke liye privacy" nahi tha. Woh tha *Sahaj ki support chat mein, log jin teen tareeko se likhte hain, unmein personal details dhoondhna aur chhupana*. Sapne se chhota. Poori tarah jeetne layak. Aur usme ek dostana internal customer tha, messages ka ek asli set, aur ek insaan, Farah, jise ek hafte mein pata chal jaata ki yeh chal raha hai ya nahi.
+Farah ne project ke baare mein suna aur Anaya ke desk par ruki. Sab ise "privacy wali cheez" keh rahe the, usne kaha, aur jab tak ise naam nahi milta, woh wahi naam pa jaayegi jo kisi meeting mein sabse pehle kahi gayi. Naam yeh batana chahiye ki product kya hai aur kiske liye hai, aur customer ko phone par bolna aasaan hona chahiye.
 
-Isse ek vaakya bandha tha jise woh ek naap mein badalne wali thi: *North Star*. Woh batata tha ki customer ko kya value milti hai, aur aapko kaise pata chalega. *Messages chat se aise nikalte hain ki unme kuch personal bacha nahi.* Naap: aise messages ka hissa. Agar woh upar gaya, toh sab kuch kaam kar raha tha. Agar kabhi woh khud ko aise number par behes karte paye jo yeh nahi tha, toh woh ruk kar poochhegi ki kyun.
+Unhone bees ke kareeb naam socha. Farah ne, jo apne customers ki bhasha mein sochti thi, Bharat Privacy Guard sujhaya, aur andaaza lagaya ki ek hafte mein sab ise "the guard" kehne lagenge. Naam rakh liya gaya, kuch is wajah se ki woh signboard ke naam jitna hi sajaa hua tha.
 
-## Aakhirkaar ek naam
+## 5.6 Kaam ko rank karna
 
-Is mod par Farah Sheikh kahani mein tehelti hui aayi, jaisa woh karti thi, kisi se sun kar.
+Strategy ke saath Anaya ko nau cheezon ke liye ek kram chahiye tha. Usne ek aam scoring tareeka, *RICE*, istemaal kiya, jo har vikalp ko chaar sawaalon par naapta hai. Reach poochhta hai ki ek tay samay mein kitne log ya messages use chhuenge. Impact poochhta hai ki har ek ke liye woh kitna badlega. Confidence percent mein poochhta hai ki pehle do jawaab kitne pakke hain. Effort poochhta hai ki kaam mein kitne person-weeks lagenge. Reach, impact aur confidence ko guna karke effort se bhaag diya jaata hai.
 
-Woh Monday ko Anaya ke desk par aayi, phone par ek message pin kiya hua, aur apne usi andaaz ke saath jaise woh kisi aur kaam se aayi ho. "Main ise 'privacy wali cheez' sunti rehti hoon," usne kaha. "Log ise kuch na kuch kahenge, aur agar tum naam nahi chunogi, toh woh woh hoga jo koi meeting mein pehle bol dega. Jo kuch bhayanak hoga."
-
-Anaya ne ek hafta naam ke baare mein na sochte hue bitaya tha, jo log tab karte hain jab woh zaroori ho.
-
-"Usme batana chahiye ki yeh kya hai aur kiske liye hai," Farah ne kaha. "Aur phone par customer ko kehna aasaan hona chahiye. Chaalaki-bhara nahi."
-
-Unhone ek darjan aazmaye. Aakhir mein Farah ne, jo apne customers ki bhasha mein sochti thi, kaha: "Ise Bharat Privacy Guard kehlo. Ek hafte mein sab ise waise bhi 'guard' kehne lagenge."
-
-Woh chipak gaya, kuch is wajah se ki woh bilkul utna hi chaalak tha jitna ek dukaan ke signboard ka naam.
-
-## Options mein se chunna
-
-Naam ke baad mushkil kaam aaya: jab list mein sab kuch theek lagta ho tab pehle kya karna hai yeh tay karna.
-
-Woh ek aisi technique ki taraf gayi jo har jagah istemaal hoti hai, aur jiska naam chawal ke brand jaisa lagta hai. RICE har option ko chaar sawaalon par score karta hai. *Reach*: ek tay samay mein kitne log ya messages isse chhuenge? *Impact*: har ek par kitna farak padega? *Confidence*: aapko apne pehle do jawaabon par kitna yakeen hai, percent mein? Aur *Effort*: ismein kitne person-weeks lagenge? Pehle teen ko guna karo, chaute se bhaag do, aur aapke paas ek tulna-yogya number hai.
-
-| Option | Reach | Impact | Confidence | Effort | Score |
+Table: Chaar vikalpon ke RICE scores
+| Vikalp | Reach | Impact | Confidence | Effort (person-weeks) | Score |
 | --- | --- | --- | --- | --- | --- |
-| Greeting dobara likho | 400 | 1 | 80% | 0.1 | 3,200 |
-| Fixed-shape numbers dhoondho | 400 | 2 | 80% | 2 | 320 |
-| Card ki photos pakdo | 30 | 3 | 50% | 1 | 45 |
-| Hinglish mein naam aur pate dhoondho | 150 | 2 | 50% | 6 | 25 |
+| Greeting dobara likhna | 400 | 1 | 80% | 0.1 | 3,200 |
+| Fixed-shape numbers dhoondhna | 400 | 2 | 80% | 2 | 320 |
+| Cards ki photos pakadna | 30 | 3 | 50% | 1 | 45 |
+| Hinglish mein naam aur pate dhoondhna | 150 | 2 | 50% | 6 | 25 |
 
-Usne aakhri row ko ghoora. Score saaf-saaf keh raha tha ki jis cheez ki use sabse zyada fikr thi woh sabse aakhir mein aati thi.
+Aakhri row mein woh kaam tha jo project ke liye sabse zaroori tha, aur uska score sabse kam aaya. Imran Qureshi, jo yeh dekhne aaya tha ki Anaya bhaunhein kyun chadha rahi hai, ne maana ki is hisaab se woh sabse peeche aata hai. "Toh aap use override karte hain," usne kaha. "Zor se bolkar. Jo nahi karna chahiye woh yeh dikhana hai ki number ne aisa kaha."
 
-"Sahi hai," Imran ne kaha, jo dekhne aaya tha ki hungama kya hai. "Is ginit ke hisaab se woh sabse aakhir mein hai."
+::: key Score kis kaam ka hai
+RICE score ke inputs zyadatar andaaze hote hain, aur formula strategy ke baare mein ya is baare mein kuch nahi jaanta ki kaun sa kaam kis par nirbhar hai. Score behas ko vyavasthit karta hai, use badalta nahi. Jab koi team use override kare, toh use wajah likhni chahiye. Anaya ne aakhri row ke paas likha: "Yeh wedge hai. Baaki sab kahin aur maujood hai."
+:::
 
-"Wahi poore project ka maqsad hai."
+Doosre logon ke saath scope tay karne ke liye ek doosra tareeka theek baithta hai. *MoSCoW* har cheez ko Must, Should, Could ya Won't mein baantta hai. Anaya ke Must the greeting aur fixed-shape numbers dhoondhne wala hissa. Should the naam aur pate. Could the photos. Saal ke Won't the doosri Bharatiya bhashayein, voice notes, browser version, aur Sahaj se bahar kisi ko bechna. Imran ne aakhri column do baar padha aur kaha ki yeh pehla Won't list hai jo sharmaati nahi.
 
-"Haan," Imran ne kaha. "Toh tum use override kar do. Zor se bol kar. Iski ijaazat hai. Jo ijaazat nahi hai woh yeh dikhaana hai ki number ne tumse kaha."
+Ek teesri baat ek finance mein kaam karne wale dost se aayi. *Cost of delay* woh hai jo har hafte kuch rukne par khoya jaata hai. Zyadatar cheezon ke liye jawaab tha "thoda". Greeting ke liye tha ek aur hafte tak customers se unki details maangna, jisne use list mein sabse aage rakh diya bina aur hisaab ke.
 
-Use laga, framework ka sahi istemaal yahi hai. Score zyadatar andaazon se aate hain, aur unhe strategy ke baare mein ya kaun si cheez kis par tikki hai uske baare mein kuch pata nahi hota. Aisa number behes ko vyavasthit karne ke liye hota hai. Behes karne ki jagah lene ke liye nahi. Usne table rakhi, aur aakhri row ke bagal mein woh wajah likhi jiske liye use phir bhi banaya jaayega: *Yeh wedge hai. Baaki sab kahin aur maujood hai.*
+## Saaraansh
 
-Doosre logon ke saath scope par sahmati ke liye ek doosra tareeka behtar tha. *MoSCoW*, jo apne akshron ke naam par hai aur sheher ke naam par nahi, har cheez ko Must, Should, Could aur Won't mein baant deta hai. Uske Musts the greeting aur fixed-shape numbers dhoondhne wala hissa. Uske Shoulds the naam aur pate. Uske Coulds the photos. Is saal ke uske Won'ts, jo usne apne sabse saaf haath mein likhe, the: doosri Indian bhashayein, voice notes, browser version, aur Sahaj ke bahar kisi ko bechna.
+Vision batata hai ki company kahan ja rahi hai, strategy batati hai ki woh kaise jeetegi, aur plan batata hai ki is quarter kya hoga. Sirf strategy mein cheezein chhodni padti hain.
 
-Imran ne Won't column do baar padha. "Yeh pehli baar hai ki maine aisi Won't list dekhi jo sharminda nahi thi."
-
-Ek aur idea uske notes mein finance ke ek dost se aaya. *Cost of delay* poochhta hai ki jab tak koi cheez intezaar karti hai, aap har hafte kya khote hain. List ki zyadatar cheezon ka jawaab tha "thoda sa". Greeting ka jawaab tha "customers se unki details maange jaane ka ek aur hafta", jisne bina kisi ginit ke kram tay kar diya.
-
-## Saath le jaane layak baatein
-
-Vision batata hai aap kahan ja rahe hain, strategy batati hai aap kaise jeetenge, aur plan batata hai is quarter mein kya hoga; sirf strategy mein cheezein chhodni padti hain. Asli strategy challenge ke imaandaar byore se shuru hoti hai, ek poora tareeka chunti hai, aur use ek doosre ko sahaara dene wale kadmon se pakki karti hai. Woh itne chhote wedge se shuru hoti hai jise jeeta ja sake, aur apne aap ko ek number se naapti hai. Reach, impact, confidence aur effort se options ko score karna faisla liye bina faisle ko vyavasthit karta hai, aur jo team score ko override kare use zor se bolna chahiye. Jab sab kuch priority ho, toh sabse saaf hathiyaar woh list hai ki aap kya nahi karenge.
+- Strategy ke teen hisse hain: diagnosis (asli chunauti kya hai), guiding policy (tareeka, aur jo mana kiya jaata hai) aur ek doosre ko mazboot karne wale kaam. Company ka naam hata kar dekhna batata hai ki woh khaas hai ya nahi.
+- Wedge woh chhota pehla nishana hai jise saaf taur par jeeta ja sake. North Star ek vaakya ka customer value aur ek number hai jo use naapta hai.
+- RICE vikalpon ko reach, impact aur confidence ko effort se bhaag dekar score karta hai. Score override ho sakta hai agar wajah likhi ho.
+- MoSCoW cheezon ko Must, Should, Could aur Won't mein baantkar scope tay karta hai, aur Won't list sabse jaankari wali hoti hai.
+- Cost of delay, yaani intezaar ke har hafte ka nuksaan, aksar wahan kram tay karta hai jahan scoring nahi kar paati.

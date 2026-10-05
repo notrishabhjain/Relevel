@@ -1,7 +1,12 @@
 ---
 title: Kal Ke Baare Mein Poochhna
-summary: Paanch baatcheet ek product manager ko sikhati hain ki kaam ka sawaal kabhi "kya aapko yeh pasand aayega?" nahi hota, aur ki problem utni wahan nahi thi jahan woh soch rahi thi.
+summary: Ek saathi se pehli baatcheet mein sirf haan milti hai, aur paanch behtar baatcheeton se saboot milta hai. Chapter batata hai ki logon se unke beete hue kal ke baare mein kaise poochhein, unke maksad ko kaise padhein, aur woh ek maanyata kaise dhoondhein jise sabse pehle test karna hai.
 course: a3
+goals:
+  - leading question pehchaanna aur use beete hue kal ke baare mein sawaal bana kar likhna
+  - kisi insaan ke vyavhaar ko us pragati ki tarah padhna jo woh karna chahta hai, aur un shaktiyon ko tolna jo tay karti hain ki woh badlega ya nahi
+  - kisi samasya ki wajahon tak pahunchna, bina pehli sahi lagti kadi par ruke
+  - aisa user ka vivaran aur problem statement likhna jo saboot tak jaaye, aur woh maanyata batana jise pehle test karna hai
 terms:
   - user interview | aisi baatcheet jo yeh jaanne ke liye hoti hai ki ek insaan ne asal mein kya kiya aur use kya chahiye tha, yeh nahi ki use aapka idea pasand aayega ya nahi | interview, interviews
   - leading question | aisa sawaal jo poochhne wale ke man ka jawaab hi saamne wale ke munh mein daal deta hai | leading questions
@@ -12,115 +17,113 @@ terms:
   - riskiest assumption | woh baat jo sach honi hi chahiye taaki aapka idea chale, aur jis par aapko sabse kam yakeen hai, isliye jise sabse pehle aazmana hai | riskiest unknown
 ---
 
-Pehla interview ek aafat tha, aur Anaya ko yeh samajhne mein uske ant tak ka waqt laga.
+Anaya ki users se seekhne ki pehli koshish ne do page ke notes diye aur lagbhag koi jaankari nahi. Usne support lead Farah Sheikh se aadhe ghante ka samay maanga aur do sawaal poochhe. "Kya yeh bura nahi hai ki customers ke pehchaan ke numbers support chat mein pahunch jaate hain?" Farah ne kaha ki yeh bahut bura hai. "Aur kya aisa tool jo unhe apne aap chhupa de, kaam ka hoga?" Farah ne kaha ki woh bahut madadgaar hoga. Anaya ne notes mein "Definitely" likha aur das minute tak santusht rahi, jab tak usne page dobara padha aur dekha ki dono jawaab wahi the jo usne maange the.
 
-Usne Farah Sheikh se aadhe ghante ka waqt maanga tha, aur Farah coffee ka cup lekar aayi thi aur laptop band tha, jo achhi nishani thi; jo log laptop khol kar baithte hain woh asal mein tumhari baat khatam hone ka intezaar kar rahe hote hain. Anaya ke paas sawaalon ki ek list thi. Usne us sawaal se shuru kiya jis par use sabse zyada naaz tha.
+Yeh chapter samjhata hai ki woh baatcheet kyun fail hui, baad ki paanch baatcheeton mein kya sahi hua, aur nateejon ko kaise ek aise vivaran mein baandha gaya jise koi aur jaanch sake.
 
-"Aapko nahi lagta ki yeh kitna bura hai ki customers ke pehchaan ke number support chat mein pahunch jaate hain?"
+## 3.1 Case: do madhur jawaab
 
-"Arre, bahut bura hai," Farah ne turant kaha. "Bilkul. Koi kuch kare toh sahi."
+Farah jhooth nahi bol rahi thi. Log shishtaachaar nibhaate hain, aur jab kisi ko pasandeeda jawaab ka ishaara milta hai toh woh aksar wahi de dete hain. Jo sawaal apna jawaab khud saath le aata hai, use *leading question* kehte hain. Anaya saboot ikattha karne nikli thi aur sahmati ikattha kar layi, jo bahut sasti hai aur bahut kam keemat ki.
 
-"Aur kya aisa tool jo unhe apne aap chhupa de, kaam ka hoga?"
+Agar woh poochhti ki chat mein itne saare numbers hona kitna achha hai, toh bhi shayad Farah usme koi achhi baat dhoondh leti.
 
-"Zaroor. Bahut madad milegi."
+## 3.2 Logon se unke beete hue kal ke baare mein kaise poochhein
 
-Anaya ne apne notes mein *Zaroor* likha, use do baar underline kiya, aur lagbhag das minute tak bahut achha mehsoos kiya. Phir usne page wapas padha aur dekha ki usme kya likha hai. Do jawaab, dono wahi jo usne maange the, ek garmjoshi se bhare, sehmat hone wale insaan ne diye the jo chahti thi ki Anaya ko achha lage. Agar usne poochha hota "Kya yeh kamaal ki baat nahi ki chat mein itne saare numbers hain?" toh use shak tha ki Farah usme bhi kuch achha dhoondh leti.
+Anaya ek chhoti kitaab par lauti jo use saalon pehle kisi ne di thi. Uska vishay yeh tha ki apni maa se poochhna bekaar hai ki unhe aapka business idea pasand hai ya nahi. Maa haan kahengi, kyunki woh beti se pyaar karti hain, aur us jawaab mein koi jaankari nahi hoti. Kitaab ne teen niyam diye, jinhe Anaya ne ek index card par utaar liya.
 
-Jo sawaal jawaab hi saamne wale ke haath mein thama de, use *leading question* kehte hain. Log meherbaan hote hain, aur meherbaan insaan ko ishaara mil jaaye toh woh ehsaan kar deta hai. Anaya saboot dhoondhne nikli thi aur sehmati le aayi thi, jo ek alag aur bahut sasti cheez hai.
+::: key User se baatcheet ke teen niyam
+Unki zindagi ke baare mein baat kijiye, apne idea ke baare mein nahi. Beete hue kal ki khaas baatein poochhiye, yeh nahi ki woh aage kya kar sakte hain. Kam boliye aur zyada suniye.
+:::
 
-## Teen niyam
+Achhe aur kharab sawaal mein farq aksar kaal ka hota hai. Bhavishya ke sawaal ("kya aap ise istemaal karenge?", "aap kitna dene ko taiyaar hain?") shishta kalpana dete hain. Beete kal ke sawaal ("mujhe us aakhri baar ke baare mein bataiye jab...") yeh batate hain ki sach mein kya hua, aur kahani mein woh baatein hoti hain jo bolne wale ko khud nahi pata tha ki woh bolne wala hai.
 
-Us shaam usne ek kitaab nikaali jiski sifaarish saalon pehle kisi ne ki thi aur jo usne kabhi khatam nahi ki thi, ek chhoti si kitaab, jiske title mein ek mazaak tha ki apni maa se poochho ki unhe tumhara business idea pasand aaya ya nahi. Maa haan kahengi. Maa tumse pyaar karti hai. Lekhak ka poora tark yeh tha ki isse tumhe kuch pata nahi chalta.
+Table: Anaya ke sawaal pehle aur baad mein
+| Pehle | Baad mein |
+| --- | --- |
+| Kya numbers ka leak hona pareshaan nahi karta? | Mujhe us aakhri baar ke baare mein bataiye jab aapne chat mein pehchaan ka number dekha. Aapne kya kiya? |
+| Kya aap aise tool ke liye paisa denge jo ise theek kare? | Aap abhi isse nipatne ke liye kya karte hain, aur uska kitna kharcha aata hai? |
+| Kya aapko lagta hai AI madad kar sakta hai? | Kya aapne kuch aazmaaya hai? Kya hua? |
 
-Usne teen niyam diye the, aur Anaya ne unhe ek index card par utaar liya:
+Naye sawaalon mein se kisi mein bhi uska idea nahi hai. Is tarah ki baatcheet, yaani *user interview*, gawah ko sunne jaisi zyada hai, vote lene jaisi kam. Bhavishya ke baare mein kisi ki raay kamzor saboot hai. Beete kal ki khaas kahani mazboot saboot hai, aur jis ek insaan ne teen aisi kahaniyan sunayi, usne Anaya ko un sau logon se zyada bataya jinhone kaha ki woh "definitely" kuch istemaal karenge.
 
-*Unki zindagi ki baat karo, apne idea ki nahi. Unhone peeche kya khaas kiya, yeh poochho, aage kya karenge yeh nahi. Kam bolo, zyada suno.*
+## 3.3 Paanch baatcheetein
 
-Achhe aur bure sawaal mein farak, use samajh aaya, lagbhag hamesha tense ka hota hai. Bhavishya ke sawaal ("kya aap ise istemaal karenge?", "kitna paisa denge?") shishtachar waali kalpanayein paida karte hain. Bhoot ke sawaal ("mujhe bataiye pichhli baar jab...") kahaniyan paida karte hain, aur kahaniyon mein woh cheezein hoti hain jo sunane waale ko pata hi nahi tha ki woh bol dega.
+Agle hafte mein Anaya ne tees-tees minute ki paanch baatcheetein ki, haath se notes liye aur har ek ko number diya, taaki har line ko wapas us tak le jaaya ja sake.
 
-Usne apni list dobara likhi. Jahan usne likha tha *Kya aapko jhunjhlahat nahi hoti jab numbers leak ho jaate hain?*, wahan usne likha *Mujhe pichhli baar ke baare mein bataiye jab aapne chat mein pehchaan ka number dekha. Aapne kya kiya?* Jahan usne likha tha *Kya aap aise tool ke liye paisa denge jo yeh theek kar de?*, wahan usne likha *Aaj aap iske baare mein kya karte hain, aur isme aapko kitna kharch padta hai?* Jis sawaal par use sabse zyada khushi thi, "Kya aapko lagta hai AI madad kar sakta hai?", woh kooday ke dibbe mein chala gaya aur uski jagah aaya *Kya aapne kuch aazmaya hai? Kya hua?*
+Table: Paanch baatcheeton ne kya dikhaya
+| Number | Kaun | Unhone kya kaha | Isse kya dikha |
+| --- | --- | --- | --- |
+| 1 | Farah Sheikh, support lead | Agent jab number dekhta hai toh koi niyam nahi hai. Kuch export mein use mita dete hain, kuch Farah ko batate hain, zyadatar kuch nahi karte | Koi procedure nahi hai, isliye number ka hatna ittefaq hai |
+| 2 | Suresh Gaikwad, loan officer | Kabhi-kabhi customers se number type karwata hai taaki jaldi dhoondh sake | Kuch staff khud numbers maangte hain, aur ise khatre ke bajaye raftaar maante hain |
+| 3 | Pooja Nair, nurse aur borrower | Bot ne kaha "verify karna hai, isliye maine sab de diya" | Chatbot ke greeting ne number ko nyauta diya |
+| 4 | Sanjay Patil, stationery shop ke maalik | "adhar" type karte hain, number ke beech mein space ya dash ke saath, hamesha Roman akshar mein | Asli numbers aksar card par chhape format se milte nahi |
+| 5 | Rutuja Joshi, customer | Apni 68 saal ki maa ka number unke liye type kiya; maa ko "pata nahi ki yeh kahin jaata hai" | Jo log khatre mein hain, woh hamesha type karne wale nahi hote |
 
-Natija sawaalon ki ek aisi list thi jisme uske idea ka zikr tak nahi tha. Yeh ajeeb lagta tha, aur yahi maqsad tha.
+Do baatein khamoshi se nikli. Jab Pooja ne kaha ki bot ne verify karne ko kaha, toh Anaya ne use tokne ke bajaye intezaar kiya, jo teeno niyamon mein sabse mushkil tha, aur Pooja ne wahi shabd dohraya. Anaya ne chatbot ka pehla message dhoondha: "Verification ke liye kripya apni details share karein." Kisi ne socha nahi tha ki yeh vaakya kya nyauta deta hai. Woh shishtata ke liye likha gaya tha.
 
-Is tarah kiya gaya *user interview* vote lene se zyada kisi gawah ko sunne jaisa hota hai. Bhavishya ke baare mein raayein kamzor saboot hain. Beete hue waqt ki khaas kahaniyan mazboot saboot hain, aur jis insaan ne aapko aisi teen kahaniyan suna di, usne aapko un sau logon se zyada bataya jinhone kaha ki woh "zaroor" kuch istemaal karenge.
+## 3.4 Chat ke peeche ka kaam
 
-## Paanch baatcheet
+Anaya ne apne flat ke farsh par notes bichhaye aur poochha ki har insaan kya karna chahta tha. *Job to be done* woh pragati hai jo ek insaan apni zindagi mein karna chahta hai, aur jiske liye woh product ko "kiraye par" leta hai. Log product nahi chahte. Woh haalat badalna chahte hain, aur use likhne ke liye ek tay saancha kaam aata hai: jab main is haalat mein hota hoon, mujhe yeh karna hai, taaki main yeh pa sakoon.
 
-Agle hafte usne paanch interviews kiye. Har ek ko tees minute tak rakha, haath se notes liye, aur number diye, taaki har line ko baad mein wapas dhoondha ja sake.
+Pooja ke liye: jab main loan ke faisle ka intezaar kar rahi hoti hoon aur soch band nahi hoti, mujhe jaanna hai ki woh kahan tak pahunchi hai bina kisi ko phone kiye, taaki main chinta chhod kar apna mahina plan kar sakoon. Is vaakya mein pehchaan ke numbers hain hi nahi. Number us tareeke ka ittefaq tha jis se usne apna kaam nipatane ki koshish ki.
 
-Farah ne, doosri baar, woh baat batayi jo pehle interview ne daba di thi. Jab koi agent chat mein koi number dekhta, toh kya karna hai iska koi niyam nahi tha. Kuch export mein use mita dete. Kuch Farah ko flag kar dete. Zyadatar kuch nahi karte the, kyunki chat tab tak aage badh chuki hoti thi aur koi woh insaan banna nahi chahta tha jo kaagazi kaam ke liye customer ko rok de.
+Farah ke liye: jab main hafte ki chats analysis ke liye bhejti hoon, mujhe pakka karna hai ki kuch sensitive building se bahar na jaaye, taaki baad mein samjhaane wali main na banoon.
 
-Suresh Gaikwad, ek loan officer, ne kaha ki woh kabhi-kabhi jaan-boojh kar customers se unke numbers type karne ko kehta tha, taaki woh unhe tez dhoondh sake. Woh ise problem nahi maanta tha. Woh ise raftaar maanta tha.
+### Achha tool bhi kyun ignore ho sakta hai
 
-Pooja Nair, ek nurse jisne pichhli sardiyon mein chhota loan liya tha, pehli customer thi jisse Anaya ne baat ki. Use woh chat saaf yaad thi, kyunki woh loan ko lekar chintit thi aur ek hafte mein usne chaar baar status poochha tha. "Bot ne kaha ki mujhe verify karna padega," usne kaha. "Toh maine sab kuch de diya. Maine maana ki yahi matlab hai."
+Is idea se yeh bhi samajh aata hai ki upyogi products kabhi-kabhi kyun ignore ho jaate hain. Koi insaan kuch naya tabhi apnaata hai jab chaar shaktiyan uske paksh mein milti hain. Dhakka hai abhi ki haalat kitni buri hai. Khinchaav hai ki naya kya vaada karta hai. Iske khilaaf hain naye ko lekar chinta aur purane ki aadat.
 
-Anaya ne khamoshi ko rehne diya. Yeh sabse mushkil niyam tha, teesra, aur woh lift mein iska abhyaas kar rahi thi.
+Table: Chaar shaktiyan, Farah ki team par
+| Shakti | Sahaj mein |
+| --- | --- |
+| Dhakka | Leak ka darr, aur haath se numbers mitaane ki thakan |
+| Khinchaav | Aisa tool jo mitaane ka kaam apne aap kare |
+| Chinta | "Agar woh kuch chhupa de jo agent ko chahiye? Agar woh phone number blank kar de jo mujhe wapas call karne ke liye chahiye?" |
+| Aadat | Team ke paas pehle se nipatne ka ek tareeka hai, chahe woh kharab ho |
 
-"Verify karna. Bot ke yahi shabd the?"
+Jo product doosron ke shabdon ko sambhalta hai, usme chinta aksar sabse badi shakti hoti hai. Log galat jawaab ki chinta dheemi gati se kahin zyada karte hain.
 
-"Shayad. Usne verification ke baare mein kuch kaha tha. Maine socha, theek hai, jo chahiye le lo."
+## 3.5 Kyun, aur phir kyun
 
-Yeh chhoti si baat thi, lekin Anaya ne use underline kiya. Us raat usne chatbot ka pehla message dobara dekha aur woh vaakya mil gaya: *Verification ke liye, kripya apni details share karein.* Kisi ne socha hi nahi tha ki yeh vaakya kya nyota deta hai. Use sirf shishtachar ke liye likha gaya tha.
+Anaya ne ab ek purana tareeka aazmaya jisse lakshan se wajahon tak pahunchte hain: kyun poochho, aur phir jawaab par kyun poochho. Ise *five whys* kehte hain.
 
-Chauthi baatcheet Sanjay Patil se thi, ek stationery dukaan ke maalik, jo sab kuch Roman akshron mein type karte the, Hindi bhi. Unhone *Aadhaar* nahi, *adhar* type kiya. Woh number ke beech mein space ke saath type karte, aur ek baar dash ke saath. "Main card jaisa kyun likhoon?" unhone kaha, sachchi hairaani ke saath. "Main phone par type kar raha hoon."
+*Chats mein pehchaan ke number kyun hain?* Kyunki customers unhe type karte hain. *Woh kyun type karte hain?* Kyunki chatbot ka pehla message verification ke liye details maangta hai. *Woh aisa kyun kehta hai?* Kyunki aath mahine pehle kisi ne greeting likha aur kisi ne use dobara nahi dekha.
 
-Paanchvi Rutuja Joshi se thi, jisne apni maa ka pehchaan ka number unki taraf se chat mein type kiya tha. Uski maa adsath saal ki thi aur app istemaal nahi karti thi. "Unhone bol kar bataya aur maine type kar diya," Rutuja ne kaha. "Unhe pata hi nahi ki yeh kahin jaata hai. Unke liye woh ek chat thi."
+Chain saaf thi, aur Anaya thodi der khush hui. Phir usne use baatcheeton se milaya. Sanjay ko type karne ke liye kisi ne nahi kaha tha. Suresh khud numbers maangta tha. Rutuja ki maa ko chat ke baare mein kuch pata hi nahi tha. Is tareeke mein ek jaal hai: asli samasyaon ki kabhi ek wajah nahi hoti, aur log pehli saaf chain par ruk jaate hain, jo aksar ek badi bunaavat ki sirf ek shaakha hoti hai.
 
-## Chat ke peeche ka kaam
+Usne ek ped banaya. Sabse upar usne likha "chat mein numbers". Uske neeche chaar shaakhayein thin. Greeting unhe nyauta deta hai. Customers ne call centres se saalon mein seekha hai ki madadgaar hona matlab pehchaan dena. Kuch staff unhe jaanboojh kar maangte hain. Aur chat window kuch bhi le leta hai, photos bhi, bina kuch kahe.
 
-Anaya ne apne notes apne flat ke farsh par bichha diye, jahan baith kar woh sabse achha sochti thi, aur dekhne ki koshish ki ki har insaan kya karwana chah raha tha.
+Ped ne uski yojna badal di. Naya greeting samasya ko kam karta, par rakhta. Customer aur chat ke beech khada koi tool woh pakadta jo baaki upaay chhod dete. Greeting phir bhi turant likhna chahiye tha, kyunki uska kharcha kuch nahi tha, aur usne use apni list mein "Pehle yeh karo" ke note ke saath joda.
 
-Ek *job to be done* isi ko dekhne ka tareeka hai. Idea yeh hai ki log aapka product nahi chahte; woh apni zindagi mein kuch aage badhna chahte hain, aur madad ke liye kisi cheez ko "kaam par rakhte hain". Is vaakya ka ek dhaancha hota hai: *Jab main is halat mein hoon, toh main yeh karna chahta hoon, taaki mujhe woh mil sake.*
+## 3.6 Jo jaana, use likhna
 
-Pooja ke liye yeh tha: *Jab main loan ke faisle ka intezaar kar rahi hoon aur sochna band nahi kar paa rahi, toh main kisi ko phone kiye bina jaanna chahti hoon ki baat kahan tak pahunchi, taaki main chintit hona chhod kar apne mahine ki planning kar sakoon.* Is vaakya mein pehchaan ke numbers ki koi baat hi nahi. Number toh bas is baat ka ek hadsa tha ki usne kaam kaise karwane ki koshish ki.
+Hafte ke ant tak Anaya ke paas aise notes the jin par use bharosa tha, aur usne woh kiya jo pehle chhod diya tha: apne users ka saar ek aise roop mein likha jise koi jaanch sake.
 
-Farah ke liye yeh tha: *Jab main hafte ki chats analysis ke liye bhejti hoon, toh main pakka hona chahti hoon ki koi sensitive cheez building se bahar na jaye, taaki baad mein samjhane wali main na banoon.*
+Support team ka uska vivaran chhe line ka tha, aur har line ke ant mein un baatcheeton ke numbers the jinse woh juda tha, jaise "Agents ke paas kya karna hai uska koi niyam nahi (1, 5)". *Persona* ek tarah ke user ka chhota vivaran hai, aur woh tabhi kaam ka hai jab uski har line kisi baatcheet tak jaaye. Baatcheeton se pehle likha persona research ki tarah pesh kiya gaya anumaan hai, aur AI assistant ka likha persona aur bhi kharab hai, kyunki woh banaye hue naam aur pasandeeda rang ke saath aata hai. Uska niyam tha ki bina reference ki har line mita di jaaye.
 
-Is idea ne use ek aisi paheli samjhayi jo use pareshan kar rahi thi, ki achha tool bhi kyun anuupyog mein pada rehta hai. Log kisi nayi cheez par tabhi switch karte hain jab chaar takatein ek saath aayein. Maujooda halat ka dhakka hota hai, yaani abhi kitna bura hai. Nayi cheez ka khinchaav hota hai, yaani woh kya waada karti hai. In ke khilaaf khadi hoti hain nayi cheez ke baare mein ghabrahat, aur purani cheez ki aadat.
+Phir usne *problem statement* likha, jo batata hai ki samasya kiski hai, kya hai aur ab unhe kitni padti hai. Ise do vaakyon mein samaane mein teen koshishein lagi.
 
-Farah ki team par lagaya: dhakka tha leak ka dar aur numbers ko haath se mitane ki oob. Khinchaav tha ek tool jo yeh apne aap kar de. Ghabrahat, jo Farah ne lagbhag chalte-chalte batayi thi, gambhir thi: "Agar yeh woh cheez chhupa de jo agent ko chahiye ho toh? Agar yeh woh phone number blank kar de jis par mujhe wapas call karna hai?" Aur aadat yeh thi ki unke paas pehle se ek tareeka tha, chahe kharab hi sahi. Kisi bhi aise product mein jo doosron ke shabd sambhalta hai, ghabrahat aksar chaaron mein sabse badi hoti hai. Log galat jawaabon ki fikr dheere jawaabon se kahin zyada karte hain.
+::: example Anaya ka problem statement
+Sahaj ke customers aksar support chat mein pehchaan ke numbers type kar dete hain, kuch had tak isliye ki chatbot ka apna greeting "details" maangta hai (baatcheet 2, 3). Support agents ke paas inse nipatne ka koi niyam nahi, isliye zyadatar chat history, exports aur logs se kabhi hatte nahi (baatcheet 1, 5).
+:::
 
-## Kyun, kyun, kyun
+Ant mein usne woh sab likha jo uske idea ke kaam karne ke liye sach hona chahiye.
 
-Anaya ne lakshan se karan tak pahunchne ka sabse purana tareeka aazmaya. Poochho kyun. Phir jawaab par poochho kyun.
+1. Support staff itna bharosa karenge ki automatic chhupana on rakhenge.
+2. Jo leak hota hai uska zyadatar hissa pehchaane ja sakne wali shakl wale numbers honge, naam aur pate nahi.
+3. Company saaf kiya hua text us bahari company ko bhejne degi jo chatbot ke jawaab likhti hai.
+4. Customers ke messages zyadatar chhote honge aur kai bhashaon ke mel mein likhe honge.
 
-*Chats mein pehchaan ke numbers kyun hain?* Kyunki customers unhe type karte hain. *Woh type kyun karte hain?* Kyunki bot ka pehla message "verification" ke liye "details" maangta hai. *Woh aisa kyun kehta hai?* Kyunki aath mahine pehle kisi ne greeting likhi thi aur kisi ne use review nahi kiya.
+Usne har ek ko do sawaalon par ranked kiya: agar maanyata galat nikli toh nuksaan kitna hoga, aur use kitna shak hai. Doosri maanyata anishchit thi, par saintees flags ko chhaant kar ek dopahar mein tay ho sakti thi. Chauthi anishchit thi, par jaanleva nahi. Teesri dono thi. Agar compliance head Lakshmi Iyer mana kar deti, toh list mein baaki kuch maayne nahi rakhta. Jo maanyata gambhir aur anishchit dono ho, woh *riskiest assumption* hai, aur niyam hai ki use sabse pehle test karo.
 
-Woh is zanjeer se khush thi, jo saaf-saaf ek karan par pahunchti thi, aur phir woh khush nahi rahi. Use Sanjay Patil yaad aaye, jinhe kuch type karne ko kehna nahi padta tha. Use Suresh yaad aaya, jo khud numbers maangta tha. Use Rutuja yaad aayi, jiski maa ko kuch pata hi nahi tha. *Five whys* naam ki technique kaam ki hai aur usme ek jaal hai. Asli problems ke lagbhag kabhi ek karan nahi hote. Pehli kaayal kar dene wali zanjeer par log ruk jaate hain, aur woh aksar ek ped ki sirf ek daali hoti hai.
+Use ek email se test kiya ja sakta tha, jisme Lakshmi se tees minute maange gaye ki saboot par baat ho aur yeh jaana jaaye ki Anaya ko us par kaam karne ki ijaazat hai ya nahi. Jawaab chaar minute mein aaya: Thursday, teen baje, aur saboot lana, josh nahi.
 
-Isliye usne line ki jagah ek ped banaya. Sabse upar: *chat mein numbers*. Uske neeche, kam se kam chaar shaakhein. Greeting unhe nyota deti hai. Customers ne saalon call centres se seekha hai ki madadgaar hone ka matlab hai pehchaan dena. Kuch staff jaan-boojh kar maangte hain. Aur chat window kuch bhi, photos bhi, bina kuch kahe le leti hai.
+## Saaraansh
 
-Aakhri shaakha ek asuvidhajanak jagah le gayi. Agar woh sirf greeting theek karti, toh Sahaj ke paas ek behtar greeting hoti aur wahi problem, bas kam baar. Customer aur chat ke beech khada koi tool woh pakad leta jo baaki ilaaj chhod dete. Phir bhi greeting dobara likhni thi. Yeh muft ka ilaaj tha, aur usne ise list mein ek note ke saath jod diya: *Isse pehle karo. Isme kuch kharcha nahi.*
+Bhavishya ke sawaal ka shishta jawaab milta hai, beete kal ke sawaal ka vivaran milta hai. Is tarah ki kuch baatcheetein lambi survey se zyada keemti hain.
 
-## Jo jaana, use likh lena
-
-Hafte ke ant tak uske paas aise notes the jin par use bharosa tha, aur usne woh kiya jo use karne ko kaha gaya tha aur jise usne ab tak chhod diya tha: usne apne users ka ek aisa saar likha jo jaancha ja sake.
-
-Support team ka uska vivaran chhe lines ka tha, aur har line ke ant mein bracket mein ek number tha: *Agents ke paas koi niyam nahi ki kya karna hai (1, 5). Flags jab kahin jaate hain toh Farah ke paas jaate hain (1). Unhe darr hai ki tool woh cheez chhupa dega jo unhe chahiye (1, 3).* Ek *persona* bilkul yahi hai, ek tarah ke user ka chhota sa vivaran. Woh tabhi rakhne layak hai jab uski har line ek interview tak wapas dhoondhi ja sake. Interviews se pehle likha gaya persona research ka bhesh pehne ek anumaan hai. Ek assistant ka likha hua persona usse bhi bura hai, kyunki usme ek gadha hua naam aur pasandeeda rang bhi aata hai. Uska niyam saral tha: jis line ke bagal mein interview ka number nahi, woh mita di jaayegi.
-
-Phir usne *problem statement* likha, jo batata hai ki problem kiski hai, kya hai, aur ab unhein kya padti hai. Usne use teen baar likha tab jaakar woh do vaakyon mein samaaya.
-
-*Sahaj ke customers aksar support chat mein pehchaan ke numbers type karte hain, kuch is wajah se ki chatbot ki apni greeting "details" maangti hai (interviews 2, 3). Support agents ke paas inhe sambhalne ka koi niyam nahi, isliye zyadatar chat history, exports aur logs se kabhi hatayi nahi jaati (interviews 1, 5).*
-
-Uske baad woh hissa aaya jise woh ab imaandaar hissa maanne lagi thi. Usne likha ki uske idea ke kaam karne ke liye kya sach hona chahiye:
-
-1. Support staff itna bharosa karega ki apne aap chhupane ko on rakhe.
-2. Jo leak ho raha tha usme zyadatar pehchaanne layak shape wale numbers the, naam aur pate nahi.
-3. Company saaf kiye gaye text ko us bahari company ko bhejne degi jo chatbot ke jawaab likhti hai.
-4. Customers ki likhai zyadatar chhote messages mein, kai bhashaon ki khichdi mein niklegi.
-
-Phir usne unhe do sawaalon par rank kiya: agar yeh galat nikla toh kitna bura hoga, aur use kitna shak hai? Doosri assumption anishchit thi, par use ek dopahar mein jaanch sakti thi, apne saintees flags ko chhaant kar. Chauthi bhi anishchit thi par jaanlewa nahi.
-
-Teesri dono thi. Agar Lakshmi Iyer ne na kaha, toh list mein baaki kuch matlab nahi rakhta tha. Jo assumption gambhir bhi ho aur anishchit bhi, woh *riskiest assumption* hai, aur niyam yeh hai ki use sabse pehle aazmao, baaki par ek hafta lagane se pehle.
-
-Use raahat mili ki usse ek email se jaancha ja sakta hai.
-
-*Lakshmi, mujhe aapka tees minute ka waqt chahiye. Mere paas support chat ke baare mein kuch saboot hai aur main jaanna chahti hoon ki mujhe is par kuch karne ki ijaazat hai ya nahi.*
-
-Jawaab chaar minute mein aa gaya.
-
-*Thursday, teen baje. Saboot lana, josh nahi.*
-
-## Saath le jaane layak baatein
-
-Bhavishya ke sawaal ka shishtachar bhara jawaab milta hai; beete hue waqt ke sawaal ka ek kahani. Achhe tareeke se poochhe jaayein toh kuch interviews ek lambe survey se zyada kaam ke hote hain, aur unmein sabse kaam ka vaakya aksar ek hadsa hota hai. Kisi insaan ka *job to be done* woh tarakki hai jo woh karna chahta hai, na ki woh product jo aapne uske liye sochi. "Kyun" baar-baar poochhna karan dhoondhne ka achha tareeka hai, bas shart yeh hai ki aap line nahi, ped banayein. Persona utna hi achha hai jitne interviews tak use wapas dhoondha ja sake. Aur kisi bhi cheez par waqt lagane se pehle, woh ek assumption dhoondho jo sabse nuksaan wala bhi ho aur sabse kam pakka bhi, aur pehle use aazmao.
+- Leading question apna jawaab khud sujhata hai. Upaay hai ki beeti hui khaas ghatnaon ke baare mein poochhein aur samne wale se kam boleen.
+- Job to be done woh pragati hai jo insaan karna chahta hai. Woh badlega ya nahi, yeh dhakka, khinchaav, chinta aur aadat par tikta hai, aur chinta aksar sabse mazboot hoti hai.
+- "Kyun" ka baar-baar poochhna wajahon tak tabhi pahunchata hai jab nateeja ped ki tarah banaya jaye, kyunki asli samasyaon ki aksar kai wajahein hoti hain.
+- Persona utna hi achha hai jitni baatcheeton se woh juda hai. Problem statement batata hai kaun, kya aur kitni keemat par, references ke saath.
+- Riskiest assumption woh hai jo sabse nuksaan wali aur sabse anishchit ho, aur use sabse pehle test karna chahiye.

@@ -21,6 +21,7 @@ const R = p.resolve(p.dirname(fileURLToPath(import.meta.url)), '..');
 const C = JSON.parse(fs.readFileSync(p.join(R, 'content/defaults.json'), 'utf8'));
 const problems = [];
 const fail = m => problems.push(m);
+const late = [];
 
 /* `node tools/book-check.mjs` checks the English edition and, when it exists,
    the Hinglish one too; `node tools/book-check.mjs book/hi` checks only that. */
@@ -47,7 +48,7 @@ if (IS_HI) {
     if (!h) return;
     if (h.file !== e.file) fail(`chapter ${e.n}: the Hinglish file is ${h.file}; it must be ${e.file}`);
     if (h.course.join(' ') !== e.course.join(' ')) fail(`chapter ${e.n}: Hinglish retells "${h.course.join(' ')}"; English retells "${e.course.join(' ')}"`);
-    if (h.goals.length !== e.goals.length) fail(`chapter ${e.n}: ${h.goals.length} goals in Hinglish, ${e.goals.length} in English`);
+    if (h.goals.length !== e.goals.length) late.push(`chapter ${e.n}: ${h.goals.length} goals in Hinglish, ${e.goals.length} in English`);
     if (h.terms.map(x => x.term).join('|') !== e.terms.map(x => x.term).join('|')) fail(`chapter ${e.n}: the words taught differ from the English chapter`);
   });
   for (const k of ['preface', 'afterword']) if (!!E[k] !== !!B[k]) fail(`the Hinglish edition ${B[k] ? 'has' : 'lacks'} the ${k}; the English one ${E[k] ? 'has' : 'lacks'} it`);
@@ -160,6 +161,7 @@ if (built) {
 if (missing.length) {
   fail(`${missing.length} app chapter(s) not retold anywhere: ${missing.slice(0, 8).map(c => c.num).join(', ')}${missing.length > 8 ? ', …' : ''}`);
 }
+late.forEach(fail);
 if (problems.length) {
   console.error(`\n${problems.length} problem(s):`);
   problems.slice(0, 40).forEach(m => console.error('  ' + m));

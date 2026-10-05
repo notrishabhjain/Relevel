@@ -1,7 +1,12 @@
 ---
 title: Likh Kar Rakhna Taaki Doosre Bana Sakein
-summary: Ek engineer guard ko napkin par banata hai, ek product manager use aisi specification mein badalti hai jisse ek ajnabi bana sake, aur ek support agent dikhata hai ki kaagaz ka mock-up woh dhoondh leta hai jo meeting nahi dhoondh paati.
+summary: Ek engineer guard ko ek napkin par banata hai, aur product manager us sketch ko aisi specification mein badalti hai jisse koi ajnabi bana sake. Chapter guard ke chaar hisse, requirements aur acceptance criteria, patle pehle versions, aur kaagaz par test se woh baat jo meeting nahi dikha sakti, yeh sab samjhata hai.
 course: a7
+goals:
+  - guard ke chaar hisson ke naam batana aur har ek ki zimmedaari batana
+  - aisa product requirements document likhna jiski "done" ki shartein test ki ja sakein
+  - edge cases ki list banana aur tay karna ki jab product ko shak ho toh woh kya kare
+  - ek patla pehla version banana, anishchit kaam ko time-box dena, aur asli insaan ke saath kaagaz ka prototype test karna
 terms:
   - PRD | product requirements document: woh kaagaz jo batata hai ki kya banana hai aur kyun, problem aur uske saboot se shuru karke | product requirements document
   - acceptance criteria | woh shartein jo kaam ke ek tukde ko "ho gaya" maane jaane ke liye poori karni hoti hain, har ek aise likhi gayi ki jaanchi ja sake | acceptance criterion
@@ -22,98 +27,103 @@ terms:
   - rule-keeper | guard ka chautha hissa: yeh tay karta hai ki mili hui har detail ke saath kya karna hai, jaise hata do, mask karo, jaane do ya poochho | rule-keepers
 ---
 
-Imran ne guard ko neeche ki mithai ki dukaan ke ek napkin par banaya, ek aisi pencil se jise baar-baar chaatna padta tha.
+Founders ke project manzoor karne par Imran Qureshi ne guard ko neeche ki mithai ki dukaan ke ek napkin par banaya. Drawing mein chaar minute lage. Baayein taraf ek lamba dabba "message" likha tha aur daayein taraf "safe message". Beech mein chaar chhote dabbe ek line mein the, har ek ke neeche teen shabd.
 
-Isme chaar minute lage. Baayen ek lambe dibbe par usne likha *message*. Daayen ek lambe dibbe par *safe message*. Dono ke beech chaar chhote dibbe ek line mein aaye, aur har ek ke neeche usne teen shabd likhe, ek aise insaan ke befikr bade akshron mein jo pandrah saal se architecture diagrams banata raha ho aur ek baar bhi use pasand na aaya ho.
+Napkin ka sketch structure ke baare mein ek parikalpna hai. Isse koi cheez banayi nahi ja sakti, kyunki yeh nahi batata ki har dabba kya karega, kaise pata chalega ki dabba kaam karta hai, ya jab woh fail ho toh kya hoga. Yeh chapter us sketch ko aise document mein badalne ko dikhata hai jisse koi ajnabi bana sake, aur design ki kaagaz par pehli jaanch.
 
-"Mujhe yeh lagta hai ki yeh yahi hai," usne kaha. "Mujhe sudhaaro."
+## 7.1 Case: napkin par chaar dabbe
 
-Anaya napkin ko der tak dekhti rahi. Yeh pehli baar tha ki kisi ne uska idea draw kiya tha, aur woh uske dimaag mein jitna tha usse chhota bhi lag raha tha aur thos bhi.
+Imran ke sketch ne kaam ko chaar hisson mein baanta. Anaya ka kaam tha ki har hissa kis cheez ke liye zimmedaar hai yeh theek-theek kahe, yeh likhe ki kaun si shartein poori hone par har hissa pura maana jaayega, aur koi code likhe jaane se pehle yeh jaane ki jo log nateeja istemaal karenge woh use samajh sakte hain ya nahi.
 
-## Guard kin cheezon se bana hai
+## 7.2 Guard kin cheezon se bana hai
 
-Pehla dibba, Imran ne samjhaya, woh sab pakadta tha jiski ek tay shape ho. PAN hamesha paanch bade akshar, chaar ank aur ek bada akshar hota hai. Aadhaar number barah ank ka hota hai. Mobile number das ank ka hota hai aur chhe, saat, aath ya nau se shuru hota hai. Ek rule inhe waise hi pakka dhoondh leta hai jaise scale seedhi line ko dhoondhta hai, aur woh turant, muft, har baar ek jaisa karta hai. Unhone ise *pattern checker* kaha.
+Sketch har tarah ki personal detail ko us hisse ko deta hai jo use dhoondhne mein sabse achha hai.
 
-Doosra dibba un details ke liye tha jinki koi shape hi nahi. "Ramesh Jain" ya "14 Sector 15, Gurgaon" ya "Acme Bank" mein kuch bhi kisi pattern ka nahi hota, isliye koi tay rule unhe nahi dhoondh sakta. Kisi ko vaakya padhna aur samajhna padega ki yeh shabd ek insaan hai aur woh ek jagah. Is dibbe ko usne *name-and-place finder* kaha.
+Table: Guard ke chaar hisse
+| Hissa | Kya karta hai | Alag kyun hai |
+| --- | --- | --- |
+| Pattern checker | Woh details dhoondhta hai jinki shakl hamesha ek jaisi hoti hai: PAN (paanch bade akshar, chaar ank, ek bada akshar), Aadhaar number (baarah ank), mobile number (das ank jo 6, 7, 8 ya 9 se shuru hon) | Ek tay rule inhe turant, bina kharche, har baar ek hi tarah dhoondh leta hai |
+| Name-and-place finder | Woh details dhoondhta hai jinki koi tay shakl nahi: kisi insaan ka naam, pata ya employer | Koi rule "Ramesh Jain" ya "14 Sector 15, Gurgaon" ka varnan nahi kar sakta; kuch ko vaakya padhkar insaan ya jagah pehchaanni padegi |
+| Context judge | Woh kuch vaakya padhta hai jinhe pehle do hisse tay nahi kar paaye, aur tay karta hai ki woh kisi insaan ki taraf ishaara karte hain ya nahi | Sandarbh mein padhna dheema aur mehnga hai, isliye usse sirf bachi hui cheezon ke baare mein poochha jaata hai |
+| Rule-keeper | Jo detail mili hai uske saath kya karna hai yeh tay karta hai | Woh khud kuch nahi dhoondhta; woh har tarah ki detail ke niyam lagata hai |
 
-Teesra dibba woh tha jiske baare mein use sabse kam yakeen tha. Kuch vaakyon mein na koi number hota hai na koi naam, phir bhi woh bilkul ek insaan ki taraf ishaara karte hain: *Main apne gaon ka akela diabetic patient hoon jiska pichhle saal transplant hua.* Is tarah ki details, akeli nirdosh aur saath mein tez, ka ek naam hai: woh *quasi-identifiers* hain. Jo dibba inhe padhe aur parakhe woh dheema aur mehnga hoga, isliye plan yeh tha ki use sirf unhi kuch vaakyon ke baare mein poochha jaye jo pehle do dibbe tay nahi kar paaye. Usne ise *context judge* kaha.
+*Pattern checker* pehla hissa hai. *Name-and-place finder* doosra hai. *Context judge* teesra hai, aur uska case *quasi-identifier* hai: ek aisi detail jo akeli nirdosh hai par milkar ek insaan ko pehchaan sakti hai, jaise is vaakya mein: "Main apne gaon ka akela diabetic patient hoon jisne pichhle saal transplant karwaya." Is vaakya mein na number hai na naam, aur phir bhi yeh kisi ek insaan ko pehchaanta hai.
 
-Aakhri dibba kuch dhoondhta nahi tha. Woh faisla karta tha. Baaki dibbon ne jo kuch dhoondha, uske baad woh har detail ke liye chaar cheezon mein se ek chunta tha. Woh detail ko *redact* kar sakta tha, jiska matlab hai use poori tarah hata dena aur uski jagah [PAN] jaisa label chhod dena. Woh use *mask* kar sakta tha, jo ek hissa chhupata hai aur shape rakhta hai, taaki mobile number 98******12 ban jaye aur agent phir bhi dekh sake ki wahan ek number tha. Woh detail ko jaane de sakta tha. Ya woh insaan se poochh sakta tha. Chunav is par tikta tha ki number kyun ikattha kiya ja raha hai. Delivery ke liye delivery ka pata chahiye. Late fees ke baare mein poochhne ke liye pehchaan ka number nahi chahiye. Yeh tha *rule-keeper*.
+*Rule-keeper* har detail ke liye chaar mein se ek kaam chunta hai. Woh detail ko *redact* kar sakta hai, yaani use poori tarah hata kar uski jagah [PAN] jaisa label rakh sakta hai. Woh use *mask* kar sakta hai, yaani aadha chhupa kar shakl rakhta hai, jaise mobile number 98******12 ban jaaye aur agent dekh sake ki wahan number tha. Woh detail ko jaane de sakta hai, ya kisi insaan se poochh sakta hai. Chunaav is par nirbhar hai ki jaankari kyun ikatthi ki gayi thi. Delivery ke liye delivery address chahiye, aur late fees poochhne ke liye pehchaan ka number nahi chahiye.
 
-"Pattern checker, name-and-place finder, context judge, rule-keeper," Anaya ne unhe aazmate hue kaha. "Yeh toh parivaar jaisa lagta hai."
+## 7.3 Samasya se shuru karna
 
-"Yeh ek pipeline hai," Imran ne kaha. "Par theek hai. Parivaar."
+*PRD*, yaani product requirements document, batata hai ki kya banana hai aur kyun. "Kyun" isliye zaroori hai ki engineers samasya jaante hon toh behtar faisle karte hain, aur bina maksad ki features ki list milne par kharab.
 
-## Problem se shuruaat
+Anaya wahin se shuru hui jahan PRD ko shuru hona chahiye, samasya aur uske saboot se: saintees conversations, baatcheet ke numbers, aur woh greeting jo details ko nyauta deta tha. Uske baad yeh ki tool kiske liye hai aur kiske liye nahi. Phir scope, jisme ek section is par tha ki jaanboojh kar kya chhoda gaya, jo usne strategy ki Won't list se bhara. Uske baad yeh ki user kya dekhega jab tool kaam kare, jab shak ho, jab fail ho aur jab mana kar de. Baaki sections mein woh tests the jinhe tool ko paas karna tha, safalta kaise naapi jaayegi, release kaise hoga, aur kya abhi jaana nahi gaya.
 
-Napkin ek sketch tha, aur sketch se doosra insaan bana nahi sakta. Use chahiye tha ek *PRD*, product requirements document, jo batata hai ki kya banana hai aur kyun. "Kyun" jitna lagta hai usse zyada zaroori hai. Engineers behtar faisle tab karte hain jab unhe problem pata ho, aur bure faisle tab jab unhe bina wajah ke features ki list thama di jaaye.
+Document ki jaanch ek sawaal thi: kya koi ajnabi ise bana sakta hai aur jaan sakta hai ki kab woh khatam kar chuka? Jawaab lagbhag poori tarah ek section par tha.
 
-Usne wahin se shuru kiya jahan document shuru hona chahiye, problem aur uske saboot se: saintees conversations, interview numbers, greeting jo details ka nyota deti thi. Uske baad kiske liye tha tool, aur kiske liye nahi. Uske baad scope, ek section ke saath jise usne asli dhyaan se likha: jaan-boojh kar kya chhoda gaya. Usne strategy ki Won't list seedhe usme utaar di. Phir user ko kya dikhega jab yeh kaam kare, jab yeh anishchit ho, jab yeh fail ho, aur jab yeh mana kar de. Phir woh tests jo ise paas karne the, safalta kaise naapi jayegi, release kaise hoga, aur use abhi kya nahi pata tha.
+## 7.4 "Done", jise jaancha ja sake
 
-Achhe document ki jaanch ek hi sawaal tha: *kya ek ajnabi ise bana sakta hai aur jaan sakta hai ki woh kab poora hua?* Yeh lagbhag poori tarah ek section par tika tha.
+PRD ka sabse zyada kaam karne wala hissa "done" ki shartein hain. Yeh *acceptance criteria* hain, aur har ek aisi cheez honi chahiye jise test kiya ja sake. Sabse aam galti aisi shart likhna hai jise test na kiya ja sake.
 
-## Poora hua, aise jisse jaancha ja sake
-
-PRD ka sabse zyada kaam karne wala hissa "poora hua" ki shartein hain. Inhe *acceptance criteria* kehte hain, aur inme se har ek aisi honi chahiye jo test ki ja sake, aur sabse aam galti ek aisi likhna hai jo na ki ja sake.
-
-| Jo test nahi ho sakti | Jo test ho sakti hai |
+Table: Acceptance criteria jinhe test nahi kiya ja sakta, aur wahi dobara likhe hue
+| Test nahi ho sakte | Test ho sakte hain |
 | --- | --- |
-| Yeh pehchaan ke numbers sahi dhoondhta hai | Asli conversations ke ek set mein, jo pehle se haath se marked hai, har sau pehchaan ke numbers mein se kam se kam 95 chhupe jaate hain |
-| Yeh tez hai | Yeh jawaab mein ek second ke ek tihaayi se zyada nahi jodta |
-| Yeh bure input ko sambhalta hai | Agar message khaali ho ya sirf emoji ho, toh woh bina badle nikal jaata hai aur kuch error ke roop mein log nahi hota |
+| Yeh pehchaan ke numbers sahi tarah dhoondhta hai | Asli conversations ke ek set mein jo pehle se haath se chinhit hain, har 100 pehchaan ke numbers mein se kam se kam 95 chhupa diye jaate hain |
+| Yeh tez hai | Yeh reply mein ek second ke teesre hisse se zyada nahi jodta |
+| Yeh kharab input sambhalta hai | Agar message khaali ya sirf emoji ho, toh woh bina badle nikal jaata hai aur kuch bhi error ki tarah log nahi hota |
 
-Usne pehli ki shape par dhyaan diya. Usme yeh nahi likha tha ki *har* number mil jayega, kyunki nahi milega. Usme likha tha kitne, kitne mein se, kis se mila kar. Jo tool text padhta aur likhta hai, uske liye "poora hua" ek sahi jawaab ka waada nahi hota. Yeh ek rate hota hai, un udaharanon par naapa gaya jinhe kisi ne pehle se mark kiya ho, seema likhi hui ke saath. Jo cheez rate ko arthpurn banati hai woh marked udaharan hain, aur uske paas abhi woh nahi the, aur usne yeh open-questions list mein bade akshron mein likha.
+Pehli dobara likhi hui shart yeh nahi kehti ki har number mil jaayega, kyunki woh sach nahi hota. Woh batati hai ki kitne, kis mein se, aur kis ke saamne. Jo tool text padhta aur likhta hai, uske liye "done" ek sahi jawaab ka vaada nahi hai. Woh ek dar hai jo un udaharanon par naapi jaati hai jinhe kisi ne pehle hi chinhit kar liya ho, aur ek seema likhi hui hoti hai. Chinhit udaharan hi dar ko maayne dete hain. Anaya ke paas abhi woh nahi the, aur usne ise open-questions list mein bade akshar mein daala.
 
-## Anokhe cases
+## 7.5 Kahaniyan aur ajeeb cases
 
-Kaam ke har tukde ko ek chhoti kahani chahiye, user ki taraf se, apni shartein ke saath. *User story* value ka ek hissa bayaan karti hai: *Ek support agent ke roop mein, main chahta hoon ki chat padhte hue pehchaan ke numbers chhupe rahein, taaki main woh na dekhoon jiski mujhe zaroorat nahi.* Uska ek rishtedar, job story, role ki jagah halat se shuru karta hai, aur engineers ko zyada kaam ka milta hai: *Jab main loan ke baare mein poochhne wale customer ki chat kholta hoon, main chahta hoon ki koi bhi pehchaan ka number chhupa ho, taaki main use sambhale bina madad kar sakoon.*
+Kaam ke har tukde ko user ki taraf se ek chhota vivaran chahiye, apni shartein ke saath. *User story* value ke ek tukde ko batati hai: ek support agent ke roop mein, main chahta hoon ki chat padhte waqt pehchaan ke numbers chhupe rahein, taaki main woh na dekhoon jo mujhe nahi chahiye. Ek variant, job story, role ke bajaye haalat se shuru hoti hai aur engineers ko zyada deti hai: jab main loan ke baare mein poochhne wale customer ki chat kholta hoon, mujhe chahiye ki koi pehchaan ka number chhupa ho, taaki main use sambhaale bina madad kar sakoon.
 
-Stories ko agla jo chahiye, aur jahan zyadatar museebat rehti hai, woh hain *edge cases*: woh anokhe inputs jinhe aam cases kabhi chhoote nahi. Farah ki team aur Imran ki yaaddasht ne ek list di jo Anaya ko pehle darawani aur phir mazedaar lagi.
+Kahaniyon ke baad *edge cases* aate hain, woh ajeeb input jinhe aam cases chhute nahi, aur asli kaam ka zyadatar hissa unhi mein chhupa hota hai. Farah ki team aur Imran ki yaaddasht se ek list bani.
 
+Table: Guard ke edge cases
 | Case | Kya hona chahiye |
 | --- | --- |
-| Spaces ya dash ke saath likha number: 4321-5678-9012 | Ise waise chhupao jaise woh aam tareeke se likha ho |
-| Ek number do lines mein toota hua | Dono hisse chhupao |
-| Number ke bagal mein galat spelling "adhar" ya "mobil" | Phir bhi number chhupao |
-| Aadha chhupa hua mobile number: 98xxxxxx12 | Ise chhod do, aur report mat karo |
-| Barah ank ka order number jo pehchaan ka number nahi hai | Ise mat chhupao, warna agent apna kaam nahi kar sakta |
-| Hindi lipi mein Hindi ankon ke saath message | Ise chhupao |
-| Tool tay nahi kar paata | Yeh kahe, aur kisi insaan ko tay karne de |
+| Space ya dash ke saath likha number: 4321-5678-9012 | Isse waise hi chhupao jaise yeh saamaanya likha ho |
+| Do lines mein tuta hua number | Dono aadhe hisse chhupao |
+| Number ke paas galat spelling mein "adhar" ya "mobil" | Phir bhi number chhupao |
+| Aadha chhupa mobile number: 98xxxxxx12 | Use waise hi chhodo aur report mat karo |
+| Baarah ank ka order number jo pehchaan ka number nahi hai | Use mat chhupao, nahi toh agent kaam nahi kar sakta |
+| Hindi lipi mein aur Hindi ankon ke saath message | Chhupao |
+| Tool tay nahi kar paata | Kaho ki nahi kar paaya aur kisi insaan ko tay karne do |
 
-Aakhri row woh thi jo usne khud jodi, aur wahi product aur juae ke beech ka farak thi. Jo software text padhta hai woh kabhi-kabhi anishchit hoga, aur product ko batana padta hai ki tab woh kya karta hai.
+Aakhri row Anaya ne khud joda, aur yahi product ko juye se alag karti hai. Jo software text padhta hai use kabhi-kabhi shak hoga, aur product ko pehle se likhna hoga ki us waqt woh kya karta hai.
 
-## Sabse patli cheez jo kaam karti hai
+## 7.6 Sabse patli cheez jo kaam karti hai
 
-"Kahan se shuru karein?" Imran ne poochha. "Main poora layers mein bana sakta hoon. Pehle woh hissa jo chat padhta hai, phir dhoondhna, phir chhupana, phir agent ko kya dikhta hai. Chhathe hafte tak sab ek saath chalne lagega."
+Imran ne guard ko parton mein banane ka prastaav rakha: pehle woh hissa jo chat padhta hai, phir dhoondhna, phir chhupana, phir woh jo agent ko dikhta hai. Chhathe hafte tak sab saath mein kaam karne lagta. Anaya ne poochha ki paanchve hafte mein kya kaam karega. "Kuch nahi," usne kaha.
 
-"Aur paanchve hafte mein?"
+Kaam ko parton mein kaatne par jab tak aakhri part khatam nahi hota, kuch istemaal ke laayak nahi hota. Use tukdon mein kaatne par har part ka ek patla version banta hai, isliye shuru se kuch kaam karta hai. *Vertical slice* sab parton se patli tarah guzarti hai. Anaya ne pehli slice tay ki: ek hi tarah ka number, ek hi tarah likha hua, us pal se jab message aata hai us pal tak jab agent use chhupa hua dekhta hai, aur ek log line jo batati hai ki kya kiya gaya.
 
-"Kuch nahi chalega."
+::: def Minimum viable product
+*MVP* sabse chhoti cheez hai jo asli users ke saath sabse jokhim-bhari maanyata ko test kare. Woh har cheez ka chhota version nahi hai. Woh us ek cheez ka ek chhota version hai jo sach honi chahiye.
+:::
 
-Kaam ko layers mein kaatna aur slices mein kaatna, yahi farak hai. Pehla ek-ek layer banata hai, aur aakhri khatam hone tak kuch istemaal-layak nahi hota. Doosra har layer ka ek patla version banata hai, taaki shuruaat se kuch kaam kare. Ek *vertical slice* sab kuch ke aar-paar jaata hai, patla. Anaya ne likha ki pehla kaisa hona chahiye: ek kism ka number, use likhne ka ek tareeka, message ke aane se lekar agent ko woh chhupa dikhne tak, ek log line ke saath jo bataye ki kya kiya gaya.
+## 7.7 Do hafte ek baar
 
-Aisa slice *MVP* ka kendra hai, minimum viable product, jo sabse chhoti cheez hai jo asli users ke saath aapki sabse risky assumption ko aazmati hai. Yeh sab kuch ka chhota version nahi hai. Yeh us ek cheez ka ek chhota version hai jo sach honi hi chahiye.
+Imran ki team *sprints* mein kaam karti thi, yaani do-do hafte ke tay samay mein. Har sprint plan se shuru hota hai aur ek demonstration aur ek chhoti meeting par khatam hota hai ki kya achha gaya aur kya badalna chahiye. Demonstration kaam karte software ko dikhata hai, slides ko kabhi nahi.
 
-## Do-do hafte mein
+Andaaza lagana zyada mushkil tha. Imran bata sakta tha ki baarah ankon ke rule mein kitna samay lagega. Woh nahi bata sakta tha ki Hinglish mein naam dhoondhne mein kitna lagega, kyunki use pata nahi tha ki yeh ho bhi sakta hai ya nahi. Isliye team ne *time-box* istemaal kiya, ek tay samay jiske ant mein ek faisla hota hai: teen din, aur agar asli conversations mein se sau mein se sattar se kam naam mile, toh ruko aur dobara socho. Time-box samay ke andaaze ko faisle ke ek bindu mein badal deta hai.
 
-Imran ki team *sprints* mein kaam karti thi, do hafte ke tay daur. Har ek plan se shuru hota hai aur demonstration aur ek chhoti meeting par khatam, ki kya achha gaya aur kya badalna chahiye. Demonstration chalte software ka hota hai, kabhi slides ka nahi.
+## 7.8 Pehle kaagaz
 
-Estimate karna, par, dikkat tha. Imran bata sakta tha ki barah ankon ka rule kitna time lega. Woh nahi bata sakta tha ki Hinglish mein naam dhoondhne wali cheez banane mein kitna lagega, kyunki use pata nahi tha ki yeh ho bhi sakta hai ya nahi. Isliye unhone *time-box* use kiya: ek tay samay, ant mein ek faisle ke saath. *Teen din. Agar asli conversations mein yeh har sau naam mein se sattar se kam dhoondhta hai, toh ruko aur dobara socho.* Time-box avadhi ke andaaze ko ek faisle ke bindu mein badal deta hai.
+Anaya ne agent ki screen chaar kaagaz par banayi: chat jisme ek number masked ho, wahi chat ek note ke saath jo kehta ho "1 detail chhupayi gayi. Kyun dekhne ke liye click karein", ek chat jahan tool ko shak tha, aur ek chat jahan usne woh chhupa diya tha jo agent ko chahiye tha. Kuch seekhne ke liye banayi gayi ek kaccha, sasta version *prototype* hai, aur use kitni dekhbhaal chahiye yeh sawaal par nirbhar hai. Kaagaz dikha sakta hai ki flow samajh aata hai ya nahi. Clickable mock-up dikha sakta hai ki log raasta dhoondh paate hain ya nahi. Asli output par chalne wala version dikha sakta hai ki woh us par bharosa karte hain ya nahi.
 
-## Pehle kaagaz par
+Friday ko usne Farah ki ek saathi Neha ko chaar kaagazon ke saath ek table par baithaya aur use nirdesh dene ke bajaye ek kaam diya: ek customer kehti hai ki uska callback number chhupa diya gaya, pata karo kya hua. Yeh *usability test* hai. Ise batana aasaan hai aur karna mushkil, kyunki iska poora anushaasan hai madad na karna.
 
-Anaya ne agent ki screen chaar kaagaz par banayi: chat jisme ek number mask hai, wahi chat ek note ke saath jo kehta hai *1 detail chhupi, wajah dekhne ke liye click karein*, ek chat jahan tool anishchit hai, aur ek chat jahan usne woh chhupa diya jo agent ko chahiye tha. Kuch seekhne ke liye banayi gayi ek mota, sasti cheez *prototype* hai, aur use kitni dekhbhaal chahiye yeh sawaal par tikta hai. Kaagaz bata sakta hai ki flow samajh aata hai ya nahi. Clickable mock-up bata sakta hai ki log apna raasta dhoondh lete hain ya nahi. Asli output par chalne wali cheez bata sakti hai ki woh us par bharosa karte hain ya nahi.
+Neha ne doosra kaagaz uthaya aur gyarah second tak use dekha. Usne teesra uthaya, rakh diya, aur poochha ki number wapas paane ke liye kahan click kare. Anaya ka bahut mann tha ki ishaara kar de, par woh chup rahi. "Number wapas paane ka koi raasta nahi hai," Neha ne apne aap se kaha. "Toh mujhe Imran se poochhna padega."
 
-Friday ko usne Farah ki saathi Neha ko chaar kaagajon ke saath ek mez par bithaya aur use nirdesh nahi, ek kaam diya: "Ek customer kehti hai ki uska callback number chhupa diya gaya. Pata lagao kya hua."
+::: key Gyarah second ne kya dhoondha
+Neha jaise teen se paanch logon ke saath ek test design ki zyadatar gambhir samasyaon ko dikha deta hai, aur har hichkichahat ek khoj hai. Anaya ne PRD mein ek line joda: agent ek chat ke liye chhupi hui detail dekh sakta hai, ek wajah record karke. Kisi meeting ne yeh uthaya nahi tha.
+:::
 
-Is tarah ka *usability test* bayaan karna aasaan aur karna mushkil hai, kyunki poora anushasan madad na karne mein hai. Neha ne doosra kaagaz uthaya, use gyarah second dekha, teesra uthaya, rakh diya, aur kaha, "Ise wapas laane ke liye kahan click karun?"
+## Saaraansh
 
-Anaya ki pen hawa mein ruk gayi. Uska poora vajood ishaara karna chahta tha. Woh chupchaap baithi rahi.
+Specification samasya se shuru hoti hai, batati hai ki kya chhoda gaya, aur "done" ko aisi shartein ki tarah likhti hai jinhe test kiya ja sake. Jo software text padhta aur likhta hai, uske liye "done" un udaharanon par naapi gayi dar hai jinhe kisi ne pehle se chinhit kiya ho.
 
-"Ise wapas laane ka koi tareeka nahi hai," Neha ne madadgaar andaaz mein khud se kaha. "Toh mujhe Imran se poochhna padega."
-
-Yeh us hafte ke sabse keemti gyarah second the. Neha jaise teen se paanch log aapko design ki zyadatar gambhir problems dikha denge, aur har hichkichahat ek finding hai. Anaya ne PRD mein ek line jodi: *Agent chhupi hui detail ko ek chat ke liye dekh sakta hai, wajah record hone ke saath.* Yeh use sujhi hi nahi thi, aur kisi meeting ko kabhi nahi sujhti.
-
-## Saath le jaane layak baatein
-
-Specification problem se shuru hoti hai, batati hai ki kya chhoda gaya hai, aur "poora hua" ko aisi shartein mein kehti hai jinhe test kiya ja sake. Jo kuch text padhta aur likhta hai, uske liye "poora hua" ek rate hai jo un udaharanon par naapa gaya jinhe kisi ne pehle se mark kiya ho. Stories, apne anokhe cases ke saath, wahin hain jahan zyadatar asli kaam chhupa hai. Sabse chhota kaam ka pehla version har hisse ke aar-paar ek patla slice hai, ek poori layer nahi. Tay do-do hafte ke sprints team ko imaandaar rakhte hain, aur time-box anishchit kaam ko ek ant deta hai. Aur kuch banane se pehle, ek asli insaan ke saamne rakha gaya kaagaz ka version, kuch na bolne ke anushasan ke saath, woh problems dhoondh leta hai jo koi meeting nahi dhoondh sakti.
+- Guard ke chaar hisse hain: fixed shakl ke liye pattern checker, bina shakl ki details ke liye name-and-place finder, bache hue ke liye context judge, aur woh rule-keeper jo tay karta hai ki kya karna hai. Har detail ko redact, mask, paas ya poochha jaata hai.
+- Kahaniyan user ki taraf se value batati hain, aur edge cases wahin hain jahan zyadatar asli kaam chhupa hai. Product ko pehle batana hona chahiye ki shak hone par woh kya karta hai.
+- Pehla version ek vertical slice hai jo har part se patli tarah guzarta hai, aur MVP sabse jokhim-bhari maanyata ko test karta hai. Sprints team ko kaam karte software ke saath rakhte hain, aur time-box anishchit kaam ko ek faisle ke saath khatam karta hai.
+- Asli insaan par, jise madad nahi di jaati, test kiya gaya kaagaz ka prototype woh samasyaayein dhoondhta hai jo meeting nahi dhoondhti.

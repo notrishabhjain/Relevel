@@ -1,45 +1,57 @@
 ---
 title: Shuru karne se pehle
-summary: Yeh kitaab kya hai, ismein kaun-kaun milenge, aur ise kaise padhna hai.
+summary: Yeh kitaab kya sikhati hai, kaise baanti gayi hai, aur ismein kaun-si company aur kaun log hain jinka project poori kitaab mein chalta hai.
 course: ch0
 ---
 
-AI product kaise banta hai, yeh samajhne ke do tareeke hain. Ek tareeka hai ki aap khud ek bana kar dekhein: thodi si code likhein, machine ko ek sawaal bhejein, kuch tod dein, aur naapein ki kya toota. Course app isi ke liye hai, aur is kitaab se uski jagah koi nahi le sakta. Doosra tareeka yeh hai ki aap aaram se kursi par baithein, poore vishay ko ek saath dekhein, aur tab tak padhte jaayein jab tak anjaan shabdon ka dher ek tasveer mein na badal jaaye jo aapke dimaag mein tik sake. Yeh kitaab doosra tareeka hai.
+AI product kaise banta hai, yeh seekhne ke do tareeke hain. Ek tareeka hai khud ek banana: thodi code likhna, machine ko ek sawaal bhejna, dekhna ki kya toota, aur naapna ki kitna toota. Course app isi ke liye bana hai, aur is kitaab se uski jagah nahi bharti. Doosra tareeka hai poore vishay ko kram se padhna, vyaakhya aur udaharanon ke saath, jab tak anjaan shabdon ki bheed ek saaf tasveer na ban jaaye. Yeh kitaab doosra tareeka hai.
 
-Yeh wahi saari baatein karti hai jo course app karta hai, usi kram mein, aur usi shabdavali ke saath. Ismein koi exercise nahi hai, koi step nahi jo aapko follow karna ho, aur koi code nahi jo aapko type karna ho. Uski jagah ismein ek kahani hai, kyunki jab koi idea kisi aise insaan ke saath aata hai jise uski zaroorat thi, toh woh yaad zyada der tak rehta hai.
+Yeh kitaab course app ke wahi vishay, wahi kram aur wahi shabdon ke saath cover karti hai. Ismein koi exercise nahi hai aur type karne ke liye koi code nahi hai. Uski jagah ismein ek lamba case hai, kyunki koi idea tab zyada yaad rehta hai jab woh kisi aise faisle se juda ho jo kisi ko sach mein lena pada.
 
-## Kahani
+## Case
 
-Sahaj naam ki ek company Pune mein ek chhota sa app chalati hai, jahan log bijli ka bill bharte hain aur aajkal chhote loan bhi lete hain. App ke ek kone mein ek chatbot baitha hai jo unke sawaalon ke jawaab deta hai. Ek shaam Anaya Deshmukh naam ki ek product manager dekhti hai ki customers baar-baar chatbot mein apne Aadhaar number type kar rahe hain, jabki kisi ne unse maanga bhi nahi tha.
+Sahaj Pune ki ek company hai. Uske app mein log bijli ka bill bharte hain aur haal hi mein chhote loan ke liye apply bhi karte hain. App ke andar ek chatbot customers ke sawaalon ke jawaab deta hai. March mein product manager Anaya Deshmukh dekhti hai ki customers chatbot mein apne Aadhaar number type kar dete hain, jabki kisi ne unse maanga nahi tha.
 
-Poori shuruaat bas itni hi hai. Aage ke chaalees-ek chapters mein Anaya aur uske aas-paas ke log ek chhota sa tool banane ki koshish karte hain, jo English mein, Hindi mein, aur un dono ki us khichdi mein, jo zyadatar Indian log asal mein type karte hain, personal details pehchaan sake, aur unhe utna aage jaane se rok sake jitna nahi jaana chahiye. Is tool ka naam hai Bharat Privacy Guard. Ise banane ke liye Anaya ko seekhna padta hai ki jab problem dhundhli ho toh product manager kya karta hai, AI system kin cheezon se bana hota hai, kaise pata chalta hai ki woh kaam kar raha hai, uski lagat kitni hai, woh kaise fail hota hai, use kya karne dena surakshit hai, aur use asli logon ke saamne kaise rakhein aur wahan kaise tikaye rakhein.
+Aage ke saintaalis chapters mein woh aur uske saathi ek chhota tool banate hain, Bharat Privacy Guard. Yeh tool English, Hindi aur dono ke mel mein likhe gaye personal details pehchanta hai, aur unhe aage jaane se rokta hai. Project is vishay ka ek zariya hai. Ise banane ke liye Anaya ko kai kaam karne padte hain. Use tay karna hai ki kya banana laayak hai aur samajhna hai ki ek AI system kin cheezon se bana hai. Use jaanchna hai ki woh kaam karta hai ya nahi, aur uska kharcha jodna hai. Use pehle se sochna hai ki woh kaise fail hoga, aur seemit karna hai ki use akele kya karne ki ijaazat hai. Aakhir mein use asli users ke saamne rakhna hai. Har chapter in mein se ek samasya ko wahin uthata hai jahan project ko uski zaroorat padti hai.
 
-Yeh saare sabak course app mein hain. Yahan aap har sabak se tab milte hain jab kisi ko uski sach mein zaroorat padti hai.
+## Kitaab ki bunaavat
 
-## Ise kaise padhein
+Chapters ek hi kram mein, saat hisson mein baante gaye hain.
 
-Chapters ko kram se padhiye. Har chapter wahin se uthata hai jahan pichhla chapter baat adhoori chhod gaya tha, aur har chapter un shabdon ka istemaal karta hai jo pehle ke chapters pehle hi samjha chuke hain. Koi bhi shabd uske sikhaaye jaane se pehle istemaal nahi hota; kitaab ko isi baat ke liye jaancha gaya hai.
+Table: Kitaab ke saat hisse
+| Hissa | Chapters | Vishay |
+| --- | --- | --- |
+| 1 | 1 se 7 | Samasya chunna aur kaam ki yojna banana |
+| 2 | 8 se 13 | Aaj ka AI system kya hai, aur usse baat kaise karein |
+| 3 | 14 se 19 | Machine ko documents dena, aur poora system jodna |
+| 4 | 20 se 26 | Tools, sochna, bade paimaane par jaanch aur kharcha |
+| 5 | 27 se 32 | Uljha hua data, privacy, niyam aur galti ke liye design |
+| 6 | 33 se 39 | Machine ke andar kya chalta hai aur use surakshit kaise karein |
+| 7 | 40 se 47 | Product ko ship karna, usse kamaana, aur is kaam mein naukri |
 
-Jab koi naya shabd pehli baar aata hai, toh woh halka sa highlight hota hai, aur uspar mouse le jaane par uska saral matlab dikh jaata hai. Har chapter ke ant mein ek chhota sa dibba un shabdon ko ek jagah jama kar deta hai jo us chapter ne sikhaaye. Kitaab ke peeche woh sab alphabet ke kram mein hain, us chapter ke saath jahan woh pehli baar aaye.
+Har chapter ka dhaancha ek jaisa hai. Sabse upar ek chhoti si soochi batati hai ki chapter kya sikhata hai. Shuruaati paragraphs project ka ek hissa batate hain. Phir numbered sections us idea ko samjhate hain, jahan paribhashayein, udaharan aur tables dabbon mein alag rakhe gaye hain. Ant mein ek saaraansh aata hai, aur uske baad mukhya shabdon ki soochi.
 
-Har chapter ke title ke neeche ek line batati hai ki yeh course app ke kaun se chapters ko kahani ke roop mein sunata hai. Agar koi chapter padhkar aapka man kare ki khud kuch haath se karke dekhein, toh wahi line aapka darwaza hai.
+## Kaise padhein
 
-AI ke baare mein, programming ke baare mein, ya business ke baare mein aapko kuch bhi jaanne ki zaroorat nahi hai. Zaroorat bas itni hai ki aap ek line ko do baar padhne ko taiyaar hon.
+Chapters ko kram se padhiye. Har chapter wahin se shuru hota hai jahan pichhla chapter ruka tha, aur har chapter sirf wahi shabd istemaal karta hai jo pehle ke chapters mein samjhaaye ja chuke hain. Kitaab ko isi baat ke liye jaanchaa gaya hai: koi shabd apne chapter se pehle aa jaaye toh use galti maana jaata hai.
 
-## Imaandaari ki ek baat
+Naya shabd jis chapter mein samjhaaya jaata hai, wahan uska pehla istemaal halke rang mein dikhta hai, aur us par pointer rakhne se uska matlab dikh jaata hai. Har chapter ke ant mein mukhya shabd dobara diye gaye hain, aur kitaab ke peeche ki glossary mein har shabd alphabet ke kram mein aur us chapter ke number ke saath hai jahan woh pehli baar aaya. Har chapter ke title ke neeche likha hai ki course app ke kaun se chapter usi vishay par hain; wahin abhyas karne jaana chahiye.
 
-Sahaj, Anaya, aur company ke jitne bhi log aapko milenge, sab kalpanik hain. Unke customers aur unke numbers bhi. Ideas asli hain, jin tools ke naam liye gaye hain woh asli hain, aur in panno par jo cheezein galat hoti hain woh asli systems mein har waqt galat hoti rehti hain.
+AI, programming ya business ka koi pehle se gyaan maana nahi gaya hai.
 
-Yahan kuch bhi kanooni salaah nahi hai. Kahani ke beech mein jo tool hai, woh kisi sanstha ko is baat mein madad karta hai ki woh logon ki nijee jaankari kam ikatthi kare aur kam aage bheje. In panno par kahin bhi use kisi kanoon ke "compliant" hone ki guarantee dene wala nahi bataya gaya, kyunki is tarah ka koi tool yeh kar hi nahi sakta.
+## Case ke baare mein ek baat
+
+Sahaj, Anaya, uske saathi aur customers kalpanik hain, aur unke aankde bhi. Tools aur techniques asli hain, aur jo galtiyan dikhaayi gayi hain woh asli systems mein hoti hain.
+
+Is kitaab mein kuch bhi kanooni salah nahi hai. Case ka kendriya tool kisi organisation ko kam private jaankari ikattha karne aur aage bhejne mein madad karta hai. Use kahin bhi kisi ko kanoon ke anusaar "compliant" banane wala nahi kaha gaya hai, kyunki is tarah ka koi tool aisa kar nahi sakta.
 
 ## Log
 
-**Anaya Deshmukh** Sahaj mein product manager hai. Woh sunne mein aur likh kar rakhne mein achhi hai, aur yeh maanne mein kam achhi ki use kya nahi aata, aur ab use yeh baat ek machine sikhane waali hai.
-
-**Imran Qureshi** lead engineer hai. Chatbot ke peeche ki zyadatar plumbing usi ne banayi hai. Woh dheere bolta hai, napkin par drawing banata hai, aur har us vaakya par shak karta hai jismein "bas" jaisa shabd ho, jaise "bas ek chhota sa change hai".
-
-**Lakshmi Iyer** compliance sambhalti hai. Sahaj aane se pehle woh bees saal bank mein kaam kar chuki hai, aur "aur hamein pata kaise chalega?" poochne ka uska ek andaaz hai jisne kai achhe ideas khatam kiye hain aur kuch behtar ideas bacha bhi liye hain.
-
-**Farah Sheikh** support team ki lead hai. Customers asal mein kya likhte hain, yeh building mein usse zyada kisi ne nahi padha, aur woh bata sakti hai ki unmein se kaun apni umar ke baare mein jhoot bol raha hai.
-
-**Dr. Meenakshi Rao** ne bahut pehle Anaya ko linguistics padhayi thi. Ab woh retire ho chuki hain aur ab bhi sawaal poochti rehti hain. Anaya unhe Sunday subah phone karti hai.
+Table: Case ke log
+| Naam | Bhoomika | Jaanne layak baat |
+| --- | --- | --- |
+| Anaya Deshmukh | Product manager | Saboot ke saath saavdhaan; apni anjaan baatein maanne mein dheemi |
+| Imran Qureshi | Lead engineer | Chatbot ka infrastructure usne banaya; jis plan mein "bas" shabd aaye, us par bharosa nahi karta |
+| Lakshmi Iyer | Compliance head | Bees saal banking mein rahi; uska sawaal hota hai "hum kaise jaanenge?" |
+| Farah Sheikh | Support lead | Company mein kisi se bhi zyada customers ka likha hua padhti hai |
+| Dr. Meenakshi Rao | Retired linguist | Anaya ki purani teacher; Sunday subah phone par unse salah li jaati hai |
