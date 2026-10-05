@@ -1,97 +1,91 @@
 ---
 title: Pehle Sochne Wali Machines
-summary: Jo model jawaab dene se pehle use soch kar nikalta hai woh mushkil cases sahi karta hai aur ismein gyarah second lagta hai. Lonavala ke paas ruki ek train aur intezaar na kar sakne wali chat window ke beech, team seekhti hai ki sochna kab kharidne layak hai aur intezaar ko jhelne layak kaise banayein.
+summary: Jo model jawaab dene se pehle sochta hai woh mushkil cases sahi karta hai aur ek case par gyarah second leta hai. Chapter reasoning models, sochne ka kharcha, latency, streaming, aur aise design ko samjhata hai jisme mehnga faisla kabhi customer ko intezaar nahi karwata.
 course: ch11 ch115
+goals:
+  - samjhana ki reasoning model kya karta hai aur kin kaamon mein madad karta hai
+  - reasoning ki adhik accuracy ko paise aur intezaar ke kharche se tolna
+  - latency batana aur intezaar ko seh paana aasaan banane ke teen tareeke
+  - samjhana ki faisla stream kyun nahi kiya ja sakta, aur aisa design banana jisme saavdhaan faisla critical raaste se door ho
 terms:
   - reasoning model | aisa model jo jawaab dene se pehle apna kaam likh kar nikalta hai, ek tareeka aazmata hai aur jaanchta hai; us kaam ka paisa aap har request par dete hain, paise mein bhi aur intezaar ke samay mein bhi | reasoning models
   - latency | poochhne aur jawaab paane ke beech ka samay, jise users raftaar ki tarah mehsoos karte hain | 
   - streaming | jawaab ko screen par tukde-tukde bhejna jaise woh likha ja raha ho, poora hone tak intezaar karne ke bajaye | stream, streams
 ---
 
-Mumbai se aane wali train Lonavala ke paas chhe baj kar das minute par ruki aur chaalees minute ruki rahi.
+May ke ant mein Anaya bankers ke saath meeting se train se lauti. Train chhe bajkar das minute par Lonavala ke paas ruki aur chaalis minute khadi rahi. Kisi ne kuch nahi samjhaya. Saat bajne mein bees minute baaki the jab ek aawaaz ne ghoshna ki ki aage ek signal kharab ho gaya hai aur train das se pandrah minute mein chalegi. Khabar achhi nahi thi, kyunki chaalis minute pehle hi jaa chuke the aur aur aane the, par dabba saaf taur par halka ho gaya. Intezaar chhota nahi hua tha. Usne ek aakaar le liya tha.
 
-Kuch kaha nahi gaya. Na koi ghoshna, na koi jhatka, na koi spashtikaran dibbe mein guzarta hua. Anaya, jisne din company ke bankers ke saath ek meeting mein bitaya tha, ne apna phone rakh diya aur khidki se geeli hariyali ki deewar aur teen ki chhat wale ek shed ko dekha. Uske aas-paas log aahein bharte, uthte, baithte, aur ek doosre se poochhte ki kya hua. Agli seat par baitha ek aadmi siddhant dene laga tha.
+Woh ab bhi ispar soch rahi thi jab Imran Qureshi ne answer key ke sabse mushkil vaakyon par ek prayog ki report dene ke liye phone kiya. Yeh chapter batata hai ki usne kya paaya, aur train ka iske saath kya lena-dena tha.
 
-Saat bajne mein bees minute par ek awaaz aayi aur kaha ki aage ek signal kharab ho gaya hai aur train das se pandrah minute mein chalegi. Aur halanki yeh achhi khabar nahi thi, chaalees minute jo beet chuke the aur das jo aane the, usne dekha ki poora dibba halka ho gaya. Intezaar chhota nahi hua tha. Usne ek aakaar le liya tha.
+## 22.1 Case: gyarah second
 
-Woh abhi bhi isi ke baare mein soch rahi thi jab Imran ka phone aaya.
+Ek mahine se Imran un vaakyon ka adhyayan kar raha tha jinhe sasta model baar-baar galat kar raha tha: shabdon mein bola gaya Aadhaar number, baarah ank jo order number ho sakte the, aur woh vaakya jo bina number ke ek insaan ko pehchaanta hai. Us din usne unhe ek alag tarah ke model par aazmaya tha, jo jawaab dene se pehle apna kaam likhta hai. Woh ek tareeka aazmata hai, use jaanchta hai, zaroorat ho toh peechhe hat jaata hai, aur tabhi apna jawaab deta hai. Kaam aam taur par user ko nahi dikhta, aur uske liye paisa lagta hai.
 
-## Gyarah second ka jawaab
+Jo model yeh karta hai woh *reasoning model* hai. Uska mahatva yeh hai ki accuracy us pal tay nahi hoti jab model banaya gaya tha. Use har sawaal ke liye kharida ja sakta hai, machine ko zyada der kaam karne dekar.
 
-"Maine sochne wala aazmaya," usne bina hello ke kaha. "Mushkil cases par."
+## 22.2 Sochne ka kharcha
 
-Ek mahine se woh answer key ke sabse mushkil vaakyon ko dekh raha tha, jinhe sasta machine galat karta rehta tha. Shabdon mein bola gaya Aadhaar number. Barah ank jo shaayad order hon. Woh vaakya jo bina number ke kisi ko pehchaanta tha. Aaj usne unhe ek alag kism ke model par aazmaya tha, jo jawaab dene se pehle apna kaam likh kar nikalta hai: ek tareeka aazmata hai, jaanchta hai, zaroorat ho toh peeche hatta hai, aur tabhi jawaab deta hai. Aamtaur par aap kaam dekhte nahi. Aap uska paisa dete hain.
+Imran ne nateeje phone par padhe.
 
-Aisa karne wala model *reasoning model* hai. Idea yeh hai ki accuracy us pal tay nahi hoti jab model banaya gaya. Aap har sawaal ke liye usse zyada kharid sakte hain, machine ko zyada der kaam karne dekar.
+Table: Wahi tees mushkil cases aur tees aasaan cases, reasoning ke saath aur uske bina
+| | Saadhaaran model | Reasoning model |
+| --- | --- | --- |
+| Mushkil cases sahi (30 mein se) | 19 | 26 |
+| Aasaan cases sahi (30 mein se) | 30 | 30 |
+| Har case ka samay | lagbhag 1.25 second | lagbhag 11 second |
+| Har case ka sapeksh kharcha | 1 | lagbhag 6, kyunki chhupa hua kaam kisi bhi aur output ki tarah charge hota hai |
 
-"Tees mushkil cases," Imran ne kaha. "Aam model ne unnees diye. Reasoning wale ne chhabbees."
+Mushkil cases par reasoning ek bada sudhaar thi. Aasaan cases par usne kuch nahi kharida aur chhe guna zyada kharch kiya.
 
-"Yeh bahut behtar hai."
+Us shaam Anaya ne train ki ticket ke peechhe likha ki usne kya samjha. Reasoning har request par kiya gaya ek kharid hai, aur paise aur samay mein chukaya jaata hai, aur kai kaamon ke liye woh kuch nahi kharidta. Woh tab madad karta hai jab jawaab ko nikaalna padta hai: ek doosre par nirbhar kadam, hisaab, plan, code, ek asli dubidha jise suljhaana hai. Woh tab bekaar hai jab jawaab pehle se input mein hai aur use sirf dhoondhna ya naya roop dena hai, jaise kuch dekhna, ek field nikaalna, ek category mein rakhna, format karna, ya diye gaye passage ka saar likhna. Shabdon mein bole gaye baarah ank ko nikaalne ki zaroorat thi. Mobile number aur email wala saadhaaran message nahi.
 
-"Hai. Ab baaki columns."
+Imran ne ek message mein teen chetavaniyan joda.
 
-Usne unhe phone par padha. Aam model ne har case ke liye lagbhag savaa second liya tha. Reasoning wale ne gyarah second. Har case ka kharcha lagbhag chhe guna zyada tha, kyunki chhupa hua kaam kisi bhi aur output ki tarah charge hota hai, aur aksar jawaab se kahin zyada hota hai.
+Table: Reasoning models ke baare mein teen chetavaniyan
+| Chetavni | Vyakhya |
+| --- | --- |
+| Reasoning saboot nahi banati | Galat document diya jaaye toh model saavdhaani se aur der tak galat document se tark karta hai, aur sasta model se zyada vishwaasneeya dikhne wala galat jawaab banata hai |
+| Intezaar product ki samasya hai | Dheema jawaab user mehsoos karta hai, chahe uska kaaran kuch bhi ho |
+| Yeh sab ya kuch nahi nahi hai | Zyadatar providers developer ko chunne dete hain ki kitni reasoning istemaal karni hai, isliye faisla har tarah ki request ke liye kiya ja sakta hai, product ke liye ek baar nahi |
 
-"Aur aasaan wale par?" Anaya ne poochha.
+## 22.3 Woh faisla jo intezaar nahi kar sakta
 
-"Woh bhi aazmaya. Tees aasaan cases. Dono ne tees diye."
+Jab tak train Pune pahunchi, samasya ne aakaar le liya tha, aur Saturday subah Anaya ne use Imran ke saamne rakha. Guard darwaaze par baitha hai. Customer ek message type karta hai, guard use jaanchta hai, aur tabhi message aage jaata hai. Agar guard gyarah second leta, toh customer har reply ke liye gyarah second intezaar karta, jabki zaroorat yeh thi ki guard ek second ke teesre hisse se zyada na jode.
 
-"Toh un par usne kuch nahi kharida."
+Poochhne aur jawaab milne ke beech ka samay *latency* hai. User ise kisi bhi aur cheez se zyada tez mehsoos karte hain. Anaya ne ek doosri mushkil bhi dekhi: guard ka output customer ko tukde-tukde mein nahi dikhaya ja sakta tha.
 
-"Kuch nahi kharida aur chhe guna kharcha kiya."
+## 22.4 Intezaar ko aasaan banane ke tareeke
 
-## Sochne ke paise kab dene chahiye
+Jawaab kitna tez lagta hai yeh zyadatar is par nirbhar hai ki kuch pehli baar kab dikhta hai. Imran ne intezaar ko aasaan banane ke teen tareeke batayein, jinme se pehla woh tha jo train ne bina irade ke istemaal kiya.
 
-Us shaam usne jo samjha woh train ki ticket ke peeche, dibbe ki dhundhli roshni mein likha.
+Table: Intezaar ko aasaan banane ke teen tareeke
+| Tareeka | Kya karta hai | Tippani |
+| --- | --- | --- |
+| Jaldi shuru karo | Jawaab likhte hue screen par bhejna, kuch-kuch shabd. Yeh *streaming* hai | Poora jawaab utna hi samay leta hai, par customer pehle second se padhna shuru kar deta hai. Isme kuch kharcha nahi aur sabse zyada madad karta hai |
+| Batao kya ho raha hai | Spinner ki jagah kaam likhna, jaise "Chhe documents padh raha hoon" | Dikhne wale kaam se mel khaane wala intezaar maayne rakhta hai. Train par yahi ghoshna thi |
+| Intezaar ko doosri jagah le jao | Lambe kaam ko background mein chalao aur khatam hone par insaan ko batao | Teams ise isliye taal deti hain kyunki yeh haar maanne jaisa lagta hai. Das second se zyada ke kaam ke liye aam taur par sahi hai, kyunki yeh samasya hi hata deta hai |
 
-Reasoning ek kharidari hai, har request par ki jaati, paise mein aur intezaar ke samay mein chukayi jaati. Bahut se kaamon mein yeh kuch nahi kharidti. Yeh tab madad karti hai jab jawaab ko kaam karke nikalna ho: aise charan jo ek doosre par nirbhar hon, ginit, plans, code, ek asli dwividha jise suljhane ki zaroorat ho. Yeh bekaar jaati hai jab jawaab pehle se input mein hai aur use sirf dhoondhna ya naya roop dena hai: kuch dhoondhna, ek field nikalna, ek category mein chhaantna, formatting, ek diye hue passage ka saar likhna. Shabdon mein bole gaye barah ankon ko kaam karke nikalna padta tha. Mobile number aur email wale aam message ko nahi.
+Guard ke liye kaun sa theek hai, yeh is par nirbhar hai ki adhoora jawaab upyogi hai ya nahi. Insaan ek vyakhya ka pehla vaakya padhna shuru kar sakta hai. Faisla alag hai: chhupao ya mat chhupao. Faisle ka aadha hissa khatra hai, aur kisi ko aise field par kaam nahi karna chahiye jiska likhna poora nahi hua.
 
-Teen chetawaniyan thin, aur Imran ne unhe ek message mein joda tha, jaise woh tab karta tha jab chahta tha ki woh kuch rakh le.
+::: key Adhoora output tabhi dikhao jab woh antim ho
+Isi wajah se schema pehle aaya tha. Reply ka ek hissa dikhana tabhi surakshit hai jab jo hissa dikh sakta hai woh pehle se antim ho. Isliye guard apna jawaab stream nahi kar sakta. Use chat ke istemaal karne se pehle khatam hona padta hai.
+:::
 
-Pehli: reasoning saboot nahi banati. Machine ko galat document do aur woh galat document se saavdhaani aur lambe se sochegi. Natija ek aise galat jawaab ka hota hai jo sasta model deta usse zyada kaayal karne wala. Doosri: intezaar ka samay ek product problem hai, aur use usme sabak milne wala tha. Teesri: yeh sab ya kuch nahi nahi hai. Zyadatar providers aapko chunne dete hain ki kitni reasoning istemaal karni hai, isliye faisla har tarah ki request ke liye kiya ja sakta hai, poore product ke liye ek baar nahi.
+## 22.5 Kaun sa case kahan jaata hai
 
-## Woh faisla jo intezaar nahi kar sakta
+Team ne dopahar us design par bitayi jo agle aaya, aur jisme us mahine ki har seekh lagi.
 
-Train saat bajne mein paanch minute par chali. Jab tak woh Pune station pahunchi tab tak problem ka apna aakaar ban chuka tha, aur jab woh Saturday subah office pahunchi toh use poori mil chuki thi, jahan Imran pehle se intezaar kar raha tha.
+Tez hisse har message par live chalte: pattern checker aur name-and-place finder. Unhone milkar zyadatar messages ko ek second ke chhote se hisse mein sambhal liya. Jin messages par woh tay nahi kar paaye, unke liye guard dheemi, saavdhaan judge ka intezaar nahi karta. Woh us sasti galti ki taraf jhukta jo April mein tay hui thi, aur shak wale hisse ko turant mask kar deta taaki chat surakshit tareeke se chalti rahe. Reasoning model baad mein background mein un cases ko dekhta aur tay karta ki kya hona chahiye tha. Agar masked tukda nirdosh nikla, toh koi insaan use bahaal hota dekh sakta tha. Agar woh leak nikla, toh woh pehle hi dhaka hua tha.
 
-"Guard darwaze par baitha hai," usne kaha. "Use chat ke jawaab dene se pehle faisla karna hota hai. Customer ek message type karta hai. Guard use dekhta hai. Tabhi message aage jaata hai. Agar guard gyarah second leta hai, toh customer har jawaab ke liye gyarah second intezaar karta hai."
+Imran ne niyam PRD ke hashiye mein likha: reasoning sirf shak wale kuch cases ke liye, aur kabhi tab nahi jab customer intezaar kar raha ho. Team jaan jaati ki woh galat tha agar un cases par sasta raasta wahi score karta, ya agar saavdhaan raaste ko reply bhejne se pehle kabhi khatam karna padta.
 
-"Haan."
+Dono mein se kisi ne woh sawaal nahi uthaya jo dono ko pareshaan kar raha tha: saavdhaan judge kahan chalega. Agar woh vaakya jo use padhna tha mushkil vaakyon mein se ek tha, toh usme wahi ho sakta tha jise chhupane ke liye guard bana tha. Kya use building se bahar jaane ki ijaazat di ja sakti thi, ya use andar rehna padta, yeh kisi aur din ka sawaal tha, aur lagbhag Lakshmi ka.
 
-"Aur humne kaha tha ki woh ek second ke ek tihaayi se zyada nahi jod sakta."
+## Saaraansh
 
-"Kaha tha."
+Reasoning model jawaab dene se pehle apna kaam likhta hai. Woh un samasyaon mein behtar hai jinhe nikaalna padta hai aur jo use diya gaya hai use dhoondhne, chhaantne ya naya roop dene mein behtar nahi, aur uske kaam ka paisa aur samay har request par dena padta hai.
 
-Poochhne aur jawaab paane ke beech ka samay *latency* hai, aur Anaya jo khoj rahi thi woh woh tha jo har team khojti hai, ki users ise product ke lagbhag kisi bhi aur pehlu se zyada tez mehsoos karte hain. Aur use ek doosra, bura ehsaas hua, jo ek pal baad aaya. Chat mein, guard ka output tukde-tukde dikhaya nahi ja sakta tha.
-
-## Jaldi dikhana, aur poora dikhana
-
-Intezaar ko aasaan banane ke tareeke hain, aur unme se pehla wahi hai jo train ne anjaane mein istemaal kiya. Jawaab kitna tez *mehsoos* hota hai woh zyadatar is par nirbhar hai ki kuch pehli baar kab dikhta hai. Imran ne whiteboard par teen vikalp banaye.
-
-**Jaldi shuru karo.** Jawaab ko likhe jaate waqt screen par bhejo, ek baar mein kuch shabd, poora hone ka intezaar karne ki jagah. Ise *streaming* kehte hain. Poora jawaab utna hi waqt leta hai. Lekin customer pehle second mein padhna shuru kar deta hai, aur ismein kuch kharcha nahi, aur yeh kisi bhi cheez se zyada madad karta hai.
-
-**Batao kya ho raha hai.** Spinner ki jagah batao kya kiya ja raha hai: *Chhe documents padh raha hoon.* Jo intezaar kisi dikhne wale kaam se mel khaata hai woh samajh mein aata hai. Yeh train par ki ghoshna thi.
-
-**Intezaar ko kahin aur le jao.** Agar kuch sach mein lamba hai, toh use interactive maanna band karo. Use background mein chalao aur insaan ko batao jab ho jaaye. Teams isse bachti hain kyunki yeh haar maanne jaisa lagta hai. Das second se upar kisi bhi cheez ke liye yeh aamtaur par sahi hai, kyunki yeh problem hata deta hai.
-
-"Humare liye kaun sa theek hai?" Imran ne kaha.
-
-"Yeh is par nirbhar karta hai," Anaya ne kaha, jo hafte bhar se is par soch rahi thi, "ki kya aadha jawaab kaam ka hai. Agar insaan kisi vyakhya ka pehla vaakya padhna shuru kar sakta hai, toh woh shuru kar sakta hai. Lekin faisla aisa nahi hota. Chhupao ya mat chhupao. Faisle ka aadha hissa ek khatra hai. Kisi ko aise field par amal nahi karna chahiye jo abhi likha jaa raha ho."
-
-"Haan. Isliye schema pehle aaya. Jawaab ka ek hissa dikhana tabhi surakshit hai jab jo hissa tum dekh sakte ho woh pehle se antim ho." Woh khush lag raha tha. "Toh guard apna jawaab stream nahi kar sakta. Use khatam hona padega taaki chat use istemaal kar sake."
-
-## Kaun se cases kahan jaayein
-
-Unhone dopahar us design par bitayi jo aage aaya, aur woh us mahine mein jo kuch unhone seekha tha uska sab kuch ek saath laagu karna nikla.
-
-Tez dibbe live chalenge, har message par: pattern checker aur naam-aur-jagah dhoondhne wala. Dono milkar zyadatar messages ko ek second ke ek chhote hisse mein sambhal lete the. Un kuch ke liye jahan woh tay nahi kar paate, guard dheeme, saavdhaan judge ka intezaar nahi karega. Woh sasti galti ki taraf jhukega, jo unhone April mein tay kiya tha, aur sandehaspad hisse ko turant mask kar dega, taaki chat surakshit tarah se chalti rahe. Reasoning model un cases ko baad mein, background mein dekhega, aur tay karega ki kya hona chahiye tha. Agar masked hissa nirdosh nikla, toh koi insaan use bahal hota dekh sakta tha. Agar woh leak nikla, toh woh pehle se dhaka hua tha.
-
-"Yahi raasta hai," Anaya ne kaha. "Mehnga machine sirf un cases ke baare mein poochha jaata hai jinhe kaam karke nikalna padta hai, aur kabhi tab nahi jab customer intezaar kar raha ho."
-
-"Yeh ek aisa niyam hai jise test kiya ja sakta hai." Imran ne use PRD ke hashiye mein likha. "Reasoning sirf anishchit kuch ke liye. Humein pata chalega ki hum galat the agar sasta raasta un cases par barabar score kare, ya agar saavdhaan raasta kabhi jawaab bhejne se pehle khatam karna pada."
-
-Dono mein se kisi ne woh baat nahi uthayi jo dono ko pareshan kar rahi thi, yaani woh saavdhaan judge kahan chalega. Agar jo vaakya woh padhta tha woh mushkil wale mein se ek tha, toh usme wahi ho sakta tha jo guard ke chhupane ke liye bana tha. Kya use building se bahar jaane ki ijaazat di ja sakti thi, ya judge ko andar rehna padega, yeh ek aur din ka sawaal tha. Woh lagbhag Lakshmi ka sawaal tha.
-
-## Saath le jaane layak baatein
-
-Reasoning model jawaab dene se pehle apna kaam likh kar nikalta hai, jo use un problems mein behtar banata hai jinhe kaam karke nikalna padta hai aur dhoondhne, chhaantne ya diye hue ko naya roop dene mein kuch behtar nahi, aur aap kaam ka paisa har request par paise aur samay mein dete hain. Yeh saboot nahi banata, isliye galat document dene par woh galat document se saavdhaani se sochta hai. Intezaar ek product problem hai. Streaming jawaab ko jaldi dikhata hai, batana ki kya ho raha hai intezaar ko samajhne layak banata hai, aur lamba kaam background mein jaa sakta hai. Lekin faisla stream nahi kiya ja sakta, kyunki faisle ka aadha hissa ek khatra hai. Samajhdaar design mehnge machine ko sirf un cases par istemaal karna hai jinhe uski zaroorat hai, aur tab nahi jab customer intezaar kar raha ho.
+- Woh saboot nahi banata. Galat document diya jaaye toh woh saavdhaani se galat document se tark karta hai.
+- Latency user mehsoos karta hai. Streaming jawaab ko jaldi dikhati hai, batana ki kya ho raha hai intezaar ko maayne deta hai, aur lamba kaam background mein ja sakta hai.
+- Faisla stream nahi kiya ja sakta, kyunki faisle ka aadha hissa khatra hai.
+- Samajhdaar design mehnge machine ka istemaal sirf un cases par karta hai jinhe uski zaroorat hai, aur tab nahi jab customer intezaar kar raha ho.

@@ -1,7 +1,12 @@
 ---
 title: Lambi Windows, Saavdhaan Kamre
-summary: Ek salesman elaan karta hai ki bahut badi context window is sab mehnat ko gair-zaroori bana deti hai, aur ek product manager use woh ek sawaal poochhti hai jo meeting khatam kar deta hai. Kamre mein kya jaata hai woh us se zyada maayne rakhta hai ki kamra kitna bada hai.
+summary: Ek vendor ka dawa hai ki bahut bada context window retrieval ko gair-zaroori bana deta hai, aur product manager do sawaal poochhti hai jo meeting khatam kar dete hain. Chapter dikhata hai ki request mein kya jaata hai yeh us se zyada zaroori hai ki kitna aa sakta hai, aur context engineering, token budget, caching aur compaction batata hai.
 course: ch10
+goals:
+  - do kaaran batana ki bahut bada context window sahi material dhoondhne ki zaroorat kyun nahi hataata
+  - context engineering batana aur ek maalik ke saath token budget likhna
+  - samjhana ki caching dohrai jaane wali shuruaat ka kharcha kaise ghatati hai
+  - compaction aur uske risk batana, personal data ke liye bhi
 terms:
   - context engineering | har request mein kya jaayega, kis kram mein, aur kya chhoda jaayega, yeh tay karna: nirdesh, udaharan, saboot, history aur tool ke nateeje | 
   - token budget | ek plan jo request ke har hisse ko tokens ka uska hissa deta hai, ek aise insaan ke saath jo kul ka malik hai aur jaanta hai ki pehle kya kaatna hai | token budgets
@@ -9,98 +14,72 @@ terms:
   - compaction | ek lambi baatcheet ko chhota karna, uske beech ka saar likh kar aur shuruaat aur ant ko rakh kar | compact
 ---
 
-Salesman ke lanyard par likha tha *Solutions Architect*, aur uski slides par *Context is Everything*, aur chauthi slide tak Anaya ne likhna chhod diya tha.
+May mein ek model vendor ke solutions architect ne, ek founder ke bulaye hue jo use ek conference mein mile the, glass room mein team ke saamne presentation diya. Uski slides ka title tha "Context is Everything". Ek slide mein ankon ki seedhi thi: battees hazaar, ek lakh, das lakh. Uski daleel thi ki puraana tareeka khatam ho chuka hai. Documents ko tukdon mein kaatna aur sahi tukde dhoondhna chhote windows ka ek jugaad tha. Uske vendor ka window das lakh token ka tha, isliye poori library har sawaal ke saath bheji ja sakti thi: na kaatna, na embeddings, na dhoondhna. Yeh aasaan, sasta aur behtar hota.
 
-Woh ek model vendor ki taraf se aaya tha, ek founder ke nyote par jo use ek conference mein mile the, aur uske paas ek laptop tha, ek clicker, aur ek shaanti jo batati thi ki usne yeh talk glass box se kahin kam mehmaan-nawaaz kamron mein diya hai. Imran peeche haath baandhe baitha tha. Farah sab ke liye chai laayi thi, jo woh kabhi-kabhi sunne ka waqt kharidne ke liye karti thi.
+Dawa pichhle chhe hafton ko gair-zaroori bana deta. Anaya ne haath uthaya aur do sawaal poochhe: agar har baar poori library bheji jaaye toh ek sawaal ka kharcha kitna hoga, aur kya woh dikha sakta hai ki model kitna achha jawaab deta hai jab zaroori tathya poore window ke beech mein ho, usi tathya ke chhote request mein hone ke muqaable. Usne kaha ki use dekhna padega. Anaya ne use bhejne ko kaha jab woh pa le. Woh kabhi nahi bheja.
 
-"Baat yeh hai," salesman ne kaha, "ki purana tareeka khatam ho gaya hai." Ek slide mein numbers ki seedhi thi: battees hazaar, ek lakh, das lakh. "Aap apne documents ko tukdon mein kaat rahe the aur sahi tukde la rahe the. Woh chhoti windows ka jugaad tha. Hamari window das lakh tokens rakhti hai. Aap har sawaal ke saath poori library bhej sakte hain. Na kaatna, na embeddings, na dhoondhna. Saral, sasta, behtar."
+## 21.1 Case: woh slide jiska daam nahi lag sakta tha
 
-Yeh ek lubhaavni slide thi. Isne pichhle chhe hafte gair-zaroori kar diye hote.
+Anaya ka use sharminda karne ka irada nahi tha. Usne sawaal isliye poochhe kyunki poora dawa unhi par tika tha. Uske jaane ke baad Imran Qureshi ne kaam kiya aur Friday ko jawaab laaya.
 
-Anaya ne haath uthaya, jo usne school ke baad kisi meeting mein nahi kiya tha.
+## 21.2 Slide ke galat hone ke do kaaran
 
-"Do sawaal. Agar main har baar poori library bhejti hoon, toh ek sawaal ka kharcha kya hai?"
+Pehla kaaran kharcha hai. Bada request wohi kharcha deta hai jo bade request ka hota hai. Imran ne Sahaj ki poori policy library, lagbhag dedh lakh token, ₹250 dus lakh ke kalpanik rate par daam lagayi: ek sawaal ke liye ₹37.50. Teen prasangik tukde lane ka kharcha tees paise tha. Mahine ke ek lakh sawaalon par antar ₹37.5 lakh banaam ₹30,000 hai.
 
-"Yeh volume par nirbhar karta hai—"
+Doosra kaaran zyada sookshm hai. Model ki request mein jo hai use istemaal karne ki kshamta request ke bharne se kaafi pehle girne lagti hai. Imran ne policies se ek lamba document banaya aur ek anokha niyam teen jagahon par rakha: shuru ke paas, beech mein aur ant ke paas. Har jagah ke liye usne bees sawaal poochhe jo us niyam par nirbhar the.
 
-"Das lakh tokens, das lakh tokens hain. Jis bhi daam par aap chaahein. Har customer ke liye, har baar." Usne yeh bure tareeke se nahi kaha. "Aur doosra: kya aap dikha sakte hain ki model kitna achha jawaab deta hai jab use chahiye tathya ek bhari hui window ke beech mein ho, usi tathya ke muqable jo ek chhoti request mein rakha gaya ho?"
-
-Clicker ruk gaya. "Mujhe isme dekhna hoga."
-
-"Koi baat nahi," Anaya ne kaha. "Jab mil jaye toh please mujhe bhej dijiye."
-
-Usne kabhi nahi bheja, aur use bura nahi laga; usne use sharminda karne ke liye nahi poochha tha. Usne isliye poochha tha ki wahi sawaal tha jis par poora daava tika tha.
-
-## Slide galat kyun thi, do wajahein
-
-Uske jaane ke baad Imran ne kaam kiya, aur nateeje ek Friday ko laaya.
-
-Pehli wajah saral thi, aur woh use aadha keh chuki thi. Badi request ka kharcha utna hi hota hai jitna badi request ka hota hai. Usne Sahaj ki poori policy library li, lagbhag dedh lakh tokens, aur use dhai sau rupaye prati das lakh ke purane kalpit rate par daam lagaya. Ek sawaal ke saadhe saintees rupaye. Teen sambandhit tukde laane ka kharcha tees paise tha. Mahine ke ek lakh sawaal: saadhe saintees lakh rupaye bamuqabil tees hazaar.
-
-Doosri baariki thi, aur usne shaam use is par lagayi thi. Request mein jo kuch hai use istemaal karne ki model ki kshamata request ke bharne se kaafi pehle gir jaati hai. Usne policies se ek lamba document banaya tha aur ek anokha niyam teen jagahon par chhupaya tha: shuru ke paas, beech mein, ant ke paas. Har jagah ke liye usne bees sawaal poochhe jo us par nirbhar the.
-
-| Niyam kahan tha | Sahi jawaab wale sawaal |
+Table: Sahi jawaab wale sawaal, niyam kahan tha uske hisaab se
+| Niyam kahan tha | Sahi jawaab |
 | --- | --- |
 | Shuru ke paas | 20 mein se 19 |
 | Beech mein | 20 mein se 11 |
 | Ant ke paas | 20 mein se 18 |
-| Wahi niyam, ek chhoti request mein laaya hua | 20 mein se 20 |
+| Wahi niyam, chhote request mein laaya gaya | 20 mein se 20 |
 
-"Yeh ek model hai ek din par," Imran ne kaha. "Tumhara alag hoga. Par shape aam hai." Usne ise open-book exam se milaya. Aapko poori library hall mein laane ki ijaazat hai. Aapke paas ek ghanta hai. Jo aap dhoondhte hain woh kitaab ke aage aur peeche ki cheezein hain, aur jo beech mein hai use aap sarsari taur par dekhte hain, aur nirikshak kabhi nahi batata ki aap kaun se sawaal isi wajah se galat kar gaye.
+Nateeja ek model par ek din ka hai, aur doosra model alag hoga, par aakaar aam hai. Imran ne ise open-book exam se joda. Ek candidate poori library hall mein le jaa sakta hai aur uske paas ek ghanta hai. Use kitaab ke aage ki cheezein aur peechhe ki cheezein milti hain. Beech ka hissa woh pehle se dekh kar nikal jaata hai, aur koi use nahi batata ki kaun se jawaab usne isliye khoye. Koi error report nahi hota. Jawaab bas galat hote hain.
 
-Koi error nahi tha. Jawaab bas galat the.
+::: key Kshamta istemaal nahi hai
+Ek document ka window mein fit hona yeh nahi hai ki uska istemaal hoga. Vendors kshamta batate hain. Team ko istemaal naapna padta hai.
+:::
 
-"Ek document ka window mein fit hona," Anaya ne dheere se kaha, "ka matlab yeh nahi ki use istemaal kiya jaayega."
+## 21.3 Kamre mein kya jaata hai
 
-"Vendors kshamata quote karte hain," usne kaha. "Jo tumhein naapna hai woh istemaal hai."
+Agar bada kamra samasya hal nahi karta, toh us mein kya jaata hai wahi poora sawaal hai. Imran ne is kaam ko ek naam diya. *Context engineering* yeh tay karna hai ki har request mein kya jaata hai, kis kram mein, aur kya chhodna hai. Hisse hain instructions, udaharan, saboot, pichhle messages aur tools ke jawaab. Iska zyadatar kisi ek instruction ke shabdon se zyada maayne rakhta hai, aur iska zyadatar technical chunaav nahi hai. Kitni history rakhni hai, kya customer ki puraani shikayatein shaamil karni hain, aur kya policy ka koi page payment ke baare mein request mein hona chahiye, yeh sab technical keemat wale product faisle hain.
 
-## Kamre mein kya jaata hai
+Usne Anaya se ek aisa kaam karne ko kaha jo manoranjak nahi tha aur ek ghanta leta tha. Usne chatbot ke ek request ke liye *token budget* likha, har hisse ke hissa ke saath.
 
-Agar bada kamra problem hal nahi karta, toh usme kya jaata hai yahi poora sawaal hai, aur Imran ne use ek naam diya.
-
-*Context engineering* yeh tay karne ka kaam hai ki har request mein kya jaayega, kis kram mein, aur kya chhoda jaayega. Nirdesh, udaharan, saboot, pichhle messages, tools ke jawaab. Isme se bahut kuch kisi ek nirdesh ke shabdon se zyada maayne rakhta hai. Aur isme se bahut kuch technical chunav hai hi nahi. Kitni history rakhni hai, kya customer ki purani shikayatein shaamil karni hain, kya ek policy page ek bhugtaan ki request mein hona chahiye: yeh technical keemat wale product faisle hain.
-
-Usne use ek aisa kaam karne ko kaha jo chamak-damak wala nahi tha, aur isme ek ghanta laga. Usne chatbot ko ek request ke liye *token budget* likha, har hisse ko uske hissa ke saath.
-
+Table: Chatbot ki ek request ke liye token budget
 | Request ka hissa | Tokens |
 | --- | --- |
-| Sthayi nirdesh | 400 |
-| Un functions ke vivaran jo woh bula sakta hai | 300 |
+| Sthayi instructions | 400 |
+| Un functions ke vivaran jinhe woh bula sakta hai | 300 |
 | Policy ke teen tukde | 1,200 |
 | Ab tak ki baatcheet | 600 |
 | Jawaab | 200 |
-| **Kul** | **2,700** |
+| Kul | 2,700 |
 
-"Ab," Imran ne kaha. "Bill doguna ho gaya. Tum pehle kya kaatogi?"
+Imran ne phir maana ki bill doguna ho gaya aur poochha ki woh sabse pehle kya kaategi. Policy ke tukde sabse bada hissa the aur sabse aasaani se ghatate the, ya toh teen ke bajaye do laakar ya nateejon ka kram behtar karke taaki kam tukdon mein sahi content ho, par unhe kaatne se un jawaabon ka risk tha jinhe kai sections ek saath chahiye the. Baatcheet ki history agli thi, aur use kaatne se follow-up sawaal toot gaye. Function vivaran ghatane ka matlab un kaamon ko hataana tha jo machine kar sakti thi. Anaya ne dekha ki jo bhi woh kaat sakti thi woh kuch tod deta.
 
-Usne column dekha. Policy ke tukde sabse bada hissa the, aur sabse aasani se chhote kiye ja sakte the: teen ki jagah do laao, ya nateejon ko behtar kram do taaki kam mein sahi content ho. Lekin unhe kaatne se un jawaabon ka jokhim tha jinhe ek saath kai sections ki zaroorat thi. Baatcheet ki history agli thi, aur use kaatne se follow-up sawaal toot jaate. Function ke vivaran tabhi hataye ja sakte the jab machine jo kar sakti thi woh cheezein hata di jaayein.
+::: key Budget ka maalik hona chahiye
+Naam lo ki har kaat kis cheez ko risk mein daalti hai, aur phir use answer key se naapo. Jis budget ka koi maalik nahi, woh badhta jaata hai.
+:::
 
-"Jo bhi main kaat sakti hoon woh kuch tod deta hai," usne kaha.
+## 21.4 Wahi shuruaat, sasta bill
 
-"Haan. Isliye batao ki har katauti kisko jokhim mein daalti hai," Imran ne kaha, "aur phir answer key se naapo. Budget ka ek malik hota hai. Agar nahi hai, toh woh badhta hai."
+Ek tareeka Anaya ko lagbhag muft hone ki wajah se pasand aaya. Providers request ki process ki hui shuruaat yaad rakh sakte hain, aur agar aage ka hissa har baar ek jaisa ho, toh baad ki requests sasti aur tez hoti hain. Yeh *caching* hai. Yeh ek aadat ko inaam deti hai: sthayi hisse pehle jaate hain, jaise sthayi instructions aur reference text, aur jo badalte hain woh aakhir mein, jaise customer ka sawaal. Isne guard ke lambe instructions ko bhi utna mehnga nahi rakha jitna Anaya ko dar tha. Chaar sau token, har call par ek jaise aur aage rakhe gaye, cache ka achha istemaal hain.
 
-## Wahi shuruaat, sasta bill
+## 21.5 Baatcheet ko chhota karna
 
-Ek chaal thi jo use lagbhag muft hone ke liye pasand aayi. Providers request ka process kiya hua shuruaati hissa yaad rakh sakte hain. Agar aage ka hissa har baar bilkul ek jaisa hai, toh baad ki requests sasti aur tez hoti hain. Ise *caching* kehte hain. Yeh ek aadat ko inaam deta hai: sthir hisson ko pehle rakho, jaise sthayi nirdesh aur sandarbh text, aur badalte hisson ko aakhir mein, jaise customer ka sawaal.
+Aakhri vichaar tab aaya jab Anaya ne poochha ki bees message ki chat jo apne budget se bahar nikal jaaye uska kya hota hai. Aam jawaab *compaction* hai: baatcheet ke beech ka saar likho, shuru aur ant rakho, aur woh bhejo. Yeh kaam karta hai, aur beech ke khaas tathyon ko bharose se kho deta hai. Anaya ne ek vaade ke callback ka naam liya, aur Imran ne sahmati di ki yeh bilkul aise hi tathya ka udaharan hai, isliye must-keep list April mein likhi gayi thi. Saar jo bhi rakhe, jo kho nahi sakta woh list mein hona chahiye.
 
-Isne guard ke lambe nirdeshon ko uske dar se kam mehnga bana diya. Chaar sau tokens, har call par ek jaise, sabse aage: cache ka achha istemaal.
+Ek doosri, chhupi samasya thi. Saar ek model ka likha naya text hai. Agar baatcheet ke beech mein koi pehchaan ka number tha jise guard ne andar jaate hue chhupa diya tha, toh saar chhupa hua roop le jaata. Agar use chhupaya nahi gaya tha, toh saar use copy kar leta. Dono tarah, guard ko saar ke saamne bhi baithna padta. Anaya ne diagram mein ek doosra chhota dabba joda, saar banane wale ke raaste mein.
 
-## Ek baatcheet ko chhota karna
+Usne vendors ke saath baatcheet ke liye ek nateeja bhi nikala. Jab koi kehta hai ki uska assistant kisi user ko yaad rakhta hai, toh sawaal yeh hai ki yaaddasht kahan store hai. Woh ek store hai jo application sambhalta hai, har message ke saath bheja jaata hai, aur har baar uska paisa lagta hai.
 
-Aakhri idea se woh ittefaq se mili, jab usne poochha ki ek bees-message ki chat ka kya hota hai jo apne budget ke liye bahut lambi ho gayi.
+## Saaraansh
 
-Aam jawaab, Imran ne kaha, *compaction* tha. Baatcheet ke beech ka saar likho, shuruaat aur ant rakho, aur woh bhejo. Yeh kaam karta hai. Yeh bharose se beech ke khaas byore bhi kho deta hai.
+Bahut bada context window sahi material dhoondhne ki zaroorat ko do kaaranon se nahi hataata. Bada request har sawaal par wohi kharcha deta hai jo woh deta hai, aur model ki jo bheja gaya use istemaal karne ki kshamta window ke bharne se kaafi pehle gir jaati hai, khaas taur par beech ke material ke liye.
 
-"Jaise waada kiya hua callback," Anaya ne kaha.
-
-"Bilkul waada kiye hue callback ki tarah." Usne aankhein malin. "Isi liye tumne April mein list likhi thi. Saar jo bhi rakhe, jo cheez tumhein nahi khoni woh us list mein honi chahiye."
-
-Ek doosri, shaant problem thi, aur Anaya ne use usse pehle dekh liya jab woh bola. Saar ek model ka likha naya text hai. Agar baatcheet ke beech mein koi pehchaan ka number tha jise guard ne andar aate waqt chhupa diya tha, toh saar chhupa hua version le jaata. Agar nahi chhupaya gaya tha, toh saar use copy kar leta. Dono sthitiyon mein guard ko saar ke saamne bhi baithna tha.
-
-Usne ise deewar ke diagram mein joda, hashiye mein: ek doosra chhota dibba, summariser ke bahar jaane ke raaste par.
-
-Jab koi kehta hai ki unka assistant ek user ko "yaad rakhta hai", usne socha, aapko poochhna chahiye ki yaad kahan store hai. Woh ek store hai jise app sambhalta hai, har message ke saath bheja jaata hai aur har baar uska paisa lagta hai. Usne yeh bhi likha, aur underline kiya, kyunki use shak tha ki use kai vendors se ulta sunna padega.
-
-## Saath le jaane layak baatein
-
-Bahut badi context window sahi material dhoondhna gair-zaroori nahi bana deti, do wajahon se: badi request bhejne ka kharcha har sawaal par utna hi hota hai, aur model ki bheji gayi cheez istemaal karne ki kshamata window bharne se kaafi pehle gir jaati hai, khaas kar beech ke material ke liye. Jo maayne rakhta hai woh yeh hai ki har request mein kya jaata hai, jise context engineering kehte hain, aur jise sabse achhe se ek token budget ke roop mein sambhala jaata hai, ek aise malik ke saath jo jaanta hai ki pehle kya kaatna hai aur har katauti kya todegi. Request ke sthir hisson ko pehle rakhne se provider unhe cache kar sakta hai, jo kharcha ghatata hai. Ek lambi baatcheet ke beech ka saar likhna, jise compaction kehte hain, khaas byore kho deta hai. Aur model jo kuch bhi likhta hai, saar bhi, woh ek aur jagah hai jahan personal detail pahunch sakti hai.
+- Jo matlab rakhta hai woh yeh hai ki har request mein kya jaata hai. Yeh context engineering hai, aur ise ek token budget ki tarah sambhalna behtar hai jiska ek maalik ho jo jaanta ho ki pehle kya kaatna hai aur har kaat kya todegi.
+- Request ke sthayi hisse pehle rakhne se provider unhe cache kar sakta hai, jisse kharcha ghatta hai.
+- Compaction lambi baatcheet ke beech ka saar likhta hai aur khaas tathya kho deta hai. Jo kuch model likhta hai, saar bhi, personal detail ke jaane ki ek aur jagah hai.
