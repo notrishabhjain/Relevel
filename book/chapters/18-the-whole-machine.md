@@ -1,93 +1,96 @@
 ---
 title: The Whole Machine
-summary: Every part has now been built and broken by hand, so the whole chatbot can be drawn from memory, named, and followed by a compliance head with a red pen who wants to know where each word goes.
+summary: Every part of the chatbot has now been built and broken by hand, so the whole can be drawn from memory and named. The chapter introduces retrieval-augmented generation, the ways it fails silently, and the places a customer's words travel.
 course: ch7 ch75
+goals:
+  - describe retrieval-augmented generation as a sequence of steps
+  - say what a grounded answer is and why grounding reduces invention
+  - identify where a retrieval-based system can produce a wrong answer without any error
+  - list every place a customer's words are copied on the way to an answer
 terms:
   - retrieval-augmented generation | RAG: a design in which a system first finds the pieces of your documents that look relevant to a question, then gives them to a model along with the question so it writes its answer from them | RAG
   - retrieval | the step of finding the pieces of your documents that look relevant to a question | retrieve, retrieved
   - grounded answer | an answer written from evidence the system supplied, and traceable to it, instead of from what the model happens to remember | grounded, grounding
 ---
 
-"Draw it," said Imran. "From memory. No looking back."
+On a grey Thursday in the second half of May, Imran Qureshi wiped the whiteboard in the glass room clean, including the red line, and handed Anaya the marker. He asked her to draw the chatbot from memory. She drew a box labelled "document", an arrow to "cut into chunks", then "give each chunk an embedding", then "store". On a separate line she drew the other path: the customer asks, the question is given an embedding, the nearest chunks are found, they are sent to the model with the question, the model writes an answer, and the customer sees it with the pages it came from.
 
-He handed her the marker as if it were a dare. It was a Thursday in the second half of May, grey and humid, the sort of day the office fans seemed to stir around without moving, and the whiteboard in the glass room had been wiped clean. Even the red line had gone. Anaya noticed and was surprised how much she minded.
+The drawing had ten boxes. Two weeks earlier she could not have drawn one. This chapter names what she drew, shows where it can fail without making a sound, and follows a compliance head with a red pen who wanted to know where every word goes.
 
-She drew a box, and in it wrote *document*. An arrow led to a second box, *cut into chunks*. From there to *give each chunk an embedding*, then *store*. Then, on a separate line, the other path: *customer asks*, then *give the question an embedding*, then *find the nearest chunks*, then *send them to the model with the question*, then *model writes an answer*, then *customer sees it, with the pages it came from*.
+## The case: ten boxes from memory
 
-She stood back. It had eleven boxes. Two weeks ago she could not have drawn one.
-
-"That's the whole thing," said Imran.
+Imran had withheld the name of the pattern on purpose. Everything on the board was something Anaya had done with her hands: cut a policy with scissors, played the search box, used the map of meanings, and counted what a tool found and missed. When he gave the name, it would name work she had done.
 
 ## The pattern has a name
 
-He told her that what she had drawn had a name, and had been kept from her on purpose.
+The design is *retrieval-augmented generation*, or RAG. The generation is the model's writing, introduced in the first weeks. The *retrieval* is the finding, covered in the previous chapters. Together, a system first finds the pieces of the documents that look relevant to the question, then gives them to the model along with the question, so that the model writes its answer from them.
 
-"Everything on that board, you've done with your hands. Cut a policy with scissors. Played the search box. Run the map of meanings. Counted what it found and missed. So when I give you the name, it names something you've actually done."
+RAG is the most widely used pattern in applied AI. Most products that let a user ask questions about their own documents are built on it, and so was Sahaj's chatbot.
 
-It is called *retrieval-augmented generation*, or RAG. The generation is the model's writing, the part from the first week. The retrieval is the finding, from the last three chapters. Put together, a system first finds the pieces of your documents that look relevant to the question, and then gives those pieces to the model along with the question, so that the model writes its answer from them. RAG is the most widely used pattern in applied AI. Most products that let you ask questions about your own documents are built on it, and so was Sahaj's chatbot.
-
-The point of it is the answer Imran had been giving since the first night. A model asked about something it has not seen will invent. A model given the evidence will write from the evidence, and the answer can point to where it came from. An answer written from supplied, traceable evidence is a *grounded* one.
+::: key Why the pattern works
+A model asked about something it has not seen will invent an answer. A model given the evidence will write from the evidence, and its answer can point to where it came from. An answer written from supplied, traceable evidence is a *grounded answer*.
+:::
 
 ## Where it fails without a sound
 
-"Now put a star," said Imran, "wherever a wrong answer can be produced without an error appearing."
+Imran asked Anaya to put a star on every box where a wrong answer can be produced without any error appearing. She went through the ten boxes and starred nearly all of them.
 
-She went through the eleven boxes with the pen. It took her longer than she expected, and she ended by starring nearly every one.
+Table: Where a retrieval system goes wrong silently
+| Step | The failure | Why nothing reports it |
+| --- | --- | --- |
+| Cutting | A rule is separated from its exception | Both pieces are valid text |
+| Finding | Something is always returned, even when nothing relevant exists | The search has no way to say "nothing here" |
+| The map of meanings | Sahaj's vocabulary is placed badly | The numbers are produced as normal |
+| Writing | The model writes fluently from an irrelevant piece | Fluent text is what the model always produces |
+| Showing the source | The page number shown does not support the answer | Nothing checks that the page matches the claim |
 
-The cutting could separate a rule from its exception. The finding always returned something, even when there was nothing to find. The map of meanings could place Sahaj's vocabulary badly. The model would write fluently from an irrelevant piece. The page numbers shown to the customer might point to a page that did not support the answer. In none of these cases did the program crash, or shout, or log anything unusual. Every part reported success, and the answer was wrong.
-
-"This is the thing I want you to carry out of the room," said Imran. "A system like this does not break. It becomes wrong, quietly, with every part reporting that it is fine. That is why the answer key matters. Nothing else will tell you."
+In none of these cases does the program crash, shout or log anything unusual. Every part reports success, and the answer is wrong. Imran stated the point he wanted Anaya to take from the room: a system like this does not break. It becomes wrong, quietly, with every part reporting that it is fine. That is why the answer key matters, because nothing else will tell the team.
 
 ## What "bad answers" means
 
-"People come to me and say, 'the chatbot gives bad answers,'" he went on. "That is a symptom. It's like telling a doctor you feel unwell."
+People tell Imran that the chatbot gives bad answers. He regarded that as a symptom, comparable to telling a doctor that one feels unwell. At least four quite different faults look the same from outside. The right page may never have been found. It may have been found but cut so that the crucial line sat in the next piece. It may have been found whole and ignored by the model. Or the instructions may have told the model to do something slightly different from what anyone meant. Each has a different cure, and curing the wrong one wastes a quarter.
 
-At least four quite different faults look the same from outside. The right page may never have been found. It may have been found but cut so that the crucial line sat in the next piece. It may have been found whole and the model may have ignored it. Or the instructions may have told the model to do something slightly different from what anyone meant. Each has a different cure, and curing the wrong one wastes a quarter.
+He asked her to rank five ways of spending a quarter on improving the answers: a more expensive model, better cutting, a step that re-orders the results after the search, more work on the instructions, and cleaning up the documents. She ranked them by instinct and put the more expensive model first.
 
-He asked her to rank five ways of spending a quarter on improving the answers: a more expensive model, better cutting, a re-ordering step after the search, more work on the instructions, and cleaning up the documents themselves.
+Table: Where a quarter of effort usually does the most good
+| Rank | Spend | Why |
+| --- | --- | --- |
+| 1 | Cleaning up the documents | The evidence the model receives is only as good as the documents |
+| 2 | Better cutting | A rule and its exception stay together |
+| 3 | A step that re-orders the search results | A cheap and often large gain |
+| 4 | More work on the instructions | Helps, but makes failures rarer and does not remove their cause |
+| 5 | A more expensive model | Usually costs the most and helps the least, since the model could already read and the right evidence was not reaching it |
 
-She ranked them by instinct and was wrong in an instructive way. She put the expensive model first.
-
-"Cleaning up the documents and fixing the cutting usually help most," said Imran. "A step that re-orders the results is the next cheapest large gain. The more expensive model usually costs the most and helps the least. The model could already read. The right evidence wasn't reaching it."
-
-Anaya wrote it on the back of her hand, a thing she had not done since school. *Quality problems are usually evidence problems, not model problems.*
+Anaya wrote on the back of her hand, as she had not done since school, that quality problems are usually evidence problems and not model problems.
 
 ## A red pen
 
-At this point Lakshmi came in, unannounced, with her glass of water. She had heard from Farah that the whole system was on the board, and she stood in the doorway for a moment reading it as she read documents, backwards.
+Lakshmi Iyer came in unannounced with her glass of water. She had heard from Farah that the whole system was on the board, and she read it from the end, as she read documents. She asked where the customer's words go and took the marker, which nobody had offered.
 
-"Where do the customer's words go?" she said.
+Starting at "customer asks", she circled each place the words were copied. She circled the box where the question was given an embedding and wrote "outside service?". Imran said it was a separate company's. She circled the box where the nearest pieces were sent with the question to the model and wrote "outside company". She circled the box where the answer came back and the customer saw it, and the line to the support system that saved the conversation. She circled the logs and the analytics, and wrote a number in the corner.
 
-"Sorry?"
+"Six places," she said. "And I find out about it on a whiteboard." Imran said they had not hidden it. "No," she said. "Nobody drew it." She asked that the guard be drawn too, and asked where it sat. She wanted it before the first circle.
 
-"Take a customer's message. Every place it goes. I'd like to see them."
+Anaya saw what the machine was. It was a series of rooms, and the customer's words passed through every one, and in each they were copied. A guard in the middle of the sequence would protect only what came after it. The only safe place was at the door.
 
-She took the marker, which nobody had offered. Starting at *customer asks*, she began to circle. She circled the box where the question was given an embedding, and wrote beside it: *outside service?* Imran said yes, it was a separate company's. She circled the next box, where the nearest pieces were sent with the question to the model, and wrote *outside company*. She circled the one where the answer came back, and *customer sees it, with the pages*, and the line to the support system that saved the conversation. She circled the logs and the analytics. She wrote a number in the corner.
+## What it cannot yet do
 
-"Six," she said. "Six places. And I find out about it on a whiteboard."
+Before they left, Imran wrote four sentences in the corner of the board. The previous evening he had tested the machine in four ways and found four things it could not do.
 
-"It's not that we hid it," said Imran.
+Table: Four limits of the machine so far, and where the book takes each
+| Limit | Where it is addressed |
+| --- | --- |
+| The answer is prose that other software cannot use | Chapter 19 |
+| It cannot take two steps on its own | Chapter 20 |
+| Pasting everything in is slow, costly and often worse | Chapter 21 |
+| Text inside a document can give it orders | Chapter 24 |
 
-"No. It's that nobody drew it." She capped the marker and handed it back with a nod of grave courtesy. "Draw it for the guard, too. Where does it sit? Before the first circle, or in the middle? I'd like it to be before the first."
+Anaya understood the first immediately, since the guard would have to hand its decisions to a program that could not read a polite paragraph. The second she did not yet understand, and the third she could half guess. The fourth gave her a small cold feeling, and she put it aside to examine later. Imran asked which of the four would hurt the team first. She said the last, without quite knowing why. "Good," he said. "Keep that."
 
-Anaya looked at the board and saw, with the abrupt clarity of a thing that had been in front of her for weeks, what the whole machine was. It was a series of rooms, and the customer's words passed through every one, and in each one they were copied. A guard in the middle of that sequence would protect only what came after it. The only safe place for it was at the door.
+## Summary
 
-## The part that cannot yet be done
+The standard design for answering questions about one's own documents is to cut them into chunks, give each an embedding, find the ones nearest a question and give them to a model along with the question. This is retrieval-augmented generation, and the answer it writes is grounded in evidence the system supplied.
 
-Before they left, Imran wrote four sentences in the corner of the board, beneath the picture. He had spent the previous evening testing the machine in four ways, and found four things it could not do.
-
-*The answer is prose that other software cannot use. It cannot take two steps on its own. Pasting everything in is slow, costly and often worse. And text inside a document can give it orders.*
-
-"There is a fifth," he said. "The finding is the simplest version that works. We have a better one in mind. But those are the four. And they are the next four chapters, more or less, in this order."
-
-Anaya read them twice. The first she could already feel the need for: the guard would have to hand its decisions to a program, which could not read a polite paragraph. The second she did not yet understand. The third she could half guess. The fourth gave her a small cold feeling in the back of her neck, and she put it away to look at later.
-
-"Which of those would hurt us first?" Imran asked.
-
-"The last," she said, without quite knowing why.
-
-"Good," he said. "Keep that."
-
-## What to carry forward
-
-The standard design for answering questions about your own documents is to cut them into chunks, give each chunk an embedding, find the ones nearest a question, and give them to a model along with the question. It is called retrieval-augmented generation, and the answer it writes is grounded in evidence the system supplied. Almost every step in it can go wrong without any error appearing, so the system does not break; it quietly becomes wrong. When answers are bad, the cause is most often the evidence that reached the model, not the model, and cleaning documents and fixing the cutting beat buying a bigger machine. And a customer's words pass through several places on the way to an answer, each of which keeps a copy, which is why a privacy tool belongs at the door.
+- Almost every step can go wrong without any error appearing, so the system does not break. It becomes wrong quietly.
+- When answers are bad, the cause is usually the evidence that reached the model, and cleaning documents and fixing the cutting beat buying a bigger model.
+- A customer's words pass through several places on the way to an answer, and each keeps a copy. A privacy tool belongs at the door.
