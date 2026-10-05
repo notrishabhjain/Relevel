@@ -1,99 +1,73 @@
 ---
 title: Shabdon Se Dhoondhna
-summary: Ek product manager search box ka kirdaar nibhati hai, seekhti hai ki cheezein dhoondhne ka sabse purana tareeka un customers ko kyun fail karta hai jinhe madad ki sabse zyada zaroorat hai, aur woh ek pehchaan ke number ke liye bilkul sahi kyun hai.
+summary: Product manager search box ka kirdaar nibhati hai aur seekhti hai ki text dhoondhne ka sabse puraana tareeka un customers ko kyun fail karta hai jinhe sabse zyada madad chahiye, aur pehchaan ke number ke liye woh bilkul sahi kyun hai. Chapter keyword search aur uski khaamosh failure ko samjhata hai.
 course: ch4
+goals:
+  - samjhana ki keyword search text kaise dhoondhti hai aur woh kahan bilkul sahi tool hai
+  - un teen jagahon ke naam batana jahan meaning ke bajaye spelling milane se failure hoti hai
+  - dekhna ki fixed-shape rule keyword search ka ek roop kyun hai aur woh bole gaye numbers kyun chhod deta hai
+  - samjhana ki jo search kabhi "kuch nahi mila" nahi kehti woh tab khatarnaak kyun hai jab koi us se mile nateeje padhta hai
 terms:
   - keyword search | text ko sawaal ke shabdon ko documents ke shabdon se milaakar dhoondhna; yeh spelling ki tulna karta hai, matlab ki nahi | keyword matching
 ---
 
-Anaya search engine thi, aur Farah customer, aur dono ke beech mez par bees cards the.
+Ek barsaati Monday ko Anaya ne search engine ka kirdaar nibhaya, aur Farah Sheikh ne customer ka. Unke beech table par bees index cards the, pichhle hafte ke kataai ke tukde, har ek ek card par chipka aur numbered, jiske saamne Sahaj ki refund policy ka aadha page tha. Anaya ko ek hi niyam diya gaya tha: woh sirf wahi shabd dhoondh sakti thi jo Farah bole.
 
-Woh pichhle hafte ke tukde the, index cards par wapas chipkaye hue, har ek ke kone mein ek number aur uske chehre par Sahaj ki refund policy ka aadha page. Barish wala Monday tha. Office mein geeli chhatriyon ki gandh thi. Farah ne woh awaaz pakdi thi jo woh nakal utaarne ke liye istemaal karti thi, thodi unchi aur ghabrayi hui, aur Anaya ko ek hi niyam diya gaya tha: woh sirf wahi shabd dhoondh sakti thi jo Farah bole.
+Farah ne woh thodi oonchi, chintit aawaaz banayi jo woh nakal ke liye istemaal karti thi aur kaha "Paisa kab milega?", yaani "Paisa kab aayega?" Anaya ne "paisa" dhoondha, phir "kab", phir "milega". Usne baaison card ek-ek karke palte aur teeno shabdon mein se koi kisi par nahi mila. Usne kaha ki kuch nahi hai. Farah ne kaha ki bilkul isi ke baare mein ek card hai, card saat. Usme likha tha: "Refund of an excess payment will be processed to the registered account within seven working days of the request being approved." Card sawaal ka jawaab deta tha, aur ek bhi shabd saajha nahi tha.
 
-"Taiyaar?"
+## 15.1 Case: bees card aur koi mel nahi
 
-"Taiyaar."
+Yeh abhyaas dikhata hai ki sabse puraani aur sabse zyada phaili hui search kaise behave karti hai. Neeche ke section batate hain ki woh kya karti hai, kahan fail hoti hai, aur kahan woh sabse achha tool hai.
 
-"*Paisa kab milega?*" Farah ne kaha.
+## 15.2 Spelling, matlab nahi
 
-Anaya ne cards dekhe. Woh *paisa* dhoondh rahi thi. Woh *kab* dhoondh rahi thi. Woh *milega* dhoondh rahi thi. Usne saare bees dheere-dheere dekhe, har ek ko palat kar, aur kisi card par un teeno mein se ek bhi nahi mila.
+Text ke dher mein cheezein dhoondhne ka sabse puraana tareeka shabd milana hai. Koi "refund" type karta hai, aur system har woh chunk dhoondhta hai jisme "refund" ho. Yeh kai dashakon se search boxes ke dil mein hai aur tez, sasta aur achhe se samjha hua hai. Ise *keyword search* kehte hain.
 
-"Kuch nahi," usne kaha.
+Iski kami iske tareeke mein hi hai. Yeh matlab nahi balki spelling milata hai, isliye do vaakya jinka matlab ek ho par jinme koi shabd saajha na ho, bilkul nahi milte. Failure ittefaqi nahi hai. Woh teen jagah hoti hai, aur teeno business ke liye maayne rakhti hain.
 
-"Is baare mein ek card hai," Farah ne kaha. "Card saat."
+Table: Keyword search kahan fail hoti hai
+| Kahan | Kya hota hai | Udaharan |
+| --- | --- | --- |
+| Aupchaarik aur rozmarra ki bhasha | Document likhne wale visheshagya hote hain aur poochhne wale nahi | Policy "reimbursement" aur "credited to the registered account" kehti hai; customer "paisa wapas" kehta hai |
+| Jo users pehle se uljhe hain | Jo product jaanta hai woh uski shabdawali istemaal karke jo chahta hai paa leta hai; jo uljha hai woh apne shabd istemaal karta hai aur kuch nahi paata | Tareeka un users ke liye sabse achha kaam karta hai jinhe sabse kam samasya hai aur unke liye sabse kharab jinhe sabse zyada |
+| Sawaal aur kathan | Ek sawaal us passage se kam milta hai jo uska jawaab deta hai | "Mujhse do baar kyun charge kiya gaya?" ka ek duplicate authorisation hold ke paragraph se lagbhag kuch nahi milta |
 
-Anaya ne card saat palta. *Adhik bhugtaan ka refund request manzoor hone ke saat kaam ke dinon ke andar panjikrit khate mein process kiya jayega.* Usne use do baar padha. "Yeh bilkul isi ke baare mein hai. Aur ek bhi shabd saajha nahi."
+Sahaj mein inke upar ek chauthi parat thi, aur Farah ko sabse zyada wahi chinta deti thi. Uske aadhe customers English akshar mein Hindi likhte the, aur policy aupchaarik English mein likhi thi. "Paisa" ki ek bilkul saaf search bhi kuch nahi dhoondhti.
 
-## Spelling, matlab nahi
+## 15.3 Jahan yeh bilkul sahi hai
 
-Text ke dher mein cheezein dhoondhne ka sabse purana tareeka shabdon ko milaana hai. Koi *refund* type karta hai; system har woh chunk dhoondhta hai jisme *refund* ho. Yeh dashakon se search boxes ka dil raha hai, aur yeh tez, sasta aur achhe se samjha hua hai. Ise *keyword search* kehte hain.
+Anaya is tareeke ko khaarij karne wali thi. Farah aage jhuki aur apni aam aawaaz mein boli, "Clause 14.2." Card gyarah "14.2 Disputed charges" se shuru hota tha, aur Anaya ne use chaar second mein dhoondh liya.
 
-Iski kamzori iske andar hi bani hai. Yeh spelling ki tulna karta hai, matlab ki nahi. Do vaakya jinka matlab ek hai par jinme koi shabd saajha nahi, woh bilkul match nahi karte, aur failure sanyog nahi hai. Yeh teen jagahon par hota hai, jo teeno ek kaarobaar ke liye maayne rakhti hain.
+::: key Keyword search kis kaam ki hai
+Keyword search sahi cheezon ke liye bahut achhi hai: section number, policy ka identifier, part number, naam. Jo "clause 14.2" type karta hai use clause 14.2 chahiye, lagbhag wahi nahi, aur ek-ek shabd milana sahi tareeka hai. Woh kabhi koi sambandh gadhti bhi nahi. Agar shabd maujood hai toh milta hai, agar nahi toh nahi.
+:::
 
-Pehla formal aur roz ki bhasha ke beech ka antar hai. Policy mein likha hai *pratipoorti*, *vitaran*, *panjikrit khate mein jama*; customer kehta hai *paisa wapas*. Documents likhne wale visheshagya hote hain, aur sawaal poochne wale nahi. Doosra pehle ka bura nateeja hai. Jo kisi product ko pehle se jaanta hai woh uski shabdavali istemaal karta hai aur jo chahiye woh paa leta hai. Jo uljha hua hai woh apne shabd istemaal karta hai aur kuch nahi paata. Keyword search un users ke liye sabse achha kaam karta hai jinhe sabse kam dikkat hai aur unke liye sabse bura jinhe sabse zyada.
+Imran, jo mug lekar tahalta hua aaya tha, ne Anaya se pehle sambandh dekh liya. "Yeh tumhara pattern checker hai," usne kaha. PAN paanch akshar, chaar ank aur ek akshar hai, jo ek shakl ki khoj hai. Woh bilkul sahi, turant aur muft hai, aur use kisi cheez ke liye manaya nahi ja sakta. Woh us cheez ke liye sahi tool hai jo hamesha ek jaisi dikhti hai, aur galti hogi samajhdaar tareeke ko wahan istemaal karna jahan saadha kaam kar jaata hai.
 
-Teesra sawaal hain. *Mujhse do baar charge kyun kiya gaya?* aur woh paragraph jo samjhata hai ki duplicate authorisation hold kaise kaam karta hai, mein lagbhag kuch saajha nahi. Sahaj ke mamle mein upar ek chauthi parat thi, aur Farah ko usi ki fikr thi. Uske aadhe customers English akshron mein Hindi likhte the, aur policy formal English mein likhi thi. *Paisa* ki ek behtareen search bhi kuch nahi dhoondh paati.
+## 15.4 Jahan saadha tareeka guard ko fail karta hai
 
-"Yeh aise hai jaise kisi se raasta poochho jo sirf gali ke naam ki spelling samajhta ho," Farah ne kaha.
+Wahi seema guard par bhi lagti hai, aur Farah ne ek udaharan diya. Usne apne phone se pichhle mahine ka ek message padha, jo usne kisi ko dikhane se pehle khud saaf kiya tha: "Mera aadhaar number hai char teen do ek, paanch chhe saat aath, nau shunya ek do."
 
-## Jahan yeh bilkul sahi hai
+Yeh baarah ankon ka Aadhaar number hai, chaar-chaar ke groups mein, shabdon mein bola gaya: chaar teen do ek, paanch chhe saat aath, nau shunya ek do. Customer Hinglish mein voice keyboard ko dictate kar raha tha. Pattern checker ise nahi dekhta, kyunki message mein koi ank hai hi nahi, aur jo rule baarah ank dhoondhta hai use kuch nahi milta.
 
-Anaya is tareeke ko khaarij karne wali thi. Tabhi Farah aage jhuki aur apni aam awaaz mein boli: "*Clause 14.2.*"
+Shakl maujood hai, aur spelling nahi. Yeh shabdon se dhoondhne ki kamzori ulti taraf se hai: kisi bhi insaan ko matlab saaf hai, aur jo tareeka akshar milata hai woh use dekh nahi paata. Anaya ne ise answer key mein row baarah ke roop mein joda: bole gaye numbers.
 
-Anaya ne cards dekhe. Card gyarah *14.2 Vivadit charges* se shuru hota tha. Use woh chaar second mein mil gaya tha.
+## 15.5 Khaamosh failure
 
-"Lo," Farah ne kaha. "Isi ke liye hai yeh."
+Farah ne tab keyword search ki ek aur khaasiyat ki taraf ishaara kiya, jo do saal pehle help centre mein pareshani ka kaaran bani thi. Usne Anaya se woh sawaal poochhne ko kaha jiska jawaab documents mein nahi tha.
 
-Keyword search exact cheezon ke liye shaandaar hai: section number, policy ID, part number, naam. Agar koi *clause 14.2* type karta hai toh use clause 14.2 chahiye, kuch aisa nahi jiska lagbhag wahi matlab ho, aur exact text milaana bilkul sahi tareeka hai. Yeh is kitaab ki woh akeli technique bhi hai jo kabhi koi sambandh gadhti nahi. Agar shabd wahan hai, toh mil jaata hai. Agar nahi, toh nahi.
+Anaya ne poochha ki kya woh Diwali par credit card se bill bhar sakti hai. "Credit" shabd teen cards par tha, interest ke ek section mein. "Card" paanch par tha, aur "bill" lagbhag sab par. Usne cards ko is hisaab se rank kiya ki unme kitne shabd hain, aur card chhe sabse upar aaya. Card chhe late payment par credit-card interest ke baare mein tha. Uska Diwali ya is baat se koi sambandh nahi tha ki card se bhugtaan ki ijaazat hai ya nahi.
 
-Imran, jo mug lekar ghoomta hua aa gaya tha, ne woh sambandh usse pehle jod liya.
+::: watch Aisi search jo kabhi "yahan kuch nahi" nahi kehti
+Keyword search har document ko score karti hai aur use kram mein lagati hai, isliye woh hamesha kuch lautati hai. Sabse upar wala card ek kharab set mein sabse kam kharab hai. Chatbot us card ko lekar use saboot maanta hai. Search kabhi nahi batati ki use kuch nahi mila, aur jo model uska nateeja padhta hai woh farq nahi jaanta. Woh sabse kam prasangik card se, aise insaan ki aawaaz mein jisne sahi card padha ho, ek saaf jawaab likhta hai. Koi kadam error report nahi karta.
+:::
 
-"Yeh tumhara pattern checker hai," usne kaha.
+Anaya ne cards ko unke numbered kram mein rakh diya aur kaha ki team ko ise naapne ka tareeka chahiye hoga. Imran ne sahmati di, aur kaha ki pehle use woh dekhna chahiye jo samasya ke doosre hisse ko theek karta hai.
 
-"Hai kya?"
+## Saaraansh
 
-"PAN paanch akshar, chaar ank, ek akshar hai. Yeh shape ke liye keyword search hai. Yeh exact hai, turant hai, muft hai, aur ise kisi cheez ke liye manaya nahi ja sakta. Yeh bilkul sahi tool hai us cheez ke liye jo hamesha ek jaisi dikhti hai." Usne ghoont liya. "Galti yeh hogi ki jahan saada tareeka kaam karta hai wahan chaalak tareeka istemaal kiya jaye. Yahan saada wala jeetta hai."
+Keyword search sawaal ke shabdon ko documents ke shabdon se milakar text dhoondhti hai. Woh tez aur sasta hai, kabhi koi sambandh nahi gadhti, aur sahi cheezon jaise section numbers, codes aur naamon ke liye, aur PAN jaisi fixed shakl wali details ke liye sahi tareeka hai.
 
-Yeh doosri baar tha jab usne use alag shabdon mein kaha tha, aur woh ise uske dhandhe ke kendriya hunar ke roop mein dekhne lagi thi: jaanna ki kab chaalak nahi banna hai.
-
-## Jahan saada tareeka guard ko fail kar deta hai
-
-Lekin wahi seema guard par bhi laagu thi, aur Farah ne, ghabra dene wali timing ke saath, udaharan diya.
-
-"Aur yeh?" usne kaha, aur apne phone se padha. Yeh pichhle mahine ka ek message tha, asli wale mein se ek, jise usne kisi ko dikhane se pehle khud saaf kiya tha. *Mera aadhaar number hai char teen do ek, paanch chhe saat aath, nau shunya ek do.*
-
-Anaya ne use do baar padha. Yeh ek Aadhaar number tha, chaar-chaar ke groups mein barah ank, shabdon ki tarah bola gaya: four three two one, five six seven eight, nine zero one two. Type kiya hua, kyunki customer ise voice keyboard ko bol raha tha, Hinglish mein.
-
-"Pattern checker ise nahi dekhega," usne kaha.
-
-"Isme ek bhi ank nahi hai," Imran ne kaha. "Barah ank dhoondhne wala rule kuch nahi dhoondhta."
-
-Shape wahan thi. Spelling nahi thi. Yeh shabdon se dhoondhne ki kamzori thi, ulti hui: matlab kisi bhi insaan ko bilkul saaf hai, aur akshron ki tulna karne wala tareeka use dekh nahi sakta. Usne ise laal line ke neeche board par likha: *Boley gaye numbers. Row barah.* Woh answer key umeed se tez bana rahi thi, ek-ek sharminda karne wali cheez ke saath.
-
-## Chupchaap hone wali failure
-
-Keyword search ki ek aur khaasiyat thi, jo Farah ne aakhir mein batayi, kyunki usne do saal pehle help centre mein ise asli museebat paida karte dekha tha.
-
-"Isse kuch aisa poochho jo documents mein nahi hai."
-
-Anaya ne socha. "*Kya main Diwali par credit card se apna bill bhar sakti hoon?*"
-
-Usne cards dekhe. *Credit* shabd teen par aaya, byaaj wale section mein. *Card* shabd paanch par aaya. *Bill* shabd lagbhag sab par aaya. Usne unhe is hisaab se rank kiya ki unme kitne shabd the. Card chhe sabse upar nikla.
-
-Card chhe late bhugtaan par credit-card byaaj ke baare mein tha. Uska Diwali se koi lena-dena nahi tha, ya is baat se ki card se bhugtaan ki ijaazat hai ya nahi.
-
-"Usne jawaab diya," usne kaha.
-
-"Hamesha deta hai. Uske paas yeh kehne ka koi tareeka nahi ki *yahan kuch nahi hai*. Woh sab kuch score karta hai aur chhaant deta hai. Sabse upar wala card ek bure set mein sabse kam bura hai." Farah ne haath baandh liye. "Aur chatbot us card ko leta hai aur use aise maanta hai jaise woh saboot ho."
-
-Yahi fikr thi. Search kabhi report nahi karta ki use kuch nahi mila, aur jo machine uska dhoondha padhti hai use farak nahi pata. Woh sabse kam sambandhit card se ek saaf jawaab likhti hai, aise insaan ki awaaz mein jisne sahi wala padha ho. Koi kadam error report nahi karta. System ek vishwas bhara, galat jawaab banata hai, aur usmein kuch isse notice nahi karta.
-
-Anaya ne cards wapas unke number ke kram mein rakhe, dheere-dheere, jaise woh kuch nazuk ho.
-
-"Humein ise naapne ka koi tareeka chahiye," usne kaha.
-
-"Haan," Imran ne kaha. "Par pehle tumhein dekhna chahiye ki doosra aadha kaun theek karta hai."
-
-## Saath le jaane layak baatein
-
-Keyword search sawaal ke shabdon ko documents ke shabdon se milaakar text dhoondhta hai. Yeh tez aur sasta hai, kabhi koi sambandh gadhta nahi, aur exact cheezon jaise section numbers, codes aur naam, aur fixed shape wali details jaise PAN, ke liye sahi tareeka hai. Lekin yeh spelling ki tulna karta hai, matlab ki nahi, isliye yeh theek wahan fail hota hai jahan users document ke bajaye apne shabd istemaal karte hain, aur isliye unhe fail karta hai jinhe sabse zyada madad chahiye. Yeh kabhi nahi kehta ki use kuch nahi mila: woh sabse kam bura match lauta deta hai, aur jo bhi us match ko padhta hai woh use saboot maan sakta hai.
+- Woh spelling milati hai, matlab nahi, isliye wahan fail hoti hai jahan users document ke bajaye apne shabd istemaal karte hain. Isliye woh un logon ko fail karti hai jinhe sabse zyada madad chahiye.
+- Jo rule ankon ko dhoondhta hai woh shabdon mein bole ya likhe number nahi dekh sakta.
+- Woh hamesha apna sabse kam kharab nateeja lautati hai aur kabhi nahi batati ki use kuch nahi mila, isliye jo cheez us nateeje ko padhti hai woh use saboot maan sakti hai.

@@ -1,102 +1,93 @@
 ---
 title: Kitna Achha, Achha Hota Hai
-summary: Koi senior woh sawaal poochhta hai jisse har AI project ko kabhi na kabhi guzarna padta hai. Jawaab do numbers hain, unke beech ek chunav jo engineer ka nahi hai, aur ek aisa figure jise Anaya ne bina jaanche quote kiya tha uspar ek asuvidhajanak nazar.
+summary: Ek founder woh sawaal poochhta hai jo har AI project ko kabhi na kabhi milta hai. Jawaab do number hain, unke beech ka ek chunaav jo engineer ka nahi hai, aur ek figure jo Anaya ne bina jaanche bol diya tha. Chapter recall aur precision samjhata hai.
 course: ch6
+goals:
+  - samjhana ki kuch chale hue udaharanon ka demonstration saboot kyun nahi hai
+  - found, missed aur galat flagged ginti se recall aur precision nikalna
+  - yeh dekh kar tay karna ki kis failure ko tarjeeh deni hai ki har ek hone par ek asli insaan ke saath kya hota hai
+  - kisi aur ke quote kiye figure ko tab tak unverified maanna jab tak uska test dikhe nahi
 terms:
   - recall | jitni asli cheezein dhoondhni thin, unmein se tool ne kitne ka hissa dhoondha; agar 100 thin aur usne 90 dhoondhin, toh recall 90 percent hai | 
   - precision | tool ne jitna flag kiya, usme se kitna sach mein wahi tha jo usne kaha; agar usne 100 flag kiye aur 80 asli the, toh precision 80 percent hai | 
 ---
 
-Sawaal aaya, jaise hamesha aata hai, kisi senior se aur kisi aur kaam ke beech mein.
+May ke pehle hafte mein founders glass room par se guzarte hue ruke. Unme se ek, Mr. Bhatia, ne whiteboard aur scoreboard ko dekha aur wahi sawaal poochha jo har us company mein kabhi na kabhi poochha jaata hai jo AI ke saath banati hai: "Kya yeh achha hai?"
 
-May ka pehla hafta tha. Founders lunch par jaate hue glass room ke paas ruke the, aur unmein se ek, Mr. Bhatia naam ka ek khushmizaaj aadmi jiske paas ek jaisi kameezon ki hairaan karne wali sankhya thi, ne whiteboard dekha, scoreboard dekha, aur woh poochha jo har company mein har koi aakhirkaar poochhta hai.
+Ek second zyada lambi chuppi rahi. Imran Qureshi ne kaha ki pichhle run mein satrah mein se pandrah mile the. Mr. Bhatia ne kaha ki yeh achha hai. Anaya ne dhyaan dilaya ki yeh satrah mein se pandrah un das vaakyon par the jo team ne khud likhe the, aur use abhi nahi pata tha ki yeh achha hai ya nahi. Woh ek hafte mein, ek number ke saath, bata sakti thi. Mr. Bhatia ko is jawaab ki aadat nahi thi, aur unhone baad mein kaha ki kisi ne unhe pehli baar aise jawaab diya.
 
-"Kya yeh achha hai?"
+Yeh chapter us jawaab ko vistaar se batata hai jo Anaya ne dene ka vaada kiya tha: woh do number jo koi cheez dhoondhne wale tool ko naapte hain, unke beech ka chunaav, aur kuch bolne se pehle figure ko jaanchne ki aadat.
 
-Ek khamoshi rahi jo ek second zyada lambi chali.
+## 17.1 Case: ek sawaal jiske saath koi number nahi
 
-"Pichhli run mein satrah mein se pandrah mile," Imran ne kaha.
+Aam taur par "kya yeh achha hai?" ka jawaab teen udaharanon ka demonstration hota hai jo kaam kiye. Aisa demonstration bahut kam batata hai ki system kitni baar sahi hai, kyunki teen chune gaye the, aur jo cases nahi chune gaye woh woh hain jinhe dekhne ki zaroorat thi.
 
-"Toh achha hai."
+Imran isi tarah ke naap par kaam kar raha tha, guard ke liye nahi balki us hisse ke liye jo uske peechhe khada hai: chatbot ne kitni achhi tarah Sahaj ki policies ka sahi page customer ke sawaal ke liye dhoondha. Seekh lagbhag shabd-ba-shabd laagu hui.
 
-"Yeh pandrah hai satrah mein se, das vaakyon par jo humne khud likhe," Anaya ne kaha.
+## 17.2 Demonstration saboot nahi hai
 
-"Kya yeh achha nahi?"
+Tareeke mein teen vichaar hain, aur pehla hai test karne se pehle jawaab likhna. Kisi system ko sawaal poochhkar aur dekh kar ki jawaab sahi lagte hain, parkha nahi ja sakta, kyunki woh sahi lagenge: saaf-suthra text hi toh machine banati hai. Isliye kaam asli sawaalon ki list aur har ek ke satyapit sahi jawaab se shuru hota hai. Yeh wahi answer key hai jo Anaya pehle hi bana chuki thi, test ke baad nahi balki pehle likhi gayi.
 
-"Mujhe abhi nahi pata," Anaya ne kaha. "Yahi imaandaar jawaab hai." Usne dekha ki use yeh sunne ke anokhe anubhav ke aas-paas uska chehra badal gaya. "Main aapko ek hafte mein bata sakti hoon, ek number ke saath."
+Farah ne chatbot ki search ke liye das sawaal likhe, apne customers ke shabdon mein, policy document kholne se pehle. Document padhne ke baad likha gaya sawaal document ke shabdon mein khatam hota hai aur search ko asli se behtar dikhata hai. Uske sawaalon mein "Paisa kab milega", "Double charge hua hai" aur "Mera loan reject kyun hua" the. Tabhi usne aur Imran ne pages mein jaakar chinhit kiya ki har ek ka jawaab kis page par tha.
 
-## Demo saboot nahi hai
+Unhone test chalaya. Das mein se chhe sawaalon ne pehli koshish mein sahi page dhoondha. Imran ne ise ek aise system ka bilkul saamaanya pehla nateeja kaha jo kaam karta hai, aur kaha ki agar nau ya das hote, toh woh jaanna chahta ki kisi ne dhokha toh nahi diya.
 
-Lunch ke raaste mein usne kuch aisa kaha jiski use umeed nahi thi, ki yeh pehli baar tha jab kisi ne use aise jawaab diya. Aamtaur par jawaab teen udaharanon ka ek demonstration hota tha jo kaam kar gaye. Teen udaharanon ka demonstration jo kaam kar gaye, yeh lagbhag kuch nahi batata ki system kitni baar sahi hai, kyunki teen chune gaye the, aur jo nahi chune gaye wahi woh hain jinhe aapko dekhna tha.
+## 17.3 Fail hone ke do tareeke
 
-Imran isi par kaam kar raha tha, guard ke liye nahi balki us cheez ke liye jiske saamne guard khada tha. Woh naap raha tha ki chatbot ne customer ke sawaal ke liye Sahaj ki policies ka sahi page kitni achhi tarah dhoondha, aur us naap se jo sabak mile woh lagbhag shabd-dar-shabd laagu hue.
+Doosra vichaar Anaya ko samajhne mein zyada waqt laga, kyunki woh saamne chhupa tha. Search ka ek kadam do ulte tareekon se galat ho sakta hai. Woh woh cheez chhod sakta hai jo maayne rakhti thi, ya woh bahut saari cheezein la sakta hai jo nahi rakhti thi. Imran ne Anaya se ek saathi ko meeting ki files laane bhejne ki kalpana karne ko kaha. Agar saathi us ek file ke bina lautta hai jo chahiye thi, toh yeh ek tarah ki failure hai. Agar saathi poori almaari le aata hai, toh baaki ke beech chahiye file dhoondhi nahi ja sakti, aur yeh doosri tarah ki failure hai.
 
-Tareeka teen ideas par aata hai.
+::: def Recall aur precision
+*Recall* un asli cheezon ka hissa hai jo dhoondhni thi aur tool ne paayi. Agar sau thi aur nabbe mili, toh recall nabbe percent hai. *Precision* un cheezon ka hissa hai jo tool ne flag ki aur jo sach mein woh thi jo usne kaha. Agar usne sau flag ki aur assi sahi thi, toh precision assi percent hai.
+:::
 
-Pehla hai test se pehle jawaab likhna. Aap kisi system ko usse sawaal poochh kar aur dekh kar nahi parakh sakte ki jawaab sahi dikhte hain ya nahi, kyunki woh sahi dikhenge: sambhav text hi woh cheez hai jo machine banati hai. Isliye aap asli sawaalon ki ek list se shuru karte hain aur har ek ka jaanchha hua sahi jawaab. Yeh wahi cheez hai jise Anaya pehle hi naam de chuki thi, ek answer key, test se pehle likhi gayi aur baad mein nahi.
+Dono ek doosre ke khilaaf khinchte hain. Jaal chauda karne se jo chahiye uska zyada hissa milta hai aur jo nahi chahiye uska bhi. Use sankara karne se saaf pakad milti hai aur zyada chhoot jaata hai. Imran ne har sawaal ke liye search jitne pages lautati thi unki ginti ek se teen se paanch tak badli, aur figure waise hi hile jaise usne kaha tha: zyada pages se recall behtar aur precision kharab hui, aur kam pages se ulta. Yeh pravritti hain, niyam nahi, aur unhe asli sawaalon par naapna padta hai.
 
-Farah ne chatbot ke search ke liye das sawaal likhe. Usne unhe woh shabdon mein likha jo uske customers istemaal karte the, policy document kholne se pehle, kyunki document padhne ke baad likha gaya sawaal documents ke shabdon ka istemaal karta hai, aur search ko asli se behtar dikhata hai. *Paisa kab milega. Double charge hua hai. Mera loan reject kyun hua.* Phir, tabhi, usne aur Imran ne pages dekhe aur mark kiya ki har ek ka jawaab kis page par tha.
+Anaya inhe hafton se bina shabdon ke istemaal kar rahi thi. Woh scoreboard par lauti.
 
-Unhone ise chalaya. Das mein se chhe sawaalon ne pehli koshish mein sahi page dhoondha.
-
-"Kya yeh bura hai?" Anaya ne poochha.
-
-"Yeh aise system ke liye bilkul saamanya pehla nateeja hai jo kaam karta hai," Imran ne kaha. "Agar humein nau ya das milte, toh main jaanna chahta ki kisi ne dhokha toh nahi diya."
-
-## Fail hone ke do tareeke
-
-Doosre idea mein Anaya ko zyada waqt laga, kyunki woh saamne chhupa tha.
-
-Search ka ek kadam do alag tareeko se galat ja sakta hai, aur woh ek doosre ke ulte hain. Woh kuch chhod sakta hai jo maayne rakhta tha. Ya woh cheezon ka dher laa sakta hai jo nahi rakhti thi. Imran ne use kalpana karne ko kaha ki woh kisi saathi se meeting ke liye files laane ko kehti hai. Agar woh us ek file ke bina lautein jiski zaroorat thi, toh woh ek kism ki failure hai. Agar woh poori almari le aayen, toh aap uske beech zaroori wali dhoondh nahi sakte, aur woh doosri hai.
-
-Pehli kharab *recall* hai: jitni asli cheezein dhoondhni thin, unme se tool ne bahut kam dhoondhin. Agar sau thin aur usne nabbe dhoondhin, toh recall nabbe percent hai. Doosri kharab *precision* hai: jo kuch tool wapas laaya, usme se bahut kam wahi tha jo hona chahiye tha. Agar usne sau cheezein flag kin aur assi asli thin, toh precision assi percent hai.
-
-Dikkat yeh hai ki dono ek doosre ke khilaaf kheenchte hain. Jaal chauda karo, toh jo chahiye woh bhi zyada pakadte ho aur jo nahi chahiye woh bhi. Sankra karo, toh saaf pakadte ho aur zyada chhod dete ho. Imran ne badla ki search har sawaal ke liye kitne pages lautaye, ek se teen se paanch, aur figures waise hi hile jaise usne kaha tha. Zyada pages: behtar recall, kharab precision. Kam: ulta. Woh pravrittiyan thin, niyam nahi, aur unhe asli sawaalon par naapna padta tha.
-
-Anaya hafton se ye shabd bina jaane istemaal kar rahi thi. Woh scoreboard par wapas gayi.
-
-| Version | Mile | Chhoote | False alarms | Recall | Precision |
+Table: Pichhla scoreboard, recall aur precision ke saath
+| Version | Mili | Chhoot gayi | False alarm | Recall | Precision |
 | --- | --- | --- | --- | --- | --- |
 | 1 | 11 | 6 | 5 | 65% | 69% |
 | 3 | 15 | 2 | 2 | 88% | 88% |
 | 4 | 14 | 3 | 1 | 82% | 93% |
 
-Recall tha jo mile divided by mile-plus-chhoote. Precision tha jo mile divided by mile-plus-false-alarms. Woh table mein shuru se alag naamon ke saath the. "Chhoote" kharab recall tha, aur "false alarm" kharab precision. Use naye shabdon se zyada purane shabdon ko istemaal karne ki ijaazat ki zaroorat thi.
+Recall mili ko mili aur chhoot gayi ke jod se bhaag dene par aata hai. Precision mili ko mili aur false alarm ke jod se bhaag dene par. "Chhoot gayi" hamesha se kharab recall tha aur "false alarm" kharab precision. Use naye vichaaron ki utni zaroorat nahi thi jitni purane vichaaron ko sahi naam dene ki.
 
-## Faisla kiska hai
+## 17.4 Faisla kiska hai
 
-Teesra idea woh tha jo maayne rakhta tha, aur woh aaya, jaise zaroori wale aate hain, ek dopahar ke ant mein.
+Teesra vichaar ek dopahar ke ant mein aaya. Imran ne poochha ki guard ke liye kaun si failure zyada buri hai: kuch chhoot jaana, ya aisa kuch flag karna jo tha hi nahi. Anaya ne turant kaha ki chhoot jaana zyada bura hai, kyunki jo number nikal jaata hai woh paanch systems mein hamesha ke liye rehta hai. Imran ne kaha ki kisi aur product ke liye jawaab ulta hota hai.
 
-"Kaun sa bura hai?" Imran ne poochha. "Guard ke liye. Kuch chhod dena, ya kuch flag kar dena jo nahi tha."
+Table: Kaun si failure zyada buri hai yeh is par nirbhar hai ki insaan ke saath kya hota hai
+| Product | Zyada buri failure | Kyun |
+| --- | --- | --- |
+| Tool jo vakeel ko puraane cases dhoondh kar deta hai | Ek case chhodna | Ek chhoota case trial haara sakta hai; ek aprasangik case padhne mein tees second lagte hain |
+| Chatbot jo policy ke sawaalon ka jawaab deta hai | Galat page lautana | Model usse aatmavishwaas se jawaab banata hai, aur customer ko di gayi galat policy company ko bandh deti hai. Chhoota jawaab sirf ek support ticket banata hai, jo company waise bhi paa rahi thi |
+| Guard | Ek personal detail chhodna | Detail history, logs, exports aur bahari company ke system mein jaati hai |
 
-"Chhod dena," Anaya ne turant kaha. "Jo number nikal gaya woh paanch systems mein hamesha ke liye hai."
+Imran ne phir woh baat kahi jo woh sabse zyada saaf karna chahta tha. Kaun si failure kam karni hai yeh product faisla hai, engineer ka nahi. Agar jis engineer ne tool banaya usse poochha jaye, toh jawaab woh hoga jise dena uske liye sabse aasaan hai. Pichhle mahine mein yeh doosri baar tha jab Anaya ko aisa faisla saunpa gaya jo technical kaushal nahi le sakta tha. Pehla, sasti galti ki taraf jhukne ke baare mein, anaupchaarik tha. Yeh uska parinat roop tha, naam aur percent ke saath. Usne likha ki woh Thursday ko Lakshmi aur Farah ke paas kya lekar jaayegi.
 
-"Kisi doosre product ke liye jawaab ulta hai." Usne use ek legal tool ke baare mein bataya jo use kabhi dikhaya gaya tha, jo ek vakeel ke liye purane cases dhoondhta tha. Us tool ke liye ek chhoota hua case trial haara sakta tha, aur ek extra asambandhit case padhne mein tees second lagte the. Aur ek customer-facing chatbot ke baare mein jo policy ke sawaalon ke jawaab deta tha, jahan khatarnaak failure galat page wapas laana tha. Machine uske aadhar par ek vishwas bhara jawaab banati, aur customer ko di gayi galat policy ek aisi zimmedaari thi jisse company bandhi hogi. Jawaab chhod dena sirf ek support ticket banata tha, jo company ko hamesha se mil rahe the.
+::: example Anaya ke likhe lakshya
+Fixed shakl ke pehchaan ke numbers ke liye, sau mein se kam se kam 98 ka recall. Tool jo sau cheezein chhupaye unme se 3 tak false alarm. Agar dono takraayein, toh recall jeetega, aur main ise likhit roop mein kahungi.
+:::
 
-"Toh yeh is par nirbhar hai ki ek asli insaan ke saath kya hota hai," Anaya ne kaha.
+Bayaan likhna us se aasaan tha jitna use bachaav karna hoga, jo usne maan liya. Jis number par behas ho chuki ho woh us number se zyada keemti hai jis par kabhi sawaal nahi uthaya gaya.
 
-"Yeh poori tarah isi par nirbhar hai. Aur yahi baat main sabse zyada saaf karna chahta hoon." Imran ne apni pencil rakh di. "Kaun si failure kam karni hai yeh product ka faisla hai. Yeh mera nahi hai. Agar tum us engineer se poochho jisne ise banaya, toh woh woh jawaab dega jo woh sabse aasaani se de sakta hai."
+## 17.5 Ek number jo usne jaancha nahi tha
 
-Usne samjha ki ek mahine mein doosri baar use aisa faisla thama diya gaya hai jo koi bhi technical hunar uske liye nahi kar sakta. Pehla sasti galti ki taraf jhukne ke baare mein tha. Yeh uska bada roop tha, naamon aur percentages ke saath. Usne likha ki woh Thursday ko Lakshmi aur Farah ke paas kya le jayegi.
+Ek aur baat asahaj thi, aur Anaya ne ise ek Friday raat khaali office mein nipataya. Woh ek figure par lauti jo usne meetings mein teen baar quote kiya tha aur strategy memo mein likha tha: sau mein se chaudah, yaani ek maujooda khule tool ki apni chhapi report ke mutabik Hindi personal details ka woh hissa jo woh dhoondh sakta tha. Usne ise yeh kehne ke liye istemaal kiya tha ki bazaar mein khaali jagah asli hai.
 
-*Fixed shape wale pehchaan ke numbers ke liye, hum sau mein se kam se kam 98 ka recall chahte hain. Tool jo sau cheezein chhupata hai usme sau mein teen tak false alarm hum sweekar karenge. Agar dono takrayein, toh recall jeetega, aur main ise likhit mein kahungi.*
+Uske dimaag mein Lakshmi ki aawaaz mein ek sawaal aaya: kaun si answer key ke saamne, kisne likhi, aur kya Lakshmi sawaal dekh sakti hai? Anaya jawaab nahi de saki. Usne ek document mein ek vaakya padha tha aur use dohraya tha. Figure sahi ho sakta tha. Woh aise vaakyon par bhi naapa gaya ho sakta tha jo Sahaj ke customers ke likhne se bilkul alag dikhte the.
 
-Ise likhna us se kahin aasaan tha jitna ise bachana hoga. Koi baat nahi. Jis number par behes hui ho woh us number se zyada keemti hai jis par kabhi sawaal nahi uthaya gaya.
+::: watch Quote kiya hua number saboot nahi hai
+Vendor ka quote kiya number, chahe kitni bhi imaandaari se, tab tak saboot nahi hai jab tak koi dekh na sake ki woh kis par naapa gaya. Yeh doosron ke numbers par laagu hota hai aur apne numbers par bhi.
+:::
 
-## Ek number jo usne jaancha nahi tha
+Usne us raat jaanch nahi chalayi. Usne use list ke sabse upar likha, jahan woh chupchaap chhoot na sake: team ki answer key par khula tool chalao, aur jo bhi number nikle woh batao, chahe woh project ke paksh ko kamzor kare. Yeh pehli baar tha jab usne aisa test likha jiske nateeje se woh darti thi, aur usne pehchaana ki yahi anushaasan ka maksad hai.
 
-Ek aur baat thi, aur woh asuvidhajanak thi, aur usne use ek Friday raat ko khaali office mein kiya.
+## Saaraansh
 
-Woh us figure par wapas gayi jo usne teen baar meetings mein quote kiya tha. Sau mein chaudah: Hindi mein personal details ka woh hissa jo ek maujooda tool, apni khud ki chhapi report ke anusaar, dhoondh paata tha. Usne use yeh kehne ke liye istemaal kiya tha ki market mein gap asli hai. Usne use strategy memo mein likha tha.
+Kuch chale hue udaharanon ka demonstration bahut kam batata hai ki system kitni baar sahi hai. Naapne ke liye, system ke kehne se pehle sawaal aur unke sahi jawaab likho, asli users ke shabdon mein, aur phir gino.
 
-*Kis answer key ke khilaaf?* uske dimaag mein ek awaaz ne kaha, jo Lakshmi se kaafi milti thi. *Kisne likhi? Kya main sawaal dekh sakti hoon?*
-
-Woh nahi dekh sakti thi. Usne ek document mein ek vaakya padha tha aur use dohra diya tha. Woh sahi ho sakta tha. Woh aise vaakyon ke set par bhi naapa gaya ho sakta tha jo Sahaj ke customers ki likhai se bilkul alag dikhte the, ya aisi lipi par jo alag tareeke se likhi jaati ho. Jo number koi vendor quote karta hai, chahe kitni bhi imaandaari se, saboot nahi hai jab tak aap dekh na lein ki use kis par naapa gaya tha. Yeh doosron ke numbers ke liye sach tha aur uske apne ke liye bhi.
-
-Usne us raat jaanch nahi chalayi. Usne use list mein us ek jagah likha jahan se use chupchaap chhoda nahi ja sakta tha, page ke sabse upar, ek waade ke saath: *Khula tool hamari answer key par chalao. Jo bhi number aaye woh batao, tab bhi jab woh hamare mamle ko kamzor dikhaye.*
-
-Usne line ko kuch der dekha. Yeh pehli baar tha jab usne aisa test likha tha jiske nateeje se woh darti thi, aur usne ek chhoti si thitholi ke saath samjha ki anushasan isi ke liye hai.
-
-## Saath le jaane layak baatein
-
-Kuch udaharanon ka demo jo kaam karte hain, yeh lagbhag kuch nahi batata ki system kitni baar sahi hai. Ise naapne ke liye aap sawaal aur unke sahi jawaab pehle likhte hain, system kya kehta hai yeh dekhne se pehle, un shabdon mein jo asli users istemaal karte hain, aur phir ginte hain. Tool do ulte tareeko se fail ho sakta hai: woh cheezein chhod kar jo maayne rakhti thin, jo kharab recall hai, ya woh cheezein laakar jo nahi rakhti thin, jo kharab precision hai. Ek ko upar dhakelne se aksar doosra neeche jaata hai. Kise tarjeeh deni hai yeh is par nirbhar hai ki har failure hone par ek asli insaan ke saath kya hota hai, aur woh product ke maalik ka faisla hai, banane wale ka nahi. Aur jo figure koi aur quote karta hai woh saboot nahi hai jab tak aap dekh na lein ki use kis par naapa gaya tha.
+- Tool do ulte tareekon se fail ho sakta hai: woh cheezein chhodkar jo maayne rakhti thi, jo kharab recall hai, ya woh cheezein lautakar jo nahi rakhti thi, jo kharab precision hai. Ek ko badhane se aam taur par doosra ghatata hai.
+- Kis ko tarjeeh deni hai yeh is par nirbhar hai ki har failure hone par ek asli insaan ke saath kya hota hai. Yeh product ke maalik ka faisla hai, banane wale ka nahi.
+- Kisi aur ka quote kiya figure tab tak saboot nahi hai jab tak woh test dikhe jisse woh aaya.
