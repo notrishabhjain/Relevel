@@ -98,7 +98,7 @@ Nobody spoke. Then Meenakshi's voice came thinly from the speaker, with a clatte
 
 ## What the pack is for
 
-In the corridor afterwards the partner's technical lead asked what he could look at to check her claims for himself. She had spent a week assembling it. The *evidence pack* is the set of things that lets someone else check, and not merely trust: the repository, the specification, the answer key and its history, the results of the gate, the risk register, the findings, the dashboard, the cost model, and the decision log that had begun on the night of the fourteenth of March, with its first line still written at the top: nothing counts until someone else could check it.
+In the corridor afterwards the partner's technical lead asked what he could look at to check her claims for himself. She had spent a week assembling it. The *evidence pack* is the set of things that lets someone else check, and not merely trust. It held the repository, the specification, the answer key and its history, the results of the gate, the risk register, the findings, the dashboard and the cost model. It also held the decision log that had begun on the night of the fourteenth of March, with its first line still written at the top: nothing counts until someone else could check it.
 
 She said that one is done when anyone can rerun the work and get the same numbers. He nodded slowly and said that he would like to see the answer key. She smiled. It was a request she had hoped to hear for nine months.
 
