@@ -118,7 +118,7 @@ for (const un of units) {
   const lo = 1100, hi = IS_HI ? 6500 : 3600;   // Hinglish takes about half as many words again
   if (un.key !== 'preface' && un.key !== 'afterword' && (w < lo || w > hi))
     fail(`${un.label} is ${w} words; a chapter runs ${lo.toLocaleString()} to ${hi.toLocaleString()}`);
-  const sentences = un.u.body.replace(/```[\s\S]*?```/g, ' ').replace(/^\|.*$/gm, ' ').replace(/[*_]/g, '').split(/(?<=[.!?]["”’']?)\s+/).filter(s => s.trim().length > 0);
+  const sentences = un.u.body.replace(/```[\s\S]*?```/g, ' ').replace(/^\|.*$/gm, ' ').replace(/^(Table:|:::).*$/gm, ' ').replace(/[*_]/g, '').split(/(?<=[.!?]["”’']?)\s+/).filter(s => s.trim().length > 0);
   const lens = sentences.map(s => (s.match(/\S+/g) || []).length);
   const longest = Math.max(0, ...lens);
   if (longest > 70) fail(`${un.label} has a sentence of ${longest} words; split it: "${sentences[lens.indexOf(longest)].trim().slice(0, 70)}…"`);
