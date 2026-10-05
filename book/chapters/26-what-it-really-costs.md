@@ -74,7 +74,7 @@ Table: Other ways to lower cost, in rough order of saving
 
 ## Three numbers, not one
 
-On Tuesday Anaya returned to the director with the table and a sentence that she had spent an hour writing: the tool costs about one lakh fifty thousand rupees a month at three hundred thousand messages, at about fifty-one paise each; the cost is dominated by the careful judge, which sees six messages in a hundred; the figure is wrong if that six rises above ten, if retries exceed one in five, or if the provider changes its prices. The director said she could defend that number.
+On Tuesday Anaya returned to the director with the table and a statement that she had spent an hour writing. The tool costs about one lakh fifty thousand rupees a month at three hundred thousand messages, at about fifty-one paise each. The cost is dominated by the careful judge, which sees six messages in a hundred. The figure is wrong if that six rises above ten, if retries exceed one in five, or if the provider changes its prices. The director said she could defend that number.
 
 Anaya added that speed is also a cost, since a cheap tool that is slow can fail as thoroughly as a fast one that is dear. She would always report three things together: the cost, how long a message typically took, which was a fraction of a second, and how long the slow ones took, which were the ones that went to the background. A single average would hide the slow tail.
 
