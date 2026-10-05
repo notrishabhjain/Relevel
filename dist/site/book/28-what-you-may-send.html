@@ -102,6 +102,7 @@
 <h1>What You May Send</h1><p class="dek">Everything so far assumed the text could be sent. Lakshmi puts three documents on a table, asks three questions in a fixed order, and a vendor's terms of service turn out to say things nobody had read.</p>
 <p class="meta"><span>7 min read</span><span>2 new words</span></p>
 </header>
+
 <div class="prose">
 <p>Lakshmi had three documents on her desk, squared off with the edge, and Anaya understood at once that this was a test and that she was not yet sure of the subject.</p>
 <p>&quot;One of these,&quot; said Lakshmi, &quot;I would send to anyone. One I would never send. One I do not know about. I would like you to tell me which is which, and why.&quot;</p>
@@ -115,14 +116,14 @@
 <p>&quot;Good. And the third?&quot;</p>
 <p>&quot;The cover note says it was cleaned. I have counted what gets missed when we clean by hand.&quot; She hesitated. &quot;I don't trust it.&quot;</p>
 <p>&quot;Neither do I,&quot; said Lakshmi. &quot;That is the useful one. Let us do it properly.&quot;</p>
-<h2>Three questions, in order</h2>
+<h2 id="s-28-1"><span class="sn">28.1</span>Three questions, in order</h2>
 <p>Every chapter so far had assumed that the text could be sent to the model: to the outside company that wrote the answers, or the one that made the maps of meaning, or the one that stored the logs. For most features, said Lakshmi, that assumption is either perfectly fine or a serious problem, and which of the two is not a technical matter. It is a matter of three questions.</p>
 <p>She said it was not a legal lecture. She was not going to teach Anaya the law. She only wanted her to know which three questions to ask, and who owned the answer to each.</p>
 <p>The first question: <em>Does it identify a person?</em> Names, contact details, case numbers, anything that points to someone. If so, rules apply, wherever you are, and they are not optional. That settled the spreadsheet in one line.</p>
 <p>The second: <em>Whose confidential information is it?</em> If it is yours, sending it is a business decision, and you can make it. If it belongs to someone else, a customer, a supplier, a partner, it is a question of contract, and the answer may be no however careful the vendor is. Sahaj's agreements with the banks it lent through, for example, said things about where certain data could go, and neither Anaya nor Imran had read them.</p>
 <p>The third: <em>What does the vendor do with it?</em> How long do they keep it, do they learn from it, and in which country is it stored? She said the product manager adds the most value on the third question, because engineers tend to assume it is settled, and vendors describe it in reassuring language.</p>
 <p>&quot;Ask them in that order,&quot; said Lakshmi. &quot;It settles most cases with the least effort.&quot;</p>
-<h2>The ten-minute reading</h2>
+<h2 id="s-28-2"><span class="sn">28.2</span>The ten-minute reading</h2>
 <p>She asked Anaya to do something that would take ten minutes, and that nobody at Sahaj, so far as she knew, had done.</p>
 <p>&quot;Read the outside company's terms. The real ones. Not the website.&quot;</p>
 <p>Anaya found them that afternoon. They were long and unremarkable. In a page and a half, after the part about acceptable use, were three things that she wrote down exactly.</p>
@@ -135,7 +136,7 @@
 <p>&quot;It isn't your fault.&quot;</p>
 <p>&quot;No. But I should have read it in March.&quot;</p>
 <p>&quot;Yes,&quot; said Lakshmi, and handed her back the page. &quot;You'll be the first person here who has.&quot;</p>
-<h2>The third document</h2>
+<h2 id="s-28-3"><span class="sn">28.3</span>The third document</h2>
 <p>They went back to the three documents. The policy passed all three questions at once: no person, public, nothing confidential. The spreadsheet failed the first.</p>
 <p>The third, the chats, was the interesting case. It failed no question outright, and it did not pass. It had been cleaned by hand, and she knew how well hand cleaning worked: some of it, some of the time. The honest answer was that the chats might contain people, might contain a bank's confidential information, and would go to a vendor with the terms on the page. It was not safe to send. It was not safe to send <em>yet</em>.</p>
 <p>&quot;What is the rule?&quot; said Lakshmi. &quot;The one a new joiner would follow, without asking you.&quot;</p>
@@ -144,7 +145,7 @@
 <p><em>You may send: Sahaj's published help pages and policies.</em> <em>Never send: identity numbers, bank details, or anything from a loan application.</em> <em>If it came from a customer: it goes through the guard first.</em> <em>If you are not sure: ask Lakshmi, in the data channel, and wait for the answer.</em></p>
 <p>Four lines. Lakshmi read them twice and changed one word.</p>
 <p>&quot;That's a rule I'd put on the wall,&quot; she said.</p>
-<h2>What retrieval sends</h2>
+<h2 id="s-28-4"><span class="sn">28.4</span>What retrieval sends</h2>
 <p>There was a last thing, which Imran caught later in the week and which felt, afterwards, like something that should have been obvious.</p>
 <p>The chatbot's store of documents had been chosen with care. Only the policies and help pages went in. But it had been built to find the few pieces relevant to a question and send them with every request to the outside company. Whatever was in the store could be found, and whatever was found was sent.</p>
 <p>&quot;Our decision about the store,&quot; said Imran, &quot;is a decision about every question that will ever be asked.&quot;</p>
@@ -153,10 +154,10 @@
 <p>&quot;The guard enforces this rule,&quot; she said slowly. &quot;The rule on the paper says never send an identity number. The guard is what stops anybody from doing it by accident.&quot;</p>
 <p>&quot;A rule that depends on people remembering it,&quot; said Lakshmi, &quot;is only a wish.&quot;</p>
 <p>She added a line to the specification about where the careful judge would run, and wrote beside it the answer the rule had already given. If the sentence it had to read might contain an identity number, it could not be read by anyone outside the building, unless the terms said otherwise in writing, which at present they did not. It would have to be a model that Sahaj ran itself. There were such models, she understood, and the next chapters would show her how that worked.</p>
-<aside class="carry"><h2>What to carry forward</h2>
-<p>Whether a piece of text may be sent to a vendor is settled by three questions, asked in this order: does it identify a person, whose confidential information is it, and what does the vendor do with it. The third is where a product manager adds the most, because the answer is in the vendor's real terms, which say how long they keep what you send (retention), whether they learn from it, and where it is stored (data residency), and all of these can change with the plan you buy. A rule people can follow settles the common cases plainly, names what is never sent, and gives a specific route for the doubtful ones. Retrieval sends whatever it finds, so the decision about what goes into a store is a decision about every question asked of it. And a rule that depends on people remembering it is only a wish; a tool that enforces it is a control.</p></aside>
+<h2 id="s-28-5"><span class="sn">28.5</span>What to carry forward</h2>
+<p>Whether a piece of text may be sent to a vendor is settled by three questions, asked in this order: does it identify a person, whose confidential information is it, and what does the vendor do with it. The third is where a product manager adds the most, because the answer is in the vendor's real terms, which say how long they keep what you send (retention), whether they learn from it, and where it is stored (data residency), and all of these can change with the plan you buy. A rule people can follow settles the common cases plainly, names what is never sent, and gives a specific route for the doubtful ones. Retrieval sends whatever it finds, so the decision about what goes into a store is a decision about every question asked of it. And a rule that depends on people remembering it is only a wish; a tool that enforces it is a control.</p>
 </div>
-<aside class="wordsbox" aria-label="Words from this chapter"><h2>Words from this chapter</h2><p class="sub">Plain meanings, in the order you meet them.</p><dl><div><dt id="w-retention">retention</dt><dd>how long a provider keeps what you send it, which may be longer than the time it takes to answer</dd></div><div><dt id="w-data-residency">data residency</dt><dd>the country or region where a provider stores and processes what you send it</dd></div></dl></aside>
+<aside class="wordsbox" aria-label="Key terms"><h2>Key terms</h2><p class="sub">Plain meanings, in the order you meet them.</p><dl><div><dt id="w-retention">retention</dt><dd>how long a provider keeps what you send it, which may be longer than the time it takes to answer</dd></div><div><dt id="w-data-residency">data residency</dt><dd>the country or region where a provider stores and processes what you send it</dd></div></dl></aside>
 <aside class="inapp"><span class="lead">The same ideas, with the work to do, in the course app</span><span class="chips"><a href="/#/ch/ch165">Data handling: what you are allowed to send<span aria-hidden="true"> →</span></a></span></aside>
 <nav class="pager" aria-label="Previous and next chapter"><a class="prev" href="/book/27-paper-photos-and-scans.html" rel="prev"><span class="dir">← Before</span><span class="nm"><b>27</b>Paper, Photos and Scans</span></a><a class="next" href="/book/29-rules-risk-and-responsibility.html" rel="next"><span class="dir">Next →</span><span class="nm"><b>29</b>Rules, Risk and Responsibility</span></a></nav>
 </article>

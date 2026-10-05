@@ -6,7 +6,7 @@
   --accent:#b4492a; --accent2:#d98b2b; --a1:var(--accent); --a2:var(--accent2);
   --hue:var(--accent);
   --shadow:0 1px 2px rgb(60 40 10 / .08),0 8px 24px rgb(60 40 10 / .07);
-  --fs:1.2rem; --serif:'Newsreader','Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  --fs:1.14rem; --serif:'Newsreader','Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
   --sans:'Inter',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   --bar:3.4rem;
 }
@@ -105,12 +105,10 @@ main{padding:0 clamp(1rem,5vw,2.2rem) 5rem;min-width:0}
 .chapter.plain .chead{padding-bottom:1rem}
 
 .prose{margin-top:.6rem;hanging-punctuation:first}
-.prose p{margin:0 0 .15rem;text-indent:1.5em;hyphens:auto;-webkit-hyphens:auto}
-.prose p:first-child,.prose h2+p,.prose h3+p,.prose .scenebreak+p,.prose blockquote+p,.prose pre+p,.prose .tblwrap+p,.prose ul+p,.prose ol+p{text-indent:0}
-.prose>p:first-child::first-letter{float:left;font-size:4.1em;line-height:.82;padding:.07em .1em 0 0;font-weight:500;color:var(--hue)}
-.prose h2{font-weight:500;font-size:1.65rem;line-height:1.25;letter-spacing:-.01em;margin:3rem 0 1rem;text-wrap:balance}
-.prose h2::before{content:"";display:block;width:2.4rem;height:3px;border-radius:2px;background:var(--hue);margin-bottom:.9rem}
-.prose h3{font-weight:600;font-size:1.15rem;margin:2rem 0 .5rem}
+.prose p{margin:0 0 1rem;hyphens:auto;-webkit-hyphens:auto}
+.prose h2{font-weight:600;font-size:1.5rem;line-height:1.25;letter-spacing:-.01em;margin:3rem 0 1rem;padding-top:1.1rem;border-top:2px solid var(--rule);text-wrap:balance;display:flex;gap:.8rem;align-items:baseline}
+.prose h2 .sn{flex:none;font-family:var(--sans);font-size:.82rem;font-weight:600;letter-spacing:.04em;color:var(--hue);background:color-mix(in srgb,var(--hue) 12%,var(--card));padding:.18rem .55rem;border-radius:6px;font-variant-numeric:tabular-nums;position:relative;top:-.12rem}
+.prose h3{font-weight:600;font-size:1.12rem;margin:2rem 0 .5rem;color:var(--ink)}
 .prose em{font-style:italic}
 .prose strong{font-weight:600}
 .prose blockquote{margin:1.6rem 0;padding:.2rem 0 .2rem 1.3rem;border-left:3px solid var(--hue);color:var(--ink2);font-style:italic}
@@ -125,7 +123,7 @@ main{padding:0 clamp(1rem,5vw,2.2rem) 5rem;min-width:0}
 .prose a.term:hover{background:color-mix(in srgb,var(--hue) 24%,transparent)}
 .prose a:not(.term){word-break:break-word}
 
-.tblwrap{overflow-x:auto;margin:1.6rem 0;border:1px solid var(--rule);border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+.tblwrap{overflow-x:auto;margin:1.6rem 0;border:1px solid var(--rule);border-radius:6px;background:var(--card);box-shadow:var(--shadow)}
 table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.84rem;line-height:1.5}
 th,td{text-align:left;padding:.65rem .9rem;vertical-align:top;border-bottom:1px solid var(--rule)}
 th{font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:color-mix(in srgb,var(--hue) 8%,var(--card));white-space:nowrap}
@@ -140,7 +138,29 @@ pre.transcript{margin:1.6rem 0;padding:1.1rem 1.3rem;background:var(--card);bord
 .carry h2{margin:0 0 .7rem;font-family:var(--sans);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--hue);font-weight:600}
 .carry h2::before{display:none}
 .carry p{text-indent:0;font-size:1.04rem;line-height:1.7;margin:0 0 .6rem}
-.carry p::first-letter{all:unset}
+.carry ul,.carry ol{margin:.2rem 0 .4rem;padding-left:1.2rem}.carry li{font-size:1.02rem;line-height:1.6;margin:.35rem 0}
+
+/* chapter goals, boxes and captioned tables: the furniture of a textbook */
+.goals{margin:.4rem 0 1.4rem;padding:1.1rem 1.4rem 1rem;border-left:4px solid var(--hue);background:color-mix(in srgb,var(--hue) 7%,var(--card));border-radius:0 12px 12px 0;font-family:var(--sans)}
+.goals h2{margin:0 0 .5rem;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--hue);font-weight:600}
+.goals ul{margin:0;padding-left:1.15rem}
+.goals li{font-size:.95rem;line-height:1.5;margin:.3rem 0;color:var(--ink2)}
+.goals li::marker{color:var(--hue)}
+.box{margin:1.8rem 0;padding:1rem 1.3rem .5rem;border:1px solid var(--rule);border-top:4px solid var(--bx,var(--hue));border-radius:4px 4px 12px 12px;background:var(--card);box-shadow:var(--shadow)}
+.box .boxlabel{margin:0 0 .35rem!important;font-family:var(--sans);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--bx,var(--hue))}
+.box h4{margin:0 0 .5rem;font-size:1.08rem;font-weight:600;line-height:1.3}
+.box p,.box li{font-size:1.02rem;line-height:1.65}
+.box p{margin:0 0 .8rem}
+.box ul,.box ol{margin:.3rem 0 .9rem}
+.box .tblfig{margin:.8rem 0}
+.box-def{--bx:#2f6f73;background:color-mix(in srgb,#2f6f73 6%,var(--card))}
+.box-example{--bx:#9a7b1f}
+.box-case{--bx:#6b5ca5;background:color-mix(in srgb,#6b5ca5 6%,var(--card))}
+.box-watch{--bx:#a2455e;background:color-mix(in srgb,#a2455e 6%,var(--card))}
+.tblfig{margin:1.8rem 0}
+.tblfig figcaption{font-family:var(--sans);font-size:.82rem;line-height:1.45;color:var(--ink2);margin:0 0 .5rem}
+.tblfig figcaption b{color:var(--hue);font-weight:700}
+.tblfig .tblwrap{margin:0}
 
 .wordsbox{margin:2rem 0 0;padding:1.3rem 1.5rem;border:1px dashed var(--rule);border-radius:16px;font-family:var(--sans)}
 .wordsbox h2{margin:0;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
@@ -176,7 +196,7 @@ pre.transcript{margin:1.6rem 0;padding:1.1rem 1.3rem;background:var(--card);bord
 .glossary dt{font-weight:600;font-size:1.05rem}
 .glossary dd{margin:.15rem 0 0;color:var(--ink2);font-size:1rem;line-height:1.6}
 .glossary .where{font-family:var(--sans);font-size:.74rem;white-space:nowrap;margin-left:.3rem}
-.glossary-page .prose p{text-indent:0}
+.glossary-page .prose p{margin:0}
 
 /* cover */
 .cover{max-width:68rem;margin:0 auto}

@@ -102,16 +102,17 @@
 <h1>Too Long to Read at Once</h1><p class="dek">To understand how the chatbot answers questions from Sahaj's own documents, a product manager cuts a policy into pieces with scissors, three times, and learns that no way of cutting is right.</p>
 <p class="meta"><span>7 min read</span><span>3 new words</span></p>
 </header>
+
 <div class="prose">
 <p>&quot;Before you build a guard for the chatbot,&quot; Imran said, &quot;you should know how the chatbot knows anything.&quot;</p>
 <p>It was a Friday, late in April, and the question had occurred to Anaya on the bus: how did the thing answer questions about Sahaj's own late-fee rules? It had not been taught them. She had seen in the first week that a model invents an answer when it lacks one. Yet the chatbot, most of the time, gave the right policy.</p>
 <p>&quot;It is shown the right pages,&quot; said Imran. &quot;That is the entire trick. It gets harder to see and much harder to do well.&quot;</p>
-<h2>Why not send everything</h2>
+<h2 id="s-14-1"><span class="sn">14.1</span>Why not send everything</h2>
 <p>The obvious plan is to give the machine all of Sahaj's documents with every question, and let it find the answer. Anaya had already met the two reasons it cannot work.</p>
 <p>The first is the size limit. A request has to fit inside the context window, and the whole library of help pages, policies, terms and circulars ran to about four hundred pages. It would not fit.</p>
 <p>The second is cost, which she could now do in her head. Four hundred pages is about two hundred thousand tokens. At the made-up price Imran liked to use, two hundred and fifty rupees for a million, one question would cost fifty rupees to answer. A hundred thousand questions a month would cost fifty lakh. Even where a document fits, sending the lot to answer one small question is like hiring a lorry to carry a letter.</p>
 <p>So the standard approach is to cut the documents into pieces ahead of time, store them, and for each question send only the few pieces that look relevant. Those pieces are called <em><a class="term" href="/book/glossary.html#t-chunk" title="one piece of a longer document, small enough to be stored and sent on its own">chunks</a></em>, and the cutting is <em><a class="term" href="/book/glossary.html#t-chunking" title="splitting long documents into chunks, which means deciding where to cut">chunking</a></em>. The idea is easy to say. The difficulty is entirely in where to cut.</p>
-<h2>Scissors</h2>
+<h2 id="s-14-2"><span class="sn">14.2</span>Scissors</h2>
 <p>On the floor of the glass room Imran put down a printout, twelve pages, stapled in one corner. It was Sahaj's <em>Late Payment and Refund Policy</em>. Beside it he put a pair of scissors with orange handles, borrowed from the stationery cupboard.</p>
 <p>&quot;You do this part by hand,&quot; he said. &quot;No software. I want you to feel it.&quot;</p>
 <p>Farah, passing, saw them kneeling there and sat down on the carpet too, cross-legged, in a way that suggested she had been waiting for an excuse.</p>
@@ -129,11 +130,11 @@
 <p>&quot;It is reasonable. Ask me what it gets wrong.&quot;</p>
 <p>She thought. &quot;Questions that span a rule and an exception that sit in different sections.&quot;</p>
 <p>&quot;Yes. And you can name that. Which means you can test for it on purpose.&quot;</p>
-<h2>No right answer</h2>
+<h2 id="s-14-3"><span class="sn">14.3</span>No right answer</h2>
 <p>This was the lesson, and it was the opposite of what she had hoped. She had expected to learn the correct size for a chunk. Instead she learned that there is none. Each way of cutting fails differently. Big pieces are expensive and blurred. Small pieces are cheap and sharp and lose their context. Cutting along the structure keeps the meaning inside each piece and loses answers that cross a boundary. The choice depends on what the documents look like and on what people actually ask.</p>
 <p>Imran's rule for a design review was one she copied onto the inside cover of her notebook. <em>Say which failure you chose, and why.</em> People often want one correct chunk size, and there is not one. A team that cannot name the loss in its own method has not made a choice. It has accepted a default.</p>
 <p>Farah wrote the sentence for the Sahaj policy and pinned it to the board. <em>We cut by section, with two sentences of overlap. That gains precise answers to questions about one clause. It loses answers that need a clause and its exception from different sections, so we test those on purpose.</em></p>
-<h2>The same problem, backwards</h2>
+<h2 id="s-14-4"><span class="sn">14.4</span>The same problem, backwards</h2>
 <p>It was nearly seven when Anaya saw it, and she said it aloud, scattering scraps as she reached for a pen.</p>
 <p>&quot;The guard has the same problem.&quot;</p>
 <p>Imran looked at her.</p>
@@ -142,10 +143,10 @@
 <p>&quot;Then one piece ends with <em>4321 56</em> and the next begins <em>78 9012</em>, and neither is an Aadhaar number to anything that reads them.&quot; She drew it on the whiteboard, a number straddling a line like a car across a lane marking. &quot;It would walk straight past.&quot;</p>
 <p>It would, for the same reason as the rule and its exception: two halves of one thing, in two places, each meaningless alone. The fix was the same too, and she wrote it as a rule. Cut at the end of a sentence or a blank line, never in the middle of a run of digits. Let consecutive pieces share a few words at the edge, so that anything straddling the cut appears whole in at least one of them. And then test it, on purpose, with numbers placed exactly on the boundary.</p>
 <p>Imran made a small noise she had learned meant that she had said a true thing in an engineer's way. &quot;Put it in the answer key,&quot; he said. &quot;Row eleven. A number on the cut.&quot;</p>
-<aside class="carry"><h2>What to carry forward</h2>
-<p>A model cannot be given a whole library for each question, because it will not fit and because every token is paid for. The usual answer is to cut the documents into chunks ahead of time and send only the few that look relevant, which makes the cutting the hard part. Large chunks are costly and blurred, small ones are sharp and lose their context, and a chunk that refers to something in the piece before is an orphan. There is no correct size; each choice fails somewhere, and the useful thing to do is name the failure you accept and test it on purpose. The same care applies to any text the guard itself must cut: never split an identity number in half.</p></aside>
+<h2 id="s-14-5"><span class="sn">14.5</span>What to carry forward</h2>
+<p>A model cannot be given a whole library for each question, because it will not fit and because every token is paid for. The usual answer is to cut the documents into chunks ahead of time and send only the few that look relevant, which makes the cutting the hard part. Large chunks are costly and blurred, small ones are sharp and lose their context, and a chunk that refers to something in the piece before is an orphan. There is no correct size; each choice fails somewhere, and the useful thing to do is name the failure you accept and test it on purpose. The same care applies to any text the guard itself must cut: never split an identity number in half.</p>
 </div>
-<aside class="wordsbox" aria-label="Words from this chapter"><h2>Words from this chapter</h2><p class="sub">Plain meanings, in the order you meet them.</p><dl><div><dt id="w-chunk">chunk</dt><dd>one piece of a longer document, small enough to be stored and sent on its own</dd></div><div><dt id="w-chunking">chunking</dt><dd>splitting long documents into chunks, which means deciding where to cut</dd></div><div><dt id="w-orphaned-chunk">orphaned chunk</dt><dd>a chunk that makes no sense once cut out of its document, because it refers to something that was in the piece before</dd></div></dl></aside>
+<aside class="wordsbox" aria-label="Key terms"><h2>Key terms</h2><p class="sub">Plain meanings, in the order you meet them.</p><dl><div><dt id="w-chunk">chunk</dt><dd>one piece of a longer document, small enough to be stored and sent on its own</dd></div><div><dt id="w-chunking">chunking</dt><dd>splitting long documents into chunks, which means deciding where to cut</dd></div><div><dt id="w-orphaned-chunk">orphaned chunk</dt><dd>a chunk that makes no sense once cut out of its document, because it refers to something that was in the piece before</dd></div></dl></aside>
 <aside class="inapp"><span class="lead">The same ideas, with the work to do, in the course app</span><span class="chips"><a href="/#/ch/ch3">Chunking: splitting documents into pieces<span aria-hidden="true"> →</span></a></span></aside>
 <nav class="pager" aria-label="Previous and next chapter"><a class="prev" href="/book/13-sorting-and-summarising.html" rel="prev"><span class="dir">← Before</span><span class="nm"><b>13</b>Sorting and Summarising</span></a><a class="next" href="/book/15-finding-by-words.html" rel="next"><span class="dir">Next →</span><span class="nm"><b>15</b>Finding by Words</span></a></nav>
 </article>

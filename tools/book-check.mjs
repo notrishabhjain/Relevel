@@ -47,6 +47,7 @@ if (IS_HI) {
     if (!h) return;
     if (h.file !== e.file) fail(`chapter ${e.n}: the Hinglish file is ${h.file}; it must be ${e.file}`);
     if (h.course.join(' ') !== e.course.join(' ')) fail(`chapter ${e.n}: Hinglish retells "${h.course.join(' ')}"; English retells "${e.course.join(' ')}"`);
+    if (h.goals.length !== e.goals.length) fail(`chapter ${e.n}: ${h.goals.length} goals in Hinglish, ${e.goals.length} in English`);
     if (h.terms.map(x => x.term).join('|') !== e.terms.map(x => x.term).join('|')) fail(`chapter ${e.n}: the words taught differ from the English chapter`);
   });
   for (const k of ['preface', 'afterword']) if (!!E[k] !== !!B[k]) fail(`the Hinglish edition ${B[k] ? 'has' : 'lacks'} the ${k}; the English one ${E[k] ? 'has' : 'lacks'} it`);
@@ -102,13 +103,17 @@ const STOCK = [
   /\bdelv(e|es|ing)\b/i, /\btapestry\b/i, /let['’]s dive/i, /\bgame[- ]chang/i, /\bunlock(s|ing)? (the )?(power|potential)/i,
   /\bleverag(e|es|ing)\b/i, /in today['’]s (fast[- ]paced|digital|ever)/i, /it['’]s worth noting/i, /\bseamless(ly)?\b/i,
   /\brobust\b/i, /\bcutting[- ]edge\b/i, /\bin the realm of\b/i, /\bat the end of the day\b/i, /\bnavigate the (complex|landscape)/i,
-  /\bjourney of a thousand\b/i, /\bwithout further ado\b/i
+  /\bjourney of a thousand\b/i, /\bwithout further ado\b/i,
+  /\bimagine (a|an|you|that)\b/i, /\bpicture (this|a|an)\b/i, /\bnot just\b[^.]{0,60}\bbut\b/i, /\bit['’]s not (about )?[^.]{1,60}[,;] it['’]s\b/i,
+  /\bhere['’]s the (thing|catch)\b/i, /\bthe (real|hidden) (magic|power)\b/i, /\bsilver bullet\b/i, /\bwhisper(ed|s)?\b/i, /\bdance of\b/i
 ];
 const HANDS_ON = [/\bexercise\s*\d/i, /\bhomework\b/i, /\bopen (a|your) (notebook|colab|terminal)\b/i, /\bpip install\b/i, /\byour task\b/i];
 for (const un of units) {
   const text = [un.u.summary, un.u.body].join('\n');
   for (const re of STOCK) { const m = text.match(re); if (m) fail(`${un.label}: stock phrase "${m[0]}"`); }
   for (const re of HANDS_ON) { const m = text.match(re); if (m) fail(`${un.label}: reads like instructions ("${m[0]}"); the exercises live in the app`); }
+  const dashes = (un.u.body.match(/—/g) || []).length;
+  if (dashes > 4) fail(`${un.label} has ${dashes} em dashes; use full stops or commas`);
   const w = un.u.words;
   const lo = 1100, hi = IS_HI ? 6500 : 3600;   // Hinglish takes about half as many words again
   if (un.key !== 'preface' && un.key !== 'afterword' && (w < lo || w > hi))

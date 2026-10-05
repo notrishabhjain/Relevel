@@ -29,7 +29,7 @@
   }
 
   /* text size */
-  var size = function () { return parseFloat(getComputedStyle(root).getPropertyValue('--fs')) || 1.2; };
+  var size = function () { return parseFloat(getComputedStyle(root).getPropertyValue('--fs')) || 1.14; };
   var setSize = function (v) {
     v = Math.min(1.7, Math.max(0.95, v));
     root.style.setProperty('--fs', v + 'rem');

@@ -102,13 +102,14 @@
 <h1>Answers a Program Can Use</h1><p class="dek">A paragraph is fine for a person and useless to a program. The team learns why &quot;reply in JSON, please&quot; is not good enough, and how to design a form so well that the model has no room to make things up.</p>
 <p class="meta"><span>7 min read</span><span>3 new words</span></p>
 </header>
+
 <div class="prose">
 <p>For three weeks every answer the team had looked at was a paragraph, and for three weeks that had been fine, because the reader was a person.</p>
 <p>Then Imran tried to connect the finder to the rule-keeper, and the rule-keeper, which was a few hundred lines of ordinary code, went through the first reply like a spoon through a wall.</p>
 <p><em>I found the following personal details in this message. The customer's name appears to be Amit Sharma. There is also a PAN, which looks like ABCDE1234F. I would also consider the bank name, HDFC, to be potentially sensitive.</em></p>
 <p>&quot;It's a lovely paragraph,&quot; said Imran. &quot;My code needs to know: is there a PAN? Where does it start? Where does it end? What do I do with it? It can't read 'appears to be'.&quot;</p>
 <p>This is the difference between an answer a person reads and one a program uses. When the output of a model feeds another system, for example one that decides what to hide, a program needs fields: a kind, a value, a position, a decision. Each has a name and a type, and each must always be there. A paragraph, however well written, has none of these.</p>
-<h2>Reply in JSON, please</h2>
+<h2 id="s-19-1"><span class="sn">19.1</span>Reply in JSON, please</h2>
 <p>The obvious first move is to ask. Imran added a line to the instruction.</p>
 <p><em>Reply as JSON, with the fields kind, value and action.</em></p>
 <p>It worked, and it kept working, which is the danger. For a day nobody thought about it. Then he ran a thousand test messages through and counted how many replies were correctly formed.</p>
@@ -117,19 +118,19 @@
 <p>&quot;Ninety-six point eight percent,&quot; said Anaya. &quot;That sounds fine.&quot;</p>
 <p>&quot;It does. Do the next sum.&quot; He wrote on the napkin. &quot;Ten thousand messages a day, at ninety-seven percent, is three hundred failures a day. Silently. Into a field that another system trusts.&quot;</p>
 <p>She did not need the third line. She had felt the old arithmetic land: the failure rate that sounds small and the number it is multiplied by. A feature that goes wrong a few times in a hundred, with no one watching the hundred, is a feature that goes wrong all day.</p>
-<h2>Don't ask, constrain</h2>
+<h2 id="s-19-2"><span class="sn">19.2</span>Don't ask, constrain</h2>
 <p>The reliable fix, Imran said, was to stop asking and start constraining.</p>
 <p>Providers let you give a <em><a class="term" href="/book/glossary.html#t-schema" title="a formal description of exactly what shape an answer must have, which the provider enforces while the model is writing">schema</a></em>: a formal description of exactly what shape the answer must have. It names every field, says what type it holds, and says which are required. While the model is writing, the provider's own software prevents it from producing anything that does not fit. An apology cannot appear before the brace. A stray comma cannot appear. The answer that comes back is not &quot;very probably well formed&quot;. It is incapable of being otherwise. Getting the answer in this shape is called <em><a class="term" href="/book/glossary.html#t-structured-output" title="an answer in named, typed fields that a program can read, instead of a paragraph that a person reads">structured output</a></em>.</p>
 <p>The point was not lost on Anaya, who had by now a long memory of the difference.</p>
 <p>&quot;This is the first fix that removes the problem,&quot; she said. &quot;The others made it rarer.&quot;</p>
 <p>&quot;Yes. I wanted you to notice. A schema takes a whole family of errors and deletes them. The instruction in the system prompt only ever made them fewer.&quot; He pulled a face. &quot;It is rare, in this work, to be able to say 'that cannot happen'. Enjoy it.&quot;</p>
-<h2>Right shape, wrong thing</h2>
+<h2 id="s-19-3"><span class="sn">19.3</span>Right shape, wrong thing</h2>
 <p>She enjoyed it for about a day. Then Imran ran another thousand messages and showed her the three that had survived.</p>
 <p>A message said, <em>mera naam Suresh hai, loan ka status batao.</em> The reply had perfect shape: a list with one entry, a kind, a value, an action. The value in the &quot;address&quot; field was <em>Pune.</em></p>
 <p>&quot;There's no address in that message,&quot; said Anaya.</p>
 <p>&quot;No. But the field is marked required, so the machine was never allowed to leave it empty. We told it, in effect, to make something up whenever the customer had said nothing.&quot; He leaned back. &quot;A schema guarantees the format and not the content. You will always get a number in the amount field. It may not be the right number, and there may have been no number in the document at all.&quot;</p>
 <p>It took Anaya a moment to see what a deadly sentence it was. Everything she had learned about the format of an answer had been about whether it could be read. Nothing in that said it was true. A well-formed lie is the most dangerous kind, because every check that looks only at the shape passes it.</p>
-<h2>A form with no room to lie</h2>
+<h2 id="s-19-4"><span class="sn">19.4</span>A form with no room to lie</h2>
 <p>What followed was the part of the work she came to enjoy most, because it was a kind of design that needed no cleverness at all, only care. The question was not how to instruct the machine better. It was how to build a form in which the failure had nowhere to stand.</p>
 <p>Imran gave her three techniques, and they rebuilt the form.</p>
 <p><strong>Fixed choices in place of free text.</strong> The &quot;kind&quot; of a detail could be one of a short list: PAN, Aadhaar, mobile, email, bank account, name, address, other, unsure. It could not be <em>Aadhaar (probably)</em>. A free-text field drifts: it produces <em>Approved (pending)</em>, and the code that reads it falls over. A fixed list leaves it nowhere to drift.</p>
@@ -145,7 +146,7 @@
   &quot;address_present&quot;: false
 }</pre>
 <p>She read it a few times. It was shorter than she had feared. It had no room for <em>Pune</em> anywhere.</p>
-<h2>Checking what arrives</h2>
+<h2 id="s-19-5"><span class="sn">19.5</span>Checking what arrives</h2>
 <p>Even so, Imran did not trust it entirely, and he showed why. Not every provider's machine could be held to a schema while it wrote. For those, and as a second line of defence for the rest, he added a small step called <em><a class="term" href="/book/glossary.html#t-validation" title="checking an answer against rules after it arrives, for example whether a required field is present or a quoted phrase really appears in the message">validation</a></em>: after an answer arrives, check it against rules. Is every required field present? Is the kind one of the permitted ones? Does every quotation appear in the message? If anything fails, ask again, once, with the error stated, and if it fails again, hand the message to a person.</p>
 <p>&quot;It's a net under the wire,&quot; he said. &quot;I hope it never catches anything.&quot;</p>
 <p>Anaya added a column to the answer key, which she titled <em>what a quote should be</em>, and a new row near the bottom, which she was mildly proud of: a message that contained an address-shaped phrase inside a quotation, such as a customer writing <em>the building is near &quot;Sector 15&quot;</em> in a sentence about something else. A tool that found it would have to decide. It was an edge case that would not have occurred to her a month earlier.</p>
@@ -153,10 +154,10 @@
 <p>&quot;Say it.&quot;</p>
 <p>&quot;A quote that really is in the message, in the right shape, but is not personal. An order number. The form cannot know.&quot;</p>
 <p>&quot;No,&quot; he said. &quot;That is what the answer key is for.&quot;</p>
-<aside class="carry"><h2>What to carry forward</h2>
-<p>When a program reads a model's output, the output has to be fields and not a paragraph. Asking politely for JSON works about ninety-seven times in a hundred, and at scale that is hundreds of silent failures a day. A schema, which the provider enforces while the model writes, makes badly formed output impossible, which is rare in this field: it removes a problem and does not merely reduce it. But a schema guarantees the shape of an answer, not its truth, and a required field forces an invention whenever the input is silent. Good forms use fixed choices, allow &quot;not stated&quot;, and ask for the exact words each value came from, because a quotation can be checked by a person in a second and by a program in a line. Validation after the fact is the net underneath.</p></aside>
+<h2 id="s-19-6"><span class="sn">19.6</span>What to carry forward</h2>
+<p>When a program reads a model's output, the output has to be fields and not a paragraph. Asking politely for JSON works about ninety-seven times in a hundred, and at scale that is hundreds of silent failures a day. A schema, which the provider enforces while the model writes, makes badly formed output impossible, which is rare in this field: it removes a problem and does not merely reduce it. But a schema guarantees the shape of an answer, not its truth, and a required field forces an invention whenever the input is silent. Good forms use fixed choices, allow &quot;not stated&quot;, and ask for the exact words each value came from, because a quotation can be checked by a person in a second and by a program in a line. Validation after the fact is the net underneath.</p>
 </div>
-<aside class="wordsbox" aria-label="Words from this chapter"><h2>Words from this chapter</h2><p class="sub">Plain meanings, in the order you meet them.</p><dl><div><dt id="w-structured-output">structured output</dt><dd>an answer in named, typed fields that a program can read, instead of a paragraph that a person reads</dd></div><div><dt id="w-schema">schema</dt><dd>a formal description of exactly what shape an answer must have, which the provider enforces while the model is writing</dd></div><div><dt id="w-validation">validation</dt><dd>checking an answer against rules after it arrives, for example whether a required field is present or a quoted phrase really appears in the message</dd></div></dl></aside>
+<aside class="wordsbox" aria-label="Key terms"><h2>Key terms</h2><p class="sub">Plain meanings, in the order you meet them.</p><dl><div><dt id="w-structured-output">structured output</dt><dd>an answer in named, typed fields that a program can read, instead of a paragraph that a person reads</dd></div><div><dt id="w-schema">schema</dt><dd>a formal description of exactly what shape an answer must have, which the provider enforces while the model is writing</dd></div><div><dt id="w-validation">validation</dt><dd>checking an answer against rules after it arrives, for example whether a required field is present or a quoted phrase really appears in the message</dd></div></dl></aside>
 <aside class="inapp"><span class="lead">The same ideas, with the work to do, in the course app</span><span class="chips"><a href="/#/ch/ch8">Structured output: getting JSON you can trust<span aria-hidden="true"> →</span></a><a href="/#/ch/ch85">Schema design: fields that do not force a guess<span aria-hidden="true"> →</span></a></span></aside>
 <nav class="pager" aria-label="Previous and next chapter"><a class="prev" href="/book/18-the-whole-machine.html" rel="prev"><span class="dir">← Before</span><span class="nm"><b>18</b>The Whole Machine</span></a><a class="next" href="/book/20-giving-the-machine-hands.html" rel="next"><span class="dir">Next →</span><span class="nm"><b>20</b>Giving the Machine Hands</span></a></nav>
 </article>

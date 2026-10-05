@@ -102,6 +102,7 @@
 <h1>Finding by Words</h1><p class="dek">A product manager plays the part of the search box, learns why the oldest way of finding things fails the customers who most need help, and why it is still exactly right for an identity number.</p>
 <p class="meta"><span>6 min read</span><span>1 new words</span></p>
 </header>
+
 <div class="prose">
 <p>Anaya was the search engine, and Farah was the customer, and between them on the table were twenty cards.</p>
 <p>They were the scraps from last week, taped back onto index cards, each with a number in the corner and a half page of Sahaj's refund policy on its face. It was a wet Monday. The office smelled of damp umbrellas. Farah had put on a voice she used for imitations, slightly high and anxious, and Anaya had been given one rule: she could look only for the words Farah said.</p>
@@ -112,13 +113,13 @@
 <p>&quot;Nothing,&quot; she said.</p>
 <p>&quot;There is a card about it,&quot; said Farah. &quot;Card seven.&quot;</p>
 <p>Anaya turned over card seven. <em>Refund of an excess payment will be processed to the registered account within seven working days of the request being approved.</em> She read it twice. &quot;It's about exactly that. And there isn't a single word in common.&quot;</p>
-<h2>Spelling, not meaning</h2>
+<h2 id="s-15-1"><span class="sn">15.1</span>Spelling, not meaning</h2>
 <p>The oldest way to find things in a pile of text is to match words. A person types <em>refund</em>; the system finds every chunk containing <em>refund</em>. It has been the heart of search boxes for decades, and it is fast, cheap and well understood. It is called <em><a class="term" href="/book/glossary.html#t-keyword-search" title="finding text by matching the words of the question against the words in the documents; it compares spelling, not meaning">keyword search</a></em>.</p>
 <p>Its flaw is built in. It compares spelling, not meaning. Two sentences that mean the same thing but share no words do not match at all, and the failure is not random. It happens in three places, all of which matter to a business.</p>
 <p>The first is the gap between formal and everyday language. The policy says <em>reimbursement</em>, <em>disbursement</em>, <em>credited to the registered account</em>; the customer says <em>money back</em>. The people who write documents are specialists, and the people who ask questions are not. The second is a worse consequence of the first. Someone who already knows the product uses its vocabulary and finds what they want. Someone confused uses their own words and finds nothing. A keyword search works best for the users with the fewest problems and worst for the ones with the most.</p>
 <p>The third is questions. <em>Why was I charged twice?</em> shares almost nothing with the paragraph explaining how a duplicate authorisation hold works. In Sahaj's case there was a fourth layer on top, and it was the one Farah cared about. Half her customers wrote in Hindi using English letters, and the policy was written in formal English. Even a perfect search for <em>paisa</em> would have found nothing.</p>
 <p>&quot;It's like asking for directions from someone who only understands the spelling of the street name,&quot; said Farah.</p>
-<h2>Where it is exactly right</h2>
+<h2 id="s-15-2"><span class="sn">15.2</span>Where it is exactly right</h2>
 <p>Anaya was about to write the method off. Then Farah leaned forward and said, in her ordinary voice: &quot;<em>Clause 14.2.</em>&quot;</p>
 <p>Anaya looked through the cards. Card eleven began <em>14.2 Disputed charges.</em> She had found it in four seconds.</p>
 <p>&quot;There,&quot; said Farah. &quot;That is what it is for.&quot;</p>
@@ -128,14 +129,14 @@
 <p>&quot;Is it?&quot;</p>
 <p>&quot;A PAN is five letters, four digits, one letter. That is keyword search for a shape. It is exact, it is instant, it is free, and it can't be talked into anything. It is exactly the right tool for a thing that always looks the same.&quot; He sipped. &quot;The mistake would be to use the clever method where the plain one does. The plain one wins here.&quot;</p>
 <p>It was the second time he had said it, in different words, and she was beginning to see it as the central skill of his trade: knowing when not to be clever.</p>
-<h2>Where the plain method fails the guard</h2>
+<h2 id="s-15-3"><span class="sn">15.3</span>Where the plain method fails the guard</h2>
 <p>But the same limit applied to the guard, and Farah, with unnerving timing, provided the example.</p>
 <p>&quot;What about this?&quot; she said, and read from her phone. It was a message from last month, one of the real ones, and she had cleaned it herself before showing it to anyone. <em>Mera aadhaar number hai char teen do ek, paanch chhe saat aath, nau shunya ek do.</em></p>
 <p>Anaya read it twice. It was an Aadhaar number, twelve digits in groups of four, spoken as words: four three two one, five six seven eight, nine zero one two. Typed out, because the customer was dictating it to a voice keyboard, in Hinglish.</p>
 <p>&quot;The pattern checker would not see that,&quot; she said.</p>
 <p>&quot;There are no digits in it,&quot; said Imran. &quot;A rule that looks for twelve digits finds nothing.&quot;</p>
 <p>The shape was there. The spelling was not. This was the weakness of finding by words, turned inside out: the meaning is perfectly clear to any person, and a method that compares characters cannot see it. She wrote it on the board under the red line: <em>Spoken numbers. Row twelve.</em> She was building the answer key faster than she had expected, one embarrassment at a time.</p>
-<h2>The silent failure</h2>
+<h2 id="s-15-4"><span class="sn">15.4</span>The silent failure</h2>
 <p>There was one more property of keyword search, which Farah pointed out last, because she had seen it cause real trouble in the help centre two years ago.</p>
 <p>&quot;Ask it something that isn't in the documents.&quot;</p>
 <p>Anaya thought. &quot;<em>Can I pay my bill with a credit card on Diwali?</em>&quot;</p>
@@ -147,10 +148,10 @@
 <p>Anaya put the cards back in their numbered order, slowly, as if they were something fragile.</p>
 <p>&quot;We'll need a way to measure that,&quot; she said.</p>
 <p>&quot;Yes,&quot; said Imran. &quot;But first, you should see what fixes the other half.&quot;</p>
-<aside class="carry"><h2>What to carry forward</h2>
-<p>Keyword search finds text by matching the words of a question against the words in the documents. It is fast and cheap, never invents a connection, and is the right method for exact things like section numbers, codes and names, and for details with a fixed shape like a PAN. But it compares spelling, not meaning, so it fails exactly where users use their own words instead of the document's, and therefore fails the people who most need help. It also never says it found nothing: it returns the least bad match, and whatever reads that match may take it for evidence.</p></aside>
+<h2 id="s-15-5"><span class="sn">15.5</span>What to carry forward</h2>
+<p>Keyword search finds text by matching the words of a question against the words in the documents. It is fast and cheap, never invents a connection, and is the right method for exact things like section numbers, codes and names, and for details with a fixed shape like a PAN. But it compares spelling, not meaning, so it fails exactly where users use their own words instead of the document's, and therefore fails the people who most need help. It also never says it found nothing: it returns the least bad match, and whatever reads that match may take it for evidence.</p>
 </div>
-<aside class="wordsbox" aria-label="Words from this chapter"><h2>Words from this chapter</h2><p class="sub">Plain meanings, in the order you meet them.</p><dl><div><dt id="w-keyword-search">keyword search</dt><dd>finding text by matching the words of the question against the words in the documents; it compares spelling, not meaning</dd></div></dl></aside>
+<aside class="wordsbox" aria-label="Key terms"><h2>Key terms</h2><p class="sub">Plain meanings, in the order you meet them.</p><dl><div><dt id="w-keyword-search">keyword search</dt><dd>finding text by matching the words of the question against the words in the documents; it compares spelling, not meaning</dd></div></dl></aside>
 <aside class="inapp"><span class="lead">The same ideas, with the work to do, in the course app</span><span class="chips"><a href="/#/ch/ch4">Keyword search: matching words, and where it fails<span aria-hidden="true"> →</span></a></span></aside>
 <nav class="pager" aria-label="Previous and next chapter"><a class="prev" href="/book/14-too-long-to-read-at-once.html" rel="prev"><span class="dir">← Before</span><span class="nm"><b>14</b>Too Long to Read at Once</span></a><a class="next" href="/book/16-finding-by-meaning.html" rel="next"><span class="dir">Next →</span><span class="nm"><b>16</b>Finding by Meaning</span></a></nav>
 </article>

@@ -15,7 +15,7 @@ const words = s => (String(s).match(/[\p{L}\p{N}’'-]+/gu) || []).length;
 function splitMeta(text, file) {
   const m = text.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
   if (!m) throw new Error(`${file}: no header block`);
-  const meta = { terms: [] };
+  const meta = { terms: [], goals: [] };
   let key = null;
   for (const line of m[1].split('\n')) {
     if (!line.trim()) continue;
@@ -26,10 +26,11 @@ function splitMeta(text, file) {
       meta.terms.push({ term, plain, alt: alt ? alt.split(',').map(s => s.trim()).filter(Boolean) : [] });
       continue;
     }
+    if (item && key === 'goals') { meta.goals.push(item[1].trim()); continue; }
     const kv = line.match(/^([a-z]+):\s*(.*)$/);
     if (!kv) throw new Error(`${file}: cannot read header line: ${line}`);
     key = kv[1];
-    if (key === 'terms') continue;
+    if (key === 'terms' || key === 'goals') continue;
     meta[key] = key === 'course' ? kv[2].split(/[\s,]+/).filter(Boolean) : kv[2];
   }
   return { meta, body: m[2].replace(/^\n+/, '') };
@@ -45,14 +46,14 @@ export function loadBook(root) {
     if (num !== i + 1) throw new Error(`chapters/${f}: expected number ${String(i + 1).padStart(2, '0')}, the files must run 01, 02, 03 with no gaps`);
     for (const k of ['title', 'summary']) if (!meta[k]) throw new Error(`chapters/${f}: missing ${k}`);
     return { n: num, file: f.replace(/\.md$/, '.html'), src: 'chapters/' + f, slug: f.slice(3).replace(/\.md$/, ''),
-      title: meta.title, summary: meta.summary, course: meta.course || [], terms: meta.terms, body, words: words(body) };
+      title: meta.title, summary: meta.summary, course: meta.course || [], terms: meta.terms, goals: meta.goals, body, words: words(body) };
   });
   const page = (name, extra) => {
     const f = p.join(root, name + '.md');
     if (!fs.existsSync(f)) return null;
     const { meta, body } = splitMeta(fs.readFileSync(f, 'utf8'), name + '.md');
     return { file: name + '.html', src: name + '.md', title: meta.title, summary: meta.summary || '', course: meta.course || [],
-      terms: meta.terms, body, words: words(body), ...extra };
+      terms: meta.terms, goals: meta.goals, body, words: words(body), ...extra };
   };
   return { book, chapters, preface: page('preface'), afterword: page('afterword') };
 }
@@ -76,6 +77,14 @@ function blocks(md) {
     const L = lines[i];
     if (!L.trim()) { i++; continue; }
     if (/^\* \* \*\s*$/.test(L)) { out.push({ t: 'break' }); i++; continue; }
+    const bx = L.match(/^:::\s*([a-z]+)\s*(.*)$/);
+    if (bx) {
+      const buf = []; i++;
+      while (i < lines.length && !/^:::\s*$/.test(lines[i])) buf.push(lines[i++]);
+      i++; out.push({ t: 'box', kind: bx[1], title: bx[2].trim(), inner: blocks(buf.join('\n')) }); continue;
+    }
+    const cap = L.match(/^Table:\s+(.*)$/);
+    if (cap) { out.push({ t: 'cap', text: cap[1] }); i++; continue; }
     const h = L.match(/^(#{2,3})\s+(.*)$/);
     if (h) { out.push({ t: 'h' + h[1].length, text: h[2] }); i++; continue; }
     if (/^```/.test(L)) {
@@ -101,7 +110,7 @@ function blocks(md) {
       out.push({ t: ordered ? 'ol' : 'ul', items }); continue;
     }
     const buf = [];
-    while (i < lines.length && lines[i].trim() && !/^(#{2,3}\s|```|>|\||\* \* \*\s*$|- |\d+\. )/.test(lines[i])) buf.push(lines[i++]);
+    while (i < lines.length && lines[i].trim() && !/^(#{2,3}\s|```|>|\||:::|\* \* \*\s*$|- |\d+\. )/.test(lines[i])) buf.push(lines[i++]);
     out.push({ t: 'p', text: buf.join(' ') });
   }
   return out;
@@ -130,39 +139,56 @@ export function termRegex(t) {
   return new RegExp(`(?<![\\p{L}\\p{N}-])(?:${forms.join('|')})(?:s|es)?(?![\\p{L}\\p{N}-])`, 'iu');
 }
 
-function render(chapter, termsHere, glossHref) {
+const SUMMARY_HEADS = /^(chapter summary|summary|saaransh|chapter ka saaransh)$/i;
+
+/* Turns a chapter's blocks into a flat list of html pieces. Chapters number their
+   sections 3.1, 3.2 and their tables Table 3.1; boxes and the closing summary
+   are opened and closed by pieces of their own so term links can reach inside. */
+function render(chapter, termsHere, glossHref, ui, num) {
   const bl = blocks(chapter.body);
-  /* the last heading, when only a paragraph or two follow it, is the chapter's closing summary */
-  let lastH2 = -1;
-  bl.forEach((b, i) => { if (b.t === 'h2') lastH2 = i; });
-  const tail = lastH2 >= 0 ? bl.slice(lastH2 + 1) : [];
-  const carry = lastH2 > 0 && tail.length > 0 && tail.length <= 2 && tail.every(b => b.t === 'p');
-  const html = bl.map((b, i) => {
-    if (carry && i === lastH2) return `<aside class="carry"><h2>${inline(b.text)}</h2>`;
-    if (carry && i > lastH2) return `<p>${inline(b.text)}</p>${i === bl.length - 1 ? '</aside>' : ''}`;
+  const out = [];
+  let sec = 0, tbl = 0, cap = null;
+  const one = b => {
     switch (b.t) {
-      case 'break': return '<p class="scenebreak" aria-hidden="true"><span></span></p>';
-      case 'h2': return `<h2>${inline(b.text)}</h2>`;
-      case 'h3': return `<h3>${inline(b.text)}</h3>`;
-      case 'pre': return `<pre class="transcript">${esc(b.text)}</pre>`;
-      case 'quote': return `<blockquote><p>${inline(b.text)}</p></blockquote>`;
-      case 'ul': return `<ul>${b.items.map(x => `<li>${inline(x)}</li>`).join('')}</ul>`;
-      case 'ol': return `<ol>${b.items.map(x => `<li>${inline(x)}</li>`).join('')}</ol>`;
-      case 'table': return `<div class="tblwrap"><table><thead><tr>${b.head.map(c => `<th>${inline(c)}</th>`).join('')}</tr></thead><tbody>${
-        b.rows.map(r => `<tr>${r.map(c => `<td>${inline(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
-      default: return `<p>${inline(b.text)}</p>`;
+      case 'break': out.push('<p class="scenebreak" aria-hidden="true"><span></span></p>'); break;
+      case 'h2':
+        if (SUMMARY_HEADS.test(b.text.trim())) { out.push(`<aside class="carry"><h2>${esc(ui.summary)}</h2>`); out.closeLater = true; break; }
+        sec++;
+        out.push(num ? `<h2 id="s-${num}-${sec}"><span class="sn">${num}.${sec}</span>${inline(b.text)}</h2>` : `<h2>${inline(b.text)}</h2>`); break;
+      case 'h3': out.push(`<h3>${inline(b.text)}</h3>`); break;
+      case 'pre': out.push(`<pre class="transcript">${esc(b.text)}</pre>`); break;
+      case 'quote': out.push(`<blockquote><p>${inline(b.text)}</p></blockquote>`); break;
+      case 'ul': out.push(`<ul>${b.items.map(x => `<li>${inline(x)}</li>`).join('')}</ul>`); break;
+      case 'ol': out.push(`<ol>${b.items.map(x => `<li>${inline(x)}</li>`).join('')}</ol>`); break;
+      case 'cap': cap = b.text; break;
+      case 'table': {
+        tbl++;
+        const label = num ? `${ui.table} ${num}.${tbl}` : `${ui.table} ${tbl}`;
+        out.push(`<figure class="tblfig"${cap ? '' : ' aria-label="' + esc(label) + '"'}>${cap ? `<figcaption><b>${label}.</b> ${inline(cap)}</figcaption>` : ''}<div class="tblwrap"><table><thead><tr>${b.head.map(c => `<th>${inline(c)}</th>`).join('')}</tr></thead><tbody>${
+          b.rows.map(r => `<tr>${r.map(c => `<td>${inline(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div></figure>`);
+        cap = null; break;
+      }
+      case 'box': {
+        const kind = ui.boxes[b.kind] ? b.kind : 'key';
+        out.push(`<aside class="box box-${kind}"><p class="boxlabel">${esc(ui.boxes[kind])}</p>${b.title ? `<h4>${inline(b.title)}</h4>` : ''}`);
+        b.inner.forEach(one);
+        out.push('</aside>'); break;
+      }
+      default: out.push(`<p>${inline(b.text)}</p>`);
     }
-  });
+  };
+  bl.forEach(one);
+  if (out.closeLater) out.push('</aside>');
   /* the first time the chapter uses a word it teaches, link it to the glossary */
   for (const t of termsHere) {
     const re = termRegex(t);
-    for (let k = 0; k < html.length; k++) {
-      if (!html[k].startsWith('<p>') && !html[k].startsWith('<blockquote>') && !html[k].startsWith('<li>')) continue;
-      const w = wrapFirst(html[k], re, m => `<a class="term" href="${glossHref}#t-${slugify(t.term)}" title="${esc(t.plain)}">${m}</a>`);
-      if (w) { html[k] = w; break; }
+    for (let k = 0; k < out.length; k++) {
+      if (!out[k].startsWith('<p>') && !out[k].startsWith('<blockquote>') && !out[k].startsWith('<li>') && !out[k].startsWith('<ul><li>') && !out[k].startsWith('<ol><li>')) continue;
+      const w = wrapFirst(out[k], re, m => `<a class="term" href="${glossHref}#t-${slugify(t.term)}" title="${esc(t.plain)}">${m}</a>`);
+      if (w) { out[k] = w; break; }
     }
   }
-  return html.join('\n');
+  return out.join('\n');
 }
 
 /* ---------- pages ---------- */
@@ -171,24 +197,26 @@ const UI = {
   en: {
     lang: 'en', edition: 'The reading edition', skip: 'Skip to the text', contents: 'Contents', smaller: 'Smaller text', larger: 'Larger text',
     colours: 'Change colours', app: 'Course app', appTitle: 'Open the course app', chapter: 'Chapter', minRead: 'min read',
-    begin: 'Begin reading', resume: 'Continue', words: 'Words from this chapter', wordsSub: 'Plain meanings, in the order you meet them.',
+    begin: 'Begin reading', resume: 'Continue', words: 'Key terms', wordsSub: 'Plain meanings, in the order you meet them.',
     inapp: 'The same ideas, with the work to do, in the course app', before: 'Before', next: 'Next', search: 'Find a chapter or a word',
     searchNone: 'Nothing matches that.', read: 'read', ofN: 'of', chaptersRead: 'chapters read', preface: 'Preface', afterword: 'Afterword',
     glossary: 'Words, in plain language', glossaryDek: n => `Every word the book teaches, in alphabetical order, with the chapter that first explains it. ${n} words.`,
     glossaryShort: 'Every word the book teaches, with the chapter that explains it.', chapterWord: 'Chapter', chapters: 'chapters', approx: 'about', k: 'k words',
-    explained: 'words explained', switchTo: 'Hinglish', switchTitle: 'Read this in Hinglish', front: 'Front and back', theStory: 'The story',
+    explained: 'words explained', summary: 'Chapter summary', table: 'Table', goals: 'In this chapter', keyTerms: 'Key terms',
+    boxes: { key: 'Key idea', def: 'Definition', example: 'Worked example', case: 'Case', watch: 'Common mistake' }, switchTo: 'Hinglish', switchTitle: 'Read this in Hinglish', front: 'Front and back', theStory: 'The story',
     scrollTop: 'Back to top', fromThe: 'From the book', readEdition: 'This is the reading edition. The exercises, tools and tracking live in the course app, and every chapter here says which app chapters it retells.',
     openApp: 'Open the course app', otherEdition: 'Hinglish edition', carryHint: 'To take with you', meet: 'Words you will meet', pagerKinds: 'Previous and next chapter', filterOn: 'Showing chapters that match'
   },
   hi: {
     lang: 'hi', edition: 'Padhne wala edition (Hinglish)', skip: 'Seedhe text par jaaiye', contents: 'Vishay-soochi', smaller: 'Chhota text', larger: 'Bada text',
     colours: 'Rang badliye', app: 'Course app', appTitle: 'Course app kholiye', chapter: 'Chapter', minRead: 'min padhai',
-    begin: 'Padhna shuru kariye', resume: 'Wahin se jaari rakhiye', words: 'Is chapter ke shabd', wordsSub: 'Saral matlab, usi kram mein jis kram mein aap inse milenge.',
+    begin: 'Padhna shuru kariye', resume: 'Wahin se jaari rakhiye', words: 'Mukhya shabd', wordsSub: 'Saral matlab, usi kram mein jis kram mein aap inse milenge.',
     inapp: 'Yahi ideas, kaam ke saath, course app mein', before: 'Pichhla', next: 'Agla', search: 'Chapter ya shabd dhoondhiye',
     searchNone: 'Kuch nahi mila.', read: 'padha', ofN: 'mein se', chaptersRead: 'chapter padhe gaye', preface: 'Shuruaat se pehle', afterword: 'Aakhri baat',
     glossary: 'Shabd, saral bhasha mein', glossaryDek: n => `Kitaab mein sikhaaye gaye har shabd ka matlab, alphabet ke kram mein, us chapter ke saath jahan woh pehli baar samjhaya gaya. Kul ${n} shabd.`,
     glossaryShort: 'Kitaab ke har shabd ka saral matlab, chapter ke saath.', chapterWord: 'Chapter', chapters: 'chapter', approx: 'lagbhag', k: ' hazaar shabd',
-    explained: 'shabd samjhaaye gaye', switchTo: 'English', switchTitle: 'Read this in English', front: 'Shuru aur ant', theStory: 'Kahani',
+    explained: 'shabd samjhaaye gaye', summary: 'Chapter ka saaransh', table: 'Table', goals: 'Is chapter mein', keyTerms: 'Mukhya shabd',
+    boxes: { key: 'Mukhya vichaar', def: 'Paribhasha', example: 'Hal kiya hua udaharan', case: 'Case', watch: 'Aam galti' }, switchTo: 'English', switchTitle: 'Read this in English', front: 'Shuru aur ant', theStory: 'Kahani',
     scrollTop: 'Upar jaaiye', fromThe: 'Kitaab se', readEdition: 'Yeh padhne wala edition hai. Exercises, tools aur tracking course app mein hain, aur har chapter batata hai ki woh app ke kaun se chapters ko kahani mein sunata hai.',
     openApp: 'Course app kholiye', otherEdition: 'English edition', carryHint: 'Saath le jaane layak', meet: 'Jin shabdon se milenge', pagerKinds: 'Pichhla aur agla chapter', filterOn: 'Milte-julte chapter'
   }
@@ -319,6 +347,8 @@ ${parts.join('\n')}
   const wordsBox = terms => terms.length ? `<aside class="wordsbox" aria-label="${ui.words}"><h2>${ui.words}</h2><p class="sub">${ui.wordsSub}</p><dl>${
     terms.map(t => `<div><dt id="w-${slugify(t.term)}">${esc(t.term)}</dt><dd>${inline(t.plain)}</dd></div>`).join('')}</dl></aside>` : '';
 
+  const goalsBox = g => g && g.length ? `<aside class="goals"><h2>${ui.goals}</h2><ul>${g.map(x => `<li>${inline(x)}</li>`).join('')}</ul></aside>` : '';
+
   /* ----- chapters ----- */
   const gloss = href('glossary.html');
   for (const c of B.chapters) {
@@ -329,8 +359,9 @@ ${parts.join('\n')}
 <h1>${esc(c.title)}</h1><p class="dek">${inline(c.summary)}</p>
 <p class="meta"><span>${mins(c)} ${ui.minRead}</span>${c.terms.length ? `<span>${c.terms.length} ${lang === 'hi' ? 'naye shabd' : 'new words'}</span>` : ''}</p>
 </header>
+${goalsBox(c.goals)}
 <div class="prose">
-${render(c, c.terms, gloss)}
+${render(c, c.terms, gloss, ui, c.n)}
 </div>
 ${wordsBox(c.terms)}
 ${courseLine(c.course)}
@@ -346,7 +377,7 @@ ${pager(c.file)}
     const main = `<article class="chapter plain" data-file="${pg.file}" data-title="${esc(pg.title)}">
 <header class="chead"><p class="eyebrow"><span>${kind}</span></p><h1>${esc(pg.title)}</h1>${pg.summary ? `<p class="dek">${inline(pg.summary)}</p>` : ''}</header>
 <div class="prose">
-${render(pg, pg.terms, gloss)}
+${render(pg, pg.terms, gloss, ui, null)}
 </div>
 ${courseLine(pg.course)}
 ${pager(pg.file)}
