@@ -1,103 +1,94 @@
 ---
 title: Galat Jawaab Ke Liye Design
-summary: Nabbe percent par, das mein se ek jawaab galat hota hai, aur us ek par screen jo karti hai wahi tay karta hai ki tool par bharosa kiya jaata hai ya nahi. Phir ek pilot, jo fail hone ke liye design kiya gaya tha, kuch ajeeb karta hai: woh safal hota hai, aur kuch nahi badalta.
+summary: Nabbe percent accuracy par das mein se ek jawaab galat hota hai, aur us ek par screen kya karti hai yeh tay karta hai ki tool par bharosa hoga ya nahi. Phir ek pilot jo fail hone ke liye banaya gaya tha ek ajeeb nateeja deta hai: system kaam karta hai aur kuch nahi badalta. Chapter refusals, pilots aur failure thresholds samjhata hai.
 course: ch20 ch205
+goals:
+  - batana ki galat jawaab ke baare mein screen ko kaun se chaar kaam karne chahiye
+  - ek aisa refusal design karna jisme kisi insaan ka raasta ho, aur AI band hone par dikhne wali screen
+  - ek aisa pilot banana jisme ek maujooda business number, ek comparison group, ek failure threshold aur kaafi lamba window ho
+  - aise pilot ko sahi kram mein parakhna jo kaam karta hai par business number nahi hilata
 terms:
   - refusal | system ka saaf kehna ki woh kuch nahi kar sakta aur ek insaan tak ka raasta dena, jo jaan-boojh kar design kiya jaata hai aur ittefaq par nahi chhoda jaata | refusals
   - pilot | ek seemit trial jo yeh dikhane ke liye design kiya gaya ho ki ek feature business ki madad karta hai ya nahi, aur jo pehle se batata hai ki kaun sa nateeja failure maana jaayega | pilots
   - failure threshold | woh nateeja, pilot shuru hone se pehle likha hua, jisse neeche aap use failure kahenge | 
 ---
 
-"Agar yeh das mein se nau baar sahi hai," Farah ne kaha, "toh main apni team ko dasven ke baare mein kya bataun?"
+August ke aakhri hafte mein Farah Sheikh chai ka cup lekar glass room ke darwaaze par khadi hui aur ek sawaal poochha. Agar guard nau baar sahi hai aur dasvi baar nahi, toh woh apni team ko dasvi ke baare mein kya bataye? Anaya hafton se is sawaal ka intezaar kar rahi thi, kyunki yahi tay karta hai ki tool istemaal hoga ya nahi.
 
-Usne yeh khade-khade poochha, chai ke cup ke saath, glass room ke darwaze mein. August ka aakhri hafta tha aur umas toot chuki thi, aur blinds se ek nayi, patli roshni aa rahi thi. Anaya hafton se is sawaal ka intezaar kar rahi thi. Yahi woh tha jo tay karta tha ki jo unhone banaya hai use istemaal kiya jaayega ya nahi.
+Nabbe percent par das mein se ek galat hota hai, aur koi engineering aakhri dasve hisse ko nahi mitaati. Jab tool galat ho toh screen kya karti hai, yahi tay karta hai ki tool par bharosa kiya jaata hai ya use chhod diya jaata hai. Yeh engineering faisla nahi hai. Engineer bata sakta hai ki confidence score maujood hai. Jab score kam ho toh agent kya dekhta hai, yeh product ka maalik tay karta hai.
 
-Nabbe percent par, das mein se ek galat hai, aur koi engineering aakhri dasve hisse ko poori tarah nahi hata sakti. Jab woh galat ho toh screen kya karti hai yahi tay karta hai ki tool par bharosa kiya jaata hai ya use chhod diya jaata hai. Aur yeh engineering ka faisla nahi hai. Ek engineer keh sakta hai ki confidence score maujood hai. Product ka malik tay karta hai ki jab woh kam ho toh agent ko kya dikhta hai.
+## 32.1 Case: dasvaan jawaab
 
-## Screen par chaar cheezein
+Anaya ne April mein agent ki screen kaagaz par banayi thi. Usne use phir se banaya, jo woh tab se seekh chuki thi uske saath, aur paaya ki woh chaar cheezon par aa gayi.
 
-Anaya ne agent ki screen April mein kaagaz par banayi thi. Ab usne use dobara banaya, jo usne seekha tha usse, aur paya ki woh chaar cheezon par aati hai.
+Table: Galat jawaab ke baare mein screen ko kaun se chaar kaam karne chahiye
+| Siddhant | Matlab | Guard mein |
+| --- | --- | --- |
+| Aisa saboot dikhao jo khule | Sirf dawa bharose ki maang hai. Jo dawa padhne wala ek second mein jaanch sake woh saboot hai | Note "1 detail chhupayi gayi. Kyun dekhne ke liye click karein" un theek shabdon ko khol deta hai jo chhupaye gaye the, kaaran ke saath. Isi liye form ko quotation chahiye thi |
+| Speed ke baare mein socho | Adhoora faisla khatra hai, isliye faisla stream nahi kiya ja sakta | Guard ke khatam hone tak agent ki screen par kuch nahi aaya. Number jo aata hai aur phir badalta hai, spinner se bura hai |
+| Confidence ko parde ke peechhe istemaal karo | Jawaab ke saath percentage agent ko kuch aisa tolne ko kehta hai jise woh calibrate nahi kar sakta, aur machine ka apna confidence aksar buri tarah calibrate hota hai | Zyada confidence: chhupao aur batao. Madhyam: chhupao, "surakshit rehne ke liye chhupaya" kaho aur baad mein ek insaan ke paas bhejo. Bahut kam: text ko waisa hi chhodo par message ko review ke liye chinhit karo |
+| Sudhaarna tez banao | Jab tool galat ho tab agent kya karta hai, woh building ka sabse keemti data hai, aur zyadatar products use fenk dete hain | Ek click aur ek line. Button is chat ke liye original dikhata hai, poochhta hai ki agent ne kya socha tha, aur sawaal, saboot aur jawaab ek saath record karta hai |
 
-**Saboot dikhao.** Jab guard koi number chhupata, toh agent ko ek chhota note dikhta: *1 detail chhupi. Wajah dekhne ke liye click karein.* Click un theek-theek shabdon ko kholta jo chhupaye gaye the, aur wajah. Ek nanga daava, *kuch chhupaya gaya*, sirf bharosa karne ki maang hai. Ek daava jise padhne wala ek second mein jaanch sake saboot hai. Isiliye usne form mein quote par zor diya tha: saboot ko khulna chahiye tha.
+Agar sudhaarna haath se kaam karne se zyada samay leta hai, toh koi nahi sudhaarega, aur khaali feedback table santosh jaisi dikhegi. Thumbs-down team ko batata hai ki kuch galat tha. Sudhaara hua record batata hai ki jawaab kya hona chahiye tha, jo Farah ki team ka bina kuch kharch kiye likha hua test case hai.
 
-**Raftaar ke baare mein socho.** Yeh usne train par seekha tha. Kuch chhupane ka faisla stream nahi kiya ja sakta tha, kyunki aadha faisla ek khatra hai. Isliye agent ki screen par kuch bhi tab tak nahi dikha jab tak guard ne khatam nahi kiya. Jo number dikhta hai aur phir likhe jaate waqt badal jaata hai woh spinner se bura hai.
+Farah ne phir poochha ki woh dasve ke baare mein kya kahe. Anaya ka jawaab tha ki guard kuch jawaabon ke baare mein dikhai dega ki use shak hai, kaaran bataayega, aur use agent ke akele kaam karne se tez sudhaara ja sakta hai. Jo galat jawaab agents ne dekhe hi nahi unhe kisi aur tareeke se dhoondha jaayega.
 
-**Confidence ka istemaal karo tay karne ke liye ki kya karna hai, use dikhao mat.** Finder har finding ke liye ek confidence figure banata tha. Use dikhana aasaan hota. *Chhupa: naam (73%).* Lekin jawaab ke bagal mein ek percentage agent se kuch aisa parakhne ko kehta hai jise woh calibrate nahi kar sakta, aur machine ka khud ka andaaza ki woh kitni pakki hai aksar buri tarah calibrate hota hai. Parde ke peeche istemaal hone par, hamesha, woh badal sakta tha ki screen kya karti hai. Ucch confidence: chhupao aur kaho. Madhyam: chhupao, kaho *surakshit rehne ke liye chhupaya*, aur baad mein ek insaan ko bhejo. Bahut kam: text ko rehne do lekin message ko review ke liye chinhit karo. Confidence ek dekhne wala number nahi, vyavaharon ke beech ek chunav ban gaya.
+## 32.2 Jab woh nahi kar sakta
 
-**Sudhaar tezi se karwao.** Jab guard galat hota, toh agent agle kadam mein jo karta woh building ka sabse keemti data tha, aur zyadatar products use phenk dete hain. Anaya ke paas button tha, *guard ne woh chhupa diya jo mujhe chahiye tha*. Usne use tez kiya. Ab woh is chat ke liye original dikhane ki peshkash karta, poochhta ki agent ne uski jagah kya umeed ki thi, aur sawaal, saboot aur jawaab ek saath likh leta. Agar sudhaarne mein haath se kaam karne se zyada samay lagta, toh koi nahi sudharta, aur ek khaali feedback table santusht lagti. Uske mein ek click aur ek line lagti thi.
+Anaya ne ek screen se bachne ki koshish ki thi, aur usne ek Tuesday use design karne mein bitaya. Har system tab achha dikhta hai jab woh kaam karta hai. Bharosa us screen par bante hain jo kehti hai "main nahi kar sakta", aur kai products use sabse aakhir mein design karte hain, ya kabhi nahi.
 
-"Thumbs-down batata hai ki kuch galat tha," usne Farah se kaha. "Yeh batata hai ki use kya kehna chahiye tha. Yeh ek test case hai, tumhari team dwara likha hua, muft mein."
+Guard ke liye *refusal* un pal ko dhakta hai jab woh surakshit tareeke se kaam nahi kar sakta. Ek customer free chat mein ek Aadhaar card ki photograph lagata hai, aur guard abhi tasveer mein number ko kaala nahi kar sakta. Imaandaar design yeh dikhawa nahi karna tha. Chat teeno bhashaon mein kehti, Farah ke likhe aur Lakshmi ke manzoor shabdon mein: kripya pehchaan ke cards yahan share na karein; secure upload istemaal karein, ya kisi insaan se baat karne ke liye yeh button dabayein.
 
-Farah ne socha. "Toh dasve ke baare mein main kya kahun?"
+::: key Insaan ka raasta dene wala refusal bharosa kamata hai
+Jo refusal insaan tak ka raasta deta hai woh us system se zyada bharosa kamata hai jo hamesha kuch nikaalta hai, kyunki users system ko is baat se bhi parakhte hain ki woh kya mana karta hai. Jo feature kabhi mana nahi karta woh unhe sikhata hai ki uske aatmavishwaas ka koi matlab nahi.
+:::
 
-"Tum kehti ho: kuch ke baare mein woh saaf anishchit dikhega, woh batayega kyun, aur tum use khud karne se tez sudhaar sakte ho. Aur jo woh galat karta hai aur tum kabhi dekhte nahi, unhe hum kisi aur tareeke se dhoondhenge."
+Aakhri screen tab ki thi jab machine band thi. Anaya safe mode pehle hi bana chuki thi, aur ab usne woh design kiya jo agents tab dekhte jab woh on tha: screen ke upar ek patli peeli patti, "Safe mode: naam aur pate chhupaye nahi ja rahe". Agar machine band karne se screen khaali rehti, toh switch ek failure ki jagah doosri rakh deta.
 
-## Jab woh nahi kar sakta tab woh kya kehta hai
+## 32.3 Ek test jo fail ho sakta tha
 
-Ek screen thi jise usne design nahi kiya tha, aur usne samjha ki woh us se bachti aa rahi thi.
+Mahine ke ant tak screens ban chuki thi, aur Lakshmi ne ek pilot maanga. Woh launch nahi chahti thi. Woh ek test chahti thi, aur Anaya se chahti thi ki woh pehle se bataye ki kya use nirash karega.
 
-Har system achha lagta hai jab kaam karta hai. Bharosa us screen par banta hai jo kehti hai *main nahi kar sakta*. Bahut se products ise sabse aakhir mein design karte hain, ya kabhi nahi. Usne ek Tuesday ise diya.
+Team ne ab tak jo kuch naapa tha woh system ke baare mein tha: kya finder sahi tha, kya judge par bharosa ho sakta tha, kya sorter har dabbe mein kaam karta tha. Kuch bhi us sawaal ka jawaab nahi deta jo tay karta hai ki agle quarter ke liye koi paisa dega ya nahi: kya feature ne business ki madad ki? Ek system chauraanve percent accurate ho sakta hai aur kuch nahi badal sakta. Ho sakta hai koi use istemaal hi na kare, ya jis kadam ko woh tez karta hai woh kabhi dheema hissa tha hi nahi.
 
-Guard ke liye, ek *refusal* ka matlab tha woh pal jab woh surakshit roop se woh kaam nahi kar sakta tha. Ek customer free chat mein Aadhaar card ki photograph attach karta hai. Guard abhi tasveer mein number ko kaala nahi kar sakta. Imaandaar design ka matlab dikhawa nahi karna tha. Chat teeno bhashaon mein kehti, Farah ka likha aur Lakshmi ka manzoor kiya: *Kripya yahan pehchaan card share na karein. Secure upload istemaal karein, ya kisi insaan se baat karne ke liye yeh button dabayein.* Ek refusal jo kisi insaan ka raasta deta hai woh us system se zyada bharosa kamata hai jo hamesha kuch na kuch paida karta hai, kyunki users ise aanshik roop se is aadhar par parakhte hain ki woh kya mana karta hai. Jo feature kabhi mana nahi karta woh unhe sikhata hai ki uske vishwas ka koi matlab nahi.
+Pehla kaam dheema hissa dhoondhna tha. Anaya aur Farah ne support office mein ek hafte ke kaam ko bina kuch badle naapa. Agents pehchaan ke numbers par lagbhag koi samay nahi lagate the: woh unhe padhte nahi, copy nahi karte aur unki parwaah nahi karte. Jo dheema tha, aur jo Lakshmi ko chinta deta tha, woh kahin aur tha. Har mahine woh ek privacy sweep chalati thi, logs se paanch sau chats ki ek random jaanch, yeh ginne ke liye ki kitnon mein ab bhi ek unhidden pehchaan ka number tha. July mein paanch sau mein se chhiyaalis mein tha.
 
-Aakhri screen woh thi jab machine band thi. Woh pehle hi safe mode bana chuki thi. Ab usne design kiya ki agents ko tab kya dikhta jab woh on ho: upar ek patli peeli patti, *Safe mode: naam aur pate chhupaye nahi ja rahe*. Agar machine ko band karne se screen khaali ho jaye, toh switch ek failure ko doosre se badal dega.
+*Pilot* chaar faislon par tika hai.
 
-## Ek test jo fail ho sakta tha
+Table: Pilot ke chaar faisle
+| Faisla | Matlab | Sahaj ka chunaav |
+| --- | --- | --- |
+| Number | Ek aisa naap jo business pehle se track karta hai, is mauke ke liye banaya naya metric nahi | Sweep ki ginti |
+| Tulna | Wahi team pehle aur baad mein kamzor saboot hai. Ek hi samay mein do tulaneey samooh kahin mazboot hain | Ek hi chatbot par do support teams: Pune guard ke saath, Nashik uske bina |
+| Failure threshold | Woh nateeja jiske neeche pilot ko failure kaha jaata hai, shuru hone se pehle likha hua | Chaar hafton ke baad, agar Pune ka sweep count Nashik ke aadhe se kam nahi hai, ya agar Pune ke agents das mein se do se zyada chats mein guard band karte hain, toh pilot fail hai. Ek guardrail: agent ka handling time paanch percent se zyada nahi badh sakta |
+| Samay ki khidki | Itni lambi ki naya hone ka asar utar jaaye, kyunki koi bhi naya tool apne pehle pakhwaade mein jitna hai usse behtar dikhta hai | Chhe hafte |
 
-Mahine ke ant tak screens ho chuki thin, aur Lakshmi ne ek pilot maanga.
+Lakshmi ne page padha, aur use sign karne ke bajaye wapas kar diya aur ek line aur maangi: agar yeh kaam kare aur number na hile toh aap mujhe kya batayengi?
 
-"Mujhe launch nahi chahiye," usne kaha. "Mujhe ek test chahiye. Aur main chahti hoon tum mujhe pehle batao ki kya tumhein niraash karega."
+## 32.4 Pilot jo kaam kar gaya
 
-Team ne ab tak jo kuch naapa tha woh system ke baare mein tha: kya finder sahi tha, kya judge par bharosa kiya ja sakta tha, kya sorter har dibbe mein kaam karta tha. Sab zaroori. Inme se koi us sawaal ka jawaab nahi deta tha jo tay karta hai ki koi agle quarter ke liye paisa dega ya nahi: kya isne business ki madad ki? Ek system chauraanbe percent sahi ho sakta hai aur kuch nahi badalta. Ho sakta hai koi use istemaal hi na kare. Ya jis kadam ko woh tez karta hai woh kabhi dheema hissa tha hi nahi.
+Pilot September ki pehli tareekh ko shuru hua. Doosre hafte ke ant tak Anaya dashboard ko aise ehsaas ke saath padh rahi thi jis par use bharosa nahi tha. Guard kaam kar raha tha. Pune mein woh roz chaalis se pachaas details chhupata tha, button kam istemaal hua, answer key ke saamne scoreboard apne sabse achhe par tha, aur handling time chapta tha. Lakshmi ne pakka karne ke liye sweep jaldi chalaya. Pune mein paanch sau mein ikataalis the aur Nashik mein taitaalis. Kuch nahi badla tha.
 
-Isliye, pehle, dheema hissa dhoondho. Anaya aur Farah ne support office mein ek hafte ka kaam naapa, bina kuch badle. Agents ne pehchaan ke numbers par lagbhag koi samay nahi bitaya. Unhone unhe padha nahi, copy nahi kiya, parwaah nahi ki. Jo dheema tha, aur jo Lakshmi ko chinta mein daalta tha, woh kahin aur tha. Har mahine woh ek privacy sweep chalati thi, logs se paanch sau chats ki spot check, yeh ginne ke liye ki kitnon mein ab bhi ek unhidden pehchaan ka number tha. July mein, paanch sau mein chhiyaalees mein tha.
+Anaya ne do number ko ek lambe minute tak dekha. System kaam kar raha tha, business number nahi hila tha, aur use pehle se bataya gaya tha ki yeh sambhav hai. Yeh is kshetra ka sabse bhramit karne wala nateeja hai, aur pravritti, hamesha, system ko behtar karne wapas jaane ki hoti hai, kyunki teams yahi naapna jaanti hain. Usne rok liya. Lakshmi ki extra line page par thi, aur Anaya ne uske neeche jaanch ka kram teen sawaalon mein likha tha, us kram mein jo anubhav batata hai ki jawaab dhoondhne ke sabse kareeb hai.
 
-Wahi number tha. Pilot chaar faislon par tikta hai.
+Table: Teen sawaal jab kaam kare par number nahi hile
+| Kram | Sawaal | Sahaj ka nateeja |
+| --- | --- | --- |
+| 1 | Kya log ise istemaal kar rahe hain? Kam adoption sabse aam kaaran hai aur jaanchna sabse aasaan | Haan, guard har chat par chal raha tha |
+| 2 | Kya uska output us jagah pahunchta hai jahan faisla hota hai? | Gyarah minute mein jawaab mila, neeche |
+| 3 | Kya jis kadam ko tez kiya gaya woh critical raaste par tha bhi? | Zaroorat nahi padi |
 
-*Number.* Ek naap jise business pehle se track karta hai. Is mauke ke liye ijaad kiya hua koi naya metric nahi. Sweep ki ginti kaam karegi.
+Doosre sawaal mein use gyarah minute lage. Usne Imran se poochha ki sweep apni paanch sau chats kahan se leta hai. Woh bhaunhein sikod kar, ek diagram kholkar, chup ho gaya. Raat ka kaam us raw table se copy karta tha jo guard se pehle ka tha. Guard agents ke dekhe messages ko saaf karta tha, aur aage bheji gayi history ko. Par sweep jo logs padhta tha woh un original messages se bane the jo guard ke chalne se pehle likhe gaye the. Us table ko kisi ne nahi chhua tha. Guard har cheez ki raksha kar raha tha siwaye us jagah ke jahan Lakshmi dekhti thi.
 
-*Tulna.* Wahi team pehle aur baad mein kamzor saboot hai. Ek hi avadhi mein do tulna-yogya groups bahut mazboot hai. Sahaj ki do support teams thin: Pune aur Nashik, ek hi chatbot par ek jaisa kaam karti hui. Pune guard ke saath chalegi. Nashik bina.
+"Store karne se pehle saaf karo," Anaya ne kaha. "Maine April mein yeh likha tha." Imran ne kaha ki usne ise history ke liye likha tha aur usne ise log par lagaya nahi tha.
 
-*Failure threshold.* Yeh woh nateeja hai jisse neeche pilot ko failure kaha jaata hai, shuru hone se pehle likha hua. Uska padhta tha: *Agar chaar hafte baad Pune ki sweep ginti Nashik ki kam se kam aadhi nahi hai, ya agar Pune ke agents das mein se do se zyada chats mein guard ko band kar dete hain, toh pilot fail ho gaya.* Usne ek guardrail jodi: agent handling time paanch percent se zyada nahi badh sakta.
+Use guard ko raw table ke saamne rakhne mein do din lage. Teesre hafte mein Pune ka sweep count paanch sau mein nau par aa gaya, jabki Nashik ka bayaalis par raha. Anaya galiyaare mein bahut der khadi rahi jab usne yeh dekha. Uske paas ek number tha, woh hila tha, aur woh isliye hila tha kyunki usne aisa test likha jo fail ho sakta tha aur jab woh hua toh use maanne par adig rahi.
 
-*Samay ki khidki.* Itni lambi ki navinata mit jaye. Koi bhi naya tool apne pehle pakhwade mein jitna hai usse behtar dikhta hai. Chhe hafte.
+## Saaraansh
 
-Lakshmi ne page padha aur, dastakhat karne ki jagah, use wapas thama diya. "Ek aur line jodo. Tum mujhe kya batogi agar yeh kaam kare aur number na hile?"
+Nabbe percent accuracy par ek jawaab dasvi baar galat hota hai, aur screen us par kya karti hai yeh product ka maalik tay karta hai.
 
-## Woh pilot jo kaam kar gaya
-
-Pilot pehli September ko shuru hua. Doosre hafte ke ant tak Anaya dashboard ko ek aise ehsaas ke saath padh rahi thi jis par use bharosa nahi tha.
-
-Guard kaam kar raha tha. Woh use dekh sakti thi. Pune mein woh roz chaalees se pachaas details chhupata tha. Agents button kam hi istemaal karte the. Answer key ke khilaaf scoreboard ab tak ke sabse achhe par tha. Handling time sapaat thi.
-
-Sweep, jo Lakshmi ne pakka karne ke liye jaldi chalayi, ne kaha ki Pune mein paanch sau mein ikataalis the, aur Nashik mein taintaalis.
-
-Kuch nahi badla tha.
-
-Ek lambe pal ke liye usne do numbers ko dekha. System kaam karta tha, aur business ka number nahi hila tha, aur use pehle se bataya gaya tha ki yeh sambhav hai. Yeh is kshetra ka sabse disorienting nateeja hai, aur pravritti, hamesha, wapas jaakar system ko behtar karne ki hoti hai, kyunki woh teams ko naapna aata hai.
-
-Usne ise rok liya. Lakshmi ki line page par thi, aur uske neeche usne jaanch ka ek kram likha tha, teen sawaal, us kram mein jo anubhav kehta hai ki jawaab dhoondhne ki sabse zyada sambhavna rakhta hai.
-
-*Pehla: kya log ise istemaal kar rahe hain? Kam adoption sabse aam karan hai aur jaanchna sabse aasaan.* Woh kar rahe the. Guard har chat par chal raha tha.
-
-*Doosra: kya output us jagah pahunchta hai jahan faisla hota hai?* Woh bilkul shaant baith gayi.
-
-*Teesra: kya jis kadam ko humne tez kiya woh critical path par tha bhi?*
-
-Doosre sawaal mein use gyarah minute lage. Usne Imran se poochha ki sweep apni paanch sau chats kahan se kheenchta hai. Woh bhauhein sikodkar, ek diagram kholkar, chup ho gaya.
-
-"Raat ka job," usne kaha. "Woh raw table se copy karta hai. Wahi jo guard se pehle thi. Guard woh messages saaf karta hai jo agents dekhte hain. Woh woh history saaf karta hai jo hum aage bhejte hain. Lekin sweep jo logs padhta hai woh original messages se bane hain, guard ke chalne se pehle likhe gaye. Humne us table ko chhua hi nahi."
-
-Guard har us cheez ki raksha kar raha tha siwa us jagah ke jahan Lakshmi dekhti thi.
-
-"Store karne se pehle saaf karo," Anaya ne sapaat awaaz mein kaha. "Maine yeh April mein likha tha."
-
-"Tumne use history ke liye likha tha. Maine use log par laagu nahi kiya."
-
-Usse guard ko raw table ke saamne le jaane mein do din lage. Teesre hafte mein, Pune ki sweep ginti paanch sau mein nau tak gir gayi. Nashik ki byaaleeso par rahi.
-
-Anaya use dekhne ke baad corridor mein der tak khadi rahi. Uske paas ek number tha, aur number hila tha, aur woh isliye hila tha ki usne ek aisa test likha tha jo fail ho sakta tha aur phir jab woh hua toh us par vishwas karne par adi rahi.
-
-## Saath le jaane layak baatein
-
-Nabbe percent par, das mein se ek jawaab galat hai, aur product ka malik tay karta hai ki screen us par kya karti hai. Chaar cheezein maayne rakhti hain: saboot dikhao jo khule, raftaar ke baare mein socho, confidence ka andar vyavahaar chunne ke liye istemaal karo, screen par number ke roop mein nahi, aur sudhaar haath se karne se tez banao. Ek refusal ek aisi screen hai jise jaan-boojh kar design karna chahiye, ek insaan ke raaste par khatam hoti hui, aur wahi AI ke band hone ki screen ke liye. Yeh jaanne ke liye ki koi system business ki madad karta hai, pehle dheema hissa dhoondho, phir ek pilot chalao ek aise number ke saath jise business pehle se track karta hai, ek tulna group, pehle se likha failure threshold, aur navinata mitne ke liye kaafi lambi khidki. Aur jab yeh kaam kare par number na hile, toh kram se teen cheezein poochho: kya ise istemaal kiya ja raha hai, kya uska output wahan pahunchta hai jahan faisla hota hai, aur kya woh kadam dheema tha.
+- Chaar baatein maayne rakhti hain: saboot dikhao jo khule, speed ke baare mein socho, confidence ko andar se behaviour chunne ke liye istemaal karo na ki screen par ek number ke roop mein, aur sudhaarna haath se karne se tez banao.
+- Refusal ek aisi screen hai jo jaanboojh kar design ki jaati hai, jo kisi insaan ke raaste par khatam hoti hai. AI band hone par dikhne wali screen bhi.
+- Yeh jaanne ke liye ki system business ki madad karta hai ya nahi, pehle dheema hissa dhoondho, phir ek pilot chalao jisme ek aisa number ho jo business pehle se track karta hai, ek comparison group, pehle se likhi failure threshold, aur itni lambi window ki naya hone ka asar mit jaaye.
+- Jab kaam kare par number na hile, toh kram mein poochho ki kya ise istemaal kiya jaata hai, kya uska output us jagah pahunchta hai jahan faisla hota hai, aur kya woh kadam dheema tha.

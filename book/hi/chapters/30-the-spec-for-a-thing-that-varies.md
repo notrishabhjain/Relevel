@@ -1,93 +1,104 @@
 ---
 title: Badalti Rehne Wali Cheez Ki Spec
-summary: Ek model ke retire hone ka tees din ka notice dikhata hai ki jo software do baar ek jaisa behave nahi karta uski specification mein asal mein kya hona chahiye, aur AI ko band karne ka switch kya chalta chhodna chahiye.
+summary: Ek model ke retire hone ka tees din ka notice dikhata hai ki aise software ki specification mein kya hona chahiye jo do baar ek jaisa behave nahi karta, aur AI band karne wale switch ko kya chalta rehne dena chahiye. Chapter rollback, kill switch aur pinned versions samjhata hai.
 course: ch18
+goals:
+  - samjhana ki badalne wale software ki specification saadhaaran se kaise alag hoti hai
+  - specification ki kendriya table likhna: naap, answer key, threshold aur karwai
+  - rollback aur kill switch mein antar karna, aur aisa safe mode design karna jo test hota rahe
+  - batana ki jab provider model retire kare toh kya dobara chalana hai, aur feedback ko bina raaz store kiye upyogi banana
 terms:
   - rollback | code ke pichhle version par laut jaana, jiske liye nayi deployment chahiye aur jo madad nahi karta jab dono versions ek jaisa kharab vyavahaar saajha karte hain | rollbacks, roll back
   - kill switch | ek flag jo traffic ko turant ek saade non-AI raaste par bhej deta hai, bina nayi deployment ke; yeh tabhi kaam karta hai jab woh raasta maujood ho aur haal hi mein test kiya gaya ho | kill switches
   - pinned version | model ka woh version jise aapne naam se tay kar diya hai, taaki provider aapko bataye bina use aapke neeche se badal na sake | 
 ---
 
-Email raat ke do bajkar das minute par aaya, Imran ne use forward kiya tha, ek subject line ke saath jo sirf kehti thi *Yeh padho.*
+Ek subah do bajkar das minute par ek email aaya, Imran Qureshi ke "Read this" subject ke saath forward kiya hua. Woh us bahari company se tha jo chatbot ke jawaab likhti thi. Jo model abhi istemaal mein tha, bank ke chitthi jaise lahje mein usme kaha gaya, woh tees din mein retire ho jaayega. Uske baad us par requests fail hongi, aur company uske uttaradhikari par jaane ki salah deti thi, jo behtar kshamta pesh karta tha.
 
-Woh us bahari company se tha jo chatbot ke jawaab likhti thi. *Hum aapko bata rahe hain,* woh shuru hua, bank ke patr ke lahje mein, *ki jis model ka aap abhi istemaal kar rahe hain woh tees din mein retire ho jayega. Us tareekh ke baad uski requests fail ho jayengi. Hum uske uttaradhikari par jaane ki salaah dete hain, jo behtar kshamata deta hai.*
+Anaya ne use letkar, phone ko haath bhar door pakad kar padha. Use jo mehsoos hua woh us insaan ka thanda hisaab tha jise bataya gaya ho ki jis seedhi par woh rah rahi hai woh ek tay tareekh par hata di jaayegi. Bees minute baad woh uthi, chai banayi aur specification kholi, kyunki use shak tha ki use abhi parkha jaane wala hai.
 
-Anaya ne use lete hue padha, phone ko haath ki doori par pakde hue. Woh ghabrayi nahi thi, theek se. Use jo mehsoos hua woh us insaan ka thanda ginit tha jise bataya gaya ho ki ek seedhi jis par woh rehti aa rahi hai ek khaas tareekh par hata di jaayegi. Usne bees minute is par socha. Phir woh uthi, chai banayi, aur specification kholi, kyunki use laga ki ab uski jaanch hone wali hai.
+## 30.1 Case: ek seedhi jise hataane ki tareekh hai
 
-## Ek spec jo ek range ki umeed rakhti hai
+Notice ne woh sawaal uthaya jiska jawaab saadhaaran specification nahi de sakti. Agar model product ke neeche badal jaaye, toh product kya vaada karta hai, aur team kaise jaanti hai ki woh ab bhi nibhta hai? Yeh chapter dikhata hai ki jis software ka vyavhaar do baar ek jaisa nahi hota uski specification mein kya hona chahiye.
 
-Ek saadharan specification maanti hai ki wahi input wahi output deta hai. Yeh karo, woh paao. Ek test karne wala insaan jaanchta hai. Jab woh paas ho jaye, toh ho gaya. Jo machine text padhti aur likhti hai, uske liye isme se kuch nahi tikta. Wahi input outputs ki ek range paida karta hai, aur woh range tab hilti hai jab provider koi model badalta hai jise aap control nahi karte.
+## 30.2 Ek specification jo ek range ki ummeed rakhti hai
 
-Isliye aise kisi ke liye specification ko kuch alag kehna padta hai. Woh vyavahaar ki ek naapi hui range batati hai, saboot ki kisi ne use naapa, aur kya hota hai jab woh bahak jaye. Anaya chhe mahine se ek likh rahi thi bina use yeh naam diye, aur jab agle din usne use mez par bichhaya toh woh chaar badlaavon par aaya.
+Saadhaaran specification maanti hai ki wahi input wahi output deta hai. Ek tester ise jaanchta hai, aur jab woh paas hota hai toh kaam khatam. Jo machine text padhti aur likhti hai uske liye isme se kuch nahi tikta. Wahi input outputs ki ek range deta hai, aur woh range tab hilti hai jab provider aisa model badalta hai jo team ke haath mein nahi.
 
-Acceptance, jo saadharan spec mein paas ya fail hota hai, ek naam wali answer key par ek score ban gaya, tay settings par. Ek test plan cases ka ek tay set ban gaya jo har release par paas hone chahiye, muft code checks ke saath. "Jab features kaam karein tab ho gaya" ban gaya "jab ise in numbers par naapa jaye, gyaat failures likhe hue ke saath, tab ho gaya". Aur pichhle version par lautne ka saadharan khayal, jise engineers *rollback* kehte hain, kuch bada ban gaya: ek pinned version, versioned nirdesh, aur ek switch jo machine ko band kar deta hai.
+Aisi cheez ki specification ko isliye kuch alag kehna padta hai. Woh vyavhaar ki ek naapi hui range ka varnan karti hai, us saboot ka ki kisi ne use naapa, aur ki jab woh khisakti hai toh kya hota hai. Anaya ise chhe mahine se bina us naam ke likh rahi thi, aur agli subah jab usne ise rakha toh woh chaar badlaav the.
 
-Use inme se kuch ko gadhne ki zaroorat nahi thi. Har ek pehle se bana hua tha.
+Table: Badalne wale software ke liye specification kaise badalti hai
+| Saadhaaran specification mein | Is mein |
+| --- | --- |
+| Acceptance paas ya fail hai | Acceptance ek naam ki answer key par tay settings par ek score hai |
+| Ek test plan | Tay cases ka ek set jo har release par paas hona chahiye, muft code checks ke saath |
+| Features kaam karein toh done | Done tab jab in numbers par naapa gaya ho, gyaat failures likhi hon |
+| Pichhle version par wapas jaana | Model ka ek pinned version, versioned instructions, aur machine ko band karne wala ek switch |
 
-## Numbers kya kehte hain
+Use inme se kuch bhi khud gadhna nahi pada. Har ek project mein pehle se maujood tha.
 
-Specification ka sabse zyada kaam karne wala hissa, usne seekha tha, beech ki table hai, aur achhi table ko ek sandehi jaanch sakta hai. Woh batati hai ki kya naapa ja raha hai, kaun si key ke khilaaf, kis seema par, aur agar woh chhoote toh kya hota hai. Usne use Lakshmi ki awaaz dimaag mein rakh kar likha.
+## 30.3 Numbers kya kehte hain
 
-| Kya naapa gaya | Kis ke khilaaf | Seema | Agar isse neeche aaye | 
+Specification ka kendriya hissa ek table hai jise koi shaki jaanch sake. Woh batati hai ki kya naapa gaya hai, kis key ke saamne, kis threshold par, aur agar result kam pade toh kya hota hai.
+
+Table: Specification ki naap-table
+| Kya naapa jaata hai | Kiske saamne | Threshold | Agar isse neeche aaye |
 | --- | --- | --- | --- |
-| Fixed-shape numbers mile | Answer key, maujooda version | Sau mein kam se kam 98 | Release roko |
-| Jo chhupa gaya jo personal nahi tha | Answer key, maujooda version | Sau mein 3 se zyada nahi | Anaya ko alert karo |
-| Har message par jodi gayi der | Live timing | Aamtaur par 0.3 second se kam; sabse dheere 20 mein 1 ek second se kam | Imran ko alert karo |
-| Hamle jo output badal dein | 50 injected messages | Koi nahi | Release roko |
-| Prati message kharcha | Billing | 60 paise se kam | Anaya ko alert karo |
+| Fixed-shape numbers jo mile | Answer key, maujooda version | Sau mein kam se kam 98 | Release roko |
+| Nirdosh cheezein jo chhupayi gayi | Answer key, maujooda version | Sau mein 3 se zyada nahi | Anaya ko alert |
+| Har message par jodi gayi der | Live timing | Aam taur par 0.3 second se kam; bees mein sabse dheeme ek ka 1 second se kam | Imran ko alert |
+| Hamle jo output badalte hain | 50 injected messages | Koi nahi | Release roko |
+| Har message ka kharcha | Billing | 60 paise se kam | Anaya ko alert |
 
-Sabse neeche, alag type mein, usne woh line likhi jo zyadatar specifications chhod deti hain. *Kill switch kya band karta hai, aur uske baad product phir bhi kya karta hai.*
+Table ke neeche, alag type mein, usne woh line likhi jo zyadatar specifications chhod deti hain: kill switch kya band karta hai, aur uske baad product ab bhi kya karta hai.
 
-## Wapas jaane jaisa nahi
+## 30.4 Wapas jaane se alag
 
-Is line par use ummeed se zyada sochna pada, aur Imran ko madad karni padi.
+Line ke baare mein use ummeed se zyada sochna pada, aur Imran ne madad ki. *Rollback* pehle ke code par wapas jaata hai. Woh ek naya deployment hai aur samay leta hai. Woh tab bilkul kaam ka nahi jab dono versions ek hi kharab vyavhaar baantte hain, jaise jab provider ne unke neeche model badal diya ho, kyunki naye model par puraana code utna hi galat hota. Us maamle mein kuch tez aur seedha chahiye: ek configuration file mein ek flag jo traffic ko turant ek saadhe raaste par bhej de jo machine ka istemaal nahi karta. Yeh *kill switch* hai.
 
-Rollback pehle ke code par jaata hai. Yeh ek nayi deployment hai, aur ismein samay lagta hai. Yeh bilkul kaam ka nahi hota jab dono versions ek jaisa kharab vyavahaar saajha karte hon, jaise agar provider ne unke neeche model badal diya hai, kyunki naye model par purana code utna hi galat hoga. Us sthiti mein jo chahiye woh kuch tez aur seedha hai: ek switch, ek configuration file mein ek flag, jo traffic ko turant ek saade raaste par bhej de jo machine ka istemaal nahi karta. Yeh ek *kill switch* hai. Yeh tabhi kaam karta hai jab saada raasta abhi bhi maujood ho, aur jab kisi ne use haal hi mein chalaya ho. Jis kill switch ko kisi ne test nahi kiya woh ek umeed hai.
+::: key Jo kill switch kabhi jaancha nahi gaya woh ek ummeed hai
+Woh tabhi kaam karta hai jab saadha raasta maujood ho aur kisi ne use haal mein chalaya ho.
+:::
 
-"Yeh traffic ko kahan bhejta hai?" Anaya ne poochha. "Chatbot ke liye, mujhe pata hai. Farah ki team haath se jawaab deti hai. Par guard ke liye?"
+Anaya ne poochha ki switch traffic ko kahan bhejega. Chatbot ke liye woh jaanti thi: Farah ki team haath se jawaab deti. Par guard alag tha. Agar guard poori tarah band kar diya jaaye, toh kuch nahi chhupega, jo sabse bura nateeja hai. Imran ne nateeja nikala ki kill switch guard ko band nahi kar sakta. Woh models ko band karta hai.
 
-Imran ne dheere likha. "Agar tum guard ko poora band kar do, toh kuch nahi chhupta. Yeh sabse bura nateeja hai. Isliye kill switch guard ko band nahi kar sakta. Woh *models* ko band karta hai."
+Safe mode sirf pattern checker chalata, jo saadhe rules hain aur jo bhatak nahi sakte, ek jaanboojh kar motha extra rule ke saath: nau ya zyada ankon ki koi bhi run chhupao, chahe woh kuch bhi ho. Woh har naam aur pate ko chhod deta. Answer key par woh fixed shakl ke numbers mein se sau mein lagbhag chhiyaanve pakadta. Woh bahut false alarm banata aur istemaal mein kabhi achha nahi hota. Par woh wahan hota, kisi provider ke kiye se bina chhua hua, aur ek insaan jisne code kabhi nahi dekha woh teen baje raat ko use on kar sakta tha. Anaya ne use specification mein poore numbers ke saath likha: sirf rules, fixed-shape numbers mein se sau mein lagbhag 96, koi naam ya pate nahi, bahut false alarm, har hafte test. Usne "har hafte" ke neeche line kheenchi.
 
-Safe mode sirf pattern checker chalayega, jo saade niyam the aur bahak nahi sakta tha, aur ek jaan-boojh kar bhonda atirikt niyam: nau ya zyada ankon ki koi bhi qataar chhupa do, chahe woh kuch bhi ho. Woh har naam aur har pata chhod dega. Answer key par woh fixed shape wale numbers mein se sau mein lagbhag chhiyaanbe pakad leta. Woh bahut false alarms utha deta. Woh istemaal karne mein kabhi sukhad nahi hoga. Lekin woh wahan hota, provider jo kuch karta usse achhoota, aur use raat ke teen baje koi aisa insaan chalu kar sakta tha jisne code kabhi dekha hi nahi.
+## 30.5 Tees din
 
-Usne use specification mein poora likha, apne numbers ke saath. *Safe mode: sirf niyam. Fixed-shape numbers mein se sau mein lagbhag 96 dhoondhta hai. Koi naam ya pata nahi dhoondhta. Bahut false alarms. Har hafte test kiya jaata hai.* Usne *har hafte* ko underline kiya.
+Imran ne kaha ki notice us cheez ka ek sahi test tha jo unhone banayi thi, aur kram mein bataya ki kya dobara chalana hai. Model badalna settings ka badlaav nahi hai. Naya model puraane ke saamne naapi hui har cheez ko ashudh kar deta hai.
 
-## Tees din
+Table: Jab model retire ho toh kya dobara chalana hai
+| Kram | Dobara chalao | Kaaran |
+| --- | --- | --- |
+| 1 | Poori answer key | Yeh dekhne ke liye ki guard kya karta hai jab chatbot ke saar aur replies naye model se aate hain |
+| 2 | Tay hamlon ka set | Yeh dekhne ke liye ki naye model ko ab bhi behkaya ja sakta hai ya nahi |
+| 3 | Machine judge aur Anaya ki apni grading ke beech sahmati | Judge bhi ek model call hai, aur puraane model ke saamne jaancha gaya judge naye model ke saamne nahi jaancha gaya |
+| 4 | Naye daamon par kharcha | Model ke saath daam badalte hain |
+| 5 | Sabse dheeme jawaab | Naya model apne sabse bure cases mein dheema ho sakta hai |
 
-Notice, Imran ne kaha, jo unhone banaya tha uska ek nishpaksh test tha, aur usne use bataya ki kya, kram mein, dobara chalana hai. Model badalna settings ka badlaav nahi hai. Ek naya model purane ke khilaaf naapi har cheez ko amaanya kar deta hai.
+"Kuch mat chhodo," Imran ne kaha. Jin teams ke paas test set nahi hota woh tees din mein samasyaayein nahi dhoondhti. Woh unhe production mein dhoondhti hain.
 
-Pehle, poori answer key, yeh dekhne ke liye ki guard ne kya kiya jab chatbot ke saar aur jawaab naye model se aaye. Doosre, hamlon ka tay set, yeh dekhne ke liye ki kya naye model ko ab bhi galat vyavahaar mein baatein karke laya ja sakta hai. Teesre, machine judge aur Anaya ki apni marking ke beech ki sahmati. Imran ne is par zor diya. Judge bhi ek model call hai, aur jo judge purane model ke khilaaf jaancha gaya tha woh naye ke khilaaf nahi jaancha gaya. Chauthe, naye daamon par kharcha. Paanchve, sabse dheeme jawaab.
+Kaam ne dono ko ek dopahar liya, jise Imran ne saboot maana ki pichhle mahinon ka kaam bekaar nahi gaya. Naye model ne apne saar thode alag andaaz mein likhe aur phone numbers ek aise format mein diye jo puraane ne kabhi nahi diya tha, plus chinh, desh ka code aur dashes ke saath, jaise +91-98765-43210. Pattern checker ne woh format nahi dekha tha, aur answer key ki gyarah rows laal ho gayi. Unhone samasya ek dopahar mein, ek key ke saath, dhoondh li, aur September mein ek customer se nahi. Answer key, Imran ne kaha, launch ke liye likha document nahi hai. Woh infrastructure hai.
 
-"Tum kuch nahi chhodte," usne kaha. "Jin teams ke paas test set nahi hota woh tees din mein problems nahi dhoondhti. Woh unhe production mein dhoondhti hain."
+## 30.6 Aisi feedback jo istemaal ho sake
 
-Dono ko ek dopahar lagi, jise Imran ne saboot kaha ki vasant bekar nahi gaya tha. Naya model, jo apne saar thodi alag shaili mein likhta tha, phone numbers aise format mein daalta tha jo purane ne kabhi nahi kiya tha: ek plus chinh, ek country code aur ek dash ke saath, jaise +91-98765-43210. Pattern checker ne use nahi dekha tha. Answer key ki gyarah rows laal ho gayin.
+Specification ka ek aur item Farah ka tha. Uske agents ke paas har chat par ek button tha jis par likha tha "guard ne woh chhupa diya jo mujhe chahiye tha", aur ab tak usne ek click ke alawa kuch nahi bachaya tha. Akela thumbs-down lagbhag bekaar hota hai, Imran ne kaha. Use dohraya nahi ja sakta, aur woh ek galat jawaab ko ek sahi jawaab se alag nahi kar sakta jo user ko pasand nahi tha. Jo thumbs-down us ke saath poora record leke aata hai ki kya hua, woh ek tayyar test case hai. Record ka matlab hai message, guard ne kya dhoondha, kya tay kiya, aur har cheez ke kaun se versions chal rahe the. Do button ke beech ka antar lagbhag do din ki engineering tha.
 
-"Ek dopahar mein mil gaya," Anaya ne kaha.
+Anaya ne maanne se pehle muskil dekh li. Record mein message hoga, aur agar guard us message par fail hua ho toh record mein woh cheez hogi jise woh chhupane ke liye bana tha. Imran ne nateeja nikala ki record saaf roop mein store hona chahiye. System chhupa hua version aur sthaan save karta hai, aur kaccha version sirf wahan rakhta hai jahan bahut kam log pahunch sakte hain, thode samay ke liye, yeh note karke ki kisne dekha.
 
-"Ek key ke saath ek dopahar mein mil gaya. Socho ise September mein ek customer se dhoondhna." Imran ne niyam joda. "Isi liye key hai. Yeh launch ke liye likha document nahi hai. Yeh infrastructure hai."
+::: watch Debugging ka saadhan samasya ko dobara bana sakta hai
+Jo debugging ka saadhan raaz store karta hai woh wahi samasya dobara banata hai jise hal karne ke liye woh bana tha. Record ko uske saaf roop mein store hona chahiye.
+:::
 
-## Aisi feedback jise istemaal kiya ja sake
+## 30.7 Sab ko kram mein rakhna
 
-Specification mein ek aur cheez thi, aur woh Farah ki thi. Uske agents ke paas har chat par ek button tha, jisme likha tha *guard ne woh chhupa diya jo mujhe chahiye tha.* Ab tak usne ek click ke siwa kuch nahi bachaya tha.
+Hafte ke ant tak notice ek abhyaas ban gaya tha. Model ko dono taraf ek naam ke version par pin kiya gaya tha, taaki provider bina batayein use na badal sake. Safe mode likha gaya, ek test mein on kiya gaya, off kiya gaya aur likh liya gaya. Key mein gyarah nayi rows thi. Specification, jo ek feature ke document ki tarah shuru hui thi, ab ek aise system ka document thi jo apne neeche badalta rahega, aur batati thi ki jab woh ho toh kya karna hai. Anaya ne March se rakhe log mein ek aakhri line joda: woh apni raay badal degi agar provider guarantee de sake ki model kabhi nahi badlega. Use ummeed nahi thi ki koi koshish karega.
 
-"Akela thumbs-down lagbhag bekaar hai," Imran ne kaha. "Tum use dobara nahi bana sakte. Tum galat jawaab ko us sahi jawaab se alag nahi bata sakte jo user ko pasand nahi aaya. Lekin jo thumbs-down kya hua uske poore record ke saath aata hai woh ek taiyaar test case hai."
+## Saaraansh
 
-Record ka matlab tha message, guard ne kya dhoondha, usne kya tay kiya, aur har cheez ke kaun se versions chal rahe the. Do buttons ke beech ka farak, usne kaha, lagbhag do din ki engineering tha.
+Aisi cheez ki specification jo do baar ek jaisa behave nahi karti, vyavhaar ki ek naapi hui range, us saboot ka ki use naapa gaya, aur drift hone par kya hota hai, ka varnan karti hai. Uski kendriya table naap, answer key, threshold aur woh karwai batati hai jab koi number kam pade.
 
-Anaya haan kehne wali thi jab usne problem dekhi, aur use jitni saralta se kah sakti thi usne kaha. "Record mein message hoga."
-
-"Hoga."
-
-"Aur agar guard us message par fail hua, toh record mein wahi hoga jo use chhupana tha."
-
-"Haan." Imran peeche baitha. "Isliye record saaf store hona chahiye. Hum chhupa hua version aur positions save karte hain, aur kachcha version sirf wahan rakhte hain jahan bahut kam log pahunch sakein, thode samay ke liye, aur likh lete hain ki kisne dekha." Yeh ek saral idea mein ek chidhane wala jod tha, aur sahi tha. Debugging ki madad jo raaz store karti hai woh usi problem ko dobara banati hai jise hal karne ke liye woh bani hai.
-
-## Kram mein rakhna
-
-Hafte ke ant tak notice ek routine ban chuka tha. Model ko dono taraf ek naam wale version par pin kiya gaya tha. Safe mode likha gaya tha, ek test mein on kiya gaya, off kiya gaya, aur likha gaya. Key mein gyarah nayi rows thin. Aur specification, jo ek feature ke document ki tarah shuru hui thi, ab ek aise system ka document thi jo apne neeche badalta rahega, aur batati thi ki jab woh badle toh kya karna hai.
-
-Anaya ne us log mein ek aakhri line jodi jo March mein shuru hua tha. *Main apna man badal doongi agar: provider guarantee de sake ki ek model kabhi nahi badlega.* Use umeed nahi thi ki koi koshish karega.
-
-## Saath le jaane layak baatein
-
-Jo cheez do baar ek jaisa behave nahi karti uski specification vyavahaar ki ek naapi hui range batati hai, saboot ki use kaise naapa gaya, aur kya hota hai jab woh bahak jaye. Uski beech ki table naap, answer key, seema, aur jab koi number kam pade toh karyavahi ka naam leti hai. Rollback pehle ke code par jaata hai, lekin jab model khud badal gaya ho, toh dono versions ek problem saajha karte hain, isliye aapko ek pinned version aur ek kill switch bhi chahiye jo traffic ko turant ek saade raaste par bheje, jo maujood aur test kiya hua hona chahiye. Jab ek provider koi model retire karta hai, toh uske khilaaf naapi har cheez dobara chalani padti hai, judge bhi shaamil. Aur feedback tabhi kaam ki hai jab woh jo hua uske poore record ke saath aaye, jo ek privacy tool mein khud saaf store hona chahiye.
+- Rollback pehle ke code par jaata hai. Jab model hi badal gaya ho, toh dono versions samasya baant te hain, isliye ek pinned model version aur ek kill switch bhi chahiye. Kill switch traffic ko turant ek saadhe raaste par bhejta hai, aur woh raasta maujood hona chahiye aur test hona chahiye.
+- Jab provider model retire kare, toh uske saamne naapi har cheez dobara chalani chahiye, judge bhi.
+- Feedback tabhi upyogi hai jab woh jo hua uske poore record ke saath aaye, aur privacy tool mein woh record khud saaf roop mein store hona chahiye.

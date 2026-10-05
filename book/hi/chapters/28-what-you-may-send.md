@@ -1,115 +1,85 @@
 ---
 title: Aap Kya Bhej Sakte Hain
-summary: Ab tak sab kuch maan kar chala ki text bheja ja sakta hai. Lakshmi mez par teen documents rakhti hai, ek tay kram mein teen sawaal poochhti hai, aur ek vendor ki terms of service mein aisi baatein nikalti hain jo kisi ne padhi nahi thin.
+summary: Ab tak sab kuch yeh maan kar chala ki text vendor ko bheja ja sakta hai. Teen documents aur ek tay kram mein teen sawaal tay karte hain ki bheja ja sakta hai ya nahi, aur vendor ki terms of service mein woh baatein nikalti hain jo kisi ne padhi nahi thi. Chapter retention aur data residency samjhata hai.
 course: ch165
+goals:
+  - vendor ko text bhejna theek hai ya nahi yeh tay karne ke liye teen sawaal kram se lagana
+  - vendor ki asli terms mein retention, data ko service sudharne mein istemaal karna, aur data residency padhna
+  - aisa niyam likhna jise naye staff follow kar sakein, aur shak wale cases ke liye ek raasta dena
+  - samjhana ki retrieval store mein kya jaata hai yeh chunaav har aane wale sawaal ka faisla kyun hai
 terms:
   - retention | ek provider aapka bheja hua kitni der tak rakhta hai, jo jawaab dene mein lage samay se bahut zyada ho sakta hai | 
   - data residency | woh desh ya kshetra jahan ek provider aapka bheja hua store aur process karta hai | residency
 ---
 
-Lakshmi ke desk par teen documents the, kinaare se barabar kiye hue, aur Anaya ne turant samjha ki yeh ek test hai aur use abhi vishay ka pakka pata nahi hai.
+July ke teesre Monday ko Lakshmi Iyer ne apne desk par teen documents rakhe, kinaare se barabar kiye hue, aur Anaya se kaha ki ek ko woh kisi ko bhi bhej degi, ek ko kabhi nahi, aur ek ke baare mein use nahi pata. Usne Anaya se kaha ki woh batayen ki kaun sa kaun sa hai, aur kyun. Anaya ne samjha ki yeh ek parikshaa hai, aur ki use vishay ke baare mein pakka nahi pata.
 
-"Inme se ek," Lakshmi ne kaha, "main kisi ko bhi bhej dungi. Ek main kabhi nahi bhejungi. Ek ke baare mein mujhe nahi pata. Main chahti hoon tum mujhe batao ki kaun sa kaun sa hai, aur kyun."
+Pehla document Late Payment aur Refund Policy thi, woh baarah page jinhone glass room ke farsh par ek din tukdon mein bitaya tha. Woh Sahaj ki website par prakashit thi aur koi bhi use padh sakta tha. Doosra ek spreadsheet thi, loan applications ki, columns mein naam, pate, pehchaan ke number aur masik aay ke saath. Teesra pachaas support chats ka sangrah tha, analysis ke liye export kiya gaya aur haath se saaf kiya hua, ya aisa cover note ne kaha.
 
-July ka teesra Monday tha. Paani ka glass wahin tha jahan hamesha rehta tha. Anaya ne documents ek-ek karke palte.
+## 28.1 Case: teen documents
 
-Pehla *Late Payment and Refund Policy* tha, barah pages jinhone glass room ke farsh par tukdon mein ek din bitaya tha. Woh Sahaj ki apni website par chhapa tha. Koi bhi use padh sakta tha.
+Anaya ne kaha ki pehla theek hai aur doosra nahi. Lakshmi ne poochha kyun. "Woh logon se bhara hai," Anaya ne kaha. Teesre ke baare mein woh pakki nahi thi. Usne naapa tha ki haath se saaf karne mein kya chhoot jaata hai, aur use cover note par bharosa nahi tha. Lakshmi ne sahmati di, aur kaha ki teesra upyogi tha. Yeh chapter ise theek se karta hai.
 
-Doosra loan applications ki ek spreadsheet tha, jisme naam, pate, pehchaan ke number aur mahine ki aay saaf columns mein thi.
+## 28.2 Teen sawaal, kram se
 
-Teesra pachaas support chats ka ek sangrah tha, analysis ke liye export kiya hua, jise haath se saaf kiya gaya tha. Ya aise cover note ne kaha.
+Pichhla har chapter maan kar chala tha ki text model ko bheja ja sakta hai, jiska vyavhaar mein matlab tha woh bahari company jo jawaab likhti thi, ya woh jo matlab ke naqshe banati thi, ya woh jo logs rakhti thi. Zyadatar features ke liye, Lakshmi ne kaha, yeh maanyata ya toh bilkul theek hoti hai ya ek gambhir samasya, aur dono mein se kaun si hai yeh technical masla nahi hai. Yeh teen sawaalon par aata hai. Woh kanooni vyakhyan nahi de rahi thi, aur uska Anaya ko kanoon sikhane ka irada nahi tha. Woh chahti thi ki Anaya jaane ki kaun se sawaal poochhne hain aur har ek ka jawaab kiska hai.
 
-"Pehla theek hai," Anaya ne kaha. "Doosra nahi. Teesre ke baare mein mujhe pakka nahi pata."
+Table: Vendor ko text bhejne se pehle teen sawaal
+| Kram | Sawaal | Kyun maayne rakhta hai | Jawaab kiska hai |
+| --- | --- | --- | --- |
+| 1 | Kya yeh kisi insaan ko pehchaanta hai? | Naam, sampark vivaran, case numbers, kuch bhi jo kisi ki taraf ishaara kare. Agar haan, toh niyam laagu hote hain, chahe aap kahin bhi hon, aur woh vaikalpik nahi hain | Compliance |
+| 2 | Yeh kiski gopniya jaankari hai? | Agar aapki hai, toh bhejna ek business faisla hai. Agar woh kisi customer, supplier ya partner ki hai, toh yeh anubandh ka sawaal hai, aur jawaab "nahi" ho sakta hai chahe vendor kitna bhi saavdhaan ho. Sahaj ke un banks ke saath samjhaute, jinke zariye usne loan diye, ne kuch kaha tha ki kuch data kahan jaa sakta hai, aur Anaya ya Imran ne unhe nahi padha tha | Business, kanooni salah ke saath |
+| 3 | Vendor iske saath kya karta hai? | Kitni der rakhta hai, kya usse seekhta hai, aur kis desh mein store karta hai | Product manager, jo yahan sabse zyada jodta hai, kyunki engineers maan lete hain ki yeh tay hai aur vendors aashwast karne wali bhasha mein varnan karte hain |
 
-"Doosra theek kyun nahi?"
+Isi kram mein poochhne se kam mehnat mein zyadatar cases tay ho jaate hain. Pehle sawaal ne spreadsheet ko ek line mein nipata diya.
 
-"Usme log bhare hain."
+## 28.3 Das minute ka padhna
 
-"Achha. Aur teesra?"
+Lakshmi ne Anaya se ek aisa kaam karne ko kaha jisme das minute lagte aur jo, jahan tak use pata tha, Sahaj mein kisi ne nahi kiya tha: bahari company ki asli terms padho, website nahi. Anaya ne use usi dopahar dhoondh liya. Woh lambi aur saadhaaran thi. Acceptable use ke section ke baad ek page aur aadhe mein teen cheezein thi jo usne ekdum waisi hi likh li.
 
-"Cover note kehta hai ki saaf kiya gaya. Maine ginti ki hai ki jab hum haath se saaf karte hain toh kya chhoot jaata hai." Woh hichkichayi. "Mujhe us par bharosa nahi."
+Table: Vendor ki terms ki teen lines
+| Terms ne kya kaha | Iska matlab |
+| --- | --- |
+| "Requests may be retained for up to thirty days for safety monitoring." | Yeh *retention* hai: ek provider ko bheji gayi cheez kitni der rakhta hai, jo jawaab dene mein lagne wale samay se kahin zyada ho sakta hai |
+| "Requests may be used to improve the service unless the customer has agreed otherwise in writing." | Sahaj ne aisa nahi kiya tha. Kisi se poochha bhi nahi gaya tha |
+| "Requests are processed in data centres in the following regions", ek list ke saath, jisme Bharat nahi tha | Yeh *data residency* hai: woh desh jahan jo kuch bheja jaata hai woh store aur sambhala jaata hai |
 
-"Mujhe bhi nahi," Lakshmi ne kaha. "Wahi kaam ka hai. Ise theek se karte hain."
+Teeno kharide gaye plan ke saath badal sakte the, aur Anaya ko shak tha ki Sahaj ne sabse sasta liya tha. Woh lines Lakshmi ke paas le gayi, jisne unhe khade hokar padha. "March se customer ka Aadhaar number isi ke adheen raha hai," usne kaha. Anaya ne kaha ki use pata hai. Lakshmi ne kaha ki yeh uski galti nahi hai. Anaya ne kaha ki use phir bhi March mein padhna chahiye tha. Lakshmi ne sahmati di aur kaha ki Anaya company ki pehli insaan hogi jisne padha hai.
 
-## Teen sawaal, kram se
+## 28.4 Teesra document
 
-Ab tak ka har chapter maan kar chala tha ki text model ko bheja ja sakta hai: us bahari company ko jisne jawaab likhe, ya jisne matlabon ke naqshe banaye, ya jisne logs store kiye. Zyadatar features ke liye, Lakshmi ne kaha, yeh assumption ya toh bilkul theek hai ya ek gambhir problem, aur kaun sa hai yeh technical baat nahi hai. Yeh teen sawaalon ki baat hai.
+Teeno documents par dobara vichaar kiya gaya. Policy teeno sawaal paas kar gayi: koi insaan nahi, public, kuch gopniya nahi. Spreadsheet pehle sawaal par fail hui.
 
-Usne kaha ki yeh kanooni vyakhyan nahi tha. Woh Anaya ko kanoon nahi sikhane wali thi. Woh bas chahti thi ki use pata ho ki kaun se teen sawaal poochhne hain, aur har ek ka jawaab kiska hai.
+Chats interesting case thi. Woh kisi sawaal mein poori tarah fail nahi hui aur paas bhi nahi hui. Unhe haath se saaf kiya gaya tha, aur Anaya jaanti thi ki haath se saaf karna kitna kaam karta hai, kuch hissa, kabhi-kabhi. Imaandaar jawaab yeh tha ki chats mein log ho sakte the, kisi bank ki gopniya jaankari ho sakti thi, aur woh us vendor ke paas jaati jiski terms page par thi. Woh bhejne ke liye surakshit nahi thi, ya kam se kam abhi nahi.
 
-Pehla sawaal: *Kya yeh kisi insaan ko pehchaanta hai?* Naam, sampark vivaran, case numbers, kuch bhi jo kisi ki taraf ishaara kare. Agar haan, toh niyam laagu hote hain, aap jahan bhi hon, aur woh vaikalpik nahi hain. Isne spreadsheet ko ek line mein tay kar diya.
+Lakshmi ne woh niyam maanga jo ek naya joiner bina poochhe follow karega. Anaya ne raaste mein is par socha tha. Jo niyam log follow kar sakte hain woh aam cases ko saaf shabdon mein tay karta hai, ek aisi category ka naam leta hai jo kabhi nahi bheji jaati, aur shak wale cases ke liye ek khaas raasta deta hai. "Apni samajh se kaam lo" kehne wala niyam fail hota hai, kyunki jo insaan shak mein hai aur jaldi mein hai woh use ijaazat samajhta hai.
 
-Doosra: *Yeh kiski gopniya jaankari hai?* Agar yeh aapki hai, toh ise bhejna ek business faisla hai, aur aap ise kar sakte hain. Agar yeh kisi aur ki hai, ek customer, ek supplier, ek partner, toh yeh ek contract ka sawaal hai, aur jawaab na ho sakta hai chahe vendor kitna bhi saavdhaan ho. Sahaj ke un banks ke saath samjhaute, jinke zariye woh loan deta tha, kuch aisa kehte the ki kuch data kahan jaa sakta hai, aur na Anaya ne na Imran ne unhe padha tha.
+::: example Anaya ka likha niyam
+Aap bhej sakte hain: Sahaj ke prakashit help pages aur policies.
+Kabhi nahi bhejna: pehchaan ke number, bank details, ya loan application ka kuch bhi.
+Agar woh customer se aaya hai: pehle guard se guzarta hai.
+Agar aapko pakka nahi hai: data channel mein Lakshmi se poochho, aur jawaab ka intezaar karo.
+:::
 
-Teesra: *Vendor ise kya karta hai?* Woh ise kitni der rakhte hain, kya woh ismein se seekhte hain, aur yeh kis desh mein store hota hai? Usne kaha ki product manager teesre sawaal par sabse zyada mulya jodta hai, kyunki engineers maan lete hain ki yeh tay ho chuka hai, aur vendors ise aashwast karne wali bhasha mein bayaan karte hain.
+Lakshmi ne chaar line do baar padhi aur ek shabd badla. Usne kaha ki yeh aisa niyam hai jo woh deewar par lagayegi.
 
-"Unhe isi kram mein poochho," Lakshmi ne kaha. "Yeh zyadatar cases ko sabse kam mehnat mein tay kar deta hai."
+## 28.5 Retrieval kya bhejta hai
 
-## Das minute ka padhna
+Imran ne hafte mein ek aur cheez dekhi, jo baad mein spasht lagti thi. Chatbot ke documents ka store saavdhaani se chuna gaya tha, aur usme sirf policies aur help pages gaye the. Par chatbot ko banaya gaya tha ki woh sawaal ke liye prasangik kuch tukde dhoondhe aur unhe har request ke saath bahari company ko bheje. Store mein jo kuch bhi tha woh dhoondha ja sakta tha, aur jo dhoondha gaya woh bheja gaya. "Store ke baare mein hamara faisla," Imran ne kaha, "har us sawaal ka faisla hai jo kabhi poochha jaayega."
 
-Usne Anaya se kuch karne ko kaha jisme das minute lagte, aur jo Sahaj mein, jahan tak use pata tha, kisi ne nahi kiya tha.
+Anaya ne yeh diagrams se nahi samjha tha. Ek baar liya gaya chunaav, jab kisi ne ek folder system mein khinch kar daala, chat ki raftaar se saikdon hazaar baar dohraya jaane wala chunaav tha. Agar store mein kuch aisa tha jo jaana nahi chahiye, toh woh jaayega. Har tukde ke labels, jo June ka kaam the, ise rokne ka ek tareeka dete the, par yeh chunaav ki kya daalna hai, pehla chunaav tha aur ek insaan ka tha.
 
-"Bahari company ki terms padho. Asli wali. Website nahi."
+::: key Jo niyam yaaddasht par tika hai woh ek ichchha hai
+Guard likhit niyam ko laagu karta hai. Niyam kehta hai ki pehchaan ka number kabhi nahi bhejna, aur guard woh hai jo kisi ko galti se aisa karne se rokta hai. Lakshmi ne kaha ki jo niyam is par tika hai ki log use yaad rakhein woh sirf ek ichchha hai.
+:::
 
-Anaya ko woh us dopahar mil gayi. Woh lambi aur saadharan thi. Doodh derh page mein, jaayaz istemaal wale hisse ke baad, teen cheezein thin jo usne bilkul waise hi likh li.
+Anaya ne specification mein ek line joda ki saavdhaan judge kahan chalega, us jawaab ke saath jo niyam pehle hi de chuka tha. Agar jo vaakya use padhna tha usme pehchaan ka number ho sakta tha, toh woh building ke bahar kisi ke padhne ke liye nahi tha, jab tak terms likhit roop mein kuch aur nahi kehti, jo abhi nahi kehti thi. Woh aisa model hona chahiye jise Sahaj khud chalaye. Aise models the, woh samjhi, aur baad ke chapters batayenge ki woh kaise kaam karta hai.
 
-*Requests ko suraksha nigrani ke liye teess din tak rakha ja sakta hai.* Yeh *retention* tha: provider aapka bheja hua kitni der rakhta hai, jo aapko jawaab dene mein lage samay se bahut lamba ho sakta hai.
+## Saaraansh
 
-*Requests ko seva sudharne ke liye istemaal kiya ja sakta hai jab tak customer ne likhit mein anyatha sahmati na di ho.* Sahaj ne anyatha sahmati nahi di thi. Kisi se poochha nahi gaya tha.
+Text vendor ko bhejna theek hai ya nahi, yeh teen sawaalon se tay hota hai, kram se: kya woh kisi insaan ko pehchaanta hai, woh kiski gopniya jaankari hai, aur vendor uske saath kya karta hai.
 
-*Requests ko nimnlikhit kshetron ke data centres mein process kiya jaata hai*, aur ek list, jisme se koi bhi India nahi tha. Yeh *data residency* thi: woh desh jahan jo aap bhejte hain woh store aur sambhaala jaata hai.
-
-Usne lines do baar padhin. Teeno aapke kharide plan ke saath badal sakti thin, aur, use shak tha, Sahaj ne sabse sasta kharida tha. Woh unhe Lakshmi ke paas le gayi, aur Lakshmi ne unhe khade-khade padha, baithe bina.
-
-"Customer ka Aadhaar number March se isi ke adheen raha hai," usne kaha.
-
-"Mujhe pata hai."
-
-"Yeh tumhari galti nahi hai."
-
-"Nahi. Par mujhe ise March mein padhna chahiye tha."
-
-"Haan," Lakshmi ne kaha, aur use page wapas thama diya. "Tum yahan pehli insaan hogi jisne padha hai."
-
-## Teesra document
-
-Woh teeno documents par wapas gaye. Policy ne teeno sawaal ek saath paas kiye: koi insaan nahi, public, kuch gopniya nahi. Spreadsheet pehle mein fail hui.
-
-Teesra, chats, dilchasp case tha. Woh kisi bhi sawaal mein seedhe fail nahi hua, aur paas bhi nahi hua. Use haath se saaf kiya gaya tha, aur use pata tha ki haath ki safai kitni achhi tarah kaam karti hai: kuch, kabhi-kabhi. Imaandaar jawaab yeh tha ki chats mein log ho sakte the, kisi bank ki gopniya jaankari ho sakti thi, aur woh ek aise vendor ko jaati jiski terms page par thin. Use bhejna surakshit nahi tha. Use *abhi* bhejna surakshit nahi tha.
-
-"Niyam kya hai?" Lakshmi ne kaha. "Woh jo ek naya joiner tumse poochhe bina follow kare."
-
-Anaya ne raaste mein is par socha tha. Aisa niyam jise log follow kar sakein uski ek khaas shape hoti hai. Woh aam cases ko itne shabdon mein tay karta hai. Woh ek category ka naam leta hai jo kabhi nahi bheji jaati. Aur woh anishchit cases ke liye ek khaas raasta deta hai, kyunki jo niyam kehta hai *apne vivek se kaam lo* woh fail hota hai. Jo insaan anishchit hai aur jaldi mein hai woh ise ijaazat ki tarah padhta hai.
-
-Usne ise kaagaz par likha.
-
-*Aap bhej sakte hain: Sahaj ke prakashit help pages aur policies.*
-*Kabhi nahi bhejna: pehchaan ke numbers, bank vivaran, ya loan application ka kuch bhi.*
-*Agar customer se aaya hai: pehle guard se guzarega.*
-*Agar pakka nahi hain: data channel mein Lakshmi se poochho, aur jawaab ka intezaar karo.*
-
-Chaar lines. Lakshmi ne unhe do baar padha aur ek shabd badla.
-
-"Yeh woh niyam hai jise main deewar par laga dungi," usne kaha.
-
-## Retrieval kya bhejta hai
-
-Ek aakhri baat thi, jo Imran ne hafte ke baad pakadi aur jo, baad mein, aisi lagi jaise saaf honi chahiye thi.
-
-Chatbot ke documents ka store saavdhaani se chuna gaya tha. Sirf policies aur help pages andar gaye the. Lekin woh sawaal ke liye kaam ke kuch tukde dhoondhne aur unhe har request ke saath bahari company ko bhejne ke liye banaya gaya tha. Store mein jo kuch tha woh dhoondha ja sakta tha, aur jo dhoondha gaya woh bheja gaya.
-
-"Store ke baare mein humara faisla," Imran ne kaha, "har us sawaal ka faisla hai jo kabhi poochha jayega."
-
-Yeh ek aisi baat thi jo use diagrams se samajh nahi aayi thi. Ek chunav jo ek baar kiya gaya, jab kisi ne ek folder system mein kheencha, woh lakhon baar dohraya jaane wala chunav nikla, chat ki raftaar par. Agar store mein kuch tha jo nahi jaana chahiye tha, toh woh jaata. Har tukde par labels, June ke Monday ka kaam, ise rokne ka tareeka dete the. Lekin yeh chunav ki andar kya daalna hai woh phir bhi pehla tha, aur woh ek insaan ka tha.
-
-Anaya ne deewar par diagram dekha, jisme Lakshmi ke chhe laal gheraav ab bhi halke se us sataha par dikhte the jahan board saaf kiya gaya tha.
-
-"Guard is niyam ko laagu karta hai," usne dheere se kaha. "Kaagaz par niyam kehta hai ki pehchaan ka number kabhi mat bhejo. Guard woh hai jo kisi ko ittefaq se aisa karne se rokta hai."
-
-"Jo niyam logon ke yaad rakhne par nirbhar hai," Lakshmi ne kaha, "woh sirf ek ichha hai."
-
-Usne specification mein is baare mein ek line jodi ki saavdhaan judge kahan chalega, aur uske bagal mein woh jawaab likha jo niyam pehle hi de chuka tha. Agar jo vaakya use padhna tha usme koi pehchaan ka number ho sakta tha, toh use building ke bahar koi nahi padh sakta tha, jab tak terms likhit mein aisa na kahein, jo abhi nahi kehti thin. Woh ek model hona chahiye jise Sahaj khud chalaye. Aise models the, use samajh aaya, aur agle chapters use dikhayenge ki woh kaise kaam karta hai.
-
-## Saath le jaane layak baatein
-
-Text ka ek tukda vendor ko bheja ja sakta hai ya nahi, yeh teen sawaal tay karte hain, is kram mein poochhe gaye: kya yeh kisi insaan ko pehchaanta hai, yeh kiski gopniya jaankari hai, aur vendor ise kya karta hai. Teesra woh hai jahan product manager sabse zyada jodta hai, kyunki jawaab vendor ki asli terms mein hai, jo batati hain ki woh jo aap bhejte hain use kitni der rakhte hain (retention), kya woh usse seekhte hain, aur woh kahan store hota hai (data residency), aur yeh sab aap jo plan kharidte hain uske saath badal sakte hain. Jo niyam log follow kar sakein woh aam cases ko saaf shabdon mein tay karta hai, batata hai ki kya kabhi nahi bheja jaata, aur sandehaspad ke liye ek khaas raasta deta hai. Retrieval jo bhi dhoondhta hai woh bhejta hai, isliye store mein kya jaata hai yeh faisla har us sawaal ka faisla hai jo uske baare mein poochha jayega. Aur jo niyam logon ke yaad rakhne par nirbhar hai woh sirf ek ichha hai; jo tool use laagu karta hai woh ek control hai.
+- Teesre sawaal par product manager sabse zyada jodta hai. Jawaab vendor ki asli terms mein hai: woh jo kuch bheja jaata hai use kitni der rakhta hai (retention), kya usse seekhta hai, aur kahan store karta hai (data residency). Sab kharide gaye plan ke saath badal sakte hain.
+- Jo niyam log follow kar sakte hain woh aam cases ko saaf shabdon mein tay karta hai, jo kabhi nahi bheja jaata uska naam leta hai, aur shak wale cases ke liye ek khaas raasta deta hai.
+- Retrieval jo kuch dhoondhta hai woh bhej deta hai, isliye store mein kya jaayega yeh faisla us par poochhe gaye har sawaal ka faisla hai.
+- Jo niyam logon ke yaad rakhne par tika hai woh sirf ichchha hai. Jo tool use laagu karta hai woh ek control hai.
