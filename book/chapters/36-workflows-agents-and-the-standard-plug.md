@@ -1,7 +1,12 @@
 ---
 title: Workflows, Agents and the Standard Plug
-summary: A bank teller can look up your balance but cannot send your money on your word. Three questions about the support console, how much to let a model decide, how to stop it, and what a standard plug does and does not promise, are settled by crossing things out.
+summary: A bank teller can look up a balance but cannot send money on a customer's word. Three questions about a support console, how much to let a model decide, how to stop it, and what a standard plug does and does not promise, are settled by crossing things out. The chapter introduces tool contracts, idempotency, fixed workflows, bounded agents and MCP.
 course: ch12t ch13a ch14p
+goals:
+  - write a tool contract, and explain why permissions are enforced by the server and not the model
+  - explain idempotency and why a retry is safe only when the action is
+  - use the crossing-out test to choose a fixed workflow over an agent, and bound an agent when one is warranted
+  - say what MCP promises and what it does not
 terms:
   - tool contract | the precise written agreement for one function a model may call: its name, what it does and does not do, its parameters, its errors, its side effects and who is allowed to call it | tool contracts
   - idempotency | the property of an action that can safely be run twice, or is protected so that running it twice has only one effect; it decides whether a retry is safe | idempotent
@@ -10,90 +15,95 @@ terms:
   - MCP | Model Context Protocol: a standard for connecting AI applications to tools and data, so that any compliant tool fits any compliant application, like a plug and a socket | Model Context Protocol
 ---
 
-"A bank teller," said Imran, "can look at your balance. A bank teller cannot send your money somewhere on your say-so."
+In the first week of October, with the pilot running, Farah Sheikh made a request that sounded entirely reasonable. She wanted the support console to have an assistant of its own. It would help an agent work faster. It would look up orders. It would show a hidden detail again if the agent had a good reason. If it seemed right, it would send a customer a payment link. All of this would happen by itself, in one smooth step.
 
-He said it to open a design review that nobody had asked for. It was the first week of October, the pilot was running, and Farah had come to him with a request which, at first hearing, sounded entirely reasonable. She wanted the support console to have an assistant of its own. It would help an agent work faster. It would look up orders. It would show a hidden detail again, if the agent had a good reason. It would, if it seemed right, send a customer a payment link. All of it by itself, in one smooth step.
+Imran Qureshi opened a design review that nobody had asked for with a comparison. A bank teller can look at your balance, he said, and cannot send your money somewhere on your say-so. Tellers are not untrustworthy. Some actions have consequences outside the bank, and the rule is about the action and not the person. He wrote Farah's three requests on the board with a heading in capitals: what may it do, with what data, and who checks?
 
-"The teller can't do that last one alone," Imran went on, "not because tellers are untrustworthy, but because some actions have consequences outside the bank. The rule is about the action, not the person."
+## The case: an assistant that does everything
 
-He wrote the three things Farah wanted on the board and, beside them, a heading in capitals. *WHAT MAY IT DO, WITH WHAT DATA, AND WHO CHECKS?*
+The requests combined actions of very different kinds. This chapter sorts them using a written agreement for each function, a test for how much a model should decide, and a check on what a standard connector does and does not guarantee.
 
 ## One function, written down
 
-The first thing a machine needs, if it is to do anything real, is a function it may ask for. The second is a written agreement about that function so exact that a stranger could tell you what it can and cannot do. This is a *tool contract*.
+The first thing a machine needs, if it is to do anything real, is a function it may ask for. The second is a written agreement about that function so exact that a stranger could say what it can and cannot do. This is a *tool contract*.
 
-Anaya had met a version of this in the spring, when a vague description made the model pick the wrong function. A contract goes much further. It names the function and says what it returns and what it does not. It sets its parameters tightly, so that a field with a few legal values accepts only those. It lists its errors in a form a program can read. It states its side effects, and who is allowed to call it.
+Anaya had met a version of this in the spring, when a vague description made the model choose the wrong function. A contract goes much further.
 
-That last item was the one he spent time on. "The model is not the authorisation layer," he said. "If the lookup function takes an order number, the server decides whether *this* agent may see *this* order. It decides on the logged-in session and not on anything the model says. We did that in the summer. The contract just writes it down."
+Table: What a tool contract states
+| Element | What it says |
+| --- | --- |
+| Name and purpose | What the function returns and what it does not |
+| Parameters | Set tightly, so that a field with a few legal values accepts only those |
+| Errors | Listed in a form a program can read |
+| Side effects | What changes as a result of calling it |
+| Who may call it | Decided by the server on the logged-in session, not on anything the model says |
 
-Then he asked a question she had to think about. "What happens if the call runs twice?"
+The last element was the one Imran spent time on. The model is not the authorisation layer. If the lookup function takes an order number, the server decides whether this agent may see this order, based on the logged-in session. The team had done that in the summer, and the contract simply writes it down.
 
-She thought of a customer pressing a button and the network faltering. The request had reached the server, and the reply had never come back. The app tried again. If the action was *show this detail again*, the second attempt did no harm. If it was *send a payment link*, the customer received two.
+### What happens if it runs twice
 
-An action that can safely be run twice has a name, *idempotency*. Some actions are naturally idempotent. Others are made so by giving each request a unique number, so that the server recognises a repeat and does nothing. A retry is only safe when the action is. He wrote a rule for the contract: *every action that changes something says what happens if it is repeated.*
+Imran then asked what happens if a call runs twice. Anaya imagined a customer pressing a button while the network faltered: the request reached the server, the reply never came back, and the app tried again. If the action was "show this detail again", the second attempt did no harm. If it was "send a payment link", the customer received two.
+
+An action that can safely be run twice has a name, *idempotency*. Some actions are naturally idempotent. Others are made so by giving each request a unique number, so that the server recognises a repeat and does nothing. A retry is safe only when the action is. Imran added a rule to the contract: every action that changes something says what happens if it is repeated.
 
 ## Cross out what a rule can do
 
-"Now the clever part," said Imran. "Which of Farah's three should be a model's choice?"
+Imran then asked which of Farah's three requests should be a model's choice, and set an exercise that took five minutes and shortened the project by a month. Write down every function the assistant might have, and cross out every one that a plain rule would choose correctly more than ninety-five times in a hundred.
 
-He asked her to do an exercise that took five minutes and shortened the project by a month. Write down every function the assistant might have. Then cross out every one where a plain rule would pick correctly more than ninety-five times in a hundred.
+Table: The crossing-out exercise
+| Function | Judgement needed? | Result |
+| --- | --- | --- |
+| Look up an order | No: the agent presses a button | Crossed out |
+| Show a hidden detail again | No: another button, with a reason typed in a box | Crossed out |
+| Send a payment link | No: a person decides, always | Crossed out |
 
-The order lookup: the agent presses a button; no judgement needed. Crossed out. Showing a hidden detail again: another button, with a reason typed into a box. Crossed out. Sending a payment link: a person decides, always. Crossed out.
+The list that remained was blank. The answer was a *fixed workflow*: the steps are known, so they are fixed in code, and the model does the part that needs judgement and nothing else. Most real products are built this way, and it is safer than letting a model choose its own path, because every step is visible and every failure has a location. A model should be given a tool only if its choice adds value, since each tool adds a new way to be attacked and a new source of delay, cost and breakage.
 
-The list that remained was blank.
-
-"That's the answer," said Imran, cheerfully. "A fixed workflow. The steps are known, so we fix them in code. The model does the part that needs judgement and nothing else." It meant a sequence decided in advance, with a model called inside it only where words had to be understood. Most real products are built this way, and it is safer than letting a model choose its own path, because every step is visible and every failure has a location. Give a model a tool only if its choice adds value. Each one adds a new way to be attacked, more delay, more cost and a new way to break.
-
-He listed the shapes that fixed workflows usually take. A sequence, one step after another. A router, which sends a message down one of several paths. Steps run side by side when they do not depend on each other. And a pair in which one step writes and another checks it. The rule for all of them was the same: use the simplest shape that meets the acceptance criteria.
+Fixed workflows usually take a few shapes: a sequence, a router that sends a message down one of several paths, steps run side by side when they do not depend on each other, and a pair in which one step writes and another checks it. The rule for all of them is to use the simplest shape that meets the acceptance criteria.
 
 ## The one job that was different
 
-There was a task in Sahaj that did not fit a fixed path, and Anaya had been circling it for a month. Each night the guard left a queue of unsure cases, the few in a hundred it had hidden to be safe. Every morning someone had to decide, one by one, what should have happened. It involved a different amount of looking up each time. A fixed sequence did not suit it.
+One task in Sahaj did not fit a fixed path, and Anaya had been circling it for a month. Each night the guard left a queue of unsure cases, the few in a hundred it had hidden to be safe. Every morning someone had to decide, one by one, what should have happened, and each case needed a different amount of looking up. A fixed sequence did not suit it.
 
-So they let a model handle it, with limits. An *AI agent*, as she had learned, is a loop: decide, act, check, decide again. The loop makes it flexible. It also makes it dangerous, because most of what goes wrong with such a thing goes wrong at the stopping. "The model did not get worse," as Imran put it, "it was given unlimited chances to be wrong."
+They let a model handle it, within limits. An AI agent is a loop: decide, act, check, decide again. The loop makes it flexible and dangerous, because most of what goes wrong with such a thing goes wrong at the stopping. A *bounded agent* has its limits written before it starts.
 
-A *bounded agent* has its limits written down before it starts. A maximum number of steps. A time. A cost ceiling. An explicit ending called *cannot resolve*, which it must use rather than guess. It keeps a visible record of where it is, a state with the goal, the steps taken, what it has seen and its status, not a growing pile of text it must reread. And it logs why each run ended.
+Table: What bounds an agent
+| Bound | Detail |
+| --- | --- |
+| Steps | A maximum number |
+| Time | A maximum duration |
+| Cost | A ceiling |
+| Ending | An explicit result called "cannot resolve", which it must use instead of guessing |
+| State | A visible record of the goal, the steps taken, what it has seen and its status, not a growing pile of text it must reread |
+| Logging | Why each run ended |
 
-Anaya asked how to know the limits worked. Imran said to prove it: build a loop that can never find its answer and watch it stop. Then he said the thing she now thought of as the centre of the whole chapter. "Mark every action as read-only, a write that can be undone, or a write that cannot. Require a person for the last. A person who approves must be approving something exact. If the payload changes after approval, the action must be blocked. Otherwise you have a popup, not a control."
+To know that the limits work, said Imran, prove it: build a loop that can never find its answer and watch it stop. He then stated the point that Anaya came to regard as the centre of the chapter.
 
-For the night queue, every action was read-only. The agent proposed. A person decided in the morning.
+::: key Mark every action, and require a person for the last kind
+Mark every action as read-only, as a write that can be undone, or as a write that cannot be undone. Require a person for the last kind. A person who approves must be approving something exact, and if the payload changes after approval the action must be blocked. Otherwise the approval is a popup and not a control.
+:::
 
-"And would you choose an agent," she said, "if nobody called it that?"
+For the night queue every action was read-only. The agent proposed, and a person decided in the morning.
 
-"Good. That's the question to ask. The twenty test nights say so." He had run them three ways: a single call, a fixed sequence and the bounded agent. The sequence did nearly as well as the agent on the ordinary nights, at a quarter of the cost. The agent did better only on the strange ones. "So we use it for the strange ones."
-
-She asked whether a second agent might help. Imran said that extra complexity must buy something measurable, and that no second agent had yet been asked to.
+Anaya asked whether an agent would still be chosen if nobody had called it that. Imran had run twenty test nights three ways: a single call, a fixed sequence and the bounded agent. On the ordinary nights the sequence did nearly as well as the agent, at a quarter of the cost. The agent did better only on the strange nights, so it would be used for the strange ones. She asked whether a second agent might help. Extra complexity must buy something measurable, Imran said, and no second agent had yet been asked to.
 
 ## The plug on the wall
 
-On Thursday the console vendor emailed with an announcement. Its product could now be connected to AI assistants through MCP.
+On Thursday the console vendor announced that its product could now be connected to AI assistants through MCP. *MCP*, the Model Context Protocol, is a standard way to connect an AI application to tools and data. As any appliance fits a wall socket that follows the standard, any tool built to the standard fits any application built to it. It has three parts: the application that holds the conversation, a small connector inside it, and a separate program on the other side that offers what it can do, its tools, its documents and its prepared instructions.
 
-"What is that?" Anaya asked.
+Anaya asked what the standard promises. Imran answered that it promises the plug fits. It does not promise that the tool is safe, and it does not decide who may switch it on. He opened the vendor's description of what its connector offered: look up an order, list a customer's payments, issue a refund. "There," he said. "It advertises a refund." Anaya asked whether the agent had permission. That, he said, is the question. Whether a tool is discoverable and whether one is allowed to use it are different matters. The first is the protocol's business, and the second is the company's, to be decided on the server from who is logged in, and not by asking the model.
 
-"A plug socket," said Imran, who liked metaphors that were not interesting.
+::: watch A standard interface to an unsafe tool is still an unsafe tool
+Whatever comes back through a connector is also text that a stranger could have written. Anaya added this to the list from the summer, beneath the rule about treating every document as untrusted. There is also a protocol for agents talking to agents, with the same shape of problem, using identity and delegation in place of tools. It solves how they talk. It does not solve whether to trust what they say.
+:::
 
-*MCP*, the Model Context Protocol, is a standard way to connect an AI application to tools and data. Any appliance fits a wall socket that follows the standard. In the same way, any tool built to it fits any application built to it. There are three parts: the application that holds the conversation, a small connector inside it, and a separate program on the other side that offers what it can do, its tools, its documents and its prepared instructions.
+By the end of the week the console had no assistant of its own. It had a night queue with a bounded agent that proposed and did not act, and a connector with the refund tool switched off. Anaya said that this was less than Farah had asked for. Imran said it was what she had needed, and that it was easier to build.
 
-"What does the standard promise?" said Anaya.
+## Summary
 
-"That it fits. It does not promise that it is safe. And it does not decide who may switch it on."
+A tool is a function a model may ask for, and each needs a tool contract that says exactly what it does and does not do, what it accepts, what errors it returns, what changes and who may call it.
 
-He opened the vendor's description of what its connector offered, and read down. *Look up an order. List a customer's payments. Issue a refund.*
-
-"There," said Imran. "It advertises a refund."
-
-"Does the agent have permission?"
-
-"That's the question, isn't it. Whether a tool is discoverable and whether you are allowed to use it are different things. The first is the protocol's business. The second is ours. And it has to be decided on the server, from who is logged in, not by asking the model nicely." He circled the word *advertised*. "A standard interface to an unsafe tool is still an unsafe tool."
-
-She added to the list from the summer, under the rule about treating every document as untrusted. Whatever comes back through a connector is also text a stranger could have written. There was a protocol, he told her, for agents talking to agents; it had the same shape of problem, with identity and delegation in place of tools. "It solves how they talk. It doesn't solve whether to trust what they say."
-
-By the end of the week, the console had no assistant of its own, and a night queue with a bounded agent that proposed and did not act, and a connector with the refund tool switched off.
-
-"That's less than Farah asked for," said Anaya.
-
-"It's what she needed," said Imran. "She just didn't know it was an easier thing to build."
-
-## What to carry forward
-
-A tool is a function a model may ask for, and each one needs a tool contract. The contract says exactly what the tool does and does not do, what it accepts, what errors it returns, what changes as a result and who may call it. Permissions are enforced by the server and never left to the model. An action that changes something must also say what happens if it runs twice, which is idempotency. Many features that seem to call for an agent are better as a fixed workflow, with a model used only where words must be understood, and a quick way to find out is to cross out every tool a plain rule would choose correctly nearly all the time. When an agent is warranted it should be bounded: limited steps, time and cost, explicit state, and a "cannot resolve" ending, with a person approving anything that cannot be undone. MCP is a standard plug, which promises that things fit and nothing about their safety, and a tool that is discoverable is not thereby authorised.
+- Permissions are enforced by the server, never left to the model. An action that changes something must say what happens if it runs twice, which is idempotency.
+- Many features that seem to call for an agent are better as a fixed workflow, with a model used only where words must be understood. A quick test is to cross out every tool that a plain rule would choose correctly nearly all the time.
+- When an agent is warranted it should be bounded: limited steps, time and cost, explicit state, and a "cannot resolve" ending, with a person approving anything that cannot be undone.
+- MCP is a standard plug. It promises that things fit and says nothing about their safety, and a tool that is discoverable is not thereby authorised.
