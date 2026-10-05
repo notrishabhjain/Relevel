@@ -55,7 +55,8 @@ a:hover{color:var(--accent2)}
 .b.lang{font-weight:500}
 .b.menu{display:none;gap:.4rem;align-items:center}
 @media (max-width:999px){.b.menu{display:inline-flex}}
-@media (max-width:640px){.b.app,.brand .ed{display:none}.b.menu .lbl{display:none}}
+@media (max-width:640px){.b.app,.brand .ed{display:none}.b.menu .lbl{display:none}.brand .mark{font-size:1rem;overflow:hidden;text-overflow:ellipsis}.bar{gap:.3rem}.b{padding-left:.55rem;padding-right:.55rem}}
+@media (max-width:420px){.brand .mark{font-size:.92rem}#size-down{display:none}}
 
 /* page frame: contents on the left when there is room, a drawer when there is not */
 .layout{display:block}

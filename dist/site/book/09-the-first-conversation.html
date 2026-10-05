@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The First Conversation · Chapter 9 · AI From Zero</title>
-<meta name="description" content="An engineer lets the product manager watch a message go to a model and come back, and what she sees on the receipt matters as much as what she reads in the answer.">
+<meta name="description" content="An engineer shows the product manager a single request to a language model and the reply that returns, and the receipt attached to the reply proves as instructive as the answer. The chapter covers APIs, JSON, API keys, the usage block, and the discovery that a confident answer is not evidence.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
@@ -99,65 +99,59 @@
 <article class="chapter" data-file="09-the-first-conversation.html" data-title="The First Conversation" data-n="9">
 <header class="chead">
 <p class="eyebrow"><span class="num">9</span><span>Chapter 9 <i>·</i> Meeting the machine</span></p>
-<h1>The First Conversation</h1><p class="dek">An engineer lets the product manager watch a message go to a model and come back, and what she sees on the receipt matters as much as what she reads in the answer.</p>
-<p class="meta"><span>7 min read</span><span>4 new words</span></p>
+<h1>The First Conversation</h1><p class="dek">An engineer shows the product manager a single request to a language model and the reply that returns, and the receipt attached to the reply proves as instructive as the answer. The chapter covers APIs, JSON, API keys, the usage block, and the discovery that a confident answer is not evidence.</p>
+<p class="meta"><span>6 min read</span><span>4 new words</span></p>
 </header>
-
+<aside class="goals"><h2>In this chapter</h2><ul><li>describe how a program asks a language model for something, through an API</li><li>read a simple JSON request and understand what a role is</li><li>explain why an API key must be kept secret</li><li>work out the cost of a call from its usage block, and explain why a fluent answer is not evidence that it is true</li></ul></aside>
 <div class="prose">
-<p>Imran waited until the office had emptied, partly because he disliked an audience and partly because, as he put it, a demonstration should never have to compete with the sound of other people's keyboards.</p>
-<p>He had one window open. In it was a text box, a button, and a grey area below where something would eventually appear. &quot;I want you to see the whole round trip,&quot; he said. &quot;I will keep it as boring as I can.&quot;</p>
-<p>&quot;Boring is good.&quot;</p>
-<p>&quot;Boring is how you can tell it is real.&quot;</p>
-<h2 id="s-9-1"><span class="sn">9.1</span>An order slip across a counter</h2>
-<p>The first thing to understand, he said, is that nobody types to the model the way a person types to a friend. A program does it for them, through a doorway called an <em><a class="term" href="/book/glossary.html#t-api" title="a way for one program to ask another for something in a fixed format, like an order slip handed across a counter">API</a></em>.</p>
-<p>He drew a counter. On one side, a customer with a slip of paper; on the other, a kitchen. The customer fills in the slip, which has fixed boxes, and hands it over. The kitchen reads the same boxes on every slip, does its work, and hands back a plate. The customer never sees the kitchen, and the kitchen does not care who the customer is, only whether the slip is filled in correctly. An API is that counter and that slip. It lets one program ask another for something, in a fixed format both understand.</p>
-<p>Sahaj's chatbot used one. When a customer pressed send, the app filled in a slip, sent it to the outside company that ran the model, and showed the plate when it came back.</p>
-<p>The slip was written in a plain format called <em><a class="term" href="/book/glossary.html#t-json" title="a plain way of writing information as labels and values inside curly braces, which nearly every API uses">JSON</a></em>, which just means information written as labels and values inside curly braces. Imran pasted one into the window. It was shorter than Anaya had expected.</p>
+<p>After the office had emptied one evening, Imran Qureshi opened a single window on his screen: a text box, a button and a grey area below them where something would appear. He wanted Anaya to see the whole round trip, from a question leaving a program to an answer coming back, and he kept the demonstration deliberately plain. This chapter reproduces it, because every product built on a language model rests on the same exchange, and a product manager who has seen one exchange in full understands most of what engineers mean when they discuss cost, security and reliability.</p>
+<h2 id="s-9-1"><span class="sn">9.1</span>The case: a round trip</h2>
+<p>The demonstration had four parts: the request that goes out, the key that authorises it, the reply that comes back with its receipt, and a question that the machine could not possibly answer. The fourth part taught more than the first three.</p>
+<h2 id="s-9-2"><span class="sn">9.2</span>An order slip across a counter</h2>
+<p>Nobody types to a language model the way a person types to a friend. A program does it, through a doorway called an <em><a class="term" href="/book/glossary.html#t-api" title="a way for one program to ask another for something in a fixed format, like an order slip handed across a counter">API</a></em>.</p>
+<p>Imran drew a counter. On one side stands a customer with a slip of paper, and on the other is a kitchen. The slip has fixed boxes. The customer fills them in and hands the slip over, the kitchen reads the same boxes on every slip, does its work and returns a plate. The customer never sees the kitchen, and the kitchen cares only whether the slip is filled in correctly.</p>
+<aside class="box box-def"><p class="boxlabel">Definition</p><h4>API</h4>
+<p>A way for one program to ask another for something in a fixed format, like an order slip handed across a counter.</p>
+</aside>
+<p>Sahaj's chatbot used one. When a customer pressed send, the app filled in a slip, sent it to the outside company that ran the model, and displayed the plate when it came back.</p>
+<p>The slip was written in <em><a class="term" href="/book/glossary.html#t-json" title="a plain way of writing information as labels and values inside curly braces, which nearly every API uses">JSON</a></em>, a plain format for information as labels and values inside curly braces. Imran pasted one into the window. It was shorter than Anaya had expected.</p>
 <pre class="transcript">{
   &quot;messages&quot;: [
     { &quot;role&quot;: &quot;user&quot;,
       &quot;content&quot;: &quot;What is the late fee on an electricity bill?&quot; }
   ]
 }</pre>
-<p>&quot;That is the request,&quot; he said. &quot;A list of messages. Each has a role, and for now there are two. <em>User</em> is whoever is asking. <em>Assistant</em> is the model's own reply. There is a third, which we will meet another day. That's it. There is nothing else on the slip.&quot;</p>
-<p>Anaya looked at it. The thing she had imagined as a mind came down to a list, and the list came down to one line. She felt slightly cheated and then, a moment later, relieved.</p>
-<h2 id="s-9-2"><span class="sn">9.2</span>The key to the till</h2>
-<p>Before he pressed anything, Imran turned the monitor a few degrees away from her.</p>
-<p>&quot;Every slip has to carry something else,&quot; he said, &quot;and it is the single most dangerous line in this whole business.&quot; He did not show it. It was a long string of letters and digits, and it was called an <em><a class="term" href="/book/glossary.html#t-api-key" title="a long secret code that tells a provider who is asking, and whom to bill; anyone who has it can spend your money">API key</a></em>. A key tells the provider who is asking and whom to bill. Anyone who holds it can send requests and spend your money, and the provider's records will say that you did.</p>
-<p>It must therefore live nowhere a stranger could see it. Not in the code of the app, where anyone who opens the page can read it. Not in a shared folder. Not in a message to a colleague. Imran told her about a developer he had once known who had pasted his key into a public project by accident and found, the next morning, a bill for several lakh rupees. &quot;The key to the till,&quot; he said. &quot;You do not leave it on the counter.&quot;</p>
-<h2 id="s-9-3"><span class="sn">9.3</span>Press the button</h2>
-<p>He pressed the button. A second passed. Text arrived in the grey area, a tidy answer about late fees being typically a small percentage of the amount due, and suggesting she check her bill.</p>
-<p>&quot;That's a made-up policy,&quot; Anaya said.</p>
-<p>&quot;That is a general answer. It doesn't know our policy because nobody told it. Look at the rest of what came back.&quot;</p>
-<p>Under the answer was a block of numbers that he had pointed at before.</p>
+<p>The request is a list of messages, and each message has a role. At this point there are two roles. <em>User</em> is whoever is asking, and <em>assistant</em> is the model's own reply. A third role exists and is introduced in Chapter 11. Nothing else is on the slip. The thing Anaya had pictured as a mind came down to a list, and the list came down to one line.</p>
+<h2 id="s-9-3"><span class="sn">9.3</span>The key to the till</h2>
+<p>Every request carries something else. Imran turned the monitor slightly away before he showed it, because it is the most dangerous line in the whole arrangement. It was a long string of letters and digits called an <em><a class="term" href="/book/glossary.html#t-api-key" title="a long secret code that tells a provider who is asking, and whom to bill; anyone who has it can spend your money">API key</a></em>. A key tells the provider who is asking and whom to bill. Anyone who holds it can send requests and spend the owner's money, and the provider's records will say that the owner did.</p>
+<aside class="box box-watch"><p class="boxlabel">Common mistake</p><h4>Where a key must never be</h4>
+<p>A key must not appear in the code of an app, where anyone who opens the page can read it. It must not sit in a shared folder or in a message to a colleague. Imran described a developer who pasted his key into a public project by accident and found a bill for several lakh rupees the next morning. A key is the key to the till, and it is not left on the counter.</p>
+</aside>
+<h2 id="s-9-4"><span class="sn">9.4</span>The reply and its receipt</h2>
+<p>Imran pressed the button. After a second, text appeared: a tidy answer saying that late fees are typically a small percentage of the amount due, with a suggestion to check the bill. Anaya observed that this was a made-up policy. Imran said it was a general answer, since the model did not know Sahaj's policy because nobody had told it.</p>
+<p>Beneath the answer was a block of numbers.</p>
 <pre class="transcript">&quot;usage&quot;: {
   &quot;tokens_in&quot;: 19,
   &quot;tokens_out&quot;: 47
 }</pre>
-<p>This, the <em><a class="term" href="/book/glossary.html#t-usage-block" title="the part of every reply that says how many tokens went in and how many came out, which is what you are charged for">usage block</a></em>, comes with every reply. It says how many tokens went in and how many came out, and it is what you are billed on. A provider's prices are quoted per million tokens, often at one rate for what you send and a higher rate for what comes back.</p>
-<p>&quot;Nineteen in. Forty-seven out.&quot; Imran took the pencil. &quot;Say the input costs two hundred and fifty rupees per million and the output a thousand, which are my numbers and not anyone's real ones. So nineteen at two-fifty is half a paisa, and forty-seven at a thousand is under five paise. This one call cost about five paise. Now imagine the real chatbot, with all its instructions sent every time, and the customer's whole conversation on top. A realistic call might be five hundred tokens in and a hundred and fifty out.&quot;</p>
-<p>He wrote it down. Five hundred times two hundred and fifty, over a million, is twelve and a half paise. A hundred and fifty at a thousand is fifteen paise. About twenty-eight paise a call. A hundred thousand calls a month came to twenty-seven thousand five hundred rupees.</p>
-<p>&quot;Is that a lot?&quot;</p>
-<p>&quot;For a company this size, it is a number somebody will ask about. Which is the point. I would like you to be the person who can say it before they ask.&quot;</p>
-<p>There was a second lesson in the same arithmetic, and Imran put it in a sentence he had clearly said before. <em>Every line of instruction you add is charged again on every call.</em> Whatever the machine is told at the start of a request is read, and paid for, each time.</p>
-<h2 id="s-9-4"><span class="sn">9.4</span>The question she wanted to ask</h2>
-<p>&quot;Go on,&quot; said Imran. &quot;Ask it something. Something it cannot possibly know.&quot;</p>
-<p>Anaya had been waiting for that. She typed the name of a company that did not exist, Rastogi Finance, which she had invented while brushing her teeth, and asked what its refund policy was.</p>
-<p>The answer arrived in under two seconds. It was courteous and detailed. Rastogi Finance, it said, allowed refunds within fourteen days of a payment, provided the request was submitted through the app, and processed them within five to seven working days. It added a sentence of regret about any inconvenience.</p>
-<p>She stared at it. There was no such company. There was no such policy. It had made up a plausible company's plausible policy with every sign of knowing what it was doing.</p>
-<p>&quot;It has never heard of them,&quot; she said.</p>
-<p>&quot;No.&quot;</p>
-<p>&quot;And it did not say so.&quot;</p>
-<p>&quot;It predicts the most likely text.&quot; Imran leaned back. &quot;After 'what is the refund policy of', the most likely continuation is a refund policy. 'I have no information about this' is a possible continuation but, in the writing it learned from, an unusual one. Saying 'I don't know' is a behaviour that has to be trained in and tested for, and it does not always hold.&quot;</p>
-<p>This was the lesson of the evening and she could feel it settling. A correct answer and an invented one read exactly the same. Confidence in the tone is no evidence of anything. The reason she had to be able to measure a tool's mistakes was not that the mistakes would be obvious; it was that they would not be.</p>
-<p>She thought of Pooja Nair, who had trusted the chatbot's &quot;verification&quot;. She thought of how it sounded. It sounded like a person who knew.</p>
-<h2 id="s-9-5"><span class="sn">9.5</span>Anaya's notes that night</h2>
-<p>She went home and, because she was getting into the habit, wrote the evening up in her own words, which was how she checked she understood it.</p>
-<p><em>A program talks to the model through an API, by sending a slip in a fixed format. The slip is JSON. It holds a list of messages. Each message has a role. The key that identifies us is a secret and costs money if anyone else has it. Each reply comes with a usage block that tells us what to pay. The cost of one call is tiny; the cost of a hundred thousand is a line in a budget. The model can invent an answer as fluently as it can give a true one.</em></p>
-<p>She read it back, and noticed what was missing. It said nothing about whether the model could remember her.</p>
-<p>She had asked Imran that, as she was leaving. He had said, with the faint smile of a man handing over a surprise, &quot;Come in tomorrow. We should talk about why it can't.&quot;</p>
-<h2 id="s-9-6"><span class="sn">9.6</span>What to carry forward</h2>
-<p>A program reaches a model through an API, which works like an order slip passed across a counter, written in a plain format called JSON that holds a list of messages, each with a role. The secret that identifies you, the API key, has to be kept where no stranger can find it. Every reply carries a usage block that shows what went in and what came out, and that is what you pay for, so the cost of a call can be worked out before anyone builds anything. And the machine produces fluent answers whether or not it has anything to base them on, which is why a confident tone is not evidence.</p>
+<p>The <em><a class="term" href="/book/glossary.html#t-usage-block" title="the part of every reply that says how many tokens went in and how many came out, which is what you are charged for">usage block</a></em> comes with every reply. It states how many tokens went in and how many came out, and it is what the customer is billed on. Providers quote prices per million tokens, often at one rate for what is sent and a higher rate for what comes back.</p>
+<figure class="tblfig"><figcaption><b>Table 9.1.</b> The cost of one call, using made-up prices</figcaption><div class="tblwrap"><table><thead><tr><th></th><th>Tokens</th><th>Price per million</th><th>Cost</th></tr></thead><tbody><tr><td>The demonstration: tokens in</td><td>19</td><td>₹250</td><td>about half a paisa</td></tr><tr><td>The demonstration: tokens out</td><td>47</td><td>₹1,000</td><td>under 5 paise</td></tr><tr><td>A realistic chatbot call: tokens in</td><td>500</td><td>₹250</td><td>12.5 paise</td></tr><tr><td>A realistic chatbot call: tokens out</td><td>150</td><td>₹1,000</td><td>15 paise</td></tr></tbody></table></div></figure>
+<p>The prices are Imran's, chosen for easy arithmetic, and are not any provider's. The demonstration cost about five paise. A realistic call, with the chatbot's instructions sent each time and the customer's message on top, costs about 28 paise. A hundred thousand such calls a month come to ₹27,500. For a company of Sahaj's size that is a figure somebody will ask about, and Imran wanted Anaya to be the person who could state it first.</p>
+<p>A second lesson sits in the same arithmetic. Every line of instruction added to a request is charged again on every call, because whatever the model is told at the start is read, and paid for, each time.</p>
+<h2 id="s-9-5"><span class="sn">9.5</span>A question it could not answer</h2>
+<p>Imran asked Anaya to put a question to the model that it could not possibly know. She typed the name of a company that did not exist, Rastogi Finance, which she had invented while brushing her teeth, and asked for its refund policy.</p>
+<p>The answer arrived in under two seconds, courteous and detailed. Rastogi Finance, it said, allowed refunds within fourteen days of payment if the request was made through the app, and processed them within five to seven working days. It added a sentence of regret for any inconvenience. There was no such company and no such policy.</p>
+<p>The explanation lies in what the model does. After &quot;what is the refund policy of&quot;, the most likely continuation is a refund policy. &quot;I have no information about this&quot; is a possible continuation but, in the writing the model learned from, an unusual one. Saying &quot;I don't know&quot; is a behaviour that has to be trained in and tested for, and it does not always hold.</p>
+<aside class="box box-key"><p class="boxlabel">Key idea</p><h4>A confident tone proves nothing</h4>
+<p>A correct answer and an invented one read exactly alike. The reason to measure a tool's mistakes is that they will not be obvious. Anaya thought of Pooja Nair, who had trusted the chatbot's request for &quot;verification&quot;, and of how it had sounded, like a person who knew.</p>
+</aside>
+<h2 id="s-9-6"><span class="sn">9.6</span>What she took away</h2>
+<p>That night Anaya wrote the evening up in her own words, as a way of checking that she understood it. A program talks to the model through an API by sending a slip in a fixed format. The slip is JSON and holds a list of messages, each with a role. The key that identifies the company is a secret and costs money if anyone else has it. Each reply carries a usage block that shows what to pay. One call is nearly free, and a hundred thousand are a line in a budget. The model can invent an answer as fluently as it can give a true one.</p>
+<p>She read it back and saw what was missing. It said nothing about whether the model could remember her. She had asked Imran as she left, and he had told her to come in the next day and talk about why it could not.</p>
+<aside class="carry"><h2>Chapter summary</h2>
+<p>A program reaches a language model through an API, which works like an order slip passed across a counter in a fixed format.</p>
+<ul><li>JSON is the plain format for the slip: labels and values inside curly braces. A request is a list of messages, each with a role.</li><li>An API key identifies the caller and the account to be billed. It must be kept secret, and anyone who holds it can spend the owner's money.</li><li>Every reply carries a usage block, and tokens in and out give the cost of a call before anything is built. Instructions are charged on every call.</li><li>The model produces fluent text whether or not it has anything to base it on, so a confident answer is not evidence.</li></ul>
+</aside>
 </div>
 <aside class="wordsbox" aria-label="Key terms"><h2>Key terms</h2><p class="sub">Plain meanings, in the order you meet them.</p><dl><div><dt id="w-api">API</dt><dd>a way for one program to ask another for something in a fixed format, like an order slip handed across a counter</dd></div><div><dt id="w-json">JSON</dt><dd>a plain way of writing information as labels and values inside curly braces, which nearly every API uses</dd></div><div><dt id="w-api-key">API key</dt><dd>a long secret code that tells a provider who is asking, and whom to bill; anyone who has it can spend your money</dd></div><div><dt id="w-usage-block">usage block</dt><dd>the part of every reply that says how many tokens went in and how many came out, which is what you are charged for</dd></div></dl></aside>
 <aside class="inapp"><span class="lead">The same ideas, with the work to do, in the course app</span><span class="chips"><a href="/#/ch/ch1">Your first API call: how a model answers<span aria-hidden="true"> →</span></a></span></aside>
