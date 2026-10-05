@@ -48,7 +48,7 @@ Table: Gyarah kaam, aur har ek ko kya karna chahiye
 | Events record karna | Events record karna aur funnels banana |
 | Ek request ko follow karna | Ek request ko shuru se ant tak follow karna, uske kharche aur samay ke saath |
 
-Woh tools ka set jo product banata aur chalata hai, is tarah slots ki tarah socha jaaye toh, *toolchain* hai. Har slot ka ek kaam hai, aur har kaam ke liye team ne us quarter ek tool chuna tha kyunki woh kaam kaafi achha karta tha aur team use jaanti thi. Agle saal slot mein naam alag ho sakta tha. Slot waha rahega.
+Woh tools ka set jo product banata aur chalata hai, is tarah slots ki tarah socha jaaye toh, *toolchain* hai. Har slot ka ek kaam hai, aur har kaam ke liye team ne us quarter ek tool chuna tha kyunki woh kaam kaafi achha karta tha aur team use jaanti thi. Agle saal slot mein naam alag ho sakta tha. Slot wahin rahega.
 
 Tanvi ne poochha ki choice khuli kyun na rakhein aur sab kyun na istemaal karein. Imran ne jawaab diya ki phir woh kaam nahi balki interfaces seekhegi. Zyadatar projects gyarah mein se paanch ya chhe istemaal karte hain. Galti har dabbe ko ek vishay ki tarah maanna hai jisme maharat paani hai. Ek dabba ek tool rakhne ki jagah hai. Sawaal yeh hain ki use kya karna chahiye aur woh kya karte hue kabhi galat nahi hona chahiye, aur phir tool chuna jaata hai aur kaam seekha jaata hai. Anaya, apne desk se sunti hui, ne woh sabak pehchaana jo use pehle hafte mein requirements ke baare mein diya gaya tha: tool ka naam lene se pehle kaam ka varnan karo.
 
@@ -77,7 +77,7 @@ Phir Tanvi, jo shaant thi, ne demonstration page apne browser mein kholi, ek key
 
 ## Model ke chaaron taraf kya hai
 
-Guruwar ko Imran ne Tanvi ko uska pehla asli kaam diya, aur woh ek shabd hata kar shuru hua jo woh istemaal karne wali thi: "AI yeh karta hai". Model text leta hai aur text deta hai, usne kaha, aur bas itna hi karta hai. Baaki sab kuch jo ek product ko kaam karne laayak banata hai woh uske chaaron taraf banaya jaata hai, aur woh aas-paas ka dhaancha *harness* hai. Ek harness ke saat hisse hain, aur product ko debug karne wale ko har ek dhoondhne mein sakshm hona chahiye.
+Thursday ko Imran ne Tanvi ko uska pehla asli kaam diya, aur woh ek shabd hata kar shuru hua jo woh istemaal karne wali thi: "AI yeh karta hai". Model text leta hai aur text deta hai, usne kaha, aur bas itna hi karta hai. Baaki sab kuch jo ek product ko kaam karne laayak banata hai woh uske chaaron taraf banaya jaata hai, aur woh aas-paas ka dhaancha *harness* hai. Ek harness ke saat hisse hain, aur product ko debug karne wale ko har ek dhoondhne mein sakshm hona chahiye.
 
 Table: Harness ke saat hisse, Monday ki report ke udaharan ke saath
 | Hissa | Kya karta hai | Monday ki report mein |
@@ -169,5 +169,5 @@ Ek AI product ko lagbhag gyarah kaam karwane padte hain, aur tools ko dekhne ka 
 - Har stack ke saath do audits jaate hain: kisi bhi AI saar ke das dawon ko unke sources se milao, aur har tool ke liye likho ki woh kya store karta hai aur uski keys kahan rehti hain.
 - Model ek product ka ek hissa hai. Baaki, harness, ke saat hisse hain: context, tools, state, orchestration, policy, evals aur observability. Zyadatar quality ki samasyayein wahin rehti hain.
 - Coding assistants ek saadha loop chalate hain, kuch aam tools istemaal karte hain, project ke niyam ek file mein rakhte hain, jokhim wale kaamon ke liye ijaazat maangte hain aur sabse zyada ek verifier par nirbhar karte hain.
-- Tool access ek allowlist ho, scope mein sankra, aur jo kuch wapas nahi liya ja sakta uske liye manzoori ke saath, aur pehle se tay saboot par hi chaudaa kiya jaaye.
+- Tool access ek allowlist ho, scope mein sankra, aur jo kuch wapas nahi liya ja sakta uske liye manzoori ke saath, aur pehle se tay saboot par hi chauda kiya jaaye.
 - Ek tay process ke liye ek state machine aam taur par agent se behtar hai, aur chunaav ek hi cases par naapa jaana chahiye. Badlaav ek gate aur ek flag ke peechhe, ek rollback trigger, ek naamit maalik aur har tarah ki failure ke liye ek yojna ke saath jaata hai.
