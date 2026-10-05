@@ -1,7 +1,12 @@
 ---
 title: Pehli Baatcheet
-summary: Ek engineer product manager ko dikhata hai ki ek message model tak jaata hai aur wapas aata hai, aur receipt par jo dikhta hai woh utna hi zaroori hai jitna jawaab mein jo padha jaata hai.
+summary: Ek engineer product manager ko language model ke paas ek request jaate aur jawaab lautte dikhata hai, aur jawaab ke saath ki rasid jawaab jitni hi sikhane wali nikalti hai. Chapter API, JSON, API key, usage block, aur is khoj ko samjhata hai ki aatmavishwaas bhara jawaab saboot nahi hota.
 course: ch1
+goals:
+  - batana ki ek program language model se API ke zariye kuch kaise maangta hai
+  - ek saadhi JSON request padhna aur samajhna ki role kya hota hai
+  - samjhana ki API key ko gupt kyun rakhna chahiye
+  - usage block se ek call ka kharcha nikalna, aur samjhana ki saaf-suthra jawaab sach hone ka saboot kyun nahi hai
 terms:
   - API | ek program ka doosre program se ek tay format mein kuch maangne ka tareeka, jaise counter ke aar-paar thamayi gayi order slip | APIs
   - JSON | jaankari ko curly braces ke andar labels aur values ki tarah likhne ka saral tareeka, jo lagbhag har API istemaal karti hai | 
@@ -9,23 +14,25 @@ terms:
   - usage block | har jawaab ka woh hissa jo batata hai ki kitne tokens andar gaye aur kitne bahar aaye, jiske hisaab se aapse paisa liya jaata hai | usage
 ---
 
-Imran tab tak ruka raha jab tak office khaali nahi ho gaya, kuch isliye ki use bheed pasand nahi thi aur kuch isliye ki, uske shabdon mein, demonstration ko doosron ke keyboards ki awaaz se muqabla nahi karna chahiye.
+Ek shaam office khaali hone ke baad Imran Qureshi ne apni screen par ek hi window kholi: ek text box, ek button aur uske neeche ek dhusar jagah jahan kuch dikhna tha. Woh chahta tha ki Anaya poora round trip dekhe, sawaal ka program se nikalna aur jawaab ka wapas aana, aur usne demonstration ko jaanboojh kar saadha rakha. Yeh chapter us demonstration ko dohrata hai, kyunki language model par bana har product usi ek aadan-pradaan par tikta hai, aur jis product manager ne ek poora aadan-pradaan dekha ho woh engineers ki cost, security aur reliability ki baaton ka zyadatar hissa samajh leti hai.
 
-Uske paas ek window khuli thi. Usme ek text box tha, ek button, aur neeche ek dhusar jagah jahan kuch aakhirkaar dikhne wala tha. "Main chahta hoon tum poora round trip dekho," usne kaha. "Main ise jitna ho sake boring rakhunga."
+## 9.1 Case: ek round trip
 
-"Boring achha hai."
+Demonstration ke chaar hisse the: jaane wali request, woh key jo use manzoori deti hai, wapas aane wala jawaab apni rasid ke saath, aur ek aisa sawaal jiska jawaab machine ko hargiz pata nahi ho sakta tha. Chauthe hisse ne pehle teen se zyada sikhaya.
 
-"Boring se hi pata chalta hai ki yeh asli hai."
+## 9.2 Counter ke aar-paar ek order slip
 
-## Counter ke aar-paar ek order slip
+Koi bhi language model se waise baat nahi karta jaise koi dost se karta hai. Ek program karta hai, ek darwaze ke zariye jise *API* kehte hain.
 
-Sabse pehli cheez samajhne ki, usne kaha, yeh hai ki model se koi bhi waise type nahi karta jaise insaan dost se baat karta hai. Ek program unke liye karta hai, ek darwaze ke zariye jise *API* kehte hain.
+Imran ne ek counter banaya. Ek taraf ek customer hai jiske haath mein kaagaz ki parchi hai, aur doosri taraf ek rasoi. Parchi mein tay khaane hain. Customer unhe bharkar parchi dega, rasoi har parchi par wahi khaane padhti hai, kaam karti hai aur ek plate wapas deti hai. Customer rasoi ko kabhi nahi dekhta, aur rasoi sirf yeh dekhti hai ki parchi sahi bhari gayi hai ya nahi.
 
-Usne ek counter banaya. Ek taraf ek customer jiske haath mein kaagaz ki slip hai; doosri taraf ek rasoi. Customer slip bharta hai, jisme tay dibbe hain, aur thama deta hai. Rasoi har slip par wahi dibbe padhti hai, apna kaam karti hai, aur ek plate wapas deti hai. Customer rasoi ko kabhi nahi dekhta, aur rasoi ko parwaah nahi ki customer kaun hai, bas yeh ki slip theek se bhari gayi ya nahi. API wahi counter aur wahi slip hai. Yeh ek program ko doosre se kuch maangne deti hai, ek tay format mein jo dono samajhte hain.
+::: def API
+Ek program ke dusre program se kuch maangne ka tay format wala tareeka, jaise counter ke aar-paar di gayi order slip.
+:::
 
-Sahaj ka chatbot ek istemaal karta tha. Jab customer send dabata, app ek slip bharta, use us bahari company ko bhejta jo model chalati thi, aur plate aane par use dikha deta.
+Sahaj ka chatbot ek istemaal karta tha. Jab customer send dabata, toh app ek parchi bharta, use us bahari company ko bhejta jo model chalati thi, aur plate wapas aane par dikhata.
 
-Slip ek saral format mein likhi thi jise *JSON* kehte hain, jiska bas matlab hai curly braces ke andar labels aur values ki tarah likhi jaankari. Imran ne ek window mein paste ki. Woh Anaya ki umeed se chhoti thi.
+Parchi *JSON* mein likhi thi, jo curly braces ke andar labels aur values ki tarah jaankari likhne ka saadha format hai. Imran ne ek window mein paste ki. Woh Anaya ki ummeed se chhoti thi.
 
 ```
 {
@@ -36,27 +43,21 @@ Slip ek saral format mein likhi thi jise *JSON* kehte hain, jiska bas matlab hai
 }
 ```
 
-"Yeh request hai," usne kaha. "Messages ki ek list. Har ek ka ek role hai, aur abhi do hain. *User* woh hai jo pooch raha hai. *Assistant* model ka apna jawaab hai. Ek teesra bhi hai, jisse hum kisi aur din milenge. Bas itna hi. Slip par aur kuch nahi hai."
+Request messages ki ek list hai, aur har message ka ek role hota hai. Abhi do role hain. *User* woh hai jo pooch raha hai, aur *assistant* model ka apna jawaab hai. Teesra role bhi hota hai, jo Chapter 11 mein samjhaya jaayega. Parchi par aur kuch nahi hai. Jis cheez ko Anaya ne dimaag samjha tha woh ek list nikli, aur list ek line nikli.
 
-Anaya ne use dekha. Jise usne ek dimaag samajha tha woh ek list tak simat gayi, aur list ek line tak. Use thoda thaga hua laga aur phir, ek pal baad, raahat.
+## 9.3 Till ki chaabi
 
-## Tijori ki chaabi
+Har request ke saath ek aur cheez jaati hai. Imran ne dikhane se pehle monitor ko thoda ghuma diya, kyunki yeh poore intezaam ki sabse khatarnaak line hai. Yeh akshron aur ankon ki ek lambi string thi jise *API key* kehte hain. Key provider ko batati hai ki kaun maang raha hai aur bill kise bhejna hai. Jiske paas bhi yeh hai, woh requests bhej sakta hai aur maalik ka paisa kharch kar sakta hai, aur provider ke records kahenge ki maalik ne kiya.
 
-Kuch bhi dabane se pehle Imran ne monitor ko uski taraf se kuch degree ghuma diya.
+::: watch Key kahan kabhi nahi honi chahiye
+Key app ke code mein nahi honi chahiye, jahan page kholne wala koi bhi use padh sakta hai. Woh shared folder mein ya saathi ko bheje message mein nahi honi chahiye. Imran ne ek developer ka zikr kiya jisne galti se apni key ek public project mein paste kar di aur agli subah usne kai lakh rupaye ka bill dekha. Key till ki chaabi hai, aur use counter par chhodte nahi.
+:::
 
-"Har slip ke saath ek aur cheez jaani chahiye," usne kaha, "aur woh is poore dhandhe ki sabse khatarnaak line hai." Usne woh dikhayi nahi. Woh akshron aur ankon ki ek lambi string thi, aur use *API key* kehte hain. Key provider ko batati hai ki kaun maang raha hai aur bill kise bhejna hai. Jiske paas bhi yeh hai woh requests bhej sakta hai aur aapka paisa kharch kar sakta hai, aur provider ke records kahenge ki aapne kiya.
+## 9.4 Jawaab aur uski rasid
 
-Isliye use aisi jagah rahna chahiye jahan koi ajnabi use dekh na sake. App ke code mein nahi, jahan page kholne wala koi bhi use padh sakta hai. Shared folder mein nahi. Kisi saathi ko bheje message mein nahi. Imran ne use ek developer ke baare mein bataya jise woh kabhi jaanta tha, jisne galti se apni key ek public project mein paste kar di thi aur agli subah usne paya ki kai lakh rupaye ka bill aa gaya. "Tijori ki chaabi," usne kaha. "Use counter par nahi chhodte."
+Imran ne button dabaya. Ek second baad text aaya: ek saaf jawaab jo kehta tha ki late fee aam taur par bakaya raashi ka chhota percent hota hai, aur bill dekhne ki salah di. Anaya ne kaha ki yeh ek banai hui policy hai. Imran ne kaha ki yeh ek aam jawaab hai, kyunki model Sahaj ki policy nahi jaanta jab tak kisi ne use bataya nahi.
 
-## Button dabao
-
-Usne button dabaya. Ek second guzra. Dhusar jagah mein text aaya, late fees ke baare mein ek saaf jawaab ki yeh aamtaur par dene wali rakam ka chhota percent hoti hain, aur salaah ki woh apna bill dekh le.
-
-"Yeh man-gadhant policy hai," Anaya ne kaha.
-
-"Yeh ek aam jawaab hai. Use hamari policy pata nahi kyunki kisi ne use bataya nahi. Baaki jo wapas aaya woh dekho."
-
-Jawaab ke neeche numbers ka ek block tha jis par woh pehle ishaara kar chuka tha.
+Jawaab ke neeche numbers ka ek block tha.
 
 ```
 "usage": {
@@ -65,50 +66,43 @@ Jawaab ke neeche numbers ka ek block tha jis par woh pehle ishaara kar chuka tha
 }
 ```
 
-Yeh, *usage block*, har jawaab ke saath aata hai. Yeh batata hai ki kitne tokens andar gaye aur kitne bahar aaye, aur isi par aapka bill banta hai. Provider ke daam har das lakh tokens ke hisaab se bataye jaate hain, aksar jo aap bhejte hain uske liye ek rate aur jo wapas aata hai uske liye zyada.
+*Usage block* har jawaab ke saath aata hai. Woh batata hai ki kitne tokens andar gaye aur kitne bahar aaye, aur customer ka bill isi par banta hai. Providers prices dus lakh token ke hisaab se batate hain, aksar bheje jaane wale text ke liye ek rate aur wapas aane wale ke liye zyada rate.
 
-"Unnees andar. Saintaalis bahar." Imran ne pencil li. "Maan lo input ke das lakh par dhai sau rupaye aur output ke ek hazaar, jo meri apni ginti ke number hain aur kisi ke asli nahi. Toh unnees ko dhai sau se guna karein toh aadha paisa, aur saintaalis ko ek hazaar se karein toh paanch paise se kam. Is ek call ka kharcha lagbhag paanch paise. Ab asli chatbot ki kalpana karo, jisme har baar sab nirdesh bheje jaate hain, aur upar se customer ki poori baatcheet. Ek yatharth call paanch sau tokens andar aur dedh sau bahar ho sakti hai."
+Table: Ek call ka kharcha, kalpanik daam ke saath
+| | Tokens | Dus lakh token par daam | Kharcha |
+| --- | --- | --- | --- |
+| Demonstration: tokens in | 19 | ₹250 | lagbhag aadha paisa |
+| Demonstration: tokens out | 47 | ₹1,000 | paanch paise se kam |
+| Asli chatbot call: tokens in | 500 | ₹250 | 12.5 paise |
+| Asli chatbot call: tokens out | 150 | ₹1,000 | 15 paise |
 
-Usne likh liya. Paanch sau guna dhai sau, das lakh se bhaag, saadhe barah paise. Dedh sau guna ek hazaar, pandrah paise. Ek call ke lagbhag atthaaees paise. Mahine ke ek lakh calls ka kharcha saadhe sattaees hazaar rupaye.
+Daam Imran ke hain, aasaan hisaab ke liye chune gaye, kisi provider ke nahi. Demonstration ka kharcha lagbhag paanch paise tha. Ek asli call, jisme chatbot ke instructions har baar jaate hain aur upar customer ka message, lagbhag 28 paise padti hai. Mahine ki ek lakh aisi calls ka ₹27,500 banta hai. Sahaj jaisi company ke liye yeh woh figure hai jo koi poochhega, aur Imran chahta tha ki Anaya woh insaan ho jo use pehle bata sake.
 
-"Kya yeh zyada hai?"
+Isi hisaab mein ek doosra sabak chhupa hai. Request mein jodi gayi har instruction ki line har call par dobara charge hoti hai, kyunki jo kuch model ko shuru mein bataya jaata hai woh har baar padha jaata hai, aur uska paisa lagta hai.
 
-"Is size ki company ke liye yeh woh number hai jiske baare mein koi poochhega. Yahi baat hai. Main chahta hoon ki tum woh insaan bano jo unke poochhne se pehle bata sake."
+## 9.5 Ek sawaal jiska woh jawaab nahi de sakta tha
 
-Usi ginit mein ek doosra sabak bhi tha, aur Imran ne use ek vaakya mein rakha jo usne spasht roop se pehle bhi kaha tha. *Aap jo har line ka nirdesh jodte hain woh har call par dobara charge hota hai.* Request ki shuruaat mein machine ko jo kuch bataya jaata hai woh har baar padha jaata hai, aur uska paisa diya jaata hai.
+Imran ne Anaya se model se aisa sawaal poochhne ko kaha jo woh jaan hi nahi sakta tha. Usne ek aisi company ka naam type kiya jo thi hi nahi, Rastogi Finance, jo usne brush karte hue gadha tha, aur uski refund policy poochhi.
 
-## Woh sawaal jo woh poochhna chahti thi
+Jawaab do second se kam mein aaya, shishta aur vistrit. Rastogi Finance, usne kaha, payment ke chaudah din ke andar refund deti hai agar request app ke zariye ki jaaye, aur paanch se saat kaam ke dinon mein process karti hai. Usne asuvidha ke liye khed ka ek vaakya bhi joda. Aisi koi company nahi thi aur aisi koi policy nahi thi.
 
-"Chalo," Imran ne kaha. "Kuch poochho. Kuch aisa jo use bilkul nahi pata ho sakta."
+Wajah is mein hai ki model karta kya hai. "Refund policy of" ke baad sabse sambhav agla text ek refund policy hai. "Mere paas is baare mein jaankari nahi hai" ek sambhav agla vaakya hai, par model ne jo likha padha usme woh ek anokha vaakya hai. "Mujhe nahi pata" kehna ek aisa vyavhaar hai jo alag se sikhana aur test karna padta hai, aur woh hamesha tikta nahi.
 
-Anaya isi ka intezaar kar rahi thi. Usne ek aisi company ka naam type kiya jo thi hi nahi, Rastogi Finance, jo usne brush karte waqt gadh liya tha, aur poochha ki uski refund policy kya hai.
+::: key Aatmavishwaas bhara swar kuch saabit nahi karta
+Sahi jawaab aur gadha hua jawaab ek jaise padhe jaate hain. Tool ki galtiyon ko naapne ki wajah yeh hai ki woh aasaani se dikhengi nahi. Anaya ne Pooja Nair ke baare mein socha, jisne chatbot ke "verification" maangne par bharosa kiya tha, aur is baare mein ki woh kaisa sunayi diya tha, kisi aise insaan ki tarah jo jaanta ho.
+:::
 
-Jawaab do second se kam mein aa gaya. Woh shishtta se bhara aur byore waala tha. Rastogi Finance, usne kaha, payment ke chaudah din ke andar refund deti hai, shart yeh ki request app ke zariye ki jaaye, aur unhe paanch se saat kaam ke dinon mein process karti hai. Usne kisi asuvidha ke liye khed jatane wala ek vaakya bhi jod diya.
+## 9.6 Usne kya samjha
 
-Woh use ghurti rahi. Aisi koi company nahi thi. Aisi koi policy nahi thi. Usne ek sambhaavit-si company ki sambhaavit-si policy gadh di thi, is sab ke saath ki use pata hai woh kya kar raha hai.
+Us raat Anaya ne shaam ko apne shabdon mein likha, yeh jaanchne ke tareeke ki tarah ki woh samjhi hai ya nahi. Program model se API ke zariye ek tay format ki parchi bhejkar baat karta hai. Parchi JSON hai aur usme messages ki ek list hai, har ek ka role. Company ko pehchaanne wali key ek raaz hai aur agar koi aur use paa jaaye toh paisa kharch karwati hai. Har jawaab ke saath ek usage block aata hai jo batata hai ki kitna dena hai. Ek call lagbhag muft hai, aur ek lakh calls budget ki ek line hain. Model ek gadhe hue jawaab ko utni hi saafai se de sakta hai jitni saafai se sach ko.
 
-"Usne unke baare mein kabhi suna hi nahi," usne kaha.
+Usne use wapas padha aur dekha ki kya chhoot gaya. Usme isse kuch nahi tha ki kya model use yaad rakh sakta hai. Jaate waqt usne Imran se yeh poochha tha, aur usne kaha tha ki agle din aaye aur is baare mein baat karein ki woh kyun nahi rakh sakta.
 
-"Nahi."
+## Saaraansh
 
-"Aur usne kaha bhi nahi."
+Program language model tak API ke zariye pahunchta hai, jo ek counter ke aar-paar di gayi parchi jaisa hai, tay format mein.
 
-"Woh sabse sambhav text predict karta hai." Imran peeche jhuka. "'what is the refund policy of' ke baad sabse sambhav aage ka text ek refund policy hai. 'Mere paas is baare mein koi jaankari nahi' ek sambhav aage ka text hai par, jis likhe hue se usne seekha, usme ek durlabh wala. 'Mujhe nahi pata' kehna ek vyavahaar hai jise train karna padta hai aur uske liye test karna padta hai, aur woh hamesha tikta nahi."
-
-Yahi shaam ka sabak tha aur woh use baithta hua mehsoos kar sakti thi. Sahi jawaab aur gadha hua jawaab bilkul ek jaise padhte hain. Awaaz ka vishwas kisi cheez ka saboot nahi hai. Use kisi tool ki galtiyan naapna isliye aana chahiye tha ki galtiyan saaf nahi hongi; isliye nahi ki woh saaf hongi.
-
-Use Pooja Nair yaad aayi, jisne chatbot ke "verification" par bharosa kiya tha. Use yaad aaya ki woh kaisa sunayi deta tha. Woh ek aise insaan ki tarah sunayi deta tha jise pata ho.
-
-## Anaya ke us raat ke notes
-
-Woh ghar gayi aur, kyunki use ab aadat padne lagi thi, shaam ko apne shabdon mein likha, jo uska tareeka tha yeh jaanchne ka ki usne samjha ya nahi.
-
-*Ek program model se API ke zariye baat karta hai, ek tay format mein slip bhej kar. Slip JSON hai. Usme messages ki ek list hai. Har message ka ek role hai. Jo key hamein pehchaanti hai woh gupt hai aur agar kisi aur ke paas ho toh paisa kharch karti hai. Har jawaab ke saath usage block aata hai jo batata hai ki humein kitna dena hai. Ek call ka kharcha bahut chhota hai; ek lakh ka kharcha budget ki ek line hai. Model utni hi saafgoi se ek man se banaya hua jawaab de sakta hai jitni saafgoi se sach.*
-
-Usne ise wapas padha aur dekha ki kya chhoota tha. Usme is baare mein kuch nahi tha ki kya model use yaad rakh sakta hai.
-
-Jaate waqt usne Imran se yahi poochha tha. Usne, ek aise insaan ki halki muskaan ke saath jo ek surprise thama raha ho, kaha tha, "Kal aana. Humein baat karni chahiye ki woh kyun nahi rakh sakta."
-
-## Saath le jaane layak baatein
-
-Ek program model tak API ke zariye pahunchta hai, jo counter ke aar-paar thamayi gayi order slip jaisi kaam karti hai, ek saral format JSON mein likhi hui, jisme messages ki ek list hoti hai, har ek ke role ke saath. Woh raaz jo aapko pehchaanta hai, API key, aisi jagah rakhni chahiye jahan koi ajnabi use na dhoondh sake. Har jawaab ke saath ek usage block aata hai jo dikhata hai ki kya andar gaya aur kya bahar aaya, aur aap usi ka paisa dete hain, isliye ek call ka kharcha koi kuch banane se pehle hi nikaal sakta hai. Aur machine saaf-suthra jawaab tab bhi deti hai jab uske paas unka koi aadhar na ho, isliye vishwas bhari awaaz saboot nahi hai.
+- JSON parchi ka saadha format hai: curly braces ke andar labels aur values. Request messages ki ek list hai, har ek ka role.
+- API key bulane wale aur bill dene wale account ko pehchaanti hai. Use gupt rakhna chahiye, aur jiske paas bhi woh ho woh maalik ka paisa kharch kar sakta hai.
+- Har jawaab ke saath ek usage block aata hai, aur tokens in aur out kuch banne se pehle hi call ka kharcha bata dete hain. Instructions har call par charge hote hain.
+- Model utni hi saafai se text banata hai chahe uske paas uska aadhar ho ya na ho, isliye aatmavishwaas bhara jawaab saboot nahi hai.

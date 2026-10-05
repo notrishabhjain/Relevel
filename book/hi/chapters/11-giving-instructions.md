@@ -1,7 +1,12 @@
 ---
 title: Nirdesh Dena
-summary: Team pehli baar model se guard ka kaam karne ko kehti hai, use teen alag tareeko se galat hote dekhti hai, aur seekhti hai ki failure ko kam baar hona banana aur uski wajah ko hata dena, dono mein kya farak hai.
+summary: Team pehli baar language model se guard ka kaam karwati hai aur use teen alag tareekon se fail hote dekhti hai. Chapter prompts, system prompts, temperature, hallucination aur worked examples samjhata hai, aur yeh antar ki failure ko kam hona banaam uski wajah ko hataana.
 course: ch2 ch21
+goals:
+  - prompt aur system prompt batana, aur yeh ki standing instructions har request ke saath kyun bheje jaate hain
+  - samjhana ki temperature kya badalta hai aur kya nahi
+  - hallucination pehchaanna aur batana ki woh kyun hoti hai
+  - prompting ke chaar tareekon ko taakat ke kram mein rakhna, aur samjhana ki ek instruction failure ko kam karta hai par uski wajah nahi hataata
 terms:
   - prompt | woh text jo aap model ko bhejte hain, jisme nirdesh, udaharan aur woh material ho sakta hai jis par use kaam karna hai | prompts
   - system prompt | woh sthayi nirdesh jo ek app har request ke saath bhejta hai, yeh batate hue ki assistant kaun hai aur use kya karna aur kya nahi karna hai | system prompts
@@ -10,17 +15,11 @@ terms:
   - worked example | jis output ki aapko zaroorat hai uska ek poora kiya hua namoona, jo model ko dikhaya jaata hai taaki woh aapke vivaran ki nakal karne ke bajaye format ki copy kare | worked examples
 ---
 
-"Theek hai," Imran ne kaha. "Theory bahut hui. Isse kaam karne ko kehte hain aur dekhte hain kya hota hai."
+Pichhle demonstration ke baad wale Monday ko Farah Sheikh teen messages ek card par likhkar glass meeting room mein laayi. Uski team ne unhe pichhli shaam asli customers ke andaaz mein likha tha, aur unmein se koi asli nahi tha. Anaya ne is par zor diya tha. Jab Lakshmi Iyer ko pata chala, toh usne kaha ki yeh project ke baare mein sunayi gayi pehli samajhdaar baat hai, kyunki asli logon ke raazon par test hua privacy tool apne aap mein ek chhota scandal hota.
 
-Agla Monday tha. Farah subah jaldi aayi thi, coffee aur ek card par teen messages ke saath, jo uski team ne pichhli shaam asli customers ki shaili mein likhe the. Woh asli nahi the. Anaya ne isi baat par zor diya tha, aur Lakshmi ne, jab use bataya gaya, kaha tha ki project ke baare mein yeh pehli samajhdaar baat hai jo usne suni, jise Anaya ne taareef maan liya. Asli logon ke raazon par test kiya gaya privacy tool khud ek chhota ghotala hota.
+Pehla message tha: "My name is Amit Sharma. My PAN is ABCDE1234F and I transferred ₹4 lakh from my HDFC account ending 4521. Why was my loan rejected?" Imran Qureshi ne ise ek window mein type kiya, apni ek line ke neeche: "List every piece of personal information in this message." Yeh chapter us teen ghante ke baare mein hai jo iske baad chale. Model se guard ka ek hissa karne ko kaha gaya, aur uski galtiyon ne team ko uski safalta se zyada sikhaya.
 
-Pehla message tha: *Mera naam Amit Sharma hai. Mera PAN ABCDE1234F hai aur maine apne HDFC account jiske ant mein 4521 hai usse ₹4 lakh transfer kiye. Mera loan reject kyun hua?*
-
-Imran ne use ek window mein type kiya, apni ek line ke neeche.
-
-*Is message mein har personal jaankari ki list banao.*
-
-## Pehla jawaab
+## 11.1 Case: pehli list
 
 Jawaab do second mein aaya.
 
@@ -33,96 +32,77 @@ Jawaab do second mein aaya.
 6. Loan rejection
 ```
 
-"Bura nahi hai," Farah ne kaha.
+Anaya ne, pencil se padhte hue, chaar sahi cheezein ginin: naam, PAN, bank aur account ke aakhri ank. Raashi ek number hai aur kisi ko pehchaanne wali detail nahi, aur loan rejection se insaan ko dhoondha nahi ja sakta tha. Model ne do aisi cheezein list kar di thi jinhe chhupana nahi tha. Imran ne kaha ki list karna chhupana nahi hai, aur chhupana baad ka kadam hai. Phir usne wahi message dobara chalaya. Doosri list mein chhe nahi, chaar cheezein thi. Teesri baar mein saat aayin, aur surname ek alag entry ki tarah dohraya gaya. Farah ne poochha ki jawaab badal kyun jaata hai.
 
-"Inmein se chaar sahi hain," Anaya ne kaha, jo pencil lekar padh rahi thi. "Naam, PAN, bank, aakhri ank. Rakam personal nahi hai, hai kya? Woh ek number hai. Aur loan reject hona aisi detail nahi hai jisse insaan ko dhoondha ja sake."
+## 11.2 Temperature: variety ka dial
 
-"Hoti, agar insaan mashhoor hota," Imran ne kaha. "Par baat samajh gaya."
+Har kadam par model ke paas kuch sambhav agle tokens hote hain, har ek ki apni sambhavna ke saath. *Temperature* naam ki setting tay karti hai ki woh kam sambhav tokens mein se ek chunne ko kitna taiyaar hai. Ooncha temperature par woh door tak jaata hai aur jeevant, alag-alag jawaab deta hai, jo kavita likhne ya pet ka naam sochne ke liye theek hai. Neeche, zero ke paas, woh lagbhag hamesha sabse sambhav token leta hai, isliye wahi sawaal lagbhag wahi jawaab paata hai.
 
-"Toh usne do cheezein chhupayin jinhe chhupane ki zaroorat nahi thi."
+Imran ne setting kam ki aur message paanch baar chalaya. Paanchon list lagbhag ek jaisi thi. Is kaam ke liye Anaya ko kam temperature chahiye tha, kyunki wahi sawaal Tuesday ko wahi jawaab paaye jo Monday ko paaya.
 
-"Usne do cheezein *list* kin. Chhupana agla dibba hai." Usne wahi message dobara chalaya. Is baar list mein chhe ki jagah chaar item the: koi loan nahi, koi rakam nahi. Teesri baar mein saat aaye, jisme *Sharma* shabd doosri baar, apni alag entry ke roop mein tha.
+::: watch Ek jaisa hona sahi hona nahi hai
+Kam temperature jawaab ko ek jaisa banata hai. Woh use sahi nahi banata. Jo model zero par galat hai woh har baar ek hi tarah galat hai, aur koi dial ghumakar system ko accurate nahi banata.
+:::
 
-"Yeh badalta kyun hai?" Farah ne poochha.
+## 11.3 Sthayi instructions
 
-## Variety ka ek dial
+Doosra message Hinglish mein tha, jise Farah ne us raftaar se type kiya jaise koi roz aise chaalis message likhta hai: "Sir mera aadhaar 4321 5678 9012 hai aur ye number 98xxxxxx12 pe call kar lena." Model ko Aadhaar number mil gaya. Usne "98xxxxxx12" ko bhi mobile number ki tarah list kar diya, jabki ek agent use x type karke pehle hi chhupa chuka tha. Use report karne se guard use do baar chhupata.
 
-Yeh, Imran ne kaha, doosra control tha, aur woh ise kisi aise ko dikhane ka intezaar kar raha tha jise parwaah ho.
+Iska ilaj ek instruction hai, aur instruction har request ke saath bhejna padta hai kyunki model kuch yaad nahi rakhta. Imran ne doosra box khola aur ek chhota paragraph type kiya. Is tarah ke sthayi instructions, jo batate hain ki assistant kaun hai aur use kya karna hai aur kya nahi, *system prompt* hain. Woh saadhaaran text hai, message se kuch alag nahi, aur application use har request ke saath sabse pehle bhejta hai.
 
-Har kadam par model ke paas kuch sambhaavit agle tokens hote hain, chances ke saath. *Temperature* naam ki setting tay karti hai ki machine kam sambhav wale mein se ek chunne ko kitni tayyar hai. Zyada temperature par woh door tak ghoomti hai, aur jeevant, alag-alag jawaab deti hai: kavita likhne ke liye achha, ya kisi pet ke naam sochne ke liye. Kam par, shoonya ke qareeb, woh lagbhag hamesha sabse sambhav token leti hai, isliye wahi sawaal lagbhag wahi jawaab paata hai har baar.
+::: def Prompt aur system prompt
+*Prompt* woh sab kuch hai jo model ko bheja jaata hai: instructions, udaharan aur woh material jis par use kaam karna hai. *System prompt* uska woh hissa hai jo ek request se doosri tak wahi rehta hai.
+:::
 
-Usne use neeche kiya aur message paanch baar chalaya. Paanch lists, lagbhag ek jaisi.
+Jab koi vendor kehta hai ki usne kisi company ke liye AI ko customise kiya hai, toh aksar usne ek system prompt likha hota hai. Yeh theek hai aur jaanna kaam ka hai, aur vendor se poochhne layak sawaal yeh hai ki aur kya, agar kuch, badla gaya.
 
-"Is kaam ke liye," Anaya ne kaha, "main ise kam chahti hoon."
+## 11.4 Jahan woh gadhta hai
 
-"Zaroor. Tum chahti ho ki wahi sawaal Tuesday ko wahi jawaab paaye jo Monday ko." Usne haath uthaya. "Lekin doosra hissa bhi suno. Kam temperature jawaabon ko ek jaisa banata hai. Sahi nahi banata. Agar woh shoonya par galat hai, toh har baar usi tarah galat hai. Kisi ko mat kehne dena ki unhone ek dial ghuma kar ise accurate bana diya."
-
-## Sthayi nirdesh
-
-Doosra message Hinglish mein tha, aur Farah ne use khud type kiya, us tez, saaf raftaar se jo koi din mein chaalees baar karne wala karta hai. *Sir mera aadhaar 4321 5678 9012 hai aur ye number 98xxxxxx12 pe call kar lena.*
-
-Jawaab ne Aadhaar number dhoondh liya. Usne *98xxxxxx12* ko bhi mobile number ke roop mein list kiya.
-
-"Woh pehle se chhupa hua hai," Farah ne kaha. "Agent ne x type kiye the. Ise detail ki tarah list karne se hum ise do baar chhupa denge."
-
-"Theek, hum yeh likh lete hain," Imran ne kaha. "Aur humein yeh ek baar kehna hai, har baar nahi. Model bhool jaata hai, isliye jo kuch hum chahte hain woh har request ke saath bhejna padega."
-
-Usne ek doosra box khola aur ek chhota paragraph type kiya. Yeh sthayi nirdesh, jo batate hain ki assistant kaun hai aur use kya karna hai aur kya nahi, *system prompt* kehlate hain. Yeh aam text hai, khud message se kuch alag nahi, jo app har request ke saath sabse pehle bhejta hai. Aam taur par, *prompt* woh kuch bhi hai jo aap model ko bhejte hain: nirdesh, udaharan, woh material jis par use kaam karna hai. System prompt bas woh hissa hai jo ek jaisa rehta hai.
-
-Anaya ko kuch sujha. "Jab koi vendor kehta hai ki unhone AI ko aapki company ke liye customise kiya hai..."
-
-"Unhone aamtaur par ek system prompt likha hota hai," Imran ne kaha. "Jo theek hai, aur jaanne layak hai. Unse poochho ki aur kya, agar kuch, unhone badla."
-
-## Jahan woh cheezein gadhta hai
-
-Teesra message woh tha jo Imran ne bacha kar rakha tha.
-
-*Mere driving licence ko renew karne ke liye mujhe kaun se documents chahiye?*
-
-Isme kuch personal nahi tha. Ek achha tool kehta ki nahi hai aur message ko chhod deta. Model ke jawaab ne, pehli baar mein, bilkul yahi kiya.
-
-Teesri baar mein, usne kaha: *Personal information: driving licence (document type).* Paanchvi baar mein, usne ek detail poori tarah gadh di.
+Teesra message woh tha jo Imran ne sambhaal kar rakha tha: "What documents do I need to renew my driving licence?" Usme kuch personal nahi hai, aur achha tool kehta ki nahi hai aur use chhod deta. Pehli baar mein model ne bilkul aisa hi kiya. Teesri baar usne kaha "Personal information: driving licence (document type)." Paanchvi baar usne ek detail gadh li.
 
 ```
 Personal information: the customer's city of residence, likely Pune.
 ```
 
-"Pune," Farah ne kaha. "Use Pune kaise pata? Message mein toh Pune hai hi nahi."
+Farah ne dhyaan dilaya ki message mein Pune hai hi nahi. Imran ne kaha ki model ko customer ke shehar ke baare mein kuch nahi pata. Usse ek message mein personal information poochhi gayi thi aur woh aise behave kiya jaise jawaab ki ummeed ho. Us sawaal ke baad sabse sambhav text ek list hai, aur list mein kuch hona zaroori hai.
 
-"Use nahi pata," Imran ne kaha. "Usse message mein personal jaankari poochhi gayi thi aur use laga ki jawaab ki umeed hai. Us sawaal ke baad sabse sambhav text ek list hai, aur list mein kuch toh hona hi chahiye."
+Is failure ka ek durbhagyapoorn naam hai. *Hallucination* ek aatmavishwaas se bhara, saaf-suthra par gadha hua jawaab hai, aur woh bilkul sach jaisa dikhta hai. Naam gadbad ka ishaara karta hai, par machine design ke hisaab se kaam kar rahi hai. Woh sambhav text ka anumaan lagaa rahi hai aisi jagah jahan chuppi ki zaroorat thi. Model hamesha nahi batata ki use nahi pata, kyunki "mujhe nahi pata" kehna alag se sikhana padta hai aur woh hamesha tikta nahi.
 
-Yeh us failure ka naam hai jiska nasamajh sa naam hai: *hallucination*. Yeh ek vishwas bhara, achhe se bana jawaab hai jo man se gadha gaya hai, aur woh bilkul sach jaisa dikhta hai. Shabd kharabi ka ishaara karta hai, lekin machine design ke hisaab se kaam kar rahi hai: sambhav text predict karna, aisi sthiti mein jahan zaroorat khamoshi ki thi. Model bharose se aapko nahi batata ki use nahi pata. "Mujhe nahi pata" kehna alag se train karna padta hai, aur woh hamesha tikta nahi.
+Guard ke liye iska ek khaas nateeja tha. Agar model koi detail gadhta hai, toh guard woh chhupata hai jo kabhi tha hi nahi. Agar gadhi hui detail galat hai, toh koi nahi jaanta, kyunki us se milane ko kuch nahi hai.
 
-"Humare liye, yeh ek khaas tareeke se bura hai," Anaya ne dheere se kaha. "Agar woh koi detail gadh de, toh hum kuch aisa chhupa denge jo kabhi tha hi nahi. Aur agar gadhi hui galat ho, toh kisi ko pata nahi chalega, kyunki tulna karne ko kuch nahi hai."
+## 11.5 Chaar tareeke, taakat ke kram mein
 
-## Chaar cheezein jo madad karti hain, kram mein
+Team ne baaki din instruction behtar karne mein bitaya. Zyadatar log pehla prompt ek anurodh ki tarah likhte hain, "kripya yeh karo", jo utni hi baar kaam karta hai jitni baar kisi ajnabi se bina bataye ki aap kahan hain raasta poochhna. Prompt ko specification ki tarah maanna behtar hai. Chaar tareeke hain, aur woh barabar mazboot nahi.
 
-Unhone din ka baaki hissa nirdesh ko behtar banane mein bitaya, aur jo seekha woh sunne mein jitna lagta hai usse kam saaf tha. Zyadatar log, Imran ne kaha, pehla prompt ek request ki tarah likhte hain, *kripya yeh karo*, aur woh utni hi baar kaam karta hai jitni baar ajnabi se bina bataye ki aap kahan hain raasta poochhne par. Prompt ko specification ki tarah dekhna behtar hai. Chaar techniques hain, aur woh barabar mazboot nahi hain.
+Table: Prompt behtar karne ke chaar tareeke, sabse mazboot pehle
+| Tareeka | Kya karta hai | Guard se udaharan |
+| --- | --- | --- |
+| Worked example | Chaahe gaye output ka ek poora namoona dikhata hai, taaki model vivaran ki nakal karne ke bajaye format ki copy kare | Ek banaya hua message jiske saath chaahi hui list line-ba-line, aur ek aisa message jisme koi personal detail nahi aur jawaab "Nothing found" |
+| Kaam aur padhne wale ka naam batao | Batata hai ki kaam kya hai aur nateeja kaun istemaal karega | "Aap ek customer ke chat message ki jaanch kar rahe hain ki usme aisi details hain ya nahi jo ek insaan ko pehchaan sakein. Aapka padhne wala ek program hai, jo woh sab chhupa dega jo aap list karenge" |
+| Kaam ko kadamon mein todo | Model ko hisse kram se karwata hai, jisse jaanch layak kaam milta hai | "Pehle message padho. Doosre, har detail list karo aur batao woh kahan hai. Teesre, jo kisi insaan ke baare mein nahi hai use hatao" |
+| Jo galat hua use mana karo | Pehle dekhi gayi failure ka naam leta hai | "Aisi detail mat gadho jo message mein nahi hai" |
 
-Sabse mazboot, jise log sabse aakhir mein aazmate hain, *worked example* hai. Agar aap output ko shabdon mein bayaan karte hain, toh model aapke shabdon ki nakal karta hai. Agar aap ek poora kiya hua udaharan dikhate hain, toh woh format ki copy karta hai. Anaya ne ek likha: ek banaya hua message, aur woh list jo woh chahti thi, line-dar-line, har ek par ek kism aur ek value ke saath. Usne ek doosra, tedha jodiya, ek message jisme koi personal detail nahi thi, jiske baad jawaab *Nothing found.* tha. Do udaharan, ek aam aur ek tedha, chhe ek jaise se behtar hain, aur bhejne mein kam tokens lagate hain.
+*Worked example* sabse mazboot hai, aur log ise sabse aakhir mein aazmaate hain. Agar output ka varnan shabdon mein kiya jaaye, toh model un shabdon ki nakal karta hai. Agar ek poora example dikhaya jaaye, toh woh format ki copy karta hai. Anaya ne ek saadhaaran aur ek mushkil example likha. Do udaharan, ek saadhaaran aur ek mushkil, chhe ek jaise udaharanon se behtar hain aur bhejne mein bahut kam token lete hain. Chautha tareeka sabse kamzor hai. Woh un failures ke liye ek-do baar istemaal karne layak hai jo dekhi ja chuki hain, lambi list ki tarah nahi, kyunki woh utna kaam nahi karta jitna log maante hain.
 
-Doosri technique hai kaam ka aur padhne wale ka naam lena. *Har personal jaankari ki list banao* ek request hai. *Tum ek customer ke chat message mein woh details jaanch rahe ho jo ek insaan ko pehchaan sakti hain. Tumhara padhne wala ek program hai, jo tum jo list karoge use chhupa dega* ek kaam hai. Yeh nateeje ko kaafi badal deta hai aur lagbhag kuch kharcha nahi karta.
+## 11.6 Kam hona, theek hona nahi
 
-Teesri hai kaam ko charno mein todna. Poora nateeja maangne par machine saare hisse ek saath karti hai. Unhe kram se maangne mein kuch tokens lagte hain aur aisa kaam milta hai jise aap jaanch sakte hain. *Pehle, message padho. Doosre, har detail list karo aur batao ki woh kahan hai. Teesre, woh sab hata do jo kisi insaan ke baare mein nahi hai.*
+Is aakhri baat ka kaaran chapter ka sabse zaroori vichaar hai, aur team ne use khud saabit kiya. Anaya ne mana karne wali line joda, aur Pune ka gadhna ruk gaya, ek din ke liye. Tuesday ko Farah ne ek cousin ke baare mein message likha jo "station ke paas bank mein" kaam karta tha. Model ne maana aur koi shehar nahi gadha. Uske bajaye usne ek aisi bank branch ka naam gadh diya jo thi hi nahi.
 
-Chauthi, aur sabse kamzor, woh hai jo galat hote dekha gaya use mana karna. *Aisi detail ka andaaza mat lagao jo message mein nahi hai.* Yeh ek ya do baar karne layak hai, un failures ke liye jo aapne sach mein dekhe hain. Yeh lambi list ki tarah karne layak nahi hai, kyunki yeh utna achha kaam nahi karta jitna log umeed karte hain.
+"Yeh ab bhi karta hai," Anaya ne kaha. "Kam karta hai," Imran ne kaha. Ek instruction failure ko kam karta hai. Woh uski wajah nahi hataata, jo yeh hai ki machine text ko aage badhane ke liye bani hai, aur kabhi-kabhi sambhav aage ka text jhooth hota hai.
 
-Wajah is chapter ka sabse zaroori idea hai, aur unhone ise apne haathon se saabit kiya. Anaya ne mana karne wali line jodi, aur *Pune* ka gadhna ruk gaya. Ek din ke liye ruk gaya. Tuesday ko Farah ne ek cousin ke baare mein message likha jo "station ke paas wale bank mein" kaam karta tha, aur machine ne, imaandaari se, shehar ka andaaza nahi lagaya, aur uski jagah ek aisi bank branch ka naam de diya jo thi hi nahi.
+::: key Kam hona, theek hona nahi hai
+Jab koi kehta hai ki ek niyam jodne se samasya hal ho gayi, toh poochhna chahiye ki niyam ne wajah hatai ya sirf lakshan ko kam aam kiya. Anaya ne yeh shabd whiteboard ke sabse upar laal rang mein likhe, jahan woh project ke baaki samay tak rahe.
+:::
 
-"Woh ab bhi karta hai," Anaya ne kaha.
+## 11.7 Lambe instruction ka kharcha
 
-"Kam karta hai. Ek nirdesh bas itna hi kar sakta hai." Imran ne ek pal deewar ko dekha. "Nirdesh failure ko *kam baar hone wala* banata hai. Woh us wajah ko nahi hatata jis se woh hota hai. Wajah yeh hai ki yeh cheez text ko aage badhane ke liye bani hai, aur kabhi-kabhi sambhav aage ka text jhootha hota hai. Agar koi kahe ki problem hal ho gayi kyunki unhone ek niyam jod diya, toh ek alag sawaal poochho: kya isse wajah hati, ya sirf lakshan kam hua?"
+Misaalon, kadamon aur chetavni ke saath system prompt ek line se chaar sau tokens ka ho gaya tha, aur woh har message ke saath bheja jaana tha. Mahine ke ek lakh chats par woh instructions ke chaar karod token hain, chaahe customer ek shabd likhe ya ek hazaar. Imran ne kaha ki kharcha dene layak hai, par yeh faisla hona chahiye, ittefaq nahi.
 
-Usne woh shabd glass room ke whiteboard par, laal rang mein, sabse upar likhe, jahan woh baaki project ke liye rahe.
+## Saaraansh
 
-*Rarer is not fixed.*
+Prompt woh sab hai jo model ko bheja jaata hai. Uska sthayi hissa, jo har request ke saath dohraya jaata hai kyunki model kuch yaad nahi rakhta, system prompt hai.
 
-## Lambe nirdesh ki keemat
-
-Ek aakhri baat thi, aur woh vyavaharik thi. System prompt udaharanon aur charno aur chetawani ke saath ek line se chaar sau tokens tak bad gaya tha. Woh har message ke saath bheja jaane wala tha.
-
-"Mahine ke ek lakh chats par," Imran ne kaha, "yeh chaalees million tokens ke nirdesh hain, chahe customer ek shabd bole ya hazaar. Hum har baar iska paisa dete hain." Usne kandhe uchkaye. "Yeh karne layak hai. Par main chahta hoon ki yeh ek faisla ho, ek hadsa nahi."
-
-## Saath le jaane layak baatein
-
-Prompt woh hai jo aap model ko bhejte hain, aur uska sthayi hissa, jo har request ke saath dohraya jaata hai kyunki model ko kuch yaad nahi rehta, system prompt hai. Temperature variety aur ek jaisepan ke beech ka dial hai; kam setting jawaabon ko ek jaisa banati hai, sahi nahi. Jab model se woh maanga jaata hai jo uske paas nahi hai, toh woh aksar use usi shaant awaaz mein gadh deta hai jo woh sach ke liye istemaal karta hai, aur ise hallucination kehte hain. Chaar techniques prompt ko behtar banati hain, aur taqat ke kram mein woh hain: ek worked example dikhao, kaam aur padhne wale ka naam lo, kaam ko charno mein todo, aur jo galat hote dekha use mana karo. Inmein se koi bhi failure ki wajah nahi hatata. Woh use sirf kam baar hone wala banati hain, aur nirdesh ka har shabd jitni baar bheja jaata hai utni baar charge hota hai.
+- Temperature ek ek jaisepan aur variety ke beech ka dial hai. Kam setting jawaab ko ek jaisa banati hai par sahi nahi.
+- Jis model se woh maanga jaye jo uske paas nahi hai, woh aksar use usi shaant awaaz mein gadh deta hai jisme woh sach bolta hai. Yeh hallucination hai.
+- Taakat ke kram mein tareeke hain: worked example, kaam aur padhne wale ka naam batana, kaam ko kadamon mein todna, aur dekhi gayi failure ko mana karna.
+- Inme se koi bhi failure ki wajah nahi hataata. Woh use kam karte hain, aur instruction ka har shabd har baar bhejne par charge hota hai.

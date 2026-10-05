@@ -1,7 +1,12 @@
 ---
 title: Machine Asal Mein Kya Hai
-summary: Ek Sunday ki call par ek product manager maan leti hai ki use nahi pata "powered by AI" ka matlab kya hai, aur ek retired linguist aur ek engineer milkar jawaab banate hain, ek-ek saral idea ke saath.
+summary: Jis product manager ne do saal "powered by AI" kaha hai, woh iska matlab samjhane ki koshish karti hai aur nahi kar paati. Chapter jawaab ko neeche se banata hai: language models, tokens, context window, attention, model kaise banta aur chalta hai, aur do tarah ke AI.
 course: a8 ch05
+goals:
+  - samjhana ki language model kya karta hai, aur woh jo sambhav hai usme achha kyun hai aur jo sach hai usme nahi
+  - text ko tokens mein ginna, aur dekhna ki ginti bhasha aur tool ke hisaab se kyun badalti hai
+  - context window batana aur yeh ki jo text uske andar nahi aata uska kya hota hai
+  - model banane aur use chalane mein, aur predictive AI aur generative AI mein antar karna
 terms:
   - language model | ek program jisne bahut saare likhe hue text se seekha hai ki aage kaun sa text aayega, iska andaaza lagana; chatbot ke peeche yahi baitha hota hai | model, models, LLM, LLMs, large language model
   - generative AI | aisa AI jo naya content banata hai, jaise text, images ya code, sirf ek label ya number dene ke bajaye | 
@@ -16,94 +21,101 @@ terms:
   - attention | transformer ka woh hissa jo har token ke liye tay karta hai ki agla kya aayega yeh andaaza lagane ke liye baaki kaun se tokens sabse zyada maayne rakhte hain | 
 ---
 
-"Do saal se main meetings mein keh rahi hoon 'yeh AI se chalta hai'," Anaya ne kaha. "Main yeh kehna band karna chahti hoon jab tak mujhe pata na ho ki main kehna kya chahti hoon."
+March ke teesre Sunday ko Anaya ne Dr. Meenakshi Rao se kaha ki woh do saal se meetings mein "yeh AI se chalta hai" kehti aa rahi hai aur jab tak woh sach mein na samjhe ki iska matlab kya hai, tab tak ise kehna band karna chahti hai. Meenakshi thodi der hansi, bina kisi kadvaahat ke, aur poochha ki Anaya ke hisaab se is vaakya ka matlab kya hai. Anaya ne kaha ki yeh woh software hai jisne internet padha hai, jo sawaal samajhta hai, aur jiske paas ek tarah ka dimaag hai jo train kiya gaya hai. Usne dekha ki har vaakya pichhle se zyada dhundhla tha.
 
-March ka teesra Sunday tha. Bengaluru ki billi Meenakshi ki kursi ke peeche kahin soyi hui thi, aur Anaya ki balcony par chai purane peetal ke rang ki ho gayi thi. Line par lambi khamoshi rahi, aur phir Meenakshi hans padi, ek chhoti sookhi hansi, jisme koi kadwahat nahi thi.
+"Tumne ek kinvadanti bataayi hai," Meenakshi ne kaha. "Chalo machine ki baat karte hain."
 
-"Achha hai," unhone kaha. "Mujhe chaalees saal padhane ke baad ek kamre se yeh kehna aaya ki 'mujhe nahi pata'. Tum batao tumhe lagta hai yeh kya hai, aur main bataungi tum kahan galat ho."
+Yeh chapter machine ki baat karta hai. Woh ek jaani-pehchaani cheez se shuru hota hai, phone ke predictive keyboard se, aur kadam-dar-kadam un hisson tak pahunchta hai jinhe ek product manager ko engineers se behas karne ke liye samajhna padta hai: woh kya hai, kaise padhta hai, kitna sambhal sakta hai, kaise banta hai aur pehle ke AI se kaise alag hai.
 
-Anaya ne koshish ki. Yeh ek tarah ka software hai jisne poora internet padha hai. Woh sawaal samajhta hai. Usme shaayad koi dimaag hai, jo train hua hai. Usne khud ko bolte suna, aur har vaakya pichhle se thoda aur dhundhla tha.
+## 8.1 Case: ek kinvadanti aur ek machine
 
-"Tumne ek dant-katha bayaan ki hai," Meenakshi ne pyaar se kaha. "Chalo ab machine karte hain."
+Anaya ka dhundhla vivaran aam hai. Woh system ko ek dimaag ki tarah maanta hai, aur dimaag se samajh, jaankari aur faisla jhalakta hai, jinmein se kisi ki bhi guarantee nahi. Zyada vinamra vivaran zyada kaam ka hai, kyunki woh bataata hai ki system kya achha karega aur kahan fail hoga, aur jahan fail hota hai wahin zyadatar product ki samasyayein shuru hoti hain. Neeche ke sections us vivaran ko kram se banate hain.
 
-## Ek keyboard jisne sab kuch padha
+## 8.2 Ek keyboard jisne sab padha
 
-"Tumhara phone," Meenakshi ne kaha. "Jab tum type karti ho *See you at the*, woh kya sujhata hai?"
+Jab Anaya apne phone par "See you at the" type karti hai, keyboard "office", "station" aur "airport" sujhata hai. Jab woh Roman-lipi mein Hindi "Kal milte" type karti hai, woh "hain", phir "hai", phir "hum" deta hai. Phone yeh nahi jaanta ki kal woh kahan jaa rahi hai. Usne dekha hai ki log kya type karte hain aur woh jaanta hai ki aam taur par agla shabd kaun sa aata hai.
 
-Anaya ne phone uthaya. *Office. Station. Airport.* Usne English akshron mein Hindi try ki: *Kal milte.* Phone ne sujhaya *hain*, phir *hai*, phir *hum*.
+Us keyboard ko bada kijiye. Use har kitaab, akhbaar, forum post aur manual padhne dijiye jo use diya ja sake, kai baar, aur use bahut-bahut bada kar dijiye. Use ek nahi balki hazaaron shabd ek ke baad ek anumaan karne dijiye, har anumaan agle mein jaata hua. Nateeja ek *language model* hai.
 
-"Use nahi pata ki kal tum kahan jaa rahi ho," Meenakshi ne kaha. "Usne dekha hai ki log kya type karte hain, aur use pata hai ki aamtaur par agla shabd kaun sa aata hai. Woh andaaza laga raha hai, aur andaaza achha isliye hai kyunki uske peeche itna zyada data hai. Ab us keyboard ko har kitaab, har akhbaar, har forum post aur har manual padhne do jo use diya ja sake, kai baar, aur use bahut, bahut bada bana do. Use ek shabd nahi, ek ke baad ek hazaaron shabdon ka andaaza lagane do, har andaaza agle ko khilata hua. Tumhare paas kya hai?"
+::: def Language model
+Ek program jisne bahut saare likhe hue text se seekha hai ki agla text kya aane wala hai. Woh jawaab ek-ek tukde ka anumaan karke likhta hai. Woh kuch dhoondhta nahi aur use nahi pata ki kya sach hai. Use pata hai ki kya sambhav hai.
+:::
 
-"Ek bahut lamba autocomplete."
+Jab model ne jo padha uska zyadatar hissa sach tha, toh sambhav aur sach bahut milte hain. Jahan woh alag hote hain, wahin se language model par bane har product ki mushkilein shuru hoti hain. Anaya ne ek envelope ke peeche "sambhav, sach nahi" likha aur uske chaaron taraf dabba bana diya.
 
-"Ek *language model*. Neeche se bas yahi hai: ek program jisne bahut bade paimane par likhe hue text se seekha hai ki aage kaun sa text aayega. Woh jawaab ek-ek tukda predict karke likhta hai. Woh kuch dhoondhta nahi. Use nahi pata ki kya sach hai. Use pata hai ki kya sambhav hai, aur jab usne jo padha uska zyadatar sach tha, toh sambhav aur sach bahut achhe se milte hain. Jahan nahi milte, wahin se tumhari saari museebat aayegi."
+## 8.3 Tokens: machine kaise padhti hai
 
-Anaya ne ek envelope ke peeche *sambhav, sach nahi* likha aur uske charon taraf ek dibba bana diya.
+Model akshar ya poore shabd nahi padhta. Woh *tokens* padhta hai, text ke tukde jo aksar poora shabd hote hain aur kabhi-kabhi sirf uska ek hissa. English mein ek token aam taur par lagbhag teen-chauthai shabd hota hai. Chhote aam shabd aksar ek token hote hain. Dulabh shabd, aur woh sab kuch jo aisi lipi mein likha ho jise model ne kam dekha ho, kai tukdon mein tut jaata hai.
 
-## Shabdon ke tukde
+Imran Qureshi ne ek aise page par yeh dikhaya jo tukdon ko rang mein dikhata tha. Usne ek hi matlab teen tareeke se likha.
 
-Agle din Imran use apne desk par ek demonstration ke liye le gaya, browser khula hua aur chai ka mug jo woh bhool chuka tha.
+Table: Ek vaakya, teen spelling, ek tool par teen token ginti
+| Roop | Text | Tokens |
+| --- | --- | --- |
+| English | I want to know my loan status. | 8 |
+| Roman-lipi Hindi | mujhe apne loan ka status jaanna hai. | 12 |
+| Devanagari Hindi | wahi matlab Hindi lipi mein | 26 |
 
-Model, usne kaha, akshar nahi padhta, shabd bhi nahi. Woh *tokens* padhta hai: text ke tukde, aksar poora shabd, kabhi-kabhi sirf ek hissa. English mein ek token ausat mein shabd ka lagbhag teen-chauthai hota hai. Chhote aam shabd aksar ek token hote hain. Durlabh shabd, aur woh kuch bhi jo aisi lipi mein likha ho jise model ne kam dekha, kai tukdon mein toot jaate hain.
+Vaakya ka matlab har baar ek hai, aur machine ko teen alag maatra ka text dikhta hai. Yeh figure ek tool par ek din ke hain. Doosra tool doosre numbers dega, aur is table se koi bhi andaaza ka niyam nahi le jaana chahiye. Agar koi kehta hai ki Hindi English se do guna mehnga hai, toh teen sawaal poochhne chahiye: kaun sa tool, kaun sa vaakya aur kaun sa din. Jawaab hai naapna.
 
-Usne ek aise page par ek vaakya type kiya jo tukdon ko rangon mein dikhata tha: *I want to know my loan status.* Aath tokens, har ek alag rang. Usne wahi vaakya Roman akshron mein type kiya, jaise Sanjay Patil karte: *mujhe apne loan ka status jaanna hai.* Barah. Phir usne wahi matlab Devanagari mein paste kiya. Page chhote tukdon ki mosaic mein jagmaga utha: chhabbis.
+Ginti isliye zaroori hai ki providers token ke hisaab se charge karte hain, jo bheja jaata hai uske liye bhi aur jo wapas aata hai uske liye bhi. Maan lijiye, aasaan hisaab ke liye banaye hue ek kalpanik daam par, ki provider har dus lakh token ke liye teen sau rupaye leta hai. Chhe sau token ki ek chat ka kharcha lagbhag attharah paise hoga. Devanagari mein pandrah sau token ki chat ka kharcha paintaalis paise. Dono figure akele darane wale nahi hain. Jo company mahine mein ek lakh chats sambhalti hai, uske liye antar ek rounding error aur budget ki ek line ke beech ka hai.
 
-"Matlab wahi," Anaya ne kaha.
+## 8.4 Context window
 
-"Matlab wahi. Machine ke hisaab se text ki teen alag maatraayein." Usne ghoont liya. "Yeh aaj is tool par hai. Doosra tool doosre numbers dega. Main isse koi thumb-rule saath nahi le jaunga. Agar koi kahe ki Hindi do guna mehengi hai, toh poochho kaun sa tool, kaun sa vaakya, kaun sa din, aur phir khud naapo."
+Model ko har request ek tay size ke andar fit honi chahiye, aur size tokens mein ginta hai, vaakyon mein nahi. Usme sab kuch aata hai: jo bheja jaata hai, koi bhi instructions, koi bhi documents, aur jo jawaab wapas aata hai. Yeh seema *context window* hai.
 
-Yeh ek aisi wajah se zaroori tha jo Anaya apni jeb mein mehsoos kar sakti thi. Jo koi bhi in machines tak pahunch bechta hai woh token ke hisaab se charge karta hai, jo aap bhejte hain uske liye bhi aur jo wapas aata hai uske liye bhi. Maan lo ki ek provider har das lakh tokens ke teen sau rupaye leta tha, jo aasaan ginit ke liye chuna gaya ek kalpit daam tha. Chhe sau tokens ki chat ka kharcha lagbhag atharah paise hota. Devanagari mein dedh hazaar tokens ki chat ka chaalees-paanch paise. Dono mein se koi number darawana nahi hai. Ek aisi company ki chats se guna kar do jo mahine mein ek lakh sambhalti hai, toh yeh rounding error aur budget ki ek line ke beech ka farak hai.
+::: key Sab kuch table par hona chahiye
+Model ko jawaab dene ke liye jo bhi istemaal karna ho woh context window ke andar fit hona chahiye, jaise table par rakhe kaagaz. Agar kuch fit nahi hota toh model use dekhta nahi, aur batata bhi nahi. Anaya ne envelope par doosri line likhi: is conversation ke baare mein usse jo kuch pata hona chahiye woh table par hona chahiye.
+:::
 
-## Kitna sambhal sakta hai
+## 8.5 Attention: "it" ko "trophy" kaise mila
 
-"Ek seema bhi hai," Imran ne kaha, "aur woh tokens par hai, vaakyon par nahi."
+Meenakshi ne Anaya se poochha ki "The trophy did not fit in the suitcase because it was too big" vaakya mein "it" ka kya matlab hai. Anaya ne kaha trophy, kyunki agar suitcase bada hota toh trophy fit ho jaati. Meenakshi ne dhyaan dilaya ki Anaya ne vaakya mein peeche dekha, ummeedwaaron ko tola aur woh chuna jo samajh aata tha, aur yeh ki jitne bhi pronoun usne kabhi samjhe, sab is kaushal par tike the.
 
-Model ko har request ek tay size ke andar fit honi chahiye, aur woh size sab kuch cover karta hai: jo aap bhejte hain, koi nirdesh, koi document, aur jo jawaab wapas aata hai. Yeh size *context window* hai. Jawaab dene ke liye machine jo kuch istemaal karti hai woh sab uske andar fit hona chahiye, mez par rakhe kaagajon ki tarah. Agar kuch fit nahi hota, toh machine use dekhti nahi, aur batati bhi nahi.
+Jis design par aaj ke language models bane hain woh *transformer* hai, aur uski mukhya vyavastha *attention* hai. Text ke har tukde ke liye attention yeh tay karti hai ki agle ka anumaan lagane ke liye baaki kaun se tukde sabse zyada maayne rakhte hain. Jab model "it" par pahunchta hai, toh attention hi use us shabd ko "suitcase" se nahi balki "trophy" se jodne deti hai.
 
-Anaya ne envelope par pehli line ke neeche doosri line likhi. *Is baatcheet ke baare mein machine ko jo kuch pata hai woh mez par hona chahiye.* Use abhi samajh nahi aaya tha ki yeh vaakya kitna zaroori hone wala hai.
+::: watch Ek sanket, vyakhya nahi
+Ek model ki kai parat hoti hain, aur har ek mein kai attention hoti hain, aur uska jawaab sab milkar aata hai. Attention ki tasveerein kabhi-kabhi is saboot ki tarah pesh ki jaati hain ki model ne aisa kyun kaha. Yeh waisa hi hai jaise brain scan dikhakar dawa karna ki soch pata chal gayi.
+:::
 
-## "It" ki trophy
+## 8.6 Model banana aur use chalana
 
-"Ek aur idea hai," Meenakshi ne agle Sunday ko kaha, "aur uske baad tum 'transformer' shabd se darna chhod sakti ho."
+Do gatividhiyan aksar ek maan li jaati hain aur unka kharcha alag hai. Ek hai model banana, doosri use chalana.
 
-Unhone Anaya se poochha ki is vaakya mein *it* ka kya matlab hai: *The trophy did not fit in the suitcase because it was too big.*
+Banana kai stages mein hota hai. *Pre-training* mein model web, kitaabon aur code ke bahut zyada likhe hue text par agla token anumaan karna seekhta hai. Isme mahine lagte hain aur karodon kharch hote hain. Jo nikalta hai woh kisi bhi text ko aage badha sakta hai par nirdesh bharose se nahi maanta. *Instruction tuning* mein use nirdesh aur achhe jawaab ke udaharanon par aur train kiya jaata hai, taaki woh nirdesh maane. Teesre stage mein log jawaabon ke jode compare karke behtar chunte hain, aur model ko un jaise jawaab pasand karna sikhaya jaata hai. Ise aksar insaani feedback se seekhna kehte hain, aur isse model zyada madadgaar aur saavdhaan banta hai.
 
-"Trophy."
+Table: Model banana aur use chalana
+| | Banana (teen stages) | Chalana (inference) |
+| --- | --- | --- |
+| Kya hota hai | Model seekhta hai | Model ek request ka jawaab deta hai |
+| Kya weights badalte hain? | Haan | Nahi |
+| Kisko asar padta hai | Model istemaal karne wale har kisi par, hamesha ke liye | Sirf us ek jawaab par |
+| Kharcha | Mahino ki mehnat aur karodon rupaye | Har baar token ke hisaab se chhota charge |
 
-"Tumhe kaise pata?"
+Banane ke teeno stages model ke *weights* badalte hain, jo uske andar ke arabon number hain jo us sab ko sambhaalte hain jo usne seekha. Unhe ek bahut bade dials ke set ki tarah sochiye, jinme se har ek ko model ke dekhe har udaharan ne thoda ghumaya. Taiyaar model ko chalana *inference* hai. Woh weights ko jaisa tha waisa chhodta hai. Jab Sahaj ka chatbot kisi customer ko jawaab deta hai, tab inference chal raha hota hai, uske liye token ke hisaab se charge lagta hai, aur uske baad model bilkul waisa hi rehta hai. Customer ne jo type kiya usne us ek jawaab ko aakaar diya aur phir chala gaya.
 
-"Kyunki agar suitcase bada hota, toh woh fit ho jaati."
+## 8.7 Do tarah ke AI
 
-"Bilkul. Tumne vaakya mein peeche dekha, ummeedwaaron ko tola, aur woh chuna jo samajh mein aaya. Har pronoun jo tumne kabhi samjha, us hunar par tika tha, aur wahi hunar machine ko seekhna pada yeh sab achhe se karne ke liye. Jis design par aadhunik language models bane hain use *transformer* kehte hain, aur uski mukhya chaal ko *attention*. Har text ke tukde ke liye woh tay karta hai ki agla kya aayega yeh andaaza lagane ke liye baaki kaun se tukde sabse zyada maayne rakhte hain. Jab machine *it* par pahunchti hai, attention hi woh tareeka hai jisse woh us shabd ko *trophy* se jodti hai, *suitcase* se nahi."
+Kuch AI ek kaam ke liye label ya number batata hai: yeh message spam hai ya nahi, kya yeh customer chhod dega, agle mahine ki bikri kitni hogi. Yeh *predictive AI* hai. Ise ek hi kaam ke labelled udaharanon par train kiya jaata hai, yeh chalane mein sasta hota hai, aur woh ek kaam achha karta hai. Doosra tarah *generative AI* hai. Woh naya text, tasveer ya code banata hai, use pooche gaye sawaal badal kar kai kaamon par lagaya ja sakta hai, aur chalane mein zyada mehnga hota hai, bill ke saath jo andar-baahar jaane wale text ki lambai ke saath badhta hai. Language model text ke liye generative AI hai.
 
-Meenakshi ek baat ko lekar saavdhaan thin, aur unhone use do baar kaha. Attention ek sanket hai, vyakhya nahi. Ek model ki kai layers hoti hain, har ek mein kai aise attention mechanisms, aur aakhri jawaab un sab se milkar aata hai. Log kabhi-kabhi attention ki tasveerein banate hain aur unhe saboot ki tarah pesh karte hain ki machine ne jo kaha woh kyun kaha. Yeh kuch aisa hai jaise dimaag ke scan ki tasveer dikha kar vichaar jaanne ka daava karna.
+Har samasya ko doosre tarah ki zaroorat nahi hoti. Imran ne napkin par dabbe-dar-dabba dekha.
 
-## Banaya gaya, aur phir istemaal kiya gaya
+Table: Guard ke kis hisse ko kaun si machine chahiye
+| Hissa | Kya chahiye | Kyun |
+| --- | --- | --- |
+| Pattern checker | Koi AI nahi | Baarah ankon ka rule ek rule hi hai |
+| Name-and-place finder | Chhota predictive AI | Har shabd ko insaan, jagah ya dono nahi ke roop mein chinhit karne ke liye train hua, aur kuch nahi |
+| Context judge | Language model | Use vaakya padhkar faisla karna hai, aur woh mehnga hoga, isliye usse kam se kam vaakyon ke baare mein poochhna chahiye |
+| Rule-keeper | Saadharan code | Woh pehle se liye gaye faisle lagata hai |
 
-"Do cheezein hamesha ghul-mil jaati hain," Imran ne kaha, "aur unki keemat alag hai. Ek hai model banana. Doosra hai use istemaal karna."
+Chaar hisson mein se ek ko bade model ki zaroorat hai. Imran ne isse jo niyam nikala woh ek vaakya mein tha: sabse sasti cheez istemaal karo jo kaam kare, aur mehngi cheez ko un sawaalon ke liye rakho jinhe sirf wahi hal kar sakti hai.
 
-Banana kai daur mein hota hai. Pehle daur mein, jise *pre-training* kehte hain, machine web, kitaabon aur code ke hairaan karne wale paimane par likhe text par agla token predict karna seekhti hai. Ismein mahine lagte hain aur lakhon kharch hote hain. Jo bahar aata hai woh kisi bhi text ko aage badha sakta hai, lekin woh bharose se woh nahi karta jo use kaha jaaye. Doosra daur, *instruction tuning*, use aur train karta hai nirdeshon aur achhe jawaabon ke jode ke udaharanon par, taaki woh nirdesh maane. Teesre mein, log jawaabon ke jode dekh kar behtar wala chunte hain, aur machine ko sikhaya jaata hai ki woh unke chune hue jawaabon jaise jawaab pasand kare. Ise aksar insaani feedback se seekhna kaha jaata hai. Yeh machine ko zyada madadgaar aur zyada saavdhaan banata hai.
+## Saaraansh
 
-Teeno daur uske *weights* badalte hain: model ke andar ke arabon numbers jinme woh sab hai jo usne seekha. Unhe dialon ke ek vishaal set ki tarah socho, har ek ko har us udaharan ne thoda sa ghumaya hai jo usne kabhi dekha.
+Language model woh program hai jisne seekha hai ki agla text kya aayega, isliye woh sambhav mein achha hai aur sach par bharose ka nahi.
 
-Taiyaar machine ko chalana ek alag cheez hai, jise *inference* kehte hain. Woh weights ko bilkul nahi badalta. Jab Sahaj ka chatbot kisi customer ko jawaab deta hai, toh inference ho raha hota hai, aur har baar token ke hisaab se paisa lagta hai, aur baad mein machine bilkul waisi hi hoti hai. Customer ne jo type kiya usne us ek jawaab ko aakaar diya, aur phir woh gayab ho gaya.
-
-"Training," Imran ne pichhle hafte ke napkin par likhte hue kaha, "model ko sabke liye, hamesha ke liye badal deti hai. Ek request ek jawaab ko badalti hai aur bhula di jaati hai. Agar main bhool jaun ki kaun sa kaun hai, toh main mehengi galtiyan karta hoon."
-
-## AI ke do kism, aur kin dibbon ko ek chahiye
-
-Ek aakhri farak tha, aur woh raahat ki tarah aaya, kyunki usne Anaya ko napkin ka kuch hissa wapas diya.
-
-Kuch AI ek kaam ke liye label ya number predict karta hai. Kya yeh message spam hai ya nahi? Kya yeh customer cancel karega? Agle mahine ki sales kya hogi? Yeh *predictive AI* hai: ek kaam ke labelled udaharanon par train, chalane mein sasta, aur us ek cheez mein achha. Doosra kism *generative AI* hai: yeh naya text, images ya code banata hai, ise kai kaamon ki taraf mod diya ja sakta hai aap jo poochhte hain use badal kar, aur chalane mein zyada kharcha aata hai, ek bill ke saath jo andar jaane aur bahar aane wale ki lambai ke saath badhta hai. Language model text ke liye generative AI hai.
-
-Har problem ko doosre kism ki zaroorat nahi hoti. Imran ne napkin liya aur dibba-dar-dibba neeche gaya.
-
-Pattern checker ko AI ki bilkul zaroorat nahi thi. Barah ankon ka rule ek rule hai. Name-and-place finder ek chhota predictive tool ho sakta tha, jise har shabd ko insaan, jagah, ya dono nahi mark karne ke liye train kiya gaya ho, aur sirf wahi karna ho. Context judge woh dibba tha jise bada language model chahiye tha, kyunki use vaakya padhna aur parakhna tha, aur woh mehnga hoga, jo ek aur wajah thi ki usse jitne kam ho sake utne vaakyon ke baare mein poochha jaye. Rule-keeper aam code tha.
-
-"Toh chaar dibbon mein se," Anaya ne kaha, "ek ko bade machine ki zaroorat hai."
-
-"Ek ko *chahiye*. Agar woh do sasti dibbon se ho sakta hai, toh unse hona chahiye." Usne pencil rakhi. "Achha niyam: jo sabse sasta kaam kare use istemaal karo, aur mehnga wala un sawaalon ke liye bachao jinka jawaab sirf wahi de sakta hai."
-
-## Saath le jaane layak baatein
-
-Language model ek aisa program hai jisne bahut bade paimane par likhe text se seekha hai ki aage kaun sa text aayega, jo use woh karne mein achha banata hai jo sambhav hai, woh nahi jo sach hai. Woh tokens padhta hai aur unhi par charge hota hai, jo shabdon ke tukde hain, aur ek vaakya kitne tokens leta hai yeh tool aur bhasha par nirbhar karta hai, isliye use naapna chahiye, maan nahi lena chahiye. Jawaab dene ke liye woh jo kuch istemaal karta hai woh uski context window mein fit hona chahiye. Attention woh tareeka hai jisse woh text ke ek tukde ko doosre se jodta hai, lekin woh ek sanket hai, vyakhya nahi. Model banana use sabke liye badalta hai; use istemaal karna, jise inference kehte hain, sirf ek jawaab badalta hai. Aur har kaam ko sabse bade machine ki zaroorat nahi: sabse sasta jo kaam kare wahi sahi hai.
+- Woh tokens padhta hai aur unhi ke hisaab se charge hota hai. Ek vaakya mein kitne tokens hain yeh tool aur bhasha par nirbhar hai, aur use naapna chahiye, maan nahi lena chahiye.
+- Jawaab dene ke liye usse jo kuch istemaal karna ho woh context window mein hona chahiye, aur jo nahi aata woh use dikhta nahi.
+- Attention ek transformer ke andar text ke ek tukde ko doosre se jodti hai. Woh model ke vyavhaar ka ek sanket hai, uski vyakhya nahi.
+- Model banane (pre-training, instruction tuning, insaani feedback se seekhna) se uske weights sab ke liye badalte hain. Use chalane, yaani inference, se sirf ek jawaab badalta hai.
+- Predictive AI ek kaam ke liye label ya number deta hai. Generative AI kai kaamon par naya content banata hai, zyada kharche par, isliye sabse sasta tool jo kaam kare wahi sahi hai.

@@ -1,90 +1,83 @@
 ---
 title: Ek Dimaag Jise Kuch Yaad Nahi Rehta
-summary: Ek mithai ki dukaan ka maalik, jise har regular yaad hai, ek product manager ko sikhata hai ki chatbot ko yaad kyun nahi rehta, aur is farak se uske bill aur uski problem par kya asar padta hai.
+summary: Language model ek request se doosri tak kuch yaad nahi rakhta, aur chatbot ki jo yaaddasht dikhti hai woh application ka baatcheet ko dobara bhejna hai. Chapter batata hai ki yeh kaise kaam karta hai, ismein kya kharcha aata hai, aur yeh project ki kendriya privacy samasya ko kaise badalta hai.
 course: ch15b
+goals:
+  - samjhana ki language model stateless kyun hai aur chatbot ki dikhne wali yaaddasht kahan se aati hai
+  - ginna ki baatcheet ke lambe hone par uska kharcha kaise badhta hai
+  - woh vikalp ginana jo application ke paas hain jab baatcheet context window se bada ho jaaye
+  - history dobara bhejne ka privacy par kya asar hai, yeh batana
 terms:
   - stateless | requests ke beech kuch bhi na rakhna: har call shoonya se shuru hoti hai, aur model ko nahi pata ki aapne abhi ek pal pehle baat ki thi | 
   - conversation history | chat ke pichhle messages, jinhe app ko har naye message ke saath dobara bhejna padta hai agar woh chahta hai ki model ko yaad rakhta hua lage | 
 ---
 
-Neeche wali mithai ki dukaan ke maalik ne unnees saal mein kabhi kisi regular se nahi poochha tha ki use kya chahiye.
+Office ke neeche ki mithai ki dukaan ke maalik ne unnees saal mein kabhi kisi regular se nahi poochha ki use kya chahiye. Use pata tha. Mrs. Apte naam ki ek customer Thursday ko paav kilo kaju katli leti thi, aur paas ki pharmacy ka ladka ek garam jalebi leta tha aur chhutte mein paise deta tha. Agar koi ajnabi "wahi jo hamesha" maangta, toh maalik pyaar se kehta ki use abhi nahi pata woh kya hai.
 
-Use pata tha. Mrs. Apte Thursday ko paav kilo kaju katli leti thi aur har baar daam sun kar hairaan hone ka natak karti thi. Bagal ki pharmacy ka ladka ek garam jalebi leta tha aur sikkon mein paise deta tha. Agar koi ajnabi "wahi jo hamesha" maangta, toh maalik use pyaar se dekhta aur kehta, "Maaf kijiye, mujhe abhi pata nahi woh kya hota hai."
+Imran aur Anaya ek dopahar laptop lekar wahin gaye, ek aise sawaal par baat karne jo Anaya ne pichhle din poochha tha: chatbot use yaad kyun nahi rakhta? Dukaan ek upyogi tulna deti hai, kyunki uska maalik apne customers ke baare mein sab kuch yaad rakhta hai aur model kisi ke baare mein kuch yaad nahi rakhta. Yeh antar har chatbot ka kharcha tay karta hai aur, jaisa chapter dikhata hai, us privacy samasya ko aakaar deta hai jis par project tika hai.
 
-Imran aur Anaya chaar baje neeche aaye the, jaisa woh kabhi-kabhi karte the, kuch talaa hua khaane, jab tak koi problem aaram kar rahi ho. Imran laptop laya tha aur use kaanch ke counter par barfi ki ek tray aur laal kapde wali ek bahi ke beech rakh diya tha.
+## 10.1 Case: wahi machine, ek second baad
 
-"Maine waada kiya tha ki samjhaunga ki woh tumhe yaad kyun nahi rakh sakta," usne kaha. "Yeh building ki sabse achhi jagah hai iske liye."
+Imran ne pichhli shaam ki window kholi aur type kiya: "My name is Anaya and I work on loans." Model ne kaha ki use milkar achha laga aur poochha ki woh uske loans ke baare mein kaise madad kar sakta hai. Phir usne window saaf ki aur type kiya: "What is my name?" Model ne jawaab diya ki uske paas uska naam nahi hai aur use bataane ko kaha.
 
-## Machine se pehli baar milna, phir se
+Anaya ne kaha ki model ek second pehle usse baat kar raha tha. Imran ke shabdon mein woh kisi se baat kar raha tha, aur doosri call ko pehli ka kuch pata nahi tha. Neeche ka maalik kal ko aaj mein le jaata hai. Model ulta karta hai. Woh *stateless* hai: woh ek request se doosri tak kuch nahi rakhta, isliye har call shuru se shuru hoti hai.
 
-Usne kal raat wali window kholi. Usne type kiya: *Mera naam Anaya hai aur main loans par kaam karti hoon.* Jawaab dostana tha. *Aapse mil kar achha laga, Anaya! Aaj main aapke loans mein kya madad kar sakta hoon?*
+## 10.2 Yaaddasht kahan se aati hai
 
-Phir usne window saaf ki, jaise nayi baatcheet shuru ho rahi ho, aur type kiya: *Mera naam kya hai?*
+Anaya ne etiraaz kiya ki chatbot toh yaad rakhta tha. Usne uske saath baatcheet ki thi, aur use pata tha ki teen message pehle usne kya kaha tha. Imran ne kaha ki chatbot yaad nahi rakhta. Application rakhta hai.
 
-*Maaf kijiye, mere paas aapka naam jaanne ka zariya nahi hai. Kya aap bata sakti hain?*
+Usne dukaan ka ledger liya, ek lambi kitaab jiski jild kadi aur laal kapde ki thi, aur use khol kar pakda. Maan lijiye ek customer andar aaye aur maalik ko kuch yaad na ho. Har baar jab woh bole, use ledger sahi page par khol kar maalik ko dena padega, taaki woh padh sake ki kya kaha gaya tha. Model sirf wahi dekhta hai jo maujooda request mein table par hai. Jab Anaya ne apna paanchva message bheja, toh app ne pehle chaar dobara bheje, naya message aakhir mein jodkar.
 
-"Woh abhi ek second pehle tumse baat kar raha tha," Anaya ne kaha.
+Imran ne ise dikhaya. Usne ek hi request mein pehla message, model ka uska jawaab, aur sawaal "What is my name?" rakha. Jawaab turant aaya: "Your name is Anaya."
 
-"Woh *kisi* se baat kar raha tha ek second pehle. Doosri call ko koi andaaza nahi tha." Usne maalik ki taraf haath hilaya, jo peeth karke laddoo tol raha tha. "Woh aadmi stateful hai. Woh kal ki baatein aaj mein le aata hai. Yeh iska ulta hai. Yeh *stateless* hai: ek request se doosri tak yeh kuch nahi rakhta. Har call shoonya se shuru hoti hai. Use nahi pata ki tumne use ek minute pehle bola tha, aur woh tumhe jaanta hi nahi."
+::: def Conversation history
+Chat ke pehle ke messages, jinhe application ko har naye message ke saath dobara bhejna padta hai agar woh chahta hai ki model ko yaad lage. Model ko iska kuch pata nahi. Jo yaaddasht lagti hai woh application ka ledger saunpna hai.
+:::
 
-"Lekin chatbot ko toh yaad rehta hai," Anaya ne kaha. "Maine uske saath baatcheet ki hai. Use yaad hai ki maine teen messages pehle kya kaha tha."
+## 10.3 Yaad rakhne ka kharcha
 
-"Use nahi yaad. Humein yaad hai."
+Kyunki history har baar bheji jaati hai, har message agle ko bada karta hai, aur har token har baar charge hota hai. Imran ne ek napkin liya aur ek udaharan likha. Maan lijiye chatbot har request ki shuruaat apne teen sau token ke instructions se karta hai, aur har exchange, customer ka message aur jawaab milkar, sau token jodta hai.
 
-## Chaalaki
-
-Usne counter se bahi uthayi, maalik ko sir hilakar, jisne kandhe uchka kar ijaazat di. Woh sakht kaathi wali ek lambi kitaab thi. Usne use kholi, columns se bhare ek page par palti, aur uthaya.
-
-"Maan lo tum andar aayi aur us aadmi ko bilkul yaad nahi hai. Har baar jab tum usse bolti, tumhe pehle yeh bahi use thamani padti, sahi page par khuli hui, taaki woh padh sake ki kya kaha gaya tha. 'Achha. Mrs. Apte. Thursday. Kaju katli.' Yahi chaalaki hai. Model sirf wahi dekhta hai jo maujooda request mein mez par hai. Isliye jab tum apna paanchwaan message bhejti ho, toh app pehle chaar dobara bhejta hai, naya sabse ant mein."
-
-Usne window mein type karke dikhaya. Pehle, *Mera naam Anaya hai aur main loans par kaam karti hoon.* Phir jo jawaab usne diya tha. Phir *Mera naam kya hai?* Sab ek hi request mein, teen messages lambi. Jawaab turant wapas aaya. *Aapka naam Anaya hai.*
-
-Pichhle messages, har naye ke saath wapas paste kiye gaye, *conversation history* kehlate hain, aur machine ke yaad rakhne ka poora anubhav isi dobara bhejne se bana hai. Model ko is baare mein kuch nahi pata. Jo yaad jaisa dikhta hai woh app hai, saavdhaani se, bahi thamata hua.
-
-## Yaad rakhne ki keemat
-
-Anaya ne, jo pichhle mahine se kharch ke hisaab se soch rahi thi, use usse pehle dekh liya jab woh bola.
-
-"Har message agle ko bada bana deta hai."
-
-"Haan. Aur har baar uska paisa lagta hai." Imran ne napkin ki taraf haath badhaya; dukaan mein napkin kam pad rahe the. "Maan lo chatbot har request apne teen sau tokens ke nirdeshon se shuru karta hai. Maan lo har baatcheet, customer ka message aur jawaab, sau tokens jodti hai."
-
-Usne ek chhota column likha.
-
+Table: Baatcheet mein request ka size kaise badhta hai
 | Message number | Kya bheja jaata hai | Tokens |
 | --- | --- | --- |
-| 1 | nirdesh aur pehla message | lagbhag 340 |
-| 10 | nirdesh, nau pichhli baatcheet, naya message | lagbhag 1,240 |
-| 20 | nirdesh, unnees pichhli baatcheet, naya message | lagbhag 2,240 |
+| 1 | Instructions aur pehla message | lagbhag 340 |
+| 10 | Instructions, nau pichhle exchanges aur naya message | lagbhag 1,240 |
+| 20 | Instructions, unnees pichhle exchanges aur naya message | lagbhag 2,240 |
 
-"Bheesvaan message pehle se chhe guna se zyada mehnga hai. Aur poori bees-message ki baatcheet, jodkar, lagbhag 25,800 tokens bheje gaye. Agar use kuch yaad na rehta, toh lagbhag 6,800." Usne farak ko underline kiya. "Baatcheet ka kharcha woh nahi hai jo insaan ne type kiya. Woh hai jo app ko dhona padta hai."
+Bisvan message pehle se chhe guna se zyada mehnga hai. Bees message ki baatcheet mein bheja gaya kul lagbhag 25,800 token hota hai. Agar chatbot kuch yaad na rakhta, toh kul lagbhag 6,800 hota. Isliye baatcheet ka kharcha woh nahi hai jo insaan ne type kiya. Woh woh hai jo application ko saath le jaana padta hai.
 
-Isi ginit mein ek doosri seema chhupi hai, aur Anaya ne use khud dhoondha. Context window ek tay size ki hai. Itni lambi chalne wali baatcheet fit hona band kar degi. Us waqt app ko tay karna padta hai ki kya chhodna hai, aur woh faisla app ka hota hai, model ka kabhi nahi. Woh sabse purane messages gira sakta hai. Woh unhe ek saar se badal sakta hai. Woh customer ke baare mein kuch saheje hue tathya dhoondh kar sirf wahi bhej sakta hai. Woh kaam ki sthiti ek database mein rakh kar wahi bhej sakta hai. Har product jo "memory" deta hai usne inmein se ek chuna hai aur banaya hai, aur model vendor ne ismein se kuch nahi diya.
+## 10.4 Jab baatcheet fit nahi hoti
 
-## Jo cheez woh nahi dekh paayi thi
+Wahi hisaab ek doosri seema chhupata hai, jo Anaya ne khud dhoondhi. Context window ek tay size ka hai, aur jo baatcheet kaafi lambi chale woh ab fit nahi hogi. Tab application ko tay karna hota hai ki kya chhodna hai, aur woh faisla application ka hota hai, model ka kabhi nahi.
 
-Usne apni jalebi chupchaap khatam ki. Phir usne napkin bahut saavdhaani se neeche rakha, jaise woh chhalak sakta ho.
+Table: Lambi history ke saath application kya kar sakta hai
+| Vikalp | Matlab | Kya khatra hai |
+| --- | --- | --- |
+| Sabse puraane messages hata do | Sirf sabse haal ke rakho | Customer ne shuru mein jo tathya diye woh kho jaate hain |
+| Puraane messages ko saar se badal do | Jo kaha gaya uska chhota byora rakho | Saar mein kuch zaroori chhoot sakta hai |
+| Customer ke bare mein save kiye tathya dhoondho | Sirf kuch store kiye tathya bhejo | Tathya sahi aur nijee rakhne padte hain |
+| Kaam ki sthiti database mein rakho | Baatcheet ke bajaye sthiti bhejo | Kaam ko sthiti ke roop mein bayaan kiya ja sakna chahiye |
 
-"Agar poori history har baar bheji jaati hai," usne kaha, "toh customer ne doosre message mein jo number type kiya woh teesre message ke saath phir bheja jaata hai."
+Yaaddasht dene wala har product inme se ek chunta hai aur use banata hai. Model dene wali company inme se kuch nahi deti.
 
-"Haan."
+## 10.5 Jo Anaya ne nahi dekha tha
 
-"Aur chauthe ke saath. Aur paanchve ke saath."
+Anaya ne chuppi se apni jalebi khatam ki. Phir usne dhyaan dilaya ki agar poori history har baar bheji jaati hai, toh message do mein type kiya number message teen ke saath, phir message chaar ke saath, aur isi tarah dobara bheja jaata hai. Imran ne pushti ki ki woh baatcheet ke ant tak bheja jaata hai. Agar koi customer bees message wali chat ke doosre message mein Aadhaar number type karta hai, toh woh bahari company ke paas atthaarah baar aur jaata hai. Imran ne yeh pichhli raat dekh liya tha, jab Anaya chali gayi thi, aur intezaar kiya tha ki woh khud ise dhoondhe.
 
-"Baatcheet ke ant tak. Haan."
+Is khoj ne guard ki uski tasveer badal di. Usne ise ek aise tool ki tarah socha tha jo har naye message ko aate hi dekhta hai. Par jo number sirf sabse naye message mein chhupa ho aur history mein dikhta rahe, woh har agle message ke saath poora dobara bheja jaata.
 
-"Toh agar koi bees messages tak chalne wali chat ke doosre message mein apna Aadhaar number type kar de..."
+::: key Store karne se pehle saaf karo
+Guard sirf sabse naye message ko nahi dekh sakta. Ya toh use har call par poori history ko aisi cheez maanna hoga jisme raaz ho sakta hai, ya har line ko aate hi ek baar saaf karna hoga, taaki jo saaf version hai wahi history mein jaaye. Anaya ne doosre vikalp ko design ke niyam ki tarah likh liya: store karne se pehle saaf karo, sirf bhejne se pehle nahi.
+:::
 
-"Woh bahari company ko atharah baar aur bheja jaata hai." Imran ne use narmi se kaha, jaise log woh baatein kehte hain jo ve khud pehle samajh chuke hon. "Maine kal raat dekha tha, tumhare jaane ke baad. Main chahta tha ki tum use khud dhoondho."
+Uthte hue maalik ne counter par ek chhota kaagaz ka packet rakha. "Madam ke liye," usne kaha. "Kaju katli. Aaj Thursday hai." Anaya kai hafton mein pehli baar hansi.
 
-Isne us mahine mein usne jo kuch seekha tha usse zyada problem ko badal diya. Woh guard ko aisi cheez maan rahi thi jo har naye message ko dekhti hai. Lekin doosre message mein chhupa diya gaya aur history mein dikhta chhoda gaya number har baad ke message ke saath, poora, dobara bheja jaata. Guard sirf sabse naye line ko nahi dekh sakta tha. Use poori bahi ko, har baar, aisi cheez maanna tha jisme raaz ho sakta hai; ya, behtar, use har line ko aane par ek baar saaf karna tha, taaki saaf kiya hua version hi history mein jaye. Usne ise design ke niyam ke roop mein likh liya: *Ise bhejne se pehle hi nahi, store karne se pehle saaf karo.*
+## Saaraansh
 
-Maalik ne, jo yeh sab nahi sun raha tha, counter par ek chhota kaagaz ka thaila rakha.
+Language model stateless hai. Woh request ke beech kuch nahi rakhta, aur har call shuru se shuru hoti hai.
 
-"Bibi ji ke liye," usne kaha. "Kaju katli. Aaj Thursday hai."
-
-Anaya ne use dekha, aur Imran ko, aur kai hafton mein pehli baar hans padi.
-
-## Saath le jaane layak baatein
-
-Model requests ke beech kuch nahi rakhta; woh stateless hai, aur har call shoonya se shuru hoti hai. Jo chatbot ke yaad rakhne jaisa lagta hai woh app ka conversation history ko dobara bhejna hai, naye message ko ant mein rakhkar. Isse har message pichhle se zyada mehnga hota hai, aur kaafi lambi baatcheet context window mein fit hona band kar degi, jahan app ko, model ko nahi, chunna padta hai ki kya chhodna hai. Kisi bhi product mein memory woh cheez hai jo product banata hai aur jiska paisa deta hai. Aur uska ek privacy ka nateeja hai jise chhodna aasaan hai: ek baar type ki gayi detail har baad ke message ke saath dobara bheji jaati hai, jab tak use store karne se pehle saaf na kiya jaye.
+- Chatbot isliye yaad rakhta lagta hai kyunki application har naye message ke saath conversation history dobara bhejta hai. Kisi bhi product ki yaaddasht product khud banata hai aur uska paisa deta hai.
+- Kyunki history dobara bheji jaati hai, har message pichhle se zyada mehnga hota hai, aur baatcheet ka kul kharcha uski lambai se bahut zyada tezi se badhta hai.
+- Jo baatcheet context window se bada ho jaaye, usme application ko purane messages hataane, unhe saar mein badalne, save kiye tathya dhoondhne ya kaam ki sthiti rakhne ka faisla karna padta hai. Chunaav application ka hai.
+- Ek baar type kiya gaya detail har agle message ke saath dobara jaata hai jab tak use store karne se pehle saaf na kiya jaaye.
