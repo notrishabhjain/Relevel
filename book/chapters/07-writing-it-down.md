@@ -1,7 +1,12 @@
 ---
 title: Writing It Down So Others Can Build It
-summary: An engineer draws the guard on a napkin, a product manager turns it into a specification a stranger could build from, and a support agent shows what a paper mock-up can find that a meeting cannot.
+summary: An engineer sketches the guard on a napkin and the product manager turns the sketch into a specification that a stranger could build from. The chapter covers the four parts of the guard, requirements and acceptance criteria, thin first versions, and what a paper test reveals that a meeting cannot.
 course: a7
+goals:
+  - name the four parts of the guard and say what each one is responsible for
+  - write a product requirements document whose "done" conditions can be tested
+  - list edge cases and decide what the product does when it is unsure
+  - build a thin first version, give uncertain work a time-box, and test a paper prototype with a real person
 terms:
   - PRD | product requirements document: the paper that says what to build and why, starting from the problem and its evidence | product requirements document
   - acceptance criteria | the conditions a piece of work must meet to count as done, each written so it can be tested | acceptance criterion
@@ -22,98 +27,103 @@ terms:
   - rule-keeper | the fourth part of the guard: it decides what to do with each detail found, such as remove it, mask it, let it through or ask | rule-keepers
 ---
 
-Imran drew the guard on a napkin from the sweet shop downstairs, in a pencil he had to keep licking.
+When the founders approved the project, Imran Qureshi drew the guard on a napkin from the sweet shop below the office. The drawing took four minutes. A long box on the left was labelled "message" and a long box on the right "safe message". Between them stood four small boxes in a row, each with three words beneath it.
 
-It took him four minutes. A long box on the left he labelled *message*. A long box on the right he labelled *safe message*. Between them went four small boxes in a row, and under each box he wrote three words, in the unhurried capitals of a man who had been drawing architecture diagrams for fifteen years and had never once enjoyed it.
+A napkin sketch is a hypothesis about structure. It cannot be built from, because it does not say what each box must do, how anyone will know the box works, or what happens when it fails. This chapter follows the conversion of the sketch into a document that a stranger could build from, and the first test of the design on paper.
 
-"This is what I think it is," he said. "Correct me."
+## The case: four boxes on a napkin
 
-Anaya looked at the napkin for a long time. It was the first time anyone had drawn her idea, and it looked both smaller and more solid than it had in her head.
+Imran's sketch divided the work into four parts. Anaya's task was to say precisely what each part was responsible for, to write the conditions under which each would count as finished, and to find out before any code existed whether the people who would use the result could understand it.
 
 ## What the guard is made of
 
-The first box, Imran explained, caught anything with a fixed shape. A PAN is always five capital letters, four digits and a capital letter. An Aadhaar number is twelve digits. A mobile number is ten digits and starts with six, seven, eight or nine. A rule can find these as surely as a ruler finds a straight line, and it does so instantly, for nothing, the same way every time. They called it the *pattern checker*.
+The sketch assigns each kind of personal detail to the part best suited to find it.
 
-The second box was for details with no shape at all. There is nothing about "Ramesh Jain", or "14 Sector 15, Gurgaon", or "Acme Bank", that follows a pattern, so no fixed rule can find them. Something would have to read the sentence and understand that this word is a person and that one is a place. This box he called the *name-and-place finder*.
+Table: The four parts of the guard
+| Part | What it does | Why it is separate |
+| --- | --- | --- |
+| Pattern checker | Finds details that always have the same shape: a PAN (five capital letters, four digits, one capital letter), an Aadhaar number (twelve digits), a mobile number (ten digits starting with 6, 7, 8 or 9) | A fixed rule finds these instantly, at no cost, the same way every time |
+| Name-and-place finder | Finds details with no fixed shape, such as a person's name, an address or an employer | No rule can describe "Ramesh Jain" or "14 Sector 15, Gurgaon"; something must read the sentence and recognise a person or a place |
+| Context judge | Reads the few sentences the first two parts could not settle and decides whether they point to a person | Reading in context is slow and costly, so it is asked only about what remains |
+| Rule-keeper | Decides what to do with each detail that was found | It finds nothing itself; it applies the rules for each kind of detail |
 
-The third box was the one he was least sure about. Some sentences contain no number and no name and still point to exactly one person: *I am the only diabetic patient in my village who had a transplant last year.* Details of this kind, harmless alone and sharp together, have a name: they are *quasi-identifiers*. A box that read these and judged them would be slow and costly, so the plan was to ask it only about the few sentences the first two boxes could not settle. He called it the *context judge*.
+The *pattern checker* is the first part. The *name-and-place finder* is the second. The *context judge* is the third, and the case for it is the *quasi-identifier*: a detail that is harmless alone but can point to one person in combination, as in the sentence "I am the only diabetic patient in my village who had a transplant last year". The sentence has no number and no name and still identifies someone.
 
-The last box did not find anything. It decided. Given everything the others had found, it chose one of four things for each detail. It could *redact* the detail, which means remove it completely and leave a label like [PAN] in its place. It could *mask* it, which hides part and keeps the shape, so that a mobile number becomes 98******12 and the agent can still see that a number was there. It could let the detail through. Or it could ask the person. The choice depended on why the number was being collected. A delivery address is needed for a delivery. An identity number is not needed to ask about late fees. This was the *rule-keeper*.
-
-"Pattern checker, name-and-place finder, context judge, rule-keeper," said Anaya, trying them out. "That sounds like a family."
-
-"It's a pipeline," said Imran. "But fine. Family."
+The *rule-keeper* chooses among four actions for each detail. It can *redact* the detail, removing it completely and leaving a label such as [PAN] in its place. It can *mask* it, hiding part and keeping the shape, so that a mobile number becomes 98******12 and the agent can see that a number was there. It can let the detail through, or it can ask a person. The choice depends on why the information was collected. A delivery address is needed for a delivery, and an identity number is not needed to ask about late fees.
 
 ## Starting from the problem
 
-The napkin was a sketch, and a sketch is not something another person can build from. What she needed was a *PRD*, a product requirements document, which says what to build and why. The "why" matters more than it seems. Engineers make better decisions when they know the problem, and worse ones when they are handed a list of features with no reason attached.
+A *PRD*, a product requirements document, says what to build and why. The reason matters because engineers make better decisions when they know the problem and worse ones when they receive a list of features with no purpose attached.
 
-She started where the document should start, with the problem and its evidence: the 37 conversations, the interview numbers, the greeting that invited details. After it came who the tool was for, and who it was not for. After that, scope, with a section she gave real care to: what was deliberately left out. She wrote the Won't list from the strategy straight into it. Then what the user would see when it worked, when it was unsure, when it failed, and when it declined. Then the tests it had to pass, how success would be measured, how it would be released, and what she did not yet know.
+Anaya began where a PRD should begin, with the problem and its evidence: the 37 conversations, the interview numbers and the greeting that invited details. Next came who the tool was for and who it was not for. Then came scope, including a section on what was deliberately left out, which she filled from the Won't list of the strategy. After that she described what the user would see when the tool worked, when it was unsure, when it failed and when it declined. The remaining sections covered the tests the tool had to pass, how success would be measured, how it would be released, and what was not yet known.
 
-The test of a good document was a single question: *could a stranger build this and know when they had finished?* That depended almost entirely on one section.
+The test of the document was a single question: could a stranger build this and know when they had finished? The answer depended almost entirely on one section.
 
-## Done, in a way you can check
+## Done, in a way that can be checked
 
-The part of a PRD that does the most work is the conditions for "done". Called *acceptance criteria*, they should each be something that can be tested, and the commonest failure is to write one that cannot.
+The part of a PRD that does the most work is the set of conditions for "done". These are the *acceptance criteria*, and each should be something that can be tested. The commonest failure is a criterion that cannot be.
 
+Table: Acceptance criteria that cannot be tested, and the same ones rewritten
 | Cannot be tested | Can be tested |
 | --- | --- |
 | It finds identity numbers accurately | At least 95 of every 100 identity numbers in a set of real conversations, marked by hand beforehand, are hidden |
 | It is fast | It adds no more than a third of a second to a reply |
 | It handles bad input | If a message is empty or only emoji, it passes through unchanged and nothing is logged as an error |
 
-She noticed the shape of the first one. It did not say *every* number would be found, because it would not be. It said how many, out of what, measured against what. For a tool that reads and writes text, "done" is not a promise of one right answer. It is a rate, measured on examples somebody has already marked, with the limit written down. The thing that makes a rate meaningful is the marked examples, and she did not yet have them, and she wrote that on the open-questions list in capital letters.
+The first rewritten criterion does not say that every number will be found, because that would not be true. It says how many, out of what, measured against what. For a tool that reads and writes text, "done" is not a promise of one correct answer. It is a rate measured on examples that someone has already marked, with a limit written down. The marked examples are what give the rate meaning. Anaya did not yet have them, and she put that on the open-questions list in capitals.
 
-## The odd cases
+## Stories and odd cases
 
-Each piece of work needed a short story, from the user's side, with its own conditions. A *user story* describes one piece of value: *As a support agent, I want identity numbers hidden as I read the chat, so that I never see what I do not need.* A cousin of it, the job story, starts from the situation instead of the role, and gives engineers more to work with: *When I open a chat for a customer asking about a loan, I want any identity number to be hidden, so that I can help without handling it.*
+Each piece of work needs a short description from the user's side, with its own conditions. A *user story* describes one piece of value: as a support agent, I want identity numbers hidden as I read the chat, so that I never see what I do not need. A variant, the job story, starts from the situation instead of the role and gives engineers more to work with: when I open a chat for a customer asking about a loan, I want any identity number hidden, so that I can help without handling it.
 
-What stories need next, and where most of the trouble lives, are the *edge cases*: the unusual inputs the ordinary cases never touch. Farah's team and Imran's memory supplied a list that Anaya found alarming and then delightful.
+Stories are followed by *edge cases*, the unusual inputs that the ordinary cases never touch, and most of the real work hides in them. Farah's team and Imran's memory supplied a list.
 
+Table: Edge cases for the guard
 | Case | What should happen |
 | --- | --- |
 | A number written with spaces or dashes: 4321-5678-9012 | Hide it as if it were written normally |
 | A number broken over two lines | Hide both halves |
-| "adhar" or "mobil" spelled wrong beside a number | Still hide the number |
-| A mobile number already half hidden: 98xxxxxx12 | Leave it alone, and do not report it |
+| "adhar" or "mobil" misspelled beside a number | Still hide the number |
+| A mobile number already half hidden: 98xxxxxx12 | Leave it alone and do not report it |
 | A twelve-digit order number that is not an identity number | Do not hide it, or the agent cannot do the job |
 | A message in Hindi script with Hindi digits | Hide it |
-| The tool cannot decide | Say so, and let a person decide |
+| The tool cannot decide | Say so and let a person decide |
 
-The last row was the one she added herself, and it was the difference between a product and a gamble. Software that reads text will sometimes be unsure, and a product has to say what it does then.
+The last row was added by Anaya, and it separates a product from a gamble. Software that reads text will sometimes be unsure, and a product must say in advance what it does then.
 
 ## The thinnest thing that works
 
-"Where do we start?" asked Imran. "I can build the whole thing in layers. First the part that reads the chat, then the finding, then the hiding, then what the agent sees. By week six it would all work at once."
+Imran proposed to build the guard in layers: first the part that reads the chat, then the finding, then the hiding, then what the agent sees. By the sixth week everything would work together. Anaya asked what would work in the fifth week. "Nothing," he said.
 
-"And in week five?"
+Cutting work in layers produces nothing usable until the last layer is finished. Cutting it in slices builds a thin version of every layer, so something works from the start. A *vertical slice* passes through all the layers, narrowly. Anaya specified the first one: a single kind of number, written in a single way, followed from the moment a message arrives to the moment an agent sees it hidden, with a line in a log saying what was done.
 
-"Nothing would work."
-
-That is the difference between cutting work in layers and cutting it in slices. The first builds one layer at a time, and nothing is usable until the last is finished. The second builds a thin version of every layer, so something works from the start. A *vertical slice* passes through everything, narrowly. Anaya wrote down what the first one should be: one kind of number, one way of writing it, from the moment a message arrives to the moment an agent sees it hidden, with a line in a log saying what was done.
-
-Such a slice is the core of an *MVP*, a minimum viable product, which is the smallest thing that tests your riskiest assumption with real users. It is not a small version of everything. It is one small version of the one thing that has to be true.
+::: def Minimum viable product
+An *MVP* is the smallest thing that tests the riskiest assumption with real users. It is not a small version of everything. It is one small version of the one thing that has to be true.
+:::
 
 ## Two weeks at a time
 
-Imran's team worked in *sprints*, fixed stretches of two weeks. Each begins with a plan and ends with a demonstration and a short meeting about what went well and what should change. The demonstration is of working software, never of slides.
+Imran's team worked in *sprints*, fixed periods of two weeks. Each begins with a plan and ends with a demonstration and a short meeting about what went well and what should change. The demonstration shows working software, never slides.
 
-Estimating, though, was a problem. Imran could say how long a rule for twelve digits would take. He could not say how long it would take to make something find names in Hinglish, because he did not know whether it could be done. So they used a *time-box*: a fixed amount of time, with a decision at the end of it. *Three days. If it finds fewer than seventy of every hundred names in the real conversations, stop and rethink.* A time-box turns a guess about duration into a decision point.
+Estimates were harder. Imran could say how long a rule for twelve digits would take. He could not say how long it would take to find names in Hinglish, because he did not know whether it could be done. The team therefore used a *time-box*, a fixed amount of time with a decision at the end of it: three days, and if fewer than seventy of every hundred names in the real conversations were found, stop and rethink. A time-box converts a guess about duration into a decision point.
 
 ## Paper first
 
-Anaya drew the agent's screen on four sheets of paper: the chat with a number masked in it, the same chat with a note saying *1 detail hidden, click to see why*, a chat where the tool was unsure, and a chat where it had hidden something the agent needed. A rough, cheap thing made to learn something is a *prototype*, and the amount of care it deserves depends on the question. Paper can tell you whether a flow makes sense. A clickable mock-up can tell you whether people find their way. Something that runs on real output can tell you whether they trust it.
+Anaya drew the agent's screen on four sheets of paper: the chat with a number masked, the same chat with a note saying "1 detail hidden, click to see why", a chat where the tool was unsure, and a chat where it had hidden something the agent needed. A rough, cheap version made to learn something is a *prototype*, and the care it deserves depends on the question. Paper can show whether a flow makes sense. A clickable mock-up can show whether people find their way. A version that runs on real output can show whether they trust it.
 
-On Friday she sat Farah's colleague Neha at a table with the four sheets and gave her a task, not instructions: "A customer says her callback number was hidden. Find out what happened."
+On Friday she sat a colleague of Farah's, Neha, at a table with the four sheets and set a task instead of giving instructions: a customer says her callback number was hidden, so find out what happened. This is a *usability test*. It is simple to describe and hard to carry out, because its entire discipline is not helping.
 
-This kind of *usability test* is simple to describe and hard to do, because the entire discipline is not helping. Neha picked up the second sheet, looked at it for eleven seconds, picked up the third, put it down, and said, "Where do I click to get it back?"
+Neha picked up the second sheet and looked at it for eleven seconds. She picked up the third, put it down, and asked where she should click to get the number back. Anaya wanted very much to point and kept still. "There is no way to get it back," Neha said to herself. "So I'd have to ask Imran."
 
-Anaya's pen hovered. Every part of her wanted to point. She kept still.
+::: key What eleven seconds found
+A test with three to five people like Neha reveals most of the serious problems in a design, and each hesitation is a finding. Anaya added a line to the PRD: an agent can see the hidden detail, for one chat, with a reason recorded. No meeting had raised it.
+:::
 
-"There is no way to get it back," said Neha, helpfully, to herself. "So I'd have to ask Imran."
+## Summary
 
-It was the most valuable eleven seconds of the week. Three to five people like Neha will show you most of the serious problems with a design, and each hesitation is a finding. Anaya added a line to the PRD: *An agent can see the hidden detail, for one chat, with a reason recorded.* It had not occurred to her, and it would never have occurred to a meeting.
+A specification starts from the problem, says what is left out and states "done" as conditions that can be tested. For anything that reads and writes text, "done" is a rate measured against examples someone has already marked.
 
-## What to carry forward
-
-A specification starts from the problem, says what is left out, and states "done" in conditions that can be tested. For anything that reads and writes text, "done" is a rate measured against examples someone has already marked. Stories, with their odd cases, are where most of the real work hides. The smallest worthwhile first version is a thin slice through every part, not one finished layer. Fixed two-week sprints keep the team honest, and a time-box gives uncertain work an end. And before anything is built, a paper version put in front of a real person, with the discipline of saying nothing, finds problems no meeting would.
+- The guard has four parts: a pattern checker for fixed shapes, a name-and-place finder for details without shape, a context judge for what remains and a rule-keeper that decides what to do. Each detail is redacted, masked, passed or queried.
+- Stories describe value from the user's side, and edge cases are where most of the real work hides. A product must say what it does when it is unsure.
+- The first version is a vertical slice that goes through every layer narrowly, and an MVP tests the riskiest assumption. Sprints keep the team in step with working software, and a time-box ends uncertain work with a decision.
+- A paper prototype tested on a real person, who is not helped, finds problems that a meeting would not.
