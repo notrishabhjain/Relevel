@@ -4,103 +4,122 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>After the Book · AI From Zero</title>
-<meta name="description" content="What Anaya knows at the end, what she does not, and where a reader who has finished the story might go next.">
+<meta name="description" content="What the case ended with, what the seven parts of the book add up to, what the project still does not know, and how to use the book together with the course app.">
 <meta name="color-scheme" content="light dark">
-<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="hi-Latn" href="/book/hi/afterword.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
+<link rel="stylesheet" href="/book/style.css">
 <script>try{var t=localStorage.getItem('aifz-book-theme');if(t)document.documentElement.setAttribute('data-theme',t);var s=localStorage.getItem('aifz-book-size');if(s)document.documentElement.style.setProperty('--fs',s+'rem')}catch(e){}</script>
 </head>
-<body class="is-front">
+<body class="is-front" data-lang="en" data-base="/book/" style="">
 <a class="skip" href="#text">Skip to the text</a>
 <div class="progress" id="progress" aria-hidden="true"><i></i></div>
 <header class="bar">
-  <a class="brand" href="index.html"><span class="mark">AI From Zero</span><span class="ed">The reading edition</span></a>
+  <button class="b menu" id="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Contents"><span aria-hidden="true">☰</span><span class="lbl">Contents</span></button>
+  <a class="brand" href="/book/"><span class="mark">AI From Zero</span><span class="ed">The reading edition</span></a>
   <span class="sp"></span>
+  <a class="b lang" href="/book/hi/afterword.html" hreflang="hi-Latn" title="Read this in Hinglish" data-switch>Hinglish</a>
   <button class="b" id="size-down" type="button" aria-label="Smaller text" title="Smaller text">A−</button>
   <button class="b" id="size-up" type="button" aria-label="Larger text" title="Larger text">A+</button>
   <button class="b" id="theme" type="button" aria-label="Change colours" title="Change colours">◐</button>
-  <a class="b app" href="../" title="Open the course app">The course app →</a>
+  <a class="b app" href="/" title="Open the course app">Course app →</a>
 </header>
 <div class="layout">
-<nav class="toc" aria-label="Contents"><details id="toc"><summary>Contents</summary><ol>
-<li><a href="index.html"><span class="t">Contents</span></a></li>
-<li><a href="preface.html"><span class="t">Before You Begin</span></a></li>
-<li><a href="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">The Number in the Chat</span></a></li>
-<li><a href="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Four Questions Before Building</span></a></li>
-<li><a href="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Asking About Yesterday</span></a></li>
-<li><a href="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Who Else Is Standing Here</span></a></li>
-<li><a href="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Choosing What Not to Do</span></a></li>
-<li><a href="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">A Plan Others Can Believe</span></a></li>
-<li><a href="07-writing-it-down.html"><span class="n">7</span><span class="t">Writing It Down So Others Can Build It</span></a></li>
-<li><a href="08-what-the-machine-is.html"><span class="n">8</span><span class="t">What the Machine Is</span></a></li>
-<li><a href="09-the-first-conversation.html"><span class="n">9</span><span class="t">The First Conversation</span></a></li>
-<li><a href="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">A Mind With No Memory</span></a></li>
-<li><a href="11-giving-instructions.html"><span class="n">11</span><span class="t">Giving Instructions</span></a></li>
-<li><a href="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Knowing Whether It Works</span></a></li>
-<li><a href="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Sorting and Summarising</span></a></li>
-<li><a href="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Too Long to Read at Once</span></a></li>
-<li><a href="15-finding-by-words.html"><span class="n">15</span><span class="t">Finding by Words</span></a></li>
-<li><a href="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Finding by Meaning</span></a></li>
-<li><a href="17-how-good-is-good.html"><span class="n">17</span><span class="t">How Good Is Good</span></a></li>
-<li><a href="18-the-whole-machine.html"><span class="n">18</span><span class="t">The Whole Machine</span></a></li>
-<li><a href="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Answers a Program Can Use</span></a></li>
-<li><a href="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Giving the Machine Hands</span></a></li>
-<li><a href="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Long Windows, Careful Rooms</span></a></li>
-<li><a href="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Machines That Think First</span></a></li>
-<li><a href="23-searching-better.html"><span class="n">23</span><span class="t">Searching Better</span></a></li>
-<li><a href="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">When the Page Gives Orders</span></a></li>
-<li><a href="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Grading a Thousand Answers</span></a></li>
-<li><a href="26-what-it-really-costs.html"><span class="n">26</span><span class="t">What It Really Costs</span></a></li>
-<li><a href="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Paper, Photos and Scans</span></a></li>
-<li><a href="28-what-you-may-send.html"><span class="n">28</span><span class="t">What You May Send</span></a></li>
-<li><a href="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Rules, Risk and Responsibility</span></a></li>
-<li><a href="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">The Spec for a Thing That Varies</span></a></li>
-<li><a href="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Build, Buy or Teach It</span></a></li>
-<li><a href="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Designing for the Wrong Answer</span></a></li>
-<li><a href="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">The Plumbing Under the Magic</span></a></li>
-<li><a href="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Choosing a Model on Your Own Cases</span></a></li>
-<li><a href="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Retrieval That Survives a Review</span></a></li>
-<li><a href="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents and the Standard Plug</span></a></li>
-<li><a href="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Pictures and Voices</span></a></li>
-<li><a href="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces and Rollbacks</span></a></li>
-<li><a href="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Assuming the Worst</span></a></li>
-<li><a href="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">A Product, Not a Demo</span></a></li>
-<li><a href="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Shipping the Whole Thing</span></a></li>
-<li><a href="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Who Pays, and How Much</span></a></li>
-<li><a href="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">How People Find It and Stay</span></a></li>
-<li><a href="44-counting-what-matters.html"><span class="n">44</span><span class="t">Counting What Matters</span></a></li>
-<li><a href="45-tools-and-harness.html"><span class="n">45</span><span class="t">The Tools and the Harness</span></a></li>
-<li><a href="46-real-people-real-use.html"><span class="n">46</span><span class="t">Real People, Real Use</span></a></li>
-<li><a href="47-the-job.html"><span class="n">47</span><span class="t">The Work, and the Job</span></a></li>
-<li class="here"><a href="afterword.html" aria-current="page"><span class="t">After the Book</span></a></li>
-<li><a href="glossary.html"><span class="t">Words, in plain language</span></a></li>
-</ol></details></nav>
+<nav class="toc" id="toc" aria-label="Contents">
+<div class="tochead"><label class="find"><span class="sr">Find a chapter or a word</span><input id="q" type="search" placeholder="Find a chapter or a word" autocomplete="off"></label></div>
+<ol>
+<li class="top"><a href="/book/"><span class="n dot"></span><span class="t">Contents</span></a></li>
+<li data-t="before you begin"><a href="/book/preface.html" data-file="preface.html"><span class="n dot"></span><span class="t">Before You Begin</span></a></li>
+<li class="sec" style="--hue:#b4492a"><span>The problem worth solving</span></li>
+<li style="--hue:#b4492a" data-t="the number in the chat"><a href="/book/01-the-number-in-the-chat.html" data-file="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">The Number in the Chat</span></a></li>
+<li style="--hue:#b4492a" data-t="four questions before building"><a href="/book/02-four-questions-before-building.html" data-file="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Four Questions Before Building</span></a></li>
+<li style="--hue:#b4492a" data-t="asking about yesterday"><a href="/book/03-asking-about-yesterday.html" data-file="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Asking About Yesterday</span></a></li>
+<li style="--hue:#b4492a" data-t="who else is standing here"><a href="/book/04-who-else-is-standing-here.html" data-file="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Who Else Is Standing Here</span></a></li>
+<li style="--hue:#b4492a" data-t="choosing what not to do"><a href="/book/05-choosing-what-not-to-do.html" data-file="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Choosing What Not to Do</span></a></li>
+<li style="--hue:#b4492a" data-t="a plan others can believe"><a href="/book/06-a-plan-others-can-believe.html" data-file="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">A Plan Others Can Believe</span></a></li>
+<li style="--hue:#b4492a" data-t="writing it down so others can build it"><a href="/book/07-writing-it-down.html" data-file="07-writing-it-down.html"><span class="n">7</span><span class="t">Writing It Down So Others Can Build It</span></a></li>
+<li class="sec" style="--hue:#2f6f73"><span>Meeting the machine</span></li>
+<li style="--hue:#2f6f73" data-t="what the machine is"><a href="/book/08-what-the-machine-is.html" data-file="08-what-the-machine-is.html"><span class="n">8</span><span class="t">What the Machine Is</span></a></li>
+<li style="--hue:#2f6f73" data-t="the first conversation"><a href="/book/09-the-first-conversation.html" data-file="09-the-first-conversation.html"><span class="n">9</span><span class="t">The First Conversation</span></a></li>
+<li style="--hue:#2f6f73" data-t="a mind with no memory"><a href="/book/10-a-mind-with-no-memory.html" data-file="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">A Mind With No Memory</span></a></li>
+<li style="--hue:#2f6f73" data-t="giving instructions"><a href="/book/11-giving-instructions.html" data-file="11-giving-instructions.html"><span class="n">11</span><span class="t">Giving Instructions</span></a></li>
+<li style="--hue:#2f6f73" data-t="knowing whether it works"><a href="/book/12-knowing-whether-it-works.html" data-file="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Knowing Whether It Works</span></a></li>
+<li style="--hue:#2f6f73" data-t="sorting and summarising"><a href="/book/13-sorting-and-summarising.html" data-file="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Sorting and Summarising</span></a></li>
+<li class="sec" style="--hue:#6b5ca5"><span>Finding things, and the whole machine</span></li>
+<li style="--hue:#6b5ca5" data-t="too long to read at once"><a href="/book/14-too-long-to-read-at-once.html" data-file="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Too Long to Read at Once</span></a></li>
+<li style="--hue:#6b5ca5" data-t="finding by words"><a href="/book/15-finding-by-words.html" data-file="15-finding-by-words.html"><span class="n">15</span><span class="t">Finding by Words</span></a></li>
+<li style="--hue:#6b5ca5" data-t="finding by meaning"><a href="/book/16-finding-by-meaning.html" data-file="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Finding by Meaning</span></a></li>
+<li style="--hue:#6b5ca5" data-t="how good is good"><a href="/book/17-how-good-is-good.html" data-file="17-how-good-is-good.html"><span class="n">17</span><span class="t">How Good Is Good</span></a></li>
+<li style="--hue:#6b5ca5" data-t="the whole machine"><a href="/book/18-the-whole-machine.html" data-file="18-the-whole-machine.html"><span class="n">18</span><span class="t">The Whole Machine</span></a></li>
+<li style="--hue:#6b5ca5" data-t="answers a program can use"><a href="/book/19-answers-a-program-can-use.html" data-file="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Answers a Program Can Use</span></a></li>
+<li class="sec" style="--hue:#9a7b1f"><span>Giving it work to do</span></li>
+<li style="--hue:#9a7b1f" data-t="giving the machine hands"><a href="/book/20-giving-the-machine-hands.html" data-file="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Giving the Machine Hands</span></a></li>
+<li style="--hue:#9a7b1f" data-t="long windows, careful rooms"><a href="/book/21-long-windows-careful-rooms.html" data-file="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Long Windows, Careful Rooms</span></a></li>
+<li style="--hue:#9a7b1f" data-t="machines that think first"><a href="/book/22-machines-that-think-first.html" data-file="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Machines That Think First</span></a></li>
+<li style="--hue:#9a7b1f" data-t="searching better"><a href="/book/23-searching-better.html" data-file="23-searching-better.html"><span class="n">23</span><span class="t">Searching Better</span></a></li>
+<li style="--hue:#9a7b1f" data-t="when the page gives orders"><a href="/book/24-when-the-page-gives-orders.html" data-file="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">When the Page Gives Orders</span></a></li>
+<li style="--hue:#9a7b1f" data-t="grading a thousand answers"><a href="/book/25-grading-a-thousand-answers.html" data-file="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Grading a Thousand Answers</span></a></li>
+<li style="--hue:#9a7b1f" data-t="what it really costs"><a href="/book/26-what-it-really-costs.html" data-file="26-what-it-really-costs.html"><span class="n">26</span><span class="t">What It Really Costs</span></a></li>
+<li class="sec" style="--hue:#3f7a4a"><span>The messy real world</span></li>
+<li style="--hue:#3f7a4a" data-t="paper, photos and scans"><a href="/book/27-paper-photos-and-scans.html" data-file="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Paper, Photos and Scans</span></a></li>
+<li style="--hue:#3f7a4a" data-t="what you may send"><a href="/book/28-what-you-may-send.html" data-file="28-what-you-may-send.html"><span class="n">28</span><span class="t">What You May Send</span></a></li>
+<li style="--hue:#3f7a4a" data-t="rules, risk and responsibility"><a href="/book/29-rules-risk-and-responsibility.html" data-file="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Rules, Risk and Responsibility</span></a></li>
+<li style="--hue:#3f7a4a" data-t="the spec for a thing that varies"><a href="/book/30-the-spec-for-a-thing-that-varies.html" data-file="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">The Spec for a Thing That Varies</span></a></li>
+<li style="--hue:#3f7a4a" data-t="build, buy or teach it"><a href="/book/31-build-buy-or-teach-it.html" data-file="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Build, Buy or Teach It</span></a></li>
+<li style="--hue:#3f7a4a" data-t="designing for the wrong answer"><a href="/book/32-designing-for-the-wrong-answer.html" data-file="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Designing for the Wrong Answer</span></a></li>
+<li class="sec" style="--hue:#a2455e"><span>Under the hood</span></li>
+<li style="--hue:#a2455e" data-t="the plumbing under the magic"><a href="/book/33-the-plumbing-under-the-magic.html" data-file="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">The Plumbing Under the Magic</span></a></li>
+<li style="--hue:#a2455e" data-t="choosing a model on your own cases"><a href="/book/34-choosing-a-model-on-your-own-cases.html" data-file="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Choosing a Model on Your Own Cases</span></a></li>
+<li style="--hue:#a2455e" data-t="retrieval that survives a review"><a href="/book/35-retrieval-that-survives-a-review.html" data-file="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Retrieval That Survives a Review</span></a></li>
+<li style="--hue:#a2455e" data-t="workflows, agents and the standard plug"><a href="/book/36-workflows-agents-and-the-standard-plug.html" data-file="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents and the Standard Plug</span></a></li>
+<li style="--hue:#a2455e" data-t="pages, pictures and voices"><a href="/book/37-pages-pictures-and-voices.html" data-file="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Pictures and Voices</span></a></li>
+<li style="--hue:#a2455e" data-t="gates, traces and rollbacks"><a href="/book/38-gates-traces-and-rollbacks.html" data-file="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces and Rollbacks</span></a></li>
+<li style="--hue:#a2455e" data-t="assuming the worst"><a href="/book/39-assuming-the-worst.html" data-file="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Assuming the Worst</span></a></li>
+<li class="sec" style="--hue:#2d5d8f"><span>A real product, and a job</span></li>
+<li style="--hue:#2d5d8f" data-t="a product, not a demo"><a href="/book/40-a-product-not-a-demo.html" data-file="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">A Product, Not a Demo</span></a></li>
+<li style="--hue:#2d5d8f" data-t="shipping the whole thing"><a href="/book/41-shipping-the-whole-thing.html" data-file="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Shipping the Whole Thing</span></a></li>
+<li style="--hue:#2d5d8f" data-t="who pays, and how much"><a href="/book/42-who-pays-and-how-much.html" data-file="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Who Pays, and How Much</span></a></li>
+<li style="--hue:#2d5d8f" data-t="how people find it and stay"><a href="/book/43-how-people-find-it-and-stay.html" data-file="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">How People Find It and Stay</span></a></li>
+<li style="--hue:#2d5d8f" data-t="counting what matters"><a href="/book/44-counting-what-matters.html" data-file="44-counting-what-matters.html"><span class="n">44</span><span class="t">Counting What Matters</span></a></li>
+<li style="--hue:#2d5d8f" data-t="the tools and the harness"><a href="/book/45-tools-and-harness.html" data-file="45-tools-and-harness.html"><span class="n">45</span><span class="t">The Tools and the Harness</span></a></li>
+<li style="--hue:#2d5d8f" data-t="real people, real use"><a href="/book/46-real-people-real-use.html" data-file="46-real-people-real-use.html"><span class="n">46</span><span class="t">Real People, Real Use</span></a></li>
+<li style="--hue:#2d5d8f" data-t="the work, and the job"><a href="/book/47-the-job.html" data-file="47-the-job.html"><span class="n">47</span><span class="t">The Work, and the Job</span></a></li>
+<li class="here" data-t="after the book"><a href="/book/afterword.html" aria-current="page" data-file="afterword.html"><span class="n dot"></span><span class="t">After the Book</span></a></li>
+<li data-t="words, in plain language"><a href="/book/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Words, in plain language</span></a></li>
+</ol>
+<p class="nomatch" hidden>Nothing matches that.</p>
+</nav>
+<div class="scrim" id="scrim" hidden></div>
 <main id="text">
 <article class="chapter plain" data-file="afterword.html" data-title="After the Book">
-<header class="chead"><h1>After the Book</h1><p class="dek">What Anaya knows at the end, what she does not, and where a reader who has finished the story might go next.</p></header>
+<header class="chead"><p class="eyebrow"><span>Afterword</span></p><h1>After the Book</h1><p class="dek">What the case ended with, what the seven parts of the book add up to, what the project still does not know, and how to use the book together with the course app.</p></header>
 <div class="prose">
-<p>In September, a year and a half after the night she began it, Anaya Deshmukh scrolled back to the top of the decision log and read the first entry. <em>14 March. Decision: work on the personal-details problem first. Ticket themes second. Evidence: 37 of 400 conversations in one week contained an identity number, a tax number, a bank account or a full address. My count; Farah can check it.</em></p>
-<p>She read the last line twice. <em>I would change my mind if.</em> Of the many things the year had taught her, that line had been the cheapest and had done the most work.</p>
-<p>Behind her, on the whiteboard, Imran had left a drawing in three colours of everything that now sat between a customer's keyboard and the person who read the reply: a shape for each thing the guard did, an arrow for each place a decision was made, a star beside each place where a wrong answer would cost the most. It was not beautiful. It was exactly what she had built.</p>
-<p>She could say now what she had not been able to say in March. She knew what the machine was, in plain words, and what it could not do. She knew how to ask whether it worked, with a number. She knew what it cost, and who would pay. She knew a good many ways it could fail, and had a few of them written down, and she knew what it was not allowed to do alone. She knew that people she had never met had used it, and that some of them had been unimpressed, which was the useful part.</p>
-<p>She also knew a good deal that she did not know. The guard had been measured in English, in Hindi and in the mixture of the two, on messages the team had written itself. It had not been measured in Tamil or Bengali or Telugu, or in the writing of customers outside two cities, or against an attacker with more patience than Imran. It had never been called compliant by anyone who understood the word, and it would be a mistake for anyone to call it that on its behalf. It was a careful tool with honest numbers. That was all it had ever claimed to be, and it was enough to be getting on with.</p>
-<h2>What the book has tried to do</h2>
-<p>This book followed one small project through the whole of an education, because a project gives every idea somewhere to land. It has told the story of a single company, in a single city, with invented people and invented figures. The prices are made up. The messages are made up. The measurements are what a careful team might find, and not what any real team has found. Where a number mattered, it was there to show how a number is reasoned about, and you should check it against your own cases before you borrow it.</p>
-<p>It has also tried to give you the words. Nearly everything in a field like this goes by a name, and a good part of the difficulty of learning it is that the names arrive faster than the things they stand for. Each chapter began with a few new words and used them, in that chapter and in all the later ones, in the same sense. If a word has slipped away from you, the glossary at the back keeps every one of them, with a short plain definition and a note of the chapter where it first appeared.</p>
-<h2>Where to go from here</h2>
-<p>A book can give you the picture. It cannot give you the habit, and the habit is most of the skill. What you have read here becomes yours when you do it: when you write the plain description of a problem and find that it does not hold together, when you build the small answer key and see how often you were wrong, when you break your own system on purpose and watch what it does.</p>
-<p>The course app is built for exactly that. Every chapter of the book has a companion in the app, linked from the top of the chapter page, with the same ideas in the same order, and with the work to do: the tasks and the questions that you answer and check. Read a chapter here and then do it there, or the other way about. The two were written to be walked together.</p>
-<p>If you find a place where the story and the course disagree, or where a word is used before it is explained, please say so. The book was checked for exactly that, line by line, and a checker is no substitute for a reader.</p>
-<p>And if you are, as Anaya was, the person in the room who has been asked to make sense of something nobody quite understands, take a notebook, and begin it with one line about what you noticed. Everything else follows from that.</p>
+<p>In September, a year and a half after the night she began it, Anaya Deshmukh scrolled to the top of the decision log and read the first entry. It was dated 14 March. The decision was to work on the personal-details problem first and ticket themes second. The evidence was that 37 of 400 conversations in one week contained an identity number, a tax number, a bank account or a full address, by her own count, which Farah could check. She read the last line twice: &quot;I would change my mind if&quot;. Of the many things the year had taught her, that line had been the cheapest and had done the most work.</p>
+<h2>Where the case ends</h2>
+<p>By September the guard ran on every chat in two support teams and in the trial of a lending partner. Behind Anaya on the whiteboard Imran had left a drawing in three colours of everything that now stood between a customer's keyboard and the person who read the reply. It showed a shape for each thing the guard did, an arrow for each place where a decision was made, and a star beside each place where a wrong answer would cost the most. It was not elegant. It was an accurate account of what had been built.</p>
+<h2>What the seven parts add up to</h2>
+<p>The book was arranged in seven parts, and each added a kind of ability. They are listed here as a reader might check them.</p>
+<figure class="tblfig"><figcaption><b>Table 1.</b> What a reader of each part should now be able to do</figcaption><div class="tblwrap"><table><thead><tr><th>Part</th><th>Chapters</th><th>The reader can</th></tr></thead><tbody><tr><td>1. The problem worth solving</td><td>1 to 7</td><td>Turn an impression into a count, test an idea against the four product risks, learn from users by asking about the past, size a market from the bottom up, choose what not to do, plan in outcomes, and write a specification whose &quot;done&quot; can be tested</td></tr><tr><td>2. Meeting the machine</td><td>8 to 13</td><td>Say what a language model is and is not, read a request and its cost, explain why a chatbot's memory is the application's, write and test instructions, and measure with an answer key</td></tr><tr><td>3. Finding things, and the whole machine</td><td>14 to 19</td><td>Describe retrieval, choose where to cut documents, combine exact and meaning-based search, state recall and precision, and design output that a program can use</td></tr><tr><td>4. Giving it work to do</td><td>20 to 26</td><td>Let a model call tools within limits, budget what goes into a request, decide when reasoning is worth its cost, defend against injected instructions, grade at scale, and price a design honestly</td></tr><tr><td>5. The messy real world</td><td>27 to 32</td><td>Handle scans and speech, decide what may be sent to a vendor, document a system's limits, specify software that varies, choose between building and buying, and test whether a feature helps the business</td></tr><tr><td>6. Under the hood</td><td>33 to 39</td><td>Read the ordinary software around a model, choose a model on one's own cases, review a retrieval system, bound an agent, release through a gate, and assume the worst</td></tr><tr><td>7. A real product, and a job</td><td>40 to 47</td><td>Turn a prototype into a service, price it, help people find it and stay, count what they do without recording what they write, work with the tools of a team, learn from real users, and show the work to an employer</td></tr></tbody></table></div></figure>
+<h2>What the project still does not know</h2>
+<p>A textbook that ends with certainty has usually left something out. The guard had been measured in English, in Hindi and in the mixture of the two, on messages that the team itself had written. It had not been measured in Tamil, Bengali or Telugu, or in the writing of customers outside two cities, or against an attacker with more patience than Imran. Nobody who understood the word had called it compliant, and it would be a mistake for anyone to say so on its behalf. It was a careful tool with honest numbers, which was all it had claimed to be.</p>
+<p>The same caution applies to the book. Sahaj, its people, its prices and its figures are invented. The tools and techniques are real, and the failures are of the kind that occur in real systems. Where a number matters, it is there to show how a number is reasoned about, and a reader should check it against their own cases before borrowing it.</p>
+<h2>Words</h2>
+<p>Nearly everything in this field goes by a name, and much of the difficulty of learning it is that the names arrive faster than the things they stand for. Each chapter introduced a few terms and used them, in that chapter and in all later ones, in the same sense. The glossary at the back lists every term with a short definition and the chapter where it first appeared.</p>
+<h2>Using the book with the course app</h2>
+<p>A book can provide the picture, and it cannot provide the habit, which is most of the skill. The material here becomes a reader's own through practice: writing the plain description of a problem and finding that it does not hold together, building a small answer key and seeing how often one was wrong, breaking a system on purpose and watching what it does.</p>
+<p>The course app is built for that practice. Every chapter of the book has a companion in the app, linked beneath the chapter, with the same ideas in the same order and with tasks and questions to answer and check. A reader can read a chapter here and then do the work there, or work in the other order. The two were written to be used together.</p>
+<p>Where the book and the course disagree, or where a term is used before it has been explained, the fault should be reported. The book was checked for exactly that, line by line, but a checker is no substitute for a reader. And for anyone who is, as Anaya was, the person in the room who has been asked to make sense of something that nobody quite understands, the advice is to begin a notebook with one line about what was noticed. Everything else follows from that.</p>
 </div>
 
-<nav class="pager" aria-label="Previous and next"><a class="prev" href="47-the-job.html"><span class="dir">← Before</span><span class="nm">Chapter 47 · The Work, and the Job</span></a><span></span></nav>
+<nav class="pager" aria-label="Previous and next chapter"><a class="prev" href="/book/47-the-job.html" rel="prev"><span class="dir">← Before</span><span class="nm"><b>47</b>The Work, and the Job</span></a><span></span></nav>
 </article>
 </main>
 </div>
-<script src="reader.js"></script>
+<script src="/book/reader.js" defer></script>
 </body>
 </html>

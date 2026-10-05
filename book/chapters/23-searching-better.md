@@ -1,7 +1,12 @@
 ---
 title: Searching Better
-summary: A customer is quoted last year's late fee, and four improvements to search, each measured against the same answer key, show that the dullest one is the only one that can promise anything.
+summary: A customer is quoted last year's late fee. Four improvements to search are measured against the same answer key, and the least glamorous is the only one that can promise a result. The chapter covers hybrid search, reranking, contextual retrieval, metadata filtering and agentic search.
 course: ch12
+goals:
+  - explain why a correct-looking answer can be grounded in an out-of-date document
+  - describe hybrid search, reranking and contextual retrieval and what each repairs
+  - explain why metadata filtering can guarantee a result when ranking techniques only improve the odds
+  - add a real customer failure to the answer key and use labels to control who may see what
 terms:
   - hybrid search | running keyword search and meaning-based search together and combining the two rankings, so you do not have to choose between them | 
   - reranking | fetching many candidate pieces cheaply, then having a slower, more careful model read the question and each piece together and put the best few on top | rerank, reranker
@@ -10,88 +15,64 @@ terms:
   - agentic search | letting a model run several searches itself, read what comes back and rewrite its query, using a loop | 
 ---
 
-The complaint came in on a Monday, forwarded by Farah with no comment, which was how Anaya knew it mattered.
+A complaint arrived on a Monday, forwarded by Farah Sheikh without comment, which was how Anaya knew it mattered. A customer in Nashik had asked the chatbot what the late fee on her electricity bill was, and it had said one hundred rupees. She had paid three days after the due date and Sahaj had charged her one hundred and fifty. She was not very angry, and her message was courteous. She wanted to know why a machine speaking for the company had said one thing while the company did another.
 
-It was from a customer in Nashik. She had asked the chatbot what the late fee was on her electricity bill, and it had told her one hundred rupees. She had paid on the due date plus three days, and Sahaj had charged her one hundred and fifty. She was not very angry. Her message was courteous. She simply wanted to know why a machine speaking for the company had said one thing and the company had done another.
+Lakshmi Iyer arrived at the glass room within the hour with a printout and a face from which all expression had been carefully removed. She asked which figure was right. Imran Qureshi checked and said one hundred and fifty: the fee had gone up in January. She asked where the machine had found a hundred.
 
-Lakshmi arrived at the glass room within the hour with a printout of the complaint and a face from which all expression had been carefully removed.
+## The case: the fee that used to be true
 
-"Which one is right?" she said.
+The explanation took Imran twenty minutes to find, and it was ordinary. When the late-fee policy changed in January, someone had uploaded the new version to the folder the chatbot read from, and nobody had removed the old one. Both versions were in the store, cut into chunks, each with its own embedding. When the customer asked her question, the search found the two chunks that dealt with the late fee. They were nearly identical except for the figure, and the old one happened to score slightly higher. It went to the model, which wrote a fluent, confident, grounded answer from last year's rule.
 
-"The hundred and fifty," said Imran, after a minute with a screen. "It went up in January."
+Everything had worked. The search found the right topic, the model used what it was given, and the answer was grounded in a real document. The document was out of date.
 
-"Then where did the machine get a hundred?"
-
-## The fee that used to be true
-
-It took Imran twenty minutes to find it, and the explanation was so ordinary that it was worse.
-
-When the late-fee policy changed in January, someone had uploaded the new version to the folder the chatbot read from. Nobody had removed the old one. Both were in the store, cut into chunks, each with its own embedding. When the customer in Nashik asked her question, the search had found the two chunks that spoke about the late fee. They were nearly identical, except for the figure. The old one happened to score a shade higher. It went to the model, which wrote a fluent, confident, well-grounded answer from last year's rule.
-
-Everything had worked. That was the horror of it. The search found the right topic, the model used what it was given, and the answer was grounded in a real document. The document was out of date.
-
-"Better ranking would not help," said Imran, slowly. "That's what I keep turning over. Last year's policy is *about* late fees. It matches the question as well as this year's does. Relevance and correctness are different questions, and nothing in the search knows the difference."
+::: key Relevance is not correctness
+Better ranking would not have helped. Last year's policy is about late fees and matches the question as well as this year's does. Relevance and correctness are different questions, and nothing in the search knew the difference.
+:::
 
 ## Four improvements
 
-The previous month's work had given them the means to look at this calmly. They had the answer key for the chatbot's search, ten questions in the customers' words, and a first score of six out of ten. Imran had been meaning to improve it. Now he had a reason, and he went through four techniques in order, measuring each one against the same ten.
+The work of the previous month supplied the means to look at this calmly. The team had an answer key for the chatbot's search, ten questions in the customers' words, with a first score of six out of ten. Imran took four techniques in turn and measured each against the same ten.
 
-**The first was to run both kinds of search.** Keyword search is good at exact strings and weak on meaning. Search by meaning is the reverse. *Hybrid search* runs both and combines the two lists of results, and so there is no longer a choice to make. *Clause 14.2* came from one; *paisa kab milega* came from the other. Six of ten rose to seven.
+Table: Four improvements to search, measured on the same ten questions
+| Technique | What it does | Score |
+| --- | --- | --- |
+| Hybrid search | Runs keyword search and search by meaning together and combines the two lists, so there is no longer a choice to make. "Clause 14.2" came from one and "paisa kab milega" from the other | 6 to 7 |
+| Reranking | Fetches the best fifty pieces cheaply, then has a slower, more careful model read the question and each piece together and put the best few on top. It improves recall and precision at once, at the price of extra time and a second call, which is why it runs on fifty pieces and not on the whole library | 7 to 8 |
+| Contextual retrieval | Before storing each chunk, a model writes one sentence saying where it sits in its document ("This is from the refund section of the Late Payment Policy, about overpayments"), and the sentence is stored with it. A piece that began "the aforesaid amount" now carries a note on what the amount is | 8 to 9 |
+| Metadata filtering | Each chunk is labelled with its document, its version, the dates between which it is in force and who may see it. Before the search scores anything, any chunk that is not current is discarded | No change |
 
-**The second was to re-read the shortlist.** Instead of fetching the best five pieces and hoping, fetch the best fifty cheaply, then hand the question and each of the fifty to a slower, more careful model that reads them together and puts the best few on top. This is *reranking*. It gave a large gain for a modest cost, and, unusually, it improved recall and precision at once: more was found because fifty had been fetched instead of five, and fewer irrelevant pieces survived because the second model had actually read them. Seven became eight. The price was extra time and a second call, which is why it runs on fifty pieces and not on the whole library.
-
-**The third was to mend the orphans.** Before storing each chunk, a model was asked to write a single sentence saying where it sat in its document, and that sentence was stored with it. *This is from the refund section of the Late Payment Policy, about overpayments.* A piece that began *the aforesaid amount* now carried a note on what it was the amount of. This is *contextual retrieval*, and it repaired a failure that had been there since the scissors. Eight became nine.
-
-**The fourth was the dull one.** Imran wrote a few lines of code that labelled each chunk with the document it came from, its version, the dates between which it was in force, and who was allowed to see it. These labels are *metadata*. Then, before the search scored anything, he told it to throw away any chunk that was not current. This is *metadata filtering*.
-
-The score did not move.
+The fourth technique is the one that did not move the score. These labels are *metadata*, and discarding chunks by them before any scoring is *metadata filtering*.
 
 ## The question nobody had asked
 
-"It didn't move because the answer key doesn't have this question," said Anaya.
+Anaya explained why the score had not moved: the answer key did not contain the question. None of the ten asked about anything that had changed. Imran added it as row eleven: what is the late fee on an electricity bill, with the correct answer of one hundred and fifty rupees. Without the filter the system answered a hundred. With the filter on it answered a hundred and fifty. He ran it a hundred times, to see, and the result was the same each time.
 
-"No."
+::: key The only technique that guarantees something
+Hybrid search makes the right chunk more likely to come up. Reranking makes it more likely to be on top. The extra sentence makes it more likely to be understood. No ranking technique can stop a repealed policy from outranking the current one, because ranking concerns relevance and this concerns correctness. A filter acts before the scoring. It does not make the wrong thing less likely. It makes it impossible.
+:::
 
-"The ten questions didn't include last year's fee. We never asked about anything that had changed."
-
-"Right. So let us add one." Imran opened the file. Row eleven: *What is the late fee on an electricity bill?* The correct answer: one hundred and fifty rupees. Without filtering, the system gave a hundred. With the filter on, it gave a hundred and fifty. Every time. He ran it a hundred times, to see.
-
-He looked at the screen for a moment before he said what he thought of it.
-
-"Filtering is the only one of these four that guarantees anything. The others improve the odds. Hybrid search makes the right chunk more likely to come up. Reranking makes it more likely to be on top. The extra sentence makes it more likely to be understood. But no ranking technique can stop a repealed policy from outranking the current one, because ranking is about relevance, and this is about correctness. A filter acts *before* the scoring. It doesn't make the wrong thing less likely. It makes it impossible."
-
-This was, Anaya thought, the kind of distinction she had started to look for in everything: a method that makes a failure rarer, and a method that removes the reason for it. She wrote *row eleven* on the whiteboard, in black, below the old red line. It was the first row in the answer key that had come from a customer.
+Anaya recognised the distinction she had begun to look for in everything: a method that makes a failure rarer, and a method that removes its cause. She wrote "row eleven" on the whiteboard in black, below the old red line. It was the first row of the answer key that had come from a customer.
 
 ## What the labels are for
 
-Lakshmi, who had stayed, asked a different question.
+Lakshmi, who had stayed, asked what else was on the labels. Imran listed them: the document, the version, the dates it applies, and who is allowed to see it. Lakshmi repeated the last item. There were internal documents in the folder, such as the collections playbook and the staff handbook. She asked what would have happened before if a customer's question had matched the handbook. Imran said it would have found the handbook. She asked him to show how it was now prevented. A filter before the search, he said: a customer's request can see only chunks labelled for customers.
 
-"The labels. What else is on them?"
+She nodded with an expression that Anaya had not seen on her before. It was not quite approval. It was the look of a person who has found a firm floor. For the first time a tool in the building was doing what Lakshmi had asked of every system for twenty years: making the wrong thing impossible instead of unlikely.
 
-"Which document, which version, the dates it applies. Who is allowed to see it."
+The same idea, Anaya saw, belonged in the guard. Every message arrives from a place: the order-tracking screen, the loan-status screen, the free chat. An identity number typed into a screen designed to collect one may be exactly right, and the same number in the free chat is not. If the rule-keeper knows where a message came from before it decides anything, it can apply different rules without any clever step. The purpose of a message was another label, and an honest one. She added a column to the specification.
 
-"Who is allowed to see it," Lakshmi repeated. "There are internal documents in that folder. The collections playbook. The staff handbook."
+## One more idea, set aside
 
-"Yes."
+A fifth technique remained, which Imran described and deferred. A model can be allowed to run several searches itself, read the results and rewrite its question, using the loop of Chapter 20. This is *agentic search*. It can find better evidence, and it multiplies the cost in the way that chapter showed and adds the same risks. He wrote it on the board under "later", a column that had begun to look like a good place for a number of things.
 
-"And before, if a customer had asked a question that matched the handbook?"
+## Summary
 
-Imran said nothing for a moment. "It would have found the handbook."
+Plain search can be improved four ways, each worth measuring against the same answer key.
 
-"Show me how you stop that."
+- Hybrid search runs keyword and meaning search together, so no choice has to be made between them.
+- Reranking fetches many candidates and has a slower model reread and reorder them. It improves both what is found and how clean it is, at some cost in time.
+- Contextual retrieval attaches to each chunk a sentence about where it comes from and repairs orphans.
+- Metadata filtering labels chunks with version, dates and audience and filters on those labels before any scoring. It is the only technique here that can promise a result, because relevance and correctness are different questions.
+- Agentic search lets a model search repeatedly, and it multiplies the cost.
 
-"With a filter," he said. "Before the search. A customer's request can only ever see chunks labelled for customers."
-
-She nodded, with something Anaya had not seen on her face before. It was not quite approval. It was the look of a person who has found a firm floor. For the first time, a tool in the building was doing the one thing she had asked of every system for twenty years: making the wrong thing impossible instead of unlikely.
-
-The same list of labels, Anaya saw, belonged in the guard. Every message arrived with a place it had come from: the order-tracking screen, the loan-status screen, the free chat. An identity number typed into a screen that is meant to collect one might be exactly right. The same number in the free chat was not. If the rule-keeper knew where a message came from before it decided anything, it could apply different rules without a single clever step. The purpose of a message was another label, and an honest one. She added a column to the specification.
-
-## One last idea
-
-There remained a fifth technique, which Imran described and set aside. It was to let the model run several searches itself, read the results and rewrite its question, using the same loop as in the earlier chapter. It could find better evidence. It also multiplied the cost in just the way that chapter had shown, and it added the same risks. He wrote it on the board under *later*, which was a column that had begun to look like a good place for a number of things.
-
-*Agentic search*, he called it. They would come back to it if they ever needed to.
-
-## What to carry forward
-
-Plain search can be improved four ways, each worth measuring against the same answer key. Running keyword and meaning search together, called hybrid search, stops you choosing between them. Fetching many candidates and having a slower model reread and reorder them, called reranking, improves both what is found and how clean it is, at some cost in time. Attaching to each chunk a sentence about where it comes from, called contextual retrieval, repairs orphans. And labelling chunks with their version, dates and audience, then filtering on those labels before any scoring, is the only technique here that can promise a result, because relevance and correctness are different questions. Letting a model search repeatedly is possible and multiplies the cost. A good answer key grows from real failures, and the best new row is the one a customer wrote.
+A good answer key grows from real failures, and the best new row is the one a customer wrote.

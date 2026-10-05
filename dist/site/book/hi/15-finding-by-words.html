@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="hi-Latn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shabdon Se Dhoondhna · Chapter 15 · AI From Zero</title>
+<meta name="description" content="Product manager search box ka kirdaar nibhati hai aur seekhti hai ki text dhoondhne ka sabse puraana tareeka un customers ko kyun fail karta hai jinhe sabse zyada madad chahiye, aur pehchaan ke number ke liye woh bilkul sahi kyun hai. Chapter keyword search aur uski khaamosh failure ko samjhata hai.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="en" href="/book/15-finding-by-words.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
+<link rel="stylesheet" href="/book/style.css">
+<script>try{var t=localStorage.getItem('aifz-book-theme');if(t)document.documentElement.setAttribute('data-theme',t);var s=localStorage.getItem('aifz-book-size');if(s)document.documentElement.style.setProperty('--fs',s+'rem')}catch(e){}</script>
+</head>
+<body class="is-chapter" data-lang="hi" data-base="/book/hi/" style="--hue:#6b5ca5">
+<a class="skip" href="#text">Seedhe text par jaaiye</a>
+<div class="progress" id="progress" aria-hidden="true"><i></i></div>
+<header class="bar">
+  <button class="b menu" id="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Vishay-soochi"><span aria-hidden="true">☰</span><span class="lbl">Vishay-soochi</span></button>
+  <a class="brand" href="/book/hi/"><span class="mark">AI From Zero</span><span class="ed">Padhne wala edition (Hinglish)</span></a>
+  <span class="sp"></span>
+  <a class="b lang" href="/book/15-finding-by-words.html" hreflang="en" title="Read this in English" data-switch>English</a>
+  <button class="b" id="size-down" type="button" aria-label="Chhota text" title="Chhota text">A−</button>
+  <button class="b" id="size-up" type="button" aria-label="Bada text" title="Bada text">A+</button>
+  <button class="b" id="theme" type="button" aria-label="Rang badliye" title="Rang badliye">◐</button>
+  <a class="b app" href="/" title="Course app kholiye">Course app →</a>
+</header>
+<div class="layout">
+<nav class="toc" id="toc" aria-label="Vishay-soochi">
+<div class="tochead"><label class="find"><span class="sr">Chapter ya shabd dhoondhiye</span><input id="q" type="search" placeholder="Chapter ya shabd dhoondhiye" autocomplete="off"></label></div>
+<ol>
+<li class="top"><a href="/book/hi/"><span class="n dot"></span><span class="t">Vishay-soochi</span></a></li>
+<li data-t="shuru karne se pehle"><a href="/book/hi/preface.html" data-file="preface.html"><span class="n dot"></span><span class="t">Shuru karne se pehle</span></a></li>
+<li class="sec" style="--hue:#b4492a"><span>Woh problem jo hal karne layak hai</span></li>
+<li style="--hue:#b4492a" data-t="chat mein woh number"><a href="/book/hi/01-the-number-in-the-chat.html" data-file="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">Chat Mein Woh Number</span></a></li>
+<li style="--hue:#b4492a" data-t="banane se pehle chaar sawaal"><a href="/book/hi/02-four-questions-before-building.html" data-file="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Banane Se Pehle Chaar Sawaal</span></a></li>
+<li style="--hue:#b4492a" data-t="kal ke baare mein poochhna"><a href="/book/hi/03-asking-about-yesterday.html" data-file="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Kal Ke Baare Mein Poochhna</span></a></li>
+<li style="--hue:#b4492a" data-t="yahan aur kaun khada hai"><a href="/book/hi/04-who-else-is-standing-here.html" data-file="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Yahan Aur Kaun Khada Hai</span></a></li>
+<li style="--hue:#b4492a" data-t="kya nahi karna hai, yeh chunna"><a href="/book/hi/05-choosing-what-not-to-do.html" data-file="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Kya Nahi Karna Hai, Yeh Chunna</span></a></li>
+<li style="--hue:#b4492a" data-t="aisa plan jis par doosre bharosa karein"><a href="/book/hi/06-a-plan-others-can-believe.html" data-file="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">Aisa Plan Jis Par Doosre Bharosa Karein</span></a></li>
+<li style="--hue:#b4492a" data-t="likh kar rakhna taaki doosre bana sakein"><a href="/book/hi/07-writing-it-down.html" data-file="07-writing-it-down.html"><span class="n">7</span><span class="t">Likh Kar Rakhna Taaki Doosre Bana Sakein</span></a></li>
+<li class="sec" style="--hue:#2f6f73"><span>Machine se mulaqaat</span></li>
+<li style="--hue:#2f6f73" data-t="machine asal mein kya hai"><a href="/book/hi/08-what-the-machine-is.html" data-file="08-what-the-machine-is.html"><span class="n">8</span><span class="t">Machine Asal Mein Kya Hai</span></a></li>
+<li style="--hue:#2f6f73" data-t="pehli baatcheet"><a href="/book/hi/09-the-first-conversation.html" data-file="09-the-first-conversation.html"><span class="n">9</span><span class="t">Pehli Baatcheet</span></a></li>
+<li style="--hue:#2f6f73" data-t="ek dimaag jise kuch yaad nahi rehta"><a href="/book/hi/10-a-mind-with-no-memory.html" data-file="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">Ek Dimaag Jise Kuch Yaad Nahi Rehta</span></a></li>
+<li style="--hue:#2f6f73" data-t="nirdesh dena"><a href="/book/hi/11-giving-instructions.html" data-file="11-giving-instructions.html"><span class="n">11</span><span class="t">Nirdesh Dena</span></a></li>
+<li style="--hue:#2f6f73" data-t="kaise pata chale ki yeh kaam karta hai"><a href="/book/hi/12-knowing-whether-it-works.html" data-file="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Kaise Pata Chale Ki Yeh Kaam Karta Hai</span></a></li>
+<li style="--hue:#2f6f73" data-t="chhaantna aur saar likhna"><a href="/book/hi/13-sorting-and-summarising.html" data-file="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Chhaantna Aur Saar Likhna</span></a></li>
+<li class="sec" style="--hue:#6b5ca5"><span>Cheezein dhoondhna, aur poori machine</span></li>
+<li style="--hue:#6b5ca5" data-t="ek baar mein padhne ke liye bahut lamba"><a href="/book/hi/14-too-long-to-read-at-once.html" data-file="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Ek Baar Mein Padhne Ke Liye Bahut Lamba</span></a></li>
+<li style="--hue:#6b5ca5" class="here" data-t="shabdon se dhoondhna"><a href="/book/hi/15-finding-by-words.html" aria-current="page" data-file="15-finding-by-words.html"><span class="n">15</span><span class="t">Shabdon Se Dhoondhna</span></a></li>
+<li style="--hue:#6b5ca5" data-t="matlab se dhoondhna"><a href="/book/hi/16-finding-by-meaning.html" data-file="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Matlab Se Dhoondhna</span></a></li>
+<li style="--hue:#6b5ca5" data-t="kitna achha, achha hota hai"><a href="/book/hi/17-how-good-is-good.html" data-file="17-how-good-is-good.html"><span class="n">17</span><span class="t">Kitna Achha, Achha Hota Hai</span></a></li>
+<li style="--hue:#6b5ca5" data-t="poori machine"><a href="/book/hi/18-the-whole-machine.html" data-file="18-the-whole-machine.html"><span class="n">18</span><span class="t">Poori Machine</span></a></li>
+<li style="--hue:#6b5ca5" data-t="aise jawaab jo program istemaal kar sake"><a href="/book/hi/19-answers-a-program-can-use.html" data-file="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Aise Jawaab Jo Program Istemaal Kar Sake</span></a></li>
+<li class="sec" style="--hue:#9a7b1f"><span>Machine ko kaam dena</span></li>
+<li style="--hue:#9a7b1f" data-t="machine ko haath dena"><a href="/book/hi/20-giving-the-machine-hands.html" data-file="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Machine Ko Haath Dena</span></a></li>
+<li style="--hue:#9a7b1f" data-t="lambi windows, saavdhaan kamre"><a href="/book/hi/21-long-windows-careful-rooms.html" data-file="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Lambi Windows, Saavdhaan Kamre</span></a></li>
+<li style="--hue:#9a7b1f" data-t="pehle sochne wali machines"><a href="/book/hi/22-machines-that-think-first.html" data-file="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Pehle Sochne Wali Machines</span></a></li>
+<li style="--hue:#9a7b1f" data-t="behtar search"><a href="/book/hi/23-searching-better.html" data-file="23-searching-better.html"><span class="n">23</span><span class="t">Behtar Search</span></a></li>
+<li style="--hue:#9a7b1f" data-t="jab page hukm dene lagta hai"><a href="/book/hi/24-when-the-page-gives-orders.html" data-file="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">Jab Page Hukm Dene Lagta Hai</span></a></li>
+<li style="--hue:#9a7b1f" data-t="hazaar jawaabon ki grading"><a href="/book/hi/25-grading-a-thousand-answers.html" data-file="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Hazaar Jawaabon Ki Grading</span></a></li>
+<li style="--hue:#9a7b1f" data-t="asal mein kitna kharcha hota hai"><a href="/book/hi/26-what-it-really-costs.html" data-file="26-what-it-really-costs.html"><span class="n">26</span><span class="t">Asal Mein Kitna Kharcha Hota Hai</span></a></li>
+<li class="sec" style="--hue:#3f7a4a"><span>Asli duniya ki uljhanein</span></li>
+<li style="--hue:#3f7a4a" data-t="kaagaz, photos aur scans"><a href="/book/hi/27-paper-photos-and-scans.html" data-file="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Kaagaz, Photos Aur Scans</span></a></li>
+<li style="--hue:#3f7a4a" data-t="aap kya bhej sakte hain"><a href="/book/hi/28-what-you-may-send.html" data-file="28-what-you-may-send.html"><span class="n">28</span><span class="t">Aap Kya Bhej Sakte Hain</span></a></li>
+<li style="--hue:#3f7a4a" data-t="niyam, risk aur zimmedaari"><a href="/book/hi/29-rules-risk-and-responsibility.html" data-file="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Niyam, Risk Aur Zimmedaari</span></a></li>
+<li style="--hue:#3f7a4a" data-t="badalti rehne wali cheez ki spec"><a href="/book/hi/30-the-spec-for-a-thing-that-varies.html" data-file="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">Badalti Rehne Wali Cheez Ki Spec</span></a></li>
+<li style="--hue:#3f7a4a" data-t="banao, kharido ya sikhao"><a href="/book/hi/31-build-buy-or-teach-it.html" data-file="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Banao, Kharido Ya Sikhao</span></a></li>
+<li style="--hue:#3f7a4a" data-t="galat jawaab ke liye design"><a href="/book/hi/32-designing-for-the-wrong-answer.html" data-file="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Galat Jawaab Ke Liye Design</span></a></li>
+<li class="sec" style="--hue:#a2455e"><span>Bonnet ke neeche</span></li>
+<li style="--hue:#a2455e" data-t="jaadu ke neeche ki plumbing"><a href="/book/hi/33-the-plumbing-under-the-magic.html" data-file="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">Jaadu Ke Neeche Ki Plumbing</span></a></li>
+<li style="--hue:#a2455e" data-t="apne cases par model chunna"><a href="/book/hi/34-choosing-a-model-on-your-own-cases.html" data-file="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Apne Cases Par Model Chunna</span></a></li>
+<li style="--hue:#a2455e" data-t="review mein tikne wala retrieval"><a href="/book/hi/35-retrieval-that-survives-a-review.html" data-file="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Review Mein Tikne Wala Retrieval</span></a></li>
+<li style="--hue:#a2455e" data-t="workflows, agents aur standard plug"><a href="/book/hi/36-workflows-agents-and-the-standard-plug.html" data-file="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents Aur Standard Plug</span></a></li>
+<li style="--hue:#a2455e" data-t="pages, tasveerein aur awaazein"><a href="/book/hi/37-pages-pictures-and-voices.html" data-file="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Tasveerein Aur Awaazein</span></a></li>
+<li style="--hue:#a2455e" data-t="gates, traces aur rollbacks"><a href="/book/hi/38-gates-traces-and-rollbacks.html" data-file="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces Aur Rollbacks</span></a></li>
+<li style="--hue:#a2455e" data-t="sabse bure ko maan kar chalna"><a href="/book/hi/39-assuming-the-worst.html" data-file="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Sabse Bure Ko Maan Kar Chalna</span></a></li>
+<li class="sec" style="--hue:#2d5d8f"><span>Ek asli product, aur ek naukri</span></li>
+<li style="--hue:#2d5d8f" data-t="product, demo nahi"><a href="/book/hi/40-a-product-not-a-demo.html" data-file="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">Product, Demo Nahi</span></a></li>
+<li style="--hue:#2d5d8f" data-t="poori cheez ko ship karna"><a href="/book/hi/41-shipping-the-whole-thing.html" data-file="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Poori Cheez Ko Ship Karna</span></a></li>
+<li style="--hue:#2d5d8f" data-t="paisa kaun deta hai, aur kitna"><a href="/book/hi/42-who-pays-and-how-much.html" data-file="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Paisa Kaun Deta Hai, Aur Kitna</span></a></li>
+<li style="--hue:#2d5d8f" data-t="log ise kaise dhoondhte hain aur kyun rukte hain"><a href="/book/hi/43-how-people-find-it-and-stay.html" data-file="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">Log Ise Kaise Dhoondhte Hain Aur Kyun Rukte Hain</span></a></li>
+<li style="--hue:#2d5d8f" data-t="jo maayne rakhta hai use ginna"><a href="/book/hi/44-counting-what-matters.html" data-file="44-counting-what-matters.html"><span class="n">44</span><span class="t">Jo Maayne Rakhta Hai Use Ginna</span></a></li>
+<li style="--hue:#2d5d8f" data-t="tools aur harness"><a href="/book/hi/45-tools-and-harness.html" data-file="45-tools-and-harness.html"><span class="n">45</span><span class="t">Tools Aur Harness</span></a></li>
+<li style="--hue:#2d5d8f" data-t="asli log, asli istemaal"><a href="/book/hi/46-real-people-real-use.html" data-file="46-real-people-real-use.html"><span class="n">46</span><span class="t">Asli Log, Asli Istemaal</span></a></li>
+<li style="--hue:#2d5d8f" data-t="kaam, aur naukri"><a href="/book/hi/47-the-job.html" data-file="47-the-job.html"><span class="n">47</span><span class="t">Kaam, Aur Naukri</span></a></li>
+<li data-t="kitaab ke baad"><a href="/book/hi/afterword.html" data-file="afterword.html"><span class="n dot"></span><span class="t">Kitaab Ke Baad</span></a></li>
+<li data-t="shabd, saral bhasha mein"><a href="/book/hi/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Shabd, saral bhasha mein</span></a></li>
+</ol>
+<p class="nomatch" hidden>Kuch nahi mila.</p>
+</nav>
+<div class="scrim" id="scrim" hidden></div>
+<main id="text">
+<article class="chapter" data-file="15-finding-by-words.html" data-title="Shabdon Se Dhoondhna" data-n="15">
+<header class="chead">
+<p class="eyebrow"><span class="num">15</span><span>Chapter 15 <i>·</i> Cheezein dhoondhna, aur poori machine</span></p>
+<h1>Shabdon Se Dhoondhna</h1><p class="dek">Product manager search box ka kirdaar nibhati hai aur seekhti hai ki text dhoondhne ka sabse puraana tareeka un customers ko kyun fail karta hai jinhe sabse zyada madad chahiye, aur pehchaan ke number ke liye woh bilkul sahi kyun hai. Chapter keyword search aur uski khaamosh failure ko samjhata hai.</p>
+<p class="meta"><span>6 min padhai</span><span>1 naye shabd</span></p>
+</header>
+<aside class="goals"><h2>Is chapter mein</h2><ul><li>samjhana ki keyword search text kaise dhoondhti hai aur woh kahan bilkul sahi tool hai</li><li>un teen jagahon ke naam batana jahan meaning ke bajaye spelling milane se failure hoti hai</li><li>dekhna ki fixed-shape rule keyword search ka ek roop kyun hai aur woh bole gaye numbers kyun chhod deta hai</li><li>samjhana ki jo search kabhi &quot;kuch nahi mila&quot; nahi kehti woh tab khatarnaak kyun hai jab koi us se mile nateeje padhta hai</li></ul></aside>
+<div class="prose">
+<p>Ek barsaati Monday ko Anaya ne search engine ka kirdaar nibhaya, aur Farah Sheikh ne customer ka. Unke beech table par bees index cards the, pichhle hafte ke kataai ke tukde, har ek ek card par chipka aur numbered, jiske saamne Sahaj ki refund policy ka aadha page tha. Anaya ko ek hi niyam diya gaya tha: woh sirf wahi shabd dhoondh sakti thi jo Farah bole.</p>
+<p>Farah ne woh thodi oonchi, chintit aawaaz banayi jo woh nakal ke liye istemaal karti thi aur kaha &quot;Paisa kab milega?&quot;, yaani &quot;Paisa kab aayega?&quot; Anaya ne &quot;paisa&quot; dhoondha, phir &quot;kab&quot;, phir &quot;milega&quot;. Usne baaison card ek-ek karke palte aur teeno shabdon mein se koi kisi par nahi mila. Usne kaha ki kuch nahi hai. Farah ne kaha ki bilkul isi ke baare mein ek card hai, card saat. Usme likha tha: &quot;Refund of an excess payment will be processed to the registered account within seven working days of the request being approved.&quot; Card sawaal ka jawaab deta tha, aur ek bhi shabd saajha nahi tha.</p>
+<h2 id="s-15-1"><span class="sn">15.1</span>Case: bees card aur koi mel nahi</h2>
+<p>Yeh abhyaas dikhata hai ki sabse puraani aur sabse zyada phaili hui search kaise behave karti hai. Neeche ke section batate hain ki woh kya karti hai, kahan fail hoti hai, aur kahan woh sabse achha tool hai.</p>
+<h2 id="s-15-2"><span class="sn">15.2</span>Spelling, matlab nahi</h2>
+<p>Text ke dher mein cheezein dhoondhne ka sabse puraana tareeka shabd milana hai. Koi &quot;refund&quot; type karta hai, aur system har woh chunk dhoondhta hai jisme &quot;refund&quot; ho. Yeh kai dashakon se search boxes ke dil mein hai aur tez, sasta aur achhe se samjha hua hai. Ise <em><a class="term" href="/book/hi/glossary.html#t-keyword-search" title="text ko sawaal ke shabdon ko documents ke shabdon se milaakar dhoondhna; yeh spelling ki tulna karta hai, matlab ki nahi">keyword search</a></em> kehte hain.</p>
+<p>Iski kami iske tareeke mein hi hai. Yeh matlab nahi balki spelling milata hai, isliye do vaakya jinka matlab ek ho par jinme koi shabd saajha na ho, bilkul nahi milte. Failure ittefaqi nahi hai. Woh teen jagah hoti hai, aur teeno business ke liye maayne rakhti hain.</p>
+<figure class="tblfig"><figcaption><b>Table 15.1.</b> Keyword search kahan fail hoti hai</figcaption><div class="tblwrap"><table><thead><tr><th>Kahan</th><th>Kya hota hai</th><th>Udaharan</th></tr></thead><tbody><tr><td>Aupchaarik aur rozmarra ki bhasha</td><td>Document likhne wale visheshagya hote hain aur poochhne wale nahi</td><td>Policy &quot;reimbursement&quot; aur &quot;credited to the registered account&quot; kehti hai; customer &quot;paisa wapas&quot; kehta hai</td></tr><tr><td>Jo users pehle se uljhe hain</td><td>Jo product jaanta hai woh uski shabdawali istemaal karke jo chahta hai paa leta hai; jo uljha hai woh apne shabd istemaal karta hai aur kuch nahi paata</td><td>Tareeka un users ke liye sabse achha kaam karta hai jinhe sabse kam samasya hai aur unke liye sabse kharab jinhe sabse zyada</td></tr><tr><td>Sawaal aur kathan</td><td>Ek sawaal us passage se kam milta hai jo uska jawaab deta hai</td><td>&quot;Mujhse do baar kyun charge kiya gaya?&quot; ka ek duplicate authorisation hold ke paragraph se lagbhag kuch nahi milta</td></tr></tbody></table></div></figure>
+<p>Sahaj mein inke upar ek chauthi parat thi, aur Farah ko sabse zyada wahi chinta deti thi. Uske aadhe customers English akshar mein Hindi likhte the, aur policy aupchaarik English mein likhi thi. &quot;Paisa&quot; ki ek bilkul saaf search bhi kuch nahi dhoondhti.</p>
+<h2 id="s-15-3"><span class="sn">15.3</span>Jahan yeh bilkul sahi hai</h2>
+<p>Anaya is tareeke ko khaarij karne wali thi. Farah aage jhuki aur apni aam aawaaz mein boli, &quot;Clause 14.2.&quot; Card gyarah &quot;14.2 Disputed charges&quot; se shuru hota tha, aur Anaya ne use chaar second mein dhoondh liya.</p>
+<aside class="box box-key"><p class="boxlabel">Mukhya vichaar</p><h4>Keyword search kis kaam ki hai</h4>
+<p>Keyword search sahi cheezon ke liye bahut achhi hai: section number, policy ka identifier, part number, naam. Jo &quot;clause 14.2&quot; type karta hai use clause 14.2 chahiye, lagbhag wahi nahi, aur ek-ek shabd milana sahi tareeka hai. Woh kabhi koi sambandh gadhti bhi nahi. Agar shabd maujood hai toh milta hai, agar nahi toh nahi.</p>
+</aside>
+<p>Imran, jo mug lekar tahalta hua aaya tha, ne Anaya se pehle sambandh dekh liya. &quot;Yeh tumhara pattern checker hai,&quot; usne kaha. PAN paanch akshar, chaar ank aur ek akshar hai, jo ek shakl ki khoj hai. Woh bilkul sahi, turant aur muft hai, aur use kisi cheez ke liye manaya nahi ja sakta. Woh us cheez ke liye sahi tool hai jo hamesha ek jaisi dikhti hai, aur galti hogi samajhdaar tareeke ko wahan istemaal karna jahan saadha kaam kar jaata hai.</p>
+<h2 id="s-15-4"><span class="sn">15.4</span>Jahan saadha tareeka guard ko fail karta hai</h2>
+<p>Wahi seema guard par bhi lagti hai, aur Farah ne ek udaharan diya. Usne apne phone se pichhle mahine ka ek message padha, jo usne kisi ko dikhane se pehle khud saaf kiya tha: &quot;Mera aadhaar number hai char teen do ek, paanch chhe saat aath, nau shunya ek do.&quot;</p>
+<p>Yeh baarah ankon ka Aadhaar number hai, chaar-chaar ke groups mein, shabdon mein bola gaya: chaar teen do ek, paanch chhe saat aath, nau shunya ek do. Customer Hinglish mein voice keyboard ko dictate kar raha tha. Pattern checker ise nahi dekhta, kyunki message mein koi ank hai hi nahi, aur jo rule baarah ank dhoondhta hai use kuch nahi milta.</p>
+<p>Shakl maujood hai, aur spelling nahi. Yeh shabdon se dhoondhne ki kamzori ulti taraf se hai: kisi bhi insaan ko matlab saaf hai, aur jo tareeka akshar milata hai woh use dekh nahi paata. Anaya ne ise answer key mein row baarah ke roop mein joda: bole gaye numbers.</p>
+<h2 id="s-15-5"><span class="sn">15.5</span>Khaamosh failure</h2>
+<p>Farah ne tab keyword search ki ek aur khaasiyat ki taraf ishaara kiya, jo do saal pehle help centre mein pareshani ka kaaran bani thi. Usne Anaya se woh sawaal poochhne ko kaha jiska jawaab documents mein nahi tha.</p>
+<p>Anaya ne poochha ki kya woh Diwali par credit card se bill bhar sakti hai. &quot;Credit&quot; shabd teen cards par tha, interest ke ek section mein. &quot;Card&quot; paanch par tha, aur &quot;bill&quot; lagbhag sab par. Usne cards ko is hisaab se rank kiya ki unme kitne shabd hain, aur card chhe sabse upar aaya. Card chhe late payment par credit-card interest ke baare mein tha. Uska Diwali ya is baat se koi sambandh nahi tha ki card se bhugtaan ki ijaazat hai ya nahi.</p>
+<aside class="box box-watch"><p class="boxlabel">Aam galti</p><h4>Aisi search jo kabhi &quot;yahan kuch nahi&quot; nahi kehti</h4>
+<p>Keyword search har document ko score karti hai aur use kram mein lagati hai, isliye woh hamesha kuch lautati hai. Sabse upar wala card ek kharab set mein sabse kam kharab hai. Chatbot us card ko lekar use saboot maanta hai. Search kabhi nahi batati ki use kuch nahi mila, aur jo model uska nateeja padhta hai woh farq nahi jaanta. Woh sabse kam prasangik card se, aise insaan ki aawaaz mein jisne sahi card padha ho, ek saaf jawaab likhta hai. Koi kadam error report nahi karta.</p>
+</aside>
+<p>Anaya ne cards ko unke numbered kram mein rakh diya aur kaha ki team ko ise naapne ka tareeka chahiye hoga. Imran ne sahmati di, aur kaha ki pehle use woh dekhna chahiye jo samasya ke doosre hisse ko theek karta hai.</p>
+<h2 id="s-15-6"><span class="sn">15.6</span>Saaraansh</h2>
+<p>Keyword search sawaal ke shabdon ko documents ke shabdon se milakar text dhoondhti hai. Woh tez aur sasta hai, kabhi koi sambandh nahi gadhti, aur sahi cheezon jaise section numbers, codes aur naamon ke liye, aur PAN jaisi fixed shakl wali details ke liye sahi tareeka hai.</p>
+<ul><li>Woh spelling milati hai, matlab nahi, isliye wahan fail hoti hai jahan users document ke bajaye apne shabd istemaal karte hain. Isliye woh un logon ko fail karti hai jinhe sabse zyada madad chahiye.</li><li>Jo rule ankon ko dhoondhta hai woh shabdon mein bole ya likhe number nahi dekh sakta.</li><li>Woh hamesha apna sabse kam kharab nateeja lautati hai aur kabhi nahi batati ki use kuch nahi mila, isliye jo cheez us nateeje ko padhti hai woh use saboot maan sakti hai.</li></ul>
+</div>
+<aside class="wordsbox" aria-label="Mukhya shabd"><h2>Mukhya shabd</h2><p class="sub">Saral matlab, usi kram mein jis kram mein aap inse milenge.</p><dl><div><dt id="w-keyword-search">keyword search</dt><dd>text ko sawaal ke shabdon ko documents ke shabdon se milaakar dhoondhna; yeh spelling ki tulna karta hai, matlab ki nahi</dd></div></dl></aside>
+<aside class="inapp"><span class="lead">Yahi ideas, kaam ke saath, course app mein</span><span class="chips"><a href="/#/ch/ch4">Keyword search: shabd milaana, aur yeh kahan fail hota hai<span aria-hidden="true"> →</span></a></span></aside>
+<nav class="pager" aria-label="Pichhla aur agla chapter"><a class="prev" href="/book/hi/14-too-long-to-read-at-once.html" rel="prev"><span class="dir">← Pichhla</span><span class="nm"><b>14</b>Ek Baar Mein Padhne Ke Liye Bahut Lamba</span></a><a class="next" href="/book/hi/16-finding-by-meaning.html" rel="next"><span class="dir">Agla →</span><span class="nm"><b>16</b>Matlab Se Dhoondhna</span></a></nav>
+</article>
+</main>
+</div>
+<script src="/book/reader.js" defer></script>
+</body>
+</html>

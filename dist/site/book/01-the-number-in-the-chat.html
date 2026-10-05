@@ -4,113 +4,145 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The Number in the Chat · Chapter 1 · AI From Zero</title>
-<meta name="description" content="A product manager reads a week of customer chats, finds something she did not go looking for, and has to decide whether it is worth a year of her life.">
+<meta name="description" content="A product manager finds identity numbers in a week of customer chats and must decide whether the finding deserves a year of work. The chapter introduces personal data, counting before deciding, choosing between problems, and the written decision.">
 <meta name="color-scheme" content="light dark">
-<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="hi-Latn" href="/book/hi/01-the-number-in-the-chat.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
+<link rel="stylesheet" href="/book/style.css">
 <script>try{var t=localStorage.getItem('aifz-book-theme');if(t)document.documentElement.setAttribute('data-theme',t);var s=localStorage.getItem('aifz-book-size');if(s)document.documentElement.style.setProperty('--fs',s+'rem')}catch(e){}</script>
 </head>
-<body class="is-chapter">
+<body class="is-chapter" data-lang="en" data-base="/book/" style="--hue:#b4492a">
 <a class="skip" href="#text">Skip to the text</a>
 <div class="progress" id="progress" aria-hidden="true"><i></i></div>
 <header class="bar">
-  <a class="brand" href="index.html"><span class="mark">AI From Zero</span><span class="ed">The reading edition</span></a>
+  <button class="b menu" id="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Contents"><span aria-hidden="true">☰</span><span class="lbl">Contents</span></button>
+  <a class="brand" href="/book/"><span class="mark">AI From Zero</span><span class="ed">The reading edition</span></a>
   <span class="sp"></span>
+  <a class="b lang" href="/book/hi/01-the-number-in-the-chat.html" hreflang="hi-Latn" title="Read this in Hinglish" data-switch>Hinglish</a>
   <button class="b" id="size-down" type="button" aria-label="Smaller text" title="Smaller text">A−</button>
   <button class="b" id="size-up" type="button" aria-label="Larger text" title="Larger text">A+</button>
   <button class="b" id="theme" type="button" aria-label="Change colours" title="Change colours">◐</button>
-  <a class="b app" href="../" title="Open the course app">The course app →</a>
+  <a class="b app" href="/" title="Open the course app">Course app →</a>
 </header>
 <div class="layout">
-<nav class="toc" aria-label="Contents"><details id="toc"><summary>Contents</summary><ol>
-<li><a href="index.html"><span class="t">Contents</span></a></li>
-<li><a href="preface.html"><span class="t">Before You Begin</span></a></li>
-<li class="here"><a href="01-the-number-in-the-chat.html" aria-current="page"><span class="n">1</span><span class="t">The Number in the Chat</span></a></li>
-<li><a href="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Four Questions Before Building</span></a></li>
-<li><a href="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Asking About Yesterday</span></a></li>
-<li><a href="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Who Else Is Standing Here</span></a></li>
-<li><a href="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Choosing What Not to Do</span></a></li>
-<li><a href="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">A Plan Others Can Believe</span></a></li>
-<li><a href="07-writing-it-down.html"><span class="n">7</span><span class="t">Writing It Down So Others Can Build It</span></a></li>
-<li><a href="08-what-the-machine-is.html"><span class="n">8</span><span class="t">What the Machine Is</span></a></li>
-<li><a href="09-the-first-conversation.html"><span class="n">9</span><span class="t">The First Conversation</span></a></li>
-<li><a href="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">A Mind With No Memory</span></a></li>
-<li><a href="11-giving-instructions.html"><span class="n">11</span><span class="t">Giving Instructions</span></a></li>
-<li><a href="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Knowing Whether It Works</span></a></li>
-<li><a href="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Sorting and Summarising</span></a></li>
-<li><a href="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Too Long to Read at Once</span></a></li>
-<li><a href="15-finding-by-words.html"><span class="n">15</span><span class="t">Finding by Words</span></a></li>
-<li><a href="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Finding by Meaning</span></a></li>
-<li><a href="17-how-good-is-good.html"><span class="n">17</span><span class="t">How Good Is Good</span></a></li>
-<li><a href="18-the-whole-machine.html"><span class="n">18</span><span class="t">The Whole Machine</span></a></li>
-<li><a href="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Answers a Program Can Use</span></a></li>
-<li><a href="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Giving the Machine Hands</span></a></li>
-<li><a href="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Long Windows, Careful Rooms</span></a></li>
-<li><a href="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Machines That Think First</span></a></li>
-<li><a href="23-searching-better.html"><span class="n">23</span><span class="t">Searching Better</span></a></li>
-<li><a href="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">When the Page Gives Orders</span></a></li>
-<li><a href="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Grading a Thousand Answers</span></a></li>
-<li><a href="26-what-it-really-costs.html"><span class="n">26</span><span class="t">What It Really Costs</span></a></li>
-<li><a href="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Paper, Photos and Scans</span></a></li>
-<li><a href="28-what-you-may-send.html"><span class="n">28</span><span class="t">What You May Send</span></a></li>
-<li><a href="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Rules, Risk and Responsibility</span></a></li>
-<li><a href="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">The Spec for a Thing That Varies</span></a></li>
-<li><a href="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Build, Buy or Teach It</span></a></li>
-<li><a href="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Designing for the Wrong Answer</span></a></li>
-<li><a href="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">The Plumbing Under the Magic</span></a></li>
-<li><a href="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Choosing a Model on Your Own Cases</span></a></li>
-<li><a href="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Retrieval That Survives a Review</span></a></li>
-<li><a href="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents and the Standard Plug</span></a></li>
-<li><a href="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Pictures and Voices</span></a></li>
-<li><a href="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces and Rollbacks</span></a></li>
-<li><a href="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Assuming the Worst</span></a></li>
-<li><a href="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">A Product, Not a Demo</span></a></li>
-<li><a href="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Shipping the Whole Thing</span></a></li>
-<li><a href="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Who Pays, and How Much</span></a></li>
-<li><a href="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">How People Find It and Stay</span></a></li>
-<li><a href="44-counting-what-matters.html"><span class="n">44</span><span class="t">Counting What Matters</span></a></li>
-<li><a href="45-tools-and-harness.html"><span class="n">45</span><span class="t">The Tools and the Harness</span></a></li>
-<li><a href="46-real-people-real-use.html"><span class="n">46</span><span class="t">Real People, Real Use</span></a></li>
-<li><a href="47-the-job.html"><span class="n">47</span><span class="t">The Work, and the Job</span></a></li>
-<li><a href="afterword.html"><span class="t">After the Book</span></a></li>
-<li><a href="glossary.html"><span class="t">Words, in plain language</span></a></li>
-</ol></details></nav>
+<nav class="toc" id="toc" aria-label="Contents">
+<div class="tochead"><label class="find"><span class="sr">Find a chapter or a word</span><input id="q" type="search" placeholder="Find a chapter or a word" autocomplete="off"></label></div>
+<ol>
+<li class="top"><a href="/book/"><span class="n dot"></span><span class="t">Contents</span></a></li>
+<li data-t="before you begin"><a href="/book/preface.html" data-file="preface.html"><span class="n dot"></span><span class="t">Before You Begin</span></a></li>
+<li class="sec" style="--hue:#b4492a"><span>The problem worth solving</span></li>
+<li style="--hue:#b4492a" class="here" data-t="the number in the chat"><a href="/book/01-the-number-in-the-chat.html" aria-current="page" data-file="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">The Number in the Chat</span></a></li>
+<li style="--hue:#b4492a" data-t="four questions before building"><a href="/book/02-four-questions-before-building.html" data-file="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Four Questions Before Building</span></a></li>
+<li style="--hue:#b4492a" data-t="asking about yesterday"><a href="/book/03-asking-about-yesterday.html" data-file="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Asking About Yesterday</span></a></li>
+<li style="--hue:#b4492a" data-t="who else is standing here"><a href="/book/04-who-else-is-standing-here.html" data-file="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Who Else Is Standing Here</span></a></li>
+<li style="--hue:#b4492a" data-t="choosing what not to do"><a href="/book/05-choosing-what-not-to-do.html" data-file="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Choosing What Not to Do</span></a></li>
+<li style="--hue:#b4492a" data-t="a plan others can believe"><a href="/book/06-a-plan-others-can-believe.html" data-file="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">A Plan Others Can Believe</span></a></li>
+<li style="--hue:#b4492a" data-t="writing it down so others can build it"><a href="/book/07-writing-it-down.html" data-file="07-writing-it-down.html"><span class="n">7</span><span class="t">Writing It Down So Others Can Build It</span></a></li>
+<li class="sec" style="--hue:#2f6f73"><span>Meeting the machine</span></li>
+<li style="--hue:#2f6f73" data-t="what the machine is"><a href="/book/08-what-the-machine-is.html" data-file="08-what-the-machine-is.html"><span class="n">8</span><span class="t">What the Machine Is</span></a></li>
+<li style="--hue:#2f6f73" data-t="the first conversation"><a href="/book/09-the-first-conversation.html" data-file="09-the-first-conversation.html"><span class="n">9</span><span class="t">The First Conversation</span></a></li>
+<li style="--hue:#2f6f73" data-t="a mind with no memory"><a href="/book/10-a-mind-with-no-memory.html" data-file="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">A Mind With No Memory</span></a></li>
+<li style="--hue:#2f6f73" data-t="giving instructions"><a href="/book/11-giving-instructions.html" data-file="11-giving-instructions.html"><span class="n">11</span><span class="t">Giving Instructions</span></a></li>
+<li style="--hue:#2f6f73" data-t="knowing whether it works"><a href="/book/12-knowing-whether-it-works.html" data-file="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Knowing Whether It Works</span></a></li>
+<li style="--hue:#2f6f73" data-t="sorting and summarising"><a href="/book/13-sorting-and-summarising.html" data-file="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Sorting and Summarising</span></a></li>
+<li class="sec" style="--hue:#6b5ca5"><span>Finding things, and the whole machine</span></li>
+<li style="--hue:#6b5ca5" data-t="too long to read at once"><a href="/book/14-too-long-to-read-at-once.html" data-file="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Too Long to Read at Once</span></a></li>
+<li style="--hue:#6b5ca5" data-t="finding by words"><a href="/book/15-finding-by-words.html" data-file="15-finding-by-words.html"><span class="n">15</span><span class="t">Finding by Words</span></a></li>
+<li style="--hue:#6b5ca5" data-t="finding by meaning"><a href="/book/16-finding-by-meaning.html" data-file="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Finding by Meaning</span></a></li>
+<li style="--hue:#6b5ca5" data-t="how good is good"><a href="/book/17-how-good-is-good.html" data-file="17-how-good-is-good.html"><span class="n">17</span><span class="t">How Good Is Good</span></a></li>
+<li style="--hue:#6b5ca5" data-t="the whole machine"><a href="/book/18-the-whole-machine.html" data-file="18-the-whole-machine.html"><span class="n">18</span><span class="t">The Whole Machine</span></a></li>
+<li style="--hue:#6b5ca5" data-t="answers a program can use"><a href="/book/19-answers-a-program-can-use.html" data-file="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Answers a Program Can Use</span></a></li>
+<li class="sec" style="--hue:#9a7b1f"><span>Giving it work to do</span></li>
+<li style="--hue:#9a7b1f" data-t="giving the machine hands"><a href="/book/20-giving-the-machine-hands.html" data-file="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Giving the Machine Hands</span></a></li>
+<li style="--hue:#9a7b1f" data-t="long windows, careful rooms"><a href="/book/21-long-windows-careful-rooms.html" data-file="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Long Windows, Careful Rooms</span></a></li>
+<li style="--hue:#9a7b1f" data-t="machines that think first"><a href="/book/22-machines-that-think-first.html" data-file="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Machines That Think First</span></a></li>
+<li style="--hue:#9a7b1f" data-t="searching better"><a href="/book/23-searching-better.html" data-file="23-searching-better.html"><span class="n">23</span><span class="t">Searching Better</span></a></li>
+<li style="--hue:#9a7b1f" data-t="when the page gives orders"><a href="/book/24-when-the-page-gives-orders.html" data-file="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">When the Page Gives Orders</span></a></li>
+<li style="--hue:#9a7b1f" data-t="grading a thousand answers"><a href="/book/25-grading-a-thousand-answers.html" data-file="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Grading a Thousand Answers</span></a></li>
+<li style="--hue:#9a7b1f" data-t="what it really costs"><a href="/book/26-what-it-really-costs.html" data-file="26-what-it-really-costs.html"><span class="n">26</span><span class="t">What It Really Costs</span></a></li>
+<li class="sec" style="--hue:#3f7a4a"><span>The messy real world</span></li>
+<li style="--hue:#3f7a4a" data-t="paper, photos and scans"><a href="/book/27-paper-photos-and-scans.html" data-file="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Paper, Photos and Scans</span></a></li>
+<li style="--hue:#3f7a4a" data-t="what you may send"><a href="/book/28-what-you-may-send.html" data-file="28-what-you-may-send.html"><span class="n">28</span><span class="t">What You May Send</span></a></li>
+<li style="--hue:#3f7a4a" data-t="rules, risk and responsibility"><a href="/book/29-rules-risk-and-responsibility.html" data-file="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Rules, Risk and Responsibility</span></a></li>
+<li style="--hue:#3f7a4a" data-t="the spec for a thing that varies"><a href="/book/30-the-spec-for-a-thing-that-varies.html" data-file="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">The Spec for a Thing That Varies</span></a></li>
+<li style="--hue:#3f7a4a" data-t="build, buy or teach it"><a href="/book/31-build-buy-or-teach-it.html" data-file="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Build, Buy or Teach It</span></a></li>
+<li style="--hue:#3f7a4a" data-t="designing for the wrong answer"><a href="/book/32-designing-for-the-wrong-answer.html" data-file="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Designing for the Wrong Answer</span></a></li>
+<li class="sec" style="--hue:#a2455e"><span>Under the hood</span></li>
+<li style="--hue:#a2455e" data-t="the plumbing under the magic"><a href="/book/33-the-plumbing-under-the-magic.html" data-file="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">The Plumbing Under the Magic</span></a></li>
+<li style="--hue:#a2455e" data-t="choosing a model on your own cases"><a href="/book/34-choosing-a-model-on-your-own-cases.html" data-file="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Choosing a Model on Your Own Cases</span></a></li>
+<li style="--hue:#a2455e" data-t="retrieval that survives a review"><a href="/book/35-retrieval-that-survives-a-review.html" data-file="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Retrieval That Survives a Review</span></a></li>
+<li style="--hue:#a2455e" data-t="workflows, agents and the standard plug"><a href="/book/36-workflows-agents-and-the-standard-plug.html" data-file="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents and the Standard Plug</span></a></li>
+<li style="--hue:#a2455e" data-t="pages, pictures and voices"><a href="/book/37-pages-pictures-and-voices.html" data-file="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Pictures and Voices</span></a></li>
+<li style="--hue:#a2455e" data-t="gates, traces and rollbacks"><a href="/book/38-gates-traces-and-rollbacks.html" data-file="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces and Rollbacks</span></a></li>
+<li style="--hue:#a2455e" data-t="assuming the worst"><a href="/book/39-assuming-the-worst.html" data-file="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Assuming the Worst</span></a></li>
+<li class="sec" style="--hue:#2d5d8f"><span>A real product, and a job</span></li>
+<li style="--hue:#2d5d8f" data-t="a product, not a demo"><a href="/book/40-a-product-not-a-demo.html" data-file="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">A Product, Not a Demo</span></a></li>
+<li style="--hue:#2d5d8f" data-t="shipping the whole thing"><a href="/book/41-shipping-the-whole-thing.html" data-file="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Shipping the Whole Thing</span></a></li>
+<li style="--hue:#2d5d8f" data-t="who pays, and how much"><a href="/book/42-who-pays-and-how-much.html" data-file="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Who Pays, and How Much</span></a></li>
+<li style="--hue:#2d5d8f" data-t="how people find it and stay"><a href="/book/43-how-people-find-it-and-stay.html" data-file="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">How People Find It and Stay</span></a></li>
+<li style="--hue:#2d5d8f" data-t="counting what matters"><a href="/book/44-counting-what-matters.html" data-file="44-counting-what-matters.html"><span class="n">44</span><span class="t">Counting What Matters</span></a></li>
+<li style="--hue:#2d5d8f" data-t="the tools and the harness"><a href="/book/45-tools-and-harness.html" data-file="45-tools-and-harness.html"><span class="n">45</span><span class="t">The Tools and the Harness</span></a></li>
+<li style="--hue:#2d5d8f" data-t="real people, real use"><a href="/book/46-real-people-real-use.html" data-file="46-real-people-real-use.html"><span class="n">46</span><span class="t">Real People, Real Use</span></a></li>
+<li style="--hue:#2d5d8f" data-t="the work, and the job"><a href="/book/47-the-job.html" data-file="47-the-job.html"><span class="n">47</span><span class="t">The Work, and the Job</span></a></li>
+<li data-t="after the book"><a href="/book/afterword.html" data-file="afterword.html"><span class="n dot"></span><span class="t">After the Book</span></a></li>
+<li data-t="words, in plain language"><a href="/book/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Words, in plain language</span></a></li>
+</ol>
+<p class="nomatch" hidden>Nothing matches that.</p>
+</nav>
+<div class="scrim" id="scrim" hidden></div>
 <main id="text">
-<article class="chapter" data-file="01-the-number-in-the-chat.html" data-title="The Number in the Chat">
-<header class="chead"><p class="eyebrow">Chapter 1</p><h1>The Number in the Chat</h1><p class="dek">A product manager reads a week of customer chats, finds something she did not go looking for, and has to decide whether it is worth a year of her life.</p><p class="meta">9 minute read</p></header>
+<article class="chapter" data-file="01-the-number-in-the-chat.html" data-title="The Number in the Chat" data-n="1">
+<header class="chead">
+<p class="eyebrow"><span class="num">1</span><span>Chapter 1 <i>·</i> The problem worth solving</span></p>
+<h1>The Number in the Chat</h1><p class="dek">A product manager finds identity numbers in a week of customer chats and must decide whether the finding deserves a year of work. The chapter introduces personal data, counting before deciding, choosing between problems, and the written decision.</p>
+<p class="meta"><span>9 min read</span><span>2 new words</span></p>
+</header>
+<aside class="goals"><h2>In this chapter</h2><ul><li>recognise personally identifiable information, including details that identify a person only in combination</li><li>turn an impression into a count and say what the count does and does not show</li><li>compare competing problems on the same four questions</li><li>record a decision together with its evidence and the conditions that would reverse it</li></ul></aside>
 <div class="prose">
-<p>The first time Anaya Deshmukh saw a stranger's Aadhaar number, she was eating a samosa at her desk and looking for something else entirely.</p>
-<p>It was a Tuesday in the second week of March, a little after eight in the evening, and the office above the sweet shop in Baner had emptied hours ago. What was left of the day's smell, hot oil and sugar syrup, came up through the floorboards the way it did every evening. Anaya had a spreadsheet open and a plan. Sahaj, the company she worked for, ran an app where people paid electricity bills and, lately, took small loans. In one corner of the app sat a support chatbot that answered questions at all hours. Farah Sheikh, who led the support team, had exported a week of its conversations, four hundred in all, and Anaya wanted to know why so many customers asked the same three questions about late fees.</p>
-<p>She was on conversation sixty-one when she stopped caring about late fees.</p>
+<p>In the second week of March, Anaya Deshmukh, a product manager at the Pune company Sahaj, read four hundred conversations between customers and the company's support chatbot. She was looking for the reason so many customers asked about late fees. In conversation sixty-one a customer had typed a twelve-digit identity number into the chat, in the middle of a sentence, and nobody had asked for it. By the end of the evening she had found thirty-seven conversations of the four hundred that contained an identity number, a tax number, a bank account or a full address.</p>
+<p>This chapter follows what she did with that finding. The case introduces three habits that the rest of the book relies on: measuring before deciding, comparing problems on common terms, and writing a decision down in a form that allows it to be reversed. It also introduces the first technical term of the book, <em><a class="term" href="/book/glossary.html#t-pii" title="personally identifiable information: any detail that can point to one real person, such as a name, a phone number or an identity number">personally identifiable information</a></em>.</p>
+<h2 id="s-1-1"><span class="sn">1.1</span>The case: a week of chats</h2>
+<p>Sahaj runs a mobile app in which people pay electricity bills and, since the previous year, apply for small loans. A support chatbot in one corner of the app answers questions at any hour. Farah Sheikh, who leads the support team, had exported a week of its conversations for Anaya. The company expected each product manager to propose one large piece of work for the year by April, and Anaya had been reading the chats to find out where customers were struggling.</p>
+<p>Conversation sixty-one looked like this.</p>
 <pre class="transcript">Customer: loan ka status batao, mera aadhaar 4321 5678 9012 hai
 Bot:      Aapke loan ka status dekhne ke liye apna registered mobile number bataiye.
 Customer: 9876543210
 Bot:      Dhanyavaad. Aapka application review mein hai.</pre>
-<p>The number was twelve digits long and written in neat groups of four, the way it is printed on the card. An Aadhaar number is the identity number the government issues to residents; almost every adult in India knows where theirs is. This customer had typed it without being asked. The chatbot had asked for a mobile number. The customer, being helpful, had offered the most important number they owned.</p>
-<p>Anaya did what anyone would do. She scrolled, and found another. Then a PAN, the ten-character code the tax department issues, typed in capitals in the middle of a sentence about a delayed refund. Then a full home address. Then a photograph of a bank passbook, which the chat window had accepted without complaint.</p>
-<p>She put the samosa down.</p>
-<h2>What a number does after it is typed</h2>
-<p>It would be easy to think of those numbers as sitting in the chat window, where the customer left them, and nowhere else. That is not how it works, and it took Anaya about ten minutes of thinking to see how far from true it was.</p>
-<p>A message typed into a chat box is not kept in one place. It is stored in the support system, so that agents can read the history. It is copied into the weekly export, which is how it had reached Anaya's inbox. It is passed to whatever software writes the chatbot's replies, which belongs to an outside company. It is counted by the analytics dashboard and written into the logs that engineers read when something breaks. Each of those places has its own people, its own backups and its own rules about who may look. A number typed once ends up living in five houses.</p>
-<p>The people who write privacy policies have a name for this kind of detail. They call it <em><a class="term" href="glossary.html#t-pii" title="personally identifiable information: any detail that can point to one real person, such as a name, a phone number or an identity number">personally identifiable information</a></em>, or PII for short. The phrase is clumsy, but it is useful, because it describes the test: could this detail, on its own or put together with others, point to one real person? A name passes. So does a mobile number, an address, an Aadhaar number, a bank account. Some details pass only in company. A woman's age means nothing alone, and her village means little, but her age, her village and the fact that she is the only dentist there begin to describe exactly one person. Anaya did not know yet how much that last idea would matter. She only noticed it, the way you notice a crack in a wall before you know it is load-bearing.</p>
-<h2>Counting</h2>
-<p>The temptation at this point was to feel something and then to do something, which is how most bad projects begin. Anaya did neither. She did what a sensible person does with a feeling: she turned it into a count.</p>
-<p>She added a column to the spreadsheet and headed it <em>Something that belongs to one person only?</em> Then she read all four hundred conversations again, slowly, with a ruler held under each line. It took two hours. The samosa went cold and was eaten anyway.</p>
-<p>Thirty-seven of the four hundred contained an identity number, a tax number, a bank account or a full address. That was nine percent, one conversation in eleven.</p>
-<p>She was careful about what she wrote next to the figure. It was a count from one week, in one chatbot, made by one person who had been reading for a particular thing. It was not a finding. It was a reason to look harder, and she typed exactly that into the cell beside it.</p>
-<h2>Is this the problem?</h2>
-<p>Anaya had been circling, for a month, the question of what she would work on for the rest of the year. The company wanted a big bet from each product manager by April. She had two ideas already. One was a tool that would read the week's support tickets and report the main themes, so that Farah did not have to spend every Monday morning doing it by hand. The other was a feature that would read photographs of salary slips and speed up the checks the loan officers did.</p>
-<p>Now she had a third, and the third was the only one she had not chosen. It had chosen her. That alone made her suspicious of it.</p>
-<p>So she did what she had once been taught to do and had never quite done properly: she measured all three against the same four questions. Is there a user she can reach this week? Is there a task she can watch someone do? Is there a pain she can count? And is there a real reason that software which reads text might help, as opposed to ordinary software?</p>
-<div class="tblwrap"><table><thead><tr><th></th><th>Weekly ticket themes</th><th>Salary-slip reader</th><th>Personal details in chats</th></tr></thead><tbody><tr><td>A user she can reach this week</td><td>Farah</td><td>Two loan officers</td><td>Farah, Imran, Lakshmi</td></tr><tr><td>A task she can watch</td><td>Every Monday</td><td>Possible, slow to arrange</td><td>The transcripts are on her screen</td></tr><tr><td>A pain she can count</td><td>Three hours a week</td><td>Minutes per loan</td><td>37 in 400</td></tr><tr><td>A real reason for AI</td><td>Maybe; tickets already carry tags</td><td>Yes, but photographs of paper are hard</td><td>Partly</td></tr></tbody></table></div>
-<p>The fourth row was where she had to be honest. For a twelve-digit number in four neat groups, a plain rule would do: look for twelve digits, find the groups of four, done. No intelligence required. The difficulty was elsewhere. People did not always write numbers the way the card printed them. They wrote names and addresses, which follow no pattern at all. They wrote in Hindi, in English and in the mixture of the two that fills a phone keyboard at eleven at night. Half the problem could be solved by a rule, and she wrote that down. The other half might need something cleverer, and she wrote that down too.</p>
-<p>Part of a product manager's job, she reflected, is to say out loud that a problem does not need artificial intelligence. It is an unfashionable thing to say, and it was the first thing she wrote.</p>
-<h2>The page that remembers</h2>
-<p>The third column won. Not by much, and not because it was the most exciting. It won because it was the one for which she could show her working.</p>
-<p>She opened a new document, called it <em>Decisions</em>, and wrote the first entry. She kept to a format she had read about: the date, the decision, the evidence behind it, and what would make her change her mind. This kind of page is called a <em><a class="term" href="glossary.html#t-decision-log" title="a running page where you write down each important decision, the evidence behind it, and what would make you change your mind">decision log</a></em>, and its whole value is in the last line.</p>
+<p>The Aadhaar number is the identity number that the Indian government issues to residents. It is printed on a card in groups of four digits, and most adults know where theirs is kept. The chatbot had asked only for a mobile number. The customer offered the more valuable one on their own initiative, probably to be helpful.</p>
+<p>Further down the export Anaya found a PAN, the ten-character tax code, typed in capitals inside a sentence about a delayed refund. She found a full home address, and a photograph of a bank passbook that the chat window had accepted without any warning.</p>
+<h2 id="s-1-2"><span class="sn">1.2</span>Where a typed number goes</h2>
+<p>It is natural to assume that a number typed into a chat window stays in the chat window. In practice a message is copied into several places, each with its own staff, backups and rules about who may read it. At Sahaj the message passed through five of them.</p>
+<ol><li>The support system, which stores the history so that agents can read it.</li><li>The weekly export, which is how the numbers reached Anaya's inbox.</li><li>The software, owned by an outside company, that writes the chatbot's replies.</li><li>The analytics dashboard, which counts conversations.</li><li>The logs that engineers read when something breaks.</li></ol>
+<p>A number that is typed once is therefore stored five times, by at least two organisations.</p>
+<aside class="box box-def"><p class="boxlabel">Definition</p><h4>Personally identifiable information (PII)</h4>
+<p>Any detail that can point to one real person, either alone or when combined with other details. The test is a question: could this detail, together with what else is known, identify one individual?</p>
+</aside>
+<p>The test explains why PII is wider than the obvious identity numbers. Some details identify a person on their own. Others identify only in combination, and the combination becomes sharper the smaller the group is.</p>
+<figure class="tblfig"><figcaption><b>Table 1.1.</b> How well some common details identify a person</figcaption><div class="tblwrap"><table><thead><tr><th>Detail</th><th>Identifies alone?</th><th>Comment</th></tr></thead><tbody><tr><td>Aadhaar number</td><td>Yes</td><td>Unique to one resident</td></tr><tr><td>Mobile number</td><td>Yes</td><td>Usually one subscriber, reachable directly</td></tr><tr><td>Full home address</td><td>Usually</td><td>Identifies a household, and so often one person</td></tr><tr><td>Age</td><td>No</td><td>Shared by millions</td></tr><tr><td>Village</td><td>No</td><td>Shared by hundreds of people</td></tr><tr><td>Age, village and occupation</td><td>Often</td><td>A 52-year-old dentist in a village of 800 is probably one person</td></tr></tbody></table></div></figure>
+<p>The last row is the one that matters most in practice. Removing every obvious number from a message does not make it anonymous, because the remaining details may still describe a single individual. Chapters 28 and 29 return to this point when they consider what a company may lawfully send to an outside service. Nothing in this book is legal advice.</p>
+<h2 id="s-1-3"><span class="sn">1.3</span>From impression to count</h2>
+<p>At this point Anaya had a strong impression and no evidence. An impression is useful for deciding where to look, but it cannot be checked by anyone else and it cannot be compared with another impression. Her first step was therefore to turn it into a count.</p>
+<p>She added a column to the spreadsheet with the heading &quot;Something that belongs to one person only?&quot; and read all four hundred conversations again, holding a ruler under each line. The second reading took two hours. Thirty-seven conversations contained at least one identity number, tax number, bank account or full address. That is 9.25 percent, or about one conversation in eleven.</p>
+<aside class="box box-watch"><p class="boxlabel">Common mistake</p><h4>A count is not yet a finding</h4>
+<p>Anaya wrote the limits of the figure beside it. It came from one week, in one chatbot, counted by one person who had been looking for exactly this. A different week, a second reader or a broader definition of &quot;personal&quot; would each have given a different number. The figure justified looking harder. It did not justify a conclusion.</p>
+</aside>
+<p>Stating the limits next to the number is a habit of the trade. A figure that travels without its limits is repeated in later meetings with more confidence than it deserves.</p>
+<h2 id="s-1-4"><span class="sn">1.4</span>Choosing between three problems</h2>
+<p>Anaya now had three candidate projects. The first was a tool that read each week's support tickets and reported the main themes, which would save Farah a Monday morning of manual sorting. The second was a feature that read photographs of salary slips to speed up the checks made by loan officers. The third was the problem in the chats, which she had not chosen. It had found her, and she regarded that as a reason for suspicion.</p>
+<p>She compared them with four questions that apply to almost any proposal.</p>
+<ol><li>Is there a user she can reach this week?</li><li>Is there a task she can watch someone do?</li><li>Is there a pain she can count?</li><li>Is there a real reason that software which reads text might help, as against ordinary software?</li></ol>
+<figure class="tblfig"><figcaption><b>Table 1.2.</b> The three candidates against the four questions</figcaption><div class="tblwrap"><table><thead><tr><th></th><th>Weekly ticket themes</th><th>Salary-slip reader</th><th>Personal details in chats</th></tr></thead><tbody><tr><td>A user she can reach this week</td><td>Farah</td><td>Two loan officers</td><td>Farah, Imran, Lakshmi</td></tr><tr><td>A task she can watch</td><td>Every Monday</td><td>Possible, slow to arrange</td><td>The transcripts are on her screen</td></tr><tr><td>A pain she can count</td><td>Three hours a week</td><td>Minutes per loan</td><td>37 in 400</td></tr><tr><td>A real reason for AI</td><td>Maybe; tickets already carry tags</td><td>Yes, but photographs of paper are hard</td><td>Partly</td></tr></tbody></table></div></figure>
+<p>The fourth question needs the most honesty. A twelve-digit number written in four groups can be found by a plain rule: look for twelve digits and check the grouping. No intelligence is required. The difficulty lies elsewhere. People do not always write numbers the way the card prints them, and names and addresses follow no pattern at all. Customers also write in Hindi, in English and in the mixture of the two that fills phone keyboards late at night. A rule could solve part of the problem, and the remainder might need something more flexible. Anaya recorded both halves.</p>
+<p>Part of a product manager's work is to say, early, that a problem does not need artificial intelligence. The statement is unfashionable and often correct, and it prevents money being spent on a harder solution than the problem requires.</p>
+<p>The third candidate scored best, though not by a wide margin. Its advantage was that she could show her working for every cell in its column.</p>
+<h2 id="s-1-5"><span class="sn">1.5</span>Writing the decision down</h2>
+<p>Having chosen, Anaya opened a new document and recorded the choice in a fixed format: the date, the decision, the evidence for it, and the circumstances in which she would reverse it. A page kept this way is a <em><a class="term" href="/book/glossary.html#t-decision-log" title="a running page where you write down each important decision, the evidence behind it, and what would make you change your mind">decision log</a></em>.</p>
+<aside class="box box-example"><p class="boxlabel">Worked example</p><h4>The first entry in Anaya's decision log</h4>
 <pre class="transcript">14 March
 Decision:  Work on the personal-details problem first. Ticket themes second.
 Evidence:  37 of 400 conversations in one week contained an identity number,
@@ -118,28 +150,24 @@ Evidence:  37 of 400 conversations in one week contained an identity number,
            can check it.
 I would change my mind if:  Lakshmi says this is a known, accepted risk, or
            Imran says it cannot be fixed without rebuilding the chatbot.</pre>
-<p>Anyone who has watched a project drift for a year knows why the last line matters. A decision with no stated way out hardens into a belief. A decision that says what would end it can be revisited calmly, without anyone losing face.</p>
-<h2>An honest score</h2>
-<p>There was one more thing she did that night, and she did it grudgingly, because it was the sort of thing she did once a year and disliked.</p>
-<p>She scored herself. Anaya's work, as she understood it, came down to seven things: finding real problems by talking to people, choosing which to solve, understanding the technology well enough to argue with engineers, turning a decision into something others can build, measuring what happens, working out whether it can pay for itself, and getting people with different goals to move together. She gave each a number from zero to three. Zero meant nothing to show. One meant she had tried but could not prove it. Two meant the work was usable and someone else could check it. Three meant it had been tested on real people or real data and its limits were written down.</p>
-<p>She gave herself a two for finding problems, because tonight she had a count. She gave herself a one for strategy, because she had opinions but no strategy a colleague had ever acted on. And she gave herself a one for understanding the technology, then crossed it out and wrote it again, which is what honest people do with a number they are not proud of. She could say &quot;the chatbot is powered by AI&quot; in a meeting. She could not have explained to a curious twelve-year-old what that sentence meant.</p>
-<p>She made herself a rule. It was only one line, and she wrote it at the top of the page where she could see it.</p>
-<p><em>Nothing counts until someone else could check it.</em></p>
-<h2>An email at nine</h2>
-<p>Imran Qureshi, the lead engineer, had built most of the plumbing behind the chatbot. He was the only person at Sahaj who answered messages at nine in the evening, mainly because he was awake anyway and disliked being asked questions in daylight.</p>
-<p>Anaya wrote to him. She deleted a sentence that began &quot;I think there may be an issue&quot; and wrote something shorter.</p>
-<p><em>Can I borrow an hour tomorrow? I found something in the chats, and I would like very much to be wrong about it.</em></p>
-<p>The answer arrived before she had closed the laptop.</p>
-<p><em>Bring the export. I will bring the tea.</em></p>
-<h2>What to carry forward</h2>
-<p>A typed number does not stay where it was typed; it travels to every system that touches the conversation. Details that can point to one real person have a name, PII, and they point most sharply when several are put together. A feeling about a problem becomes a decision only when it has been turned into a count, written next to the evidence, and given a way to be undone. And before reaching for anything clever, it is worth asking honestly how much of the problem a plain rule could solve.</p>
+</aside>
+<p>The final line gives the log its value. A decision with no stated exit tends to harden into a belief, and the people who made it then defend it for reasons of pride. A decision that names its own reversal conditions can be reopened calmly, because the question to ask is already written down.</p>
+<h2 id="s-1-6"><span class="sn">1.6</span>Measuring yourself</h2>
+<p>The last task of the evening came from the habit of recording evidence. Anaya scored her own skills on seven areas of product work: finding real problems by talking to people, choosing which to solve, understanding the technology well enough to argue with engineers, turning a decision into something others can build, measuring results, working out whether the product can pay for itself, and getting people with different goals to move together.</p>
+<figure class="tblfig"><figcaption><b>Table 1.3.</b> The scale used for each area</figcaption><div class="tblwrap"><table><thead><tr><th>Score</th><th>Meaning</th></tr></thead><tbody><tr><td>0</td><td>Nothing to show</td></tr><tr><td>1</td><td>Tried, but cannot prove it</td></tr><tr><td>2</td><td>Usable work that someone else can check</td></tr><tr><td>3</td><td>Tested on real people or real data, with its limits written down</td></tr></tbody></table></div></figure>
+<p>She gave herself a 2 for finding problems, since she now had a count, and a 1 for strategy, since no colleague had ever acted on one of her strategies. She first gave herself a 1 for understanding the technology, crossed it out, and wrote a lower honest figure. She could say in a meeting that the chatbot was powered by AI. She could not have explained that sentence to a curious twelve-year-old. The scores stay in her notes and are revisited at the end of the book. Her working rule, written at the top of the page, was that nothing counts until someone else could check it.</p>
+<p>Before leaving she wrote to Imran Qureshi, the lead engineer, and asked for an hour the next day. The question of how much of the problem was ordinary engineering and how much was something new was his to help with, and it begins the next chapter.</p>
+<aside class="carry"><h2>Chapter summary</h2>
+<p>A typed number is copied to every system that touches a conversation, so one entry becomes several stored copies held by more than one organisation.</p>
+<ul><li>PII is any detail that can point to one real person, alone or in combination. Details that are harmless separately can identify someone when joined.</li><li>An impression becomes usable when it is counted, and the count is reported with its limits: the sample, the reader and the definition.</li><li>Competing problems are compared on the same four questions: a reachable user, a watchable task, a countable pain, and a real reason for AI.</li><li>A decision log records the date, the decision, the evidence and the conditions for changing course.</li><li>Self-assessment on a fixed scale gives a baseline that can be rechecked later.</li></ul>
+</aside>
 </div>
-<aside class="wordsbox" aria-label="Words from this chapter"><h2>Words from this chapter</h2><dl><div><dt id="w-pii">PII</dt><dd>personally identifiable information: any detail that can point to one real person, such as a name, a phone number or an identity number</dd></div><div><dt id="w-decision-log">decision log</dt><dd>a running page where you write down each important decision, the evidence behind it, and what would make you change your mind</dd></div></dl></aside>
-<p class="inapp">In the course app: <a href="../#/ch/a1">Your learning system: role, evidence and a capstone problem</a></p>
-<nav class="pager" aria-label="Previous and next"><a class="prev" href="preface.html"><span class="dir">← Before</span><span class="nm">Before You Begin</span></a><a class="next" href="02-four-questions-before-building.html"><span class="dir">Next →</span><span class="nm">Chapter 2 · Four Questions Before Building</span></a></nav>
+<aside class="wordsbox" aria-label="Key terms"><h2>Key terms</h2><p class="sub">Plain meanings, in the order you meet them.</p><dl><div><dt id="w-pii">PII</dt><dd>personally identifiable information: any detail that can point to one real person, such as a name, a phone number or an identity number</dd></div><div><dt id="w-decision-log">decision log</dt><dd>a running page where you write down each important decision, the evidence behind it, and what would make you change your mind</dd></div></dl></aside>
+<aside class="inapp"><span class="lead">The same ideas, with the work to do, in the course app</span><span class="chips"><a href="/#/ch/a1">Your learning system: role, evidence and a capstone problem<span aria-hidden="true"> →</span></a></span></aside>
+<nav class="pager" aria-label="Previous and next chapter"><a class="prev" href="/book/preface.html" rel="prev"><span class="dir">← Before</span><span class="nm">Before You Begin</span></a><a class="next" href="/book/02-four-questions-before-building.html" rel="next"><span class="dir">Next →</span><span class="nm"><b>2</b>Four Questions Before Building</span></a></nav>
 </article>
 </main>
 </div>
-<script src="reader.js"></script>
+<script src="/book/reader.js" defer></script>
 </body>
 </html>

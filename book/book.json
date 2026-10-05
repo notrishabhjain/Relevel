@@ -3,5 +3,14 @@
   "edition": "The reading edition",
   "subtitle": "How a small team in Pune built a privacy guard, and learned how AI products are really made",
   "tagline": "A book to read, not a course to do. Same ideas, same order, same words as the course app, told as one story.",
-  "language": "en"
+  "language": "en",
+  "sections": [
+    { "from": 1, "to": 7, "title": "The problem worth solving", "blurb": "Anaya notices something odd in the chat, and learns how a product person decides what to build, and what to leave alone." },
+    { "from": 8, "to": 13, "title": "Meeting the machine", "blurb": "What a language model is, how to talk to it, and how to tell whether it did well." },
+    { "from": 14, "to": 19, "title": "Finding things, and the whole machine", "blurb": "Long documents, search by words and by meaning, and how the parts join into one working system." },
+    { "from": 20, "to": 26, "title": "Giving it work to do", "blurb": "Tools, thinking models, hostile text, grading at scale, and what it all costs." },
+    { "from": 27, "to": 32, "title": "The messy real world", "blurb": "Scans and photographs, what you may send, the rules, a spec for a thing that varies, and designing for the wrong answer." },
+    { "from": 33, "to": 39, "title": "Under the hood", "blurb": "The plumbing, choosing a model, retrieval that survives review, agents, voices and pictures, release gates, and assuming the worst." },
+    { "from": 40, "to": 47, "title": "A real product, and a job", "blurb": "Shipping it, pricing it, growing it, counting it, running it with real users, and getting hired to do it." }
+  ]
 }

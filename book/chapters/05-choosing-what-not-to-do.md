@@ -1,7 +1,12 @@
 ---
 title: Choosing What Not to Do
-summary: On a Sunday call a retired teacher asks the question that turns a pile of good ideas into a strategy, and a product acquires its name.
+summary: A list of nine good ideas is not a strategy. A retired teacher's question leads the product manager to write one, to choose a narrow first target and a single measure of success, to name the product, and to rank the work with scores that she is willing to overrule.
 course: a5
+goals:
+  - distinguish a vision, a strategy and a plan
+  - write a strategy in three parts and test it by removing the company's name
+  - choose a wedge and a North Star
+  - rank options with RICE, agree scope with MoSCoW, and use cost of delay to settle order
 terms:
   - diagnosis | the first part of a strategy: an honest account of what the real challenge is, before saying what to do about it | 
   - guiding policy | the second part of a strategy: the overall approach you will take to the challenge, including what you will refuse to do | 
@@ -13,97 +18,89 @@ terms:
   - cost of delay | what you lose for every week an option waits | 
 ---
 
-On Sundays Anaya sat on the balcony of her flat in Kothrud with a cup of tea going cold and her phone on speaker, and listened to a woman in Bengaluru ask her what she was refusing to do.
+On Sunday mornings Anaya telephoned Dr. Meenakshi Rao, who had taught her linguistics and was now retired in Bengaluru. In the third week of March she read out her list of work. Rewrite the chatbot's greeting. Build a tool to find identity numbers. Extend it to names and addresses. Make it work in Hindi. Make it work in Hinglish. Read photographs. Read voice notes. Sell it to other companies. Build a small version that runs in a browser.
 
-Dr. Meenakshi Rao had taught linguistics for thirty-one years and retired, by her own account, to read novels, and had instead taken up the habit of asking former students questions they could not answer. There was a cat somewhere behind her, which would announce itself at moments that seemed chosen.
+Meenakshi asked which of the nine she would decline to do. Anaya said that she would do all of them eventually. "Then you have no strategy," said Meenakshi. "You have a hope with a calendar."
 
-"You have a list," said Meenakshi. "I can hear the list in your voice. Read it to me."
+This chapter works through what a strategy consists of, how a team chooses where to begin, and how it ranks competing work without letting a formula decide.
 
-Anaya read it. Rewrite the chatbot's greeting. Build a tool to find identity numbers. Extend it to names and addresses. Make it work in Hindi. Make it work in Hinglish. Look at photographs. Look at voice notes. Sell it to other companies. Build a small version that runs in a browser.
+## The case: nine good ideas
 
-"It is a very good list," said Meenakshi. "Which of those will you not do?"
+Every item on the list was reasonable, and that was the difficulty. A list in which nothing is refused cannot guide a decision on Monday morning, because any task can be defended. Meenakshi's remark was practical, not harsh: a strategy begins when someone is left out.
 
-"All of them, eventually."
+## Vision, strategy and plan
 
-"Then you have no strategy. You have a hope with a calendar." The cat said something. "Don't be offended. Most people do not. A hope is where it starts. But a strategy is when you choose, and choosing means somebody is going to be left out."
+Meenakshi asked Anaya to state the difference between three things that are often confused.
 
-## Three things that are not the same
+Table: Vision, strategy and plan
+| | Question it answers | Horizon | The guard's version |
+| --- | --- | --- | --- |
+| Vision | Where are we going? | Three to five years | Every team at every company that talks to customers in India can see at a glance that nothing personal travels further than it should |
+| Strategy | How will we win? | One to two years | Start with Sahaj's own chat and nowhere else, and be the best in the country at the mixture of languages people actually type |
+| Plan | What will we do now? | This quarter | Ship the number-finding part, in the chat, to the support team, by the end of June |
 
-Meenakshi made her say the difference aloud, the way she had once made first-years conjugate verbs.
+A vision is allowed to be grand, and a plan is easy to write. The strategy is the difficult part because it must be specific enough to be wrong and must leave things out.
 
-A *vision* says where you are going, three to five years from now. *Every team at every company that talks to customers in India can see, at a glance, that nothing personal is travelling further than it should.* It is allowed to be a little grand. A *strategy* says how you will win, over the next year or two, and it has to be specific enough to be wrong. *Start with Sahaj's own chat and nowhere else, and be the best in the country at the mixture of languages people actually type.* A plan says what you will do this quarter. *Ship the number-finding part, in the chat, to the support team, by the end of June.*
+## The parts of a strategy
 
-"Everybody writes the vision," said Meenakshi. "Everybody can write the plan. The strategy is where people become unhappy, because it has to leave things out."
+A strategy has three parts, and each exists for a reason.
 
-## What the real challenge is
+The first is the *diagnosis*, an honest account of the real challenge, stated so that someone could disagree with it. "We have a privacy problem" is not a diagnosis. Anaya's version read: personal details reach places they should not because customers type them freely, the chatbot invites them, nobody has the means to remove them, and existing tools are built for one writing system and fail on the way people here write. It took four drafts to stop it sounding like a pitch.
 
-She asked Anaya to write a strategy the way a book on the subject had taught her to, with three parts, and then, being Meenakshi, to explain why each part existed.
+The second is the *guiding policy*, the overall approach to the challenge, which includes what will be refused. Hers read: catch details by their shape first, because that is cheap and certain; handle names and addresses next, because that is where other tools fail; do all of it inside the company and in the way people actually write; and do not try to solve everything that could be called privacy.
 
-The first part is the *diagnosis*: an honest account of what is really going on. Not "we have a privacy problem" but something that someone could disagree with. Anaya wrote: *Personal details reach places they should not because customers type them freely, the chatbot invites them, no one has the means to remove them, and existing tools are built for one writing system and fail on the way people here write.* It took her four attempts to stop making it sound like a pitch.
+The third is a set of coherent actions, a few steps that carry out the policy and support one another. She wrote four, noticed that two did not depend on the others, and cut them.
 
-The second is the *guiding policy*: the overall approach to the challenge. This is the part that says no. Hers read: *Catch details by their shape first, because that is cheap and certain; handle names and addresses next, because that is where the other tools fail; and do all of it inside the company, in the way people actually write. Do not try to solve everything that could be called privacy.*
+::: watch A goal is not a strategy
+"Become the leading privacy platform in India" is a goal. It contains no diagnosis and tells nobody what to do on Monday. A quick test is to remove the company's name from the strategy and ask whether a competitor could paste it into their own document unnoticed. A sentence such as "use best-in-class technology to protect customer privacy at scale" passes that test, so it is not yet a strategy. A version of it had crept into Anaya's second paragraph, and she deleted it.
+:::
 
-The third is a set of actions that support each other: a few specific steps that carry out the policy and reinforce one another. She wrote four. Then she noticed that two of them did not need the others, and cut them, which she found physically uncomfortable, like throwing away a perfectly good chair.
+## Whom it serves, and where to begin
 
-"Now do the test," said Meenakshi. "Take Sahaj's name out. Could a competitor paste your strategy into their own document and nobody notice?"
+The *value proposition* is a plain statement of whom the product serves, what job it does for them and why it is better than what they have. Anaya's positioning statement from the previous chapter was the first draft. It now had to bear weight, because the strategy depended on it.
 
-Anaya looked. *Use best-in-class technology to protect customer privacy at scale.* No, that was somebody else's sentence; she had not written it. But a version had crept into her second paragraph, and she deleted it.
+Where to begin is a separate decision. Meenakshi's rule was to start narrow enough to be the best at something, since a team can widen later but cannot recover from being merely adequate at everything. The narrow first target that a product can clearly win is its *wedge*. It must be small enough to be excellent at and joined to something larger, so that winning it opens a door.
 
-"A goal is not a strategy," said Meenakshi. "'Become the leading privacy platform in India' is a goal. It has no diagnosis. It tells nobody what to do on Monday."
+The wedge was not "privacy for Indian companies". It was to find and hide the personal details in Sahaj's own support chat in the three ways people write. It was far smaller than the vision and entirely winnable. It had a willing internal customer, a real body of messages, and Farah Sheikh, who would know within a week whether it worked.
 
-## Who it is for, and where to begin
+### One number
 
-The *value proposition* came out of that conversation almost by itself. It is a plain statement of whom you serve, what job you do for them, and why you are better than what they have. She had written the first draft as a positioning statement in the last chapter; now it needed to bear weight.
+The wedge was paired with a *North Star*: one sentence saying what value the customer receives, and one number that measures it. The sentence was that messages leave the chat with nothing personal left in them. The measure was the share of messages that do. If the number rose, the work was succeeding. If Anaya found herself arguing about some other number, she would stop and ask why.
 
-Beginning is another matter. Meenakshi had a rule she attributed, loosely, to an old teacher of hers: *start narrow enough to be the best at something.* You can widen later; you cannot recover from being merely adequate at everything. The narrow first thing a product can clearly win is called its *wedge*. It has to be small enough to be excellent at, and joined to something larger, so that winning it opens a door.
+## Naming the product
 
-The wedge was not "privacy for Indian companies". It was *find and hide the personal details in Sahaj's support chat, in the three ways people write*. Smaller than the dream. Entirely winnable. And it had a friendly internal customer, a real set of messages, and a person, Farah, who would know within a week if it worked.
+Farah heard about the project and stopped at Anaya's desk. Everyone, she said, was calling it "the privacy thing", and unless it received a name it would acquire whichever one was said first in a meeting. The name had to say what the product was and who it was for, and it had to be easy to say to a customer on the telephone.
 
-Tied to it was a single sentence that she would turn into a measurement: the *North Star*. It said what value the customer gets, and how you would know. *Messages leave the chat with nothing personal left in them.* The measure: the share of messages that do. If it went up, everything was working. If she ever caught herself arguing about a number that was not this one, she would stop and ask why.
+They considered a dozen. Farah, who thought in the language of her customers, proposed Bharat Privacy Guard, and predicted that everyone would shorten it to "the guard" within a week. The name was adopted, partly because it was exactly as ornate as the name on a signboard.
 
-## A name, at last
+## Ranking the work
 
-At this point Farah Sheikh wandered into the story, as she tended to, having heard about it from someone.
+With the strategy in place Anaya needed an order for the nine items. She used a common scoring method, *RICE*, which rates each option on four questions. Reach asks how many people or messages it touches in a given period. Impact asks how much it changes things for each. Confidence asks, as a percentage, how sure the first two answers are. Effort asks how many person-weeks the work will take. Reach, impact and confidence are multiplied and the product is divided by effort.
 
-She stopped by Anaya's desk on Monday with a message pinned to her phone and her usual air of having come for something else. "I keep hearing it called 'the privacy thing'," she said. "People are going to call it something, and if you do not choose, it will be whatever somebody says in a meeting first. Which will be something awful."
-
-Anaya had spent a week not thinking about a name, which is what people do when it matters.
-
-"It has to say what it is and who it's for," Farah said. "And it should be easy to say to a customer on the phone. Not clever."
-
-They tried a dozen. Eventually Farah, who thought in the language of her customers, said: "Call it Bharat Privacy Guard. Everyone will shorten it to 'the guard' within a week anyway."
-
-It stuck, partly because it was exactly as clever as a name on a signboard.
-
-## Deciding among the options
-
-The harder work came after the name: deciding what to do first when everything on the list sounded reasonable.
-
-She turned to a technique used everywhere, which has a name that sounds like a brand of rice. RICE scores each option on four questions. *Reach*: how many people or messages will it touch in a given time? *Impact*: how much will it change things for each? *Confidence*: how sure are you of your first two answers, as a percentage? And *Effort*: how many person-weeks will it take? Multiply the first three, divide by the fourth, and you have a comparable number.
-
-| Option | Reach | Impact | Confidence | Effort | Score |
+Table: RICE scores for four of the options
+| Option | Reach | Impact | Confidence | Effort (person-weeks) | Score |
 | --- | --- | --- | --- | --- | --- |
 | Rewrite the greeting | 400 | 1 | 80% | 0.1 | 3,200 |
 | Find fixed-shape numbers | 400 | 2 | 80% | 2 | 320 |
 | Catch photographs of cards | 30 | 3 | 50% | 1 | 45 |
 | Find names and addresses in Hinglish | 150 | 2 | 50% | 6 | 25 |
 
-She stared at the last row. The scoring said, quite clearly, that the thing she cared most about came last.
+The last row held the work that mattered most to the project, and it scored lowest. Imran Qureshi, who had come to see why Anaya was frowning, agreed that by this arithmetic it came last. "So you override it," he said. "Out loud. What is not allowed is pretending the number told you to."
 
-"That is correct," said Imran, who had come to see what the fuss was about. "By this arithmetic it is last."
+::: key What a score is for
+The inputs to a RICE score are mostly guesses, and the formula knows nothing about strategy or about which work depends on which. A score organises an argument and does not replace it. When a team overrides one, it should record the reason. Anaya wrote beside the last row: "It is the wedge. Everything else exists elsewhere."
+:::
 
-"It is the point of the whole project."
+A second method suits agreeing scope with other people. *MoSCoW* sorts every item into Must, Should, Could or Won't. Anaya's Musts were the greeting and the finder of fixed-shape numbers. Her Shoulds were names and addresses. Her Coulds were photographs. Her Won'ts for the year were other Indian languages, voice notes, a browser version, and selling to anyone outside Sahaj. Imran read the last column twice and remarked that it was the first Won't list he had seen that was not embarrassed.
 
-"Yes," said Imran. "So you override it. Out loud. That is allowed. What isn't allowed is pretending the number told you to."
+A third consideration came from a friend in finance. The *cost of delay* is what is lost for each week an option waits. For most items the answer was "a little". For the greeting it was another week of customers being asked for their details, which settled its place at the front without further arithmetic.
 
-That, she decided, was the sound use of a framework. The scores come from guesses, mostly, and they know nothing about strategy or about what depends on what. A number like this is for organising an argument. It is not a replacement for having one. She kept the table, and next to the bottom row wrote the reason it was going to be built anyway: *It is the wedge. Everything else exists elsewhere.*
+## Summary
 
-A second method was better for agreeing scope with other people. *MoSCoW*, named for its letters and not its city, sorts everything into Must, Should, Could and Won't. Her Musts were the greeting and the finder of fixed-shape numbers. Her Shoulds were names and addresses. Her Coulds were photographs. Her Won'ts for this year, written in the clearest hand she had, were other Indian languages, voice notes, a browser version, and selling to anyone outside Sahaj.
+A vision says where a company is going, a strategy says how it will win, and a plan says what happens this quarter. Only the strategy requires leaving things out.
 
-Imran read the Won't column twice. "That is the first time I have seen a Won't list that wasn't embarrassed."
-
-One more idea made it into her notes, from a friend in finance. *Cost of delay* asks what you lose for each week something waits. For most items on the list the answer was "a little". For the greeting it was "another week of customers being asked for their details", which settled the order without any arithmetic at all.
-
-## What to carry forward
-
-A vision says where you are going, a strategy says how you will win, and a plan says what happens this quarter; only the strategy requires leaving things out. A real strategy starts from an honest account of the challenge, chooses an overall approach, and backs it with actions that support one another. It starts at a wedge narrow enough to win, and measures itself against one number. Scoring options by reach, impact, confidence and effort organises a decision without making it, and a team that overrides the score should say so out loud. When everything is a priority, the clearest tool is a list of what you will not do.
+- A strategy has a diagnosis (what the real challenge is), a guiding policy (the approach, including what is declined) and coherent actions that support one another. Removing the company's name tests whether it is specific.
+- A wedge is the narrow first target that can clearly be won. A North Star is one sentence of customer value and the one number that measures it.
+- RICE scores options by reach, impact and confidence divided by effort. The score organises a decision and may be overridden when the reason is written down.
+- MoSCoW agrees scope by sorting items into Must, Should, Could and Won't, and the Won't list is the most informative.
+- Cost of delay, the loss per week of waiting, often settles order where scoring does not.

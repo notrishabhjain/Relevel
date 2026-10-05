@@ -13,6 +13,7 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import p from 'node:path';
+import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { loadBook, buildBook, termRegex } from '../book/build.mjs';
 
@@ -20,9 +21,15 @@ const R = p.resolve(p.dirname(fileURLToPath(import.meta.url)), '..');
 const C = JSON.parse(fs.readFileSync(p.join(R, 'content/defaults.json'), 'utf8'));
 const problems = [];
 const fail = m => problems.push(m);
+const late = [];
 
+/* `node tools/book-check.mjs` checks the English edition and, when it exists,
+   the Hinglish one too; `node tools/book-check.mjs book/hi` checks only that. */
+const ARG = process.argv[2];
+const IS_HI = !!ARG;
+const ROOT = p.join(R, ARG || 'book');
 let B;
-try { B = loadBook(p.join(R, 'book')); } catch (e) { console.error('book: ' + e.message); process.exit(1); }
+try { B = loadBook(ROOT); } catch (e) { console.error('book: ' + e.message); process.exit(1); }
 
 /* every unit of text, in reading order */
 const units = [];
@@ -31,6 +38,21 @@ B.chapters.forEach(c => units.push({ key: c.file, label: `chapter ${c.n} (${c.ti
 if (B.afterword) units.push({ key: 'afterword', label: 'the afterword', u: B.afterword, index: units.length });
 
 if (!B.chapters.length) fail('the book has no chapters');
+
+/* the Hinglish edition says the same things in the same order: same files, same app chapters, same words taught */
+if (IS_HI) {
+  const E = loadBook(p.join(R, 'book'));
+  if (E.chapters.length !== B.chapters.length) fail(`the Hinglish edition has ${B.chapters.length} chapters; the English one has ${E.chapters.length}`);
+  E.chapters.forEach((e, i) => {
+    const h = B.chapters[i];
+    if (!h) return;
+    if (h.file !== e.file) fail(`chapter ${e.n}: the Hinglish file is ${h.file}; it must be ${e.file}`);
+    if (h.course.join(' ') !== e.course.join(' ')) fail(`chapter ${e.n}: Hinglish retells "${h.course.join(' ')}"; English retells "${e.course.join(' ')}"`);
+    if (h.goals.length !== e.goals.length) late.push(`chapter ${e.n}: ${h.goals.length} goals in Hinglish, ${e.goals.length} in English`);
+    if (h.terms.map(x => x.term).join('|') !== e.terms.map(x => x.term).join('|')) fail(`chapter ${e.n}: the words taught differ from the English chapter`);
+  });
+  for (const k of ['preface', 'afterword']) if (!!E[k] !== !!B[k]) fail(`the Hinglish edition ${B[k] ? 'has' : 'lacks'} the ${k}; the English one ${E[k] ? 'has' : 'lacks'} it`);
+}
 
 /* ---- coverage and order against the course ---- */
 const courseIds = new Set(C.chapters.map(c => c.id));
@@ -82,36 +104,49 @@ const STOCK = [
   /\bdelv(e|es|ing)\b/i, /\btapestry\b/i, /let['’]s dive/i, /\bgame[- ]chang/i, /\bunlock(s|ing)? (the )?(power|potential)/i,
   /\bleverag(e|es|ing)\b/i, /in today['’]s (fast[- ]paced|digital|ever)/i, /it['’]s worth noting/i, /\bseamless(ly)?\b/i,
   /\brobust\b/i, /\bcutting[- ]edge\b/i, /\bin the realm of\b/i, /\bat the end of the day\b/i, /\bnavigate the (complex|landscape)/i,
-  /\bjourney of a thousand\b/i, /\bwithout further ado\b/i
+  /\bjourney of a thousand\b/i, /\bwithout further ado\b/i,
+  /\bimagine (a|an|you|that)\b/i, /\bpicture (this|a|an)\b/i, /\bnot just\b[^.]{0,60}\bbut\b/i, /\bit['’]s not (about )?[^.]{1,60}[,;] it['’]s\b/i,
+  /\bhere['’]s the (thing|catch)\b/i, /\bthe (real|hidden) (magic|power)\b/i, /\bsilver bullet\b/i, /\bwhisper(ed|s)?\b/i, /\bdance of\b/i
 ];
 const HANDS_ON = [/\bexercise\s*\d/i, /\bhomework\b/i, /\bopen (a|your) (notebook|colab|terminal)\b/i, /\bpip install\b/i, /\byour task\b/i];
 for (const un of units) {
   const text = [un.u.summary, un.u.body].join('\n');
   for (const re of STOCK) { const m = text.match(re); if (m) fail(`${un.label}: stock phrase "${m[0]}"`); }
   for (const re of HANDS_ON) { const m = text.match(re); if (m) fail(`${un.label}: reads like instructions ("${m[0]}"); the exercises live in the app`); }
+  const dashes = (un.u.body.match(/—/g) || []).length;
+  if (dashes > 4) fail(`${un.label} has ${dashes} em dashes; use full stops or commas`);
   const w = un.u.words;
-  if (un.key !== 'preface' && un.key !== 'afterword' && (w < 1100 || w > 3600))
-    fail(`${un.label} is ${w} words; a chapter runs 1,100 to 3,600`);
-  const sentences = un.u.body.replace(/```[\s\S]*?```/g, ' ').replace(/^\|.*$/gm, ' ').replace(/[*_]/g, '').split(/(?<=[.!?])\s+/).filter(s => s.trim().length > 0);
-  const longest = Math.max(0, ...sentences.map(s => (s.match(/\S+/g) || []).length));
-  if (longest > 70) fail(`${un.label} has a sentence of ${longest} words; split it`);
+  const lo = 1100, hi = IS_HI ? 6500 : 3600;   // Hinglish takes about half as many words again
+  if (un.key !== 'preface' && un.key !== 'afterword' && (w < lo || w > hi))
+    fail(`${un.label} is ${w} words; a chapter runs ${lo.toLocaleString()} to ${hi.toLocaleString()}`);
+  const sentences = un.u.body.replace(/```[\s\S]*?```/g, ' ').replace(/^\|.*$/gm, ' ').replace(/^(Table:|:::).*$/gm, ' ').replace(/[*_]/g, '').split(/(?<=[.!?]["”’']?)\s+/).filter(s => s.trim().length > 0);
+  const lens = sentences.map(s => (s.match(/\S+/g) || []).length);
+  const longest = Math.max(0, ...lens);
+  if (longest > 70) fail(`${un.label} has a sentence of ${longest} words; split it: "${sentences[lens.indexOf(longest)].trim().slice(0, 70)}…"`);
 }
 
 /* ---- links in the built pages ---- */
 const tmp = fs.mkdtempSync(p.join(os.tmpdir(), 'book-'));
 let built = null;
 try {
-  built = buildBook(p.join(R, 'book'), tmp, { appUrl: '../' });
+  built = buildBook(ROOT, tmp, { siteBase: '/book/', appUrl: '/', hasOther: false, assetsFrom: p.join(R, 'book') });
   for (const f of fs.readdirSync(tmp).filter(f => f.endsWith('.html'))) {
     const html = fs.readFileSync(p.join(tmp, f), 'utf8');
     const ids = new Set([...html.matchAll(/\sid="([^"]+)"/g)].map(m => m[1]));
+    for (const m of html.matchAll(/\ssrc="([^"]+)"/g)) if (!m[1].startsWith('/') && !/^https?:/.test(m[1])) fail(`${f}: relative script or image ${m[1]}`);
     for (const m of html.matchAll(/href="([^"#]*)(#[^"]*)?"/g)) {
       const [, file, hash] = m;
-      if (/^(https?:|mailto:)/.test(file) || file.startsWith('../')) continue;
-      if (file && !fs.existsSync(p.join(tmp, file))) fail(`${f}: links to ${file}, which does not exist`);
+      if (/^(https?:|mailto:)/.test(file)) continue;
+      /* a relative link breaks when the page is opened as /book (no slash) */
+      if (file && !file.startsWith('/')) fail(`${f}: relative link ${file}; every link must start from the site root`);
+      /* pages link from the site root: /book/... is the book (the Hinglish pages under /book/hi/), anything else is the app */
+      if (file.startsWith('/') && !file.startsWith('/book/')) continue;
+      const rel = file.replace(/^\/book\/(hi\/)?/, '');
+      if (file && rel && !fs.existsSync(p.join(tmp, rel)) && !(IS_HI && /^(style\.css|reader\.js)$/.test(rel)))
+        fail(`${f}: links to ${file}, which does not exist`);
       if (!file && hash && hash.length > 1 && !ids.has(hash.slice(1))) fail(`${f}: links to ${hash}, which is not on the page`);
-      if (file && hash && hash.length > 1 && fs.existsSync(p.join(tmp, file))) {
-        const target = fs.readFileSync(p.join(tmp, file), 'utf8');
+      if (rel && hash && hash.length > 1 && fs.existsSync(p.join(tmp, rel))) {
+        const target = fs.readFileSync(p.join(tmp, rel), 'utf8');
         if (!target.includes(`id="${hash.slice(1)}"`)) fail(`${f}: links to ${file}${hash}, which is not on that page`);
       }
     }
@@ -126,6 +161,7 @@ if (built) {
 if (missing.length) {
   fail(`${missing.length} app chapter(s) not retold anywhere: ${missing.slice(0, 8).map(c => c.num).join(', ')}${missing.length > 8 ? ', …' : ''}`);
 }
+late.forEach(fail);
 if (problems.length) {
   console.error(`\n${problems.length} problem(s):`);
   problems.slice(0, 40).forEach(m => console.error('  ' + m));
@@ -133,3 +169,8 @@ if (problems.length) {
   process.exit(1);
 }
 console.log('the book is in step with the course');
+if (!IS_HI && fs.existsSync(p.join(R, 'book/hi/book.json'))) {
+  console.log('\nHinglish edition:');
+  const r = spawnSync(process.execPath, [fileURLToPath(import.meta.url), 'book/hi'], { stdio: 'inherit' });
+  if (r.status) process.exit(r.status);
+}

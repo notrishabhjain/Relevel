@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="hi-Latn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aise Jawaab Jo Program Istemaal Kar Sake · Chapter 19 · AI From Zero</title>
+<meta name="description" content="Ek paragraph insaan ke liye theek hai aur program ke liye bekaar. Chapter batata hai ki JSON ke liye vinamrata se kehna kaafi kyun nahi, schema ek poore parivaar ki galtiyan kaise hata deta hai, sahi shakl mein bhi galat cheez kyun ho sakti hai, aur aisa form kaise banayein jisme gadhne ki jagah na ho.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="en" href="/book/19-answers-a-program-can-use.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
+<link rel="stylesheet" href="/book/style.css">
+<script>try{var t=localStorage.getItem('aifz-book-theme');if(t)document.documentElement.setAttribute('data-theme',t);var s=localStorage.getItem('aifz-book-size');if(s)document.documentElement.style.setProperty('--fs',s+'rem')}catch(e){}</script>
+</head>
+<body class="is-chapter" data-lang="hi" data-base="/book/hi/" style="--hue:#6b5ca5">
+<a class="skip" href="#text">Seedhe text par jaaiye</a>
+<div class="progress" id="progress" aria-hidden="true"><i></i></div>
+<header class="bar">
+  <button class="b menu" id="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Vishay-soochi"><span aria-hidden="true">☰</span><span class="lbl">Vishay-soochi</span></button>
+  <a class="brand" href="/book/hi/"><span class="mark">AI From Zero</span><span class="ed">Padhne wala edition (Hinglish)</span></a>
+  <span class="sp"></span>
+  <a class="b lang" href="/book/19-answers-a-program-can-use.html" hreflang="en" title="Read this in English" data-switch>English</a>
+  <button class="b" id="size-down" type="button" aria-label="Chhota text" title="Chhota text">A−</button>
+  <button class="b" id="size-up" type="button" aria-label="Bada text" title="Bada text">A+</button>
+  <button class="b" id="theme" type="button" aria-label="Rang badliye" title="Rang badliye">◐</button>
+  <a class="b app" href="/" title="Course app kholiye">Course app →</a>
+</header>
+<div class="layout">
+<nav class="toc" id="toc" aria-label="Vishay-soochi">
+<div class="tochead"><label class="find"><span class="sr">Chapter ya shabd dhoondhiye</span><input id="q" type="search" placeholder="Chapter ya shabd dhoondhiye" autocomplete="off"></label></div>
+<ol>
+<li class="top"><a href="/book/hi/"><span class="n dot"></span><span class="t">Vishay-soochi</span></a></li>
+<li data-t="shuru karne se pehle"><a href="/book/hi/preface.html" data-file="preface.html"><span class="n dot"></span><span class="t">Shuru karne se pehle</span></a></li>
+<li class="sec" style="--hue:#b4492a"><span>Woh problem jo hal karne layak hai</span></li>
+<li style="--hue:#b4492a" data-t="chat mein woh number"><a href="/book/hi/01-the-number-in-the-chat.html" data-file="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">Chat Mein Woh Number</span></a></li>
+<li style="--hue:#b4492a" data-t="banane se pehle chaar sawaal"><a href="/book/hi/02-four-questions-before-building.html" data-file="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Banane Se Pehle Chaar Sawaal</span></a></li>
+<li style="--hue:#b4492a" data-t="kal ke baare mein poochhna"><a href="/book/hi/03-asking-about-yesterday.html" data-file="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Kal Ke Baare Mein Poochhna</span></a></li>
+<li style="--hue:#b4492a" data-t="yahan aur kaun khada hai"><a href="/book/hi/04-who-else-is-standing-here.html" data-file="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Yahan Aur Kaun Khada Hai</span></a></li>
+<li style="--hue:#b4492a" data-t="kya nahi karna hai, yeh chunna"><a href="/book/hi/05-choosing-what-not-to-do.html" data-file="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Kya Nahi Karna Hai, Yeh Chunna</span></a></li>
+<li style="--hue:#b4492a" data-t="aisa plan jis par doosre bharosa karein"><a href="/book/hi/06-a-plan-others-can-believe.html" data-file="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">Aisa Plan Jis Par Doosre Bharosa Karein</span></a></li>
+<li style="--hue:#b4492a" data-t="likh kar rakhna taaki doosre bana sakein"><a href="/book/hi/07-writing-it-down.html" data-file="07-writing-it-down.html"><span class="n">7</span><span class="t">Likh Kar Rakhna Taaki Doosre Bana Sakein</span></a></li>
+<li class="sec" style="--hue:#2f6f73"><span>Machine se mulaqaat</span></li>
+<li style="--hue:#2f6f73" data-t="machine asal mein kya hai"><a href="/book/hi/08-what-the-machine-is.html" data-file="08-what-the-machine-is.html"><span class="n">8</span><span class="t">Machine Asal Mein Kya Hai</span></a></li>
+<li style="--hue:#2f6f73" data-t="pehli baatcheet"><a href="/book/hi/09-the-first-conversation.html" data-file="09-the-first-conversation.html"><span class="n">9</span><span class="t">Pehli Baatcheet</span></a></li>
+<li style="--hue:#2f6f73" data-t="ek dimaag jise kuch yaad nahi rehta"><a href="/book/hi/10-a-mind-with-no-memory.html" data-file="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">Ek Dimaag Jise Kuch Yaad Nahi Rehta</span></a></li>
+<li style="--hue:#2f6f73" data-t="nirdesh dena"><a href="/book/hi/11-giving-instructions.html" data-file="11-giving-instructions.html"><span class="n">11</span><span class="t">Nirdesh Dena</span></a></li>
+<li style="--hue:#2f6f73" data-t="kaise pata chale ki yeh kaam karta hai"><a href="/book/hi/12-knowing-whether-it-works.html" data-file="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Kaise Pata Chale Ki Yeh Kaam Karta Hai</span></a></li>
+<li style="--hue:#2f6f73" data-t="chhaantna aur saar likhna"><a href="/book/hi/13-sorting-and-summarising.html" data-file="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Chhaantna Aur Saar Likhna</span></a></li>
+<li class="sec" style="--hue:#6b5ca5"><span>Cheezein dhoondhna, aur poori machine</span></li>
+<li style="--hue:#6b5ca5" data-t="ek baar mein padhne ke liye bahut lamba"><a href="/book/hi/14-too-long-to-read-at-once.html" data-file="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Ek Baar Mein Padhne Ke Liye Bahut Lamba</span></a></li>
+<li style="--hue:#6b5ca5" data-t="shabdon se dhoondhna"><a href="/book/hi/15-finding-by-words.html" data-file="15-finding-by-words.html"><span class="n">15</span><span class="t">Shabdon Se Dhoondhna</span></a></li>
+<li style="--hue:#6b5ca5" data-t="matlab se dhoondhna"><a href="/book/hi/16-finding-by-meaning.html" data-file="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Matlab Se Dhoondhna</span></a></li>
+<li style="--hue:#6b5ca5" data-t="kitna achha, achha hota hai"><a href="/book/hi/17-how-good-is-good.html" data-file="17-how-good-is-good.html"><span class="n">17</span><span class="t">Kitna Achha, Achha Hota Hai</span></a></li>
+<li style="--hue:#6b5ca5" data-t="poori machine"><a href="/book/hi/18-the-whole-machine.html" data-file="18-the-whole-machine.html"><span class="n">18</span><span class="t">Poori Machine</span></a></li>
+<li style="--hue:#6b5ca5" class="here" data-t="aise jawaab jo program istemaal kar sake"><a href="/book/hi/19-answers-a-program-can-use.html" aria-current="page" data-file="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Aise Jawaab Jo Program Istemaal Kar Sake</span></a></li>
+<li class="sec" style="--hue:#9a7b1f"><span>Machine ko kaam dena</span></li>
+<li style="--hue:#9a7b1f" data-t="machine ko haath dena"><a href="/book/hi/20-giving-the-machine-hands.html" data-file="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Machine Ko Haath Dena</span></a></li>
+<li style="--hue:#9a7b1f" data-t="lambi windows, saavdhaan kamre"><a href="/book/hi/21-long-windows-careful-rooms.html" data-file="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Lambi Windows, Saavdhaan Kamre</span></a></li>
+<li style="--hue:#9a7b1f" data-t="pehle sochne wali machines"><a href="/book/hi/22-machines-that-think-first.html" data-file="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Pehle Sochne Wali Machines</span></a></li>
+<li style="--hue:#9a7b1f" data-t="behtar search"><a href="/book/hi/23-searching-better.html" data-file="23-searching-better.html"><span class="n">23</span><span class="t">Behtar Search</span></a></li>
+<li style="--hue:#9a7b1f" data-t="jab page hukm dene lagta hai"><a href="/book/hi/24-when-the-page-gives-orders.html" data-file="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">Jab Page Hukm Dene Lagta Hai</span></a></li>
+<li style="--hue:#9a7b1f" data-t="hazaar jawaabon ki grading"><a href="/book/hi/25-grading-a-thousand-answers.html" data-file="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Hazaar Jawaabon Ki Grading</span></a></li>
+<li style="--hue:#9a7b1f" data-t="asal mein kitna kharcha hota hai"><a href="/book/hi/26-what-it-really-costs.html" data-file="26-what-it-really-costs.html"><span class="n">26</span><span class="t">Asal Mein Kitna Kharcha Hota Hai</span></a></li>
+<li class="sec" style="--hue:#3f7a4a"><span>Asli duniya ki uljhanein</span></li>
+<li style="--hue:#3f7a4a" data-t="kaagaz, photos aur scans"><a href="/book/hi/27-paper-photos-and-scans.html" data-file="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Kaagaz, Photos Aur Scans</span></a></li>
+<li style="--hue:#3f7a4a" data-t="aap kya bhej sakte hain"><a href="/book/hi/28-what-you-may-send.html" data-file="28-what-you-may-send.html"><span class="n">28</span><span class="t">Aap Kya Bhej Sakte Hain</span></a></li>
+<li style="--hue:#3f7a4a" data-t="niyam, risk aur zimmedaari"><a href="/book/hi/29-rules-risk-and-responsibility.html" data-file="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Niyam, Risk Aur Zimmedaari</span></a></li>
+<li style="--hue:#3f7a4a" data-t="badalti rehne wali cheez ki spec"><a href="/book/hi/30-the-spec-for-a-thing-that-varies.html" data-file="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">Badalti Rehne Wali Cheez Ki Spec</span></a></li>
+<li style="--hue:#3f7a4a" data-t="banao, kharido ya sikhao"><a href="/book/hi/31-build-buy-or-teach-it.html" data-file="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Banao, Kharido Ya Sikhao</span></a></li>
+<li style="--hue:#3f7a4a" data-t="galat jawaab ke liye design"><a href="/book/hi/32-designing-for-the-wrong-answer.html" data-file="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Galat Jawaab Ke Liye Design</span></a></li>
+<li class="sec" style="--hue:#a2455e"><span>Bonnet ke neeche</span></li>
+<li style="--hue:#a2455e" data-t="jaadu ke neeche ki plumbing"><a href="/book/hi/33-the-plumbing-under-the-magic.html" data-file="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">Jaadu Ke Neeche Ki Plumbing</span></a></li>
+<li style="--hue:#a2455e" data-t="apne cases par model chunna"><a href="/book/hi/34-choosing-a-model-on-your-own-cases.html" data-file="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Apne Cases Par Model Chunna</span></a></li>
+<li style="--hue:#a2455e" data-t="review mein tikne wala retrieval"><a href="/book/hi/35-retrieval-that-survives-a-review.html" data-file="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Review Mein Tikne Wala Retrieval</span></a></li>
+<li style="--hue:#a2455e" data-t="workflows, agents aur standard plug"><a href="/book/hi/36-workflows-agents-and-the-standard-plug.html" data-file="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents Aur Standard Plug</span></a></li>
+<li style="--hue:#a2455e" data-t="pages, tasveerein aur awaazein"><a href="/book/hi/37-pages-pictures-and-voices.html" data-file="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Tasveerein Aur Awaazein</span></a></li>
+<li style="--hue:#a2455e" data-t="gates, traces aur rollbacks"><a href="/book/hi/38-gates-traces-and-rollbacks.html" data-file="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces Aur Rollbacks</span></a></li>
+<li style="--hue:#a2455e" data-t="sabse bure ko maan kar chalna"><a href="/book/hi/39-assuming-the-worst.html" data-file="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Sabse Bure Ko Maan Kar Chalna</span></a></li>
+<li class="sec" style="--hue:#2d5d8f"><span>Ek asli product, aur ek naukri</span></li>
+<li style="--hue:#2d5d8f" data-t="product, demo nahi"><a href="/book/hi/40-a-product-not-a-demo.html" data-file="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">Product, Demo Nahi</span></a></li>
+<li style="--hue:#2d5d8f" data-t="poori cheez ko ship karna"><a href="/book/hi/41-shipping-the-whole-thing.html" data-file="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Poori Cheez Ko Ship Karna</span></a></li>
+<li style="--hue:#2d5d8f" data-t="paisa kaun deta hai, aur kitna"><a href="/book/hi/42-who-pays-and-how-much.html" data-file="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Paisa Kaun Deta Hai, Aur Kitna</span></a></li>
+<li style="--hue:#2d5d8f" data-t="log ise kaise dhoondhte hain aur kyun rukte hain"><a href="/book/hi/43-how-people-find-it-and-stay.html" data-file="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">Log Ise Kaise Dhoondhte Hain Aur Kyun Rukte Hain</span></a></li>
+<li style="--hue:#2d5d8f" data-t="jo maayne rakhta hai use ginna"><a href="/book/hi/44-counting-what-matters.html" data-file="44-counting-what-matters.html"><span class="n">44</span><span class="t">Jo Maayne Rakhta Hai Use Ginna</span></a></li>
+<li style="--hue:#2d5d8f" data-t="tools aur harness"><a href="/book/hi/45-tools-and-harness.html" data-file="45-tools-and-harness.html"><span class="n">45</span><span class="t">Tools Aur Harness</span></a></li>
+<li style="--hue:#2d5d8f" data-t="asli log, asli istemaal"><a href="/book/hi/46-real-people-real-use.html" data-file="46-real-people-real-use.html"><span class="n">46</span><span class="t">Asli Log, Asli Istemaal</span></a></li>
+<li style="--hue:#2d5d8f" data-t="kaam, aur naukri"><a href="/book/hi/47-the-job.html" data-file="47-the-job.html"><span class="n">47</span><span class="t">Kaam, Aur Naukri</span></a></li>
+<li data-t="kitaab ke baad"><a href="/book/hi/afterword.html" data-file="afterword.html"><span class="n dot"></span><span class="t">Kitaab Ke Baad</span></a></li>
+<li data-t="shabd, saral bhasha mein"><a href="/book/hi/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Shabd, saral bhasha mein</span></a></li>
+</ol>
+<p class="nomatch" hidden>Kuch nahi mila.</p>
+</nav>
+<div class="scrim" id="scrim" hidden></div>
+<main id="text">
+<article class="chapter" data-file="19-answers-a-program-can-use.html" data-title="Aise Jawaab Jo Program Istemaal Kar Sake" data-n="19">
+<header class="chead">
+<p class="eyebrow"><span class="num">19</span><span>Chapter 19 <i>·</i> Cheezein dhoondhna, aur poori machine</span></p>
+<h1>Aise Jawaab Jo Program Istemaal Kar Sake</h1><p class="dek">Ek paragraph insaan ke liye theek hai aur program ke liye bekaar. Chapter batata hai ki JSON ke liye vinamrata se kehna kaafi kyun nahi, schema ek poore parivaar ki galtiyan kaise hata deta hai, sahi shakl mein bhi galat cheez kyun ho sakti hai, aur aisa form kaise banayein jisme gadhne ki jagah na ho.</p>
+<p class="meta"><span>7 min padhai</span><span>3 naye shabd</span></p>
+</header>
+<aside class="goals"><h2>Is chapter mein</h2><ul><li>samjhana ki jis model ka output program ko jaata hai woh fields ka hona chahiye, gadya nahi</li><li>ginna ki ek chhoti failure dar asli product ke paimaane par kya matlab rakhti hai</li><li>schema aur structured output batana, aur yeh ki schema kya guarantee karta hai aur kya nahi</li><li>aisa form design karna jisme fixed choices, &quot;not stated&quot; kehne ka tareeka aur har value ke liye ek quotation ho, aur uske neeche validation lagana</li></ul></aside>
+<div class="prose">
+<p>Teen hafte tak team ne jo bhi jawaab dekha woh ek paragraph tha, aur woh theek tha kyunki padhne wala insaan tha. Phir Imran Qureshi ne finder ko rule-keeper se joda, jo kuch sau line ka saadhaaran code hai, aur rule-keeper pehle hi reply par fail ho gaya. Reply yeh tha: &quot;I found the following personal details in this message. The customer's name appears to be Amit Sharma. There is also a PAN, which looks like ABCDE1234F. I would also consider the bank name, HDFC, to be potentially sensitive.&quot;</p>
+<p>Imran ne kaha ki yeh ek pyaara paragraph hai, aur uske code ko jaanna hai ki PAN hai ya nahi, kahan shuru aur kahan khatam hota hai, aur use kya karna hai. Woh &quot;appears to be&quot; nahi padh sakta. Yeh chapter batata hai ki program ko model se kya chahiye, woh pehla ilaaj jo samasya ko kam nahi balki hata deta hai, aur yeh ki aise ilaaj ke baad bhi jawaab kaise galat reh sakta hai.</p>
+<h2 id="s-19-1"><span class="sn">19.1</span>Case: ek paragraph jise program padh nahi sakta</h2>
+<p>Jab model ka output kisi doosre system ko jaata hai, jaise ek jo tay karta hai ki kya chhupana hai, toh program ko fields chahiye: ek kind, ek value, ek sthaan aur ek faisla. Har ek ka naam aur type hota hai, aur har ek hamesha maujood hona chahiye. Paragraph, chahe kitna bhi achha likha ho, inme se kuch nahi rakhta.</p>
+<h2 id="s-19-2"><span class="sn">19.2</span>Vinamrata se maangna</h2>
+<p>Pehla swaabhaavik kadam maangna hai. Imran ne instruction mein ek line joda: JSON mein reply karo, fields kind, value aur action ke saath. Woh kaam kiya, aur kaam karta raha, jo khatra hai. Ek din ke liye kisi ne iske baare mein nahi socha. Phir usne ek hazaar test messages chalaye aur ginti ki ki kitne replies sahi bane hue the. Nau sau adsath sahi the, aur battees nahi the.</p>
+<figure class="tblfig"><figcaption><b>Table 19.1.</b> Battees failures</figcaption><div class="tblwrap"><table><thead><tr><th>Ginti</th><th>Kya galat hua</th></tr></thead><tbody><tr><td>14</td><td>Curly brace se pehle ek maafi se shuru hui: &quot;Certainly! Here is the JSON.&quot;</td></tr><tr><td>9</td><td>Formatting symbols ke ek block mein lipti hui jise code ne nahi socha tha</td></tr><tr><td>6</td><td>List ke ant mein ek bachi hui comma, jise insaan ki aankh chhod deti hai aur program rok deta hai</td></tr><tr><td>3</td><td>Bilkul sahi bani hui, par &quot;kind&quot; field mein aisi value jo message mein thi hi nahi</td></tr></tbody></table></div></figure>
+<p>Anaya ne dhyaan dilaya ki 96.8 percent theek lagta hai. Imran ne napkin par agla hisaab likha: din ke das hazaar messages par sattanve percent ka matlab teen sau failures roz hain, chupchaap, ek aise field mein jis par doosra system bharosa karta hai. Jo feature sau mein kuch baar fail hota hai, aur us sau ko koi dekh nahi raha, woh din bhar fail hota hai.</p>
+<h2 id="s-19-3"><span class="sn">19.3</span>Poochhne ke bajaye rok lagana</h2>
+<p>Bharose ka ilaaj poochhna band karna aur rok lagana hai. Providers developer ko ek <em><a class="term" href="/book/hi/glossary.html#t-schema" title="is baat ka ek aupchaarik vivaran ki jawaab ki theek-theek kya shape honi chahiye, jise provider tab laagu karwata hai jab model likh raha hota hai">schema</a></em> dene dete hain, jo ek aupchaarik vivaran hai ki jawaab ki shakl theek-theek kya honi chahiye. Woh har field ka naam batata hai, har ek ka type batata hai, aur batata hai ki kaun se zaroori hain. Jab model likhta hai, provider ka apna software use aisa kuch banane se rokta hai jo fit nahi hota. Brace se pehle maafi nahi aa sakti. Koi bachi hui comma nahi aa sakti. Is tarah se mila jawaab <em><a class="term" href="/book/hi/glossary.html#t-structured-output" title="naam wale, type wale fields mein diya gaya jawaab jise ek program padh sake, na ki ek paragraph jise insaan padhe">structured output</a></em> hai, aur woh &quot;shayad sahi shakl mein&quot; nahi hai. Woh kuch aur ho hi nahi sakta.</p>
+<aside class="box box-key"><p class="boxlabel">Mukhya vichaar</p><h4>Aisa ilaaj jo samasya hata deta hai</h4>
+<p>Anaya ne dhyaan diya ki yeh pehla ilaaj tha jisne samasya hata di. Pehle wale ne use bas kam kiya tha. Schema galtiyon ke ek poore parivaar ko hata deta hai, jabki system prompt ka instruction unhe kam karta hai. Imran ne kaha ki is kaam mein &quot;yeh ho hi nahi sakta&quot; kehne ka mauka kam milta hai.</p>
+</aside>
+<h2 id="s-19-4"><span class="sn">19.4</span>Sahi shakl, galat cheez</h2>
+<p>Anaya ne us nishchintata ka ek din mazaa liya. Phir Imran ne ek aur hazaar messages chalaye aur use woh teen dikhaye jo bach gaye the. Ek customer ne likha tha, &quot;mera naam Suresh hai, loan ka status batao&quot;. Reply ki shakl bilkul theek thi: ek entry ki list, ek kind, ek value aur ek action. &quot;Address&quot; field ki value &quot;Pune&quot; thi.</p>
+<p>Message mein koi address nahi hai. Par field zaroori chinhit tha, isliye model ko use khaali chhodne ki ijaazat kabhi nahi thi. Team ne use, asal mein, kaha tha ki jab customer kuch na kahe tab kuch gadh lo.</p>
+<aside class="box box-watch"><p class="boxlabel">Aam galti</p><h4>Schema shakl ki guarantee deta hai, sach ki nahi</h4>
+<p>Schema format ki guarantee deta hai, content ki nahi. Amount field mein hamesha ek number hoga. Woh sahi number shayad na ho, aur ho sakta hai document mein koi number tha hi nahi. Ek theek se bana hua jhooth sabse khatarnaak hota hai, kyunki har jaanch jo sirf shakl dekhti hai use paas kar deti hai.</p>
+</aside>
+<h2 id="s-19-5"><span class="sn">19.5</span>Aisa form jisme jhooth ki jagah nahi</h2>
+<p>Iske baad ka kaam woh tha jo Anaya ko sabse zyada pasand aaya, kyunki usme chaturai nahi, sirf dhyaan chahiye tha. Sawaal yeh nahi tha ki model ko behtar instruction kaise dein. Sawaal yeh tha ki aisa form kaise banayein jisme failure ke khade hone ki jagah hi na ho. Imran ne use teen tareeke diye.</p>
+<figure class="tblfig"><figcaption><b>Table 19.2.</b> Aise form ke liye teen tareeke jo gadh nahi sakta</figcaption><div class="tblwrap"><table><thead><tr><th>Tareeka</th><th>Kya karta hai</th><th>Guard mein udaharan</th></tr></thead><tbody><tr><td>Free text ki jagah tay choices</td><td>Free-text field bhatakta hai aur &quot;Approved (pending)&quot; jaisi entries banata hai, jin par code gir jaata hai</td><td>Kind inme se ek hona chahiye: PAN, Aadhaar, mobile, email, bank account, name, address, other, unsure. &quot;Aadhaar (probably)&quot; mumkin nahi</td></tr><tr><td>&quot;Not stated&quot; kehne ki izaazat</td><td>Zaroori field tab ek gadhi hui value banata hai jab message chup ho</td><td>Address khaali ho sakta hai, aur ek alag haan-ya-nahi field record karta hai ki address maujood tha ya nahi, taaki gair-maujoodgi page par ek tathya ho</td></tr><tr><td>Har baar ek quotation</td><td>Value jahan se aayi uske sahi shabd insaan ek second mein aur program ek line mein jaanch sakta hai</td><td>Har detail ke liye model message mein se woh phrase copy karta hai jis par woh tika hai; code ki ek line poochhti hai ki woh phrase message mein hai ya nahi</td></tr></tbody></table></div></figure>
+<p>Jo model koi detail gadhta hai use ab ek quotation bhi gadhni padti hai, aur gadhi hui quotation message mein nahi hoti. Jaanch use pakad leti hai. Naya form aisa dikhta tha.</p>
+<pre class="transcript">{
+  &quot;findings&quot;: [
+    { &quot;kind&quot;: &quot;name&quot;,
+      &quot;quote&quot;: &quot;Suresh&quot;,
+      &quot;action&quot;: &quot;hide&quot; }
+  ],
+  &quot;address_present&quot;: false
+}</pre>
+<p>Woh Anaya ke darr se chhota tha, aur usme &quot;Pune&quot; ke liye koi jagah nahi thi.</p>
+<h2 id="s-19-6"><span class="sn">19.6</span>Jo aaya use jaanchna</h2>
+<p>Imran ko phir bhi us par poora bharosa nahi tha. Har provider ka model likhte waqt schema se bandha nahi ja sakta, aur unke liye, aur baaki ke liye doosri suraksha ki tarah, usne <em><a class="term" href="/book/hi/glossary.html#t-validation" title="jawaab aane ke baad use niyamon ke khilaaf jaanchna, jaise kya ek zaroori field maujood hai ya kya ek quote kiya hua phrase sach mein message mein hai">validation</a></em> joda: jawaab aane ke baad use niyamon se milao. Kya har zaroori field maujood hai? Kya kind permitted mein se ek hai? Kya har quotation message mein hai? Agar kuch fail ho, toh system ek baar error likhkar dobara poochhta hai, aur agar woh bhi fail ho, toh message kisi insaan ko de deta hai. Usne ise tar ke neeche ka jaal kaha aur ummeed jatayi ki woh kabhi kuch pakadega nahi.</p>
+<p>Anaya ne answer key mein ek column joda jiska heading tha &quot;quote kaisa hona chahiye&quot;, aur ek nayi row us message ke liye joda jisme address jaisa phrase quotation marks ke andar tha, jaise ek customer kisi aur baat ke vaakya mein likhta hai ki building &quot;Sector 15&quot; ke paas hai. Jo tool ise dhoondhta use tay karna padta. Yeh ek edge case tha jo ek mahine pehle use nahi sujha hota.</p>
+<p>Phir usne naam diya ki design ab bhi kya nahi pakad sakta tha: ek quote jo sach mein message mein hai, sahi shakl mein, par personal nahi, jaise order number. Form yeh nahi jaan sakta. Imran ne kaha ki answer key isi liye hai.</p>
+<h2 id="s-19-7"><span class="sn">19.7</span>Saaraansh</h2>
+<p>Jab program model ka output padhta hai, toh output fields hona chahiye, paragraph nahi. JSON ke liye vinamrata se kehna lagbhag sattanve baar kaam karta hai, jisse bade paimaane par roz saikdon khaamosh failures hoti hain.</p>
+<ul><li>Schema, jise provider model ke likhte waqt lagu karta hai, galat bani hui output ko na-mumkin banata hai, jo samasya ko sirf kam nahi balki hata deta hai.</li><li>Schema jawaab ki shakl ki guarantee deta hai, uske sach hone ki nahi, aur zaroori field tab invention majboor karta hai jab input chup ho.</li><li>Achhe forms mein tay choices hote hain, &quot;not stated&quot; ki izaazat hoti hai, aur har value ke liye woh sahi shabd maange jaate hain jahan se woh aayi.</li><li>Validation baad ka jaal hai: fields, permitted values aur quotations jaancho, ek baar dobara koshish karo, phir kisi insaan ko saunp do.</li></ul>
+</div>
+<aside class="wordsbox" aria-label="Mukhya shabd"><h2>Mukhya shabd</h2><p class="sub">Saral matlab, usi kram mein jis kram mein aap inse milenge.</p><dl><div><dt id="w-structured-output">structured output</dt><dd>naam wale, type wale fields mein diya gaya jawaab jise ek program padh sake, na ki ek paragraph jise insaan padhe</dd></div><div><dt id="w-schema">schema</dt><dd>is baat ka ek aupchaarik vivaran ki jawaab ki theek-theek kya shape honi chahiye, jise provider tab laagu karwata hai jab model likh raha hota hai</dd></div><div><dt id="w-validation">validation</dt><dd>jawaab aane ke baad use niyamon ke khilaaf jaanchna, jaise kya ek zaroori field maujood hai ya kya ek quote kiya hua phrase sach mein message mein hai</dd></div></dl></aside>
+<aside class="inapp"><span class="lead">Yahi ideas, kaam ke saath, course app mein</span><span class="chips"><a href="/#/ch/ch8">Structured output: aisa JSON jis par bharosa kar sakein<span aria-hidden="true"> →</span></a><a href="/#/ch/ch85">Schema design: aise fields jo andaaza lagaane par majboor na karein<span aria-hidden="true"> →</span></a></span></aside>
+<nav class="pager" aria-label="Pichhla aur agla chapter"><a class="prev" href="/book/hi/18-the-whole-machine.html" rel="prev"><span class="dir">← Pichhla</span><span class="nm"><b>18</b>Poori Machine</span></a><a class="next" href="/book/hi/20-giving-the-machine-hands.html" rel="next"><span class="dir">Agla →</span><span class="nm"><b>20</b>Machine Ko Haath Dena</span></a></nav>
+</article>
+</main>
+</div>
+<script src="/book/reader.js" defer></script>
+</body>
+</html>

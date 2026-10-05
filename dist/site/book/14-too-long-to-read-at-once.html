@@ -4,132 +4,144 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Too Long to Read at Once · Chapter 14 · AI From Zero</title>
-<meta name="description" content="To understand how the chatbot answers questions from Sahaj's own documents, a product manager cuts a policy into pieces with scissors, three times, and learns that no way of cutting is right.">
+<meta name="description" content="To see how the chatbot answers questions from Sahaj's own documents, a product manager cuts a policy into pieces with scissors three times. The chapter explains why documents are split, what chunking is, and why no way of cutting is correct.">
 <meta name="color-scheme" content="light dark">
-<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="hi-Latn" href="/book/hi/14-too-long-to-read-at-once.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
+<link rel="stylesheet" href="/book/style.css">
 <script>try{var t=localStorage.getItem('aifz-book-theme');if(t)document.documentElement.setAttribute('data-theme',t);var s=localStorage.getItem('aifz-book-size');if(s)document.documentElement.style.setProperty('--fs',s+'rem')}catch(e){}</script>
 </head>
-<body class="is-chapter">
+<body class="is-chapter" data-lang="en" data-base="/book/" style="--hue:#6b5ca5">
 <a class="skip" href="#text">Skip to the text</a>
 <div class="progress" id="progress" aria-hidden="true"><i></i></div>
 <header class="bar">
-  <a class="brand" href="index.html"><span class="mark">AI From Zero</span><span class="ed">The reading edition</span></a>
+  <button class="b menu" id="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Contents"><span aria-hidden="true">☰</span><span class="lbl">Contents</span></button>
+  <a class="brand" href="/book/"><span class="mark">AI From Zero</span><span class="ed">The reading edition</span></a>
   <span class="sp"></span>
+  <a class="b lang" href="/book/hi/14-too-long-to-read-at-once.html" hreflang="hi-Latn" title="Read this in Hinglish" data-switch>Hinglish</a>
   <button class="b" id="size-down" type="button" aria-label="Smaller text" title="Smaller text">A−</button>
   <button class="b" id="size-up" type="button" aria-label="Larger text" title="Larger text">A+</button>
   <button class="b" id="theme" type="button" aria-label="Change colours" title="Change colours">◐</button>
-  <a class="b app" href="../" title="Open the course app">The course app →</a>
+  <a class="b app" href="/" title="Open the course app">Course app →</a>
 </header>
 <div class="layout">
-<nav class="toc" aria-label="Contents"><details id="toc"><summary>Contents</summary><ol>
-<li><a href="index.html"><span class="t">Contents</span></a></li>
-<li><a href="preface.html"><span class="t">Before You Begin</span></a></li>
-<li><a href="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">The Number in the Chat</span></a></li>
-<li><a href="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Four Questions Before Building</span></a></li>
-<li><a href="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Asking About Yesterday</span></a></li>
-<li><a href="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Who Else Is Standing Here</span></a></li>
-<li><a href="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Choosing What Not to Do</span></a></li>
-<li><a href="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">A Plan Others Can Believe</span></a></li>
-<li><a href="07-writing-it-down.html"><span class="n">7</span><span class="t">Writing It Down So Others Can Build It</span></a></li>
-<li><a href="08-what-the-machine-is.html"><span class="n">8</span><span class="t">What the Machine Is</span></a></li>
-<li><a href="09-the-first-conversation.html"><span class="n">9</span><span class="t">The First Conversation</span></a></li>
-<li><a href="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">A Mind With No Memory</span></a></li>
-<li><a href="11-giving-instructions.html"><span class="n">11</span><span class="t">Giving Instructions</span></a></li>
-<li><a href="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Knowing Whether It Works</span></a></li>
-<li><a href="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Sorting and Summarising</span></a></li>
-<li class="here"><a href="14-too-long-to-read-at-once.html" aria-current="page"><span class="n">14</span><span class="t">Too Long to Read at Once</span></a></li>
-<li><a href="15-finding-by-words.html"><span class="n">15</span><span class="t">Finding by Words</span></a></li>
-<li><a href="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Finding by Meaning</span></a></li>
-<li><a href="17-how-good-is-good.html"><span class="n">17</span><span class="t">How Good Is Good</span></a></li>
-<li><a href="18-the-whole-machine.html"><span class="n">18</span><span class="t">The Whole Machine</span></a></li>
-<li><a href="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Answers a Program Can Use</span></a></li>
-<li><a href="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Giving the Machine Hands</span></a></li>
-<li><a href="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Long Windows, Careful Rooms</span></a></li>
-<li><a href="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Machines That Think First</span></a></li>
-<li><a href="23-searching-better.html"><span class="n">23</span><span class="t">Searching Better</span></a></li>
-<li><a href="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">When the Page Gives Orders</span></a></li>
-<li><a href="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Grading a Thousand Answers</span></a></li>
-<li><a href="26-what-it-really-costs.html"><span class="n">26</span><span class="t">What It Really Costs</span></a></li>
-<li><a href="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Paper, Photos and Scans</span></a></li>
-<li><a href="28-what-you-may-send.html"><span class="n">28</span><span class="t">What You May Send</span></a></li>
-<li><a href="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Rules, Risk and Responsibility</span></a></li>
-<li><a href="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">The Spec for a Thing That Varies</span></a></li>
-<li><a href="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Build, Buy or Teach It</span></a></li>
-<li><a href="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Designing for the Wrong Answer</span></a></li>
-<li><a href="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">The Plumbing Under the Magic</span></a></li>
-<li><a href="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Choosing a Model on Your Own Cases</span></a></li>
-<li><a href="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Retrieval That Survives a Review</span></a></li>
-<li><a href="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents and the Standard Plug</span></a></li>
-<li><a href="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Pictures and Voices</span></a></li>
-<li><a href="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces and Rollbacks</span></a></li>
-<li><a href="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Assuming the Worst</span></a></li>
-<li><a href="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">A Product, Not a Demo</span></a></li>
-<li><a href="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Shipping the Whole Thing</span></a></li>
-<li><a href="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Who Pays, and How Much</span></a></li>
-<li><a href="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">How People Find It and Stay</span></a></li>
-<li><a href="44-counting-what-matters.html"><span class="n">44</span><span class="t">Counting What Matters</span></a></li>
-<li><a href="45-tools-and-harness.html"><span class="n">45</span><span class="t">The Tools and the Harness</span></a></li>
-<li><a href="46-real-people-real-use.html"><span class="n">46</span><span class="t">Real People, Real Use</span></a></li>
-<li><a href="47-the-job.html"><span class="n">47</span><span class="t">The Work, and the Job</span></a></li>
-<li><a href="afterword.html"><span class="t">After the Book</span></a></li>
-<li><a href="glossary.html"><span class="t">Words, in plain language</span></a></li>
-</ol></details></nav>
+<nav class="toc" id="toc" aria-label="Contents">
+<div class="tochead"><label class="find"><span class="sr">Find a chapter or a word</span><input id="q" type="search" placeholder="Find a chapter or a word" autocomplete="off"></label></div>
+<ol>
+<li class="top"><a href="/book/"><span class="n dot"></span><span class="t">Contents</span></a></li>
+<li data-t="before you begin"><a href="/book/preface.html" data-file="preface.html"><span class="n dot"></span><span class="t">Before You Begin</span></a></li>
+<li class="sec" style="--hue:#b4492a"><span>The problem worth solving</span></li>
+<li style="--hue:#b4492a" data-t="the number in the chat"><a href="/book/01-the-number-in-the-chat.html" data-file="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">The Number in the Chat</span></a></li>
+<li style="--hue:#b4492a" data-t="four questions before building"><a href="/book/02-four-questions-before-building.html" data-file="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Four Questions Before Building</span></a></li>
+<li style="--hue:#b4492a" data-t="asking about yesterday"><a href="/book/03-asking-about-yesterday.html" data-file="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Asking About Yesterday</span></a></li>
+<li style="--hue:#b4492a" data-t="who else is standing here"><a href="/book/04-who-else-is-standing-here.html" data-file="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Who Else Is Standing Here</span></a></li>
+<li style="--hue:#b4492a" data-t="choosing what not to do"><a href="/book/05-choosing-what-not-to-do.html" data-file="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Choosing What Not to Do</span></a></li>
+<li style="--hue:#b4492a" data-t="a plan others can believe"><a href="/book/06-a-plan-others-can-believe.html" data-file="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">A Plan Others Can Believe</span></a></li>
+<li style="--hue:#b4492a" data-t="writing it down so others can build it"><a href="/book/07-writing-it-down.html" data-file="07-writing-it-down.html"><span class="n">7</span><span class="t">Writing It Down So Others Can Build It</span></a></li>
+<li class="sec" style="--hue:#2f6f73"><span>Meeting the machine</span></li>
+<li style="--hue:#2f6f73" data-t="what the machine is"><a href="/book/08-what-the-machine-is.html" data-file="08-what-the-machine-is.html"><span class="n">8</span><span class="t">What the Machine Is</span></a></li>
+<li style="--hue:#2f6f73" data-t="the first conversation"><a href="/book/09-the-first-conversation.html" data-file="09-the-first-conversation.html"><span class="n">9</span><span class="t">The First Conversation</span></a></li>
+<li style="--hue:#2f6f73" data-t="a mind with no memory"><a href="/book/10-a-mind-with-no-memory.html" data-file="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">A Mind With No Memory</span></a></li>
+<li style="--hue:#2f6f73" data-t="giving instructions"><a href="/book/11-giving-instructions.html" data-file="11-giving-instructions.html"><span class="n">11</span><span class="t">Giving Instructions</span></a></li>
+<li style="--hue:#2f6f73" data-t="knowing whether it works"><a href="/book/12-knowing-whether-it-works.html" data-file="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Knowing Whether It Works</span></a></li>
+<li style="--hue:#2f6f73" data-t="sorting and summarising"><a href="/book/13-sorting-and-summarising.html" data-file="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Sorting and Summarising</span></a></li>
+<li class="sec" style="--hue:#6b5ca5"><span>Finding things, and the whole machine</span></li>
+<li style="--hue:#6b5ca5" class="here" data-t="too long to read at once"><a href="/book/14-too-long-to-read-at-once.html" aria-current="page" data-file="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Too Long to Read at Once</span></a></li>
+<li style="--hue:#6b5ca5" data-t="finding by words"><a href="/book/15-finding-by-words.html" data-file="15-finding-by-words.html"><span class="n">15</span><span class="t">Finding by Words</span></a></li>
+<li style="--hue:#6b5ca5" data-t="finding by meaning"><a href="/book/16-finding-by-meaning.html" data-file="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Finding by Meaning</span></a></li>
+<li style="--hue:#6b5ca5" data-t="how good is good"><a href="/book/17-how-good-is-good.html" data-file="17-how-good-is-good.html"><span class="n">17</span><span class="t">How Good Is Good</span></a></li>
+<li style="--hue:#6b5ca5" data-t="the whole machine"><a href="/book/18-the-whole-machine.html" data-file="18-the-whole-machine.html"><span class="n">18</span><span class="t">The Whole Machine</span></a></li>
+<li style="--hue:#6b5ca5" data-t="answers a program can use"><a href="/book/19-answers-a-program-can-use.html" data-file="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Answers a Program Can Use</span></a></li>
+<li class="sec" style="--hue:#9a7b1f"><span>Giving it work to do</span></li>
+<li style="--hue:#9a7b1f" data-t="giving the machine hands"><a href="/book/20-giving-the-machine-hands.html" data-file="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Giving the Machine Hands</span></a></li>
+<li style="--hue:#9a7b1f" data-t="long windows, careful rooms"><a href="/book/21-long-windows-careful-rooms.html" data-file="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Long Windows, Careful Rooms</span></a></li>
+<li style="--hue:#9a7b1f" data-t="machines that think first"><a href="/book/22-machines-that-think-first.html" data-file="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Machines That Think First</span></a></li>
+<li style="--hue:#9a7b1f" data-t="searching better"><a href="/book/23-searching-better.html" data-file="23-searching-better.html"><span class="n">23</span><span class="t">Searching Better</span></a></li>
+<li style="--hue:#9a7b1f" data-t="when the page gives orders"><a href="/book/24-when-the-page-gives-orders.html" data-file="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">When the Page Gives Orders</span></a></li>
+<li style="--hue:#9a7b1f" data-t="grading a thousand answers"><a href="/book/25-grading-a-thousand-answers.html" data-file="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Grading a Thousand Answers</span></a></li>
+<li style="--hue:#9a7b1f" data-t="what it really costs"><a href="/book/26-what-it-really-costs.html" data-file="26-what-it-really-costs.html"><span class="n">26</span><span class="t">What It Really Costs</span></a></li>
+<li class="sec" style="--hue:#3f7a4a"><span>The messy real world</span></li>
+<li style="--hue:#3f7a4a" data-t="paper, photos and scans"><a href="/book/27-paper-photos-and-scans.html" data-file="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Paper, Photos and Scans</span></a></li>
+<li style="--hue:#3f7a4a" data-t="what you may send"><a href="/book/28-what-you-may-send.html" data-file="28-what-you-may-send.html"><span class="n">28</span><span class="t">What You May Send</span></a></li>
+<li style="--hue:#3f7a4a" data-t="rules, risk and responsibility"><a href="/book/29-rules-risk-and-responsibility.html" data-file="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Rules, Risk and Responsibility</span></a></li>
+<li style="--hue:#3f7a4a" data-t="the spec for a thing that varies"><a href="/book/30-the-spec-for-a-thing-that-varies.html" data-file="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">The Spec for a Thing That Varies</span></a></li>
+<li style="--hue:#3f7a4a" data-t="build, buy or teach it"><a href="/book/31-build-buy-or-teach-it.html" data-file="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Build, Buy or Teach It</span></a></li>
+<li style="--hue:#3f7a4a" data-t="designing for the wrong answer"><a href="/book/32-designing-for-the-wrong-answer.html" data-file="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Designing for the Wrong Answer</span></a></li>
+<li class="sec" style="--hue:#a2455e"><span>Under the hood</span></li>
+<li style="--hue:#a2455e" data-t="the plumbing under the magic"><a href="/book/33-the-plumbing-under-the-magic.html" data-file="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">The Plumbing Under the Magic</span></a></li>
+<li style="--hue:#a2455e" data-t="choosing a model on your own cases"><a href="/book/34-choosing-a-model-on-your-own-cases.html" data-file="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Choosing a Model on Your Own Cases</span></a></li>
+<li style="--hue:#a2455e" data-t="retrieval that survives a review"><a href="/book/35-retrieval-that-survives-a-review.html" data-file="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Retrieval That Survives a Review</span></a></li>
+<li style="--hue:#a2455e" data-t="workflows, agents and the standard plug"><a href="/book/36-workflows-agents-and-the-standard-plug.html" data-file="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents and the Standard Plug</span></a></li>
+<li style="--hue:#a2455e" data-t="pages, pictures and voices"><a href="/book/37-pages-pictures-and-voices.html" data-file="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Pictures and Voices</span></a></li>
+<li style="--hue:#a2455e" data-t="gates, traces and rollbacks"><a href="/book/38-gates-traces-and-rollbacks.html" data-file="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces and Rollbacks</span></a></li>
+<li style="--hue:#a2455e" data-t="assuming the worst"><a href="/book/39-assuming-the-worst.html" data-file="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Assuming the Worst</span></a></li>
+<li class="sec" style="--hue:#2d5d8f"><span>A real product, and a job</span></li>
+<li style="--hue:#2d5d8f" data-t="a product, not a demo"><a href="/book/40-a-product-not-a-demo.html" data-file="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">A Product, Not a Demo</span></a></li>
+<li style="--hue:#2d5d8f" data-t="shipping the whole thing"><a href="/book/41-shipping-the-whole-thing.html" data-file="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Shipping the Whole Thing</span></a></li>
+<li style="--hue:#2d5d8f" data-t="who pays, and how much"><a href="/book/42-who-pays-and-how-much.html" data-file="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Who Pays, and How Much</span></a></li>
+<li style="--hue:#2d5d8f" data-t="how people find it and stay"><a href="/book/43-how-people-find-it-and-stay.html" data-file="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">How People Find It and Stay</span></a></li>
+<li style="--hue:#2d5d8f" data-t="counting what matters"><a href="/book/44-counting-what-matters.html" data-file="44-counting-what-matters.html"><span class="n">44</span><span class="t">Counting What Matters</span></a></li>
+<li style="--hue:#2d5d8f" data-t="the tools and the harness"><a href="/book/45-tools-and-harness.html" data-file="45-tools-and-harness.html"><span class="n">45</span><span class="t">The Tools and the Harness</span></a></li>
+<li style="--hue:#2d5d8f" data-t="real people, real use"><a href="/book/46-real-people-real-use.html" data-file="46-real-people-real-use.html"><span class="n">46</span><span class="t">Real People, Real Use</span></a></li>
+<li style="--hue:#2d5d8f" data-t="the work, and the job"><a href="/book/47-the-job.html" data-file="47-the-job.html"><span class="n">47</span><span class="t">The Work, and the Job</span></a></li>
+<li data-t="after the book"><a href="/book/afterword.html" data-file="afterword.html"><span class="n dot"></span><span class="t">After the Book</span></a></li>
+<li data-t="words, in plain language"><a href="/book/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Words, in plain language</span></a></li>
+</ol>
+<p class="nomatch" hidden>Nothing matches that.</p>
+</nav>
+<div class="scrim" id="scrim" hidden></div>
 <main id="text">
-<article class="chapter" data-file="14-too-long-to-read-at-once.html" data-title="Too Long to Read at Once">
-<header class="chead"><p class="eyebrow">Chapter 14</p><h1>Too Long to Read at Once</h1><p class="dek">To understand how the chatbot answers questions from Sahaj's own documents, a product manager cuts a policy into pieces with scissors, three times, and learns that no way of cutting is right.</p><p class="meta">7 minute read</p></header>
+<article class="chapter" data-file="14-too-long-to-read-at-once.html" data-title="Too Long to Read at Once" data-n="14">
+<header class="chead">
+<p class="eyebrow"><span class="num">14</span><span>Chapter 14 <i>·</i> Finding things, and the whole machine</span></p>
+<h1>Too Long to Read at Once</h1><p class="dek">To see how the chatbot answers questions from Sahaj's own documents, a product manager cuts a policy into pieces with scissors three times. The chapter explains why documents are split, what chunking is, and why no way of cutting is correct.</p>
+<p class="meta"><span>6 min read</span><span>3 new words</span></p>
+</header>
+<aside class="goals"><h2>In this chapter</h2><ul><li>explain why a model cannot be given a whole library with every question</li><li>define chunks and chunking, and describe how big, small and structure-based chunks each fail</li><li>recognise an orphaned chunk</li><li>apply the same care to text that the guard itself must cut</li></ul></aside>
 <div class="prose">
-<p>&quot;Before you build a guard for the chatbot,&quot; Imran said, &quot;you should know how the chatbot knows anything.&quot;</p>
-<p>It was a Friday, late in April, and the question had occurred to Anaya on the bus: how did the thing answer questions about Sahaj's own late-fee rules? It had not been taught them. She had seen in the first week that a model invents an answer when it lacks one. Yet the chatbot, most of the time, gave the right policy.</p>
-<p>&quot;It is shown the right pages,&quot; said Imran. &quot;That is the entire trick. It gets harder to see and much harder to do well.&quot;</p>
-<h2>Why not send everything</h2>
-<p>The obvious plan is to give the machine all of Sahaj's documents with every question, and let it find the answer. Anaya had already met the two reasons it cannot work.</p>
-<p>The first is the size limit. A request has to fit inside the context window, and the whole library of help pages, policies, terms and circulars ran to about four hundred pages. It would not fit.</p>
-<p>The second is cost, which she could now do in her head. Four hundred pages is about two hundred thousand tokens. At the made-up price Imran liked to use, two hundred and fifty rupees for a million, one question would cost fifty rupees to answer. A hundred thousand questions a month would cost fifty lakh. Even where a document fits, sending the lot to answer one small question is like hiring a lorry to carry a letter.</p>
-<p>So the standard approach is to cut the documents into pieces ahead of time, store them, and for each question send only the few pieces that look relevant. Those pieces are called <em><a class="term" href="glossary.html#t-chunk" title="one piece of a longer document, small enough to be stored and sent on its own">chunks</a></em>, and the cutting is <em><a class="term" href="glossary.html#t-chunking" title="splitting long documents into chunks, which means deciding where to cut">chunking</a></em>. The idea is easy to say. The difficulty is entirely in where to cut.</p>
-<h2>Scissors</h2>
-<p>On the floor of the glass room Imran put down a printout, twelve pages, stapled in one corner. It was Sahaj's <em>Late Payment and Refund Policy</em>. Beside it he put a pair of scissors with orange handles, borrowed from the stationery cupboard.</p>
-<p>&quot;You do this part by hand,&quot; he said. &quot;No software. I want you to feel it.&quot;</p>
-<p>Farah, passing, saw them kneeling there and sat down on the carpet too, cross-legged, in a way that suggested she had been waiting for an excuse.</p>
-<p><strong>The first round was three big pieces.</strong> Anaya cut the twelve pages into thirds, four pages each. Then Imran asked a question as if he were a customer. <em>I paid my electricity bill twice by mistake. Can I get the extra back?</em></p>
-<p>The answer was in the second piece, in a paragraph on page six. So the machine would be sent the second piece. That worked, but it meant sending four pages to use one paragraph: slow, costly, and diluted, because a lot of irrelevant text came with it. And when Imran asked a second question, about a refund when the payment went to a government utility, the rule was on page six and its exception was on page nine, which was in the third piece. The machine would be shown the rule and not the exception.</p>
-<p><strong>The second round was twenty small pieces.</strong> Anaya cut again, a half-page at a time, with a lot more snipping and a good deal more mess on the carpet. Now the first question pulled out only the paragraph it needed, which was cheap and sharp. But the second question still failed. The rule was in one scrap and the exception in the next, and nothing guaranteed the right scrap was chosen without the other.</p>
-<p>If only the rule reached the machine, it would answer confidently and incompletely, which is worse than no answer at all.</p>
-<p>Then Farah picked up a scrap and read it aloud. &quot;<em>The aforesaid amount shall be refunded within sixty days.</em>&quot;</p>
-<p>&quot;Which amount?&quot; said Anaya.</p>
-<p>&quot;I know,&quot; said Farah. &quot;That's what I am saying. Which amount? Refunded to whom? What aforesaid?&quot;</p>
-<p>They looked at the piece. It was perfectly good English and entirely meaningless, a sentence cut loose from the one before it, which had said what the amount was. Documents are full of these references, in legal text especially, but also in anything that says &quot;the above&quot;, &quot;this scheme&quot; or &quot;such cases&quot;. A person reading a page has the paragraph before. A chunk does not. A piece that makes no sense on its own is an <em><a class="term" href="glossary.html#t-orphaned-chunk" title="a chunk that makes no sense once cut out of its document, because it refers to something that was in the piece before">orphaned chunk</a></em>, and the machine, shown one, will do what it always does with a gap: fill it in.</p>
-<p><strong>The third round followed the structure of the document.</strong> This time Anaya cut at the headings, one piece for each section, and made a photocopy of the last two sentences of every section to staple to the top of the next, so that a reference had something to refer to. Most of the orphans got their parents back. The rule and its exception, on pages six and nine, still fell into different sections, but the headings had at least been set up so that &quot;Exceptions&quot; was a section of its own, and a question about exceptions would fetch it.</p>
-<p>&quot;There,&quot; said Imran. &quot;A reasonable cut.&quot;</p>
-<p>&quot;Is it right?&quot;</p>
-<p>&quot;It is reasonable. Ask me what it gets wrong.&quot;</p>
-<p>She thought. &quot;Questions that span a rule and an exception that sit in different sections.&quot;</p>
-<p>&quot;Yes. And you can name that. Which means you can test for it on purpose.&quot;</p>
-<h2>No right answer</h2>
-<p>This was the lesson, and it was the opposite of what she had hoped. She had expected to learn the correct size for a chunk. Instead she learned that there is none. Each way of cutting fails differently. Big pieces are expensive and blurred. Small pieces are cheap and sharp and lose their context. Cutting along the structure keeps the meaning inside each piece and loses answers that cross a boundary. The choice depends on what the documents look like and on what people actually ask.</p>
-<p>Imran's rule for a design review was one she copied onto the inside cover of her notebook. <em>Say which failure you chose, and why.</em> People often want one correct chunk size, and there is not one. A team that cannot name the loss in its own method has not made a choice. It has accepted a default.</p>
-<p>Farah wrote the sentence for the Sahaj policy and pinned it to the board. <em>We cut by section, with two sentences of overlap. That gains precise answers to questions about one clause. It loses answers that need a clause and its exception from different sections, so we test those on purpose.</em></p>
-<h2>The same problem, backwards</h2>
-<p>It was nearly seven when Anaya saw it, and she said it aloud, scattering scraps as she reached for a pen.</p>
-<p>&quot;The guard has the same problem.&quot;</p>
-<p>Imran looked at her.</p>
-<p>&quot;Some customers don't write a message. They paste an email. A whole thread, three thousand words. The piece of the guard that finds names and places can only read so much at a time. So it will have to cut the thread into pieces too.&quot;</p>
-<p>&quot;And if it cuts in the middle of a number…&quot;</p>
-<p>&quot;Then one piece ends with <em>4321 56</em> and the next begins <em>78 9012</em>, and neither is an Aadhaar number to anything that reads them.&quot; She drew it on the whiteboard, a number straddling a line like a car across a lane marking. &quot;It would walk straight past.&quot;</p>
-<p>It would, for the same reason as the rule and its exception: two halves of one thing, in two places, each meaningless alone. The fix was the same too, and she wrote it as a rule. Cut at the end of a sentence or a blank line, never in the middle of a run of digits. Let consecutive pieces share a few words at the edge, so that anything straddling the cut appears whole in at least one of them. And then test it, on purpose, with numbers placed exactly on the boundary.</p>
-<p>Imran made a small noise she had learned meant that she had said a true thing in an engineer's way. &quot;Put it in the answer key,&quot; he said. &quot;Row eleven. A number on the cut.&quot;</p>
-<h2>What to carry forward</h2>
-<p>A model cannot be given a whole library for each question, because it will not fit and because every token is paid for. The usual answer is to cut the documents into chunks ahead of time and send only the few that look relevant, which makes the cutting the hard part. Large chunks are costly and blurred, small ones are sharp and lose their context, and a chunk that refers to something in the piece before is an orphan. There is no correct size; each choice fails somewhere, and the useful thing to do is name the failure you accept and test it on purpose. The same care applies to any text the guard itself must cut: never split an identity number in half.</p>
+<p>On a Friday late in April Imran Qureshi told Anaya that before she built a guard for the chatbot she should know how the chatbot knows anything. The question had occurred to her on the bus. The chatbot had never been taught Sahaj's late-fee rules, and she had seen in the first week that a model invents an answer when it lacks one. Yet most of the time the chatbot gave the right policy. &quot;It is shown the right pages,&quot; said Imran. &quot;That is the entire trick. It is harder to see than it sounds, and much harder to do well.&quot;</p>
+<p>This chapter describes how the right pages are chosen, beginning with the part that comes first: cutting long documents into pieces. Anaya learned it with a pair of scissors and a twelve-page printout.</p>
+<h2 id="s-14-1"><span class="sn">14.1</span>The case: a policy on the carpet</h2>
+<p>Sahaj's <em>Late Payment and Refund Policy</em> ran to twelve pages. Imran placed a stapled printout on the floor of the glass room and put beside it a pair of scissors with orange handles. He asked Anaya to do the cutting by hand, with no software, so that she would feel what it involved. Farah Sheikh, passing, sat down on the carpet as if she had been waiting for an excuse. The three rounds that followed are the substance of the chapter.</p>
+<h2 id="s-14-2"><span class="sn">14.2</span>Why not send everything</h2>
+<p>The obvious plan is to give the model all of Sahaj's documents with every question and let it find the answer. Two limits make that impossible.</p>
+<p>The first is the context window. The whole library of help pages, policies, terms and circulars ran to about four hundred pages, and it would not fit. The second is cost. Four hundred pages is about two hundred thousand tokens. At Imran's made-up price of ₹250 per million tokens, one question would cost ₹50 to answer, and a hundred thousand questions a month would cost ₹50 lakh. Sending the whole library to answer one small question is like hiring a lorry to carry a letter.</p>
+<p>The standard approach is to cut the documents into pieces in advance, store them, and send for each question only the few pieces that look relevant. The pieces are <em><a class="term" href="/book/glossary.html#t-chunk" title="one piece of a longer document, small enough to be stored and sent on its own">chunks</a></em>, and the cutting is <em><a class="term" href="/book/glossary.html#t-chunking" title="splitting long documents into chunks, which means deciding where to cut">chunking</a></em>. The idea is easy to state and the difficulty lies entirely in deciding where to cut.</p>
+<h2 id="s-14-3"><span class="sn">14.3</span>Three ways to cut one policy</h2>
+<p>Imran put his questions as if he were a customer, and Anaya cut the policy three ways.</p>
+<figure class="tblfig"><figcaption><b>Table 14.1.</b> Three ways of cutting the same policy</figcaption><div class="tblwrap"><table><thead><tr><th>Round</th><th>How it was cut</th><th>What worked</th><th>What failed</th></tr></thead><tbody><tr><td>1</td><td>Three big pieces of four pages each</td><td>A question about paying a bill twice was answered by one paragraph on page six</td><td>Four pages were sent to use one paragraph, which is slow, costly and diluted. A question about a payment to a government utility needed the rule on page six and its exception on page nine, which fell in a different piece</td></tr><tr><td>2</td><td>Twenty small pieces of half a page</td><td>The first question pulled out only the paragraph it needed, cheaply and sharply</td><td>The rule and its exception were in separate scraps, and nothing ensured both were chosen. If only the rule reached the model, it would answer confidently and incompletely</td></tr><tr><td>3</td><td>One piece per section, with the last two sentences of each section copied onto the start of the next</td><td>Most pieces kept their context. &quot;Exceptions&quot; became a section of its own and could be fetched by a question about exceptions</td><td>A question needing a rule and an exception from different sections could still fail</td></tr></tbody></table></div></figure>
+<p>In the second round Farah picked up a scrap and read it aloud: &quot;The aforesaid amount shall be refunded within sixty days.&quot; Anaya asked which amount. Farah said that was her point: which amount, refunded to whom, and what was aforesaid? The sentence was good English and meaningless, because it had been cut loose from the sentence before it, which said what the amount was.</p>
+<aside class="box box-def"><p class="boxlabel">Definition</p><h4>Orphaned chunk</h4>
+<p>A chunk that makes no sense once cut out of its document, because it refers to something in the piece before it. Documents are full of such references, especially legal ones: &quot;the above&quot;, &quot;this scheme&quot;, &quot;such cases&quot;.</p>
+</aside>
+<p>A person reading a page has the paragraph before it. A chunk does not. When the model is shown an orphan, it does what it always does with a gap and fills it in. That is the reason for the overlap used in the third round, where the end of each section was repeated at the start of the next.</p>
+<h2 id="s-14-4"><span class="sn">14.4</span>There is no right size</h2>
+<p>Anaya had hoped to learn the correct size for a chunk, and learned instead that there is none. Each method fails in its own way. Large pieces are expensive and blurred. Small pieces are cheap and sharp and lose their context. Cutting along the structure keeps the meaning inside each piece and loses answers that cross a boundary. The right choice depends on what the documents look like and what people actually ask.</p>
+<aside class="box box-key"><p class="boxlabel">Key idea</p><h4>Name the failure you chose</h4>
+<p>Imran's rule for a design review was to say which failure was chosen, and why. A team that cannot name the loss in its own method has not made a choice. It has accepted a default. Farah wrote the sentence for the Sahaj policy and pinned it to the board: cut by section, with two sentences of overlap, which gains precise answers to questions about one clause and loses answers that need a clause and its exception from different sections, so those are tested on purpose.</p>
+</aside>
+<h2 id="s-14-5"><span class="sn">14.5</span>The same problem, in the guard</h2>
+<p>At nearly seven in the evening Anaya saw that the guard had the same problem. Some customers do not write a message. They paste an email, a whole thread of three thousand words. The part of the guard that finds names and places can only read a limited amount at a time, so it would have to cut the thread into pieces too.</p>
+<p>If it cut in the middle of a number, one piece would end with &quot;4321 56&quot; and the next would begin &quot;78 9012&quot;, and neither would look like an Aadhaar number to anything reading it. She drew the number on the whiteboard straddling a line like a car across a lane marking. The guard would walk straight past it.</p>
+<p>The failure is the same as that of the rule and its exception: two halves of one thing, in two places, each meaningless alone. The remedy is also the same, and Anaya wrote it as a rule.</p>
+<figure class="tblfig"><figcaption><b>Table 14.2.</b> Rules for cutting text the guard must read</figcaption><div class="tblwrap"><table><thead><tr><th>Rule</th><th>Reason</th></tr></thead><tbody><tr><td>Cut at the end of a sentence or at a blank line</td><td>Keeps meaning inside each piece</td></tr><tr><td>Never cut in the middle of a run of digits</td><td>A split identity number is invisible to both halves</td></tr><tr><td>Let consecutive pieces share a few words at the edge</td><td>Anything straddling a cut appears whole in at least one piece</td></tr><tr><td>Test with numbers placed exactly on the boundary</td><td>Failures are found on purpose, not by accident</td></tr></tbody></table></div></figure>
+<p>Imran asked her to put it in the answer key as row eleven: a number on the cut.</p>
+<aside class="carry"><h2>Chapter summary</h2>
+<p>A model cannot be given a whole library for each question, because it will not fit and because every token is paid for. The usual answer is to cut the documents into chunks in advance and send only the few that look relevant, which makes the cutting the hard part.</p>
+<ul><li>Large chunks are costly and blurred. Small chunks are sharp and lose context. A chunk that refers to something in the piece before it is an orphan, and the model will fill the gap with a guess.</li><li>There is no correct chunk size. Each choice fails somewhere, and the useful practice is to name the failure that is accepted and test it on purpose.</li><li>The same care applies to text that the guard itself must cut: never split an identity number in half, and let neighbouring pieces overlap.</li></ul>
+</aside>
 </div>
-<aside class="wordsbox" aria-label="Words from this chapter"><h2>Words from this chapter</h2><dl><div><dt id="w-chunk">chunk</dt><dd>one piece of a longer document, small enough to be stored and sent on its own</dd></div><div><dt id="w-chunking">chunking</dt><dd>splitting long documents into chunks, which means deciding where to cut</dd></div><div><dt id="w-orphaned-chunk">orphaned chunk</dt><dd>a chunk that makes no sense once cut out of its document, because it refers to something that was in the piece before</dd></div></dl></aside>
-<p class="inapp">In the course app: <a href="../#/ch/ch3">Chunking: splitting documents into pieces</a></p>
-<nav class="pager" aria-label="Previous and next"><a class="prev" href="13-sorting-and-summarising.html"><span class="dir">← Before</span><span class="nm">Chapter 13 · Sorting and Summarising</span></a><a class="next" href="15-finding-by-words.html"><span class="dir">Next →</span><span class="nm">Chapter 15 · Finding by Words</span></a></nav>
+<aside class="wordsbox" aria-label="Key terms"><h2>Key terms</h2><p class="sub">Plain meanings, in the order you meet them.</p><dl><div><dt id="w-chunk">chunk</dt><dd>one piece of a longer document, small enough to be stored and sent on its own</dd></div><div><dt id="w-chunking">chunking</dt><dd>splitting long documents into chunks, which means deciding where to cut</dd></div><div><dt id="w-orphaned-chunk">orphaned chunk</dt><dd>a chunk that makes no sense once cut out of its document, because it refers to something that was in the piece before</dd></div></dl></aside>
+<aside class="inapp"><span class="lead">The same ideas, with the work to do, in the course app</span><span class="chips"><a href="/#/ch/ch3">Chunking: splitting documents into pieces<span aria-hidden="true"> →</span></a></span></aside>
+<nav class="pager" aria-label="Previous and next chapter"><a class="prev" href="/book/13-sorting-and-summarising.html" rel="prev"><span class="dir">← Before</span><span class="nm"><b>13</b>Sorting and Summarising</span></a><a class="next" href="/book/15-finding-by-words.html" rel="next"><span class="dir">Next →</span><span class="nm"><b>15</b>Finding by Words</span></a></nav>
 </article>
 </main>
 </div>
-<script src="reader.js"></script>
+<script src="/book/reader.js" defer></script>
 </body>
 </html>

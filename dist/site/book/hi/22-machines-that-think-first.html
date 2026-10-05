@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="hi-Latn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pehle Sochne Wali Machines · Chapter 22 · AI From Zero</title>
+<meta name="description" content="Jo model jawaab dene se pehle sochta hai woh mushkil cases sahi karta hai aur ek case par gyarah second leta hai. Chapter reasoning models, sochne ka kharcha, latency, streaming, aur aise design ko samjhata hai jisme mehnga faisla kabhi customer ko intezaar nahi karwata.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="en" href="/book/22-machines-that-think-first.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
+<link rel="stylesheet" href="/book/style.css">
+<script>try{var t=localStorage.getItem('aifz-book-theme');if(t)document.documentElement.setAttribute('data-theme',t);var s=localStorage.getItem('aifz-book-size');if(s)document.documentElement.style.setProperty('--fs',s+'rem')}catch(e){}</script>
+</head>
+<body class="is-chapter" data-lang="hi" data-base="/book/hi/" style="--hue:#9a7b1f">
+<a class="skip" href="#text">Seedhe text par jaaiye</a>
+<div class="progress" id="progress" aria-hidden="true"><i></i></div>
+<header class="bar">
+  <button class="b menu" id="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Vishay-soochi"><span aria-hidden="true">☰</span><span class="lbl">Vishay-soochi</span></button>
+  <a class="brand" href="/book/hi/"><span class="mark">AI From Zero</span><span class="ed">Padhne wala edition (Hinglish)</span></a>
+  <span class="sp"></span>
+  <a class="b lang" href="/book/22-machines-that-think-first.html" hreflang="en" title="Read this in English" data-switch>English</a>
+  <button class="b" id="size-down" type="button" aria-label="Chhota text" title="Chhota text">A−</button>
+  <button class="b" id="size-up" type="button" aria-label="Bada text" title="Bada text">A+</button>
+  <button class="b" id="theme" type="button" aria-label="Rang badliye" title="Rang badliye">◐</button>
+  <a class="b app" href="/" title="Course app kholiye">Course app →</a>
+</header>
+<div class="layout">
+<nav class="toc" id="toc" aria-label="Vishay-soochi">
+<div class="tochead"><label class="find"><span class="sr">Chapter ya shabd dhoondhiye</span><input id="q" type="search" placeholder="Chapter ya shabd dhoondhiye" autocomplete="off"></label></div>
+<ol>
+<li class="top"><a href="/book/hi/"><span class="n dot"></span><span class="t">Vishay-soochi</span></a></li>
+<li data-t="shuru karne se pehle"><a href="/book/hi/preface.html" data-file="preface.html"><span class="n dot"></span><span class="t">Shuru karne se pehle</span></a></li>
+<li class="sec" style="--hue:#b4492a"><span>Woh problem jo hal karne layak hai</span></li>
+<li style="--hue:#b4492a" data-t="chat mein woh number"><a href="/book/hi/01-the-number-in-the-chat.html" data-file="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">Chat Mein Woh Number</span></a></li>
+<li style="--hue:#b4492a" data-t="banane se pehle chaar sawaal"><a href="/book/hi/02-four-questions-before-building.html" data-file="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Banane Se Pehle Chaar Sawaal</span></a></li>
+<li style="--hue:#b4492a" data-t="kal ke baare mein poochhna"><a href="/book/hi/03-asking-about-yesterday.html" data-file="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Kal Ke Baare Mein Poochhna</span></a></li>
+<li style="--hue:#b4492a" data-t="yahan aur kaun khada hai"><a href="/book/hi/04-who-else-is-standing-here.html" data-file="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Yahan Aur Kaun Khada Hai</span></a></li>
+<li style="--hue:#b4492a" data-t="kya nahi karna hai, yeh chunna"><a href="/book/hi/05-choosing-what-not-to-do.html" data-file="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Kya Nahi Karna Hai, Yeh Chunna</span></a></li>
+<li style="--hue:#b4492a" data-t="aisa plan jis par doosre bharosa karein"><a href="/book/hi/06-a-plan-others-can-believe.html" data-file="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">Aisa Plan Jis Par Doosre Bharosa Karein</span></a></li>
+<li style="--hue:#b4492a" data-t="likh kar rakhna taaki doosre bana sakein"><a href="/book/hi/07-writing-it-down.html" data-file="07-writing-it-down.html"><span class="n">7</span><span class="t">Likh Kar Rakhna Taaki Doosre Bana Sakein</span></a></li>
+<li class="sec" style="--hue:#2f6f73"><span>Machine se mulaqaat</span></li>
+<li style="--hue:#2f6f73" data-t="machine asal mein kya hai"><a href="/book/hi/08-what-the-machine-is.html" data-file="08-what-the-machine-is.html"><span class="n">8</span><span class="t">Machine Asal Mein Kya Hai</span></a></li>
+<li style="--hue:#2f6f73" data-t="pehli baatcheet"><a href="/book/hi/09-the-first-conversation.html" data-file="09-the-first-conversation.html"><span class="n">9</span><span class="t">Pehli Baatcheet</span></a></li>
+<li style="--hue:#2f6f73" data-t="ek dimaag jise kuch yaad nahi rehta"><a href="/book/hi/10-a-mind-with-no-memory.html" data-file="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">Ek Dimaag Jise Kuch Yaad Nahi Rehta</span></a></li>
+<li style="--hue:#2f6f73" data-t="nirdesh dena"><a href="/book/hi/11-giving-instructions.html" data-file="11-giving-instructions.html"><span class="n">11</span><span class="t">Nirdesh Dena</span></a></li>
+<li style="--hue:#2f6f73" data-t="kaise pata chale ki yeh kaam karta hai"><a href="/book/hi/12-knowing-whether-it-works.html" data-file="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Kaise Pata Chale Ki Yeh Kaam Karta Hai</span></a></li>
+<li style="--hue:#2f6f73" data-t="chhaantna aur saar likhna"><a href="/book/hi/13-sorting-and-summarising.html" data-file="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Chhaantna Aur Saar Likhna</span></a></li>
+<li class="sec" style="--hue:#6b5ca5"><span>Cheezein dhoondhna, aur poori machine</span></li>
+<li style="--hue:#6b5ca5" data-t="ek baar mein padhne ke liye bahut lamba"><a href="/book/hi/14-too-long-to-read-at-once.html" data-file="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Ek Baar Mein Padhne Ke Liye Bahut Lamba</span></a></li>
+<li style="--hue:#6b5ca5" data-t="shabdon se dhoondhna"><a href="/book/hi/15-finding-by-words.html" data-file="15-finding-by-words.html"><span class="n">15</span><span class="t">Shabdon Se Dhoondhna</span></a></li>
+<li style="--hue:#6b5ca5" data-t="matlab se dhoondhna"><a href="/book/hi/16-finding-by-meaning.html" data-file="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Matlab Se Dhoondhna</span></a></li>
+<li style="--hue:#6b5ca5" data-t="kitna achha, achha hota hai"><a href="/book/hi/17-how-good-is-good.html" data-file="17-how-good-is-good.html"><span class="n">17</span><span class="t">Kitna Achha, Achha Hota Hai</span></a></li>
+<li style="--hue:#6b5ca5" data-t="poori machine"><a href="/book/hi/18-the-whole-machine.html" data-file="18-the-whole-machine.html"><span class="n">18</span><span class="t">Poori Machine</span></a></li>
+<li style="--hue:#6b5ca5" data-t="aise jawaab jo program istemaal kar sake"><a href="/book/hi/19-answers-a-program-can-use.html" data-file="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Aise Jawaab Jo Program Istemaal Kar Sake</span></a></li>
+<li class="sec" style="--hue:#9a7b1f"><span>Machine ko kaam dena</span></li>
+<li style="--hue:#9a7b1f" data-t="machine ko haath dena"><a href="/book/hi/20-giving-the-machine-hands.html" data-file="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Machine Ko Haath Dena</span></a></li>
+<li style="--hue:#9a7b1f" data-t="lambi windows, saavdhaan kamre"><a href="/book/hi/21-long-windows-careful-rooms.html" data-file="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Lambi Windows, Saavdhaan Kamre</span></a></li>
+<li style="--hue:#9a7b1f" class="here" data-t="pehle sochne wali machines"><a href="/book/hi/22-machines-that-think-first.html" aria-current="page" data-file="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Pehle Sochne Wali Machines</span></a></li>
+<li style="--hue:#9a7b1f" data-t="behtar search"><a href="/book/hi/23-searching-better.html" data-file="23-searching-better.html"><span class="n">23</span><span class="t">Behtar Search</span></a></li>
+<li style="--hue:#9a7b1f" data-t="jab page hukm dene lagta hai"><a href="/book/hi/24-when-the-page-gives-orders.html" data-file="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">Jab Page Hukm Dene Lagta Hai</span></a></li>
+<li style="--hue:#9a7b1f" data-t="hazaar jawaabon ki grading"><a href="/book/hi/25-grading-a-thousand-answers.html" data-file="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Hazaar Jawaabon Ki Grading</span></a></li>
+<li style="--hue:#9a7b1f" data-t="asal mein kitna kharcha hota hai"><a href="/book/hi/26-what-it-really-costs.html" data-file="26-what-it-really-costs.html"><span class="n">26</span><span class="t">Asal Mein Kitna Kharcha Hota Hai</span></a></li>
+<li class="sec" style="--hue:#3f7a4a"><span>Asli duniya ki uljhanein</span></li>
+<li style="--hue:#3f7a4a" data-t="kaagaz, photos aur scans"><a href="/book/hi/27-paper-photos-and-scans.html" data-file="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Kaagaz, Photos Aur Scans</span></a></li>
+<li style="--hue:#3f7a4a" data-t="aap kya bhej sakte hain"><a href="/book/hi/28-what-you-may-send.html" data-file="28-what-you-may-send.html"><span class="n">28</span><span class="t">Aap Kya Bhej Sakte Hain</span></a></li>
+<li style="--hue:#3f7a4a" data-t="niyam, risk aur zimmedaari"><a href="/book/hi/29-rules-risk-and-responsibility.html" data-file="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Niyam, Risk Aur Zimmedaari</span></a></li>
+<li style="--hue:#3f7a4a" data-t="badalti rehne wali cheez ki spec"><a href="/book/hi/30-the-spec-for-a-thing-that-varies.html" data-file="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">Badalti Rehne Wali Cheez Ki Spec</span></a></li>
+<li style="--hue:#3f7a4a" data-t="banao, kharido ya sikhao"><a href="/book/hi/31-build-buy-or-teach-it.html" data-file="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Banao, Kharido Ya Sikhao</span></a></li>
+<li style="--hue:#3f7a4a" data-t="galat jawaab ke liye design"><a href="/book/hi/32-designing-for-the-wrong-answer.html" data-file="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Galat Jawaab Ke Liye Design</span></a></li>
+<li class="sec" style="--hue:#a2455e"><span>Bonnet ke neeche</span></li>
+<li style="--hue:#a2455e" data-t="jaadu ke neeche ki plumbing"><a href="/book/hi/33-the-plumbing-under-the-magic.html" data-file="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">Jaadu Ke Neeche Ki Plumbing</span></a></li>
+<li style="--hue:#a2455e" data-t="apne cases par model chunna"><a href="/book/hi/34-choosing-a-model-on-your-own-cases.html" data-file="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Apne Cases Par Model Chunna</span></a></li>
+<li style="--hue:#a2455e" data-t="review mein tikne wala retrieval"><a href="/book/hi/35-retrieval-that-survives-a-review.html" data-file="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Review Mein Tikne Wala Retrieval</span></a></li>
+<li style="--hue:#a2455e" data-t="workflows, agents aur standard plug"><a href="/book/hi/36-workflows-agents-and-the-standard-plug.html" data-file="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents Aur Standard Plug</span></a></li>
+<li style="--hue:#a2455e" data-t="pages, tasveerein aur awaazein"><a href="/book/hi/37-pages-pictures-and-voices.html" data-file="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Tasveerein Aur Awaazein</span></a></li>
+<li style="--hue:#a2455e" data-t="gates, traces aur rollbacks"><a href="/book/hi/38-gates-traces-and-rollbacks.html" data-file="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces Aur Rollbacks</span></a></li>
+<li style="--hue:#a2455e" data-t="sabse bure ko maan kar chalna"><a href="/book/hi/39-assuming-the-worst.html" data-file="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Sabse Bure Ko Maan Kar Chalna</span></a></li>
+<li class="sec" style="--hue:#2d5d8f"><span>Ek asli product, aur ek naukri</span></li>
+<li style="--hue:#2d5d8f" data-t="product, demo nahi"><a href="/book/hi/40-a-product-not-a-demo.html" data-file="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">Product, Demo Nahi</span></a></li>
+<li style="--hue:#2d5d8f" data-t="poori cheez ko ship karna"><a href="/book/hi/41-shipping-the-whole-thing.html" data-file="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Poori Cheez Ko Ship Karna</span></a></li>
+<li style="--hue:#2d5d8f" data-t="paisa kaun deta hai, aur kitna"><a href="/book/hi/42-who-pays-and-how-much.html" data-file="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Paisa Kaun Deta Hai, Aur Kitna</span></a></li>
+<li style="--hue:#2d5d8f" data-t="log ise kaise dhoondhte hain aur kyun rukte hain"><a href="/book/hi/43-how-people-find-it-and-stay.html" data-file="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">Log Ise Kaise Dhoondhte Hain Aur Kyun Rukte Hain</span></a></li>
+<li style="--hue:#2d5d8f" data-t="jo maayne rakhta hai use ginna"><a href="/book/hi/44-counting-what-matters.html" data-file="44-counting-what-matters.html"><span class="n">44</span><span class="t">Jo Maayne Rakhta Hai Use Ginna</span></a></li>
+<li style="--hue:#2d5d8f" data-t="tools aur harness"><a href="/book/hi/45-tools-and-harness.html" data-file="45-tools-and-harness.html"><span class="n">45</span><span class="t">Tools Aur Harness</span></a></li>
+<li style="--hue:#2d5d8f" data-t="asli log, asli istemaal"><a href="/book/hi/46-real-people-real-use.html" data-file="46-real-people-real-use.html"><span class="n">46</span><span class="t">Asli Log, Asli Istemaal</span></a></li>
+<li style="--hue:#2d5d8f" data-t="kaam, aur naukri"><a href="/book/hi/47-the-job.html" data-file="47-the-job.html"><span class="n">47</span><span class="t">Kaam, Aur Naukri</span></a></li>
+<li data-t="kitaab ke baad"><a href="/book/hi/afterword.html" data-file="afterword.html"><span class="n dot"></span><span class="t">Kitaab Ke Baad</span></a></li>
+<li data-t="shabd, saral bhasha mein"><a href="/book/hi/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Shabd, saral bhasha mein</span></a></li>
+</ol>
+<p class="nomatch" hidden>Kuch nahi mila.</p>
+</nav>
+<div class="scrim" id="scrim" hidden></div>
+<main id="text">
+<article class="chapter" data-file="22-machines-that-think-first.html" data-title="Pehle Sochne Wali Machines" data-n="22">
+<header class="chead">
+<p class="eyebrow"><span class="num">22</span><span>Chapter 22 <i>·</i> Machine ko kaam dena</span></p>
+<h1>Pehle Sochne Wali Machines</h1><p class="dek">Jo model jawaab dene se pehle sochta hai woh mushkil cases sahi karta hai aur ek case par gyarah second leta hai. Chapter reasoning models, sochne ka kharcha, latency, streaming, aur aise design ko samjhata hai jisme mehnga faisla kabhi customer ko intezaar nahi karwata.</p>
+<p class="meta"><span>7 min padhai</span><span>3 naye shabd</span></p>
+</header>
+<aside class="goals"><h2>Is chapter mein</h2><ul><li>samjhana ki reasoning model kya karta hai aur kin kaamon mein madad karta hai</li><li>reasoning ki adhik accuracy ko paise aur intezaar ke kharche se tolna</li><li>latency batana aur intezaar ko seh paana aasaan banane ke teen tareeke</li><li>samjhana ki faisla stream kyun nahi kiya ja sakta, aur aisa design banana jisme saavdhaan faisla critical raaste se door ho</li></ul></aside>
+<div class="prose">
+<p>May ke ant mein Anaya bankers ke saath meeting se train se lauti. Train chhe bajkar das minute par Lonavala ke paas ruki aur chaalis minute khadi rahi. Kisi ne kuch nahi samjhaya. Saat bajne mein bees minute baaki the jab ek aawaaz ne ghoshna ki ki aage ek signal kharab ho gaya hai aur train das se pandrah minute mein chalegi. Khabar achhi nahi thi, kyunki chaalis minute pehle hi jaa chuke the aur aur aane the, par dabba saaf taur par halka ho gaya. Intezaar chhota nahi hua tha. Usne ek aakaar le liya tha.</p>
+<p>Woh ab bhi ispar soch rahi thi jab Imran Qureshi ne answer key ke sabse mushkil vaakyon par ek prayog ki report dene ke liye phone kiya. Yeh chapter batata hai ki usne kya paaya, aur train ka iske saath kya lena-dena tha.</p>
+<h2 id="s-22-1"><span class="sn">22.1</span>Case: gyarah second</h2>
+<p>Ek mahine se Imran un vaakyon ka adhyayan kar raha tha jinhe sasta model baar-baar galat kar raha tha: shabdon mein bola gaya Aadhaar number, baarah ank jo order number ho sakte the, aur woh vaakya jo bina number ke ek insaan ko pehchaanta hai. Us din usne unhe ek alag tarah ke model par aazmaya tha, jo jawaab dene se pehle apna kaam likhta hai. Woh ek tareeka aazmata hai, use jaanchta hai, zaroorat ho toh peechhe hat jaata hai, aur tabhi apna jawaab deta hai. Kaam aam taur par user ko nahi dikhta, aur uske liye paisa lagta hai.</p>
+<p>Jo model yeh karta hai woh <em><a class="term" href="/book/hi/glossary.html#t-reasoning-model" title="aisa model jo jawaab dene se pehle apna kaam likh kar nikalta hai, ek tareeka aazmata hai aur jaanchta hai; us kaam ka paisa aap har request par dete hain, paise mein bhi aur intezaar ke samay mein bhi">reasoning model</a></em> hai. Uska mahatva yeh hai ki accuracy us pal tay nahi hoti jab model banaya gaya tha. Use har sawaal ke liye kharida ja sakta hai, machine ko zyada der kaam karne dekar.</p>
+<h2 id="s-22-2"><span class="sn">22.2</span>Sochne ka kharcha</h2>
+<p>Imran ne nateeje phone par padhe.</p>
+<figure class="tblfig"><figcaption><b>Table 22.1.</b> Wahi tees mushkil cases aur tees aasaan cases, reasoning ke saath aur uske bina</figcaption><div class="tblwrap"><table><thead><tr><th></th><th>Saadhaaran model</th><th>Reasoning model</th></tr></thead><tbody><tr><td>Mushkil cases sahi (30 mein se)</td><td>19</td><td>26</td></tr><tr><td>Aasaan cases sahi (30 mein se)</td><td>30</td><td>30</td></tr><tr><td>Har case ka samay</td><td>lagbhag 1.25 second</td><td>lagbhag 11 second</td></tr><tr><td>Har case ka sapeksh kharcha</td><td>1</td><td>lagbhag 6, kyunki chhupa hua kaam kisi bhi aur output ki tarah charge hota hai</td></tr></tbody></table></div></figure>
+<p>Mushkil cases par reasoning ek bada sudhaar thi. Aasaan cases par usne kuch nahi kharida aur chhe guna zyada kharch kiya.</p>
+<p>Us shaam Anaya ne train ki ticket ke peechhe likha ki usne kya samjha. Reasoning har request par kiya gaya ek kharid hai, aur paise aur samay mein chukaya jaata hai, aur kai kaamon ke liye woh kuch nahi kharidta. Woh tab madad karta hai jab jawaab ko nikaalna padta hai: ek doosre par nirbhar kadam, hisaab, plan, code, ek asli dubidha jise suljhaana hai. Woh tab bekaar hai jab jawaab pehle se input mein hai aur use sirf dhoondhna ya naya roop dena hai, jaise kuch dekhna, ek field nikaalna, ek category mein rakhna, format karna, ya diye gaye passage ka saar likhna. Shabdon mein bole gaye baarah ank ko nikaalne ki zaroorat thi. Mobile number aur email wala saadhaaran message nahi.</p>
+<p>Imran ne ek message mein teen chetavaniyan joda.</p>
+<figure class="tblfig"><figcaption><b>Table 22.2.</b> Reasoning models ke baare mein teen chetavaniyan</figcaption><div class="tblwrap"><table><thead><tr><th>Chetavni</th><th>Vyakhya</th></tr></thead><tbody><tr><td>Reasoning saboot nahi banati</td><td>Galat document diya jaaye toh model saavdhaani se aur der tak galat document se tark karta hai, aur sasta model se zyada vishwaasneeya dikhne wala galat jawaab banata hai</td></tr><tr><td>Intezaar product ki samasya hai</td><td>Dheema jawaab user mehsoos karta hai, chahe uska kaaran kuch bhi ho</td></tr><tr><td>Yeh sab ya kuch nahi nahi hai</td><td>Zyadatar providers developer ko chunne dete hain ki kitni reasoning istemaal karni hai, isliye faisla har tarah ki request ke liye kiya ja sakta hai, product ke liye ek baar nahi</td></tr></tbody></table></div></figure>
+<h2 id="s-22-3"><span class="sn">22.3</span>Woh faisla jo intezaar nahi kar sakta</h2>
+<p>Jab tak train Pune pahunchi, samasya ne aakaar le liya tha, aur Saturday subah Anaya ne use Imran ke saamne rakha. Guard darwaaze par baitha hai. Customer ek message type karta hai, guard use jaanchta hai, aur tabhi message aage jaata hai. Agar guard gyarah second leta, toh customer har reply ke liye gyarah second intezaar karta, jabki zaroorat yeh thi ki guard ek second ke teesre hisse se zyada na jode.</p>
+<p>Poochhne aur jawaab milne ke beech ka samay <em><a class="term" href="/book/hi/glossary.html#t-latency" title="poochhne aur jawaab paane ke beech ka samay, jise users raftaar ki tarah mehsoos karte hain">latency</a></em> hai. User ise kisi bhi aur cheez se zyada tez mehsoos karte hain. Anaya ne ek doosri mushkil bhi dekhi: guard ka output customer ko tukde-tukde mein nahi dikhaya ja sakta tha.</p>
+<h2 id="s-22-4"><span class="sn">22.4</span>Intezaar ko aasaan banane ke tareeke</h2>
+<p>Jawaab kitna tez lagta hai yeh zyadatar is par nirbhar hai ki kuch pehli baar kab dikhta hai. Imran ne intezaar ko aasaan banane ke teen tareeke batayein, jinme se pehla woh tha jo train ne bina irade ke istemaal kiya.</p>
+<figure class="tblfig"><figcaption><b>Table 22.3.</b> Intezaar ko aasaan banane ke teen tareeke</figcaption><div class="tblwrap"><table><thead><tr><th>Tareeka</th><th>Kya karta hai</th><th>Tippani</th></tr></thead><tbody><tr><td>Jaldi shuru karo</td><td>Jawaab likhte hue screen par bhejna, kuch-kuch shabd. Yeh <em>streaming</em> hai</td><td>Poora jawaab utna hi samay leta hai, par customer pehle second se padhna shuru kar deta hai. Isme kuch kharcha nahi aur sabse zyada madad karta hai</td></tr><tr><td>Batao kya ho raha hai</td><td>Spinner ki jagah kaam likhna, jaise &quot;Chhe documents padh raha hoon&quot;</td><td>Dikhne wale kaam se mel khaane wala intezaar maayne rakhta hai. Train par yahi ghoshna thi</td></tr><tr><td>Intezaar ko doosri jagah le jao</td><td>Lambe kaam ko background mein chalao aur khatam hone par insaan ko batao</td><td>Teams ise isliye taal deti hain kyunki yeh haar maanne jaisa lagta hai. Das second se zyada ke kaam ke liye aam taur par sahi hai, kyunki yeh samasya hi hata deta hai</td></tr></tbody></table></div></figure>
+<p>Guard ke liye kaun sa theek hai, yeh is par nirbhar hai ki adhoora jawaab upyogi hai ya nahi. Insaan ek vyakhya ka pehla vaakya padhna shuru kar sakta hai. Faisla alag hai: chhupao ya mat chhupao. Faisle ka aadha hissa khatra hai, aur kisi ko aise field par kaam nahi karna chahiye jiska likhna poora nahi hua.</p>
+<aside class="box box-key"><p class="boxlabel">Mukhya vichaar</p><h4>Adhoora output tabhi dikhao jab woh antim ho</h4>
+<p>Isi wajah se schema pehle aaya tha. Reply ka ek hissa dikhana tabhi surakshit hai jab jo hissa dikh sakta hai woh pehle se antim ho. Isliye guard apna jawaab <a class="term" href="/book/hi/glossary.html#t-streaming" title="jawaab ko screen par tukde-tukde bhejna jaise woh likha ja raha ho, poora hone tak intezaar karne ke bajaye">stream</a> nahi kar sakta. Use chat ke istemaal karne se pehle khatam hona padta hai.</p>
+</aside>
+<h2 id="s-22-5"><span class="sn">22.5</span>Kaun sa case kahan jaata hai</h2>
+<p>Team ne dopahar us design par bitayi jo agle aaya, aur jisme us mahine ki har seekh lagi.</p>
+<p>Tez hisse har message par live chalte: pattern checker aur name-and-place finder. Unhone milkar zyadatar messages ko ek second ke chhote se hisse mein sambhal liya. Jin messages par woh tay nahi kar paaye, unke liye guard dheemi, saavdhaan judge ka intezaar nahi karta. Woh us sasti galti ki taraf jhukta jo April mein tay hui thi, aur shak wale hisse ko turant mask kar deta taaki chat surakshit tareeke se chalti rahe. Reasoning model baad mein background mein un cases ko dekhta aur tay karta ki kya hona chahiye tha. Agar masked tukda nirdosh nikla, toh koi insaan use bahaal hota dekh sakta tha. Agar woh leak nikla, toh woh pehle hi dhaka hua tha.</p>
+<p>Imran ne niyam PRD ke hashiye mein likha: reasoning sirf shak wale kuch cases ke liye, aur kabhi tab nahi jab customer intezaar kar raha ho. Team jaan jaati ki woh galat tha agar un cases par sasta raasta wahi score karta, ya agar saavdhaan raaste ko reply bhejne se pehle kabhi khatam karna padta.</p>
+<p>Dono mein se kisi ne woh sawaal nahi uthaya jo dono ko pareshaan kar raha tha: saavdhaan judge kahan chalega. Agar woh vaakya jo use padhna tha mushkil vaakyon mein se ek tha, toh usme wahi ho sakta tha jise chhupane ke liye guard bana tha. Kya use building se bahar jaane ki ijaazat di ja sakti thi, ya use andar rehna padta, yeh kisi aur din ka sawaal tha, aur lagbhag Lakshmi ka.</p>
+<h2 id="s-22-6"><span class="sn">22.6</span>Saaraansh</h2>
+<p>Reasoning model jawaab dene se pehle apna kaam likhta hai. Woh un samasyaon mein behtar hai jinhe nikaalna padta hai aur jo use diya gaya hai use dhoondhne, chhaantne ya naya roop dene mein behtar nahi, aur uske kaam ka paisa aur samay har request par dena padta hai.</p>
+<ul><li>Woh saboot nahi banata. Galat document diya jaaye toh woh saavdhaani se galat document se tark karta hai.</li><li>Latency user mehsoos karta hai. Streaming jawaab ko jaldi dikhati hai, batana ki kya ho raha hai intezaar ko maayne deta hai, aur lamba kaam background mein ja sakta hai.</li><li>Faisla stream nahi kiya ja sakta, kyunki faisle ka aadha hissa khatra hai.</li><li>Samajhdaar design mehnge machine ka istemaal sirf un cases par karta hai jinhe uski zaroorat hai, aur tab nahi jab customer intezaar kar raha ho.</li></ul>
+</div>
+<aside class="wordsbox" aria-label="Mukhya shabd"><h2>Mukhya shabd</h2><p class="sub">Saral matlab, usi kram mein jis kram mein aap inse milenge.</p><dl><div><dt id="w-reasoning-model">reasoning model</dt><dd>aisa model jo jawaab dene se pehle apna kaam likh kar nikalta hai, ek tareeka aazmata hai aur jaanchta hai; us kaam ka paisa aap har request par dete hain, paise mein bhi aur intezaar ke samay mein bhi</dd></div><div><dt id="w-latency">latency</dt><dd>poochhne aur jawaab paane ke beech ka samay, jise users raftaar ki tarah mehsoos karte hain</dd></div><div><dt id="w-streaming">streaming</dt><dd>jawaab ko screen par tukde-tukde bhejna jaise woh likha ja raha ho, poora hone tak intezaar karne ke bajaye</dd></div></dl></aside>
+<aside class="inapp"><span class="lead">Yahi ideas, kaam ke saath, course app mein</span><span class="chips"><a href="/#/ch/ch11">Reasoning models: sochne ke liye paise dena kab madad karta hai<span aria-hidden="true"> →</span></a><a href="/#/ch/ch115">Latency: intezaar ke liye design karna<span aria-hidden="true"> →</span></a></span></aside>
+<nav class="pager" aria-label="Pichhla aur agla chapter"><a class="prev" href="/book/hi/21-long-windows-careful-rooms.html" rel="prev"><span class="dir">← Pichhla</span><span class="nm"><b>21</b>Lambi Windows, Saavdhaan Kamre</span></a><a class="next" href="/book/hi/23-searching-better.html" rel="next"><span class="dir">Agla →</span><span class="nm"><b>23</b>Behtar Search</span></a></nav>
+</article>
+</main>
+</div>
+<script src="/book/reader.js" defer></script>
+</body>
+</html>

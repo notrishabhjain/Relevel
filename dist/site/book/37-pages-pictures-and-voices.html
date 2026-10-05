@@ -4,127 +4,151 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Pages, Pictures and Voices · Chapter 37 · AI From Zero</title>
-<meta name="description" content="Read a railway timetable aloud word by word and nobody learns when the train leaves. The team takes on photographs and voice notes at last, finds the stage at which meaning first goes wrong, and builds a test that can tell a hearing mistake from a thinking one.">
+<meta name="description" content="Read a railway timetable aloud word by word and nobody learns when the train leaves. The team takes on photographs and voice notes at last, finds the stage at which meaning first goes wrong, and builds a test that can tell a hearing mistake from a thinking one. The chapter introduces multimodal systems, speech-to-text, voice pipelines and speaker attribution.">
 <meta name="color-scheme" content="light dark">
-<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="hi-Latn" href="/book/hi/37-pages-pictures-and-voices.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
+<link rel="stylesheet" href="/book/style.css">
 <script>try{var t=localStorage.getItem('aifz-book-theme');if(t)document.documentElement.setAttribute('data-theme',t);var s=localStorage.getItem('aifz-book-size');if(s)document.documentElement.style.setProperty('--fs',s+'rem')}catch(e){}</script>
 </head>
-<body class="is-chapter">
+<body class="is-chapter" data-lang="en" data-base="/book/" style="--hue:#a2455e">
 <a class="skip" href="#text">Skip to the text</a>
 <div class="progress" id="progress" aria-hidden="true"><i></i></div>
 <header class="bar">
-  <a class="brand" href="index.html"><span class="mark">AI From Zero</span><span class="ed">The reading edition</span></a>
+  <button class="b menu" id="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Contents"><span aria-hidden="true">☰</span><span class="lbl">Contents</span></button>
+  <a class="brand" href="/book/"><span class="mark">AI From Zero</span><span class="ed">The reading edition</span></a>
   <span class="sp"></span>
+  <a class="b lang" href="/book/hi/37-pages-pictures-and-voices.html" hreflang="hi-Latn" title="Read this in Hinglish" data-switch>Hinglish</a>
   <button class="b" id="size-down" type="button" aria-label="Smaller text" title="Smaller text">A−</button>
   <button class="b" id="size-up" type="button" aria-label="Larger text" title="Larger text">A+</button>
   <button class="b" id="theme" type="button" aria-label="Change colours" title="Change colours">◐</button>
-  <a class="b app" href="../" title="Open the course app">The course app →</a>
+  <a class="b app" href="/" title="Open the course app">Course app →</a>
 </header>
 <div class="layout">
-<nav class="toc" aria-label="Contents"><details id="toc"><summary>Contents</summary><ol>
-<li><a href="index.html"><span class="t">Contents</span></a></li>
-<li><a href="preface.html"><span class="t">Before You Begin</span></a></li>
-<li><a href="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">The Number in the Chat</span></a></li>
-<li><a href="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Four Questions Before Building</span></a></li>
-<li><a href="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Asking About Yesterday</span></a></li>
-<li><a href="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Who Else Is Standing Here</span></a></li>
-<li><a href="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Choosing What Not to Do</span></a></li>
-<li><a href="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">A Plan Others Can Believe</span></a></li>
-<li><a href="07-writing-it-down.html"><span class="n">7</span><span class="t">Writing It Down So Others Can Build It</span></a></li>
-<li><a href="08-what-the-machine-is.html"><span class="n">8</span><span class="t">What the Machine Is</span></a></li>
-<li><a href="09-the-first-conversation.html"><span class="n">9</span><span class="t">The First Conversation</span></a></li>
-<li><a href="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">A Mind With No Memory</span></a></li>
-<li><a href="11-giving-instructions.html"><span class="n">11</span><span class="t">Giving Instructions</span></a></li>
-<li><a href="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Knowing Whether It Works</span></a></li>
-<li><a href="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Sorting and Summarising</span></a></li>
-<li><a href="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Too Long to Read at Once</span></a></li>
-<li><a href="15-finding-by-words.html"><span class="n">15</span><span class="t">Finding by Words</span></a></li>
-<li><a href="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Finding by Meaning</span></a></li>
-<li><a href="17-how-good-is-good.html"><span class="n">17</span><span class="t">How Good Is Good</span></a></li>
-<li><a href="18-the-whole-machine.html"><span class="n">18</span><span class="t">The Whole Machine</span></a></li>
-<li><a href="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Answers a Program Can Use</span></a></li>
-<li><a href="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Giving the Machine Hands</span></a></li>
-<li><a href="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Long Windows, Careful Rooms</span></a></li>
-<li><a href="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Machines That Think First</span></a></li>
-<li><a href="23-searching-better.html"><span class="n">23</span><span class="t">Searching Better</span></a></li>
-<li><a href="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">When the Page Gives Orders</span></a></li>
-<li><a href="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Grading a Thousand Answers</span></a></li>
-<li><a href="26-what-it-really-costs.html"><span class="n">26</span><span class="t">What It Really Costs</span></a></li>
-<li><a href="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Paper, Photos and Scans</span></a></li>
-<li><a href="28-what-you-may-send.html"><span class="n">28</span><span class="t">What You May Send</span></a></li>
-<li><a href="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Rules, Risk and Responsibility</span></a></li>
-<li><a href="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">The Spec for a Thing That Varies</span></a></li>
-<li><a href="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Build, Buy or Teach It</span></a></li>
-<li><a href="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Designing for the Wrong Answer</span></a></li>
-<li><a href="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">The Plumbing Under the Magic</span></a></li>
-<li><a href="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Choosing a Model on Your Own Cases</span></a></li>
-<li><a href="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Retrieval That Survives a Review</span></a></li>
-<li><a href="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents and the Standard Plug</span></a></li>
-<li class="here"><a href="37-pages-pictures-and-voices.html" aria-current="page"><span class="n">37</span><span class="t">Pages, Pictures and Voices</span></a></li>
-<li><a href="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces and Rollbacks</span></a></li>
-<li><a href="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Assuming the Worst</span></a></li>
-<li><a href="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">A Product, Not a Demo</span></a></li>
-<li><a href="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Shipping the Whole Thing</span></a></li>
-<li><a href="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Who Pays, and How Much</span></a></li>
-<li><a href="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">How People Find It and Stay</span></a></li>
-<li><a href="44-counting-what-matters.html"><span class="n">44</span><span class="t">Counting What Matters</span></a></li>
-<li><a href="45-tools-and-harness.html"><span class="n">45</span><span class="t">The Tools and the Harness</span></a></li>
-<li><a href="46-real-people-real-use.html"><span class="n">46</span><span class="t">Real People, Real Use</span></a></li>
-<li><a href="47-the-job.html"><span class="n">47</span><span class="t">The Work, and the Job</span></a></li>
-<li><a href="afterword.html"><span class="t">After the Book</span></a></li>
-<li><a href="glossary.html"><span class="t">Words, in plain language</span></a></li>
-</ol></details></nav>
+<nav class="toc" id="toc" aria-label="Contents">
+<div class="tochead"><label class="find"><span class="sr">Find a chapter or a word</span><input id="q" type="search" placeholder="Find a chapter or a word" autocomplete="off"></label></div>
+<ol>
+<li class="top"><a href="/book/"><span class="n dot"></span><span class="t">Contents</span></a></li>
+<li data-t="before you begin"><a href="/book/preface.html" data-file="preface.html"><span class="n dot"></span><span class="t">Before You Begin</span></a></li>
+<li class="sec" style="--hue:#b4492a"><span>The problem worth solving</span></li>
+<li style="--hue:#b4492a" data-t="the number in the chat"><a href="/book/01-the-number-in-the-chat.html" data-file="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">The Number in the Chat</span></a></li>
+<li style="--hue:#b4492a" data-t="four questions before building"><a href="/book/02-four-questions-before-building.html" data-file="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Four Questions Before Building</span></a></li>
+<li style="--hue:#b4492a" data-t="asking about yesterday"><a href="/book/03-asking-about-yesterday.html" data-file="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Asking About Yesterday</span></a></li>
+<li style="--hue:#b4492a" data-t="who else is standing here"><a href="/book/04-who-else-is-standing-here.html" data-file="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Who Else Is Standing Here</span></a></li>
+<li style="--hue:#b4492a" data-t="choosing what not to do"><a href="/book/05-choosing-what-not-to-do.html" data-file="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Choosing What Not to Do</span></a></li>
+<li style="--hue:#b4492a" data-t="a plan others can believe"><a href="/book/06-a-plan-others-can-believe.html" data-file="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">A Plan Others Can Believe</span></a></li>
+<li style="--hue:#b4492a" data-t="writing it down so others can build it"><a href="/book/07-writing-it-down.html" data-file="07-writing-it-down.html"><span class="n">7</span><span class="t">Writing It Down So Others Can Build It</span></a></li>
+<li class="sec" style="--hue:#2f6f73"><span>Meeting the machine</span></li>
+<li style="--hue:#2f6f73" data-t="what the machine is"><a href="/book/08-what-the-machine-is.html" data-file="08-what-the-machine-is.html"><span class="n">8</span><span class="t">What the Machine Is</span></a></li>
+<li style="--hue:#2f6f73" data-t="the first conversation"><a href="/book/09-the-first-conversation.html" data-file="09-the-first-conversation.html"><span class="n">9</span><span class="t">The First Conversation</span></a></li>
+<li style="--hue:#2f6f73" data-t="a mind with no memory"><a href="/book/10-a-mind-with-no-memory.html" data-file="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">A Mind With No Memory</span></a></li>
+<li style="--hue:#2f6f73" data-t="giving instructions"><a href="/book/11-giving-instructions.html" data-file="11-giving-instructions.html"><span class="n">11</span><span class="t">Giving Instructions</span></a></li>
+<li style="--hue:#2f6f73" data-t="knowing whether it works"><a href="/book/12-knowing-whether-it-works.html" data-file="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Knowing Whether It Works</span></a></li>
+<li style="--hue:#2f6f73" data-t="sorting and summarising"><a href="/book/13-sorting-and-summarising.html" data-file="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Sorting and Summarising</span></a></li>
+<li class="sec" style="--hue:#6b5ca5"><span>Finding things, and the whole machine</span></li>
+<li style="--hue:#6b5ca5" data-t="too long to read at once"><a href="/book/14-too-long-to-read-at-once.html" data-file="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Too Long to Read at Once</span></a></li>
+<li style="--hue:#6b5ca5" data-t="finding by words"><a href="/book/15-finding-by-words.html" data-file="15-finding-by-words.html"><span class="n">15</span><span class="t">Finding by Words</span></a></li>
+<li style="--hue:#6b5ca5" data-t="finding by meaning"><a href="/book/16-finding-by-meaning.html" data-file="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Finding by Meaning</span></a></li>
+<li style="--hue:#6b5ca5" data-t="how good is good"><a href="/book/17-how-good-is-good.html" data-file="17-how-good-is-good.html"><span class="n">17</span><span class="t">How Good Is Good</span></a></li>
+<li style="--hue:#6b5ca5" data-t="the whole machine"><a href="/book/18-the-whole-machine.html" data-file="18-the-whole-machine.html"><span class="n">18</span><span class="t">The Whole Machine</span></a></li>
+<li style="--hue:#6b5ca5" data-t="answers a program can use"><a href="/book/19-answers-a-program-can-use.html" data-file="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Answers a Program Can Use</span></a></li>
+<li class="sec" style="--hue:#9a7b1f"><span>Giving it work to do</span></li>
+<li style="--hue:#9a7b1f" data-t="giving the machine hands"><a href="/book/20-giving-the-machine-hands.html" data-file="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Giving the Machine Hands</span></a></li>
+<li style="--hue:#9a7b1f" data-t="long windows, careful rooms"><a href="/book/21-long-windows-careful-rooms.html" data-file="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Long Windows, Careful Rooms</span></a></li>
+<li style="--hue:#9a7b1f" data-t="machines that think first"><a href="/book/22-machines-that-think-first.html" data-file="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Machines That Think First</span></a></li>
+<li style="--hue:#9a7b1f" data-t="searching better"><a href="/book/23-searching-better.html" data-file="23-searching-better.html"><span class="n">23</span><span class="t">Searching Better</span></a></li>
+<li style="--hue:#9a7b1f" data-t="when the page gives orders"><a href="/book/24-when-the-page-gives-orders.html" data-file="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">When the Page Gives Orders</span></a></li>
+<li style="--hue:#9a7b1f" data-t="grading a thousand answers"><a href="/book/25-grading-a-thousand-answers.html" data-file="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Grading a Thousand Answers</span></a></li>
+<li style="--hue:#9a7b1f" data-t="what it really costs"><a href="/book/26-what-it-really-costs.html" data-file="26-what-it-really-costs.html"><span class="n">26</span><span class="t">What It Really Costs</span></a></li>
+<li class="sec" style="--hue:#3f7a4a"><span>The messy real world</span></li>
+<li style="--hue:#3f7a4a" data-t="paper, photos and scans"><a href="/book/27-paper-photos-and-scans.html" data-file="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Paper, Photos and Scans</span></a></li>
+<li style="--hue:#3f7a4a" data-t="what you may send"><a href="/book/28-what-you-may-send.html" data-file="28-what-you-may-send.html"><span class="n">28</span><span class="t">What You May Send</span></a></li>
+<li style="--hue:#3f7a4a" data-t="rules, risk and responsibility"><a href="/book/29-rules-risk-and-responsibility.html" data-file="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Rules, Risk and Responsibility</span></a></li>
+<li style="--hue:#3f7a4a" data-t="the spec for a thing that varies"><a href="/book/30-the-spec-for-a-thing-that-varies.html" data-file="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">The Spec for a Thing That Varies</span></a></li>
+<li style="--hue:#3f7a4a" data-t="build, buy or teach it"><a href="/book/31-build-buy-or-teach-it.html" data-file="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Build, Buy or Teach It</span></a></li>
+<li style="--hue:#3f7a4a" data-t="designing for the wrong answer"><a href="/book/32-designing-for-the-wrong-answer.html" data-file="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Designing for the Wrong Answer</span></a></li>
+<li class="sec" style="--hue:#a2455e"><span>Under the hood</span></li>
+<li style="--hue:#a2455e" data-t="the plumbing under the magic"><a href="/book/33-the-plumbing-under-the-magic.html" data-file="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">The Plumbing Under the Magic</span></a></li>
+<li style="--hue:#a2455e" data-t="choosing a model on your own cases"><a href="/book/34-choosing-a-model-on-your-own-cases.html" data-file="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Choosing a Model on Your Own Cases</span></a></li>
+<li style="--hue:#a2455e" data-t="retrieval that survives a review"><a href="/book/35-retrieval-that-survives-a-review.html" data-file="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Retrieval That Survives a Review</span></a></li>
+<li style="--hue:#a2455e" data-t="workflows, agents and the standard plug"><a href="/book/36-workflows-agents-and-the-standard-plug.html" data-file="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents and the Standard Plug</span></a></li>
+<li style="--hue:#a2455e" class="here" data-t="pages, pictures and voices"><a href="/book/37-pages-pictures-and-voices.html" aria-current="page" data-file="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Pictures and Voices</span></a></li>
+<li style="--hue:#a2455e" data-t="gates, traces and rollbacks"><a href="/book/38-gates-traces-and-rollbacks.html" data-file="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces and Rollbacks</span></a></li>
+<li style="--hue:#a2455e" data-t="assuming the worst"><a href="/book/39-assuming-the-worst.html" data-file="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Assuming the Worst</span></a></li>
+<li class="sec" style="--hue:#2d5d8f"><span>A real product, and a job</span></li>
+<li style="--hue:#2d5d8f" data-t="a product, not a demo"><a href="/book/40-a-product-not-a-demo.html" data-file="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">A Product, Not a Demo</span></a></li>
+<li style="--hue:#2d5d8f" data-t="shipping the whole thing"><a href="/book/41-shipping-the-whole-thing.html" data-file="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Shipping the Whole Thing</span></a></li>
+<li style="--hue:#2d5d8f" data-t="who pays, and how much"><a href="/book/42-who-pays-and-how-much.html" data-file="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Who Pays, and How Much</span></a></li>
+<li style="--hue:#2d5d8f" data-t="how people find it and stay"><a href="/book/43-how-people-find-it-and-stay.html" data-file="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">How People Find It and Stay</span></a></li>
+<li style="--hue:#2d5d8f" data-t="counting what matters"><a href="/book/44-counting-what-matters.html" data-file="44-counting-what-matters.html"><span class="n">44</span><span class="t">Counting What Matters</span></a></li>
+<li style="--hue:#2d5d8f" data-t="the tools and the harness"><a href="/book/45-tools-and-harness.html" data-file="45-tools-and-harness.html"><span class="n">45</span><span class="t">The Tools and the Harness</span></a></li>
+<li style="--hue:#2d5d8f" data-t="real people, real use"><a href="/book/46-real-people-real-use.html" data-file="46-real-people-real-use.html"><span class="n">46</span><span class="t">Real People, Real Use</span></a></li>
+<li style="--hue:#2d5d8f" data-t="the work, and the job"><a href="/book/47-the-job.html" data-file="47-the-job.html"><span class="n">47</span><span class="t">The Work, and the Job</span></a></li>
+<li data-t="after the book"><a href="/book/afterword.html" data-file="afterword.html"><span class="n dot"></span><span class="t">After the Book</span></a></li>
+<li data-t="words, in plain language"><a href="/book/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Words, in plain language</span></a></li>
+</ol>
+<p class="nomatch" hidden>Nothing matches that.</p>
+</nav>
+<div class="scrim" id="scrim" hidden></div>
 <main id="text">
-<article class="chapter" data-file="37-pages-pictures-and-voices.html" data-title="Pages, Pictures and Voices">
-<header class="chead"><p class="eyebrow">Chapter 37</p><h1>Pages, Pictures and Voices</h1><p class="dek">Read a railway timetable aloud word by word and nobody learns when the train leaves. The team takes on photographs and voice notes at last, finds the stage at which meaning first goes wrong, and builds a test that can tell a hearing mistake from a thinking one.</p><p class="meta">7 minute read</p></header>
+<article class="chapter" data-file="37-pages-pictures-and-voices.html" data-title="Pages, Pictures and Voices" data-n="37">
+<header class="chead">
+<p class="eyebrow"><span class="num">37</span><span>Chapter 37 <i>·</i> Under the hood</span></p>
+<h1>Pages, Pictures and Voices</h1><p class="dek">Read a railway timetable aloud word by word and nobody learns when the train leaves. The team takes on photographs and voice notes at last, finds the stage at which meaning first goes wrong, and builds a test that can tell a hearing mistake from a thinking one. The chapter introduces multimodal systems, speech-to-text, voice pipelines and speaker attribution.</p>
+<p class="meta"><span>7 min read</span><span>4 new words</span></p>
+</header>
+<aside class="goals"><h2>In this chapter</h2><ul><li>explain why a system that takes in pages, pictures and speech cannot treat them as text</li><li>separate locating a detail in an image from erasing it, so the erasing cannot be argued with</li><li>describe a voice pipeline stage by stage, with where each can change meaning and where the time goes</li><li>build a test that scores each kind of input at several levels, so that it shows which stage broke</li></ul></aside>
 <div class="prose">
-<p>Farah played the voice note twice, and the second time she did not look at anyone.</p>
-<p>It was the second week of October and the pilot's early numbers had held. Pune's sweeps stayed in single figures. Lakshmi had said, in the tone she used for things she did not intend to repeat, that she was pleased. Which was why the voice note was so uncomfortable. It was about nine seconds long, from a woman in Kolhapur, in a voice that was clearly speaking to a phone held a little too far away.</p>
-<p><em>Haan, mera Aadhaar number hai char teen do ek, paanch chhe saat aath, nau shunya ek do. Loan ka status bata do.</em></p>
-<p>&quot;We've had four of these this week,&quot; said Farah. &quot;I put voice notes on the <em>Won't</em> list in April, and I was right to. But they are arriving anyway, and the customers do not know it is a <em>Won't</em>.&quot;</p>
-<p>Anaya was thinking about the spoken number, which she knew. She had put it in the answer key in June, as a row of its own. A rule that looks for digits finds none in a sentence where the digits are words. She had known this day would come; she had only hoped it would come later.</p>
-<h2>Reading a timetable aloud</h2>
-<p>Imran began, as he often did, with an object.</p>
-<p>&quot;Photograph a railway timetable,&quot; he said. &quot;Now read it down the phone to a friend, the words only, in order. They hear every station. They hear every time. And they still don't know when the train leaves, because the meaning was in the columns, and you read straight past the columns.&quot;</p>
-<p>That was the first lesson of everything <em><a class="term" href="glossary.html#t-multimodal" title="able to take in more than text, such as pages, pictures, tables and speech, which changes what counts as evidence and how it is traced">multimodal</a></em>, which is the name for a system that takes in more than plain text: pages, pictures, tables and speech. A PDF is not a text file. It is a page, with layout, columns, headings, images and information hidden behind what you see. Extract only the words and most of the structure vanishes without a sound. A system built for this has to change what it means by evidence, and how it points back to it.</p>
-<p>They had done the first half of this in the summer, with the passbook photograph and its flattened table. The new work was to do the second half: to make the guard able to act on what it found in a picture, and then to make it hear.</p>
-<h2>The picture</h2>
-<p>The picture was the simpler of the two, and it was also, to Anaya's surprise, the one she was most afraid of. A rule can hide characters in a line of text. How do you hide them in a photograph?</p>
-<p>The answer, Imran said, was to separate the two jobs. A capable model could be shown the image and asked where in it the personal details were. It would answer with positions, a box around each number. Then ordinary code, not the model, would paint over those boxes. The machine located; the program erased. That way the guard could not be talked into leaving a number visible, because the erasing did not depend on its judgement.</p>
-<p>Vision is probabilistic like everything else. A blurry card, a glare across the number, a hand over a corner: any of these could make it miss. So the evidence had to be traceable. For every box, the record showed the image, the region and the question, and in the early weeks a person checked each result. Visual claims, Imran said, should always be traceable to the picture they came from. She added a rule of her own to the specification. <em>If a card photograph is blurred or partly covered, do not guess. Hide the whole image and ask for a clearer one.</em></p>
-<h2>The voice</h2>
-<p>The voice note was another thing altogether.</p>
-<p>A system that hears is never one model. It is a chain, and Imran drew it on the board slowly, link by link, with a pause after each so that she could see it. The sound is captured. It is turned into written words by <em><a class="term" href="glossary.html#t-speech-to-text" title="software that turns recorded speech into written words; it is the first stage of any voice system and the first place meaning can be lost">speech-to-text</a></em>, software that transcribes speech. The words are tidied: fillers removed, numbers turned from words into digits. Then the guard does what it has always done. Then a person, or a program, is shown what was found and asked to confirm. Only then does anything happen.</p>
-<p>This chain is a <em><a class="term" href="glossary.html#t-voice-pipeline" title="the chain of separate stages a voice system runs through, from capturing the sound to acting on it, each adding delay and each able to change the meaning">voice pipeline</a></em>. It has several failure points, and each can change the meaning. The first is the transcription, which makes mistakes in accents, in names, and, most of all, in sentences that mix languages, which describes most of what Sahaj's customers say.</p>
-<p>They played the note to the transcriber, and read what came back. It said: <em>haan mera aadhaar number hai char teen do ek paanch chhe saat aath nau shunya ek do loan ka status bata do.</em> All of it right, and not a digit in it.</p>
-<p>&quot;Here is the tidying stage doing its job,&quot; said Imran. He had written a step that read Hindi number words, one to nine, and zero, and turned them into figures when they appeared in a run. <em>Char teen do ek</em> became 4321. The pattern checker, which had never seen those digits spelled out, now saw them, and the whole note came through with the number hidden.</p>
-<p>&quot;And if the customer says <em>do hazaar</em>?&quot;</p>
-<p>&quot;Then it's not a digit run and we leave it. And we add that as a row.&quot; He smiled slightly. &quot;You'll see that this is a conversation about what counts as a number.&quot;</p>
-<p>There was a further issue, and it came from a question Anaya asked as an afterthought. A recording of a customer ringing the call centre might include the agent's voice too. Whose words were whose? Working out who said what is called <em><a class="term" href="glossary.html#t-speaker-attribution" title="working out who said which words in a recording; it looks technical and behaves like a privacy decision">speaker attribution</a></em>. It sounds like a technical detail and behaves like a privacy decision, because it determines whose words are kept, for how long, and under whose name. If two people talk at once, what happens? She wrote three questions beside it and left them for Lakshmi: <em>who is named, how long is the transcript kept, and what happens when there is overlap.</em></p>
-<h2>Counting the time</h2>
-<p>Voice added a clock to everything. In text, a two-second wait was acceptable. In speech, two seconds of silence breaks a conversation, and people start talking over it. The whole journey, from the end of a person's sentence to a reply, has to fit within that.</p>
-<p>For a voice <em>note</em>, which is recorded and sent, the wait did not matter. For a live call, which was a future thing and still on the <em>Won't</em> list, it would matter enormously. But Imran made her measure the stages anyway, because the habit was the point. Capture: instant. Transcription: 0.9 seconds for the nine-second note. Tidying: negligible. The guard: 0.15. The model: a second if it was needed.</p>
-<p>&quot;Don't optimise the fastest part,&quot; he said, &quot;while the person is waiting on a different one.&quot; The transcription was where the time went.</p>
-<h2>A test that finds the broken link</h2>
-<p>The last thing was the one Anaya cared about most: how to know it worked.</p>
-<p>A test set made of text would hide every failure in the pictures and the sound. So she built a new grid. Five text cases, five photographs and tables, five voice notes, with the hardest in each: a poor scan, a noisy recording, a multilingual note. And she scored each case three ways, not one. Was the evidence read correctly? Was the detail extracted correctly? Did the task succeed from start to finish?</p>
-<div class="tblwrap"><table><thead><tr><th></th><th>Evidence read</th><th>Detail extracted</th><th>Task succeeded</th></tr></thead><tbody><tr><td>Five text cases</td><td>5 of 5</td><td>5 of 5</td><td>5 of 5</td></tr><tr><td>Five photographs</td><td>4 of 5</td><td>4 of 5</td><td>3 of 5</td></tr><tr><td>Five voice notes</td><td>3 of 5</td><td>3 of 5</td><td>2 of 5</td></tr></tbody></table></div>
-<p>She studied the grid. The text row was clean. The pictures lost a case somewhere between &quot;extracted&quot; and &quot;succeeded&quot;, which was a thinking mistake, not a seeing one. The voice notes lost two at the very first column: the words themselves had come out wrong, before the guard ever saw them.</p>
-<p>&quot;The metric stack should show the broken component,&quot; said Imran. &quot;Not just the final answer.&quot;</p>
-<p>It did. The final answer for the voice notes was two out of five, and a team shown only that number would have rewritten the guard. The grid said that the guard was fine and that the transcriber was not. That meant something quite different about where to spend the week.</p>
-<h2>What to carry forward</h2>
-<p>A system that takes in pages, pictures and speech cannot treat them as text, because extracting the words alone loses layout, tables and context, and the evidence needs a way back to the original. For pictures, let the model say where the details are and let ordinary code erase them, so that the erasing cannot be argued with. A voice system is a pipeline of separate stages, from capture through transcription and tidying to action, and each is a place where meaning can change and time is spent, with the slowest stage being the one to look at. Who said what is a privacy decision, not a technical detail. And a test made only of text hides every failure in the other forms, so score each kind of input at several levels, which shows which stage broke.</p>
+<p>In the second week of October Farah Sheikh played a voice note twice, and the second time she did not look at anyone. The pilot's early numbers had held, and Pune's sweeps stayed in single figures. Lakshmi Iyer had said, in the tone she used for things she did not intend to repeat, that she was pleased. That made the voice note more uncomfortable. It lasted about nine seconds, from a woman in Kolhapur speaking to a phone held a little too far from her mouth.</p>
+<p>&quot;Haan, mera Aadhaar number hai char teen do ek, paanch chhe saat aath, nau shunya ek do. Loan ka status bata do.&quot; Farah said that there had been four of these that week. She had put voice notes on the Won't list in April and had been right to, but they were arriving anyway, and customers did not know they were a Won't.</p>
+<h2 id="s-37-1"><span class="sn">37.1</span>The case: a number spoken in words</h2>
+<p>Anaya recognised the spoken number. She had put it in the answer key in June as a row of its own: a rule that looks for digits finds none in a sentence where the digits are words. She had known that this day would come and had hoped it would come later.</p>
+<h2 id="s-37-2"><span class="sn">37.2</span>Reading a timetable aloud</h2>
+<p>Imran began with an object. Photograph a railway timetable, he said, and read it down the telephone to a friend, words only, in order. The friend hears every station and every time and still does not know when the train leaves, because the meaning was in the columns and the reader passed straight over them.</p>
+<p>That is the first lesson of everything <em><a class="term" href="/book/glossary.html#t-multimodal" title="able to take in more than text, such as pages, pictures, tables and speech, which changes what counts as evidence and how it is traced">multimodal</a></em>, the name for a system that takes in more than plain text: pages, pictures, tables and speech. A PDF is not a text file. It is a page, with layout, columns, headings, images and information hidden behind what one sees. Extracting only the words removes most of the structure without a sound. A system built for this has to change what it means by evidence and how it points back to it.</p>
+<p>The team had done the first half of this in the summer with the passbook photograph and its flattened table. The new work was to make the guard able to act on what it found in a picture, and then to make it hear.</p>
+<h2 id="s-37-3"><span class="sn">37.3</span>The picture</h2>
+<p>The picture was the simpler of the two, and the one that Anaya feared more. A rule can hide characters in a line of text, but it is not obvious how to hide them in a photograph.</p>
+<p>The answer was to separate two jobs. A capable model is shown the image and asked where the personal details are, and it answers with positions, a box around each number. Ordinary code, not the model, then paints over those boxes. The model locates and the program erases, so the guard cannot be talked into leaving a number visible, since the erasing does not depend on its judgement.</p>
+<aside class="box box-key"><p class="boxlabel">Key idea</p><h4>Evidence for visual claims must trace to the picture</h4>
+<p>Vision is probabilistic like everything else. A blurry card, a glare across the number or a hand over a corner can each make it miss. For every box the record showed the image, the region and the question, and in the early weeks a person checked each result. Anaya added a rule to the specification: if a card photograph is blurred or partly covered, do not guess; hide the whole image and ask for a clearer one.</p>
+</aside>
+<h2 id="s-37-4"><span class="sn">37.4</span>The voice</h2>
+<p>A voice note was a different problem. A system that hears is never one model. It is a chain, and Imran drew it on the board link by link.</p>
+<figure class="tblfig"><figcaption><b>Table 37.1.</b> The voice pipeline</figcaption><div class="tblwrap"><table><thead><tr><th>Stage</th><th>What it does</th><th>How meaning can change</th></tr></thead><tbody><tr><td>Capture</td><td>Records the sound</td><td>A distant phone or background noise</td></tr><tr><td>Speech-to-text</td><td>Turns the sound into written words</td><td>Mistakes with accents, names and, above all, sentences that mix languages, which describes most of what Sahaj's customers say</td></tr><tr><td>Tidying</td><td>Removes fillers; turns number words into digits</td><td>Wrongly turning words into digits, or leaving them</td></tr><tr><td>The guard</td><td>Finds and hides personal details</td><td>As before</td></tr><tr><td>Confirmation</td><td>A person or program is shown what was found and asked to confirm</td><td>A wrong summary shown for confirmation</td></tr><tr><td>Action</td><td>Only now does anything happen</td><td>Acting on a wrong understanding</td></tr></tbody></table></div></figure>
+<p>This chain is a <em><a class="term" href="/book/glossary.html#t-voice-pipeline" title="the chain of separate stages a voice system runs through, from capturing the sound to acting on it, each adding delay and each able to change the meaning">voice pipeline</a></em>, and <em><a class="term" href="/book/glossary.html#t-speech-to-text" title="software that turns recorded speech into written words; it is the first stage of any voice system and the first place meaning can be lost">speech-to-text</a></em>, software that transcribes speech, is its first stage and the first place where meaning can be lost.</p>
+<p>They played the note to the transcriber and read what came back: &quot;haan mera aadhaar number hai char teen do ek paanch chhe saat aath nau shunya ek do loan ka status bata do.&quot; All of it was right, and there was not a digit in it. The tidying stage did its job next. Imran had written a step that read Hindi number words, one to nine and zero, and turned them into figures when they appeared in a run. &quot;Char teen do ek&quot; became 4321. The pattern checker, which had never seen those digits spelled out, now saw them, and the whole note came through with the number hidden.</p>
+<p>Anaya asked what would happen if the customer said &quot;do hazaar&quot;. It is not a run of single digits, said Imran, so it would be left alone, and it would be added to the key as a row. It is, he said, a conversation about what counts as a number.</p>
+<h3>Whose words</h3>
+<p>Anaya raised one more matter as an afterthought. A recording of a customer ringing the call centre might include the agent's voice too, so whose words were whose? Working out who said what is <em><a class="term" href="/book/glossary.html#t-speaker-attribution" title="working out who said which words in a recording; it looks technical and behaves like a privacy decision">speaker attribution</a></em>. It sounds like a technical detail and behaves like a privacy decision, because it determines whose words are kept, for how long and under whose name. If two people talk at once, what happens? She wrote three questions beside it for Lakshmi: who is named, how long is the transcript kept, and what happens when there is overlap.</p>
+<h2 id="s-37-5"><span class="sn">37.5</span>Counting the time</h2>
+<p>Voice adds a clock to everything. In text a two-second wait is acceptable, whereas in speech two seconds of silence breaks a conversation and people start talking over it. The whole journey, from the end of a person's sentence to a reply, has to fit within that.</p>
+<p>For a recorded voice note the wait did not matter. For a live call, a future matter and still on the Won't list, it would matter enormously. Imran made her measure the stages anyway, since the habit was the point.</p>
+<figure class="tblfig"><figcaption><b>Table 37.2.</b> Time per stage for the nine-second note</figcaption><div class="tblwrap"><table><thead><tr><th>Stage</th><th>Time</th></tr></thead><tbody><tr><td>Capture</td><td>Instant</td></tr><tr><td>Transcription</td><td>0.9 seconds</td></tr><tr><td>Tidying</td><td>Negligible</td></tr><tr><td>The guard</td><td>0.15 seconds</td></tr><tr><td>The model, if needed</td><td>About a second</td></tr></tbody></table></div></figure>
+<p>His rule was not to optimise the fastest part while the person is waiting on a different one. The transcription was where the time went.</p>
+<h2 id="s-37-6"><span class="sn">37.6</span>A test that finds the broken link</h2>
+<p>The last matter was the one Anaya cared about most: how to know that it worked. A test set made only of text would hide every failure in the pictures and the sound. She built a new grid with five text cases, five photographs and tables, and five voice notes, with the hardest example in each: a poor scan, a noisy recording and a note in several languages. She scored each case three ways. Was the evidence read correctly? Was the detail extracted correctly? Did the task succeed from start to finish?</p>
+<figure class="tblfig"><figcaption><b>Table 37.3.</b> The first multimodal grid</figcaption><div class="tblwrap"><table><thead><tr><th></th><th>Evidence read</th><th>Detail extracted</th><th>Task succeeded</th></tr></thead><tbody><tr><td>Five text cases</td><td>5 of 5</td><td>5 of 5</td><td>5 of 5</td></tr><tr><td>Five photographs</td><td>4 of 5</td><td>4 of 5</td><td>3 of 5</td></tr><tr><td>Five voice notes</td><td>3 of 5</td><td>3 of 5</td><td>2 of 5</td></tr></tbody></table></div></figure>
+<p>The text row was clean. The photographs lost a case between &quot;extracted&quot; and &quot;succeeded&quot;, which was a mistake of thinking and not of seeing. The voice notes lost two cases at the very first column: the words themselves had come out wrong before the guard ever saw them. Imran said that the scores should show the broken component and not only the final answer.</p>
+<aside class="box box-key"><p class="boxlabel">Key idea</p><h4>The final number can mislead</h4>
+<p>The final result for the voice notes was two out of five, and a team shown only that figure would have rewritten the guard. The grid showed that the guard was fine and the transcriber was not. That meant something quite different about where to spend the week.</p>
+</aside>
+<aside class="carry"><h2>Chapter summary</h2>
+<p>A system that takes in pages, pictures and speech cannot treat them as text, because extracting the words alone loses layout, tables and context, and the evidence needs a way back to the original.</p>
+<ul><li>For pictures, let the model say where the details are and let ordinary code erase them, so that the erasing cannot be argued with.</li><li>A voice system is a pipeline of separate stages, from capture through transcription and tidying to action. Each is a place where meaning can change and time is spent, and the slowest is the one to look at.</li><li>Who said what is a privacy decision and not a technical detail.</li><li>A test made only of text hides every failure in the other forms. Score each kind of input at several levels, which shows which stage broke.</li></ul>
+</aside>
 </div>
-<aside class="wordsbox" aria-label="Words from this chapter"><h2>Words from this chapter</h2><dl><div><dt id="w-multimodal">multimodal</dt><dd>able to take in more than text, such as pages, pictures, tables and speech, which changes what counts as evidence and how it is traced</dd></div><div><dt id="w-speech-to-text">speech-to-text</dt><dd>software that turns recorded speech into written words; it is the first stage of any voice system and the first place meaning can be lost</dd></div><div><dt id="w-voice-pipeline">voice pipeline</dt><dd>the chain of separate stages a voice system runs through, from capturing the sound to acting on it, each adding delay and each able to change the meaning</dd></div><div><dt id="w-speaker-attribution">speaker attribution</dt><dd>working out who said which words in a recording; it looks technical and behaves like a privacy decision</dd></div></dl></aside>
-<p class="inapp">In the course app: <a href="../#/ch/ch15mm">Multimodal AI: documents, images and voice</a></p>
-<nav class="pager" aria-label="Previous and next"><a class="prev" href="36-workflows-agents-and-the-standard-plug.html"><span class="dir">← Before</span><span class="nm">Chapter 36 · Workflows, Agents and the Standard Plug</span></a><a class="next" href="38-gates-traces-and-rollbacks.html"><span class="dir">Next →</span><span class="nm">Chapter 38 · Gates, Traces and Rollbacks</span></a></nav>
+<aside class="wordsbox" aria-label="Key terms"><h2>Key terms</h2><p class="sub">Plain meanings, in the order you meet them.</p><dl><div><dt id="w-multimodal">multimodal</dt><dd>able to take in more than text, such as pages, pictures, tables and speech, which changes what counts as evidence and how it is traced</dd></div><div><dt id="w-speech-to-text">speech-to-text</dt><dd>software that turns recorded speech into written words; it is the first stage of any voice system and the first place meaning can be lost</dd></div><div><dt id="w-voice-pipeline">voice pipeline</dt><dd>the chain of separate stages a voice system runs through, from capturing the sound to acting on it, each adding delay and each able to change the meaning</dd></div><div><dt id="w-speaker-attribution">speaker attribution</dt><dd>working out who said which words in a recording; it looks technical and behaves like a privacy decision</dd></div></dl></aside>
+<aside class="inapp"><span class="lead">The same ideas, with the work to do, in the course app</span><span class="chips"><a href="/#/ch/ch15mm">Multimodal AI: documents, images and voice<span aria-hidden="true"> →</span></a></span></aside>
+<nav class="pager" aria-label="Previous and next chapter"><a class="prev" href="/book/36-workflows-agents-and-the-standard-plug.html" rel="prev"><span class="dir">← Before</span><span class="nm"><b>36</b>Workflows, Agents and the Standard Plug</span></a><a class="next" href="/book/38-gates-traces-and-rollbacks.html" rel="next"><span class="dir">Next →</span><span class="nm"><b>38</b>Gates, Traces and Rollbacks</span></a></nav>
 </article>
 </main>
 </div>
-<script src="reader.js"></script>
+<script src="/book/reader.js" defer></script>
 </body>
 </html>

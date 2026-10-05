@@ -1,17 +1,26 @@
 ---
 title: The Number in the Chat
-summary: A product manager reads a week of customer chats, finds something she did not go looking for, and has to decide whether it is worth a year of her life.
+summary: A product manager finds identity numbers in a week of customer chats and must decide whether the finding deserves a year of work. The chapter introduces personal data, counting before deciding, choosing between problems, and the written decision.
 course: a1
+goals:
+  - recognise personally identifiable information, including details that identify a person only in combination
+  - turn an impression into a count and say what the count does and does not show
+  - compare competing problems on the same four questions
+  - record a decision together with its evidence and the conditions that would reverse it
 terms:
   - PII | personally identifiable information: any detail that can point to one real person, such as a name, a phone number or an identity number | personally identifiable information, personal data
   - decision log | a running page where you write down each important decision, the evidence behind it, and what would make you change your mind | decision-log
 ---
 
-The first time Anaya Deshmukh saw a stranger's Aadhaar number, she was eating a samosa at her desk and looking for something else entirely.
+In the second week of March, Anaya Deshmukh, a product manager at the Pune company Sahaj, read four hundred conversations between customers and the company's support chatbot. She was looking for the reason so many customers asked about late fees. In conversation sixty-one a customer had typed a twelve-digit identity number into the chat, in the middle of a sentence, and nobody had asked for it. By the end of the evening she had found thirty-seven conversations of the four hundred that contained an identity number, a tax number, a bank account or a full address.
 
-It was a Tuesday in the second week of March, a little after eight in the evening, and the office above the sweet shop in Baner had emptied hours ago. What was left of the day's smell, hot oil and sugar syrup, came up through the floorboards the way it did every evening. Anaya had a spreadsheet open and a plan. Sahaj, the company she worked for, ran an app where people paid electricity bills and, lately, took small loans. In one corner of the app sat a support chatbot that answered questions at all hours. Farah Sheikh, who led the support team, had exported a week of its conversations, four hundred in all, and Anaya wanted to know why so many customers asked the same three questions about late fees.
+This chapter follows what she did with that finding. The case introduces three habits that the rest of the book relies on: measuring before deciding, comparing problems on common terms, and writing a decision down in a form that allows it to be reversed. It also introduces the first technical term of the book, *personally identifiable information*.
 
-She was on conversation sixty-one when she stopped caring about late fees.
+## The case: a week of chats
+
+Sahaj runs a mobile app in which people pay electricity bills and, since the previous year, apply for small loans. A support chatbot in one corner of the app answers questions at any hour. Farah Sheikh, who leads the support team, had exported a week of its conversations for Anaya. The company expected each product manager to propose one large piece of work for the year by April, and Anaya had been reading the chats to find out where customers were struggling.
+
+Conversation sixty-one looked like this.
 
 ```
 Customer: loan ka status batao, mera aadhaar 4321 5678 9012 hai
@@ -20,38 +29,64 @@ Customer: 9876543210
 Bot:      Dhanyavaad. Aapka application review mein hai.
 ```
 
-The number was twelve digits long and written in neat groups of four, the way it is printed on the card. An Aadhaar number is the identity number the government issues to residents; almost every adult in India knows where theirs is. This customer had typed it without being asked. The chatbot had asked for a mobile number. The customer, being helpful, had offered the most important number they owned.
+The Aadhaar number is the identity number that the Indian government issues to residents. It is printed on a card in groups of four digits, and most adults know where theirs is kept. The chatbot had asked only for a mobile number. The customer offered the more valuable one on their own initiative, probably to be helpful.
 
-Anaya did what anyone would do. She scrolled, and found another. Then a PAN, the ten-character code the tax department issues, typed in capitals in the middle of a sentence about a delayed refund. Then a full home address. Then a photograph of a bank passbook, which the chat window had accepted without complaint.
+Further down the export Anaya found a PAN, the ten-character tax code, typed in capitals inside a sentence about a delayed refund. She found a full home address, and a photograph of a bank passbook that the chat window had accepted without any warning.
 
-She put the samosa down.
+## Where a typed number goes
 
-## What a number does after it is typed
+It is natural to assume that a number typed into a chat window stays in the chat window. In practice a message is copied into several places, each with its own staff, backups and rules about who may read it. At Sahaj the message passed through five of them.
 
-It would be easy to think of those numbers as sitting in the chat window, where the customer left them, and nowhere else. That is not how it works, and it took Anaya about ten minutes of thinking to see how far from true it was.
+1. The support system, which stores the history so that agents can read it.
+2. The weekly export, which is how the numbers reached Anaya's inbox.
+3. The software, owned by an outside company, that writes the chatbot's replies.
+4. The analytics dashboard, which counts conversations.
+5. The logs that engineers read when something breaks.
 
-A message typed into a chat box is not kept in one place. It is stored in the support system, so that agents can read the history. It is copied into the weekly export, which is how it had reached Anaya's inbox. It is passed to whatever software writes the chatbot's replies, which belongs to an outside company. It is counted by the analytics dashboard and written into the logs that engineers read when something breaks. Each of those places has its own people, its own backups and its own rules about who may look. A number typed once ends up living in five houses.
+A number that is typed once is therefore stored five times, by at least two organisations.
 
-The people who write privacy policies have a name for this kind of detail. They call it *personally identifiable information*, or PII for short. The phrase is clumsy, but it is useful, because it describes the test: could this detail, on its own or put together with others, point to one real person? A name passes. So does a mobile number, an address, an Aadhaar number, a bank account. Some details pass only in company. A woman's age means nothing alone, and her village means little, but her age, her village and the fact that she is the only dentist there begin to describe exactly one person. Anaya did not know yet how much that last idea would matter. She only noticed it, the way you notice a crack in a wall before you know it is load-bearing.
+::: def Personally identifiable information (PII)
+Any detail that can point to one real person, either alone or when combined with other details. The test is a question: could this detail, together with what else is known, identify one individual?
+:::
 
-## Counting
+The test explains why PII is wider than the obvious identity numbers. Some details identify a person on their own. Others identify only in combination, and the combination becomes sharper the smaller the group is.
 
-The temptation at this point was to feel something and then to do something, which is how most bad projects begin. Anaya did neither. She did what a sensible person does with a feeling: she turned it into a count.
+Table: How well some common details identify a person
+| Detail | Identifies alone? | Comment |
+| --- | --- | --- |
+| Aadhaar number | Yes | Unique to one resident |
+| Mobile number | Yes | Usually one subscriber, reachable directly |
+| Full home address | Usually | Identifies a household, and so often one person |
+| Age | No | Shared by millions |
+| Village | No | Shared by hundreds of people |
+| Age, village and occupation | Often | A 52-year-old dentist in a village of 800 is probably one person |
 
-She added a column to the spreadsheet and headed it *Something that belongs to one person only?* Then she read all four hundred conversations again, slowly, with a ruler held under each line. It took two hours. The samosa went cold and was eaten anyway.
+The last row is the one that matters most in practice. Removing every obvious number from a message does not make it anonymous, because the remaining details may still describe a single individual. Chapters 28 and 29 return to this point when they consider what a company may lawfully send to an outside service. Nothing in this book is legal advice.
 
-Thirty-seven of the four hundred contained an identity number, a tax number, a bank account or a full address. That was nine percent, one conversation in eleven.
+## From impression to count
 
-She was careful about what she wrote next to the figure. It was a count from one week, in one chatbot, made by one person who had been reading for a particular thing. It was not a finding. It was a reason to look harder, and she typed exactly that into the cell beside it.
+At this point Anaya had a strong impression and no evidence. An impression is useful for deciding where to look, but it cannot be checked by anyone else and it cannot be compared with another impression. Her first step was therefore to turn it into a count.
 
-## Is this the problem?
+She added a column to the spreadsheet with the heading "Something that belongs to one person only?" and read all four hundred conversations again, holding a ruler under each line. The second reading took two hours. Thirty-seven conversations contained at least one identity number, tax number, bank account or full address. That is 9.25 percent, or about one conversation in eleven.
 
-Anaya had been circling, for a month, the question of what she would work on for the rest of the year. The company wanted a big bet from each product manager by April. She had two ideas already. One was a tool that would read the week's support tickets and report the main themes, so that Farah did not have to spend every Monday morning doing it by hand. The other was a feature that would read photographs of salary slips and speed up the checks the loan officers did.
+::: watch A count is not yet a finding
+Anaya wrote the limits of the figure beside it. It came from one week, in one chatbot, counted by one person who had been looking for exactly this. A different week, a second reader or a broader definition of "personal" would each have given a different number. The figure justified looking harder. It did not justify a conclusion.
+:::
 
-Now she had a third, and the third was the only one she had not chosen. It had chosen her. That alone made her suspicious of it.
+Stating the limits next to the number is a habit of the trade. A figure that travels without its limits is repeated in later meetings with more confidence than it deserves.
 
-So she did what she had once been taught to do and had never quite done properly: she measured all three against the same four questions. Is there a user she can reach this week? Is there a task she can watch someone do? Is there a pain she can count? And is there a real reason that software which reads text might help, as opposed to ordinary software?
+## Choosing between three problems
 
+Anaya now had three candidate projects. The first was a tool that read each week's support tickets and reported the main themes, which would save Farah a Monday morning of manual sorting. The second was a feature that read photographs of salary slips to speed up the checks made by loan officers. The third was the problem in the chats, which she had not chosen. It had found her, and she regarded that as a reason for suspicion.
+
+She compared them with four questions that apply to almost any proposal.
+
+1. Is there a user she can reach this week?
+2. Is there a task she can watch someone do?
+3. Is there a pain she can count?
+4. Is there a real reason that software which reads text might help, as against ordinary software?
+
+Table: The three candidates against the four questions
 | | Weekly ticket themes | Salary-slip reader | Personal details in chats |
 | --- | --- | --- | --- |
 | A user she can reach this week | Farah | Two loan officers | Farah, Imran, Lakshmi |
@@ -59,16 +94,17 @@ So she did what she had once been taught to do and had never quite done properly
 | A pain she can count | Three hours a week | Minutes per loan | 37 in 400 |
 | A real reason for AI | Maybe; tickets already carry tags | Yes, but photographs of paper are hard | Partly |
 
-The fourth row was where she had to be honest. For a twelve-digit number in four neat groups, a plain rule would do: look for twelve digits, find the groups of four, done. No intelligence required. The difficulty was elsewhere. People did not always write numbers the way the card printed them. They wrote names and addresses, which follow no pattern at all. They wrote in Hindi, in English and in the mixture of the two that fills a phone keyboard at eleven at night. Half the problem could be solved by a rule, and she wrote that down. The other half might need something cleverer, and she wrote that down too.
+The fourth question needs the most honesty. A twelve-digit number written in four groups can be found by a plain rule: look for twelve digits and check the grouping. No intelligence is required. The difficulty lies elsewhere. People do not always write numbers the way the card prints them, and names and addresses follow no pattern at all. Customers also write in Hindi, in English and in the mixture of the two that fills phone keyboards late at night. A rule could solve part of the problem, and the remainder might need something more flexible. Anaya recorded both halves.
 
-Part of a product manager's job, she reflected, is to say out loud that a problem does not need artificial intelligence. It is an unfashionable thing to say, and it was the first thing she wrote.
+Part of a product manager's work is to say, early, that a problem does not need artificial intelligence. The statement is unfashionable and often correct, and it prevents money being spent on a harder solution than the problem requires.
 
-## The page that remembers
+The third candidate scored best, though not by a wide margin. Its advantage was that she could show her working for every cell in its column.
 
-The third column won. Not by much, and not because it was the most exciting. It won because it was the one for which she could show her working.
+## Writing the decision down
 
-She opened a new document, called it *Decisions*, and wrote the first entry. She kept to a format she had read about: the date, the decision, the evidence behind it, and what would make her change her mind. This kind of page is called a *decision log*, and its whole value is in the last line.
+Having chosen, Anaya opened a new document and recorded the choice in a fixed format: the date, the decision, the evidence for it, and the circumstances in which she would reverse it. A page kept this way is a *decision log*.
 
+::: example The first entry in Anaya's decision log
 ```
 14 March
 Decision:  Work on the personal-details problem first. Ticket themes second.
@@ -78,33 +114,32 @@ Evidence:  37 of 400 conversations in one week contained an identity number,
 I would change my mind if:  Lakshmi says this is a known, accepted risk, or
            Imran says it cannot be fixed without rebuilding the chatbot.
 ```
+:::
 
-Anyone who has watched a project drift for a year knows why the last line matters. A decision with no stated way out hardens into a belief. A decision that says what would end it can be revisited calmly, without anyone losing face.
+The final line gives the log its value. A decision with no stated exit tends to harden into a belief, and the people who made it then defend it for reasons of pride. A decision that names its own reversal conditions can be reopened calmly, because the question to ask is already written down.
 
-## An honest score
+## Measuring yourself
 
-There was one more thing she did that night, and she did it grudgingly, because it was the sort of thing she did once a year and disliked.
+The last task of the evening came from the habit of recording evidence. Anaya scored her own skills on seven areas of product work: finding real problems by talking to people, choosing which to solve, understanding the technology well enough to argue with engineers, turning a decision into something others can build, measuring results, working out whether the product can pay for itself, and getting people with different goals to move together.
 
-She scored herself. Anaya's work, as she understood it, came down to seven things: finding real problems by talking to people, choosing which to solve, understanding the technology well enough to argue with engineers, turning a decision into something others can build, measuring what happens, working out whether it can pay for itself, and getting people with different goals to move together. She gave each a number from zero to three. Zero meant nothing to show. One meant she had tried but could not prove it. Two meant the work was usable and someone else could check it. Three meant it had been tested on real people or real data and its limits were written down.
+Table: The scale used for each area
+| Score | Meaning |
+| --- | --- |
+| 0 | Nothing to show |
+| 1 | Tried, but cannot prove it |
+| 2 | Usable work that someone else can check |
+| 3 | Tested on real people or real data, with its limits written down |
 
-She gave herself a two for finding problems, because tonight she had a count. She gave herself a one for strategy, because she had opinions but no strategy a colleague had ever acted on. And she gave herself a one for understanding the technology, then crossed it out and wrote it again, which is what honest people do with a number they are not proud of. She could say "the chatbot is powered by AI" in a meeting. She could not have explained to a curious twelve-year-old what that sentence meant.
+She gave herself a 2 for finding problems, since she now had a count, and a 1 for strategy, since no colleague had ever acted on one of her strategies. She first gave herself a 1 for understanding the technology, crossed it out, and wrote a lower honest figure. She could say in a meeting that the chatbot was powered by AI. She could not have explained that sentence to a curious twelve-year-old. The scores stay in her notes and are revisited at the end of the book. Her working rule, written at the top of the page, was that nothing counts until someone else could check it.
 
-She made herself a rule. It was only one line, and she wrote it at the top of the page where she could see it.
+Before leaving she wrote to Imran Qureshi, the lead engineer, and asked for an hour the next day. The question of how much of the problem was ordinary engineering and how much was something new was his to help with, and it begins the next chapter.
 
-*Nothing counts until someone else could check it.*
+## Summary
 
-## An email at nine
+A typed number is copied to every system that touches a conversation, so one entry becomes several stored copies held by more than one organisation.
 
-Imran Qureshi, the lead engineer, had built most of the plumbing behind the chatbot. He was the only person at Sahaj who answered messages at nine in the evening, mainly because he was awake anyway and disliked being asked questions in daylight.
-
-Anaya wrote to him. She deleted a sentence that began "I think there may be an issue" and wrote something shorter.
-
-*Can I borrow an hour tomorrow? I found something in the chats, and I would like very much to be wrong about it.*
-
-The answer arrived before she had closed the laptop.
-
-*Bring the export. I will bring the tea.*
-
-## What to carry forward
-
-A typed number does not stay where it was typed; it travels to every system that touches the conversation. Details that can point to one real person have a name, PII, and they point most sharply when several are put together. A feeling about a problem becomes a decision only when it has been turned into a count, written next to the evidence, and given a way to be undone. And before reaching for anything clever, it is worth asking honestly how much of the problem a plain rule could solve.
+- PII is any detail that can point to one real person, alone or in combination. Details that are harmless separately can identify someone when joined.
+- An impression becomes usable when it is counted, and the count is reported with its limits: the sample, the reader and the definition.
+- Competing problems are compared on the same four questions: a reachable user, a watchable task, a countable pain, and a real reason for AI.
+- A decision log records the date, the decision, the evidence and the conditions for changing course.
+- Self-assessment on a fixed scale gives a baseline that can be rechecked later.

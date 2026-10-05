@@ -1,7 +1,12 @@
 ---
 title: How People Find It and Stay
-summary: A tool that nobody finds protects nobody. Five developers are handed a README and nothing else, a stopwatch records where they give up, and a spelling checker teaches a product manager where the first moment of value must happen.
+summary: A tool that nobody finds protects nobody. Five developers are handed a README and nothing else, a stopwatch records where they give up, and a spelling checker shows where the first moment of value must happen. The chapter introduces AARRR, activation, time-to-value, the Fogg behaviour model, product-led growth, growth loops, network effects, virality and dark patterns.
 course: b2
+goals:
+  - define the five AARRR stages and give each a countable event
+  - find the activation moment and measure time-to-value, then move value ahead of effort
+  - apply the Fogg behaviour model by checking prompt, ability and motivation in reverse order
+  - tell virality from a network effect, choose a route to the customer, and refuse dark patterns
 terms:
   - AARRR | five stages of growth, each given one countable event: acquisition, activation, retention, referral and revenue | 
   - activation moment | the first time a user gets the value the product promises; everything before it is cost to the user | 
@@ -14,18 +19,19 @@ terms:
   - dark pattern | a design that tricks users into acting against their own interest, such as a pre-ticked box, false scarcity or a hidden cancellation | dark patterns
 ---
 
-The five developers sat in a row on one side of the table, each at a laptop, each wearing the faintly guilty look of people who have been asked to take part in an experiment and are not sure what they are being measured on.
+In the third week of January five developers sat in a row on one side of a table, each at a laptop, each with the faintly guilty look of people who have been asked to take part in an experiment and are not sure what is being measured. Anaya had given them one sheet of paper: the README, the first page of instructions for the developer kit, and nothing else. There was no demonstration, no call and no help. A stopwatch lay on the table. She had said: add this to a small chat program and clean one message, and tell me when you are done; I won't help you. Then she had gone to stand by the window with her hands behind her back, because it was the only way she could keep them still.
 
-Anaya had given them one sheet of paper. It was the README, the first page of the instructions for the developer kit, and nothing else. No demonstration, no calls, no help. She had put a stopwatch on the table. She had said: "Add this to a small chat program and clean one message. Tell me when you're done. I won't help you." And then she had gone to stand by the window with her hands behind her back like someone reviewing a parade, because it was the only way she could keep them still.
+The kit was live and Mr. Menon's company had signed a trial. What mattered, at that moment, was whether anyone else could use it. This chapter reports what the stopwatch showed and what it taught about how people find a product and stay with it.
 
-It was the third week of January. The kit was live. Mr. Menon's company had signed a trial. Everything that mattered, in that moment, was whether anyone else could use it.
+## The case: five developers and a stopwatch
+
+Imran Qureshi had warned her what she would learn, in a sentence he liked: if they do not stay, more sign-ups only means losing people faster.
 
 ## A funnel and its limits
 
-Imran had warned her what she would learn, in a sentence he was fond of. *If they don't stay, more sign-ups only means losing people faster.*
+Growth has five stages with a memorable shorthand, *AARRR*: acquisition, activation, retention, referral and revenue. The first job in each is to name one event that can be counted.
 
-Growth, she had read, has five stages with a memorable shorthand, AARRR: acquisition, activation, retention, referral and revenue. The first job in each is to name one event you can count.
-
+Table: The five stages and the guard's event for each
 | Stage | The question | The guard's event |
 | --- | --- | --- |
 | Acquisition | Did they arrive? | A developer opens the demo page and pastes a message |
@@ -34,16 +40,15 @@ Growth, she had read, has five stages with a memorable shorthand, AARRR: acquisi
 | Referral | Did they bring others? | A colleague at another company opens the demo page after a shared link |
 | Revenue | Did they pay? | They move from the trial to a plan |
 
-She knew the picture was a simplification. It suggests a straight line, while real people arrive through shared links and come back after months. It also invites you to start fixing at the top of the funnel. Usually the stage that decides whether a product works is retention, and the funnel puts it fourth.
+Anaya knew that the picture was a simplification. It suggests a straight line, whereas real people arrive through shared links and return after months. It also invites the team to start fixing at the top of the funnel. Usually the stage that decides whether a product works is retention, and the funnel places it fourth.
 
 ## The first moment of value
 
-The measure she cared about most that morning was the one that decides whether someone ever reaches the others.
+The measure that Anaya cared about most that morning was the one that decides whether someone ever reaches the later stages. The *activation moment* is the first time a user gets the value that the product promises. For the guard it was a developer seeing their own message, with an Aadhaar number in it, come out of the other side with the number gone. Everything before that moment is cost to the user: effort spent before anything good has happened. How long it takes to reach is the *time-to-value*, measured from the moment they start.
 
-The *activation moment* is the first time a user gets the value the product promises. For the guard it was a developer seeing their own message, with an Aadhaar number in it, come out the other side with the number gone. Everything before that moment is cost to the user: effort spent before anything good has happened. How long it takes to reach is the *time-to-value*, measured from the moment they start.
+The stopwatch gave her the times, and she wrote them as they came.
 
-The stopwatch told her. She wrote the times as they came.
-
+Table: How far the five developers got
 | Step | Developers who finished | Median time |
 | --- | --- | --- |
 | Open the README | 5 of 5 | 1 minute |
@@ -51,56 +56,62 @@ The stopwatch told her. She wrote the times as they came.
 | Install the kit | 4 of 5 | 11 minutes |
 | Clean the first message | 3 of 5 | 24 minutes |
 
-One had stopped at the account. The fourth step had lost another. Three reached the moment, after twenty-four minutes at the median, and the one who had left at the first obstacle had written, as the others typed, a short note, which she read after they had gone. *I'd have left here too.*
+One developer stopped at the account. Another was lost at the fourth step. Three reached the moment of value, after twenty-four minutes at the median. The one who had left at the first obstacle had written a short note, which Anaya read after they had gone: "I'd have left here too." Imran, looking over her shoulder, said that people do not leave at the hard part. They leave before it.
 
-"The problem's early," said Imran, looking over her shoulder. "People don't leave at the hard part. They leave before it."
-
-The remedy occurred to her over the following days. What if the first moment of value happened before the account? What if the demonstration page let a developer paste a message of their own and see it cleaned, with nothing to sign? The activation moment would come ahead of the hard step, and by the time they were asked for an email they would already have seen it work.
+The remedy occurred to her over the following days. What if the first moment of value happened before the account? The demonstration page could let a developer paste a message of their own and see it cleaned, with nothing to sign. The activation moment would come ahead of the hard step, and by the time they were asked for an email they would already have seen it work.
 
 ## A teardown over dinner
 
-That week she did something she had put off for three months. She picked a product that had solved this problem and took it apart.
+That week Anaya did something she had put off for three months: she took apart a product that had solved this problem. She chose one that Farah used constantly, a spelling and writing assistant that sat inside whatever she was typing. They looked at it stage by stage, on Farah's sofa with her laptop between them, noting what happened and what could be copied.
 
-She chose one that Farah used constantly: a spelling and writing assistant that sat inside whatever she was typing. They sat on Farah's sofa with her laptop between them. They looked at it stage by stage, as the exercise says, with one line for what happened and one thing to copy.
+Table: A teardown of a writing assistant
+| Stage | What happened |
+| --- | --- |
+| Acquisition | People saw its suggestions in the tools they already used, and a free plan spread it |
+| Activation | The first underlined suggestion in her own writing, within seconds |
+| Retention | It lived where people already write, so there was no new habit to form |
+| Revenue | The more advanced suggestions sat behind a paid plan |
 
-Acquisition came from people seeing its suggestions in the tools they already used, and from a free plan that spread it. Activation was the first underlined suggestion in her own writing, which arrived within seconds. Retention came from living where people already write, so that there was no new habit to form. Money came from keeping the more advanced suggestions behind a paid plan.
-
-"What would you copy?" asked Farah.
-
-"The moment of value," said Anaya slowly. "It happens in the user's own work. Not on a separate page. Not after a setup."
-
-It was a thing she could not unsee. The kit's value, she realised, was in the developer's own chat program. The demonstration page was a stand-in for that, and a good one, but the real activation would come when the kit was in the code. So the aim was to shorten the road between the first and the second.
+Farah asked what Anaya would copy. "The moment of value," she said slowly. It happens in the user's own work, not on a separate page and not after a setup. The kit's value, she realised, was in the developer's own chat program. The demonstration page stood in for that, and was a good stand-in, but real activation would come when the kit was in the code. The aim was to shorten the road between the first and the second.
 
 ## What makes someone act
 
-For retention she turned to a model that Meenakshi had once described, from the study of behaviour. A person does something when three things meet at the same instant: they want to, they are able to, and something prompts them. If it is not happening, said the Fogg behaviour model, check the three in reverse order. A missing prompt is the cheapest thing to fix. Then ability. Last, motivation, which is the hardest to move.
+For retention Anaya turned to a model that Dr. Meenakshi Rao had described from the study of behaviour. A person does something when three things meet at the same instant: they want to, they are able to, and something prompts them. This is the *Fogg behaviour model*, and when a behaviour is not happening, its rule is to check the three in reverse order. A missing prompt is the cheapest thing to fix. Next comes ability, and last motivation, which is the hardest to move.
 
-For a compliance buyer, the prompt was easy to see. A Monday email with one line: *This week the guard hid 1,204 details across 87,000 messages. Two were flagged for review.* It took no effort to open, and it reminded the buyer why they had it. For a developer, the prompt was the best README they had ever read, and the ability was how little was left to do.
+For a compliance buyer the prompt was easy to see: a Monday email with one line, such as "This week the guard hid 1,204 details across 87,000 messages. Two were flagged for review." It took no effort to open and it reminded the buyer why they had the tool. For a developer the prompt was the best README they had ever read, and the ability was how little was left to do.
 
-They watched the retention curve too, for each week's new users: a line that falls and then flattens means something has found a lasting use. A line that falls to nothing means it has not.
+The team also watched the retention curve for each week's new users. A line that falls and then flattens means that something has found a lasting use. A line that falls to nothing means it has not.
 
 ## How a customer arrives
 
-She drew the three ways a customer can go from hearing of a product to paying for it. In *product-led growth* people sign up and get value on their own, and some of them upgrade. It fits when the value shows in minutes and the price is low. In a sales-led motion a person runs demonstrations and a contract, which fits when the deal is large or a security review is required. In between, in product-led sales, individuals adopt a product first and a salesperson arrives when their team grows.
+Anaya drew the three ways in which a customer can go from hearing of a product to paying for it.
 
-The guard sat in the middle. A single developer could try the demonstration alone. But connecting a whole chat system meant the Wall, the security lead, and that, she saw, was exactly when a person would be useful.
+Table: Three routes to a paying customer
+| Route | How it works | When it fits |
+| --- | --- | --- |
+| Product-led growth | People sign up and get value on their own, and some of them upgrade | The value shows in minutes and the price is low |
+| Sales-led | A person runs demonstrations and a contract | The deal is large or a security review is required |
+| In between | Individuals adopt the product first and a salesperson arrives when their team grows | A product that one person can try but a team must approve |
+
+The guard sat in the middle. A single developer could try the demonstration alone. Connecting a whole chat system meant the security lead whom Mr. Menon called "the Wall", and that, she saw, was exactly when a person would be useful.
 
 ## A badge, and a line she would not cross
 
-The last thing was a loop. A growth loop is a cycle in which one user's actions bring in the next, so that the output feeds back into the input. She thought of a small mark at the bottom of a chat window, *Protected by Bharat Privacy Guard*, with a link. A customer's customer would see it. Another developer might follow it.
+The last matter was a loop. A *growth loop* is a cycle in which one user's actions bring in the next, so that the output feeds back into the input. Anaya thought of a small mark at the bottom of a chat window, "Protected by Bharat Privacy Guard", with a link. A customer's customer would see it, and another developer might follow it.
 
-She was careful about two words. Users bringing in other users is *virality*. A product getting better for everyone as more people use it is a *network effect*. Many products have the first and not the second, and she suspected hers was one of them. Positioning decided which loop could work at all: a badge made sense only because she was *the guard for companies that talk to customers in India*, and a company that wanted to be seen as careful would be glad of the mark.
+She was careful with two terms. Users bringing in other users is *virality*. A product becoming better for everyone as more people use it is a *network effect*. Many products have the first and not the second, and she suspected hers was one of them. Positioning decided which loop could work at all: a badge made sense because she was the guard for companies that talk to customers in India, and a company that wanted to be seen as careful would be glad of the mark.
 
-And then she wrote the rule, in the margin, in the same hand as *rarer is not fixed*.
+She then wrote a rule in the margin in the same hand as "rarer is not fixed".
 
-*Dark patterns are out.* A *dark pattern* is a design that tricks a user into acting against their own interest: a box ticked in advance, a made-up shortage, a cancellation button no one can find. They can lift a number for a quarter. They also destroy the trust that her whole product rested on.
+::: watch Dark patterns are out
+A *dark pattern* is a design that tricks a user into acting against their own interest: a box ticked in advance, a made-up shortage, a cancellation button that nobody can find. Such designs can lift a number for a quarter. They also destroy the trust on which the whole product rests. Anaya told Imran that the customer could switch the badge off without asking. He said that it would cost some visibility. "Yes," she said. "We are a privacy tool. We shouldn't be the ones who hide the exit."
+:::
 
-"The badge can be switched off," she told Imran. "By the customer. Without asking."
+## Summary
 
-"That will cost us some visibility."
+Growth has five stages worth counting, acquisition, activation, retention, referral and revenue, and the one that usually decides whether a product works is the one that comes fourth.
 
-"Yes," said Anaya. "We are a privacy tool. We shouldn't be the ones who hide the exit."
-
-## What to carry forward
-
-Growth has five stages worth counting, acquisition, activation, retention, referral and revenue, and the one that usually decides whether a product works is the one that comes fourth. The activation moment, the first time a user gets the value promised, should come as early as possible, and everything before it is cost to them; time-to-value measures the road. The best place for that moment is inside the user's own work. A behaviour happens when motivation, ability and a prompt meet, so when it is not happening check them in reverse order. Customers may arrive by themselves, through a salesperson, or through both, and the right route depends on how quickly the value shows and how large the deal is. A growth loop can bring in users, but virality is not a network effect, and a design that tricks people, a dark pattern, may raise a number and destroys the trust that retention depends on.
+- The activation moment is the first time a user gets the value promised. It should come as early as possible, because everything before it is cost to the user. Time-to-value measures the road, and the best place for the moment is inside the user's own work.
+- A behaviour happens when motivation, ability and a prompt meet. When it is not happening, check them in reverse order.
+- Customers may arrive by themselves, through a salesperson or through both, and the right route depends on how quickly the value shows and how large the deal is.
+- A growth loop can bring in users, but virality is not a network effect. A design that tricks people, a dark pattern, may raise a number and destroys the trust that retention depends on.

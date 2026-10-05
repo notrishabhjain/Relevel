@@ -4,143 +4,144 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>What You May Send · Chapter 28 · AI From Zero</title>
-<meta name="description" content="Everything so far assumed the text could be sent. Lakshmi puts three documents on a table, asks three questions in a fixed order, and a vendor's terms of service turn out to say things nobody had read.">
+<meta name="description" content="Everything so far assumed that the text could be sent to a vendor. Three documents and three questions, asked in a fixed order, settle whether it can, and a vendor's terms of service turn out to say things nobody had read. The chapter introduces retention and data residency.">
 <meta name="color-scheme" content="light dark">
-<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="hi-Latn" href="/book/hi/28-what-you-may-send.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
+<link rel="stylesheet" href="/book/style.css">
 <script>try{var t=localStorage.getItem('aifz-book-theme');if(t)document.documentElement.setAttribute('data-theme',t);var s=localStorage.getItem('aifz-book-size');if(s)document.documentElement.style.setProperty('--fs',s+'rem')}catch(e){}</script>
 </head>
-<body class="is-chapter">
+<body class="is-chapter" data-lang="en" data-base="/book/" style="--hue:#3f7a4a">
 <a class="skip" href="#text">Skip to the text</a>
 <div class="progress" id="progress" aria-hidden="true"><i></i></div>
 <header class="bar">
-  <a class="brand" href="index.html"><span class="mark">AI From Zero</span><span class="ed">The reading edition</span></a>
+  <button class="b menu" id="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Contents"><span aria-hidden="true">☰</span><span class="lbl">Contents</span></button>
+  <a class="brand" href="/book/"><span class="mark">AI From Zero</span><span class="ed">The reading edition</span></a>
   <span class="sp"></span>
+  <a class="b lang" href="/book/hi/28-what-you-may-send.html" hreflang="hi-Latn" title="Read this in Hinglish" data-switch>Hinglish</a>
   <button class="b" id="size-down" type="button" aria-label="Smaller text" title="Smaller text">A−</button>
   <button class="b" id="size-up" type="button" aria-label="Larger text" title="Larger text">A+</button>
   <button class="b" id="theme" type="button" aria-label="Change colours" title="Change colours">◐</button>
-  <a class="b app" href="../" title="Open the course app">The course app →</a>
+  <a class="b app" href="/" title="Open the course app">Course app →</a>
 </header>
 <div class="layout">
-<nav class="toc" aria-label="Contents"><details id="toc"><summary>Contents</summary><ol>
-<li><a href="index.html"><span class="t">Contents</span></a></li>
-<li><a href="preface.html"><span class="t">Before You Begin</span></a></li>
-<li><a href="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">The Number in the Chat</span></a></li>
-<li><a href="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Four Questions Before Building</span></a></li>
-<li><a href="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Asking About Yesterday</span></a></li>
-<li><a href="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Who Else Is Standing Here</span></a></li>
-<li><a href="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Choosing What Not to Do</span></a></li>
-<li><a href="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">A Plan Others Can Believe</span></a></li>
-<li><a href="07-writing-it-down.html"><span class="n">7</span><span class="t">Writing It Down So Others Can Build It</span></a></li>
-<li><a href="08-what-the-machine-is.html"><span class="n">8</span><span class="t">What the Machine Is</span></a></li>
-<li><a href="09-the-first-conversation.html"><span class="n">9</span><span class="t">The First Conversation</span></a></li>
-<li><a href="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">A Mind With No Memory</span></a></li>
-<li><a href="11-giving-instructions.html"><span class="n">11</span><span class="t">Giving Instructions</span></a></li>
-<li><a href="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Knowing Whether It Works</span></a></li>
-<li><a href="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Sorting and Summarising</span></a></li>
-<li><a href="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Too Long to Read at Once</span></a></li>
-<li><a href="15-finding-by-words.html"><span class="n">15</span><span class="t">Finding by Words</span></a></li>
-<li><a href="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Finding by Meaning</span></a></li>
-<li><a href="17-how-good-is-good.html"><span class="n">17</span><span class="t">How Good Is Good</span></a></li>
-<li><a href="18-the-whole-machine.html"><span class="n">18</span><span class="t">The Whole Machine</span></a></li>
-<li><a href="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Answers a Program Can Use</span></a></li>
-<li><a href="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Giving the Machine Hands</span></a></li>
-<li><a href="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Long Windows, Careful Rooms</span></a></li>
-<li><a href="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Machines That Think First</span></a></li>
-<li><a href="23-searching-better.html"><span class="n">23</span><span class="t">Searching Better</span></a></li>
-<li><a href="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">When the Page Gives Orders</span></a></li>
-<li><a href="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Grading a Thousand Answers</span></a></li>
-<li><a href="26-what-it-really-costs.html"><span class="n">26</span><span class="t">What It Really Costs</span></a></li>
-<li><a href="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Paper, Photos and Scans</span></a></li>
-<li class="here"><a href="28-what-you-may-send.html" aria-current="page"><span class="n">28</span><span class="t">What You May Send</span></a></li>
-<li><a href="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Rules, Risk and Responsibility</span></a></li>
-<li><a href="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">The Spec for a Thing That Varies</span></a></li>
-<li><a href="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Build, Buy or Teach It</span></a></li>
-<li><a href="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Designing for the Wrong Answer</span></a></li>
-<li><a href="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">The Plumbing Under the Magic</span></a></li>
-<li><a href="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Choosing a Model on Your Own Cases</span></a></li>
-<li><a href="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Retrieval That Survives a Review</span></a></li>
-<li><a href="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents and the Standard Plug</span></a></li>
-<li><a href="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Pictures and Voices</span></a></li>
-<li><a href="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces and Rollbacks</span></a></li>
-<li><a href="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Assuming the Worst</span></a></li>
-<li><a href="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">A Product, Not a Demo</span></a></li>
-<li><a href="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Shipping the Whole Thing</span></a></li>
-<li><a href="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Who Pays, and How Much</span></a></li>
-<li><a href="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">How People Find It and Stay</span></a></li>
-<li><a href="44-counting-what-matters.html"><span class="n">44</span><span class="t">Counting What Matters</span></a></li>
-<li><a href="45-tools-and-harness.html"><span class="n">45</span><span class="t">The Tools and the Harness</span></a></li>
-<li><a href="46-real-people-real-use.html"><span class="n">46</span><span class="t">Real People, Real Use</span></a></li>
-<li><a href="47-the-job.html"><span class="n">47</span><span class="t">The Work, and the Job</span></a></li>
-<li><a href="afterword.html"><span class="t">After the Book</span></a></li>
-<li><a href="glossary.html"><span class="t">Words, in plain language</span></a></li>
-</ol></details></nav>
+<nav class="toc" id="toc" aria-label="Contents">
+<div class="tochead"><label class="find"><span class="sr">Find a chapter or a word</span><input id="q" type="search" placeholder="Find a chapter or a word" autocomplete="off"></label></div>
+<ol>
+<li class="top"><a href="/book/"><span class="n dot"></span><span class="t">Contents</span></a></li>
+<li data-t="before you begin"><a href="/book/preface.html" data-file="preface.html"><span class="n dot"></span><span class="t">Before You Begin</span></a></li>
+<li class="sec" style="--hue:#b4492a"><span>The problem worth solving</span></li>
+<li style="--hue:#b4492a" data-t="the number in the chat"><a href="/book/01-the-number-in-the-chat.html" data-file="01-the-number-in-the-chat.html"><span class="n">1</span><span class="t">The Number in the Chat</span></a></li>
+<li style="--hue:#b4492a" data-t="four questions before building"><a href="/book/02-four-questions-before-building.html" data-file="02-four-questions-before-building.html"><span class="n">2</span><span class="t">Four Questions Before Building</span></a></li>
+<li style="--hue:#b4492a" data-t="asking about yesterday"><a href="/book/03-asking-about-yesterday.html" data-file="03-asking-about-yesterday.html"><span class="n">3</span><span class="t">Asking About Yesterday</span></a></li>
+<li style="--hue:#b4492a" data-t="who else is standing here"><a href="/book/04-who-else-is-standing-here.html" data-file="04-who-else-is-standing-here.html"><span class="n">4</span><span class="t">Who Else Is Standing Here</span></a></li>
+<li style="--hue:#b4492a" data-t="choosing what not to do"><a href="/book/05-choosing-what-not-to-do.html" data-file="05-choosing-what-not-to-do.html"><span class="n">5</span><span class="t">Choosing What Not to Do</span></a></li>
+<li style="--hue:#b4492a" data-t="a plan others can believe"><a href="/book/06-a-plan-others-can-believe.html" data-file="06-a-plan-others-can-believe.html"><span class="n">6</span><span class="t">A Plan Others Can Believe</span></a></li>
+<li style="--hue:#b4492a" data-t="writing it down so others can build it"><a href="/book/07-writing-it-down.html" data-file="07-writing-it-down.html"><span class="n">7</span><span class="t">Writing It Down So Others Can Build It</span></a></li>
+<li class="sec" style="--hue:#2f6f73"><span>Meeting the machine</span></li>
+<li style="--hue:#2f6f73" data-t="what the machine is"><a href="/book/08-what-the-machine-is.html" data-file="08-what-the-machine-is.html"><span class="n">8</span><span class="t">What the Machine Is</span></a></li>
+<li style="--hue:#2f6f73" data-t="the first conversation"><a href="/book/09-the-first-conversation.html" data-file="09-the-first-conversation.html"><span class="n">9</span><span class="t">The First Conversation</span></a></li>
+<li style="--hue:#2f6f73" data-t="a mind with no memory"><a href="/book/10-a-mind-with-no-memory.html" data-file="10-a-mind-with-no-memory.html"><span class="n">10</span><span class="t">A Mind With No Memory</span></a></li>
+<li style="--hue:#2f6f73" data-t="giving instructions"><a href="/book/11-giving-instructions.html" data-file="11-giving-instructions.html"><span class="n">11</span><span class="t">Giving Instructions</span></a></li>
+<li style="--hue:#2f6f73" data-t="knowing whether it works"><a href="/book/12-knowing-whether-it-works.html" data-file="12-knowing-whether-it-works.html"><span class="n">12</span><span class="t">Knowing Whether It Works</span></a></li>
+<li style="--hue:#2f6f73" data-t="sorting and summarising"><a href="/book/13-sorting-and-summarising.html" data-file="13-sorting-and-summarising.html"><span class="n">13</span><span class="t">Sorting and Summarising</span></a></li>
+<li class="sec" style="--hue:#6b5ca5"><span>Finding things, and the whole machine</span></li>
+<li style="--hue:#6b5ca5" data-t="too long to read at once"><a href="/book/14-too-long-to-read-at-once.html" data-file="14-too-long-to-read-at-once.html"><span class="n">14</span><span class="t">Too Long to Read at Once</span></a></li>
+<li style="--hue:#6b5ca5" data-t="finding by words"><a href="/book/15-finding-by-words.html" data-file="15-finding-by-words.html"><span class="n">15</span><span class="t">Finding by Words</span></a></li>
+<li style="--hue:#6b5ca5" data-t="finding by meaning"><a href="/book/16-finding-by-meaning.html" data-file="16-finding-by-meaning.html"><span class="n">16</span><span class="t">Finding by Meaning</span></a></li>
+<li style="--hue:#6b5ca5" data-t="how good is good"><a href="/book/17-how-good-is-good.html" data-file="17-how-good-is-good.html"><span class="n">17</span><span class="t">How Good Is Good</span></a></li>
+<li style="--hue:#6b5ca5" data-t="the whole machine"><a href="/book/18-the-whole-machine.html" data-file="18-the-whole-machine.html"><span class="n">18</span><span class="t">The Whole Machine</span></a></li>
+<li style="--hue:#6b5ca5" data-t="answers a program can use"><a href="/book/19-answers-a-program-can-use.html" data-file="19-answers-a-program-can-use.html"><span class="n">19</span><span class="t">Answers a Program Can Use</span></a></li>
+<li class="sec" style="--hue:#9a7b1f"><span>Giving it work to do</span></li>
+<li style="--hue:#9a7b1f" data-t="giving the machine hands"><a href="/book/20-giving-the-machine-hands.html" data-file="20-giving-the-machine-hands.html"><span class="n">20</span><span class="t">Giving the Machine Hands</span></a></li>
+<li style="--hue:#9a7b1f" data-t="long windows, careful rooms"><a href="/book/21-long-windows-careful-rooms.html" data-file="21-long-windows-careful-rooms.html"><span class="n">21</span><span class="t">Long Windows, Careful Rooms</span></a></li>
+<li style="--hue:#9a7b1f" data-t="machines that think first"><a href="/book/22-machines-that-think-first.html" data-file="22-machines-that-think-first.html"><span class="n">22</span><span class="t">Machines That Think First</span></a></li>
+<li style="--hue:#9a7b1f" data-t="searching better"><a href="/book/23-searching-better.html" data-file="23-searching-better.html"><span class="n">23</span><span class="t">Searching Better</span></a></li>
+<li style="--hue:#9a7b1f" data-t="when the page gives orders"><a href="/book/24-when-the-page-gives-orders.html" data-file="24-when-the-page-gives-orders.html"><span class="n">24</span><span class="t">When the Page Gives Orders</span></a></li>
+<li style="--hue:#9a7b1f" data-t="grading a thousand answers"><a href="/book/25-grading-a-thousand-answers.html" data-file="25-grading-a-thousand-answers.html"><span class="n">25</span><span class="t">Grading a Thousand Answers</span></a></li>
+<li style="--hue:#9a7b1f" data-t="what it really costs"><a href="/book/26-what-it-really-costs.html" data-file="26-what-it-really-costs.html"><span class="n">26</span><span class="t">What It Really Costs</span></a></li>
+<li class="sec" style="--hue:#3f7a4a"><span>The messy real world</span></li>
+<li style="--hue:#3f7a4a" data-t="paper, photos and scans"><a href="/book/27-paper-photos-and-scans.html" data-file="27-paper-photos-and-scans.html"><span class="n">27</span><span class="t">Paper, Photos and Scans</span></a></li>
+<li style="--hue:#3f7a4a" class="here" data-t="what you may send"><a href="/book/28-what-you-may-send.html" aria-current="page" data-file="28-what-you-may-send.html"><span class="n">28</span><span class="t">What You May Send</span></a></li>
+<li style="--hue:#3f7a4a" data-t="rules, risk and responsibility"><a href="/book/29-rules-risk-and-responsibility.html" data-file="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Rules, Risk and Responsibility</span></a></li>
+<li style="--hue:#3f7a4a" data-t="the spec for a thing that varies"><a href="/book/30-the-spec-for-a-thing-that-varies.html" data-file="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">The Spec for a Thing That Varies</span></a></li>
+<li style="--hue:#3f7a4a" data-t="build, buy or teach it"><a href="/book/31-build-buy-or-teach-it.html" data-file="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Build, Buy or Teach It</span></a></li>
+<li style="--hue:#3f7a4a" data-t="designing for the wrong answer"><a href="/book/32-designing-for-the-wrong-answer.html" data-file="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Designing for the Wrong Answer</span></a></li>
+<li class="sec" style="--hue:#a2455e"><span>Under the hood</span></li>
+<li style="--hue:#a2455e" data-t="the plumbing under the magic"><a href="/book/33-the-plumbing-under-the-magic.html" data-file="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">The Plumbing Under the Magic</span></a></li>
+<li style="--hue:#a2455e" data-t="choosing a model on your own cases"><a href="/book/34-choosing-a-model-on-your-own-cases.html" data-file="34-choosing-a-model-on-your-own-cases.html"><span class="n">34</span><span class="t">Choosing a Model on Your Own Cases</span></a></li>
+<li style="--hue:#a2455e" data-t="retrieval that survives a review"><a href="/book/35-retrieval-that-survives-a-review.html" data-file="35-retrieval-that-survives-a-review.html"><span class="n">35</span><span class="t">Retrieval That Survives a Review</span></a></li>
+<li style="--hue:#a2455e" data-t="workflows, agents and the standard plug"><a href="/book/36-workflows-agents-and-the-standard-plug.html" data-file="36-workflows-agents-and-the-standard-plug.html"><span class="n">36</span><span class="t">Workflows, Agents and the Standard Plug</span></a></li>
+<li style="--hue:#a2455e" data-t="pages, pictures and voices"><a href="/book/37-pages-pictures-and-voices.html" data-file="37-pages-pictures-and-voices.html"><span class="n">37</span><span class="t">Pages, Pictures and Voices</span></a></li>
+<li style="--hue:#a2455e" data-t="gates, traces and rollbacks"><a href="/book/38-gates-traces-and-rollbacks.html" data-file="38-gates-traces-and-rollbacks.html"><span class="n">38</span><span class="t">Gates, Traces and Rollbacks</span></a></li>
+<li style="--hue:#a2455e" data-t="assuming the worst"><a href="/book/39-assuming-the-worst.html" data-file="39-assuming-the-worst.html"><span class="n">39</span><span class="t">Assuming the Worst</span></a></li>
+<li class="sec" style="--hue:#2d5d8f"><span>A real product, and a job</span></li>
+<li style="--hue:#2d5d8f" data-t="a product, not a demo"><a href="/book/40-a-product-not-a-demo.html" data-file="40-a-product-not-a-demo.html"><span class="n">40</span><span class="t">A Product, Not a Demo</span></a></li>
+<li style="--hue:#2d5d8f" data-t="shipping the whole thing"><a href="/book/41-shipping-the-whole-thing.html" data-file="41-shipping-the-whole-thing.html"><span class="n">41</span><span class="t">Shipping the Whole Thing</span></a></li>
+<li style="--hue:#2d5d8f" data-t="who pays, and how much"><a href="/book/42-who-pays-and-how-much.html" data-file="42-who-pays-and-how-much.html"><span class="n">42</span><span class="t">Who Pays, and How Much</span></a></li>
+<li style="--hue:#2d5d8f" data-t="how people find it and stay"><a href="/book/43-how-people-find-it-and-stay.html" data-file="43-how-people-find-it-and-stay.html"><span class="n">43</span><span class="t">How People Find It and Stay</span></a></li>
+<li style="--hue:#2d5d8f" data-t="counting what matters"><a href="/book/44-counting-what-matters.html" data-file="44-counting-what-matters.html"><span class="n">44</span><span class="t">Counting What Matters</span></a></li>
+<li style="--hue:#2d5d8f" data-t="the tools and the harness"><a href="/book/45-tools-and-harness.html" data-file="45-tools-and-harness.html"><span class="n">45</span><span class="t">The Tools and the Harness</span></a></li>
+<li style="--hue:#2d5d8f" data-t="real people, real use"><a href="/book/46-real-people-real-use.html" data-file="46-real-people-real-use.html"><span class="n">46</span><span class="t">Real People, Real Use</span></a></li>
+<li style="--hue:#2d5d8f" data-t="the work, and the job"><a href="/book/47-the-job.html" data-file="47-the-job.html"><span class="n">47</span><span class="t">The Work, and the Job</span></a></li>
+<li data-t="after the book"><a href="/book/afterword.html" data-file="afterword.html"><span class="n dot"></span><span class="t">After the Book</span></a></li>
+<li data-t="words, in plain language"><a href="/book/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Words, in plain language</span></a></li>
+</ol>
+<p class="nomatch" hidden>Nothing matches that.</p>
+</nav>
+<div class="scrim" id="scrim" hidden></div>
 <main id="text">
-<article class="chapter" data-file="28-what-you-may-send.html" data-title="What You May Send">
-<header class="chead"><p class="eyebrow">Chapter 28</p><h1>What You May Send</h1><p class="dek">Everything so far assumed the text could be sent. Lakshmi puts three documents on a table, asks three questions in a fixed order, and a vendor's terms of service turn out to say things nobody had read.</p><p class="meta">7 minute read</p></header>
+<article class="chapter" data-file="28-what-you-may-send.html" data-title="What You May Send" data-n="28">
+<header class="chead">
+<p class="eyebrow"><span class="num">28</span><span>Chapter 28 <i>·</i> The messy real world</span></p>
+<h1>What You May Send</h1><p class="dek">Everything so far assumed that the text could be sent to a vendor. Three documents and three questions, asked in a fixed order, settle whether it can, and a vendor's terms of service turn out to say things nobody had read. The chapter introduces retention and data residency.</p>
+<p class="meta"><span>7 min read</span><span>2 new words</span></p>
+</header>
+<aside class="goals"><h2>In this chapter</h2><ul><li>apply three questions, in order, to decide whether text may be sent to a vendor</li><li>read a vendor's real terms for retention, use of data to improve the service, and data residency</li><li>write a rule that new staff can follow, with a route for uncertain cases</li><li>explain why the choice of what goes into a retrieval store is a decision about every later question</li></ul></aside>
 <div class="prose">
-<p>Lakshmi had three documents on her desk, squared off with the edge, and Anaya understood at once that this was a test and that she was not yet sure of the subject.</p>
-<p>&quot;One of these,&quot; said Lakshmi, &quot;I would send to anyone. One I would never send. One I do not know about. I would like you to tell me which is which, and why.&quot;</p>
-<p>It was the third Monday in July. The glass of water was where it always was. Anaya turned the documents over one at a time.</p>
-<p>The first was the <em>Late Payment and Refund Policy</em>, twelve pages that had spent a day on the floor of the glass room in pieces. It was published on Sahaj's own website. Anyone could read it.</p>
-<p>The second was a spreadsheet of loan applications, with names, addresses, identity numbers and monthly incomes in neat columns.</p>
-<p>The third was a collection of fifty support chats, exported for analysis, which had been cleaned by hand. Or so the cover note said.</p>
-<p>&quot;The first is fine,&quot; said Anaya. &quot;The second is not. The third I'm not sure about.&quot;</p>
-<p>&quot;Why is the second not fine?&quot;</p>
-<p>&quot;It's full of people.&quot;</p>
-<p>&quot;Good. And the third?&quot;</p>
-<p>&quot;The cover note says it was cleaned. I have counted what gets missed when we clean by hand.&quot; She hesitated. &quot;I don't trust it.&quot;</p>
-<p>&quot;Neither do I,&quot; said Lakshmi. &quot;That is the useful one. Let us do it properly.&quot;</p>
-<h2>Three questions, in order</h2>
-<p>Every chapter so far had assumed that the text could be sent to the model: to the outside company that wrote the answers, or the one that made the maps of meaning, or the one that stored the logs. For most features, said Lakshmi, that assumption is either perfectly fine or a serious problem, and which of the two is not a technical matter. It is a matter of three questions.</p>
-<p>She said it was not a legal lecture. She was not going to teach Anaya the law. She only wanted her to know which three questions to ask, and who owned the answer to each.</p>
-<p>The first question: <em>Does it identify a person?</em> Names, contact details, case numbers, anything that points to someone. If so, rules apply, wherever you are, and they are not optional. That settled the spreadsheet in one line.</p>
-<p>The second: <em>Whose confidential information is it?</em> If it is yours, sending it is a business decision, and you can make it. If it belongs to someone else, a customer, a supplier, a partner, it is a question of contract, and the answer may be no however careful the vendor is. Sahaj's agreements with the banks it lent through, for example, said things about where certain data could go, and neither Anaya nor Imran had read them.</p>
-<p>The third: <em>What does the vendor do with it?</em> How long do they keep it, do they learn from it, and in which country is it stored? She said the product manager adds the most value on the third question, because engineers tend to assume it is settled, and vendors describe it in reassuring language.</p>
-<p>&quot;Ask them in that order,&quot; said Lakshmi. &quot;It settles most cases with the least effort.&quot;</p>
-<h2>The ten-minute reading</h2>
-<p>She asked Anaya to do something that would take ten minutes, and that nobody at Sahaj, so far as she knew, had done.</p>
-<p>&quot;Read the outside company's terms. The real ones. Not the website.&quot;</p>
-<p>Anaya found them that afternoon. They were long and unremarkable. In a page and a half, after the part about acceptable use, were three things that she wrote down exactly.</p>
-<p><em>Requests may be retained for up to thirty days for safety monitoring.</em> That was <em><a class="term" href="glossary.html#t-retention" title="how long a provider keeps what you send it, which may be longer than the time it takes to answer">retention</a></em>: how long a provider keeps what you send it, which can be much longer than it takes to answer you.</p>
-<p><em>Requests may be used to improve the service unless the customer has agreed otherwise in writing.</em> Sahaj had not agreed otherwise. Nobody had been asked.</p>
-<p><em>Requests are processed in data centres in the following regions</em>, and a list, none of which was India. That was <em><a class="term" href="glossary.html#t-data-residency" title="the country or region where a provider stores and processes what you send it">data residency</a></em>: the country where what you send is stored and handled.</p>
-<p>She read the lines twice. All three of them could change with the plan you bought, and, she suspected, Sahaj had bought the cheapest. She took them to Lakshmi, and Lakshmi read them standing up, without sitting down.</p>
-<p>&quot;This is what the customer's Aadhaar number has been subject to since March,&quot; she said.</p>
-<p>&quot;I know.&quot;</p>
-<p>&quot;It isn't your fault.&quot;</p>
-<p>&quot;No. But I should have read it in March.&quot;</p>
-<p>&quot;Yes,&quot; said Lakshmi, and handed her back the page. &quot;You'll be the first person here who has.&quot;</p>
-<h2>The third document</h2>
-<p>They went back to the three documents. The policy passed all three questions at once: no person, public, nothing confidential. The spreadsheet failed the first.</p>
-<p>The third, the chats, was the interesting case. It failed no question outright, and it did not pass. It had been cleaned by hand, and she knew how well hand cleaning worked: some of it, some of the time. The honest answer was that the chats might contain people, might contain a bank's confidential information, and would go to a vendor with the terms on the page. It was not safe to send. It was not safe to send <em>yet</em>.</p>
-<p>&quot;What is the rule?&quot; said Lakshmi. &quot;The one a new joiner would follow, without asking you.&quot;</p>
-<p>Anaya had thought about it on the way. A rule that people can follow has a particular shape. It settles the common cases in so many words. It names a category that is never sent. And it gives a specific route for the uncertain ones, because a rule that says <em>use your discretion</em> fails. A person who is unsure and in a hurry reads that as permission.</p>
-<p>She wrote it on a sheet of paper.</p>
-<p><em>You may send: Sahaj's published help pages and policies.</em> <em>Never send: identity numbers, bank details, or anything from a loan application.</em> <em>If it came from a customer: it goes through the guard first.</em> <em>If you are not sure: ask Lakshmi, in the data channel, and wait for the answer.</em></p>
-<p>Four lines. Lakshmi read them twice and changed one word.</p>
-<p>&quot;That's a rule I'd put on the wall,&quot; she said.</p>
-<h2>What retrieval sends</h2>
-<p>There was a last thing, which Imran caught later in the week and which felt, afterwards, like something that should have been obvious.</p>
-<p>The chatbot's store of documents had been chosen with care. Only the policies and help pages went in. But it had been built to find the few pieces relevant to a question and send them with every request to the outside company. Whatever was in the store could be found, and whatever was found was sent.</p>
-<p>&quot;Our decision about the store,&quot; said Imran, &quot;is a decision about every question that will ever be asked.&quot;</p>
-<p>It was a point she had not understood from the diagrams. A choice made once, when someone dragged a folder into the system, turned out to be a choice repeated hundreds of thousands of times, at the speed of the chat. If the store held something that should not travel, it would travel. The labels on each piece, the work of Monday in June, gave a way to stop it. But the choice about what to put in at all was still the first one, and it belonged to a person.</p>
-<p>Anaya looked at the diagram on the wall, with Lakshmi's six red circles still faintly visible on the surface where the board had been wiped.</p>
-<p>&quot;The guard enforces this rule,&quot; she said slowly. &quot;The rule on the paper says never send an identity number. The guard is what stops anybody from doing it by accident.&quot;</p>
-<p>&quot;A rule that depends on people remembering it,&quot; said Lakshmi, &quot;is only a wish.&quot;</p>
-<p>She added a line to the specification about where the careful judge would run, and wrote beside it the answer the rule had already given. If the sentence it had to read might contain an identity number, it could not be read by anyone outside the building, unless the terms said otherwise in writing, which at present they did not. It would have to be a model that Sahaj ran itself. There were such models, she understood, and the next chapters would show her how that worked.</p>
-<h2>What to carry forward</h2>
-<p>Whether a piece of text may be sent to a vendor is settled by three questions, asked in this order: does it identify a person, whose confidential information is it, and what does the vendor do with it. The third is where a product manager adds the most, because the answer is in the vendor's real terms, which say how long they keep what you send (retention), whether they learn from it, and where it is stored (data residency), and all of these can change with the plan you buy. A rule people can follow settles the common cases plainly, names what is never sent, and gives a specific route for the doubtful ones. Retrieval sends whatever it finds, so the decision about what goes into a store is a decision about every question asked of it. And a rule that depends on people remembering it is only a wish; a tool that enforces it is a control.</p>
+<p>On the third Monday of July Lakshmi Iyer placed three documents on her desk, squared off at the edge, and told Anaya that one of them she would send to anyone, one she would never send, and one she did not know about. She asked Anaya to say which was which, and why. Anaya understood that this was a test, and that she was not sure of the subject.</p>
+<p>The first document was the Late Payment and Refund Policy, the twelve pages that had spent a day on the glass-room floor in pieces. It was published on Sahaj's website and anyone could read it. The second was a spreadsheet of loan applications with names, addresses, identity numbers and monthly incomes in columns. The third was a collection of fifty support chats, exported for analysis and cleaned by hand, or so the cover note said.</p>
+<h2 id="s-28-1"><span class="sn">28.1</span>The case: three documents</h2>
+<p>Anaya said the first was fine and the second was not. Lakshmi asked why. &quot;It's full of people,&quot; Anaya said. About the third she was unsure. She had measured what hand-cleaning misses, and she did not trust the cover note. Lakshmi agreed, and said that the third was the useful one. This chapter does it properly.</p>
+<h2 id="s-28-2"><span class="sn">28.2</span>Three questions, in order</h2>
+<p>Every earlier chapter assumed that text could be sent to the model, which in practice meant the outside company that wrote the answers, or the one that made the maps of meaning, or the one that stored the logs. For most features, Lakshmi said, that assumption is either perfectly fine or a serious problem, and which of the two is not a technical matter. It comes down to three questions. She was not giving a legal lecture, and she did not intend to teach Anaya the law. She wanted Anaya to know which questions to ask and who owned the answer to each.</p>
+<figure class="tblfig"><figcaption><b>Table 28.1.</b> Three questions before sending text to a vendor</figcaption><div class="tblwrap"><table><thead><tr><th>Order</th><th>Question</th><th>Why it matters</th><th>Who owns the answer</th></tr></thead><tbody><tr><td>1</td><td>Does it identify a person?</td><td>Names, contact details, case numbers, anything that points to someone. If so, rules apply wherever you are, and they are not optional</td><td>Compliance</td></tr><tr><td>2</td><td>Whose confidential information is it?</td><td>If it is yours, sending it is a business decision. If it belongs to a customer, supplier or partner, it is a question of contract, and the answer may be no however careful the vendor is. Sahaj's agreements with the banks it lent through said things about where certain data could go, and neither Anaya nor Imran had read them</td><td>The business, with legal advice</td></tr><tr><td>3</td><td>What does the vendor do with it?</td><td>How long they keep it, whether they learn from it and in which country it is stored</td><td>The product manager, who adds the most value here, because engineers tend to assume it is settled and vendors describe it in reassuring language</td></tr></tbody></table></div></figure>
+<p>Asking in that order settles most cases with the least effort. The first question disposed of the spreadsheet in one line.</p>
+<h2 id="s-28-3"><span class="sn">28.3</span>The ten-minute reading</h2>
+<p>Lakshmi asked Anaya to do something that would take ten minutes and that nobody at Sahaj had, as far as she knew, done: read the outside company's real terms, and not the website. Anaya found them that afternoon. They were long and unremarkable. In a page and a half, after the section on acceptable use, were three things that she wrote down exactly.</p>
+<figure class="tblfig"><figcaption><b>Table 28.2.</b> Three lines in the vendor's terms</figcaption><div class="tblwrap"><table><thead><tr><th>What the terms said</th><th>What it means</th></tr></thead><tbody><tr><td>&quot;Requests may be retained for up to thirty days for safety monitoring.&quot;</td><td>This is <em>retention</em>: how long a provider keeps what is sent to it, which can be much longer than it takes to answer</td></tr><tr><td>&quot;Requests may be used to improve the service unless the customer has agreed otherwise in writing.&quot;</td><td>Sahaj had not agreed otherwise. Nobody had been asked</td></tr><tr><td>&quot;Requests are processed in data centres in the following regions&quot;, followed by a list, none of which was India</td><td>This is <em>data residency</em>: the country where what is sent is stored and handled</td></tr></tbody></table></div></figure>
+<p>All three could change with the plan purchased, and Anaya suspected that Sahaj had bought the cheapest. She took the lines to Lakshmi, who read them standing up. &quot;This is what the customer's Aadhaar number has been subject to since March,&quot; she said. Anaya said she knew. Lakshmi said it was not her fault. Anaya said that she should still have read it in March. Lakshmi agreed, and added that Anaya would be the first person at the company who had.</p>
+<h2 id="s-28-4"><span class="sn">28.4</span>The third document</h2>
+<p>The three documents were then reconsidered. The policy passed all three questions: no person, public, nothing confidential. The spreadsheet failed the first.</p>
+<p>The chats were the interesting case. They failed no question outright and did not pass. They had been cleaned by hand, and Anaya knew how well hand cleaning worked, which was some of it, some of the time. The honest answer was that the chats might contain people, might contain a bank's confidential information, and would go to a vendor with the terms on the page. They were not safe to send, or at least not yet.</p>
+<p>Lakshmi asked for the rule that a new joiner would follow without asking. Anaya had considered the shape on the way. A rule that people can follow settles the common cases in so many words, names a category that is never sent, and gives a specific route for uncertain ones. A rule that says &quot;use your discretion&quot; fails, because a person who is unsure and in a hurry reads it as permission.</p>
+<aside class="box box-example"><p class="boxlabel">Worked example</p><h4>The rule Anaya wrote</h4>
+<p>You may send: Sahaj's published help pages and policies. Never send: identity numbers, bank details, or anything from a loan application. If it came from a customer: it goes through the guard first. If you are not sure: ask Lakshmi, in the data channel, and wait for the answer.</p>
+</aside>
+<p>Lakshmi read the four lines twice and changed one word. She said it was a rule she would put on the wall.</p>
+<h2 id="s-28-5"><span class="sn">28.5</span>What retrieval sends</h2>
+<p>Imran noticed one more thing later in the week, which seemed afterwards to be obvious. The chatbot's store of documents had been chosen with care, and only the policies and help pages went in. But the chatbot was built to find the few pieces relevant to a question and to send them with every request to the outside company. Whatever was in the store could be found, and whatever was found was sent. &quot;Our decision about the store,&quot; said Imran, &quot;is a decision about every question that will ever be asked.&quot;</p>
+<p>Anaya had not understood this from the diagrams. A choice made once, when someone dragged a folder into the system, was a choice repeated hundreds of thousands of times at the speed of the chat. If the store held something that should not travel, it would travel. The labels on each piece, which were the work of June, offered a way to stop it, but the choice of what to put in at all was still the first one and belonged to a person.</p>
+<aside class="box box-key"><p class="boxlabel">Key idea</p><h4>A rule that depends on memory is a wish</h4>
+<p>The guard enforces the written rule. The rule says never to send an identity number, and the guard is what stops anyone from doing so by accident. Lakshmi said that a rule that depends on people remembering it is only a wish.</p>
+</aside>
+<p>Anaya added a line to the specification about where the careful judge would run, with the answer the rule had already given. If the sentence it had to read might contain an identity number, it could not be read by anyone outside the building, unless the terms said otherwise in writing, which at present they did not. It would have to be a model that Sahaj ran itself. There were such models, she understood, and later chapters would show how that worked.</p>
+<aside class="carry"><h2>Chapter summary</h2>
+<p>Whether a piece of text may be sent to a vendor is settled by three questions, asked in order: does it identify a person, whose confidential information is it, and what does the vendor do with it.</p>
+<ul><li>The third is where a product manager adds the most. The answer is in the vendor's real terms: how long they keep what is sent (<a class="term" href="/book/glossary.html#t-retention" title="how long a provider keeps what you send it, which may be longer than the time it takes to answer">retention</a>), whether they learn from it, and where it is stored (<a class="term" href="/book/glossary.html#t-data-residency" title="the country or region where a provider stores and processes what you send it">data residency</a>). All can change with the plan purchased.</li><li>A rule people can follow settles the common cases plainly, names what is never sent and gives a specific route for doubtful ones.</li><li>Retrieval sends whatever it finds, so the decision about what goes into a store is a decision about every question asked of it.</li><li>A rule that depends on people remembering it is only a wish. A tool that enforces it is a control.</li></ul>
+</aside>
 </div>
-<aside class="wordsbox" aria-label="Words from this chapter"><h2>Words from this chapter</h2><dl><div><dt id="w-retention">retention</dt><dd>how long a provider keeps what you send it, which may be longer than the time it takes to answer</dd></div><div><dt id="w-data-residency">data residency</dt><dd>the country or region where a provider stores and processes what you send it</dd></div></dl></aside>
-<p class="inapp">In the course app: <a href="../#/ch/ch165">Data handling: what you are allowed to send</a></p>
-<nav class="pager" aria-label="Previous and next"><a class="prev" href="27-paper-photos-and-scans.html"><span class="dir">← Before</span><span class="nm">Chapter 27 · Paper, Photos and Scans</span></a><a class="next" href="29-rules-risk-and-responsibility.html"><span class="dir">Next →</span><span class="nm">Chapter 29 · Rules, Risk and Responsibility</span></a></nav>
+<aside class="wordsbox" aria-label="Key terms"><h2>Key terms</h2><p class="sub">Plain meanings, in the order you meet them.</p><dl><div><dt id="w-retention">retention</dt><dd>how long a provider keeps what you send it, which may be longer than the time it takes to answer</dd></div><div><dt id="w-data-residency">data residency</dt><dd>the country or region where a provider stores and processes what you send it</dd></div></dl></aside>
+<aside class="inapp"><span class="lead">The same ideas, with the work to do, in the course app</span><span class="chips"><a href="/#/ch/ch165">Data handling: what you are allowed to send<span aria-hidden="true"> →</span></a></span></aside>
+<nav class="pager" aria-label="Previous and next chapter"><a class="prev" href="/book/27-paper-photos-and-scans.html" rel="prev"><span class="dir">← Before</span><span class="nm"><b>27</b>Paper, Photos and Scans</span></a><a class="next" href="/book/29-rules-risk-and-responsibility.html" rel="next"><span class="dir">Next →</span><span class="nm"><b>29</b>Rules, Risk and Responsibility</span></a></nav>
 </article>
 </main>
 </div>
-<script src="reader.js"></script>
+<script src="/book/reader.js" defer></script>
 </body>
 </html>

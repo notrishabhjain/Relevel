@@ -1,7 +1,12 @@
 ---
 title: Four Questions Before Building
-summary: An engineer asks the question every idea should survive, and a feature nobody noticed teaches the team where products really fail.
+summary: An engineer tests a promising idea against the four ways products fail, using a feature that nobody found as the example. The chapter introduces the three stages of making a product, the four product risks, and the difference between selling to people and selling to companies.
 course: a2
+goals:
+  - name the three stages every product passes through and say which one usually fails first
+  - test an idea against the four product risks
+  - distinguish the person who pays, the person who uses and the person who can say no
+  - treat a claim from an AI assistant about your own customers as a draft that needs evidence
 terms:
   - discovery | the part of making a product where you find out whether a problem is real and worth solving | 
   - delivery | the part of making a product where you build it well: the plan, the specification, the code, the quality | 
@@ -14,96 +19,93 @@ terms:
   - viability | whether the product works for the business: its revenue, its costs, the law and its reputation | 
 ---
 
-Imran read the printout the way he read everything, from the bottom up, with a pencil held like a cigarette.
+The morning after her evening with the chat export, Anaya showed Imran Qureshi the printout: thirty-seven yellow flags, one for each conversation that contained personal details. Imran, the lead engineer who had built most of the chatbot's infrastructure, read them in silence, one at a time. One flag marked a customer who had sent a photograph of a cheque as an attachment. "I wrote the part that handles attachments," he said, "and I never considered what people would put in them."
 
-The conference room at Sahaj was a glass box with a whiteboard nobody trusted, because it still carried the ghost of a diagram from some meeting two years ago. Anaya had put the printout on the table, along with thirty-seven yellow flags, one per conversation. Imran's tea, which he had promised and brought, went cold beside his elbow while he worked through the flags one by one, saying nothing.
+Anaya asked him whether building a tool to fix the problem was a good idea, and asked him to say why it might not be. His answer began with a feature the company had built eighteen months earlier, which no one had found. This chapter uses that feature to set out how products are made, how they fail, and what questions an idea should survive before any work begins.
 
-"It's real," he said at last.
+## The case: the reminder nobody found
 
-"I know it's real. I counted."
+In the previous year Sahaj noticed that customers were forgetting to pay their bills and being charged late fees, which the customers disliked and the company did not particularly want to collect. A small team built a reminder that was sent two days before a bill fell due. The work was careful. The wording was tested with a dozen customers, the messages arrived on time, and Imran personally checked that none were sent in the middle of the night.
 
-"No, I mean it's real." He tapped a flag. "This one is a person who sent a photo of a cheque. Nobody asked for a cheque. They just sent it. I wrote the part of the chatbot that handles attachments and I never thought about what people would put in them." He looked up. "So what are you asking me?"
+Three months after launch, fewer than two customers in a hundred had switched the reminder on. The switch was in the settings, three screens down, and almost nobody went to the settings.
 
-Anaya had practised the answer on the walk in. It had sounded better on the walk. "I'm asking whether it is a good idea to build something to fix it. And I would like you to tell me why it is not."
+The team had asked whether the reminder was good, and it was. It had not asked whether anyone knew the reminder existed. Anaya wrote down the lesson in a sentence that she reused later: a feature nobody finds has the same effect as a feature nobody built.
 
-That made him smile, the first time that morning. "Good. Because I've watched this company build four things nobody used. I'd like to be sure about the fifth."
+## Three stages of making a product
 
-## The reminder nobody found
+The reminder passed through the same three stages as every product, whether or not its makers think of them separately.
 
-He told her about the reminders.
+::: key The three stages
+*Discovery* is finding out whether a problem is real, who has it and how badly. *Delivery* is building the solution well: the plan, the written specification, the code and the checking. *Distribution* is getting people to find the product, try it and keep using it.
+:::
 
-Eighteen months earlier, Sahaj had decided that customers were forgetting to pay their bills. They were, and it was costing them late fees, which the customers hated and the company mostly did not want to charge. A small team had built a feature that would send a reminder two days before a bill was due. It had been carefully done. The wording had been tested on a dozen customers. The messages arrived on time. Imran had personally checked that they did not fire in the middle of the night.
+The reminder succeeded at the first two stages and failed at the third, and the failure cancelled the rest of the work. A product usually fails at its weakest stage, and teams tend to be strongest at the stage they enjoy. Engineers favour delivery. Researchers favour discovery. Distribution is neglected by both, although it is the stage that produces the evidence which feeds back into discovery: who stayed, who left, and why.
 
-Three months after launch, fewer than two in a hundred customers had turned it on.
+## The four product risks
 
-"We never got the question right," he said. "We asked, 'is the reminder good?' and it was. What we should have asked was 'does anyone know it exists?'. The switch was in settings, three screens down. Nobody ever went to settings."
+Imran proposed a test for the idea in the printout. He wrote four words on the whiteboard: *value*, *usability*, *feasibility* and *viability*. Each names a *product risk*, a separate way in which a product can fail, and any one of them is sufficient to sink it.
 
-Anaya wrote the sentence down because it seemed to be the sort of thing she would need again. *A feature nobody finds has the same effect as a feature nobody built.*
+Table: The four product risks, with Anaya's first assessment of the privacy tool
+| Risk | The question | Her assessment |
+| --- | --- | --- |
+| Value | Would anyone choose this over what they do now? | Probably. Today most staff do nothing, and doing nothing is a competitor that is hard to displace |
+| *Usability* | Can the intended users work out how to use it without help? | Unclear. Customers would never see the tool. Support staff would see its effects, and engineers would have to connect it |
+| *Feasibility* | Can the team build it with its time, skills, data and money? | Partly. Twelve-digit numbers in groups of four, yes. Hindi names typed in English letters, no idea |
+| *Viability* | Does it work for the business: revenue, cost, the law, reputation? | Unknown. Nobody had yet asked what it would cost per use, or what the head of compliance would say |
 
-What Imran had described was a loop with three parts, and every product goes around it, whether the people making it have noticed or not. The first part is *discovery*: finding out whether the problem is real, for whom, and how badly. The second is *delivery*: building the thing well, which means the plan, the written specification, the code and the checking. The third is *distribution*: getting people to find it, try it and keep coming back. The reminder had been a triumph of discovery and delivery and a failure of distribution, and the failure had cancelled the rest. Products usually die at the weakest of the three. The loop matters because what you learn at the third stage, who stays and who leaves, feeds the first stage again.
+The words in the table carry specific meanings. *Usability* is whether people can work out how to use something without help. *Feasibility* is whether the team can build it with the time, skills, data and money it actually has. *Viability* is whether the product works for the business that would offer it.
 
-## Four ways to fail
+Two features of the table are worth noticing. First, usability for this tool does not mean buttons. The users would be engineers connecting it to other software, so the usability question became: can an engineer who has never met Anaya connect this on a Friday afternoon without messaging her? Second, "I have no idea", written in the feasibility row, is useful. It marks the most expensive kind of unknown, and writing it down early means somebody will test it early.
 
-"Right," said Imran. "Let's find out which of the four this one dies of."
+::: watch Teams check the risk they like
+Many failed features passed the test the team was focused on and failed the one it skipped. A review that considers only one risk will usually conclude that the idea is sound.
+:::
 
-He turned to the whiteboard, found the one pen that worked, and wrote four words across the top. Anaya had seen the same four words in a book, but she had never seen anyone use them as a weapon.
+### Two risks that are specific to text-reading software
 
-*Value. Usability. Feasibility. Viability.*
+Software that reads and writes text adds a question to feasibility and another to viability.
 
-"Pick one," he said, "and be hard on yourself."
+The feasibility question is whether the software is right often enough. A tool that is right four times in five is entirely acceptable for suggesting titles for a birthday card. It is unacceptable in a task where a single mistake could cost a customer their savings. The same accuracy may be good enough for one task and unusable for another, and nothing in the tool says which.
 
-She started with value, because it came first and because she was nervous of the others. Would anyone choose to use this over whatever they did now? Today, nobody did anything. That was the trouble. Farah's team sometimes spotted a number in a chat and blanked it by hand in the export, when they remembered, and mostly they did not remember. "Nothing" is a competitor too, and a surprisingly tough one. People will put up with a lot before they change a habit. But Anaya had thirty-seven flags and Imran's own reaction to go on, and she was fairly sure value would hold.
+The viability question concerns cost. An ordinary feature costs almost nothing each time a person clicks it. A feature that reads and writes text costs real money on every use. Viability therefore depends on how often the feature is used and on what the customer can be charged for each use.
 
-Usability was stranger. "Who would be using it?" Imran asked. Not the customers; they would never see it. Farah's team would see its effects, a number blurred here and there, a note saying something had been hidden. Engineers would have to connect it. The honest answer was that it would have almost no screen of its own, which meant that the people who used it would be the people who built things around it, and usability for them meant something quite different from buttons. She wrote: *Can an engineer who has never met me wire this in on a Friday afternoon without messaging me?*
+## Who pays, who uses, who can say no
 
-Feasibility was the one she had been avoiding. "Can we actually build it? With what time, what skills, what data, what money?" She stopped. "Twelve digits in groups of four, yes. I think I could write that myself. A name in Hindi typed in English letters? I have no idea."
+Sahaj sells to individuals: a woman paying an electricity bill, a man applying for a loan. This is *B2C*, business to consumer. The person who pays is the person who uses the product, and the decision is made in minutes, mostly on whether the product feels easy.
 
-"That is a very useful sentence," said Imran. "'I have no idea.' Write it down. It is the most expensive kind of idea."
+If the privacy tool succeeded, other companies with chat windows would want it: lenders, insurers, clinics, schools. Selling to them would be *B2B*, business to business, and the structure of the sale differs.
 
-Viability came last, and it came with a pencil tap on the table. "Who pays? What does it cost every time it runs? What does Lakshmi say?"
+Table: How selling to people differs from selling to companies
+| | B2C | B2B |
+| --- | --- | --- |
+| Who pays | The user | A company, often through a budget the user does not control |
+| Who decides | The user, quickly | Several people, over weeks or months |
+| Who can block the sale | Nobody but the user | Security or legal staff, who owe the user nothing |
+| What a large customer does | Nothing special | Can reorder the supplier's priorities by demanding a feature before it will sign |
 
-The four are called, in the trade, *product risks*. Any one of them can sink a product on its own, and teams are good at checking the one they happen to like. Many failed features passed the test the team was focused on and failed the one they skipped. For a machine that reads and writes text, feasibility carries an extra question that ordinary software does not have: is it right often enough? A tool that is right four times in five is wonderful for suggesting titles for a birthday card. It is a disaster for the one job in the building where being wrong once could cost a customer their savings. The same accuracy can be good enough for one task and unusable for another, and nothing in the tool tells you which.
+The practical rule is to ask three questions about every customer: who pays, who uses it, and who can say no. For Sahaj the answers were that the company pays, support staff and engineers use the tool, and the head of compliance, Lakshmi Iyer, can refuse. Anaya realised that she had spent half an hour designing a product around the one person who could stop it without having asked her opinion.
 
-There was a second cost, too, which Anaya had half-noticed and now saw clearly. An ordinary feature costs almost nothing each time someone clicks it. A feature that reads and writes text costs real money every single time it runs. So viability depends not only on whether people will use it, but on how often, and on what they can be charged.
+## The assistant's confident paragraphs
 
-## Who pays, who uses, who says no
+On the way back to her desk Anaya did something she had been doing for months. She asked an AI assistant for a short overview of why people in India share identity numbers in chats. It returned four fluent paragraphs. One said that customers overshared because of "low digital literacy and high trust in official-sounding services". Another said the tendency was "especially pronounced among first-time loan applicants".
 
-"One more thing," Imran said, "because it changes everything and nobody tells you."
+She asked herself where the assistant could have learned this. It had never seen Farah's transcripts. The paragraphs read like the contents of a thoughtful dinner-table remark, plausible in the way an averaged opinion is plausible. They were not necessarily wrong, but they were unchecked.
 
-He drew two boxes. In the first he wrote *customers pay Sahaj*. In the second, *companies pay a supplier*.
+::: key A draft is not a finding
+An assistant can draft, summarise, suggest questions and criticise a plan. It cannot sit across from your customers. What it says about your market is a blend of what it has read, and it is only a hypothesis about your particular users until something real has checked it.
+:::
 
-Sahaj, he pointed out, sold to individuals: a woman paying an electricity bill, a man applying for a loan. That is *B2C*, business to consumer. The person who pays is the person who uses the app, and they decide in minutes, mostly on whether it feels easy. If Anaya built a privacy tool only for Sahaj's own chatbot, the "customer" would be an internal team, and the sale would be a conversation in a corridor.
+Anaya added a second working rule beneath the first: every claim in her notes must trace to evidence or be marked as an assumption. Beside the sentence about first-time applicants she wrote: "Unsupported. What would settle it: whether the 37 are mostly first-time applicants. Farah can tell me in ten minutes." Checking usually costs no more than a short conversation.
 
-But Anaya had already been thinking beyond Sahaj, and he could see it on her face. If the tool worked, other companies would want it: lenders, insurers, clinics, schools, anyone whose chat window collected more than it meant to. Selling to those would be *B2B*, business to business, and B2B is a different game. The person who loves the demo is rarely the person who signs. Someone controls the budget, and often it is not the user. Someone in security or legal can block the sale and owes the user nothing. A single large customer can reorder a company's priorities, because if their security team needs something before they will sign, it moves to the top, whether or not one user ever asked.
+## What remained unknown
 
-"So for every customer," he said, "ask three questions. Who pays? Who uses it? Who can say no?"
+By the end of the afternoon the whiteboard held the four risks and, beneath them, a list of questions nobody could yet answer. Could the tool find names in Hindi typed in English letters? What would Lakshmi say? Who actually typed these numbers, and why? The last question was not technical. Anaya had thirty-seven conversations and no idea what the person typing the thirty-seventh was thinking. She also knew that she tended to ask questions in a way that hoped for a yes. The next chapter is about repairing that habit.
 
-Anaya looked at the whiteboard. For Sahaj the answers were: the company pays, Farah's team and the engineers use it, and Lakshmi can say no. She had not spoken to Lakshmi Iyer yet. She suspected she had, for the last half hour, been designing a product around the one person in the building who had the power to stop it, without once having asked her what she thought.
+## Summary
 
-## What the assistant wrote
+Every product passes through discovery, delivery and distribution, and tends to fail at the weakest of them. The reminder feature at Sahaj was well built and untested at the third stage, which made it useless.
 
-On the way back to her desk, Anaya did something she had been doing for months and was beginning to feel uneasy about. She opened an AI assistant, described the problem, and asked it to write her a short overview of why people in India share identity numbers in chats.
-
-It wrote four confident paragraphs. They were very good paragraphs. One of them said that customers overshared because of "low digital literacy and high trust in official-sounding services", and a second explained how the tendency "was especially pronounced among first-time loan applicants".
-
-She read it twice and thought: *where does it know that from?*
-
-It could not have been from Farah's transcripts, which it had never seen. It was, she realised, something a thoughtful person might say at a dinner party. It sounded right in precisely the way an averaged opinion sounds right. It was not wrong, necessarily. It was unchecked. An assistant can draft, summarise, suggest questions and criticise a plan, all of which are useful, but it cannot sit across from your customers, and what it says about your market is a blend of what it has read, not a fact about your people.
-
-So she made herself a second rule, to sit beneath the first. Every claim in her notes would trace to evidence, or be marked as an assumption. She went back to the paragraph, found the sentence about first-time applicants, and wrote beside it: *Unsupported. What would settle it: whether the 37 are mostly first-time applicants. Farah can tell me in ten minutes.* It cost nothing to check. Most of the time, the cost of checking is a short conversation.
-
-## Where this leaves her
-
-By the end of the afternoon the whiteboard looked like the work of a more organised person than either of them. Four words, four short paragraphs, and underneath them a list of things nobody knew:
-
-*Can we find names in Hindi typed in English letters? What does Lakshmi say? Who actually types these numbers, and why?*
-
-That last question was not about technology at all. She had thirty-seven conversations and no idea what was going through the head of the person who typed the thirty-seventh. She had Imran's reaction and her own count, and neither of those was a customer.
-
-"You can't answer that from here," Imran said, capping the pen. "You'll have to go and ask them."
-
-Anaya nodded. She had interviewed people before, and she knew her own weakness: she asked questions the way people do when they are hoping the answer will be yes. That was going to be a problem.
-
-## What to carry forward
-
-Every product goes round three stages: finding out whether the problem is real, building the thing well, and getting people to find and keep using it. It tends to die at the weakest. Before building, an idea is worth testing against four risks: that nobody wants it, that nobody can use it, that it cannot be built, and that it cannot pay for itself. Selling to consumers is a different job from selling to companies, because in the second the person who pays, the person who uses and the person who can say no are often three different people. And whatever an assistant tells you about your own customers is a draft, not a finding, until something real has checked it.
+- An idea is tested against four product risks: value, usability, feasibility and viability. Any one can sink it, and teams usually check only the one they like.
+- For software that reads and writes text, feasibility includes the question of whether it is right often enough for the task, and viability includes what each use costs.
+- B2C and B2B differ in who pays, who decides and who can block. For each customer ask who pays, who uses and who can say no.
+- A claim from an AI assistant about your own customers is a draft until evidence checks it, and every claim in a set of notes should trace to evidence or be marked as an assumption.

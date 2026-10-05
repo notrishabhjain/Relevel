@@ -1,7 +1,12 @@
 ---
 title: What the Machine Is
-summary: On a Sunday call a product manager admits she cannot say what "powered by AI" means, and a retired linguist and an engineer between them build the answer, one plain idea at a time.
+summary: A product manager who has said "powered by AI" for two years tries to explain what it means and cannot. The chapter builds the answer from the ground up: language models, tokens, the context window, attention, how a model is made and used, and the two kinds of AI.
 course: a8 ch05
+goals:
+  - explain what a language model does, and why it is good at what is likely and not at what is true
+  - count text in tokens, and see why the count differs by language and tool
+  - describe the context window and what happens to text that does not fit
+  - distinguish making a model from using it, and predictive AI from generative AI
 terms:
   - language model | a program that has learned, from a vast amount of writing, to predict what text comes next; it is what sits behind a chatbot | model, models, LLM, LLMs, large language model
   - generative AI | AI that produces new content, such as text, images or code, instead of only giving a label or a number | 
@@ -16,94 +21,101 @@ terms:
   - attention | the part of a transformer that works out, for each token, which other tokens matter most for predicting what comes next | 
 ---
 
-"I have been saying 'it's powered by AI' in meetings for two years," said Anaya. "I would like to stop doing that until I know what I mean."
+On the third Sunday of March Anaya told Dr. Meenakshi Rao that she had said "it's powered by AI" in meetings for two years and would like to stop until she knew what she meant. Meenakshi laughed, briefly and without unkindness, and asked her to say what she thought the phrase meant. Anaya said that it was software that had read the internet, understood questions, and had a sort of brain that was trained. She noticed that each sentence was vaguer than the one before.
 
-It was the third Sunday in March. The cat in Bengaluru was somewhere behind Meenakshi's chair, asleep, and the tea on Anaya's balcony had gone the colour of old brass. There was a long pause on the line, and then Meenakshi laughed, a short dry laugh with no unkindness in it.
+"You have described a legend," said Meenakshi. "Let us do the machine."
 
-"Good," she said. "It took me forty years of teaching to be able to say 'I don't know' to a room. Tell me what you think it is, and I will tell you where you are wrong."
+This chapter does the machine. It starts from a familiar object, the predictive keyboard on a phone, and arrives by steps at the parts of a modern AI system that a product manager must understand to argue with engineers: what it is, how it reads, how much it can hold, how it is made, and how it differs from the AI that came before.
 
-Anaya tried. It was a kind of software that had read the internet. It understood questions. It had some sort of brain, perhaps, which was trained. She heard herself, and each sentence was a little more vague than the last.
+## The case: a legend and a machine
 
-"You have described a legend," said Meenakshi, kindly. "Let us do the machine."
+The vague account that Anaya gave is common. It treats the system as a mind, and a mind suggests understanding, knowledge and judgement, none of which is guaranteed. A more modest account is more useful, because it predicts both what the system does well and where it will fail, and the failures are where most of a product's problems originate. The sections below build that account in order.
 
 ## A keyboard that read everything
 
-"Your phone," said Meenakshi. "When you type *See you at the*, what does it suggest?"
+When Anaya types "See you at the" on her phone, the keyboard suggests "office", "station" and "airport". When she types the Roman-letter Hindi "Kal milte", it offers "hain", then "hai", then "hum". The phone does not know where she is going tomorrow. It has observed what people type and knows which word usually comes next.
 
-Anaya picked up her phone. *Office. Station. Airport.* She tried a Hindi one in English letters: *Kal milte.* The phone offered *hain*, then *hai*, then *hum*.
+Scale that keyboard up. Let it read every book, newspaper, forum post and manual it can be given, many times over, and make it vastly larger. Let it guess not one word but thousands in a row, each guess feeding the next. The result is a *language model*.
 
-"It does not know where you are going tomorrow," said Meenakshi. "It has watched what people type, and it knows which word usually comes next. It is guessing, and the guess is good because there is so much data behind it. Now make the keyboard read every book, every newspaper, every forum post and every manual it could be given, many times over, and make it far, far larger. Make it guess not one word but thousands of them in a row, each guess feeding the next. What do you have?"
+::: def Language model
+A program that has learned, from an enormous amount of writing, to predict what text comes next. It writes an answer by predicting one piece at a time. It does not look anything up and it does not know what is true. It knows what is likely.
+:::
 
-"A very long autocomplete."
+When most of what the model read was true, the likely and the true overlap closely. Where they diverge is where the difficulties of every product built on a language model begin. Anaya wrote "likely, not true" on the back of an envelope and drew a box around it.
 
-"A *language model*. That is the whole of it, at the bottom: a program that has learned, from an enormous amount of writing, to predict what text comes next. It writes an answer by predicting one piece at a time. It does not look anything up. It does not know what is true. It knows what is likely, and when most of what it read was true, likely and true overlap very well. The places where they do not are where all your trouble will come from."
+## Tokens: how the machine reads
 
-Anaya wrote *likely, not true* on the back of an envelope and put a box around it.
+A model does not read letters or whole words. It reads *tokens*, pieces of text that are often a whole word and sometimes only part of one. In English a token is on average about three-quarters of a word. Short common words are usually one token. Rare words, and anything written in a script that the model saw less often, break into several.
 
-## Pieces of words
+Imran Qureshi demonstrated this on a page that showed the pieces in colour. He entered the same meaning three ways.
 
-The next morning Imran took her through a demonstration at his desk, with a browser open and a mug of tea he had forgotten.
+Table: One sentence, three spellings, three token counts on one tool
+| Version | Text | Tokens |
+| --- | --- | --- |
+| English | I want to know my loan status. | 8 |
+| Roman-letter Hindi | mujhe apne loan ka status jaanna hai. | 12 |
+| Devanagari Hindi | the same meaning in Hindi script | 26 |
 
-The model, he said, does not read letters, or even words. It reads *tokens*: pieces of text, often a whole word, sometimes only part of one. In English a token is, on average, about three-quarters of a word. Short common words are usually one token. Rare words, and anything written in a script the model saw less of, break into several.
+The sentence means the same in each case, and the machine sees three different amounts of text. The figures belong to one tool on one day. Another tool would give other numbers, and nobody should carry a rule of thumb away from this table. A claim that Hindi costs twice as much as English needs three questions: which tool, which sentence and which day. The answer is to measure.
 
-He typed a sentence into a page that showed the pieces in colours: *I want to know my loan status.* Eight tokens, each a different colour. He typed the same sentence in Roman letters, the way Sanjay Patil would: *mujhe apne loan ka status jaanna hai.* Twelve. Then he pasted the same meaning in Devanagari. The page lit up in a mosaic of small fragments: twenty-six.
+The count matters because providers charge by the token, for what is sent and for what comes back. Suppose, with a made-up price chosen for easy arithmetic, that a provider charges three hundred rupees for every million tokens. A chat of six hundred tokens costs about eighteen paise. A chat in Devanagari that comes to fifteen hundred tokens costs forty-five paise. Neither figure is alarming alone. For a company that handles a hundred thousand chats a month, the difference is between a rounding error and a line in the budget.
 
-"Same meaning," said Anaya.
+## The context window
 
-"Same meaning. Three different amounts of text, as far as the machine is concerned." He sipped. "That is on this tool today. Another tool would give other numbers. I would not carry any rule of thumb away from this. If somebody tells you Hindi costs twice as much, ask them which tool, which sentence, which day, and then measure it yourself."
+Each request to a model must fit inside a fixed size, and the size is counted in tokens, not sentences. It covers everything: what is sent in, any instructions, any documents, and the answer that comes back. This limit is the *context window*.
 
-It mattered for a reason Anaya could feel in her wallet. Everyone who sells access to these machines charges by the token, for what you send and for what comes back. Suppose a provider charged three hundred rupees for every million tokens, which was a made-up price chosen for easy arithmetic. A chat of six hundred tokens would cost about eighteen paise. A chat in Devanagari that came to fifteen hundred would cost forty-five paise. Neither number is frightening. Multiplied by the chats of a company that handled a hundred thousand a month, it is the difference between a rounding error and a line in the budget.
+::: key Everything must be on the table
+Whatever the model uses to answer has to fit inside the context window, like papers on a table. If something does not fit, the model does not see it, and it does not say so. Anaya wrote a second line on the envelope: everything it knows about this conversation must be on the table.
+:::
 
-## How much it can hold
+## Attention: how "it" finds "trophy"
 
-"There is a limit too," said Imran, "and it is on tokens, not on sentences."
+Meenakshi asked Anaya what the word "it" meant in the sentence "The trophy did not fit in the suitcase because it was too big". Anaya said the trophy, because if the suitcase were too big the trophy would fit. Meenakshi pointed out that Anaya had looked back across the sentence, weighed the candidates and chosen the one that made sense, and that every pronoun she had ever understood depended on this skill.
 
-Each request to a model has to fit inside a fixed size, and the size covers everything: what you send in, any instructions, any documents, and the answer that comes back. That size is the *context window*. Everything the machine uses to answer has to fit inside it, like papers on a table. If something does not fit, the machine does not see it, and it does not say so.
+The design on which modern language models are built is the *transformer*, and its central mechanism is *attention*. For each piece of text, attention works out which other pieces matter most for predicting what comes next. When the model reaches "it", attention is how it connects that word to "trophy" and not to "suitcase".
 
-Anaya wrote a second line on the envelope, under the first. *Everything it knows about this conversation must be on the table.* She did not yet understand how much that sentence would matter.
+::: watch A clue, not an explanation
+A model has many layers, each with many attention mechanisms, and its answer comes from all of them together. Pictures of attention are sometimes presented as proof of why a model said what it said. That is like showing a brain scan and claiming to know the thought.
+:::
 
-## Why "it" is the trophy
+## Making a model and using one
 
-"There is one more idea," said Meenakshi on the next Sunday, "and then you may stop being frightened by the word 'transformer'."
+Two activities are routinely confused and have different costs. One is making the model, and the other is using it.
 
-She asked Anaya what the word *it* meant in a sentence: *The trophy did not fit in the suitcase because it was too big.*
+Making happens in stages. In *pre-training* the model learns to predict the next token across an enormous quantity of writing from the web, books and code. It takes months and costs millions. What emerges can continue any text but does not reliably do as it is told. In *instruction tuning* it is trained further on examples of instructions paired with good answers, so that it follows instructions. In a third stage people compare pairs of answers and pick the better one, and the model is trained to prefer answers like the ones they chose. This is often called learning from human feedback, and it makes the model more helpful and more careful.
 
-"The trophy."
+Table: Making a model compared with using it
+| | Making (the three stages) | Using (inference) |
+| --- | --- | --- |
+| What happens | The model learns | The model answers one request |
+| Does it change the weights? | Yes | No |
+| Who is affected | Everyone who uses the model, permanently | Only that one answer |
+| Cost | Months of effort and millions | A small charge per token, every time |
 
-"How did you know?"
+All three stages of making change the model's *weights*, the billions of numbers inside it that hold everything it has learned. They can be pictured as a vast set of dials, each turned a little by every example it saw. Using the finished model is *inference*. It leaves the weights as they were. When Sahaj's chatbot answers a customer, inference is taking place, it is charged by the token, and the model is identical afterwards. What the customer typed shaped that one answer and was then gone.
 
-"Because if the suitcase were too big, it would fit."
+## Two kinds of AI
 
-"Exactly. You looked back across the sentence, weighed the candidates, and picked the one that made sense. Every pronoun you have ever understood depended on that skill, and it is the skill the machine had to learn to do any of this well. The design that modern language models are built on is called a *transformer*, and its central trick is called *attention*. For each piece of text it works out which other pieces matter most for guessing what comes next. When the machine reaches *it*, attention is how it connects that word to *trophy* and not to *suitcase*."
+Some AI predicts a label or a number for one job: is this message spam, will this customer cancel, what will sales be next month. This is *predictive AI*. It is trained on labelled examples for a single task, it is cheap to run, and it does that one thing well. The other kind is *generative AI*. It produces new text, images or code, can be pointed at many tasks by changing what it is asked, and costs more to run, with a bill that grows with the length of what goes in and what comes out. A language model is generative AI for text.
 
-Meenakshi was careful about one thing, and she said it twice. Attention is a clue, not an explanation. A model has many layers, each with many of these attention mechanisms, and the final answer comes from all of them together. People sometimes draw pictures of attention and present them as proof of why a machine said what it said. That is a bit like showing a picture of a brain scan and claiming to know the thought.
+Not every problem needs the second kind. Imran went down the napkin box by box.
 
-## Made, and then used
+Table: Which parts of the guard need which kind of machine
+| Part | What it needs | Why |
+| --- | --- | --- |
+| Pattern checker | No AI | A rule for twelve digits is a rule |
+| Name-and-place finder | Small predictive AI | Trained to mark each word as a person, a place or neither, and nothing else |
+| Context judge | Language model | It must read a sentence and make a judgement, and it will be costly, so it should be asked about as few sentences as possible |
+| Rule-keeper | Ordinary code | It applies decisions already made |
 
-"Two things get confused all the time," said Imran, "and they cost different things. One is making the model. The other is using it."
+Of four parts, one wants the large machine. Imran put the rule he drew from this into a sentence: use the cheapest thing that works, and keep the expensive thing for the questions only it can answer.
 
-Making happens in stages. In the first, called *pre-training*, the machine learns to predict the next token across a staggering amount of writing from the web, from books and from code. It takes months and costs millions. What comes out can continue any piece of text, but it does not reliably do as it is told. The second stage, *instruction tuning*, trains it further on examples of instructions paired with good answers, so that it follows instructions. In the third, people compare pairs of answers and pick the better one, and the machine is trained to prefer answers like the ones they chose. That is often called learning from human feedback. It makes the machine more helpful and more careful.
+## Summary
 
-All three stages change its *weights*: the billions of numbers inside the model that hold everything it has learned. Think of them as a vast set of dials, each turned a little by every example it ever saw.
+A language model is a program that has learned to predict what text comes next, which makes it good at what is likely and unreliable on what is true.
 
-Using the finished machine is a different thing, called *inference*. It does not change the weights at all. When Sahaj's chatbot answers a customer, inference is happening, and it costs money each time by the token, and the machine is exactly the same afterwards. Whatever the customer typed shaped that one answer, and then it was gone.
-
-"Training," said Imran, writing it on the napkin from last week, "changes the model for everyone, for good. A request changes one answer and is forgotten. If I forget which is which, I make expensive mistakes."
-
-## Two kinds of AI, and which boxes need one
-
-There was one last distinction, and it came as a relief, because it gave Anaya back some of the napkin.
-
-Some AI predicts a label or a number for one job. Is this message spam or not? Will this customer cancel? What will sales be next month? This is *predictive AI*: trained on labelled examples for one task, cheap to run, and good at that one thing. The other kind is *generative AI*: it makes new text, images or code, can be pointed at many tasks by changing what you ask, and costs more to run, with a bill that grows with the length of what goes in and comes out. A language model is generative AI for text.
-
-Not every problem needs the second kind. Imran took the napkin and went down it, box by box.
-
-The pattern checker needed no AI at all. A rule for twelve digits is a rule. The name-and-place finder could be a small predictive tool, trained to mark each word as a person, a place, or neither, and to do only that. The context judge was the box that wanted a large language model, because it had to read a sentence and make a judgement, and it would be expensive, which was one more reason to ask it about as few sentences as possible. The rule-keeper was ordinary code.
-
-"So of four boxes," said Anaya, "one needs the big machine."
-
-"One *wants* it. If it can be done by the two cheaper boxes, it should be." He put the pencil down. "A good rule: use the cheapest thing that works, and keep the expensive thing for the questions only it can answer."
-
-## What to carry forward
-
-A language model is a program that has learned from an enormous amount of writing to predict what text comes next, which makes it good at what is likely and not at what is true. It reads and is charged for tokens, which are pieces of words, and the number of tokens a sentence takes depends on the tool and the language, so it should be measured and not assumed. Everything it uses to answer has to fit in its context window. Attention is how it relates one piece of text to another, but it is a clue and not an explanation. Making a model changes it for everyone; using it, which is called inference, changes only one answer. And not every job needs the biggest machine: the cheapest thing that works is the right thing.
+- It reads and is charged for tokens. The number of tokens in a sentence depends on the tool and the language, and should be measured, not assumed.
+- Everything it uses to answer must fit in the context window, and what does not fit is invisible to it.
+- Attention relates one piece of text to another inside a transformer. It is a clue to the model's behaviour, not an explanation of it.
+- Making a model (pre-training, instruction tuning, learning from human feedback) changes its weights for everyone. Using it, inference, changes only one answer.
+- Predictive AI gives a label or number for one task. Generative AI produces new content across many tasks at greater cost, so the cheapest tool that works is the right one.

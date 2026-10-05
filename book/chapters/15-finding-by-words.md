@@ -1,99 +1,73 @@
 ---
 title: Finding by Words
-summary: A product manager plays the part of the search box, learns why the oldest way of finding things fails the customers who most need help, and why it is still exactly right for an identity number.
+summary: A product manager plays the part of the search box and learns why the oldest way of finding text fails the customers who most need help, and why it is exactly right for an identity number. The chapter introduces keyword search and its silent failure.
 course: ch4
+goals:
+  - explain how keyword search finds text and where it is exactly the right tool
+  - name the three places where matching spelling instead of meaning fails
+  - see why a fixed-shape rule is a form of keyword search and why it misses spoken numbers
+  - explain why a search that never reports "found nothing" is dangerous when something reads its results
 terms:
   - keyword search | finding text by matching the words of the question against the words in the documents; it compares spelling, not meaning | keyword matching
 ---
 
-Anaya was the search engine, and Farah was the customer, and between them on the table were twenty cards.
+On a wet Monday Anaya played the part of the search engine, and Farah Sheikh played the customer. Between them on a table lay twenty index cards, the scraps from the previous week's cutting, each taped to a card and numbered, with half a page of Sahaj's refund policy on its face. Anaya was given one rule: she could look only for the words that Farah said.
 
-They were the scraps from last week, taped back onto index cards, each with a number in the corner and a half page of Sahaj's refund policy on its face. It was a wet Monday. The office smelled of damp umbrellas. Farah had put on a voice she used for imitations, slightly high and anxious, and Anaya had been given one rule: she could look only for the words Farah said.
+Farah put on the slightly high, anxious voice she used for imitations and said "Paisa kab milega?", meaning "When will the money come?" Anaya searched for "paisa", then "kab", then "milega". She went through all twenty cards, turning each over, and found none of the three words on any of them. She said there was nothing. Farah said there was a card about exactly that, card seven. It read: "Refund of an excess payment will be processed to the registered account within seven working days of the request being approved." The card answered the question, and it shared no word with it.
 
-"Ready?"
+## The case: twenty cards and no match
 
-"Ready."
-
-"*Paisa kab milega?*" said Farah. When will the money come?
-
-Anaya looked at the cards. She was looking for *paisa*. She was looking for *kab*. She was looking for *milega*. She went through all twenty, slowly, turning each one over, and found none of the three on any card.
-
-"Nothing," she said.
-
-"There is a card about it," said Farah. "Card seven."
-
-Anaya turned over card seven. *Refund of an excess payment will be processed to the registered account within seven working days of the request being approved.* She read it twice. "It's about exactly that. And there isn't a single word in common."
+The exercise reproduces how the oldest and most widespread kind of search behaves. The sections below explain what it does, where it fails, and where it is the best tool available.
 
 ## Spelling, not meaning
 
-The oldest way to find things in a pile of text is to match words. A person types *refund*; the system finds every chunk containing *refund*. It has been the heart of search boxes for decades, and it is fast, cheap and well understood. It is called *keyword search*.
+The oldest way to find things in a pile of text is to match words. A person types "refund", and the system finds every chunk that contains "refund". It has been at the heart of search boxes for decades and is fast, cheap and well understood. It is called *keyword search*.
 
-Its flaw is built in. It compares spelling, not meaning. Two sentences that mean the same thing but share no words do not match at all, and the failure is not random. It happens in three places, all of which matter to a business.
+Its flaw is built into the method. It compares spelling and not meaning, so two sentences that mean the same thing but share no words do not match at all. The failure is not random. It occurs in three places, all of which matter to a business.
 
-The first is the gap between formal and everyday language. The policy says *reimbursement*, *disbursement*, *credited to the registered account*; the customer says *money back*. The people who write documents are specialists, and the people who ask questions are not. The second is a worse consequence of the first. Someone who already knows the product uses its vocabulary and finds what they want. Someone confused uses their own words and finds nothing. A keyword search works best for the users with the fewest problems and worst for the ones with the most.
+Table: Where keyword search fails
+| Where | What happens | Example |
+| --- | --- | --- |
+| Formal against everyday language | Document writers are specialists and askers are not | The policy says "reimbursement" and "credited to the registered account"; the customer says "money back" |
+| Users who are already confused | Someone who knows the product uses its vocabulary and finds what they want; someone confused uses their own words and finds nothing | The method works best for the users with the fewest problems and worst for those with the most |
+| Questions against statements | A question shares little with the passage that answers it | "Why was I charged twice?" shares almost nothing with a paragraph on how a duplicate authorisation hold works |
 
-The third is questions. *Why was I charged twice?* shares almost nothing with the paragraph explaining how a duplicate authorisation hold works. In Sahaj's case there was a fourth layer on top, and it was the one Farah cared about. Half her customers wrote in Hindi using English letters, and the policy was written in formal English. Even a perfect search for *paisa* would have found nothing.
-
-"It's like asking for directions from someone who only understands the spelling of the street name," said Farah.
+At Sahaj there was a fourth layer on top of these, and it was the one that concerned Farah most. Half her customers wrote in Hindi using English letters, and the policy was written in formal English. A flawless search for "paisa" would still have found nothing.
 
 ## Where it is exactly right
 
-Anaya was about to write the method off. Then Farah leaned forward and said, in her ordinary voice: "*Clause 14.2.*"
+Anaya was about to dismiss the method. Farah leaned forward and said, in her ordinary voice, "Clause 14.2." Card eleven began "14.2 Disputed charges", and Anaya found it in four seconds.
 
-Anaya looked through the cards. Card eleven began *14.2 Disputed charges.* She had found it in four seconds.
+::: key What keyword search is for
+Keyword search is excellent for exact things: a section number, a policy identifier, a part number, a name. Someone who types "clause 14.2" wants clause 14.2, not something that means roughly the same, and matching the exact text is the right approach. It also never invents a connection. If a word is present it is found, and if it is not, it is not.
+:::
 
-"There," said Farah. "That is what it is for."
-
-Keyword search is excellent for exact things: a section number, a policy ID, a part number, a name. If someone types *clause 14.2* they want clause 14.2, not something that means roughly the same, and matching the exact text is precisely the right approach. It is also the one technique in this book that never invents a connection. If a word is there, it is found. If it is not, it is not.
-
-Imran, who had wandered over with a mug, made the connection before she did.
-
-"That's your pattern checker," he said.
-
-"Is it?"
-
-"A PAN is five letters, four digits, one letter. That is keyword search for a shape. It is exact, it is instant, it is free, and it can't be talked into anything. It is exactly the right tool for a thing that always looks the same." He sipped. "The mistake would be to use the clever method where the plain one does. The plain one wins here."
-
-It was the second time he had said it, in different words, and she was beginning to see it as the central skill of his trade: knowing when not to be clever.
+Imran, who had wandered over with a mug, saw the connection before she did. "That's your pattern checker," he said. A PAN is five letters, four digits and a letter, which is a search for a shape. It is exact, instant and free, and it cannot be talked into anything. It is the right tool for a thing that always looks the same, and the mistake would be to use the clever method where the plain one does the job.
 
 ## Where the plain method fails the guard
 
-But the same limit applied to the guard, and Farah, with unnerving timing, provided the example.
+The same limit applies to the guard, and Farah supplied an example. She read from her phone a message from the previous month, which she had cleaned herself before showing anyone: "Mera aadhaar number hai char teen do ek, paanch chhe saat aath, nau shunya ek do."
 
-"What about this?" she said, and read from her phone. It was a message from last month, one of the real ones, and she had cleaned it herself before showing it to anyone. *Mera aadhaar number hai char teen do ek, paanch chhe saat aath, nau shunya ek do.*
+It is an Aadhaar number of twelve digits in groups of four, spoken as words: four three two one, five six seven eight, nine zero one two. The customer had been dictating to a voice keyboard in Hinglish. The pattern checker would not see it, because there are no digits in the message and a rule that looks for twelve digits finds nothing.
 
-Anaya read it twice. It was an Aadhaar number, twelve digits in groups of four, spoken as words: four three two one, five six seven eight, nine zero one two. Typed out, because the customer was dictating it to a voice keyboard, in Hinglish.
-
-"The pattern checker would not see that," she said.
-
-"There are no digits in it," said Imran. "A rule that looks for twelve digits finds nothing."
-
-The shape was there. The spelling was not. This was the weakness of finding by words, turned inside out: the meaning is perfectly clear to any person, and a method that compares characters cannot see it. She wrote it on the board under the red line: *Spoken numbers. Row twelve.* She was building the answer key faster than she had expected, one embarrassment at a time.
+The shape is present, and the spelling is not. This is the weakness of finding by words turned inside out: the meaning is clear to any person, and a method that compares characters cannot see it. Anaya added it to the answer key as row twelve: spoken numbers.
 
 ## The silent failure
 
-There was one more property of keyword search, which Farah pointed out last, because she had seen it cause real trouble in the help centre two years ago.
+Farah then pointed out a further property of keyword search, which she had seen cause trouble in the help centre two years earlier. She asked Anaya to put a question that was not answered in the documents.
 
-"Ask it something that isn't in the documents."
+Anaya asked whether she could pay her bill with a credit card on Diwali. The word "credit" appeared on three cards, in a section about interest. The word "card" appeared on five, and "bill" on nearly all. She ranked the cards by how many of the words each contained, and card six came out on top. Card six was about credit-card interest on late payments. It had nothing to do with Diwali or with whether paying by card was allowed.
 
-Anaya thought. "*Can I pay my bill with a credit card on Diwali?*"
+::: watch A search that never says "nothing here"
+Keyword search scores every document and sorts them, so it always returns something. The top card is the least bad of a bad set. The chatbot takes that card and treats it as evidence. Search never reports that it found nothing, and the model that reads what it found cannot tell the difference. It writes a fluent answer from the least relevant card in the voice of someone who has read the right one. No step reports an error.
+:::
 
-She went through the cards. The word *credit* appeared on three of them, in a section about interest. The word *card* appeared on five. The word *bill* appeared on nearly all. She ranked them by how many of the words they contained. Card six came out on top.
+Anaya put the cards back in their numbered order and observed that the team would need a way to measure this. Imran agreed, and added that she should first see what fixes the other half of the problem.
 
-Card six was about credit-card interest on late payments. It had nothing to do with Diwali, or with whether paying by card was allowed.
+## Summary
 
-"It gave an answer," she said.
+Keyword search finds text by matching the words of a question against the words in the documents. It is fast and cheap, it never invents a connection, and it is the right method for exact things such as section numbers, codes and names, and for details with a fixed shape such as a PAN.
 
-"It always does. There's no way for it to say *there is nothing here*. It scores everything and sorts it. The top card is just the least bad of a bad set." Farah folded her arms. "And the chatbot takes that card and treats it as if it were evidence."
-
-That was the worry. Search never reports that it found nothing, and the machine that reads what it found does not know the difference. It writes a fluent answer from the least relevant card, in the voice of someone who has read the right one. No step reports an error. The system produces a confident, wrong answer, and nothing in it notices.
-
-Anaya put the cards back in their numbered order, slowly, as if they were something fragile.
-
-"We'll need a way to measure that," she said.
-
-"Yes," said Imran. "But first, you should see what fixes the other half."
-
-## What to carry forward
-
-Keyword search finds text by matching the words of a question against the words in the documents. It is fast and cheap, never invents a connection, and is the right method for exact things like section numbers, codes and names, and for details with a fixed shape like a PAN. But it compares spelling, not meaning, so it fails exactly where users use their own words instead of the document's, and therefore fails the people who most need help. It also never says it found nothing: it returns the least bad match, and whatever reads that match may take it for evidence.
+- It compares spelling and not meaning, so it fails where users use their own words instead of the document's. It therefore fails the people who most need help.
+- A rule that looks for digits cannot see a number spoken or spelled out in words.
+- It always returns its least bad match and never reports that it found nothing, so whatever reads the match may take it for evidence.
