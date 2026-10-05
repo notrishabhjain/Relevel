@@ -16,13 +16,13 @@ April ki ek subah Farah Sheikh ne ek printout se kaagaz ki chaalis parchiyan kaa
 
 Yeh chapter us hafte kiye gaye do tests ka anusaran karta hai. Ek ek aise kaam ka tha jiska sahi jawaab hota hai, aur doosra aise kaam ka jiska nahi hota. Pehle ne dikhaya ki ek achha average ek failure kaise chhupa sakta hai, aur doosre ne dikhaya ki woh text kaise test karein jise program grade nahi kar sakta.
 
-## 13.1 Case: chaalis parchiyan
+## Case: chaalis parchiyan
 
 Imran Qureshi ne sorter ka pehla version do shaamon mein likha tha. Woh text ka ek tukda dekhta aur batata ki woh chaar dabbon mein se kis mein jaata hai. Jo program har input ko tay categories mein se ek mein rakhta hai woh *classifier* hai, aur bahut saara upyogi software ek hota hai. Machine ke zyadatar kaamon se iska phayda yeh hai ki koi bata sakta hai ki har jawaab sahi tha ya nahi. Jab sahi jawaab hota hai, galtiyan gini ja sakti hain, aur jab galtiyan gini ja sakti hain, toh system jaanboojh kar behtar kiya ja sakta hai.
 
 Usne pichhle teen hafton mein jo seekha tha woh istemaal kiya. Instruction ne kaam ka naam liya, do worked examples diye, jinme se ek mushkil tha, aur output ka format tay kiya. Chaalis parchiyan chalayin gayi aur scoreboard ne ek line chhapi: 40 mein se 35 sahi, yaani 87.5 percent. Farah khush thi. Anaya ne kaha ki yeh ek number hai aur use abhi pata nahi ki woh achha hai ya nahi, aur use dabbon ke hisaab se dekhne ko kaha.
 
-## 13.2 Ek number ne kya chhupaya
+## Ek number ne kya chhupaya
 
 Imran ne nateeje ko chaar rows mein baanta.
 
@@ -46,7 +46,7 @@ Niyam yeh nikla ki jab sorter ko shak ho toh woh number ko sensitive maane. Team
 
 Is baatcheet mein ek mushkil thi jise Anaya ne turant pehchaana. Plan mein usne guardrail ki tarah sau mein teen false alarm ki seema rakhi thi. Saavdhaani ki taraf jhukne se woh number badhta. Dono number ek doosre ko khinchenge, aur use us tension ko un logon ke saath khulkar sambhaalna hoga jo har taraf ki parwaah karte hain.
 
-## 13.3 Ek saar jo achha padha jaata hai
+## Ek saar jo achha padha jaata hai
 
 Hafte ka doosra kaam alag tarah ka tha. Jab koi baatcheet chatbot ke liye bahut uljhi ho jaati, toh woh customer ko insaan agent ke paas bhejta aur upar ek chhota saar likhta, taaki agent ko chalis messages padhne na padein. Farah ko bataya gaya tha ki woh achha kaam karta hai. Sab yahi kehte the, kyunki woh bahut achha padha jaata tha, aur Anaya ne dhyaan dilaya ki sab yahi isliye kehte the kyunki unhone use padha tha, aur poochha ki usme asal mein kya hai.
 
@@ -69,7 +69,7 @@ Aakhri dekhkar Farah ne pen neeche rakh diya. Saar ke paas number ki ek copy thi
 System jo kuch bhi likhta hai usme us text se copy ki hui personal details ho sakti hain jo usne padha. Anaya ne ise history ke pichhle niyam ke paas design mein jodaa: andar jaane waale ko saaf karo; bahar aane waale ko bhi saaf karo.
 :::
 
-## 13.4 Dono kaamon mein kya samaan hai
+## Dono kaamon mein kya samaan hai
 
 Jab Anaya ne Sunday ko Dr. Meenakshi Rao ko hafte ka vivaran diya, toh usne paaya ki woh kuch aisa samjha rahi hai jo machines ke baare mein kam hai. Pehle case mein team ne tay kiya tha ki failure kya maana jaayega, galat dabba, aur kaun sa galat dabba zyada kharab hai. Doosre case mein failure ek chhoota hua tathya tha. Dono mein unhone wahi ginta jo unka dhyaan gaya, uski jagah nahi jo unhe dikha. Meenakshi ne kaha ki is kshetra ka zyadatar kaushal machine ke baare mein nahi hai. Woh is baare mein hai ki aap kis cheez se darte hain, yeh theek-theek tay karna.
 

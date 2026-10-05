@@ -27,11 +27,11 @@ March ke teesre Sunday ko Anaya ne Dr. Meenakshi Rao se kaha ki woh do saal se m
 
 Yeh chapter machine ki baat karta hai. Woh ek jaani-pehchaani cheez se shuru hota hai, phone ke predictive keyboard se, aur kadam-dar-kadam un hisson tak pahunchta hai jinhe ek product manager ko engineers se behas karne ke liye samajhna padta hai: woh kya hai, kaise padhta hai, kitna sambhal sakta hai, kaise banta hai aur pehle ke AI se kaise alag hai.
 
-## 8.1 Case: ek kinvadanti aur ek machine
+## Case: ek kinvadanti aur ek machine
 
 Anaya ka dhundhla vivaran aam hai. Woh system ko ek dimaag ki tarah maanta hai, aur dimaag se samajh, jaankari aur faisla jhalakta hai, jinmein se kisi ki bhi guarantee nahi. Zyada vinamra vivaran zyada kaam ka hai, kyunki woh bataata hai ki system kya achha karega aur kahan fail hoga, aur jahan fail hota hai wahin zyadatar product ki samasyayein shuru hoti hain. Neeche ke sections us vivaran ko kram se banate hain.
 
-## 8.2 Ek keyboard jisne sab padha
+## Ek keyboard jisne sab padha
 
 Jab Anaya apne phone par "See you at the" type karti hai, keyboard "office", "station" aur "airport" sujhata hai. Jab woh Roman-lipi mein Hindi "Kal milte" type karti hai, woh "hain", phir "hai", phir "hum" deta hai. Phone yeh nahi jaanta ki kal woh kahan jaa rahi hai. Usne dekha hai ki log kya type karte hain aur woh jaanta hai ki aam taur par agla shabd kaun sa aata hai.
 
@@ -43,7 +43,7 @@ Ek program jisne bahut saare likhe hue text se seekha hai ki agla text kya aane 
 
 Jab model ne jo padha uska zyadatar hissa sach tha, toh sambhav aur sach bahut milte hain. Jahan woh alag hote hain, wahin se language model par bane har product ki mushkilein shuru hoti hain. Anaya ne ek envelope ke peeche "sambhav, sach nahi" likha aur uske chaaron taraf dabba bana diya.
 
-## 8.3 Tokens: machine kaise padhti hai
+## Tokens: machine kaise padhti hai
 
 Model akshar ya poore shabd nahi padhta. Woh *tokens* padhta hai, text ke tukde jo aksar poora shabd hote hain aur kabhi-kabhi sirf uska ek hissa. English mein ek token aam taur par lagbhag teen-chauthai shabd hota hai. Chhote aam shabd aksar ek token hote hain. Dulabh shabd, aur woh sab kuch jo aisi lipi mein likha ho jise model ne kam dekha ho, kai tukdon mein tut jaata hai.
 
@@ -60,7 +60,7 @@ Vaakya ka matlab har baar ek hai, aur machine ko teen alag maatra ka text dikhta
 
 Ginti isliye zaroori hai ki providers token ke hisaab se charge karte hain, jo bheja jaata hai uske liye bhi aur jo wapas aata hai uske liye bhi. Maan lijiye, aasaan hisaab ke liye banaye hue ek kalpanik daam par, ki provider har dus lakh token ke liye teen sau rupaye leta hai. Chhe sau token ki ek chat ka kharcha lagbhag attharah paise hoga. Devanagari mein pandrah sau token ki chat ka kharcha paintaalis paise. Dono figure akele darane wale nahi hain. Jo company mahine mein ek lakh chats sambhalti hai, uske liye antar ek rounding error aur budget ki ek line ke beech ka hai.
 
-## 8.4 Context window
+## Context window
 
 Model ko har request ek tay size ke andar fit honi chahiye, aur size tokens mein ginta hai, vaakyon mein nahi. Usme sab kuch aata hai: jo bheja jaata hai, koi bhi instructions, koi bhi documents, aur jo jawaab wapas aata hai. Yeh seema *context window* hai.
 
@@ -68,7 +68,7 @@ Model ko har request ek tay size ke andar fit honi chahiye, aur size tokens mein
 Model ko jawaab dene ke liye jo bhi istemaal karna ho woh context window ke andar fit hona chahiye, jaise table par rakhe kaagaz. Agar kuch fit nahi hota toh model use dekhta nahi, aur batata bhi nahi. Anaya ne envelope par doosri line likhi: is conversation ke baare mein usse jo kuch pata hona chahiye woh table par hona chahiye.
 :::
 
-## 8.5 Attention: "it" ko "trophy" kaise mila
+## Attention: "it" ko "trophy" kaise mila
 
 Meenakshi ne Anaya se poochha ki "The trophy did not fit in the suitcase because it was too big" vaakya mein "it" ka kya matlab hai. Anaya ne kaha trophy, kyunki agar suitcase bada hota toh trophy fit ho jaati. Meenakshi ne dhyaan dilaya ki Anaya ne vaakya mein peeche dekha, ummeedwaaron ko tola aur woh chuna jo samajh aata tha, aur yeh ki jitne bhi pronoun usne kabhi samjhe, sab is kaushal par tike the.
 
@@ -78,7 +78,7 @@ Jis design par aaj ke language models bane hain woh *transformer* hai, aur uski 
 Ek model ki kai parat hoti hain, aur har ek mein kai attention hoti hain, aur uska jawaab sab milkar aata hai. Attention ki tasveerein kabhi-kabhi is saboot ki tarah pesh ki jaati hain ki model ne aisa kyun kaha. Yeh waisa hi hai jaise brain scan dikhakar dawa karna ki soch pata chal gayi.
 :::
 
-## 8.6 Model banana aur use chalana
+## Model banana aur use chalana
 
 Do gatividhiyan aksar ek maan li jaati hain aur unka kharcha alag hai. Ek hai model banana, doosri use chalana.
 
@@ -94,7 +94,7 @@ Table: Model banana aur use chalana
 
 Banane ke teeno stages model ke *weights* badalte hain, jo uske andar ke arabon number hain jo us sab ko sambhaalte hain jo usne seekha. Unhe ek bahut bade dials ke set ki tarah sochiye, jinme se har ek ko model ke dekhe har udaharan ne thoda ghumaya. Taiyaar model ko chalana *inference* hai. Woh weights ko jaisa tha waisa chhodta hai. Jab Sahaj ka chatbot kisi customer ko jawaab deta hai, tab inference chal raha hota hai, uske liye token ke hisaab se charge lagta hai, aur uske baad model bilkul waisa hi rehta hai. Customer ne jo type kiya usne us ek jawaab ko aakaar diya aur phir chala gaya.
 
-## 8.7 Do tarah ke AI
+## Do tarah ke AI
 
 Kuch AI ek kaam ke liye label ya number batata hai: yeh message spam hai ya nahi, kya yeh customer chhod dega, agle mahine ki bikri kitni hogi. Yeh *predictive AI* hai. Ise ek hi kaam ke labelled udaharanon par train kiya jaata hai, yeh chalane mein sasta hota hai, aur woh ek kaam achha karta hai. Doosra tarah *generative AI* hai. Woh naya text, tasveer ya code banata hai, use pooche gaye sawaal badal kar kai kaamon par lagaya ja sakta hai, aur chalane mein zyada mehnga hota hai, bill ke saath jo andar-baahar jaane wale text ki lambai ke saath badhta hai. Language model text ke liye generative AI hai.
 

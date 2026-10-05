@@ -21,13 +21,13 @@ Anaya ki users se seekhne ki pehli koshish ne do page ke notes diye aur lagbhag 
 
 Yeh chapter samjhata hai ki woh baatcheet kyun fail hui, baad ki paanch baatcheeton mein kya sahi hua, aur nateejon ko kaise ek aise vivaran mein baandha gaya jise koi aur jaanch sake.
 
-## 3.1 Case: do madhur jawaab
+## Case: do madhur jawaab
 
 Farah jhooth nahi bol rahi thi. Log shishtaachaar nibhaate hain, aur jab kisi ko pasandeeda jawaab ka ishaara milta hai toh woh aksar wahi de dete hain. Jo sawaal apna jawaab khud saath le aata hai, use *leading question* kehte hain. Anaya saboot ikattha karne nikli thi aur sahmati ikattha kar layi, jo bahut sasti hai aur bahut kam keemat ki.
 
 Agar woh poochhti ki chat mein itne saare numbers hona kitna achha hai, toh bhi shayad Farah usme koi achhi baat dhoondh leti.
 
-## 3.2 Logon se unke beete hue kal ke baare mein kaise poochhein
+## Logon se unke beete hue kal ke baare mein kaise poochhein
 
 Anaya ek chhoti kitaab par lauti jo use saalon pehle kisi ne di thi. Uska vishay yeh tha ki apni maa se poochhna bekaar hai ki unhe aapka business idea pasand hai ya nahi. Maa haan kahengi, kyunki woh beti se pyaar karti hain, aur us jawaab mein koi jaankari nahi hoti. Kitaab ne teen niyam diye, jinhe Anaya ne ek index card par utaar liya.
 
@@ -46,7 +46,7 @@ Table: Anaya ke sawaal pehle aur baad mein
 
 Naye sawaalon mein se kisi mein bhi uska idea nahi hai. Is tarah ki baatcheet, yaani *user interview*, gawah ko sunne jaisi zyada hai, vote lene jaisi kam. Bhavishya ke baare mein kisi ki raay kamzor saboot hai. Beete kal ki khaas kahani mazboot saboot hai, aur jis ek insaan ne teen aisi kahaniyan sunayi, usne Anaya ko un sau logon se zyada bataya jinhone kaha ki woh "definitely" kuch istemaal karenge.
 
-## 3.3 Paanch baatcheetein
+## Paanch baatcheetein
 
 Agle hafte mein Anaya ne tees-tees minute ki paanch baatcheetein ki, haath se notes liye aur har ek ko number diya, taaki har line ko wapas us tak le jaaya ja sake.
 
@@ -61,7 +61,7 @@ Table: Paanch baatcheeton ne kya dikhaya
 
 Do baatein khamoshi se nikli. Jab Pooja ne kaha ki bot ne verify karne ko kaha, toh Anaya ne use tokne ke bajaye intezaar kiya, jo teeno niyamon mein sabse mushkil tha, aur Pooja ne wahi shabd dohraya. Anaya ne chatbot ka pehla message dhoondha: "Verification ke liye kripya apni details share karein." Kisi ne socha nahi tha ki yeh vaakya kya nyauta deta hai. Woh shishtata ke liye likha gaya tha.
 
-## 3.4 Chat ke peeche ka kaam
+## Chat ke peeche ka kaam
 
 Anaya ne apne flat ke farsh par notes bichhaye aur poochha ki har insaan kya karna chahta tha. *Job to be done* woh pragati hai jo ek insaan apni zindagi mein karna chahta hai, aur jiske liye woh product ko "kiraye par" leta hai. Log product nahi chahte. Woh haalat badalna chahte hain, aur use likhne ke liye ek tay saancha kaam aata hai: jab main is haalat mein hota hoon, mujhe yeh karna hai, taaki main yeh pa sakoon.
 
@@ -83,7 +83,7 @@ Table: Chaar shaktiyan, Farah ki team par
 
 Jo product doosron ke shabdon ko sambhalta hai, usme chinta aksar sabse badi shakti hoti hai. Log galat jawaab ki chinta dheemi gati se kahin zyada karte hain.
 
-## 3.5 Kyun, aur phir kyun
+## Kyun, aur phir kyun
 
 Anaya ne ab ek purana tareeka aazmaya jisse lakshan se wajahon tak pahunchte hain: kyun poochho, aur phir jawaab par kyun poochho. Ise *five whys* kehte hain.
 
@@ -95,7 +95,7 @@ Usne ek ped banaya. Sabse upar usne likha "chat mein numbers". Uske neeche chaar
 
 Ped ne uski yojna badal di. Naya greeting samasya ko kam karta, par rakhta. Customer aur chat ke beech khada koi tool woh pakadta jo baaki upaay chhod dete. Greeting phir bhi turant likhna chahiye tha, kyunki uska kharcha kuch nahi tha, aur usne use apni list mein "Pehle yeh karo" ke note ke saath joda.
 
-## 3.6 Jo jaana, use likhna
+## Jo jaana, use likhna
 
 Hafte ke ant tak Anaya ke paas aise notes the jin par use bharosa tha, aur usne woh kiya jo pehle chhod diya tha: apne users ka saar ek aise roop mein likha jise koi jaanch sake.
 

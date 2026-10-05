@@ -1,7 +1,12 @@
 ---
 title: Gates, Traces Aur Rollbacks
-summary: Ek instruction mein ek Friday raat bina test ke kiya gaya ek edit dikhata hai ki jo badlaav deployment jaisa nahi lagta use gate se guzarna kyun zaroori hai; aur baad mein, aapko "usne aisa kyun kiya?" ka jawaab chaalees second mein dena kyun aana chahiye.
+summary: Ek Friday raat ek instruction mein bina test ke kiya gaya ek edit dikhata hai ki jo badlaav deployment jaisa nahi lagta use bhi ek gate se kyun guzarna chahiye, aur "yeh aisa kyun kiya?" ka jawaab chaalis second mein kyun milna chahiye. Chapter golden datasets, regressions, release gates, observability, trace records, p95 aur canary releases samjhata hai.
 course: ch16e ch17o
+goals:
+  - samjhana ki instruction mein edit ek bhesh badla hua code badlaav kyun hai
+  - versioned golden dataset se release gate banana aur woh vaakya likhna jo release rok de
+  - bina andaaza lagaye "isne aisa kyun kiya?" ka jawaab dene ke liye trace records istemaal karna
+  - p95 se dheemi poonchh naapna, ek poore kaam ka kharcha ginna, aur badlaav pehle kuch users ko dena
 terms:
   - golden dataset | cases ka versioned, pratinidhi set, apekshit vyavahaar ke saath, jo tay karta hai ki ek system ke liye achha ka matlab kya hai; ise ek version number chahiye taaki nateeja dobara chalaya ja sake | golden set
   - regression | aisa badlaav jo system ko us cheez mein kharab banata hai jo woh pehle achhe se karta tha | regressions
@@ -12,27 +17,28 @@ terms:
   - canary release | ek badlaav ko pehle users ke ek chhote hisse ko dikhana, purane version ko taiyaar rakh kar, sabko milne se pehle | canary
 ---
 
-Edit mein chaalees second lage aur woh Friday raat gyarah baje mein das minute par kisi ne kiya jo bas madad karne ki koshish kar raha tha.
+Ek Friday raat gyarah baje mein das minute kam par ek doosri team ka engineer, jo ek milte-julte project ke liye guard ki configuration udhaar le raha tha, ne finder ke instruction mein ek line dekhi jise usne maana ki use zyada saavdhaan bana deti hai: "Agar shak ho toh detail ko personal maano." Usne use "agar kaafi shak ho" kar diya. Usne ek file mein ek line badli, save kiya, aur is santosh ke saath so gaya ki usne ek chhoti cheez ko thoda behtar bana diya. Edit mein chaalis second lage.
 
-Woh doosri team ka ek engineer tha, jo ek sambandhit project ke liye guard ka configuration udhaar le raha tha, aur usne dekha ki finder ke nirdesh mein ek line thi jo use lagta tha ki ise zyada saavdhaan banati hai. *Agar anishchit ho, toh detail ko personal maano.* Usne use narm kiya. Usne likha *agar vajib roop se anishchit ho*. Usne ek file mein ek line badli, save dabaya, aur is santosh ke saath sone chala gaya ki usne ek chhoti cheez ko thoda behtar bana diya hai.
+Monday subah sweep ne, jo Lakshmi Iyer ne ab hafte mein ek baar chalana shuru kiya tha, paanch sau chats mein teis unhidden pehchaan ke number paaye, jahan pehle nau the. Kisi ne kuch deploy nahi kiya tha. Koi code nahi badla tha aur koi release nahi gaya tha. Ek configuration file edit hui aur save ho gayi thi, aur Friday raat se guard alag tarah se behave kar raha tha.
 
-Monday subah sweep ne, jise Lakshmi ne ab har hafte chalana shuru kar diya tha, paanch sau chats mein teis unhidden pehchaan ke numbers paaye, jahan usne nau paaye the.
+## Case: ek edit jo deployment nahi tha
 
-Kisi ne kuch deploy nahi kiya tha. Yahi pagal kar dene wali baat thi. Koi code nahi badla tha. Koi release nahi gaya tha. Ek configuration file thi, edit aur save ki hui, aur guard Friday raat se alag behave kar raha tha.
-
-"Ek nirdesh ko edit karna deployment jaisa nahi lagta," Imran ne kaha. Usne yeh sapaat andaaz mein kaha, jaise koi nidaan padh raha ho. "Hai. Teams bilkul wahi niyam sabse zyada todti hain. Ek prompt ka badlaav bhesh badla hua code ka badlaav hai."
+"Instruction edit karna deployment jaisa nahi lagta," Imran Qureshi ne kaha, sapaat lahje mein, jaise koi nidaan padh raha ho. Woh hai, usne kaha, aur teams is niyam ko kisi bhi aur se zyada baar todti hain. Prompt badlaav ek bhesh badla hua code badlaav hai. Yeh chapter us machinery ko batata hai jo aisi ghatna ko na-mumkin banati hai aur un records ko jo kisi bhi ghatna ko samjhaane laayak banate hain.
 
 ## Gate kya hai
 
-Anaya ne log mein, tareekh ke saath, likha ki woh kya chahti thi: *aisa tareeka jisse yeh asambhav ho.* Aur woh project ke us hisse ki taraf mudi jo woh April se bana rahi thi, use uska sahi naam diye bina.
+Anaya ne log mein, tareekh ke saath, likha ki use kya chahiye: ek aisa tareeka jisse yeh na-mumkin ho. Woh project ke us hisse ki taraf mudi jo woh April se bana rahi thi bina use uska sahi naam diye.
 
-Answer key mein ab do sau bees rows thin. Woh har hafte badhti thi. Woh apekshit vyavahaar ke saath cases ka ek set thi, versioned aur saheji hui. Is kaarobaar mein ise *golden dataset* kehte hain, aur Imran ne ise product ke liye "achha" ka matlab kya hai uski yaaddasht kaha. Uski keemat uske coverage mein hai. Usme aasaan messages the, paraphrases, dwividha wale, jinka koi jawaab nahi tha, doosri bhashaon wale aur injected nirdeshon wale. Woh asli jokhimon ki pratinidhi thi, khushamadi demos ki nahi. Uska ek version number tha, kyunki jis evaluation ko aap badlaav ke baad dobara nahi chala sakte woh sirf ek kissa hai.
+Answer key mein ab do sau bees rows thi aur woh har hafte badhti thi. Woh expected vyavhaar ke saath cases ka ek set thi, versioned aur rakhi hui, aur is kaam mein use *golden dataset* kehte hain. Imran use is baat ki yaaddasht kehta tha ki product ke liye "achha" ka matlab kya hai. Uska mulya uski coverage mein hai: aasaan messages, paraphrases, uljhe hue, jinka koi jawaab nahi, doosri bhashaon ke, aur jinme injected instructions hain. Woh asli risks ki pratinidhi hai, aur chaplusi bhare demonstrations ki nahi. Uska ek version number hai, kyunki jo evaluation kisi badlaav ke baad dobara nahi chalaya ja sakta woh sirf ek kissa hai.
 
-Answer key aur duniya ke beech woh ek darwaza chahta tha jo sirf paas hone wale badlaavon ke liye khulta. Usne use ek din mein banaya.
+Answer key aur duniya ke beech Imran ek darwaaza chahta tha jo sirf paas hone wale badlaavon ke liye khule. Usne use ek din mein banaya. Woh ek hi command tha, chaar kadam ke saath.
 
-Yeh ek hi command tha. Golden dataset ko maujooda nirdesh ke khilaaf chalao, grade karo, aur numbers chhapo. Har ek ko pehle se likhi seema se milao. Agar kuch neeche ho, toh command fail hota hai, zor se, wajah ke saath, aur badlaav bahar nahi jaata. Yeh swachalit roop se chalta jab koi bhi file badalti: code, nirdesh, model ka naam, index, ek tool. Yeh ek *release gate* hai. Yeh ek *regression* pakadta hai, aisa badlaav jo kuch aisa kharab kar deta hai jo pehle achha tha, jo bina ek bhi line ke compile fail hue ho sakta hai.
+1. Golden dataset ko maujooda instruction par chalao.
+2. Nateeje ko grade karo aur numbers chhapo.
+3. Har number ko pehle se likhe threshold se milao.
+4. Agar kuch bhi apne threshold se neeche ho, toh zor se kaaran ke saath fail ho, aur badlaav ko jaane na do.
 
-Usne use Friday ke edit par chalaya.
+Woh apne aap tab chalta tha jab koi bhi file badalti: code, instruction, model ka naam, index ya koi tool. Yeh *release gate* hai. Yeh ek *regression* pakadta hai, aisa badlaav jo kuch aisi cheez ko kharab karta hai jo pehle achhi thi, jo bina kisi code line ke compile fail hue ho sakta hai. Imran ne use Friday ke edit par chalaya.
 
 ```
 GATE FAILED
@@ -41,64 +47,56 @@ GATE FAILED
   Blocked: instruction v14 -> v15.
 ```
 
-"Yeh raha," Anaya ne kaha.
-
-"Yeh chaalees second mein keh deta," Imran ne kaha. "Mujhe pasand hota agar kehta."
+Usne kaha ki woh chaalis second mein yeh bata deta, aur woh chahta ki kaash batata.
 
 ## Woh vaakya jo release rokta hai
 
-Lakshmi, jo poori baatcheet mein maujood thi, ne Anaya se kuch karne ko kaha.
+Lakshmi, jo poore samay maujood thi, ne Anaya se woh vaakya likhne ko kaha jo woh meeting mein kahegi: policy nahi, balki asli vaakya, numbers ke saath, jo release rokta hai. Anaya ne use do baar likha. Pehle roop mein "lagta hai" shabd tha, aur usne use kaat diya, kyunki jis vaakya mein woh ho woh kuch nahi rokta. Doosra yeh tha: hum ship nahi kar rahe, kyunki answer key version 12 par fixed-shape numbers par recall 96.4 hai, 98 ke threshold ke saamne. "Yeh release rokta hai," Lakshmi ne kaha. "Thresholds rokte hain. Raay nahi."
 
-"Woh vaakya likho jo tum meeting mein kahogi," usne kaha. "Policy nahi. Asli vaakya, numbers ke saath, jo release rokta hai."
+Gate ek se zyada number dekhta tha. Ek achha antim score ek toote hue hisse ko chhupa sakta hai, kyunki ek saaf-suthra system gayab saboot ko dhaakne ke liye kaafi baar kaam kar sakta hai ki demonstration mein theek dikhe. Isliye gate ek saath kai levels par naapta tha.
 
-Anaya ne use do baar likha. Pehle version mein *lagta hai* shabd tha, aur usne use kaat diya, kyunki uss shabd wala vaakya kuch nahi rokta. Doosra:
+Table: Gate kya naapta hai
+| Level | Sawaal |
+| --- | --- |
+| Dhoondhna | Kya finder ne sahi cheezein dhoondhi? |
+| Faisla | Kya rule-keeper ne unke saath sahi kiya? |
+| Tools | Kya look-up tool sahi chuna gaya? |
+| Kharcha aur samay | Kya poore ne utna samay aur kharcha liya jitna lena chahiye? |
+| Hamle | Kya hamle ab bhi fail hote hain? |
 
-*Hum ship nahi kar rahe, kyunki answer key version 12 par fixed-shape numbers par recall 98 ki seema ke khilaaf 96.4 hai.*
-
-"Yeh wala release rokta hai," Lakshmi ne kaha. "Seemayein rokti hain. Raayein nahi."
-
-Gate ek se zyada number dekhta tha. Ek achha antim score ek tootte hisse ko chhupa sakta hai, kyunki ek dhaaraapravah system gayab saboot ke liye itni baar bharpayi kar sakta hai ki ek demonstration mein theek lage. Isliye gate ek saath kai staron par naapta tha: kya finder ne sahi cheezein dhoondhin; kya rule-keeper ne unke saath sahi kiya; kya lookup tool sahi chuna gaya; kya poore ne woh samay aur kharcha liya jo lena chahiye; aur kya hamle ab bhi fail hue. Paas hone ke liye sab chahiye the. Anaya ne specification mein ek aur line joda, us section mein jahan faisle record hote hain, aur woh sabse mushkil thi. *Kaun si seema na-bhi-sudhaarne-yogya hai?* Fixed-shape numbers par recall, usne likha. Baaki sab par woh bargaining kar sakti thi.
+Paas hone ke liye sab chahiye the. Anaya ne specification ke us section mein ek line joda jahan faisle record hote hain, aur woh sabse mushkil thi: kaun sa threshold gair-samjhaute ka hai? Fixed-shape numbers par recall, usne likha. Baaki sab par woh samjhauta kar sakti thi.
 
 ## Parcel aur uske scans
 
-Chapter ka doosra aadha Wednesday ko Lakshmi ke ek sawaal se shuru hua, us awaaz mein poochha jo woh tab istemaal karti thi jab use pehle se jawaab ka shak ho.
+Ek Wednesday ko Lakshmi ne ek sawaal poochha, us lahje mein jo woh tab istemaal karti thi jab use pehle se jawaab ka shak ho: solah tareekh ko ek chat mein Mrs. Kulkarni ka pata dikhta kyun chhoda gaya? Kisi ko nahi pata tha, jo pehli samasya thi. Guard ne us hafte hazaaron faisle kiye the, aur har ek sirf ek line ke roop mein record tha jo kehti thi ki kuch chhupaya gaya ya nahi. Unme dhoondhna andaaza tha.
 
-"Solah tareekh ko ek chat mein Mrs. Kulkarni ka pata dikhta kyun chhoda gaya?"
+Imran ne yeh dak-ghar ke ek chitra se samjhaya ki kya gayab tha. Jab ek parcel kho jaata hai, courier bata sakta hai ki woh aakhri baar kahan scan hua tha, kyunki har kadam par scan hota hai. Scans ke bina use khoja nahi ja sakta.
 
-Kisi ko nahi pata tha. Yeh pehli problem thi. Guard ne us hafte hazaaron faisle kiye the, aur har ek sirf ek line ke roop mein record tha jo kehti thi ki kuch chhupaya gaya ya nahi. Unmein se khoj andaaza lagana tha.
+::: def Trace record aur observability
+*Trace record* ek request ke liye scan log hai. Usme request ka number, har us cheez ke versions jisne use chhua, woh kadam jinse woh guzri, har ek ne kitna samay liya, kitna kharcha hua aur woh kaise khatam hui. *Observability* aise records se yeh dekh paana hai ki system ne kya kiya aur kyun, andaaza lagaye bina. Agar koi sirf input aur output dekh sakta hai, toh har nidaan andaaza hai.
+:::
 
-Imran ne jo gayab tha use ek post office ki tasveer se samjhaya. "Jab ek parcel kho jaata hai," usne kaha, "courier bata sakta hai ki woh aakhri baar kahan scan hua tha, kyunki woh use har kadam par scan karte hain. Iske bina, tum use trace nahi kar sakte."
+Imran ek mahine se trace records bana raha tha, aur Lakshmi ke sawaal ka jawaab chaalis second mein aa gaya. Solah tareekh ka message lamba tha aur teen tukdon mein kata gaya tha. Finder doosre tukde par time out ho gaya tha, aur system ne, jaisa design tha, us tukde ke liye safe mode par aa gaya tha, jo patton ke baare mein nahi jaanta tha. Pata usi tukde mein tha. Lakshmi ne kaha ki yeh design ke mutabik kaam kiya. "Usne wahi kiya jo humne use kaha," Imran ne kaha. "Humne use kuch aisa kaha jo kaafi achha nahi hai." Usne board par ek nayi line likhi: safe mode mein time out hone par poora tukda mask karna chahiye, sirf numbers nahi. Usne use lunch se pehle theek kar diya.
 
-*Trace record* ek request ka scan log hai. Usme request ka number hota hai, jo kuch bhi use chhoota hai uske versions, jin charno se woh guzra, har ek mein kitna samay laga, kharcha kitna hua aur woh kaise khatam hua. Observability is baat ka naam hai ki aise records se dekh paana ki ek system ne kya kiya aur kyun, andaaza lagaye bina. Agar aap sirf input aur output dekh sakte hain, Imran ne kaha, toh har nidaan ek andaaza hai.
+## Woh average jisne poonchh chhupa di
 
-Woh ek mahine se trace records bana raha tha, aur Lakshmi ke sawaal ka jawaab chaalees second mein aaya. Solah tareekh ka message lamba tha. Use teen tukdon mein kaata gaya tha. Finder doosre tukde par time out ho gaya tha, aur system ne, design ke anusaar, us tukde ke liye safe mode par girna chuna tha, jo pate ke baare mein nahi jaanta tha. Pata usi tukde mein tha.
+Anaya ne dashboard par ek message ka ausat samay dekha. Woh ek second ka dasva hissa tha, aur sab theek lag raha tha. Imran asahmat tha: ausat poonchh ko chhupata hai. Jo naap maayne rakhta hai woh *p95* hai, woh samay jise sau mein se pachaanve requests peechhe chhod dete hain. Ausat 0.12 second tha aur p95 1.9. Bees mein se ek message dedh second se zyada ka tha, aur users poonchh ko ausat se kahin zyada mehsoos karte hain. Usne har stage naapa aur paaya ki poonchh ek stage ki thi, order look-up, jo kabhi-kabhi dheema hota tha. Wahi stage poonchh ka maalik tha, aur poonchh wahi thi jahan kaam tha.
 
-"Toh woh design ke anusaar kaam kiya," Lakshmi ne kaha.
-
-"Usne wahi kiya jo humne use kaha. Humne use kuch kaha jo kaafi achha nahi hai." Imran ne board par ek nayi line likhi. *Safe mode mein ek timeout ko poora tukda mask karna chahiye, sirf numbers nahi.* Usne ise lunch se pehle theek kiya.
-
-## Woh ausat jisne poonchh chhupa di
-
-Anaya ne dashboard par prati message ka ausat samay dekha. Ek second ka dasva hissa. Sab theek lag raha tha.
-
-"Nahi hai," Imran ne kaha. "Ausat poonchh ko chhupa deta hai."
-
-Jo naap maayne rakhta hai woh *p95* hai: woh samay jise sau mein paccheesh requests haraati hain. Ausat 0.12 second tha. p95 1.9 tha. Bees mein ek message dedh second se dheema tha, aur users poonchh ko ausat se kahin zyada mehsoos karte hain. Usne har charan naapa, aur poonchh unmein se ek ki thi: order lookup, jo kabhi-kabhi dheema tha. Isliye us charan ke paas poonchh thi, aur poonchh wahi thi jahan kaam tha.
-
-Kharche ke liye bhi yahi tha, jo woh ab har request ke liye track karta tha. Jaanne layak cheez ek call ka kharcha nahi tha balki ek safaltapurvak saaf kiye gaye message ka kharcha, retries aur atirikt rounds ginke.
+Wahi kharche par laagu hua, jise woh ab har request ke liye track karta tha. Jaanne layak cheez ek call ka kharcha nahi tha balki ek safaltapoorvak saaf kiye gaye message ka kharcha tha, retries aur extra rounds ginkar.
 
 ## Jo bina kisi ke chhue badal sakta hai
 
-"Mera assistant is hafte dheema ho gaya," Imran ne kaha, "aur kisi ne kuch deploy nahi kiya. Teen cheezein batao jo badal sakti thin."
+Imran ne Anaya se teen cheezein ginane ko kaha jo ek hafte mein, jisme kisi ne kuch deploy nahi kiya, assistant ko dheema kar sakti thi. Usne mix of traffic sujhaya, jisme October mein Devanagari lipi ke zyada messages the, documents ki sankhya, aur look-up ke doosri taraf provider ka response time. Inme se koi bhi repository mein nahi hai, isliye unhe dashboard par hona chahiye.
 
-Anaya ke paas har shreni mein ek andaaza tha. Traffic ka mishran, jisme October mein Devanagari lipi mein zyada messages the. Documents ki sankhya. Aur lookup ke doosri taraf ke provider ka response samay. Inme se kuch bhi repository mein nahi hai, jo wajah hai ki unhe dashboard par hona chahiye.
+Dashboard ab jaisa tha, usme chhe panels the: quality, safety, speed, kharcha, traffic aur failures. Har ek ka ek naap, ek sroot, ek maalik aur ek threshold tha. Kuch alerts kisi insaan ko jagaate aur doosre sirf dekhe jaate. Anaya ne ek-ek panel hatakar dekha tha ki kaun sa incident samajhna mushkil ho jaata, aur har hatane se woh hua, jo maksad tha.
 
-Usne use dashboard dikhaya jaisa woh ab tha. Chhe panel. Quality, suraksha, raftaar, kharcha, traffic aur failures. Har ek ka ek naap, ek source, ek malik aur ek seema thi. Kuch alerts ek insaan ko jagayenge. Doosre sirf dekhe jayenge. Usne ek-ek karke panel hatakar dekha tha ki kaun si ghatna ka nidaan mushkil ho jayega. Har hataav ne kiya, jo maqsad tha.
+Imran ne do aur aadatein zaroori maani, dono saadhaaran software se udhaar li hui. Pehli har hisse ko alag-alag version karna tha, instruction, model, index aur tool descriptions, taaki kuch bhi khud se rolled back ho sake. Doosri kisi badlaav ko pehle kuch users ko dikhana tha, puraana version taiyaar rakhkar. Yeh *canary release* hai, khaan ke puraane tareeke se naam liya gaya jisme pehle chidiya bheji jaati thi. Hamesha jis sawaal ka jawaab dene mein sakshm hona chahiye, usne kaha, woh yeh hai ki theek-theek kya badla.
 
-Do aur aadatein thin jin par usne zor diya, dono aam software ki duniya se udhaar li hui. Pehli har hisse ka alag version rakhna thi, nirdesh, model, index, tool descriptions, taaki kuch bhi akele rollback kiya ja sake. Doosri ek badlaav ko pehle kuch logon ko dikhana tha, purane version ko taiyaar rakhkar. Yeh ek *canary release* hai, purane khadaan abhyas se jisme chidiya ko pehle bheja jaata tha.
+## Saaraansh
 
-"Tum chaahogi ki kisi bhi samay," Imran ne kaha, "ek sawaal ka jawaab de sako. Theek-theek kya badla?"
+Instruction mein badlaav system mein badlaav hai, bhale hi woh deployment jaisa na lage. Ilaaj ek release gate hai: ek command jo har badlaav par ek versioned golden dataset chalata hai aur use rokta hai agar koi bhi number pehle se tay threshold se neeche ho.
 
-## Saath le jaane layak baatein
-
-Ek nirdesh ka badlaav system ka badlaav hai, bhale hi woh deployment jaisa na lage, aur ilaaj ek release gate hai: ek command jo har badlaav ke khilaaf ek versioned golden dataset chalata hai aur use rok deta hai agar koi number pehle se tay seema se neeche gire. Gate kai staron par naapta hai, kyunki ek achha antim score ek tootta hissa chhupa sakta hai, aur woh vaakya jo release rokta hai usme numbers hote hain, raayein nahi. "Usne aisa kyun kiya?" ka jawaab dene ke liye, har request ke raaste ka ek trace record rakho, jo jaanne aur andaaza lagane ka farak hai. Ausat dheeli poonchh chhupate hain, isliye p95 naapo, aur poore kaam ka kharcha ginno, call ka nahi. Quality bina kisi ke code ko chhue badal sakti hai, kyunki traffic, data aur providers sab hilte hain. Isliye har hisse ko apna version do, taaki use akele rollback kiya ja sake, aur badlaav pehle kuch logon ko dikhao.
+- Gate ek saath kai levels par naapta hai, kyunki ek achha antim score ek toote hisse ko chhupa sakta hai. Jo vaakya release rokta hai usme numbers hote hain, raay nahi.
+- "Isne aisa kyun kiya?" ka jawaab dene ke liye har request ke raaste ka ek trace record rakho. Wahi jaanne aur andaaza lagane ka antar hai.
+- Averages dheemi poonchh ko chhupate hain, isliye p95 naapo, aur call ka nahi balki poore kaam ka kharcha ginno.
+- Quality bina kisi ke code chhue badal sakti hai, kyunki traffic, data aur providers sab hilte hain. Har hisse ko apna version do taaki woh khud wapas ja sake, aur badlaav pehle kuch users ko dikhao.

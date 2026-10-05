@@ -17,11 +17,11 @@ May ke doosre aadhe hisse ke ek dhundhle Thursday ko Imran Qureshi ne glass room
 
 Drawing mein das dabbe the. Do hafte pehle woh ek bhi nahi bana sakti thi. Yeh chapter naam deta hai ki usne kya banaya, dikhata hai ki woh bina awaaz ke kahan fail ho sakta hai, aur ek laal pen wali compliance head ko follow karta hai jo jaanna chahti thi ki har shabd kahan jaata hai.
 
-## 18.1 Case: yaad se das dabbe
+## Case: yaad se das dabbe
 
 Imran ne pattern ka naam jaanboojh kar rok rakha tha. Board par sab kuch aisa tha jo Anaya ne apne haathon se kiya tha: kainchi se policy kaati, search box ka kirdaar nibhaya, matlab ke naqshe ka istemaal kiya, aur ginti ki ki tool ne kya paya aur kya chhoda. Jab usne naam diya, toh woh us kaam ka naam hota jo woh kar chuki thi.
 
-## 18.2 Pattern ka ek naam hai
+## Pattern ka ek naam hai
 
 Design ka naam *retrieval-augmented generation* hai, ya RAG. Generation model ka likhna hai, jo shuruaati hafton mein bataya gaya. *Retrieval* dhoondhna hai, jo pichhle chapters mein bataya gaya. Milkar, ek system pehle documents ke woh tukde dhoondhta hai jo sawaal ke liye prasangik lagte hain, phir unhe sawaal ke saath model ko deta hai, taaki model unse jawaab likhe.
 
@@ -31,7 +31,7 @@ RAG applied AI ka sabse zyada istemaal hone wala pattern hai. Zyadatar products 
 Jo model ne dekha nahi uske baare mein poochhne par woh jawaab gadhta hai. Jis model ko saboot diya jaaye woh saboot se likhta hai, aur uska jawaab bata sakta hai ki woh kahan se aaya. System ke diye hue, traceable saboot se likha gaya jawaab *grounded answer* hai.
 :::
 
-## 18.3 Jahan yeh bina awaaz ke fail hota hai
+## Jahan yeh bina awaaz ke fail hota hai
 
 Imran ne Anaya se har us dabbe par ek taara lagane ko kaha jahan bina error dikhe galat jawaab ban sakta hai. Usne das dabbe dekhe aur lagbhag sab par taara lagaya.
 
@@ -46,7 +46,7 @@ Table: Retrieval system khaamoshi se kahan galat hota hai
 
 In mein se kisi mein program crash nahi karta, chillata nahi, ya kuch ajeeb log nahi karta. Har hissa safalta report karta hai, aur jawaab galat hota hai. Imran ne woh baat kahi jo woh chahta tha ki Anaya kamre se le jaaye: aisa system tootta nahi. Woh chupchaap galat ho jaata hai, har hissa kehte hue ki sab theek hai. Isliye answer key maayne rakhti hai, kyunki aur kuch team ko nahi batayega.
 
-## 18.4 "Kharab jawaab" ka matlab
+## "Kharab jawaab" ka matlab
 
 Log Imran ko batate hain ki chatbot kharab jawaab deta hai. Woh ise ek lakshan maanta tha, jaise doctor se kehna ki mujhe achha nahi lag raha. Kam se kam chaar bilkul alag galtiyan bahar se ek jaisi dikhti hain. Sahi page kabhi mila hi nahi ho sakta. Woh mila ho par is tarah kata ho ki zaroori line agle tukde mein ho. Woh poora mila ho par model ne use andekha kar diya ho. Ya instructions ne model ko wo kuch alag karne ko kaha ho jo kisi ka matlab nahi tha. Har ek ka ilaaj alag hai, aur galat ka ilaaj karne mein ek quarter bekaar jaata hai.
 
@@ -63,7 +63,7 @@ Table: Ek quarter ki mehnat kahan sabse zyada kaam aati hai
 
 Anaya ne haath ke peechhe likha, jaise school ke baad se nahi kiya tha, ki quality ki samasyayein aam taur par saboot ki samasyayein hain, model ki nahi.
 
-## 18.5 Ek laal pen
+## Ek laal pen
 
 Lakshmi Iyer paani ka glass lekar bina bataye andar aayi. Usne Farah se suna tha ki poora system board par hai, aur usne use ant se padha, jaise woh documents padhti thi. Usne poochha ki customer ke shabd kahan jaate hain aur marker utha liya, jo kisi ne use diya nahi tha.
 
@@ -73,7 +73,7 @@ Lakshmi Iyer paani ka glass lekar bina bataye andar aayi. Usne Farah se suna tha
 
 Anaya ne dekha ki machine kya thi. Woh kamron ki ek shrinkhala thi, aur customer ke shabd har kamre se guzarte the, aur har ek mein copy hote the. Shrinkhala ke beech mein baitha guard sirf use bachata jo uske baad aata. Surakshit jagah sirf darwaaza thi.
 
-## 18.6 Jo woh abhi nahi kar sakti
+## Jo woh abhi nahi kar sakti
 
 Jaane se pehle Imran ne board ke kone mein chaar vaakya likhe. Pichhli shaam usne machine ko chaar tareekon se test kiya tha aur chaar cheezein dhoondhi thi jo woh nahi kar sakti thi.
 

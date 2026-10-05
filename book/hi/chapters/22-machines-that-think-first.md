@@ -17,13 +17,13 @@ May ke ant mein Anaya bankers ke saath meeting se train se lauti. Train chhe baj
 
 Woh ab bhi ispar soch rahi thi jab Imran Qureshi ne answer key ke sabse mushkil vaakyon par ek prayog ki report dene ke liye phone kiya. Yeh chapter batata hai ki usne kya paaya, aur train ka iske saath kya lena-dena tha.
 
-## 22.1 Case: gyarah second
+## Case: gyarah second
 
 Ek mahine se Imran un vaakyon ka adhyayan kar raha tha jinhe sasta model baar-baar galat kar raha tha: shabdon mein bola gaya Aadhaar number, baarah ank jo order number ho sakte the, aur woh vaakya jo bina number ke ek insaan ko pehchaanta hai. Us din usne unhe ek alag tarah ke model par aazmaya tha, jo jawaab dene se pehle apna kaam likhta hai. Woh ek tareeka aazmata hai, use jaanchta hai, zaroorat ho toh peechhe hat jaata hai, aur tabhi apna jawaab deta hai. Kaam aam taur par user ko nahi dikhta, aur uske liye paisa lagta hai.
 
 Jo model yeh karta hai woh *reasoning model* hai. Uska mahatva yeh hai ki accuracy us pal tay nahi hoti jab model banaya gaya tha. Use har sawaal ke liye kharida ja sakta hai, machine ko zyada der kaam karne dekar.
 
-## 22.2 Sochne ka kharcha
+## Sochne ka kharcha
 
 Imran ne nateeje phone par padhe.
 
@@ -48,13 +48,13 @@ Table: Reasoning models ke baare mein teen chetavaniyan
 | Intezaar product ki samasya hai | Dheema jawaab user mehsoos karta hai, chahe uska kaaran kuch bhi ho |
 | Yeh sab ya kuch nahi nahi hai | Zyadatar providers developer ko chunne dete hain ki kitni reasoning istemaal karni hai, isliye faisla har tarah ki request ke liye kiya ja sakta hai, product ke liye ek baar nahi |
 
-## 22.3 Woh faisla jo intezaar nahi kar sakta
+## Woh faisla jo intezaar nahi kar sakta
 
 Jab tak train Pune pahunchi, samasya ne aakaar le liya tha, aur Saturday subah Anaya ne use Imran ke saamne rakha. Guard darwaaze par baitha hai. Customer ek message type karta hai, guard use jaanchta hai, aur tabhi message aage jaata hai. Agar guard gyarah second leta, toh customer har reply ke liye gyarah second intezaar karta, jabki zaroorat yeh thi ki guard ek second ke teesre hisse se zyada na jode.
 
 Poochhne aur jawaab milne ke beech ka samay *latency* hai. User ise kisi bhi aur cheez se zyada tez mehsoos karte hain. Anaya ne ek doosri mushkil bhi dekhi: guard ka output customer ko tukde-tukde mein nahi dikhaya ja sakta tha.
 
-## 22.4 Intezaar ko aasaan banane ke tareeke
+## Intezaar ko aasaan banane ke tareeke
 
 Jawaab kitna tez lagta hai yeh zyadatar is par nirbhar hai ki kuch pehli baar kab dikhta hai. Imran ne intezaar ko aasaan banane ke teen tareeke batayein, jinme se pehla woh tha jo train ne bina irade ke istemaal kiya.
 
@@ -71,7 +71,7 @@ Guard ke liye kaun sa theek hai, yeh is par nirbhar hai ki adhoora jawaab upyogi
 Isi wajah se schema pehle aaya tha. Reply ka ek hissa dikhana tabhi surakshit hai jab jo hissa dikh sakta hai woh pehle se antim ho. Isliye guard apna jawaab stream nahi kar sakta. Use chat ke istemaal karne se pehle khatam hona padta hai.
 :::
 
-## 22.5 Kaun sa case kahan jaata hai
+## Kaun sa case kahan jaata hai
 
 Team ne dopahar us design par bitayi jo agle aaya, aur jisme us mahine ki har seekh lagi.
 

@@ -17,11 +17,11 @@ June ke ant tak answer key mein ek sau bees rows ho gayi thi, aur Anaya ab use h
 
 Imran Qureshi ne use bataya ki jawaab jaanchne ke teen tareeke hain, aur har gambhir team teeno istemaal karne lagti hai. Yeh chapter unhe batata hai, dikhata hai ki ek ko bharose se pehle kaise parkha gaya, aur ek aise hafte ke kaam se khatam hota hai jisme koi software nahi laga.
 
-## 25.1 Case: ek key jo haath se jaanchne ke liye bahut badi hai
+## Case: ek key jo haath se jaanchne ke liye bahut badi hai
 
 Badhti hui key sahi pravritti ko dikhati thi, kyunki har asli failure ek row ban gayi thi. Pravritti ki keemat yeh thi ki jaanch ab us se zyada samay leti thi jitna team de sakti thi. Neeche ke section dikhate hain ki jaanch teen tarah ke jaanchne walon mein kaise baanti gayi.
 
-## 25.2 Teen jaanchne wale
+## Teen jaanchne wale
 
 Table: Jawaab jaanchne ke teen tareeke
 | Jaanchne wala | Taakat | Kamzori | Kis kaam ke liye |
@@ -32,7 +32,7 @@ Table: Jawaab jaanchne ke teen tareeke
 
 Bahut se kharab jawaab aise tareeke se fail hote hain jo program dekh sakta hai, aur Imran ne kaha ki zyadatar teams code checks kaafi nahi istemaal karti. Uski pasand ka kram yeh tha: jahan sambhav ho pehla jaanchne wala, jo pehla nahi dekh sakta uske liye teesra, aur teesre ko imaandaar rakhne ke liye doosra.
 
-## 25.3 Ek judge ki jaanch
+## Ek judge ki jaanch
 
 Anaya ko ek aise sawaal ke liye judge chahiye tha jiska jawaab koi program nahi de sakta tha: guard apna kaam karne ke baad, kya message mein kuch personal bacha hai? Code checks pakka kar sakte the ki ek quotation maujood tha. Woh yeh nahi bata sakte the ki ek bacha hua tukda, jaise "Karve Road par chemist ke upar wala flat", ab bhi kisi insaan ki taraf ishaara karta hai ya nahi.
 
@@ -46,7 +46,7 @@ Imran ne kaha ki das mein se chhe ya saat ka match ek bilkul saamaanya pehla nat
 Agar galtiyan bikhri hoti, toh iska matlab hota ki Anaya aur Farah khud is par sahmat nahi the ki "saaf" ka matlab kya hai, aur judge mein koi badlaav madad nahi kar sakta tha. Kyunki galtiyan ek saath thi, use pata tha ki use woh mila hai jise woh sudhaar sakti hai.
 :::
 
-## 25.4 Judge kya galat karta hai
+## Judge kya galat karta hai
 
 Imran ke paas jaane-pehchaane biases ki ek chhoti aur kam pasand ki list thi, aur upaay jo kaam karte the.
 
@@ -59,7 +59,7 @@ Table: LLM judges ke biases aur unke upaay
 
 Anaya ne instruction in teen tareekon se dobara likha. Wahi pachaas messages par judge ab uske saath chavaalees baar sahmat hua, yaani atthaasi percent. Jo judge apni grading ke saamne jaancha gaya hai woh ek naapne ka saadhan hai. Jo judge jaancha nahi gaya woh us machine se sahmat hoga jise woh jaanch raha hai, kyunki dono ek hi tarah ki cheez hain.
 
-## 25.5 Sau asli outputs padhna
+## Sau asli outputs padhna
 
 Is mein se kuch bhi use yeh nahi bata saka ki kya galat ho raha tha. Judge batata hai ki kuch kitni baar fail hota hai, par yeh nahi batata ki kyun. Uske liye Imran ne project ka sabse saadhaaran kaam kiya. Ek hafte ke ant mein usne guard ko, bina kuch badle, ek mahine ke export kiye chats par chalaya, aur har message ke liye record kiya ki woh kya chhupata. Monday ko usne Anaya ko un outputs ka ek dher diya, sau, chhapa hua aur random chuna hua.
 
@@ -81,7 +81,7 @@ Yeh *error analysis* hai, aur Imran ne kaha ki jisne bhi ise kiya hai woh wahi k
 
 Table ne yojna badal di. Anaya ek hafta pate par bitaane wali thi kyunki woh zaroori lagte the. Data ne kaha ki bada masla ek saadhi cheez thi: order numbers.
 
-## 25.6 Ek chakra
+## Ek chakra
 
 Har failure answer key mein ek row ban gayi, sahi jawaab pehle se likha hua, aur key ek sau bees rows se ek sau ikyaavan tak badh gayi. Anaya ne chakra board par ek line mein banaya taaki woh use bhool na jaye: asli messages, failures padho, rows jodo, theek karo, naapo, aur phir aur asli messages. Har round ne key ko asli istemaal ki behtar tasveer banaya. Tools har kuch mahine mein badlenge, par key aur failures ki list rahegi.
 

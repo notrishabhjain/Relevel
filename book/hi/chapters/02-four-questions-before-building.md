@@ -23,7 +23,7 @@ Chat export ki raat ke agle din Anaya ne Imran Qureshi ko printout dikhaya: sain
 
 Anaya ne poochha ki is samasya ko theek karne ke liye tool banana achha idea hai ya nahi, aur kaha ki woh yeh bhi bataye ki shayad kyun nahi. Imran ka jawaab ek aise feature se shuru hua jo company ne dedh saal pehle banaya tha aur jise kisi ne dhoondha nahi. Yeh chapter us feature ke zariye batata hai ki product kaise banta hai, kaise fail hota hai, aur kaam shuru karne se pehle ek idea ko kin sawaalon ka saamna karna chahiye.
 
-## 2.1 Case: woh reminder jo kisi ko nahi mila
+## Case: woh reminder jo kisi ko nahi mila
 
 Pichhle saal Sahaj ne dekha ki customers bill bharna bhool jaate hain aur late fee dena padta hai. Customers ko late fee pasand nahi thi, aur company bhi use zyada vasool karna nahi chahti thi. Ek chhoti team ne ek reminder banaya jo bill ki last date se do din pehle message bhejta tha. Kaam saavdhaani se hua. Shabd kuch customers par test kiye gaye, messages sahi samay par pahunche, aur Imran ne khud dekha ki raat ke beech mein koi message nahi gaya.
 
@@ -31,7 +31,7 @@ Launch ke teen mahine baad sau mein se do se bhi kam customers ne reminder on ki
 
 Team ne poochha tha ki reminder achha hai ya nahi, aur woh achha tha. Usne yeh nahi poochha tha ki kisi ko pata hai ki reminder hai bhi. Anaya ne ek vaakya likha jo baad mein bhi kaam aaya: jis feature ko koi dhoondh nahi paata, uska asar waisa hi hota hai jaise woh kabhi bana hi nahi.
 
-## 2.2 Product ke teen stages
+## Product ke teen stages
 
 Reminder bhi har product ki tarah teen stages se guzra, chahe banane waale unhe alag-alag maane ya na maane.
 
@@ -41,7 +41,7 @@ Reminder bhi har product ki tarah teen stages se guzra, chahe banane waale unhe 
 
 Reminder pehle do stages mein safal raha aur teesre mein fail hua, aur us ek failure ne baaki kaam ka asar mita diya. Product aam taur par apne sabse kamzor stage par fail hota hai, aur teams usi stage mein sabse majboot hoti hain jo unhe pasand hai. Engineers delivery pasand karte hain. Researchers discovery. Distribution dono se chhoot jaata hai, jabki wahi stage woh saboot deta hai jo discovery ko dobara khilata hai: kaun ruka, kaun gaya, aur kyun.
 
-## 2.3 Chaar product risks
+## Chaar product risks
 
 Imran ne printout wale idea ko parakhne ke liye whiteboard par chaar shabd likhe: *value*, *usability*, *feasibility* aur *viability*. Har shabd ek *product risk* batata hai, yaani product ke fail hone ka ek alag tareeka, aur inmein se koi ek bhi use doobane ke liye kaafi hai.
 
@@ -69,7 +69,7 @@ Feasibility ka sawaal yeh hai ki software kitni baar sahi hai. Jo tool paanch me
 
 Viability ka sawaal kharche ka hai. Aam feature par har click ka kharcha lagbhag zero hota hai. Jo feature text padhta aur likhta hai, use har baar chalane par asli paisa lagta hai. Isliye viability is par tikti hai ki feature kitni baar chalta hai aur har istemaal par customer se kitna liya ja sakta hai.
 
-## 2.4 Paisa kaun deta hai, kaun istemaal karta hai, kaun "na" kehta hai
+## Paisa kaun deta hai, kaun istemaal karta hai, kaun "na" kehta hai
 
 Sahaj individual logon ko bechti hai: ek aurat jo bijli ka bill bharti hai, ek aadmi jo loan ke liye apply karta hai. Isse *B2C* kehte hain, business to consumer. Paisa dene wala wahi hai jo istemaal karta hai, aur faisla kuch minutes mein hota hai, zyadatar is par ki product aasaan lagta hai ya nahi.
 
@@ -85,7 +85,7 @@ Table: Logon ko bechna aur companies ko bechna kaise alag hai
 
 Vyavhaarik niyam yeh hai ki har customer ke baare mein teen sawaal poochiye: paisa kaun deta hai, istemaal kaun karta hai, aur "na" kaun keh sakta hai. Sahaj ke liye jawaab yeh the ki company paisa dengi, support staff aur engineers istemaal karenge, aur "na" Lakshmi Iyer, compliance head, keh sakti hain. Anaya ne jaana ki woh aadha ghanta us ek insaan ke chaaron taraf product design karti rahi jo use rok sakta hai, aur usse uski raay poochhi tak nahi.
 
-## 2.5 Assistant ke aatmavishwaas bhare paragraph
+## Assistant ke aatmavishwaas bhare paragraph
 
 Apni seat par jaate hue Anaya ne woh kiya jo woh kai mahinon se kar rahi thi. Usne ek AI assistant se chhota overview maanga ki Bharat mein log chat mein pehchaan ke number kyun share karte hain. Assistant ne chaar saaf-suthre paragraph diye. Ek mein likha tha ki customers "low digital literacy aur official-sounding services par zyada bharosa" ki wajah se zyada share karte hain. Doosre mein likha tha ki yeh pravritti "pehli baar loan lene waalon mein khaas taur par zyada hai".
 
@@ -97,7 +97,7 @@ Assistant draft likh sakta hai, saar bana sakta hai, sawaal sujha sakta hai aur 
 
 Anaya ne pehle niyam ke neeche doosra niyam joda: uske notes ka har dawa saboot tak jaana chahiye, ya anumaan ki tarah chinhit hona chahiye. Pehli baar loan lene waalon wale vaakya ke paas usne likha: "Saboot nahi. Kya tay karega: kya woh 37 zyadatar pehli baar loan lene wale hain. Farah das minute mein bata sakti hai." Jaanch par aam taur par ek chhoti baatcheet se zyada kharcha nahi aata.
 
-## 2.6 Jo abhi anjaan tha
+## Jo abhi anjaan tha
 
 Shaam tak whiteboard par chaar risks the aur unke neeche un sawaalon ki soochi jinka jawaab abhi kisi ke paas nahi tha. Kya tool English letters mein likhe Hindi naam dhoondh sakta hai? Lakshmi kya kahengi? Yeh numbers asal mein kaun type karta hai, aur kyun? Aakhri sawaal technical nahi tha. Anaya ke paas saintees conversations thi aur yeh andaaza nahi tha ki saintees-wi conversation mein type karne wala kya soch raha tha. Use yeh bhi pata tha ki woh aise sawaal poochhti hai jinme haan ki ummeed hoti hai. Agla chapter is aadat ko theek karne ke baare mein hai.
 

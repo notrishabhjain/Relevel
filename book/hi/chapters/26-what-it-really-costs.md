@@ -15,11 +15,11 @@ July ke pehle hafte mein Anaya ne Sahaj ki finance director ko guard ka plan diy
 
 "Yeh model call ka kharcha hai," director ne kaha. "Kya yeh system ka kharcha hai?" Anaya ek pal ruki, utni der jitni der mein koi samajhta hai ki usne ek shabd laparwaahi se istemaal kiya, aur kaha ki use jaanna padega. Yeh chapter batata hai ki use kya mila.
 
-## 26.1 Case: ek number maanga gaya, do diye
+## Case: ek number maanga gaya, do diye
 
 Anaya ne director ko do figure diye the, ek message ka kharcha aur ek mahine ka kul, aur shaam woh yeh mehsoos karte hue bitayi ki woh galat do the. Neeche ke section unhe dobara ginte hain.
 
-## 26.2 Saadhaaran hisaab, aur woh kam kyun hai
+## Saadhaaran hisaab, aur woh kam kyun hai
 
 Har kharche ka case ek hi hisaab se shuru hota hai, aur woh sahi hai: tokens in guna token in ka daam, jod tokens out guna tokens out ka daam. Saavdhaan judge ko ek saaf call ke liye, chhe sau token andar aur assi bahar, saal bhar istemaal hue kalpanik daamon par, woh teis paise aaya.
 
@@ -35,7 +35,7 @@ Table: Chaar guna jo saadhaaran hisaab chhod deta hai
 
 In mein se har ek Anaya ka kiya hua chunaav tha, jiska matlab tha ki har ek ko badla ja sakta tha.
 
-## 26.3 Ek tool ke liye teen number
+## Ek tool ke liye teen number
 
 Us raat usne hisaab dobara kiya aur ek ki jagah teen jawaab aaye. Har ek sach tha, aur woh teen alag tools ka varnan karte the.
 
@@ -54,7 +54,7 @@ Table: Ek hi tool ke teen designs
 
 Pehla figure sach se aadhe se kam tha, aur doosra sach se pandrah guna zyada. Doosre aur teesre ke beech ka antar kuch nahi tha siwaye us kram ke jisme hisse chalte the.
 
-## 26.4 Pehle sasti cheez
+## Pehle sasti cheez
 
 Us kram ka ek naam hai. *Cascade* har request ko pehle us sabse sasti cheez ke paas bhejta hai jo kaam kar sakti hai, aur sirf jo jaanch mein fail hota hai use agle, mehnge ke paas bhejta hai. Guard ek cascade tha, ek alag kaaran se banaya gaya, jo raftaar thi aur saavdhaan judge ko un cases ke liye rakhna jinhe nikaalna padta tha. Bachat bina bulaye saath aa gayi.
 
@@ -72,13 +72,13 @@ Table: Kharcha ghatane ke aur tareeke, bachat ke lagbhag kram mein
 | Request ke ek jaise aage ke hisse ko cache karo | Wahi shuruaat, sasta bill |
 | Jo kaam intezaar kar sakta hai woh karo | Raat bhar, batches mein kiya kaam sasta hota hai. Saavdhaan judge ki doosri nazar, jo pehle se background mein chalti thi, batch ki ja sakti thi |
 
-## 26.5 Ek nahi, teen number
+## Ek nahi, teen number
 
 Mangalwar ko Anaya table aur ek bayaan ke saath director ke paas lauti jo usne ek ghante mein likha tha. Tool teen lakh messages par mahine mein lagbhag ek lakh pachaas hazaar rupaye mein padta hai, lagbhag ikyaavan paise ek message. Kharcha saavdhaan judge se tay hota hai, jo sau mein se chhe messages dekhta hai. Figure galat hai agar yeh chhe se badhkar das se upar chala jaaye, agar retries paanch mein se ek se upar jaayein, ya agar provider apne daam badal de. Director ne kaha ki woh us number ka bachaav kar sakti hai.
 
 Anaya ne joda ki speed bhi ek kharcha hai, kyunki ek sasta tool jo dheema hai woh utni hi poori tarah fail ho sakta hai jaise ek tez tool jo mehnga hai. Woh hamesha teen cheezein saath report karegi: kharcha, ek message mein aam taur par kitna samay laga, jo ek second ka chhota hissa tha, aur dheeme messages mein kitna laga, jo background mein jaate the. Ek akela average dheemi poonchh ko chhupa dega.
 
-## 26.6 Hisaab ka doosra hissa
+## Hisaab ka doosra hissa
 
 Director ne phir poochha ki tool kya bachata hai, aur Anaya ke paas jawaab nahi tha. Uske paas ek kharcha tha aur koi phayda nahi, jo us dopahar ka asli maksad tha. Jo sawaal zyadatar aise features ko tay karta hai uska tokens se koi lena-dena nahi hai. Woh yeh hai ki kya feature bade paimaane par maayne rakhta hai. Agar ek query ka kharcha teen rupaye hai aur jo value woh bachati hai woh do hai, toh koi bhi tuning use nahi bachayegi.
 

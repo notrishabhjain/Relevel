@@ -18,11 +18,11 @@ Lakshmi Iyer ne poochha tha ki Anaya kaise jaanegi ki tool kaam karta hai, usse 
 
 Yeh chapter us likhne ka, usse nikli table ka, aur kaam ke aise vargikaran ka vivaran deta hai jo tay karta hai ki koi bhi nateeja kaise naapa ja sakta hai.
 
-## 12.1 Case: woh version jo sabko pasand aaya
+## Case: woh version jo sabko pasand aaya
 
 Team ke paas ab instruction ke chaar versions the, har ek pichhle se thoda lamba. Sabse chhota Imran ka saadha anurodh tha. Sabse lamba kaam, kadam, do worked examples aur ek chetavni leke tha. Pichhli shaam Neha ne, jisne paper test mein hissa liya tha, paanch messages par chaaron ke outputs padhe aur kaha ki chautha spasht roop se sabse achha tha. Woh achha padha jaata tha, saavdhaan lagta tha aur khud ko samjhata tha. Anaya ne sir hilaya tha, aur use apni jaldi par thodi sharm aayi.
 
-## 12.2 Ehsaas kaafi kyun nahi
+## Ehsaas kaafi kyun nahi
 
 Kuch outputs padhna aur jo sahi lage use chunna kisi system ko parakhne ka sabse swaabhaavik tareeka hai aur sabse kam bharose ka. Jo outputs padhe jaate hain woh wahi hain jo padhne mein aaye. Achha gaya demonstration yeh dikhata hai ki tool achhe din par kya kar sakta hai. Lamba, zyada vistrit sunayi dene wala jawaab zyada achha lagta hai, chaahe woh ho ya nahi.
 
@@ -32,7 +32,7 @@ Iska ilaj *test set* hai: asli ya asli jaise udaharanon ka ek sangrah, jinme se 
 "Pehle se" aur "likha hua" ek test set ko test banate hain. Agar tool ka output pehle padha jaaye aur sahi jawaab baad mein tay ho, toh tool ne jo bhi kaha woh lagbhag theek lagega.
 :::
 
-## 12.3 Das vaakya
+## Das vaakya
 
 Thursday ko Anaya aur Farah ne das vaakya likhe. Woh asli messages ki shakl mein banaye gaye the, aur mushkil cases ko kaabu mein karte the: teen English mein, ek Hindi lipi mein, teen Hinglish mein aur teen mushkil. Ek saadhaaran message tha jisme ek naam aur ek mobile number tha. Ek Hinglish message tha jisme ek Aadhaar number tha, aur uske paas ek mobile number jo pehle se aadha chhupa hua tha. Ek Devanagari vaakya tha jisme ek naam aur ek pehchaan ka number tha. Ek mein pita ka naam, Gurgaon ka ek pata aur ek employer tha. Ek ne kisi ek insaan ki taraf bina naam ya number ke ishaara kiya. Ek mein kuch bhi personal nahi tha, aur tool ko use chhodna tha.
 
@@ -48,7 +48,7 @@ Table: Pehle answer key ki chaar rows
 
 Yeh spreadsheet *answer key* hai. Ispe ek version number hai, aur yeh version 1 tha, kone mein tareekh aur "das" shabd ke saath. Yeh baaki project ke saath badhta rahega. Har baar jab badhega, toh ek naye file ki tarah nahi balki usi file ke naye version ki tarah save hoga, taaki koi bhi bata sake ki ek score kaun si key ke saamne naapa gaya tha.
 
-## 12.4 Scoreboard
+## Scoreboard
 
 Team ne chaaron instructions ko das vaakyon par chalaya aur har run ke liye teen cheezein ginin: kitni asli details mili, kitni chhoot gayi kyunki tool ne unhe jaane diya, aur kitni cheezein galat flag ki gayi, yaani false alarm woh jagah jahan tool ne woh chhupaya jo personal tha hi nahi. Das vaakyon mein key ke paas satrah asli details thi.
 
@@ -66,7 +66,7 @@ Aise table ko, har version ek row ke saath, *scoreboard* kehte hain. Uski koi ra
 
 Imran ne phir apne tareeke ki ek kami pehchaani. Version do se chaar ke beech usne teen cheezein ek saath badli thi: kaam, kadam aur chetavni. Woh nahi bata sakta tha ki kisne madad ki, aur ho sakta hai koi ek natije ko kharab kar raha ho jabki baaki do bharpaai kar rahe the. Usne whiteboard par laal line ke neeche "ek baar mein ek badlaav" likha. Yeh dheema hai, aur jaanne ka yahi ek tareeka hai. Jab koi kehta hai ki usne prompt ko tune kiya, toh poochhne layak sawaal yeh hai ki usne kitni cheezein badli.
 
-## 12.5 Yeh kaun sa kaam hai
+## Yeh kaun sa kaam hai
 
 Us shaam Imran ne napkin dobara nikala. Log in machines se jo bhi anurodh karte hain unme lagbhag har ek paanch kaamon mein se ek hota hai, usne kaha. Kaam ka aakaar tay karta hai ki nateeja program se naapa ja sakta hai ya sirf haath se, isliye jab tak kaam pata na ho, tareeka nahi chuna ja sakta.
 
@@ -87,7 +87,7 @@ Guard messages ke andar pehchaan ke numbers aur naam dhoondhta tha, jo extractio
 "Kya AI hamara inbox sambhaal sakta hai?" ek kaam nahi hai. Woh kam se kam teen hai: message ko prakaar se classify karo, account number extract karo, aur ek draft reply likho. Har ek alag tarah se fail hota hai, aur sirf pehle do bina insaan ke naape ja sakte hain. Jis anurodh mein ek se zyada task type ho use baanta jaana chahiye. Farah ne darwaaze se guzarte hue poochha ki agar woh seedhe kehti ki chat sambhaal lo toh kya hoga. Imran ne poochha ki teen kaamon mein se woh kaun sa matlab rakhti hai.
 :::
 
-## 12.6 Lakshmi ka sawaal, jawaab ke saath
+## Lakshmi ka sawaal, jawaab ke saath
 
 Friday ko Anaya ne Lakshmi ko likha. Email mein kaha gaya ki team tool ke jawaab dekhne se pehle sahi jawaab likhegi, abhi das hain aur aur honge, aur file ka har version rakha jaayega. Tool ke har version ke liye woh ginenge ki usne kya paya, kya chhoda aur kya galat flag kiya, aur table dikhayenge. Agar koi number kharab hua, toh Lakshmi dekhegi. Team ko abhi nahi pata tha ki tool kitna achha hoga, par use pata hoga ki woh kitna achha hai. Jawaab ek shabd ka tha: "Behtar."
 

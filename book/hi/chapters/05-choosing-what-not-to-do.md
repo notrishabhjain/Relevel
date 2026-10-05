@@ -24,11 +24,11 @@ Meenakshi ne poochha ki un nau mein se woh kaun sa kaam karne se mana karegi. An
 
 Yeh chapter samjhata hai ki strategy mein kya hota hai, team kahan se shuru karna chunti hai, aur woh aapas mein takraate kaam ko kaise rank karti hai bina formula ko faisla karne diye.
 
-## 5.1 Case: nau achhe idea
+## Case: nau achhe idea
 
 List ka har kaam theek tha, aur wahi mushkil thi. Jis list mein kuch bhi mana nahi kiya gaya, woh Monday subah faisla nahi karwa sakti, kyunki har kaam ka bachaav kiya ja sakta hai. Meenakshi ki baat vyavaharik thi, kathor nahi: strategy tab shuru hoti hai jab kisi ko list se bahar kiya jaata hai.
 
-## 5.2 Vision, strategy aur plan
+## Vision, strategy aur plan
 
 Meenakshi ne Anaya se un teen cheezon ka antar bataane ko kaha jinhe aksar ek hi maan liya jaata hai.
 
@@ -41,7 +41,7 @@ Table: Vision, strategy aur plan
 
 Vision bada ho sakta hai, aur plan likhna aasaan hai. Strategy mushkil hai, kyunki woh itni khaas honi chahiye ki galat ho sake aur use cheezein chhodni padti hain.
 
-## 5.3 Strategy ke hisse
+## Strategy ke hisse
 
 Strategy ke teen hisse hote hain, aur har ek ki ek wajah hoti hai.
 
@@ -55,7 +55,7 @@ Teesra hai saath-saath chalne wale kaamon ka ek set, kuch khaas kadam jo policy 
 "Bharat ka sabse bada privacy platform banna" ek lakshya hai. Usme koi diagnosis nahi hai aur woh Monday ko kisi ko kuch nahi batata. Ek aasaan test hai strategy se company ka naam hata dena aur poochhna ki kya koi competitor use apne document mein bina dhyaan mein aaye chipka sakta hai. "Customer privacy ko bade paimaane par bachane ke liye sabse achhi technology ka istemaal karo" jaisa vaakya us test mein paas ho jaata hai, isliye woh abhi strategy nahi hai. Anaya ke doosre paragraph mein uska ek roop ghus aaya tha, aur usne use mita diya.
 :::
 
-## 5.4 Kiske liye, aur kahan se shuru
+## Kiske liye, aur kahan se shuru
 
 *Value proposition* ek saaf vaakya hai ki product kise serve karta hai, unke liye kaun sa kaam karta hai, aur woh unke paas jo hai usse behtar kyun hai. Pichhle chapter ka Anaya ka positioning statement iska pehla draft tha. Ab use bojh uthana tha, kyunki strategy us par tiki thi.
 
@@ -67,13 +67,13 @@ Wedge "Bharatiya companies ke liye privacy" nahi tha. Woh tha Sahaj ki apni supp
 
 Wedge ke saath ek *North Star* joda gaya: ek vaakya jo batata hai ki customer ko kya value milti hai, aur ek number jo use naapta hai. Vaakya tha ki messages chat se is tarah nikalte hain ki unme kuch personal nahi bachta. Naap tha un messages ka hissa jo aisa karte hain. Agar number badhta, toh kaam kaamyaab tha. Agar Anaya khud ko kisi aur number par behas karte paati, toh woh ruk kar poochhti ki kyun.
 
-## 5.5 Product ka naam
+## Product ka naam
 
 Farah ne project ke baare mein suna aur Anaya ke desk par ruki. Sab ise "privacy wali cheez" keh rahe the, usne kaha, aur jab tak ise naam nahi milta, woh wahi naam pa jaayegi jo kisi meeting mein sabse pehle kahi gayi. Naam yeh batana chahiye ki product kya hai aur kiske liye hai, aur customer ko phone par bolna aasaan hona chahiye.
 
 Unhone bees ke kareeb naam socha. Farah ne, jo apne customers ki bhasha mein sochti thi, Bharat Privacy Guard sujhaya, aur andaaza lagaya ki ek hafte mein sab ise "the guard" kehne lagenge. Naam rakh liya gaya, kuch is wajah se ki woh signboard ke naam jitna hi sajaa hua tha.
 
-## 5.6 Kaam ko rank karna
+## Kaam ko rank karna
 
 Strategy ke saath Anaya ko nau cheezon ke liye ek kram chahiye tha. Usne ek aam scoring tareeka, *RICE*, istemaal kiya, jo har vikalp ko chaar sawaalon par naapta hai. Reach poochhta hai ki ek tay samay mein kitne log ya messages use chhuenge. Impact poochhta hai ki har ek ke liye woh kitna badlega. Confidence percent mein poochhta hai ki pehle do jawaab kitne pakke hain. Effort poochhta hai ki kaam mein kitne person-weeks lagenge. Reach, impact aur confidence ko guna karke effort se bhaag diya jaata hai.
 

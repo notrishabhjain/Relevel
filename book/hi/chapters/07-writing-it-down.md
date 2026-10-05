@@ -31,11 +31,11 @@ Founders ke project manzoor karne par Imran Qureshi ne guard ko neeche ki mithai
 
 Napkin ka sketch structure ke baare mein ek parikalpna hai. Isse koi cheez banayi nahi ja sakti, kyunki yeh nahi batata ki har dabba kya karega, kaise pata chalega ki dabba kaam karta hai, ya jab woh fail ho toh kya hoga. Yeh chapter us sketch ko aise document mein badalne ko dikhata hai jisse koi ajnabi bana sake, aur design ki kaagaz par pehli jaanch.
 
-## 7.1 Case: napkin par chaar dabbe
+## Case: napkin par chaar dabbe
 
 Imran ke sketch ne kaam ko chaar hisson mein baanta. Anaya ka kaam tha ki har hissa kis cheez ke liye zimmedaar hai yeh theek-theek kahe, yeh likhe ki kaun si shartein poori hone par har hissa pura maana jaayega, aur koi code likhe jaane se pehle yeh jaane ki jo log nateeja istemaal karenge woh use samajh sakte hain ya nahi.
 
-## 7.2 Guard kin cheezon se bana hai
+## Guard kin cheezon se bana hai
 
 Sketch har tarah ki personal detail ko us hisse ko deta hai jo use dhoondhne mein sabse achha hai.
 
@@ -51,7 +51,7 @@ Table: Guard ke chaar hisse
 
 *Rule-keeper* har detail ke liye chaar mein se ek kaam chunta hai. Woh detail ko *redact* kar sakta hai, yaani use poori tarah hata kar uski jagah [PAN] jaisa label rakh sakta hai. Woh use *mask* kar sakta hai, yaani aadha chhupa kar shakl rakhta hai, jaise mobile number 98******12 ban jaaye aur agent dekh sake ki wahan number tha. Woh detail ko jaane de sakta hai, ya kisi insaan se poochh sakta hai. Chunaav is par nirbhar hai ki jaankari kyun ikatthi ki gayi thi. Delivery ke liye delivery address chahiye, aur late fees poochhne ke liye pehchaan ka number nahi chahiye.
 
-## 7.3 Samasya se shuru karna
+## Samasya se shuru karna
 
 *PRD*, yaani product requirements document, batata hai ki kya banana hai aur kyun. "Kyun" isliye zaroori hai ki engineers samasya jaante hon toh behtar faisle karte hain, aur bina maksad ki features ki list milne par kharab.
 
@@ -59,7 +59,7 @@ Anaya wahin se shuru hui jahan PRD ko shuru hona chahiye, samasya aur uske saboo
 
 Document ki jaanch ek sawaal thi: kya koi ajnabi ise bana sakta hai aur jaan sakta hai ki kab woh khatam kar chuka? Jawaab lagbhag poori tarah ek section par tha.
 
-## 7.4 "Done", jise jaancha ja sake
+## "Done", jise jaancha ja sake
 
 PRD ka sabse zyada kaam karne wala hissa "done" ki shartein hain. Yeh *acceptance criteria* hain, aur har ek aisi cheez honi chahiye jise test kiya ja sake. Sabse aam galti aisi shart likhna hai jise test na kiya ja sake.
 
@@ -72,7 +72,7 @@ Table: Acceptance criteria jinhe test nahi kiya ja sakta, aur wahi dobara likhe 
 
 Pehli dobara likhi hui shart yeh nahi kehti ki har number mil jaayega, kyunki woh sach nahi hota. Woh batati hai ki kitne, kis mein se, aur kis ke saamne. Jo tool text padhta aur likhta hai, uske liye "done" ek sahi jawaab ka vaada nahi hai. Woh ek dar hai jo un udaharanon par naapi jaati hai jinhe kisi ne pehle hi chinhit kar liya ho, aur ek seema likhi hui hoti hai. Chinhit udaharan hi dar ko maayne dete hain. Anaya ke paas abhi woh nahi the, aur usne ise open-questions list mein bade akshar mein daala.
 
-## 7.5 Kahaniyan aur ajeeb cases
+## Kahaniyan aur ajeeb cases
 
 Kaam ke har tukde ko user ki taraf se ek chhota vivaran chahiye, apni shartein ke saath. *User story* value ke ek tukde ko batati hai: ek support agent ke roop mein, main chahta hoon ki chat padhte waqt pehchaan ke numbers chhupe rahein, taaki main woh na dekhoon jo mujhe nahi chahiye. Ek variant, job story, role ke bajaye haalat se shuru hoti hai aur engineers ko zyada deti hai: jab main loan ke baare mein poochhne wale customer ki chat kholta hoon, mujhe chahiye ki koi pehchaan ka number chhupa ho, taaki main use sambhaale bina madad kar sakoon.
 
@@ -91,7 +91,7 @@ Table: Guard ke edge cases
 
 Aakhri row Anaya ne khud joda, aur yahi product ko juye se alag karti hai. Jo software text padhta hai use kabhi-kabhi shak hoga, aur product ko pehle se likhna hoga ki us waqt woh kya karta hai.
 
-## 7.6 Sabse patli cheez jo kaam karti hai
+## Sabse patli cheez jo kaam karti hai
 
 Imran ne guard ko parton mein banane ka prastaav rakha: pehle woh hissa jo chat padhta hai, phir dhoondhna, phir chhupana, phir woh jo agent ko dikhta hai. Chhathe hafte tak sab saath mein kaam karne lagta. Anaya ne poochha ki paanchve hafte mein kya kaam karega. "Kuch nahi," usne kaha.
 
@@ -101,13 +101,13 @@ Kaam ko parton mein kaatne par jab tak aakhri part khatam nahi hota, kuch istema
 *MVP* sabse chhoti cheez hai jo asli users ke saath sabse jokhim-bhari maanyata ko test kare. Woh har cheez ka chhota version nahi hai. Woh us ek cheez ka ek chhota version hai jo sach honi chahiye.
 :::
 
-## 7.7 Do hafte ek baar
+## Do hafte ek baar
 
 Imran ki team *sprints* mein kaam karti thi, yaani do-do hafte ke tay samay mein. Har sprint plan se shuru hota hai aur ek demonstration aur ek chhoti meeting par khatam hota hai ki kya achha gaya aur kya badalna chahiye. Demonstration kaam karte software ko dikhata hai, slides ko kabhi nahi.
 
 Andaaza lagana zyada mushkil tha. Imran bata sakta tha ki baarah ankon ke rule mein kitna samay lagega. Woh nahi bata sakta tha ki Hinglish mein naam dhoondhne mein kitna lagega, kyunki use pata nahi tha ki yeh ho bhi sakta hai ya nahi. Isliye team ne *time-box* istemaal kiya, ek tay samay jiske ant mein ek faisla hota hai: teen din, aur agar asli conversations mein se sau mein se sattar se kam naam mile, toh ruko aur dobara socho. Time-box samay ke andaaze ko faisle ke ek bindu mein badal deta hai.
 
-## 7.8 Pehle kaagaz
+## Pehle kaagaz
 
 Anaya ne agent ki screen chaar kaagaz par banayi: chat jisme ek number masked ho, wahi chat ek note ke saath jo kehta ho "1 detail chhupayi gayi. Kyun dekhne ke liye click karein", ek chat jahan tool ko shak tha, aur ek chat jahan usne woh chhupa diya tha jo agent ko chahiye tha. Kuch seekhne ke liye banayi gayi ek kaccha, sasta version *prototype* hai, aur use kitni dekhbhaal chahiye yeh sawaal par nirbhar hai. Kaagaz dikha sakta hai ki flow samajh aata hai ya nahi. Clickable mock-up dikha sakta hai ki log raasta dhoondh paate hain ya nahi. Asli output par chalne wala version dikha sakta hai ki woh us par bharosa karte hain ya nahi.
 

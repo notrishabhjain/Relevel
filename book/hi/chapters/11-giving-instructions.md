@@ -19,7 +19,7 @@ Pichhle demonstration ke baad wale Monday ko Farah Sheikh teen messages ek card 
 
 Pehla message tha: "My name is Amit Sharma. My PAN is ABCDE1234F and I transferred ₹4 lakh from my HDFC account ending 4521. Why was my loan rejected?" Imran Qureshi ne ise ek window mein type kiya, apni ek line ke neeche: "List every piece of personal information in this message." Yeh chapter us teen ghante ke baare mein hai jo iske baad chale. Model se guard ka ek hissa karne ko kaha gaya, aur uski galtiyon ne team ko uski safalta se zyada sikhaya.
 
-## 11.1 Case: pehli list
+## Case: pehli list
 
 Jawaab do second mein aaya.
 
@@ -34,7 +34,7 @@ Jawaab do second mein aaya.
 
 Anaya ne, pencil se padhte hue, chaar sahi cheezein ginin: naam, PAN, bank aur account ke aakhri ank. Raashi ek number hai aur kisi ko pehchaanne wali detail nahi, aur loan rejection se insaan ko dhoondha nahi ja sakta tha. Model ne do aisi cheezein list kar di thi jinhe chhupana nahi tha. Imran ne kaha ki list karna chhupana nahi hai, aur chhupana baad ka kadam hai. Phir usne wahi message dobara chalaya. Doosri list mein chhe nahi, chaar cheezein thi. Teesri baar mein saat aayin, aur surname ek alag entry ki tarah dohraya gaya. Farah ne poochha ki jawaab badal kyun jaata hai.
 
-## 11.2 Temperature: variety ka dial
+## Temperature: variety ka dial
 
 Har kadam par model ke paas kuch sambhav agle tokens hote hain, har ek ki apni sambhavna ke saath. *Temperature* naam ki setting tay karti hai ki woh kam sambhav tokens mein se ek chunne ko kitna taiyaar hai. Ooncha temperature par woh door tak jaata hai aur jeevant, alag-alag jawaab deta hai, jo kavita likhne ya pet ka naam sochne ke liye theek hai. Neeche, zero ke paas, woh lagbhag hamesha sabse sambhav token leta hai, isliye wahi sawaal lagbhag wahi jawaab paata hai.
 
@@ -44,7 +44,7 @@ Imran ne setting kam ki aur message paanch baar chalaya. Paanchon list lagbhag e
 Kam temperature jawaab ko ek jaisa banata hai. Woh use sahi nahi banata. Jo model zero par galat hai woh har baar ek hi tarah galat hai, aur koi dial ghumakar system ko accurate nahi banata.
 :::
 
-## 11.3 Sthayi instructions
+## Sthayi instructions
 
 Doosra message Hinglish mein tha, jise Farah ne us raftaar se type kiya jaise koi roz aise chaalis message likhta hai: "Sir mera aadhaar 4321 5678 9012 hai aur ye number 98xxxxxx12 pe call kar lena." Model ko Aadhaar number mil gaya. Usne "98xxxxxx12" ko bhi mobile number ki tarah list kar diya, jabki ek agent use x type karke pehle hi chhupa chuka tha. Use report karne se guard use do baar chhupata.
 
@@ -56,7 +56,7 @@ Iska ilaj ek instruction hai, aur instruction har request ke saath bhejna padta 
 
 Jab koi vendor kehta hai ki usne kisi company ke liye AI ko customise kiya hai, toh aksar usne ek system prompt likha hota hai. Yeh theek hai aur jaanna kaam ka hai, aur vendor se poochhne layak sawaal yeh hai ki aur kya, agar kuch, badla gaya.
 
-## 11.4 Jahan woh gadhta hai
+## Jahan woh gadhta hai
 
 Teesra message woh tha jo Imran ne sambhaal kar rakha tha: "What documents do I need to renew my driving licence?" Usme kuch personal nahi hai, aur achha tool kehta ki nahi hai aur use chhod deta. Pehli baar mein model ne bilkul aisa hi kiya. Teesri baar usne kaha "Personal information: driving licence (document type)." Paanchvi baar usne ek detail gadh li.
 
@@ -70,7 +70,7 @@ Is failure ka ek durbhagyapoorn naam hai. *Hallucination* ek aatmavishwaas se bh
 
 Guard ke liye iska ek khaas nateeja tha. Agar model koi detail gadhta hai, toh guard woh chhupata hai jo kabhi tha hi nahi. Agar gadhi hui detail galat hai, toh koi nahi jaanta, kyunki us se milane ko kuch nahi hai.
 
-## 11.5 Chaar tareeke, taakat ke kram mein
+## Chaar tareeke, taakat ke kram mein
 
 Team ne baaki din instruction behtar karne mein bitaya. Zyadatar log pehla prompt ek anurodh ki tarah likhte hain, "kripya yeh karo", jo utni hi baar kaam karta hai jitni baar kisi ajnabi se bina bataye ki aap kahan hain raasta poochhna. Prompt ko specification ki tarah maanna behtar hai. Chaar tareeke hain, aur woh barabar mazboot nahi.
 
@@ -84,7 +84,7 @@ Table: Prompt behtar karne ke chaar tareeke, sabse mazboot pehle
 
 *Worked example* sabse mazboot hai, aur log ise sabse aakhir mein aazmaate hain. Agar output ka varnan shabdon mein kiya jaaye, toh model un shabdon ki nakal karta hai. Agar ek poora example dikhaya jaaye, toh woh format ki copy karta hai. Anaya ne ek saadhaaran aur ek mushkil example likha. Do udaharan, ek saadhaaran aur ek mushkil, chhe ek jaise udaharanon se behtar hain aur bhejne mein bahut kam token lete hain. Chautha tareeka sabse kamzor hai. Woh un failures ke liye ek-do baar istemaal karne layak hai jo dekhi ja chuki hain, lambi list ki tarah nahi, kyunki woh utna kaam nahi karta jitna log maante hain.
 
-## 11.6 Kam hona, theek hona nahi
+## Kam hona, theek hona nahi
 
 Is aakhri baat ka kaaran chapter ka sabse zaroori vichaar hai, aur team ne use khud saabit kiya. Anaya ne mana karne wali line joda, aur Pune ka gadhna ruk gaya, ek din ke liye. Tuesday ko Farah ne ek cousin ke baare mein message likha jo "station ke paas bank mein" kaam karta tha. Model ne maana aur koi shehar nahi gadha. Uske bajaye usne ek aisi bank branch ka naam gadh diya jo thi hi nahi.
 
@@ -94,7 +94,7 @@ Is aakhri baat ka kaaran chapter ka sabse zaroori vichaar hai, aur team ne use k
 Jab koi kehta hai ki ek niyam jodne se samasya hal ho gayi, toh poochhna chahiye ki niyam ne wajah hatai ya sirf lakshan ko kam aam kiya. Anaya ne yeh shabd whiteboard ke sabse upar laal rang mein likhe, jahan woh project ke baaki samay tak rahe.
 :::
 
-## 11.7 Lambe instruction ka kharcha
+## Lambe instruction ka kharcha
 
 Misaalon, kadamon aur chetavni ke saath system prompt ek line se chaar sau tokens ka ho gaya tha, aur woh har message ke saath bheja jaana tha. Mahine ke ek lakh chats par woh instructions ke chaar karod token hain, chaahe customer ek shabd likhe ya ek hazaar. Imran ne kaha ki kharcha dene layak hai, par yeh faisla hona chahiye, ittefaq nahi.
 

@@ -16,7 +16,7 @@ Pune ke puraane hisse mein ek gali hai jisme har dukaan peetal bechti hai. Woh m
 
 Imran Qureshi us gali se das minute door paida hua tha, aur usne ise samjhane ke liye istemaal kiya ki machine text ko uske matlab se kaise dhoondh sakti hai.
 
-## 16.1 Case: naqshe ki tarah bazaar
+## Case: naqshe ki tarah bazaar
 
 Imran ne Anaya se bazaar ko ek naqshe ki tarah sochne ko kaha, dukaanon ka nahi balki matlabon ka. Duniya ke har vaakya ki us par ek jagah hai. Milte-julte matlab wale vaakya ek hi gali mein khade hote hain. "Mera paisa kab wapas milega" aur "manzoor shuda claims ka reimbursement" padosi hain, chahe unme ek bhi shabd ek jaisa na ho. "Peru ki rajdhani kya hai" bahut door ki sair hai.
 
@@ -28,7 +28,7 @@ Ankon ki ek lambi list jo text ke ek tukde ko matlab ke naqshe par ek jagah deti
 
 Jab har card ki ek jagah ho jaati hai, toh prasangik cards dhoondhna spelling ka nahi balki doori ka sawaal ban jaata hai. Customer ke sawaal ko naqshe par rakha jaata hai, sabse paas ke cards dhoondhe jaate hain, aur woh model ko bheje jaate hain.
 
-## 16.2 Wahi bees card
+## Wahi bees card
 
 Imran ne bees cards ko ek baar embedding model se chalaya tha aur coordinates ek chhoti file mein rakh liye the. Usne woh sawaal type kiya jisne Monday ko Anaya ko haraya tha, "Paisa kab milega?" Woh intezaar, paise aur wapsi ke ilaake mein utra. Screen ne teen sabse paas ke cards ginaye, aur card saat, jo saat kaam ke dinon mein refund ke baare mein tha, sabse upar tha. Uske paas ek number tha: 0.71.
 
@@ -48,7 +48,7 @@ Asli text kam hi kabhi lagbhag ek dahaai se neeche score karta hai, aur upyogi r
 Similarity score tab tak kam maayne rakhta hai jab tak yeh na pata ho ki saaf achhe milan kya score karte hain aur saaf kharab kya. Us sandarbh ke bina ek akela score batana koi saboot nahi hai.
 :::
 
-## 16.3 Naqsha kahan kharab kaam karta hai
+## Naqsha kahan kharab kaam karta hai
 
 Naqsha utna hi achha hai jitna us text ne jisse embedding model ne seekha, aur zyadatar woh internet ka English text tha. Jo shabd usme dulabh the woh ajeeb jagahon par rakhe jaate hain. Jo do cheezein users ko alag dikhti hain woh padosi ban sakti hain, aur jo do ek jaisi dikhti hain woh door ho sakti hain. Imran ne Anaya se Sahaj ke customers ke istemaal kiye shabdon ke baare mein sochne ko kaha.
 
@@ -63,7 +63,7 @@ Table: Sahaj ke liye naqsha kahan galat hone ki sambhavna hai
 
 Imran ka niyam tha ki user ke dhoondhne se pehle failures ke naam likh lo. Ek aur sookshm baat yeh hai ki naqsha kaise istemaal hota hai. Sawaal chhota hota hai aur sawaal ki tarah likha jaata hai, aur jo passage uska jawaab deta hai woh lamba hota hai aur kathan ki tarah likha jaata hai. Achhe embedding models ko isi baat ke saath train kiya jaata hai aur unse ummeed ki jaati hai ki unhe bataya jaye ki woh dono mein se kise dekh rahe hain. Agar yeh galat kiya jaaye toh kuch nahi tootta. Nateeje bas kharab hote hain, aise tareeke se jiska koi error message zikr nahi karta.
 
-## 16.4 Naqshe par guard
+## Naqshe par guard
 
 Anaya ne dekha ki naqsha guard ke us hisse ki madad kar sakta hai jise woh nijee taur par mushkil kehti thi. Usne ek spreadsheet mein das vaakya likhe the. Paanch aise the jo bina number ya naam ke ek insaan ko pehchaante the, jaise "Main Wadgaon ka sarpanch hoon aur main fair-price shop bhi chalata hoon". Paanch nirdosh the. Usne naqshe se saare das ko rakhne ko kaha aur naapa ki har ek pehle vaakya, "Main apne gaon ka akela diabetic patient hoon jisne pichhle saal transplant karwaya", ke kitne paas khada hai.
 
@@ -83,7 +83,7 @@ Sabse zyada score karne wala nirdosh vaakya, 0.58 par, pehle vaakya ke us pehcha
 Naqsha woh cheezein dhoondhta hai jinka matlab sawaal ke matlab jaisa hai. Woh khud yeh nahi pehchaan sakta ki koi vaakya ek insaan ki taraf ishaara karta hai ya nahi. Anaya ko isse nirasha nahi hui. Use zyada saaf mehsoos hua. Us gun ke liye use kuch aur chahiye hoga, aur usne khoj ko ek table ki doosri row ke roop mein likha ki kahan rule-aadhaarit tareeka jeetta hai, kahan matlab-aadhaarit jeetta hai, aur kya dono nahi kar sakte.
 :::
 
-## 16.5 Naqsha kya nahi keh sakta
+## Naqsha kya nahi keh sakta
 
 Naqsha ek kamzori saadhe tareeke ke saath baantta hai. Use aisa sawaal diya jaaye jiska jawaab kisi card mein nahi hai, tab bhi woh sabse paas ka card ek score ke saath lautata hai, achhe milan se kam par shunya nahi. System mein koi nahi kehta ki yahan kisi ko pata nahi. Sabse kam kharab card phir bhi model ko saboot ki tarah de diya jaata. Anaya ne kaha ki Monday ko bhi yahi sach tha, aur Imran ne sahmati di ki woh ab bhi sach hai. Ab jab text matlab se bhi dhoondha ja sakta tha, toh yeh pata lagaya ja sakta tha ki system kitni baar galat hai, jo agla kaam tha aur zyada zaroori.
 

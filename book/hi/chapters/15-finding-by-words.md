@@ -15,11 +15,11 @@ Ek barsaati Monday ko Anaya ne search engine ka kirdaar nibhaya, aur Farah Sheik
 
 Farah ne woh thodi oonchi, chintit aawaaz banayi jo woh nakal ke liye istemaal karti thi aur kaha "Paisa kab milega?", yaani "Paisa kab aayega?" Anaya ne "paisa" dhoondha, phir "kab", phir "milega". Usne baaison card ek-ek karke palte aur teeno shabdon mein se koi kisi par nahi mila. Usne kaha ki kuch nahi hai. Farah ne kaha ki bilkul isi ke baare mein ek card hai, card saat. Usme likha tha: "Refund of an excess payment will be processed to the registered account within seven working days of the request being approved." Card sawaal ka jawaab deta tha, aur ek bhi shabd saajha nahi tha.
 
-## 15.1 Case: bees card aur koi mel nahi
+## Case: bees card aur koi mel nahi
 
 Yeh abhyaas dikhata hai ki sabse puraani aur sabse zyada phaili hui search kaise behave karti hai. Neeche ke section batate hain ki woh kya karti hai, kahan fail hoti hai, aur kahan woh sabse achha tool hai.
 
-## 15.2 Spelling, matlab nahi
+## Spelling, matlab nahi
 
 Text ke dher mein cheezein dhoondhne ka sabse puraana tareeka shabd milana hai. Koi "refund" type karta hai, aur system har woh chunk dhoondhta hai jisme "refund" ho. Yeh kai dashakon se search boxes ke dil mein hai aur tez, sasta aur achhe se samjha hua hai. Ise *keyword search* kehte hain.
 
@@ -34,7 +34,7 @@ Table: Keyword search kahan fail hoti hai
 
 Sahaj mein inke upar ek chauthi parat thi, aur Farah ko sabse zyada wahi chinta deti thi. Uske aadhe customers English akshar mein Hindi likhte the, aur policy aupchaarik English mein likhi thi. "Paisa" ki ek bilkul saaf search bhi kuch nahi dhoondhti.
 
-## 15.3 Jahan yeh bilkul sahi hai
+## Jahan yeh bilkul sahi hai
 
 Anaya is tareeke ko khaarij karne wali thi. Farah aage jhuki aur apni aam aawaaz mein boli, "Clause 14.2." Card gyarah "14.2 Disputed charges" se shuru hota tha, aur Anaya ne use chaar second mein dhoondh liya.
 
@@ -44,7 +44,7 @@ Keyword search sahi cheezon ke liye bahut achhi hai: section number, policy ka i
 
 Imran, jo mug lekar tahalta hua aaya tha, ne Anaya se pehle sambandh dekh liya. "Yeh tumhara pattern checker hai," usne kaha. PAN paanch akshar, chaar ank aur ek akshar hai, jo ek shakl ki khoj hai. Woh bilkul sahi, turant aur muft hai, aur use kisi cheez ke liye manaya nahi ja sakta. Woh us cheez ke liye sahi tool hai jo hamesha ek jaisi dikhti hai, aur galti hogi samajhdaar tareeke ko wahan istemaal karna jahan saadha kaam kar jaata hai.
 
-## 15.4 Jahan saadha tareeka guard ko fail karta hai
+## Jahan saadha tareeka guard ko fail karta hai
 
 Wahi seema guard par bhi lagti hai, aur Farah ne ek udaharan diya. Usne apne phone se pichhle mahine ka ek message padha, jo usne kisi ko dikhane se pehle khud saaf kiya tha: "Mera aadhaar number hai char teen do ek, paanch chhe saat aath, nau shunya ek do."
 
@@ -52,7 +52,7 @@ Yeh baarah ankon ka Aadhaar number hai, chaar-chaar ke groups mein, shabdon mein
 
 Shakl maujood hai, aur spelling nahi. Yeh shabdon se dhoondhne ki kamzori ulti taraf se hai: kisi bhi insaan ko matlab saaf hai, aur jo tareeka akshar milata hai woh use dekh nahi paata. Anaya ne ise answer key mein row baarah ke roop mein joda: bole gaye numbers.
 
-## 15.5 Khaamosh failure
+## Khaamosh failure
 
 Farah ne tab keyword search ki ek aur khaasiyat ki taraf ishaara kiya, jo do saal pehle help centre mein pareshani ka kaaran bani thi. Usne Anaya se woh sawaal poochhne ko kaha jiska jawaab documents mein nahi tha.
 

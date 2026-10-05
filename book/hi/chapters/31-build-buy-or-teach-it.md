@@ -18,7 +18,7 @@ August ke teesre hafte mein VaultLeaf naam ke ek vendor ne Sahaj mein do log bhe
 
 Anaya ne poochha ki ninyaanve percent kis par naapa gaya hai. Engineer ne, jo is sawaal ki ummeed mein lagta tha, kaha ki VaultLeaf ke apne benchmark par. Usne poochha ki kya Sahaj product ko apne par chalaa sakta hai.
 
-## 31.1 Case: sab ke liye wahi test
+## Case: sab ke liye wahi test
 
 Jab koi woh bechne ka prastaav rakhta hai jo team bana sakti thi, toh sabse pehle yahi karna chahiye, aur zyadatar kharidaar ise chhod dete hain. Charcha aam taur par daam aur demonstration par ghoomti hai, aur dono faisla nahi karte. Faisla is baat se hota hai ki vendor ke product ko usi tarah naapa jaye jaise koi apna product naapta: team ki answer key par, team ke text par.
 
@@ -26,7 +26,7 @@ VaultLeaf ne, aise andaaz mein jisse lagta tha ki woh aisa aksar nahi karta, do 
 
 Jawaab mein ek doosra jawaab tha, aur Lakshmi ne use teen baar padha. Maanak product text ko VaultLeaf ke cloud mein process karne ke liye bhejta tha, India ke bahar ke ek region mein. Ek private deployment, jo Sahaj ke apne systems ke andar chalti, lagbhag teen guna daam par uplabdh thi.
 
-## 31.2 Aap asal mein kya khareed rahe hain
+## Aap asal mein kya khareed rahe hain
 
 Imran shaant tha. Vendor theek hai, usne kaha, jab tak sab samjhein ki paise kis cheez ke liye hain. Aam taur par model nahi khareeda jaata, kyunki zyadatar vendors wahi models istemaal karte hain. Aap connectors, permissions, kisne kya kiya uska record, ek support contract, aur woh insaan khareed rahe hain jo raat ko do baje khaaye jaane par bistar se uthta hai. Woh aakhri cheez aam taur par licence se zyada keemti hoti hai aur aam taur par hisaab se chhoot jaati hai.
 
@@ -50,7 +50,7 @@ Main khareedne par badal jaungi agar VaultLeaf hamari key par Hinglish naamon pa
 
 Tareekh wala faisla, usne paaya, bina tareekh wale se kahin aasaani se palta ja sakta hai.
 
-## 31.3 Product ke neeche kya hai
+## Product ke neeche kya hai
 
 Meeting se lautte hue Anaya ne Imran se ek sawaal poochha jo March se uske dimaag mein tha: kya hum un logon se muqabla kar rahe hain jo bade models banate hain? Woh mithai ki dukaan ke saamne ruka aur dukaan ke maalik se udhaar liye pen se ek invoice ke peechhe jawaab banaya.
 
@@ -70,7 +70,7 @@ Kuch models sabke liye khule hain. *Open-weight model* ke weights chhape hote ha
 
 Imran ne ek shabd joda jisne vendor ke office mein bahut bojh uthaya tha. *Lock-in* ek hi provider se bandhe hona hai kyunki chhodna bahut mehnga hoga, dobara likhne, dobara naapne ya khoye hue features mein. Ilaaj answer key mein hai: agar test set kisi vendor par nirbhar nahi karta, toh badalne mein kuch din lagte hain.
 
-## 31.4 Use sikhao
+## Use sikhao
 
 Monday ko founder, Mr. Bhatia, ne Anaya ko galiyare mein roka. Usne ek plane mein kuch padha tha. Usne poochha ki company Hinglish par apna model train kyun nahi karti: sab yahi kar rahe hain, aur woh Sahaj ka apna hoga. Har team se yeh sawaal poochha jaata hai, aam taur par planning meeting mein aur aam taur par pehle ki kisi ne bataya ho ki galat kya hai. Haan kehne se ek quarter bandh jaata hai, aur na kehna mahatvakanksha-heen lagta hai. Anaya ne Friday tak jawaab dene ka vaada kiya.
 

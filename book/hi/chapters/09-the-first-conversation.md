@@ -16,11 +16,11 @@ terms:
 
 Ek shaam office khaali hone ke baad Imran Qureshi ne apni screen par ek hi window kholi: ek text box, ek button aur uske neeche ek dhusar jagah jahan kuch dikhna tha. Woh chahta tha ki Anaya poora round trip dekhe, sawaal ka program se nikalna aur jawaab ka wapas aana, aur usne demonstration ko jaanboojh kar saadha rakha. Yeh chapter us demonstration ko dohrata hai, kyunki language model par bana har product usi ek aadan-pradaan par tikta hai, aur jis product manager ne ek poora aadan-pradaan dekha ho woh engineers ki cost, security aur reliability ki baaton ka zyadatar hissa samajh leti hai.
 
-## 9.1 Case: ek round trip
+## Case: ek round trip
 
 Demonstration ke chaar hisse the: jaane wali request, woh key jo use manzoori deti hai, wapas aane wala jawaab apni rasid ke saath, aur ek aisa sawaal jiska jawaab machine ko hargiz pata nahi ho sakta tha. Chauthe hisse ne pehle teen se zyada sikhaya.
 
-## 9.2 Counter ke aar-paar ek order slip
+## Counter ke aar-paar ek order slip
 
 Koi bhi language model se waise baat nahi karta jaise koi dost se karta hai. Ek program karta hai, ek darwaze ke zariye jise *API* kehte hain.
 
@@ -45,7 +45,7 @@ Parchi *JSON* mein likhi thi, jo curly braces ke andar labels aur values ki tara
 
 Request messages ki ek list hai, aur har message ka ek role hota hai. Abhi do role hain. *User* woh hai jo pooch raha hai, aur *assistant* model ka apna jawaab hai. Teesra role bhi hota hai, jo Chapter 11 mein samjhaya jaayega. Parchi par aur kuch nahi hai. Jis cheez ko Anaya ne dimaag samjha tha woh ek list nikli, aur list ek line nikli.
 
-## 9.3 Till ki chaabi
+## Till ki chaabi
 
 Har request ke saath ek aur cheez jaati hai. Imran ne dikhane se pehle monitor ko thoda ghuma diya, kyunki yeh poore intezaam ki sabse khatarnaak line hai. Yeh akshron aur ankon ki ek lambi string thi jise *API key* kehte hain. Key provider ko batati hai ki kaun maang raha hai aur bill kise bhejna hai. Jiske paas bhi yeh hai, woh requests bhej sakta hai aur maalik ka paisa kharch kar sakta hai, aur provider ke records kahenge ki maalik ne kiya.
 
@@ -53,7 +53,7 @@ Har request ke saath ek aur cheez jaati hai. Imran ne dikhane se pehle monitor k
 Key app ke code mein nahi honi chahiye, jahan page kholne wala koi bhi use padh sakta hai. Woh shared folder mein ya saathi ko bheje message mein nahi honi chahiye. Imran ne ek developer ka zikr kiya jisne galti se apni key ek public project mein paste kar di aur agli subah usne kai lakh rupaye ka bill dekha. Key till ki chaabi hai, aur use counter par chhodte nahi.
 :::
 
-## 9.4 Jawaab aur uski rasid
+## Jawaab aur uski rasid
 
 Imran ne button dabaya. Ek second baad text aaya: ek saaf jawaab jo kehta tha ki late fee aam taur par bakaya raashi ka chhota percent hota hai, aur bill dekhne ki salah di. Anaya ne kaha ki yeh ek banai hui policy hai. Imran ne kaha ki yeh ek aam jawaab hai, kyunki model Sahaj ki policy nahi jaanta jab tak kisi ne use bataya nahi.
 
@@ -80,7 +80,7 @@ Daam Imran ke hain, aasaan hisaab ke liye chune gaye, kisi provider ke nahi. Dem
 
 Isi hisaab mein ek doosra sabak chhupa hai. Request mein jodi gayi har instruction ki line har call par dobara charge hoti hai, kyunki jo kuch model ko shuru mein bataya jaata hai woh har baar padha jaata hai, aur uska paisa lagta hai.
 
-## 9.5 Ek sawaal jiska woh jawaab nahi de sakta tha
+## Ek sawaal jiska woh jawaab nahi de sakta tha
 
 Imran ne Anaya se model se aisa sawaal poochhne ko kaha jo woh jaan hi nahi sakta tha. Usne ek aisi company ka naam type kiya jo thi hi nahi, Rastogi Finance, jo usne brush karte hue gadha tha, aur uski refund policy poochhi.
 
@@ -92,7 +92,7 @@ Wajah is mein hai ki model karta kya hai. "Refund policy of" ke baad sabse sambh
 Sahi jawaab aur gadha hua jawaab ek jaise padhe jaate hain. Tool ki galtiyon ko naapne ki wajah yeh hai ki woh aasaani se dikhengi nahi. Anaya ne Pooja Nair ke baare mein socha, jisne chatbot ke "verification" maangne par bharosa kiya tha, aur is baare mein ki woh kaisa sunayi diya tha, kisi aise insaan ki tarah jo jaanta ho.
 :::
 
-## 9.6 Usne kya samjha
+## Usne kya samjha
 
 Us raat Anaya ne shaam ko apne shabdon mein likha, yeh jaanchne ke tareeke ki tarah ki woh samjhi hai ya nahi. Program model se API ke zariye ek tay format ki parchi bhejkar baat karta hai. Parchi JSON hai aur usme messages ki ek list hai, har ek ka role. Company ko pehchaanne wali key ek raaz hai aur agar koi aur use paa jaaye toh paisa kharch karwati hai. Har jawaab ke saath ek usage block aata hai jo batata hai ki kitna dena hai. Ek call lagbhag muft hai, aur ek lakh calls budget ki ek line hain. Model ek gadhe hue jawaab ko utni hi saafai se de sakta hai jitni saafai se sach ko.
 

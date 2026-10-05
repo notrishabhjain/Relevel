@@ -18,13 +18,13 @@ Ek second zyada lambi chuppi rahi. Imran Qureshi ne kaha ki pichhle run mein sat
 
 Yeh chapter us jawaab ko vistaar se batata hai jo Anaya ne dene ka vaada kiya tha: woh do number jo koi cheez dhoondhne wale tool ko naapte hain, unke beech ka chunaav, aur kuch bolne se pehle figure ko jaanchne ki aadat.
 
-## 17.1 Case: ek sawaal jiske saath koi number nahi
+## Case: ek sawaal jiske saath koi number nahi
 
 Aam taur par "kya yeh achha hai?" ka jawaab teen udaharanon ka demonstration hota hai jo kaam kiye. Aisa demonstration bahut kam batata hai ki system kitni baar sahi hai, kyunki teen chune gaye the, aur jo cases nahi chune gaye woh woh hain jinhe dekhne ki zaroorat thi.
 
 Imran isi tarah ke naap par kaam kar raha tha, guard ke liye nahi balki us hisse ke liye jo uske peechhe khada hai: chatbot ne kitni achhi tarah Sahaj ki policies ka sahi page customer ke sawaal ke liye dhoondha. Seekh lagbhag shabd-ba-shabd laagu hui.
 
-## 17.2 Demonstration saboot nahi hai
+## Demonstration saboot nahi hai
 
 Tareeke mein teen vichaar hain, aur pehla hai test karne se pehle jawaab likhna. Kisi system ko sawaal poochhkar aur dekh kar ki jawaab sahi lagte hain, parkha nahi ja sakta, kyunki woh sahi lagenge: saaf-suthra text hi toh machine banati hai. Isliye kaam asli sawaalon ki list aur har ek ke satyapit sahi jawaab se shuru hota hai. Yeh wahi answer key hai jo Anaya pehle hi bana chuki thi, test ke baad nahi balki pehle likhi gayi.
 
@@ -32,7 +32,7 @@ Farah ne chatbot ki search ke liye das sawaal likhe, apne customers ke shabdon m
 
 Unhone test chalaya. Das mein se chhe sawaalon ne pehli koshish mein sahi page dhoondha. Imran ne ise ek aise system ka bilkul saamaanya pehla nateeja kaha jo kaam karta hai, aur kaha ki agar nau ya das hote, toh woh jaanna chahta ki kisi ne dhokha toh nahi diya.
 
-## 17.3 Fail hone ke do tareeke
+## Fail hone ke do tareeke
 
 Doosra vichaar Anaya ko samajhne mein zyada waqt laga, kyunki woh saamne chhupa tha. Search ka ek kadam do ulte tareekon se galat ho sakta hai. Woh woh cheez chhod sakta hai jo maayne rakhti thi, ya woh bahut saari cheezein la sakta hai jo nahi rakhti thi. Imran ne Anaya se ek saathi ko meeting ki files laane bhejne ki kalpana karne ko kaha. Agar saathi us ek file ke bina lautta hai jo chahiye thi, toh yeh ek tarah ki failure hai. Agar saathi poori almaari le aata hai, toh baaki ke beech chahiye file dhoondhi nahi ja sakti, aur yeh doosri tarah ki failure hai.
 
@@ -53,7 +53,7 @@ Table: Pichhla scoreboard, recall aur precision ke saath
 
 Recall mili ko mili aur chhoot gayi ke jod se bhaag dene par aata hai. Precision mili ko mili aur false alarm ke jod se bhaag dene par. "Chhoot gayi" hamesha se kharab recall tha aur "false alarm" kharab precision. Use naye vichaaron ki utni zaroorat nahi thi jitni purane vichaaron ko sahi naam dene ki.
 
-## 17.4 Faisla kiska hai
+## Faisla kiska hai
 
 Teesra vichaar ek dopahar ke ant mein aaya. Imran ne poochha ki guard ke liye kaun si failure zyada buri hai: kuch chhoot jaana, ya aisa kuch flag karna jo tha hi nahi. Anaya ne turant kaha ki chhoot jaana zyada bura hai, kyunki jo number nikal jaata hai woh paanch systems mein hamesha ke liye rehta hai. Imran ne kaha ki kisi aur product ke liye jawaab ulta hota hai.
 
@@ -72,7 +72,7 @@ Fixed shakl ke pehchaan ke numbers ke liye, sau mein se kam se kam 98 ka recall.
 
 Bayaan likhna us se aasaan tha jitna use bachaav karna hoga, jo usne maan liya. Jis number par behas ho chuki ho woh us number se zyada keemti hai jis par kabhi sawaal nahi uthaya gaya.
 
-## 17.5 Ek number jo usne jaancha nahi tha
+## Ek number jo usne jaancha nahi tha
 
 Ek aur baat asahaj thi, aur Anaya ne ise ek Friday raat khaali office mein nipataya. Woh ek figure par lauti jo usne meetings mein teen baar quote kiya tha aur strategy memo mein likha tha: sau mein se chaudah, yaani ek maujooda khule tool ki apni chhapi report ke mutabik Hindi personal details ka woh hissa jo woh dhoondh sakta tha. Usne ise yeh kehne ke liye istemaal kiya tha ki bazaar mein khaali jagah asli hai.
 

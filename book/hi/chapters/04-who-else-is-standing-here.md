@@ -24,13 +24,13 @@ Anaya ne bataya ki woh kya banana chahti hai. Tool kisi message mein pehchaan ke
 
 Yeh chapter aage ke kaam ko batata hai: yeh dekhna ki tool pehle se maujood hai ya nahi, avsar kitna bada hai yeh naapna, vikalpon ko parakhna, aur interview ke notes ko ek rank kiye hue vikalpon ke set mein badalna.
 
-## 4.1 Case: shart wali haan
+## Case: shart wali haan
 
 Shart wali haan ne do kaam kiye. Usne pichhle chapter ki riskiest assumption ko pakka kiya, yaani saaf kiya hua text bahari company ko bhejne ki ijaazat, bashart ek shart poori ho. Usne kisi design se pehle hi ek design ki zaroorat bhi tay kar di: tool ko Sahaj ki apni deewar ke andar chalna tha. Is zaroorat ne kai aasaan designs rok diye, un sab services ko bhi jo kaccha message paakar use saaf karti.
 
 Is tarah ki rukaavat shuru mein kaam ki hoti hai. Woh bina kharche ke vikalp hata deti hai, jab tak woh sirf ideas hain aur unpar kaam nahi hua.
 
-## 4.2 Kya yeh kaam kisi ne pehle kiya hai?
+## Kya yeh kaam kisi ne pehle kiya hai?
 
 Pehla sawaal woh tha jo Anaya ko hafton pehle poochhna chahiye tha: agar tool pehle se maujood ho toh? Usne ek shaam khoj mein bitai.
 
@@ -40,7 +40,7 @@ Usne Hindi wala hissa do baar padha. Uske apne chhape nateejon ke mutabik tool D
 
 Jo log Sahaj ke chatbot ko likhte the, woh us seema ke andar nahi rehte the. Woh English mein likhte the, Hindi mein likhte the, aur us roop mein jo Sanjay Patil ne bina chaahe dikhaya tha: English akshar mein likhi Hindi, English shabdon ke saath mili hui, aksar ek hi vaakya mein. Jo tool ek hi lipi ke liye bana tha, use teen lipiyon ka text milta.
 
-## 4.3 Avsar kitna bada hai
+## Avsar kitna bada hai
 
 Anaya ne phir poochha ki yeh tool kaun chahega, aur jawaab aankdon mein diya. Bazaar ka aakaar naapne ke do tareeke hain.
 
@@ -61,7 +61,7 @@ Table: Privacy tool ke liye Anaya ka bottom-up estimate
 
 Aakhri figure ne use sochne par majboor kiya. ₹65 lakh saal ek chhoti team ki aay hai, company ki nahi. Yeh woh figure bhi tha jis par woh yakeen kar sakti thi, jo pehle ke baare mein nahi kaha ja sakta tha. Table ka maksad aakhri number nahi tha. Har line ek sawaal bulaati thi, jaise nau hazaar firms kaise pata, ya paanch hazaar chats kaise, aur har sawaal ka jawaab dhoondhne ki jagah thi. Har maanyata jaani hui ya andaaza ke roop mein chinhit thi, aur jo andaaza thi unhe pehle check kiya jaata.
 
-## 4.4 Teen tarah ki competition
+## Teen tarah ki competition
 
 Competitors ki list aam taur par rival products ki hoti hai. Anaya ne teen tarah ki competition alag ki.
 
@@ -76,7 +76,7 @@ Table: Privacy tool ki teen tarah ki competition
 
 Har asli vikalp ke liye Anaya ne *competitor teardown* banaya: woh kiske liye tha, uska kitna kharcha tha, woh kya achha karta tha, aur uske customers kis baat ki shikayat karte the. Shikayaton ka sabse upyogi srot public sites par users ke chhode reviews the, aur jo shikayat baar-baar aati thi wahi maayne rakhti thi. In tools ki teen shikayatein baar-baar thi. Woh sirf English mein achhe chalte the. Woh product codes aur order numbers ko aise flag karte the jaise woh raaz hon. Weekend par unhe set up karna mushkil tha.
 
-## 4.5 Product ki jagah batana
+## Product ki jagah batana
 
 Teardown se ek vaakya ka saamaan mila jo product ko vikalpon ke beech rakhta hai. *Positioning statement* batata hai ki product kiske liye hai aur kaise alag hai. Ise likhna ek anushaasan hai, kyunki dhundhla vaakya likhna aasaan hai aur saaf likhna nahi.
 
@@ -86,7 +86,7 @@ Un companies ke liye jo Bharat mein customer chat chalati hain aur chahti hain k
 
 Ek test uske baad aata hai. Agar vaakya kisi competitor par bhi utna hi achha lagta hai, toh woh abhi position nahi hai. Anaya ne apna vaakya zor se padha aur raahat mili ki woh us har tool par nahi lagta tha jo usne dekha tha.
 
-## 4.6 Baatcheeton se rank kiye hue ideas tak
+## Baatcheeton se rank kiye hue ideas tak
 
 "Mujhe samasya mili" se seedha "mujhe pata hai kya banana hai" par kood jaana bahut lubhaata hai. Is kood se hi zyadatar bekaar software likha jaata hai. Anaya ne beech mein ek drawing rakhi. Page ke sabse upar usne woh nateeja likha jo woh chahti thi: chat se kam personal details bahar jaayein. Uske neeche shaakhaon ke roop mein usne woh zaroorat aur dard rakhe jo usne sach mein suna tha, har ek ke baatcheet numbers ke saath. Chatbot ka greeting details maangta hai (baatcheet 2 aur 3). Agents ke paas koi niyam nahi (1 aur 5). Photos bina ek aur nazar ke le li jaati hain (1). Numbers ajeeb tareeke se type hote hain (4). Madadgaar un logon ki taraf se type karte hain jinhe pata nahi ki woh kahan jaata hai (5). Har shaakha ke neeche usne kuch ideas likhe jo madad kar sakte the.
 

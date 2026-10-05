@@ -17,11 +17,11 @@ Teen hafte tak team ne jo bhi jawaab dekha woh ek paragraph tha, aur woh theek t
 
 Imran ne kaha ki yeh ek pyaara paragraph hai, aur uske code ko jaanna hai ki PAN hai ya nahi, kahan shuru aur kahan khatam hota hai, aur use kya karna hai. Woh "appears to be" nahi padh sakta. Yeh chapter batata hai ki program ko model se kya chahiye, woh pehla ilaaj jo samasya ko kam nahi balki hata deta hai, aur yeh ki aise ilaaj ke baad bhi jawaab kaise galat reh sakta hai.
 
-## 19.1 Case: ek paragraph jise program padh nahi sakta
+## Case: ek paragraph jise program padh nahi sakta
 
 Jab model ka output kisi doosre system ko jaata hai, jaise ek jo tay karta hai ki kya chhupana hai, toh program ko fields chahiye: ek kind, ek value, ek sthaan aur ek faisla. Har ek ka naam aur type hota hai, aur har ek hamesha maujood hona chahiye. Paragraph, chahe kitna bhi achha likha ho, inme se kuch nahi rakhta.
 
-## 19.2 Vinamrata se maangna
+## Vinamrata se maangna
 
 Pehla swaabhaavik kadam maangna hai. Imran ne instruction mein ek line joda: JSON mein reply karo, fields kind, value aur action ke saath. Woh kaam kiya, aur kaam karta raha, jo khatra hai. Ek din ke liye kisi ne iske baare mein nahi socha. Phir usne ek hazaar test messages chalaye aur ginti ki ki kitne replies sahi bane hue the. Nau sau adsath sahi the, aur battees nahi the.
 
@@ -35,7 +35,7 @@ Table: Battees failures
 
 Anaya ne dhyaan dilaya ki 96.8 percent theek lagta hai. Imran ne napkin par agla hisaab likha: din ke das hazaar messages par sattanve percent ka matlab teen sau failures roz hain, chupchaap, ek aise field mein jis par doosra system bharosa karta hai. Jo feature sau mein kuch baar fail hota hai, aur us sau ko koi dekh nahi raha, woh din bhar fail hota hai.
 
-## 19.3 Poochhne ke bajaye rok lagana
+## Poochhne ke bajaye rok lagana
 
 Bharose ka ilaaj poochhna band karna aur rok lagana hai. Providers developer ko ek *schema* dene dete hain, jo ek aupchaarik vivaran hai ki jawaab ki shakl theek-theek kya honi chahiye. Woh har field ka naam batata hai, har ek ka type batata hai, aur batata hai ki kaun se zaroori hain. Jab model likhta hai, provider ka apna software use aisa kuch banane se rokta hai jo fit nahi hota. Brace se pehle maafi nahi aa sakti. Koi bachi hui comma nahi aa sakti. Is tarah se mila jawaab *structured output* hai, aur woh "shayad sahi shakl mein" nahi hai. Woh kuch aur ho hi nahi sakta.
 
@@ -43,7 +43,7 @@ Bharose ka ilaaj poochhna band karna aur rok lagana hai. Providers developer ko 
 Anaya ne dhyaan diya ki yeh pehla ilaaj tha jisne samasya hata di. Pehle wale ne use bas kam kiya tha. Schema galtiyon ke ek poore parivaar ko hata deta hai, jabki system prompt ka instruction unhe kam karta hai. Imran ne kaha ki is kaam mein "yeh ho hi nahi sakta" kehne ka mauka kam milta hai.
 :::
 
-## 19.4 Sahi shakl, galat cheez
+## Sahi shakl, galat cheez
 
 Anaya ne us nishchintata ka ek din mazaa liya. Phir Imran ne ek aur hazaar messages chalaye aur use woh teen dikhaye jo bach gaye the. Ek customer ne likha tha, "mera naam Suresh hai, loan ka status batao". Reply ki shakl bilkul theek thi: ek entry ki list, ek kind, ek value aur ek action. "Address" field ki value "Pune" thi.
 
@@ -53,7 +53,7 @@ Message mein koi address nahi hai. Par field zaroori chinhit tha, isliye model k
 Schema format ki guarantee deta hai, content ki nahi. Amount field mein hamesha ek number hoga. Woh sahi number shayad na ho, aur ho sakta hai document mein koi number tha hi nahi. Ek theek se bana hua jhooth sabse khatarnaak hota hai, kyunki har jaanch jo sirf shakl dekhti hai use paas kar deti hai.
 :::
 
-## 19.5 Aisa form jisme jhooth ki jagah nahi
+## Aisa form jisme jhooth ki jagah nahi
 
 Iske baad ka kaam woh tha jo Anaya ko sabse zyada pasand aaya, kyunki usme chaturai nahi, sirf dhyaan chahiye tha. Sawaal yeh nahi tha ki model ko behtar instruction kaise dein. Sawaal yeh tha ki aisa form kaise banayein jisme failure ke khade hone ki jagah hi na ho. Imran ne use teen tareeke diye.
 
@@ -79,7 +79,7 @@ Jo model koi detail gadhta hai use ab ek quotation bhi gadhni padti hai, aur gad
 
 Woh Anaya ke darr se chhota tha, aur usme "Pune" ke liye koi jagah nahi thi.
 
-## 19.6 Jo aaya use jaanchna
+## Jo aaya use jaanchna
 
 Imran ko phir bhi us par poora bharosa nahi tha. Har provider ka model likhte waqt schema se bandha nahi ja sakta, aur unke liye, aur baaki ke liye doosri suraksha ki tarah, usne *validation* joda: jawaab aane ke baad use niyamon se milao. Kya har zaroori field maujood hai? Kya kind permitted mein se ek hai? Kya har quotation message mein hai? Agar kuch fail ho, toh system ek baar error likhkar dobara poochhta hai, aur agar woh bhi fail ho, toh message kisi insaan ko de deta hai. Usne ise tar ke neeche ka jaal kaha aur ummeed jatayi ki woh kabhi kuch pakadega nahi.
 

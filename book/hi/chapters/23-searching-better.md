@@ -19,7 +19,7 @@ Ek Monday ko Farah Sheikh ne bina kuch kahe ek shikayat aage bheji, aur isi se A
 
 Lakshmi Iyer ek ghante ke andar ek printout aur aise chehre ke saath glass room mein aayi jisse har bhaav saavdhaani se hata diya gaya tha. Usne poochha ki kaun sa figure sahi hai. Imran Qureshi ne dekha aur kaha ki dedh sau: fee January mein badh gayi thi. Usne poochha ki machine ko sau kahan mile.
 
-## 23.1 Case: woh fee jo kabhi sach thi
+## Case: woh fee jo kabhi sach thi
 
 Imran ko jawaab dhoondhne mein bees minute lage, aur woh saadhaaran tha. Jab January mein late-fee policy badli, toh kisi ne naya version us folder mein daala jahan se chatbot padhta hai, aur kisi ne puraana hataya nahi. Dono versions store mein the, chunks mein kate hue, har ek ki apni embedding ke saath. Jab Nashik ki customer ne sawaal poochha, toh search ko woh do chunks mile jo late fee ke baare mein the. Woh figure ke alawa lagbhag ek jaise the, aur puraane ka score thoda zyada tha. Woh model ke paas gaya, jisne pichhle saal ke niyam se ek saaf, aatmavishwaas bhara, grounded jawaab likha.
 
@@ -29,7 +29,7 @@ Sab kuch kaam kar gaya tha. Search ko sahi vishay mila, model ne wahi istemaal k
 Behtar ranking madad nahi karti. Pichhle saal ki policy late fee ke baare mein hai aur sawaal se utni hi milti hai jitni is saal ki. Prasangikta aur sahi hona alag sawaal hain, aur search mein kuch bhi antar nahi jaanta tha.
 :::
 
-## 23.2 Chaar sudhaar
+## Chaar sudhaar
 
 Pichhle mahine ke kaam ne team ko ise shaanti se dekhne ka saadhan diya tha. Chatbot ki search ke liye answer key thi, customers ke shabdon mein das sawaal, aur pehla score das mein se chhe. Imran ne chaar tareeke ek-ek karke liye aur har ek ko usi das par naapa.
 
@@ -43,7 +43,7 @@ Table: Search ke chaar sudhaar, usi das sawaalon par naape gaye
 
 Chauthi technique woh hai jisne score nahi hilaya. In labels ko *metadata* kehte hain, aur kisi bhi scoring se pehle unke aadhaar par chunks hataana *metadata filtering* hai.
 
-## 23.3 Woh sawaal jo kisi ne poochha nahi tha
+## Woh sawaal jo kisi ne poochha nahi tha
 
 Anaya ne samjhaya ki score kyun nahi hila: answer key mein sawaal tha hi nahi. Das mein se kisi ne aisi cheez ke baare mein nahi poochha jo badli ho. Imran ne ise row gyarah ke roop mein joda: bijli bill par late fee kitni hai, sahi jawaab dedh sau rupaye ke saath. Filter ke bina system ne sau bataya. Filter on karke usne dedh sau bataya. Usne use sau baar chalaya, dekhne ke liye, aur nateeja har baar wahi tha.
 
@@ -53,7 +53,7 @@ Hybrid search sahi chunk ke aane ki sambhavna badhata hai. Reranking uske upar h
 
 Anaya ne woh antar pehchaana jo woh har cheez mein dhoondhne lagi thi: ek tareeka jo failure ko kam karta hai, aur ek jo uski wajah hata deta hai. Usne whiteboard par kaale rang mein, puraani laal line ke neeche, "row gyarah" likha. Yeh answer key ki pehli row thi jo ek customer se aayi thi.
 
-## 23.4 Labels kis kaam ke hain
+## Labels kis kaam ke hain
 
 Lakshmi, jo ruki thi, ne poochha ki labels par aur kya hai. Imran ne ginaya: document, version, woh tareekhein jab woh laagu hai, aur kaun use dekh sakta hai. Lakshmi ne aakhri baat dohrai. Folder mein andar ke documents the, jaise collections playbook aur staff handbook. Usne poochha ki agar kisi customer ka sawaal handbook se milta toh pehle kya hota. Imran ne kaha ki woh handbook dhoondh leta. Usne kaha ki ab ise kaise roka jaata hai yeh dikhao. Search se pehle ek filter, Imran ne kaha: ek customer ki request sirf un chunks ko dekh sakti hai jinpar customers ke liye label hai.
 
@@ -61,7 +61,7 @@ Woh us bhaav se sir hilayi jo Anaya ne pehle uske chehre par nahi dekha tha. Woh
 
 Anaya ne dekha ki wahi vichaar guard mein bhi laagu hota hai. Har message kisi jagah se aata hai: order-tracking screen, loan-status screen, free chat. Jo screen pehchaan ka number maangne ke liye bani hai wahan type kiya number bilkul theek ho sakta hai, aur wahi number free chat mein theek nahi hai. Agar rule-keeper kuch tay karne se pehle jaanta hai ki message kahan se aaya, toh woh bina kisi chaturai ke alag niyam laagu kar sakta hai. Message ka maksad ek aur label tha, aur imaandaar. Usne specification mein ek column joda.
 
-## 23.5 Ek aur vichaar, jise alag rakha gaya
+## Ek aur vichaar, jise alag rakha gaya
 
 Ek paanchvi technique bachi thi, jise Imran ne bataya aur taal diya. Model ko kai searches khud chalane di ja sakti hain, nateeje padhne aur apna sawaal dobara likhne ki ijaazat di ja sakti hai, Chapter 20 ke loop se. Yeh *agentic search* hai. Woh behtar saboot dhoondh sakta hai, aur woh us chapter mein dikhaye tareeke se kharcha badhata hai aur wahi risk jodta hai. Usne ise board par "baad mein" ke neeche likh diya, ek aisa column jo kai cheezon ke liye achhi jagah banne laga tha.
 

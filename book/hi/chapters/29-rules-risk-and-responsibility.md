@@ -20,11 +20,11 @@ August ke pehle Tuesday ko Lakshmi Iyer ne ek lambi dopahar ki shuruaat bank mei
 
 Lakshmi ne kaha ki woh bees saal se woh insaan rahi hai jo kaagaz maangta tha, aur log sochte the ki woh kaam dheema kar rahi hai. Woh asal mein yeh pakka kar rahi thi ki jab kuch galat ho, toh koi bata sake ki system kis cheez ke liye tha, use kya karna tha, aur kya test hua tha. Regulator galti ki parwaah nahi karta. Woh us galti ki parwaah karta hai jise koi samjha nahi sakta. Jo machine text padhti aur likhti hai woh ab aise sawaalon ke ek folder ke saath aati hai, aur zyadatar log maante hain ki legal team jawaab likhti hai. Folder ka lagbhag har sawaal ek product sawaal hai, aur Lakshmi vaakya likh sakti thi par sawaalon ka jawaab nahi de sakti thi.
 
-## 29.1 Case: product sawaalon ka ek folder
+## Case: product sawaalon ka ek folder
 
 Folder poochhta tha ki system kis cheez ke liye hai, kise prabhaavit karta hai, galat hone par kya hota hai, aur kaun use jaanchta hai aur kis saboot ke saath. Anaya woh insaan thi jo jawaab de sakti thi. Neeche ke section dopahar ka anusaran karte hain.
 
-## 29.2 Istemaal risk tay karta hai
+## Istemaal risk tay karta hai
 
 Ek system ko zimmedaar hone ke liye kitna karna chahiye, yeh technology par nirbhar nahi karta. Yeh is par nirbhar karta hai ki galat jawaab kitna nuksaan kar sakta hai. Lakshmi ne chaar row banaye.
 
@@ -42,7 +42,7 @@ Do nateeje logon ko chaunkate hain. Pehla yeh ki istemaal tier tay karta hai, mo
 
 Anaya ne poochha ki guard kahan baithta hai. Chat mein pehchaan ke numbers chhupane wale madadgaar ke roop mein, Lakshmi ne kaha, woh minimal hai, aur jis chatbot ke saamne woh khada hai use batana padega ki woh machine hai. Agar koi guard ki khojon ko yeh tay karne mein lagane lage ki customer bharose layak hai ya nahi, toh woh ek alag cheez hogi. Usne Anaya se ise likhne ko kaha: yeh folder ka sabse upyogi vaakya tha.
 
-## 29.3 India ka kanoon, aur guard kya nahi hai
+## India ka kanoon, aur guard kya nahi hai
 
 Imran ne woh sawaal poochha jise Anaya taal rahi thi: kya guard compliant hai? Lakshmi ne poochha, kis cheez ke saath? Kanoon ke saath, Imran ne kaha, India ke.
 
@@ -52,7 +52,7 @@ Imran ne woh sawaal poochha jise Anaya taal rahi thi: kya guard compliant hai? L
 Guard ke baare mein likhe har document mein use ek aisa privacy tool bataya jaata hai jo organisation ko kam personal data ikattha aur share karne mein madad karta hai. Use kabhi kisi ko compliant banane wala nahi bataya jaata, Sahaj, kisi customer ya kisi aur ko. Lakshmi ne kaha ki agar koi salesman kabhi guard ke baare mein woh vaakya likhega, toh use pata chal jaayega. Anaya ne niyam ek page ki pehli line par likha, aur baad mein specification, system card aur ek website ke saamne wale hisse mein, jo abhi tha hi nahi.
 :::
 
-## 29.4 Ek page
+## Ek page
 
 Folder ke kendra ka document ek hi page hai, *system card*. Woh batata hai ki system kis cheez ke liye hai, kaun sa data istemaal karta hai, kaise test hua aur kya galat karta hai. Minimal tier se upar kisi bhi cheez ko ek chahiye. Anaya ne kabhi ek nahi likha tha, par woh chhe mahine se bina jaane uski cheezein ikatthi kar rahi thi. Usne ise ek ghante mein doosron ke saamne likha, answer key ke numbers ke saath.
 
@@ -70,7 +70,7 @@ Folder ke kendra ka document ek hi page hai, *system card*. Woh batata hai ki sy
 
 Lakshmi ne Anaya se seemayein zor se padhne ko kaha, aur phir kaha ki yahi hissa hai jo use baaki par bharosa dilata hai. Seemaon ka section nakal karne mein sabse mushkil aur sabse vishwaasneeya hai: koi bhi keh sakta hai ki system kya achha karta hai, aur asli failures ki ek list jiske peechhe saboot ho, padhne wale ko batati hai ki kisi ne dekha hai. Scope se bahar wali line sabse upyogi hai, kyunki woh istemaal ko bina kisi ke dhyaan diye ooncha tier mein bahne se rokti hai.
 
-## 29.5 Mr. Deshpande ko dhoondhna
+## Mr. Deshpande ko dhoondhna
 
 Lakshmi ne phir abhyaas rakha. Usne mez par ek card sarkaya jis par ek asli customer ka naam tha, Mr. Deshpande, Satara ka ek buzurg jisne June mein Sahaj ko likha tha ki uska data hataya jaaye aur jise vaada kiya gaya tha ki hataya jaayega. Woh abhi nahi hua tha. Anaya ko kalpana karni thi ki anurodh abhi aaya hai aur woh jahan-jahan rehta hai woh sab dhoondhna tha.
 
@@ -90,7 +90,7 @@ Phir Anaya ko kuch yaad aaya aur woh thithak gayi. June mein usne sau outputs ch
 
 Anaya ne us shaam Farah ko gawah rakhkar printouts shred kiye aur log mein tareekh likhi. Phir usne us prakriya mein ek line joda jisne samasya paida ki thi: har data ka kahan se aaya yeh jab woh ikattha ho tab record karo, kyunki baad mein use banaya nahi ja sakta. Jo deletion anurodh poora nahi kiya ja sakta woh ek tareekh wali failure hai.
 
-## 29.6 Ek insaan jo "na" keh sake
+## Ek insaan jo "na" keh sake
 
 Lakshmi ke paas do aur baatein thi, aur woh unhe jaldi se kar gayi.
 

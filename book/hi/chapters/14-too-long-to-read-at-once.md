@@ -17,11 +17,11 @@ April ke ek Friday ko Imran Qureshi ne Anaya se kaha ki guard banane se pehle us
 
 Yeh chapter batata hai ki sahi pages kaise chune jaate hain, us hisse se shuru karke jo pehle aata hai: lambe documents ko tukdon mein kaatna. Anaya ne ise ek kainchi aur baarah page ke printout se seekha.
 
-## 14.1 Case: farsh par ek policy
+## Case: farsh par ek policy
 
 Sahaj ki *Late Payment and Refund Policy* baarah page ki thi. Imran ne ek stapled printout glass room ke farsh par rakha aur uske paas narangi haathon wali kainchi rakhi. Usne Anaya se kaha ki woh kaatna haath se kare, bina software ke, taaki use mehsoos ho ki isme kya lagta hai. Farah Sheikh, jo wahan se guzri, farsh par aise baith gayi jaise woh kisi bahaane ka intezaar kar rahi thi. Aage ke teen round chapter ka saar hain.
 
-## 14.2 Sab kuch kyun nahi bhejte
+## Sab kuch kyun nahi bhejte
 
 Sabse seedhi yojna yeh hai ki Sahaj ke saare documents har sawaal ke saath model ko de diye jaayein aur model jawaab dhoondh le. Do seemayein ise na-mumkin banati hain.
 
@@ -29,7 +29,7 @@ Pehli context window hai. Help pages, policies, terms aur circulars ki poori lib
 
 Maanak tareeka yeh hai ki documents ko pehle se tukdon mein kaat liya jaaye, store kar liya jaaye, aur har sawaal ke liye sirf woh kuch tukde bheje jaayein jo prasangik lagte hain. Yeh tukde *chunks* hain, aur kaatna *chunking*. Vichaar kehna aasaan hai, aur mushkil poori tarah is mein hai ki kahan kaatna hai.
 
-## 14.3 Ek policy ko teen tarah kaatna
+## Ek policy ko teen tarah kaatna
 
 Imran ne customer ki tarah sawaal rakhe, aur Anaya ne policy ko teen tarah kaata.
 
@@ -48,7 +48,7 @@ Aisa chunk jo apne document se kat jaane ke baad koi maayne nahi rakhta, kyunki 
 
 Page padhne wale ke paas uske pehle ka paragraph hota hai. Chunk ke paas nahi hota. Jab model ko orphan dikhaya jaata hai, woh waisa hi karta hai jaisa woh khaali jagah ke saath hamesha karta hai: use bhar deta hai. Teesre round mein ek section ka ant agle ke shuru mein dohraane ka yahi kaaran tha.
 
-## 14.4 Koi sahi size nahi hai
+## Koi sahi size nahi hai
 
 Anaya ne ummeed ki thi ki use chunk ka sahi size pata chalega, aur uski jagah usne seekha ki koi hai hi nahi. Har tareeka apne dhang se fail hota hai. Bade tukde mehnge aur dhundhle hain. Chhote tukde sasta aur saaf hain par apna sandarbh kho dete hain. Structure ke saath kaatne se har tukde ke andar matlab bacha rehta hai aur woh jawaab kho jaate hain jo kisi seema ko paar karte hain. Sahi chunaav is par nirbhar hai ki documents kaise dikhte hain aur log sach mein kya poochhte hain.
 
@@ -56,7 +56,7 @@ Anaya ne ummeed ki thi ki use chunk ka sahi size pata chalega, aur uski jagah us
 Imran ka design review ka niyam tha ki bataya jaaye ki kaun si failure chuni gayi aur kyun. Jo team apne tareeke ka nuksaan nahi bata sakti, usne chunaav nahi kiya. Usne ek default maan liya. Farah ne Sahaj policy ke liye vaakya likha aur board par chipka diya: section ke hisaab se kaato, do vaakya overlap ke saath, jisse ek clause ke baare mein ke sawaalon ke saaf jawaab milte hain aur woh jawaab chhootte hain jo alag sections ke clause aur uske apvaad ko ek saath maangte hain, isliye unhe jaanboojh kar test kiya jaata hai.
 :::
 
-## 14.5 Wahi samasya, guard mein
+## Wahi samasya, guard mein
 
 Shaam ke lagbhag saat baje Anaya ko dikha ki guard ki bhi wahi samasya hai. Kuch customers message nahi likhte. Woh ek email paste kar dete hain, teen hazaar shabd ka poora thread. Guard ka woh hissa jo naam aur jagah dhoondhta hai ek baar mein sirf seemit text padh sakta hai, isliye use thread ko bhi tukdon mein kaatna padta.
 

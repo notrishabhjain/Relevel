@@ -26,11 +26,11 @@ Tareekhein aksar galat hoti thi, par yahi sabse badi kami nahi thi. Har bar kuch
 
 Yeh chapter us dhaanche ko, usse jude lakshyon ko, un logon ko jo use rok sakte the, aur ek aisi meeting ko samjhata hai jisne use shuru hone se pehle parkha.
 
-## 6.1 Case: bina tareekhon ka plan
+## Case: bina tareekhon ka plan
 
 Pichhle chapter ki strategy ek vaakya thi. Use engineers, compliance staff aur founders ke liye karne laayak banane ke liye kaam ka ek kram chahiye tha, yeh jaanne ka tareeka ki kaam safal hua ya nahi, aur yeh ki kaun use rok sakta hai. Neeche ke section in teen zaroorton ko kram se dekhte hain, aur ek chauthi ko bhi: ek meeting jisme saathiyon se kaha gaya ki maan lo project pehle hi fail ho chuka hai.
 
-## 6.2 Outcome roadmap
+## Outcome roadmap
 
 Anaya ne jo *roadmap* apnaya usme teen column hain aur calendar nahi hai. *Now* mein woh kaam hai jo team kar rahi hai, aur woh pakka vaada hai. *Next* mein woh hai jo woh uske baad karne ki ummeed rakhti hai, jo sambhav hai par badal sakta hai. *Later* mein woh hai jo woh tatol rahi hai, maujooda soch ke hisaab se kram mein, aur kisi se vaada nahi. Har cheez ek nateeje ke roop mein likhi jaati hai, logon ke kuch kar sakne mein badlaav, feature ke roop mein nahi, aur uske neeche kuch line ka byora hota hai.
 
@@ -47,7 +47,7 @@ Aakhri line uske liye nayi thi. *Kill criterion* ek aisi shart hai jo pehle se t
 
 Kill criteria tab aur zyaada zaroori ho jaate hain jab kaam aise software ka ho jo text padhta aur likhta hai. Uski sahi hone ki dar pehle se nahi jaani ja sakti, kyunki woh software ko aazma kar hi pata chalti hai. Pehle test se pehle di gayi tareekh ek andaaza hai jo vaade ki tarah pesh kiya gaya hai.
 
-## 6.3 Lakshya aur unke neeche ke number
+## Lakshya aur unke neeche ke number
 
 Lakshmi ka sawaal ab bhi Anaya ke desk par ek sticky note mein tha: woh kaise jaanegi ki tool kaam karta hai? Companies is tarah ke sawaal ka jawaab *objectives and key results* se deti hain, jise aam taur par *OKR* kehte hain. Objective shabdon mein kehta hai ki kya chahiye. Uske neeche ke *key results* teen-chaar number hote hain jo dikhate hain ki woh haasil hua.
 
@@ -61,7 +61,7 @@ Key results ke saath do aur tarah ke number chalte hain. *Input metric* woh hai 
 
 Ek aur antar technical kaam hone par aasaani se kho jaata tha. Tool ka apna score apni jaanch par hoga, jo tool ko naapta hai. Key results naapte hain ki logon ke saath kya hota hai. Tool apni jaanch mein achha kar sakta hai aur phir bhi agents use ignore kar sakte hain kyunki woh unhe chidhaata hai, ya itni der se aaye ki farak na pade. Dono tarah ke number chahiye the, aur har ek par label lagana tha ki woh kaun sa hai.
 
-## 6.4 Jo "na" keh sakte hain
+## Jo "na" keh sakte hain
 
 Imran ne poochha ki plan sach mein kaun padhega. Anaya ko nahi pata tha. Jo bhi project ki madad kar sakta hai ya use rok sakta hai, ya jisse woh prabhavit hoga, woh *stakeholder* hai, aur stakeholders barabar nahi hote. Usne ek chaukor banaya jisme do axes the, ek insaan ke paas project par kitni taakat hai aur doosra use kitni parwaah hai, aur usme naam rakhe.
 
@@ -75,7 +75,7 @@ Har naam ke paas usne yeh bhi likha ki us insaan ko kis par naapa jaata hai, jis
 
 Lakshmi galat kone mein thi. Uske paas asli taakat thi aur, jahan tak Anaya dekh sakti thi, kam ruchi. Yeh sabse khatarnaak jodi hai, kyunki security, legal aur compliance ke staff ke paas aksar veto hota hai jabki woh rozmarra ke kaam mein kam hissa lete hain. Woh launch se ek din pehle tak chup rehte hain, aur phir "na" kehte hain, aur aam taur par woh sahi hote hain. Upaay saadharan tha. Anaya ne use doosre column mein hafte mein ek baar milkar aur poochhkar rakha ki use kya chahiye.
 
-## 6.5 Decision memo
+## Decision memo
 
 Founders plan nahi padhenge. Woh memo ka pehla paragraph padhenge aur shayad doosra. *Decision memo* aise likha jaata hai ki vyast insaan sirf uski shuruaat padhkar kaam kar sake. Kram hai maang, wajah, kharcha, sabse bada risk, aur vikalp, kuch na karna bhi.
 
@@ -85,7 +85,7 @@ Main Imran ka aadha samay aath hafte ke liye aur cloud mein lagbhag chaalis haza
 
 Paragraph chaar vaakyon mein maang, saboot, mukhya risk aur rukne ki shart batata hai.
 
-## 6.6 Fail ho chuke project ki kalpana
+## Fail ho chuke project ki kalpana
 
 Founders ki meeting se pehle Anaya ne ek jamavda kiya jisse Imran darta tha aur Farah ko achha laga. Sabko maan lena tha ki chhe mahine baad ka waqt hai aur project fail ho chuka hai, aur alag-alag, bina baat kiye, likhna tha ki kyun. *Pre-mortem* isliye kaam karta hai ki log kalpanik asafalta mein un risks ke naam lete hain jo woh us plan ke khilaaf nahi uthate jiska samarthan karne ki unse ummeed hoti hai.
 
@@ -101,7 +101,7 @@ Table: Pre-mortem se nikli risk list
 
 List ke saath Anaya ne ek chhoti list rakhi un cheezon ki jo use doosron se chahiye thi. *Dependency* woh hai jo project ko team ke bahar se chahiye: kisi aur ka kaam, supplier ka sahyog, data tak pahunch ya koi manzoori. Plans dependencies mein hi khisakte hain, kyunki team ka un par koi niyantran nahi hota. Uski teen thi: chat system ka read access, kuch live jaane se pehle Lakshmi ki manzoori, aur bahari company ka vaada ki uska software text lene ka tareeka nahi badlega. Pehla use Friday tak mil sakta tha. Teesre ke baare mein woh kam pakki thi.
 
-## 6.7 Nateeja
+## Nateeja
 
 Founders ne memo par gyarah minute lagaye. Unhone poochha ki kitna samay lagega, kitna kharcha aayega, aur kya Lakshmi maan gayi hain. Anaya ne teesre sawaal ka jawaab pehle diya. Faisla us log mein gaya jo usne pehli raat shuru kiya tha, uske neeche ek nayi line ke saath: agar Imran ka aadha samay teesre hafte ke baad nahi mil paaya toh woh apni raay badal degi.
 

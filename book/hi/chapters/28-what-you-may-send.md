@@ -16,11 +16,11 @@ July ke teesre Monday ko Lakshmi Iyer ne apne desk par teen documents rakhe, kin
 
 Pehla document Late Payment aur Refund Policy thi, woh baarah page jinhone glass room ke farsh par ek din tukdon mein bitaya tha. Woh Sahaj ki website par prakashit thi aur koi bhi use padh sakta tha. Doosra ek spreadsheet thi, loan applications ki, columns mein naam, pate, pehchaan ke number aur masik aay ke saath. Teesra pachaas support chats ka sangrah tha, analysis ke liye export kiya gaya aur haath se saaf kiya hua, ya aisa cover note ne kaha.
 
-## 28.1 Case: teen documents
+## Case: teen documents
 
 Anaya ne kaha ki pehla theek hai aur doosra nahi. Lakshmi ne poochha kyun. "Woh logon se bhara hai," Anaya ne kaha. Teesre ke baare mein woh pakki nahi thi. Usne naapa tha ki haath se saaf karne mein kya chhoot jaata hai, aur use cover note par bharosa nahi tha. Lakshmi ne sahmati di, aur kaha ki teesra upyogi tha. Yeh chapter ise theek se karta hai.
 
-## 28.2 Teen sawaal, kram se
+## Teen sawaal, kram se
 
 Pichhla har chapter maan kar chala tha ki text model ko bheja ja sakta hai, jiska vyavhaar mein matlab tha woh bahari company jo jawaab likhti thi, ya woh jo matlab ke naqshe banati thi, ya woh jo logs rakhti thi. Zyadatar features ke liye, Lakshmi ne kaha, yeh maanyata ya toh bilkul theek hoti hai ya ek gambhir samasya, aur dono mein se kaun si hai yeh technical masla nahi hai. Yeh teen sawaalon par aata hai. Woh kanooni vyakhyan nahi de rahi thi, aur uska Anaya ko kanoon sikhane ka irada nahi tha. Woh chahti thi ki Anaya jaane ki kaun se sawaal poochhne hain aur har ek ka jawaab kiska hai.
 
@@ -33,7 +33,7 @@ Table: Vendor ko text bhejne se pehle teen sawaal
 
 Isi kram mein poochhne se kam mehnat mein zyadatar cases tay ho jaate hain. Pehle sawaal ne spreadsheet ko ek line mein nipata diya.
 
-## 28.3 Das minute ka padhna
+## Das minute ka padhna
 
 Lakshmi ne Anaya se ek aisa kaam karne ko kaha jisme das minute lagte aur jo, jahan tak use pata tha, Sahaj mein kisi ne nahi kiya tha: bahari company ki asli terms padho, website nahi. Anaya ne use usi dopahar dhoondh liya. Woh lambi aur saadhaaran thi. Acceptable use ke section ke baad ek page aur aadhe mein teen cheezein thi jo usne ekdum waisi hi likh li.
 
@@ -46,7 +46,7 @@ Table: Vendor ki terms ki teen lines
 
 Teeno kharide gaye plan ke saath badal sakte the, aur Anaya ko shak tha ki Sahaj ne sabse sasta liya tha. Woh lines Lakshmi ke paas le gayi, jisne unhe khade hokar padha. "March se customer ka Aadhaar number isi ke adheen raha hai," usne kaha. Anaya ne kaha ki use pata hai. Lakshmi ne kaha ki yeh uski galti nahi hai. Anaya ne kaha ki use phir bhi March mein padhna chahiye tha. Lakshmi ne sahmati di aur kaha ki Anaya company ki pehli insaan hogi jisne padha hai.
 
-## 28.4 Teesra document
+## Teesra document
 
 Teeno documents par dobara vichaar kiya gaya. Policy teeno sawaal paas kar gayi: koi insaan nahi, public, kuch gopniya nahi. Spreadsheet pehle sawaal par fail hui.
 
@@ -63,7 +63,7 @@ Agar aapko pakka nahi hai: data channel mein Lakshmi se poochho, aur jawaab ka i
 
 Lakshmi ne chaar line do baar padhi aur ek shabd badla. Usne kaha ki yeh aisa niyam hai jo woh deewar par lagayegi.
 
-## 28.5 Retrieval kya bhejta hai
+## Retrieval kya bhejta hai
 
 Imran ne hafte mein ek aur cheez dekhi, jo baad mein spasht lagti thi. Chatbot ke documents ka store saavdhaani se chuna gaya tha, aur usme sirf policies aur help pages gaye the. Par chatbot ko banaya gaya tha ki woh sawaal ke liye prasangik kuch tukde dhoondhe aur unhe har request ke saath bahari company ko bheje. Store mein jo kuch bhi tha woh dhoondha ja sakta tha, aur jo dhoondha gaya woh bheja gaya. "Store ke baare mein hamara faisla," Imran ne kaha, "har us sawaal ka faisla hai jo kabhi poochha jaayega."
 

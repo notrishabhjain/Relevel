@@ -17,7 +17,7 @@ August ke aakhri hafte mein Farah Sheikh chai ka cup lekar glass room ke darwaaz
 
 Nabbe percent par das mein se ek galat hota hai, aur koi engineering aakhri dasve hisse ko nahi mitaati. Jab tool galat ho toh screen kya karti hai, yahi tay karta hai ki tool par bharosa kiya jaata hai ya use chhod diya jaata hai. Yeh engineering faisla nahi hai. Engineer bata sakta hai ki confidence score maujood hai. Jab score kam ho toh agent kya dekhta hai, yeh product ka maalik tay karta hai.
 
-## 32.1 Case: dasvaan jawaab
+## Case: dasvaan jawaab
 
 Anaya ne April mein agent ki screen kaagaz par banayi thi. Usne use phir se banaya, jo woh tab se seekh chuki thi uske saath, aur paaya ki woh chaar cheezon par aa gayi.
 
@@ -33,7 +33,7 @@ Agar sudhaarna haath se kaam karne se zyada samay leta hai, toh koi nahi sudhaar
 
 Farah ne phir poochha ki woh dasve ke baare mein kya kahe. Anaya ka jawaab tha ki guard kuch jawaabon ke baare mein dikhai dega ki use shak hai, kaaran bataayega, aur use agent ke akele kaam karne se tez sudhaara ja sakta hai. Jo galat jawaab agents ne dekhe hi nahi unhe kisi aur tareeke se dhoondha jaayega.
 
-## 32.2 Jab woh nahi kar sakta
+## Jab woh nahi kar sakta
 
 Anaya ne ek screen se bachne ki koshish ki thi, aur usne ek Tuesday use design karne mein bitaya. Har system tab achha dikhta hai jab woh kaam karta hai. Bharosa us screen par bante hain jo kehti hai "main nahi kar sakta", aur kai products use sabse aakhir mein design karte hain, ya kabhi nahi.
 
@@ -45,7 +45,7 @@ Jo refusal insaan tak ka raasta deta hai woh us system se zyada bharosa kamata h
 
 Aakhri screen tab ki thi jab machine band thi. Anaya safe mode pehle hi bana chuki thi, aur ab usne woh design kiya jo agents tab dekhte jab woh on tha: screen ke upar ek patli peeli patti, "Safe mode: naam aur pate chhupaye nahi ja rahe". Agar machine band karne se screen khaali rehti, toh switch ek failure ki jagah doosri rakh deta.
 
-## 32.3 Ek test jo fail ho sakta tha
+## Ek test jo fail ho sakta tha
 
 Mahine ke ant tak screens ban chuki thi, aur Lakshmi ne ek pilot maanga. Woh launch nahi chahti thi. Woh ek test chahti thi, aur Anaya se chahti thi ki woh pehle se bataye ki kya use nirash karega.
 
@@ -65,7 +65,7 @@ Table: Pilot ke chaar faisle
 
 Lakshmi ne page padha, aur use sign karne ke bajaye wapas kar diya aur ek line aur maangi: agar yeh kaam kare aur number na hile toh aap mujhe kya batayengi?
 
-## 32.4 Pilot jo kaam kar gaya
+## Pilot jo kaam kar gaya
 
 Pilot September ki pehli tareekh ko shuru hua. Doosre hafte ke ant tak Anaya dashboard ko aise ehsaas ke saath padh rahi thi jis par use bharosa nahi tha. Guard kaam kar raha tha. Pune mein woh roz chaalis se pachaas details chhupata tha, button kam istemaal hua, answer key ke saamne scoreboard apne sabse achhe par tha, aur handling time chapta tha. Lakshmi ne pakka karne ke liye sweep jaldi chalaya. Pune mein paanch sau mein ikataalis the aur Nashik mein taitaalis. Kuch nahi badla tha.
 

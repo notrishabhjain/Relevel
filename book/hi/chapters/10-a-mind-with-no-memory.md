@@ -16,13 +16,13 @@ Office ke neeche ki mithai ki dukaan ke maalik ne unnees saal mein kabhi kisi re
 
 Imran aur Anaya ek dopahar laptop lekar wahin gaye, ek aise sawaal par baat karne jo Anaya ne pichhle din poochha tha: chatbot use yaad kyun nahi rakhta? Dukaan ek upyogi tulna deti hai, kyunki uska maalik apne customers ke baare mein sab kuch yaad rakhta hai aur model kisi ke baare mein kuch yaad nahi rakhta. Yeh antar har chatbot ka kharcha tay karta hai aur, jaisa chapter dikhata hai, us privacy samasya ko aakaar deta hai jis par project tika hai.
 
-## 10.1 Case: wahi machine, ek second baad
+## Case: wahi machine, ek second baad
 
 Imran ne pichhli shaam ki window kholi aur type kiya: "My name is Anaya and I work on loans." Model ne kaha ki use milkar achha laga aur poochha ki woh uske loans ke baare mein kaise madad kar sakta hai. Phir usne window saaf ki aur type kiya: "What is my name?" Model ne jawaab diya ki uske paas uska naam nahi hai aur use bataane ko kaha.
 
 Anaya ne kaha ki model ek second pehle usse baat kar raha tha. Imran ke shabdon mein woh kisi se baat kar raha tha, aur doosri call ko pehli ka kuch pata nahi tha. Neeche ka maalik kal ko aaj mein le jaata hai. Model ulta karta hai. Woh *stateless* hai: woh ek request se doosri tak kuch nahi rakhta, isliye har call shuru se shuru hoti hai.
 
-## 10.2 Yaaddasht kahan se aati hai
+## Yaaddasht kahan se aati hai
 
 Anaya ne etiraaz kiya ki chatbot toh yaad rakhta tha. Usne uske saath baatcheet ki thi, aur use pata tha ki teen message pehle usne kya kaha tha. Imran ne kaha ki chatbot yaad nahi rakhta. Application rakhta hai.
 
@@ -34,7 +34,7 @@ Imran ne ise dikhaya. Usne ek hi request mein pehla message, model ka uska jawaa
 Chat ke pehle ke messages, jinhe application ko har naye message ke saath dobara bhejna padta hai agar woh chahta hai ki model ko yaad lage. Model ko iska kuch pata nahi. Jo yaaddasht lagti hai woh application ka ledger saunpna hai.
 :::
 
-## 10.3 Yaad rakhne ka kharcha
+## Yaad rakhne ka kharcha
 
 Kyunki history har baar bheji jaati hai, har message agle ko bada karta hai, aur har token har baar charge hota hai. Imran ne ek napkin liya aur ek udaharan likha. Maan lijiye chatbot har request ki shuruaat apne teen sau token ke instructions se karta hai, aur har exchange, customer ka message aur jawaab milkar, sau token jodta hai.
 
@@ -47,7 +47,7 @@ Table: Baatcheet mein request ka size kaise badhta hai
 
 Bisvan message pehle se chhe guna se zyada mehnga hai. Bees message ki baatcheet mein bheja gaya kul lagbhag 25,800 token hota hai. Agar chatbot kuch yaad na rakhta, toh kul lagbhag 6,800 hota. Isliye baatcheet ka kharcha woh nahi hai jo insaan ne type kiya. Woh woh hai jo application ko saath le jaana padta hai.
 
-## 10.4 Jab baatcheet fit nahi hoti
+## Jab baatcheet fit nahi hoti
 
 Wahi hisaab ek doosri seema chhupata hai, jo Anaya ne khud dhoondhi. Context window ek tay size ka hai, aur jo baatcheet kaafi lambi chale woh ab fit nahi hogi. Tab application ko tay karna hota hai ki kya chhodna hai, aur woh faisla application ka hota hai, model ka kabhi nahi.
 
@@ -61,7 +61,7 @@ Table: Lambi history ke saath application kya kar sakta hai
 
 Yaaddasht dene wala har product inme se ek chunta hai aur use banata hai. Model dene wali company inme se kuch nahi deti.
 
-## 10.5 Jo Anaya ne nahi dekha tha
+## Jo Anaya ne nahi dekha tha
 
 Anaya ne chuppi se apni jalebi khatam ki. Phir usne dhyaan dilaya ki agar poori history har baar bheji jaati hai, toh message do mein type kiya number message teen ke saath, phir message chaar ke saath, aur isi tarah dobara bheja jaata hai. Imran ne pushti ki ki woh baatcheet ke ant tak bheja jaata hai. Agar koi customer bees message wali chat ke doosre message mein Aadhaar number type karta hai, toh woh bahari company ke paas atthaarah baar aur jaata hai. Imran ne yeh pichhli raat dekh liya tha, jab Anaya chali gayi thi, aur intezaar kiya tha ki woh khud ise dhoondhe.
 

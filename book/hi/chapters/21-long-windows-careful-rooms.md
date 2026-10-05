@@ -18,11 +18,11 @@ May mein ek model vendor ke solutions architect ne, ek founder ke bulaye hue jo 
 
 Dawa pichhle chhe hafton ko gair-zaroori bana deta. Anaya ne haath uthaya aur do sawaal poochhe: agar har baar poori library bheji jaaye toh ek sawaal ka kharcha kitna hoga, aur kya woh dikha sakta hai ki model kitna achha jawaab deta hai jab zaroori tathya poore window ke beech mein ho, usi tathya ke chhote request mein hone ke muqaable. Usne kaha ki use dekhna padega. Anaya ne use bhejne ko kaha jab woh pa le. Woh kabhi nahi bheja.
 
-## 21.1 Case: woh slide jiska daam nahi lag sakta tha
+## Case: woh slide jiska daam nahi lag sakta tha
 
 Anaya ka use sharminda karne ka irada nahi tha. Usne sawaal isliye poochhe kyunki poora dawa unhi par tika tha. Uske jaane ke baad Imran Qureshi ne kaam kiya aur Friday ko jawaab laaya.
 
-## 21.2 Slide ke galat hone ke do kaaran
+## Slide ke galat hone ke do kaaran
 
 Pehla kaaran kharcha hai. Bada request wohi kharcha deta hai jo bade request ka hota hai. Imran ne Sahaj ki poori policy library, lagbhag dedh lakh token, ₹250 dus lakh ke kalpanik rate par daam lagayi: ek sawaal ke liye ₹37.50. Teen prasangik tukde lane ka kharcha tees paise tha. Mahine ke ek lakh sawaalon par antar ₹37.5 lakh banaam ₹30,000 hai.
 
@@ -42,7 +42,7 @@ Nateeja ek model par ek din ka hai, aur doosra model alag hoga, par aakaar aam h
 Ek document ka window mein fit hona yeh nahi hai ki uska istemaal hoga. Vendors kshamta batate hain. Team ko istemaal naapna padta hai.
 :::
 
-## 21.3 Kamre mein kya jaata hai
+## Kamre mein kya jaata hai
 
 Agar bada kamra samasya hal nahi karta, toh us mein kya jaata hai wahi poora sawaal hai. Imran ne is kaam ko ek naam diya. *Context engineering* yeh tay karna hai ki har request mein kya jaata hai, kis kram mein, aur kya chhodna hai. Hisse hain instructions, udaharan, saboot, pichhle messages aur tools ke jawaab. Iska zyadatar kisi ek instruction ke shabdon se zyada maayne rakhta hai, aur iska zyadatar technical chunaav nahi hai. Kitni history rakhni hai, kya customer ki puraani shikayatein shaamil karni hain, aur kya policy ka koi page payment ke baare mein request mein hona chahiye, yeh sab technical keemat wale product faisle hain.
 
@@ -64,11 +64,11 @@ Imran ne phir maana ki bill doguna ho gaya aur poochha ki woh sabse pehle kya ka
 Naam lo ki har kaat kis cheez ko risk mein daalti hai, aur phir use answer key se naapo. Jis budget ka koi maalik nahi, woh badhta jaata hai.
 :::
 
-## 21.4 Wahi shuruaat, sasta bill
+## Wahi shuruaat, sasta bill
 
 Ek tareeka Anaya ko lagbhag muft hone ki wajah se pasand aaya. Providers request ki process ki hui shuruaat yaad rakh sakte hain, aur agar aage ka hissa har baar ek jaisa ho, toh baad ki requests sasti aur tez hoti hain. Yeh *caching* hai. Yeh ek aadat ko inaam deti hai: sthayi hisse pehle jaate hain, jaise sthayi instructions aur reference text, aur jo badalte hain woh aakhir mein, jaise customer ka sawaal. Isne guard ke lambe instructions ko bhi utna mehnga nahi rakha jitna Anaya ko dar tha. Chaar sau token, har call par ek jaise aur aage rakhe gaye, cache ka achha istemaal hain.
 
-## 21.5 Baatcheet ko chhota karna
+## Baatcheet ko chhota karna
 
 Aakhri vichaar tab aaya jab Anaya ne poochha ki bees message ki chat jo apne budget se bahar nikal jaaye uska kya hota hai. Aam jawaab *compaction* hai: baatcheet ke beech ka saar likho, shuru aur ant rakho, aur woh bhejo. Yeh kaam karta hai, aur beech ke khaas tathyon ko bharose se kho deta hai. Anaya ne ek vaade ke callback ka naam liya, aur Imran ne sahmati di ki yeh bilkul aise hi tathya ka udaharan hai, isliye must-keep list April mein likhi gayi thi. Saar jo bhi rakhe, jo kho nahi sakta woh list mein hona chahiye.
 

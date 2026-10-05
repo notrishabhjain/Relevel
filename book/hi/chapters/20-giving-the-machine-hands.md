@@ -18,11 +18,11 @@ Baarah ank ka order number team ke kaam mein baar-baar laut kar aa raha tha. Woh
 
 Ek Tuesday Imran Qureshi ne kaha ki jaanne ka sirf ek tareeka hai. Order system se poochho. Yeh chapter samjhata hai ki model ko aisa karne ki ijaazat kaise di jaati hai, is vyavastha ka kharcha kya hai, aur use kahan rokna hai.
 
-## 20.1 Case: ek number jo do cheezon mein se ek hai
+## Case: ek number jo do cheezon mein se ek hai
 
 Model ne ab tak ek hi tarah ka kaam kiya tha: woh text padhta tha aur text likhta tha, aur ek insaan ya program use padhta tha. Imran ne kuch alag prastaav diya. Woh chahta tha ki model keh sake ki use nahi pata ki yeh number kya hai aur orders table mein look-up maang sake.
 
-## 20.2 Ek model jo maang sakta hai
+## Ek model jo maang sakta hai
 
 Model kuch chala nahi sakta. Woh sirf maang sakta hai. Imran ne ek card par yeh vyavastha paanch kadamon mein likhi, aur woh saadhi hai.
 
@@ -38,7 +38,7 @@ Model ko program se ek function chalane ko kehne dena, function ka naam aur uske
 
 Ek model, uske maang sakne wale functions ka ek set, ek loop aur rukne ka ek niyam milkar ek *AI agent* banate hain. Sahaj mein is shabd ka pehle se ek matlab tha, kyunki Farah ke staff support agents the. Anaya ne turant tay kar diya: uske log support agents the aur machine ke AI agents.
 
-## 20.3 Label par likhe shabd
+## Label par likhe shabd
 
 Imran ne pehla function khud likha. Woh ek number leta tha aur batata tha ki us number ka order maujood hai ya nahi, aur kis customer ka hai. Usne use ek line ka vivaran diya aur chalaya, aur model ne galat function maanga. Toolbox mein do the, ek jo order dekhta tha aur ek jo payment dekhta tha. Pehle ke vivaran mein poora yeh likha tha: "Customer ke number ke baare mein jaankari dekhta hai." Model ne use saadhe vaakya ki tarah padha aur doosra chuna.
 
@@ -52,7 +52,7 @@ Table: Ek dhundhla aur ek achha tool description
 
 Achha *tool description* batata hai ki function kya lautata hai, kya nahi lautata, aur kab doosra istemaal karna hai. Milte-julte function ka naam vivaran ke andar likhne se woh uljhan pehle hi rok di jaati hai jo zyadatar teams launch ke baad dhoondhti hain. Imran ne ise system ki sabse kam sarahi gayi code ki line kaha, kyunki tool description angrezi mein likha code hai.
 
-## 20.4 Har round pichhle se mehnga
+## Har round pichhle se mehnga
 
 Loop kaam kiya. Ek baarah ankon ka number wala message aaya, aur finder ne kaha ki woh Aadhaar number ya order number ho sakta hai. Model ne ek look-up maanga, program ne use chalaya, aur jawaab aaya: us number ka ek order maujood hai. Model ne tay kiya ki woh order number hai, aur guard ne use chhod diya.
 
@@ -71,7 +71,7 @@ Table: Chhe kadamon ke loop mein bheje gaye tokens
 
 Chhe kadam ek call se lagbhag das guna mehnge pade. Figure Imran ke hain aur is udaharan ke hain. Aam niyam yeh hai ki input kadamon se zyada tezi se badhta hai, kyunki har kadam pichhle sab ko saath le jaata hai. Jo agent plan se do kadam zyada leta hai woh bill doguna kar sakta hai, isliye kitne kadam ki ijaazat hai yeh ek faisla hai, aur uski keemat hai.
 
-## 20.5 Chaar kharab din
+## Chaar kharab din
 
 Agle din Imran ne loop ko jaanboojh kar chaar tareekon se toda, yeh dikhane ke liye ki jab cheezein galat hoti hain toh aisi machine kya karti hai.
 
@@ -89,7 +89,7 @@ Table: Loop chaar tareekon se fail hua
 Wahi line *step limit* hai. Model use tay nahi karta aur uspe bharosa nahi kiya ja sakta, isliye program ko karna padta hai. Teams ise aksar bhool jaati hain. Jis loop mein rukne ka niyam nahi, woh agent nahi hai. Woh ek leak hai.
 :::
 
-## 20.6 Padhna aur karna
+## Padhna aur karna
 
 Hafte ke ant mein Farah ne ek prastaav rakha. Agar model ek order dekh sakta hai, toh kya woh customer ko message bhi bhej sakta hai? Jab guard koi number chhupaye, toh woh turant keh sakta tha, "kripya yahan Aadhaar share na karein". Anaya ko is vichaar ki khinchaav mehsoos hui. Jo customer pehchaan ka number type karta hai use pyaar se bataya jaana chahiye ki woh zaroori nahi hai.
 

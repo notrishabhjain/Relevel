@@ -16,7 +16,7 @@ March ke doosre hafte mein Pune ki company Sahaj ki product manager Anaya Deshmu
 
 Yeh chapter dikhata hai ki Anaya ne is khoj ke saath kya kiya. Is case se teen aadatein samjhaayi gayi hain jin par kitaab ka baaki hissa tikta hai: faisle se pehle naapna, samasyaon ki ek jaise paimaane par tulna karna, aur faisle ko aise likhna ki use baad mein palta ja sake. Isi chapter mein kitaab ka pehla technical shabd bhi aata hai, *personally identifiable information*.
 
-## 1.1 Case: ek hafte ki chats
+## Case: ek hafte ki chats
 
 Sahaj ek mobile app chalati hai jisme log bijli ka bill bharte hain aur pichhle saal se chhote loan ke liye apply bhi karte hain. App ke ek kone mein ek support chatbot hai jo kisi bhi samay sawaalon ke jawaab deta hai. Support team ki lead Farah Sheikh ne ek hafte ki baatcheet Anaya ke liye export kar di thi. Company chahti thi ki April tak har product manager saal ka ek bada kaam prastaav kare, aur Anaya yeh dekhne ke liye chats padh rahi thi ki customers kahan atakte hain.
 
@@ -33,7 +33,7 @@ Aadhaar number woh pehchaan ka number hai jo Bharat sarkar nivasiyon ko deti hai
 
 Export mein aage Anaya ko ek PAN mila, tax ka das akshar ka code, jo ek delayed refund ke baare mein likhe vaakya mein bade akshar mein type kiya gaya tha. Ek poora ghar ka pata mila, aur ek bank passbook ki photo mili jise chat window ne bina kisi chetavni ke le liya tha.
 
-## 1.2 Type kiya hua number kahan jaata hai
+## Type kiya hua number kahan jaata hai
 
 Aksar maan liya jaata hai ki chat window mein type kiya number chat window mein hi rehta hai. Sach mein ek message kai jagah copy hota hai, aur har jagah ke apne staff, backup aur yeh tay karne ke apne niyam hote hain ki kaun padh sakta hai. Sahaj mein message paanch jagah se guzra.
 
@@ -63,7 +63,7 @@ Table: Kuch aam details kitni achhi tarah kisi insaan ko pehchaanti hain
 
 Aakhri row sabse zaroori hai. Message se saare saaf numbers hata dene ke baad bhi woh gumnaam nahi ho jaata, kyunki baaki details ab bhi ek hi insaan ka bayaan kar sakti hain. Chapter 28 aur 29 mein is baat par dobara baat hogi jab yeh dekha jaayega ki company bahari service ko kya bhej sakti hai. Is kitaab mein kuch bhi kanooni salah nahi hai.
 
-## 1.3 Andaze se ginti tak
+## Andaze se ginti tak
 
 Is mod par Anaya ke paas ek majboot andaaza tha aur koi saboot nahi tha. Andaaza yeh tay karne mein kaam aata hai ki kahan dekhna hai, par use koi aur jaanch nahi sakta aur use doosre andaaze se tola nahi ja sakta. Isliye uska pehla kadam use ginti mein badalna tha.
 
@@ -75,7 +75,7 @@ Anaya ne figure ke paas uski seemayein likhin. Yeh ek hafte ka, ek chatbot ka, e
 
 Number ke saath uski seemaayein likhna is kaam ki ek aadat hai. Jo figure apni seemaon ke bina ghoomta hai, use agli meetingon mein uski haisiyat se zyada bharosa milne lagta hai.
 
-## 1.4 Teen samasyaon mein se chunaav
+## Teen samasyaon mein se chunaav
 
 Anaya ke paas ab teen kaam ke vikalp the. Pehla ek tool tha jo har hafte ke support tickets padhkar mukhya themes bata de, jisse Farah ko Monday subah haath se chhaantne ka kaam na karna pade. Doosra ek feature tha jo salary slips ki photos padhkar loan officers ki jaanch tez kar de. Teesra chats wali samasya thi, jise usne chuna nahi tha. Woh khud use mili thi, aur use iss baat par shak karne ki wajah lagi.
 
@@ -100,7 +100,7 @@ Product manager ke kaam ka ek hissa yeh hai ki shuru mein hi kahe ki ek samasya 
 
 Teesra vikalp jeeta, par bahut kam farq se. Uski khoobi yeh thi ki Anaya uske column ke har cell ke liye apna kaam dikha sakti thi.
 
-## 1.5 Faisla likh kar rakhna
+## Faisla likh kar rakhna
 
 Chunaav ke baad Anaya ne ek naya document khola aur faisle ko ek tay format mein likha: tareekh, faisla, uska saboot, aur woh haalaat jinmein woh faisla palat degi. Is tarah ke page ko *decision log* kehte hain.
 
@@ -118,7 +118,7 @@ I would change my mind if:  Lakshmi says this is a known, accepted risk, or
 
 Log ki keemat aakhri line se aati hai. Jis faisle mein nikalne ka koi raasta nahi likha hota, woh dheere-dheere vishwas ban jaata hai, aur use banane wale apne maan ke liye uska bachaav karte hain. Jo faisla apne palatne ki shart khud likhta hai, use shaanti se dobara kholna asaan hota hai, kyunki sawaal pehle se likha hota hai.
 
-## 1.6 Khud ko naapna
+## Khud ko naapna
 
 Shaam ka aakhri kaam saboot likhne ki aadat se hi nikla. Anaya ne product ke saat kshetron mein apni khud ki yogyata ko score kiya: logon se baat karke asli samasyaen dhoondhna, unmein se chunna, technology ko itna samajhna ki engineers se behas kar sake, kisi faisle ko aisi cheez mein badalna jise doosre bana sakein, nateejon ko naapna, yeh jaanna ki product apna kharcha nikaal sakta hai ya nahi, aur alag-alag lakshyon wale logon ko saath chalana.
 

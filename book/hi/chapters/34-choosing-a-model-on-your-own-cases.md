@@ -1,7 +1,12 @@
 ---
 title: Apne Cases Par Model Chunna
-summary: Ek founder us model par switch karna chahta hai jo pichhle hafte ke chart mein sabse upar tha. Team wahi karti hai jo aap gaadi ke saath karte hain, teen ko apni sadkon par chalakar dekhti hai, aur phir kehna seekhti hai ki har model jis kamre mein jaata hai usme theek-theek kya hai.
+summary: Ek founder us model par switch karna chahta hai jo pichhle hafte ke chart mein sabse upar tha. Team wahi karti hai jo gaadi ke saath karte hain: teen models ko apni sadakon par chalakar dekhti hai, faisla ek card par likhti hai, aur phir tay karti hai ki har model kya dekhta hai. Chapter leaderboards, routing, model selection cards aur provenance samjhata hai.
 course: ch9m ch10c
+goals:
+  - samjhana ki leaderboard yeh kyun nahi batata ki aapke kaam ke liye kaun sa model theek hai
+  - apne cases se, mushkil cases ke saath, ek benchmark banana aur sirf model badal kar models ki tulna karna
+  - routing batana aur faisla ek model selection card par likhna
+  - tay karna ki har request mein kya jaata hai, memory ko alag stores ki tarah dekhna, aur faislon ka provenance rakhna
 terms:
   - leaderboard | models ki unke scores ke aadhar par ek prakashit ranking, kisi aur ke tests par | leaderboards
   - model selection card | ek chhota, versioned page jo kaam, quality ka lakshya, data, raftaar aur kharche ki seemayein, aazmaye gaye vikalp, saboot aur fallback record karta hai, taaki ek reviewer theek-theek dekh sake ki ek model kyun chuna gaya | selection card
@@ -9,90 +14,92 @@ terms:
   - provenance | is baat ka record ki koi cheez kahan se aayi, taaki ek daava ya faisla uske source, version aur use paida karne wale code tak dhoondha ja sake | 
 ---
 
-"Woh chart mein sabse upar tha," Mr. Bhatia ne kaha, "toh maine socha humein switch karna chahiye."
+September ke chauthe Monday ko founder Mr. Bhatia apna laptop leke office aaye, jisme ek bar chart khula tha aur usme ek bar baaki se bahut oonchi thi. Woh ek model ki thi jo pichhle hafte nikla tha, aur unhone prastaav rakha ki us par switch kiya jaaye. Anaya ne poochha ki use kis par test kiya gaya tha. Reasoning, ganit, coding aur bahut kuch, unhone kaha. Usne poochha ki kya Hinglish naamon par bhi test hua tha. Woh hanse aur bole ki unhe lagta hai nahi hua hoga.
 
-September ka chautha Monday tha, aur woh apne laptop ko ek bar chart par khole aaya tha jisme ek bar baaki se kaafi lamba tha. Anaya ne bar dekha. Woh ek model ka tha jo pichhle hafte jaari hua tha. Caption ke anusaar usne tests ki ek list par shaandaar pradarshan kiya tha jinke baare mein usne kabhi suna bhi nahi tha.
+*Leaderboard* dikhata hai ki ek model ne kisi aur ke kaam par kaisa kiya. Woh ek imaandaar nateeja ho sakta hai aur padhne wale ko uske apne kaam ke baare mein kuch nahi batata, jaise ek gaadi sirf isliye khareedna ki usne inaam jeeta, jabki yeh nahi pata ki woh parivaar ke liye theek hai, sadakon par chalti hai ya chalane mein kitni mehngi hai. Koi use chalakar dekhta, aur bahut kam teams ek model ko chalakar dekhti hain.
 
-"Unhone use kis par test kiya?" usne kaha.
+## Case: chart par ek oonchi bar
 
-"Reasoning. Ganit. Coding. Bahut saari cheezein."
+Anaya ne, us aawaaz mein jo usne bilkul isi pal ke liye abhyaas ki thi, poochha ki company ke kin cases par model behtar hai, aur kis speed aur kharche par. Mr. Bhatia ne bhaunh uthayi aur phir muskuraaye. "Mujhe dikhao," unhone kaha.
 
-"Kya unhone Hinglish naamon par test kiya?"
+## Ek saath kai antar
 
-Woh hans pada, bina buri tarah. "Nahi. Mujhe nahi lagta unhone kiya."
+Imran ko is sawaal ka intezaar tha. Model ek hi aayaam mein behtar ya kharab nahi hota. Models kai mein ek saath alag hote hain: kaam kitna achha karte hain, kitni tez jawaab dete hain, kitna text le sakte hain, functions kitni bharose se bulate hain aur unka kharcha kya hai. Jo pehle par jeetta hai woh agle teen par haar sakta hai, aur kaun sa zyada maayne rakhta hai yeh model ke baare mein nahi balki istemaal ke baare mein tathya hai. Kaam yeh tha ki tay kiya jaaye ki Sahaj ke istemaal ko kya chahiye aur phir naapa jaaye.
 
-Ek *leaderboard* dikhata hai ki ek model ne kisi aur ke kaam par kaisa kiya. Woh bilkul imaandaar nateeja ho sakta hai aur aapke baare mein kuch nahi batata. Yeh waisa hi hai jaise ek gaadi isliye kharidna ki usne puraskar jeeta. Puraskar nahi batata ki woh aapke parivaar mein fit hoti hai ya nahi, aapki sadkon par chalti hai ya nahi, ya chalane mein kitna kharcha hai. Aap use chalakar dekhte. Bahut kam teams ek model ko chalakar dekhti hain.
-
-"Switch karne se pehle," Anaya ne kaha, us awaaz mein jo usne bilkul isi pal ke liye practise ki thi, "humare kaun se cases par woh behtar hai, aur kis raftaar aur kharche par?"
-
-Mr. Bhatia ne ek bhauh uthayi, aur phir, uski raahat ke liye, muskuraya. "Dikhao."
-
-## Ek saath alag cheezein
-
-Imran ko sawaal ka intezaar tha. Ek model ek aayam mein behtar ya bura nahi hota. Woh kai mein ek saath alag hote hain: woh kaam kitna achha kar sakte hain, kitni tezi se jawaab dete hain, kitna text le sakte hain, functions kitni bharose se bulate hain aur unka kharcha kitna hai. Jo pehle mein jeetta hai woh agle teen mein haar sakta hai. In mein se kaun sa sabse zyada maayne rakhta hai yeh aapke istemaal ke baare mein ek tathya hai, model ke baare mein nahi.
-
-Isliye kaam, usne kaha, yeh tay karna tha ki *aapke* istemaal ko kya chahiye aur phir naapna. Usne runner kholi, jo intezaar kar raha tha.
-
-Kaam finder ka tha: ek message padho, personal details ki list banao. Quality ki seema, jo May mein specification mein likhi gayi: fixed-shape numbers mein se sau mein kam se kam attaanve, aur naam jitne ho sakein. Data ka niyam, jo July mein likha gaya: koi asli cheez building ke bahar nahi bheji ja sakti. Raftaar ki seema: aamtaur par ek second ke ek tihaayi se kam. Kharche ki seema: kul mila kar prati message saath paise se kam.
+Table: Finder ko kya chahiye tha
+| Zaroorat | Sroot | Maan |
+| --- | --- | --- |
+| Quality | May mein likhi specification | Fixed-shape numbers mein sau mein kam se kam 98, aur jitne zyada naam ho sakein |
+| Data | July mein likha niyam | Kuch bhi asli building ke bahar nahi ja sakta |
+| Speed | Specification | Aam taur par ek second ke teesre hisse se kam |
+| Kharcha | Specification | Kul milakar 60 paise ek message se kam |
 
 ## Teen ko chalakar dekhna
 
-Benchmark saath cases ka ek set tha, aur Anaya ne ek weekend use banane mein bitaya tha. Yeh ek *benchmark* tha, cases ka ek tay set jisme apekshit jawaab hote hain, ek hi kaam par vikalpon ki nishpaksh tulna karne ke liye. Yeh answer key nahi tha; yeh usme se liya gaya tha, aur jaan-boojh kar un tareeko se mushkil banaya gaya tha jo maayne rakhte the. Bees English messages. Bees Hinglish mein. Das Devanagari mein. Aur das aise kism ke jinhe ek bholi test kabhi shaamil nahi karegi: aise messages jinka koi jawaab nahi tha, aise jo dwividha wale the, aur aise jinme ek injected nirdesh tha.
+Benchmark saath cases ka ek set tha jo Anaya ne ek weekend mein banaya tha. *Benchmark* tay cases ka ek set hai, expected jawaabon ke saath, jo ek hi kaam par vikalpon ki nishpaksh tulna ke liye istemaal hota hai. Yeh answer key nahi tha. Woh uske andar se liya gaya tha, aur jaanboojh kar un tareekon se mushkil banaya gaya tha jo maayne rakhte the: bees English messages, bees Hinglish mein, das Devanagari mein, aur das aise jo ek saadhaaran test kabhi shaamil nahi karta, jaise bina jawaab ke messages, uljhe hue messages aur injected instruction wale messages.
 
-Yeh aakhri category thi jis par use sabse zyada garv tha. Ek benchmark ek naapne ka upkaran hai, aur aasaan cases se bana upkaran aasaan nishkarsh deta hai. Ek product manager ka kaam score ko chunauti dene se pehle test set ko chunauti dena hai. Usne khud se poochha ki kya uska benchmark woh failure pakad legi jisse use sabse zyada darr tha, aur usne pakka kiya ki pakad legi.
+::: key Score se pehle test set ko chunauti do
+Benchmark ek naapne ka saadhan hai, aur aasaan cases se bana saadhan aasaan nateeje deta hai. Product manager ka kaam score ko chunauti dene se pehle test set ko chunauti dena hai. Anaya ne poochha ki kya uska benchmark us failure ko pakdega jisse woh sabse zyada darti thi, aur pakka kiya ki woh pakdega.
+:::
 
-Unhone teen models ko isme chalaya, har baar sirf model badalte hue, wahi nirdesh aur wahi cases ke saath. Agar aap model aur prompt dono saath badlein aur score badh jaye, toh aap nahi kah sakte ki kisne madad ki.
+Unhone teen models ko benchmark par chalaya, har baar sirf model badal kar, wahi instructions aur wahi cases ke saath. Agar model aur instructions ek saath badlein aur score sudhre, toh koi nahi bata sakta ki kisne madad ki.
 
+Table: Saath cases par teen models
 | | Model A | Model B | Model C |
 | --- | --- | --- | --- |
-| Yeh kya hai | Chhota, open-weight, andar chalta hai | Madhyam, open-weight, andar chalta hai | Bada, closed, bahar hosted |
+| Yeh kya hai | Chhota, open-weight, andar chalta hai | Madhyam, open-weight, andar chalta hai | Bada, closed, bahar host hota hai |
 | Kul mila | 82% | 91% | 95% |
 | Hinglish mein mila | 71% | 86% | 92% |
 | Aam samay | 0.15 second | 0.4 second | 2.1 second |
-| Prati call kharcha | lagbhag 3 paise | lagbhag 9 paise | lagbhag 40 paise |
+| Ek call ka kharcha | lagbhag 3 paise | lagbhag 9 paise | lagbhag 40 paise |
 
-"Kya mujhe Model C chalane ki ijaazat bhi hai?" Anaya ne kaha.
+Anaya ne poochha ki kya use Model C chalane ki ijaazat hai. Banaye hue vaakyon par haan, Imran ne kaha. Benchmark mein koi asli customer nahi tha, isliye use banaye hue text se banaya gaya tha, taaki koi bhi model kahin bhi chalakar yeh jaana ja sake ki woh kaise behave karta hai. Niyam asli data ke baare mein tha.
 
-"Banaye hue vaakyon par, haan," Imran ne kaha. "Benchmark mein koi asli customer nahi hai. Isiliye humne ise gadhe hue text se banaya. Hum kisi bhi model ko, kahin bhi, yeh jaanne ke liye aazma sakte hain ki woh kaise behave karta hai. Niyam asli wale ke baare mein hai."
-
-Usne table dekhi. Usne koi vijeta nahi diya, jisse woh kaam ki thi. Model C kaam mein sabse achha tha aur istemaal nahi kiya ja sakta tha, kyunki woh bahar tha aur dheema. Model A tez aur sasta tha aur akela kaafi achha nahi. Model B beech mein tha.
+Table ne koi vijeta nahi diya, aur wahi use upyogi banata tha. Model C kaam mein sabse achha tha aur istemaal nahi ho sakta tha, kyunki woh bahar tha aur dheema tha. Model A tez aur sasta tha par akele kaafi achha nahi tha. Model B beech mein tha.
 
 ## Sabse sasta jo kaam kare
 
-Numbers ne jo tareeka sujhaya woh woh tha jo team pehle hi istemaal kar chuki thi. *Routing* har request ko us sabse sasti model ke paas bhejta hai jo use sambhal sake, aur sirf mushkil wali ko ek mazboot aur mehnge ke paas. Model A har message padhega, tezi se aur sasti mein, aur unme se zyadatar ko tay kar dega. Model B sirf anishchit kuch ko dekhega.
+Numbers ne ek aisa tareeka sujhaya jo team pehle se istemaal karti thi. *Routing* har request ko sabse sasta model dikhata hai jo use sambhaal sakta hai aur sirf mushkil wale ko ek zyada majboot aur mehnge ke paas bhejta hai. Model A har message ko jaldi aur saste mein padhta aur zyadatar ko tay kar leta. Model B sirf shak wale kuch ko dekhta.
 
-Usne use benchmark par aazmaya. Combination ne kul milakar sau mein tirannave, Hinglish mein untaasi dhoondhe, 0.17 second ke aam samay mein, prati message lagbhag chaar paise ke kharche par. Model C jitna achha nahi. Specification poori karne ke liye kaafi achha. Aur ijaazat shuda.
+Anaya ne ise benchmark par aazmaya. Milan ne kul milakar sau mein tirannave aur Hinglish mein sau mein navaasi dhoondhe, aam taur par 0.17 second mein, lagbhag chaar paise ek message par. Woh Model C jitna achha nahi tha, specification ko poora karne ke liye kaafi achha tha, aur allowed tha.
 
-Phir usne woh kiya jo Imran ne use karna sikhaya tha, yaani faisle ko kaagaz ka ek tukda banana. *Model selection card* ek chhota, versioned page hai jo kaam, quality ka lakshya, data, raftaar aur kharche ki seemayein, aazmaye gaye vikalp, saboot aur fallback record karta hai. Yeh isliye hai ki ek reviewer theek-theek dekh sake ki ek model kyun chuna gaya. Uska ek page mein aa gaya. Neeche usne fallback ki line bhari: *Sirf niyam wala safe mode, jaisa specification mein hai.*
+Phir usne woh kiya jo Imran ne use sikhaya tha, jo faisla ko ek kaagaz ka tukda banana tha. *Model selection card* ek chhota, versioned page hai jo kaam, quality ka lakshya, data, speed aur kharche ki seemayein, aazmaye vikalp, saboot aur fallback record karta hai, taaki koi reviewer dekh sake ki ek model kyun chuna gaya. Uska ek page par aa gaya. Neeche usne fallback line poori ki: specification ke anusaar sirf-rules safe mode.
 
-"Ek aur test," Imran ne kaha. "Table dhako. Faisla karne ki koshish karo."
-
-Usne use dhaka. Usne koshish ki. Saamne kuch na hone par usne khud ko us model ki taraf haath badhate paya jo chart mein sabse upar tha, bilkul wahi jo usne Mr. Bhatia ko na karne ko kaha tha. Numbers ke bina, faisla lagbhag tees second mein raay ban gaya.
-
-"Isiliye yeh ek card par hai," Imran ne kaha.
+Imran ne Anaya se table dhaank kar faisla karne ki koshish karne ko kaha. Usne ki, aur apne ko us model ki taraf haath badhate paaya jo chart mein sabse upar tha, jo bilkul wahi tha jo usne Mr. Bhatia ko na karne ko kaha tha. Numbers ke bina faisla tees second mein raay mein badal gaya tha. "Isiliye yeh ek card par hai," Imran ne kaha.
 
 ## Folder mein kya jaata hai
 
-Dopahar ka doosra aadha ek alag sawaal ka tha, aur woh ek upama se shuru hua jo Meenakshi ne use ek Sunday ko di thi.
+Dopahar ka doosra aadha hissa ek alag sawaal ka tha, jo Dr. Meenakshi Rao ki ek tulna se shuru hua. Ek shaandaar naya saathi pichhle din ka kuch yaad nahi rakhta. Har subah manager ek folder deta hai: sthayi instructions, kuch udaharan, aaj ki zaroori file, pichhle hafte ke bare mein ek note. Folder mein kya jaata hai woh tay karta hai ki saathi kitna achha karta hai.
 
-"Kalpana karo," unhone kaha tha, "ki tumhare paas ek shaandaar naya saathi hai jise kal ka kuch yaad nahi rehta. Har subah tum use ek folder thamate ho. Sthayi nirdesh. Kuch udaharan. Aaj ki file jo use chahiye. Pichhle hafte ka ek note. Tum folder mein jo daalte ho wahi tay karta hai ki woh kitna achha karta hai."
+Model chun liye jaane ke baad agla sawaal yeh tha ki folder mein theek-theek kya hai. Anaya is vichaar se context ke naam se mil chuki thi, aur ab usne dekha ki kaam ka kitna hissa usme hai.
 
-Model chun liya gaya, agla sawaal tha ki folder mein theek-theek kya hai. Anaya yeh idea context ke naam se pehle mil chuki thi. Ab usne dekha ki kaam kitna usme tha.
+Table: Folder ke teen hisse
+| Hissa | Vyavhaar |
+| --- | --- |
+| Instructions | Unhe application aur model ke beech ke ek anubandh ki tarah maano: bhoomika, kaam, seemayein, udaharan, output ki shakl, aur jab woh jawaab nahi de sakta toh kya karna hai. Peechhe ka code har ek par nirbhar karta hai. Woh woh paane layak hain jo har interface paata hai: ek version number, badlaavon ka record, aur har edit se pehle aur baad wahi das cases ka chalna |
+| Har hisse ka size | Pehle se tay karo ki jab budget tang ho toh kya kis kram mein hataya jaaye. Zyadatar log pehle history hataate hain aur saboot sabse aakhir mein. Agar design alag hai toh kaaran design hai |
+| Memory | Woh feature nahi hai, ek architecture hai. Kam se kam teen alag stores ko memory kaha jaata hai aur unhe milana nahi chahiye |
 
-Pehle, nirdesh, jinhe woh requests ke paragraph ki tarah maan rahi thi. Unhe application aur model ke beech ek anubandh ke roop mein sochna behtar hai: bhumika, kaam, seemayein, udaharan, output ki shape, aur jab woh jawaab na de sake toh kya karna hai. Aage ka code inme se har ek par nirbhar hai. Isliye nirdeshon ko woh milna chahiye tha jo har doosre interface ko milta hai, aur usne diya: ek version number, badlaavon ka record, aur kisi bhi edit se pehle aur baad mein wahi das cases.
+Table: Memory kehlaye jaane wale teen stores
+| Store | Ismein kya hai | Har ek ke liye jawaab dene wale sawaal |
+| --- | --- | --- |
+| Session history | Is chat mein kya kaha gaya | Ismein kya hai, iska maalik kaun hai, kitni der rakha jaata hai, kaun dekh sakta hai, ise kaise hataana hai |
+| User profile | Company is insaan ke baare mein kya jaanti hai | Wahi paanch sawaal |
+| Task state | Yeh khaas kaam kahan tak pahuncha hai | Wahi paanch sawaal |
 
-Doosre, folder ke har hisse ka size kitna hai, taaki jab budget tight ho toh cheezein hatane ka ek kram ho. Zyadatar log history pehle hatate hain aur saboot aakhir mein. Agar aapka alag hai, toh wajah design hai.
-
-Teesre, woh jisne use hairaan kiya. "Memory ek feature nahi hai," Imran ne kaha. "Yeh ek architecture hai." Kam se kam teen alag stores hain jo memory kehlate hain, aur unhe ghulna nahi chahiye. *Session history* woh hai jo is chat mein kaha gaya. Ek *user profile* woh hai jo company is insaan ke baare mein jaanti hai. *Task state* woh hai jahan yeh khaas kaam pahunch chuka hai. Har ek ka ek malik hai, ek retention avadhi, kaun padh sakta hai uske niyam, aur use mitane ka tareeka.
-
-Usne teeno ko board par banaya aur ek-ek karke cells bhare. Har ek ke liye: usme kya hai; uska malik kaun hai; woh kitni der rakha jaata hai; kaun dekh sakta hai; use kaise mitayein. Pehle mein, history mein, woh *default roop se kya kabhi nahi daalna chahiye* wale cell par ruki, aur ek shabd likha. *Pehchaan ke numbers.* Guard pehle hi andar aate waqt history saaf karta tha. Ab woh store ke design ka hissa tha.
+Session history ke liye Anaya "default roop se kya kabhi inject nahi hona chahiye" wale cell par ruki aur ek shabd likha: pehchaan ke numbers. Guard pehle se history ko andar jaate hue saaf karta tha. Ab woh store ke design ka hissa tha.
 
 ## Yeh kahan se aaya
 
-Aakhri cheez shaant thi. Jab guard koi detail chhupata, toh woh likhta ki kyun. Har record message ka number, guard ke us hisse ko jisne faisla kiya, aur us hisse ka version le jaata. Baad mein koi bhi use dekhne wala faisle ko uske source tak, jis code ne use banaya aur jo nirdesh laagu the, dhoondh sakta tha. Yeh *provenance* hai: is baat ka record ki koi cheez kahan se aayi.
+Aakhri baat ek shaant baat thi. Jab guard koi detail chhupata tha, toh woh likhta tha ki kyun. Har record message ka number, guard ka woh hissa jisne faisla kiya, aur us hisse ka version leke chalta tha. Baad mein ise dekhne wala faisla ko uske sroot tak khoj sakta tha, us code tak jisne use liya aur un instructions tak jo lagu the. Yeh *provenance* hai: yeh record ki koi cheez kahan se aayi.
 
-Yeh use ummeed se zyada maayne rakhta tha. Ek citation tabhi kaam ka hai jab woh padhne wale ko saboot tak pahunchne de. Jis faisle ko dohraya nahi ja sakta uska bachaav nahi kiya ja sakta. September mein, jab Lakshmi ne poochha ki August ke ek Tuesday ko ek khaas naam kyun chhupaya gaya tha, Anaya ko jawaab chaalees second mein mil gaya. Usne yeh zikr nahi kiya ki yeh pehli baar tha jab kisi ne poochha.
+Yeh Anaya ki ummeed se zyada maayne rakhta tha. Ek citation tabhi upyogi hai jab woh padhne wale ko saboot tak pahunchne de, aur jis faisle ko dohraya nahi ja sakta uska bachaav nahi ho sakta. September mein Lakshmi ne poochha ki August ke ek Tuesday ko ek khaas naam kyun chhupaya gaya tha, aur Anaya ne jawaab chaalis second mein dhoondh liya. Usne nahi bataya ki pehle kisi ne nahi poochha tha.
 
-## Saath le jaane layak baatein
+## Saaraansh
 
-Ek leaderboard dikhata hai ki ek model ne kisi aur ke kaam par kaisa kiya. Models kai tareeko se ek saath alag hote hain, isliye kaam ki tulna aapka apna benchmark hai, un cases aur failures se bana jo aapke liye maayne rakhte hain, category breakdowns aur kuch jaan-boojh kar mushkil cases ke saath, runs ke beech sirf model badalta hua. Routing har request ko us sabse sasti model ke paas bhejta hai jo use sambhal sake, mehnga wala mushkil cases ke liye rakha jaata hai. Faisla ek model selection card par hona chahiye, kyunki saboot ke bina woh kuch second mein raay mein ghul jaata hai. Har model ko kya dikhta hai woh apne aap mein ek design hai: nirdeshon ko ek versioned anubandh ki tarah, hatane ke kram wala ek budget, aur memory ko kam se kam teen alag stores ki tarah samajhna, har ek ka ek malik, ek retention aur mitane ka tareeka. Aur har faisle ko apna provenance rakhna chahiye, taaki use uske code aur saboot tak dhoondha ja sake jisne use paida kiya.
+Leaderboard dikhata hai ki ek model ne kisi aur ke kaam par kaisa kiya. Models kai tareekon se ek saath alag hote hain, isliye upyogi tulna apna benchmark hai, un cases aur failures se bana jo maayne rakhte hain, kuch jaanboojh kar mushkil cases ke saath, aur runs ke beech sirf model badalte hue.
+
+- Routing har request ko sabse sasta model dikhata hai jo use sambhaal sake, aur mehnga wala mushkil cases ke liye rakhta hai.
+- Faisla model selection card par jaata hai, kyunki saboot ke bina woh kuch second mein raay mein ghul jaata hai.
+- Har model kya dekhta hai yeh khud ek design hai: instructions ek versioned anubandh ki tarah, budget tang hone par hataane ka ek kram, aur memory kam se kam teen alag stores ki tarah, har ek ka ek maalik, ek retention period aur hataane ka tareeka.
+- Har faisle ko apna provenance rakhna chahiye, taaki use us code aur saboot tak khoja ja sake jisne use banaya.
