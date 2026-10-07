@@ -2,6 +2,8 @@
 
 One row per week: one topic, where to learn it, how hard it is, and one thing to ship. If the thing is shipped, the week was a success, however the rest of the week went. The full reasoning, resources and project briefs are in the [curriculum](curriculum.html).
 
+**Progress tracker:** [tick off each week here](https://claude.ai/artifact/3NE3L749NsWAoiCogRw1oi). It is a private page that only its owner can open, so it will ask anyone else to sign in.
+
 **North star:** by 6 April 2027, four published AI artifacts with real evaluation numbers, and an interview-ready portfolio.
 
 ## The weekly rhythm (standard plan, 8–10 hours)
