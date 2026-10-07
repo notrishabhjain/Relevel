@@ -1,8 +1,10 @@
 # Applied AI PM: Weekly Working Plan (7 Oct 2026 – 6 Apr 2027)
 
-One row per week: one topic, where to learn it, how hard it is, and one thing to ship. If the thing is shipped, the week was a success, however the rest of the week went. The full reasoning and project briefs are in the [curriculum](curriculum.html); the step-by-step instructions, code and links for building each deliverable are in [How to ship](ship.html). All three pages are generated from the same data, so a week's topic, links and deliverable are identical on each.
+One row per week: one topic, where to learn it, how hard it is, and one thing to ship. If the thing is shipped, the week was a success, however the rest of the week went. This tab is also your tracker: tick each week below and your progress is saved in this browser (and to your account if you sign in). The reasoning and project briefs are on the [Curriculum tab](#curriculum); the steps, code and links for building each deliverable are on the [How to build tab](#build). All three tabs come from the same data, so a week's topic, links and deliverable are the same everywhere.
 
-**Progress tracker:** [tick off each week here](https://claude.ai/artifact/3NE3L749NsWAoiCogRw1oi). It is a private page that only its owner can open, so it will ask anyone else to sign in.
+<!-- status -->
+
+<!-- sync -->
 
 **North star:** by 6 April 2027, four published AI artifacts with real evaluation numbers, and an interview-ready portfolio.
 
@@ -22,33 +24,21 @@ Weeks are not tied to fixed calendar slots: do them whenever the hours are avail
 - **Complexity:** Low means you can do it tired. Medium needs a focused block. High needs your best two hours, so give it the longest slot.
 - **Ship this week:** the proof that the week happened: a link, a commit or a published page. "Read about X" is never the deliverable.
 - **Where to learn:** the only resources for that week, each one a link. Opening anything else goes in the parking lot.
-- **How to build it:** links to the recipes in [How to ship](ship.html): ordered steps, code to paste, and a "done when" test.
+- **How to build it:** links to the recipes on the [How to build tab](#build): ordered steps, code to paste, and a "done when" test.
 - **Holiday weeks (W12 and W13):** about 6 hours each, by design.
 - **Light plan:** keep only the "Ship this week" item and one learning item per week.
 
 <!-- month 1 -->
 
-<!-- weeks 1-4 -->
-
 <!-- month 2 -->
-
-<!-- weeks 5-9 -->
 
 <!-- month 3 -->
 
-<!-- weeks 10-13 -->
-
 <!-- month 4 -->
-
-<!-- weeks 14-17 -->
 
 <!-- month 5 -->
 
-<!-- weeks 18-21 -->
-
 <!-- month 6 -->
-
-<!-- weeks 22-26 -->
 
 ## Anti-drift system
 
@@ -57,6 +47,12 @@ The plan assumes drifting will happen and decides in advance what to do when it 
 ### The 10 rules
 
 <!-- rules -->
+
+### Parking lot
+
+New ideas, courses and side projects go here and are reviewed only at the monthly gate.
+
+<!-- parking -->
 
 ### Sunday review (15 minutes, same time every week)
 
@@ -87,7 +83,7 @@ Never cut Projects A, B and D, the Sunday review, or the weekly ship log. Those 
 
 ## Monthly gates: pass or adjust
 
-At the end of each month, spend 30 minutes on the gate. Check each pass criterion with a link, then review the parking lot and decide what, if anything, to un-park.
+At the end of each month, spend 30 minutes on the gate. Check each pass criterion with a link, tick the gate, then review the parking lot and decide what, if anything, to un-park.
 
 <!-- gates -->
 

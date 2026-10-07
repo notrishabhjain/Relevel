@@ -52,9 +52,11 @@ export default async function handler(req, res) {
     res.statusCode = 302;
     res.setHeader('set-cookie', [
       cookieHeader(COOKIE, token, SESSION_DAYS * 86400, req),
-      clearCookie(OAUTH_COOKIE, req)
+      clearCookie(OAUTH_COOKIE, req), clearCookie('aifz_next', req)
     ]);
-    res.setHeader('location', '/#/data?signin=ok');
+    const back = readCookie(req, 'aifz_next');
+    res.setHeader('location', back && /^\/[A-Za-z0-9\/_.-]*$/.test(back) && !back.startsWith('//')
+      ? back + '?signin=ok' : '/#/data?signin=ok');
     res.end();
   } catch (e) {
     console.error('callback', e && e.message);

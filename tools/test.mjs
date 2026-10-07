@@ -65,15 +65,30 @@ async function withServer(fn) {
 }
 
 const only = process.argv[2];
-const suites = [['api', 'tools/api-test.mjs'], ['browser', 'tools/browser-test.mjs'], ['book', 'tools/book-test.mjs']]
+const suites = [['api', 'tools/api-test.mjs'], ['browser', 'tools/browser-test.mjs'], ['book', 'tools/book-test.mjs'], ['plan', 'tools/plan-test.mjs']]
   .filter(([n]) => !only || n === only);
 if (!suites.length) { console.error('unknown suite: ' + only); process.exit(2); }
 
 let failed = 0;
 for (const [name, file] of suites) {
   console.log('\n════ ' + name + ' ════');
-  const code = await withServer(env => new Promise(res =>
-    spawn(process.execPath, [file], { env, stdio: 'inherit' }).on('exit', res)));
+  /* Output is echoed as it comes, and any FAIL line is repeated as a GitHub
+     annotation, which stays readable from the check run when the log does not. */
+  const code = await withServer(env => new Promise(res => {
+    const child = spawn(process.execPath, [file], { env, stdio: ['ignore', 'pipe', 'inherit'] });
+    let buf = '';
+    child.stdout.on('data', d => {
+      process.stdout.write(d);
+      buf += d;
+      let i;
+      while ((i = buf.indexOf('\n')) >= 0) {
+        const line = buf.slice(0, i); buf = buf.slice(i + 1);
+        if (process.env.GITHUB_ACTIONS && /FAIL|page error/.test(line))
+          console.log('::error title=' + name + '::' + line.trim().replace(/[\r\n%]/g, ' '));
+      }
+    });
+    child.on('exit', res);
+  }));
   if (code) failed++;
 }
 console.log(failed ? '\n' + failed + ' suite(s) failed\n' : '\nall suites passed\n');

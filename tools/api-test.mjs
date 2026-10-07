@@ -111,6 +111,41 @@ ok(r.body.content.items.data[0][4] !== 'EDITED STEM', 'reset restored the built-
 ok(r.body.content.items.updatedBy === 'built-in',
    'reset hands the kind back to the build', r.body.content.items.updatedBy);
 
+console.log('\n— plan tracker —');
+{
+  const saved = cookie;
+  cookie = '';
+  r = await api('/api/plan');
+  ok(r.status === 401, 'the tracker needs a session', r.status);
+  r = await api('/api/plan-status?id=' + 'a'.repeat(32));
+  ok(r.status === 404, 'an unknown status link is a 404', r.status);
+  cookie = saved;
+  r = await api('/api/plan');
+  ok(r.status === 200 && Object.keys(r.body.data.weeks).length === 0 && r.body.shareId === null, 'a new tracker is empty and unshared', r.body);
+  r = await api('/api/plan', { method: 'PUT', body: { data: { weeks: {
+    1: { learn: true, build: true, ship: true, link: 'https://github.com/x/y', note: 'done', u: 100 },
+    2: { learn: true, u: 100 }, 99: { ship: true, u: 1 } }, gates: { M1: { passed: true, u: 5 }, X9: { passed: true } },
+    parking: { p1: { text: 'learn Rust', u: 3 } } } } });
+  ok(r.status === 200 && r.body.data.weeks[1].ship && !r.body.data.weeks[99] && !r.body.data.gates.X9, 'saves a tracker and drops unknown weeks and gates', r.body);
+  r = await api('/api/plan', { method: 'PUT', body: { data: { weeks: { 1: { learn: true, build: true, ship: false, u: 50 }, 3: { learn: true, u: 60 } } } } });
+  ok(r.body.data.weeks[1].ship === true, 'an older edit does not overwrite a newer one', r.body.data.weeks[1]);
+  ok(r.body.data.weeks[3].learn === true && r.body.data.weeks[2].learn === true, 'edits to different weeks are both kept');
+  r = await api('/api/plan', { method: 'PUT', body: { data: { weeks: { 1: { ship: false, link: 'javascript:alert(1)', u: 500 } } } } });
+  ok(r.body.data.weeks[1].ship === false && r.body.data.weeks[1].link === '', 'a newer edit wins and a non-http link is dropped', r.body.data.weeks[1]);
+  r = await api('/api/plan', { method: 'POST', body: { share: true } });
+  const sid = r.body.shareId;
+  ok(r.status === 200 && /^[0-9a-f]{32}$/.test(sid), 'sharing creates an unguessable id', r.body);
+  cookie = '';
+  r = await api('/api/plan-status?id=' + sid);
+  ok(r.status === 200 && r.body.of === 26 && !('link' in r.body) && !JSON.stringify(r.body).includes('learn Rust'), 'the status link shows counts only', r.body);
+  cookie = saved;
+  r = await api('/api/plan', { method: 'POST', body: { share: false } });
+  cookie = '';
+  r = await api('/api/plan-status?id=' + sid);
+  ok(r.status === 404, 'turning sharing off kills the old link', r.status);
+  cookie = saved;
+}
+
 console.log('\n— signing out —');
 await api('/api/auth/logout', { method: 'POST' });
 r = await api('/api/me');

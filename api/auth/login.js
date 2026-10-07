@@ -1,5 +1,7 @@
 import { send } from '../_lib/db.js';
 import { OAUTH_COOKIE, cookieHeader, randomToken, origin } from '../_lib/auth.js';
+/* Only same-site paths: a sign-in link must not become an open redirect. */
+const safeNext = n => (typeof n === 'string' && /^\/[A-Za-z0-9\/_.-]*$/.test(n) && !n.startsWith('//') ? n : '');
 export default async function handler(req, res) {
   if (!process.env.GITHUB_CLIENT_ID || !process.env.GITHUB_CLIENT_SECRET)
     return send(res, 501, { error: 'sign_in_not_configured' });
@@ -10,7 +12,9 @@ export default async function handler(req, res) {
   to.searchParams.set('scope', 'read:user');
   to.searchParams.set('state', state);
   res.statusCode = 302;
-  res.setHeader('set-cookie', cookieHeader(OAUTH_COOKIE, state, 600, req));
+  const next = safeNext(new URL(req.url, origin(req)).searchParams.get('next'));
+  res.setHeader('set-cookie', [cookieHeader(OAUTH_COOKIE, state, 600, req)]
+    .concat(next ? [cookieHeader('aifz_next', next, 600, req)] : []));
   res.setHeader('location', to.toString());
   res.end();
 }

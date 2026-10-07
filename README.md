@@ -113,21 +113,30 @@ the machine.
 ## The Applied AI PM plan
 
 A 26-week plan (7 Oct 2026 – 6 Apr 2027) for moving into an Applied AI product manager
-role, kept beside the course it complements. It is three static pages, served at `/plan/`:
+role, kept beside the course it complements. It is **one page, `/plan/`**, with three tabs:
 
-| Page | What it is |
+| Tab | What it is |
 | --- | --- |
-| `plan/` (index) | The week-by-week working plan: topic, where to learn it, complexity and one thing to ship each week, plus the anti-drift rules and monthly gates |
-| `plan/curriculum.html` | The full curriculum: resources, tooling, six phases, four portfolio projects, interview preparation, caveats and sources |
-| `plan/ship.html` | How to build and ship each artifact: 26 recipes with ordered steps, code to paste, links and a "done when" test, all runnable in Codespaces and Actions |
+| Plan & tracker | A card per week: topic, complexity, linked sources to learn from, the thing to ship, links to the recipes that explain how, and tick-boxes, a link and a note. Also the drift status, monthly gates, parking lot and anti-drift rules |
+| How to build | 27 recipes with ordered steps, code to paste, links and a "done when" test, for Codespaces, Google Colab, Claude and Gemini |
+| Curriculum | The reasoning: job market, resources, tooling, phase goals, four portfolio projects, interview preparation, caveats and sources |
 
-Week rows, learning links, gates and rules live in one file, `plan/data.mjs`; the Markdown
-pages pull them in with markers such as `<!-- weeks 1-4 -->`. Each week lists the recipes (ids in
-`plan/ship.md`, written `## Title {#id}`) that explain how to build its deliverable. Edit those
-files and run `node build.js`; `plan/build.mjs` turns them into pages and **fails the build** if the
-pages drift apart: a week without a learning link, a recipe that no week uses, a recipe whose stated
-weeks differ from the data, a week missing or repeated in a table, or a link to an anchor that does
-not exist. It has no dependencies and every link is relative.
+`/plan/curriculum.html` and `/plan/ship.html` still work: they redirect to the tabs.
+
+**Where the data lives.** Weeks, links, gates and rules are in one file, `plan/data.mjs`. The three
+Markdown files (`plan/weekly.md`, `plan/ship.md`, `plan/curriculum.md`) pull them in with markers
+such as `<!-- month 1 -->` and `<!-- weeklinks 1-4 -->`, and recipes are written `## Title {#id}`.
+`node build.js` turns them into the page and **fails the build** if they drift apart: a week without
+a learning link, a recipe no week uses, a recipe that names the wrong weeks, a week missing or
+repeated, a duplicate id, or a link to an anchor that does not exist. `plan/tracker.js` is the
+page's script. No dependencies; every link is relative.
+
+**The tracker saves in two places.** Always in the browser (localStorage). Signed in with GitHub, it
+also saves to the database through `/api/plan`, and edits made on different devices are merged per
+week (the later edit to the same week wins). Switching on "let my check-ins read a summary" creates
+an unguessable link, `/api/plan-status?id=…`, that returns week numbers and counts only (never links,
+notes or the parking lot); switching it off kills the link. Without the API (for example on GitHub
+Pages) the tracker still works in the browser, and "Download backup" saves it as a file.
 
 ## Live site (GitHub Pages)
 
@@ -267,6 +276,8 @@ built from, and it is the reason nothing needs redeploying to change what the ap
 | `GET /api/history`, `POST /api/restore` | recent versions, roll back |
 | `GET /api/content` | the curriculum — public, so the app works signed out |
 | `PUT /api/content`, `POST /api/content?reset=` | publish or reset a kind — editors only |
+| `GET /api/plan`, `PUT /api/plan`, `POST /api/plan` | the 26-week plan tracker: read, merge-save, turn the status link on or off |
+| `GET /api/plan-status?id=` | counts-only progress for a check-in; needs the unguessable id; no sign-in |
 
 Sessions are cookies (`HttpOnly`, `SameSite=Lax`); the token is stored **hashed**, so a
 leaked database row cannot be replayed as a login. Every mutating request requires a
