@@ -26,6 +26,8 @@ console.log('\n— tabs and anchors —');
   await page.goto(B + '/plan/');
   ok(await visible(page, 'plan') && !(await visible(page, 'build')) && !(await visible(page, 'curriculum')), 'opens on the Plan tab with the others hidden');
   await page.click('header.bar a[data-go="build"]');
+  await page.waitForFunction(() => location.hash === '#build').catch(() => {});
+  await sleep(300);                        // the panel switches on hashchange, a tick after the click
   ok(await visible(page, 'build') && !(await visible(page, 'plan')), 'the How to build tab switches panels without a page load');
   await page.goto(B + '/plan/#rag'); await page.reload();
   ok(await visible(page, 'build'), 'a recipe anchor opens the build tab');
