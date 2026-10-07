@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Applied AI PM: Weekly Working Plan (7 Oct 2026 – 6 Apr 2027) | AI From Zero</title>
+<meta name="description" content="Week-by-week working plan for becoming an Applied AI product manager: topics, resources, complexity, one thing to ship each week, and anti-drift rules.">
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap">
+<style>
+:root{--paper:#ECEEEA;--raised:#F6F7F4;--sunk:#E2E5E0;--ink:#14181C;--ink-2:#3D454A;--muted:#697169;--rule:#C9CDC5;--rule-soft:#D9DCD5;--accent:#1F6F5C;--accent-wash:#1F6F5C14;
+--serif:'Newsreader',Georgia,'Times New Roman',serif;--sans:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'IBM Plex Mono',ui-monospace,Menlo,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#121517;--raised:#191D20;--sunk:#0D1012;--ink:#E4E7E2;--ink-2:#B4BBB6;--muted:#8A928C;--rule:#2E3438;--rule-soft:#232A2D;--accent:#4FB89A;--accent-wash:#4FB89A1A;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#121517;--raised:#191D20;--sunk:#0D1012;--ink:#E4E7E2;--ink-2:#B4BBB6;--muted:#8A928C;--rule:#2E3438;--rule-soft:#232A2D;--accent:#4FB89A;--accent-wash:#4FB89A1A;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 var(--serif);-webkit-text-size-adjust:100%}
+a{color:var(--accent);text-underline-offset:2px}
+header.bar{position:sticky;top:0;z-index:5;background:var(--raised);border-bottom:1px solid var(--rule);display:flex;flex-wrap:wrap;align-items:center;gap:.25rem 1rem;padding:.6rem max(16px,env(safe-area-inset-right)) .6rem max(16px,env(safe-area-inset-left));font:500 .84rem/1.2 var(--sans)}
+header.bar .brand{font-weight:600;color:var(--ink);text-decoration:none;margin-right:auto}
+header.bar a.nav{color:var(--ink-2);text-decoration:none;padding:.3rem .1rem;border-bottom:2px solid transparent}
+header.bar a.nav[aria-current="page"]{color:var(--ink);border-bottom-color:var(--accent)}
+header.bar a.nav:hover{color:var(--ink)}
+header.bar button{font:inherit;background:none;border:1px solid var(--rule);color:var(--ink-2);border-radius:3px;padding:.2rem .5rem;cursor:pointer}
+main{max-width:1000px;margin:0 auto;padding:2rem 16px 5rem}
+main>*{max-width:68ch}
+main>.tw,main>.toc{max-width:none}
+h1{font:600 clamp(1.7rem,4.5vw,2.4rem)/1.15 var(--serif);letter-spacing:-.01em;margin:.2rem 0 1rem;text-wrap:balance}
+h2{font:600 1.45rem/1.25 var(--serif);margin:2.6rem 0 .8rem;padding-top:1rem;border-top:1px solid var(--rule);text-wrap:balance}
+h3{font:600 1.1rem/1.3 var(--sans);margin:1.8rem 0 .5rem}
+h4{font:600 .95rem/1.3 var(--sans);margin:1.4rem 0 .4rem;color:var(--ink-2)}
+p,li{hyphens:manual}
+ul,ol{padding-left:1.3rem}
+li{margin:.25rem 0}
+li>ul,li>ol{margin:.3rem 0}
+strong{font-weight:600}
+code{font:.85em var(--mono);background:var(--sunk);padding:.08em .3em;border-radius:3px}
+blockquote{margin:1.2rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--accent);color:var(--ink-2);font-style:italic}
+hr{border:0;border-top:1px solid var(--rule);margin:2rem 0}
+.tw{overflow-x:auto;margin:1rem 0;border:1px solid var(--rule);border-radius:3px;background:var(--raised)}
+table{border-collapse:collapse;width:100%;min-width:640px;font:.84rem/1.45 var(--sans);font-variant-numeric:tabular-nums}
+th{text-align:left;font:600 .72rem/1.2 var(--sans);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:var(--sunk);padding:.55rem .7rem;white-space:nowrap}
+td{padding:.6rem .7rem;border-top:1px solid var(--rule-soft);vertical-align:top}
+td.k{font-weight:600;white-space:nowrap}
+.toc{background:var(--raised);border:1px solid var(--rule);border-radius:3px;padding:.7rem 1rem;margin:1.2rem 0 0;font:.9rem/1.5 var(--sans)}
+.toc summary{cursor:pointer;font-weight:600}
+.toc ol{columns:2 280px;margin:.6rem 0 0;padding-left:1.1rem}
+.toc a{text-decoration:none}
+.note{font:.85rem/1.5 var(--sans);color:var(--muted);margin-top:3rem;border-top:1px solid var(--rule);padding-top:1rem}
+@media (max-width:560px){body{font-size:16px}}
+</style>
+<script>try{var t=localStorage.getItem('aipm-plan-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<header class="bar">
+  <a class="brand" href="./">Applied AI PM plan</a>
+  <a class="nav" href="./" aria-current="page">Weekly plan</a>
+  <a class="nav" href="curriculum.html">Curriculum</a>
+  <a class="nav" href="../">Workbook &rarr;</a>
+  <button id="theme" type="button" aria-label="Switch colour theme">&#9680;</button>
+</header>
+<main>
+<h1 id="applied-ai-pm-weekly-working-plan-7-oct-2026-6-apr-2027">Applied AI PM: Weekly Working Plan (7 Oct 2026 – 6 Apr 2027)</h1><details class="toc"><summary>On this page</summary><ol><li><a href="#the-weekly-rhythm-standard-plan-8-10-hours">The weekly rhythm (standard plan, 8–10 hours)</a></li><li><a href="#month-1-foundations-w1-4">Month 1: Foundations (W1–4)</a></li><li><a href="#month-2-rag-and-evals-w5-9">Month 2: RAG and evals (W5–9)</a></li><li><a href="#month-3-agents-and-mcp-w10-13">Month 3: Agents and MCP (W10–13)</a></li><li><a href="#month-4-multimodal-indic-ai-behavior-specs-w14-17">Month 4: Multimodal, Indic AI, behavior specs (W14–17)</a></li><li><a href="#month-5-governance-economics-build-vs-buy-w18-21">Month 5: Governance, economics, build vs buy (W18–21)</a></li><li><a href="#month-6-portfolio-and-interviews-w22-26">Month 6: Portfolio and interviews (W22–26)</a></li><li><a href="#anti-drift-system">Anti-drift system</a></li><li><a href="#monthly-gates-pass-or-adjust">Monthly gates: pass or adjust</a></li></ol></details>
+<p>One row per week: one topic, where to learn it, how hard it is, and one thing to ship. If the thing is shipped, the week was a success, however the rest of the week went. The full reasoning, resources and project briefs are in the <a href="curriculum.html">curriculum</a>.</p>
+<p><strong>North star:</strong> by 6 April 2027, four published AI artifacts with real evaluation numbers, and an interview-ready portfolio.</p>
+<h2 id="the-weekly-rhythm-standard-plan-8-10-hours">The weekly rhythm (standard plan, 8–10 hours)</h2>
+<div class="tw"><table><thead><tr><th>Slot</th><th>Time</th><th>What you do</th></tr></thead><tbody><tr><td class="k">Learn</td><td>Wednesday night, 1.5 h</td><td>Work through that week's learning item</td></tr><tr><td class="k">Read</td><td>Thursday, 1 h</td><td>One newsletter or doc from the row; notes go in the repo README</td></tr><tr><td class="k">Build</td><td>Saturday, 3–4 h</td><td>The main build or analysis block</td></tr><tr><td class="k">Ship and review</td><td>Sunday, 3 h</td><td>Finish and publish the deliverable (2 h), one ship-log entry or post (45 min), 15-minute Sunday review</td></tr></tbody></table></div>
+<p>Weeks are not tied to fixed calendar slots: do them whenever the hours are available, in the order above.</p>
+<h3 id="how-to-read-the-weekly-tables">How to read the weekly tables</h3>
+<ul><li><strong>Complexity:</strong> Low means you can do it tired. Medium needs a focused block. High needs your best two hours, so give it the longest slot.</li><li><strong>Ship this week:</strong> the proof that the week happened: a link, a commit or a published page. &quot;Read about X&quot; is never the deliverable.</li><li><strong>Where to learn:</strong> the only resources for that week. Opening anything else goes in the parking lot.</li><li><strong>Holiday weeks (W12 and W13):</strong> about 6 hours each, by design.</li><li><strong>Light plan:</strong> keep only the &quot;Ship this week&quot; item and one learning item per week.</li></ul>
+<h2 id="month-1-foundations-w1-4">Month 1: Foundations (W1–4)</h2>
+<p>Goal: Explain LLM cost, context and structured output, and have one working repo.</p>
+<div class="tw"><table><thead><tr><th>Week</th><th>Learn this week</th><th>Where to learn</th><th>Complexity</th><th>Ship this week</th></tr></thead><tbody><tr><td class="k">W1</td><td>Dev setup; how LLMs work (tokens, context window, temperature)</td><td>Claude Academy: AI Fluency and first Claude API modules; GitHub Codespaces docs</td><td>Low</td><td>Repo rj-ai-pm-lab with a devcontainer and a green GitHub Actions workflow</td></tr><tr><td class="k">W2</td><td>Prompting, structured outputs (JSON schema), tool use</td><td>Anthropic and OpenAI prompting and tool-use guides; Chip Huyen, AI Engineering, ch. 1-2</td><td>Medium</td><td>Sentinel AI Bridge v2: transcript to JSON tasks, plus a CSV log of tokens, latency and cost per call</td></tr><tr><td class="k">W3</td><td>Eval basics: why evals come before metrics</td><td>Hamel Husain: Your AI Product Needs Evals and the LLM Evals FAQ; Huyen's evaluation chapter</td><td>Medium</td><td>30 synthetic Hinglish/Hindi/English transcripts across 2-3 models; cost, latency and accuracy table</td></tr><tr><td class="k">W4</td><td>Reading real AI products critically</td><td>3 AI product teardowns; Lenny's job-market post</td><td>Low</td><td>Teardown #1 published (an Indian AI product); Month 1 gate review</td></tr></tbody></table></div>
+<h2 id="month-2-rag-and-evals-w5-9">Month 2: RAG and evals (W5–9)</h2>
+<p>Goal: Project A published with a 100+ case eval set and before/after metrics.</p>
+<div class="tw"><table><thead><tr><th>Week</th><th>Learn this week</th><th>Where to learn</th><th>Complexity</th><th>Ship this week</th></tr></thead><tbody><tr><td class="k">W5</td><td>RAG: chunking, embeddings, hybrid search, reranking, citations</td><td>Huyen's RAG chapter; one DeepLearning.AI retrieval short course</td><td>Medium</td><td>RAG over a public corpus (GIGW 3.0, DPDP Act and Rules, India AI Governance Guidelines) with citations</td></tr><tr><td class="k">W6</td><td>Test sets and LLM-as-judge</td><td>Hamel and Shreya: LLM-as-a-Judge guide; A Field Guide to Improving AI Products</td><td>Medium</td><td>100+ test queries (English, Hindi, Hinglish, adversarial, out-of-scope); traces collected</td></tr><tr><td class="k">W7</td><td>Error analysis: label failures, then group them</td><td>Hamel and Shreya's free error-analysis material</td><td>High</td><td>100 labeled traces and a failure taxonomy with counts</td></tr><tr><td class="k">W8</td><td>Fixing the top failures; evals as a CI gate</td><td>DeepLearning.AI: Evaluating AI Agents (first half); GitHub Actions docs</td><td>High</td><td>Top 2 failures fixed; judge validated against your labels; eval workflow that fails a PR on regression</td></tr><tr><td class="k">W9</td><td>Writing up evidence</td><td>Your own notes</td><td>Low</td><td>Project A published: eval report and short demo video; Month 2 gate review</td></tr></tbody></table></div>
+<h2 id="month-3-agents-and-mcp-w10-13">Month 3: Agents and MCP (W10–13)</h2>
+<p>Goal: Project B published: working MCP server and an agent that asks before acting.</p>
+<div class="tw"><table><thead><tr><th>Week</th><th>Learn this week</th><th>Where to learn</th><th>Complexity</th><th>Ship this week</th></tr></thead><tbody><tr><td class="k">W10</td><td>Agent patterns; MCP tools, resources and prompts</td><td>Andrew Ng: Agentic AI modules 1-3; Claude Academy: Introduction to MCP</td><td>Medium</td><td>MCP server exposing the Sentinel task store (create, list, update)</td></tr><tr><td class="k">W11</td><td>Advanced MCP, agent security, prompt injection</td><td>Claude Academy: MCP Advanced Topics; modelcontextprotocol.io docs</td><td>High</td><td>Project B agent: transcript, extract tasks, propose actions via MCP, approval step, execute</td></tr><tr><td class="k">W12</td><td>Evaluating agents step by step</td><td>Agentic AI modules on evals, latency and cost</td><td>Medium</td><td>30 traced runs with a step-level eval (right tool, right arguments, approval needed?)</td></tr><tr><td class="k">W13</td><td>Writing the autonomy rules</td><td>Your own traces</td><td>Low</td><td>Project B published: autonomy doc (auto / confirm / never) and 3-minute demo; Month 3 gate review</td></tr></tbody></table></div>
+<h2 id="month-4-multimodal-indic-ai-behavior-specs-w14-17">Month 4: Multimodal, Indic AI, behavior specs (W14–17)</h2>
+<p>Goal: Project C published with a measured error-rate improvement and a behavior spec.</p>
+<div class="tw"><table><thead><tr><th>Week</th><th>Learn this week</th><th>Where to learn</th><th>Complexity</th><th>Ship this week</th></tr></thead><tbody><tr><td class="k">W14</td><td>OCR and LLM post-correction for Indic scripts; BHASHINI APIs</td><td>BHASHINI developer docs; your CI-only OCR pipeline</td><td>Medium</td><td>OCR pipeline with LLM post-correction and confidence flags on public-domain scans</td></tr><tr><td class="k">W15</td><td>Measuring OCR and speech quality (CER, WER); voice products</td><td>DeepLearning.AI: Voice for AI Agents (or similar short course)</td><td>Medium to High</td><td>50-page ground-truth set; CER before and after correction; cost per page</td></tr><tr><td class="k">W16</td><td>Writing how an AI product should behave</td><td>Google PAIR guidebook (reading only); public coverage of the CPGRAMS voice flow</td><td>Medium</td><td>AI behavior spec, 3-5 pages, for a bilingual citizen assistant</td></tr><tr><td class="k">W17</td><td>Writing up evidence</td><td>Your own notes</td><td>Low</td><td>Project C published with the behavior spec as a case study; Month 4 gate review</td></tr></tbody></table></div>
+<h2 id="month-5-governance-economics-build-vs-buy-w18-21">Month 5: Governance, economics, build vs buy (W18–21)</h2>
+<p>Goal: Project D published: PRD, risk assessment, build-vs-buy memo, acceptance-testing template.</p>
+<div class="tw"><table><thead><tr><th>Week</th><th>Learn this week</th><th>Where to learn</th><th>Complexity</th><th>Ship this week</th></tr></thead><tbody><tr><td class="k">W18</td><td>India's AI governance approach, DPDP Rules, EU AI Act timelines</td><td>India AI Governance Guidelines; DPDP Rules 2025 summaries; Gibson Dunn EU Omnibus explainer</td><td>Medium</td><td>PRD draft for an AI grievance triage assistant (CPGRAMS-style)</td></tr><tr><td class="k">W19</td><td>Risk assessment; governing agents</td><td>DeepLearning.AI: Governing AI Agents; NIST AI RMF playbook (skim)</td><td>Medium</td><td>Risk assessment, model card, and a table mapping each risk to DPDP, India's guidelines and the EU AI Act</td></tr><tr><td class="k">W20</td><td>Unit economics, caching, model routing, build vs buy</td><td>Huyen's inference-optimization chapter</td><td>High</td><td>Build-vs-buy memo (frontier API vs Sarvam open-weight vs BHASHINI plus small LLM) and a cost model at three scales</td></tr><tr><td class="k">W21</td><td>Turning AI quality into contract terms</td><td>Your PRD and memo</td><td>Medium</td><td>Project D published: acceptance-testing and eval-SLA template plus a 6-slide stakeholder deck; Month 5 gate review</td></tr></tbody></table></div>
+<h2 id="month-6-portfolio-and-interviews-w22-26">Month 6: Portfolio and interviews (W22–26)</h2>
+<p>Goal: Live portfolio site and 10+ mock interviews. No new topics.</p>
+<div class="tw"><table><thead><tr><th>Week</th><th>Learn this week</th><th>Where to learn</th><th>Complexity</th><th>Ship this week</th></tr></thead><tbody><tr><td class="k">W22</td><td>Presenting your work in 3 minutes</td><td>Your four project write-ups</td><td>Low to Medium</td><td>Live portfolio site with 4 project pages and a 3-minute demo video for each</td></tr><tr><td class="k">W23</td><td>AI product-sense and eval-design interview answers</td><td>AI PM interview bank (GitHub); Exponent's AI PM guides</td><td>Medium</td><td>3 mock interviews (product sense and evals) with written answers in your own words</td></tr><tr><td class="k">W24</td><td>Technical depth and live prototyping</td><td>Your own repos; Claude Code or similar in Codespaces</td><td>High</td><td>2 timed 45-minute prototypes built from scratch</td></tr><tr><td class="k">W25</td><td>Behavioral interviews and take-homes</td><td>Your own past-role stories</td><td>Medium</td><td>8 STAR stories; 1 mock take-home; a prepared answer to &quot;why AI PM, given your project-management background?&quot;</td></tr><tr><td class="k">W26</td><td>Reviewing the six months</td><td>Your ship log</td><td>Low</td><td>Ship-log review and the post-April 3-hours-a-week learning loop</td></tr></tbody></table></div>
+<h2 id="anti-drift-system">Anti-drift system</h2>
+<p>The plan assumes drifting will happen and decides in advance what to do when it does. The rule: when you fall behind, cut scope, never dates, and never go to zero.</p>
+<h3 id="the-10-rules">The 10 rules</h3>
+<ol><li>One row per week. The row is your only learning to-do.</li><li>Ship before you learn more. No next week's learning until this week's ship item exists as a link or commit.</li><li>One course at a time. No new course, bootcamp or certificate until the current row ships.</li><li>Frozen stack until W9: Codespaces, GitHub Actions, one LLM API, one eval approach.</li><li>Side projects count only if they are in the plan. Sentinel and TaskMind feed Project B; the OCR pipeline feeds Project C. Everything else waits for the Month 3 gate.</li><li>Parking lot, not action. New ideas go in the parking lot and are reviewed only at the monthly gate.</li><li>Minimum viable week: three 45-minute sessions plus one commit. A floor week counts, a zero week does not.</li><li>Publish at 80%. Time-box write-ups to 2 hours.</li><li>Public ship log. Every Sunday: one README line and one LinkedIn post.</li><li>Tell one person who will ask every Monday, what did you ship?</li></ol>
+<h3 id="sunday-review-15-minutes-same-time-every-week">Sunday review (15 minutes, same time every week)</h3>
+<ul><li>Did I ship this week's row? Yes or no, with the link.</li><li>Did I spend time on anything not in the plan? If yes, is it in the parking lot now?</li><li>What is the one task for next week, and is it scheduled?</li></ul>
+<h3 id="tripwires-if-this-happens-do-this">Tripwires: if this happens, do this</h3>
+<div class="tw"><table><thead><tr><th>If this happens</th><th>Do this</th></tr></thead><tbody><tr><td class="k">You missed this week's ship item</td><td>Do the floor week next week, then redo the missed item in your build slot. Do not combine two weeks of content</td></tr><tr><td class="k">You missed two ship items in a row</td><td>Switch to the light plan for 2 weeks and tell your accountability person</td></tr><tr><td class="k">You are more than 2 weeks behind at a monthly gate</td><td>Run the catch-up protocol below. Do not move any deadline</td></tr><tr><td class="k">You feel the urge to start a new course, app or tool</td><td>Write it in the parking lot, close the tab, open this week's row</td></tr><tr><td class="k">A work crunch is coming</td><td>Declare a floor week in advance on Sunday instead of silently skipping</td></tr><tr><td class="k">You have not opened this plan for 7 days</td><td>Open it, read the north star, and do one 45-minute session today</td></tr></tbody></table></div>
+<h3 id="catch-up-protocol-what-to-cut-in-order">Catch-up protocol: what to cut, in order</h3>
+<ol><li>Optional reading and newsletters</li><li>The paid cohort and certificates</li><li>Project E and any other optional build</li><li>Eval set size (100 cases down to 50)</li><li>The Project C build (keep it as a written case study)</li></ol>
+<p>Never cut Projects A, B and D, the Sunday review, or the weekly ship log. Those are the plan.</p>
+<h2 id="monthly-gates-pass-or-adjust">Monthly gates: pass or adjust</h2>
+<p>At the end of each month, spend 30 minutes on the gate. Check each pass criterion with a link, then review the parking lot and decide what, if anything, to un-park.</p>
+<div class="tw"><table><thead><tr><th>Gate</th><th>Date</th><th>Pass criteria (each needs a link)</th></tr></thead><tbody><tr><td class="k">Month 1</td><td>3 Nov 2026</td><td>Repo with green CI; Sentinel v2 with cost/latency log; model comparison table; Teardown #1 published. Decide whether to buy the evals cohort.</td></tr><tr><td class="k">Month 2</td><td>8 Dec 2026</td><td>Project A published: 100+ case golden set, failure taxonomy, before/after metrics, eval workflow in CI.</td></tr><tr><td class="k">Month 3</td><td>5 Jan 2027</td><td>Project B published: MCP server, approval step, 30+ traced runs, autonomy doc. Decide whether to un-freeze one side project.</td></tr><tr><td class="k">Month 4</td><td>2 Feb 2027</td><td>Project C published: CER before and after; behavior spec.</td></tr><tr><td class="k">Month 5</td><td>2 Mar 2027</td><td>Project D published: PRD, risk table, build-vs-buy memo, acceptance-testing template.</td></tr><tr><td class="k">Month 6</td><td>6 Apr 2027</td><td>Portfolio site live; 4 project pages with demos; 10+ mock interviews completed.</td></tr></tbody></table></div>
+<p><strong>If three gates in a row fail:</strong> stop and decide deliberately. Either switch to the light plan for the next month, or move the whole plan back by 4 weeks and write down why. Quietly abandoning the plan is the only option ruled out.</p>
+
+<p class="note">Planning document, not advice. Dates, prices and regulatory details were checked on 7 October 2026 and will change; confirm anything that matters at the source.</p>
+</main>
+<script>
+document.getElementById('theme').addEventListener('click',function(){
+  var r=document.documentElement,cur=r.getAttribute('data-theme');
+  var dark=cur?cur==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+  var next=dark?'light':'dark';r.setAttribute('data-theme',next);
+  try{localStorage.setItem('aipm-plan-theme',next)}catch(e){}
+});
+</script>
+</body>
+</html>

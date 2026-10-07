@@ -12,6 +12,7 @@ import crypto from 'node:crypto';
 import zlib from 'node:zlib';
 import { fileURLToPath } from 'node:url';
 import { loadBook, buildBook } from './book/build.mjs';
+import { buildPlan } from './plan/build.mjs';
 
 const R = p.dirname(fileURLToPath(import.meta.url));
 const read = f => fs.readFileSync(p.join(R, f), 'utf8');
@@ -364,11 +365,15 @@ const hingTitles = defaults.hinglish || {};
 const builtHi = hasHi ? buildBook(HI_ROOT, p.join(R, 'dist/site/book/hi'),
   { siteBase: '/book/', appUrl: '/', hasOther: true, noAssets: true, courseTitle: id => hingTitles[courseTitles[id]] || courseTitles[id] }) : null;
 
+/* ---- the Applied AI PM plan (static pages at /plan/) ---- */
+const builtPlan = buildPlan(R, p.join(R, 'dist/site/plan'));
+
 const kb = f => (fs.statSync(p.join(R, f)).size / 1024).toFixed(0) + ' KB';
 console.log('dist/index.html     ' + kb('dist/index.html') + '   (standalone / hosting)');
 console.log('dist/artifact.html  ' + kb('dist/artifact.html') + '   (Claude Artifact)');
 console.log('dist/site/          deploy directory, sw version ' + VERSION);
 console.log('dist/site/book/      ' + builtBook.chapters.length + ' chapters, ' + builtBook.words + ' words' + (builtHi ? '; Hinglish ' + builtHi.words + ' words' : ''));
+console.log('dist/site/plan/      ' + builtPlan.pages + ' pages, ' + builtPlan.words + ' words');
 console.log('content/defaults.json ' + kb('content/defaults.json') + ' (' +
   defaults.chapters.length + ' chapters, ' + defaults.items.length + ' questions, ' +
   defaults.skills.length + ' skills)');
