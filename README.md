@@ -110,6 +110,28 @@ Signed in, all of this state lives in your database and follows you between devi
 Signed out — or on a host with no backend — it stays in the browser and nothing leaves
 the machine.
 
+## The Applied AI PM plan
+
+A 26-week plan (7 Oct 2026 – 6 Apr 2027) for moving into an Applied AI product manager
+role, kept beside the course it complements. It is two static pages, served at `/plan/`:
+
+| Page | What it is |
+| --- | --- |
+| `plan/` (index) | The week-by-week working plan: topic, where to learn it, complexity and one thing to ship each week, plus the anti-drift rules and monthly gates |
+| `plan/curriculum.html` | The full curriculum: resources, tooling, six phases, four portfolio projects, interview preparation, caveats and sources |
+
+Edit `plan/weekly.md` or `plan/curriculum.md` and run `node build.js`; `plan/build.mjs`
+turns them into pages. It has no dependencies and every link is relative.
+
+## Live site (GitHub Pages)
+
+`.github/workflows/pages.yml` builds the static site and publishes it to
+`https://<user>.github.io/<repo>/` on every push to `main`. This is the zero-setup
+host: the app runs from the curriculum built into the page and keeps progress in the
+browser. Sign-in and publishing from the Content Studio need the Vercel + Postgres
+setup below. `tools/pages-prefix.mjs` rewrites root-absolute URLs so the book and the
+plan work under the `/<repo>/` sub-path.
+
 ## Build
 
 ```bash
