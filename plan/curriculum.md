@@ -1,6 +1,6 @@
 # Applied AI PM Curriculum (Oct 2026 – Apr 2027)
 
-A 26-week, learn-by-doing plan to become a credible Applied AI Product Manager by April 2027. It is built for 8–10 hours a week, cloud-only tooling (no local machine) and a modest budget. Prepared 7 October 2026 for RJ. The week-by-week version, with anti-drift rules and monthly gates, is the [weekly working plan](./). The step-by-step instructions, code and links for building every deliverable are in [How to ship](ship.html). The three pages are generated from one data file, so each week's topic, learning links and deliverable are identical on all of them.
+A 26-week, learn-by-doing plan to become a credible Applied AI Product Manager by April 2027. It is built for 8–10 hours a week, cloud-only tooling (no local machine) and a modest budget. Prepared 7 October 2026 for RJ. The week-by-week version, with anti-drift rules and monthly gates, is the [Plan & tracker tab](#plan), where each week has its learning links, deliverable and tick-boxes. The step-by-step instructions, code and links for building every deliverable are on the [How to build tab](#build). The three tabs are generated from one data file, so each week's topic, links and deliverable are the same everywhere; the week tables below only point to them.
 
 ## Bottom line
 
@@ -125,18 +125,18 @@ Start with the free core stack; buy at most one paid course.
 
 ## Tooling setup for a no-local-machine builder (Week 1)
 
-Everything below runs in the browser or in GitHub; nothing needs a local machine. The [setup recipe](ship.html#setup) walks through it in order (about 3 hours in Week 1).
+Everything below runs in the browser or in GitHub; nothing needs a local machine, and you can mix Codespaces, Colab, Claude and Gemini freely. The [setup recipe](#setup) walks through it in order (about 3 hours in Week 1).
 
 | Need | Tool | Budget reality (as of Oct 2026) |
 | --- | --- | --- |
 | Dev environment | [GitHub Codespaces](https://github.com/features/codespaces) | Free personal accounts get 120 core-hours/month (about 60 hours on a 2-core machine) and 15 GB storage. Set the spending limit to $0 and stop codespaces after each session |
 | CI/CD | GitHub Actions | 2,000 free minutes/month for private repos; public repos suit a portfolio anyway |
-| Notebooks | Google Colab, Kaggle | Free tiers; good for eval analysis |
-| LLM APIs | Gemini API free tier, Anthropic and OpenAI pay-as-you-go | Gemini's free tier is [Flash/Flash-Lite only since April 2026](https://questloops.com/blog/how-to-use-google-gemini-for-free-in-2026-api-limits-explained), and free-tier prompts may be used to improve Google's products. Never send real government or personal data on free tiers |
+| Notebooks | [Google Colab](https://colab.research.google.com/), Kaggle | Free tiers; good for eval analysis, embeddings (free GPU when available) and OCR experiments. Sessions time out, so save results into the repo. See the [tools recipe](#tools) |
+| LLM APIs | [Gemini API](https://ai.google.dev/gemini-api/docs/pricing) free tier, Anthropic and OpenAI pay-as-you-go. The plan's code switches between Claude and Gemini with one setting (`llm.py`, in the [tools recipe](#tools)) | Gemini's free tier is [Flash/Flash-Lite only since April 2026](https://questloops.com/blog/how-to-use-google-gemini-for-free-in-2026-api-limits-explained), and free-tier prompts may be used to improve Google's products. Never send real government or personal data on free tiers |
 | Indic models | Sarvam 30B/105B open-weight ([Apache 2.0](https://www.opensourceforu.com/2026/03/sarvam-releases-30b-and-105b-llms-under-apache-2-0/)), BHASHINI APIs | Confirm current BHASHINI onboarding and limits at bhashini.gov.in |
 | Eval and observability | Arize Phoenix (open source), Braintrust or LangSmith free tiers, or a homemade trace viewer | Hamel and Shreya teach vibe-coding your own trace viewer, which suits your setup |
 | Hosting demos | Hugging Face Spaces, Streamlit Community Cloud, Vercel, GitHub Pages | Free tiers |
-| Prototyping | Claude Code in Codespaces, v0, Google AI Studio | Practice for the "vibe-code a prototype" interview round |
+| Prototyping | Claude Code or [Gemini CLI](https://github.com/google-gemini/gemini-cli) in Codespaces, v0, [Google AI Studio](https://aistudio.google.com/) | Practice for the "vibe-code a prototype" interview round; use both agents once so you can compare them |
 
 **Budget envelope (my estimate):** roughly ₹1,500–₹2,500/month for API credits plus one chat subscription, and ₹4,000–₹6,000 for two books. Without a paid cohort, the six-month total is about ₹15,000–₹25,000.
 
@@ -150,7 +150,7 @@ Skip generic AI-for-everyone content; you have the engineering and delivery fund
 
 **Learning goals:** how LLMs work at PM depth (tokens, context windows, temperature, reasoning vs fast models, embeddings, fine-tuning vs prompting vs RAG); prompt engineering growing into context engineering (system prompts, few-shot examples, JSON-schema structured outputs, tool definitions, prompt caching); basic economics (price per million tokens, caching and batch discounts, time-to-first-token vs total latency, cost per successful task).
 
-<!-- weeks 1-4 -->
+<!-- weeklinks 1-4 -->
 
 **Checkpoint:** you can explain in 2 minutes, without notes, why the same task costs 10x more on one model than another; Sentinel v2 is live with a model comparison table; one teardown is published. Light version: skip the teardown. Heavy version: take the DeepLearning.AI MCP course early.
 
@@ -160,7 +160,7 @@ The most important phase. Evals are the skill most consistently tested and most 
 
 **Learning goals:** RAG architecture (chunking, embeddings, hybrid search, reranking, citations and grounding, Hindi/English retrieval); the Hamel/Shreya evals method (collect traces, open and axial coding of failures, a failure taxonomy, binary pass/fail criteria, code checks before LLM judges, judges validated against your own labels, a regression suite in CI); RAG metrics (recall@k, faithfulness, answer correctness, citation accuracy, correct refusal).
 
-<!-- weeks 5-9 -->
+<!-- weeklinks 5-9 -->
 
 **Checkpoint:** a golden set of 100+ cases, a failure taxonomy with counts, at least 2 iterations with before/after metrics, an eval CI workflow that fails a PR on regression, and a reported judge-vs-human agreement figure. Light version: 50 cases, one iteration. Heavy version: enroll in the Hamel/Shreya cohort and use Project A as your course project.
 
@@ -170,7 +170,7 @@ Holiday weeks (W12–13) are lighter by design, about 6 hours each.
 
 **Learning goals:** agent patterns (reflection, tool use, planning, multi-agent) and degrees of autonomy; MCP primitives (tools, resources, prompts), transports and auth, MCP Apps, and governance (donated to the Agentic AI Foundation under the Linux Foundation in Dec 2025); A2A at concept level; agent security (prompt injection via tool outputs, tool poisoning, least privilege, approval gates); agent evals (trajectory and step-level correctness, tool-call accuracy, task completion rate, cost per completed task, human-intervention rate).
 
-<!-- weeks 10-13 -->
+<!-- weeklinks 10-13 -->
 
 **Checkpoint:** a working MCP server that a client (Claude Desktop, Claude Code or another MCP client) can connect to, an agent with a human-in-the-loop gate, and metrics for task completion rate, tool-call accuracy, intervention rate and cost per task.
 
@@ -186,7 +186,7 @@ This phase is revised from my first draft. It no longer asks you to build a desi
 - Multimodal evals: CER/WER for OCR and speech recognition, MOS for speech synthesis (the metric set Sarvam's Models PM role names).
 - AI behavior specs: when the model answers, abstains or escalates to a human; how confidence and citations are shown; what feedback is captured as future eval data; what the product must never do. Read the PAIR guidebook for vocabulary, then write specs, not mockups.
 
-<!-- weeks 14-17 -->
+<!-- weeklinks 14-17 -->
 
 **Checkpoint:** a CER improvement number with honest failure examples (for example "CER 14% to 6% at ₹0.4/page", using your real figures), a published behavior spec, and 3 portfolio artifacts in total.
 
@@ -204,13 +204,13 @@ This phase is revised from my first draft. It no longer asks you to build a desi
   - EU AI Act: GPAI obligations since 2 Aug 2025; most Article 50 transparency duties from 2 Aug 2026; the [Digital Omnibus](https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines-and-other-key-changes/) moved Annex III high-risk obligations to 2 Dec 2027 and Annex I to 2 Aug 2028.
   - Standards: NIST AI RMF and ISO/IEC 42001.
 
-<!-- weeks 18-21 -->
+<!-- weeklinks 18-21 -->
 
 **Checkpoint:** a PRD with explicit launch gates (for example "routing accuracy at least 90% on the golden set; P95 latency under 3 s; human review on all closures"), a cost model spreadsheet, a regulation mapping table, and 4 portfolio artifacts.
 
 ### Phase 6: GTM, portfolio polish and interview sprint (W22–26, 3 Mar – 6 Apr 2027)
 
-<!-- weeks 22-26 -->
+<!-- weeklinks 22-26 -->
 
 **Checkpoint:** live portfolio site, 3-minute demos for each project, and 10+ mock interviews.
 
@@ -228,7 +228,7 @@ Four core projects, each with a published write-up. All use public or synthetic 
   3. A published eval report: failure taxonomy, before/after metrics over two iterations (recall@5, faithfulness, citation accuracy, correct-refusal rate), judge-vs-human agreement, cost per answer, P95 latency.
   4. An eval gate in GitHub Actions.
   5. A one-page note on what deployment in a large government program would take (GIGW accessibility, Parichay SSO, MeghRaj hosting, BHASHINI integration, DPDP notice).
-- **How to build it:** [RAG](ship.html#rag), [golden set](ship.html#golden-set), [error analysis](ship.html#error-analysis), [eval gate in CI](ship.html#eval-gate), then [publish](ship.html#publish) and a [demo video](ship.html#demo-video). Weeks 5–9.
+- **How to build it:** [RAG](#rag), [golden set](#golden-set), [error analysis](#error-analysis), [eval gate in CI](#eval-gate), then [publish](#publish) and a [demo video](#demo-video). Weeks 5–9.
 - **Interview story:** "I found 38% of failures were Hindi-query retrieval misses and fixed them with X" (use your real number).
 
 ### Project B: TaskMind and Sentinel MCP agent (built on your side projects)
@@ -241,7 +241,7 @@ Four core projects, each with a published write-up. All use public or synthetic 
   3. A trace-level eval of 30+ runs (50 if you have time): task-extraction F1, tool-call accuracy, intervention rate, cost per completed task.
   4. A prompt-injection test set with results.
   5. A 3-minute demo video.
-- **How to build it:** [MCP server](ship.html#mcp-server), [agent with an approval step](ship.html#agent-approval), [agent evals](ship.html#agent-evals), [autonomy doc](ship.html#autonomy-doc), then [publish](ship.html#publish) and a [demo video](ship.html#demo-video). Weeks 10–13.
+- **How to build it:** [MCP server](#mcp-server), [agent with an approval step](#agent-approval), [agent evals](#agent-evals), [autonomy doc](#autonomy-doc), then [publish](#publish) and a [demo video](#demo-video). Weeks 10–13.
 
 ### Project C: Akshara, Hindi/Sanskrit OCR with LLM post-correction, plus an AI behavior spec
 
@@ -252,24 +252,24 @@ Four core projects, each with a published write-up. All use public or synthetic 
   3. Cost per page and throughput.
   4. A written comparison of approaches (BHASHINI OCR vs open-source OCR plus LLM vs a multimodal LLM directly).
   5. A 3–5 page AI behavior spec defining when the product abstains, flags for human review, or escalates (this replaces the UX pattern library from my first draft).
-- **How to build it:** [OCR with LLM post-correction](ship.html#ocr-correct), [measure CER](ship.html#cer-measure), [behavior spec](ship.html#behavior-spec), then [publish](ship.html#publish). Weeks 14–17.
+- **How to build it:** [OCR with LLM post-correction](#ocr-correct), [measure CER](#cer-measure), [behavior spec](#behavior-spec), then [publish](#publish). Weeks 14–17.
 
 ### Project D: AI grievance triage and drafting assistant, with PRD, risk assessment and build-vs-buy memo
 
 - **Context:** CPGRAMS handles millions of grievances a year (see [Drishti summary](https://www.drishtiias.com/daily-updates/daily-news-analysis/centralised-public-grievance-redress-and-monitoring-system-cpgrams); verify current figures from PIB before quoting numbers), and the NextGen CPGRAMS plan describes AI-based categorisation and routing.
 - **Deliverables:** a PRD; a metrics tree (citizen outcomes, officer productivity, model quality, guardrails); an eval plan; a risk assessment mapped to the India AI Governance Guidelines, DPDP and, as a rigor benchmark, the EU AI Act (access to essential public services is a high-risk category there); a build-vs-buy memo; and a 6-slide stakeholder deck. Optional: a routing classifier prototype on synthetic grievances.
 - **Done means:** a reviewer from a GovTech or consulting background could take it into a steering-committee meeting. This project is where your delivery experience shows most.
-- **How to build it:** [PRD](ship.html#prd), [risk assessment and model card](ship.html#risk-model-card), [build vs buy with a cost model](ship.html#build-buy-cost), [acceptance template](ship.html#acceptance-template), then [publish](ship.html#publish). Weeks 18–21.
+- **How to build it:** [PRD](#prd), [risk assessment and model card](#risk-model-card), [build vs buy with a cost model](#build-buy-cost), [acceptance template](#acceptance-template), then [publish](#publish). Weeks 18–21.
 
 **Reusable add-on for Project D:** an **AI acceptance-testing and eval-SLA template** for government RFQs and vendor-delivered AI services: what to put in the requirement (golden set size, accuracy and refusal thresholds, Hindi/English split, latency, human-review rules, audit logging), how acceptance testing is run, and what happens on a failed eval. Most procurement documents specify features, not measurable AI quality, so this template is a differentiator. Build it from public documents and synthetic data only.
 
 ### Project E (optional, heavy plan): responsible GenAI feature teardown for the Jyotish Kundali app
 
-Shows how to add a GenAI interpretation layer while keeping deterministic calculations separate, adding disclaimers, handling cultural sensitivity and limiting harm (no medical or financial advice). Good for a consumer-AI product-sense story. It has no recipe in the weekly plan, so do it only in the heavy plan, using the [teardown](ship.html#teardown) recipe as the template.
+Shows how to add a GenAI interpretation layer while keeping deterministic calculations separate, adding disclaimers, handling cultural sensitivity and limiting harm (no medical or financial advice). Good for a consumer-AI product-sense story. It has no recipe in the weekly plan, so do it only in the heavy plan, using the [teardown](#teardown) recipe as the template.
 
 ## Interview preparation
 
-Format for AI product-sense answers: user and problem, why AI (or not), model approach, behavior in failure and trust moments, metrics (product, model, guardrail), evals, cost and latency, risks, launch plan. Drill with the [question bank](https://github.com/landedjobs/ai-pm-interview-prep) and your own projects, following the [mock-interview recipe](ship.html#mock-interviews).
+Format for AI product-sense answers: user and problem, why AI (or not), model approach, behavior in failure and trust moments, metrics (product, model, guardrail), evals, cost and latency, risks, launch plan. Drill with the [question bank](https://github.com/landedjobs/ai-pm-interview-prep) and your own projects, following the [mock-interview recipe](#mock-interviews).
 
 **AI product sense**
 

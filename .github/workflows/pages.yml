@@ -44,7 +44,7 @@ jobs:
         run: |
           test -s dist/site/index.html
           test -s dist/site/plan/index.html
-          test -s dist/site/plan/curriculum.html
+          test -s dist/site/plan/index.html
           test -s dist/site/book/index.html
           grep -q '"base":"/${{ github.event.repository.name }}/book/"' dist/site/index.html
       - uses: actions/upload-pages-artifact@v3

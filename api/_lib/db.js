@@ -124,6 +124,12 @@ CREATE TABLE IF NOT EXISTS content_history (
   data        JSONB NOT NULL
 );
 CREATE INDEX IF NOT EXISTS ch_kind ON content_history(kind, id DESC);
+CREATE TABLE IF NOT EXISTS plan_progress (
+  user_id     INTEGER PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+  updated_at  BIGINT NOT NULL,
+  data        JSONB NOT NULL,
+  share_id    TEXT UNIQUE
+);
 `;
 
 let defaultsCache = null;
