@@ -1,13 +1,19 @@
-/* The Applied AI PM plan: two static pages built from the Markdown beside this file.
+/* The Applied AI PM plan: three static pages built from the Markdown beside this file.
    No dependencies. Every link is relative, so the pages work at the site root and
    under a project sub-path such as /Relevel/plan/.
 
    Source             Output
    plan/weekly.md     dist/site/plan/index.html       the week-by-week working plan
    plan/curriculum.md dist/site/plan/curriculum.html  the full curriculum
+   plan/ship.md       dist/site/plan/ship.html        how to build and ship each artifact
+
+   Week tables, gates and rules are not typed into the Markdown. A marker such as
+   <!-- weeks 1-4 --> expands to a table built from plan/data.mjs, so the weekly plan
+   and the curriculum cannot disagree. check() fails the build when they would.
 */
 import fs from 'node:fs';
 import p from 'node:path';
+import { RESOURCES, MONTHS, WEEKS, GATES, RULES } from './data.mjs';
 
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const slug = s => s.toLowerCase().replace(/<[^>]+>/g, '').replace(/&[a-z]+;/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'section';
@@ -33,7 +39,8 @@ const listMatch = l => l.match(/^(\s*)([-*]|\d+\.)\s+(.*)$/);
 function renderList(lines, i) {
   const base = listMatch(lines[i])[1].length;
   const ordered = /\d/.test(listMatch(lines[i])[2]);
-  let html = ordered ? '<ol>' : '<ul>';
+  const first = parseInt(listMatch(lines[i])[2], 10);
+  let html = ordered ? (first > 1 ? `<ol start="${first}">` : '<ol>') : '<ul>';
   while (i < lines.length) {
     const m = listMatch(lines[i]);
     if (!m || m[1].length < base) break;
@@ -54,7 +61,7 @@ function renderList(lines, i) {
   return [html + (ordered ? '</ol>' : '</ul>'), i];
 }
 
-export function md(src) {
+export function md(src, expand = () => '') {
   const lines = src.replace(/\r/g, '').split('\n');
   const out = [];
   const heads = [];
@@ -63,9 +70,27 @@ export function md(src) {
     const l = lines[i];
     if (!l.trim()) { i++; continue; }
     let m;
+    if ((m = l.match(/^```(\w*)\s*$/))) {
+      const code = [];
+      i++;
+      while (i < lines.length && !/^```\s*$/.test(lines[i])) { code.push(lines[i]); i++; }
+      i++;
+      out.push(`<div class="code"><pre><code${m[1] ? ` data-lang="${esc(m[1])}"` : ''}>${esc(code.join('\n'))}</code></pre></div>`);
+      continue;
+    }
+    if ((m = l.match(/^<!--\s*(\S+)\s*(.*?)\s*-->\s*$/))) {
+      const r = expand(m[1], m[2]);
+      out.push(r.html);
+      for (const h of r.heads || []) heads.push(h);
+      i++; continue;
+    }
     if ((m = l.match(/^(#{1,4})\s+(.*)$/))) {
-      const n = m[1].length, text = m[2].trim();
-      const id = slug(text);
+      const n = m[1].length;
+      let text = m[2].trim();
+      let id = '';
+      const idm = text.match(/^(.*?)\s*\{#([\w-]+)\}$/);
+      if (idm) { text = idm[1]; id = idm[2]; }
+      id = id || slug(text);
       if (n === 2 || n === 3) heads.push({ n, id, text: text.replace(/[*`]/g, '') });
       out.push(`<h${n} id="${id}">${inline(text)}</h${n}>`);
       i++; continue;
@@ -93,7 +118,7 @@ export function md(src) {
       out.push(html); i = next; continue;
     }
     const para = [];
-    while (i < lines.length && lines[i].trim() && !/^(#{1,4}\s|>|\s*\|.*\|\s*$|---+\s*$)/.test(lines[i]) && !listMatch(lines[i])) { para.push(lines[i].trim()); i++; }
+    while (i < lines.length && lines[i].trim() && !/^(#{1,4}\s|>|```|<!--|\s*\|.*\|\s*$|---+\s*$)/.test(lines[i]) && !listMatch(lines[i])) { para.push(lines[i].trim()); i++; }
     out.push('<p>' + inline(para.join(' ')) + '</p>');
   }
   return { html: out.join('\n'), heads };
@@ -107,6 +132,7 @@ const CSS = `
 :root[data-theme="dark"]{--paper:#121517;--raised:#191D20;--sunk:#0D1012;--ink:#E4E7E2;--ink-2:#B4BBB6;--muted:#8A928C;--rule:#2E3438;--rule-soft:#232A2D;--accent:#4FB89A;--accent-wash:#4FB89A1A;color-scheme:dark}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
+[id]{scroll-margin-top:5.5rem}
 body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 var(--serif);-webkit-text-size-adjust:100%}
 a{color:var(--accent);text-underline-offset:2px}
 header.bar{position:sticky;top:0;z-index:5;background:var(--raised);border-bottom:1px solid var(--rule);display:flex;flex-wrap:wrap;align-items:center;gap:.25rem 1rem;padding:.6rem max(16px,env(safe-area-inset-right)) .6rem max(16px,env(safe-area-inset-left));font:500 .84rem/1.2 var(--sans)}
@@ -141,6 +167,28 @@ td.k{font-weight:600;white-space:nowrap}
 .toc a{text-decoration:none}
 .note{font:.85rem/1.5 var(--sans);color:var(--muted);margin-top:3rem;border-top:1px solid var(--rule);padding-top:1rem}
 @media (max-width:560px){body{font-size:16px}}
+
+.code{position:relative;margin:1rem 0;max-width:none}
+pre{margin:0;overflow-x:auto;background:var(--sunk);border:1px solid var(--rule);border-radius:3px;padding:.8rem 1rem;font:.8rem/1.55 var(--mono);tab-size:2}
+pre code{background:none;padding:0;font:inherit;white-space:pre}
+.code button{position:absolute;top:.4rem;right:.4rem;font:500 .7rem/1 var(--sans);background:var(--raised);color:var(--ink-2);border:1px solid var(--rule);border-radius:3px;padding:.3rem .5rem;cursor:pointer}
+table.wk{min-width:880px}
+table.wk td.k small{display:block;font-weight:400;color:var(--muted);margin-top:.15rem}
+table.wk .lk,table.wk .hw{list-style:none;margin:0;padding:0}
+table.wk .lk li,table.wk .hw li{margin:0 0 .3rem}
+table.wk tr:target td{background:var(--accent-wash)}
+.tag{display:inline-block;font:600 .65rem/1 var(--sans);letter-spacing:.05em;text-transform:uppercase;border:1px solid var(--rule);border-radius:2px;padding:.15rem .3rem;color:var(--muted)}
+.muted{color:var(--muted)}
+@media (max-width:700px){
+  table.wk{min-width:0}
+  table.wk thead{display:none}
+  table.wk,table.wk tbody,table.wk tr,table.wk td{display:block;width:100%}
+  table.wk tr{border-top:1px solid var(--rule);padding:.5rem 0}
+  table.wk tr:first-child{border-top:0}
+  table.wk td{border:0;padding:.25rem .8rem}
+  table.wk td[data-l]::before{content:attr(data-l);display:block;font:600 .65rem/1.2 var(--sans);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:.1rem}
+  table.wk td.k{white-space:normal}
+}
 `;
 
 function page({ title, desc, file, main, toc }) {
@@ -166,6 +214,7 @@ function page({ title, desc, file, main, toc }) {
   <a class="brand" href="./">Applied AI PM plan</a>
   ${nav('./', 'Weekly plan')}
   ${nav('curriculum.html', 'Curriculum')}
+  ${nav('ship.html', 'How to ship')}
   <a class="nav" href="../">Workbook &rarr;</a>
   <button id="theme" type="button" aria-label="Switch colour theme">&#9680;</button>
 </header>
@@ -175,6 +224,16 @@ ${toc || ''}
 <p class="note">Planning document, not advice. Dates, prices and regulatory details were checked on 7 October 2026 and will change; confirm anything that matters at the source.</p>
 </main>
 <script>
+document.querySelectorAll('.code').forEach(function(b){
+  var btn=document.createElement('button');btn.type='button';btn.textContent='Copy';
+  btn.addEventListener('click',function(){
+    var t=b.querySelector('code').textContent;
+    (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){btn.textContent='Copied'},function(){
+      var r=document.createRange();r.selectNodeContents(b.querySelector('code'));var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Selected'});
+    setTimeout(function(){btn.textContent='Copy'},1500);
+  });
+  b.appendChild(btn);
+});
 document.getElementById('theme').addEventListener('click',function(){
   var r=document.documentElement,cur=r.getAttribute('data-theme');
   var dark=cur?cur==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
@@ -187,34 +246,140 @@ document.getElementById('theme').addEventListener('click',function(){
 `;
 }
 
+/* ---------- generated blocks ---------- */
+function weekTable(from, to, recipes) {
+  const rows = WEEKS.filter(w => w.n >= from && w.n <= to).map(w => {
+    const learn = w.learn.length
+      ? '<ul class="lk">' + w.learn.map(k => `<li><a href="${RESOURCES[k][1]}" target="_blank" rel="noopener noreferrer">${esc(RESOURCES[k][0])}</a></li>`).join('') + '</ul>'
+      : '<span class="muted">Your own ship log. No new material.</span>';
+    const how = '<ul class="hw">' + w.how.map(id => `<li><a href="ship.html#${id}">${esc(recipes.get(id) || id)}</a></li>`).join('') + '</ul>';
+    return `<tr id="w${w.n}"><td class="k" data-l="Week">W${w.n}<small>${esc(w.dates)}</small>${w.light ? '<span class="tag">light</span>' : ''}</td>` +
+      `<td data-l="Learn this week">${inline(w.topic)}</td><td data-l="Where to learn">${learn}</td>` +
+      `<td data-l="Complexity">${esc(w.cx)}</td><td data-l="Ship this week">${inline(w.ship)}</td><td data-l="How to build it">${how}</td></tr>`;
+  });
+  return '<div class="tw"><table class="wk"><thead><tr><th>Week</th><th>Learn this week</th><th>Where to learn</th><th>Complexity</th><th>Ship this week</th><th>How to build it</th></tr></thead><tbody>' + rows.join('') + '</tbody></table></div>';
+}
+
+function makeExpand(recipes, seen) {
+  return (name, arg) => {
+    if (name === 'weeks') {
+      const [a, b] = arg.split('-').map(Number);
+      for (let n = a; n <= b; n++) seen.push(n);
+      return { html: weekTable(a, b, recipes) };
+    }
+    if (name === 'month') {
+      const m = MONTHS.find(x => x.n === +arg);
+      const id = slug(m.name);
+      return {
+        html: `<h2 id="${id}">${esc(m.name)} (W${m.from}–${m.to})</h2><p><strong>${esc(m.dates)}.</strong> Goal: ${inline(m.goal)}</p>`,
+        heads: [{ n: 2, id, text: m.name + ` (W${m.from}–${m.to})` }]
+      };
+    }
+    if (name === 'rules') return { html: '<ol>' + RULES.map(r => `<li>${inline(r)}</li>`).join('') + '</ol>' };
+    if (name === 'gates') {
+      return { html: '<div class="tw"><table><thead><tr><th>Gate</th><th>Date</th><th>Pass criteria (each needs a link)</th><th>If behind, cut</th></tr></thead><tbody>' +
+        GATES.map(g => `<tr><td class="k">${g.id}</td><td>${esc(g.date)}</td><td>${inline(g.pass)}</td><td>${inline(g.cut)}</td></tr>`).join('') + '</tbody></table></div>' };
+    }
+    throw new Error('plan: unknown marker <!-- ' + name + ' -->');
+  };
+}
+
+/* ---------- consistency check ---------- */
+const RECIPES_NOT_IN_A_WEEK = new Set(['ship-log']);
+
+export function check(pages, recipeWeeks) {
+  const errs = [];
+  const ids = WEEKS.map(w => w.n);
+  if (ids.join() !== Array.from({ length: 26 }, (_, i) => i + 1).join()) errs.push('data.mjs must define weeks 1..26 in order');
+  for (const w of WEEKS) {
+    for (const k of w.learn) {
+      if (!RESOURCES[k]) errs.push(`W${w.n}: unknown resource "${k}"`);
+      else if (!/^https:\/\//.test(RESOURCES[k][1])) errs.push(`W${w.n}: resource "${k}" is not an https link`);
+    }
+    if (!w.learn.length && w.n !== 26) errs.push(`W${w.n}: no learning link`);
+    if (!w.how.length) errs.push(`W${w.n}: no how-to-ship recipe`);
+    for (const id of w.how) if (!recipeWeeks.has(id)) errs.push(`W${w.n}: recipe "${id}" is not in ship.md`);
+  }
+  const used = new Map();
+  for (const w of WEEKS) for (const id of w.how) used.set(id, (used.get(id) || new Set()).add(w.n));
+  for (const [id, stated] of recipeWeeks) {
+    if (!used.has(id)) { if (!RECIPES_NOT_IN_A_WEEK.has(id)) errs.push(`ship.md: recipe "${id}" is not used by any week`); continue; }
+    const want = [...used.get(id)].sort((a, b) => a - b).join();
+    const got = [...stated].sort((a, b) => a - b).join();
+    if (want !== got) errs.push(`ship.md: recipe "${id}" says weeks [${got}] but data.mjs uses it in [${want}]`);
+  }
+  for (const [file, seen] of Object.entries(pages.weeksSeen)) {
+    const s = [...seen].sort((a, b) => a - b).join();
+    if (s !== ids.join()) errs.push(`${file}: week tables must cover W1-W26 exactly once (got ${s})`);
+  }
+  for (const m of MONTHS) if (!pages.text['curriculum.md'].includes(m.dates)) errs.push(`curriculum.md never mentions "${m.dates}" (${m.name})`);
+  /* internal links resolve */
+  const idsOf = html => new Set([...html.matchAll(/\sid="([^"]+)"/g)].map(m => m[1]));
+  const have = { './': idsOf(pages.html['index.html']), 'curriculum.html': idsOf(pages.html['curriculum.html']), 'ship.html': idsOf(pages.html['ship.html']) };
+  const outFile = { 'index.html': './', 'curriculum.html': 'curriculum.html', 'ship.html': 'ship.html' };
+  for (const [f, html] of Object.entries(pages.html)) {
+    for (const m of html.matchAll(/<a href="([^"]*)"/g)) {
+      const h = m[1];
+      if (/^(https?:|mailto:|\.\.\/)/.test(h)) continue;
+      const [pg, frag] = h.split('#');
+      const target = pg === '' ? outFile[f] : (pg === './' || pg === 'index.html') ? './' : pg;
+      if (!(target in have)) { errs.push(`${f}: link to unknown page "${h}"`); continue; }
+      if (frag && !have[target].has(frag)) errs.push(`${f}: link "${h}" has no matching anchor`);
+    }
+  }
+  if (errs.length) throw new Error('plan out of sync:\n  - ' + errs.join('\n  - '));
+}
+
 export function buildPlan(root, outDir) {
   const src = p.join(root, 'plan');
   fs.mkdirSync(outDir, { recursive: true });
   const jobs = [
-    { md: 'weekly.md', out: 'index.html', desc: 'Week-by-week working plan for becoming an Applied AI product manager: topics, resources, complexity, one thing to ship each week, and anti-drift rules.' },
-    { md: 'curriculum.md', out: 'curriculum.html', desc: 'A 26-week learn-by-doing curriculum for an Applied AI product manager: evals, RAG, agents and MCP, Indic AI, governance, with four portfolio projects.' }
+    { md: 'weekly.md', out: 'index.html', desc: 'Week-by-week working plan for becoming an Applied AI product manager: topics, linked resources, complexity, one thing to ship each week, and anti-drift rules.' },
+    { md: 'curriculum.md', out: 'curriculum.html', desc: 'A 26-week learn-by-doing curriculum for an Applied AI product manager: evals, RAG, agents and MCP, Indic AI, governance, with four portfolio projects.' },
+    { md: 'ship.md', out: 'ship.html', desc: 'Step-by-step recipes, code and links for building and shipping every artifact in the Applied AI PM plan, entirely in GitHub Codespaces and Actions.' }
   ];
+  const text = {};
+  for (const j of jobs) text[j.md] = fs.readFileSync(p.join(src, j.md), 'utf8');
+
+  /* recipes first: id -> title, and the weeks each recipe says it serves */
+  const recipes = new Map();
+  const recipeWeeks = new Map();
+  {
+    const lines = text['ship.md'].split('\n');
+    lines.forEach((l, i) => {
+      const m = l.match(/^## (.*?)\s*\{#([\w-]+)\}\s*$/);
+      if (!m) return;
+      recipes.set(m[2], m[1]);
+      const nums = new Set();
+      const b = (lines.slice(i + 1, i + 4).join('\n').match(/^\*\*(Weeks? [^*]*)\*\*/m) || [, ''])[1];
+      for (const n of b.matchAll(/\d+/g)) nums.add(+n[0]);
+      recipeWeeks.set(m[2], nums);
+    });
+  }
+
+  const html = {}, weeksSeen = {};
   let words = 0;
   for (const j of jobs) {
-    const text = fs.readFileSync(p.join(src, j.md), 'utf8');
-    const { html, heads } = md(text);
-    const h1 = (text.match(/^#\s+(.*)$/m) || [, 'Applied AI PM plan'])[1];
+    const seen = [];
+    const { html: body, heads } = md(text[j.md], makeExpand(recipes, seen));
+    if (seen.length) weeksSeen[j.md] = new Set(seen.length === new Set(seen).size ? seen : [...seen, -1]);
+    const h1 = (text[j.md].match(/^#\s+(.*)$/m) || [, 'Applied AI PM plan'])[1];
     const top = heads.filter(h => h.n === 2);
-    /* contents list goes right after the first paragraphs: put it after the h1 block */
-    const toc = '';
     const tocHtml = top.length > 4
       ? `<details class="toc"><summary>On this page</summary><ol>${top.map(h => `<li><a href="#${h.id}">${esc(h.text)}</a></li>`).join('')}</ol></details>`
       : '';
-    const main = html.replace(/(<h1[^>]*>.*?<\/h1>)/, '$1' + tocHtml);
-    fs.writeFileSync(p.join(outDir, j.out), page({ title: h1 + ' | AI From Zero', desc: j.desc, file: j.out === 'index.html' ? './' : j.out, main, toc }));
-    words += text.split(/\s+/).length;
+    const main = body.replace(/(<h1[^>]*>.*?<\/h1>)/, '$1' + tocHtml);
+    html[j.out] = page({ title: h1 + ' | AI From Zero', desc: j.desc, file: j.out === 'index.html' ? './' : j.out, main, toc: '' });
+    words += text[j.md].split(/\s+/).length;
   }
-  return { pages: jobs.length, words };
+  check({ html, text, weeksSeen }, recipeWeeks);
+  for (const j of jobs) fs.writeFileSync(p.join(outDir, j.out), html[j.out]);
+  return { pages: jobs.length, words, weeks: WEEKS.length, recipes: recipes.size };
 }
 
 /* run directly: node plan/build.mjs [outDir] */
 if (import.meta.url === `file://${process.argv[1]}`) {
   const root = p.resolve(p.dirname(process.argv[1]), '..');
   const r = buildPlan(root, p.resolve(process.argv[2] || p.join(root, 'dist/site/plan')));
-  console.log('plan: ' + r.pages + ' pages, ' + r.words + ' words');
+  console.log('plan: ' + r.pages + ' pages, ' + r.words + ' words, ' + r.weeks + ' weeks, ' + r.recipes + ' recipes');
 }

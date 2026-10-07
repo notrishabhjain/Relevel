@@ -113,15 +113,21 @@ the machine.
 ## The Applied AI PM plan
 
 A 26-week plan (7 Oct 2026 – 6 Apr 2027) for moving into an Applied AI product manager
-role, kept beside the course it complements. It is two static pages, served at `/plan/`:
+role, kept beside the course it complements. It is three static pages, served at `/plan/`:
 
 | Page | What it is |
 | --- | --- |
 | `plan/` (index) | The week-by-week working plan: topic, where to learn it, complexity and one thing to ship each week, plus the anti-drift rules and monthly gates |
 | `plan/curriculum.html` | The full curriculum: resources, tooling, six phases, four portfolio projects, interview preparation, caveats and sources |
+| `plan/ship.html` | How to build and ship each artifact: 26 recipes with ordered steps, code to paste, links and a "done when" test, all runnable in Codespaces and Actions |
 
-Edit `plan/weekly.md` or `plan/curriculum.md` and run `node build.js`; `plan/build.mjs`
-turns them into pages. It has no dependencies and every link is relative.
+Week rows, learning links, gates and rules live in one file, `plan/data.mjs`; the Markdown
+pages pull them in with markers such as `<!-- weeks 1-4 -->`. Each week lists the recipes (ids in
+`plan/ship.md`, written `## Title {#id}`) that explain how to build its deliverable. Edit those
+files and run `node build.js`; `plan/build.mjs` turns them into pages and **fails the build** if the
+pages drift apart: a week without a learning link, a recipe that no week uses, a recipe whose stated
+weeks differ from the data, a week missing or repeated in a table, or a link to an anchor that does
+not exist. It has no dependencies and every link is relative.
 
 ## Live site (GitHub Pages)
 
