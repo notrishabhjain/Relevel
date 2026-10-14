@@ -81,8 +81,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek aur copy',
   'Start one':
     'Ek shuru kijiye',
-  'Built in':
-    'Bana yahan',
   'artifacts finished':
     'cheezein poori hueen',
   'in progress':

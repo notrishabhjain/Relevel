@@ -73,7 +73,6 @@ Object.assign(window.HING = window.HING || {}, {
   'For': 'Kiske liye',
   'Length': 'Lambai',
   'Prerequisites': 'Pehle se zaroori',
-  'Cost': 'Kharcha',
   'Product managers, analysts, consultants, team leads': 'Product managers, analysts, consultants, team leads',
   'one per sitting': 'ek baithak mein ek',
   'A browser, a Google account, a willingness to type': 'Ek browser, ek Google account, aur type karne ki taiyaari',

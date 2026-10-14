@@ -665,9 +665,6 @@ Object.assign(window.HING = window.HING || {}, {
   'Bharat Privacy Guard':
     'Bharat Privacy Guard',
 
-  'Stage':
-    'Stage',
-
   'See the whole project':
     'Poora project dekhiye',
 

@@ -1,10 +1,6 @@
 /* Hinglish: the v4.2 appendices — the study map, the twenty-two artifacts, the nine templates, the question bank and the exit test. */
 Object.assign(window.HING = window.HING || {}, {
 
-  'Error taxonomy':
-    'Galtiyon ka vargikaran',
-  'Architecture Decision Records':
-    'Architecture Decision Record',
   'LLM / API fundamentals':
     'LLM / API ki buniyaad',
   'Tokens, context and statelessness':
@@ -343,8 +339,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Jab koi faisla palatna mehnga padega, tab ek likhiye. Chhah mahine baad yahi ek akela record bachta hai ki kyun.',
   'One sentence, in the past tense: "We chose …"':
     'Ek vaakya, beete kaal mein: "Humne chuna …"',
-  'Context':
-    'Paristhiti',
   'What situation forced a decision at all':
     'Kis haalat ne faisla lene par majboor kiya',
   'Requirements':
@@ -447,8 +441,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Kisi kharab mangalvaar ko aap kya dekh paayenge',
   'Rollout':
     'Rollout',
-  'Rollback':
-    'Rollback',
   'What exactly you would turn off, and how fast':
     'Aap theek kya band karenge, aur kitni jaldi',
   'Ownership':
@@ -469,8 +461,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Koi kya kar sakta hai, saadhi bhasha mein',
   'Impact if it happens':
     'Ho gaya to kya asar',
-  'Likelihood':
-    'Hone ki sambhaavna',
   'And what that estimate is based on':
     'Aur yeh andaaza kis par tika hai',
   'Control':
@@ -481,8 +471,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Saboot ya test',
   'How you know the control works':
     'Aapko kaise pata ki yeh intezaam kaam karta hai',
-  'Owner':
-    'Zimmedar',
   'What is still true after the control':
     'Intezaam ke baad bhi kya sach bacha rehta hai',
   'Treatment':
@@ -495,8 +483,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Model aur Vendor Scorecard',
   'Fill one per option, then compare. Exit cost is on here deliberately — it is the row nobody scores until the price changes.':
     'Har vikalp ke liye ek bhariye, phir tulna kijiye. Nikalne ki lagat yahan jaan-boojh kar hai — yahi woh panti hai jise koi tab tak nahi naapta jab tak daam nahi badalte.',
-  'Option':
-    'Vikalp',
   'Model or provider':
     'Model ya provider',
   'Task quality':
