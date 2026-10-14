@@ -1,69 +1,73 @@
 ---
 title: Jaadu Ke Neeche Ki Plumbing
-summary: Do ghante ka ek outage jisme kisi ne error nahi diya, product manager ko manata hai ki use ek plumber ke diagram ke star par un saadhaaran software ko samajhna chahiye jo ek anishchit hisse ke chaaron taraf hai. Chapter data contracts, Python, HTTP aur status codes, environment variables, Git aur experiment runners samjhata hai.
+summary: Do ghante ka ek outage, jisme kisi ne error nahi diya, ek product manager ko yakeen dilata hai ki use us ek anpredictable hisse ke aas-paas ka aam software plumber ke diagram ke level par samajhna chahiye. Chapter mein data contracts, Python, HTTP aur status codes, environment variables, Git aur experiment runners aate hain.
 course: ch8f
 goals:
-  - data contract batana aur samjhana ki khaamosh toot sabse khatarnaak kyun hai
-  - ek request aur ek reply padhna, aur status code se batana ki kaun sa paksh fail hua
-  - batana ki secrets kahan rehte hain, repository kya record karti hai, aur error ko neeche se kaise padhein
-  - samjhana ki test ko ek baar fail hote dekhna kyun zaroori hai, aur experiment runner kya mumkin banata hai
+  - data contract samjhana, aur yeh ki chupchaap toot jaana sabse khatarnaak kyun hai
+  - ek request aur ek reply padhna, aur status code se pehchaanna ki kaun si taraf fail hui
+  - batana ki secrets kahan rakhne chahiye, repository kya record karti hai, aur error ko neeche se kaise padhte hain
+  - samjhana ki test ko ek baar fail hote dekhna kyun zaroori hai, aur experiment runner se kya mumkin hota hai
 terms:
-  - Python | woh programming bhasha jisme zyadatar AI ka kaam likha jaata hai; ek product manager ke liye, yeh theek-theek kehne ka tareeka ki ek experiment kya karta hai | 
-  - HTTP | niyamon ka woh set jisse programs internet par requests aur jawaab bhejte hain, har jawaab par ek number ke saath jo batata hai ki kaam hua ya nahi | 
-  - status code | ek HTTP jawaab par ka number: 200 matlab kaam hua, 4xx number matlab request galat thi, aur 5xx number matlab server fail hua | status codes
-  - environment variable | code ke bahar, us jagah rakhi ek value jahan program chalta hai, jahan passwords aur API keys ki jagah hai | environment variables
-  - Git | ek tool jo aapke kaam ka har version save karta hai, taaki aap dekh sakein ki kya badla aur kisi bhi pichhle version par wapas ja sakein | 
-  - repository | Git mein rakha woh folder jisme ek project ka saara kaam aur uski history hai | repositories
-  - experiment runner | ek dobara istemaal hone wala program jo har experiment ke liye inputs, outputs, settings, samay aur errors record karta hai, taaki ek nateeja dohraya aur tulna kiya ja sake | 
-  - data contract | ek system ka ek hissa jo data usse milta hai uske baare mein jo anakahe maan leta hai, jaise ki ek field maujood hoga aur ek list khaali nahi hogi | 
+  - Python | woh programming language jisme zyadatar AI ka kaam likha jaata hai; ek product manager ke liye, yeh theek-theek kehne ka tareeka ki ek experiment kya karta hai | 
+  - HTTP | rules ka woh set jisse programs internet par requests aur replies bhejte hain, har reply par ek number ke saath jo batata hai ki kaam hua ya nahi | 
+  - status code | HTTP reply par likha number: 200 matlab kaam hua, 4xx number matlab request galat thi, aur 5xx number matlab server fail hua | status codes
+  - environment variable | code ke bahar, us jagah rakhi hui value jahan program chalta hai; passwords aur API keys isi jagah rakhi jaati hain | environment variables
+  - Git | ek tool jo aapke kaam ka har version save karta hai, taaki aap dekh sakein ki kya badla aur kisi bhi purane version par wapas ja sakein | 
+  - repository | Git mein rakha hua woh folder jisme ek project ka saara kaam aur uski history hoti hai | repositories
+  - experiment runner | ek dobara use hone wala program jo har experiment ke liye inputs, outputs, settings, timings aur errors record karta hai, taaki result dohraya aur compare kiya ja sake | 
+  - data contract | woh bina kahe maani hui baatein jo system ka ek hissa us data ke baare mein maan leta hai jo use milta hai, jaise ki field maujood hogi aur list khaali nahi hogi | 
 ---
 
-September ke doosre Thursday ko guard ne Pune ke har order number ko do ghante tak chhupa diya, aur kisi ko pata nahi chala jab tak ek customer ne yeh poochhne ke liye nahi likha ki uske number ko kya hua. Farah Sheikh ke agents pehle chakit hue, phir chidhe, phir kalpanashil: lagbhag chaalis minute tak unhone customers se phone par apna order number zor se padhne ko kaha. Dashboard hara raha. Imran Qureshi ko jab bataya gaya toh usne bahut kam kaha aur pen se draw karna shuru kar diya.
+September ke doosre Thursday ko guard ne Pune ke har order number ko do ghante tak chhupa diya. Kisi ko pata nahi chala, jab tak ek customer ne likh kar nahi poochha ki uske number ko kya ho gaya. Farah Sheikh ke agents pehle uljhe, phir chidhe, phir jugaadu ho gaye. Lagbhag chaalis minute tak woh customers se phone par order number bol kar sunane ko kehte rahe. Dashboard poore time green raha.
 
-"Kisi ne error nahi diya," usne kaha jab diagram poora ho gaya. "Isiliye do ghante lage." Yeh chapter samjhata hai ki kya hua, aur phir woh karta hai jo Imran ne agle kiya, yaani Anaya ko diagram padhna sikhana.
+Imran Qureshi ko jab bataya gaya, toh usne bahut kam kaha aur pen se kuch banana shuru kar diya. "Kisi ne error nahi diya," usne kaha jab diagram poora ho gaya. "Isiliye do ghante lage."
+
+Yeh chapter batata hai ki kya hua. Phir woh karta hai jo Imran ne agla kiya, yaani Anaya ko diagram padhna sikhana.
 
 ## Case: woh field jisne naam badal liya
 
-Kaaran saadhaaran tha, aur yahi sabak tha. Guard har baarah ankon ke number ko order system mein dekhta tha, jaisa use sikhaya gaya tha. Ek doosri team ne us subah order system update kiya tha. Puraane version mein uske reply mein field ka naam "order_id" tha. Naye mein woh "orderId" tha, bade I ke saath.
+Wajah aam thi, aur yahi sabak tha. Guard har baarah digit ke number ko order system mein dekhta tha, jaisa use sikhaya gaya tha. Ek doosri team ne us subah order system update kiya tha. Purane version mein uske reply mein field ka naam "order_id" tha. Naye mein woh "orderId" ho gaya, bade I ke saath.
 
-Guard ne "order_id" maanga aur use kuch nahi mila. Woh ruka nahi aur usne chillaya nahi. Use saamaanya tareeke se likha gaya tha ki khaali jawaab ko "aisa koi order nahi" samjhe, isliye usne shishtata se, lagbhag chaar sau baar, tay kiya ki us number ka koi order nahi tha, aur har ek ko pehchaan ka number maan kar chhupa diya.
+Guard ne "order_id" maanga aur use kuch nahi mila. Woh ruka nahi, chillaya nahi. Use sahi tareeke se yeh sikhaya gaya tha ki khaali jawaab ka matlab hai "aisa koi order nahi". Isliye usne tameez se, lagbhag chaar sau baar, yeh nateeja nikala ki is number ka koi order maujood nahi hai. Aur phir har ek ko shak wale identity number ki tarah chhupa diya.
 
 ::: def Data contract
-Woh anakahi maanyatayein jo system ka ek hissa us data ke baare mein rakhta hai jo use milta hai: ki ek field maujood hoga, ki woh ek number hoga, ki ek list khaali nahi hogi. Har data contract production mein kabhi na kabhi tootta hai. Achha banaya hua system dekhta hai ki ek toota hai aur ruk jaata hai. Kharab banaya hua aage badhta rehta hai, aur uska jawaab gayab data par tika hota hai.
+Woh bina kahe maani hui baatein jo system ka ek hissa us data ke baare mein maan leta hai jo use milta hai: ki field maujood hogi, ki woh number hogi, ki list khaali nahi hogi. Har data contract production mein kabhi na kabhi tootta hai. Achha bana system dekh leta hai ki ek toot gaya hai aur ruk jaata hai. Kharab bana system chalta rehta hai, aur uska jawaab missing data par tika hota hai.
 :::
 
-Is kshetra ki kai asli ghatnayein bilkul aisi dikhti hain: koi error nahi, hara dashboard, aur ek nateeja jo chupchaap galat hai. Imran ne kaha ki yeh machine-learning ki samasya nahi thi. Machine theek thi. Yeh ek saadhaaran software failure thi jo ek machine ke paas baithi thi, aur diagram padhne ke bina sahi sawaal poochha nahi ja sakta tha.
+Is field ke bahut se asli incidents bilkul aise hi dikhte hain. Koi error nahi, dashboard green, aur result chupchaap galat. Imran ne kaha ki yeh machine-learning ki problem nahi thi. Machine theek thi. Yeh ek aam software failure thi jo bas ek machine ke bagal mein baithi thi. Aur is par sahi sawaal tabhi poochha ja sakta hai jab aap diagram padh sakein.
 
 ## Diagram
 
-Anaya ko yeh mahino se darawna tha. Use apni engineers se baat karne ki kshamta par garv tha aur woh theek jaanti thi ki uski seema kahan hai. Woh "the API" aur "the logs" bina yeh jaane keh sakti thi ki woh kya hain. Imran ne use do ghante, ek whiteboard aur ek tulna di. Jab koi ek app mein khana mangata hai, toh ek message restaurant ko jaata hai aur ek reply keemat ke saath wapas aata hai. Jab tak message dikhte nahi, yeh rahasyamay lagta hai. Dopahar ki har cheez ek aisa message thi, ya ek aisi jagah jahan woh kho jaata hai.
+Anaya ko mahino se iska dar tha. Use apni engineers se baat kar paane par garv tha, aur woh theek-theek jaanti thi ki yeh kaabiliyat kahan khatam hoti hai. Woh "the API" aur "the logs" bol sakti thi, bina jaane ki woh hain kya.
 
-Table: Plumbing ke hisse, aur product manager ko har ek se kya chahiye
-| Hissa | Yeh kya hai | Kya maayne rakhta hai |
+Imran ne use do ghante, ek whiteboard aur ek misaal di. Jab aap app mein khana order karte hain, toh restaurant ko ek message jaata hai, aur ek reply aata hai jisme price hota hai. Jab tak aap messages dekh nahi sakte, yeh rahasyamay lagta hai. Us dopahar ki har cheez ya toh ek aisa message thi, ya woh jagah jahan koi message kho jaata hai.
+
+Table: Plumbing ke hisse, aur har ek se product manager ko kya chahiye
+| Hissa | Yeh kya hai | Kya zaroori hai |
 | --- | --- | --- |
-| *Python* | Woh bhasha jisme zyadatar AI kaam likha jaata hai | Yeh batane ka tareeka hai ki ek experiment theek-theek kya karta hai. Ek function, ek dictionary jo naam wali values ek saath rakhti hai, ek loop jo ek kriya dohraata hai. Agar koi padh sake ki woh kya kehta hai, toh woh dekh sakta hai ki experiment wahi hai jo woh sochta hai |
-| *HTTP* | Woh niyam jinse programs internet par baat karte hain | Har reply ek number leke aata hai jo batata hai ki woh kaam kiya ya nahi |
-| *Environment variable* | Ek value jo code se bahar, jahan program chalta hai wahan rakhi hoti hai | Passwords aur API keys wahin rehte hain, code mein kabhi nahi aur kisi shared folder mein kabhi nahi |
-| *Git* | Aisa tool jo kaam ka har version save karta hai, kya badla aur kyun ke note ke saath | Koi kal aur aaj ke antar ko dekh sakta hai aur dono mein se kisi par wapas ja sakta hai |
-| *Repository* | Woh folder, Git mein rakha hua, jisme ek project ka kaam aur uska itihaas hai | Jab kuch tootta hai toh pehla sawaal yeh hota hai ki kya badla, aur repository jawaab de sakti hai |
+| *Python* | Woh language jisme zyadatar AI ka kaam likha jaata hai | Yeh theek-theek kehne ka tareeka hai ki ek experiment kya karta hai. Ek function, ek dictionary jo labelled values ko saath rakhti hai, ek loop jo ek kaam dohraata hai. Agar aap padh sakein ki likha kya hai, toh dekh sakte hain ki experiment wahi hai jo aap samajh rahe the |
+| *HTTP* | Rules jinse programs internet par baat karte hain | Har reply par ek number hota hai jo batata hai ki kaam hua ya nahi |
+| *Environment variable* | Code ke bahar, us jagah rakhi value jahan program chalta hai | Passwords aur API keys isi jagah rehti hain, kabhi code mein nahi aur kabhi shared folder mein nahi |
+| *Git* | Ek tool jo kaam ka har version save karta hai, saath mein note ki kya badla aur kyun | Aap kal aur aaj ka farq dekh sakte hain aur dono mein se kisi par bhi wapas ja sakte hain |
+| *Repository* | Git mein rakha folder jisme project ka kaam aur history hoti hai | Kuch toote toh pehla sawaal hota hai ki kya badla, aur repository iska jawaab de sakti hai |
 
-Python Anaya ko likhna nahi tha. HTTP reply ka *status code* use padhna tha.
+Anaya ko Python likhne ki kabhi zaroorat nahi padegi. Lekin HTTP reply ka **status code** use padhna padega.
 
 Table: Status codes
 | Code | Matlab |
 | --- | --- |
-| 200 | Kaam kiya |
-| 401 | Request aise kisi se hai jo woh nahi jo woh kehta hai |
+| 200 | Kaam hua |
+| 401 | Request aise insaan ki hai jo woh nahi hai jo woh kehta hai |
 | 404 | Yahan kuch nahi hai |
-| 429 | Bulane wala bahut tezi se maang raha hai, aur use dheema hona chahiye |
+| 429 | Call karne wala bahut tez maang raha hai, use dheere hona chahiye |
 | Koi bhi 4xx | Request galat thi |
-| Koi bhi 5xx | Doosre paksh ne fail kiya |
+| Koi bhi 5xx | Doosri taraf fail hua |
 
-"The API ne fail kiya" koi vyakhya nahi hai, Imran ne kaha. Woh poochhna shuru karne ki jagah hai. Kya woh ek kharab request thi, ek gayab dependency ya unki taraf ki failure? Har ek ka alag ilaaj hai, aur sirf kuch hi dobara koshish karne laayak hain.
+Imran ne kaha, "API fail ho gayi" koi explanation nahi hai. Woh bas poochhna shuru karne ki jagah hai. Kya request kharab thi, koi dependency missing thi, ya unki taraf fail hua? Har ek ka ilaaj alag hai, aur sabko dobara try karna theek nahi.
 
-## Error kaise padhein
+## Error ko kaise padhein
 
-Phir usne ek error padhna seekha, jisme das minute lage aur jo shaayad dopahar ke sabse upyogi das minute the. Jab program zor se fail hota hai toh woh ek lamba block chhapta hai jise trace kehte hain, aur pravritti use upar se padhne ki hoti hai, jahan sabse kam upyogi hissa hai. Asli kaaran aam taur par neeche hota hai.
+Phir usne error padhna seekha. Dus minute lage, aur shayad us dopahar ke sabse kaam ke dus minute the. Jab program zor se fail hota hai, toh woh ek lamba block print karta hai jise trace kehte hain. Instinct hota hai use upar se padhne ka, lekin upar ka hissa sabse kam kaam ka hai. Asli wajah lagbhag hamesha neeche hoti hai.
 
 ```
 Traceback (most recent call last):
@@ -72,35 +76,45 @@ Traceback (most recent call last):
 KeyError: 'order_id'
 ```
 
-"Aakhri line pehle," Imran ne kaha. "KeyError, order_id. Program ne ek aisa field maanga jo wahan nahi tha. Line ikatalis. Yahi aapki poori kahani hai." Anaya ne kaha ki yeh failure zor se nahi hui thi. Nahi hui thi, usne kaha. Woh shishta version tha. Asli code ne aise tareeke se maanga tha jo field gayab hone par kuch nahi lautata, aur aage badh gaya, jo team ne likha tha. Zor se hui failure ek tohfa hai, kyunki woh aapko rok deti hai.
+"Pehle aakhri line," Imran ne kaha. "KeyError, order_id. Program ne woh field maangi jo wahan thi hi nahi. Line ikatalees. Bas, poori kahani yahi hai."
 
-## Ek test jo jaanboojh kar fail hota hai
+Anaya ne kaha ki yeh failure toh zor se nahi hua tha. Haan, Imran ne kaha, woh tameez wala version tha. Asli code ne aise method se maanga tha jo field missing ho toh kuch nahi lautata, aur woh aage chalta raha, jaisa team ne likha tha. Zor ka failure ek tohfa hai, kyunki woh aapko rok deta hai.
 
-Imran ne aakhri hissa ek khel ki tarah sikhaya. Ek chhota test likho: function ko ek aisa order reply do jisme "order_id" ho aur jaancho ki woh pehchaana gaya. Woh paas ho jaata hai. Ab use "orderId" wala reply do aur poochho ki kya hona chahiye. Anaya ne socha ki use ruk jaana chahiye aur kehna chahiye ki order system mein kuch galat hai, number mein nahi. "Toh use test ke roop mein likho," Imran ne kaha. "Pehle use fail hone do, taaki pata chale ki woh ho sakta hai."
+## Ek test jo jaanboojh kar fail ho
 
-Usne use likha aur chalaya, aur woh ek santosh dene wali laal line ke saath fail hua. Usne code ko theek kiya taaki woh gayab field ko jaanche aur aage badhne se mana kare, aur dobara chalaya. Woh paas hua.
+Imran ne aakhri hissa use ek khel ki tarah sikhaya. Pehle ek chhota test likho. Function ko ek aisa order reply do jisme "order_id" ho, aur check karo ki woh pehchana gaya. Pass ho gaya. Ab use "orderId" wala reply do aur poochho ki kya hona chahiye.
 
-::: key Jis test ne kabhi fail nahi kiya usne kabhi kuch jaancha hi nahi
-Guard ke sambhaale har message ke har record mein ab ek request number, ek samay, code ka version aur status bhi hoga. Jab agli baar dashboard hara ho aur customer likhe, toh team diagram nahi banayegi. Woh search karegi.
+Anaya ko laga ki use ruk jaana chahiye aur kehna chahiye ki order system mein kuch gadbad hai, number mein nahi. "Toh woh test ki tarah likho," Imran ne kaha. "Pehle use fail karwao, taaki pata ho ki woh fail ho sakta hai."
+
+Usne likha aur chalaya, aur woh ek santushti dene wali red line ke saath fail hua. Phir usne code theek kiya taaki woh missing field check kare aur aage chalne se mana kar de. Dobara chalaya, aur pass ho gaya.
+
+::: key Jis test ko kabhi fail hote nahi dekha, usne kabhi saabit nahi kiya ki woh kuch check karta hai
+Use ek baar fail hote dekhiye, phir code theek kijiye aur pass hote dekhiye. Tabhi pata chalta hai ki test farq pehchaan sakta hai.
 :::
+
+Usne ek badlaav aur kiya. Guard ne jo bhi message sambhala, uske har record mein ab ek request number, ek time, code ka version aur status hoga. Agli baar dashboard green ho aur customer likhe, toh team records search karegi, diagram nahi banayegi.
 
 ## Woh runner jo yaad rakhta hai
 
-Aakhri cheez woh thi jo Imran ne do mahine mein banayi thi aur kisi ko dikhayi nahi thi. Woh ek *experiment runner* tha, ek dobara istemaal hone wala program jo har experiment ke liye inputs, outputs, settings, timings aur errors ko ek maanak roop mein record karta hai. Uska maksad ek khaas pul paar karna tha. "Maine aazmaya" aur "maine naapa" ke beech ek khaai hai, aur khaai ka zyadatar hissa bookkeeping hai: ek prompt do baar chalao aur dono runs save karo, ek cheez badlo, aur logs se turant dekho ki kya badla.
+Aakhri cheez woh thi jo Imran ne do mahine mein banayi thi aur kisi ko dikhayi nahi thi. Woh ek **experiment runner** tha. Yeh ek dobara use hone wala program hai jo har experiment ke liye inputs, outputs, settings, timings aur errors, sab ek standard form mein record karta hai.
 
-"Agar main kal ka nateeja dohra nahi sakta," usne kaha, "toh mere paas koi nateeja nahi hai. Mere paas ek kissa hai." Anaya ne uski screen par folder dekha. Usme ek README tha, ek list ki ise chalane ke liye kya chahiye, aur May se har experiment ka ek log. Use pehli raat ki apni notebook ki entry yaad aayi, ki jab tak koi aur jaanch na sake kuch ginti mein nahi aata, aur samjha ki yahi uska matlab tha, aur use pata nahi tha ki ise banaya kaise jaata hai.
+Iska maqsad ek khaas pul paar karna tha. "Maine try kiya" aur "maine naapa" ke beech ek gap hota hai, aur us gap ka zyadatar hissa bookkeeping hai. Runner ke saath aap ek prompt do baar chala sakte hain aur dono runs save kar sakte hain. Aap ek cheez badalte hain, aur logs se turant dikh jaata hai ki kya badla.
 
-## Kaafi kaisa dikhta hai
+"Agar main kal ka result reproduce nahi kar sakta," usne kaha, "toh mere paas result nahi hai. Mere paas ek kissa hai."
 
-Paanch baje Imran ne poochha ki usne kya seekha, aur usne shabdon ki list nahi di. Diagram ke peechhe usne likha ki woh ab kya kar sakti hai: ek request, ek reply aur ek status code padhna; jaanna ki ek key kahan rehti hai; poochhna ki kya badla aur pata lagana; error ko neeche se padhna; jaanna ki ek test ko ek baar fail hona chahiye; aur jab koi "the API fail hua" kahe, toh poochhna ki kis tarah.
+Anaya ne uski screen par folder dekha. Usme ek README tha, chalane ke liye kya chahiye uski list, aur May se har experiment ka log. Use pehli raat ka apni notebook ka woh note yaad aaya: jab tak koi aur check na kar sake, kuch nahi ginta. Woh samajh gayi ki use yahi chahiye tha, aur use pata nahi tha ki ise banate kaise hain.
 
-Yeh ek chhoti list thi aur kuch nahi se zyada. Iska matlab tha ki jab koi engineer use diagram dikhayega, woh hisse pehchaan legi. Page ke sabse upar usne woh vaakya joda jo Imran ne shuru mein kaha tha, kyunki woh use rakhna chahti thi: ek AI system ek software system hai jisme ek anishchit hissa hai. Jo bhi saadhaaran software mein galat ho sakta hai woh ab bhi ho sakta hai, aur ek failure aur, sabse khaamosh, jo koi error nahi deti.
+## Kitna kaafi hota hai
+
+Paanch baje Imran ne poochha ki usne kya seekha. Usne terms ki list nahi di. Diagram ke peeche usne likha ki ab woh kya kar sakti hai. Request, reply aur status code padh sakti hai. Jaanti hai ki key kahan rehti hai. Poochh sakti hai ki kya badla, aur pata laga sakti hai. Error ko neeche se padh sakti hai. Jaanti hai ki test ek baar fail hona chahiye. Aur jab koi kahe "API fail ho gayi", toh poochh sakti hai ki kis tarah.
+
+Yeh chhoti list thi, lekin kuch nahi se bahut zyada thi. Iska matlab tha ki jab koi engineer use diagram dikhaye, toh woh uske hisse pehchaan legi. Page ke upar usne woh sentence likh diya jo Imran ne shuru mein kaha tha, kyunki woh use rakhna chahti thi. AI system ek software system hai jisme ek hissa anpredictable hai. Aam software mein jo kuch bhi galat ho sakta hai, woh ab bhi ho sakta hai. Aur ek failure aur hai, sabse khaamosh, jo koi error nahi deti.
 
 ## Saaraansh
 
-Ek AI system ek saadhaaran software hai jisme ek anishchit hissa hai, isliye jo kuch saadhaaran software ko tod sakta hai woh ise bhi tod sakta hai. Engineering ka khatra interfaces, errors, secrets aur retries mein model se kam nahi hai.
+AI system aam software hai jisme ek hissa anpredictable hai, isliye jo kuch aam software ko tod sakta hai, woh ise bhi tod sakta hai. Engineering risk interfaces, errors, secrets aur retries mein utna hi hai jitna model mein.
 
-- Programs requests aur replies se baat karte hain. Reply par status code batata hai ki request galat thi ya doosra paksh fail hua.
+- Programs requests aur replies se baat karte hain. Reply par status code batata hai ki request galat thi ya doosri taraf fail hua.
 - Keys code ke bahar rehti hain. Kaam ek repository mein rehta hai jo har badlaav record karti hai. Error ko neeche se padha jaata hai.
-- Har system ka har hissa us data ke baare mein maanyatayein rakhta hai jo use milta hai, ek data contract. Achha system ek ke tootne par ruk jaata hai, kuch nahi ke saath aage nahi badhta.
-- Jo runner har experiment record karta hai woh "maine aazmaya" ko "maine naapa" mein badal deta hai, kyunki jo nateeja dohraya na ja sake woh sirf ek kissa hai.
+- System ka har hissa us data ke baare mein kuch maanta hai jo use milta hai. Yahi data contract hai. Achha system tab ruk jaata hai jab koi toot jaaye, kuch na milne par bhi chalta nahi rehta.
+- Jo runner har experiment record karta hai, woh "maine try kiya" ko "maine naapa" bana deta hai, kyunki jo result reproduce nahi ho sakta, woh sirf ek kissa hai.

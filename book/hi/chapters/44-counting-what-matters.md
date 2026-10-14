@@ -1,108 +1,120 @@
 ---
 title: Jo Maayne Rakhta Hai Use Ginna
-summary: Jab asli log tool istemaal karte hain, toh sawaal "kya yeh kaam karta hai?" se "woh kya karte hain?" ban jaata hai, aur ek privacy product ko iska jawaab uss cheez ko record kiye bina dena hota hai jise chhupane ke liye woh bana hai. Ek sample-size ka hisaab phir samjhata hai ki ek jawaan company woh test kyun nahi chala sakti jo woh chahti hai. Chapter event taxonomies, tracking plans, cohorts, A/B tests aur minimum detectable effect samjhata hai.
+summary: Jab asli log tool use karne lagte hain, toh sawaal "kya yeh kaam karta hai?" se badal kar "woh kya karte hain?" ho jaata hai. Ek privacy product ko iska jawaab bina us cheez ko record kiye dena hota hai jise chhupane ke liye woh bana hai. Phir sample-size ka ek hisaab dikhata hai ki ek jawaan company woh test kyun nahi chala sakti jo woh chahti hai. Chapter mein event taxonomy, tracking plan, cohort, A/B test aur minimum detectable effect aate hain.
 course: b3
 goals:
-  - North Star ko un input metrics se jodna jinka maalik ek naamit team ho
-  - ek event taxonomy aur tracking plan likhna jiski properties kabhi personal content nahi rakhti
-  - funnel, cohort table aur segment padhna, aur batana ki ek table par bharosa karne ke liye kitni teams chahiye
-  - ek A/B test ko kitna sample chahiye yeh ginna, aur samjhana ki ek pattern kaaran ka saboot kyun nahi hai
+  - ek North Star ko input metrics se jodna, jinka ek named team owner ho
+  - ek event taxonomy aur tracking plan likhna jiski properties mein personal content kabhi na aaye
+  - funnel, cohort table aur segment padhna, aur bata paana ki table par bharosa karne se pehle kitni teams chahiye
+  - A/B test ko kitna sample chahiye yeh nikaalna, aur samjhana ki ek pattern cause ka saboot kyun nahi hai
 terms:
-  - event taxonomy | ek product jo events record karta hai unki list, ek naming niyam ke saath jise sab follow karein, jaise lower case mein object_action aur bhoot kaal | taxonomy
-  - tracking plan | woh saajha document jo har event, uske properties, woh kab fire hota hai aur uska malik kaun hai, list karta hai, jisse engineers banate hain aur analysts bharosa karte hain | 
-  - cohort | users ka ek group jisne ek hi avadhi mein shuru kiya, samay ke saath saath dekha gaya | cohorts
-  - A/B test | ek badlaav ko users ke ek yaadrichhik aadhe ko dikhana aur doosre aadhe se tulna karna; yaadrichhikta hi aapko kehne deti hai ki badlaav ne farak paida kiya | A/B tests
-  - minimum detectable effect | sabse chhota badlaav jise pakadna kaam ka hai; yeh tay karta hai ki ek test ko kitne users chahiye | MDE
+  - event taxonomy | un events ki list jo product record karta hai, ek naming rule ke saath jise sab follow karein, jaise object_action, lower case mein aur past tense mein | taxonomy
+  - tracking plan | woh shared document jisme har event, uski properties, woh kab fire hota hai aur uska owner likha ho; engineers isse banate hain aur analysts isse maante hain | 
+  - cohort | users ka ek group jisne ek hi period mein shuru kiya, aur jise saath-saath time ke saath follow kiya jaata hai | cohorts
+  - A/B test | kisi badlaav ko users ke ek random aadhe hisse ko dikhana aur unhe baaki aadhe se compare karna; random karna hi aapko yeh kehne deta hai ki badlaav ne farq paida kiya | A/B tests
+  - minimum detectable effect | sabse chhota badlaav jise pakadna kaam ka hai; yeh tay karta hai ki test ko kitne users chahiye | MDE
 ---
 
-Karan, jo project mein aaya pehla analyst tha, February mein aaya, aur apni pehli subah mein usne Anaya se jo pehli baat kahi woh yeh thi: "Kripya mujhe bata do ki aap message text track nahi kar rahi." Woh lagbhag aahat hui aur usne kaha ki bilkul nahi. Karan ne kaha yeh achha hai, kyunki use har hafte yeh poochhna padega aur woh ek aise insaan se shuru karna chahta tha jo sahmat ho.
+Karan, project se judne wala pehla analyst, February mein aaya. Apne pehle din ki subah Anaya se usne sabse pehle yeh kaha: "Please bataiye ki aap message text track nahi kar rahi hain." Anaya ko lagbhag bura laga. Bilkul nahi, usne kaha. Karan ne kaha ki yeh achha hai. Use yeh baat har hafte poochhni padegi, aur woh shuru ek aise insaan se karna chahta tha jo sahmat ho.
 
-Yeh ek mazaak tha aur ek niyam bhi. Ek privacy tool jo yeh naapta ki woh kitna achha kaam karta hai us cheez ko record karke jise woh chhupa raha tha, apne aap ko ek hafte mein hara deta. Yeh chapter measurement ke pehle mahine ka anusaran karta hai, jisme Karan ka kaam mukhya roop se yeh saabit karna tha ki guard woh ginta tha jo log karte the, bina us cheez ka koi nishaan rakhe jo woh likhte the.
+Yeh mazaak tha, aur ek rule bhi. Jo privacy tool apna kaam yeh dekh kar naapta ho ki usne kya hide kiya, aur uske liye wohi record kare jo woh chhupa raha hai, woh ek hafte mein khud ko haraa deta. Yeh chapter measurement ke pehle mahine ke saath chalta hai. Karan ka kaam zyadatar yeh saabit karna tha ki guard yeh gin sakta hai ki log kya karte hain, bina yeh rakhe ki unhone likha kya.
 
 ## Case: bina record kiye naapna
 
-Neeche ke section ek ke baad ek mukhya number, un events ki list jo use khilati hai, us list ke views, aur ek aise test ko lete hain jo ek jawaan company chala nahi sakti thi.
+Neeche ke sections chaar cheezein ek-ek karke lete hain: main number, uska ghar banane wali events ki list, us list ke views, aur ek test jo ek jawaan company chala hi nahi sakti thi.
 
-## Ek number, aur uske neeche ke lever
+## Ek number, aur uske neeche ke levers
 
-April mein Anaya ne ek vaakya chuna tha jo batata tha ki guard kya value deta hai aur uske saath ek number: messages chat se is tarah nikalte hain ki unme kuch personal nahi bachta. Woh uska North Star tha. Woh achha tha, kyunki use gina ja sakta tha, par roz ke maarg-darshan ke liye bekaar tha.
+Spring mein Anaya ne ek sentence chuna tha jo batata tha ki guard kya value deta hai, aur uske saath ek number: messages chat se is tarah nikalte hain ki unmein kuch personal nahi bachta. Yeh uska North Star tha. Achha tha, kyunki ise gina ja sakta tha. Lekin roz ke raaste dikhane ke liye woh kaam ka nahi tha.
 
-Karan ne kaha ki North Star ko seedhe hilaya nahi ja sakta. Woh inputs ke zariye hilta hai, jo woh cheezein hain jo ek team is quarter badal sakti hai. Unhone teen likhe.
+Karan ne kaha ki North Star ko seedha hilaya nahi ja sakta. Woh inputs ke zariye hilta hai, yaani woh cheezein jinhe team is quarter badal sakti hai. Unhone teen likhe. Table mein har ek apne owner ke saath hai, aur dikhata hai ki woh North Star se kaise judta hai.
 
 Table: Teen input metrics
-| Input | Maalik | North Star se jod |
+| Input | Owner | North Star se link |
 | --- | --- | --- |
-| Naye integrations ka woh hissa jo pehle hafte ki jaanch paas karta hai | Ek naamit engineer | Ek integration jo kaam karta hai woh messages saaf karta hai |
-| Shak wale cases ka woh hissa jo ek insaan ek din ke andar review karta hai | Ek naamit support lead | Review kiye gaye cases sahi karwai ke saath khatam hote hain |
-| Una bhashaon ki ginti jo quality ki seema se upar naapi gayi hain | Anaya | Dhake hue bhashaon ke messages sahi saaf hote hain |
+| Naye integrations ka share jo pehle hafte ka check paas karte hain | Ek named engineer | Jo integration kaam karta hai woh messages saaf karta hai |
+| Unsure cases ka share jinhe ek insaan ek din ke andar review karta hai | Ek named support lead | Review kiye gaye cases sahi action par khatam hote hain |
+| Quality bar se upar naapi gayi languages ka count | Anaya | Covered languages ke messages sahi tarah saaf hote hain |
 
-Karan ne woh vaakya joda jise usne kaha ki uski pichhli naukri ko bachaya tha: agar koi input badhta hai aur North Star nahi, toh jod galat hai, aur yeh seekhna upyogi hai.
+Karan ne woh sentence jodha jisne, uske mutabik, uski pichhli job bachayi thi: agar koi input badhe aur North Star nahi, toh link galat hai, aur yeh jaanna ek kaam ki baat hai.
 
-## Hone wali cheezon ki ek list
+## Jo hota hai uski ek list
 
-Karan ne phir use woh kaha jise usne oobaau aur sabse zaroori hissa kaha. Ek product woh cheezein record karta hai jo hoti hain, jo events hain, aur jab tak koi convention nahi, chhe log ek hi event ko chhe tarah naam denge. Team ne jo convention chuna woh aam tha: pehle object, phir action, chhote akshar mein aur beete hue kaal mein. Poori list ek *event taxonomy* hai.
+Phir Karan ne woh hissa samjhaya jise woh boring kehta tha, aur jo sabse zaroori tha. Ek product jo hota hai use record karta hai. Inhe events kehte hain. Jab tak koi convention na ho, chhe log ek hi event ko chhe tareeke se naam denge.
+
+Team ne jo convention chuni, woh aam thi: pehle object, phir action, lower case mein aur past tense mein. Poori list *event taxonomy* hai. Neeche guard ki hai, har event ke saath woh sawaal jiska woh jawaab deta hai.
 
 Table: Guard ki event taxonomy
-| Event | Properties | Kaun sa sawaal hal karta hai |
+| Event | Properties | Kaunsa sawaal ka jawaab |
 | --- | --- | --- |
-| kit_installed | host project ki bhasha, version | Kitne developers mushkil kadam paar karte hain? |
-| message_checked | likhne ki kism, lambai ka band | Kitna traffic hai, aur kis likhawat mein? |
-| detail_found | detail ki kism | Guard asal mein kya pakad raha hai? |
-| detail_masked | detail ki kism, liya gaya action | Woh uske saath kya karta hai? |
-| review_requested | kaaran | Use kitni baar shak hota hai? |
-| restore_clicked | detail ki kism | Kya woh woh chhupa raha hai jo logon ko chahiye? |
-| badge_clicked | koi nahi | Kya growth loop ghoomta hai? |
+| kit_installed | host project ki language, version | Kitne developers mushkil step paar karte hain? |
+| message_checked | likhai ki kisam, length band | Kitna traffic hai, aur kaisi likhai mein? |
+| detail_found | detail ki kisam | Guard asal mein kya pakad raha hai? |
+| detail_masked | detail ki kisam, liya gaya action | Woh use ke saath kya karta hai? |
+| review_requested | wajah | Woh kitni baar unsure hota hai? |
+| restore_clicked | detail ki kisam | Kya woh woh cheezein hide kar raha hai jo logon ko chahiye? |
+| badge_clicked | koi nahi | Kya growth loop ghoom raha hai? |
 
-Anaya ne properties column ko neeche tak padha aur dekha ki har cell ek kism, ek band ya ek ginti thi. Koi bhi value nahi thi, aur koi bhi message, number ya naam ko phir se banane ke kaam nahi aa sakti thi. Karan ne samjhaya ki properties ek event mein byora jodti hain taaki nateeje baad mein baante ja sakein. Unhe zaroori cheezon tak seemit rakhna chahiye, aur unme kabhi text ya koi personal cheez nahi honi chahiye, na property mein aur na ek free-text notes field mein jise koi ek din bharega.
+Anaya ne properties column ko upar se neeche padha aur dekha ki har cell ek kisam, ek band ya ek count tha. Koi bhi value nahi thi. Isse koi message, number ya naam dobara nahi banaya ja sakta tha.
 
-::: key Pehchaan ko bhi wahi dhyaan chahiye
-Demonstration page par aane wale visitor ko ek anaam number se shuru kiya jaata tha. Jab woh sign up karta, toh number ek account se jod diya jaata taaki pehle ki visits uske itihaas ka hissa ban jaayein. Aur kyunki buyer companies the, har event company ka ek account number bhi leke chalta tha. Karan ne dekha ki buyer ko teams ki parwaah hoti hai, akele developers ki nahi, isliye analysis ko ek team dekhne mein sakshm hona chahiye.
+Karan ne wajah batayi. Properties ek event mein detail jodti hain, taaki baad mein results ko baanta ja sake. Unhe sirf utna rakhiye jitna chahiye. Aur unmein kabhi text ya koi personal cheez mat aane dijiye, na property mein, na kisi free-text notes field mein jise ek din koi bhar dega.
+
+::: key Identity ko bhi utni hi saavdhaani chahiye
+Demo page par aane wale visitor ko shuru mein ek anonymous number milta tha. Jab woh sign up karta, toh woh number ek account se jod diya jaata, taaki uske pehle ke visits uski history ka hissa ban jaayein. Aur kyunki buyers companies the, har event ke saath company ka ek account number bhi jaata tha. Karan ne dhyaan dilaya ki buyer ko teams ki parwaah hoti hai, akele developers ki nahi, isliye analysis ko ek team dikhni chahiye.
 :::
 
-Sab kuch ek saajhe document mein gaya, *tracking plan*, jo har event, uski properties, woh kab chalta hai aur kiska hai, yeh batata hai. Engineers use dekhkar banate hain aur analysts us par bharosa karte hain. Jis din use manzoor kiya gaya, Karan ka pehla kaam har event khud chalana tha aur pakka karna tha ki woh ek baar, sahi properties ke saath pahuncha, aur phir bane accounts ki ginti ko accounts table ki rows se milana. Woh mel khate the, jo saboot tha jo woh chahta tha. Kharab data ek chart par bilkul achhe data jaisa dikhta hai, usne kaha, aur jaanchna padta hai.
+Yeh sab ek shared document mein gaya, jise *tracking plan* kehte hain. Isme har event, uski properties, woh kab fire hota hai aur uska owner hota hai. Engineers isse banate hain, aur analysts isse maante hain.
 
-## Teen nazariye
+Plan jis din tay hua, Karan ne sabse pehle khud har event ko trigger kiya aur check kiya ki woh ek hi baar sahi properties ke saath pahunchta hai. Phir usne bane hue accounts ka count accounts table ki rows se milaya. Dono mel khaaye, jo uska saboot tha. Karan ne kaha ki kharab data chart par bilkul achhe data jaisa dikhta hai, isliye check karna padta hai.
 
-Teen nazariye zyadatar un sawaalon ka jawaab dete hain jo koi bhi poochhta hai. Ek funnel un users ka hissa dikhata hai jo har kadam poora karte hain, kram mein, aur isliye kahan woh gir jaate hain. *Cohort* un users ka samooh hai jo ek hi avadhi mein shuru hue, saath-saath dekhe gaye. Segment un users ka ek tukda hai jo koi property saajha karte hain, jaise woh kis kism ki likhawat sambhalte hain, jo dikhata hai ki product kiske liye theek hai.
+## Teen views
 
-Karan ne pehli retention table us hafte banayi jab use banane laayak data tha. Har row un teams ka ek cohort tha jo ek diye hafte mein shuru hui, aur har cell dikhata tha ki unme se kitni teams itne hafton baad bhi kit chala rahi hain.
+Teen views zyadatar sawaalon ka jawaab de dete hain. Ek funnel dikhata hai ki kitne users order mein har step poora karte hain, aur isliye kahan woh chhoot jaate hain. *Cohort* users ka woh group hai jisne ek hi period mein shuru kiya, aur jise saath-saath follow kiya jaata hai. Segment users ka ek hissa hai jinki koi property same ho, jaise woh kis kisam ki likhai sambhalte hain. Yeh dikhata hai ki product kise suit karta hai.
+
+Karan ne pehli retention table us hafte banayi jis hafte ise banane layak data ho gaya. Har row un teams ka ek cohort thi jinhone ek diye hue hafte mein shuru kiya tha. Har cell mein woh share tha jo itne hafte baad bhi kit chala raha tha.
 
 Table: Pehli retention table
-| Cohort | Teams | Hafta 1 | Hafta 2 | Hafta 4 | Hafta 8 |
+| Cohort | Teams | Week 1 | Week 2 | Week 4 | Week 8 |
 | --- | --- | --- | --- | --- | --- |
 | 5 Feb | 8 | 75% | 63% | 50% | 50% |
 | 12 Feb | 11 | 73% | 64% | 55% | |
 | 19 Feb | 9 | 78% | 67% | | |
 
-Usne use do tareekon se padhne ko kaha. Ek row ke aar-paar, pehli line pachaas percent par chapti ho gayi, jo ek sthayi istemaal sujhati hai. Ek column ke neeche, naye cohorts thoda behtar tike, jo sujhata hai ki January ke badlaav ne madad ki. Anaya ne poochha ki kya use ispar bharosa karna chahiye. Usne Teams column ki taraf ishaara kiya. Aath teams ke saath ek team baarah points se zyada hai. Baarah points ke jhool ko asar nahi kaha ja sakta, aur dono tareeke se padhne ke liye bharosa karne se pehle bahut zyada users chahiye. Usne sujhaya ki table deewar par laga do aur uske baare mein kuch mat kaho.
+Usne Anaya se ise do tareekon se padhne ko kaha. Row ke aar-paar, pehli line 50 percent par chapti ho gayi, jo ek tikne wale use ka signal hai. Column ke upar se neeche, naye cohorts thoda behtar tike, jo signal hai ki January mein kiye gaye badlaav se madad mili.
+
+Anaya ne poocha ki kya woh ise maanta hai. Karan ne Teams column ki taraf ishara kiya. 8 teams ke saath, ek team 12 points se zyada hai. 12 points ke jhoole ko effect nahi kaha ja sakta, aur dono readings ko bharose layak banne se pehle kaafi zyada users chahiye. Usne suggest kiya ki table ko deewar par laga dijiye aur uske baare mein kuch mat kahiye.
 
 ## Woh test jo woh chala nahi sakti thi
 
-Ek vichaar tha jiska Anaya intezaar kar rahi thi. Naye onboarding mein kit ek developer ko setup poora hone se pehle dikha sakta tha ki kya chhupaya jaayega. Use lagta tha ki isse zyada developers khatam karenge, aur woh is vichaar ko theek se test karna chahti thi.
+Ek idea tha jiske use karne ka Anaya intezaar kar rahi thi. Naye onboarding mein kit developer ko setup khatam hone se pehle dikha sakta tha ki kya hide hoga. Use laga ki isse zyada developers khatam karenge, aur woh is idea ko theek se test karna chahti thi.
 
-*A/B test* ek change ko users ke ek random aadhe hisse ko dikhata hai aur unki doosre aadhe se tulna karta hai. Random karna hi woh hai jo vaakya "badlaav ne antar paida kiya" ki ijaazat deta hai. Aur test shuru hone se pehle ek design likha jaana chahiye: sawaal, kise baanta jaata hai, mukhya number, ek guardrail, dhoondhne laayak sabse chhota badlaav, kitne users chahiye aur kab rukna hai.
+Sahi tool *A/B test* hai. Yeh badlaav ko users ke random aadhe hisse ko dikhata hai aur unhe baaki aadhe se compare karta hai. Random karna hi aapko "badlaav ne farq paida kiya" kehne deta hai. Test shuru hone se pehle ek design likhna padta hai. Usmein sawaal, kise baanta ja raha hai, main number, ek guardrail, sabse chhota badlaav jo pakadne layak hai, kitne users chahiye aur kab rukna hai, yeh sab hota hai.
 
-Dhoondhne laayak sabse chhota badlaav *minimum detectable effect* hai, aur woh baaki sab tay karta hai. Karan ne use haan-ya-nahi naap ke liye ek moti thumb rule di: har samooh mein chahiye users lagbhag solah guna dar guna (1 minus dar), jo dhoondhne laayak badlaav ke varg se bhaag diya gaya.
+Sabse chhota badlaav jo pakadne layak hai, woh *minimum detectable effect* hai, aur baaki sab isi se tay hota hai. Karan ne use haan-ya-na wale measure ke liye ek mota rule diya. Har group mein chahiye users lagbhag 16 guna rate guna uska complement, jisko pakadne layak badlaav ke square se baanta jaye.
 
-::: example Anaya ka sample-size ka hisaab
-Activation tees percent hai, aur woh jaanna chahti thi ki kya preview use chaalis tak le jaata hai. Solah guna 0.30 guna 0.70, 0.01 se bhaag diya (das points ke badlaav ka varg), har samooh mein 336, yaani kul 672 deta hai. Company ko mahine mein lagbhag chaalis nayi teams milti hain. Us dar par test mein lagbhag dedh saal lagta.
+::: example Anaya ka sample-size hisaab
+Activation 30 percent hai, aur woh jaanna chahti thi ki kya preview use 40 tak le jaata hai. 16 guna 0.30 guna 0.70, ko 0.01 se baantiye (10 points ka badlaav, square kiya hua), toh har group mein 336 aata hai, yaani kul 672. Company mein mahine mein lagbhag 40 nayi teams aati hain. Is raftaar se test mein lagbhag derh saal lagta.
 :::
 
-Karan ne kaha ki yeh imaandaar jawaab tha. Ek shuruaati company ke paas chaalis accounts hote hain, do hazaar nahi, aur woh yeh test nahi chala sakti. Woh yeh kehti hai, aur phir doosra saboot istemaal karti hai: paanch developers ko feature istemaal karte dekhna, pehle aur baad ki saavdhaani se tulna karna, bade asar dhoondhna, aur kehna ki saboot kamzor hai. Bahut chhota test, apne nateeje ki report ke saath, test na karne se bura hai, kyunki woh shor ko khabar ki tarah report karta hai.
+Karan ne kaha ki yehi imaandaar jawaab tha. Ek early company ke paas 40 accounts hote hain, 2,000 nahi, aur woh yeh test nahi chala sakti. Woh yeh bolti hai, aur phir doosra saboot use karti hai. Woh paanch developers ko feature use karte dekhti hai. Woh before aur after ko saavdhaani se compare karti hai. Woh bade effects dhoondhti hai, aur saaf kehti hai ki saboot kamzor hai. Bahut chhota test, jiska result report kiya jaye, bina test se bhi bura hai, kyunki woh shor ko khabar bana deta hai.
 
-Anaya ne us hafte paanch developers ke saath observation chalayi. Chaar ne preview ke saath poora kiya. Jin paanch ne puraane flow ka istemaal kiya tha unme se teen ne kiya tha. Yeh saboot nahi tha, aur usne ise ek sanket ki tarah chinhit kiya.
+Anaya ne us hafte paanch developers ke saath observation chalaya. Chaar ne preview ke saath khatam kiya. Purane flow wale paanch mein se teen ne kiya tha. Yeh saboot nahi tha, aur usne ise ek signal ke taur par label kiya.
 
 ## X ka matlab Y kyun nahi
 
-Ek aur chetavni March mein ek achhe lagne wale pattern ke roop mein aayi. Jo teams ek din ke andar shak wale cases ka review karti thi woh aath hafte baad kit istemaal karte rehne ki kahin zyada sambhavna rakhti thi. Anaya maanna chahti thi ki review unhe rokta hai. Karan ne kaha ki shaayad, ya shaayad jo teams review karne ki parwaah karti hain woh waise bhi tik jaati, kyunki lagi hui teams dono karti hain. Sirf ek random test kaaran dikhata hai, aur baaki sab ek aisa pattern hai jise test karna chahiye. Usne use ek vaakya diya: jo teams X karti hain woh Y bhi karti hain, aur "kyunki" kabhi nahi.
+March mein ek aur chetavni aayi, ek achhe lagne wale pattern ke roop mein. Jin teams ne unsure cases ek din ke andar review kiye, woh 8 hafte baad bhi kit use karti rahi hone ke kahin zyada chance mein thi. Anaya maanna chahti thi ki review ne unhe roka.
 
-Usne do records ko alag bhi rakha jinhe log aksar milate hain. Product events record karte hain ki logon ne kya kiya. Models ke vyavhaar ke records, unke traces, timings aur scores, record karte hain ki system ne kya kiya. Usne unhe ek saajhe request number se joda, taaki koi ek se doosre par ja sake aur unhe kabhi mila na de.
+Karan ne kaha ki shayad. Ya shayad yeh ho ki jo teams review ki parwaah karti hain, woh waise bhi tik jaati, kyunki engaged teams dono karti hain. Cause sirf ek randomised test dikhata hai. Baaki sab ek pattern hai jise test karna chahiye. Usne use woh sentence diya jo use bolna chahiye: jo teams X karti hain, woh Y bhi karti hain. "Kyunki" kabhi nahi.
 
-## Saaraansh
+Usne do records ko bhi alag rakha jinhe log aksar jod dete hain. Product events record karte hain ki logon ne kya kiya. Models ne kaise behave kiya, iske records, yaani traces, timings aur scores, record karte hain ki system ne kya kiya. Usne unhe ek shared request number se joda, taaki koi bhi ek se doosre par ja sake bina unhe mila diye.
 
-North Star ko seedhe nahi hilaya ja sakta. Woh input metrics ke zariye hilta hai jinka maalik ek naamit team hai, aur agar ek input badhta hai aur mukhya number nahi, toh jod galat hai.
+## Saar
 
-- Ek product jo record karta hai woh ek hi naam ke niyam ko maane aur ek tracking plan mein likha jaaye. Properties ek kism ya ginti rakhti hain, content kabhi nahi, aur jab buyer companies hon toh ek account pehchaan ek user pehchaan ke saath hoti hai.
-- Funnels dikhate hain ki log kahan girte hain, cohorts un groups ko follow karte hain jo saath shuru hue, aur ek retention table par bharosa karne se pehle kaafi teams chahiye.
-- A/B test ko ek minimum detectable effect aur use dhoondhne laayak kaafi bada sample chahiye. Ek shuruaati company aksar ek nahi chala sakti, aur use yeh kehna chahiye.
-- Data ko maanne se pehle jaancha jaana chahiye, aur ek pattern jisme log jo ek kaam karte hain woh doosra bhi karte hain yeh saboot nahi hai ki ek doosre ka kaaran hai.
+North Star ko seedha hilaya nahi ja sakta. Woh input metrics se hilta hai jinka ek named team owner ho. Agar koi input badhe aur main number nahi, toh link galat hai.
+
+- Jo product record karta hai, woh ek hi naming rule follow kare aur ek tracking plan mein likha ho. Properties mein kisam ya count jaata hai, content kabhi nahi. Jab buyers companies hon, toh plan mein user identity ke saath account identity bhi hoti hai.
+- Funnels dikhate hain ki log kahan chhoot jaate hain, cohorts un groups ko follow karte hain jinhone saath shuru kiya, aur retention table par bharosa karne se pehle kaafi teams chahiye.
+- A/B test ko ek minimum detectable effect aur itna bada sample chahiye jo use pakad sake. Ek early company aksar ek nahi chala sakti, aur use yeh kehna chahiye.
+- Data ko maanne se pehle check kijiye. Aisa pattern jisme log ek kaam karte hain aur doosra bhi, yeh saboot nahi ki ek doosre ka cause hai.
+
+Ginne ke liye tools chahiye. Agla chapter un tools ko dekhta hai jinke saath ek team asal mein kaam karti hai.

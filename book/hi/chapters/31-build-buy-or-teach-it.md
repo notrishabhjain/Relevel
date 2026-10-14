@@ -1,102 +1,114 @@
 ---
 title: Banao, Kharido Ya Sikhao
-summary: Ek vendor team ko woh bechne ki peshkash karta hai jo usne chhe mahine mein banaya, aur ek founder apna model train karne ka prastaav rakhta hai. Dono prastaav samajhdaar lagte hain, aur dono ko ek hi test paas karna hai. Chapter AI value chain, open-weight models, fine-tuning aur lock-in samjhata hai.
+summary: Ek vendor team ko woh bechne aaya jo team ne chhe mahine mein khud banaya hai, aur ek founder ne suggest kiya ki apna model hi train kar lo. Dono idea samajhdaar lagte hain, aur dono ko ek hi test paas karna hai. Chapter mein AI value chain, open-weight models, fine-tuning aur lock-in samjhenge.
 course: ch185 ch19
 goals:
-  - vendor ke dawe ko uske product ko apni answer key par chalakar parakhna
-  - banane ya khareedne ka faisla chaar sawaalon se karna, aur woh shartein likhna jo use palat dengi
-  - AI value chain ki parton ka varnan karna aur batana ki product ka phayda kahan hai
-  - failures ko chaar kismon mein baantna aur samjhana ki fine-tuning behaviour sikhati hai, tathya nahi
+  - vendor ke dave ko parakhna, uske product ko apni answer key par chala kar
+  - chaar sawaalon se tay karna ki banana hai ya kharidna, aur woh shartein likhna jo faisla palat dengi
+  - AI value chain ki layers batana, aur yeh ki product ka advantage kahan hota hai
+  - failures ko chaar kism mein baantna, aur samjhana ki fine-tuning behaviour sikhati hai, facts nahi
 terms:
-  - AI value chain | un layers ki shrinkhala jin par ek AI product bana hota hai: infrastructure, models, tooling aur, sabse upar, woh applications jo log istemaal karte hain; har layer ka fayda kisi alag cheez se aata hai | value chain
-  - open-weight model | aisa model jiske weights prakashit hain, taaki aap use download karke apne computers par chala sakein, kisi aur ka bulane ki jagah | open-weight models, open-weight
-  - fine-tuning | model ko aapke apne udaharanon par aur train karna, taaki woh ek jaise tareeke se behave kare; yeh vyavahaar sikhata hai, tathya nahi | fine-tune, fine-tuned
-  - lock-in | ek provider se bandh jaana kyunki chhodna bahut mehnga padega, dobara likhne, dobara naapne ya khoye hue features mein | 
+  - AI value chain | un layers ka silsila jin par ek AI product bana hota hai: infrastructure, models, tooling aur sabse upar woh applications jo log use karte hain; har layer ka advantage kisi alag cheez se aata hai | value chain
+  - open-weight model | aisa model jiske weights publish kiye gaye hain, taaki aap use download karke apne computers par chala sakein, kisi aur ka model call karne ke bajaay | open-weight models, open-weight
+  - fine-tuning | model ko aapke apne examples par aur train karna, taaki woh ek jaise tareeke se behave kare; yeh behaviour sikhata hai, facts nahi | fine-tune, fine-tuned
+  - lock-in | ek hi provider se bandh jaana, kyunki chhodna bahut mehnga padega: dobara likhna, dobara naapna, ya features kho dena | 
 ---
 
-August ke teesre hafte mein VaultLeaf naam ke ek vendor ne Sahaj mein do log bheje, ek salesman aur ek engineer. Imran Qureshi ne kaha ki do bhejna ek achha sanket hai, aur Lakshmi Iyer ne kaha ki yeh ek bura sanket hai. VaultLeaf aisa software bechta tha jo text mein personal data dhoondhta aur chhupata tha, aur woh banks ko bechta tha. Uska pitch chamakdaar tha: graphs wala console, ek slide par ek certificate, vaada ki woh teen hafte mein Sahaj mein chalne lagega, aur ninyaanve percent ki accuracy.
+August ke teesre hafte mein VaultLeaf naam ke ek vendor ne Sahaj mein do log bheje: ek salesman aur ek engineer. Imran Qureshi ne kaha, do logon ka aana achha sanket hai. Lakshmi Iyer ne kaha, balki yeh bura sanket hai.
 
-Anaya ne poochha ki ninyaanve percent kis par naapa gaya hai. Engineer ne, jo is sawaal ki ummeed mein lagta tha, kaha ki VaultLeaf ke apne benchmark par. Usne poochha ki kya Sahaj product ko apne par chalaa sakta hai.
+VaultLeaf aisa software bechta tha jo text mein personal data dhoondh kar chhupa deta hai, aur woh banks ko bechta tha. Pitch bahut polished thi. Graphs wala ek console tha, aur slide par ek certificate. Vaada tha ki teen hafte mein Sahaj mein chalne lagega, 99 percent accuracy ke saath.
 
-## Case: sab ke liye wahi test
+Anaya ne poochha ki yeh 99 percent kis cheez ke against naapa gaya hai. Engineer ko lag raha tha ki yeh sawaal aayega. Usne bataya, VaultLeaf ke apne benchmark ke against. Toh Anaya ne poochha, kya Sahaj product ko apne benchmark par chala kar dekh sakta hai?
 
-Jab koi woh bechne ka prastaav rakhta hai jo team bana sakti thi, toh sabse pehle yahi karna chahiye, aur zyadatar kharidaar ise chhod dete hain. Charcha aam taur par daam aur demonstration par ghoomti hai, aur dono faisla nahi karte. Faisla is baat se hota hai ki vendor ke product ko usi tarah naapa jaye jaise koi apna product naapta: team ki answer key par, team ke text par.
+## Case: sab ke liye ek hi test
 
-VaultLeaf ne, aise andaaz mein jisse lagta tha ki woh aisa aksar nahi karta, do sau chaar rows chalane ko maan liya. Ek hafte baad figure wapas aaye. English pehchaan ke numbers par woh bahut achha tha, guard se thoda behtar. Hinglish naamon par, jis kaam ke liye guard bana tha, woh sau mein baasath dhoondh paya. Devanagari lipi mein Hindi par woh aur kharab tha, aur shabdon mein likhe number ko sambhaalne ka usme koi tareeka nahi tha. Salesman ko aashchary nahi hua, aur usne kaha ki company ke customers zyadatar English-first the. Anaya ne jawaab diya ki Sahaj ke nahi hain.
+Jab koi aapko woh bechne aaye jo aapki team khud bana sakti hai, toh sabse pehle yahi karna chahiye. Aur yahi cheez zyadatar khareedne wale chhod dete hain. Baat aam taur par price aur demonstration par ghoomti hai, aur in dono se faisla nahi hota. Faisla is se hota hai ki vendor ke product ko waise hi naapa jaaye jaise aap apna naapte: apni answer key par, apne tarah ke text par.
 
-Jawaab mein ek doosra jawaab tha, aur Lakshmi ne use teen baar padha. Maanak product text ko VaultLeaf ke cloud mein process karne ke liye bhejta tha, India ke bahar ke ek region mein. Ek private deployment, jo Sahaj ke apne systems ke andar chalti, lagbhag teen guna daam par uplabdh thi.
+VaultLeaf 204 rows chalane ko maan gaya. Lekin us tareeke se jisse lagta tha ki woh yeh aksar nahi karta. Ek hafte baad figures aaye.
+
+English identity numbers par woh bahut achha tha, guard se thoda behtar. Hinglish names par, jis cheez ke liye guard bana tha, woh 100 mein 62 pakad paaya. Devanagari script mein Hindi par aur kharab tha, aur shabdon mein likhe number ko sambhalne ka uske paas koi tareeka nahi tha. Salesman ko hairani nahi hui. Usne kaha ki company ke zyadatar customers English-first hain. Anaya ne kaha, Sahaj ke nahi hain.
+
+Reply mein ek doosra jawaab bhi tha, jise Lakshmi ne teen baar padha. Standard product text ko VaultLeaf ke cloud par process karne bhejta tha, India ke bahar ke ek region mein. Ek private deployment, jo Sahaj ke apne systems ke andar chalti, available thi, lagbhag teen guna price par.
 
 ## Aap asal mein kya khareed rahe hain
 
-Imran shaant tha. Vendor theek hai, usne kaha, jab tak sab samjhein ki paise kis cheez ke liye hain. Aam taur par model nahi khareeda jaata, kyunki zyadatar vendors wahi models istemaal karte hain. Aap connectors, permissions, kisne kya kiya uska record, ek support contract, aur woh insaan khareed rahe hain jo raat ko do baje khaaye jaane par bistar se uthta hai. Woh aakhri cheez aam taur par licence se zyada keemti hoti hai aur aam taur par hisaab se chhoot jaati hai.
+Imran shaant raha. Usne kaha, vendor theek hai, bas sabko pata ho ki paise kis cheez ke hain. Aap model shayad hi khareedte hain, kyunki zyadatar vendors wahi models use karte hain. Aap connectors khareedte hain, permissions, kisne kya kiya uska record, ek support contract, aur ek insaan jo raat ke do baje utha jab kuch toot jaaye. Yeh aakhri cheez aksar licence se zyada keemti hoti hai. Aur aksar hisaab se bahar rakh di jaati hai.
 
-Usne board par chaar sawaal likhe, jo uske anubhav mein faisla karte hain.
+Usne board par chaar sawaal likhe. Uske tajurbe mein, faisla inhi se hota hai.
 
-Table: Banao ya kharido ke chaar sawaal, Sahaj ke jawaabon ke saath
+Table: Build ya buy ke chaar sawaal, aur Sahaj ke jawaab
 | Sawaal | Sahaj ka jawaab |
 | --- | --- |
-| Kya yeh woh cheez hai jiske liye product bana hai, ya yeh plumbing hai? | Hinglish mein personal details dhoondhna poore case ka aadhaar hai, isliye Sahaj ko ise apna rakhna chahiye |
-| Ise kitni baar badalna padega? | Lagaataar, kyunki answer key har hafte badhti hai aur failures asli customers se aati hain |
-| Raat ko do baje kaun jaaga hai? | Abhi koi nahi. Koi plan nahi tha, jo jaanna upyogi tha |
-| Agar vendor khareed liya jaaye ya band ho jaaye toh kya hoga? | VaultLeaf mein koi nahi bata sakta tha ki use chhodne mein kya lagega |
+| Product isi kaam ke liye hai, ya yeh plumbing hai? | Hinglish mein personal details dhoondhna poore case ki neev hai, isliye Sahaj ko isse apna rakhna chahiye |
+| Ise kitni baar badalna padega? | Lagatar, kyunki answer key har hafte badhti hai aur failures asli customers se aati hain |
+| Raat ke do baje kaun jaaga hoga? | Abhi tak koi nahi. Koi plan tha hi nahi, jise jaanna zaroori tha |
+| Vendor bik jaaye ya band ho jaaye toh kya hoga? | VaultLeaf mein koi nahi bata paya ki chhodne mein kya lagega |
 
-Team ne ek hi kaagaz par do saal ke andaaze banaye. Private deployment khareedna lagbhag ₹58 lakh ka aaya. Guard ko banana aur chalana lagbhag ₹71 lakh ka. Antar itna chhota tha ki dono taraf behas ki ja sake, aur jo tay hua woh hisaab nahi tha. Imran ka niyam tha plumbing khareedo aur product ko alag banane wala hissa khud banao.
+Phir team ne ek sheet par do saal ke estimates banaye. Private deployment kharidna lagbhag ₹58 lakh aaya. Guard ko banana aur chalana lagbhag ₹71 lakh. Farq itna chhota tha ki dono taraf bahas ho sakti thi, isliye hisaab ne faisla nahi kiya. Imran ke rule ne kiya: plumbing kharido, aur woh hissa banao jo product ko alag banata hai.
 
-Yojna yeh thi ki finder, answer key aur scoreboard khud banaye jaayein, aur sirf commodity cheezein kiraye par li jaayein: India ke ek region mein models ki hosting, aur logs ke liye ek off-the-shelf console. Kuch bhi sign karne se pehle Anaya ne woh likha jo usne likhna seekha tha.
+Plan yeh bana ki finder, answer key aur scoreboard khud banenge. Sirf commodity cheezein kiraye par lenge: India ke ek region mein models ki hosting, aur logs ke liye ek off-the-shelf console. Kuch bhi sign karne se pehle Anaya ne woh likha jo likhna usne seekha tha.
 
-::: example Tareekh wala faisla
-Main khareedne par badal jaungi agar VaultLeaf hamari key par Hinglish naamon par nabbe tak pahunchta hai, ya agar upkeep ek insaan ke samay ke paanchve hisse se zyada par aati hai. Main zyada banane par badal jaungi agar agle tier par daam badhta hai. 1 December ko review.
+::: example Ek date wala faisla
+Main kharidne par tab aaungi agar VaultLeaf hamari key par Hinglish names mein 90 tak pahunch jaaye, ya agar upkeep ka bojh ek insaan par uske time ke ek paanchve hisse se zyada pade. Main aur zyada banane ki taraf tab jaungi agar agle tier par price badhe. Review 1 December ko.
 :::
 
-Tareekh wala faisla, usne paaya, bina tareekh wale se kahin aasaani se palta ja sakta hai.
+Usne dekha tha ki jis faisle par date likhi ho, use palatna us se bahut aasaan hai jis par nahi likhi.
 
 ## Product ke neeche kya hai
 
-Meeting se lautte hue Anaya ne Imran se ek sawaal poochha jo March se uske dimaag mein tha: kya hum un logon se muqabla kar rahe hain jo bade models banate hain? Woh mithai ki dukaan ke saamne ruka aur dukaan ke maalik se udhaar liye pen se ek invoice ke peechhe jawaab banaya.
+Wapas chalte hue Anaya ne Imran se woh sawaal poochha jo woh March se dil mein liye ghoom rahi thi. Kya hum un logon se muqabla kar rahe hain jo bade models banate hain? Imran mithai ki dukaan ke saamne ruk gaya. Phir usne dukaan ke malik se pen udhaar liya aur ek invoice ke peeche jawaab bana diya.
 
-AI products parton mein bante hain, har ek apne neeche wale par tika. Poora stack *AI value chain* hai, aur har part ka phayda alag cheez se aata hai.
+AI products layers mein bante hain, aur har layer neeche wali par tiki hoti hai. Poore stack ko **AI value chain** kehte hain. Har layer ka advantage kisi alag cheez se aata hai.
 
-Table: AI value chain ki parton
-| Part | Yeh kya hai | Iska phayda kahan se aata hai |
+Table: AI value chain ki layers
+| Layer | Yeh kya hai | Advantage kahan se aata hai |
 | --- | --- | --- |
-| Infrastructure | Computers, chips aur cloud | Maatra aur paisa |
-| Models | Kuch un companies ke jo access bechti hain, kuch khule roop se chhode gaye | Maatra aur paisa |
-| Tooling | Matlab ke naqshe ke liye stores, jaanch aur tracking ke saadhan | Maatra aur paisa, aur istemaal mein aasaani |
-| Applications | Jo log asal mein istemaal karte hain | Workflow, data aur bharosa |
+| Infrastructure | Computers, chips aur cloud | Scale aur paisa |
+| Models | Kuch un companies ke jo access bechti hain, kuch openly released | Scale aur paisa |
+| Tooling | Meaning ke maps ke stores, testing aur tracking ke instruments | Scale aur paisa, aur use karne mein aasaani |
+| Applications | Jo log asal mein use karte hain | Workflow, data aur bharosa |
 
-Zyadatar teams, Imran ne kaha, sabse upar rehti hain, aur sabse upar model phayda nahi hai, kyunki competitors wahi model usi darwaaze se bula sakte hain. Jo nakal karna mushkil hai woh yeh hai ki product kisi ke kaam mein kitna gehra ghula hai, aur aisa data jo kisi aur ke paas nahi. Anaya ne corrections ka naam liya: jab bhi Farah ka koi agent "guard ne woh chhupa diya jo mujhe chahiye tha" dabata hai, team kuch aisa seekhti hai jo kisi competitor ko nahi pata. Yeh tabhi sach hai jab data anokha ho, product ko behtar banaye aur paana mushkil ho. Jis data ke phayde mein inme se koi bhi kami ho woh ek kahani hai.
+Imran ne kaha, zyadatar teams sabse upar rehti hain. Aur upar model advantage nahi hota, kyunki competitors wahi model usi darwaze se call kar sakte hain. Jo copy karna mushkil hai, woh yeh hai ki product kisi ke kaam mein kitna gehra utra hua hai, aur woh data jo kisi aur ke paas nahi.
 
-Kuch models sabke liye khule hain. *Open-weight model* ke weights chhape hote hain, isliye use download karke apne computers par chalaya ja sakta hai, kisi aur ko bulane ke bajaye. Woh aam taur par sabse achhe closed models se thode peechhe hote hain. Woh data kahan jaata hai aur kitna kharcha hota hai us par zyada niyantran dete hain, aur uski keemat hosting aur upkeep mein chukayi jaati hai. Jis company ne vaada kiya hai ki kisi customer ka vaakya building se kabhi bahar nahi jaayega, uske liye yeh aasaan chunaav tha, aur isne Anaya ki specification ke hashiye ke sawaal ka jawaab diya: saavdhaan judge ek open-weight model hoga, jo Sahaj ke apne servers par chalega.
+Anaya ne corrections ka example liya. Jab bhi Farah ka koi agent "guard ne woh chhupa diya jo mujhe chahiye tha" dabata hai, team ko kuch aisa pata chalta hai jo kisi competitor ko nahi pata. Lekin yeh tabhi sach hai jab data unique ho, product ko behtar banaye, aur mushkil se mile. Jis data advantage mein in teeno mein se koi ek kam ho, woh bas ek kahani hai.
 
-Imran ne ek shabd joda jisne vendor ke office mein bahut bojh uthaya tha. *Lock-in* ek hi provider se bandhe hona hai kyunki chhodna bahut mehnga hoga, dobara likhne, dobara naapne ya khoye hue features mein. Ilaaj answer key mein hai: agar test set kisi vendor par nirbhar nahi karta, toh badalne mein kuch din lagte hain.
+Kuch models sabke liye khule hain. **Open-weight model** ke weights publish hote hain. Aap use download karke apne computers par chala sakte hain, kisi aur ka model call karne ke bajaay. Yeh models aam taur par sabse achhe closed models se thoda peeche hote hain. Badle mein, data kahan jaata hai aur cost kitni hai, is par aapka control zyada hota hai. Iski keemat aap hosting aur upkeep mein dete hain.
 
-## Use sikhao
+Jis company ne vaada kiya ho ki customer ka ek bhi sentence building ke bahar nahi jaayega, uske liye yeh chunaav aasaan tha. Isse Anaya ki specification ke margin wale sawaal ka jawaab bhi mil gaya. Saavdhaan judge ek open-weight model hoga, jo Sahaj ke apne servers par chalega.
 
-Monday ko founder, Mr. Bhatia, ne Anaya ko galiyare mein roka. Usne ek plane mein kuch padha tha. Usne poochha ki company Hinglish par apna model train kyun nahi karti: sab yahi kar rahe hain, aur woh Sahaj ka apna hoga. Har team se yeh sawaal poochha jaata hai, aam taur par planning meeting mein aur aam taur par pehle ki kisi ne bataya ho ki galat kya hai. Haan kehne se ek quarter bandh jaata hai, aur na kehna mahatvakanksha-heen lagta hai. Anaya ne Friday tak jawaab dene ka vaada kiya.
+Phir Imran ne ek shabd joda, jisne vendor ke office mein bahut wazan uthaya tha. **Lock-in** matlab ek hi provider se bandh jaana, kyunki chhodna bahut mehnga padega: dobara likhna, dobara naapna, ya features kho dena. Iska ilaaj answer key mein hai. Agar aapka test set kisi vendor par nirbhar nahi, toh switch karne mein kuch din lagte hain.
 
-Vichaar hai *fine-tuning*: ek maujooda model ko apne udaharanon par aur train karna. Yeh us model ki taraf ka swaabhaavik raasta lagta hai jo company ki duniya jaanta ho. Anaya ke paas woh ek cheez thi jo sawaal ko jawaab dene laayak banati hai, jo June ki ikatees failures ki list thi unki ginti ke saath. Usne har ek ko chaar kismon mein se ek mein rakha, kyunki chaar hain, aur har ek ka ilaaj alag hai.
+## Sikhaya jaaye
 
-Table: Failure ki chaar kisme aur unke ilaaj
-| Failure ki kism | Matlab | Sahaj ki ginti aur ilaaj |
+Monday ko founder, Mr. Bhatia, ne corridor mein Anaya ko roka. Unhone plane mein kuch padha tha. Company Hinglish par apna model train kyun nahi kar leti? Sab kar rahe hain, aur woh Sahaj ka apna hoga.
+
+Har team se yeh poochha jaata hai, aksar planning meeting mein, aur aksar tab jab kisi ne abhi bataya bhi nahi ki galat kya hai. Haan kehne par ek poori quarter lag jaati hai. Na kehna unambitious lagta hai. Anaya ne Friday tak jawaab dene ka vaada kiya.
+
+Is idea ka naam hai **fine-tuning**. Aap ek maujooda model lete hain aur use apne examples par aur train karte hain. Yeh aisa model paane ka seedha raasta lagta hai jo company ki duniya jaanta ho.
+
+Anaya ke paas woh ek cheez thi jisse yeh sawaal suljh sakta tha: June ki ikatees failures ki list, unki counts ke saath. Usne har ek ko chaar kismon mein se ek mein daala. Chaar isliye, kyunki har kism ka ilaaj alag hota hai.
+
+Table: Failure ki chaar kismein aur unke ilaaj
+| Failure ki kism | Matlab | Sahaj ki count aur ilaaj |
 | --- | --- | --- |
-| Machine ko pata nahi | Jawaab ghaayab hai, puraana hai ya gadha hua | Ikatees mein se koi nahi. Order numbers saboot ki samasya the, jise look-up ne hal kiya |
-| Use pata hai par vyavhaar galat | Content sahi hai par format ya niyam galat | "ji" ke saath aath naam: machine ko ya rivaaz dikhaya nahi gaya tha, aur ek worked example ne zyadatar ko ek dopahar mein theek kar diya. Aadhe chhupe pate bhi format the |
-| Woh nikaal nahi paati | Kai kadam, ya asli uljhan | Do lines mein tute numbers, jo kaatne ke niyam ke the, machine ke nahi |
-| Sahi hai par bahut mehnga | Jawaab sahi hai aur daam galat | Abhi samasya nahi |
+| Machine ko pata nahi | Jawaab missing hai, purana hai ya banaya hua hai | Ikatees mein se ek bhi nahi. Order numbers evidence ki problem the, jo lookup se suljhi |
+| Pata hai, par behave galat karti hai | Content sahi hai lekin format ya rule galat hai | Woh aath naam jinke baad "ji" aata hai: machine ko yeh convention dikhayi hi nahi gayi thi, aur ek worked example ne zyadatar ek dopahar mein theek kar diye. Aadhe chhupe addresses bhi format ki problem the |
+| Khud nikaal nahi paati | Kai steps, ya asli ambiguity | Lines mein toote hue numbers, jo cutting rule ki problem thi, machine ki nahi |
+| Sahi hai par bahut mehngi | Jawaab sahi hai aur price galat | Abhi problem nahi |
 
-Mr. Bhatia ko Friday ko uska jawaab yeh tha ki fine-tuning behaviour sikhati hai, tathya nahi. Agar shikayat yeh hoti ki model Sahaj ki policy nahi jaanta, toh woh galat tool hota. Sahaj ki shikayatein vyavhaar thi, aur team ne abhi sasti upaay nahi aazmaaye the, jinme se pehle do ghanton mein palte ja sakte the.
+Friday ko Mr. Bhatia ko uska jawaab yeh tha ki fine-tuning behaviour sikhati hai, facts nahi. Agar shikayat yeh hoti ki model Sahaj ki policy nahi jaanta, toh fine-tuning galat tool hota. Lekin Sahaj ki shikayatein behaviours ki thi. Aur team ne abhi sasta ilaaj try hi nahi kiya tha. Pehle do cheezein ghanton mein undo ho sakte the.
 
-Usne woh kharche bhi ginaye jo prastaav chhod dete hain. Kisi ko udaharan banane aur unhe taaza rakhne padte hain. Pehle ek test set chahiye, nahi toh koi nahi bata sakta ki tuning ne madad ki, aur woh kabhi un udaharanon jaisa nahi hona chahiye jinse model ne seekha. Har baar jab base model retire hota hai tuning dobara karni padti hai. Aur sudhaar ek provider ke system ke andar rehta hai, instructions aur index mein nahi, jo lock-in ka ek roop hai.
+Usne woh costs bhi gini jo proposals chhod dete hain. Kisi ko examples banane padenge aur unhe current rakhna padega. Pehle ek test set chahiye, warna koi nahi bata sakta ki tuning se madad mili ya nahi, aur woh test set kabhi bhi un examples jaisa nahi hona chahiye jin se model ne seekha. Har baar base model retire hone par tuning dobara karni padegi. Aur sudhar ek hi provider ke system ke andar rehta hai, instructions aur index mein nahi. Yeh bhi lock-in ka ek roop hai.
 
-Mr. Bhatia ne poochha ki kya jawaab na hai. Woh "abhi nahi" hai, usne kaha, is kram mein: instructions, phir saboot, phir ek chhota model, phir fine-tuning. Agar pehle teen ke baad bhi "ji" wale naam fail hote hain, toh team model ko sikhayegi, aur woh jaanegi, kyunki uske paas ek key hai.
+Mr. Bhatia ne poochha, kya jawaab na hai? Anaya ne kaha, "abhi nahi", aur order bataya: pehle instructions, phir evidence, phir ek chhota model, phir fine-tuning. Agar "ji" wale naam pehle teen ke baad bhi fail hote rahe, toh team model ko sikhayegi. Aur use pata chal jaayega, kyunki uske paas key hai.
 
-Chhota model woh vikalp tha jis par Anaya ne bahut kam socha tha, aur Imran use sabse zyada maayne rakhne wala maanta tha. Ek sasta, tez, sankra model jo andar chalta hai, aksar aise feature ka arthshaastra tay karta hai jisme maatra zyada ho aur kaam sankra ho, aur chhote messages mein naam dhoondhna bilkul aisa hi kaam tha.
+Chhota model woh option tha jis par usne bas halka sa socha tha. Imran ko lagta tha ki sabse zyada zaroori wahi ho sakta hai. Ek sasta, tez, narrow model, jo in-house chalta ho, aksar us feature ki economics tay kar deta hai jiska volume bada ho aur kaam narrow ho. Chhote messages mein naam dhoondhna bilkul aisa hi kaam tha.
 
 ## Saaraansh
 
-Jab koi woh bechne ka prastaav rakhta hai jo team bana sakti thi, toh na daam faisla karta hai na demonstration. Vendor ke product ko team ki apni answer key par naapna faisla karta hai, aur chaar sawaal bhi: kya yeh product ke kaam ka kendra hai, ise kitni baar badalna padega, jab yeh tootega toh kaun jaaga hoga, aur ise chhodne mein kya lagega.
+Jab koi woh bechne aaye jo aapki team khud bana sakti hai, toh na price faisla karta hai na demonstration. Faisla is se hota hai ki vendor ke product ko apni answer key par naapa jaaye. Aur chaar sawaalon se: kya yeh product ke kaam ka core hai, ise kitni baar badalna padega, toote toh kaun jaagega, aur chhodne mein kya lagega?
 
-- Achha jawaab aksar plumbing khareedna aur product ko alag banane wala hissa khud banana hota hai, un wajahon ko, tareekh ke saath, likhkar jo faisla palat denge.
-- AI value chain ke upar model shayad hi phayda hota hai. Anokha data, workflow aur bharosa hota hai.
-- Open-weight model company ki apni machines par chalaya ja sakta hai. Lock-in ek keemat hai jise naapna chahiye.
-- Jab model kam pade, toh failure ki chaar kismon mein antar karna padta hai. Fine-tuning behaviour sikhati hai, tathya nahi, instructions, saboot aur ek chhote model ke baad aati hai, aur use ek alag test set chahiye.
+- Aksar achha jawaab yeh hota hai ki plumbing kharido aur woh hissa banao jo product ko alag banata hai. Woh wajahein date ke saath likh lo jo faisla palat dengi.
+- AI value chain ke upar model shayad hi advantage hota hai. Unique data, workflow aur bharosa hota hai.
+- Open-weight model company ki apni machines par chalaya ja sakta hai. Lock-in ek cost hai, jise naapna chahiye.
+- Jab model kam pade, toh failure ki chaar kismon ko alag pehchaniye. Fine-tuning behaviour sikhati hai, facts nahi. Woh instructions, evidence aur chhote model ke baad aati hai, aur use alag test set chahiye.

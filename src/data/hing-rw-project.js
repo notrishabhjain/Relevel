@@ -8,41 +8,17 @@ Object.assign(window.HING = window.HING || {}, {
   'Your project: Bharat Privacy Guard':
     'Aapka project: Bharat Privacy Guard',
 
-  'From the first chapter to the last, you answer every capstone question about one real project. That way you do not finish with sixty small exercises that have nothing to do with each other. You finish with one piece of work that you can show an employer, and that you understand from the inside.':
-    'Pehle chapter se aakhri chapter tak, har capstone sawaal ka jawab aap ek hi asli project ke baare mein dete hain. Is tarah aap saath chhote-chhote aise exercises par nahi rukte jinka aapas mein koi lena-dena nahi. Aap ek aisa kaam lekar nikalte hain jo aap kisi employer ko dikha sakte hain, aur jise aap andar se samajhte hain.',
-
-  'The project is called <strong>Bharat Privacy Guard</strong>. It is a small tool that sits between a person and a website, an app or an AI chatbot. When someone types “my Aadhaar number is 4321 5678 9012”, the tool notices it. The website can then hide the number, mask it, or ask whether it really needs it, before the number travels anywhere.':
-    'Project ka naam hai <strong>Bharat Privacy Guard</strong>. Yeh ek chhota tool hai jo ek insaan aur ek website, app ya AI chatbot ke beech baithta hai. Jab koi likhta hai “mera Aadhaar number 4321 5678 9012 hai”, tool use pakad leta hai. Phir website us number ko chhupa sakti hai, mask kar sakti hai, ya pooch sakti hai ki use sach mein iski zaroorat hai ya nahi, number kahin bhi jaane se pehle.',
-
-  'This page explains the project once, in plain words. Every capstone in the course links back to one stage on this page, so you always know which piece you are building and why.':
-    'Yeh page project ko ek baar saaf shabdon mein samjhata hai. Course ka har capstone is page ke ek stage se juda hai, taaki aapko hamesha pata rahe ki aap kaun sa tukda bana rahe hain aur kyon.',
-
   'Why this project, and why not just use Rampart':
     'Yeh project kyon, aur sirf Rampart kyon nahi',
 
-  'Rampart is an existing open tool that finds personal details in text. It was built and tested on English and six other European languages, all written in the Latin alphabet. Its own published model card says it does poorly on Hindi written in Devanagari script: it reports finding only about 14 out of every 100 personal details there. Chapter A2 asks you to check that number yourself, rather than trusting this page.':
-    'Rampart ek maujooda open tool hai jo text mein nijee jaankari dhoondhta hai. Ise English aur chhe aur European bhashaon par banaya aur test kiya gaya hai, jo sab Latin alphabet mein likhi jaati hain. Uska apna published model card kehta hai ki Devanagari script mein likhi Hindi par yeh kamzor hai: wahan yeh har 100 mein se sirf lagbhag 14 nijee details pakadne ki baat karta hai. Chapter A2 aapse kehta hai ki yeh number khud jaanchiye, is page par bharosa mat kijiye.',
-
-  'People in India type in English, in Hindi, and in Hinglish, which is Hindi written in English letters. Often they switch between them inside one sentence. They also type things that a European tool was never built to recognise: Aadhaar numbers, PAN cards, UPI IDs, mobile numbers that begin with 98. A tool that handles only one of these kinds of writing leaves most of the problem untouched.':
-    'Bharat mein log English mein, Hindi mein aur Hinglish mein likhte hain, yaani English letters mein likhi Hindi. Aksar woh ek hi sentence ke andar bhasha badal dete hain. Woh aisi cheezein bhi likhte hain jinhein pehchaanne ke liye European tool kabhi bana hi nahi tha: Aadhaar numbers, PAN cards, UPI IDs, 98 se shuru hone wale mobile numbers. Jo tool in mein se sirf ek tarah ki likhai sambhalta hai, woh samasya ka zyadatar hissa chhoo bhi nahi paata.',
-
-  'So this project is not a copy of Rampart. It asks one question: can a small tool, light enough to run inside a browser or on a phone, find personal details in English, Hindi and Hinglish, and be honest about what it misses?':
-    'Isliye yeh project Rampart ki nakal nahi hai. Yeh ek sawaal poochta hai: kya ek chhota tool, itna halka ki browser ya phone ke andar chal sake, English, Hindi aur Hinglish mein nijee details dhoondh sakta hai, aur imaandaari se bata sakta hai ki usne kya chhoda?',
-
   'What this project is not':
     'Yeh project kya nahi hai',
-
-  'It is not a “DPDP compliance engine”. India’s data protection law (the Digital Personal Data Protection Act, 2023, and the Rules notified in 2025) asks an organisation for much more than a tool that finds personal details. It asks for clear notices, consent, security safeguards, limits on how long data is kept, a way to handle breaches, and more. Finding and hiding personal details is one technical piece that helps an organisation collect and pass on less data.':
-    'Yeh “DPDP compliance engine” nahi hai. Bharat ka data protection kanoon (Digital Personal Data Protection Act, 2023, aur 2025 mein notify kiye gaye Rules) kisi sanstha se us tool se bahut zyada maangta hai jo nijee details dhoondhe. Woh saaf notices, consent, security safeguards, data kitne samay rakha jaaye uski seema, breach sambhalne ka tareeka, aur bahut kuchh maangta hai. Nijee details dhoondhna aur chhupana ek technical tukda hai jo kisi sanstha ko kam data ikattha karne aur aage dene mein madad karta hai.',
 
   'So in every document you write in this course, describe the project as “a privacy tool that helps an organisation collect and share less personal data”. Never write that it makes anyone compliant. The system card in Chapter 17 and the product requirements in Chapter 18 both ask you to write this limit down.':
     'Isliye is course mein aap jo bhi document likhein, usmein project ko “ek privacy tool jo kisi sanstha ko kam nijee data ikattha karne aur baantne mein madad karta hai” likhiye. Kabhi mat likhiye ki yeh kisi ko compliant bana deta hai. Chapter 17 ka system card aur Chapter 18 ki product requirements, dono aapse yeh seema likhne ko kehte hain.',
 
   'How the tool works: three finders and a rule-keeper':
     'Tool kaise kaam karta hai: teen finders aur ek rule-keeper',
-
-  'Text goes through the parts below in order. The first two are cheap and fast. The third is more expensive, so it only looks at the sentences the first two could not settle. The rule-keeper then decides what to do with everything that was found.':
-    'Text neeche ke hisson se kram mein guzarta hai. Pehle do sasta aur tez hain. Teesra zyada mehnga hai, isliye woh sirf un sentences ko dekhta hai jinhein pehle do tay nahi kar paaye. Phir rule-keeper tay karta hai ki jo kuchh mila uska kya karna hai.',
 
   'The person types or uploads':
     'Insaan type ya upload karta hai',
@@ -71,9 +47,6 @@ Object.assign(window.HING = window.HING || {}, {
   'Finds details that always have the same shape.':
     'Woh details dhoondhta hai jinki shakl hamesha ek jaisi hoti hai.',
 
-  'A PAN is always five capital letters, four digits and one capital letter. An Aadhaar number is twelve digits. A mobile number is ten digits that start with 6, 7, 8 or 9. These are found with fixed rules and no AI at all, so the check is fast, free, and gives the same answer every time.':
-    'PAN hamesha paanch capital letters, chaar digits aur ek capital letter hota hai. Aadhaar number baarah digits ka hota hai. Mobile number das digits ka hota hai jo 6, 7, 8 ya 9 se shuru hota hai. Inhein tay rules se dhoondha jaata hai, bina kisi AI ke, isliye jaanch tez, free hoti hai, aur har baar ek hi jawab deti hai.',
-
   'The name-and-place finder':
     'Name-and-place finder',
 
@@ -82,9 +55,6 @@ Object.assign(window.HING = window.HING || {}, {
 
   'Finds details that have no fixed shape.':
     'Woh details dhoondhta hai jinki koi tay shakl nahi hoti.',
-
-  'Nothing about “Ramesh Jain”, “14 Sector 15, Gurgaon” or “Acme Bank” follows a pattern, so fixed rules cannot find them. A small language model reads the sentence and marks people, addresses, workplaces, dates of birth and family relationships. It is small enough to run on a phone or in a browser.':
-    '“Ramesh Jain”, “14 Sector 15, Gurgaon” ya “Acme Bank” mein kuchh bhi kisi pattern par nahi chalta, isliye tay rules inhein nahi dhoondh sakte. Ek chhota language model sentence padhta hai aur logon, pate, kaam ki jagah, janm tithi aur parivaar ke rishton ko mark karta hai. Yeh itna chhota hai ki phone ya browser mein chal sakta hai.',
 
   'The context judge':
     'Context judge',
@@ -95,9 +65,6 @@ Object.assign(window.HING = window.HING || {}, {
   'Notices sentences that point to one person even though they contain no ID.':
     'Aise sentences pakadta hai jo kisi ID ke bina bhi ek insaan ki taraf ishaara karte hain.',
 
-  '“I am the only diabetic patient in my village who had a transplant last year” has no name and no number, yet it identifies someone. A larger AI model is asked to judge sentences like this, but only the few that the first two parts could not settle, because it costs more and is slower.':
-    '“Main apne gaon ka akela diabetic patient hoon jiska pichhle saal transplant hua” mein na naam hai na number, phir bhi yeh kisi ko pehchaan leta hai. Aise sentences ko parakhne ke liye ek bade AI model se poochha jaata hai, lekin sirf un thode sentences ke liye jinhein pehle do hisse tay nahi kar paaye, kyunki woh mehnga aur dheema hai.',
-
   'The rule-keeper':
     'Rule-keeper',
 
@@ -107,14 +74,8 @@ Object.assign(window.HING = window.HING || {}, {
   'Decides what to do with everything that was found.':
     'Tay karta hai ki jo kuchh mila uska kya karna hai.',
 
-  'For each detail it picks one action: remove it, mask it (98******12), let it through, or ask the person. The choice depends on why the website is collecting the data. A delivery address is needed for a delivery. An Aadhaar number is not needed to subscribe to a newsletter.':
-    'Har detail ke liye woh ek action chunta hai: hata do, mask kar do (98******12), jaane do, ya insaan se poochho. Chunav is par nirbhar karta hai ki website data kyon ikattha kar rahi hai. Delivery ke liye delivery ka pata chahiye. Newsletter subscribe karne ke liye Aadhaar number nahi chahiye.',
-
   'What you build, and what you only plan':
     'Aap kya banate hain, aur kya sirf plan karte hain',
-
-  'One learner cannot build everything in the full idea in one course. This is the line the course draws. Say clearly in your own documents which side of the line each piece is on.':
-    'Ek learner ek course mein poora idea nahi bana sakta. Course yahan yeh line kheenchta hai. Apne documents mein saaf likhiye ki har tukda line ke kis taraf hai.',
 
   'You build this':
     'Yeh aap banate hain',
@@ -137,26 +98,17 @@ Object.assign(window.HING = window.HING || {}, {
   'You design this on paper':
     'Yeh aap kaagaz par design karte hain',
 
-  'The gateway: a version that sits in front of a company’s servers, logs and AI traffic. You write its plan, its architecture and its risks, but you do not have to build it.':
-    'Gateway: ek version jo kisi company ke servers, logs aur AI traffic ke saamne baithta hai. Aap uska plan, architecture aur risks likhte hain, lekin ise banana zaroori nahi.',
-
   'The browser extension: a version that warns a person before they submit a form. Also designed on paper only.':
     'Browser extension: ek version jo form submit karne se pehle insaan ko chetavni deta hai. Yeh bhi sirf kaagaz par design hota hai.',
 
   'You leave this for later, and say so':
     'Yeh aap baad ke liye chhodte hain, aur kehte hain ki chhoda hai',
 
-  'Other Indian languages such as Tamil, Bengali, Telugu, Marathi and Gujarati. Write plainly in your documents that these are not covered yet.':
-    'Doosri Bharatiya bhashayein jaise Tamil, Bengali, Telugu, Marathi aur Gujarati. Apne documents mein saaf likhiye ki yeh abhi cover nahi hain.',
-
   'A phone app version of the developer kit.':
     'Developer kit ka phone app version.',
 
   'The eleven kinds of ID the pattern checker looks for':
     'Gyarah tarah ki ID jo pattern checker dhoondhta hai',
-
-  'Every example below is made up. Use made-up values like these in your own work. Never put a real person’s details into a test file.':
-    'Neeche ke saare examples banaye hue hain. Apne kaam mein bhi aise hi banaye hue values use kijiye. Kabhi kisi asli insaan ki details test file mein mat daaliye.',
 
   'Kind of ID':
     'ID ka prakaar',
@@ -200,9 +152,6 @@ Object.assign(window.HING = window.HING || {}, {
   'Bank account number':
     'Bank account number',
 
-  'nine to eighteen digits; usually needs a nearby word such as “account” to be sure':
-    'nau se atthaarah digits; pakka karne ke liye aam taur par paas mein “account” jaisa shabd chahiye',
-
   'UPI ID':
     'UPI ID',
 
@@ -235,9 +184,6 @@ Object.assign(window.HING = window.HING || {}, {
 
   'The starter sentences':
     'Shuruaati sentences',
-
-  'Ten made-up sentences you can use from your very first chapter. They are the first ten rows of your answer key (see below). Copy them into a spreadsheet and use them whenever a capstone says “the starter sentences”.':
-    'Das banaye hue sentences jo aap apne bilkul pehle chapter se use kar sakte hain. Yeh aapke answer key ki pehli das rows hain (neeche dekhiye). Inhein ek spreadsheet mein copy kijiye aur jab bhi koi capstone “shuruaati sentences” kahe, inhein use kijiye.',
 
   'No.':
     'No.',
@@ -292,12 +238,6 @@ Object.assign(window.HING = window.HING || {}, {
 
   'The answer key: one test file that grows through the whole course':
     'Answer key: ek test file jo poore course mein badhti hai',
-
-  'A tool like this is only as good as its test. The answer key is a spreadsheet of sentences in which you have already written down, by hand, what the tool should find. You run the tool, compare its answers with yours, and count the mistakes. You start the answer key in Chapter 2.2 and add to it in later chapters. Each time, save it as a new version of the same file instead of starting a new file.':
-    'Aisa tool utna hi achha hota hai jitna uska test. Answer key sentences ki ek spreadsheet hai jisme aap pehle se haath se likh chuke hote hain ki tool ko kya dhoondhna chahiye. Aap tool chalate hain, uske jawab apne jawab se milate hain, aur galtiyan ginte hain. Aap answer key Chapter 2.2 mein shuru karte hain aur baad ke chapters mein usme jodte hain. Har baar use usi file ke naye version ke roop mein save kijiye, nayi file mat banaiye.',
-
-  'Every row needs six columns: a number, the kind of writing (English, Hindi or Hinglish), the sentence, what should be found (the kind and the exact words), what should happen to it (remove, mask or leave alone), and a note.':
-    'Har row mein chhe columns chahiye: ek number, likhai ka prakaar (English, Hindi ya Hinglish), sentence, kya milna chahiye (prakaar aur sahi shabd), uska kya hona chahiye (hatana, mask karna ya chhodna), aur ek note.',
 
   'Version':
     'Version',
@@ -368,23 +308,11 @@ Object.assign(window.HING = window.HING || {}, {
   'How the capstone questions work':
     'Capstone sawaal kaise kaam karte hain',
 
-  'Each chapter ends with a capstone, written like an exam question. It has four parts. <strong>The situation</strong> tells you where you are in the project and what you already have. <strong>Your task</strong> is a numbered list; do the steps in order. <strong>What to hand in</strong> lists exactly what you must have at the end. <strong>Where you do this</strong> says whether the work happens in a notebook (code) or on paper or in a document (writing).':
-    'Har chapter ek capstone par khatam hota hai, jo exam ke sawaal ki tarah likha hota hai. Uske chaar hisse hain. <strong>The situation</strong> batata hai ki aap project mein kahan hain aur aapke paas pehle se kya hai. <strong>Your task</strong> ek numbered list hai; steps kram se kijiye. <strong>What to hand in</strong> theek-theek batata hai ki ant mein aapke paas kya hona chahiye. <strong>Where you do this</strong> batata hai ki kaam notebook mein (code) hota hai ya kaagaz par ya document mein (likhna).',
-
-  'Every capstone also shows which stage of the project it belongs to, with a link back to this page. Keep everything you produce in the repository you set up in Chapter A1, in the folders that chapter asks for. By the last chapter, that repository is the project.':
-    'Har capstone yeh bhi dikhata hai ki woh project ke kis stage ka hai, is page ki taraf link ke saath. Jo bhi aap banate hain use us repository mein rakhiye jo aapne Chapter A1 mein banayi, un folders mein jo woh chapter maangta hai. Aakhri chapter tak, wahi repository project ban jaati hai.',
-
   'The thirteen stages of the project':
     'Project ke terah stages',
 
-  'Work through the stages in order. Each one lists the chapters that belong to it, what the stage is for, and what you will have when it is finished.':
-    'Stages ko kram se kijiye. Har ek mein woh chapters hain jo uske hain, stage kis kaam ka hai, aur khatam hone par aapke paas kya hoga.',
-
   'Decide what you are building, and why':
     'Tay kijiye ki aap kya bana rahe hain, aur kyon',
-
-  'Before any code, you do the work a product manager does first. You name the problem, study the existing tool, talk to real people, size the market, choose a strategy, plan the work and write the requirements. You also run first experiments to see how AI models behave on Indian text.':
-    'Code se pehle, aap woh kaam karte hain jo ek product manager sabse pehle karta hai. Aap samasya ka naam lete hain, maujooda tool ka adhyayan karte hain, asli logon se baat karte hain, market ka size nikaalte hain, strategy chunte hain, kaam ka plan banate hain aur requirements likhte hain. Aap pehle experiments bhi karte hain ki AI models Bharatiya text par kaise vyavhaar karte hain.',
 
   'A scorecard of your own skills, and a repository with a decision log':
     'Aapke apne skills ka scorecard, aur decision log ke saath ek repository',
@@ -404,9 +332,6 @@ Object.assign(window.HING = window.HING || {}, {
   'First contact: what does an AI model do with Indian text?':
     'Pehla samparka: Bharatiya text ke saath AI model kya karta hai?',
 
-  'You try ready-made AI models on the starter sentences. You see how text is cut into pieces, what one check costs, and how to write clear instructions that make a model find personal details.':
-    'Aap taiyaar AI models ko shuruaati sentences par aazmate hain. Aap dekhte hain ki text kaise tukdon mein kaata jaata hai, ek jaanch ka kitna cost hai, aur aise saaf instructions kaise likhte hain jo model se nijee details dhoondhwa lein.',
-
   'Token counts for English, Hindi and Hinglish side by side':
     'English, Hindi aur Hinglish ke token counts saath-saath',
 
@@ -418,9 +343,6 @@ Object.assign(window.HING = window.HING || {}, {
 
   'The answer key and the first sorter':
     'Answer key aur pehla sorter',
-
-  'You build the answer key, the test file the whole project depends on. You break the big job into small tasks, and you build a sorter that says whether a piece of text is a PAN, an Aadhaar number or a mobile number.':
-    'Aap answer key banate hain, woh test file jis par poora project tikha hai. Aap bade kaam ko chhote tasks mein todte hain, aur ek aisa sorter banate hain jo batata hai ki text ka ek tukda PAN hai, Aadhaar number hai ya mobile number.',
 
   'Answer key version 1, with ten labelled rows':
     'Answer key version 1, das label ki hui rows ke saath',
@@ -437,9 +359,6 @@ Object.assign(window.HING = window.HING || {}, {
   'The pattern checker and the meaning finder':
     'Pattern checker aur meaning finder',
 
-  'You build the first real part of the tool, the pattern checker, and find out where fixed rules fail. Then you try finding things by meaning instead of by exact shape.':
-    'Aap tool ka pehla asli hissa banate hain, pattern checker, aur dekhte hain ki tay rules kahan fail hote hain. Phir aap cheezein tay shakl ki jagah matlab se dhoondhne ki koshish karte hain.',
-
   'A rule for cutting long text without splitting an ID in half':
     'Lambe text ko kaatne ka aisa rule jo kisi ID ko beech se na tode',
 
@@ -452,9 +371,6 @@ Object.assign(window.HING = window.HING || {}, {
   'Measure it, then take stock':
     'Ise naapiye, phir hisaab lagaiye',
 
-  'You put a number on how good the tool is. Then you write an honest page about what it cannot do yet.':
-    'Aap tool kitna achha hai, us par ek number lagate hain. Phir aap ek imaandaar page likhte hain ki woh abhi kya nahi kar sakta.',
-
   'A scoreboard: how many details were found, missed or wrongly flagged, for each kind of ID and each kind of writing':
     'Ek scoreboard: har ID prakaar aur har likhai ke prakaar ke liye kitni details mili, chhooti ya galat flag hui',
 
@@ -466,9 +382,6 @@ Object.assign(window.HING = window.HING || {}, {
 
   'A dependable output and the rule-keeper':
     'Bharosemand output aur rule-keeper',
-
-  'You make the tool always answer in the same fixed format, so that other software can rely on it. You build the rule-keeper, work out how much text can be sent onward, decide when the expensive AI is worth paying for, and check that the tool is fast enough for a live chat.':
-    'Aap tool ko hamesha ek hi tay format mein jawab dene layak banate hain, taaki doosra software us par bharosa kar sake. Aap rule-keeper banate hain, tay karte hain ki kitna text aage bheja ja sakta hai, kab mehnga AI paise ke laayak hai, aur jaanchte hain ki tool live chat ke liye kaafi tez hai.',
 
   'A fixed answer format that never breaks':
     'Ek tay jawab format jo kabhi nahi tootta',
@@ -490,9 +403,6 @@ Object.assign(window.HING = window.HING || {}, {
 
   'Make it better, then attack it':
     'Ise behtar banaiye, phir ispar hamla kijiye',
-
-  'You improve the tool one change at a time and measure each change. Then you try to break it: can a sentence hidden in the text give orders to the AI? You build an automatic marker to check the tool’s work, and you read a hundred real outputs by hand to learn what goes wrong.':
-    'Aap tool ko ek-ek badlaav karke behtar banate hain aur har badlaav naapte hain. Phir aap ise todne ki koshish karte hain: kya text mein chhipa hua ek sentence AI ko aadesh de sakta hai? Aap tool ka kaam jaanchne ke liye ek automatic marker banate hain, aur sau asli outputs haath se padhte hain ye seekhne ke liye ki kya galat hota hai.',
 
   'A table showing which improvement helped and what it cost':
     'Ek table jo dikhata hai ki kaun sa sudhaar kaam aaya aur uska cost kya tha',
@@ -524,9 +434,6 @@ Object.assign(window.HING = window.HING || {}, {
   'Write the plan and the paperwork':
     'Plan aur kaagzi kaam likhiye',
 
-  'You write the documents a real team would ask for: a system card, a requirements document, a build-or-buy recommendation, an answer on whether to fine-tune a model, the screens for the four ways the tool can answer, and a pilot plan.':
-    'Aap woh documents likhte hain jo ek asli team maangegi: ek system card, ek requirements document, ek build-ya-buy sifarish, model ko fine-tune karne par ek jawab, tool ke jawab dene ke chaar tareekon ki screens, aur ek pilot plan.',
-
   'A system card that says what the tool can and cannot do':
     'Ek system card jo batata hai ki tool kya kar sakta hai aur kya nahi',
 
@@ -548,9 +455,6 @@ Object.assign(window.HING = window.HING || {}, {
   'Build it properly':
     'Ise theek se banaiye',
 
-  'You move from experiments to engineering. You set up one test harness kept in Git, choose a model with a back-up, plan what the model sees, design the gateway, build a workflow that can propose but not act alone, compare it with an agent, write an access policy for tools, plan for images and voice, and build a release gate.':
-    'Aap experiments se engineering par aate hain. Aap Git mein rakhi ek test harness banate hain, back-up ke saath model chunte hain, plan karte hain ki model kya dekhega, gateway design karte hain, ek aisa workflow banate hain jo prastaav de sakta hai par akela kaam nahi kar sakta, use agent se compare karte hain, tools ke liye access policy likhte hain, images aur awaaz ka plan banate hain, aur ek release gate banate hain.',
-
   'A test harness in Git that runs the answer key and prints the scoreboard':
     'Git mein ek test harness jo answer key chalata hai aur scoreboard chhaapta hai',
 
@@ -569,9 +473,6 @@ Object.assign(window.HING = window.HING || {}, {
   'Run it safely':
     'Ise surakshit tareeke se chalaiye',
 
-  'You decide how to watch the tool once it is live, list what can go wrong and how you would notice, write the full product requirements, and pull everything into a ten-slide decision pack.':
-    'Aap tay karte hain ki tool live hone ke baad use kaise dekhna hai, list banate hain ki kya galat ho sakta hai aur aap kaise jaanenge, poori product requirements likhte hain, aur sab kuchh ek das-slide ke decision pack mein khinch laate hain.',
-
   'A six-panel plan for watching the tool in use':
     'Tool ko use hote dekhne ka chhe-panel ka plan',
 
@@ -587,9 +488,6 @@ Object.assign(window.HING = window.HING || {}, {
   'Ship it and defend it':
     'Ise ship kijiye aur iska bachaav kijiye',
 
-  'You put everything together: the working tool, its evidence and its limits. You write one findings document and prepare to explain it to a non-technical leader and to an engineer who will try to find holes in it.':
-    'Aap sab kuchh ek saath rakhte hain: kaam karta hua tool, uska evidence aur uski seemayein. Aap ek findings document likhte hain aur use ek non-technical leader ko, aur ek aise engineer ko samjhane ki taiyaari karte hain jo isme chhed dhoondhne ki koshish karega.',
-
   'A repository that works on a clean machine':
     'Ek repository jo saaf machine par chalti hai',
 
@@ -601,9 +499,6 @@ Object.assign(window.HING = window.HING || {}, {
 
   'The business, and your career':
     'Business, aur aapka career',
-
-  'You decide how to charge for it, how it spreads, how to measure it, which tools to use, how to release it safely and how to put it in front of real users. Last, you turn the project into evidence for your next job.':
-    'Aap tay karte hain ki ise kaise charge karna hai, yeh kaise failega, ise kaise naapna hai, kaun se tools use karne hain, ise surakshit tareeke se kaise release karna hai aur asli users ke saamne kaise rakhna hai. Ant mein, aap project ko apni agli naukri ke evidence mein badalte hain.',
 
   'A pricing recommendation with a cost model':
     'Cost model ke saath ek pricing sifarish',

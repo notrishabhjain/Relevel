@@ -1,83 +1,105 @@
 ---
-title: Chhaantna Aur Saar Likhna
-summary: Ek kaam ka sahi jawaab hota hai aur doosre ka nahi. Team ek sorter ko naapti hai aur woh failure dhoondhti hai jise ek score chhupa raha tha, phir ek saar ko us cheez ke liye jaanchti hai jo woh chhod gaya. Chapter classifiers, galtiyon ki keemat aur must-keep list samjhata hai.
+title: Chhaantna Aur Summary Likhna
+summary: Ek kaam ka sahi jawaab hota hai, aur ek ka nahi. Team ek sorter ko naapti hai aur ek aisi failure pakadti hai jo ek single score chhupa raha tha. Phir ek summary ko check karti hai ki usne kaun se facts chhod diye. Chapter mein classifier, har tarah ki galti ki keemat, aur must-keep list aate hain.
 course: ch24 ch25
 goals:
-  - classifier batana aur samjhana ki ek overall score kharab nateeja kaise chhupa sakta hai
-  - galti ki do dishaon ki keemat ki tulna karna aur tay karna ki kis taraf jhukna hai
-  - saar ko uske gadya ke bajaye must-keep list se test karna
-  - pehchaanna ki system jo kuch bhi likhta hai woh personal details ke store hone ki ek aur jagah hai
+  - bata paana ki classifier kya hota hai, aur ek single overall score kharab result ko kaise chhupa sakta hai
+  - galti ki do directions ki keemat compare kar paana, aur tay kar paana ki kis taraf jhukna hai
+  - summary ko uski bhasha dekh kar nahi, must-keep list se test kar paana
+  - dekh paana ki system jo kuch bhi likhta hai, woh personal details ke store hone ki ek aur jagah ban jaata hai
 terms:
-  - classifier | ek program jo har input ko tay categories ke set mein se ek mein daalta hai, jaise PAN, Aadhaar, mobile number ya inmein se koi nahi | classifiers
-  - must-keep list | har document ke liye woh tathya jo padhne wale ko nahi khone chahiye, jiske khilaaf har saar jaancha jaata hai | must-keep lists
+  - classifier | ek program jo har input ko pehle se tay categories mein se kisi ek mein daalta hai, jaise PAN, Aadhaar, mobile number ya inmein se koi nahi | classifiers
+  - must-keep list | har document ke liye woh facts jo padhne wale ko khone nahi chahiye; har summary ko isi list se check kiya jaata hai | must-keep lists
 ---
 
-April ki ek subah Farah Sheikh ne ek printout se kaagaz ki chaalis parchiyan kaatin. Har ek par ankon ya akshron ka ek string tha, jaisa uske agents din bhar dekhte the, kuch asli shakl ke aur kuch nahi, aur peeche pencil mein likha tha ki woh asal mein kya hai. Das PAN the, das Aadhaar numbers the jo logon ke likhne ke har tareeke mein likhe the, das mobile numbers the, aur das in mein se koi nahi the: order numbers, loan reference numbers, ek account number, ek policy code. Anaya ne prastaav rakha ki dekhein ki team ka sorting program unhe chhaant sakta hai ya nahi.
+April ki ek subah Farah Sheikh ne ek printout se kaagaz ki 40 parchiyan kaati. Har parchi par digits ya letters ka ek string tha, bilkul waisa jaisa uske agents din bhar dekhte the. Kuch asli jaise dikhte the, kuch nahi. Har parchi ke peeche pencil se usne likha ki woh asal mein kya hai.
 
-Yeh chapter us hafte kiye gaye do tests ka anusaran karta hai. Ek ek aise kaam ka tha jiska sahi jawaab hota hai, aur doosra aise kaam ka jiska nahi hota. Pehle ne dikhaya ki ek achha average ek failure kaise chhupa sakta hai, aur doosre ne dikhaya ki woh text kaise test karein jise program grade nahi kar sakta.
+10 PAN the. 10 Aadhaar numbers the, jo logon ke likhne ke har tareeke mein likhe gaye the. 10 mobile numbers the. Aur 10 inmein se kuch nahi the: order numbers, loan reference numbers, ek account number, ek policy code. Anaya jaanna chahti thi ki team ka sorting program inhe chhaant sakta hai ya nahi.
 
-## Case: chaalis parchiyan
+Yeh chapter us hafte ke do tests ki kahani hai. Ek test aise kaam ka tha jiska sahi jawaab hota hai, aur doosra aise kaam ka jiska nahi hota. Pehle test ne dikhaya ki ek achha average failure ko kaise chhupa leta hai. Doosre ne dikhaya ki us text ko kaise test karein jise koi program grade nahi kar sakta.
 
-Imran Qureshi ne sorter ka pehla version do shaamon mein likha tha. Woh text ka ek tukda dekhta aur batata ki woh chaar dabbon mein se kis mein jaata hai. Jo program har input ko tay categories mein se ek mein rakhta hai woh *classifier* hai, aur bahut saara upyogi software ek hota hai. Machine ke zyadatar kaamon se iska phayda yeh hai ki koi bata sakta hai ki har jawaab sahi tha ya nahi. Jab sahi jawaab hota hai, galtiyan gini ja sakti hain, aur jab galtiyan gini ja sakti hain, toh system jaanboojh kar behtar kiya ja sakta hai.
+## Case: 40 parchiyan
 
-Usne pichhle teen hafton mein jo seekha tha woh istemaal kiya. Instruction ne kaam ka naam liya, do worked examples diye, jinme se ek mushkil tha, aur output ka format tay kiya. Chaalis parchiyan chalayin gayi aur scoreboard ne ek line chhapi: 40 mein se 35 sahi, yaani 87.5 percent. Farah khush thi. Anaya ne kaha ki yeh ek number hai aur use abhi pata nahi ki woh achha hai ya nahi, aur use dabbon ke hisaab se dekhne ko kaha.
+Imran Qureshi ne sorter ka pehla version do shaamon mein likha tha. Woh ek text dekhta tha aur batata tha ki woh 4 dabbon mein se kis mein jaayega.
 
-## Ek number ne kya chhupaya
+Jo program har input ko pehle se tay categories mein se kisi ek mein daale, use *classifier* kehte hain. Bahut saara kaam ka software ek classifier hi hota hai. Ismein ek faayda hai jo machine ke zyadatar kaamon mein nahi hota. Koi bata sakta hai ki har jawaab sahi tha ya nahi. Jahan sahi jawaab hota hai, wahan galtiyan ginti ja sakti hain. Aur jab galtiyan gin sakte hain, toh system ko soch-samajh kar behtar bana sakte hain.
 
-Imran ne nateeje ko chaar rows mein baanta.
+Imran ne pichhle 3 hafton mein team ne jo seekha tha, woh sab lagaya tha. Instruction mein kaam ka naam tha. Usmein 2 worked examples the, jinmein se ek mushkil tha. Aur output ka format tay kar diya gaya tha.
 
-Table: Sorter ke nateeje dabbon ke hisaab se
+Unhone 40 parchiyan sorter se guzaari, aur scoreboard ne ek hi line print ki: 40 mein se 35 sahi, yaani 87.5 percent. Farah khush thi. Anaya ne kaha ki yeh ek number hai, aur use abhi nahi pata ki yeh achha number hai ya nahi. Usne kaha, mujhe yeh box-by-box dikhaiye.
+
+## Us ek number ne kya chhupaya
+
+Imran ne result ko 4 rows mein baant diya.
+
+Table: Sorter ka result, box ke hisaab se
 | Parchi asal mein kya thi | Sahi | Galat |
 | --- | --- | --- |
 | PAN | 10 | 0 |
 | Mobile number | 10 | 0 |
 | Aadhaar | 9 | 1 |
-| Inme se koi nahi | 6 | 4 |
+| Inmein se koi nahi | 6 | 4 |
 
-Failure neeche wali row mein thi. "Inme se koi nahi" ki das mein se chaar parchiyan, jo order numbers, account numbers aur reference codes the, Aadhaar numbers ki tarah sort ho gayi thi. Woh baarah ank ke the, aur sorter ne shakl dekhkar ruk gaya tha. Ek asli Aadhaar number "inme se koi nahi" ki tarah sort hua kyunki customer ne use galat jagah dash aur space ke saath likha tha.
+Dikkat sabse neeche wali row mein thi. "Inmein se koi nahi" wali 10 parchiyon mein se 4 ko sorter ne Aadhaar number bata diya tha. Woh order numbers, account numbers aur reference codes the. Un sabme 12 digits the, aur sorter ne bas shape dekhi aur wahin ruk gaya.
 
-Overall figure ne teen dabbon ke bekar nateeje ko chauthe ke kharab nateeje ke saath average kar diya tha. Ek single accuracy number team ko behtar mehsoos karwane ka achha tareeka hai, aur yeh bahut kam batata hai ki galtiyan kahan hain.
+Ek galti doosri taraf bhi thi. Ek asli Aadhaar number ko "inmein se koi nahi" bata diya gaya, kyunki customer ne dash aur space galat jagah laga diye the.
 
-::: key Dono galtiyan ek jitni badi nahi hain
-Jab sorter order number ko Aadhaar number kehta hai, toh guard woh cheez chhupata hai jo raaz nahi hai. Agent ek order number ki jagah khaali dekhta hai aur customer se use dobara type karne ko kehta hai, jisme lagbhag tees second aur thodi chidh lagti hai. Jab sorter Aadhaar number ko "inme se koi nahi" kehta hai, toh number nikal jaata hai. Woh chat history, logs, hafte ke export aur bahari company ke system mein jaata hai, aur wahin rehta hai. Ek galti pareshani hai. Doosri woh cheez hai jise rokne ke liye project bana hai.
+Matlab overall number ne teen boxes ke perfect result aur chauthe box ke kharab result ka average nikaal diya tha. Ek single accuracy number team ko achha mehsoos karane ka badhiya tareeka hai. Lekin woh yeh bahut kam batata hai ki galtiyan hain kahan.
+
+::: key Do galtiyan ek barabar nahi hoti
+Maan lijiye sorter ek order number ko Aadhaar number bata deta hai. Guard aisi cheez chhupa deta hai jo secret nahi thi. Agent ko order number ki jagah ek khaali jagah dikhti hai, aur woh customer se use dobara type karne ko kehta hai. Isme lagbhag 30 second lagte hain, aur thodi jhunjhalahat hoti hai.
+
+Ab maan lijiye sorter ek Aadhaar number ko "inmein se koi nahi" bata deta hai. Woh number nikal jaata hai. Woh chat history mein, logs mein, weekly export mein aur bahar ki company ke system mein pahunch jaata hai, aur wahin reh jaata hai. Ek galti sirf jhunjhalahat hai. Doosri galti wahi cheez hai jise rokne ke liye yeh project bana hai.
 :::
 
-Niyam yeh nikla ki jab sorter ko shak ho toh woh number ko sensitive maane. Team zyada false alarm sweekar karti hai, kam chhoot ke badle. Imran ne zor diya ki yeh pasand ka bayaan hai, technical faisla nahi. Anaya ne poochha ki yeh faisla kiska hai. Uska jawaab tha: uska, Lakshmi ka, aur Farah ka, kyunki Farah ke agents blank dekhenge.
+Isse jo rule nikla, woh seedha tha. Jab sorter ko pakka na ho, toh woh us number ko sensitive maane. Team zyada false alarms sehne ko taiyaar hai, badle mein kam misses ke liye.
 
-Is baatcheet mein ek mushkil thi jise Anaya ne turant pehchaana. Plan mein usne guardrail ki tarah sau mein teen false alarm ki seema rakhi thi. Saavdhaani ki taraf jhukne se woh number badhta. Dono number ek doosre ko khinchenge, aur use us tension ko un logon ke saath khulkar sambhaalna hoga jo har taraf ki parwaah karte hain.
+Imran ne zor dekar kaha ki yeh ek preference ka faisla hai, technical faisla nahi. Anaya ne poochha ki yeh faisla kiska hai. Imran ne kaha, aapka, Lakshmi ka aur Farah ka. Kyunki khaali jagahein Farah ke agents ko padhni padegi.
 
-## Ek saar jo achha padha jaata hai
+Anaya ko ek mushkil turant dikh gayi. Apne plan mein usne guardrail ke taur par 100 mein 3 false alarms ki limit rakhi thi. Savdhani ki taraf jhukne se yeh number badh jaayega. Matlab dono targets ek doosre ko kheenchenge. Use is tension ko khulkar sambhalna padega, un logon ke saath jinhe dono taraf ki parwaah hai.
 
-Hafte ka doosra kaam alag tarah ka tha. Jab koi baatcheet chatbot ke liye bahut uljhi ho jaati, toh woh customer ko insaan agent ke paas bhejta aur upar ek chhota saar likhta, taaki agent ko chalis messages padhne na padein. Farah ko bataya gaya tha ki woh achha kaam karta hai. Sab yahi kehte the, kyunki woh bahut achha padha jaata tha, aur Anaya ne dhyaan dilaya ki sab yahi isliye kehte the kyunki unhone use padha tha, aur poochha ki usme asal mein kya hai.
+## Ek summary jo padhne mein achhi lagti hai
 
-Saar ka koi ek sahi jawaab nahi hota, isliye teams aksar summarisers ko bina jaane ship kar deti hain ki woh kaam karte hain ya nahi. Program gadya ko grade nahi kar sakta, aur saar sundar ho kar bhi woh line chhod sakta hai jo maayne rakhti thi. Par yeh jaancha ja sakta hai ki khaas tathya bache ya nahi.
+Hafte ka doosra kaam alag kism ka tha. Jab koi conversation chatbot ke liye bahut uljha ho jaati, toh chatbot customer ko ek human agent ke paas bhej deta tha. Sabse upar woh ek chhota sa summary likh deta tha, taaki agent ko 40 messages na padhne padein.
 
-Anaya ne ek sawaal se shuru kiya jo pehle aana chahiye: yeh kaun padhta hai, aur uske baad woh kya karega? Padhne wala ek agent tha jo ek pareshaan customer se baat karne wala tha, isliye jo tathya kho nahi jaane chahiye woh woh the jinki ghairmaujoodgi agent ko sharminda karti. Paanch lambi conversations mein se har ek ke liye usne aur Farah ne *must-keep list* likhi, yaani un tathyon ki list jo padhne wale ko kho nahi dene chahiye. Pehli conversation ki list yeh thi: customer kehti hai ki usne 3 tareekh ko bhugtaan kiya; usse Friday tak callback ka vaada kiya gaya tha; shikayat double charge ke baare mein hai; ek loan application number ka zikr hua.
+Farah ko bataya gaya tha ki summaries achhi kaam karti hain. Sab yahi kehte the, kyunki woh padhne mein bahut sundar lagti thi. Anaya ne dhyaan diya ki sab isliye kehte the kyunki unhone unhe padha tha. Usne poochha, inmein hai kya?
 
-Phir unhone paancho saar list ko saath rakhkar padhe, tick karte hue.
+Summary ka koi ek sahi jawaab nahi hota. Isliye teams aksar summarisers ko ship kar dete hain bina jaane ki woh kaam karte hain ya nahi. Program bhasha ko grade nahi kar sakta, aur summary khoobsurat hone ke baad bhi woh ek line chhod sakti hai jo sabse zaroori thi. Lekin yeh check kiya ja sakta hai ki kuch khaas facts bache ya nahi.
 
-Table: Paanch saaron ne kya rakha
-| Saar | Nateeja |
+Anaya ne us sawaal se shuru kiya jo hamesha pehle aana chahiye. Ise padhega kaun, aur uske baad kya karega? Padhne wala ek agent tha, jo ek naraaz customer se baat karne wala tha. Isliye jo facts khone nahi chahiye the, woh woh the jinke na hone se agent sharminda hota.
+
+5 lambi conversations mein se har ek ke liye, usne aur Farah ne ek *must-keep list* likhi. Yeh un facts ki list hai jo padhne wale ko khone nahi chahiye. Pehli conversation ki list yeh thi: customer kehti hai ki usne 3 tareekh ko payment kiya tha; use Friday tak callback ka waada kiya gaya tha; complaint double charge ke baare mein hai; ek loan application number ka zikr hua tha.
+
+Phir unhone paanchon summaries ko un lists ke saath rakhkar padha, aur facts par tick lagaye.
+
+Table: 5 summaries ne kya rakha
+| Summaries | Result |
 | --- | --- |
-| Teen | List ka har tathya rakha |
-| Ek | Vaade ka callback chhod diya. Agent bina jaane ki customer se callback ka vaada kiya gaya tha, thande dil se call karta |
-| Ek | Achha likha tha, aur usne chat se customer ka poora Aadhaar number apni doosri line mein copy kar diya tha |
+| 3 | List ke har fact ko rakha |
+| 1 | Promised callback chhod diya. Agent bina kuch jaane call karta, use pata hi nahi hota ki customer ko call ka intezaar karne ko kaha gaya hai |
+| 1 | Achhi likhi hui thi, aur usne chat se customer ka poora Aadhaar number apni doosri line mein copy kar liya tha |
 
-Aakhri dekhkar Farah ne pen neeche rakh diya. Saar ke paas number ki ek copy thi. Imran ne dhyaan dilaya ki yeh number ke rehne ki doosri jagah thi: saar store hota hai, agent ko jaata hai aur logs mein jaata hai. Isliye saar ko bhi saaf karna padta, jiska matlab tha ki guard ko andar jaane ke raaste par bhi aur bahar aane ke raaste par bhi baithna padta.
+Aakhri wali dekhte hi Farah ne apna pen neeche rakh diya. Summary ne number ki ek copy rakh li thi.
 
-::: key Jo andar jaaye use saaf karo, aur jo bahar aaye use bhi
-System jo kuch bhi likhta hai usme us text se copy ki hui personal details ho sakti hain jo usne padha. Anaya ne ise history ke pichhle niyam ke paas design mein jodaa: andar jaane waale ko saaf karo; bahar aane waale ko bhi saaf karo.
+Imran ne samjhaya ki iska kya matlab hai. Yeh number ke rehne ki ek doosri jagah hai. Summary store hoti hai, agent ke paas jaati hai, aur logs mein jaati hai. Isliye summary ko bhi saaf karna padega. Guard ko andar aane ke raaste par bhi rehna hoga, aur bahar jaane ke raaste par bhi.
+
+::: key Jo andar jaaye use saaf kijiye, jo bahar aaye use bhi
+System jo kuch bhi likhta hai, usmein woh personal details ho sakti hain jo usne padhte waqt copy kar li ho. Anaya ne ise design mein jod diya, history wale pichhle rule ke bagal mein: jo andar jaaye use saaf karo, aur jo bahar aaye use bhi saaf karo.
 :::
 
-## Dono kaamon mein kya samaan hai
+## Dono kaamon mein kya common hai
 
-Jab Anaya ne Sunday ko Dr. Meenakshi Rao ko hafte ka vivaran diya, toh usne paaya ki woh kuch aisa samjha rahi hai jo machines ke baare mein kam hai. Pehle case mein team ne tay kiya tha ki failure kya maana jaayega, galat dabba, aur kaun sa galat dabba zyada kharab hai. Doosre case mein failure ek chhoota hua tathya tha. Dono mein unhone wahi ginta jo unka dhyaan gaya, uski jagah nahi jo unhe dikha. Meenakshi ne kaha ki is kshetra ka zyadatar kaushal machine ke baare mein nahi hai. Woh is baare mein hai ki aap kis cheez se darte hain, yeh theek-theek tay karna.
+Sunday ko Anaya ne apna hafta Dr. Meenakshi Rao ko sunaya. Bolte-bolte use laga ki woh kuch aisa samjha rahi hai jiska machines se zyada lena-dena nahi hai.
 
-## Saaraansh
+Pehle test mein team ne tay kiya tha ki failure kise maanenge: galat box. Unhone yeh bhi tay kiya tha ki kaun sa galat box zyada bura hai. Doosre test mein failure ek missing fact thi. Dono baar unhone wahi gina, woh nahi jo unki nazar mein aaya.
 
-Classifier har input ko tay dabbon mein se ek mein rakhta hai, aur kyunki sahi jawaab hota hai, use naapa ja sakta hai.
+Meenakshi ne kaha ki is field ki zyadatar skill machine ke baare mein hai hi nahi. Woh is baare mein hai ki aap apne darr ke baare mein kitne exact ho.
 
-- Ek overall score ek dabbe mein kharab nateeja chhupa sakta hai, isliye har category ko alag gina jaana chahiye.
-- Galti ki do dishaon ki keemat aksar ek jaisi nahi hoti. Kis taraf jhukna hai yeh ek product faisla hai, un logon ke saath liya jaata hai jo har keemat uthate hain, aur woh doosre lakshya jaise false alarms ki seema se khinch sakta hai.
-- Saar ka koi ek sahi jawaab nahi hota. Use test karne ke liye har document ke liye must-keep list likho jisme woh tathya hon jo padhne wale ko nahi khone chahiye, aur har saar ko us list se milao.
-- System jo kuch bhi likhta hai woh personal details ke rehne ki ek aur jagah hai, isliye jo bahar aaye use bhi saaf karna padta hai, sirf jo andar jaaye use hi nahi.
+## Summary
+
+Classifier har input ko pehle se tay dabbon mein se kisi ek mein daalta hai. Kyunki sahi jawaab hota hai, isliye use naapa ja sakta hai.
+
+- Ek single overall score kisi ek box ke kharab result ko chhupa sakta hai, isliye har category ko alag se gino.
+- Galti ki do directions ki keemat shayad hi kabhi barabar hoti hai. Kis taraf jhukna hai, yeh product ka faisla hai. Yeh un logon ke saath mil kar liya jaata hai jo har keemat uthate hain, aur yeh kisi doosre target se takra sakta hai, jaise false alarms ki limit.
+- Summary ka koi ek sahi jawaab nahi hota. Use test karne ke liye har document ke liye ek must-keep list likhiye, jisme woh facts hon jo padhne wale ko khone nahi chahiye, aur har summary ko usse check kijiye.
+- System jo kuch bhi likhta hai, woh personal details ke rehne ki ek aur jagah hai. Isliye jo andar jaata hai, uske saath-saath jo bahar aata hai, use bhi saaf karna padta hai.
