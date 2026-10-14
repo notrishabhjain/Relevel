@@ -93,64 +93,64 @@ export const RESOURCES = {
 };
 
 export const MONTHS = [
-  { n: 1, name: 'Month 1: Foundations', from: 1, to: 4, dates: '7 Oct – 3 Nov 2026', goal: 'Explain LLM cost, context and structured output, and have one working repo.' },
-  { n: 2, name: 'Month 2: RAG and evals', from: 5, to: 9, dates: '4 Nov – 8 Dec 2026', goal: 'Project A published with a 100+ case eval set and before/after metrics. This is the most important month of the plan.' },
-  { n: 3, name: 'Month 3: Agents and MCP', from: 10, to: 13, dates: '9 Dec 2026 – 5 Jan 2027', goal: 'Project B published: a working MCP server and an agent that asks before acting. W12 and W13 are light holiday weeks (about 6 hours each).' },
-  { n: 4, name: 'Month 4: Multimodal, Indic AI, behavior specs', from: 14, to: 17, dates: '6 Jan – 2 Feb 2027', goal: 'Project C published with a measured error-rate improvement and a behavior spec.' },
-  { n: 5, name: 'Month 5: Governance, economics, build vs buy', from: 18, to: 21, dates: '3 Feb – 2 Mar 2027', goal: 'Project D published: PRD, risk assessment, build-vs-buy memo, acceptance-testing template.' },
-  { n: 6, name: 'Month 6: Portfolio and interviews', from: 22, to: 26, dates: '3 Mar – 6 Apr 2027', goal: 'Live portfolio site and 10+ mock interviews. No new topics.' }
+  { n: 1, name: 'Month 1: Foundations', from: 1, to: 4, dates: '7 Oct – 3 Nov 2026', goal: 'You can explain LLM cost, context and structured output in plain words, and you have one working repo.' },
+  { n: 2, name: 'Month 2: RAG and evals', from: 5, to: 9, dates: '4 Nov – 8 Dec 2026', goal: 'Project A is published, with a test set of 100+ cases and before/after numbers. This is the most important month of the plan.' },
+  { n: 3, name: 'Month 3: Agents and MCP', from: 10, to: 13, dates: '9 Dec 2026 – 5 Jan 2027', goal: 'Project B is published: a working MCP server, and an agent that asks before it acts. W12 and W13 are light holiday weeks (about 6 hours each).' },
+  { n: 4, name: 'Month 4: Multimodal, Indic AI, behavior specs', from: 14, to: 17, dates: '6 Jan – 2 Feb 2027', goal: 'Project C is published, with a measured drop in error rate and a behavior spec.' },
+  { n: 5, name: 'Month 5: Governance, economics, build vs buy', from: 18, to: 21, dates: '3 Feb – 2 Mar 2027', goal: 'Project D is published: a PRD, a risk assessment, a build-vs-buy memo and an acceptance-testing template.' },
+  { n: 6, name: 'Month 6: Portfolio and interviews', from: 22, to: 26, dates: '3 Mar – 6 Apr 2027', goal: 'Your portfolio site is live and you have done 10+ mock interviews. No new topics this month.' }
 ];
 
 /* [n, dates, topic, complexity, learn keys, ship, how ids, light?] */
 const W = [
-  [1, '7–13 Oct', 'Dev setup (Codespaces for the repo, Colab for notebooks); how LLMs work (tokens, context window, temperature)', 'Low', ['academy_fluency', 'academy_limits', 'academy_api', 'gh_codespaces', 'gh_devcontainer', 'colab', 'ai_studio'], 'Repo `rj-ai-pm-lab` with a devcontainer and a green GitHub Actions workflow; one model call working from both Codespaces and Colab', ['tools', 'setup']],
-  [2, '14–20 Oct', 'Prompting, structured outputs (JSON schema), tool use', 'Medium', ['claude_prompting', 'claude_structured', 'claude_tools', 'gemini_structured', 'openai_structured', 'huyen'], 'Sentinel AI Bridge v2: transcript to JSON tasks, plus a CSV log of tokens, latency and cost per call', ['log-calls']],
-  [3, '21–27 Oct', 'Eval basics: why evals come before metrics', 'Medium', ['hamel_evals', 'hamel_faq', 'claude_pricing', 'gemini_pricing', 'huyen'], '30 synthetic Hinglish/Hindi/English transcripts run across 2–3 models; cost, latency and accuracy table', ['compare-models']],
-  [4, '28 Oct – 3 Nov', 'Reading real AI products critically', 'Low', ['lenny_market', 'cpgrams_explainer', 'cpgrams'], 'Teardown #1 published (an Indian AI product); Month 1 gate review', ['teardown', 'publish']],
-  [5, '4–10 Nov', 'RAG: chunking, embeddings, hybrid search, reranking, citations', 'Medium', ['huyen', 'chroma', 'bge_m3', 'sbert', 'rank_bm25', 'colab', 'gigw', 'dpdp_rules', 'india_ai_summary'], 'RAG over a public corpus (GIGW 3.0, DPDP Act and Rules, India AI Governance Guidelines) with citations', ['rag']],
-  [6, '11–17 Nov', 'Test sets and LLM-as-judge', 'Medium', ['hamel_judge', 'hamel_field', 'hamel_hub'], '100+ test queries (English, Hindi, Hinglish, adversarial, out-of-scope); traces collected', ['golden-set']],
-  [7, '18–24 Nov', 'Error analysis: label failures, then group them', 'High', ['hamel_faq', 'hamel_field', 'phoenix', 'colab'], '100 labeled traces and a failure taxonomy with counts', ['error-analysis']],
-  [8, '25 Nov – 1 Dec', 'Fixing the top failures; evals as a CI gate', 'High', ['dlai_eval_agents', 'shreya_validators', 'gh_actions', 'gh_secrets', 'promptfoo_gha'], 'Top 2 failures fixed; judge validated against your labels; eval workflow that fails a PR on regression', ['eval-gate']],
-  [9, '2–8 Dec', 'Writing up evidence', 'Low', ['gh_pages', 'hf_spaces'], 'Project A published: eval report and short demo video; Month 2 gate review', ['publish', 'demo-video']],
-  [10, '9–15 Dec', 'Agent patterns; MCP tools, resources and prompts', 'Medium', ['dlai_agentic', 'academy_mcp', 'mcp_build', 'mcp_python', 'gemini_cli_mcp'], 'MCP server exposing the Sentinel task store (create, list, update)', ['mcp-server']],
-  [11, '16–22 Dec', 'Advanced MCP, agent security, prompt injection', 'High', ['academy_mcp_adv', 'mcp_docs', 'cc_mcp', 'mcp_inspector', 'gemini_functions'], 'Project B agent: transcript, extract tasks, propose actions via MCP, approval step, execute', ['agent-approval']],
-  [12, '23–29 Dec', 'Evaluating agents step by step', 'Medium', ['dlai_agentic', 'dlai_eval_agents', 'phoenix'], '30 traced runs with a step-level eval (right tool, right arguments, approval needed?)', ['agent-evals'], true],
-  [13, '30 Dec – 5 Jan', 'Writing the autonomy rules', 'Low', ['pair'], 'Project B published: autonomy doc (auto / confirm / never) and a 3-minute demo; Month 3 gate review', ['autonomy-doc', 'publish', 'demo-video'], true],
-  [14, '6–12 Jan', 'OCR and LLM post-correction for Indic scripts; BHASHINI APIs', 'Medium', ['tessdata', 'colab', 'bhashini', 'bhashini_api', 'sarvam_docs'], 'OCR pipeline with LLM post-correction and confidence flags on public-domain scans', ['ocr-correct']],
-  [15, '13–19 Jan', 'Measuring OCR and speech quality (CER, WER); voice products', 'Medium', ['jiwer', 'dlai_catalog', 'sarvam_hf'], '50-page ground-truth set; CER before and after correction; cost per page', ['cer-measure']],
-  [16, '20–26 Jan', 'Writing how an AI product should behave', 'Medium', ['pair', 'cpgrams_explainer', 'dpdp_rules'], 'AI behavior spec, 3–5 pages, for a bilingual citizen assistant', ['behavior-spec']],
-  [17, '27 Jan – 2 Feb', 'Writing up evidence', 'Low', ['gh_pages'], 'Project C published with the behavior spec as a case study; Month 4 gate review', ['publish', 'demo-video']],
-  [18, '3–9 Feb', "India's AI governance approach, DPDP Rules, EU AI Act timelines", 'Medium', ['india_ai_summary', 'india_ai_guide', 'dpdp_rules', 'dpdp_may27', 'eu_omnibus', 'cpgrams_explainer'], 'PRD draft for an AI grievance triage assistant (CPGRAMS-style)', ['prd']],
-  [19, '10–16 Feb', 'Risk assessment; governing agents', 'Medium', ['nist_rmf', 'model_cards', 'eu_ai_act', 'dlai_catalog'], 'Risk assessment, model card, and a table mapping each risk to DPDP, India\'s guidelines and the EU AI Act', ['risk-model-card']],
-  [20, '17–23 Feb', 'Unit economics, caching, model routing, build vs buy', 'High', ['huyen', 'claude_pricing', 'claude_caching', 'sarvam_hf', 'bhashini_api'], 'Build-vs-buy memo (frontier API vs Sarvam open-weight vs BHASHINI plus small LLM) and a cost model at three scales', ['build-buy-cost']],
-  [21, '24 Feb – 2 Mar', 'Turning AI quality into contract terms', 'Medium', ['marp', 'gigw'], 'Project D published: acceptance-testing and eval-SLA template plus a 6-slide stakeholder deck; Month 5 gate review', ['acceptance-template', 'publish']],
-  [22, '3–9 Mar', 'Presenting your work in 3 minutes', 'Low to Medium', ['gh_pages'], 'Live portfolio site with 4 project pages and a 3-minute demo video for each', ['portfolio-site', 'demo-video']],
-  [23, '10–16 Mar', 'AI product-sense and eval-design interview answers', 'Medium', ['interview_bank', 'exponent_ps'], '3 mock interviews (product sense and evals) with written answers in your own words', ['mock-interviews']],
-  [24, '17–23 Mar', 'Technical depth and live prototyping', 'High', ['academy_cc101', 'gemini_cli', 'gh_codespaces'], '2 timed 45-minute prototypes built from scratch', ['prototype-drill']],
-  [25, '24–30 Mar', 'Behavioral interviews and take-homes', 'Medium', ['interview_bank'], '8 STAR stories; 1 mock take-home; a prepared answer to "why AI PM, given your project-management background?"', ['mock-interviews']],
-  [26, '31 Mar – 6 Apr', 'Reviewing the six months', 'Low', [], 'Ship-log review and the post-April 3-hours-a-week learning loop', ['retro']]
+  [1, '7–13 Oct', 'Set up your tools (Codespaces for the repo, Colab for notebooks), and learn how LLMs work: tokens, the context window and temperature', 'Low', ['academy_fluency', 'academy_limits', 'academy_api', 'gh_codespaces', 'gh_devcontainer', 'colab', 'ai_studio'], 'A repo called `rj-ai-pm-lab` with a devcontainer and a green GitHub Actions workflow, and one model call that works from both Codespaces and Colab', ['tools', 'setup']],
+  [2, '14–20 Oct', 'Prompting, structured outputs (JSON schema) and tool use', 'Medium', ['claude_prompting', 'claude_structured', 'claude_tools', 'gemini_structured', 'openai_structured', 'huyen'], 'Sentinel AI Bridge v2, which turns a transcript into JSON tasks, plus a CSV log of tokens, latency and cost for every call', ['log-calls']],
+  [3, '21–27 Oct', 'Eval basics: why you build evals before you pick metrics', 'Medium', ['hamel_evals', 'hamel_faq', 'claude_pricing', 'gemini_pricing', 'huyen'], '30 made-up Hinglish, Hindi and English transcripts, run through 2–3 models, with a table of cost, latency and accuracy', ['compare-models']],
+  [4, '28 Oct – 3 Nov', 'Reading real AI products with a critical eye', 'Low', ['lenny_market', 'cpgrams_explainer', 'cpgrams'], 'Teardown #1 published (of an Indian AI product), and the Month 1 gate review done', ['teardown', 'publish']],
+  [5, '4–10 Nov', 'RAG: chunking, embeddings, hybrid search, reranking and citations', 'Medium', ['huyen', 'chroma', 'bge_m3', 'sbert', 'rank_bm25', 'colab', 'gigw', 'dpdp_rules', 'india_ai_summary'], 'A RAG system over a public set of documents (GIGW 3.0, the DPDP Act and Rules, and the India AI Governance Guidelines), with citations', ['rag']],
+  [6, '11–17 Nov', 'Test sets, and using an LLM as a judge', 'Medium', ['hamel_judge', 'hamel_field', 'hamel_hub'], '100+ test queries (English, Hindi, Hinglish, adversarial and out-of-scope), with the traces collected', ['golden-set']],
+  [7, '18–24 Nov', 'Error analysis: label the failures, then group them', 'High', ['hamel_faq', 'hamel_field', 'phoenix', 'colab'], '100 labeled traces, and a failure taxonomy with a count for each type', ['error-analysis']],
+  [8, '25 Nov – 1 Dec', 'Fix the top failures, and make evals a gate in CI', 'High', ['dlai_eval_agents', 'shreya_validators', 'gh_actions', 'gh_secrets', 'promptfoo_gha'], 'The top 2 failures fixed, the judge checked against your own labels, and an eval workflow that fails a PR when quality drops', ['eval-gate']],
+  [9, '2–8 Dec', 'Writing up your evidence', 'Low', ['gh_pages', 'hf_spaces'], 'Project A published, with an eval report and a short demo video, and the Month 2 gate review done', ['publish', 'demo-video']],
+  [10, '9–15 Dec', 'Agent patterns, and MCP tools, resources and prompts', 'Medium', ['dlai_agentic', 'academy_mcp', 'mcp_build', 'mcp_python', 'gemini_cli_mcp'], 'An MCP server that exposes the Sentinel task store (create, list, update)', ['mcp-server']],
+  [11, '16–22 Dec', 'Advanced MCP, agent security and prompt injection', 'High', ['academy_mcp_adv', 'mcp_docs', 'cc_mcp', 'mcp_inspector', 'gemini_functions'], 'The Project B agent: it reads a transcript, extracts tasks, proposes actions through MCP, waits for approval, then executes', ['agent-approval']],
+  [12, '23–29 Dec', 'Evaluating agents, one step at a time', 'Medium', ['dlai_agentic', 'dlai_eval_agents', 'phoenix'], '30 traced runs, checked step by step: did it pick the right tool, use the right arguments, and ask for approval when it should?', ['agent-evals'], true],
+  [13, '30 Dec – 5 Jan', 'Writing the autonomy rules', 'Low', ['pair'], 'Project B published, with an autonomy doc (auto / confirm / never) and a 3-minute demo, and the Month 3 gate review done', ['autonomy-doc', 'publish', 'demo-video'], true],
+  [14, '6–12 Jan', 'OCR for Indic scripts, fixing its mistakes with an LLM, and the BHASHINI APIs', 'Medium', ['tessdata', 'colab', 'bhashini', 'bhashini_api', 'sarvam_docs'], 'An OCR pipeline that uses an LLM to correct its output and flags low-confidence text, tested on public-domain scans', ['ocr-correct']],
+  [15, '13–19 Jan', 'Measuring OCR and speech quality (CER and WER), and voice products', 'Medium', ['jiwer', 'dlai_catalog', 'sarvam_hf'], 'A ground-truth set of 50 pages, the CER before and after correction, and the cost per page', ['cer-measure']],
+  [16, '20–26 Jan', 'Writing down how an AI product should behave', 'Medium', ['pair', 'cpgrams_explainer', 'dpdp_rules'], 'An AI behavior spec of 3–5 pages, for a bilingual citizen assistant', ['behavior-spec']],
+  [17, '27 Jan – 2 Feb', 'Writing up your evidence', 'Low', ['gh_pages'], 'Project C published, with the behavior spec as a case study, and the Month 4 gate review done', ['publish', 'demo-video']],
+  [18, '3–9 Feb', "India's approach to AI governance, the DPDP Rules, and the EU AI Act timelines", 'Medium', ['india_ai_summary', 'india_ai_guide', 'dpdp_rules', 'dpdp_may27', 'eu_omnibus', 'cpgrams_explainer'], 'A draft PRD for an AI assistant that sorts grievances (CPGRAMS-style)', ['prd']],
+  [19, '10–16 Feb', 'Risk assessment, and governing agents', 'Medium', ['nist_rmf', 'model_cards', 'eu_ai_act', 'dlai_catalog'], 'A risk assessment, a model card, and a table that maps each risk to the DPDP rules, India\'s guidelines and the EU AI Act', ['risk-model-card']],
+  [20, '17–23 Feb', 'Unit economics, caching, model routing, and build vs buy', 'High', ['huyen', 'claude_pricing', 'claude_caching', 'sarvam_hf', 'bhashini_api'], 'A build-vs-buy memo (frontier API vs Sarvam open-weight vs BHASHINI plus a small LLM), and a cost model at three scales', ['build-buy-cost']],
+  [21, '24 Feb – 2 Mar', 'Turning AI quality into contract terms', 'Medium', ['marp', 'gigw'], 'Project D published: an acceptance-testing and eval-SLA template, plus a 6-slide stakeholder deck. Month 5 gate review done', ['acceptance-template', 'publish']],
+  [22, '3–9 Mar', 'Presenting your work in 3 minutes', 'Low to Medium', ['gh_pages'], 'A live portfolio site with 4 project pages, and a 3-minute demo video for each', ['portfolio-site', 'demo-video']],
+  [23, '10–16 Mar', 'Answering AI product-sense and eval-design interview questions', 'Medium', ['interview_bank', 'exponent_ps'], '3 mock interviews (product sense and evals), with written answers in your own words', ['mock-interviews']],
+  [24, '17–23 Mar', 'Technical depth and live prototyping', 'High', ['academy_cc101', 'gemini_cli', 'gh_codespaces'], '2 timed 45-minute prototypes, each built from scratch', ['prototype-drill']],
+  [25, '24–30 Mar', 'Behavioral interviews and take-homes', 'Medium', ['interview_bank'], '8 STAR stories, 1 mock take-home, and a prepared answer to "why AI PM, given your project-management background?"', ['mock-interviews']],
+  [26, '31 Mar – 6 Apr', 'Looking back over the six months', 'Low', [], 'A review of your ship log, and a plan for the learning loop after April (3 hours a week)', ['retro']]
 ];
 
 export const WEEKS = W.map(([n, dates, topic, cx, learn, ship, how, light]) => ({ n, dates, topic, cx, learn, ship, how, light: !!light }));
 
 export const GATES = [
-  { id: 'M1', date: '3 Nov 2026', pass: 'Repo with green CI; Sentinel v2 with cost/latency log; model comparison table; Teardown #1 published. Decide whether to buy the evals cohort.', cut: 'Teardown #1 can slip to W5 if the table is done' },
-  { id: 'M2', date: '8 Dec 2026', pass: 'Project A published: 100+ case golden set, failure taxonomy, before/after metrics, eval workflow in CI.', cut: 'Reduce to 50 cases and one iteration, but publish' },
-  { id: 'M3', date: '5 Jan 2027', pass: 'Project B published: MCP server, approval step, 30+ traced runs, autonomy doc. Decide whether to un-freeze one side project.', cut: 'Cut run count to 30; skip the demo video until Month 6' },
-  { id: 'M4', date: '2 Feb 2027', pass: 'Project C published: CER before and after; behavior spec.', cut: 'Turn Project C into a written case study with a smaller sample' },
-  { id: 'M5', date: '2 Mar 2027', pass: 'Project D published: PRD, risk table, build-vs-buy memo, acceptance-testing template.', cut: 'Cut the stakeholder deck; keep the PRD and memo' },
-  { id: 'M6', date: '6 Apr 2027', pass: 'Portfolio site live with 4 project pages and demos; 10+ mock interviews completed.', cut: 'Do not cut; extend into April and May instead' }
+  { id: 'M1', date: '3 Nov 2026', pass: 'A repo with green CI, Sentinel v2 with its cost and latency log, the model comparison table, and Teardown #1 published. Also decide whether to buy the evals cohort.', cut: 'Teardown #1 can slip to W5 if the table is done' },
+  { id: 'M2', date: '8 Dec 2026', pass: 'Project A is published: a golden set of 100+ cases, a failure taxonomy, before/after metrics, and an eval workflow in CI.', cut: 'Reduce to 50 cases and one round of fixes, but still publish' },
+  { id: 'M3', date: '5 Jan 2027', pass: 'Project B is published: the MCP server, the approval step, 30+ traced runs and the autonomy doc. Also decide whether to un-freeze one side project.', cut: 'Cut the run count to 30, and skip the demo video until Month 6' },
+  { id: 'M4', date: '2 Feb 2027', pass: 'Project C is published: CER before and after, and the behavior spec.', cut: 'Turn Project C into a written case study with a smaller sample' },
+  { id: 'M5', date: '2 Mar 2027', pass: 'Project D is published: the PRD, the risk table, the build-vs-buy memo and the acceptance-testing template.', cut: 'Cut the stakeholder deck, and keep the PRD and the memo' },
+  { id: 'M6', date: '6 Apr 2027', pass: 'The portfolio site is live with 4 project pages and demos, and you have completed 10+ mock interviews.', cut: 'Do not cut this one. Extend into April and May instead' }
 ];
 
 export const RULES = [
   'One row per week. The row is your only learning to-do.',
-  "Ship before you learn more. No next week's learning until this week's ship item exists as a link or commit.",
-  'One course at a time. No new course, bootcamp or certificate until the current row ships.',
-  'Frozen stack until W9: Codespaces, GitHub Actions, one LLM API, one eval approach.',
-  'Side projects count only if they are in the plan. Sentinel and TaskMind feed Project B; the OCR pipeline feeds Project C. Everything else waits for the Month 3 gate.',
-  'Parking lot, not action. New ideas go in the parking lot and are reviewed only at the monthly gate.',
-  'Minimum viable week: three 45-minute sessions plus one commit. A floor week counts, a zero week does not.',
-  'Publish at 80%. Time-box write-ups to 2 hours.',
-  'Public ship log. Every Sunday: one README line and one LinkedIn post.',
-  'Tell one person who will ask every Monday, what did you ship?'
+  "Ship before you learn more. Don't start next week's learning until this week's ship item exists as a link or a commit.",
+  'One course at a time. Start no new course, bootcamp or certificate until the current row ships.',
+  'Keep your stack frozen until W9: Codespaces, GitHub Actions, one LLM API and one eval approach.',
+  'Side projects count only if they are in the plan. Sentinel and TaskMind feed Project B, and the OCR pipeline feeds Project C. Everything else waits for the Month 3 gate.',
+  'Parking lot, not action. New ideas go in the parking lot, and you review them only at the monthly gate.',
+  'Minimum viable week: three 45-minute sessions plus one commit. A floor week counts. A zero week does not.',
+  'Publish at 80%. Time-box each write-up to 2 hours.',
+  'Keep a public ship log. Every Sunday, write one README line and one LinkedIn post.',
+  'Tell one person who will ask you every Monday: what did you ship?'
 ];

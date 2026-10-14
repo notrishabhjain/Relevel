@@ -1,78 +1,92 @@
 ---
-title: Behtar Search
-summary: Ek customer ko pichhle saal ki late fee bata di jaati hai. Search ke chaar sudhaar ek hi answer key par naape jaate hain, aur sabse saadha sudhaar akela woh hai jo kuch guarantee de sakta hai. Chapter hybrid search, reranking, contextual retrieval, metadata filtering aur agentic search samjhata hai.
+title: Search Ko Behtar Banana
+summary: Ek customer ko pichhle saal ki late fee bata di jaati hai. Search ke chaar sudhaar ek hi answer key par naape jaate hain, aur sabse kam chamak wala sudhaar hi akela hai jo result ka vaada kar sakta hai. Chapter mein hybrid search, reranking, contextual retrieval, metadata filtering aur agentic search aate hain.
 course: ch12
 goals:
-  - samjhana ki sahi dikhne wala jawaab puraane document par grounded kaise ho sakta hai
-  - hybrid search, reranking aur contextual retrieval batana aur yeh ki har ek kya theek karta hai
-  - samjhana ki metadata filtering nateeja guarantee kyun kar sakti hai jabki ranking ke tareeke sirf sambhavna sudharte hain
-  - answer key mein ek asli customer failure jodna aur labels se tay karna ki kaun kya dekh sakta hai
+  - samjha paana ki sahi dikhta hua jawaab bhi purane document par kaise tika ho sakta hai
+  - hybrid search, reranking aur contextual retrieval kya hain, aur har ek kya theek karta hai, yeh bata paana
+  - samjha paana ki metadata filtering result ki guarantee kyun de sakti hai, jabki ranking ke tareeke sirf chance badhate hain
+  - answer key mein customer ki asli failure jodna, aur labels se tay karna ki kaun kya dekh sakta hai
 terms:
-  - hybrid search | keyword search aur matlab-aadharit search ko ek saath chalana aur dono ki rankings ko milana, taaki aapko dono mein se ek chunna na pade | 
-  - reranking | sasta karke bahut saare ummeedwaar tukde laana, phir ek dheema, zyada saavdhaan model se sawaal aur har tukde ko saath padhwa kar sabse achhe kuch ko upar rakhwana | rerank, reranker
-  - contextual retrieval | har chunk ko store karne se pehle ek vaakya jodna jo batata hai ki woh apne document mein kahan baitha hai, taaki ek anaath chunk apna matlab banaye rakhe | contextual
-  - metadata filtering | koi bhi score hone se pehle un chunks ko hata dena jo sahi nahi ho sakte, unse jude labels ke zariye jaise version, tareekhein aur kaun dekh sakta hai | metadata, metadata filter
-  - agentic search | model ko khud kai searches chalane dena, jo wapas aaye use padhna aur apna sawaal dobara likhna, ek loop istemaal karke | 
+  - hybrid search | keyword search aur meaning wali search ko saath chalana aur dono ki rankings ko jod dena, taaki aapko dono mein se ek chunna na pade | 
+  - reranking | pehle sasti tarah se bahut saare candidate tukde laana, phir ek dheemi, zyada dhyaan wali model se sawaal aur har tukda saath mein padhwana aur sabse achhe kuch ko upar rakhna | rerank, reranker
+  - contextual retrieval | har chunk ko store karne se pehle usme ek sentence jodna jo bataye ki woh apne document mein kahan baitha hai, taaki akela chhoda gaya chunk apna matlab na khoye | contextual
+  - metadata filtering | kisi bhi scoring se pehle, un chunks ko hata dena jo sahi ho hi nahi sakte, unpar lage labels ke zariye jaise version, dates aur kaun dekh sakta hai | metadata, metadata filter
+  - agentic search | model ko khud kai searches chalane dena, jo wapas aaye use padhne dena aur apna query dobara likhne dena, ek loop ke zariye | 
 ---
 
-Ek Monday ko Farah Sheikh ne bina kuch kahe ek shikayat aage bheji, aur isi se Anaya ko pata chala ki woh zaroori hai. Nashik ki ek customer ne chatbot se poochha tha ki uske bijli bill par late fee kitni hai, aur usne sau rupaye bataye the. Usne due date ke teen din baad bhugtaan kiya tha aur Sahaj ne dedh sau liye. Woh bahut naraaz nahi thi, aur uska message shishta tha. Woh jaanna chahti thi ki company ki taraf se bolne wali ek machine ne ek baat kahi aur company ne doosri kyun kiya.
+Ek Monday ko ek complaint aayi. Farah Sheikh ne use bina kuch likhe forward kar diya, aur isi se Anaya ko pata chala ki yeh zaroori hai. Nashik ki ek customer ne chatbot se poochha tha ki uske bijli bill par late fee kitni hai, aur chatbot ne bola tha 100 rupaye. Usne due date ke teen din baad bhugtan kiya tha, aur Sahaj ne usse 150 liye.
 
-Lakshmi Iyer ek ghante ke andar ek printout aur aise chehre ke saath glass room mein aayi jisse har bhaav saavdhaani se hata diya gaya tha. Usne poochha ki kaun sa figure sahi hai. Imran Qureshi ne dekha aur kaha ki dedh sau: fee January mein badh gayi thi. Usne poochha ki machine ko sau kahan mile.
+Woh bahut naraz nahi thi, aur uska message tameez se likha tha. Woh bas jaanna chahti thi ki company ki taraf se bolne wali machine ne ek baat kyun kahi jabki company ne kuch aur kiya.
+
+Ghante bhar ke andar Lakshmi Iyer glass room mein ek printout leke aayi, chehre par se saari expression bade dhyaan se hataye hue. Usne poochha ki kaun sa figure sahi hai. Imran Qureshi ne check karke kaha 150, kyunki January mein fee badh gayi thi. Usne poochha ki machine ko 100 kahan mila.
 
 ## Case: woh fee jo kabhi sach thi
 
-Imran ko jawaab dhoondhne mein bees minute lage, aur woh saadhaaran tha. Jab January mein late-fee policy badli, toh kisi ne naya version us folder mein daala jahan se chatbot padhta hai, aur kisi ne puraana hataya nahi. Dono versions store mein the, chunks mein kate hue, har ek ki apni embedding ke saath. Jab Nashik ki customer ne sawaal poochha, toh search ko woh do chunks mile jo late fee ke baare mein the. Woh figure ke alawa lagbhag ek jaise the, aur puraane ka score thoda zyada tha. Woh model ke paas gaya, jisne pichhle saal ke niyam se ek saaf, aatmavishwaas bhara, grounded jawaab likha.
+Imran ko explanation dhoondhne mein 20 minute lage, aur woh bahut aam nikla. Jab January mein late-fee policy badli, kisi ne naya version us folder mein upload kar diya tha jahan se chatbot padhta hai. Purana version kisi ne hataya nahi.
 
-Sab kuch kaam kar gaya tha. Search ko sahi vishay mila, model ne wahi istemaal kiya jo use diya gaya, aur jawaab ek asli document mein grounded tha. Document puraana tha.
+Toh dono versions store mein the, chunks mein kate hue, har ek ka apna embedding. Jab customer ne sawaal poochha, search ko late fee ke do chunks mile. Figure ke alawa woh lagbhag ek jaise the, aur purana wala ittefaq se thoda zyada score kar gaya. Woh model ke paas gaya, aur model ne pichhle saal ke rule se ek fluent, confident, grounded jawaab likh diya.
 
-::: key Prasangikta sahi hona nahi hai
-Behtar ranking madad nahi karti. Pichhle saal ki policy late fee ke baare mein hai aur sawaal se utni hi milti hai jitni is saal ki. Prasangikta aur sahi hona alag sawaal hain, aur search mein kuch bhi antar nahi jaanta tha.
+Sab kuch kaam kar raha tha. Search ne sahi topic dhoondha. Model ne wahi use kiya jo use diya gaya. Jawaab ek asli document par tika tha. Bas woh document purana tha.
+
+::: key Relevance aur correctness ek cheez nahi hain
+Behtar ranking se madad nahi milti. Pichhle saal ki policy late fee ke baare mein hai, aur sawaal se utni hi match karti hai jitni is saal ki. Relevance aur correctness do alag sawaal hain, aur search mein aisa kuch tha hi nahi jo in dono ka farq jaanta ho.
 :::
 
 ## Chaar sudhaar
 
-Pichhle mahine ke kaam ne team ko ise shaanti se dekhne ka saadhan diya tha. Chatbot ki search ke liye answer key thi, customers ke shabdon mein das sawaal, aur pehla score das mein se chhe. Imran ne chaar tareeke ek-ek karke liye aur har ek ko usi das par naapa.
+Pichhle mahine ke kaam ne team ko is par shaanti se nazar daalne ka tareeka diya tha. Chatbot ki search ke liye unke paas ek answer key thi: customers ke apne words mein 10 sawaal, aur pehla score tha 10 mein se 6. Imran ne chaar techniques ek-ek karke lin aur har ek ko usi 10 par naapa.
 
-Table: Search ke chaar sudhaar, usi das sawaalon par naape gaye
-| Tareeka | Kya karta hai | Score |
+Table: Search ke chaar sudhaar, usi 10 sawaalon par naape gaye
+| Technique | Kya karti hai | Score |
 | --- | --- | --- |
-| Hybrid search | Keyword search aur matlab se search ek saath chalata hai aur dono ki list jodta hai, taaki unme se chunna na pade. "Clause 14.2" ek se aaya aur "paisa kab milega" doosre se | 6 se 7 |
-| Reranking | Sabse achhe pachaas tukde sasti tarah laata hai, phir ek dheema, zyada saavdhaan model sawaal aur har tukda saath padhta hai aur sabse achhe kuch upar rakhta hai. Yeh recall aur precision dono ek saath sudharta hai, ek extra samay aur doosri call ki keemat par, isliye woh poori library par nahi balki pachaas tukdon par chalta hai | 7 se 8 |
-| Contextual retrieval | Har chunk store karne se pehle ek model ek vaakya likhta hai ki woh apne document mein kahan hai ("Yeh Late Payment Policy ke refund section se hai, overpayments ke baare mein"), aur vaakya uske saath store hota hai. Jo tukda "the aforesaid amount" se shuru hota tha ab ek note rakhta hai ki woh raashi kya hai | 8 se 9 |
-| Metadata filtering | Har chunk ko uske document, version, woh tareekhein jab woh laagu hai, aur kaun use dekh sakta hai, ke labels diye jaate hain. Search kuch score karne se pehle, jo chunk maujooda nahi hai use hata deti hai | Koi badlaav nahi |
+| Hybrid search | Keyword search aur meaning wali search ko saath chalati hai, aur dono lists ko jod deti hai, toh ab dono mein se ek chunna nahi padta. "Clause 14.2" ek se aaya aur "paisa kab milega" doosri se | 6 se 7 |
+| Reranking | Pehle sasti tarah se sabse achhe 50 tukde laati hai, phir ek dheemi, zyada dhyaan wali model sawaal aur har tukda saath mein padhti hai aur sabse achhe kuch ko upar rakhti hai. Isse recall aur precision dono sudharte hain, extra time aur ek doosri call ki keemat par. Isiliye yeh 50 tukdon par chalti hai, poori library par nahi | 7 se 8 |
+| Contextual retrieval | Har chunk store karne se pehle ek model ek sentence likhti hai jo bataye ki chunk apne document mein kahan hai ("This is from the refund section of the Late Payment Policy, about overpayments"), aur woh sentence uske saath store hota hai. Jo tukda "the aforesaid amount" se shuru hota tha, ab uske saath ek note hai ki woh amount kya hai | 8 se 9 |
+| Metadata filtering | Har chunk par label hota hai: kaunsa document, kaunsa version, kin dates ke beech woh lagu hai, aur kaun use dekh sakta hai. Search kuch bhi score kare, usse pehle jo chunk current nahi hai woh bahar fenk diya jaata hai | Koi badlaav nahi |
 
-Chauthi technique woh hai jisne score nahi hilaya. In labels ko *metadata* kehte hain, aur kisi bhi scoring se pehle unke aadhaar par chunks hataana *metadata filtering* hai.
+Chauthi technique woh hai jisne score nahi hilaya. In labels ko *metadata* kehte hain, aur kisi bhi scoring se pehle in labels ke hisaab se chunks ko fenk dena *metadata filtering* hai.
 
-## Woh sawaal jo kisi ne poochha nahi tha
+## Woh sawaal jo kisi ne poochha hi nahi tha
 
-Anaya ne samjhaya ki score kyun nahi hila: answer key mein sawaal tha hi nahi. Das mein se kisi ne aisi cheez ke baare mein nahi poochha jo badli ho. Imran ne ise row gyarah ke roop mein joda: bijli bill par late fee kitni hai, sahi jawaab dedh sau rupaye ke saath. Filter ke bina system ne sau bataya. Filter on karke usne dedh sau bataya. Usne use sau baar chalaya, dekhne ke liye, aur nateeja har baar wahi tha.
+Anaya ne samjha ki score kyun nahi hila. Answer key mein yeh sawaal tha hi nahi. 10 mein se ek bhi aisi cheez ke baare mein nahi tha jo badli ho.
 
-::: key Wahi technique jo kuch guarantee karti hai
-Hybrid search sahi chunk ke aane ki sambhavna badhata hai. Reranking uske upar hone ki sambhavna badhata hai. Extra vaakya uske samjhe jaane ki sambhavna badhata hai. Koi ranking technique ek nirast policy ko maujooda policy se upar aane se nahi rok sakti, kyunki ranking prasangikta ke baare mein hai aur yeh sahi hone ke baare mein hai. Filter scoring se pehle kaam karta hai. Woh galat cheez ko kam sambhav nahi banata. Woh use na-mumkin banata hai.
+Toh Imran ne use gyarahvi row ki tarah joda: bijli bill par late fee kitni hai? Sahi jawaab tha 150 rupaye. Filter ke bina system ne 100 bataya. Filter lagakar usne 150 bataya. Imran ne pakka karne ke liye ise 100 baar chalaya, aur har baar result wahi aaya.
+
+::: key Akeli technique jo kuch guarantee karti hai
+Hybrid search se sahi chunk ke aane ke chance badhte hain. Reranking se uske upar aane ke chance badhte hain. Extra sentence se uske samjhe jaane ke chance badhte hain. Koi bhi ranking technique ek radd ki hui policy ko current policy se upar aane se nahi rok sakti, kyunki ranking relevance ki baat hai aur yeh correctness ki. Filter scoring se pehle kaam karta hai. Woh galat cheez ko kam mumkin nahi banata. Use na-mumkin bana deta hai.
 :::
 
-Anaya ne woh antar pehchaana jo woh har cheez mein dhoondhne lagi thi: ek tareeka jo failure ko kam karta hai, aur ek jo uski wajah hata deta hai. Usne whiteboard par kaale rang mein, puraani laal line ke neeche, "row gyarah" likha. Yeh answer key ki pehli row thi jo ek customer se aayi thi.
+Anaya ne woh farq pehchana jo woh ab har cheez mein dhoondhne lagi thi. Ek tarah ke tareeke kisi failure ko kam kar dete hain. Doosri tarah ke tareeke uski wajah hi hata dete hain. Usne whiteboard par kaali ink se "row eleven" likha, purani laal line ke neeche. Yeh answer key ki pehli row thi jo kisi customer se aayi thi.
 
 ## Labels kis kaam ke hain
 
-Lakshmi, jo ruki thi, ne poochha ki labels par aur kya hai. Imran ne ginaya: document, version, woh tareekhein jab woh laagu hai, aur kaun use dekh sakta hai. Lakshmi ne aakhri baat dohrai. Folder mein andar ke documents the, jaise collections playbook aur staff handbook. Usne poochha ki agar kisi customer ka sawaal handbook se milta toh pehle kya hota. Imran ne kaha ki woh handbook dhoondh leta. Usne kaha ki ab ise kaise roka jaata hai yeh dikhao. Search se pehle ek filter, Imran ne kaha: ek customer ki request sirf un chunks ko dekh sakti hai jinpar customers ke liye label hai.
+Lakshmi ruki hui thi. Usne poochha ki labels par aur kya hai. Imran ne ginaya: document, version, woh dates jinmein woh lagu hai, aur kise dekhne ki ijaazat hai.
 
-Woh us bhaav se sir hilayi jo Anaya ne pehle uske chehre par nahi dekha tha. Woh poori tarah manzoori nahi thi. Woh us insaan ka chehra tha jise ek pakki zameen mili ho. Pehli baar building mein ek tool wahi kar raha tha jo Lakshmi ne bees saal mein har system se maanga tha: galat cheez ko mushkil nahi balki na-mumkin banana.
+Lakshmi ne aakhri cheez dohrayi. Folder mein internal documents the, jaise collections playbook aur staff handbook. Usne poochha ki pehle kya hota agar kisi customer ka sawaal handbook se match kar jaata? Imran ne kaha ki search handbook dhoondh leti. Usne kaha ki dikhao ki ab isse kaise roka gaya hai. Search se pehle ek filter, Imran ne kaha. Customer ki request sirf unhi chunks ko dekh sakti hai jinpar customers ka label hai.
 
-Anaya ne dekha ki wahi vichaar guard mein bhi laagu hota hai. Har message kisi jagah se aata hai: order-tracking screen, loan-status screen, free chat. Jo screen pehchaan ka number maangne ke liye bani hai wahan type kiya number bilkul theek ho sakta hai, aur wahi number free chat mein theek nahi hai. Agar rule-keeper kuch tay karne se pehle jaanta hai ki message kahan se aaya, toh woh bina kisi chaturai ke alag niyam laagu kar sakta hai. Message ka maksad ek aur label tha, aur imaandaar. Usne specification mein ek column joda.
+Woh sir hilakar aisi expression ke saath boli jo Anaya ne pehle uspar nahi dekhi thi. Yeh theek se approval nahi tha. Yeh us insaan ki nazar thi jise pakki zameen mil gayi ho. Pehli baar building mein koi tool wahi kar raha tha jo Lakshmi 20 saal se har system se maangti aayi thi: galat cheez ko na-mumkin banana, na ki sirf kam mumkin.
 
-## Ek aur vichaar, jise alag rakha gaya
+Anaya ne dekha ki yahi idea guard mein bhi lagna chahiye. Har message kahin se aata hai: order-tracking screen, loan-status screen, ya free chat. Jis screen ko identity number lene ke liye hi banaya gaya hai, wahan type kiya gaya identity number bilkul sahi ho sakta hai. Wahi number free chat mein sahi nahi hai.
 
-Ek paanchvi technique bachi thi, jise Imran ne bataya aur taal diya. Model ko kai searches khud chalane di ja sakti hain, nateeje padhne aur apna sawaal dobara likhne ki ijaazat di ja sakti hai, Chapter 20 ke loop se. Yeh *agentic search* hai. Woh behtar saboot dhoondh sakta hai, aur woh us chapter mein dikhaye tareeke se kharcha badhata hai aur wahi risk jodta hai. Usne ise board par "baad mein" ke neeche likh diya, ek aisa column jo kai cheezon ke liye achhi jagah banne laga tha.
+Agar rule-keeper kuch bhi tay karne se pehle jaanta ho ki message kahan se aaya, toh woh bina kisi hoshiyaar kadam ke alag rules laga sakta hai. Message ka maqsad bas ek aur label tha, aur ek imaandaar label. Usne specification mein ek column jod diya.
 
-## Saaraansh
+## Ek aur idea, abhi ke liye alag
 
-Saadhaaran search ko chaar tareekon se behtar kiya ja sakta hai, aur har ek ko usi answer key par naapna chahiye.
+Ek technique aur bachi thi. Imran ne use samjhaya aur phir taal diya. Model ko khud kai searches chalane ki ijaazat di ja sakti hai, woh results padhe aur apna sawaal dobara likhe, Chapter 20 ke loop ka istemaal karke. Yeh *agentic search* hai.
 
-- Hybrid search keyword aur matlab ki search ek saath chalata hai, taaki unme se chunna na pade.
-- Reranking bahut saare candidates laata hai aur ek dheema model unhe dobara padhkar kram badalta hai. Woh jo mila aur woh kitna saaf hai, dono sudharta hai, thode samay ke kharche par.
-- Contextual retrieval har chunk ke saath ek vaakya jodta hai ki woh kahan se hai aur orphans ko theek karta hai.
-- Metadata filtering chunks ko version, tareekh aur audience ke labels deta hai aur kisi bhi scoring se pehle unpar filter lagata hai. Yeh yahan ki akeli technique hai jo nateeje ka vaada kar sakti hai, kyunki prasangikta aur sahi hona alag sawaal hain.
-- Agentic search model ko baar-baar search karne deti hai, aur kharcha badhati hai.
+Woh behtar evidence dhoondh sakti hai. Lekin woh cost ko usi tarah multiply karti hai jaise us chapter ne dikhaya tha, aur wahi risks bhi saath laati hai. Imran ne use board par "later" ke neeche likha, ek aisa column jo kai cheezon ke liye achhi jagah dikhne laga tha.
 
-Achhi answer key asli failures se badhti hai, aur sabse achhi nayi row woh hai jo ek customer ne likhi.
+## Summary
+
+Seedhi search ko chaar tareeke se behtar banaya ja sakta hai, aur har ek ko usi answer key par naapna chahiye.
+
+- Hybrid search keyword aur meaning wali search ko saath chalati hai, toh dono mein se ek chunna nahi padta.
+- Reranking bahut saare candidates laati hai, phir ek dheemi model unhe dobara padhkar order mein lagati hai. Isse jo mila aur woh kitna saaf hai, dono sudharte hain, kuch time ki keemat par.
+- Contextual retrieval har chunk ke saath ek sentence jodti hai ki woh kahan se hai, aur akele chhode gaye tukdon ko theek karti hai.
+- Metadata filtering chunks par version, dates aur audience ke labels lagati hai, aur kisi bhi scoring se pehle in labels par filter karti hai. Yahan sirf yahi technique result ka vaada kar sakti hai, kyunki relevance aur correctness alag sawaal hain.
+- Agentic search model ko baar-baar search karne deti hai, aur cost ko multiply kar deti hai.
+
+Achhi answer key asli failures se badhti hai, aur sabse achhi nayi row woh hoti hai jo kisi customer ne likhi ho.
+
+Agle chapter mein aap ek bahut buri problem se milenge, jisme model jo text padhta hai woh use hukm dene lagta hai.

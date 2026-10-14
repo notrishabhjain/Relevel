@@ -1,12 +1,12 @@
 ---
 title: Knowing Whether It Works
-summary: The team stops trusting how an answer feels and writes the correct answers down before looking at the tool's. The chapter covers test sets, answer keys, scoreboards, changing one thing at a time, and the five kinds of job a request can be.
+summary: The team stops trusting how an answer feels, and writes down the correct answers before looking at the tool's. This chapter covers test sets, answer keys, scoreboards, changing one thing at a time, and the five kinds of job a request can be.
 course: ch22 ch23
 goals:
   - explain why reading a few outputs is an unreliable way to judge a system
   - build a test set with an answer key written before the tool is run, and keep it in numbered versions
   - read a scoreboard of found, missed and falsely flagged items
-  - sort a request into one of five task types and say which can be graded by a program
+  - sort a request into one of five task types, and say which can be graded by a program
 terms:
   - test set | a collection of real or realistic examples, each with the correct answer written down beforehand, used to measure a system | test sets
   - answer key | the test set for the guard: for every example sentence, exactly what should be found and what should happen to it, kept in numbered versions | answer keys
@@ -14,29 +14,35 @@ terms:
   - task type | which of five kinds of job a request really is: classify, extract, summarise, rewrite or generate | task types
 ---
 
-Three weeks after Lakshmi Iyer had asked how Anaya would know that the tool worked, Anaya still had no answer, and by the middle of April the question had become unavoidable. On a Wednesday afternoon she put it to Imran Qureshi in the glass room, in front of the whiteboard that carried "Rarer is not fixed" in red. His reply was brief: run the tool on examples where the right answer is already known, and count. She asked why it sounded so much harder when he said it. "Because somebody has to write the answers first," he said.
+Three weeks earlier, Lakshmi Iyer had asked how Anaya would know that the tool worked. Anaya still had no answer. By the middle of April the question could not be put off any longer.
 
-This chapter describes that writing, the table that came out of it, and a classification of jobs that determines how any result can be measured.
+On a Wednesday afternoon she asked Imran Qureshi in the glass room, in front of the whiteboard that still said "Rarer is not fixed" in red. His reply was short. Run the tool on examples where the right answer is already known, and count. Anaya asked why it sounded so much harder when he said it. "Because somebody has to write the answers first," he said.
+
+This chapter is about that writing. It covers the table that came out of it, and a way of sorting jobs that decides how any result can be measured.
 
 ## The case: the version everyone liked
 
-The team now had four versions of the instruction, each a little longer than the one before. The shortest was Imran's plain request. The longest had the job, the steps, two worked examples and a warning. The previous evening Neha, who had taken part in the paper test, had read the outputs of all four on five messages and said the fourth was clearly the best. It read well, sounded careful and explained itself. Anaya had nodded, and was a little ashamed of how readily.
+The team now had four versions of the instruction, each a little longer than the last. The shortest was Imran's plain request. The longest had the job, the steps, two worked examples and a warning.
+
+The evening before, Neha, who had helped with the paper test, had read the outputs of all four versions on five messages. She said the fourth was clearly the best. It read well. It sounded careful, and it explained itself. Anaya had nodded, and she was a little ashamed of how quickly she had agreed.
 
 ## Why a feeling is not enough
 
-Reading a few outputs and choosing the one that feels right is the most natural way to judge a system and the least reliable. The outputs read are the ones that happened to be read. A demonstration that goes well shows what the tool can do on a good day. A longer, more thorough-sounding answer tends to feel better whether or not it is.
+Reading a few outputs and choosing the one that feels right is the most natural way to judge a system. It is also the least reliable. The outputs you read are only the ones that happened to be read. A demonstration that goes well shows what the tool can do on a good day. And a longer, more careful-sounding answer tends to feel better, whether or not it is.
 
-The remedy is a *test set*: a collection of real or realistic examples, each with the correct answer written down beforehand.
+The remedy is a *test set*. This is a collection of real or realistic examples, each with the correct answer written down beforehand.
 
 ::: key Two words do the work
-"Beforehand" and "written down" are what make a test set a test. If the tool's output is read first and the right answer decided afterwards, whatever the tool said will seem approximately fine.
+"Beforehand" and "written down" are what turn a collection of examples into a test. If you read the tool's output first and decide the right answer afterwards, whatever the tool said will seem roughly fine.
 :::
 
 ## Ten sentences
 
-On Thursday Anaya and Farah wrote ten sentences. They were made up in the shape of real messages, and between them they covered the main cases: three in English, one in Hindi script, three in Hinglish and three that were awkward. One was a plain message with a name and a mobile number. One was a Hinglish message with an Aadhaar number beside a mobile number that was already half hidden. One was a Devanagari sentence with a name and an identity number. One contained a father's name, an address in Gurgaon and an employer. One pointed at a single person without a name or number. One contained nothing personal, and the tool was supposed to leave it alone.
+On Thursday, Anaya and Farah wrote ten sentences. They made them up in the shape of real messages, and between them the ten covered the main cases. Three were in English, one was in Hindi script, three were in Hinglish, and three were awkward.
 
-For each sentence they wrote six things in a spreadsheet before running anything: a number, the kind of writing, the sentence, what should be found, what should happen to it, and a note.
+Here is a taste of the mix. One was a plain message with a name and a mobile number. One was a Hinglish message with an Aadhaar number sitting beside a mobile number that was already half hidden. One was a Devanagari sentence with a name and an identity number. One held a father's name, an address in Gurgaon and an employer. One pointed at a single person without giving a name or a number. And one contained nothing personal at all, so the tool was supposed to leave it alone.
+
+For each sentence they wrote six things in a spreadsheet, before running anything: a number, the kind of writing, the sentence, what should be found, what should happen to it, and a note.
 
 Table: Four rows from the first answer key
 | No. | Writing | Sentence | What should be found | What should happen |
@@ -46,11 +52,13 @@ Table: Four rows from the first answer key
 | 8 | English | I am the only diabetic patient in my village who had a transplant last year. | nothing with a shape; the whole sentence points to one person | flag for a person to decide |
 | 9 | English | What documents do I need to renew my driving licence? | nothing | leave it alone |
 
-This spreadsheet is the *answer key*. It carries a version number, and this one was version 1, with the date and the word "ten" in the corner. It would grow for the rest of the project. Each time it grew it would be saved as a new version of the same file, never as a new file, so that anyone could say which key a given score had been measured against.
+This spreadsheet is the *answer key*. It carried a version number. This one was version 1, with the date and the word "ten" in the corner. It would grow for the rest of the project. Each time it grew, it would be saved as a new version of the same file, never as a new file. That way anyone could say which key a given score had been measured against.
 
 ## The scoreboard
 
-The team ran all four instructions on all ten sentences and counted three things for each run: how many real details were found, how many were missed because the tool let them through, and how many items were wrongly flagged, a false alarm being a case where the tool hid something that was not personal at all. The key held seventeen real details across the ten sentences.
+The team ran all four instructions on all ten sentences. For each run they counted three things.
+
+The first was how many real details the tool found. The second was how many it missed, because it let them through. The third was how many it wrongly flagged. A false alarm is a case where the tool hid something that wasn't personal at all. The key held seventeen real details across the ten sentences.
 
 Table: The first scoreboard
 | Version | Found | Missed | False alarms |
@@ -60,15 +68,19 @@ Table: The first scoreboard
 | 3. Add worked examples | 15 | 2 | 2 |
 | 4. Add steps and a warning | 14 | 3 | 1 |
 
-A table of this kind, with one row per version, is the *scoreboard*. It has no opinions, and it does not care that the fourth answer reads beautifully. Version four was the one Neha had chosen. Version three found one more detail and raised one more false alarm, and a discussion of that trade is reasonable. But version four was not the best, and it was almost twice as long. "We would have shipped it," Anaya said.
+A table like this, with one row for each version, is called a *scoreboard*. It has no opinions. It doesn't care that the fourth answer reads beautifully.
+
+Look at what it says about version four, the one Neha had chosen. Version three found one more detail and raised one more false alarm, and you could fairly discuss that trade. But version four was not the best, and it was almost twice as long. "We would have shipped it," Anaya said.
 
 ### One change at a time
 
-Imran then identified a flaw in his own method. Between versions two and four he had changed three things at once: the job, the steps and the warning. He could not say which had helped, and one of them might be making results worse while the other two compensated. He wrote "one change at a time" on the board beneath the red line. It is slower, and it is the only way to know. When somebody says that they tuned a prompt, the question to ask is how many things they changed.
+Then Imran spotted a flaw in his own method. Between versions two and four he had changed three things at once: the job, the steps and the warning. So he couldn't say which of them had helped. One of them might even be making results worse, while the other two made up for it.
+
+He wrote "one change at a time" on the board, under the red line. It is slower, and it is the only way to know. Next time somebody tells you they tuned a prompt, ask how many things they changed.
 
 ## What kind of job is this
 
-That evening Imran pulled out the napkin again. Almost every request that people make of these machines, he said, is one of five jobs. The shape of the job decides whether the result can be measured by a program or only by hand, so the method cannot be chosen until the job is known.
+That evening Imran pulled out the napkin again. Almost every request people make of these machines, he said, is one of five jobs. The shape of the job decides whether a program can measure the result, or only a person can. So you can't choose a method until you know the job.
 
 Table: The five task types
 | Task type | What it does | Example | Can a program grade it? |
@@ -79,23 +91,31 @@ Table: The five task types
 | Rewrite | Keeps the meaning and changes the form or tone | Make this reply politer | No, a person must judge |
 | Generate | Produces something new | Write a reply to this customer | No, a person must judge |
 
-The first two have right answers. The value is in the document or it is not, and a program can grade them. The other three depend on the reader, and only a person can say whether a summary is good. This is the *task type*, and Anaya recognised it as the most useful idea since the four product risks.
+The first two have right answers. The value is in the document, or it isn't, so a program can grade them. The other three depend on the reader. Only a person can say whether a summary is good.
 
-The guard found identity numbers and names inside messages, which is extraction, and decided what kind of detail each was, which is classification. Both had right answers and both could be graded without a person in the loop. She had chosen, more or less by accident, a project whose results could be counted from the first day. The chatbot was different. Its job was to write answers, which is generation, and nobody could grade it automatically. That may explain why nobody had.
+This is called the *task type*, and Anaya saw at once that it was the most useful idea she had met since the four product risks.
+
+Now apply it to the guard. The guard finds identity numbers and names inside messages, which is extraction. It also decides what kind of detail each one is, which is classification. Both have right answers, and both can be graded without a person. More or less by accident, she had chosen a project whose results could be counted from the first day.
+
+The chatbot was different. Its job was to write answers, which is generation, and nobody can grade that automatically. That may be why nobody had.
 
 ::: watch A request is often three tasks in a coat
-"Can the AI handle our inbox?" is not a task. It is at least three: classify the message by type, extract the account number, and write a draft reply. Each fails differently, and only the first two can be measured without a person. A request with more than one task type in it should be split. Farah, passing the door, asked what would happen if she simply asked it to handle the chat. Imran asked which of the three jobs she meant.
+"Can the AI handle our inbox?" is not one task. It is at least three. Classify the message by type. Extract the account number. Write a draft reply. Each one fails in its own way, and only the first two can be measured without a person. A request with more than one task type in it should be split. Farah, passing the door, asked what would happen if she just asked it to handle the chat. Imran asked which of the three jobs she meant.
 :::
 
 ## Lakshmi's question, answered
 
-On Friday Anaya wrote to Lakshmi. The email said that the team would write down the right answers before looking at the tool's, that there were ten so far and would be more, and that every version of the file would be kept. For each version of the tool they would count what it found, what it missed and what it wrongly flagged, and would show her the table. If a number got worse, she would see it. The team did not yet know how good the tool would be, but it would know how good it was. The reply was one word: "Better."
+On Friday Anaya wrote to Lakshmi. Her email said the team would write down the right answers before looking at the tool's. There were ten so far, with more to come, and every version of the file would be kept.
+
+For each version of the tool, the team would count what it found, what it missed and what it wrongly flagged, and show her the table. If a number got worse, she would see it. The team didn't yet know how good the tool would be, but it would know how good it was.
+
+The reply was one word: "Better."
 
 ## Summary
 
-Reading a few outputs and choosing the one that feels right is unreliable, however sincere the reader. A test set fixes this with realistic examples whose correct answers are written down beforehand and saved in numbered versions.
+Reading a few outputs and choosing the one that feels right is unreliable, however sincere the reader. A test set fixes this. It holds realistic examples whose correct answers are written down beforehand and saved in numbered versions.
 
 - The answer key for the guard lists, for each example sentence, what should be found and what should happen to it.
-- A scoreboard counts what each version found, missed and wrongly flagged, which makes progress visible and keeps opinions out of it.
-- Change one thing at a time, or it will not be known what helped.
+- A scoreboard counts what each version found, missed and wrongly flagged. It makes progress visible and keeps opinions out of it.
+- Change one thing at a time, or you won't know what helped.
 - Name the task type before choosing a method. Classifying and extracting can be graded by a program. Summarising, rewriting and generating need a person, and a request that mixes types should be split.

@@ -1,88 +1,102 @@
 ---
 title: Kaagaz, Photos Aur Scans
-summary: Ab tak guard ne jo bhi vaakya padha woh pehle se text tha. Pachaas attachments ka random sample dikhata hai ki asli traffic mein yeh kitni kam sach hai, aur kaise bade O akshar ka zero ban jaana ek number ko rule ke paas se nikaal sakta hai. Chapter OCR aur document audit samjhata hai.
+summary: Ab tak guard ne jo bhi sentence padha, woh pehle se text tha. 50 attachments ka ek random sample dikhata hai ki asli traffic mein aisa kitni kam baar hota hai, aur zero ki jagah capital O ek number ko rule ke saamne se kaise nikaal sakta hai. Is chapter mein OCR aur document audit aate hain.
 course: ch16
 goals:
-  - samjhana ki document par nirbhar project ko document audit se kyun shuru karna chahiye
-  - OCR kya karta hai aur woh kaun si aam galtiyan karta hai, yeh batana
-  - pattern rule lagane se pehle milte-julte akshar theek karna
-  - page ko text ki tarah padhne aur use model ko tasveer ki tarah dikhane ki tulna karna, aur batana ki voice kya badalti hai
+  - samjha paana ki jo project documents par tika hai, use document audit se kyun shuru karna chahiye
+  - bata paana ki OCR kya karta hai aur uski aam galtiyan kaun si hain
+  - pattern rule lagane se pehle milte-julte characters ko theek kar paana
+  - page ko text ki tarah padhne aur page ko model ko picture ki tarah dikhane ki comparison karna, aur batana ki voice kya badalti hai
 terms:
-  - OCR | optical character recognition: software jo text ki tasveer ko text mein badalta hai, aamtaur par kuch galtiyon ke saath | text extraction, text extractor
-  - document audit | kuch bhi banane se pehle, ek random namoone se ginna ki sangrah ka kitna hissa saaf digital text hai, kitna scan hai, aur kitne ka matlab tables aur layout mein hai | 
+  - OCR | optical character recognition: aisa software jo text ki picture ko text mein badalta hai, aam taur par kuch galtiyon ke saath | text extraction, text extractor
+  - document audit | kuch banane se pehle, ek random sample se ginna ki collection ka kitna hissa saaf digital text hai, kitna scan hai, aur kitne mein matlab tables aur layout mein chhupa hai | 
 ---
 
-Saal ke pehle chhe mahine Anaya ke dimaag mein customer ke message ki tasveer phone par text ki kuch lines thi. Usne ise kabhi jaancha nahi tha. Woh transcripts se aayi thi, jo swabhaav se text hain, aur answer key se, jo vaakyon ka ek column thi. Team ne ab tak jo kuch banaya tha, har rule aur har test, ek chupi maanyata par tika tha: ki kisi ne pehle hi customer ke shabdon ko akshron mein badal diya hai.
+Saal ke pehle chhe mahine, Anaya ke dimaag mein customer ke message ki tasveer phone par kuch lines ka text thi. Usne kabhi use gaur se dekha nahi tha. Woh transcripts se aati thi, jo apne aap mein text hote hain, aur answer key se, jo sentences ka ek column thi. Team ne ab tak jo bhi banaya tha, har rule aur har test, ek chhupi hui dhaarna par tika tha. Kisi ne pehle hi customer ke words ko characters mein badal diya hai.
 
-July ke ek Friday ko Farah Sheikh ne uske saamne ek kaagaz rakha jo bilkul vaakya jaisa nahi dikhta tha. Woh ek photograph thi jo ek customer ne ek bank passbook ki kitchen ki table par kheenchi thi, thodi tirchhi, ek kone par khidki ki roshni ke saath, aur chatbot ko "account number check karo" shabdon ke saath bheji thi. Usme kuch bhi text nahi tha. Woh pixels ka ek grid tha jo ek insaan ko ek naam, ek account number aur ek branch wali table jaisa dikhta tha. "Hamein aisi bahut milti hain," Farah ne kaha. Anaya ne poochha ki kitni. Farah ne kaha ki use nahi pata aur socha tha ki Anaya jaanna chahegi.
+July ke ek Friday ko Farah Sheikh ne uske saamne ek aisi sheet rakhi jo bilkul sentence jaisi nahi dikhti thi. Woh ek photograph thi jo ek customer ne kitchen table par rakhi bank passbook ki khichi thi. Woh thodi tedhi thi, ek kone par khidki ki roshni padi thi, aur use chatbot ko "account number check karo" likhkar bheja gaya tha.
 
-## Case: kitchen ki table par ek passbook
+Usme kuch bhi text nahi tha. Woh pixels ka ek grid tha, jo ek insaan ko naam, account number aur branch wali table jaisa dikhta tha. "Humein aise bahut aate hain," Farah ne kaha. Anaya ne poochha ki kitne. Farah ne kaha use nahi pata, aur use laga ki Anaya khud pata karna chahegi.
 
-Anaya ne samajhdaari ka kaam kiya aur ek random sample maanga. Yeh chapter dikhata hai ki usne kya dikhaya, ek photograph se jab machine ne ek number padha toh uska kya hua, aur maujooda design ki seemayein kahan thi.
+## Case: kitchen table par rakhi passbook
 
-## Random mein pachaas
+Anaya ne samajhdaari wala kaam kiya aur ek random sample maanga. Is chapter mein aap dekhenge ki sample ne kya dikhaya, ek photograph se machine ke padhne par ek number ke saath kya hua, aur maujooda design ki limit kahan thi.
 
-Usne Farah se pichhle mahine ki chats mein se pachaas attachments random nikalne ko kaha: dilchasp nahi, aur woh nahi jo koi utsahi saathi chunta, balki ek number generator ke chune hue pachaas, asli traffic se. Usne unhe ek Saturday subah, garmi se bachne ke liye aadhe band shutters ke saath, ek-ek karke dekha.
+## 50 random attachments
+
+Usne Farah se kaha ki pichhle mahine ki chats mein se 50 attachments random nikaalein. Woh dilchasp wale nahi hone the, ya woh jo koi utsahi colleague chunta. Ek number generator ne asli traffic mein se saare 50 chune. Anaya ne Saturday subah, garmi se bachne ke liye aadhi band shutters ke peeche, ek-ek karke unhe dekha.
 
 ::: def Document audit
-Document par nirbhar kisi bhi project se pehle teen number kaam ke hain. Documents ka kitna hissa saaf digital text hai jo jaisa hai waisa padha ja sakta hai? Kitna hissa scan ya photo hai, jise pehle text banana padega? Aur logon ko chahiye jaankari ka kitna hissa tables, forms aur layouts ke andar band hai, jahan matlab is par nirbhar hai ki kaun sa dabba kiske paas hai? Ek random sample se yeh jaanna *document audit* hai. Ismein ek dopahar lagti hai, aur lagbhag koi ise karta nahi.
+Jis bhi project mein documents par bharosa karna ho, usse pehle teen numbers jaanna zaroori hai. Documents ka kitna hissa saaf digital text hai jise jaisa hai waisa padha ja sakta hai? Kitna scan ya photograph kiya hua hai, jise pehle text mein badalna padega? Aur logon ko jo jaankari chahiye uska kitna hissa tables, forms aur layouts ke andar band hai, jahan matlab is par tika hai ki kaun sa box kiske baju mein hai? Ek random sample se yeh pata karna *document audit* hai. Ismein ek dopahar lagti hai, aur lagbhag koi nahi karta.
 :::
 
-Unhone pachaason ko dheron mein baanta.
+Unhone 50 ko dheron mein baant diya.
 
-Table: Pachaas random attachments kya the
+Table: 50 random attachments kya the
 | Kya tha | Ginti |
 | --- | --- |
-| Saaf digital files, jaise bank se download kiya statement | 12 |
+| Saaf digital files, jaise bank se download ki gayi statement | 12 |
 | Cards, cheques aur passbooks ki photographs | 31 |
 | Doosre apps ke screenshots | 7 |
 
-Pachaas mein se ikatees, yaani das mein se chhe se zyada, photographs the, aur lagbhag sab ki pehli line mein wahi detail thi jise dhoondhne ke liye guard bana tha. Anaya ne kaha ki yahi hissa usne galat samjha tha. April mein usne cards ki photographs ko "Could" mein rakha tha kyunki use lagta tha ki woh dulabh hain. Imran ne kaha ki uske paas number nahi tha. Usne kaha ki uske paas ek ehsaas tha. Usne line "Could" se "Should" mein badal di aur kaaran uske paas likha: ek random sample ka baasath percent, 12 July ko jaancha gaya. Aise document mein jo zyadatar aatmavishwaas bhare andaazon ki failure ke baare mein tha, yeh ek chhoti nijee jeet thi.
+50 mein se 31, yaani 10 mein se 6 se thode zyada, photographs the. Lagbhag sab mein, pehli line mein hi woh detail thi jise dhoondhne ke liye guard bana hai.
 
-## Kadam se pehle ka kadam
+Anaya ne kaha ki yahi woh hissa tha jisme woh galat thi. April mein usne cards ki photographs ko "Could" ke neeche rakha tha, kyunki use lagta tha ki woh kam aati hain. Imran ne kaha ki uske paas number nahi tha. Anaya ne kaha ki uske paas ek ehsaas tha. Usne line "Could" se "Should" mein kar di aur baju mein wajah likhi: random sample ka 62 percent, 12 July ko check kiya. Ek aise document mein jo bahut had tak itminaan wali impressions ki failure ke baare mein tha, yeh ek chhoti si nijee jeet thi.
 
-Ek picture ko rule nahi padh sakta. Pehle use koi cheez text mein badalti hai. Woh *OCR* hai, optical character recognition: software jo likhe hue ki picture dekhta hai aur woh akshar lautata hai jo use lagta hai ki woh dekh raha hai. Woh bahut achha hai aur poora nahi, aur jo galtiyan karta hai woh ek khaas aur dhokhebaaz kism ki hain.
+## Step se pehle ka step
 
-Imran ne ek dummy Aadhaar card liya jise building ke ek designer ne ek banaye hue number ke saath banaya tha, aur use ek halke kone par photograph kiya. Usne photograph ko reader se chalaya. Card ka number 4321 5678 9012 tha. Jo text wapas aaya usme "432l 5678 9O12" tha. Reader ne ek chhota akshar l lautaya jahan ank ek hona tha, aur ek bada O jahan shunya hona tha.
+Ek rule picture nahi padh sakta. Pehle koi cheez picture ko text mein badalni padegi. Yahi *OCR* hai, yaani optical character recognition. Yeh aisa software hai jo likhe hue ki picture dekhta hai aur woh characters wapas deta hai jo use lagta hai ki woh dekh raha hai. Woh bahut achha hai lekin perfect nahi, aur uski galtiyan ek khaas aur dhokhebaaz kism ki hoti hain.
 
-Kai typefaces mein ek ank aur l lagbhag ek jaise dikhte hain, aur O aur shunya bhi. Software shakl se andaaza lagata hai. Pattern checker baarah ank dhoondhta hai, aur yeh das ank aur do akshar the, isliye checker ise nahi pehchaanta. Asli number ek bilkul saaf record ke saath guzar jaata jo dikhata ki rule ko kuch galat nahi dikha. PAN ki bhi wahi mushkil ulti taraf hai: usme pehle paanch jagah par akshar aur agle chaar par ank hote hain, aur jahan akshar hona chahiye wahan ank shakl tod deta hai.
+Imran ne ek dummy Aadhaar card liya jo building ke ek designer ne ek banaye hue number ke saath mock up kiya tha, aur use thoda tirchha karke photograph kiya. Usne photograph reader se guzaari. Card par number tha 4321 5678 9012. Jo text wapas aaya, usme likha tha "432l 5678 9O12". Reader ne digit 1 ki jagah chhota letter l diya tha, aur zero ki jagah capital O.
 
-Upaay saadhaaran tha. Rule kisi number ko dekhne se pehle ek chhota kadam milte-julte akshar wapas badal sakta tha, is maanyata par ki jahan sirf ank allowed hain wahan O shunya hai, l ek hai, S paanch hai aur B aath hai. Yeh kisi ne rules mein daalne ka nahi socha tha, kyunki phone par type karne wala koi yeh galti nahi karta. Sirf photograph padhne wali machine karti hai. Anaya ne answer key mein "scan, milte-julte aksharon ke saath" ke naam se rows ka ek parivaar joda, aur dekha ki yeh key ka tasveeron se bana pehla version tha.
+Bahut se typefaces mein 1 aur l lagbhag ek jaise dikhte hain, aur O aur zero bhi. Software shapes se andaaza lagata hai. Pattern checker 12 digits dhoondhta hai, aur yeh 10 digits aur 2 letters the. Toh checker ise pehchan nahi paata. Asli number saamne se nikal jaata, aur record bilkul saaf rehta jo dikhata ki rule ko kuch galat nahi laga.
 
-## Ek page padhne ke do tareeke
+PAN ko ulti taraf se wahi dikkat hoti hai. Usmein pehli 5 jagah letters hote hain aur agli 4 mein digits, toh jahan letter hona chahiye wahan digit shape ko tod deta hai.
 
-Imran ne vikalp rakhe.
+Ilaaj chhota sa tha. Rule kisi number ko dekhe, usse pehle ek chhota step milte-julte characters ko wapas badal sakta tha. Jahan sirf digits allowed hain, wahan O zero hai, l ek hai, S paanch hai aur B aath hai. Kisi ne yeh rules mein daalne ka socha nahi tha, kyunki phone par type karne wala koi bhi yeh galti nahi karta. Sirf photograph padhne wali machine karti hai.
 
-Table: Ek page padhne ke do tareeke
-| Tareeka | Khoobiyan | Kamiyaan |
+Anaya ne answer key mein rows ka ek naya parivaar joda, jiska label tha "scanned, with lookalikes". Yeh images se bani key ka pehla version tha.
+
+## Page padhne ke do tareeke
+
+Imran ne options saamne rakhe.
+
+Table: Page padhne ke do tareeke
+| Tareeka | Taakat | Kamzori |
 | --- | --- | --- |
-| Pehle page ko text banao, phir text par kaam karo | Sasta. Ab tak jo banaya sab laagu hota hai: kaatna, rules, search | Aksar structure bigaad deta hai. Teen column ki table aksar ek chapti line ban jaati hai. Har value bachti hai, aur kaun sa figure kaun si row ka hai woh kho jaata hai |
-| Ek saksham model ko page ki tasveer do | Layout rakhta hai aur table ya form ke baare mein sawaalon ka jawaab de sakta hai | Har page par zyada mehnga, kabhi-kabhi code galat padhta hai, aur use us page ki taraf ishaara karne ka tareeka chahiye jo usne dekha |
+| Page ko pehle text mein badalna, phir text par kaam karna | Sasta. Ab tak jo bhi banaya hai woh sab lagu rehta hai: cutting, rules, search | Aksar structure bigaad deta hai. Teen column ki table aksar ek sapaat line ban jaati hai. Har value bachti hai, lekin kaun sa figure kaun si row ka hai yeh kho jaata hai |
+| Ek capable model ko page ki picture dena | Layout bachaye rakhta hai, aur table ya form ke baare mein sawaal ka jawaab de sakta hai | Har page ki cost zyada hai, kabhi-kabhi code galat padh leta hai, aur use page tak wapas ishaara karne ka tareeka chahiye jo usne dekha |
 
-Kai systems dono karte hain. Woh search ke liye text nikalte hain aur model ko tasveer dikhate hain jab sawaal kisi table ya form ke baare mein ho.
+Bahut se systems dono karte hain. Search ke liye text nikaalte hain, aur jab sawaal table ya form ke baare mein ho toh model ko picture dikhate hain.
 
-::: watch Chapte hone ka khaamosh khatra
-Maan lijiye ek table chapti ho gayi hai aur sawaal ek column ke number ke baare mein hai. Search kaam karti hai aur model aatmavishwaas se jawaab deta hai, galat column ka ek number quote karte hue. Peechhe ke kisi bhi kadam ko yeh pakadne ka tareeka nahi, kyunki peechhe ke kadam ne page kabhi dekha hi nahi.
+::: watch Flatten karne ka chupa hua khatra
+Maan lijiye ek table flatten ho gayi, aur sawaal ek column ke number ke baare mein hai. Search kaam karti hai, aur model fluently jawaab deta hai, galat column ka number quote karke. Aage koi cheez ise pakad nahi sakti, kyunki aage kisi ne page dekha hi nahi.
 :::
 
-Anaya ne passbook ki photograph dobara dekhi. Usme ek naam, ek account number aur ek branch code tha. Agar koi reader unhe galat kram mein rakh deta, toh woh nahi bata sakti thi ki kaun sa number kaun sa hai. Tab guard ya toh dono chhupa deta, jo surakshit hota, ya koi nahi, jo nahi hota.
+Anaya ne passbook ki photograph ko dobara dekha. Usme ek naam tha, ek account number aur ek branch code. Agar reader ne unhe galat order mein rakh diya hota, toh woh nahi bata sakti thi ki kaun sa number kaun sa hai. Guard phir dono ko chhupa deta, jo safe hota, ya kisi ko nahi, jo safe nahi hota.
 
-## Aur phir awaaz
+## Aur phir voice
 
-Dopahar ke ant mein Farah ne ek aur sroot ka zikr kiya. Kuch customers voice notes bhejne lage the, aur call centre ek voice assistant ke baare mein poochh raha tha. Anaya ne dono ko Won't list mein rakha tha, aur usne apne aap ko nyaay dene ke liye poochha, kyun.
+Dopahar ke ant mein Farah ne ek aur source ka zikr kiya. Kuch customers ne voice notes bhejna shuru kar diya tha, aur call centre voice assistant ke baare mein poochh raha tha. Anaya ne dono ko Won't list mein rakha tha. Apne saath insaaf karne ke liye, usne poochha kyun.
 
-Imran ne kaha ki voice mukhya seema badal deta hai. Text mein do second ka intezaar theek hai, jabki bolne mein do second ki khaamoshi baatcheet tod deti hai aur log ek doosre ke upar bolne lagte hain. Poori yatra, awaaz ka andar aana, sochna aur awaaz ka bahar aana, usi ke andar fit honi chahiye. Garmiyon wali sochne wali machines aam taur par bahut dheemi thi. Voice mukhya roop se accuracy ka sawaal bhi nahi hai. Yeh is baare mein hai ki ek insaan kab bol chuka, agar woh beech mein tokein toh kya karna hai, aur system ke kaam karte waqt kya kehna hai. Yeh ek alag samasya aur alag project tha, aur Won't wahin raha.
+Imran ne kaha ki voice main constraint ko badal deta hai. Text mein 2 second ka intezaar theek hai. Bolne mein 2 second ki khamoshi baatcheet tod deti hai, aur log ek doosre ke upar bolne lagte hain. Poora round trip isi ke andar fit hona chahiye: speech andar, thinking, aur speech bahar. Garmiyon ki thinking machines, aam taur par, bahut dheemi thi.
+
+Voice mainly accuracy ka sawaal bhi nahi hai. Woh is baat ka sawaal hai ki insaan ne bolna kab khatam kiya, agar woh beech mein toke toh kya karna hai, aur system ke kaam karte waqt kya kehna hai. Woh ek alag problem aur alag project tha, aur Won't wahin raha jahan tha.
 
 ## Kya badla
 
-Us raat Anaya ne board par, puraani laal line ke paas aur nayi row ke neeche, likha ki audit ne kya kharch kiya aur kya kharida. Ismein ek dopahar, pachaas files aur bahut saari chai lagi thi. Isne photographs ko "Could" se "Should" mein badal diya, rules ko milte-julte aksharon ke baare mein sikhaya, aur use bhavishya ke liye ek thumb rule diya: document par nirbhar kisi bhi project se pehle, saaf wale gino. Imran ne kaha ki yeh woh sabse sasta tareeka hai jisse chhe hafte baad project fail hone se bacha ja sakta hai, aur sabse zyada anadekha kiya jaane wala bhi, kyunki usse kabhi yeh poochha nahi gaya tha.
+Us raat Anaya ne board par, purani laal line ke baju mein aur nayi row ke neeche, likha ki audit ki cost kya thi aur usne kya diya. Cost thi ek dopahar, 50 files aur bahut saari chai. Usne photographs ko "Could" se "Should" mein pahunchaya, rules ko milte-julte characters ke baare mein sikhaya, aur use aage ke liye ek thumb rule diya: jis bhi project mein documents par bharosa karna ho, usse pehle saaf wale ginye.
 
-## Saaraansh
+Imran ne kaha ki chhe hafte baad ek project ke fail hone se bachne ka yeh sabse sasta tareeka hai. Saath hi yeh sabse zyada anadekha kiya jaata hai, kyunki Imran se kisi ne ise kabhi ek baar bhi nahi maanga.
 
-Asli documents saaf text se kahin zyada baar pages aur tasveerein hote hain.
+## Summary
 
-- Tasveer ko akshron mein badalne wala kadam OCR hai. Uski galtiyan ek khaas kism ki hain, jaise shunya ki jagah O akshar ya ek ki jagah l, jo ankon ko dhoondhne wale rule ke paas se pehchaan ke number ko nikal sakti hain.
-- Tables is kadam ki sabse khaamosh shikaar hain, kyunki values bach jaati hain aur unke beech ke rishte nahi.
-- Page ko pehle text mein badla ja sakta hai, jo sasta hai, ya ek saksham model ko tasveer ki tarah dikhaya ja sakta hai, jo uska layout rakhta hai. Kai systems dono karte hain.
-- Voice mukhya seema ko accuracy se samay mein badal deta hai.
-- Kisi bhi document project ke shuru hone se pehle, ek document audit, pachaas random files aur teen ginti, dikhata hai ki asal mein kya hai.
+Asli documents saaf text se kahin zyada baar pages aur pictures hote hain.
+
+- Picture ko characters mein badalne wale step ko OCR kehte hain. Uski galtiyan ek khaas kism ki hoti hain, jaise zero ki jagah letter O ya ek ki jagah l, aur yeh identity number ko us rule ke saamne se nikaal sakti hain jo digits dhoondhta hai.
+- Tables is step ka sabse khamosh nuksaan hain, kyunki values bachti hain aur unke beech ke rishte nahi.
+- Page ko pehle text mein badla ja sakta hai, jo sasta hai, ya ek capable model ko picture ki tarah dikhaya ja sakta hai, jo layout bachaye rakhta hai. Bahut se systems dono karte hain.
+- Voice main constraint ko accuracy se time par le jaati hai.
+- Kisi bhi document project ke shuru hone se pehle, document audit dikhata hai ki asal mein kya shaamil hai. Ismein 50 random files aur teen ginti lagti hain.
+
+Agle chapter mein aap ek sawaal dekhenge jo shuru se hi background mein intezaar kar raha tha: model ko kya bhejna aapke liye legal aur samajhdaari dono nazar se theek hai.

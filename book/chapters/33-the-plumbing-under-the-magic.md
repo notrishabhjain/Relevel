@@ -1,9 +1,9 @@
 ---
 title: The Plumbing Under the Magic
-summary: A two-hour outage in which nothing raised an error persuades a product manager that she must understand, at the level of a plumber's diagram, the ordinary software around the one unpredictable part. The chapter covers data contracts, Python, HTTP and status codes, environment variables, Git and experiment runners.
+summary: A two-hour outage in which nothing raised an error convinces a product manager that she must understand, at the level of a plumber's diagram, the ordinary software around the one unpredictable part. The chapter covers data contracts, Python, HTTP and status codes, environment variables, Git and experiment runners.
 course: ch8f
 goals:
-  - explain a data contract and why a silent break is the most dangerous kind
+  - explain a data contract, and why a silent break is the most dangerous kind
   - read a request and a reply, and tell from the status code which side failed
   - say where secrets belong, what a repository records, and how to read an error from the bottom
   - explain why a test should be seen to fail once, and what an experiment runner makes possible
@@ -18,25 +18,29 @@ terms:
   - data contract | the unspoken assumptions one part of a system makes about the data it receives, such as that a field will be present and a list will not be empty | 
 ---
 
-On the second Thursday of September the guard hid every order number in Pune for two hours, and nobody noticed until a customer wrote in to ask what had happened to hers. Farah Sheikh's agents had been puzzled, then irritated, then inventive: for about forty minutes they asked customers to read their order numbers aloud over the telephone. The dashboard stayed green. Imran Qureshi, when told, said very little and began to draw with a pen.
+On the second Thursday of September, the guard hid every order number in Pune for two hours. Nobody noticed until a customer wrote in to ask what had happened to hers. Farah Sheikh’s agents had been puzzled, then irritated, then inventive. For about forty minutes they asked customers to read their order numbers aloud over the telephone. The dashboard stayed green.
 
-"Nothing raised an error," he said when the diagram was done. "That is why it took two hours." This chapter explains what happened, and then does what Imran did next, which was to teach Anaya to read a diagram.
+Imran Qureshi, when told, said very little and began to draw with a pen. “Nothing raised an error,” he said when the diagram was done. “That is why it took two hours.”
+
+This chapter explains what happened. Then it does what Imran did next, which was to teach Anaya to read a diagram.
 
 ## The case: the field that changed its name
 
-The cause was ordinary, and that was the lesson. The guard looked up each twelve-digit number in the order system, as it had been taught to do. Another team had updated the order system that morning. In the old version its reply called the field "order_id". In the new one it was "orderId", with a capital I.
+The cause was ordinary, and that was the lesson. The guard looked up each twelve-digit number in the order system, as it had been taught to do. Another team had updated the order system that morning. In the old version, its reply called the field “order_id”. In the new one it was “orderId”, with a capital I.
 
-The guard asked for "order_id" and found nothing. It did not stop and it did not shout. It had been written, reasonably, to treat an empty answer as "no such order", so it concluded, politely and about four hundred times, that no order existed with that number, and hid each as a suspected identity number.
+The guard asked for “order_id” and found nothing. It didn’t stop and it didn’t shout. It had been written, reasonably, to treat an empty answer as “no such order”. So it concluded, politely and about four hundred times, that no order existed with that number. It then hid each one as a suspected identity number.
 
 ::: def Data contract
 The unspoken assumptions that one part of a system makes about the data it receives: that a field will be present, that it will be a number, that a list will not be empty. Every data contract is eventually broken in production. A well-built system notices when one is broken and stops. A badly built one carries on, and its answer rests on missing data.
 :::
 
-Many real incidents in this field look exactly like this one: no error, a green dashboard, and a result that is quietly wrong. Imran remarked that it was not a machine-learning problem. The machine had been fine. It was an ordinary software failure that happened to sit next to a machine, and the right question could not be asked without being able to read the diagram.
+Many real incidents in this field look exactly like this one. There is no error, the dashboard is green, and the result is quietly wrong. Imran remarked that this was not a machine-learning problem. The machine had been fine. It was an ordinary software failure that happened to sit next to a machine. And you can’t ask the right question about it unless you can read the diagram.
 
 ## The diagram
 
-Anaya had dreaded this for months. She was proud of her ability to talk to engineers and knew exactly where its edge was. She could say "the API" and "the logs" without knowing what they were. Imran gave her two hours, a whiteboard and a comparison. When one orders food in an app, a message goes to the restaurant and a reply comes back with a price. It looks mysterious until the messages are visible. Everything in the afternoon was one of those messages, or a place where one gets lost.
+Anaya had dreaded this for months. She was proud of her ability to talk to engineers, and she knew exactly where that ability ended. She could say “the API” and “the logs” without knowing what they were.
+
+Imran gave her two hours, a whiteboard and a comparison. When you order food in an app, a message goes to the restaurant, and a reply comes back with a price. It looks mysterious until you can see the messages. Everything in the afternoon was one of those messages, or a place where one gets lost.
 
 Table: The parts of the plumbing, and what a product manager needs from each
 | Part | What it is | What matters |
@@ -47,7 +51,7 @@ Table: The parts of the plumbing, and what a product manager needs from each
 | *Git* | A tool that saves every version of the work, with a note about what changed and why | One can see the difference between yesterday's and today's and go back to either |
 | *Repository* | The folder, kept in Git, that holds a project's work and its history | When something breaks, the first question is what changed, and a repository can answer it |
 
-Python is not something Anaya would need to write. The *status code* on an HTTP reply is something she would need to read.
+Anaya would never need to write Python. But she would need to read the **status code** on an HTTP reply.
 
 Table: Status codes
 | Code | Meaning |
@@ -59,11 +63,11 @@ Table: Status codes
 | Any 4xx | The request was wrong |
 | Any 5xx | The other side failed |
 
-"The API failed" is not an explanation, Imran said. It is a place to start asking. Was it a bad request, an absent dependency or a failure on their side? Each has a different cure, and only some are worth trying again.
+“The API failed” is not an explanation, Imran said. It is only a place to start asking. Was it a bad request, a missing dependency, or a failure on their side? Each has a different cure, and only some are worth trying again.
 
 ## How to read an error
 
-She then learned to read an error, which took ten minutes and may have been the most useful ten minutes of the afternoon. When a program fails loudly it prints a long block called a trace, and the instinct is to read it from the top, where the least useful part is. The real cause is almost always at the bottom.
+Next she learned to read an error. It took ten minutes, and it may have been the most useful ten minutes of the afternoon. When a program fails loudly, it prints a long block called a trace. The instinct is to read it from the top, but the top is the least useful part. The real cause is almost always at the bottom.
 
 ```
 Traceback (most recent call last):
@@ -72,29 +76,39 @@ Traceback (most recent call last):
 KeyError: 'order_id'
 ```
 
-"Last line first," said Imran. "KeyError, order_id. The program asked for a field that was not there. Line forty-one. That is your whole story." Anaya said that this failure had not been loud. It had not, he said. It was the polite version. The real code had asked with a method that returns nothing when the field is missing, and carried on, which is what the team had written. A loud failure is a gift, because it stops you.
+“Last line first,” said Imran. “KeyError, order_id. The program asked for a field that was not there. Line forty-one. That is your whole story.”
+
+Anaya said that this failure hadn’t been loud. No, he said, it was the polite version. The real code had asked with a method that returns nothing when the field is missing, and it carried on, which is what the team had written. A loud failure is a gift, because it stops you.
 
 ## A test that fails on purpose
 
-Imran taught her the last piece as a game. Write a small test: give the function an order reply that has "order_id" in it and check that it is recognised. It passes. Now give it a reply with "orderId" and ask what should happen. Anaya thought that it should stop and say that something was wrong with the order system and not with the number. "Then write that as a test," said Imran. "Make it fail first, so you know it can."
+Imran taught her the last piece as a game. First, write a small test. Give the function an order reply that has “order_id” in it, and check that it is recognised. It passes. Now give it a reply with “orderId” and ask what should happen.
 
-He wrote it and ran it, and it failed with a satisfying red line. He fixed the code so that it checked for the missing field and refused to carry on, and ran it again. It passed.
+Anaya thought it should stop and say that something was wrong with the order system, not with the number. “Then write that as a test,” said Imran. “Make it fail first, so you know it can.”
+
+He wrote it and ran it, and it failed with a satisfying red line. He fixed the code so that it checked for the missing field and refused to carry on. He ran it again, and it passed.
 
 ::: key A test that has never failed has never been shown to check anything
-Every record of every message the guard handled would also now carry a request number, a time, the version of the code and the status. The next time the dashboard is green and a customer writes in, the team will search and not draw diagrams.
+Watch it fail once, then fix the code and watch it pass. Only then do you know the test can tell the difference.
 :::
+
+He made one more change. Every record of every message the guard handled would now carry a request number, a time, the version of the code and the status. The next time the dashboard is green and a customer writes in, the team will search the records and not draw diagrams.
 
 ## The runner that remembers
 
-The last item was something Imran had built over two months and never shown anyone. It was an *experiment runner*, a reusable program that records for every experiment the inputs, the outputs, the settings, the timings and the errors, all in a standard form. Its purpose was to cross a particular bridge. Between "I tried it" and "I measured it" there is a gap, and most of the gap is bookkeeping: run a prompt twice and save both runs, change one thing, and see at once from the logs what changed.
+The last item was something Imran had built over two months and never shown anyone. It was an **experiment runner**. This is a reusable program that records, for every experiment, the inputs, the outputs, the settings, the timings and the errors, all in a standard form.
 
-"If I can't reproduce yesterday's result," he said, "I haven't got a result. I've got an anecdote." Anaya looked at the folder on his screen. It had a README, a list of what was needed to run it, and a log of every experiment since May. She remembered the entry in her notebook from the first night, that nothing counts until someone else could check it, and she understood that this was what she had meant, and that she had not known how to build it.
+Its purpose was to cross a particular bridge. Between “I tried it” and “I measured it” there is a gap, and most of the gap is bookkeeping. With the runner you can run a prompt twice and save both runs. You change one thing, and you see at once from the logs what changed.
+
+“If I can’t reproduce yesterday’s result,” he said, “I haven’t got a result. I’ve got an anecdote.”
+
+Anaya looked at the folder on his screen. It had a README, a list of what was needed to run it, and a log of every experiment since May. She remembered the entry in her notebook from the first night: nothing counts until someone else could check it. She understood that this was what she had meant, and that she hadn’t known how to build it.
 
 ## What enough looks like
 
-At five o'clock Imran asked what she had learned, and she did not give him a list of terms. On the back of the diagram she wrote what she could now do: read a request, a reply and a status code; know where a key belongs; ask what changed and find out; read an error from the bottom; know that a test should fail once; and, when someone says "the API failed", ask in which way.
+At five o’clock Imran asked what she had learned. She didn’t give him a list of terms. On the back of the diagram, she wrote what she could now do. Read a request, a reply and a status code. Know where a key belongs. Ask what changed, and find out. Read an error from the bottom. Know that a test should fail once. And when someone says “the API failed”, ask in which way.
 
-It was a short list and not nothing. It meant that when an engineer showed her a diagram, she would recognise the parts. At the top of the page she added the sentence Imran had said at the start, because she wanted to keep it: an AI system is a software system with one unpredictable part. Everything that goes wrong in ordinary software can still go wrong, and one failure more, the quietest, produces no error.
+It was a short list, and it was not nothing. It meant that when an engineer showed her a diagram, she would recognise the parts. At the top of the page she added the sentence Imran had said at the start, because she wanted to keep it. An AI system is a software system with one unpredictable part. Everything that goes wrong in ordinary software can still go wrong. And there is one more failure, the quietest, which produces no error.
 
 ## Summary
 
@@ -102,5 +116,5 @@ An AI system is ordinary software with one unpredictable part, so everything tha
 
 - Programs talk through requests and replies. The status code on a reply says whether the request was wrong or the other side failed.
 - Keys belong outside the code. Work belongs in a repository that records every change. An error is read from the bottom.
-- Every part of a system makes assumptions about the data it receives, a data contract. A good system stops when one is broken instead of carrying on with nothing.
-- A runner that records every experiment turns "I tried it" into "I measured it", because a result that cannot be reproduced is only an anecdote.
+- Every part of a system makes assumptions about the data it receives. That is a data contract. A good system stops when one is broken, instead of carrying on with nothing.
+- A runner that records every experiment turns “I tried it” into “I measured it”, because a result that cannot be reproduced is only an anecdote.

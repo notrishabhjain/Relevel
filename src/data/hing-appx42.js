@@ -37,14 +37,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Portfolio ka saboot',
   'What is the simplest architecture that can meet the acceptance criteria?':
     'Sabse saral architecture kaunsa hai jo acceptance criteria poore kar de?',
-  'What does the model know, versus what must be retrieved or supplied?':
-    'Model khud kya jaanta hai, aur kya use retrieve ya supply karna padega?',
-  'What is the exact context going into the model?':
-    'Model ke andar theek-theek kaunsa context jaa raha hai?',
   'Which failures are acceptable, and which are fatal?':
     'Kaunsi galtiyan chal jaayengi, aur kaunsi jaanleva hain?',
-  'What is the ground truth, and how is it maintained?':
-    'Ground truth kya hai, aur use kaun sambhaalta hai?',
   'What happens when there is no answer?':
     'Jab jawaab hai hi nahi, tab kya hota hai?',
   'What happens when the user asks in another language?':
@@ -53,18 +47,8 @@ Object.assign(window.HING = window.HING || {}, {
     'AI kaunse tool bula sakta hai, aur kin permission ke saath?',
   'Where is human confirmation required?':
     'Kahan insaan ki manzoori zaroori hai?',
-  'How will prompt, model and index changes be regression-tested?':
-    'Prompt, model aur index badalne par regression test kaise hoga?',
-  'How will latency and cost behave at ten times and a hundred times the traffic?':
-    'Das guna aur sau guna traffic par latency aur lagat ka kya haal hoga?',
-  'How do we roll back the model, the prompt, the tool schema or the index?':
-    'Model, prompt, tool schema ya index ko wapas purani haalat mein kaise laayenge?',
-  'What evidence proves the vendor claim?':
-    'Vendor ke daawe ko kaunsa saboot sabit karta hai?',
   'How do we protect sensitive data in prompts, in retrieval and in traces?':
     'Sanvedansheel data ko prompt, retrieval aur trace — teenon jagah kaise bachaayenge?',
-  'What is the exit plan if the model or provider changes its terms or its quality?':
-    'Agar model ya provider apni shartein ya quality badal de, to nikalne ka plan kya hai?',
   'OpenAI developer documentation':
     'OpenAI developer documentation',
   'Model guidance, evaluation and retrieval APIs':
@@ -109,38 +93,22 @@ Object.assign(window.HING = window.HING || {}, {
     'GenAI ka evaluation aur observability',
   'Hiring signals':
     'Hiring ke sanket',
-  'Applied AI PM and AI engineering roles — market signals, not standards':
-    'Applied AI PM aur AI engineering ki naukriyan — bazaar ke sanket, koi maanak nahi',
-  'Building Effective Agents — workflows versus agents, and tool design':
-    'Building Effective Agents — workflow banaam agent, aur tool ka design',
-  'Building Effective AI Agents — the longer write-up':
-    'Building Effective AI Agents — lamba wala lekh',
   'GenAI / LLM Top 10, 2026 edition':
     'GenAI / LLM Top 10, 2026 sanskaran',
   'Weeks 1–4':
     'Hafta 1–4',
   'Foundations and the engineer’s floor':
     'Buniyaad aur engineer ki zameen',
-  'Seven foundation notebooks, and an experiment harness you can re-run.':
-    'Saat buniyaadi notebook, aur ek experiment harness jise aap dobara chala sakein.',
   'Weeks 5–6':
     'Hafta 5–6',
   'Model choice and context engineering':
     'Model ka chunaav aur context engineering',
-  'A Model Selection Card, a context budget, and a memory and state design.':
-    'Ek Model Selection Card, ek context budget, aur memory aur state ka design.',
   'Weeks 7–8':
     'Hafta 7–8',
-  'Retrieval at production depth':
-    'Retrieval, production ki gehraai par',
-  'Chunking, retrieval, hybrid search, reranking, permissions and provenance — each with a measurement.':
-    'Chunking, retrieval, hybrid search, reranking, permission aur provenance — har ek ke saath ek maap.',
   'Weeks 9–10':
     'Hafta 9–10',
   'Tools, workflows and agents':
     'Tool, workflow aur agent',
-  'A tool contract, a workflow, and a bounded agent measured against that workflow.':
-    'Ek tool contract, ek workflow, aur ek seemit agent jise usi workflow ke saamne naapa gaya ho.',
   'Week 11':
     'Hafta 11',
   'An MCP mini-demo, and the authorisation matrix that says who may call what.':
@@ -149,8 +117,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Hafta 12',
   'Input that is not text':
     'Woh input jo text nahi hai',
-  'A multimodal pipeline, and an evaluation set with cases only that modality can fail.':
-    'Ek multimodal pipeline, aur ek evaluation set jismein aise case hon jo sirf usi modality mein fail ho sakte hain.',
   'Weeks 13–14':
     'Hafta 13–14',
   'Evaluation and observability':
@@ -173,20 +139,12 @@ Object.assign(window.HING = window.HING || {}, {
     'Capstone',
   'Seven foundation notebooks':
     'Saat buniyaadi notebook',
-  'One per foundation chapter — the smallest working thing, kept.':
-    'Har buniyaadi chapter ke liye ek — sabse chhoti chalne wali cheez, sambhaal kar rakhi hui.',
   'Chunking experiment':
     'Chunking ka experiment',
-  'The strategy, worked examples, a question set, and the measured effect on retrieval.':
-    'Strategy, hal kiye hue udaharan, sawaalon ka ek set, aur retrieval par naapa gaya asar.',
   'Retrieval benchmark':
     'Retrieval ka benchmark',
-  'Lexical, dense and hybrid, scored per query rather than in aggregate.':
-    'Lexical, dense aur hybrid — har query ke liye alag score, kul mila kar nahi.',
   'Reranking experiment':
     'Reranking ka experiment',
-  'Candidate recall, precision at k, added latency, and the decision you took.':
-    'Candidate recall, k par precision, badhi hui latency, aur aapka liya hua faisla.',
   'Production-style RAG':
     'Production jaisa RAG',
   'Ingestion, metadata, permissions, provenance, retrieval, generation and a rollback path.':
@@ -197,26 +155,18 @@ Object.assign(window.HING = window.HING || {}, {
     'Tool ka schema, argument ki jaanch, aur call fail hone par kya hota hai.',
   'Workflow demo':
     'Workflow ka demo',
-  'Deterministic control flow, with the state transitions written down.':
-    'Nishchit control flow, jismein state ke badlaav likhe hue hon.',
   'Bounded agent demo':
     'Seemit agent ka demo',
   'Tools, state, a step limit, a timeout, an approval point, and named stop reasons.':
     'Tool, state, step ki seema, timeout, manzoori ka ek bindu, aur rukne ke naam-diye hue kaaran.',
   'MCP mini-demo':
     'Chhota MCP demo',
-  'Capability discovery and invocation, plus evidence of where the trust boundary sits.':
-    'Kshamta dhoondhna aur bulana, saath hi saboot ki bharose ki lakeer kahan hai.',
   'Multimodal or voice pipeline':
     'Multimodal ya voice pipeline',
-  'Extraction, provenance, and tests that only this modality can fail.':
-    'Nikaalna, provenance, aur aise test jo sirf isi modality mein fail ho sakte hain.',
   'Golden dataset':
     'Golden dataset',
   'Versioned cases with the expected behaviour and the evidence each one rests on.':
     'Version wale case, unka apekshit vyavhaar, aur woh saboot jis par har ek tika hai.',
-  'Labelled failures, grouped by root cause rather than by symptom.':
-    'Naam di hui galtiyan, lakshan ke bajaay mool kaaran ke hisaab se batti hui.',
   'Automated evaluation suite':
     'Apne-aap chalne wala evaluation suite',
   'Retrieval, generation, tool, schema, safety and regression checks in one run.':
@@ -253,8 +203,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Executive briefing deck',
   'Experiment Record':
     'Experiment Record',
-  'Fill one every time you change one thing and measure. It is the difference between an experiment and an afternoon.':
-    'Jab bhi aap ek cheez badal kar naapein, ek bhariye. Yahi ek experiment aur ek yun hi beete dopahar ka fark hai.',
   'Experiment ID and date':
     'Experiment ID aur taareekh',
   'exp-014 · 12 March':
@@ -299,8 +247,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Wahi jo is nateeje ke baad saaf dikhta hai',
   'Failure Finding':
     'Failure Finding',
-  'One per failure you find yourself. A pile of these is the most convincing thing you can bring to a review.':
-    'Har us galti ke liye ek jo aapne khud dhoondhi ho. Inka dher woh sabse bharosemand cheez hai jo aap kisi review mein le ja sakte hain.',
   'What broke':
     'Kya toota',
   'One sentence a stranger would understand':
@@ -335,8 +281,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Woh imaandaar panti jo baaki sab ko bharosemand banati hai',
   'Architecture Decision Record':
     'Architecture Decision Record',
-  'Write one when a decision would be expensive to reverse. Six months later this is the only record of why.':
-    'Jab koi faisla palatna mehnga padega, tab ek likhiye. Chhah mahine baad yahi ek akela record bachta hai ki kyun.',
   'One sentence, in the past tense: "We chose …"':
     'Ek vaakya, beete kaal mein: "Humne chuna …"',
   'What situation forced a decision at all':
@@ -363,16 +307,12 @@ Object.assign(window.HING = window.HING || {}, {
     'Lagat aur latency par asar',
   'Consequences':
     'Parinaam',
-  'What this now forces or forbids downstream':
-    'Ab yeh aage kya majboori ya rok paida karta hai',
   'What would reopen this':
     'Kya cheez ise dobara khol degi',
   'A number or an event, not "if things change"':
     'Ek number ya ek ghatna — "agar haalat badle" nahi',
   'Owner and date':
     'Zimmedar aur taareekh',
-  'The specification for a system whose behaviour is probabilistic. Most of these rows do not exist in an ordinary PRD, and they are the rows that decide whether it ships.':
-    'Ek aise system ka specification jiska vyavhaar sambhaavna par chalta hai. Inmein se zyadatar panti ek saadharan PRD mein hoti hi nahi — aur wahi panti tay karti hain ki cheez ship hogi ya nahi.',
   'User and problem':
     'User aur samasya',
   'Who, and what is going wrong for them today':
@@ -387,24 +327,18 @@ Object.assign(window.HING = window.HING || {}, {
     'Yahan saadharan nishchit software galat auzaar kyun hai',
   'Scope and non-goals':
     'Daayra aur jo nahi karna',
-  'The non-goals are the load-bearing half':
-    'Jo nahi karna, wahi aadha hissa poora bojh uthata hai',
   'Inputs and data':
     'Input aur data',
   'Where it comes from, who owns it, how fresh it is':
     'Kahan se aata hai, kiska hai, kitna taaza hai',
   'Context strategy':
     'Context ki strategy',
-  'What goes into the model, and what gets evicted first':
-    'Model ke andar kya jaata hai, aur sabse pehle kya baahar nikaala jaata hai',
   'Model strategy':
     'Model ki strategy',
   'Which model, and what would make you change it':
     'Kaunsa model, aur kya cheez aapse use badalwa degi',
   'Retrieval strategy':
     'Retrieval ki strategy',
-  'Or "none", stated deliberately':
-    'Ya "koi nahi" — soch-samajh kar likha hua',
   'Tools and actions':
     'Tool aur kaam',
   'What it can do, not just what it can say':
@@ -419,8 +353,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Kaunsi chal jaayengi aur kaunsi jaanleva hain',
   'Acceptance criteria':
     'Acceptance criteria',
-  'A metric, a test set and a tolerance. All three':
-    'Ek metric, ek test set aur ek chhoot ki seema. Teenon',
   'Evaluation dataset':
     'Evaluation ka dataset',
   'Which set, how many cases, who owns it':
@@ -449,8 +381,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Toot-phoot hone par kise bulaya jaata hai',
   'AI Risk Register':
     'AI Risk Register',
-  'One row per risk. The row that matters most is the last one, because a register without residual risk is a wish list.':
-    'Har risk ke liye ek panti. Sabse zaroori panti aakhri hai, kyunki bache hue risk ke bina register sirf ek ichchha-soochi hai.',
   'Risk ID':
     'Risk ID',
   'Asset or data at stake':
@@ -465,8 +395,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Aur yeh andaaza kis par tika hai',
   'Control':
     'Rokne ka intezaam',
-  'What actually stops it — an enforced boundary, not a prompt':
-    'Use sach mein kya rokta hai — laagu ki gayi lakeer, koi prompt nahi',
   'Evidence or test':
     'Saboot ya test',
   'How you know the control works':
@@ -481,8 +409,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Dobara dekhne ki taareekh',
   'Model and Vendor Scorecard':
     'Model aur Vendor Scorecard',
-  'Fill one per option, then compare. Exit cost is on here deliberately — it is the row nobody scores until the price changes.':
-    'Har vikalp ke liye ek bhariye, phir tulna kijiye. Nikalne ki lagat yahan jaan-boojh kar hai — yahi woh panti hai jise koi tab tak nahi naapta jab tak daam nahi badalte.',
   'Model or provider':
     'Model ya provider',
   'Task quality':
@@ -521,8 +447,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Us run ka link',
   'Evaluation Case':
     'Evaluation Case',
-  'One row per case in your golden set. Write the expected behaviour before you see what the model does — afterwards is not evaluation.':
-    'Aapke golden set ke har case ke liye ek panti. Apekshit vyavhaar model ka jawaab dekhne se pehle likhiye — baad mein likhna evaluation nahi hai.',
   'Case ID':
     'Case ID',
   'Category':
@@ -565,8 +489,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Paas ya fail',
   'Observability Trace Schema':
     'Observability Trace Schema',
-  'Not a form to fill by hand — a list of fields your system must emit. Design it here, then check a real trace against it.':
-    'Yeh haath se bharne wala form nahi hai — yeh un field ki soochi hai jo aapke system ko nikaalni hi chahiye. Yahan design kijiye, phir kisi asli trace ko iske saamne rakh kar jaanchiye.',
   'Request ID':
     'Request ID',
   'Timestamp':
@@ -613,8 +535,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Upar ki taraf aur neeche ki taraf',
   'Release Gate':
     'Release Gate',
-  'Agree these numbers before the release meeting. A gate negotiated during the meeting is not a gate.':
-    'Yeh number release meeting se pehle tay kar lijiye. Jo gate meeting ke beech mol-bhaav se banta hai, woh gate hota hi nahi.',
   'Retrieval threshold':
     'Retrieval ki seema',
   'Recall@k ≥ …':
@@ -705,18 +625,12 @@ Object.assign(window.HING = window.HING || {}, {
     'Jab model ya provider uplabdh hi na ho, tab kya hota hai?',
   'What evidence justifies releasing this?':
     'Ise release karne ko kaunsa saboot sahi thehraata hai?',
-  'Explain the model, API and context lifecycle end to end.':
-    'Model, API aur context ka poora chakra shuru se aakhir tak samjhaiye.',
   'Draw a simple architecture and point at the trust boundaries.':
     'Ek saral architecture banaiye aur bharose ki lakeeron par ungli rakhiye.',
   'Build a small working proof of the core behaviour.':
     'Mool vyavhaar ka ek chhota chalta hua saboot banaiye.',
-  'Define an evaluation set with ground truth behind it.':
-    'Ek aisa evaluation set banaiye jiske peechhe ground truth ho.',
   'Name the retrieval, generation, tool and security failure modes.':
     'Retrieval, generation, tool aur security ki galtiyon ke tareeke ginaiye.',
-  'Choose between a direct call, RAG, a workflow and an agent — on evidence.':
-    'Seedhi call, RAG, workflow aur agent mein se chuniye — saboot ke aadhaar par.',
   'Define tool contracts, permissions, approvals and stop conditions.':
     'Tool contract, permission, manzoori aur rukne ki shartein tay kijiye.',
   'Instrument latency, tokens, cost and traces.':
@@ -729,7 +643,5 @@ Object.assign(window.HING = window.HING || {}, {
     'Red-team ke saboot ke saath ek security risk register banaiye.',
   'Define release, rollback and vendor-exit criteria.':
     'Release, rollback aur vendor chhodne ke criteria tay kijiye.',
-  'Explain the trade-offs to an engineer and to a business stakeholder, differently.':
-    'Wahi samjhaute ek engineer ko aur ek business wale ko — alag-alag tareeke se samjhaiye.'
 
 });

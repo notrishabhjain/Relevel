@@ -127,15 +127,9 @@ Object.assign(window.HING = window.HING || {}, {
     'Real job descriptions ka ek grid unki maangi gayi skills ke against, market ki chahi hui skills aur aapke gaps dhoondhne ke liye use kiya jaata hai.',
   'A plain-text way of writing structured information so a program can read it: labels and values inside curly braces, like {"role": "user", "content": "hello"}. It is a data format, not code or a database. API requests and responses are written in it.':
     'Structured information likhne ka ek plain-text tareeka jise ek program padh sake: curly braces ke andar labels aur values, jaise {"role": "user", "content": "hello"}. Yeh ek data format hai, code ya database nahi. API requests aur responses isi mein likhe jaate hain.',
-  'Discover, build, break, measure, ship, defend — one integrated capstone':
-    'Discover, build, break, measure, ship, defend — ek integrated capstone',
-  'The complete portfolio evidence pack: technical, product, business and real-user evidence in one repository.':
-    'Complete portfolio evidence pack: technical, product, business aur real-user evidence ek hi repository mein.',
   'Reproducible code, tests, evaluation, real-user evidence and documentation.':
     'Reproducible code, tests, evaluation, real-user evidence aur documentation.',
   'Five minutes on the outcome, twenty minutes of technical defence, and a public case study.':
     'Paanch minute outcome par, bees minute technical defence ke, aur ek public case study.',
-  'The final artifact is your repository plus the evidence pack: what you built, what broke, what you measured, what you changed, and what is still unresolved.':
-    'Final artifact aapki repository aur evidence pack hai: aapne kya banaya, kya toota, aapne kya naapa, aapne kya badla, aur kya abhi bhi unresolved hai.'
 
 });

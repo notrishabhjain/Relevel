@@ -1,117 +1,131 @@
 ---
-title: Log Ise Kaise Dhoondhte Hain Aur Kyun Rukte Hain
-summary: Jo tool koi dhoondhta nahi woh kisi ki raksha nahi karta. Paanch developers ko ek README diya jaata hai aur kuch nahi, ek stopwatch dikhata hai ki woh kahan chhod dete hain, aur ek spelling checker product manager ko batata hai ki value ka pehla pal kahan aana chahiye. Chapter AARRR, activation, time-to-value, Fogg behaviour model, product-led growth, growth loops, network effects, virality aur dark patterns samjhata hai.
+title: Log Product Kaise Dhoondhte Hain Aur Kyun Tikte Hain
+summary: Jis tool ko koi dhoondh hi nahi paata, woh kisi ki hifaazat nahi karta. Paanch developers ko sirf ek README diya jaata hai, stopwatch dikhata hai ki woh kahan chhod dete hain, aur ek spelling checker dikhata hai ki value ka pehla pal kahan aana chahiye. Chapter mein AARRR, activation, time-to-value, Fogg behaviour model, product-led growth, growth loop, network effect, virality aur dark pattern aate hain.
 course: b2
 goals:
-  - AARRR ke paanch stages batana aur har ek ko ek ginne laayak event dena
-  - activation moment dhoondhna aur time-to-value naapna, phir value ko mehnat se aage laana
-  - Fogg behaviour model laagu karna: prompt, ability aur motivation ko ulte kram mein jaanchna
-  - virality ko network effect se alag karna, customer tak ka raasta chunna, aur dark patterns se inkaar karna
+  - AARRR ke paanch stages ke naam bata paana, aur har stage ko ek ginne layak event dena
+  - activation moment dhoondhna aur time-to-value naapna, aur value ko mehnat se pehle laana
+  - Fogg behaviour model ko prompt, ability aur motivation ko ulte order mein check karke lagana
+  - virality aur network effect mein farq pehchaanna, customer tak pahunchne ka route chunna, aur dark patterns se mana karna
 terms:
-  - AARRR | growth ke paanch charan, har ek ko ek ginti yogya event diya gaya: acquisition, activation, retention, referral aur revenue | 
-  - activation moment | woh pehli baar jab ek user ko woh value milti hai jiska product waada karta hai; uske pehle ka sab kuch user ke liye kharcha hai | 
-  - time-to-value | ek naye user ko activation moment tak pahunchne mein kitna samay lagta hai, sign-up se naapa gaya | 
-  - Fogg behaviour model | yeh idea ki ek vyavahaar tab hota hai jab motivation, kshamata aur ek prompt ek hi pal par milte hain; agar woh nahi ho raha, toh unhe ulte kram mein jaancho | 
-  - product-led growth | users ko khud sign up karne aur value paane dekar customers jeetna, kuch ke upgrade karne ke saath; yeh tab fit hota hai jab value minuton mein dikhe aur keemat kam ho | PLG
-  - growth loop | ek chakra jisme ek user ke kaam agle user ko laate hain, taaki output wapas input mein jaaye | growth loops
-  - network effect | product ka sabke liye behtar hona jaise zyada log use istemaal karte hain, jo users dwara doosre users ko laane se alag hai | network effects
+  - AARRR | growth ke paanch stages, har ek ko ek ginne layak event diya gaya: acquisition, activation, retention, referral aur revenue | 
+  - activation moment | woh pehli baar jab user ko woh value milti hai jiska product waada karta hai; usse pehle ka sab kuch user ke liye cost hai | 
+  - time-to-value | ek naye user ko activation moment tak pahunchne mein kitna time lagta hai, sign-up se naapa hua | 
+  - Fogg behaviour model | yeh idea ki koi behaviour tab hota hai jab motivation, ability aur prompt ek hi pal mein milte hain; agar nahi ho raha, toh in teeno ko ulte order mein check kijiye | 
+  - product-led growth | customers aise jeetna ki users khud sign up karein aur khud value paayein, aur unmein se kuch upgrade karein; yeh tab fit hota hai jab value minutes mein dikhe aur price kam ho | PLG
+  - growth loop | ek cycle jisme ek user ke actions agle user ko laate hain, taaki output wapas input ban jaye | growth loops
+  - network effect | product ka sabke liye behtar hona jaise-jaise zyada log use karein, jo is se alag hai ki users doosre users ko laayein | network effects
   - virality | users ka doosre users ko laana | viral
-  - dark pattern | aisa design jo users ko unke apne hit ke khilaaf kaam karne ke liye bahkata hai, jaise pehle se tick kiya hua box, jhoothi kami ya chhupa hua cancellation | dark patterns
+  - dark pattern | aisa design jo users ko apne hi khilaaf kaam karne par dhokhe se majboor kare, jaise pehle se tick kiya box, jhoothi kami ya chhupa hua cancellation | dark patterns
 ---
 
-January ke teesre hafte mein paanch developers ek table ke ek taraf ek kataar mein baithe the, har ek ek laptop par, har ek ke chehre par un logon jaisi halki apradhi nazar jinhe ek prayog mein hissa lene ko kaha gaya ho aur jinhe pata nahi ki unhe kis cheez par naapa ja raha hai. Anaya ne unhe kaagaz ka ek page diya tha: README, developer kit ke nirdeshon ka pehla page, aur kuch nahi. Koi demonstration nahi, koi call nahi, koi madad nahi. Table par ek stopwatch rakhi thi. Usne kaha tha: ise ek chhote chat program mein jodo aur ek message saaf karo, aur jab ho jaaye mujhe batao; main madad nahi karungi. Phir woh khidki ke paas haath peechhe baandhe khadi ho gayi thi, kyunki unhe sthir rakhne ka yahi ek tareeka tha.
+January ke teesre hafte mein paanch developers ek table ke ek taraf, ek line mein baithe the, har ek ke saamne laptop. Har kisi ke chehre par halka sa doshi bhaav tha, un logon jaisa jinhe kisi experiment mein hissa lene ko kaha gaya ho aur jinhe pata nahi ki kya naapa ja raha hai.
 
-Kit live tha aur Mr. Menon ki company ne ek trial sign kiya tha. Us pal mein jo maayne rakhta tha woh yeh tha ki kya koi aur ise istemaal kar sakta hai. Yeh chapter batata hai ki stopwatch ne kya dikhaya aur usne seekha ki log ek product ko kaise dhoondhte hain aur uske saath kaise bane rehte hain.
+Anaya ne unhe kaagaz ka ek hi page diya tha: README, jo developer kit ka pehla instructions wala page hota hai. Uske alawa unke paas kuch nahi tha. Na demo, na call, na madad. Table par ek stopwatch rakha tha. Usne kaha tha: ise ek chhote chat program mein jodiye, ek message saaf kijiye, aur jab ho jaye toh mujhe bataiye. Main madad nahi karungi. Phir woh khidki ke paas peeche haath baandh kar khadi ho gayi, kyunki haathon ko rokne ka yehi ek tareeka tha.
+
+Kit live tha, aur Mr. Menon ki company ne ek trial sign kar liya tha. Ab asli baat yeh thi ki koi aur ise use kar sakta hai ya nahi. Yeh chapter batata hai ki stopwatch ne kya dikhaya, aur isne yeh kya sikhaya ki log product ko kaise dhoondhte hain aur uske saath kaise tikte hain.
 
 ## Case: paanch developers aur ek stopwatch
 
-Imran Qureshi ne use chetavni di thi ki use kya seekhna padega, ek vaakya mein jo use pasand tha: agar woh tike nahi, toh aur sign-ups ka matlab sirf logon ko aur tezi se khona hai.
+Imran Qureshi ne use pehle hi bata diya tha ki use kya seekhne ko milega, ek aise sentence mein jo use pasand tha: agar log tikte nahi, toh zyada sign-ups ka matlab bas yeh hai ki aap logon ko aur tezi se kho rahe hain.
 
-## Ek funnel aur uski seemayein
+## Ek funnel aur uski limits
 
-Growth ke paanch stages hain jinke liye ek yaad rakhne laayak chhota naam hai, *AARRR*: acquisition, activation, retention, referral aur revenue. Har ek mein pehla kaam ek aisa event chunna hai jise gina ja sake.
+Growth ke paanch stages hain, ek yaad rakhne layak shorthand ke saath: *AARRR*. Ye letters acquisition, activation, retention, referral aur revenue ke liye hain. Har stage par pehla kaam ek aisa event chunna hai jise gina ja sake. Table mein har stage ke liye guard ka event hai.
 
-Table: Paanch stages aur guard ka har ek ke liye event
+Table: Paanch stages aur har ek ke liye guard ka event
 | Stage | Sawaal | Guard ka event |
 | --- | --- | --- |
-| Acquisition | Kya woh pahunche? | Ek developer demo page kholta hai aur ek message paste karta hai |
+| Acquisition | Kya woh aaye? | Ek developer demo page kholta hai aur ek message paste karta hai |
 | Activation | Kya unhe value mili? | Kit unke apne project ke andar ek message saaf karta hai |
-| Retention | Kya woh wapas aaye? | Woh chaar hafte baad bhi chal raha hai aur messages saaf kar raha hai |
-| Referral | Kya woh doosron ko laaye? | Ek saathi ek shared link ke baad doosri company mein demo page kholta hai |
+| Retention | Kya woh wapas aaye? | Chaar hafte baad bhi woh chal raha hai, aur messages saaf kar raha hai |
+| Referral | Kya woh doosron ko laaye? | Doosri company ka ek colleague share kiye gaye link se demo page kholta hai |
 | Revenue | Kya unhone paisa diya? | Woh trial se ek plan par jaate hain |
 
-Anaya jaanti thi ki tasveer ek saralikaran hai. Woh ek seedhi rekha sujhati hai, jabki asli log shared links se aate hain aur mahino baad lautte hain. Woh team ko funnel ke upar se theek karna shuru karne ka nyauta bhi deti hai. Aam taur par jo stage tay karta hai ki product kaam karta hai ya nahi woh retention hai, aur funnel use chautha rakhta hai.
+Anaya jaanti thi ki yeh tasveer cheezon ko saral banati hai. Yeh ek seedhi line ka ehsaas deti hai, jabki asli log shared links se aate hain aur mahino baad wapas aate hain. Yeh team ko funnel ke upar se cheezein theek karna shuru karne ke liye bhi bulaati hai. Lekin jo stage aam taur par tay karta hai ki product chalta hai ya nahi, woh retention hai, aur funnel use chauthe number par rakhta hai.
 
 ## Value ka pehla pal
 
-Us subah Anaya ko jis naap ki sabse zyada parwaah thi woh woh tha jo tay karta hai ki koi kabhi baaki stages tak pahunchta hai ya nahi. *Activation moment* woh pehla pal hai jab ek user ko woh value milti hai jiska product vaada karta hai. Guard ke liye woh ek developer ka apna message, jisme ek Aadhaar number tha, doosri taraf se number ke bina nikalte dekhna tha. Us pal se pehle ka sab kuch user par kharcha hai: us se pehle ki mehnat jab tak kuch achha hua nahi. Use pahunchne mein jitna samay lagta hai woh *time-to-value* hai, us pal se naapa jab woh shuru karte hain.
+Us subah Anaya ko jo measure sabse zyada maayne rakhta tha, woh woh tha jo tay karta hai ki koi aage ke stages tak kabhi pahunchega ya nahi. Yeh hai *activation moment*: woh pehli baar jab user ko woh value milti hai jiska product waada karta hai.
 
-Stopwatch ne use samay diya, aur usne unhe aate hue likh liya.
+Guard ke liye yeh woh pal tha jab developer apna message, jisme Aadhaar number tha, doosri taraf se is tarah nikalta dekhta ki number gayab hai. Us pal se pehle ka sab kuch user ke liye cost hai. Yeh woh mehnat hai jo kuch achha hone se pehle lag rahi hai. Is pal tak pahunchne mein kitna time lagta hai, ise *time-to-value* kehte hain, aur ise us pal se naapte hain jab insaan shuru karta hai.
 
-Table: Paancho developers kahan tak pahunche
-| Kadam | Kitne developers ne poora kiya | Median samay |
+Stopwatch ne use times de diye, aur usne unhe aate hi likh liya.
+
+Table: Paanch developers kahan tak pahunche
+| Step | Kitne developers ne khatam kiya | Median time |
 | --- | --- | --- |
 | README kholna | 5 mein se 5 | 1 minute |
-| Account banana aur key paana | 5 mein se 4 | 7 minute |
+| Account banana aur key lena | 5 mein se 4 | 7 minute |
 | Kit install karna | 5 mein se 4 | 11 minute |
 | Pehla message saaf karna | 5 mein se 3 | 24 minute |
 
-Ek developer account par ruk gaya. Doosra chauthe kadam par kho gaya. Teen value ke pal tak pahunche, median par chaubees minute ke baad. Jo pehli rukawat par chala gaya tha usne ek chhota note likha tha, jo Anaya ne unke jaane ke baad padha: "Main bhi yahin chhod deta." Imran ne, uske kandhe ke upar se dekhte hue, kaha ki log mushkil hisse par nahi chhodte. Woh usse pehle chhodte hain.
+Ek developer account par ruk gaya. Ek aur chauthe step par kho gaya. Teen value ke pal tak pahunche, median mein 24 minute baad. Jo developer pehli rukawat par chala gaya tha, usne ek chhota note chhoda tha, jo Anaya ne unke jaane ke baad padha: "main bhi yahin se chala jaata." Imran ne uske kandhe ke upar se dekhte hue kaha ki log mushkil hisse par nahi jaate. Woh usse pehle chale jaate hain.
 
-Upaay use agle kuch dinon mein sujha. Agar value ka pehla pal account se pehle aa jaaye toh? Demonstration page kisi developer ko apna ek message paste karne aur use saaf hote dekhne de sakta tha, bina kuch sign kiye. Activation ka pal mushkil kadam se aage aa jaata, aur jab tak unse email maanga jaata, woh pehle hi dekh chuke hote ki yeh kaam karta hai.
+Ilaaj use agle kuch dinon mein soojha. Agar value ka pehla pal account se pehle aa jaye toh? Demo page developer ko apna ek message paste karne aur use saaf hota dekhne de sakta tha, bina kisi sign-up ke. Tab activation moment mushkil step se pehle aa jaata. Jab tak unse email maanga jaata, tab tak woh ise kaam karte dekh chuke hote.
 
-## Raat ke khane par ek teardown
+## Raat ke khaane par ek teardown
 
-Us hafte Anaya ne woh kiya jo woh teen mahine se taal rahi thi: usne ek aise product ko khol kar dekha jisne yeh samasya hal ki thi. Usne woh chuna jise Farah lagaataar istemaal karti thi, ek spelling aur writing assistant jo woh jo kuch bhi type kar rahi hoti uske andar baitha rehta. Unhone ise stage-dar-stage dekha, Farah ke sofa par uske laptop ko beech mein rakhkar, yeh note karte hue ki kya hua aur kya copy kiya ja sakta hai.
+Us hafte Anaya ne woh kiya jo woh teen mahine se taal rahi thi. Usne ek aisa product khola jisne yeh problem pehle hi solve kar li thi. Usne ek aisa chuna jo Farah har waqt use karti thi, ek spelling aur writing assistant jo aap jo bhi type kar rahe hon, usi ke andar baitha rehta tha.
+
+Dono ne use stage-by-stage dekha, Farah ke sofa par, beech mein uska laptop rakhkar. Unhone note kiya ki har stage par kya hota tha, aur kya copy kiya ja sakta tha.
 
 Table: Ek writing assistant ka teardown
 | Stage | Kya hua |
 | --- | --- |
-| Acquisition | Logon ne uske sujhaav un tools mein dekhe jo woh pehle se istemaal karte the, aur ek muft plan ne ise phailaya |
-| Activation | Uske apne likhe mein pehla underline kiya sujhaav, kuch second mein |
-| Retention | Woh wahin rehta tha jahan log pehle se likhte hain, isliye koi nayi aadat nahi banani thi |
-| Revenue | Zyada vikasit sujhaav ek paid plan ke peechhe the |
+| Acquisition | Logon ne uske suggestions un tools mein dekhe jo woh pehle se use karte the, aur ek free plan ne use phailaya |
+| Activation | Uski apni likhai mein pehla underline kiya hua suggestion, kuch second ke andar |
+| Retention | Woh wahin rehta tha jahan log pehle se likhte hain, isliye koi nayi aadat banani nahi padi |
+| Revenue | Zyada advanced suggestions ek paid plan ke peeche the |
 
-Farah ne poochha ki Anaya kya copy karegi. "Value ka pal," usne dheere se kaha. Woh user ke apne kaam mein hota hai, ek alag page par nahi aur kisi setup ke baad nahi. Kit ki value, usne samjha, developer ke apne chat program mein thi. Demonstration page uski jagah khada tha, aur ek achha vikalp tha, par asli activation tab hota jab kit code mein hota. Maksad pehle aur doosre ke beech ke raaste ko chhota karna tha.
+Farah ne poocha ki Anaya kya copy karegi. "Value ka pal," usne dheere se kaha. Woh user ke apne kaam mein hota hai. Woh kisi alag page par nahi hota, na setup ke baad.
 
-## Koi kaam karne kab lagta hai
+Use samajh aaya ki kit ki value developer ke apne chat program ke andar hai. Demo page uska ek stand-in tha, aur achha stand-in tha. Lekin asli activation tab hota jab kit unke code mein ho. Maksad pehle aur doosre ke beech ka raasta chhota karna tha.
 
-Retention ke liye Anaya ek model ki taraf mudi jo Dr. Meenakshi Rao ne vyavhaar ke adhyayan se bataya tha. Ek insaan kuch tab karta hai jab teen cheezein ek hi pal milti hain: woh chahta hai, woh kar sakta hai, aur kuch use prompt karta hai. Yeh *Fogg behaviour model* hai, aur jab koi vyavhaar nahi ho raha, toh uska niyam hai ki teeno ko ulte kram mein jaancho. Ek gayab prompt sabse sasta theek hota hai. Phir ability. Aakhir mein motivation, jise hilaana sabse mushkil hai.
+## Kya insaan ko kaam karwata hai
 
-Ek compliance buyer ke liye prompt dekhna aasaan tha: Monday ka ek email jisme ek line ho, jaise "Is hafte guard ne 87,000 messages mein 1,204 details chhupayin. Do review ke liye flag hui." Use kholne mein koi mehnat nahi thi aur woh buyer ko yaad dilata ki uske paas yeh tool kyun hai. Ek developer ke liye prompt woh sabse achha README tha jo unhone kabhi padha ho, aur ability yeh ki kitna kam karna baaki tha.
+Retention ke liye Anaya ek model ki taraf mudi jo Dr. Meenakshi Rao ne behaviour ki study se bataya tha. Insaan koi kaam tab karta hai jab teen cheezein ek hi pal mein milti hain: woh karna chahta hai, woh kar sakta hai, aur kuch use karne ko prompt karta hai. Yehi *Fogg behaviour model* hai.
 
-Team har hafte ke naye users ke liye retention curve bhi dekhti thi. Jo rekha girkar chapti ho jaati hai uska matlab hai ki kisi ne ek sthayi istemaal paaya. Jo rekha shunya tak girti hai uska matlab hai ki nahi paaya.
+Iska rule kaam ka hai. Jab koi behaviour nahi ho raha, toh in teeno ko ulte order mein check kijiye. Prompt ka na hona sabse sasta theek hota hai. Phir ability aati hai. Aakhir mein motivation, jo hilana sabse mushkil hai.
 
-## Ek customer kaise pahunchta hai
+Ek compliance buyer ke liye prompt dekhna aasaan tha. Woh Monday ka ek email tha jisme ek line hoti, jaise "Is hafte guard ne 87,000 messages mein 1,204 details hide kiye. Do ko review ke liye flag kiya gaya." Ise kholne mein koi mehnat nahi lagti, aur yeh buyer ko yaad dilata ki unke paas yeh tool kyun hai. Ek developer ke liye prompt ab tak ka sabse achha README tha, aur ability yeh thi ki karne ko kitna kam bacha tha.
 
-Anaya ne woh teen raaste banaye jinse ek customer kisi product ke baare mein sunne se uske liye paisa dene tak ja sakta hai.
+Team ne har hafte ke naye users ka retention curve bhi dekha. Jo line girti hai aur phir chapti ho jaati hai, uska matlab kisi ko tikne wala use mil gaya hai. Jo line girkar zero ho jaati hai, uska matlab nahi mila.
 
-Table: Ek paying customer tak teen raaste
-| Raasta | Kaise kaam karta hai | Kab theek baithta hai |
+## Customer kaise aata hai
+
+Anaya ne woh teen raaste banaye jinse ek customer kisi product ke baare mein sunne se paisa dene tak jaata hai.
+
+Table: Paying customer tak teen raaste
+| Raasta | Kaise kaam karta hai | Kab fit hota hai |
 | --- | --- | --- |
-| Product-led growth | Log sign up karte hain aur apne aap value paate hain, aur kuch upgrade karte hain | Value kuch minute mein dikhti hai aur keemat kam hai |
-| Sales-led | Ek insaan demonstration aur ek contract chalata hai | Deal bada hai ya security review zaroori hai |
-| Beech wala | Log pehle product apnaate hain aur jab unki team badhti hai tab ek salesperson aata hai | Aisa product jise ek insaan aazma sakta hai par ek team ko manzoor karna padta hai |
+| Product-led growth | Log sign up karte hain aur khud value paate hain, aur kuch upgrade karte hain | Value minutes mein dikhe aur price kam ho |
+| Sales-led | Ek insaan demos aur contract sambhalta hai | Deal bada ho ya security review chahiye |
+| Beech ka | Pehle individuals product apnate hain, aur jab unki team badhti hai toh ek salesperson aata hai | Aisa product jo ek insaan try kar sake lekin ek team ko approve karna pade |
 
-Guard beech mein tha. Ek akela developer demonstration ko akela aazma sakta tha. Ek poore chat system ko jodne mein woh security lead aata tha jise Mr. Menon "the Wall" kehte the, aur wahi, usne dekha, woh waqt tha jab ek insaan upyogi hota.
+Guard beech mein baitha tha. Ek akela developer demo ko khud try kar sakta tha. Lekin poora chat system jodne ka matlab tha us security lead se guzarna jise Mr. Menon "the Wall" kehte the. Anaya ko dikha ki yehi woh pal tha jab ek insaan kaam aata.
 
 ## Ek badge, aur ek line jo woh paar nahi karegi
 
-Aakhri baat ek chakra thi. *Growth loop* ek chakra hai jisme ek user ke kaam agle ko laate hain, taaki output wapas input mein jaaye. Anaya ne chat window ke neeche ek chhote nishaan ki kalpana ki, "Protected by Bharat Privacy Guard", ek link ke saath. Ek customer ka customer use dekhta, aur ek aur developer link par ja sakta tha.
+Aakhri baat ek loop ki thi. *Growth loop* ek aisa cycle hai jisme ek user ke actions agle user ko laate hain, taaki output wapas input ban jaye. Anaya ne chat window ke neeche ek chhote nishaan ke baare mein socha: "Protected by Bharat Privacy Guard", ek link ke saath. Customer ka customer ise dekhega, aur ek aur developer is par click kar sakta hai.
 
-Woh do shabdon ke saath saavdhaan thi. Users ka doosre users ko laana *virality* hai. Ek product ka sab ke liye behtar hona jaise-jaise zyada log use istemaal karte hain *network effect* hai. Bahut se products mein pehla hota hai aur doosra nahi, aur use shak tha ki uska ek aisa hi tha. Positioning tay karti thi ki kaun sa loop kaam kar sakta hai: badge tabhi maayne rakhta tha kyunki woh un companies ke liye guard thi jo Bharat mein customers se baat karti hain, aur ek company jo saavdhaan dikhna chahti thi use nishaan lagakar khush hoti.
+Woh do terms ke baare mein saavdhaan thi. Jab users doosre users ko laate hain, toh woh *virality* hai. Jab product sabke liye behtar hota hai jaise-jaise zyada log use use karte hain, toh woh *network effect* hai. Bahut se products mein pehla hota hai aur doosra nahi, aur use shak tha ki uska product bhi unmein se ek hai.
 
-Phir usne hashiye mein ek niyam likha, usi haath mein jisme "kam hona, theek hona nahi hai" likha tha.
+Positioning ne tay kiya ki kaun sa loop kaam kar sakta hai. Badge samajh mein aata tha kyunki guard un companies ke liye tha jo India mein customers se baat karti hain. Jo company saavdhaan dikhna chahti, woh us nishaan se khush hoti.
 
-::: watch Dark patterns baahar hain
-*Dark pattern* ek aisi design hai jo user ko apne hi hit ke khilaaf kaam karne par dhokhe se majboor karti hai: pehle se tick kiya hua box, banaya hua kami ka dava, ek cancel button jise koi nahi dhoondh paata. Aisi designs ek quarter ke liye ek number badha sakti hain. Woh us bharose ko bhi tod deti hain jis par poora product tika hai. Anaya ne Imran se kaha ki customer badge ko bina poochhe band kar sakta hai. Usne kaha ki isse kuch visibility jaayegi. "Haan," usne kaha. "Hum ek privacy tool hain. Hume woh nahi hona chahiye jo bahar nikalne ka raasta chhupaye."
+Phir usne margin mein ek rule likha, usi haath mein jisme "rarer is not fixed" likha tha.
+
+::: watch Dark patterns nahi chalenge
+*Dark pattern* aisa design hai jo user ko apne hi khilaaf kaam karne par dhokhe se majboor kare: pehle se tick kiya hua box, banaayi hui kami, ya cancellation ka button jo koi dhoondh na paaye. Aise designs ek quarter ke liye ek number badha sakte hain. Woh us bharose ko bhi tod dete hain jis par poora product tika hai. Anaya ne Imran se kaha ki customer badge ko bina poochhe band kar sake. Imran ne kaha ki isse thodi visibility jaayegi. "Haan," usne kaha. "Hum ek privacy tool hain. Hume woh nahi hona chahiye jo exit chhupaye."
 :::
 
-## Saaraansh
+## Saar
 
-Growth ke paanch stages ginne laayak hain: acquisition, activation, retention, referral aur revenue, aur jo aam taur par tay karta hai ki product kaam karta hai ya nahi woh chautha hai.
+Growth ke paanch ginne layak stages hain: acquisition, activation, retention, referral aur revenue. Jo stage aam taur par tay karta hai ki product chalta hai ya nahi, woh chauthe number par aata hai.
 
-- Activation moment woh pehla pal hai jab user ko vaada ki gayi value milti hai. Use jitna jaldi ho sake aana chahiye, kyunki us se pehle ka sab kuch user par kharcha hai. Time-to-value raaste ko naapta hai, aur us pal ke liye sabse achhi jagah user ka apna kaam hai.
-- Ek vyavhaar tab hota hai jab motivation, ability aur ek prompt milte hain. Jab woh nahi ho raha, toh teeno ko ulte kram mein jaancho.
-- Customers khud, ek salesperson ke zariye, ya dono se aa sakte hain, aur sahi raasta is par nirbhar hai ki value kitni jaldi dikhti hai aur deal kitna bada hai.
-- Growth loop users ko laa sakta hai, par virality network effect nahi hai. Aisi design jo logon ko dhokha deti hai, dark pattern, ek number badha sakti hai aur us bharose ko tod deti hai jis par retention nirbhar hai.
+- Activation moment woh pehli baar hai jab user ko promised value milti hai. Ise jitna ho sake jaldi aana chahiye, kyunki uske pehle ka sab kuch user ke liye cost hai. Time-to-value us raaste ko naapta hai, aur is pal ki sabse achhi jagah user ke apne kaam ke andar hai.
+- Behaviour tab hota hai jab motivation, ability aur prompt milte hain. Jab woh nahi ho raha, toh unhe ulte order mein check kijiye.
+- Customers khud aa sakte hain, salesperson ke zariye, ya dono se. Sahi raasta is par depend karta hai ki value kitni jaldi dikhti hai aur deal kitni badi hai.
+- Growth loop users ko la sakta hai, lekin virality network effect nahi hai. Jo design logon ko dhokha deta hai, yaani dark pattern, woh ek number badha sakta hai, aur woh us bharose ko tod deta hai jis par retention tikta hai.
+
+Growth tab hi kaam ki hai jab aap use imaandari se gin sakein, aur agla chapter isi ke baare mein hai.

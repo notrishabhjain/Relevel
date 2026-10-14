@@ -1,117 +1,131 @@
 ---
-title: Product, Demo Nahi
-summary: Do logon ke liye achhi tarah pakaya gaya khana restaurant ke menu ka item nahi hota. Tyohaar ke mausam se pehle team woh sab ginti hai jo ek chalte prototype aur ek seva ke beech khada hai, aur har bade faisle ke liye likhti hai ki kya use palat dega. Chapter production delta, graceful degradation, staging, latency budgets, architecture decision records aur exit cost samjhata hai.
+title: Product Hai, Demo Nahi
+summary: Do logon ke liye achha bana khana abhi restaurant ke menu ka item nahi hai. Festival season se pehle team woh sab list karti hai jo ek chalte prototype aur ek asli service ke beech mein hai, aur har bade decision ke saath likhti hai ki kya hone par woh use palat degi. Chapter mein production delta, graceful degradation, staging, latency budget, architecture decision record aur exit cost aate hain.
 course: ch19pm ch20d
 goals:
-  - batana ki text padhne aur likhne wale software ke liye "done" ka matlab kya hai, aur naapon ko chaar kismon mein baantna
-  - production delta ki list aur must-have group ka test batana
-  - dheeme kaam ko live raaste se hataana, aur har dependency ke liye graceful degradation design karna
-  - staging aur latency budget istemaal karna, faislon ko palatne ke trigger ke saath likhna, aur vendors ko exit cost ke saath score karna
+  - bata paana ki text padhne aur likhne wale software ke liye "done" ka matlab kya hai, aur measures ko chaar kisam mein baantna
+  - production delta ki list banana, aur must-have group ke liye test lagana
+  - dheemi kaam ko live path se hatana, aur har dependency ke liye graceful degradation plan karna
+  - staging aur latency budget use karna, decisions ko revisit karne ke trigger ke saath record karna, aur vendors ko exit cost samet score karna
 terms:
-  - production delta | ek kaam karte prototype aur ek chalti service ke beech jo kuch gayab hai uski list, jaise pehchaan, retries, queues, monitoring, secrets, backups aur rollback | 
-  - graceful degradation | jab system ka koi hissa fail ho toh ek kam, par surakshit tareeke se kaam karte rehna, poori tarah fail hone ki jagah | degraded mode
-  - staging | live system ki ek copy jahan badlaav pehle aazmaye jaate hain, taaki ek kharab badlaav asli users tak kabhi na pahunche | 
-  - latency budget | woh kul samay jo ek request le sakti hai, un charno ke beech baanta hua jinse woh guzarti hai, taaki sabse dheema charan dhoondha jaye aur uska ek malik ho | 
-  - architecture decision record | ek bade technical faisle ka chhota note: vikalp, chunav, saboot, nateeje, aur kya hone par aap use dobara dekhenge | ADR, ADRs
-  - exit cost | ek provider ko chhodne aur doosre par jaane mein paise, samay aur jokhim mein kitna kharcha aayega; ek vendor quality mein jeet sakta hai aur phir bhi aapko saalon ke liye bandh sakta hai | 
+  - production delta | woh list jo ek chalte prototype aur ek running service ke beech jo kuch missing hai usse banti hai, jaise identity, retries, queues, monitoring, secrets, backups aur rollback | 
+  - graceful degradation | jab system ka koi hissa fail ho, toh poora fail hone ke bajaye chhote lekin safe tareeke se chalte rehna | degraded mode
+  - staging | live system ki ek copy jahan badlaav pehle try hote hain, taaki koi kharab badlaav asli users tak kabhi na pahunche | 
+  - latency budget | woh total time jo ek request le sakti hai, jise un stages mein baant diya jaata hai jinse woh guzarti hai, taaki sabse dheema stage pakda jaye aur uska ek owner ho | 
+  - architecture decision record | kisi bade technical decision par ek chhota note: alternatives, jo chuna gaya, saboot, nateeje, aur kya hone par aap use dobara dekhenge | ADR, ADRs
+  - exit cost | ek provider ko chhodkar doosre par jaane mein paise, time aur risk mein kitna lagega; ek vendor quality mein jeet sakta hai aur phir bhi aapko saalon ke liye baandh sakta hai | 
 ---
 
-November ke pehle hafte mein Mr. Bhatia ne poochha ki kya guard poora ho gaya, aur jawaab sunkar thoda dhokhe jaisa dikhe. Anaya apni specification ko ek tulna se samjha rahi thi. Ek railway yeh vaada nahi kar sakti ki train theek nau bajkar chaar minute par aayegi, usne kaha, isliye woh mahine-dar-mahine woh hissa chhapti hai jo schedule ke kuch minute ke andar aati hai, aur yatri us number ke aadhaar par yojna bana sakte hain. Guard us arth mein poora tha ki woh numbers paas karta tha. Woh us arth mein kabhi poora nahi ho sakta tha ki woh hamesha ek hi cheez ko ek hi tarah kare.
+November ke pehle hafte Mr. Bhatia ne poocha ki guard khatam hua ya nahi. Jawaab sunkar woh thoda dhokha khaaye hue lage. Anaya apni specification ek misaal se samjha rahi thi. Railway yeh promise nahi kar sakti ki train theek 9:04 par aayegi, usne kaha. Isliye woh publish karti hai ki mahine-dar-mahine kitni trains schedule ke kuch minute ke andar pahunchti hain, aur passengers usi number ke hisaab se plan karte hain.
 
-Jo software text padhta aur likhta hai uske liye "done" ka matlab ek tolerance ke andar ek naapi hui safalta dar hai, ek tay output nahi. Yeh woh vichaar tha jiske chaaron taraf Anaya April se ghoom rahi thi, aur woh dheere-dheere uska har cheez likhne ka tareeka ban gaya tha. Ab use test hone ki jagah mil gayi thi. Tyohaar ka mausam teen hafte door tha.
+Guard bhi isi matlab mein done tha: woh apne numbers poore karta tha. Lekin "done" ka woh matlab, ki ek kaam hamesha ek hi tareeke se hota rahe, guard ke liye kabhi ho hi nahi sakta tha.
+
+Jo cheez text padhti aur likhti hai, uske liye "done" ka matlab hai ek measured success rate, ek tolerance ke andar. Koi ek fixed output nahi. Anaya spring se is idea ke aas-paas ghoom rahi thi, aur dheere-dheere yehi uska sab kuch likhne ka tareeka ban gaya tha. Ab ise parakhne ke liye kuch tha: festival season teen hafte door tha.
 
 ## Case: teen hafte mein guard
 
-Neeche ke section batate hain ki guard ko seva ke roop mein abhi kya chahiye tha, woh apne saamaanya bhaar ka das guna kaise sambhalega, aur uske peechhe ke faisle kaise likhe gaye.
+Aage ke sections mein teen cheezein hain. Pehli, woh list ki guard mein ek service ke roop mein abhi kya kami thi. Doosri, woh sawaal ki woh apne normal load ka das guna kaise sambhalega. Teesri, yeh ki uske peeche ke decisions kaise likhe gaye.
 
 ## Sirf ek rule kyun nahi?
 
-Charcha ek sawaal se shuru hui jo Anaya se shuru mein poochhne ko kaha gaya tha: yeh saadhaaran software kyun nahi hai? Safe mode ne jawaab diya. Sirf-rules wala version, aapaatkal ke liye banaya gaya, bina kisi model ke fixed-shape numbers mein se sau mein lagbhag chhiyaanve dhoondhta tha. Anaya ne woh figure saal bhar ek aadhaar rekha ki tarah saamne rakha tha, woh cheez jise har doosre hisse ko harana tha. Yeh batane mein achha laga ki kitna. Model ne naam, pate, Hinglish aur woh vaakya diye jo bina kehe ki kaun ek insaan ki taraf ishaara karte hain. Unke bina guard ek rule tha. Usne antar ko, figures ke saath, product requirements ke pehle page par likha: model ne kya kharida aur kya kharcha hua.
+Baat ek sawaal se shuru hui jo Anaya ko bilkul shuru mein poochhne ko kaha gaya tha: yeh ordinary software kyun nahi hai? Jawaab safe mode ne diya. Sirf rules wala woh version, jo emergency ke liye bana tha, bina kisi model ke, fixed-shape numbers mein se 100 mein lagbhag 96 dhoondh leta tha. Anaya ne yeh figure saal bhar apne saamne baseline ki tarah rakha tha, woh cheez jise har doosre hisse ko harana tha. Ab yeh bata paana achha tha ki kitne se.
 
-Usne acceptance criteria bhi ek aakhri baar likhe, product aur engineering ke beech ek anubandh ki tarah. Retrieval, generation, safety, speed aur kharcha, har ek ka ek number tha, golden dataset aur naapne ke tareeke se jodha hua. Anubandh ki jaanch yeh thi ki Imran use ek baar bhi poochhe bina chala sake ki "achha" ka matlab kya hai.
+Model ne jo jodha, woh tha naam, addresses, Hinglish, aur woh sentences jo kisi ki taraf ishara karte hain bina bataye ki kaun. Inke bina guard sirf ek rule tha. Anaya ne yeh farq, figures ke saath, product requirements ke pehle page par likha: model ne kya kharida, aur uski keemat kya thi.
 
-## Chaar tarah ke number
+Usne acceptance criteria bhi ek aakhri baar likhe, product aur engineering ke beech ek contract ki tarah. Retrieval, generation, safety, speed aur cost, har ek ka ek number tha, golden dataset se juda hua, aur use naapne ka ek tareeka. Contract ki parakh seedhi thi: Imran ise bina ek baar bhi poochhe chala sake ki "good" ka matlab kya hai.
 
-Dashboard mein ek pravritti thi jo Anaya ko ab har jagah dikhne lagi thi. Jab teams ko bahut saare numbers dikhaye jaate hain, toh woh yeh batana band kar deti hain ki har ek kaun sa sawaal hal karta hai. Imran ne chaar column banaye.
+## Chaar kisam ke numbers
 
-Table: Chaar tarah ke number
-| Prakaar | Kaun sa sawaal hal karta hai | Guard ka udaharan |
+Dashboards ke baare mein Anaya ne ek cheez dekhi thi. Jab team ko ek saath bahut saare numbers dikhaye jaate hain, toh woh yeh batana band kar deti hai ki har number kis sawaal ka jawaab hai. Isliye Imran ne chaar columns banaye. Har kisam ka number ek alag sawaal ka jawaab deta hai, aur table mein har ek ke liye guard ka apna example hai.
+
+Table: Chaar kisam ke numbers
+| Kisam | Kaunsa sawaal | Guard ka example |
 | --- | --- | --- |
-| Business ka nateeja | Kya koi behtar hua? | Lakshmi ke saptaahik sweep ki ginti |
-| System ki quality | Kya system sahi hai? | Jo mila uska hissa; jo galat chhupaya gaya uska hissa |
-| Chalane wale | Ise chalane mein kya kharcha hota hai, aur woh kitna tez hai? | Kharcha, speed, dheemi poonchh |
-| User ka sanket | Kya users ispar bharosa karte hain? | Agents ne kitni baar woh button dabaya jisme likha tha ki guard ne woh chhupa diya jo unhe chahiye tha |
+| Business outcome | Kya kisi ka fayda hua? | Lakshmi ke weekly sweep ka count |
+| System quality | Kya system sahi hai? | Kitna share mila; kitna share galti se hide hua |
+| Operating | Chalane mein kitna cost aata hai, aur kitni tez hai? | Cost, speed, dheemi poonchh |
+| User signal | Kya users us par bharosa karte hain? | Agents ne kitni baar woh button dabaya jo kehta tha ki guard ne kuch aisa hide kar diya jo unhe chahiye tha |
 
-Jo dashboard inhe milata hai woh kisi sawaal ka saaf jawaab nahi de sakta. Ek model apni jaanch par pachaanve score kar sakta hai aur agents phir bhi tool ko ignore kar sakte hain kyunki woh chidhaata hai. Chaaron chahiye, aur sirf pehla bata sakta hai ki koi behtar hua ya nahi. Anaya ne ek cheez aur joda: usne Imran se call ka nahi balki poori safal task ka kharcha model karne ko kaha, un logon ka review samay shaamil karke jo har subah shak wale cases dekhte the. Imaandaar figure zyada tha, aur wahi woh tha jise ek finance director poochhti.
+Jo dashboard in sabko mila deta hai, woh kisi sawaal ka saaf jawaab nahi de paata. Ek model apne test mein 95 score kar sakta hai, aur phir bhi agents us tool ko ignore kar sakte hain kyunki woh unhe chidhata hai. Chaaron kisam chahiye, aur sirf pehli batati hai ki kisi ka fayda hua ya nahi.
 
-## Prototype mein kya nahi hai
+Anaya ne ek aur request jodi. Usne Imran se kaha ki cost ek call ka nahi, poore successful task ka model kare. Usmein un logon ka review time bhi tha jo roz subah unsure cases dekhte the. Imaandaar figure zyada tha, aur finance director yehi figure poochhta.
 
-Do logon ke liye achhi tarah pakaya gaya khana restaurant ke menu ka item nahi hota. Vidhi wahi hoti hai, par aapko bharose ki aapoorti, ek aisi keemat jo chale, doosre rasoiye jo use bana sakein, aur us raat ki yojna bhi chahiye jab chaar sau log use order karte hain.
+## Prototype mein kya nahi hota
 
-Imran ne Anaya ko review se ek hafta pehle ek list di aur use *production delta* kaha: ek prototype aur ek seva ke beech jo kuch bhi gayab hai. Anaya ko woh vinamra karne wali lagi.
+Do logon ke liye achha bana khana abhi restaurant ke menu ka item nahi hai. Recipe wahi hai. Lekin restaurant ko bharosemand supplies chahiye, ek aisi keemat jo chale, doosre cooks jo yeh dish bana sakein, aur us raat ka plan jab 400 log yahi order karein.
+
+Review se ek hafte pehle Imran ne Anaya ko ek list di aur use *production delta* kaha: ek prototype aur ek service ke beech jo kuch missing hai, woh sab. Anaya ko yeh sunkar thodi sharm aayi. Neeche table mein har item hai, aur woh sawaal jo woh uthata hai.
 
 Table: Production delta
-| Cheez | Sawaal |
+| Item | Sawaal |
 | --- | --- |
-| Pehchaan | Kaun bula raha hai, aur kya use ijaazat hai? |
-| Persistence | State kahan rehti hai, aur agar machine restart ho toh kya? |
-| Retries, queues aur timeouts | Jab kuch dheema ho ya fail ho toh kya hota hai? |
+| Identity | Call kaun kar raha hai, aur kya use ijaazat hai? |
+| Persistence | State kahan rehti hai, aur machine restart ho gayi toh kya hoga? |
+| Retries, queues aur timeouts | Jab kuch dheema ho ya fail ho, tab kya hota hai? |
 | Monitoring aur alerts | Kise bataya jaata hai, aur kitni jaldi? |
 | Secrets | Woh kahan rakhe jaate hain? |
-| Backups, permissions, deployment, rollback | Kya seva bahaal aur surakshit tareeke se badli ja sakti hai? |
+| Backups, permissions, deployment, rollback | Kya service ko safely restore aur change kiya ja sakta hai? |
 
-Imran ne list ko must-have, should-have aur baad mein ke group mein baanta. Pehle group ka test ek sawaal tha: kal live jaane se aapko kya rokega? Woh ek lambi list thi, aur usme se kuch bhi model ke baare mein nahi tha.
+Imran ne list ko must-have, should-have aur later mein baanta. Pehle group ke liye test ek hi sawaal tha: aapko kal live jaane se kya rokega? List lambi thi, aur usmein se kuch bhi model ke baare mein nahi tha.
 
-## Woh raat jab chaar sau log order dete hain
+## Woh raat jab 400 log order karte hain
 
-Tyohaar ka hafta test tha. Farah ke records ne dikhaya ki pichhli Diwali ke hafte mein chatbot ko messages saamaanya se chhe guna the. Log jaldi bill bharte the taaki phans na jaayein, tyohaaron ke upahaar ke liye loan top up karte the, aur bahut saare late fees ke baare mein poochhne ko likhte the. Imran ne kaha ki surakshit rehne ke liye das guna yojna banao.
+Festival week asli test hota. Farah ke records dikhate the ki pichhli Diwali ke hafte mein chatbot ko messages normal se 6 guna aaye the. Log bills jaldi bharte hain taaki aakhri waqt par fansein nahi, gifts ke liye loans top up karte hain, aur late fees poochhne ke liye badi tadaad mein likhte hain. Imran ne kaha ki safe rehne ke liye 10 guna maan kar chaliye.
 
-Das guna volume par sawaal yeh tha ki kaun sa hissa pehle fail hoga, aur jawaab tha saavdhaan judge. Woh sau mein se chhe messages sambhalta tha, aur har ek baaki se zyada samay leta tha. Das guna par uski ek queue hoti, aur ek live chat mein queue ek aisi der hai jise customer mehsoos karta hai. Har kaam ek customer ke send dabane aur reply ke beech ke raaste mein nahi aata, isliye judge ko us raaste se hata diya gaya. Tez hisse live faisle karte the. Shak wale messages pehle ki tarah surakshit rehne ke liye chhupa diye jaate the, aur judge ke liye ek queue mein daal diye jaate the jise woh apni raftaar se sambhalta, aur jab verdict aata toh agent ki screen update ho jaati. Naye policy document ko ingest karne ka dheema kaam bhi isi tarah sambhala gaya: upload, process, index aur sthiti report alag kadam hain jo customer ko rokte nahi.
+10 guna volume par sawaal yeh tha ki pehle kaun sa hissa fail hoga. Jawaab tha careful judge. Woh 100 mein se 6 messages sambhalta tha, aur har ek mein baaki se zyada time lagta tha. 10 guna load par uske saamne queue lag jaati, aur live chat mein queue ka matlab hai ek delay jo customer mehsoos karta hai.
 
-Un failures ke liye jo aani hi thi, team ne ek table likhi jise Imran ne reliability matrix kaha. Har dependency ke liye usne kaha ki agar woh dheemi, band ya rate-limited ho toh kya hoga.
+Har kaam us raaste mein nahi hona chahiye jo customer ke send dabane se reply milne tak jaata hai. Isliye judge ko us raaste se bahar nikal diya gaya. Tez hisse live decide karte the. Unsure messages pehle ki tarah safe side par hide kar diye jaate the aur queue mein daal diye jaate the. Judge apni raftaar se queue nipatata tha, aur verdict aate hi agent ki screen update ho jaati thi. Naya policy document lene wale dheemi kaam ke saath bhi yehi kiya gaya. Upload, processing, indexing aur status report karna alag steps hain, aur inmein se koi bhi customer ko rokna nahi chahiye.
+
+Kuch failures toh pakke aane the. Unke liye team ne ek table likhi jise Imran reliability matrix kehta tha. Har dependency ke liye usmein likha tha ki agar woh dheemi ho, band ho, ya rate-limited ho jaye toh kya hoga. Neeche uska ek hissa hai.
 
 Table: Reliability matrix ka ek hissa
 | Agar yeh fail ho | System yeh karta hai |
 | --- | --- |
-| Model server par bojh ho | Safe mode, agent ki screen par patti, aur ek alert |
-| Order look-up fail ho | Baarah ank wale numbers ko sensitive maano |
-| Queue ek ghante se zyada peechhe ho jaye | Imran ko page karo |
+| Model server overloaded ho | Safe mode, agent ki screen par ek patti, aur ek alert |
+| Order lookup fail ho | 12-digit numbers ko sensitive maano |
+| Queue ek ghante se zyada peeche ho jaye | Imran ko page karo |
 
-::: key Dhire-dhire girna seekho
-Ek chhota, surakshit mode aksar ek bade model se zyada keemti hota hai. *Graceful degradation* ka matlab hai jab system ka koi hissa fail ho toh ek chhote aur surakshit tareeke se kaam karte rehna, aur yeh un kai logon ki pravritti ke khilaaf jaata hai jo cheezein banate hain.
+::: key Aaram se chhote hoiye
+Aksar ek bade model se zyada kaam ka hota hai ek achha reduced mode. *Graceful degradation* ka matlab hai ki jab system ka koi hissa fail ho, toh chhote lekin safe tareeke se chalte rehna. Yeh bahut se banane walon ki aadat ke khilaaf jaata hai.
 :::
 
-## Ek copy par aazmana
+## Pehle ek copy par try karna
 
-List ka aakhri teesra hissa is baare mein tha ki badlaav duniya tak kaise pahunchte hain, aur yahi woh jagah thi jahan Friday raat ke edit ne team ko sabse zyada sikhaya tha. Ek *staging* system hoga, live wale ki ek copy jahan badlaav pehle aazmaya jaata hai, aur ek niyam: jo kuch bhi vyavhaar badal sakta hai, chahe woh prompt ho, model ka naam, index ya configuration, staging par jaata hai, gate paas karta hai aur tabhi production tak pahunchta hai. Imran ne ise ek khel se saabit kiya. Usne jaanboojh kar ek kharab instruction staging par bheja aur jaancha ki production nahi hila. Phir usne ek model ka naam badla aur gate ko use rokte dekha.
+List ka aakhri ek-tihaai is par tha ki badlaav duniya tak kaise pahunchte hain. Yahan Friday raat wale edit ne team ko sabse zyada sikhaya tha. Unhone ek *staging* system banaya, jo live system ki ek copy hai jahan badlaav pehle try hota hai. Aur ek rule tay kiya. Jo bhi cheez behaviour badal sakti hai, chahe prompt ho, model ka naam, index ya configuration, woh staging mein jaati hai, gate paas karti hai, aur tabhi production tak pahunchti hai.
 
-Response time ka budget ek sheet par gaya. *Latency budget* us samay ko baantta hai jo ek request ko un stages ke beech lena chahiye jinse woh guzarti hai, aur yahan jod ko ek second ke teesre hisse tak aana tha. Jab Anaya ne numbers bhare toh usne paaya ki jis stage ke baare mein use chinta thi, model, usne ummeed se kam liya, aur ek stage jiska kisi ne zikr nahi kiya tha, company ke apne do servers ke beech ka network, usne zyada liya. Imran ne kaha ki deri ka sabse bada hissa aksar us stage mein nahi hota jise log pehle sudharte hain.
+Imran ne rule ko ek chhote game se saabit kiya. Usne jaan-boojhkar ek kharab instruction staging mein bheji aur check kiya ki production nahi hili. Phir usne ek model ka naam badla aur dekha ki gate ne use rok diya.
 
-## Wajahein likhna
+Response time ka budget ek sheet par gaya. *Latency budget* us time ko baant deta hai jo ek request le sakti hai, un stages mein jinse woh guzarti hai. Yahan total ek second ka teesra hissa hona tha. Jab Anaya ne numbers bhare, toh usne dekha ki jis stage ki use fikr thi, yaani model, woh umeed se kam time le raha tha. Jis stage ka kisi ne zikr hi nahi kiya tha, yaani company ke apne do servers ke beech ka network, woh zyada le raha tha. Imran ne kaha ki delay ka sabse bada hissa aksar us stage mein nahi hota jise log pehle tune karte hain.
 
-Hafte ke ant tak architecture faislon ka ek set tha. Anaya ne, jisne March se rakhe log se seekha tha, har ek ko us roop mein likha jise Imran saal bhar se sujhata aa raha tha. *Architecture decision record* ek chhota note hai jisme jo vikalp dekhe gaye, chunaav, saboot, nateeje, aur woh jo team ko dobara dekhne par majboor karega. Usne chaar likhe: models, documents kaise dhoondhe jaate hain, workflow banaam agent, aur cheezein kahan store hoti hain, aur har ek mein usne woh vikalp shaamil kiya jo chhoda gaya aur kyun. Phir usne kuch kiya jiski Imran ko ummeed nahi thi: usne ek naya requirement gadha jo faislon mein se ek ko palat deta, yeh dekhne ke liye ki note batata hai ki woh kya karegi. Note ne bataya.
+## Wajah likh kar rakhna
 
-Hosting khareedna aakhri faisla tha, aur woh ek vendor faisla tha. Anaya ne teen vaastavik vikalp aur ek parikalpna, ise khud chalana, ek sheet par score kiye.
+Hafte ke ant tak architecture decisions ka ek set ban chuka tha. Anaya ne woh log istemaal kiya jo woh March se rakh rahi thi, aur har decision ko us form mein likha jo Imran ek saal se recommend kar raha tha. Ise *architecture decision record* kehte hain. Yeh ek chhota note hai: kaun se alternatives dekhe, kaunsa chuna, saboot kya hai, nateeje kya hain, aur kya hone par team ise dobara dekhegi.
 
-Table: Vendors kaise score hue
-| Mapdand |
+Usne chaar likhe: models par, documents dhoondhne ke tareeke par, workflow versus agent par, aur cheezein kahan store hoti hain us par. Har ek mein usne woh option bhi daala jo reject hua aur kyun. Phir usne woh kiya jiski Imran ko umeed nahi thi. Usne ek nayi requirement banayi jo ek decision ko palat deti, yeh dekhne ke liye ki note mein likha hai ki woh kya karegi. Likha tha.
+
+Hosting kharidna aakhri decision tha, aur woh ek vendor decision tha. Anaya ne teen realistic options, aur ek aur possibility, yaani khud chalana, ek hi sheet par score kiye. Table mein woh criteria hain jin par usne score diya.
+
+Table: Vendors ko kaise score kiya gaya
+| Criterion |
 | --- |
 | Quality |
 | Data controls aur region |
 | Speed |
-| Kharcha |
+| Cost |
 | Tooling |
 | Support |
-| Exit cost: ise chhodne mein paise, samay aur risk mein kya lagega |
+| Exit cost: chhodne mein paise, time aur risk mein kya lagega |
 
-Aakhri row woh hai jo zyadatar sheets chhod deti hain. Jo provider quality aur data controls par jeetta hai par jise chhodne mein ek saal lagta hai woh company ko company ke business plan se zyada lambe samay tak bandh sakta hai. Sheet ke paas Anaya ne woh aadat likhi jo baaki sab se zyada tikegi: ek faisla ek keemat wali parikalpna hai, aur kehna chahiye ki aap use kab dobara dekhenge.
+Aakhri row woh hai jo zyadatar sheets chhod deti hain. Ek provider quality mein aur data controls mein jeet sakta hai, aur phir bhi use chhodne mein ek saal lag sakta hai. Aisa company ko us se zyada lambe waqt ke liye baandh sakta hai jitna uska business plan chalta hai. Yehi *exit cost* hai. Sheet ke bagal mein Anaya ne woh aadat likhi jo baaki sab se zyada tikne wali thi: ek decision ek hypothesis hai jiski ek keemat hai, isliye pehle se likh dijiye ki aap use kab dobara dekhenge.
 
-## Saaraansh
+## Saar
 
-Jo software text padhta aur likhta hai uske liye "done" ka matlab naam diye gaye cases par naapi gayi, ek tolerance ke andar ek safalta dar hai, baaki samay ke liye ek yojna ke saath.
+Jo cheez text padhti aur likhti hai, uske liye "done" ka matlab hai ek measured success rate, ek tolerance ke andar, named cases par naapa hua, aur baaki waqt ke liye ek plan ke saath.
 
-- Naap chaar kism ke hain: business ka nateeja, system ki quality, chalane ke figure aur user ke sanket. Jo dashboard unhe milata hai woh kuch nahi batata.
-- Prototype mein ek lambi list ki cheezein nahi hoti, production delta, jinme se koi model nahi hai.
-- Har kaam ek customer aur reply ke beech ke raaste mein nahi hota. Dheema kaam ek queue par rukh sakta hai, aur jab koi hissa fail ho toh system ko ek kam, surakshit mode mein sahajta se utarna chahiye.
-- Badlaav pehle live system ki copy par aazmaye jaate hain, aur response time stages mein baanta gaya budget hai.
-- Mahatvapurna faisle vikalpon aur ek dobara dekhne ke trigger ke saath likhe jaate hain. Vendor ko quality aur keemat se zyada par score kiya jaata hai, jisme use chhodne ki keemat bhi hai.
+- Measures chaar kisam ke hote hain: business outcome, system quality, operating figures aur user signals. Jo dashboard inhe mila deta hai, woh kuch bhi nahi batata.
+- Ek prototype mein bahut kuch nahi hota, yaani production delta, aur usmein se kuch bhi model nahi hai.
+- Har task customer aur reply ke beech ke raaste mein nahi hona chahiye. Dheema kaam queue mein ruk sakta hai. Jab koi hissa fail ho, toh system ko graceful degradation ke saath chhote, safe mode mein aa jaana chahiye.
+- Badlaav pehle live system ki ek copy par try hote hain, aur response time ek budget hai jo stages mein baanta jaata hai.
+- Bade decisions alternatives aur dobara dekhne ke ek trigger ke saath likhe jaate hain. Vendor ko sirf quality aur price par nahi, balki chhodne ke cost par bhi score kiya jaata hai.
+
+Ab team yeh sab lekar poori cheez ship karti hai.
