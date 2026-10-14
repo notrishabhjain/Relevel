@@ -4,13 +4,4 @@
    the course shows it, and code is never translated. */
 Object.assign(window.HING = window.HING || {}, {
 
-  'Colab open and your key working':
-    'Colab khula ho aur aapki key chal rahi ho',
-  'The five minutes of setup, done once. Chapter 1 is the first thing that uses it.':
-    'Paanch minute ka setup, ek baar. Chapter 1 pehli cheez hai jo use istemaal karta hai.',
-  'Before you start':
-    'Shuru karne se pehle',
-  'Make your first call':
-    'Apna pehla call kijiye'
-
 });

@@ -261,8 +261,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Woh common akshar milaata hai, common matlab nahi. "Reimbursement" aur "disbursement of approved amounts" uske liye ajnabi hain.',
   'Spelling':
     'Spelling',
-  'Meaning':
-    'Matlab',
   'Document length':
     'Document ki lambaai',
   'Recency':
@@ -369,8 +367,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Chunking ke waqt aapne jo orphan chunk gina tha, use kaunsi technique theek karti hai?',
   'The orphan becomes findable because its address moves into the right neighbourhood. One cheap call per chunk at indexing time; nothing at query time.':
     'Orphan isliye milne layak ho jaata hai ki uska pata sahi mohalle mein chala jaata hai. Indexing ke waqt har chunk par ek sasta call; query ke waqt kuchh nahi.',
-  'Reranking':
-    'Reranking',
   'Hybrid search':
     'Hybrid search',
   'Contextual retrieval — a generated situating sentence prepended before embedding':
@@ -1191,8 +1187,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Query rewriting — tukde ko akela khada kiye bina embed kiya ja raha hai',
   'Chunking':
     'Chunking',
-  'The system prompt':
-    'System prompt',
   'The assistant quotes a rule that was repealed last year, with a high confidence score. Where do you look first?':
     'Assistant ek aisa niyam quote karta hai jo pichhle saal radd ho gaya tha, aur confidence score ooncha hai. Aap pehle kahan dekhenge?',
   'No amount of retrieval quality detects repeal. This is an ingestion and metadata problem masquerading as a model problem.':
