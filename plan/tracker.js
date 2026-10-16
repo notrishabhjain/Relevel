@@ -203,8 +203,61 @@
     }
     var who = api.user ? 'Synced to your account as @' + esc(api.user.login) + '.' :
       api.ok ? '<a href="../api/auth/login?next=/plan/">Sign in with GitHub</a> to keep this tracker on every device.' : '';
+    var nudge = api.user ? '<div class="row small" id="nudge-row"><span id="nudge-text">Daily 12:00 reminder: checking…</span> <button type="button" class="quiet" id="nudge-toggle" hidden></button> <button type="button" class="quiet" id="nudge-test" hidden>Send a test</button></div>' : '';
     bar.innerHTML = '<div class="row"><span id="sync-text">' + (api.user ? 'Saved.' : 'Saved in this browser only.') + '</span> <span>' + who + '</span></div>' + share +
-      '<div class="row small"><button type="button" class="quiet" id="exp">Download backup</button> <label class="quiet filebtn">Restore backup<input type="file" id="imp" accept="application/json" hidden></label></div>';
+      nudge + '<div class="row small"><button type="button" class="quiet" id="exp">Download backup</button> <label class="quiet filebtn">Restore backup<input type="file" id="imp" accept="application/json" hidden></label></div>';
+    if (api.user) nudgeInit();
+  }
+
+  /* ---------- the daily 12:00 reminder (push from this site, nothing else needed) ---------- */
+  var nudge = { key: '' };
+  function ntext(t, warn) { var e = $('#nudge-text'); if (e) { e.textContent = t; e.className = warn ? 'warn' : ''; } }
+  function b64ToBytes(b) {
+    var p = b.replace(/-/g, '+').replace(/_/g, '/'); while (p.length % 4) p += '=';
+    var r = atob(p), o = new Uint8Array(r.length); for (var i = 0; i < r.length; i++) o[i] = r.charCodeAt(i); return o;
+  }
+  function nudgeInit() {
+    var tg = $('#nudge-toggle'), ts = $('#nudge-test');
+    if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window)) {
+      ntext('Daily 12:00 reminder: this browser cannot show reminders. On an iPhone, add the site to your Home Screen first, then open it from there.', true); return;
+    }
+    call('../api/nudge').then(function (r) {
+      if (r.status !== 200 || !r.body.key) { ntext('Daily 12:00 reminder is not available right now.', true); return; }
+      nudge.key = r.body.key;
+      return navigator.serviceWorker.register('/sw.js').then(function () { return navigator.serviceWorker.ready; })
+        .then(function (reg) { return reg.pushManager.getSubscription(); }).then(function (sub) { nudgeShow(!!sub); });
+    }).catch(function () { ntext('Daily 12:00 reminder is not available right now.', true); });
+    function nudgeShow(on) {
+      ntext(on ? 'Daily 12:00 reminder is on for this device (weekdays).' : 'Daily 12:00 reminder is off for this device.');
+      tg.hidden = false; tg.textContent = on ? 'Turn off' : 'Turn on';
+      ts.hidden = !on;
+    }
+    nudge.show = nudgeShow;
+  }
+  function nudgeToggle() {
+    navigator.serviceWorker.ready.then(function (reg) {
+      return reg.pushManager.getSubscription().then(function (sub) {
+        if (sub) {
+          var ep = sub.endpoint;
+          return sub.unsubscribe().then(function () { return call('../api/nudge', { method: 'POST', body: { unsubscribe: ep } }); })
+            .then(function () { nudge.show(false); });
+        }
+        return Notification.requestPermission().then(function (perm) {
+          if (perm !== 'granted') { ntext('Reminders are blocked for this site. Allow notifications in the browser settings, then try again.', true); return; }
+          return reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64ToBytes(nudge.key) }).then(function (s) {
+            return call('../api/nudge', { method: 'POST', body: { subscription: s.toJSON() } }).then(function (r) {
+              if (r.status === 200) nudge.show(true); else { s.unsubscribe(); ntext('Could not save the reminder. Try again.', true); }
+            });
+          });
+        });
+      });
+    }).catch(function () { ntext('Could not change the reminder on this device.', true); });
+  }
+  function nudgeTest() {
+    ntext('Sending a test…');
+    call('../api/nudge', { method: 'POST', body: { test: true } }).then(function (r) {
+      ntext(r.status === 200 && r.body.sent ? 'Test sent. It should appear in a few seconds.' : 'The test did not go through. Turn the reminder off and on again.', !(r.status === 200 && r.body.sent));
+    });
   }
   function schedulePush() {
     if (!api.user) return;
@@ -238,6 +291,8 @@
     }
   });
   document.addEventListener('click', function (ev) {
+    if (ev.target && ev.target.id === 'nudge-toggle') nudgeToggle();
+    if (ev.target && ev.target.id === 'nudge-test') nudgeTest();
     if (ev.target && ev.target.id === 'exp') {
       var b = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
       var a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'ai-pm-plan-progress.json';

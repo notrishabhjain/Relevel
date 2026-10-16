@@ -45,6 +45,7 @@ const routes = {
   '/api/content':       (await import('../api/content.js')).default,
   '/api/plan':          (await import('../api/plan.js')).default,
   '/api/plan-status':   (await import('../api/plan-status.js')).default,
+  '/api/nudge':         (await import('../api/nudge.js')).default,
   '/api/auth/login':    (await import('../api/auth/login.js')).default,
   '/api/auth/callback': (await import('../api/auth/callback.js')).default,
   '/api/auth/logout':   (await import('../api/auth/logout.js')).default

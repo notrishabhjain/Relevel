@@ -12,6 +12,23 @@ self.addEventListener('activate', e => {
     .then(ks => Promise.all(ks.filter(k => k !== C).map(k => caches.delete(k))))
     .then(() => self.clients.claim()));
 });
+/* The daily reminder. The push itself carries no text; the message is asked
+   for here, so it is always the day's current one. */
+self.addEventListener('push', e => {
+  e.waitUntil(fetch('/api/nudge?today=1').then(r => r.json()).catch(() => null).then(m => {
+    m = m && m.title ? m : { title: 'Your ten minutes', body: 'Open the plan and do the next small step.', url: '/plan/' };
+    return self.registration.showNotification(m.title, { body: m.body, icon: '/icon-192.png', badge: '/icon-192.png',
+      tag: 'daily-nudge', renotify: true, data: { url: m.url || '/plan/' } });
+  }));
+});
+self.addEventListener('notificationclick', e => {
+  e.notification.close();
+  const url = (e.notification.data && e.notification.data.url) || '/plan/';
+  e.waitUntil(self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(cs => {
+    const c = cs.find(x => new URL(x.url).pathname.startsWith(url));
+    return c ? c.focus() : self.clients.openWindow(url);
+  }));
+});
 self.addEventListener('fetch', e => {
   const r = e.request;
   if (r.method !== 'GET') return;
