@@ -1,0 +1,35 @@
+/* The thirty daily messages, one per weekday, repeating after thirty.
+   Each opens "Day N." and then carries one ten-minute task. Plain and firm:
+   a coach who expects him to show up, not a warning about the future. */
+export const MESSAGES = [
+  'Day 1. You’ve built everything except the habit. Nobody is coming to learn this for you. Ten minutes now: open the site and do Chapter 0. That’s the whole job today.',
+  'Day 2. Yesterday you started. Today the enemy is “later”. Ten minutes: Chapter 5, “Try it in the browser”. Paste one real email of yours into the token tool.',
+  'Day 3. Feeling like a beginner is the price of entry, not a verdict on you. Ten minutes: same chapter. Move the temperature slider and write one line on what changed.',
+  'Day 4. People are applying for the roles you want, and some are doing this right now. Ten minutes: watch a chat get more expensive message by message in Chapter 5. Note what surprised you.',
+  'Day 5. Friday. Five days is a streak, and streaks are made of boring days. Ten minutes: open the Plan tab, tick what you did this week, and write down the first step for Monday.',
+  'Day 6. The weekend didn’t count, so today does. Ten minutes: open the Setup page and do only its first section. Stuck? Paste the error to a chat assistant, don’t close the tab.',
+  'Day 7. A plan you only read is worth nothing to an employer. Ten minutes: the next section of Setup.',
+  'Day 8. Hard doesn’t mean wrong. It means you’re learning. Ten minutes: finish Setup. If one step fails, copy the exact error and ask for help.',
+  'Day 9. Shipped work gets read. Plans don’t. Ten minutes: Chapter 1, make your first model call.',
+  'Day 10. Fear of falling behind isn’t a plan, but a small step is. Ten minutes: read the usage block from your Chapter 1 call and write down the token count.',
+  'Day 11. Ten minutes: change the prompt in Chapter 1 and watch the tokens and cost change. This is the skill the job pays for.',
+  'Day 12. Friday. Open the Plan tab. Tick what you did. Write three lines on what finally made sense this week. If you missed days, restart Monday. Never miss twice.',
+  'Day 13. Miss one day and it’s life. Miss two and it’s a new habit. Ten minutes: start Chapter 2.',
+  'Day 14. Ten minutes: continue Chapter 2 to its first hands-on step and do it.',
+  'Day 15. Prompts are the cheapest skill that employers can already see. Ten minutes: Chapter 2.1, “Writing prompts”, first technique.',
+  'Day 16. You don’t need to feel ready. You need ten minutes. Chapter 2.1, second technique.',
+  'Day 17. Confusion is the signal that learning is happening. Chapter 2.1, third technique. Write one question you still have.',
+  'Day 18. Ten minutes: Chapter 2.1, fourth technique. Then compare your best prompt with your worst.',
+  'Day 19. Friday. Tick the Plan tab and look at your day count. You’re past two weeks of this. Write one line on what you can now explain to someone.',
+  'Day 20. The old you would be skipping today. Ten minutes: open Chapter 3 and do its first hands-on step.',
+  'Day 21. Ten minutes: finish the Chapter 3 hands-on work. Save one result in your notes.',
+  'Day 22. Ten minutes: open Chapter 4 and read only the first section out loud.',
+  'Day 23. Ten minutes: do the first hands-on step in Chapter 4.',
+  'Day 24. Embeddings sound hard until you try them. Ten minutes: open Chapter 5 (Embeddings) and run the first example.',
+  'Day 25. Ten minutes: finish the Chapter 5 hands-on steps and write one sentence on what an embedding is, in your own words.',
+  'Day 26. How do you know an AI feature works? Chapter 6 answers that, and it’s the core of the job. Ten minutes: start it.',
+  'Day 27. Ten minutes: do the Chapter 6 hands-on work. A score you measured beats an opinion.',
+  'Day 28. Pick the one chapter that felt hardest. Ten minutes: re-read it. It will be easier the second time.',
+  'Day 29. Ten minutes: write three private lines on what you can now do that you couldn’t a month ago.',
+  'Day 30. Month done. Ten minutes: tick the Plan tab, count your days, and write the next 30-day goal. You’ve proved you can start, so now widen it.'
+];

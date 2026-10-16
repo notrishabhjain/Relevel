@@ -1,5 +1,8 @@
 /* Exercises the API against the dev server. `node tools/api-test.mjs` */
 import { readFileSync } from 'node:fs';
+import crypto from 'node:crypto';
+import { messageFor, weekdaysSince, istParts, allowedEndpoint, makeKeys, vapidHeader, START } from '../api/_lib/nudge.js';
+import { MESSAGES } from '../api/_lib/nudge-messages.js';
 const EXPECT = JSON.parse(readFileSync(new URL('../content/defaults.json', import.meta.url), 'utf8'));
 const B = process.env.BASE || 'http://127.0.0.1:8788';
 let pass = 0, fail = 0;
@@ -144,6 +147,48 @@ console.log('\n— plan tracker —');
   r = await api('/api/plan-status?id=' + sid);
   ok(r.status === 404, 'turning sharing off kills the old link', r.status);
   cookie = saved;
+}
+
+console.log('\n— daily reminder —');
+{
+  ok(MESSAGES.length === 30 && MESSAGES.every((m, i) => m.startsWith('Day ' + (i + 1) + '. ')), 'there are thirty messages, numbered in order');
+  ok(START === '2026-10-19' && istParts(Date.parse('2026-10-19T06:30:00Z')).minutes === 720, '06:30 UTC is 12:00 in India');
+  ok(messageFor('2026-10-19').n === 1 && messageFor('2026-10-23').n === 5 && messageFor('2026-10-26').n === 6, 'weekdays count up from day 1, skipping weekends');
+  ok(weekdaysSince(START, '2026-10-25') === 5 && messageFor('2026-10-24').n === 5, 'a weekend repeats the last weekday');
+  ok(messageFor('2026-11-27').n === 30 && messageFor('2026-11-30').n === 1, 'after thirty weekdays it starts again');
+  ok(messageFor('2026-10-19').title === 'Day 1 of 30: your ten minutes' && !messageFor('2026-10-19').body.startsWith('Day'), 'title and body are split');
+  ok(allowedEndpoint('https://fcm.googleapis.com/fcm/send/abc') && allowedEndpoint('https://updates.push.services.mozilla.com/wpush/v2/x') &&
+     allowedEndpoint('https://web.push.apple.com/abc') && !allowedEndpoint('http://fcm.googleapis.com/x') &&
+     !allowedEndpoint('https://evil.example.com/fcm.googleapis.com') && !allowedEndpoint('https://127.0.0.1/x') && !allowedEndpoint('nonsense'),
+     'only real push services are accepted as destinations');
+  {
+    const k = makeKeys(), h = vapidHeader(k, 'https://fcm.googleapis.com/fcm/send/abc', 1700000000000);
+    const m = /^vapid t=([\w-]+)\.([\w-]+)\.([\w-]+), k=([\w-]+)$/.exec(h);
+    ok(!!m && m[4] === k.pub && Buffer.from(m[4], 'base64url').length === 65, 'the signing header has a 65-byte public key');
+    const pubKey = crypto.createPublicKey({ key: { kty: 'EC', crv: 'P-256', x: Buffer.from(m[4], 'base64url').subarray(1, 33).toString('base64url'), y: Buffer.from(m[4], 'base64url').subarray(33).toString('base64url') }, format: 'jwk' });
+    ok(crypto.verify('sha256', Buffer.from(m[1] + '.' + m[2]), { key: pubKey, dsaEncoding: 'ieee-p1363' }, Buffer.from(m[3], 'base64url')), 'the signature verifies against that key');
+    ok(JSON.parse(Buffer.from(m[2], 'base64url')).aud === 'https://fcm.googleapis.com', 'and names the push service it is for');
+  }
+  const saved = cookie;
+  cookie = '';
+  r = await api('/api/nudge?today=1');
+  ok(r.status === 200 && /^Day \d+ of 30/.test(r.body.title) && r.body.url === '/plan/', 'today’s message is public', r.body);
+  r = await api('/api/nudge');
+  ok(r.status === 200 && r.body.key.length === 87 && r.body.devices === 0 && r.body.signedIn === false, 'the public key is available signed out', r.body);
+  r = await api('/api/nudge', { method: 'POST', body: { test: true } });
+  ok(r.status === 401, 'turning a device on needs a session', r.status);
+  cookie = saved;
+  r = await api('/api/nudge', { method: 'POST', body: { subscription: { endpoint: 'https://evil.example.com/x' } } });
+  ok(r.status === 400, 'a destination that is not a push service is refused', r.status);
+  r = await api('/api/nudge', { method: 'POST', body: { subscription: { endpoint: 'https://fcm.googleapis.com/fcm/send/test-device-1' } } });
+  ok(r.status === 200, 'a device can be added', r.status);
+  r = await api('/api/nudge');
+  ok(r.body.devices === 1 && r.body.signedIn === true, 'and is counted for this person', r.body);
+  r = await api('/api/nudge', { method: 'POST', body: { unsubscribe: 'https://fcm.googleapis.com/fcm/send/test-device-1' } });
+  r = await api('/api/nudge');
+  ok(r.body.devices === 0, 'and can be removed', r.body);
+  r = await api('/api/nudge?run=1');
+  ok(r.status === 200 && ('sent' in r.body), 'the scheduled run answers without sending when nobody has asked', r.body);
 }
 
 console.log('\n— signing out —');

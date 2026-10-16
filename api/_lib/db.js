@@ -130,6 +130,17 @@ CREATE TABLE IF NOT EXISTS plan_progress (
   data        JSONB NOT NULL,
   share_id    TEXT UNIQUE
 );
+/* Devices that asked for the daily reminder, and small settings of the site's own
+   (the signing key for the reminders, the day the last one went out). */
+CREATE TABLE IF NOT EXISTS push_subs (
+  endpoint    TEXT PRIMARY KEY,
+  user_id     INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  created_at  BIGINT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS kv (
+  k           TEXT PRIMARY KEY,
+  v           JSONB NOT NULL
+);
 `;
 
 let defaultsCache = null;

@@ -1,0 +1,23 @@
+# Fires the daily 12:00 (India time) reminder. The site decides whether it is
+# the right time and whether today's has already gone out, so the three runs
+# below are backups for each other, not three messages.
+name: Daily reminder
+
+on:
+  schedule:
+    - cron: '30 6 * * 1-5'   # 12:00 IST
+    - cron: '50 6 * * 1-5'   # 12:20 IST, if the first was late or missed
+    - cron: '20 7 * * 1-5'   # 12:50 IST
+  workflow_dispatch:
+
+jobs:
+  nudge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ask the site to send today's reminder
+        run: |
+          for i in 1 2 3; do
+            curl -fsS --max-time 30 "https://relevel-steel.vercel.app/api/nudge?run=1" && exit 0
+            sleep 20
+          done
+          exit 1
