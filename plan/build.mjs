@@ -304,6 +304,7 @@ document.querySelectorAll('.code').forEach(function(b){
 <script>
 ${TRACKER_JS}
 </script>
+<script src="/reminder.js" defer></script>
 </body>
 </html>
 `;
