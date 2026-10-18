@@ -257,9 +257,11 @@ const SITE_HEAD =
 if('serviceWorker' in navigator)addEventListener('load',function(){
   navigator.serviceWorker.register('sw.js').catch(function(){});
 });
-</script>`;
+</script>
+<script src="/reminder.js" defer></script>`;
 out('dist/site/index.html', head(SITE_HEAD, 'icon-180.png'));
 out('dist/site/icon.svg', ICON);
+out('dist/site/reminder.js', fs.readFileSync(p.join(R, 'src/reminder.js'), 'utf8'));
 out('dist/site/.nojekyll', '');
 outBin('dist/site/icon-180.png', APPLE_180);
 outBin('dist/site/icon-192.png', png(192, false));

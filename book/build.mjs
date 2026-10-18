@@ -312,6 +312,7 @@ ${main}
 </main>
 </div>
 <script src="${assetBase}reader.js" defer></script>
+<script src="/reminder.js" defer></script>
 </body>
 </html>
 `;
