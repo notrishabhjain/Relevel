@@ -1229,3 +1229,25 @@ button:disabled{opacity:.4;cursor:not-allowed}
   .cpb{padding-left:1rem}
   .cmap .hp{min-width:100%}
 }
+
+/* ---------- gentle start (#/start) ---------- */
+.gentle .gprog{display:flex;align-items:center;gap:.8rem;margin:0 0 1.6rem}
+.gentle .gprog .cpbar{flex:1;min-width:0}
+.gentle .gblurb{font-family:var(--serif);font-size:1rem;line-height:1.6;color:var(--ink-2);margin:0 0 .9rem}
+.gdays{list-style:none;margin:0;padding:0;display:grid;gap:.5rem}
+.gday{display:flex;gap:.9rem;align-items:flex-start;padding:.8rem .9rem;border:1px solid var(--rule);
+  border-radius:var(--r);background:var(--paper)}
+.gday.today{border-color:var(--ink-2);background:var(--raised);box-shadow:var(--shadow)}
+.gday.done{border-color:var(--rule-soft)}
+.gday.done .gbody{opacity:.62}
+.gtick{display:flex;flex-direction:column;align-items:center;gap:.25rem;flex:none;width:3.2rem;cursor:pointer}
+.gtick input{width:1.15rem;height:1.15rem;accent-color:var(--verified);cursor:pointer}
+.gtick .gn{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.gbody{flex:1;min-width:0;display:grid;gap:.35rem;justify-items:start}
+.gbody p{margin:0;font-family:var(--serif);font-size:.98rem;line-height:1.55}
+.gt{display:flex;flex-wrap:wrap;align-items:baseline;gap:.15rem .4rem}
+.gtoday{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--verified);border:1px solid var(--verified);border-radius:2px;padding:.05rem .35rem}
+.gnote{font-size:.8rem}
+.gpath{margin:1.4rem 0 2rem;font-size:.85rem;line-height:1.6}
+.linkbtn{background:none;border:0;padding:0;font:inherit;color:var(--ink);text-decoration:underline;cursor:pointer}

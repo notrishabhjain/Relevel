@@ -984,6 +984,44 @@ ok(/^Track A/.test(rows.find(r => /^(Part|Track) /.test(r.label)).label), 'in re
 ok(rows.every(r => /^#\/(ch\/|project)/.test(r.href || '')), 'and each one opens a chapter or the project, not nowhere');
 ok(!(await mainText(navp.page)).match(/Core track|Selective|Reference/), 'with no tier labels to decode');
 
+console.log('\n— the gentle start leads, and ticking a day moves it on —');
+{
+  const gs = await newDevice(false);
+  await boot(gs.page);
+  const lead = await gs.page.evaluate(() => {
+    const r = document.querySelector('.resumelead');
+    return r ? { lbl: r.querySelector('.cplbl').textContent, h: r.querySelector('a.btnlink').getAttribute('href') } : null;
+  });
+  ok(lead && /Gentle start/.test(lead.lbl) && /Day 1 \/ 20/.test(lead.lbl) && lead.h === '#/start', 'a new visitor’s Next is Day 1 of the gentle start', JSON.stringify(lead));
+  await boot(gs.page, '#/start');
+  const pg = await gs.page.evaluate(() => ({
+    days: document.querySelectorAll('.gday').length,
+    weeks: document.querySelectorAll('.gweek').length,
+    today: (document.querySelector('.gday.today') || {}).id,
+    w: document.documentElement.scrollWidth <= innerWidth
+  }));
+  ok(pg.days === 20 && pg.weeks === 4 && pg.today === 'day-1', 'the page lists four weeks of five days, with day 1 marked today', JSON.stringify(pg));
+  await gs.page.click('#day-1 input[type=checkbox]');
+  await gs.page.waitForTimeout(150);
+  ok(await gs.page.evaluate(() => (document.querySelector('.gday.today') || {}).id) === 'day-2' &&
+     await gs.page.evaluate(() => !!window.STORE.S.gentle.g1), 'ticking day 1 saves it and makes day 2 today');
+  const href = await gs.page.evaluate(() => document.querySelector('#day-2 a').getAttribute('href'));
+  ok(/\/book\/08-what-the-machine-is\.html#s-8-1$/.test(href), 'a reading day opens the right book section', href);
+  const next = await gs.page.evaluate(() => { const c = window.ENG.currentChapter(window.STORE.S); return c && c.c.id; });
+  ok(next === 'ch0', 'the first chapter on the gentle path is Start here', next);
+  const path = await gs.page.evaluate(() => {
+    const S = window.STORE.S, E = window.ENG, by = id => window.CHAPTERS.find(c => c.id === id);
+    const gentle = ['ch0', 'ch05', 'a1', 'a3', 'b6'].map(id => E.onPath(S, by(id)));
+    S.path = 'full';
+    const full = ['a1', 'b6'].map(id => E.onPath(S, by(id)));
+    S.path = null;
+    return { gentle, full };
+  });
+  ok(path.gentle.join() === 'true,true,false,false,false', 'after it, Next skips the long Track A and Track B chapters', JSON.stringify(path));
+  ok(path.full.join() === 'true,true', 'and the full course order keeps them in', JSON.stringify(path));
+  await gs.ctx.close();
+}
+
 console.log('\n— the course map shows where you are —');
 await boot(navp.page, '#/library');
 const map = await navp.page.evaluate(() => ({

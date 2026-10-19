@@ -7,7 +7,7 @@
    in a dashboard. */
 import crypto from 'node:crypto';
 import { query } from './db.js';
-import { MESSAGES } from './nudge-messages.js';
+import { MESSAGES, DAYS } from './nudge-messages.js';
 
 export const START = '2026-10-19';        // day 1: the first Monday after the plan was set up
 export const SEND_FROM_MINUTE = 12 * 60;  // 12:00 India time
@@ -36,12 +36,33 @@ export function weekdaysSince(start, date) {
   for (let d = dayNum(start); d <= dayNum(date); d++) { const w = new Date(d * 86400000).getUTCDay(); if (w >= 1 && w <= 5) n++; }
   return n;
 }
-export function messageFor(date) {
+/* The next unticked day of the gentle start (1–20), 0 once it is all ticked.
+   Days 1–20 of DAYS are the gentle start's days, in the same order. */
+const GENTLE_DAYS = 20;
+export function gentleDay(st) {
+  const done = (st && st.gentle) || {};
+  for (let i = 1; i <= GENTLE_DAYS; i++) if (!done['g' + i]) return i;
+  return 0;
+}
+/* `st` is the signed-in person's saved progress, when there is one. With it,
+   the task follows where they actually are, so a skipped day never makes the
+   reminder run ahead of them. Without it, the calendar decides. */
+export function messageFor(date, st) {
   const D = Math.max(1, weekdaysSince(START, date));
   const n = ((D - 1) % MESSAGES.length) + 1;
-  const text = MESSAGES[n - 1];
-  const i = text.indexOf('. ');
-  return { n, title: 'Day ' + n + ' of 30: your ten minutes', body: text.slice(i + 2), url: '/plan/' };
+  const d = DAYS[n - 1];
+  const title = 'Day ' + n + ' of 30: your ten minutes';
+  if (st && typeof st === 'object' && st.path !== 'full') {
+    const g = gentleDay(st);
+    if (g) return { n, title, body: d.say + ' ' + DAYS[g - 1].task, url: '/#/start' };
+    return { n, title, url: '/#/', body: d.say + ' Ten minutes: open the site and do the step marked “Next”.' };
+  }
+  /* The first thirty follow the gentle start and Chapters 1–2 step by step.
+     After that the firm line repeats and the task is "the step marked Next",
+     which the site works out from where he actually is. */
+  if (D > DAYS.length)
+    return { n, title, url: '/#/', body: d.say + ' Ten minutes: open the site and do the step marked “Next”.' };
+  return { n, title, body: d.say + ' ' + d.task, url: d.url };
 }
 
 /* ---------- VAPID ---------- */

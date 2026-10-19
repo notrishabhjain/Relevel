@@ -41,6 +41,8 @@
     'border:1px solid #f3efe655;background:transparent;color:#f3efe6}' +
     '#aifz-rem .row .main{background:#e2b04a;border-color:#e2b04a;color:#1d1a14}' +
     '#aifz-rem .x{position:absolute;top:6px;right:8px;border:0;background:none;color:#f3efe6aa;font-size:18px;cursor:pointer;line-height:1}' +
+    /* room under the last line of every page, so the bell never sits on top of it */
+    'body{padding-bottom:calc(60px + env(safe-area-inset-bottom,0px))}' +
     '@media print{#aifz-rem{display:none}}';
 
   var root;

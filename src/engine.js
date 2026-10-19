@@ -253,6 +253,7 @@ function activeDays(S){
   (S.sess||[]).forEach(s=>set.add(Math.floor(s.t/DAY)));
   (S.sittings||[]).forEach(s=>set.add(Math.floor(s.at/DAY)));
   Object.values(S.cp||{}).forEach(v=>{ if(v&&v.at) set.add(Math.floor(v.at/DAY)); });
+  Object.values(S.gentle||{}).forEach(t=>{ if(typeof t==='number') set.add(Math.floor(t/DAY)); });
   return set;
 }
 function streak(S){
@@ -323,9 +324,21 @@ function chapterProgress(S, c){
    so "next" is the next chapter in the list. It used to jump to a "core"
    subset first, which sent a reader from chapter 7 to chapter 21 and left the
    chapters between them, and every project stage they carry, unread. */
+/* The gentle path (the default) leaves the playbook's two long tracks out of
+   "what comes next": their chapters run six to eighteen hours each, and
+   meeting a six-hour chapter as the second step of a course is where a
+   beginner stops. They are still on the map, and the book retells Track A.
+   Chapter 0 lives in Track A but is ten minutes, so it stays. */
+function gentlePath(S){ return S.path!=='full'; }
+function onPath(S,c){ return !gentlePath(S) || c.id==='ch0' || (c.part!==6 && c.part!==7); }
+function gentleNext(S){
+  const G=window.GENTLE; if(!G||!gentlePath(S)) return null;
+  const i=G.days.findIndex(d=>!(S.gentle||{})[d.id]);
+  return i<0?null:{d:G.days[i], n:i+1, total:G.days.length};
+}
 function currentChapter(S){
   let firstUnfinished=null;
-  for(const c of (window.CHAPTERS||[])){
+  for(const c of (window.CHAPTERS||[]).filter(c=>onPath(S,c))){
     const p=chapterProgress(S,c);
     if(p.done>0 && p.left>0) return {c, p, started:true};
     if(!firstUnfinished && (p.left>0 || !S.done[c.id])) firstUnfinished={c, p, started:false};
@@ -350,8 +363,12 @@ function resume(S){
   const due=dueList(S).length;
   const cur=currentChapter(S);
   const steps=[];
+  /* The first four weeks lead with the day's ten minutes, not a chapter. */
+  const g=gentleNext(S);
+  if(g) steps.push({lead:true, kind:'gentle', title:g.d.title,
+    d:g.d.what, day:'Day '+g.n+' of '+g.total, mins:g.d.mins, h:'#/start'});
   if(cur && cur.started) steps.push({
-    lead:true, kind:'chapter',
+    lead:!steps.length, kind:'chapter',
     title:'Pick up Chapter '+cur.c.num,
     d:cur.p.left+' checkpoint'+(cur.p.left>1?'s':'')+' left in “'+cur.c.title+'”',
     mins:cur.p.minutesLeft, h:'#/ch/'+cur.c.id});
@@ -363,7 +380,9 @@ function resume(S){
     d:'“'+cur.c.title+'” — '+cur.p.total+' checkpoints as you read',
     mins:cur.c.minutes||30, h:'#/ch/'+cur.c.id});
   /* the version for an evening with nothing left in it */
-  const tiny = due
+  const tiny = g
+    ? {title:'One page', d:'Open today’s step, read one page, and tick the day. That counts.', mins:2, h:'#/start'}
+    : due
     ? {title:'One question', d:'A single review item. Two minutes, and the day counts.', mins:2, h:'#/practice/due'}
     : cur ? {title:'One checkpoint', d:'Open Chapter '+cur.c.num+' and answer the next box. Then stop.',
         mins:2, h:'#/ch/'+cur.c.id}
@@ -447,7 +466,7 @@ function exScore(e, iter){
 
 return {get ITEMS(){return ITEMS;}, byItem, bySkill, SK, DAY, reinit,
   shown, levelOf, nextBand, skillState, decayFactor,
-  streakDetail, daysSinceActive, chapterProgress, currentChapter, resume,
+  streakDetail, daysSinceActive, chapterProgress, currentChapter, resume, gentleNext, gentlePath, onPath,
   partProgress,
   buildSession, grade, submit, scheduleItem, srs, dueList, dueForecast,
   calibrationCurve, brier, overconfidence, CONF,

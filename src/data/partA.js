@@ -68,8 +68,8 @@ window.PART6 = [
        ph:'When I do not want to open this, I will …',
        after:'Plans that work have three things in common. First, the smallest step is really tiny: one question, two minutes, not a whole chapter. Second, you know where to restart without having to decide, because deciding is hard when you’re tired. Third, you’ve already decided what a missed day means: nothing. It doesn’t mean starting again. Everyone misses days, and the people who finish expected that.'}
     ],
-    ['c','Before you start','Chapter 1 asks you to call a real model within its first few minutes. So set up the notebook and your API key now, and you’ll be ready: <a href="#/setup">Set up Colab and your API key</a>.'],
-    ['p','That’s all for this chapter. Once the notebook is set up, you can begin Track A with Chapter A1. There you’ll look honestly at where you stand and decide what you’ll build through the rest of the course.']
+    ['c','No setup yet','You don’t need the notebook or an API key for the next four weeks. The setup comes on the last day of the <a href="#/start">Gentle start</a>, when you’ll know what the key is for.'],
+    ['p','That’s all for this chapter. Go back to the <a href="#/start">Gentle start</a> and tick Day 1. Tomorrow’s ten minutes are waiting there.']
   ]
 },
 

@@ -13,7 +13,16 @@ export default guard(async (req, res, user) => {
   const q = new URL(req.url, 'http://x').searchParams;
 
   if (req.method === 'GET') {
-    if (q.get('today')) return send(res, 200, messageFor(istParts().date));
+    if (q.get('today')) {
+      /* The service worker's fetch carries the session cookie, so a signed-in
+         person gets the task for the day they are actually on. */
+      let st = null;
+      if (user) {
+        const r = await query('SELECT data FROM progress WHERE user_id = $1', [user.id]).catch(() => []);
+        st = r[0] && r[0].data ? (typeof r[0].data === 'string' ? JSON.parse(r[0].data) : r[0].data) : null;
+      }
+      return send(res, 200, messageFor(istParts().date, st));
+    }
     if (q.get('run')) return send(res, 200, await runDaily());
     const keys = await vapid();
     const devices = user ? Number((await query('SELECT COUNT(*) AS n FROM push_subs WHERE user_id=$1', [user.id]))[0].n) : 0;
