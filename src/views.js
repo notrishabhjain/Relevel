@@ -54,9 +54,10 @@ function resumePanel(st, eng){
   }
   box.appendChild(h('div',{class:'resumelead'},[
     h('div',{style:'flex:1;min-width:0'},[
-      h('span',{class:'cplbl',text:lapsed!=null&&lapsed>=5?'Start again here':'Next'}),
+      h('span',{class:'cplbl',text:lead.kind==='gentle'?TR('Gentle start')+' \u00b7 '+lead.day.replace(/^Day (\d+) of (\d+)$/,(m,a,b)=>TR('Day')+' '+a+' / '+b)
+        :lapsed!=null&&lapsed>=5?'Start again here':'Next'}),
       h('h3',{text:TR(lead.title)}),
-      h('p',{text:lead.d})]),
+      h('p',{text:lead.kind==='gentle'?TR(lead.d):lead.d})]),
     h('div',{class:'resumego'},[
       h('span',{class:'mins',text:'~'+lead.mins+' min'}),
       h('a',{class:'btnlink',href:lead.h,text:'Open →'})])]));

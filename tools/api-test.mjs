@@ -157,6 +157,16 @@ console.log('\n— daily reminder —');
   ok(weekdaysSince(START, '2026-10-25') === 5 && messageFor('2026-10-24').n === 5, 'a weekend repeats the last weekday');
   ok(messageFor('2026-11-27').n === 30 && messageFor('2026-11-30').n === 1, 'after thirty weekdays it starts again');
   ok(messageFor('2026-10-19').title === 'Day 1 of 30: your ten minutes' && !messageFor('2026-10-19').body.startsWith('Day'), 'title and body are split');
+  ok(messageFor('2026-10-19').url === '/#/start' && messageFor('2026-11-17').url === '/#/ch/ch1', 'each day opens its own step: the gentle start, then the chapters');
+  ok(messageFor('2026-11-30').url === '/#/' && /marked “Next”/.test(messageFor('2026-11-30').body), 'after thirty days the task is the site’s own Next');
+  {
+    const behind = messageFor('2026-10-23', { gentle: { g1: 1, g2: 1 } });
+    ok(behind.n === 5 && behind.url === '/#/start' && /token counter/.test(behind.body) === false && /What the machine is/.test(behind.body),
+      'signed in and behind: the task is the next unticked day, not the calendar’s');
+    const all = {}; for (let i = 1; i <= 20; i++) all['g' + i] = 1;
+    ok(/marked “Next”/.test(messageFor('2026-10-21', { gentle: all }).body), 'gentle start finished early: the task is the site’s Next');
+    ok(/token counter/.test(messageFor('2026-10-22', { path: 'full', gentle: {} }).body), 'on the full course order, the calendar decides');
+  }
   ok(allowedEndpoint('https://fcm.googleapis.com/fcm/send/abc') && allowedEndpoint('https://updates.push.services.mozilla.com/wpush/v2/x') &&
      allowedEndpoint('https://web.push.apple.com/abc') && !allowedEndpoint('http://fcm.googleapis.com/x') &&
      !allowedEndpoint('https://evil.example.com/fcm.googleapis.com') && !allowedEndpoint('https://127.0.0.1/x') && !allowedEndpoint('nonsense'),
@@ -172,7 +182,7 @@ console.log('\n— daily reminder —');
   const saved = cookie;
   cookie = '';
   r = await api('/api/nudge?today=1');
-  ok(r.status === 200 && /^Day \d+ of 30/.test(r.body.title) && r.body.url === '/plan/', 'today’s message is public', r.body);
+  ok(r.status === 200 && /^Day \d+ of 30/.test(r.body.title) && typeof r.body.url === 'string' && r.body.url.startsWith('/'), 'today’s message is public', r.body);
   r = await api('/api/nudge');
   ok(r.status === 200 && r.body.key.length === 87 && r.body.devices === 0 && r.body.signedIn === false, 'the public key is available signed out', r.body);
   r = await api('/api/nudge', { method: 'POST', body: { test: true } });

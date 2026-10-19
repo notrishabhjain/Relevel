@@ -41,6 +41,7 @@ const js = [
   'src/data/items7.js',
   'src/data/work.js',
   'src/data/exercises5.js',
+  'src/data/gentle.js',
   /* The Hinglish reading layer. Keyed on the English line, so these load after
      the content they translate and are merged into one lookup. */
   'src/data/hing-glossary.js',
@@ -317,9 +318,12 @@ self.addEventListener('push', e => {
 self.addEventListener('notificationclick', e => {
   e.notification.close();
   const url = (e.notification.data && e.notification.data.url) || '/plan/';
-  e.waitUntil(self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(cs => {
-    const c = cs.find(x => new URL(x.url).pathname.startsWith(url));
-    return c ? c.focus() : self.clients.openWindow(url);
+  /* Reuse an open tab of this site if there is one, and take it to the day's
+     step; otherwise open a new one. */
+  e.waitUntil(self.clients.matchAll({ type: 'window' }).then(cs => {
+    const c = cs[0];
+    if (!c) return self.clients.openWindow(url);
+    return c.navigate(url).then(w => (w || c).focus()).catch(() => self.clients.openWindow(url));
   }));
 });
 self.addEventListener('fetch', e => {

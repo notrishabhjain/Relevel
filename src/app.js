@@ -57,6 +57,8 @@ window.BIND_CONTENT=bindContent;
 /* ---------------- storage ---------------- */
 const KEY='aifz2027';
 const defaults=()=>({done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{},drill:{},
+  gentle:{},   // gentle start: day id -> time ticked
+  path:null,   // null = gentle path (default); 'full' = the playbook's order, Track A first
   appx:{},     // appendix A competency worksheet: 'row:col' -> 1
   tpl:{},      // Appendix C template copies: '<key>:<n>' -> {v,at,done}
   arts:{},     // Appendix B artifact tracker: '<n>' -> {s:0|1|2, where}
@@ -1137,6 +1139,7 @@ function pageHome(){
       h('span',{class:'cpbar big'},h('i',{style:'width:'+pctDone+'%'})),
       h('span',{class:'dim',text:doneN+' / '+CH.length+' '+T('chapters finished')})])]));
   w.appendChild(h('div',{class:'chiprow cmaplinks'},[
+    h('a',{class:'chip',href:'#/start',text:T('Gentle start: the first four weeks')}),
     h('a',{class:'chip',href:'#/project',text:T('Your project: Bharat Privacy Guard')}),
     bookHere()?h('a',{class:'chip',href:bookBase(),text:T('Read it as a book')}):null,
     h('a',{class:'chip',href:'#/setup',text:T('Set up Colab + API key')}),
@@ -1333,6 +1336,70 @@ function pageLedger(){
   return w;
 }
 function ctlL(l,n){return h('div',{},[h('label',{text:l}),n]);}
+
+/* ---------------- the gentle start ----------------
+   The first four weeks, ten minutes a weekday (src/data/gentle.js). The
+   dashboard's "Next" and the daily 12:00 reminder both point here until every
+   day is ticked. */
+function pageStart(){
+  const G=window.GENTLE, w=h('div',{class:'wrap gentle'});
+  if(!G){ w.appendChild(h('p',{text:'The gentle start is not in this build.'})); return w; }
+  S.gentle=S.gentle||{};
+  const full=S.path==='full';
+  const doneN=G.days.filter(d=>S.gentle[d.id]).length;
+  const next=G.days.find(d=>!S.gentle[d.id]);
+  w.appendChild(h('header',{class:'phead'},[
+    h('div',{class:'eyebrow'},[h('span',{text:T('The first four weeks')}),h('span',{class:'dot'}),
+      h('span',{text:T('ten minutes a weekday')})]),
+    h('h1',{text:T('Gentle start')}),
+    h('p',{text:T('Reading and small tries only. No installs, no API key and no interviews until the last day of week 4. On a day when ten minutes feels like too much, read one page and tick the day anyway.')})]));
+  w.appendChild(h('div',{class:'gprog'},[
+    h('span',{class:'cpbar big'},h('i',{style:'width:'+Math.round(doneN*100/G.days.length)+'%'})),
+    h('span',{class:'dim',text:doneN+' / '+G.days.length+' '+T('days done')})]));
+  const open=d=>{
+    if(d.go&&d.go.app) return {href:d.go.app, label:T('Open')};
+    if(d.go&&d.go.book){
+      const base=bookHere()?bookBase():(S.lang==='hi'?'/book/hi/':'/book/');
+      return {href:base+d.go.book+(d.go.at?'#'+d.go.at:''), label:T('Read in the book')};
+    }
+    return null;
+  };
+  G.weeks.forEach(wk=>{
+    const days=G.days.filter(d=>d.wk===wk.n);
+    const sec=h('section',{class:'part gweek'});
+    sec.appendChild(sectionHead(T('Week')+' '+wk.n,wk.title,days.filter(d=>S.gentle[d.id]).length+'/'+days.length));
+    sec.appendChild(h('p',{class:'gblurb',text:T(wk.blurb)}));
+    sec.appendChild(h('ol',{class:'gdays'},days.map(d=>{
+      const n=G.days.indexOf(d)+1, ticked=!!S.gentle[d.id], o=open(d);
+      const cb=h('input',{type:'checkbox','aria-label':T('Done')+': '+T('Day')+' '+n});
+      cb.checked=ticked;
+      cb.addEventListener('change',()=>{
+        if(cb.checked) S.gentle[d.id]=Date.now(); else delete S.gentle[d.id];
+        save(); route();
+      });
+      return h('li',{class:'gday'+(ticked?' done':'')+(next===d?' today':''),id:'day-'+n},[
+        h('label',{class:'gtick'},[cb,h('span',{class:'gn',text:T('Day')+' '+n})]),
+        h('div',{class:'gbody'},[
+          h('div',{class:'gt'},[h('strong',{text:T(d.title)}),h('span',{class:'dim',text:' · ~'+d.mins+' min'}),
+            next===d?h('span',{class:'gtoday',text:T('today')}):null]),
+          h('p',{text:T(d.what)}),
+          o?h('a',{class:next===d?'btnlink':'chip',href:o.href,text:o.label+' →'}):
+            h('span',{class:'dim gnote',text:T('Notepad and pen. Tick the day when you are done.')})])]);
+    })));
+    w.appendChild(sec);
+  });
+  w.appendChild(h('div',{class:'callout'},[
+    h('span',{class:'lbl',text:T('After the four weeks')}),
+    h('p',{text:T(G.after)}),
+    h('div',{class:'chiprow',style:'margin-top:.7rem'},[
+      h('a',{class:'chip',href:'#/ch/ch1',text:T('Chapter 1')+' →'}),
+      h('a',{class:'chip',href:'#/library',text:T('The course map')})])]));
+  w.appendChild(h('p',{class:'dim gpath'},[
+    h('span',{text:T(full?'You are following the full course order, Track A first.':'You are on the gentle path. “Next” skips the long Track A and Track B chapters for now.')+' '}),
+    h('button',{class:'linkbtn',onclick:()=>{S.path=full?null:'full';save();route();renderRail();}},
+      T(full?'Go back to the gentle path':'Use the full course order instead'))]));
+  return w;
+}
 
 function pageLater(){
   const w=h('div',{class:'wrap'});
@@ -1912,6 +1979,7 @@ function renderRail(){
      you do want the code, and a reader who cannot find it concludes the course
      expects an environment they were never told how to build. */
   r.appendChild(sec('Help',[
+    ['#/start','\u25b8','Gentle start: the first four weeks'],
     ['#/setup','\u2699','Set up Colab + API key'],
     ['#/later','\u25d4','Not yet \u2014 what to ignore for now'],
     ['#/install','\u25a2','Install on iPad or phone']]));
@@ -2470,7 +2538,7 @@ function pageEvidence(){
 
 
 const V=()=>window.VIEWS;
-const ROUTES={'':()=>V().dashboard(),'library':pageHome,
+const ROUTES={'':()=>V().dashboard(),'library':pageHome,'start':pageStart,
   'skills':()=>V().skills(),'analytics':()=>V().analytics(),
   'exercises':()=>V().exercises(),'processes':()=>V().processes(),
   'setup':pageSetup,'install':pageInstall,'language':pageLanguage,
@@ -2481,7 +2549,7 @@ const ROUTES={'':()=>V().dashboard(),'library':pageHome,
   'decisions':pageDecisionLog,'failures':pageFailureLog,
   'progress':pageProgress,'labs':pageLabs,'data':()=>V().data(),
   'studio':()=>window.STUDIO.studio([])};
-const CRUMB={'':'Home','library':'The course map','skills':'My progress','analytics':'How I am doing over time',
+const CRUMB={'':'Home','library':'The course map','start':'Gentle start','skills':'My progress','analytics':'How I am doing over time',
   'exercises':'Longer exercises','processes':'Repeatable work routines','practice':'Practice','skill':'Skill',
   'data':'My data and backups','studio':'Edit this course','install':'Install on iPad or phone',
   'language':'Language','setup':'Set up Colab + API key','appendix':'Worksheet, question bank, sources','project':'Your project',
@@ -2555,6 +2623,7 @@ function buildIndex(){
     {k:'page',t:'Exercises',h:'#/exercises'},{k:'page',t:'Processes',h:'#/processes'},
     {k:'page',t:'The course map — '+CH.length+' chapters, in order',h:'#/library'},{k:'page',t:'Your project: Bharat Privacy Guard',h:'#/project'},
     {k:'page',t:'Progress & Backup',h:'#/data'},
+    {k:'page',t:'Gentle start: the first four weeks',h:'#/start'},
     {k:'page',t:'Content Studio — edit the curriculum',h:'#/studio'},
     {k:'page',t:'Setup',h:'#/setup'},
     {k:'page',t:'The Labs',h:'#/labs'},{k:'page',t:'Red-Mark Map',h:'#/map'},

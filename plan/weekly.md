@@ -8,6 +8,8 @@ This tab is also your tracker. Tick each week below as you go, and your progress
 
 <!-- sync -->
 
+**Start gently.** The weekly rows below assume 8–10 hours a week, and that is a steep first step. So the plan begins with the [gentle start](../#/start) instead: four weeks of ten minutes a weekday, reading and small tries only, in the same order as the daily 12:00 reminder. When the gentle start is done, pick up the weekly rows from Week 1, four weeks later than the dates show. A late start that keeps going beats an on-time start that stops.
+
 **North star:** by 6 April 2027, you have four published AI artifacts with real evaluation numbers, and a portfolio you can take into an interview.
 
 ## The weekly rhythm (standard plan, 8–10 hours)
