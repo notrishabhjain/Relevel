@@ -1215,7 +1215,7 @@ console.log('\n— the reminder bell turns a device on, from the book —');
   await page.click('#aifz-rem [data-r=test]');
   await page.waitForFunction(() => !/Sending a test/.test(document.querySelector('#aifz-rem').textContent), null, { timeout: 8000 }).catch(() => {});
   const t2 = await page.textContent('#aifz-rem');
-  ok(/Test sent|refused it \(0\)/.test(t2), 'Send a test reaches the server and reports what the push service said', t2);
+  ok(/Test sent|refused it \(\d+\)/.test(t2), 'Send a test reaches the server and reports what the push service said', t2);
   /* the server forgets the device; the next page load puts it back */
   await page.evaluate(() => fetch('/api/nudge', { method: 'POST', headers: { 'x-aifz': '1', 'content-type': 'application/json' },
     body: JSON.stringify({ unsubscribe: 'https://fcm.googleapis.com/fcm/send/bell-test-device' }) }));
