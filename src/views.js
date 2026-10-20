@@ -752,7 +752,7 @@ function exercises(){
       h('div',{style:'flex:1'},[h('h3',{text:e.t}),
         h('div',{class:'exmeta'},[
           h('span',{text:'~'+e.mins+' min'}),
-          h('span',{class:'dot'}),h('a',{href:'#/ch/ch'+e.ch,text:'Ch '+e.ch}),
+          h('span',{class:'dot'}),h('a',{href:(window.CHHREF&&window.CHHREF(e.ch))||'#/library',text:'Ch '+e.ch}),
           h('span',{class:'dot'}),
           ...e.sk.map(id=>h('a',{class:'pill',href:'#/skill/'+id,text:eng.SK[id].n}))])]),
       iters.length?h('span',{class:'pill ok',text:'v'+iters.length+(score!=null?' · '+score+'%':'')}):

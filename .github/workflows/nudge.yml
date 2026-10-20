@@ -1,6 +1,8 @@
-# Fires the daily 12:00 (India time) reminder. The site decides whether it is
-# the right time and whether today's has already gone out, so the three runs
-# below are backups for each other, not three messages.
+# Backup trigger for the daily reminder. The main trigger is Vercel's own
+# scheduler (the "crons" in vercel.json), because GitHub runs scheduled
+# workflows late, sometimes by hours. The site decides whether it is the right
+# time and whether today's has already gone out, so these runs only send if
+# Vercel's did not.
 name: Daily reminder
 
 on:
