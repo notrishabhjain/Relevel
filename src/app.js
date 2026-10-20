@@ -41,6 +41,7 @@ const byNum={};
    number. */
 const ORDER={};
 const chHref=n=>byNum[n]?'#/ch/'+byNum[n].id:null;
+window.CHHREF=chHref;
 function bindContent(){
   CH = window.CHAPTERS ||
        (window.PARTS||[]).reduce((a,p)=>a.concat(window['PART'+p.n]||[]),[]);
@@ -342,7 +343,7 @@ function openTerm(btn,entry,here){
   popEl=h('div',{class:'termpop'},[
     h('div',{class:'termhead'},[
       h('strong',{text:entry.term}),
-      entry.ch?h('a',{class:'termch',href:'#/ch/ch'+entry.ch,
+      entry.ch?h('a',{class:'termch',href:chHref(entry.ch)||'#/glossary',
         text:(ahead?'you build this in ':'explained in ')+'Chapter '+entry.ch}):null]),
     h('p',{html:T(entry.def)}),
     ahead?h('p',{class:'termahead',
@@ -1407,8 +1408,9 @@ function pageLater(){
     h('div',{class:'eyebrow'},[h('span',{text:T('Permission to not know things')})]),
     h('h1',{text:T('Not yet')}),
     h('p',{html:T('Everything on this page is something you will hear people say, and none of it is something you need today. That is the whole point of the page: the anxious feeling that everyone else knows a list of things you do not is the main reason people give up on a subject, and the list is usually shorter and later than it feels. Items unlock as the chapter covering them is finished. The rest stay parked, deliberately.')})]));
-  const unlocked=window.LATER.filter(l=>l.resolved&&S.done['ch'+l.resolved]);
-  const pending=window.LATER.filter(l=>l.resolved&&!S.done['ch'+l.resolved]);
+  const doneNum=n=>!!(byNum[n]&&S.done[byNum[n].id]);
+  const unlocked=window.LATER.filter(l=>l.resolved&&doneNum(l.resolved));
+  const pending=window.LATER.filter(l=>l.resolved&&!doneNum(l.resolved));
   const parked=window.LATER.filter(l=>!l.resolved);
   const group=(title,items,cls)=>{
     if(!items.length)return null;
@@ -1716,7 +1718,7 @@ function pageVendor(){
       body.appendChild(h('div',{class:'card'},[
         h('div',{style:'display:flex;gap:.5rem;align-items:center;margin-bottom:.5rem;flex-wrap:wrap'},[
           h('span',{class:'pill red',text:v.tag}),
-          h('a',{class:'pill',href:'#/ch/ch'+v.ch,style:'text-decoration:none',text:'Ch '+v.ch})]),
+          h('a',{class:'pill',href:chHref(v.ch)||'#/library',style:'text-decoration:none',text:'Ch '+v.ch})]),
         h('h3',{style:'font-family:var(--serif);font-size:1.08rem;font-weight:500',text:v.claim}),
         h('ul',{class:'bul',style:'font-size:.9rem;margin:.6rem 0 0'},v.qs.map(x=>h('li',{text:x})))]));
     });
@@ -1903,7 +1905,7 @@ function pageLabs(){
     const L=window.LABS[k];if(!L)return;
     const b=labBlock(k);
     b.querySelector('.labhead').appendChild(
-      h('a',{class:'pill',style:'margin-left:auto;text-decoration:none',href:'#/ch/ch'+ch,text:'Ch '+ch}));
+      h('a',{class:'pill',style:'margin-left:auto;text-decoration:none',href:chHref(ch)||'#/library',text:'Ch '+ch}));
     w.appendChild(b);
   });
   return w;

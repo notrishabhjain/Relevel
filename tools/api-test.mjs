@@ -1,7 +1,7 @@
 /* Exercises the API against the dev server. `node tools/api-test.mjs` */
 import { readFileSync } from 'node:fs';
 import crypto from 'node:crypto';
-import { messageFor, weekdaysSince, istParts, allowedEndpoint, makeKeys, vapidHeader, START } from '../api/_lib/nudge.js';
+import { messageFor, weekdaysSince, istParts, allowedEndpoint, makeKeys, vapidHeader, START, SEND_FROM_MINUTE, SEND_UNTIL_MINUTE } from '../api/_lib/nudge.js';
 import { MESSAGES } from '../api/_lib/nudge-messages.js';
 const EXPECT = JSON.parse(readFileSync(new URL('../content/defaults.json', import.meta.url), 'utf8'));
 const B = process.env.BASE || 'http://127.0.0.1:8788';
@@ -153,6 +153,14 @@ console.log('\n— daily reminder —');
 {
   ok(MESSAGES.length === 30 && MESSAGES.every((m, i) => m.startsWith('Day ' + (i + 1) + '. ')), 'there are thirty messages, numbered in order');
   ok(START === '2026-10-19' && istParts(Date.parse('2026-10-19T06:30:00Z')).minutes === 720, '06:30 UTC is 12:00 in India');
+  {
+    const V = JSON.parse(readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'));
+    const hours = (V.crons || []).filter(c => c.path.startsWith('/api/nudge?run=1')).map(c => +c.schedule.split(' ')[1]);
+    ok(hours.includes(6), 'Vercel’s scheduler triggers the reminder in hour 06 UTC', JSON.stringify(V.crons));
+    const inWin = iso => { const m = istParts(Date.parse(iso)).minutes; return m >= SEND_FROM_MINUTE && m <= SEND_UNTIL_MINUTE; };
+    ok(inWin('2026-10-21T06:00:00Z') && inWin('2026-10-21T06:59:00Z'), 'anywhere in that hour (11:30–12:29 in India) is inside the send window');
+    ok(inWin('2026-10-20T11:57:40Z'), 'and a GitHub backup that runs hours late still sends the same day');
+  }
   ok(messageFor('2026-10-19').n === 1 && messageFor('2026-10-23').n === 5 && messageFor('2026-10-26').n === 6, 'weekdays count up from day 1, skipping weekends');
   ok(weekdaysSince(START, '2026-10-25') === 5 && messageFor('2026-10-24').n === 5, 'a weekend repeats the last weekday');
   ok(messageFor('2026-11-27').n === 30 && messageFor('2026-11-30').n === 1, 'after thirty weekdays it starts again');
@@ -194,6 +202,10 @@ console.log('\n— daily reminder —');
   ok(r.status === 200, 'a device can be added', r.status);
   r = await api('/api/nudge');
   ok(r.body.devices === 1 && r.body.signedIn === true, 'and is counted for this person', r.body);
+  r = await api('/api/nudge?endpoint=' + encodeURIComponent('https://fcm.googleapis.com/fcm/send/test-device-1'));
+  ok(r.body.known === true, 'the bell can ask whether its own device is on file', r.body);
+  r = await api('/api/nudge', { method: 'POST', headers: { 'x-aifz': '' }, body: { subscription: { endpoint: 'https://fcm.googleapis.com/fcm/send/x' } } });
+  ok(r.status === 403, 'a write without the site header is refused (so every page must send it)', r.status);
   r = await api('/api/nudge', { method: 'POST', body: { unsubscribe: 'https://fcm.googleapis.com/fcm/send/test-device-1' } });
   r = await api('/api/nudge');
   ok(r.body.devices === 0, 'and can be removed', r.body);

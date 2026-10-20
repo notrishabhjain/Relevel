@@ -10,8 +10,13 @@ import { query } from './db.js';
 import { MESSAGES, DAYS } from './nudge-messages.js';
 
 export const START = '2026-10-19';        // day 1: the first Monday after the plan was set up
-export const SEND_FROM_MINUTE = 12 * 60;  // 12:00 India time
-export const SEND_UNTIL_MINUTE = 16 * 60; // later than this, today's reminder is skipped
+/* The send window. The trigger is Vercel's own scheduler (vercel.json), which
+   on the free plan fires once a day somewhere inside the hour it is given:
+   hour 06 UTC is 11:30–12:29 in India, so the window opens at 11:30. The
+   GitHub schedule stays as a backup, but GitHub routinely runs it hours late,
+   so the window stays open until 20:00: a late reminder still beats none. */
+export const SEND_FROM_MINUTE = 11 * 60 + 30;  // 11:30 India time
+export const SEND_UNTIL_MINUTE = 20 * 60;      // after 20:00, today's reminder is skipped
 const IST = 330 * 60 * 1000;
 const SITE = 'https://relevel-steel.vercel.app';
 
@@ -89,20 +94,34 @@ export function vapidHeader(keys, endpoint, now = Date.now()) {
   return 'vapid t=' + head + '.' + claims + '.' + b64u(sig) + ', k=' + keys.pub;
 }
 
-/* A push with no body. 201 means accepted; 404/410 mean the device is gone. */
+/* A push with no body. 201 means accepted; 404/410 mean the device is gone.
+   Returns the push service's status code (0 if it could not be reached), so a
+   failed test can say why instead of just "it did not go through". */
 export async function pushOne(keys, endpoint, fetcher = fetch) {
   const r = await fetcher(endpoint, {
     method: 'POST',
     headers: { Authorization: vapidHeader(keys, endpoint), TTL: '21600', Urgency: 'high', 'Content-Length': '0' }
   });
   if (r.status === 404 || r.status === 410) await query('DELETE FROM push_subs WHERE endpoint=$1', [endpoint]);
-  return r.status >= 200 && r.status < 300;
+  return r.status;
 }
-export async function pushMany(rows, fetcher) {
+export async function pushEach(rows, fetcher) {
   const keys = await vapid();
-  let sent = 0;
-  for (const r of rows) { try { if (await pushOne(keys, r.endpoint, fetcher)) sent++; } catch { /* next device */ } }
-  return sent;
+  const statuses = [];
+  for (const r of rows) {
+    try { statuses.push(await pushOne(keys, r.endpoint, fetcher)); } catch { statuses.push(0); }
+  }
+  return { sent: statuses.filter(c => c >= 200 && c < 300).length, statuses };
+}
+export async function pushMany(rows, fetcher) { return (await pushEach(rows, fetcher)).sent; }
+
+/* What the last scheduled run did, so the bell can show it. */
+async function logRun(entry) {
+  await query(`INSERT INTO kv (k, v) VALUES ('nudge_log', $1) ON CONFLICT (k) DO UPDATE SET v=$1`, [JSON.stringify(entry)]);
+}
+export async function lastRun() {
+  const r = (await query(`SELECT v FROM kv WHERE k='nudge_log'`))[0];
+  return r ? r.v : null;
 }
 
 /* The scheduled run: weekdays, from 12:00 India time, once per day. The
@@ -113,14 +132,20 @@ export async function runDaily(now = Date.now(), fetcher) {
   if (t.weekday < 1 || t.weekday > 5) return { sent: 0, skipped: 'weekend' };
   if (t.date < START) return { sent: 0, skipped: 'before_start' };
   if (t.minutes < SEND_FROM_MINUTE) return { sent: 0, skipped: 'too_early' };
-  if (t.minutes > SEND_UNTIL_MINUTE) return { sent: 0, skipped: 'too_late' };
+  if (t.minutes > SEND_UNTIL_MINUTE) {
+    const last = await lastRun();
+    if (!last || last.date !== t.date) await logRun({ date: t.date, at: now, outcome: 'too_late', sent: 0, devices: 0 });
+    return { sent: 0, skipped: 'too_late' };
+  }
   await query(`INSERT INTO kv (k, v) VALUES ('nudge_last', '{"date":"1970-01-01"}') ON CONFLICT (k) DO NOTHING`);
   const claim = await query(
     `UPDATE kv SET v=$2 WHERE k='nudge_last' AND v->>'date' <> $1 RETURNING k`, [t.date, JSON.stringify({ date: t.date })]);
   if (!claim.length) return { sent: 0, skipped: 'already_sent' };
   const subs = await query('SELECT endpoint FROM push_subs');
-  const sent = await pushMany(subs, fetcher);
+  const { sent, statuses } = await pushEach(subs, fetcher);
   if (subs.length && !sent)                    // nobody got it: let the next backup try again
     await query(`UPDATE kv SET v='{"date":"1970-01-01"}' WHERE k='nudge_last'`);
+  await logRun({ date: t.date, at: now, outcome: !subs.length ? 'no_devices' : sent ? 'sent' : 'failed',
+    sent, devices: subs.length, statuses });
   return { sent, devices: subs.length };
 }

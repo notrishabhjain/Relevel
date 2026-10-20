@@ -40,5 +40,15 @@
       "destination": "/book/hi/",
       "permanent": true
     }
+  ],
+  "crons": [
+    {
+      "path": "/api/nudge?run=1",
+      "schedule": "0 6 * * 1-5"
+    },
+    {
+      "path": "/api/nudge?run=1&slot=backup",
+      "schedule": "0 7 * * 1-5"
+    }
   ]
 }

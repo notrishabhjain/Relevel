@@ -1172,6 +1172,61 @@ ok((await navp.page.evaluate(() =>
    .includes('Lab first'),
    'and English still reads in English');
 
+/* The reminder bell, clicked for real. Headless Chromium has no push service,
+   so the browser's push and notification objects are stood in for; everything
+   from the bell to the server and the database is the real code. This is the
+   path that once failed on every page because a header was missing. */
+console.log('\n— the reminder bell turns a device on, from the book —');
+{
+  const ctx = await browser.newContext({ serviceWorkers: 'block' });
+  await ctx.route('**/*', r => r.request().url().startsWith(B) ? r.continue() : r.abort());
+  await ctx.addInitScript(() => {
+    /* the subscription outlives the page, as a real one does */
+    let perm = localStorage.getItem('t:perm') || 'default';
+    const make = key => ({ endpoint: 'https://fcm.googleapis.com/fcm/send/bell-test-device',
+      options: { applicationServerKey: key },
+      toJSON() { return { endpoint: this.endpoint, keys: {} }; },
+      unsubscribe() { localStorage.removeItem('t:sub'); return Promise.resolve(true); } });
+    const bytesOf = s => Uint8Array.from(atob(s), c => c.charCodeAt(0)).buffer;
+    const pm = {
+      getSubscription() { const k = localStorage.getItem('t:sub'); return Promise.resolve(k ? make(bytesOf(k)) : null); },
+      subscribe(o) {
+        const key = new Uint8Array(o.applicationServerKey.buffer || o.applicationServerKey);
+        localStorage.setItem('t:sub', btoa(String.fromCharCode(...key)));
+        return pm.getSubscription();
+      } };
+    const reg = { pushManager: pm };
+    Object.defineProperty(navigator, 'serviceWorker', { configurable: true,
+      value: { register: () => Promise.resolve(reg), ready: Promise.resolve(reg) } });
+    window.PushManager = function () {};
+    window.Notification = { get permission() { return perm; }, requestPermission: () => { perm = 'granted'; localStorage.setItem('t:perm', perm); return Promise.resolve(perm); } };
+  });
+  const page = await ctx.newPage();
+  page.on('pageerror', e => console.log('    [page error]', e.message));
+  await page.goto(B + '/api/dev/login?login=belltester&next=/book/');
+  await page.waitForSelector('#aifz-rem .pill');
+  await page.click('#aifz-rem .pill');
+  await page.click('#aifz-rem [data-r=toggle]');
+  await page.waitForFunction(() => /On\. Tap/.test(document.querySelector('#aifz-rem').textContent), null, { timeout: 5000 }).catch(() => {});
+  const txt = await page.textContent('#aifz-rem');
+  ok(/On\. Tap/.test(txt), 'tapping Turn on in the book saves this device', txt);
+  const srv = await page.evaluate(() => fetch('/api/nudge').then(r => r.json()));
+  ok(srv.devices === 1, 'and the server now counts it', JSON.stringify(srv));
+  await page.click('#aifz-rem [data-r=test]');
+  await page.waitForFunction(() => !/Sending a test/.test(document.querySelector('#aifz-rem').textContent), null, { timeout: 8000 }).catch(() => {});
+  const t2 = await page.textContent('#aifz-rem');
+  ok(/Test sent|refused it \(\d+\)/.test(t2), 'Send a test reaches the server and reports what the push service said', t2);
+  /* the server forgets the device; the next page load puts it back */
+  await page.evaluate(() => fetch('/api/nudge', { method: 'POST', headers: { 'x-aifz': '1', 'content-type': 'application/json' },
+    body: JSON.stringify({ unsubscribe: 'https://fcm.googleapis.com/fcm/send/bell-test-device' }) }));
+  await page.goto(B + '/plan/');
+  await page.waitForSelector('#aifz-rem .pill.on', { timeout: 5000 }).catch(() => {});
+  await page.waitForTimeout(500);
+  const healed = await page.evaluate(() => fetch('/api/nudge').then(r => r.json()));
+  ok(healed.devices === 1, 'a device the server lost is saved again on the next visit', JSON.stringify(healed));
+  await ctx.close();
+}
+
 await browser.close();
 console.log('\n' + pass + ' passed, ' + fail + ' failed\n');
 process.exit(fail ? 1 : 0);
