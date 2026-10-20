@@ -58,8 +58,8 @@ window.BIND_CONTENT=bindContent;
 /* ---------------- storage ---------------- */
 const KEY='aifz2027';
 const defaults=()=>({done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{},drill:{},
-  gentle:{},   // gentle start: day id -> time ticked
-  path:null,   // null = gentle path (default); 'full' = the playbook's order, Track A first
+  read:{},     // book chapters read: file -> time (ticked by the book, or on the route page)
+  steps:{},    // route steps ticked: step id -> time (src/data/route.mjs)
   appx:{},     // appendix A competency worksheet: 'row:col' -> 1
   tpl:{},      // Appendix C template copies: '<key>:<n>' -> {v,at,done}
   arts:{},     // Appendix B artifact tracker: '<n>' -> {s:0|1|2, where}
@@ -86,10 +86,38 @@ const defaults=()=>({done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{
 });
 let S=defaults();
 try{const raw=localStorage.getItem(KEY); if(raw)S=Object.assign(S,JSON.parse(raw));}catch(e){}
+/* Carry older ticks into the route once. The first gentle start (20 Oct 2026)
+   kept day ids under S.gentle, and the book kept its own list of chapters read;
+   both now live in S.steps and S.read, the ones every page reads. */
+function migrateTicks(T0){
+  let moved=false;
+  if(T0.gentle&&typeof T0.gentle==='object'){
+    const B8='08-what-the-machine-is.html', B11='11-giving-instructions.html';
+    const map={g1:['done','ch0'],g2:['steps','b:'+B8+'#1'],g3:['read',B8],g4:['steps','t:tokens'],g5:['steps','t:review-1'],
+      g6:['read','09-the-first-conversation.html'],g7:['read','10-a-mind-with-no-memory.html'],g8:['steps','b:'+B11+'#1'],
+      g9:['read',B11],g10:['steps','t:review-2'],g12:['read','12-knowing-whether-it-works.html'],g13:['steps','t:tenmsgs'],
+      g14:['steps','t:tenmsgs'],g15:['steps','t:review-3'],g16:['read','13-sorting-and-summarising.html'],
+      g17:['read','14-too-long-to-read-at-once.html'],g18:['read','15-finding-by-words.html'],g19:['read','16-finding-by-meaning.html'],
+      g20:['steps','t:setup']};
+    Object.keys(T0.gentle).forEach(k=>{const m=map[k],t=T0.gentle[k];if(!m||!t)return;
+      T0[m[0]]=T0[m[0]]||{}; if(!T0[m[0]][m[1]]) T0[m[0]][m[1]]=typeof t==='number'?t:Date.now(); moved=true;});
+    delete T0.gentle; moved=true;
+  }
+  if('path' in T0){ delete T0.path; moved=true; }
+  try{
+    const old=JSON.parse(localStorage.getItem('aifz-book-read')||'null');
+    if(Array.isArray(old)&&old.length){T0.read=T0.read||{};
+      old.forEach(k=>{const f=String(k).split('/').pop(); if(/^\d\d-.*\.html$/.test(f)&&!T0.read[f]){T0.read[f]=Date.now();moved=true;}});
+      localStorage.removeItem('aifz-book-read');}
+  }catch(e){}
+  return moved;
+}
+const migratedTicks=migrateTicks(S);
 /* keep last session's state recoverable before this one writes over it */
 try{window.SYNC&&window.SYNC.takeSessionBackup();}catch(e){}
 let saveT, suspended=false, lastBody=null;
 try{ const u=S.updatedAt; delete S.updatedAt; lastBody=JSON.stringify(S); S.updatedAt=u; }catch(e){}
+if(migratedTicks) lastBody=null;              // write the carried-over ticks on the first save
 /* After progress is replaced underneath us (import, restore, erase) the page is
    about to reload, and the in-memory copy is stale. Writing it on the way out —
    pagehide fires on reload — would silently undo the replacement. */
@@ -119,6 +147,20 @@ function writeNow(){
       writeNow._push=setTimeout(()=>{window.SYNC.gh.push().catch(()=>{});},20000);}}
 }
 function save(){clearTimeout(saveT);saveT=setTimeout(writeNow,250);}
+if(migratedTicks) save();
+/* The book and the plan tick S.read and S.steps from their own tabs. Take
+   those ticks here too, so this tab's next save does not write over them. */
+addEventListener('storage',e=>{
+  if(e.key!==KEY||!e.newValue) return;
+  let d; try{d=JSON.parse(e.newValue);}catch(err){return;}
+  const keep=S.updatedAt; delete S.updatedAt;
+  const clean=JSON.stringify(S)===lastBody; S.updatedAt=keep;
+  if(clean){ replace(d); }
+  else { let ch=false;
+    ['read','steps','done'].forEach(k=>{S[k]=S[k]||{};Object.keys(d[k]||{}).forEach(x=>{if(d[k][x]&&!S[k][x]){S[k][x]=d[k][x];ch=true;}});});
+    if(ch) save(); }
+  if(/^#\/(start|library)?$/.test(location.hash)||!location.hash) route();
+});
 /* A debounced write loses the last answer if the tab is closed or navigated
    within the debounce window, so flush on every way out. */
 addEventListener('pagehide',()=>{writeNow();
@@ -667,6 +709,14 @@ function renderChapter(c){
     h('div',{class:'chnum',text:String(c.num).padStart(2,'0')}),
     h('h1',{text:T(c.title)}),
     h('p',{class:'concept',text:T(c.concept)})]));
+  /* Where this chapter sits on the route, and what the route asks of it. */
+  if(window.ROUTE){
+    const rs=window.ROUTE.STEPS.find(x=>x.ch===c.id);
+    if(rs) w.appendChild(h('a',{class:'routeline',href:'#/start#week-'+rs.week},[
+      h('span',{class:'lbl',text:T('Your route')}),
+      h('span',{class:'pt',text:T('Week')+' '+rs.week+(rs.firstPass&&rs.mins<=30?' \u00b7 '+T('first pass, about 20 minutes: read it and answer the boxes. The Build it section is optional.'):' \u00b7 ~'+fmtMins(rs.mins))}),
+      h('span',{class:'go',text:T('See the week')+' \u2192'})]));
+  }
 
   /* Which stage of the project this chapter belongs to, with a way to see the
      whole project. The capstone below is a question about that stage. */
@@ -1130,8 +1180,16 @@ function pageHome(){
 
   /* Where you are, before anything else. */
   const pctDone=CH.length?Math.round(doneN*100/CH.length):0;
+  /* "Next" here is the route's next step, the same one the dashboard, the plan
+     and the reminder name. */
+  const rn=eng.routeNext(S);
   w.appendChild(h('div',{class:'herecard'},[
-    h('div',{class:'hl'},[
+    rn?h('div',{class:'hl'},[
+      h('span',{class:'cplbl',text:T('Your route')+' \u00b7 '+T('Week')+' '+rn.week.n}),
+      h('a',{class:'ht',href:rn.href,text:(rn.s.kind==='chapter'?rn.s.num+'. ':'')+(S.lang==='hi'&&rn.s.titleHi?rn.s.titleHi:T(rn.s.title))}),
+      h('span',{class:'dim',text:T({chapter:'Chapter',read:'Book',try:'Try',look:'Look back'}[rn.s.kind])+' \u00b7 ~'+fmtMins(rn.s.mins)+' \u00b7 '}),
+      h('a',{class:'dim',href:'#/start',text:T('See the whole route')})])
+    :h('div',{class:'hl'},[
       h('span',{class:'cplbl',text:T(!target?'Finished':cur.started?'Pick up where you stopped':doneN?'Next up':'Start here')}),
       target?h('a',{class:'ht',href:'#/ch/'+target.id,text:target.num+'. '+T(target.title)})
         :h('span',{class:'ht',text:T('You have finished every chapter.')}),
@@ -1140,7 +1198,7 @@ function pageHome(){
       h('span',{class:'cpbar big'},h('i',{style:'width:'+pctDone+'%'})),
       h('span',{class:'dim',text:doneN+' / '+CH.length+' '+T('chapters finished')})])]));
   w.appendChild(h('div',{class:'chiprow cmaplinks'},[
-    h('a',{class:'chip',href:'#/start',text:T('Gentle start: the first four weeks')}),
+    h('a',{class:'chip',href:'#/start',text:T('Your route: 26 weeks, one order')}),
     h('a',{class:'chip',href:'#/project',text:T('Your project: Bharat Privacy Guard')}),
     bookHere()?h('a',{class:'chip',href:bookBase(),text:T('Read it as a book')}):null,
     h('a',{class:'chip',href:'#/setup',text:T('Set up Colab + API key')}),
@@ -1338,69 +1396,76 @@ function pageLedger(){
 }
 function ctlL(l,n){return h('div',{},[h('label',{text:l}),n]);}
 
-/* ---------------- the gentle start ----------------
-   The first four weeks, ten minutes a weekday (src/data/gentle.js). The
-   dashboard's "Next" and the daily 12:00 reminder both point here until every
-   day is ticked. */
+/* ---------------- your route ----------------
+   The 26 weeks of src/data/route.mjs, the same list the plan tab, the book and
+   the 12:00 reminder follow. Chapters count when marked complete, book
+   chapters when the book ticks them (or here), tries and look-backs when
+   ticked here. The current week is open; the rest fold away. */
+function istDate(){return new Date(Date.now()+19800000).toISOString().slice(0,10);}
 function pageStart(){
-  const G=window.GENTLE, w=h('div',{class:'wrap gentle'});
-  if(!G){ w.appendChild(h('p',{text:'The gentle start is not in this build.'})); return w; }
-  S.gentle=S.gentle||{};
-  const full=S.path==='full';
-  const doneN=G.days.filter(d=>S.gentle[d.id]).length;
-  const next=G.days.find(d=>!S.gentle[d.id]);
+  const R=window.ROUTE, w=h('div',{class:'wrap gentle'});
+  if(!R){ w.appendChild(h('p',{text:'The route is not in this build.'})); return w; }
+  S.steps=S.steps||{}; S.read=S.read||{};
+  const hi=S.lang==='hi';
+  const all=R.STEPS, doneN=all.filter(x=>R.stepDone(x,S)).length;
+  const nx=R.nextStep(S), cal=Math.max(1,Math.min(R.WEEKS.length,R.weekOf(istDate())||1));
+  const at=nx?nx.week:R.WEEKS.length+1;
+  const gap=nx?cal-at:0;
   w.appendChild(h('header',{class:'phead'},[
-    h('div',{class:'eyebrow'},[h('span',{text:T('The first four weeks')}),h('span',{class:'dot'}),
-      h('span',{text:T('ten minutes a weekday')})]),
-    h('h1',{text:T('Gentle start')}),
-    h('p',{text:T('Reading and small tries only. No installs, no API key and no interviews until the last day of week 4. On a day when ten minutes feels like too much, read one page and tick the day anyway.')})]));
+    h('div',{class:'eyebrow'},[h('span',{text:T('26 weeks, one order')}),h('span',{class:'dot'}),
+      h('span',{text:T('the same on the plan, in the book and in the 12:00 reminder')})]),
+    h('h1',{text:T('Your route')}),
+    h('p',{text:T('Month 1 is the gentle start: the book from its first page, ten minutes a weekday, and nothing to install. After that, each chapter’s story comes first in the book, then the chapter itself here. On a day when ten minutes feels like too much, do one page and tick it anyway.')})]));
   w.appendChild(h('div',{class:'gprog'},[
-    h('span',{class:'cpbar big'},h('i',{style:'width:'+Math.round(doneN*100/G.days.length)+'%'})),
-    h('span',{class:'dim',text:doneN+' / '+G.days.length+' '+T('days done')})]));
-  const open=d=>{
-    if(d.go&&d.go.app) return {href:d.go.app, label:T('Open')};
-    if(d.go&&d.go.book){
-      const base=bookHere()?bookBase():(S.lang==='hi'?'/book/hi/':'/book/');
-      return {href:base+d.go.book+(d.go.at?'#'+d.go.at:''), label:T('Read in the book')};
-    }
-    return null;
-  };
-  G.weeks.forEach(wk=>{
-    const days=G.days.filter(d=>d.wk===wk.n);
-    const sec=h('section',{class:'part gweek'});
-    sec.appendChild(sectionHead(T('Week')+' '+wk.n,wk.title,days.filter(d=>S.gentle[d.id]).length+'/'+days.length));
-    sec.appendChild(h('p',{class:'gblurb',text:T(wk.blurb)}));
-    sec.appendChild(h('ol',{class:'gdays'},days.map(d=>{
-      const n=G.days.indexOf(d)+1, ticked=!!S.gentle[d.id], o=open(d);
-      const cb=h('input',{type:'checkbox','aria-label':T('Done')+': '+T('Day')+' '+n});
-      cb.checked=ticked;
-      cb.addEventListener('change',()=>{
-        if(cb.checked) S.gentle[d.id]=Date.now(); else delete S.gentle[d.id];
-        save(); route();
-      });
-      return h('li',{class:'gday'+(ticked?' done':'')+(next===d?' today':''),id:'day-'+n},[
-        h('label',{class:'gtick'},[cb,h('span',{class:'gn',text:T('Day')+' '+n})]),
+    h('span',{class:'cpbar big'},h('i',{style:'width:'+Math.round(doneN*100/all.length)+'%'})),
+    h('span',{class:'dim',text:doneN+' / '+all.length+' '+T('steps done')})]));
+  w.appendChild(h('p',{class:'gstate'+(gap>0?' behind':''),text:
+    !nx?T('Every step is done. Well done.')
+    :gap>0?T('This is calendar week {cal}, and you are on week {at}. That is fine: carry on from the first open step, and never miss twice.').replace('{cal}',cal).replace('{at}',at)
+    :gap<0?T('You are ahead of the calendar. Keep the pace that keeps you coming back.')
+    :T('You are on schedule. Do the step marked today.')}));
+  const href=x=>R.stepHref(x,hi).replace(/^\/(#\/)/,'$1');
+  const tickable=x=>x.kind!=='chapter';
+  R.WEEKS.forEach(wk=>{
+    const done=wk.steps.filter(x=>R.stepDone(x,S)).length;
+    const det=h('details',{class:'part gweek'+(done===wk.steps.length?' done':''),id:'week-'+wk.n});
+    if(wk.n===at||wk.n===cal) det.open=true;
+    det.appendChild(h('summary',{},[
+      h('span',{class:'gwn',text:T('Week')+' '+wk.n}),
+      h('span',{class:'gwt',text:T(wk.title)}),
+      h('span',{class:'gwd',text:wk.dates+' · '+fmtMins(wk.mins)+' · '+done+'/'+wk.steps.length})]));
+    det.appendChild(h('p',{class:'gblurb'},[h('strong',{text:T('By Sunday')+': '}),h('span',{text:T(wk.ship)})]));
+    det.appendChild(h('ol',{class:'gdays'},wk.steps.map(x=>{
+      const ok=R.stepDone(x,S), isNext=nx&&nx.id===x.id;
+      const kindLbl={chapter:T('Chapter'),read:T('Book'),try:T('Try'),look:T('Look back')}[x.kind];
+      const title=x.kind==='chapter'?x.num+'. '+T(x.title):(hi&&x.titleHi?x.titleHi:T(x.title));
+      let tick;
+      if(tickable(x)){
+        tick=h('input',{type:'checkbox','aria-label':T('Done')+': '+title});
+        tick.checked=ok;
+        tick.addEventListener('change',()=>{
+          if(x.kind==='read'&&!x.part){ if(tick.checked) S.read[x.book]=S.read[x.book]||Date.now(); else delete S.read[x.book]; }
+          if(tick.checked) S.steps[x.id]=S.steps[x.id]||Date.now(); else delete S.steps[x.id];
+          save(); route();
+        });
+      } else tick=h('span',{class:'gdone',text:ok?'✓':'',title:T('Ticks itself when you mark the chapter complete')});
+      const go=x.kind==='look'?null:h('a',{class:isNext?'btnlink':'chip',href:href(x),
+        text:(x.kind==='read'?T('Read in the book'):x.kind==='chapter'?T('Open the chapter'):T('Open'))+' →'});
+      return h('li',{class:'gday'+(ok?' done':'')+(isNext?' today':''),id:'step-'+x.id.replace(/[^\w-]/g,'_')},[
+        h('label',{class:'gtick'},[tick,h('span',{class:'gn',text:kindLbl})]),
         h('div',{class:'gbody'},[
-          h('div',{class:'gt'},[h('strong',{text:T(d.title)}),h('span',{class:'dim',text:' · ~'+d.mins+' min'}),
-            next===d?h('span',{class:'gtoday',text:T('today')}):null]),
-          h('p',{text:T(d.what)}),
-          o?h('a',{class:next===d?'btnlink':'chip',href:o.href,text:o.label+' →'}):
-            h('span',{class:'dim gnote',text:T('Notepad and pen. Tick the day when you are done.')})])]);
+          h('div',{class:'gt'},[h('strong',{text:title}),h('span',{class:'dim',text:' · ~'+fmtMins(x.mins)}),
+            isNext?h('span',{class:'gtoday',text:T('next')}):null]),
+          h('p',{text:T(x.what)}),
+          go])]);
     })));
-    w.appendChild(sec);
+    w.appendChild(det);
   });
-  w.appendChild(h('div',{class:'callout'},[
-    h('span',{class:'lbl',text:T('After the four weeks')}),
-    h('p',{text:T(G.after)}),
-    h('div',{class:'chiprow',style:'margin-top:.7rem'},[
-      h('a',{class:'chip',href:'#/ch/ch1',text:T('Chapter 1')+' →'}),
-      h('a',{class:'chip',href:'#/library',text:T('The course map')})])]));
-  w.appendChild(h('p',{class:'dim gpath'},[
-    h('span',{text:T(full?'You are following the full course order, Track A first.':'You are on the gentle path. “Next” skips the long Track A and Track B chapters for now.')+' '}),
-    h('button',{class:'linkbtn',onclick:()=>{S.path=full?null:'full';save();route();renderRail();}},
-      T(full?'Go back to the gentle path':'Use the full course order instead'))]));
+  w.appendChild(h('p',{class:'dim gpath'},[h('span',{text:T('The plan tab shows the same weeks with notes, monthly reviews and the reasons behind them.')+' '}),
+    h('a',{href:'/plan/',text:T('Open the plan')+' →'})]));
   return w;
 }
+function fmtMins(m){return m>=90?(Math.round(m/30)/2)+' h':m+' min';}
 
 function pageLater(){
   const w=h('div',{class:'wrap'});
@@ -1981,7 +2046,7 @@ function renderRail(){
      you do want the code, and a reader who cannot find it concludes the course
      expects an environment they were never told how to build. */
   r.appendChild(sec('Help',[
-    ['#/start','\u25b8','Gentle start: the first four weeks'],
+    ['#/start','\u25b8','Your route: 26 weeks, one order'],
     ['#/setup','\u2699','Set up Colab + API key'],
     ['#/later','\u25d4','Not yet \u2014 what to ignore for now'],
     ['#/install','\u25a2','Install on iPad or phone']]));
@@ -2551,7 +2616,7 @@ const ROUTES={'':()=>V().dashboard(),'library':pageHome,'start':pageStart,
   'decisions':pageDecisionLog,'failures':pageFailureLog,
   'progress':pageProgress,'labs':pageLabs,'data':()=>V().data(),
   'studio':()=>window.STUDIO.studio([])};
-const CRUMB={'':'Home','library':'The course map','start':'Gentle start','skills':'My progress','analytics':'How I am doing over time',
+const CRUMB={'':'Home','library':'The course map','start':'Your route','skills':'My progress','analytics':'How I am doing over time',
   'exercises':'Longer exercises','processes':'Repeatable work routines','practice':'Practice','skill':'Skill',
   'data':'My data and backups','studio':'Edit this course','install':'Install on iPad or phone',
   'language':'Language','setup':'Set up Colab + API key','appendix':'Worksheet, question bank, sources','project':'Your project',
@@ -2625,7 +2690,7 @@ function buildIndex(){
     {k:'page',t:'Exercises',h:'#/exercises'},{k:'page',t:'Processes',h:'#/processes'},
     {k:'page',t:'The course map — '+CH.length+' chapters, in order',h:'#/library'},{k:'page',t:'Your project: Bharat Privacy Guard',h:'#/project'},
     {k:'page',t:'Progress & Backup',h:'#/data'},
-    {k:'page',t:'Gentle start: the first four weeks',h:'#/start'},
+    {k:'page',t:'Your route: 26 weeks, one order',h:'#/start'},
     {k:'page',t:'Content Studio — edit the curriculum',h:'#/studio'},
     {k:'page',t:'Setup',h:'#/setup'},
     {k:'page',t:'The Labs',h:'#/labs'},{k:'page',t:'Red-Mark Map',h:'#/map'},
@@ -2889,9 +2954,15 @@ const ACCOUNT=(function(){
 
     if(localEmpty || !localChanged()){
       window.SYNC.takeSessionBackup();
+      /* ticks made on this device while signed out (the book, the route) are
+         kept: they only ever add, so they are folded into the server's copy */
+      const extra={read:Object.assign({},S.read), steps:Object.assign({},S.steps)};
       replace(srv.data);
+      let added=false;
+      ['read','steps'].forEach(k=>{S[k]=S[k]||{};Object.keys(extra[k]).forEach(x=>{if(extra[k][x]&&!S[k][x]){S[k][x]=extra[k][x];added=true;}});});
       setM({version:srv.version, marker:marker()});
       route();
+      if(added){ writeNow(); return pushNow(srv.version, localEmpty?'pulled':'ok'); }
       return show(localEmpty?'pulled':'ok');
     }
     /* both sides moved */

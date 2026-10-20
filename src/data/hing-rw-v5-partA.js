@@ -65,10 +65,10 @@ Object.assign(window.HING = window.HING || {}, {
     'Jo plans kaam karte hain, unmein teen baatein common hoti hain. Pehli, sabse chhota step sach mein chhota hota hai: ek sawaal, 2 minute, poora chapter nahi. Doosri, aapko pata hota hai ki dobara kahan se shuru karna hai, kyunki thake hone par tay karna mushkil hota hai. Teesri, aap pehle hi tay kar chuke hote hain ki chhoota hua din matlab kya hai: kuch nahi. Iska matlab dobara shuru se shuru karna nahi hai. Din toh sabke chhootte hain, aur jo log course khatam karte hain, unhe yeh pehle se pata hota hai.',
   'Before you start':
     'Shuru karne se pehle',
-  'You don’t need the notebook or an API key for the next four weeks. The setup comes on the last day of the <a href="#/start">Gentle start</a>, when you’ll know what the key is for.':
-    'Agle chaar hafton tak aapko notebook ya API key ki zaroorat nahi hai. Setup <a href="#/start">Gentle start</a> ke aakhri din aata hai, jab aapko pata hoga ki key kis kaam ki hai.',
-  'That’s all for this chapter. Go back to the <a href="#/start">Gentle start</a> and tick Day 1. Tomorrow’s ten minutes are waiting there.':
-    'Is chapter mein bas itna hi. <a href="#/start">Gentle start</a> par wapas jaiye aur Day 1 tick kijiye. Kal ke das minute wahin aapka intezaar kar rahe hain.',
+  'You don’t need the notebook or an API key yet. The setup comes in Week 6 of <a href="#/start">your route</a>, when you’ll know what the key is for.':
+    'Abhi aapko notebook ya API key ki zaroorat nahi hai. Setup <a href="#/start">aapke raaste</a> ke Week 6 mein aata hai, jab aapko pata hoga ki key kis kaam ki hai.',
+  'That’s all for this chapter. Press “Mark chapter complete” below, and <a href="#/start">your route</a> moves on to the book. Tomorrow’s ten minutes are waiting there.':
+    'Is chapter mein bas itna hi. Neeche “Mark chapter complete” dabaiye, aur <a href="#/start">aapka raasta</a> kitaab ki taraf aage badh jaata hai. Kal ke das minute wahin aapka intezaar kar rahe hain.',
   'No setup yet':
     'Abhi koi setup nahi',
 

@@ -1251,3 +1251,21 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .gnote{font-size:.8rem}
 .gpath{margin:1.4rem 0 2rem;font-size:.85rem;line-height:1.6}
 .linkbtn{background:none;border:0;padding:0;font:inherit;color:var(--ink);text-decoration:underline;cursor:pointer}
+.gweek{border:1px solid var(--rule);border-radius:var(--r);background:var(--paper);margin:0 0 .6rem;padding:0}
+.gweek[open]{border-color:var(--ink-2)}
+.gweek.done{border-color:var(--verified)}
+.gweek>summary{display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .7rem;padding:.75rem .9rem;cursor:pointer;list-style:none}
+.gweek>summary::-webkit-details-marker{display:none}
+.gweek .gwn{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--red);flex:none}
+.gweek .gwt{font-family:var(--sans);font-weight:600;font-size:.95rem;flex:1 1 12rem;min-width:0}
+.gweek .gwd{font-family:var(--mono);font-size:.68rem;color:var(--muted);flex:none}
+.gweek>.gblurb,.gweek>.gdays{margin-left:.9rem;margin-right:.9rem}
+.gweek>.gdays{margin-bottom:.9rem}
+.gstate{font-family:var(--serif);font-size:1rem;margin:-.6rem 0 1.4rem;color:var(--ink-2)}
+.gstate.behind{color:var(--amber)}
+.gdone{font-size:1.1rem;color:var(--verified);width:1.15rem;text-align:center}
+.routeline{display:flex;gap:.6rem;align-items:baseline;flex-wrap:wrap;margin:0 0 .8rem;padding:.55rem .8rem;border:1px solid var(--rule);border-radius:var(--r);background:var(--raised);text-decoration:none;color:inherit}
+.routeline:hover{border-color:var(--ink-2)}
+.routeline .lbl{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--verified)}
+.routeline .pt{flex:1;min-width:14rem;font-size:.9rem;line-height:1.45;color:var(--ink)}
+.routeline .go{font-family:var(--mono);font-size:.68rem;color:var(--ink-2)}

@@ -2,19 +2,22 @@
 
    Three jobs:
    1. Tabs: Plan, Build, Curriculum are panels of one page. Any #anchor opens the panel it lives in.
-   2. Tracker: tick boxes, links and notes on the week cards, gates and parking lot.
-      Saved in this browser always; also saved to your account when you are signed in.
-   3. Status: where you are in the 26 weeks and how far behind (same rules as api/_lib/plan.js). */
+   2. Route progress: every step on the week cards is a step of the route
+      (src/data/route.mjs). Its tick comes from the one shared progress record
+      (/progress.js): chapters marked complete in the playbook, book chapters
+      read in the book, and tries and look-backs ticked here or there.
+   3. Notes: a link and a note per week, the monthly reviews and the parking
+      lot. Saved in this browser always; also to your account when signed in. */
 (function () {
   'use strict';
-  var START = Date.UTC(2026, 9, 7), DAY = 86400000, WEEKS = 26, KEY = 'aipm-plan-v1';
+  var KEY = 'aipm-plan-v1', P = window.AIFZ_PROGRESS || null;
   var LEVELS = [
-    'On track. Do this week’s row and tick it off.',
-    'One week behind. Do a floor week (three 45-minute sessions and one commit), then redo the missed ship item in your build slot.',
-    'Two weeks behind. Switch to the light plan for 2 weeks (one learning item plus the ship item) and tell your accountability person.',
-    'Three or more weeks behind. Stop and decide on purpose: light plan for a month, or move the whole plan back 4 weeks and write down why. Do not drift quietly.'
+    'On schedule. Do the step marked next.',
+    'About a week behind the dates. That is fine: carry on from the first open step, and never miss twice.',
+    'About two weeks behind. Keep going from the first open step; make the days small rather than skipping any.',
+    'Three or more weeks behind. Decide on purpose: carry on and move the end date, or do the next month on a first pass only. Do not drift quietly.'
   ];
-  var LEVEL_NAMES = ['On track', '1 week behind', '2 weeks behind', '3+ weeks behind'];
+  var LEVEL_NAMES = ['On schedule', '1 week behind', '2 weeks behind', '3+ weeks behind'];
 
   function $(s, r) { return (r || document).querySelector(s); }
   function $$(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
@@ -46,7 +49,7 @@
     } else if (!initial || TABS[id]) window.scrollTo(0, 0);
   }
 
-  /* ---------- state ---------- */
+  /* ---------- notes, reviews and parking lot ---------- */
   var state = { weeks: {}, gates: {}, parking: {} };
   function load() {
     try { var s = JSON.parse(localStorage.getItem(KEY) || 'null'); if (s && s.weeks) state = { weeks: s.weeks || {}, gates: s.gates || {}, parking: s.parking || {} }; } catch (e) { }
@@ -65,68 +68,90 @@
   }
   function wk(n) { return state.weeks[n] || {}; }
 
+  /* ---------- route progress ---------- */
+  var S = P ? P.load() : {};
+  var WEEKS = $$('article.wk').length || 26;
+  function stepOf(li) {
+    return { id: li.getAttribute('data-step'), kind: li.getAttribute('data-kind'), ch: li.getAttribute('data-ch') || undefined,
+      book: li.getAttribute('data-book') || undefined, part: li.getAttribute('data-part') ? +li.getAttribute('data-part') : undefined };
+  }
+  function isDone(li) { return P ? P.stepDone(stepOf(li), S) : false; }
+  function weekDone(n) {
+    var lis = $$('article.wk[data-week="' + n + '"] li.st'), d = 0;
+    lis.forEach(function (li) { if (isDone(li)) d++; });
+    return { done: d, of: lis.length };
+  }
+  function firstOpen() {
+    var all = $$('li.st');
+    for (var i = 0; i < all.length; i++) if (!isDone(all[i])) return all[i];
+    return null;
+  }
+
   /* ---------- dates and status ---------- */
-  function istToday() { var d = new Date(Date.now() + 19800000); return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()); }
+  function istToday() { var d = new Date(Date.now() + 19800000); return d.toISOString().slice(0, 10); }
   function currentWeek() {
-    var idx = Math.round((istToday() - START) / DAY);
+    var a = $('article.wk[data-week="1"]'), start = a ? a.getAttribute('data-start') : '2026-10-19';
+    var idx = Math.floor((Date.parse(istToday()) - Date.parse(start)) / 86400000);
     return idx < 0 ? 0 : Math.min(WEEKS + 1, Math.floor(idx / 7) + 1);
   }
   function summary() {
-    var cur = currentWeek(), shipped = 0, due = 0, behind = 0, floor = 0, streak = 0, n;
-    for (n = 1; n <= WEEKS; n++) {
-      if (wk(n).ship) { shipped++; if (wk(n).floor) floor++; }
-      if (n < cur) { due++; if (!wk(n).ship) behind++; }
-    }
-    n = Math.min(cur, WEEKS);
-    if (n >= 1 && !wk(n).ship) n--;
-    while (n >= 1 && wk(n).ship) { streak++; n--; }
-    return { cur: cur, shipped: shipped, due: due, behind: behind, floor: floor, streak: streak, level: Math.min(3, behind) };
+    var cur = currentWeek(), complete = 0, stepsDone = 0, steps = 0, n;
+    for (n = 1; n <= WEEKS; n++) { var w = weekDone(n); steps += w.of; stepsDone += w.done; if (w.of && w.done === w.of) complete++; }
+    var fo = firstOpen(), at = fo ? +fo.closest('article.wk').getAttribute('data-week') : WEEKS + 1;
+    var behind = cur >= 1 && cur <= WEEKS ? Math.max(0, cur - at) : 0;
+    return { cur: cur, at: at, complete: complete, stepsDone: stepsDone, steps: steps, behind: behind, level: Math.min(3, behind), next: fo };
   }
   function renderStatus() {
     var box = $('#status'); if (!box) return;
     var s = summary(), cells = '', n, head, msg, lvl = s.level;
     for (n = 1; n <= WEEKS; n++) {
-      var d = wk(n), cls = 'cell';
-      if (d.ship) cls += ' shipped'; else if (n < s.cur) cls += ' missed'; else if (d.learn || d.build) cls += ' partial';
+      var w = weekDone(n), cls = 'cell';
+      if (w.of && w.done === w.of) cls += ' shipped'; else if (n < s.cur) cls += ' missed'; else if (w.done) cls += ' partial';
       if (n === s.cur) cls += ' current';
-      cells += '<a class="' + cls + '" href="#w' + n + '" title="Week ' + n + '">' + n + '</a>';
+      cells += '<a class="' + cls + '" href="#w' + n + '" title="Week ' + n + ': ' + w.done + ' of ' + w.of + ' steps">' + n + '</a>';
     }
-    if (s.cur === 0) { head = 'Starts 7 Oct'; msg = 'The plan starts on 7 October 2026. Set up your tools ahead of time if you can.'; lvl = 0; }
-    else if (s.cur > WEEKS) { head = 'Plan window over'; msg = 'The 26 weeks ended on 6 April 2027. Keep the 3-hours-a-week learning loop.'; lvl = 0; }
+    if (s.cur === 0) { head = 'Starts 19 Oct'; msg = 'The route starts on Monday 19 October 2026.'; lvl = 0; }
+    else if (s.cur > WEEKS) { head = 'Route window over'; msg = s.next ? 'The 26 weeks are over, but steps are still open. Carry on from the first one; the route never closes.' : 'Every step is done. Keep the three-hours-a-week loop from the Curriculum tab.'; lvl = 0; }
     else { head = 'Week ' + s.cur + ' of ' + WEEKS; msg = LEVELS[lvl]; }
-    var jump = s.cur >= 1 && s.cur <= WEEKS ? '<a class="jump" href="#w' + s.cur + '">Open this week’s row</a>' : '';
+    var nx = s.next ? s.next.querySelector('a, b') : null;
+    var nextLine = s.next ? '<p class="msg">Next step (week ' + s.at + '): ' + (nx && nx.tagName === 'A' ? '<a href="' + esc(nx.getAttribute('href')) + '">' + esc(nx.textContent) + '</a>' : esc(nx ? nx.textContent : '')) + '</p>' : '';
+    var jump = s.at >= 1 && s.at <= WEEKS ? '<a class="jump" href="#w' + s.at + '">Open the week you are on</a>' : '';
     box.innerHTML =
       '<div class="row"><div class="stat"><span class="v">' + esc(head) + '</span>' + jump + '</div>' +
-      '<div class="stat"><span class="v">' + s.shipped + '<small> / ' + s.due + ' due</small></span><span class="k">Weeks shipped</span></div>' +
-      '<div class="stat"><span class="v">' + s.streak + '</span><span class="k">Week streak</span></div>' +
-      '<div class="stat"><span class="v">' + s.behind + '</span><span class="k">Behind</span></div>' +
-      '<div class="stat"><span class="v">' + s.floor + '</span><span class="k">Floor weeks</span></div>' +
+      '<div class="stat"><span class="v">' + s.stepsDone + '<small> / ' + s.steps + '</small></span><span class="k">Steps done</span></div>' +
+      '<div class="stat"><span class="v">' + s.complete + '</span><span class="k">Weeks complete</span></div>' +
+      '<div class="stat"><span class="v">' + (s.at > WEEKS ? '–' : s.at) + '</span><span class="k">Week you are on</span></div>' +
       '<span class="pill lvl-' + lvl + '">' + (s.cur >= 1 && s.cur <= WEEKS ? LEVEL_NAMES[lvl] : 'Not running') + '</span></div>' +
-      '<p class="msg lvl-' + lvl + '">' + esc(msg) + '</p>' +
+      '<p class="msg lvl-' + lvl + '">' + esc(msg) + '</p>' + nextLine +
       '<div class="strip" aria-label="Weekly progress strip">' + cells + '</div>' +
-      '<div class="legend"><span><i class="sh"></i>Shipped</span><span><i class="pa"></i>Started</span><span><i class="mi"></i>Missed</span><span><i class="cu"></i>This week</span></div>';
+      '<div class="legend"><span><i class="sh"></i>Complete</span><span><i class="pa"></i>Started</span><span><i class="mi"></i>Behind the dates</span><span><i class="cu"></i>This week</span></div>';
   }
 
   /* ---------- the controls on the page ---------- */
   function setVal(el, v) { if (document.activeElement !== el && el.value !== v) el.value = v; }
   function applyControls() {
-    var cur = currentWeek();
+    var cur = currentWeek(), fo = firstOpen();
+    $$('li.st').forEach(function (li) {
+      var d = isDone(li), box = $('input[data-step-box]', li);
+      if (box) box.checked = d;
+      li.classList.toggle('done', d);
+      li.classList.toggle('next', li === fo);
+    });
     $$('article.wk').forEach(function (a) {
-      var n = +a.getAttribute('data-week'), d = wk(n);
-      $$('input[data-f]', a).forEach(function (i) {
-        var f = i.getAttribute('data-f');
-        if (i.type === 'checkbox') i.checked = !!d[f]; else setVal(i, d[f] || '');
-      });
-      a.classList.toggle('shipped', !!d.ship);
+      var n = +a.getAttribute('data-week'), d = wk(n), w = weekDone(n);
+      $$('input[data-f]', a).forEach(function (i) { setVal(i, d[i.getAttribute('data-f')] || ''); });
+      var complete = w.of && w.done === w.of;
+      a.classList.toggle('shipped', complete);
       a.classList.toggle('current', n === cur);
-      a.classList.toggle('missed', n < cur && !d.ship);
+      a.classList.toggle('missed', n < cur && !complete);
+      var ws = $('.wstate', a); if (ws) ws.textContent = w.done + ' of ' + w.of + ' steps';
       var lk = $('.shiplink', a);
       if (lk) lk.innerHTML = d.link && /^https?:\/\//i.test(d.link) ? '<a href="' + esc(d.link) + '" target="_blank" rel="noopener noreferrer">' + esc(d.link) + '</a>' : '';
     });
     $$('details.month').forEach(function (m) {
       var from = +m.getAttribute('data-from'), to = +m.getAttribute('data-to'), c = 0;
-      for (var i = from; i <= to; i++) if (wk(i).ship) c++;
-      var s = $('.count', m); if (s) s.textContent = c + ' of ' + (to - from + 1) + ' shipped';
+      for (var i = from; i <= to; i++) { var w = weekDone(i); if (w.of && w.done === w.of) c++; }
+      var s = $('.count', m); if (s) s.textContent = c + ' of ' + (to - from + 1) + ' weeks complete';
     });
     var passed = 0;
     $$('div.gate').forEach(function (g) {
@@ -137,7 +162,7 @@
         if (i.type === 'checkbox') i.checked = !!d[f]; else setVal(i, d[f] || '');
       });
     });
-    var gc = $('#gate-count'); if (gc) gc.textContent = passed + ' of 6 passed';
+    var gc = $('#gate-count'); if (gc) gc.textContent = passed + ' of 6 reviewed';
     renderParking();
     renderStatus();
   }
@@ -148,7 +173,7 @@
       .sort(function (a, b) { return b.u - a.u; });
     box.innerHTML = items.length
       ? '<ul class="plist">' + items.map(function (p) { return '<li><span>' + esc(p.text) + '</span><button type="button" class="quiet" data-del="' + esc(p.id) + '">Remove</button></li>'; }).join('') + '</ul>'
-      : '<p class="empty">Nothing parked. When a new idea, course or tool shows up, write it here and go back to this week’s row.</p>';
+      : '<p class="empty">Nothing parked. When a new idea, course or tool shows up, write it here and go back to the route.</p>';
     var c = $('#parking-count'); if (c) c.textContent = items.length + ' parked';
   }
 
@@ -161,7 +186,18 @@
     persist(); applyControls(); schedulePush();
   }
   document.addEventListener('change', function (ev) {
-    var t = ev.target, f = t && t.getAttribute && t.getAttribute('data-f');
+    var t = ev.target; if (!t || !t.getAttribute) return;
+    if (t.hasAttribute('data-step-box')) {
+      var li = t.closest('li.st'), st = stepOf(li);
+      if (!P) return;
+      var on = t.checked, done;
+      if (st.kind === 'read' && !st.part) done = on ? P.markRead(st.book) : P.unmarkRead(st.book, st.id);
+      else done = P.tick(st.id, on);
+      S = P.load(); applyControls();
+      done.then(function (x) { S = x || P.load(); applyControls(); });
+      return;
+    }
+    var f = t.getAttribute('data-f');
     if (!f) return;
     var patch = {}; patch[f] = t.type === 'checkbox' ? t.checked : t.value.trim();
     var a = t.closest('article.wk'), g = t.closest('div.gate');
@@ -199,10 +235,10 @@
     if (api.user) {
       var url = api.shareId ? location.origin + '/api/plan-status?id=' + api.shareId : '';
       share = '<label class="chk"><input type="checkbox" id="share-on"' + (api.shareId ? ' checked' : '') + '><span>Let my check-ins read a counts-only summary</span></label>' +
-        (url ? '<p class="small">Link for the check-in: <code>' + esc(url) + '</code> It shows week numbers and counts only, never your links or notes. Untick to turn it off.</p>' : '');
+        (url ? '<p class="small">Link for the check-in: <code>' + esc(url) + '</code> It shows week numbers and step counts only, never your links or notes. Untick to turn it off.</p>' : '');
     }
     var who = api.user ? 'Synced to your account as @' + esc(api.user.login) + '.' :
-      api.ok ? '<a href="../api/auth/login?next=/plan/">Sign in with GitHub</a> to keep this tracker on every device.' : '';
+      api.ok ? '<a href="../api/auth/login?next=/plan/">Sign in with GitHub</a> to keep your route and notes on every device.' : '';
     bar.innerHTML = '<div class="row"><span id="sync-text">' + (api.user ? 'Saved.' : 'Saved in this browser only.') + '</span> <span>' + who + '</span></div>' + share +
       '<div class="row small"><button type="button" class="quiet" id="exp">Download backup</button> <label class="quiet filebtn">Restore backup<input type="file" id="imp" accept="application/json" hidden></label></div>';
   }
@@ -265,10 +301,16 @@
   load();
   document.documentElement.classList.add('js');
   applyControls(); renderSync(); route(true);
+  /* the shared record may be newer in the account, or change in another tab */
+  if (P) {
+    P.pull().then(function (x) { S = x || P.load(); applyControls(); }, function () {});
+    P.onChange(function (x) { S = x || P.load(); applyControls(); });
+  }
   window.addEventListener('hashchange', function () { route(false); });
   var cm = $('details.month[data-from]');
   $$('details.month').forEach(function (m) {
-    var c = currentWeek(); if (c >= +m.getAttribute('data-from') && c <= +m.getAttribute('data-to')) m.open = true;
+    var c = summary().at; if (c > WEEKS) c = currentWeek();
+    if (c >= +m.getAttribute('data-from') && c <= +m.getAttribute('data-to')) m.open = true;
   });
   if (cm && !$('details.month[open]')) cm.open = true;
   startSync();

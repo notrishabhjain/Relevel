@@ -18,6 +18,7 @@
 import fs from 'node:fs';
 import p from 'node:path';
 import { RESOURCES, MONTHS, WEEKS, GATES, RULES } from './data.mjs';
+import { STEPS } from '../src/data/route.mjs';
 
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const slug = s => s.toLowerCase().replace(/<[^>]+>/g, '').replace(/&[a-z]+;/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'section';
@@ -244,6 +245,18 @@ button.quiet,.filebtn{background:transparent;color:var(--ink-2);border:1px solid
 .tw table{min-width:640px}
 .code{max-width:none}
 @media (max-width:560px){.addrow{flex-direction:column}}
+.steps{list-style:none;margin:.5rem 0 .9rem;padding:0;display:grid;gap:.45rem}
+.st{display:flex;gap:.6rem;align-items:flex-start;padding:.25rem .35rem;margin:0 -.35rem;border-radius:6px}
+.st .chk{flex:none;width:6.4rem;align-items:flex-start;padding-top:.15rem}
+.st .chk input[disabled]{cursor:default;opacity:1}
+.st .sk{font:500 .66rem/1.5 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.st .sb{flex:1;min-width:0;font-size:.95rem;line-height:1.45}
+.st .sm{font:400 .72rem var(--mono);color:var(--muted);white-space:nowrap}
+.st .sw{display:block;font-size:.84rem;color:var(--ink-2);line-height:1.5;margin-top:.1rem}
+.st.done .sb{opacity:.6}
+.st.next{background:var(--accent-wash)}
+.wstate{margin-left:auto;font:400 .72rem var(--mono);color:var(--muted)}
+@media (max-width:560px){.st{flex-direction:column;gap:.15rem}.st .chk{width:auto}}
 `;
 
 const TRACKER_JS = fs.readFileSync(new URL('./tracker.js', import.meta.url), 'utf8');
@@ -281,7 +294,7 @@ function page({ title, desc, panels }) {
 </header>
 <main>
 ${panels}
-<p class="note">Planning document, not advice. Dates, prices and regulatory details were checked on 7 October 2026 and will change; confirm anything that matters at the source.</p>
+<p class="note">Planning document, not advice. The route was set on 21 October 2026; job-market, price and regulatory details were checked on 7 October 2026 and will change. Confirm anything that matters at the source.</p>
 </main>
 <script>
 document.getElementById('theme').addEventListener('click',function(){
@@ -301,6 +314,7 @@ document.querySelectorAll('.code').forEach(function(b){
   b.appendChild(btn);
 });
 </script>
+<script src="/progress.js"></script>
 <script>
 ${TRACKER_JS}
 </script>
@@ -320,20 +334,29 @@ const stub = target => `<!doctype html>
 `;
 
 /* ---------- generated blocks ---------- */
-const lvl = cx => 'cx-' + cx.split(' ')[0].toLowerCase();
-
+const fmtMins = m => m >= 90 ? (Math.round(m / 30) / 2) + ' h' : m + ' min';
+const KIND = { chapter: 'Chapter', read: 'Book', try: 'Try', look: 'Look back' };
+function stepHref(s) {
+  if (s.kind === 'chapter') return '../#/ch/' + s.ch;
+  if (s.kind === 'read') return '../book/' + s.book + (s.at ? '#' + s.at : '');
+  return s.app ? '../' + s.app : '';
+}
+function stepRow(s) {
+  const href = stepHref(s), title = s.kind === 'chapter' ? s.num + '. ' + s.title : s.title;
+  return `<li class="st" data-step="${esc(s.id)}" data-kind="${s.kind}"${s.ch ? ` data-ch="${s.ch}"` : ''}${s.book ? ` data-book="${esc(s.book)}"` : ''}${s.part ? ` data-part="${s.part}"` : ''}>` +
+    `<label class="chk"><input type="checkbox" data-step-box${s.kind === 'chapter' ? ' disabled title="Ticks itself when you mark the chapter complete in the playbook"' : ''}><span class="sk">${KIND[s.kind]}</span></label>` +
+    `<span class="sb">${href ? `<a href="${href}">${esc(title)}</a>` : `<b>${esc(title)}</b>`} <span class="sm">~${fmtMins(s.mins)}</span><span class="sw">${esc(s.what)}</span></span></li>`;
+}
 function weekCard(w, recipes) {
-  const learn = w.learn.length
-    ? '<span class="lk">' + w.learn.map(k => `<a href="${RESOURCES[k][1]}" target="_blank" rel="noopener noreferrer">${esc(RESOURCES[k][0])}</a>`).join('') + '</span>'
-    : '<span class="muted">Your own ship log. No new material.</span>';
   const how = w.how.map(id => `<a href="#${id}">${esc(recipes.get(id) || id)}</a>`).join('<br>');
-  const chk = (f, label, cls = '') => `<label class="chk ${cls}"><input type="checkbox" data-f="${f}"><span>${label}</span></label>`;
-  return `<article class="wk" id="w${w.n}" data-week="${w.n}">` +
-    `<header><span class="wn">W${w.n}</span><span class="dates">${esc(w.dates)}</span><span class="cx ${lvl(w.cx)}">${esc(w.cx)}</span>${w.light ? '<span class="tag">light week, about 6 hours</span>' : ''}</header>` +
-    `<h4>${inline(w.topic)}</h4>` +
-    `<p><b>Learn from</b>${learn}</p><p><b>Ship</b>${inline(w.ship)}</p><p><b>How to build it</b>${how}</p>` +
-    `<div class="ctl"><div class="checks">${chk('learn', 'Learned')}${chk('build', 'Built')}${chk('ship', 'Shipped', 'shipbox')}${chk('floor', 'Floor week')}</div>` +
-    `<div class="fields"><label>Link to what you shipped<input type="url" data-f="link" placeholder="https://github.com/..." autocomplete="off"></label>` +
+  const further = w.further.length
+    ? `<p><b>Going further</b><span class="lk">${w.further.map(k => `<a href="${RESOURCES[k][1]}" target="_blank" rel="noopener noreferrer">${esc(RESOURCES[k][0])}</a>`).join('')}</span></p>` : '';
+  return `<article class="wk" id="w${w.n}" data-week="${w.n}" data-start="${w.start}">` +
+    `<header><span class="wn">W${w.n}</span><span class="dates">${esc(w.dates)}</span><span class="cx">~${fmtMins(w.mins)}</span>${w.light ? '<span class="tag">light holiday week</span>' : ''}<span class="wstate"></span></header>` +
+    `<h4>${inline(w.title)}</h4>` +
+    `<ol class="steps">${w.steps.map(stepRow).join('')}</ol>` +
+    `<p><b>By Sunday</b>${inline(w.ship)}</p><p><b>How to</b>${how}</p>${further}` +
+    `<div class="ctl"><div class="fields"><label>Link to what you made (optional)<input type="url" data-f="link" placeholder="https://..." autocomplete="off"></label>` +
     `<label>Note<input type="text" data-f="note" placeholder="What blocked you, what you learned" autocomplete="off"></label></div><div class="shiplink"></div></div></article>`;
 }
 
@@ -357,8 +380,8 @@ function makeExpand(recipes, seen) {
     if (name === 'gates') {
       return { html: `<p><strong id="gate-count"></strong></p>` + GATES.map(g =>
         `<div class="gate" data-gate="${g.id}"><div class="row"><span class="wn">${g.id}</span><span class="dates">${esc(g.date)}</span></div>` +
-        `<p>${inline(g.pass)}</p><p class="small">If behind, cut: ${inline(g.cut)}</p>` +
-        `<label class="chk"><input type="checkbox" data-f="passed"><span>Gate passed (every criterion has a link)</span></label>` +
+        `<p>${inline(g.pass)}</p><p class="small">If behind: ${inline(g.cut)}</p>` +
+        `<label class="chk"><input type="checkbox" data-f="passed"><span>Reviewed</span></label>` +
         `<div class="fields"><label>What you cut or decided<input type="text" data-f="note" autocomplete="off"></label></div></div>`).join('') };
     }
     if (name === 'parking') {
@@ -368,9 +391,9 @@ function makeExpand(recipes, seen) {
     if (name === 'weeklinks') {
       const [a, b] = arg.split('-').map(Number);
       const ws = WEEKS.filter(w => w.n >= a && w.n <= b);
-      return { html: '<div class="tw"><table><thead><tr><th>Week</th><th>Dates</th><th>Focus (opens the week on the Plan tab)</th><th>Build</th></tr></thead><tbody>' +
-        ws.map(w => `<tr><td class="k"><a href="#w${w.n}">W${w.n}</a></td><td>${esc(w.dates)}${w.light ? ' <span class="tag">light</span>' : ''}</td><td>${inline(w.topic)}</td>` +
-          `<td>${w.how.map(id => `<a href="#${id}">${esc(id)}</a>`).join(', ')}</td></tr>`).join('') + '</tbody></table></div>' };
+      return { html: '<div class="tw"><table><thead><tr><th>Week</th><th>Dates</th><th>Focus (opens the week on the Plan tab)</th><th>Chapters</th><th>Time</th></tr></thead><tbody>' +
+        ws.map(w => `<tr><td class="k"><a href="#w${w.n}">W${w.n}</a></td><td>${esc(w.dates)}${w.light ? ' <span class="tag">light</span>' : ''}</td><td>${inline(w.title)}</td>` +
+          `<td>${esc(w.steps.filter(x => x.kind === 'chapter').map(x => x.num).join(', ') || 'book ' + w.steps.filter(x => x.kind === 'read').map(x => x.n || 'preface').filter((v, i, a) => a.indexOf(v) === i).join(', '))}</td><td>${fmtMins(w.mins)}</td></tr>`).join('') + '</tbody></table></div>' };
     }
     throw new Error('plan: unknown marker <!-- ' + name + ' -->');
   };
@@ -384,13 +407,18 @@ export function check(pages, recipeWeeks) {
   const ids = WEEKS.map(w => w.n);
   if (ids.join() !== Array.from({ length: 26 }, (_, i) => i + 1).join()) errs.push('data.mjs must define weeks 1..26 in order');
   for (const w of WEEKS) {
-    for (const k of w.learn) {
+    for (const k of w.further) {
       if (!RESOURCES[k]) errs.push(`W${w.n}: unknown resource "${k}"`);
       else if (!/^https:\/\//.test(RESOURCES[k][1])) errs.push(`W${w.n}: resource "${k}" is not an https link`);
     }
-    if (!w.learn.length && w.n !== 26) errs.push(`W${w.n}: no learning link`);
-    if (!w.how.length) errs.push(`W${w.n}: no how-to-build recipe`);
+    if (!w.steps.length) errs.push(`W${w.n}: no steps`);
+    if (!w.how.length) errs.push(`W${w.n}: no how-to recipe`);
     for (const id of w.how) if (!recipeWeeks.has(id)) errs.push(`W${w.n}: recipe "${id}" is not in ship.md`);
+  }
+  /* every step of the route is on this page exactly once */
+  for (const st of STEPS) {
+    const n = (pages.html.match(new RegExp('data-step="' + st.id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '"', 'g')) || []).length;
+    if (n !== 1) errs.push(`route step ${st.id} appears ${n} times on the plan`);
   }
   const used = new Map();
   for (const w of WEEKS) for (const id of w.how) used.set(id, (used.get(id) || new Set()).add(w.n));
@@ -436,7 +464,7 @@ export function buildPlan(root, outDir) {
       recipes.set(m[2], m[1]);
       const nums = new Set();
       const b = (lines.slice(i + 1, i + 4).join('\n').match(/^\*\*(Weeks? [^*]*)\*\*/m) || [, ''])[1];
-      for (const n of b.matchAll(/\d+/g)) nums.add(+n[0]);
+      for (const r of b.matchAll(/(\d+)(?:\s*[–-]\s*(\d+))?/g)) { const x = +r[1], y = r[2] ? +r[2] : x; for (let n = x; n <= y; n++) nums.add(n); }
       recipeWeeks.set(m[2], nums);
     });
   }
@@ -454,7 +482,7 @@ export function buildPlan(root, outDir) {
   check({ html: panels, text, weeksSeen: new Set(seen.length === new Set(seen).size ? seen : [...seen, -1]) }, recipeWeeks);
   fs.writeFileSync(p.join(outDir, 'index.html'), page({
     title: 'Applied AI PM plan | AI From Zero',
-    desc: 'One page for the 26-week plan to become an Applied AI product manager: a tracker with a row per week, linked resources, step-by-step build recipes, and the full curriculum.',
+    desc: 'The 26-week route to becoming an Applied AI product manager, week by week: the same steps as the playbook, the book and the daily reminder, with shared progress.',
     panels
   }));
   fs.writeFileSync(p.join(outDir, 'curriculum.html'), stub('curriculum'));

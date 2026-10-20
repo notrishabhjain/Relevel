@@ -68,8 +68,8 @@ window.PART6 = [
        ph:'When I do not want to open this, I will …',
        after:'Plans that work have three things in common. First, the smallest step is really tiny: one question, two minutes, not a whole chapter. Second, you know where to restart without having to decide, because deciding is hard when you’re tired. Third, you’ve already decided what a missed day means: nothing. It doesn’t mean starting again. Everyone misses days, and the people who finish expected that.'}
     ],
-    ['c','No setup yet','You don’t need the notebook or an API key for the next four weeks. The setup comes on the last day of the <a href="#/start">Gentle start</a>, when you’ll know what the key is for.'],
-    ['p','That’s all for this chapter. Go back to the <a href="#/start">Gentle start</a> and tick Day 1. Tomorrow’s ten minutes are waiting there.']
+    ['c','No setup yet','You don’t need the notebook or an API key yet. The setup comes in Week 6 of <a href="#/start">your route</a>, when you’ll know what the key is for.'],
+    ['p','That’s all for this chapter. Press “Mark chapter complete” below, and <a href="#/start">your route</a> moves on to the book. Tomorrow’s ten minutes are waiting there.']
   ]
 },
 

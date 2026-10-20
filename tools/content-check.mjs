@@ -491,7 +491,7 @@ const unescapeU = s => s.replace(/\\u([0-9a-fA-F]{4})/g,
   (_, h) => String.fromCharCode(parseInt(h, 16)));
 /* views.js wraps T() as TR() and studio.js carries chrome of its own; leaving
    either out reports live translations as dead. */
-const chrome = ['src/labs.js', 'src/app.js', 'src/views.js', 'src/studio.js', 'src/engine.js', 'src/data/gentle.js']
+const chrome = ['src/labs.js', 'src/app.js', 'src/views.js', 'src/studio.js', 'src/engine.js', 'src/data/route.mjs']
   .map(f => unescapeU(fs.readFileSync(path.join(ROOT, f), 'utf8'))).join('');
 const stale = Object.keys(hing).filter(k => !need.has(k) && !chrome.includes(k));
 if (stale.length) {

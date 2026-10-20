@@ -8,7 +8,8 @@ import { status } from './_lib/plan.js';
 export default guard(async (req, res) => {
   const id = new URL(req.url, 'http://x').searchParams.get('id') || '';
   if (!/^[0-9a-f]{32}$/.test(id)) return send(res, 404, { error: 'not_found' });
-  const row = (await query('SELECT data FROM plan_progress WHERE share_id=$1', [id]))[0];
+  const row = (await query('SELECT user_id, data FROM plan_progress WHERE share_id=$1', [id]))[0];
   if (!row) return send(res, 404, { error: 'not_found' });
-  send(res, 200, status(row.data));
+  const pr = (await query('SELECT data FROM progress WHERE user_id=$1', [row.user_id]))[0];
+  send(res, 200, status(row.data, pr ? pr.data : null));
 });

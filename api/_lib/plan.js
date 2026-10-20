@@ -1,14 +1,17 @@
-/* The 26-week plan tracker: merge rules and the public status summary.
+/* The 26-week plan: merge rules for its notes, and the public status summary.
 
-   The page keeps one small document per person:
-     { weeks:   { "1": { learn, build, ship, floor, link, note, u }, ... },
+   Progress itself is the route's (src/data/route.mjs), read from the one
+   progress record the playbook keeps. The plan page keeps only its own notes:
+     { weeks:   { "1": { link, note, u }, ... },
        gates:   { "M1": { passed, note, u }, ... },
        parking: { "<id>": { text, u, del } } }
    Every entry carries `u`, the time it was last edited on the device that edited
    it. Two devices that both edited different weeks keep both edits; for the same
    entry the later `u` wins. Nothing is ever refused for being out of date. */
 
-export const START = Date.UTC(2026, 9, 7);          // week 1 starts Wed 7 Oct 2026
+import { WEEKS as ROUTE_WEEKS, START as ROUTE_START, stepDone, nextStep } from '../../src/data/route.mjs';
+
+export const START = Date.parse(ROUTE_START + 'T00:00:00Z');  // week 1 starts Mon 19 Oct 2026
 export const DAY = 86400000;
 export const WEEKS = 26;
 const GATE_IDS = new Set(['M1', 'M2', 'M3', 'M4', 'M5', 'M6']);
@@ -23,8 +26,7 @@ export function clean(d) {
   for (const [k, v] of Object.entries(src.weeks || {})) {
     const n = Number(k);
     if (!Number.isInteger(n) || n < 1 || n > WEEKS || !v || typeof v !== 'object') continue;
-    out.weeks[n] = { learn: !!v.learn, build: !!v.build, ship: !!v.ship, floor: !!v.floor,
-      link: /^https?:\/\//i.test(v.link || '') ? str(v.link, 500) : '', note: str(v.note, 500), u: num(v.u) };
+    out.weeks[n] = { link: /^https?:\/\//i.test(v.link || '') ? str(v.link, 500) : '', note: str(v.note, 500), u: num(v.u) };
   }
   for (const [k, v] of Object.entries(src.gates || {})) {
     if (!GATE_IDS.has(k) || !v || typeof v !== 'object') continue;
@@ -60,23 +62,26 @@ export function weekAt(now) {
 }
 
 /* What a check-in needs to know, and nothing private: no links, no notes, no
-   parking-lot text. */
-export function status(data, now = Date.now()) {
-  const d = clean(data), { today, cur } = weekAt(now);
-  const w = n => d.weeks[n] || {};
-  let shipped = 0, due = 0, behind = 0, floor = 0, streak = 0, updated = 0;
-  const shippedWeeks = [], missedWeeks = [];
-  for (let n = 1; n <= WEEKS; n++) {
-    if (w(n).ship) { shipped++; shippedWeeks.push(n); if (w(n).floor) floor++; }
-    if (n < cur) { due++; if (!w(n).ship) { behind++; missedWeeks.push(n); } }
-    updated = Math.max(updated, w(n).u || 0);
+   parking-lot text, no answers. Counts come from the route and the person's
+   progress record; `data` is the plan page's own document (for lastEdit). */
+export function status(data, progress, now = Date.now()) {
+  const d = clean(data), P = progress && typeof progress === 'object' ? progress : {};
+  const { today, cur } = weekAt(now);
+  let complete = 0, stepsDone = 0, steps = 0, updated = 0;
+  const completeWeeks = [], behindWeeks = [];
+  for (const w of ROUTE_WEEKS) {
+    const done = w.steps.filter(x => stepDone(x, P)).length;
+    steps += w.steps.length; stepsDone += done;
+    if (done === w.steps.length) { complete++; completeWeeks.push(w.n); }
+    else if (w.n < cur) behindWeeks.push(w.n);
+    updated = Math.max(updated, (d.weeks[w.n] || {}).u || 0);
   }
-  let n = Math.min(cur, WEEKS);
-  if (n >= 1 && !w(n).ship) n--;
-  while (n >= 1 && w(n).ship) { streak++; n--; }
-  const level = Math.min(3, behind);
-  const cw = cur >= 1 && cur <= WEEKS ? w(cur) : {};
-  return { today: new Date(today).toISOString().slice(0, 10), week: cur, of: WEEKS, shipped, due, behind, floor,
-    streak, level, shippedWeeks, missedWeeks, thisWeek: { learn: !!cw.learn, build: !!cw.build, ship: !!cw.ship },
-    lastEdit: updated ? new Date(updated).toISOString() : null };
+  const nx = nextStep(P), at = nx ? nx.week : WEEKS + 1;
+  const behind = cur >= 1 && cur <= WEEKS ? Math.max(0, cur - at) : 0;
+  const cw = ROUTE_WEEKS[Math.min(Math.max(at, 1), WEEKS) - 1];
+  return { today: new Date(today).toISOString().slice(0, 10), week: cur, of: WEEKS, onWeek: at > WEEKS ? null : at,
+    stepsDone, steps, complete, behind, level: Math.min(3, behind), completeWeeks, behindWeeks,
+    thisWeek: { done: cw.steps.filter(x => stepDone(x, P)).length, of: cw.steps.length },
+    next: nx ? { kind: nx.kind, title: nx.title, week: nx.week } : null,
+    lastEdit: Math.max(updated, P.updatedAt || 0) ? new Date(Math.max(updated, P.updatedAt || 0)).toISOString() : null };
 }

@@ -13,6 +13,7 @@ import zlib from 'node:zlib';
 import { fileURLToPath } from 'node:url';
 import { loadBook, buildBook } from './book/build.mjs';
 import { buildPlan } from './plan/build.mjs';
+import * as ROUTE from './src/data/route.mjs';
 
 const R = p.dirname(fileURLToPath(import.meta.url));
 const read = f => fs.readFileSync(p.join(R, f), 'utf8');
@@ -41,7 +42,6 @@ const js = [
   'src/data/items7.js',
   'src/data/work.js',
   'src/data/exercises5.js',
-  'src/data/gentle.js',
   /* The Hinglish reading layer. Keyed on the English line, so these load after
      the content they translate and are merged into one lookup. */
   'src/data/hing-glossary.js',
@@ -106,7 +106,15 @@ for (const c of BOOK_SRC.chapters) {
   for (const id of c.course) BOOK_MAP.chapters[id] = { n: c.n, file: c.file, title: c.title };
 }
 const bookJs = 'window.BOOK=' + JSON.stringify(BOOK_MAP) + ';';
-const jsSource = js.map(f => f === 'src/app.js' ? bookJs + '\n' + read(f) : read(f)).join('\n');
+/* The route (src/data/route.mjs) is the one order that the playbook, the book,
+   the plan and the reminder all follow. The browser gets the same data and the
+   same functions, copied from the module's source, so "done" and "next" can
+   never be decided two different ways. */
+const routeJs = '(function(){\nconst START=' + JSON.stringify(ROUTE.START) + ', WEEKS=' + JSON.stringify(ROUTE.WEEKS) +
+  ', MONTHS=' + JSON.stringify(ROUTE.MONTHS) + ';\nconst STEPS=WEEKS.flatMap(w=>w.steps.map(s=>Object.assign({week:w.n},s)));\n' +
+  [ROUTE.stepDone, ROUTE.nextStep, ROUTE.stepHref, ROUTE.weekOf].map(f => f.toString()).join('\n') +
+  '\nwindow.ROUTE={START,WEEKS,MONTHS,STEPS,stepDone,nextStep,stepHref,weekOf};\n})();';
+const jsSource = js.map(f => f === 'src/app.js' ? bookJs + '\n' + routeJs + '\n' + read(f) : read(f)).join('\n');
 
 const TITLE = 'AI From Zero';
 const DESC = 'A skill tracker for AI product managers: measured competencies, ' +
@@ -263,6 +271,12 @@ if('serviceWorker' in navigator)addEventListener('load',function(){
 out('dist/site/index.html', head(SITE_HEAD, 'icon-180.png'));
 out('dist/site/icon.svg', ICON);
 out('dist/site/reminder.js', fs.readFileSync(p.join(R, 'src/reminder.js'), 'utf8'));
+/* Shared progress for the book and the plan, with the route's own "done" rule. */
+{
+  const src = read('src/progress.js');
+  if (!src.includes('/*STEP_DONE*/null')) throw new Error('src/progress.js lost its STEP_DONE marker');
+  out('dist/site/progress.js', src.replace('/*STEP_DONE*/null', '(' + ROUTE.stepDone.toString() + ')'));
+}
 out('dist/site/.nojekyll', '');
 outBin('dist/site/icon-180.png', APPLE_180);
 outBin('dist/site/icon-192.png', png(192, false));

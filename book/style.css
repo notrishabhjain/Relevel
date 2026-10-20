@@ -260,3 +260,9 @@ li.read a{border-color:color-mix(in srgb,var(--hue) 35%,var(--rule))}
   .chapter{max-width:none}
   a{color:inherit;text-decoration:none}
 }
+/* where this chapter sits on the route, and its read tick */
+.routebox{margin:1.6rem 0 0;padding:1rem 1.2rem;border-radius:14px;background:var(--card);border:1px solid var(--rule);font-family:var(--sans);font-size:.84rem;display:grid;gap:.6rem}
+.routebox p{margin:0}
+.routebox .rbrow{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1rem}
+.routebox .rbdone{color:var(--accent);font-weight:600}
+.routebox a{color:var(--accent)}
