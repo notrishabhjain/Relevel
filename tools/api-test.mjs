@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import crypto from 'node:crypto';
 import { messageFor, weekdaysSince, istParts, allowedEndpoint, makeKeys, vapidHeader, START, SEND_FROM_MINUTE, SEND_UNTIL_MINUTE } from '../api/_lib/nudge.js';
 import { MESSAGES } from '../api/_lib/nudge-messages.js';
+import { STEPS, stepDone } from '../src/data/route.mjs';
 const EXPECT = JSON.parse(readFileSync(new URL('../content/defaults.json', import.meta.url), 'utf8'));
 const B = process.env.BASE || 'http://127.0.0.1:8788';
 let pass = 0, fail = 0;
@@ -126,21 +127,21 @@ console.log('\n— plan tracker —');
   r = await api('/api/plan');
   ok(r.status === 200 && Object.keys(r.body.data.weeks).length === 0 && r.body.shareId === null, 'a new tracker is empty and unshared', r.body);
   r = await api('/api/plan', { method: 'PUT', body: { data: { weeks: {
-    1: { learn: true, build: true, ship: true, link: 'https://github.com/x/y', note: 'done', u: 100 },
-    2: { learn: true, u: 100 }, 99: { ship: true, u: 1 } }, gates: { M1: { passed: true, u: 5 }, X9: { passed: true } },
+    1: { link: 'https://github.com/x/y', note: 'done', u: 100 },
+    2: { note: 'week two', u: 100 }, 99: { note: 'x', u: 1 } }, gates: { M1: { passed: true, u: 5 }, X9: { passed: true } },
     parking: { p1: { text: 'learn Rust', u: 3 } } } } });
-  ok(r.status === 200 && r.body.data.weeks[1].ship && !r.body.data.weeks[99] && !r.body.data.gates.X9, 'saves a tracker and drops unknown weeks and gates', r.body);
-  r = await api('/api/plan', { method: 'PUT', body: { data: { weeks: { 1: { learn: true, build: true, ship: false, u: 50 }, 3: { learn: true, u: 60 } } } } });
-  ok(r.body.data.weeks[1].ship === true, 'an older edit does not overwrite a newer one', r.body.data.weeks[1]);
-  ok(r.body.data.weeks[3].learn === true && r.body.data.weeks[2].learn === true, 'edits to different weeks are both kept');
-  r = await api('/api/plan', { method: 'PUT', body: { data: { weeks: { 1: { ship: false, link: 'javascript:alert(1)', u: 500 } } } } });
-  ok(r.body.data.weeks[1].ship === false && r.body.data.weeks[1].link === '', 'a newer edit wins and a non-http link is dropped', r.body.data.weeks[1]);
+  ok(r.status === 200 && r.body.data.weeks[1].note === 'done' && !r.body.data.weeks[99] && !r.body.data.gates.X9, 'saves the plan notes and drops unknown weeks and gates', r.body);
+  r = await api('/api/plan', { method: 'PUT', body: { data: { weeks: { 1: { note: 'older', u: 50 }, 3: { note: 'three', u: 60 } } } } });
+  ok(r.body.data.weeks[1].note === 'done', 'an older edit does not overwrite a newer one', r.body.data.weeks[1]);
+  ok(r.body.data.weeks[3].note === 'three' && r.body.data.weeks[2].note === 'week two', 'edits to different weeks are both kept');
+  r = await api('/api/plan', { method: 'PUT', body: { data: { weeks: { 1: { note: 'newer', link: 'javascript:alert(1)', u: 500 } } } } });
+  ok(r.body.data.weeks[1].note === 'newer' && r.body.data.weeks[1].link === '', 'a newer edit wins and a non-http link is dropped', r.body.data.weeks[1]);
   r = await api('/api/plan', { method: 'POST', body: { share: true } });
   const sid = r.body.shareId;
   ok(r.status === 200 && /^[0-9a-f]{32}$/.test(sid), 'sharing creates an unguessable id', r.body);
   cookie = '';
   r = await api('/api/plan-status?id=' + sid);
-  ok(r.status === 200 && r.body.of === 26 && !('link' in r.body) && !JSON.stringify(r.body).includes('learn Rust'), 'the status link shows counts only', r.body);
+  ok(r.status === 200 && r.body.of === 26 && r.body.steps > 100 && !('link' in r.body) && !JSON.stringify(r.body).includes('learn Rust'), 'the status link shows route counts only', r.body);
   cookie = saved;
   r = await api('/api/plan', { method: 'POST', body: { share: false } });
   cookie = '';
@@ -165,15 +166,20 @@ console.log('\n— daily reminder —');
   ok(weekdaysSince(START, '2026-10-25') === 5 && messageFor('2026-10-24').n === 5, 'a weekend repeats the last weekday');
   ok(messageFor('2026-11-27').n === 30 && messageFor('2026-11-30').n === 1, 'after thirty weekdays it starts again');
   ok(messageFor('2026-10-19').title === 'Day 1 of 30: your ten minutes' && !messageFor('2026-10-19').body.startsWith('Day'), 'title and body are split');
-  ok(messageFor('2026-10-19').url === '/#/start' && messageFor('2026-11-17').url === '/#/ch/ch1', 'each day opens its own step: the gentle start, then the chapters');
-  ok(messageFor('2026-11-30').url === '/#/' && /marked “Next”/.test(messageFor('2026-11-30').body), 'after thirty days the task is the site’s own Next');
+  ok(MESSAGES.every(m => !/Chapter \d|chapter \d/.test(m)), 'the firm lines never name a chapter, so they cannot disagree with the route');
   {
-    const behind = messageFor('2026-10-23', { gentle: { g1: 1, g2: 1 } });
-    ok(behind.n === 5 && behind.url === '/#/start' && /token counter/.test(behind.body) === false && /What the machine is/.test(behind.body),
-      'signed in and behind: the task is the next unticked day, not the calendar’s');
-    const all = {}; for (let i = 1; i <= 20; i++) all['g' + i] = 1;
-    ok(/marked “Next”/.test(messageFor('2026-10-21', { gentle: all }).body), 'gentle start finished early: the task is the site’s Next');
-    ok(/token counter/.test(messageFor('2026-10-22', { path: 'full', gentle: {} }).body), 'on the full course order, the calendar decides');
+    const fresh = messageFor('2026-10-19', {});
+    ok(fresh.url === '/#/ch/ch0' && /Chapter 0/.test(fresh.body), 'signed in and new: the task is the route’s first step, Start here', fresh);
+    const behind = messageFor('2026-11-03', { done: { ch0: 1 }, read: { 'preface.html': 1 } });
+    ok(behind.url === '/book/01-the-number-in-the-chat.html' && /The Number in the Chat/.test(behind.body), 'behind the calendar: the task is the next open step, not the calendar’s', behind);
+    ok(messageFor('2026-11-03', { lang: 'hi', done: { ch0: 1 }, read: { 'preface.html': 1 } }).url.startsWith('/book/hi/'), 'and it opens the Hinglish book for a Hinglish reader');
+    const half = messageFor('2026-11-03', { steps: Object.fromEntries(STEPS.slice(0, 12).map(x => [x.id, 1])), done: { ch0: 1 }, read: Object.fromEntries(STEPS.slice(0, 12).filter(x => x.book).map(x => [x.book, 1])) });
+    ok(/second half/.test(half.body) || /first half/.test(half.body) || /Today:/.test(half.body), 'a half chapter is named as a half', half.body);
+    const all = { done: {}, read: {}, steps: {} };
+    STEPS.forEach(x => { if (x.kind === 'chapter') all.done[x.ch] = 1; else if (x.kind === 'read') all.read[x.book] = 1; else all.steps[x.id] = 1; });
+    ok(STEPS.every(x => stepDone(x, all)) && /Every step on the route is done/.test(messageFor('2026-12-01', all).body), 'with every step done, it says so');
+    const anon = messageFor('2026-11-03');
+    ok(anon.url === '/#/start' && /This week: Meet the machine/.test(anon.body), 'signed out: the calendar names the week, the site names the step', anon);
   }
   ok(allowedEndpoint('https://fcm.googleapis.com/fcm/send/abc') && allowedEndpoint('https://updates.push.services.mozilla.com/wpush/v2/x') &&
      allowedEndpoint('https://web.push.apple.com/abc') && !allowedEndpoint('http://fcm.googleapis.com/x') &&

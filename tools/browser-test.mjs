@@ -984,7 +984,7 @@ ok(/^Track A/.test(rows.find(r => /^(Part|Track) /.test(r.label)).label), 'in re
 ok(rows.every(r => /^#\/(ch\/|project)/.test(r.href || '')), 'and each one opens a chapter or the project, not nowhere');
 ok(!(await mainText(navp.page)).match(/Core track|Selective|Reference/), 'with no tier labels to decode');
 
-console.log('\n— the gentle start leads, and ticking a day moves it on —');
+console.log('\n— one route: the playbook, the book and the plan agree —');
 {
   const gs = await newDevice(false);
   await boot(gs.page);
@@ -992,34 +992,93 @@ console.log('\n— the gentle start leads, and ticking a day moves it on —');
     const r = document.querySelector('.resumelead');
     return r ? { lbl: r.querySelector('.cplbl').textContent, h: r.querySelector('a.btnlink').getAttribute('href') } : null;
   });
-  ok(lead && /Gentle start/.test(lead.lbl) && /Day 1 \/ 20/.test(lead.lbl) && lead.h === '#/start', 'a new visitor’s Next is Day 1 of the gentle start', JSON.stringify(lead));
+  ok(lead && /Your route · Week 1 · step 1 \/ 5/.test(lead.lbl) && lead.h === '#/ch/ch0', 'a new visitor’s Next is the route’s first step, Start here', JSON.stringify(lead));
   await boot(gs.page, '#/start');
   const pg = await gs.page.evaluate(() => ({
-    days: document.querySelectorAll('.gday').length,
-    weeks: document.querySelectorAll('.gweek').length,
-    today: (document.querySelector('.gday.today') || {}).id,
+    steps: document.querySelectorAll('.gday').length, all: window.ROUTE.STEPS.length,
+    weeks: document.querySelectorAll('.gweek').length, open: [...document.querySelectorAll('.gweek[open]')].map(d => d.id),
+    next: (document.querySelector('.gday.today') || {}).id,
     w: document.documentElement.scrollWidth <= innerWidth
   }));
-  ok(pg.days === 20 && pg.weeks === 4 && pg.today === 'day-1', 'the page lists four weeks of five days, with day 1 marked today', JSON.stringify(pg));
-  await gs.page.click('#day-1 input[type=checkbox]');
-  await gs.page.waitForTimeout(150);
-  ok(await gs.page.evaluate(() => (document.querySelector('.gday.today') || {}).id) === 'day-2' &&
-     await gs.page.evaluate(() => !!window.STORE.S.gentle.g1), 'ticking day 1 saves it and makes day 2 today');
-  const href = await gs.page.evaluate(() => document.querySelector('#day-2 a').getAttribute('href'));
-  ok(/\/book\/08-what-the-machine-is\.html#s-8-1$/.test(href), 'a reading day opens the right book section', href);
-  const next = await gs.page.evaluate(() => { const c = window.ENG.currentChapter(window.STORE.S); return c && c.c.id; });
-  ok(next === 'ch0', 'the first chapter on the gentle path is Start here', next);
-  const path = await gs.page.evaluate(() => {
-    const S = window.STORE.S, E = window.ENG, by = id => window.CHAPTERS.find(c => c.id === id);
-    const gentle = ['ch0', 'ch05', 'a1', 'a3', 'b6'].map(id => E.onPath(S, by(id)));
-    S.path = 'full';
-    const full = ['a1', 'b6'].map(id => E.onPath(S, by(id)));
-    S.path = null;
-    return { gentle, full };
-  });
-  ok(path.gentle.join() === 'true,true,false,false,false', 'after it, Next skips the long Track A and Track B chapters', JSON.stringify(path));
-  ok(path.full.join() === 'true,true', 'and the full course order keeps them in', JSON.stringify(path));
+  ok(pg.steps === pg.all && pg.weeks === 26 && pg.next === 'step-c_ch0' && pg.open.includes('week-1') && pg.w,
+     'the route page lists all 26 weeks and every step, with week 1 open and Start here next', JSON.stringify(pg));
+  /* finish Start here the way a reader does, then the next step is the preface */
+  await gs.page.evaluate(() => { window.STORE.S.done.ch0 = 1; window.STORE.flush(); });
+  await gs.page.reload();
+  await gs.page.waitForFunction(() => window.CONTENT && document.querySelector('.gday'));
+  const n2 = await gs.page.evaluate(() => { const li = document.querySelector('.gday.today'); return { id: li.id, href: li.querySelector('a').getAttribute('href') }; });
+  ok(n2.id === 'step-b_preface_html' && n2.href === '/book/preface.html', 'marking a chapter complete moves the route on, to the book', JSON.stringify(n2));
+  await gs.page.click('#step-t_review-1 input[type=checkbox]');
+  await gs.page.waitForTimeout(300);
+  ok(await gs.page.evaluate(() => !!window.STORE.S.steps['t:review-1']), 'a look back ticked on the route page is saved');
+
+  /* the book ticks the same record */
+  const bookReady = () => gs.page.waitForFunction(() => window.AIFZ_PROGRESS && document.querySelector('.to-top'));
+  await gs.page.goto(B + '/book/01-the-number-in-the-chat.html');
+  await bookReady();
+  const box = await gs.page.textContent('.routebox');
+  ok(/On your route: Week 1/.test(box), 'each book chapter says where it sits on the route', box);
+  /* the book scrolls smoothly; jump instead, as a long read would end up */
+  await gs.page.evaluate(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' }));
+  await gs.page.waitForTimeout(400);
+  const read1 = await gs.page.evaluate(() => JSON.parse(localStorage.getItem('aifz2027')).read || {});
+  ok(!!read1['01-the-number-in-the-chat.html'], 'reading a book chapter to its end ticks it in the shared record', JSON.stringify(read1));
+  await gs.page.goto(B + '/book/08-what-the-machine-is.html');
+  await bookReady();
+  await gs.page.evaluate(() => document.getElementById('s-8-4').scrollIntoView({ behavior: 'instant' }));
+  await gs.page.waitForTimeout(400);
+  const half = await gs.page.evaluate(() => JSON.parse(localStorage.getItem('aifz2027')).steps || {});
+  ok(!!half['b:08-what-the-machine-is.html#1'], 'reaching the second half of a split chapter ticks its first half', JSON.stringify(half));
+  await gs.page.goto(B + '/book/');
+  await bookReady();
+  const toc = await gs.page.evaluate(() => [...document.querySelectorAll('li.read')].map(li => li.getAttribute('data-file') || (li.querySelector('[data-file]') || {}).getAttribute && li.querySelector('[data-file]').getAttribute('data-file')));
+  ok(toc.some(f => /01-the-number/.test(f || '')), 'the book’s contents show it as read', JSON.stringify(toc));
+
+  /* the plan shows the same ticks, and its own ticks reach the playbook */
+  await gs.page.goto(B + '/plan/');
+  await gs.page.waitForSelector('li.st');
+  await gs.page.waitForTimeout(300);
+  const plan = await gs.page.evaluate(() => ({
+    ch0: document.querySelector('li[data-step="c:ch0"]').classList.contains('done'),
+    b1: document.querySelector('li[data-step="b:01-the-number-in-the-chat.html"]').classList.contains('done'),
+    rev: document.querySelector('li[data-step="t:review-1"] input').checked,
+    next: (document.querySelector('li.st.next') || {}).getAttribute && document.querySelector('li.st.next').getAttribute('data-step'),
+    steps: document.querySelectorAll('li.st').length, all: 0
+  }));
+  ok(plan.ch0 && plan.b1 && plan.rev, 'the plan shows the chapter, the book chapter and the look back as done', JSON.stringify(plan));
+  ok(plan.next === 'b:preface.html', 'and names the same next step as the playbook', plan.next);
+  await gs.page.click('li[data-step="t:tokens"] input');
+  await gs.page.waitForTimeout(300);
+  await gs.page.goto(B + '/');
+  await gs.page.waitForFunction(() => window.CONTENT && window.STORE);
+  ok(await gs.page.evaluate(() => !!window.STORE.S.steps['t:tokens'] && !!window.STORE.S.read['01-the-number-in-the-chat.html']),
+     'a try ticked on the plan, and a chapter read in the book, are in the playbook too');
+  const ch = await gs.page.evaluate(async () => { location.hash = '#/ch/a1'; await new Promise(r => setTimeout(r, 300)); return document.querySelector('.routeline') && document.querySelector('.routeline').textContent; });
+  ok(/Week 5/.test(ch || '') && /first pass/.test(ch || ''), 'a long chapter says it is a first pass on the route, in week 5', ch);
   await gs.ctx.close();
+}
+
+console.log('\n— the same route on a second device, through the account —');
+{
+  const A = await newDevice(true, 'routesync');
+  await boot(A.page);
+  await A.page.evaluate(() => { window.STORE.S.done.ch0 = 1; window.STORE.flush(); });
+  await A.page.waitForTimeout(2500);
+  await A.page.goto(B + '/book/preface.html');
+  await A.page.waitForFunction(() => window.AIFZ_PROGRESS && document.querySelector('.to-top'));
+  await A.page.click('.routebox .rbmark');
+  await A.page.waitForTimeout(800);
+  const D = await newDevice(true, 'routesync');
+  await D.page.goto(B + '/plan/');
+  await D.page.waitForSelector('li.st');
+  await D.page.waitForTimeout(1200);
+  const seen = await D.page.evaluate(() => ({
+    ch0: document.querySelector('li[data-step="c:ch0"]').classList.contains('done'),
+    pre: document.querySelector('li[data-step="b:preface.html"]').classList.contains('done') }));
+  ok(seen.ch0 && seen.pre, 'a device that never opened the playbook sees the chapter and the book page done', JSON.stringify(seen));
+  const r = await D.page.evaluate(() => fetch('/api/nudge?today=1').then(r => r.json()));
+  ok(/The Number in the Chat/.test(r.body) && r.url === '/book/01-the-number-in-the-chat.html', 'and the 12:00 reminder names the same next step', JSON.stringify(r));
+  await A.ctx.close(); await D.ctx.close();
 }
 
 console.log('\n— the course map shows where you are —');

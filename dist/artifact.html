@@ -1256,6 +1256,24 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .gnote{font-size:.8rem}
 .gpath{margin:1.4rem 0 2rem;font-size:.85rem;line-height:1.6}
 .linkbtn{background:none;border:0;padding:0;font:inherit;color:var(--ink);text-decoration:underline;cursor:pointer}
+.gweek{border:1px solid var(--rule);border-radius:var(--r);background:var(--paper);margin:0 0 .6rem;padding:0}
+.gweek[open]{border-color:var(--ink-2)}
+.gweek.done{border-color:var(--verified)}
+.gweek>summary{display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .7rem;padding:.75rem .9rem;cursor:pointer;list-style:none}
+.gweek>summary::-webkit-details-marker{display:none}
+.gweek .gwn{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--red);flex:none}
+.gweek .gwt{font-family:var(--sans);font-weight:600;font-size:.95rem;flex:1 1 12rem;min-width:0}
+.gweek .gwd{font-family:var(--mono);font-size:.68rem;color:var(--muted);flex:none}
+.gweek>.gblurb,.gweek>.gdays{margin-left:.9rem;margin-right:.9rem}
+.gweek>.gdays{margin-bottom:.9rem}
+.gstate{font-family:var(--serif);font-size:1rem;margin:-.6rem 0 1.4rem;color:var(--ink-2)}
+.gstate.behind{color:var(--amber)}
+.gdone{font-size:1.1rem;color:var(--verified);width:1.15rem;text-align:center}
+.routeline{display:flex;gap:.6rem;align-items:baseline;flex-wrap:wrap;margin:0 0 .8rem;padding:.55rem .8rem;border:1px solid var(--rule);border-radius:var(--r);background:var(--raised);text-decoration:none;color:inherit}
+.routeline:hover{border-color:var(--ink-2)}
+.routeline .lbl{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--verified)}
+.routeline .pt{flex:1;min-width:14rem;font-size:.9rem;line-height:1.45;color:var(--ink)}
+.routeline .go{font-family:var(--mono);font-size:.68rem;color:var(--ink-2)}
 
 </style>
 <script>
@@ -1329,8 +1347,8 @@ window.PART6 = [
        ph:'When I do not want to open this, I will …',
        after:'Plans that work have three things in common. First, the smallest step is really tiny: one question, two minutes, not a whole chapter. Second, you know where to restart without having to decide, because deciding is hard when you’re tired. Third, you’ve already decided what a missed day means: nothing. It doesn’t mean starting again. Everyone misses days, and the people who finish expected that.'}
     ],
-    ['c','No setup yet','You don’t need the notebook or an API key for the next four weeks. The setup comes on the last day of the <a href="#/start">Gentle start</a>, when you’ll know what the key is for.'],
-    ['p','That’s all for this chapter. Go back to the <a href="#/start">Gentle start</a> and tick Day 1. Tomorrow’s ten minutes are waiting there.']
+    ['c','No setup yet','You don’t need the notebook or an API key yet. The setup comes in Week 6 of <a href="#/start">your route</a>, when you’ll know what the key is for.'],
+    ['p','That’s all for this chapter. Press “Mark chapter complete” below, and <a href="#/start">your route</a> moves on to the book. Tomorrow’s ten minutes are waiting there.']
   ]
 },
 
@@ -12591,86 +12609,6 @@ window.EXERCISES5 = [
   iterate:'There is no version 2. Take a day off, then start your next system from this findings page, not from a new syllabus.' }
 
 ];
-
-/* The gentle start: the first four weeks, ten minutes a day.
-
-   Why this exists. The course in order goes from a ten-minute "Start here"
-   straight into Track A, whose chapters are six to fourteen hours each and ask
-   you to interview people in the first week. Chapter 1 wants an API key. For
-   someone new to AI that first step is a wall, and a wall on day two is where
-   people stop.
-
-   So the first twenty weekdays are reading and tiny tries, in the order a
-   beginner needs them: what the machine is, how you talk to it, how you tell
-   whether it did well, how it finds things. The reading is the book, which
-   tells the same ideas as a story. Nothing here needs an install, an account
-   or another person until the last day, when the one-time setup comes in
-   because by then you know what it is for.
-
-   The daily 12:00 reminder (api/_lib/nudge-messages.js) follows these days in
-   the same order, so the notification and this page always agree.
-
-   go.book  a book chapter file, read from the anchor if one is given
-   go.app   a page inside the workbook */
-
-window.GENTLE = {
-  weeks: [
-    { n: 1, title: 'Meet the machine',
-      blurb: 'What a language model is, in plain words. Reading, plus one small experiment in the browser.' },
-    { n: 2, title: 'Talking to it',
-      blurb: 'How a program asks a model for something, why it forgets, and how to give it instructions.' },
-    { n: 3, title: 'Is it any good?',
-      blurb: 'How to tell whether it did well, with a count instead of a feeling.' },
-    { n: 4, title: 'Finding things, then your first setup',
-      blurb: 'Long documents and two ways to search them. On Friday, the one-time setup, now that you know what it is for.' }
-  ],
-  days: [
-    { id: 'g1', wk: 1, title: 'Start here', mins: 10, go: { app: '#/ch/ch0' },
-      what: 'Ten minutes on how the site works. Tap the underlined words and answer the boxes. Nothing to install.' },
-    { id: 'g2', wk: 1, title: 'What the machine is, part 1', mins: 10, go: { book: '08-what-the-machine-is.html', at: 's-8-1' },
-      what: 'Read sections 8.1 to 8.3, up to the end of “Tokens: how the machine reads”. Then stop, even if you want to keep going.' },
-    { id: 'g3', wk: 1, title: 'What the machine is, part 2', mins: 10, go: { book: '08-what-the-machine-is.html', at: 's-8-4' },
-      what: 'Read from section 8.4, “The context window”, to the end of the chapter.' },
-    { id: 'g4', wk: 1, title: 'Count your own words in tokens', mins: 10, go: { app: '#/ch/ch05' },
-      what: 'Do only the first experiment in Chapter 0.5. Paste a message you wrote today, once in English and once in Hinglish, and compare the counts.' },
-    { id: 'g5', wk: 1, title: 'Look back', mins: 5, look: true,
-      what: 'In your notepad, write three lines: one thing that made sense, one that didn’t, and one question you still have.' },
-
-    { id: 'g6', wk: 2, title: 'The first conversation', mins: 10, go: { book: '09-the-first-conversation.html' },
-      what: 'Read the chapter. It shows one request to a model and the reply that comes back. Only read it for now. The setup comes later.' },
-    { id: 'g7', wk: 2, title: 'A mind with no memory', mins: 10, go: { book: '10-a-mind-with-no-memory.html' },
-      what: 'Read the chapter. Then open a chat assistant you already use, start a new chat, and ask what you talked about last time. Note what it says.' },
-    { id: 'g8', wk: 2, title: 'Giving instructions, part 1', mins: 10, go: { book: '11-giving-instructions.html', at: 's-11-1' },
-      what: 'Read sections 11.1 to 11.4, up to the end of “Where it makes things up”.' },
-    { id: 'g9', wk: 2, title: 'Giving instructions, part 2', mins: 12, go: { book: '11-giving-instructions.html', at: 's-11-5' },
-      what: 'Read from section 11.5, “Four techniques, in order of strength”, to the end. Then ask a chat assistant to summarise one of your emails twice: once with no instructions, once with three lines saying who it is for and how long it should be.' },
-    { id: 'g10', wk: 2, title: 'Look back', mins: 5, look: true,
-      what: 'Three lines in your notepad: what made sense, what didn’t, and one question. Then look at what you wrote last Friday.' },
-
-    { id: 'g11', wk: 3, title: 'Knowing whether it works, part 1', mins: 10, go: { book: '12-knowing-whether-it-works.html', at: 's-12-1' },
-      what: 'Read sections 12.1 to 12.3, up to the end of “Ten sentences”.' },
-    { id: 'g12', wk: 3, title: 'Knowing whether it works, part 2', mins: 10, go: { book: '12-knowing-whether-it-works.html', at: 's-12-4' },
-      what: 'Read from section 12.4, “The scoreboard”, to the end of the chapter.' },
-    { id: 'g13', wk: 3, title: 'Write ten test messages', mins: 10, look: true,
-      what: 'Pick one small job, such as “does this message contain a phone number?”. On paper, write ten short messages and the right answer next to each. Make two of them tricky.' },
-    { id: 'g14', wk: 3, title: 'Mark the machine', mins: 10, look: true,
-      what: 'Give your ten messages to a chat assistant, one at a time, with the same question. Mark each answer right or wrong. Your score out of ten is your first evaluation.' },
-    { id: 'g15', wk: 3, title: 'Look back', mins: 5, look: true,
-      what: 'Three lines in your notepad. Add your score from yesterday, and the one message it got wrong that surprised you most.' },
-
-    { id: 'g16', wk: 4, title: 'Sorting and summarising', mins: 10, go: { book: '13-sorting-and-summarising.html' },
-      what: 'Read the chapter.' },
-    { id: 'g17', wk: 4, title: 'Too long to read at once', mins: 10, go: { book: '14-too-long-to-read-at-once.html' },
-      what: 'Read the chapter.' },
-    { id: 'g18', wk: 4, title: 'Finding by words', mins: 8, go: { book: '15-finding-by-words.html' },
-      what: 'Read the chapter.' },
-    { id: 'g19', wk: 4, title: 'Finding by meaning', mins: 10, go: { book: '16-finding-by-meaning.html' },
-      what: 'Read the chapter.' },
-    { id: 'g20', wk: 4, title: 'Setup, first section only', mins: 15, go: { app: '#/setup' },
-      what: 'Now you know what an API key is for. Do only the first section of the setup page. If a step fails, copy the exact error and ask a chat assistant. Then write your three lines for the week.' }
-  ],
-  after: 'From here, go through the course chapters in order, starting with Chapter 1. On your first pass, read each chapter and answer its boxes. If a step needs other people or a long build, write “second pass” next to it in your notepad and move on. The long product chapters in Track A can wait. Their stories are already in the book, in chapters 1 to 7.'
-};
 
 /* Hinglish: glossary definitions.
 
@@ -24910,10 +24848,10 @@ Object.assign(window.HING = window.HING || {}, {
     'Jo plans kaam karte hain, unmein teen baatein common hoti hain. Pehli, sabse chhota step sach mein chhota hota hai: ek sawaal, 2 minute, poora chapter nahi. Doosri, aapko pata hota hai ki dobara kahan se shuru karna hai, kyunki thake hone par tay karna mushkil hota hai. Teesri, aap pehle hi tay kar chuke hote hain ki chhoota hua din matlab kya hai: kuch nahi. Iska matlab dobara shuru se shuru karna nahi hai. Din toh sabke chhootte hain, aur jo log course khatam karte hain, unhe yeh pehle se pata hota hai.',
   'Before you start':
     'Shuru karne se pehle',
-  'You don’t need the notebook or an API key for the next four weeks. The setup comes on the last day of the <a href="#/start">Gentle start</a>, when you’ll know what the key is for.':
-    'Agle chaar hafton tak aapko notebook ya API key ki zaroorat nahi hai. Setup <a href="#/start">Gentle start</a> ke aakhri din aata hai, jab aapko pata hoga ki key kis kaam ki hai.',
-  'That’s all for this chapter. Go back to the <a href="#/start">Gentle start</a> and tick Day 1. Tomorrow’s ten minutes are waiting there.':
-    'Is chapter mein bas itna hi. <a href="#/start">Gentle start</a> par wapas jaiye aur Day 1 tick kijiye. Kal ke das minute wahin aapka intezaar kar rahe hain.',
+  'You don’t need the notebook or an API key yet. The setup comes in Week 6 of <a href="#/start">your route</a>, when you’ll know what the key is for.':
+    'Abhi aapko notebook ya API key ki zaroorat nahi hai. Setup <a href="#/start">aapke raaste</a> ke Week 6 mein aata hai, jab aapko pata hoga ki key kis kaam ki hai.',
+  'That’s all for this chapter. Press “Mark chapter complete” below, and <a href="#/start">your route</a> moves on to the book. Tomorrow’s ten minutes are waiting there.':
+    'Is chapter mein bas itna hi. Neeche “Mark chapter complete” dabaiye, aur <a href="#/start">aapka raasta</a> kitaab ki taraf aage badh jaata hai. Kal ke das minute wahin aapka intezaar kar rahe hain.',
   'No setup yet':
     'Abhi koi setup nahi',
 
@@ -30583,100 +30521,129 @@ Object.assign(window.HING = window.HING || {}, {
     'Product mein tracking jodiye, funnels aur cohorts padhiye, aur aisa experiment chalaiye jo sach mein ek sawaal ka jawaab de sake.',
 });
 
-/* Hinglish: the gentle start page (src/data/gentle.js) and its labels. Keyed on the exact English line. */
+/* Hinglish: the route (src/data/route.mjs) and the route page, keyed on the exact English line. */
 Object.assign(window.HING = window.HING || {}, {
-  'The first four weeks': 'Pehle chaar hafte',
-  'ten minutes a weekday': 'har weekday das minute',
-  'Gentle start': 'Aaram se shuruaat',
-  'Gentle start: the first four weeks': 'Aaram se shuruaat: pehle chaar hafte',
-  'Reading and small tries only. No installs, no API key and no interviews until the last day of week 4. On a day when ten minutes feels like too much, read one page and tick the day anyway.':
-    'Sirf padhna aur chhote-chhote try. Week 4 ke aakhri din tak na koi install, na API key, na interview. Jis din das minute bhi zyada lagein, us din ek page padhiye aur phir bhi din tick kar dijiye.',
-  'days done': 'din poore',
-  'Open': 'Kholiye',
-  'Read in the book': 'Kitaab mein padhiye',
-  'Week': 'Week',
-  'Day': 'Day',
+  /* the page */
+  'Your route': 'Aapka raasta',
+  'Your route: 26 weeks, one order': 'Aapka raasta: 26 hafte, ek hi order',
+  '26 weeks, one order': '26 hafte, ek hi order',
+  'the same on the plan, in the book and in the 12:00 reminder': 'plan, kitaab aur 12 baje ke reminder mein bilkul yahi',
+  'Month 1 is the gentle start: the book from its first page, ten minutes a weekday, and nothing to install. After that, each chapter’s story comes first in the book, then the chapter itself here. On a day when ten minutes feels like too much, do one page and tick it anyway.':
+    'Mahina 1 aaram se shuruaat hai: kitaab pehle page se, har weekday das minute, aur kuch install nahi karna. Uske baad har chapter ki kahani pehle kitaab mein aati hai, phir wahi chapter yahan. Jis din das minute bhi zyada lagein, ek page kijiye aur phir bhi tick kar dijiye.',
+  'steps done': 'steps poore',
+  'Every step is done. Well done.': 'Har step poora ho gaya. Shabaash.',
+  'This is calendar week {cal}, and you are on week {at}. That is fine: carry on from the first open step, and never miss twice.':
+    'Calendar ke hisaab se yeh week {cal} hai, aur aap week {at} par hain. Koi baat nahi: pehle khule step se aage badhiye, aur lagaataar do din kabhi mat chhodiye.',
+  'You are ahead of the calendar. Keep the pace that keeps you coming back.': 'Aap calendar se aage hain. Wahi raftaar rakhiye jo aapko roz wapas laaye.',
+  'You are on schedule. Do the step marked today.': 'Aap samay par hain. Jo step “next” likha hai, woh kijiye.',
+  'By Sunday': 'Ravivaar tak',
+  'Chapter': 'Chapter',
+  'Book': 'Kitaab',
+  'Try': 'Try',
+  'Look back': 'Peeche mudkar dekhiye',
   'Done': 'Ho gaya',
-  'today': 'aaj',
-  'Notepad and pen. Tick the day when you are done.': 'Notepad aur pen. Kaam ho jaaye to din tick kar dijiye.',
-  'After the four weeks': 'Chaar hafton ke baad',
-  'Chapter 1': 'Chapter 1',
-  'You are following the full course order, Track A first.': 'Aap poore course ke order mein chal rahe hain, pehle Track A.',
-  'You are on the gentle path. “Next” skips the long Track A and Track B chapters for now.':
-    'Aap aaram wale raaste par hain. “Next” abhi Track A aur Track B ke lambe chapters ko chhod deta hai.',
-  'Go back to the gentle path': 'Aaram wale raaste par wapas jaiye',
-  'Use the full course order instead': 'Iske bajaye poore course ka order use kijiye',
+  'Ticks itself when you mark the chapter complete': 'Chapter complete mark karte hi apne aap tick ho jaata hai',
+  'Read in the book': 'Kitaab mein padhiye',
+  'Open the chapter': 'Chapter kholiye',
+  'Open': 'Kholiye',
+  'next': 'agla',
+  'step': 'step',
+  'Week': 'Week',
+  'See the whole route': 'Poora raasta dekhiye',
+  'See the week': 'Woh week dekhiye',
+  'The plan tab shows the same weeks with notes, monthly reviews and the reasons behind them.': 'Plan tab par yahi hafte hain, notes, mahine ke review aur unke peeche ki wajah ke saath.',
+  'Open the plan': 'Plan kholiye',
+  'first pass, about 20 minutes: read it and answer the boxes. The Build it section is optional.': 'pehli baar, lagbhag 20 minute: padhiye aur boxes ka jawaab dijiye. “Build it” wala hissa optional hai.',
   'One page': 'Ek page',
 
-  'Meet the machine': 'Machine se mulaqat',
-  'What a language model is, in plain words. Reading, plus one small experiment in the browser.':
-    'Language model kya hota hai, saaf shabdon mein. Padhna, aur browser mein ek chhota sa experiment.',
-  'Talking to it': 'Usse baat karna',
-  'How a program asks a model for something, why it forgets, and how to give it instructions.':
-    'Ek program model se kuch kaise maangta hai, model bhool kyun jaata hai, aur use instructions kaise dete hain.',
-  'Is it any good?': 'Kya yeh sach mein accha hai?',
-  'How to tell whether it did well, with a count instead of a feeling.':
-    'Kaise pata karein ki usne accha kaam kiya, feeling se nahi balki ginti se.',
-  'Finding things, then your first setup': 'Cheezein dhoondhna, phir aapka pehla setup',
-  'Long documents and two ways to search them. On Friday, the one-time setup, now that you know what it is for.':
-    'Lambe documents aur unhe search karne ke do tareeke. Friday ko ek baar ka setup, kyunki ab aapko pata hai ki woh kis kaam ka hai.',
+  /* what each kind of step asks */
+  'Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end.':
+    'Padhiye, boxes ka jawaab dijiye aur hands-on steps kijiye. Aakhir mein “Mark chapter complete” dabaiye.',
+  'Read the chapter. The page ticks itself when you reach the end.': 'Chapter padhiye. End tak pahunchte hi page apne aap tick ho jaata hai.',
+  'Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log.':
+    'Notepad mein teen lines: kya samajh aaya, kya nahi aaya, aur ek sawaal. Agar aap log rakhte hain to photo le lijiye.',
+  'Read sections 8.1 to 8.3, then stop, even if you want to keep going.': 'Section 8.1 se 8.3 tak padhiye, phir ruk jaiye, chahe aage padhne ka mann ho.',
+  'Read from section 8.4 to the end of the chapter.': 'Section 8.4 se chapter ke end tak padhiye.',
+  'Read sections 11.1 to 11.4, then stop, even if you want to keep going.': 'Section 11.1 se 11.4 tak padhiye, phir ruk jaiye, chahe aage padhne ka mann ho.',
+  'Read from section 11.5 to the end of the chapter.': 'Section 11.5 se chapter ke end tak padhiye.',
+  'First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later.':
+    'Pehli baar: padhiye aur boxes ka jawaab dijiye, phir “Mark chapter complete” dabaiye. Iski kahani aap kitaab mein padh chuke hain. “Build it” wala hissa optional hai; use baad ke liye chhod dijiye.',
+  'The chapter allows about thirty hours. Ship the smallest version that works in about eight, then keep improving. Press “Mark chapter complete” when it is shipped.':
+    'Yeh chapter lagbhag tees ghante ka hai. Sabse chhota version jo kaam kare, use lagbhag aath ghante mein ship kijiye, phir sudhaarte rahiye. Ship hone par “Mark chapter complete” dabaiye.',
 
-  'Ten minutes on how the site works. Tap the underlined words and answer the boxes. Nothing to install.':
-    'Das minute mein samjhiye ki site kaise kaam karti hai. Underline wale words par tap kijiye aur boxes ka jawaab dijiye. Kuch install nahi karna.',
-  'What the machine is, part 1': 'Machine kya hai, part 1',
-  'Read sections 8.1 to 8.3, up to the end of “Tokens: how the machine reads”. Then stop, even if you want to keep going.':
-    'Section 8.1 se 8.3 tak padhiye, “Tokens” wale section ke end tak. Phir ruk jaiye, chahe aage padhne ka mann ho.',
-  'What the machine is, part 2': 'Machine kya hai, part 2',
-  'Read from section 8.4, “The context window”, to the end of the chapter.':
-    'Section 8.4, “Context window”, se chapter ke end tak padhiye.',
+  /* tries */
   'Count your own words in tokens': 'Apne words ko tokens mein giniye',
-  'Do only the first experiment in Chapter 0.5. Paste a message you wrote today, once in English and once in Hinglish, and compare the counts.':
-    'Chapter 0.5 ka sirf pehla experiment kijiye. Aaj likha hua koi message paste kijiye, ek baar English mein aur ek baar Hinglish mein, aur dono counts compare kijiye.',
-  'Look back': 'Peeche mudkar dekhiye',
-  'In your notepad, write three lines: one thing that made sense, one that didn’t, and one question you still have.':
-    'Apne notepad mein teen lines likhiye: ek baat jo samajh aayi, ek jo nahi aayi, aur ek sawaal jo abhi bhi hai.',
+  'Open Chapter 0.5 and do only its first experiment. Paste a message you wrote today, once in English and once in Hinglish, and compare the counts.':
+    'Chapter 0.5 kholiye aur sirf uska pehla experiment kijiye. Aaj likha hua koi message paste kijiye, ek baar English mein aur ek baar Hinglish mein, aur dono counts compare kijiye.',
+  'Ten test messages, marked': 'Das test messages, number ke saath',
+  'Pick one small job, such as “does this message contain a phone number?”. On paper, write ten short messages and the right answer for each. Give them to a chat assistant one at a time and mark each answer. Your score out of ten is your first evaluation.':
+    'Ek chhota kaam chuniye, jaise “kya is message mein phone number hai?”. Kaagaz par das chhote messages likhiye aur har ek ka sahi jawaab. Unhe ek-ek karke chat assistant ko dijiye aur har jawaab ko mark kijiye. Das mein se aapka score hi aapka pehla evaluation hai.',
+  'The one-time setup': 'Ek baar ka setup',
+  'Do the setup page, one section at a time. You know what the key is for now. If a step fails, copy the exact error and ask a chat assistant.':
+    'Setup page kijiye, ek baar mein ek section. Ab aapko pata hai ki key kis kaam ki hai. Agar koi step fail ho, to exact error copy kijiye aur chat assistant se poochiye.',
+  'Plan your capstone week': 'Capstone wale hafte ki planning',
+  'Read the capstone chapter’s brief and write, on one page, the smallest version you can ship in about eight hours. Everything else goes on a “later” list.':
+    'Capstone chapter ka brief padhiye aur ek page par likhiye ki sabse chhota version kya hai jo aap lagbhag aath ghante mein ship kar sakte hain. Baaki sab “baad mein” wali list mein.',
+  'Put the project where people can see it': 'Project ko wahan rakhiye jahan log dekh sakein',
+  'Publish your findings page and the capstone write-up as one page with a link. Keep it plain. A page that exists beats a page that is pretty.':
+    'Apna findings page aur capstone write-up ek page par, link ke saath, publish kijiye. Saada rakhiye. Jo page maujood hai, woh sundar page se behtar hai.',
+  'Three practice interviews': 'Teen practice interview',
+  'Use the interview practice in Chapter B7. Answer three questions out loud, record yourself, and write down one thing to say better next time.':
+    'Chapter B7 ki interview practice use kijiye. Teen sawaalon ke jawaab bol kar dijiye, khud ko record kijiye, aur ek baat likhiye jo agli baar behtar kahenge.',
 
-  'The first conversation': 'Pehli baatcheet',
-  'Read the chapter. It shows one request to a model and the reply that comes back. Only read it for now. The setup comes later.':
-    'Chapter padhiye. Ismein model ko bheji gayi ek request aur uska jawaab dikhaya gaya hai. Abhi sirf padhiye. Setup baad mein aayega.',
-  'A mind with no memory': 'Bina yaaddasht wala dimaag',
-  'Read the chapter. Then open a chat assistant you already use, start a new chat, and ask what you talked about last time. Note what it says.':
-    'Chapter padhiye. Phir jo chat assistant aap pehle se use karte hain use kholiye, nayi chat shuru kijiye, aur poochiye ki pichhli baar aapne kya baat ki thi. Woh jo kahe, note kar lijiye.',
-  'Giving instructions, part 1': 'Instructions dena, part 1',
-  'Read sections 11.1 to 11.4, up to the end of “Where it makes things up”.':
-    'Section 11.1 se 11.4 tak padhiye, us section ke end tak jahan model cheezein gadhta hai.',
-  'Giving instructions, part 2': 'Instructions dena, part 2',
-  'Read from section 11.5, “Four techniques, in order of strength”, to the end. Then ask a chat assistant to summarise one of your emails twice: once with no instructions, once with three lines saying who it is for and how long it should be.':
-    'Section 11.5 se chapter ke end tak padhiye. Phir kisi chat assistant se apni ek email ka summary do baar banwaiye: ek baar bina instructions ke, aur ek baar teen lines ke saath jo batayein ki summary kiske liye hai aur kitni lambi honi chahiye.',
-  'Three lines in your notepad: what made sense, what didn’t, and one question. Then look at what you wrote last Friday.':
-    'Notepad mein teen lines: kya samajh aaya, kya nahi aaya, aur ek sawaal. Phir dekhiye ki pichhle Friday aapne kya likha tha.',
-
-  'Knowing whether it works, part 1': 'Kaise jaanein ki yeh kaam karta hai, part 1',
-  'Read sections 12.1 to 12.3, up to the end of “Ten sentences”.':
-    'Section 12.1 se 12.3 tak padhiye, “Ten sentences” wale section ke end tak.',
-  'Knowing whether it works, part 2': 'Kaise jaanein ki yeh kaam karta hai, part 2',
-  'Read from section 12.4, “The scoreboard”, to the end of the chapter.':
-    'Section 12.4, “Scoreboard”, se chapter ke end tak padhiye.',
-  'Write ten test messages': 'Das test messages likhiye',
-  'Pick one small job, such as “does this message contain a phone number?”. On paper, write ten short messages and the right answer next to each. Make two of them tricky.':
-    'Ek chhota kaam chuniye, jaise “kya is message mein phone number hai?”. Kaagaz par das chhote messages likhiye aur har ek ke saamne sahi jawaab. Unmein se do messages tricky banaiye.',
-  'Mark the machine': 'Machine ko number dijiye',
-  'Give your ten messages to a chat assistant, one at a time, with the same question. Mark each answer right or wrong. Your score out of ten is your first evaluation.':
-    'Apne das messages ek-ek karke chat assistant ko dijiye, har baar wahi sawaal poochiye. Har jawaab ko sahi ya galat mark kijiye. Das mein se aapka score hi aapka pehla evaluation hai.',
-  'Three lines in your notepad. Add your score from yesterday, and the one message it got wrong that surprised you most.':
-    'Notepad mein teen lines. Saath mein kal ka score likhiye, aur woh ek message jismein usne galti ki aur jisne aapko sabse zyada hairaan kiya.',
-
+  /* week titles and what each week leaves you with */
+  'Start, and the problem worth solving': 'Shuruaat, aur woh problem jo solve karne layak hai',
+  'Your first three lines in your notepad.': 'Notepad mein aapki pehli teen lines.',
+  'Deciding what to build': 'Kya banana hai, yeh tay karna',
+  'Three lines for the week. You now know the story the project comes from.': 'Hafte ki teen lines. Ab aap woh kahani jaante hain jahan se project aata hai.',
+  'Meet the machine': 'Machine se mulaqat',
+  'One line on what a token is, in your own words.': 'Token kya hai, apne shabdon mein ek line.',
+  'Talking to it, and checking it': 'Usse baat karna, aur use jaanchna',
+  'Your first evaluation: ten messages and a score out of ten.': 'Aapka pehla evaluation: das messages aur das mein se score.',
+  'Product foundations, first pass': 'Product ki neenv, pehli baar',
+  'The boxes in A1 to A5 answered: your problem, users and market in your own words.': 'A1 se A5 ke boxes ke jawaab: aapki problem, users aur market, apne shabdon mein.',
+  'Product foundations, then the setup': 'Product ki neenv, phir setup',
+  'The boxes in A6 to A8 answered, and a working setup.': 'A6 se A8 ke boxes ke jawaab, aur ek chalta hua setup.',
+  'First contact: your first model call': 'Pehla sampark: aapki pehli model call',
+  'Your first model call, with its token count and cost written down.': 'Aapki pehli model call, uske token count aur kharch ke saath likhi hui.',
+  'Instructions that work': 'Instructions jo kaam karein',
+  'The helper’s instructions, tested on your first answer key.': 'Helper ke instructions, aapki pehli answer key par test kiye hue.',
   'Sorting and summarising': 'Chhaantna aur summary banana',
-  'Read the chapter.': 'Chapter padhiye.',
-  'Too long to read at once': 'Ek baar mein padhne ke liye bahut lamba',
-  'Finding by words': 'Words se dhoondhna',
-  'Finding by meaning': 'Matlab se dhoondhna',
-  'Setup, first section only': 'Setup, sirf pehla section',
-  'Now you know what an API key is for. Do only the first section of the setup page. If a step fails, copy the exact error and ask a chat assistant. Then write your three lines for the week.':
-    'Ab aapko pata hai ki API key kis kaam ki hai. Setup page ka sirf pehla section kijiye. Agar koi step fail ho, to exact error copy kijiye aur chat assistant se poochiye. Phir hafte ki apni teen lines likhiye.',
-
-  'From here, go through the course chapters in order, starting with Chapter 1. On your first pass, read each chapter and answer its boxes. If a step needs other people or a long build, write “second pass” next to it in your notepad and move on. The long product chapters in Track A can wait. Their stories are already in the book, in chapters 1 to 7.':
-    'Yahan se course ke chapters order mein padhiye, Chapter 1 se shuru karke. Pehli baar mein har chapter padhiye aur uske boxes ka jawaab dijiye. Agar kisi step mein doosre logon ki ya lambe build ki zaroorat ho, to notepad mein uske saamne “second pass” likhiye aur aage badhiye. Track A ke lambe product chapters intezaar kar sakte hain. Unki kahaniyan kitaab mein pehle se hain, chapter 1 se 7 tak.'
+  'A sorter for the kind of ID, with its score.': 'ID ki kism chhaantne wala sorter, uske score ke saath.',
+  'Holiday week, light: cutting long text': 'Chhutti ka hafta, halka: lamba text kaatna',
+  'A rule for cutting text without splitting an ID.': 'Text kaatne ka niyam, bina kisi ID ko beech se tode.',
+  'Holiday week, light: finding by words': 'Chhutti ka hafta, halka: words se dhoondhna',
+  'Your pattern rules, scored by hand.': 'Aapke pattern rules, haath se score kiye hue.',
+  'Finding by meaning, and measuring it': 'Matlab se dhoondhna, aur use naapna',
+  'The scoreboard: words against meaning, with a ship-or-not note.': 'Scoreboard: words banaam matlab, ship karein ya nahi ke note ke saath.',
+  'Your first complete system': 'Aapka pehla poora system',
+  'Version 0 of the findings page, published.': 'Findings page ka version 0, publish kiya hua.',
+  'Answers a program can use': 'Jawaab jo program use kar sake',
+  'An extractor that says “not sure” instead of guessing.': 'Ek extractor jo andaaza lagane ke bajaye “pakka nahi” kehta hai.',
+  'Context, thinking models and the wait': 'Context, sochne wale models aur intezaar',
+  'A budget for what is sent onward, and a design for the wait.': 'Aage kya bheja jaaye uska budget, aur intezaar ka design.',
+  'Better search, and the page that gives orders': 'Behtar search, aur woh page jo hukm deta hai',
+  'Finding made better one change at a time, and your own tool attacked.': 'Ek-ek badlaav se behtar dhoondhna, aur apne hi tool par hamla.',
+  'Grading at scale, and what it costs': 'Badi sankhya mein grading, aur uska kharch',
+  'An automatic marker you have checked, and a cost model from measurements.': 'Ek automatic marker jise aapne jaancha hai, aur naap se bana cost model.',
+  'Real documents, and the rules': 'Asli documents, aur niyam',
+  'The sharing rule, and the system card.': 'Sharing ka niyam, aur system card.',
+  'The spec, and build or buy': 'Spec, aur banayein ya khareedein',
+  'A requirements document that survives a change of model, and a build-or-buy call.': 'Ek requirements document jo model badalne par bhi tike, aur banayein-ya-khareedein ka faisla.',
+  'Wrong answers, impact, and the plumbing': 'Galat jawaab, asar, aur andar ki plumbing',
+  'The four answers the tool can give, a pilot design, and a test harness in Git.': 'Tool ke chaar mumkin jawaab, ek pilot design, aur Git mein test harness.',
+  'Production depth: models, context, retrieval': 'Production ki gehraai: models, context, retrieval',
+  'Your model choice with a back-up, and the gateway on one page.': 'Back-up ke saath aapka model chunaav, aur ek page par gateway.',
+  'Production depth: tools, agents, pictures and voice': 'Production ki gehraai: tools, agents, tasveerein aur awaaz',
+  'A workflow that cannot make risky changes alone, and the tool access policy.': 'Ek workflow jo akele jokhim bhare badlaav nahi kar sakta, aur tool access policy.',
+  'Production depth: gates, watching, security': 'Production ki gehraai: gates, nigraani, security',
+  'The release gate, the watch plan and the risk register.': 'Release gate, nigraani ka plan aur risk register.',
+  'The product spec and the decision pack': 'Product spec aur decision pack',
+  'The full requirements and a ten-slide decision pack.': 'Poori requirements aur das slide ka decision pack.',
+  'Capstone: ship it and defend it': 'Capstone: ship kijiye aur uska bachaav kijiye',
+  'Bharat Privacy Guard shipped, with its findings document and a short demo.': 'Bharat Privacy Guard ship hua, findings document aur ek chhote demo ke saath.',
+  'The business, and the job': 'Business, aur naukri',
+  'Your portfolio page, three practice interviews and a look back over six months.': 'Aapka portfolio page, teen practice interview aur chhe mahinon par ek nazar.'
 });
 
 /* Account-backed storage.
@@ -32873,7 +32840,8 @@ function activeDays(S){
   (S.sess||[]).forEach(s=>set.add(Math.floor(s.t/DAY)));
   (S.sittings||[]).forEach(s=>set.add(Math.floor(s.at/DAY)));
   Object.values(S.cp||{}).forEach(v=>{ if(v&&v.at) set.add(Math.floor(v.at/DAY)); });
-  Object.values(S.gentle||{}).forEach(t=>{ if(typeof t==='number') set.add(Math.floor(t/DAY)); });
+  /* route ticks and book chapters read count as a day of work */
+  [S.steps, S.read].forEach(o=>Object.values(o||{}).forEach(t=>{ if(typeof t==='number'&&t>1e12) set.add(Math.floor(t/DAY)); }));
   return set;
 }
 function streak(S){
@@ -32944,21 +32912,18 @@ function chapterProgress(S, c){
    so "next" is the next chapter in the list. It used to jump to a "core"
    subset first, which sent a reader from chapter 7 to chapter 21 and left the
    chapters between them, and every project stage they carry, unread. */
-/* The gentle path (the default) leaves the playbook's two long tracks out of
-   "what comes next": their chapters run six to eighteen hours each, and
-   meeting a six-hour chapter as the second step of a course is where a
-   beginner stops. They are still on the map, and the book retells Track A.
-   Chapter 0 lives in Track A but is ten minutes, so it stays. */
-function gentlePath(S){ return S.path!=='full'; }
-function onPath(S,c){ return !gentlePath(S) || c.id==='ch0' || (c.part!==6 && c.part!==7); }
-function gentleNext(S){
-  const G=window.GENTLE; if(!G||!gentlePath(S)) return null;
-  const i=G.days.findIndex(d=>!(S.gentle||{})[d.id]);
-  return i<0?null:{d:G.days[i], n:i+1, total:G.days.length};
+/* The route (src/data/route.mjs) is the order everything follows; its first
+   step not yet done is what the dashboard, the course map and the reminder all
+   call "next". */
+function routeNext(S){
+  const R=window.ROUTE; if(!R) return null;
+  const s=R.nextStep(S); if(!s) return null;
+  const wk=R.WEEKS[s.week-1], i=wk.steps.findIndex(x=>x.id===s.id);
+  return {s, week:wk, i:i+1, of:wk.steps.length, href:R.stepHref(s, S.lang==='hi').replace(/^\/(#\/)/,'$1')};
 }
 function currentChapter(S){
   let firstUnfinished=null;
-  for(const c of (window.CHAPTERS||[]).filter(c=>onPath(S,c))){
+  for(const c of (window.CHAPTERS||[])){
     const p=chapterProgress(S,c);
     if(p.done>0 && p.left>0) return {c, p, started:true};
     if(!firstUnfinished && (p.left>0 || !S.done[c.id])) firstUnfinished={c, p, started:false};
@@ -32983,10 +32948,11 @@ function resume(S){
   const due=dueList(S).length;
   const cur=currentChapter(S);
   const steps=[];
-  /* The first four weeks lead with the day's ten minutes, not a chapter. */
-  const g=gentleNext(S);
-  if(g) steps.push({lead:true, kind:'gentle', title:g.d.title,
-    d:g.d.what, day:'Day '+g.n+' of '+g.total, mins:g.d.mins, h:'#/start'});
+  /* The route's next step leads: on the route, a long Track A chapter is a
+     twenty-minute first pass, and a book chapter comes before its chapter. */
+  const g=routeNext(S);
+  if(g) steps.push({lead:true, kind:'route', title:g.s.title, titleHi:g.s.titleHi,
+    d:g.s.what, week:g.week.n, i:g.i, of:g.of, mins:g.s.mins, h:g.href});
   if(cur && cur.started) steps.push({
     lead:!steps.length, kind:'chapter',
     title:'Pick up Chapter '+cur.c.num,
@@ -33001,7 +32967,7 @@ function resume(S){
     mins:cur.c.minutes||30, h:'#/ch/'+cur.c.id});
   /* the version for an evening with nothing left in it */
   const tiny = g
-    ? {title:'One page', d:'Open today’s step, read one page, and tick the day. That counts.', mins:2, h:'#/start'}
+    ? {title:'One page', d:'Open today’s step, read one page, and tick the day. That counts.', mins:2, h:g.href}
     : due
     ? {title:'One question', d:'A single review item. Two minutes, and the day counts.', mins:2, h:'#/practice/due'}
     : cur ? {title:'One checkpoint', d:'Open Chapter '+cur.c.num+' and answer the next box. Then stop.',
@@ -33086,7 +33052,7 @@ function exScore(e, iter){
 
 return {get ITEMS(){return ITEMS;}, byItem, bySkill, SK, DAY, reinit,
   shown, levelOf, nextBand, skillState, decayFactor,
-  streakDetail, daysSinceActive, chapterProgress, currentChapter, resume, gentleNext, gentlePath, onPath,
+  streakDetail, daysSinceActive, chapterProgress, currentChapter, resume, routeNext,
   partProgress,
   buildSession, grade, submit, scheduleItem, srs, dueList, dueForecast,
   calibrationCurve, brier, overconfidence, CONF,
@@ -33522,10 +33488,10 @@ function resumePanel(st, eng){
   }
   box.appendChild(h('div',{class:'resumelead'},[
     h('div',{style:'flex:1;min-width:0'},[
-      h('span',{class:'cplbl',text:lead.kind==='gentle'?TR('Gentle start')+' \u00b7 '+lead.day.replace(/^Day (\d+) of (\d+)$/,(m,a,b)=>TR('Day')+' '+a+' / '+b)
+      h('span',{class:'cplbl',text:lead.kind==='route'?TR('Your route')+' \u00b7 '+TR('Week')+' '+lead.week+' \u00b7 '+TR('step')+' '+lead.i+' / '+lead.of
         :lapsed!=null&&lapsed>=5?'Start again here':'Next'}),
-      h('h3',{text:TR(lead.title)}),
-      h('p',{text:lead.kind==='gentle'?TR(lead.d):lead.d})]),
+      h('h3',{text:lead.titleHi&&S().lang==='hi'?lead.titleHi:TR(lead.title)}),
+      h('p',{text:lead.kind==='route'?TR(lead.d):lead.d})]),
     h('div',{class:'resumego'},[
       h('span',{class:'mins',text:'~'+lead.mins+' min'}),
       h('a',{class:'btnlink',href:lead.h,text:'Open →'})])]));
@@ -34739,6 +34705,28 @@ return {dashboard, practice, practiceMenu, skills, skillPage, analytics, exercis
 })();
 
 window.BOOK={"base":"/book/","hiBase":"/book/hi/","title":"AI From Zero","edition":"The reading edition","chapters":{"a1":{"n":1,"file":"01-the-number-in-the-chat.html","title":"The Number in the Chat"},"a2":{"n":2,"file":"02-four-questions-before-building.html","title":"Four Questions Before Building"},"a3":{"n":3,"file":"03-asking-about-yesterday.html","title":"Asking About Yesterday"},"a4":{"n":4,"file":"04-who-else-is-standing-here.html","title":"Who Else Is Standing Here"},"a5":{"n":5,"file":"05-choosing-what-not-to-do.html","title":"Choosing What Not to Do"},"a6":{"n":6,"file":"06-a-plan-others-can-believe.html","title":"A Plan Others Can Believe"},"a7":{"n":7,"file":"07-writing-it-down.html","title":"Writing It Down So Others Can Build It"},"a8":{"n":8,"file":"08-what-the-machine-is.html","title":"What the Machine Is"},"ch05":{"n":8,"file":"08-what-the-machine-is.html","title":"What the Machine Is"},"ch1":{"n":9,"file":"09-the-first-conversation.html","title":"The First Conversation"},"ch15b":{"n":10,"file":"10-a-mind-with-no-memory.html","title":"A Mind With No Memory"},"ch2":{"n":11,"file":"11-giving-instructions.html","title":"Giving Instructions"},"ch21":{"n":11,"file":"11-giving-instructions.html","title":"Giving Instructions"},"ch22":{"n":12,"file":"12-knowing-whether-it-works.html","title":"Knowing Whether It Works"},"ch23":{"n":12,"file":"12-knowing-whether-it-works.html","title":"Knowing Whether It Works"},"ch24":{"n":13,"file":"13-sorting-and-summarising.html","title":"Sorting and Summarising"},"ch25":{"n":13,"file":"13-sorting-and-summarising.html","title":"Sorting and Summarising"},"ch3":{"n":14,"file":"14-too-long-to-read-at-once.html","title":"Too Long to Read at Once"},"ch4":{"n":15,"file":"15-finding-by-words.html","title":"Finding by Words"},"ch5":{"n":16,"file":"16-finding-by-meaning.html","title":"Finding by Meaning"},"ch6":{"n":17,"file":"17-how-good-is-good.html","title":"How Good Is Good"},"ch7":{"n":18,"file":"18-the-whole-machine.html","title":"The Whole Machine"},"ch75":{"n":18,"file":"18-the-whole-machine.html","title":"The Whole Machine"},"ch8":{"n":19,"file":"19-answers-a-program-can-use.html","title":"Answers a Program Can Use"},"ch85":{"n":19,"file":"19-answers-a-program-can-use.html","title":"Answers a Program Can Use"},"ch9":{"n":20,"file":"20-giving-the-machine-hands.html","title":"Giving the Machine Hands"},"ch10":{"n":21,"file":"21-long-windows-careful-rooms.html","title":"Long Windows, Careful Rooms"},"ch11":{"n":22,"file":"22-machines-that-think-first.html","title":"Machines That Think First"},"ch115":{"n":22,"file":"22-machines-that-think-first.html","title":"Machines That Think First"},"ch12":{"n":23,"file":"23-searching-better.html","title":"Searching Better"},"ch13":{"n":24,"file":"24-when-the-page-gives-orders.html","title":"When the Page Gives Orders"},"ch14":{"n":25,"file":"25-grading-a-thousand-answers.html","title":"Grading a Thousand Answers"},"ch145":{"n":25,"file":"25-grading-a-thousand-answers.html","title":"Grading a Thousand Answers"},"ch15":{"n":26,"file":"26-what-it-really-costs.html","title":"What It Really Costs"},"ch16":{"n":27,"file":"27-paper-photos-and-scans.html","title":"Paper, Photos and Scans"},"ch165":{"n":28,"file":"28-what-you-may-send.html","title":"What You May Send"},"ch17":{"n":29,"file":"29-rules-risk-and-responsibility.html","title":"Rules, Risk and Responsibility"},"ch18":{"n":30,"file":"30-the-spec-for-a-thing-that-varies.html","title":"The Spec for a Thing That Varies"},"ch185":{"n":31,"file":"31-build-buy-or-teach-it.html","title":"Build, Buy or Teach It"},"ch19":{"n":31,"file":"31-build-buy-or-teach-it.html","title":"Build, Buy or Teach It"},"ch20":{"n":32,"file":"32-designing-for-the-wrong-answer.html","title":"Designing for the Wrong Answer"},"ch205":{"n":32,"file":"32-designing-for-the-wrong-answer.html","title":"Designing for the Wrong Answer"},"ch8f":{"n":33,"file":"33-the-plumbing-under-the-magic.html","title":"The Plumbing Under the Magic"},"ch9m":{"n":34,"file":"34-choosing-a-model-on-your-own-cases.html","title":"Choosing a Model on Your Own Cases"},"ch10c":{"n":34,"file":"34-choosing-a-model-on-your-own-cases.html","title":"Choosing a Model on Your Own Cases"},"ch11r":{"n":35,"file":"35-retrieval-that-survives-a-review.html","title":"Retrieval That Survives a Review"},"ch12t":{"n":36,"file":"36-workflows-agents-and-the-standard-plug.html","title":"Workflows, Agents and the Standard Plug"},"ch13a":{"n":36,"file":"36-workflows-agents-and-the-standard-plug.html","title":"Workflows, Agents and the Standard Plug"},"ch14p":{"n":36,"file":"36-workflows-agents-and-the-standard-plug.html","title":"Workflows, Agents and the Standard Plug"},"ch15mm":{"n":37,"file":"37-pages-pictures-and-voices.html","title":"Pages, Pictures and Voices"},"ch16e":{"n":38,"file":"38-gates-traces-and-rollbacks.html","title":"Gates, Traces and Rollbacks"},"ch17o":{"n":38,"file":"38-gates-traces-and-rollbacks.html","title":"Gates, Traces and Rollbacks"},"ch18s":{"n":39,"file":"39-assuming-the-worst.html","title":"Assuming the Worst"},"ch19pm":{"n":40,"file":"40-a-product-not-a-demo.html","title":"A Product, Not a Demo"},"ch20d":{"n":40,"file":"40-a-product-not-a-demo.html","title":"A Product, Not a Demo"},"ch21cap":{"n":41,"file":"41-shipping-the-whole-thing.html","title":"Shipping the Whole Thing"},"b8":{"n":41,"file":"41-shipping-the-whole-thing.html","title":"Shipping the Whole Thing"},"b1":{"n":42,"file":"42-who-pays-and-how-much.html","title":"Who Pays, and How Much"},"b2":{"n":43,"file":"43-how-people-find-it-and-stay.html","title":"How People Find It and Stay"},"b3":{"n":44,"file":"44-counting-what-matters.html","title":"Counting What Matters"},"b4":{"n":45,"file":"45-tools-and-harness.html","title":"The Tools and the Harness"},"b5":{"n":45,"file":"45-tools-and-harness.html","title":"The Tools and the Harness"},"b6":{"n":46,"file":"46-real-people-real-use.html","title":"Real People, Real Use"},"b7":{"n":47,"file":"47-the-job.html","title":"The Work, and the Job"}},"list":[{"n":1,"file":"01-the-number-in-the-chat.html","title":"The Number in the Chat"},{"n":2,"file":"02-four-questions-before-building.html","title":"Four Questions Before Building"},{"n":3,"file":"03-asking-about-yesterday.html","title":"Asking About Yesterday"},{"n":4,"file":"04-who-else-is-standing-here.html","title":"Who Else Is Standing Here"},{"n":5,"file":"05-choosing-what-not-to-do.html","title":"Choosing What Not to Do"},{"n":6,"file":"06-a-plan-others-can-believe.html","title":"A Plan Others Can Believe"},{"n":7,"file":"07-writing-it-down.html","title":"Writing It Down So Others Can Build It"},{"n":8,"file":"08-what-the-machine-is.html","title":"What the Machine Is"},{"n":9,"file":"09-the-first-conversation.html","title":"The First Conversation"},{"n":10,"file":"10-a-mind-with-no-memory.html","title":"A Mind With No Memory"},{"n":11,"file":"11-giving-instructions.html","title":"Giving Instructions"},{"n":12,"file":"12-knowing-whether-it-works.html","title":"Knowing Whether It Works"},{"n":13,"file":"13-sorting-and-summarising.html","title":"Sorting and Summarising"},{"n":14,"file":"14-too-long-to-read-at-once.html","title":"Too Long to Read at Once"},{"n":15,"file":"15-finding-by-words.html","title":"Finding by Words"},{"n":16,"file":"16-finding-by-meaning.html","title":"Finding by Meaning"},{"n":17,"file":"17-how-good-is-good.html","title":"How Good Is Good"},{"n":18,"file":"18-the-whole-machine.html","title":"The Whole Machine"},{"n":19,"file":"19-answers-a-program-can-use.html","title":"Answers a Program Can Use"},{"n":20,"file":"20-giving-the-machine-hands.html","title":"Giving the Machine Hands"},{"n":21,"file":"21-long-windows-careful-rooms.html","title":"Long Windows, Careful Rooms"},{"n":22,"file":"22-machines-that-think-first.html","title":"Machines That Think First"},{"n":23,"file":"23-searching-better.html","title":"Searching Better"},{"n":24,"file":"24-when-the-page-gives-orders.html","title":"When the Page Gives Orders"},{"n":25,"file":"25-grading-a-thousand-answers.html","title":"Grading a Thousand Answers"},{"n":26,"file":"26-what-it-really-costs.html","title":"What It Really Costs"},{"n":27,"file":"27-paper-photos-and-scans.html","title":"Paper, Photos and Scans"},{"n":28,"file":"28-what-you-may-send.html","title":"What You May Send"},{"n":29,"file":"29-rules-risk-and-responsibility.html","title":"Rules, Risk and Responsibility"},{"n":30,"file":"30-the-spec-for-a-thing-that-varies.html","title":"The Spec for a Thing That Varies"},{"n":31,"file":"31-build-buy-or-teach-it.html","title":"Build, Buy or Teach It"},{"n":32,"file":"32-designing-for-the-wrong-answer.html","title":"Designing for the Wrong Answer"},{"n":33,"file":"33-the-plumbing-under-the-magic.html","title":"The Plumbing Under the Magic"},{"n":34,"file":"34-choosing-a-model-on-your-own-cases.html","title":"Choosing a Model on Your Own Cases"},{"n":35,"file":"35-retrieval-that-survives-a-review.html","title":"Retrieval That Survives a Review"},{"n":36,"file":"36-workflows-agents-and-the-standard-plug.html","title":"Workflows, Agents and the Standard Plug"},{"n":37,"file":"37-pages-pictures-and-voices.html","title":"Pages, Pictures and Voices"},{"n":38,"file":"38-gates-traces-and-rollbacks.html","title":"Gates, Traces and Rollbacks"},{"n":39,"file":"39-assuming-the-worst.html","title":"Assuming the Worst"},{"n":40,"file":"40-a-product-not-a-demo.html","title":"A Product, Not a Demo"},{"n":41,"file":"41-shipping-the-whole-thing.html","title":"Shipping the Whole Thing"},{"n":42,"file":"42-who-pays-and-how-much.html","title":"Who Pays, and How Much"},{"n":43,"file":"43-how-people-find-it-and-stay.html","title":"How People Find It and Stay"},{"n":44,"file":"44-counting-what-matters.html","title":"Counting What Matters"},{"n":45,"file":"45-tools-and-harness.html","title":"The Tools and the Harness"},{"n":46,"file":"46-real-people-real-use.html","title":"Real People, Real Use"},{"n":47,"file":"47-the-job.html","title":"The Work, and the Job"}]};
+(function(){
+const START="2026-10-19", WEEKS=[{"n":1,"start":"2026-10-19","dates":"19 Oct – 25 Oct","title":"Start, and the problem worth solving","ship":"Your first three lines in your notepad.","how":["first-pass"],"light":false,"mins":39,"steps":[{"id":"c:ch0","kind":"chapter","ch":"ch0","num":"0","title":"Start here: how this course works","mins":10,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"b:preface.html","kind":"read","book":"preface.html","n":0,"title":"Before You Begin","titleHi":"Shuru karne se pehle","mins":5,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"b:01-the-number-in-the-chat.html","kind":"read","book":"01-the-number-in-the-chat.html","n":1,"title":"The Number in the Chat","titleHi":"Chat Mein Woh Number","mins":10,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"b:02-four-questions-before-building.html","kind":"read","book":"02-four-questions-before-building.html","n":2,"title":"Four Questions Before Building","titleHi":"Banane Se Pehle Chaar Sawaal","mins":9,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"t:review-1","kind":"look","title":"Look back","mins":5,"what":"Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."}]},{"n":2,"start":"2026-10-26","dates":"26 Oct – 1 Nov","title":"Deciding what to build","ship":"Three lines for the week. You now know the story the project comes from.","how":["first-pass"],"light":false,"mins":53,"steps":[{"id":"b:03-asking-about-yesterday.html","kind":"read","book":"03-asking-about-yesterday.html","n":3,"title":"Asking About Yesterday","titleHi":"Kal Ke Baare Mein Poochhna","mins":10,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"b:04-who-else-is-standing-here.html","kind":"read","book":"04-who-else-is-standing-here.html","n":4,"title":"Who Else Is Standing Here","titleHi":"Yahan Aur Kaun Khada Hai","mins":10,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"b:05-choosing-what-not-to-do.html","kind":"read","book":"05-choosing-what-not-to-do.html","n":5,"title":"Choosing What Not to Do","titleHi":"Kya Nahi Karna Hai, Yeh Chunna","mins":8,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"b:06-a-plan-others-can-believe.html","kind":"read","book":"06-a-plan-others-can-believe.html","n":6,"title":"A Plan Others Can Believe","titleHi":"Aisa Plan Jis Par Doosre Bharosa Karein","mins":10,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"b:07-writing-it-down.html","kind":"read","book":"07-writing-it-down.html","n":7,"title":"Writing It Down So Others Can Build It","titleHi":"Likh Kar Rakhna Taaki Doosre Bana Sakein","mins":10,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"t:review-2","kind":"look","title":"Look back","mins":5,"what":"Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."}]},{"n":3,"start":"2026-11-02","dates":"2 Nov – 8 Nov","title":"Meet the machine","ship":"One line on what a token is, in your own words.","how":["first-pass"],"light":false,"mins":34,"steps":[{"id":"b:08-what-the-machine-is.html#1","kind":"read","book":"08-what-the-machine-is.html","n":8,"title":"What the Machine Is","titleHi":"Machine Asal Mein Kya Hai","mins":6,"what":"Read sections 8.1 to 8.3, then stop, even if you want to keep going.","part":1,"upto":"s-8-4"},{"id":"b:08-what-the-machine-is.html#2","kind":"read","book":"08-what-the-machine-is.html","n":8,"title":"What the Machine Is","titleHi":"Machine Asal Mein Kya Hai","mins":6,"what":"Read from section 8.4 to the end of the chapter.","part":2,"at":"s-8-4"},{"id":"t:tokens","kind":"try","title":"Count your own words in tokens","mins":10,"app":"#/ch/ch05","what":"Open Chapter 0.5 and do only its first experiment. Paste a message you wrote today, once in English and once in Hinglish, and compare the counts."},{"id":"b:09-the-first-conversation.html","kind":"read","book":"09-the-first-conversation.html","n":9,"title":"The First Conversation","titleHi":"Pehli Baatcheet","mins":7,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"t:review-3","kind":"look","title":"Look back","mins":5,"what":"Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."}]},{"n":4,"start":"2026-11-09","dates":"9 Nov – 15 Nov","title":"Talking to it, and checking it","ship":"Your first evaluation: ten messages and a score out of ten.","how":["first-pass"],"light":false,"mins":47,"steps":[{"id":"b:10-a-mind-with-no-memory.html","kind":"read","book":"10-a-mind-with-no-memory.html","n":10,"title":"A Mind With No Memory","titleHi":"Ek Dimaag Jise Kuch Yaad Nahi Rehta","mins":7,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"b:11-giving-instructions.html#1","kind":"read","book":"11-giving-instructions.html","n":11,"title":"Giving Instructions","titleHi":"Instructions Dena","mins":6,"what":"Read sections 11.1 to 11.4, then stop, even if you want to keep going.","part":1,"upto":"s-11-5"},{"id":"b:11-giving-instructions.html#2","kind":"read","book":"11-giving-instructions.html","n":11,"title":"Giving Instructions","titleHi":"Instructions Dena","mins":6,"what":"Read from section 11.5 to the end of the chapter.","part":2,"at":"s-11-5"},{"id":"b:12-knowing-whether-it-works.html","kind":"read","book":"12-knowing-whether-it-works.html","n":12,"title":"Knowing Whether It Works","titleHi":"Kaise Pata Chale Ki Yeh Kaam Karta Hai","mins":8,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"t:tenmsgs","kind":"try","title":"Ten test messages, marked","mins":15,"what":"Pick one small job, such as “does this message contain a phone number?”. On paper, write ten short messages and the right answer for each. Give them to a chat assistant one at a time and mark each answer. Your score out of ten is your first evaluation."},{"id":"t:review-4","kind":"look","title":"Look back","mins":5,"what":"Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."}]},{"n":5,"start":"2026-11-16","dates":"16 Nov – 22 Nov","title":"Product foundations, first pass","ship":"The boxes in A1 to A5 answered: your problem, users and market in your own words.","how":["first-pass"],"light":false,"mins":105,"steps":[{"id":"c:a1","kind":"chapter","ch":"a1","num":"A1","title":"Your learning system: role, evidence and a capstone problem","mins":20,"firstPass":true,"what":"First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."},{"id":"c:a2","kind":"chapter","ch":"a2","num":"A2","title":"Product sense: how products win and lose","mins":20,"firstPass":true,"what":"First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."},{"id":"c:a3","kind":"chapter","ch":"a3","num":"A3","title":"User discovery: interviews, jobs and problem statements","mins":20,"firstPass":true,"what":"First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."},{"id":"c:a4","kind":"chapter","ch":"a4","num":"A4","title":"Market research: sizing, competitors and opportunities","mins":20,"firstPass":true,"what":"First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."},{"id":"c:a5","kind":"chapter","ch":"a5","num":"A5","title":"Strategy and prioritisation: choosing what not to do","mins":20,"firstPass":true,"what":"First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."},{"id":"t:review-5","kind":"look","title":"Look back","mins":5,"what":"Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."}]},{"n":6,"start":"2026-11-23","dates":"23 Nov – 29 Nov","title":"Product foundations, then the setup","ship":"The boxes in A6 to A8 answered, and a working setup.","how":["first-pass","setup"],"light":false,"mins":110,"steps":[{"id":"c:a6","kind":"chapter","ch":"a6","num":"A6","title":"Roadmaps, OKRs and getting stakeholders on board","mins":20,"firstPass":true,"what":"First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."},{"id":"c:a7","kind":"chapter","ch":"a7","num":"A7","title":"Specs, stories and prototypes: from decision to delivery","mins":20,"firstPass":true,"what":"First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."},{"id":"c:a8","kind":"chapter","ch":"a8","num":"A8","title":"Generative AI foundations: how the models work","mins":20,"firstPass":true,"what":"First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."},{"id":"t:setup","kind":"try","title":"The one-time setup","mins":45,"app":"#/setup","what":"Do the setup page, one section at a time. You know what the key is for now. If a step fails, copy the exact error and ask a chat assistant."},{"id":"t:review-6","kind":"look","title":"Look back","mins":5,"what":"Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."}]},{"n":7,"start":"2026-11-30","dates":"30 Nov – 6 Dec","title":"First contact: your first model call","ship":"Your first model call, with its token count and cost written down.","how":["first-pass"],"light":false,"mins":93,"steps":[{"id":"c:ch05","kind":"chapter","ch":"ch05","num":"0.5","title":"Try it in the browser: tokens, cost and temperature","mins":18,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"c:ch1","kind":"chapter","ch":"ch1","num":"1","title":"Your first API call: how a model answers","mins":45,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"c:ch15b","kind":"chapter","ch":"ch15b","num":"1.5","title":"Context windows and statelessness: why models forget","mins":25,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"t:review-7","kind":"look","title":"Look back","mins":5,"what":"Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."}]},{"n":8,"start":"2026-12-07","dates":"7 Dec – 13 Dec","title":"Instructions that work","ship":"The helper’s instructions, tested on your first answer key.","how":["first-pass"],"light":false,"mins":97,"steps":[{"id":"c:ch2","kind":"chapter","ch":"ch2","num":"2","title":"System prompts, temperature and hallucination","mins":35,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"c:ch21","kind":"chapter","ch":"ch21","num":"2.1","title":"Writing prompts: four techniques that work","mins":25,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"c:ch22","kind":"chapter","ch":"ch22","num":"2.2","title":"Testing prompts: build a small test set","mins":25,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"b:13-sorting-and-summarising.html","kind":"read","book":"13-sorting-and-summarising.html","n":13,"title":"Sorting and Summarising","titleHi":"Chhaantna Aur Summary Likhna","mins":7,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"t:review-8","kind":"look","title":"Look back","mins":5,"what":"Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."}]},{"n":9,"start":"2026-12-14","dates":"14 Dec – 20 Dec","title":"Sorting and summarising","ship":"A sorter for the kind of ID, with its score.","how":["first-pass"],"light":false,"mins":82,"steps":[{"id":"c:ch23","kind":"chapter","ch":"ch23","num":"2.3","title":"The five task types: classify, extract, summarise, rewrite, generate","mins":20,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"c:ch24","kind":"chapter","ch":"ch24","num":"2.4","title":"Classification: sorting inputs into categories","mins":25,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"c:ch25","kind":"chapter","ch":"ch25","num":"2.5","title":"Summarisation: testing what a summary keeps","mins":25,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"b:14-too-long-to-read-at-once.html","kind":"read","book":"14-too-long-to-read-at-once.html","n":14,"title":"Too Long to Read at Once","titleHi":"Ek Baar Mein Padhne Ke Liye Bahut Lamba","mins":7,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"t:review-9","kind":"look","title":"Look back","mins":5,"what":"Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."}]},{"n":10,"start":"2026-12-21","dates":"21 Dec – 27 Dec","title":"Holiday week, light: cutting long text","ship":"A rule for cutting text without splitting an ID.","how":["first-pass"],"light":true,"mins":31,"steps":[{"id":"c:ch3","kind":"chapter","ch":"ch3","num":"3","title":"Chunking: splitting documents into pieces","mins":20,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"b:15-finding-by-words.html","kind":"read","book":"15-finding-by-words.html","n":15,"title":"Finding by Words","titleHi":"Words Se Dhoondhna","mins":6,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"t:review-10","kind":"look","title":"Look back","mins":5,"what":"Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."}]},{"n":11,"start":"2026-12-28","dates":"28 Dec – 3 Jan 2027","title":"Holiday week, light: finding by words","ship":"Your pattern rules, scored by hand.","how":["first-pass"],"light":true,"mins":33,"steps":[{"id":"c:ch4","kind":"chapter","ch":"ch4","num":"4","title":"Keyword search: matching words, and where it fails","mins":20,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"b:16-finding-by-meaning.html","kind":"read","book":"16-finding-by-meaning.html","n":16,"title":"Finding by Meaning","titleHi":"Matlab Se Dhoondhna","mins":8,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"t:review-11","kind":"look","title":"Look back","mins":5,"what":"Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."}]},{"n":12,"start":"2027-01-04","dates":"4 Jan – 10 Jan","title":"Finding by meaning, and measuring it","ship":"The scoreboard: words against meaning, with a ship-or-not note.","how":["first-pass"],"light":false,"mins":70,"steps":[{"id":"c:ch5","kind":"chapter","ch":"ch5","num":"5","title":"Embeddings: searching by meaning","mins":25,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"b:17-how-good-is-good.html","kind":"read","book":"17-how-good-is-good.html","n":17,"title":"How Good Is Good","titleHi":"Kitna Achha Hai Achha","mins":8,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"c:ch6","kind":"chapter","ch":"ch6","num":"6","title":"Evaluation: measuring whether search works","mins":25,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"b:18-the-whole-machine.html","kind":"read","book":"18-the-whole-machine.html","n":18,"title":"The Whole Machine","titleHi":"Poori Machine","mins":7,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"t:review-12","kind":"look","title":"Look back","mins":5,"what":"Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."}]},{"n":13,"start":"2027-01-11","dates":"11 Jan – 17 Jan","title":"Your first complete system","ship":"Version 0 of the findings page, published.","how":["first-pass","publish"],"light":false,"mins":57,"steps":[{"id":"c:ch7","kind":"chapter","ch":"ch7","num":"7","title":"Putting it together: retrieval-augmented generation (RAG)","mins":25,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"c:ch75","kind":"chapter","ch":"ch75","num":"7.5","title":"Review: what your RAG system cannot do yet","mins":20,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"b:19-answers-a-program-can-use.html","kind":"read","book":"19-answers-a-program-can-use.html","n":19,"title":"Answers a Program Can Use","titleHi":"Aise Jawaab Jo Program Istemaal Kar Sake","mins":7,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"t:review-13","kind":"look","title":"Look back","mins":5,"what":"Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."}]},{"n":14,"start":"2027-01-18","dates":"18 Jan – 24 Jan","title":"Answers a program can use","ship":"An extractor that says “not sure” instead of guessing.","how":["first-pass"],"light":false,"mins":123,"steps":[{"id":"c:ch8","kind":"chapter","ch":"ch8","num":"8","title":"Structured output: getting JSON you can trust","mins":45,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"c:ch85","kind":"chapter","ch":"ch85","num":"8.5","title":"Schema design: fields that do not force a guess","mins":25,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"b:20-giving-the-machine-hands.html","kind":"read","book":"20-giving-the-machine-hands.html","n":20,"title":"Giving the Machine Hands","titleHi":"Machine Ko Haath Dena","mins":8,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"c:ch9","kind":"chapter","ch":"ch9","num":"9","title":"Tool calling and agents: letting the model take actions","mins":40,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"t:review-14","kind":"look","title":"Look back","mins":5,"what":"Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."}]},{"n":15,"start":"2027-01-25","dates":"25 Jan – 31 Jan","title":"Context, thinking models and the wait","ship":"A budget for what is sent onward, and a design for the wait.","how":["first-pass"],"light":false,"mins":99,"steps":[{"id":"b:21-long-windows-careful-rooms.html","kind":"read","book":"21-long-windows-careful-rooms.html","n":21,"title":"Long Windows, Careful Rooms","titleHi":"Lambi Windows, Sambhal Kar Bhare Kamre","mins":7,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"c:ch10","kind":"chapter","ch":"ch10","num":"10","title":"Long context windows and context engineering","mins":35,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"b:22-machines-that-think-first.html","kind":"read","book":"22-machines-that-think-first.html","n":22,"title":"Machines That Think First","titleHi":"Pehle Sochne Wali Machines","mins":7,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"c:ch11","kind":"chapter","ch":"ch11","num":"11","title":"Reasoning models: when paying for thinking helps","mins":25,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"c:ch115","kind":"chapter","ch":"ch115","num":"11.5","title":"Latency: designing for the wait","mins":20,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"t:review-15","kind":"look","title":"Look back","mins":5,"what":"Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."}]},{"n":16,"start":"2027-02-01","dates":"1 Feb – 7 Feb","title":"Better search, and the page that gives orders","ship":"Finding made better one change at a time, and your own tool attacked.","how":["first-pass"],"light":false,"mins":105,"steps":[{"id":"b:23-searching-better.html","kind":"read","book":"23-searching-better.html","n":23,"title":"Searching Better","titleHi":"Search Ko Behtar Banana","mins":7,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"c:ch12","kind":"chapter","ch":"ch12","num":"12","title":"Better retrieval: hybrid search, reranking, context and filters","mins":45,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"b:24-when-the-page-gives-orders.html","kind":"read","book":"24-when-the-page-gives-orders.html","n":24,"title":"When the Page Gives Orders","titleHi":"Jab Page Hukm Dene Lage","mins":8,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"c:ch13","kind":"chapter","ch":"ch13","num":"13","title":"Prompt injection: when your documents give the orders","mins":40,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"t:review-16","kind":"look","title":"Look back","mins":5,"what":"Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."}]},{"n":17,"start":"2027-02-08","dates":"8 Feb – 14 Feb","title":"Grading at scale, and what it costs","ship":"An automatic marker you have checked, and a cost model from measurements.","how":["first-pass"],"light":false,"mins":111,"steps":[{"id":"b:25-grading-a-thousand-answers.html","kind":"read","book":"25-grading-a-thousand-answers.html","n":25,"title":"Grading a Thousand Answers","titleHi":"Hazaar Jawaabon Ko Marks Dena","mins":8,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"c:ch14","kind":"chapter","ch":"ch14","num":"14","title":"Evaluation at scale: code checks and LLM judges","mins":35,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"c:ch145","kind":"chapter","ch":"ch145","num":"14.5","title":"Error analysis: reading failures by hand","mins":25,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"b:26-what-it-really-costs.html","kind":"read","book":"26-what-it-really-costs.html","n":26,"title":"What It Really Costs","titleHi":"Asal Mein Kitna Kharch Hota Hai","mins":8,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"c:ch15","kind":"chapter","ch":"ch15","num":"15","title":"Cost modelling: what an AI feature really costs","mins":30,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"t:review-17","kind":"look","title":"Look back","mins":5,"what":"Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."}]},{"n":18,"start":"2027-02-15","dates":"15 Feb – 21 Feb","title":"Real documents, and the rules","ship":"The sharing rule, and the system card.","how":["first-pass"],"light":false,"mins":106,"steps":[{"id":"b:27-paper-photos-and-scans.html","kind":"read","book":"27-paper-photos-and-scans.html","n":27,"title":"Paper, Photos and Scans","titleHi":"Kaagaz, Photos Aur Scans","mins":8,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"c:ch16","kind":"chapter","ch":"ch16","num":"16","title":"Document extraction: tables, scans and images","mins":25,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"b:28-what-you-may-send.html","kind":"read","book":"28-what-you-may-send.html","n":28,"title":"What You May Send","titleHi":"Aap Kya Bhej Sakte Hain","mins":8,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"c:ch165","kind":"chapter","ch":"ch165","num":"16.5","title":"Data handling: what you are allowed to send","mins":20,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"b:29-rules-risk-and-responsibility.html","kind":"read","book":"29-rules-risk-and-responsibility.html","n":29,"title":"Rules, Risk and Responsibility","titleHi":"Rules, Risk Aur Zimmedaari","mins":10,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"c:ch17","kind":"chapter","ch":"ch17","num":"17","title":"AI governance: risk tiers, system cards and oversight","mins":30,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"t:review-18","kind":"look","title":"Look back","mins":5,"what":"Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."}]},{"n":19,"start":"2027-02-22","dates":"22 Feb – 28 Feb","title":"The spec, and build or buy","ship":"A requirements document that survives a change of model, and a build-or-buy call.","how":["first-pass"],"light":false,"mins":123,"steps":[{"id":"b:30-the-spec-for-a-thing-that-varies.html","kind":"read","book":"30-the-spec-for-a-thing-that-varies.html","n":30,"title":"The Spec for a Thing That Varies","titleHi":"Badalti Rehne Wali Cheez Ki Spec","mins":9,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"c:ch18","kind":"chapter","ch":"ch18","num":"18","title":"The AI PRD: specs, migrations and kill switches","mins":45,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"b:31-build-buy-or-teach-it.html","kind":"read","book":"31-build-buy-or-teach-it.html","n":31,"title":"Build, Buy or Teach It","titleHi":"Banao, Kharido Ya Sikhao","mins":9,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"c:ch185","kind":"chapter","ch":"ch185","num":"18.5","title":"Build or buy: comparing a vendor with your own build","mins":25,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"c:ch19","kind":"chapter","ch":"ch19","num":"19","title":"Fine-tuning or not: choosing what to change","mins":30,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"t:review-19","kind":"look","title":"Look back","mins":5,"what":"Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."}]},{"n":20,"start":"2027-03-01","dates":"1 Mar – 7 Mar","title":"Wrong answers, impact, and the plumbing","ship":"The four answers the tool can give, a pilot design, and a test harness in Git.","how":["first-pass"],"light":false,"mins":137,"steps":[{"id":"b:32-designing-for-the-wrong-answer.html","kind":"read","book":"32-designing-for-the-wrong-answer.html","n":32,"title":"Designing for the Wrong Answer","titleHi":"Galat Jawaab Ke Liye Design","mins":9,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"c:ch20","kind":"chapter","ch":"ch20","num":"20","title":"Designing for wrong answers: evidence, confidence and refusals","mins":30,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"c:ch205","kind":"chapter","ch":"ch205","num":"20.5","title":"Measuring business impact: designing a pilot","mins":25,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"b:33-the-plumbing-under-the-magic.html","kind":"read","book":"33-the-plumbing-under-the-magic.html","n":33,"title":"The Plumbing Under the Magic","titleHi":"Jaadu Ke Neeche Ki Plumbing","mins":8,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"c:ch8f","kind":"chapter","ch":"ch8f","num":"21","title":"Software basics for AI work: Python, HTTP, Git and tests","mins":60,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"t:review-20","kind":"look","title":"Look back","mins":5,"what":"Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."}]},{"n":21,"start":"2027-03-08","dates":"8 Mar – 14 Mar","title":"Production depth: models, context, retrieval","ship":"Your model choice with a back-up, and the gateway on one page.","how":["first-pass"],"light":false,"mins":192,"steps":[{"id":"b:34-choosing-a-model-on-your-own-cases.html","kind":"read","book":"34-choosing-a-model-on-your-own-cases.html","n":34,"title":"Choosing a Model on Your Own Cases","titleHi":"Apne Cases Par Model Chunna","mins":8,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"c:ch9m","kind":"chapter","ch":"ch9m","num":"22","title":"Choosing a model: benchmark on your own cases","mins":55,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"c:ch10c","kind":"chapter","ch":"ch10c","num":"23","title":"Context engineering: deciding what the model sees","mins":55,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"b:35-retrieval-that-survives-a-review.html","kind":"read","book":"35-retrieval-that-survives-a-review.html","n":35,"title":"Retrieval That Survives a Review","titleHi":"Review Mein Tikne Wala Retrieval","mins":9,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"c:ch11r","kind":"chapter","ch":"ch11r","num":"24","title":"Production RAG: ingestion, access control and freshness","mins":60,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"t:review-21","kind":"look","title":"Look back","mins":5,"what":"Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."}]},{"n":22,"start":"2027-03-15","dates":"15 Mar – 21 Mar","title":"Production depth: tools, agents, pictures and voice","ship":"A workflow that cannot make risky changes alone, and the tool access policy.","how":["first-pass"],"light":false,"mins":227,"steps":[{"id":"b:36-workflows-agents-and-the-standard-plug.html","kind":"read","book":"36-workflows-agents-and-the-standard-plug.html","n":36,"title":"Workflows, Agents and the Standard Plug","titleHi":"Workflows, Agents Aur Standard Plug","mins":9,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"c:ch12t","kind":"chapter","ch":"ch12t","num":"25","title":"Tool calling and workflows: contracts before agents","mins":50,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"c:ch13a","kind":"chapter","ch":"ch13a","num":"26","title":"Agents: loops, stopping conditions and control","mins":60,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"c:ch14p","kind":"chapter","ch":"ch14p","num":"27","title":"MCP and interoperability: standard connections to tools","mins":45,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"b:37-pages-pictures-and-voices.html","kind":"read","book":"37-pages-pictures-and-voices.html","n":37,"title":"Pages, Pictures and Voices","titleHi":"Pages, Tasveerein Aur Awaazein","mins":8,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"c:ch15mm","kind":"chapter","ch":"ch15mm","num":"28","title":"Multimodal AI: documents, images and voice","mins":50,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"t:review-22","kind":"look","title":"Look back","mins":5,"what":"Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."}]},{"n":23,"start":"2027-03-22","dates":"22 Mar – 28 Mar","title":"Production depth: gates, watching, security","ship":"The release gate, the watch plan and the risk register.","how":["first-pass"],"light":false,"mins":193,"steps":[{"id":"b:38-gates-traces-and-rollbacks.html","kind":"read","book":"38-gates-traces-and-rollbacks.html","n":38,"title":"Gates, Traces and Rollbacks","titleHi":"Gates, Traces Aur Rollbacks","mins":9,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"c:ch16e","kind":"chapter","ch":"ch16e","num":"29","title":"Evaluation engineering: test sets and release gates","mins":60,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"c:ch17o","kind":"chapter","ch":"ch17o","num":"30","title":"Observability and LLMOps: traces, cost and rollback","mins":55,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"b:39-assuming-the-worst.html","kind":"read","book":"39-assuming-the-worst.html","n":39,"title":"Assuming the Worst","titleHi":"Sabse Bure Ko Maan Kar Chalna","mins":9,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"c:ch18s","kind":"chapter","ch":"ch18s","num":"31","title":"Security and governance: controls around an untrusted model","mins":55,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"t:review-23","kind":"look","title":"Look back","mins":5,"what":"Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."}]},{"n":24,"start":"2027-03-29","dates":"29 Mar – 4 Apr","title":"The product spec and the decision pack","ship":"The full requirements and a ten-slide decision pack.","how":["first-pass"],"light":false,"mins":148,"steps":[{"id":"b:40-a-product-not-a-demo.html","kind":"read","book":"40-a-product-not-a-demo.html","n":40,"title":"A Product, Not a Demo","titleHi":"Product Hai, Demo Nahi","mins":9,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"c:ch19pm","kind":"chapter","ch":"ch19pm","num":"32","title":"AI product management: specs for a probabilistic system","mins":55,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"c:ch20d","kind":"chapter","ch":"ch20d","num":"33","title":"Production architecture, delivery and vendor strategy","mins":55,"what":"Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."},{"id":"b:41-shipping-the-whole-thing.html","kind":"read","book":"41-shipping-the-whole-thing.html","n":41,"title":"Shipping the Whole Thing","titleHi":"Poori Cheez Ship Karna","mins":9,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"t:capstone-plan","kind":"try","title":"Plan your capstone week","mins":15,"what":"Read the capstone chapter’s brief and write, on one page, the smallest version you can ship in about eight hours. Everything else goes on a “later” list."},{"id":"t:review-24","kind":"look","title":"Look back","mins":5,"what":"Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."}]},{"n":25,"start":"2027-04-05","dates":"5 Apr – 11 Apr","title":"Capstone: ship it and defend it","ship":"Bharat Privacy Guard shipped, with its findings document and a short demo.","how":["publish","demo-video"],"light":false,"mins":545,"steps":[{"id":"c:ch21cap","kind":"chapter","ch":"ch21cap","num":"34","title":"Capstone: discover, build, break, measure, ship and defend a system","mins":480,"firstPass":true,"what":"The chapter allows about thirty hours. Ship the smallest version that works in about eight, then keep improving. Press “Mark chapter complete” when it is shipped."},{"id":"t:portfolio","kind":"try","title":"Put the project where people can see it","mins":60,"app":"#/project","what":"Publish your findings page and the capstone write-up as one page with a link. Keep it plain. A page that exists beats a page that is pretty."},{"id":"t:review-25","kind":"look","title":"Look back","mins":5,"what":"Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."}]},{"n":26,"start":"2027-04-12","dates":"12 Apr – 18 Apr 2027","title":"The business, and the job","ship":"Your portfolio page, three practice interviews and a look back over six months.","how":["portfolio-site","mock-interviews","retro"],"light":false,"mins":317,"steps":[{"id":"b:42-who-pays-and-how-much.html","kind":"read","book":"42-who-pays-and-how-much.html","n":42,"title":"Who Pays, and How Much","titleHi":"Kaun Paisa Deta Hai, Aur Kitna","mins":9,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"c:b1","kind":"chapter","ch":"b1","num":"B1","title":"Business models, pricing and unit economics","mins":20,"firstPass":true,"what":"First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."},{"id":"b:43-how-people-find-it-and-stay.html","kind":"read","book":"43-how-people-find-it-and-stay.html","n":43,"title":"How People Find It and Stay","titleHi":"Log Product Kaise Dhoondhte Hain Aur Kyun Tikte Hain","mins":9,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"c:b2","kind":"chapter","ch":"b2","num":"B2","title":"Growth, onboarding and product marketing","mins":20,"firstPass":true,"what":"First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."},{"id":"b:44-counting-what-matters.html","kind":"read","book":"44-counting-what-matters.html","n":44,"title":"Counting What Matters","titleHi":"Jo Maayne Rakhta Hai Use Ginna","mins":9,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"c:b3","kind":"chapter","ch":"b3","num":"B3","title":"Product analytics and experiments","mins":20,"firstPass":true,"what":"First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."},{"id":"b:45-tools-and-harness.html","kind":"read","book":"45-tools-and-harness.html","n":45,"title":"The Tools and the Harness","titleHi":"Tools Aur Harness","mins":14,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"c:b4","kind":"chapter","ch":"b4","num":"B4","title":"Choosing tools for an AI product workflow","mins":20,"firstPass":true,"what":"First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."},{"id":"c:b5","kind":"chapter","ch":"b5","num":"B5","title":"Harness engineering: the system around the model","mins":20,"firstPass":true,"what":"First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."},{"id":"b:46-real-people-real-use.html","kind":"read","book":"46-real-people-real-use.html","n":46,"title":"Real People, Real Use","titleHi":"Asli Log, Asli Use","mins":10,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"c:b6","kind":"chapter","ch":"b6","num":"B6","title":"Ship to real users and run the learning loop","mins":20,"firstPass":true,"what":"First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."},{"id":"b:47-the-job.html","kind":"read","book":"47-the-job.html","n":47,"title":"The Work, and the Job","titleHi":"Kaam Aur Naukri","mins":11,"what":"Read the chapter. The page ticks itself when you reach the end."},{"id":"c:b7","kind":"chapter","ch":"b7","num":"B7","title":"Getting the job: career readiness for AI PM roles","mins":20,"firstPass":true,"what":"First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."},{"id":"c:b8","kind":"chapter","ch":"b8","num":"B8","title":"The integrated capstone now lives in Chapter 34","mins":20,"firstPass":true,"what":"First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."},{"id":"t:interviews","kind":"try","title":"Three practice interviews","mins":90,"what":"Use the interview practice in Chapter B7. Answer three questions out loud, record yourself, and write down one thing to say better next time."},{"id":"t:review-26","kind":"look","title":"Look back","mins":5,"what":"Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."}]}], MONTHS=[{"n":1,"name":"Month 1: Read first (the gentle start)","from":1,"to":4,"goal":"Ten minutes a weekday. The book from its first page to chapter 12, three small tries and your first evaluation. Nothing to install.","dates":"19 Oct – 15 Nov 2026"},{"n":2,"name":"Month 2: Product foundations and first contact","from":5,"to":9,"goal":"Track A’s boxes answered (your home ground), the setup working, your first model call, and a sorter with a score.","dates":"16 Nov – 20 Dec 2026"},{"n":3,"name":"Month 3: Finding and measuring","from":10,"to":13,"goal":"Search by words and by meaning, a scoreboard, and version 0 of the findings page published. Weeks 10 and 11 are light holiday weeks.","dates":"21 Dec 2026 – 17 Jan 2027"},{"n":4,"name":"Month 4: What real systems add","from":14,"to":18,"goal":"Dependable output, context and thinking models, better search, prompt injection, grading at scale, cost, documents and the rules.","dates":"18 Jan – 21 Feb 2027"},{"n":5,"name":"Month 5: Decisions and production depth","from":19,"to":23,"goal":"The spec, build or buy, wrong answers and impact, then the production chapters: models, retrieval, tools, agents, gates, watching and security.","dates":"22 Feb – 28 Mar 2027"},{"n":6,"name":"Month 6: Ship it, defend it, get the job","from":24,"to":26,"goal":"The decision pack, the capstone shipped and defended, the business chapters, a portfolio page and practice interviews.","dates":"29 Mar – 18 Apr 2027"}];
+const STEPS=WEEKS.flatMap(w=>w.steps.map(s=>Object.assign({week:w.n},s)));
+function stepDone(step, S) {
+  S = S || {};
+  if (step.kind === 'chapter') return !!(S.done && S.done[step.ch]);
+  if (step.kind === 'read' && S.read && S.read[step.book]) return true;
+  return !!(S.steps && S.steps[step.id]);
+}
+function nextStep(S) { return STEPS.find(s => !stepDone(s, S)) || null; }
+function stepHref(step, hi) {
+  if (step.kind === 'chapter') return '/#/ch/' + step.ch;
+  if (step.kind === 'read') return (hi ? '/book/hi/' : '/book/') + step.book + (step.at ? '#' + step.at : '');
+  if (step.app) return '/' + step.app;
+  return '/#/start';
+}
+function weekOf(date) {
+  const d = Math.floor((Date.parse(date + 'T00:00:00Z') - Date.parse(START + 'T00:00:00Z')) / 864e5);
+  return d < 0 ? 0 : Math.min(WEEKS.length + 1, Math.floor(d / 7) + 1);
+}
+window.ROUTE={START,WEEKS,MONTHS,STEPS,stepDone,nextStep,stepHref,weekOf};
+})();
 /* Engine: routing, rendering, persistence, and the stateful instruments
    (notebook, prediction ledger, red-mark map, glossary drill, system card). */
 (function(){
@@ -34799,8 +34787,8 @@ window.BIND_CONTENT=bindContent;
 /* ---------------- storage ---------------- */
 const KEY='aifz2027';
 const defaults=()=>({done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{},drill:{},
-  gentle:{},   // gentle start: day id -> time ticked
-  path:null,   // null = gentle path (default); 'full' = the playbook's order, Track A first
+  read:{},     // book chapters read: file -> time (ticked by the book, or on the route page)
+  steps:{},    // route steps ticked: step id -> time (src/data/route.mjs)
   appx:{},     // appendix A competency worksheet: 'row:col' -> 1
   tpl:{},      // Appendix C template copies: '<key>:<n>' -> {v,at,done}
   arts:{},     // Appendix B artifact tracker: '<n>' -> {s:0|1|2, where}
@@ -34827,10 +34815,38 @@ const defaults=()=>({done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{
 });
 let S=defaults();
 try{const raw=localStorage.getItem(KEY); if(raw)S=Object.assign(S,JSON.parse(raw));}catch(e){}
+/* Carry older ticks into the route once. The first gentle start (20 Oct 2026)
+   kept day ids under S.gentle, and the book kept its own list of chapters read;
+   both now live in S.steps and S.read, the ones every page reads. */
+function migrateTicks(T0){
+  let moved=false;
+  if(T0.gentle&&typeof T0.gentle==='object'){
+    const B8='08-what-the-machine-is.html', B11='11-giving-instructions.html';
+    const map={g1:['done','ch0'],g2:['steps','b:'+B8+'#1'],g3:['read',B8],g4:['steps','t:tokens'],g5:['steps','t:review-1'],
+      g6:['read','09-the-first-conversation.html'],g7:['read','10-a-mind-with-no-memory.html'],g8:['steps','b:'+B11+'#1'],
+      g9:['read',B11],g10:['steps','t:review-2'],g12:['read','12-knowing-whether-it-works.html'],g13:['steps','t:tenmsgs'],
+      g14:['steps','t:tenmsgs'],g15:['steps','t:review-3'],g16:['read','13-sorting-and-summarising.html'],
+      g17:['read','14-too-long-to-read-at-once.html'],g18:['read','15-finding-by-words.html'],g19:['read','16-finding-by-meaning.html'],
+      g20:['steps','t:setup']};
+    Object.keys(T0.gentle).forEach(k=>{const m=map[k],t=T0.gentle[k];if(!m||!t)return;
+      T0[m[0]]=T0[m[0]]||{}; if(!T0[m[0]][m[1]]) T0[m[0]][m[1]]=typeof t==='number'?t:Date.now(); moved=true;});
+    delete T0.gentle; moved=true;
+  }
+  if('path' in T0){ delete T0.path; moved=true; }
+  try{
+    const old=JSON.parse(localStorage.getItem('aifz-book-read')||'null');
+    if(Array.isArray(old)&&old.length){T0.read=T0.read||{};
+      old.forEach(k=>{const f=String(k).split('/').pop(); if(/^\d\d-.*\.html$/.test(f)&&!T0.read[f]){T0.read[f]=Date.now();moved=true;}});
+      localStorage.removeItem('aifz-book-read');}
+  }catch(e){}
+  return moved;
+}
+const migratedTicks=migrateTicks(S);
 /* keep last session's state recoverable before this one writes over it */
 try{window.SYNC&&window.SYNC.takeSessionBackup();}catch(e){}
 let saveT, suspended=false, lastBody=null;
 try{ const u=S.updatedAt; delete S.updatedAt; lastBody=JSON.stringify(S); S.updatedAt=u; }catch(e){}
+if(migratedTicks) lastBody=null;              // write the carried-over ticks on the first save
 /* After progress is replaced underneath us (import, restore, erase) the page is
    about to reload, and the in-memory copy is stale. Writing it on the way out —
    pagehide fires on reload — would silently undo the replacement. */
@@ -34860,6 +34876,20 @@ function writeNow(){
       writeNow._push=setTimeout(()=>{window.SYNC.gh.push().catch(()=>{});},20000);}}
 }
 function save(){clearTimeout(saveT);saveT=setTimeout(writeNow,250);}
+if(migratedTicks) save();
+/* The book and the plan tick S.read and S.steps from their own tabs. Take
+   those ticks here too, so this tab's next save does not write over them. */
+addEventListener('storage',e=>{
+  if(e.key!==KEY||!e.newValue) return;
+  let d; try{d=JSON.parse(e.newValue);}catch(err){return;}
+  const keep=S.updatedAt; delete S.updatedAt;
+  const clean=JSON.stringify(S)===lastBody; S.updatedAt=keep;
+  if(clean){ replace(d); }
+  else { let ch=false;
+    ['read','steps','done'].forEach(k=>{S[k]=S[k]||{};Object.keys(d[k]||{}).forEach(x=>{if(d[k][x]&&!S[k][x]){S[k][x]=d[k][x];ch=true;}});});
+    if(ch) save(); }
+  if(/^#\/(start|library)?$/.test(location.hash)||!location.hash) route();
+});
 /* A debounced write loses the last answer if the tab is closed or navigated
    within the debounce window, so flush on every way out. */
 addEventListener('pagehide',()=>{writeNow();
@@ -35408,6 +35438,14 @@ function renderChapter(c){
     h('div',{class:'chnum',text:String(c.num).padStart(2,'0')}),
     h('h1',{text:T(c.title)}),
     h('p',{class:'concept',text:T(c.concept)})]));
+  /* Where this chapter sits on the route, and what the route asks of it. */
+  if(window.ROUTE){
+    const rs=window.ROUTE.STEPS.find(x=>x.ch===c.id);
+    if(rs) w.appendChild(h('a',{class:'routeline',href:'#/start#week-'+rs.week},[
+      h('span',{class:'lbl',text:T('Your route')}),
+      h('span',{class:'pt',text:T('Week')+' '+rs.week+(rs.firstPass&&rs.mins<=30?' \u00b7 '+T('first pass, about 20 minutes: read it and answer the boxes. The Build it section is optional.'):' \u00b7 ~'+fmtMins(rs.mins))}),
+      h('span',{class:'go',text:T('See the week')+' \u2192'})]));
+  }
 
   /* Which stage of the project this chapter belongs to, with a way to see the
      whole project. The capstone below is a question about that stage. */
@@ -35871,8 +35909,16 @@ function pageHome(){
 
   /* Where you are, before anything else. */
   const pctDone=CH.length?Math.round(doneN*100/CH.length):0;
+  /* "Next" here is the route's next step, the same one the dashboard, the plan
+     and the reminder name. */
+  const rn=eng.routeNext(S);
   w.appendChild(h('div',{class:'herecard'},[
-    h('div',{class:'hl'},[
+    rn?h('div',{class:'hl'},[
+      h('span',{class:'cplbl',text:T('Your route')+' \u00b7 '+T('Week')+' '+rn.week.n}),
+      h('a',{class:'ht',href:rn.href,text:(rn.s.kind==='chapter'?rn.s.num+'. ':'')+(S.lang==='hi'&&rn.s.titleHi?rn.s.titleHi:T(rn.s.title))}),
+      h('span',{class:'dim',text:T({chapter:'Chapter',read:'Book',try:'Try',look:'Look back'}[rn.s.kind])+' \u00b7 ~'+fmtMins(rn.s.mins)+' \u00b7 '}),
+      h('a',{class:'dim',href:'#/start',text:T('See the whole route')})])
+    :h('div',{class:'hl'},[
       h('span',{class:'cplbl',text:T(!target?'Finished':cur.started?'Pick up where you stopped':doneN?'Next up':'Start here')}),
       target?h('a',{class:'ht',href:'#/ch/'+target.id,text:target.num+'. '+T(target.title)})
         :h('span',{class:'ht',text:T('You have finished every chapter.')}),
@@ -35881,7 +35927,7 @@ function pageHome(){
       h('span',{class:'cpbar big'},h('i',{style:'width:'+pctDone+'%'})),
       h('span',{class:'dim',text:doneN+' / '+CH.length+' '+T('chapters finished')})])]));
   w.appendChild(h('div',{class:'chiprow cmaplinks'},[
-    h('a',{class:'chip',href:'#/start',text:T('Gentle start: the first four weeks')}),
+    h('a',{class:'chip',href:'#/start',text:T('Your route: 26 weeks, one order')}),
     h('a',{class:'chip',href:'#/project',text:T('Your project: Bharat Privacy Guard')}),
     bookHere()?h('a',{class:'chip',href:bookBase(),text:T('Read it as a book')}):null,
     h('a',{class:'chip',href:'#/setup',text:T('Set up Colab + API key')}),
@@ -36079,69 +36125,76 @@ function pageLedger(){
 }
 function ctlL(l,n){return h('div',{},[h('label',{text:l}),n]);}
 
-/* ---------------- the gentle start ----------------
-   The first four weeks, ten minutes a weekday (src/data/gentle.js). The
-   dashboard's "Next" and the daily 12:00 reminder both point here until every
-   day is ticked. */
+/* ---------------- your route ----------------
+   The 26 weeks of src/data/route.mjs, the same list the plan tab, the book and
+   the 12:00 reminder follow. Chapters count when marked complete, book
+   chapters when the book ticks them (or here), tries and look-backs when
+   ticked here. The current week is open; the rest fold away. */
+function istDate(){return new Date(Date.now()+19800000).toISOString().slice(0,10);}
 function pageStart(){
-  const G=window.GENTLE, w=h('div',{class:'wrap gentle'});
-  if(!G){ w.appendChild(h('p',{text:'The gentle start is not in this build.'})); return w; }
-  S.gentle=S.gentle||{};
-  const full=S.path==='full';
-  const doneN=G.days.filter(d=>S.gentle[d.id]).length;
-  const next=G.days.find(d=>!S.gentle[d.id]);
+  const R=window.ROUTE, w=h('div',{class:'wrap gentle'});
+  if(!R){ w.appendChild(h('p',{text:'The route is not in this build.'})); return w; }
+  S.steps=S.steps||{}; S.read=S.read||{};
+  const hi=S.lang==='hi';
+  const all=R.STEPS, doneN=all.filter(x=>R.stepDone(x,S)).length;
+  const nx=R.nextStep(S), cal=Math.max(1,Math.min(R.WEEKS.length,R.weekOf(istDate())||1));
+  const at=nx?nx.week:R.WEEKS.length+1;
+  const gap=nx?cal-at:0;
   w.appendChild(h('header',{class:'phead'},[
-    h('div',{class:'eyebrow'},[h('span',{text:T('The first four weeks')}),h('span',{class:'dot'}),
-      h('span',{text:T('ten minutes a weekday')})]),
-    h('h1',{text:T('Gentle start')}),
-    h('p',{text:T('Reading and small tries only. No installs, no API key and no interviews until the last day of week 4. On a day when ten minutes feels like too much, read one page and tick the day anyway.')})]));
+    h('div',{class:'eyebrow'},[h('span',{text:T('26 weeks, one order')}),h('span',{class:'dot'}),
+      h('span',{text:T('the same on the plan, in the book and in the 12:00 reminder')})]),
+    h('h1',{text:T('Your route')}),
+    h('p',{text:T('Month 1 is the gentle start: the book from its first page, ten minutes a weekday, and nothing to install. After that, each chapter’s story comes first in the book, then the chapter itself here. On a day when ten minutes feels like too much, do one page and tick it anyway.')})]));
   w.appendChild(h('div',{class:'gprog'},[
-    h('span',{class:'cpbar big'},h('i',{style:'width:'+Math.round(doneN*100/G.days.length)+'%'})),
-    h('span',{class:'dim',text:doneN+' / '+G.days.length+' '+T('days done')})]));
-  const open=d=>{
-    if(d.go&&d.go.app) return {href:d.go.app, label:T('Open')};
-    if(d.go&&d.go.book){
-      const base=bookHere()?bookBase():(S.lang==='hi'?'/book/hi/':'/book/');
-      return {href:base+d.go.book+(d.go.at?'#'+d.go.at:''), label:T('Read in the book')};
-    }
-    return null;
-  };
-  G.weeks.forEach(wk=>{
-    const days=G.days.filter(d=>d.wk===wk.n);
-    const sec=h('section',{class:'part gweek'});
-    sec.appendChild(sectionHead(T('Week')+' '+wk.n,wk.title,days.filter(d=>S.gentle[d.id]).length+'/'+days.length));
-    sec.appendChild(h('p',{class:'gblurb',text:T(wk.blurb)}));
-    sec.appendChild(h('ol',{class:'gdays'},days.map(d=>{
-      const n=G.days.indexOf(d)+1, ticked=!!S.gentle[d.id], o=open(d);
-      const cb=h('input',{type:'checkbox','aria-label':T('Done')+': '+T('Day')+' '+n});
-      cb.checked=ticked;
-      cb.addEventListener('change',()=>{
-        if(cb.checked) S.gentle[d.id]=Date.now(); else delete S.gentle[d.id];
-        save(); route();
-      });
-      return h('li',{class:'gday'+(ticked?' done':'')+(next===d?' today':''),id:'day-'+n},[
-        h('label',{class:'gtick'},[cb,h('span',{class:'gn',text:T('Day')+' '+n})]),
+    h('span',{class:'cpbar big'},h('i',{style:'width:'+Math.round(doneN*100/all.length)+'%'})),
+    h('span',{class:'dim',text:doneN+' / '+all.length+' '+T('steps done')})]));
+  w.appendChild(h('p',{class:'gstate'+(gap>0?' behind':''),text:
+    !nx?T('Every step is done. Well done.')
+    :gap>0?T('This is calendar week {cal}, and you are on week {at}. That is fine: carry on from the first open step, and never miss twice.').replace('{cal}',cal).replace('{at}',at)
+    :gap<0?T('You are ahead of the calendar. Keep the pace that keeps you coming back.')
+    :T('You are on schedule. Do the step marked today.')}));
+  const href=x=>R.stepHref(x,hi).replace(/^\/(#\/)/,'$1');
+  const tickable=x=>x.kind!=='chapter';
+  R.WEEKS.forEach(wk=>{
+    const done=wk.steps.filter(x=>R.stepDone(x,S)).length;
+    const det=h('details',{class:'part gweek'+(done===wk.steps.length?' done':''),id:'week-'+wk.n});
+    if(wk.n===at||wk.n===cal) det.open=true;
+    det.appendChild(h('summary',{},[
+      h('span',{class:'gwn',text:T('Week')+' '+wk.n}),
+      h('span',{class:'gwt',text:T(wk.title)}),
+      h('span',{class:'gwd',text:wk.dates+' · '+fmtMins(wk.mins)+' · '+done+'/'+wk.steps.length})]));
+    det.appendChild(h('p',{class:'gblurb'},[h('strong',{text:T('By Sunday')+': '}),h('span',{text:T(wk.ship)})]));
+    det.appendChild(h('ol',{class:'gdays'},wk.steps.map(x=>{
+      const ok=R.stepDone(x,S), isNext=nx&&nx.id===x.id;
+      const kindLbl={chapter:T('Chapter'),read:T('Book'),try:T('Try'),look:T('Look back')}[x.kind];
+      const title=x.kind==='chapter'?x.num+'. '+T(x.title):(hi&&x.titleHi?x.titleHi:T(x.title));
+      let tick;
+      if(tickable(x)){
+        tick=h('input',{type:'checkbox','aria-label':T('Done')+': '+title});
+        tick.checked=ok;
+        tick.addEventListener('change',()=>{
+          if(x.kind==='read'&&!x.part){ if(tick.checked) S.read[x.book]=S.read[x.book]||Date.now(); else delete S.read[x.book]; }
+          if(tick.checked) S.steps[x.id]=S.steps[x.id]||Date.now(); else delete S.steps[x.id];
+          save(); route();
+        });
+      } else tick=h('span',{class:'gdone',text:ok?'✓':'',title:T('Ticks itself when you mark the chapter complete')});
+      const go=x.kind==='look'?null:h('a',{class:isNext?'btnlink':'chip',href:href(x),
+        text:(x.kind==='read'?T('Read in the book'):x.kind==='chapter'?T('Open the chapter'):T('Open'))+' →'});
+      return h('li',{class:'gday'+(ok?' done':'')+(isNext?' today':''),id:'step-'+x.id.replace(/[^\w-]/g,'_')},[
+        h('label',{class:'gtick'},[tick,h('span',{class:'gn',text:kindLbl})]),
         h('div',{class:'gbody'},[
-          h('div',{class:'gt'},[h('strong',{text:T(d.title)}),h('span',{class:'dim',text:' · ~'+d.mins+' min'}),
-            next===d?h('span',{class:'gtoday',text:T('today')}):null]),
-          h('p',{text:T(d.what)}),
-          o?h('a',{class:next===d?'btnlink':'chip',href:o.href,text:o.label+' →'}):
-            h('span',{class:'dim gnote',text:T('Notepad and pen. Tick the day when you are done.')})])]);
+          h('div',{class:'gt'},[h('strong',{text:title}),h('span',{class:'dim',text:' · ~'+fmtMins(x.mins)}),
+            isNext?h('span',{class:'gtoday',text:T('next')}):null]),
+          h('p',{text:T(x.what)}),
+          go])]);
     })));
-    w.appendChild(sec);
+    w.appendChild(det);
   });
-  w.appendChild(h('div',{class:'callout'},[
-    h('span',{class:'lbl',text:T('After the four weeks')}),
-    h('p',{text:T(G.after)}),
-    h('div',{class:'chiprow',style:'margin-top:.7rem'},[
-      h('a',{class:'chip',href:'#/ch/ch1',text:T('Chapter 1')+' →'}),
-      h('a',{class:'chip',href:'#/library',text:T('The course map')})])]));
-  w.appendChild(h('p',{class:'dim gpath'},[
-    h('span',{text:T(full?'You are following the full course order, Track A first.':'You are on the gentle path. “Next” skips the long Track A and Track B chapters for now.')+' '}),
-    h('button',{class:'linkbtn',onclick:()=>{S.path=full?null:'full';save();route();renderRail();}},
-      T(full?'Go back to the gentle path':'Use the full course order instead'))]));
+  w.appendChild(h('p',{class:'dim gpath'},[h('span',{text:T('The plan tab shows the same weeks with notes, monthly reviews and the reasons behind them.')+' '}),
+    h('a',{href:'/plan/',text:T('Open the plan')+' →'})]));
   return w;
 }
+function fmtMins(m){return m>=90?(Math.round(m/30)/2)+' h':m+' min';}
 
 function pageLater(){
   const w=h('div',{class:'wrap'});
@@ -36722,7 +36775,7 @@ function renderRail(){
      you do want the code, and a reader who cannot find it concludes the course
      expects an environment they were never told how to build. */
   r.appendChild(sec('Help',[
-    ['#/start','\u25b8','Gentle start: the first four weeks'],
+    ['#/start','\u25b8','Your route: 26 weeks, one order'],
     ['#/setup','\u2699','Set up Colab + API key'],
     ['#/later','\u25d4','Not yet \u2014 what to ignore for now'],
     ['#/install','\u25a2','Install on iPad or phone']]));
@@ -37292,7 +37345,7 @@ const ROUTES={'':()=>V().dashboard(),'library':pageHome,'start':pageStart,
   'decisions':pageDecisionLog,'failures':pageFailureLog,
   'progress':pageProgress,'labs':pageLabs,'data':()=>V().data(),
   'studio':()=>window.STUDIO.studio([])};
-const CRUMB={'':'Home','library':'The course map','start':'Gentle start','skills':'My progress','analytics':'How I am doing over time',
+const CRUMB={'':'Home','library':'The course map','start':'Your route','skills':'My progress','analytics':'How I am doing over time',
   'exercises':'Longer exercises','processes':'Repeatable work routines','practice':'Practice','skill':'Skill',
   'data':'My data and backups','studio':'Edit this course','install':'Install on iPad or phone',
   'language':'Language','setup':'Set up Colab + API key','appendix':'Worksheet, question bank, sources','project':'Your project',
@@ -37366,7 +37419,7 @@ function buildIndex(){
     {k:'page',t:'Exercises',h:'#/exercises'},{k:'page',t:'Processes',h:'#/processes'},
     {k:'page',t:'The course map — '+CH.length+' chapters, in order',h:'#/library'},{k:'page',t:'Your project: Bharat Privacy Guard',h:'#/project'},
     {k:'page',t:'Progress & Backup',h:'#/data'},
-    {k:'page',t:'Gentle start: the first four weeks',h:'#/start'},
+    {k:'page',t:'Your route: 26 weeks, one order',h:'#/start'},
     {k:'page',t:'Content Studio — edit the curriculum',h:'#/studio'},
     {k:'page',t:'Setup',h:'#/setup'},
     {k:'page',t:'The Labs',h:'#/labs'},{k:'page',t:'Red-Mark Map',h:'#/map'},
@@ -37630,9 +37683,15 @@ const ACCOUNT=(function(){
 
     if(localEmpty || !localChanged()){
       window.SYNC.takeSessionBackup();
+      /* ticks made on this device while signed out (the book, the route) are
+         kept: they only ever add, so they are folded into the server's copy */
+      const extra={read:Object.assign({},S.read), steps:Object.assign({},S.steps)};
       replace(srv.data);
+      let added=false;
+      ['read','steps'].forEach(k=>{S[k]=S[k]||{};Object.keys(extra[k]).forEach(x=>{if(extra[k][x]&&!S[k][x]){S[k][x]=extra[k][x];added=true;}});});
       setM({version:srv.version, marker:marker()});
       route();
+      if(added){ writeNow(); return pushNow(srv.version, localEmpty?'pulled':'ok'); }
       return show(localEmpty?'pulled':'ok');
     }
     /* both sides moved */

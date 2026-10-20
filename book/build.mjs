@@ -5,6 +5,7 @@
    so what the checker reads is exactly what the builder prints. */
 import fs from 'node:fs';
 import p from 'node:path';
+import { STEPS as ROUTE_STEPS } from '../src/data/route.mjs';
 
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const slugify = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
@@ -311,6 +312,7 @@ ${nav}
 ${main}
 </main>
 </div>
+<script src="/progress.js" defer></script>
 <script src="${assetBase}reader.js" defer></script>
 <script src="/reminder.js" defer></script>
 </body>
@@ -350,6 +352,22 @@ ${parts.join('\n')}
 
   const goalsBox = g => g && g.length ? `<aside class="goals"><h2>${ui.goals}</h2><ul>${g.map(x => `<li>${inline(x)}</li>`).join('')}</ul></aside>` : '';
 
+  /* ----- where each chapter sits on the route (src/data/route.mjs) ----- */
+  const RB = lang === 'hi'
+    ? { on: 'Aapke raaste par', week: 'Week', whole: 'Chapter ke end tak pahunchte hi yeh apne aap tick ho jaata hai, aapke account mein bhi.',
+        halves: 'Yeh chapter do din mein hai. Har hissa khatam hote hi apne aap tick ho jaata hai.', mark: 'Padh liya', done: 'Padha gaya ✓', back: 'Apne raaste par wapas' }
+    : { on: 'On your route', week: 'Week', whole: 'This chapter ticks itself when you reach the end, in your account too.',
+        halves: 'This chapter is split over two days. Each half ticks itself as you finish it.', mark: 'Mark as read', done: 'Read ✓', back: 'Back to your route' };
+  const routeBox = file => {
+    const st = ROUTE_STEPS.filter(x => x.kind === 'read' && x.book === file);
+    if (!st.length) return '';
+    const half = st.find(x => x.part === 1);
+    return `<aside class="routebox" data-route-file="${file}"${half ? ` data-half="${esc(half.id)}" data-upto="${half.upto}"` : ''}>` +
+      `<p><b>${RB.on}: ${RB.week} ${st[0].week}.</b> ${half ? RB.halves : RB.whole}</p>` +
+      `<p class="rbrow"><button type="button" class="b rbmark">${RB.mark}</button><span class="rbdone" hidden>${RB.done}</span>` +
+      `<a href="/#/start">${RB.back} →</a></p></aside>`;
+  };
+
   /* ----- chapters ----- */
   const gloss = href('glossary.html');
   for (const c of B.chapters) {
@@ -365,6 +383,7 @@ ${goalsBox(c.goals)}
 ${render(c, c.terms, gloss, ui, c.n)}
 </div>
 ${wordsBox(c.terms)}
+${routeBox(c.file)}
 ${courseLine(c.course)}
 ${pager(c.file)}
 </article>`;
@@ -380,6 +399,7 @@ ${pager(c.file)}
 <div class="prose">
 ${render(pg, pg.terms, gloss, ui, null)}
 </div>
+${routeBox(pg.file)}
 ${courseLine(pg.course)}
 ${pager(pg.file)}
 </article>`;

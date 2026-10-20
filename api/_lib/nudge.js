@@ -7,9 +7,10 @@
    in a dashboard. */
 import crypto from 'node:crypto';
 import { query } from './db.js';
-import { MESSAGES, DAYS } from './nudge-messages.js';
+import { MESSAGES, SAYS } from './nudge-messages.js';
+import { WEEKS as ROUTE_WEEKS, nextStep, stepHref, weekOf } from '../../src/data/route.mjs';
 
-export const START = '2026-10-19';        // day 1: the first Monday after the plan was set up
+export const START = '2026-10-19';        // day 1: the route's first Monday
 /* The send window. The trigger is Vercel's own scheduler (vercel.json), which
    on the free plan fires once a day somewhere inside the hour it is given:
    hour 06 UTC is 11:30–12:29 in India, so the window opens at 11:30. The
@@ -41,33 +42,30 @@ export function weekdaysSince(start, date) {
   for (let d = dayNum(start); d <= dayNum(date); d++) { const w = new Date(d * 86400000).getUTCDay(); if (w >= 1 && w <= 5) n++; }
   return n;
 }
-/* The next unticked day of the gentle start (1–20), 0 once it is all ticked.
-   Days 1–20 of DAYS are the gentle start's days, in the same order. */
-const GENTLE_DAYS = 20;
-export function gentleDay(st) {
-  const done = (st && st.gentle) || {};
-  for (let i = 1; i <= GENTLE_DAYS; i++) if (!done['g' + i]) return i;
-  return 0;
+/* The task line for a route step. */
+const mins = m => m >= 90 ? 'about ' + (Math.round(m / 30) / 2) + ' hours' : 'about ' + m + ' min';
+export function taskFor(step) {
+  if (step.kind === 'read') return 'Today: read “' + step.title + '” in the book' + (step.part ? ' (' + (step.part === 1 ? 'first' : 'second') + ' half)' : '') + ', ' + mins(step.mins) + '.';
+  if (step.kind === 'chapter') return 'Today: ' + (step.firstPass && step.mins <= 30 ? 'a first pass on ' : '') + 'Chapter ' + step.num + ', “' + step.title + '”, ' + mins(step.mins) + '.';
+  if (step.kind === 'look') return 'Today: your look back. Three lines in your notepad, then tick it.';
+  return 'Today: ' + step.title + ', ' + mins(step.mins) + '.';
 }
 /* `st` is the signed-in person's saved progress, when there is one. With it,
-   the task follows where they actually are, so a skipped day never makes the
-   reminder run ahead of them. Without it, the calendar decides. */
+   the task is their next step on the route, wherever they are. Without it
+   (signed out), the calendar names the week and the site works out the step. */
 export function messageFor(date, st) {
   const D = Math.max(1, weekdaysSince(START, date));
   const n = ((D - 1) % MESSAGES.length) + 1;
-  const d = DAYS[n - 1];
+  const say = SAYS[n - 1];
   const title = 'Day ' + n + ' of 30: your ten minutes';
-  if (st && typeof st === 'object' && st.path !== 'full') {
-    const g = gentleDay(st);
-    if (g) return { n, title, body: d.say + ' ' + DAYS[g - 1].task, url: '/#/start' };
-    return { n, title, url: '/#/', body: d.say + ' Ten minutes: open the site and do the step marked “Next”.' };
+  if (st && typeof st === 'object') {
+    const s = nextStep(st);
+    if (!s) return { n, title, url: '/#/start', body: say + ' Every step on the route is done. Ten minutes: a second pass on one “Build it”.' };
+    const href = stepHref(s, st.lang === 'hi');
+    return { n, title, body: say + ' ' + taskFor(s), url: href, step: s.id };
   }
-  /* The first thirty follow the gentle start and Chapters 1–2 step by step.
-     After that the firm line repeats and the task is "the step marked Next",
-     which the site works out from where he actually is. */
-  if (D > DAYS.length)
-    return { n, title, url: '/#/', body: d.say + ' Ten minutes: open the site and do the step marked “Next”.' };
-  return { n, title, body: d.say + ' ' + d.task, url: d.url };
+  const w = ROUTE_WEEKS[Math.min(Math.max(weekOf(date), 1), ROUTE_WEEKS.length) - 1];
+  return { n, title, url: '/#/start', body: say + ' This week: ' + w.title + '. Open the site and do the step marked next.' };
 }
 
 /* ---------- VAPID ---------- */

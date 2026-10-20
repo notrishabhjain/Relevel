@@ -53,37 +53,65 @@
   var here = toc && $('li.here', toc);
   if (here && toc.scrollTo) toc.scrollTo({ top: Math.max(0, here.offsetTop - toc.clientHeight / 3) });
 
-  /* what has been read: a set of "lang/file" keys */
-  var readKey = 'aifz-book-read';
-  var readSet = function () { try { return JSON.parse(store.get(readKey) || '[]'); } catch (e) { return []; } };
-  var isRead = function (f) { return readSet().indexOf(lang + '/' + f) >= 0; };
+  /* What has been read. One record for the whole site: the playbook's saved
+     progress (read[file]), shared through /progress.js with the plan and your
+     account, and the same whichever edition you read in. Reaching the end of a
+     chapter ticks it; for a chapter split over two days, reaching the start of
+     its second half ticks the first. */
+  var P = window.AIFZ_PROGRESS || null;
+  var readOf = function () { return (P ? P.load().read : null) || {}; };
+  var counts = function (f) { return /^\d\d-/.test(f) || f === 'preface.html'; };
+  var isRead = function (f) { return !!readOf()[f]; };
+  var marked = {};
   var markRead = function (f) {
-    var s = readSet(), k = lang + '/' + f;
-    if (s.indexOf(k) < 0) { s.push(k); store.set(readKey, JSON.stringify(s)); }
+    if (!P || marked[f] || isRead(f)) return;
+    marked[f] = 1;
+    P.markRead(f).then(paintAll, paintAll);
   };
   var paintRead = function () {
     $$('[data-file]', document).forEach(function (el) {
       if (el.tagName === 'ARTICLE') return;
       var f = el.getAttribute('data-file');
-      if (!/^\d\d-/.test(f)) return;
+      if (!counts(f)) return;
       var li = el.tagName === 'LI' ? el : el.closest('li');
-      if (li && isRead(f)) li.classList.add('read');
+      if (li) li.classList.toggle('read', isRead(f));
     });
   };
+  var box = $('.routebox');
+  var paintBox = function () {
+    if (!box) return;
+    var f = box.getAttribute('data-route-file'), done = isRead(f);
+    var b = $('.rbmark', box), d = $('.rbdone', box);
+    if (b) b.hidden = done; if (d) d.hidden = !done;
+  };
+  if (box) {
+    var mb = $('.rbmark', box);
+    if (mb) mb.addEventListener('click', function () { markRead(box.getAttribute('data-route-file')); });
+    if (!P) box.hidden = true;
+  }
+  var paintAll = function () { paintRead(); paintBox(); paintCount(); };
 
   /* progress through the page, and the chapter counted as read near its end */
   var art = $('article[data-file]');
   var file = art && art.getAttribute('data-file');
   var bar = $('#progress i');
+  var half = box && box.getAttribute('data-half'), upto = box && box.getAttribute('data-upto');
+  var halfDone = false;
   var tick = function () {
     var h = document.documentElement.scrollHeight - window.innerHeight;
     var frac = h > 0 ? Math.min(1, window.scrollY / h) : 0;
     if (bar) bar.style.width = (frac * 100) + '%';
-    if (file && /^\d\d-/.test(file) && frac > 0.9) { markRead(file); }
+    if (file && counts(file) && frac > 0.9) { markRead(file); }
+    if (P && half && !halfDone) {
+      var el = document.getElementById(upto);
+      if (el && el.getBoundingClientRect().top < window.innerHeight * 0.5) {
+        halfDone = true;
+        var st = P.load().steps || {};
+        if (!st[half]) P.tick(half);
+      }
+    }
   };
   window.addEventListener('scroll', tick, { passive: true });
-  tick();
-  paintRead();
 
   /* remember the chapter you were in */
   if (art && file !== 'index.html' && file !== 'glossary.html') {
@@ -99,16 +127,21 @@
   }
 
   /* the count on the cover */
-  var prog = $('#prog');
-  if (prog) {
+  function paintCount() {
+    var prog = $('#prog');
+    if (!prog) return;
     var total = $$('.cards li').length;
-    var done = readSet().filter(function (k) { return k.indexOf(lang + '/') === 0 && /\/\d\d-/.test(k); }).length;
+    var r = readOf(), done = Object.keys(r).filter(function (k) { return /^\d\d-/.test(k) && r[k]; }).length;
+    prog.hidden = !done;
     if (done) {
-      prog.hidden = false;
       $('.bar i', prog).style.width = (done * 100 / total) + '%';
       $('.txt', prog).textContent = done + ' ' + (hi ? 'mein se' : 'of') + ' ' + total + ' ' + (hi ? 'chapter padhe gaye' : 'chapters read');
     }
   }
+  paintAll();
+  tick();
+  /* the account may know more than this device: show that too */
+  if (P) { P.pull().then(paintAll, function () {}); P.onChange(paintAll); }
 
   /* search: one box on the sidebar and one on the cover */
   var filter = function (q) {
