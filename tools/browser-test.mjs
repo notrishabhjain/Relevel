@@ -3,6 +3,8 @@
    The second device is a separate browser context, not a second tab: tabs share
    storage and would pass even if nothing reached the database. */
 import { chromium } from 'playwright';
+import os from 'node:os';
+import path from 'node:path';
 import { readFileSync } from 'node:fs';
 /* Expected counts come from the build output rather than being typed here, so
    adding a chapter does not mean editing the tests to agree with it. */
@@ -1056,6 +1058,72 @@ console.log('\n— one route: the playbook, the book and the plan agree —');
   const ch = await gs.page.evaluate(async () => { location.hash = '#/ch/a1'; await new Promise(r => setTimeout(r, 300)); return document.querySelector('.routeline') && document.querySelector('.routeline').textContent; });
   ok(/Week 5/.test(ch || '') && /first pass/.test(ch || ''), 'a long chapter says it is a first pass on the route, in week 5', ch);
   await gs.ctx.close();
+}
+
+console.log('\n— one view: each week links the other views, and notes reach the plan —');
+{
+  const hv = await newDevice(false);
+  await boot(hv.page, '#/start');
+  await hv.page.waitForSelector('#week-1');
+  const v = await hv.page.evaluate(() => ({
+    views: [...document.querySelectorAll('.hubviews a')].map(a => a.getAttribute('href')),
+    months: document.querySelectorAll('.hubmonth').length, reviews: document.querySelectorAll('.hubreview').length,
+    storyChip: [...document.querySelectorAll('#step-c_ch0 .gtwins a')].map(a => a.getAttribute('href')),
+    doIt: [...document.querySelectorAll('#step-b_01-the-number-in-the-chat_html .gtwins a')].map(a => a.getAttribute('href')),
+    about: !!document.querySelector('#step-b_01-the-number-in-the-chat_html .gabout'),
+    planLink: (document.querySelector('#week-1 .hubplan a[href="/plan/#w1"]') || {}).textContent,
+    how: !!document.querySelector('#week-6 .hubplan a[href="/plan/#setup"]'),
+    further: document.querySelectorAll('#week-3 .hubplan a[target=_blank]').length
+  }));
+  ok(v.views.join() === '/book/,/plan/,/plan/#curriculum', 'the route page opens the book, the plan and the curriculum', JSON.stringify(v.views));
+  ok(v.months === 6 && v.reviews === 6, 'it shows all six months, each with its monthly review');
+  ok(v.storyChip.includes('/book/preface.html') && v.doIt.includes('#/ch/a1') && v.about,
+     'a chapter links its story in the book, a book chapter links the chapter to do, with what each covers', JSON.stringify(v));
+  ok(!!v.planLink && v.how && v.further >= 1, 'each week links its plan week, its how-to and its optional reading');
+  await hv.page.fill('#week-1 .hubfields input[type=text]', 'started with the preface');
+  await hv.page.press('#week-1 .hubfields input[type=text]', 'Tab');
+  await hv.page.check('#month-1 .hubreview input[type=checkbox]');
+  await hv.page.waitForTimeout(200);
+  await hv.page.goto(B + '/plan/#w1');
+  await hv.page.waitForSelector('#w1 input[data-f="note"]');
+  ok((await hv.page.inputValue('#w1 input[data-f="note"]')) === 'started with the preface', 'a note written on the route page is the plan’s note for that week');
+  ok(await hv.page.isChecked('div.gate[data-gate="M1"] input[data-f="passed"]'), 'and a monthly review ticked there is ticked in the plan');
+  const back = await hv.page.evaluate(() => ({ wk: (document.querySelector('#w1 a[href="../#/start#week-1"]') || {}).textContent,
+    month: !!document.querySelector('a[href="../#/start#month-1"]') }));
+  ok(!!back.wk && back.month, 'the plan links each week and each curriculum month back to the one view', JSON.stringify(back));
+  await hv.page.goto(B + '/book/05-choosing-what-not-to-do.html');
+  const rb = await hv.page.evaluate(() => [...document.querySelectorAll('.routebox a')].map(a => a.getAttribute('href')));
+  ok(rb.includes('/#/start#week-2') && rb.includes('/plan/#w2'), 'a book chapter links its week in the one view and in the plan', JSON.stringify(rb));
+  await boot(hv.page, '#/ch/a5');
+  const rl = await hv.page.evaluate(() => [...document.querySelectorAll('.routeline a')].map(a => a.getAttribute('href')));
+  ok(rl.includes('#/start#week-5') && rl.includes('/plan/#w5') && rl.some(h => /\/book\/05-/.test(h)), 'a playbook chapter links its week, its book chapter and its plan week', JSON.stringify(rl));
+  await hv.ctx.close();
+}
+
+console.log('\n— the book and the plan install as apps, and read offline —');
+{
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'aifz-pwa-'));
+  const pc = await chromium.launchPersistentContext(dir, fs.existsSync(HERE) ? { executablePath: HERE } : {});
+  await pc.route('**/*', r => r.request().url().startsWith(B) ? r.continue() : r.abort());
+  const pg = pc.pages()[0] || await pc.newPage();
+  const cdp = await pc.newCDPSession(pg);
+  for (const [u, want] of [['/book/', '/book/'], ['/book/hi/', '/book/'], ['/plan/', '/plan/']]) {
+    await pg.goto(B + u); await pg.waitForTimeout(1200); await pg.reload(); await pg.waitForTimeout(600);
+    const m = await cdp.send('Page.getAppManifest');
+    const man = JSON.parse(m.data || '{}');
+    const errs = (await cdp.send('Page.getInstallabilityErrors')).installabilityErrors;
+    ok(man.scope === want && man.start_url === want && man.icons.some(i => i.sizes === '512x512') && !errs.length,
+       u + ' is installable as its own app, scoped to ' + want, JSON.stringify({ errs, scope: man.scope }));
+  }
+  ok(await pg.evaluate(() => !!navigator.serviceWorker.controller), 'the site’s service worker looks after the plan and the book');
+  await pg.goto(B + '/book/'); await pg.waitForTimeout(800);
+  await pg.click('#offline');
+  await pg.waitForFunction(() => /pages saved/.test(document.querySelector('#offmsg').textContent), null, { timeout: 15000 }).catch(() => {});
+  ok(/pages saved/.test(await pg.textContent('#offmsg')), 'Save the whole book offline keeps every page', await pg.textContent('#offmsg'));
+  await pc.setOffline(true);
+  await pg.goto(B + '/book/41-shipping-the-whole-thing.html').catch(() => {});
+  ok(/Shipping the Whole Thing/i.test(await pg.title()), 'and a chapter never opened before reads without internet', await pg.title());
+  await pc.close();
 }
 
 console.log('\n— the same route on a second device, through the account —');

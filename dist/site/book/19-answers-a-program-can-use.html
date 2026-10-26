@@ -9,6 +9,11 @@
 <meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="/book/manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="/book/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AFZ Book">
 <link rel="alternate" hreflang="hi-Latn" href="/book/hi/19-answers-a-program-can-use.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,6 +98,7 @@
 <li data-t="words, in plain language"><a href="/book/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Words, in plain language</span></a></li>
 </ol>
 <p class="nomatch" hidden>Nothing matches that.</p>
+<p class="tocapp"><button type="button" class="b" data-install hidden></button> <a href="/#/start">Your route →</a> <a href="/plan/">The plan →</a></p>
 </nav>
 <div class="scrim" id="scrim" hidden></div>
 <main id="text">
@@ -153,13 +159,14 @@
 </aside>
 </div>
 <aside class="wordsbox" aria-label="Key terms"><h2>Key terms</h2><p class="sub">Plain meanings, in the order you meet them.</p><dl><div><dt id="w-structured-output">structured output</dt><dd>an answer given in named fields of a known type, so that a program can read it, instead of a paragraph that a person reads</dd></div><div><dt id="w-schema">schema</dt><dd>a description of exactly what shape an answer must have, which the provider enforces while the model is writing</dd></div><div><dt id="w-validation">validation</dt><dd>checking an answer against rules after it arrives, for example whether a required field is present, or whether a quoted phrase really appears in the message</dd></div></dl></aside>
-<aside class="routebox" data-route-file="19-answers-a-program-can-use.html"><p><b>On your route: Week 13.</b> This chapter ticks itself when you reach the end, in your account too.</p><p class="rbrow"><button type="button" class="b rbmark">Mark as read</button><span class="rbdone" hidden>Read ✓</span><a href="/#/start">Back to your route →</a></p></aside>
+<aside class="routebox" data-route-file="19-answers-a-program-can-use.html"><p><b>On your route: Week 13.</b> This chapter ticks itself when you reach the end, in your account too.</p><p class="rbrow"><button type="button" class="b rbmark">Mark as read</button><span class="rbdone" hidden>Read ✓</span><a href="/#/start#week-13">The whole week in one view →</a><a href="/plan/#w13">In the plan: Week 13 →</a></p><p class="rbsign small" hidden>Ticks are saved on this device only. Sign in to keep them on every device. <a href="/api/auth/login?next=%2Fbook%2F19-answers-a-program-can-use.html">Sign in</a></p></aside>
 <aside class="inapp"><span class="lead">The same ideas, with the work to do, in the course app</span><span class="chips"><a href="/#/ch/ch8">Structured output: getting JSON you can trust<span aria-hidden="true"> →</span></a><a href="/#/ch/ch85">Schema design: fields that do not force a guess<span aria-hidden="true"> →</span></a></span></aside>
 <nav class="pager" aria-label="Previous and next chapter"><a class="prev" href="/book/18-the-whole-machine.html" rel="prev"><span class="dir">← Before</span><span class="nm"><b>18</b>The Whole Machine</span></a><a class="next" href="/book/20-giving-the-machine-hands.html" rel="next"><span class="dir">Next →</span><span class="nm"><b>20</b>Giving the Machine Hands</span></a></nav>
 </article>
 </main>
 </div>
 <script src="/progress.js" defer></script>
+<script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
 <script src="/reminder.js" defer></script>
 </body>

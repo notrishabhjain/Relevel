@@ -9,6 +9,11 @@
 <meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="/book/manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="/book/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AFZ Book">
 <link rel="alternate" hreflang="en" href="/book/33-the-plumbing-under-the-magic.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,6 +98,7 @@
 <li data-t="shabd, saral bhasha mein"><a href="/book/hi/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Shabd, saral bhasha mein</span></a></li>
 </ol>
 <p class="nomatch" hidden>Kuch nahi mila.</p>
+<p class="tocapp"><button type="button" class="b" data-install hidden></button> <a href="/#/start">Aapka raasta →</a> <a href="/plan/">Plan →</a></p>
 </nav>
 <div class="scrim" id="scrim" hidden></div>
 <main id="text">
@@ -150,13 +156,14 @@ KeyError: 'order_id'</pre>
 <ul><li>Programs requests aur replies se baat karte hain. Reply par status code batata hai ki request galat thi ya doosri taraf fail hua.</li><li>Keys code ke bahar rehti hain. Kaam ek <a class="term" href="/book/hi/glossary.html#t-repository" title="Git mein rakha hua woh folder jisme ek project ka saara kaam aur uski history hoti hai">repository</a> mein rehta hai jo har badlaav record karti hai. Error ko neeche se padha jaata hai.</li><li>System ka har hissa us data ke baare mein kuch maanta hai jo use milta hai. Yahi data contract hai. Achha system tab ruk jaata hai jab koi toot jaaye, kuch na milne par bhi chalta nahi rehta.</li><li>Jo runner har experiment record karta hai, woh &quot;maine try kiya&quot; ko &quot;maine naapa&quot; bana deta hai, kyunki jo result reproduce nahi ho sakta, woh sirf ek kissa hai.</li></ul>
 </div>
 <aside class="wordsbox" aria-label="Mukhya shabd"><h2>Mukhya shabd</h2><p class="sub">Saral matlab, usi kram mein jis kram mein aap inse milenge.</p><dl><div><dt id="w-python">Python</dt><dd>woh programming language jisme zyadatar AI ka kaam likha jaata hai; ek product manager ke liye, yeh theek-theek kehne ka tareeka ki ek experiment kya karta hai</dd></div><div><dt id="w-http">HTTP</dt><dd>rules ka woh set jisse programs internet par requests aur replies bhejte hain, har reply par ek number ke saath jo batata hai ki kaam hua ya nahi</dd></div><div><dt id="w-status-code">status code</dt><dd>HTTP reply par likha number: 200 matlab kaam hua, 4xx number matlab request galat thi, aur 5xx number matlab server fail hua</dd></div><div><dt id="w-environment-variable">environment variable</dt><dd>code ke bahar, us jagah rakhi hui value jahan program chalta hai; passwords aur API keys isi jagah rakhi jaati hain</dd></div><div><dt id="w-git">Git</dt><dd>ek tool jo aapke kaam ka har version save karta hai, taaki aap dekh sakein ki kya badla aur kisi bhi purane version par wapas ja sakein</dd></div><div><dt id="w-repository">repository</dt><dd>Git mein rakha hua woh folder jisme ek project ka saara kaam aur uski history hoti hai</dd></div><div><dt id="w-experiment-runner">experiment runner</dt><dd>ek dobara use hone wala program jo har experiment ke liye inputs, outputs, settings, timings aur errors record karta hai, taaki result dohraya aur compare kiya ja sake</dd></div><div><dt id="w-data-contract">data contract</dt><dd>woh bina kahe maani hui baatein jo system ka ek hissa us data ke baare mein maan leta hai jo use milta hai, jaise ki field maujood hogi aur list khaali nahi hogi</dd></div></dl></aside>
-<aside class="routebox" data-route-file="33-the-plumbing-under-the-magic.html"><p><b>Aapke raaste par: Week 20.</b> Chapter ke end tak pahunchte hi yeh apne aap tick ho jaata hai, aapke account mein bhi.</p><p class="rbrow"><button type="button" class="b rbmark">Padh liya</button><span class="rbdone" hidden>Padha gaya ✓</span><a href="/#/start">Apne raaste par wapas →</a></p></aside>
+<aside class="routebox" data-route-file="33-the-plumbing-under-the-magic.html"><p><b>Aapke raaste par: Week 20.</b> Chapter ke end tak pahunchte hi yeh apne aap tick ho jaata hai, aapke account mein bhi.</p><p class="rbrow"><button type="button" class="b rbmark">Padh liya</button><span class="rbdone" hidden>Padha gaya ✓</span><a href="/#/start#week-20">Poora hafta ek jagah →</a><a href="/plan/#w20">Plan mein: Week 20 →</a></p><p class="rbsign small" hidden>Tick abhi sirf is device par hain. Sign in kijiye taaki har device par rahein. <a href="/api/auth/login?next=%2Fbook%2Fhi%2F33-the-plumbing-under-the-magic.html">Sign in</a></p></aside>
 <aside class="inapp"><span class="lead">Yahi ideas, kaam ke saath, course app mein</span><span class="chips"><a href="/#/ch/ch8f">AI kaam ke liye software basics: Python, HTTP, Git aur tests<span aria-hidden="true"> →</span></a></span></aside>
 <nav class="pager" aria-label="Pichhla aur agla chapter"><a class="prev" href="/book/hi/32-designing-for-the-wrong-answer.html" rel="prev"><span class="dir">← Pichhla</span><span class="nm"><b>32</b>Galat Jawaab Ke Liye Design</span></a><a class="next" href="/book/hi/34-choosing-a-model-on-your-own-cases.html" rel="next"><span class="dir">Agla →</span><span class="nm"><b>34</b>Apne Cases Par Model Chunna</span></a></nav>
 </article>
 </main>
 </div>
 <script src="/progress.js" defer></script>
+<script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
 <script src="/reminder.js" defer></script>
 </body>

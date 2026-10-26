@@ -9,6 +9,11 @@
 <meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="/book/manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="/book/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AFZ Book">
 <link rel="alternate" hreflang="en" href="/book/31-build-buy-or-teach-it.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,6 +98,7 @@
 <li data-t="shabd, saral bhasha mein"><a href="/book/hi/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Shabd, saral bhasha mein</span></a></li>
 </ol>
 <p class="nomatch" hidden>Kuch nahi mila.</p>
+<p class="tocapp"><button type="button" class="b" data-install hidden></button> <a href="/#/start">Aapka raasta →</a> <a href="/plan/">Plan →</a></p>
 </nav>
 <div class="scrim" id="scrim" hidden></div>
 <main id="text">
@@ -146,13 +152,14 @@
 <ul><li>Aksar achha jawaab yeh hota hai ki plumbing kharido aur woh hissa banao jo product ko alag banata hai. Woh wajahein date ke saath likh lo jo faisla palat dengi.</li><li>AI value chain ke upar model shayad hi advantage hota hai. Unique data, workflow aur bharosa hota hai.</li><li>Open-weight model company ki apni machines par chalaya ja sakta hai. Lock-in ek cost hai, jise naapna chahiye.</li><li>Jab model kam pade, toh failure ki chaar kismon ko alag pehchaniye. Fine-tuning behaviour sikhati hai, facts nahi. Woh instructions, evidence aur chhote model ke baad aati hai, aur use alag test set chahiye.</li></ul>
 </div>
 <aside class="wordsbox" aria-label="Mukhya shabd"><h2>Mukhya shabd</h2><p class="sub">Saral matlab, usi kram mein jis kram mein aap inse milenge.</p><dl><div><dt id="w-ai-value-chain">AI value chain</dt><dd>un layers ka silsila jin par ek AI product bana hota hai: infrastructure, models, tooling aur sabse upar woh applications jo log use karte hain; har layer ka advantage kisi alag cheez se aata hai</dd></div><div><dt id="w-open-weight-model">open-weight model</dt><dd>aisa model jiske weights publish kiye gaye hain, taaki aap use download karke apne computers par chala sakein, kisi aur ka model call karne ke bajaay</dd></div><div><dt id="w-fine-tuning">fine-tuning</dt><dd>model ko aapke apne examples par aur train karna, taaki woh ek jaise tareeke se behave kare; yeh behaviour sikhata hai, facts nahi</dd></div><div><dt id="w-lock-in">lock-in</dt><dd>ek hi provider se bandh jaana, kyunki chhodna bahut mehnga padega: dobara likhna, dobara naapna, ya features kho dena</dd></div></dl></aside>
-<aside class="routebox" data-route-file="31-build-buy-or-teach-it.html"><p><b>Aapke raaste par: Week 19.</b> Chapter ke end tak pahunchte hi yeh apne aap tick ho jaata hai, aapke account mein bhi.</p><p class="rbrow"><button type="button" class="b rbmark">Padh liya</button><span class="rbdone" hidden>Padha gaya ✓</span><a href="/#/start">Apne raaste par wapas →</a></p></aside>
+<aside class="routebox" data-route-file="31-build-buy-or-teach-it.html"><p><b>Aapke raaste par: Week 19.</b> Chapter ke end tak pahunchte hi yeh apne aap tick ho jaata hai, aapke account mein bhi.</p><p class="rbrow"><button type="button" class="b rbmark">Padh liya</button><span class="rbdone" hidden>Padha gaya ✓</span><a href="/#/start#week-19">Poora hafta ek jagah →</a><a href="/plan/#w19">Plan mein: Week 19 →</a></p><p class="rbsign small" hidden>Tick abhi sirf is device par hain. Sign in kijiye taaki har device par rahein. <a href="/api/auth/login?next=%2Fbook%2Fhi%2F31-build-buy-or-teach-it.html">Sign in</a></p></aside>
 <aside class="inapp"><span class="lead">Yahi ideas, kaam ke saath, course app mein</span><span class="chips"><a href="/#/ch/ch185">Build or buy: vendor ki apne build se comparison<span aria-hidden="true"> →</span></a><a href="/#/ch/ch19">Fine-tuning karein ya nahi: kya badalna hai, yeh kaise chunein<span aria-hidden="true"> →</span></a></span></aside>
 <nav class="pager" aria-label="Pichhla aur agla chapter"><a class="prev" href="/book/hi/30-the-spec-for-a-thing-that-varies.html" rel="prev"><span class="dir">← Pichhla</span><span class="nm"><b>30</b>Badalti Rehne Wali Cheez Ki Spec</span></a><a class="next" href="/book/hi/32-designing-for-the-wrong-answer.html" rel="next"><span class="dir">Agla →</span><span class="nm"><b>32</b>Galat Jawaab Ke Liye Design</span></a></nav>
 </article>
 </main>
 </div>
 <script src="/progress.js" defer></script>
+<script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
 <script src="/reminder.js" defer></script>
 </body>

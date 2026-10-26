@@ -78,7 +78,8 @@ ok(/href="\/"/.test(read('index.html')), 'the contents page links back to the ap
 const appJs = fs.readFileSync(p.join(ROOT, 'dist/site/index.html'), 'utf8');
 const bm = appJs.match(/window\.BOOK=(\{.*?\});/);
 const BOOK = bm && JSON.parse(bm[1]);
-ok(BOOK && Object.keys(BOOK.chapters).length === [...covered].length, 'the app knows which book chapter retells which of its chapters');
+ok(BOOK && Object.keys(BOOK.chapters).length === new Set([...covered, ...(B.preface ? B.preface.course : [])]).size && BOOK.chapters.ch0 && BOOK.chapters.ch0.file === 'preface.html',
+   'the app knows which book chapter retells which of its chapters, the preface included');
 ok(BOOK && Object.values(BOOK.chapters).every(e => fs.existsSync(p.join(OUT, e.file))), 'and every one of those pages exists');
 
 console.log('\n— the Hinglish edition stands beside it —');

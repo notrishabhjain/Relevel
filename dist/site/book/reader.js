@@ -88,6 +88,7 @@
     var mb = $('.rbmark', box);
     if (mb) mb.addEventListener('click', function () { markRead(box.getAttribute('data-route-file')); });
     if (!P) box.hidden = true;
+    else P.signedIn().then(function (yes) { var sg = $('.rbsign', box); if (sg) sg.hidden = yes; });
   }
   var paintAll = function () { paintRead(); paintBox(); paintCount(); };
 
@@ -167,6 +168,31 @@
       var other = $(id === '#q' ? '#q2' : '#q'); if (other) other.value = el.value;
     });
   });
+
+  /* "Save the whole book offline": ask the service worker to keep every page
+     of this edition, so a phone can read it on a train. */
+  var off = $('#offline'), offmsg = $('#offmsg');
+  if (off) {
+    if (!('serviceWorker' in navigator)) off.hidden = true;
+    off.addEventListener('click', function () {
+      var base = body.getAttribute('data-base') || '/book/';
+      var urls = [base].concat($$('.cards a[href], .frontlist a[href]').map(function (a) { return new URL(a.getAttribute('href'), location.href).pathname; }))
+        .concat(['/book/style.css', '/book/reader.js', '/progress.js', '/install.js', '/book/manifest.webmanifest'])
+        .filter(function (u, i, all) { return all.indexOf(u) === i; });
+      if (offmsg) offmsg.textContent = hi ? 'Save ho raha hai…' : 'Saving…';
+      navigator.serviceWorker.ready.then(function (reg) {
+        var sw = navigator.serviceWorker.controller || reg.active;
+        if (!sw) throw new Error('no worker');
+        navigator.serviceWorker.addEventListener('message', function on(e) {
+          if (!e.data || e.data.type !== 'cached-pages') return;
+          navigator.serviceWorker.removeEventListener('message', on);
+          if (offmsg) offmsg.textContent = hi ? (e.data.ok + ' mein se ' + e.data.of + ' page save ho gaye. Ab yeh bina internet ke khulegi.')
+            : (e.data.ok + ' of ' + e.data.of + ' pages saved. The book now opens without internet.');
+        });
+        sw.postMessage({ type: 'cache-pages', urls: urls });
+      }).catch(function () { if (offmsg) offmsg.textContent = hi ? 'Is browser mein offline save nahi ho sakta.' : 'This browser cannot save pages offline.'; });
+    });
+  }
 
   /* arrow keys turn the page */
   document.addEventListener('keydown', function (e) {

@@ -14,6 +14,7 @@ import { fileURLToPath } from 'node:url';
 import { loadBook, buildBook } from './book/build.mjs';
 import { buildPlan } from './plan/build.mjs';
 import * as ROUTE from './src/data/route.mjs';
+import * as PLAN from './plan/data.mjs';
 
 const R = p.dirname(fileURLToPath(import.meta.url));
 const read = f => fs.readFileSync(p.join(R, f), 'utf8');
@@ -101,11 +102,33 @@ const js = [
    story version from each chapter page. */
 const BOOK_SRC = loadBook(p.join(R, 'book'));
 const BOOK_MAP = { base: '/book/', hiBase: '/book/hi/', title: BOOK_SRC.book.title, edition: BOOK_SRC.book.edition, chapters: {}, list: [] };
+/* The Hinglish edition's own titles and summaries, so the app can show the
+   book in the reader's language without a second lookup. */
+const BOOK_HI = fs.existsSync(p.join(R, 'book/hi/book.json')) ? loadBook(p.join(R, 'book/hi')) : null;
+const hiOf = f => BOOK_HI ? [...BOOK_HI.chapters, BOOK_HI.preface].filter(Boolean).find(x => x.file === f) : null;
+for (const pg of [BOOK_SRC.preface].filter(Boolean)) {
+  const h = hiOf(pg.file);
+  BOOK_MAP.list.push({ n: 0, file: pg.file, title: pg.title, summary: pg.summary || '', course: pg.course,
+    titleHi: h ? h.title : '', summaryHi: h ? h.summary || '' : '' });
+  for (const id of pg.course || []) BOOK_MAP.chapters[id] = { n: 0, file: pg.file, title: pg.title };
+}
 for (const c of BOOK_SRC.chapters) {
-  BOOK_MAP.list.push({ n: c.n, file: c.file, title: c.title });
+  const h = hiOf(c.file);
+  BOOK_MAP.list.push({ n: c.n, file: c.file, title: c.title, summary: c.summary, course: c.course,
+    titleHi: h ? h.title : '', summaryHi: h ? h.summary : '' });
   for (const id of c.course) BOOK_MAP.chapters[id] = { n: c.n, file: c.file, title: c.title };
 }
-const bookJs = 'window.BOOK=' + JSON.stringify(BOOK_MAP) + ';';
+const bookJs = 'window.BOOK=' + JSON.stringify(BOOK_MAP) + ';\n' + 'window.PLANX=' + JSON.stringify(planExtras()) + ';';
+/* What the plan adds on top of the route, for the one-page view in the app:
+   the how-to recipes' titles, the optional reading per week, the monthly
+   reviews. Read from the plan's own sources, so the app and /plan/ agree. */
+function planExtras() {
+  const how = {};
+  for (const m of read('plan/ship.md').matchAll(/^## (.*?)\s*\{#([\w-]+)\}\s*$/gm)) how[m[2]] = m[1];
+  const further = {};
+  for (const w of PLAN.WEEKS) further[w.n] = w.further.map(k => PLAN.RESOURCES[k]);
+  return { how, further, gates: PLAN.GATES };
+}
 /* The route (src/data/route.mjs) is the one order that the playbook, the book,
    the plan and the reminder all follow. The browser gets the same data and the
    same functions, copied from the module's source, so "done" and "next" can
@@ -161,8 +184,11 @@ function inGround(x, y, r) {
   return (x - cx) ** 2 + (y - cy) ** 2 <= r * r;
 }
 
-function iconPixels(size, maskable) {
-  const SS = 4, r = maskable ? 0 : 10;
+/* A design is a ground colour and rectangles drawn in order. A maskable icon
+   fills the whole square and shrinks the drawing to the launcher's safe zone
+   (the middle 80%), so a round or squircle mask never cuts into it. */
+function iconPixels(size, maskable, design = { ground: GROUND, bars: BARS }) {
+  const SS = 4, r = maskable ? 0 : 10, k = maskable ? 0.8 : 1;
   const px = Buffer.alloc(size * size * 4);
   for (let py = 0; py < size; py++) for (let pxi = 0; pxi < size; pxi++) {
     let R2 = 0, G = 0, B = 0, A = 0;
@@ -170,9 +196,10 @@ function iconPixels(size, maskable) {
       const ux = (pxi + (sx + 0.5) / SS) * 64 / size;
       const uy = (py + (sy + 0.5) / SS) * 64 / size;
       if (!inGround(ux, uy, r)) continue;
-      let col = GROUND;
-      for (const [bx, by, bw, bh, c] of BARS)
-        if (ux >= bx && ux < bx + bw && uy >= by && uy < by + bh) col = c;
+      const dx = 32 + (ux - 32) / k, dy = 32 + (uy - 32) / k;
+      let col = design.ground;
+      for (const [bx, by, bw, bh, c] of design.bars)
+        if (dx >= bx && dx < bx + bw && dy >= by && dy < by + bh) col = c;
       R2 += col[0]; G += col[1]; B += col[2]; A += 255;
     }
     const n = SS * SS, o = (py * size + pxi) * 4;
@@ -203,8 +230,22 @@ function chunk(type, data) {
   return Buffer.concat([len, body, crc]);
 }
 
-function png(size, maskable) {
-  const px = iconPixels(size, maskable);
+/* The book and the plan install as apps of their own, so each gets its own
+   mark: an open book on the book's terracotta, a calendar on the plan's green. */
+const design = (ground, bars) => ({ ground: HEX(ground), bars: bars.map(([x, y, w, hh, c]) => [x, y, w, hh, HEX(c)]) });
+const BOOK_ICON = design('#B4492A', [
+  [12, 44, 40, 4, '#8C3720'],
+  [12, 16, 19, 30, '#F7F2E8'], [33, 16, 19, 30, '#F7F2E8'],
+  ...[22, 26, 30, 34, 38].flatMap(y => [[15, y, 13, 1.6, '#CDB99A'], [36, y, 13, 1.6, '#CDB99A']])
+]);
+const PLAN_ICON = design('#1F6F5C', [
+  [14, 18, 36, 30, '#F6F7F4'], [14, 18, 36, 7, '#14181C'],
+  [20, 14, 3, 8, '#14181C'], [41, 14, 3, 8, '#14181C'],
+  ...[29, 35, 41].flatMap((y, ri) => [18, 28, 38].map((x, ci) => [x, y, 8, 4,
+    ri * 3 + ci < 4 ? '#4FB89A' : ri * 3 + ci === 4 ? '#B33A2B' : '#C9CDC5']))
+]);
+function png(size, maskable, d) {
+  const px = iconPixels(size, maskable, d);
   const raw = Buffer.alloc((size * 4 + 1) * size);
   for (let y = 0; y < size; y++) {            // filter byte 0 = none, per scanline
     raw[y * (size * 4 + 1)] = 0;
@@ -317,7 +358,7 @@ self.addEventListener('install', e => {
 });
 self.addEventListener('activate', e => {
   e.waitUntil(caches.keys()
-    .then(ks => Promise.all(ks.filter(k => k !== C).map(k => caches.delete(k))))
+    .then(ks => Promise.all(ks.filter(k => k !== C && k !== PAGES).map(k => caches.delete(k))))
     .then(() => self.clients.claim()));
 });
 /* The daily reminder. The push itself carries no text; the message is asked
@@ -340,21 +381,43 @@ self.addEventListener('notificationclick', e => {
     return c.navigate(url).then(w => (w || c).focus()).catch(() => self.clients.openWindow(url));
   }));
 });
+/* The book and the plan are kept in a cache of their own that a new version
+   of the app does not wipe, so a chapter read once stays readable offline. */
+const PAGES = 'aifz-pages-v1';
+const pageCache = u => u.pathname.startsWith('/book/') || u.pathname.startsWith('/plan/') ||
+  ['/progress.js', '/install.js', '/reminder.js'].includes(u.pathname);
+const fallback = u => u.pathname.startsWith('/book/hi/') ? '/book/hi/' : u.pathname.startsWith('/book/') ? '/book/'
+  : u.pathname.startsWith('/plan/') ? '/plan/' : './index.html';
 self.addEventListener('fetch', e => {
   const r = e.request;
   if (r.method !== 'GET') return;
   const u = new URL(r.url);
   if (u.origin !== location.origin) return;          // fonts, GitHub API: leave alone
   if (u.pathname.startsWith('/api/')) return;        // never cache account calls
+  const name = pageCache(u) ? PAGES : C;
   e.respondWith(
     fetch(r).then(res => {
-      const copy = res.clone();
-      caches.open(C).then(c => c.put(r, copy)).catch(() => {});
+      if (res.ok) { const copy = res.clone(); caches.open(name).then(c => c.put(r, copy)).catch(() => {}); }
       return res;
-    }).catch(() => caches.match(r).then(m => m || caches.match('./index.html')))
+    }).catch(() => caches.match(r, { ignoreSearch: true }).then(m => m || caches.match(fallback(u))))
   );
 });
+/* "Keep the whole book on this phone": the book sends its page list. */
+self.addEventListener('message', e => {
+  const d = e.data || {};
+  if (d.type !== 'cache-pages' || !Array.isArray(d.urls)) return;
+  const urls = d.urls.filter(x => typeof x === 'string' && (x.startsWith('/book/') || x.startsWith('/plan/') ||
+    ['/progress.js', '/install.js', '/reminder.js'].includes(x))).slice(0, 400);
+  e.waitUntil(caches.open(PAGES).then(c => Promise.all(urls.map(x => c.add(x).catch(() => null))))
+    .then(done => { if (e.source) e.source.postMessage({ type: 'cached-pages', ok: done.filter(x => x !== null).length, of: urls.length }); }));
+});
 `);
+
+/* A service worker that does not parse never installs, and then neither the
+   12:00 reminder nor offline reading works, silently. Fail the build instead. */
+for (const f of ['dist/site/sw.js', 'dist/site/progress.js', 'dist/site/reminder.js']) {
+  try { new Function(read(f)); } catch (e) { throw new Error(f + ' does not parse: ' + e.message); }
+}
 
 /* ---- content defaults ----
    The curriculum lives in the database at runtime so it can be edited from the
@@ -404,6 +467,32 @@ const builtHi = hasHi ? buildBook(HI_ROOT, p.join(R, 'dist/site/book/hi'),
 
 /* ---- the Applied AI PM plan (static pages at /plan/) ---- */
 const builtPlan = buildPlan(R, p.join(R, 'dist/site/plan'));
+
+/* ---- the book and the plan as installable apps ----
+   Each has its own manifest, scope and icon, so a phone can keep them as
+   three separate apps next to the playbook. They share the site's one
+   service worker (scope "/"), which keeps pages for reading offline. */
+for (const [dir, name, short, desc, bg, theme, d] of [
+  ['book', 'AI From Zero: the book', 'AFZ Book', 'The reading edition: the course told as one story, in English and Hinglish.', '#F7F2E8', '#F7F2E8', BOOK_ICON],
+  ['plan', 'Applied AI PM plan', 'AI PM Plan', 'The 26-week route, week by week, with shared progress.', '#ECEEEA', '#ECEEEA', PLAN_ICON]
+]) {
+  outBin(`dist/site/${dir}/icon-180.png`, png(180, false, d));
+  outBin(`dist/site/${dir}/icon-192.png`, png(192, false, d));
+  outBin(`dist/site/${dir}/icon-512.png`, png(512, false, d));
+  outBin(`dist/site/${dir}/icon-maskable-512.png`, png(512, true, d));
+  out(`dist/site/${dir}/manifest.webmanifest`, JSON.stringify({
+    id: `/${dir}/`, name, short_name: short, description: desc,
+    start_url: `/${dir}/`, scope: `/${dir}/`, display: 'standalone', orientation: 'any',
+    background_color: bg, theme_color: theme,
+    icons: [
+      { src: `/${dir}/icon-192.png`, sizes: '192x192', type: 'image/png', purpose: 'any' },
+      { src: `/${dir}/icon-512.png`, sizes: '512x512', type: 'image/png', purpose: 'any' },
+      { src: `/${dir}/icon-maskable-512.png`, sizes: '512x512', type: 'image/png', purpose: 'maskable' }
+    ]
+  }, null, 2));
+}
+out('dist/site/install.js', read('src/install.js'));
+try { new Function(read('dist/site/install.js')); } catch (e) { throw new Error('dist/site/install.js does not parse: ' + e.message); }
 
 const kb = f => (fs.statSync(p.join(R, f)).size / 1024).toFixed(0) + ' KB';
 console.log('dist/index.html     ' + kb('dist/index.html') + '   (standalone / hosting)');

@@ -143,41 +143,53 @@ Learning is easier with people around you. These are good places to start.
 
 Each table lists the weeks of one month. The weeks themselves, with every step, are on the [Plan & tracker tab](#plan).
 
-### Month 1: Read first, the gentle start (W1–4, 19 Oct – 15 Nov 2026)
+### Month 1: Read first, the gentle start (W1–4, 19 Oct – 15 Nov 2026) {#m1}
 
 You read the book from its first page: the story of a product manager in Pune who finds identity numbers in a week of customer chats, and decides whether that deserves a year of work. In weeks 3 and 4 the story meets the machine: tokens, the first model call, why a model forgets, instructions and how to tell whether it worked. Three small tries happen in a chat assistant or the browser, and none needs an account or an install.
 
 <!-- weeklinks 1-4 -->
 
-### Month 2: Product foundations and first contact (W5–9, 16 Nov – 20 Dec 2026)
+[This month in one view, in the playbook](../#/start#month-1): every week with its chapters, book pages and your notes.
+
+### Month 2: Product foundations and first contact (W5–9, 16 Nov – 20 Dec 2026) {#m2}
 
 Track A is your home ground as a project manager. On the route you answer its boxes on a first pass, because you have already read each chapter’s story. Its long “Build it” sections wait for a second pass. Then comes the one-time setup, the first model call and its cost, writing and testing instructions, and the first sorter with a score.
 
 <!-- weeklinks 5-9 -->
 
-### Month 3: Finding and measuring (W10–13, 21 Dec 2026 – 17 Jan 2027)
+[This month in one view, in the playbook](../#/start#month-2): every week with its chapters, book pages and your notes.
+
+### Month 3: Finding and measuring (W10–13, 21 Dec 2026 – 17 Jan 2027) {#m3}
 
 Two light holiday weeks cover cutting long text and finding by words. Then come finding by meaning, the scoreboard that compares them, and your first complete system. Version 0 of the findings page gets published.
 
 <!-- weeklinks 10-13 -->
 
-### Month 4: What real systems add (W14–18, 18 Jan – 21 Feb 2027)
+[This month in one view, in the playbook](../#/start#month-3): every week with its chapters, book pages and your notes.
+
+### Month 4: What real systems add (W14–18, 18 Jan – 21 Feb 2027) {#m4}
 
 Dependable output, long context and thinking models, better search, prompt injection, grading at scale, cost, real documents and the rules about what you may send.
 
 <!-- weeklinks 14-18 -->
 
-### Month 5: Decisions and production depth (W19–23, 22 Feb – 28 Mar 2027)
+[This month in one view, in the playbook](../#/start#month-4): every week with its chapters, book pages and your notes.
+
+### Month 5: Decisions and production depth (W19–23, 22 Feb – 28 Mar 2027) {#m5}
 
 The spec for a system that varies, build or buy, designing for wrong answers, business impact, then the production chapters: models chosen on your own cases, context, retrieval, tools, agents, MCP, pictures and voice, release gates, watching it live, and security.
 
 <!-- weeklinks 19-23 -->
 
-### Month 6: Ship it, defend it, get the job (W24–26, 29 Mar – 18 Apr 2027)
+[This month in one view, in the playbook](../#/start#month-5): every week with its chapters, book pages and your notes.
+
+### Month 6: Ship it, defend it, get the job (W24–26, 29 Mar – 18 Apr 2027) {#m6}
 
 The product spec and the decision pack, then the capstone: Bharat Privacy Guard shipped and defended. The last week is the business chapters on a first pass, a portfolio page, practice interviews and a look back over six months.
 
 <!-- weeklinks 24-26 -->
+
+[This month in one view, in the playbook](../#/start#month-6): every week with its chapters, book pages and your notes.
 
 ## The project: Bharat Privacy Guard
 

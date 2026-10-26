@@ -9,6 +9,11 @@
 <meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="/book/manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="/book/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AFZ Book">
 <link rel="alternate" hreflang="hi-Latn" href="/book/hi/08-what-the-machine-is.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,6 +98,7 @@
 <li data-t="words, in plain language"><a href="/book/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Words, in plain language</span></a></li>
 </ol>
 <p class="nomatch" hidden>Nothing matches that.</p>
+<p class="tocapp"><button type="button" class="b" data-install hidden></button> <a href="/#/start">Your route →</a> <a href="/plan/">The plan →</a></p>
 </nav>
 <div class="scrim" id="scrim" hidden></div>
 <main id="text">
@@ -157,13 +163,14 @@
 </aside>
 </div>
 <aside class="wordsbox" aria-label="Key terms"><h2>Key terms</h2><p class="sub">Plain meanings, in the order you meet them.</p><dl><div><dt id="w-language-model">language model</dt><dd>a program that has learned, from a vast amount of writing, to predict what text comes next; it is what sits behind a chatbot</dd></div><div><dt id="w-generative-ai">generative AI</dt><dd>AI that produces new content, such as text, images or code, instead of only giving a label or a number</dd></div><div><dt id="w-predictive-ai">predictive AI</dt><dd>AI that gives a label or a number for one specific task, such as whether a message is spam</dd></div><div><dt id="w-token">token</dt><dd>a piece of text, often a whole word and sometimes part of one, which is the unit that models read and that providers charge by</dd></div><div><dt id="w-context-window">context window</dt><dd>the limit on how much text a model can take in at once, counting both what you send and what it writes back</dd></div><div><dt id="w-pre-training">pre-training</dt><dd>the first and most expensive stage of making a model, in which it learns to predict the next token over a vast amount of text</dd></div><div><dt id="w-instruction-tuning">instruction tuning</dt><dd>the second stage of making a model, in which it is trained on examples of instructions paired with good answers so that it follows instructions</dd></div><div><dt id="w-weights">weights</dt><dd>the billions of numbers inside a model that hold everything it has learned; training changes them and ordinary use does not</dd></div><div><dt id="w-inference">inference</dt><dd>using a finished model to answer a request; it costs money each time and does not change the model</dd></div><div><dt id="w-transformer">transformer</dt><dd>the design that almost all modern language models are built on, whose key part is attention</dd></div><div><dt id="w-attention">attention</dt><dd>the part of a transformer that works out, for each token, which other tokens matter most for predicting what comes next</dd></div></dl></aside>
-<aside class="routebox" data-route-file="08-what-the-machine-is.html" data-half="b:08-what-the-machine-is.html#1" data-upto="s-8-4"><p><b>On your route: Week 3.</b> This chapter is split over two days. Each half ticks itself as you finish it.</p><p class="rbrow"><button type="button" class="b rbmark">Mark as read</button><span class="rbdone" hidden>Read ✓</span><a href="/#/start">Back to your route →</a></p></aside>
+<aside class="routebox" data-route-file="08-what-the-machine-is.html" data-half="b:08-what-the-machine-is.html#1" data-upto="s-8-4"><p><b>On your route: Week 3.</b> This chapter is split over two days. Each half ticks itself as you finish it.</p><p class="rbrow"><button type="button" class="b rbmark">Mark as read</button><span class="rbdone" hidden>Read ✓</span><a href="/#/start#week-3">The whole week in one view →</a><a href="/plan/#w3">In the plan: Week 3 →</a></p><p class="rbsign small" hidden>Ticks are saved on this device only. Sign in to keep them on every device. <a href="/api/auth/login?next=%2Fbook%2F08-what-the-machine-is.html">Sign in</a></p></aside>
 <aside class="inapp"><span class="lead">The same ideas, with the work to do, in the course app</span><span class="chips"><a href="/#/ch/a8">Generative AI foundations: how the models work<span aria-hidden="true"> →</span></a><a href="/#/ch/ch05">Try it in the browser: tokens, cost and temperature<span aria-hidden="true"> →</span></a></span></aside>
 <nav class="pager" aria-label="Previous and next chapter"><a class="prev" href="/book/07-writing-it-down.html" rel="prev"><span class="dir">← Before</span><span class="nm"><b>7</b>Writing It Down So Others Can Build It</span></a><a class="next" href="/book/09-the-first-conversation.html" rel="next"><span class="dir">Next →</span><span class="nm"><b>9</b>The First Conversation</span></a></nav>
 </article>
 </main>
 </div>
 <script src="/progress.js" defer></script>
+<script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
 <script src="/reminder.js" defer></script>
 </body>

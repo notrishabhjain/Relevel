@@ -285,6 +285,11 @@ export function buildBook(root, outDir, opts = {}) {
 <meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="/book/manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="/book/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AFZ Book">
 ${hasOther ? `<link rel="alternate" hreflang="${lang === 'hi' ? 'en' : 'hi-Latn'}" href="${otherBase}${file === 'index.html' ? '' : file}">` : ''}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -313,6 +318,7 @@ ${main}
 </main>
 </div>
 <script src="/progress.js" defer></script>
+<script src="/install.js" defer></script>
 <script src="${assetBase}reader.js" defer></script>
 <script src="/reminder.js" defer></script>
 </body>
@@ -337,6 +343,7 @@ ${main}
 ${parts.join('\n')}
 </ol>
 <p class="nomatch" hidden>${ui.searchNone}</p>
+<p class="tocapp"><button type="button" class="b" data-install hidden></button> <a href="/#/start">${lang === 'hi' ? 'Aapka raasta' : 'Your route'} →</a> <a href="/plan/">${lang === 'hi' ? 'Plan' : 'The plan'} →</a></p>
 </nav>`;
   };
 
@@ -355,9 +362,11 @@ ${parts.join('\n')}
   /* ----- where each chapter sits on the route (src/data/route.mjs) ----- */
   const RB = lang === 'hi'
     ? { on: 'Aapke raaste par', week: 'Week', whole: 'Chapter ke end tak pahunchte hi yeh apne aap tick ho jaata hai, aapke account mein bhi.',
-        halves: 'Yeh chapter do din mein hai. Har hissa khatam hote hi apne aap tick ho jaata hai.', mark: 'Padh liya', done: 'Padha gaya ✓', back: 'Apne raaste par wapas' }
+        halves: 'Yeh chapter do din mein hai. Har hissa khatam hote hi apne aap tick ho jaata hai.', mark: 'Padh liya', done: 'Padha gaya ✓', back: 'Poora hafta ek jagah',
+        plan: 'Plan mein', signin: 'Tick abhi sirf is device par hain. Sign in kijiye taaki har device par rahein.', signinLink: 'Sign in' }
     : { on: 'On your route', week: 'Week', whole: 'This chapter ticks itself when you reach the end, in your account too.',
-        halves: 'This chapter is split over two days. Each half ticks itself as you finish it.', mark: 'Mark as read', done: 'Read ✓', back: 'Back to your route' };
+        halves: 'This chapter is split over two days. Each half ticks itself as you finish it.', mark: 'Mark as read', done: 'Read ✓', back: 'The whole week in one view',
+        plan: 'In the plan', signin: 'Ticks are saved on this device only. Sign in to keep them on every device.', signinLink: 'Sign in' };
   const routeBox = file => {
     const st = ROUTE_STEPS.filter(x => x.kind === 'read' && x.book === file);
     if (!st.length) return '';
@@ -365,7 +374,8 @@ ${parts.join('\n')}
     return `<aside class="routebox" data-route-file="${file}"${half ? ` data-half="${esc(half.id)}" data-upto="${half.upto}"` : ''}>` +
       `<p><b>${RB.on}: ${RB.week} ${st[0].week}.</b> ${half ? RB.halves : RB.whole}</p>` +
       `<p class="rbrow"><button type="button" class="b rbmark">${RB.mark}</button><span class="rbdone" hidden>${RB.done}</span>` +
-      `<a href="/#/start">${RB.back} →</a></p></aside>`;
+      `<a href="/#/start#week-${st[0].week}">${RB.back} →</a><a href="/plan/#w${st[0].week}">${RB.plan}: ${RB.week} ${st[0].week} →</a></p>` +
+      `<p class="rbsign small" hidden>${RB.signin} <a href="/api/auth/login?next=${encodeURIComponent((lang === 'hi' ? '/book/hi/' : '/book/') + file)}">${RB.signinLink}</a></p></aside>`;
   };
 
   /* ----- chapters ----- */
@@ -441,6 +451,11 @@ ${letters.map(l => `<h2 id="a-${l}">${l}</h2><dl>${all.filter(t => t.term[0].toU
 <p class="startrow"><a class="go" id="begin" href="${href(B.preface ? B.preface.file : B.chapters[0].file)}">${ui.begin}</a><a class="go ghost" id="resume" href="#" hidden>${ui.resume}</a></p>
 <p class="meta"><span>${B.chapters.length} ${ui.chapters}</span><span>${ui.approx} ${Math.round(totalWords / 1000)}${ui.k}</span><span>${all.length} ${ui.explained}</span></p>
 <div class="prog" id="prog" hidden><span class="bar"><i></i></span><span class="txt"></span></div>
+<div class="appbox">
+<p>${lang === 'hi' ? 'Phone par kitaab ko app ki tarah rakhiye, aur poori kitaab bina internet ke padhne ke liye save kar lijiye.' : 'Keep the book as an app on your phone, and save the whole book to read without internet.'}</p>
+<p class="approw"><button type="button" class="go" data-install hidden></button><button type="button" class="go ghost" id="offline">${lang === 'hi' ? 'Poori kitaab offline save kijiye' : 'Save the whole book offline'}</button><span class="offmsg" id="offmsg" role="status"></span></p>
+<p class="small"><a href="/#/start">${lang === 'hi' ? 'Kitaab, playbook aur plan ek jagah: aapka raasta' : 'The book, the playbook and the plan in one view: your route'} →</a></p>
+</div>
 </div>
 <div class="heroart">${cover(book, ui)}</div>
 </header>

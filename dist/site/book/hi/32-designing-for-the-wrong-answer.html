@@ -9,6 +9,11 @@
 <meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="/book/manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="/book/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AFZ Book">
 <link rel="alternate" hreflang="en" href="/book/32-designing-for-the-wrong-answer.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,6 +98,7 @@
 <li data-t="shabd, saral bhasha mein"><a href="/book/hi/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Shabd, saral bhasha mein</span></a></li>
 </ol>
 <p class="nomatch" hidden>Kuch nahi mila.</p>
+<p class="tocapp"><button type="button" class="b" data-install hidden></button> <a href="/#/start">Aapka raasta →</a> <a href="/plan/">Plan →</a></p>
 </nav>
 <div class="scrim" id="scrim" hidden></div>
 <main id="text">
@@ -142,13 +148,14 @@
 <ul><li>Chaar cheezein zaroori hain. Aisa evidence dikhao jo khule. Speed ke baare mein socho. Confidence ko screen par number ki tarah nahi, behaviour chunne ke liye andar use karo. Aur sudhaarna haath se karne se tez banao.</li><li>Refusal ek jaanboojh kar design ki gayi screen hai, jo kisi insaan ke raaste par khatam hoti hai. AI band hone par dikhne wali screen bhi waise hi design hoti hai.</li><li>Yeh jaanne ke liye ki system se business ko madad milti hai ya nahi, pehle slow hissa dhoondhiye. Phir ek pilot chalaiye jisme ek aisa number ho jise business pehle se track karta hai, ek comparison group, pehle se likhi <a class="term" href="/book/hi/glossary.html#t-failure-threshold" title="woh result, pilot shuru hone se pehle likha hua, jisse neeche aap use failure kahenge">failure threshold</a>, aur itna lamba window ki novelty khatam ho jaaye.</li><li>Jab kaam karta hai par number nahi hilta, toh order mein poochhiye: kya use hota hai, kya uska output wahan tak pahunchta hai jahan faisla hota hai, aur kya wahi step slow tha?</li></ul>
 </div>
 <aside class="wordsbox" aria-label="Mukhya shabd"><h2>Mukhya shabd</h2><p class="sub">Saral matlab, usi kram mein jis kram mein aap inse milenge.</p><dl><div><dt id="w-refusal">refusal</dt><dd>system ka saaf kehna ki woh yeh kaam nahi kar sakta, aur saath mein kisi insaan tak ka raasta dena; yeh jaanboojh kar design hota hai, qismat par nahi chhoda jaata</dd></div><div><dt id="w-pilot">pilot</dt><dd>ek chhota, limited trial jo dikhane ke liye bana hai ki ek feature se business ko madad milti hai ya nahi, aur jo pehle hi bata deta hai ki kaun sa result failure maana jaayega</dd></div><div><dt id="w-failure-threshold">failure threshold</dt><dd>woh result, pilot shuru hone se pehle likha hua, jisse neeche aap use failure kahenge</dd></div></dl></aside>
-<aside class="routebox" data-route-file="32-designing-for-the-wrong-answer.html"><p><b>Aapke raaste par: Week 20.</b> Chapter ke end tak pahunchte hi yeh apne aap tick ho jaata hai, aapke account mein bhi.</p><p class="rbrow"><button type="button" class="b rbmark">Padh liya</button><span class="rbdone" hidden>Padha gaya ✓</span><a href="/#/start">Apne raaste par wapas →</a></p></aside>
+<aside class="routebox" data-route-file="32-designing-for-the-wrong-answer.html"><p><b>Aapke raaste par: Week 20.</b> Chapter ke end tak pahunchte hi yeh apne aap tick ho jaata hai, aapke account mein bhi.</p><p class="rbrow"><button type="button" class="b rbmark">Padh liya</button><span class="rbdone" hidden>Padha gaya ✓</span><a href="/#/start#week-20">Poora hafta ek jagah →</a><a href="/plan/#w20">Plan mein: Week 20 →</a></p><p class="rbsign small" hidden>Tick abhi sirf is device par hain. Sign in kijiye taaki har device par rahein. <a href="/api/auth/login?next=%2Fbook%2Fhi%2F32-designing-for-the-wrong-answer.html">Sign in</a></p></aside>
 <aside class="inapp"><span class="lead">Yahi ideas, kaam ke saath, course app mein</span><span class="chips"><a href="/#/ch/ch20">Galat jawaab ke liye design: evidence, confidence aur refusals<span aria-hidden="true"> →</span></a><a href="/#/ch/ch205">Business impact naapna: ek pilot design karna<span aria-hidden="true"> →</span></a></span></aside>
 <nav class="pager" aria-label="Pichhla aur agla chapter"><a class="prev" href="/book/hi/31-build-buy-or-teach-it.html" rel="prev"><span class="dir">← Pichhla</span><span class="nm"><b>31</b>Banao, Kharido Ya Sikhao</span></a><a class="next" href="/book/hi/33-the-plumbing-under-the-magic.html" rel="next"><span class="dir">Agla →</span><span class="nm"><b>33</b>Jaadu Ke Neeche Ki Plumbing</span></a></nav>
 </article>
 </main>
 </div>
 <script src="/progress.js" defer></script>
+<script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
 <script src="/reminder.js" defer></script>
 </body>

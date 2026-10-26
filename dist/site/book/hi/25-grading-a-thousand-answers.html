@@ -9,6 +9,11 @@
 <meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="/book/manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="/book/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AFZ Book">
 <link rel="alternate" hreflang="en" href="/book/25-grading-a-thousand-answers.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,6 +98,7 @@
 <li data-t="shabd, saral bhasha mein"><a href="/book/hi/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Shabd, saral bhasha mein</span></a></li>
 </ol>
 <p class="nomatch" hidden>Kuch nahi mila.</p>
+<p class="tocapp"><button type="button" class="b" data-install hidden></button> <a href="/#/start">Aapka raasta →</a> <a href="/plan/">Plan →</a></p>
 </nav>
 <div class="scrim" id="scrim" hidden></div>
 <main id="text">
@@ -145,13 +151,14 @@
 </aside>
 </div>
 <aside class="wordsbox" aria-label="Mukhya shabd"><h2>Mukhya shabd</h2><p class="sub">Saral matlab, usi kram mein jis kram mein aap inse milenge.</p><dl><div><dt id="w-code-check">code check</dt><dd>aam code ki kuch lines jo jawaab ki ek cheez ko apne aap test karti hain, jaise kya quote kiya hua phrase sach mein message mein hai; har badlaav par chalana free hai</dd></div><div><dt id="w-llm-judge">LLM judge</dt><dd>ek model jo doosre model ke output ko grade karta hai; sasta aur tez hai, lekin uske biases hote hain aur use apni grading ke saamne check kiye bina bharosa nahi karna chahiye</dd></div><div><dt id="w-error-analysis">error analysis</dt><dd>100 asli outputs padhna, har ek mein kya galat hua yeh apne words mein likhna, notes ko group karna, groups ko naam dena aur unhe ginna</dd></div></dl></aside>
-<aside class="routebox" data-route-file="25-grading-a-thousand-answers.html"><p><b>Aapke raaste par: Week 17.</b> Chapter ke end tak pahunchte hi yeh apne aap tick ho jaata hai, aapke account mein bhi.</p><p class="rbrow"><button type="button" class="b rbmark">Padh liya</button><span class="rbdone" hidden>Padha gaya ✓</span><a href="/#/start">Apne raaste par wapas →</a></p></aside>
+<aside class="routebox" data-route-file="25-grading-a-thousand-answers.html"><p><b>Aapke raaste par: Week 17.</b> Chapter ke end tak pahunchte hi yeh apne aap tick ho jaata hai, aapke account mein bhi.</p><p class="rbrow"><button type="button" class="b rbmark">Padh liya</button><span class="rbdone" hidden>Padha gaya ✓</span><a href="/#/start#week-17">Poora hafta ek jagah →</a><a href="/plan/#w17">Plan mein: Week 17 →</a></p><p class="rbsign small" hidden>Tick abhi sirf is device par hain. Sign in kijiye taaki har device par rahein. <a href="/api/auth/login?next=%2Fbook%2Fhi%2F25-grading-a-thousand-answers.html">Sign in</a></p></aside>
 <aside class="inapp"><span class="lead">Yahi ideas, kaam ke saath, course app mein</span><span class="chips"><a href="/#/ch/ch14">Evaluation scale par: code checks aur LLM judges<span aria-hidden="true"> →</span></a><a href="/#/ch/ch145">Error analysis: failures ko haath se padhna<span aria-hidden="true"> →</span></a></span></aside>
 <nav class="pager" aria-label="Pichhla aur agla chapter"><a class="prev" href="/book/hi/24-when-the-page-gives-orders.html" rel="prev"><span class="dir">← Pichhla</span><span class="nm"><b>24</b>Jab Page Hukm Dene Lage</span></a><a class="next" href="/book/hi/26-what-it-really-costs.html" rel="next"><span class="dir">Agla →</span><span class="nm"><b>26</b>Asal Mein Kitna Kharch Hota Hai</span></a></nav>
 </article>
 </main>
 </div>
 <script src="/progress.js" defer></script>
+<script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
 <script src="/reminder.js" defer></script>
 </body>

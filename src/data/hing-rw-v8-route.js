@@ -4,7 +4,6 @@ Object.assign(window.HING = window.HING || {}, {
   'Your route': 'Aapka raasta',
   'Your route: 26 weeks, one order': 'Aapka raasta: 26 hafte, ek hi order',
   '26 weeks, one order': '26 hafte, ek hi order',
-  'the same on the plan, in the book and in the 12:00 reminder': 'plan, kitaab aur 12 baje ke reminder mein bilkul yahi',
   'Month 1 is the gentle start: the book from its first page, ten minutes a weekday, and nothing to install. After that, each chapter’s story comes first in the book, then the chapter itself here. On a day when ten minutes feels like too much, do one page and tick it anyway.':
     'Mahina 1 aaram se shuruaat hai: kitaab pehle page se, har weekday das minute, aur kuch install nahi karna. Uske baad har chapter ki kahani pehle kitaab mein aati hai, phir wahi chapter yahan. Jis din das minute bhi zyada lagein, ek page kijiye aur phir bhi tick kar dijiye.',
   'steps done': 'steps poore',
@@ -28,7 +27,6 @@ Object.assign(window.HING = window.HING || {}, {
   'Week': 'Week',
   'See the whole route': 'Poora raasta dekhiye',
   'See the week': 'Woh week dekhiye',
-  'The plan tab shows the same weeks with notes, monthly reviews and the reasons behind them.': 'Plan tab par yahi hafte hain, notes, mahine ke review aur unke peeche ki wajah ke saath.',
   'Open the plan': 'Plan kholiye',
   'first pass, about 20 minutes: read it and answer the boxes. The Build it section is optional.': 'pehli baar, lagbhag 20 minute: padhiye aur boxes ka jawaab dijiye. “Build it” wala hissa optional hai.',
   'One page': 'Ek page',
@@ -120,5 +118,81 @@ Object.assign(window.HING = window.HING || {}, {
   'Capstone: ship it and defend it': 'Capstone: ship kijiye aur uska bachaav kijiye',
   'Bharat Privacy Guard shipped, with its findings document and a short demo.': 'Bharat Privacy Guard ship hua, findings document aur ek chhote demo ke saath.',
   'The business, and the job': 'Business, aur naukri',
-  'Your portfolio page, three practice interviews and a look back over six months.': 'Aapka portfolio page, teen practice interview aur chhe mahinon par ek nazar.'
+  'Your portfolio page, three practice interviews and a look back over six months.': 'Aapka portfolio page, teen practice interview aur chhe mahinon par ek nazar.',
+  /* the one-view page */
+  'One view of everything': 'Sab kuch ek jagah',
+  'the playbook, the book, the plan and the curriculum, week by week': 'playbook, kitaab, plan aur curriculum, hafte-dar-hafte',
+  'The other views': 'Baaki views',
+  'The book': 'Kitaab',
+  'the same chapters as one story': 'wahi chapters, ek kahani ki tarah',
+  'The plan': 'Plan',
+  'these weeks, with reviews and a parking lot': 'yahi hafte, review aur parking lot ke saath',
+  'The curriculum': 'Curriculum',
+  'why the route is in this order': 'raasta isi order mein kyun hai',
+  'Do it': 'Kijiye',
+  'The story': 'Kahani',
+  'What blocked you, what you learned': 'Kya rukawat aayi, kya seekha',
+  'Your note': 'Aapka note',
+  'Link to what you made': 'Jo banaya uska link',
+  'How to': 'Kaise karein',
+  'Going further (optional)': 'Aur aage (optional)',
+  'This week in the plan': 'Plan mein yeh hafta',
+  'Why this month': 'Yeh mahina kyun',
+  'Monthly review': 'Mahine ka review',
+  'If behind': 'Agar peeche hain',
+  'Reviewed': 'Review ho gaya',
+  'In the plan': 'Plan mein',
+  'The plan has the same weeks, plus the parking lot and the rules.': 'Plan mein yahi hafte hain, saath mein parking lot aur niyam.',
+  /* how-to recipes (plan/ship.md) */
+  'A chapter on its first pass': 'Chapter ki pehli baar',
+  'The one-time setup': 'Ek baar ka setup',
+  'Publish a project': 'Project publish kijiye',
+  'Demo video: three minutes, no editing': 'Demo video: teen minute, bina editing',
+  'Portfolio site': 'Portfolio site',
+  'Mock interviews': 'Practice interview',
+  'Retro: review the six months': 'Retro: chhe mahinon ka review',
+  /* months (src/data/route.mjs) */
+  'Month 1: Read first (the gentle start)': 'Mahina 1: pehle padhiye (aaram se shuruaat)',
+  'Ten minutes a weekday. The book from its first page to chapter 12, three small tries and your first evaluation. Nothing to install.':
+    'Har weekday das minute. Kitaab pehle page se chapter 12 tak, teen chhote try aur aapka pehla evaluation. Kuch install nahi karna.',
+  'Month 2: Product foundations and first contact': 'Mahina 2: product ki neenv aur pehla sampark',
+  'Track A’s boxes answered (your home ground), the setup working, your first model call, and a sorter with a score.':
+    'Track A ke boxes ke jawaab (aapka apna maidaan), chalta hua setup, aapki pehli model call, aur score ke saath ek sorter.',
+  'Month 3: Finding and measuring': 'Mahina 3: dhoondhna aur naapna',
+  'Search by words and by meaning, a scoreboard, and version 0 of the findings page published. Weeks 10 and 11 are light holiday weeks.':
+    'Words aur matlab se search, ek scoreboard, aur findings page ka version 0 publish. Week 10 aur 11 halke, chhutti wale hafte hain.',
+  'Month 4: What real systems add': 'Mahina 4: asli systems mein kya judta hai',
+  'Dependable output, context and thinking models, better search, prompt injection, grading at scale, cost, documents and the rules.':
+    'Bharose layak output, context aur sochne wale models, behtar search, prompt injection, badi sankhya mein grading, kharch, documents aur niyam.',
+  'Month 5: Decisions and production depth': 'Mahina 5: faisle aur production ki gehraai',
+  'The spec, build or buy, wrong answers and impact, then the production chapters: models, retrieval, tools, agents, gates, watching and security.':
+    'Spec, banayein ya khareedein, galat jawaab aur asar, phir production ke chapters: models, retrieval, tools, agents, gates, nigraani aur security.',
+  'Month 6: Ship it, defend it, get the job': 'Mahina 6: ship kijiye, bachaav kijiye, naukri paaiye',
+  'The decision pack, the capstone shipped and defended, the business chapters, a portfolio page and practice interviews.':
+    'Decision pack, capstone ship aur uska bachaav, business ke chapters, ek portfolio page aur practice interview.',
+  /* monthly reviews (plan/data.mjs) */
+  'The first four weeks ticked, or nearly: the book read to chapter 12, three small tries done, and your first evaluation scored out of ten.':
+    'Pehle chaar hafte tick, ya lagbhag: kitaab chapter 12 tak padhi hui, teen chhote try poore, aur aapka pehla evaluation das mein se score ke saath.',
+  'If you missed days, do not catch up in one go. Carry on from the first open step and let the dates slide.':
+    'Agar din chhoot gaye, to ek saath poora mat kijiye. Pehle khule step se aage badhiye aur tareekhon ko khisakne dijiye.',
+  'Track A’s boxes answered, the setup working, your first model call costed, and a sorter with a score.':
+    'Track A ke boxes ke jawaab, chalta hua setup, pehli model call ka kharch likha hua, aur score ke saath ek sorter.',
+  'Leave Track A’s Build sections for later. Never cut the first model call.':
+    'Track A ke Build hisse baad ke liye chhod dijiye. Pehli model call kabhi mat chhodiye.',
+  'Search by words and by meaning compared on a scoreboard, and version 0 of the findings page published with a link.':
+    'Words aur matlab wali search scoreboard par compare, aur findings page ka version 0 link ke saath publish.',
+  'Publish the findings page with whatever numbers you have. An honest short page beats a perfect missing one.':
+    'Jo bhi numbers hain unke saath findings page publish kijiye. Imaandaar chhota page, gayab perfect page se behtar hai.',
+  'Dependable output, the attack on your own tool, a checked automatic marker, a cost model, and the system card.':
+    'Bharose layak output, apne tool par hamla, jaancha hua automatic marker, cost model, aur system card.',
+  'Do the chapters on a first pass and keep one hands-on result per week.':
+    'Chapters pehli baar ki tarah kijiye aur har hafte ek hands-on nateeja rakhiye.',
+  'The requirements document, the build-or-buy call, the release gate and the risk register.':
+    'Requirements document, banayein-ya-khareedein ka faisla, release gate aur risk register.',
+  'If time is short, keep the release gate and the risk register; the others can be one page each.':
+    'Agar samay kam hai, to release gate aur risk register rakhiye; baaki ek-ek page ke ho sakte hain.',
+  'Bharat Privacy Guard shipped with its findings document and demo, a portfolio page, and three practice interviews.':
+    'Bharat Privacy Guard findings document aur demo ke saath ship, ek portfolio page, aur teen practice interview.',
+  'Do not cut this one. Move it into May rather than skip it.':
+    'Ise mat kaatiye. Chhodne ke bajaye May tak khisaa dijiye.'
 });
