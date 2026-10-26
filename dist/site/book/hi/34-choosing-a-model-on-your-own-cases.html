@@ -9,6 +9,11 @@
 <meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="/book/manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="/book/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AFZ Book">
 <link rel="alternate" hreflang="en" href="/book/34-choosing-a-model-on-your-own-cases.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,6 +98,7 @@
 <li data-t="shabd, saral bhasha mein"><a href="/book/hi/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Shabd, saral bhasha mein</span></a></li>
 </ol>
 <p class="nomatch" hidden>Kuch nahi mila.</p>
+<p class="tocapp"><button type="button" class="b" data-install hidden></button> <a href="/#/start">Aapka raasta →</a> <a href="/plan/">Plan →</a></p>
 </nav>
 <div class="scrim" id="scrim" hidden></div>
 <main id="text">
@@ -142,13 +148,14 @@
 <ul><li>Routing har request ko us sabse sasti model ke paas bhejti hai jo use sambhal sake, aur mehnga model mushkil cases ke liye rakhti hai.</li><li>Faisla model selection card par hona chahiye, kyunki evidence ke bina woh seconds mein raay mein ghul jaata hai.</li><li>Har model ko kya dikhta hai, yeh apne aap mein ek design hai. Instructions ek versioned contract hain. Budget kam pade toh cheezein hatane ka ek order hota hai. Aur memory kam se kam teen alag stores hain, har ek ka owner, retention period aur delete karne ka tareeka.</li><li>Har faisle ke saath uska provenance hona chahiye, taaki use us code aur evidence tak trace kiya ja sake jisne use banaya.</li></ul>
 </div>
 <aside class="wordsbox" aria-label="Mukhya shabd"><h2>Mukhya shabd</h2><p class="sub">Saral matlab, usi kram mein jis kram mein aap inse milenge.</p><dl><div><dt id="w-leaderboard">leaderboard</dt><dd>models ki ek published ranking, jo kisi aur ke tests par unke scores se bani hoti hai</dd></div><div><dt id="w-model-selection-card">model selection card</dt><dd>ek chhota, versioned page jisme kaam, quality target, data, speed aur cost ki limits, try kiye gaye options, evidence aur fallback likhe hote hain, taaki reviewer dekh sake ki model kyun chuna gaya</dd></div><div><dt id="w-routing">routing</dt><dd>har request ko us sabse sasti model ke paas bhejna jo use sambhal sake, aur sirf mushkil wali ko ek zyada strong aur mehnge model ke paas</dd></div><div><dt id="w-provenance">provenance</dt><dd>is baat ka record ki koi cheez kahan se aayi, taaki ek claim ya decision ko uske source, version aur use banane wale code tak trace kiya ja sake</dd></div></dl></aside>
-<aside class="routebox" data-route-file="34-choosing-a-model-on-your-own-cases.html"><p><b>Aapke raaste par: Week 21.</b> Chapter ke end tak pahunchte hi yeh apne aap tick ho jaata hai, aapke account mein bhi.</p><p class="rbrow"><button type="button" class="b rbmark">Padh liya</button><span class="rbdone" hidden>Padha gaya ✓</span><a href="/#/start">Apne raaste par wapas →</a></p></aside>
+<aside class="routebox" data-route-file="34-choosing-a-model-on-your-own-cases.html"><p><b>Aapke raaste par: Week 21.</b> Chapter ke end tak pahunchte hi yeh apne aap tick ho jaata hai, aapke account mein bhi.</p><p class="rbrow"><button type="button" class="b rbmark">Padh liya</button><span class="rbdone" hidden>Padha gaya ✓</span><a href="/#/start#week-21">Poora hafta ek jagah →</a><a href="/plan/#w21">Plan mein: Week 21 →</a></p><p class="rbsign small" hidden>Tick abhi sirf is device par hain. Sign in kijiye taaki har device par rahein. <a href="/api/auth/login?next=%2Fbook%2Fhi%2F34-choosing-a-model-on-your-own-cases.html">Sign in</a></p></aside>
 <aside class="inapp"><span class="lead">Yahi ideas, kaam ke saath, course app mein</span><span class="chips"><a href="/#/ch/ch9m">Model chunna: apne hi cases par benchmark kijiye<span aria-hidden="true"> →</span></a><a href="/#/ch/ch10c">Context engineering: model ko kya dikhana hai, yeh tay karna<span aria-hidden="true"> →</span></a></span></aside>
 <nav class="pager" aria-label="Pichhla aur agla chapter"><a class="prev" href="/book/hi/33-the-plumbing-under-the-magic.html" rel="prev"><span class="dir">← Pichhla</span><span class="nm"><b>33</b>Jaadu Ke Neeche Ki Plumbing</span></a><a class="next" href="/book/hi/35-retrieval-that-survives-a-review.html" rel="next"><span class="dir">Agla →</span><span class="nm"><b>35</b>Review Mein Tikne Wala Retrieval</span></a></nav>
 </article>
 </main>
 </div>
 <script src="/progress.js" defer></script>
+<script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
 <script src="/reminder.js" defer></script>
 </body>

@@ -9,6 +9,11 @@
 <meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="/book/manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="/book/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AFZ Book">
 <link rel="alternate" hreflang="en" href="/book/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,6 +48,11 @@
 <p class="startrow"><a class="go" id="begin" href="/book/hi/preface.html">Padhna shuru kariye</a><a class="go ghost" id="resume" href="#" hidden>Wahin se jaari rakhiye</a></p>
 <p class="meta"><span>47 chapter</span><span>lagbhag 90 hazaar shabd</span><span>236 shabd samjhaaye gaye</span></p>
 <div class="prog" id="prog" hidden><span class="bar"><i></i></span><span class="txt"></span></div>
+<div class="appbox">
+<p>Phone par kitaab ko app ki tarah rakhiye, aur poori kitaab bina internet ke padhne ke liye save kar lijiye.</p>
+<p class="approw"><button type="button" class="go" data-install hidden></button><button type="button" class="go ghost" id="offline">Poori kitaab offline save kijiye</button><span class="offmsg" id="offmsg" role="status"></span></p>
+<p class="small"><a href="/#/start">Kitaab, playbook aur plan ek jagah: aapka raasta →</a></p>
+</div>
 </div>
 <div class="heroart"><svg class="art" viewBox="0 0 420 320" role="img" aria-label="Ek chat message jisme personal details chhupa di gayi hain">
 <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--a1)"/><stop offset="1" stop-color="var(--a2)"/></linearGradient></defs>
@@ -116,6 +126,7 @@
 </main>
 </div>
 <script src="/progress.js" defer></script>
+<script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
 <script src="/reminder.js" defer></script>
 </body>

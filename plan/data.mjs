@@ -123,7 +123,7 @@ export const MONTHS = ROUTE_MONTHS;
 export const WEEKS = ROUTE_WEEKS.map(w => ({ ...w, further: FURTHER[w.n] || [] }));
 
 export const GATES = [
-  { id: 'M1', month: 1, pass: 'Twenty weekdays of the gentle start ticked, or nearly: the book read to chapter 12, three small tries done, and your first evaluation scored out of ten.', cut: 'If you missed days, do not catch up in one go. Carry on from the first open step and let the dates slide.' },
+  { id: 'M1', month: 1, pass: 'The first four weeks ticked, or nearly: the book read to chapter 12, three small tries done, and your first evaluation scored out of ten.', cut: 'If you missed days, do not catch up in one go. Carry on from the first open step and let the dates slide.' },
   { id: 'M2', month: 2, pass: 'Track A’s boxes answered, the setup working, your first model call costed, and a sorter with a score.', cut: 'Leave Track A’s Build sections for later. Never cut the first model call.' },
   { id: 'M3', month: 3, pass: 'Search by words and by meaning compared on a scoreboard, and version 0 of the findings page published with a link.', cut: 'Publish the findings page with whatever numbers you have. An honest short page beats a perfect missing one.' },
   { id: 'M4', month: 4, pass: 'Dependable output, the attack on your own tool, a checked automatic marker, a cost model, and the system card.', cut: 'Do the chapters on a first pass and keep one hands-on result per week.' },

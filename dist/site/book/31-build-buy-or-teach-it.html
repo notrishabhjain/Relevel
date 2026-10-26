@@ -9,6 +9,11 @@
 <meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="/book/manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="/book/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AFZ Book">
 <link rel="alternate" hreflang="hi-Latn" href="/book/hi/31-build-buy-or-teach-it.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,6 +98,7 @@
 <li data-t="words, in plain language"><a href="/book/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Words, in plain language</span></a></li>
 </ol>
 <p class="nomatch" hidden>Nothing matches that.</p>
+<p class="tocapp"><button type="button" class="b" data-install hidden></button> <a href="/#/start">Your route →</a> <a href="/plan/">The plan →</a></p>
 </nav>
 <div class="scrim" id="scrim" hidden></div>
 <main id="text">
@@ -147,13 +153,14 @@
 </aside>
 </div>
 <aside class="wordsbox" aria-label="Key terms"><h2>Key terms</h2><p class="sub">Plain meanings, in the order you meet them.</p><dl><div><dt id="w-ai-value-chain">AI value chain</dt><dd>the layers an AI product is built on: infrastructure, models, tooling and, on top, the applications that people use; each layer gets its advantage from something different</dd></div><div><dt id="w-open-weight-model">open-weight model</dt><dd>a model whose weights are published, so you can download it and run it on your own computers instead of calling someone else's</dd></div><div><dt id="w-fine-tuning">fine-tuning</dt><dd>training a model further on examples of your own, so that it behaves in a consistent way; it teaches behaviour, not facts</dd></div><div><dt id="w-lock-in">lock-in</dt><dd>being tied to one provider because leaving would cost too much, in rewriting, remeasuring or lost features</dd></div></dl></aside>
-<aside class="routebox" data-route-file="31-build-buy-or-teach-it.html"><p><b>On your route: Week 19.</b> This chapter ticks itself when you reach the end, in your account too.</p><p class="rbrow"><button type="button" class="b rbmark">Mark as read</button><span class="rbdone" hidden>Read ✓</span><a href="/#/start">Back to your route →</a></p></aside>
+<aside class="routebox" data-route-file="31-build-buy-or-teach-it.html"><p><b>On your route: Week 19.</b> This chapter ticks itself when you reach the end, in your account too.</p><p class="rbrow"><button type="button" class="b rbmark">Mark as read</button><span class="rbdone" hidden>Read ✓</span><a href="/#/start#week-19">The whole week in one view →</a><a href="/plan/#w19">In the plan: Week 19 →</a></p><p class="rbsign small" hidden>Ticks are saved on this device only. Sign in to keep them on every device. <a href="/api/auth/login?next=%2Fbook%2F31-build-buy-or-teach-it.html">Sign in</a></p></aside>
 <aside class="inapp"><span class="lead">The same ideas, with the work to do, in the course app</span><span class="chips"><a href="/#/ch/ch185">Build or buy: comparing a vendor with your own build<span aria-hidden="true"> →</span></a><a href="/#/ch/ch19">Fine-tuning or not: choosing what to change<span aria-hidden="true"> →</span></a></span></aside>
 <nav class="pager" aria-label="Previous and next chapter"><a class="prev" href="/book/30-the-spec-for-a-thing-that-varies.html" rel="prev"><span class="dir">← Before</span><span class="nm"><b>30</b>The Spec for a Thing That Varies</span></a><a class="next" href="/book/32-designing-for-the-wrong-answer.html" rel="next"><span class="dir">Next →</span><span class="nm"><b>32</b>Designing for the Wrong Answer</span></a></nav>
 </article>
 </main>
 </div>
 <script src="/progress.js" defer></script>
+<script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
 <script src="/reminder.js" defer></script>
 </body>

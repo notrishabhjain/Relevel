@@ -9,6 +9,11 @@
 <meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="/book/manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="/book/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AFZ Book">
 <link rel="alternate" hreflang="en" href="/book/36-workflows-agents-and-the-standard-plug.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,6 +98,7 @@
 <li data-t="shabd, saral bhasha mein"><a href="/book/hi/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Shabd, saral bhasha mein</span></a></li>
 </ol>
 <p class="nomatch" hidden>Kuch nahi mila.</p>
+<p class="tocapp"><button type="button" class="b" data-install hidden></button> <a href="/#/start">Aapka raasta →</a> <a href="/plan/">Plan →</a></p>
 </nav>
 <div class="scrim" id="scrim" hidden></div>
 <main id="text">
@@ -146,13 +152,14 @@
 <ul><li>Permissions server lagata hai, model ke bharose kabhi nahi chhodte. Jo action kuch badalta hai, use batana hoga ki do baar chalne par kya hota hai, yahi idempotency hai.</li><li>Bahut se features jo agent maangte lagte hain, fixed workflow ke roop mein behtar hote hain, jisme model sirf wahan lagta hai jahan words samajhne padte hain. Ek tez test hai: har us tool ko kaat dijiye jise ek saada rule lagbhag hamesha sahi chunta hai.</li><li>Jab sach mein agent chahiye, toh use bound kijiye: limited steps, time aur cost, explicit state, aur ek &quot;cannot resolve&quot; ending. Jo cheez undo nahi ho sakti, use ek insaan approve karta hai.</li><li>MCP ek standard plug hai. Woh vaada karta hai ki cheezein fit hongi, aur unki safety ke baare mein kuch nahi kehta, aur jo tool discover ho sakta hai woh isliye authorised nahi ho jaata.</li></ul>
 </div>
 <aside class="wordsbox" aria-label="Mukhya shabd"><h2>Mukhya shabd</h2><p class="sub">Saral matlab, usi kram mein jis kram mein aap inse milenge.</p><dl><div><dt id="w-tool-contract">tool contract</dt><dd>ek function, jo model bula sakta hai, uska theek-theek likha hua agreement: uska naam, woh kya karta hai aur kya nahi, uske parameters, errors, side effects, aur use kaun bula sakta hai</dd></div><div><dt id="w-idempotency">idempotency</dt><dd>kisi action ki woh khoobi ki use do baar chalana safe hai, ya use aise protect kiya gaya hai ki do baar chalne ka sirf ek hi asar ho; yeh tay karti hai ki retry safe hai ya nahi</dd></div><div><dt id="w-fixed-workflow">fixed workflow</dt><dd>pehle se tay steps ka ek sequence, jo code mein likha hota hai, aur model sirf un steps mein use hota hai jinhe judgement chahiye</dd></div><div><dt id="w-bounded-agent">bounded agent</dt><dd>aisa AI agent jise steps, time aur cost par hard limits di gayi hon, ek state jo woh saaf-saaf rakhta hai, aur ek &quot;cannot resolve&quot; ending, taaki woh hamesha ruke</dd></div><div><dt id="w-mcp">MCP</dt><dd>Model Context Protocol: AI applications ko tools aur data se jodne ka ek standard, jisse koi bhi compliant tool kisi bhi compliant application mein lag jaata hai, plug aur socket ki tarah</dd></div></dl></aside>
-<aside class="routebox" data-route-file="36-workflows-agents-and-the-standard-plug.html"><p><b>Aapke raaste par: Week 22.</b> Chapter ke end tak pahunchte hi yeh apne aap tick ho jaata hai, aapke account mein bhi.</p><p class="rbrow"><button type="button" class="b rbmark">Padh liya</button><span class="rbdone" hidden>Padha gaya ✓</span><a href="/#/start">Apne raaste par wapas →</a></p></aside>
+<aside class="routebox" data-route-file="36-workflows-agents-and-the-standard-plug.html"><p><b>Aapke raaste par: Week 22.</b> Chapter ke end tak pahunchte hi yeh apne aap tick ho jaata hai, aapke account mein bhi.</p><p class="rbrow"><button type="button" class="b rbmark">Padh liya</button><span class="rbdone" hidden>Padha gaya ✓</span><a href="/#/start#week-22">Poora hafta ek jagah →</a><a href="/plan/#w22">Plan mein: Week 22 →</a></p><p class="rbsign small" hidden>Tick abhi sirf is device par hain. Sign in kijiye taaki har device par rahein. <a href="/api/auth/login?next=%2Fbook%2Fhi%2F36-workflows-agents-and-the-standard-plug.html">Sign in</a></p></aside>
 <aside class="inapp"><span class="lead">Yahi ideas, kaam ke saath, course app mein</span><span class="chips"><a href="/#/ch/ch12t">Tool calling aur workflows: agents se pehle contracts<span aria-hidden="true"> →</span></a><a href="/#/ch/ch13a">Agents: loops, stopping conditions aur control<span aria-hidden="true"> →</span></a><a href="/#/ch/ch14p">MCP aur interoperability: tools se jodne ke standard connections<span aria-hidden="true"> →</span></a></span></aside>
 <nav class="pager" aria-label="Pichhla aur agla chapter"><a class="prev" href="/book/hi/35-retrieval-that-survives-a-review.html" rel="prev"><span class="dir">← Pichhla</span><span class="nm"><b>35</b>Review Mein Tikne Wala Retrieval</span></a><a class="next" href="/book/hi/37-pages-pictures-and-voices.html" rel="next"><span class="dir">Agla →</span><span class="nm"><b>37</b>Pages, Tasveerein Aur Awaazein</span></a></nav>
 </article>
 </main>
 </div>
 <script src="/progress.js" defer></script>
+<script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
 <script src="/reminder.js" defer></script>
 </body>

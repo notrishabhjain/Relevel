@@ -245,6 +245,8 @@ button.quiet,.filebtn{background:transparent;color:var(--ink-2);border:1px solid
 .tw table{min-width:640px}
 .code{max-width:none}
 @media (max-width:560px){.addrow{flex-direction:column}}
+button.nav.inst{font:inherit;background:none;border:1px solid var(--rule);border-radius:999px;padding:.15rem .7rem;cursor:pointer;color:var(--ink)}
+button.nav.inst.ready{background:var(--accent);border-color:var(--accent);color:var(--paper)}
 .steps{list-style:none;margin:.5rem 0 .9rem;padding:0;display:grid;gap:.45rem}
 .st{display:flex;gap:.6rem;align-items:flex-start;padding:.25rem .35rem;margin:0 -.35rem;border-radius:6px}
 .st .chk{flex:none;width:6.4rem;align-items:flex-start;padding-top:.15rem}
@@ -279,6 +281,13 @@ function page({ title, desc, panels }) {
 <meta name="robots" content="noindex">
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="../icon.svg" type="image/svg+xml">
+<link rel="manifest" href="/plan/manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="/plan/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AI PM Plan">
+<meta name="theme-color" content="#ECEEEA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121517" media="(prefers-color-scheme: dark)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap">
@@ -289,7 +298,9 @@ function page({ title, desc, panels }) {
 <header class="bar">
   <a class="brand" href="#plan">Applied AI PM plan</a>
   ${nav}
-  <a class="nav" href="../">Workbook &rarr;</a>
+  <a class="nav" href="../#/start">Workbook &rarr;</a>
+  <a class="nav" href="../book/">Book &rarr;</a>
+  <button type="button" class="nav inst" data-install hidden></button>
   <button id="theme" type="button" aria-label="Switch colour theme">&#9680;</button>
 </header>
 <main>
@@ -319,6 +330,7 @@ document.querySelectorAll('.code').forEach(function(b){
 ${TRACKER_JS}
 </script>
 <script src="/reminder.js" defer></script>
+<script src="/install.js" defer></script>
 </body>
 </html>
 `;
@@ -356,6 +368,7 @@ function weekCard(w, recipes) {
     `<h4>${inline(w.title)}</h4>` +
     `<ol class="steps">${w.steps.map(stepRow).join('')}</ol>` +
     `<p><b>By Sunday</b>${inline(w.ship)}</p><p><b>How to</b>${how}</p>${further}` +
+    `<p class="small"><a href="../#/start#week-${w.n}">This week in one view, in the playbook →</a></p>` +
     `<div class="ctl"><div class="fields"><label>Link to what you made (optional)<input type="url" data-f="link" placeholder="https://..." autocomplete="off"></label>` +
     `<label>Note<input type="text" data-f="note" placeholder="What blocked you, what you learned" autocomplete="off"></label></div><div class="shiplink"></div></div></article>`;
 }
@@ -370,7 +383,7 @@ function makeExpand(recipes, seen) {
       const ws = WEEKS.filter(w => w.n >= m.from && w.n <= m.to);
       ws.forEach(w => seen.push(w.n));
       return {
-        html: `<h2 id="${id}">${esc(m.name)}</h2><p class="month-intro"><strong>${esc(m.dates)}.</strong> Goal: ${inline(m.goal)}</p>` +
+        html: `<h2 id="${id}">${esc(m.name)}</h2><p class="month-intro"><strong>${esc(m.dates)}.</strong> Goal: ${inline(m.goal)} <a href="#m${m.n}">Why this month</a></p>` +
           `<details class="month" data-from="${m.from}" data-to="${m.to}"><summary>Weeks ${m.from}–${m.to}<span class="count"></span></summary><div class="inner">` +
           ws.map(w => weekCard(w, recipes)).join('') + '</div></details>',
         heads: [{ n: 2, id, text: m.name }]

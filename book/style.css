@@ -266,3 +266,13 @@ li.read a{border-color:color-mix(in srgb,var(--hue) 35%,var(--rule))}
 .routebox .rbrow{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1rem}
 .routebox .rbdone{color:var(--accent);font-weight:600}
 .routebox a{color:var(--accent)}
+
+/* installing the book, and keeping it offline */
+.appbox{margin:1.2rem 0 0;padding:.9rem 1rem;border:1px dashed var(--rule);border-radius:14px;font-family:var(--sans);font-size:.86rem;display:grid;gap:.5rem}
+.appbox p{margin:0}
+.appbox .approw{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
+.appbox .approw .go{font-size:.85rem;padding:.45rem .9rem}
+.appbox .offmsg{color:var(--accent);font-size:.82rem}
+.appbox a{color:var(--accent)}
+.tocapp{display:flex;flex-wrap:wrap;gap:.4rem .9rem;align-items:center;margin:1rem 0 .5rem;padding:0 .8rem;font-family:var(--sans);font-size:.82rem}
+.tocapp a{color:var(--accent)}

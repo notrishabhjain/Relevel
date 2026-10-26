@@ -9,6 +9,11 @@
 <meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="/book/manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="/book/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AFZ Book">
 <link rel="alternate" hreflang="en" href="/book/08-what-the-machine-is.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,6 +98,7 @@
 <li data-t="shabd, saral bhasha mein"><a href="/book/hi/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Shabd, saral bhasha mein</span></a></li>
 </ol>
 <p class="nomatch" hidden>Kuch nahi mila.</p>
+<p class="tocapp"><button type="button" class="b" data-install hidden></button> <a href="/#/start">Aapka raasta →</a> <a href="/plan/">Plan →</a></p>
 </nav>
 <div class="scrim" id="scrim" hidden></div>
 <main id="text">
@@ -157,13 +163,14 @@
 <p>Agle chapter mein Anaya model ke saath apni pehli conversation karti hai, aur yeh sab kaam karte hue dekhti hai.</p>
 </div>
 <aside class="wordsbox" aria-label="Mukhya shabd"><h2>Mukhya shabd</h2><p class="sub">Saral matlab, usi kram mein jis kram mein aap inse milenge.</p><dl><div><dt id="w-language-model">language model</dt><dd>ek program jisne bahut saare likhe hue text se seekha hai ki aage kaun sa text aayega, iska andaaza lagana; chatbot ke peeche yahi baitha hota hai</dd></div><div><dt id="w-generative-ai">generative AI</dt><dd>aisa AI jo naya content banata hai, jaise text, images ya code, sirf ek label ya number dene ke bajaye</dd></div><div><dt id="w-predictive-ai">predictive AI</dt><dd>aisa AI jo ek khaas kaam ke liye label ya number deta hai, jaise koi message spam hai ya nahi</dd></div><div><dt id="w-token">token</dt><dd>text ka ek tukda, aksar poora shabd aur kabhi-kabhi shabd ka ek hissa, jo woh unit hai jise models padhte hain aur jiske hisaab se providers paisa lete hain</dd></div><div><dt id="w-context-window">context window</dt><dd>ek baar mein model kitna text le sakta hai, uski limit, jismein aap jo bhejte hain aur jo woh wapas likhta hai, dono gine jaate hain</dd></div><div><dt id="w-pre-training">pre-training</dt><dd>model banane ka pehla aur sabse mehnga stage, jismein woh bahut saare text par agla token predict karna seekhta hai</dd></div><div><dt id="w-instruction-tuning">instruction tuning</dt><dd>model banane ka doosra stage, jismein use instructions aur achhe jawaabon ke jodon par train kiya jaata hai taaki woh instructions maane</dd></div><div><dt id="w-weights">weights</dt><dd>model ke andar ke arabon numbers jinmein woh sab kuch hai jo usne seekha; training unhe badalti hai, aam use nahi</dd></div><div><dt id="w-inference">inference</dt><dd>taiyaar model ko kisi request ka jawaab dene ke liye chalana; har baar paisa lagta hai aur model badalta nahi</dd></div><div><dt id="w-transformer">transformer</dt><dd>woh design jis par lagbhag saare modern language models bane hain, jiska main hissa attention hai</dd></div><div><dt id="w-attention">attention</dt><dd>transformer ka woh hissa jo har token ke liye tay karta hai ki agla kya aayega yeh andaaza lagane ke liye baaki kaun se tokens sabse zyada maayne rakhte hain</dd></div></dl></aside>
-<aside class="routebox" data-route-file="08-what-the-machine-is.html" data-half="b:08-what-the-machine-is.html#1" data-upto="s-8-4"><p><b>Aapke raaste par: Week 3.</b> Yeh chapter do din mein hai. Har hissa khatam hote hi apne aap tick ho jaata hai.</p><p class="rbrow"><button type="button" class="b rbmark">Padh liya</button><span class="rbdone" hidden>Padha gaya ✓</span><a href="/#/start">Apne raaste par wapas →</a></p></aside>
+<aside class="routebox" data-route-file="08-what-the-machine-is.html" data-half="b:08-what-the-machine-is.html#1" data-upto="s-8-4"><p><b>Aapke raaste par: Week 3.</b> Yeh chapter do din mein hai. Har hissa khatam hote hi apne aap tick ho jaata hai.</p><p class="rbrow"><button type="button" class="b rbmark">Padh liya</button><span class="rbdone" hidden>Padha gaya ✓</span><a href="/#/start#week-3">Poora hafta ek jagah →</a><a href="/plan/#w3">Plan mein: Week 3 →</a></p><p class="rbsign small" hidden>Tick abhi sirf is device par hain. Sign in kijiye taaki har device par rahein. <a href="/api/auth/login?next=%2Fbook%2Fhi%2F08-what-the-machine-is.html">Sign in</a></p></aside>
 <aside class="inapp"><span class="lead">Yahi ideas, kaam ke saath, course app mein</span><span class="chips"><a href="/#/ch/a8">Generative AI ki buniyaad: models kaise kaam karte hain<span aria-hidden="true"> →</span></a><a href="/#/ch/ch05">Browser mein try kijiye: tokens, cost aur temperature<span aria-hidden="true"> →</span></a></span></aside>
 <nav class="pager" aria-label="Pichhla aur agla chapter"><a class="prev" href="/book/hi/07-writing-it-down.html" rel="prev"><span class="dir">← Pichhla</span><span class="nm"><b>7</b>Likh Kar Rakhna Taaki Doosre Bana Sakein</span></a><a class="next" href="/book/hi/09-the-first-conversation.html" rel="next"><span class="dir">Agla →</span><span class="nm"><b>9</b>Pehli Baatcheet</span></a></nav>
 </article>
 </main>
 </div>
 <script src="/progress.js" defer></script>
+<script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
 <script src="/reminder.js" defer></script>
 </body>

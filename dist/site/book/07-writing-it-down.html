@@ -9,6 +9,11 @@
 <meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="/book/manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="/book/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AFZ Book">
 <link rel="alternate" hreflang="hi-Latn" href="/book/hi/07-writing-it-down.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,6 +98,7 @@
 <li data-t="words, in plain language"><a href="/book/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Words, in plain language</span></a></li>
 </ol>
 <p class="nomatch" hidden>Nothing matches that.</p>
+<p class="tocapp"><button type="button" class="b" data-install hidden></button> <a href="/#/start">Your route →</a> <a href="/plan/">The plan →</a></p>
 </nav>
 <div class="scrim" id="scrim" hidden></div>
 <main id="text">
@@ -163,13 +169,14 @@
 </aside>
 </div>
 <aside class="wordsbox" aria-label="Key terms"><h2>Key terms</h2><p class="sub">Plain meanings, in the order you meet them.</p><dl><div><dt id="w-prd">PRD</dt><dd>product requirements document: the paper that says what to build and why, starting from the problem and its evidence</dd></div><div><dt id="w-acceptance-criteria">acceptance criteria</dt><dd>the conditions a piece of work must meet to count as done, each written so it can be tested</dd></div><div><dt id="w-user-story">user story</dt><dd>one piece of value described from the user's side: who they are, what they want, and why</dd></div><div><dt id="w-edge-case">edge case</dt><dd>an unusual input or situation that breaks things the ordinary cases never touch</dd></div><div><dt id="w-mvp">MVP</dt><dd>minimum viable product: the smallest thing that tests your riskiest assumption with real users</dd></div><div><dt id="w-vertical-slice">vertical slice</dt><dd>a thin working version that goes through every layer of a system, so a real user can try something early</dd></div><div><dt id="w-sprint">sprint</dt><dd>a fixed period, usually one or two weeks, that a team plans, builds, shows and reviews</dd></div><div><dt id="w-time-box">time-box</dt><dd>a fixed amount of time given to uncertain work, with a decision at the end of it</dd></div><div><dt id="w-prototype">prototype</dt><dd>a rough, cheap version made to learn something before the real one exists</dd></div><div><dt id="w-usability-test">usability test</dt><dd>watching a real person try to complete a task with a prototype, without helping them</dd></div><div><dt id="w-quasi-identifier">quasi-identifier</dt><dd>a detail that is harmless alone but can point to one person when combined with others, such as age, village and a rare illness</dd></div><div><dt id="w-redact">redact</dt><dd>to remove a detail completely, for example by replacing it with the word [PAN]</dd></div><div><dt id="w-mask">mask</dt><dd>to hide part of a detail but keep its shape, for example 98******12</dd></div><div><dt id="w-pattern-checker">pattern checker</dt><dd>the first part of the guard: it finds details that always have the same shape, such as a PAN or a mobile number, using fixed rules</dd></div><div><dt id="w-name-and-place-finder">name-and-place finder</dt><dd>the second part of the guard: it finds details with no fixed shape, such as a person's name, an address or an employer</dd></div><div><dt id="w-context-judge">context judge</dt><dd>the third part of the guard: it reads the few sentences the first two parts could not settle and decides whether they point to a person</dd></div><div><dt id="w-rule-keeper">rule-keeper</dt><dd>the fourth part of the guard: it decides what to do with each detail found, such as remove it, mask it, let it through or ask</dd></div></dl></aside>
-<aside class="routebox" data-route-file="07-writing-it-down.html"><p><b>On your route: Week 2.</b> This chapter ticks itself when you reach the end, in your account too.</p><p class="rbrow"><button type="button" class="b rbmark">Mark as read</button><span class="rbdone" hidden>Read ✓</span><a href="/#/start">Back to your route →</a></p></aside>
+<aside class="routebox" data-route-file="07-writing-it-down.html"><p><b>On your route: Week 2.</b> This chapter ticks itself when you reach the end, in your account too.</p><p class="rbrow"><button type="button" class="b rbmark">Mark as read</button><span class="rbdone" hidden>Read ✓</span><a href="/#/start#week-2">The whole week in one view →</a><a href="/plan/#w2">In the plan: Week 2 →</a></p><p class="rbsign small" hidden>Ticks are saved on this device only. Sign in to keep them on every device. <a href="/api/auth/login?next=%2Fbook%2F07-writing-it-down.html">Sign in</a></p></aside>
 <aside class="inapp"><span class="lead">The same ideas, with the work to do, in the course app</span><span class="chips"><a href="/#/ch/a7">Specs, stories and prototypes: from decision to delivery<span aria-hidden="true"> →</span></a></span></aside>
 <nav class="pager" aria-label="Previous and next chapter"><a class="prev" href="/book/06-a-plan-others-can-believe.html" rel="prev"><span class="dir">← Before</span><span class="nm"><b>6</b>A Plan Others Can Believe</span></a><a class="next" href="/book/08-what-the-machine-is.html" rel="next"><span class="dir">Next →</span><span class="nm"><b>8</b>What the Machine Is</span></a></nav>
 </article>
 </main>
 </div>
 <script src="/progress.js" defer></script>
+<script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
 <script src="/reminder.js" defer></script>
 </body>

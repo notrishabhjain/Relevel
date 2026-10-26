@@ -9,6 +9,11 @@
 <meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="/book/manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="/book/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AFZ Book">
 <link rel="alternate" hreflang="en" href="/book/13-sorting-and-summarising.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,6 +98,7 @@
 <li data-t="shabd, saral bhasha mein"><a href="/book/hi/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Shabd, saral bhasha mein</span></a></li>
 </ol>
 <p class="nomatch" hidden>Kuch nahi mila.</p>
+<p class="tocapp"><button type="button" class="b" data-install hidden></button> <a href="/#/start">Aapka raasta →</a> <a href="/plan/">Plan →</a></p>
 </nav>
 <div class="scrim" id="scrim" hidden></div>
 <main id="text">
@@ -148,13 +154,14 @@
 </aside>
 </div>
 <aside class="wordsbox" aria-label="Mukhya shabd"><h2>Mukhya shabd</h2><p class="sub">Saral matlab, usi kram mein jis kram mein aap inse milenge.</p><dl><div><dt id="w-classifier">classifier</dt><dd>ek program jo har input ko pehle se tay categories mein se kisi ek mein daalta hai, jaise PAN, Aadhaar, mobile number ya inmein se koi nahi</dd></div><div><dt id="w-must-keep-list">must-keep list</dt><dd>har document ke liye woh facts jo padhne wale ko khone nahi chahiye; har summary ko isi list se check kiya jaata hai</dd></div></dl></aside>
-<aside class="routebox" data-route-file="13-sorting-and-summarising.html"><p><b>Aapke raaste par: Week 8.</b> Chapter ke end tak pahunchte hi yeh apne aap tick ho jaata hai, aapke account mein bhi.</p><p class="rbrow"><button type="button" class="b rbmark">Padh liya</button><span class="rbdone" hidden>Padha gaya ✓</span><a href="/#/start">Apne raaste par wapas →</a></p></aside>
+<aside class="routebox" data-route-file="13-sorting-and-summarising.html"><p><b>Aapke raaste par: Week 8.</b> Chapter ke end tak pahunchte hi yeh apne aap tick ho jaata hai, aapke account mein bhi.</p><p class="rbrow"><button type="button" class="b rbmark">Padh liya</button><span class="rbdone" hidden>Padha gaya ✓</span><a href="/#/start#week-8">Poora hafta ek jagah →</a><a href="/plan/#w8">Plan mein: Week 8 →</a></p><p class="rbsign small" hidden>Tick abhi sirf is device par hain. Sign in kijiye taaki har device par rahein. <a href="/api/auth/login?next=%2Fbook%2Fhi%2F13-sorting-and-summarising.html">Sign in</a></p></aside>
 <aside class="inapp"><span class="lead">Yahi ideas, kaam ke saath, course app mein</span><span class="chips"><a href="/#/ch/ch24">Classification: inputs ko categories mein sort karna<span aria-hidden="true"> →</span></a><a href="/#/ch/ch25">Summarisation: summary ne kya rakha, yeh test karna<span aria-hidden="true"> →</span></a></span></aside>
 <nav class="pager" aria-label="Pichhla aur agla chapter"><a class="prev" href="/book/hi/12-knowing-whether-it-works.html" rel="prev"><span class="dir">← Pichhla</span><span class="nm"><b>12</b>Kaise Pata Chale Ki Yeh Kaam Karta Hai</span></a><a class="next" href="/book/hi/14-too-long-to-read-at-once.html" rel="next"><span class="dir">Agla →</span><span class="nm"><b>14</b>Ek Baar Mein Padhne Ke Liye Bahut Lamba</span></a></nav>
 </article>
 </main>
 </div>
 <script src="/progress.js" defer></script>
+<script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
 <script src="/reminder.js" defer></script>
 </body>

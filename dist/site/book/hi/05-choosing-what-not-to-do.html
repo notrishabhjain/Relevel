@@ -9,6 +9,11 @@
 <meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="/book/manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="/book/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AFZ Book">
 <link rel="alternate" hreflang="en" href="/book/05-choosing-what-not-to-do.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,6 +98,7 @@
 <li data-t="shabd, saral bhasha mein"><a href="/book/hi/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Shabd, saral bhasha mein</span></a></li>
 </ol>
 <p class="nomatch" hidden>Kuch nahi mila.</p>
+<p class="tocapp"><button type="button" class="b" data-install hidden></button> <a href="/#/start">Aapka raasta →</a> <a href="/plan/">Plan →</a></p>
 </nav>
 <div class="scrim" id="scrim" hidden></div>
 <main id="text">
@@ -156,13 +162,14 @@
 <p>Agle chapter mein Anaya is order ko ek aise plan mein badalti hai jis par doosre log bharosa kar sakein.</p>
 </div>
 <aside class="wordsbox" aria-label="Mukhya shabd"><h2>Mukhya shabd</h2><p class="sub">Saral matlab, usi kram mein jis kram mein aap inse milenge.</p><dl><div><dt id="w-diagnosis">diagnosis</dt><dd>strategy ka pehla hissa: challenge asal mein kya hai, iska imaandaar account, yeh kehne se pehle ki uske baare mein kya karna hai</dd></div><div><dt id="w-guiding-policy">guiding policy</dt><dd>strategy ka doosra hissa: challenge ke liye aapka poora tareeka, jismein woh bhi shaamil hai jo aap karne se mana karenge</dd></div><div><dt id="w-value-proposition">value proposition</dt><dd>ek saaf statement ki aap kise serve karte hain, unke liye kaun sa kaam karte hain, aur alternatives se behtar kyun hain</dd></div><div><dt id="w-wedge">wedge</dt><dd>woh chhota pehla use jise aap saaf-saaf jeet sakte hain, itna chhota ki usmein kamaal kar sakein, aur kisi badi cheez se juda hua</dd></div><div><dt id="w-north-star">North Star</dt><dd>ek sentence jo batata hai ki aapke customers ko kya value milti hai, aur ek number jo use naapta hai</dd></div><div><dt id="w-rice">RICE</dt><dd>options ko Reach guna Impact guna Confidence, bhaag Effort, se score karne ka tareeka</dd></div><div><dt id="w-moscow">MoSCoW</dt><dd>scope par sahmati banane ka tareeka, cheezon ko Must, Should, Could aur Won't mein baant kar</dd></div><div><dt id="w-cost-of-delay">cost of delay</dt><dd>jo aap har us hafte khote hain jab tak koi option intezaar karta hai</dd></div></dl></aside>
-<aside class="routebox" data-route-file="05-choosing-what-not-to-do.html"><p><b>Aapke raaste par: Week 2.</b> Chapter ke end tak pahunchte hi yeh apne aap tick ho jaata hai, aapke account mein bhi.</p><p class="rbrow"><button type="button" class="b rbmark">Padh liya</button><span class="rbdone" hidden>Padha gaya ✓</span><a href="/#/start">Apne raaste par wapas →</a></p></aside>
+<aside class="routebox" data-route-file="05-choosing-what-not-to-do.html"><p><b>Aapke raaste par: Week 2.</b> Chapter ke end tak pahunchte hi yeh apne aap tick ho jaata hai, aapke account mein bhi.</p><p class="rbrow"><button type="button" class="b rbmark">Padh liya</button><span class="rbdone" hidden>Padha gaya ✓</span><a href="/#/start#week-2">Poora hafta ek jagah →</a><a href="/plan/#w2">Plan mein: Week 2 →</a></p><p class="rbsign small" hidden>Tick abhi sirf is device par hain. Sign in kijiye taaki har device par rahein. <a href="/api/auth/login?next=%2Fbook%2Fhi%2F05-choosing-what-not-to-do.html">Sign in</a></p></aside>
 <aside class="inapp"><span class="lead">Yahi ideas, kaam ke saath, course app mein</span><span class="chips"><a href="/#/ch/a5">Strategy aur prioritisation: kya nahi karna hai, yeh chunna<span aria-hidden="true"> →</span></a></span></aside>
 <nav class="pager" aria-label="Pichhla aur agla chapter"><a class="prev" href="/book/hi/04-who-else-is-standing-here.html" rel="prev"><span class="dir">← Pichhla</span><span class="nm"><b>4</b>Yahan Aur Kaun Khada Hai</span></a><a class="next" href="/book/hi/06-a-plan-others-can-believe.html" rel="next"><span class="dir">Agla →</span><span class="nm"><b>6</b>Aisa Plan Jis Par Doosre Bharosa Karein</span></a></nav>
 </article>
 </main>
 </div>
 <script src="/progress.js" defer></script>
+<script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
 <script src="/reminder.js" defer></script>
 </body>

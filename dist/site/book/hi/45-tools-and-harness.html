@@ -9,6 +9,11 @@
 <meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="/book/manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="/book/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AFZ Book">
 <link rel="alternate" hreflang="en" href="/book/45-tools-and-harness.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,6 +98,7 @@
 <li data-t="shabd, saral bhasha mein"><a href="/book/hi/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Shabd, saral bhasha mein</span></a></li>
 </ol>
 <p class="nomatch" hidden>Kuch nahi mila.</p>
+<p class="tocapp"><button type="button" class="b" data-install hidden></button> <a href="/#/start">Aapka raasta →</a> <a href="/plan/">Plan →</a></p>
 </nav>
 <div class="scrim" id="scrim" hidden></div>
 <main id="text">
@@ -166,13 +172,14 @@
 <p>Tools jagah par aa gaye, toh ab team product ko asli logon ke saamne rakh sakti hai.</p>
 </div>
 <aside class="wordsbox" aria-label="Mukhya shabd"><h2>Mukhya shabd</h2><p class="sub">Saral matlab, usi kram mein jis kram mein aap inse milenge.</p><dl><div><dt id="w-toolchain">toolchain</dt><dd>tools ka woh set jo ek team product banane aur chalane ke liye use karti hai, jise slots ki tarah dekha jaata hai, har slot ke paas ek kaam</dd></div><div><dt id="w-claim-audit">claim audit</dt><dd>AI ke likhe summary se das claims uthana aur har ek ko uske source se check karna, har ek ko supported, partly supported ya unsupported mark karte hue</dd></div><div><dt id="w-harness">harness</dt><dd>model ke aas-paas ki woh sab cheezein jo use product banati hain: woh code jo uska context banata hai, uske tools chalata hai, state rakhta hai, rules lagata hai, quality check karta hai aur record karta hai ki kya hua</dd></div><div><dt id="w-project-memory">project memory</dt><dd>code ke saath rakhi ek saadhi file, jisme project ke rules aur aadatein hoti hain, aur jo coding assistant ke har run ke shuru mein load hoti hai</dd></div><div><dt id="w-allowlist">allowlist</dt><dd>un cheezon ki list jo system ko karne ki ijaazat hai, aur jo list mein nahi hai woh mana hai</dd></div><div><dt id="w-verifier">verifier</dt><dd>ek check, jaise ek test, jo agent ko batata hai ki uska apna badlaav kaam kiya ya nahi, bina is ke ki koi insaan har line padhe</dd></div><div><dt id="w-sub-agent">sub-agent</dt><dd>ek bade kaam ka ek hissa diya gaya helper, jo apne alag context mein kaam karta hai taaki main context chhota rahe</dd></div><div><dt id="w-state-machine">state machine</dt><dd>ek workflow jisme aapka code har step aur ek step se doosre step tak har allowed move tay karta hai</dd></div><div><dt id="w-feature-flag">feature flag</dt><dd>chalte hue system mein ek switch jo ek badlaav ko kuch users ke liye on aur baaki ke liye off karta hai, bina nayi release ke</dd></div><div><dt id="w-rollback-trigger">rollback trigger</dt><dd>ek naapne layak condition, pehle se likhi hui, jo kisi ko release undo karne par bound karti hai</dd></div><div><dt id="w-incident-review">incident review</dt><dd>kuch galat hone ke baad likha gaya ek chhota writeup ki kya hua, kyun hua, aur kaun sa check use pakad leta</dd></div></dl></aside>
-<aside class="routebox" data-route-file="45-tools-and-harness.html"><p><b>Aapke raaste par: Week 26.</b> Chapter ke end tak pahunchte hi yeh apne aap tick ho jaata hai, aapke account mein bhi.</p><p class="rbrow"><button type="button" class="b rbmark">Padh liya</button><span class="rbdone" hidden>Padha gaya ✓</span><a href="/#/start">Apne raaste par wapas →</a></p></aside>
+<aside class="routebox" data-route-file="45-tools-and-harness.html"><p><b>Aapke raaste par: Week 26.</b> Chapter ke end tak pahunchte hi yeh apne aap tick ho jaata hai, aapke account mein bhi.</p><p class="rbrow"><button type="button" class="b rbmark">Padh liya</button><span class="rbdone" hidden>Padha gaya ✓</span><a href="/#/start#week-26">Poora hafta ek jagah →</a><a href="/plan/#w26">Plan mein: Week 26 →</a></p><p class="rbsign small" hidden>Tick abhi sirf is device par hain. Sign in kijiye taaki har device par rahein. <a href="/api/auth/login?next=%2Fbook%2Fhi%2F45-tools-and-harness.html">Sign in</a></p></aside>
 <aside class="inapp"><span class="lead">Yahi ideas, kaam ke saath, course app mein</span><span class="chips"><a href="/#/ch/b4">AI product workflow ke liye tools chunna<span aria-hidden="true"> →</span></a><a href="/#/ch/b5">Harness engineering: model ke aaspaas ka system<span aria-hidden="true"> →</span></a></span></aside>
 <nav class="pager" aria-label="Pichhla aur agla chapter"><a class="prev" href="/book/hi/44-counting-what-matters.html" rel="prev"><span class="dir">← Pichhla</span><span class="nm"><b>44</b>Jo Maayne Rakhta Hai Use Ginna</span></a><a class="next" href="/book/hi/46-real-people-real-use.html" rel="next"><span class="dir">Agla →</span><span class="nm"><b>46</b>Asli Log, Asli Use</span></a></nav>
 </article>
 </main>
 </div>
 <script src="/progress.js" defer></script>
+<script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
 <script src="/reminder.js" defer></script>
 </body>

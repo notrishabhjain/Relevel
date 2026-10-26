@@ -9,6 +9,11 @@
 <meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="/book/manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="/book/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AFZ Book">
 <link rel="alternate" hreflang="en" href="/book/22-machines-that-think-first.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,6 +98,7 @@
 <li data-t="shabd, saral bhasha mein"><a href="/book/hi/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Shabd, saral bhasha mein</span></a></li>
 </ol>
 <p class="nomatch" hidden>Kuch nahi mila.</p>
+<p class="tocapp"><button type="button" class="b" data-install hidden></button> <a href="/#/start">Aapka raasta →</a> <a href="/plan/">Plan →</a></p>
 </nav>
 <div class="scrim" id="scrim" hidden></div>
 <main id="text">
@@ -143,13 +149,14 @@
 </aside>
 </div>
 <aside class="wordsbox" aria-label="Mukhya shabd"><h2>Mukhya shabd</h2><p class="sub">Saral matlab, usi kram mein jis kram mein aap inse milenge.</p><dl><div><dt id="w-reasoning-model">reasoning model</dt><dd>aisa model jo jawaab dene se pehle apna working likhta hai, ek tareeka try karta hai, use check karta hai, aur phir answer deta hai; us working ke paise aap har request par dete hain, aur intezaar bhi karte hain</dd></div><div><dt id="w-latency">latency</dt><dd>poochhne aur jawaab milne ke beech ka time, jise user speed ki tarah mehsoos karta hai</dd></div><div><dt id="w-streaming">streaming</dt><dd>jawaab ko screen par tukdon mein bhejna, jaise-jaise woh likha ja raha hai, poora hone ka intezaar kiye bina</dd></div></dl></aside>
-<aside class="routebox" data-route-file="22-machines-that-think-first.html"><p><b>Aapke raaste par: Week 15.</b> Chapter ke end tak pahunchte hi yeh apne aap tick ho jaata hai, aapke account mein bhi.</p><p class="rbrow"><button type="button" class="b rbmark">Padh liya</button><span class="rbdone" hidden>Padha gaya ✓</span><a href="/#/start">Apne raaste par wapas →</a></p></aside>
+<aside class="routebox" data-route-file="22-machines-that-think-first.html"><p><b>Aapke raaste par: Week 15.</b> Chapter ke end tak pahunchte hi yeh apne aap tick ho jaata hai, aapke account mein bhi.</p><p class="rbrow"><button type="button" class="b rbmark">Padh liya</button><span class="rbdone" hidden>Padha gaya ✓</span><a href="/#/start#week-15">Poora hafta ek jagah →</a><a href="/plan/#w15">Plan mein: Week 15 →</a></p><p class="rbsign small" hidden>Tick abhi sirf is device par hain. Sign in kijiye taaki har device par rahein. <a href="/api/auth/login?next=%2Fbook%2Fhi%2F22-machines-that-think-first.html">Sign in</a></p></aside>
 <aside class="inapp"><span class="lead">Yahi ideas, kaam ke saath, course app mein</span><span class="chips"><a href="/#/ch/ch11">Reasoning models: jab sochne ke paise dena fayde ka hota hai<span aria-hidden="true"> →</span></a><a href="/#/ch/ch115">Latency: wait ke liye design karna<span aria-hidden="true"> →</span></a></span></aside>
 <nav class="pager" aria-label="Pichhla aur agla chapter"><a class="prev" href="/book/hi/21-long-windows-careful-rooms.html" rel="prev"><span class="dir">← Pichhla</span><span class="nm"><b>21</b>Lambi Windows, Sambhal Kar Bhare Kamre</span></a><a class="next" href="/book/hi/23-searching-better.html" rel="next"><span class="dir">Agla →</span><span class="nm"><b>23</b>Search Ko Behtar Banana</span></a></nav>
 </article>
 </main>
 </div>
 <script src="/progress.js" defer></script>
+<script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
 <script src="/reminder.js" defer></script>
 </body>

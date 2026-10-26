@@ -1,0 +1,32 @@
+{
+  "id": "/book/",
+  "name": "AI From Zero: the book",
+  "short_name": "AFZ Book",
+  "description": "The reading edition: the course told as one story, in English and Hinglish.",
+  "start_url": "/book/",
+  "scope": "/book/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#F7F2E8",
+  "theme_color": "#F7F2E8",
+  "icons": [
+    {
+      "src": "/book/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/book/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/book/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

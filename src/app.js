@@ -690,7 +690,7 @@ function chapterTrail(c){
     h('span',{class:'sep',text:'/'}),
     h('span',{class:'here',text:T('chapter')+' '+(inPart.indexOf(c)+1)+' '+T('of')+' '+inPart.length}),
     h('span',{class:'sp'}),
-    story?h('a',{class:'tnav story',href:bookBase()+story.file,title:T('The same ideas as a story, in book chapter')+' '+story.n+': '+story.title,text:'\u275d '+T('Read it as a story')}):null,
+    story?h('a',{class:'tnav story',href:bookBase()+story.file,title:story.n?T('The same ideas as a story, in book chapter')+' '+story.n+': '+story.title:story.title,text:'\u275d '+T('Read it as a story')}):null,
     prev?h('a',{class:'tnav',href:'#/ch/'+prev.id,title:prev.num+'. '+T(prev.title),text:'\u2190 '+T('Previous')}):null,
     next?h('a',{class:'tnav',href:'#/ch/'+next.id,title:next.num+'. '+T(next.title),text:T('Next')+' \u2192'}):null]);
 }
@@ -712,10 +712,16 @@ function renderChapter(c){
   /* Where this chapter sits on the route, and what the route asks of it. */
   if(window.ROUTE){
     const rs=window.ROUTE.STEPS.find(x=>x.ch===c.id);
-    if(rs) w.appendChild(h('a',{class:'routeline',href:'#/start#week-'+rs.week},[
-      h('span',{class:'lbl',text:T('Your route')}),
-      h('span',{class:'pt',text:T('Week')+' '+rs.week+(rs.firstPass&&rs.mins<=30?' \u00b7 '+T('first pass, about 20 minutes: read it and answer the boxes. The Build it section is optional.'):' \u00b7 ~'+fmtMins(rs.mins))}),
-      h('span',{class:'go',text:T('See the week')+' \u2192'})]));
+    if(rs){
+      const bk=window.BOOK&&window.BOOK.chapters[c.id];
+      w.appendChild(h('div',{class:'routeline'},[
+        h('span',{class:'lbl',text:T('Your route')}),
+        h('span',{class:'pt',text:T('Week')+' '+rs.week+(rs.firstPass&&rs.mins<=30?' \u00b7 '+T('first pass, about 20 minutes: read it and answer the boxes. The Build it section is optional.'):' \u00b7 ~'+fmtMins(rs.mins))}),
+        h('span',{class:'go'},[
+          h('a',{href:'#/start#week-'+rs.week,text:T('See the week')+' \u2192'}),
+          bk?h('a',{href:(S.lang==='hi'?'/book/hi/':'/book/')+bk.file,text:T('The story')+(bk.n?': '+T('Book')+' '+bk.n:'')+' \u2192'}):null,
+          h('a',{href:'/plan/#w'+rs.week,text:T('In the plan')+' \u2192'})])]));
+    }
   }
 
   /* Which stage of the project this chapter belongs to, with a way to see the
@@ -1396,26 +1402,83 @@ function pageLedger(){
 }
 function ctlL(l,n){return h('div',{},[h('label',{text:l}),n]);}
 
-/* ---------------- your route ----------------
-   The 26 weeks of src/data/route.mjs, the same list the plan tab, the book and
-   the 12:00 reminder follow. Chapters count when marked complete, book
-   chapters when the book ticks them (or here), tries and look-backs when
-   ticked here. The current week is open; the rest fold away. */
+/* ---------------- your route: everything in one view ----------------
+   The 26 weeks of src/data/route.mjs with all three views of each week side
+   by side: the playbook chapters (what each covers), the book chapters (their
+   summaries), and the plan's side of the week (what to have by Sunday, the
+   how-to, optional reading, your note and link). Months carry the
+   curriculum's goal and the monthly review. Every tick comes from the one
+   progress record; the note, link and review save into the plan's record, so
+   /plan/ shows them too. */
 function istDate(){return new Date(Date.now()+19800000).toISOString().slice(0,10);}
+
+/* The plan's own record (notes, links, monthly reviews), shared with /plan/. */
+const PLAN_KEY='aipm-plan-v1';
+const PLANS={st:null,timer:null,pulled:false};
+function planLoad(){
+  if(PLANS.st) return PLANS.st;
+  let d=null; try{d=JSON.parse(localStorage.getItem(PLAN_KEY)||'null');}catch(e){}
+  PLANS.st={weeks:(d&&d.weeks)||{},gates:(d&&d.gates)||{},parking:(d&&d.parking)||{}};
+  return PLANS.st;
+}
+function planMerge(a,b){
+  const out={weeks:{},gates:{},parking:{}};
+  ['weeks','gates','parking'].forEach(k=>{
+    new Set([...Object.keys(a[k]||{}),...Object.keys(b[k]||{})]).forEach(x=>{
+      const p=(a[k]||{})[x], q=(b[k]||{})[x];
+      out[k][x]=!p?q:!q?p:((q.u||0)>=(p.u||0)?q:p);});});
+  return out;
+}
+function planApi(method,body){
+  return fetch('/api/plan',{method,credentials:'same-origin',
+    headers:Object.assign({'x-aifz':'1'},body?{'content-type':'application/json'}:{}),
+    body:body?JSON.stringify(body):undefined}).then(r=>r.ok?r.json():null).catch(()=>null);
+}
+function planTouch(part,key,patch){
+  const st=planLoad(), cur=st[part][key]||{};
+  st[part][key]=Object.assign({},cur,patch,{u:Date.now()});
+  try{localStorage.setItem(PLAN_KEY,JSON.stringify(st));}catch(e){}
+  clearTimeout(PLANS.timer);
+  PLANS.timer=setTimeout(()=>{
+    if(!(window.REMOTE&&window.REMOTE.user)) return;
+    planApi('PUT',{data:planLoad()}).then(r=>{ if(r&&r.data){ PLANS.st=planMerge(planLoad(),r.data);
+      try{localStorage.setItem(PLAN_KEY,JSON.stringify(PLANS.st));}catch(e){} } });
+  },700);
+}
+function planPull(){
+  if(PLANS.pulled||!(window.REMOTE&&window.REMOTE.user)) return;
+  PLANS.pulled=true;
+  planApi('GET').then(r=>{ if(!r||!r.data) return;
+    PLANS.st=planMerge(r.data,planLoad());
+    try{localStorage.setItem(PLAN_KEY,JSON.stringify(PLANS.st));}catch(e){}
+    if(/^#\/start/.test(location.hash)) route(); });
+}
+
 function pageStart(){
-  const R=window.ROUTE, w=h('div',{class:'wrap gentle'});
+  const R=window.ROUTE, X=window.PLANX||{how:{},further:{},gates:[]}, B=window.BOOK||{list:[],chapters:{}};
+  const w=h('div',{class:'wrap gentle hub'});
   if(!R){ w.appendChild(h('p',{text:'The route is not in this build.'})); return w; }
   S.steps=S.steps||{}; S.read=S.read||{};
-  const hi=S.lang==='hi';
+  planPull();
+  const PL=planLoad(), hi=S.lang==='hi';
   const all=R.STEPS, doneN=all.filter(x=>R.stepDone(x,S)).length;
   const nx=R.nextStep(S), cal=Math.max(1,Math.min(R.WEEKS.length,R.weekOf(istDate())||1));
-  const at=nx?nx.week:R.WEEKS.length+1;
-  const gap=nx?cal-at:0;
+  const at=nx?nx.week:R.WEEKS.length+1, gap=nx?cal-at:0;
+  const anchor=(location.hash.split('#')[2]||'').match(/^week-(\d+)$/), want=anchor?+anchor[1]:null;
+  const bookOf=f=>B.list.find(x=>x.file===f);
+  const bookBaseHere=hi?'/book/hi/':'/book/';
+  const href=x=>R.stepHref(x,hi).replace(/^\/(#\/)/,'$1');
+
   w.appendChild(h('header',{class:'phead'},[
-    h('div',{class:'eyebrow'},[h('span',{text:T('26 weeks, one order')}),h('span',{class:'dot'}),
-      h('span',{text:T('the same on the plan, in the book and in the 12:00 reminder')})]),
+    h('div',{class:'eyebrow'},[h('span',{text:T('One view of everything')}),h('span',{class:'dot'}),
+      h('span',{text:T('the playbook, the book, the plan and the curriculum, week by week')})]),
     h('h1',{text:T('Your route')}),
     h('p',{text:T('Month 1 is the gentle start: the book from its first page, ten minutes a weekday, and nothing to install. After that, each chapter’s story comes first in the book, then the chapter itself here. On a day when ten minutes feels like too much, do one page and tick it anyway.')})]));
+  /* the three other views, one tap away */
+  w.appendChild(h('nav',{class:'hubviews','aria-label':T('The other views')},[
+    h('a',{href:bookBaseHere},[h('b',{text:T('The book')}),h('span',{text:T('the same chapters as one story')})]),
+    h('a',{href:'/plan/'},[h('b',{text:T('The plan')}),h('span',{text:T('these weeks, with reviews and a parking lot')})]),
+    h('a',{href:'/plan/#curriculum'},[h('b',{text:T('The curriculum')}),h('span',{text:T('why the route is in this order')})])]));
   w.appendChild(h('div',{class:'gprog'},[
     h('span',{class:'cpbar big'},h('i',{style:'width:'+Math.round(doneN*100/all.length)+'%'})),
     h('span',{class:'dim',text:doneN+' / '+all.length+' '+T('steps done')})]));
@@ -1424,44 +1487,99 @@ function pageStart(){
     :gap>0?T('This is calendar week {cal}, and you are on week {at}. That is fine: carry on from the first open step, and never miss twice.').replace('{cal}',cal).replace('{at}',at)
     :gap<0?T('You are ahead of the calendar. Keep the pace that keeps you coming back.')
     :T('You are on schedule. Do the step marked today.')}));
-  const href=x=>R.stepHref(x,hi).replace(/^\/(#\/)/,'$1');
-  const tickable=x=>x.kind!=='chapter';
-  R.WEEKS.forEach(wk=>{
+
+  /* one step: what it is, what to do, and its twin in the other view */
+  const stepRow=x=>{
+    const ok=R.stepDone(x,S), isNext=nx&&nx.id===x.id;
+    const kindLbl={chapter:T('Chapter'),read:T('Book'),try:T('Try'),look:T('Look back')}[x.kind];
+    const title=x.kind==='chapter'?x.num+'. '+T(x.title):(hi&&x.titleHi?x.titleHi:T(x.title));
+    let tick;
+    if(x.kind!=='chapter'){
+      tick=h('input',{type:'checkbox','aria-label':T('Done')+': '+title});
+      tick.checked=ok;
+      tick.addEventListener('change',()=>{
+        if(x.kind==='read'&&!x.part){ if(tick.checked) S.read[x.book]=S.read[x.book]||Date.now(); else delete S.read[x.book]; }
+        if(tick.checked) S.steps[x.id]=S.steps[x.id]||Date.now(); else delete S.steps[x.id];
+        save(); route();
+      });
+    } else tick=h('span',{class:'gdone',text:ok?'✓':'',title:T('Ticks itself when you mark the chapter complete')});
+    /* what it covers: the book's summary, or the chapter's own one-line concept */
+    let about='', twin=[];
+    if(x.kind==='read'){
+      const b=bookOf(x.book);
+      if(b){ about=hi&&b.summaryHi?b.summaryHi:b.summary;
+        twin=(b.course||[]).map(id=>byId[id]).filter(Boolean).map(c=>h('a',{class:'chip',href:'#/ch/'+c.id,text:T('Do it')+': '+c.num+'. '+T(c.title)}));}
+    } else if(x.kind==='chapter'){
+      const c=byId[x.ch];
+      if(c) about=T(c.concept);
+      const b=B.chapters[x.ch];
+      if(b) twin=[h('a',{class:'chip',href:bookBaseHere+b.file,text:T('The story')+': '+(b.n?T('Book')+' '+b.n+'. ':'')+(hi&&(bookOf(b.file)||{}).titleHi||b.title)})];
+    }
+    const go=x.kind==='look'?null:h('a',{class:isNext?'btnlink':'chip',href:href(x),
+      text:(x.kind==='read'?T('Read in the book'):x.kind==='chapter'?T('Open the chapter'):T('Open'))+' →'});
+    return h('li',{class:'gday'+(ok?' done':'')+(isNext?' today':''),id:'step-'+x.id.replace(/[^\w-]/g,'_')},[
+      h('label',{class:'gtick'},[tick,h('span',{class:'gn',text:kindLbl})]),
+      h('div',{class:'gbody'},[
+        h('div',{class:'gt'},[h('strong',{text:title}),h('span',{class:'dim',text:' · ~'+fmtMins(x.mins)}),
+          isNext?h('span',{class:'gtoday',text:T('next')}):null]),
+        h('p',{text:T(x.what)}),
+        about?h('p',{class:'gabout',text:about}):null,
+        h('div',{class:'chiprow gtwins'},[go].concat(twin).filter(Boolean))])]);
+  };
+
+  /* the plan's side of a week */
+  const planSide=wk=>{
+    const pw=PL.weeks[wk.n]||{};
+    const note=h('input',{type:'text',value:pw.note||'',placeholder:T('What blocked you, what you learned'),'aria-label':T('Your note')});
+    note.addEventListener('change',()=>planTouch('weeks',wk.n,{note:note.value.trim().slice(0,500)}));
+    const link=h('input',{type:'url',value:pw.link||'',placeholder:'https://…','aria-label':T('Link to what you made')});
+    link.addEventListener('change',()=>{const v=link.value.trim(); planTouch('weeks',wk.n,{link:/^https?:\/\//i.test(v)?v.slice(0,500):''});});
+    const further=(X.further[wk.n]||[]).filter(Boolean);
+    return h('div',{class:'hubplan'},[
+      h('p',{},[h('strong',{text:T('By Sunday')+': '}),h('span',{text:T(wk.ship)})]),
+      h('p',{class:'small'},[h('strong',{text:T('How to')+': '})].concat(wk.how.map((id,i)=>[i?h('span',{text:' · '}):null,
+        h('a',{href:'/plan/#'+id,text:T(X.how[id]||id)})]).flat().filter(Boolean))),
+      further.length?h('p',{class:'small'},[h('strong',{text:T('Going further (optional)')+': '})].concat(further.map((r,i)=>[i?h('span',{text:' · '}):null,
+        h('a',{href:r[1],target:'_blank',rel:'noopener noreferrer',text:r[0]})]).flat().filter(Boolean))):null,
+      h('div',{class:'hubfields'},[
+        h('label',{},[h('span',{text:T('Your note')}),note]),
+        h('label',{},[h('span',{text:T('Link to what you made')}),link])]),
+      h('p',{class:'small'},[h('a',{href:'/plan/#w'+wk.n,text:T('This week in the plan')+' →'})])]);
+  };
+
+  const weekBlock=wk=>{
     const done=wk.steps.filter(x=>R.stepDone(x,S)).length;
     const det=h('details',{class:'part gweek'+(done===wk.steps.length?' done':''),id:'week-'+wk.n});
-    if(wk.n===at||wk.n===cal) det.open=true;
+    if(wk.n===(want||at)||(!want&&wk.n===cal)) det.open=true;
     det.appendChild(h('summary',{},[
       h('span',{class:'gwn',text:T('Week')+' '+wk.n}),
       h('span',{class:'gwt',text:T(wk.title)}),
       h('span',{class:'gwd',text:wk.dates+' · '+fmtMins(wk.mins)+' · '+done+'/'+wk.steps.length})]));
-    det.appendChild(h('p',{class:'gblurb'},[h('strong',{text:T('By Sunday')+': '}),h('span',{text:T(wk.ship)})]));
-    det.appendChild(h('ol',{class:'gdays'},wk.steps.map(x=>{
-      const ok=R.stepDone(x,S), isNext=nx&&nx.id===x.id;
-      const kindLbl={chapter:T('Chapter'),read:T('Book'),try:T('Try'),look:T('Look back')}[x.kind];
-      const title=x.kind==='chapter'?x.num+'. '+T(x.title):(hi&&x.titleHi?x.titleHi:T(x.title));
-      let tick;
-      if(tickable(x)){
-        tick=h('input',{type:'checkbox','aria-label':T('Done')+': '+title});
-        tick.checked=ok;
-        tick.addEventListener('change',()=>{
-          if(x.kind==='read'&&!x.part){ if(tick.checked) S.read[x.book]=S.read[x.book]||Date.now(); else delete S.read[x.book]; }
-          if(tick.checked) S.steps[x.id]=S.steps[x.id]||Date.now(); else delete S.steps[x.id];
-          save(); route();
-        });
-      } else tick=h('span',{class:'gdone',text:ok?'✓':'',title:T('Ticks itself when you mark the chapter complete')});
-      const go=x.kind==='look'?null:h('a',{class:isNext?'btnlink':'chip',href:href(x),
-        text:(x.kind==='read'?T('Read in the book'):x.kind==='chapter'?T('Open the chapter'):T('Open'))+' →'});
-      return h('li',{class:'gday'+(ok?' done':'')+(isNext?' today':''),id:'step-'+x.id.replace(/[^\w-]/g,'_')},[
-        h('label',{class:'gtick'},[tick,h('span',{class:'gn',text:kindLbl})]),
-        h('div',{class:'gbody'},[
-          h('div',{class:'gt'},[h('strong',{text:title}),h('span',{class:'dim',text:' · ~'+fmtMins(x.mins)}),
-            isNext?h('span',{class:'gtoday',text:T('next')}):null]),
-          h('p',{text:T(x.what)}),
-          go])]);
-    })));
-    w.appendChild(det);
+    det.appendChild(h('ol',{class:'gdays'},wk.steps.map(stepRow)));
+    det.appendChild(planSide(wk));
+    return det;
+  };
+
+  /* months, with the curriculum's goal and the monthly review */
+  R.MONTHS.forEach(m=>{
+    const g=(X.gates||[]).find(x=>x.month===m.n)||null, pg=g?(PL.gates[g.id]||{}):{};
+    const sec=h('section',{class:'hubmonth',id:'month-'+m.n});
+    sec.appendChild(h('h2',{class:'hubmh',text:T(m.name)}));
+    sec.appendChild(h('p',{class:'hubmg'},[h('span',{class:'dim',text:m.dates+'. '}),h('span',{text:T(m.goal)+' '}),
+      h('a',{href:'/plan/#m'+m.n,text:T('Why this month')+' →'})]));
+    R.WEEKS.filter(wk=>wk.n>=m.from&&wk.n<=m.to).forEach(wk=>sec.appendChild(weekBlock(wk)));
+    if(g){
+      const cb=h('input',{type:'checkbox'}); cb.checked=!!pg.passed;
+      cb.addEventListener('change',()=>planTouch('gates',g.id,{passed:cb.checked}));
+      sec.appendChild(h('div',{class:'hubreview'},[
+        h('span',{class:'lbl',text:T('Monthly review')+' · '+g.date}),
+        h('p',{text:T(g.pass)}),
+        h('p',{class:'small dim',text:T('If behind')+': '+T(g.cut)}),
+        h('label',{class:'chk'},[cb,h('span',{text:T('Reviewed')})])]));
+    }
+    w.appendChild(sec);
   });
-  w.appendChild(h('p',{class:'dim gpath'},[h('span',{text:T('The plan tab shows the same weeks with notes, monthly reviews and the reasons behind them.')+' '}),
+  w.appendChild(h('p',{class:'dim gpath'},[h('span',{text:T('The plan has the same weeks, plus the parking lot and the rules.')+' '}),
     h('a',{href:'/plan/',text:T('Open the plan')+' →'})]));
   return w;
 }
@@ -2926,7 +3044,7 @@ const ACCOUNT=(function(){
 
   /* The page renders before this probe resolves, so any view that shows account
      state has to be redrawn once we know it. */
-  function reroute(){ if(location.hash.indexOf('#/data')===0) route(); }
+  function reroute(){ if(location.hash.indexOf('#/data')===0||location.hash.indexOf('#/start')===0) route(); }
   async function boot(){
     if(!window.REMOTE) return;
     const a=await window.REMOTE.probe();

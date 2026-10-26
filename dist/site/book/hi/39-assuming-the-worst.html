@@ -9,6 +9,11 @@
 <meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="/book/manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="/book/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AFZ Book">
 <link rel="alternate" hreflang="en" href="/book/39-assuming-the-worst.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,6 +98,7 @@
 <li data-t="shabd, saral bhasha mein"><a href="/book/hi/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Shabd, saral bhasha mein</span></a></li>
 </ol>
 <p class="nomatch" hidden>Kuch nahi mila.</p>
+<p class="tocapp"><button type="button" class="b" data-install hidden></button> <a href="/#/start">Aapka raasta →</a> <a href="/plan/">Plan →</a></p>
 </nav>
 <div class="scrim" id="scrim" hidden></div>
 <main id="text">
@@ -140,13 +146,14 @@
 <p>Product ab pehle se zyada safe hai. Agla chapter poochta hai ki jo cheez laptop par chalti hai, use aisa product banane mein kya lagta hai jis par log bharose se tikein.</p>
 </div>
 <aside class="wordsbox" aria-label="Mukhya shabd"><h2>Mukhya shabd</h2><p class="sub">Saral matlab, usi kram mein jis kram mein aap inse milenge.</p><dl><div><dt id="w-attack-surface">attack surface</dt><dd>woh saari jagahein jahan koi bahar wala system mein kuch daal sakta hai, ya system jo kuch kar sakta hai usse chhu sakta hai; har tool, input aur connection ise badhata hai</dd></div><div><dt id="w-least-privilege">least privilege</dt><dd>system ko sirf utna access dena jitna use sach mein chahiye, taaki agar use dhokha diya jaye toh nuksaan chhota rahe</dd></div><div><dt id="w-red-team">red team</dt><dd>woh log jinka kaam jaan-boojhkar system par hamla karna hai, taaki uski kamzoriyan koi aur dhoondhe, usse pehle woh dhoondh lein</dd></div><div><dt id="w-audit-trail">audit trail</dt><dd>kaam se alag rakha gaya record ki kisne kya kiya, kab, kis rule ke tahat aur kis result ke saath, itna ki koi incident ko dobara jod kar samajh sake</dd></div><div><dt id="w-risk-register">risk register</dt><dd>ek table jisme har risk ke saath uska owner, uska control, woh saboot ki control kaam karta hai, aur kitna risk bacha, yeh likha ho</dd></div><div><dt id="w-residual-risk">residual risk</dt><dd>controls lagne ke baad jo risk bacha rehta hai; ise likh dena chahiye, maan nahi lena chahiye ki woh khatam ho gaya</dd></div></dl></aside>
-<aside class="routebox" data-route-file="39-assuming-the-worst.html"><p><b>Aapke raaste par: Week 23.</b> Chapter ke end tak pahunchte hi yeh apne aap tick ho jaata hai, aapke account mein bhi.</p><p class="rbrow"><button type="button" class="b rbmark">Padh liya</button><span class="rbdone" hidden>Padha gaya ✓</span><a href="/#/start">Apne raaste par wapas →</a></p></aside>
+<aside class="routebox" data-route-file="39-assuming-the-worst.html"><p><b>Aapke raaste par: Week 23.</b> Chapter ke end tak pahunchte hi yeh apne aap tick ho jaata hai, aapke account mein bhi.</p><p class="rbrow"><button type="button" class="b rbmark">Padh liya</button><span class="rbdone" hidden>Padha gaya ✓</span><a href="/#/start#week-23">Poora hafta ek jagah →</a><a href="/plan/#w23">Plan mein: Week 23 →</a></p><p class="rbsign small" hidden>Tick abhi sirf is device par hain. Sign in kijiye taaki har device par rahein. <a href="/api/auth/login?next=%2Fbook%2Fhi%2F39-assuming-the-worst.html">Sign in</a></p></aside>
 <aside class="inapp"><span class="lead">Yahi ideas, kaam ke saath, course app mein</span><span class="chips"><a href="/#/ch/ch18s">Security aur governance: ek untrusted model ke aas-paas controls<span aria-hidden="true"> →</span></a></span></aside>
 <nav class="pager" aria-label="Pichhla aur agla chapter"><a class="prev" href="/book/hi/38-gates-traces-and-rollbacks.html" rel="prev"><span class="dir">← Pichhla</span><span class="nm"><b>38</b>Gates, Traces Aur Rollbacks</span></a><a class="next" href="/book/hi/40-a-product-not-a-demo.html" rel="next"><span class="dir">Agla →</span><span class="nm"><b>40</b>Product Hai, Demo Nahi</span></a></nav>
 </article>
 </main>
 </div>
 <script src="/progress.js" defer></script>
+<script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
 <script src="/reminder.js" defer></script>
 </body>

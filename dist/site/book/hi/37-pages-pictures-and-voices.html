@@ -9,6 +9,11 @@
 <meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="/book/manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="/book/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AFZ Book">
 <link rel="alternate" hreflang="en" href="/book/37-pages-pictures-and-voices.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,6 +98,7 @@
 <li data-t="shabd, saral bhasha mein"><a href="/book/hi/glossary.html" data-file="glossary.html"><span class="n dot"></span><span class="t">Shabd, saral bhasha mein</span></a></li>
 </ol>
 <p class="nomatch" hidden>Kuch nahi mila.</p>
+<p class="tocapp"><button type="button" class="b" data-install hidden></button> <a href="/#/start">Aapka raasta →</a> <a href="/plan/">Plan →</a></p>
 </nav>
 <div class="scrim" id="scrim" hidden></div>
 <main id="text">
@@ -148,13 +154,14 @@
 <ul><li>Tasveeron ke liye, model ko batane dijiye ki details kahan hain, aur ordinary code ko mitane dijiye, taaki mitane par koi bahas na ho sake.</li><li>Voice system alag-alag stages ki ek pipeline hai, capture se transcription aur tidying se lekar action tak. Har stage ek jagah hai jahan matlab badal sakta hai aur time jaata hai, aur jo sabse slow hai, use dekhna chahiye.</li><li>Kisne kya kaha, yeh privacy decision hai, technical detail nahi.</li><li>Sirf text se bana test baaki forms ki har failure chhupa leta hai. Har tarah ke input ko kai levels par score kijiye, aur dikhega ki kaun sa stage toota.</li></ul>
 </div>
 <aside class="wordsbox" aria-label="Mukhya shabd"><h2>Mukhya shabd</h2><p class="sub">Saral matlab, usi kram mein jis kram mein aap inse milenge.</p><dl><div><dt id="w-multimodal">multimodal</dt><dd>sirf text nahi, balki pages, tasveerein, tables aur speech bhi lene ke kaabil; isse badal jaata hai ki evidence kise kehte hain aur use wapas kaise trace karte hain</dd></div><div><dt id="w-speech-to-text">speech-to-text</dt><dd>woh software jo record ki hui speech ko likhe hue words mein badalta hai; yeh kisi bhi voice system ka pehla stage hai aur pehli jagah jahan matlab kho sakta hai</dd></div><div><dt id="w-voice-pipeline">voice pipeline</dt><dd>alag-alag stages ki woh chain jisse voice system guzarta hai, awaaz capture karne se lekar us par action lene tak; har stage delay jodta hai aur har ek matlab badal sakta hai</dd></div><div><dt id="w-speaker-attribution">speaker attribution</dt><dd>recording mein yeh pata lagana ki kisne kaun se words kahe; yeh technical lagta hai, lekin privacy decision ki tarah behave karta hai</dd></div></dl></aside>
-<aside class="routebox" data-route-file="37-pages-pictures-and-voices.html"><p><b>Aapke raaste par: Week 22.</b> Chapter ke end tak pahunchte hi yeh apne aap tick ho jaata hai, aapke account mein bhi.</p><p class="rbrow"><button type="button" class="b rbmark">Padh liya</button><span class="rbdone" hidden>Padha gaya ✓</span><a href="/#/start">Apne raaste par wapas →</a></p></aside>
+<aside class="routebox" data-route-file="37-pages-pictures-and-voices.html"><p><b>Aapke raaste par: Week 22.</b> Chapter ke end tak pahunchte hi yeh apne aap tick ho jaata hai, aapke account mein bhi.</p><p class="rbrow"><button type="button" class="b rbmark">Padh liya</button><span class="rbdone" hidden>Padha gaya ✓</span><a href="/#/start#week-22">Poora hafta ek jagah →</a><a href="/plan/#w22">Plan mein: Week 22 →</a></p><p class="rbsign small" hidden>Tick abhi sirf is device par hain. Sign in kijiye taaki har device par rahein. <a href="/api/auth/login?next=%2Fbook%2Fhi%2F37-pages-pictures-and-voices.html">Sign in</a></p></aside>
 <aside class="inapp"><span class="lead">Yahi ideas, kaam ke saath, course app mein</span><span class="chips"><a href="/#/ch/ch15mm">Multimodal AI: documents, images aur voice<span aria-hidden="true"> →</span></a></span></aside>
 <nav class="pager" aria-label="Pichhla aur agla chapter"><a class="prev" href="/book/hi/36-workflows-agents-and-the-standard-plug.html" rel="prev"><span class="dir">← Pichhla</span><span class="nm"><b>36</b>Workflows, Agents Aur Standard Plug</span></a><a class="next" href="/book/hi/38-gates-traces-and-rollbacks.html" rel="next"><span class="dir">Agla →</span><span class="nm"><b>38</b>Gates, Traces Aur Rollbacks</span></a></nav>
 </article>
 </main>
 </div>
 <script src="/progress.js" defer></script>
+<script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
 <script src="/reminder.js" defer></script>
 </body>
