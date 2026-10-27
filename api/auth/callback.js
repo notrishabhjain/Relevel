@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   const bail = (why) => {
     res.statusCode = 302;
     res.setHeader('set-cookie', clearCookie(OAUTH_COOKIE, req));
-    res.setHeader('location', '/#/data?signin=' + encodeURIComponent(why));
+    res.setHeader('location', '/app/#/data?signin=' + encodeURIComponent(why));
     res.end();
   };
   try {
@@ -56,7 +56,7 @@ export default async function handler(req, res) {
     ]);
     const back = readCookie(req, 'aifz_next');
     res.setHeader('location', back && /^\/[A-Za-z0-9\/_.-]*$/.test(back) && !back.startsWith('//')
-      ? back + '?signin=ok' : '/#/data?signin=ok');
+      ? back + '?signin=ok' : '/app/#/data?signin=ok');
     res.end();
   } catch (e) {
     console.error('callback', e && e.message);

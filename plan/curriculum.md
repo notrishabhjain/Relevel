@@ -149,7 +149,7 @@ You read the book from its first page: the story of a product manager in Pune wh
 
 <!-- weeklinks 1-4 -->
 
-[This month in one view, in the playbook](../#/start#month-1): every week with its chapters, book pages and your notes.
+[This month in one view, in the playbook](../app/#/start#month-1): every week with its chapters, book pages and your notes.
 
 ### Month 2: Product foundations and first contact (W5–9, 16 Nov – 20 Dec 2026) {#m2}
 
@@ -157,7 +157,7 @@ Track A is your home ground as a project manager. On the route you answer its bo
 
 <!-- weeklinks 5-9 -->
 
-[This month in one view, in the playbook](../#/start#month-2): every week with its chapters, book pages and your notes.
+[This month in one view, in the playbook](../app/#/start#month-2): every week with its chapters, book pages and your notes.
 
 ### Month 3: Finding and measuring (W10–13, 21 Dec 2026 – 17 Jan 2027) {#m3}
 
@@ -165,7 +165,7 @@ Two light holiday weeks cover cutting long text and finding by words. Then come 
 
 <!-- weeklinks 10-13 -->
 
-[This month in one view, in the playbook](../#/start#month-3): every week with its chapters, book pages and your notes.
+[This month in one view, in the playbook](../app/#/start#month-3): every week with its chapters, book pages and your notes.
 
 ### Month 4: What real systems add (W14–18, 18 Jan – 21 Feb 2027) {#m4}
 
@@ -173,7 +173,7 @@ Dependable output, long context and thinking models, better search, prompt injec
 
 <!-- weeklinks 14-18 -->
 
-[This month in one view, in the playbook](../#/start#month-4): every week with its chapters, book pages and your notes.
+[This month in one view, in the playbook](../app/#/start#month-4): every week with its chapters, book pages and your notes.
 
 ### Month 5: Decisions and production depth (W19–23, 22 Feb – 28 Mar 2027) {#m5}
 
@@ -181,7 +181,7 @@ The spec for a system that varies, build or buy, designing for wrong answers, bu
 
 <!-- weeklinks 19-23 -->
 
-[This month in one view, in the playbook](../#/start#month-5): every week with its chapters, book pages and your notes.
+[This month in one view, in the playbook](../app/#/start#month-5): every week with its chapters, book pages and your notes.
 
 ### Month 6: Ship it, defend it, get the job (W24–26, 29 Mar – 18 Apr 2027) {#m6}
 
@@ -189,11 +189,11 @@ The product spec and the decision pack, then the capstone: Bharat Privacy Guard 
 
 <!-- weeklinks 24-26 -->
 
-[This month in one view, in the playbook](../#/start#month-6): every week with its chapters, book pages and your notes.
+[This month in one view, in the playbook](../app/#/start#month-6): every week with its chapters, book pages and your notes.
 
 ## The project: Bharat Privacy Guard
 
-The course builds one project from start to finish. **Bharat Privacy Guard** is a small tool that sits between a person and a website, an app or an AI chatbot. It spots Indian identity numbers and other personal details in what someone is about to send, and warns them or covers the details before they leave. The [project page in the playbook](../#/project) shows its thirteen stages and which chapters build each one.
+The course builds one project from start to finish. **Bharat Privacy Guard** is a small tool that sits between a person and a website, an app or an AI chatbot. It spots Indian identity numbers and other personal details in what someone is about to send, and warns them or covers the details before they leave. The [project page in the playbook](../app/#/project) shows its thirteen stages and which chapters build each one.
 
 It is a good portfolio project for a GovTech product manager for three reasons. It touches the DPDP Act directly. It needs evaluation at every step, from a ten-message answer key in Month 1 to a release gate in Month 5. And it can be built entirely on made-up records, so nothing private is ever used.
 

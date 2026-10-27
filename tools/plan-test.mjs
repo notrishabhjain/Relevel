@@ -40,7 +40,7 @@ console.log('\n— tabs and anchors —');
   const w13 = await page.evaluate(() => ({ steps: [...document.querySelectorAll('#w13 li.st')].map(li => li.getAttribute('data-step')),
     chapter: (document.querySelector('#w13 li[data-step="c:ch7"] a') || {}).getAttribute && document.querySelector('#w13 li[data-step="c:ch7"] a').getAttribute('href'),
     recipe: !!document.querySelector('#w13 a[href="#publish"]') }));
-  ok(w13.steps.length >= 3 && w13.chapter === '../#/ch/ch7' && w13.recipe, 'week 13 lists its route steps, links each to the playbook, and links its recipe', JSON.stringify(w13));
+  ok(w13.steps.length >= 3 && w13.chapter === '../app/#/ch/ch7' && w13.recipe, 'week 13 lists its route steps, links each to the playbook, and links its recipe', JSON.stringify(w13));
   await sleep(1200);
   await page.click('#w13 a[href="#publish"]');
   await page.waitForFunction(() => location.hash === '#publish');

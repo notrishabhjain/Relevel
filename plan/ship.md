@@ -32,7 +32,7 @@ Every week on the route is a few steps in order: a book chapter, a playbook chap
 
 **Week 6. Ships:** a working notebook and API key. **Time:** about 45 minutes, once.
 
-The setup lives in one place: the [setup page in the playbook](../#/setup). It walks you through a free Google Colab notebook and a free API key, one section at a time. By Week 6 you have read why a program needs a key and what it costs to use one, so the steps will make sense.
+The setup lives in one place: the [setup page in the playbook](../app/#/setup). It walks you through a free Google Colab notebook and a free API key, one section at a time. By Week 6 you have read why a program needs a key and what it costs to use one, so the steps will make sense.
 
 1. Do one section at a time. Stop after any section if the day’s ten minutes are up.
 2. If a step fails, copy the exact error message and paste it to a chat assistant, with the step you were on.

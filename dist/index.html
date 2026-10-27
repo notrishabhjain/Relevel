@@ -33031,7 +33031,7 @@ function routeNext(S){
   const R=window.ROUTE; if(!R) return null;
   const s=R.nextStep(S); if(!s) return null;
   const wk=R.WEEKS[s.week-1], i=wk.steps.findIndex(x=>x.id===s.id);
-  return {s, week:wk, i:i+1, of:wk.steps.length, href:R.stepHref(s, S.lang==='hi').replace(/^\/(#\/)/,'$1')};
+  return {s, week:wk, i:i+1, of:wk.steps.length, href:R.stepHref(s, S.lang==='hi').replace(/^\/app\/(#\/)/,'$1')};
 }
 function currentChapter(S){
   let firstUnfinished=null;
@@ -34829,10 +34829,10 @@ function stepDone(step, S) {
 }
 function nextStep(S) { return STEPS.find(s => !stepDone(s, S)) || null; }
 function stepHref(step, hi) {
-  if (step.kind === 'chapter') return '/#/ch/' + step.ch;
+  if (step.kind === 'chapter') return '/app/#/ch/' + step.ch;
   if (step.kind === 'read') return (hi ? '/book/hi/' : '/book/') + step.book + (step.at ? '#' + step.at : '');
-  if (step.app) return '/' + step.app;
-  return '/#/start';
+  if (step.app) return '/app/' + step.app;
+  return '/app/#/start';
 }
 function weekOf(date) {
   const d = Math.floor((Date.parse(date + 'T00:00:00Z') - Date.parse(START + 'T00:00:00Z')) / 864e5);
@@ -36309,7 +36309,7 @@ function pageStart(){
   const anchor=(location.hash.split('#')[2]||'').match(/^week-(\d+)$/), want=anchor?+anchor[1]:null;
   const bookOf=f=>B.list.find(x=>x.file===f);
   const bookBaseHere=hi?'/book/hi/':'/book/';
-  const href=x=>R.stepHref(x,hi).replace(/^\/(#\/)/,'$1');
+  const href=x=>R.stepHref(x,hi).replace(/^\/app\/(#\/)/,'$1');
 
   w.appendChild(h('header',{class:'phead'},[
     h('div',{class:'eyebrow'},[h('span',{text:T('One view of everything')}),h('span',{class:'dot'}),
@@ -37135,6 +37135,18 @@ function pageInstall(){
   w.appendChild(h('div',{style:'margin:0 0 1.4rem'},[btn]));
   order.forEach(k=>w.appendChild(cards[k]()));
 
+  /* The book and the plan are apps of their own, with their own icons. They
+     sit at /book/ and /plan/, beside this one at /app/, so a phone keeps
+     all three side by side. */
+  const three=h('section',{class:'part'});
+  three.appendChild(sectionHead('◫','The book and the plan are apps too'));
+  three.appendChild(h('div',{class:'prose'},[
+    h('p',{text:'Each installs as its own app with its own icon, next to this one. Open it, tap Install app, done. All three show the same progress.'}),
+    h('ul',{},[
+      h('li',{},[h('a',{href:'/book/',text:'The book'}),h('span',{text:': the course told as one story, in English and Hinglish. Installs as AFZ Book.'})]),
+      h('li',{},[h('a',{href:'/plan/',text:'The plan'}),h('span',{text:': the 26 weeks, week by week. Installs as AI PM Plan.'})])])]));
+  w.appendChild(three);
+
   const sec=h('section',{class:'part'});
   sec.appendChild(sectionHead('★','If it does not work'));
   const t=h('table');
@@ -37142,6 +37154,7 @@ function pageInstall(){
   t.appendChild(h('tbody',{},[
     ['No <em>Add to Home Screen</em> in the share sheet','You are in Chrome or another browser on iOS, or in an in-app browser opened from WhatsApp or Gmail','Open the address in Safari itself — tap the ⋯ or the compass icon and choose <em>Open in Safari</em>'],
     ['The icon is a grey screenshot of the page','An older copy of the site is cached on the device','Pull down to refresh the page once, then add it again'],
+    ['Chrome says <em>This app is already installed</em> on the book or the plan','This app was installed before 27 October 2026, when it claimed the whole site, the book and the plan included','Remove AI From Zero once (long-press its icon → App info → Uninstall). Install it again from this page, then install the book and the plan from their own pages'],
     ['Installed app shows no progress','Installed apps get their own storage on iOS','Sign in inside the installed app on the <a href="#/data">Progress &amp; Backup</a> page. Your progress is on your account, not on the device'],
     ['No install option on desktop','Safari and Firefox do not install web apps','Use Chrome or Edge, or just bookmark it — everything works the same in a normal tab']
   ].map(r=>h('tr',{},r.map(x=>h('td',{html:x}))))));

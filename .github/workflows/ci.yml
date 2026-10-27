@@ -25,9 +25,10 @@ jobs:
       - name: Check the build produced a page
         run: |
           test -s dist/site/index.html
+          test -s dist/site/app/index.html
           test -s dist/site/sw.js
           test -s content/defaults.json
-          grep -q "window.STUDIO" dist/site/index.html
+          grep -q "window.STUDIO" dist/site/app/index.html
       - name: Content check
         run: |
           node tools/content-check.mjs

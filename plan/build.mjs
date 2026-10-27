@@ -298,7 +298,7 @@ function page({ title, desc, panels }) {
 <header class="bar">
   <a class="brand" href="#plan">Applied AI PM plan</a>
   ${nav}
-  <a class="nav" href="../#/start">Workbook &rarr;</a>
+  <a class="nav" href="../app/#/start">Workbook &rarr;</a>
   <a class="nav" href="../book/">Book &rarr;</a>
   <button type="button" class="nav inst" data-install hidden></button>
   <button id="theme" type="button" aria-label="Switch colour theme">&#9680;</button>
@@ -349,9 +349,9 @@ const stub = target => `<!doctype html>
 const fmtMins = m => m >= 90 ? (Math.round(m / 30) / 2) + ' h' : m + ' min';
 const KIND = { chapter: 'Chapter', read: 'Book', try: 'Try', look: 'Look back' };
 function stepHref(s) {
-  if (s.kind === 'chapter') return '../#/ch/' + s.ch;
+  if (s.kind === 'chapter') return '../app/#/ch/' + s.ch;
   if (s.kind === 'read') return '../book/' + s.book + (s.at ? '#' + s.at : '');
-  return s.app ? '../' + s.app : '';
+  return s.app ? '../app/' + s.app : '';
 }
 function stepRow(s) {
   const href = stepHref(s), title = s.kind === 'chapter' ? s.num + '. ' + s.title : s.title;
@@ -368,7 +368,7 @@ function weekCard(w, recipes) {
     `<h4>${inline(w.title)}</h4>` +
     `<ol class="steps">${w.steps.map(stepRow).join('')}</ol>` +
     `<p><b>By Sunday</b>${inline(w.ship)}</p><p><b>How to</b>${how}</p>${further}` +
-    `<p class="small"><a href="../#/start#week-${w.n}">This week in one view, in the playbook →</a></p>` +
+    `<p class="small"><a href="../app/#/start#week-${w.n}">This week in one view, in the playbook →</a></p>` +
     `<div class="ctl"><div class="fields"><label>Link to what you made (optional)<input type="url" data-f="link" placeholder="https://..." autocomplete="off"></label>` +
     `<label>Note<input type="text" data-f="note" placeholder="What blocked you, what you learned" autocomplete="off"></label></div><div class="shiplink"></div></div></article>`;
 }
