@@ -469,7 +469,9 @@ ${groups}
 </section>
 <aside class="inapp end"><span class="lead">${ui.readEdition}</span><span class="chips"><a href="${appUrl}">${ui.openApp} →</a>${hasOther ? `<a href="${otherBase}">${ui.otherEdition} →</a>` : ''}</span></aside>
 </article>`;
-  write('index.html', shell({ title: `${book.title} · ${book.edition}`, desc: book.subtitle, nav: '', main: idx, bodyClass: 'is-cover', file: 'index.html' }));
+  /* The cover lists every chapter itself, but on a phone the header's Contents
+   button still has to open something: the same drawer the chapters have. */
+  write('index.html', shell({ title: `${book.title} · ${book.edition}`, desc: book.subtitle, nav: tocNav('index.html'), main: idx, bodyClass: 'is-cover', file: 'index.html' }));
 
   return { chapters: B.chapters.map(c => ({ n: c.n, file: c.file, title: c.title, course: c.course })), words: totalWords, terms: all.length };
 }

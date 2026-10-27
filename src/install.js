@@ -18,7 +18,11 @@
     and: ['Ise <b>Chrome</b> mein kholiye.', '<b>⋮</b> menu kholiye.', '<b>Install app</b> (ya <b>Add to Home screen</b>) chuniye.'],
     desk: ['<b>Chrome</b> ya <b>Edge</b> mein address bar ke daayein install icon dabaiye, ya menu mein <b>Install</b> chuniye.'],
     sync: 'iPhone par installed app ka storage alag hota hai: app ke andar ek baar sign in kar lijiye, taaki ticks har jagah ek jaise rahein.',
-    close: 'Band kijiye', done: 'Yeh app installed hai.'
+    close: 'Band kijiye', done: 'Yeh app installed hai.',
+    have: 'Installed ✓', haveTitle: app === 'book' ? 'Kitaab ka app pehle se installed hai' : 'Plan ka app pehle se installed hai',
+    haveWhy: 'Aap abhi browser mein hain. App kholne ke liye:',
+    haveSteps: ['Home screen ya app list mein <b>' + (app === 'book' ? 'AFZ Book' : 'AI PM Plan') + '</b> dhoondhiye aur use tap kijiye.', 'Ya Chrome ke <b>⋮</b> menu mein <b>Open in app</b> chuniye.'],
+    lost: 'App list mein nahi dikh raha? Phone ki Settings → Apps → Chrome → Other permissions mein <b>Home screen shortcuts</b> allow kijiye, phir Chrome ke menu se dobara install kijiye.'
   } : {
     btn: 'Install app', title: app === 'book' ? 'Keep the book as an app' : 'Keep the plan as an app',
     why: 'It opens from its own icon on your home screen, without the address bar, and pages you have read open without internet.',
@@ -26,23 +30,39 @@
     and: ['Open this page in <b>Chrome</b>.', 'Open the <b>⋮</b> menu.', 'Choose <b>Install app</b> (or <b>Add to Home screen</b>).'],
     desk: ['In <b>Chrome</b> or <b>Edge</b>, use the install icon at the right of the address bar, or choose <b>Install</b> in the menu.'],
     sync: 'On an iPhone an installed app keeps its own storage: sign in once inside the app so your ticks stay the same everywhere.',
-    close: 'Close', done: 'This is installed as an app.'
+    close: 'Close', done: 'This is installed as an app.',
+    have: 'Installed ✓', haveTitle: app === 'book' ? 'The book app is already installed' : 'The plan app is already installed',
+    haveWhy: 'You are reading it in the browser right now. To open the app:',
+    haveSteps: ['Find <b>' + (app === 'book' ? 'AFZ Book' : 'AI PM Plan') + '</b> on your home screen or in the app list, and tap it.', 'Or choose <b>Open in app</b> in Chrome’s <b>⋮</b> menu.'],
+    lost: 'Not in the app list? In the phone’s Settings → Apps → Chrome → Other permissions, allow <b>Home screen shortcuts</b>, then install again from Chrome’s menu.'
   };
 
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(function () {});
 
   var installed = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
   var prompt = null;
+  /* Installed already, but this is a browser tab: the browser can tell us
+     (the manifest names itself in related_applications). Then the button
+     says so and explains how to open the app, instead of offering an install
+     the browser will refuse with "This app is already installed". */
+  var have = false;
+  if (!installed && navigator.getInstalledRelatedApps) {
+    navigator.getInstalledRelatedApps().then(function (apps) {
+      if (apps && apps.length) { have = true; prompt = null; paint(); }
+    }).catch(function () {});
+  }
   var buttons = function () { return Array.prototype.slice.call(document.querySelectorAll('[data-install]')); };
   var paint = function () {
     buttons().forEach(function (b) {
       b.hidden = installed;
-      if (!b.textContent.trim()) b.textContent = L.btn;
-      b.classList.toggle('ready', !!prompt);
+      b.textContent = have ? L.have : L.btn;
+      b.classList.toggle('ready', !!prompt && !have);
+      b.classList.toggle('have', have);
     });
   };
-  window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); prompt = e; paint(); });
-  window.addEventListener('appinstalled', function () { installed = true; prompt = null; paint(); });
+  window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); if (!have) { prompt = e; paint(); } });
+  /* installed from this tab: the tab stays a tab, so it now "has" the app */
+  window.addEventListener('appinstalled', function () { have = true; prompt = null; paint(); });
 
   var ua = navigator.userAgent || '';
   var platform = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && 'ontouchend' in document) ? 'ios' : /Android/.test(ua) ? 'and' : 'desk';
@@ -50,10 +70,12 @@
     var old = document.getElementById('aifz-install'); if (old) { old.remove(); return; }
     var d = document.createElement('div');
     d.id = 'aifz-install'; d.setAttribute('role', 'dialog'); d.setAttribute('aria-label', L.title);
-    var steps = L[platform].map(function (x) { return '<li>' + x + '</li>'; }).join('');
+    var li = function (a) { return a.map(function (x) { return '<li>' + x + '</li>'; }).join(''); };
     d.innerHTML = '<div class="ai-card"><button type="button" class="ai-x" aria-label="' + L.close + '">&times;</button>' +
-      '<p class="ai-t">' + L.title + '</p><p>' + L.why + '</p><ol>' + steps + '</ol>' +
-      (platform === 'ios' ? '<p class="ai-n">' + L.sync + '</p>' : '') + '</div>';
+      (have
+        ? '<p class="ai-t">' + L.haveTitle + '</p><p>' + L.haveWhy + '</p><ol>' + li(L.haveSteps) + '</ol>' + (platform === 'and' ? '<p class="ai-n">' + L.lost + '</p>' : '')
+        : '<p class="ai-t">' + L.title + '</p><p>' + L.why + '</p><ol>' + li(L[platform]) + '</ol>' + (platform === 'ios' ? '<p class="ai-n">' + L.sync + '</p>' : '')) +
+      '</div>';
     d.addEventListener('click', function (e) { if (e.target === d || e.target.classList.contains('ai-x')) d.remove(); });
     document.body.appendChild(d);
   }
@@ -61,7 +83,7 @@
     var b = e.target.closest && e.target.closest('[data-install]');
     if (!b) return;
     e.preventDefault();
-    if (prompt) {
+    if (prompt && !have) {
       prompt.prompt();
       prompt.userChoice.then(function (c) { if (c && c.outcome === 'accepted') installed = true; prompt = null; paint(); });
     } else help();

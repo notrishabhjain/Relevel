@@ -468,6 +468,7 @@ const builtHi = hasHi ? buildBook(HI_ROOT, p.join(R, 'dist/site/book/hi'),
 /* ---- the Applied AI PM plan (static pages at /plan/) ---- */
 const builtPlan = buildPlan(R, p.join(R, 'dist/site/plan'));
 
+const SITE_ORIGIN = 'https://relevel-steel.vercel.app';
 /* ---- the book and the plan as installable apps ----
    Each has its own manifest, scope and icon, so a phone can keep them as
    three separate apps next to the playbook. They share the site's one
@@ -483,6 +484,11 @@ for (const [dir, name, short, desc, bg, theme, d] of [
   out(`dist/site/${dir}/manifest.webmanifest`, JSON.stringify({
     id: `/${dir}/`, name, short_name: short, description: desc,
     start_url: `/${dir}/`, scope: `/${dir}/`, display: 'standalone', orientation: 'any',
+    /* naming itself lets a browser tab ask "is this app already installed?"
+       (navigator.getInstalledRelatedApps), so the page can say so instead of
+       offering to install it again */
+    related_applications: [{ platform: 'webapp', url: `${SITE_ORIGIN}/${dir}/manifest.webmanifest` }],
+    prefer_related_applications: false,
     background_color: bg, theme_color: theme,
     icons: [
       { src: `/${dir}/icon-192.png`, sizes: '192x192', type: 'image/png', purpose: 'any' },
