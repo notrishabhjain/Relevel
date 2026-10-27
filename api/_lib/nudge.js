@@ -60,12 +60,12 @@ export function messageFor(date, st) {
   const title = 'Day ' + n + ' of 30: your ten minutes';
   if (st && typeof st === 'object') {
     const s = nextStep(st);
-    if (!s) return { n, title, url: '/#/start', body: say + ' Every step on the route is done. Ten minutes: a second pass on one “Build it”.' };
+    if (!s) return { n, title, url: '/app/#/start', body: say + ' Every step on the route is done. Ten minutes: a second pass on one “Build it”.' };
     const href = stepHref(s, st.lang === 'hi');
     return { n, title, body: say + ' ' + taskFor(s), url: href, step: s.id };
   }
   const w = ROUTE_WEEKS[Math.min(Math.max(weekOf(date), 1), ROUTE_WEEKS.length) - 1];
-  return { n, title, url: '/#/start', body: say + ' This week: ' + w.title + '. Open the site and do the step marked next.' };
+  return { n, title, url: '/app/#/start', body: say + ' This week: ' + w.title + '. Open the site and do the step marked next.' };
 }
 
 /* ---------- VAPID ---------- */

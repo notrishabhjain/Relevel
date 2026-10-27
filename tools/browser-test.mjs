@@ -43,7 +43,7 @@ const revisit = async page => {
   await page.waitForTimeout(300);
 };
 const boot = async (page, hash = '') => {
-  await page.goto(B + '/' + hash);
+  await page.goto(B + '/app/' + hash);
   await page.waitForFunction(() => window.CONTENT && window.STUDIO && document.querySelector('#main'));
   await page.waitForTimeout(250);
 };
@@ -510,10 +510,21 @@ ok(!/wrangler|npx /.test(t), 'without telling anyone to run a command-line tool'
 console.log('\n— falling back when the database is unreachable —');
 const f = await newDevice(false);
 await f.ctx.route('**/api/content*', r => r.abort());
-await f.page.goto(B + '/');
+await f.page.goto(B + '/app/');
 await f.page.waitForFunction(() => window.CONTENT && window.CHAPTERS);
 ok(await f.page.evaluate(() => window.CHAPTERS.length) === N.chapters, 'the app still opens with a full curriculum');
 ok(['built-in', 'cache'].includes(await f.page.evaluate(() => window.CONTENT.source)), 'and says where the content came from');
+
+console.log('\n— the playbook lives at /app/, and old links to the site root still work —');
+{
+  const o = await newDevice(false);
+  await o.page.goto(B + '/#/ch/ch1');
+  await o.page.waitForURL(/\/app\/#\/ch\/ch1$/, { timeout: 10000 }).catch(() => {});
+  await o.page.waitForSelector('.chead h1', { timeout: 10000 }).catch(() => {});
+  ok(/\/app\/#\/ch\/ch1$/.test(o.page.url()) && /Your first API call/.test(await text(o.page, '.chead h1')),
+     'an old address like /#/ch/ch1 opens the same chapter at /app/', o.page.url());
+  await o.ctx.close();
+}
 
 console.log('\n— reading it in Hinglish —');
 const hi = await newDevice(false, 'hindireader');
@@ -526,7 +537,7 @@ const hiTitle = await text(hi.page, '.chead h1');
 ok(hiTitle !== enTitle && /pehli API call/.test(hiTitle), 'switching reads the same chapter in Hinglish', hiTitle);
 const hiBody = await mainText(hi.page);
 ok(/tokens/.test(hiBody), 'and the industry terms are still in English inside it');
-await hi.page.goto(B + '/#/ch/ch15b');
+await hi.page.goto(B + '/app/#/ch/ch15b');
 await hi.page.waitForSelector('.chead');
 ok(/context window/.test(await mainText(hi.page)),
    'including in the half chapter 1 was split into');
@@ -640,6 +651,8 @@ ok(/Add to Home Screen/.test(it), 'the iPad route is spelled out');
 ok(/Safari/.test(it), 'and names the browser that can do it');
 ok(/Progress & Backup|Progress &amp; Backup/.test(it),
    'and warns that an installed app needs signing in again');
+ok(/The book and the plan are apps too/.test(it) && /already installed/.test(it),
+   'and says the book and the plan install as apps of their own, with the fix for an older whole-site install');
 const man = await (await fetch(B + '/manifest.webmanifest')).json();
 ok(man.display === 'standalone', 'the manifest asks for a standalone window');
 ok(man.icons.some(i => i.type === 'image/png' && i.sizes === '192x192'),
@@ -648,8 +661,8 @@ ok(man.icons.some(i => i.purpose === 'maskable'), 'and a maskable one for Androi
 const apple = await fetch(B + '/icon-180.png');
 ok(apple.ok && apple.headers.get('content-type') === 'image/png',
    'the Apple touch icon is a real PNG, which is the only kind iOS reads');
-const html = await (await fetch(B + '/')).text();
-ok(/apple-touch-icon" sizes="180x180" href="icon-180.png"/.test(html),
+const html = await (await fetch(B + '/app/')).text();
+ok(/apple-touch-icon" sizes="180x180" href="\.\.\/icon-180.png"/.test(html),
    'and the page points at it');
 ok(/apple-mobile-web-app-capable/.test(html), 'iOS is told the page is app-capable');
 
@@ -1051,7 +1064,7 @@ console.log('\n— one route: the playbook, the book and the plan agree —');
   ok(plan.next === 'b:preface.html', 'and names the same next step as the playbook', plan.next);
   await gs.page.click('li[data-step="t:tokens"] input');
   await gs.page.waitForTimeout(300);
-  await gs.page.goto(B + '/');
+  await gs.page.goto(B + '/app/');
   await gs.page.waitForFunction(() => window.CONTENT && window.STORE);
   ok(await gs.page.evaluate(() => !!window.STORE.S.steps['t:tokens'] && !!window.STORE.S.read['01-the-number-in-the-chat.html']),
      'a try ticked on the plan, and a chapter read in the book, are in the playbook too');
@@ -1088,12 +1101,12 @@ console.log('\n— one view: each week links the other views, and notes reach th
   await hv.page.waitForSelector('#w1 input[data-f="note"]');
   ok((await hv.page.inputValue('#w1 input[data-f="note"]')) === 'started with the preface', 'a note written on the route page is the plan’s note for that week');
   ok(await hv.page.isChecked('div.gate[data-gate="M1"] input[data-f="passed"]'), 'and a monthly review ticked there is ticked in the plan');
-  const back = await hv.page.evaluate(() => ({ wk: (document.querySelector('#w1 a[href="../#/start#week-1"]') || {}).textContent,
-    month: !!document.querySelector('a[href="../#/start#month-1"]') }));
+  const back = await hv.page.evaluate(() => ({ wk: (document.querySelector('#w1 a[href="../app/#/start#week-1"]') || {}).textContent,
+    month: !!document.querySelector('a[href="../app/#/start#month-1"]') }));
   ok(!!back.wk && back.month, 'the plan links each week and each curriculum month back to the one view', JSON.stringify(back));
   await hv.page.goto(B + '/book/05-choosing-what-not-to-do.html');
   const rb = await hv.page.evaluate(() => [...document.querySelectorAll('.routebox a')].map(a => a.getAttribute('href')));
-  ok(rb.includes('/#/start#week-2') && rb.includes('/plan/#w2'), 'a book chapter links its week in the one view and in the plan', JSON.stringify(rb));
+  ok(rb.includes('/app/#/start#week-2') && rb.includes('/plan/#w2'), 'a book chapter links its week in the one view and in the plan', JSON.stringify(rb));
   await boot(hv.page, '#/ch/a5');
   const rl = await hv.page.evaluate(() => [...document.querySelectorAll('.routeline a')].map(a => a.getAttribute('href')));
   ok(rl.includes('#/start#week-5') && rl.includes('/plan/#w5') && rl.some(h => /\/book\/05-/.test(h)), 'a playbook chapter links its week, its book chapter and its plan week', JSON.stringify(rl));
@@ -1121,6 +1134,7 @@ console.log('\n— the book’s cover on a phone: the menu, the buttons, an app 
   ok(/Installed/.test(btn), 'with the app already on the phone, the button says so', btn);
   await page.click('.appbox [data-install]');
   ok(/already installed/.test(await page.textContent('#aifz-install')), 'and explains how to open the app instead of offering to install it again');
+  ok(/Uninstall/.test(await page.textContent('#aifz-install .ai-old')), 'and how to clear an older install of the playbook that claimed the whole site');
   const man = await (await page.request.get(B + '/book/manifest.webmanifest')).json();
   ok(man.related_applications && man.related_applications[0].url.endsWith('/book/manifest.webmanifest'), 'the manifest names itself, so a tab can tell the app is installed');
   await ctx.close();
@@ -1133,14 +1147,25 @@ console.log('\n— the book and the plan install as apps, and read offline —')
   await pc.route('**/*', r => r.request().url().startsWith(B) ? r.continue() : r.abort());
   const pg = pc.pages()[0] || await pc.newPage();
   const cdp = await pc.newCDPSession(pg);
-  for (const [u, want] of [['/book/', '/book/'], ['/book/hi/', '/book/'], ['/plan/', '/plan/']]) {
+  const apps = {};
+  for (const [u, want] of [['/app/', '/app/'], ['/book/', '/book/'], ['/book/hi/', '/book/'], ['/plan/', '/plan/']]) {
     await pg.goto(B + u); await pg.waitForTimeout(1200); await pg.reload(); await pg.waitForTimeout(600);
     const m = await cdp.send('Page.getAppManifest');
     const man = JSON.parse(m.data || '{}');
     const errs = (await cdp.send('Page.getInstallabilityErrors')).installabilityErrors;
-    ok(man.scope === want && man.start_url === want && man.icons.some(i => i.sizes === '512x512') && !errs.length,
-       u + ' is installable as its own app, scoped to ' + want, JSON.stringify({ errs, scope: man.scope }));
+    const sc = man.scope ? new URL(man.scope, B).pathname : '', st = man.start_url ? new URL(man.start_url, B).pathname : '';
+    apps[want] = { sc, id: man.id ? new URL(man.id, B).pathname : st };
+    ok(sc === want && st === want && man.icons.some(i => i.sizes === '512x512') && !errs.length,
+       u + ' is installable as its own app, scoped to ' + want, JSON.stringify({ errs, scope: man.scope, start: man.start_url }));
   }
+  /* An installed app owns every address under its scope. If one scope held
+     another, a phone with the outer app installed would refuse to install the
+     inner one ("This app is already installed"). */
+  const scopes = Object.values(apps).map(a => a.sc);
+  ok(scopes.every(a => scopes.every(b => a === b || !b.startsWith(a))) && !scopes.includes('/'),
+     'no app’s scope contains another’s, so all three install side by side', JSON.stringify(scopes));
+  ok(new Set(Object.values(apps).map(a => a.id)).size === 3 && apps['/app/'].id === '/',
+     'three different app ids, and the playbook keeps the id it had at the site root', JSON.stringify(apps));
   ok(await pg.evaluate(() => !!navigator.serviceWorker.controller), 'the site’s service worker looks after the plan and the book');
   await pg.goto(B + '/book/'); await pg.waitForTimeout(800);
   await pg.click('#offline');

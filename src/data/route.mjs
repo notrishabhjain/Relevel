@@ -1781,10 +1781,10 @@ export const STEPS = WEEKS.flatMap(w => w.steps.map(s => Object.assign({ week: w
 export function nextStep(S) { return STEPS.find(s => !stepDone(s, S)) || null; }
 /* Where a step opens. Book pages are absolute so they work from any page. */
 export function stepHref(step, hi) {
-  if (step.kind === 'chapter') return '/#/ch/' + step.ch;
+  if (step.kind === 'chapter') return '/app/#/ch/' + step.ch;
   if (step.kind === 'read') return (hi ? '/book/hi/' : '/book/') + step.book + (step.at ? '#' + step.at : '');
-  if (step.app) return '/' + step.app;
-  return '/#/start';
+  if (step.app) return '/app/' + step.app;
+  return '/app/#/start';
 }
 /* Week number (1-26) for an India-time date string, 0 before the start, 27 after. */
 export function weekOf(date) {

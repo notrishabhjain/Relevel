@@ -1,6 +1,6 @@
 # Applied AI PM: the route, week by week (19 Oct 2026 – 18 Apr 2027)
 
-This plan is the course. It has one row for each week, and each row lists the steps of the route in order: a book chapter to read, a playbook chapter to do, sometimes a small try, and a look back on Friday. The same steps, in the same order, are on the [route page in the playbook](../#/start), at the end of each chapter in the [book](../book/), and in the 12:00 reminder.
+This plan is the course. It has one row for each week, and each row lists the steps of the route in order: a book chapter to read, a playbook chapter to do, sometimes a small try, and a look back on Friday. The same steps, in the same order, are on the [route page in the playbook](../app/#/start), at the end of each chapter in the [book](../book/), and in the 12:00 reminder.
 
 Progress is shared too. Mark a chapter complete in the playbook, or read a book chapter to its end, and the tick shows up here. Tick a try or a look back here, and it shows up in the playbook. Sign in once and the ticks follow you to every device. The reasons behind the route are on the [Curriculum tab](#curriculum), and how to take each kind of step is on the [How to build tab](#build).
 

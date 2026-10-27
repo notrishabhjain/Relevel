@@ -332,7 +332,7 @@ function routeNext(S){
   const R=window.ROUTE; if(!R) return null;
   const s=R.nextStep(S); if(!s) return null;
   const wk=R.WEEKS[s.week-1], i=wk.steps.findIndex(x=>x.id===s.id);
-  return {s, week:wk, i:i+1, of:wk.steps.length, href:R.stepHref(s, S.lang==='hi').replace(/^\/(#\/)/,'$1')};
+  return {s, week:wk, i:i+1, of:wk.steps.length, href:R.stepHref(s, S.lang==='hi').replace(/^\/app\/(#\/)/,'$1')};
 }
 function currentChapter(S){
   let firstUnfinished=null;

@@ -169,7 +169,7 @@ console.log('\n— daily reminder —');
   ok(MESSAGES.every(m => !/Chapter \d|chapter \d/.test(m)), 'the firm lines never name a chapter, so they cannot disagree with the route');
   {
     const fresh = messageFor('2026-10-19', {});
-    ok(fresh.url === '/#/ch/ch0' && /Chapter 0/.test(fresh.body), 'signed in and new: the task is the route’s first step, Start here', fresh);
+    ok(fresh.url === '/app/#/ch/ch0' && /Chapter 0/.test(fresh.body), 'signed in and new: the task is the route’s first step, Start here', fresh);
     const behind = messageFor('2026-11-03', { done: { ch0: 1 }, read: { 'preface.html': 1 } });
     ok(behind.url === '/book/01-the-number-in-the-chat.html' && /The Number in the Chat/.test(behind.body), 'behind the calendar: the task is the next open step, not the calendar’s', behind);
     ok(messageFor('2026-11-03', { lang: 'hi', done: { ch0: 1 }, read: { 'preface.html': 1 } }).url.startsWith('/book/hi/'), 'and it opens the Hinglish book for a Hinglish reader');
@@ -179,7 +179,7 @@ console.log('\n— daily reminder —');
     STEPS.forEach(x => { if (x.kind === 'chapter') all.done[x.ch] = 1; else if (x.kind === 'read') all.read[x.book] = 1; else all.steps[x.id] = 1; });
     ok(STEPS.every(x => stepDone(x, all)) && /Every step on the route is done/.test(messageFor('2026-12-01', all).body), 'with every step done, it says so');
     const anon = messageFor('2026-11-03');
-    ok(anon.url === '/#/start' && /This week: Meet the machine/.test(anon.body), 'signed out: the calendar names the week, the site names the step', anon);
+    ok(anon.url === '/app/#/start' && /This week: Meet the machine/.test(anon.body), 'signed out: the calendar names the week, the site names the step', anon);
   }
   ok(allowedEndpoint('https://fcm.googleapis.com/fcm/send/abc') && allowedEndpoint('https://updates.push.services.mozilla.com/wpush/v2/x') &&
      allowedEndpoint('https://web.push.apple.com/abc') && !allowedEndpoint('http://fcm.googleapis.com/x') &&

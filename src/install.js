@@ -22,7 +22,8 @@
     have: 'Installed ✓', haveTitle: app === 'book' ? 'Kitaab ka app pehle se installed hai' : 'Plan ka app pehle se installed hai',
     haveWhy: 'Aap abhi browser mein hain. App kholne ke liye:',
     haveSteps: ['Home screen ya app list mein <b>' + (app === 'book' ? 'AFZ Book' : 'AI PM Plan') + '</b> dhoondhiye aur use tap kijiye.', 'Ya Chrome ke <b>⋮</b> menu mein <b>Open in app</b> chuniye.'],
-    lost: 'App list mein nahi dikh raha? Phone ki Settings → Apps → Chrome → Other permissions mein <b>Home screen shortcuts</b> allow kijiye, phir Chrome ke menu se dobara install kijiye.'
+    lost: 'App list mein nahi dikh raha? Phone ki Settings → Apps → Chrome → Other permissions mein <b>Home screen shortcuts</b> allow kijiye, phir Chrome ke menu se dobara install kijiye.',
+    old: 'Chrome phir bhi “This app is already installed” bole, aur phone par sirf <b>AI From Zero</b> ka app ho? To woh 27 October se pehle ka install hai, jo poori site ko apna maanta tha, kitaab aur plan samet. Use ek baar hataiye (icon ko der tak dabaiye → App info → Uninstall), yeh page reload kijiye aur yahin se install kijiye. Phir AI From Zero ko bhi uske apne page se dobara install kar lijiye. Teenon app ek hi progress dikhate hain.'
   } : {
     btn: 'Install app', title: app === 'book' ? 'Keep the book as an app' : 'Keep the plan as an app',
     why: 'It opens from its own icon on your home screen, without the address bar, and pages you have read open without internet.',
@@ -34,7 +35,8 @@
     have: 'Installed ✓', haveTitle: app === 'book' ? 'The book app is already installed' : 'The plan app is already installed',
     haveWhy: 'You are reading it in the browser right now. To open the app:',
     haveSteps: ['Find <b>' + (app === 'book' ? 'AFZ Book' : 'AI PM Plan') + '</b> on your home screen or in the app list, and tap it.', 'Or choose <b>Open in app</b> in Chrome’s <b>⋮</b> menu.'],
-    lost: 'Not in the app list? In the phone’s Settings → Apps → Chrome → Other permissions, allow <b>Home screen shortcuts</b>, then install again from Chrome’s menu.'
+    lost: 'Not in the app list? In the phone’s Settings → Apps → Chrome → Other permissions, allow <b>Home screen shortcuts</b>, then install again from Chrome’s menu.',
+    old: 'Chrome still says “This app is already installed”, and the only app on your phone is <b>AI From Zero</b>? That is an install from before 27 October, which claimed the whole site, the book and the plan included. Remove it once (long-press its icon → App info → Uninstall), reload this page and install from here. Then install AI From Zero again from its own page. All three apps show the same progress.'
   };
 
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(function () {});
@@ -75,6 +77,10 @@
       (have
         ? '<p class="ai-t">' + L.haveTitle + '</p><p>' + L.haveWhy + '</p><ol>' + li(L.haveSteps) + '</ol>' + (platform === 'and' ? '<p class="ai-n">' + L.lost + '</p>' : '')
         : '<p class="ai-t">' + L.title + '</p><p>' + L.why + '</p><ol>' + li(L[platform]) + '</ol>' + (platform === 'ios' ? '<p class="ai-n">' + L.sync + '</p>' : '')) +
+      /* Until 27 Oct 2026 the playbook's app was scoped to the whole site, so
+         Chrome counted the book and the plan as part of it: on such a phone the
+         browser reports this app as installed and refuses to install it. */
+      (platform !== 'ios' ? '<p class="ai-n ai-old">' + L.old + '</p>' : '') +
       '</div>';
     d.addEventListener('click', function (e) { if (e.target === d || e.target.classList.contains('ai-x')) d.remove(); });
     document.body.appendChild(d);

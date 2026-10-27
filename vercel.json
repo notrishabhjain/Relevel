@@ -20,7 +20,16 @@
       ]
     },
     {
-      "source": "/index.html",
+      "source": "/app/",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        }
+      ]
+    },
+    {
+      "source": "/app/index.html",
       "headers": [
         {
           "key": "Cache-Control",
@@ -31,6 +40,21 @@
   ],
   "redirects": [
     {
+      "source": "/",
+      "destination": "/app/",
+      "permanent": false
+    },
+    {
+      "source": "/index.html",
+      "destination": "/app/",
+      "permanent": false
+    },
+    {
+      "source": "/app",
+      "destination": "/app/",
+      "permanent": true
+    },
+    {
       "source": "/book",
       "destination": "/book/",
       "permanent": true
@@ -38,6 +62,11 @@
     {
       "source": "/book/hi",
       "destination": "/book/hi/",
+      "permanent": true
+    },
+    {
+      "source": "/plan",
+      "destination": "/plan/",
       "permanent": true
     }
   ],

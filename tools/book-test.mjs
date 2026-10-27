@@ -74,8 +74,8 @@ ok(read(chapterWithTerms.file).includes('glossary.html#t-'), 'and a chapter link
 console.log('\n— both ways between the book and the app —');
 const covered = new Set(B.chapters.flatMap(c => c.course));
 ok([...courseIds].every(id => id === 'ch0' ? B.preface.course.includes('ch0') : covered.has(id)), 'every course chapter is retold in exactly the book chapters that say so');
-ok(/href="\/"/.test(read('index.html')), 'the contents page links back to the app');
-const appJs = fs.readFileSync(p.join(ROOT, 'dist/site/index.html'), 'utf8');
+ok(/href="\/app\/"/.test(read('index.html')), 'the contents page links back to the app');
+const appJs = fs.readFileSync(p.join(ROOT, 'dist/site/app/index.html'), 'utf8');
 const bm = appJs.match(/window\.BOOK=(\{.*?\});/);
 const BOOK = bm && JSON.parse(bm[1]);
 ok(BOOK && Object.keys(BOOK.chapters).length === new Set([...covered, ...(B.preface ? B.preface.course : [])]).size && BOOK.chapters.ch0 && BOOK.chapters.ch0.file === 'preface.html',
@@ -158,7 +158,7 @@ if (base) {
   await page.waitForLoadState();
   ok(/\/book\/\d\d-/.test(page.url()), 'which opens the book chapter', page.url());
 
-  await page.goto(base + '/#/library');
+  await page.goto(base + '/app/#/library');
   await page.waitForFunction(() => window.CONTENT && document.querySelector('#main'));
   ok(await page.locator('.cmaplinks a[href="/book/"]').count() === 1, 'the course map has a way into the book');
 
