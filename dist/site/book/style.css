@@ -83,12 +83,12 @@ a:hover{color:var(--accent2)}
   .toc{position:fixed;z-index:58;top:var(--bar);bottom:0;left:0;width:min(20rem,88vw);background:var(--paper);border-right:1px solid var(--rule);
     overflow:auto;transform:translateX(-102%);transition:transform .22s ease;box-shadow:var(--shadow)}
   .toc.open{transform:none}
-  .is-cover .toc{display:none}
 }
 @media (min-width:1000px){
   .layout{display:grid;grid-template-columns:19rem minmax(0,1fr);align-items:start}
   .toc{position:sticky;top:var(--bar);height:calc(100vh - var(--bar));overflow:auto;border-right:1px solid var(--rule);scrollbar-width:thin}
   .is-cover .layout{display:block}
+  .is-cover .toc{display:none}
   .scrim{display:none!important}
 }
 main{padding:0 clamp(1rem,5vw,2.2rem) 5rem;min-width:0}
@@ -211,7 +211,12 @@ pre.transcript{margin:1.6rem 0;padding:1.1rem 1.3rem;background:var(--card);bord
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .go{color:#1a120c}}
 :root[data-theme="dark"] .go{color:#1a120c}
 .go:hover{color:#fff;transform:translateY(-1px)}
-.go.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent);box-shadow:none}
+.go.ghost,:root .go.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent);box-shadow:none}
+/* the dark theme gives filled buttons dark text; an outlined one keeps the accent, or it vanishes */
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .go.ghost{color:var(--accent)}}
+:root[data-theme="dark"] .go.ghost{color:var(--accent)}
+button.go{border:0;cursor:pointer;font:inherit;font-family:var(--sans)}
+button.go.ghost{border:1px solid var(--accent)}
 .go.ghost:hover{background:var(--accent);color:var(--paper)}
 .hero .meta{margin-bottom:1rem}
 .prog[hidden],.go[hidden],[hidden]{display:none!important}

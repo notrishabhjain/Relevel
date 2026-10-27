@@ -47,7 +47,8 @@
     if (menu) menu.setAttribute('aria-expanded', open ? 'true' : 'false');
     if (scrim) scrim.hidden = !open;
   };
-  if (menu) menu.addEventListener('click', function () { setDrawer(!toc.classList.contains('open')); });
+  if (menu && toc) menu.addEventListener('click', function () { setDrawer(!toc.classList.contains('open')); });
+  else if (menu) menu.hidden = true;
   if (scrim) scrim.addEventListener('click', function () { setDrawer(false); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setDrawer(false); });
   var here = toc && $('li.here', toc);

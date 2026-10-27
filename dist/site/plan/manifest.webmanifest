@@ -7,6 +7,13 @@
   "scope": "/plan/",
   "display": "standalone",
   "orientation": "any",
+  "related_applications": [
+    {
+      "platform": "webapp",
+      "url": "https://relevel-steel.vercel.app/plan/manifest.webmanifest"
+    }
+  ],
+  "prefer_related_applications": false,
   "background_color": "#ECEEEA",
   "theme_color": "#ECEEEA",
   "icons": [

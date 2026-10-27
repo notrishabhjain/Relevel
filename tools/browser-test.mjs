@@ -1100,6 +1100,32 @@ console.log('\n— one view: each week links the other views, and notes reach th
   await hv.ctx.close();
 }
 
+console.log('\n— the book’s cover on a phone: the menu, the buttons, an app already installed —');
+{
+  const ctx = await browser.newContext({ serviceWorkers: 'block', viewport: { width: 390, height: 844 }, colorScheme: 'dark' });
+  await ctx.route('**/*', r => r.request().url().startsWith(B) ? r.continue() : r.abort());
+  await ctx.addInitScript(() => { navigator.getInstalledRelatedApps = () => Promise.resolve([{ platform: 'webapp' }]); });
+  const page = await ctx.newPage();
+  page.on('pageerror', e => { fail++; console.log('  FAIL [page error]', e.message); });
+  await page.goto(B + '/book/');
+  await page.waitForFunction(() => document.querySelector('.to-top'));
+  await page.click('#menu');
+  await page.waitForTimeout(300);
+  ok(await page.evaluate(() => !!document.querySelector('#toc.open')), 'the Contents button on the cover opens the contents drawer');
+  await page.keyboard.press('Escape');
+  const ghost = await page.evaluate(() => { const b = document.getElementById('offline'); const c = getComputedStyle(b).color;
+    return { c, bg: getComputedStyle(document.body).backgroundColor }; });
+  ok(ghost.c !== 'rgb(26, 18, 12)', 'outlined buttons keep readable text in the dark theme', JSON.stringify(ghost));
+  await page.waitForTimeout(200);
+  const btn = await page.evaluate(() => document.querySelector('.appbox [data-install]').textContent);
+  ok(/Installed/.test(btn), 'with the app already on the phone, the button says so', btn);
+  await page.click('.appbox [data-install]');
+  ok(/already installed/.test(await page.textContent('#aifz-install')), 'and explains how to open the app instead of offering to install it again');
+  const man = await (await page.request.get(B + '/book/manifest.webmanifest')).json();
+  ok(man.related_applications && man.related_applications[0].url.endsWith('/book/manifest.webmanifest'), 'the manifest names itself, so a tab can tell the app is installed');
+  await ctx.close();
+}
+
 console.log('\n— the book and the plan install as apps, and read offline —');
 {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'aifz-pwa-'));
