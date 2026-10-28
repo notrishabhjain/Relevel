@@ -110,6 +110,35 @@ ok(read('09-the-first-conversation.html').includes('href="/book/hi/09-the-first-
 ok(hiRead('09-the-first-conversation.html').includes('href="/book/09-the-first-conversation.html"'), 'and each Hinglish page offers its English twin');
 ok(BOOK && BOOK.hiBase === '/book/hi/', 'and the app knows where the Hinglish edition lives');
 
+console.log('\n— the words Listen reads —');
+{
+  const bad = [], hiOut = p.join(OUT, 'hi');
+  let chars = 0;
+  for (const [dir, list] of [[OUT, pages], [hiOut, pages]]) {
+    for (const f of list) {
+      if (!/^\d\d-|^preface|^afterword/.test(f)) continue;
+      const sf = p.join(dir, 'say', f.replace(/\.html$/, '.json'));
+      if (!fs.existsSync(sf)) { bad.push('no script for ' + sf); continue; }
+      const j = JSON.parse(fs.readFileSync(sf, 'utf8'));
+      const html = fs.readFileSync(p.join(dir, f), 'utf8');
+      const ids = [...html.matchAll(/data-s="(\d+)"/g)].map(m => +m[1]);
+      if (ids.length !== j.segs.length || ids.some((x, i) => x !== i) || j.segs.some((s, i) => s[0] !== i)) bad.push(f + ': the page and its script disagree (' + ids.length + ' vs ' + j.segs.length + ')');
+      if (!/^[0-9a-f]{16}$/.test(j.hash)) bad.push(f + ': no hash');
+      for (const [, t] of j.segs) {
+        chars += t.length;
+        if (!t.trim() || /[`*]|\]\(|<\/?[a-z]/.test(t)) bad.push(f + ': markup left in "' + t.slice(0, 60) + '"');
+        if (/^\s*[{\[]|"role"|Traceback/.test(t)) bad.push(f + ': code read aloud "' + t.slice(0, 60) + '"');
+      }
+    }
+  }
+  ok(!bad.length, 'every chapter, in both editions, has the words to say for each block it shows, in the same order', bad.slice(0, 4).join(' | '));
+  ok(chars > 800000 && chars < 1200000, 'about a million characters in all, which is what recording both editions costs', String(chars));
+  const t1 = JSON.parse(fs.readFileSync(p.join(OUT, 'say', B.chapters[0].file.replace('.html', '.json')), 'utf8'));
+  ok(t1.segs[0][1] === 'Chapter 1. ' + B.chapters[0].title + '.' && t1.segs.some(s => /^Table 1\.1/.test(s[1]) && /Aadhaar number\./.test(s[1])), 'a chapter starts with its number and title, and its tables are read row by row', t1.segs[0][1]);
+  ok(/data-s="0">[^<]*<\/h1>/.test(read(B.chapters[0].file)) && /id="listen"/.test(read(B.chapters[0].file)), 'the title is the first thing highlighted, and the page has a Listen button');
+  ok(fs.existsSync(p.join(OUT, 'listen.js')) && fs.existsSync(p.join(OUT, 'voices.html')), 'with the player script and the narrator voices page');
+}
+
 const base = process.env.BASE;
 if (base) {
   console.log('\n— in a browser —');
@@ -181,6 +210,104 @@ if (base) {
   await page.waitForLoadState();
   ok(new URL(page.url()).pathname === '/book/hi/' + HB.chapters[9].file, 'Hinglish Next stays in Hinglish', page.url());
   await page.evaluate(() => { try { localStorage.clear(); } catch (e) {} });
+
+  console.log('\n— listening —');
+  {
+    /* a pretend speech engine: each sentence "takes" 150 ms */
+    const lc = await browser.newContext({ serviceWorkers: 'block', viewport: { width: 390, height: 800 } });
+    await lc.route('**/*', r => r.request().url().startsWith(base) ? r.continue() : r.abort());
+    await lc.addInitScript(() => {
+      const said = window.__said = [];
+      const voices = [{ name: 'Google US English', lang: 'en-US', voiceURI: 'us', localService: false },
+                      { name: 'Google English (India)', lang: 'en-IN', voiceURI: 'in', localService: false },
+                      { name: 'Google हिन्दी', lang: 'hi-IN', voiceURI: 'hi', localService: false }];
+      const synth = { speaking: false, paused: false, getVoices: () => voices, addEventListener() {},
+        speak(u) { said.push({ t: u.text, v: u.voice && u.voice.voiceURI, r: u.rate }); const me = this; me.cur = u; me.speaking = true;
+          setTimeout(() => { if (me.cur === u) { me.speaking = false; u.onend && u.onend({}); } }, window.__ms || 150); },
+        cancel() { this.cur = null; this.speaking = false; }, pause() {}, resume() {} };
+      Object.defineProperty(window, 'speechSynthesis', { value: synth, configurable: true });
+      window.SpeechSynthesisUtterance = function (t) { this.text = t; };
+    });
+    const lp = await lc.newPage();
+    const errs = []; lp.on('pageerror', e => errs.push(e.message));
+    const f9 = B.chapters[8].file;
+    const say9 = JSON.parse(fs.readFileSync(p.join(OUT, 'say', f9.replace('.html', '.json')), 'utf8'));
+    await lp.goto(base + '/book/' + f9);
+    await lp.waitForSelector('#listen:not([hidden])');
+    await lp.click('#listen');
+    await lp.waitForFunction(() => window.__said.length > 0);
+    const s0 = await lp.evaluate(() => ({ first: window.__said[0], src: document.querySelector('.player .psrc').textContent, voice: document.querySelector('.pvoice').value }));
+    ok(s0.first && s0.first.t === 'Chapter 9.' && s0.first.v === 'in', 'Listen starts with the chapter’s title, in the phone’s Indian English voice', JSON.stringify(s0));
+    await lp.waitForFunction(() => +document.querySelector('.speaking').getAttribute('data-s') >= 2, null, { timeout: 8000 }).catch(() => {});
+    const at = await lp.evaluate(() => +document.querySelector('.speaking').getAttribute('data-s'));
+    ok(at >= 2, 'and moves the highlight along as it reads', String(at));
+    await lp.click('.player .rate');
+    await lp.waitForTimeout(400);
+    ok(await lp.evaluate(() => window.__said[window.__said.length - 1].r === 1.15), 'the speed button reads faster');
+    const target = 20;
+    await lp.evaluate(n => document.querySelector('[data-s="' + n + '"]').scrollIntoView(), target);
+    await lp.click('[data-s="' + target + '"]', { position: { x: 5, y: 5 } });
+    await lp.waitForTimeout(100);
+    const jumped = await lp.evaluate(() => ({ s: +document.querySelector('.speaking').getAttribute('data-s'), t: window.__said[window.__said.length - 1].t }));
+    ok(jumped.s === target && say9.segs[target][1].startsWith(jumped.t.slice(0, 20)), 'tapping a paragraph reads from there', JSON.stringify(jumped));
+    await lp.click('.player .close');
+    ok(await lp.evaluate(() => document.getElementById('player').hidden && !document.querySelector('.speaking')), 'closing the player stops it and clears the highlight');
+    /* the last paragraph: finishing ticks the chapter as read */
+    await lp.evaluate(() => { window.__ms = 20; });
+    await lp.click('#listen');
+    const last = say9.segs.length - 1;
+    await lp.evaluate(n => document.querySelector('[data-s="' + n + '"]').scrollIntoView(), last);
+    await lp.click('[data-s="' + last + '"]', { position: { x: 5, y: 5 } });
+    await lp.waitForSelector('.pend:not([hidden])', { timeout: 8000 }).catch(() => {});
+    const end = await lp.evaluate(f => ({ shown: !document.querySelector('.pend').hidden, next: document.querySelector('.pnext').getAttribute('href'), read: !!(window.AIFZ_PROGRESS.load().read || {})[f] }), f9);
+    ok(end.shown && end.read && /10-.*\.html#listen$/.test(end.next), 'listening to the end ticks the chapter as read and offers the next one', JSON.stringify(end));
+    ok(!errs.length, 'nothing in the page breaks while listening', errs.join(' | '));
+
+    /* a recorded chapter: its JSON and audio (here, a few seconds of silence) */
+    const wavOf = sec => { const n = Math.round(sec * 8000), b = Buffer.alloc(44 + n * 2);
+      b.write('RIFF', 0); b.writeUInt32LE(36 + n * 2, 4); b.write('WAVE', 8); b.write('fmt ', 12); b.writeUInt32LE(16, 16); b.writeUInt16LE(1, 20); b.writeUInt16LE(1, 22);
+      b.writeUInt32LE(8000, 24); b.writeUInt32LE(16000, 28); b.writeUInt16LE(2, 32); b.writeUInt16LE(16, 34); b.write('data', 36); b.writeUInt32LE(n * 2, 40); return b; };
+    const segs = say9.segs.map((s, i) => [s[0], i * 0.4]);
+    const dur = segs.length * 0.4 + 1;
+    let hashOk = true;
+    await lc.route('**/audio/en/09-the-first-conversation.json', r => r.fulfill({ contentType: 'application/json', body: JSON.stringify({ v: 1, hash: hashOk ? say9.hash : 'old', src: 'test.wav', dur, segs, voice: 'asha' }) }));
+    await lc.route('**/audio/en/test.wav', r => r.fulfill({ contentType: 'audio/wav', body: wavOf(dur) }));
+    const rp = await lc.newPage();
+    await rp.goto(base + '/book/' + f9);
+    await rp.waitForSelector('#listen:not([hidden])');
+    await rp.evaluate(() => localStorage.removeItem('aifz-listen-en-09-the-first-conversation'));
+    await rp.click('#listen');
+    await rp.waitForTimeout(1500);
+    const rec = await rp.evaluate(() => ({ src: document.querySelector('.player .psrc').textContent, time: document.querySelector('.ptime').textContent,
+      at: +(document.querySelector('.speaking') || { getAttribute: () => -1 }).getAttribute('data-s'), said: window.__said.length }));
+    ok(rec.src === 'Recorded voice' && rec.said === 0, 'a recorded chapter plays the recording, not the phone’s voice', JSON.stringify(rec));
+    ok(rec.at >= 2 && rec.time.endsWith('/ 0:' + Math.round(dur)), 'and the highlight follows the recording’s own timings', JSON.stringify(rec));
+    await rp.click('.player .play');
+    await rp.click('.player .next');
+    const nx = await rp.evaluate(() => +document.querySelector('.speaking').getAttribute('data-s'));
+    ok(nx === rec.at + 1 || nx === rec.at + 2, 'Next paragraph jumps to where it starts in the recording', nx + ' after ' + rec.at);
+    hashOk = false;
+    const op = await lc.newPage();
+    await op.goto(base + '/book/' + f9);
+    await op.waitForSelector('#listen:not([hidden])');
+    await op.click('#listen');
+    await op.waitForTimeout(300);
+    ok(await op.evaluate(() => document.querySelector('.player .psrc').hidden && !!document.querySelector('.pvoice:not([hidden])')), 'a recording made from older words is not used: the phone’s voice reads instead');
+
+    /* the narrator voices page lists the samples and how far the recording is */
+    await lc.route('**/audio/samples/samples.json', r => r.fulfill({ contentType: 'application/json', body: JSON.stringify({
+      en: [{ voice: 'asha-in', label: 'Asha', desc: 'female · Indian', indian: true, src: 'en-asha-in.webm' }, { voice: 'Sulafat', label: 'Sulafat', src: 'en-sulafat.webm' }],
+      hi: [{ voice: 'ravi-hi', label: 'Ravi', indian: true, error: 'HTTP 400 unknown voice' }] }) }));
+    await lc.route('**/audio/en/index.json', r => r.fulfill({ contentType: 'application/json', body: JSON.stringify({ voice: 'asha-in', total: 49, done: 12, seconds: 9060 }) }));
+    const vp = await lc.newPage();
+    await vp.goto(base + '/book/voices.html');
+    await vp.waitForSelector('.vcard');
+    const vv = await vp.evaluate(() => ({ cards: document.querySelectorAll('.vcard').length, audio: document.querySelectorAll('.vcard audio').length,
+      chosen: (document.querySelector('.vcard.chosen .vname b') || {}).textContent, stat: document.querySelector('.vstat').textContent, err: /could not be recorded/.test(document.body.innerText) }));
+    ok(vv.cards === 3 && vv.audio === 2 && vv.chosen === 'Asha' && /12 of 49 chapters \(2 h 31 min\)/.test(vv.stat) && vv.err,
+       'the voices page plays each sample, marks the chosen voice and says how much is recorded', JSON.stringify(vv));
+    await lc.close();
+  }
 
   await page.setViewportSize({ width: 390, height: 800 });
   await page.goto(base + '/book/' + B.chapters[2].file);

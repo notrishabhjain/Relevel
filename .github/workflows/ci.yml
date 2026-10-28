@@ -21,6 +21,8 @@ jobs:
           node-version: '20'
       - run: npm install
       - run: npx playwright install --with-deps chromium
+      - name: ffmpeg (the narration test encodes a chapter)
+        run: command -v ffmpeg || sudo apt-get install -y -q ffmpeg
       - run: node build.js
       - name: Check the build produced a page
         run: |

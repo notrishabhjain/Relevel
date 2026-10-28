@@ -415,6 +415,7 @@ self.addEventListener('fetch', e => {
   const u = new URL(r.url);
   if (u.origin !== location.origin) return;          // fonts, GitHub API: leave alone
   if (u.pathname.startsWith('/api/')) return;        // never cache account calls
+  if (u.pathname.startsWith('/audio/')) return;      // narration streams; long files, range requests
   const name = pageCache(u) ? PAGES : C;
   e.respondWith(
     fetch(r).then(res => {
@@ -525,7 +526,7 @@ const kb = f => (fs.statSync(p.join(R, f)).size / 1024).toFixed(0) + ' KB';
 console.log('dist/index.html     ' + kb('dist/index.html') + '   (standalone / hosting)');
 console.log('dist/artifact.html  ' + kb('dist/artifact.html') + '   (Claude Artifact)');
 console.log('dist/site/          deploy directory, sw version ' + VERSION);
-console.log('dist/site/book/      ' + builtBook.chapters.length + ' chapters, ' + builtBook.words + ' words' + (builtHi ? '; Hinglish ' + builtHi.words + ' words' : ''));
+console.log('dist/site/book/      ' + builtBook.chapters.length + ' chapters, ' + builtBook.words + ' words' + (builtHi ? '; Hinglish ' + builtHi.words + ' words' : '') + '; to narrate ' + Math.round((builtBook.sayChars + (builtHi ? builtHi.sayChars : 0)) / 1000) + 'k characters');
 console.log('dist/site/plan/      ' + builtPlan.pages + ' pages, ' + builtPlan.words + ' words');
 console.log('content/defaults.json ' + kb('content/defaults.json') + ' (' +
   defaults.chapters.length + ' chapters, ' + defaults.items.length + ' questions, ' +

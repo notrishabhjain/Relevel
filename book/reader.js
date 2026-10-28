@@ -114,6 +114,19 @@
     }
   };
   window.addEventListener('scroll', tick, { passive: true });
+  /* listening counts like reading (book/listen.js says which paragraph it is on) */
+  document.addEventListener('aifz:heard', function (e) {
+    var d = e.detail || {};
+    if (d.end && file && counts(file)) markRead(file);
+    if (P && half && !halfDone && d.el) {
+      var a = document.getElementById(upto);
+      if (a && (a === d.el || (a.compareDocumentPosition(d.el) & 4))) {
+        halfDone = true;
+        var st = P.load().steps || {};
+        if (!st[half]) P.tick(half);
+      }
+    }
+  });
 
   /* remember the chapter you were in */
   if (art && file !== 'index.html' && file !== 'glossary.html') {
@@ -178,7 +191,12 @@
     off.addEventListener('click', function () {
       var base = body.getAttribute('data-base') || '/book/';
       var urls = [base].concat($$('.cards a[href], .frontlist a[href]').map(function (a) { return new URL(a.getAttribute('href'), location.href).pathname; }))
-        .concat(['/book/style.css', '/book/reader.js', '/progress.js', '/install.js', '/book/manifest.webmanifest'])
+        .concat($$('.cards a[href], .frontlist a[href]').map(function (a) {
+          /* the words for Listen, so the phone's voice can read offline too */
+          var u = new URL(a.getAttribute('href'), location.href).pathname;
+          return /\.html$/.test(u) && !/glossary\.html$/.test(u) ? u.replace(/[^/]+\.html$/, function (f) { return 'say/' + f.replace(/\.html$/, '.json'); }) : null;
+        }).filter(Boolean))
+        .concat(['/book/style.css', '/book/reader.js', '/book/listen.js', '/progress.js', '/install.js', '/book/manifest.webmanifest'])
         .filter(function (u, i, all) { return all.indexOf(u) === i; });
       if (offmsg) offmsg.textContent = hi ? 'Save ho raha hai…' : 'Saving…';
       navigator.serviceWorker.ready.then(function (reg) {
