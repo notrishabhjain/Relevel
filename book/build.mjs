@@ -5,6 +5,7 @@
    so what the checker reads is exactly what the builder prints. */
 import fs from 'node:fs';
 import p from 'node:path';
+import crypto from 'node:crypto';
 import { STEPS as ROUTE_STEPS } from '../src/data/route.mjs';
 
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -142,40 +143,66 @@ export function termRegex(t) {
 
 const SUMMARY_HEADS = /^(chapter summary|summary|saaransh|chapter ka saaransh)$/i;
 
+/* ---------- the narration script ----------
+   Every block a listener should hear carries data-s="N" in the page, and the
+   same N with the words to say goes into say/<file>.json. The Listen player
+   reads that list aloud (with the phone's voice, or the recorded one), and
+   the recording tool (tools/narrate.mjs) records exactly that list, so the
+   highlighted paragraph is always the one being spoken. Code and transcript
+   blocks are not read out character by character: a short line points to the
+   page instead. Tables are read row by row. */
+export const spoken = s => String(s)
+  .replace(/`([^`]+)`/g, '$1')
+  .replace(/\*\*([^*]+)\*\*/g, '$1')
+  .replace(/(^|[^*\w])\*([^*\n]+)\*(?!\w)/g, '$1$2')
+  .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '$1')
+  .replace(/\s*[→⟶]\s*/g, ', ').replace(/[←↑↓]/g, '')
+  .replace(/\*{2,}/g, ' … ')                       // a masked number, 98******12, is heard as a pause
+  .replace(/\s+/g, ' ').trim();
+const sentence = s => (s = spoken(s)) && (/[.!?:;…"”’)]$/.test(s) ? s : s + '.');
+const SAY = {
+  en: { pre: 'The page shows this as a block of text.' },
+  hi: { pre: 'Page par yeh ek alag block mein likha hua hai.' }
+};
+
 /* Turns a chapter's blocks into a flat list of html pieces. Chapters number their
    sections 3.1, 3.2 and their tables Table 3.1; boxes and the closing summary
    are opened and closed by pieces of their own so term links can reach inside. */
-function render(chapter, termsHere, glossHref, ui, num) {
+function render(chapter, termsHere, glossHref, ui, num, say) {
   const bl = blocks(chapter.body);
   const out = [];
   let sec = 0, tbl = 0, cap = null;
+  /* the next narration id, and the attribute that ties the element to it */
+  const S = text => { if (!say || !text) return ''; say.push([say.length, text]); return ` data-s="${say.length - 1}"`; };
   const one = b => {
     switch (b.t) {
       case 'break': out.push('<p class="scenebreak" aria-hidden="true"><span></span></p>'); break;
       case 'h2':
-        if (SUMMARY_HEADS.test(b.text.trim())) { out.push(`<aside class="carry"><h2>${esc(ui.summary)}</h2>`); out.closeLater = true; break; }
+        if (SUMMARY_HEADS.test(b.text.trim())) { out.push(`<aside class="carry"><h2${S(sentence(ui.summary))}>${esc(ui.summary)}</h2>`); out.closeLater = true; break; }
         sec++;
-        out.push(num ? `<h2 id="s-${num}-${sec}"><span class="sn">${num}.${sec}</span>${inline(b.text)}</h2>` : `<h2>${inline(b.text)}</h2>`); break;
-      case 'h3': out.push(`<h3>${inline(b.text)}</h3>`); break;
-      case 'pre': out.push(`<pre class="transcript">${esc(b.text)}</pre>`); break;
-      case 'quote': out.push(`<blockquote><p>${inline(b.text)}</p></blockquote>`); break;
-      case 'ul': out.push(`<ul>${b.items.map(x => `<li>${inline(x)}</li>`).join('')}</ul>`); break;
-      case 'ol': out.push(`<ol>${b.items.map(x => `<li>${inline(x)}</li>`).join('')}</ol>`); break;
+        out.push(num ? `<h2 id="s-${num}-${sec}"${S(sentence(b.text))}><span class="sn">${num}.${sec}</span>${inline(b.text)}</h2>` : `<h2${S(sentence(b.text))}>${inline(b.text)}</h2>`); break;
+      case 'h3': out.push(`<h3${S(sentence(b.text))}>${inline(b.text)}</h3>`); break;
+      case 'pre': out.push(`<pre class="transcript"${S((SAY[ui.lang] || SAY.en).pre)}>${esc(b.text)}</pre>`); break;
+      case 'quote': out.push(`<blockquote${S(sentence(b.text))}><p>${inline(b.text)}</p></blockquote>`); break;
+      case 'ul': out.push(`<ul${S(b.items.map(sentence).join(' '))}>${b.items.map(x => `<li>${inline(x)}</li>`).join('')}</ul>`); break;
+      case 'ol': out.push(`<ol${S(b.items.map(sentence).join(' '))}>${b.items.map(x => `<li>${inline(x)}</li>`).join('')}</ol>`); break;
       case 'cap': cap = b.text; break;
       case 'table': {
         tbl++;
         const label = num ? `${ui.table} ${num}.${tbl}` : `${ui.table} ${tbl}`;
-        out.push(`<figure class="tblfig"${cap ? '' : ' aria-label="' + esc(label) + '"'}>${cap ? `<figcaption><b>${label}.</b> ${inline(cap)}</figcaption>` : ''}<div class="tblwrap"><table><thead><tr>${b.head.map(c => `<th>${inline(c)}</th>`).join('')}</tr></thead><tbody>${
+        const heard = [sentence(label + (cap ? ': ' + cap : ''))].concat(b.rows.map(r =>
+          [sentence(r[0])].concat(b.head.slice(1).map((h, i) => r[i + 1] ? sentence((spoken(h) ? spoken(h) + (/[?:]$/.test(spoken(h)) ? ' ' : ': ') : '') + r[i + 1]) : '').filter(Boolean)).join(' '))).join(' ');
+        out.push(`<figure class="tblfig"${S(heard)}${cap ? '' : ' aria-label="' + esc(label) + '"'}>${cap ? `<figcaption><b>${label}.</b> ${inline(cap)}</figcaption>` : ''}<div class="tblwrap"><table><thead><tr>${b.head.map(c => `<th>${inline(c)}</th>`).join('')}</tr></thead><tbody>${
           b.rows.map(r => `<tr>${r.map(c => `<td>${inline(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div></figure>`);
         cap = null; break;
       }
       case 'box': {
         const kind = ui.boxes[b.kind] ? b.kind : 'key';
-        out.push(`<aside class="box box-${kind}"><p class="boxlabel">${esc(ui.boxes[kind])}</p>${b.title ? `<h4>${inline(b.title)}</h4>` : ''}`);
+        out.push(`<aside class="box box-${kind}"><p class="boxlabel"${S(sentence(ui.boxes[kind] + (b.title ? ': ' + spoken(b.title) : '')))}>${esc(ui.boxes[kind])}</p>${b.title ? `<h4>${inline(b.title)}</h4>` : ''}`);
         b.inner.forEach(one);
         out.push('</aside>'); break;
       }
-      default: out.push(`<p>${inline(b.text)}</p>`);
+      default: out.push(`<p${S(sentence(b.text))}>${inline(b.text)}</p>`);
     }
   };
   bl.forEach(one);
@@ -184,7 +211,8 @@ function render(chapter, termsHere, glossHref, ui, num) {
   for (const t of termsHere) {
     const re = termRegex(t);
     for (let k = 0; k < out.length; k++) {
-      if (!out[k].startsWith('<p>') && !out[k].startsWith('<blockquote>') && !out[k].startsWith('<li>') && !out[k].startsWith('<ul><li>') && !out[k].startsWith('<ol><li>')) continue;
+      /* plain paragraphs, quotes and lists (the narration id is the only attribute they may carry) */
+      if (!/^<(p|blockquote|li)( data-s="\d+")?>|^<(ul|ol)( data-s="\d+")?><li>/.test(out[k])) continue;
       const w = wrapFirst(out[k], re, m => `<a class="term" href="${glossHref}#t-${slugify(t.term)}" title="${esc(t.plain)}">${m}</a>`);
       if (w) { out[k] = w; break; }
     }
@@ -260,6 +288,7 @@ export function buildBook(root, outDir, opts = {}) {
     const asset = p.join(opts.assetsFrom || root);
     fs.copyFileSync(p.join(asset, 'style.css'), p.join(outDir, 'style.css'));
     fs.copyFileSync(p.join(asset, 'reader.js'), p.join(outDir, 'reader.js'));
+    fs.copyFileSync(p.join(asset, 'listen.js'), p.join(outDir, 'listen.js'));
   }
   const write = (f, s) => fs.writeFileSync(p.join(outDir, f), s);
   const href = f => pageBase + f;
@@ -290,7 +319,7 @@ export function buildBook(root, outDir, opts = {}) {
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="AFZ Book">
-${hasOther ? `<link rel="alternate" hreflang="${lang === 'hi' ? 'en' : 'hi-Latn'}" href="${otherBase}${file === 'index.html' ? '' : file}">` : ''}
+${hasOther && file !== 'voices.html' ? `<link rel="alternate" hreflang="${lang === 'hi' ? 'en' : 'hi-Latn'}" href="${otherBase}${file === 'index.html' ? '' : file}">` : ''}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
@@ -304,7 +333,7 @@ ${hasOther ? `<link rel="alternate" hreflang="${lang === 'hi' ? 'en' : 'hi-Latn'
   <button class="b menu" id="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="${ui.contents}"><span aria-hidden="true">☰</span><span class="lbl">${ui.contents}</span></button>
   <a class="brand" href="${href('')}"><span class="mark">${esc(book.title)}</span><span class="ed">${ui.edition}</span></a>
   <span class="sp"></span>
-  ${hasOther ? `<a class="b lang" href="${otherBase}${file === 'index.html' ? '' : file}" hreflang="${lang === 'hi' ? 'en' : 'hi-Latn'}" title="${ui.switchTitle}" data-switch>${ui.switchTo}</a>` : ''}
+  ${hasOther && file !== 'voices.html' ? `<a class="b lang" href="${otherBase}${file === 'index.html' ? '' : file}" hreflang="${lang === 'hi' ? 'en' : 'hi-Latn'}" title="${ui.switchTitle}" data-switch>${ui.switchTo}</a>` : ''}
   <button class="b" id="size-down" type="button" aria-label="${ui.smaller}" title="${ui.smaller}">A−</button>
   <button class="b" id="size-up" type="button" aria-label="${ui.larger}" title="${ui.larger}">A+</button>
   <button class="b" id="theme" type="button" aria-label="${ui.colours}" title="${ui.colours}">◐</button>
@@ -320,6 +349,7 @@ ${main}
 <script src="/progress.js" defer></script>
 <script src="/install.js" defer></script>
 <script src="${assetBase}reader.js" defer></script>
+<script src="${assetBase}listen.js" defer></script>
 <script src="/reminder.js" defer></script>
 </body>
 </html>
@@ -378,19 +408,34 @@ ${parts.join('\n')}
       `<p class="rbsign small" hidden>${RB.signin} <a href="/api/auth/login?next=${encodeURIComponent((lang === 'hi' ? '/book/hi/' : '/book/') + file)}">${RB.signinLink}</a></p></aside>`;
   };
 
+  /* ----- the words each page says aloud (see "the narration script") ----- */
+  fs.mkdirSync(p.join(outDir, 'say'), { recursive: true });
+  let sayChars = 0;
+  const writeSay = (file, title, n, say) => {
+    const segs = say.map(([id, text]) => [id, text]);
+    sayChars += segs.reduce((a, x) => a + x[1].length, 0);
+    write('say/' + file.replace(/\.html$/, '.json'), JSON.stringify({
+      v: 1, lang, file, title, n: n || null,
+      hash: crypto.createHash('sha1').update(JSON.stringify(segs)).digest('hex').slice(0, 16), segs }));
+  };
+  const listenBtn = `<button type="button" class="listen" id="listen" hidden><span class="li" aria-hidden="true">▶</span><span class="lt">${lang === 'hi' ? 'Suniye' : 'Listen'}</span></button>`;
+
   /* ----- chapters ----- */
   const gloss = href('glossary.html');
   for (const c of B.chapters) {
     const s = sectionOf(c.n);
+    const say = [[0, sentence(`${ui.chapter} ${c.n}. ${c.title}`)]];
+    const prose = render(c, c.terms, gloss, ui, c.n, say);
+    writeSay(c.file, c.title, c.n, say);
     const main = `<article class="chapter" data-file="${c.file}" data-title="${esc(c.title)}" data-n="${c.n}">
 <header class="chead">
 <p class="eyebrow"><span class="num">${c.n}</span><span>${ui.chapter} ${c.n}${s ? ` <i>·</i> ${esc(s.title)}` : ''}</span></p>
-<h1>${esc(c.title)}</h1><p class="dek">${inline(c.summary)}</p>
-<p class="meta"><span>${mins(c)} ${ui.minRead}</span>${c.terms.length ? `<span>${c.terms.length} ${lang === 'hi' ? 'naye shabd' : 'new words'}</span>` : ''}</p>
+<h1 data-s="0">${esc(c.title)}</h1><p class="dek">${inline(c.summary)}</p>
+<p class="meta"><span>${mins(c)} ${ui.minRead}</span>${c.terms.length ? `<span>${c.terms.length} ${lang === 'hi' ? 'naye shabd' : 'new words'}</span>` : ''}${listenBtn}</p>
 </header>
 ${goalsBox(c.goals)}
 <div class="prose">
-${render(c, c.terms, gloss, ui, c.n)}
+${prose}
 </div>
 ${wordsBox(c.terms)}
 ${routeBox(c.file)}
@@ -404,10 +449,13 @@ ${pager(c.file)}
   for (const pg of [B.preface, B.afterword]) {
     if (!pg) continue;
     const kind = pg === B.preface ? ui.preface : ui.afterword;
+    const say = [[0, sentence(`${kind}. ${pg.title}`)]];
+    const prose = render(pg, pg.terms, gloss, ui, null, say);
+    writeSay(pg.file, pg.title, null, say);
     const main = `<article class="chapter plain" data-file="${pg.file}" data-title="${esc(pg.title)}">
-<header class="chead"><p class="eyebrow"><span>${kind}</span></p><h1>${esc(pg.title)}</h1>${pg.summary ? `<p class="dek">${inline(pg.summary)}</p>` : ''}</header>
+<header class="chead"><p class="eyebrow"><span>${kind}</span></p><h1 data-s="0">${esc(pg.title)}</h1>${pg.summary ? `<p class="dek">${inline(pg.summary)}</p>` : ''}<p class="meta">${listenBtn}</p></header>
 <div class="prose">
-${render(pg, pg.terms, gloss, ui, null)}
+${prose}
 </div>
 ${routeBox(pg.file)}
 ${courseLine(pg.course)}
@@ -430,6 +478,51 @@ ${letters.map(l => `<h2 id="a-${l}">${l}</h2><dl>${all.filter(t => t.term[0].toU
 </div>
 </article>`;
   write('glossary.html', shell({ title: `${ui.glossary} · ${book.title}`, desc: ui.glossaryShort, nav: tocNav('glossary.html'), main: gl, bodyClass: 'is-front', file: 'glossary.html' }));
+
+  /* ----- narrator voices: samples to choose from, and how far the recording is ----- */
+  if (lang === 'en') {
+    const vmain = `<article class="chapter plain voices-page" data-file="voices.html" data-title="Narrator voices">
+<header class="chead"><p class="eyebrow"><span>Listen</span></p><h1>Narrator voices</h1>
+<p class="dek">Every chapter has a Listen button. It plays the recorded narration where a chapter has been recorded, and uses your phone’s own voice until then. These are short samples of the voices the book can be recorded in, in English and in Hinglish.</p></header>
+<div class="prose" id="voices"><p class="small">Loading the samples…</p></div>
+<script>
+(function () {
+  var box = document.getElementById('voices');
+  function get(u) { return fetch(u, { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); }
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  function mins(s) { s = Math.round((s || 0) / 60); return s >= 60 ? Math.floor(s / 60) + ' h ' + (s % 60) + ' min' : s + ' min'; }
+  Promise.all([get('/audio/samples/samples.json'), get('/audio/en/index.json'), get('/audio/hi/index.json')]).then(function (r) {
+    var sm = r[0] || {}, idx = { en: r[1], hi: r[2] };
+    box.innerHTML = '';
+    [['en', 'English edition'], ['hi', 'Hinglish edition']].forEach(function (x) {
+      var lang = x[0], list = sm[lang] || [], ix = idx[lang];
+      box.appendChild(el('h2', null, x[1]));
+      box.appendChild(el('p', 'small vstat', ix && ix.voice
+        ? 'Recorded so far: ' + ix.done + ' of ' + ix.total + ' chapters (' + mins(ix.seconds) + '), in the voice “' + ix.voice + '”.'
+        : 'Not recorded yet. The Listen button uses the phone’s own voice for now.'));
+      if (!list.length) { box.appendChild(el('p', null, 'No samples yet. They appear here after the first recording run.')); return; }
+      var ul = el('ul', 'vlist');
+      list.forEach(function (v) {
+        var li = el('li', 'vcard' + (ix && ix.voice === v.voice ? ' chosen' : ''));
+        var head = el('p', 'vname');
+        head.appendChild(el('b', null, v.label || v.voice));
+        if (v.indian) head.appendChild(el('span', 'vtag', 'Indian voice'));
+        if (ix && ix.voice === v.voice) head.appendChild(el('span', 'vtag on', 'Chosen'));
+        li.appendChild(head);
+        if (v.desc) li.appendChild(el('p', 'small', v.desc));
+        if (v.src) { var a = el('audio'); a.controls = true; a.preload = 'none'; a.src = '/audio/samples/' + v.src; li.appendChild(a); }
+        else li.appendChild(el('p', 'small', 'This voice could not be recorded: ' + (v.error || 'no audio came back')));
+        li.appendChild(el('p', 'small vid', 'Voice name: ' + v.voice));
+        ul.appendChild(li);
+      });
+      box.appendChild(ul);
+    });
+  });
+})();
+</script>
+</article>`;
+    write('voices.html', shell({ title: `Narrator voices · ${book.title}`, desc: 'Samples of the voices that read the book aloud.', nav: tocNav('voices.html'), main: vmain, bodyClass: 'is-front', file: 'voices.html' }));
+  }
 
   /* ----- the cover and contents ----- */
   const totalWords = B.chapters.reduce((a, c) => a + c.words, 0) + (B.preface ? B.preface.words : 0) + (B.afterword ? B.afterword.words : 0);
@@ -455,6 +548,7 @@ ${letters.map(l => `<h2 id="a-${l}">${l}</h2><dl>${all.filter(t => t.term[0].toU
 <p>${lang === 'hi' ? 'Phone par kitaab ko app ki tarah rakhiye, aur poori kitaab bina internet ke padhne ke liye save kar lijiye.' : 'Keep the book as an app on your phone, and save the whole book to read without internet.'}</p>
 <p class="approw"><button type="button" class="go" data-install hidden></button><button type="button" class="go ghost" id="offline">${lang === 'hi' ? 'Poori kitaab offline save kijiye' : 'Save the whole book offline'}</button><span class="offmsg" id="offmsg" role="status"></span></p>
 <p class="small"><a href="${appUrl}#/start">${lang === 'hi' ? 'Kitaab, playbook aur plan ek jagah: aapka raasta' : 'The book, the playbook and the plan in one view: your route'} →</a></p>
+<p class="small">${lang === 'hi' ? 'Har chapter suna bhi ja sakta hai: chapter ke upar <b>Suniye</b> dabaiye.' : 'Every chapter can be read aloud: press <b>Listen</b> at the top of a chapter.'} <a href="${siteBase}voices.html">${lang === 'hi' ? 'Awaazein' : 'Narrator voices'} →</a></p>
 </div>
 </div>
 <div class="heroart">${cover(book, ui)}</div>
@@ -473,5 +567,5 @@ ${groups}
    button still has to open something: the same drawer the chapters have. */
   write('index.html', shell({ title: `${book.title} · ${book.edition}`, desc: book.subtitle, nav: tocNav('index.html'), main: idx, bodyClass: 'is-cover', file: 'index.html' }));
 
-  return { chapters: B.chapters.map(c => ({ n: c.n, file: c.file, title: c.title, course: c.course })), words: totalWords, terms: all.length };
+  return { chapters: B.chapters.map(c => ({ n: c.n, file: c.file, title: c.title, course: c.course })), words: totalWords, terms: all.length, sayChars };
 }

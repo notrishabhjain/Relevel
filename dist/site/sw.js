@@ -45,6 +45,7 @@ self.addEventListener('fetch', e => {
   const u = new URL(r.url);
   if (u.origin !== location.origin) return;          // fonts, GitHub API: leave alone
   if (u.pathname.startsWith('/api/')) return;        // never cache account calls
+  if (u.pathname.startsWith('/audio/')) return;      // narration streams; long files, range requests
   const name = pageCache(u) ? PAGES : C;
   e.respondWith(
     fetch(r).then(res => {

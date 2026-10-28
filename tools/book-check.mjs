@@ -145,7 +145,7 @@ try {
       /* the app manifest and its icons are written by the site build (build.js),
          not by the book build this check runs, so they are not in tmp */
       if (/^(manifest\.webmanifest|icon-[\w-]+\.png)$/.test(rel)) continue;
-      if (file && rel && !fs.existsSync(p.join(tmp, rel)) && !(IS_HI && /^(style\.css|reader\.js)$/.test(rel)))
+      if (file && rel && !fs.existsSync(p.join(tmp, rel)) && !(IS_HI && /^(style\.css|reader\.js|listen\.js|voices\.html)$/.test(rel)))
         fail(`${f}: links to ${file}, which does not exist`);
       if (!file && hash && hash.length > 1 && !ids.has(hash.slice(1))) fail(`${f}: links to ${hash}, which is not on the page`);
       if (rel && hash && hash.length > 1 && fs.existsSync(p.join(tmp, rel))) {

@@ -1,0 +1,84 @@
+# Records the book's narration with Gemini (tools/narrate.mjs).
+#
+# Needs the repository secret GEMINI_API_KEY (a key from Google AI Studio).
+# Runs every night, and whenever book/narration.json changes on main.
+# - "auto" (the default) records voice samples when there are none for the
+#   current round, then records chapters in the chosen voices.
+# - "samples" records a short passage in a few voices per edition, listed on
+#   /book/voices.html, so a voice can be chosen.
+# - "record" records whole chapters in the voices set in book/narration.json,
+#   carrying on where the last run stopped, until the book is done; after that
+#   a run has nothing to do. It stops cleanly when the day's free quota is used up.
+# Finished audio is committed to dist/site/audio, and the site deploys it.
+name: Narration
+
+on:
+  push:
+    branches: [main]
+    paths: ['book/narration.json']
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'auto, samples or record'
+        type: choice
+        options: [auto, record, samples]
+        default: auto
+      lang:
+        description: 'editions: en, hi or en,hi'
+        default: 'en,hi'
+      max:
+        description: 'most chapters in this run'
+        default: '200'
+      only:
+        description: 'record just this chapter again, e.g. 09-the-first-conversation.html (optional)'
+        default: ''
+  schedule:
+    - cron: '17 21 * * *'          # 02:47 India time, every night
+
+permissions:
+  contents: write
+
+concurrency:
+  group: narration
+  cancel-in-progress: false
+
+jobs:
+  narrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 320
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: ffmpeg
+        run: command -v ffmpeg || (sudo apt-get update -q && sudo apt-get install -y -q ffmpeg)
+      - name: Build the book (the words to read)
+        run: node build.js > /dev/null
+      - name: Record
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          MODE: ${{ inputs.mode || 'auto' }}
+          LANGS: ${{ inputs.lang || 'en,hi' }}
+          MAX: ${{ inputs.max || '200' }}
+          ONLY: ${{ inputs.only || '' }}
+          NARRATE_MINUTES: '280'
+        run: |
+          set -- "$MODE" --lang "$LANGS" --max "$MAX"
+          if [ -n "$ONLY" ]; then set -- "$@" --only "$ONLY"; fi
+          node tools/narrate.mjs "$@"
+      - name: Save what was recorded
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dist/site/audio || true
+          if git diff --cached --quiet; then echo "nothing new"; exit 0; fi
+          n=$(git diff --cached --name-only | grep -c '\.webm$' || true)
+          git commit -q -m "Narration: $n audio file(s) recorded"
+          git reset -q --hard HEAD          # drop the rest of the build, keep the commit
+          for i in 1 2 3; do
+            git pull -q --rebase origin main && git push -q origin HEAD:main && exit 0
+            sleep 5
+          done
+          exit 1

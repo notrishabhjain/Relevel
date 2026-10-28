@@ -1,0 +1,23 @@
+{
+  "_": "How the book is recorded. tools/narrate.mjs reads this; .github/workflows/narrate.yml runs it every night and whenever this file changes on main. Leave a voice empty until it has been picked on /book/voices.html. Changing a voice, the style or the model records that edition again; raising samples.round records new samples. 'accent' is added only for voices that are not already Indian; 'hint' is always added.",
+  "model": "gemini-3.8-flash-tts",
+  "fallbackModels": ["gemini-3.1-flash-tts-preview", "gemini-2.5-flash-preview-tts"],
+  "chunkChars": 2200,
+  "en": {
+    "voice": "",
+    "style": "Narrate this like an audiobook: warm, calm and clear, at an unhurried pace, with a natural pause between paragraphs.",
+    "accent": "Speak with a natural Indian English accent, like an educated speaker from Delhi or Mumbai.",
+    "hint": ""
+  },
+  "hi": {
+    "voice": "",
+    "style": "Narrate this like an audiobook in natural spoken Hinglish, the way people in North India talk at work. Warm, calm and clear, at an unhurried pace.",
+    "accent": "Speak with a natural Indian accent.",
+    "hint": "The text is Hindi written in English letters, mixed with English words: read the Hindi words as Hindi, and the English terms in Indian English."
+  },
+  "samples": {
+    "round": 1,
+    "prebuilt": ["Sulafat", "Achernar", "Charon", "Iapetus", "Kore", "Orus"],
+    "perEdition": 6
+  }
+}

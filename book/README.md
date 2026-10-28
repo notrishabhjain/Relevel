@@ -123,3 +123,27 @@ teacher, now retired and still asking questions). Add nobody else without a reas
 The app's chapters, their prerequisites and their project stages are the source of
 truth. If a chapter is added or reordered in the app, add or move its id in `course:`
 here; the checker will say what no longer lines up.
+
+## Listening
+
+Every chapter has a **Listen** button (`listen.js`). The build writes the words to
+say for each page to `say/<chapter>.json`, one entry per block on the page, and marks
+each block with `data-s="N"`, so the paragraph being read is always the one
+highlighted. Code blocks are not read out; a short line points to the page instead.
+Tables are read row by row.
+
+- **Recorded voice.** `tools/narrate.mjs` records chapters with Gemini's speech
+  models into `dist/site/audio/<en|hi>/` (Opus, about 11 MB an hour), with a JSON file
+  that says when each paragraph starts. The workflow **Narration**
+  (`.github/workflows/narrate.yml`) runs it every night until both editions are
+  recorded, stopping cleanly when the day's free quota runs out. It needs the
+  repository secret `GEMINI_API_KEY`.
+- **Choosing the voice.** Run the workflow once with mode `samples`, listen on
+  `/book/voices.html`, then put the voice names in `book/narration.json` (`en.voice`,
+  `hi.voice`). Changing a voice, the style or the model records that edition again.
+- **Phone voice.** Until a chapter is recorded, or when the recording was made from
+  older words, Listen uses the device's own speech engine, preferring an Indian
+  English voice.
+
+When a chapter's words change, its recording no longer matches and the next nightly
+run records it again.

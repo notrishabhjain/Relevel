@@ -281,3 +281,50 @@ li.read a{border-color:color-mix(in srgb,var(--hue) 35%,var(--rule))}
 .appbox a{color:var(--accent)}
 .tocapp{display:flex;flex-wrap:wrap;gap:.4rem .9rem;align-items:center;margin:1rem 0 .5rem;padding:0 .8rem;font-family:var(--sans);font-size:.82rem}
 .tocapp a{color:var(--accent)}
+
+/* listening (book/listen.js): a button by the chapter title, a bar along the
+   bottom, and the paragraph being read washed in the section's colour */
+.listen{font:500 .74rem/1 var(--sans);display:inline-flex;align-items:center;gap:.4rem;padding:.32rem .8rem;border-radius:999px;
+  border:1px solid var(--accent);background:var(--card);color:var(--accent);cursor:pointer}
+.meta .listen span{padding:0;border:0;background:none;border-radius:0}
+.listen .li{font-size:.68rem}
+.listen.on{background:var(--accent);color:var(--paper)}
+.listen[hidden]{display:none}
+[data-s].speaking{background:rgb(180 73 42 / .1);background:color-mix(in srgb,var(--hue) 13%,transparent);
+  box-shadow:0 0 0 .45rem rgb(180 73 42 / .1);box-shadow:0 0 0 .45rem color-mix(in srgb,var(--hue) 13%,transparent);border-radius:.25rem;transition:background .3s}
+body.listening [data-s]{cursor:pointer}
+body.listening{padding-bottom:9rem}
+body.listening .to-top{bottom:6.5rem}
+/* the 12:00 reminder bell (src/reminder.js) moves up out of the player's way */
+body.listening #aifz-rem{bottom:calc(4.9rem + env(safe-area-inset-bottom,0px))}
+.player{position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--card);border-top:1px solid var(--rule);
+  box-shadow:0 -6px 24px rgb(0 0 0 / .08);font-family:var(--sans);
+  padding:.5rem max(.75rem,env(safe-area-inset-right,0px)) calc(.5rem + env(safe-area-inset-bottom,0px)) max(.75rem,env(safe-area-inset-left,0px))}
+.player[hidden]{display:none}
+.player .pbar{position:absolute;left:0;right:0;top:0;height:3px;background:var(--rule)}
+.player .pbar i{display:block;height:100%;width:0;background:var(--hue);transition:width .3s linear}
+.prow{display:flex;align-items:center;gap:.4rem;max-width:46rem;margin:0 auto}
+.pb{flex:none;width:2.5rem;height:2.5rem;border-radius:50%;border:1px solid var(--rule);background:transparent;color:var(--ink2);
+  font:500 .95rem/1 var(--sans);cursor:pointer;display:grid;place-items:center;padding:0}
+.pb.play{width:2.9rem;height:2.9rem;background:var(--accent);border-color:var(--accent);color:var(--paper);font-size:1.05rem}
+.pb.rate{width:auto;min-width:2.6rem;border-radius:999px;padding:0 .6rem;font-size:.8rem;font-variant-numeric:tabular-nums}
+.pinfo{flex:1;min-width:0;display:flex;flex-direction:column;gap:.15rem;font-size:.72rem;color:var(--muted);line-height:1.25}
+.ptime{color:var(--ink2);font-variant-numeric:tabular-nums;font-size:.82rem}
+.psrc{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pvoice{max-width:100%;font:inherit;font-size:.72rem;color:var(--ink2);background:var(--card);border:1px solid var(--rule);border-radius:.4rem;padding:.12rem .2rem}
+.pend{max-width:46rem;margin:.4rem auto 0;font-size:.82rem;color:var(--ink2);display:flex;gap:.7rem;align-items:center;flex-wrap:wrap}
+.pend[hidden]{display:none}
+.pend a{font-weight:600}
+@media (max-width:420px){.pb{width:2.25rem;height:2.25rem;font-size:.85rem}.pb.play{width:2.6rem;height:2.6rem}.prow{gap:.3rem}}
+@media print{.player,.listen{display:none!important}}
+/* the narrator voices page */
+.prose .vlist{list-style:none;padding:0;margin:1rem 0 2rem;display:grid;gap:.8rem}
+.vcard{border:1px solid var(--rule);border-radius:.8rem;background:var(--card);padding:.8rem 1rem;font-family:var(--sans);font-size:.9rem}
+.vcard.chosen{border-color:var(--accent)}
+.vcard p{margin:.2rem 0}
+.vcard audio{width:100%;margin:.45rem 0 .2rem}
+.vname{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem}
+.vtag{font-size:.7rem;border:1px solid var(--rule);border-radius:999px;padding:.08rem .5rem;color:var(--muted)}
+.vtag.on{border-color:var(--accent);color:var(--accent)}
+.vid{color:var(--muted);font-variant-numeric:tabular-nums}
+

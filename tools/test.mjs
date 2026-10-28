@@ -65,7 +65,7 @@ async function withServer(fn) {
 }
 
 const only = process.argv[2];
-const suites = [['api', 'tools/api-test.mjs'], ['browser', 'tools/browser-test.mjs'], ['book', 'tools/book-test.mjs'], ['plan', 'tools/plan-test.mjs']]
+const suites = [['api', 'tools/api-test.mjs'], ['browser', 'tools/browser-test.mjs'], ['book', 'tools/book-test.mjs'], ['plan', 'tools/plan-test.mjs'], ['narrate', 'tools/narrate-test.mjs']]
   .filter(([n]) => !only || n === only);
 if (!suites.length) { console.error('unknown suite: ' + only); process.exit(2); }
 
