@@ -44,6 +44,8 @@ console.log('\n— tabs and anchors —');
   await sleep(1200);
   await page.click('#w13 a[href="#publish"]');
   await page.waitForFunction(() => location.hash === '#publish');
+  /* the tab changes on the hashchange event, which can land just after the hash does */
+  await page.waitForFunction(() => { const e = document.querySelector('[data-tab="build"]'); return !!e && e.offsetParent !== null; }, null, { timeout: 3000 }).catch(() => {});
   ok(await visible(page, 'build'), 'clicking a week’s recipe link jumps to the build tab');
   await page.goto(B + '/plan/ship.html#publish');
   await page.waitForURL(/\/plan\/#publish$/);

@@ -261,7 +261,7 @@ if (base) {
     await lp.waitForSelector('.pend:not([hidden])', { timeout: 8000 }).catch(() => {});
     const end = await lp.evaluate(f => ({ shown: !document.querySelector('.pend').hidden, next: document.querySelector('.pnext').getAttribute('href'), read: !!(window.AIFZ_PROGRESS.load().read || {})[f] }), f9);
     ok(end.shown && end.read && /10-.*\.html#listen$/.test(end.next), 'listening to the end ticks the chapter as read and offers the next one', JSON.stringify(end));
-    ok(!errs.length, 'no page errors while listening', errs.join(' | '));
+    ok(!errs.length, 'nothing in the page breaks while listening', errs.join(' | '));
 
     /* a recorded chapter: its JSON and audio (here, a few seconds of silence) */
     const wavOf = sec => { const n = Math.round(sec * 8000), b = Buffer.alloc(44 + n * 2);
