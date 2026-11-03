@@ -69,7 +69,7 @@ function WORKER(){
     const t0=Date.now();
     try{
       x.open(body?'POST':'GET', urlFor(pl, path), false);
-      const hd=headers(pl); for(const k in hd) x.setRequestHeader(k, hd[k]);
+      const hd=headers(pl, path); for(const k in hd) x.setRequestHeader(k, hd[k]);
       x.send(body?JSON.stringify(body):null);
     }catch(e){ return JSON.stringify({status:0, text:'', ms:Date.now()-t0, error:explain(0,null,pl)}); }
     let j=null; try{ j=JSON.parse(x.responseText); }catch(e){}

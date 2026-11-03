@@ -1,5 +1,5 @@
-import { send } from './_lib/db.js';
-import { sameOriginWrite, currentUser } from './_lib/auth.js';
+import { send } from './db.js';
+import { sameOriginWrite, currentUser } from './auth.js';
 
 /* The relay for the notebook and the playground inside the app.
 
@@ -8,6 +8,11 @@ import { sameOriginWrite, currentUser } from './_lib/auth.js';
    cross-origin headers a page needs. So the page sends the request here and
    this passes it on, unchanged, to the provider the page names, with the key
    the page sends. Nothing is stored and nothing is logged.
+
+   It lives here, in _lib, rather than as a function of its own: the Hobby
+   plan allows twelve functions per deployment and the site already uses
+   them. /api/llm is rewritten (vercel.json) to /api/health?relay=1, and
+   health.js hands the request on to this handler.
 
    It is a relay, not an open proxy:
    - only the providers below, and only the three endpoints the course uses;
@@ -40,7 +45,7 @@ async function rawBody(req) {
 
 async function signedIn(req) {
   try {
-    const { configured, ready } = await import('./_lib/db.js');
+    const { configured, ready } = await import('./db.js');
     if (!configured()) return null;
     await ready();
     return await currentUser(req);
@@ -51,7 +56,8 @@ export default async function handler(req, res) {
   if (req.method !== 'POST' && req.method !== 'GET') return send(res, 405, { error: 'method_not_allowed' });
   if (!sameOriginWrite(req)) return send(res, 403, { error: 'forbidden' });
   const url = new URL(req.url, 'http://local');
-  const path = url.searchParams.get('path') || 'chat/completions';
+  /* the endpoint comes as a header too, so it survives the rewrite */
+  const path = String(req.headers['x-llm-path'] || url.searchParams.get('path') || 'chat/completions');
   if (!PATHS.has(path)) return send(res, 400, { error: 'path_not_allowed' });
   const base = String(req.headers['x-llm-base'] || siteBase()).trim().replace(/\/+$/, '');
   if (!allowedBase(base)) return send(res, 400, { error: 'provider_not_allowed', base });

@@ -135,7 +135,7 @@ async function chat(body, onText){
   /* Ask for the token counts at the end of a stream; a provider that does not
      know the option gets the request again without it. */
   if(a.body.stream) a.body.stream_options={include_usage:true};
-  const send=()=>fetch(L().urlFor(pl,'chat/completions'),{method:'POST',headers:L().headers(pl),body:JSON.stringify(a.body),credentials:'same-origin'});
+  const send=()=>fetch(L().urlFor(pl,'chat/completions'),{method:'POST',headers:L().headers(pl,'chat/completions'),body:JSON.stringify(a.body),credentials:'same-origin'});
   try{ res=await send();
     if(res.status===400&&a.body.stream_options){ delete a.body.stream_options; res=await send(); } }
   catch(e){ return {ok:false,error:L().explain(0,null,pl)}; }

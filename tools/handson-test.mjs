@@ -98,6 +98,13 @@ console.log('\n— the relay passes requests on, and only those —');
   r = await post('chat/completions', { model: 'm', stream: true, messages: [{ role: 'user', content: 'a b c' }] }, good);
   const t = await r.text();
   ok(/text\/event-stream/.test(r.headers.get('content-type') || '') && /data: \[DONE\]/.test(t), 'a streamed answer is passed on as a stream');
+  /* how it arrives on Vercel: rewritten to the health function, the endpoint in a header */
+  r = await fetch(BASE + '/api/health?relay=1', { method: 'POST', body: JSON.stringify({ model: 'm', input: ['ab'] }),
+    headers: { 'content-type': 'application/json', ...good, 'x-llm-path': 'embeddings' } });
+  j = await r.json();
+  ok(r.status === 200 && j.data && j.data[0].embedding.length === 3, 'and through the rewrite Vercel uses, with the endpoint in a header', r.status);
+  const fns = fs.readdirSync(p.join(ROOT, 'api'), { recursive: true }).filter(f => /\.js$/.test(f) && !/^_lib/.test(f));
+  ok(fns.length <= 12, 'the API stays within the twelve functions Vercel’s Hobby plan allows', fns.length + ': ' + fns.join(' '));
   const h = await (await fetch(BASE + '/api/health')).json();
   ok(h.llm && h.llm.relay === true, 'and /api/health says the relay is there');
 }

@@ -9,6 +9,9 @@ import { send, configured, ready, query, role, defaults } from './_lib/db.js';
    outside, so this reports the shape of what the database currently holds for
    chapter 1 — openable in a browser, no sign-in, no guessing. */
 export default async function handler(req, res) {
+  /* /api/llm arrives here through a rewrite (see api/_lib/llm.js for why). */
+  if (/[?&]relay=1\b/.test(req.url || '') || /^\/api\/llm\b/.test(req.url || ''))
+    return (await import('./_lib/llm.js')).default(req, res);
   const hasDb = configured();
   let dbOk = false, why = null, content = null;
   if (hasDb) {
@@ -21,7 +24,7 @@ export default async function handler(req, res) {
   send(res, 200, {
     ok: true, deployment: role(), database: hasDb, dbReady: dbOk, dbError: why,
     signIn: !!(process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET),
-    /* The notebook and playground relay (api/llm.js): always here when the API
+    /* The notebook and playground relay (api/_lib/llm.js): always here when the API
        is, and whether this deployment holds a key of its own for signed-in readers. */
     llm: { relay: true, siteKey: !!process.env.LLM_API_KEY,
       siteBase: (process.env.LLM_BASE || 'https://integrate.api.nvidia.com/v1').replace(/\/+$/, '') },

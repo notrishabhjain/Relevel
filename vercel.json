@@ -79,5 +79,11 @@
       "path": "/api/nudge?run=1&slot=backup",
       "schedule": "0 7 * * 1-5"
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/llm",
+      "destination": "/api/health?relay=1"
+    }
   ]
 }

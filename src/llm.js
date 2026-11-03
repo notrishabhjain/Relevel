@@ -120,10 +120,10 @@ function adapt(path, body, pl){
   return { body:b, swapped: want && b.model !== want ? want + ' → ' + b.model : '' };
 }
 
-function headers(pl){
+function headers(pl, path){
   const hd = { 'content-type':'application/json' };
   if(pl.key) hd.authorization = 'Bearer ' + pl.key;
-  if(pl.mode === 'site'){ hd['x-aifz'] = '1'; hd['x-llm-base'] = pl.base; }
+  if(pl.mode === 'site'){ hd['x-aifz'] = '1'; hd['x-llm-base'] = pl.base; if(path) hd['x-llm-path'] = path; }
   return hd;
 }
 function urlFor(pl, path){ return pl.mode === 'site' ? pl.relay + '?path=' + encodeURIComponent(path) : pl.base + '/' + path; }
@@ -151,7 +151,7 @@ async function request(path, body, method){
   const t0 = performance.now();
   let res, json = null;
   try{
-    res = await fetch(urlFor(pl, path), { method:method || (body ? 'POST' : 'GET'), headers:headers(pl),
+    res = await fetch(urlFor(pl, path), { method:method || (body ? 'POST' : 'GET'), headers:headers(pl, path),
       body:a.body ? JSON.stringify(a.body) : undefined, credentials:'same-origin' });
     try{ json = await res.json(); }catch(e){}
   }catch(e){ return { ok:false, status:0, error:explain(0, null, pl), plan:pl }; }
