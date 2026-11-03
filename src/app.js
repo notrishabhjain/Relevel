@@ -1058,6 +1058,12 @@ function renderChapter(c){
   if(ev){ ev.insertBefore(sectionHead(c.num+'.'+n++,'What this chapter produces'),ev.firstChild);
     w.appendChild(ev); }
 
+  /* Going deeper: where this chapter's idea decided something in the real
+     world, and the research it comes from (src/data/reading.js). Last before
+     closing the sitting, so it is there when you want more and not before. */
+  const rd=readingBlock(c.id);
+  if(rd){ rd.insertBefore(sectionHead(c.num+'.'+n++,'Go deeper: the real world and the research'),rd.firstChild); w.appendChild(rd); }
+
   // Close the sitting
   const cs=h('section',{class:'part',id:'close'});
   if(!plain){
@@ -1102,6 +1108,25 @@ function renderChapter(c){
       text:'← '+CH[CH.indexOf(c)-1].num+'. '+T(CH[CH.indexOf(c)-1].title)}):h('span'),
     next?h('a',{href:'#/ch/'+next.id,text:next.num+'. '+T(next.title)+' →'}):h('span')]));
   return w;
+}
+
+function readingBlock(id){
+  const list=(window.READING||{})[id];
+  if(!list||!list.length) return null;
+  const hi=S.lang==='hi';
+  const sec=h('section',{class:'part reading',id:'reading'});
+  const group=(kind,title)=>{
+    const rows=list.filter(r=>r[0]===kind);
+    if(!rows.length) return;
+    sec.appendChild(h('h3',{class:'rdh',text:T(title)}));
+    sec.appendChild(h('ul',{class:'rdlist'},rows.map(([,t,who,url,why,whyHi])=>h('li',{},[
+      h('a',{href:url,target:'_blank',rel:'noopener',text:t}),
+      h('span',{class:'rdwho',text:' · '+who}),
+      h('p',{text:hi&&whyHi?whyHi:why})]))));
+  };
+  group('case','In the real world');
+  group('paper','Research');
+  return sec;
 }
 
 /* A chapter gets a notebook of its own if it has code to run, stands on the

@@ -95,7 +95,9 @@ function WORKER(){
       importScripts(INDEX+'pyodide.js');
       py=await loadPyodide({indexURL:INDEX});
       py.setStdout({batched:s=>post(cur,{kind:'out',stream:'stdout',text:s+'\n'})});
-      py.setStderr({batched:s=>post(cur,{kind:'out',stream:'stderr',text:s+'\n'})});
+      /* A line the stand-ins print to explain themselves starts with \x01 and
+         is shown as a note, not in error red. */
+      py.setStderr({batched:s=>post(cur,{kind:'out',stream:s.charCodeAt(0)===1?'note':'stderr',text:(s.charCodeAt(0)===1?s.slice(1):s)+'\n'})});
       try{ py.setStdin({stdin:()=>{ throw new Error('input() cannot ask a question inside this page. Put the value in a variable instead.'); }}); }catch(e){}
       try{
         py.FS.mkdirTree(files);
@@ -120,7 +122,7 @@ function WORKER(){
       if(!m){ out.push(line); continue; }
       out.push('');
       const cmd=m[1].trim();
-      const pip=cmd.match(/^pip3?\s+install\s+(.*)$/);
+      const pip=cmd.match(/^pip3?\s+(?:-\S+\s+)*install\s+(.*)$/);
       if(!pip){ post(id,{kind:'out',stream:'stderr',text:'Skipped “'+line.trim()+'”: shell commands do not run inside this page.\n'}); continue; }
       const pk=pip[1].split(/\s+/).filter(x=>x&&!x.startsWith('-'));
       for(const p of pk){
@@ -144,7 +146,14 @@ function WORKER(){
     /* Keep the part of the traceback that is about your code. */
     const lines=String(msg).split('\n');
     const i=lines.findIndex(l=>/File "<exec>"/.test(l));
-    return (i>0?['Traceback (most recent call last):'].concat(lines.slice(i)):lines).join('\n').trim();
+    const own=i>0?lines.slice(i):lines;
+    /* and drop the frames inside this page's own stand-ins ("<string>") */
+    const kept=[];
+    for(let k=0;k<own.length;k++){
+      if(/^\s*File "<string>"/.test(own[k])){ if(own[k+1]&&/^\s{4,}\S/.test(own[k+1])&&!/^\s*File /.test(own[k+1])) k++; continue; }
+      kept.push(own[k]);
+    }
+    return (i>0?['Traceback (most recent call last):'].concat(kept):kept).join('\n').trim();
   }
   async function run(id, m){
     cur=id;
@@ -236,7 +245,7 @@ def _wrap(v):
 _told = set()
 def _note(msg):
     if msg in _told: return
-    _told.add(msg); print("[" + msg + "]", file=sys.stderr)
+    _told.add(msg); print("\x01[" + msg + "]", file=sys.stderr)
 
 def _call(client, path, body):
     from js import portal_llm
@@ -485,11 +494,27 @@ function order(ch,i){
   const ids=(window.CHAPTERS||[]).map(c=>c.id);
   const n=ids.indexOf(ch); return (n<0?9999:n)*1000+(i||0);
 }
-function remember(key,src,ch,i){ S().ran[key]={src,ch,o:order(ch,i),at:Date.now()}; store().save(); }
-function ranList(){ return Object.entries(S().ran).map(([k,v])=>Object.assign({key:k},v)).sort((a,b)=>a.o-b.o); }
+/* Every version of a cell that ran without an error, once each, newest last:
+   replaying them in the order they ran rebuilds the session most faithfully,
+   even when one cell was reused for many things. */
+const hsh=s=>{ let x=5381; for(let i=0;i<s.length;i++) x=((x<<5)+x+s.charCodeAt(i))|0; return (x>>>0).toString(36); };
+function remember(key,src,ch,i){
+  const ran=S().ran;
+  ran[key+'#'+hsh(src)]={key,src,ch,o:order(ch,i),at:Date.now()};
+  const all=Object.keys(ran);
+  if(all.length>300) all.sort((a,b)=>ran[a].at-ran[b].at).slice(0,all.length-300).forEach(k=>delete ran[k]);
+  store().save();
+}
+function ranHistory(){ return Object.values(S().ran).filter(v=>v&&v.src).sort((a,b)=>a.at-b.at); }
+/* The latest version of each cell, in course order: for the export. */
+function ranList(){
+  const latest={};
+  ranHistory().forEach(v=>{ latest[v.key||v.src]=v; });
+  return Object.values(latest).sort((a,b)=>a.o-b.o||a.at-b.at);
+}
 
 async function restore(mode, out){
-  const list=ranList();
+  const list=mode==='defs'?ranHistory():ranList();
   if(!list.length){ out&&out('note','Nothing to restore yet: run a cell first.\n'); return {ok:true}; }
   let n=0, skipped=0;
   for(const c of list){
@@ -610,7 +635,7 @@ function bar(opts){
   const files=opts.files?filesPanel():null;
   return h('div',{class:'pkbar'},[
     h('div',{class:'pkrow'},[h('span',{class:'pktag',text:T('Notebook')}),st,conn,h('span',{class:'pygrow'}),
-      n?h('span',{class:'dim pkn',text:n+' '+T(n===1?'cell run before':'cells run before')}):null,rDefs,rAll,rStop]),
+      n?h('span',{class:'dim pkn',text:n+' '+T(n===1?'cell run before':'cells run before')}):null,h('span',{class:'pkbtns'},[rDefs,rAll,rStop])]),
     h('p',{class:'pknote',html:opts.note||T('Every code block on this page runs here. Press <strong>Run</strong> (or Shift+Enter) on each one, top to bottom. You can edit the code first; <em>Undo edits</em> puts the chapter’s version back. One Python session runs the whole course, so what you define in one chapter is there in the next. After a reload, press <strong>Restore</strong>.')}),
     files,log]);
 }

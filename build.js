@@ -43,6 +43,7 @@ const js = [
   'src/data/items7.js',
   'src/data/work.js',
   'src/data/exercises5.js',
+  'src/data/reading.js',
   /* The Hinglish reading layer. Keyed on the English line, so these load after
      the content they translate and are merged into one lookup. */
   'src/data/hing-glossary.js',

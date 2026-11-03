@@ -534,5 +534,12 @@ Object.assign(window.HING = window.HING || {}, {
   'Pick one small job, such as “does this message contain a phone number?”. Write ten short messages and the right answer for each. Run them in the Playground’s “Mark a test set” and mark each answer. Your score out of ten is your first evaluation.':
     'Ek chhota kaam chuniye, jaise “kya is message mein phone number hai?”. Das chhote messages aur har ek ka sahi jawaab likhiye. Unhe Playground ke “Mark a test set” mein chalaiye aur har jawaab mark kijiye. Das mein se aapka score aapka pehla evaluation hai.',
   'Do the setup page, one section at a time: get a free key, paste it in, and run the test call. You know what the key is for now. If a step fails, the page says why; copy the exact error into your notes.':
-    'Setup page ek-ek section karke kijiye: ek free key laaiye, use paste kijiye, aur test call chalaiye. Ab aap jaante hain ki key kis liye hai. Agar koi step fail ho, toh page wajah batata hai; exact error apne notes mein copy kar lijiye.'
+    'Setup page ek-ek section karke kijiye: ek free key laaiye, use paste kijiye, aur test call chalaiye. Ab aap jaante hain ki key kis liye hai. Agar koi step fail ho, toh page wajah batata hai; exact error apne notes mein copy kar lijiye.',
+  /* going deeper (src/data/reading.js) */
+  'Go deeper: the real world and the research':
+    'Aur gehraai mein: asli duniya aur research',
+  'In the real world':
+    'Asli duniya mein',
+  'Research':
+    'Research'
 });

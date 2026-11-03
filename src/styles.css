@@ -1387,3 +1387,14 @@ figure.embed figcaption{display:flex;gap:.6rem;justify-content:space-between;fle
 .pgpair{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
 @media (max-width:760px){.pgpair{grid-template-columns:1fr}}
 .pgctl label input.mono{width:16rem;max-width:60vw}
+/* going deeper */
+.reading .rdh{font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:1.1rem 0 .4rem}
+ul.rdlist{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule-soft)}
+ul.rdlist li{padding:.6rem 0;border-bottom:1px solid var(--rule-soft)}
+ul.rdlist a{font-weight:500}
+ul.rdlist .rdwho{font-size:.78rem;color:var(--muted)}
+ul.rdlist p{margin:.25rem 0 0;font-family:var(--serif);font-size:.95rem;line-height:1.55;color:var(--ink-2)}
+.pkbtns{display:inline-flex;gap:.35rem;flex-wrap:nowrap}
+.llmstat{flex-wrap:nowrap}
+.llmstat > span:nth-child(2){flex:1;min-width:0}
+.llmstat a{flex:none}
