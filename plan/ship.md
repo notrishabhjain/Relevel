@@ -30,13 +30,13 @@ Every week on the route is a few steps in order: a book chapter, a playbook chap
 
 ## The one-time setup {#setup}
 
-**Week 6. Ships:** a working notebook and API key. **Time:** about 45 minutes, once.
+**Week 6. Ships:** a model connected and the test call working. **Time:** about 15 minutes, once.
 
-The setup lives in one place: the [setup page in the playbook](../app/#/setup). It walks you through a free Google Colab notebook and a free API key, one section at a time. By Week 6 you have read why a program needs a key and what it costs to use one, so the steps will make sense.
+The setup lives in one place: the [setup page in the playbook](../app/#/setup). You get a free API key, paste it in once, and press the test button. The code in every chapter then runs right there in the page, with nothing installed and no other window. By Week 6 you have read why a program needs a key and what it costs to use one, so the steps will make sense.
 
 1. Do one section at a time. Stop after any section if the day’s ten minutes are up.
-2. If a step fails, copy the exact error message and paste it to a chat assistant, with the step you were on.
-3. Keep the key in Colab’s Secrets panel. Never paste it into a notebook cell or a chat.
+2. If a step fails, the page says why. Copy the exact error message into your notes, with the step you were on.
+3. The key stays in the setup page, in your browser. Never paste it into a code cell or a chat.
 
 **Done when:** the setup page’s test cell prints `setup works`.
 

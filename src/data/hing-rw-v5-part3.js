@@ -23,8 +23,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Apne judge ko known biases ke liye test kar paana, jaise lambe jawaab ko pasand karna.',
   'Before you start':
     'Shuru karne se pehle',
-  'Open a new notebook called <code>chapter-14</code>. Bring your structured RAG output from Chapter 8.5 and your Chapter 6 answer key.':
-    '<code>chapter-14</code> naam ka ek naya notebook kholiye. Chapter 8.5 ka apna structured RAG output aur Chapter 6 ka answer key saath rakhiye.',
   'In the last chapter you looked at what can go wrong when a system reads text it shouldn’t trust. Now we turn to a plainer question: how do you know whether your system’s answers are any good?':
     'Pichhle chapter mein aapne dekha ki jab koi system aisa text padhta hai jis par bharosa nahi karna chahiye, toh kya galat ho sakta hai. Ab hum ek seedha sawaal lete hain: aapko kaise pata chalega ki aapke system ke jawaab achhe hain ya nahi?',
   'You already know one way. In Chapter 6 you wrote ten questions and their correct answers, and then graded the system yourself. That is still the most reliable way to know whether something works.':
@@ -81,16 +79,12 @@ Object.assign(window.HING = window.HING || {}, {
     'Ise apne Chapter 6 ke das jawaabon par chalaiye. Aakhri check dekhta hai ki quote source mein word-for-word maujood hai ya nahi. Yeh har release par invented citations ko free mein pakad leta hai, isliye yeh course ka sabse sasta quality control hai.',
   'A red box saying something <em>is not defined</em>':
     'Ek red box jisme likha ho ki kuch <em>is not defined</em>',
-  'You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Scroll to the top, run the warm-up cells in order, then come back here. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.':
-    'Aapne aisa cell chalaya jise kisi pichhle cell ki cheez chahiye, lekin woh pichhla cell abhi chala hi nahi. Upar scroll kijiye, warm-up cells ko order mein chalaiye, phir yahan wapas aaiye. Notebook mein sabse common dikkat yahi hai. Yeh sabke saath hota hai, aur iska matlab yeh nahi ki aapka code galat hai.',
   'An authentication error, or the number 401':
     'Authentication error, ya 401 number',
   'Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.':
     'Aapki key code tak nahi pahunchi. Key load karne wala cell dobara chalaiye, aur check kijiye ki jis naam se aapne key save ki thi, woh <a href="#/setup">Setup</a> se bilkul match kare. Capital letters ka bhi farq padta hai.',
   'A message about a module not being found':
     'Module not found jaisa koi message',
-  'The install cell hasn’t run in this session. A notebook forgets what it installed whenever it disconnects, and it disconnects after you leave it alone for a while. Run the install cell again and carry on.':
-    'Is session mein install wala cell nahi chala. Notebook disconnect hote hi apne installs bhool jaata hai, aur kuch der akela chhodne par woh disconnect ho jaata hai. Install wala cell dobara chalaiye aur aage badhiye.',
   'It runs, but your numbers are not the ones printed above':
     'Code chal gaya, lekin aapke numbers upar wale numbers se alag hain',
   'That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.':
@@ -159,8 +153,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek automatic marker banaiye, aur check kijiye ki us par kitna bharosa karein',
   'Marking every output by hand doesn’t scale, so you’ll want a model to mark the tool’s output. But a marker nobody has checked is not a measurement. In this chapter you learned the three ways to grade an answer. You also learned that a judge must be tested against your own marking and against its known biases. Now you’ll build a marker for the tool’s cleaned text, and check it.':
     'Har output ko haath se mark karna scale nahi karta, isliye aap chahenge ki ek model tool ke output ko mark kare. Lekin jis marker ko kisi ne check nahi kiya, woh measurement nahi hai. Is chapter mein aapne jawaab grade karne ke teen tareeke seekhe. Aapne yeh bhi seekha ki judge ko aapki apni marking ke against aur uske known biases ke against test karna padta hai. Ab aap tool ke cleaned text ke liye ek marker banayenge, aur use check karenge.',
-  'Your <code>chapter-14</code> notebook, to build and run the marker. Mark the fifty outputs by hand as well, and write the agreement figure in the notes box below.':
-    'Aapka <code>chapter-14</code> notebook, marker banane aur chalane ke liye. Pachaas outputs ko haath se bhi mark kijiye, aur agreement ka figure neeche notes box mein likhiye.',
   'Write the marking rules a careful person would use for one question: “Is the cleaned text safe and still readable?” Spell out what counts as safe (every personal detail removed or masked) and what counts as readable (the sentence still makes sense).':
     'Ek sawaal ke liye woh marking rules likhiye jo ek dhyaan se kaam karne wala insaan use karega: “Kya cleaned text safe hai aur ab bhi padhne laayak hai?” Saaf likhiye ki safe ka matlab kya hai (har personal detail hata di gayi ya mask kar di gayi) aur padhne laayak ka matlab kya hai (sentence ka matlab ab bhi banta hai).',
   'Run the free checks first. Does any text shaped like a PAN or an Aadhaar number still appear in the cleaned text? Does the text still have its main words? Count how many outputs fail these checks without needing a model.':
@@ -295,8 +287,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Samjha paana ki cascade kya hota hai aur woh aksar paise kyun bachata hai.',
   'Say what you would ask a vendor who quotes you a price per query.':
     'Yeh bata paana ki jo vendor aapko price per query batata hai, usse aap kya poochhenge.',
-  'Open a new notebook called <code>chapter-15</code>. You’ll need your Chapter 12 pipeline and your Chapter 6 answer key, because you’ll run both of them here.':
-    '<code>chapter-15</code> naam ka ek naya notebook kholiye. Aapko apni Chapter 12 wali pipeline aur Chapter 6 wali answer key chahiye hogi, kyunki dono ko aap yahan chalayenge.',
   'In the last chapter you read failures by hand to see why a feature goes wrong. This chapter asks a different question: what does the feature cost? You’ll need the answer sooner than you think.':
     'Pichhle chapter mein aapne failures ko haath se padha, taaki samajh sakein ki feature kahan galat jaata hai. Is chapter ka sawaal alag hai: feature ki cost kitni hai? Iska jawaab aapko jitna sochte hain usse jaldi chahiye hoga.',
   'At some point someone senior will ask what this feature costs at scale. “It depends on tokens” is not an answer. By the end of this chapter, you’ll have a real one.':
@@ -449,8 +439,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Measurements se cost model banaiye',
   'Many teams never ask, “What does this cost at real volume, and what happens to our margin if it succeeds?” In this chapter you learned the four things that make a simple cost estimate wrong. You also learned how a cascade, which tries the cheap option first and uses the expensive one only when needed, saves money. Now you’ll build the cost model for Bharat Privacy Guard from your own measurements, not from guesses.':
     'Bahut si teams kabhi yeh sawaal nahi poochhtin: “Asli volume par iski cost kya hai, aur agar yeh chal gaya toh hamare margin ka kya hoga?” Is chapter mein aapne woh chaar cheezein seekhi jinse simple cost estimate galat ho jaata hai. Aapne yeh bhi seekha ki cascade, jo pehle sasta option try karta hai aur expensive wala tabhi use karta hai jab zaroorat ho, paise kaise bachata hai. Ab aap Bharat Privacy Guard ka cost model banayenge, apne measurements se, andaaze se nahi.',
-  'Your <code>chapter-15</code> notebook, to measure the tokens and build the cascade. Write the three cost numbers in the notes box below.':
-    'Aapka <code>chapter-15</code> notebook, tokens measure karne aur cascade banane ke liye. Teen cost numbers neeche notes box mein likhiye.',
   'Choose the feature: a bank chat in which every customer message is checked. Measure the tokens your tool uses on twenty realistic messages from your answer key, and take the average.':
     'Feature chuniye: ek bank chat jisme har customer message check hota hai. Apni answer key ke 20 realistic messages par apna tool kitne tokens use karta hai, yeh measure kijiye, aur average nikaliye.',
   'Add the things people forget: retries, the policy text sent every time, the conversation history, and requests that fail and are sent again.':
@@ -493,8 +481,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Yeh bata paana ki jo vendor kehta hai ki woh sabhi document formats support karta hai, usse aap kya poochhenge.',
   'Explain why voice changes the architecture, not just the interface.':
     'Samjha paana ki voice sirf interface nahi, architecture bhi badal deta hai.',
-  'Open a new notebook called <code>chapter-16</code>. Find one page from your own documents that contains a real table, such as financial figures, eligibility bands or a rate card.':
-    '<code>chapter-16</code> naam ka ek naya notebook kholiye. Apne documents mein se ek aisa page dhoondhiye jisme asli table ho, jaise financial figures, eligibility bands ya rate card.',
   'Back in Chapter 3, you pasted your document’s text into a file. That quietly assumed the text already existed. In most organisations, a lot of it doesn’t. This chapter is about what happens when it has to be made from pages, and why that step so often goes wrong.':
     'Chapter 3 mein aapne apne document ka text ek file mein paste kiya tha. Us waqt maan liya gaya tha ki text pehle se maujood hai. Zyadatar organisations mein aisa nahi hota. Yeh chapter is baare mein hai ki jab text pages se banana padta hai toh kya hota hai, aur yeh step aksar galat kyun jaata hai.',
   'Real documents are pages, not text':
@@ -615,8 +601,6 @@ Object.assign(window.HING = window.HING || {}, {
     'ID cards ki photos par tool ko test kijiye',
   'Many personal details reach a website as photos, not as typed text. Reading text out of an image makes mistakes, and no error message warns you. In this chapter you learned why tables and scans are the weakest part of a document pipeline, and why no metric catches the problem. Now you’ll test the tool on text read from images of ID cards.':
     'Bahut si personal details website tak typed text ki tarah nahi, photos ki tarah pahunchti hain. Image se text padhne mein galtiyan hoti hain, aur koi error message aapko warn nahi karta. Is chapter mein aapne seekha ki tables aur scans document pipeline ka sabse kamzor hissa kyun hain, aur koi metric is problem ko kyun nahi pakadta. Ab aap ID cards ki images se padhe gaye text par tool ko test karenge.',
-  'Your <code>chapter-16</code> notebook, to read the images and compare. Write the error rate in the notes box below.':
-    'Aapka <code>chapter-16</code> notebook, images padhne aur compare karne ke liye. Error rate neeche notes box mein likhiye.',
   'Collect ten images. Make them yourself: mock ID cards with made-up details, printed or handwritten and photographed. Never use a photo of a real person’s card.':
     '10 images jama kijiye. Khud banaiye: made-up details wale mock ID cards, print kiye hue ya haath se likhe hue, aur unki photo kheenchiye. Kisi asli insaan ke card ki photo kabhi use mat kijiye.',
   'Turn each image into text with an OCR tool (software that reads text from pictures). Compare the text with the original and mark every reading mistake.':

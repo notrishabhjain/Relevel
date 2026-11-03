@@ -54,7 +54,8 @@ async function probe(){
     const r = await api('/api/health');
     available = !!(r.ok && r.body && r.body.ok);
     if(available) available = { signIn: !!r.body.signIn,
-      database: !!r.body.database, dbReady: !!r.body.dbReady, dbError: r.body.dbError || null };
+      database: !!r.body.database, dbReady: !!r.body.dbReady, dbError: r.body.dbError || null,
+      llm: r.body.llm || null };
   }catch(e){ available = false; }
   return available;
 }

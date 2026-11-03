@@ -89,6 +89,9 @@ const js = [
   ...fs.readdirSync(p.join(R, 'src/data')).filter(f => /^hing-rw-.*\.js$/.test(f)).sort()
     .map(f => 'src/data/' + f),
   'src/remote.js',
+  'src/llm.js',
+  'src/pyrun.js',
+  'src/playground.js',
   'src/content.js',
   'src/studio.js',
   'src/labs.js',

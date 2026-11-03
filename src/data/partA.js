@@ -52,7 +52,7 @@ window.PART6 = [
     ['p','Four things will make the course easier. Here they are.'],
     [
       'l',
-      ['<strong>You don’t need to install anything.</strong> Everything runs in your browser. That includes the tools built into each chapter and a free Google notebook for the chapters with code. Setting up the notebook takes about twenty minutes, and you only do it once. The setup page walks you through every step.','<strong>Do the hands-on steps.</strong> Each chapter goes back and forth between an idea and a step that shows it, marked <em>Do this</em> or <em>Prove it now</em>. Most of the learning happens in those steps.','<strong>Do one chapter per sitting.</strong> Every chapter shows how long it should take. If one takes longer, that’s about the chapter, not about you. And if you stop while you still have some energy, it’s easier to come back tomorrow.','<strong>Your progress is saved.</strong> When you sign in, your progress is stored in your account. So you can read on your phone and carry on from the same place on your computer.']
+      ['<strong>You don’t need to install anything.</strong> Everything runs in your browser, on these pages. That includes the tools built into each chapter and the code in the chapters that have code: it runs right here, with a <strong>Run</strong> button under each block. The one thing you bring from outside is a free API key, which takes about ten minutes to get, once. The setup page walks you through it.','<strong>Do the hands-on steps.</strong> Each chapter goes back and forth between an idea and a step that shows it, marked <em>Do this</em> or <em>Prove it now</em>. Most of the learning happens in those steps.','<strong>Do one chapter per sitting.</strong> Every chapter shows how long it should take. If one takes longer, that’s about the chapter, not about you. And if you stop while you still have some energy, it’s easier to come back tomorrow.','<strong>Your progress is saved.</strong> When you sign in, your progress is stored in your account. So you can read on your phone and carry on from the same place on your computer.']
     ],
     ['h','Plan for the hard days'],
     ['p','Even with a good plan, some days will be harder than others.'],
@@ -933,12 +933,12 @@ window.PART6 = [
   capstone:{
     title:'Write the requirements, test a first prototype and plan two sprints',
     brief:'Now you describe exactly what version 1 of the developer kit must do, show a rough version to real people, and plan the work. In this chapter you learned to write a requirements document (a PRD) that starts from the problem, to choose how detailed a prototype should be, and to plan sprints that include uncertain work. Here you do all three.',
-    where:'Written for the requirements and the plan, plus a no-code prototype built in Google AI Studio or Lovable. No Python needed.',
+    where:'Written for the requirements and the plan, plus a no-code prototype. The <a href="#/playground">Playground</a> in this app is enough for a first version; Google AI Studio or Lovable can turn it into a clickable screen. No Python needed.',
     steps:[
       'Write a requirements document (a PRD) with these headings: the problem and the evidence for it; who it is for; what is in version 1; what is not in version 1; what the user sees in each situation, including when the tool is unsure or wrong; how the AI behaves; how you will test it; how you will measure success; how it will be released; security; and open questions.',
       'In “what is in version 1” and “what is not in version 1”, draw the line clearly. Say which kinds of writing, which IDs, and which of the kit, the gateway and the extension you will really build.',
       'Write six user stories in the form “As a [who], I want [what], so that [why]”. At least two must describe a failure. For example: “As a developer, I want to be told when the tool is unsure, so that I can ask the user.”',
-      'Build a clickable prototype in Google AI Studio or Lovable. It is a page with a text box, a button and a result area that shows the text with personal details replaced. The detection can be fake at this stage, because you are testing the screen, not the accuracy.',
+      'Build a clickable prototype. It is a page with a text box, a button and a result area that shows the text with personal details replaced. The quickest first version is the <a href="#/playground">Playground</a> in this app: the system prompt is your detector, and the message box is the text box. For a screen you can hand to a user, Google AI Studio or Lovable will generate one. The detection can be fake at this stage, because you are testing the screen, not the accuracy.',
       'Ask three real people to try it. Give each the same task, such as “paste this message and tell me what you think happened to it”, and do not help them. Write down where each person got stuck.',
       'Plan two one-week sprints in a spreadsheet or in Jira. For each story, write what counts as done, what it depends on, and what you will demonstrate at the end. After the first sprint, hold a short review and write down what you will change.'
     ],
@@ -959,7 +959,7 @@ window.PART6 = [
      'Check for criteria like these. “If no theme has more than five tickets, say so instead of inventing one.” “If the model times out, show last week’s report with a notice.” “Tickets in other languages are grouped or flagged, never dropped silently.” If criteria like these are missing, the product will fail in production in ways nobody planned for.']
   ],
   story:[
-    ['c','Before you start','This chapter takes about 14 hours, spread across a week or more because of the user tests. You need a free account on Figma, Lovable or Google AI Studio for the prototype, and Jira (free tier) or a spreadsheet for the sprint plan. Core chapter 18 goes deeper on AI PRDs. This chapter covers the product-management basics.'],
+    ['c','Before you start','This chapter takes about 14 hours, spread across a week or more because of the user tests. For the prototype, the <a href="#/playground">Playground</a> in this app is enough to start; a free account on Figma, Lovable or Google AI Studio gives you a nicer screen. For the sprint plan you need Jira (free tier) or a spreadsheet. Core chapter 18 goes deeper on AI PRDs. This chapter covers the product-management basics.'],
 
     ['p','In A6 you made a plan: a roadmap, goals with numbers, and a map of the people involved. A plan still isn’t something an engineer can start building on Monday. For that, the first item on your roadmap has to be described in detail.'],
     ['p','This chapter shows you how. You’ll write the description, cut the work into small pieces, build a rough prototype, and watch real people use it.'],
@@ -1046,7 +1046,7 @@ window.PART6 = [
     ['tb',['Fidelity','Tool','Good for testing'],[
       ['Low','Paper sketch','Whether the flow makes sense'],
       ['Medium','Clickable mock-up in Figma','Whether users can find their way around'],
-      ['High','Working prototype in Lovable or Google AI Studio','Whether users trust and act on the real AI output']
+      ['High','Working prototype: the Playground, Lovable or Google AI Studio','Whether users trust and act on the real AI output']
     ]],
     ['c','Watch out','For AI features, use real model output in your prototype, not perfect made-up examples. Users react differently to answers that are sometimes wrong, and that reaction is exactly what you need to learn about.'],
     ['p','Then you run a <strong>usability test</strong>. Give the user a task, not instructions. For example: “It is Monday morning. Find the biggest new problem from last week.” Then watch and stay quiet. Note where they hesitate, click the wrong thing or look confused.'],
@@ -1080,12 +1080,12 @@ window.PART6 = [
   capstone:{
     title:'Run three experiments on how models treat Indian text',
     brief:'Before you build, see for yourself how AI models behave on the kind of text your tool must handle. In this chapter you learned what tokens and attention are, and how to choose between prompting, retrieval and fine-tuning. Here you run three small experiments on English, Hindi and Hinglish sentences and write down what you saw.',
-    where:'A free tool (the Transformer Explainer website) or, if you prefer, a Colab notebook for the attention demo. Write what you saw in the notes box below.',
+    where:'The attention viewer embedded in this chapter, for the attention demo. Write what you saw in the notes box below.',
     steps:[
-      'Take starter sentences 1, 2 and 3 from the project page. They are the same kind of message in English, Hindi and Hinglish. Open a free attention viewer (the Transformer Explainer website, or the notebook shown in this chapter) and paste each sentence in turn.',
+      'Take starter sentences 1, 2 and 3 from the project page. They are the same kind of message in English, Hindi and Hinglish. Paste each one in turn into the attention viewer in this chapter.',
       'For each sentence, write down how many pieces the text is cut into. Also write down which words the model pays most attention to when it reaches the name and the number. Then write two or three lines on what differs between the three sentences, and one line on what this viewer does not prove.',
       'Fill in a table that compares three ways of making a model find personal details. You can just ask it with a prompt, let it look things up in your documents (retrieval), or train it further (fine-tuning). Compare them on freshness, private data, writing style, cost, speed and how easy they are to test. Fill it in for the third part of the tool, the context judge, and end with the option you choose and why.',
-      'Run starter sentences 1 to 8 through two different AI models, for example one on OpenRouter and one in Google AI Studio. Use the same instruction for both: “List every piece of personal information in this sentence.”',
+      'Run starter sentences 1 to 8 through two different AI models in the <a href="#/playground">Playground</a>. Fill in <em>Compare with</em>, so that each message goes to both. Use the same instruction for both: “List every piece of personal information in this sentence.”',
       'For each model, record how many items it found correctly, how many it missed, how long it took and what it cost. Note which sentences it missed, and whether most of the misses were Hindi or Hinglish.',
       'Write one paragraph. Which model would you start with for this project, and what is the one thing you would test next before trusting it?'
     ],
@@ -1106,7 +1106,7 @@ window.PART6 = [
      'Training changes the model’s weights permanently, for every future request. Context-time conditioning means putting instructions, examples or documents into one request. It shapes that one answer and is forgotten afterwards. Almost everything you do as an application builder is context-time.']
   ],
   story:[
-    ['c','Before you start','This chapter takes about twelve hours. You need a free Google account for Colab and Google AI Studio, and optionally a free OpenRouter account. The technical core, from Chapter 1 onwards, builds on everything here with hands-on code. So treat this chapter as the map before the journey.'],
+    ['c','Before you start','This chapter takes about twelve hours. You need nothing outside this site: the attention viewer is embedded in the chapter, and the <a href="#/playground">Playground</a> compares two models side by side once you have connected one on the <a href="#/setup">setup page</a>. The technical core, from Chapter 1 onwards, builds on everything here with hands-on code. So treat this chapter as the map before the journey.'],
 
     ['p','In A7 you turned a decision into specs, stories and a prototype. Throughout this part you’ve used AI models as tools. Now it is worth knowing a little about what is inside them.'],
     ['p','You don’t need the maths. You need enough to make good calls: when a model is the right tool, why it behaves the way it does, and which way of improving it to try first.'],
@@ -1133,14 +1133,17 @@ window.PART6 = [
     ['p','Each request has a limit on how many tokens it can include, counting both your input and the model’s answer. This limit is the <strong>context window</strong>. Everything the model uses to answer must fit inside it.'],
     ['p','Modern LLMs are built on an architecture called the <strong>transformer</strong>. Its key part is <strong>attention</strong>. For each token, the model works out which other tokens in the context matter most for predicting what comes next.'],
     ['p','Here is a classic example. Take the sentence <em>“The trophy did not fit in the suitcase because it was too big”</em>. You know that “it” means the trophy. Attention is how the model links “it” to “trophy” rather than to “suitcase”.'],
-    ['p','You can see attention for yourself. Open a new Colab notebook and run this.'],
-    ['code','!pip install -q transformers bertviz\n\nfrom transformers import AutoTokenizer, AutoModel\nfrom bertviz import head_view\n\nname = "bert-base-uncased"\ntok = AutoTokenizer.from_pretrained(name)\nmodel = AutoModel.from_pretrained(name, output_attentions=True)\n\ntext = "The trophy did not fit in the suitcase because it was too big."\ninputs = tok(text, return_tensors="pt")\noutputs = model(**inputs)\ntokens = tok.convert_ids_to_tokens(inputs["input_ids"][0])\n\nhead_view(outputs.attentions, tokens)'],
+    ['p','You can see attention for yourself, right here. The viewer below runs a small real model, GPT-2, inside your browser. Type a sentence, then pick a word to see which earlier words it pays attention to.'],
+    ['embed','https://poloclub.github.io/transformer-explainer/','Transformer Explainer · Polo Club of Data Science, Georgia Tech',680],
+    ['x','You’ll see your sentence split into tokens and passed through the model. Open an attention head to see which earlier tokens each token pays attention to. Try the trophy sentence and look at “it”: in some heads it links strongly to “trophy”.'],
+    ['p','On your own computer, with PyTorch installed, the same picture comes from a few lines of code. PyTorch cannot run inside a web page, so this block has no Run button here.'],
+    ['code','!pip install -q transformers bertviz\n\nfrom transformers import AutoTokenizer, AutoModel\nfrom bertviz import head_view\n\nname = "bert-base-uncased"\ntok = AutoTokenizer.from_pretrained(name)\nmodel = AutoModel.from_pretrained(name, output_attentions=True)\n\ntext = "The trophy did not fit in the suitcase because it was too big."\ninputs = tok(text, return_tensors="pt")\noutputs = model(**inputs)\ntokens = tok.convert_ids_to_tokens(inputs["input_ids"][0])\n\nhead_view(outputs.attentions, tokens)','local'],
     ['x','You’ll see an interactive diagram with the sentence’s tokens on each side and lines between them. Click the token “it” and switch between layers. In some layers and heads, “it” links strongly to “trophy”.'],
     ['snag',[
       'An error saying a module was not found',
       'The install line did not run. Run the first cell again and wait for it to finish before you run the rest.',
       'The diagram does not appear',
-      'Some browsers block the interactive output. Try Chrome, or use the no-code option: the Transformer Explainer website (search for “Transformer Explainer Polo Club”). It shows attention in your browser without any setup.',
+      'Some browsers and office networks block the embedded viewer. Try Chrome, or open the viewer on its own with the link under it. It shows attention without any setup.',
       'It runs, but “it” does not link to “trophy” in the layer you picked',
       'That’s expected. Different layers and heads learn different patterns. Click through several layers. Seeing that the pattern appears in only some places is part of the lesson.'
     ]],
@@ -1158,7 +1161,7 @@ window.PART6 = [
     ['p','<strong>Inference</strong> is different. It means using the finished model to answer a request. Inference does not change the weights. When you use an AI API, you are paying for inference, and the charge is by the token.'],
     ['key','Training changes the model, permanently, for everyone. What you put in a prompt shapes one answer and is then forgotten.'],
     ['do','Prove it now',[
-      ['p','Open any chat assistant. Tell it a made-up fact, such as “My company’s refund window is 17 days.” Ask it about the refund window in the same conversation, then again in a brand-new conversation.'],
+      ['p','Open the <a href="#/playground">Playground</a> and tick <em>Keep the conversation</em>. Tell it a made-up fact, such as “My company’s refund window is 17 days.” Ask it about the refund window. Then press <em>Clear</em>, which starts a brand-new conversation, and ask again.'],
       ['x','It remembers within the conversation, but not in the new one. The fact was context, not training. Chapter 1.5 shows why: the app resends the conversation with every message.']
     ]],
 
@@ -1193,7 +1196,7 @@ window.PART6 = [
     ['p','Services such as <strong>OpenRouter</strong> let you call many models, closed and open, through one API. That makes it easy to compare them on your own test cases, which is the only comparison that counts.'],
     ['p','Two trends shape AI product strategy. Model prices keep falling, and good models become available from many providers. Both push value up to the application layer, where workflow, data and trust decide who wins.'],
     ['try',{id:'a8-compare',mins:15,min:120,rows:6,
-      task:'Run three of your capstone test cases through two different models (for example, one closed and one open-weight model on OpenRouter). Record which gave better answers, how long each took, and what each cost.',
+      task:'Run three of your capstone test cases through two different models, for example one closed and one open-weight model. The <a href="#/playground">Playground</a> does this side by side when you fill in <em>Compare with</em>. Record which gave better answers, how long each took, and what each cost.',
       ph:'Case, model A result, model B result, time, cost, verdict…',
       after:'A strong write-up is specific. For example: “Three ticket batches. Model A found the main theme in all three; model B missed the smallest theme twice. A took about 4 seconds per batch, B about 2. A cost about $0.012 per batch, B about $0.002.” Then the verdict: “For the weekly report, A is worth six times the cost, because a missed theme is the failure users fear most. For a real-time alert, speed matters more, so test B on the alert cases.” Three cases is enough to learn the method. The Build it task asks for ten.'}],
 

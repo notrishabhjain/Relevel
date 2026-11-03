@@ -44,7 +44,6 @@ Object.assign(window.HING = window.HING || {}, {
   'My data and backups': 'Mera data aur backups',
   'Edit this course': 'Is course ko edit kijiye',
   'Install on iPad or phone': 'iPad ya phone par install kijiye',
-  'Set up Colab + API key': 'Colab + API key set up kijiye',
   'Not yet — what to ignore for now': 'Abhi nahi — abhi kya chhodna hai',
   'Where you are': 'Aap kahan hain',
 

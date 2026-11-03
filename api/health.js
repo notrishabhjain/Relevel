@@ -21,6 +21,10 @@ export default async function handler(req, res) {
   send(res, 200, {
     ok: true, deployment: role(), database: hasDb, dbReady: dbOk, dbError: why,
     signIn: !!(process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET),
+    /* The notebook and playground relay (api/llm.js): always here when the API
+       is, and whether this deployment holds a key of its own for signed-in readers. */
+    llm: { relay: true, siteKey: !!process.env.LLM_API_KEY,
+      siteBase: (process.env.LLM_BASE || 'https://integrate.api.nvidia.com/v1').replace(/\/+$/, '') },
     content
   });
 }

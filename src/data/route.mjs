@@ -266,7 +266,8 @@ export const WEEKS = [
     "kind": "try",
     "title": "Ten test messages, marked",
     "mins": 15,
-    "what": "Pick one small job, such as “does this message contain a phone number?”. On paper, write ten short messages and the right answer for each. Give them to a chat assistant one at a time and mark each answer. Your score out of ten is your first evaluation."
+    "app": "#/playground#batch",
+    "what": "Pick one small job, such as “does this message contain a phone number?”. Write ten short messages and the right answer for each. Run them in the Playground’s “Mark a test set” and mark each answer. Your score out of ten is your first evaluation."
    },
    {
     "id": "t:review-4",
@@ -359,7 +360,7 @@ export const WEEKS = [
    "setup"
   ],
   "light": false,
-  "mins": 110,
+  "mins": 80,
   "steps": [
    {
     "id": "c:a6",
@@ -395,9 +396,9 @@ export const WEEKS = [
     "id": "t:setup",
     "kind": "try",
     "title": "The one-time setup",
-    "mins": 45,
+    "mins": 15,
     "app": "#/setup",
-    "what": "Do the setup page, one section at a time. You know what the key is for now. If a step fails, copy the exact error and ask a chat assistant."
+    "what": "Do the setup page, one section at a time: get a free key, paste it in, and run the test call. You know what the key is for now. If a step fails, the page says why; copy the exact error into your notes."
    },
    {
     "id": "t:review-6",

@@ -1292,3 +1292,98 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .hubreview .lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--verified)}
 .hubreview p{margin:0;font-size:.9rem;line-height:1.5}
 .hubreview .chk{display:inline-flex;gap:.45rem;align-items:center;font-size:.85rem;cursor:pointer}
+
+/* ============================================================
+   Hands-on in the page: the notebook (src/pyrun.js), the Connect
+   panel and the Playground (src/playground.js).
+   ============================================================ */
+.pycell{border:1px solid var(--rule);border-radius:var(--r);background:var(--raised);margin:1.2rem 0;overflow:hidden}
+.pyhead{display:flex;gap:.45rem;align-items:center;padding:.35rem .5rem .35rem .75rem;background:var(--sunk);
+  border-bottom:1px solid var(--rule);flex-wrap:wrap}
+.pytag,.pktag{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.pygrow{flex:1}
+.pystat{font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+.pystat.ok{color:var(--verified)} .pystat.bad{color:var(--red)} .pystat.busy{color:var(--amber)}
+.pyblank{font-family:var(--mono);font-size:.62rem;color:var(--amber);border:1px dashed var(--amber);border-radius:2px;padding:0 .35rem}
+textarea.pycode{display:block;width:100%;border:none;border-radius:0;background:var(--raised);color:var(--ink);
+  font-family:var(--mono);font-size:.795rem;line-height:1.62;padding:.8rem 1rem;resize:none;min-height:3.2rem;
+  tab-size:4;white-space:pre;overflow-x:auto;outline:none}
+textarea.pycode:focus{background:var(--paper);box-shadow:inset 2px 0 0 var(--verified)}
+.pyout{margin:0;border:none;border-top:1px dashed var(--rule);border-radius:0;background:var(--paper);
+  max-height:420px;overflow:auto;white-space:pre-wrap;word-break:break-word;font-size:.76rem}
+.pyout .py-stderr{color:var(--red)} .pyout .py-note{color:var(--muted)} .pyout .py-hint{color:var(--amber)}
+.pyout .py-value{color:var(--verified)}
+.pyout.good{border:1px solid var(--verified)} .pyout.bad{border:1px solid var(--red);color:var(--red)}
+.pkbar{border:1px solid var(--rule);border-left:2px solid var(--verified);border-radius:var(--r);background:var(--raised);
+  padding:.55rem .8rem;margin:1.4rem 0}
+.pkrow{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+.pkstat{font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+.pkstat.ready{color:var(--verified)} .pkstat.error{color:var(--red)} .pkstat.starting{color:var(--amber)}
+.pkconn{font-family:var(--mono);font-size:.7rem;text-decoration:none;border:1px solid var(--rule);border-radius:2px;padding:.05rem .4rem}
+.pkconn.ok{color:var(--verified);border-color:var(--verified)} .pkconn.warn{color:var(--amber);border-color:var(--amber)}
+.pkn{font-size:.72rem}
+.pknote{font-size:.84rem;color:var(--ink-2);margin:.45rem 0 0;line-height:1.55}
+.pklog{margin:.6rem 0 0;border:1px solid var(--rule-soft)}
+.pyfpanel{border-top:1px dashed var(--rule);margin-top:.6rem;padding-top:.5rem;font-size:.82rem}
+.pyfpanel code{font-size:.75rem}
+ul.pyfiles{list-style:none;margin:.5rem 0 0;padding:0}
+ul.pyfiles li{display:flex;gap:.6rem;align-items:center;padding:.3rem 0;border-bottom:1px solid var(--rule-soft);font-size:.82rem}
+.pyscratch .pycell{border-style:dashed}
+.pyadd,.pyexport{margin:.6rem 0 1.4rem}
+/* connect */
+.llmstat{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;font-size:.84rem;padding:.55rem .8rem;margin:1rem 0;
+  border:1px solid var(--rule);border-radius:var(--r);background:var(--raised)}
+.llmstat .dotx{width:.55rem;height:.55rem;border-radius:50%;background:var(--amber);flex:none}
+.llmstat.ok .dotx{background:var(--verified)} .llmstat.ok{border-color:var(--verified)}
+.llmstat.warn{border-color:var(--amber)}
+.llmstat a{margin-left:auto;font-family:var(--mono);font-size:.72rem}
+.connect{margin:1rem 0}
+.cstep{margin:1.2rem 0}
+.cstep h4{font-family:var(--sans);font-size:.9rem;margin:0 0 .55rem}
+.provlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:.5rem}
+.prov{display:flex;gap:.55rem;align-items:flex-start;border:1px solid var(--rule);border-radius:var(--r);
+  padding:.55rem .7rem;background:var(--raised);cursor:pointer;font-size:.84rem}
+.prov.on{border-color:var(--verified);box-shadow:inset 2px 0 0 var(--verified)}
+.prov input{width:auto;margin:.2rem 0 0;flex:none;accent-color:var(--verified)}
+.prov span{display:flex;flex-direction:column;gap:.15rem}
+.prov .tagx{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--verified)}
+.keyrow{display:flex;gap:.4rem;flex-wrap:wrap;align-items:center}
+.keyrow input{flex:1;min-width:200px}
+.small{font-size:.78rem}
+details.adv{margin:1rem 0;border:1px solid var(--rule-soft);border-radius:var(--r);padding:.5rem .8rem}
+details.adv summary{cursor:pointer;font-size:.84rem}
+.advf{display:grid;grid-template-columns:minmax(150px,.35fr) 1fr;gap:.6rem;align-items:center;margin:.4rem 0;font-size:.82rem}
+@media (max-width:620px){.advf{grid-template-columns:1fr;gap:.2rem}}
+/* playground */
+.pg .pglbl{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:.9rem 0 .3rem}
+.pg textarea.pgta{width:100%;font-family:var(--sans);font-size:.92rem}
+.pg textarea.pgta.mono{font-family:var(--mono);font-size:.8rem}
+.pgctl{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin:.8rem 0;font-size:.82rem}
+.pgctl label{display:flex;gap:.35rem;align-items:center}
+.pgctl input[type=checkbox]{width:auto;margin:0}
+.pgbtns{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;margin:.6rem 0 1rem}
+.pgconvo{display:flex;flex-direction:column;gap:.6rem}
+.pgmsg{border:1px solid var(--rule);border-radius:var(--r);padding:.6rem .8rem;background:var(--raised)}
+.pgmsg.user{background:var(--sunk);border-style:dashed}
+.pgmsg.bad{border-color:var(--red)}
+.pgrole{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.pgtext{white-space:pre-wrap;font-family:var(--serif);font-size:1rem;line-height:1.6;margin-top:.2rem}
+.pgmeta{font-size:.68rem;color:var(--muted);margin-top:.45rem}
+.pgh{font-family:var(--sans);font-size:1.05rem;margin:0 0 .4rem}
+.pgscore{margin:.6rem 0;font-size:.9rem}
+td.bad{color:var(--red)}
+details.pgpast{margin:1.6rem 0;border-top:1px solid var(--rule);padding-top:.6rem}
+details.pgpast summary{cursor:pointer;font-size:.84rem;color:var(--muted)}
+.pgpastrow{border-bottom:1px solid var(--rule-soft);padding:.6rem 0;font-size:.86rem}
+.prov,.pgctl label,label.advf{font-family:var(--sans);text-transform:none;letter-spacing:0;color:var(--ink);font-size:.84rem;margin:0}
+.pgctl input[type=range]{width:9rem} .pgctl select{width:auto;max-width:16rem}
+.advf span{color:var(--ink-2)}
+figure.embed{margin:1.4rem 0;border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;background:var(--raised)}
+figure.embed iframe{display:block;width:100%;border:0;background:#fff}
+figure.embed figcaption{display:flex;gap:.6rem;justify-content:space-between;flex-wrap:wrap;padding:.45rem .75rem;
+  font-size:.76rem;color:var(--muted);border-top:1px solid var(--rule)}
+.localcode{margin:1.2rem 0}
+.localcode pre{margin-top:.3rem}
+.pgpair{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+@media (max-width:760px){.pgpair{grid-template-columns:1fr}}
+.pgctl label input.mono{width:16rem;max-width:60vw}
