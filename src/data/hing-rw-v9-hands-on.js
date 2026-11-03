@@ -541,5 +541,78 @@ Object.assign(window.HING = window.HING || {}, {
   'In the real world':
     'Asli duniya mein',
   'Research':
-    'Research'
+    'Research',
+  /* Sheets and the recorder */
+  'Untitled sheet':
+    'Bina naam ki sheet',
+  'Sheet name':
+    'Sheet ka naam',
+  'Replace this sheet with the file?':
+    'Is sheet ki jagah file daal dein?',
+  'Row':
+    'Row',
+  'Column':
+    'Column',
+  'Last row':
+    'Aakhri row',
+  'Open a CSV':
+    'CSV kholiye',
+  'Download CSV':
+    'CSV download kijiye',
+  'The file to keep in your repository':
+    'Woh file jo aapke repository mein rahegi',
+  'Delete sheet':
+    'Sheet hataiye',
+  'Delete this sheet?':
+    'Yeh sheet hata dein?',
+  'Type a value, or a formula that starts with <code>=</code>: <code>=B2*C2</code>, <code>=SUM(D2:D20)</code>, <code>=AVERAGE(…)</code>, <code>=ROUND(B2/C2, 2)</code>. Enter moves down. Your code can read this sheet as':
+    'Koi value likhiye, ya <code>=</code> se shuru hone wala formula: <code>=B2*C2</code>, <code>=SUM(D2:D20)</code>, <code>=AVERAGE(…)</code>, <code>=ROUND(B2/C2, 2)</code>. Enter neeche le jaata hai. Aapka code is sheet ko is naam se padh sakta hai:',
+  'Sheets':
+    'Sheets',
+  'The spreadsheet work in the course happens here: the answer key, the cost model, the market size, the sprint plan. Sheets are saved with your progress, your notebook code can read them as CSV files, and <em>Download CSV</em> gives you the file for your repository.':
+    'Course ka spreadsheet wala kaam yahin hota hai: answer key, cost model, market size, sprint plan. Sheets aapki progress ke saath save hoti hain, aapka notebook code unhe CSV files ki tarah padh sakta hai, aur <em>CSV download kijiye</em> se aapko repository ke liye file mil jaati hai.',
+  'New sheet':
+    'Nayi sheet',
+  'Answer key from the ten starter sentences':
+    'Das starter sentences se answer key',
+  'rows':
+    'rows',
+  'No sheets yet. Start one above, or from a chapter that asks for a spreadsheet.':
+    'Abhi koi sheet nahi. Upar se ek shuru kijiye, ya kisi aise chapter se jo spreadsheet maangta hai.',
+  'Sheets: spreadsheets here':
+    'Sheets: spreadsheets yahin',
+  'Your sheet for this chapter':
+    'Is chapter ki aapki sheet',
+  'Record yourself':
+    'Khud ko record kijiye',
+  'Where this chapter says “spreadsheet”, use this one. It is saved with your progress, your notebook can read it, and <a href="#/sheets">Sheets</a> keeps all of them.':
+    'Jahan yeh chapter “spreadsheet” kahe, yeh wali use kijiye. Yeh aapki progress ke saath save hoti hai, aapka notebook ise padh sakta hai, aur <a href="#/sheets">Sheets</a> mein saari rehti hain.',
+  'Where this chapter says to answer out loud and record yourself, do it here. Keep an eye on the clock, then listen back.':
+    'Jahan yeh chapter zor se jawaab dekar khud ko record karne ko kahe, woh yahin kijiye. Ghadi par nazar rakhiye, phir sun kar dekhiye.',
+  'Open these ten as your answer key, in Sheets':
+    'In das ko apni answer key ki tarah Sheets mein kholiye',
+  'Kept in this browser. Open them by name: <code>open("policy.txt").read()</code>. Your <a href="#/sheets">Sheets</a> are in <code>sheets/</code>.':
+    'Isi browser mein rehti hain. Naam se kholiye: <code>open("policy.txt").read()</code>. Aapki <a href="#/sheets">Sheets</a> <code>sheets/</code> mein hain.',
+  'Record':
+    'Record',
+  'Stop':
+    'Stop',
+  'This browser cannot keep recordings.':
+    'Yeh browser recordings nahi rakh sakta.',
+  'Delete this take?':
+    'Yeh take hata dein?',
+  'Take':
+    'Take',
+  'This browser cannot record audio. Try Chrome, Edge or Safari.':
+    'Yeh browser audio record nahi kar sakta. Chrome, Edge ya Safari try kijiye.',
+  'The microphone was not allowed. Allow it for this site in the browser’s address bar, then press Record again.':
+    'Microphone ki ijaazat nahi mili. Browser ke address bar mein is site ko ijaazat dijiye, phir Record dobara dabaiye.',
+  'The take could not be saved in this browser. Download it before you leave.':
+    'Yeh take is browser mein save nahi ho paaya. Jaane se pehle use download kar lijiye.',
+  'Recording. Answer out loud, as you would in the room.':
+    'Recording chal rahi hai. Zor se jawaab dijiye, jaise interview ke kamre mein dete.',
+  'Saved. Listen back before you read the model answer.':
+    'Save ho gaya. Model answer padhne se pehle sun kar dekhiye.',
+  'Recordings stay in this browser. They are never uploaded and never part of the progress that syncs.':
+    'Recordings isi browser mein rehti hain. Woh kabhi upload nahi hotin aur sync hone wali progress ka hissa nahi hotin.'
 });

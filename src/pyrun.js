@@ -159,6 +159,8 @@ function WORKER(){
     cur=id;
     await boot();
     self.PLAN=JSON.stringify(m.plan||{});
+    /* your Sheets, as CSV files the code can open: sheets/<name>.csv */
+    if(m.sheets&&m.sheets.length){ try{ py.FS.mkdirTree(files+'/sheets'); m.sheets.forEach(f=>py.FS.writeFile(files+'/sheets/'+f.name,f.csv)); }catch(e){} }
     let code=await shell(m.code, id);
     try{ await py.loadPackagesFromImports(code.replace(/^\s*(import|from)\s+(requests|openai|google)\b.*$/gm,''),{messageCallback:()=>{},errorCallback:()=>{}}); }catch(e){}
     let value='';
@@ -486,7 +488,8 @@ async function run(code, out){
     warmed=r.ok;
     if(r.ok) out&&out('note','Python ready · '+(pl.ready?'connected to '+pl.name+(pl.mode==='site'?' through this site':' directly'):'not connected to a model yet (Connect page)')+'\n');
   }
-  return ask('run',{code,plan:pl},out);
+  const sheets=window.SHEETS?window.SHEETS.files():[];
+  return ask('run',{code,plan:pl,sheets},out);
 }
 
 /* ---------- remembering what you ran ---------- */
@@ -679,7 +682,7 @@ function filesPanel(){
   show.addEventListener('click',()=>{ body.hidden=!body.hidden; show.textContent=body.hidden?T('Show files'):T('Hide files'); if(!body.hidden) draw(); });
   return h('div',{class:'pyfpanel'},[
     h('div',{class:'pkrow'},[h('span',{class:'pktag',text:T('Files')}),
-      h('span',{class:'dim',html:T('Kept in this browser. Open them by name: <code>open("policy.txt").read()</code>')}),
+      h('span',{class:'dim',html:T('Kept in this browser. Open them by name: <code>open("policy.txt").read()</code>. Your <a href="#/sheets">Sheets</a> are in <code>sheets/</code>.')}),
       h('span',{class:'pygrow'}),msg,show,add,input]),body]);
 }
 

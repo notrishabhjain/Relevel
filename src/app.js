@@ -939,6 +939,26 @@ function renderChapter(c){
     w.appendChild(nb);
   }
 
+  /* A chapter that asks for a spreadsheet gets one here, and one that asks
+     you to answer out loud gets a recorder: no other tab, no phone app. */
+  const said=JSON.stringify([c.story,c.capstone,c.homework,c.plan]||'');
+  if(window.SHEETS && /\bspreadsheet/i.test(said)){
+    const sh=h('section',{class:'part',id:'sheet'});
+    sh.appendChild(sectionHead(c.num+'.'+n++,'Your sheet for this chapter'));
+    sh.appendChild(h('p',{class:'dim',style:'font-size:.87rem;margin:0 0 .8rem',
+      html:T('Where this chapter says “spreadsheet”, use this one. It is saved with your progress, your notebook can read it, and <a href="#/sheets">Sheets</a> keeps all of them.')}));
+    sh.appendChild(window.SHEETS.panel(c.id,c.num+' '+shortTitle(c.title)));
+    w.appendChild(sh);
+  }
+  if(window.RECORDER && /\brecord yourself\b/i.test(said)){
+    const rc=h('section',{class:'part',id:'record'});
+    rc.appendChild(sectionHead(c.num+'.'+n++,'Record yourself'));
+    rc.appendChild(h('p',{class:'dim',style:'font-size:.87rem;margin:0 0 .8rem',
+      text:T('Where this chapter says to answer out loud and record yourself, do it here. Keep an eye on the clock, then listen back.')}));
+    rc.appendChild(window.RECORDER.panel(c.id));
+    w.appendChild(rc);
+  }
+
   // Words
   if((c.words||[]).length){
   const words=h('section',{class:'part',id:'words'});
@@ -1771,6 +1791,9 @@ function pageProject(){
   let s6=sec('◈',sm.title,'samples');
   s6.appendChild(h('div',{class:'prose'},[h('p',{html:T(sm.intro)})]));
   s6.appendChild(tbl(sm.head,sm.rows,[false,true,false,true]));
+  /* The spreadsheet the project asks for, made here rather than in another tab. */
+  if(window.SHEETS) s6.appendChild(h('p',{},[h('button',{type:'button',class:'primary',onclick:()=>{ location.hash='#/sheets/'+window.SHEETS.newAnswerKey(); }},
+    T('Open these ten as your answer key, in Sheets'))]));
   w.appendChild(s6);
 
   const ak=P.answerKey;
@@ -2254,6 +2277,7 @@ function renderRail(){
     ['#/setup','\u2699','Connect a model'],
     ['#/workbench','\u25b7','Workbench: run code here'],
     ['#/playground','\u25cc','Playground: try prompts'],
+    ['#/sheets','\u25a6','Sheets: spreadsheets here'],
     ['#/later','\u25d4','Not yet \u2014 what to ignore for now'],
     ['#/install','\u25a2','Install on iPad or phone']]));
 
@@ -2839,7 +2863,7 @@ const ROUTES={'':()=>V().dashboard(),'library':pageHome,'start':pageStart,
 const CRUMB={'':'Home','library':'The course map','start':'Your route','skills':'My progress','analytics':'How I am doing over time',
   'exercises':'Longer exercises','processes':'Repeatable work routines','practice':'Practice','skill':'Skill',
   'data':'My data and backups','studio':'Edit this course','install':'Install on iPad or phone',
-  'language':'Language','setup':'Connect a model','workbench':'Workbench','playground':'Playground','appendix':'Worksheet, question bank, sources','project':'Your project',
+  'language':'Language','setup':'Connect a model','workbench':'Workbench','playground':'Playground','sheets':'Sheets','appendix':'Worksheet, question bank, sources','project':'Your project',
   'evidence':'Artifact vault','templates':'Fill-in templates','decisions':'Decision log','failures':'Failure log',
   'labs':'Interactive tools','glossary':'Glossary of every term','map':'Where AI systems break',
   'ledger':'My predictions vs reality','card':'Governance doc builder','vendor':'Questions to ask vendors',
@@ -2868,6 +2892,10 @@ function route(){
     const t=parts[1]?tplById(parts[1]):null;
     crumb='The workbench'+(t?' \u00b7 '+t.name:'');
     document.title='The workbench — AI From Zero';
+  } else if(parts[0]==='sheets'){
+    node=window.SHEETS.page(parts[1]?decodeURIComponent(parts[1]):null);
+    crumb='Sheets';
+    document.title='Sheets — AI From Zero';
   } else if(parts[0]==='skill'&&parts[1]){
     node=V().skillPage(parts[1]);
     crumb='Skill · '+parts[1];
@@ -2915,6 +2943,7 @@ function buildIndex(){
     {k:'page',t:'Setup: connect a model',h:'#/setup'},
     {k:'page',t:'Workbench: run Python in the page',h:'#/workbench'},
     {k:'page',t:'Playground: try prompts, mark a test set',h:'#/playground'},
+    {k:'page',t:'Sheets: the answer key, cost model and other spreadsheets',h:'#/sheets'},
     {k:'page',t:'The Labs',h:'#/labs'},{k:'page',t:'Red-Mark Map',h:'#/map'},
     {k:'page',t:'Prediction Ledger',h:'#/ledger'},{k:'page',t:'Notebook',h:'#/notebook'},
     {k:'page',t:'System Card',h:'#/card'},{k:'page',t:'Vendor Deck',h:'#/vendor'},

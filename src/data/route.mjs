@@ -1707,6 +1707,7 @@ export const WEEKS = [
     "kind": "try",
     "title": "Three practice interviews",
     "mins": 90,
+    "app": "#/ch/b7#record",
     "what": "Use the interview practice in Chapter B7. Answer three questions out loud, record yourself, and write down one thing to say better next time."
    },
    {

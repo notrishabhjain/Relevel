@@ -93,6 +93,8 @@ const js = [
   'src/llm.js',
   'src/pyrun.js',
   'src/playground.js',
+  'src/sheets.js',
+  'src/recorder.js',
   'src/content.js',
   'src/studio.js',
   'src/labs.js',

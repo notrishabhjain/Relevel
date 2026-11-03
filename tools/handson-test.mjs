@@ -60,6 +60,19 @@ console.log('\n— which code blocks are Python —');
   ok(blocks.some(b => b.local && /bertviz/.test(b.src)), 'the PyTorch example in A8 is marked as one for your own computer');
 }
 
+console.log('\n— the formulas Sheets understands —');
+{
+  const ctx = { window: {} }; vm.createContext(ctx);
+  vm.runInContext(fs.readFileSync(p.join(ROOT, 'src/sheets.js'), 'utf8'), ctx);
+  const SH = ctx.window.SHEETS;
+  const rows = [['q', 'in', 'out', 'cost'], ['a', '1200', '300', '=(B2*0.2+C2*0.6)/1000000'], ['b', '800', '200', '=(B3*0.2+C3*0.6)/1000000'],
+    ['', '', 'total', '=SUM(D2:D3)'], ['', '', 'per month', '=ROUND(D4*10000*30, 2)'], ['', '', 'loop', '=D6'], ['', '', 'text', '=A2*2']];
+  const v = SH.evaluate(rows), show = (r, c) => SH.show(v(r, c));
+  ok(show(3, 3) === '0.0007' && show(4, 3) === '210', 'arithmetic, ranges, SUM and ROUND work as a cost model needs', show(3, 3) + ' ' + show(4, 3));
+  ok(show(5, 3) === '#CYCLE' && show(6, 3) === '#VALUE', 'and a loop or text in a sum says so instead of guessing');
+  ok(SH.toCSV({ rows: [['a, b', '1'], ['x', '=B1+1']] }) === '"a, b",1\nx,2\n', 'the CSV keeps commas quoted and shows computed values');
+}
+
 if (!BASE || !FAKE_PORT) {
   console.log(`\n${pass} passed, ${fail} failed (browser half skipped: no BASE or FAKE_LLM_PORT)`);
   fake.close(); process.exit(fail ? 1 : 0);
@@ -90,8 +103,9 @@ console.log('\n— the relay passes requests on, and only those —');
 }
 
 /* ---------- the browser ---------- */
-const browser = await chromium.launch();
+const browser = await chromium.launch({ args: ['--use-fake-ui-for-media-stream', '--use-fake-device-for-media-stream'] });
 const ctx = await browser.newContext();
+await ctx.grantPermissions(['microphone'], { origin: BASE });
 const page = await ctx.newPage();
 const errors = [];
 page.on('pageerror', e => errors.push(e.message));
@@ -172,6 +186,33 @@ await page.locator('#batch button', { hasText: 'Run them all' }).click();
 await page.locator('.pgscore strong').waitFor({ timeout: 20000 });
 await page.waitForFunction(() => !document.querySelector('#batch button.primary').disabled, null, { timeout: 20000 });
 ok(/Score: 1 \/ 2/.test(await page.locator('.pgscore').innerText()), 'Mark a test set runs each line and pre-marks the clear matches', await page.locator('.pgscore').innerText());
+
+console.log('\n— spreadsheets and recordings, here too —');
+await page.goto(BASE + '/app/#/ch/ch22');
+await page.waitForSelector('#sheet .shcell');
+const cell = (r, c) => page.locator(`#sheet .shcell[data-r="${r}"][data-c="${c}"]`);
+await cell(0, 0).fill('runs'); await cell(0, 0).press('Enter');
+await cell(1, 0).fill('4'); await cell(1, 0).press('Enter');
+await cell(1, 1).fill('=A2*25'); await cell(1, 1).press('Enter');
+ok(await cell(1, 1).inputValue() === '100', 'a chapter that asks for a spreadsheet has one, with formulas', await cell(1, 1).inputValue());
+await page.goto(BASE + '/app/#/workbench');
+await page.waitForSelector('.pyscratch textarea');
+await page.locator('.pyscratch textarea').first().fill('print(open("sheets/2-2-testing-prompts.csv").read())');
+out = await runCell(page.locator('.pyscratch .pycell').first());
+ok(/runs,\n4,100/.test(out), 'and the notebook reads it as a CSV file', out.slice(0, 160));
+await page.goto(BASE + '/app/#/project');
+await page.locator('button', { hasText: 'Open these ten as your answer key' }).click();
+await page.waitForSelector('.sheet .shcell');
+ok(/#\/sheets\/answer-key/.test(page.url()) && (await page.locator('.shcell[data-r="1"][data-c="2"]').inputValue()).includes('Rahul Verma'),
+  'the project page opens its ten starter sentences as the answer key');
+ok(await page.locator('.shname').inputValue() === 'answer-key-v1', 'named so that Download CSV gives answer-key-v1.csv');
+await page.goto(BASE + '/app/#/ch/b7');
+await page.waitForSelector('#record .recbox');
+await page.locator('#record button', { hasText: 'Record' }).click();
+await page.waitForTimeout(1600);
+await page.locator('#record button', { hasText: 'Stop' }).click();
+await page.locator('#record .reclist audio').first().waitFor({ timeout: 10000 });
+ok(await page.locator('#record .reclist li').count() === 1, 'the interview chapter records an answer and keeps the take');
 
 console.log('\n— going deeper, and nothing left outside —');
 await page.goto(BASE + '/app/#/ch/ch7');

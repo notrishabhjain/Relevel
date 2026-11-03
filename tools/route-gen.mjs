@@ -33,7 +33,7 @@ const TRY = {
     what: 'Read the capstone chapter’s brief and write, on one page, the smallest version you can ship in about eight hours. Everything else goes on a “later” list.' },
   'portfolio': { title: 'Put the project where people can see it', mins: 60, app: '#/project',
     what: 'Publish your findings page and the capstone write-up as one page with a link. Keep it plain. A page that exists beats a page that is pretty.' },
-  'interviews': { title: 'Three practice interviews', mins: 90,
+  'interviews': { title: 'Three practice interviews', mins: 90, app: '#/ch/b7#record',
     what: 'Use the interview practice in Chapter B7. Answer three questions out loud, record yourself, and write down one thing to say better next time.' },
 };
 
