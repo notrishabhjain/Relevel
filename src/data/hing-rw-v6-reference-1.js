@@ -1,43 +1,11 @@
 /* Hinglish: setup and glossary, plain-language rewrite (v6). Keyed on the exact English line. */
 Object.assign(window.HING = window.HING || {}, {
-  'This page is optional. Every chapter teaches its ideas without it, and the interactive tools in each chapter need no setup at all. Do it only if you want to see the same ideas as real code.':
-    'Yeh page optional hai. Har chapter iske bina bhi apne ideas sikhata hai, aur har chapter ke interactive tools ko koi setup nahi chahiye. Ise tabhi kijiye jab aap wahi ideas real code mein dekhna chahte hain.',
-  'You need two free things: an online place to run code (Google Colab) and an API key (from NVIDIA Build), which lets your programs talk to AI models. It takes about forty-five minutes, once, and you don’t have to do it again.':
-    'Aapko do free cheezein chahiye: code chalane ki ek online jagah (Google Colab) aur ek API key (NVIDIA Build se), jo aapke programs ko AI models se baat karne deti hai. Isme lagbhag 45 minute lagte hain, sirf ek baar, aur dobara nahi karna padta.',
-  'Colab is a free service from Google. It gives you a temporary computer in Google’s datacentre, and you control it from a browser tab. Nothing gets installed on your own machine.':
-    'Colab Google ki ek free service hai. Yeh aapko Google ke datacentre mein ek temporary computer deti hai, aur aap use browser ke ek tab se control karte hain. Aapki apni machine par kuch install nahi hota.',
-  'You’ll see an empty grey box. That box is a <strong>cell</strong>. Type an instruction in it and press <kbd>Shift</kbd>+<kbd>Enter</kbd> to run it.':
-    'Aapko ek khaali grey box dikhega. Woh box ek <strong>cell</strong> hai. Usmein ek instruction likhiye aur chalane ke liye <kbd>Shift</kbd>+<kbd>Enter</kbd> dabaiye.',
-  'The word <code>hello</code> appears below the cell, with a small green tick. That was a program. You wrote it and you ran it.':
-    'Cell ke neeche <code>hello</code> word dikhega, ek chhote green tick ke saath. Yeh ek program tha. Aapne use likha aur chalaya.',
-  'Cells run from top to bottom, and they remember each other. A value you make in cell 1 can be used in cell 5, as long as the machine is still on.':
-    'Cells upar se neeche chalte hain, aur woh ek doosre ko yaad rakhte hain. Cell 1 mein banayi hui value cell 5 mein use ho sakti hai, jab tak machine on hai.',
-  'The machine switches itself off after roughly 90 minutes of sitting idle. The cells you typed stay, but their results disappear. To bring them back, click <strong>Runtime → Run all</strong>. This is just how the service behaves. It isn’t a failure.':
-    'Machine lagbhag 90 minute khaali padi rehne ke baad apne aap band ho jaati hai. Aapke likhe hue cells bache rehte hain, lekin unke results gayab ho jaate hain. Unhe wapas laane ke liye <strong>Runtime → Run all</strong> par click kijiye. Service aise hi kaam karti hai. Yeh koi failure nahi hai.',
-  'Give each notebook a name by clicking its name at the top-left, for example <code>chapter-1</code>, <code>chapter-2</code> and so on.':
-    'Har notebook ko naam dijiye. Upar-left mein uske naam par click kijiye, jaise <code>chapter-1</code>, <code>chapter-2</code> aur aise hi aage.',
-  'NVIDIA’s Build platform gives you free access to a large catalogue of models, and it doesn’t ask for a credit card. This book needs well under 400 requests, and the free allowance is roughly 1,000. It also lets you swap one model for another by changing a single line, which is a useful skill to have.':
-    'NVIDIA ka Build platform aapko bahut saare models ka free access deta hai, aur credit card nahi maangta. Is book ko 400 se kaafi kam requests chahiye, aur free allowance lagbhag 1,000 ka hai. Isse aap sirf ek line badalkar ek model ki jagah doosra model laga sakte hain, jo ek kaam ki skill hai.',
-  'Search for <code>llama-3.1-8b-instruct</code> and open the model page.':
-    '<code>llama-3.1-8b-instruct</code> search kijiye aur model page kholiye.',
-  'Find <strong>Get API Key</strong>. On some pages it is under <em>Build with this NIM → Generate Key</em>. Click it.':
-    '<strong>Get API Key</strong> dhoondhiye. Kuch pages par woh <em>Build with this NIM → Generate Key</em> ke andar hota hai. Us par click kijiye.',
-  'A long code starting with <code>nvapi-</code> appears. Copy it straight away and keep it somewhere private, like a password manager or a private note. Treat it like an ATM PIN.':
-    '<code>nvapi-</code> se shuru hone wala ek lamba code dikhega. Use turant copy kijiye aur kisi private jagah rakhiye, jaise password manager ya ek private note. Ise ATM PIN ki tarah samajhiye.',
-  'Keys that sit inside code get copied, shared and leaked. It is one of the most common security failures in software. If you know how to store them properly, and why, you can speak with confidence in a meeting.':
-    'Jo keys code ke andar padi hoti hain, woh copy hoti hain, share hoti hain aur leak ho jaati hain. Software mein yeh sabse common security failures mein se ek hai. Agar aapko pata hai ki unhe sahi tareeke se kaise rakhna hai, aur kyun, toh aap meeting mein bharose se baat kar sakte hain.',
-  'Click <strong>+ Add new secret</strong>. For the name, type <code>NVIDIA_API_KEY</code> exactly. For the value, paste your <code>nvapi-…</code> code.':
-    '<strong>+ Add new secret</strong> par click kijiye. Name mein bilkul <code>NVIDIA_API_KEY</code> likhiye. Value mein apna <code>nvapi-…</code> code paste kijiye.',
   'You’ll see <code>Key loaded, starts with: nvapi-xx</code>. We print only the first 8 characters, so the full key never shows on your screen.':
     'Aapko <code>Key loaded, starts with: nvapi-xx</code> dikhega. Hum sirf pehle 8 characters print karte hain, isliye poori key aapki screen par kabhi nahi dikhti.',
-  'You’ll see a few progress lines, and then silence. Silence means it worked.':
-    'Aapko kuch progress lines dikhengi, aur phir shaanti. Shaanti ka matlab hai ki kaam ho gaya.',
   'You’ll see <code>setup works</code>. Your setup is complete.':
     'Aapko <code>setup works</code> dikhega. Aapka setup poora ho gaya.',
   'One thing is worth knowing. The library is called <code>openai</code>, but we are not using OpenAI’s service. OpenAI published the first request format that many people adopted, and much of the industry copied it. So one library works with many providers. Later, switching providers may need only a one-line change. Knowing this earns you respect in conversations with vendors.':
     'Ek baat jaanne laayak hai. Library ka naam <code>openai</code> hai, lekin hum OpenAI ki service use nahi kar rahe. OpenAI ne woh pehla request format publish kiya jise bahut logon ne apnaya, aur industry ke zyadatar log usse copy karne lage. Isliye ek hi library kai providers ke saath chalti hai. Aage jaakar provider badalne ke liye shaayad sirf ek line badalni pade. Yeh baat jaanne se vendors ke saath baatcheet mein aapki izzat badhti hai.',
-  'Create one folder in Google Drive and name it <code>my-corpus</code>. Put 10–15 documents in it that you know well from your own work. For example: policies, SOPs, product manuals, contracts, handbooks or published standards.':
-    'Google Drive mein ek folder banaiye aur uska naam <code>my-corpus</code> rakhiye. Usmein 10–15 documents rakhiye jinhe aap apne kaam se achhi tarah jaante hain. Jaise: policies, SOPs, product manuals, contracts, handbooks ya published standards.',
   'The second half of this book builds a system that answers questions from your corpus. Sometimes it will answer wrongly, and you need to catch that at once, without anyone’s help. Your own domain knowledge is your quality check. With documents you don’t know, you would need an expert on call. With your own, you are the expert.':
     'Is book ka doosra half ek aisa system banata hai jo aapke corpus se sawaalon ke jawaab deta hai. Kabhi kabhi woh galat jawaab dega, aur aapko use turant pakadna hai, kisi ki madad ke bina. Aapki apni domain knowledge hi aapka quality check hai. Jin documents ko aap nahi jaante, unke liye aapko call par ek expert chahiye hoga. Apne documents mein expert aap khud hain.',
   '<strong>For Part II, add some deliberately awkward material:</strong> at least two scanned pages, one document with a real table in it, and, if you can, an old version of a policy next to its current one. Chapters 12 and 16 need these. A corpus that is too clean will make you think everything works.':
@@ -48,12 +16,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek model jo <code>response_format</code> / JSON schema support karta ho (Ch. 8). Agar aapke paas nahi hai, toh validation loop fallback hai.',
   'The key was not loaded':
     'Key load nahi hui',
-  'Click the 🔑 in the sidebar, switch it ON for this notebook, then run the key cell again':
-    'Sidebar mein 🔑 par click kijiye, is notebook ke liye use ON kijiye, phir key wala cell dobara chalaiye',
-  'The Colab session restarted':
-    'Colab session restart ho gaya',
-  'Click Runtime → Run all':
-    'Runtime → Run all par click kijiye',
   'The model name has a typo':
     'Model ke naam mein typo hai',
   'Use the exact string. Copy it from the model page on build.nvidia.com':
@@ -66,8 +28,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Embedding model ke liye <code>extra_body={"input_type": …}</code> hona zaroori hai',
   'A temporary or unknown problem':
     'Temporary ya anjaan problem',
-  'Note down the exact red text, close the notebook, and come back with fresh eyes tomorrow':
-    'Red text ko jaise ka taisa note kar lijiye, notebook band kijiye, aur kal taaza nazar ke saath wapas aaiye',
   'A prediction machine trained on huge amounts of text. It continues a piece of text in a way that sounds likely. It does not look things up.':
     'Ek prediction machine, jise bahut saare text par train kiya gaya hai. Woh kisi text ko aise aage badhata hai jo sunne mein sahi lage. Woh kuch bhi look up nahi karta.',
   'One question goes in, one answer comes out, and you get charged for it once. Your app sends a request to the model’s servers and waits for the reply.':

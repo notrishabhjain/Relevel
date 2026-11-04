@@ -6,7 +6,7 @@
   "framework": null,
   "functions": {
     "api/**/*.js": {
-      "maxDuration": 15
+      "maxDuration": 60
     }
   },
   "headers": [
@@ -78,6 +78,12 @@
     {
       "path": "/api/nudge?run=1&slot=backup",
       "schedule": "0 7 * * 1-5"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/llm",
+      "destination": "/api/health?relay=1"
     }
   ]
 }

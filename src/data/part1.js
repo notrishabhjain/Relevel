@@ -68,8 +68,8 @@ window.PART1 = [
     ['p','You’ve just run three experiments without installing anything. And you have at least one real finding about your own text.'],
     ['p','The whole course works like this. You try something first, and then you learn the name for what you saw.'],
     ['c','Tip','If a chapter feels too fast, slow down and run the examples again. The <a href="#/later">Not yet</a> page lists the topics you can safely ignore for now.'],
-    ['p','To send your own questions to a real model, you need two free things: a place to run code, and an API key. Setting them up takes about forty-five minutes, and you only do it once: <a href="#/setup">Set up Colab and your API key</a>.'],
-    ['p','Or you can keep reading first. Chapter 1 is easier with the notebook open, but you can follow it without one.']
+    ['p','To send your own questions to a real model, you need one free thing: an API key. Getting it and pasting it in takes about ten minutes, once. The code then runs right here, on these pages: <a href="#/setup">Connect a model</a>.'],
+    ['p','Or you can keep reading first. Chapter 1 is easier with a model connected, but you can follow it without one.']
   ],
   capstone:{
     title:'Compare what English, Hindi and Hinglish cost',
@@ -96,14 +96,14 @@ window.PART1 = [
   title:'Your first API call: how a model answers',
   concept:'You send a model a message, and it sends text back. In this chapter you’ll make your first API call, read what it cost, and see why a confident answer can still be wrong.',
   plan:{
-    first:'Open a notebook and make one model API call before you read anything else. Make a guess first: is the model finding an answer somewhere, or writing one?',
+    first:'Press <strong>Run</strong> on the first code block in this chapter before you read anything else. Make a guess first: is the model finding an answer somewhere, or writing one?',
     build:'Run a short question, then a long piece of text. From each run, save the full response and the usage block.',
     brk:'Ask for something the model cannot possibly know, and see what comes back anyway.',
     artifact:'A one-page picture of a request, from start to finish: input, model, output, tokens, cost.',
     gate:'Explain what happens during a request without once saying “the AI just knows”.'
   },
   needs:[
-    ['Colab open and your key working','The five minutes of setup, done once. Chapter 1 is the first chapter that uses it.','setup'],
+    ['A model connected on the setup page','The five minutes of setup, done once. Chapter 1 is the first chapter that uses it.','setup'],
   ],
   takeaway:[
     'Explain why a model can sound certain and still be wrong.',
@@ -111,7 +111,7 @@ window.PART1 = [
     'Estimate the cost of a request from its token counts.'
   ],
   story:[
-    ['c','Before you start','Open a new Colab notebook and name it <code>chapter-1</code>. Run the three warm-up cells from <a href="#/setup">Setup</a> (the key, the install and the client), so they sit above everything you write today. After each idea in this chapter, you’ll find a little code that shows it. Run each block before you read on.'],
+    ['c','Before you start','The code in this chapter runs right here in the page. Press <strong>Run</strong> under each block, top to bottom. Before your first cell runs, the page does the three warm-up steps from <a href="#/setup">Setup</a> for you: the key, the library and the client. After each idea in this chapter, you’ll find a little code that shows it. Run each block before you read on.'],
     ['p','In the last chapter you tried tokens, cost and temperature right here in the browser. Now you’ll do the same kind of thing with a real model. You’ll send it a message, look at what it sends back, and see what that exchange costs.'],
     ['p','Along the way you’ll learn one thing that matters for every AI product you’ll ever work on: a model can sound completely sure and still be wrong.'],
     ['h','A model predicts the next piece of text'],
@@ -124,7 +124,7 @@ window.PART1 = [
       ['x','You get a fluent two-sentence answer. Notice that you didn’t give the model anything to search. It wrote the answer from patterns it learned in training.'],
       [
         'snag',
-        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Scroll to the top, run the warm-up cells in order, then come back here. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The install cell hasn’t run in this session. A notebook forgets what it installed whenever it disconnects, and it disconnects after you leave it alone for a while. Run the install cell again and carry on.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
+        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Run the cells above it in order, or press <strong>Restore</strong> in the notebook bar if you ran them before a reload. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
       ]
     ]],
     ['p','Now a question. What do you think happens when the model has nothing to base its answer on? Make a guess before you read on.'],
@@ -146,7 +146,7 @@ window.PART1 = [
       ['x','You’ll see two numbers, such as <code>tokens read: 18</code> and <code>tokens written: 55</code>. These are the counts you’re billed for, and every response includes them.'],
       [
         'snag',
-        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Scroll to the top, run the warm-up cells in order, then come back here. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The install cell hasn’t run in this session. A notebook forgets what it installed whenever it disconnects, and it disconnects after you leave it alone for a while. Run the install cell again and carry on.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
+        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Run the cells above it in order, or press <strong>Restore</strong> in the notebook bar if you ran them before a reload. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
       ]
     ]],
     ['h','Tokens: the unit you are billed in'],
@@ -160,7 +160,7 @@ window.PART1 = [
       ['x','<code>prompt_tokens</code> rises into the hundreds, because you sent more text. Now try the opposite: ask a short question, but request a long answer, such as “explain in 400 words”. This time <code>completion_tokens</code> rises instead.'],
       [
         'snag',
-        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Scroll to the top, run the warm-up cells in order, then come back here. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The install cell hasn’t run in this session. A notebook forgets what it installed whenever it disconnects, and it disconnects after you leave it alone for a while. Run the install cell again and carry on.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
+        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Run the cells above it in order, or press <strong>Restore</strong> in the notebook bar if you ran them before a reload. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
       ]
     ]],
     ['q','I001'],
@@ -172,9 +172,9 @@ window.PART1 = [
   capstone:{
     title:'Make your first call and measure what it costs',
     brief:'Now you move from the browser tools to a real model. In this chapter you learned to read the usage block that comes back with every answer, and to see exactly what you’re billed for. Here you ask a real model to find the personal details in some of the starter sentences, check its answers yourself, and measure the cost.',
-    where:'Your <code>chapter-1</code> notebook. The numbers you print are what counts. The notes box below is for a short reflection, not a long write-up.',
+    where:'Your notebook for this chapter, at the end of the page. The numbers you print are what counts. The notes box below is for a short reflection, not a long write-up.',
     steps:[
-      'In your <code>chapter-1</code> notebook, send starter sentence 7 (the one with Amit Sharma, the PAN and the HDFC account) to the model with the instruction: “List every piece of personal information in this message.”',
+      'In your notebook for this chapter, send starter sentence 7 (the one with Amit Sharma, the PAN and the HDFC account) to the model with the instruction: “List every piece of personal information in this message.”',
       'Print the whole answer and the usage block. Write down the prompt_tokens and the completion_tokens.',
       'Check the answer by hand. List what the model found correctly, what it missed, and anything it listed that is not personal. Don’t trust it just because it sounds sure.',
       'Repeat with starter sentences 4 and 9, so that you have three runs in total. Starter sentence 9 contains nothing personal, so a good answer says so. Average the token counts of the three runs.',
@@ -214,7 +214,7 @@ window.PART1 = [
     'Predict what a long conversation will cost before anyone builds it.'
   ],
   story:[
-    ['c','Before you start','Keep using your <code>chapter-1</code> notebook. You’ll need the usage code from the last chapter. This time you’ll run it in a loop and watch the numbers grow.'],
+    ['c','Before you start','The cells here share one Python session with Chapter 1, so <code>response</code> and everything else you made there are still defined. You’ll need the usage code from the last chapter. This time you’ll run it in a loop and watch the numbers grow.'],
     ['p','In Chapter 1 you saw that a model writes its answers from patterns, and that you pay for every token. Now for the third fact. A model doesn’t remember anything between calls, and each call has a size limit.'],
     ['p','This chapter proves both facts in code. Then you’ll build a simple chat memory yourself and see what it costs.'],
     ['h','The context window is a size limit'],
@@ -231,7 +231,7 @@ window.PART1 = [
       ['x','The second reply doesn’t know your name. This is not a bug or a setting. Nothing is carried from one call to the next.'],
       [
         'snag',
-        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Scroll to the top, run the warm-up cells in order, then come back here. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The install cell hasn’t run in this session. A notebook forgets what it installed whenever it disconnects, and it disconnects after you leave it alone for a while. Run the install cell again and carry on.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
+        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Run the cells above it in order, or press <strong>Restore</strong> in the notebook bar if you ran them before a reload. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
       ]
     ]],
     ['h','How chat apps create memory'],
@@ -242,7 +242,7 @@ window.PART1 = [
       ['x','Now it knows your name is Sam, because this call includes the earlier message. And <code>prompt_tokens</code> is higher, because you sent the history again. You’ve just built the most common memory pattern and measured its cost. Production apps may use summaries, saved facts or task state instead.'],
       [
         'snag',
-        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Scroll to the top, run the warm-up cells in order, then come back here. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The install cell hasn’t run in this session. A notebook forgets what it installed whenever it disconnects, and it disconnects after you leave it alone for a while. Run the install cell again and carry on.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
+        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Run the cells above it in order, or press <strong>Restore</strong> in the notebook bar if you ran them before a reload. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
       ]
     ]],
     ['p','You saw the cost rise by one message. Now picture a whole conversation. This tool shows how the cost grows over many turns:'],
@@ -270,10 +270,10 @@ window.PART1 = [
   capstone:{
     title:'Work out what checking a long chat costs',
     brief:'A model remembers nothing between calls. A chat feels continuous only because every earlier message is sent again, which makes long chats expensive. Bharat Privacy Guard will sit in front of chats like this, so you need to know what it costs to check one. In this chapter you learned how chat memory really works and how to predict a cost before anything is built. Here you do that for the project.',
-    where:'Keep using your <code>chapter-1</code> notebook for the calls and the token counts. Write the final sentence in the notes box below.',
+    where:'Use your notebook for this chapter for the calls and the token counts. Write the final sentence in the notes box below.',
     steps:[
       'Imagine a bank’s chat window in which every customer message goes through Bharat Privacy Guard before it reaches an AI model. Describe this feature in one sentence.',
-      'In your <code>chapter-1</code> notebook, write a five-message conversation using starter sentences 1, 3, 6, 7 and 9, in that order, as the customer’s messages. Send them one at a time, each time sending all the earlier messages as well.',
+      'In your notebook for this chapter, write a five-message conversation using starter sentences 1, 3, 6, 7 and 9, in that order, as the customer’s messages. Send them one at a time, each time sending all the earlier messages as well.',
       'After each message, print the prompt_tokens. Write the five numbers in a list and notice how they grow.',
       'Do it again, but this time check only the newest message each time. Compare the total tokens for the whole conversation both ways.',
       'Look up your provider’s price per million tokens. Work out the cost per conversation and the cost per 1,000 conversations for both ways.',
@@ -315,7 +315,7 @@ window.PART1 = [
   capstone:{
     title:'Write the instructions for the AI helper, and try to break them',
     brief:'When the first two parts of the tool cannot settle a sentence, the third part (the context judge) asks an AI model. That model needs written instructions, called a system prompt, that are sent with every message. In this chapter you learned that a confident tone tells you nothing about whether an answer is right, and that a system prompt can make a failure rarer without removing its cause. Here you write the system prompt for the context judge and test it.',
-    where:'Your <code>chapter-2</code> notebook. Write the system prompt as the system message and test it there. You’ll use the same prompt again in Chapter 2.1.',
+    where:'Your notebook for this chapter. Write the system prompt as the system message and test it there. You’ll use the same prompt again in Chapter 2.1.',
     steps:[
       'Write the system prompt in plain English. It must say: what the helper is for; what counts as personal information (names, ID numbers, phone numbers, addresses, and details that point to one person); what to answer when nothing personal is present; the exact format of the answer (for example a list with the item, its type and one word of reason); and what to do when it is not sure.',
       'Add a rule that stops it from inventing: “If you are not sure, answer UNSURE. Never guess a number.”',
@@ -332,7 +332,7 @@ window.PART1 = [
     ]
   },
   story:[
-    ['c','Before you start','Open a new notebook called <code>chapter-2</code>. Run the three warm-up cells from <a href="#/setup">Setup</a> (the key, the install and the client). You’ll make three calls in this chapter, and each one tests the idea just before it.'],
+    ['c','Before you start','The code runs right here: press <strong>Run</strong> under each block, in order. The page does the warm-up from <a href="#/setup">Setup</a> before your first cell. You’ll make three calls in this chapter, and each one tests the idea just before it.'],
     ['p','In the last chapter you saw that a model forgets everything between calls, and that your app has to carry the memory. That raises a practical question. If the model starts fresh every time, how do you make it behave the way you want?'],
     ['p','This chapter gives you the two main controls for that. Then you’ll see the model’s biggest weakness up close: it will invent an answer and sound completely sure. You’ll try to stop it, and then you’ll break your own fix.'],
     ['h','The system prompt'],
@@ -367,7 +367,7 @@ window.PART1 = [
       ['x','You get a confident, well-organised summary of a scheme that doesn’t exist. Read it twice and notice how legitimate it looks. That impression is exactly what you can’t rely on.'],
       [
         'snag',
-        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Scroll to the top, run the warm-up cells in order, then come back here. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The install cell hasn’t run in this session. A notebook forgets what it installed whenever it disconnects, and it disconnects after you leave it alone for a while. Run the install cell again and carry on.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
+        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Run the cells above it in order, or press <strong>Restore</strong> in the notebook bar if you ran them before a reload. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
       ]
     ]],
     ['q','I017','I019'],
@@ -380,7 +380,7 @@ window.PART1 = [
       ['x','The reply now hedges, says it can’t verify the scheme, or asks for a source. One sentence changed the behaviour. The next step shows how easily that can be undone.'],
       [
         'snag',
-        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Scroll to the top, run the warm-up cells in order, then come back here. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The install cell hasn’t run in this session. A notebook forgets what it installed whenever it disconnects, and it disconnects after you leave it alone for a while. Run the install cell again and carry on.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
+        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Run the cells above it in order, or press <strong>Restore</strong> in the notebook bar if you ran them before a reload. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
       ]
     ]],
     ['p','The instruction reduces the problem, but it doesn’t remove it. To see why, try to talk the model out of its own rule.'],
@@ -390,7 +390,7 @@ window.PART1 = [
       ['x','Many models give in and invent the answer again. An instruction is a strong influence, but the model can still be talked out of it.'],
       [
         'snag',
-        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Scroll to the top, run the warm-up cells in order, then come back here. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The install cell hasn’t run in this session. A notebook forgets what it installed whenever it disconnects, and it disconnects after you leave it alone for a while. Run the install cell again and carry on.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
+        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Run the cells above it in order, or press <strong>Restore</strong> in the notebook bar if you ran them before a reload. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
       ]
     ]],
     ['p','Now it’s your turn to write a guardrail, and then to beat it.'],
@@ -435,7 +435,7 @@ window.PART1 = [
     'Show a model the output you want with a worked example, instead of describing it.'
   ],
   story:[
-    ['c','Before you start','Open a notebook called <code>chapter-2-1</code> and run the warm-up cells. Keep the system prompt from the Chapter 2 capstone open too. You’ll begin by testing it on a new kind of task.'],
+    ['c','Before you start','The code runs right here, in order. Keep the system prompt from the Chapter 2 capstone to hand: it is still in your notebook session, or press <strong>Restore</strong> after a reload. You’ll begin by testing it on a new kind of task.'],
     ['p','In Chapter 2 you saw that one sentence in a system prompt can change how a model behaves. Now comes the part you’ll do most often at work: writing the prompt for a particular job. This chapter gives you four techniques for that, one at a time, and you’ll try each one on your own text.'],
     ['p','Let’s start by seeing what your Chapter 2 system prompt can and can’t do.'],
     ['do','Test your system prompt on a new task',[
@@ -456,7 +456,7 @@ window.PART1 = [
       ['key','One worked example is often worth a paragraph of instructions. Examples inside a prompt are called <strong>few-shot examples</strong>, and two or three are usually enough.'],
       [
         'snag',
-        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Scroll to the top, run the warm-up cells in order, then come back here. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
+        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Run the cells above it in order, or press <strong>Restore</strong> in the notebook bar if you ran them before a reload. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
       ]
     ]],
     ['p','Here’s a question to think about before you read on. If one example helps this much, what happens when you add a second one?'],
@@ -507,9 +507,9 @@ window.PART1 = [
   capstone:{
     title:'Improve the instructions until a stranger can use them',
     brief:'Your system prompt from Chapter 2 works for you, because you know what you meant. A good prompt works for someone else without any explanation. In this chapter you learned four techniques: describe the reader and the job, show worked examples, break the task into steps, and add a few firm “never” rules. Now you’ll apply them to the context judge’s prompt and test the result on another person.',
-    where:'Your <code>chapter-2-1</code> notebook. Write and run the prompt there. The notes box below is for what the other person said when they tried it without help.',
+    where:'Your notebook for this chapter. Write and run the prompt there. The notes box below is for what the other person said when they tried it without help.',
     steps:[
-      'Open your Chapter 2 system prompt in your <code>chapter-2-1</code> notebook and run it on starter sentences 4, 5 and 8 to see where it is weakest.',
+      'In your notebook for this chapter, run your Chapter 2 system prompt on starter sentences 4, 5 and 8 to see where it is weakest.',
       'Add a short description of who reads the answer and what they do with it. For example: “A developer’s program reads your answer and decides whether to hide each item.”',
       'Add two worked examples: one ordinary (starter sentence 3) and one awkward (starter sentence 4, where the mobile number is already partly hidden). For each one, write out the answer you want, exactly as it should appear.',
       'Add the steps in the order a careful person would take them. First look for numbers with a fixed shape, then names and places, then anything that points to one person without an ID.',
@@ -542,7 +542,7 @@ window.PART1 = [
     'Explain why a prompt that looked better in a demo often is not.'
   ],
   story:[
-    ['c','Before you start','Open a notebook called <code>chapter-2-2</code>, and bring the four prompt versions from the last chapter. You’ll find out which one is actually better, and it may not be the one that felt better.'],
+    ['c','Before you start','Bring the four prompt versions from the last chapter. They are still in your notebook session, or press <strong>Restore</strong> after a reload. You’ll find out which one is actually better, and it may not be the one that felt better.'],
     ['p','At the end of the last chapter you had four versions of a prompt and a feeling about which was best. This chapter turns that feeling into something you can check. You’ll build a small test set, score every version against it, and then improve the best one carefully.'],
     ['h','Why reading a few outputs misleads you'],
     ['p','First, let’s see the problem for yourself. You’ll run one prompt on the same input several times and look at what comes back.'],
@@ -593,7 +593,7 @@ window.PART1 = [
   capstone:{
     title:'Build the answer key (version 1)',
     brief:'Everything in this project is measured against one test file, the answer key. In this chapter you learned to build a small test set from real inputs, to change one thing at a time, and to score each change. Now you’ll build version 1 of the answer key from the ten starter sentences, and use it to choose between versions of your prompt.',
-    where:'Your <code>chapter-2-2</code> notebook for scoring. The answer key itself is a spreadsheet that you save in your repository.',
+    where:'Your notebook for this chapter, for scoring. The answer key itself is a spreadsheet that you save in your repository.',
     steps:[
       'Open the project page and copy the ten starter sentences into a spreadsheet. Add the columns described under “The answer key”: number, kind of writing, sentence, what should be found, what should happen, and a note.',
       'For each row, write by hand what should be found (the kind and the exact words) and what should happen to it: remove it, mask it, or leave the sentence alone. Starter sentence 9 should say “nothing found”.',
@@ -712,7 +712,7 @@ window.PART1 = [
     'Explain why an overall accuracy figure often hides the failure that matters.'
   ],
   story:[
-    ['c','Before you start','Open a notebook called <code>chapter-2-4</code> and run the warm-up cells. Also bring twenty real examples of something at your work that gets sorted into categories. It could be tickets by type, documents by department or requests by urgency.'],
+    ['c','Before you start','The code runs right here, in order. Bring twenty real examples of something at your work that gets sorted into categories. It could be tickets by type, documents by department or requests by urgency. Paste them into a cell, or add them as a file.'],
     ['p','In the last chapter you met the five task types. One of them, classification, is the easiest to grade, because each answer is either right or wrong. In this chapter you’ll build a small classifier and measure it properly. You’ll also learn why one overall score can fool you, and that matters whenever you judge an AI feature.'],
     ['do','Look again at your test set',[
       ['p','First, open the ten-row test set you made in Chapter 2.2. Look at the “good answer contains” column.'],
@@ -730,7 +730,7 @@ window.PART1 = [
       ['x','Most answers are right, and the wrong ones come in two kinds. Some are real misreadings. Others come back as <code>Billing.</code> or <code>the category is billing</code>. Those aren’t wrong, but your code can’t use them. You asked for a label and got a sentence.'],
       [
         'snag',
-        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Scroll to the top, run the warm-up cells in order, then come back here. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
+        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Run the cells above it in order, or press <strong>Restore</strong> in the notebook bar if you ran them before a reload. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
       ]
     ]],
     ['p','Now fix the format. Use the technique from Chapter 2.1: show an example instead of describing it. Add two worked examples, and make one of them an awkward case. The format stops varying. Chapter 8 shows how to make other formats impossible, but two examples get you most of the way.'],
@@ -761,7 +761,7 @@ window.PART1 = [
   capstone:{
     title:'Build a sorter for the kind of ID, and measure it',
     brief:'Sometimes the tool finds a string of digits and has to decide what it is. It could be an Aadhaar number, a bank account number, a phone number or a PIN code. That is a sorting job. In this chapter you learned to measure a sorter honestly, one category at a time, and to look for the category it is worst at. Here you build a sorter and test it.',
-    where:'Your <code>chapter-2-4</code> notebook. Build and measure the sorter there. Write the numbers for each category in the notes box below.',
+    where:'Your notebook for this chapter. Build and measure the sorter there. Write the numbers for each category in the notes box below.',
     steps:[
       'Write down the categories: Aadhaar, PAN, mobile number, bank account, PIN code, and “something else”.',
       'Write twenty short examples, with at least three for each category. Use made-up values like those on the project page. Put some inside sentences (“call me on 9876543210”) and some on their own.',
@@ -794,7 +794,7 @@ window.PART1 = [
     'Explain why “it reads well” tells you almost nothing about a summary.'
   ],
   story:[
-    ['c','Before you start','Open a notebook called <code>chapter-2-5</code>. Also bring one real document with something important buried in it. It could be a deadline, an exception, a liability or a number that someone would be upset to miss.'],
+    ['c','Before you start','Bring one real document with something important buried in it. It could be a deadline, an exception, a liability or a number that someone would be upset to miss. Add it with the Files panel, or paste it into a cell.'],
     ['p','In the last chapter you graded a classifier, where every answer was plainly right or wrong. Summaries are different. There is no single right answer, so it’s much harder to say whether one is good. In this chapter you’ll see how a summary can fail without anyone noticing, and then you’ll build a simple way to catch that failure.'],
     ['h','How summaries fail'],
     ['p','Let’s start by watching a summary go wrong. Summarise a document the simplest way you can, and then look for the detail you buried in it.'],
@@ -831,7 +831,7 @@ window.PART1 = [
   capstone:{
     title:'Write a short privacy report, and check it against the facts',
     brief:'After the tool has cleaned a batch of messages, a manager will want a short report of what was found and how often. A summary has one dangerous failure: it leaves something out, or it invents something. In this chapter you learned to decide who a summary is for, and to test what it leaves out. Here you build a summary of what the tool found, and test it.',
-    where:'Your <code>chapter-2-5</code> notebook. Build the summary and its fact check there. Write what the check caught in the notes box below.',
+    where:'Your notebook for this chapter. Build the summary and its fact check there. Write what the check caught in the notes box below.',
     steps:[
       'Make a batch of ten results by hand, using starter sentences 1 to 10. For each one, write the list of things the tool found and what it did to them.',
       'Decide who will read the summary and what they will do next. For example: “A compliance manager reads it every Monday and decides whether to change a rule.” Write this in one line.',
@@ -1095,9 +1095,9 @@ window.PART1 = [
   capstone:{
     title:'Turn the rules into code, and compare them with finding by meaning',
     brief:'So far your rules are written on paper. In this chapter you learned that a computer can compare the meaning of sentences, not just their words, by turning them into lists of numbers called embeddings. Now you’ll turn your pattern rules into code. Then you’ll use meaning to find the sentences the rules can’t, and compare the two approaches on your answer key.',
-    where:'Your <code>chapter-5</code> notebook, for the code and the comparison, next to your hand-scored results from Chapter 4. Write up the comparison in the notes box below.',
+    where:'Your notebook for this chapter, for the code and the comparison, next to your hand-scored results from Chapter 4. Write up the comparison in the notes box below.',
     steps:[
-      'In your <code>chapter-5</code> notebook, turn your plain-word rules for PAN, Aadhaar, mobile number and email into code. Each one is a short pattern. Run them over the twelve rows of the answer key and print what each finds.',
+      'In your notebook for this chapter, turn your plain-word rules for PAN, Aadhaar, mobile number and email into code. Each one is a short pattern. Run them over the twelve rows of the answer key and print what each finds.',
       'Score the code. In how many of the twelve rows did it give exactly the right answer? Which rows did it miss or get wrong? Compare this with your by-hand result from Chapter 4. Are they the same?',
       'Write five sentences that give away a person without any ID, such as “I am the only diabetic patient in my village who had a transplant last year”. Also write five harmless sentences, such as “What documents do I need to renew my driving licence?”.',
       'Use the embedding function from the chapter to turn all ten sentences into numbers. For each of the ten sentences, find the closest of your five giveaway examples and print the similarity score.',
@@ -1111,7 +1111,7 @@ window.PART1 = [
     ]
   },
   story:[
-    ['c','Before you start','Open a notebook called <code>chapter-5</code> and run the three warm-up cells from <a href="#/setup">Setup</a>. Keep the twenty cards from Chapter 3 and the three harder questions from Chapter 4 ready. This is the longest hands-on chapter in Part I, so give it one full sitting.'],
+    ['c','Before you start','The code runs right here, top to bottom, and the page does the warm-up from <a href="#/setup">Setup</a> for you. Keep the twenty cards from Chapter 3 and the three harder questions from Chapter 4 ready. This is the longest hands-on chapter in Part I, so give it one full sitting.'],
     ['p','In the last chapter you saw keyword search fail. The user wrote <em>money back</em>, the document said <em>reimbursement</em>, and the match scored zero. Now we fix that. Here you’ll teach search to compare meaning instead of spelling, and then run your own failed questions through it.'],
     ['h','A map of meanings'],
     ['p','To match meaning, you might think the computer needs to truly understand language. It doesn’t. The method is simpler than that, and an everyday picture will show you how it works.'],
@@ -1138,7 +1138,7 @@ window.PART1 = [
       ['x','Each embedding has 1,024 numbers. The words <code>contract</code>, <code>agreement</code> and <code>MoU</code> score high with each other, around 0.5 to 0.8. Every pair that includes <code>sandwich</code> scores clearly lower. You’ve just measured meaning with one line of arithmetic.'],
       [
         'snag',
-        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Scroll to the top, run the warm-up cells in order, then come back here. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The install cell hasn’t run in this session. A notebook forgets what it installed whenever it disconnects, and it disconnects after you leave it alone for a while. Run the install cell again and carry on.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
+        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Run the cells above it in order, or press <strong>Restore</strong> in the notebook bar if you ran them before a reload. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
       ]
     ]],
     ['h','Questions and passages are embedded differently'],
@@ -1153,7 +1153,7 @@ window.PART1 = [
       ['x','Questions that scored zero with keyword search may now rank the correct card much higher. Run all three harder questions and compare with your handwritten rankings. The second-language result depends on this model and your documents, so write down the actual ranks and scores.'],
       [
         'snag',
-        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Scroll to the top, run the warm-up cells in order, then come back here. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The install cell hasn’t run in this session. A notebook forgets what it installed whenever it disconnects, and it disconnects after you leave it alone for a while. Run the install cell again and carry on.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
+        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Run the cells above it in order, or press <strong>Restore</strong> in the notebook bar if you ran them before a reload. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
       ]
     ]],
     ['p','One more check. Remember that search always returns something, even when the document has no answer. Let’s see whether meaning changes that.'],
@@ -1163,7 +1163,7 @@ window.PART1 = [
       ['x','Three chunks come back anyway, with scores around 0.2 to 0.4 that don’t obviously look wrong. Search still never says “nothing here”. And without a baseline, you can’t yet tell a low score from a normal one. Chapter 6 builds that baseline.'],
       [
         'snag',
-        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Scroll to the top, run the warm-up cells in order, then come back here. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The install cell hasn’t run in this session. A notebook forgets what it installed whenever it disconnects, and it disconnects after you leave it alone for a while. Run the install cell again and carry on.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
+        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Run the cells above it in order, or press <strong>Restore</strong> in the notebook bar if you ran them before a reload. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
       ]
     ]],
     ['h','Where embeddings fail'],
@@ -1208,7 +1208,7 @@ window.PART1 = [
   capstone:{
     title:'Build the scoreboard, and write a ship-or-not note',
     brief:'Until now you’ve judged the tool by looking at it. Now you’ll give it a number. In this chapter you learned that a search can fail in two ways: it can miss something that was there, or return something that wasn’t. For Bharat Privacy Guard, a missed detail is a leak, and a false alarm is an annoyance. Here you’ll measure both, for each kind of ID and each kind of writing, and decide whether this version is good enough to use.',
-    where:'Pen and paper for the thinking, plus your <code>chapter-5</code> notebook for the measurements. Write the note itself in the notes box below.',
+    where:'Pen and paper for the thinking, plus the notebook for the measurements. Write the note itself in the notes box below.',
     steps:[
       'Grow the answer key to version 2, with about 30 rows spread evenly across English, Hindi and Hinglish. Include at least five tricky rows from the list on the project page. Save it as <code>evals/answer-key-v2.csv</code>.',
       'Run the pattern checker from Chapter 5 on all 30 rows. For every item that should be found, mark it found or missed. For every item the tool reported, mark it correct or a false alarm.',
@@ -1225,7 +1225,7 @@ window.PART1 = [
     ]
   },
   story:[
-    ['c','Before you start','You need a pen and paper, plus your <code>chapter-5</code> notebook for the measurements. Bring the document from Chapter 3 and the <code>retrieve</code> function from Chapter 5.'],
+    ['c','Before you start','You need a pen and paper, plus the notebook for the measurements. Bring the document from Chapter 3. The <code>retrieve</code> function from Chapter 5 is still in your session, or press <strong>Restore</strong> after a reload.'],
     ['p','By now you have a search step that finds chunks by meaning, and it seems to work. But sooner or later, someone senior will ask: is it good? Often the answer is a demo of three questions that work. That doesn’t tell you how often the system is right.'],
     ['p','In this chapter you’ll learn how to measure it properly. It isn’t complicated. If you’ve ever written acceptance criteria, you already know most of it. It comes down to three ideas.'],
     ['h','Idea 1: Write the answers before you test'],
@@ -1258,7 +1258,7 @@ window.PART1 = [
       ['x','Compare the result with your prediction. Most people predict too high. Write one sentence about the size of your gap. That gap is the reason a demo should not decide whether a system ships.'],
       [
         'snag',
-        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Scroll to the top, run the warm-up cells in order, then come back here. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The install cell hasn’t run in this session. A notebook forgets what it installed whenever it disconnects, and it disconnects after you leave it alone for a while. Run the install cell again and carry on.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
+        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Run the cells above it in order, or press <strong>Restore</strong> in the notebook bar if you ran them before a reload. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
       ]
     ]],
     ['h','Idea 2: Precision and recall trade against each other'],
@@ -1324,7 +1324,7 @@ window.PART1 = [
   capstone:{
     title:'Write the findings page for version 0',
     brief:'You now have a first working version, which this course calls version 0, and a list of ways it fails. This capstone is not a build. It is the page you would want in front of you the next time someone demonstrates a privacy product and asks you to approve it. In this chapter you learned the standard parts of a system that answers from documents, and where each part can fail without any error appearing. Here you describe what you built in the same way.',
-    where:'Written only. This capstone is not a build. Use your <code>chapter-7</code> notebook for the numbers, and write the page in the notes box below.',
+    where:'Written only. This capstone is not a build. Use the notebook for the numbers, and write the page in the notes box below.',
     steps:[
       'Draw the tool as boxes and arrows on one page: text in, pattern checker, name-and-place finder, context judge, rule-keeper, safe text out. Mark which boxes exist today.',
       'Under each box that exists, write what can go wrong without any error message appearing. For example: “A number split by a line break is silently missed.”',
@@ -1342,7 +1342,7 @@ window.PART1 = [
     ]
   },
   story:[
-    ['c','Before you start','Open a new notebook called <code>chapter-7</code> and run the warm-up cells. Keep your <code>chapter-5</code> notebook open too, because you will copy across your <code>embed</code>, <code>cosine</code>, <code>chunks</code> and <code>chunk_vecs</code>. Nothing in this chapter is new. You are only joining things you already built.'],
+    ['c','Before you start','Your <code>embed</code>, <code>cosine</code>, <code>chunks</code> and <code>chunk_vecs</code> from Chapter 5 are already defined, because one Python session runs the whole course. If you reloaded since, press <strong>Restore</strong>, then run the cell that makes <code>chunk_vecs</code> again. Nothing in this chapter is new. You are only joining things you already built.'],
     ['p','In the last chapter you measured whether your search works, using an answer key. So you now have all the parts of a system that answers questions from your own documents. This chapter puts them side by side, gives the whole thing its proper name, and shows you where it can go wrong quietly.'],
     ['h','The pattern has a name: RAG'],
     ['p','Let’s start with what you have already built. You split your documents into chunks, and you create an embedding for each chunk. When a question comes in, you find the chunks closest to it. Then you send those chunks to the model together with the question, and the model answers from them.'],
@@ -1378,7 +1378,7 @@ window.PART1 = [
       ['key','Treat the third run as a test result, not as proof of safety. Keep that question in your test set, and run it again whenever the model, the prompt, the retrieval or the documents change.'],
       [
         'snag',
-        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Scroll to the top, run the warm-up cells in order, then come back here. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The install cell hasn’t run in this session. A notebook forgets what it installed whenever it disconnects, and it disconnects after you leave it alone for a while. Run the install cell again and carry on.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
+        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Run the cells above it in order, or press <strong>Restore</strong> in the notebook bar if you ran them before a reload. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
       ]
     ]],
     ['p','You have seen that the system needs two things to stay honest: the evidence, and the instruction. What happens if you take one of them away? Let’s find out.'],

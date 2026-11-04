@@ -246,7 +246,7 @@ const wantWalk = v => {
     Object.keys(v).forEach(k => { if (k !== 'id') wantWalk(v[k]); });
 };
 const prose = b => { if (!Array.isArray(b)) return;
-  if (['code', 'lab', 'q'].includes(b[0])) return;
+  if (['code', 'lab', 'q', 'embed'].includes(b[0])) return;
   /* a hands-on beat is a label plus its own blocks — the code inside stays code */
   if (b[0] === 'do') { wantAdd(b[1]); (b[2] || []).forEach(prose); return; }
   /* a v4.2 unit is ['unit', number, title, {eight rows}]. The number is an
@@ -491,7 +491,7 @@ const unescapeU = s => s.replace(/\\u([0-9a-fA-F]{4})/g,
   (_, h) => String.fromCharCode(parseInt(h, 16)));
 /* views.js wraps T() as TR() and studio.js carries chrome of its own; leaving
    either out reports live translations as dead. */
-const chrome = ['src/labs.js', 'src/app.js', 'src/views.js', 'src/studio.js', 'src/engine.js', 'src/data/route.mjs', 'plan/data.mjs', 'plan/ship.md']
+const chrome = ['src/labs.js', 'src/app.js', 'src/views.js', 'src/studio.js', 'src/engine.js', 'src/pyrun.js', 'src/playground.js', 'src/llm.js', 'src/sheets.js', 'src/recorder.js', 'src/data/route.mjs', 'plan/data.mjs', 'plan/ship.md']
   .map(f => unescapeU(fs.readFileSync(path.join(ROOT, f), 'utf8'))).join('');
 const stale = Object.keys(hing).filter(k => !need.has(k) && !chrome.includes(k));
 if (stale.length) {

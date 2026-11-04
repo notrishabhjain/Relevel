@@ -82,7 +82,12 @@ const defaults=()=>({done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{
   cal:[],     // calibration log {t,c,k}
   sess:[],    // session log
   ex:{},      // exercise iterations
-  proc:{}     // process runs
+  proc:{},    // process runs
+  /* hands-on in the page (src/pyrun.js, src/playground.js): your edits to a
+     chapter's code, the cells you have run (so Restore can rebuild the session
+     after a reload), your own cells per chapter, and the playground's runs.
+     The API key is never in here: it stays in this browser (src/llm.js). */
+  py:{}, play:{}
 });
 let S=defaults();
 try{const raw=localStorage.getItem(KEY); if(raw)S=Object.assign(S,JSON.parse(raw));}catch(e){}
@@ -252,6 +257,11 @@ window.chapterMastery=chapterMastery;
 window.T=T;
 
 /* ---------------- block renderer ---------------- */
+/* Where the blocks being rendered live, so a Python block can become a cell
+   that remembers its edits and its place in the course. Null outside a page
+   that runs code. */
+let CTX=null;
+const hashOf=s=>{ let x=5381; for(let i=0;i<s.length;i++) x=((x<<5)+x+s.charCodeAt(i))|0; return (x>>>0).toString(36); };
 function blocks(list){
   const f=document.createDocumentFragment();
   (list||[]).forEach(b=>{
@@ -265,7 +275,29 @@ function blocks(list){
     else if(k==='c')f.appendChild(h('div',{class:'callout'},[h('span',{class:'lbl',text:T(r[0])}),h('p',{html:T(r[1])})]));
     else if(k==='l')f.appendChild(h('ul',{class:'bul'},Tl(r[0]).map(i=>h('li',{html:i}))));
     else if(k==='n')f.appendChild(h('ol',{class:'num'},Tl(r[0]).map(i=>h('li',{html:i}))));
-    else if(k==='code')f.appendChild(h('pre',{},h('code',{text:r[0]})));
+    /* Python runs here, in the page (src/pyrun.js); a template or a formula
+       in the same monospace stays a plain block. */
+    else if(k==='code'){
+      if(CTX && window.PY && r[1]!=='local' && window.PY.isPython(r[0])){
+        if(!CTX.bar){ CTX.bar=true; f.appendChild(window.PY.bar({files:CTX.files})); }
+        const i=CTX.i++;
+        f.appendChild(window.PY.cell(r[0],{key:CTX.ch+':'+hashOf(r[0]),ch:CTX.ch,i}));
+      } else if(r[1]==='local') f.appendChild(h('div',{class:'localcode'},[
+          h('span',{class:'pytag',text:T('On your own computer')}),h('pre',{},h('code',{text:r[0]}))]));
+      else f.appendChild(h('pre',{},h('code',{text:r[0]})));
+    }
+    /* A free tool from elsewhere, shown inside the page rather than sent to in
+       another window: ['embed', url, title, height]. The link under it is for
+       a network that blocks the frame. */
+    else if(k==='embed'){
+      const fr=h('iframe',{src:r[0],title:r[1]||'',loading:'lazy',referrerpolicy:'no-referrer',
+        allow:'clipboard-write',style:'height:'+(r[2]||600)+'px'});
+      f.appendChild(h('figure',{class:'embed'},[fr,h('figcaption',{},[h('span',{text:r[1]||''}),
+        h('a',{href:r[0],target:'_blank',rel:'noopener',text:T('Open on its own')+' ↗'})])]));
+    }
+    /* The Connect panel and the Files panel, placed by content (the setup page). */
+    else if(k==='connect'){ if(window.PLAYGROUND) f.appendChild(window.PLAYGROUND.connect()); }
+    else if(k==='files'){ if(window.PY) f.appendChild(window.PY.filesPanel()); }
     else if(k==='x')f.appendChild(h('div',{class:'expect'},[h('div',{class:'tag',text:'expect'}),h('div',{html:T(r[0])})]));
     /* What to do when it does not work. Being stuck with a red error and no
        idea whether you broke something is where a beginner stops for good, so
@@ -696,6 +728,7 @@ function chapterTrail(c){
 }
 function renderChapter(c){
   const w=h('div',{class:'wrap'});
+  CTX={ch:c.id,i:0,bar:false,files:true};
   const part=partOf(c.part);
   cpBars=[];                       // stale refreshers from the last chapter
   w.appendChild(chapterTrail(c));
@@ -893,6 +926,39 @@ function renderChapter(c){
   story.appendChild(markTerms(h('div',{class:'prose'},[blocks(c.story)]),seenTerms,c.num));
   w.appendChild(story);
 
+  /* Your own cells for this chapter: the "Build it" work, the homework's code,
+     anything the chapter asks you to try that it does not print for you. Here,
+     on the page, rather than in a notebook in another window. */
+  if(wantsNotebook(c)){
+    const nb=h('section',{class:'part',id:'notebook'});
+    nb.appendChild(sectionHead(c.num+'.'+n++,'Your notebook for this chapter'));
+    nb.appendChild(h('p',{class:'dim',style:'font-size:.87rem;margin:0 0 .8rem',
+      html:T('Write and run your own code for this chapter here. It shares the session with the cells above, so <code>client</code> and everything you defined are ready. Bigger experiments have the <a href="#/workbench">Workbench</a>; prompts without code have the <a href="#/playground">Playground</a>.')}));
+    if(!CTX.bar){ CTX.bar=true; nb.appendChild(window.PY.bar({files:true})); }
+    nb.appendChild(window.PY.scratch(c.id));
+    w.appendChild(nb);
+  }
+
+  /* A chapter that asks for a spreadsheet gets one here, and one that asks
+     you to answer out loud gets a recorder: no other tab, no phone app. */
+  const said=JSON.stringify([c.story,c.capstone,c.homework,c.plan]||'');
+  if(window.SHEETS && /\bspreadsheet/i.test(said)){
+    const sh=h('section',{class:'part',id:'sheet'});
+    sh.appendChild(sectionHead(c.num+'.'+n++,'Your sheet for this chapter'));
+    sh.appendChild(h('p',{class:'dim',style:'font-size:.87rem;margin:0 0 .8rem',
+      html:T('Where this chapter says “spreadsheet”, use this one. It is saved with your progress, your notebook can read it, and <a href="#/sheets">Sheets</a> keeps all of them.')}));
+    sh.appendChild(window.SHEETS.panel(c.id,c.num+' '+shortTitle(c.title)));
+    w.appendChild(sh);
+  }
+  if(window.RECORDER && /\brecord yourself\b/i.test(said)){
+    const rc=h('section',{class:'part',id:'record'});
+    rc.appendChild(sectionHead(c.num+'.'+n++,'Record yourself'));
+    rc.appendChild(h('p',{class:'dim',style:'font-size:.87rem;margin:0 0 .8rem',
+      text:T('Where this chapter says to answer out loud and record yourself, do it here. Keep an eye on the clock, then listen back.')}));
+    rc.appendChild(window.RECORDER.panel(c.id));
+    w.appendChild(rc);
+  }
+
   // Words
   if((c.words||[]).length){
   const words=h('section',{class:'part',id:'words'});
@@ -903,10 +969,8 @@ function renderChapter(c){
   }
 
   // Hands-on
-  /* The labs run here, in the page, needing nothing. The notebook work needs a
-     Colab account, an API key and knowing what a cell is — none of which this
-     course hands you, and all of which used to sit under a heading that read
-     like the main event. It is a genuine extra, and now says so. */
+  /* The labs run here, in the page, needing nothing. The code runs here too
+     (src/pyrun.js), and needs only a key from the setup page. */
   /* A lab placed inline in the reading must not appear a second time in its own
      section — the same tool twice on one page reads as a mistake, and is. */
   const inlineLabs=new Set();
@@ -1014,6 +1078,12 @@ function renderChapter(c){
   if(ev){ ev.insertBefore(sectionHead(c.num+'.'+n++,'What this chapter produces'),ev.firstChild);
     w.appendChild(ev); }
 
+  /* Going deeper: where this chapter's idea decided something in the real
+     world, and the research it comes from (src/data/reading.js). Last before
+     closing the sitting, so it is there when you want more and not before. */
+  const rd=readingBlock(c.id);
+  if(rd){ rd.insertBefore(sectionHead(c.num+'.'+n++,'Go deeper: the real world and the research'),rd.firstChild); w.appendChild(rd); }
+
   // Close the sitting
   const cs=h('section',{class:'part',id:'close'});
   if(!plain){
@@ -1052,11 +1122,43 @@ function renderChapter(c){
   cs.appendChild(guard);
   w.appendChild(cs);
 
+  CTX=null;
   w.appendChild(h('div',{class:'foot'},[
     CH[CH.indexOf(c)-1]?h('a',{href:'#/ch/'+CH[CH.indexOf(c)-1].id,
       text:'← '+CH[CH.indexOf(c)-1].num+'. '+T(CH[CH.indexOf(c)-1].title)}):h('span'),
     next?h('a',{href:'#/ch/'+next.id,text:next.num+'. '+T(next.title)+' →'}):h('span')]));
   return w;
+}
+
+function readingBlock(id){
+  const list=(window.READING||{})[id];
+  if(!list||!list.length) return null;
+  const hi=S.lang==='hi';
+  const sec=h('section',{class:'part reading',id:'reading'});
+  const group=(kind,title)=>{
+    const rows=list.filter(r=>r[0]===kind);
+    if(!rows.length) return;
+    sec.appendChild(h('h3',{class:'rdh',text:T(title)}));
+    sec.appendChild(h('ul',{class:'rdlist'},rows.map(([,t,who,url,why,whyHi])=>h('li',{},[
+      h('a',{href:url,target:'_blank',rel:'noopener',text:t}),
+      h('span',{class:'rdwho',text:' · '+who}),
+      h('p',{text:hi&&whyHi?whyHi:why})]))));
+  };
+  group('case','In the real world');
+  group('paper','Research');
+  return sec;
+}
+
+/* A chapter gets a notebook of its own if it has code to run, stands on the
+   setup, or asks for work in a notebook in its own words. */
+function wantsNotebook(c){
+  if(!window.PY) return false;
+  const all=[];
+  const walk=b=>{ if(!Array.isArray(b))return; if(b[0]==='code') all.push(b[1]); else if(b[0]==='do') (b[2]||[]).forEach(walk); };
+  (c.story||[]).forEach(walk);
+  if(all.some(window.PY.isPython)) return true;
+  if((c.needs||[]).some(n=>n[2]==='setup')) return true;
+  return /\bnotebook\b/i.test(JSON.stringify([c.story,c.plan,c.capstone]||''));
 }
 
 /* The artifacts this chapter produces and the templates that shape them,
@@ -1207,7 +1309,9 @@ function pageHome(){
     h('a',{class:'chip',href:'#/start',text:T('Your route: 26 weeks, one order')}),
     h('a',{class:'chip',href:'#/project',text:T('Your project: Bharat Privacy Guard')}),
     bookHere()?h('a',{class:'chip',href:bookBase(),text:T('Read it as a book')}):null,
-    h('a',{class:'chip',href:'#/setup',text:T('Set up Colab + API key')}),
+    h('a',{class:'chip',href:'#/setup',text:T('Connect a model')}),
+    h('a',{class:'chip',href:'#/workbench',text:T('Workbench: run code here')}),
+    h('a',{class:'chip',href:'#/playground',text:T('Playground: try prompts')}),
     h('a',{class:'chip',href:'#/later',text:T('Not yet \u2014 what to ignore for now')})]));
 
   /* The parts, in reading order, one open at a time by default. */
@@ -1259,25 +1363,27 @@ function pageSetup(){
   const w=h('div',{class:'wrap'});
   const S2=window.SETUP;
   w.appendChild(h('header',{class:'phead'},[
-    h('div',{class:'eyebrow'},[h('span',{text:'Before Chapter 1'}),h('span',{class:'dot'}),
-      h('span',{text:'~45 min, once'})]),
+    h('div',{class:'eyebrow'},[h('span',{text:T('Before Chapter 1')}),h('span',{class:'dot'}),
+      h('span',{text:T('~10 min, once')})]),
     h('h1',{text:T(S2.title)}),h('p',{text:T(S2.blurb)})]));
-  w.appendChild(h('div',{class:'callout'},[h('span',{class:'lbl',text:'In one sentence'}),
+  w.appendChild(h('div',{class:'callout'},[h('span',{class:'lbl',text:T('In one sentence')}),
     h('p',{text:T(S2.oneline)})]));
+  CTX={ch:'setup',i:0,bar:false,files:false};
   S2.sections.forEach((s,i)=>{
     const sec=h('section',{class:'part'});
     sec.appendChild(sectionHead(String(i+1).padStart(2,'0'),s.h,s.t));
     sec.appendChild(h('div',{class:'prose'},[blocks(s.b)]));
     w.appendChild(sec);
   });
+  CTX=null;
   const t=h('table');
-  t.appendChild(h('thead',{},h('tr',{},[h('th',{text:'Error'}),h('th',{text:'Likely cause'}),h('th',{text:'Fix'})])));
+  t.appendChild(h('thead',{},h('tr',{},[h('th',{text:T('Error')}),h('th',{text:T('Likely cause')}),h('th',{text:T('Fix')})])));
   t.appendChild(h('tbody',{},S2.trouble.map(r=>h('tr',{},Tl(r).map(x=>h('td',{html:x}))))));
   const sec=h('section',{class:'part'});
-  sec.appendChild(sectionHead('★','Universal Troubleshooting'));
+  sec.appendChild(sectionHead('★','If something goes wrong'));
   sec.appendChild(h('div',{class:'tblwrap'},t));
   w.appendChild(sec);
-  w.appendChild(h('div',{class:'foot'},[h('span'),h('a',{href:'#/ch/ch1',text:'Chapter 1 →'})]));
+  w.appendChild(h('div',{class:'foot'},[h('a',{href:'#/playground',text:'← '+T('Playground')}),h('a',{href:'#/ch/ch1',text:T('Chapter')+' 1 →'})]));
   return w;
 }
 
@@ -1685,6 +1791,9 @@ function pageProject(){
   let s6=sec('◈',sm.title,'samples');
   s6.appendChild(h('div',{class:'prose'},[h('p',{html:T(sm.intro)})]));
   s6.appendChild(tbl(sm.head,sm.rows,[false,true,false,true]));
+  /* The spreadsheet the project asks for, made here rather than in another tab. */
+  if(window.SHEETS) s6.appendChild(h('p',{},[h('button',{type:'button',class:'primary',onclick:()=>{ location.hash='#/sheets/'+window.SHEETS.newAnswerKey(); }},
+    T('Open these ten as your answer key, in Sheets'))]));
   w.appendChild(s6);
 
   const ak=P.answerKey;
@@ -2165,7 +2274,10 @@ function renderRail(){
      expects an environment they were never told how to build. */
   r.appendChild(sec('Help',[
     ['#/start','\u25b8','Your route: 26 weeks, one order'],
-    ['#/setup','\u2699','Set up Colab + API key'],
+    ['#/setup','\u2699','Connect a model'],
+    ['#/workbench','\u25b7','Workbench: run code here'],
+    ['#/playground','\u25cc','Playground: try prompts'],
+    ['#/sheets','\u25a6','Sheets: spreadsheets here'],
     ['#/later','\u25d4','Not yet \u2014 what to ignore for now'],
     ['#/install','\u25a2','Install on iPad or phone']]));
 
@@ -2319,7 +2431,7 @@ function pageInstall(){
   sec.appendChild(h('div',{class:'tblwrap'},t));
   w.appendChild(sec);
 
-  w.appendChild(h('div',{class:'foot'},[h('span'),h('a',{href:'#/setup',text:'Set up Colab + API key →'})]));
+  w.appendChild(h('div',{class:'foot'},[h('span'),h('a',{href:'#/setup',text:T('Connect a model')+' →'})]));
   return w;
 }
 
@@ -2740,6 +2852,7 @@ const ROUTES={'':()=>V().dashboard(),'library':pageHome,'start':pageStart,
   'skills':()=>V().skills(),'analytics':()=>V().analytics(),
   'exercises':()=>V().exercises(),'processes':()=>V().processes(),
   'setup':pageSetup,'install':pageInstall,'language':pageLanguage,
+  'workbench':()=>window.PY.page(),'playground':()=>window.PLAYGROUND.page(),
   'notebook':pageNotebook,'ledger':pageLedger,
   'project':pageProject,
   'later':pageLater,'glossary':pageGlossary,'vendor':pageVendor,'map':pageMap,'card':pageCard,
@@ -2750,7 +2863,7 @@ const ROUTES={'':()=>V().dashboard(),'library':pageHome,'start':pageStart,
 const CRUMB={'':'Home','library':'The course map','start':'Your route','skills':'My progress','analytics':'How I am doing over time',
   'exercises':'Longer exercises','processes':'Repeatable work routines','practice':'Practice','skill':'Skill',
   'data':'My data and backups','studio':'Edit this course','install':'Install on iPad or phone',
-  'language':'Language','setup':'Set up Colab + API key','appendix':'Worksheet, question bank, sources','project':'Your project',
+  'language':'Language','setup':'Connect a model','workbench':'Workbench','playground':'Playground','sheets':'Sheets','appendix':'Worksheet, question bank, sources','project':'Your project',
   'evidence':'Artifact vault','templates':'Fill-in templates','decisions':'Decision log','failures':'Failure log',
   'labs':'Interactive tools','glossary':'Glossary of every term','map':'Where AI systems break',
   'ledger':'My predictions vs reality','card':'Governance doc builder','vendor':'Questions to ask vendors',
@@ -2779,6 +2892,10 @@ function route(){
     const t=parts[1]?tplById(parts[1]):null;
     crumb='The workbench'+(t?' \u00b7 '+t.name:'');
     document.title='The workbench — AI From Zero';
+  } else if(parts[0]==='sheets'){
+    node=window.SHEETS.page(parts[1]?decodeURIComponent(parts[1]):null);
+    crumb='Sheets';
+    document.title='Sheets — AI From Zero';
   } else if(parts[0]==='skill'&&parts[1]){
     node=V().skillPage(parts[1]);
     crumb='Skill · '+parts[1];
@@ -2823,7 +2940,10 @@ function buildIndex(){
     {k:'page',t:'Progress & Backup',h:'#/data'},
     {k:'page',t:'Your route: 26 weeks, one order',h:'#/start'},
     {k:'page',t:'Content Studio — edit the curriculum',h:'#/studio'},
-    {k:'page',t:'Setup',h:'#/setup'},
+    {k:'page',t:'Setup: connect a model',h:'#/setup'},
+    {k:'page',t:'Workbench: run Python in the page',h:'#/workbench'},
+    {k:'page',t:'Playground: try prompts, mark a test set',h:'#/playground'},
+    {k:'page',t:'Sheets: the answer key, cost model and other spreadsheets',h:'#/sheets'},
     {k:'page',t:'The Labs',h:'#/labs'},{k:'page',t:'Red-Mark Map',h:'#/map'},
     {k:'page',t:'Prediction Ledger',h:'#/ledger'},{k:'page',t:'Notebook',h:'#/notebook'},
     {k:'page',t:'System Card',h:'#/card'},{k:'page',t:'Vendor Deck',h:'#/vendor'},
@@ -2924,7 +3044,7 @@ function hingStrings(){
       (c.needs||[]).forEach(n=>{ add(o,n[0]); add(o,n[1]); });
       /* code samples are code, and a lab or question block is only an id */
       const prose=b=>{ if(!Array.isArray(b))return;
-        if(['code','lab','q'].includes(b[0]))return;
+        if(['code','lab','q','embed'].includes(b[0]))return;
         if(b[0]==='do'){ add(o,b[1]); (b[2]||[]).forEach(prose); return; }
         walk(o,b.slice(1)); };
       (c.story||[]).forEach(prose);

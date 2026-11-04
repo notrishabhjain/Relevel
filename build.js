@@ -43,6 +43,7 @@ const js = [
   'src/data/items7.js',
   'src/data/work.js',
   'src/data/exercises5.js',
+  'src/data/reading.js',
   /* The Hinglish reading layer. Keyed on the English line, so these load after
      the content they translate and are merged into one lookup. */
   'src/data/hing-glossary.js',
@@ -89,6 +90,11 @@ const js = [
   ...fs.readdirSync(p.join(R, 'src/data')).filter(f => /^hing-rw-.*\.js$/.test(f)).sort()
     .map(f => 'src/data/' + f),
   'src/remote.js',
+  'src/llm.js',
+  'src/pyrun.js',
+  'src/playground.js',
+  'src/sheets.js',
+  'src/recorder.js',
   'src/content.js',
   'src/studio.js',
   'src/labs.js',

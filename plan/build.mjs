@@ -19,6 +19,33 @@ import fs from 'node:fs';
 import p from 'node:path';
 import { RESOURCES, MONTHS, WEEKS, GATES, RULES } from './data.mjs';
 import { STEPS } from '../src/data/route.mjs';
+import vm from 'node:vm';
+import { fileURLToPath } from 'node:url';
+import { loadBook } from '../book/build.mjs';
+
+/* The research and real-world cases behind each week (src/data/reading.js),
+   gathered from the week's playbook chapters and the book chapters it reads. */
+const HERE = p.dirname(fileURLToPath(import.meta.url));
+const READING = (() => {
+  const ctx = { window: {} }; vm.createContext(ctx);
+  vm.runInContext(fs.readFileSync(p.join(HERE, '../src/data/reading.js'), 'utf8'), ctx);
+  return ctx.window.READING || {};
+})();
+const BOOK_COURSE = (() => {
+  const b = loadBook(p.join(HERE, '../book')), m = {};
+  for (const c of [b.preface, ...b.chapters, b.afterword].filter(Boolean)) m[c.file] = c.course || [];
+  return m;
+})();
+export function weekReading(w, n = 2) {
+  const ids = [];
+  for (const s of w.steps) {
+    if (s.kind === 'chapter') ids.push(s.ch);
+    else if (s.kind === 'read') ids.push(...(BOOK_COURSE[s.book] || []));
+  }
+  const seen = new Set(), rows = [];
+  for (const id of ids) for (const r of READING[id] || []) if (!seen.has(r[3])) { seen.add(r[3]); rows.push(r); }
+  return [...rows.filter(r => r[0] === 'case').slice(0, n), ...rows.filter(r => r[0] === 'paper').slice(0, n)];
+}
 
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const slug = s => s.toLowerCase().replace(/<[^>]+>/g, '').replace(/&[a-z]+;/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'section';
@@ -363,11 +390,14 @@ function weekCard(w, recipes) {
   const how = w.how.map(id => `<a href="#${id}">${esc(recipes.get(id) || id)}</a>`).join('<br>');
   const further = w.further.length
     ? `<p><b>Going further</b><span class="lk">${w.further.map(k => `<a href="${RESOURCES[k][1]}" target="_blank" rel="noopener noreferrer">${esc(RESOURCES[k][0])}</a>`).join('')}</span></p>` : '';
+  const rd = weekReading(w);
+  const deeper = rd.length
+    ? `<p><b>Research and the real world</b><span class="lk">${rd.map(r => `<a href="${esc(r[3])}" target="_blank" rel="noopener noreferrer" title="${esc(r[4])}">${r[0] === 'paper' ? 'Paper: ' : 'Case: '}${esc(r[1])}</a>`).join('')}</span></p>` : '';
   return `<article class="wk" id="w${w.n}" data-week="${w.n}" data-start="${w.start}">` +
     `<header><span class="wn">W${w.n}</span><span class="dates">${esc(w.dates)}</span><span class="cx">~${fmtMins(w.mins)}</span>${w.light ? '<span class="tag">light holiday week</span>' : ''}<span class="wstate"></span></header>` +
     `<h4>${inline(w.title)}</h4>` +
     `<ol class="steps">${w.steps.map(stepRow).join('')}</ol>` +
-    `<p><b>By Sunday</b>${inline(w.ship)}</p><p><b>How to</b>${how}</p>${further}` +
+    `<p><b>By Sunday</b>${inline(w.ship)}</p><p><b>How to</b>${how}</p>${further}${deeper}` +
     `<p class="small"><a href="../app/#/start#week-${w.n}">This week in one view, in the playbook →</a></p>` +
     `<div class="ctl"><div class="fields"><label>Link to what you made (optional)<input type="url" data-f="link" placeholder="https://..." autocomplete="off"></label>` +
     `<label>Note<input type="text" data-f="note" placeholder="What blocked you, what you learned" autocomplete="off"></label></div><div class="shiplink"></div></div></article>`;

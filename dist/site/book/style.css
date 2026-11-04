@@ -328,3 +328,14 @@ body.listening #aifz-rem{bottom:calc(4.9rem + env(safe-area-inset-bottom,0px))}
 .vtag.on{border-color:var(--accent);color:var(--accent)}
 .vid{color:var(--muted);font-variant-numeric:tabular-nums}
 
+/* going deeper: the course's reading lists */
+.deeper{margin:1.4rem 0 0;padding:1.3rem 1.5rem;border:1px solid var(--rule);border-radius:16px;background:var(--card);font-family:var(--sans)}
+.deeper h2{margin:0;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.deeper .sub{margin:.2rem 0 .6rem;font-size:.8rem;color:var(--muted)}
+.deeper h3{margin:1rem 0 .3rem;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--hue,var(--accent));font-weight:600}
+.deeper ul{list-style:none;margin:0;padding:0}
+.deeper li{padding:.5rem 0;border-top:1px solid var(--rule)}
+.deeper li a{font-weight:600;font-size:.9rem;line-height:1.45}
+.deeper li{line-height:1.45}
+.deeper .who{font-size:.76rem;color:var(--muted)}
+.deeper li p{margin:.2rem 0 0;font-size:.85rem;line-height:1.55;color:var(--ink2)}

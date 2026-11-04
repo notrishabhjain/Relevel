@@ -49,8 +49,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Bata paana ki kisi AI feature mein engineering ka risk asal mein kahan baitha hota hai.',
   'Before you start':
     'Shuru karne se pehle',
-  'Open a new notebook, or a local folder if you prefer. In this chapter you’ll build an experiment harness, and you’ll keep adding to it until Chapter 34.':
-    'Ek naya notebook kholiye, ya agar aap chahein toh ek local folder. Is chapter mein aap ek experiment harness banayenge, aur Chapter 34 tak ismein cheezein jodte jaayenge.',
   'So far you’ve spent most of your time looking at the model. In this chapter we look at the ordinary software around it. The aim is simple: when an engineer shows you a system diagram, you should recognise every box on it.':
     'Ab tak aapne zyadatar model ko hi dekha hai. Is chapter mein hum model ke aas-paas ke aam software ko dekhte hain. Goal seedha sa hai: jab koi engineer aapko system diagram dikhaye, toh aap uske har box ko pehchaan sakein.',
   'Think about ordering food in an app. Your tap sends a message to a restaurant. A reply comes back with a price, and your screen updates. It all looks mysterious until you see the messages going back and forth. Software around an AI model works the same way.':
@@ -199,8 +197,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Test harness banaiye aur use Git mein rakhiye',
   'From here on, almost every chapter asks you to run the tool on the answer key and compare the result with last time. If you set the test up again each time, the comparisons stop being fair. In this chapter you learned to read requests, responses and errors, and that an AI system is a software system with one unpredictable part. Now you’ll build the harness once, put it in Git, and keep adding to it for the rest of the course.':
     'Ab se lagbhag har chapter aapse kehta hai ki tool ko answer key par chalaiye aur result ko pichhli baar se compare kijiye. Agar aap har baar test dobara set up karenge, toh comparisons fair nahi rahenge. Is chapter mein aapne requests, responses aur errors padhna seekha, aur yeh bhi ki AI system ek aisa software system hai jisme ek hissa unpredictable hota hai. Ab aap harness ek baar banayenge, use Git mein rakhenge, aur course ke baaki hisse mein ismein cheezein jodte rahenge.',
-  'A new notebook, or a local folder if you prefer. This is the harness you build in code and keep extending through Chapter 34. The notes box below is for what surprised you, not for the code.':
-    'Ek naya notebook, ya agar aap chahein toh ek local folder. Yeh woh harness hai jo aap code mein banate hain aur Chapter 34 tak badhate rehte hain. Neeche wala notes box is baat ke liye hai ki aapko kya hairaan kar gaya, code ke liye nahi.',
   'Write a function of about twenty lines that reads your answer key (a CSV file) and returns its rows. Let it filter by one column, for example “only the Hinglish rows”.':
     'Lagbhag 20 lines ka ek function likhiye jo aapki answer key (ek CSV file) padhe aur uski rows wapas de. Use ek column se filter karne dijiye, jaise “sirf Hinglish wali rows”.',
   'Add three tests for it: one with a normal file, one with a row that has a missing field, and one with an empty file.':

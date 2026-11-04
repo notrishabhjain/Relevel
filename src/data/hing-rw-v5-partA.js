@@ -41,8 +41,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Course ko kaise use karein',
   'Four things will make the course easier. Here they are.':
     'Chaar baatein course ko aasaan bana dengi. Woh yeh hain.',
-  '<strong>You don’t need to install anything.</strong> Everything runs in your browser. That includes the tools built into each chapter and a free Google notebook for the chapters with code. Setting up the notebook takes about twenty minutes, and you only do it once. The setup page walks you through every step.':
-    '<strong>Aapko kuch install nahi karna.</strong> Sab kuch aapke browser mein chalta hai. Isme har chapter ke andar bane tools aur code wale chapters ke liye ek free Google notebook, dono aate hain. Notebook set up karne mein lagbhag 20 minute lagte hain, aur yeh sirf ek baar karna hota hai. Setup page har step mein aapka saath deta hai.',
   '<strong>Do the hands-on steps.</strong> Each chapter goes back and forth between an idea and a step that shows it, marked <em>Do this</em> or <em>Prove it now</em>. Most of the learning happens in those steps.':
     '<strong>Hands-on steps zaroor kijiye.</strong> Har chapter mein ek idea aur use dikhane wala ek step baari-baari se aate hain, jinpar <em>Do this</em> ya <em>Prove it now</em> likha hota hai. Zyadatar seekhna inhi steps mein hota hai.',
   '<strong>Do one chapter per sitting.</strong> Every chapter shows how long it should take. If one takes longer, that’s about the chapter, not about you. And if you stop while you still have some energy, it’s easier to come back tomorrow.':
@@ -1505,8 +1503,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Sprints plan kar paana, uncertain AI kaam ko time-boxes se estimate kar paana, aur retrospective chala paana.',
   'Choose the right prototype fidelity and run a usability test without leading the user.':
     'Sahi prototype fidelity chun paana aur user ko lead kiye bina usability test chala paana.',
-  'This chapter takes about 14 hours, spread across a week or more because of the user tests. You need a free account on Figma, Lovable or Google AI Studio for the prototype, and Jira (free tier) or a spreadsheet for the sprint plan. Core chapter 18 goes deeper on AI PRDs. This chapter covers the product-management basics.':
-    'Is chapter mein lagbhag 14 ghante lagte hain, jo user tests ki wajah se ek hafte ya usse zyada mein phailte hain. Prototype ke liye Figma, Lovable ya Google AI Studio par ek free account chahiye, aur sprint plan ke liye Jira (free tier) ya ek spreadsheet. Core chapter 18 AI PRDs par aur gehraai mein jaata hai. Yeh chapter product-management ki basics cover karta hai.',
   'In A6 you made a plan: a roadmap, goals with numbers, and a map of the people involved. A plan still isn’t something an engineer can start building on Monday. For that, the first item on your roadmap has to be described in detail.':
     'A6 mein aapne ek plan banaya: ek roadmap, numbers ke saath goals, aur shamil logon ka ek map. Phir bhi, is plan par engineer Monday ko build karna shuru nahi kar sakta. Uske liye aapke roadmap ke pehle item ko detail mein describe karna padta hai.',
   'This chapter shows you how. You’ll write the description, cut the work into small pieces, build a rough prototype, and watch real people use it.':
@@ -1655,8 +1651,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Figma mein clickable mock-up',
   'Whether users can find their way around':
     'Users apna raasta dhoondh sakte hain ya nahi',
-  'Working prototype in Lovable or Google AI Studio':
-    'Lovable ya Google AI Studio mein working prototype',
   'Whether users trust and act on the real AI output':
     'Users asli AI output par bharosa karte hain aur action lete hain ya nahi',
   'For AI features, use real model output in your prototype, not perfect made-up examples. Users react differently to answers that are sometimes wrong, and that reaction is exactly what you need to learn about.':
@@ -1681,16 +1675,12 @@ Object.assign(window.HING = window.HING || {}, {
     'Requirements likhiye, pehla prototype test kijiye aur do sprints plan kijiye',
   'Now you describe exactly what version 1 of the developer kit must do, show a rough version to real people, and plan the work. In this chapter you learned to write a requirements document (a PRD) that starts from the problem, to choose how detailed a prototype should be, and to plan sprints that include uncertain work. Here you do all three.':
     'Ab aap likhte hain ki developer kit ka version 1 theek-theek kya karega, asli logon ko ek rough version dikhate hain, aur kaam plan karte hain. Is chapter mein aapne seekha ki problem se shuru hone wala requirements document (PRD) kaise likhein, prototype kitna detailed ho yeh kaise chunein, aur aise sprints kaise plan karein jismein uncertain kaam bhi ho. Yahan aap teeno karte hain.',
-  'Written for the requirements and the plan, plus a no-code prototype built in Google AI Studio or Lovable. No Python needed.':
-    'Requirements aur plan likhna hai, saath mein Google AI Studio ya Lovable mein bana ek no-code prototype. Python ki zaroorat nahi.',
   'Write a requirements document (a PRD) with these headings: the problem and the evidence for it; who it is for; what is in version 1; what is not in version 1; what the user sees in each situation, including when the tool is unsure or wrong; how the AI behaves; how you will test it; how you will measure success; how it will be released; security; and open questions.':
     'Ek requirements document (PRD) in headings ke saath likhiye: problem aur uska evidence; yeh kiske liye hai; version 1 mein kya hai; version 1 mein kya nahi hai; har situation mein user ko kya dikhta hai, tab bhi jab tool unsure ya galat ho; AI kaise behave karta hai; aap use kaise test karenge; aap success kaise naapenge; ise kaise release kiya jaayega; security; aur open questions.',
   'In “what is in version 1” and “what is not in version 1”, draw the line clearly. Say which kinds of writing, which IDs, and which of the kit, the gateway and the extension you will really build.':
     '“Version 1 mein kya hai” aur “version 1 mein kya nahi hai” mein line saaf kheenchiye. Batayiye ki kaun si tarah ki writing, kaun se IDs, aur kit, gateway aur extension mein se kya aap sach mein build karenge.',
   'Write six user stories in the form “As a [who], I want [what], so that [why]”. At least two must describe a failure. For example: “As a developer, I want to be told when the tool is unsure, so that I can ask the user.”':
     '“As a [who], I want [what], so that [why]” form mein chhe user stories likhiye. Kam se kam do mein ek failure describe hona chahiye. Jaise: “As a developer, I want to be told when the tool is unsure, so that I can ask the user.”',
-  'Build a clickable prototype in Google AI Studio or Lovable. It is a page with a text box, a button and a result area that shows the text with personal details replaced. The detection can be fake at this stage, because you are testing the screen, not the accuracy.':
-    'Google AI Studio ya Lovable mein ek clickable prototype banaiye. Yeh ek page hai jismein ek text box, ek button aur ek result area hai jo personal details replace karke text dikhata hai. Is stage par detection nakli ho sakta hai, kyunki aap screen test kar rahe hain, accuracy nahi.',
   'Ask three real people to try it. Give each the same task, such as “paste this message and tell me what you think happened to it”, and do not help them. Write down where each person got stuck.':
     'Teen asli logon se use try karne ko kahiye. Sabko ek hi task dijiye, jaise “is message ko paste kijiye aur bataiye ki aapke hisaab se iske saath kya hua”, aur unki madad mat kijiye. Likhiye ki har insaan kahan atka.',
   'Plan two one-week sprints in a spreadsheet or in Jira. For each story, write what counts as done, what it depends on, and what you will demonstrate at the end. After the first sprint, hold a short review and write down what you will change.':
@@ -1727,8 +1717,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Kisi problem ke liye prompting, RAG aur fine-tuning mein se chun paana.',
   'Describe the AI market: model providers, open-weight models, infrastructure and applications.':
     'AI market ko bata paana: model providers, open-weight models, infrastructure aur applications.',
-  'This chapter takes about twelve hours. You need a free Google account for Colab and Google AI Studio, and optionally a free OpenRouter account. The technical core, from Chapter 1 onwards, builds on everything here with hands-on code. So treat this chapter as the map before the journey.':
-    'Is chapter mein lagbhag 12 ghante lagte hain. Colab aur Google AI Studio ke liye ek free Google account chahiye, aur chahein toh ek free OpenRouter account bhi. Chapter 1 se shuru hone wala technical core yahan ki har cheez par hands-on code ke saath aage badhta hai. Isliye is chapter ko safar se pehle ke map ki tarah lijiye.',
   'In A7 you turned a decision into specs, stories and a prototype. Throughout this part you’ve used AI models as tools. Now it is worth knowing a little about what is inside them.':
     'A7 mein aapne ek decision ko specs, stories aur prototype mein badla. Is poore part mein aap AI models ko tools ki tarah use karte rahe hain. Ab thoda jaanna kaam ka hai ki unke andar kya hai.',
   'You don’t need the maths. You need enough to make good calls: when a model is the right tool, why it behaves the way it does, and which way of improving it to try first.':
@@ -1787,8 +1775,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Aaj ke LLMs ek architecture par bane hain jise <strong>transformer</strong> kehte hain. Uska sabse zaroori hissa <strong>attention</strong> hai. Har token ke liye model nikaalta hai ki context ke baaki kaun se tokens agla kya aayega yeh predict karne mein sabse zyada kaam ke hain.',
   'Here is a classic example. Take the sentence <em>“The trophy did not fit in the suitcase because it was too big”</em>. You know that “it” means the trophy. Attention is how the model links “it” to “trophy” rather than to “suitcase”.':
     'Ek classic example dekhiye. Yeh sentence lijiye: <em>“The trophy did not fit in the suitcase because it was too big”</em>. Aap jaante hain ki “it” ka matlab trophy hai. Attention se hi model “it” ko “suitcase” ki jagah “trophy” se jodta hai.',
-  'You can see attention for yourself. Open a new Colab notebook and run this.':
-    'Aap attention khud dekh sakte hain. Ek naya Colab notebook kholiye aur yeh chalaiye.',
   'You’ll see an interactive diagram with the sentence’s tokens on each side and lines between them. Click the token “it” and switch between layers. In some layers and heads, “it” links strongly to “trophy”.':
     'Aapko ek interactive diagram dikhega jismein sentence ke tokens dono taraf hain aur beech mein lines hain. Token “it” par click kijiye aur layers ke beech switch kijiye. Kuch layers aur heads mein “it” “trophy” se mazboot taur par jud jaata hai.',
   'An error saying a module was not found':
@@ -1797,8 +1783,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Install wali line nahi chali. Pehla cell dobara chalaiye aur use khatam hone dijiye, phir baaki chalaiye.',
   'The diagram does not appear':
     'Diagram nahi dikh raha',
-  'Some browsers block the interactive output. Try Chrome, or use the no-code option: the Transformer Explainer website (search for “Transformer Explainer Polo Club”). It shows attention in your browser without any setup.':
-    'Kuch browsers interactive output block kar dete hain. Chrome try kijiye, ya no-code option use kijiye: Transformer Explainer website (“Transformer Explainer Polo Club” search kijiye). Woh bina kisi setup ke aapke browser mein attention dikhati hai.',
   'It runs, but “it” does not link to “trophy” in the layer you picked':
     'Chal toh gaya, lekin jo layer aapne chuni usmein “it” “trophy” se nahi jud raha',
   'That’s expected. Different layers and heads learn different patterns. Click through several layers. Seeing that the pattern appears in only some places is part of the lesson.':
@@ -1821,8 +1805,6 @@ Object.assign(window.HING = window.HING || {}, {
     '<strong>Inference</strong> alag cheez hai. Iska matlab hai taiyaar model ko request ka jawaab dene ke liye use karna. Inference weights nahi badalta. Jab aap AI API use karte hain, toh aap inference ke paise dete hain, aur charge token ke hisaab se lagta hai.',
   'Training changes the model, permanently, for everyone. What you put in a prompt shapes one answer and is then forgotten.':
     'Training model ko badalti hai, hamesha ke liye, sabke liye. Prompt mein jo aap daalte hain woh sirf ek jawaab ko shape karta hai aur phir bhula diya jaata hai.',
-  'Open any chat assistant. Tell it a made-up fact, such as “My company’s refund window is 17 days.” Ask it about the refund window in the same conversation, then again in a brand-new conversation.':
-    'Koi bhi chat assistant kholiye. Use ek banayi hui baat bataiye, jaise “Meri company ki refund window 17 din ki hai.” Usi conversation mein refund window ke baare mein poochiye, phir ek bilkul nayi conversation mein dobara poochiye.',
   'It remembers within the conversation, but not in the new one. The fact was context, not training. Chapter 1.5 shows why: the app resends the conversation with every message.':
     'Woh conversation ke andar yaad rakhta hai, lekin nayi conversation mein nahi. Woh baat context thi, training nahi. Chapter 1.5 dikhata hai ki aisa kyun hai: app har message ke saath conversation dobara bhejta hai.',
   'Idea 4: Prompting, RAG or fine-tuning':
@@ -1927,8 +1909,6 @@ Object.assign(window.HING = window.HING || {}, {
     '<strong>OpenRouter</strong> jaisi services aapko ek hi API se kai models call karne deti hain, closed bhi aur open bhi. Isse unhe apne test cases par compare karna aasaan ho jaata hai, aur wahi ek comparison hai jo matlab rakhta hai.',
   'Two trends shape AI product strategy. Model prices keep falling, and good models become available from many providers. Both push value up to the application layer, where workflow, data and trust decide who wins.':
     'Do trends AI product strategy ko shape karte hain. Model prices girti rehti hain, aur achhe models kai providers se milne lagte hain. Dono value ko application layer tak upar dhakel dete hain, jahan workflow, data aur trust tay karte hain ki kaun jeetega.',
-  'Run three of your capstone test cases through two different models (for example, one closed and one open-weight model on OpenRouter). Record which gave better answers, how long each took, and what each cost.':
-    'Apne capstone ke teen test cases do alag models se chalaiye (jaise OpenRouter par ek closed aur ek open-weight model). Note kijiye ki kisne behtar jawaab diye, har ek ko kitna time laga, aur har ek ki cost kitni thi.',
   'Case, model A result, model B result, time, cost, verdict…':
     'Case, model A ka result, model B ka result, time, cost, verdict…',
   'A strong write-up is specific. For example: “Three ticket batches. Model A found the main theme in all three; model B missed the smallest theme twice. A took about 4 seconds per batch, B about 2. A cost about $0.012 per batch, B about $0.002.” Then the verdict: “For the weekly report, A is worth six times the cost, because a missed theme is the failure users fear most. For a real-time alert, speed matters more, so test B on the alert cases.” Three cases is enough to learn the method. The Build it task asks for ten.':
@@ -1943,16 +1923,10 @@ Object.assign(window.HING = window.HING || {}, {
     'Teen experiments chalaiye ki models Indian text ke saath kaisa behave karte hain',
   'Before you build, see for yourself how AI models behave on the kind of text your tool must handle. In this chapter you learned what tokens and attention are, and how to choose between prompting, retrieval and fine-tuning. Here you run three small experiments on English, Hindi and Hinglish sentences and write down what you saw.':
     'Build karne se pehle khud dekhiye ki AI models us tarah ke text par kaise behave karte hain jise aapke tool ko sambhalna hai. Is chapter mein aapne seekha ki tokens aur attention kya hain, aur prompting, retrieval aur fine-tuning mein se kaise chunein. Yahan aap English, Hindi aur Hinglish sentences par teen chhote experiments chalate hain aur likhte hain ki aapne kya dekha.',
-  'A free tool (the Transformer Explainer website) or, if you prefer, a Colab notebook for the attention demo. Write what you saw in the notes box below.':
-    'Ek free tool (Transformer Explainer website) ya, agar aap chahein, attention demo ke liye ek Colab notebook. Jo dekha woh neeche wale notes box mein likhiye.',
-  'Take starter sentences 1, 2 and 3 from the project page. They are the same kind of message in English, Hindi and Hinglish. Open a free attention viewer (the Transformer Explainer website, or the notebook shown in this chapter) and paste each sentence in turn.':
-    'Project page se starter sentences 1, 2 aur 3 lijiye. Yeh English, Hindi aur Hinglish mein ek hi tarah ka message hain. Ek free attention viewer kholiye (Transformer Explainer website, ya is chapter mein dikhaya gaya notebook) aur har sentence ko baari-baari se paste kijiye.',
   'For each sentence, write down how many pieces the text is cut into. Also write down which words the model pays most attention to when it reaches the name and the number. Then write two or three lines on what differs between the three sentences, and one line on what this viewer does not prove.':
     'Har sentence ke liye likhiye ki text kitne tukdon mein kata hai. Yeh bhi likhiye ki jab model naam aur number tak pahunchta hai, toh woh kin words par sabse zyada attention deta hai. Phir do-teen lines likhiye ki teeno sentences mein kya farq hai, aur ek line likhiye ki yeh viewer kya prove nahi karta.',
   'Fill in a table that compares three ways of making a model find personal details. You can just ask it with a prompt, let it look things up in your documents (retrieval), or train it further (fine-tuning). Compare them on freshness, private data, writing style, cost, speed and how easy they are to test. Fill it in for the third part of the tool, the context judge, and end with the option you choose and why.':
     'Ek table bhariye jo personal details dhoondhne ke liye model ko banane ke teen tareeke compare karti hai. Aap use sirf prompt se bol sakte hain, use apne documents mein cheezein dhoondhne de sakte hain (retrieval), ya use aur train kar sakte hain (fine-tuning). Unhe freshness, private data, writing style, cost, speed aur test karne ki aasaani par compare kijiye. Ise tool ke teesre hisse, context judge, ke liye bhariye, aur us option par khatam kijiye jo aap chunte hain aur kyun.',
-  'Run starter sentences 1 to 8 through two different AI models, for example one on OpenRouter and one in Google AI Studio. Use the same instruction for both: “List every piece of personal information in this sentence.”':
-    'Starter sentences 1 se 8 do alag AI models se chalaiye, jaise OpenRouter par ek aur Google AI Studio mein ek. Dono ke liye ek hi instruction dijiye: “List every piece of personal information in this sentence.”',
   'For each model, record how many items it found correctly, how many it missed, how long it took and what it cost. Note which sentences it missed, and whether most of the misses were Hindi or Hinglish.':
     'Har model ke liye record kijiye ki usne kitne items sahi dhoondhe, kitne chhode, kitna time laga aur kitni cost aayi. Note kijiye ki kaun se sentences chhoote, aur kya zyadatar chhoote hue Hindi ya Hinglish the.',
   'Write one paragraph. Which model would you start with for this project, and what is the one thing you would test next before trusting it?':

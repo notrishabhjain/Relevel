@@ -83,10 +83,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Tip',
   'If a chapter feels too fast, slow down and run the examples again. The <a href="#/later">Not yet</a> page lists the topics you can safely ignore for now.':
     'Agar koi chapter bahut tez lage, toh ruk kar examples dobara chalaiye. <a href="#/later">Not yet</a> page par woh topics hain jinhe aap abhi bina chinta ke chhod sakte hain.',
-  'To send your own questions to a real model, you need two free things: a place to run code, and an API key. Setting them up takes about forty-five minutes, and you only do it once: <a href="#/setup">Set up Colab and your API key</a>.':
-    'Kisi asli model ko apne sawaal bhejne ke liye aapko do free cheezein chahiye: code chalane ki ek jagah, aur ek API key. Inhe set up karne mein lagbhag 45 minute lagte hain, aur yeh sirf ek baar karna hota hai: <a href="#/setup">Colab aur apni API key set up kijiye</a>.',
-  'Or you can keep reading first. Chapter 1 is easier with the notebook open, but you can follow it without one.':
-    'Ya aap pehle aage padhte reh sakte hain. Chapter 1 notebook khol kar padhna aasaan hai, lekin uske bina bhi samajh aa jaayega.',
   'Compare what English, Hindi and Hinglish cost':
     'English, Hindi aur Hinglish ki cost compare kijiye',
   'This is your first real step on the project, and it still needs no account, no key and no install. In this chapter you used three tools on this page: one that cuts text into tokens, one that shows a chat getting more expensive, and a temperature slider. Models charge by the token. So the first question for Bharat Privacy Guard is a simple one: does the same message cost more in Hindi and Hinglish than in English?':
@@ -119,8 +115,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Aapki pehli API call: model jawaab kaise deta hai',
   'You send a model a message, and it sends text back. In this chapter you’ll make your first API call, read what it cost, and see why a confident answer can still be wrong.':
     'Aap model ko ek message bhejte hain, aur woh text wapas bhejta hai. Is chapter mein aap apni pehli API call karenge, dekhenge ki usmein kitna kharch hua, aur samjhenge ki ek confident jawaab bhi galat kyun ho sakta hai.',
-  'Open a notebook and make one model API call before you read anything else. Make a guess first: is the model finding an answer somewhere, or writing one?':
-    'Ek notebook kholiye aur kuch aur padhne se pehle model ko ek API call kijiye. Pehle andaaza lagaiye: model kahin se jawaab dhoondh raha hai, ya khud likh raha hai?',
   'Run a short question, then a long piece of text. From each run, save the full response and the usage block.':
     'Pehle ek chhota sawaal run kijiye, phir ek lamba text. Har run se poora response aur usage block save kar lijiye.',
   'Ask for something the model cannot possibly know, and see what comes back anyway.':
@@ -129,8 +123,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek request ki ek page ki tasveer, shuru se aakhir tak: input, model, output, tokens, cost.',
   'Explain what happens during a request without once saying “the AI just knows”.':
     'Request ke dauraan kya hota hai, yeh samjhaiye, aur ek baar bhi yeh mat kahiye ki “AI ko sab pata hai”.',
-  'Colab open and your key working':
-    'Colab khula ho aur aapki key kaam kar rahi ho',
   'The five minutes of setup, done once. Chapter 1 is the first chapter that uses it.':
     'Setup ke woh paanch minute, jo sirf ek baar karne hote hain. Chapter 1 pehla chapter hai jo isse kaam leta hai.',
   'Explain why a model can sound certain and still be wrong.':
@@ -139,8 +131,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Response ka usage block padh paana aur bata paana ki aapse kis cheez ka paisa liya jaata hai.',
   'Estimate the cost of a request from its token counts.':
     'Token counts dekhkar ek request ki cost ka andaaza laga paana.',
-  'Open a new Colab notebook and name it <code>chapter-1</code>. Run the three warm-up cells from <a href="#/setup">Setup</a> (the key, the install and the client), so they sit above everything you write today. After each idea in this chapter, you’ll find a little code that shows it. Run each block before you read on.':
-    'Ek naya Colab notebook kholiye aur uska naam <code>chapter-1</code> rakhiye. <a href="#/setup">Setup</a> ke teeno warm-up cells chalaiye (key, install aur client), taaki woh aaj ke saare code ke upar rahein. Is chapter mein har idea ke baad thoda code aayega jo use dikhata hai. Aage padhne se pehle har block ko run kijiye.',
   'In the last chapter you tried tokens, cost and temperature right here in the browser. Now you’ll do the same kind of thing with a real model. You’ll send it a message, look at what it sends back, and see what that exchange costs.':
     'Pichhle chapter mein aapne tokens, cost aur temperature browser mein hi try kiye the. Ab aap wahi kaam ek asli model ke saath karenge. Aap use ek message bhejenge, dekhenge ki woh kya wapas bhejta hai, aur yeh ki is lena-dena mein kitna kharch hota hai.',
   'Along the way you’ll learn one thing that matters for every AI product you’ll ever work on: a model can sound completely sure and still be wrong.':
@@ -161,16 +151,12 @@ Object.assign(window.HING = window.HING || {}, {
     'Aapko do sentence ka ek fluent jawaab milta hai. Dhyaan dijiye ki aapne model ko search karne ke liye kuch diya hi nahi. Usne jawaab un patterns se likha jo usne training mein seekhe the.',
   'A red box saying something <em>is not defined</em>':
     'Ek red box jisme likha ho ki kuch <em>is not defined</em>',
-  'You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Scroll to the top, run the warm-up cells in order, then come back here. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.':
-    'Aapne aisa cell chalaya jise kisi pichhle cell ki cheez chahiye, lekin woh pichhla cell abhi chala hi nahi. Upar scroll kijiye, warm-up cells ko order mein chalaiye, phir yahan wapas aaiye. Notebook mein sabse common dikkat yahi hai. Yeh sabke saath hota hai, aur iska matlab yeh nahi ki aapka code galat hai.',
   'An authentication error, or the number 401':
     'Authentication error, ya 401 number',
   'Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.':
     'Aapki key code tak nahi pahunchi. Key load karne wala cell dobara chalaiye, aur check kijiye ki jis naam se aapne key save ki thi, woh <a href="#/setup">Setup</a> se bilkul match kare. Capital letters ka bhi farq padta hai.',
   'A message about a module not being found':
     'Module not found jaisa koi message',
-  'The install cell hasn’t run in this session. A notebook forgets what it installed whenever it disconnects, and it disconnects after you leave it alone for a while. Run the install cell again and carry on.':
-    'Is session mein install wala cell nahi chala. Notebook disconnect hote hi apne installs bhool jaata hai, aur kuch der akela chhodne par woh disconnect ho jaata hai. Install wala cell dobara chalaiye aur aage badhiye.',
   'It runs, but your numbers are not the ones printed above':
     'Code chal gaya, lekin aapke numbers upar wale numbers se alag hain',
   'That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.':
@@ -223,10 +209,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Apni pehli call kijiye aur dekhiye ki usmein kitna kharch hota hai',
   'Now you move from the browser tools to a real model. In this chapter you learned to read the usage block that comes back with every answer, and to see exactly what you’re billed for. Here you ask a real model to find the personal details in some of the starter sentences, check its answers yourself, and measure the cost.':
     'Ab aap browser tools se nikalkar ek asli model par aate hain. Is chapter mein aapne har jawaab ke saath aane wala usage block padhna seekha, aur yeh bhi ki aapse theek-theek kis cheez ka paisa liya jaata hai. Yahan aap ek asli model se kuch starter sentences mein personal details dhoondhne ko kahenge, uske jawaab khud check karenge, aur cost naapenge.',
-  'Your <code>chapter-1</code> notebook. The numbers you print are what counts. The notes box below is for a short reflection, not a long write-up.':
-    'Aapka <code>chapter-1</code> notebook. Jo numbers aap print karte hain, wahi asli cheez hain. Neeche ka notes box ek chhote reflection ke liye hai, lamba likhne ke liye nahi.',
-  'In your <code>chapter-1</code> notebook, send starter sentence 7 (the one with Amit Sharma, the PAN and the HDFC account) to the model with the instruction: “List every piece of personal information in this message.”':
-    'Apne <code>chapter-1</code> notebook mein starter sentence 7 (jisme Amit Sharma, PAN aur HDFC account hai) model ko yeh instruction dekar bhejiye: “List every piece of personal information in this message.”',
   'Print the whole answer and the usage block. Write down the prompt_tokens and the completion_tokens.':
     'Poora jawaab aur usage block print kijiye. prompt_tokens aur completion_tokens likh lijiye.',
   'Check the answer by hand. List what the model found correctly, what it missed, and anything it listed that is not personal. Don’t trust it just because it sounds sure.':
@@ -279,8 +261,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Samjha paana ki chat ka koi bhi “memory” feature asal mein kaise kaam karta hai.',
   'Predict what a long conversation will cost before anyone builds it.':
     'Kisi ke kuch banane se pehle hi andaaza laga paana ki ek lambi conversation ki cost kitni hogi.',
-  'Keep using your <code>chapter-1</code> notebook. You’ll need the usage code from the last chapter. This time you’ll run it in a loop and watch the numbers grow.':
-    'Apna <code>chapter-1</code> notebook hi use karte rahiye. Aapko pichhle chapter ka usage code chahiye hoga. Is baar aap use ek loop mein chalayenge aur numbers ko badhte dekhenge.',
   'In Chapter 1 you saw that a model writes its answers from patterns, and that you pay for every token. Now for the third fact. A model doesn’t remember anything between calls, and each call has a size limit.':
     'Chapter 1 mein aapne dekha ki model apne jawaab patterns se likhta hai, aur aap har token ka paisa dete hain. Ab teesra fact. Model calls ke beech kuch yaad nahi rakhta, aur har call ki ek size limit hoti hai.',
   'This chapter proves both facts in code. Then you’ll build a simple chat memory yourself and see what it costs.':
@@ -341,12 +321,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Pata kijiye ki ek lambi chat ko check karne mein kitna kharch hota hai',
   'A model remembers nothing between calls. A chat feels continuous only because every earlier message is sent again, which makes long chats expensive. Bharat Privacy Guard will sit in front of chats like this, so you need to know what it costs to check one. In this chapter you learned how chat memory really works and how to predict a cost before anything is built. Here you do that for the project.':
     'Model calls ke beech kuch yaad nahi rakhta. Chat sirf isliye continuous lagti hai kyunki har pichhla message dobara bheja jaata hai, aur isi se lambi chats mehngi padti hain. Bharat Privacy Guard aisi hi chats ke aage baithega, isliye pata hona chahiye ki ek chat check karne mein kitna kharch hoga. Is chapter mein aapne chat memory ka asli kaam seekha. Yahan aap project ke liye cost ka andaaza lagate hain.',
-  'Keep using your <code>chapter-1</code> notebook for the calls and the token counts. Write the final sentence in the notes box below.':
-    'Calls aur token counts ke liye apna <code>chapter-1</code> notebook hi use kijiye. Aakhri sentence neeche ke notes box mein likhiye.',
   'Imagine a bank’s chat window in which every customer message goes through Bharat Privacy Guard before it reaches an AI model. Describe this feature in one sentence.':
     'Ek bank ki chat window imagine kijiye jisme har customer message AI model tak pahunchne se pehle Bharat Privacy Guard se guzarta hai. Is feature ko ek sentence mein describe kijiye.',
-  'In your <code>chapter-1</code> notebook, write a five-message conversation using starter sentences 1, 3, 6, 7 and 9, in that order, as the customer’s messages. Send them one at a time, each time sending all the earlier messages as well.':
-    'Apne <code>chapter-1</code> notebook mein starter sentences 1, 3, 6, 7 aur 9 ko isi order mein customer ke messages banakar paanch message ki ek conversation likhiye. Unhe ek-ek karke bhejiye, aur har baar saare pichhle messages bhi saath bhejiye.',
   'After each message, print the prompt_tokens. Write the five numbers in a list and notice how they grow.':
     'Har message ke baad prompt_tokens print kijiye. Paanchon numbers ek list mein likhiye aur dekhiye ki woh kaise badhte hain.',
   'Do it again, but this time check only the newest message each time. Compare the total tokens for the whole conversation both ways.':
@@ -393,8 +369,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Samjha paana ki confident tone se yeh kyun nahi pata chalta ki jawaab sahi hai ya nahi.',
   'Tell the difference between making a failure rarer and removing its cause.':
     'Bata paana ki ek failure ko kam hone wala banana aur uski wajah hatana, in dono mein kya farq hai.',
-  'Open a new notebook called <code>chapter-2</code>. Run the three warm-up cells from <a href="#/setup">Setup</a> (the key, the install and the client). You’ll make three calls in this chapter, and each one tests the idea just before it.':
-    '<code>chapter-2</code> naam ka ek naya notebook kholiye. <a href="#/setup">Setup</a> ke teeno warm-up cells chalaiye (key, install aur client). Is chapter mein aap teen calls karenge, aur har call usse pehle wale idea ko test karti hai.',
   'In the last chapter you saw that a model forgets everything between calls, and that your app has to carry the memory. That raises a practical question. If the model starts fresh every time, how do you make it behave the way you want?':
     'Pichhle chapter mein aapne dekha ki model calls ke beech sab kuch bhool jaata hai, aur memory aapke app ko carry karni padti hai. Isse ek practical sawaal uthta hai. Agar model har baar zero se shuru karta hai, toh aap use apni marzi ke hisaab se behave kaise karwayenge?',
   'This chapter gives you the two main controls for that. Then you’ll see the model’s biggest weakness up close: it will invent an answer and sound completely sure. You’ll try to stop it, and then you’ll break your own fix.':
@@ -483,8 +457,6 @@ Object.assign(window.HING = window.HING || {}, {
     'AI helper ke liye instructions likhiye, aur unhe todne ki koshish kijiye',
   'When the first two parts of the tool cannot settle a sentence, the third part (the context judge) asks an AI model. That model needs written instructions, called a system prompt, that are sent with every message. In this chapter you learned that a confident tone tells you nothing about whether an answer is right, and that a system prompt can make a failure rarer without removing its cause. Here you write the system prompt for the context judge and test it.':
     'Jab tool ke pehle do hisse kisi sentence ko settle nahi kar paate, toh teesra hissa (context judge) ek AI model se poochhta hai. Us model ko likhe hue instructions chahiye, jinhe system prompt kehte hain, aur jo har message ke saath jaate hain. Is chapter mein aapne seekha ki confident tone se jawaab ka sahi hona nahi pata chalta, aur system prompt failure kam karta hai, wajah nahi hatata. Yahan aap context judge ka system prompt likhte hain.',
-  'Your <code>chapter-2</code> notebook. Write the system prompt as the system message and test it there. You’ll use the same prompt again in Chapter 2.1.':
-    'Aapka <code>chapter-2</code> notebook. System prompt ko system message ki tarah likhiye aur wahin test kijiye. Wahi prompt aap Chapter 2.1 mein dobara use karenge.',
   'Write the system prompt in plain English. It must say: what the helper is for; what counts as personal information (names, ID numbers, phone numbers, addresses, and details that point to one person); what to answer when nothing personal is present; the exact format of the answer (for example a list with the item, its type and one word of reason); and what to do when it is not sure.':
     'System prompt simple English mein likhiye. Usmein yeh sab hona chahiye: helper kis kaam ke liye hai; personal information kya maani jaayegi (naam, ID numbers, phone numbers, addresses, aur woh details jo ek hi insaan ki taraf ishaara karti hain); jab kuch personal na ho toh kya jawaab dena hai; jawaab ka exact format (jaise item, uska type aur wajah ka ek word wali list); aur jab pakka na ho toh kya karna hai.',
   'Add a rule that stops it from inventing: “If you are not sure, answer UNSURE. Never guess a number.”':
@@ -527,8 +499,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Bata paana ki kisi bhi prompt mein chaar techniques mein se kaun si technique asli kaam kar rahi hai.',
   'Show a model the output you want with a worked example, instead of describing it.':
     'Model ko woh output, jo aap chahte hain, describe karne ki jagah ek worked example se dikha paana.',
-  'Open a notebook called <code>chapter-2-1</code> and run the warm-up cells. Keep the system prompt from the Chapter 2 capstone open too. You’ll begin by testing it on a new kind of task.':
-    '<code>chapter-2-1</code> naam ka ek notebook kholiye aur warm-up cells chalaiye. Chapter 2 ke capstone wala system prompt bhi paas rakhiye. Aap shuruaat usi ko ek naye tarah ke task par test karke karenge.',
   'In Chapter 2 you saw that one sentence in a system prompt can change how a model behaves. Now comes the part you’ll do most often at work: writing the prompt for a particular job. This chapter gives you four techniques for that, one at a time, and you’ll try each one on your own text.':
     'Chapter 2 mein aapne dekha tha ki system prompt ka ek sentence model ka behaviour badal sakta hai. Ab woh kaam aata hai jo aap office mein sabse zyada karenge: kisi khaas job ke liye prompt likhna. Is chapter mein iske liye chaar techniques hain, ek-ek karke, aur har ek ko aap apne hi text par try karenge.',
   'Let’s start by seeing what your Chapter 2 system prompt can and can’t do.':
@@ -615,10 +585,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Instructions ko tab tak behtar kijiye jab tak koi anjaan insaan unhe use kar sake',
   'Your system prompt from Chapter 2 works for you, because you know what you meant. A good prompt works for someone else without any explanation. In this chapter you learned four techniques: describe the reader and the job, show worked examples, break the task into steps, and add a few firm “never” rules. Now you’ll apply them to the context judge’s prompt and test the result on another person.':
     'Chapter 2 ka aapka system prompt aapke liye kaam karta hai, kyunki aapko pata hai ki aapka matlab kya tha. Ek achha prompt kisi doosre ke liye bhi bina kisi explanation ke kaam karta hai. Is chapter mein aapne chaar techniques seekhi: reader aur job describe karna, worked examples dena, task ko steps mein todna, aur kuch pakki “never” rules jodna. Ab aap inhe context judge ke prompt par lagayenge aur result ko kisi doosre insaan par test karenge.',
-  'Your <code>chapter-2-1</code> notebook. Write and run the prompt there. The notes box below is for what the other person said when they tried it without help.':
-    'Aapka <code>chapter-2-1</code> notebook. Prompt wahin likhiye aur chalaiye. Neeche ka notes box isliye hai ki doosre insaan ne bina madad ke use try kiya toh unhone kya kaha, woh wahan likh sakein.',
-  'Open your Chapter 2 system prompt in your <code>chapter-2-1</code> notebook and run it on starter sentences 4, 5 and 8 to see where it is weakest.':
-    'Apne <code>chapter-2-1</code> notebook mein Chapter 2 ka system prompt kholiye aur use starter sentences 4, 5 aur 8 par chalaiye, taaki dikhe ki woh kahan sabse kamzor hai.',
   'Add a short description of who reads the answer and what they do with it. For example: “A developer’s program reads your answer and decides whether to hide each item.”':
     'Ek chhota sa description jodiye ki jawaab kaun padhta hai aur woh us ka kya karta hai. Jaise: “Ek developer ka program aapka jawaab padhta hai aur decide karta hai ki har item ko hide karna hai ya nahi.”',
   'Add two worked examples: one ordinary (starter sentence 3) and one awkward (starter sentence 4, where the mobile number is already partly hidden). For each one, write out the answer you want, exactly as it should appear.':
@@ -661,8 +627,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek baar mein ek hi cheez badal paana aur measure kar paana ki usse madad mili ya nahi.',
   'Explain why a prompt that looked better in a demo often is not.':
     'Samjha paana ki demo mein behtar dikhne wala prompt aksar behtar kyun nahi hota.',
-  'Open a notebook called <code>chapter-2-2</code>, and bring the four prompt versions from the last chapter. You’ll find out which one is actually better, and it may not be the one that felt better.':
-    '<code>chapter-2-2</code> naam ka ek notebook kholiye, aur pichhle chapter ke chaaron prompt versions saath rakhiye. Aap pata lagayenge ki asal mein kaun sa behtar hai, aur ho sakta hai woh wahi na ho jo aapko behtar laga tha.',
   'At the end of the last chapter you had four versions of a prompt and a feeling about which was best. This chapter turns that feeling into something you can check. You’ll build a small test set, score every version against it, and then improve the best one carefully.':
     'Pichhle chapter ke end mein aapke paas prompt ke chaar versions the aur ek ehsaas ki kaun sa sabse achha hai. Yeh chapter us ehsaas ko aisi cheez banata hai jise aap check kar sakte hain. Aap ek chhota test set banayenge, har version ko usse score karenge, aur phir sabse achhe version ko dhyaan se behtar karenge.',
   'Why reading a few outputs misleads you':
@@ -731,8 +695,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Answer key banaiye (version 1)',
   'Everything in this project is measured against one test file, the answer key. In this chapter you learned to build a small test set from real inputs, to change one thing at a time, and to score each change. Now you’ll build version 1 of the answer key from the ten starter sentences, and use it to choose between versions of your prompt.':
     'Is project mein sab kuch ek test file ke against measure hota hai, yaani answer key. Is chapter mein aapne seekha ki asli inputs se ek chhota test set kaise banate hain, ek baar mein ek cheez kaise badalte hain, aur har change ko kaise score karte hain. Ab aap 10 starter sentences se answer key ka version 1 banayenge, aur use apne prompt ke versions ke beech chunne ke liye use karenge.',
-  'Your <code>chapter-2-2</code> notebook for scoring. The answer key itself is a spreadsheet that you save in your repository.':
-    'Scoring ke liye aapka <code>chapter-2-2</code> notebook. Answer key khud ek spreadsheet hai jo aap apne repository mein save karenge.',
   'Open the project page and copy the ten starter sentences into a spreadsheet. Add the columns described under “The answer key”: number, kind of writing, sentence, what should be found, what should happen, and a note.':
     'Project page kholiye aur 10 starter sentences ko ek spreadsheet mein copy kijiye. “The answer key” ke neeche bataye gaye columns jodiye: number, kind of writing, sentence, kya milna chahiye, kya hona chahiye, aur ek note.',
   'For each row, write by hand what should be found (the kind and the exact words) and what should happen to it: remove it, mask it, or leave the sentence alone. Starter sentence 9 should say “nothing found”.':
@@ -913,8 +875,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Woh category dhoondh paana jismein aapka system sabse kamzor hai, aur bata paana ki business ko uski kya keemat padti hai.',
   'Explain why an overall accuracy figure often hides the failure that matters.':
     'Samjha paana ki overall accuracy ka ek number aksar wahi failure chhupa leta hai jo asal mein matter karta hai.',
-  'Open a notebook called <code>chapter-2-4</code> and run the warm-up cells. Also bring twenty real examples of something at your work that gets sorted into categories. It could be tickets by type, documents by department or requests by urgency.':
-    '<code>chapter-2-4</code> naam ka ek notebook kholiye aur warm-up cells chalaiye. Saath mein apne kaam ki koi aisi cheez ke bees asli examples le aaiye jo categories mein sort hoti hai. Jaise type ke hisaab se tickets, department ke hisaab se documents, ya urgency ke hisaab se requests.',
   'In the last chapter you met the five task types. One of them, classification, is the easiest to grade, because each answer is either right or wrong. In this chapter you’ll build a small classifier and measure it properly. You’ll also learn why one overall score can fool you, and that matters whenever you judge an AI feature.':
     'Pichhle chapter mein aapne paanch task types dekhe. Unmein se classification ko grade karna sabse aasaan hai, kyunki har jawaab ya toh sahi hota hai ya galat. Is chapter mein aap ek chhota classifier banayenge aur use theek tareeke se measure karenge. Saath hi yeh bhi seekhenge ki ek overall score aapko kaise dhoka de sakta hai, aur AI feature ko judge karte waqt yeh bahut zaroori hai.',
   'Look again at your test set':
@@ -971,8 +931,6 @@ Object.assign(window.HING = window.HING || {}, {
     'ID kis kism ki hai, iske liye ek sorter banaiye aur use measure kijiye',
   'Sometimes the tool finds a string of digits and has to decide what it is. It could be an Aadhaar number, a bank account number, a phone number or a PIN code. That is a sorting job. In this chapter you learned to measure a sorter honestly, one category at a time, and to look for the category it is worst at. Here you build a sorter and test it.':
     'Kabhi tool ko digits ki ek string milti hai aur use tay karna hota hai ki woh kya hai. Woh Aadhaar number ho sakta hai, bank account number, phone number ya PIN code. Yeh sorting ka kaam hai. Is chapter mein aapne seekha ki sorter ko imaandaari se measure kaise karte hain, ek-ek category karke, aur sabse kamzor category kaise dhoondhte hain. Ab aap ek sorter banayenge aur use test karenge.',
-  'Your <code>chapter-2-4</code> notebook. Build and measure the sorter there. Write the numbers for each category in the notes box below.':
-    'Aapka <code>chapter-2-4</code> notebook. Sorter wahin banaiye aur measure kijiye. Har category ke numbers neeche notes box mein likhiye.',
   'Write down the categories: Aadhaar, PAN, mobile number, bank account, PIN code, and “something else”.':
     'Categories likh lijiye: Aadhaar, PAN, mobile number, bank account, PIN code, aur “something else”.',
   'Write twenty short examples, with at least three for each category. Use made-up values like those on the project page. Put some inside sentences (“call me on 9876543210”) and some on their own.':
@@ -1017,8 +975,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Summariser ko us failure ke liye test kar paana jo matter karta hai: usne kya chhod diya.',
   'Explain why “it reads well” tells you almost nothing about a summary.':
     'Samjha paana ki “it reads well” se summary ke baare mein lagbhag kuch pata nahi chalta.',
-  'Open a notebook called <code>chapter-2-5</code>. Also bring one real document with something important buried in it. It could be a deadline, an exception, a liability or a number that someone would be upset to miss.':
-    '<code>chapter-2-5</code> naam ka ek notebook kholiye. Saath mein ek asli document le aaiye jisme koi zaroori cheez chhupi ho. Woh deadline ho sakti hai, koi exception, koi liability, ya aisa number jise miss karne par koi naraaz ho jaye.',
   'In the last chapter you graded a classifier, where every answer was plainly right or wrong. Summaries are different. There is no single right answer, so it’s much harder to say whether one is good. In this chapter you’ll see how a summary can fail without anyone noticing, and then you’ll build a simple way to catch that failure.':
     'Pichhle chapter mein aapne ek classifier grade kiya, jahan har jawaab saaf taur par sahi ya galat tha. Summaries alag hoti hain. Unka koi ek sahi jawaab nahi hota, isliye yeh batana kaafi mushkil hai ki ek summary achhi hai ya nahi. Is chapter mein aap dekhenge ki summary bina kisi ko pata chale kaise fail ho sakti hai, aur phir us failure ko pakadne ka ek simple tareeka banayenge.',
   'How summaries fail':
@@ -1071,8 +1027,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek chhoti privacy report likhiye, aur use facts ke saamne check kijiye',
   'After the tool has cleaned a batch of messages, a manager will want a short report of what was found and how often. A summary has one dangerous failure: it leaves something out, or it invents something. In this chapter you learned to decide who a summary is for, and to test what it leaves out. Here you build a summary of what the tool found, and test it.':
     'Tool jab messages ke ek batch ko clean kar leta hai, toh ek manager ek chhoti report chahega ki kya mila aur kitni baar. Summary ka ek khatarnaak failure hota hai: woh kuch chhod deti hai, ya kuch gadh deti hai. Is chapter mein aapne seekha ki summary kis ke liye hai yeh kaise tay karte hain, aur yeh kaise test karte hain ki usne kya chhoda. Ab aap tool ne jo paaya uski summary banayenge aur use test karenge.',
-  'Your <code>chapter-2-5</code> notebook. Build the summary and its fact check there. Write what the check caught in the notes box below.':
-    'Aapka <code>chapter-2-5</code> notebook. Summary aur uska fact check wahin banaiye. Check ne kya pakda, yeh neeche notes box mein likhiye.',
   'Make a batch of ten results by hand, using starter sentences 1 to 10. For each one, write the list of things the tool found and what it did to them.':
     'Starter sentences 1 se 10 use karke haath se das results ka ek batch banaiye. Har ek ke liye likhiye ki tool ko kya-kya mila aur usne un par kya kiya.',
   'Decide who will read the summary and what they will do next. For example: “A compliance manager reads it every Monday and decides whether to change a rule.” Write this in one line.':
@@ -1425,8 +1379,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Bata paana ki 0.5 ke similarity score ka kya matlab hai aur kya nahi.',
   'Name a place where embeddings would fail on your own company’s vocabulary.':
     'Aisi ek jagah bata paana jahan embeddings aapki apni company ki vocabulary par fail honge.',
-  'Open a notebook called <code>chapter-5</code> and run the three warm-up cells from <a href="#/setup">Setup</a>. Keep the twenty cards from Chapter 3 and the three harder questions from Chapter 4 ready. This is the longest hands-on chapter in Part I, so give it one full sitting.':
-    '<code>chapter-5</code> naam ka ek notebook kholiye aur <a href="#/setup">Setup</a> ke teen warm-up cells chalaiye. Chapter 3 ke bees cards aur Chapter 4 ke teen mushkil sawaal paas rakhiye. Part I ka yeh sabse lamba hands-on chapter hai, isliye ise ek baar mein poora baith kar kijiye.',
   'In the last chapter you saw keyword search fail. The user wrote <em>money back</em>, the document said <em>reimbursement</em>, and the match scored zero. Now we fix that. Here you’ll teach search to compare meaning instead of spelling, and then run your own failed questions through it.':
     'Pichhle chapter mein aapne keyword search ko fail hote dekha. User ne likha <em>money back</em>, document mein tha <em>reimbursement</em>, aur match ka score zero aaya. Ab hum ise theek karte hain. Yahan aap search ko spelling ki jagah matlab compare karna sikhayenge, aur phir apne hi fail hue sawaal usme chalayenge.',
   'A map of meanings':
@@ -1501,10 +1453,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Rules ko code mein badaliye, aur unhe meaning se dhoondhne ke saath compare kijiye',
   'So far your rules are written on paper. In this chapter you learned that a computer can compare the meaning of sentences, not just their words, by turning them into lists of numbers called embeddings. Now you’ll turn your pattern rules into code. Then you’ll use meaning to find the sentences the rules can’t, and compare the two approaches on your answer key.':
     'Ab tak aapke rules kaagaz par likhe hain. Is chapter mein aapne seekha ki computer sentences ke words hi nahi, unka matlab bhi compare kar sakta hai, unhe numbers ki list mein badal kar jise embeddings kehte hain. Ab aap apne pattern rules ko code mein badlenge. Phir meaning se woh sentences dhoondhenge jo rules nahi dhoondh paate, aur dono tareekon ko apne answer key par compare karenge.',
-  'Your <code>chapter-5</code> notebook, for the code and the comparison, next to your hand-scored results from Chapter 4. Write up the comparison in the notes box below.':
-    'Aapka <code>chapter-5</code> notebook, code aur comparison ke liye, Chapter 4 ke haath se score kiye results ke saath. Comparison ko neeche notes box mein likhiye.',
-  'In your <code>chapter-5</code> notebook, turn your plain-word rules for PAN, Aadhaar, mobile number and email into code. Each one is a short pattern. Run them over the twelve rows of the answer key and print what each finds.':
-    'Apne <code>chapter-5</code> notebook mein PAN, Aadhaar, mobile number aur email ke saade-words wale rules ko code mein badaliye. Har ek ek chhota pattern hai. Unhe answer key ki baarah rows par chalaiye aur print kijiye ki har ek kya dhoondhta hai.',
   'Score the code. In how many of the twelve rows did it give exactly the right answer? Which rows did it miss or get wrong? Compare this with your by-hand result from Chapter 4. Are they the same?':
     'Code ko score kijiye. Baarah rows mein se kitni mein usne bilkul sahi jawaab diya? Kaun si rows chhoot gayi ya galat nikli? Ise Chapter 4 ke apne haath wale result se compare kijiye. Kya dono same hain?',
   'Write five sentences that give away a person without any ID, such as “I am the only diabetic patient in my village who had a transplant last year”. Also write five harmless sentences, such as “What documents do I need to renew my driving licence?”.':
@@ -1549,8 +1497,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Samjha paana ki search step do tareeke se fail hota hai, aur ek ko theek karne par doosra aksar kharab kyun ho jaata hai.',
   'Decide which failure is worse for a feature you work on, and defend the choice.':
     'Aap jis feature par kaam karte hain, uske liye tay kar paana ki kaun sa failure zyada kharab hai, aur apne faisle ko defend kar paana.',
-  'You need a pen and paper, plus your <code>chapter-5</code> notebook for the measurements. Bring the document from Chapter 3 and the <code>retrieve</code> function from Chapter 5.':
-    'Aapko pen aur paper chahiye, aur naapne ke liye apna <code>chapter-5</code> notebook. Chapter 3 ka document aur Chapter 5 ka <code>retrieve</code> function saath rakhiye.',
   'By now you have a search step that finds chunks by meaning, and it seems to work. But sooner or later, someone senior will ask: is it good? Often the answer is a demo of three questions that work. That doesn’t tell you how often the system is right.':
     'Ab tak aapke paas ek aisa search step hai jo meaning se chunks dhoondhta hai, aur woh kaam karta hua lagta hai. Lekin aaj nahi toh kal, koi senior poochega: kya yeh achha hai? Aksar jawaab hota hai teen sawaalon ka ek demo jo chal jaata hai. Isse yeh nahi pata chalta ki system kitni baar sahi hai.',
   'In this chapter you’ll learn how to measure it properly. It isn’t complicated. If you’ve ever written acceptance criteria, you already know most of it. It comes down to three ideas.':
@@ -1651,8 +1597,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Scoreboard banaiye, aur ek ship-karna-hai-ya-nahi ka note likhiye',
   'Until now you’ve judged the tool by looking at it. Now you’ll give it a number. In this chapter you learned that a search can fail in two ways: it can miss something that was there, or return something that wasn’t. For Bharat Privacy Guard, a missed detail is a leak, and a false alarm is an annoyance. Here you’ll measure both, for each kind of ID and each kind of writing, and decide whether this version is good enough to use.':
     'Ab tak aapne tool ko dekh kar judge kiya hai. Ab aap use ek number denge. Aapne seekha ki search do tareeke se fail hota hai: jo wahan tha woh chhod deta hai, ya jo wahan nahi tha woh wapas kar deta hai. Bharat Privacy Guard mein chhoota hua detail ek leak hai, aur false alarm ek pareshaani. Dono ko naapiye, har tarah ki ID aur writing ke liye, aur tay kijiye ki yeh version use karne layak hai ya nahi.',
-  'Pen and paper for the thinking, plus your <code>chapter-5</code> notebook for the measurements. Write the note itself in the notes box below.':
-    'Sochne ke liye pen aur paper, aur naapne ke liye aapka <code>chapter-5</code> notebook. Note khud neeche notes box mein likhiye.',
   'Grow the answer key to version 2, with about 30 rows spread evenly across English, Hindi and Hinglish. Include at least five tricky rows from the list on the project page. Save it as <code>evals/answer-key-v2.csv</code>.':
     'Answer key ko version 2 tak badhaiye, jisme lagbhag 30 rows English, Hindi aur Hinglish mein barabar baanti hui hon. Project page ki list mein se kam se kam paanch tricky rows rakhiye. Ise <code>evals/answer-key-v2.csv</code> ke naam se save kijiye.',
   'Run the pattern checker from Chapter 5 on all 30 rows. For every item that should be found, mark it found or missed. For every item the tool reported, mark it correct or a false alarm.':
@@ -1707,8 +1651,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Har step ko point karke bata paana ki wahan bina koi error aaye kya galat ho sakta hai.',
   'Rank the usual fixes by how much they help, and explain why a bigger model is rarely the best one.':
     'Aam fixes ko rank kar paana ki kaun kitni madad karta hai, aur samjha paana ki bada model aksar sabse achha fix kyun nahi hota.',
-  'Open a new notebook called <code>chapter-7</code> and run the warm-up cells. Keep your <code>chapter-5</code> notebook open too, because you will copy across your <code>embed</code>, <code>cosine</code>, <code>chunks</code> and <code>chunk_vecs</code>. Nothing in this chapter is new. You are only joining things you already built.':
-    '<code>chapter-7</code> naam ka ek naya notebook kholiye aur warm-up cells chalaiye. Apna <code>chapter-5</code> notebook bhi khula rakhiye, kyunki wahan se aap apne <code>embed</code>, <code>cosine</code>, <code>chunks</code> aur <code>chunk_vecs</code> copy karenge. Is chapter mein kuch bhi naya nahi hai. Aap sirf woh cheezein jod rahe hain jo aap pehle bana chuke hain.',
   'In the last chapter you measured whether your search works, using an answer key. So you now have all the parts of a system that answers questions from your own documents. This chapter puts them side by side, gives the whole thing its proper name, and shows you where it can go wrong quietly.':
     'Pichhle chapter mein aapne answer key ki madad se measure kiya tha ki aapka search kaam karta hai ya nahi. Toh ab aapke paas us system ke saare hisse hain jo aapke apne documents se sawaalon ke jawaab deta hai. Yeh chapter un sabko ek saath rakhta hai, poore system ko uska asli naam deta hai, aur dikhata hai ki woh chupchaap kahan galat ho sakta hai.',
   'The pattern has a name: RAG':
@@ -1785,8 +1727,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Version 0 ka findings page likhiye',
   'You now have a first working version, which this course calls version 0, and a list of ways it fails. This capstone is not a build. It is the page you would want in front of you the next time someone demonstrates a privacy product and asks you to approve it. In this chapter you learned the standard parts of a system that answers from documents, and where each part can fail without any error appearing. Here you describe what you built in the same way.':
     'Ab aapke paas ek pehla chalta hua version hai, jise yeh course version 0 kehta hai, aur uske fail hone ke tareekon ki ek list. Yeh capstone koi build nahi hai. Yeh woh page hai jo aap tab apne saamne chahenge jab agli baar koi aapko privacy product ka demo dikhaye aur approve karne ko kahe. Is chapter mein aapne documents se jawaab dene wale system ke standard parts seekhe, aur yeh bhi ki har part bina koi error dikhaye kahan fail ho sakta hai. Yahan aap jo banaya hai usse isi tareeke se describe karenge.',
-  'Written only. This capstone is not a build. Use your <code>chapter-7</code> notebook for the numbers, and write the page in the notes box below.':
-    'Sirf likhna hai. Yeh capstone koi build nahi hai. Numbers ke liye apna <code>chapter-7</code> notebook use kijiye, aur page neeche wale notes box mein likhiye.',
   'Draw the tool as boxes and arrows on one page: text in, pattern checker, name-and-place finder, context judge, rule-keeper, safe text out. Mark which boxes exist today.':
     'Tool ko ek page par boxes aur arrows se draw kijiye: text in, pattern checker, name-and-place finder, context judge, rule-keeper, safe text out. Mark kijiye ki aaj kaun se boxes maujood hain.',
   'Under each box that exists, write what can go wrong without any error message appearing. For example: “A number split by a line break is silently missed.”':

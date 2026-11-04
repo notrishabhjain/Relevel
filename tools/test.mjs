@@ -16,7 +16,10 @@ const freePort = () => new Promise(res => {
 async function withServer(fn) {
   const port = await freePort();
   const base = 'http://127.0.0.1:' + port;
-  const env = { ...process.env, PORT: String(port), CONTENT_EDITORS: 'localdev', BASE: base };
+  /* the hands-on suite's fake model provider, which the relay may forward to */
+  const fakePort = await freePort();
+  const env = { ...process.env, PORT: String(port), CONTENT_EDITORS: 'localdev', BASE: base,
+    FAKE_LLM_PORT: String(fakePort), LLM_EXTRA_BASES: 'http://127.0.0.1:' + fakePort + '/v1' };
   delete env.PGLITE_DIR;                       // always a fresh database
   const server = spawn(process.execPath, ['tools/dev-server.js'],
     { env, stdio: ['ignore', 'ignore', 'inherit'] });
@@ -49,6 +52,13 @@ async function withServer(fn) {
   if (code) { console.error('\njargon check failed\n'); process.exit(1); }
 }
 
+/* Every chapter's reading list: the real world and the research. */
+{
+  const code = await new Promise(res =>
+    spawn(process.execPath, ['tools/reading-check.mjs'], { stdio: 'inherit' }).on('exit', res));
+  if (code) { console.error('\nreading check failed\n'); process.exit(1); }
+}
+
 /* What a deploy does to a database that already exists — the failure that
    looked like green CI and a stale live app. */
 {
@@ -65,7 +75,7 @@ async function withServer(fn) {
 }
 
 const only = process.argv[2];
-const suites = [['api', 'tools/api-test.mjs'], ['browser', 'tools/browser-test.mjs'], ['book', 'tools/book-test.mjs'], ['plan', 'tools/plan-test.mjs'], ['narrate', 'tools/narrate-test.mjs']]
+const suites = [['api', 'tools/api-test.mjs'], ['browser', 'tools/browser-test.mjs'], ['book', 'tools/book-test.mjs'], ['plan', 'tools/plan-test.mjs'], ['handson', 'tools/handson-test.mjs'], ['narrate', 'tools/narrate-test.mjs']]
   .filter(([n]) => !only || n === only);
 if (!suites.length) { console.error('unknown suite: ' + only); process.exit(2); }
 

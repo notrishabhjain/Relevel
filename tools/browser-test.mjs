@@ -611,8 +611,8 @@ ok(headLink && headLink.href === '#/project#stage-s2',
    'the chapter header points at the same stage', headLink && headLink.href);
 ok(headLink && /Stage 2\/13/.test(headLink.text), 'and says which stage of thirteen', headLink && headLink.text);
 const gate = await mainText(il.page);
-ok(/Before you start/.test(gate) && /chapter-1/.test(gate),
-   'and the chapter opens by naming the notebook to have open');
+ok(/Before you start/.test(gate) && /runs right here in the page/.test(gate),
+   'and the chapter opens by saying its code runs right here, in the page');
 
 console.log('\n— the project is a section of the portal —');
 await il.page.evaluate(() => { location.hash = '#/project'; });

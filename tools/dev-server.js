@@ -46,6 +46,7 @@ const routes = {
   '/api/plan':          (await import('../api/plan.js')).default,
   '/api/plan-status':   (await import('../api/plan-status.js')).default,
   '/api/nudge':         (await import('../api/nudge.js')).default,
+  '/api/llm':           (await import('../api/_lib/llm.js')).default,
   '/api/auth/login':    (await import('../api/auth/login.js')).default,
   '/api/auth/callback': (await import('../api/auth/callback.js')).default,
   '/api/auth/logout':   (await import('../api/auth/logout.js')).default
@@ -72,7 +73,7 @@ async function devLogin(req, res, url) {
   res.end();
 }
 
-const MIME = { '.html':'text/html; charset=utf-8', '.js':'text/javascript; charset=utf-8',
+const MIME = { '.html':'text/html; charset=utf-8', '.js':'text/javascript; charset=utf-8', '.mjs':'text/javascript; charset=utf-8',
   '.css':'text/css; charset=utf-8', '.json':'application/json', '.svg':'image/svg+xml',
   '.png':'image/png', '.ico':'image/x-icon',
   '.webmanifest':'application/manifest+json' };
@@ -84,6 +85,15 @@ http.createServer(async (req, res) => {
     const h = routes[url.pathname];
     if (h) return await h(req, res);
     if (url.pathname.startsWith('/api/')) { res.statusCode = 404; return res.end('{}'); }
+    /* Python for the in-page notebook, from the npm copy, so tests and offline
+       work do not need the CDN. The deployed site loads it from the CDN. */
+    if (url.pathname.startsWith('/_pyodide/')) {
+      const base = path.join(ROOT, 'node_modules/pyodide');
+      const pf = path.join(base, url.pathname.slice('/_pyodide/'.length));
+      if (!pf.startsWith(base) || !fs.existsSync(pf)) { res.statusCode = 404; return res.end('not found'); }
+      res.setHeader('content-type', pf.endsWith('.wasm') ? 'application/wasm' : (MIME[path.extname(pf)] || 'application/octet-stream'));
+      return res.end(fs.readFileSync(pf));
+    }
 
     let f = path.join(SITE, url.pathname === '/' ? 'index.html' : url.pathname.slice(1));
     if (!f.startsWith(SITE)) { res.statusCode = 403; return res.end('no'); }

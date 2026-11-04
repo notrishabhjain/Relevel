@@ -1,51 +1,56 @@
 /* Reference layer: setup, glossary, vendor deck, LATER page, red-map nodes. */
 
 window.SETUP = {
-  title: 'Setup',
-  blurb: 'This page is optional. Every chapter teaches its ideas without it, and the interactive tools in each chapter need no setup at all. Do it only if you want to see the same ideas as real code.',
-  oneline: 'You need two free things: an online place to run code (Google Colab) and an API key (from NVIDIA Build), which lets your programs talk to AI models. It takes about forty-five minutes, once, and you don’t have to do it again.',
+  title: 'Setup: connect a model',
+  blurb: 'Every chapter’s interactive tools work without this. Do it once, when you reach Chapter 1, so that the code in the chapters can call a real model. The code runs right here in the page, so there is no other window to open.',
+  oneline: 'You need one free thing from outside this site: an API key, which lets the code in the chapters talk to a model. You paste it here once. The code itself runs in this page, in Python that starts inside your browser, so there is nothing to install and no notebook to open elsewhere.',
   sections: [
-    {h:'A1. Google Colab — a free place to run code', t:'~10 min', b:[
-      ['p','Colab is a free service from Google. It gives you a temporary computer in Google’s datacentre, and you control it from a browser tab. Nothing gets installed on your own machine.'],
-      ['n',['Go to <code>colab.research.google.com</code> and sign in with any Google account.','Click <strong>+ New notebook</strong>.','You’ll see an empty grey box. That box is a <strong>cell</strong>. Type an instruction in it and press <kbd>Shift</kbd>+<kbd>Enter</kbd> to run it.','Type <code>print("hello")</code> and press <kbd>Shift</kbd>+<kbd>Enter</kbd>.']],
-      ['x','The word <code>hello</code> appears below the cell, with a small green tick. That was a program. You wrote it and you ran it.'],
-      ['l',['Cells run from top to bottom, and they remember each other. A value you make in cell 1 can be used in cell 5, as long as the machine is still on.','The machine switches itself off after roughly 90 minutes of sitting idle. The cells you typed stay, but their results disappear. To bring them back, click <strong>Runtime → Run all</strong>. This is just how the service behaves. It isn’t a failure.','Give each notebook a name by clicking its name at the top-left, for example <code>chapter-1</code>, <code>chapter-2</code> and so on.']]
+    {h:'A1. Connect a model', t:'~5 min', b:[
+      ['p','A model runs on a provider’s computers, and the provider needs to know who is asking. The API key is how it knows. The course was written against NVIDIA Build, which is free and doesn’t ask for a credit card. Google Gemini works too, and so do the others in the list.'],
+      ['n',['Choose NVIDIA Build below, unless you have a reason not to.','Open the key page from the link. Sign up or log in with any email, search for <code>llama-3.1-8b-instruct</code> and press <strong>Get API Key</strong>. On some pages it is under <em>Build with this NIM → Generate Key</em>.','Copy the long code that starts with <code>nvapi-</code>, paste it below and press <strong>Save key</strong>. Treat it like an ATM PIN.','Press <strong>Run the test call</strong>.']],
+      ['connect'],
+      ['x','You see <code>setup works</code>, the model’s name and a receipt: the tokens it read, the tokens it wrote and the seconds it took.'],
+      ['c','Why this matters professionally','Keys that sit inside code get copied, shared and leaked. It is one of the most common security failures in software. Here the key never appears in your code: the page adds it to each request. If you know how to store keys properly, and why, you can speak with confidence in a meeting.']
     ]},
-    {h:'A2. An API key — your access code to the AI', t:'~15 min', b:[
-      ['p','NVIDIA’s Build platform gives you free access to a large catalogue of models, and it doesn’t ask for a credit card. This book needs well under 400 requests, and the free allowance is roughly 1,000. It also lets you swap one model for another by changing a single line, which is a useful skill to have.'],
-      ['n',['Go to <code>build.nvidia.com</code>. Sign up or log in with any email.','Search for <code>llama-3.1-8b-instruct</code> and open the model page.','Find <strong>Get API Key</strong>. On some pages it is under <em>Build with this NIM → Generate Key</em>. Click it.','A long code starting with <code>nvapi-</code> appears. Copy it straight away and keep it somewhere private, like a password manager or a private note. Treat it like an ATM PIN.']],
-      ['c','Why this matters professionally','Keys that sit inside code get copied, shared and leaked. It is one of the most common security failures in software. If you know how to store them properly, and why, you can speak with confidence in a meeting.']
+    {h:'A2. Python, in this page', t:'~5 min', b:[
+      ['p','Every code block in a chapter has a <strong>Run</strong> button. The first time you press one, Python starts inside your browser. It downloads about 10 MB, once. After that it starts in a few seconds.'],
+      ['p','Try it now. Press <strong>Run</strong> on the cell below, or click in it and press <kbd>Shift</kbd>+<kbd>Enter</kbd>.'],
+      ['code','print("hello")'],
+      ['x','The word <code>hello</code> appears below the cell, with a green tick. That was a program. You wrote it and you ran it.'],
+      ['l',['Cells run from top to bottom, and they remember each other. A value you make in one cell can be used in any later one, in this chapter or the next. One Python session runs the whole course.','A reload, or closing the tab, ends the session. The cells you typed stay, and the page remembers which ones you ran. Press <strong>Restore</strong> in the notebook bar to put your functions and data back without calling the model again.','You can change any code before you run it. <strong>Undo edits</strong> puts the chapter’s version back.']]
     ]},
-    {h:'A3. Storing the key so it is not visible', t:'~10 min', b:[
-      ['p','Never paste an API key into a code cell. Colab has a secrets locker for exactly this.'],
-      ['n',['Click the key icon (🔑) in the left sidebar.','Click <strong>+ Add new secret</strong>. For the name, type <code>NVIDIA_API_KEY</code> exactly. For the value, paste your <code>nvapi-…</code> code.','Switch <strong>Notebook access</strong> ON.']],
+    {h:'A3. The warm-up the page does for you', t:'~5 min', b:[
+      ['p','Before code can call a model it needs three things: the key, the library and a client. The page does these for you before your first cell. Here they are, as you would write them anywhere else. Run each one.'],
       ['code','from google.colab import userdata\nkey = userdata.get("NVIDIA_API_KEY")\nprint("Key loaded, starts with:", key[:8])'],
-      ['x','You’ll see <code>Key loaded, starts with: nvapi-xx</code>. We print only the first 8 characters, so the full key never shows on your screen.']
-    ]},
-    {h:'A4. The test call', t:'~10 min', b:[
+      ['x','You’ll see <code>Key loaded, starts with: nvapi-xx</code>. We print only the first 8 characters, so the full key never shows on your screen.'],
       ['code','!pip -q install openai'],
-      ['x','You’ll see a few progress lines, and then silence. Silence means it worked.'],
+      ['x','Here it says the library is already built in. On your own computer, this line installs it.'],
       ['code','from openai import OpenAI\n\nclient = OpenAI(\n    base_url="https://integrate.api.nvidia.com/v1",\n    api_key=key\n)\n\nresponse = client.chat.completions.create(\n    model="meta/llama-3.1-8b-instruct",\n    messages=[{"role": "user", "content": "Reply with exactly: setup works"}]\n)\nprint(response.choices[0].message.content)'],
       ['x','You’ll see <code>setup works</code>. Your setup is complete.'],
-      ['p','One thing is worth knowing. The library is called <code>openai</code>, but we are not using OpenAI’s service. OpenAI published the first request format that many people adopted, and much of the industry copied it. So one library works with many providers. Later, switching providers may need only a one-line change. Knowing this earns you respect in conversations with vendors.']
+      ['p','One thing is worth knowing. The library is called <code>openai</code>, but we are not using OpenAI’s service. OpenAI published the first request format that many people adopted, and much of the industry copied it. So one library works with many providers. Later, switching providers may need only a one-line change. Knowing this earns you respect in conversations with vendors.'],
+      ['p','The same three cells run unchanged in Google Colab, in Jupyter or on your own computer, where <code>userdata</code> reads the secret you stored there. The code you write here goes with you. The <a href="#/workbench">Workbench</a> can download every cell you have run as a notebook file.']
     ]},
-    {h:'A5. Collect your raw material', t:'~10 min', b:[
-      ['p','Create one folder in Google Drive and name it <code>my-corpus</code>. Put 10–15 documents in it that you know well from your own work. For example: policies, SOPs, product manuals, contracts, handbooks or published standards.'],
+    {h:'A4. Collect your raw material', t:'~10 min', b:[
+      ['p','The second half of the course builds a system that answers questions from documents. Add 10–15 documents you know well from your own work with <strong>Add files</strong> below. For example: policies, SOPs, product manuals, contracts, handbooks or published standards. They stay in this browser, and your code opens them by name, like this: <code>open("leave-policy.txt").read()</code>.'],
+      ['files'],
       ['c','Why your own documents matter','The second half of this book builds a system that answers questions from your corpus. Sometimes it will answer wrongly, and you need to catch that at once, without anyone’s help. Your own domain knowledge is your quality check. With documents you don’t know, you would need an expert on call. With your own, you are the expert.'],
-      ['p','<strong>For Part II, add some deliberately awkward material:</strong> at least two scanned pages, one document with a real table in it, and, if you can, an old version of a policy next to its current one. Chapters 12 and 16 need these. A corpus that is too clean will make you think everything works.']
+      ['p','<strong>For Part II, add some deliberately awkward material:</strong> at least two scanned pages, one document with a real table in it, and, if you can, an old version of a policy next to its current one. Chapters 12 and 16 need these. A corpus that is too clean will make you think everything works.'],
+      ['p','Text files (.txt and .md) open straight away. For a PDF or a Word file, copy its text into a .txt file for now. Chapter 16 covers scans and images.']
     ]},
-    {h:'A6. Part II additions', t:'~5 min', b:[
+    {h:'A5. Part II additions', t:'~5 min', b:[
       ['p','Before Chapter 9, check that your model catalogue offers the models below. If one is missing, that chapter’s <em>If Something Goes Wrong</em> section shows a way around it.'],
-      ['l',['A <strong>tool-calling</strong> capable instruct model (Ch. 9)','A <strong>reasoning</strong> model, or simply two models of clearly different size and price (Ch. 11)','A <strong>vision</strong> capable model (Ch. 16)','A model that supports <code>response_format</code> / JSON schema (Ch. 8). If you don’t have one, the validation loop is the fallback.']]
+      ['l',['A <strong>tool-calling</strong> capable instruct model (Ch. 9)','A <strong>reasoning</strong> model, or simply two models of clearly different size and price (Ch. 11)','A <strong>vision</strong> capable model (Ch. 16)','A model that supports <code>response_format</code> / JSON schema (Ch. 8). If you don’t have one, the validation loop is the fallback.']],
+      ['p','<em>Models and routing</em>, in the Connect panel above, shows which model each kind of call uses, and lets you change it.']
     ]}
   ],
   trouble: [
-    ['401 Unauthorized','The key was not loaded','Click the 🔑 in the sidebar, switch it ON for this notebook, then run the key cell again'],
-    ['NameError: key not defined','The Colab session restarted','Click Runtime → Run all'],
+    ['401 Unauthorized','The key was not loaded','Open the Connect panel above, paste the key again, save it and press <strong>Run the test call</strong>'],
+    ['NameError: key not defined','The page was reloaded, so the Python session started again','Press <strong>Restore</strong> in the notebook bar, or run the cells above again'],
     ['404 model not found','The model name has a typo','Use the exact string. Copy it from the model page on build.nvidia.com'],
     ['429 Too Many Requests','Your loop hit the per-minute rate limit','Add <code>import time; time.sleep(2)</code> inside the loop'],
     ['4xx on embeddings','<code>extra_body</code> is missing','The embedding model must have <code>extra_body={"input_type": …}</code>'],
-    ['Anything else','A temporary or unknown problem','Note down the exact red text, close the notebook, and come back with fresh eyes tomorrow']
+    ['Python could not start','The browser could not download Python from cdn.jsdelivr.net','Check your connection, or try another network. Some office networks block it'],
+    ['Anything else','A temporary or unknown problem','Note down the exact red text, and come back with fresh eyes tomorrow']
   ]
 };
 
@@ -212,7 +217,7 @@ window.GLOSSARY = [
   ['Payload','Whatever is inside the request or reply. The contents of the envelope, as opposed to the envelope itself.',0],
   ['Parameter','A setting you pass with a request — temperature, maximum length, which model. Confusingly, the same word also means the billions of internal numbers a model was trained with. In this book it means the setting unless it says otherwise.',0],
   ['Notebook','A web page where you can type a few lines of code, press a button, and see what happens underneath. It is the tool this book uses so you never have to install anything. Nothing you do in one can break anything.',0],
-  ['Runtime','The machine actually running your notebook code. Free notebooks give you one for a few hours and then take it back, which is why your key sometimes needs re-entering.',0],
+  ['Runtime','The machine actually running your code. In this app it is Python inside your browser tab, so a reload starts a fresh one, and Restore puts your definitions back. A hosted notebook such as Colab lends you a machine for a few hours and then takes it back.',0],
   ['Deploy','To put a change where real users can reach it. Until something is deployed it exists only on your machine.',0],
   ['Rollback','Putting the previous version back after a bad deploy. It undoes your code. It does not undo a model’s behaviour, which is why Chapter 18 insists a kill switch is a different thing.',0],
   ['Corpus','All the documents your system is allowed to answer from, taken together. Your set of source material. Plural: corpora.',0],

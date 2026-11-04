@@ -43,7 +43,7 @@ window.PART5 = [
     'Name where the engineering risk in an AI feature really sits.'
   ],
   story:[
-    ['c','Before you start','Open a new notebook, or a local folder if you prefer. In this chapter you’ll build an experiment harness, and you’ll keep adding to it until Chapter 34.'],
+    ['c','Before you start','Open the <a href="#/workbench">Workbench</a>, or a local folder if you prefer. In this chapter you’ll build an experiment harness, and you’ll keep adding to it until Chapter 34.'],
     ['p','So far you’ve spent most of your time looking at the model. In this chapter we look at the ordinary software around it. The aim is simple: when an engineer shows you a system diagram, you should recognise every box on it.'],
     ['p','Think about ordering food in an app. Your tap sends a message to a restaurant. A reply comes back with a price, and your screen updates. It all looks mysterious until you see the messages going back and forth. Software around an AI model works the same way.'],
     ['c','Why this matters','Applied AI work involves APIs, Python, cloud services, retrieval, evaluation and production systems. If JSON, HTTP, environment variables, tests and logs are unfamiliar, you can’t question an architecture. This chapter gives you the minimum you need.'],
@@ -144,7 +144,7 @@ window.PART5 = [
   capstone:{
     title:'Build the test harness and keep it in Git',
     brief:'From here on, almost every chapter asks you to run the tool on the answer key and compare the result with last time. If you set the test up again each time, the comparisons stop being fair. In this chapter you learned to read requests, responses and errors, and that an AI system is a software system with one unpredictable part. Now you’ll build the harness once, put it in Git, and keep adding to it for the rest of the course.',
-    where:'A new notebook, or a local folder if you prefer. This is the harness you build in code and keep extending through Chapter 34. The notes box below is for what surprised you, not for the code.',
+    where:'The <a href="#/workbench">Workbench</a> in this app, or a local folder if you prefer. This is the harness you build in code and keep extending through Chapter 34. The notes box below is for what surprised you, not for the code.',
     steps:[
       'Write a function of about twenty lines that reads your answer key (a CSV file) and returns its rows. Let it filter by one column, for example “only the Hinglish rows”.',
       'Add three tests for it: one with a normal file, one with a row that has a missing field, and one with an empty file.',

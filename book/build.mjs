@@ -7,6 +7,19 @@ import fs from 'node:fs';
 import p from 'node:path';
 import crypto from 'node:crypto';
 import { STEPS as ROUTE_STEPS } from '../src/data/route.mjs';
+import vm from 'node:vm';
+import { fileURLToPath } from 'node:url';
+
+/* The course's reading lists (src/data/reading.js): the real world and the
+   research behind each course chapter. A book chapter shows the lists of the
+   course chapters it retells. */
+const READING = (() => {
+  const f = p.join(p.dirname(fileURLToPath(import.meta.url)), '../src/data/reading.js');
+  if (!fs.existsSync(f)) return {};
+  const ctx = { window: {} }; vm.createContext(ctx);
+  vm.runInContext(fs.readFileSync(f, 'utf8'), ctx);
+  return ctx.window.READING || {};
+})();
 
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const slugify = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
@@ -234,7 +247,8 @@ const UI = {
     explained: 'words explained', summary: 'Chapter summary', table: 'Table', goals: 'In this chapter', keyTerms: 'Key terms',
     boxes: { key: 'Key idea', def: 'Definition', example: 'Worked example', case: 'Case', watch: 'Common mistake' }, switchTo: 'Hinglish', switchTitle: 'Read this in Hinglish', front: 'Front and back', theStory: 'The story',
     scrollTop: 'Back to top', fromThe: 'From the book', readEdition: 'This is the reading edition. The exercises, tools and tracking live in the course app, and every chapter here says which app chapters it retells.',
-    openApp: 'Open the course app', otherEdition: 'Hinglish edition', carryHint: 'To take with you', meet: 'Words you will meet', pagerKinds: 'Previous and next chapter', filterOn: 'Showing chapters that match'
+    openApp: 'Open the course app', otherEdition: 'Hinglish edition', carryHint: 'To take with you', meet: 'Words you will meet', pagerKinds: 'Previous and next chapter', filterOn: 'Showing chapters that match',
+    deeper: 'Go deeper', deeperSub: 'Where this chapter’s ideas decided something in the real world, and the research they come from.', inWorld: 'In the real world', research: 'Research'
   },
   hi: {
     lang: 'hi', edition: 'Padhne wala edition (Hinglish)', skip: 'Seedhe text par jaaiye', contents: 'Vishay-soochi', smaller: 'Chhota text', larger: 'Bada text',
@@ -247,7 +261,8 @@ const UI = {
     explained: 'shabd samjhaaye gaye', summary: 'Chapter ka saaransh', table: 'Table', goals: 'Is chapter mein', keyTerms: 'Mukhya shabd',
     boxes: { key: 'Mukhya vichaar', def: 'Paribhasha', example: 'Hal kiya hua udaharan', case: 'Case', watch: 'Aam galti' }, switchTo: 'English', switchTitle: 'Read this in English', front: 'Shuru aur ant', theStory: 'Kahani',
     scrollTop: 'Upar jaaiye', fromThe: 'Kitaab se', readEdition: 'Yeh padhne wala edition hai. Exercises, tools aur tracking course app mein hain, aur har chapter batata hai ki woh app ke kaun se chapters ko kahani mein sunata hai.',
-    openApp: 'Course app kholiye', otherEdition: 'English edition', carryHint: 'Saath le jaane layak', meet: 'Jin shabdon se milenge', pagerKinds: 'Pichhla aur agla chapter', filterOn: 'Milte-julte chapter'
+    openApp: 'Course app kholiye', otherEdition: 'English edition', carryHint: 'Saath le jaane layak', meet: 'Jin shabdon se milenge', pagerKinds: 'Pichhla aur agla chapter', filterOn: 'Milte-julte chapter',
+    deeper: 'Aur gehraai mein', deeperSub: 'Kahan is chapter ke ideas ne asli duniya mein kuch tay kiya, aur woh kis research se aate hain.', inWorld: 'Asli duniya mein', research: 'Research'
   }
 };
 
@@ -397,6 +412,15 @@ ${parts.join('\n')}
     : { on: 'On your route', week: 'Week', whole: 'This chapter ticks itself when you reach the end, in your account too.',
         halves: 'This chapter is split over two days. Each half ticks itself as you finish it.', mark: 'Mark as read', done: 'Read ✓', back: 'The whole week in one view',
         plan: 'In the plan', signin: 'Ticks are saved on this device only. Sign in to keep them on every device.', signinLink: 'Sign in' };
+  /* The reading lists of the course chapters this one retells, without repeats. */
+  const readingBox = ids => {
+    const seen = new Set(), rows = [];
+    for (const id of ids || []) for (const r of READING[id] || []) if (!seen.has(r[3])) { seen.add(r[3]); rows.push(r); }
+    if (!rows.length) return '';
+    const li = r => `<li><a href="${esc(r[3])}" target="_blank" rel="noopener">${esc(r[1])}</a> <span class="who">· ${esc(r[2])}</span><p>${esc(lang === 'hi' && r[5] ? r[5] : r[4])}</p></li>`;
+    const part = (kind, title) => { const xs = rows.filter(r => r[0] === kind).slice(0, 4); return xs.length ? `<h3>${title}</h3><ul>${xs.map(li).join('')}</ul>` : ''; };
+    return `<aside class="deeper" aria-label="${ui.deeper}"><h2>${ui.deeper}</h2><p class="sub">${ui.deeperSub}</p>${part('case', ui.inWorld)}${part('paper', ui.research)}</aside>`;
+  };
   const routeBox = file => {
     const st = ROUTE_STEPS.filter(x => x.kind === 'read' && x.book === file);
     if (!st.length) return '';
@@ -438,6 +462,7 @@ ${goalsBox(c.goals)}
 ${prose}
 </div>
 ${wordsBox(c.terms)}
+${readingBox(c.course)}
 ${routeBox(c.file)}
 ${courseLine(c.course)}
 ${pager(c.file)}

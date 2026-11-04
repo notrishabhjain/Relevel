@@ -51,11 +51,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Open Chapter 0.5 and do only its first experiment. Paste a message you wrote today, once in English and once in Hinglish, and compare the counts.':
     'Chapter 0.5 kholiye aur sirf uska pehla experiment kijiye. Aaj likha hua koi message paste kijiye, ek baar English mein aur ek baar Hinglish mein, aur dono counts compare kijiye.',
   'Ten test messages, marked': 'Das test messages, number ke saath',
-  'Pick one small job, such as “does this message contain a phone number?”. On paper, write ten short messages and the right answer for each. Give them to a chat assistant one at a time and mark each answer. Your score out of ten is your first evaluation.':
-    'Ek chhota kaam chuniye, jaise “kya is message mein phone number hai?”. Kaagaz par das chhote messages likhiye aur har ek ka sahi jawaab. Unhe ek-ek karke chat assistant ko dijiye aur har jawaab ko mark kijiye. Das mein se aapka score hi aapka pehla evaluation hai.',
   'The one-time setup': 'Ek baar ka setup',
-  'Do the setup page, one section at a time. You know what the key is for now. If a step fails, copy the exact error and ask a chat assistant.':
-    'Setup page kijiye, ek baar mein ek section. Ab aapko pata hai ki key kis kaam ki hai. Agar koi step fail ho, to exact error copy kijiye aur chat assistant se poochiye.',
   'Plan your capstone week': 'Capstone wale hafte ki planning',
   'Read the capstone chapter’s brief and write, on one page, the smallest version you can ship in about eight hours. Everything else goes on a “later” list.':
     'Capstone chapter ka brief padhiye aur ek page par likhiye ki sabse chhota version kya hai jo aap lagbhag aath ghante mein ship kar sakte hain. Baaki sab “baad mein” wali list mein.',

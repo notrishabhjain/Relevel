@@ -25,15 +25,15 @@ const FIRST_PASS = id => /^[ab]\d$/.test(id) || id === 'ch21cap';
 const TRY = {
   'tokens':  { title: 'Count your own words in tokens', mins: 10, app: '#/ch/ch05',
     what: 'Open Chapter 0.5 and do only its first experiment. Paste a message you wrote today, once in English and once in Hinglish, and compare the counts.' },
-  'tenmsgs': { title: 'Ten test messages, marked', mins: 15,
-    what: 'Pick one small job, such as “does this message contain a phone number?”. On paper, write ten short messages and the right answer for each. Give them to a chat assistant one at a time and mark each answer. Your score out of ten is your first evaluation.' },
-  'setup':   { title: 'The one-time setup', mins: 45, app: '#/setup',
-    what: 'Do the setup page, one section at a time. You know what the key is for now. If a step fails, copy the exact error and ask a chat assistant.' },
+  'tenmsgs': { title: 'Ten test messages, marked', mins: 15, app: '#/playground#batch',
+    what: 'Pick one small job, such as “does this message contain a phone number?”. Write ten short messages and the right answer for each. Run them in the Playground’s “Mark a test set” and mark each answer. Your score out of ten is your first evaluation.' },
+  'setup':   { title: 'The one-time setup', mins: 15, app: '#/setup',
+    what: 'Do the setup page, one section at a time: get a free key, paste it in, and run the test call. You know what the key is for now. If a step fails, the page says why; copy the exact error into your notes.' },
   'capstone-plan': { title: 'Plan your capstone week', mins: 15,
     what: 'Read the capstone chapter’s brief and write, on one page, the smallest version you can ship in about eight hours. Everything else goes on a “later” list.' },
   'portfolio': { title: 'Put the project where people can see it', mins: 60, app: '#/project',
     what: 'Publish your findings page and the capstone write-up as one page with a link. Keep it plain. A page that exists beats a page that is pretty.' },
-  'interviews': { title: 'Three practice interviews', mins: 90,
+  'interviews': { title: 'Three practice interviews', mins: 90, app: '#/ch/b7#record',
     what: 'Use the interview practice in Chapter B7. Answer three questions out loud, record yourself, and write down one thing to say better next time.' },
 };
 

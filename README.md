@@ -59,6 +59,23 @@ haystack that contained the translation map itself, so every key matched itself.
 tests against the set of strings the checker builds by walking the real content, and
 against the code that renders translated chrome.
 
+## Hands-on, inside the app
+
+Nothing in the course sends you to another window to do the work.
+
+| Piece | What it does |
+| --- | --- |
+| **Python in the page** (`src/pyrun.js`) | Every Python block in a chapter has a **Run** button and runs in the browser, in [Pyodide](https://pyodide.org) inside a worker. The course's code runs unchanged: `openai`, `google.colab.userdata` and `requests` are small stand-ins that send requests through the page's connection; `!pip install` installs pure-Python packages; numpy and the other common libraries load on first import. One Python session serves the whole course, so Chapter 7 sees the `embed` you wrote in Chapter 5. Each chapter also ends with a notebook of its own, and **Workbench** (`#/workbench`) is a free one. Files you add stay in the browser (IndexedDB) and open by name. After a reload, **Restore** rebuilds your functions and data from the cells you ran, without calling the model again. Every cell can be downloaded as an `.ipynb`. |
+| **Connect** (`#/setup`, `src/llm.js`) | Choose a provider (NVIDIA Build by default; Gemini, OpenRouter, OpenAI, Groq or any OpenAI-style API), paste a key once, press the test call. The key stays in this browser's localStorage and is never part of the synced progress. |
+| **The relay** (`api/llm.js`) | Providers that refuse calls from a web page (NVIDIA Build) are reached through `/api/llm`, which forwards the request to an allow-listed provider and endpoint, from this site's own pages only. Set `LLM_API_KEY` (and optionally `LLM_BASE`) to let signed-in readers use a key the site holds. On a static copy with no API, providers that accept browser calls go direct. |
+| **Playground** (`#/playground`, `src/playground.js`) | The model with no code: system prompt, temperature, streaming with time to first words, every reply's token receipt, **Compare with** for two models side by side, and **Mark a test set** to score a list of messages. |
+| **Sheets** (`#/sheets`, `src/sheets.js`) | The spreadsheet exercises (the answer key, the cost model, market sizing, the sprint plan) happen in a grid with formulas (`=B2*C2`, `SUM`, `AVERAGE`, `MIN`, `MAX`, `COUNT`, `ROUND`, `ABS`). Sheets are saved with your progress; a chapter that asks for a spreadsheet has one inline; the project page opens its ten starter sentences as the answer key; Python reads every sheet as `sheets/<name>.csv`; Download CSV gives the file for your repository. |
+| **Record yourself** (`src/recorder.js`) | The interview chapter's "answer out loud and record yourself" happens in the page: record with a clock, play back, download. Takes stay in this browser (IndexedDB). |
+| **Embedded tools** | A chapter can place a free outside tool inside the page (`['embed', url, title, height]`); A8 uses it for the attention viewer. |
+| **Go deeper** (`src/data/reading.js`) | Every chapter ends with where its idea decided something in the real world and the research it comes from, each with a line on why to read it, in English and Hinglish. The book shows the same lists at the end of each chapter, and the plan shows them for each week. `tools/reading-check.mjs` checks every chapter has both halves. |
+
+Python is loaded from cdn.jsdelivr.net (pinned to the version in `package.json`); the dev server serves the npm copy at `/_pyodide/` for the tests, which use a fake provider (`tools/handson-test.mjs`).
+
 ## Installing it on a phone or tablet
 
 It is a progressive web app: **Install on iPad or phone** in the nav gives the
@@ -118,7 +135,7 @@ role, kept beside the course it complements. It is **one page, `/plan/`**, with 
 | Tab | What it is |
 | --- | --- |
 | Plan & tracker | A card per week: topic, complexity, linked sources to learn from, the thing to ship, links to the recipes that explain how, and tick-boxes, a link and a note. Also the drift status, monthly gates, parking lot and anti-drift rules |
-| How to build | 27 recipes with ordered steps, code to paste, links and a "done when" test, for Codespaces, Google Colab, Claude and Gemini |
+| How to build | Recipes with ordered steps and a "done when" test: the first pass of a chapter, the one-time setup (now a key pasted into the app), and how to publish what you make |
 | Curriculum | The reasoning: job market, resources, tooling, phase goals, four portfolio projects, interview preparation, caveats and sources |
 
 `/plan/curriculum.html` and `/plan/ship.html` still work: they redirect to the tabs.

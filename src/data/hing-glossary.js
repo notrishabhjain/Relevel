@@ -19,8 +19,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Request ke saath bheji gayi ek setting — temperature, maximum length, kaunsa model. Confusing baat: yahi shabd model ke andar ke arbon numbers ke liye bhi chalta hai. Is course mein iska matlab setting hai, jab tak alag na likha ho.',
   'A web page where you can type a few lines of code, press a button, and see what happens underneath. It is the tool this book uses so you never have to install anything. Nothing you do in one can break anything.':
     'Ek web page jahan aap chand lines code likhkar button dabaate hain aur andar kya ho raha hai woh dekhte hain. Yahi tool is course mein istemaal hota hai taaki aapko kuchh install na karna pade. Isme kiya gaya kuchh bhi kuchh tod nahi sakta.',
-  'The machine actually running your notebook code. Free notebooks give you one for a few hours and then take it back, which is why your key sometimes needs re-entering.':
-    'Woh machine jo aapka notebook code sach mein chala rahi hai. Free notebooks aapko kuchh ghanton ke liye ek deti hain aur phir wapas le leti hain — isiliye kabhi-kabhi key dobara daalni padti hai.',
   'To put a change where real users can reach it. Until something is deployed it exists only on your machine.':
     'Badlav ko wahan pahunchana jahan asli users tak pahunch sake. Deploy hone se pehle cheez sirf aapki machine par hoti hai.',
   'Putting the previous version back after a bad deploy. It undoes your code. It does not undo a model’s behaviour, which is why Chapter 18 insists a kill switch is a different thing.':
