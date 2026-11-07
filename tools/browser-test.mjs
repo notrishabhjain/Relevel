@@ -1062,12 +1062,12 @@ console.log('\n— one route: the playbook, the book and the plan agree —');
   }));
   ok(plan.ch0 && plan.b1 && plan.rev, 'the plan shows the chapter, the book chapter and the look back as done', JSON.stringify(plan));
   ok(plan.next === 'b:preface.html', 'and names the same next step as the playbook', plan.next);
-  await gs.page.click('li[data-step="t:setup"] input');
+  await gs.page.click('li[data-step="t:review-2"] input');
   await gs.page.waitForTimeout(300);
   await gs.page.goto(B + '/app/');
   await gs.page.waitForFunction(() => window.CONTENT && window.STORE);
-  ok(await gs.page.evaluate(() => !!window.STORE.S.steps['t:setup'] && !!window.STORE.S.read['01-the-number-in-the-chat.html']),
-     'a try ticked on the plan, and a chapter read in the book, are in the playbook too');
+  ok(await gs.page.evaluate(() => !!window.STORE.S.steps['t:review-2'] && !!window.STORE.S.read['01-the-number-in-the-chat.html']),
+     'a step ticked on the plan, and a chapter read in the book, are in the playbook too');
   const ch = await gs.page.evaluate(async () => { location.hash = '#/ch/a1'; await new Promise(r => setTimeout(r, 300)); return document.querySelector('.routeline') && document.querySelector('.routeline').textContent; });
   ok(/Week 1/.test(ch || '') && /first pass/.test(ch || '') && /Why now/.test(ch || ''), 'a long chapter says it is a first pass on the route, in week 1, and why it comes now', ch);
   await gs.ctx.close();
@@ -1225,7 +1225,7 @@ const trail = await navp.page.evaluate(() => {
   const t = document.querySelector('.chtrail');
   return t ? { text: t.textContent, links: [...t.querySelectorAll('a')].map(a => a.getAttribute('href')) } : null;
 });
-ok(trail && /chapter 4 of 14/.test(trail.text), 'a chapter says where it sits in its part', trail && trail.text);
+ok(trail && /chapter 5 of 15/.test(trail.text), 'a chapter says where it sits in its part', trail && trail.text);
 ok(trail && trail.links.includes('#/library') && trail.links.includes('#/ch/ch15b') && trail.links.includes('#/ch/ch21'),
    'with a way back to the map and to the chapters either side', trail && trail.links.join(' '));
 
