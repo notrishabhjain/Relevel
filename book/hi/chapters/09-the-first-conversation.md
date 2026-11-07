@@ -1,7 +1,7 @@
 ---
 title: Pehli Baatcheet
-summary: Ek engineer product manager ko language model ke paas jaati ek request aur wapas aata jawaab dikhata hai. Jawaab ke saath lagi rasid jawaab jitna hi sikha deti hai. Aap API, JSON, API key, usage block, aur yeh seekhenge ki confident jawaab saboot kyun nahi hota.
-course: ch1
+summary: Ek engineer product manager ko language model ke paas jaati ek request aur wapas aata jawaab dikhata hai. Jawaab ke saath lagi rasid jawaab jitna hi sikha deti hai. Aap API, JSON, Python ki kuch lines padhna, API key, usage block, aur yeh seekhenge ki confident jawaab saboot kyun nahi hota.
+course: chpy ch1
 goals:
   - bata paana ki ek program language model se API ke zariye kuch kaise maangta hai
   - ek saadhi JSON request padhna, aur samajhna ki role kya hota hai
@@ -12,6 +12,7 @@ terms:
   - JSON | information ko curly braces ke andar labels aur values ki tarah likhne ka saadha tareeka, jo lagbhag har API use karti hai | 
   - API key | ek lamba secret code jo provider ko batata hai ki kaun maang raha hai, aur bill kise bhejna hai; jiske paas yeh hai woh aapka paisa kharch kar sakta hai | API keys
   - usage block | har jawaab ka woh hissa jo batata hai ki kitne tokens andar gaye aur kitne bahar aaye, jiske hisaab se aapse paisa liya jaata hai | usage
+  - Python | woh programming language jisme zyadatar AI ka kaam likha jaata hai; ek product manager ke liye, yeh theek-theek kehne ka tareeka ki ek experiment kya karta hai | 
 ---
 
 Ek shaam office khaali ho chuka tha. Imran Qureshi ne apni screen par ek hi window kholi. Usmein ek text box tha, ek button, aur unke neeche ek dhusar jagah, jahan kuch dikhne wala tha. Woh chahta tha ki Anaya poora round trip dekhe: ek sawaal ka program se nikalna, aur jawaab ka wapas aana. Usne demonstration ko jaanboojh kar saadha rakha.
@@ -48,6 +49,8 @@ Parchi *JSON* mein likhi thi. JSON information likhne ka saadha format hai, jism
 Request messages ki ek list hai, aur har message ka ek role hota hai. Abhi ke liye do roles hain. *User* woh hai jo pooch raha hai, aur *assistant* model ka apna jawaab hai. Ek teesra role bhi hota hai, jise Chapter 11 mein samjhaya jaayega.
 
 Parchi par aur kuch nahi hai. Jis cheez ko Anaya ne dimaag samjha tha, woh ek list nikli. Aur woh list sirf ek line nikli.
+
+Program ke andar yeh parchi Python ki kuch lines thi. Anaya ne kabhi code nahi padha tha, aur Imran ne use kuch likhne ko kaha bhi nahi. Usne kaha ki ise waise hi padho jaise koi form padhte ho. Square brackets mein ek list thi: kai cheezein, ek kram mein. Curly braces mein labels aur unki values thi, parchi ke khaanon jaisi. Barabar ke nishaan ke saath likha naam kisi cheez ko naam deta tha, taaki agli line use use kar sake. Dot kisi cheez ke andar pahunchta tha, isliye `response.usage` ka matlab tha jawaab ki rasid wala hissa. Screen ki lagbhag har line inhi chaar shapes se bani thi, aur inme se kisi ko samjhane ke liye programmer ki zaroorat nahi thi.
 
 ## Till ki chaabi
 

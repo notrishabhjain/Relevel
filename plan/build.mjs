@@ -243,6 +243,7 @@ article.wk.shipped{border-left:4px solid var(--good)}
 article.wk.missed{border-left:4px solid var(--crit)}
 article.wk header{display:flex;flex-wrap:wrap;gap:.3rem .7rem;align-items:center}
 article.wk h4{font:600 1rem/1.35 var(--serif);margin:.1rem 0;color:var(--ink)}
+article.wk p.why{margin:.15rem 0 .55rem;font-size:.92rem;line-height:1.5;color:var(--ink)}
 article.wk p{margin:0}
 article.wk p b{font:500 .68rem/1.3 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.5rem}
 .wn{font:500 .9rem var(--mono)}.dates{font:.75rem var(--mono);color:var(--muted)}
@@ -396,6 +397,7 @@ function weekCard(w, recipes) {
   return `<article class="wk" id="w${w.n}" data-week="${w.n}" data-start="${w.start}">` +
     `<header><span class="wn">W${w.n}</span><span class="dates">${esc(w.dates)}</span><span class="cx">~${fmtMins(w.mins)}</span>${w.light ? '<span class="tag">light holiday week</span>' : ''}<span class="wstate"></span></header>` +
     `<h4>${inline(w.title)}</h4>` +
+    (w.why ? `<p class="why"><b>Why now</b>${inline(w.why)}</p>` : '') +
     `<ol class="steps">${w.steps.map(stepRow).join('')}</ol>` +
     `<p><b>By Sunday</b>${inline(w.ship)}</p><p><b>How to</b>${how}</p>${further}${deeper}` +
     `<p class="small"><a href="../app/#/start#week-${w.n}">This week in one view, in the playbook →</a></p>` +

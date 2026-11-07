@@ -8,7 +8,6 @@ goals:
   - say where secrets belong, what a repository records, and how to read an error from the bottom
   - explain why a test should be seen to fail once, and what an experiment runner makes possible
 terms:
-  - Python | the programming language most AI work is written in; for a product manager, a way of saying exactly what an experiment does | 
   - HTTP | the set of rules programs use to send requests and replies across the internet, with a number on each reply that says whether it worked | 
   - status code | the number on an HTTP reply: 200 means it worked, a 4xx number means the request was wrong, and a 5xx number means the server failed | status codes
   - environment variable | a value kept outside the code, in the place a program runs, which is where passwords and API keys belong | environment variables

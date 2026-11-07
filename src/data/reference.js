@@ -254,7 +254,19 @@ window.GLOSSARY = [
   ['Interface contract','What the product promises to show at each level of certainty — and what it lets the user do about it.',20],
   ['Resolvable citation','A source link that opens the exact passage the claim came from, not just the name of a document.',20],
   ['Correction path','How a user fixes a wrong output, and what that fix records for you.',20],
-  ['Graceful degradation','What the feature can still do when the AI part is switched off.',20]
+  ['Graceful degradation','What the feature can still do when the AI part is switched off.',20],
+
+  /* Words a reader met before any chapter explained them (found by walking the
+     route in order). Each is now tappable where it first appears. */
+  ['Variable','A name that holds a value, so later lines of code can use it. In city = "Pune", the name city is the variable. Read the equals sign as “is now”.',0.8],
+  ['Dictionary','In Python, pairs of a label and a value inside curly braces, like a small form: {"role": "user", "content": "hello"}. Every message to a model is written this way.',0.8],
+  ['Few-shot','Putting two or three worked examples of the task inside the prompt, so the model copies their pattern. Zero-shot means asking with no examples at all.',2.1],
+  ['Eval','Short for evaluation: running a system on cases whose right answers you already know, and counting how many it gets right. The cases together are an eval set.',2.2],
+  ['JSON schema','A written description of the exact shape a piece of JSON must have: which fields, of what type, and which are required. A program checks each answer against it.',8.5],
+  ['DPDP Act','India’s Digital Personal Data Protection Act, 2023, with its Rules from 2025. It says what an organisation must do before it collects, uses or shares personal data, such as asking for consent.',16.5],
+  ['Governance','The rules, documents and named people that decide how an AI system may be used, who checks it, and who answers for it when it goes wrong.',17],
+  ['Throughput','How much work a system gets through in a given time, such as requests per minute. Latency is how long one request waits; throughput is how many get done.',30],
+  ['A/B test','Showing two versions to two random groups of users at the same time and comparing one number between them, so you can tell which version caused the difference.','B3']
 ];
 
 /* ---------- Vendor Interrogation Deck ---------- */
@@ -424,7 +436,7 @@ window.REDMARKS = [
 window.PARTS = [
   {n:6, label:'A', track:true, title:'Product foundations',
     blurb:'First, how to use this course. Then the product management basics everything else builds on: product sense, user interviews, market research, strategy and prioritisation, roadmaps and OKRs, specs and prototypes, and how generative AI models work.'},
-  {n:1, label:'I', title:'The basics', blurb:'Your first API call, then tokens and cost, system prompts and temperature, writing and testing prompts, and the five task types. You finish by building a complete RAG system: chunking, keyword and embedding search, and evaluation.'},
+  {n:1, label:'I', title:'The basics', blurb:'Tokens on your own text, just enough Python to read the code, your first API call, then system prompts and temperature, writing and testing prompts, and the five task types. You finish by building a complete RAG system: chunking, keyword and embedding search, and evaluation.'},
   {n:2, label:'II', title:'What real systems add', blurb:'What real systems need on top of the basics: structured output and schema design, tool calling and agents, long context and context engineering, reasoning models, latency, better retrieval, and prompt injection.'},
   {n:3, label:'III', title:'Measuring it, costing it, shipping it', blurb:'How to measure, cost and ship what you built: evaluation at scale with code checks and LLM judges, error analysis, cost modelling, document extraction, data handling, governance, and the AI PRD.'},
   {n:4, label:'IV', title:'The decisions that stay yours',
@@ -433,9 +445,9 @@ window.PARTS = [
      chapter here revisits ground from Parts I–IV it starts from that result
      instead of re-teaching it — the depth pass, not a second first pass. */
   {n:5, label:'V', title:'The applied track — production depth',
-    blurb:'The deeper, production-level track: software basics, choosing a model, context engineering, production RAG, tools and workflows, agents, MCP, multimodal input, evaluation and release gates, observability, security, AI product specs, production architecture, and a capstone system you can defend.'},
+    blurb:'A second, deeper pass over the ideas of Parts I to IV, at the level a real launch needs. Nothing here is new as an idea: software basics, choosing a model, context engineering, production RAG, tools and workflows, agents, MCP, multimodal input, release gates, observability, security, AI product specs, production architecture, and a capstone system you can defend.'},
   {n:7, label:'B', track:true, title:'Business, growth and shipping',
-    blurb:'Pricing and unit economics, growth and onboarding, product analytics and experiments, the AI PM toolchain, harness engineering and shipping to real users, career readiness, and a final capstone that takes you from a real problem to a live product.'}
+    blurb:'After the capstone: pricing and unit economics, growth and onboarding, product analytics and experiments, the AI PM toolchain, harness engineering, shipping to real users, and getting the job.'}
 ];
 
 /* ---------- The v4.1 appendices ----------

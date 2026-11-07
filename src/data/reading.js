@@ -219,6 +219,17 @@ R.ch05 = [
     'Why always picking the likeliest next word reads badly, and how sampling settings like temperature and top-p fix it.',
     'Hamesha sabse sambhavit agla word chunna bura kyun padhta hai, aur temperature aur top-p jaisi settings ise kaise theek karti hain.')
 ];
+R.chpy = [
+  C('Why Jupyter is data scientists’ computational notebook of choice', 'Jeffrey Perkel, Nature, 2018', 'https://www.nature.com/articles/d41586-018-07196-1',
+    'How scientists work in notebooks like the one on these pages: short cells of code, run one at a time, with the result right under each.',
+    'Scientists notebooks mein kaise kaam karte hain, bilkul in pages jaise: code ke chhote cells, ek-ek karke chalaaye hue, aur har ek ka result theek uske neeche.'),
+  C('The OpenAI Python library', 'OpenAI, on GitHub', 'https://github.com/openai/openai-python',
+    'The library behind the model call in Chapter 1. Its first example has the shape you learned to read: a client, a create call with named settings, and a dotted path to the answer.',
+    'Chapter 1 ke model call ke peeche yahi library hai. Iska pehla example wahi shape rakhta hai jo aapne padhna seekha: ek client, named settings wala create call, aur dots se jawab tak ka raasta.'),
+  P('Ten quick tips for teaching programming', 'Neil Brown and Greg Wilson, PLOS Computational Biology, 2018', 'https://doi.org/10.1371/journal.pcbi.1006023',
+    'What research says about learning to code. Reading and tracing worked examples before writing your own is one of its tips, and this chapter is built on it.',
+    'Code seekhne ke baare mein research kya kehti hai. Apna code likhne se pehle bane-banaaye examples padhna aur line-by-line follow karna iski ek tip hai, aur yeh chapter usi par bana hai.'),
+];
 R.ch1 = [
   C('Mata v. Avianca, Inc.', 'Wikipedia', 'https://en.wikipedia.org/wiki/Mata_v._Avianca,_Inc.',
     'Lawyers filed a brief with six court cases a chatbot had invented, and were fined. Fluent is not the same as true.',

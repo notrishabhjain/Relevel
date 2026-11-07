@@ -63,8 +63,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Jo plans kaam karte hain, unmein teen baatein common hoti hain. Pehli, sabse chhota step sach mein chhota hota hai: ek sawaal, 2 minute, poora chapter nahi. Doosri, aapko pata hota hai ki dobara kahan se shuru karna hai, kyunki thake hone par tay karna mushkil hota hai. Teesri, aap pehle hi tay kar chuke hote hain ki chhoota hua din matlab kya hai: kuch nahi. Iska matlab dobara shuru se shuru karna nahi hai. Din toh sabke chhootte hain, aur jo log course khatam karte hain, unhe yeh pehle se pata hota hai.',
   'Before you start':
     'Shuru karne se pehle',
-  'You don’t need the notebook or an API key yet. The setup comes in Week 6 of <a href="#/start">your route</a>, when you’ll know what the key is for.':
-    'Abhi aapko notebook ya API key ki zaroorat nahi hai. Setup <a href="#/start">aapke raaste</a> ke Week 6 mein aata hai, jab aapko pata hoga ki key kis kaam ki hai.',
   'That’s all for this chapter. Press “Mark chapter complete” below, and <a href="#/start">your route</a> moves on to the book. Tomorrow’s ten minutes are waiting there.':
     'Is chapter mein bas itna hi. Neeche “Mark chapter complete” dabaiye, aur <a href="#/start">aapka raasta</a> kitaab ki taraf aage badh jaata hai. Kal ke das minute wahin aapka intezaar kar rahe hain.',
   'No setup yet':
@@ -73,24 +71,14 @@ Object.assign(window.HING = window.HING || {}, {
   /* ---- a1: Your learning system: role, evidence and a capstone problem ---- */
   'Your learning system: role, evidence and a capstone problem':
     'Aapka learning system: role, evidence aur ek capstone problem',
-  'Before you learn anything else, you’ll set up how you’re going to learn. You’ll score yourself against the applied AI PM role, create one place for all your work, and choose the real problem you’ll build around for the rest of the book.':
-    'Kuch bhi aur seekhne se pehle, aap yeh set up karenge ki aap seekhenge kaise. Aap khud ko applied AI PM role ke hisaab se score karenge, apne saare kaam ke liye ek jagah banayenge, aur woh asli problem chunenge jiske aas-paas aap poori book mein build karenge.',
   'Score yourself against the seven areas of the applied AI PM role, with evidence for each score.':
     'Applied AI PM role ke saat areas ke hisaab se khud ko score kar paana, har score ke saath evidence ke saath.',
-  'Set up one notebook and one repository that hold every artifact you make in this book.':
-    'Ek notebook aur ek repository set up kar paana, jinme is book mein banaya hua har artifact rahe.',
   'Plan a week of study in build-first blocks, and use the 0–3 mastery gate to decide when to move on.':
     'Build-first blocks mein ek hafte ki padhai plan kar paana, aur 0–3 wale mastery gate se tay kar paana ki kab aage badhna hai.',
   'Shortlist three capstone problems and say, for each one, why AI may or may not help.':
     'Teen capstone problems ki shortlist bana paana, aur har ek ke liye bata paana ki AI kyun madad kar sakta hai ya kyun nahi.',
-  'This chapter takes about six hours, spread over two or three sittings. Have a notes app or a paper notebook ready. You don’t need any accounts to begin, because the first task is a page of writing.':
-    'Is chapter mein lagbhag 6 ghante lagte hain, jo aap do-teen baithakon mein baant sakte hain. Ek notes app ya paper notebook paas rakhiye. Shuru karne ke liye kisi account ki zaroorat nahi, kyunki pehla kaam ek page likhna hai.',
   'In the last chapter you learned how this site works. Now we begin the real work, and the first job isn’t about AI at all. It’s about you. Before you learn anything else, you’ll set up how you’re going to learn: where you stand today, where your work will live, and what you’ll build.':
     'Pichhle chapter mein aapne dekha ki yeh site kaise kaam karti hai. Ab asli kaam shuru hota hai, aur pehla kaam AI ke baare mein hai hi nahi. Woh aapke baare mein hai. Kuch bhi aur seekhne se pehle aap set up karenge ki aap seekhenge kaise: aap aaj kahan khade hain, aapka kaam kahan rahega, aur aap kya banayenge.',
-  'How this book works':
-    'Yeh book kaise kaam karti hai',
-  'This book teaches the applied AI product manager role by having you do the work, not just read about it. Every chapter follows the same five steps, in the same order, so you’ll soon know what to expect:':
-    'Yeh book applied AI product manager role ko is tarah sikhati hai ki aap kaam khud karte hain, sirf padhte nahi. Har chapter wahi paanch steps, wahi order mein follow karta hai, isliye aapko jaldi hi pata chal jayega ki aage kya aane wala hai:',
   '<strong>Idea.</strong> One concept, explained in plain language.':
     '<strong>Idea.</strong> Ek concept, saaf aur aasaan bhasha mein samjhaya hua.',
   '<strong>Prove it now.</strong> A quick example and a counterexample that you write straight away.':
@@ -103,12 +91,8 @@ Object.assign(window.HING = window.HING || {}, {
     '<strong>Close the sitting.</strong> Teen lines: kya confuse kiya, kisne aapki soch badli, aur aap aage kya test karenge.',
   'The chapters come in three groups. <strong>Track A</strong>, which you’re in now, covers the foundations of product management and the ideas behind generative AI. <strong>Parts I to V</strong> are the technical core, where you build, break and measure a real AI system.':
     'Chapters teen groups mein aate hain. <strong>Track A</strong>, jisme aap abhi hain, product management ki buniyaad aur generative AI ke peeche ke ideas cover karta hai. <strong>Parts I to V</strong> technical core hain, jahan aap ek asli AI system build karte hain, usse todte hain aur measure karte hain.',
-  '<strong>Track B</strong> covers the business side: pricing, growth, analytics and shipping to real users. It ends with a capstone that uses everything you’ve learned.':
-    '<strong>Track B</strong> business side cover karta hai: pricing, growth, analytics aur asli users tak product pahunchana. Yeh ek aise capstone par khatam hota hai jo aapki seekhi hui har cheez use karta hai.',
   'Note':
     'Note',
-  'Work through the groups in order: Track A, then Parts I to V, then Track B. Chapter 34 at the end of Part V is a rehearsal for the final capstone in B8.':
-    'Groups ko order mein kijiye: pehle Track A, phir Parts I to V, phir Track B. Part V ke end mein Chapter 34 B8 ke final capstone ki rehearsal hai.',
   'Five rules that keep the work honest':
     'Paanch rules jo kaam ko imaandaar rakhte hain',
   'It’s easy to make work look finished when it isn’t. These five rules apply to every chapter, and each one blocks a shortcut that people often take.':
@@ -125,8 +109,6 @@ Object.assign(window.HING = window.HING || {}, {
     '<strong>Secrets ko notebooks aur repositories se bahar rakhiye.</strong> API keys ko environment variables mein ya apne platform ke secret store mein rakhiye.',
   'Idea 1: Measure where you are, with evidence':
     'Idea 1: Dekhiye aap kahan hain, evidence ke saath',
-  'Let’s start with you. The applied AI PM role has seven areas, and you’ll score yourself on each one now. You’ll score yourself again at the end of the book, so you can see how far you’ve come.':
-    'Chaliye aapse shuru karte hain. Applied AI PM role ke saat areas hain, aur aap abhi har area par khud ko score karenge. Book ke end mein aap dobara score karenge, taaki dekh sakein ki aap kitna aage aaye.',
   'Here are the seven areas, and what each one covers.':
     'Yeh saat areas hain, aur har ek mein kya aata hai.',
   'Area':
@@ -161,8 +143,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Leadership',
   'Getting people with different goals to agree and act.':
     'Alag-alag goals wale logon ko ek baat par laana aur kaam karwana.',
-  'You’ll give each area a score from 0 to 3. The book uses the same scale for every artifact you make, so it’s worth learning it now.':
-    'Aap har area ko 0 se 3 tak ka score denge. Book har artifact ke liye yahi scale use karti hai, isliye ise abhi seekh lena achha hai.',
   'Score':
     'Score',
   'Meaning':
@@ -205,8 +185,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Yeh ek aisa jawaab hai jo kaam karta hai. <strong>Analytics: 2.</strong> Evidence: maine apni team ka weekly retention dashboard banaya aur use onboarding badalne ki baat ke liye istemaal kiya. <strong>Strategy: main 2 kehta, lekin yeh 1 hai.</strong> Strategy par meri raay hai, lekin maine aisi strategy kabhi nahi likhi jis par kisi aur ne action liya ho. Farq is baat ka hai ki kya koi aisa artifact maujood hai jise doosra insaan check kar sake.',
   'Idea 2: Keep all your work in one place':
     'Idea 2: Apna saara kaam ek jagah rakhiye',
-  'You now know where you stand. Next, you need somewhere to keep what you make. You’ll make around fifty artifacts in this book: interview notes, a strategy memo, a PRD, test sets, dashboards and a deployed app.':
-    'Ab aapko pata hai ki aap kahan hain. Agla kaam hai ek jagah dhoondhna jahan aap jo banate hain woh rakh sakein. Is book mein aap lagbhag 50 artifacts banayenge: interview notes, ek strategy memo, ek PRD, test sets, dashboards aur ek deployed app.',
   'If they’re scattered across different tools, you won’t be able to find them when you need them. That could be in the capstone, or in a job interview.':
     'Agar woh alag-alag tools mein bikhre honge, toh jab zaroorat padegi tab aap unhe dhoondh nahi paayenge. Woh zaroorat capstone mein ho sakti hai, ya kisi job interview mein.',
   'So set up two things, once:':
@@ -221,16 +199,12 @@ Object.assign(window.HING = window.HING || {}, {
     'Tip',
   'No GitHub account yet? Start with a folder on your computer or in Google Drive, using the same structure. You can move it to GitHub later, in Chapter 21, when you set up version control properly.':
     'Abhi tak GitHub account nahi hai? Apne computer ya Google Drive mein ek folder se shuru kijiye, wahi structure rakhkar. Aap use baad mein GitHub par le ja sakte hain, Chapter 21 mein, jab aap version control theek se set up karenge.',
-  'The most important file is <code>decision-log.md</code>. Each time you make a decision in this book, such as which problem to solve, which model to use or which metric matters, add an entry. Each entry has four parts: the date, the decision, the evidence, and what would make you change it.':
-    'Sabse zaroori file <code>decision-log.md</code> hai. Is book mein jab bhi aap koi decision lete hain, jaise kaun si problem solve karni hai, kaun sa model use karna hai ya kaun sa metric matter karta hai, toh ek entry add kijiye. Har entry ke chaar hisse hote hain: date, decision, evidence, aur kya cheez aapko use badalne par majboor karegi.',
   'Create the folders. Then add your first entry to <code>decision-log.md</code>. For example:':
     'Folders banaiye. Phir <code>decision-log.md</code> mein apni pehli entry add kijiye. For example:',
   'You should now have a folder structure anyone could navigate, and one decision with its evidence. Test it: could someone else find your interview notes in under two minutes?':
     'Ab aapke paas aisa folder structure hona chahiye jise koi bhi samajh sake, aur ek decision uske evidence ke saath. Test kijiye: kya koi aur aapke interview notes 2 minute ke andar dhoondh sakta hai?',
   'Idea 3: Build first, then check whether you are ready':
     'Idea 3: Pehle build kijiye, phir check kijiye ki aap taiyaar hain ya nahi',
-  'With a place to work, the next question is time. How much should you study each week, and how should you spend it? Plan 12 to 15 hours a week. Split them into four blocks, and give the biggest block to building:':
-    'Kaam karne ki jagah ho gayi, ab agla sawaal time ka hai. Har hafte kitni padhai karni chahiye, aur use kaise baantna chahiye? Hafte mein 12 se 15 ghante plan kijiye. Unhe chaar blocks mein baantiye, aur sabse bada block building ko dijiye:',
   'Block':
     'Block',
   'Hours':
@@ -267,12 +241,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Gate aapke artifacts ko score karta hai, yeh nahi ki aapne padhi hui cheez kitni samjhi. Aksar aisa hota hai ki chapter samajh aaya lagta hai, phir bhi aapke paas kuch nahi hota jo 2 score kare. Matlab chapter abhi poora nahi hua hai.',
   'Open your calendar and block out next week using the four blocks above. Put the Build block where you have the most energy, not where it is most convenient.':
     'Apna calendar kholiye aur upar ke chaar blocks ke hisaab se agle hafte ka time block kijiye. Build block wahan rakhiye jahan aapki energy sabse zyada ho, wahan nahi jahan sabse aasaan ho.',
-  'You should now have four blocks in next week’s calendar that add up to at least 12 hours. If you can’t find 12 hours, write the real number in your decision log and plan to take longer. That’s a better plan than one you won’t keep.':
-    'Ab aapke agle hafte ke calendar mein chaar blocks hone chahiye jo milkar kam se kam 12 ghante bante hain. Agar 12 ghante nahi mil rahe, toh asli number apne decision log mein likhiye aur zyada time lene ka plan banaiye. Yeh us plan se behtar hai jo aap nibha nahi paayenge.',
   'Idea 4: Choose the problem you will build around':
     'Idea 4: Woh problem chuniye jiske aas-paas aap build karenge',
-  'The last piece is the most important one. Every chapter asks you to apply its ideas to your capstone, which is one real problem that you carry through the whole book. In B8, the final chapter, you ship a product for it to 5–10 real users. So choose carefully.':
-    'Aakhri hissa sabse zaroori hai. Har chapter aapse kehta hai ki uske ideas aap apne capstone par lagayein, jo ek asli problem hai jise aap poori book mein saath le jaate hain. B8 mein, jo aakhri chapter hai, aap 5–10 asli users ke liye uska product ship karte hain. Isliye dhyaan se chuniye.',
   'A good capstone problem has four properties:':
     'Ek achhi capstone problem mein chaar khoobiyan hoti hain:',
   '<strong>A reachable user.</strong> You can talk to at least five people who have this problem.':
@@ -349,8 +319,6 @@ Object.assign(window.HING = window.HING || {}, {
     'AI assistant se analysis ka draft likhwa paana, aur phir har claim ko evidence se check kar paana.',
   'Map the hard and soft skills the applied AI PM role needs, and where you stand on each.':
     'Applied AI PM role ke hard aur soft skills map kar paana, aur har skill mein khud ko kahan paate hain yeh bata paana.',
-  'This chapter takes about ten hours, across three or four sittings. Pick one product that you use often and know well, such as Notion, Spotify, Swiggy, Slack or Canva. You’ll use it in every exercise.':
-    'Is chapter mein lagbhag 10 ghante lagte hain, teen-chaar baithakon mein. Ek aisa product chuniye jise aap aksar use karte hain aur achhe se jaante hain, jaise Notion, Spotify, Swiggy, Slack ya Canva. Har exercise mein aap yahi product use karenge.',
   'In the last chapter you set up how you’ll learn and what you’ll build. Now you’ll learn how to think about a product. Why do some products win, and others quietly fade away?':
     'Pichhle chapter mein aapne tay kiya ki aap kaise seekhenge aur kya banayenge. Ab aap seekhenge ki kisi product ke baare mein sochna kaise hai. Kuch products jeette kyun hain, aur kuch chupchaap kyun gayab ho jaate hain?',
   'There are five ideas in this chapter. Each one is small, and each ends with something you do on the product you picked. By the end, you’ll have a way to look at any product, including your own capstone, and say what is working and what isn’t.':
@@ -583,8 +551,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Aise personas aur journey maps bana paana jinki har line kisi interview note se juda ho.',
   'Write a problem statement, list your assumptions, and test the riskiest one first.':
     'Problem statement likh paana, assumptions ki list banana, aur sabse risky assumption ko pehle test kar paana.',
-  'This chapter takes about 14 hours, spread over a week or two. It’s spread out because finding people and fixing a time to talk takes a while. So start recruiting on day one. Aim for 30-minute conversations, by video call or in person.':
-    'Is chapter mein lagbhag 14 ghante lagte hain, ek-do hafton mein phaile hue. Isliye phaile hue hain kyunki logon ko dhoondhne aur baat karne ka time tay karne mein waqt lagta hai. Toh pehle din se hi recruit karna shuru kijiye. 30 minute ki baatchit rakhiye, video call par ya saamne baithkar.',
   'In the last chapter you learned a simple rule: every claim must trace to evidence, or be marked as an assumption. This chapter is about where most of that evidence comes from. It comes from talking to users.':
     'Pichhle chapter mein aapne ek simple rule seekha tha: har claim ko evidence se jodna hai, ya assumption ke roop mein mark karna hai. Zyadatar evidence kahan se aata hai? Users se baat karke. Yeh chapter usi ke baare mein hai.',
   'Talking to users sounds easy, but most people do it in a way that gets them polite, useless answers. So first you’ll learn how to ask questions that get honest ones. Then you’ll turn what you hear into a few short documents your team can act on.':
@@ -815,8 +781,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Kisi product ko AI value chain mein rakh paana aur parakh paana ki uska advantage copy karna aasaan hai ya nahi.',
   'Build an opportunity solution tree from interview evidence, and rank its branches.':
     'Interview evidence se opportunity solution tree banana, aur uski branches ko rank kar paana.',
-  'This chapter takes about ten hours. You’ll need your five interview notes from A3, and a spreadsheet. Some numbers will take a little searching, such as the published customer counts of software vendors.':
-    'Is chapter mein lagbhag 10 ghante lagte hain. Aapko A3 ke apne paanch interview notes aur ek spreadsheet chahiye. Kuch numbers dhoondhne mein thoda time lagega, jaise software vendors ke published customer counts.',
   'In the last chapter you talked to real users and found out who has the problem. Now comes the next question a product person must ask: is the problem big enough, and what are people doing about it today?':
     'Pichhle chapter mein aapne asli users se baat karke pata kiya ki problem kiske paas hai. Ab ek product insaan ka agla sawaal aata hai: kya problem itni badi hai, aur log aaj uske liye kya kar rahe hain?',
   'You’ll answer it in five steps. First you’ll estimate the size of the market. Then you’ll look at everything a customer could use instead of your product. After that you’ll learn where AI products get their strength, and finally how to organise what you learned into a tree of opportunities.':
@@ -1025,8 +989,6 @@ Object.assign(window.HING = window.HING || {}, {
     'RICE se options score kar paana, aur samjha paana ki score ko kab override karna chahiye.',
   'Decide whether to build, buy or partner for the AI part of a product.':
     'Tay kar paana ki product ke AI wale hissa ko build, buy ya partner mein se kaise lena hai.',
-  'This chapter takes about twelve hours. Keep your market estimate, competitor matrix and opportunity tree from A4 open next to you. Most of the work is writing, so expect to draft your strategy memo at least twice.':
-    'Is chapter mein lagbhag 12 ghante lagte hain. A4 ka market estimate, competitor matrix aur opportunity tree apne saath khula rakhiye. Zyadatar kaam likhna hai, isliye strategy memo ka draft kam se kam do baar likhne ke liye taiyaar rahiye.',
   'In A4 you collected evidence: who the users are, how big the market is, and who else is already there. Evidence alone doesn’t tell you what to do on Monday morning. For that, you have to choose.':
     'A4 mein aapne evidence ikattha kiya: users kaun hain, market kitna bada hai, aur wahan pehle se kaun-kaun hai. Lekin sirf evidence se yeh nahi pata chalta ki Monday subah kya karna hai. Uske liye aapko choose karna padta hai.',
   'This chapter is about making those choices. You’ll write a strategy, learn to score options without fooling yourself, and decide how to get the AI part of your product. The hardest lesson here is also the most useful one: a good strategy says what you will not do.':
@@ -1263,8 +1225,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Leadership ke liye decision memo likh paana aur shuru karne se pehle pre-mortem chala paana.',
   'Track dependencies and risks before they turn into surprises.':
     'Dependencies aur risks ko surprise banne se pehle track kar paana.',
-  'This chapter takes about ten hours. Keep your strategy memo and RICE scores from A5 open next to you. You’ll also need to think about the people around your capstone: who funds it, who approves it and who uses it.':
-    'Is chapter mein lagbhag 10 ghante lagte hain. A5 ka strategy memo aur RICE scores apne saath khule rakhiye. Aapko apne capstone ke aas-paas ke logon ke baare mein bhi sochna hoga: use fund kaun karta hai, approve kaun karta hai aur use karta kaun hai.',
   'In A5 you decided what to do first and what not to do. A strategy on paper is still just an idea, though. To make it real, a team needs a plan it can follow, and the people who control money and approvals need a reason to say yes.':
     'A5 mein aapne tay kiya ki pehle kya karna hai aur kya nahi karna hai. Lekin kaagaz par likhi strategy abhi bhi sirf ek idea hai. Use asli banane ke liye team ko ek plan chahiye jise woh follow kar sake, aur jo log paise aur approvals sambhalte hain unhe “haan” kehne ki wajah chahiye.',
   'This chapter takes you from strategy to that plan. You’ll build a roadmap, set goals with numbers, find the people who can help or stop you, and imagine failure before it happens.':
@@ -1873,8 +1833,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Toh pehle kya try karein? Prompting se shuru kijiye. Jab model ko woh information chahiye jo uske paas nahi hai, tab RAG jodiye. Fine-tuning ke baare mein tabhi sochiye jab aapko bahut consistent behaviour chahiye, ya jab aap chahte hain ki ek chhota, sasta model ek narrow kaam achhe se kare. Chapter 19 is decision ko gehraai se cover karta hai.',
   'For your capstone, fill in the decision table above with one row per criterion, and circle the best choice for each.':
     'Apne capstone ke liye upar wali decision table ko har criterion ki ek row ke saath bhariye, aur har ek ke liye sabse achha choice circle kijiye.',
-  'You should have a filled table and a choice. For most capstones in this book the answer is prompting plus RAG. If you chose fine-tuning, name the specific behaviour that prompting could not produce.':
-    'Aapke paas ek bhari hui table aur ek choice honi chahiye. Is book ke zyadatar capstones ke liye jawaab prompting plus RAG hai. Agar aapne fine-tuning chuni, toh woh specific behaviour likhiye jo prompting nahi de paayi.',
   'Idea 5: The AI market in one picture':
     'Idea 5: AI market ek tasveer mein',
   'The last step is to see where all this fits in the market. You met the AI value chain in A4: infrastructure, foundation models, tooling and applications. At the model layer, there are two kinds of provider, and the table compares them.':

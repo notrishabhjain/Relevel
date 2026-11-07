@@ -49,8 +49,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Bata paana ki kisi AI feature mein engineering ka risk asal mein kahan baitha hota hai.',
   'Before you start':
     'Shuru karne se pehle',
-  'So far you’ve spent most of your time looking at the model. In this chapter we look at the ordinary software around it. The aim is simple: when an engineer shows you a system diagram, you should recognise every box on it.':
-    'Ab tak aapne zyadatar model ko hi dekha hai. Is chapter mein hum model ke aas-paas ke aam software ko dekhte hain. Goal seedha sa hai: jab koi engineer aapko system diagram dikhaye, toh aap uske har box ko pehchaan sakein.',
   'Think about ordering food in an app. Your tap sends a message to a restaurant. A reply comes back with a price, and your screen updates. It all looks mysterious until you see the messages going back and forth. Software around an AI model works the same way.':
     'Ek app mein khana order karne ko yaad kijiye. Aapka ek tap restaurant ko message bhejta hai. Wapas ek reply aata hai jisme price hota hai, aur aapki screen update ho jaati hai. Jab tak aap in messages ko aate-jaate nahi dekhte, sab kuch jaadu jaisa lagta hai. AI model ke aas-paas ka software bhi isi tarah kaam karta hai.',
   'Why this matters':

@@ -621,8 +621,9 @@ function bar(opts){
   };
   const drawConn=async()=>{
     const pl=await plan();
-    conn.textContent=pl.ready?'✓ '+pl.name+' · '+pl.models.chat:'⚠ '+T('No model connected — Connect');
-    conn.className='pkconn '+(pl.ready?'ok':'warn');
+    /* a chapter whose cells never call a model has nothing to warn about */
+    conn.textContent=pl.ready?'✓ '+pl.name+' · '+pl.models.chat:opts.noModel?'○ '+T('No model needed in this chapter'):'⚠ '+T('No model connected — Connect');
+    conn.className='pkconn '+(pl.ready?'ok':opts.noModel?'':'warn');
   };
   draw(); drawConn(); statusListeners.add(draw);
   if(window.LLM) window.LLM.onChange(drawConn);

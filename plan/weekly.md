@@ -1,6 +1,6 @@
 # Applied AI PM: the route, week by week (19 Oct 2026 – 18 Apr 2027)
 
-This plan is the course. It has one row for each week, and each row lists the steps of the route in order: a book chapter to read, a playbook chapter to do, sometimes a small try, and a look back on Friday. The same steps, in the same order, are on the [route page in the playbook](../app/#/start), at the end of each chapter in the [book](../book/), and in the 12:00 reminder.
+This plan is the course. It has one row for each week, and each row lists the steps of the route in order: a book chapter to read, then the playbook chapter that practises it, sometimes a small try, and a look back on Friday. The same steps, in the same order, are on the [route page in the playbook](../app/#/start), at the end of each chapter in the [book](../book/), and in the 12:00 reminder.
 
 Progress is shared too. Mark a chapter complete in the playbook, or read a book chapter to its end, and the tick shows up here. Tick a try or a look back here, and it shows up in the playbook. Sign in once and the ticks follow you to every device. The reasons behind the route are on the [Curriculum tab](#curriculum), and how to take each kind of step is on the [How to build tab](#build).
 
@@ -18,13 +18,13 @@ A week is a handful of steps. Most take ten to twenty minutes, so most days need
 | --- | --- | --- |
 | Book | Read the chapter in the book, in English or Hinglish | By itself, when you reach the end |
 | Chapter | Read it in the playbook, answer the boxes, do the hands-on steps | When you press “Mark chapter complete” |
-| First pass | For Track A, Track B and the capstone: read and answer the boxes; the long Build waits | When you press “Mark chapter complete” |
+| First pass | For Track A and Track B: read and answer the boxes; the long Build waits | When you press “Mark chapter complete” |
 | Try | A small task off the page | When you tick it, here or on the route page |
 | Look back | Three lines in your notepad on Friday | When you tick it |
 
 ### How to read the weekly rows
 
-- **Time:** the total for the week’s steps. Month 1 is about 40–50 minutes a week, and it builds slowly to about eight hours in the capstone week.
+- **Time:** the total for the week’s steps. Month 1 is about an hour a week, and it builds slowly to about four or five hours in each of the two capstone weeks.
 - **By Sunday:** the thing the week leaves you with. Put a link or a note in the row if you want a record.
 - **How to:** links to the [How to build tab](#build).
 - **Going further:** optional outside reading for a week with spare energy. It is never required.

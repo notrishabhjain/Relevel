@@ -408,10 +408,10 @@ ${parts.join('\n')}
   const RB = lang === 'hi'
     ? { on: 'Aapke raaste par', week: 'Week', whole: 'Chapter ke end tak pahunchte hi yeh apne aap tick ho jaata hai, aapke account mein bhi.',
         halves: 'Yeh chapter do din mein hai. Har hissa khatam hote hi apne aap tick ho jaata hai.', mark: 'Padh liya', done: 'Padha gaya ✓', back: 'Poora hafta ek jagah',
-        plan: 'Plan mein', signin: 'Tick abhi sirf is device par hain. Sign in kijiye taaki har device par rahein.', signinLink: 'Sign in' }
+        plan: 'Plan mein', next: 'Raaste par agla kadam', nextCh: 'ab app mein yahi karke dekhiye', nextBook: 'agli kahani', signin: 'Tick abhi sirf is device par hain. Sign in kijiye taaki har device par rahein.', signinLink: 'Sign in' }
     : { on: 'On your route', week: 'Week', whole: 'This chapter ticks itself when you reach the end, in your account too.',
         halves: 'This chapter is split over two days. Each half ticks itself as you finish it.', mark: 'Mark as read', done: 'Read ✓', back: 'The whole week in one view',
-        plan: 'In the plan', signin: 'Ticks are saved on this device only. Sign in to keep them on every device.', signinLink: 'Sign in' };
+        plan: 'In the plan', next: 'Next on your route', nextCh: 'now do it in the app', nextBook: 'the next story', signin: 'Ticks are saved on this device only. Sign in to keep them on every device.', signinLink: 'Sign in' };
   /* The reading lists of the course chapters this one retells, without repeats. */
   const readingBox = ids => {
     const seen = new Set(), rows = [];
@@ -421,6 +421,15 @@ ${parts.join('\n')}
     const part = (kind, title) => { const xs = rows.filter(r => r[0] === kind).slice(0, 4); return xs.length ? `<h3>${title}</h3><ul>${xs.map(li).join('')}</ul>` : ''; };
     return `<aside class="deeper" aria-label="${ui.deeper}"><h2>${ui.deeper}</h2><p class="sub">${ui.deeperSub}</p>${part('case', ui.inWorld)}${part('paper', ui.research)}</aside>`;
   };
+  /* The step after this one on the route: usually the app chapter that
+     practises what this chapter told as a story. */
+  const nextLine = cur => {
+    const i = ROUTE_STEPS.findIndex(x => x.id === cur.id), nx = ROUTE_STEPS[i + 1];
+    if (!nx || nx.kind === 'look') return '';
+    if (nx.kind === 'chapter') return `<p class="rbnext"><b>${RB.next}:</b> <a href="${appUrl}#/ch/${nx.ch}">${esc(nx.num + '. ' + (opts.courseTitle ? (opts.courseTitle(nx.ch) || nx.title) : nx.title))}</a> <span class="small">(${RB.nextCh})</span></p>`;
+    if (nx.kind === 'read') return `<p class="rbnext"><b>${RB.next}:</b> <a href="${href(nx.book)}${nx.at ? '#' + nx.at : ''}">${esc(lang === 'hi' && nx.titleHi ? nx.titleHi : nx.title)}</a> <span class="small">(${RB.nextBook})</span></p>`;
+    return '';
+  };
   const routeBox = file => {
     const st = ROUTE_STEPS.filter(x => x.kind === 'read' && x.book === file);
     if (!st.length) return '';
@@ -429,6 +438,7 @@ ${parts.join('\n')}
       `<p><b>${RB.on}: ${RB.week} ${st[0].week}.</b> ${half ? RB.halves : RB.whole}</p>` +
       `<p class="rbrow"><button type="button" class="b rbmark">${RB.mark}</button><span class="rbdone" hidden>${RB.done}</span>` +
       `<a href="${appUrl}#/start#week-${st[0].week}">${RB.back} →</a><a href="/plan/#w${st[0].week}">${RB.plan}: ${RB.week} ${st[0].week} →</a></p>` +
+      nextLine(st[st.length - 1]) +
       `<p class="rbsign small" hidden>${RB.signin} <a href="/api/auth/login?next=${encodeURIComponent((lang === 'hi' ? '/book/hi/' : '/book/') + file)}">${RB.signinLink}</a></p></aside>`;
   };
 

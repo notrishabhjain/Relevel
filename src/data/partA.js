@@ -68,7 +68,7 @@ window.PART6 = [
        ph:'When I do not want to open this, I will …',
        after:'Plans that work have three things in common. First, the smallest step is really tiny: one question, two minutes, not a whole chapter. Second, you know where to restart without having to decide, because deciding is hard when you’re tired. Third, you’ve already decided what a missed day means: nothing. It doesn’t mean starting again. Everyone misses days, and the people who finish expected that.'}
     ],
-    ['c','No setup yet','You don’t need the notebook or an API key yet. The setup comes in Week 6 of <a href="#/start">your route</a>, when you’ll know what the key is for.'],
+    ['c','No setup yet','You don’t need the notebook or an API key yet. The setup comes in Week 5 of <a href="#/start">your route</a>, right after you have seen what a key pays for.'],
     ['p','That’s all for this chapter. Press “Mark chapter complete” below, and <a href="#/start">your route</a> moves on to the book. Tomorrow’s ten minutes are waiting there.']
   ]
 },
@@ -76,10 +76,10 @@ window.PART6 = [
 {
   id:'a1', num:'A1', part:6, curriculumTier:'reference', phase:0, prerequisites:[], nextUnits:['a2','a8'], minutes:360, labs:[],
   title:'Your learning system: role, evidence and a capstone problem',
-  concept:'Before you learn anything else, you’ll set up how you’re going to learn. You’ll score yourself against the applied AI PM role, create one place for all your work, and choose the real problem you’ll build around for the rest of the book.',
+  concept:'Before you learn anything else, you’ll set up how you’re going to learn. You’ll score yourself against the applied AI PM role, create one place for all your work, and meet the real problem you’ll build around for the rest of the course.',
   takeaway:[
     'Score yourself against the seven areas of the applied AI PM role, with evidence for each score.',
-    'Set up one notebook and one repository that hold every artifact you make in this book.',
+    'Set up one notebook and one repository that hold every artifact you make in this course.',
     'Plan a week of study in build-first blocks, and use the 0–3 mastery gate to decide when to move on.',
     'Shortlist three capstone problems and say, for each one, why AI may or may not help.'
   ],
@@ -114,11 +114,12 @@ window.PART6 = [
      'Name the specific condition. For example: “If the tickets already have accurate category tags, a count in the help-desk tool solves this without AI.” If you can’t name one, you’re choosing AI before you understand the problem.']
   ],
   story:[
-    ['c','Before you start','This chapter takes about six hours, spread over two or three sittings. Have a notes app or a paper notebook ready. You don’t need any accounts to begin, because the first task is a page of writing.'],
+    ['c','On your route','Take a first pass of about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
+    ['c','Before you start','In full, this chapter takes about six hours, spread over two or three sittings. Have a notes app or a paper notebook ready. You don’t need any accounts to begin, because the first task is a page of writing.'],
     ['p','In the last chapter you learned how this site works. Now we begin the real work, and the first job isn’t about AI at all. It’s about you. Before you learn anything else, you’ll set up how you’re going to learn: where you stand today, where your work will live, and what you’ll build.'],
 
-    ['h','How this book works'],
-    ['p','This book teaches the applied AI product manager role by having you do the work, not just read about it. Every chapter follows the same five steps, in the same order, so you’ll soon know what to expect:'],
+    ['h','How this course works'],
+    ['p','This course teaches the applied AI product manager role by having you do the work, not just read about it. Every chapter follows the same five steps, in the same order, so you’ll soon know what to expect:'],
     ['n',[
       '<strong>Idea.</strong> One concept, explained in plain language.',
       '<strong>Prove it now.</strong> A quick example and a counterexample that you write straight away.',
@@ -127,8 +128,8 @@ window.PART6 = [
       '<strong>Close the sitting.</strong> Three lines: what confused you, what changed your mind, and what you’ll test next.'
     ]],
     ['p','The chapters come in three groups. <strong>Track A</strong>, which you’re in now, covers the foundations of product management and the ideas behind generative AI. <strong>Parts I to V</strong> are the technical core, where you build, break and measure a real AI system.'],
-    ['p','<strong>Track B</strong> covers the business side: pricing, growth, analytics and shipping to real users. It ends with a capstone that uses everything you’ve learned.'],
-    ['c','Note','Work through the groups in order: Track A, then Parts I to V, then Track B. Chapter 34 at the end of Part V is a rehearsal for the final capstone in B8.'],
+    ['p','<strong>Track B</strong> covers the business side: pricing, growth, analytics and shipping to real users. It comes after the capstone in Chapter 34, where you ship the project.'],
+    ['c','Note','You don’t have to plan the order yourself. <a href="#/start">Your route</a> takes you through it a week at a time: a chapter of the book, the story, and then the chapter here that practises it.'],
 
     ['h','Five rules that keep the work honest'],
     ['p','It’s easy to make work look finished when it isn’t. These five rules apply to every chapter, and each one blocks a shortcut that people often take.'],
@@ -141,7 +142,7 @@ window.PART6 = [
     ]],
 
     ['h','Idea 1: Measure where you are, with evidence'],
-    ['p','Let’s start with you. The applied AI PM role has seven areas, and you’ll score yourself on each one now. You’ll score yourself again at the end of the book, so you can see how far you’ve come.'],
+    ['p','Let’s start with you. The applied AI PM role has seven areas, and you’ll score yourself on each one now. You’ll score yourself again at the end of the course, so you can see how far you’ve come.'],
     ['p','Here are the seven areas, and what each one covers.'],
     ['tb',['Area','What it covers'],[
       ['Discovery','Finding real problems by talking to users and watching them work.'],
@@ -152,7 +153,7 @@ window.PART6 = [
       ['Business','Pricing, costs, and whether the product can make money.'],
       ['Leadership','Getting people with different goals to agree and act.']
     ]],
-    ['p','You’ll give each area a score from 0 to 3. The book uses the same scale for every artifact you make, so it’s worth learning it now.'],
+    ['p','You’ll give each area a score from 0 to 3. The course uses the same scale for every artifact you make, so it’s worth learning it now.'],
     ['tb',['Score','Meaning'],[
       ['0','No artifact, or only theory you copied.'],
       ['1','Attempted, but not backed by evidence or not reproducible.'],
@@ -174,7 +175,7 @@ window.PART6 = [
     ['q','I501'],
 
     ['h','Idea 2: Keep all your work in one place'],
-    ['p','You now know where you stand. Next, you need somewhere to keep what you make. You’ll make around fifty artifacts in this book: interview notes, a strategy memo, a PRD, test sets, dashboards and a deployed app.'],
+    ['p','You now know where you stand. Next, you need somewhere to keep what you make. You’ll make around fifty artifacts in this course: interview notes, a strategy memo, a PRD, test sets, dashboards and a deployed app.'],
     ['p','If they’re scattered across different tools, you won’t be able to find them when you need them. That could be in the capstone, or in a job interview.'],
     ['p','So set up two things, once:'],
     ['n',[
@@ -184,15 +185,15 @@ window.PART6 = [
     ['p','Use this folder structure in the repository:'],
     ['code','/research      interview notes, market research\n/product       strategy, roadmaps, PRDs\n/experiments   notebooks and prototype code\n/evals         test sets and evaluation results\n/analytics     tracking plans and dashboards\n/security      threat models and risk registers\n/portfolio     case studies\ndecision-log.md'],
     ['c','Tip','No GitHub account yet? Start with a folder on your computer or in Google Drive, using the same structure. You can move it to GitHub later, in Chapter 21, when you set up version control properly.'],
-    ['p','The most important file is <code>decision-log.md</code>. Each time you make a decision in this book, such as which problem to solve, which model to use or which metric matters, add an entry. Each entry has four parts: the date, the decision, the evidence, and what would make you change it.'],
+    ['p','The most important file is <code>decision-log.md</code>. Each time you make a decision in this course, such as which problem to solve, which model to use or which metric matters, add an entry. Each entry has four parts: the date, the decision, the evidence, and what would make you change it.'],
     ['do','Prove it now',[
       ['p','Create the folders. Then add your first entry to <code>decision-log.md</code>. For example:'],
-      ['code','2026-09-23\nDecision: I will study 12 hours a week, on Tuesday and Thursday evenings and Saturday morning.\nEvidence: my calendar for the last four weeks.\nRevisit if: I miss two sessions in a row.'],
+      ['code','2026-09-23\nDecision: I will study three hours a week, on Tuesday and Thursday evenings and Saturday morning.\nEvidence: my calendar for the last four weeks.\nRevisit if: I miss two sessions in a row.'],
       ['x','You should now have a folder structure anyone could navigate, and one decision with its evidence. Test it: could someone else find your interview notes in under two minutes?']
     ]],
 
     ['h','Idea 3: Build first, then check whether you are ready'],
-    ['p','With a place to work, the next question is time. How much should you study each week, and how should you spend it? Plan 12 to 15 hours a week. Split them into four blocks, and give the biggest block to building:'],
+    ['p','With a place to work, the next question is time. How much should you study each week, and how should you spend it? Your route starts at about an hour a week and grows to two or three. Whatever your total, split it into four blocks and give the biggest block to building. Here is the split at a full-time pace of twelve hours; scale it to your own:'],
     ['tb',['Block','Hours','What you produce'],[
       ['Learn and prove','3','Experiments, notes and quiz answers'],
       ['Build','5','An artifact, prototype or code'],
@@ -203,13 +204,14 @@ window.PART6 = [
     ['p','How do you know when you’re ready to move on to the next chapter? At the end of each chapter, you score what you built on the same 0–3 scale. This is the <strong>mastery gate</strong>.'],
     ['key','Move on only when every artifact scores at least 2, and no safety, privacy or evidence item scores 0.'],
     ['c','Watch out','The gate scores your artifacts, not how well you understood the reading. It’s common to feel you understand a chapter and still have nothing that scores 2. That means the chapter isn’t finished yet.'],
+    ['c','On your route','On the first pass through Track A you read each chapter and answer its boxes. The gate applies when you come back to do the “Build it” work, so a first pass never has to wait for it.'],
     ['do','Prove it now',[
       ['p','Open your calendar and block out next week using the four blocks above. Put the Build block where you have the most energy, not where it is most convenient.'],
-      ['x','You should now have four blocks in next week’s calendar that add up to at least 12 hours. If you can’t find 12 hours, write the real number in your decision log and plan to take longer. That’s a better plan than one you won’t keep.']
+      ['x','You should now have four blocks in next week’s calendar, in the same proportions, adding up to the hours you really have. Write that number in your decision log. A plan you keep beats a bigger one you don’t.']
     ]],
 
     ['h','Idea 4: Choose the problem you will build around'],
-    ['p','The last piece is the most important one. Every chapter asks you to apply its ideas to your capstone, which is one real problem that you carry through the whole book. In B8, the final chapter, you ship a product for it to 5–10 real users. So choose carefully.'],
+    ['p','The last piece is the most important one. Every chapter asks you to apply its ideas to one real problem that you carry through the whole course. Here that problem is already chosen: Bharat Privacy Guard, the project in the book’s story. Still, learn how to choose one, because in a job nobody hands you the problem.'],
     ['p','A good capstone problem has four properties:'],
     ['l',[
       '<strong>A reachable user.</strong> You can talk to at least five people who have this problem.',
@@ -273,7 +275,8 @@ window.PART6 = [
      'Name it before you build. For example: “If fewer than one in five users who see the new summary button try it within a week, the problem is not discoverability.” An idea with no evidence that could disprove it is just an opinion.']
   ],
   story:[
-    ['c','Before you start','This chapter takes about ten hours, across three or four sittings. Pick one product that you use often and know well, such as Notion, Spotify, Swiggy, Slack or Canva. You’ll use it in every exercise.'],
+    ['c','On your route','Take a first pass of about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
+    ['c','Before you start','In full, this chapter takes about ten hours, across three or four sittings. Pick one product that you use often and know well, such as Notion, Spotify, Swiggy, Slack or Canva. You’ll use it in every exercise.'],
     ['p','In the last chapter you set up how you’ll learn and what you’ll build. Now you’ll learn how to think about a product. Why do some products win, and others quietly fade away?'],
     ['p','There are five ideas in this chapter. Each one is small, and each ends with something you do on the product you picked. By the end, you’ll have a way to look at any product, including your own capstone, and say what is working and what isn’t.'],
 
@@ -411,7 +414,8 @@ window.PART6 = [
      'If nothing changed, one of two things happened. Either you asked leading questions, or you weren’t listening for surprises. Read your notes again, and look for anything that didn’t fit what you expected. That’s usually your most valuable finding.']
   ],
   story:[
-    ['c','Before you start','This chapter takes about 14 hours, spread over a week or two. It’s spread out because finding people and fixing a time to talk takes a while. So start recruiting on day one. Aim for 30-minute conversations, by video call or in person.'],
+    ['c','On your route','Take a first pass of about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
+    ['c','Before you start','In full, this chapter takes about 14 hours, spread over a week or two. It’s spread out because finding people and fixing a time to talk takes a while. So start recruiting on day one. Aim for 30-minute conversations, by video call or in person.'],
     ['p','In the last chapter you learned a simple rule: every claim must trace to evidence, or be marked as an assumption. This chapter is about where most of that evidence comes from. It comes from talking to users.'],
     ['p','Talking to users sounds easy, but most people do it in a way that gets them polite, useless answers. So first you’ll learn how to ask questions that get honest ones. Then you’ll turn what you hear into a few short documents your team can act on.'],
 
@@ -425,6 +429,7 @@ window.PART6 = [
       '<strong>Talk less and listen more.</strong>'
     ]],
     ['p','Let’s see the rules at work. Here’s the example we’ll use in this chapter and the next few. Say you want to build a tool for support leads. A support lead reads the week’s customer support tickets and writes a short report on the biggest problems. Your tool would group those tickets into themes.'],
+    ['c','Why a second example','The book tells this method through Bharat Privacy Guard. Here you see it work on a different product, which we’ll call Theme Finder. Seeing one method on two products is how you tell the method apart from the example. At the end of each chapter you apply it to Bharat Privacy Guard yourself.'],
     ['p','Here are four questions you might be tempted to ask that lead, and a better version of each:'],
     ['tb',['Instead of','Ask'],[
       ['Would you use a tool that groups support tickets into themes?','Tell me about the last time you prepared the weekly ticket summary. What did you do first?'],
@@ -561,7 +566,8 @@ window.PART6 = [
      'A well-tuned prompt, a nicer interface, or using the newest model. Any competitor can do the same in weeks. Advantages that are harder to copy come from deep integration into a workflow, data that only your product collects, and the trust of security teams and buyers.']
   ],
   story:[
-    ['c','Before you start','This chapter takes about ten hours. You’ll need your five interview notes from A3, and a spreadsheet. Some numbers will take a little searching, such as the published customer counts of software vendors.'],
+    ['c','On your route','Take a first pass of about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
+    ['c','Before you start','In full, this chapter takes about ten hours. You’ll need your five interview notes from A3, and a spreadsheet. Some numbers will take a little searching, such as the published customer counts of software vendors.'],
     ['p','In the last chapter you talked to real users and found out who has the problem. Now comes the next question a product person must ask: is the problem big enough, and what are people doing about it today?'],
     ['p','You’ll answer it in five steps. First you’ll estimate the size of the market. Then you’ll look at everything a customer could use instead of your product. After that you’ll learn where AI products get their strength, and finally how to organise what you learned into a tree of opportunities.'],
 
@@ -687,7 +693,8 @@ window.PART6 = [
      'It can be right when it unblocks the strategy. It can also be right when it has a hard deadline, which means a high cost of delay, or when it reduces a risk that would sink everything else. For example, a data-privacy review scores low on reach and impact. But without it, no enterprise customer can buy.']
   ],
   story:[
-    ['c','Before you start','This chapter takes about twelve hours. Keep your market estimate, competitor matrix and opportunity tree from A4 open next to you. Most of the work is writing, so expect to draft your strategy memo at least twice.'],
+    ['c','On your route','Take a first pass of about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
+    ['c','Before you start','In full, this chapter takes about twelve hours. Keep your market estimate, competitor matrix and opportunity tree from A4 open next to you. Most of the work is writing, so expect to draft your strategy memo at least twice.'],
 
     ['p','In A4 you collected evidence: who the users are, how big the market is, and who else is already there. Evidence alone doesn’t tell you what to do on Monday morning. For that, you have to choose.'],
     ['p','This chapter is about making those choices. You’ll write a strategy, learn to score options without fooling yourself, and decide how to get the AI part of your product. The hardest lesson here is also the most useful one: a good strategy says what you will not do.'],
@@ -822,7 +829,8 @@ window.PART6 = [
      'Name them. For an AI product in a B2B company, it is often the security or privacy lead. They need to know where the data goes and whether it is stored. Find out what they need early, because a late “no” from them costs more than any feature.']
   ],
   story:[
-    ['c','Before you start','This chapter takes about ten hours. Keep your strategy memo and RICE scores from A5 open next to you. You’ll also need to think about the people around your capstone: who funds it, who approves it and who uses it.'],
+    ['c','On your route','Take a first pass of about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
+    ['c','Before you start','In full, this chapter takes about ten hours. Keep your strategy memo and RICE scores from A5 open next to you. You’ll also need to think about the people around your capstone: who funds it, who approves it and who uses it.'],
 
     ['p','In A5 you decided what to do first and what not to do. A strategy on paper is still just an idea, though. To make it real, a team needs a plan it can follow, and the people who control money and approvals need a reason to say yes.'],
     ['p','This chapter takes you from strategy to that plan. You’ll build a roadmap, set goals with numbers, find the people who can help or stop you, and imagine failure before it happens.'],
@@ -959,7 +967,8 @@ window.PART6 = [
      'Check for criteria like these. “If no theme has more than five tickets, say so instead of inventing one.” “If the model times out, show last week’s report with a notice.” “Tickets in other languages are grouped or flagged, never dropped silently.” If criteria like these are missing, the product will fail in production in ways nobody planned for.']
   ],
   story:[
-    ['c','Before you start','This chapter takes about 14 hours, spread across a week or more because of the user tests. For the prototype, the <a href="#/playground">Playground</a> in this app is enough to start; a free account on Figma, Lovable or Google AI Studio gives you a nicer screen. For the sprint plan you need Jira (free tier) or a spreadsheet. Core chapter 18 goes deeper on AI PRDs. This chapter covers the product-management basics.'],
+    ['c','On your route','Take a first pass of about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
+    ['c','Before you start','In full, this chapter takes about 14 hours, spread across a week or more because of the user tests. For the prototype, the <a href="#/playground">Playground</a> in this app is enough to start; a free account on Figma, Lovable or Google AI Studio gives you a nicer screen. For the sprint plan you need Jira (free tier) or a spreadsheet. Core chapter 18 goes deeper on AI PRDs. This chapter covers the product-management basics.'],
 
     ['p','In A6 you made a plan: a roadmap, goals with numbers, and a map of the people involved. A plan still isn’t something an engineer can start building on Monday. For that, the first item on your roadmap has to be described in detail.'],
     ['p','This chapter shows you how. You’ll write the description, cut the work into small pieces, build a rough prototype, and watch real people use it.'],
@@ -1106,7 +1115,8 @@ window.PART6 = [
      'Training changes the model’s weights permanently, for every future request. Context-time conditioning means putting instructions, examples or documents into one request. It shapes that one answer and is forgotten afterwards. Almost everything you do as an application builder is context-time.']
   ],
   story:[
-    ['c','Before you start','This chapter takes about twelve hours. You need nothing outside this site: the attention viewer is embedded in the chapter, and the <a href="#/playground">Playground</a> compares two models side by side once you have connected one on the <a href="#/setup">setup page</a>. The technical core, from Chapter 1 onwards, builds on everything here with hands-on code. So treat this chapter as the map before the journey.'],
+    ['c','On your route','Take a first pass of about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
+    ['c','Before you start','In full, this chapter takes about twelve hours. You need nothing outside this site: the attention viewer is embedded in the chapter, and the <a href="#/playground">Playground</a> compares two models side by side once you have connected one on the <a href="#/setup">setup page</a>. The technical core, from Chapter 1 onwards, builds on everything here with hands-on code. So treat this chapter as the map before the journey.'],
 
     ['p','In A7 you turned a decision into specs, stories and a prototype. Throughout this part you’ve used AI models as tools. Now it is worth knowing a little about what is inside them.'],
     ['p','You don’t need the maths. You need enough to make good calls: when a model is the right tool, why it behaves the way it does, and which way of improving it to try first.'],
@@ -1181,7 +1191,7 @@ window.PART6 = [
     ['p','So what should you try first? Start with prompting. Add RAG when the model needs information it does not have. Consider fine-tuning only when you need very consistent behaviour, or when you want a smaller, cheaper model to do a narrow job well. Chapter 19 covers this decision in depth.'],
     ['do','Prove it now',[
       ['p','For your capstone, fill in the decision table above with one row per criterion, and circle the best choice for each.'],
-      ['x','You should have a filled table and a choice. For most capstones in this book the answer is prompting plus RAG. If you chose fine-tuning, name the specific behaviour that prompting could not produce.']
+      ['x','You should have a filled table and a choice. For most capstones in this course the answer is prompting plus RAG. If you chose fine-tuning, name the specific behaviour that prompting could not produce.']
     ]],
     ['q','I521'],
 

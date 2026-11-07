@@ -278,12 +278,12 @@ function blocks(list){
     /* Python runs here, in the page (src/pyrun.js); a template or a formula
        in the same monospace stays a plain block. */
     else if(k==='code'){
-      if(CTX && window.PY && r[1]!=='local' && window.PY.isPython(r[0])){
-        if(!CTX.bar){ CTX.bar=true; f.appendChild(window.PY.bar({files:CTX.files})); }
+      if(CTX && window.PY && r[1]!=='local' && r[1]!=='read' && window.PY.isPython(r[0])){
+        if(!CTX.bar){ CTX.bar=true; f.appendChild(window.PY.bar({files:CTX.files,noModel:CTX.noModel})); }
         const i=CTX.i++;
         f.appendChild(window.PY.cell(r[0],{key:CTX.ch+':'+hashOf(r[0]),ch:CTX.ch,i}));
-      } else if(r[1]==='local') f.appendChild(h('div',{class:'localcode'},[
-          h('span',{class:'pytag',text:T('On your own computer')}),h('pre',{},h('code',{text:r[0]}))]));
+      } else if(r[1]==='local'||r[1]==='read') f.appendChild(h('div',{class:'localcode'},[
+          h('span',{class:'pytag',text:T(r[1]==='read'?'To read, not to run yet':'On your own computer')}),h('pre',{},h('code',{text:r[0]}))]));
       else f.appendChild(h('pre',{},h('code',{text:r[0]})));
     }
     /* A free tool from elsewhere, shown inside the page rather than sent to in
@@ -728,7 +728,7 @@ function chapterTrail(c){
 }
 function renderChapter(c){
   const w=h('div',{class:'wrap'});
-  CTX={ch:c.id,i:0,bar:false,files:true};
+  CTX={ch:c.id,i:0,bar:false,files:true,noModel:!!c.noModel};
   const part=partOf(c.part);
   cpBars=[];                       // stale refreshers from the last chapter
   w.appendChild(chapterTrail(c));
@@ -753,7 +753,10 @@ function renderChapter(c){
         h('span',{class:'go'},[
           h('a',{href:'#/start#week-'+rs.week,text:T('See the week')+' \u2192'}),
           bk?h('a',{href:(S.lang==='hi'?'/book/hi/':'/book/')+bk.file,text:T('The story')+(bk.n?': '+T('Book')+' '+bk.n:'')+' \u2192'}):null,
-          h('a',{href:'/plan/#w'+rs.week,text:T('In the plan')+' \u2192'})])]));
+          h('a',{href:'/plan/#w'+rs.week,text:T('In the plan')+' \u2192'})]),
+        /* why this chapter comes now: what the week builds on, and what it adds */
+        (window.ROUTE.WEEKS[rs.week-1]||{}).why?h('p',{class:'rwhy'},[h('b',{text:T('Why now')+': '}),
+          h('span',{text:T(window.ROUTE.WEEKS[rs.week-1].why)})]):null]));
     }
   }
 
@@ -1115,8 +1118,13 @@ function renderChapter(c){
   if(S.done[c.id])db.classList.add('on');
   const next=CH[CH.indexOf(c)+1];
   doneRow.append(db);
-  if(next)doneRow.appendChild(h('a',{class:'chip',href:'#/ch/'+next.id,
-    text:'Next: '+next.num+'. '+T(next.title)+' →'}));
+  /* "Next" is the next step on the route, which is often the next chapter's
+     story in the book rather than the next chapter here. */
+  const ra=routeAfter(c.id);
+  if(ra)doneRow.appendChild(h('a',{class:'chip',href:ra.href,
+    text:T('Next on your route')+': '+ra.label+' →'}));
+  else if(next)doneRow.appendChild(h('a',{class:'chip',href:'#/ch/'+next.id,
+    text:T('Next')+': '+next.num+'. '+T(next.title)+' →'}));
   cs.appendChild(doneRow);
   const guard=h('div',{style:'margin-top:.8rem',html:sittingGuard()});
   cs.appendChild(guard);
@@ -1130,6 +1138,17 @@ function renderChapter(c){
   return w;
 }
 
+/* The step after a chapter on the route, with a label and a link. */
+function routeAfter(chId){
+  const R=window.ROUTE; if(!R) return null;
+  const i=R.STEPS.findIndex(x=>x.ch===chId); if(i<0) return null;
+  const x=R.STEPS[i+1]; if(!x) return null;
+  const hi=S.lang==='hi';
+  const kind={chapter:T('Chapter'),read:T('Book'),try:T('Try'),look:T('Look back')}[x.kind];
+  const title=x.kind==='chapter'?x.num+'. '+T(x.title):x.kind==='look'?T('three lines in your notepad'):(hi&&x.titleHi?x.titleHi:T(x.title));
+  const href=x.kind==='look'?'#/start#week-'+x.week:R.stepHref(x,hi).replace(/^\/app\/(#\/)/,'$1');
+  return {href, label:kind+' \u00b7 '+title};
+}
 function readingBlock(id){
   const list=(window.READING||{})[id];
   if(!list||!list.length) return null;
@@ -1579,7 +1598,7 @@ function pageStart(){
     h('div',{class:'eyebrow'},[h('span',{text:T('One view of everything')}),h('span',{class:'dot'}),
       h('span',{text:T('the playbook, the book, the plan and the curriculum, week by week')})]),
     h('h1',{text:T('Your route')}),
-    h('p',{text:T('Month 1 is the gentle start: the book from its first page, ten minutes a weekday, and nothing to install. After that, each chapter’s story comes first in the book, then the chapter itself here. On a day when ten minutes feels like too much, do one page and tick it anyway.')})]));
+    h('p',{text:T('Each week reads a chapter of the book, the story, and then does the chapter here that practises it, the same day or the next. Month 1 is the product half, with no code and nothing to install. On a day when ten minutes feels like too much, do one page and tick it anyway.')})]));
   /* the three other views, one tap away */
   w.appendChild(h('nav',{class:'hubviews','aria-label':T('The other views')},[
     h('a',{href:bookBaseHere},[h('b',{text:T('The book')}),h('span',{text:T('the same chapters as one story')})]),
@@ -1661,6 +1680,7 @@ function pageStart(){
       h('span',{class:'gwn',text:T('Week')+' '+wk.n}),
       h('span',{class:'gwt',text:T(wk.title)}),
       h('span',{class:'gwd',text:wk.dates+' · '+fmtMins(wk.mins)+' · '+done+'/'+wk.steps.length})]));
+    if(wk.why) det.appendChild(h('p',{class:'gwhy'},[h('b',{text:T('Why now')+': '}),h('span',{text:T(wk.why)})]));
     det.appendChild(h('ol',{class:'gdays'},wk.steps.map(stepRow)));
     det.appendChild(planSide(wk));
     return det;

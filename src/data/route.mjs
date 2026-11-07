@@ -7,7 +7,8 @@
      read     a book chapter (or half of one); done when the book has ticked it
      try      a small task off the page; done when ticked
      look     the weekly look back; done when ticked
-   Month 1 is the gentle start: reading and tries only, ten minutes a weekday. */
+   The route follows the book's order. Each book chapter (the story) is followed
+   in the same week by the course chapter(s) that practise it. */
 
 export const START = '2026-10-19';
 export const WEEKS = [
@@ -15,13 +16,14 @@ export const WEEKS = [
   "n": 1,
   "start": "2026-10-19",
   "dates": "19 Oct – 25 Oct",
-  "title": "Start, and the problem worth solving",
-  "ship": "Your first three lines in your notepad.",
+  "title": "Start: a problem worth solving",
+  "ship": "Three lines in your notepad, and the boxes in A1 answered.",
   "how": [
    "first-pass"
   ],
   "light": false,
-  "mins": 39,
+  "why": "Nothing is assumed. The book opens on a real finding in a week of customer chats, and A1 turns that finding into the project you will carry to the end.",
+  "mins": 50,
   "steps": [
    {
     "id": "c:ch0",
@@ -30,7 +32,7 @@ export const WEEKS = [
     "num": "0",
     "title": "Start here: how this course works",
     "mins": 10,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
    {
     "id": "b:preface.html",
@@ -53,14 +55,14 @@ export const WEEKS = [
     "what": "Read the chapter. The page ticks itself when you reach the end."
    },
    {
-    "id": "b:02-four-questions-before-building.html",
-    "kind": "read",
-    "book": "02-four-questions-before-building.html",
-    "n": 2,
-    "title": "Four Questions Before Building",
-    "titleHi": "Banane Se Pehle Chaar Sawaal",
-    "mins": 9,
-    "what": "Read the chapter. The page ticks itself when you reach the end."
+    "id": "c:a1",
+    "kind": "chapter",
+    "ch": "a1",
+    "num": "A1",
+    "title": "Your learning system: role, evidence and a capstone problem",
+    "mins": 20,
+    "firstPass": true,
+    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. The long “Build it” section is optional; leave it for later."
    },
    {
     "id": "t:review-1",
@@ -75,14 +77,35 @@ export const WEEKS = [
   "n": 2,
   "start": "2026-10-26",
   "dates": "26 Oct – 1 Nov",
-  "title": "Deciding what to build",
-  "ship": "Three lines for the week. You now know the story the project comes from.",
+  "title": "Is it worth building?",
+  "ship": "The boxes in A2 and A3 answered: how products win, and a problem statement from what users actually did.",
   "how": [
    "first-pass"
   ],
   "light": false,
-  "mins": 53,
+  "why": "Last week named a problem. This week tests whether it deserves building: first how products win, then how to ask people about what really happened.",
+  "mins": 64,
   "steps": [
+   {
+    "id": "b:02-four-questions-before-building.html",
+    "kind": "read",
+    "book": "02-four-questions-before-building.html",
+    "n": 2,
+    "title": "Four Questions Before Building",
+    "titleHi": "Banane Se Pehle Chaar Sawaal",
+    "mins": 9,
+    "what": "Read the chapter. The page ticks itself when you reach the end."
+   },
+   {
+    "id": "c:a2",
+    "kind": "chapter",
+    "ch": "a2",
+    "num": "A2",
+    "title": "Product sense: how products win and lose",
+    "mins": 20,
+    "firstPass": true,
+    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. The long “Build it” section is optional; leave it for later."
+   },
    {
     "id": "b:03-asking-about-yesterday.html",
     "kind": "read",
@@ -94,44 +117,14 @@ export const WEEKS = [
     "what": "Read the chapter. The page ticks itself when you reach the end."
    },
    {
-    "id": "b:04-who-else-is-standing-here.html",
-    "kind": "read",
-    "book": "04-who-else-is-standing-here.html",
-    "n": 4,
-    "title": "Who Else Is Standing Here",
-    "titleHi": "Yahan Aur Kaun Khada Hai",
-    "mins": 10,
-    "what": "Read the chapter. The page ticks itself when you reach the end."
-   },
-   {
-    "id": "b:05-choosing-what-not-to-do.html",
-    "kind": "read",
-    "book": "05-choosing-what-not-to-do.html",
-    "n": 5,
-    "title": "Choosing What Not to Do",
-    "titleHi": "Kya Nahi Karna Hai, Yeh Chunna",
-    "mins": 8,
-    "what": "Read the chapter. The page ticks itself when you reach the end."
-   },
-   {
-    "id": "b:06-a-plan-others-can-believe.html",
-    "kind": "read",
-    "book": "06-a-plan-others-can-believe.html",
-    "n": 6,
-    "title": "A Plan Others Can Believe",
-    "titleHi": "Aisa Plan Jis Par Doosre Bharosa Karein",
-    "mins": 10,
-    "what": "Read the chapter. The page ticks itself when you reach the end."
-   },
-   {
-    "id": "b:07-writing-it-down.html",
-    "kind": "read",
-    "book": "07-writing-it-down.html",
-    "n": 7,
-    "title": "Writing It Down So Others Can Build It",
-    "titleHi": "Likh Kar Rakhna Taaki Doosre Bana Sakein",
-    "mins": 10,
-    "what": "Read the chapter. The page ticks itself when you reach the end."
+    "id": "c:a3",
+    "kind": "chapter",
+    "ch": "a3",
+    "num": "A3",
+    "title": "User discovery: interviews, jobs and problem statements",
+    "mins": 20,
+    "firstPass": true,
+    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. The long “Build it” section is optional; leave it for later."
    },
    {
     "id": "t:review-2",
@@ -146,13 +139,139 @@ export const WEEKS = [
   "n": 3,
   "start": "2026-11-02",
   "dates": "2 Nov – 8 Nov",
-  "title": "Meet the machine",
-  "ship": "One line on what a token is, in your own words.",
+  "title": "The market, and what not to do",
+  "ship": "A rough market size, and a short “not doing” list.",
   "how": [
    "first-pass"
   ],
   "light": false,
-  "mins": 34,
+  "why": "You know who has the problem. Now you look at who else serves them and how many there are, and then you choose the one thing to do first.",
+  "mins": 63,
+  "steps": [
+   {
+    "id": "b:04-who-else-is-standing-here.html",
+    "kind": "read",
+    "book": "04-who-else-is-standing-here.html",
+    "n": 4,
+    "title": "Who Else Is Standing Here",
+    "titleHi": "Yahan Aur Kaun Khada Hai",
+    "mins": 10,
+    "what": "Read the chapter. The page ticks itself when you reach the end."
+   },
+   {
+    "id": "c:a4",
+    "kind": "chapter",
+    "ch": "a4",
+    "num": "A4",
+    "title": "Market research: sizing, competitors and opportunities",
+    "mins": 20,
+    "firstPass": true,
+    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. The long “Build it” section is optional; leave it for later."
+   },
+   {
+    "id": "b:05-choosing-what-not-to-do.html",
+    "kind": "read",
+    "book": "05-choosing-what-not-to-do.html",
+    "n": 5,
+    "title": "Choosing What Not to Do",
+    "titleHi": "Kya Nahi Karna Hai, Yeh Chunna",
+    "mins": 8,
+    "what": "Read the chapter. The page ticks itself when you reach the end."
+   },
+   {
+    "id": "c:a5",
+    "kind": "chapter",
+    "ch": "a5",
+    "num": "A5",
+    "title": "Strategy and prioritisation: choosing what not to do",
+    "mins": 20,
+    "firstPass": true,
+    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. The long “Build it” section is optional; leave it for later."
+   },
+   {
+    "id": "t:review-3",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 4,
+  "start": "2026-11-09",
+  "dates": "9 Nov – 15 Nov",
+  "title": "A plan, and writing it down",
+  "ship": "One objective with three key results, and a one-page spec outline.",
+  "how": [
+   "first-pass"
+  ],
+  "light": false,
+  "why": "With a choice made, you turn it into a plan people can believe and a spec someone could build from. That finishes the product half. Next week you meet the machine.",
+  "mins": 65,
+  "steps": [
+   {
+    "id": "b:06-a-plan-others-can-believe.html",
+    "kind": "read",
+    "book": "06-a-plan-others-can-believe.html",
+    "n": 6,
+    "title": "A Plan Others Can Believe",
+    "titleHi": "Aisa Plan Jis Par Doosre Bharosa Karein",
+    "mins": 10,
+    "what": "Read the chapter. The page ticks itself when you reach the end."
+   },
+   {
+    "id": "c:a6",
+    "kind": "chapter",
+    "ch": "a6",
+    "num": "A6",
+    "title": "Roadmaps, OKRs and getting stakeholders on board",
+    "mins": 20,
+    "firstPass": true,
+    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. The long “Build it” section is optional; leave it for later."
+   },
+   {
+    "id": "b:07-writing-it-down.html",
+    "kind": "read",
+    "book": "07-writing-it-down.html",
+    "n": 7,
+    "title": "Writing It Down So Others Can Build It",
+    "titleHi": "Likh Kar Rakhna Taaki Doosre Bana Sakein",
+    "mins": 10,
+    "what": "Read the chapter. The page ticks itself when you reach the end."
+   },
+   {
+    "id": "c:a7",
+    "kind": "chapter",
+    "ch": "a7",
+    "num": "A7",
+    "title": "Specs, stories and prototypes: from decision to delivery",
+    "mins": 20,
+    "firstPass": true,
+    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. The long “Build it” section is optional; leave it for later."
+   },
+   {
+    "id": "t:review-4",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 5,
+  "start": "2026-11-16",
+  "dates": "16 Nov – 22 Nov",
+  "title": "Meet the machine",
+  "ship": "One line on what a token is, in your own words, and a model connected.",
+  "how": [
+   "first-pass",
+   "setup"
+  ],
+  "light": false,
+  "why": "Your plan needs a model, so now you meet one. The book explains what it is. Chapter 0.5 shows tokens and cost on your own text, before anything is set up.",
+  "mins": 70,
   "steps": [
    {
     "id": "b:08-what-the-machine-is.html#1",
@@ -179,166 +298,31 @@ export const WEEKS = [
     "at": "s-8-4"
    },
    {
-    "id": "t:tokens",
+    "id": "c:a8",
+    "kind": "chapter",
+    "ch": "a8",
+    "num": "A8",
+    "title": "Generative AI foundations: how the models work",
+    "mins": 20,
+    "firstPass": true,
+    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. The long “Build it” section is optional; leave it for later."
+   },
+   {
+    "id": "c:ch05",
+    "kind": "chapter",
+    "ch": "ch05",
+    "num": "0.5",
+    "title": "Try it in the browser: tokens, cost and temperature",
+    "mins": 18,
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
+   },
+   {
+    "id": "t:setup",
     "kind": "try",
-    "title": "Count your own words in tokens",
-    "mins": 10,
-    "app": "#/ch/ch05",
-    "what": "Open Chapter 0.5 and do only its first experiment. Paste a message you wrote today, once in English and once in Hinglish, and compare the counts."
-   },
-   {
-    "id": "b:09-the-first-conversation.html",
-    "kind": "read",
-    "book": "09-the-first-conversation.html",
-    "n": 9,
-    "title": "The First Conversation",
-    "titleHi": "Pehli Baatcheet",
-    "mins": 7,
-    "what": "Read the chapter. The page ticks itself when you reach the end."
-   },
-   {
-    "id": "t:review-3",
-    "kind": "look",
-    "title": "Look back",
-    "mins": 5,
-    "what": "Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."
-   }
-  ]
- },
- {
-  "n": 4,
-  "start": "2026-11-09",
-  "dates": "9 Nov – 15 Nov",
-  "title": "Talking to it, and checking it",
-  "ship": "Your first evaluation: ten messages and a score out of ten.",
-  "how": [
-   "first-pass"
-  ],
-  "light": false,
-  "mins": 47,
-  "steps": [
-   {
-    "id": "b:10-a-mind-with-no-memory.html",
-    "kind": "read",
-    "book": "10-a-mind-with-no-memory.html",
-    "n": 10,
-    "title": "A Mind With No Memory",
-    "titleHi": "Ek Dimaag Jise Kuch Yaad Nahi Rehta",
-    "mins": 7,
-    "what": "Read the chapter. The page ticks itself when you reach the end."
-   },
-   {
-    "id": "b:11-giving-instructions.html#1",
-    "kind": "read",
-    "book": "11-giving-instructions.html",
-    "n": 11,
-    "title": "Giving Instructions",
-    "titleHi": "Instructions Dena",
-    "mins": 6,
-    "what": "Read sections 11.1 to 11.4, then stop, even if you want to keep going.",
-    "part": 1,
-    "upto": "s-11-5"
-   },
-   {
-    "id": "b:11-giving-instructions.html#2",
-    "kind": "read",
-    "book": "11-giving-instructions.html",
-    "n": 11,
-    "title": "Giving Instructions",
-    "titleHi": "Instructions Dena",
-    "mins": 6,
-    "what": "Read from section 11.5 to the end of the chapter.",
-    "part": 2,
-    "at": "s-11-5"
-   },
-   {
-    "id": "b:12-knowing-whether-it-works.html",
-    "kind": "read",
-    "book": "12-knowing-whether-it-works.html",
-    "n": 12,
-    "title": "Knowing Whether It Works",
-    "titleHi": "Kaise Pata Chale Ki Yeh Kaam Karta Hai",
-    "mins": 8,
-    "what": "Read the chapter. The page ticks itself when you reach the end."
-   },
-   {
-    "id": "t:tenmsgs",
-    "kind": "try",
-    "title": "Ten test messages, marked",
+    "title": "Connect a model, once",
     "mins": 15,
-    "app": "#/playground#batch",
-    "what": "Pick one small job, such as “does this message contain a phone number?”. Write ten short messages and the right answer for each. Run them in the Playground’s “Mark a test set” and mark each answer. Your score out of ten is your first evaluation."
-   },
-   {
-    "id": "t:review-4",
-    "kind": "look",
-    "title": "Look back",
-    "mins": 5,
-    "what": "Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."
-   }
-  ]
- },
- {
-  "n": 5,
-  "start": "2026-11-16",
-  "dates": "16 Nov – 22 Nov",
-  "title": "Product foundations, first pass",
-  "ship": "The boxes in A1 to A5 answered: your problem, users and market in your own words.",
-  "how": [
-   "first-pass"
-  ],
-  "light": false,
-  "mins": 105,
-  "steps": [
-   {
-    "id": "c:a1",
-    "kind": "chapter",
-    "ch": "a1",
-    "num": "A1",
-    "title": "Your learning system: role, evidence and a capstone problem",
-    "mins": 20,
-    "firstPass": true,
-    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."
-   },
-   {
-    "id": "c:a2",
-    "kind": "chapter",
-    "ch": "a2",
-    "num": "A2",
-    "title": "Product sense: how products win and lose",
-    "mins": 20,
-    "firstPass": true,
-    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."
-   },
-   {
-    "id": "c:a3",
-    "kind": "chapter",
-    "ch": "a3",
-    "num": "A3",
-    "title": "User discovery: interviews, jobs and problem statements",
-    "mins": 20,
-    "firstPass": true,
-    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."
-   },
-   {
-    "id": "c:a4",
-    "kind": "chapter",
-    "ch": "a4",
-    "num": "A4",
-    "title": "Market research: sizing, competitors and opportunities",
-    "mins": 20,
-    "firstPass": true,
-    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."
-   },
-   {
-    "id": "c:a5",
-    "kind": "chapter",
-    "ch": "a5",
-    "num": "A5",
-    "title": "Strategy and prioritisation: choosing what not to do",
-    "mins": 20,
-    "firstPass": true,
-    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."
+    "app": "#/setup",
+    "what": "Do the Connect page, one section at a time: get a free key, paste it in, and run the test call. You saw tokens and cost in Chapter 0.5, so you know what the key pays for. If a step fails, the page says why; copy the exact error into your notes."
    },
    {
     "id": "t:review-5",
@@ -353,52 +337,42 @@ export const WEEKS = [
   "n": 6,
   "start": "2026-11-23",
   "dates": "23 Nov – 29 Nov",
-  "title": "Product foundations, then the setup",
-  "ship": "The boxes in A6 to A8 answered, and a working setup.",
+  "title": "Your first conversation with a model",
+  "ship": "Your first model call, with its token count and cost written down.",
   "how": [
-   "first-pass",
-   "setup"
+   "first-pass"
   ],
   "light": false,
-  "mins": 80,
+  "why": "The course talks to a model in a few lines of Python, so first you learn to read them: five small shapes, nothing to memorise. Then you send your first real message and read its bill.",
+  "mins": 82,
   "steps": [
    {
-    "id": "c:a6",
-    "kind": "chapter",
-    "ch": "a6",
-    "num": "A6",
-    "title": "Roadmaps, OKRs and getting stakeholders on board",
-    "mins": 20,
-    "firstPass": true,
-    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."
+    "id": "b:09-the-first-conversation.html",
+    "kind": "read",
+    "book": "09-the-first-conversation.html",
+    "n": 9,
+    "title": "The First Conversation",
+    "titleHi": "Pehli Baatcheet",
+    "mins": 7,
+    "what": "Read the chapter. The page ticks itself when you reach the end."
    },
    {
-    "id": "c:a7",
+    "id": "c:chpy",
     "kind": "chapter",
-    "ch": "a7",
-    "num": "A7",
-    "title": "Specs, stories and prototypes: from decision to delivery",
-    "mins": 20,
-    "firstPass": true,
-    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."
+    "ch": "chpy",
+    "num": "0.8",
+    "title": "Reading Python: just enough for this course",
+    "mins": 25,
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
    {
-    "id": "c:a8",
+    "id": "c:ch1",
     "kind": "chapter",
-    "ch": "a8",
-    "num": "A8",
-    "title": "Generative AI foundations: how the models work",
-    "mins": 20,
-    "firstPass": true,
-    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."
-   },
-   {
-    "id": "t:setup",
-    "kind": "try",
-    "title": "The one-time setup",
-    "mins": 15,
-    "app": "#/setup",
-    "what": "Do the setup page, one section at a time: get a free key, paste it in, and run the test call. You know what the key is for now. If a step fails, the page says why; copy the exact error into your notes."
+    "ch": "ch1",
+    "num": "1",
+    "title": "Your first API call: how a model answers",
+    "mins": 45,
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
    {
     "id": "t:review-6",
@@ -413,31 +387,24 @@ export const WEEKS = [
   "n": 7,
   "start": "2026-11-30",
   "dates": "30 Nov – 6 Dec",
-  "title": "First contact: your first model call",
-  "ship": "Your first model call, with its token count and cost written down.",
+  "title": "Why it forgets, and giving instructions",
+  "ship": "A system prompt that stops the model inventing, tested on one trick question.",
   "how": [
    "first-pass"
   ],
   "light": false,
-  "mins": 93,
+  "why": "Your first call raises a question: if the model starts from zero each time, how does a chat remember? You find out, and then use the answer to give the model standing instructions.",
+  "mins": 106,
   "steps": [
    {
-    "id": "c:ch05",
-    "kind": "chapter",
-    "ch": "ch05",
-    "num": "0.5",
-    "title": "Try it in the browser: tokens, cost and temperature",
-    "mins": 18,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
-   },
-   {
-    "id": "c:ch1",
-    "kind": "chapter",
-    "ch": "ch1",
-    "num": "1",
-    "title": "Your first API call: how a model answers",
-    "mins": 45,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "id": "b:10-a-mind-with-no-memory.html",
+    "kind": "read",
+    "book": "10-a-mind-with-no-memory.html",
+    "n": 10,
+    "title": "A Mind With No Memory",
+    "titleHi": "Ek Dimaag Jise Kuch Yaad Nahi Rehta",
+    "mins": 7,
+    "what": "Read the chapter. The page ticks itself when you reach the end."
    },
    {
     "id": "c:ch15b",
@@ -446,7 +413,35 @@ export const WEEKS = [
     "num": "1.5",
     "title": "Context windows and statelessness: why models forget",
     "mins": 25,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
+   },
+   {
+    "id": "b:11-giving-instructions.html",
+    "kind": "read",
+    "book": "11-giving-instructions.html",
+    "n": 11,
+    "title": "Giving Instructions",
+    "titleHi": "Instructions Dena",
+    "mins": 9,
+    "what": "Read the chapter. The page ticks itself when you reach the end."
+   },
+   {
+    "id": "c:ch2",
+    "kind": "chapter",
+    "ch": "ch2",
+    "num": "2",
+    "title": "System prompts, temperature and hallucination",
+    "mins": 35,
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
+   },
+   {
+    "id": "c:ch21",
+    "kind": "chapter",
+    "ch": "ch21",
+    "num": "2.1",
+    "title": "Writing prompts: four techniques that work",
+    "mins": 25,
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
    {
     "id": "t:review-7",
@@ -461,31 +456,24 @@ export const WEEKS = [
   "n": 8,
   "start": "2026-12-07",
   "dates": "7 Dec – 13 Dec",
-  "title": "Instructions that work",
-  "ship": "The helper’s instructions, tested on your first answer key.",
+  "title": "Checking it, and sorting",
+  "ship": "Your first answer key, and a sorter with a score.",
   "how": [
    "first-pass"
   ],
   "light": false,
-  "mins": 97,
+  "why": "Instructions only help if you can tell whether they worked. So you build a small answer key, then use it on the job a model does most: sorting messages into kinds.",
+  "mins": 90,
   "steps": [
    {
-    "id": "c:ch2",
-    "kind": "chapter",
-    "ch": "ch2",
-    "num": "2",
-    "title": "System prompts, temperature and hallucination",
-    "mins": 35,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
-   },
-   {
-    "id": "c:ch21",
-    "kind": "chapter",
-    "ch": "ch21",
-    "num": "2.1",
-    "title": "Writing prompts: four techniques that work",
-    "mins": 25,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "id": "b:12-knowing-whether-it-works.html",
+    "kind": "read",
+    "book": "12-knowing-whether-it-works.html",
+    "n": 12,
+    "title": "Knowing Whether It Works",
+    "titleHi": "Kaise Pata Chale Ki Yeh Kaam Karta Hai",
+    "mins": 8,
+    "what": "Read the chapter. The page ticks itself when you reach the end."
    },
    {
     "id": "c:ch22",
@@ -494,7 +482,16 @@ export const WEEKS = [
     "num": "2.2",
     "title": "Testing prompts: build a small test set",
     "mins": 25,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
+   },
+   {
+    "id": "c:ch23",
+    "kind": "chapter",
+    "ch": "ch23",
+    "num": "2.3",
+    "title": "The five task types: classify, extract, summarise, rewrite, generate",
+    "mins": 20,
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
    {
     "id": "b:13-sorting-and-summarising.html",
@@ -505,6 +502,15 @@ export const WEEKS = [
     "titleHi": "Chhaantna Aur Summary Likhna",
     "mins": 7,
     "what": "Read the chapter. The page ticks itself when you reach the end."
+   },
+   {
+    "id": "c:ch24",
+    "kind": "chapter",
+    "ch": "ch24",
+    "num": "2.4",
+    "title": "Classification: sorting inputs into categories",
+    "mins": 25,
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
    {
     "id": "t:review-8",
@@ -519,32 +525,15 @@ export const WEEKS = [
   "n": 9,
   "start": "2026-12-14",
   "dates": "14 Dec – 20 Dec",
-  "title": "Sorting and summarising",
-  "ship": "A sorter for the kind of ID, with its score.",
+  "title": "Summaries, long text, and finding by words",
+  "ship": "A summary test, a rule for cutting text without splitting an ID, and pattern rules scored by hand.",
   "how": [
    "first-pass"
   ],
   "light": false,
-  "mins": 82,
+  "why": "The answer key now tests summaries too. Then a new problem: real documents are too long to send at once, so you learn to cut them up and to find the right piece by its words.",
+  "mins": 83,
   "steps": [
-   {
-    "id": "c:ch23",
-    "kind": "chapter",
-    "ch": "ch23",
-    "num": "2.3",
-    "title": "The five task types: classify, extract, summarise, rewrite, generate",
-    "mins": 20,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
-   },
-   {
-    "id": "c:ch24",
-    "kind": "chapter",
-    "ch": "ch24",
-    "num": "2.4",
-    "title": "Classification: sorting inputs into categories",
-    "mins": 25,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
-   },
    {
     "id": "c:ch25",
     "kind": "chapter",
@@ -552,7 +541,7 @@ export const WEEKS = [
     "num": "2.5",
     "title": "Summarisation: testing what a summary keeps",
     "mins": 25,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
    {
     "id": "b:14-too-long-to-read-at-once.html",
@@ -563,6 +552,34 @@ export const WEEKS = [
     "titleHi": "Ek Baar Mein Padhne Ke Liye Bahut Lamba",
     "mins": 7,
     "what": "Read the chapter. The page ticks itself when you reach the end."
+   },
+   {
+    "id": "c:ch3",
+    "kind": "chapter",
+    "ch": "ch3",
+    "num": "3",
+    "title": "Chunking: splitting documents into pieces",
+    "mins": 20,
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
+   },
+   {
+    "id": "b:15-finding-by-words.html",
+    "kind": "read",
+    "book": "15-finding-by-words.html",
+    "n": 15,
+    "title": "Finding by Words",
+    "titleHi": "Words Se Dhoondhna",
+    "mins": 6,
+    "what": "Read the chapter. The page ticks itself when you reach the end."
+   },
+   {
+    "id": "c:ch4",
+    "kind": "chapter",
+    "ch": "ch4",
+    "num": "4",
+    "title": "Keyword search: matching words, and where it fails",
+    "mins": 20,
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
    {
     "id": "t:review-9",
@@ -577,32 +594,33 @@ export const WEEKS = [
   "n": 10,
   "start": "2026-12-21",
   "dates": "21 Dec – 27 Dec",
-  "title": "Holiday week, light: cutting long text",
-  "ship": "A rule for cutting text without splitting an ID.",
+  "title": "Holiday week, light: finding by meaning",
+  "ship": "Search by meaning tried on your own pieces of text.",
   "how": [
    "first-pass"
   ],
   "light": true,
-  "mins": 31,
+  "why": "Last week’s word search missed things written differently. This week’s search goes by meaning instead. It is a short week on purpose.",
+  "mins": 38,
   "steps": [
    {
-    "id": "c:ch3",
-    "kind": "chapter",
-    "ch": "ch3",
-    "num": "3",
-    "title": "Chunking: splitting documents into pieces",
-    "mins": 20,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "id": "b:16-finding-by-meaning.html",
+    "kind": "read",
+    "book": "16-finding-by-meaning.html",
+    "n": 16,
+    "title": "Finding by Meaning",
+    "titleHi": "Matlab Se Dhoondhna",
+    "mins": 8,
+    "what": "Read the chapter. The page ticks itself when you reach the end."
    },
    {
-    "id": "b:15-finding-by-words.html",
-    "kind": "read",
-    "book": "15-finding-by-words.html",
-    "n": 15,
-    "title": "Finding by Words",
-    "titleHi": "Words Se Dhoondhna",
-    "mins": 6,
-    "what": "Read the chapter. The page ticks itself when you reach the end."
+    "id": "c:ch5",
+    "kind": "chapter",
+    "ch": "ch5",
+    "num": "5",
+    "title": "Embeddings: searching by meaning",
+    "mins": 25,
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
    {
     "id": "t:review-10",
@@ -617,63 +635,15 @@ export const WEEKS = [
   "n": 11,
   "start": "2026-12-28",
   "dates": "28 Dec – 3 Jan 2027",
-  "title": "Holiday week, light: finding by words",
-  "ship": "Your pattern rules, scored by hand.",
-  "how": [
-   "first-pass"
-  ],
-  "light": true,
-  "mins": 33,
-  "steps": [
-   {
-    "id": "c:ch4",
-    "kind": "chapter",
-    "ch": "ch4",
-    "num": "4",
-    "title": "Keyword search: matching words, and where it fails",
-    "mins": 20,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
-   },
-   {
-    "id": "b:16-finding-by-meaning.html",
-    "kind": "read",
-    "book": "16-finding-by-meaning.html",
-    "n": 16,
-    "title": "Finding by Meaning",
-    "titleHi": "Matlab Se Dhoondhna",
-    "mins": 8,
-    "what": "Read the chapter. The page ticks itself when you reach the end."
-   },
-   {
-    "id": "t:review-11",
-    "kind": "look",
-    "title": "Look back",
-    "mins": 5,
-    "what": "Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."
-   }
-  ]
- },
- {
-  "n": 12,
-  "start": "2027-01-04",
-  "dates": "4 Jan – 10 Jan",
-  "title": "Finding by meaning, and measuring it",
+  "title": "Holiday week, light: how good is good",
   "ship": "The scoreboard: words against meaning, with a ship-or-not note.",
   "how": [
    "first-pass"
   ],
-  "light": false,
-  "mins": 70,
+  "light": true,
+  "why": "You now have two ways to find things. This week you measure which one finds more, with the same answer-key habit from Week 8.",
+  "mins": 38,
   "steps": [
-   {
-    "id": "c:ch5",
-    "kind": "chapter",
-    "ch": "ch5",
-    "num": "5",
-    "title": "Embeddings: searching by meaning",
-    "mins": 25,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
-   },
    {
     "id": "b:17-how-good-is-good.html",
     "kind": "read",
@@ -691,8 +661,31 @@ export const WEEKS = [
     "num": "6",
     "title": "Evaluation: measuring whether search works",
     "mins": 25,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
+   {
+    "id": "t:review-11",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 12,
+  "start": "2027-01-04",
+  "dates": "4 Jan – 10 Jan",
+  "title": "Your first complete system",
+  "ship": "Version 0 of the findings page, published.",
+  "how": [
+   "first-pass",
+   "publish"
+  ],
+  "light": false,
+  "why": "Every piece is in place: cutting, finding, measuring and instructions. This week they join into one system that answers from your documents, and its answers come back in a shape a program can use.",
+  "mins": 109,
+  "steps": [
    {
     "id": "b:18-the-whole-machine.html",
     "kind": "read",
@@ -702,6 +695,43 @@ export const WEEKS = [
     "titleHi": "Poori Machine",
     "mins": 7,
     "what": "Read the chapter. The page ticks itself when you reach the end."
+   },
+   {
+    "id": "c:ch7",
+    "kind": "chapter",
+    "ch": "ch7",
+    "num": "7",
+    "title": "Putting it together: retrieval-augmented generation (RAG)",
+    "mins": 25,
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
+   },
+   {
+    "id": "c:ch75",
+    "kind": "chapter",
+    "ch": "ch75",
+    "num": "7.5",
+    "title": "Review: what your RAG system cannot do yet",
+    "mins": 20,
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
+   },
+   {
+    "id": "b:19-answers-a-program-can-use.html",
+    "kind": "read",
+    "book": "19-answers-a-program-can-use.html",
+    "n": 19,
+    "title": "Answers a Program Can Use",
+    "titleHi": "Aise Jawaab Jo Program Istemaal Kar Sake",
+    "mins": 7,
+    "what": "Read the chapter. The page ticks itself when you reach the end."
+   },
+   {
+    "id": "c:ch8",
+    "kind": "chapter",
+    "ch": "ch8",
+    "num": "8",
+    "title": "Structured output: getting JSON you can trust",
+    "mins": 45,
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
    {
     "id": "t:review-12",
@@ -716,73 +746,15 @@ export const WEEKS = [
   "n": 13,
   "start": "2027-01-11",
   "dates": "11 Jan – 17 Jan",
-  "title": "Your first complete system",
-  "ship": "Version 0 of the findings page, published.",
-  "how": [
-   "first-pass",
-   "publish"
-  ],
-  "light": false,
-  "mins": 57,
-  "steps": [
-   {
-    "id": "c:ch7",
-    "kind": "chapter",
-    "ch": "ch7",
-    "num": "7",
-    "title": "Putting it together: retrieval-augmented generation (RAG)",
-    "mins": 25,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
-   },
-   {
-    "id": "c:ch75",
-    "kind": "chapter",
-    "ch": "ch75",
-    "num": "7.5",
-    "title": "Review: what your RAG system cannot do yet",
-    "mins": 20,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
-   },
-   {
-    "id": "b:19-answers-a-program-can-use.html",
-    "kind": "read",
-    "book": "19-answers-a-program-can-use.html",
-    "n": 19,
-    "title": "Answers a Program Can Use",
-    "titleHi": "Aise Jawaab Jo Program Istemaal Kar Sake",
-    "mins": 7,
-    "what": "Read the chapter. The page ticks itself when you reach the end."
-   },
-   {
-    "id": "t:review-13",
-    "kind": "look",
-    "title": "Look back",
-    "mins": 5,
-    "what": "Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."
-   }
-  ]
- },
- {
-  "n": 14,
-  "start": "2027-01-18",
-  "dates": "18 Jan – 24 Jan",
-  "title": "Answers a program can use",
-  "ship": "An extractor that says “not sure” instead of guessing.",
+  "title": "Dependable answers, and letting it act",
+  "ship": "An extractor that says “not sure” instead of guessing, and a model that calls one tool.",
   "how": [
    "first-pass"
   ],
   "light": false,
-  "mins": 123,
+  "why": "Structured answers make two things possible: a model that can trigger an action, and careful choices about what it sees. Both build directly on last week.",
+  "mins": 120,
   "steps": [
-   {
-    "id": "c:ch8",
-    "kind": "chapter",
-    "ch": "ch8",
-    "num": "8",
-    "title": "Structured output: getting JSON you can trust",
-    "mins": 45,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
-   },
    {
     "id": "c:ch85",
     "kind": "chapter",
@@ -790,7 +762,7 @@ export const WEEKS = [
     "num": "8.5",
     "title": "Schema design: fields that do not force a guess",
     "mins": 25,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
    {
     "id": "b:20-giving-the-machine-hands.html",
@@ -809,29 +781,8 @@ export const WEEKS = [
     "num": "9",
     "title": "Tool calling and agents: letting the model take actions",
     "mins": 40,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
-   {
-    "id": "t:review-14",
-    "kind": "look",
-    "title": "Look back",
-    "mins": 5,
-    "what": "Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."
-   }
-  ]
- },
- {
-  "n": 15,
-  "start": "2027-01-25",
-  "dates": "25 Jan – 31 Jan",
-  "title": "Context, thinking models and the wait",
-  "ship": "A budget for what is sent onward, and a design for the wait.",
-  "how": [
-   "first-pass"
-  ],
-  "light": false,
-  "mins": 99,
-  "steps": [
    {
     "id": "b:21-long-windows-careful-rooms.html",
     "kind": "read",
@@ -849,8 +800,30 @@ export const WEEKS = [
     "num": "10",
     "title": "Long context windows and context engineering",
     "mins": 35,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
+   {
+    "id": "t:review-13",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 14,
+  "start": "2027-01-18",
+  "dates": "18 Jan – 24 Jan",
+  "title": "Thinking models, the wait, and better search",
+  "ship": "A budget for what is sent onward, a design for the wait, and search made better one change at a time.",
+  "how": [
+   "first-pass"
+  ],
+  "light": false,
+  "why": "Some models think before they answer, which costs time and money. You decide when that is worth it, then improve the search from Weeks 9 to 11 with your scoreboard as the judge.",
+  "mins": 109,
+  "steps": [
    {
     "id": "b:22-machines-that-think-first.html",
     "kind": "read",
@@ -868,7 +841,7 @@ export const WEEKS = [
     "num": "11",
     "title": "Reasoning models: when paying for thinking helps",
     "mins": 25,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
    {
     "id": "c:ch115",
@@ -877,29 +850,8 @@ export const WEEKS = [
     "num": "11.5",
     "title": "Latency: designing for the wait",
     "mins": 20,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
-   {
-    "id": "t:review-15",
-    "kind": "look",
-    "title": "Look back",
-    "mins": 5,
-    "what": "Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."
-   }
-  ]
- },
- {
-  "n": 16,
-  "start": "2027-02-01",
-  "dates": "1 Feb – 7 Feb",
-  "title": "Better search, and the page that gives orders",
-  "ship": "Finding made better one change at a time, and your own tool attacked.",
-  "how": [
-   "first-pass"
-  ],
-  "light": false,
-  "mins": 105,
-  "steps": [
    {
     "id": "b:23-searching-better.html",
     "kind": "read",
@@ -917,8 +869,30 @@ export const WEEKS = [
     "num": "12",
     "title": "Better retrieval: hybrid search, reranking, context and filters",
     "mins": 45,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
+   {
+    "id": "t:review-14",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 15,
+  "start": "2027-01-25",
+  "dates": "25 Jan – 31 Jan",
+  "title": "When the page gives orders, and grading at scale",
+  "ship": "Your own tool attacked, and an automatic marker you have checked.",
+  "how": [
+   "first-pass"
+  ],
+  "light": false,
+  "why": "Your system reads documents, and a document can carry hidden instructions. After you attack your own tool, you grade a thousand answers the same way you graded ten.",
+  "mins": 121,
+  "steps": [
    {
     "id": "b:24-when-the-page-gives-orders.html",
     "kind": "read",
@@ -936,29 +910,8 @@ export const WEEKS = [
     "num": "13",
     "title": "Prompt injection: when your documents give the orders",
     "mins": 40,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
-   {
-    "id": "t:review-16",
-    "kind": "look",
-    "title": "Look back",
-    "mins": 5,
-    "what": "Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."
-   }
-  ]
- },
- {
-  "n": 17,
-  "start": "2027-02-08",
-  "dates": "8 Feb – 14 Feb",
-  "title": "Grading at scale, and what it costs",
-  "ship": "An automatic marker you have checked, and a cost model from measurements.",
-  "how": [
-   "first-pass"
-  ],
-  "light": false,
-  "mins": 111,
-  "steps": [
    {
     "id": "b:25-grading-a-thousand-answers.html",
     "kind": "read",
@@ -976,7 +929,7 @@ export const WEEKS = [
     "num": "14",
     "title": "Evaluation at scale: code checks and LLM judges",
     "mins": 35,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
    {
     "id": "c:ch145",
@@ -985,8 +938,30 @@ export const WEEKS = [
     "num": "14.5",
     "title": "Error analysis: reading failures by hand",
     "mins": 25,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
+   {
+    "id": "t:review-15",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 16,
+  "start": "2027-02-01",
+  "dates": "1 Feb – 7 Feb",
+  "title": "What it costs, documents, and what you may send",
+  "ship": "A cost model from measurements, a reader for scanned pages, and the sharing rule.",
+  "how": [
+   "first-pass"
+  ],
+  "light": false,
+  "why": "You can now measure quality at scale. This week you put a price on it, handle paper and photos, and decide which data may leave your hands at all.",
+  "mins": 104,
+  "steps": [
    {
     "id": "b:26-what-it-really-costs.html",
     "kind": "read",
@@ -1004,29 +979,8 @@ export const WEEKS = [
     "num": "15",
     "title": "Cost modelling: what an AI feature really costs",
     "mins": 30,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
-   {
-    "id": "t:review-17",
-    "kind": "look",
-    "title": "Look back",
-    "mins": 5,
-    "what": "Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."
-   }
-  ]
- },
- {
-  "n": 18,
-  "start": "2027-02-15",
-  "dates": "15 Feb – 21 Feb",
-  "title": "Real documents, and the rules",
-  "ship": "The sharing rule, and the system card.",
-  "how": [
-   "first-pass"
-  ],
-  "light": false,
-  "mins": 106,
-  "steps": [
    {
     "id": "b:27-paper-photos-and-scans.html",
     "kind": "read",
@@ -1044,7 +998,7 @@ export const WEEKS = [
     "num": "16",
     "title": "Document extraction: tables, scans and images",
     "mins": 25,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
    {
     "id": "b:28-what-you-may-send.html",
@@ -1063,8 +1017,30 @@ export const WEEKS = [
     "num": "16.5",
     "title": "Data handling: what you are allowed to send",
     "mins": 20,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
+   {
+    "id": "t:review-16",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 17,
+  "start": "2027-02-08",
+  "dates": "8 Feb – 14 Feb",
+  "title": "The rules, and the spec",
+  "ship": "A system card, and a requirements document that survives a change of model.",
+  "how": [
+   "first-pass"
+  ],
+  "light": false,
+  "why": "With quality, cost and data rules in hand, you can write down what the system must do and who is responsible when it is wrong. The spec in A7 gets its AI version.",
+  "mins": 99,
+  "steps": [
    {
     "id": "b:29-rules-risk-and-responsibility.html",
     "kind": "read",
@@ -1082,29 +1058,8 @@ export const WEEKS = [
     "num": "17",
     "title": "AI governance: risk tiers, system cards and oversight",
     "mins": 30,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
-   {
-    "id": "t:review-18",
-    "kind": "look",
-    "title": "Look back",
-    "mins": 5,
-    "what": "Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."
-   }
-  ]
- },
- {
-  "n": 19,
-  "start": "2027-02-22",
-  "dates": "22 Feb – 28 Feb",
-  "title": "The spec, and build or buy",
-  "ship": "A requirements document that survives a change of model, and a build-or-buy call.",
-  "how": [
-   "first-pass"
-  ],
-  "light": false,
-  "mins": 123,
-  "steps": [
    {
     "id": "b:30-the-spec-for-a-thing-that-varies.html",
     "kind": "read",
@@ -1122,8 +1077,30 @@ export const WEEKS = [
     "num": "18",
     "title": "The AI PRD: specs, migrations and kill switches",
     "mins": 45,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
+   {
+    "id": "t:review-17",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 18,
+  "start": "2027-02-15",
+  "dates": "15 Feb – 21 Feb",
+  "title": "Build or buy, and designing for the wrong answer",
+  "ship": "A build-or-buy call, the four answers the tool can give, and a pilot design.",
+  "how": [
+   "first-pass"
+  ],
+  "light": false,
+  "why": "The spec raises two decisions that stay yours: whether to build, buy or train, and what the product does when the model is wrong. Then you plan how to prove it helps. That closes Parts I to IV.",
+  "mins": 133,
+  "steps": [
    {
     "id": "b:31-build-buy-or-teach-it.html",
     "kind": "read",
@@ -1141,7 +1118,7 @@ export const WEEKS = [
     "num": "18.5",
     "title": "Build or buy: comparing a vendor with your own build",
     "mins": 25,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
    {
     "id": "c:ch19",
@@ -1150,29 +1127,8 @@ export const WEEKS = [
     "num": "19",
     "title": "Fine-tuning or not: choosing what to change",
     "mins": 30,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
-   {
-    "id": "t:review-19",
-    "kind": "look",
-    "title": "Look back",
-    "mins": 5,
-    "what": "Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."
-   }
-  ]
- },
- {
-  "n": 20,
-  "start": "2027-03-01",
-  "dates": "1 Mar – 7 Mar",
-  "title": "Wrong answers, impact, and the plumbing",
-  "ship": "The four answers the tool can give, a pilot design, and a test harness in Git.",
-  "how": [
-   "first-pass"
-  ],
-  "light": false,
-  "mins": 137,
-  "steps": [
    {
     "id": "b:32-designing-for-the-wrong-answer.html",
     "kind": "read",
@@ -1190,7 +1146,7 @@ export const WEEKS = [
     "num": "20",
     "title": "Designing for wrong answers: evidence, confidence and refusals",
     "mins": 30,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
    {
     "id": "c:ch205",
@@ -1199,8 +1155,30 @@ export const WEEKS = [
     "num": "20.5",
     "title": "Measuring business impact: designing a pilot",
     "mins": 25,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
+   {
+    "id": "t:review-18",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 19,
+  "start": "2027-02-22",
+  "dates": "22 Feb – 28 Feb",
+  "title": "Production depth begins: the plumbing, and choosing a model",
+  "ship": "A test harness in Git, and your model choice with a back-up.",
+  "how": [
+   "first-pass"
+  ],
+  "light": false,
+  "why": "Part V goes over the same ideas again, this time at the depth a real launch needs. You know every idea already; now you learn the plumbing under it and pick a model on your own cases.",
+  "mins": 136,
+  "steps": [
    {
     "id": "b:33-the-plumbing-under-the-magic.html",
     "kind": "read",
@@ -1218,29 +1196,8 @@ export const WEEKS = [
     "num": "21",
     "title": "Software basics for AI work: Python, HTTP, Git and tests",
     "mins": 60,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
-   {
-    "id": "t:review-20",
-    "kind": "look",
-    "title": "Look back",
-    "mins": 5,
-    "what": "Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."
-   }
-  ]
- },
- {
-  "n": 21,
-  "start": "2027-03-08",
-  "dates": "8 Mar – 14 Mar",
-  "title": "Production depth: models, context, retrieval",
-  "ship": "Your model choice with a back-up, and the gateway on one page.",
-  "how": [
-   "first-pass"
-  ],
-  "light": false,
-  "mins": 192,
-  "steps": [
    {
     "id": "b:34-choosing-a-model-on-your-own-cases.html",
     "kind": "read",
@@ -1258,8 +1215,30 @@ export const WEEKS = [
     "num": "22",
     "title": "Choosing a model: benchmark on your own cases",
     "mins": 55,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
+   {
+    "id": "t:review-19",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 20,
+  "start": "2027-03-01",
+  "dates": "1 Mar – 7 Mar",
+  "title": "Context and retrieval, at production depth",
+  "ship": "What the model sees, decided on purpose, and retrieval that survives a review.",
+  "how": [
+   "first-pass"
+  ],
+  "light": false,
+  "why": "Weeks 12 to 14 built context and search for a prototype. This week does them again for real users: access rules, freshness and a budget.",
+  "mins": 129,
+  "steps": [
    {
     "id": "c:ch10c",
     "kind": "chapter",
@@ -1267,7 +1246,7 @@ export const WEEKS = [
     "num": "23",
     "title": "Context engineering: deciding what the model sees",
     "mins": 55,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
    {
     "id": "b:35-retrieval-that-survives-a-review.html",
@@ -1286,10 +1265,10 @@ export const WEEKS = [
     "num": "24",
     "title": "Production RAG: ingestion, access control and freshness",
     "mins": 60,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
    {
-    "id": "t:review-21",
+    "id": "t:review-20",
     "kind": "look",
     "title": "Look back",
     "mins": 5,
@@ -1298,16 +1277,17 @@ export const WEEKS = [
   ]
  },
  {
-  "n": 22,
-  "start": "2027-03-15",
-  "dates": "15 Mar – 21 Mar",
-  "title": "Production depth: tools, agents, pictures and voice",
+  "n": 21,
+  "start": "2027-03-08",
+  "dates": "8 Mar – 14 Mar",
+  "title": "Workflows, agents and the standard plug",
   "ship": "A workflow that cannot make risky changes alone, and the tool access policy.",
   "how": [
    "first-pass"
   ],
   "light": false,
-  "mins": 227,
+  "why": "Week 13 let a model call one tool. This week chains tools into workflows and agents, with limits on what they may do alone.",
+  "mins": 169,
   "steps": [
    {
     "id": "b:36-workflows-agents-and-the-standard-plug.html",
@@ -1326,7 +1306,7 @@ export const WEEKS = [
     "num": "25",
     "title": "Tool calling and workflows: contracts before agents",
     "mins": 50,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
    {
     "id": "c:ch13a",
@@ -1335,7 +1315,7 @@ export const WEEKS = [
     "num": "26",
     "title": "Agents: loops, stopping conditions and control",
     "mins": 60,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
    {
     "id": "c:ch14p",
@@ -1344,8 +1324,30 @@ export const WEEKS = [
     "num": "27",
     "title": "MCP and interoperability: standard connections to tools",
     "mins": 45,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
+   {
+    "id": "t:review-21",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 22,
+  "start": "2027-03-15",
+  "dates": "15 Mar – 21 Mar",
+  "title": "Pictures and voice, gates and traces",
+  "ship": "The release gate, and the watch plan.",
+  "how": [
+   "first-pass"
+  ],
+  "light": false,
+  "why": "More kinds of input mean more ways to fail, so this week also turns your answer keys into a release gate and decides what to watch after launch.",
+  "mins": 187,
+  "steps": [
    {
     "id": "b:37-pages-pictures-and-voices.html",
     "kind": "read",
@@ -1363,29 +1365,8 @@ export const WEEKS = [
     "num": "28",
     "title": "Multimodal AI: documents, images and voice",
     "mins": 50,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
-   {
-    "id": "t:review-22",
-    "kind": "look",
-    "title": "Look back",
-    "mins": 5,
-    "what": "Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."
-   }
-  ]
- },
- {
-  "n": 23,
-  "start": "2027-03-22",
-  "dates": "22 Mar – 28 Mar",
-  "title": "Production depth: gates, watching, security",
-  "ship": "The release gate, the watch plan and the risk register.",
-  "how": [
-   "first-pass"
-  ],
-  "light": false,
-  "mins": 193,
-  "steps": [
    {
     "id": "b:38-gates-traces-and-rollbacks.html",
     "kind": "read",
@@ -1403,7 +1384,7 @@ export const WEEKS = [
     "num": "29",
     "title": "Evaluation engineering: test sets and release gates",
     "mins": 60,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
    {
     "id": "c:ch17o",
@@ -1412,8 +1393,30 @@ export const WEEKS = [
     "num": "30",
     "title": "Observability and LLMOps: traces, cost and rollback",
     "mins": 55,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
+   {
+    "id": "t:review-22",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 23,
+  "start": "2027-03-22",
+  "dates": "22 Mar – 28 Mar",
+  "title": "Security, and the product spec",
+  "ship": "The risk register, the full requirements and a ten-slide decision pack.",
+  "how": [
+   "first-pass"
+  ],
+  "light": false,
+  "why": "You assume the worst about the model, then write the spec and the decision pack that the capstone will be judged against.",
+  "mins": 188,
+  "steps": [
    {
     "id": "b:39-assuming-the-worst.html",
     "kind": "read",
@@ -1431,29 +1434,8 @@ export const WEEKS = [
     "num": "31",
     "title": "Security and governance: controls around an untrusted model",
     "mins": 55,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
-   {
-    "id": "t:review-23",
-    "kind": "look",
-    "title": "Look back",
-    "mins": 5,
-    "what": "Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."
-   }
-  ]
- },
- {
-  "n": 24,
-  "start": "2027-03-29",
-  "dates": "29 Mar – 4 Apr",
-  "title": "The product spec and the decision pack",
-  "ship": "The full requirements and a ten-slide decision pack.",
-  "how": [
-   "first-pass"
-  ],
-  "light": false,
-  "mins": 148,
-  "steps": [
    {
     "id": "b:40-a-product-not-a-demo.html",
     "kind": "read",
@@ -1471,7 +1453,7 @@ export const WEEKS = [
     "num": "32",
     "title": "AI product management: specs for a probabilistic system",
     "mins": 55,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
    {
     "id": "c:ch20d",
@@ -1480,8 +1462,30 @@ export const WEEKS = [
     "num": "33",
     "title": "Production architecture, delivery and vendor strategy",
     "mins": 55,
-    "what": "Read it, answer the boxes and do its hands-on steps. Press “Mark chapter complete” at the end."
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
+   {
+    "id": "t:review-23",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 24,
+  "start": "2027-03-29",
+  "dates": "29 Mar – 4 Apr",
+  "title": "Capstone, part 1: build it and break it",
+  "ship": "The capstone plan, and a first version you have tried to break.",
+  "how": [
+   "first-pass"
+  ],
+  "light": false,
+  "why": "Every chapter so far built one piece of Bharat Privacy Guard. These two weeks put the pieces together. This week you plan the smallest version and build it.",
+  "mins": 269,
+  "steps": [
    {
     "id": "b:41-shipping-the-whole-thing.html",
     "kind": "read",
@@ -1495,9 +1499,17 @@ export const WEEKS = [
    {
     "id": "t:capstone-plan",
     "kind": "try",
-    "title": "Plan your capstone week",
+    "title": "Plan your capstone",
     "mins": 15,
-    "what": "Read the capstone chapter’s brief and write, on one page, the smallest version you can ship in about eight hours. Everything else goes on a “later” list."
+    "what": "Read the capstone chapter’s brief and write, on one page, the smallest version you can ship in about eight hours over two weeks. Everything else goes on a “later” list."
+   },
+   {
+    "id": "t:capstone-build",
+    "kind": "try",
+    "title": "Capstone, first half: build and break it",
+    "mins": 240,
+    "app": "#/ch/ch21cap",
+    "what": "Work through the capstone chapter up to its measuring step: put the pieces you built in earlier chapters together, then try to break it. Stop at about four hours, even if you want to keep going. Next week you measure it, ship it and defend it."
    },
    {
     "id": "t:review-24",
@@ -1512,14 +1524,15 @@ export const WEEKS = [
   "n": 25,
   "start": "2027-04-05",
   "dates": "5 Apr – 11 Apr",
-  "title": "Capstone: ship it and defend it",
+  "title": "Capstone, part 2: ship it and defend it",
   "ship": "Bharat Privacy Guard shipped, with its findings document and a short demo.",
   "how": [
    "publish",
    "demo-video"
   ],
   "light": false,
-  "mins": 545,
+  "why": "Last week’s version gets measured, shipped and defended, then published where people can see it.",
+  "mins": 315,
   "steps": [
    {
     "id": "c:ch21cap",
@@ -1527,9 +1540,19 @@ export const WEEKS = [
     "ch": "ch21cap",
     "num": "34",
     "title": "Capstone: discover, build, break, measure, ship and defend a system",
-    "mins": 480,
+    "mins": 240,
     "firstPass": true,
-    "what": "The chapter allows about thirty hours. Ship the smallest version that works in about eight, then keep improving. Press “Mark chapter complete” when it is shipped."
+    "what": "Second half of the capstone: measure the version you built last week, ship it and defend it. The chapter allows about thirty hours in all; the smallest version that works is enough here. Press “Mark chapter complete” when it is shipped."
+   },
+   {
+    "id": "c:b8",
+    "kind": "chapter",
+    "ch": "b8",
+    "num": "B8",
+    "title": "The integrated capstone now lives in Chapter 34",
+    "mins": 10,
+    "firstPass": true,
+    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. The long “Build it” section is optional; leave it for later."
    },
    {
     "id": "t:portfolio",
@@ -1553,14 +1576,15 @@ export const WEEKS = [
   "start": "2027-04-12",
   "dates": "12 Apr – 18 Apr 2027",
   "title": "The business, and the job",
-  "ship": "Your portfolio page, three practice interviews and a look back over six months.",
+  "ship": "The business chapters on a first pass, three practice interviews and a look back over six months.",
   "how": [
    "portfolio-site",
    "mock-interviews",
    "retro"
   ],
   "light": false,
-  "mins": 317,
+  "why": "You have a shipped product. The last week asks who pays for it, how people find it, how you count what matters, and how you talk about all of it in an interview.",
+  "mins": 297,
   "steps": [
    {
     "id": "b:42-who-pays-and-how-much.html",
@@ -1580,7 +1604,7 @@ export const WEEKS = [
     "title": "Business models, pricing and unit economics",
     "mins": 20,
     "firstPass": true,
-    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."
+    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. The long “Build it” section is optional; leave it for later."
    },
    {
     "id": "b:43-how-people-find-it-and-stay.html",
@@ -1600,7 +1624,7 @@ export const WEEKS = [
     "title": "Growth, onboarding and product marketing",
     "mins": 20,
     "firstPass": true,
-    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."
+    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. The long “Build it” section is optional; leave it for later."
    },
    {
     "id": "b:44-counting-what-matters.html",
@@ -1620,7 +1644,7 @@ export const WEEKS = [
     "title": "Product analytics and experiments",
     "mins": 20,
     "firstPass": true,
-    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."
+    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. The long “Build it” section is optional; leave it for later."
    },
    {
     "id": "b:45-tools-and-harness.html",
@@ -1640,7 +1664,7 @@ export const WEEKS = [
     "title": "Choosing tools for an AI product workflow",
     "mins": 20,
     "firstPass": true,
-    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."
+    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. The long “Build it” section is optional; leave it for later."
    },
    {
     "id": "c:b5",
@@ -1650,7 +1674,7 @@ export const WEEKS = [
     "title": "Harness engineering: the system around the model",
     "mins": 20,
     "firstPass": true,
-    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."
+    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. The long “Build it” section is optional; leave it for later."
    },
    {
     "id": "b:46-real-people-real-use.html",
@@ -1670,7 +1694,7 @@ export const WEEKS = [
     "title": "Ship to real users and run the learning loop",
     "mins": 20,
     "firstPass": true,
-    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."
+    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. The long “Build it” section is optional; leave it for later."
    },
    {
     "id": "b:47-the-job.html",
@@ -1690,17 +1714,7 @@ export const WEEKS = [
     "title": "Getting the job: career readiness for AI PM roles",
     "mins": 20,
     "firstPass": true,
-    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."
-   },
-   {
-    "id": "c:b8",
-    "kind": "chapter",
-    "ch": "b8",
-    "num": "B8",
-    "title": "The integrated capstone now lives in Chapter 34",
-    "mins": 20,
-    "firstPass": true,
-    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. You read its story in the book already. The “Build it” section is optional; leave it for later."
+    "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. The long “Build it” section is optional; leave it for later."
    },
    {
     "id": "t:interviews",
@@ -1723,26 +1737,26 @@ export const WEEKS = [
 export const MONTHS = [
  {
   "n": 1,
-  "name": "Month 1: Read first (the gentle start)",
+  "name": "Month 1: The problem and the plan",
   "from": 1,
   "to": 4,
-  "goal": "Ten minutes a weekday. The book from its first page to chapter 12, three small tries and your first evaluation. Nothing to install.",
+  "goal": "About an hour a week. The book’s first seven chapters, each followed straight away by its app chapter on a first pass. No code and nothing to install.",
   "dates": "19 Oct – 15 Nov 2026"
  },
  {
   "n": 2,
-  "name": "Month 2: Product foundations and first contact",
+  "name": "Month 2: Meet the machine",
   "from": 5,
   "to": 9,
-  "goal": "Track A’s boxes answered (your home ground), the setup working, your first model call, and a sorter with a score.",
+  "goal": "What a model is, tokens on your own text, a model connected, just enough Python to read the code, your first call, instructions, an answer key, and the first jobs: sorting and summarising.",
   "dates": "16 Nov – 20 Dec 2026"
  },
  {
   "n": 3,
-  "name": "Month 3: Finding and measuring",
+  "name": "Month 3: Finding, and your first system",
   "from": 10,
   "to": 13,
-  "goal": "Search by words and by meaning, a scoreboard, and version 0 of the findings page published. Weeks 10 and 11 are light holiday weeks.",
+  "goal": "Two light holiday weeks on search by meaning and measuring it, then your first complete system, answers a program can use, and a model that can act.",
   "dates": "21 Dec 2026 – 17 Jan 2027"
  },
  {
@@ -1750,23 +1764,23 @@ export const MONTHS = [
   "name": "Month 4: What real systems add",
   "from": 14,
   "to": 18,
-  "goal": "Dependable output, context and thinking models, better search, prompt injection, grading at scale, cost, documents and the rules.",
+  "goal": "Thinking models, better search, attacks, grading at scale, cost, documents, the rules, the spec, build or buy, and designing for wrong answers.",
   "dates": "18 Jan – 21 Feb 2027"
  },
  {
   "n": 5,
-  "name": "Month 5: Decisions and production depth",
+  "name": "Month 5: The same ideas, at production depth",
   "from": 19,
   "to": 23,
-  "goal": "The spec, build or buy, wrong answers and impact, then the production chapters: models, retrieval, tools, agents, gates, watching and security.",
+  "goal": "Part V goes over everything again, deeper: the plumbing, model choice, context, retrieval, workflows and agents, pictures and voice, release gates, watching, security and the product spec.",
   "dates": "22 Feb – 28 Mar 2027"
  },
  {
   "n": 6,
-  "name": "Month 6: Ship it, defend it, get the job",
+  "name": "Month 6: Ship it, and get the job",
   "from": 24,
   "to": 26,
-  "goal": "The decision pack, the capstone shipped and defended, the business chapters, a portfolio page and practice interviews.",
+  "goal": "The capstone over two weeks, then the business chapters, a portfolio page and practice interviews.",
   "dates": "29 Mar – 18 Apr 2027"
  }
 ];

@@ -97,23 +97,24 @@ export const RESOURCES = {
 /* Going further, by week. Optional: the course is the plan, these are for a
    week with spare energy. */
 export const FURTHER = {
-  3: ['academy_fluency', 'academy_limits'],
-  4: ['claude_prompting'],
-  7: ['academy_api', 'ai_studio'],
-  8: ['claude_prompting', 'gemini_structured'],
-  12: ['hamel_evals', 'sbert'],
-  13: ['hamel_field'],
-  14: ['claude_structured', 'openai_structured'],
-  15: ['claude_caching'],
-  16: ['rank_bm25', 'bge_m3'],
-  17: ['hamel_judge', 'shreya_validators', 'claude_pricing'],
-  18: ['dpdp_rules', 'india_ai_summary', 'nist_rmf'],
-  19: ['pair', 'model_cards'],
-  20: ['gh_actions'],
-  21: ['huyen'],
-  22: ['dlai_agentic', 'academy_mcp', 'mcp_docs'],
-  23: ['dlai_eval_agents', 'phoenix', 'promptfoo_gha'],
-  24: ['eu_ai_act', 'india_ai_guide'],
+  5: ['academy_fluency', 'academy_limits'],
+  6: ['academy_api', 'ai_studio'],
+  7: ['claude_prompting'],
+  8: ['gemini_structured'],
+  10: ['sbert'],
+  11: ['hamel_evals'],
+  12: ['hamel_field', 'claude_structured', 'openai_structured'],
+  13: ['claude_caching'],
+  14: ['rank_bm25', 'bge_m3'],
+  15: ['hamel_judge', 'shreya_validators'],
+  16: ['claude_pricing', 'dpdp_rules'],
+  17: ['india_ai_summary', 'nist_rmf', 'model_cards'],
+  18: ['pair'],
+  19: ['gh_actions'],
+  20: ['huyen'],
+  21: ['dlai_agentic', 'academy_mcp', 'mcp_docs'],
+  22: ['dlai_eval_agents', 'phoenix', 'promptfoo_gha'],
+  23: ['eu_ai_act', 'india_ai_guide'],
   25: ['gh_pages', 'hf_spaces'],
   26: ['interview_bank', 'exponent_ps', 'lenny_market']
 };
@@ -123,11 +124,11 @@ export const MONTHS = ROUTE_MONTHS;
 export const WEEKS = ROUTE_WEEKS.map(w => ({ ...w, further: FURTHER[w.n] || [] }));
 
 export const GATES = [
-  { id: 'M1', month: 1, pass: 'The first four weeks ticked, or nearly: the book read to chapter 12, three small tries done, and your first evaluation scored out of ten.', cut: 'If you missed days, do not catch up in one go. Carry on from the first open step and let the dates slide.' },
-  { id: 'M2', month: 2, pass: 'Track A’s boxes answered, the setup working, your first model call costed, and a sorter with a score.', cut: 'Leave Track A’s Build sections for later. Never cut the first model call.' },
-  { id: 'M3', month: 3, pass: 'Search by words and by meaning compared on a scoreboard, and version 0 of the findings page published with a link.', cut: 'Publish the findings page with whatever numbers you have. An honest short page beats a perfect missing one.' },
-  { id: 'M4', month: 4, pass: 'Dependable output, the attack on your own tool, a checked automatic marker, a cost model, and the system card.', cut: 'Do the chapters on a first pass and keep one hands-on result per week.' },
-  { id: 'M5', month: 5, pass: 'The requirements document, the build-or-buy call, the release gate and the risk register.', cut: 'If time is short, keep the release gate and the risk register; the others can be one page each.' },
+  { id: 'M1', month: 1, pass: 'The first four weeks ticked, or nearly: the book’s first seven chapters read, and A1 to A7 done on a first pass right after each one.', cut: 'If you missed days, do not catch up in one go. Carry on from the first open step and let the dates slide.' },
+  { id: 'M2', month: 2, pass: 'A model connected, your first model call costed, a system prompt tested, your first answer key, and a sorter with a score.', cut: 'Never cut the first model call. If time is short, keep the answer key and do the summary chapter on a first pass.' },
+  { id: 'M3', month: 3, pass: 'Search by words and by meaning compared on a scoreboard, version 0 of the findings page published with a link, and an extractor that says “not sure”.', cut: 'Publish the findings page with whatever numbers you have. An honest short page beats a perfect missing one.' },
+  { id: 'M4', month: 4, pass: 'The attack on your own tool, a checked automatic marker, a cost model, the system card, the requirements and the build-or-buy call.', cut: 'Do the chapters on a first pass and keep one hands-on result per week.' },
+  { id: 'M5', month: 5, pass: 'Your model choice with a back-up, the tool access policy, the release gate, the risk register and the decision pack.', cut: 'If time is short, keep the release gate and the risk register; the others can be one page each.' },
   { id: 'M6', month: 6, pass: 'Bharat Privacy Guard shipped with its findings document and demo, a portfolio page, and three practice interviews.', cut: 'Do not cut this one. Move it into May rather than skip it.' }
 ].map(g => ({ ...g, date: ROUTE_MONTHS[g.month - 1].dates.split(' – ')[1] }));
 
@@ -137,7 +138,7 @@ export const RULES = [
   'Ten minutes is a real day. On a bad day do one page and tick it. A small day counts; a zero day does not.',
   'Never miss twice. One missed day is life. Two in a row is a new habit.',
   'Behind is fine. Carry on from the first open step; the dates are a guide, not a judge. Never skip a step to catch up.',
-  'First pass, then second pass. Long “Build it” sections in Track A and Track B are optional on the route. Write “second pass” next to them and move on.',
+  'First pass now, the long build later. The “Build it” sections in Track A and Track B are optional on the route. Write “later” next to them and move on.',
   'Parking lot, not action. New courses, tools and side projects go in the parking lot and wait for the monthly review.',
   'Friday look back. Three lines in your notepad every week: what made sense, what didn’t, one question.'
 ];

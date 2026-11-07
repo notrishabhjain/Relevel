@@ -14,7 +14,7 @@ window.PART1 = [
      So this comes first: real work, real findings, on your own text, with no
      account, no key, and nothing installed. By the end of it Setup is
      something you want rather than a toll gate. */
-  id:'ch05', num:0.5, part:1, curriculumTier:'core', phase:1, prerequisites:['ch0'], nextUnits:['ch1'], minutes:18, labs:['tokenizer','receipt','temperature'],
+  id:'ch05', num:0.5, part:1, curriculumTier:'core', phase:1, prerequisites:['ch0'], nextUnits:['chpy','ch1'], minutes:18, labs:['tokenizer','receipt','temperature'],
   title:'Try it in the browser: tokens, cost and temperature',
   concept:'Before you install anything, you’ll run three small experiments right here in your browser, on your own text. You’ll see how a model cuts text into tokens, why a long chat costs more than a short one, and what the temperature setting really changes.',
   takeaway:[
@@ -69,7 +69,7 @@ window.PART1 = [
     ['p','The whole course works like this. You try something first, and then you learn the name for what you saw.'],
     ['c','Tip','If a chapter feels too fast, slow down and run the examples again. The <a href="#/later">Not yet</a> page lists the topics you can safely ignore for now.'],
     ['p','To send your own questions to a real model, you need one free thing: an API key. Getting it and pasting it in takes about ten minutes, once. The code then runs right here, on these pages: <a href="#/setup">Connect a model</a>.'],
-    ['p','Or you can keep reading first. Chapter 1 is easier with a model connected, but you can follow it without one.']
+    ['p','Next comes a short chapter on reading Python, which needs no key at all. Then Chapter 1 sends your first message to a real model.']
   ],
   capstone:{
     title:'Compare what English, Hindi and Hinglish cost',
@@ -92,7 +92,132 @@ window.PART1 = [
   }
 },
 {
-  id:'ch1', num:1, part:1, curriculumTier:'core', phase:1, prerequisites:['ch05'], nextUnits:['ch15b','ch2','ch3','ch8'], minutes:45, labs:[],
+  /* Reading Python, before the first code. Chapter 1 used to open on a model
+     call: brackets, quotes, dots and a [0], with nothing that said how to read
+     them. A reader new to code met all of it at once, on the same page as the
+     first idea about models. This chapter takes the five shapes that make up
+     almost every cell in the course, one at a time, with nothing to connect. */
+  id:'chpy', num:0.8, part:1, curriculumTier:'core', phase:1, prerequisites:['ch05'], nextUnits:['ch1'], minutes:25, labs:[], noModel:true,
+  title:'Reading Python: just enough for this course',
+  concept:'From the next chapter on, the hands-on steps are short pieces of Python that run right here in the page. You don’t have to write code from scratch. You have to read it, change one thing and run it again. This chapter teaches the few shapes you will meet, one at a time, with no key and no account.',
+  needs:[
+    ['Chapter 0.5','You have seen tokens and cost in the browser. Nothing else is needed: Python runs inside this page, with no key and no account.',0.5],
+  ],
+  takeaway:[
+    'Read a line like <code>city = "Pune"</code> and say what it stores.',
+    'Tell a list from a dictionary, and pick one item out of each.',
+    'Read every line of the next chapter’s first model call before you run it.'
+  ],
+  story:[
+    ['c','Before you start','You need nothing for this chapter: no key, no account, no download. Python runs inside this page. Press <strong>Run</strong> under a block and the result appears below it. Nothing you type here can break anything.'],
+    ['p','In the next chapter you send your first message to a real model. The message goes out as a few lines of Python. If you have never read code, those lines look like a wall of brackets and quotes.'],
+    ['p','This chapter takes the wall apart, one brick at a time. Each section shows one small piece, runs it, and asks you to change one thing. By the end, you can read every line of the next chapter’s first example.'],
+    ['key','You don’t need to write Python for this course. You need to read it, change one thing, and run it again.'],
+    ['h','A cell, and the Run button'],
+    ['p','Code here sits in boxes called <strong>cells</strong>. Press <strong>Run</strong> and the page runs the cell. Whatever the code prints appears just below it.'],
+    ['p','The first run takes a few seconds, because the page has to load Python. After that, runs are quick.'],
+    ['do','Run your first cell',[
+      ['code','print("Hello from Python")'],
+      ['x','The words <code>Hello from Python</code> appear under the cell. <code>print</code> means “show this”. The text inside the quotes is shown exactly as written.'],
+      ['p','Now change the words inside the quotes to your own name and press Run again. Keep the quotes.']
+    ]],
+    ['h','A name for a value'],
+    ['p','The most common line in this course looks like <code>name = something</code>. It gives a value a name, so that later lines can use it. Programmers call the name a <strong>variable</strong>.'],
+    ['p','Read the equals sign as “is now”. So <code>city = "Pune"</code> reads as “city is now Pune”.'],
+    ['do','Store something and use it',[
+      ['code','city = "Pune"\nprice = 40\nprint(city)\nprint(price * 3)'],
+      ['x','You see <code>Pune</code> and then <code>120</code>. Text goes inside quotes. Numbers don’t. Python did the sum because <code>price</code> holds a number.'],
+      [
+        'snag',
+        ['A red box saying something <em>is not defined</em>','A name was used before any line gave it a value. Check the spelling too: <code>City</code> and <code>city</code> are two different names to Python.']
+      ]
+    ]],
+    [
+      'pred',
+      {id:'chpy-quotes',
+       short:true,
+       ph:'What do you expect to see?',
+       ask:'Guess first. After the cell above, what would <code>print("price")</code> show, with quotes around the word?',
+       reveal:'It shows the word <code>price</code>, not 40. Quotes mean “this exact text”. Without quotes, Python looks up the name and shows its value.',
+       then:'Quotes are the difference between a word and a name. Many first errors in code come from a missing or an extra quote.'}
+    ],
+    ['h','A list: several things in order'],
+    ['p','Square brackets hold a <strong>list</strong>: several values in order, with commas between them.'],
+    ['p','To pick one item, put its position in square brackets after the name. Python counts from 0, so <code>[0]</code> is the first item.'],
+    ['do','Pick an item from a list',[
+      ['code','cities = ["Pune", "Delhi", "Kochi"]\nprint(cities[0])\nprint(len(cities))'],
+      ['x','You see <code>Pune</code>, the first item, and then <code>3</code>, the number of items. <code>len</code> is short for length.'],
+      ['p','Change <code>[0]</code> to <code>[2]</code> and run it again. Which city do you get?']
+    ]],
+    ['h','A dictionary: labels and values'],
+    ['p','Curly braces hold a <strong>dictionary</strong>: pairs of a label and a value, like a small form. The label goes in quotes, then a colon, then the value.'],
+    ['p','To read one value, put its label in square brackets after the name.'],
+    ['do','Read a value by its label',[
+      ['code','message = {"role": "user", "content": "What is a token?"}\nprint(message["role"])\nprint(message["content"])'],
+      ['x','You see <code>user</code> and then the question. This exact shape, a role and some content, is how every message to a model is written.']
+    ]],
+    ['p','A message to a model is just this: who is speaking, and what they say. A conversation is a list of these messages, in order.'],
+    ['do','A list of dictionaries: a conversation',[
+      ['code','messages = [\n    {"role": "user", "content": "My name is Asha."},\n    {"role": "assistant", "content": "Nice to meet you, Asha."},\n    {"role": "user", "content": "What is my name?"}\n]\nprint(len(messages))\nprint(messages[2]["content"])'],
+      ['x','You see <code>3</code> and then <code>What is my name?</code>. Read <code>messages[2]["content"]</code> from left to right: the list, then its third item, then that item’s content.']
+    ]],
+    ['h','Asking Python to do a job'],
+    ['p','A word followed by round brackets, like <code>print(...)</code> or <code>len(...)</code>, asks Python to do a job with whatever is inside the brackets. That is called a <strong>function</strong> call.'],
+    ['p','Some jobs take named settings, written as <code>name=value</code> inside the brackets. Their order doesn’t matter, because each one carries its own label.'],
+    ['do','Use named settings',[
+      ['code','print("Pune", "Delhi", sep=" and ")\nprint(round(3.14159, ndigits=2))'],
+      ['x','You see <code>Pune and Delhi</code> and then <code>3.14</code>. <code>sep</code> is a named setting of print: what to put between the items. <code>ndigits</code> says how many decimal places to keep.']
+    ]],
+    ['h','A dot reaches inside'],
+    ['p','A dot reaches inside something. <code>response.usage</code> reads as “the usage part of the response”. Dots can be chained, like folders inside folders.'],
+    ['p','Text has jobs of its own, reached the same way. <code>city.upper()</code> asks the text in <code>city</code> for a copy in capital letters.'],
+    ['do','Reach inside with a dot',[
+      ['code','city = "pune"\nprint(city.upper())\nprint(city.replace("p", "P"))'],
+      ['x','You see <code>PUNE</code> and then <code>Pune</code>. The part before the dot says whose job it is. The brackets say what to do it with.']
+    ]],
+    ['h','Now read the real thing'],
+    ['p','Here is the first call you will make in the next chapter. Don’t run it here. Read it with what you now know.'],
+    ['code','response = client.chat.completions.create(\n    model="meta/llama-3.1-8b-instruct",\n    messages=[{"role": "user", "content": "What is compound interest?"}]\n)\nprint(response.choices[0].message.content)','read'],
+    ['l',[
+      '<code>response = …</code> gives the answer a name, so the next line can use it.',
+      '<code>client.chat.completions.create(…)</code> asks for a job. The dots reach inside <code>client</code>, your connection to the model, for its “write a chat reply” job.',
+      '<code>model="…"</code> and <code>messages=[…]</code> are named settings: which model to ask, and the conversation so far.',
+      'The conversation is a list with one dictionary in it: a single message from the user.',
+      '<code>response.choices[0].message.content</code> reaches inside the answer: its first choice, that choice’s message, and the message’s text.'
+    ]],
+    ['p','That is the whole of it. Every model call in this course has this shape. Only the words inside change.'],
+    [
+      'try',
+      {id:'chpy-read',
+       mins:2,
+       min:20,
+       rows:2,
+       task:'Write, in plain words, what this line would show: <code>print(response.usage.prompt_tokens)</code>',
+       ph:'One sentence.',
+       after:'It shows how many tokens of your text the model read. Read it left to right: the response, its usage part, and in that, the count of prompt tokens. You will run exactly this line in Chapter 1.'}
+    ],
+    ['h','Three shapes you will meet later'],
+    ['p','Three more shapes appear from Chapter 2.2 on. You don’t need them today. Seeing them once now means they won’t surprise you later.'],
+    ['do','A loop, a check and a recipe',[
+      ['code','for city in ["Pune", "Delhi"]:\n    print("Checking", city)\n\nscore = 7\nif score >= 8:\n    print("ship it")\nelse:\n    print("not yet")\n\ndef shout(text):\n    return text.upper() + "!"\n\nprint(shout("done"))'],
+      ['x','You see two “Checking” lines, then <code>not yet</code>, then <code>DONE!</code>. A <code>for</code> line repeats the indented lines once for each item. An <code>if</code> line runs its indented lines only when the test is true. A <code>def</code> line names a small recipe you can use again.'],
+      ['p','Change <code>score = 7</code> to <code>score = 9</code> and run it again.']
+    ]],
+    ['c','The spaces matter','The spaces at the start of a line tell Python which lines belong to a <code>for</code>, an <code>if</code> or a <code>def</code>. If you edit a cell, keep those spaces as they are.'],
+    ['h','When a cell goes red'],
+    ['p','Sooner or later a cell will show a red box. That is Python saying which line it could not follow, and why. It is normal, and it costs nothing.'],
+    ['l',[
+      '<strong>is not defined</strong>: a name was used before a line gave it a value. Run the cells above first, or check the spelling.',
+      '<strong>SyntaxError</strong>: a bracket or a quote is missing. Count them: every opening one needs a closing one.',
+      '<strong>IndentationError</strong>: the spaces at the start of a line have moved. Press <strong>Undo edits</strong> to get the original back.'
+    ]],
+    ['h','What you have learned'],
+    ['p','You can now read the five shapes behind almost every cell in this course: a name for a value, a list, a dictionary, a job with named settings, and a dot that reaches inside.'],
+    ['p','In the next chapter you run the real call. You won’t have to take any line on trust, because you can read each one. To run it you need a model connected, which is the <a href="#/setup">Connect</a> page, once.']
+  ]
+},
+{
+  id:'ch1', num:1, part:1, curriculumTier:'core', phase:1, prerequisites:['ch05','chpy'], nextUnits:['ch15b','ch2','ch3','ch8'], minutes:45, labs:[],
   title:'Your first API call: how a model answers',
   concept:'You send a model a message, and it sends text back. In this chapter you’ll make your first API call, read what it cost, and see why a confident answer can still be wrong.',
   plan:{
@@ -103,6 +228,7 @@ window.PART1 = [
     gate:'Explain what happens during a request without once saying “the AI just knows”.'
   },
   needs:[
+    ['Chapter 0.8','You can read a short piece of Python: a name for a value, a list, a dictionary and a dot. The first model call below uses all four.',0.8],
     ['A model connected on the setup page','The five minutes of setup, done once. Chapter 1 is the first chapter that uses it.','setup'],
   ],
   takeaway:[
@@ -112,7 +238,7 @@ window.PART1 = [
   ],
   story:[
     ['c','Before you start','The code in this chapter runs right here in the page. Press <strong>Run</strong> under each block, top to bottom. Before your first cell runs, the page does the three warm-up steps from <a href="#/setup">Setup</a> for you: the key, the library and the client. After each idea in this chapter, you’ll find a little code that shows it. Run each block before you read on.'],
-    ['p','In the last chapter you tried tokens, cost and temperature right here in the browser. Now you’ll do the same kind of thing with a real model. You’ll send it a message, look at what it sends back, and see what that exchange costs.'],
+    ['p','In Chapter 0.5 you tried tokens, cost and temperature right here in the browser. In the last chapter you learned to read a few lines of Python. Now you’ll put both to work with a real model. You’ll send it a message, look at what it sends back, and see what that exchange costs.'],
     ['p','Along the way you’ll learn one thing that matters for every AI product you’ll ever work on: a model can sound completely sure and still be wrong.'],
     ['h','A model predicts the next piece of text'],
     ['p','Start with something you already use every day. When you type <em>See you at the</em> on your phone, the keyboard suggests <em>office</em>, <em>station</em> or <em>airport</em>. It makes those suggestions from what people usually type next.'],
@@ -552,7 +678,7 @@ window.PART1 = [
       ['x','The five outputs differ. The wording changes, sometimes the emphasis changes, and occasionally the answer itself is different. If one prompt varies this much, then comparing two prompts on one output each tells you very little.'],
       ['key','Each output is one sample from a range of possible outputs. Judging a prompt from one sample is not reliable.']
     ]],
-    ['p','The fix is a small test set. It’s a handful of real inputs, and for each one, a note on what a good answer looks like. Chapter 6 builds a bigger version for retrieval. This one takes about twenty minutes.'],
+    ['p','The fix is a small test set. It’s a handful of real inputs, and for each one, a note on what a good answer looks like. People in AI teams call running a set like this an <strong>eval</strong>, short for evaluation. Chapter 6 builds a bigger version for retrieval. This one takes about twenty minutes.'],
     ['h','Build the test set'],
     ['p','A test set doesn’t need to be fancy. Ten rows are enough to start. What matters is that the inputs are real and that you write down what “good” means before you look at the results.'],
     ['do','Build a ten-row test set',[

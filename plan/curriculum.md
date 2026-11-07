@@ -1,6 +1,6 @@
 # Applied AI PM Curriculum (Oct 2026 – Apr 2027)
 
-This is a 26-week route to becoming a believable Applied AI Product Manager by April 2027. It runs from Monday 19 October 2026 to Sunday 18 April 2027. It starts at ten minutes a weekday and builds slowly from there. Everything runs in the browser, and no local machine is needed.
+This is a 26-week route to becoming a believable Applied AI Product Manager by April 2027. It runs from Monday 19 October 2026 to Sunday 18 April 2027. It starts at about an hour a week and builds slowly from there. Everything runs in the browser, and no local machine is needed.
 
 There is one route, and four places show it. The [playbook](../) is where you do each chapter. The [book](../book/) tells the same chapters as one story, in the same order. This plan shows the route as weeks, with notes and monthly reviews. The 12:00 reminder names your next step. All four read the same list and the same progress, so a chapter you mark complete in the playbook, or a book chapter you finish, is ticked everywhere.
 
@@ -12,7 +12,7 @@ You can be a believable Applied AI PM candidate by April 2027, on one condition.
 
 So the route ends with one shipped, evaluated product: **Bharat Privacy Guard**, the course’s project. You build it a piece at a time, chapter by chapter, and publish it with its numbers in Week 25.
 
-**The route in one paragraph:** Month 1 is the gentle start: the book from its first page, ten minutes a weekday, three small tries and your first evaluation, with nothing to install. Month 2 answers Track A’s product questions (your home ground as a project manager), does the one-time setup and makes your first model call. Months 3 and 4 build and measure the core: sorting, search by words and by meaning, dependable output, better search, attacks, grading at scale and cost. Month 5 covers the decisions and the production depth. Month 6 ships the capstone, covers the business and gets you ready for interviews.
+**The route in one paragraph:** the route follows the book’s order, and every week pairs a book chapter (the story) with the playbook chapter that practises it, so the two are never weeks apart. Month 1 is the product half: the problem, its users, its market, a plan and a spec, with no code. Month 2 meets the machine: tokens, a model connected, just enough Python to read the code, the first call, instructions, an answer key, sorting and summarising. Months 3 and 4 build and measure the core: search, the first complete system, dependable output, attacks, grading at scale, cost, the rules and the spec. Month 5 goes over the same ideas at production depth. Month 6 ships the capstone, covers the business and gets you ready for interviews.
 
 ## Six-month route at a glance
 
@@ -20,16 +20,16 @@ Each month ends with a review on the Plan tab. Read the table row by row. The la
 
 | Month (weeks) | Dates | Theme | By the review |
 | --- | --- | --- | --- |
-| 1 (W1–4) | 19 Oct – 15 Nov 2026 | Read first: the gentle start | The book read to chapter 12, three tries, your first evaluation |
-| 2 (W5–9) | 16 Nov – 20 Dec 2026 | Product foundations and first contact | Track A’s boxes answered, setup working, first model call costed, a sorter with a score |
-| 3 (W10–13) | 21 Dec 2026 – 17 Jan 2027 | Finding and measuring | Search by words and by meaning on a scoreboard; the findings page v0 published |
-| 4 (W14–18) | 18 Jan – 21 Feb 2027 | What real systems add | Dependable output, your own tool attacked, a checked marker, a cost model, the system card |
-| 5 (W19–23) | 22 Feb – 28 Mar 2027 | Decisions and production depth | The requirements, build or buy, the release gate, the risk register |
-| 6 (W24–26) | 29 Mar – 18 Apr 2027 | Ship it, defend it, get the job | Bharat Privacy Guard shipped with its findings and demo; a portfolio page; practice interviews |
+| 1 (W1–4) | 19 Oct – 15 Nov 2026 | The problem and the plan | Book chapters 1–7 read, each with its playbook chapter (A1–A7) on a first pass |
+| 2 (W5–9) | 16 Nov – 20 Dec 2026 | Meet the machine | A model connected, first call costed, a tested system prompt, an answer key, a sorter with a score |
+| 3 (W10–13) | 21 Dec 2026 – 17 Jan 2027 | Finding, and your first system | Search by words and by meaning on a scoreboard; the findings page v0 published |
+| 4 (W14–18) | 18 Jan – 21 Feb 2027 | What real systems add | Your own tool attacked, a checked marker, a cost model, the system card, the requirements |
+| 5 (W19–23) | 22 Feb – 28 Mar 2027 | The same ideas, at production depth | Model choice, the release gate, the risk register, the decision pack |
+| 6 (W24–26) | 29 Mar – 18 Apr 2027 | Ship it, and get the job | Bharat Privacy Guard shipped with its findings and demo; a portfolio page; practice interviews |
 
 ### Weekly time
 
-The route starts small on purpose. Month 1 is about 40–50 minutes a week. Months 2 to 4 are one and a half to two hours. Month 5 is about three. The capstone week asks for about eight. If you have more time, carry on to the next step. The route never stops you going ahead, and the dates are a guide, not a judge.
+The route starts small on purpose. Month 1 is about an hour a week. Months 2 to 4 are one and a half to two hours. Month 5 is about three. The two capstone weeks ask for about four or five hours each. If you have more time, carry on to the next step. The route never stops you going ahead, and the dates are a guide, not a judge.
 
 ## Job-market grounding
 
@@ -50,7 +50,7 @@ Now let's read some real postings. The table has one posting per row. The middle
 | Employer / role | Signals in the posting | What it means for you |
 | --- | --- | --- |
 | [Sarvam AI, Product Manager](https://www.sarvam.ai/careers/jobs/c4bb3b2c-7608-4d57-8761-650b4222ac13) | Prompt design, model selection, latency budgets, failure modes, eval pipelines; built agents; explicitly not for people moving over from project/program management | This is the hardest filter you will face. Answer it with shipped agents, eval reports and Product Owner language |
-| [Sarvam AI, PM (Models)](https://www.sarvam.ai/careers/jobs/9e197c29-5164-42eb-8e74-4f691a794517) | Owns ASR, TTS and model evaluation pipelines; metrics are accuracy, latency, MOS, robustness | Evaluating models on Indian text, which the route does from Month 1, maps straight onto this |
+| [Sarvam AI, PM (Models)](https://www.sarvam.ai/careers/jobs/9e197c29-5164-42eb-8e74-4f691a794517) | Owns ASR, TTS and model evaluation pipelines; metrics are accuracy, latency, MOS, robustness | Evaluating models on Indian text, which the route does from Month 2, maps straight onto this |
 | [Sarvam AI, PM On-Device & Edge](https://www.sarvam.ai/careers/jobs/f462051e-ec76-45cf-96c5-e0192dd4dcc6) | Human-in-the-loop and agentic product design; regulated industries including government | Your government background is a clear plus |
 | [SciSpace, AI PM](https://www.instahyre.com/job-421694-ai-product-manager-at-scispace-bangalore/) | LLMs, agentic systems, orchestration, fine-tuning, AI evaluation, LangChain/LangGraph; accuracy, latency and trust metrics | This shows you the bar at an AI-native startup |
 | [PhonePe, AI PM - ML](https://www.instahyre.com/job-428997-ai-product-manager-ml-at-phonepe-bangalore/) | Tags LLM, MCP, RAG, agents, evaluation; define reliability metrics and run evals | MCP and evals now show up as listed skills at Indian consumer tech firms. The posting text looks mislabeled, so check it on PhonePe's careers page |
@@ -143,25 +143,25 @@ Learning is easier with people around you. These are good places to start.
 
 Each table lists the weeks of one month. The weeks themselves, with every step, are on the [Plan & tracker tab](#plan).
 
-### Month 1: Read first, the gentle start (W1–4, 19 Oct – 15 Nov 2026) {#m1}
+### Month 1: The problem and the plan (W1–4, 19 Oct – 15 Nov 2026) {#m1}
 
-You read the book from its first page: the story of a product manager in Pune who finds identity numbers in a week of customer chats, and decides whether that deserves a year of work. In weeks 3 and 4 the story meets the machine: tokens, the first model call, why a model forgets, instructions and how to tell whether it worked. Three small tries happen in a chat assistant or the browser, and none needs an account or an install.
+You read the book from its first page: the story of a product manager in Pune who finds identity numbers in a week of customer chats, and decides whether that deserves a year of work. Each book chapter is followed in the same week by its playbook chapter, A1 to A7, on a first pass: you read the method and answer its boxes while the story is fresh. There is no code and nothing to install. By the end you have a problem, its users, its market, a plan and a short spec, all for the project you will build.
 
 <!-- weeklinks 1-4 -->
 
 [This month in one view, in the playbook](../app/#/start#month-1): every week with its chapters, book pages and your notes.
 
-### Month 2: Product foundations and first contact (W5–9, 16 Nov – 20 Dec 2026) {#m2}
+### Month 2: Meet the machine (W5–9, 16 Nov – 20 Dec 2026) {#m2}
 
-Track A is your home ground as a project manager. On the route you answer its boxes on a first pass, because you have already read each chapter’s story. Its long “Build it” sections wait for a second pass. Then comes the one-time setup, the first model call and its cost, writing and testing instructions, and the first sorter with a score.
+The plan needs a model, so now you meet one. You see tokens and cost on your own text, connect a model once, and learn to read just enough Python for the course. Then the first real call and its bill, why a model forgets, standing instructions, your first answer key, and the first two jobs a model does: sorting and summarising. The month ends on cutting long text and finding the right piece by its words.
 
 <!-- weeklinks 5-9 -->
 
 [This month in one view, in the playbook](../app/#/start#month-2): every week with its chapters, book pages and your notes.
 
-### Month 3: Finding and measuring (W10–13, 21 Dec 2026 – 17 Jan 2027) {#m3}
+### Month 3: Finding, and your first system (W10–13, 21 Dec 2026 – 17 Jan 2027) {#m3}
 
-Two light holiday weeks cover cutting long text and finding by words. Then come finding by meaning, the scoreboard that compares them, and your first complete system. Version 0 of the findings page gets published.
+Two light holiday weeks cover finding by meaning and measuring which kind of search finds more. Then every piece joins into your first complete system, and version 0 of the findings page gets published. The month ends with answers a program can use and a model that can call a tool.
 
 <!-- weeklinks 10-13 -->
 
@@ -169,23 +169,23 @@ Two light holiday weeks cover cutting long text and finding by words. Then come 
 
 ### Month 4: What real systems add (W14–18, 18 Jan – 21 Feb 2027) {#m4}
 
-Dependable output, long context and thinking models, better search, prompt injection, grading at scale, cost, real documents and the rules about what you may send.
+Thinking models and the wait, better search, an attack on your own tool, grading at scale, cost, real documents, what you may send, the rules, the spec, build or buy, and what the product does when the model is wrong. This closes Parts I to IV.
 
 <!-- weeklinks 14-18 -->
 
 [This month in one view, in the playbook](../app/#/start#month-4): every week with its chapters, book pages and your notes.
 
-### Month 5: Decisions and production depth (W19–23, 22 Feb – 28 Mar 2027) {#m5}
+### Month 5: The same ideas, at production depth (W19–23, 22 Feb – 28 Mar 2027) {#m5}
 
-The spec for a system that varies, build or buy, designing for wrong answers, business impact, then the production chapters: models chosen on your own cases, context, retrieval, tools, agents, MCP, pictures and voice, release gates, watching it live, and security.
+Part V goes over Parts I to IV again, at the depth a real launch needs. Nothing in it is new as an idea, which is why it can go deeper: the plumbing, models chosen on your own cases, context, retrieval, workflows and agents, the standard plug for tools, pictures and voice, release gates, watching it live, security, and the product spec with its decision pack.
 
 <!-- weeklinks 19-23 -->
 
 [This month in one view, in the playbook](../app/#/start#month-5): every week with its chapters, book pages and your notes.
 
-### Month 6: Ship it, defend it, get the job (W24–26, 29 Mar – 18 Apr 2027) {#m6}
+### Month 6: Ship it, and get the job (W24–26, 29 Mar – 18 Apr 2027) {#m6}
 
-The product spec and the decision pack, then the capstone: Bharat Privacy Guard shipped and defended. The last week is the business chapters on a first pass, a portfolio page, practice interviews and a look back over six months.
+The capstone gets two weeks: build it and break it, then measure it, ship it and defend it. The last week is the business chapters on a first pass, a portfolio page, practice interviews and a look back over six months.
 
 <!-- weeklinks 24-26 -->
 
@@ -195,7 +195,7 @@ The product spec and the decision pack, then the capstone: Bharat Privacy Guard 
 
 The course builds one project from start to finish. **Bharat Privacy Guard** is a small tool that sits between a person and a website, an app or an AI chatbot. It spots Indian identity numbers and other personal details in what someone is about to send, and warns them or covers the details before they leave. The [project page in the playbook](../app/#/project) shows its thirteen stages and which chapters build each one.
 
-It is a good portfolio project for a GovTech product manager for three reasons. It touches the DPDP Act directly. It needs evaluation at every step, from a ten-message answer key in Month 1 to a release gate in Month 5. And it can be built entirely on made-up records, so nothing private is ever used.
+It is a good portfolio project for a GovTech product manager for three reasons. It touches the DPDP Act directly. It needs evaluation at every step, from a small answer key in Month 2 to a release gate in Month 5. And it can be built entirely on made-up records, so nothing private is ever used.
 
 **Definition of done (Week 25):** a public findings document that opens with its headline numbers, an honest failure example, the cost per check, a three-minute screen-recorded demo, and a link anyone can open.
 

@@ -320,7 +320,8 @@ window.PART7 = [
      'Look at who is in the cohort and how they got there. Say your first cohort is design partners you recruited personally. They are more motivated than typical users, so their retention will look too good. Compare them with users who found the product on their own before you draw any conclusions.']
   ],
   story:[
-    ['c','Before you start','This chapter takes about fourteen hours. Create a free account with PostHog, Mixpanel or Google Analytics. If your capstone has no users yet, you will seed some data, and the chapter shows how.'],
+    ['c','On your route','Take a first pass of about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
+    ['c','Before you start','In full, this chapter takes about fourteen hours. Create a free account with PostHog, Mixpanel or Google Analytics. If your capstone has no users yet, you will seed some data, and the chapter shows how.'],
 
     ['p','In the last chapter you looked at how people find a product and get started with it. Now comes the next question. Once real people are using it, how do you know it is working? Opinions won’t answer that. What users actually do will.'],
     ['p','This chapter gives you five ideas to answer it. You’ll pick the one number that matters, decide which events to record, read the three views that answer most questions, run a fair test, and check that your data can be trusted. '],
@@ -460,7 +461,8 @@ window.PART7 = [
      'Pick one dependency and trace it. Say the model provider renames a field in its response. Which step fails first, and would you notice? Good answers name three things: a validation step that fails loudly, an alert, and a pinned version that gives you time to update.']
   ],
   story:[
-    ['c','Before you start','This chapter takes about two and a half hours. Tools change every few months. The brands named below are one current example each, not a requirement. If a named tool is gone by the time you read this, pick a replacement that does the same job.'],
+    ['c','On your route','Take a first pass of about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
+    ['c','Before you start','In full, this chapter takes about two and a half hours. Tools change every few months. The brands named below are one current example each, not a requirement. If a named tool is gone by the time you read this, pick a replacement that does the same job.'],
     ['p','By now your project probably touches several tools: one for the model, one for code, one for tracking what users do. This chapter steps back and asks a simple question. How should you choose them?'],
     ['p','Here is the idea in a few lines. An AI product workflow needs eleven capabilities, from start to finish. A capability is a job that has to get done, such as storing your code safely or showing how people use the product. A tool is whatever you pick to do that job.'],
     ['p','Most projects use five or six of the eleven, not all of them. The mistake this chapter corrects is treating each capability as a subject to master. Think of each one as a slot to fill instead.'],
@@ -547,7 +549,8 @@ window.PART7 = [
      'Decide it in advance. For example, before the agent can post to Slack without approval, it must complete 200 runs with approval where every post was approved unchanged. It must also pass the prompt-injection tests from Chapter 31. Write the threshold down before you look at the results.']
   ],
   story:[
-    ['c','Before you start','This chapter takes about twelve hours. You need a working version of your capstone’s main flow, even a rough one, and a coding agent from B4.'],
+    ['c','On your route','Take a first pass of about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
+    ['c','Before you start','In full, this chapter takes about twelve hours. You need a working version of your capstone’s main flow, even a rough one, and a coding agent from B4.'],
 
     ['p','In the last chapter you chose the tools for your project. Now we look at what holds those tools together around the model. A model on its own only takes text in and gives text out. What makes it a dependable product is everything around it.'],
     ['p','Here’s what you’ll do. You’ll name the seven parts of that system and learn from how coding agents are built. Then you’ll set limits on what a tool may do, compare a fixed workflow with an agent, and plan a safe release.'],
@@ -695,7 +698,8 @@ window.PART7 = [
      'Name the number and the threshold before launch. For example: roll back if the error rate passes 5% for an hour, if the useful-theme rate drops 10 points, or if any data reaches the wrong account. A trigger decided in advance lets anyone on the team act quickly.']
   ],
   story:[
-    ['c','Before you start','This chapter takes about eighteen hours, spread over two or three weeks, because users need time to come back. You need your deployed app from B4 and the release checklist from B5.'],
+    ['c','On your route','Take a first pass of about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
+    ['c','Before you start','In full, this chapter takes about eighteen hours, spread over two or three weeks, because users need time to come back. You need your deployed app from B4 and the release checklist from B5.'],
 
     ['p','In the last chapter you drew the system around the model and wrote a release checklist. Now you get to use it. Until real people try your product, everything you know about it is a guess.'],
     ['p','Here’s what you’ll do. You’ll get the product ready to run, recruit early users honestly, and watch what they do. Then you’ll choose the next fix, and tell users what changed.'],
@@ -819,7 +823,8 @@ window.PART7 = [
      'Practise it out loud. Say what you expected, what happened, what you learned and what you changed. Don’t blame the data, the team or the timeline. Interviewers are looking for the change you made, not a spotless record.']
   ],
   story:[
-    ['c','Before you start','This chapter takes about twelve hours. Collect ten job descriptions for roles you would apply for. Have your capstone evidence pack from B6 ready, and find a friend or peer who can run mock interviews with you.'],
+    ['c','On your route','Take a first pass of about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
+    ['c','Before you start','In full, this chapter takes about twelve hours. Collect ten job descriptions for roles you would apply for. Have your capstone evidence pack from B6 ready, and find a friend or peer who can run mock interviews with you.'],
 
     ['p','In the last chapter you shipped to real users and learned from what happened. That work is the best thing you have to show an employer. But an interviewer can’t see it unless you present it well.'],
     ['p','So this chapter is about turning your project into proof. You’ll choose the right roles, write about your work, practise the interview questions you’re likely to meet, and get ready to negotiate. Let’s start with the roles.'],

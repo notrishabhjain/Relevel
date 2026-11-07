@@ -8,7 +8,6 @@ goals:
   - batana ki secrets kahan rakhne chahiye, repository kya record karti hai, aur error ko neeche se kaise padhte hain
   - samjhana ki test ko ek baar fail hote dekhna kyun zaroori hai, aur experiment runner se kya mumkin hota hai
 terms:
-  - Python | woh programming language jisme zyadatar AI ka kaam likha jaata hai; ek product manager ke liye, yeh theek-theek kehne ka tareeka ki ek experiment kya karta hai | 
   - HTTP | rules ka woh set jisse programs internet par requests aur replies bhejte hain, har reply par ek number ke saath jo batata hai ki kaam hua ya nahi | 
   - status code | HTTP reply par likha number: 200 matlab kaam hua, 4xx number matlab request galat thi, aur 5xx number matlab server fail hua | status codes
   - environment variable | code ke bahar, us jagah rakhi hui value jahan program chalta hai; passwords aur API keys isi jagah rakhi jaati hain | environment variables
