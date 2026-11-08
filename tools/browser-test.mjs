@@ -1062,14 +1062,14 @@ console.log('\n— one route: the playbook, the book and the plan agree —');
   }));
   ok(plan.ch0 && plan.b1 && plan.rev, 'the plan shows the chapter, the book chapter and the look back as done', JSON.stringify(plan));
   ok(plan.next === 'b:preface.html', 'and names the same next step as the playbook', plan.next);
-  await gs.page.click('li[data-step="t:tokens"] input');
+  await gs.page.click('li[data-step="t:review-2"] input');
   await gs.page.waitForTimeout(300);
   await gs.page.goto(B + '/app/');
   await gs.page.waitForFunction(() => window.CONTENT && window.STORE);
-  ok(await gs.page.evaluate(() => !!window.STORE.S.steps['t:tokens'] && !!window.STORE.S.read['01-the-number-in-the-chat.html']),
-     'a try ticked on the plan, and a chapter read in the book, are in the playbook too');
+  ok(await gs.page.evaluate(() => !!window.STORE.S.steps['t:review-2'] && !!window.STORE.S.read['01-the-number-in-the-chat.html']),
+     'a step ticked on the plan, and a chapter read in the book, are in the playbook too');
   const ch = await gs.page.evaluate(async () => { location.hash = '#/ch/a1'; await new Promise(r => setTimeout(r, 300)); return document.querySelector('.routeline') && document.querySelector('.routeline').textContent; });
-  ok(/Week 5/.test(ch || '') && /first pass/.test(ch || ''), 'a long chapter says it is a first pass on the route, in week 5', ch);
+  ok(/Week 1/.test(ch || '') && /first pass/.test(ch || '') && /Why now/.test(ch || ''), 'a long chapter says it is a first pass on the route, in week 1, and why it comes now', ch);
   await gs.ctx.close();
 }
 
@@ -1085,8 +1085,8 @@ console.log('\n— one view: each week links the other views, and notes reach th
     doIt: [...document.querySelectorAll('#step-b_01-the-number-in-the-chat_html .gtwins a')].map(a => a.getAttribute('href')),
     about: !!document.querySelector('#step-b_01-the-number-in-the-chat_html .gabout'),
     planLink: (document.querySelector('#week-1 .hubplan a[href="/plan/#w1"]') || {}).textContent,
-    how: !!document.querySelector('#week-6 .hubplan a[href="/plan/#setup"]'),
-    further: document.querySelectorAll('#week-3 .hubplan a[target=_blank]').length
+    how: !!document.querySelector('#week-5 .hubplan a[href="/plan/#setup"]'),
+    further: document.querySelectorAll('#week-5 .hubplan a[target=_blank]').length
   }));
   ok(v.views.join() === '/book/,/plan/,/plan/#curriculum', 'the route page opens the book, the plan and the curriculum', JSON.stringify(v.views));
   ok(v.months === 6 && v.reviews === 6, 'it shows all six months, each with its monthly review');
@@ -1106,10 +1106,11 @@ console.log('\n— one view: each week links the other views, and notes reach th
   ok(!!back.wk && back.month, 'the plan links each week and each curriculum month back to the one view', JSON.stringify(back));
   await hv.page.goto(B + '/book/05-choosing-what-not-to-do.html');
   const rb = await hv.page.evaluate(() => [...document.querySelectorAll('.routebox a')].map(a => a.getAttribute('href')));
-  ok(rb.includes('/app/#/start#week-2') && rb.includes('/plan/#w2'), 'a book chapter links its week in the one view and in the plan', JSON.stringify(rb));
+  ok(rb.includes('/app/#/start#week-3') && rb.includes('/plan/#w3'), 'a book chapter links its week in the one view and in the plan', JSON.stringify(rb));
+  ok(rb.includes('/app/#/ch/a5'), 'and hands on to the chapter that practises it, the next step on the route', JSON.stringify(rb));
   await boot(hv.page, '#/ch/a5');
   const rl = await hv.page.evaluate(() => [...document.querySelectorAll('.routeline a')].map(a => a.getAttribute('href')));
-  ok(rl.includes('#/start#week-5') && rl.includes('/plan/#w5') && rl.some(h => /\/book\/05-/.test(h)), 'a playbook chapter links its week, its book chapter and its plan week', JSON.stringify(rl));
+  ok(rl.includes('#/start#week-3') && rl.includes('/plan/#w3') && rl.some(h => /\/book\/05-/.test(h)), 'a playbook chapter links its week, its book chapter and its plan week', JSON.stringify(rl));
   await hv.ctx.close();
 }
 
@@ -1212,7 +1213,7 @@ const map = await navp.page.evaluate(() => ({
 }));
 ok(map.parts === 7, 'the map has seven parts', String(map.parts));
 ok(map.open === 1, 'with only the current one open', String(map.open));
-ok(map.rows === 65, 'every chapter is a row', String(map.rows));
+ok(map.rows === N.chapters, 'every chapter is a row', String(map.rows));
 ok(map.next === 1 && map.here, 'one chapter is marked next, and the card above says so');
 ok(!map.sep, 'and there is no "separate track" to puzzle over');
 await navp.page.evaluate(() => { location.hash = '#/library#part-5'; });
@@ -1224,7 +1225,7 @@ const trail = await navp.page.evaluate(() => {
   const t = document.querySelector('.chtrail');
   return t ? { text: t.textContent, links: [...t.querySelectorAll('a')].map(a => a.getAttribute('href')) } : null;
 });
-ok(trail && /chapter 4 of 14/.test(trail.text), 'a chapter says where it sits in its part', trail && trail.text);
+ok(trail && /chapter 5 of 15/.test(trail.text), 'a chapter says where it sits in its part', trail && trail.text);
 ok(trail && trail.links.includes('#/library') && trail.links.includes('#/ch/ch15b') && trail.links.includes('#/ch/ch21'),
    'with a way back to the map and to the chapters either side', trail && trail.links.join(' '));
 

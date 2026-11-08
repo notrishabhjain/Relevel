@@ -84,13 +84,19 @@ function dashboard(){
   const oc=eng.overconfidence(st);
   const vel=eng.velocity(st);
 
+  /* A new learner sees one thing: the next step. A wall of zeros, a placement
+     test across six domains and a list of other things to do is a reason to
+     close the tab on day one, so the tracker stays folded until there is
+     something in it. */
+  const fresh=tested===0&&!(st.att||[]).length;
   w.appendChild(h('header',{class:'dash-head'},[
     h('div',{},[
-      h('div',{class:'eyebrow'},[h('span',{text:'Skill tracker'}),h('span',{class:'dot'}),
+      h('div',{class:'eyebrow'},[h('span',{text:fresh?TR('Today'):'Skill tracker'}),h('span',{class:'dot'}),
         h('span',{text:new Date().toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'long'})})]),
-      h('h1',{text:'Where you actually are'}),
-      h('p',{class:'dash-sub',html:window.SKILLS.length+' tracked skills. Mastery moves on measured evidence and decays without practice — so this number is a claim about <em>now</em>, not a record of what you once read.'})]),
-    h('div',{class:'bigring'},[ring(ov), h('span',{class:'ringlab',text:'overall mastery'})])]));
+      h('h1',{text:fresh?TR('Your next step'):'Where you actually are'}),
+      h('p',{class:'dash-sub',html:fresh?TR('One step at a time, in order. Each week reads a chapter of the book and then does the chapter here that practises it. Your skill numbers fill in by themselves as you answer the questions inside the chapters.')
+        :window.SKILLS.length+' tracked skills. Mastery moves on measured evidence and decays without practice — so this number is a claim about <em>now</em>, not a record of what you once read.'})]),
+    fresh?null:h('div',{class:'bigring'},[ring(ov), h('span',{class:'ringlab',text:'overall mastery'})])]));
 
   /* The one thing to do next, named and timed.
 
@@ -100,7 +106,12 @@ function dashboard(){
      time estimate, and a smaller version of it for an evening with nothing
      left in it. */
   w.appendChild(resumePanel(st, eng));
-
+  /* everything below the next step: open once there is something measured */
+  const outer=w;
+  const fold=fresh?h('details',{class:'dashfold'},[h('summary',{text:TR('Your skill tracker (it fills in as you answer the questions in the chapters)')})]):null;
+  if(fold) outer.appendChild(fold);
+  {
+  const w=fold||outer;
   w.appendChild(h('div',{class:'stats'},[
     tile('skills measured',tested+' / '+window.SKILLS.length,tested===30?'ok':''),
     tile('due for review',due,due>0?'red':'ok',due?'decaying now':'all current'),
@@ -140,6 +151,7 @@ function dashboard(){
       h('span',{class:'domsub',text:d.tested+' of '+d.total+' skills measured'})]));
   });
   w.appendChild(grid);
+  }
 
   /* The course, reachable from the page people actually land on: the same
      ordered parts the course map and the sidebar show, with the project stage
@@ -174,7 +186,7 @@ function dashboard(){
   if(st.att.length){
     w.appendChild(h('h2',{class:'sec',text:'Last three weeks'}));
     w.appendChild(h('div',{class:'card'},[dayBars(acc)]));
-  } else {
+  } else if(!fresh) {
     w.appendChild(h('div',{class:'callout',style:'margin-top:2rem'},[
       h('span',{class:'lbl',text:'Nothing measured yet'}),
       h('p',{html:'The placement check takes about twelve minutes and sets your baseline across all six domains. Everything after it is measured as a change from that number — which is the entire point of tracking rather than reading.'}),

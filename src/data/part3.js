@@ -517,7 +517,7 @@ window.PART3 = [
     ['p','There is one last catch, and it surprises many teams.'],
     ['c','Watch out','Retrieval sends whatever it retrieves. You may have decided carefully what goes into your document store, and then built a system that sends three chunks from it with every request. Your decision about the document store is effectively a decision about every query.'],
     ['p','To sum up, ask three questions in order: does it identify a person, whose confidential information is it, and what does the vendor do with it.'],
-    ['p','Then turn your answers into a rule that others can follow without you. Next, in Chapter 17, you’ll see how a team writes all of this down for a whole AI system, through risk tiers, system cards and oversight.']
+    ['p','Then turn your answers into a rule that others can follow without you. Rules like this are one part of what companies call <strong>governance</strong>. Next, in Chapter 17, you’ll see how a team writes all of it down for a whole AI system, through risk tiers, system cards and oversight.']
   ],
   capstone:{
     title:'Write the rule for what the tool may send to an outside provider',

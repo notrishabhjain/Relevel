@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import crypto from 'node:crypto';
 import { messageFor, weekdaysSince, istParts, allowedEndpoint, makeKeys, vapidHeader, START, SEND_FROM_MINUTE, SEND_UNTIL_MINUTE } from '../api/_lib/nudge.js';
 import { MESSAGES } from '../api/_lib/nudge-messages.js';
-import { STEPS, stepDone } from '../src/data/route.mjs';
+import { STEPS, WEEKS, stepDone } from '../src/data/route.mjs';
 const EXPECT = JSON.parse(readFileSync(new URL('../content/defaults.json', import.meta.url), 'utf8'));
 const B = process.env.BASE || 'http://127.0.0.1:8788';
 let pass = 0, fail = 0;
@@ -179,7 +179,7 @@ console.log('\n— daily reminder —');
     STEPS.forEach(x => { if (x.kind === 'chapter') all.done[x.ch] = 1; else if (x.kind === 'read') all.read[x.book] = 1; else all.steps[x.id] = 1; });
     ok(STEPS.every(x => stepDone(x, all)) && /Every step on the route is done/.test(messageFor('2026-12-01', all).body), 'with every step done, it says so');
     const anon = messageFor('2026-11-03');
-    ok(anon.url === '/app/#/start' && /This week: Meet the machine/.test(anon.body), 'signed out: the calendar names the week, the site names the step', anon);
+    ok(anon.url === '/app/#/start' && anon.body.includes('This week: ' + WEEKS[2].title + '.'), 'signed out: the calendar names the week, the site names the step', anon);
   }
   ok(allowedEndpoint('https://fcm.googleapis.com/fcm/send/abc') && allowedEndpoint('https://updates.push.services.mozilla.com/wpush/v2/x') &&
      allowedEndpoint('https://web.push.apple.com/abc') && !allowedEndpoint('http://fcm.googleapis.com/x') &&

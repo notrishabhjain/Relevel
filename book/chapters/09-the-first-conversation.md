@@ -1,7 +1,7 @@
 ---
 title: The First Conversation
-summary: An engineer shows the product manager a single request to a language model and the reply that comes back. The receipt attached to the reply turns out to teach as much as the answer. You learn about APIs, JSON, API keys, the usage block, and why a confident answer is not evidence.
-course: ch1
+summary: An engineer shows the product manager a single request to a language model and the reply that comes back. The receipt attached to the reply turns out to teach as much as the answer. You learn about APIs, JSON, how to read a few lines of Python, API keys, the usage block, and why a confident answer is not evidence.
+course: chpy ch1
 goals:
   - describe how a program asks a language model for something, through an API
   - read a simple JSON request and understand what a role is
@@ -12,6 +12,7 @@ terms:
   - JSON | a plain way of writing information as labels and values inside curly braces, which nearly every API uses | 
   - API key | a long secret code that tells a provider who is asking, and whom to bill; anyone who has it can spend your money | API keys
   - usage block | the part of every reply that says how many tokens went in and how many came out, which is what you are charged for | usage
+  - Python | the programming language most AI work is written in; for a product manager, a way of saying exactly what an experiment does | 
 ---
 
 One evening, after the office had emptied, Imran Qureshi opened a single window on his screen. It had a text box, a button, and a grey area below them where something would appear. He wanted Anaya to see the whole round trip, from a question leaving a program to an answer coming back. He kept the demonstration deliberately plain.
@@ -48,6 +49,8 @@ The slip was written in *JSON*, a plain format for information, written as label
 The request is a list of messages, and each message has a role. For now there are two roles. *User* is whoever is asking, and *assistant* is the model's own reply. A third role exists, and Chapter 11 introduces it.
 
 Nothing else is on the slip. The thing Anaya had pictured as a mind came down to a list, and the list came down to one line.
+
+In the program itself, the slip was a few lines of Python. Anaya had never read code, and Imran did not ask her to write any. He asked her to read it the way she would read a form. Square brackets held a list: several things, in order. Curly braces held labels and their values, like the boxes on the slip. A name followed by an equals sign gave something a name, so the next line could use it. A dot reached inside something, so `response.usage` meant the receipt part of the reply. Four shapes covered almost every line on the screen, and none of them needed a programmer to explain.
 
 ## The key to the till
 

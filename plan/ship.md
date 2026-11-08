@@ -18,11 +18,11 @@ If you run out of time, publish at 80%. A decent page that is public beats a per
 
 **Weeks 1–24. Ships:** the week’s steps ticked. **Time:** what the route says for each step.
 
-Every week on the route is a few steps in order: a book chapter, a playbook chapter, sometimes a small try, and a look back on Friday. Here is how to take each kind.
+Every week on the route is a few steps in order: a book chapter, then the playbook chapter that practises it, sometimes a small try, and a look back on Friday. Read the story first and do its chapter the same day or the next, while the story is fresh. Here is how to take each kind.
 
 1. **A book chapter.** Read it in the book, in English or Hinglish. It ticks itself when you reach the end, on every page of the site and in your account. A chapter split over two days ticks its first half when you reach the second.
 2. **A playbook chapter.** Read it and answer the boxes as you go. Do the hands-on steps that run in the browser. Then press “Mark chapter complete” at the end; that is what ticks the step.
-3. **A first pass.** Track A, Track B and the capstone have long “Build it” sections. On the route you read the chapter, answer its boxes and mark it complete. Write “second pass” next to the Build in your notepad and come back to it when you have time.
+3. **A first pass.** Track A and Track B have long “Build it” sections. On the route you read the chapter, answer its boxes and mark it complete. Write “later” next to the Build in your notepad and come back to it when you have time.
 4. **A try.** A small task off the page. Do it, then tick it on the route page or on this tab.
 5. **The look back.** Three lines in your notepad: what made sense, what didn’t, and one question. If you keep a photo log, take the photo now. Tick it.
 
@@ -30,9 +30,9 @@ Every week on the route is a few steps in order: a book chapter, a playbook chap
 
 ## The one-time setup {#setup}
 
-**Week 6. Ships:** a model connected and the test call working. **Time:** about 15 minutes, once.
+**Week 5. Ships:** a model connected and the test call working. **Time:** about 15 minutes, once.
 
-The setup lives in one place: the [setup page in the playbook](../app/#/setup). You get a free API key, paste it in once, and press the test button. The code in every chapter then runs right there in the page, with nothing installed and no other window. By Week 6 you have read why a program needs a key and what it costs to use one, so the steps will make sense.
+The setup lives in one place: the [setup page in the playbook](../app/#/setup). You get a free API key, paste it in once, and press the test button. The code in every chapter then runs right there in the page, with nothing installed and no other window. It comes right after Chapter 0.5, where you saw tokens and cost on your own text, so you know what the key pays for.
 
 1. Do one section at a time. Stop after any section if the day’s ten minutes are up.
 2. If a step fails, the page says why. Copy the exact error message into your notes, with the step you were on.
@@ -42,9 +42,9 @@ The setup lives in one place: the [setup page in the playbook](../app/#/setup). 
 
 ## Publish a project {#publish}
 
-**Weeks 13 and 25. Ships:** a public write-up with a link anyone can open. **Time:** 2 hours, strictly time-boxed.
+**Weeks 12 and 25. Ships:** a public write-up with a link anyone can open. **Time:** 2 hours, strictly time-boxed.
 
-Publishing is what turns finished work into something other people can see. In Week 13 you publish version 0 of the findings page; in Week 25, the capstone. Keep to the two hours, and stop when the time is up.
+Publishing is what turns finished work into something other people can see. In Week 12 you publish version 0 of the findings page; in Week 25, the capstone. Keep to the two hours, and stop when the time is up.
 
 1. Put the write-up in the repo README (or `docs/report.md`), in this order: **Result** (one headline number), **Problem**, **What I built** (one diagram or screenshot), **How I evaluated it** (data, metrics, method), **What failed** (two examples and the counts), **Cost and latency**, **What I would do next**, **Reproduce**.
 2. Tag a release (`v1.0`), so the version you describe stays frozen.

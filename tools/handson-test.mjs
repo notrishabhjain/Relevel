@@ -51,7 +51,7 @@ console.log('\n— which code blocks are Python —');
   const isPy = ctx.window.PY.isPython;
   const C = JSON.parse(fs.readFileSync(p.join(ROOT, 'content/defaults.json'), 'utf8'));
   const blocks = [];
-  const walk = (b, ch) => { if (!Array.isArray(b)) return; if (b[0] === 'code') blocks.push({ ch, src: b[1], local: b[2] === 'local' }); else if (b[0] === 'do') (b[2] || []).forEach(x => walk(x, ch)); };
+  const walk = (b, ch) => { if (!Array.isArray(b)) return; if (b[0] === 'code' && b[2] !== 'read') blocks.push({ ch, src: b[1], local: b[2] === 'local' }); else if (b[0] === 'do') (b[2] || []).forEach(x => walk(x, ch)); };
   C.chapters.forEach(c => (c.story || []).forEach(b => walk(b, c.id)));
   const modelCalls = blocks.filter(b => /client\.|print\(/.test(b.src));
   ok(modelCalls.every(b => isPy(b.src)), 'every block that calls the model or prints is runnable', modelCalls.filter(b => !isPy(b.src)).map(b => b.ch).join(' '));
@@ -138,6 +138,21 @@ ok(/Python ready/.test(out) && /echo: What is compound interest/.test(out), 'Run
 out = await runCell(page.locator('.prose .pycell').nth(1));
 ok(/tokens read:\s+12/.test(out), 'the next cell reads the same response: one session for the page', out.slice(0, 120));
 ok(await page.locator('#notebook .pyscratch .pycell').count() >= 1, 'and the chapter has a notebook of its own at the end');
+
+console.log('\n— the Python primer, before the first model call —');
+await page.goto(BASE + '/app/#/ch/chpy');
+await page.waitForSelector('.prose .pycell');
+{
+  const cells = page.locator('.prose .pycell');
+  const n = await cells.count();
+  ok(n === 8, 'Chapter 0.8 has eight cells to run, and its read-only model call has no Run button', n);
+  const outs = [];
+  for (let i = 0; i < n; i++) outs.push(await runCell(cells.nth(i)));
+  const all = outs.join('\n---\n');
+  const want = [/Hello from Python/, /Pune\s+120/, /Pune\s+3/, /user\s+What is a token\?/, /3\s+What is my name\?/, /Pune and Delhi\s+3\.14/, /PUNE\s+Pune/, /Checking Pune\s+Checking Delhi\s+not yet\s+DONE!/];
+  const miss = want.filter((re, i) => !re.test(outs[i] || ''));
+  ok(!miss.length && !/Error/.test(all), 'every cell prints what the chapter says it will', miss.map(String).join(' ') + ' ' + all.slice(0, 400));
+}
 
 console.log('\n— the course’s code runs unchanged —');
 await page.goto(BASE + '/app/#/workbench');

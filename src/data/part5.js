@@ -28,6 +28,7 @@ window.PART5 = [
     gate:'Pick one failure and trace it from the input that caused it all the way to the error it produced.'
   },
   needs:[
+    ['Reading Python','Chapter 0.8 taught you to read a cell: names, lists, dictionaries, jobs and dots. This chapter writes a little more of it.',0.8],
     ['An API call is a request and a reply','You’ve been making these since Chapter 1. This chapter looks at the software around them.',1],
     ['You pay for everything you send','So it’s worth building, once, a harness that records usage.',1]
   ],
@@ -44,7 +45,7 @@ window.PART5 = [
   ],
   story:[
     ['c','Before you start','Open the <a href="#/workbench">Workbench</a>, or a local folder if you prefer. In this chapter you’ll build an experiment harness, and you’ll keep adding to it until Chapter 34.'],
-    ['p','So far you’ve spent most of your time looking at the model. In this chapter we look at the ordinary software around it. The aim is simple: when an engineer shows you a system diagram, you should recognise every box on it.'],
+    ['p','Part V goes back over everything you built in Parts I to IV, this time at the depth a real launch needs. It starts with the ordinary software around the model. So far you’ve spent most of your time looking at the model itself. The aim here is simple: when an engineer shows you a system diagram, you should recognise every box on it.'],
     ['p','Think about ordering food in an app. Your tap sends a message to a restaurant. A reply comes back with a price, and your screen updates. It all looks mysterious until you see the messages going back and forth. Software around an AI model works the same way.'],
     ['c','Why this matters','Applied AI work involves APIs, Python, cloud services, retrieval, evaluation and production systems. If JSON, HTTP, environment variables, tests and logs are unfamiliar, you can’t question an architecture. This chapter gives you the minimum you need.'],
     ['key','An AI system is a software system with a probabilistic part. Everything that goes wrong in normal software can still go wrong here. On top of that, there’s one more kind of failure, and it produces no error at all.'],

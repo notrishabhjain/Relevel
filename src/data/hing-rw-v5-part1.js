@@ -131,8 +131,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Response ka usage block padh paana aur bata paana ki aapse kis cheez ka paisa liya jaata hai.',
   'Estimate the cost of a request from its token counts.':
     'Token counts dekhkar ek request ki cost ka andaaza laga paana.',
-  'In the last chapter you tried tokens, cost and temperature right here in the browser. Now you’ll do the same kind of thing with a real model. You’ll send it a message, look at what it sends back, and see what that exchange costs.':
-    'Pichhle chapter mein aapne tokens, cost aur temperature browser mein hi try kiye the. Ab aap wahi kaam ek asli model ke saath karenge. Aap use ek message bhejenge, dekhenge ki woh kya wapas bhejta hai, aur yeh ki is lena-dena mein kitna kharch hota hai.',
   'Along the way you’ll learn one thing that matters for every AI product you’ll ever work on: a model can sound completely sure and still be wrong.':
     'Saath hi aap ek aisi baat seekhenge jo har AI product ke liye zaroori hai: model poori tarah sure sunayi de sakta hai aur phir bhi galat ho sakta hai.',
   'A model predicts the next piece of text':
@@ -641,8 +639,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Paanchon outputs alag hote hain. Wording badalti hai, kabhi emphasis badalta hai, aur kabhi jawaab hi alag aa jaata hai. Agar ek hi prompt itna badalta hai, toh do prompts ko sirf ek-ek output par compare karne se bahut kam pata chalta hai.',
   'Each output is one sample from a range of possible outputs. Judging a prompt from one sample is not reliable.':
     'Har output possible outputs ki range mein se sirf ek sample hai. Sirf ek sample dekhkar kisi prompt ko judge karna bharosemand nahi hai.',
-  'The fix is a small test set. It’s a handful of real inputs, and for each one, a note on what a good answer looks like. Chapter 6 builds a bigger version for retrieval. This one takes about twenty minutes.':
-    'Iska hal ek chhota test set hai. Yeh kuch asli inputs ka set hota hai, aur har input ke saath ek note ki achha jawaab kaisa dikhta hai. Chapter 6 retrieval ke liye isse bada version banata hai. Yeh wala lagbhag 20 minute leta hai.',
   'Build the test set':
     'Test set banaiye',
   'A test set doesn’t need to be fancy. Ten rows are enough to start. What matters is that the inputs are real and that you write down what “good” means before you look at the results.':

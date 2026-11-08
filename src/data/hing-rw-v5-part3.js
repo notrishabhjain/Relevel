@@ -703,8 +703,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Retrieval jo kuch bhi retrieve karta hai, woh bhej deta hai. Ho sakta hai aapne sochkar tay kiya ho ki document store mein kya jaayega, aur phir aisa system banaya ho jo har request ke saath usmein se teen chunks bhejta hai. Document store ke baare mein aapka faisla asal mein har query ka faisla hai.',
   'To sum up, ask three questions in order: does it identify a person, whose confidential information is it, and what does the vendor do with it.':
     'Toh saar yeh hai: teen sawaal order mein poochhiye: kya isse koi insaan pehchana jaata hai, yeh kiski confidential information hai, aur vendor iska kya karta hai.',
-  'Then turn your answers into a rule that others can follow without you. Next, in Chapter 17, you’ll see how a team writes all of this down for a whole AI system, through risk tiers, system cards and oversight.':
-    'Phir apne jawaabon ko ek aise rule mein badaliye jise doosre aapke bina follow kar sakein. Agle Chapter 17 mein aap dekhenge ki ek team poore AI system ke liye yeh sab kaise likhti hai, risk tiers, system cards aur oversight ke zariye.',
   'Write the rule for what the tool may send to an outside provider':
     'Aisa rule likhiye ki outside provider ko tool kya bhej sakta hai',
   'Bharat Privacy Guard exists to protect people’s data, so it must not leak data itself. When the context judge calls an outside AI model, the text it sends is a risk. This chapter gave you three questions that settle whether a document may be sent. The answer must come from what the provider actually says, not from what everyone assumes. Now you’ll write that rule for your tool.':

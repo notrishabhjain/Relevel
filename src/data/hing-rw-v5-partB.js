@@ -543,8 +543,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Guardrail, minimum detectable effect aur stopping rule ke saath ek A/B test design kar paana.',
   'Check your data before you trust it, and avoid claiming causes you have not shown.':
     'Data par bharosa karne se pehle use check kar paana, aur aise causes ka daava na karna jo aapne saabit nahi kiye.',
-  'This chapter takes about fourteen hours. Create a free account with PostHog, Mixpanel or Google Analytics. If your capstone has no users yet, you will seed some data, and the chapter shows how.':
-    'Is chapter mein lagbhag 14 ghante lagte hain. PostHog, Mixpanel ya Google Analytics mein ek free account bana lijiye. Agar aapke capstone ke paas abhi users nahi hain, toh aap kuch data seed karenge, aur chapter dikhata hai ki kaise.',
   'In the last chapter you looked at how people find a product and get started with it. Now comes the next question. Once real people are using it, how do you know it is working? Opinions won’t answer that. What users actually do will.':
     'Pichhle chapter mein aapne dekha tha ki log ek product ko kaise dhoondhte hain aur use kaise shuru karte hain. Ab agla sawaal aata hai. Jab asli log use karne lagein, toh aapko kaise pata chalega ki woh kaam kar raha hai? Iska jawaab opinions se nahi milega. Jo users asal mein karte hain, usse milega.',
   'This chapter gives you five ideas to answer it. You’ll pick the one number that matters, decide which events to record, read the three views that answer most questions, run a fair test, and check that your data can be trusted.':
@@ -781,8 +779,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Yeh jaan paana ki aapke stack ka har tool data aur secrets kahan rakhta hai, aur kisi AI research tool par bharosa karne se pehle uske claims audit kar paana.',
   'Explain what breaks when a vendor changes an API, and how you would notice.':
     'Samjha paana ki vendor jab ek API badalta hai toh kya toot jaata hai, aur aapko kaise pata chalega.',
-  'This chapter takes about two and a half hours. Tools change every few months. The brands named below are one current example each, not a requirement. If a named tool is gone by the time you read this, pick a replacement that does the same job.':
-    'Is chapter mein lagbhag dhai ghante lagte hain. Tools har kuch mahine mein badal jaate hain. Neeche jo brands diye hain woh sirf ek current example hain, koi requirement nahi. Agar padhte waqt koi tool band ho chuka ho, toh uski jagah woh tool chuniye jo wahi kaam karta ho.',
   'By now your project probably touches several tools: one for the model, one for code, one for tracking what users do. This chapter steps back and asks a simple question. How should you choose them?':
     'Ab tak aapka project shayad kai tools ko chhoota hai: ek model ke liye, ek code ke liye, ek yeh track karne ke liye ki users kya karte hain. Yeh chapter thoda peeche hatkar ek simple sawaal poochta hai. Inhe chunna kaise chahiye?',
   'Here is the idea in a few lines. An AI product workflow needs eleven capabilities, from start to finish. A capability is a job that has to get done, such as storing your code safely or showing how people use the product. A tool is whatever you pick to do that job.':
@@ -945,8 +941,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Measure kiye gaye results ke hisaab se ek fixed workflow aur ek bounded agent mein se chun paana.',
   'Define release gates, a rollback trigger and who responds to an incident.':
     'Release gates, ek rollback trigger, aur incident par kaun jawaab dega, yeh define kar paana.',
-  'This chapter takes about twelve hours. You need a working version of your capstone’s main flow, even a rough one, and a coding agent from B4.':
-    'Is chapter mein lagbhag 12 ghante lagte hain. Aapko apne capstone ke main flow ka ek chalta hua version chahiye, chahe woh kaccha ho, aur B4 se ek coding agent.',
   'In the last chapter you chose the tools for your project. Now we look at what holds those tools together around the model. A model on its own only takes text in and gives text out. What makes it a dependable product is everything around it.':
     'Pichhle chapter mein aapne apne project ke tools chune the. Ab hum dekhte hain ki model ke aaspaas in tools ko kya jodkar rakhta hai. Akela model sirf text leta hai aur text deta hai. Use ek bharosemand product kya banata hai? Jo kuch uske aaspaas hai.',
   'Here’s what you’ll do. You’ll name the seven parts of that system and learn from how coding agents are built. Then you’ll set limits on what a tool may do, compare a fixed workflow with an agent, and plan a safe release.':
@@ -1209,8 +1203,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Agla fix prioritise kar paana is hisaab se ki woh kitni baar hota hai, kitna bura hai aur uski keemat kitni hai.',
   'Tell users what changed, and turn support requests into product evidence.':
     'Users ko bata paana ki kya badla, aur support requests ko product evidence mein badal paana.',
-  'This chapter takes about eighteen hours, spread over two or three weeks, because users need time to come back. You need your deployed app from B4 and the release checklist from B5.':
-    'Is chapter mein lagbhag 18 ghante lagte hain, do ya teen hafton mein faile hue, kyunki users ko wapas aane mein time lagta hai. Aapko B4 se apna deployed app aur B5 se release checklist chahiye.',
   'In the last chapter you drew the system around the model and wrote a release checklist. Now you get to use it. Until real people try your product, everything you know about it is a guess.':
     'Pichhle chapter mein aapne model ke aaspaas ka system draw kiya tha aur ek release checklist likhi thi. Ab use istemaal karne ka waqt hai. Jab tak asli log aapka product try nahi karte, uske baare mein aap jo bhi jaante hain woh andaaza hai.',
   'Here’s what you’ll do. You’ll get the product ready to run, recruit early users honestly, and watch what they do. Then you’ll choose the next fix, and tell users what changed.':
@@ -1413,8 +1405,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek AI system-design sawaal ko evaluation, cost aur failure ke saath solve kar paana.',
   'Tell behavioural stories about your own decisions, and prepare to negotiate.':
     'Apne decisions ki behavioural stories suna paana, aur negotiate karne ke liye taiyaar ho paana.',
-  'This chapter takes about twelve hours. Collect ten job descriptions for roles you would apply for. Have your capstone evidence pack from B6 ready, and find a friend or peer who can run mock interviews with you.':
-    'Is chapter mein lagbhag 12 ghante lagenge. Jin roles ke liye aap apply karenge, unki 10 job descriptions jama kijiye. B6 ka apna capstone evidence pack taiyaar rakhiye, aur ek dost ya peer dhoondh lijiye jo aapke saath mock interviews kar sake.',
   'In the last chapter you shipped to real users and learned from what happened. That work is the best thing you have to show an employer. But an interviewer can’t see it unless you present it well.':
     'Pichhle chapter mein aapne asli users tak ship kiya aur dekha ki kya hua. Employer ko dikhane ke liye aapke paas sabse achhi cheez wahi kaam hai. Lekin interviewer use tabhi dekh paayega jab aap use achhe se present karenge.',
   'So this chapter is about turning your project into proof. You’ll choose the right roles, write about your work, practise the interview questions you’re likely to meet, and get ready to negotiate. Let’s start with the roles.':

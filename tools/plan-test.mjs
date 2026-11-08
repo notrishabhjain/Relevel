@@ -34,15 +34,15 @@ console.log('\n— tabs and anchors —');
   await sleep(1200);                       // smooth scrolling takes a moment
   const inView = await page.evaluate(() => { const r = document.getElementById('publish').getBoundingClientRect(); return r.top >= 0 && r.top < innerHeight / 2; });
   ok(inView, 'and scrolls to that recipe');
-  await page.goto(B + '/plan/#w13'); await page.reload();
-  const opened = await page.evaluate(() => document.getElementById('w13').closest('details').open && document.getElementById('w13').offsetParent !== null);
+  await page.goto(B + '/plan/#w12'); await page.reload();
+  const opened = await page.evaluate(() => document.getElementById('w12').closest('details').open && document.getElementById('w12').offsetParent !== null);
   ok(await visible(page, 'plan') && opened, 'a week anchor opens the plan tab and expands its month');
-  const w13 = await page.evaluate(() => ({ steps: [...document.querySelectorAll('#w13 li.st')].map(li => li.getAttribute('data-step')),
-    chapter: (document.querySelector('#w13 li[data-step="c:ch7"] a') || {}).getAttribute && document.querySelector('#w13 li[data-step="c:ch7"] a').getAttribute('href'),
-    recipe: !!document.querySelector('#w13 a[href="#publish"]') }));
-  ok(w13.steps.length >= 3 && w13.chapter === '../app/#/ch/ch7' && w13.recipe, 'week 13 lists its route steps, links each to the playbook, and links its recipe', JSON.stringify(w13));
+  const w12 = await page.evaluate(() => ({ steps: [...document.querySelectorAll('#w12 li.st')].map(li => li.getAttribute('data-step')),
+    chapter: (document.querySelector('#w12 li[data-step="c:ch7"] a') || {}).getAttribute && document.querySelector('#w12 li[data-step="c:ch7"] a').getAttribute('href'),
+    recipe: !!document.querySelector('#w12 a[href="#publish"]') }));
+  ok(w12.steps.length >= 3 && w12.chapter === '../app/#/ch/ch7' && w12.recipe, 'week 12 lists its route steps, links each to the playbook, and links its recipe', JSON.stringify(w12));
   await sleep(1200);
-  await page.click('#w13 a[href="#publish"]');
+  await page.click('#w12 a[href="#publish"]');
   await page.waitForFunction(() => location.hash === '#publish');
   /* the tab changes on the hashchange event, which can land just after the hash does */
   await page.waitForFunction(() => { const e = document.querySelector('[data-tab="build"]'); return !!e && e.offsetParent !== null; }, null, { timeout: 3000 }).catch(() => {});
