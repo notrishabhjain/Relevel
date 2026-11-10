@@ -37,6 +37,12 @@ const esc = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g,
    and drop anything else, so a line reads the same here as in the app. */
 const rich = s => String(s == null ? '' : s).replace(/<(?!\/?(strong|em|code|b|i)>)[^>]*>/g, '');
 const plain = s => String(s == null ? '' : s).replace(/<[^>]+>/g, '');
+/* the course's figures (src/data/figs-*.js), drawn in the page by /figs.js */
+const FIG = (() => {
+  const ctx = { window: {} }; vm.createContext(ctx);
+  for (const f of ['figs-a.js', 'figs-core.js', 'figs-b.js']) vm.runInContext(fs.readFileSync(p.join(HERE, '../src/data/' + f), 'utf8'), ctx);
+  return { data: ctx.window.FIGDATA || {}, place: ctx.window.FIGPLACE || {} };
+})();
 
 /* ---------- the model of the page ---------- */
 export function model(root, C) {
@@ -111,8 +117,10 @@ export function model(root, C) {
     const urls = new Set(), reading = [];
     for (const c of apps) for (const r of READING[c.id] || []) if (!urls.has(r[3])) { urls.add(r[3]); reading.push(r); }
     reading.sort((a, b) => (a[0] === b[0] ? 0 : a[0] === 'case' ? -1 : 1));
+    const figs = ti === 0 ? ['how-course-works'] : [];
+    if (ti) for (const c of apps) for (const [id] of FIG.place[c.id] || []) if (!figs.includes(id)) figs.push(id);
     return {
-      ...T, n: ti, stage, builds, words, reading, weeks,
+      ...T, n: ti, stage, builds, words, reading, weeks, figs,
       apps: apps.map(c => {
         const st = STEPS.filter(s => s.kind === 'chapter' && s.ch === c.id);
         const mins = st.reduce((a, s) => a + (s.mins || 0), 0);
@@ -195,6 +203,9 @@ function render(M, lang) {
   const topic = t => {
     const parts = [];
     parts.push(`<p class="intro">${esc(pick(t.intro, t.introHi))}</p>`);
+    /* the topic in pictures: the first two diagrams here, the rest a tap away */
+    if (t.figs.length) parts.push(`<div class="wsfigs">${t.figs.slice(0, 2).map(id => `<div class="wsfig" data-fig="${id}"></div>`).join('')}</div>` +
+      (t.figs.length > 2 ? `<details class="sub morefigs"><summary>${L.moreFigs} <span class="sm">(${t.figs.length - 2})</span></summary>${t.figs.slice(2).map(id => `<div class="wsfig" data-fig="${id}"></div>`).join('')}</details>` : ''));
     if (t.n === 0) parts.push(`<h3>${L.checklist}</h3>` + before());
     if (t.n > 0) parts.push(`<div class="builds"><h3>${L.builds}</h3>` + (t.builds.length
       ? `<ul>${t.builds.map(b => `<li><b>${rich(pick(b.what, b.whatHi))}</b> <span class="sm">${hi ? '' : 'from '}<a href="${base}app/#/ch/${b.ch}">${esc(b.num)}</a>${hi ? ' se' : ''}, <a href="#${b.topic}">${L.topic} ${b.topic.slice(1)}</a></span> <span class="sw">${esc(plain(pick(b.why, b.whyHi)))}</span></li>`).join('')}</ul>`
@@ -235,6 +246,7 @@ function render(M, lang) {
 <p class="lead">${esc(L.lead)}</p>
 <section id="overview" class="panel" aria-live="polite">
   <div class="ov"><span class="pbar big"><i></i></span><span id="ov-steps">${esc(L.loading)}</span><span id="ov-can"></span></div>
+  <div id="ws-journey" aria-label="${esc(L.journey)}"></div>
   <p id="ov-next" class="small"></p>
   <div class="actions"><button type="button" id="ws-print">${L.print}</button><button type="button" id="ws-csv">${L.csv}</button><button type="button" class="quiet" id="ws-open">${L.expand}</button></div>
   <p id="ws-saved" class="small"></p>
@@ -335,6 +347,10 @@ dl.words dd{margin:0;color:var(--ink-2)}
 textarea{width:100%;font:.92rem/1.5 var(--sans);color:var(--ink);background:var(--raised);border:1px solid var(--rule);border-radius:4px;padding:.5rem .6rem;resize:vertical}
 .pnote{white-space:pre-wrap;font-size:.9rem;border:1px solid var(--rule);border-radius:4px;padding:.4rem .6rem;min-height:2.5rem}
 .note{font-size:.82rem;color:var(--muted);margin-top:2.5rem;border-top:1px solid var(--rule);padding-top:1rem}
+#ws-journey{margin:.9rem 0 .2rem}
+#ws-journey.fx{margin:.9rem 0 .2rem;background:var(--paper)}
+.wsfigs .fx,.morefigs .fx{margin:1rem 0}
+.wsfig.fx{background:var(--paper)}
 .flash{outline:2px solid var(--accent);outline-offset:2px}
 @media print{
   :root{--paper:#fff;--raised:#fff;--sunk:#f3f4f1;--ink:#000;--ink-2:#222;--muted:#555;--rule:#bbb;--rule-soft:#ddd;--accent:#1F6F5C;--good:#2c7a4b}
@@ -378,6 +394,7 @@ function page(lang, body, steps, M) {
 <body data-start="${START}" data-base="${base}" data-lang="${lang}">
 ${body}
 <script>window.WS_STEPS=${JSON.stringify(steps).replace(/</g, '\\u003c')};window.WS_UI=${JSON.stringify(L).replace(/</g, '\\u003c')};window.WS_TOPICS=${JSON.stringify(M.topics.map(t => [t.id, hi ? t.hi : t.title])).replace(/</g, '\\u003c')};</script>
+<script src="${base}figs.js"></script>
 <script src="${base}progress.js"></script>
 <script>
 ${CLIENT}

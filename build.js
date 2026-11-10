@@ -99,6 +99,10 @@ const js = [
   'src/content.js',
   'src/studio.js',
   'src/labs.js',
+  'src/data/figs-a.js',
+  'src/data/figs-core.js',
+  'src/data/figs-b.js',
+  'src/figs.js',
   'src/engine.js',
   'src/sync.js',
   'src/views.js',
@@ -342,6 +346,9 @@ out('dist/site/reminder.js', fs.readFileSync(p.join(R, 'src/reminder.js'), 'utf8
   if (!src.includes('/*STEP_DONE*/null')) throw new Error('src/progress.js lost its STEP_DONE marker');
   out('dist/site/progress.js', src.replace('/*STEP_DONE*/null', '(' + ROUTE.stepDone.toString() + ')'));
 }
+/* The figures, for the pages that are not the app: the book, the plan and
+   the worksheet load this one file. */
+out('dist/site/figs.js', ['src/data/figs-a.js', 'src/data/figs-core.js', 'src/data/figs-b.js', 'src/figs.js'].map(read).join('\n'));
 out('dist/site/.nojekyll', '');
 outBin('dist/site/icon-180.png', APPLE_180);
 outBin('dist/site/icon-192.png', png(192, false));
@@ -412,7 +419,7 @@ self.addEventListener('notificationclick', e => {
    of the app does not wipe, so a chapter read once stays readable offline. */
 const PAGES = 'aifz-pages-v1';
 const pageCache = u => u.pathname.startsWith('/book/') || u.pathname.startsWith('/plan/') || u.pathname.startsWith('/worksheet/') ||
-  ['/progress.js', '/install.js', '/reminder.js'].includes(u.pathname);
+  ['/progress.js', '/install.js', '/reminder.js', '/figs.js'].includes(u.pathname);
 const fallback = u => u.pathname.startsWith('/book/hi/') ? '/book/hi/' : u.pathname.startsWith('/book/') ? '/book/'
   : u.pathname.startsWith('/plan/') ? '/plan/' : u.pathname.startsWith('/worksheet/hi/') ? '/worksheet/hi/'
   : u.pathname.startsWith('/worksheet/') ? '/worksheet/' : './${APP_DIR}/';
@@ -436,7 +443,7 @@ self.addEventListener('message', e => {
   const d = e.data || {};
   if (d.type !== 'cache-pages' || !Array.isArray(d.urls)) return;
   const urls = d.urls.filter(x => typeof x === 'string' && (x.startsWith('/book/') || x.startsWith('/plan/') ||
-    ['/progress.js', '/install.js', '/reminder.js'].includes(x))).slice(0, 400);
+    ['/progress.js', '/install.js', '/reminder.js', '/figs.js'].includes(x))).slice(0, 400);
   e.waitUntil(caches.open(PAGES).then(c => Promise.all(urls.map(x => c.add(x).catch(() => null))))
     .then(done => { if (e.source) e.source.postMessage({ type: 'cached-pages', ok: done.filter(x => x !== null).length, of: urls.length }); }));
 });
@@ -444,7 +451,7 @@ self.addEventListener('message', e => {
 
 /* A service worker that does not parse never installs, and then neither the
    12:00 reminder nor offline reading works, silently. Fail the build instead. */
-for (const f of ['dist/site/sw.js', 'dist/site/progress.js', 'dist/site/reminder.js']) {
+for (const f of ['dist/site/sw.js', 'dist/site/progress.js', 'dist/site/reminder.js', 'dist/site/figs.js']) {
   try { new Function(read(f)); } catch (e) { throw new Error(f + ' does not parse: ' + e.message); }
 }
 
@@ -488,11 +495,27 @@ const courseTitles = {};
 for (const c of defaults.chapters) courseTitles[c.id] = c.title;
 const HI_ROOT = p.join(R, 'book/hi');
 const hasHi = fs.existsSync(p.join(HI_ROOT, 'book.json'));
+/* Each book chapter shows the diagrams of the course chapters it retells (at
+   most two, and not the ones the chapter before it just showed); the preface
+   shows how a week of the course works, the afterword the loop that goes on. */
+const bookFigs = (() => {
+  const FP = W.FIGPLACE || {}, bk = loadBook(p.join(R, 'book')), used = new Set(), map = {};
+  for (const c of [bk.preface, ...bk.chapters, bk.afterword].filter(Boolean)) {
+    let ids = [];
+    if (c === bk.preface) ids = ['how-course-works'];
+    else if (c === bk.afterword) ids = ['learning-loop'];
+    else for (const cid of c.course || []) for (const [id] of FP[cid] || []) if (!ids.includes(id)) ids.push(id);
+    const fresh = ids.filter(id => !used.has(id)), pick = (fresh.length ? fresh : ids).slice(0, 2);
+    pick.forEach(id => used.add(id));
+    map[c.file] = pick;
+  }
+  return map;
+})();
 const builtBook = buildBook(p.join(R, 'book'), p.join(R, 'dist/site/book'),
-  { siteBase: '/book/', appUrl: '/' + APP_DIR + '/', hasOther: hasHi, courseTitle: id => courseTitles[id] });
+  { siteBase: '/book/', appUrl: '/' + APP_DIR + '/', hasOther: hasHi, courseTitle: id => courseTitles[id], figs: bookFigs });
 const hingTitles = defaults.hinglish || {};
 const builtHi = hasHi ? buildBook(HI_ROOT, p.join(R, 'dist/site/book/hi'),
-  { siteBase: '/book/', appUrl: '/' + APP_DIR + '/', hasOther: true, noAssets: true, courseTitle: id => hingTitles[courseTitles[id]] || courseTitles[id] }) : null;
+  { siteBase: '/book/', appUrl: '/' + APP_DIR + '/', hasOther: true, noAssets: true, courseTitle: id => hingTitles[courseTitles[id]] || courseTitles[id], figs: bookFigs }) : null;
 
 /* ---- the Applied AI PM plan (static pages at /plan/) ---- */
 const builtPlan = buildPlan(R, p.join(R, 'dist/site/plan'));

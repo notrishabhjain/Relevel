@@ -121,12 +121,14 @@
 5. Amount transferred: ₹4 lakh
 6. Loan rejection</pre>
 <p data-s="6">Anaya ne pencil lekar padha aur 4 cheezein sahi ginin: naam, PAN, bank, aur account ke aakhri digits. Amount sirf ek number hai, usse kisi insaan ki pehchaan nahi hoti. Aur loan reject hone se bhi kisi ko dhoondha nahi ja sakta. Matlab model ne 2 aisi cheezein list kar di thi jinhe chhupane ki zaroorat nahi thi. Imran ne kaha ki list karna aur chhupana alag cheezein hain, chhupana baad ka step hai. Phir usne wahi message dobara chalaya. Is baar list mein 6 nahi, 4 items aaye. Teesri baar 7 items aaye, aur surname ek alag entry ban kar dobara aa gaya. Farah ne poochha, jawaab badal kyun jaata hai?</p>
+<div class="bookfig" data-fig="temp-scale" data-label="Figure 11.1"></div>
 <h2 id="s-11-2" data-s="7"><span class="sn">11.2</span>Temperature: variety ka dial</h2>
 <p data-s="8">Model har step par kuch likely agle tokens ke beech chunta hai, aur har token ki ek probability hoti hai. <em><a class="term" href="/book/hi/glossary.html#t-temperature" title="ek setting jo tay karti hai ki model kitni baar agla kam likely token chunta hai; low rakhne par har baar milte-julte jawaab aate hain, high rakhne par zyada variety">Temperature</a></em> naam ki setting tay karti hai ki model kam likely tokens mein se kisi ek ko chunne ke liye kitna taiyaar hai. Temperature high ho toh model door-door tak jaata hai, aur alag-alag, jaandaar jawaab deta hai. Kavita likhne ya pet ka naam sochne ke liye yeh badhiya hai. Temperature low ho, zero ke aas-paas, toh model lagbhag hamesha sabse likely token leta hai. Isliye wahi sawaal poochho toh lagbhag wahi jawaab milta hai.</p>
 <p data-s="9">Imran ne setting kam ki aur message 5 baar chalaya. Paanchon lists lagbhag ek jaisi thi. Anaya ko is kaam ke liye low temperature hi chahiye tha. Kyunki jo sawaal Monday ko poochha, uska jawaab Tuesday ko bhi wahi milna chahiye.</p>
 <aside class="box box-watch"><p class="boxlabel" data-s="10">Aam galti</p><h4>Ek jaisa hona, sahi hona nahi hai</h4>
 <p data-s="11">Low temperature jawaab ko consistent banata hai. Sahi nahi banata. Jo model zero par galat hai, woh har baar ek hi tarah se galat rahega. Sirf ek dial ghumakar kisi system ko accurate nahi banaya ja sakta.</p>
 </aside>
+<div class="bookfig" data-fig="four-techniques" data-label="Figure 11.2"></div>
 <h2 id="s-11-3" data-s="12"><span class="sn">11.3</span>Standing instructions</h2>
 <p data-s="13">Doosra message Hinglish mein tha. Farah ne use itni tezi se type kiya, jaise koi insaan roz aise 40 messages likhta ho: &quot;Sir mera aadhaar 4321 5678 9012 hai aur ye number 98xxxxxx12 pe call kar lena.&quot; Model ko Aadhaar number mil gaya. Lekin usne &quot;98xxxxxx12&quot; ko bhi mobile number ki tarah list kar diya, jabki ek agent x type karke use pehle hi chhupa chuka tha. Agar model ise bhi report kare, toh guard ise do baar chhupayega.</p>
 <p data-s="14">Iska ilaaj ek instruction hai. Aur woh instruction har request ke saath bhejna padega, kyunki model ko kuch yaad nahi rehta. Imran ne ek doosra box kholkar ek chhota sa paragraph type kiya. Is tarah ki standing instructions, yaani jo batati hain ki assistant kaun hai aur use kya karna hai aur kya nahi, unhe <em>system <a class="term" href="/book/hi/glossary.html#t-prompt" title="woh text jo aap model ko bhejte hain; usmein instructions, examples, aur woh material ho sakta hai jis par model ko kaam karna hai">prompt</a></em> kehte hain. Yeh bhi aam text hi hai, message se kuch alag nahi. Bas application ise har request mein sabse pehle bhejta hai.</p>
@@ -168,6 +170,7 @@
 <script src="/progress.js" defer></script>
 <script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
+<script src="/figs.js" defer></script>
 <script src="/book/listen.js" defer></script>
 </body>
 </html>

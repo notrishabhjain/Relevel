@@ -31,6 +31,13 @@ const READING = (() => {
   vm.runInContext(fs.readFileSync(p.join(HERE, '../src/data/reading.js'), 'utf8'), ctx);
   return ctx.window.READING || {};
 })();
+/* The course's figures (src/data/figs-*.js): each week shows the diagram of
+   the idea it teaches, drawn by /figs.js when the reader opens it. */
+const FIG = (() => {
+  const ctx = { window: {} }; vm.createContext(ctx);
+  for (const f of ['figs-a.js', 'figs-core.js', 'figs-b.js']) vm.runInContext(fs.readFileSync(p.join(HERE, '../src/data/' + f), 'utf8'), ctx);
+  return { data: ctx.window.FIGDATA || {}, place: ctx.window.FIGPLACE || {} };
+})();
 const BOOK_COURSE = (() => {
   const b = loadBook(p.join(HERE, '../book')), m = {};
   for (const c of [b.preface, ...b.chapters, b.afterword].filter(Boolean)) m[c.file] = c.course || [];
@@ -195,6 +202,9 @@ td.k{font-weight:600;white-space:nowrap}
 .toc ol{columns:2 280px;margin:.6rem 0 0;padding-left:1.1rem}
 .toc a{text-decoration:none}
 .note{font:.85rem/1.5 var(--sans);color:var(--muted);margin-top:3rem;border-top:1px solid var(--rule);padding-top:1rem}
+details.idea{margin:.6rem 0 .2rem;border:1px solid var(--rule-soft);border-radius:6px;background:var(--paper)}
+details.idea>summary{cursor:pointer;padding:.45rem .7rem;font:600 .85rem/1.4 var(--sans);color:var(--accent)}
+details.idea .ideafig.fx{margin:0;border:0;border-top:1px solid var(--rule-soft);border-radius:0 0 6px 6px}
 @media (max-width:560px){body{font-size:16px}}
 
 .code{position:relative;margin:1rem 0;max-width:none}
@@ -355,6 +365,7 @@ document.querySelectorAll('.code').forEach(function(b){
   b.appendChild(btn);
 });
 </script>
+<script src="/figs.js"></script>
 <script src="/progress.js"></script>
 <script>
 ${TRACKER_JS}
@@ -388,6 +399,16 @@ function stepRow(s) {
     `<label class="chk"><input type="checkbox" data-step-box${s.kind === 'chapter' ? ' disabled title="Ticks itself when you mark the chapter complete in the playbook"' : ''}><span class="sk">${KIND[s.kind]}</span></label>` +
     `<span class="sb">${href ? `<a href="${href}">${esc(title)}</a>` : `<b>${esc(title)}</b>`} <span class="sm">~${fmtMins(s.mins)}</span><span class="sw">${esc(s.what)}</span></span></li>`;
 }
+let lastFig = null;
+export function weekFig(w) {
+  const ids = [];
+  const add = ch => (FIG.place[ch] || []).forEach(([id]) => { if (!ids.includes(id)) ids.push(id); });
+  for (const s of w.steps) if (s.kind === 'chapter') add(s.ch);
+  for (const s of w.steps) if (s.kind === 'read') (BOOK_COURSE[s.book] || []).forEach(add);
+  const id = ids.find(x => x !== lastFig) || ids[0] || null;
+  lastFig = id;
+  return id;
+}
 function weekCard(w, recipes) {
   const how = w.how.map(id => `<a href="#${id}">${esc(recipes.get(id) || id)}</a>`).join('<br>');
   const further = w.further.length
@@ -401,6 +422,7 @@ function weekCard(w, recipes) {
     (w.why ? `<p class="why"><b>Why now</b>${inline(w.why)}</p>` : '') +
     `<ol class="steps">${w.steps.map(stepRow).join('')}</ol>` +
     `<p><b>By Sunday</b>${inline(w.ship)}</p><p><b>How to</b>${how}</p>${further}${deeper}` +
+    ((fid => fid ? `<details class="idea"><summary>See the idea: ${esc(FIG.data[fid].title[0])}</summary><div class="ideafig" data-fig="${fid}" data-bare></div></details>` : '')(weekFig(w))) +
     `<p class="small"><a href="../app/#/start#week-${w.n}">This week in one view, in the playbook →</a></p>` +
     `<div class="ctl"><div class="fields"><label>Link to what you made (optional)<input type="url" data-f="link" placeholder="https://..." autocomplete="off"></label>` +
     `<label>Note<input type="text" data-f="note" placeholder="What blocked you, what you learned" autocomplete="off"></label></div><div class="shiplink"></div></div></article>`;

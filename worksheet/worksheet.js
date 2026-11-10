@@ -34,6 +34,7 @@
       var t = el.closest('[data-topic]').getAttribute('data-topic');
       per[t] = per[t] || { d: 0, n: 0 }; per[t].d += d; per[t].n += ids.length; got += d; total += ids.length;
     });
+    drawJourney(per);
     Object.keys(per).forEach(function (t) {
       var sec = document.getElementById(t), x = per[t], pct = x.n ? Math.round(x.d * 100 / x.n) : 0;
       var bar = $('summary .pbar i', sec); if (bar) bar.style.width = pct + '%';
@@ -55,6 +56,18 @@
       if (tp) { box.appendChild(document.createTextNode(' · ')); var b = document.createElement('a'); b.href = '#' + tp[0]; b.textContent = L.topic + ' ' + tp[0].slice(1) + ': ' + tp[1]; box.appendChild(b); }
     }
     redate();
+  }
+
+  /* the topics as one path: how much of each is done, and which you can explain */
+  function drawJourney(per) {
+    var el = document.getElementById('ws-journey');
+    if (!el || !window.FIGS) return;
+    var firstOpen = null;
+    TOPICS.forEach(function (t) { var x = per[t[0]]; if (!firstOpen && x && x.d < x.n) firstOpen = t[0]; });
+    window.FIGS.journey(el, { label: L.journey, nodes: TOPICS.map(function (t) {
+      var x = per[t[0]] || { d: 0, n: 0 };
+      return { id: t[0], n: t[0].slice(1), label: t[1], pct: x.n ? x.d / x.n : 0, can: !!(mine.topics[t[0]] || {}).can, here: t[0] === firstOpen };
+    }), onPick: function (id) { location.hash = '#' + id; openHash(true); } });
   }
 
   /* plan weeks follow a restarted calendar */
@@ -190,6 +203,7 @@
       if (!pn || !pn.classList.contains('pnote')) { pn = document.createElement('div'); pn.className = 'pnote'; pn.hidden = true; ta.parentNode.insertBefore(pn, ta.nextSibling); }
       pn.textContent = ta.value;
     });
+    if (window.FIGS) window.FIGS.mount(document, { now: true });
     var pd = $('#ws-printed'); pd.textContent = fill(L.print_note, { d: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) }); pd.hidden = false;
   }
   function afterPrint() { $$('details').forEach(function (d, i) { if (i < was.length) d.open = was[i]; }); $('#ws-printed').hidden = true; }

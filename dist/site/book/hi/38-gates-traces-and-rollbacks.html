@@ -115,6 +115,7 @@
 <h2 id="s-38-1" data-s="3"><span class="sn">38.1</span>Case: ek edit jo deployment nahi tha</h2>
 <p data-s="4">&quot;Instruction edit karna deployment jaisa nahi lagta,&quot; Imran Qureshi ne seedhe lahje mein kaha, jaise koi report padh raha ho. &quot;Lekin hai woh deployment hi. Aur teams sabse zyada baar yahi rule todti hain.&quot; Prompt mein badlaav asal mein bhes badla hua code change hai.</p>
 <p data-s="5">Is chapter mein hum do cheezein dekhenge. Pehli, woh machinery jo aisi ghatna ko hone hi nahi deti. Doosri, woh records jinse koi bhi ghatna samajh mein aa jaati hai.</p>
+<div class="bookfig" data-fig="eval-levels" data-label="Figure 38.1"></div>
 <h2 id="s-38-2" data-s="6"><span class="sn">38.2</span>Gate kya hai</h2>
 <p data-s="7">Anaya ne log mein, tareekh ke saath, likha ki use kya chahiye: aisa tareeka ki yeh dobara ho hi na sake. Phir woh project ke us hisse ki taraf mudi jo woh April se bana rahi thi, bas usne use kabhi uska sahi naam nahi diya tha.</p>
 <p data-s="8">Answer key mein ab 220 rows thi, aur har hafte badh rahi thi. Yeh cases ka ek set tha, har case ke saath expected behaviour, versioned aur sambhal kar rakha hua. Is kaam mein ise <em><a class="term" href="/book/hi/glossary.html#t-golden-dataset" title="cases ka versioned aur representative set, expected behaviour ke saath, jo tay karta hai ki ek system ke liye &quot;achha&quot; ka matlab kya hai; ise version number chahiye, taaki result dobara chalaya ja sake">golden dataset</a></em> kehte hain. Imran ise &quot;good ka matlab kya hai&quot; ki yaaddasht kehta tha. Iski value iski coverage mein hai: aasaan messages, paraphrases, uljhe hue messages, jinka koi jawaab nahi hota, doosri languages ke messages, aur woh jinmein injected instructions hain. Yeh asli risks ko represent karta hai, demo mein achhe dikhne wale examples ko nahi. Aur ispar ek version number hota hai, kyunki jo evaluation kisi badlaav ke baad dobara chalaya hi nahi ja sakta, woh sirf ek kissa hai.</p>
@@ -126,6 +127,7 @@
   Answer key version 12, 220 rows.
   Blocked: instruction v14 -&gt; v15.</pre>
 <p data-s="13">Imran ne kaha ki yeh baat gate chaalis second mein bata deta, aur kaash woh bata deta.</p>
+<div class="bookfig" data-fig="trace" data-label="Figure 38.2"></div>
 <h2 id="s-38-3" data-s="14"><span class="sn">38.3</span>Woh sentence jo release rokta hai</h2>
 <p data-s="15">Lakshmi poore waqt wahin thi. Usne Anaya se kaha ki woh woh sentence likhe jo woh meeting mein bolegi. Policy nahi, asli sentence, numbers ke saath, jo ek release rok de. Anaya ne use do baar likha. Pehle version mein &quot;lagta hai&quot; tha, aur usne use kaat diya, kyunki jis sentence mein &quot;lagta hai&quot; ho, woh kuch nahi rokta. Doosra version yeh tha: hum ship nahi kar rahe, kyunki answer key version 12 par fixed-shape numbers ka recall 96.4 hai, aur threshold 98 hai. &quot;Yeh release rokta hai,&quot; Lakshmi ne kaha. &quot;Thresholds rokte hain. Impressions nahi.&quot;</p>
 <p data-s="16">Gate sirf ek number nahi dekhta tha. Ek achha final score toote hue hisse ko chhupa sakta hai. Ek fluent system kaafi baar missing evidence ko dhak leta hai, aur demo mein sab theek dikhta hai. Isliye gate ek saath kai levels par naapta tha.</p>
@@ -160,6 +162,7 @@
 <script src="/progress.js" defer></script>
 <script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
+<script src="/figs.js" defer></script>
 <script src="/book/listen.js" defer></script>
 </body>
 </html>

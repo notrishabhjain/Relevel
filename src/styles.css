@@ -1441,3 +1441,9 @@ ul.reclist audio{height:2rem;max-width:100%}
 .restart p{margin:.1rem 0 .6rem;font-size:.88rem;line-height:1.5;color:var(--ink-2)}
 .restartrow{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;padding-bottom:.8rem}
 .restartrow input[type=date]{font:inherit;padding:.35rem .5rem;border:1px solid var(--rule);border-radius:var(--r);background:var(--paper,#fff);color:var(--ink)}
+
+/* Figures (src/figs.js) take the page's colours: verified green leads, amber
+   second, and the red stays reserved for failure. */
+.fx{--fx-accent:var(--verified);--fx-accent2:var(--amber)}
+.pagevis{margin:0 0 1.6rem}
+.chfig{max-width:var(--measure,66ch)}

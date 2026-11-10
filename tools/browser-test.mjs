@@ -1302,6 +1302,64 @@ console.log('\n— the worksheet: the whole course by topic, with notes that fol
   await ws.ctx.close(); await other.ctx.close();
 }
 
+console.log('\n— figures: every portal draws its diagrams, and they answer to touch —');
+{
+  const fg = await newDevice(false);
+  const pg = fg.page;
+  /* a chapter: the figure sits in the text, and its calculator recomputes */
+  await boot(pg, '#/ch/a4');
+  await pg.locator('[data-fig="market-size"]').scrollIntoViewIfNeeded();
+  await pg.waitForSelector('[data-fx="market-size"] .fx-svg');
+  const before = await pg.evaluate(() => document.querySelector('[data-fx="market-size"] .fx-out.big .fx-val').textContent);
+  await pg.evaluate(() => { const i = document.querySelector('[data-fx="market-size"] input[data-k="win"]'); i.value = 10; i.dispatchEvent(new Event('input', { bubbles: true })); });
+  const after = await pg.evaluate(() => document.querySelector('[data-fx="market-size"] .fx-out.big .fx-val').textContent);
+  ok(before !== after && /crore|lakh/.test(after), 'a chapter shows its figure, and moving a slider recomputes it', before + ' → ' + after);
+  /* a step-through figure: Next moves the highlight and the explanation */
+  await pg.locator('[data-fig="opp-tree"]').scrollIntoViewIfNeeded();
+  await pg.waitForSelector('[data-fx="opp-tree"] .fx-svg');
+  const d0 = await pg.evaluate(() => document.querySelector('[data-fx="opp-tree"] .fx-detail').textContent);
+  await pg.click('[data-fx="opp-tree"] [data-a="next"]');
+  const d1 = await pg.evaluate(() => ({ t: document.querySelector('[data-fx="opp-tree"] .fx-detail').textContent, on: document.querySelectorAll('[data-fx="opp-tree"] .fx-node.on').length }));
+  ok(d0 && d1.t && d0 !== d1.t && d1.on === 2, 'Next walks the picture: a new part lights up, with its path, and the text follows', JSON.stringify([d0, d1]));
+  /* every chapter has at least one */
+  const placed = await pg.evaluate(() => window.CHAPTERS.filter(c => window.withFigs(c).some(b => b[0] === 'fig')).length);
+  ok(placed === N.chapters, `all ${N.chapters} chapters carry a figure`, placed);
+  /* the home page: the 26 weeks as one strip */
+  await boot(pg, '#/');
+  ok(await pg.locator('.weekstrip .fx-wk').count() === 26, 'the home page shows the 26 weeks as one strip');
+  await boot(pg, '#/project');
+  ok(await pg.locator('.pagevis .fx-jn').count() === 13, 'the project page shows its 13 stages as one path');
+  await boot(pg, '#/setup');
+  await pg.waitForSelector('.pagevis [data-fx="api-call"] .fx-svg, .pagevis.fx .fx-svg');
+  ok(true, 'the setup page shows how a model call travels');
+  /* Hinglish */
+  await pg.evaluate(() => { window.STORE.S.lang = 'hi'; window.STORE.flush(); });
+  await boot(pg, '#/ch/ch7');
+  await pg.locator('[data-fig="rag-flow"]').scrollIntoViewIfNeeded();
+  await pg.waitForSelector('[data-fx="rag-flow"] .fx-svg');
+  ok(/Sawaal/.test(await pg.evaluate(() => document.querySelector('[data-fx="rag-flow"]').textContent)), 'in Hinglish the figure speaks Hinglish');
+  await pg.evaluate(() => { window.STORE.S.lang = 'en'; window.STORE.flush(); });
+  /* the book */
+  await pg.goto(B + '/book/07-writing-it-down.html');
+  await pg.locator('.bookfig').first().scrollIntoViewIfNeeded();
+  await pg.waitForSelector('.bookfig .fx-svg, .bookfig .fx-cmp');
+  ok(/^Figure 7\.1/.test(await pg.evaluate(() => document.querySelector('.bookfig .fx-head').textContent)), 'a book chapter draws its numbered figure');
+  /* the plan: each week opens its idea */
+  await pg.goto(B + '/plan/#w12');
+  await pg.waitForSelector('#w12 details.idea');
+  await pg.evaluate(() => { const d = document.querySelector('#w12 details.idea'); d.open = true; d.scrollIntoView(); });
+  await pg.waitForSelector('#w12 .ideafig .fx-svg');
+  ok(await pg.locator('details.idea').count() === 26, 'every plan week has a picture of its idea, drawn when opened');
+  /* the worksheet */
+  await pg.goto(B + '/worksheet/');
+  await pg.waitForSelector('#ws-journey .fx-jn');
+  ok(await pg.locator('#ws-journey .fx-jn').count() === 14, 'the worksheet shows its 14 topics as one path');
+  await pg.click('#ws-journey [data-t="t5"]');
+  await pg.waitForSelector('#t5 details.tp[open] .wsfig .fx-svg');
+  ok(true, 'tapping a topic on the path opens it, with its pictures');
+  await fg.ctx.close();
+}
+
 console.log('\n— the course map shows where you are —');
 await boot(navp.page, '#/library');
 const map = await navp.page.evaluate(() => ({

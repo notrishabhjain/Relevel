@@ -115,10 +115,12 @@
 <p data-s="3">For anything that reads and writes text, &quot;done&quot; means a measured success rate within a tolerance, not one fixed output. Anaya had circled this idea since the spring, and it had slowly become the way she wrote everything. Now it had something to be tested against. The festival season was three weeks away.</p>
 <h2 id="s-40-1" data-s="4"><span class="sn">40.1</span>The case: the guard in three weeks</h2>
 <p data-s="5">The sections that follow cover three things. They list what the guard still lacked as a service. They ask how it would cope with ten times its usual load. And they show how the decisions behind it were written down.</p>
+<div class="bookfig" data-fig="metric-types" data-label="Figure 40.1"></div>
 <h2 id="s-40-2" data-s="6"><span class="sn">40.2</span>Why not just a rule?</h2>
 <p data-s="7">The discussion began with a question Anaya had been told to ask at the very start: why is this not ordinary software? The safe mode gave the answer. That rules-only version, built for emergencies, found about ninety-six in a hundred fixed-shape numbers with no model at all. She had kept that figure in front of her all year as a baseline, the thing every other part had to beat. It was good to be able to say by how much.</p>
 <p data-s="8">What the model added was names, addresses, Hinglish, and the sentences that point to someone without saying who. Without those, the guard was only a rule. She wrote the difference, with figures, on the first page of the product requirements: what the model bought, and what it cost.</p>
 <p data-s="9">She also wrote the acceptance criteria one last time, as a contract between product and engineering. Retrieval, generation, safety, speed and cost each had a number, tied to the golden dataset and a way of measuring it. The test of the contract was simple. Imran should be able to run it without once asking what &quot;good&quot; meant.</p>
+<div class="bookfig" data-fig="latency-budget" data-label="Figure 40.2"></div>
 <h2 id="s-40-3" data-s="10"><span class="sn">40.3</span>Four kinds of number</h2>
 <p data-s="11">Anaya had started to notice something about dashboards. When a team is shown many numbers at once, it stops being able to tell which question each number answers. So Imran drew four columns. Each kind of number answers a different question, and the table gives the guard's own example for each.</p>
 <figure class="tblfig" data-s="12"><figcaption><b>Table 40.1.</b> Four kinds of number</figcaption><div class="tblwrap"><table><thead><tr><th>Kind</th><th>Question it answers</th><th>The guard's example</th></tr></thead><tbody><tr><td>Business outcome</td><td>Is anyone better off?</td><td>The count in Lakshmi's weekly sweep</td></tr><tr><td>System quality</td><td>Is the system right?</td><td>The share found; the share wrongly hidden</td></tr><tr><td>Operating</td><td>What does it cost to run, and how fast is it?</td><td>Cost, speed, the slow tail</td></tr><tr><td>User signal</td><td>Do the users trust it?</td><td>How often agents pressed the button saying the guard had hidden something they needed</td></tr></tbody></table></div></figure>
@@ -165,6 +167,7 @@
 <script src="/progress.js" defer></script>
 <script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
+<script src="/figs.js" defer></script>
 <script src="/book/listen.js" defer></script>
 </body>
 </html>

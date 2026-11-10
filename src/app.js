@@ -295,6 +295,10 @@ function blocks(list){
       f.appendChild(h('figure',{class:'embed'},[fr,h('figcaption',{},[h('span',{text:r[1]||''}),
         h('a',{href:r[0],target:'_blank',rel:'noopener',text:T('Open on its own')+' ↗'})])]));
     }
+    /* A figure: an interactive diagram from src/figs.js, drawn once the page
+       is on screen (it needs the width it will really have). Placed by
+       FIGPLACE (src/data/figs-*.js) rather than typed into the chapter. */
+    else if(k==='fig'){ if(window.FIGS&&window.FIGS.has(r[0])) f.appendChild(h('div',{class:'chfig','data-fig':r[0]})); }
     /* A practice sheet placed in the text, right where the steps use it:
        ['sheet', name]. The chapter then gets no second sheet at its end. */
     else if(k==='sheet'){ if(window.SHEETS&&CTX){ CTX.sheet=true; f.appendChild(window.SHEETS.panel(CTX.ch,r[0]||'Practice sheet')); } }
@@ -691,6 +695,28 @@ function labBlock(key){
   return box;
 }
 
+/* ---------------- figures in chapters ----------------
+   Each chapter's diagrams are listed in FIGPLACE (src/data/figs-*.js) with a
+   place: 'h:N' after the first paragraph under the Nth heading, 'key' after
+   the key line, 'top' after the first paragraph. Keeping them out of the
+   chapter text means a figure can be moved without touching the prose. */
+function withFigs(c){
+  const st=(c.story||[]).slice(), P=(window.FIGPLACE||{})[c.id];
+  if(!P||!window.FIGS) return st;
+  const isA=(b,k)=>Array.isArray(b)&&b[0]===k;
+  const at=rule=>{
+    let from=0;
+    if(rule==='key'){ const i=st.findIndex(b=>isA(b,'key')); if(i>=0) return i+1; }
+    const m=/^h:(\d+)$/.exec(rule||'');
+    if(m){ let n=0; for(let i=0;i<st.length;i++) if(isA(st[i],'h')&&++n===+m[1]){ from=i+1; break; } }
+    for(let i=from;i<st.length;i++){ if(isA(st[i],'h')&&i>from) return i; if(isA(st[i],'p')) return i+1; }
+    return st.length;
+  };
+  P.map(([id,rule],j)=>[id,at(rule),j]).sort((a,b)=>b[1]-a[1]||b[2]-a[2]).forEach(([id,i])=>st.splice(i,0,['fig',id]));
+  return st;
+}
+window.withFigs=withFigs;
+
 /* ---------------- chapter page ---------------- */
 function sectionHead(idx,title,time){
   return h('div',{class:'parthead'},[h('span',{class:'idx',text:idx}),h('h2',{text:T(title)}),
@@ -929,7 +955,7 @@ function renderChapter(c){
     ||(c.check||[]).length);
   if(!plain) story.appendChild(sectionHead(c.num+'.'+n++,'Walkthrough'));
   const seenTerms=new Set();
-  story.appendChild(markTerms(h('div',{class:'prose'},[blocks(c.story)]),seenTerms,c.num));
+  story.appendChild(markTerms(h('div',{class:'prose'},[blocks(withFigs(c))]),seenTerms,c.num));
   w.appendChild(story);
 
   /* Your own cells for this chapter: the "Build it" work, the homework's code,
@@ -2959,6 +2985,8 @@ function route(){
     document.title='AI From Zero — 2027 Edition';
   }
   main.appendChild(node);
+  pageVisual(parts[0]||'',parts[1]||'',node);
+  if(window.FIGS) window.FIGS.mount(main,{lang:S.lang==='hi'?'hi':'en'});
   /* Hinglish on and not one line of this page had a translation. That is a
      real fault — most likely this device is reading content the translations
      were not written against — and it used to look exactly like the switch
@@ -2980,6 +3008,52 @@ function route(){
     if(el){el.scrollIntoView({block:'start'});return;}}
   window.scrollTo(0,0);
   $('#rail').classList.remove('open');
+}
+
+/* ---------------- pictures on the other pages ----------------
+   The home page and the route show the 26 weeks as one strip, coloured by
+   what is done; the course map and the project page show their parts as one
+   path with how far along each is; the tool pages each get the diagram of the
+   idea they serve. */
+const PAGE_FIG={setup:'api-call',practice:'spaced-review',workbench:'py-shapes',playground:'temp-scale',sheets:'tickets-calc'};
+function weekStrip(){
+  const R=window.ROUTE; if(!R||!window.FIGS) return null;
+  const st=R.startOf(S), today=new Date(Date.now()+19800000).toISOString().slice(0,10), cur=R.weekOf(today,st), hi=S.lang==='hi';
+  const L={done:T('Done'),now:T('This week'),behind:T('Behind'),part:T('Started'),todo:T('Not yet')};
+  const weeks=R.WEEKS.map(w=>{
+    const n=w.steps.length, d=w.steps.filter(x=>R.stepDone(x,S)).length;
+    const s=d===n?'done':w.n===cur?'now':w.n<cur?'behind':d?'part':'todo';
+    return {n:w.n,title:T(w.title),status:s,statusL:L[s],pct:d/n};
+  });
+  const el=h('div',{class:'pagevis weekstrip'});
+  el._draw=()=>window.FIGS.weeks(el,{weeks,lang:hi?'hi':'en',label:T('Your 26 weeks'),
+    months:R.MONTHS.map(m=>({from:m.from,to:m.to,l:T(m.name).replace(/^Month \d+: /,'')})),
+    legend:[['done',L.done],['now',L.now],['behind',L.behind],['part',L.part]],
+    onPick:n=>{ const t=document.getElementById('week-'+n); if(t) t.scrollIntoView({behavior:'smooth',block:'start'}); else location.hash='#/start#week-'+n; }});
+  return el;
+}
+function partPath(){
+  if(!window.ENG||!window.FIGS) return null;
+  const pp=window.ENG.partProgress(S), el=h('div',{class:'pagevis'});
+  el._draw=()=>window.FIGS.journey(el,{label:T('The course map'),nodes:pp.map((g,i)=>({id:String(g.n),n:g.part.label||String(i+1),label:T(g.part.title),pct:g.total?g.done/g.total:0})),
+    onPick:id=>{ const g=pp.find(x=>String(x.n)===id); const c=g&&(g.chs.find(x=>!S.done[x.id])||g.chs[0]); if(c) location.hash='#/ch/'+c.id; }});
+  return el;
+}
+function stagePath(){
+  const P=(window.REF||{}).PROJECT||window.PROJECT; if(!P||!P.stages||!window.FIGS) return null;
+  const el=h('div',{class:'pagevis'});
+  el._draw=()=>window.FIGS.journey(el,{label:T(P.stagesTitle||'Stages'),nodes:P.stages.map((s,i)=>{ const chs=(s.chapters||[]).filter(id=>byId[id]); return {id:s.id,n:String(i+1),label:T(s.title),pct:chs.length?chs.filter(id=>S.done[id]).length/chs.length:0}; }),
+    onPick:id=>{ const t=document.getElementById('stage-'+id); if(t) t.scrollIntoView({behavior:'smooth',block:'start'}); }});
+  return el;
+}
+function pageVisual(key,sub,node){
+  if(!window.FIGS||!node||!node.querySelector) return;
+  const head=node.querySelector('.phead');
+  const put=el=>{ if(!el) return; if(head&&head.parentNode) head.parentNode.insertBefore(el,head.nextSibling); else node.insertBefore(el,node.firstChild); if(el._draw) el._draw(); };
+  if(key===''||key==='start') put(weekStrip());
+  else if(key==='library') put(partPath());
+  else if(key==='project') put(stagePath());
+  else if(PAGE_FIG[key]&&!sub) put(h('div',{class:'pagevis','data-fig':PAGE_FIG[key]}));
 }
 
 /* ---------------- command palette ---------------- */

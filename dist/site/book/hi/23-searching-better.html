@@ -120,6 +120,7 @@
 <aside class="box box-key"><p class="boxlabel" data-s="8">Mukhya vichaar</p><h4>Relevance aur correctness ek cheez nahi hain</h4>
 <p data-s="9">Behtar ranking se madad nahi milti. Pichhle saal ki policy late fee ke baare mein hai, aur sawaal se utni hi match karti hai jitni is saal ki. Relevance aur correctness do alag sawaal hain, aur search mein aisa kuch tha hi nahi jo in dono ka farq jaanta ho.</p>
 </aside>
+<div class="bookfig" data-fig="hybrid-search" data-label="Figure 23.1"></div>
 <h2 id="s-23-2" data-s="10"><span class="sn">23.2</span>Chaar sudhaar</h2>
 <p data-s="11">Pichhle mahine ke kaam ne team ko is par shaanti se nazar daalne ka tareeka diya tha. Chatbot ki search ke liye unke paas ek answer key thi: customers ke apne words mein 10 sawaal, aur pehla score tha 10 mein se 6. Imran ne chaar techniques ek-ek karke lin aur har ek ko usi 10 par naapa.</p>
 <figure class="tblfig" data-s="12"><figcaption><b>Table 23.1.</b> Search ke chaar sudhaar, usi 10 sawaalon par naape gaye</figcaption><div class="tblwrap"><table><thead><tr><th>Technique</th><th>Kya karti hai</th><th>Score</th></tr></thead><tbody><tr><td>Hybrid search</td><td>Keyword search aur meaning wali search ko saath chalati hai, aur dono lists ko jod deti hai, toh ab dono mein se ek chunna nahi padta. &quot;Clause 14.2&quot; ek se aaya aur &quot;paisa kab milega&quot; doosri se</td><td>6 se 7</td></tr><tr><td>Reranking</td><td>Pehle sasti tarah se sabse achhe 50 tukde laati hai, phir ek dheemi, zyada dhyaan wali model sawaal aur har tukda saath mein padhti hai aur sabse achhe kuch ko upar rakhti hai. Isse recall aur precision dono sudharte hain, extra time aur ek doosri call ki keemat par. Isiliye yeh 50 tukdon par chalti hai, poori library par nahi</td><td>7 se 8</td></tr><tr><td>Contextual retrieval</td><td>Har chunk store karne se pehle ek model ek sentence likhti hai jo bataye ki chunk apne document mein kahan hai (&quot;This is from the refund section of the Late Payment Policy, about overpayments&quot;), aur woh sentence uske saath store hota hai. Jo tukda &quot;the aforesaid amount&quot; se shuru hota tha, ab uske saath ek note hai ki woh amount kya hai</td><td>8 se 9</td></tr><tr><td>Metadata filtering</td><td>Har chunk par label hota hai: kaunsa document, kaunsa version, kin dates ke beech woh lagu hai, aur kaun use dekh sakta hai. Search kuch bhi score kare, usse pehle jo chunk current nahi hai woh bahar fenk diya jaata hai</td><td>Koi badlaav nahi</td></tr></tbody></table></div></figure>
@@ -158,6 +159,7 @@
 <script src="/progress.js" defer></script>
 <script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
+<script src="/figs.js" defer></script>
 <script src="/book/listen.js" defer></script>
 </body>
 </html>

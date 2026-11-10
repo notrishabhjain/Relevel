@@ -115,10 +115,12 @@
 <p data-s="3">That chart is a <strong><a class="term" href="/book/glossary.html#t-leaderboard" title="a published ranking of models by their scores on someone else's tests">leaderboard</a></strong>. It shows how a model did on someone else’s task. The result can be honest and still tell you nothing about your own task. Think of buying a car because it won an award. The award tells you nothing about whether the car fits your family, copes with your roads or is affordable to run. You would take the car for a drive. Very few teams take a model for a drive.</p>
 <h2 id="s-34-1" data-s="4"><span class="sn">34.1</span>The case: a tall bar on a chart</h2>
 <p data-s="5">Anaya asked her question in a voice she had practised for exactly this moment. On which of the company’s cases was the model better, and at what speed and cost? Mr. Bhatia raised an eyebrow, and then he smiled. “Show me,” he said.</p>
+<div class="bookfig" data-fig="model-bench" data-label="Figure 34.1"></div>
 <h2 id="s-34-2" data-s="6"><span class="sn">34.2</span>Several differences at once</h2>
 <p data-s="7">Imran had been waiting for that question. A model is not simply better or worse. Models differ in several ways at once: how well they do the task, how fast they answer, how much text they can take, how reliably they call functions, and what they cost. One that wins on the first can lose on the next three. And which one matters most is a fact about the use, not about the model.</p>
 <p data-s="8">So the work was to define what Sahaj’s use needed, and then to measure.</p>
 <figure class="tblfig" data-s="9"><figcaption><b>Table 34.1.</b> What the finder needed</figcaption><div class="tblwrap"><table><thead><tr><th>Requirement</th><th>Source</th><th>Value</th></tr></thead><tbody><tr><td>Quality</td><td>The specification, written in May</td><td>At least 98 in 100 fixed-shape numbers, and as many names as possible</td></tr><tr><td>Data</td><td>The rule written in July</td><td>Nothing real may be sent outside the building</td></tr><tr><td>Speed</td><td>The specification</td><td>Typically under a third of a second</td></tr><tr><td>Cost</td><td>The specification</td><td>Under 60 paise a message in total</td></tr></tbody></table></div></figure>
+<div class="bookfig" data-fig="memory-arch" data-label="Figure 34.2"></div>
 <h2 id="s-34-3" data-s="10"><span class="sn">34.3</span>Three for a drive</h2>
 <p data-s="11">The benchmark was a set of sixty cases that Anaya had built over a weekend. A <strong>benchmark</strong> is a fixed set of cases with the expected answers, used to compare options fairly on the same task. It was not the answer key. It was drawn from it, and built on purpose to be hard in the ways that mattered. There were twenty English messages, twenty in Hinglish and ten in Devanagari. The last ten were the kinds that a naive test would never include: messages with no answer at all, ambiguous messages, and messages with an injected instruction.</p>
 <aside class="box box-key"><p class="boxlabel" data-s="12">Key idea</p><h4>Challenge the test set before the score</h4>
@@ -159,6 +161,7 @@
 <script src="/progress.js" defer></script>
 <script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
+<script src="/figs.js" defer></script>
 <script src="/book/listen.js" defer></script>
 </body>
 </html>

@@ -177,6 +177,31 @@ route and the project stages, and **fails the build** unless every app chapter, 
 chapter and every route step appears on it exactly once. Only the topic headings, the
 before-you-start checklist and the page's labels live in `worksheet/data.mjs`.
 
+## Figures
+
+Every page of the four portals carries interactive diagrams, drawn as SVG in the page by one
+file, `src/figs.js`, and so the same picture means the same thing wherever it appears:
+
+| Where | What it shows |
+| --- | --- |
+| App chapters | 77 figures across all 68 chapters, placed under the heading they explain |
+| App pages | Home and route: the 26 weeks as one strip, coloured by what is done. Course map and project: the parts and stages as one path with progress. Setup, practice, workbench, playground, sheets: the idea each one serves |
+| Book | Each chapter shows the figures of the course chapters it retells, numbered (Figure 7.1), in the chapter's hue, in English and Hinglish. The Listen player skips them |
+| Plan | Every week card has "See the idea", drawn when opened |
+| Worksheet | The 14 topics as one path, two pictures in each topic and the rest a tap away; all of them print in "Save as PDF" |
+
+There are thirteen kinds: step-through flows, cycles and message sequences, layer stacks with a
+slice, trees, Venn diagrams with tappable regions, two-by-two matrices with draggable dots, bar
+charts with switchable cases, dials, calculators with sliders, funnels with adjustable rates, and
+side-by-side comparisons. Each is redrawn for the width it has (a phone gets a phone layout),
+takes its colours from the page it is on (light and dark), and works from the keyboard.
+
+What each figure says lives in `src/data/figs-a.js` (Track A), `figs-core.js` (Parts I–IV) and
+`figs-b.js` (Part V, Track B, the app's pages), as `[English, Hinglish]` pairs; `FIGPLACE` there
+says which chapter shows it and under which heading (`'h:3'`). `tools/fig-check.mjs` fails the
+build unless every figure is complete in both languages, every calculator works out a number, and
+every chapter, book chapter, plan week and worksheet topic has at least one figure.
+
 ## Live site (GitHub Pages)
 
 `.github/workflows/pages.yml` builds the static site and publishes it to

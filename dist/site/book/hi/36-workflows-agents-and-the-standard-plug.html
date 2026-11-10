@@ -114,6 +114,7 @@
 <p data-s="2">Imran Qureshi ne ek design review bulayi jo kisi ne maangi nahi thi, aur ek misaal se shuru kiya. Bank ka teller aapka balance dekh sakta hai, usne kaha, lekin aapke kehne par aapka paisa kahin nahi bhej sakta. Teller par bharosa kam nahi hai. Bas kuch actions ke nateeje bank ke bahar tak jaate hain, aur rule action ke baare mein hai, insaan ke baare mein nahi. Usne Farah ki teen requests board par likhi, ek capital letters wali heading ke neeche: yeh kya kar sakta hai, kis data ke saath, aur check kaun karta hai?</p>
 <h2 id="s-36-1" data-s="3"><span class="sn">36.1</span>Case: ek assistant jo sab kuch kare</h2>
 <p data-s="4">Farah ki requests mein alag-alag kism ke actions mile hue the. Yeh chapter unhe teen steps mein suljhata hai. Pehla, har function ke liye ek likhit agreement. Doosra, ek test ki model ko kitna tay karna chahiye. Aur teesra, yeh check ki standard connector kya guarantee karta hai aur kya nahi.</p>
+<div class="bookfig" data-fig="workflow-agent" data-label="Figure 36.1"></div>
 <h2 id="s-36-2" data-s="5"><span class="sn">36.2</span>Ek function, likha hua</h2>
 <p data-s="6">Agar machine ko asli kuch karna hai, toh pehle use ek function chahiye jo woh maang sake. Phir us function ke baare mein ek likha hua agreement, itna exact ki koi ajnabi bhi bata sake ki function kya kar sakta hai aur kya nahi. Yeh hai <strong><a class="term" href="/book/hi/glossary.html#t-tool-contract" title="ek function, jo model bula sakta hai, uska theek-theek likha hua agreement: uska naam, woh kya karta hai aur kya nahi, uske parameters, errors, side effects, aur use kaun bula sakta hai">tool contract</a></strong>.</p>
 <p data-s="7">Anaya spring mein iska ek roop dekh chuki thi, jab ek dhundhli description ki wajah se model ne galat function chun liya tha. Contract usse kaafi aage jaata hai.</p>
@@ -122,6 +123,7 @@
 <h3 data-s="10">Do baar chal jaaye toh</h3>
 <p data-s="11">Phir Imran ne poochha ki agar ek call do baar chal jaaye toh kya hota hai. Anaya ne socha: ek customer button dabata hai aur network lad-khada raha hai. Request server tak pahunch gayi, reply wapas nahi aaya, aur app ne dobara try kiya. Agar action &quot;yeh detail dobara dikhao&quot; tha, toh doosri koshish se koi nuksaan nahi hua. Agar &quot;payment link bhejo&quot; tha, toh customer ko do mile.</p>
 <p data-s="12">Jo action do baar chalaya jaaye toh bhi safe ho, uska ek naam hai: <strong><a class="term" href="/book/hi/glossary.html#t-idempotency" title="kisi action ki woh khoobi ki use do baar chalana safe hai, ya use aise protect kiya gaya hai ki do baar chalne ka sirf ek hi asar ho; yeh tay karti hai ki retry safe hai ya nahi">idempotency</a></strong>. Kuch actions apne aap idempotent hote hain. Baaki ko aise banaya jaata hai ki har request ko ek unique number diya jaaye. Phir server repeat pehchaan leta hai aur kuch nahi karta. Retry tabhi safe hai jab action safe ho. Isliye Imran ne contract mein ek rule joda: jo bhi action kuch badalta hai, usse likhna hoga ki repeat hone par kya hota hai.</p>
+<div class="bookfig" data-fig="agent-control" data-label="Figure 36.2"></div>
 <h2 id="s-36-3" data-s="13"><span class="sn">36.3</span>Woh kaato jo rule kar sakta hai</h2>
 <p data-s="14">Phir Imran ne poochha ki Farah ki teen requests mein se kaun si model ki choice honi chahiye. Usne ek exercise di jisme paanch minute lage aur project ek mahina chhota ho gaya. Un sab functions ko likho jo assistant ke paas ho sakte hain. Phir har us function ko kaat do jise ek saada rule 100 mein se 95 baar se zyada sahi chunta hai.</p>
 <figure class="tblfig" data-s="15"><figcaption><b>Table 36.2.</b> Kaatne wali exercise</figcaption><div class="tblwrap"><table><thead><tr><th>Function</th><th>Judgement chahiye?</th><th>Result</th></tr></thead><tbody><tr><td>Order look up karna</td><td>Nahi: agent ek button dabata hai</td><td>Kat gaya</td></tr><tr><td>Hidden detail dobara dikhana</td><td>Nahi: ek aur button, jisme reason box mein type hota hai</td><td>Kat gaya</td></tr><tr><td>Payment link bhejna</td><td>Nahi: hamesha insaan tay karta hai</td><td>Kat gaya</td></tr></tbody></table></div></figure>
@@ -162,6 +164,7 @@
 <script src="/progress.js" defer></script>
 <script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
+<script src="/figs.js" defer></script>
 <script src="/book/listen.js" defer></script>
 </body>
 </html>
