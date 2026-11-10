@@ -141,8 +141,8 @@ function planExtras() {
    never be decided two different ways. */
 const routeJs = '(function(){\nconst START=' + JSON.stringify(ROUTE.START) + ', WEEKS=' + JSON.stringify(ROUTE.WEEKS) +
   ', MONTHS=' + JSON.stringify(ROUTE.MONTHS) + ';\nconst STEPS=WEEKS.flatMap(w=>w.steps.map(s=>Object.assign({week:w.n},s)));\n' +
-  [ROUTE.stepDone, ROUTE.nextStep, ROUTE.stepHref, ROUTE.weekOf].map(f => f.toString()).join('\n') +
-  '\nwindow.ROUTE={START,WEEKS,MONTHS,STEPS,stepDone,nextStep,stepHref,weekOf};\n})();';
+  [ROUTE.stepDone, ROUTE.nextStep, ROUTE.stepHref, ROUTE.startOf, ROUTE.weekOf, ROUTE.datesOf].map(f => f.toString()).join('\n') +
+  '\nwindow.ROUTE={START,WEEKS,MONTHS,STEPS,stepDone,nextStep,stepHref,startOf,weekOf,datesOf};\n})();';
 const jsSource = js.map(f => f === 'src/app.js' ? bookJs + '\n' + routeJs + '\n' + read(f) : read(f)).join('\n');
 
 const TITLE = 'AI From Zero';

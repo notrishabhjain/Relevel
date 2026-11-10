@@ -1201,6 +1201,46 @@ console.log('\n— the same route on a second device, through the account —');
   await A.ctx.close(); await D.ctx.close();
 }
 
+console.log('\n— restart the calendar: week 1 from any day —');
+{
+  const rs = await newDevice(false);
+  await boot(rs.page, '#/start');
+  const today = new Date(Date.now() + 19800000).toISOString().slice(0, 10);
+  const short = new Date(today + 'T00:00:00Z').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' });
+  const before = await rs.page.evaluate(() => ({ w1: document.querySelector('#week-1 .gwd').textContent, state: document.querySelector('.gstate').textContent }));
+  await rs.page.evaluate(() => { window.STORE.S.done.ch0 = 1; window.STORE.flush(); });
+  await boot(rs.page, '#/start');
+  rs.page.once('dialog', d => d.accept());
+  await rs.page.evaluate(() => { document.getElementById('restart').open = true; });
+  await rs.page.fill('#restart input[type=date]', today);
+  await rs.page.click('#restart button.primary');
+  await rs.page.waitForFunction(() => !!window.STORE.S.routeStart);
+  await rs.page.waitForSelector('#week-1 .gwd');
+  const after = await rs.page.evaluate(() => ({ start: window.STORE.S.routeStart, ch0: !!window.STORE.S.done.ch0,
+    w1: document.querySelector('#week-1 .gwd').textContent, state: document.querySelector('.gstate').textContent,
+    sum: document.querySelector('#restart summary').textContent }));
+  ok(after.start === today && after.w1.startsWith(short) && /on schedule/.test(after.state) && /week 1 started on/.test(after.sum),
+     'restarting from today makes this calendar week 1 and moves the dates', JSON.stringify({ before, after }));
+  ok(after.ch0, 'and the ticks are untouched');
+  /* the plan reads the same record and counts from the same day */
+  await rs.page.evaluate(() => window.STORE.flush());
+  await rs.page.goto(B + '/plan/');
+  await rs.page.waitForSelector('#status .stat .v');
+  await rs.page.waitForTimeout(300);
+  const plan = await rs.page.evaluate(() => ({ head: document.querySelector('#status .stat .v').textContent,
+    w1: document.querySelector('#w1 .dates').textContent, undo: !document.getElementById('rs-undo').hidden }));
+  ok(/^Week 1 of 26/.test(plan.head) && plan.w1.startsWith(short) && plan.undo, 'the plan counts the weeks from the same day', JSON.stringify(plan));
+  /* back to the original dates, from the plan */
+  await rs.page.evaluate(() => { document.getElementById('restart').open = true; });
+  await rs.page.click('#rs-undo');
+  await rs.page.waitForFunction(() => !(JSON.parse(localStorage.getItem('aifz2027') || '{}').routeStart));
+  const orig = await rs.page.evaluate(() => document.querySelector('#w1 .dates').textContent);
+  ok(orig === '19 Oct – 25 Oct', 'and Back to the original dates puts them back', orig);
+  await boot(rs.page, '#/start');
+  ok((await rs.page.evaluate(() => document.querySelector('#week-1 .gwd').textContent)).startsWith('19 Oct'), 'in the playbook too');
+  await rs.ctx.close();
+}
+
 console.log('\n— the course map shows where you are —');
 await boot(navp.page, '#/library');
 const map = await navp.page.evaluate(() => ({

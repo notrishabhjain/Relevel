@@ -1433,3 +1433,11 @@ ul.reclist audio{height:2rem;max-width:100%}
 .dashfold{margin:1.6rem 0 0;border:1px solid var(--rule);border-radius:var(--r);background:var(--raised);padding:.2rem .9rem}
 .dashfold>summary{cursor:pointer;padding:.6rem 0;font-size:.9rem;color:var(--ink-2)}
 .dashfold[open]{padding-bottom:1rem}
+
+/* restart the calendar (route page) */
+.restart{margin:.2rem 0 1.4rem;border:1px solid var(--rule);border-radius:var(--r);background:var(--raised);padding:.15rem .9rem}
+.restart>summary{cursor:pointer;padding:.55rem 0;font-size:.9rem;color:var(--ink-2)}
+.restart.on>summary{color:var(--ink)}
+.restart p{margin:.1rem 0 .6rem;font-size:.88rem;line-height:1.5;color:var(--ink-2)}
+.restartrow{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;padding-bottom:.8rem}
+.restartrow input[type=date]{font:inherit;padding:.35rem .5rem;border:1px solid var(--rule);border-radius:var(--r);background:var(--paper,#fff);color:var(--ink)}

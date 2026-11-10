@@ -162,6 +162,8 @@
     markRead: function (file) { return mark(function (S) { S.read = S.read || {}; if (!S.read[file]) S.read[file] = Date.now(); }); },
     unmarkRead: function (file, id) { return mark(function (S) { if (S.read) delete S.read[file]; if (S.steps && id) delete S.steps[id]; }); },
     tick: function (id, on) { return mark(function (S) { S.steps = S.steps || {}; if (on === false) delete S.steps[id]; else if (!S.steps[id]) S.steps[id] = Date.now(); }); },
+    /* restart the calendar: week 1 starts on day (YYYY-MM-DD); null goes back to the route's own dates */
+    setStart: function (day) { return mark(function (S) { if (day) S.routeStart = day; else delete S.routeStart; }); },
     onChange: function (f) { listeners.push(f); }
   };
 })();
