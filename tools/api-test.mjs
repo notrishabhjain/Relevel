@@ -136,12 +136,23 @@ console.log('\n— plan tracker —');
   ok(r.body.data.weeks[3].note === 'three' && r.body.data.weeks[2].note === 'week two', 'edits to different weeks are both kept');
   r = await api('/api/plan', { method: 'PUT', body: { data: { weeks: { 1: { note: 'newer', link: 'javascript:alert(1)', u: 500 } } } } });
   ok(r.body.data.weeks[1].note === 'newer' && r.body.data.weeks[1].link === '', 'a newer edit wins and a non-http link is dropped', r.body.data.weeks[1]);
+  r = await api('/api/plan', { method: 'PUT', body: { data: {
+    topics: { t3: { can: true, note: 'zq-worksheet-note', u: 70 }, bad: { can: true, u: 1 } },
+    ticks: { 'pre-time': { on: true, u: 70 }, 'not a key': { on: true, u: 1 } } } } });
+  ok(r.status === 200 && r.body.data.topics.t3.can && r.body.data.topics.t3.note === 'zq-worksheet-note' && !r.body.data.topics.bad &&
+     r.body.data.ticks['pre-time'].on && !r.body.data.ticks['not a key'] && r.body.data.weeks[1].note === 'newer',
+     'the worksheet keeps its notes and ticks in the same document, and the plan notes stay', r.body.data);
+  r = await api('/api/plan', { method: 'PUT', body: { data: { weeks: { 4: { note: 'four', u: 80 } } } } });
+  ok(r.body.data.topics.t3.note === 'zq-worksheet-note' && r.body.data.ticks['pre-time'].on && r.body.data.weeks[4].note === 'four',
+     'a save from the plan keeps the worksheet notes', r.body.data);
+  r = await api('/api/plan', { method: 'PUT', body: { data: { topics: { t3: { can: false, note: 'stale', u: 10 } } } } });
+  ok(r.body.data.topics.t3.note === 'zq-worksheet-note' && r.body.data.topics.t3.can, 'an older worksheet edit does not overwrite a newer one', r.body.data.topics.t3);
   r = await api('/api/plan', { method: 'POST', body: { share: true } });
   const sid = r.body.shareId;
   ok(r.status === 200 && /^[0-9a-f]{32}$/.test(sid), 'sharing creates an unguessable id', r.body);
   cookie = '';
   r = await api('/api/plan-status?id=' + sid);
-  ok(r.status === 200 && r.body.of === 26 && r.body.steps > 100 && !('link' in r.body) && !JSON.stringify(r.body).includes('learn Rust'), 'the status link shows route counts only', r.body);
+  ok(r.status === 200 && r.body.of === 26 && r.body.steps > 100 && !('link' in r.body) && !JSON.stringify(r.body).includes('learn Rust') && !JSON.stringify(r.body).includes('zq-worksheet-note'), 'the status link shows route counts only', r.body);
   cookie = saved;
   r = await api('/api/plan', { method: 'POST', body: { share: false } });
   cookie = '';

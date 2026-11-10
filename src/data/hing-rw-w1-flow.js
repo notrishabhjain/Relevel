@@ -509,4 +509,186 @@ Object.assign(window.HING = window.HING || {}, {
     'Week 1 {day} se shuru hoga. Aapke ticks aur notes jaise hain waise hi rahenge; sirf tareekhein khiskengi.',
   'Fallen behind the dates? Start week 1 again on any day you choose. Your ticks and notes stay as they are; only the dates move, so the week you are on becomes this week.':
     'Tareekhon se peechhe reh gaye? Week 1 apne chune hue kisi bhi din se dobara shuru kijiye. Aapke ticks aur notes jaise hain waise hi rahenge; sirf tareekhein khiskengi, taaki aap jis week par hain wahi is hafte ka week ban jaaye.',
+
+  /* A1.5 GitHub basics and A3.5 Spreadsheet basics */
+  'GitHub basics: a home for your work':
+    'GitHub basics: aapke kaam ka ghar',
+  'A1 asks you to keep everything you make in one place that others can open. This short chapter sets that place up on GitHub, using only the website: an account, a repository, your first file and your first saved version. There is nothing to install and no command line.':
+    'A1 kehta hai ki aap jo bhi banayein, sab ek aisi jagah rakhein jise doosre khol sakein. Yeh chhota chapter woh jagah GitHub par banata hai, sirf website se: ek account, ek repository, aapki pehli file aur aapka pehla saved version. Kuch install nahi karna, aur koi command line nahi.',
+  'Create a GitHub account and a repository, and say what a repository keeps.':
+    'GitHub account aur ek repository banaiye, aur bataiye ki repository kya-kya rakhti hai.',
+  'Add or change a file on the website and save it as a commit with a clear message.':
+    'Website par file jodiye ya badliye, aur use saaf message ke saath ek commit ke roop mein save kijiye.',
+  'Explain why a key or a password must never go into a repository, even a private one.':
+    'Samjhaiye ki key ya password kabhi bhi repository mein kyun nahi jaana chahiye, private repository mein bhi nahi.',
+  'A1’s place for your work':
+    'A1 mein tay ki gayi aapke kaam ki jagah',
+  'A1 planned a set of folders and a decision log. This chapter gives them a home.':
+    'A1 ne kuch folders aur ek decision log ki yojana banayi thi. Yeh chapter unhe ek ghar deta hai.',
+  'You need an email address and about twenty minutes. Everything happens on the github.com website, so there is nothing to install. GitHub is free for everything this course asks of it.':
+    'Aapko ek email address aur lagbhag bees minute chahiye. Sab kuch github.com website par hota hai, isliye kuch install nahi karna. Yeh course GitHub se jo bhi maangta hai, woh sab free hai.',
+  'In A1 you planned a set of folders and a decision log. You could keep them on your laptop. But a laptop folder has two problems: nobody else can open it, and it forgets. When you change a file, the old version is gone.':
+    'A1 mein aapne kuch folders aur ek decision log ki yojana banayi. Aap inhe apne laptop par rakh sakte hain. Lekin laptop ke folder mein do dikkatein hain: koi aur use khol nahi sakta, aur woh bhool jaata hai. File badalte hi purana version chala jaata hai.',
+  '<strong>GitHub</strong> fixes both. It is a website where software teams keep their work, and where employers look when they want to see yours. This chapter takes you from no account to your first saved version.':
+    '<strong>GitHub</strong> dono theek karta hai. Yeh ek website hai jahan software teams apna kaam rakhti hain, aur jahan employers aapka kaam dekhne aate hain. Yeh chapter aapko bina account se lekar aapke pehle saved version tak le jaata hai.',
+  'A repository is a folder that remembers. Every saved change is kept, with a note saying what changed and why.':
+    'Repository ek aisa folder hai jo yaad rakhta hai. Har saved badlaav rakha jaata hai, ek note ke saath ki kya badla aur kyun.',
+  'A repository: a folder that remembers':
+    'Repository: ek folder jo yaad rakhta hai',
+  'On GitHub, a project lives in a <strong>repository</strong>, often shortened to “repo”. It holds files and folders, like any folder. Unlike an ordinary folder, it keeps every earlier version of every file.':
+    'GitHub par ek project ek <strong>repository</strong> mein rehta hai, jise aksar chhota karke “repo” kehte hain. Kisi bhi folder ki tarah isme files aur folders hote hain. Aam folder se alag, yeh har file ka har pichhla version rakhta hai.',
+  'A repository can be <strong>public</strong>, which means anyone can read it, or <strong>private</strong>, which means only you and the people you invite. Start private. You can make it public later, when you publish your project.':
+    'Repository <strong>public</strong> ho sakti hai, yaani koi bhi use padh sakta hai, ya <strong>private</strong>, yaani sirf aap aur woh log jinhe aap bulayein. Private se shuru kijiye. Jab aap apna project publish karein, tab ise public kar sakte hain.',
+  'Make an account and a repository':
+    'Account aur repository banaiye',
+  'Go to <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a> and create an account. Choose a username you would be happy to show an employer, such as your name.':
+    '<a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a> par jaiye aur account banaiye. Aisa username chuniye jo aap kisi employer ko khushi se dikha sakein, jaise aapka naam.',
+  'Turn on two-factor sign-in: your picture at the top right, then <strong>Settings</strong>, then <strong>Password and authentication</strong>. It protects your work if your password ever leaks.':
+    'Two-factor sign-in chalu kijiye: upar daayin taraf aapki photo, phir <strong>Settings</strong>, phir <strong>Password and authentication</strong>. Agar kabhi aapka password leak ho jaaye, to yeh aapke kaam ko bachata hai.',
+  'Press the <strong>+</strong> at the top right, then <strong>New repository</strong>. Name it <code>ai-from-zero</code>, choose <strong>Private</strong>, and tick <strong>Add a README file</strong>. Press <strong>Create repository</strong>.':
+    'Upar daayin taraf <strong>+</strong> dabaiye, phir <strong>New repository</strong>. Iska naam <code>ai-from-zero</code> rakhiye, <strong>Private</strong> chuniye, aur <strong>Add a README file</strong> par tick kijiye. <strong>Create repository</strong> dabaiye.',
+  'You see your new repository with one file in it, <code>README.md</code>. That file is the front page of the repository: whatever you write in it shows below the list of files.':
+    'Aapko apni nayi repository dikhti hai jisme ek file hai, <code>README.md</code>. Yeh file repository ka pehla panna hai: isme jo bhi likhein, woh files ki list ke neeche dikhta hai.',
+  'A commit: one saved version, with a note':
+    'Commit: ek saved version, ek note ke saath',
+  'Each time you save a change on GitHub, you make a <strong>commit</strong>. A commit is one saved version of your files, together with a short message that says what changed. The list of commits is the repository’s history.':
+    'GitHub par jab bhi aap koi badlaav save karte hain, aap ek <strong>commit</strong> banate hain. Commit aapki files ka ek saved version hai, ek chhote message ke saath jo batata hai ki kya badla. Commits ki list repository ki history hai.',
+  'Add your decision log':
+    'Apna decision log jodiye',
+  'In your repository, press <strong>Add file</strong>, then <strong>Create new file</strong>.':
+    'Apni repository mein <strong>Add file</strong> dabaiye, phir <strong>Create new file</strong>.',
+  'Name the file <code>decision-log.md</code>. Write the first entry from A1: the date, the decision, the evidence, and what would make you change your mind.':
+    'File ka naam <code>decision-log.md</code> rakhiye. A1 se pehli entry likhiye: tareekh, faisla, saboot, aur kya aapka mann badal dega.',
+  'Press <strong>Commit changes</strong>. In the message box, write what you did, for example <em>Start the decision log</em>. Press <strong>Commit changes</strong> again.':
+    '<strong>Commit changes</strong> dabaiye. Message box mein likhiye ki aapne kya kiya, jaise <em>Start the decision log</em>. Phir se <strong>Commit changes</strong> dabaiye.',
+  'The file appears in the list. Open it, then press <strong>History</strong>: you see one commit, with your message and the time.':
+    'File list mein dikh jaati hai. Use kholiye, phir <strong>History</strong> dabaiye: aapko ek commit dikhta hai, aapke message aur samay ke saath.',
+  'Folders work the same way. To make one, type its name and a slash before the file name, such as <code>research/notes.md</code>, and GitHub creates the folder. To add files you already have, use <strong>Add file</strong>, then <strong>Upload files</strong>, and drag them in.':
+    'Folders bhi aise hi chalte hain. Folder banane ke liye file ke naam se pehle uska naam aur ek slash likhiye, jaise <code>research/notes.md</code>, aur GitHub folder bana deta hai. Jo files aapke paas pehle se hain, unhe jodne ke liye <strong>Add file</strong>, phir <strong>Upload files</strong> chuniye, aur unhe kheench kar daaliye.',
+  'Gone, or still there?':
+    'Chala gaya, ya abhi bhi wahin hai?',
+  'Guess first. You commit a file with a line in it, then delete the line and commit again. Is the old line gone from the repository?':
+    'Pehle andaaza lagaiye. Aap ek line wali file commit karte hain, phir woh line mita kar dobara commit karte hain. Kya purani line repository se chali gayi?',
+  'No. The old line is still in the history, in the first commit. Anyone who can open the repository can find it there.':
+    'Nahi. Purani line abhi bhi history mein hai, pehle commit mein. Jo bhi repository khol sakta hai, use wahan dhoondh sakta hai.',
+  'This is what makes a repository a good home for a decision log. It is also why some things must never go into one, as the next section explains.':
+    'Yahi repository ko decision log ka achha ghar banata hai. Aur isi wajah se kuch cheezein usme kabhi nahi jaani chahiye, jaisa agla section batata hai.',
+  'What never goes in':
+    'Kya kabhi andar nahi jaata',
+  'Because a repository remembers everything, a mistake in it is hard to undo. Deleting a file later does not remove it from the history.':
+    'Kyunki repository sab kuch yaad rakhti hai, usme hui galti ko palatna mushkil hai. Baad mein file mitane se woh history se nahi hatti.',
+  'Never put an API key, a password or real people’s personal details into a repository, even a private one. Your model key lives on the Connect page of this app, in your browser. For the project, use the made-up starter sentences, never real customer data.':
+    'Repository mein kabhi API key, password ya asli logon ki niji jaankari mat daaliye, private repository mein bhi nahi. Aapki model key is app ke Connect page par, aapke browser mein rehti hai. Project ke liye bane-banaye starter sentences istemaal kijiye, asli customer data kabhi nahi.',
+  'You have just added the notes from your first user interview to the <code>research</code> folder. Write the commit message you would use.':
+    'Aapne abhi apne pehle user interview ke notes <code>research</code> folder mein jode hain. Woh commit message likhiye jo aap istemaal karenge.',
+  'One short line.':
+    'Ek chhoti line.',
+  'A good message says what changed, in a few words a stranger could follow, such as <em>Add notes from interview 1 (support lead, Pune)</em>. A message like <em>update</em> tells nobody anything when they read the history later.':
+    'Achha message kuch shabdon mein batata hai ki kya badla, itna saaf ki koi anjaan bhi samajh le, jaise <em>Add notes from interview 1 (support lead, Pune)</em>. <em>update</em> jaisa message baad mein history padhne wale ko kuch nahi batata.',
+  'You now have a private repository, a decision log in it, and a history that keeps every version. That is the place A1’s capstone asks for. Follow the folder plan from A1 as you add files over the coming weeks.':
+    'Ab aapke paas ek private repository hai, usme ek decision log hai, aur ek history jo har version rakhti hai. A1 ka capstone yahi jagah maangta hai. Aane wale hafton mein files jodte waqt A1 ke folder plan ko maaniye.',
+  'Much later, Chapter 21 shows how engineers do the same thing from their own computer, with a tool called Git. Until then, the website is all you need.':
+    'Kaafi baad mein, Chapter 21 dikhata hai ki engineers yahi kaam apne computer se Git naam ke tool se kaise karte hain. Tab tak aapko sirf website chahiye.',
+  'Spreadsheet basics: the formulas this course uses':
+    'Spreadsheet basics: is course ke formulas',
+  'A4 sizes a market and Chapter 15 works out what a feature costs, and both are done in a spreadsheet. This short chapter teaches the few formulas they need, in a sheet that sits right here in the page: cells, a formula, SUM, percentages and ROUND.':
+    'A4 market ka size nikaalta hai aur Chapter 15 hisaab lagata hai ki ek feature kitne ka padta hai, aur dono spreadsheet mein hote hain. Yeh chhota chapter unke liye zaroori gine-chune formulas sikhata hai, isi page par rakhi ek sheet mein: cells, formula, SUM, percentages aur ROUND.',
+  'Point to a cell by its address, such as B2, and write a formula that uses it.':
+    'Kisi cell ko uske address se pehchaniye, jaise B2, aur aisa formula likhiye jo use istemaal kare.',
+  'Add up a column with SUM, and work with percentages and ROUND.':
+    'SUM se ek column jodiye, aur percentages aur ROUND ke saath kaam kijiye.',
+  'Build a small estimate that updates itself when one number changes.':
+    'Ek chhota estimate banaiye jo ek number badalne par khud update ho jaaye.',
+  'A3’s numbers':
+    'A3 ke numbers',
+  'The examples use the support numbers from A3, such as three hundred tickets a week. Adding and multiplying is all the maths you need.':
+    'Udaharan A3 ke support numbers istemaal karte hain, jaise hafte mein teen sau tickets. Jodna aur guna karna, bas itna hi ganit chahiye.',
+  'You need nothing else. The sheet you work in is on this page, and it is saved with your progress. Google Sheets and Excel use the same formulas, so everything here works there too.':
+    'Aur kuch nahi chahiye. Jis sheet mein aap kaam karte hain, woh isi page par hai, aur aapki progress ke saath save hoti hai. Google Sheets aur Excel wahi formulas istemaal karte hain, isliye yahan ka sab kuch wahan bhi chalta hai.',
+  'A spreadsheet is a grid of boxes called <strong>cells</strong>. Columns have letters and rows have numbers, so every cell has an address: <code>B2</code> is column B, row 2.':
+    'Spreadsheet dibbon ka ek jaal hai jinhe <strong>cells</strong> kehte hain. Columns ke akshar hote hain aur rows ke number, isliye har cell ka ek address hota hai: <code>B2</code> yaani column B, row 2.',
+  'Why does this course use one? Because its numbers change. A market size or a cost model rests on guesses, and a good one lets you change a guess and watch every total change with it.':
+    'Yeh course spreadsheet kyun istemaal karta hai? Kyunki iske numbers badalte hain. Market size ya cost model andaazon par tika hota hai, aur achha model aapko ek andaaza badalne deta hai aur har total ko uske saath badalte dikhata hai.',
+  'Type each number once, in its own cell. Every total is a formula that points at those cells, so changing one number updates everything.':
+    'Har number ek hi baar likhiye, apne cell mein. Har total ek formula hai jo un cells ki taraf ishaara karta hai, isliye ek number badalne se sab update ho jaata hai.',
+  'Your sheet':
+    'Aapki sheet',
+  'This is the sheet for the whole chapter. Click a cell to type in it, and press Enter to move down.':
+    'Yeh poore chapter ki sheet hai. Kisi cell mein likhne ke liye use click kijiye, aur neeche jaane ke liye Enter dabaiye.',
+  'A3.5 Spreadsheet basics':
+    'A3.5 Spreadsheet basics',
+  'A formula starts with =':
+    'Formula = se shuru hota hai',
+  'When a cell starts with <code>=</code>, the sheet works it out instead of showing what you typed. <code>=B2*B3</code> means “B2 times B3”. Use <code>+</code> and <code>-</code>, <code>*</code> to multiply and <code>/</code> to divide.':
+    'Jab cell <code>=</code> se shuru hota hai, to sheet aapka likha dikhane ke bajaye uska hisaab lagati hai. <code>=B2*B3</code> yaani “B2 guna B3”. <code>+</code> aur <code>-</code> istemaal kijiye, guna ke liye <code>*</code> aur bhaag ke liye <code>/</code>.',
+  'Your first formula':
+    'Aapka pehla formula',
+  'In <code>A2</code> type <em>Tickets a week</em>, and in <code>B2</code> type <code>300</code>.':
+    '<code>A2</code> mein <em>Tickets a week</em> likhiye, aur <code>B2</code> mein <code>300</code>.',
+  'In <code>A3</code> type <em>Weeks a year</em>, and in <code>B3</code> type <code>52</code>.':
+    '<code>A3</code> mein <em>Weeks a year</em> likhiye, aur <code>B3</code> mein <code>52</code>.',
+  'In <code>A4</code> type <em>Tickets a year</em>, and in <code>B4</code> type <code>=B2*B3</code>.':
+    '<code>A4</code> mein <em>Tickets a year</em> likhiye, aur <code>B4</code> mein <code>=B2*B3</code>.',
+  '<code>B4</code> shows <code>15600</code>. Now change <code>B2</code> to <code>450</code>, and <code>B4</code> changes to <code>23400</code> by itself.':
+    '<code>B4</code> mein <code>15600</code> dikhta hai. Ab <code>B2</code> ko <code>450</code> kar dijiye, aur <code>B4</code> apne aap <code>23400</code> ho jaata hai.',
+  'What goes wrong?':
+    'Kya gadbad hoti hai?',
+  'Guess first. Someone works out 300 × 52 on a calculator and types <code>15600</code> into <code>B4</code> instead of the formula. What goes wrong later?':
+    'Pehle andaaza lagaiye. Koi calculator par 300 × 52 nikaalta hai aur formula ke bajaye <code>B4</code> mein <code>15600</code> likh deta hai. Baad mein kya gadbad hoti hai?',
+  'Nothing, until a number changes. When the tickets go up to 450, <code>B4</code> still says 15600, and every total built on it is quietly wrong.':
+    'Kuch nahi, jab tak koi number na badle. Jab tickets 450 ho jaate hain, <code>B4</code> phir bhi 15600 kehta hai, aur us par bana har total chupchaap galat ho jaata hai.',
+  'A typed-in total is the commonest spreadsheet mistake. If a number is worked out from others, make it a formula.':
+    'Haath se likha total spreadsheet ki sabse aam galti hai. Agar koi number doosron se nikalta hai, to use formula banaiye.',
+  'Adding up: SUM and ranges':
+    'Jodna: SUM aur ranges',
+  'A <strong>range</strong> is a block of cells written with a colon: <code>D2:D6</code> means D2 down to D6. <code>=SUM(D2:D6)</code> adds them all up. <code>=AVERAGE(D2:D6)</code>, <code>=MIN(D2:D6)</code> and <code>=MAX(D2:D6)</code> work the same way.':
+    '<strong>Range</strong> cells ka ek block hai jo colon se likha jaata hai: <code>D2:D6</code> yaani D2 se neeche D6 tak. <code>=SUM(D2:D6)</code> sabko jod deta hai. <code>=AVERAGE(D2:D6)</code>, <code>=MIN(D2:D6)</code> aur <code>=MAX(D2:D6)</code> bhi aise hi chalte hain.',
+  'Add up a column':
+    'Ek column jodiye',
+  'In <code>D2</code> to <code>D6</code>, type five numbers: the tickets each of five support leads handles in a week. In <code>D7</code>, type <code>=SUM(D2:D6)</code>, and in <code>D8</code>, type <code>=AVERAGE(D2:D6)</code>.':
+    '<code>D2</code> se <code>D6</code> tak paanch numbers likhiye: paanch support leads mein se har ek hafte mein kitne tickets sambhalta hai. <code>D7</code> mein <code>=SUM(D2:D6)</code> likhiye, aur <code>D8</code> mein <code>=AVERAGE(D2:D6)</code>.',
+  '<code>D7</code> shows the total and <code>D8</code> the average. Change any one of the five numbers, and both update.':
+    '<code>D7</code> total dikhata hai aur <code>D8</code> average. Paanch mein se koi bhi ek number badliye, aur dono update ho jaate hain.',
+  'Percentages and rounding':
+    'Percentages aur rounding',
+  'A percentage is a fraction: 12% is the same as 0.12. You can type either <code>12%</code> or <code>0.12</code> in a cell. To take 12% of the number in <code>B4</code>, write <code>=B4*12%</code>.':
+    'Percentage ek fraction hai: 12% aur 0.12 ek hi baat hai. Cell mein aap <code>12%</code> ya <code>0.12</code>, kuch bhi likh sakte hain. <code>B4</code> ke number ka 12% nikaalne ke liye <code>=B4*12%</code> likhiye.',
+  '<code>ROUND</code> tidies a result. <code>=ROUND(B4/7, 1)</code> divides B4 by 7 and keeps one decimal place.':
+    '<code>ROUND</code> nateeje ko saaf karta hai. <code>=ROUND(B4/7, 1)</code> B4 ko 7 se bhaag deta hai aur decimal ke baad ek ank rakhta hai.',
+  'A small estimate, the way A4 builds one':
+    'Ek chhota estimate, waise hi jaise A4 banata hai',
+  'A4 sizes a market from the bottom up: customers you can count, times what each would pay. In a sheet, each of those is its own cell.':
+    'A4 market ka size neeche se upar nikaalta hai: jitne customers aap gin sakein, guna har ek kitna dega. Sheet mein inme se har ek apna cell hai.',
+  'Build a market estimate':
+    'Market estimate banaiye',
+  'In <code>F2</code> type the number of firms that have the problem, for example <code>9000</code>.':
+    '<code>F2</code> mein un firms ki ginti likhiye jinhe yeh problem hai, jaise <code>9000</code>.',
+  'In <code>F3</code> type what one firm would pay in a year, in rupees, for example <code>120000</code>.':
+    '<code>F3</code> mein likhiye ki ek firm saal mein kitne rupaye degi, jaise <code>120000</code>.',
+  'In <code>F4</code> type <code>=F2*F3</code>: that is the whole market. In <code>F5</code> type the share you could win, <code>2%</code>, and in <code>F6</code> type <code>=F4*F5</code>.':
+    '<code>F4</code> mein <code>=F2*F3</code> likhiye: yeh poora market hai. <code>F5</code> mein woh hissa likhiye jo aap jeet sakte hain, <code>2%</code>, aur <code>F6</code> mein <code>=F4*F5</code>.',
+  '<code>F4</code> shows <code>1080000000</code>, which is ₹108 crore, and <code>F6</code> shows <code>21600000</code>, which is ₹2.16 crore. Change the price in <code>F3</code> and both follow. A4 builds exactly this kind of table.':
+    '<code>F4</code> mein <code>1080000000</code> dikhta hai, yaani ₹108 crore, aur <code>F6</code> mein <code>21600000</code>, yaani ₹2.16 crore. <code>F3</code> mein keemat badliye aur dono uske saath badal jaate hain. A4 bilkul aisi hi table banata hai.',
+  'A cell shows an error such as <em>#DIV/0</em>':
+    'Cell mein <em>#DIV/0</em> jaisa error dikhta hai',
+  'The formula divides by zero or by an empty cell, or does a sum with a cell that holds words. Check that every cell it points at holds a number.':
+    'Formula zero se ya khaali cell se bhaag de raha hai, ya aise cell ke saath hisaab kar raha hai jisme shabd hain. Jaanchiye ki jin cells ki taraf woh ishaara karta hai, un sab mein number ho.',
+  'A model call reads 120 tokens, and the model costs ₹20 for every million tokens. Cell <code>B10</code> holds 120, <code>B11</code> holds 20 and <code>B12</code> holds 1000. Write one formula for the cost of 1,000 calls.':
+    'Ek model call 120 tokens padhta hai, aur model har das lakh tokens ke ₹20 leta hai. Cell <code>B10</code> mein 120 hai, <code>B11</code> mein 20 aur <code>B12</code> mein 1000. 1,000 calls ki keemat ka ek formula likhiye.',
+  '=…':
+    '=…',
+  '<code>=B10*B12*B11/1000000</code>, which gives <code>2.4</code>, so ₹2.40: tokens per call, times the number of calls, times the price per million, divided by a million. Chapter 15 builds a full cost model from exactly this line.':
+    '<code>=B10*B12*B11/1000000</code>, jo <code>2.4</code> deta hai, yaani ₹2.40: har call ke tokens, guna calls ki ginti, guna das lakh ki keemat, bhaag das lakh. Chapter 15 isi line se poora cost model banata hai.',
+  'You can now read and write the formulas this course uses: a cell address, a formula that starts with <code>=</code>, <code>SUM</code>, a percentage and <code>ROUND</code>. A4 uses them to size the market, and Chapter 15 to work out what a feature costs.':
+    'Ab aap is course ke formulas padh aur likh sakte hain: cell address, <code>=</code> se shuru hone wala formula, <code>SUM</code>, percentage aur <code>ROUND</code>. A4 inse market ka size nikaalta hai, aur Chapter 15 feature ki keemat.',
+  '<a href="#/sheets">Sheets</a> keeps every sheet you make, and the code in your notebook can read any of them.':
+    '<a href="#/sheets">Sheets</a> aapki banayi har sheet rakhta hai, aur aapke notebook ka code inme se koi bhi padh sakta hai.',
+
+  /* the worksheet, linked from the route page and the sidebar */
+  'The worksheet':
+    'Worksheet',
+  'everything by topic, with your notes':
+    'sab kuch topic ke hisaab se, aapke notes ke saath',
+  'Worksheet: the whole course by topic':
+    'Worksheet: poora course topic ke hisaab se',
 });

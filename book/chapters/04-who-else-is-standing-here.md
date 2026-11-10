@@ -1,7 +1,7 @@
 ---
 title: Who Else Is Standing Here
 summary: A conditional yes from the compliance head sets one hard requirement for the tool, and the product manager then checks what already exists, sizes the market from the bottom up, and studies the competition, including the competitor that is not a product.
-course: a4
+course: a4s a4
 goals:
   - read a conditional approval as a design constraint
   - size a market from customers who can be counted, and mark each assumption as known or assumed
@@ -76,6 +76,8 @@ Table: Anaya's bottom-up estimate for the privacy tool
 | SOM | What she could win in about three years | 2 percent of 2,700 = 54 customers = about ₹65 lakh a year |
 
 The last figure was sobering. ₹65 lakh a year is the revenue of a small team, not of a company. But it was a figure she could believe, and she couldn't say that about the first one.
+
+She built the estimate in a spreadsheet, not on paper. Each number sat in its own cell, and each total was a formula that pointed at those cells. When Farah questioned the price per customer, Anaya changed one cell and every total below it changed too. An estimate that updates itself invites argument, which is what an estimate is for.
 
 The point of the table wasn't the final number. Every line raised a question. How did she know there were nine thousand firms, or five thousand chats? And every question had somewhere to go. Each assumption was marked as known or assumed, and the assumed ones were the first to be checked.
 

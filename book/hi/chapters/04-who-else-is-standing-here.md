@@ -1,7 +1,7 @@
 ---
 title: Yahan Aur Kaun Khada Hai
 summary: Compliance head ki ek shart wali haan tool ke liye ek kadi requirement tay kar deti hai. Uske baad product manager dekhti hai ki pehle se kya maujood hai, market ka size neeche se upar naapti hai, aur competition ko parakhti hai, us competitor ko bhi jo product nahi hai.
-course: a4
+course: a4s a4
 goals:
   - shart wali approval ko design ki ek requirement ki tarah padhna
   - aise customers se market ka size naapna jinhe gina ja sake, aur har assumption ko jaana hua ya andaaza, aise mark karna
@@ -76,6 +76,8 @@ Table: Privacy tool ke liye Anaya ka bottom-up estimate
 | SOM | Lagbhag teen saal mein woh jo jeet sakti hai | 2,700 ka 2 percent = 54 customers = lagbhag ₹65 lakh saal |
 
 Aakhri figure ne Anaya ko sochne par majboor kiya. ₹65 lakh saal ek chhoti team ki aay hoti hai, company ki nahi. Lekin yeh woh figure tha jis par woh yakeen kar sakti thi. Pehle figure ke baare mein woh yeh nahi keh sakti thi.
+
+Usne yeh estimate kaagaz par nahi, ek spreadsheet mein banaya. Har number apne cell mein tha, aur har total ek formula tha jo un cells ki taraf ishaara karta tha. Jab Farah ne har customer ki keemat par sawaal uthaya, Anaya ne ek cell badla aur uske neeche ka har total bhi badal gaya. Jo estimate khud update ho, woh behas ko bulaata hai, aur estimate isi ke liye hota hai.
 
 Table ka maksad aakhri number nahi tha. Har line ek sawaal uthati thi. 9,000 firms ka pata kaise, ya 5,000 chats ka? Aur har sawaal ke paas jaane ki ek jagah thi. Har assumption jaana hua ya andaaza, aise mark tha, aur jo andaaza the unhe sabse pehle check kiya jaata.
 

@@ -12,7 +12,6 @@ terms:
   - status code | the number on an HTTP reply: 200 means it worked, a 4xx number means the request was wrong, and a 5xx number means the server failed | status codes
   - environment variable | a value kept outside the code, in the place a program runs, which is where passwords and API keys belong | environment variables
   - Git | a tool that saves every version of your work, so you can see what changed and go back to any earlier version | 
-  - repository | the folder, kept in Git, that holds all of a project's work and its history | repositories
   - experiment runner | a reusable program that records, for every experiment, the inputs, outputs, settings, timings and errors, so a result can be reproduced and compared | 
   - data contract | the unspoken assumptions one part of a system makes about the data it receives, such as that a field will be present and a list will not be empty | 
 ---

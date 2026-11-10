@@ -387,7 +387,7 @@ ${main}
 ${parts.join('\n')}
 </ol>
 <p class="nomatch" hidden>${ui.searchNone}</p>
-<p class="tocapp"><button type="button" class="b" data-install hidden></button> <a href="${appUrl}#/start">${lang === 'hi' ? 'Aapka raasta' : 'Your route'} →</a> <a href="/plan/">${lang === 'hi' ? 'Plan' : 'The plan'} →</a></p>
+<p class="tocapp"><button type="button" class="b" data-install hidden></button> <a href="${appUrl}#/start">${lang === 'hi' ? 'Aapka raasta' : 'Your route'} →</a> <a href="/plan/">${lang === 'hi' ? 'Plan' : 'The plan'} →</a> <a href="${lang === 'hi' ? '/worksheet/hi/' : '/worksheet/'}">${lang === 'hi' ? 'Worksheet' : 'The worksheet'} →</a></p>
 </nav>`;
   };
 
@@ -582,6 +582,7 @@ ${letters.map(l => `<h2 id="a-${l}">${l}</h2><dl>${all.filter(t => t.term[0].toU
 <p>${lang === 'hi' ? 'Phone par kitaab ko app ki tarah rakhiye, aur poori kitaab bina internet ke padhne ke liye save kar lijiye.' : 'Keep the book as an app on your phone, and save the whole book to read without internet.'}</p>
 <p class="approw"><button type="button" class="go" data-install hidden></button><button type="button" class="go ghost" id="offline">${lang === 'hi' ? 'Poori kitaab offline save kijiye' : 'Save the whole book offline'}</button><span class="offmsg" id="offmsg" role="status"></span></p>
 <p class="small"><a href="${appUrl}#/start">${lang === 'hi' ? 'Kitaab, playbook aur plan ek jagah: aapka raasta' : 'The book, the playbook and the plan in one view: your route'} →</a></p>
+<p class="small"><a href="${lang === 'hi' ? '/worksheet/hi/' : '/worksheet/'}">${lang === 'hi' ? 'Poora course topic ke hisaab se, ek page par: worksheet' : 'The whole course by topic, on one page: the worksheet'} →</a></p>
 <p class="small">${lang === 'hi' ? 'Har chapter suna bhi ja sakta hai: chapter ke upar <b>Suniye</b> dabaiye.' : 'Every chapter can be read aloud: press <b>Listen</b> at the top of a chapter.'} <a href="${siteBase}voices.html">${lang === 'hi' ? 'Awaazein' : 'Narrator voices'} →</a></p>
 </div>
 </div>

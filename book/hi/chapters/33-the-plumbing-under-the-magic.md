@@ -12,7 +12,6 @@ terms:
   - status code | HTTP reply par likha number: 200 matlab kaam hua, 4xx number matlab request galat thi, aur 5xx number matlab server fail hua | status codes
   - environment variable | code ke bahar, us jagah rakhi hui value jahan program chalta hai; passwords aur API keys isi jagah rakhi jaati hain | environment variables
   - Git | ek tool jo aapke kaam ka har version save karta hai, taaki aap dekh sakein ki kya badla aur kisi bhi purane version par wapas ja sakein | 
-  - repository | Git mein rakha hua woh folder jisme ek project ka saara kaam aur uski history hoti hai | repositories
   - experiment runner | ek dobara use hone wala program jo har experiment ke liye inputs, outputs, settings, timings aur errors record karta hai, taaki result dohraya aur compare kiya ja sake | 
   - data contract | woh bina kahe maani hui baatein jo system ka ek hissa us data ke baare mein maan leta hai jo use milta hai, jaise ki field maujood hogi aur list khaali nahi hogi | 
 ---

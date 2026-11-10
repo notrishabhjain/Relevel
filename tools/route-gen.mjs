@@ -51,13 +51,13 @@ const WHAT = {
    `why` is one or two sentences: what the week builds on, and what it adds. */
 const W = [
   ['Start: a problem worth solving', 'Three lines in your notepad, and the boxes in A1 answered.', ['first-pass'],
-    ['ch:ch0', 'bk:pre', 'bk:1', 'ch:a1', 'review'], false,
+    ['ch:ch0', 'bk:pre', 'bk:1', 'ch:a1', 'ch:a1g', 'review'], false,
     'Nothing is assumed. The book opens on a real finding in a week of customer chats, and A1 turns that finding into the project you will carry to the end.'],
   ['Is it worth building?', 'The boxes in A2 and A3 answered: how products win, and a problem statement from what users actually did.', ['first-pass'],
     ['bk:2', 'ch:a2', 'bk:3', 'ch:a3', 'review'], false,
     'Last week named a problem. This week tests whether it deserves building: first how products win, then how to ask people about what really happened.'],
   ['The market, and what not to do', 'A rough market size, and a short “not doing” list.', ['first-pass'],
-    ['bk:4', 'ch:a4', 'bk:5', 'ch:a5', 'review'], false,
+    ['bk:4', 'ch:a4s', 'ch:a4', 'bk:5', 'ch:a5', 'review'], false,
     'You know who has the problem. Now you look at who else serves them and how many there are, and then you choose the one thing to do first.'],
   ['A plan, and writing it down', 'One objective with three key results, and a one-page spec outline.', ['first-pass'],
     ['bk:6', 'ch:a6', 'bk:7', 'ch:a7', 'review'], false,

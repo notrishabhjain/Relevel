@@ -68,6 +68,16 @@
       "source": "/plan",
       "destination": "/plan/",
       "permanent": true
+    },
+    {
+      "source": "/worksheet",
+      "destination": "/worksheet/",
+      "permanent": true
+    },
+    {
+      "source": "/worksheet/hi",
+      "destination": "/worksheet/hi/",
+      "permanent": true
     }
   ],
   "rewrites": [

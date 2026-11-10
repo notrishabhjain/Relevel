@@ -295,6 +295,9 @@ function blocks(list){
       f.appendChild(h('figure',{class:'embed'},[fr,h('figcaption',{},[h('span',{text:r[1]||''}),
         h('a',{href:r[0],target:'_blank',rel:'noopener',text:T('Open on its own')+' ↗'})])]));
     }
+    /* A practice sheet placed in the text, right where the steps use it:
+       ['sheet', name]. The chapter then gets no second sheet at its end. */
+    else if(k==='sheet'){ if(window.SHEETS&&CTX){ CTX.sheet=true; f.appendChild(window.SHEETS.panel(CTX.ch,r[0]||'Practice sheet')); } }
     /* The Connect panel and the Files panel, placed by content (the setup page). */
     else if(k==='connect'){ if(window.PLAYGROUND) f.appendChild(window.PLAYGROUND.connect()); }
     else if(k==='files'){ if(window.PY) f.appendChild(window.PY.filesPanel()); }
@@ -945,7 +948,7 @@ function renderChapter(c){
   /* A chapter that asks for a spreadsheet gets one here, and one that asks
      you to answer out loud gets a recorder: no other tab, no phone app. */
   const said=JSON.stringify([c.story,c.capstone,c.homework,c.plan]||'');
-  if(window.SHEETS && /\bspreadsheet/i.test(said)){
+  if(window.SHEETS && /\bspreadsheet/i.test(said) && !(c.story||[]).some(b=>Array.isArray(b)&&b[0]==='sheet')){
     const sh=h('section',{class:'part',id:'sheet'});
     sh.appendChild(sectionHead(c.num+'.'+n++,'Your sheet for this chapter'));
     sh.appendChild(h('p',{class:'dim',style:'font-size:.87rem;margin:0 0 .8rem',
@@ -1605,7 +1608,8 @@ function pageStart(){
   w.appendChild(h('nav',{class:'hubviews','aria-label':T('The other views')},[
     h('a',{href:bookBaseHere},[h('b',{text:T('The book')}),h('span',{text:T('the same chapters as one story')})]),
     h('a',{href:'/plan/'},[h('b',{text:T('The plan')}),h('span',{text:T('these weeks, with reviews and a parking lot')})]),
-    h('a',{href:'/plan/#curriculum'},[h('b',{text:T('The curriculum')}),h('span',{text:T('why the route is in this order')})])]));
+    h('a',{href:'/plan/#curriculum'},[h('b',{text:T('The curriculum')}),h('span',{text:T('why the route is in this order')})]),
+    h('a',{href:hi?'/worksheet/hi/':'/worksheet/'},[h('b',{text:T('The worksheet')}),h('span',{text:T('everything by topic, with your notes')})])]));
   w.appendChild(h('div',{class:'gprog'},[
     h('span',{class:'cpbar big'},h('i',{style:'width:'+Math.round(doneN*100/all.length)+'%'})),
     h('span',{class:'dim',text:doneN+' / '+all.length+' '+T('steps done')})]));
@@ -2321,6 +2325,7 @@ function renderRail(){
      expects an environment they were never told how to build. */
   r.appendChild(sec('Help',[
     ['#/start','\u25b8','Your route: 26 weeks, one order'],
+    [S.lang==='hi'?'/worksheet/hi/':'/worksheet/','\u25a4','Worksheet: the whole course by topic'],
     ['#/setup','\u2699','Connect a model'],
     ['#/workbench','\u25b7','Workbench: run code here'],
     ['#/playground','\u25cc','Playground: try prompts'],

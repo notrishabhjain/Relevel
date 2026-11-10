@@ -155,6 +155,28 @@ an unguessable link, `/api/plan-status?id=…`, that returns week numbers and co
 notes or the parking lot); switching it off kills the link. Without the API (for example on GitHub
 Pages) the tracker still works in the browser, and "Download backup" saves it as a file.
 
+## The worksheet
+
+The app, the book and the plan are three views of one course. **`/worksheet/`** (and
+`/worksheet/hi/` in Hinglish) puts all three on one page, arranged by topic, so the whole
+of the learning can be seen and worked through in one place:
+
+| Topic | What it holds |
+| --- | --- |
+| 0. Before you start | A checklist of what to sort out before week 1: time, a device, the free accounts and when each is needed, the skills the course teaches itself (A1.5 GitHub, A3.5 spreadsheets, 0.8 reading Python), the five interviewees A3 needs, and money (nothing to pay) |
+| 1–13 | One per stage of the project: what it builds on, the book chapters to read, the app chapters to do (with their hands-on count and project task), the plan weeks it falls in with their look-backs, the stage's deliverables, the further reading, and the glossary words |
+
+Each row's tick comes live from the one shared progress record (`/progress.js`). Each topic
+also has an "I can explain this" tick and a notes box; the deliverables and the before-you-start
+lines are ticks too. These save in the browser and, signed in, in the plan's notes document
+(`/api/plan`, parts `topics` and `ticks`, merged per entry like the plan's weeks). **Save as PDF**
+prints every topic open with your notes; **Download as a spreadsheet** saves the same as a CSV.
+
+Nothing on it is typed twice: `worksheet/build.mjs` builds it from the course, the book, the
+route and the project stages, and **fails the build** unless every app chapter, every book
+chapter and every route step appears on it exactly once. Only the topic headings, the
+before-you-start checklist and the page's labels live in `worksheet/data.mjs`.
+
 ## Live site (GitHub Pages)
 
 `.github/workflows/pages.yml` builds the static site and publishes it to

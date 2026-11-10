@@ -13,6 +13,7 @@ import zlib from 'node:zlib';
 import { fileURLToPath } from 'node:url';
 import { loadBook, buildBook } from './book/build.mjs';
 import { buildPlan } from './plan/build.mjs';
+import { buildWorksheet } from './worksheet/build.mjs';
 import * as ROUTE from './src/data/route.mjs';
 import * as PLAN from './plan/data.mjs';
 
@@ -410,10 +411,11 @@ self.addEventListener('notificationclick', e => {
 /* The book and the plan are kept in a cache of their own that a new version
    of the app does not wipe, so a chapter read once stays readable offline. */
 const PAGES = 'aifz-pages-v1';
-const pageCache = u => u.pathname.startsWith('/book/') || u.pathname.startsWith('/plan/') ||
+const pageCache = u => u.pathname.startsWith('/book/') || u.pathname.startsWith('/plan/') || u.pathname.startsWith('/worksheet/') ||
   ['/progress.js', '/install.js', '/reminder.js'].includes(u.pathname);
 const fallback = u => u.pathname.startsWith('/book/hi/') ? '/book/hi/' : u.pathname.startsWith('/book/') ? '/book/'
-  : u.pathname.startsWith('/plan/') ? '/plan/' : './${APP_DIR}/';
+  : u.pathname.startsWith('/plan/') ? '/plan/' : u.pathname.startsWith('/worksheet/hi/') ? '/worksheet/hi/'
+  : u.pathname.startsWith('/worksheet/') ? '/worksheet/' : './${APP_DIR}/';
 self.addEventListener('fetch', e => {
   const r = e.request;
   if (r.method !== 'GET') return;
@@ -495,6 +497,9 @@ const builtHi = hasHi ? buildBook(HI_ROOT, p.join(R, 'dist/site/book/hi'),
 /* ---- the Applied AI PM plan (static pages at /plan/) ---- */
 const builtPlan = buildPlan(R, p.join(R, 'dist/site/plan'));
 
+/* ---- the worksheet: the whole course by topic (static pages at /worksheet/) ---- */
+const builtWs = buildWorksheet(R, p.join(R, 'dist/site/worksheet'), defaults);
+
 const SITE_ORIGIN = 'https://relevel-steel.vercel.app';
 /* ---- the book and the plan as installable apps ----
    Each has its own manifest, scope and icon, so a phone can keep them as
@@ -533,6 +538,7 @@ console.log('dist/artifact.html  ' + kb('dist/artifact.html') + '   (Claude Arti
 console.log('dist/site/          deploy directory, sw version ' + VERSION);
 console.log('dist/site/book/      ' + builtBook.chapters.length + ' chapters, ' + builtBook.words + ' words' + (builtHi ? '; Hinglish ' + builtHi.words + ' words' : '') + '; to narrate ' + Math.round((builtBook.sayChars + (builtHi ? builtHi.sayChars : 0)) / 1000) + 'k characters');
 console.log('dist/site/plan/      ' + builtPlan.pages + ' pages, ' + builtPlan.words + ' words');
+console.log('dist/site/worksheet/ ' + builtWs.topics + ' topics, ' + builtWs.apps + ' app chapters, ' + builtWs.books + ' book chapters, ' + builtWs.steps + ' route steps; English and Hinglish');
 console.log('content/defaults.json ' + kb('content/defaults.json') + ' (' +
   defaults.chapters.length + ' chapters, ' + defaults.items.length + ' questions, ' +
   defaults.skills.length + ' skills)');

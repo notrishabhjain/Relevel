@@ -4,7 +4,11 @@
    progress record the playbook keeps. The plan page keeps only its own notes:
      { weeks:   { "1": { link, note, u }, ... },
        gates:   { "M1": { passed, note, u }, ... },
-       parking: { "<id>": { text, u, del } } }
+       parking: { "<id>": { text, u, del } },
+   and the worksheet (/worksheet/) keeps its own two parts in the same document:
+       topics:  { "t3": { can, note, u }, ... }   "I can explain this", and notes
+       ticks:   { "<id>": { on, u } }            the before-you-start checklist
+                                                 and the project deliverables }
    Every entry carries `u`, the time it was last edited on the device that edited
    it. Two devices that both edited different weeks keep both edits; for the same
    entry the later `u` wins. Nothing is ever refused for being out of date. */
@@ -21,7 +25,7 @@ const num = v => (Number.isFinite(v) ? Math.max(0, Math.min(v, 8.64e15)) : 0);
 /* Whatever arrives is reduced to the shape above, so a bad client cannot store
    anything else. */
 export function clean(d) {
-  const out = { weeks: {}, gates: {}, parking: {} };
+  const out = { weeks: {}, gates: {}, parking: {}, topics: {}, ticks: {} };
   const src = d && typeof d === 'object' ? d : {};
   for (const [k, v] of Object.entries(src.weeks || {})) {
     const n = Number(k);
@@ -38,12 +42,24 @@ export function clean(d) {
     out.parking[k] = { text: str(v.text, 300), del: !!v.del, u: num(v.u) };
     kept++;
   }
+  kept = 0;
+  for (const [k, v] of Object.entries(src.topics || {})) {
+    if (!/^t\d{1,2}$/.test(k) || !v || typeof v !== 'object' || kept >= 40) continue;
+    out.topics[k] = { can: !!v.can, note: str(v.note, 2000), u: num(v.u) };
+    kept++;
+  }
+  kept = 0;
+  for (const [k, v] of Object.entries(src.ticks || {})) {
+    if (!/^[\w-]{1,32}$/.test(k) || !v || typeof v !== 'object' || kept >= 300) continue;
+    out.ticks[k] = { on: !!v.on, u: num(v.u) };
+    kept++;
+  }
   return out;
 }
 
 export function merge(a, b) {
-  const x = clean(a), y = clean(b), out = { weeks: {}, gates: {}, parking: {} };
-  for (const part of ['weeks', 'gates', 'parking']) {
+  const x = clean(a), y = clean(b), out = { weeks: {}, gates: {}, parking: {}, topics: {}, ticks: {} };
+  for (const part of ['weeks', 'gates', 'parking', 'topics', 'ticks']) {
     for (const k of new Set([...Object.keys(x[part]), ...Object.keys(y[part])])) {
       const p = x[part][k], q = y[part][k];
       out[part][k] = !p ? q : !q ? p : (q.u >= p.u ? q : p);
