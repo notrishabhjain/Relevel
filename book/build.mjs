@@ -365,7 +365,6 @@ ${main}
 <script src="/install.js" defer></script>
 <script src="${assetBase}reader.js" defer></script>
 <script src="${assetBase}listen.js" defer></script>
-<script src="/reminder.js" defer></script>
 </body>
 </html>
 `;

@@ -243,7 +243,7 @@
       '<div class="row small"><button type="button" class="quiet" id="exp">Download backup</button> <label class="quiet filebtn">Restore backup<input type="file" id="imp" accept="application/json" hidden></label></div>';
   }
 
-  /* The daily 12:00 reminder switch is the shared bell from /reminder.js. */
+  /* (The daily 12:00 reminder was switched off on 10 Nov 2026; there is no bell.) */
   function schedulePush() {
     if (!api.user) return;
     setSync('Saving…');

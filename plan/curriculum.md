@@ -2,7 +2,7 @@
 
 This is a 26-week route to becoming a believable Applied AI Product Manager by April 2027. It runs from Monday 19 October 2026 to Sunday 18 April 2027. It starts at about an hour a week and builds slowly from there. Everything runs in the browser, and no local machine is needed.
 
-There is one route, and four places show it. The [playbook](../) is where you do each chapter. The [book](../book/) tells the same chapters as one story, in the same order. This plan shows the route as weeks, with notes and monthly reviews. The 12:00 reminder names your next step. All four read the same list and the same progress, so a chapter you mark complete in the playbook, or a book chapter you finish, is ticked everywhere.
+There is one route, and three places show it. The [playbook](../) is where you do each chapter. The [book](../book/) tells the same chapters as one story, in the same order. This plan shows the route as weeks, with notes and monthly reviews. All three read the same list and the same progress, so a chapter you mark complete in the playbook, or a book chapter you finish, is ticked everywhere.
 
 There are three tabs here. The [Plan & tracker tab](#plan) is the route week by week. The [How to build tab](#build) explains how to take a chapter on its first pass, the one-time setup, and how to publish. This tab, the Curriculum, explains the reasoning, and keeps the job-market research and interview preparation.
 

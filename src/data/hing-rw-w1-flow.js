@@ -457,8 +457,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Apne tool par hamla, ek check kiya hua automatic marker, ek cost model, system card, requirements aur banaane-ya-kharidne ka faisla.',
   'Your model choice with a back-up, the tool access policy, the release gate, the risk register and the decision pack.':
     'Back-up ke saath aapka model ka chunaav, tool access policy, release gate, risk register aur decision pack.',
-  'One route. The playbook, the book, this plan and the 12:00 reminder follow the same steps in the same order. If two of them ever disagree, the route page in the playbook wins, and that is a bug to report.':
-    'Ek raasta. Playbook, kitaab, yeh plan aur 12:00 ka reminder wahi steps usi order mein follow karte hain. Agar kabhi do aapas mein na milein, toh playbook ka route page sahi maana jaayega, aur woh ek bug hai jise report karna chahiye.',
+  'One route. The playbook, the book and this plan follow the same steps in the same order. If two of them ever disagree, the route page in the playbook wins, and that is a bug to report.':
+    'Ek raasta. Playbook, kitaab aur yeh plan wahi steps usi order mein follow karte hain. Agar kabhi do aapas mein na milein, toh playbook ka route page sahi maana jaayega, aur woh ek bug hai jise report karna chahiye.',
   'Story first, then the chapter. Read a chapter’s story in the book before you do the chapter in the playbook.':
     'Pehle kahani, phir chapter. Playbook mein chapter karne se pehle kitaab mein uski kahani padhiye.',
   'Ten minutes is a real day. On a bad day do one page and tick it. A small day counts; a zero day does not.':

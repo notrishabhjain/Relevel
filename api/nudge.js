@@ -1,10 +1,12 @@
 import { query, send, readJson } from './_lib/db.js';
 import { guard } from './_lib/auth.js';
-import { allowedEndpoint, istParts, lastRun, messageFor, pushEach, runDaily, vapid } from './_lib/nudge.js';
+import { allowedEndpoint, istParts, lastRun, messageFor, pushEach, vapid } from './_lib/nudge.js';
 
-/* The daily 12:00 reminder.
+/* The daily 12:00 reminder, switched off (10 Nov 2026): nothing schedules it
+   any more (no Vercel cron, no GitHub workflow), the bell is gone from every
+   page, and ?run=1 sends nothing, so it cannot come back by being called.
    GET  ?today=1  the day's message (the service worker asks for it when a push arrives)
-   GET  ?run=1    the scheduled send; safe to call many times a day (see runDaily)
+   GET  ?run=1    the old scheduled send; now answers { sent: 0, off: true }
    GET            { key, devices, known, last } for the signed-in person (key is public;
                   ?endpoint=… asks whether that device is on file)
    POST { subscription }  remember this device
@@ -24,7 +26,7 @@ export default guard(async (req, res, user) => {
       }
       return send(res, 200, messageFor(istParts().date, st));
     }
-    if (q.get('run')) return send(res, 200, await runDaily());
+    if (q.get('run')) return send(res, 200, { sent: 0, off: true });
     const keys = await vapid();
     const devices = user ? Number((await query('SELECT COUNT(*) AS n FROM push_subs WHERE user_id=$1', [user.id]))[0].n) : 0;
     /* known: whether this browser's own subscription is on file, so the bell
