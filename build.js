@@ -322,8 +322,7 @@ const SITE_HEAD =
 if('serviceWorker' in navigator)addEventListener('load',function(){
   navigator.serviceWorker.register('../sw.js').catch(function(){});
 });
-</script>
-<script src="/reminder.js" defer></script>`;
+</script>`;
 out(`dist/site/${APP_DIR}/index.html`, head(SITE_HEAD, '../icon-180.png'));
 out('dist/site/index.html',
 `<!doctype html><html lang="en"><head>

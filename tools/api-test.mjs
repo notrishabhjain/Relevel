@@ -1,5 +1,5 @@
 /* Exercises the API against the dev server. `node tools/api-test.mjs` */
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import crypto from 'node:crypto';
 import { messageFor, weekdaysSince, istParts, allowedEndpoint, makeKeys, vapidHeader, START, SEND_FROM_MINUTE, SEND_UNTIL_MINUTE } from '../api/_lib/nudge.js';
 import { MESSAGES } from '../api/_lib/nudge-messages.js';
@@ -155,12 +155,12 @@ console.log('\n— daily reminder —');
   ok(MESSAGES.length === 30 && MESSAGES.every((m, i) => m.startsWith('Day ' + (i + 1) + '. ')), 'there are thirty messages, numbered in order');
   ok(START === '2026-10-19' && istParts(Date.parse('2026-10-19T06:30:00Z')).minutes === 720, '06:30 UTC is 12:00 in India');
   {
+    /* switched off on 10 Nov 2026: nothing may schedule it again */
     const V = JSON.parse(readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'));
-    const hours = (V.crons || []).filter(c => c.path.startsWith('/api/nudge?run=1')).map(c => +c.schedule.split(' ')[1]);
-    ok(hours.includes(6), 'Vercel’s scheduler triggers the reminder in hour 06 UTC', JSON.stringify(V.crons));
+    ok(!(V.crons || []).some(c => /\/api\/nudge/.test(c.path)), 'no Vercel cron schedules the daily reminder', JSON.stringify(V.crons));
+    ok(!existsSync(new URL('../.github/workflows/nudge.yml', import.meta.url)), 'and no GitHub workflow does either');
     const inWin = iso => { const m = istParts(Date.parse(iso)).minutes; return m >= SEND_FROM_MINUTE && m <= SEND_UNTIL_MINUTE; };
-    ok(inWin('2026-10-21T06:00:00Z') && inWin('2026-10-21T06:59:00Z'), 'anywhere in that hour (11:30–12:29 in India) is inside the send window');
-    ok(inWin('2026-10-20T11:57:40Z'), 'and a GitHub backup that runs hours late still sends the same day');
+    ok(inWin('2026-10-21T06:00:00Z') && inWin('2026-10-21T06:59:00Z'), 'the message library still knows its old send window (11:30–12:29 in India)');
   }
   ok(messageFor('2026-10-19').n === 1 && messageFor('2026-10-23').n === 5 && messageFor('2026-10-26').n === 6, 'weekdays count up from day 1, skipping weekends');
   ok(weekdaysSince(START, '2026-10-25') === 5 && messageFor('2026-10-24').n === 5, 'a weekend repeats the last weekday');
@@ -216,7 +216,7 @@ console.log('\n— daily reminder —');
   r = await api('/api/nudge');
   ok(r.body.devices === 0, 'and can be removed', r.body);
   r = await api('/api/nudge?run=1');
-  ok(r.status === 200 && ('sent' in r.body), 'the scheduled run answers without sending when nobody has asked', r.body);
+  ok(r.status === 200 && r.body.sent === 0 && r.body.off === true, 'the old scheduled send is switched off and sends nothing', r.body);
 }
 
 console.log('\n— signing out —');

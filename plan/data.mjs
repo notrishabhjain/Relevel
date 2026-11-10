@@ -1,6 +1,6 @@
 /* The plan's data. Since 21 October 2026 the plan IS the course: its weeks
-   come from the route (src/data/route.mjs), the same list the playbook, the
-   book and the 12:00 reminder follow. Nothing here repeats a week's contents.
+   come from the route (src/data/route.mjs), the same list the playbook and the
+   book follow. Nothing here repeats a week's contents.
 
    What this file adds on top of the route:
      FURTHER   optional outside reading for a week, for going deeper (keys into RESOURCES)
@@ -133,7 +133,7 @@ export const GATES = [
 ].map(g => ({ ...g, date: ROUTE_MONTHS[g.month - 1].dates.split(' – ')[1] }));
 
 export const RULES = [
-  'One route. The playbook, the book, this plan and the 12:00 reminder follow the same steps in the same order. If two of them ever disagree, the route page in the playbook wins, and that is a bug to report.',
+  'One route. The playbook, the book and this plan follow the same steps in the same order. If two of them ever disagree, the route page in the playbook wins, and that is a bug to report.',
   'Story first, then the chapter. Read a chapter’s story in the book before you do the chapter in the playbook.',
   'Ten minutes is a real day. On a bad day do one page and tick it. A small day counts; a zero day does not.',
   'Never miss twice. One missed day is life. Two in a row is a new habit.',

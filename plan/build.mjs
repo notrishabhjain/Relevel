@@ -357,7 +357,6 @@ document.querySelectorAll('.code').forEach(function(b){
 <script>
 ${TRACKER_JS}
 </script>
-<script src="/reminder.js" defer></script>
 <script src="/install.js" defer></script>
 </body>
 </html>
@@ -527,7 +526,7 @@ export function buildPlan(root, outDir) {
   check({ html: panels, text, weeksSeen: new Set(seen.length === new Set(seen).size ? seen : [...seen, -1]) }, recipeWeeks);
   fs.writeFileSync(p.join(outDir, 'index.html'), page({
     title: 'Applied AI PM plan | AI From Zero',
-    desc: 'The 26-week route to becoming an Applied AI product manager, week by week: the same steps as the playbook, the book and the daily reminder, with shared progress.',
+    desc: 'The 26-week route to becoming an Applied AI product manager, week by week: the same steps as the playbook and the book, with shared progress.',
     panels
   }));
   fs.writeFileSync(p.join(outDir, 'curriculum.html'), stub('curriculum'));
