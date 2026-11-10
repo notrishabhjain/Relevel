@@ -225,10 +225,26 @@ export function stepHref(step, hi) {
   if (step.app) return '/app/' + step.app;
   return '/app/#/start';
 }
+/* The day week 1 starts. START, unless the person restarted the calendar from
+   a day of their own choosing (S.routeStart, set on the route page or the
+   plan). Ticks are never touched by a restart; only the dates move. */
+export function startOf(S) {
+  const v = S && S.routeStart;
+  return typeof v === 'string' && /^\\d{4}-\\d{2}-\\d{2}$/.test(v) && !isNaN(Date.parse(v + 'T00:00:00Z')) ? v : START;
+}
 /* Week number (1-26) for an India-time date string, 0 before the start, 27 after. */
-export function weekOf(date) {
-  const d = Math.floor((Date.parse(date + 'T00:00:00Z') - Date.parse(START + 'T00:00:00Z')) / 864e5);
+export function weekOf(date, start) {
+  const d = Math.floor((Date.parse(date + 'T00:00:00Z') - Date.parse((start || START) + 'T00:00:00Z')) / 864e5);
   return d < 0 ? 0 : Math.min(WEEKS.length + 1, Math.floor(d / 7) + 1);
+}
+/* The dates of weeks a..b counted from a start: "4 Nov – 10 Nov" for one week,
+   "4 Nov – 1 Dec 2026" for a month (withYear), the way the route prints them. */
+export function datesOf(a, b, start, withYear) {
+  const day = 864e5, s0 = Date.parse((start || START) + 'T00:00:00Z');
+  const x = s0 + (a - 1) * 7 * day, y = s0 + (b * 7 - 1) * day;
+  const f = (ms, yr) => new Date(ms).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC', ...(yr ? { year: 'numeric' } : {}) });
+  const ya = new Date(x).getUTCFullYear(), yb = new Date(y).getUTCFullYear();
+  return withYear ? f(x) + (ya !== yb ? ' ' + ya : '') + ' – ' + f(y) + ' ' + yb : f(x, ya !== yb) + ' – ' + f(y, ya !== yb);
 }
 `;
 fs.writeFileSync(R + '/src/data/route.mjs', src);

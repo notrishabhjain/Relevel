@@ -150,6 +150,14 @@ console.log('\n— plan tracker —');
   cookie = saved;
 }
 
+console.log('\n— the calendar restart reaches the check-in summary —');
+{
+  const { status } = await import('../api/_lib/plan.js');
+  const now = Date.parse('2026-11-10T06:00:00Z');
+  ok(status({}, {}, now).week === 4 && status({}, { routeStart: '2026-11-10' }, now).week === 1 && status({}, { routeStart: 'nonsense' }, now).week === 4,
+     'the summary counts weeks from the restart day when there is one, and from 19 Oct otherwise');
+}
+
 console.log('\n— daily reminder —');
 {
   ok(MESSAGES.length === 30 && MESSAGES.every((m, i) => m.startsWith('Day ' + (i + 1) + '. ')), 'there are thirty messages, numbered in order');

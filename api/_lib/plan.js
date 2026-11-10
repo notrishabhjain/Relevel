@@ -9,7 +9,7 @@
    it. Two devices that both edited different weeks keep both edits; for the same
    entry the later `u` wins. Nothing is ever refused for being out of date. */
 
-import { WEEKS as ROUTE_WEEKS, START as ROUTE_START, stepDone, nextStep } from '../../src/data/route.mjs';
+import { WEEKS as ROUTE_WEEKS, START as ROUTE_START, stepDone, nextStep, startOf } from '../../src/data/route.mjs';
 
 export const START = Date.parse(ROUTE_START + 'T00:00:00Z');  // week 1 starts Mon 19 Oct 2026
 export const DAY = 86400000;
@@ -54,10 +54,10 @@ export function merge(a, b) {
 
 /* Week number for a moment: 0 before the plan starts, 1-26 during it, 27 after.
    Days are counted in India time, because that is when the person is awake. */
-export function weekAt(now) {
+export function weekAt(now, start = START) {
   const ist = new Date(now + 5.5 * 3600000);
   const today = Date.UTC(ist.getUTCFullYear(), ist.getUTCMonth(), ist.getUTCDate());
-  const idx = Math.round((today - START) / DAY);
+  const idx = Math.round((today - start) / DAY);
   return { today, cur: idx < 0 ? 0 : Math.min(WEEKS + 1, Math.floor(idx / 7) + 1) };
 }
 
@@ -66,7 +66,8 @@ export function weekAt(now) {
    progress record; `data` is the plan page's own document (for lastEdit). */
 export function status(data, progress, now = Date.now()) {
   const d = clean(data), P = progress && typeof progress === 'object' ? progress : {};
-  const { today, cur } = weekAt(now);
+  /* the person may have restarted the calendar from a day of their own */
+  const { today, cur } = weekAt(now, Date.parse(startOf(P) + 'T00:00:00Z'));
   let complete = 0, stepsDone = 0, steps = 0, updated = 0;
   const completeWeeks = [], behindWeeks = [];
   for (const w of ROUTE_WEEKS) {

@@ -494,4 +494,19 @@ Object.assign(window.HING = window.HING || {}, {
   'No model needed in this chapter':
     'Is chapter mein model ki zaroorat nahi',
 
+  /* restart the calendar (route page) */
+  'Restart the calendar':
+    'Calendar dobara shuru kijiye',
+  'week 1 started on':
+    'week 1 shuru hua',
+  'The day week 1 starts':
+    'Woh din jis se week 1 shuru hota hai',
+  'Start week 1 on this day':
+    'Week 1 is din se shuru kijiye',
+  'Back to the original dates':
+    'Asli tareekhon par wapas',
+  'Week 1 will start on {day}. Your ticks and notes stay as they are; only the dates move.':
+    'Week 1 {day} se shuru hoga. Aapke ticks aur notes jaise hain waise hi rahenge; sirf tareekhein khiskengi.',
+  'Fallen behind the dates? Start week 1 again on any day you choose. Your ticks and notes stay as they are; only the dates move, so the week you are on becomes this week.':
+    'Tareekhon se peechhe reh gaye? Week 1 apne chune hue kisi bhi din se dobara shuru kijiye. Aapke ticks aur notes jaise hain waise hi rahenge; sirf tareekhein khiskengi, taaki aap jis week par hain wahi is hafte ka week ban jaaye.',
 });

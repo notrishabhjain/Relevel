@@ -89,10 +89,47 @@
 
   /* ---------- dates and status ---------- */
   function istToday() { var d = new Date(Date.now() + 19800000); return d.toISOString().slice(0, 10); }
+  /* Week 1 starts on the route's own date, or on the day you restarted the
+     calendar from (routeStart in the shared progress record, set below, in the
+     playbook's route page, or on another device). */
+  function originalStart() { var a = $('article.wk[data-week="1"]'); return a ? a.getAttribute('data-start') : '2026-10-19'; }
+  function startDate() {
+    var v = S && S.routeStart;
+    return typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v) && !isNaN(Date.parse(v + 'T00:00:00Z')) ? v : originalStart();
+  }
   function currentWeek() {
-    var a = $('article.wk[data-week="1"]'), start = a ? a.getAttribute('data-start') : '2026-10-19';
-    var idx = Math.floor((Date.parse(istToday()) - Date.parse(start)) / 86400000);
+    var idx = Math.floor((Date.parse(istToday()) - Date.parse(startDate())) / 86400000);
     return idx < 0 ? 0 : Math.min(WEEKS + 1, Math.floor(idx / 7) + 1);
+  }
+  function fmtDay(ms, year) {
+    var o = { day: 'numeric', month: 'short', timeZone: 'UTC' }; if (year) o.year = 'numeric';
+    return new Date(ms).toLocaleDateString('en-GB', o);
+  }
+  /* "4 Nov – 10 Nov" for weeks a..b; with the year for a month */
+  function datesOf(a, b, withYear) {
+    var s0 = Date.parse(startDate() + 'T00:00:00Z'), x = s0 + (a - 1) * 7 * 86400000, y = s0 + (b * 7 - 1) * 86400000;
+    var ya = new Date(x).getUTCFullYear(), yb = new Date(y).getUTCFullYear();
+    return withYear ? fmtDay(x) + (ya !== yb ? ' ' + ya : '') + ' – ' + fmtDay(y) + ' ' + yb : fmtDay(x, ya !== yb) + ' – ' + fmtDay(y, ya !== yb);
+  }
+  /* Put every printed date on the restart date, or back on the original ones. */
+  function redate() {
+    var custom = startDate() !== originalStart();
+    function set(el, text) {
+      if (!el.hasAttribute('data-orig')) el.setAttribute('data-orig', el.textContent);
+      el.textContent = custom ? text : el.getAttribute('data-orig');
+    }
+    $$('[data-w]').forEach(function (el) { var n = +el.getAttribute('data-w'); set(el, datesOf(n, n)); });
+    $$('[data-m]').forEach(function (el) { var r = el.getAttribute('data-m').split('-'); set(el, datesOf(+r[0], +r[1], true) + '.'); });
+    $$('[data-g]').forEach(function (el) { var r = el.getAttribute('data-g').split('-'); set(el, datesOf(+r[0], +r[1], true).split(' – ')[1]); });
+    /* the Plan tab's title carries the whole span: "(19 Oct 2026 – 18 Apr 2027)" */
+    var h1 = $('[data-tab="plan"] h1');
+    if (h1) { var t0 = h1.getAttribute('data-orig') || h1.textContent; set(h1, t0.replace(/\([^()]*\)\s*$/, '(' + datesOf(1, WEEKS, true) + ')')); }
+    var box = $('#restart'); if (!box) return;
+    if (!P) { box.hidden = true; return; }
+    var sum = $('summary', box), undo = $('#rs-undo'), inp = $('#rs-date');
+    if (sum) sum.textContent = 'Restart the calendar' + (custom ? ' · week 1 started on ' + fmtDay(Date.parse(startDate() + 'T00:00:00Z'), true) : '');
+    if (undo) { undo.hidden = !custom; undo.textContent = 'Back to the original dates (' + fmtDay(Date.parse(originalStart() + 'T00:00:00Z'), true) + ')'; }
+    if (inp && !inp.value) inp.value = istToday();
   }
   function summary() {
     var cur = currentWeek(), complete = 0, stepsDone = 0, steps = 0, n;
@@ -110,7 +147,12 @@
       if (n === s.cur) cls += ' current';
       cells += '<a class="' + cls + '" href="#w' + n + '" title="Week ' + n + ': ' + w.done + ' of ' + w.of + ' steps">' + n + '</a>';
     }
-    if (s.cur === 0) { head = 'Starts 19 Oct'; msg = 'The route starts on Monday 19 October 2026.'; lvl = 0; }
+    if (s.cur === 0) {
+      var sd = Date.parse(startDate() + 'T00:00:00Z');
+      head = 'Starts ' + fmtDay(sd);
+      msg = 'The route starts on ' + new Date(sd).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }) + '.';
+      lvl = 0;
+    }
     else if (s.cur > WEEKS) { head = 'Route window over'; msg = s.next ? 'The 26 weeks are over, but steps are still open. Carry on from the first one; the route never closes.' : 'Every step is done. Keep the three-hours-a-week loop from the Curriculum tab.'; lvl = 0; }
     else { head = 'Week ' + s.cur + ' of ' + WEEKS; msg = LEVELS[lvl]; }
     var nx = s.next ? s.next.querySelector('a, b') : null;
@@ -164,6 +206,7 @@
     });
     var gc = $('#gate-count'); if (gc) gc.textContent = passed + ' of 6 reviewed';
     renderParking();
+    redate();
     renderStatus();
   }
   function renderParking() {
@@ -203,6 +246,21 @@
     var a = t.closest('article.wk'), g = t.closest('div.gate');
     if (a) touch('weeks', +a.getAttribute('data-week'), patch);
     else if (g) touch('gates', g.getAttribute('data-gate'), patch);
+  });
+  /* restart the calendar */
+  document.addEventListener('click', function (ev) {
+    var t = ev.target; if (!t || !P) return;
+    if (t.id === 'rs-go') {
+      var v = ($('#rs-date') || {}).value || '';
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(v)) return;
+      if (!confirm('Week 1 will start on ' + fmtDay(Date.parse(v + 'T00:00:00Z'), true) + '. Your ticks and notes stay as they are; only the dates move.')) return;
+      var day = v === originalStart() ? null : v;
+      P.setStart(day).then(function (x) { S = x || P.load(); applyControls(); });
+      S = P.load(); applyControls();
+    } else if (t.id === 'rs-undo') {
+      P.setStart(null).then(function (x) { S = x || P.load(); applyControls(); });
+      S = P.load(); applyControls();
+    }
   });
   document.addEventListener('click', function (ev) {
     var t = ev.target; if (!t || !t.closest) return;

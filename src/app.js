@@ -1587,7 +1587,9 @@ function pageStart(){
   planPull();
   const PL=planLoad(), hi=S.lang==='hi';
   const all=R.STEPS, doneN=all.filter(x=>R.stepDone(x,S)).length;
-  const nx=R.nextStep(S), cal=Math.max(1,Math.min(R.WEEKS.length,R.weekOf(istDate())||1));
+  /* week 1 starts on the route's own date, or the day you restarted it from */
+  const st=R.startOf?R.startOf(S):R.START;
+  const nx=R.nextStep(S), cal=Math.max(1,Math.min(R.WEEKS.length,R.weekOf(istDate(),st)||1));
   const at=nx?nx.week:R.WEEKS.length+1, gap=nx?cal-at:0;
   const anchor=(location.hash.split('#')[2]||'').match(/^week-(\d+)$/), want=anchor?+anchor[1]:null;
   const bookOf=f=>B.list.find(x=>x.file===f);
@@ -1612,6 +1614,7 @@ function pageStart(){
     :gap>0?T('This is calendar week {cal}, and you are on week {at}. That is fine: carry on from the first open step, and never miss twice.').replace('{cal}',cal).replace('{at}',at)
     :gap<0?T('You are ahead of the calendar. Keep the pace that keeps you coming back.')
     :T('You are on schedule. Do the step marked today.')}));
+  w.appendChild(restartBox(st));
 
   /* one step: what it is, what to do, and its twin in the other view */
   const stepRow=x=>{
@@ -1679,7 +1682,7 @@ function pageStart(){
     det.appendChild(h('summary',{},[
       h('span',{class:'gwn',text:T('Week')+' '+wk.n}),
       h('span',{class:'gwt',text:T(wk.title)}),
-      h('span',{class:'gwd',text:wk.dates+' · '+fmtMins(wk.mins)+' · '+done+'/'+wk.steps.length})]));
+      h('span',{class:'gwd',text:R.datesOf(wk.n,wk.n,st)+' · '+fmtMins(wk.mins)+' · '+done+'/'+wk.steps.length})]));
     if(wk.why) det.appendChild(h('p',{class:'gwhy'},[h('b',{text:T('Why now')+': '}),h('span',{text:T(wk.why)})]));
     det.appendChild(h('ol',{class:'gdays'},wk.steps.map(stepRow)));
     det.appendChild(planSide(wk));
@@ -1691,14 +1694,15 @@ function pageStart(){
     const g=(X.gates||[]).find(x=>x.month===m.n)||null, pg=g?(PL.gates[g.id]||{}):{};
     const sec=h('section',{class:'hubmonth',id:'month-'+m.n});
     sec.appendChild(h('h2',{class:'hubmh',text:T(m.name)}));
-    sec.appendChild(h('p',{class:'hubmg'},[h('span',{class:'dim',text:m.dates+'. '}),h('span',{text:T(m.goal)+' '}),
+    const mdates=R.datesOf(m.from,m.to,st,true);
+    sec.appendChild(h('p',{class:'hubmg'},[h('span',{class:'dim',text:mdates+'. '}),h('span',{text:T(m.goal)+' '}),
       h('a',{href:'/plan/#m'+m.n,text:T('Why this month')+' →'})]));
     R.WEEKS.filter(wk=>wk.n>=m.from&&wk.n<=m.to).forEach(wk=>sec.appendChild(weekBlock(wk)));
     if(g){
       const cb=h('input',{type:'checkbox'}); cb.checked=!!pg.passed;
       cb.addEventListener('change',()=>planTouch('gates',g.id,{passed:cb.checked}));
       sec.appendChild(h('div',{class:'hubreview'},[
-        h('span',{class:'lbl',text:T('Monthly review')+' · '+g.date}),
+        h('span',{class:'lbl',text:T('Monthly review')+' · '+mdates.split(' – ')[1]}),
         h('p',{text:T(g.pass)}),
         h('p',{class:'small dim',text:T('If behind')+': '+T(g.cut)}),
         h('label',{class:'chk'},[cb,h('span',{text:T('Reviewed')})])]));
@@ -1710,6 +1714,29 @@ function pageStart(){
   return w;
 }
 function fmtMins(m){return m>=90?(Math.round(m/30)/2)+' h':m+' min';}
+
+/* Restart the calendar. Fallen behind the dates? Week 1 can start again on any
+   day you pick; the ticks and notes stay, only the dates move. Saved in the
+   progress record (S.routeStart), so the plan, the book and every device
+   follow the same dates. */
+function fmtDay(d){return new Date(d+'T00:00:00Z').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'});}
+function restartBox(st){
+  const R=window.ROUTE, custom=st!==R.START;
+  const inp=h('input',{type:'date',value:istDate(),'aria-label':T('The day week 1 starts')});
+  const go=h('button',{class:'primary sm',type:'button'},T('Start week 1 on this day'));
+  go.addEventListener('click',()=>{
+    const v=inp.value; if(!/^\d{4}-\d{2}-\d{2}$/.test(v)) return;
+    if(!confirm(T('Week 1 will start on {day}. Your ticks and notes stay as they are; only the dates move.').replace('{day}',fmtDay(v)))) return;
+    if(v===R.START) delete S.routeStart; else S.routeStart=v;
+    save(); route();
+  });
+  const back=custom?h('button',{class:'sm',type:'button'},T('Back to the original dates')+' ('+fmtDay(R.START)+')'):null;
+  if(back) back.addEventListener('click',()=>{ delete S.routeStart; save(); route(); });
+  return h('details',{class:'restart'+(custom?' on':''),id:'restart'},[
+    h('summary',{text:T('Restart the calendar')+(custom?' · '+T('week 1 started on')+' '+fmtDay(st):'')}),
+    h('p',{class:'small',text:T('Fallen behind the dates? Start week 1 again on any day you choose. Your ticks and notes stay as they are; only the dates move, so the week you are on becomes this week.')}),
+    h('div',{class:'restartrow'},[inp,go,back].filter(Boolean))]);
+}
 
 function pageLater(){
   const w=h('div',{class:'wrap'});

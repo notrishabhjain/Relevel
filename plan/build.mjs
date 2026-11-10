@@ -243,6 +243,7 @@ article.wk.shipped{border-left:4px solid var(--good)}
 article.wk.missed{border-left:4px solid var(--crit)}
 article.wk header{display:flex;flex-wrap:wrap;gap:.3rem .7rem;align-items:center}
 article.wk h4{font:600 1rem/1.35 var(--serif);margin:.1rem 0;color:var(--ink)}
+.restart>summary{cursor:pointer;font:500 .9rem var(--sans)}.restart .row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.4rem 0}.restart input[type=date]{font:inherit;padding:.3rem .45rem}
 article.wk p.why{margin:.15rem 0 .55rem;font-size:.92rem;line-height:1.5;color:var(--ink)}
 article.wk p{margin:0}
 article.wk p b{font:500 .68rem/1.3 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.5rem}
@@ -394,7 +395,7 @@ function weekCard(w, recipes) {
   const deeper = rd.length
     ? `<p><b>Research and the real world</b><span class="lk">${rd.map(r => `<a href="${esc(r[3])}" target="_blank" rel="noopener noreferrer" title="${esc(r[4])}">${r[0] === 'paper' ? 'Paper: ' : 'Case: '}${esc(r[1])}</a>`).join('')}</span></p>` : '';
   return `<article class="wk" id="w${w.n}" data-week="${w.n}" data-start="${w.start}">` +
-    `<header><span class="wn">W${w.n}</span><span class="dates">${esc(w.dates)}</span><span class="cx">~${fmtMins(w.mins)}</span>${w.light ? '<span class="tag">light holiday week</span>' : ''}<span class="wstate"></span></header>` +
+    `<header><span class="wn">W${w.n}</span><span class="dates" data-w="${w.n}">${esc(w.dates)}</span><span class="cx">~${fmtMins(w.mins)}</span>${w.light ? '<span class="tag">light holiday week</span>' : ''}<span class="wstate"></span></header>` +
     `<h4>${inline(w.title)}</h4>` +
     (w.why ? `<p class="why"><b>Why now</b>${inline(w.why)}</p>` : '') +
     `<ol class="steps">${w.steps.map(stepRow).join('')}</ol>` +
@@ -406,7 +407,9 @@ function weekCard(w, recipes) {
 
 function makeExpand(recipes, seen) {
   return (name, arg) => {
-    if (name === 'status') return { html: '<section id="status" class="panel" aria-label="Progress and drift status"><p class="small">Loading your progress&hellip;</p></section>' };
+    if (name === 'status') return { html: '<section id="status" class="panel" aria-label="Progress and drift status"><p class="small">Loading your progress&hellip;</p></section>' +
+      '<details id="restart" class="panel restart"><summary>Restart the calendar</summary><p class="small">Fallen behind the dates? Start week 1 again on any day you choose. Your ticks and notes stay as they are; only the dates move, so the week you are on becomes this week. The playbook and the book follow the same dates.</p>' +
+      '<div class="row"><input type="date" id="rs-date" aria-label="The day week 1 starts"><button type="button" id="rs-go">Start week 1 on this day</button><button type="button" class="quiet" id="rs-undo" hidden>Back to the original dates</button></div><p class="small" id="rs-note"></p></details>' };
     if (name === 'sync') return { html: '<section id="sync" class="panel" aria-label="Saving"></section>' };
     if (name === 'month') {
       const m = MONTHS.find(x => x.n === +arg);
@@ -414,7 +417,7 @@ function makeExpand(recipes, seen) {
       const ws = WEEKS.filter(w => w.n >= m.from && w.n <= m.to);
       ws.forEach(w => seen.push(w.n));
       return {
-        html: `<h2 id="${id}">${esc(m.name)}</h2><p class="month-intro"><strong>${esc(m.dates)}.</strong> Goal: ${inline(m.goal)} <a href="#m${m.n}">Why this month</a></p>` +
+        html: `<h2 id="${id}">${esc(m.name)}</h2><p class="month-intro"><strong data-m="${m.from}-${m.to}">${esc(m.dates)}.</strong> Goal: ${inline(m.goal)} <a href="#m${m.n}">Why this month</a></p>` +
           `<details class="month" data-from="${m.from}" data-to="${m.to}"><summary>Weeks ${m.from}–${m.to}<span class="count"></span></summary><div class="inner">` +
           ws.map(w => weekCard(w, recipes)).join('') + '</div></details>',
         heads: [{ n: 2, id, text: m.name }]
@@ -423,7 +426,7 @@ function makeExpand(recipes, seen) {
     if (name === 'rules') return { html: '<ol class="rules-list">' + RULES.map(r => `<li>${inline(r)}</li>`).join('') + '</ol>' };
     if (name === 'gates') {
       return { html: `<p><strong id="gate-count"></strong></p>` + GATES.map(g =>
-        `<div class="gate" data-gate="${g.id}"><div class="row"><span class="wn">${g.id}</span><span class="dates">${esc(g.date)}</span></div>` +
+        `<div class="gate" data-gate="${g.id}"><div class="row"><span class="wn">${g.id}</span><span class="dates" data-g="${MONTHS[g.month - 1].from}-${MONTHS[g.month - 1].to}">${esc(g.date)}</span></div>` +
         `<p>${inline(g.pass)}</p><p class="small">If behind: ${inline(g.cut)}</p>` +
         `<label class="chk"><input type="checkbox" data-f="passed"><span>Reviewed</span></label>` +
         `<div class="fields"><label>What you cut or decided<input type="text" data-f="note" autocomplete="off"></label></div></div>`).join('') };
@@ -436,7 +439,7 @@ function makeExpand(recipes, seen) {
       const [a, b] = arg.split('-').map(Number);
       const ws = WEEKS.filter(w => w.n >= a && w.n <= b);
       return { html: '<div class="tw"><table><thead><tr><th>Week</th><th>Dates</th><th>Focus (opens the week on the Plan tab)</th><th>Chapters</th><th>Time</th></tr></thead><tbody>' +
-        ws.map(w => `<tr><td class="k"><a href="#w${w.n}">W${w.n}</a></td><td>${esc(w.dates)}${w.light ? ' <span class="tag">light</span>' : ''}</td><td>${inline(w.title)}</td>` +
+        ws.map(w => `<tr><td class="k"><a href="#w${w.n}">W${w.n}</a></td><td><span data-w="${w.n}">${esc(w.dates)}</span>${w.light ? ' <span class="tag">light</span>' : ''}</td><td>${inline(w.title)}</td>` +
           `<td>${esc(w.steps.filter(x => x.kind === 'chapter').map(x => x.num).join(', ') || 'book ' + w.steps.filter(x => x.kind === 'read').map(x => x.n || 'preface').filter((v, i, a) => a.indexOf(v) === i).join(', '))}</td><td>${fmtMins(w.mins)}</td></tr>`).join('') + '</tbody></table></div>' };
     }
     throw new Error('plan: unknown marker <!-- ' + name + ' -->');
