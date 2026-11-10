@@ -1,7 +1,7 @@
 ---
 title: Chat Mein Woh Number
 summary: Ek product manager ko ek hafte ki customer chats mein pehchaan ke numbers milte hain, aur use tay karna hai ki is khoj par ek saal ka kaam banta hai ya nahi. Chapter mein personal data, faisle se pehle ginti, problems ke beech chunaav aur likhe hue decision ki baat hoti hai.
-course: a1
+course: a1 a1g
 goals:
   - personally identifiable information pehchaan paana, un details ko bhi jo sirf milkar kisi insaan ko pehchaanti hain
   - kisi andaaze ko ginti mein badalna, aur bata paana ki woh ginti kya dikhati hai aur kya nahi
@@ -10,6 +10,7 @@ goals:
 terms:
   - PII | personally identifiable information: koi bhi aisi detail jo ek asli insaan ki taraf ishaara kar sake, jaise naam, phone number ya pehchaan ka number | personally identifiable information, personal data
   - decision log | ek chalta hua page jismein aap har zaroori decision likhte hain, uske peeche ka saboot likhte hain, aur yeh bhi ki kya hone par aap apna mind badal denge | decision-log
+  - repository | GitHub jaisi site par ek online folder, jo project ka saara kaam aur uska har pichhla version rakhta hai | repositories
 ---
 
 March ke doosre hafte ki baat hai. Pune ki company Sahaj ki product manager Anaya Deshmukh ne company ke support chatbot aur customers ke beech ki 400 conversations padhin. Woh yeh samajhna chahti thi ki itne customers late fees ke baare mein kyun poochte hain.
@@ -131,6 +132,8 @@ I would change my mind if:  Lakshmi says this is a known, accepted risk, or
 Log ki asli keemat aakhri line mein hai. Jis decision mein nikalne ka koi raasta likha nahi hota, woh dheere-dheere ek belief ban jaata hai. Phir use lene wale log apne maan ke liye uska bachaav karne lagte hain.
 
 Jo decision apne palatne ki shart khud likhta hai, use shaanti se dobara kholna asaan hota hai. Kyunki poochhne wala sawaal pehle se likha hua hai.
+
+Usne yeh page apne laptop par nahi rakha. Imran ne use woh jagah dikhayi jahan engineers apna kaam rakhte the: GitHub par ek *repository*, ek online folder jo har file ka har version yaad rakhta hai. Har baar badlaav save karte waqt woh ek line likhti ki kya badla aur kyun, aur purana version naye ke saath hi rehta. Wahan rakha decision log chupchaap apna mann nahi badal sakta. Har pichhla version kisi ke bhi padhne ke liye wahin rehta hai.
 
 ## Khud ko naapna
 

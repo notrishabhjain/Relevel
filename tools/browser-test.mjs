@@ -1007,7 +1007,7 @@ console.log('\n— one route: the playbook, the book and the plan agree —');
     const r = document.querySelector('.resumelead');
     return r ? { lbl: r.querySelector('.cplbl').textContent, h: r.querySelector('a.btnlink').getAttribute('href') } : null;
   });
-  ok(lead && /Your route · Week 1 · step 1 \/ 5/.test(lead.lbl) && lead.h === '#/ch/ch0', 'a new visitor’s Next is the route’s first step, Start here', JSON.stringify(lead));
+  ok(lead && /Your route · Week 1 · step 1 \/ 6/.test(lead.lbl) && lead.h === '#/ch/ch0', 'a new visitor’s Next is the route’s first step, Start here', JSON.stringify(lead));
   await boot(gs.page, '#/start');
   const pg = await gs.page.evaluate(() => ({
     steps: document.querySelectorAll('.gday').length, all: window.ROUTE.STEPS.length,
@@ -1088,7 +1088,7 @@ console.log('\n— one view: each week links the other views, and notes reach th
     how: !!document.querySelector('#week-5 .hubplan a[href="/plan/#setup"]'),
     further: document.querySelectorAll('#week-5 .hubplan a[target=_blank]').length
   }));
-  ok(v.views.join() === '/book/,/plan/,/plan/#curriculum', 'the route page opens the book, the plan and the curriculum', JSON.stringify(v.views));
+  ok(v.views.join() === '/book/,/plan/,/plan/#curriculum,/worksheet/', 'the route page opens the book, the plan, the curriculum and the worksheet', JSON.stringify(v.views));
   ok(v.months === 6 && v.reviews === 6, 'it shows all six months, each with its monthly review');
   ok(v.storyChip.includes('/book/preface.html') && v.doIt.includes('#/ch/a1') && v.about,
      'a chapter links its story in the book, a book chapter links the chapter to do, with what each covers', JSON.stringify(v));
@@ -1239,6 +1239,67 @@ console.log('\n— restart the calendar: week 1 from any day —');
   await boot(rs.page, '#/start');
   ok((await rs.page.evaluate(() => document.querySelector('#week-1 .gwd').textContent)).startsWith('19 Oct'), 'in the playbook too');
   await rs.ctx.close();
+}
+
+console.log('\n— the worksheet: the whole course by topic, with notes that follow you —');
+{
+  const ws = await newDevice(true, 'worksheet');
+  await boot(ws.page, '#/start');
+  await ws.page.evaluate(() => { const S = window.STORE.S; S.done.ch0 = 1; S.done.a1 = 1; S.read = S.read || {}; S.read['preface.html'] = Date.now(); S.read['01-the-number-in-the-chat.html'] = Date.now(); window.STORE.flush(); });
+  await ws.page.waitForTimeout(400);
+  await ws.page.goto(B + '/worksheet/');
+  await ws.page.waitForFunction(() => /steps done/.test(document.getElementById('ov-steps').textContent));
+  const w = await ws.page.evaluate(() => ({
+    topics: document.querySelectorAll('section.topic').length,
+    apps: new Set([...document.querySelectorAll('[data-ch]')].map(e => e.getAttribute('data-ch'))).size,
+    books: document.querySelectorAll('[data-book]').length,
+    before: document.querySelectorAll('[data-tick^="pre-"]').length,
+    t0: document.querySelector('#t0 summary .tc').textContent,
+    a1: document.querySelector('[data-ch="a1"]').classList.contains('done'),
+    a2: document.querySelector('[data-ch="a2"]').classList.contains('done'),
+    next: document.getElementById('ov-next').textContent,
+    a1g: !!document.querySelector('#t1 [data-ch="a1g"]'), a4s: !!document.querySelector('#t1 [data-ch="a4s"]'), chpy: !!document.querySelector('#t2 [data-ch="chpy"]'),
+    project: document.querySelectorAll('#t3 .proj [data-tick]').length,
+    reading: document.querySelectorAll('#t1 ul.rd li').length, words: document.querySelectorAll('#t1 dl.words dt').length,
+    weekLink: !!document.querySelector('#t1 a[href$="plan/#w3"]')
+  }));
+  ok(w.topics === 14 && w.apps === N.chapters && w.books === 49 && w.before >= 8,
+     `one page holds before-you-start, ${N.chapters} app chapters and the 49 pieces of the book, in 14 topics`, JSON.stringify(w));
+  ok(w.a1 && !w.a2 && w.t0 === '2/2' && /A1\.5/.test(w.next), 'its ticks come from the shared progress, and it names the next step', JSON.stringify(w));
+  ok(w.a1g && w.a4s && w.chpy, 'the short skills chapters sit in the topic that needs them');
+  ok(w.project > 0 && w.reading > 0 && w.words > 0 && w.weekLink, 'each topic carries its project step, reading, words and plan weeks', JSON.stringify(w));
+  /* your marks: saved here and to the account */
+  const put = ws.page.waitForResponse(r => r.url().endsWith('/api/plan') && r.request().method() === 'PUT');
+  await ws.page.evaluate(() => { document.querySelector('#t3 details.tp').open = true; });
+  await ws.page.check('[data-can="t3"]');
+  await ws.page.fill('[data-note="t3"]', 'An answer key before trusting it');
+  await ws.page.click('h1');
+  await put;
+  await ws.page.waitForFunction(() => /account/.test(document.getElementById('ws-saved').textContent));
+  ok(await ws.page.evaluate(() => !document.querySelector('#t3 .tcan').hidden && /1 of 14/.test(document.getElementById('ov-can').textContent)),
+     'I can explain this is ticked and counted');
+  const other = await newDevice(true, 'worksheet');
+  await other.page.goto(B + '/worksheet/#t3');
+  await other.page.waitForFunction(() => document.querySelector('[data-note="t3"]').value !== '');
+  ok(await other.page.inputValue('[data-note="t3"]') === 'An answer key before trusting it' && await other.page.isChecked('[data-can="t3"]'),
+     'the note and the tick reach a second device through the account');
+  /* Hinglish */
+  await other.page.goto(B + '/worksheet/hi/');
+  await other.page.waitForFunction(() => /steps ho gaye/.test(document.getElementById('ov-steps').textContent));
+  const h = await other.page.evaluate(() => ({ h1: document.querySelector('h1').textContent, t1: document.querySelector('#t1 .tt').textContent,
+    book: document.querySelector('[data-book="04-who-else-is-standing-here.html"] a').getAttribute('href'),
+    note: document.querySelector('[data-note="t3"]').value }));
+  ok(h.h1 === 'Worksheet' && /neev/.test(h.t1) && h.book.endsWith('book/hi/04-who-else-is-standing-here.html') && h.note === 'An answer key before trusting it',
+     'the Hinglish worksheet reads in Hinglish, opens the Hinglish book, and shows the same notes', JSON.stringify(h));
+  /* reachable from the other three */
+  await other.page.goto(B + '/plan/');
+  ok(await other.page.locator('header.bar a[href="../worksheet/"]').count() === 1, 'the plan links to it');
+  await other.page.goto(B + '/book/');
+  ok(await other.page.locator('a[href="/worksheet/"]').count() >= 1, 'the book links to it');
+  await boot(other.page, '#/start');
+  ok(await other.page.locator('.hubviews a[href="/worksheet/"]').count() === 1 && await other.page.locator('#rail a[href="/worksheet/"]').count() === 1,
+     'the playbook links to it, from the route page and the sidebar');
+  await ws.ctx.close(); await other.ctx.close();
 }
 
 console.log('\n— the course map shows where you are —');

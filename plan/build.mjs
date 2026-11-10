@@ -156,7 +156,7 @@ export function md(src, expand = () => '') {
   return { html: out.join('\n'), heads };
 }
 
-const CSS = `
+export const CSS = `
 :root{--paper:#ECEEEA;--raised:#F6F7F4;--sunk:#E2E5E0;--ink:#14181C;--ink-2:#3D454A;--muted:#697169;--rule:#C9CDC5;--rule-soft:#D9DCD5;--accent:#1F6F5C;--accent-wash:#1F6F5C14;--good:#2c7a4b;--good-bg:#e1f0e6;--warn:#8a5a00;--warn-bg:#fbf0d4;--crit:#b3342b;--crit-bg:#f9e0dd;
 --serif:'Newsreader',Georgia,'Times New Roman',serif;--sans:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'IBM Plex Mono',ui-monospace,Menlo,monospace}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#121517;--raised:#191D20;--sunk:#0D1012;--ink:#E4E7E2;--ink-2:#B4BBB6;--muted:#8A928C;--rule:#2E3438;--rule-soft:#232A2D;--accent:#4FB89A;--accent-wash:#4FB89A1A;--good:#6fcf97;--good-bg:#1a2e22;--warn:#e8b84a;--warn-bg:#33290f;--crit:#ff8a80;--crit-bg:#3a1c19;color-scheme:dark}}
@@ -329,6 +329,7 @@ function page({ title, desc, panels }) {
   ${nav}
   <a class="nav" href="../app/#/start">Workbook &rarr;</a>
   <a class="nav" href="../book/">Book &rarr;</a>
+  <a class="nav" href="../worksheet/">Worksheet &rarr;</a>
   <button type="button" class="nav inst" data-install hidden></button>
   <button id="theme" type="button" aria-label="Switch colour theme">&#9680;</button>
 </header>

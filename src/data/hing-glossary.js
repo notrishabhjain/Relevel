@@ -91,5 +91,10 @@ Object.assign(window.HING = window.HING || {}, {
     'Aisa source link jo theek wahi passage kholta hai jahan se claim aaya, sirf document ka naam nahi.',
   'How a user fixes a wrong output, and what that fix records for you.':
     'User galat output ko kaise theek karta hai, aur woh sudhaar aapke liye kya record karta hai.',
-
+  'A folder on a site such as GitHub that keeps a project’s files and every earlier version of them, with a note on each change.':
+    'GitHub jaisi site par ek folder jo project ki files aur unka har pichhla version rakhta hai, har badlaav par ek note ke saath.',
+  'One saved version of the files in a repository, with a short message saying what changed.':
+    'Repository ki files ka ek saved version, ek chhote message ke saath jo batata hai ki kya badla.',
+  'A cell in a spreadsheet that starts with = and works out its value from other cells, so it changes when they change.':
+    'Spreadsheet ka aisa cell jo = se shuru hota hai aur apni value doosre cells se nikaalta hai, isliye unke badalne par yeh bhi badalta hai.',
 });

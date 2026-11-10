@@ -235,6 +235,76 @@ window.PART6 = [
 },
 
 {
+  /* GitHub basics. A1's capstone asks for a repository in week 1, and Git was
+     only taught in Chapter 21, eighteen weeks later. This is the website-only
+     version: no install, no command line, just enough for A1 to work. */
+  id:'a1g', num:'A1.5', part:6, curriculumTier:'core', phase:0, prerequisites:['a1'], nextUnits:['a2'], minutes:20, labs:[],
+  title:'GitHub basics: a home for your work',
+  concept:'A1 asks you to keep everything you make in one place that others can open. This short chapter sets that place up on GitHub, using only the website: an account, a repository, your first file and your first saved version. There is nothing to install and no command line.',
+  takeaway:[
+    'Create a GitHub account and a repository, and say what a repository keeps.',
+    'Add or change a file on the website and save it as a commit with a clear message.',
+    'Explain why a key or a password must never go into a repository, even a private one.'
+  ],
+  needs:[
+    ['A1’s place for your work','A1 planned a set of folders and a decision log. This chapter gives them a home.','A1']
+  ],
+  story:[
+    ['c','Before you start','You need an email address and about twenty minutes. Everything happens on the github.com website, so there is nothing to install. GitHub is free for everything this course asks of it.'],
+    ['p','In A1 you planned a set of folders and a decision log. You could keep them on your laptop. But a laptop folder has two problems: nobody else can open it, and it forgets. When you change a file, the old version is gone.'],
+    ['p','<strong>GitHub</strong> fixes both. It is a website where software teams keep their work, and where employers look when they want to see yours. This chapter takes you from no account to your first saved version.'],
+    ['key','A repository is a folder that remembers. Every saved change is kept, with a note saying what changed and why.'],
+    ['h','A repository: a folder that remembers'],
+    ['p','On GitHub, a project lives in a <strong>repository</strong>, often shortened to “repo”. It holds files and folders, like any folder. Unlike an ordinary folder, it keeps every earlier version of every file.'],
+    ['p','A repository can be <strong>public</strong>, which means anyone can read it, or <strong>private</strong>, which means only you and the people you invite. Start private. You can make it public later, when you publish your project.'],
+    ['do','Make an account and a repository',[
+      ['n',[
+        'Go to <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a> and create an account. Choose a username you would be happy to show an employer, such as your name.',
+        'Turn on two-factor sign-in: your picture at the top right, then <strong>Settings</strong>, then <strong>Password and authentication</strong>. It protects your work if your password ever leaks.',
+        'Press the <strong>+</strong> at the top right, then <strong>New repository</strong>. Name it <code>ai-from-zero</code>, choose <strong>Private</strong>, and tick <strong>Add a README file</strong>. Press <strong>Create repository</strong>.'
+      ]],
+      ['x','You see your new repository with one file in it, <code>README.md</code>. That file is the front page of the repository: whatever you write in it shows below the list of files.']
+    ]],
+    ['h','A commit: one saved version, with a note'],
+    ['p','Each time you save a change on GitHub, you make a <strong>commit</strong>. A commit is one saved version of your files, together with a short message that says what changed. The list of commits is the repository’s history.'],
+    ['do','Add your decision log',[
+      ['n',[
+        'In your repository, press <strong>Add file</strong>, then <strong>Create new file</strong>.',
+        'Name the file <code>decision-log.md</code>. Write the first entry from A1: the date, the decision, the evidence, and what would make you change your mind.',
+        'Press <strong>Commit changes</strong>. In the message box, write what you did, for example <em>Start the decision log</em>. Press <strong>Commit changes</strong> again.'
+      ]],
+      ['x','The file appears in the list. Open it, then press <strong>History</strong>: you see one commit, with your message and the time.']
+    ]],
+    ['p','Folders work the same way. To make one, type its name and a slash before the file name, such as <code>research/notes.md</code>, and GitHub creates the folder. To add files you already have, use <strong>Add file</strong>, then <strong>Upload files</strong>, and drag them in.'],
+    [
+      'pred',
+      {id:'a1g-history',
+       short:true,
+       ph:'Gone, or still there?',
+       ask:'Guess first. You commit a file with a line in it, then delete the line and commit again. Is the old line gone from the repository?',
+       reveal:'No. The old line is still in the history, in the first commit. Anyone who can open the repository can find it there.',
+       then:'This is what makes a repository a good home for a decision log. It is also why some things must never go into one, as the next section explains.'}
+    ],
+    ['h','What never goes in'],
+    ['p','Because a repository remembers everything, a mistake in it is hard to undo. Deleting a file later does not remove it from the history.'],
+    ['c','Watch out','Never put an API key, a password or real people’s personal details into a repository, even a private one. Your model key lives on the Connect page of this app, in your browser. For the project, use the made-up starter sentences, never real customer data.'],
+    [
+      'try',
+      {id:'a1g-message',
+       mins:2,
+       min:20,
+       rows:2,
+       task:'You have just added the notes from your first user interview to the <code>research</code> folder. Write the commit message you would use.',
+       ph:'One short line.',
+       after:'A good message says what changed, in a few words a stranger could follow, such as <em>Add notes from interview 1 (support lead, Pune)</em>. A message like <em>update</em> tells nobody anything when they read the history later.'}
+    ],
+    ['h','What you have learned'],
+    ['p','You now have a private repository, a decision log in it, and a history that keeps every version. That is the place A1’s capstone asks for. Follow the folder plan from A1 as you add files over the coming weeks.'],
+    ['p','Much later, Chapter 21 shows how engineers do the same thing from their own computer, with a tool called Git. Until then, the website is all you need.']
+  ]
+},
+
+{
   id:'a2', num:'A2', part:6, curriculumTier:'reference', phase:0, prerequisites:['a1'], nextUnits:['a3'], minutes:600, labs:[],
   title:'Product sense: how products win and lose',
   concept:'Learn the few ideas that every product decision rests on. You’ll map how a product reaches its users, compare B2B with B2C, and check an idea against four risks. You’ll also see where an AI assistant helps your judgement and where it doesn’t.',
@@ -521,6 +591,84 @@ window.PART6 = [
     ['p','You now have a way to find out what users really need. Ask about what they did, and let them tell the story. Write down the job they’re trying to get done. When you look for causes, look for more than one.'],
     ['p','Then sum up what you heard, with an interview number on every line. Write the problem in two sentences, and test your riskiest assumption first.'],
     ['p','You know who has the problem now. In the next chapter you’ll ask how many people have it, and what they use instead today.']
+  ]
+},
+
+{
+  /* Spreadsheet basics. A4 sizes a market and Chapter 15 costs a feature in a
+     spreadsheet, and nothing taught the formulas they use. The sheet sits in
+     the text, right where the steps use it. */
+  id:'a4s', num:'A3.5', part:6, curriculumTier:'core', phase:0, prerequisites:['a3'], nextUnits:['a4'], minutes:20, labs:[],
+  title:'Spreadsheet basics: the formulas this course uses',
+  concept:'A4 sizes a market and Chapter 15 works out what a feature costs, and both are done in a spreadsheet. This short chapter teaches the few formulas they need, in a sheet that sits right here in the page: cells, a formula, SUM, percentages and ROUND.',
+  takeaway:[
+    'Point to a cell by its address, such as B2, and write a formula that uses it.',
+    'Add up a column with SUM, and work with percentages and ROUND.',
+    'Build a small estimate that updates itself when one number changes.'
+  ],
+  needs:[
+    ['A3’s numbers','The examples use the support numbers from A3, such as three hundred tickets a week. Adding and multiplying is all the maths you need.','A3']
+  ],
+  story:[
+    ['c','Before you start','You need nothing else. The sheet you work in is on this page, and it is saved with your progress. Google Sheets and Excel use the same formulas, so everything here works there too.'],
+    ['p','A spreadsheet is a grid of boxes called <strong>cells</strong>. Columns have letters and rows have numbers, so every cell has an address: <code>B2</code> is column B, row 2.'],
+    ['p','Why does this course use one? Because its numbers change. A market size or a cost model rests on guesses, and a good one lets you change a guess and watch every total change with it.'],
+    ['key','Type each number once, in its own cell. Every total is a formula that points at those cells, so changing one number updates everything.'],
+    ['h','Your sheet'],
+    ['p','This is the sheet for the whole chapter. Click a cell to type in it, and press Enter to move down.'],
+    ['sheet','A3.5 Spreadsheet basics'],
+    ['h','A formula starts with ='],
+    ['p','When a cell starts with <code>=</code>, the sheet works it out instead of showing what you typed. <code>=B2*B3</code> means “B2 times B3”. Use <code>+</code> and <code>-</code>, <code>*</code> to multiply and <code>/</code> to divide.'],
+    ['do','Your first formula',[
+      ['n',[
+        'In <code>A2</code> type <em>Tickets a week</em>, and in <code>B2</code> type <code>300</code>.',
+        'In <code>A3</code> type <em>Weeks a year</em>, and in <code>B3</code> type <code>52</code>.',
+        'In <code>A4</code> type <em>Tickets a year</em>, and in <code>B4</code> type <code>=B2*B3</code>.'
+      ]],
+      ['x','<code>B4</code> shows <code>15600</code>. Now change <code>B2</code> to <code>450</code>, and <code>B4</code> changes to <code>23400</code> by itself.']
+    ]],
+    [
+      'pred',
+      {id:'a4s-typed',
+       short:true,
+       ph:'What goes wrong?',
+       ask:'Guess first. Someone works out 300 × 52 on a calculator and types <code>15600</code> into <code>B4</code> instead of the formula. What goes wrong later?',
+       reveal:'Nothing, until a number changes. When the tickets go up to 450, <code>B4</code> still says 15600, and every total built on it is quietly wrong.',
+       then:'A typed-in total is the commonest spreadsheet mistake. If a number is worked out from others, make it a formula.'}
+    ],
+    ['h','Adding up: SUM and ranges'],
+    ['p','A <strong>range</strong> is a block of cells written with a colon: <code>D2:D6</code> means D2 down to D6. <code>=SUM(D2:D6)</code> adds them all up. <code>=AVERAGE(D2:D6)</code>, <code>=MIN(D2:D6)</code> and <code>=MAX(D2:D6)</code> work the same way.'],
+    ['do','Add up a column',[
+      ['p','In <code>D2</code> to <code>D6</code>, type five numbers: the tickets each of five support leads handles in a week. In <code>D7</code>, type <code>=SUM(D2:D6)</code>, and in <code>D8</code>, type <code>=AVERAGE(D2:D6)</code>.'],
+      ['x','<code>D7</code> shows the total and <code>D8</code> the average. Change any one of the five numbers, and both update.']
+    ]],
+    ['h','Percentages and rounding'],
+    ['p','A percentage is a fraction: 12% is the same as 0.12. You can type either <code>12%</code> or <code>0.12</code> in a cell. To take 12% of the number in <code>B4</code>, write <code>=B4*12%</code>.'],
+    ['p','<code>ROUND</code> tidies a result. <code>=ROUND(B4/7, 1)</code> divides B4 by 7 and keeps one decimal place.'],
+    ['h','A small estimate, the way A4 builds one'],
+    ['p','A4 sizes a market from the bottom up: customers you can count, times what each would pay. In a sheet, each of those is its own cell.'],
+    ['do','Build a market estimate',[
+      ['n',[
+        'In <code>F2</code> type the number of firms that have the problem, for example <code>9000</code>.',
+        'In <code>F3</code> type what one firm would pay in a year, in rupees, for example <code>120000</code>.',
+        'In <code>F4</code> type <code>=F2*F3</code>: that is the whole market. In <code>F5</code> type the share you could win, <code>2%</code>, and in <code>F6</code> type <code>=F4*F5</code>.'
+      ]],
+      ['x','<code>F4</code> shows <code>1080000000</code>, which is ₹108 crore, and <code>F6</code> shows <code>21600000</code>, which is ₹2.16 crore. Change the price in <code>F3</code> and both follow. A4 builds exactly this kind of table.']
+    ]],
+    ['snag',['A cell shows an error such as <em>#DIV/0</em>','The formula divides by zero or by an empty cell, or does a sum with a cell that holds words. Check that every cell it points at holds a number.']],
+    [
+      'try',
+      {id:'a4s-cost',
+       mins:3,
+       min:10,
+       rows:2,
+       task:'A model call reads 120 tokens, and the model costs ₹20 for every million tokens. Cell <code>B10</code> holds 120, <code>B11</code> holds 20 and <code>B12</code> holds 1000. Write one formula for the cost of 1,000 calls.',
+       ph:'=…',
+       after:'<code>=B10*B12*B11/1000000</code>, which gives <code>2.4</code>, so ₹2.40: tokens per call, times the number of calls, times the price per million, divided by a million. Chapter 15 builds a full cost model from exactly this line.'}
+    ],
+    ['h','What you have learned'],
+    ['p','You can now read and write the formulas this course uses: a cell address, a formula that starts with <code>=</code>, <code>SUM</code>, a percentage and <code>ROUND</code>. A4 uses them to size the market, and Chapter 15 to work out what a feature costs.'],
+    ['p','<a href="#/sheets">Sheets</a> keeps every sheet you make, and the code in your notebook can read any of them.']
   ]
 },
 

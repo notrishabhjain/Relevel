@@ -1,7 +1,7 @@
 ---
 title: The Number in the Chat
 summary: A product manager finds identity numbers in a week of customer chats and has to decide whether the finding deserves a year of work. Along the way you learn about personal data, counting before deciding, choosing between problems, and writing a decision down.
-course: a1
+course: a1 a1g
 goals:
   - recognise personally identifiable information, including details that identify a person only when they are put together
   - turn an impression into a count, and say what the count does and does not show
@@ -10,6 +10,7 @@ goals:
 terms:
   - PII | personally identifiable information: any detail that can point to one real person, such as a name, a phone number or an identity number | personally identifiable information, personal data
   - decision log | a running page where you write down each important decision, the evidence behind it, and what would make you change your mind | decision-log
+  - repository | an online folder, on a site such as GitHub, that keeps all of a project's work and every earlier version of it | repositories
 ---
 
 In the second week of March, Anaya Deshmukh sat down with four hundred conversations. She is a product manager at Sahaj, a company in Pune, and the conversations were between customers and the company's support chatbot. She was trying to find out why so many customers asked about late fees.
@@ -133,6 +134,8 @@ I would change my mind if:  Lakshmi says this is a known, accepted risk, or
 :::
 
 The last line is what gives the log its value. A decision with no stated way out tends to harden into a belief, and then the people who made it defend it out of pride. A decision that names its own reversal conditions can be reopened calmly. The question to ask is already written down.
+
+She didn't keep the page on her laptop. Imran showed her where the engineers kept their work: a *repository* on GitHub, an online folder that remembers every version of every file. Each time she saved a change, she wrote one line saying what had changed and why, and the old version stayed beside the new one. A decision log kept there cannot quietly change its mind. Every earlier version is still there for anyone to read.
 
 ## Measuring yourself
 

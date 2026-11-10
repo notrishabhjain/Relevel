@@ -139,6 +139,14 @@ R.a1 = [
     'Expertise comes from practice aimed at your weak spots, with feedback, not from hours alone.',
     'Maharat apni kamzoriyon par nishana lagane wale abhyaas aur feedback se aati hai, sirf ghanton se nahi.')
 ];
+R.a1g = [
+  C('alphagov: the UK government’s code, in the open', 'Government Digital Service, GitHub', 'https://github.com/alphagov',
+    'A whole government department keeps its work in public repositories. Open any one and read its history of commits.',
+    'Ek poora sarkari department apna kaam public repositories mein rakhta hai. Koi bhi kholiye aur uske commits ki history padhiye.'),
+  P('Ten Simple Rules for Taking Advantage of Git and GitHub', 'Perez-Riverol et al., PLOS Computational Biology, 2016', 'https://doi.org/10.1371/journal.pcbi.1004947',
+    'Why researchers keep their work on GitHub, in ten short rules. Most apply to a product notebook just as well.',
+    'Researchers apna kaam GitHub par kyun rakhte hain, das chhote niyamon mein. Zyadatar ek product notebook par bhi utne hi laagu hote hain.')
+];
 R.a2 = [
   P('Why Most Product Launches Fail', 'Schneider and Hall, Harvard Business Review, 2011', 'https://hbr.org/2011/04/why-most-product-launches-fail',
     'Five recurring reasons new products flop, from a study of launches across a decade. Most are risks you can test before building.',
@@ -157,6 +165,14 @@ R.a3 = [
   P('Why You Only Need to Test with 5 Users', 'Jakob Nielsen, Nielsen Norman Group, 2000', 'https://www.nngroup.com/articles/why-you-only-need-to-test-with-5-users/',
     'Five users find most of a design’s usability problems. The curve, and when it does not apply.',
     'Paanch users design ki zyadatar usability dikkatein pakad lete hain. Woh curve, aur kab yeh laagu nahi hota.')
+];
+R.a4s = [
+  C('Excel: Why using Microsoft’s tool caused Covid-19 results to be lost', 'BBC News, 2020', 'https://www.bbc.com/news/technology-54423988',
+    'Nearly 16,000 positive Covid tests went missing because a spreadsheet ran out of rows. A small tool limit, a large real cost.',
+    'Lagbhag 16,000 positive Covid tests gayab ho gaye kyunki ek spreadsheet ki rows khatam ho gayi. Tool ki chhoti seema, asli duniya mein badi keemat.'),
+  P('Does High Public Debt Consistently Stifle Economic Growth?', 'Herndon, Ash and Pollin, Cambridge Journal of Economics, 2014', 'https://doi.org/10.1093/cje/bet075',
+    'A student checked a famous economics paper and found a spreadsheet formula that left out five countries. It changed the result.',
+    'Ek student ne ek mashhoor economics paper jaancha aur ek spreadsheet formula pakda jo paanch deshon ko chhod raha tha. Usse nateeja badal gaya.')
 ];
 R.a4 = [
   P('Marketing Malpractice: The Cause and the Cure', 'Christensen, Cook and Hall, Harvard Business Review, 2005', 'https://hbr.org/2005/12/marketing-malpractice-the-cause-and-the-cure',

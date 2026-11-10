@@ -23,7 +23,7 @@ export const WEEKS = [
   ],
   "light": false,
   "why": "Nothing is assumed. The book opens on a real finding in a week of customer chats, and A1 turns that finding into the project you will carry to the end.",
-  "mins": 50,
+  "mins": 71,
   "steps": [
    {
     "id": "c:ch0",
@@ -51,7 +51,7 @@ export const WEEKS = [
     "n": 1,
     "title": "The Number in the Chat",
     "titleHi": "Chat Mein Woh Number",
-    "mins": 10,
+    "mins": 11,
     "what": "Read the chapter. The page ticks itself when you reach the end."
    },
    {
@@ -63,6 +63,15 @@ export const WEEKS = [
     "mins": 20,
     "firstPass": true,
     "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. The long “Build it” section is optional; leave it for later."
+   },
+   {
+    "id": "c:a1g",
+    "kind": "chapter",
+    "ch": "a1g",
+    "num": "A1.5",
+    "title": "GitHub basics: a home for your work",
+    "mins": 20,
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
    {
     "id": "t:review-1",
@@ -146,7 +155,7 @@ export const WEEKS = [
   ],
   "light": false,
   "why": "You know who has the problem. Now you look at who else serves them and how many there are, and then you choose the one thing to do first.",
-  "mins": 63,
+  "mins": 83,
   "steps": [
    {
     "id": "b:04-who-else-is-standing-here.html",
@@ -157,6 +166,15 @@ export const WEEKS = [
     "titleHi": "Yahan Aur Kaun Khada Hai",
     "mins": 10,
     "what": "Read the chapter. The page ticks itself when you reach the end."
+   },
+   {
+    "id": "c:a4s",
+    "kind": "chapter",
+    "ch": "a4s",
+    "num": "A3.5",
+    "title": "Spreadsheet basics: the formulas this course uses",
+    "mins": 20,
+    "what": "Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end."
    },
    {
     "id": "c:a4",

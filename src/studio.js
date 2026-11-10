@@ -80,7 +80,7 @@ function validate(kind,data){
     need(Array.isArray(data)&&data.length,'Chapters must be a non-empty list.');
     (data||[]).forEach((c,i)=>{
       ['id','title','concept'].forEach(k=>need(typeof c[k]==='string'&&c[k],`Chapter ${i+1} needs a ${k}.`));
-      need(typeof c.num==='number'||/^[AB]\d{1,2}$/.test(String(c.num)),
+      need(typeof c.num==='number'||/^[AB]\d{1,2}(\.\d)?$/.test(String(c.num)),
         `Chapter ${c.id||i+1} needs a number, or a track number like A3.`);
       need(Array.isArray(c.story)&&c.story.length,`Chapter ${c.id||i+1} needs a story.`);
       ['words','handson','homework','check','wrong','takeaway','labs'].forEach(k=>

@@ -10,7 +10,7 @@ import { clean, merge } from './_lib/plan.js';
    POST { share: false }   removes it (the old link stops working) */
 export default guard(async (req, res, user) => {
   const row = (await query('SELECT updated_at, data, share_id FROM plan_progress WHERE user_id=$1', [user.id]))[0];
-  const cur = row ? row.data : { weeks: {}, gates: {}, parking: {} };
+  const cur = row ? row.data : { weeks: {}, gates: {}, parking: {}, topics: {}, ticks: {} };
 
   if (req.method === 'GET')
     return send(res, 200, { data: clean(cur), updatedAt: row ? Number(row.updated_at) : 0, shareId: row ? row.share_id : null });

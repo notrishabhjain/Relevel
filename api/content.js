@@ -25,8 +25,8 @@ function validate(kind, data) {
       if (!c || typeof c !== 'object') fail(`chapter ${i} is not an object`);
       ['id', 'title', 'concept'].forEach(k => { if (typeof c[k] !== 'string' || !c[k]) fail(`chapter ${i} needs ${k}`); });
       /* A number for the core chapters, "A3" / "B7" for the playbook's two
-         lettered tracks. */
-      if (typeof c.num !== 'number' && !/^[AB]\d{1,2}$/.test(String(c.num)))
+         lettered tracks, and "A1.5" for a short chapter between two of them. */
+      if (typeof c.num !== 'number' && !/^[AB]\d{1,2}(\.\d)?$/.test(String(c.num)))
         fail(`chapter ${i} needs a number, or a track number like A3`);
       /* Only the reading is required. A chapter that is one flow simply omits
          the vocabulary list, the code track and the rest, and the renderer
