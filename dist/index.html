@@ -38497,7 +38497,9 @@ function exportFile(){
 function canDownload(){
   /* the artifact viewer runs the page in a sandboxed frame without downloads */
   try{
-    if(window.self !== window.top) return false;
+    /* a frame of this same site (the worksheet's reading panel) may; reading
+       window.top.location throws for any other parent */
+    if(window.self !== window.top && window.top.location.origin !== location.origin) return false;
   }catch(e){ return false; }
   return 'download' in document.createElement('a');
 }

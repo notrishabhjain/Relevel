@@ -250,6 +250,7 @@ function render(M, lang) {
   <p id="ov-next" class="small"></p>
   <div class="actions"><button type="button" id="ws-print">${L.print}</button><button type="button" id="ws-csv">${L.csv}</button><button type="button" class="quiet" id="ws-open">${L.expand}</button></div>
   <p id="ws-saved" class="small"></p>
+  <p class="small rd-tip">${esc(L.rdHint)}</p>
 </section>
 ${toc}
 ${M.topics.map(topic).join('\n')}
@@ -257,7 +258,10 @@ ${M.topics.map(topic).join('\n')}
   ? 'Yeh page har baar site banne par course, kitaab aur plan se banta hai, isliye hamesha unse milta hai. Ticks un teeno jagah se aate hain; notes aur “samjha sakta/sakti hoon” yahan save hote hain.'
   : 'This page is built from the course, the book and the plan every time the site is built, so it always matches them. The ticks come from all three; your notes and “I can explain this” ticks save here.'}</p>
 <p class="pnote" id="ws-printed" hidden></p>
-</main>`;
+</main>
+<aside id="ws-reader" class="reader" role="dialog" aria-label="${esc(L.rdLabel)}" hidden>
+  <div class="rd-bar"><span class="rd-title"></span><a class="rd-new" href="#" target="_blank" rel="noopener">${esc(L.rdNew)} &#8599;</a><button type="button" class="rd-close" aria-label="${esc(L.rdClose)}">&#10005;<span> ${esc(L.rdClose)}</span></button></div>
+</aside>`;
   return { body, steps };
 }
 
@@ -352,6 +356,21 @@ textarea{width:100%;font:.92rem/1.5 var(--sans);color:var(--ink);background:var(
 .wsfigs .fx,.morefigs .fx{margin:1rem 0}
 .wsfig.fx{background:var(--paper)}
 .flash{outline:2px solid var(--accent);outline-offset:2px}
+/* the reading panel: the page a link points to, beside the worksheet */
+.reader{position:fixed;z-index:20;top:0;right:0;bottom:0;width:min(62vw,1100px);display:flex;flex-direction:column;background:var(--raised);border-left:1px solid var(--rule);box-shadow:-12px 0 32px -18px #0006}
+.reader[hidden]{display:none}
+.rd-bar{display:flex;align-items:center;gap:.6rem;padding:.5rem .7rem;border-bottom:1px solid var(--rule);background:var(--sunk);font-size:.86rem}
+.rd-title{flex:1;min-width:0;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rd-new{white-space:nowrap}
+.rd-close{white-space:nowrap}
+.rd-frame{flex:1;width:100%;border:0;background:var(--paper)}
+body.reading{padding-right:min(62vw,1100px)}
+body.reading header.bar{position:sticky}
+body.reading .cols{grid-template-columns:1fr}
+body.reading .toc ol{columns:1}
+.it.reading,.wk.reading{background:var(--accent-wash);border-radius:6px}
+@media (max-width:900px){.reader{width:100vw;border-left:0}body.reading{padding-right:0;overflow:hidden}.rd-close span{display:none}}
+@media print{.reader{display:none!important}body.reading{padding-right:0}}
 @media print{
   :root{--paper:#fff;--raised:#fff;--sunk:#f3f4f1;--ink:#000;--ink-2:#222;--muted:#555;--rule:#bbb;--rule-soft:#ddd;--accent:#1F6F5C;--good:#2c7a4b}
   body{font-size:11pt;background:#fff}

@@ -245,6 +245,101 @@
     try { localStorage.setItem('aipm-plan-theme', next); } catch (e) { }
   });
 
+  /* ---------- the reading panel ----------
+     A link to the app, the book or the plan opens beside the worksheet
+     instead of replacing it, so you can read and come straight back. The
+     page in the panel is the real page: its links work, and a chapter marked
+     complete there ticks here at once (it writes the shared progress record,
+     and this page hears it). A click with Ctrl, Cmd or Shift, or the middle
+     button, still opens a new tab as usual.
+
+     History: opening adds one entry, so Back (a phone's system back) closes
+     the panel. The frame is made fresh for each opening and removed on
+     closing, so pages read inside it never leave entries behind that a later
+     Back would step through invisibly. */
+  var reader = document.getElementById('ws-reader'), lastRow = null, hashAtOpen = '';
+  var PORTAL = /\/(app|book|plan)\//;
+  function readerOpen() { return reader && !reader.hidden; }
+  function frameEl() { return reader.querySelector('.rd-frame'); }
+  function showReader(href, title, row) {
+    if (!reader) return false;
+    if (lastRow) lastRow.classList.remove('reading');
+    lastRow = row || null; if (lastRow) lastRow.classList.add('reading');
+    reader.querySelector('.rd-title').textContent = title || '';
+    reader.querySelector('.rd-new').href = href;
+    var fr = frameEl();
+    if (readerOpen() && fr) {
+      /* already reading: change page in place, without a new history entry */
+      fr._first = true;
+      try { fr.contentWindow.location.replace(href); } catch (e) { fr.src = href; }
+    } else {
+      hashAtOpen = location.hash;
+      try { history.pushState({ wsReader: true }, ''); } catch (e) { }
+      if (fr) fr.remove();
+      fr = document.createElement('iframe');
+      fr.className = 'rd-frame'; fr.title = reader.getAttribute('aria-label') || '';
+      fr._first = true;
+      fr.addEventListener('load', function () {
+        try {
+          var w = fr.contentWindow, t = w.document.title;
+          if (w.location.href === 'about:blank') return;
+          reader.querySelector('.rd-new').href = w.location.href;
+          /* the link's own words name the first page; a page reached inside the panel names itself */
+          if (t && !fr._first) reader.querySelector('.rd-title').textContent = t.replace(/\s*[—|]\s*AI From Zero.*$/, '');
+          fr._first = false;
+          /* Links followed inside the panel replace its page rather than add to
+             the browser's history, so Back always means "close the panel". A
+             link back to the worksheet just closes it. */
+          var doc = w.document;
+          if (!doc._wsHooked) {
+            doc._wsHooked = true;
+            doc.addEventListener('click', function (ev) {
+              if (ev.defaultPrevented || ev.button !== 0 || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return;
+              var a = ev.target.closest && ev.target.closest('a[href]');
+              if (!a || a.target === '_blank' || a.hasAttribute('download')) return;
+              var u; try { u = new URL(a.getAttribute('href'), w.location.href); } catch (er) { return; }
+              if (u.origin !== location.origin || /\/api\//.test(u.pathname)) return;
+              ev.preventDefault();
+              if (/\/worksheet\//.test(u.pathname)) { hideReader(false); return; }
+              w.location.replace(u.href);
+            });
+          }
+        } catch (e) { }
+      });
+      fr.src = href;
+      reader.appendChild(fr);
+      reader.hidden = false; document.body.classList.add('reading');
+    }
+    reader.querySelector('.rd-close').focus({ preventScroll: true });
+    return true;
+  }
+  function hideReader(fromHistory) {
+    if (!readerOpen()) return;
+    var fr = frameEl(); if (fr) fr.remove();
+    reader.hidden = true; document.body.classList.remove('reading');
+    if (!fromHistory && history.state && history.state.wsReader) history.back();
+    if (P) { S = P.load(); paint(); }
+    if (lastRow) { var r = lastRow; setTimeout(function () { r.classList.remove('reading'); }, 1600); var a = r.querySelector('a'); if (a) a.focus({ preventScroll: true }); }
+  }
+  if (reader) {
+    document.addEventListener('click', function (e) {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target.closest && e.target.closest('a[href]');
+      if (!a || reader.contains(a) || a.target === '_blank' || a.hasAttribute('download')) return;
+      var u; try { u = new URL(a.getAttribute('href'), location.href); } catch (er) { return; }
+      if (u.origin !== location.origin || !PORTAL.test(u.pathname) || /\/api\//.test(u.pathname)) return;
+      e.preventDefault();
+      showReader(u.href, a.textContent.trim(), a.closest('.it, .wk, li'));
+    });
+    reader.querySelector('.rd-close').addEventListener('click', function () { hideReader(false); });
+    /* Back closes the panel. Jumping to a topic on the worksheet while reading
+       also moves through history; that keeps it open. */
+    window.addEventListener('popstate', function () {
+      if (readerOpen() && !(history.state && history.state.wsReader) && location.hash === hashAtOpen) hideReader(true);
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && readerOpen()) { e.preventDefault(); hideReader(false); } });
+  }
+
   /* ---------- start ---------- */
   loadMine(); show(); paint(); openHash(true);
   if (P) {
