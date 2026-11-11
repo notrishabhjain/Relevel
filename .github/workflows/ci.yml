@@ -20,9 +20,56 @@ jobs:
         with:
           node-version: '20'
       - run: npm install
-      - run: npx playwright install --with-deps chromium
+      - name: Install the test browser
+        run: |
+          # `--with-deps` also installs fonts, through apt. On 11 Nov the runners
+          # lost their route to the Ubuntu package servers ("Temporary failure
+          # resolving archive.ubuntu.com"): apt hung for ten minutes and failed the
+          # whole job before a single test ran, although the browser and every
+          # library it needs were already on the runner and only some fonts were
+          # missing. No test compares pixels, so the fonts are optional.
+          # So: only ask apt for them if the package servers answer, and then
+          # under a time limit. Otherwise install the browser alone. Either way,
+          # prove it launches, so a library that really is missing fails here, in
+          # Playwright's own words, rather than in the middle of the tests.
+          if getent hosts archive.ubuntu.com security.ubuntu.com > /dev/null && timeout 150 npx playwright install --with-deps chromium; then
+            echo "browser and system packages installed"
+          else
+            echo "::warning title=Browser fonts not installed::The Ubuntu package servers could not be reached, so only the browser itself was installed. None of the tests depends on those fonts."
+            for h in archive.ubuntu.com security.ubuntu.com cdn.playwright.dev github.com; do
+              getent hosts "$h" > /dev/null && echo "dns ok:   $h" || echo "dns FAIL: $h"
+            done
+            grep -v '^#' /etc/resolv.conf || true
+            # `timeout` stops npx but not the apt-get that Playwright started
+            # through sudo: it keeps running, keeps the apt lock, and fails the
+            # next step ("Could not get lock"). Stop it, politely, and wait.
+            sudo pkill -TERM -x apt-get || true
+            for _ in 1 2 3 4 5; do pgrep -x apt-get > /dev/null || break; sleep 2; done
+            npx playwright install chromium
+          fi
+          node -e "require('playwright').chromium.launch().then(b => b.close()).then(() => console.log('chromium launches'))"
       - name: ffmpeg (the narration test encodes a chapter)
-        run: command -v ffmpeg || sudo apt-get install -y -q ffmpeg
+        run: |
+          # The narration test needs ffmpeg with Opus, which this runner image does
+          # not have: 89 packages, 69 MB. On 11 Nov the Ubuntu mirror first could
+          # not be reached at all, then answered at about 120 KB/s (the same install
+          # took 20 s that morning), and a 90 s limit killed it every time just
+          # before it finished. So: be patient with a slow mirror, impatient with a
+          # silent one. apt itself drops a stalled connection after 30 s and
+          # retries it, the install gets seven minutes, and what was downloaded is
+          # kept, so a second attempt carries on where the first stopped.
+          command -v ffmpeg && exit 0
+          APT="-o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30"
+          for attempt in 1 2; do
+            if sudo timeout 120 apt-get $APT update -q && sudo timeout 420 apt-get $APT install -y -q --no-install-recommends ffmpeg; then exit 0; fi
+            echo "::warning::installing ffmpeg failed (attempt $attempt of 2)"
+            sleep 10
+          done
+          for h in archive.ubuntu.com security.ubuntu.com; do
+            getent hosts "$h" > /dev/null && echo "dns ok:   $h" || echo "dns FAIL: $h"
+          done
+          echo "::error::ffmpeg could not be installed through apt (see the lines above for why)"
+          exit 1
       - run: node build.js
       - name: Check the build produced a page
         run: |
