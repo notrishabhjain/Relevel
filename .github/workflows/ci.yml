@@ -51,13 +51,18 @@ jobs:
       - name: ffmpeg (the narration test encodes a chapter)
         run: |
           # The narration test needs ffmpeg with Opus, which this runner image does
-          # not have. apt can fail for a moment (or for hours: see above), so retry
-          # a few times with time limits, then fail with the real reason rather
-          # than hanging.
+          # not have: 89 packages, 69 MB. On 11 Nov the Ubuntu mirror first could
+          # not be reached at all, then answered at about 120 KB/s (the same install
+          # took 20 s that morning), and a 90 s limit killed it every time just
+          # before it finished. So: be patient with a slow mirror, impatient with a
+          # silent one. apt itself drops a stalled connection after 30 s and
+          # retries it, the install gets seven minutes, and what was downloaded is
+          # kept, so a second attempt carries on where the first stopped.
           command -v ffmpeg && exit 0
-          for attempt in 1 2 3; do
-            if sudo timeout 45 apt-get update -q && sudo timeout 90 apt-get install -y -q ffmpeg; then exit 0; fi
-            echo "::warning::installing ffmpeg failed (attempt $attempt of 3)"
+          APT="-o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30"
+          for attempt in 1 2; do
+            if sudo timeout 120 apt-get $APT update -q && sudo timeout 420 apt-get $APT install -y -q --no-install-recommends ffmpeg; then exit 0; fi
+            echo "::warning::installing ffmpeg failed (attempt $attempt of 2)"
             sleep 10
           done
           for h in archive.ubuntu.com security.ubuntu.com; do
