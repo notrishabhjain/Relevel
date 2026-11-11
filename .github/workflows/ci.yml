@@ -20,9 +20,40 @@ jobs:
         with:
           node-version: '20'
       - run: npm install
-      - run: npx playwright install --with-deps chromium
+      - name: Install the test browser
+        run: |
+          # `--with-deps` also installs fonts, through apt. On 11 Nov the runners
+          # lost their route to the Ubuntu package servers ("Temporary failure
+          # resolving archive.ubuntu.com"): apt hung for ten minutes and failed the
+          # whole job before a single test ran, although the browser and every
+          # library it needs were already on the runner and only some fonts were
+          # missing. No test compares pixels, so the fonts are optional.
+          # So: try once, with a time limit; if that fails, install the browser
+          # alone and say why. Either way, prove it launches, so a library that
+          # really is missing fails here, in Playwright's own words, rather than
+          # somewhere in the middle of the tests.
+          if ! timeout 150 npx playwright install --with-deps chromium; then
+            echo "::warning title=Browser fonts not installed::The Ubuntu package servers could not be reached, so only the browser itself was installed. None of the tests depends on those fonts."
+            for h in archive.ubuntu.com security.ubuntu.com cdn.playwright.dev github.com; do
+              getent hosts "$h" > /dev/null && echo "dns ok:   $h" || echo "dns FAIL: $h"
+            done
+            npx playwright install chromium
+          fi
+          node -e "require('playwright').chromium.launch().then(b => b.close()).then(() => console.log('chromium launches'))"
       - name: ffmpeg (the narration test encodes a chapter)
-        run: command -v ffmpeg || sudo apt-get install -y -q ffmpeg
+        run: |
+          # The narration test needs ffmpeg with Opus, which this runner image does
+          # not have. apt can fail for a moment (or for hours: see above), so retry
+          # a few times with time limits, then fail with the real reason rather
+          # than hanging.
+          command -v ffmpeg && exit 0
+          for attempt in 1 2 3; do
+            if sudo timeout 45 apt-get update -q && sudo timeout 90 apt-get install -y -q ffmpeg; then exit 0; fi
+            echo "::warning::installing ffmpeg failed (attempt $attempt of 3)"
+            sleep 10
+          done
+          echo "::error::ffmpeg could not be installed: the runner cannot reach the Ubuntu package servers"
+          exit 1
       - run: node build.js
       - name: Check the build produced a page
         run: |
