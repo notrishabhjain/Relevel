@@ -115,6 +115,7 @@
 <h2 id="s-38-1" data-s="3"><span class="sn">38.1</span>The case: an edit that was not a deployment</h2>
 <p data-s="4">&quot;Editing an instruction doesn't feel like a deployment,&quot; said Imran Qureshi, flatly, like a man reading out a diagnosis. But it is one, he said, and teams break this rule more often than any other. A change to a prompt is a code change in disguise. It alters what the system does, just as a change to code would.</p>
 <p data-s="5">So this chapter does two things. It shows the machinery that makes an incident like this one impossible. And it shows the records that let you explain any incident that still happens.</p>
+<div class="bookfig" data-fig="eval-levels" data-label="Figure 38.1"></div>
 <h2 id="s-38-2" data-s="6"><span class="sn">38.2</span>What a gate is</h2>
 <p data-s="7">Anaya wrote down in the decision log, with the date, what she wanted: a way for this to be impossible. Then she turned to a part of the project she had been building since April without ever giving it its proper name.</p>
 <p data-s="8">That part was the answer key. It now had two hundred and twenty rows, and it grew every week. Each row was a case with the behaviour the team expected. The key was versioned and kept, and in the trade this kind of set is called a <em><a class="term" href="/book/glossary.html#t-golden-dataset" title="the versioned, representative set of cases, with the behaviour you expect for each, that defines what good means for a system; it has a version number so that a result can be rerun">golden dataset</a></em>. Imran described it as the memory of what &quot;good&quot; means for the product.</p>
@@ -127,6 +128,7 @@
   Answer key version 12, 220 rows.
   Blocked: instruction v14 -&gt; v15.</pre>
 <p data-s="14">It would have said so in forty seconds, Imran pointed out, and he would much rather it had.</p>
+<div class="bookfig" data-fig="trace" data-label="Figure 38.2"></div>
 <h2 id="s-38-3" data-s="15"><span class="sn">38.3</span>The sentence that stops a release</h2>
 <p data-s="16">Lakshmi had been in the room throughout. She asked Anaya to write the sentence she would say in the meeting. She didn't want a policy. She wanted the actual sentence, with numbers in it, that stops a release.</p>
 <p data-s="17">Anaya wrote it twice. The first version had the word &quot;seems&quot; in it, and she crossed it out, because a sentence with that word would never have stopped anything. The second version read: we are not shipping, because recall on fixed-shape numbers is 96.4 against a threshold of 98, on answer key version 12. &quot;That one stops a release,&quot; said Lakshmi. &quot;Thresholds do. Impressions don't.&quot;</p>
@@ -168,6 +170,7 @@
 <script src="/progress.js" defer></script>
 <script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
+<script src="/figs.js" defer></script>
 <script src="/book/listen.js" defer></script>
 </body>
 </html>

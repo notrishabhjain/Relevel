@@ -116,12 +116,14 @@
 <h2 id="s-19-1" data-s="4"><span class="sn">19.1</span>The case: a paragraph a program cannot read</h2>
 <p data-s="5">Start with something you already know. When you fill in a form at a bank, every box has a name, and you can’t leave the important ones blank. That is what a program wants from a model. When the model’s output feeds another system, such as one that decides what to hide, the program needs fields: a kind, a value, a position and a decision. Each field has a name and a type, and each must always be there.</p>
 <p data-s="6">A paragraph, however well written, has none of these. A person can find the PAN in it. A program can’t.</p>
+<div class="bookfig" data-fig="schema-loop" data-label="Figure 19.1"></div>
 <h2 id="s-19-2" data-s="7"><span class="sn">19.2</span>Asking politely</h2>
 <p data-s="8">The obvious first step is to ask. Imran added a line to the instruction: reply as JSON, with the fields kind, value and action. It worked, and it kept working, which is exactly the danger. For a day nobody thought about it.</p>
 <p data-s="9">Then he ran a thousand test messages through and counted how many replies were correctly formed. Nine hundred and sixty-eight were. Thirty-two were not.</p>
 <figure class="tblfig" data-s="10"><figcaption><b>Table 19.1.</b> The thirty-two failures</figcaption><div class="tblwrap"><table><thead><tr><th>Count</th><th>What went wrong</th></tr></thead><tbody><tr><td>14</td><td>The reply began with an apology before the curly brace: &quot;Certainly! Here is the JSON.&quot;</td></tr><tr><td>9</td><td>The reply was wrapped in formatting symbols that the code did not expect</td></tr><tr><td>6</td><td>There was a stray comma at the end of a list, which a human eye skips and a program rejects</td></tr><tr><td>3</td><td>The reply was perfectly formed, but the &quot;kind&quot; field held a value that the message did not contain</td></tr></tbody></table></div></figure>
 <p data-s="11">Anaya said that 96.8 percent sounded fine. Imran wrote the next sum on a napkin. Suppose ten thousand messages arrive in a day. At ninety-seven percent, that is three hundred failures a day. They are silent, and they go into a field that another system trusts.</p>
 <p data-s="12">A feature that fails a few times in a hundred, with nobody watching the hundred, fails all day long.</p>
+<div class="bookfig" data-fig="field-design" data-label="Figure 19.2"></div>
 <h2 id="s-19-3" data-s="13"><span class="sn">19.3</span>Constrain instead of asking</h2>
 <p data-s="14">The reliable fix is to stop asking and start constraining. Providers let the developer supply a <em><a class="term" href="/book/glossary.html#t-schema" title="a description of exactly what shape an answer must have, which the provider enforces while the model is writing">schema</a></em>. A schema is a description of exactly what shape the answer must have. It names every field, says what type each one holds, and says which are required.</p>
 <p data-s="15">While the model writes, the provider’s own software stops it from producing anything that doesn’t fit. An apology can’t appear before the brace. A stray comma can’t appear. An answer produced this way is called <em><a class="term" href="/book/glossary.html#t-structured-output" title="an answer given in named fields of a known type, so that a program can read it, instead of a paragraph that a person reads">structured output</a></em>. It isn’t &quot;very probably well formed&quot;. It simply can’t be anything else.</p>
@@ -169,6 +171,7 @@
 <script src="/progress.js" defer></script>
 <script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
+<script src="/figs.js" defer></script>
 <script src="/book/listen.js" defer></script>
 </body>
 </html>

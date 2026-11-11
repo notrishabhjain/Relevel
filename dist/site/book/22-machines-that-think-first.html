@@ -117,6 +117,7 @@
 <p data-s="5">For a month, Imran had been studying the sentences that the cheap model kept getting wrong. There was the Aadhaar number spoken in words, and the twelve digits that might be an order number. There was also the sentence that identifies a person without any number in it.</p>
 <p data-s="6">That day he had tried them on a different kind of model, one that writes out its working before it answers. It tries an approach, checks it, backs up if it has to, and only then gives its reply. The working is usually hidden from the user, and you are charged for it.</p>
 <p data-s="7">A model that does this is a <em><a class="term" href="/book/glossary.html#t-reasoning-model" title="a model that writes out its working, trying an approach and checking it, before it gives the answer; you pay for that working on every request, in money and in waiting time">reasoning model</a></em>. Here is why it matters. Accuracy doesn’t have to be fixed at the moment the model was made. You can buy more of it for each question, by letting the machine work for longer.</p>
+<div class="bookfig" data-fig="reason-when" data-label="Figure 22.1"></div>
 <h2 id="s-22-2" data-s="8"><span class="sn">22.2</span>What thinking costs</h2>
 <p data-s="9">Imran read the results down the phone.</p>
 <figure class="tblfig" data-s="10"><figcaption><b>Table 22.1.</b> The same thirty hard cases and thirty easy cases, with and without reasoning</figcaption><div class="tblwrap"><table><thead><tr><th></th><th>Ordinary model</th><th>Reasoning model</th></tr></thead><tbody><tr><td>Hard cases correct (of 30)</td><td>19</td><td>26</td></tr><tr><td>Easy cases correct (of 30)</td><td>30</td><td>30</td></tr><tr><td>Time per case</td><td>about 1.25 seconds</td><td>about 11 seconds</td></tr><tr><td>Relative cost per case</td><td>1</td><td>about 6, because the hidden working is charged like any other output</td></tr></tbody></table></div></figure>
@@ -125,6 +126,7 @@
 <p data-s="13">It helps when the answer has to be worked out. Examples are steps that depend on one another, sums, plans, code, and a real ambiguity that needs resolving. It is wasted when the answer is already in the input and only needs finding or reshaping. That covers looking something up, pulling out a field, sorting into a category, formatting, and summarising a passage you supplied. The twelve digits spoken as words needed working out. The ordinary message with a mobile number and an email did not.</p>
 <p data-s="14">Imran sent three cautions in a message.</p>
 <figure class="tblfig" data-s="15"><figcaption><b>Table 22.2.</b> Three cautions about reasoning models</figcaption><div class="tblwrap"><table><thead><tr><th>Caution</th><th>Explanation</th></tr></thead><tbody><tr><td>Reasoning does not create evidence</td><td>Given the wrong document, the model reasons carefully and at length from the wrong document. It produces a more convincing wrong answer than a cheap model would</td></tr><tr><td>Waiting is a product problem</td><td>The user feels a slow answer, whatever the reason for it</td></tr><tr><td>It is not all or nothing</td><td>Most providers let the developer choose how much reasoning to use, so you can decide for each type of request, and not once for the whole product</td></tr></tbody></table></div></figure>
+<div class="bookfig" data-fig="stream-wait" data-label="Figure 22.2"></div>
 <h2 id="s-22-3" data-s="16"><span class="sn">22.3</span>The decision that cannot wait</h2>
 <p data-s="17">By the time the train reached Pune, the problem had taken shape. On Saturday morning, Anaya laid it out for Imran.</p>
 <p data-s="18">The guard sits at the door. A customer types a message, the guard examines it, and only then does the message go on. If the guard took eleven seconds, the customer would wait eleven seconds for every reply. The requirement was that the guard add no more than a third of a second.</p>
@@ -159,6 +161,7 @@
 <script src="/progress.js" defer></script>
 <script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
+<script src="/figs.js" defer></script>
 <script src="/book/listen.js" defer></script>
 </body>
 </html>

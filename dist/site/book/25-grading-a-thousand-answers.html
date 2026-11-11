@@ -115,9 +115,11 @@
 <p data-s="3">Imran Qureshi told her there are three ways to mark an answer, and that every serious team ends up using all three. In this chapter you’ll meet them, see how one was tested before it was trusted, and finish with a weekend’s work that needed no software.</p>
 <h2 id="s-25-1" data-s="4"><span class="sn">25.1</span>The case: a key too big to mark</h2>
 <p data-s="5">The growing key came from a good instinct. Each real failure had become a row. The price of that instinct was that marking now took more time than the team could spare. So the job had to be shared among three kinds of marker.</p>
+<div class="bookfig" data-fig="grading-ladder" data-label="Figure 25.1"></div>
 <h2 id="s-25-2" data-s="6"><span class="sn">25.2</span>Three markers</h2>
 <figure class="tblfig" data-s="7"><figcaption><b>Table 25.1.</b> Three ways to mark an answer</figcaption><div class="tblwrap"><table><thead><tr><th>Marker</th><th>Strengths</th><th>Weaknesses</th><th>Use it for</th></tr></thead><tbody><tr><td>A program (a <em>code check</em>)</td><td>A few lines of ordinary software that test one thing about an answer. Almost free, and it runs on every change, thousands of times</td><td>Tests only what can be written as a rule</td><td>Whether the output has the right form, whether every kind is one of those permitted, whether every quotation appears in the message, whether it is fast enough, whether the number of findings is sensible</td></tr><tr><td>A person</td><td>The only marker who can say what &quot;correct&quot; means. Everything else is calibrated against what a person decided</td><td>Expensive and slow, and two people often disagree</td><td>Defining correctness, and keeping the judge honest</td></tr><tr><td>A model that grades another model (an <em>LLM judge</em>)</td><td>Cheap and fast. It reads a hundred answers in the time a person reads one</td><td>Has biases that must be measured</td><td>Questions a program can’t answer, such as &quot;is this answer supported by the source?&quot; or &quot;which of these two is better?&quot;</td></tr></tbody></table></div></figure>
 <p data-s="8">Many bad answers fail in ways a program can see. Imran said most teams don’t use nearly enough <a class="term" href="/book/glossary.html#t-code-check" title="a few lines of ordinary code that test one thing about an answer automatically, such as whether a quoted phrase is really in the message; free to run on every change">code checks</a>. His order of preference was simple. Use the first marker wherever you can. Use the third for what the first can’t see. And use the second to keep the third honest.</p>
+<div class="bookfig" data-fig="error-analysis" data-label="Figure 25.2"></div>
 <h2 id="s-25-3" data-s="9"><span class="sn">25.3</span>A judge on trial</h2>
 <p data-s="10">Anaya wanted a judge for a question no program could answer. After the guard has done its work, is anything personal left in the message? The code checks could confirm that a quotation was present. They couldn’t tell whether a leftover fragment, such as &quot;the flat above the chemist on Karve Road&quot;, still pointed to a person.</p>
 <p data-s="11">Imran wrote a judge in an afternoon. It read the cleaned message and answered yes or no, with a reason. It looked excellent. It was fast, and its reasons were fluent and well organised, often longer than the answers they commented on.</p>
@@ -161,6 +163,7 @@
 <script src="/progress.js" defer></script>
 <script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
+<script src="/figs.js" defer></script>
 <script src="/book/listen.js" defer></script>
 </body>
 </html>

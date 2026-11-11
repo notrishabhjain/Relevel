@@ -117,6 +117,7 @@
 <h2 id="s-8-1" data-s="5"><span class="sn">8.1</span>The case: a legend and a machine</h2>
 <p data-s="6">The vague account that Anaya gave is very common. It treats the system as a mind. And a mind suggests understanding, knowledge and judgement, none of which is guaranteed.</p>
 <p data-s="7">A more modest account is more useful. It tells you what the system does well and where it will fail, and most of a product's problems start in the failures. The sections below build that account in order.</p>
+<div class="bookfig" data-fig="pred-vs-gen" data-label="Figure 8.1"></div>
 <h2 id="s-8-2" data-s="8"><span class="sn">8.2</span>A keyboard that read everything</h2>
 <p data-s="9">When Anaya types &quot;See you at the&quot; on her phone, the keyboard suggests &quot;office&quot;, &quot;station&quot; and &quot;airport&quot;. When she types the Roman-letter Hindi &quot;Kal milte&quot;, it offers &quot;hain&quot;, then &quot;hai&quot;, then &quot;hum&quot;. The phone doesn't know where she is going tomorrow. It has seen what people type, and it knows which word usually comes next.</p>
 <p data-s="10">Now make that keyboard bigger. Let it read every book, newspaper, forum post and manual it can be given, many times over. Make it vastly larger. And let it guess not one word but thousands in a row, with each guess feeding the next. What you get is called a <em><a class="term" href="/book/glossary.html#t-language-model" title="a program that has learned, from a vast amount of writing, to predict what text comes next; it is what sits behind a chatbot">language model</a></em>.</p>
@@ -124,6 +125,7 @@
 <p data-s="12">A program that has learned, from an enormous amount of writing, to predict what text comes next. It writes an answer by predicting one piece at a time. It doesn't look anything up, and it doesn't know what is true. It knows what is likely.</p>
 </aside>
 <p data-s="13">When most of what the model read was true, the likely and the true overlap closely. Where they come apart is where the difficulties of every product built on a language model begin. Anaya wrote &quot;likely, not true&quot; on the back of an envelope and drew a box around it.</p>
+<div class="bookfig" data-fig="prompt-rag-ft" data-label="Figure 8.2"></div>
 <h2 id="s-8-3" data-s="14"><span class="sn">8.3</span>Tokens: how the machine reads</h2>
 <p data-s="15">A model doesn't read letters or whole words. It reads <em><a class="term" href="/book/glossary.html#t-token" title="a piece of text, often a whole word and sometimes part of one, which is the unit that models read and that providers charge by">tokens</a></em>. A token is a piece of text, often a whole word and sometimes only part of one. In English, a token is on average about three-quarters of a word. Short common words are usually one token. Rare words break into several, and so does anything written in a script the model saw less often.</p>
 <p data-s="16">Imran Qureshi showed her this on a page that displayed the pieces in colour. He entered the same meaning three ways. The table shows what came back.</p>
@@ -173,6 +175,7 @@
 <script src="/progress.js" defer></script>
 <script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
+<script src="/figs.js" defer></script>
 <script src="/book/listen.js" defer></script>
 </body>
 </html>

@@ -114,6 +114,7 @@
 <p data-s="2">This chapter reproduces it. Every product built on a language model rests on the same exchange. A product manager who has seen one exchange in full will understand most of what engineers mean when they talk about cost, security and reliability.</p>
 <h2 id="s-9-1" data-s="3"><span class="sn">9.1</span>The case: a round trip</h2>
 <p data-s="4">The demonstration had four parts. There was the request that goes out, and the key that authorises it. There was the reply that comes back with its receipt. And there was a question that the machine could not possibly answer. The fourth part taught more than the first three.</p>
+<div class="bookfig" data-fig="py-shapes" data-label="Figure 9.1"></div>
 <h2 id="s-9-2" data-s="5"><span class="sn">9.2</span>An order slip across a counter</h2>
 <p data-s="6">Nobody types to a language model the way a person types to a friend. A program does it, through a doorway called an <em><a class="term" href="/book/glossary.html#t-api" title="a way for one program to ask another for something in a fixed format, like an order slip handed across a counter">API</a></em>.</p>
 <p data-s="7">Imran drew a counter. On one side stands a customer holding a slip of paper. On the other side is a kitchen. The slip has fixed boxes. The customer fills them in and hands the slip over. The kitchen reads the same boxes on every slip, does its work, and returns a plate. The customer never sees the kitchen, and the kitchen only cares whether the slip is filled in correctly.</p>
@@ -131,6 +132,7 @@
 <p data-s="13">The request is a list of messages, and each message has a role. For now there are two roles. <em>User</em> is whoever is asking, and <em>assistant</em> is the model's own reply. A third role exists, and Chapter 11 introduces it.</p>
 <p data-s="14">Nothing else is on the slip. The thing Anaya had pictured as a mind came down to a list, and the list came down to one line.</p>
 <p data-s="15">In the program itself, the slip was a few lines of <a class="term" href="/book/glossary.html#t-python" title="the programming language most AI work is written in; for a product manager, a way of saying exactly what an experiment does">Python</a>. Anaya had never read code, and Imran did not ask her to write any. He asked her to read it the way she would read a form. Square brackets held a list: several things, in order. Curly braces held labels and their values, like the boxes on the slip. A name followed by an equals sign gave something a name, so the next line could use it. A dot reached inside something, so <code>response.<a class="term" href="/book/glossary.html#t-usage-block" title="the part of every reply that says how many tokens went in and how many came out, which is what you are charged for">usage</a></code> meant the receipt part of the reply. Four shapes covered almost every line on the screen, and none of them needed a programmer to explain.</p>
+<div class="bookfig" data-fig="api-call" data-label="Figure 9.2"></div>
 <h2 id="s-9-3" data-s="16"><span class="sn">9.3</span>The key to the till</h2>
 <p data-s="17">Every request carries something else. Imran turned the monitor slightly away before he showed it, because it is the most dangerous line in the whole arrangement.</p>
 <p data-s="18">It was a long string of letters and digits called an <em><a class="term" href="/book/glossary.html#t-api-key" title="a long secret code that tells a provider who is asking, and whom to bill; anyone who has it can spend your money">API key</a></em>. A key tells the provider who is asking and whom to bill. Anyone who holds it can send requests and spend the owner's money, and the provider's records will say that the owner did it.</p>
@@ -180,6 +182,7 @@
 <script src="/progress.js" defer></script>
 <script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
+<script src="/figs.js" defer></script>
 <script src="/book/listen.js" defer></script>
 </body>
 </html>

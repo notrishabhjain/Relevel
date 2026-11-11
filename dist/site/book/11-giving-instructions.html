@@ -123,6 +123,7 @@
 6. Loan rejection</pre>
 <p data-s="7">Anaya read it with a pencil in her hand. She counted four correct items: the name, the PAN, the bank and the last digits of the account. The amount is only a number, and it doesn't identify anyone. A loan rejection can't be used to find the person either. So the model had listed two items that didn't need hiding.</p>
 <p data-s="8">Imran said that listing is not the same as hiding. Hiding is a later step. Then he ran the same message again. This time the list had four items, not six. A third run gave seven, with the surname repeated as an entry of its own. Farah asked the obvious thing. Why does the answer keep changing?</p>
+<div class="bookfig" data-fig="temp-scale" data-label="Figure 11.1"></div>
 <h2 id="s-11-2" data-s="9"><span class="sn">11.2</span>Temperature: a dial for variety</h2>
 <p data-s="10">The answer is in how the model picks each word. At every step it has a small set of plausible next tokens, and each one has a probability. A setting called <em><a class="term" href="/book/glossary.html#t-temperature" title="a setting that decides how often a model picks a less likely next token; low gives similar answers each time, high gives more variety">temperature</a></em> controls how willing the model is to pick one of the less likely ones.</p>
 <p data-s="11">At a high temperature the model ranges widely. Its answers are lively and varied, which suits writing a poem or naming a pet. At a low temperature, near zero, it almost always takes the most likely token. So the same question gets nearly the same answer every time.</p>
@@ -130,6 +131,7 @@
 <aside class="box box-watch"><p class="boxlabel" data-s="13">Common mistake</p><h4>Consistent is not correct</h4>
 <p data-s="14">Low temperature makes answers consistent. It does not make them correct. A model that is wrong at zero is wrong in the same way every time. Nobody has ever made a system accurate by turning a dial.</p>
 </aside>
+<div class="bookfig" data-fig="four-techniques" data-label="Figure 11.2"></div>
 <h2 id="s-11-3" data-s="15"><span class="sn">11.3</span>The standing instructions</h2>
 <p data-s="16">The second message was in Hinglish. Farah typed it quickly, like someone who writes forty of these a day: &quot;Sir mera aadhaar 4321 5678 9012 hai aur ye number 98xxxxxx12 pe call kar lena.&quot;</p>
 <p data-s="17">The model found the Aadhaar number. But it also listed &quot;98xxxxxx12&quot; as a mobile number, even though an agent had already hidden it by typing the x's. If the guard reported that, it would hide the same number twice.</p>
@@ -180,6 +182,7 @@
 <script src="/progress.js" defer></script>
 <script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
+<script src="/figs.js" defer></script>
 <script src="/book/listen.js" defer></script>
 </body>
 </html>

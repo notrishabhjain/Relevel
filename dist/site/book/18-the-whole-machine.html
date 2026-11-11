@@ -115,12 +115,14 @@
 <p data-s="3">The drawing had ten boxes. Two weeks earlier she couldn't have drawn one. This chapter gives a name to what she drew, and shows where it can fail without making a sound. It also follows a compliance head with a red pen, who wanted to know where every word goes.</p>
 <h2 id="s-18-1" data-s="4"><span class="sn">18.1</span>The case: ten boxes from memory</h2>
 <p data-s="5">Imran had held back the name of the pattern on purpose. Everything on the board was something Anaya had done with her own hands. She had cut a policy with scissors, played the search box, used the map of meanings, and counted what a tool found and missed. So when he gave the name, it would be the name of work she had already done.</p>
+<div class="bookfig" data-fig="rag-flow" data-label="Figure 18.1"></div>
 <h2 id="s-18-2" data-s="6"><span class="sn">18.2</span>The pattern has a name</h2>
 <p data-s="7">The design is called <em><a class="term" href="/book/glossary.html#t-retrieval-augmented-generation" title="RAG: a design in which a system first finds the pieces of your documents that look relevant to a question, then gives them to a model along with the question so it writes its answer from them">retrieval-augmented generation</a></em>, or RAG. The generation is the model's writing, which you met in the first weeks. The <em><a class="term" href="/book/glossary.html#t-retrieval" title="the step of finding the pieces of your documents that look relevant to a question">retrieval</a></em> is the finding, which the last few chapters covered. Put together, it works like this. The system first finds the pieces of the documents that look relevant to the question. Then it gives them to the model along with the question, so the model writes its answer from them.</p>
 <p data-s="8">RAG is the most widely used pattern in applied AI. Most products that let someone ask questions about their own documents are built on it. So was Sahaj's chatbot.</p>
 <aside class="box box-key"><p class="boxlabel" data-s="9">Key idea</p><h4>Why the pattern works</h4>
 <p data-s="10">A model asked about something it hasn't seen will invent an answer. A model given the evidence will write from the evidence, and its answer can point to where it came from. An answer written from supplied, traceable evidence is a <em><a class="term" href="/book/glossary.html#t-grounded-answer" title="an answer written from evidence the system supplied, and traceable to it, instead of from what the model happens to remember">grounded answer</a></em>.</p>
 </aside>
+<div class="bookfig" data-fig="rag-gaps" data-label="Figure 18.2"></div>
 <h2 id="s-18-3" data-s="11"><span class="sn">18.3</span>Where it fails without a sound</h2>
 <p data-s="12">Imran asked Anaya to put a star on every box where a wrong answer could be produced without any error appearing. She went through the ten boxes and starred nearly all of them.</p>
 <figure class="tblfig" data-s="13"><figcaption><b>Table 18.1.</b> Where a retrieval system goes wrong silently</figcaption><div class="tblwrap"><table><thead><tr><th>Step</th><th>The failure</th><th>Why nothing reports it</th></tr></thead><tbody><tr><td>Cutting</td><td>A rule is separated from its exception</td><td>Both pieces are valid text</td></tr><tr><td>Finding</td><td>Something is always returned, even when nothing relevant exists</td><td>The search has no way to say &quot;nothing here&quot;</td></tr><tr><td>The map of meanings</td><td>Sahaj's vocabulary is placed badly</td><td>The numbers are produced as normal</td></tr><tr><td>Writing</td><td>The model writes fluently from an irrelevant piece</td><td>Fluent text is what the model always produces</td></tr><tr><td>Showing the source</td><td>The page number shown does not support the answer</td><td>Nothing checks that the page matches the claim</td></tr></tbody></table></div></figure>
@@ -162,6 +164,7 @@
 <script src="/progress.js" defer></script>
 <script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
+<script src="/figs.js" defer></script>
 <script src="/book/listen.js" defer></script>
 </body>
 </html>

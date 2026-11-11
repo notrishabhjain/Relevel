@@ -115,6 +115,7 @@
 <p data-s="3">On a Tuesday, Imran Qureshi said there was only one way to know. You ask the order system. In this chapter you’ll see how a model is allowed to do that, what it costs, and where you have to stop it.</p>
 <h2 id="s-20-1" data-s="4"><span class="sn">20.1</span>The case: a number that is either of two things</h2>
 <p data-s="5">So far, the model has done one kind of thing. It reads text and writes text, and then a person or a program reads what it wrote. Imran wanted something different. He wanted the model to be able to say, &quot;I’m not sure what this number is,&quot; and then ask for a look-up in the orders table.</p>
+<div class="bookfig" data-fig="tool-call" data-label="Figure 20.1"></div>
 <h2 id="s-20-2" data-s="6"><span class="sn">20.2</span>A model that can ask</h2>
 <p data-s="7">Here is the key fact. A model can’t run anything. It can only ask. Think of a colleague who has no access to the system, so they send you a note: &quot;Please check order 4521 for me.&quot; You run the check and send the answer back. The model works the same way, and the arrangement is simple. Imran set it out in five steps on a card.</p>
 <ol data-s="8"><li>The request describes the available functions to the model. Each has a name, a purpose and the arguments it takes. The description is just more text.</li><li>If the model wants a function, it replies with a request instead of prose: call this function with these arguments.</li><li>The program, not the model, runs the function.</li><li>The program sends the result back as another message.</li><li>The model either asks for another call or writes its final answer. The loop goes on until the model stops or the program stops it.</li></ol>
@@ -165,6 +166,7 @@
 <script src="/progress.js" defer></script>
 <script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
+<script src="/figs.js" defer></script>
 <script src="/book/listen.js" defer></script>
 </body>
 </html>

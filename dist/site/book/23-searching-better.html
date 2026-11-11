@@ -120,6 +120,7 @@
 <aside class="box box-key"><p class="boxlabel" data-s="8">Key idea</p><h4>Relevance is not correctness</h4>
 <p data-s="9">Better ranking would not have helped. Last year’s policy is about late fees, and it matches the question as well as this year’s does. Relevance and correctness are different questions, and nothing in the search knew the difference.</p>
 </aside>
+<div class="bookfig" data-fig="hybrid-search" data-label="Figure 23.1"></div>
 <h2 id="s-23-2" data-s="10"><span class="sn">23.2</span>Four improvements</h2>
 <p data-s="11">The work of the previous month gave the team a calm way to look at this. They had an answer key for the chatbot’s search: ten questions in the customers’ own words, with a first score of six out of ten. Imran took four techniques in turn and measured each one against the same ten.</p>
 <figure class="tblfig" data-s="12"><figcaption><b>Table 23.1.</b> Four improvements to search, measured on the same ten questions</figcaption><div class="tblwrap"><table><thead><tr><th>Technique</th><th>What it does</th><th>Score</th></tr></thead><tbody><tr><td>Hybrid search</td><td>Runs keyword search and search by meaning together, and combines the two lists, so there is no longer a choice to make. &quot;Clause 14.2&quot; came from one and &quot;paisa kab milega&quot; from the other</td><td>6 to 7</td></tr><tr><td>Reranking</td><td>Fetches the best fifty pieces cheaply, then has a slower, more careful model read the question and each piece together and put the best few on top. It improves recall and precision at once, at the price of extra time and a second call, which is why it runs on fifty pieces and not on the whole library</td><td>7 to 8</td></tr><tr><td>Contextual retrieval</td><td>Before storing each chunk, a model writes one sentence saying where the chunk sits in its document (&quot;This is from the refund section of the Late Payment Policy, about overpayments&quot;), and the sentence is stored with it. A piece that began &quot;the aforesaid amount&quot; now carries a note on what the amount is</td><td>8 to 9</td></tr><tr><td>Metadata filtering</td><td>Each chunk is labelled with its document, its version, the dates between which it is in force and who may see it. Before the search scores anything, any chunk that is not current is thrown out</td><td>No change</td></tr></tbody></table></div></figure>
@@ -158,6 +159,7 @@
 <script src="/progress.js" defer></script>
 <script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
+<script src="/figs.js" defer></script>
 <script src="/book/listen.js" defer></script>
 </body>
 </html>

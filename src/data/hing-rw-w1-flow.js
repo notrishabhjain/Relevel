@@ -691,4 +691,14 @@ Object.assign(window.HING = window.HING || {}, {
     'sab kuch topic ke hisaab se, aapke notes ke saath',
   'Worksheet: the whole course by topic':
     'Worksheet: poora course topic ke hisaab se',
+
+  /* the 26-week strip on the home and route pages */
+  'This week':
+    'Is hafte',
+  'Behind':
+    'Peechhe',
+  'Started':
+    'Shuru hua',
+  'Your 26 weeks':
+    'Aapke 26 hafte',
 });

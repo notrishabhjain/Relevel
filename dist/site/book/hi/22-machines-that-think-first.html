@@ -117,6 +117,7 @@
 <p data-s="5">Ek mahine se Imran un sentences ko dekh raha tha jinhe sasta model baar-baar galat karta tha. Ek Aadhaar number tha jo words mein bola gaya tha, aur woh 12 digits jo shayad order number the. Aur ek sentence tha jo kisi number ke bina bhi ek insaan ko pehchaan deta tha.</p>
 <p data-s="6">Us din usne unhe ek alag kism ke model par try kiya, jo jawaab dene se pehle apna working likhta hai. Woh ek tareeka try karta hai, use check karta hai, zaroorat padne par peeche hat jaata hai, aur tab jaakar reply deta hai. Yeh working aam taur par user se chhupa rehta hai, lekin uske paise lagte hain.</p>
 <p data-s="7">Aise model ko <em><a class="term" href="/book/hi/glossary.html#t-reasoning-model" title="aisa model jo jawaab dene se pehle apna working likhta hai, ek tareeka try karta hai, use check karta hai, aur phir answer deta hai; us working ke paise aap har request par dete hain, aur intezaar bhi karte hain">reasoning model</a></em> kehte hain. Yeh isliye zaroori hai: accuracy ka tay hona ki model banate waqt hi ho gayi, aisa zaroori nahi. Aap har sawaal ke liye aur accuracy kharid sakte hain, machine ko zyada der kaam karne dekar.</p>
+<div class="bookfig" data-fig="reason-when" data-label="Figure 22.1"></div>
 <h2 id="s-22-2" data-s="8"><span class="sn">22.2</span>Sochne ki cost</h2>
 <p data-s="9">Imran ne phone par results padhe.</p>
 <figure class="tblfig" data-s="10"><figcaption><b>Table 22.1.</b> Wahi 30 mushkil aur 30 aasaan cases, reasoning ke saath aur uske bina</figcaption><div class="tblwrap"><table><thead><tr><th></th><th>Ordinary model</th><th>Reasoning model</th></tr></thead><tbody><tr><td>Mushkil cases sahi (30 mein se)</td><td>19</td><td>26</td></tr><tr><td>Aasaan cases sahi (30 mein se)</td><td>30</td><td>30</td></tr><tr><td>Har case ka time</td><td>lagbhag 1.25 second</td><td>lagbhag 11 second</td></tr><tr><td>Har case ki relative cost</td><td>1</td><td>lagbhag 6, kyunki chhupa hua working bhi baaki output ki tarah charge hota hai</td></tr></tbody></table></div></figure>
@@ -125,6 +126,7 @@
 <p data-s="13">Woh tab kaam aati hai jab jawaab ko nikaalna padta hai. Jaise aise steps jo ek doosre par tike hon, hisaab, plans, code, aur asli ambiguity jise suljhana ho. Woh tab bekaar hai jab jawaab pehle se input mein maujood hai aur use bas dhoondhna ya naye roop mein rakhna hai. Isme aata hai kuch dhoondhna, ek field nikaalna, kisi category mein daalna, formatting, aur aapke diye hue passage ka summary banana. Words mein bole gaye 12 digits ko nikaalna padta tha. Mobile number aur email wala aam message ko nahi.</p>
 <p data-s="14">Imran ne ek message mein teen savdhaaniyan bheji.</p>
 <figure class="tblfig" data-s="15"><figcaption><b>Table 22.2.</b> Reasoning models ke baare mein teen savdhaaniyan</figcaption><div class="tblwrap"><table><thead><tr><th>Savdhaani</th><th>Samjhaana</th></tr></thead><tbody><tr><td>Reasoning se evidence nahi banta</td><td>Galat document dene par model dhyaan se aur der tak us galat document se reasoning karta hai. Woh sasta model se zyada qaayal karne wala galat jawaab deta hai</td></tr><tr><td>Intezaar product ki problem hai</td><td>User ko slow jawaab mehsoos hota hai, chahe uski wajah kuch bhi ho</td></tr><tr><td>Yeh all-or-nothing nahi hai</td><td>Zyadatar providers developer ko choose karne dete hain ki kitni reasoning chahiye. Isliye har type ki request ke liye alag tay kar sakte hain, poore product ke liye ek baar nahi</td></tr></tbody></table></div></figure>
+<div class="bookfig" data-fig="stream-wait" data-label="Figure 22.2"></div>
 <h2 id="s-22-3" data-s="16"><span class="sn">22.3</span>Woh decision jo ruk nahi sakta</h2>
 <p data-s="17">Train Pune pahunchte-pahunchte problem ki shape ban chuki thi. Saturday subah Anaya ne use Imran ke saamne rakha.</p>
 <p data-s="18">Guard darwaaze par baitha hai. Customer message type karta hai, guard use dekhta hai, aur tabhi message aage jaata hai. Agar guard 11 second leta, toh customer har reply ke liye 11 second intezaar karta. Requirement yeh thi ki guard teen mein se ek second se zyada na jodey.</p>
@@ -159,6 +161,7 @@
 <script src="/progress.js" defer></script>
 <script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
+<script src="/figs.js" defer></script>
 <script src="/book/listen.js" defer></script>
 </body>
 </html>

@@ -120,6 +120,7 @@
 <p data-s="8">The unspoken assumptions that one part of a system makes about the data it receives: that a field will be present, that it will be a number, that a list will not be empty. Every <a class="term" href="/book/glossary.html#t-data-contract" title="the unspoken assumptions one part of a system makes about the data it receives, such as that a field will be present and a list will not be empty">data contract</a> is eventually broken in production. A well-built system notices when one is broken and stops. A badly built one carries on, and its answer rests on missing data.</p>
 </aside>
 <p data-s="9">Many real incidents in this field look exactly like this one. There is no error, the dashboard is green, and the result is quietly wrong. Imran remarked that this was not a machine-learning problem. The machine had been fine. It was an ordinary software failure that happened to sit next to a machine. And you can’t ask the right question about it unless you can read the diagram.</p>
+<div class="bookfig" data-fig="http-call" data-label="Figure 33.1"></div>
 <h2 id="s-33-2" data-s="10"><span class="sn">33.2</span>The diagram</h2>
 <p data-s="11">Anaya had dreaded this for months. She was proud of her ability to talk to engineers, and she knew exactly where that ability ended. She could say “the API” and “the logs” without knowing what they were.</p>
 <p data-s="12">Imran gave her two hours, a whiteboard and a comparison. When you order food in an app, a message goes to the restaurant, and a reply comes back with a price. It looks mysterious until you can see the messages. Everything in the afternoon was one of those messages, or a place where one gets lost.</p>
@@ -167,6 +168,7 @@ KeyError: 'order_id'</pre>
 <script src="/progress.js" defer></script>
 <script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
+<script src="/figs.js" defer></script>
 <script src="/book/listen.js" defer></script>
 </body>
 </html>

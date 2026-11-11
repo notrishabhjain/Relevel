@@ -185,13 +185,21 @@ function render(chapter, termsHere, glossHref, ui, num, say) {
   const bl = blocks(chapter.body);
   const out = [];
   let sec = 0, tbl = 0, cap = null;
+  /* The chapter's figures (the diagrams of the course chapters it retells,
+     drawn in the page by /figs.js): one at the end of each of the first
+     sections, the rest before the summary. They are pictures, so the Listen
+     player skips them. */
+  const figs = (chapter.figs || []).slice();
+  let figN = 0;
+  const fig = () => { if (!figs.length) return; figN++; out.push(`<div class="bookfig" data-fig="${esc(figs.shift())}" data-label="Figure ${num ? num + '.' + figN : figN}"></div>`); };
   /* the next narration id, and the attribute that ties the element to it */
   const S = text => { if (!say || !text) return ''; say.push([say.length, text]); return ` data-s="${say.length - 1}"`; };
   const one = b => {
     switch (b.t) {
       case 'break': out.push('<p class="scenebreak" aria-hidden="true"><span></span></p>'); break;
       case 'h2':
-        if (SUMMARY_HEADS.test(b.text.trim())) { out.push(`<aside class="carry"><h2${S(sentence(ui.summary))}>${esc(ui.summary)}</h2>`); out.closeLater = true; break; }
+        if (SUMMARY_HEADS.test(b.text.trim())) { while (figs.length) fig(); out.push(`<aside class="carry"><h2${S(sentence(ui.summary))}>${esc(ui.summary)}</h2>`); out.closeLater = true; break; }
+        if (sec >= 1) fig();
         sec++;
         out.push(num ? `<h2 id="s-${num}-${sec}"${S(sentence(b.text))}><span class="sn">${num}.${sec}</span>${inline(b.text)}</h2>` : `<h2${S(sentence(b.text))}>${inline(b.text)}</h2>`); break;
       case 'h3': out.push(`<h3${S(sentence(b.text))}>${inline(b.text)}</h3>`); break;
@@ -219,6 +227,7 @@ function render(chapter, termsHere, glossHref, ui, num, say) {
     }
   };
   bl.forEach(one);
+  while (figs.length && !out.closeLater) fig();
   if (out.closeLater) out.push('</aside>');
   /* the first time the chapter uses a word it teaches, link it to the glossary */
   for (const t of termsHere) {
@@ -364,6 +373,7 @@ ${main}
 <script src="/progress.js" defer></script>
 <script src="/install.js" defer></script>
 <script src="${assetBase}reader.js" defer></script>
+<script src="/figs.js" defer></script>
 <script src="${assetBase}listen.js" defer></script>
 </body>
 </html>
@@ -458,7 +468,7 @@ ${parts.join('\n')}
   for (const c of B.chapters) {
     const s = sectionOf(c.n);
     const say = [[0, sentence(`${ui.chapter} ${c.n}. ${c.title}`)]];
-    const prose = render(c, c.terms, gloss, ui, c.n, say);
+    const prose = render({ ...c, figs: (opts.figs || {})[c.file] }, c.terms, gloss, ui, c.n, say);
     writeSay(c.file, c.title, c.n, say);
     const main = `<article class="chapter" data-file="${c.file}" data-title="${esc(c.title)}" data-n="${c.n}">
 <header class="chead">
@@ -484,7 +494,7 @@ ${pager(c.file)}
     if (!pg) continue;
     const kind = pg === B.preface ? ui.preface : ui.afterword;
     const say = [[0, sentence(`${kind}. ${pg.title}`)]];
-    const prose = render(pg, pg.terms, gloss, ui, null, say);
+    const prose = render({ ...pg, figs: (opts.figs || {})[pg.file] }, pg.terms, gloss, ui, null, say);
     writeSay(pg.file, pg.title, null, say);
     const main = `<article class="chapter plain" data-file="${pg.file}" data-title="${esc(pg.title)}">
 <header class="chead"><p class="eyebrow"><span>${kind}</span></p><h1 data-s="0">${esc(pg.title)}</h1>${pg.summary ? `<p class="dek">${inline(pg.summary)}</p>` : ''}<p class="meta">${listenBtn}</p></header>

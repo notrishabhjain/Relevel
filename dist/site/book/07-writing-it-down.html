@@ -115,6 +115,7 @@
 <p data-s="3">In this chapter we follow the sketch as it becomes a document that a stranger could build from. Then we see the first test of the design, done on paper.</p>
 <h2 id="s-7-1" data-s="4"><span class="sn">7.1</span>The case: four boxes on a napkin</h2>
 <p data-s="5">Imran's sketch split the work into four parts. Anaya had three jobs. She had to say exactly what each part was responsible for. She had to write the conditions under which each would count as finished. And before any code existed, she had to find out whether the people who would use the result could understand it.</p>
+<div class="bookfig" data-fig="thin-slice" data-label="Figure 7.1"></div>
 <h2 id="s-7-2" data-s="6"><span class="sn">7.2</span>What the guard is made of</h2>
 <p data-s="7">The sketch gives each kind of personal detail to the part best suited to find it. The table lists the four parts, and why each one is separate. Read the third column carefully, because it is the reasoning behind the design.</p>
 <figure class="tblfig" data-s="8"><figcaption><b>Table 7.1.</b> The four parts of the guard</figcaption><div class="tblwrap"><table><thead><tr><th>Part</th><th>What it does</th><th>Why it is separate</th></tr></thead><tbody><tr><td>Pattern checker</td><td>Finds details that always have the same shape: a PAN (five capital letters, four digits, one capital letter), an Aadhaar number (twelve digits), a mobile number (ten digits starting with 6, 7, 8 or 9)</td><td>A fixed rule finds these instantly, at no cost, the same way every time</td></tr><tr><td>Name-and-place finder</td><td>Finds details with no fixed shape, such as a person's name, an address or an employer</td><td>No rule can describe &quot;Ramesh Jain&quot; or &quot;14 Sector 15, Gurgaon&quot;; something must read the sentence and recognise a person or a place</td></tr><tr><td>Context judge</td><td>Reads the few sentences the first two parts could not settle and decides whether they point to a person</td><td>Reading in context is slow and costly, so it is asked only about what remains</td></tr><tr><td>Rule-keeper</td><td>Decides what to do with each detail that was found</td><td>It finds nothing itself; it applies the rules for each kind of detail</td></tr></tbody></table></div></figure>
@@ -179,6 +180,7 @@
 <script src="/progress.js" defer></script>
 <script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
+<script src="/figs.js" defer></script>
 <script src="/book/listen.js" defer></script>
 </body>
 </html>

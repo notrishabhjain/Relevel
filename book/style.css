@@ -341,3 +341,8 @@ body.listening #aifz-rem{bottom:calc(4.9rem + env(safe-area-inset-bottom,0px))}
 .deeper li{line-height:1.45}
 .deeper .who{font-size:.76rem;color:var(--muted)}
 .deeper li p{margin:.2rem 0 0;font-size:.85rem;line-height:1.55;color:var(--ink2)}
+
+/* Figures: the course's diagrams, drawn by /figs.js in the chapter's own hue */
+.bookfig{margin:2.2rem 0}
+.bookfig.fx{--fx-accent:var(--hue);--fx-accent2:var(--accent2);--fx-bg:var(--card);--fx-sunk:var(--panel)}
+.bookfig.fx .fx-head b{font-family:var(--serif);font-size:1.08rem;font-weight:600}

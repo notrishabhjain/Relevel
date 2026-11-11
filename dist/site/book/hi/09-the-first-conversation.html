@@ -114,6 +114,7 @@
 <p data-s="2">Yeh chapter wahi demonstration dohrata hai. Language model par bana har product isi ek lena-dena par tika hai. Jis product manager ne ek poora exchange dekh liya, woh cost, security aur reliability ke baare mein engineers ki zyadatar baatein samajh jaata hai.</p>
 <h2 id="s-9-1" data-s="3"><span class="sn">9.1</span>Case: ek round trip</h2>
 <p data-s="4">Demonstration ke chaar hisse the. Pehla, request jo bahar jaati hai, aur woh key jo use manzoori deti hai. Doosra, jawaab jo apni rasid ke saath wapas aata hai. Aur teesra, ek aisa sawaal jiska jawaab machine ko ho hi nahi sakta tha. Chauthe hisse ne pehle teen se zyada sikhaya.</p>
+<div class="bookfig" data-fig="py-shapes" data-label="Figure 9.1"></div>
 <h2 id="s-9-2" data-s="5"><span class="sn">9.2</span>Counter ke aar-paar ek order slip</h2>
 <p data-s="6">Language model se koi waise type nahi karta jaise dost se karta hai. Yeh kaam ek program karta hai, ek darwaze ke zariye jise <em><a class="term" href="/book/hi/glossary.html#t-api" title="ek program ka doosre program se ek tay format mein kuch maangne ka tareeka, jaise counter ke aar-paar thamayi gayi order slip">API</a></em> kehte hain.</p>
 <p data-s="7">Imran ne ek counter banaya. Ek taraf ek customer khada hai, jiske haath mein kaagaz ki parchi hai. Doosri taraf ek rasoi hai. Parchi mein tay khaane bane hain. Customer unhe bharta hai aur parchi aage de deta hai. Rasoi har parchi par wahi khaane padhti hai, apna kaam karti hai, aur ek plate wapas deti hai. Customer rasoi ko kabhi nahi dekhta. Aur rasoi bas yeh dekhti hai ki parchi sahi bhari gayi hai ya nahi.</p>
@@ -131,6 +132,7 @@
 <p data-s="13">Request messages ki ek list hai, aur har message ka ek role hota hai. Abhi ke liye do roles hain. <em>User</em> woh hai jo pooch raha hai, aur <em>assistant</em> model ka apna jawaab hai. Ek teesra role bhi hota hai, jise Chapter 11 mein samjhaya jaayega.</p>
 <p data-s="14">Parchi par aur kuch nahi hai. Jis cheez ko Anaya ne dimaag samjha tha, woh ek list nikli. Aur woh list sirf ek line nikli.</p>
 <p data-s="15">Program ke andar yeh parchi <a class="term" href="/book/hi/glossary.html#t-python" title="woh programming language jisme zyadatar AI ka kaam likha jaata hai; ek product manager ke liye, yeh theek-theek kehne ka tareeka ki ek experiment kya karta hai">Python</a> ki kuch lines thi. Anaya ne kabhi code nahi padha tha, aur Imran ne use kuch likhne ko kaha bhi nahi. Usne kaha ki ise waise hi padho jaise koi form padhte ho. Square brackets mein ek list thi: kai cheezein, ek kram mein. Curly braces mein labels aur unki values thi, parchi ke khaanon jaisi. Barabar ke nishaan ke saath likha naam kisi cheez ko naam deta tha, taaki agli line use use kar sake. Dot kisi cheez ke andar pahunchta tha, isliye <code>response.<a class="term" href="/book/hi/glossary.html#t-usage-block" title="har jawaab ka woh hissa jo batata hai ki kitne tokens andar gaye aur kitne bahar aaye, jiske hisaab se aapse paisa liya jaata hai">usage</a></code> ka matlab tha jawaab ki rasid wala hissa. Screen ki lagbhag har line inhi chaar shapes se bani thi, aur inme se kisi ko samjhane ke liye programmer ki zaroorat nahi thi.</p>
+<div class="bookfig" data-fig="api-call" data-label="Figure 9.2"></div>
 <h2 id="s-9-3" data-s="16"><span class="sn">9.3</span>Till ki chaabi</h2>
 <p data-s="17">Har request ke saath ek aur cheez jaati hai. Imran ne use dikhane se pehle monitor ko thoda ghuma diya, kyunki poore intezaam mein yeh sabse khatarnaak line hai.</p>
 <p data-s="18">Yeh letters aur digits ki ek lambi string thi, jise <em><a class="term" href="/book/hi/glossary.html#t-api-key" title="ek lamba secret code jo provider ko batata hai ki kaun maang raha hai, aur bill kise bhejna hai; jiske paas yeh hai woh aapka paisa kharch kar sakta hai">API key</a></em> kehte hain. Key provider ko batati hai ki kaun maang raha hai, aur bill kise bhejna hai. Jiske paas bhi yeh key hai, woh requests bhej sakta hai aur maalik ka paisa kharch kar sakta hai. Aur provider ke records yahi kahenge ki maalik ne kiya.</p>
@@ -179,6 +181,7 @@
 <script src="/progress.js" defer></script>
 <script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
+<script src="/figs.js" defer></script>
 <script src="/book/listen.js" defer></script>
 </body>
 </html>

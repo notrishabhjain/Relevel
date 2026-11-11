@@ -114,6 +114,7 @@
 <p data-s="2">Imran Qureshi opened a design review that nobody had asked for, and he began with a comparison. A bank teller can look at your balance, he said, but cannot send your money somewhere on your say-so. Tellers are not untrustworthy. Some actions have consequences outside the bank, and the rule is about the action, not the person. He wrote Farah’s three requests on the board, under a heading in capitals: what may it do, with what data, and who checks?</p>
 <h2 id="s-36-1" data-s="3"><span class="sn">36.1</span>The case: an assistant that does everything</h2>
 <p data-s="4">Farah’s requests mixed actions of very different kinds. This chapter sorts them out in three steps. First, a written agreement for each function. Second, a test for how much a model should decide. And third, a check on what a standard connector does and does not guarantee.</p>
+<div class="bookfig" data-fig="workflow-agent" data-label="Figure 36.1"></div>
 <h2 id="s-36-2" data-s="5"><span class="sn">36.2</span>One function, written down</h2>
 <p data-s="6">If a machine is to do anything real, it first needs a function it may ask for. Then it needs a written agreement about that function, so exact that a stranger could say what the function can and cannot do. This is a <strong><a class="term" href="/book/glossary.html#t-tool-contract" title="the precise written agreement for one function a model may call: its name, what it does and does not do, its parameters, its errors, its side effects and who is allowed to call it">tool contract</a></strong>.</p>
 <p data-s="7">Anaya had met a version of this in the spring, when a vague description made the model choose the wrong function. A contract goes much further.</p>
@@ -122,6 +123,7 @@
 <h3 data-s="10">What happens if it runs twice</h3>
 <p data-s="11">Imran then asked what happens if a call runs twice. Anaya pictured a customer pressing a button while the network faltered. The request reached the server, the reply never came back, and the app tried again. If the action was “show this detail again”, the second attempt did no harm. If it was “send a payment link”, the customer received two.</p>
 <p data-s="12">An action that can safely be run twice has a name: <strong><a class="term" href="/book/glossary.html#t-idempotency" title="the property of an action that can safely be run twice, or is protected so that running it twice has only one effect; it decides whether a retry is safe">idempotency</a></strong>. Some actions are naturally idempotent. Others are made so by giving each request a unique number. Then the server recognises a repeat and does nothing. A retry is safe only when the action is. So Imran added a rule to the contract: every action that changes something must say what happens if it is repeated.</p>
+<div class="bookfig" data-fig="agent-control" data-label="Figure 36.2"></div>
 <h2 id="s-36-3" data-s="13"><span class="sn">36.3</span>Cross out what a rule can do</h2>
 <p data-s="14">Imran then asked which of Farah’s three requests should be a model’s choice. He set an exercise that took five minutes and shortened the project by a month. Write down every function the assistant might have. Then cross out every one that a plain rule would choose correctly more than ninety-five times in a hundred.</p>
 <figure class="tblfig" data-s="15"><figcaption><b>Table 36.2.</b> The crossing-out exercise</figcaption><div class="tblwrap"><table><thead><tr><th>Function</th><th>Judgement needed?</th><th>Result</th></tr></thead><tbody><tr><td>Look up an order</td><td>No: the agent presses a button</td><td>Crossed out</td></tr><tr><td>Show a hidden detail again</td><td>No: another button, with a reason typed in a box</td><td>Crossed out</td></tr><tr><td>Send a payment link</td><td>No: a person decides, always</td><td>Crossed out</td></tr></tbody></table></div></figure>
@@ -163,6 +165,7 @@
 <script src="/progress.js" defer></script>
 <script src="/install.js" defer></script>
 <script src="/book/reader.js" defer></script>
+<script src="/figs.js" defer></script>
 <script src="/book/listen.js" defer></script>
 </body>
 </html>

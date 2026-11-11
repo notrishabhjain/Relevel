@@ -67,6 +67,13 @@ async function withServer(fn) {
   if (code) { console.error('\nseeding check failed\n'); process.exit(1); }
 }
 
+/* The figures: complete in both languages, and on every page that should have one. */
+{
+  const code = await new Promise(res =>
+    spawn(process.execPath, ['tools/fig-check.mjs'], { stdio: 'inherit' }).on('exit', res));
+  if (code) { console.error('\nfigure check failed\n'); process.exit(1); }
+}
+
 /* The reading edition: its order, its words and its links, before any browser. */
 {
   const code = await new Promise(res =>
