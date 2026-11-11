@@ -1360,6 +1360,33 @@ console.log('\n— figures: every portal draws its diagrams, and they answer to 
   await fg.ctx.close();
 }
 
+console.log('\n— the worksheet opens the app, the book and the plan beside itself —');
+{
+  const rd = await newDevice(false);
+  const pg = rd.page;
+  await pg.goto(B + '/worksheet/');
+  await pg.waitForSelector('#t1 [data-ch="a3"] a');
+  const url0 = pg.url();
+  await pg.click('#t1 [data-ch="a3"] a');
+  await pg.waitForFunction(() => !document.getElementById('ws-reader').hidden && /\/app\/#\/ch\/a3$/.test(document.querySelector('#ws-reader .rd-frame').src));
+  ok(pg.url() === url0 && await pg.evaluate(() => /\/app\/#\/ch\/a3$/.test(document.querySelector('#ws-reader .rd-new').href)),
+     'a chapter link opens beside the worksheet, which stays where it was, with a way to a new tab');
+  const fr = pg.frame({ url: /\/app\// });
+  await fr.waitForFunction(() => window.STORE && document.querySelector('#main'));
+  await fr.evaluate(() => { window.STORE.S.done.a3 = Date.now(); window.STORE.flush(); });
+  await pg.waitForFunction(() => document.querySelector('#t1 [data-ch="a3"]').classList.contains('done'));
+  ok(true, 'marking the chapter complete in the panel ticks it on the worksheet at once');
+  await pg.keyboard.press('Escape');
+  await pg.waitForFunction(() => document.getElementById('ws-reader').hidden);
+  ok(pg.url() === url0, 'Esc closes the panel and leaves you on the worksheet');
+  await pg.click('#t1 [data-book="03-asking-about-yesterday.html"] a');
+  await pg.waitForFunction(() => !document.getElementById('ws-reader').hidden);
+  await pg.goBack();
+  await pg.waitForFunction(() => document.getElementById('ws-reader').hidden);
+  ok(/\/worksheet\/$/.test(pg.url()), 'Back closes the panel instead of leaving the worksheet');
+  await rd.ctx.close();
+}
+
 console.log('\n— the course map shows where you are —');
 await boot(navp.page, '#/library');
 const map = await navp.page.evaluate(() => ({
