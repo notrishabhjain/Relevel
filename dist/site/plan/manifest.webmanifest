@@ -10,7 +10,7 @@
   "related_applications": [
     {
       "platform": "webapp",
-      "url": "https://relevel-steel.vercel.app/plan/manifest.webmanifest"
+      "url": "https://relevel-ai.vercel.app/plan/manifest.webmanifest"
     }
   ],
   "prefer_related_applications": false,

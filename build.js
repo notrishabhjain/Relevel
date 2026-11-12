@@ -523,7 +523,11 @@ const builtPlan = buildPlan(R, p.join(R, 'dist/site/plan'));
 /* ---- the worksheet: the whole course by topic (static pages at /worksheet/) ---- */
 const builtWs = buildWorksheet(R, p.join(R, 'dist/site/worksheet'), defaults);
 
-const SITE_ORIGIN = 'https://relevel-steel.vercel.app';
+/* The address the site is served from. Set SITE_ORIGIN in the build settings to
+   change it; on Vercel the production domain is picked up by itself. */
+const SITE_ORIGIN = (process.env.SITE_ORIGIN
+  || (process.env.VERCEL_PROJECT_PRODUCTION_URL && 'https://' + process.env.VERCEL_PROJECT_PRODUCTION_URL)
+  || 'https://relevel-ai.vercel.app').replace(/\/+$/, '');
 /* ---- the book and the plan as installable apps ----
    Each has its own manifest, scope and icon, so a phone can keep them as
    three separate apps next to the playbook. They share the site's one

@@ -19,7 +19,10 @@ export const START = '2026-10-19';        // day 1: the route's first Monday
 export const SEND_FROM_MINUTE = 11 * 60 + 30;  // 11:30 India time
 export const SEND_UNTIL_MINUTE = 20 * 60;      // after 20:00, today's reminder is skipped
 const IST = 330 * 60 * 1000;
-const SITE = 'https://relevel-steel.vercel.app';
+/* Named in the push "sub" claim. Follows the production domain on Vercel. */
+const SITE = process.env.SITE_ORIGIN
+  || (process.env.VERCEL_PROJECT_PRODUCTION_URL && 'https://' + process.env.VERCEL_PROJECT_PRODUCTION_URL)
+  || 'https://relevel-ai.vercel.app';
 
 /* Only real browser push services may be written to. */
 const PUSH_HOSTS = [/(^|\.)fcm\.googleapis\.com$/, /(^|\.)push\.services\.mozilla\.com$/,
