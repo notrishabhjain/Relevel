@@ -1360,11 +1360,32 @@ console.log('\n— figures: every portal draws its diagrams, and they answer to 
   await fg.ctx.close();
 }
 
+console.log('\n— the worksheet leads with one next step —');
+{
+  const nx = await newDevice(false);
+  const pg = nx.page;
+  await pg.goto(B + '/worksheet/');
+  await pg.waitForSelector('#ov-next a.nc-go');
+  const n = await pg.evaluate(() => ({
+    title: document.querySelector('#ov-next .nc-title').textContent,
+    marked: document.querySelectorAll('.it.now').length,
+    open: [...document.querySelectorAll('details.tp[open]')].map(d => d.parentNode.id).join(),
+    numbered: document.querySelectorAll('#t1 ol.path > li.it').length > 5 && document.querySelectorAll('#t1 .kind').length > 5,
+    cols: document.querySelectorAll('.cols').length
+  }));
+  ok(/Start here/.test(n.title) && n.marked === 1 && n.open === 't0', 'a new learner sees one big next step, marked in its own topic, and only that topic open', JSON.stringify(n));
+  ok(n.numbered && n.cols === 0, 'each topic is one numbered list in the order to do it, every step labelled Read, Do, Try or Check');
+  await pg.click('#ov-next a.nc-go');
+  await pg.waitForFunction(() => !document.getElementById('ws-reader').hidden && /\/app\/#\/ch\/ch0$/.test(document.querySelector('#ws-reader .rd-frame').src));
+  ok(await pg.evaluate(() => /Start here/.test(document.querySelector('#ws-reader .rd-title').textContent)), 'the big button opens the step beside the page, named');
+  await nx.ctx.close();
+}
+
 console.log('\n— the worksheet opens the app, the book and the plan beside itself —');
 {
   const rd = await newDevice(false);
   const pg = rd.page;
-  await pg.goto(B + '/worksheet/');
+  await pg.goto(B + '/worksheet/#t1');
   await pg.waitForSelector('#t1 [data-ch="a3"] a');
   const url0 = pg.url();
   await pg.click('#t1 [data-ch="a3"] a');
@@ -1383,7 +1404,7 @@ console.log('\n— the worksheet opens the app, the book and the plan beside its
   await pg.waitForFunction(() => !document.getElementById('ws-reader').hidden);
   await pg.goBack();
   await pg.waitForFunction(() => document.getElementById('ws-reader').hidden);
-  ok(/\/worksheet\/$/.test(pg.url()), 'Back closes the panel instead of leaving the worksheet');
+  ok(/\/worksheet\/(#t1)?$/.test(pg.url()), 'Back closes the panel instead of leaving the worksheet');
   await rd.ctx.close();
 }
 

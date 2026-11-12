@@ -119,8 +119,25 @@ export function model(root, C) {
     reading.sort((a, b) => (a[0] === b[0] ? 0 : a[0] === 'case' ? -1 : 1));
     const figs = ti === 0 ? ['how-course-works'] : [];
     if (ti) for (const c of apps) for (const [id] of FIG.place[c.id] || []) if (!figs.includes(id)) figs.push(id);
+    /* the topic's steps in the order the route gives them: read, do, look back */
+    const path = [], seenA = new Set(), seenB = new Set(), seenL = new Set();
+    for (const s of STEPS) {
+      if (s.kind === 'look') {
+        if (weekOwner[s.week] !== T.id || seenL.has(s.week)) continue;
+        seenL.add(s.week);
+        path.push({ k: 'look', week: s.week, ids: STEPS.filter(x => x.kind === 'look' && x.week === s.week).map(x => x.id) });
+        continue;
+      }
+      if (stepTopic(s) !== T.id) continue;
+      if (s.kind === 'chapter') { if (!seenA.has(s.ch)) { seenA.add(s.ch); path.push({ k: 'chapter', id: s.ch, week: s.week }); } }
+      else if (s.kind === 'read') { if (!seenB.has(s.book)) { seenB.add(s.book); path.push({ k: 'read', id: s.book, week: s.week }); } }
+      else if (s.kind === 'try') path.push({ k: 'try', id: s.id, week: s.week });
+    }
+    /* anything the route does not place still shows, at the end */
+    for (const c of apps) if (!seenA.has(c.id)) path.push({ k: 'chapter', id: c.id });
+    for (const b of reads) if (!seenB.has(b.file)) path.push({ k: 'read', id: b.file });
     return {
-      ...T, n: ti, stage, builds, words, reading, weeks, figs,
+      ...T, n: ti, stage, builds, words, reading, weeks, figs, path,
       apps: apps.map(c => {
         const st = STEPS.filter(s => s.kind === 'chapter' && s.ch === c.id);
         const mins = st.reduce((a, s) => a + (s.mins || 0), 0);
@@ -140,6 +157,7 @@ export function model(root, C) {
 
   /* steps in route order, for "your next step" and the topic counts */
   const steps = STEPS.map(s => ({ id: s.id, k: s.kind, ch: s.ch, book: s.book, t: stepTopic(s) || weekOwner[s.week], w: s.week,
+    mins: s.mins || 0,
     title: s.kind === 'chapter' ? s.num + '. ' + s.title : s.title,
     titleHi: s.kind === 'chapter' ? s.num + '. ' + (H[s.title] || s.title) : (s.titleHi || H[s.title] || s.title),
     href: s.kind === 'chapter' ? 'app/#/ch/' + s.ch : s.kind === 'read' ? 'BOOK' + s.book + (s.at ? '#' + s.at : '') : s.app ? 'app/' + s.app : 'plan/#w' + s.week }));
@@ -179,20 +197,20 @@ function render(M, lang) {
     const sub = [];
     if (c.hands) sub.push(c.hands === 1 ? L.handsOne : L.handsOn.replace('{n}', c.hands));
     if (c.cap) sub.push(`${L.capstone}: ${esc(pick(c.cap.en, c.cap.hi))}`);
-    return `<li class="it" data-k="chapter" data-ch="${c.id}" data-steps="${c.steps.join(' ')}">${status}<span class="ib">` +
+    return `<li class="it k-chapter" data-k="chapter" data-ch="${c.id}" data-steps="${c.steps.join(' ')}">${status}<span class="ib">${chip('chapter')}` +
       `<a href="${base}app/#/ch/${c.id}"><b>${esc(c.num)}</b> ${esc(pick(c.title, c.titleHi))}</a> <span class="sm">${meta.join(' · ')}</span>` +
       (sub.length ? `<span class="sw">${sub.join(' · ')}</span>` : '') + `</span></li>`;
   };
-  const readRow = b => `<li class="it" data-k="read" data-book="${esc(b.file)}" data-steps="${b.steps.join(' ')}">${status}<span class="ib">` +
+  const readRow = b => `<li class="it k-read" data-k="read" data-book="${esc(b.file)}" data-steps="${b.steps.join(' ')}">${status}<span class="ib">${chip('read')}` +
     `<a href="${bookBase}${esc(b.file)}"><b>${b.n ? (hi ? 'Kitaab ' : 'Book ') + b.n : (b.file === 'preface.html' ? (hi ? 'Bhumika' : 'Preface') : (hi ? 'Upsanhaar' : 'Afterword'))}</b> ${esc(pick(b.title, b.titleHi))}</a>` +
     ` <span class="sm">~${fm(b.mins)}</span>` + (b.summary ? `<span class="sw">${esc(plain(pick(b.summary, b.summaryHi)))}</span>` : '') + `</span></li>`;
-  const tryRow = s => `<li class="it" data-k="try" data-steps="${esc(s.id)}">${status}<span class="ib">` +
+  const tryRow = s => `<li class="it k-try" data-k="try" data-steps="${esc(s.id)}">${status}<span class="ib">${chip('try')}` +
     `<a href="${s.app ? base + 'app/' + esc(s.app) : base + 'plan/'}"><b>Try</b> ${esc(pick(s.title, s.titleHi))}</a> <span class="sm">~${fm(s.mins)}</span>` +
     `<span class="sw">${esc(plain(pick(s.what, s.whatHi)))}</span></span></li>`;
-  const weekRow = w => `<li class="wk${w.look.length ? '' : ' shared'}"${w.look.length ? ` data-k="look" data-steps="${w.look.map(s => s.id).join(' ')}"` : ''}>` +
-    (w.look.length ? status : '<span class="st none" aria-hidden="true"></span>') +
-    `<span class="ib"><a href="${base}plan/#w${w.n}"><b>${L.week} ${w.n}</b> ${esc(pick(w.title, w.titleHi))}</a> <span class="sm" data-w="${w.n}">${esc(w.dates)}</span>` +
-    (w.look.length ? `<span class="sw">${L.lookBack}</span>` : '') + `</span></li>`;
+  const chip = k => `<span class="kind k-${k}">${esc(L['v_' + k])}</span>`;
+  const weekHead = w => `<li class="wkh"><a href="${base}plan/#w${w.n}">${L.week} ${w.n} · ${esc(pick(w.title, w.titleHi))}</a> <span class="sm" data-w="${w.n}">${esc(w.dates)}</span></li>`;
+  const lookRow = (w, ids) => `<li class="it k-look" data-k="look" data-steps="${ids.join(' ')}">${status}<span class="ib">${chip('look')}` +
+    `<a href="${base}plan/#w${w.n}">${esc(L.lookBack)}: ${L.week} ${w.n}</a> <span class="sm">~5 ${L.min}</span><span class="sw">${esc(L.lookWhat)}</span></span></li>`;
 
   const before = () => BEFORE.map(g => `<div class="grp"><h4>${esc(pick(g.group, g.groupHi))}</h4><ul class="ticks">` +
     g.items.map(it => `<li><label class="chk"><input type="checkbox" data-tick="${it.id}"><span>${esc(pick(it.text, it.hi))}</span></label>` +
@@ -201,36 +219,48 @@ function render(M, lang) {
     '</ul></div>').join('');
 
   const topic = t => {
+    const appBy = Object.fromEntries(t.apps.map(c => [c.id, c])), readBy = Object.fromEntries(t.reads.map(b => [b.file, b]));
+    const tryBy = Object.fromEntries(t.tries.map(x => [x.id, x])), weekBy = Object.fromEntries(t.weeks.map(w => [w.n, w]));
     const parts = [];
     parts.push(`<p class="intro">${esc(pick(t.intro, t.introHi))}</p>`);
-    /* the topic in pictures: the first two diagrams here, the rest a tap away */
-    if (t.figs.length) parts.push(`<div class="wsfigs">${t.figs.slice(0, 2).map(id => `<div class="wsfig" data-fig="${id}"></div>`).join('')}</div>` +
-      (t.figs.length > 2 ? `<details class="sub morefigs"><summary>${L.moreFigs} <span class="sm">(${t.figs.length - 2})</span></summary>${t.figs.slice(2).map(id => `<div class="wsfig" data-fig="${id}"></div>`).join('')}</details>` : ''));
-    if (t.n === 0) parts.push(`<h3>${L.checklist}</h3>` + before());
-    if (t.n > 0) parts.push(`<div class="builds"><h3>${L.builds}</h3>` + (t.builds.length
-      ? `<ul>${t.builds.map(b => `<li><b>${rich(pick(b.what, b.whatHi))}</b> <span class="sm">${hi ? '' : 'from '}<a href="${base}app/#/ch/${b.ch}">${esc(b.num)}</a>${hi ? ' se' : ''}, <a href="#${b.topic}">${L.topic} ${b.topic.slice(1)}</a></span> <span class="sw">${esc(plain(pick(b.why, b.whyHi)))}</span></li>`).join('')}</ul>`
-      : `<p class="sm">${t.n === 1 ? `<a href="#t0">${esc(pick(TOPICS[0].title, TOPICS[0].hi))}</a>` : L.buildsNone}</p>`) + '</div>');
-    parts.push(`<div class="cols"><div><h3>${L.read}</h3><ol class="items">${t.reads.map(readRow).join('')}</ol></div>` +
-      `<div><h3>${L.do}</h3><ol class="items">${t.apps.map(appRow).join('')}${t.tries.map(tryRow).join('')}</ol></div></div>`);
-    parts.push(`<h3>${L.onPlan}</h3><ol class="items weeks">${t.weeks.map(weekRow).join('')}</ol>`);
-    if (t.stage) parts.push(`<div class="proj"><h3>${L.project}</h3><p class="stage"><span class="tag">${L.stageLabel} ${t.n}</span> ${esc(pick(t.stage.title, M.H[t.stage.title] || t.stage.title))}</p>` +
+    /* 1. the steps, one list, in the order to do them */
+    let lastWeek = null;
+    const rows = t.path.map(e => {
+      let head = '';
+      if (e.week != null && e.week !== lastWeek && weekBy[e.week]) { lastWeek = e.week; head = weekHead(weekBy[e.week]); }
+      const row = e.k === 'chapter' ? appRow(appBy[e.id]) : e.k === 'read' ? readRow(readBy[e.id]) : e.k === 'try' ? tryRow(tryBy[e.id]) : lookRow(weekBy[e.week], e.ids);
+      return head + row;
+    }).join('');
+    parts.push(`<h3>${L.pathTitle}</h3><ol class="items path">${rows}</ol>`);
+    /* one picture of the topic after the steps; the rest are in the extras */
+    if (t.figs.length) parts.push(`<div class="wsfigs"><div class="wsfig" data-fig="${t.figs[0]}"></div></div>`);
+    /* 2. finishing the topic: the project step, what you should be able to say, your own words */
+    const fin = [];
+    if (t.n === 0) fin.push(`<p class="sm">${L.readyLead}</p>` + before());
+    else if (t.stage) fin.push(`<div class="proj"><p class="stage"><span class="tag">${L.stageLabel} ${t.n}</span> ${esc(pick(t.stage.title, M.H[t.stage.title] || t.stage.title))}</p>` +
       `<p>${esc(plain(pick(t.stage.plain, M.H[t.stage.plain] || t.stage.plain)))}</p><p class="sm"><b>${L.endWith}</b></p><ul class="ticks">` +
       t.stage.endWith.map((e, i) => `<li><label class="chk"><input type="checkbox" data-tick="${t.id}-e${i + 1}"><span>${esc(plain(pick(e, M.H[e] || e)))}</span></label></li>`).join('') + '</ul></div>');
-    if (t.reading.length) parts.push(`<details class="sub"><summary>${L.deeper} <span class="sm">(${t.reading.length})</span></summary><ul class="rd">` +
-      t.reading.map(r => `<li><span class="tag">${r[0] === 'paper' ? L.paper : L.kase}</span> <a ${ext(r[3])}>${esc(r[1])}</a> <span class="sm">${esc(r[2])}</span><span class="sw">${esc(pick(r[4], r[5] || r[4]))}</span></li>`).join('') + '</ul></details>');
-    if (t.words.length) parts.push(`<details class="sub"><summary>${L.words} <span class="sm">(${t.words.length})</span></summary><dl class="words">` +
-      t.words.map(w => `<dt>${esc(w.term)}</dt><dd>${esc(plain(pick(w.def, w.defHi)))}</dd>`).join('') + '</dl></details>');
-    parts.push(`<div class="mine"><label class="chk can"><input type="checkbox" data-can="${t.id}"><span>${t.n === 0 ? L.ready : L.can}</span></label>` +
+    fin.push(`<div class="mine"><label class="chk can"><input type="checkbox" data-can="${t.id}"><span>${t.n === 0 ? L.ready : L.can}</span></label>` +
       `<label class="nt"><span>${L.notes}</span><textarea data-note="${t.id}" rows="3" placeholder="${esc(L.notesPh)}"></textarea></label></div>`);
-    return `<section class="topic" id="${t.id}" data-topic="${t.id}"><details class="tp"${t.n <= 1 ? ' open' : ''}>` +
+    parts.push(`<div class="finish"><h3>${t.n === 0 ? L.readyTitle : L.finishTitle}</h3>${fin.join('')}</div>`);
+    /* 3. everything else, folded away */
+    const extra = [];
+    if (t.figs.length > 1) extra.push(`<div class="wsfigs">${t.figs.slice(1).map(id => `<div class="wsfig" data-fig="${id}"></div>`).join('')}</div>`);
+    if (t.n > 0) extra.push(`<div class="builds"><h3>${L.builds}</h3>` + (t.builds.length
+      ? `<ul>${t.builds.map(b => `<li><b>${rich(pick(b.what, b.whatHi))}</b> <span class="sm">${hi ? '' : 'from '}<a href="${base}app/#/ch/${b.ch}">${esc(b.num)}</a>${hi ? ' se' : ''}, <a href="#${b.topic}">${L.topic} ${b.topic.slice(1)}</a></span> <span class="sw">${esc(plain(pick(b.why, b.whyHi)))}</span></li>`).join('')}</ul>`
+      : `<p class="sm">${t.n === 1 ? `<a href="#t0">${esc(pick(TOPICS[0].title, TOPICS[0].hi))}</a>` : L.buildsNone}</p>`) + '</div>');
+    if (t.reading.length) extra.push(`<h3>${L.deeper} <span class="sm">(${t.reading.length})</span></h3><ul class="rd">` +
+      t.reading.map(r => `<li><span class="tag">${r[0] === 'paper' ? L.paper : L.kase}</span> <a ${ext(r[3])}>${esc(r[1])}</a> <span class="sm">${esc(r[2])}</span><span class="sw">${esc(pick(r[4], r[5] || r[4]))}</span></li>`).join('') + '</ul>');
+    if (t.words.length) extra.push(`<h3>${L.words} <span class="sm">(${t.words.length})</span></h3><dl class="words">` +
+      t.words.map(w => `<dt>${esc(w.term)}</dt><dd>${esc(plain(pick(w.def, w.defHi)))}</dd>`).join('') + '</dl>');
+    parts.push(`<details class="sub extras"><summary>${L.extrasTitle}</summary>${extra.join('')}</details>`);
+    return `<section class="topic" id="${t.id}" data-topic="${t.id}"><details class="tp"${t.n === 0 ? ' open' : ''}>` +
       `<summary><span class="tn">${t.n}</span><span class="tt">${esc(pick(t.title, t.hi))}</span>` +
       `<span class="tprog"><span class="pbar"><i></i></span><span class="tc"></span></span><span class="tcan" hidden>✓</span></summary>` +
       `<div class="tbody">${parts.join('')}</div></details></section>`;
   };
 
-  const toc = `<nav class="toc" aria-label="${L.topics}"><h2>${L.topics}</h2><ol start="0">` +
-    M.topics.map(t => `<li><a href="#${t.id}"><span class="tt">${esc(pick(t.title, t.hi))}</span><span class="tc" data-tc="${t.id}"></span></a></li>`).join('') + '</ol></nav>';
-  const steps = M.steps.map(s => [s.id, s.k, s.ch || s.book || '', s.t, pick(s.title, s.titleHi), s.href.replace(/^BOOK/, hi ? 'book/hi/' : 'book/')]);
+  const steps = M.steps.map(s => [s.id, s.k, s.ch || s.book || '', s.t, pick(s.title, s.titleHi), s.href.replace(/^BOOK/, hi ? 'book/hi/' : 'book/'), s.mins]);
 
   const body = `
 <header class="bar">
@@ -245,15 +275,18 @@ function render(M, lang) {
 <h1>${esc(L.title)}</h1>
 <p class="lead">${esc(L.lead)}</p>
 <section id="overview" class="panel" aria-live="polite">
-  <div class="ov"><span class="pbar big"><i></i></span><span id="ov-steps">${esc(L.loading)}</span><span id="ov-can"></span></div>
-  <div id="ws-journey" aria-label="${esc(L.journey)}"></div>
-  <p id="ov-next" class="small"></p>
+  <div id="ov-next" class="nextcard">${esc(L.loading)}</div>
+  <div class="ov"><span class="pbar big"><i></i></span><span id="ov-steps"></span><span id="ov-can"></span></div>
+  <details class="how"><summary>${esc(L.howTitle)}</summary><ol>${L.how.map(x => `<li>${esc(x)}</li>`).join('')}</ol></details>
+</section>
+<h2 class="pathh">${esc(L.yourPath)}</h2>
+<div id="ws-journey" aria-label="${esc(L.journey)}"></div>
+${M.topics.map(topic).join('\n')}
+<details class="tools"><summary>${esc(L.toolsTitle)}</summary>
   <div class="actions"><button type="button" id="ws-print">${L.print}</button><button type="button" id="ws-csv">${L.csv}</button><button type="button" class="quiet" id="ws-open">${L.expand}</button></div>
   <p id="ws-saved" class="small"></p>
   <p class="small rd-tip">${esc(L.rdHint)}</p>
-</section>
-${toc}
-${M.topics.map(topic).join('\n')}
+</details>
 <p class="note">${hi
   ? 'Yeh page har baar site banne par course, kitaab aur plan se banta hai, isliye hamesha unse milta hai. Ticks un teeno jagah se aate hain; notes aur “samjha sakta/sakti hoon” yahan save hote hain.'
   : 'This page is built from the course, the book and the plan every time the site is built, so it always matches them. The ticks come from all three; your notes and “I can explain this” ticks save here.'}</p>
@@ -295,12 +328,6 @@ h4{font:600 .9rem/1.3 var(--sans);margin:.9rem 0 .3rem}
 .pbar.big{width:min(16rem,100%);height:8px}
 .pbar i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
 .actions{display:flex;flex-wrap:wrap;gap:.5rem;margin:.7rem 0 .2rem}
-.toc{background:var(--raised);border:1px solid var(--rule);border-radius:6px;padding:.9rem 1.1rem;margin:0 0 1.5rem}
-.toc ol{margin:0;padding-left:1.6rem;columns:2 300px;column-gap:2rem}
-.toc li{margin:.2rem 0;break-inside:avoid}
-.toc a{text-decoration:none;color:var(--ink);display:flex;gap:.5rem;justify-content:space-between}
-.toc a:hover .tt{text-decoration:underline}
-.tc{font:.8rem var(--mono);color:var(--muted);white-space:nowrap}
 .topic{margin:0 0 .8rem}
 details.tp{background:var(--raised);border:1px solid var(--rule);border-radius:6px}
 details.tp>summary{list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;align-items:center;gap:.3rem .8rem;padding:.85rem 1.1rem}
@@ -312,8 +339,6 @@ details.tp>summary .tcan{color:var(--good);font-weight:600}
 details.tp[open]>summary{border-bottom:1px solid var(--rule-soft)}
 .tbody{padding:.3rem 1.1rem 1.1rem}
 .intro{font:1rem/1.6 var(--serif);color:var(--ink-2);margin:.6rem 0 .2rem;max-width:46rem}
-.cols{display:grid;grid-template-columns:1fr 1fr;gap:0 1.6rem}
-@media (max-width:760px){.cols{grid-template-columns:1fr}}
 @media (max-width:560px){header.bar{position:static}[id]{scroll-margin-top:.5rem}header.bar .brand{flex-basis:100%}}
 ol.items,ul.ticks,.builds ul,ul.rd{list-style:none;margin:0;padding:0}
 .it,.wk,.builds li,ul.rd li{display:flex;gap:.6rem;padding:.45rem 0;border-top:1px solid var(--rule-soft)}
@@ -323,11 +348,44 @@ ol.items,ul.ticks,.builds ul,ul.rd{list-style:none;margin:0;padding:0}
 .ib a:hover{text-decoration:underline;color:var(--accent)}
 .ib a b{font:600 .8rem var(--mono);color:var(--accent);margin-right:.2rem}
 .sw{display:block;font-size:.84rem;color:var(--ink-2);margin-top:.1rem}
-.st{flex:none;width:1.1rem;height:1.1rem;margin-top:.2rem;border:1.5px solid var(--rule);border-radius:50%}
-.st.none{border-style:dotted;opacity:.5}
+.path{counter-reset:step}
+.it{counter-increment:step;position:relative}
+.st{flex:none;width:1.6rem;height:1.6rem;margin-top:.1rem;border:1.5px solid var(--rule);border-radius:50%;display:grid;place-items:center;font:600 .78rem var(--mono);color:var(--muted)}
+.path .st::before{content:counter(step)}
+.done>.st::before{content:none}
+.wkh{list-style:none;margin:1rem 0 .1rem;font:600 .8rem var(--sans);color:var(--muted)}
+.wkh:first-child{margin-top:.2rem}
+.wkh a{color:var(--muted);text-decoration:none}
+.wkh a:hover{color:var(--accent)}
+.kind{display:inline-block;font:600 .68rem/1.5 var(--sans);text-transform:uppercase;letter-spacing:.06em;border-radius:3px;padding:0 .45rem;margin-right:.45rem;vertical-align:.1em;color:var(--ink);background:var(--sunk);border:1px solid var(--rule)}
+.k-read .kind,.kind.k-read{background:color-mix(in srgb,#3b6fd4 16%,var(--raised));border-color:color-mix(in srgb,#3b6fd4 45%,var(--rule))}
+.k-chapter .kind,.kind.k-chapter{background:color-mix(in srgb,var(--accent) 16%,var(--raised));border-color:color-mix(in srgb,var(--accent) 45%,var(--rule))}
+.k-try .kind,.kind.k-try{background:color-mix(in srgb,#c98a12 18%,var(--raised));border-color:color-mix(in srgb,#c98a12 50%,var(--rule))}
+.k-look .kind,.kind.k-look{background:color-mix(in srgb,#8a5cc4 16%,var(--raised));border-color:color-mix(in srgb,#8a5cc4 45%,var(--rule))}
+.it.now{background:var(--accent-wash);border-radius:6px;padding-left:.5rem;padding-right:.5rem;margin:.2rem -.5rem;border-top-color:transparent}
+.it.now .st{border-color:var(--accent);color:var(--accent)}
+.it.now .ib>a{font-weight:600}
+.it.now .ib::after{content:attr(data-next);display:inline-block;margin-left:.5rem;font:600 .68rem/1.5 var(--sans);text-transform:uppercase;letter-spacing:.06em;color:var(--raised);background:var(--accent);border-radius:3px;padding:0 .45rem}
+.nextcard{display:grid;gap:.35rem;padding:.2rem 0 .9rem}
+.nc-lbl{font:600 .78rem/1.3 var(--sans);text-transform:uppercase;letter-spacing:.06em;color:var(--accent)}
+.nc-title{font:600 clamp(1.25rem,3.4vw,1.6rem)/1.25 var(--serif)}
+.nc-meta{font-size:.88rem;color:var(--muted)}
+.nc-how{color:var(--ink-2)}
+.nc-act{display:flex;flex-wrap:wrap;gap:.6rem 1rem;align-items:center;margin-top:.4rem}
+a.nc-go{display:inline-block;background:var(--accent);color:var(--raised);text-decoration:none;font:600 1.05rem var(--sans);padding:.75rem 1.5rem;border-radius:6px}
+a.nc-go:hover{filter:brightness(1.1)}
+a.nc-go:focus-visible{outline:3px solid var(--accent-wash);outline-offset:2px}
+.nc-done{font:600 1.2rem var(--serif)}
+details.how,details.tools{margin:.8rem 0 0;border-top:1px solid var(--rule-soft);padding-top:.6rem}
+details.how>summary,details.tools>summary{cursor:pointer;font-size:.88rem;color:var(--ink-2)}
+details.how ol{margin:.5rem 0 0;padding-left:1.3rem;color:var(--ink-2)}
+details.tools{margin-top:2rem}
+.pathh{margin:1.6rem 0 .3rem}
+.finish{margin-top:1.4rem;padding-top:.2rem;border-top:2px solid var(--rule)}
+details.extras>summary{font-size:.86rem;text-transform:none;letter-spacing:0;font-weight:500}
 .done>.st{background:var(--good);border-color:var(--good);position:relative}
-.done>.st::after{content:'';position:absolute;left:.3rem;top:.12rem;width:.28rem;height:.5rem;border:solid var(--raised);border-width:0 2px 2px 0;transform:rotate(45deg)}
-.half>.st{background:linear-gradient(90deg,var(--good) 50%,transparent 50%);border-color:var(--good)}
+.done>.st::after{content:'';position:absolute;left:.52rem;top:.24rem;width:.34rem;height:.68rem;border:solid var(--raised);border-width:0 2px 2px 0;transform:rotate(45deg)}
+.half>.st{background:linear-gradient(90deg,var(--good) 50%,transparent 50%);border-color:var(--good);color:var(--ink)}
 .done .ib>a{color:var(--muted)}
 .tag{display:inline-block;font:600 .68rem/1.4 var(--sans);text-transform:uppercase;letter-spacing:.05em;color:var(--accent);background:var(--accent-wash);border-radius:3px;padding:.05rem .4rem;vertical-align:.1em}
 .proj{margin-top:.4rem}
@@ -366,15 +424,13 @@ textarea{width:100%;font:.92rem/1.5 var(--sans);color:var(--ink);background:var(
 .rd-frame{flex:1;width:100%;border:0;background:var(--paper)}
 body.reading{padding-right:min(62vw,1100px)}
 body.reading header.bar{position:sticky}
-body.reading .cols{grid-template-columns:1fr}
-body.reading .toc ol{columns:1}
-.it.reading,.wk.reading{background:var(--accent-wash);border-radius:6px}
+.it.reading{background:var(--accent-wash);border-radius:6px}
 @media (max-width:900px){.reader{width:100vw;border-left:0}body.reading{padding-right:0;overflow:hidden}.rd-close span{display:none}}
 @media print{.reader{display:none!important}body.reading{padding-right:0}}
 @media print{
   :root{--paper:#fff;--raised:#fff;--sunk:#f3f4f1;--ink:#000;--ink-2:#222;--muted:#555;--rule:#bbb;--rule-soft:#ddd;--accent:#1F6F5C;--good:#2c7a4b}
   body{font-size:11pt;background:#fff}
-  header.bar,.actions,.toc,#ws-saved{display:none!important}
+  header.bar,.actions,#ws-saved,.nextcard,.how,.tools,.pathh,#ws-journey{display:none!important}
   main{padding:0;max-width:none}
   details.tp{border:0;border-top:2px solid #000;border-radius:0;break-before:auto}
   details.tp>summary{padding:.5rem 0}

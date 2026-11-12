@@ -21,7 +21,7 @@
   /* ---------- progress ---------- */
   var S = P ? P.load() : {};
   var byId = {};
-  STEPS.forEach(function (s, i) { byId[s[0]] = { id: s[0], kind: s[1], ch: s[1] === 'chapter' ? s[2] : undefined, book: s[1] === 'read' ? s[2] : undefined, t: s[3], title: s[4], href: s[5], i: i }; });
+  STEPS.forEach(function (s, i) { byId[s[0]] = { id: s[0], kind: s[1], ch: s[1] === 'chapter' ? s[2] : undefined, book: s[1] === 'read' ? s[2] : undefined, t: s[3], title: s[4], href: s[5], mins: s[6] || 0, i: i }; });
   function done(id) { var s = byId[id]; return !!(s && P && P.stepDone(s, S)); }
   function paint() {
     var total = 0, got = 0, per = {};
@@ -39,7 +39,6 @@
       var sec = document.getElementById(t), x = per[t], pct = x.n ? Math.round(x.d * 100 / x.n) : 0;
       var bar = $('summary .pbar i', sec); if (bar) bar.style.width = pct + '%';
       var tc = $('summary .tc', sec); if (tc) tc.textContent = x.d + '/' + x.n;
-      var toc = $('[data-tc="' + t + '"]'); if (toc) toc.textContent = x.d + '/' + x.n;
     });
     $('#overview .pbar i').style.width = (total ? Math.round(got * 100 / total) : 0) + '%';
     $('#ov-steps').textContent = fill(L.overall, { n: got, of: total });
@@ -47,15 +46,39 @@
     $('#ov-can').textContent = fill(L.explained, { n: can, of: TOPICS.length });
     var nx = null;
     for (var i = 0; i < STEPS.length; i++) if (!done(STEPS[i][0])) { nx = byId[STEPS[i][0]]; break; }
-    var box = $('#ov-next'); box.innerHTML = '';
-    if (!nx) box.textContent = L.allDone;
-    else {
-      box.appendChild(document.createTextNode(L.next + ': '));
-      var a = document.createElement('a'); a.href = base + nx.href; a.textContent = nx.title; box.appendChild(a);
-      var tp = TOPICS.filter(function (t) { return t[0] === nx.t; })[0];
-      if (tp) { box.appendChild(document.createTextNode(' · ')); var b = document.createElement('a'); b.href = '#' + tp[0]; b.textContent = L.topic + ' ' + tp[0].slice(1) + ': ' + tp[1]; box.appendChild(b); }
-    }
+    nextCard(nx);
     redate();
+  }
+
+  /* the one thing to do now: a big card with a single button, and the same step marked in its topic */
+  var firstPaint = true;
+  function nextCard(nx) {
+    var box = $('#ov-next'); box.innerHTML = '';
+    $$('.it.now').forEach(function (r) { r.classList.toggle('now', false); var ib = $('.ib', r); if (ib) ib.removeAttribute('data-next'); });
+    function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
+    if (!nx) { box.appendChild(el('p', 'nc-done', L.allDone)); return; }
+    var kind = nx.kind === 'chapter' ? 'chapter' : nx.kind === 'read' ? 'read' : nx.kind === 'try' ? 'try' : 'look';
+    var tp = TOPICS.filter(function (t) { return t[0] === nx.t; })[0];
+    box.appendChild(el('span', 'nc-lbl', L.nextLbl));
+    box.appendChild(el('strong', 'nc-title', nx.title));
+    var meta = el('span', 'nc-meta');
+    meta.appendChild(el('span', 'kind k-' + kind, L['v_' + kind]));
+    meta.appendChild(document.createTextNode((nx.mins ? '~' + (nx.mins >= 90 ? (Math.round(nx.mins / 30) / 2) + ' ' + L.h : nx.mins + ' ' + L.min) : '') + (tp ? ' · ' + L.topic + ' ' + tp[0].slice(1) + ': ' + tp[1] : '')));
+    box.appendChild(meta);
+    box.appendChild(el('span', 'nc-how', L['how_' + kind]));
+    var act = el('div', 'nc-act'), go = el('a', 'nc-go', L['go_' + kind] + ' →');
+    go.href = base + nx.href; go.setAttribute('data-title', nx.title); act.appendChild(go);
+    if (tp) { var more = el('a', 'nc-more', L.seeTopic); more.href = '#' + tp[0]; act.appendChild(more); }
+    box.appendChild(act);
+    /* mark the same step in its topic */
+    var row = null;
+    $$('[data-steps]').forEach(function (r) { if (!row && (' ' + r.getAttribute('data-steps') + ' ').indexOf(' ' + nx.id + ' ') >= 0) row = r; });
+    if (row) { row.classList.add('now'); var ib2 = $('.ib', row); if (ib2) ib2.setAttribute('data-next', L.nextTag); }
+    /* on arrival, open the topic you are in (unless a link named another) */
+    if (firstPaint) {
+      firstPaint = false;
+      if (!location.hash && tp) $$('details.tp').forEach(function (d) { d.open = d.parentNode.id === tp[0]; });
+    }
   }
 
   /* the topics as one path: how much of each is done, and which you can explain */
@@ -329,7 +352,7 @@
       var u; try { u = new URL(a.getAttribute('href'), location.href); } catch (er) { return; }
       if (u.origin !== location.origin || !PORTAL.test(u.pathname) || /\/api\//.test(u.pathname)) return;
       e.preventDefault();
-      showReader(u.href, a.textContent.trim(), a.closest('.it, .wk, li'));
+      showReader(u.href, a.getAttribute('data-title') || a.textContent.trim(), a.closest('.it') || document.querySelector('.it.now'));
     });
     reader.querySelector('.rd-close').addEventListener('click', function () { hideReader(false); });
     /* Back closes the panel. Jumping to a topic on the worksheet while reading
