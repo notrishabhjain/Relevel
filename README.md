@@ -294,6 +294,23 @@ Leave `ALLOWED_LOGINS` unset and any GitHub user may sign in and keep their own 
 record; that never grants edit rights, which come only from `CONTENT_EDITORS` (and fall
 back to `ALLOWED_LOGINS` if you have not set it).
 
+**Changed the web address?** Sign-in is tied to it in three places, and only the first
+needs your hands:
+
+1. **The OAuth app on GitHub** (*Settings → Developer settings → OAuth Apps*): set the
+   Homepage URL and the Authorization callback URL to the new address, as in the table
+   above. GitHub refuses a sign-in whose callback does not match, with a page that says
+   *redirect_uri is not associated with this application*.
+2. **The Vercel environment variables** (`GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`,
+   `DATABASE_URL`, …) belong to a project. Renaming a project keeps them; a new project
+   starts empty, so copy them over and redeploy.
+3. **The site itself** needs nothing: sign-in builds its callback from the address it was
+   opened on, and the install manifests follow Vercel's production domain. To pin another
+   address (a custom domain, say), set `SITE_ORIGIN` to it, without a trailing slash.
+
+Sign-in cookies belong to one address, so everybody signs in once more after a move.
+Progress that had synced is kept in the database, not the cookie, and comes back with the sign-in; anything not yet synced stays in the browser on the old address.
+
 ### The Content Studio
 
 `#/studio` in the sidebar under **Author**. It edits the six kinds of content the app is
