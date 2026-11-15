@@ -5,7 +5,7 @@
 window.PART3 = [
 {
 
-  id:'ch14', num:14, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch6'], nextUnits:['ch145','ch17','ch18','ch19'], minutes:35, labs:['judge'],
+  id:'ch14', num:14, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch6'], nextUnits:['ch145','ch17','ch18','ch19'], minutes:50, labs:['judge'],
   title:'Evaluation at scale: code checks and LLM judges',
   concept:'Grading by hand stops working at around fifty questions. You’ll combine free code checks with an LLM judge, then measure how often the judge agrees with you before you trust its scores.',
   needs:[
@@ -21,11 +21,11 @@ window.PART3 = [
   capstone:{
     title:'Build an automatic marker, and check how far to trust it',
     brief:'Marking every output by hand doesn’t scale, so you’ll want a model to mark the tool’s output. But a marker nobody has checked is not a measurement. In this chapter you learned the three ways to grade an answer. You also learned that a judge must be tested against your own marking and against its known biases. Now you’ll build a marker for the tool’s cleaned text, and check it.',
-    where:'Your notebook for this chapter, to build and run the marker. Mark the fifty outputs by hand as well, and write the agreement figure in the notes box below.',
+    where:'Your notebook for this chapter, to build and run the marker. Mark the twenty outputs by hand as well, and write the agreement figure in the notes box below. Short version for the route, about 20 minutes: steps 1, 3 and 4.',
     steps:[
       'Write the marking rules a careful person would use for one question: “Is the cleaned text safe and still readable?” Spell out what counts as safe (every personal detail removed or masked) and what counts as readable (the sentence still makes sense).',
       'Run the free checks first. Does any text shaped like a PAN or an Aadhaar number still appear in the cleaned text? Does the text still have its main words? Count how many outputs fail these checks without needing a model.',
-      'Build the model-based marker from your rules and let it mark fifty cleaned outputs. Mark the same fifty yourself, by hand.',
+      'Build the model-based marker from your rules and let it mark twenty cleaned outputs. Mark the same twenty yourself, by hand.',
       'Calculate how often the marker agrees with you. Look at the disagreements: is the marker too strict, too lenient, or both?',
       'Test it for a bias towards length: take ten outputs and make each one twice as long without changing its meaning. Does the mark change?',
       'Write the range of marks in which you would read the output yourself instead of trusting the marker.'
@@ -33,7 +33,7 @@ window.PART3 = [
     done:[
       'Your marking rules.',
       'The number of outputs that failed the free checks.',
-      'The agreement between the marker and you on the same fifty outputs.',
+      'The agreement between the marker and you on the same twenty outputs.',
       'The result of the length test.',
       'The range of marks where you would not trust the marker.'
     ]
@@ -86,13 +86,13 @@ window.PART3 = [
       ]
     ]],
     ['h','Measure agreement'],
-    ['p','So how do you check a judge? You measure <strong>agreement</strong>. Grade fifty answers yourself, have the judge grade the same fifty, and count how often you agree. If agreement is low, the judge’s scores aren’t reliable.'],
+    ['p','So how do you check a judge? You measure <strong>agreement</strong>. Grade twenty answers yourself, have the judge grade the same twenty, and count how often you agree. If agreement is low, the judge’s scores aren’t reliable.'],
     [
       'pred',
       {id:'ch14-agree',
        short:true,
        ph:'A fraction, like 7/10',
-       ask:'Predict: you write a judge prompt, grade fifty answers by hand, and have the judge grade the same fifty. How often will it agree with you on the first attempt?',
+       ask:'Predict: you write a judge prompt, grade twenty answers by hand, and have the judge grade the same twenty. How often will it agree with you on the first attempt?',
        reveal:'Six or seven out of ten is normal for a first attempt. The pattern of disagreements matters more than the number. If they cluster, for example the judge marks every hedged answer as correct, you have found something you can fix. If they are scattered with no pattern, your own definition of a good answer is probably unclear, and changing the judge prompt will not help.',
        then:'So check whether disagreements are clustered or scattered. That tells you whether to fix the judge or your own definition.'}
     ],
@@ -102,6 +102,7 @@ window.PART3 = [
       ['code','# Your own marks, one per question, written before you look at the judge\'s.\n# These four are placeholders. Replace them with yours.\nhuman_labels = ["grounded", "grounded", "grounded", "unsupported"]\n\njudge_labels = []\nfor q in ground_truth_questions:\n    rec = rag_answer(q)\n    ctx = "\\n".join(chunks[i] for i in rec["source_chunk_ids"])\n    judge_labels.append(judge(q, rec["answer"], ctx)["verdict"])\n\nn = len(human_labels)\nagree = sum(1 for i in range(n) if human_labels[i] == judge_labels[i])\nprint(f"agreement: {agree}/{n}")\nfor i in range(n):\n    if human_labels[i] != judge_labels[i]:\n        print(f"  Q{i}: human={human_labels[i]} judge={judge_labels[i]}")'],
       ['x','Look closely at the disagreements, because they tell you more than the score. A judge that is consistently lenient on one type of failure is usable, as long as you know about it. A judge whose errors are random is not usable.'],
       ['c','Tip','Before running, predict your agreement out of 10. Afterwards, note whether the disagreements are consistent or scattered.'],
+      ['c','Caution','Count two things separately: how often the judge catches the answers you marked as fails, and how often it passes the answers you marked as passes. When most answers pass, raw agreement can look high while the judge misses most of the real failures.'],
       [
         'snag',
         ['A red box saying something <em>is not defined</em>','This chapter’s starter cell has not run. Run it first, then run the cell that failed. After a reload, press <strong>Restore</strong> in the notebook bar before you start.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
@@ -126,7 +127,7 @@ window.PART3 = [
   /* ch14 carried seven new terms and did two different jobs: building a
      grader that scales, and reading failures by hand, which scales to
      nothing and produces most of the improvement. They are two chapters. */
-  id:'ch145', num:14.5, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch14','ch6'], nextUnits:['ch16e','b6'], minutes:25, labs:[],
+  id:'ch145', num:14.5, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch14','ch6'], nextUnits:['ch16e','b6'], minutes:60, labs:[],
   title:'Error analysis: reading failures by hand',
   concept:'Reading real outputs and naming what went wrong is the most useful quality activity there is, and it needs no model or budget. You’ll read failures, group them, count them, and turn the biggest groups into test cases.',
   needs:[
@@ -139,11 +140,11 @@ window.PART3 = [
     'Explain why a generic benchmark cannot do this for your product.'
   ],
   capstone:{
-    title:'Read a hundred real outputs, and name the ways the tool fails',
+    title:'Read a thirty real outputs, and name the ways the tool fails',
     brief:'A scoreboard says how many mistakes the tool makes. It doesn’t say why. In this chapter you learned to read real failures by hand, describe them in your own words, and only then group and count them. Now you’ll do that for Bharat Privacy Guard, and use the result to grow the answer key.',
-    where:'Written only. No code and no notebook. Work on paper or in a spreadsheet.',
+    where:'Written only. No code and no notebook. Work on paper or in a spreadsheet. Short version for the route, about 20 minutes: steps 1, 2, 3 and 6.',
     steps:[
-      'Collect a hundred outputs from the tool. Use sentences you or your interviewees wrote (made up, or with every real detail changed), not only the ones you already know it handles.',
+      'Collect thirty outputs from the tool. Use sentences you or your interviewees wrote (made up, or with every real detail changed), not only the ones you already know it handles.',
       'Read each output. Whenever the tool got something wrong, write one line in your own words about what went wrong. Do not group them yet, because grouping too early hides surprises.',
       'Now group your notes. Give each group a name, for example “number split by a space”, “name in Devanagari missed” or “order number mistaken for Aadhaar”. Count each group.',
       'Rank the groups by the count multiplied by how badly each failure hurts a real person.',
@@ -151,7 +152,7 @@ window.PART3 = [
       'Add the top two groups as new rows to the answer key. Save it as <code>evals/answer-key-v3.csv</code>, with about 50 rows.'
     ],
     done:[
-      'A hundred outputs with a note on every one that went wrong.',
+      'Thirty outputs with a note on every one that went wrong.',
       'A named, counted and ranked list of failure groups.',
       'A note on what would need to change for the top group.',
       'The answer key, version 3, with about 50 rows.'
@@ -164,7 +165,7 @@ window.PART3 = [
     ['h','What error analysis is'],
     ['p','Start with a picture. Imagine a teacher who gets a pile of exam papers back with a score on each. The scores say who did badly, but not why. So she sits down, reads the wrong answers, and notices that half the class made the same mistake in the same question.'],
     ['p','Error analysis works the same way, on your system’s outputs.'],
-    ['key','Read a hundred real outputs. For each one that went wrong, write down what went wrong in your own words. Then group the notes and name the groups. This is called <strong>error analysis</strong>, and it is the most valuable quality work in this field.'],
+    ['key','Read thirty real outputs. For each one that went wrong, write down what went wrong in your own words. Then group the notes and name the groups. This is called <strong>error analysis</strong>, and it is the most valuable quality work in this field.'],
     ['q','I052','I125'],
     ['p','Let’s try a small version right now.'],
     [
@@ -212,7 +213,7 @@ window.PART3 = [
   capstone:{
     title:'Build a cost model from measurements',
     brief:'Many teams never ask, “What does this cost at real volume, and what happens to our margin if it succeeds?” In this chapter you learned the four things that make a simple cost estimate wrong. You also learned how a cascade, which tries the cheap option first and uses the expensive one only when needed, saves money. Now you’ll build the cost model for Bharat Privacy Guard from your own measurements, not from guesses.',
-    where:'Your notebook for this chapter, to measure the tokens and build the cascade. Write the three cost numbers in the notes box below.',
+    where:'Your notebook for this chapter, to measure the tokens and build the cascade. Write the three cost numbers in the notes box below. Short version for the route, about 20 minutes: steps 1, 3 and 5.',
     steps:[
       'Choose the feature: a bank chat in which every customer message is checked. Measure the tokens your tool uses on twenty realistic messages from your answer key, and take the average.',
       'Add the things people forget: retries, the policy text sent every time, the conversation history, and requests that fail and are sent again.',
@@ -365,7 +366,7 @@ window.PART3 = [
   capstone:{
     title:'Test the tool on photos of ID cards',
     brief:'Many personal details reach a website as photos, not as typed text. Reading text out of an image makes mistakes, and no error message warns you. In this chapter you learned why tables and scans are the weakest part of a document pipeline, and why no metric catches the problem. Now you’ll test the tool on text read from images of ID cards.',
-    where:'Your notebook for this chapter, to read the images and compare. Write the error rate in the notes box below.',
+    where:'Your notebook for this chapter, to read the images and compare. Write the error rate in the notes box below. Short version for the route, about 20 minutes: steps 1, 2, 3 and 6.',
     steps:[
       'Collect ten images. Make them yourself: mock ID cards with made-up details, printed or handwritten and photographed. Never use a photo of a real person’s card.',
       'Turn each image into text with an OCR tool (software that reads text from pictures). Compare the text with the original and mark every reading mistake.',
@@ -444,7 +445,6 @@ window.PART3 = [
     ['h','Voice: a different constraint'],
     ['p','So far we’ve talked about pages. Voice is a different case, because it changes the main constraint from accuracy to time. In text, a two-second wait is fine. In speech, two seconds of silence breaks the conversation, and people start talking over it. The whole round trip has to fit in that time: speech in, model, speech out.'],
     ['p','This means voice problems are about conversation. You need to know when the person has finished speaking, handle interruptions, and decide what to say while the system works. The reasoning models from Chapter 11 are usually too slow for voice, however accurate they are.'],
-    ['q','I076'],
     ['h','Audit your documents before you build'],
     ['p','All of this leads to one habit. Before you design anything, find out what your documents actually look like.'],
     ['c','Tip','Before any document-AI project, get three numbers. What share of the documents is clean digital text? What share is scanned? And what share of the <em>answers people need</em> is inside tables and figures? The third is usually the largest, and it is rarely asked. It decides the architecture, and one afternoon with fifty documents is enough to estimate it.'],
@@ -526,7 +526,7 @@ window.PART3 = [
   capstone:{
     title:'Write the rule for what the tool may send to an outside provider',
     brief:'Bharat Privacy Guard exists to protect people’s data, so it must not leak data itself. When the context judge calls an outside AI model, the text it sends is a risk. This chapter gave you three questions that settle whether a document may be sent. The answer must come from what the provider actually says, not from what everyone assumes. Now you’ll write that rule for your tool.',
-    where:'Written, no code. Use the three questions from the chapter. Write the one-page rule in the notes box below.',
+    where:'Written, no code. Use the three questions from the chapter. Write the one-page rule in the notes box below. Short version for the route, about 20 minutes: steps 1, 2 and 6.',
     steps:[
       'List six to ten kinds of text the tool might send to the outside model: for example a sentence with no personal detail, a sentence with a name, a sentence with an Aadhaar number, a cleaned sentence with the details replaced by tags, and a whole chat history.',
       'Take each kind through the three questions from the chapter, and mark it: may send, never send, or ask first.',
@@ -562,7 +562,7 @@ window.PART3 = [
   capstone:{
     title:'Write the system card for Bharat Privacy Guard',
     brief:'Almost every compliance question turns out to be a product question. A system card is the document that answers those questions for one system. In this chapter you saw that the same system can be low risk for one use and high risk for another. You also saw which section of a governance document is hardest to fake, and what human oversight must include before it counts as oversight. Now you write the system card for your own tool.',
-    where:'Written only. Gather the numbers and notes from earlier chapters, then write the card in the notes box below.',
+    where:'Written only. Gather the numbers and notes from earlier chapters, then write the card in the notes box below. Short version for the route, about 20 minutes: steps 2, 3 and 4.',
     steps:[
       'Give the tool a risk level and say why. Ask: what could it affect, how badly, and who bears the harm? A tool that decides what is hidden before data goes to an AI is not low risk if it can miss an Aadhaar number.',
       'Write the card with five headings: what it is for; what data it handles; what it can do, with its measured quality from your scoreboard; the failures you know about; and what it must never be used for.',
@@ -702,7 +702,7 @@ window.PART3 = [
   capstone:{
     title:'Write a requirements document that survives a change of model',
     brief:'An AI requirements document describes a measured range of quality, and what happens outside that range. In this chapter you saw what replaces pass or fail in an AI specification. You also saw what to rerun when a provider retires your model, and why a kill switch is different from a rollback. Now you write the requirements for Bharat Privacy Guard and rehearse the day its model changes.',
-    where:'Written only. Collect the notes and numbers named in the chapter, then write the document in the notes box below.',
+    where:'Written only. Collect the notes and numbers named in the chapter, then write the document in the notes box below. Short version for the route, about 20 minutes: steps 2, 4 and 6.',
     steps:[
       'Draw the whole system from memory first, without looking at your earlier diagrams. Then compare with your records and mark what you had forgotten.',
       'Write the requirements document. In the quality section use ranges, not promises, for example: “finds at least 95 of every 100 Aadhaar numbers on the answer key, give or take 3.” For each failure, write what the user sees.',

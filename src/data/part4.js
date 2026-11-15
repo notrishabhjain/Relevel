@@ -67,7 +67,7 @@ window.PART4 = [
   capstone:{
     title:'Recommend whether to build each part yourself or buy it',
     brief:'For each part of the tool there is usually a ready-made option to buy or borrow, and your own build to compare it with. In this chapter you learned to run the same test on both. You also learned to name what you are really buying, which is often not the model, and to write down what would change your mind before you decide. Now you do that for two parts of Bharat Privacy Guard.',
-    where:'Mostly written. Use your answer key to test each option, in a notebook if the option has code, and write the recommendation in the notes box below.',
+    where:'Mostly written. Use your answer key to test each option, in a notebook if the option has code, and write the recommendation in the notes box below. Short version for the route, about 20 minutes: steps 1, 3 and 6.',
     steps:[
       'Choose two parts of the tool: the pattern checker and the name-and-place finder. For each part, write in one line what it must do and whether it is the heart of your product or a supporting piece.',
       'For the pattern checker, compare your own rules with an existing library such as Presidio’s recognisers. For the name-and-place finder, compare a ready-made multilingual model with one you would train or adapt yourself. Run each option on your answer key and put the results in one table: quality on English, Hindi and Hinglish, speed, cost and effort.',
@@ -102,7 +102,7 @@ window.PART4 = [
   capstone:{
     title:'Answer a proposal to fine-tune a model, using evidence',
     brief:'Someone suggests that the name-and-place finder could be improved by training a small Indian-language model of your own. That is called fine-tuning, and it sounds like the serious option. In this chapter you learned the four things you can change in an AI system, what each one fixes, and why fine-tuning is the wrong tool for “it does not know our new policy”. Now you’ll decide, with evidence, whether the proposal is right.',
-    where:'This task is written, with no code. Use the failures you collected in earlier chapters and the numbers you already measured. Write your answer in the notes box below.',
+    where:'This task is written, with no code. Use the failures you collected in earlier chapters and the numbers you already measured. Write your answer in the notes box below. Short version for the route, about 20 minutes: steps 1, 2 and 3.',
     steps:[
       'Collect twenty real failures from your tool. Take them from the list you made in Chapter 14.5.',
       'Sort the twenty into the four kinds from this chapter: the model did not know something, the instructions were unclear, the right information was not found, or the format was wrong.',
@@ -188,7 +188,7 @@ window.PART4 = [
     ]],
     ['lab','costmodel'],
     ['q','I143'],
-    ['c','Tip','Work in this order: instructions, then evidence, then fine-tuning, then a different model. Measure after each one. The first two can be undone in hours, so ruling them out is cheap. Fine-tuning commits you to maintenance for as long as the feature exists.'],
+    ['c','Tip','Work in this order: instructions, then evidence, then a different model, then fine-tuning. Measure after each one. The first three can be undone in hours or days, so ruling them out is cheap. Changing the model reopens every measurement, so rerun your answer key after each switch. Fine-tuning commits you to maintenance for as long as the feature exists.'],
     ['h','Summary'],
     ['p','So here is the whole chapter in a few lines. Name the failure before you pick a fix. Most failures are about missing knowledge or wrong behaviour, and those are fixed more cheaply than by training. Fine-tuning has real uses, but it comes with a cost that lasts as long as the feature does.'],
     ['key','You can’t see the effect of any of the four changes without a test set. A team with an answer key can settle “should we fine-tune?” in a week. A team without one can’t settle it at all.'],
@@ -215,7 +215,7 @@ window.PART4 = [
   capstone:{
     title:'Design the four answers the tool can give',
     brief:'Many AI features use the same screen when they are sure, when they are unsure, when they are wrong and when they cannot answer. So a confident wrong answer looks exactly like a confident right one. In this chapter you learned how a feature that is wrong one time in ten can still be trusted, and why a confidence number is usually the wrong thing to show. Now you’ll design the four states for the developer kit.',
-    where:'This task is written, with no code. Design on paper, time one correction with a stopwatch, and write your design in the notes box below.',
+    where:'This task is written, with no code. Design on paper, time one correction with a stopwatch, and write your design in the notes box below. Short version for the route, about 20 minutes: steps 2, 3 and 5.',
     steps:[
       'Look at an AI feature you use every day. Note what it shows when it is confident, when it is unsure, when it is wrong and when it cannot answer.',
       'Now design the four states for Bharat Privacy Guard: found and removed with confidence, found but unsure, wrongly removed (a false alarm), and unable to decide. For each state, write what the developer’s program receives, what the end user sees, and what each of them can do next.',
@@ -358,7 +358,7 @@ window.PART4 = [
   capstone:{
     title:'Design a pilot that could fail',
     brief:'A pilot that cannot fail proves nothing. In this chapter you learned to pick one number the business already tracks, to compare two groups, and to agree a failure threshold before the pilot starts. Now you’ll design a pilot of the developer kit with five to ten real developers.',
-    where:'This task is written, with no code. Design on paper, then write it up and get it agreed before anything runs.',
+    where:'This task is written, with no code. Design on paper, then write it up and get it agreed before anything runs. Short version for the route, about 20 minutes: steps 2, 4 and 6.',
     steps:[
       'Time the whole workflow of a developer who handles user text, and mark where the kit fits. If it is not on the critical path, say so and stop here.',
       'Choose the business number. It must already exist and someone must already look at it, for example the number of support tickets that mention personal data being pasted into a chat.',

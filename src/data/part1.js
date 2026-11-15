@@ -74,7 +74,7 @@ window.PART1 = [
   capstone:{
     title:'Compare what English, Hindi and Hinglish cost',
     brief:'This is your first real step on the project, and it still needs no account, no key and no install. In this chapter you used three tools on this page: one that cuts text into tokens, one that shows a chat getting more expensive, and a temperature slider. Models charge by the token. So the first question for Bharat Privacy Guard is a simple one: does the same message cost more in Hindi and Hinglish than in English?',
-    where:'Just the tools on this page. No notebook, no account. Write your numbers in the notes box below.',
+    where:'Just the tools on this page. No notebook, no account. Write your numbers in the notes box below. Short version for the route, about 20 minutes: steps 1, 2 and 3.',
     steps:[
       'Open the starter sentences on the project page and pick sentences 1, 2 and 3. They’re the same kind of message, written in English, Hindi and Hinglish.',
       'Paste each one into the token tool on this page and note its token count. Make a small table with three rows (English, Hindi, Hinglish) and two columns (characters, tokens).',
@@ -298,7 +298,7 @@ window.PART1 = [
   capstone:{
     title:'Make your first call and measure what it costs',
     brief:'Now you move from the browser tools to a real model. In this chapter you learned to read the usage block that comes back with every answer, and to see exactly what you’re billed for. Here you ask a real model to find the personal details in some of the starter sentences, check its answers yourself, and measure the cost.',
-    where:'Your notebook for this chapter, at the end of the page. The numbers you print are what counts. The notes box below is for a short reflection, not a long write-up.',
+    where:'Your notebook for this chapter, at the end of the page. The numbers you print are what counts. The notes box below is for a short reflection, not a long write-up. Short version for the route, about 20 minutes: steps 1, 2 and 5.',
     steps:[
       'In your notebook for this chapter, send starter sentence 7 (the one with Amit Sharma, the PAN and the HDFC account) to the model with the instruction: “List every piece of personal information in this message.”',
       'Print the whole answer and the usage block. Write down the prompt_tokens and the completion_tokens.',
@@ -396,7 +396,7 @@ window.PART1 = [
   capstone:{
     title:'Work out what checking a long chat costs',
     brief:'A model remembers nothing between calls. A chat feels continuous only because every earlier message is sent again, which makes long chats expensive. Bharat Privacy Guard will sit in front of chats like this, so you need to know what it costs to check one. In this chapter you learned how chat memory really works and how to predict a cost before anything is built. Here you do that for the project.',
-    where:'Use your notebook for this chapter for the calls and the token counts. Write the final sentence in the notes box below.',
+    where:'Use your notebook for this chapter for the calls and the token counts. Write the final sentence in the notes box below. Short version for the route, about 20 minutes: steps 2, 3 and 4.',
     steps:[
       'Imagine a bank’s chat window in which every customer message goes through Bharat Privacy Guard before it reaches an AI model. Describe this feature in one sentence.',
       'In your notebook for this chapter, write a five-message conversation using starter sentences 1, 3, 6, 7 and 9, in that order, as the customer’s messages. Send them one at a time, each time sending all the earlier messages as well.',
@@ -441,7 +441,7 @@ window.PART1 = [
   capstone:{
     title:'Write the instructions for the AI helper, and try to break them',
     brief:'When the first two parts of the tool cannot settle a sentence, the third part (the context judge) asks an AI model. That model needs written instructions, called a system prompt, that are sent with every message. In this chapter you learned that a confident tone tells you nothing about whether an answer is right, and that a system prompt can make a failure rarer without removing its cause. Here you write the system prompt for the context judge and test it.',
-    where:'Your notebook for this chapter. Write the system prompt as the system message and test it there. You’ll use the same prompt again in Chapter 2.1.',
+    where:'Your notebook for this chapter. Write the system prompt as the system message and test it there. You’ll use the same prompt again in Chapter 2.1. Short version for the route, about 20 minutes: steps 1, 3 and 4.',
     steps:[
       'Write the system prompt in plain English. It must say: what the helper is for; what counts as personal information (names, ID numbers, phone numbers, addresses, and details that point to one person); what to answer when nothing personal is present; the exact format of the answer (for example a list with the item, its type and one word of reason); and what to do when it is not sure.',
       'Add a rule that stops it from inventing: “If you are not sure, answer UNSURE. Never guess a number.”',
@@ -534,8 +534,7 @@ window.PART1 = [
     ['h','Rarer is not the same as fixed'],
     ['p','This brings us to an idea you’ll use again and again. Making a failure rarer is different from removing its cause. When someone says a problem is handled because they added a rule, ask: <em>does that remove the cause, or does it only make the symptom less common?</em>'],
     ['p','So how do you remove the cause? The rest of Part I does exactly that. If the model invents answers when it has no evidence, the fix is to give it the evidence. That takes four chapters.'],
-    ['p','It starts with a practical problem: your documents are too big to send in one request. But first, the next chapter shows you four techniques for writing prompts that work.'],
-    ['q','I122']
+    ['p','It starts with a practical problem: your documents are too big to send in one request. But first, the next chapter shows you four techniques for writing prompts that work.']
   ]
 },
 
@@ -638,7 +637,7 @@ window.PART1 = [
   capstone:{
     title:'Improve the instructions until a stranger can use them',
     brief:'Your system prompt from Chapter 2 works for you, because you know what you meant. A good prompt works for someone else without any explanation. In this chapter you learned four techniques: describe the reader and the job, show worked examples, break the task into steps, and add a few firm “never” rules. Now you’ll apply them to the context judge’s prompt and test the result on another person.',
-    where:'Your notebook for this chapter. Write and run the prompt there. The notes box below is for what the other person said when they tried it without help.',
+    where:'Your notebook for this chapter. Write and run the prompt there. The notes box below is for what the other person said when they tried it without help. Short version for the route, about 20 minutes: steps 1, 3 and 5.',
     steps:[
       'In your notebook for this chapter, run your Chapter 2 system prompt on starter sentences 4, 5 and 8 to see where it is weakest.',
       'Add a short description of who reads the answer and what they do with it. For example: “A developer’s program reads your answer and decides whether to hide each item.”',
@@ -726,7 +725,7 @@ window.PART1 = [
   capstone:{
     title:'Build the answer key (version 1)',
     brief:'Everything in this project is measured against one test file, the answer key. In this chapter you learned to build a small test set from real inputs, to change one thing at a time, and to score each change. Now you’ll build version 1 of the answer key from the ten starter sentences, and use it to choose between versions of your prompt.',
-    where:'Your notebook for this chapter, for scoring. The answer key itself is a spreadsheet that you save in your repository.',
+    where:'Your notebook for this chapter, for scoring. The answer key itself is a spreadsheet that you save in your repository. Short version for the route, about 20 minutes: steps 1, 2, 4 and 5.',
     steps:[
       'Open the project page and copy the ten starter sentences into a spreadsheet. Add the columns described under “The answer key”: number, kind of writing, sentence, what should be found, what should happen, and a note.',
       'For each row, write by hand what should be found (the kind and the exact words) and what should happen to it: remove it, mask it, or leave the sentence alone. Starter sentence 9 should say “nothing found”.',
@@ -804,7 +803,6 @@ window.PART1 = [
        reveal:'Mostly classify, with extract underneath. Each clause goes into a category, such as standard, unusual or missing, and the risky clauses have their text extracted to show. Very little of it is generation.',
        then:'That changes how you build it. Classification has right answers, so you can build an answer key from a hundred clauses a lawyer has already reviewed, and measure quality before you ship. If you had built a generator instead, you’d have nothing to measure.'}
     ],
-    ['q','I059'],
     ['h','Summary'],
     ['p','So the habit to keep is a simple one. Before you ask which model to use, ask which task type you’re dealing with.'],
     ['key','Ask “which task type?” before “which model?”. If the answer is more than one type, split the request into steps.'],
@@ -813,7 +811,7 @@ window.PART1 = [
   capstone:{
     title:'Break the whole tool down into small tasks',
     brief:'“Find and hide personal details” sounds like one job. It’s really several different jobs, and each one needs a different kind of test. In this chapter you learned the five task types (sorting into categories, picking out pieces, summarising, rewriting and writing something new) and which of them a computer can mark automatically. Now you’ll break Bharat Privacy Guard down in that way.',
-    where:'Written only: pen and paper, or a document. No new code. You can look at your answer key for examples.',
+    where:'Written only: pen and paper, or a document. No new code. You can look at your answer key for examples. Short version for the route, about 20 minutes: steps 1, 3 and 4.',
     steps:[
       'Write the request in the plainest words: “Find and hide personal details in English, Hindi and Hinglish text before it reaches an AI model.” Do not tidy it up.',
       'Write one sentence about what a developer using the tool wants to be different in their week.',
@@ -888,7 +886,6 @@ window.PART1 = [
        ph:'When a … is missed, … . When something is wrongly marked …, … .',
        after:'The two directions rarely cost the same. Missing an urgent complaint and wrongly flagging a routine one as urgent are both errors, but one is much cheaper. Once you know which, you can tune the system to lean the cheaper way, by making borderline cases fall into the safer category. That is a product decision, based on numbers, and it is yours to make.'}
     ],
-    ['q','I061'],
     ['h','Summary'],
     ['p','Most of this chapter wasn’t really about AI. An answer key, counts for each category, and a judgement about which error is cheaper are the same tools you’d use to evaluate a hiring process or a triage desk.'],
     ['p','Next, you’ll meet summarisation. It has no single right answer, which is exactly why many teams ship summarisers without knowing whether they work.']
@@ -896,7 +893,7 @@ window.PART1 = [
   capstone:{
     title:'Build a sorter for the kind of ID, and measure it',
     brief:'Sometimes the tool finds a string of digits and has to decide what it is. It could be an Aadhaar number, a bank account number, a phone number or a PIN code. That is a sorting job. In this chapter you learned to measure a sorter honestly, one category at a time, and to look for the category it is worst at. Here you build a sorter and test it.',
-    where:'Your notebook for this chapter. Build and measure the sorter there. Write the numbers for each category in the notes box below.',
+    where:'Your notebook for this chapter. Build and measure the sorter there. Write the numbers for each category in the notes box below. Short version for the route, about 20 minutes: steps 2, 3, 4 and 5.',
     steps:[
       'Write down the categories: Aadhaar, PAN, mobile number, bank account, PIN code, and “something else”.',
       'Write twenty short examples, with at least three for each category. Use made-up values like those on the project page. Put some inside sentences (“call me on 9876543210”) and some on their own.',
@@ -968,7 +965,7 @@ window.PART1 = [
   capstone:{
     title:'Write a short privacy report, and check it against the facts',
     brief:'After the tool has cleaned a batch of messages, a manager will want a short report of what was found and how often. A summary has one dangerous failure: it leaves something out, or it invents something. In this chapter you learned to decide who a summary is for, and to test what it leaves out. Here you build a summary of what the tool found, and test it.',
-    where:'Your notebook for this chapter. Build the summary and its fact check there. Write what the check caught in the notes box below.',
+    where:'Your notebook for this chapter. Build the summary and its fact check there. Write what the check caught in the notes box below. Short version for the route, about 20 minutes: steps 1, 3, 4 and 5.',
     steps:[
       'Make a batch of ten results by hand, using starter sentences 1 to 10. For each one, write the list of things the tool found and what it did to them.',
       'Decide who will read the summary and what they will do next. For example: “A compliance manager reads it every Monday and decides whether to change a rule.” Write this in one line.',
@@ -988,7 +985,7 @@ window.PART1 = [
   }
 },
 {
-  id:'ch3', num:3, part:1, curriculumTier:'core', phase:1, prerequisites:['ch1','ch2','ch25'], nextUnits:['ch4','ch7','ch10','ch13'], minutes:20, labs:['chunker'],
+  id:'ch3', num:3, part:1, curriculumTier:'core', phase:1, prerequisites:['ch1','ch2','ch25'], nextUnits:['ch4','ch7','ch10','ch13'], minutes:40, labs:['chunker'],
   title:'Chunking: splitting documents into pieces',
   concept:'Models can only read a limited amount of text at once, so long documents are split into smaller pieces called chunks. In this chapter you’ll split one document three ways by hand and see what each split loses.',
   plan:{
@@ -1011,7 +1008,7 @@ window.PART1 = [
   capstone:{
     title:'Decide how to cut long text without splitting an ID in half',
     brief:'People will paste long messages and whole documents into the tool. A long text has to be cut into pieces before it is checked. A bad cut can split a number or a name in the middle, so that no piece contains the whole thing. In this chapter you learned why text must be cut, what a cut loses, and that no piece size suits every document. Here you work out a cutting rule for the project, by hand.',
-    where:'Written, no code: pen, paper and scissors, as in the chapter. Write the rule in the notes box below.',
+    where:'Written, no code: pen, paper and scissors, as in the chapter. Write the rule in the notes box below. Short version for the route, about 20 minutes: steps 1, 2 and 3.',
     steps:[
       'Write a realistic long message of about 15 lines, such as a customer complaint. Include a name, an address, an Aadhaar number written in groups of four (4321 5678 9012) and a mobile number, spread over different lines. Use made-up details. Print it.',
       'Cut it into pieces in three ways: every five lines, at every full stop, and at every blank line or paragraph. Use scissors.',
@@ -1096,7 +1093,7 @@ window.PART1 = [
   ]
 },
 {
-  id:'ch4', num:4, part:1, curriculumTier:'core', phase:1, prerequisites:['ch3'], nextUnits:['ch5','ch6'], minutes:20, labs:[],
+  id:'ch4', num:4, part:1, curriculumTier:'core', phase:1, prerequisites:['ch3'], nextUnits:['ch5','ch6'], minutes:35, labs:[],
   title:'Keyword search: matching words, and where it fails',
   concept:'The first way to find the right chunk is to match the words in the question. You’ll run keyword search by hand on your own chunks, see exactly where it fails, and meet the one kind of question where it wins.',
   plan:{
@@ -1118,7 +1115,7 @@ window.PART1 = [
   capstone:{
     title:'Write the pattern rules, and score them by hand',
     brief:'The pattern checker is the first and cheapest part of the tool. It looks for details that always have the same shape, such as a PAN. In this chapter you played the search engine yourself, matching words by hand and seeing where that breaks. Now you’ll write the pattern checker’s rules in plain words, apply them by hand to your answer key, and record exactly where they fail.',
-    where:'Written work, with no code yet. You apply the rules by hand, just as you did in the chapter. In Chapter 5 you’ll turn them into code.',
+    where:'Written work, with no code yet. You apply the rules by hand, just as you did in the chapter. In Chapter 5 you’ll turn them into code. Short version for the route, about 20 minutes: steps 1, 3 and 4.',
     steps:[
       'Open the table of the eleven kinds of ID on the project page. For each kind, write a rule in plain words that someone could apply without thinking. For example: “A PAN is five capital letters, then four digits, then one capital letter.”',
       'Add to each rule one thing it must not match. For example: “A PIN code is six digits, but a six-digit number straight after the word ‘account’ is not a PIN code.”',
@@ -1209,7 +1206,7 @@ window.PART1 = [
 },
 
 {
-  id:'ch5', num:5, part:1, curriculumTier:'core', phase:1, prerequisites:['ch4'], nextUnits:['ch6','ch7','ch12'], minutes:25, labs:['meaningmap'],
+  id:'ch5', num:5, part:1, curriculumTier:'core', phase:1, prerequisites:['ch4'], nextUnits:['ch6','ch7','ch12'], minutes:45, labs:['meaningmap'],
   title:'Embeddings: searching by meaning',
   concept:'An embedding turns text into a list of numbers that places it on a map of meanings. Texts that mean similar things get similar numbers, even when they share no words. You’ll build this in code and use it on the questions that keyword search got wrong.',
   plan:{
@@ -1232,7 +1229,7 @@ window.PART1 = [
   capstone:{
     title:'Turn the rules into code, and compare them with finding by meaning',
     brief:'So far your rules are written on paper. In this chapter you learned that a computer can compare the meaning of sentences, not just their words, by turning them into lists of numbers called embeddings. Now you’ll turn your pattern rules into code. Then you’ll use meaning to find the sentences the rules can’t, and compare the two approaches on your answer key.',
-    where:'Your notebook for this chapter, for the code and the comparison, next to your hand-scored results from Chapter 4. Write up the comparison in the notes box below.',
+    where:'Your notebook for this chapter, for the code and the comparison, next to your hand-scored results from Chapter 4. Write up the comparison in the notes box below. Short version for the route, about 20 minutes: steps 1 and 2.',
     steps:[
       'In your notebook for this chapter, turn your plain-word rules for PAN, Aadhaar, mobile number and email into code. Each one is a short pattern. Run them over the twelve rows of the answer key and print what each finds.',
       'Score the code. In how many of the twelve rows did it give exactly the right answer? Which rows did it miss or get wrong? Compare this with your by-hand result from Chapter 4. Are they the same?',
@@ -1345,7 +1342,7 @@ window.PART1 = [
   capstone:{
     title:'Build the scoreboard, and write a ship-or-not note',
     brief:'Until now you’ve judged the tool by looking at it. Now you’ll give it a number. In this chapter you learned that a search can fail in two ways: it can miss something that was there, or return something that wasn’t. For Bharat Privacy Guard, a missed detail is a leak, and a false alarm is an annoyance. Here you’ll measure both, for each kind of ID and each kind of writing, and decide whether this version is good enough to use.',
-    where:'Pen and paper for the thinking, plus the notebook for the measurements. Write the note itself in the notes box below.',
+    where:'Pen and paper for the thinking, plus the notebook for the measurements. Write the note itself in the notes box below. Short version for the route, about 20 minutes: steps 1, 2 and 3.',
     steps:[
       'Grow the answer key to version 2, with about 30 rows spread evenly across English, Hindi and Hinglish. Include at least five tricky rows from the list on the project page. Save it as <code>evals/answer-key-v2.csv</code>.',
       'Run the pattern checker from Chapter 5 on all 30 rows. For every item that should be found, mark it found or missed. For every item the tool reported, mark it correct or a false alarm.',
@@ -1463,7 +1460,7 @@ window.PART1 = [
   capstone:{
     title:'Write the findings page for version 0',
     brief:'You now have a first working version, which this course calls version 0, and a list of ways it fails. This capstone is not a build. It is the page you would want in front of you the next time someone demonstrates a privacy product and asks you to approve it. In this chapter you learned the standard parts of a system that answers from documents, and where each part can fail without any error appearing. Here you describe what you built in the same way.',
-    where:'Written only. This capstone is not a build. Use the notebook for the numbers, and write the page in the notes box below.',
+    where:'Written only. This capstone is not a build. Use the notebook for the numbers, and write the page in the notes box below. Short version for the route, about 20 minutes: steps 1, 3 and 4.',
     steps:[
       'Draw the tool as boxes and arrows on one page: text in, pattern checker, name-and-place finder, context judge, rule-keeper, safe text out. Mark which boxes exist today.',
       'Under each box that exists, write what can go wrong without any error message appearing. For example: “A number split by a line break is silently missed.”',
@@ -1498,7 +1495,7 @@ window.PART1 = [
        ph:'1. … 2. … (star the silent failures)',
        after:'The steps: split into chunks → create embeddings → store them → embed the question → find the nearest chunks → send them with the question → generate the answer → show it with its sources. Almost every step can fail silently. Chunking can separate a rule from its exception. Search returns a top result even when your documents have no answer. The model writes fluently from an irrelevant chunk. None of these produce an error. The system does not crash; it just becomes wrong while every component reports success.'}
     ],
-    ['q','I114','I116'],
+    ['q','I116'],
     ['h','Mark where it fails'],
     ['p','That last point is the heart of this chapter. A normal program fails loudly, with a red error. A RAG system usually fails politely, with a smooth and confident answer that is wrong. So the best habit you can build is to know where each failure hides.'],
     ['do','Draw the pipeline and mark the failures',[

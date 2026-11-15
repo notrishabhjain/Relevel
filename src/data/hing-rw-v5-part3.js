@@ -107,12 +107,12 @@ Object.assign(window.HING = window.HING || {}, {
     'Dekhiye ki yeh judge kaise design kiya gaya hai. Woh sirf ek chhoti cheez grade karta hai. Jis claim par use aitraaz hai, use quote karna padta hai. Aur use known biases ko ignore karne ko kaha gaya hai. Jo judge “quality ko 1 se 10 tak rate karo” jaisa kaam kare, woh aise numbers deta hai jin par aap kuch kar nahi sakte.',
   'Measure agreement':
     'Agreement naapiye',
-  'So how do you check a judge? You measure <strong>agreement</strong>. Grade fifty answers yourself, have the judge grade the same fifty, and count how often you agree. If agreement is low, the judge’s scores aren’t reliable.':
-    'Toh judge ko check kaise karein? Aap <strong>agreement</strong> naapte hain. Pachaas jawaab khud grade kijiye, judge se wahi pachaas grade karwaiye, aur ginti kijiye ki kitni baar aap dono sehmat hue. Agar agreement kam hai, toh judge ke scores reliable nahi hain.',
+  'So how do you check a judge? You measure <strong>agreement</strong>. Grade twenty answers yourself, have the judge grade the same twenty, and count how often you agree. If agreement is low, the judge’s scores aren’t reliable.':
+    'Toh judge ko check kaise karein? Aap <strong>agreement</strong> naapte hain. Bees jawaab khud grade kijiye, judge se wahi bees grade karwaiye, aur ginti kijiye ki kitni baar aap dono sehmat hue. Agar agreement kam hai, toh judge ke scores reliable nahi hain.',
   'A fraction, like 7/10':
     'Ek fraction, jaise 7/10',
-  'Predict: you write a judge prompt, grade fifty answers by hand, and have the judge grade the same fifty. How often will it agree with you on the first attempt?':
-    'Andaaza lagaiye: aap ek judge prompt likhte hain, pachaas jawaab haath se grade karte hain, aur judge se wahi pachaas grade karwate hain. Pehli koshish mein woh kitni baar aapse sehmat hoga?',
+  'Predict: you write a judge prompt, grade twenty answers by hand, and have the judge grade the same twenty. How often will it agree with you on the first attempt?':
+    'Andaaza lagaiye: aap ek judge prompt likhte hain, bees jawaab haath se grade karte hain, aur judge se wahi bees grade karwate hain. Pehli koshish mein woh kitni baar aapse sehmat hoga?',
   'Six or seven out of ten is normal for a first attempt. The pattern of disagreements matters more than the number. If they cluster, for example the judge marks every hedged answer as correct, you have found something you can fix. If they are scattered with no pattern, your own definition of a good answer is probably unclear, and changing the judge prompt will not help.':
     'Pehli koshish mein das mein se chhe ya saat normal hain. Number se zyada zaroori hai disagreements ka pattern. Agar woh ek jagah jama hain, jaise judge har hedged jawaab ko correct maan leta hai, toh aapko kuch aisa mila hai jo aap theek kar sakte hain. Agar woh bikhre hue hain aur koi pattern nahi hai, toh shayad achhe jawaab ki aapki apni definition saaf nahi hai, aur judge prompt badalne se kuch nahi hoga.',
   'So check whether disagreements are clustered or scattered. That tells you whether to fix the judge or your own definition.':
@@ -157,8 +157,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek sawaal ke liye woh marking rules likhiye jo ek dhyaan se kaam karne wala insaan use karega: “Kya cleaned text safe hai aur ab bhi padhne laayak hai?” Saaf likhiye ki safe ka matlab kya hai (har personal detail hata di gayi ya mask kar di gayi) aur padhne laayak ka matlab kya hai (sentence ka matlab ab bhi banta hai).',
   'Run the free checks first. Does any text shaped like a PAN or an Aadhaar number still appear in the cleaned text? Does the text still have its main words? Count how many outputs fail these checks without needing a model.':
     'Pehle free checks chalaiye. Kya cleaned text mein ab bhi PAN ya Aadhaar number jaisa dikhne wala koi text aata hai? Kya text mein ab bhi uske main words hain? Ginti kijiye ki kitne outputs yeh checks bina kisi model ke fail kar dete hain.',
-  'Build the model-based marker from your rules and let it mark fifty cleaned outputs. Mark the same fifty yourself, by hand.':
-    'Apne rules se model-based marker banaiye aur use pachaas cleaned outputs mark karne dijiye. Wahi pachaas khud haath se mark kijiye.',
+  'Build the model-based marker from your rules and let it mark twenty cleaned outputs. Mark the same twenty yourself, by hand.':
+    'Apne rules se model-based marker banaiye aur use bees cleaned outputs mark karne dijiye. Wahi bees khud haath se mark kijiye.',
   'Calculate how often the marker agrees with you. Look at the disagreements: is the marker too strict, too lenient, or both?':
     'Calculate kijiye ki marker kitni baar aapse sehmat hota hai. Disagreements dekhiye: kya marker zyada strict hai, zyada lenient hai, ya dono?',
   'Test it for a bias towards length: take ten outputs and make each one twice as long without changing its meaning. Does the mark change?':
@@ -169,8 +169,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Aapke marking rules.',
   'The number of outputs that failed the free checks.':
     'Un outputs ki ginti jo free checks mein fail hue.',
-  'The agreement between the marker and you on the same fifty outputs.':
-    'Wahi pachaas outputs par marker aur aapke beech ka agreement.',
+  'The agreement between the marker and you on the same twenty outputs.':
+    'Wahi bees outputs par marker aur aapke beech ka agreement.',
   'The result of the length test.':
     'Length test ka result.',
   'The range of marks where you would not trust the marker.':
@@ -207,8 +207,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek tasveer se shuru karte hain. Socho ek teacher ko exam ki copies wapas milti hain, har ek par score likha hua. Scores batate hain ki kisne kharab kiya, lekin kyun, yeh nahi. Toh woh baithkar galat jawaab padhti hai, aur dekhti hai ki aadhi class ne ek hi sawaal mein ek jaisi galti ki.',
   'Error analysis works the same way, on your system’s outputs.':
     'Error analysis bhi aapke system ke outputs par bilkul aise hi kaam karta hai.',
-  'Read a hundred real outputs. For each one that went wrong, write down what went wrong in your own words. Then group the notes and name the groups. This is called <strong>error analysis</strong>, and it is the most valuable quality work in this field.':
-    'Sau asli outputs padhiye. Jo bhi galat gaya, uske baare mein apne words mein likhiye ki kya galat hua. Phir un notes ko groups mein baantiye aur groups ko naam dijiye. Isi ko <strong>error analysis</strong> kehte hain, aur is field mein yeh sabse zaroori quality kaam hai.',
+  'Read thirty real outputs. For each one that went wrong, write down what went wrong in your own words. Then group the notes and name the groups. This is called <strong>error analysis</strong>, and it is the most valuable quality work in this field.':
+    'Tees asli outputs padhiye. Jo bhi galat gaya, uske baare mein apne words mein likhiye ki kya galat hua. Phir un notes ko groups mein baantiye aur groups ko naam dijiye. Isi ko <strong>error analysis</strong> kehte hain, aur is field mein yeh sabse zaroori quality kaam hai.',
   'Let’s try a small version right now.':
     'Chaliye abhi iska ek chhota version try karte hain.',
   'Do a small version now. Take ten real outputs from something you own or use. For each one, write one sentence about what went wrong, or “fine”. Then group the sentences and name the groups. Write the groups and their counts here.':
@@ -241,14 +241,14 @@ Object.assign(window.HING = window.HING || {}, {
     'Chaliye sab jodte hain. Asli failures ko apne words mein padhna, unhe group karna aur ginna aapko batata hai ki pehle kya theek karna hai. Sabse bade groups phir test cases ban jaate hain, toh agla round ek mazboot answer key se shuru hota hai.',
   'Next, you’ll look at cost modelling: what an AI feature really costs to run.':
     'Agle chapter mein aap cost modelling dekhenge: ek AI feature chalane mein asal mein kitna kharch aata hai.',
-  'Read a hundred real outputs, and name the ways the tool fails':
-    'Sau asli outputs padhiye, aur naam dijiye ki tool kin tareekon se fail hota hai',
+  'Read a thirty real outputs, and name the ways the tool fails':
+    'Tees asli outputs padhiye, aur naam dijiye ki tool kin tareekon se fail hota hai',
   'A scoreboard says how many mistakes the tool makes. It doesn’t say why. In this chapter you learned to read real failures by hand, describe them in your own words, and only then group and count them. Now you’ll do that for Bharat Privacy Guard, and use the result to grow the answer key.':
     'Ek scoreboard batata hai ki tool kitni galtiyan karta hai. Woh yeh nahi batata ki kyun. Is chapter mein aapne seekha ki asli failures ko haath se padhna hai, unhe apne words mein describe karna hai, aur uske baad hi group karke ginna hai. Ab aap yahi Bharat Privacy Guard ke liye karenge, aur result se answer key ko badhayenge.',
-  'Written only. No code and no notebook. Work on paper or in a spreadsheet.':
-    'Sirf likhna hai. Code nahi, notebook nahi. Paper par ya spreadsheet mein kaam kijiye.',
-  'Collect a hundred outputs from the tool. Use sentences you or your interviewees wrote (made up, or with every real detail changed), not only the ones you already know it handles.':
-    'Tool se sau outputs collect kijiye. Aise sentences use kijiye jo aapne ya aapke interviewees ne likhe (banaye hue, ya har asli detail badal kar), sirf woh nahi jinhe tool pehle se sambhal leta hai.',
+  'Written only. No code and no notebook. Work on paper or in a spreadsheet. Short version for the route, about 20 minutes: steps 1, 2, 3 and 6.':
+    'Sirf likhna hai. Code nahi, notebook nahi. Paper par ya spreadsheet mein kaam kijiye. Route ke liye chhota version, lagbhag 20 minute: step 1, 2, 3 aur 6.',
+  'Collect thirty outputs from the tool. Use sentences you or your interviewees wrote (made up, or with every real detail changed), not only the ones you already know it handles.':
+    'Tool se tees outputs collect kijiye. Aise sentences use kijiye jo aapne ya aapke interviewees ne likhe (banaye hue, ya har asli detail badal kar), sirf woh nahi jinhe tool pehle se sambhal leta hai.',
   'Read each output. Whenever the tool got something wrong, write one line in your own words about what went wrong. Do not group them yet, because grouping too early hides surprises.':
     'Har output padhiye. Jab bhi tool ne kuch galat kiya, apne words mein ek line likhiye ki kya galat hua. Abhi group mat kijiye, kyunki bahut jaldi group karne se surprises chhup jaate hain.',
   'Now group your notes. Give each group a name, for example “number split by a space”, “name in Devanagari missed” or “order number mistaken for Aadhaar”. Count each group.':
@@ -259,8 +259,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Sabse upar wale group ke liye likhiye ki kya badalna padega: rules, model ke instructions, answer ka format, ya aisa kuch jo AI ki problem hi nahi hai.',
   'Add the top two groups as new rows to the answer key. Save it as <code>evals/answer-key-v3.csv</code>, with about 50 rows.':
     'Sabse upar ke do groups ko answer key mein nayi rows ki tarah jodiye. Use <code>evals/answer-key-v3.csv</code> ke naam se save kijiye, lagbhag 50 rows ke saath.',
-  'A hundred outputs with a note on every one that went wrong.':
-    'Sau outputs, aur har galat output par ek note.',
+  'Thirty outputs with a note on every one that went wrong.':
+    'Tees outputs, aur har galat output par ek note.',
   'A named, counted and ranked list of failure groups.':
     'Failure groups ki ek naam wali, ginti wali aur ranked list.',
   'A note on what would need to change for the top group.':
@@ -707,8 +707,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Aisa rule likhiye ki outside provider ko tool kya bhej sakta hai',
   'Bharat Privacy Guard exists to protect people’s data, so it must not leak data itself. When the context judge calls an outside AI model, the text it sends is a risk. This chapter gave you three questions that settle whether a document may be sent. The answer must come from what the provider actually says, not from what everyone assumes. Now you’ll write that rule for your tool.':
     'Bharat Privacy Guard logon ka data bachane ke liye bana hai, toh woh khud leak nahi kar sakta. Context judge jab outside AI model ko call karta hai, toh bheja gaya text ek risk hai. Is chapter ne aapko woh teen sawaal diye jo tay karte hain ki koi document bheja ja sakta hai ya nahi. Jawaab is se aana chahiye ki provider asal mein kya kehta hai, is se nahi ki sab kya maan lete hain. Ab aap apne tool ke liye woh rule likhenge.',
-  'Written, no code. Use the three questions from the chapter. Write the one-page rule in the notes box below.':
-    'Likha hua, koi code nahi. Chapter ke teen sawaal use kijiye. Ek page ka rule neeche notes box mein likhiye.',
+  'Written, no code. Use the three questions from the chapter. Write the one-page rule in the notes box below. Short version for the route, about 20 minutes: steps 1, 2 and 6.':
+    'Likha hua, koi code nahi. Chapter ke teen sawaal use kijiye. Ek page ka rule neeche notes box mein likhiye. Route ke liye chhota version, lagbhag 20 minute: step 1, 2 aur 6.',
   'List six to ten kinds of text the tool might send to the outside model: for example a sentence with no personal detail, a sentence with a name, a sentence with an Aadhaar number, a cleaned sentence with the details replaced by tags, and a whole chat history.':
     '6 se 10 tarah ke text ki list banaiye jo tool outside model ko bhej sakta hai: jaise bina kisi personal detail wala sentence, naam wala sentence, Aadhaar number wala sentence, ek saaf kiya hua sentence jisme details ki jagah tags laga diye gaye hon, aur poori chat history.',
   'Take each kind through the three questions from the chapter, and mark it: may send, never send, or ask first.':
@@ -919,8 +919,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Bharat Privacy Guard ka system card likhiye',
   'Almost every compliance question turns out to be a product question. A system card is the document that answers those questions for one system. In this chapter you saw that the same system can be low risk for one use and high risk for another. You also saw which section of a governance document is hardest to fake, and what human oversight must include before it counts as oversight. Now you write the system card for your own tool.':
     'Lagbhag har compliance sawaal aakhir mein ek product sawaal nikalta hai. System card woh document hai jo ek system ke liye un sawaalon ka jawaab deta hai. Is chapter mein aapne dekha ki ek hi system ek use ke liye low risk aur doosre ke liye high risk ho sakta hai. Yeh bhi dekha ki governance document ka kaun sa section nakli banana sabse mushkil hai, aur oversight mein kya hona zaroori hai. Ab aap apne tool ka system card likhenge.',
-  'Written only. Gather the numbers and notes from earlier chapters, then write the card in the notes box below.':
-    'Sirf likhna hai. Pehle ke chapters se numbers aur notes ikattha kijiye, phir card neeche notes box mein likhiye.',
+  'Written only. Gather the numbers and notes from earlier chapters, then write the card in the notes box below. Short version for the route, about 20 minutes: steps 2, 3 and 4.':
+    'Sirf likhna hai. Pehle ke chapters se numbers aur notes ikattha kijiye, phir card neeche notes box mein likhiye. Route ke liye chhota version, lagbhag 20 minute: step 2, 3 aur 4.',
   'Give the tool a risk level and say why. Ask: what could it affect, how badly, and who bears the harm? A tool that decides what is hidden before data goes to an AI is not low risk if it can miss an Aadhaar number.':
     'Tool ko ek risk level dijiye aur wajah likhiye. Poochhiye: yeh kis par asar daal sakta hai, kitna bura, aur nuksaan kiske sir aata hai? Jo tool tay karta hai ki AI ko data jaane se pehle kya chhupaana hai, woh low risk nahi hai agar woh ek Aadhaar number miss kar sakta hai.',
   'Write the card with five headings: what it is for; what data it handles; what it can do, with its measured quality from your scoreboard; the failures you know about; and what it must never be used for.':
@@ -1147,8 +1147,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek aisa requirements document likhiye jo model badalne par bhi tike',
   'An AI requirements document describes a measured range of quality, and what happens outside that range. In this chapter you saw what replaces pass or fail in an AI specification. You also saw what to rerun when a provider retires your model, and why a kill switch is different from a rollback. Now you write the requirements for Bharat Privacy Guard and rehearse the day its model changes.':
     'Ek AI requirements document quality ki ek measured range batata hai, aur yeh bhi ki us range ke bahar kya hota hai. Is chapter mein aapne dekha ki AI specification mein pass ya fail ki jagah kya aata hai. Yeh bhi dekha ki jab provider aapka model retire kare toh kya dobara chalana hai, aur kill switch rollback se alag kyun hai. Ab aap Bharat Privacy Guard ke requirements likhenge aur us din ka rehearsal karenge jab uska model badlega.',
-  'Written only. Collect the notes and numbers named in the chapter, then write the document in the notes box below.':
-    'Sirf likhna hai. Chapter mein bataye gaye notes aur numbers ikattha kijiye, phir document neeche notes box mein likhiye.',
+  'Written only. Collect the notes and numbers named in the chapter, then write the document in the notes box below. Short version for the route, about 20 minutes: steps 2, 4 and 6.':
+    'Sirf likhna hai. Chapter mein bataye gaye notes aur numbers ikattha kijiye, phir document neeche notes box mein likhiye. Route ke liye chhota version, lagbhag 20 minute: step 2, 4 aur 6.',
   'Draw the whole system from memory first, without looking at your earlier diagrams. Then compare with your records and mark what you had forgotten.':
     'Pehle poora system yaad se draw kijiye, apne purane diagrams dekhe bina. Phir apne records se compare kijiye aur mark kijiye ki aap kya bhool gaye the.',
   'Write the requirements document. In the quality section use ranges, not promises, for example: “finds at least 95 of every 100 Aadhaar numbers on the answer key, give or take 3.” For each failure, write what the user sees.':

@@ -549,8 +549,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Pehli wajah seedhi hai. Ek badi request ki cost badi hi hoti hai, har query par, har user ke liye. Retrieval har request ko chhota rakhta hai, aur isse cost control mein rehti hai.',
   'Reason 2: the model does not use everything equally':
     'Wajah 2: model har cheez ko barabar use nahi karta',
-  'The second reason is less obvious. A model’s ability to use what you sent drops well before the limit. A fact near the start of the request is found reliably. The same fact in the middle of a long request is missed much more often.':
-    'Doosri wajah thodi kam dikhti hai. Aapne jo bheja, model use kitna kaam mein le paata hai, yeh limit aane se bahut pehle girne lagta hai. Request ki shuruaat ke paas rakha fact bharose ke saath mil jaata hai. Wahi fact lambi request ke beech mein hone par kaafi zyada baar chhoot jaata hai.',
+  'The second reason is less obvious. A model’s ability to use what you sent drops well before the limit. A fact near the start of the request is usually found. The same fact in the middle of a long request can be missed more often, more so as the request grows or the question needs several facts.':
+    'Doosri wajah thodi kam dikhti hai. Aapne jo bheja, model use kitna kaam mein le paata hai, yeh limit aane se bahut pehle girne lagta hai. Request ki shuruaat ke paas rakha fact aam taur par mil jaata hai. Wahi fact lambi request ke beech mein hone par zyada baar chhoot sakta hai, aur request badhne par ya sawaal mein kai facts chahiye hone par aur bhi zyada.',
   'The worrying part is that there is no error. The model just gives an answer, and the answer is wrong. You can see how this works in the tool below.':
     'Chinta ki baat yeh hai ki koi error nahi aata. Model bas ek jawaab de deta hai, aur woh jawaab galat hota hai. Yeh kaise kaam karta hai, neeche wale tool mein dekh sakte hain.',
   'Now you’ll test it on a real model. You’ll hide one fact inside a long text, at three different depths, and see whether the model finds it.':
@@ -737,8 +737,8 @@ Object.assign(window.HING = window.HING || {}, {
     '<strong>Reasoning evidence paida nahi karti.</strong> Reasoning model ko galat document dijiye, toh woh us galat document se hi dhyaan se aur lambe tareeke se reason karega. Result ek aisa galat jawaab hota hai jo sasta model dene wale jawaab se zyada convincing lagta hai.',
   '<strong>Waiting time is a product problem.</strong> Reasoning takes seconds, sometimes tens of seconds. In a chat screen, that delay can be a problem however good the answer is.':
     '<strong>Waiting time ek product problem hai.</strong> Reasoning mein seconds lagte hain, kabhi-kabhi dus-dus seconds. Chat screen par yeh delay ek problem ban sakta hai, jawaab chahe kitna bhi achha ho.',
-  '<strong>It is not all or nothing.</strong> Most providers let you choose how much reasoning to use. So decide for each type of request, not once for the whole product.':
-    '<strong>Yeh sab ya kuch nahi wala maamla nahi hai.</strong> Zyadatar providers aapko chunne dete hain ki kitni reasoning use karni hai. Isliye har type ki request ke liye alag decide kijiye, poore product ke liye ek baar nahi.',
+  '<strong>It is not all or nothing.</strong> Decide for each type of request how much reasoning to use, not once for the whole product.':
+    '<strong>Yeh sab ya kuch nahi wala maamla nahi hai.</strong> Har type ki request ke liye alag decide kijiye ki kitni reasoning use karni hai, poore product ke liye ek baar nahi.',
   'The first caution is the easiest to underrate, so let’s see it happen.':
     'Pehli savdhaani ko log sabse aasaani se kam aankte hain, isliye ise hote hue dekhte hain.',
   'Give a reasoning model the wrong evidence':

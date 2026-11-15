@@ -87,8 +87,8 @@ Object.assign(window.HING = window.HING || {}, {
     'English, Hindi aur Hinglish ki cost compare kijiye',
   'This is your first real step on the project, and it still needs no account, no key and no install. In this chapter you used three tools on this page: one that cuts text into tokens, one that shows a chat getting more expensive, and a temperature slider. Models charge by the token. So the first question for Bharat Privacy Guard is a simple one: does the same message cost more in Hindi and Hinglish than in English?':
     'Project par yeh aapka pehla asli kadam hai, aur ismein abhi bhi na account chahiye, na key, na koi install. Is chapter mein aapne is page ke teen tools use kiye: ek jo text ko tokens mein todta hai, ek jo dikhata hai ki chat kaise mehngi hoti jaati hai, aur ek temperature slider. Models har token ka paisa lete hain. Isliye Bharat Privacy Guard ke liye pehla sawaal seedha sa hai: kya wahi message Hindi aur Hinglish mein English se zyada mehnga padta hai?',
-  'Just the tools on this page. No notebook, no account. Write your numbers in the notes box below.':
-    'Bas is page ke tools. Na notebook, na account. Apne numbers neeche wale notes box mein likhiye.',
+  'Just the tools on this page. No notebook, no account. Write your numbers in the notes box below. Short version for the route, about 20 minutes: steps 1, 2 and 3.':
+    'Bas is page ke tools. Na notebook, na account. Apne numbers neeche wale notes box mein likhiye. Route ke liye chhota version, lagbhag 20 minute: step 1, 2 aur 3.',
   'Open the starter sentences on the project page and pick sentences 1, 2 and 3. They’re the same kind of message, written in English, Hindi and Hinglish.':
     'Project page par starter sentences kholiye aur sentence 1, 2 aur 3 chuniye. Teeno ek hi tarah ke message hain, jo English, Hindi aur Hinglish mein likhe gaye hain.',
   'Paste each one into the token tool on this page and note its token count. Make a small table with three rows (English, Hindi, Hinglish) and two columns (characters, tokens).':
@@ -827,8 +827,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Poore tool ko chhote tasks mein todiye',
   '“Find and hide personal details” sounds like one job. It’s really several different jobs, and each one needs a different kind of test. In this chapter you learned the five task types (sorting into categories, picking out pieces, summarising, rewriting and writing something new) and which of them a computer can mark automatically. Now you’ll break Bharat Privacy Guard down in that way.':
     '“Personal details dhoondho aur hide karo” ek job lagti hai. Asal mein yeh kai alag jobs hain, aur har ek ko alag tarah ka test chahiye. Is chapter mein aapne paanch task types seekhe (categories mein sort karna, pieces nikaalna, summarise karna, rewrite karna aur kuch naya likhna) aur yeh bhi ki inme se kaun se ko computer automatically mark kar sakta hai. Ab aap Bharat Privacy Guard ko isi tareeke se todenge.',
-  'Written only: pen and paper, or a document. No new code. You can look at your answer key for examples.':
-    'Sirf likhna hai: pen aur paper par, ya ek document mein. Koi naya code nahi. Examples ke liye aap apni answer key dekh sakte hain.',
+  'Written only: pen and paper, or a document. No new code. You can look at your answer key for examples. Short version for the route, about 20 minutes: steps 1, 3 and 4.':
+    'Sirf likhna hai: pen aur paper par, ya ek document mein. Koi naya code nahi. Examples ke liye aap apni answer key dekh sakte hain. Route ke liye chhota version, lagbhag 20 minute: step 1, 3 aur 4.',
   'Write the request in the plainest words: “Find and hide personal details in English, Hindi and Hinglish text before it reaches an AI model.” Do not tidy it up.':
     'Request ko sabse saade words mein likhiye: “Personal details ko English, Hindi aur Hinglish text mein dhoondhna aur hide karna, uske AI model tak pahunchne se pehle.” Use saaf-suthra mat banaiye.',
   'Write one sentence about what a developer using the tool wants to be different in their week.':
@@ -1169,8 +1169,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Lambe text ko kaise kaatein ki koi ID beech se na toote',
   'People will paste long messages and whole documents into the tool. A long text has to be cut into pieces before it is checked. A bad cut can split a number or a name in the middle, so that no piece contains the whole thing. In this chapter you learned why text must be cut, what a cut loses, and that no piece size suits every document. Here you work out a cutting rule for the project, by hand.':
     'Log tool mein lambe messages aur poore documents paste karenge. Lambe text ko check hone se pehle pieces mein kaatna padta hai. Ek kharab cut kisi number ya naam ko beech mein tod sakta hai, taaki kisi bhi piece mein woh poora na ho. Is chapter mein aapne seekha ki text ko kyun kaatna padta hai, cut mein kya khota hai, aur koi ek piece size har document ke liye sahi nahi hota. Ab aap project ke liye ek cutting rule haath se nikaaliye.',
-  'Written, no code: pen, paper and scissors, as in the chapter. Write the rule in the notes box below.':
-    'Likha hua kaam, koi code nahi: pen, paper aur kainchi, jaise chapter mein. Rule neeche notes box mein likhiye.',
+  'Written, no code: pen, paper and scissors, as in the chapter. Write the rule in the notes box below. Short version for the route, about 20 minutes: steps 1, 2 and 3.':
+    'Likha hua kaam, koi code nahi: pen, paper aur kainchi, jaise chapter mein. Rule neeche notes box mein likhiye. Route ke liye chhota version, lagbhag 20 minute: step 1, 2 aur 3.',
   'Write a realistic long message of about 15 lines, such as a customer complaint. Include a name, an address, an Aadhaar number written in groups of four (4321 5678 9012) and a mobile number, spread over different lines. Use made-up details. Print it.':
     'Lagbhag 15 lines ka ek realistic lamba message likhiye, jaise ek customer complaint. Usmein ek naam, ek address, chaar-chaar ke groups mein likha Aadhaar number (4321 5678 9012) aur ek mobile number rakhiye, alag-alag lines mein bikhre hue. Made-up details use kijiye. Ise print kijiye.',
   'Cut it into pieces in three ways: every five lines, at every full stop, and at every blank line or paragraph. Use scissors.':
@@ -1323,8 +1323,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Pattern rules likhiye, aur unhe haath se score kijiye',
   'The pattern checker is the first and cheapest part of the tool. It looks for details that always have the same shape, such as a PAN. In this chapter you played the search engine yourself, matching words by hand and seeing where that breaks. Now you’ll write the pattern checker’s rules in plain words, apply them by hand to your answer key, and record exactly where they fail.':
     'Pattern checker tool ka pehla aur sabse sasta hissa hai. Woh un details ko dhoondhta hai jinki shape hamesha ek jaisi rehti hai, jaise PAN. Is chapter mein aapne khud search engine ban kar words haath se match kiye aur dekha ki woh kahan toot-ta hai. Ab aap pattern checker ke rules saade words mein likhenge, unhe apne answer key par haath se lagayenge, aur note karenge ki woh bilkul kahan fail hote hain.',
-  'Written work, with no code yet. You apply the rules by hand, just as you did in the chapter. In Chapter 5 you’ll turn them into code.':
-    'Yeh likhne ka kaam hai, abhi koi code nahi. Rules aap haath se lagayenge, bilkul waise jaise chapter mein kiya tha. Chapter 5 mein aap unhe code mein badlenge.',
+  'Written work, with no code yet. You apply the rules by hand, just as you did in the chapter. In Chapter 5 you’ll turn them into code. Short version for the route, about 20 minutes: steps 1, 3 and 4.':
+    'Yeh likhne ka kaam hai, abhi koi code nahi. Rules aap haath se lagayenge, bilkul waise jaise chapter mein kiya tha. Chapter 5 mein aap unhe code mein badlenge. Route ke liye chhota version, lagbhag 20 minute: step 1, 3 aur 4.',
   'Open the table of the eleven kinds of ID on the project page. For each kind, write a rule in plain words that someone could apply without thinking. For example: “A PAN is five capital letters, then four digits, then one capital letter.”':
     'Project page par gyaarah tarah ki ID wali table kholiye. Har tarah ke liye saade words mein ek rule likhiye jise koi bina soche laga sake. Jaise: “A PAN is five capital letters, then four digits, then one capital letter.”',
   'Add to each rule one thing it must not match. For example: “A PIN code is six digits, but a six-digit number straight after the word ‘account’ is not a PIN code.”':
