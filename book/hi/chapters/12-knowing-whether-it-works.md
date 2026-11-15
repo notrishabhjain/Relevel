@@ -28,7 +28,9 @@ Pichhli shaam Neha ne, jisne paper test mein madad ki thi, paanch messages par c
 
 ## Sirf ehsaas kaafi kyun nahi hai
 
-Kuch outputs padhna aur jo sahi lage use chun lena, kisi system ko judge karne ka sabse natural tareeka hai. Lekin yeh sabse kam bharose ka tareeka bhi hai. Jo outputs aap padhte hain, woh bas wahi hain jo padhe gaye. Jo demonstration achha chala, woh sirf yeh dikhata hai ki tool kisi achhe din par kya kar sakta hai. Aur jo jawaab lamba hota hai aur zyada saavdhaani se likha lagta hai, woh zyada achha lagta hai, chaahe woh sach mein achha ho ya na ho.
+Kuch outputs padhna aur jo sahi lage use chun lena, kisi system ko judge karne ka sabse natural tareeka hai. Lekin yeh sabse kam bharose ka tareeka bhi hai. Jo outputs aap padhte hain, woh bas wahi hain jo padhe gaye.
+
+Jo demonstration achha chala, woh sirf yeh dikhata hai ki tool kisi achhe din par kya kar sakta hai. Aur jo jawaab lamba hota hai aur zyada saavdhaani se likha lagta hai, woh zyada achha lagta hai, chaahe woh sach mein achha ho ya na ho.
 
 Iska ilaaj hai *test set*. Yeh asli ya asli jaise examples ka ek collection hota hai, jisme har example ka sahi jawaab pehle se likha hota hai.
 
@@ -40,7 +42,9 @@ Iska ilaaj hai *test set*. Yeh asli ya asli jaise examples ka ek collection hota
 
 Thursday ko Anaya aur Farah ne 10 sentences likhe. Unhone ye asli messages ki shakl mein khud banaye, aur in 10 mein main cases aa gaye. 3 English mein the, 1 Hindi script mein, 3 Hinglish mein, aur 3 mushkil the.
 
-Ek jhalak dekhiye. Ek seedha message tha jisme ek naam aur ek mobile number tha. Ek Hinglish message tha jisme Aadhaar number ke bagal mein ek mobile number tha, jo pehle se aadha chhupa hua tha. Ek Devanagari sentence tha jisme ek naam aur ek identity number tha. Ek mein pita ka naam, Gurgaon ka ek address aur ek employer tha. Ek sentence kisi ek insaan ki taraf ishaara karta tha, bina naam ya number ke. Aur ek mein kuch bhi personal nahi tha, toh tool ko use chhod dena tha.
+Ek jhalak dekhiye. Ek seedha message tha jisme ek naam aur ek mobile number tha. Ek Hinglish message tha jisme Aadhaar number ke bagal mein ek mobile number tha, jo pehle se aadha chhupa hua tha. Ek Devanagari sentence tha jisme ek naam aur ek identity number tha.
+
+Ek mein pita ka naam, Gurgaon ka ek address aur ek employer tha. Ek sentence kisi ek insaan ki taraf ishaara karta tha, bina naam ya number ke. Aur ek mein kuch bhi personal nahi tha, toh tool ko use chhod dena tha.
 
 Har sentence ke liye unhone kuch bhi chalane se pehle spreadsheet mein 6 cheezein likhin: ek number, likhne ka tareeka, sentence, kya milna chahiye, uske saath kya hona chahiye, aur ek note.
 
@@ -100,7 +104,9 @@ Ab ise guard par lagaiye. Guard messages ke andar identity numbers aur naam dhoo
 Chatbot alag tha. Uska kaam jawaab likhna tha, yaani generation. Aur use koi automatic tareeke se grade nahi kar sakta. Shayad isliye kisi ne kiya bhi nahi tha.
 
 ::: watch Ek request aksar coat pehne hue teen kaam hota hai
-"Kya AI hamara inbox sambhaal sakta hai?" ek kaam nahi hai. Yeh kam se kam teen kaam hain. Message ko type ke hisaab se classify karo. Account number extract karo. Aur ek draft reply likho. Har kaam apne tareeke se fail hota hai, aur sirf pehle do bina insaan ke naape ja sakte hain. Jis request mein ek se zyada task type ho, use todna chahiye. Darwaaze se guzarte hue Farah ne poochha ki agar woh seedha keh de ki chat sambhaal lo, toh kya hoga. Imran ne poochha ki un teen kaamon mein se tumhara matlab kaun sa hai.
+"Kya AI hamara inbox sambhaal sakta hai?" ek kaam nahi hai. Yeh kam se kam teen kaam hain. Message ko type ke hisaab se classify karo. Account number extract karo. Aur ek draft reply likho. Har kaam apne tareeke se fail hota hai, aur sirf pehle do bina insaan ke naape ja sakte hain.
+
+Jis request mein ek se zyada task type ho, use todna chahiye. Darwaaze se guzarte hue Farah ne poochha ki agar woh seedha keh de ki chat sambhaal lo, toh kya hoga. Imran ne poochha ki un teen kaamon mein se tumhara matlab kaun sa hai.
 :::
 
 ## Lakshmi ke sawaal ka jawaab

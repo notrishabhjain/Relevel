@@ -104,7 +104,9 @@ Imran asked Anaya to name three things that could make an assistant slower in a 
 
 The dashboard as it now stood had six panels: quality, safety, speed, cost, traffic and failures. Each had a measure, a source, an owner and a threshold. Some alerts would wake a person, and others would only be watched. Anaya had tried removing one panel at a time to see which incident would become harder to diagnose. Every removal made one harder, and that was the point.
 
-Imran insisted on two more habits, both borrowed from ordinary software. The first was to version every part separately: the instruction, the model, the index and the tool descriptions. Then any one of them could be rolled back by itself. The second was to show a change to a few users first, with the old version ready. That is a *canary release*, named after the old mining practice of sending a bird in first. The question to be able to answer at any time, he said, is: what exactly changed?
+Imran insisted on two more habits, both borrowed from ordinary software. The first was to version every part separately: the instruction, the model, the index and the tool descriptions. Then any one of them could be rolled back by itself.
+
+The second was to show a change to a few users first, with the old version ready. That is a *canary release*, named after the old mining practice of sending a bird in first. The question to be able to answer at any time, he said, is: what exactly changed?
 
 ## Summary
 

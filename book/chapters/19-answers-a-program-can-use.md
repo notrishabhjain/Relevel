@@ -21,7 +21,9 @@ Imran said it was a lovely paragraph. But his code needed to know whether there 
 
 ## The case: a paragraph a program cannot read
 
-Start with something you already know. When you fill in a form at a bank, every box has a name, and you can’t leave the important ones blank. That is what a program wants from a model. When the model’s output feeds another system, such as one that decides what to hide, the program needs fields: a kind, a value, a position and a decision. Each field has a name and a type, and each must always be there.
+Start with something you already know. When you fill in a form at a bank, every box has a name, and you can’t leave the important ones blank. That is what a program wants from a model.
+
+When the model’s output feeds another system, such as one that decides what to hide, the program needs fields: a kind, a value, a position and a decision. Each field has a name and a type, and each must always be there.
 
 A paragraph, however well written, has none of these. A person can find the PAN in it. A program can’t.
 

@@ -22,7 +22,9 @@ Yeh chapter us hafte ke do tests ki kahani hai. Ek test aise kaam ka tha jiska s
 
 Imran Qureshi ne sorter ka pehla version do shaamon mein likha tha. Woh ek text dekhta tha aur batata tha ki woh 4 dabbon mein se kis mein jaayega.
 
-Jo program har input ko pehle se tay categories mein se kisi ek mein daale, use *classifier* kehte hain. Bahut saara kaam ka software ek classifier hi hota hai. Ismein ek faayda hai jo machine ke zyadatar kaamon mein nahi hota. Koi bata sakta hai ki har jawaab sahi tha ya nahi. Jahan sahi jawaab hota hai, wahan galtiyan ginti ja sakti hain. Aur jab galtiyan gin sakte hain, toh system ko soch-samajh kar behtar bana sakte hain.
+Jo program har input ko pehle se tay categories mein se kisi ek mein daale, use *classifier* kehte hain. Bahut saara kaam ka software ek classifier hi hota hai. Ismein ek faayda hai jo machine ke zyadatar kaamon mein nahi hota.
+
+Koi bata sakta hai ki har jawaab sahi tha ya nahi. Jahan sahi jawaab hota hai, wahan galtiyan ginti ja sakti hain. Aur jab galtiyan gin sakte hain, toh system ko soch-samajh kar behtar bana sakte hain.
 
 Imran ne pichhle 3 hafton mein team ne jo seekha tha, woh sab lagaya tha. Instruction mein kaam ka naam tha. Usmein 2 worked examples the, jinmein se ek mushkil tha. Aur output ka format tay kar diya gaya tha.
 
@@ -40,7 +42,9 @@ Table: Sorter ka result, box ke hisaab se
 | Aadhaar | 9 | 1 |
 | Inmein se koi nahi | 6 | 4 |
 
-Dikkat sabse neeche wali row mein thi. "Inmein se koi nahi" wali 10 parchiyon mein se 4 ko sorter ne Aadhaar number bata diya tha. Woh order numbers, account numbers aur reference codes the. Un sabme 12 digits the, aur sorter ne bas shape dekhi aur wahin ruk gaya. Ek rule inmein se zyadatar look-alikes ko pakad leta. Asli Aadhaar number 0 ya 1 se shuru nahi hota, aur uska aakhri digit ek check digit hota hai jo baaki gyarah digits se nikala jaata hai.
+Dikkat sabse neeche wali row mein thi. "Inmein se koi nahi" wali 10 parchiyon mein se 4 ko sorter ne Aadhaar number bata diya tha. Woh order numbers, account numbers aur reference codes the. Un sabme 12 digits the, aur sorter ne bas shape dekhi aur wahin ruk gaya.
+
+Ek rule inmein se zyadatar look-alikes ko pakad leta. Asli Aadhaar number 0 ya 1 se shuru nahi hota, aur uska aakhri digit ek check digit hota hai jo baaki gyarah digits se nikala jaata hai.
 
 Ek galti doosri taraf bhi thi. Ek asli Aadhaar number ko "inmein se koi nahi" bata diya gaya, kyunki customer ne dash aur space galat jagah laga diye the.
 

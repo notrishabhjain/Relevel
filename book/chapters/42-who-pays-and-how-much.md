@@ -36,9 +36,13 @@ Table: User, buyer and blocker
 
 The blocker's question had been worked out the previous July, in the longest meeting of Anaya's year.
 
-Next she asked Mr. Menon what a price would be worth to him. Then she stopped, because she had been about to ask whether he would pay for it. She had read in the first month of the project why that is the wrong question: people say yes to be polite, and the answer predicts nothing. So she asked something else. What did he use today to deal with the problem, what did it cost, and who had approved the spend?
+Next she asked Mr. Menon what a price would be worth to him. Then she stopped, because she had been about to ask whether he would pay for it.
 
-He paid a vendor about thirty-five thousand rupees a month for a tool that blanked card numbers in chat logs and did nothing else. An analyst spent about a quarter of her time on a weekly sweep much like Lakshmi's, which at her pay came to about thirty thousand rupees a month. The head of compliance had signed the approval for the vendor. All of this was fact. Past spending is evidence. A future intention is not.
+She had read in the first month of the project why that is the wrong question: people say yes to be polite, and the answer predicts nothing. So she asked something else. What did he use today to deal with the problem, what did it cost, and who had approved the spend?
+
+He paid a vendor about thirty-five thousand rupees a month for a tool that blanked card numbers in chat logs and did nothing else. An analyst spent about a quarter of her time on a weekly sweep much like Lakshmi's, which at her pay came to about thirty thousand rupees a month.
+
+The head of compliance had signed the approval for the vendor. All of this was fact. Past spending is evidence. A future intention is not.
 
 ## The ceiling and the floor
 
@@ -81,7 +85,9 @@ So she rebuilt the price as a hybrid. Twenty-four thousand rupees a month would 
 
 Anaya saw that the electricity company's column changed what she could sell. A *tender* is a published request that asks suppliers to bid. The buyer there did not choose a product. It wrote the terms and took the lowest price among the bids that met them, so a feature nobody had listed counted for nothing.
 
-That changed the price. Usage pricing does not fit a fixed-price contract, because the buyer must state the total in advance and cannot accept a bill that grows with festival traffic. A hybrid plan with a large included volume came nearest, but only if the tender allowed it. She did not know whether it did, and wrote "ask" beside it. A small paid pilot, sized below the amount at which the company's rules call for a full tender, was a sensible first step. She did not know that amount either, and she did not guess it.
+That changed the price. Usage pricing does not fit a fixed-price contract, because the buyer must state the total in advance and cannot accept a bill that grows with festival traffic. A hybrid plan with a large included volume came nearest, but only if the tender allowed it.
+
+She did not know whether it did, and wrote "ask" beside it. A small paid pilot, sized below the amount at which the company's rules call for a full tender, was a sensible first step. She did not know that amount either, and she did not guess it.
 
 The audit and the data clause matched the condition Lakshmi had set in March: the cleaning happens inside the company, before anything leaves. For this buyer that was no longer a constraint to explain. It was the one part of the product the audit would not argue with.
 
@@ -104,12 +110,16 @@ She added a warning that she had put in a dozen documents by then. A flywheel th
 
 The last row of the sheet was about a risk Anaya had learned of in September. If a product runs on another company's computers or models, that company can change its prices and its quality without asking you. For an AI product, a large part of the cost of delivery is somebody else's bill. That cost sits inside the *gross margin*, which is revenue minus the direct cost of delivering the product.
 
-She couldn't remove the risk, but she could price it. Her recommendation said what would happen if the hosting price doubled. The base margin would fall from fifty-six percent to about thirty-seven, and a tested second host would take about a week to switch to. It said what she would do if a model were retired: pinned versions and the gate. And it said what she would do if a rival launched the same feature: own the workflow and the relationship.
+She couldn't remove the risk, but she could price it. Her recommendation said what would happen if the hosting price doubled. The base margin would fall from fifty-six percent to about thirty-seven, and a tested second host would take about a week to switch to.
+
+It said what she would do if a model were retired: pinned versions and the gate. And it said what she would do if a rival launched the same feature: own the workflow and the relationship.
 
 She sent Mr. Menon the page the following Thursday, with the first paragraph at the top, which she had rewritten four times.
 
 ::: example Anaya's recommendation to Mr. Menon
-I recommend a hybrid plan at ₹24,000 per month, including 100,000 messages, with ₹9,000 for each further 100,000. Your alternative costs you about ₹65,000 a month between the vendor and the analyst's time, so the price is well under the value. Our margin is 56 percent at base use and stays above 40 percent at ten times that. The biggest risk is the price of hosting. If it doubled, our base margin would fall to about 37 percent, and switching to our tested second host takes about a week.
+I recommend a hybrid plan at ₹24,000 per month, including 100,000 messages, with ₹9,000 for each further 100,000. Your alternative costs you about ₹65,000 a month between the vendor and the analyst's time, so the price is well under the value.
+
+Our margin is 56 percent at base use and stays above 40 percent at ten times that. The biggest risk is the price of hosting. If it doubled, our base margin would fall to about 37 percent, and switching to our tested second host takes about a week.
 :::
 
 ## Summary

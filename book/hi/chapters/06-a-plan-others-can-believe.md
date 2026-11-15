@@ -78,15 +78,21 @@ Companies is tarah ke sawaal ka jawaab *objectives and key results* se deti hain
 Key result ek outcome naapta hai, yaani logon ke liye kya badla. Woh output nahi naapta, yaani yeh nahi ki kya ship hua. "Privacy tool release karo" ek output hai: yeh ho sakta hai aur kuch na badle. "Kam conversations personal detail ke saath chat se nikalti hain" ek outcome hai.
 :::
 
-Anaya ne ek objective aur do key results likhe. Objective tha: Sahaj ki support chat ko export karne ke liye safe banana. Pehla key result tha ki jin conversations mein chat se nikalte waqt koi unhidden personal detail nahi bachti, unka share 91 percent se badhkar 99 percent ho jaayega. Doosra key result tha ki support agents report karenge ki 50 mein se 1 se kam chat mein tool ne woh cheez chhupayi jo unhe chahiye thi.
+Anaya ne ek objective aur do key results likhe. Objective tha: Sahaj ki support chat ko export karne ke liye safe banana. Pehla key result tha ki jin conversations mein chat se nikalte waqt koi unhidden personal detail nahi bachti, unka share 91 percent se badhkar 99 percent ho jaayega.
+
+Doosra key result tha ki support agents report karenge ki 50 mein se 1 se kam chat mein tool ne woh cheez chhupayi jo unhe chahiye thi.
 
 Key results ke saath do aur tarah ke numbers chalte hain.
 
 *Input metric* woh number hai jise team seedha hila sakti hai, aur jisse aap ummeed karte hain ki outcome hilega. Anaya ke liye yeh tha: fixed-shape numbers ka woh share jo tool ne pakda. Outcome ko aap hukum nahi de sakte, lekin input ko behtar kar sakte hain.
 
-*Guardrail metric* woh number hai jo baaki numbers ke peeche bhaagte waqt kharab nahi hona chahiye. Yeh aapko aise jeetne se rokta hai jisse nuksaan ho. Anaya ka guardrail false-alarm rate tha: chhupaye gaye items mein se woh share jo personal the hi nahi. Jo tool har message ka har number blank kar de, woh pehle key result par poora score karega, aur phir bhi kisi kaam ka nahi hoga. Isliye usne limit 100 mein 3 rakhi.
+*Guardrail metric* woh number hai jo baaki numbers ke peeche bhaagte waqt kharab nahi hona chahiye. Yeh aapko aise jeetne se rokta hai jisse nuksaan ho. Anaya ka guardrail false-alarm rate tha: chhupaye gaye items mein se woh share jo personal the hi nahi.
 
-Ek aur farq tha, aur technical kaam shuru hone par ise bhoolna aasaan tha. Tool ka apna score uski apni test par hota hai, aur woh tool ko naapta hai. Key results naapte hain ki logon ke saath kya hota hai. Tool apni test mein achha kar sakta hai, aur phir bhi agents use ignore kar sakte hain, kyunki woh unhe chidhata hai. Ya woh itni der se aaye ki farq hi na pade. Dono tarah ke numbers chahiye the, aur har number par label lagana tha ki woh kaun sa hai.
+Jo tool har message ka har number blank kar de, woh pehle key result par poora score karega, aur phir bhi kisi kaam ka nahi hoga. Isliye usne limit 100 mein 3 rakhi.
+
+Ek aur farq tha, aur technical kaam shuru hone par ise bhoolna aasaan tha. Tool ka apna score uski apni test par hota hai, aur woh tool ko naapta hai. Key results naapte hain ki logon ke saath kya hota hai.
+
+Tool apni test mein achha kar sakta hai, aur phir bhi agents use ignore kar sakte hain, kyunki woh unhe chidhata hai. Ya woh itni der se aaye ki farq hi na pade. Dono tarah ke numbers chahiye the, aur har number par label lagana tha ki woh kaun sa hai.
 
 ## Jo "na" keh sakte hain
 
@@ -102,7 +108,9 @@ Table: Power aur interest ke hisaab se stakeholders
 
 Har naam ke paas Anaya ne likha ki us insaan ko kis cheez par naapa jaata hai. Isse pata chalta hai ki woh kaise react karega. Usne yeh bhi likha ki woh kya decide kar sakta hai: woh chunta hai, salah deta hai, ya veto kar sakta hai.
 
-Lakshmi galat corner mein thi. Uske paas asli power thi, aur Anaya ke dekhne mein parwaah kam. Yeh jodi sabse khatarnaak hai. Security, legal aur compliance ke logon ke paas aksar veto hota hai, jabki woh roz ke kaam mein kam hissa lete hain. Woh launch se ek din pehle tak chup rehte hain, aur phir "na" kehte hain. Aur aam taur par woh sahi hote hain. Sarkari project mein yahi corner aam taur par audit, finance ya security assessor ke paas hota hai.
+Lakshmi galat corner mein thi. Uske paas asli power thi, aur Anaya ke dekhne mein parwaah kam. Yeh jodi sabse khatarnaak hai. Security, legal aur compliance ke logon ke paas aksar veto hota hai, jabki woh roz ke kaam mein kam hissa lete hain.
+
+Woh launch se ek din pehle tak chup rehte hain, aur phir "na" kehte hain. Aur aam taur par woh sahi hote hain. Sarkari project mein yahi corner aam taur par audit, finance ya security assessor ke paas hota hai.
 
 Ilaaj saadharan tha. Anaya ne har hafte Lakshmi se milna shuru kiya aur poochha ki use kya chahiye. Is tarah woh doosre column mein aa gayi.
 
@@ -113,7 +121,9 @@ Founders plan nahi padhenge. Woh memo ka pehla paragraph padhenge, aur shayad do
 *Decision memo* aise likha jaata hai ki vyast insaan sirf uski shuruaat padhkar action le sake. Order yeh hai: maang, wajah, cost, sabse bada risk, aur alternatives, kuch na karna bhi. Anaya ka pehla paragraph dekhiye.
 
 ::: example Anaya ka pehla paragraph
-Main Imran ka aadha time aath hafte ke liye aur cloud mein lagbhag 40,000 rupaye maang rahi hoon, ek chhota tool banane ke liye jo hamari support chat mein personal details ko aage jaane se pehle chhupa de. Ek hafte ki chats mein 400 mein se 37 conversations mein pehchaan ka number, tax number, bank account ya pata tha, aur kuch bhi unhe hamare logs, exports ya bahar ki company ke systems se nahi hatata. Sabse bada risk yeh hai ki tool Hinglish mein likhi cheezein chhod sakta hai. Hum ise live chat ko chhune se pehle asli examples par test karenge, aur agar agents 10 mein se 2 se zyada chats mein ise band karte hain toh ruk jaayenge.
+Main Imran ka aadha time aath hafte ke liye aur cloud mein lagbhag 40,000 rupaye maang rahi hoon, ek chhota tool banane ke liye jo hamari support chat mein personal details ko aage jaane se pehle chhupa de. Ek hafte ki chats mein 400 mein se 37 conversations mein pehchaan ka number, tax number, bank account ya pata tha, aur kuch bhi unhe hamare logs, exports ya bahar ki company ke systems se nahi hatata.
+
+Sabse bada risk yeh hai ki tool Hinglish mein likhi cheezein chhod sakta hai. Hum ise live chat ko chhune se pehle asli examples par test karenge, aur agar agents 10 mein se 2 se zyada chats mein ise band karte hain toh ruk jaayenge.
 :::
 
 Sirf chaar sentences mein yeh paragraph maang, saboot, main risk aur rukne ki shart bata deta hai.
@@ -124,7 +134,9 @@ Founders ki meeting se pehle Anaya ne ek gathering rakhi. Imran ko us se darr la
 
 Ise *pre-mortem* kehte hain, aur yeh ek seedhi wajah se kaam karta hai. Imagined failure mein log woh risks bata dete hain jo woh aise plan ke khilaaf nahi uthate jiska samarthan karne ki unse ummeed ho.
 
-Farah ne likha ki agents ne tool band kar diya. Tool ne baatcheet ke beech ek customer ka callback number chhupa diya, aur kisi ne nahi bataya ki use wapas kaise laayein. Lakshmi ne likha ki tool Hinglish mein likha ek pata chhod gaya, ek screenshot export mein chala gaya, aur ek regulator ne poochha ki aisa kaise hua. Imran ne likha ki tool ne har reply mein ek second jod diya, aur customers ne shikayat ki ki chatbot slow lagta hai. Anaya ne likha ki test examples ki file kabhi update nahi hui, isliye koi nahi bata sakta tha ki chautha version teesre se behtar hai ya nahi.
+Farah ne likha ki agents ne tool band kar diya. Tool ne baatcheet ke beech ek customer ka callback number chhupa diya, aur kisi ne nahi bataya ki use wapas kaise laayein. Lakshmi ne likha ki tool Hinglish mein likha ek pata chhod gaya, ek screenshot export mein chala gaya, aur ek regulator ne poochha ki aisa kaise hua.
+
+Imran ne likha ki tool ne har reply mein ek second jod diya, aur customers ne shikayat ki ki chatbot slow lagta hai. Anaya ne likha ki test examples ki file kabhi update nahi hui, isliye koi nahi bata sakta tha ki chautha version teesre se behtar hai ya nahi.
 
 Anaya ne yeh sab ek risk list mein badal diya.
 

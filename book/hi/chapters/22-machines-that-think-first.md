@@ -43,7 +43,9 @@ Mushkil cases mein reasoning se bada sudhaar aaya. Aasaan cases mein usse kuch n
 
 Us shaam Anaya ne apne train ticket ke peeche likha ki usne kya samjha. Reasoning ek aisi khareedari hai jo aap har request par karte hain, aur uski keemat paise aur time dono mein dete hain. Bahut se kaamon mein usse kuch nahi milta.
 
-Woh tab kaam aati hai jab jawaab ko nikaalna padta hai. Jaise aise steps jo ek doosre par tike hon, hisaab, plans, code, aur asli ambiguity jise suljhana ho. Woh tab bekaar hai jab jawaab pehle se input mein maujood hai aur use bas dhoondhna ya naye roop mein rakhna hai. Isme aata hai kuch dhoondhna, ek field nikaalna, kisi category mein daalna, formatting, aur aapke diye hue passage ka summary banana. Words mein bole gaye 12 digits ko nikaalna padta tha. Mobile number aur email wala aam message ko nahi.
+Woh tab kaam aati hai jab jawaab ko nikaalna padta hai. Jaise aise steps jo ek doosre par tike hon, hisaab, plans, code, aur asli ambiguity jise suljhana ho. Woh tab bekaar hai jab jawaab pehle se input mein maujood hai aur use bas dhoondhna ya naye roop mein rakhna hai.
+
+Isme aata hai kuch dhoondhna, ek field nikaalna, kisi category mein daalna, formatting, aur aapke diye hue passage ka summary banana. Words mein bole gaye 12 digits ko nikaalna padta tha. Mobile number aur email wala aam message ko nahi.
 
 Imran ne ek message mein teen savdhaaniyan bheji.
 
@@ -83,13 +85,17 @@ Isiliye schema pehle aana tha. Reply ka ek hissa dikhana tabhi safe hai jab jo h
 
 Team ne poori dopahar us design par lagayi jo isse nikla. Isme woh sab kuch tha jo unhone us mahine seekha tha.
 
-Tez hisse har message par live chalenge: pattern checker aur name-and-place finder. Dono milkar zyadatar messages ko second ke ek chhote se hisse mein sambhal lete the. Jin gine-chune messages par woh faisla nahi kar paate, unke liye guard dheemi, dhyaan se sochne wali judge ka intezaar nahi karega. Woh sasti galti ki taraf jhukega, jaisa team ne April mein tay kiya tha, aur shak wale hisse ko turant mask kar dega taaki chat surakshit tarike se aage badh sake.
+Tez hisse har message par live chalenge: pattern checker aur name-and-place finder. Dono milkar zyadatar messages ko second ke ek chhote se hisse mein sambhal lete the. Jin gine-chune messages par woh faisla nahi kar paate, unke liye guard dheemi, dhyaan se sochne wali judge ka intezaar nahi karega.
+
+Woh sasti galti ki taraf jhukega, jaisa team ne April mein tay kiya tha, aur shak wale hisse ko turant mask kar dega taaki chat surakshit tarike se aage badh sake.
 
 Reasoning model in cases ko baad mein, background mein dekhega, aur tay karega ki asal mein kya hona chahiye tha. Agar masked hissa harmless nikla, toh koi insaan use wapas dikhwa sakta hai. Agar woh leak nikla, toh woh pehle se dhaka hua hai.
 
 Imran ne PRD ke margin mein rule likha: reasoning sirf unsure kuch cases ke liye, aur kabhi nahi jab customer intezaar kar raha ho. Team ko pata chal jaayega ki design galat hai, agar sasta path un cases par utna hi score kare. Ya agar kabhi dhyaan wala path reply bhejne se pehle poora hona pade.
 
-Dono mein se kisi ne woh sawaal nahi uthaya jo dono ko pareshaan kar raha tha. Dhyaan se sochne wali judge kahan chalegi? Jo sentence woh padhegi, agar woh mushkil wale sentences mein se ek hua, toh usme wahi cheez ho sakti hai jise chhupane ke liye guard bana hai. Kya use building ke bahar jaane diya ja sakta hai, ya use andar hi rehna padega? Yeh sawaal kisi aur din ka tha, aur lagbhag Lakshmi ka bhi.
+Dono mein se kisi ne woh sawaal nahi uthaya jo dono ko pareshaan kar raha tha. Dhyaan se sochne wali judge kahan chalegi? Jo sentence woh padhegi, agar woh mushkil wale sentences mein se ek hua, toh usme wahi cheez ho sakti hai jise chhupane ke liye guard bana hai.
+
+Kya use building ke bahar jaane diya ja sakta hai, ya use andar hi rehna padega? Yeh sawaal kisi aur din ka tha, aur lagbhag Lakshmi ka bhi.
 
 ## Summary
 

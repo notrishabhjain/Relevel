@@ -93,9 +93,13 @@ They had found the problem in an afternoon, with a key, and not in September fro
 
 One more item in the specification was Farah’s. Her agents had a button on every chat, labelled “the guard hid something I needed”. So far it had saved nothing but a click.
 
-A thumbs-down on its own is almost worthless, Imran said. You can’t reproduce it. And it can’t tell a wrong answer from a correct one that the user simply disliked. But a thumbs-down that arrives with the full record of what happened is a ready-made test case. The record means the message, what the guard found, what it decided, and which versions of everything were running. The difference between the two buttons was about two days of engineering.
+A thumbs-down on its own is almost worthless, Imran said. You can’t reproduce it. And it can’t tell a wrong answer from a correct one that the user simply disliked. But a thumbs-down that arrives with the full record of what happened is a ready-made test case.
 
-Anaya saw a difficulty before she agreed. The record would contain the message. If the guard had failed on that message, the record would hold the very thing the guard was supposed to hide. So Imran concluded that the record must be stored cleaned. The system saves the hidden version and the positions. It keeps the raw one only where very few people can reach it, for a short time, with a note of who looked.
+The record means the message, what the guard found, what it decided, and which versions of everything were running. The difference between the two buttons was about two days of engineering.
+
+Anaya saw a difficulty before she agreed. The record would contain the message. If the guard had failed on that message, the record would hold the very thing the guard was supposed to hide.
+
+So Imran concluded that the record must be stored cleaned. The system saves the hidden version and the positions. It keeps the raw one only where very few people can reach it, for a short time, with a note of who looked.
 
 ::: watch A debugging aid can recreate the problem
 A debugging aid that stores secrets recreates the problem it exists to solve. The record must be stored in its cleaned form.

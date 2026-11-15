@@ -42,11 +42,15 @@ Table: Ek title ke peeche chhe jobs
 | Ek consulting firm jo clients ke liye AI systems banati hai | Doosre organisations ke projects, aksar bade | Delivery ka anushasan, saaf likhna, evaluation aur governance, aur client ko bata paane ki himmat ki system kya nahi kar sakta |
 | Ek public-sector ya digital-public-infrastructure body | Nagrikon ke liye services, aksar kai bhashaon mein aur kabhi awaaz se | Field deployments, Indic bhashayein aur voice, ministry stakeholders, aur open-weight options |
 
-Anaya ne kaha ki chhe alag saboot maangte hain, isliye ek resume das advertisements ke kaam nahi aa sakta. Jisne technology projects deliver kiye hain, uske liye teen darwaaze khule hain: AI par bani company, clients ke liye AI systems banane wali consulting firm, aur ek public-sector body. Rhea ke chhe saal teesre ke sabse kareeb the. Phir usne Rhea se ek boring kaam karne ko kaha. Das advertisements ek sheet ke upar likhiye. Left side mein har woh skill likhiye jiska koi bhi zikr karta hai. Jahan koi role kisi skill ko maangta hai, wahan box tick kijiye.
+Anaya ne kaha ki chhe alag saboot maangte hain, isliye ek resume das advertisements ke kaam nahi aa sakta. Jisne technology projects deliver kiye hain, uske liye teen darwaaze khule hain: AI par bani company, clients ke liye AI systems banane wali consulting firm, aur ek public-sector body.
+
+Rhea ke chhe saal teesre ke sabse kareeb the. Phir usne Rhea se ek boring kaam karne ko kaha. Das advertisements ek sheet ke upar likhiye. Left side mein har woh skill likhiye jiska koi bhi zikr karta hai. Jahan koi role kisi skill ko maangta hai, wahan box tick kijiye.
 
 Jab sheet poori ho jaaye, toh sabse zyada ticks wali rows dikhati hain ki market kya chahta hai. Jin rows mein ek bhi nahi, woh shor hain. Yeh sheet ek *role matrix* hai. Har row ke liye Rhea ko ek aur nishaan lagana tha, aur imaandaari se: uske liye woh skill proven thi, partly proven thi, ya missing thi?
 
-Rhea ko teen shaamein lagi. Usne sheet ek note ke saath wapas bheji: usne zyadatar woh kiya tha jo woh maangte the, aur use aise nahi kaha tha jise koi check kar sake. Anaya ne use kaha ki jo usne saabit kiya hai, usi ke roop mein bataye. "Maine das asli users ko ek AI product ship kiya aur uski useful-result rate 58 se 71 percent tak badhayi" ek sentence hai, usne kaha. "AI ke prati passionate" ek mood hai.
+Rhea ko teen shaamein lagi. Usne sheet ek note ke saath wapas bheji: usne zyadatar woh kiya tha jo woh maangte the, aur use aise nahi kaha tha jise koi check kar sake.
+
+Anaya ne use kaha ki jo usne saabit kiya hai, usi ke roop mein bataye. "Maine das asli users ko ek AI product ship kiya aur uski useful-result rate 58 se 71 percent tak badhayi" ek sentence hai, usne kaha. "AI ke prati passionate" ek mood hai.
 
 ## Page par kya jaata hai
 
@@ -69,7 +73,9 @@ Phir aayi *case study*: kaam ke ek hisse ka ek ya do page ka bayaan. Rhea ki cas
 5. Kya galat hua, aur aapne kya badla?
 6. Aap aage kya karenge?
 
-Anaya ne kaha ki paanchva sawaal asli kaam karta hai. Safalta koi bhi bata sakta hai, aur log use hire karte hain jise pata ho ki kya toota. Usne chhe nahi, do case studies ki salah di. Unhe wahan hona chahiye jahan recruiter unhe dhoondhega: Rhea ka apna ek chhota page, jo uski profile ke upar se link ho. Profile ki headline mein woh job likhi ho jo Rhea chahti hai aur ek cheez jo usne saabit ki hai. Usmein "lifelong learner" ke baare mein kuch nahi hona chahiye.
+Anaya ne kaha ki paanchva sawaal asli kaam karta hai. Safalta koi bhi bata sakta hai, aur log use hire karte hain jise pata ho ki kya toota. Usne chhe nahi, do case studies ki salah di.
+
+Unhe wahan hona chahiye jahan recruiter unhe dhoondhega: Rhea ka apna ek chhota page, jo uski profile ke upar se link ho. Profile ki headline mein woh job likhi ho jo Rhea chahti hai aur ek cheez jo usne saabit ki hai. Usmein "lifelong learner" ke baare mein kuch nahi hona chahiye.
 
 ## Woh chaar sawaal jo har loop poochhta hai
 
@@ -85,7 +91,11 @@ Table: Interview ke chaar kisam ke sawaal
 
 *Product sense* ek user chunne, uski asli problem dhoondhne aur ek samajhdaar solution sujhane ki kabiliyat hai. Yeh logon ko sabse zyada daraata tha, kyunki lagta tha ki isme ek aisi inspiration chahiye jo unke paas nahi hai. Aisa nahi hai. Isme kuch sujhane se pehle ek user chunne ki aadat chahiye, aur ek saal ke kaam ke baad Rhea ki aadat achhi thi.
 
-Usne ek aisi duniya ke prompt par practice ki jise woh jaanti thi: ek state helpline ke liye, do bhashaon mein, ek voice assistant. Uske pehle teen kadam chhote the. Usne goal clear kiya, jo tha kam callers ka intezaar karna aur kisi scheme ke niyamon ke baare mein kam galat jawaab, na ki ek hoshiyaar assistant. Usne ek user chuna, ek basic phone par ek caller jo sirf apni kshetriya bhasha bolta hai aur kaam ke din ke ant mein phone karta hai. Aur kisi feature ka naam lene se pehle usne us caller ki problems list ki: yeh na jaanna ki kaun si scheme lagti hai, yeh na jaanna ki kaun se kaagaz le jaane hain, aur line kharab hone par kat jaana. Tabhi usne bataya ki in teeno mein se woh pehle kaun si solve karegi.
+Usne ek aisi duniya ke prompt par practice ki jise woh jaanti thi: ek state helpline ke liye, do bhashaon mein, ek voice assistant. Uske pehle teen kadam chhote the.
+
+Usne goal clear kiya, jo tha kam callers ka intezaar karna aur kisi scheme ke niyamon ke baare mein kam galat jawaab, na ki ek hoshiyaar assistant. Usne ek user chuna, ek basic phone par ek caller jo sirf apni kshetriya bhasha bolta hai aur kaam ke din ke ant mein phone karta hai.
+
+Aur kisi feature ka naam lene se pehle usne us caller ki problems list ki: yeh na jaanna ki kaun si scheme lagti hai, yeh na jaanna ki kaun se kaagaz le jaane hain, aur line kharab hone par kat jaana. Tabhi usne bataya ki in teeno mein se woh pehle kaun si solve karegi.
 
 Anaya ki salah thi ki shuru karne se pehle structure zor se bol dijiye: kuch aisa ki "main clarify karungi, ek user chunungi, problems dhoondhungi aur phir choose karungi." Isse interviewer saath chal sakta hai. Agar woh candidate ko kahin aur chahte hain, toh woh pehle minute mein bol sakte hain, chaalisve mein nahi.
 
@@ -131,7 +141,9 @@ Anaya ne kaha ki yeh achhi kahani hai, kyunki galat decision asli tha, aur sudha
 
 Doosre round mein interviewer ne script rakh di aur resume utha liya. Usne kaha ki sarkari vibhagon ke liye chhe saal programme delivery sunne mein programme management jaisa lagta hai. Woh yeh kyun maane ki Rhea ek product ki maalik ban sakti hai?
 
-Anaya ko iski ummeed thi, aur unhone ek Sunday ko iska rehearsal kiya tha. Jawaab label se behes karna nahi tha. Jawaab tha teen decisions ke naam batana jinki Rhea maalik thi. Pehla: usne kya banane se mana kiya. Uska tool report ke baare mein sawaalon ka jawaab chat box mein de sakta tha, aur usne use chhod diya kyunki woh use naap nahi sakti thi. Doosra: woh threshold jisne ek release roka. Uske fixed test set ne do versions rok liye the. Teesra: woh number jiske liye woh jawabdeh thi, useful mark hone wale themes ka share, jo 58 se 71 percent hua.
+Anaya ko iski ummeed thi, aur unhone ek Sunday ko iska rehearsal kiya tha. Jawaab label se behes karna nahi tha. Jawaab tha teen decisions ke naam batana jinki Rhea maalik thi. Pehla: usne kya banane se mana kiya.
+
+Uska tool report ke baare mein sawaalon ka jawaab chat box mein de sakta tha, aur usne use chhod diya kyunki woh use naap nahi sakti thi. Doosra: woh threshold jisne ek release roka. Uske fixed test set ne do versions rok liye the. Teesra: woh number jiske liye woh jawabdeh thi, useful mark hone wale themes ka share, jo 58 se 71 percent hua.
 
 Phir Rhea ne apni history ko ek asset bana diya. Ek regulated sector mein chhe saal ka matlab audits, data-location rules, aur un logon ke sign-offs jo na bol sakte the. Zyadatar candidates ko yeh ek reading list se claim karna padta. Usne yeh nahi kaha ki woh product manager rahi hai. Usne kaha ki woh ek outcome ki maalik thi, aur woh number dikha sakti hai.
 
@@ -139,11 +151,15 @@ Phir Rhea ne apni history ko ek asset bana diya. Ek regulated sector mein chhe s
 
 Kuch loops mein ek round hota hai jisme candidate ek coding assistant ke saath, live, kuch chhota banata hai, aur interviewer dekhta hai. Yeh typing se zyada judgement ko parakhta hai.
 
-Anaya ki salah book mein pehle aaye verifier ke idea se aayi: assistant se kuch bhi maangne se pehle bataiye ki aap uska kaam kaise check karenge. Check zor se bol dijiye, jaise "result mere das sample messages ka har number chhupa dena chahiye". Chhote steps maangiye. Jo wapas aaye use padhiye, aur bataiye ki aap abhi kya par bharosa nahi karenge. Interviewer dekhte hain ki candidate us badlaav ko pehchaan paata hai ya nahi jo kaam kiya, us badlaav se jo sirf sahi dikhta hai. Ek adhoora build jiske checks pass hon, ek poore build se behtar result hai jise kisi ne check nahi kiya.
+Anaya ki salah book mein pehle aaye verifier ke idea se aayi: assistant se kuch bhi maangne se pehle bataiye ki aap uska kaam kaise check karenge. Check zor se bol dijiye, jaise "result mere das sample messages ka har number chhupa dena chahiye". Chhote steps maangiye.
+
+Jo wapas aaye use padhiye, aur bataiye ki aap abhi kya par bharosa nahi karenge. Interviewer dekhte hain ki candidate us badlaav ko pehchaan paata hai ya nahi jo kaam kiya, us badlaav se jo sirf sahi dikhta hai. Ek adhoora build jiske checks pass hon, ek poore build se behtar result hai jise kisi ne check nahi kiya.
 
 ## Akele, aur doosre logon ke saath
 
-Do chhoti baatein bachi theen. Pehli *take-home* hai: employer ka diya hua kaam jo ek bataye hue time mein akele karna hota hai. Time ke andar rahiye. Apni assumptions upar rakhiye, aur ant mein likhiye ki zyada time hota toh aap kya karte. Reviewers lambe jawaab se ek saaf, imaandaar jawaab pasand karte hain. Jo insaan bata deta hai ki usne kya chhoda, us par us se zyada bharosa hota hai jo dikhaye ki kuch chhoota hi nahi.
+Do chhoti baatein bachi theen. Pehli *take-home* hai: employer ka diya hua kaam jo ek bataye hue time mein akele karna hota hai. Time ke andar rahiye. Apni assumptions upar rakhiye, aur ant mein likhiye ki zyada time hota toh aap kya karte.
+
+Reviewers lambe jawaab se ek saaf, imaandaar jawaab pasand karte hain. Jo insaan bata deta hai ki usne kya chhoda, us par us se zyada bharosa hota hai jo dikhaye ki kuch chhoota hi nahi.
 
 Doosri networking hai, jo Rhea ko pasand nahi thi. Yeh tab sabse achhi chali jab uske paas dikhane ko kuch tha. Anaya ki salah thi ki logon se referral mat maango. Uske bajaye, ek khaas insaan ko case study bhejiye aur usse ek khaas sawaal poochiye, kyunki woh aisa sawaal hai jiska woh jawaab de sakta hai.
 
@@ -151,7 +167,9 @@ Pay taiyaari ka maamla tha. Pata kijiye ki us shehar mein us role ke liye aam ta
 
 ## Phir kya hua
 
-Yeh batana achha lagta ki Rhea ko mahine ke andar job mil gayi. Nahi mili. Das mein se do companies ne use doosre round ke liye bulaya, jab resume aur case study tay hue tareeke se dobara likhe gaye. July ke teesre hafte tak woh ek kamre mein ek mahila ke saamne baithi thi jisne use company ke product ke liye ek support assistant design karne ko kaha. Rhea ne zor se, thodi kaampti awaaz mein kaha, "Main yahan se shuru karungi ki ise kaun use karta hai aur achha outcome kya hai."
+Yeh batana achha lagta ki Rhea ko mahine ke andar job mil gayi. Nahi mili. Das mein se do companies ne use doosre round ke liye bulaya, jab resume aur case study tay hue tareeke se dobara likhe gaye.
+
+July ke teesre hafte tak woh ek kamre mein ek mahila ke saamne baithi thi jisne use company ke product ke liye ek support assistant design karne ko kaha. Rhea ne zor se, thodi kaampti awaaz mein kaha, "Main yahan se shuru karungi ki ise kaun use karta hai aur achha outcome kya hai."
 
 Anaya wahan nahi thi. Use baad mein ek phone call par pata chala, jisme Rhea ne sawaal bataya aur kaha ki beech mein use ehsaas hua ki woh ab rehearse nahi kar rahi thi. Woh kuch aisa samjha rahi thi jo usne banaya tha.
 

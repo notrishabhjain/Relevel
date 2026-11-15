@@ -39,7 +39,9 @@ Farah asked again what she should say about the tenth. Anaya’s answer was this
 
 Anaya had been avoiding one screen, and she spent a Tuesday designing it. Every system looks good when it works. Trust is built on the screen that says “I can’t”, and many products design that screen last, or never.
 
-For the guard, a **refusal** covers the moments when it cannot safely do the thing. Take a customer who attaches a photograph of an Aadhaar card to the free chat. The guard cannot yet black out a number inside a picture. The honest design was not to pretend. The chat would say, in all three languages, in words written by Farah and approved by Lakshmi: please do not share identity cards here; use the secure upload, or press this button to speak to a person.
+For the guard, a **refusal** covers the moments when it cannot safely do the thing. Take a customer who attaches a photograph of an Aadhaar card to the free chat. The guard cannot yet black out a number inside a picture.
+
+The honest design was not to pretend. The chat would say, in all three languages, in words written by Farah and approved by Lakshmi: please do not share identity cards here; use the secure upload, or press this button to speak to a person.
 
 ::: key A refusal that offers a person earns trust
 A refusal that gives a route to a human earns more trust than a system that always produces something, because users judge a system partly by what it declines. A feature that never refuses teaches them that its confidence means nothing.

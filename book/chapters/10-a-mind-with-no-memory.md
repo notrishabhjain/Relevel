@@ -30,7 +30,9 @@ But Anaya had a fair objection. She had used the chatbot. She had held a long co
 
 Imran said that the chatbot doesn't remember. The application does.
 
-He borrowed the shop's ledger, a heavy book with a red cloth cover, and held it open. Suppose the owner had no memory at all, he said. Each time a customer came in, she would have to hand him the ledger, open at the right page, so he could read what had already been said. The model is in that position. It sees only what is on the table in the current request. So when Anaya sent her fifth message, the app sent the first four again, with the new one added at the end.
+He borrowed the shop's ledger, a heavy book with a red cloth cover, and held it open. Suppose the owner had no memory at all, he said. Each time a customer came in, she would have to hand him the ledger, open at the right page, so he could read what had already been said.
+
+The model is in that position. It sees only what is on the table in the current request. So when Anaya sent her fifth message, the app sent the first four again, with the new one added at the end.
 
 Then he showed her. He put three things into one request: the first message, the model's reply to it, and the question "What is my name?" The answer came back at once. "Your name is Anaya."
 
@@ -80,7 +82,9 @@ Imran nodded. It keeps going to the end of the conversation. Suppose a customer 
 It changed her picture of the guard. She had thought of a tool that looks at each new message as it arrives. But a number caught only in the newest message, and left sitting in the history, would be sent again in full with every message after it.
 
 ::: key Clean it before it is stored
-The guard can't look only at the newest line. It has two ways to cope. It can treat the whole history as something that might hold a secret, and check it on every call. Or it can clean each line once, when it arrives, so that the cleaned version is what goes into the history. Anaya chose the second and wrote it down as a design rule: clean it before it is stored, not only before it is sent.
+The guard can't look only at the newest line. It has two ways to cope. It can treat the whole history as something that might hold a secret, and check it on every call.
+
+Or it can clean each line once, when it arrives, so that the cleaned version is what goes into the history. Anaya chose the second and wrote it down as a design rule: clean it before it is stored, not only before it is sent.
 :::
 
 As they got up to leave, the owner put a small paper bag on the counter. "For the lady," he said. "Kaju katli. It is Thursday." Anaya laughed, for the first time in some weeks.

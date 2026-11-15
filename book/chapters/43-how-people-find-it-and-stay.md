@@ -21,7 +21,9 @@ terms:
 
 In the third week of January, five developers sat in a row on one side of a table, each at a laptop. Each had the faintly guilty look of someone who has been asked to take part in an experiment and isn't sure what is being measured.
 
-Anaya had given them one sheet of paper: the README, which is the first page of instructions for the developer kit. They had nothing else. There was no demonstration, no call and no help. A stopwatch lay on the table. She had said: add this to a small chat program and clean one message, and tell me when you are done. I won't help you. Then she had gone to stand by the window with her hands behind her back, because it was the only way to keep them still.
+Anaya had given them one sheet of paper: the README, which is the first page of instructions for the developer kit. They had nothing else. There was no demonstration, no call and no help. A stopwatch lay on the table.
+
+She had said: add this to a small chat program and clean one message, and tell me when you are done. I won't help you. Then she had gone to stand by the window with her hands behind her back, because it was the only way to keep them still.
 
 The kit was live, and Mr. Menon's company had signed a trial. What mattered now was whether anyone else could use it. This chapter reports what the stopwatch showed, and what it taught about how people find a product and stay with it.
 
@@ -116,7 +118,9 @@ Positioning decided which loop could work at all. A badge made sense because the
 Then she wrote a rule in the margin, in the same hand as "rarer is not fixed".
 
 ::: watch Dark patterns are out
-A *dark pattern* is a design that tricks a user into acting against their own interest: a box ticked in advance, a made-up shortage, a cancellation button that nobody can find. Such designs can lift a number for a quarter. They also destroy the trust that the whole product rests on. Anaya told Imran that the customer could switch the badge off without asking. He said that it would cost some visibility. "Yes," she said. "We are a privacy tool. We shouldn't be the ones who hide the exit."
+A *dark pattern* is a design that tricks a user into acting against their own interest: a box ticked in advance, a made-up shortage, a cancellation button that nobody can find. Such designs can lift a number for a quarter.
+
+They also destroy the trust that the whole product rests on. Anaya told Imran that the customer could switch the badge off without asking. He said that it would cost some visibility. "Yes," she said. "We are a privacy tool. We shouldn't be the ones who hide the exit."
 :::
 
 ## Summary

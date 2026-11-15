@@ -141,6 +141,7 @@ a{color:var(--ink)}
 .eyebrow{font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;
   color:var(--muted);display:flex;gap:.85rem;align-items:center;flex-wrap:wrap}
 .eyebrow .dot{width:3px;height:3px;background:var(--rule);border-radius:50%}
+@media (max-width:600px){.eyebrow{gap:.25rem .9rem}.eyebrow .dot{display:none}}
 .chnum{font-family:var(--serif);font-size:4.2rem;line-height:.82;font-weight:300;
   color:var(--rule);margin:.7rem 0 .1rem;font-variant-numeric:lining-nums}
 .chead h1{font-family:var(--serif);font-size:2.35rem;line-height:1.08;font-weight:500;
@@ -1274,6 +1275,8 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .routeline .lbl{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--verified)}
 .routeline .pt{flex:1;min-width:14rem;font-size:.9rem;line-height:1.45;color:var(--ink)}
 .routeline .go{display:flex;flex-wrap:wrap;gap:.3rem .9rem;font-family:var(--mono);font-size:.68rem}
+.routeline .rwhyd{flex-basis:100%;margin:.1rem 0 0}
+.routeline .rwhyd>summary{cursor:pointer;font-size:.8rem;color:var(--ink-2)}
 .routeline .rwhy{flex-basis:100%;margin:.15rem 0 0;font-size:.86rem;line-height:1.5;color:var(--ink-2)}
 .routeline .rwhy b,.gwhy b{font-weight:600;color:var(--ink)}
 .gwhy{margin:.2rem 0 .6rem;font-size:.92rem;line-height:1.5;color:var(--ink-2)}
@@ -7817,9 +7820,9 @@ window.PART5 = [
        lens:'Keep your attention on design and governance, not on protocol trivia.'}
     ],
     ['h','Read one real exchange'],
-    ['p','You do not need to run an MCP server to understand it. Below is what passes between a client and a server that offers the pattern checker as a tool. The messages are shortened; real ones carry a few more fields. To run a server yourself, use the free Introduction to MCP course in the plan.'],
+    ['p','You do not need a real MCP server to understand it. The cell below is a toy: a few lines of Python that answer in the same message shapes, with the pattern checker offered as a tool. Run it and read the six lines it prints. Real messages carry a few more fields. To run a real server, use the free Introduction to MCP course in the plan.'],
     ['do','Mark where consent sits',[
-      ['code','client -> server: {"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {"clientInfo": {"name": "demo-client"}}}\nserver -> client: {"jsonrpc": "2.0", "id": 1, "result": {"serverInfo": {"name": "pattern-checker"}}}\nclient -> server: {"jsonrpc": "2.0", "id": 2, "method": "tools/list"}\nserver -> client: {"jsonrpc": "2.0", "id": 2, "result": {"tools": [{"name": "find_ids", "description": "Find Indian ID numbers in text", "inputSchema": {"type": "object", "properties": {"text": {"type": "string"}}}}]}}\nclient -> server: {"jsonrpc": "2.0", "id": 3, "method": "tools/call", "params": {"name": "find_ids", "arguments": {"text": "mera pan card ABCPJ1234K hai"}}}\nserver -> client: {"jsonrpc": "2.0", "id": 3, "result": {"content": [{"type": "text", "text": "PAN: ABCPJ1234K"}]}}','read'],
+      ['code','import json, re\n\ndef server(msg):\n    if msg["method"] == "initialize":\n        return {"serverInfo": {"name": "pattern-checker"}}\n    if msg["method"] == "tools/list":\n        return {"tools": [{"name": "find_ids", "description": "Find Indian ID numbers in text"}]}\n    if msg["method"] == "tools/call":\n        text = msg["params"]["arguments"]["text"]\n        found = re.findall(r"[A-Z]{5}[0-9]{4}[A-Z]", text)\n        return {"content": [{"type": "text", "text": "PAN: " + ", ".join(found)}]}\n\ndef send(id, method, params=None):\n    msg = {"jsonrpc": "2.0", "id": id, "method": method}\n    if params:\n        msg["params"] = params\n    print("client -> server:", json.dumps(msg))\n    print("server -> client:", json.dumps({"jsonrpc": "2.0", "id": id, "result": server(msg)}))\n\nsend(1, "initialize", {"clientInfo": {"name": "demo-client"}})\nsend(2, "tools/list")\nsend(3, "tools/call", {"name": "find_ids", "arguments": {"text": "mera pan card ABCPJ1234K hai"}})'],
       ['n',['Mark the message where the client first learns what the server can do.','Mark the message where the user’s text leaves their screen and something is done with it.','Write one line: who must say yes before that message is sent, and what happens if nobody does?']],
       ['x','The tools/list reply is where the client learns what exists. The tools/call message is the one to mark: the user’s own PAN is sent out. Consent belongs just before it, in the client. The server cannot grant it to itself. The protocol carried all six messages without asking anyone.']
     ]],
@@ -11030,7 +11033,7 @@ window.PROJECT = {
   why: {
     title: 'Why this project, and why not just use Rampart',
     paras: [
-      'Rampart is an existing open tool that finds personal details in text. It was built and tested on English and six other European languages, all written in the Latin alphabet. Its own published model card says it does poorly on Hindi written in Devanagari script. It reports finding only about 14 out of every 100 personal details there. Chapter A2 asks you to check that number yourself, not just trust this page.',
+      'Rampart is an existing open tool that finds personal details in text. It was built and tested on English and six other European languages, all written in the Latin alphabet. Its own published model card says it does poorly on Hindi written in Devanagari script. When this page was written, it reported finding only about 14 out of every 100 personal details there. That model card may have changed since, and other tools for Hindi may exist. So Chapter A2 asks you to check the number yourself, not just trust this page.',
       'People in India type in English, in Hindi, and in Hinglish, which is Hindi written in English letters. Often they switch between them inside one sentence. They also type things a European tool was never built to recognise: Aadhaar numbers, PAN cards, UPI IDs, mobile numbers that begin with 98. A tool that handles only one kind of writing leaves most of the problem untouched.',
       'So this project isn’t a copy of Rampart. It asks one question. Can a small tool, light enough to run inside a browser or on a phone, find personal details in English, Hindi and Hinglish, and be honest about what it misses?'
     ]
@@ -16509,8 +16512,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Units 14.3 aur 14.4 kijiye, phir neeche ka printed exchange padhiye. Baaki units is baar sirf padh lijiye.',
   'Read one real exchange':
     'Ek asli exchange padhiye',
-  'You do not need to run an MCP server to understand it. Below is what passes between a client and a server that offers the pattern checker as a tool. The messages are shortened; real ones carry a few more fields. To run a server yourself, use the free Introduction to MCP course in the plan.':
-    'Ise samajhne ke liye MCP server chalana zaroori nahi. Neeche woh hai jo ek client aur ek server ke beech guzarta hai, jo pattern checker ko tool ki tarah offer karta hai. Messages chhote kiye gaye hain; asli messages mein kuch fields aur hoti hain. Khud ek server chalane ke liye plan mein diya free Introduction to MCP course use kijiye.',
+  'You do not need a real MCP server to understand it. The cell below is a toy: a few lines of Python that answer in the same message shapes, with the pattern checker offered as a tool. Run it and read the six lines it prints. Real messages carry a few more fields. To run a real server, use the free Introduction to MCP course in the plan.':
+    'Ise samajhne ke liye asli MCP server zaroori nahi. Neeche wala cell ek khilauna hai: Python ki kuch lines jo wahi message shapes mein jawaab deti hain, aur pattern checker ek tool ki tarah offer hota hai. Ise chalaiye aur jo chhah lines print hoti hain unhe padhiye. Asli messages mein kuch fields aur hoti hain. Asli server chalane ke liye plan mein diya free Introduction to MCP course use kijiye.',
   'Mark where consent sits':
     'Nishaan lagaiye ki consent kahan baithta hai',
   'Mark the message where the client first learns what the server can do.':
@@ -16932,6 +16935,21 @@ Object.assign(window.HING = window.HING || {}, {
     'Koi inputs use nahi kar sakte? Iske bajaye project page ke das starter sentences lijiye, aur tab capstone hi aapka chapter ka kaam hai.',
 });
 
+/* Hinglish: the regrouped sidebar. Keyed on the exact English line. */
+Object.assign(window.HING = window.HING || {}, {
+  'Follow the course': 'Course ke saath chaliye',
+  'Read': 'Padhiye',
+  'Try it': 'Karke dekhiye',
+  'Me': 'Main',
+  'Home: today’s step': 'Home: aaj ka step',
+  'Your route: 28 weeks': 'Aapka route: 28 hafte',
+  'Worksheet: the course by topic': 'Worksheet: poora course topic ke hisaab se',
+  'Your project': 'Aapka project',
+  'The course map: every chapter': 'Course ka naqsha: har chapter',
+  'Practice: questions': 'Practice: sawaal',
+  'Why this comes now, and what it is for': 'Yeh abhi kyon aata hai, aur kis kaam ka hai'
+});
+
 /* Hinglish: items (coding-book rewrite and playbook tracks). Keyed on the exact English line. */
 Object.assign(window.HING = window.HING || {}, {
 
@@ -17293,7 +17311,6 @@ Object.assign(window.HING = window.HING || {}, {
   'Home': 'Home',
   'Practice': 'Practice',
   'My progress': 'Meri progress',
-  'Help': 'Madad',
   'More': 'Aur',
   'draft': 'draft',
   'drafts': 'drafts',
@@ -31849,8 +31866,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Project ka naam hai <strong>Bharat Privacy Guard</strong>. Yeh ek chhota tool hai jo kisi insaan aur website, app ya AI chatbot ke beech mein baithta hai. Maan lijiye koi type karta hai “my Aadhaar number is 4321 5678 9012”. Tool use pakad leta hai. Phir number kahin aage jaane se pehle, website use hide kar sakti hai, mask kar sakti hai, ya pooch sakti hai ki use sach mein yeh number chahiye bhi ya nahi.',
   'This page explains the project once, in plain words. Every capstone links back to one stage on this page. So you always know which piece you’re building, and why.':
     'Yeh page project ko ek baar, saaf words mein samjhata hai. Har capstone is page ke ek stage se juda hai. Isliye aapko hamesha pata rehta hai ki aap kaun sa hissa bana rahe hain, aur kyun.',
-  'Rampart is an existing open tool that finds personal details in text. It was built and tested on English and six other European languages, all written in the Latin alphabet. Its own published model card says it does poorly on Hindi written in Devanagari script. It reports finding only about 14 out of every 100 personal details there. Chapter A2 asks you to check that number yourself, not just trust this page.':
-    'Rampart ek maujooda open tool hai jo text mein personal details dhoondhta hai. Ise English aur 6 doosri European languages par banaya aur test kiya gaya, aur yeh sab Latin alphabet mein likhi jaati hain. Uska apna published model card kehta hai ki Devanagari script mein likhi Hindi par woh kamzor hai. Wahan woh har 100 personal details mein se sirf lagbhag 14 hi dhoondh paata hai. Chapter A2 mein aapko yeh number khud check karna hai, is page par bharosa karke nahi.',
+  'Rampart is an existing open tool that finds personal details in text. It was built and tested on English and six other European languages, all written in the Latin alphabet. Its own published model card says it does poorly on Hindi written in Devanagari script. When this page was written, it reported finding only about 14 out of every 100 personal details there. That model card may have changed since, and other tools for Hindi may exist. So Chapter A2 asks you to check the number yourself, not just trust this page.':
+    'Rampart ek maujooda open tool hai jo text mein personal details dhoondhta hai. Ise English aur 6 doosri European languages par banaya aur test kiya gaya, aur yeh sab Latin alphabet mein likhi jaati hain. Uska apna published model card kehta hai ki Devanagari script mein likhi Hindi par woh kamzor hai. Jab yeh page likha gaya tha, tab woh wahan har 100 personal details mein se sirf lagbhag 14 hi dhoondh paata tha. Woh model card tab se badal chuka ho sakta hai, aur Hindi ke liye doosre tools bhi ho sakte hain. Isliye Chapter A2 mein aapko yeh number khud check karna hai, is page par bharosa karke nahi.',
   'People in India type in English, in Hindi, and in Hinglish, which is Hindi written in English letters. Often they switch between them inside one sentence. They also type things a European tool was never built to recognise: Aadhaar numbers, PAN cards, UPI IDs, mobile numbers that begin with 98. A tool that handles only one kind of writing leaves most of the problem untouched.':
     'India mein log English, Hindi aur Hinglish mein type karte hain. Hinglish matlab English letters mein likhi Hindi. Aksar woh ek hi sentence ke andar ek se doosri par chale jaate hain. Woh aisi cheezein bhi type karte hain jinhe pehchaanne ke liye koi European tool bana hi nahi tha: Aadhaar numbers, PAN cards, UPI IDs, 98 se shuru hone wale mobile numbers. Jo tool sirf ek tarah ki writing sambhalta hai, woh problem ka zyadatar hissa jaisa ka taisa chhod deta hai.',
   'So this project isn’t a copy of Rampart. It asks one question. Can a small tool, light enough to run inside a browser or on a phone, find personal details in English, Hindi and Hinglish, and be honest about what it misses?':
@@ -33552,8 +33569,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Worksheet',
   'everything by topic, with your notes':
     'sab kuch topic ke hisaab se, aapke notes ke saath',
-  'Worksheet: the whole course by topic':
-    'Worksheet: poora course topic ke hisaab se',
 
   /* the 28-week strip on the home and route pages */
   'This week':
@@ -41923,10 +41938,12 @@ function renderChapter(c){
           bk?h('a',{href:(S.lang==='hi'?'/book/hi/':'/book/')+bk.file,text:T('The story')+(bk.n?': '+T('Book')+' '+bk.n:'')+' \u2192'}):null,
           h('a',{href:'/plan/#w'+rs.week,text:T('In the plan')+' \u2192'})]),
         /* why this chapter comes now: what the week builds on, and what it adds */
-        (window.ROUTE.WEEKS[rs.week-1]||{}).why?h('p',{class:'rwhy'},[h('b',{text:T('Why now')+': '}),
-          h('span',{text:T(window.ROUTE.WEEKS[rs.week-1].why)})]):null,
-        (window.ROUTE.WEEKS[rs.week-1]||{}).job?h('p',{class:'rwhy'},[h('b',{text:T('For the job')+': '}),
-          h('span',{text:T(window.ROUTE.WEEKS[rs.week-1].job)})]):null]));
+        ((window.ROUTE.WEEKS[rs.week-1]||{}).why||(window.ROUTE.WEEKS[rs.week-1]||{}).job)?h('details',{class:'rwhyd'},[
+          h('summary',{text:T('Why this comes now, and what it is for')}),
+          (window.ROUTE.WEEKS[rs.week-1]||{}).why?h('p',{class:'rwhy'},[h('b',{text:T('Why now')+': '}),
+            h('span',{text:T(window.ROUTE.WEEKS[rs.week-1].why)})]):null,
+          (window.ROUTE.WEEKS[rs.week-1]||{}).job?h('p',{class:'rwhy'},[h('b',{text:T('For the job')+': '}),
+            h('span',{text:T(window.ROUTE.WEEKS[rs.week-1].job)})]):null]):null]));
     }
   }
 
@@ -43476,29 +43493,32 @@ function renderRail(){
     return s;};
   const dueN=window.ENG?window.ENG.dueList(S).length:0;
 
-  /* The five you use every day. */
-  r.appendChild(sec('',[
-    ['#/','\u25c9','Home'],
-    ['#/library','\u25a4','The course map'],
-    ['#/project','\u25c8','Your project'],
-    ['#/practice','\u25b6','Practice'],
-    ['#/skills','\u25a6','My progress']]));
+  /* Four short groups, each named for what you are doing. The route and the
+     worksheet are at the top because they say what to do next; the 68-chapter
+     outline is a reference and sits below them. */
+  r.appendChild(sec('Follow the course',[
+    ['#/','\u25c9','Home: today\u2019s step'],
+    ['#/start','\u25b8','Your route: 28 weeks'],
+    [S.lang==='hi'?'/worksheet/hi/':'/worksheet/','\u25a4','Worksheet: the course by topic'],
+    ['#/project','\u25c8','Your project']]));
+
+  r.appendChild(sec('Read',[
+    ...(bookHere()?[[bookBase(),'\u275d','The book: the course as a story']]:[]),
+    ['#/library','\u25a4','The course map: every chapter']]));
 
   /* The course, as an outline: every chapter one click away, with a tick on
      the ones you have finished. */
   r.appendChild(railOutline());
 
-  /* Setup was in the drawer with everything else, on the reasoning that it is
-     optional. It is, but it is also the one thing you cannot start without if
-     you do want the code, and a reader who cannot find it concludes the course
-     expects an environment they were never told how to build. */
-  r.appendChild(sec('Help',[
-    ['#/start','\u25b8','Your route: 28 weeks, one order'],
-    [S.lang==='hi'?'/worksheet/hi/':'/worksheet/','\u25a4','Worksheet: the whole course by topic'],
+  r.appendChild(sec('Try it',[
+    ['#/practice','\u25b6','Practice: questions'],
     ['#/setup','\u2699','Connect a model'],
     ['#/workbench','\u25b7','Workbench: run code here'],
     ['#/playground','\u25cc','Playground: try prompts'],
-    ['#/sheets','\u25a6','Sheets: spreadsheets here'],
+    ['#/sheets','\u25a6','Sheets: spreadsheets here']]));
+
+  r.appendChild(sec('Me',[
+    ['#/skills','\u25a6','My progress'],
     ['#/later','\u25d4','Not yet \u2014 what to ignore for now'],
     ['#/install','\u25a2','Install on iPad or phone']]));
 
@@ -43533,7 +43553,6 @@ function renderRail(){
       ['#/evidence','\u25a4','Artifact vault']]);
     group('Look things up',[
       ['#/glossary','\u220e','Glossary of every term'],
-      ...(bookHere()?[[bookBase(),'\u275d','The book: the course as a story']]:[]),
       ['#/appendix','\u2261','Worksheet, question bank, sources']]);
     group('Settings',[
       ['#/language','\u0905','Language: English or Hinglish'],

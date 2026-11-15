@@ -27,7 +27,9 @@ Anaya did the sensible thing and asked for a random sample. In this chapter you�
 She asked Farah to pull fifty attachments at random from the past month’s chats. They weren’t to be the interesting ones, or the ones an enthusiastic colleague would choose. A number generator picked all fifty from real traffic. Anaya went through them one by one on Saturday morning, with the shutters half down against the heat.
 
 ::: def Document audit
-Before any project that depends on documents, there are three numbers worth having. What share of the documents is clean digital text that can be read as it stands? What share is scanned or photographed, so that it must first be turned into text? And what share of the information people need is locked inside tables, forms and layouts, where the meaning depends on which box sits beside which? Finding out, from a random sample, is a *document audit*. It takes an afternoon, and almost nobody does it.
+Before any project that depends on documents, there are three numbers worth having. What share of the documents is clean digital text that can be read as it stands? What share is scanned or photographed, so that it must first be turned into text?
+
+And what share of the information people need is locked inside tables, forms and layouts, where the meaning depends on which box sits beside which? Finding out, from a random sample, is a *document audit*. It takes an afternoon, and almost nobody does it.
 :::
 
 They sorted the fifty into piles.
@@ -41,7 +43,9 @@ Table: What fifty random attachments were
 
 Thirty-one of fifty, a little over six in ten, were photographs. Nearly all of them carried, in the first line, the kind of detail the guard existed to find.
 
-Anaya said this was the part she had got wrong. In April she had placed photographs of cards under "Could", because she believed they were rare. Imran said she hadn’t had the number. She said she had had a feeling. She moved the line from "Could" to "Should" and wrote the reason beside it: sixty-two percent of a random sample, checked on 12 July. In a document that was largely about the failure of confident impressions, this was a small private triumph.
+Anaya said this was the part she had got wrong. In April she had placed photographs of cards under "Could", because she believed they were rare. Imran said she hadn’t had the number. She said she had had a feeling.
+
+She moved the line from "Could" to "Should" and wrote the reason beside it: sixty-two percent of a random sample, checked on 12 July. In a document that was largely about the failure of confident impressions, this was a small private triumph.
 
 ## The step before the step
 

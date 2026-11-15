@@ -55,12 +55,16 @@ Pehla hissa hai *diagnosis*. Yeh asli challenge ka imaandaar account hai, aise l
 
 Anaya ka version yeh tha: personal details wahan pahunch jaati hain jahan unhe nahi pahunchna chahiye. Kyunki customers unhe aazadi se type karte hain, chatbot unhe nyauta deta hai, unhe hataane ka kisi ke paas koi tareeka nahi hai, aur maujooda tools ek writing system ke liye bane hain aur yahan log jaise likhte hain, usmein fail ho jaate hain. Ise pitch jaisa na lagne mein chaar drafts lage.
 
-Doosra hissa hai *guiding policy*. Yeh challenge ke liye aapka overall tareeka hai, aur ismein woh bhi aata hai jo aap karne se mana karenge. Anaya ki policy yeh thi. Pehle details ko unki shakl se pakdo, kyunki woh sasta aur pakka hai. Phir naam aur pate sambhalo, kyunki doosre tools wahin fail hote hain. Sab kuch company ke andar karo, aur logon ke likhne ke asli tareeke mein karo. Aur har us cheez ko hal karne ki koshish mat karo jise privacy kaha ja sakta hai.
+Doosra hissa hai *guiding policy*. Yeh challenge ke liye aapka overall tareeka hai, aur ismein woh bhi aata hai jo aap karne se mana karenge. Anaya ki policy yeh thi. Pehle details ko unki shakl se pakdo, kyunki woh sasta aur pakka hai.
+
+Phir naam aur pate sambhalo, kyunki doosre tools wahin fail hote hain. Sab kuch company ke andar karo, aur logon ke likhne ke asli tareeke mein karo. Aur har us cheez ko hal karne ki koshish mat karo jise privacy kaha ja sakta hai.
 
 Teesra hissa hai saath-saath chalne wale kaamon ka ek set. Yeh kuch khaas steps hote hain jo policy ko poora karte hain aur ek doosre ko sahara dete hain. Anaya ne chaar likhe. Phir dekha ki do ek doosre par depend hi nahi karte, aur unhe kaat diya.
 
 ::: watch Goal strategy nahi hai
-"India ka sabse bada privacy platform banna" ek goal hai. Usmein koi diagnosis nahi hai, aur woh Monday ko kisi ko kuch nahi batata. Ek aasaan test hai: strategy se company ka naam hata dijiye, aur poochhiye ki kya koi competitor use apne document mein chipka sakta hai, bina kisi ke notice kiye. "Customer privacy ko bade scale par bachane ke liye best-in-class technology use karo" jaisa sentence is test mein paas ho jaata hai, isliye woh abhi strategy nahi hai. Anaya ke doosre paragraph mein aisa ek version ghus aaya tha, aur usne use mita diya.
+"India ka sabse bada privacy platform banna" ek goal hai. Usmein koi diagnosis nahi hai, aur woh Monday ko kisi ko kuch nahi batata. Ek aasaan test hai: strategy se company ka naam hata dijiye, aur poochhiye ki kya koi competitor use apne document mein chipka sakta hai, bina kisi ke notice kiye.
+
+"Customer privacy ko bade scale par bachane ke liye best-in-class technology use karo" jaisa sentence is test mein paas ho jaata hai, isliye woh abhi strategy nahi hai. Anaya ke doosre paragraph mein aisa ek version ghus aaya tha, aur usne use mita diya.
 :::
 
 ## Kiske liye, aur kahan se shuru
@@ -71,7 +75,9 @@ Kahan se shuru karna hai, yeh alag decision hai. Meenakshi ka rule tha: itne chh
 
 Product ka woh chhota pehla target, jise woh saaf taur par jeet sakta hai, *wedge* kehlaata hai. Woh itna chhota hona chahiye ki usmein behtareen ban sakein. Aur kisi badi cheez se juda hona chahiye, taaki use jeetne se ek darwaza khule.
 
-Guard ke liye wedge "India ki companies ke liye privacy" nahi tha. Wedge tha: Sahaj ki apni support chat mein personal details dhoondhna aur chhupana, un teen tareekon mein jinmein log likhte hain. Yeh vision se bahut chhota tha, aur poori tarah jeeta ja sakta tha. Ek taiyaar customer company ke andar hi tha. Asli messages ka bhandaar tha. Aur Farah Sheikh thi, jise ek hafte mein pata chal jaata ki woh kaam karta hai ya nahi.
+Guard ke liye wedge "India ki companies ke liye privacy" nahi tha. Wedge tha: Sahaj ki apni support chat mein personal details dhoondhna aur chhupana, un teen tareekon mein jinmein log likhte hain.
+
+Yeh vision se bahut chhota tha, aur poori tarah jeeta ja sakta tha. Ek taiyaar customer company ke andar hi tha. Asli messages ka bhandaar tha. Aur Farah Sheikh thi, jise ek hafte mein pata chal jaata ki woh kaam karta hai ya nahi.
 
 ### Ek number
 

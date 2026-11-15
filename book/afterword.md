@@ -3,13 +3,17 @@ title: After the Book
 summary: What the case ended with, what the seven parts of the book add up to, what the project still doesn't know, and how to use the book together with the course app.
 ---
 
-In September, a year and a half after the night she began it, Anaya Deshmukh scrolled to the top of the decision log and read the first entry. It was dated 14 March. The decision was to work on the personal-details problem first and ticket themes second. The evidence was that 37 of 400 conversations in one week contained an identity number, a tax number, a bank account or a full address. That was her own count, and Farah could check it.
+In September, a year and a half after the night she began it, Anaya Deshmukh scrolled to the top of the decision log and read the first entry. It was dated 14 March. The decision was to work on the personal-details problem first and ticket themes second.
+
+The evidence was that 37 of 400 conversations in one week contained an identity number, a tax number, a bank account or a full address. That was her own count, and Farah could check it.
 
 She read the last line twice: "I would change my mind if". Of all the things the year had taught her, that line had been the cheapest, and it had done the most work.
 
 ## Where the case ends
 
-By September the guard ran on every chat in two support teams, and in the trial of a lending partner. Behind Anaya, on the whiteboard, Imran had left a drawing in three colours of everything that now stood between a customer's keyboard and the person who read the reply. It had a shape for each thing the guard did, an arrow for each place where a decision was made, and a star beside each place where a wrong answer would cost the most. It wasn't elegant. It was an accurate account of what had been built.
+By September the guard ran on every chat in two support teams, and in the trial of a lending partner. Behind Anaya, on the whiteboard, Imran had left a drawing in three colours of everything that now stood between a customer's keyboard and the person who read the reply.
+
+It had a shape for each thing the guard did, an arrow for each place where a decision was made, and a star beside each place where a wrong answer would cost the most. It wasn't elegant. It was an accurate account of what had been built.
 
 ## What the seven parts add up to
 

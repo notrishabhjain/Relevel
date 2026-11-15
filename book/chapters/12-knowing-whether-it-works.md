@@ -40,7 +40,9 @@ The remedy is a *test set*. This is a collection of real or realistic examples, 
 
 On Thursday, Anaya and Farah wrote ten sentences. They made them up in the shape of real messages, and between them the ten covered the main cases. Three were in English, one was in Hindi script, three were in Hinglish, and three were awkward.
 
-Here is a taste of the mix. One was a plain message with a name and a mobile number. One was a Hinglish message with an Aadhaar number sitting beside a mobile number that was already half hidden. One was a Devanagari sentence with a name and an identity number. One held a father's name, an address in Gurgaon and an employer. One pointed at a single person without giving a name or a number. And one contained nothing personal at all, so the tool was supposed to leave it alone.
+Here is a taste of the mix. One was a plain message with a name and a mobile number. One was a Hinglish message with an Aadhaar number sitting beside a mobile number that was already half hidden. One was a Devanagari sentence with a name and an identity number.
+
+One held a father's name, an address in Gurgaon and an employer. One pointed at a single person without giving a name or a number. And one contained nothing personal at all, so the tool was supposed to leave it alone.
 
 For each sentence they wrote six things in a spreadsheet, before running anything: a number, the kind of writing, the sentence, what should be found, what should happen to it, and a note.
 
@@ -100,7 +102,9 @@ Now apply it to the guard. The guard finds identity numbers and names inside mes
 The chatbot was different. Its job was to write answers, which is generation, and nobody can grade that automatically. That may be why nobody had.
 
 ::: watch A request is often three tasks in a coat
-"Can the AI handle our inbox?" is not one task. It is at least three. Classify the message by type. Extract the account number. Write a draft reply. Each one fails in its own way, and only the first two can be measured without a person. A request with more than one task type in it should be split. Farah, passing the door, asked what would happen if she just asked it to handle the chat. Imran asked which of the three jobs she meant.
+"Can the AI handle our inbox?" is not one task. It is at least three. Classify the message by type. Extract the account number. Write a draft reply. Each one fails in its own way, and only the first two can be measured without a person.
+
+A request with more than one task type in it should be split. Farah, passing the door, asked what would happen if she just asked it to handle the chat. Imran asked which of the three jobs she meant.
 :::
 
 ## Lakshmi's question, answered

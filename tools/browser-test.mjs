@@ -681,6 +681,18 @@ ok(['#/', '#/library', '#/project', '#/practice', '#/skills'].every(h => top.inc
 ok(top.length === new Set(top).size, 'no page is listed twice in the sidebar');
 ok(!top.includes('#/glossary'), 'the drawer is closed until asked for');
 
+console.log('\n— the sidebar is grouped by what you are doing —');
+{
+  const order = await nav.page.evaluate(() => [...document.querySelectorAll('#rail .railsec > h2')].map(h => h.textContent.trim()));
+  ok(order.join(' | ') === 'Follow the course | Read | The course | Try it | Me', 'five short groups, named for what you are doing', order.join(' | '));
+  const pos = await nav.page.evaluate(() => {
+    const all = [...document.querySelectorAll('#rail a')].map(a => a.getAttribute('href'));
+    return { route: all.indexOf('#/start'), sheet: all.indexOf('/worksheet/'), firstCh: all.findIndex(h => /^#\/ch\//.test(h)) };
+  });
+  ok(pos.route >= 0 && pos.sheet >= 0 && pos.route < pos.firstCh && pos.sheet < pos.firstCh,
+     'the route and the worksheet come before the chapter outline, not after it', JSON.stringify(pos));
+}
+
 console.log('\n— the sidebar is an outline of the course —');
 const outline = await nav.page.evaluate(() => ({
   parts: document.querySelectorAll('#rail .railpart').length,

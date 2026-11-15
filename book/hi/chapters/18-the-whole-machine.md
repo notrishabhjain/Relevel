@@ -54,7 +54,9 @@ Imran ne bataya ki woh Anaya ko is kamre se kya le jaane dena chahta tha. Aisa s
 
 Log Imran se kehte hain ki chatbot bure jawaab deta hai. Woh ise ek symptom maanta hai, jaise doctor se kehna ki mujhe achha nahi lag raha. Kam se kam 4 bilkul alag problems bahar se ek jaisi dikhti hain.
 
-Ho sakta hai sahi page kabhi mila hi nahi. Ho sakta hai mila, lekin aise kata tha ki zaroori line agle tukde mein chali gayi. Ho sakta hai poora mila, aur model ne use ignore kar diya. Ya phir ho sakta hai instructions ne model ko kuch aisa karne ko kaha jo kisi ke matlab se thoda alag tha. Har problem ka ilaaj alag hai. Galat problem ka ilaaj karne se ek quarter barbaad ho jaata hai.
+Ho sakta hai sahi page kabhi mila hi nahi. Ho sakta hai mila, lekin aise kata tha ki zaroori line agle tukde mein chali gayi. Ho sakta hai poora mila, aur model ne use ignore kar diya.
+
+Ya phir ho sakta hai instructions ne model ko kuch aisa karne ko kaha jo kisi ke matlab se thoda alag tha. Har problem ka ilaaj alag hai. Galat problem ka ilaaj karne se ek quarter barbaad ho jaata hai.
 
 Usne Anaya se kaha ki behtar jawaab ke liye ek quarter kharch karne ke 5 tareeke rank karo: ek mehnga model, behtar kaatna, search ke baad results ko dobara order karne wala step, instructions par aur kaam, aur documents ko saaf karna. Usne unhe andaaze se rank kiya. Usne mehnge model ko sabse upar rakha.
 
@@ -73,7 +75,9 @@ School ke baad pehli baar Anaya ne apne haath ki peeth par ek sentence likha. Qu
 
 Lakshmi Iyer bina bataye andar aayi, paani ka glass lekar. Farah ne use bataya tha ki poora system board par hai. Lakshmi ne use aakhir se padha, jaise woh documents padhti thi. Usne poochha ki customer ke words kahan jaate hain, aur marker utha liya, jo kisi ne diya nahi tha.
 
-Usne "customer asks" se shuru kiya aur har us jagah ko gher diya jahan words copy hote the. Usne us box ko gheraa jahan sawaal ko embedding di jaati thi, aur likha "outside service?". Imran ne kaha ki woh ek alag company ki hai. Usne us box ko gheraa jahan sabse paas ke tukde sawaal ke saath model ko bheje jaate the, aur likha "outside company". Usne us box ko gheraa jahan jawaab wapas aata tha aur customer use dekhta tha, aur support system ki line ko bhi, jo conversation save karta tha. Usne logs aur analytics ko gheraa. Phir usne kone mein ek number likha.
+Usne "customer asks" se shuru kiya aur har us jagah ko gher diya jahan words copy hote the. Usne us box ko gheraa jahan sawaal ko embedding di jaati thi, aur likha "outside service?". Imran ne kaha ki woh ek alag company ki hai.
+
+Usne us box ko gheraa jahan sabse paas ke tukde sawaal ke saath model ko bheje jaate the, aur likha "outside company". Usne us box ko gheraa jahan jawaab wapas aata tha aur customer use dekhta tha, aur support system ki line ko bhi, jo conversation save karta tha. Usne logs aur analytics ko gheraa. Phir usne kone mein ek number likha.
 
 "6 jagah," usne kaha. "Aur mujhe pata chal raha hai ek whiteboard par."
 

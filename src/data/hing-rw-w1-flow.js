@@ -661,8 +661,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Worksheet',
   'everything by topic, with your notes':
     'sab kuch topic ke hisaab se, aapke notes ke saath',
-  'Worksheet: the whole course by topic':
-    'Worksheet: poora course topic ke hisaab se',
 
   /* the 28-week strip on the home and route pages */
   'This week':

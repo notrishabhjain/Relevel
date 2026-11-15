@@ -73,11 +73,15 @@ Partner ke technical lead ne sabse pehle bola. Usne dhyaan dilaya ki Anaya ne fa
 
 Beech ke hisse ke liye Anaya ne kuch hoshiyaar taiyaar nahi kiya tha. Use shak tha ki saboot hi kaam kar dega.
 
-Jo product bahar gaya tha, woh developer kit tha jise team ne 20 November ko offer karne par haami bhari thi: ek chhoti library aur ek demo page, jahan developer ek message paste karta hai aur dekhta hai ki guard use kaise saaf karta hai. Aise kit ko *SDK* kehte hain. Isse doosri team yeh feature apne product mein bina khud banaye jod sakti hai. Uska kit ek stable address par tha, ek aisi machine par jo uski nahi thi, monitoring, privacy notice aur problem report karne ke button ke saath.
+Jo product bahar gaya tha, woh developer kit tha jise team ne 20 November ko offer karne par haami bhari thi: ek chhoti library aur ek demo page, jahan developer ek message paste karta hai aur dekhta hai ki guard use kaise saaf karta hai.
+
+Aise kit ko *SDK* kehte hain. Isse doosri team yeh feature apne product mein bina khud banaye jod sakti hai. Uska kit ek stable address par tha, ek aisi machine par jo uski nahi thi, monitoring, privacy notice aur problem report karne ke button ke saath.
 
 Live jaane se pehle Imran ne woh kiya tha jiski Anaya ne zid ki thi. Usne ek harmless badlaav deploy kiya, use rollback kiya, aur stopwatch se time kiya: 4 minute 10 second. Anaya ne room ko bataya ki jis rollback ko kabhi try nahi kiya gaya, woh sirf ek plan hai.
 
-Chaar companies ke saat developers ne kit use kiya tha, aur paanch ko usne khud baith kar dekha tha. Teen ne ise ek ghante ke andar chalu kar liya. Ek sign-in screen par ruk gaya aur usne likha "main yahin se chala jaata", jise Anaya ne deewar par laga diya tha. Pichhle chaar hafton se Pune ki support team har chat par guard chala rahi thi, aur Lakshmi ka sweep 500 mein 8 se 11 ke beech tika raha tha.
+Chaar companies ke saat developers ne kit use kiya tha, aur paanch ko usne khud baith kar dekha tha. Teen ne ise ek ghante ke andar chalu kar liya.
+
+Ek sign-in screen par ruk gaya aur usne likha "main yahin se chala jaata", jise Anaya ne deewar par laga diya tha. Pichhle chaar hafton se Pune ki support team har chat par guard chala rahi thi, aur Lakshmi ka sweep 500 mein 8 se 11 ke beech tika raha tha.
 
 Finance director ne kaha ki chaar companies ke saat developers zyada nahi hain. Anaya sahmat thi. Yeh ek shuruaat thi. Itna kehne ke liye kaafi tha ki usne asli logon ko ise use karte dekha hai, lekin itna kehne ke liye kaafi nahi tha ki yeh scale karega.
 
@@ -102,7 +106,9 @@ Bees minute ke point par Imran ne haath khole. Usne poocha, room ko yeh kyun maa
 
 Yeh wahi sawaal tha jiski use ummeed thi. October se woh trains mein iska jawaab rehearse kar rahi thi. Usne kaha ki woh yeh claim nahi kar rahi ki yeh unke bahar kaam karta hai. Woh yeh keh rahi hai ki use pata hai ki woh yeh kaise pata karegi.
 
-Answer key results dekhne se pehle likhi gayi thi. Sweeps Lakshmi chalati thi, jo Anaya ke liye kaam nahi karti. Developers aise log the jinse woh kabhi mili nahi thi, aur unmein se ek ne kaha tha ki woh chala jaata. Guard kya dhoondhta hai, is baare mein usne jo kuch kaha, woh sab un messages par naapa gaya tha jo team ne khud likhe the, kyunki woh test ke liye kisi asli customer ka message use nahi karegi. Jitna woh jaanti thi, uski limit yehi thi, aur usne yeh zor se kaha taaki koi usse dhakka maar sake.
+Answer key results dekhne se pehle likhi gayi thi. Sweeps Lakshmi chalati thi, jo Anaya ke liye kaam nahi karti. Developers aise log the jinse woh kabhi mili nahi thi, aur unmein se ek ne kaha tha ki woh chala jaata.
+
+Guard kya dhoondhta hai, is baare mein usne jo kuch kaha, woh sab un messages par naapa gaya tha jo team ne khud likhe the, kyunki woh test ke liye kisi asli customer ka message use nahi karegi. Jitna woh jaanti thi, uski limit yehi thi, aur usne yeh zor se kaha taaki koi usse dhakka maar sake.
 
 Kisi ne kuch nahi kaha. Phir Meenakshi ki awaaz speaker se patli si aayi, aur peeche ek khadakhad, jo shayad billi thi. Usne kaha ki yeh bahut achha jawaab tha, aur woh chahti hai ki note kiya jaye ki usne koi madad nahi ki. Founders hans pade. Lakshmi nahi hansi, lekin usne kuch likha.
 
@@ -116,7 +122,9 @@ Anaya ne kaha ki aap tab done hain jab koi bhi aapka kaam dobara chalaye aur wah
 
 ## March wala page
 
-Us raat Anaya ne 14 March ke scores wala page kholkar dekha. Teen ab bhi uski likhai mein the: problems dhoondhne ke liye 2, kaunsi solve karni hai yeh chunne ke liye 1, aur technology samajhne ke liye 1 se neeche ka ek kata hua figure. Usne saare saat areas ko usi scale par phir se score kiya, har ek ke baju mein saboot ki ek line ke saath, apne hi rule se ki jab tak koi aur check na kar sake, kuch bhi count nahi karta.
+Us raat Anaya ne 14 March ke scores wala page kholkar dekha. Teen ab bhi uski likhai mein the: problems dhoondhne ke liye 2, kaunsi solve karni hai yeh chunne ke liye 1, aur technology samajhne ke liye 1 se neeche ka ek kata hua figure.
+
+Usne saare saat areas ko usi scale par phir se score kiya, har ek ke baju mein saboot ki ek line ke saath, apne hi rule se ki jab tak koi aur check na kar sake, kuch bhi count nahi karta.
 
 Table: Saat areas, dobara score kiye hue
 | Area | Score | Saboot jo koi aur check kar sake |

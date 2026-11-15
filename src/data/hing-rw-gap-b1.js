@@ -78,8 +78,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Units 14.3 aur 14.4 kijiye, phir neeche ka printed exchange padhiye. Baaki units is baar sirf padh lijiye.',
   'Read one real exchange':
     'Ek asli exchange padhiye',
-  'You do not need to run an MCP server to understand it. Below is what passes between a client and a server that offers the pattern checker as a tool. The messages are shortened; real ones carry a few more fields. To run a server yourself, use the free Introduction to MCP course in the plan.':
-    'Ise samajhne ke liye MCP server chalana zaroori nahi. Neeche woh hai jo ek client aur ek server ke beech guzarta hai, jo pattern checker ko tool ki tarah offer karta hai. Messages chhote kiye gaye hain; asli messages mein kuch fields aur hoti hain. Khud ek server chalane ke liye plan mein diya free Introduction to MCP course use kijiye.',
+  'You do not need a real MCP server to understand it. The cell below is a toy: a few lines of Python that answer in the same message shapes, with the pattern checker offered as a tool. Run it and read the six lines it prints. Real messages carry a few more fields. To run a real server, use the free Introduction to MCP course in the plan.':
+    'Ise samajhne ke liye asli MCP server zaroori nahi. Neeche wala cell ek khilauna hai: Python ki kuch lines jo wahi message shapes mein jawaab deti hain, aur pattern checker ek tool ki tarah offer hota hai. Ise chalaiye aur jo chhah lines print hoti hain unhe padhiye. Asli messages mein kuch fields aur hoti hain. Asli server chalane ke liye plan mein diya free Introduction to MCP course use kijiye.',
   'Mark where consent sits':
     'Nishaan lagaiye ki consent kahan baithta hai',
   'Mark the message where the client first learns what the server can do.':

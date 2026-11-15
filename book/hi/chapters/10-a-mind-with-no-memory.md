@@ -12,21 +12,29 @@ terms:
   - conversation history | chat ke pichhle messages, jinhe app ko har naye message ke saath dobara bhejna padta hai, agar woh chahta hai ki model ko sab yaad lage | 
 ---
 
-Sahaj ke office ke neeche jo mithai ki dukaan hai, uske maalik ne 19 saal mein kabhi kisi regular se nahi poochha ki use kya chahiye. Use pata hota tha. Mrs. Apte har Thursday paav kilo kaju katli leti thi. Paas ki pharmacy ka ladka ek garam jalebi leta tha aur chhutte paise deta tha. Agar koi anjaan aadmi aakar "wahi jo hamesha" maangta, toh maalik pyaar se keh deta ki use abhi nahi pata ki woh kya hai.
+Sahaj ke office ke neeche jo mithai ki dukaan hai, uske maalik ne 19 saal mein kabhi kisi regular se nahi poochha ki use kya chahiye. Use pata hota tha. Mrs. Apte har Thursday paav kilo kaju katli leti thi.
 
-Ek dopahar Imran aur Anaya laptop lekar wahin neeche gaye. Anaya ne pichhle din ek sawaal poochha tha: chatbot mujhe yaad kyun nahi rakhta? Dukaan is sawaal ke liye achhi misaal thi. Maalik apne customers ke baare mein sab kuch yaad rakhta hai, aur model kisi ke baare mein kuch yaad nahi rakhta. Yahi farq har chatbot ka kharcha tay karta hai. Aur aage dekhenge ki yahi farq us privacy problem ko bhi shape deta hai, jis par poora project tika hai.
+Paas ki pharmacy ka ladka ek garam jalebi leta tha aur chhutte paise deta tha. Agar koi anjaan aadmi aakar "wahi jo hamesha" maangta, toh maalik pyaar se keh deta ki use abhi nahi pata ki woh kya hai.
+
+Ek dopahar Imran aur Anaya laptop lekar wahin neeche gaye. Anaya ne pichhle din ek sawaal poochha tha: chatbot mujhe yaad kyun nahi rakhta? Dukaan is sawaal ke liye achhi misaal thi.
+
+Maalik apne customers ke baare mein sab kuch yaad rakhta hai, aur model kisi ke baare mein kuch yaad nahi rakhta. Yahi farq har chatbot ka kharcha tay karta hai. Aur aage dekhenge ki yahi farq us privacy problem ko bhi shape deta hai, jis par poora project tika hai.
 
 ## Case: wahi machine, ek second baad
 
 Imran ne pichhli shaam wali window kholi aur type kiya: "My name is Anaya and I work on loans." Model ne kaha ki aapse milkar achha laga, aur poochha ki woh aapke loans mein kaise madad kar sakta hai. Phir Imran ne window saaf ki aur type kiya: "What is my name?" Model ne jawaab diya ki uske paas aapka naam nahi hai, aur aapse naam batane ko kaha.
 
-Anaya ne kaha ki abhi ek second pehle toh model usi se baat kar raha tha. Imran ne kaha ki woh kisi se baat kar raha tha, haan. Lekin doosri call ko pehli call ka kuch pata hi nahi tha. Neeche wala maalik kal ki baatein aaj tak saath le aata hai. Model bilkul ulta karta hai. Woh *stateless* hai. Matlab woh ek request se doosri request tak kuch bhi nahi rakhta, isliye har call zero se shuru hoti hai.
+Anaya ne kaha ki abhi ek second pehle toh model usi se baat kar raha tha. Imran ne kaha ki woh kisi se baat kar raha tha, haan. Lekin doosri call ko pehli call ka kuch pata hi nahi tha.
+
+Neeche wala maalik kal ki baatein aaj tak saath le aata hai. Model bilkul ulta karta hai. Woh *stateless* hai. Matlab woh ek request se doosri request tak kuch bhi nahi rakhta, isliye har call zero se shuru hoti hai.
 
 ## Yaaddasht aati kahan se hai
 
 Anaya ko yeh baat jami nahi. Usne kaha ki chatbot toh yaad rakhta hai. Usne chatbot se poori baatcheet ki thi, aur chatbot ko pata tha ki teen message pehle usne kya kaha tha. Imran ne kaha ki chatbot yaad nahi rakhta. Application rakhta hai.
 
-Phir usne dukaan ka ledger uthaya. Moti jild aur laal kapde ka cover wali ek lambi kitaab. Usne use kholkar pakda aur kaha, maan lijiye ek customer andar aaye aur maalik ko kuch bhi yaad na ho. Toh customer ko har baar bolne se pehle ledger sahi page par khol kar maalik ke saamne rakhna padega, taaki woh padh sake ki ab tak kya baat hui. Model ke saath bhi yahi hota hai. Woh sirf wahi dekhta hai jo is request mein table par rakha hai. Jab Anaya ne apna paanchva message bheja, toh app ne pehle chaar messages dobara bheje, aur naya message sabse aakhir mein jod diya.
+Phir usne dukaan ka ledger uthaya. Moti jild aur laal kapde ka cover wali ek lambi kitaab. Usne use kholkar pakda aur kaha, maan lijiye ek customer andar aaye aur maalik ko kuch bhi yaad na ho. Toh customer ko har baar bolne se pehle ledger sahi page par khol kar maalik ke saamne rakhna padega, taaki woh padh sake ki ab tak kya baat hui.
+
+Model ke saath bhi yahi hota hai. Woh sirf wahi dekhta hai jo is request mein table par rakha hai. Jab Anaya ne apna paanchva message bheja, toh app ne pehle chaar messages dobara bheje, aur naya message sabse aakhir mein jod diya.
 
 Imran ne yeh karke dikhaya. Usne ek hi request mein pehla message, model ka uska jawaab, aur naya sawaal "What is my name?" daal diya. Jawaab turant aa gaya: "Your name is Anaya."
 
@@ -63,7 +71,9 @@ Jis bhi product mein memory milti hai, usne inmein se koi ek tareeka chuna hai a
 
 ## Jo Anaya ne abhi tak nahi dekha tha
 
-Anaya ne chupchaap apni jalebi khatam ki. Phir usne kaha, agar poori history har baar bheji jaati hai, toh jo number message 2 mein type hua, woh message 3 ke saath bhi jaayega, phir message 4 ke saath, aur aise hi aage. Imran ne haan kaha. Woh baatcheet ke aakhir tak jaata rehta hai. Maan lijiye koi customer 20 message wali chat ke doosre message mein apna Aadhaar number type kar de. Toh woh number bahar ki company ke paas 18 baar aur pahunchega. Imran ne yeh pichhli raat dekh liya tha, Anaya ke jaane ke baad. Aur usne intezaar kiya tha ki Anaya ise khud dhoondhe.
+Anaya ne chupchaap apni jalebi khatam ki. Phir usne kaha, agar poori history har baar bheji jaati hai, toh jo number message 2 mein type hua, woh message 3 ke saath bhi jaayega, phir message 4 ke saath, aur aise hi aage. Imran ne haan kaha. Woh baatcheet ke aakhir tak jaata rehta hai.
+
+Maan lijiye koi customer 20 message wali chat ke doosre message mein apna Aadhaar number type kar de. Toh woh number bahar ki company ke paas 18 baar aur pahunchega. Imran ne yeh pichhli raat dekh liya tha, Anaya ke jaane ke baad. Aur usne intezaar kiya tha ki Anaya ise khud dhoondhe.
 
 Is khoj se guard ke baare mein Anaya ki soch badal gayi. Woh socha karti thi ki guard ek aisa tool hai jo har naye message ko aate hi dekh leta hai. Lekin agar koi number sirf sabse naye message mein chhupa ho, aur history mein khula pada rahe, toh woh har agle message ke saath poora ka poora dobara chala jaayega.
 

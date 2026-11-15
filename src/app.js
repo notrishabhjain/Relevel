@@ -784,10 +784,12 @@ function renderChapter(c){
           bk?h('a',{href:(S.lang==='hi'?'/book/hi/':'/book/')+bk.file,text:T('The story')+(bk.n?': '+T('Book')+' '+bk.n:'')+' \u2192'}):null,
           h('a',{href:'/plan/#w'+rs.week,text:T('In the plan')+' \u2192'})]),
         /* why this chapter comes now: what the week builds on, and what it adds */
-        (window.ROUTE.WEEKS[rs.week-1]||{}).why?h('p',{class:'rwhy'},[h('b',{text:T('Why now')+': '}),
-          h('span',{text:T(window.ROUTE.WEEKS[rs.week-1].why)})]):null,
-        (window.ROUTE.WEEKS[rs.week-1]||{}).job?h('p',{class:'rwhy'},[h('b',{text:T('For the job')+': '}),
-          h('span',{text:T(window.ROUTE.WEEKS[rs.week-1].job)})]):null]));
+        ((window.ROUTE.WEEKS[rs.week-1]||{}).why||(window.ROUTE.WEEKS[rs.week-1]||{}).job)?h('details',{class:'rwhyd'},[
+          h('summary',{text:T('Why this comes now, and what it is for')}),
+          (window.ROUTE.WEEKS[rs.week-1]||{}).why?h('p',{class:'rwhy'},[h('b',{text:T('Why now')+': '}),
+            h('span',{text:T(window.ROUTE.WEEKS[rs.week-1].why)})]):null,
+          (window.ROUTE.WEEKS[rs.week-1]||{}).job?h('p',{class:'rwhy'},[h('b',{text:T('For the job')+': '}),
+            h('span',{text:T(window.ROUTE.WEEKS[rs.week-1].job)})]):null]):null]));
     }
   }
 
@@ -2337,29 +2339,32 @@ function renderRail(){
     return s;};
   const dueN=window.ENG?window.ENG.dueList(S).length:0;
 
-  /* The five you use every day. */
-  r.appendChild(sec('',[
-    ['#/','\u25c9','Home'],
-    ['#/library','\u25a4','The course map'],
-    ['#/project','\u25c8','Your project'],
-    ['#/practice','\u25b6','Practice'],
-    ['#/skills','\u25a6','My progress']]));
+  /* Four short groups, each named for what you are doing. The route and the
+     worksheet are at the top because they say what to do next; the 68-chapter
+     outline is a reference and sits below them. */
+  r.appendChild(sec('Follow the course',[
+    ['#/','\u25c9','Home: today\u2019s step'],
+    ['#/start','\u25b8','Your route: 28 weeks'],
+    [S.lang==='hi'?'/worksheet/hi/':'/worksheet/','\u25a4','Worksheet: the course by topic'],
+    ['#/project','\u25c8','Your project']]));
+
+  r.appendChild(sec('Read',[
+    ...(bookHere()?[[bookBase(),'\u275d','The book: the course as a story']]:[]),
+    ['#/library','\u25a4','The course map: every chapter']]));
 
   /* The course, as an outline: every chapter one click away, with a tick on
      the ones you have finished. */
   r.appendChild(railOutline());
 
-  /* Setup was in the drawer with everything else, on the reasoning that it is
-     optional. It is, but it is also the one thing you cannot start without if
-     you do want the code, and a reader who cannot find it concludes the course
-     expects an environment they were never told how to build. */
-  r.appendChild(sec('Help',[
-    ['#/start','\u25b8','Your route: 28 weeks, one order'],
-    [S.lang==='hi'?'/worksheet/hi/':'/worksheet/','\u25a4','Worksheet: the whole course by topic'],
+  r.appendChild(sec('Try it',[
+    ['#/practice','\u25b6','Practice: questions'],
     ['#/setup','\u2699','Connect a model'],
     ['#/workbench','\u25b7','Workbench: run code here'],
     ['#/playground','\u25cc','Playground: try prompts'],
-    ['#/sheets','\u25a6','Sheets: spreadsheets here'],
+    ['#/sheets','\u25a6','Sheets: spreadsheets here']]));
+
+  r.appendChild(sec('Me',[
+    ['#/skills','\u25a6','My progress'],
     ['#/later','\u25d4','Not yet \u2014 what to ignore for now'],
     ['#/install','\u25a2','Install on iPad or phone']]));
 
@@ -2394,7 +2399,6 @@ function renderRail(){
       ['#/evidence','\u25a4','Artifact vault']]);
     group('Look things up',[
       ['#/glossary','\u220e','Glossary of every term'],
-      ...(bookHere()?[[bookBase(),'\u275d','The book: the course as a story']]:[]),
       ['#/appendix','\u2261','Worksheet, question bank, sources']]);
     group('Settings',[
       ['#/language','\u0905','Language: English or Hinglish'],

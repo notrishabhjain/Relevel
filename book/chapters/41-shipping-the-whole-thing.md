@@ -16,7 +16,9 @@ terms:
 
 On the second Friday of December, in the large room on the second floor, Anaya stood up in front of nine people. She held a clicker she didn't need. She said she would tell them what she thought she knew, and then what she didn't.
 
-At the table were both founders, Lakshmi Iyer, the finance director, Farah Sheikh and two of her agents, and a technical lead from one of the lending partners, who had come to see whether the thing was real. In the corner, arms folded, sat Imran Qureshi. By prior agreement, his job was to be the hardest person in the room. On the speakerphone, brought in at Anaya's request, were a retired teacher in Bengaluru and a cat.
+At the table were both founders, Lakshmi Iyer, the finance director, Farah Sheikh and two of her agents, and a technical lead from one of the lending partners, who had come to see whether the thing was real.
+
+In the corner, arms folded, sat Imran Qureshi. By prior agreement, his job was to be the hardest person in the room. On the speakerphone, brought in at Anaya's request, were a retired teacher in Bengaluru and a cat.
 
 Anaya had prepared two versions of the talk. One ran five minutes, for the people who would decide. The other ran twenty, for the people who would doubt. She would give the first, and then, if she were allowed, the second.
 
@@ -73,7 +75,9 @@ The partner's technical lead was the first to speak. He pointed out that she had
 
 For the middle of the talk Anaya had prepared nothing clever. She suspected the evidence would carry it.
 
-The product that had gone out was the developer kit the team had agreed to offer on 20 November: a small library and a demonstration page where a developer pastes a message and watches the guard clean it. A kit like this is called an *SDK*. It lets another team add the feature to their own product without building it themselves. Hers sat at a stable address, on a machine that wasn't hers, with monitoring, a privacy notice and a button for reporting problems.
+The product that had gone out was the developer kit the team had agreed to offer on 20 November: a small library and a demonstration page where a developer pastes a message and watches the guard clean it.
+
+A kit like this is called an *SDK*. It lets another team add the feature to their own product without building it themselves. Hers sat at a stable address, on a machine that wasn't hers, with monitoring, a privacy notice and a button for reporting problems.
 
 Before it went live, Imran had done what she insisted on. He deployed a harmless change, rolled it back, and timed it with a stopwatch: four minutes and ten seconds. A rollback that has never been tried, she told the room, is only a plan.
 
@@ -102,7 +106,9 @@ At the twenty-minute point Imran unfolded his arms. Why should the room believe 
 
 It was the question she had expected. She had been rehearsing the answer on trains since October. She said she was not claiming it worked beyond them. She was saying that she knew how she would find out.
 
-The answer key had been written before the results were seen. The sweeps were run by Lakshmi, who did not work for her. The developers were people she had never met, and one of them had said he would have left. Everything she had said about what the guard finds was measured on messages the team had written itself, because she would not use a real customer's message for a test. That was the limit of what she knew, and she had said it aloud so that someone could push on it.
+The answer key had been written before the results were seen. The sweeps were run by Lakshmi, who did not work for her. The developers were people she had never met, and one of them had said he would have left.
+
+Everything she had said about what the guard finds was measured on messages the team had written itself, because she would not use a real customer's message for a test. That was the limit of what she knew, and she had said it aloud so that someone could push on it.
 
 Nobody spoke. Then Meenakshi's voice came thinly from the speaker, with a clatter behind it that was probably the cat. It was a very good answer, she said, and she would like it noted that she had not helped. The founders laughed. Lakshmi did not, but she wrote something down.
 

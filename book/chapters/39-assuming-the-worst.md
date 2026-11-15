@@ -26,7 +26,9 @@ Imran drew the situation once more, and this time Anaya thought the picture was 
 
 A model is in the same position. It reads everything it is given with the same trust. So whether that is dangerous depends on the system around it: what it is given, and what it is allowed to do next.
 
-This means most of the security of an AI product is not in the model. It is in what the product feeds the model, what it does with the answer and what it can reach. Imran said that asking nicely in the instruction is not a boundary. Then he gave Anaya the principle underneath all the others, and she wrote it in the log with the date: assume the model will be manipulated, and treat the application, the retrieved text, the tools, the identity layer and the data pipeline as part of the attack surface.
+This means most of the security of an AI product is not in the model. It is in what the product feeds the model, what it does with the answer and what it can reach. Imran said that asking nicely in the instruction is not a boundary.
+
+Then he gave Anaya the principle underneath all the others, and she wrote it in the log with the date: assume the model will be manipulated, and treat the application, the retrieved text, the tools, the identity layer and the data pipeline as part of the attack surface.
 
 ::: def Attack surface
 Every place where an outsider can feed something into a system, or reach something it can do. Every tool adds to it, and so does every input and every connection to another service.
@@ -34,7 +36,9 @@ Every place where an outsider can feed something into a system, or reach somethi
 
 ## A Saturday
 
-Farah organised the test. It was the only event that autumn that everybody enjoyed without reservation. On a Saturday, in the large room, with the biscuits restored, ten people sat down with a laptop each. Eight came from the support teams. Two came from outside the project: a friend of Imran's who did security for a bank, and a former colleague of Lakshmi's. Each had a test copy of the guard and a single instruction: make it leak. The prize was a dozen jalebis from the shop downstairs, and bragging rights in the canteen.
+Farah organised the test. It was the only event that autumn that everybody enjoyed without reservation. On a Saturday, in the large room, with the biscuits restored, ten people sat down with a laptop each. Eight came from the support teams.
+
+Two came from outside the project: a friend of Imran's who did security for a bank, and a former colleague of Lakshmi's. Each had a test copy of the guard and a single instruction: make it leak. The prize was a dozen jalebis from the shop downstairs, and bragging rights in the canteen.
 
 A group whose job is to attack a system on purpose is called a *red team*. They do it so that they find the weaknesses before somebody else does. This one lasted an afternoon, and it found four things. Read the table across: what was found, what happened, and what the team did about it.
 
@@ -65,7 +69,9 @@ Table: What each function could do if the model were wrong
 
 The more tools he removed, the less the usefulness of the system fell. In two cases it did not fall at all.
 
-He also built the record Lakshmi had been asking for since August. An *audit trail* shows who did what, when, under which rule, with which tool and with what result. It is kept apart from the work itself, so that someone investigating an incident can reconstruct what happened. Approvals and executions were written as separate events. Each executed action carried a fingerprint of the exact payload that had been approved. Imran tested this by changing the payload after approval, and the mismatch showed up as a line in red.
+He also built the record Lakshmi had been asking for since August. An *audit trail* shows who did what, when, under which rule, with which tool and with what result. It is kept apart from the work itself, so that someone investigating an incident can reconstruct what happened.
+
+Approvals and executions were written as separate events. Each executed action carried a fingerprint of the exact payload that had been approved. Imran tested this by changing the payload after approval, and the mismatch showed up as a line in red.
 
 ## A table with evidence
 

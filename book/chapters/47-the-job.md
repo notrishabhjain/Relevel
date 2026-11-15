@@ -42,7 +42,9 @@ Table: Six jobs behind one title
 | A consulting firm that builds AI systems for clients | Projects for other organisations, often large ones | Delivery discipline, plain writing, evaluation and governance, and the nerve to tell a client what a system cannot do |
 | A public-sector or digital-public-infrastructure body | Services for citizens, often in several languages and sometimes by voice | Field deployments, Indic languages and voice, ministry stakeholders, and open-weight options |
 
-The six ask for different evidence, Anaya said, so one resume can't serve all ten advertisements. For someone who has delivered technology projects, three are open doors: a company built on AI, a consulting firm that builds AI systems for clients, and a public-sector body. Rhea's six years sat closest to the third. Then she asked Rhea to do something dull. Put the ten advertisements across the top of a sheet. Down the left side, write every skill any of them mentions. Tick the box wherever a role asks for a skill.
+The six ask for different evidence, Anaya said, so one resume can't serve all ten advertisements. For someone who has delivered technology projects, three are open doors: a company built on AI, a consulting firm that builds AI systems for clients, and a public-sector body.
+
+Rhea's six years sat closest to the third. Then she asked Rhea to do something dull. Put the ten advertisements across the top of a sheet. Down the left side, write every skill any of them mentions. Tick the box wherever a role asks for a skill.
 
 When the sheet is finished, the rows with the most ticks show what the market wants. The rows with none are noise. This sheet is a *role matrix*. For each row, Rhea was to make one more mark, and to make it honestly: for her, was the skill proven, partly proven or missing?
 
@@ -69,7 +71,9 @@ Next came the *case study*: a one- or two-page account of one piece of work. Rhe
 5. What went wrong, and what did you change?
 6. What would you do next?
 
-The fifth question does the work, Anaya said. Anybody can describe a success, and people hire someone who knows what broke. She advised two case studies, not six. They should sit where a recruiter will find them: a small page of Rhea's own, linked from the top of her profile. The headline of the profile should name the job Rhea wanted and one thing she had proved. It should say nothing about being a lifelong learner.
+The fifth question does the work, Anaya said. Anybody can describe a success, and people hire someone who knows what broke. She advised two case studies, not six.
+
+They should sit where a recruiter will find them: a small page of Rhea's own, linked from the top of her profile. The headline of the profile should name the job Rhea wanted and one thing she had proved. It should say nothing about being a lifelong learner.
 
 ## The four questions that every loop asks
 
@@ -85,7 +89,9 @@ Table: Four kinds of interview question
 
 *Product sense* is the ability to choose a user, find their real problem and propose a sensible solution. It frightened people most, because it seemed to need an inspiration they didn't have. It doesn't. It needs the habit of choosing a user before proposing anything, and after a year of work, Rhea's habit was good.
 
-She practised on a prompt from a world she knew: a voice assistant for a state helpline, in two languages. Her first three moves were short. She clarified the goal, which was fewer callers waiting and fewer wrong answers about a scheme's rules, not a clever assistant. She chose one user, a caller on a basic phone who speaks only the regional language and rings at the end of a working day. And she listed that caller's problems before naming any feature: not knowing which scheme applies, not knowing which papers to bring, and being cut off when the line is bad. Only then did she say which of the three she would solve first.
+She practised on a prompt from a world she knew: a voice assistant for a state helpline, in two languages. Her first three moves were short. She clarified the goal, which was fewer callers waiting and fewer wrong answers about a scheme's rules, not a clever assistant.
+
+She chose one user, a caller on a basic phone who speaks only the regional language and rings at the end of a working day. And she listed that caller's problems before naming any feature: not knowing which scheme applies, not knowing which papers to bring, and being cut off when the line is bad. Only then did she say which of the three she would solve first.
 
 Anaya's advice was to say the structure aloud before starting: something like "I'll clarify, pick a user, find the problems and then choose". That way the interviewer can follow. If they want the candidate somewhere else, they can say so in the first minute and not the fortieth.
 
@@ -131,7 +137,9 @@ It is a good story, Anaya said, because the wrong decision was real, and the rep
 
 In the second round the interviewer put down the script and picked up the resume. Six years of programme delivery for government departments, he said, sounds like programme management. Why should he believe she could own a product?
 
-Anaya had expected it, and they had rehearsed it on a Sunday. The answer was not to argue with the label. It was to name three decisions Rhea had owned. The first was what she refused to build: her tool could have answered questions about the report in a chat box, and she left that out because she could not measure it. The second was the threshold that stopped a release: her fixed test set had held back two versions. The third was the number she was accountable for, the share of themes marked useful, which went from 58 to 71 percent.
+Anaya had expected it, and they had rehearsed it on a Sunday. The answer was not to argue with the label. It was to name three decisions Rhea had owned. The first was what she refused to build: her tool could have answered questions about the report in a chat box, and she left that out because she could not measure it.
+
+The second was the threshold that stopped a release: her fixed test set had held back two versions. The third was the number she was accountable for, the share of themes marked useful, which went from 58 to 71 percent.
 
 Then Rhea turned the history into an asset. Six years in a regulated sector meant audits, data-location rules and sign-offs from people who could say no. Most candidates would have to claim that from a reading list. She did not say she had been a product manager. She said she had owned an outcome, and she could show the number.
 
@@ -139,7 +147,9 @@ Then Rhea turned the history into an asset. Six years in a regulated sector mean
 
 Some loops add a round in which the candidate builds something small, live, with a coding assistant, while the interviewer watches. It tests judgement more than typing.
 
-Anaya's advice came from the verifier idea earlier in the book: before asking the assistant for anything, say how you will check its work. State the check aloud, such as "the result must hide every number in my ten sample messages". Ask for small steps. Read what comes back, and say what you would not trust yet. Interviewers watch whether the candidate can tell a change that worked from one that only looks right. A half-finished build whose checks pass is a better result than a finished one that nobody has checked.
+Anaya's advice came from the verifier idea earlier in the book: before asking the assistant for anything, say how you will check its work. State the check aloud, such as "the result must hide every number in my ten sample messages". Ask for small steps.
+
+Read what comes back, and say what you would not trust yet. Interviewers watch whether the candidate can tell a change that worked from one that only looks right. A half-finished build whose checks pass is a better result than a finished one that nobody has checked.
 
 ## Alone, and with other people
 
@@ -151,7 +161,9 @@ Pay was a matter of preparation. Learn what the role usually pays in that city. 
 
 ## What happened
 
-It would be pleasant to report that Rhea was hired within the month. She wasn't. Two of the ten companies asked her back for a second round, after the resume and case study had been rewritten as agreed. By the third week of July she was in a room with a woman who asked her to design a support assistant for the company's product. Rhea said aloud, a little shakily, "I'll start with who uses it and what a good outcome is."
+It would be pleasant to report that Rhea was hired within the month. She wasn't. Two of the ten companies asked her back for a second round, after the resume and case study had been rewritten as agreed.
+
+By the third week of July she was in a room with a woman who asked her to design a support assistant for the company's product. Rhea said aloud, a little shakily, "I'll start with who uses it and what a good outcome is."
 
 Anaya wasn't there. She heard about it afterwards, in a telephone call in which Rhea described the question and said that halfway through she had realised she was no longer rehearsing. She was explaining something she had made.
 

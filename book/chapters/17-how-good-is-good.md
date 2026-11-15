@@ -32,7 +32,9 @@ The method has three ideas. The first is to write the answers before you test.
 
 You can't judge a system by asking it questions and seeing whether the answers look right. They will look right. Plausible text is exactly what the machine produces. So the work begins with a list of real questions, and the verified right answer to each. This is the answer key Anaya had already built, written before the test and not after.
 
-Farah wrote ten questions for the chatbot's search, in the words her customers use. She wrote them before she opened the policy document. A question written after reading the document ends up using the document's words, and that makes the search look better than it is. Her questions included "Paisa kab milega", "Double charge hua hai" and "Mera loan reject kyun hua". Only then did she and Imran go through the pages and mark which page held the answer to each.
+Farah wrote ten questions for the chatbot's search, in the words her customers use. She wrote them before she opened the policy document. A question written after reading the document ends up using the document's words, and that makes the search look better than it is.
+
+Her questions included "Paisa kab milega", "Double charge hua hai" and "Mera loan reject kyun hua". Only then did she and Imran go through the pages and mark which page held the answer to each.
 
 They ran the test. Six of the ten questions found the right page on the first try. Imran called this a perfectly normal first result for a system that works. He added that if it had been nine or ten, he would have wanted to know whether somebody had cheated.
 

@@ -52,7 +52,9 @@ Table: Gyarah kaam, aur har ek ko kya karna hai
 
 Tools ko is tarah slots ki tarah sochne se aapko ek *toolchain* milti hai: tools ka woh set jo product banata aur chalata hai. Har slot ke paas ek kaam hai. Har kaam ke liye team ne us quarter ek tool chuna tha, kyunki woh kaam theek-thaak karta tha aur team use jaanti thi. Agle saal slot mein naam alag ho sakta hai. Slot phir bhi wahan rahega.
 
-Tanvi ne poocha ki woh choice khuli kyun nahi rakhte aur sab use kyun nahi karte. Imran ne kaha ki phir woh interfaces seekhegi, kaam nahi. Zyadatar projects 11 mein se paanch ya chhe use karte hain. Galti yeh hai ki har box ko ek subject maan liya jaye jise master karna hai. Box ek jagah hai jahan tool rakhna hai. Poochiye ki kaam ko kya karna hai, aur jab woh yeh kare toh kya kabhi galat nahi hona chahiye. Phir tool chuniye, aur kaam seekhiye.
+Tanvi ne poocha ki woh choice khuli kyun nahi rakhte aur sab use kyun nahi karte. Imran ne kaha ki phir woh interfaces seekhegi, kaam nahi. Zyadatar projects 11 mein se paanch ya chhe use karte hain.
+
+Galti yeh hai ki har box ko ek subject maan liya jaye jise master karna hai. Box ek jagah hai jahan tool rakhna hai. Poochiye ki kaam ko kya karna hai, aur jab woh yeh kare toh kya kabhi galat nahi hona chahiye. Phir tool chuniye, aur kaam seekhiye.
 
 Anaya apni desk se sunte hue woh sabak pehchaan gayi jo use pehle hafte requirements ke baare mein mila tha: tool ka naam lene se pehle kaam describe kijiye.
 
@@ -60,7 +62,9 @@ Anaya apni desk se sunte hue woh sabak pehchaan gayi jo use pehle hafte requirem
 
 Imran ne Tanvi ko do aadatein di jo woh har kaam mein le jaa sake. Pehli Anaya ki ek galti se nikli.
 
-Pichhle mahine Anaya ne Mr. Menon ka security questionnaire, 40 page ka, ek research assistant mein upload kiya tha jo sirf diye gaye documents se jawaab deta hai. Usne ek saaf-suthra summary likhi aur har sentence ke saath ek source laga diya. Anaya ko uspar kaafi garv tha. Imran ne use ek *claim audit* karne ko kaha. Summary se das claims chuniye, har ek ko us page se check kijiye jise woh cite karta hai, aur use supported, partly supported ya unsupported mark kijiye.
+Pichhle mahine Anaya ne Mr. Menon ka security questionnaire, 40 page ka, ek research assistant mein upload kiya tha jo sirf diye gaye documents se jawaab deta hai. Usne ek saaf-suthra summary likhi aur har sentence ke saath ek source laga diya.
+
+Anaya ko uspar kaafi garv tha. Imran ne use ek *claim audit* karne ko kaha. Summary se das claims chuniye, har ek ko us page se check kijiye jise woh cite karta hai, aur use supported, partly supported ya unsupported mark kijiye.
 
 Ismein chaalis minute lage. Saat claims supported the. Do partly supported the, kyunki page par kuch milta-julta likha tha lekin zyada chhote. Ek unsupported tha: summary mein likha tha ki lender ko ek khaas certificate chahiye, aur document mein aisa kuch nahi tha.
 
@@ -81,7 +85,9 @@ Table: Secrets-and-data audit
 
 Tab Tanvi, jo chup thi, ne apne browser mein demo page kholi, ek key dabayi aur bilkul tham gayi. Page ki script mein usne ek lambi string dekhi jo key jaisi dikhti thi. Woh key hi thi.
 
-Jis tool ne January mein ek description ko screen mein badla tha, usne model provider ka secret us code mein daal diya tha jo har visitor ko bheja jaata hai. Browser wala koi bhi use padh sakta tha. Usne ek database bhi bana diya tha jisme is baare mein koi rule nahi tha ki kaun kya padh sakta hai. Imran ne ghante ke andar key badal di, call ko server ke peeche kar diya aur dono findings log mein likh di. Prototypes aisa karte hain, usne kaha, isliye link share karne se pehle check kijiye.
+Jis tool ne January mein ek description ko screen mein badla tha, usne model provider ka secret us code mein daal diya tha jo har visitor ko bheja jaata hai. Browser wala koi bhi use padh sakta tha.
+
+Usne ek database bhi bana diya tha jisme is baare mein koi rule nahi tha ki kaun kya padh sakta hai. Imran ne ghante ke andar key badal di, call ko server ke peeche kar diya aur dono findings log mein likh di. Prototypes aisa karte hain, usne kaha, isliye link share karne se pehle check kijiye.
 
 ## Model ke aas-paas kya hai
 
@@ -114,13 +120,17 @@ Project ke rules code ke saath rakhi ek saadhi file mein rehte hain, jise assist
 
 Permission modes bhi hote hain. Padhna khulkar allowed hai, jabki file badalne ya command chalane ke liye kisi ko haan kehna pad sakta hai.
 
-Imran ne sabse zaroori hisse ko verifier kaha. *Verifier* ek check hai, jaise ek test ya type check, jo assistant ko batata hai ki uska badlaav kaam kiya ya nahi, bina is ke ki koi insaan har line padhe. Jis assistant ke paas apna kaam check karne ka bharosemand tareeka hai, use kahin bade kaam diye ja sakte hain. Jiske paas nahi hai, use har step par ek insaan chahiye, aur tab koi speed nahi bachi.
+Imran ne sabse zaroori hisse ko verifier kaha. *Verifier* ek check hai, jaise ek test ya type check, jo assistant ko batata hai ki uska badlaav kaam kiya ya nahi, bina is ke ki koi insaan har line padhe.
+
+Jis assistant ke paas apna kaam check karne ka bharosemand tareeka hai, use kahin bade kaam diye ja sakte hain. Jiske paas nahi hai, use har step par ek insaan chahiye, aur tab koi speed nahi bachi.
 
 Jab kaam bada ho, toh kaam baanta ja sakta hai. Ek *sub-agent* ek hissa leta hai, apne alag context mein kaam karta hai aur sirf result wapas deta hai. Isse main conversation chhoti aur saaf rehti hai. Isme se koi cheez, Imran ne kaha, intelligence ke baare mein nahi hai. Yeh loop, memory aur check ke baare mein hai, aur yeh sab report mein use ho sakta tha.
 
 ## Fences kahan lagte hain
 
-Agla sabak us hafte ki ek khabar se aaya. Ek assistant kisi ke apne computer par chalta tha, unki files, messages aur shell ki poori chhoot ke saath. Woh lagbhag kuch bhi kar sakta tha, jo use kaam ka banata tha. Woh lagbhag kuch bhi kar sakta tha, jo use khatarnaak banata tha. Imran jaise-jaise chaar sawaal deta gaya, Tanvi unhe whiteboard par likhti gayi, aur table har sawaal ko us control ke saath dikhati hai jo uska jawaab deta hai.
+Agla sabak us hafte ki ek khabar se aaya. Ek assistant kisi ke apne computer par chalta tha, unki files, messages aur shell ki poori chhoot ke saath. Woh lagbhag kuch bhi kar sakta tha, jo use kaam ka banata tha.
+
+Woh lagbhag kuch bhi kar sakta tha, jo use khatarnaak banata tha. Imran jaise-jaise chaar sawaal deta gaya, Tanvi unhe whiteboard par likhti gayi, aur table har sawaal ko us control ke saath dikhati hai jo uska jawaab deta hai.
 
 Table: Tool ki pahunch ke baare mein chaar sawaal
 | Sawaal | Control |
@@ -154,7 +164,9 @@ Table: State machine aur bounded agent, bees hafton par
 
 Trace ko reviewer isliye bhi mark karta hai ki agent ke raaste ko uske jawaab ke saath grade kiya ja sake, jaise Anaya ne night-queue ke run ko mark kiya tha, ek row mein ek step. Jis agent ke steps koi padhta hi nahi, use jaan-boojhkar behtar nahi banaya ja sakta.
 
-Ek fixed process ke liye, jaise weekly report, Imran ne kaha, fixed steps wali machine jeetti hai. Woh zyada accurate hai, tez hai, aur aise jagah fail hoti hai jo dikh sakti hai. Agent tab apna kharcha nikaalta hai jab steps sach mein case-ba-case badalte hain. Usne poocha ki yahan woh kahan hoga. Tanvi ne suggest kiya ki yeh dekhna ki ek customer ka count achanak doguna kyun ho gaya. Imran sahmat hua, aur kaha ki iske liye agent use karo, ek kone mein, chhote budget ke saath.
+Ek fixed process ke liye, jaise weekly report, Imran ne kaha, fixed steps wali machine jeetti hai. Woh zyada accurate hai, tez hai, aur aise jagah fail hoti hai jo dikh sakti hai. Agent tab apna kharcha nikaalta hai jab steps sach mein case-ba-case badalte hain.
+
+Usne poocha ki yahan woh kahan hoga. Tanvi ne suggest kiya ki yeh dekhna ki ek customer ka count achanak doguna kyun ho gaya. Imran sahmat hua, aur kaha ki iske liye agent use karo, ek kone mein, chhote budget ke saath.
 
 ## Ise bahar jaane dena
 
@@ -166,7 +178,9 @@ Kaam ka aakhri hissa use dara raha tha. Jo report customers ko jaati hai, use ek
 - Badlaav pehle das mein se ek account ko jaaye, ek *feature flag* ke peeche. Yeh chalte hue system mein ek switch hai jo badlaav ko kuch users ke liye on aur baaki ke liye off karta hai, bina nayi release ke.
 - Ek rollback trigger aur incident ka owner likhe hon.
 
-*Rollback trigger* ek condition hai, pehle se likhi hui aur naapne layak, jo kisi ko release undo karne par bound karti hai. Tanvi ne apna likha: rollback kijiye agar un reports ka share, jinhe customer useful mark karta hai, pichhle hafte se 10 points se zyada gir jaye, ya koi report galat recipient ko chali jaye. Tay karne wala insaan on-call engineer tha, jise kisi ki permission nahi chahiye thi. Tareeka flag switch karna tha, aur isme paanch minute se kam lagte. Launch se pehle unhone ise stopwatch ke saath ek baar test kiya.
+*Rollback trigger* ek condition hai, pehle se likhi hui aur naapne layak, jo kisi ko release undo karne par bound karti hai. Tanvi ne apna likha: rollback kijiye agar un reports ka share, jinhe customer useful mark karta hai, pichhle hafte se 10 points se zyada gir jaye, ya koi report galat recipient ko chali jaye.
+
+Tay karne wala insaan on-call engineer tha, jise kisi ki permission nahi chahiye thi. Tareeka flag switch karna tha, aur isme paanch minute se kam lagte. Launch se pehle unhone ise stopwatch ke saath ek baar test kiya.
 
 Unhone yeh bhi likha ki system ko har kisam ke failure par kaise respond karna chahiye.
 

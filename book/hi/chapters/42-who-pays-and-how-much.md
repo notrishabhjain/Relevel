@@ -36,9 +36,13 @@ Table: User, buyer aur blocker
 
 Blocker ka sawaal pichhle July mein, Anaya ke saal ki sabse lambi meeting mein, nikaal liya gaya tha.
 
-Phir usne Mr. Menon se poocha ki ek price unke liye kitni value rakhegi. Lekin phir woh ruk gayi, kyunki woh yeh poochne wali thi ki kya woh ise kharidenge. Project ke pehle mahine mein hi usne padh liya tha ki yeh galat sawaal kyun hai: log tameez mein haan kehte hain, aur us jawaab se kuch predict nahi hota. Isliye usne kuch aur poocha. Aaj woh is problem se nipatne ke liye kya use karte hain, uska cost kya hai, aur kharch kisne approve kiya?
+Phir usne Mr. Menon se poocha ki ek price unke liye kitni value rakhegi. Lekin phir woh ruk gayi, kyunki woh yeh poochne wali thi ki kya woh ise kharidenge.
 
-Woh ek vendor ko lagbhag 35,000 rupaye mahine ka deta tha, ek aise tool ke liye jo chat logs mein card numbers blank karta tha aur aur kuch nahi karta tha. Ek analyst apna lagbhag chauthai time Lakshmi ke jaise ek weekly sweep mein lagati thi, jo uski salary ke hisaab se lagbhag 30,000 rupaye mahine banta tha. Vendor ka approval head of compliance ne sign kiya tha. Yeh sab facts the. Pichhla kharch saboot hai. Aage ka iraada saboot nahi hai.
+Project ke pehle mahine mein hi usne padh liya tha ki yeh galat sawaal kyun hai: log tameez mein haan kehte hain, aur us jawaab se kuch predict nahi hota. Isliye usne kuch aur poocha. Aaj woh is problem se nipatne ke liye kya use karte hain, uska cost kya hai, aur kharch kisne approve kiya?
+
+Woh ek vendor ko lagbhag 35,000 rupaye mahine ka deta tha, ek aise tool ke liye jo chat logs mein card numbers blank karta tha aur aur kuch nahi karta tha.
+
+Ek analyst apna lagbhag chauthai time Lakshmi ke jaise ek weekly sweep mein lagati thi, jo uski salary ke hisaab se lagbhag 30,000 rupaye mahine banta tha. Vendor ka approval head of compliance ne sign kiya tha. Yeh sab facts the. Pichhla kharch saboot hai. Aage ka iraada saboot nahi hai.
 
 ## Ceiling aur floor
 
@@ -62,7 +66,9 @@ Table: Charge karne ke chaar tareeke
 
 ## Woh row jo zyadatar price lists mein nahi hoti
 
-Anaya ke paas Imran ke cost figures the. Usne ek customer ko ek mahine serve karne ka poora cost likha, sirf model ka bill nahi. Usmein model aur hosting thi, records aur traces ki storage, aur customer ko onboard karne aur sawaalon ka jawaab dene wale insaan ka time. Jaisa use seekhne ko mil raha tha, support ka cost aksar machine se zyada hota hai. Usne hisaab teen baar kiya, low, base aur high usage par.
+Anaya ke paas Imran ke cost figures the. Usne ek customer ko ek mahine serve karne ka poora cost likha, sirf model ka bill nahi. Usmein model aur hosting thi, records aur traces ki storage, aur customer ko onboard karne aur sawaalon ka jawaab dene wale insaan ka time.
+
+Jaisa use seekhne ko mil raha tha, support ka cost aksar machine se zyada hota hai. Usne hisaab teen baar kiya, low, base aur high usage par.
 
 Table: Serve karne ka cost aur ₹24,000 flat par margin
 | Usage | Mahine ke messages | Serve karne ka cost | ₹24,000 flat par margin |
@@ -81,7 +87,9 @@ Isliye usne price ko hybrid mein dobara banaya. 24,000 rupaye mahine mein 100,00
 
 Anaya ne dekha ki electricity company ke column ne badal diya ki woh kya bech sakti hai. *Tender* ek published request hai jo suppliers se bid maangti hai. Wahan buyer product nahi chunta tha. Woh terms likhta tha aur unhe poora karne wali bids mein se sabse kam price leta tha, isliye jis feature ko kisi ne list nahi kiya, uski koi ginti nahi thi.
 
-Isse price badal gayi. Usage pricing fixed-price contract mein fit nahi hoti, kyunki buyer ko total pehle se likhna padta hai aur woh aisa bill nahi le sakta jo festival traffic ke saath badhta jaye. Bade included volume wala hybrid plan sabse paas tha, lekin tabhi jab tender use allow kare. Use nahi pata tha ki karta hai ya nahi, aur usne uske baju mein "poochho" likha. Ek chhota paid pilot, us raqam se neeche jahan company ke rules poora tender maangte hain, ek samajhdaar pehla kadam tha. Woh raqam bhi use nahi pata thi, aur usne andaaza nahi lagaya.
+Isse price badal gayi. Usage pricing fixed-price contract mein fit nahi hoti, kyunki buyer ko total pehle se likhna padta hai aur woh aisa bill nahi le sakta jo festival traffic ke saath badhta jaye. Bade included volume wala hybrid plan sabse paas tha, lekin tabhi jab tender use allow kare.
+
+Use nahi pata tha ki karta hai ya nahi, aur usne uske baju mein "poochho" likha. Ek chhota paid pilot, us raqam se neeche jahan company ke rules poora tender maangte hain, ek samajhdaar pehla kadam tha. Woh raqam bhi use nahi pata thi, aur usne andaaza nahi lagaya.
 
 Audit aur data clause us shart se mel khaate the jo Lakshmi ne March mein rakhi thi: safai company ke andar hoti hai, kuch bhi bahar jaane se pehle. Is buyer ke liye yeh ab samjhaane wali constraint nahi rahi. Yeh product ka woh akela hissa tha jis par audit behes nahi karta.
 
@@ -98,18 +106,26 @@ Table: Teen kisam ke flywheel
 | Workflow | Product kisi ke weekly routine ka hissa ban jaata hai, aur doosra kaam us par depend karne lagta hai | Aam taur par sabse mazboot. Guard ke liye yeh monthly sweep tha |
 | Platform | Doosre log product ke upar banate hain | Rare, aur pehle ek bheed chahiye |
 
-Usne ek chetavni jodi jo ab tak woh darjan documents mein daal chuki thi. Jo flywheel customers ke data par tikta hai, woh tabhi chalta hai jab tak customers seller par us data ke liye bharosa karte hain. Isliye seller ko batana chahiye ki kya store hota hai, usse kya seekha jaata hai, aur use kaun dekh sakta hai. Aur ek customer ke corrections ko doosre ki madad ke liye use karne se pehle poochna chahiye.
+Usne ek chetavni jodi jo ab tak woh darjan documents mein daal chuki thi. Jo flywheel customers ke data par tikta hai, woh tabhi chalta hai jab tak customers seller par us data ke liye bharosa karte hain.
+
+Isliye seller ko batana chahiye ki kya store hota hai, usse kya seekha jaata hai, aur use kaun dekh sakta hai. Aur ek customer ke corrections ko doosre ki madad ke liye use karne se pehle poochna chahiye.
 
 ## Supplier aapke saath kya kar sakta hai
 
-Sheet ki aakhri row ek aise risk ki thi jiske baare mein Anaya ko September mein pata chala tha. Agar koi product doosri company ke computers ya models par chalta hai, toh woh company aapse poochhe bina apni prices aur quality badal sakti hai. AI product mein delivery ke cost ka bada hissa kisi aur ka bill hota hai. Yeh cost *gross margin* ke andar baitha hai, jo revenue minus product deliver karne ka direct cost hai.
+Sheet ki aakhri row ek aise risk ki thi jiske baare mein Anaya ko September mein pata chala tha. Agar koi product doosri company ke computers ya models par chalta hai, toh woh company aapse poochhe bina apni prices aur quality badal sakti hai.
 
-Woh risk hata nahi sakti thi, lekin uski keemat laga sakti thi. Uski recommendation mein likha tha ki agar hosting ki price doguni ho jaye toh kya hoga. Base margin 56 percent se girkar lagbhag 37 ho jaata, aur ek tested doosre host par switch karne mein lagbhag ek hafta lagta. Usmein likha tha ki agar koi model retire ho jaye toh woh kya karegi: pinned versions aur gate. Aur yeh bhi ki agar koi rival wahi feature launch kar de toh woh kya karegi: workflow aur relationship apne paas rakhegi.
+AI product mein delivery ke cost ka bada hissa kisi aur ka bill hota hai. Yeh cost *gross margin* ke andar baitha hai, jo revenue minus product deliver karne ka direct cost hai.
+
+Woh risk hata nahi sakti thi, lekin uski keemat laga sakti thi. Uski recommendation mein likha tha ki agar hosting ki price doguni ho jaye toh kya hoga. Base margin 56 percent se girkar lagbhag 37 ho jaata, aur ek tested doosre host par switch karne mein lagbhag ek hafta lagta.
+
+Usmein likha tha ki agar koi model retire ho jaye toh woh kya karegi: pinned versions aur gate. Aur yeh bhi ki agar koi rival wahi feature launch kar de toh woh kya karegi: workflow aur relationship apne paas rakhegi.
 
 Usne agle Thursday Mr. Menon ko woh page bhej diya, upar pehle paragraph ke saath, jo usne chaar baar likha tha.
 
 ::: example Mr. Menon ko Anaya ki recommendation
-Meri recommendation hai ₹24,000 per month ka ek hybrid plan, jisme 100,000 messages shamil hon, aur har agle 100,000 ke ₹9,000. Aapka alternative vendor aur analyst ke time ko milakar aapko lagbhag ₹65,000 mahina padta hai, isliye price value se kaafi neeche hai. Hamara margin base use par 56 percent hai, aur us se 10 guna use par bhi 40 percent se upar rehta hai. Sabse bada risk hosting ki price hai. Agar woh doguni ho jaye, toh hamara base margin girkar lagbhag 37 percent ho jaayega, aur hamare tested doosre host par switch karne mein lagbhag ek hafta lagta hai.
+Meri recommendation hai ₹24,000 per month ka ek hybrid plan, jisme 100,000 messages shamil hon, aur har agle 100,000 ke ₹9,000. Aapka alternative vendor aur analyst ke time ko milakar aapko lagbhag ₹65,000 mahina padta hai, isliye price value se kaafi neeche hai.
+
+Hamara margin base use par 56 percent hai, aur us se 10 guna use par bhi 40 percent se upar rehta hai. Sabse bada risk hosting ki price hai. Agar woh doguni ho jaye, toh hamara base margin girkar lagbhag 37 percent ho jaayega, aur hamare tested doosre host par switch karne mein lagbhag ek hafta lagta hai.
 :::
 
 ## Saar

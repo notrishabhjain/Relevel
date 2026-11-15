@@ -27,7 +27,9 @@ Demonstration ke chaar hisse the. Pehla, request jo bahar jaati hai, aur woh key
 
 Language model se koi waise type nahi karta jaise dost se karta hai. Yeh kaam ek program karta hai, ek darwaze ke zariye jise *API* kehte hain.
 
-Imran ne ek counter banaya. Ek taraf ek customer khada hai, jiske haath mein kaagaz ki parchi hai. Doosri taraf ek rasoi hai. Parchi mein tay khaane bane hain. Customer unhe bharta hai aur parchi aage de deta hai. Rasoi har parchi par wahi khaane padhti hai, apna kaam karti hai, aur ek plate wapas deti hai. Customer rasoi ko kabhi nahi dekhta. Aur rasoi bas yeh dekhti hai ki parchi sahi bhari gayi hai ya nahi.
+Imran ne ek counter banaya. Ek taraf ek customer khada hai, jiske haath mein kaagaz ki parchi hai. Doosri taraf ek rasoi hai. Parchi mein tay khaane bane hain. Customer unhe bharta hai aur parchi aage de deta hai.
+
+Rasoi har parchi par wahi khaane padhti hai, apna kaam karti hai, aur ek plate wapas deti hai. Customer rasoi ko kabhi nahi dekhta. Aur rasoi bas yeh dekhti hai ki parchi sahi bhari gayi hai ya nahi.
 
 ::: def API
 Ek program ke doosre program se kuch maangne ka tay format wala tareeka, jaise counter ke aar-paar di gayi order slip.
@@ -52,7 +54,9 @@ Parchi par aur kuch nahi hai. Jis cheez ko Anaya ne dimaag samjha tha, woh ek li
 
 Program ke andar yeh parchi Python ki kuch lines thi. Anaya ne kabhi code nahi padha tha, aur Imran ne use kuch likhne ko kaha bhi nahi. Usne kaha ki ise waise hi padho jaise koi form padhte ho.
 
-Square brackets mein ek list thi: kai cheezein, ek kram mein. Curly braces mein labels aur unki values thi, parchi ke khaanon jaisi. Barabar ke nishaan ke saath likha naam kisi cheez ko naam deta tha, taaki agli line use use kar sake. Dot kisi cheez ke andar pahunchta tha, isliye `response.usage` ka matlab tha jawaab ki rasid wala hissa. Screen ki lagbhag har line inhi chaar shapes se bani thi, aur inme se kisi ko samjhane ke liye programmer ki zaroorat nahi thi.
+Square brackets mein ek list thi: kai cheezein, ek kram mein. Curly braces mein labels aur unki values thi, parchi ke khaanon jaisi. Barabar ke nishaan ke saath likha naam kisi cheez ko naam deta tha, taaki agli line use use kar sake.
+
+Dot kisi cheez ke andar pahunchta tha, isliye `response.usage` ka matlab tha jawaab ki rasid wala hissa. Screen ki lagbhag har line inhi chaar shapes se bani thi, aur inme se kisi ko samjhane ke liye programmer ki zaroorat nahi thi.
 
 ## Till ki chaabi
 
@@ -105,7 +109,9 @@ Jawaab do second se kam mein aa gaya, tameezdaar aur detail mein. Model ne kaha 
 
 Aisi koi company nahi thi, aur aisi koi policy nahi thi.
 
-Yeh hota kyun hai? Socha jaaye ki model karta kya hai. "What is the refund policy of" ke baad sabse likely agla text ek refund policy hai. "Mere paas is baare mein information nahi hai" bhi ek possible agla sentence hai. Lekin model ne jo likha hua padha, usmein yeh bolna ek anokhi baat hai. "Mujhe nahi pata" kehna aisa behaviour hai jo alag se sikhana aur test karna padta hai, aur woh hamesha tikta bhi nahi.
+Yeh hota kyun hai? Socha jaaye ki model karta kya hai. "What is the refund policy of" ke baad sabse likely agla text ek refund policy hai. "Mere paas is baare mein information nahi hai" bhi ek possible agla sentence hai.
+
+Lekin model ne jo likha hua padha, usmein yeh bolna ek anokhi baat hai. "Mujhe nahi pata" kehna aisa behaviour hai jo alag se sikhana aur test karna padta hai, aur woh hamesha tikta bhi nahi.
 
 ::: key Confident tone kuch saabit nahi karta
 Sahi jawaab aur gadha hua jawaab bilkul ek jaise padhe jaate hain. Isi wajah se tool ki galtiyan naapni padti hain: woh aasaani se dikhengi nahi. Anaya ne Pooja Nair ke baare mein socha, jisne chatbot ke "verification" maangne par bharosa kiya tha. Aur yeh ki chatbot kaisa sunayi diya tha, bilkul kisi aise insaan ki tarah jise sab pata ho.

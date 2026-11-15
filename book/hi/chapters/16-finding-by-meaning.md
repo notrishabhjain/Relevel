@@ -20,7 +20,9 @@ Imran Qureshi us gali se dus minute ki doori par paida hua tha. Usne isi gali se
 
 ## Case: bazaar ek map ki tarah
 
-Imran ne Anaya se kaha ki bazaar ko ek map ki tarah soche. Yeh dukaanon ka map nahi hai, usne kaha, yeh matlabon ka map hai. Duniya ke har sentence ki is par ek jagah hai. Jin sentences ka matlab milta-julta hai, woh ek hi gali mein khade hote hain. "When do I get my money back" aur "reimbursement of approved claims" padosi hain, chaahe unme ek bhi word common nahi. "What is the capital of Peru" kaafi door ka paidal safar hai.
+Imran ne Anaya se kaha ki bazaar ko ek map ki tarah soche. Yeh dukaanon ka map nahi hai, usne kaha, yeh matlabon ka map hai. Duniya ke har sentence ki is par ek jagah hai.
+
+Jin sentences ka matlab milta-julta hai, woh ek hi gali mein khade hote hain. "When do I get my money back" aur "reimbursement of approved claims" padosi hain, chaahe unme ek bhi word common nahi. "What is the capital of Peru" kaafi door ka paidal safar hai.
 
 Anaya ko table par padi Farah ki 20 cards yaad aayi, jinme se har ek ko pata hi nahi tha ki woh kis baare mein hai. Phir usne wahi sawaal poochha jo koi bhi poochhta. Yeh map banata kaun hai?
 
@@ -71,7 +73,9 @@ Table: Sahaj ke liye map kahan galat ho sakta hai
 
 Imran ka rule tha ki users ke dhoondhne se pehle failures ke naam le lo.
 
-Map ke use ke baare mein ek aur baarik baat bhi hai. Sawaal chhota hota hai aur sawaal ki tarah likha hota hai. Jis passage mein jawaab hai, woh lamba hota hai aur statement ki tarah likha hota hai. Achhe embedding models is baat ko dhyaan mein rakhkar train hote hain, aur unhe batana padta hai ki woh kis ko dekh rahe hain. Agar yeh galat kar diya jaaye, toh kuch toot-ta nahi. Results bas kharab ho jaate hain, aur koi error message iska zikr nahi karta.
+Map ke use ke baare mein ek aur baarik baat bhi hai. Sawaal chhota hota hai aur sawaal ki tarah likha hota hai. Jis passage mein jawaab hai, woh lamba hota hai aur statement ki tarah likha hota hai.
+
+Achhe embedding models is baat ko dhyaan mein rakhkar train hote hain, aur unhe batana padta hai ki woh kis ko dekh rahe hain. Agar yeh galat kar diya jaaye, toh kuch toot-ta nahi. Results bas kharab ho jaate hain, aur koi error message iska zikr nahi karta.
 
 ## Map par guard
 
@@ -94,7 +98,9 @@ Table: 6 sentences ka pehle sentence se paas hona
 Aisa kyun hua? Map sentences ko topic ke hisaab se group kar raha tha. Pehla sentence ek gaon, ek insaan aur ek hospital ke baare mein hai. Gaon mein ration order ka sentence paas hi girta hai, kyunki woh bhi ek gaon ke baare mein hai. Lekin sentence kisi ek insaan ko pehchaanta hai ya nahi, yeh topic ka sawaal nahi hai.
 
 ::: key Paas hona, risk hona nahi hai
-Map woh cheezein dhoondhta hai jinka matlab sawaal ke matlab jaisa ho. Woh akela yeh nahi bata sakta ki koi sentence ek insaan ki taraf ishaara karta hai ya nahi. Anaya ko isse haar nahi lagi. Use zyada saaf dikha. Is quality ke liye use kuch aur jodna padega. Usne yeh finding ek table ki doosri row mein likhi, jisme dikhta hai ki har tareeka kahan jeetta hai: rule-based tareeka kahan jeetta hai, matlab-based tareeka kahan jeetta hai, aur kya kaam dono ke bas ka nahi.
+Map woh cheezein dhoondhta hai jinka matlab sawaal ke matlab jaisa ho. Woh akela yeh nahi bata sakta ki koi sentence ek insaan ki taraf ishaara karta hai ya nahi. Anaya ko isse haar nahi lagi. Use zyada saaf dikha.
+
+Is quality ke liye use kuch aur jodna padega. Usne yeh finding ek table ki doosri row mein likhi, jisme dikhta hai ki har tareeka kahan jeetta hai: rule-based tareeka kahan jeetta hai, matlab-based tareeka kahan jeetta hai, aur kya kaam dono ke bas ka nahi.
 :::
 
 ## Map kya nahi keh sakta

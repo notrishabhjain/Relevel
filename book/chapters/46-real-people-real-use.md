@@ -47,7 +47,9 @@ The first people to try the kit were not strangers. They were Anaya's sister's f
 
 Over several days Anaya noticed that nothing in the product changed because of what any of them said. Friends are too polite to be useful. They tell the maker what the maker hopes to hear, and then they don't use the thing again.
 
-So she did what she had learned in the second month. She went back to the people she had interviewed in the spring, and to the people they knew. She looked for those who had the problem now and who used the same kind of software. She found six teams: a travel company in Kochi whose chat was full of passport numbers, a clinic-booking service in Indore, a small tutoring business in Bengaluru and three others.
+So she did what she had learned in the second month. She went back to the people she had interviewed in the spring, and to the people they knew. She looked for those who had the problem now and who used the same kind of software.
+
+She found six teams: a travel company in Kochi whose chat was full of passport numbers, a clinic-booking service in Indore, a small tutoring business in Bengaluru and three others.
 
 She called them *design partners*. A design partner is an early user who agrees to use an unfinished product and to tell the maker honestly what they find. They are not customers yet, and they are not a test audience either.
 
@@ -76,7 +78,9 @@ In the first week of May, Anaya watched six people use the kit, as she had watch
 
 She found it almost physically painful. A man in Indore stared for forty seconds at the setting that decided which kinds of detail were hidden. He was plainly unsure what it did. She wanted to speak so badly that she bit the inside of her cheek.
 
-By the end of the week she had something she had long suspected and could not prove. What people say and what they do are two separate sources, and they disagree. Joseph, in Kochi, told her on a call that the guard was "too aggressive" and hid too many things. The analytics showed that his team had pressed the restore button twice in three weeks. Another partner said she loved it, and had made one call to the kit in twelve days.
+By the end of the week she had something she had long suspected and could not prove. What people say and what they do are two separate sources, and they disagree. Joseph, in Kochi, told her on a call that the guard was "too aggressive" and hid too many things.
+
+The analytics showed that his team had pressed the restore button twice in three weeks. Another partner said she loved it, and had made one call to the kit in twelve days.
 
 ::: key When they differ, believe the behaviour
 Karan, who had joined her for the dull part, put the rule this way: believe the behaviour, then ask why. The behaviour tells you what is true. The reason you have to ask for. When Anaya asked Joseph why he thought it hid too much, he laughed. "I think I saw it hide a postcode once," he said, "and decided it was keen."
@@ -103,7 +107,9 @@ Looking at the table was bracing. A thing that blocks one customer completely is
 The top row was easy to state and hard to do properly. Four of six teams had asked, in one form or another, why a detail was hidden. The guard knew the reason and had never said. Anaya wrote the plan on one card, in the form Imran had taught her to use for all plans.
 
 ::: example The card
-We saw four of six teams ask why a detail was hidden, and only 58 in a hundred of the hidden details were marked as right by the people who reviewed them. We will add a "why this was hidden" link that shows the three phrases that decided it. We expect the share marked right to rise above 65 within two weeks, with no extra time per message. If it does not move, the trouble may be in the decision and not in the explanation, and we will read fifty disputed cases by hand before changing anything else.
+We saw four of six teams ask why a detail was hidden, and only 58 in a hundred of the hidden details were marked as right by the people who reviewed them. We will add a "why this was hidden" link that shows the three phrases that decided it.
+
+We expect the share marked right to rise above 65 within two weeks, with no extra time per message. If it does not move, the trouble may be in the decision and not in the explanation, and we will read fifty disputed cases by hand before changing anything else.
 :::
 
 Anaya was proudest of the last sentence, and that she had written it before any result. It meant that if the number didn't move, she already knew what she would do. The number rose to 67.

@@ -17,7 +17,9 @@ terms:
 
 Karan, project se judne wala pehla analyst, February mein aaya. Apne pehle din ki subah Anaya se usne sabse pehle yeh kaha: "Please bataiye ki aap message text track nahi kar rahi hain." Anaya ko lagbhag bura laga. Bilkul nahi, usne kaha. Karan ne kaha ki yeh achha hai. Use yeh baat har hafte poochhni padegi, aur woh shuru ek aise insaan se karna chahta tha jo sahmat ho.
 
-Yeh mazaak tha, aur ek rule bhi. Jo privacy tool apna kaam yeh dekh kar naapta ho ki usne kya hide kiya, aur uske liye wohi record kare jo woh chhupa raha hai, woh ek hafte mein khud ko haraa deta. Yeh chapter measurement ke pehle mahine ke saath chalta hai. Karan ka kaam zyadatar yeh saabit karna tha ki guard yeh gin sakta hai ki log kya karte hain, bina yeh rakhe ki unhone likha kya.
+Yeh mazaak tha, aur ek rule bhi. Jo privacy tool apna kaam yeh dekh kar naapta ho ki usne kya hide kiya, aur uske liye wohi record kare jo woh chhupa raha hai, woh ek hafte mein khud ko haraa deta.
+
+Yeh chapter measurement ke pehle mahine ke saath chalta hai. Karan ka kaam zyadatar yeh saabit karna tha ki guard yeh gin sakta hai ki log kya karte hain, bina yeh rakhe ki unhone likha kya.
 
 ## Case: bina record kiye naapna
 
@@ -60,7 +62,9 @@ Anaya ne properties column ko upar se neeche padha aur dekha ki har cell ek kisa
 Karan ne wajah batayi. Properties ek event mein detail jodti hain, taaki baad mein results ko baanta ja sake. Unhe sirf utna rakhiye jitna chahiye. Aur unmein kabhi text ya koi personal cheez mat aane dijiye, na property mein, na kisi free-text notes field mein jise ek din koi bhar dega.
 
 ::: key Identity ko bhi utni hi saavdhaani chahiye
-Demo page par aane wale visitor ko shuru mein ek anonymous number milta tha. Jab woh sign up karta, toh woh number ek account se jod diya jaata, taaki uske pehle ke visits uski history ka hissa ban jaayein. Aur kyunki buyers companies the, har event ke saath company ka ek account number bhi jaata tha. Karan ne dhyaan dilaya ki buyer ko teams ki parwaah hoti hai, akele developers ki nahi, isliye analysis ko ek team dikhni chahiye.
+Demo page par aane wale visitor ko shuru mein ek anonymous number milta tha. Jab woh sign up karta, toh woh number ek account se jod diya jaata, taaki uske pehle ke visits uski history ka hissa ban jaayein.
+
+Aur kyunki buyers companies the, har event ke saath company ka ek account number bhi jaata tha. Karan ne dhyaan dilaya ki buyer ko teams ki parwaah hoti hai, akele developers ki nahi, isliye analysis ko ek team dikhni chahiye.
 :::
 
 Yeh sab ek shared document mein gaya, jise *tracking plan* kehte hain. Isme har event, uski properties, woh kab fire hota hai aur uska owner hota hai. Engineers isse banate hain, aur analysts isse maante hain.
@@ -69,7 +73,9 @@ Plan jis din tay hua, Karan ne sabse pehle khud har event ko trigger kiya aur ch
 
 ## Teen views
 
-Teen views zyadatar sawaalon ka jawaab de dete hain. Ek funnel dikhata hai ki kitne users order mein har step poora karte hain, aur isliye kahan woh chhoot jaate hain. *Cohort* users ka woh group hai jisne ek hi period mein shuru kiya, aur jise saath-saath follow kiya jaata hai. Segment users ka ek hissa hai jinki koi property same ho, jaise woh kis kisam ki likhai sambhalte hain. Yeh dikhata hai ki product kise suit karta hai.
+Teen views zyadatar sawaalon ka jawaab de dete hain. Ek funnel dikhata hai ki kitne users order mein har step poora karte hain, aur isliye kahan woh chhoot jaate hain.
+
+*Cohort* users ka woh group hai jisne ek hi period mein shuru kiya, aur jise saath-saath follow kiya jaata hai. Segment users ka ek hissa hai jinki koi property same ho, jaise woh kis kisam ki likhai sambhalte hain. Yeh dikhata hai ki product kise suit karta hai.
 
 Karan ne pehli retention table us hafte banayi jis hafte ise banane layak data ho gaya. Har row un teams ka ek cohort thi jinhone ek diye hue hafte mein shuru kiya tha. Har cell mein woh share tha jo itne hafte baad bhi kit chala raha tha.
 
@@ -96,7 +102,9 @@ Sabse chhota badlaav jo pakadne layak hai, woh *minimum detectable effect* hai, 
 Activation 30 percent hai, aur woh jaanna chahti thi ki kya preview use 40 tak le jaata hai. 16 guna 0.30 guna 0.70, ko 0.01 se baantiye (10 points ka badlaav, square kiya hua), toh har group mein 336 aata hai, yaani kul 672. Company mein mahine mein lagbhag 40 nayi teams aati hain. Is raftaar se test mein lagbhag derh saal lagta.
 :::
 
-Karan ne kaha ki yehi imaandaar jawaab tha. Ek early company ke paas 40 accounts hote hain, 2,000 nahi, aur woh yeh test nahi chala sakti. Woh yeh bolti hai, aur phir doosra saboot use karti hai. Woh paanch developers ko feature use karte dekhti hai. Woh before aur after ko saavdhaani se compare karti hai. Woh bade effects dhoondhti hai, aur saaf kehti hai ki saboot kamzor hai. Bahut chhota test, jiska result report kiya jaye, bina test se bhi bura hai, kyunki woh shor ko khabar bana deta hai.
+Karan ne kaha ki yehi imaandaar jawaab tha. Ek early company ke paas 40 accounts hote hain, 2,000 nahi, aur woh yeh test nahi chala sakti. Woh yeh bolti hai, aur phir doosra saboot use karti hai. Woh paanch developers ko feature use karte dekhti hai.
+
+Woh before aur after ko saavdhaani se compare karti hai. Woh bade effects dhoondhti hai, aur saaf kehti hai ki saboot kamzor hai. Bahut chhota test, jiska result report kiya jaye, bina test se bhi bura hai, kyunki woh shor ko khabar bana deta hai.
 
 Anaya ne us hafte paanch developers ke saath observation chalaya. Chaar ne preview ke saath khatam kiya. Purane flow wale paanch mein se teen ne kiya tha. Yeh saboot nahi tha, aur usne ise ek signal ke taur par label kiya.
 

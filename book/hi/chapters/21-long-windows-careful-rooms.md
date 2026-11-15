@@ -18,7 +18,9 @@ May mein ek model vendor ka solutions architect team ke saamne glass room mein p
 
 Uski baat kuch aisi thi. Purana tareeka ab khatam ho chuka hai. Documents ko tukdon mein kaatna aur sahi tukde dhoondh kar laana, yeh sirf chhoti windows ka jugaad tha. Uske vendor ki window mein 10 lakh tokens aate hain, toh poori library har sawaal ke saath bhej do. Na cutting, na embeddings, na dhoondhna. Sab kuch simple, sasta aur behtar.
 
-Agar woh sahi tha, toh pichhle chhe hafte ka kaam bekaar tha. Anaya ne haath uthaya aur do sawaal poochhe. Pehla: agar poori library har baar bhejein, toh ek sawaal ki cost kitni aayegi? Doosra: kya woh dikha sakta hai ki jab zaroori fact ek bhari hui window ke beech mein ho, toh model kitna achha jawaab deta hai, us fact ke muqable jo ek chhoti request mein ho? Usne kaha ki use dekhna padega. Anaya ne kaha ki jab mil jaye toh bhej dijiye. Usne kabhi nahi bheja.
+Agar woh sahi tha, toh pichhle chhe hafte ka kaam bekaar tha. Anaya ne haath uthaya aur do sawaal poochhe. Pehla: agar poori library har baar bhejein, toh ek sawaal ki cost kitni aayegi?
+
+Doosra: kya woh dikha sakta hai ki jab zaroori fact ek bhari hui window ke beech mein ho, toh model kitna achha jawaab deta hai, us fact ke muqable jo ek chhoti request mein ho? Usne kaha ki use dekhna padega. Anaya ne kaha ki jab mil jaye toh bhej dijiye. Usne kabhi nahi bheja.
 
 Is chapter mein aap dekhenge ki Imran ko kya jawaab mile, aur woh yeh sikhate hain ki model ko kya dikhana chahiye.
 
@@ -40,7 +42,9 @@ Table: Sahi jawaab, rule kahan tha uske hisaab se
 | Ant ke paas | 20 mein se 18 |
 | Wahi rule, ek chhoti request mein fetch karke | 20 mein se 20 |
 
-Yeh result ek model ka hai, ek din ka. Doosra model alag nikalega, lekin is tarah ka pattern aam hai. Imran ne ise open-book exam se compare kiya. Ek student poori library hall mein le jaa sakti hai, lekin uske paas bas ek ghanta hai. Use kitaab ke shuru ki cheezein mil jaati hain aur ant ki bhi. Beech wali cheezein woh bas nazar fer kar nikal jaati hai. Aur koi use yeh nahi batata ki kaun se jawaab isi wajah se gaye.
+Yeh result ek model ka hai, ek din ka. Doosra model alag nikalega, lekin is tarah ka pattern aam hai. Imran ne ise open-book exam se compare kiya. Ek student poori library hall mein le jaa sakti hai, lekin uske paas bas ek ghanta hai.
+
+Use kitaab ke shuru ki cheezein mil jaati hain aur ant ki bhi. Beech wali cheezein woh bas nazar fer kar nikal jaati hai. Aur koi use yeh nahi batata ki kaun se jawaab isi wajah se gaye.
 
 Yahan bhi yahi hota hai. Koi error report nahi hota. Jawaab bas galat hote hain.
 
@@ -66,7 +70,9 @@ Table: Chatbot ki ek request ka token budget
 | Jawaab | 200 |
 | Total | 2,700 |
 
-Phir Imran ne kaha ki maan lijiye bill double ho gaya. Sabse pehle kya kaatengi? Policy ke tukde sabse bada hissa the aur sabse aasani se chhote ho sakte the. Ya toh teen ki jagah do fetch karo, ya results ko behtar order mein rakho taaki kam tukdon mein sahi content aa jaye. Lekin ise kaatne mein risk tha ki jin jawaabon ko ek saath kai sections chahiye, woh bigad jaayein. Uske baad conversation history aati thi, aur use kaatne se follow-up sawaal toot jaate. Function descriptions tabhi hat sakte the jab woh cheezein hi hata di jaayein jo machine kar sakti hai. Anaya ne dekha ki jo kuch bhi woh kaat sakti thi, usse kuch na kuch toot jaata tha.
+Phir Imran ne kaha ki maan lijiye bill double ho gaya. Sabse pehle kya kaatengi? Policy ke tukde sabse bada hissa the aur sabse aasani se chhote ho sakte the. Ya toh teen ki jagah do fetch karo, ya results ko behtar order mein rakho taaki kam tukdon mein sahi content aa jaye.
+
+Lekin ise kaatne mein risk tha ki jin jawaabon ko ek saath kai sections chahiye, woh bigad jaayein. Uske baad conversation history aati thi, aur use kaatne se follow-up sawaal toot jaate. Function descriptions tabhi hat sakte the jab woh cheezein hi hata di jaayein jo machine kar sakti hai. Anaya ne dekha ki jo kuch bhi woh kaat sakti thi, usse kuch na kuch toot jaata tha.
 
 ::: key Budget ka ek owner hona chahiye
 Likhiye ki har cut se kya risk mein padta hai, phir answer key se use measure kijiye. Jis budget ka koi owner nahi hota, woh badhta jaata hai.
@@ -84,7 +90,9 @@ Aakhri idea tab aaya jab Anaya ne poochha ki 20 messages wali chat, jo apne budg
 
 Yeh kaam karta hai, lekin beech ki specific details ko pakka kho deta hai. Anaya ne misaal di ki customer ko callback ka jo vaada kiya gaya tha. Imran ne kaha ki bilkul isi tarah ki detail khatre mein rehti hai, aur isiliye April mein must-keep list likhi gayi thi. Summary jo bhi rakhe, jo cheez khoni nahi chahiye woh list mein honi chahiye.
 
-Ek doosri, chupchaap wali problem bhi thi. Summary ek model ka likha hua naya text hai. Maan lijiye conversation ke beech mein koi identity number tha. Agar guard ne use andar aate waqt chhupa diya tha, toh summary mein chhupa hua version jaayega. Agar chhupaya nahi gaya tha, toh summary use copy kar degi. Dono surat mein guard ko summary ke saamne bhi lagana padta tha. Anaya ne diagram mein ek doosra chhota box joda, summariser se bahar jaane ke raaste par.
+Ek doosri, chupchaap wali problem bhi thi. Summary ek model ka likha hua naya text hai. Maan lijiye conversation ke beech mein koi identity number tha. Agar guard ne use andar aate waqt chhupa diya tha, toh summary mein chhupa hua version jaayega.
+
+Agar chhupaya nahi gaya tha, toh summary use copy kar degi. Dono surat mein guard ko summary ke saamne bhi lagana padta tha. Anaya ne diagram mein ek doosra chhota box joda, summariser se bahar jaane ke raaste par.
 
 Usne vendors se baat karne ke liye ek natija bhi nikala. Jab koi kahe ki unka assistant user ko yaad rakhta hai, toh poochhiye ki yaad kahan store hoti hai. Woh ek store hai jo application sambhalti hai, har message ke saath bheji jaati hai, aur har baar uske paise lagte hain.
 

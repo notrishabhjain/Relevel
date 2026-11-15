@@ -30,7 +30,9 @@ Anaya recognised the spoken number. She had put it in the answer key in June as 
 
 Imran began with an object. Photograph a railway timetable, he said, and read it down the telephone to a friend. Words only, in order. The friend hears every station and every time, and still doesn’t know when the train leaves. The meaning was in the columns, and the reader passed straight over them.
 
-That is the first lesson of anything **multimodal**. The word means a system that takes in more than plain text: pages, pictures, tables and speech. A PDF is not a text file. It is a page, with layout, columns, headings, images and information hidden behind what you see. If you extract only the words, you remove most of the structure without a sound. So a system built for this has to change what it means by evidence, and how it points back to it.
+That is the first lesson of anything **multimodal**. The word means a system that takes in more than plain text: pages, pictures, tables and speech. A PDF is not a text file. It is a page, with layout, columns, headings, images and information hidden behind what you see.
+
+If you extract only the words, you remove most of the structure without a sound. So a system built for this has to change what it means by evidence, and how it points back to it.
 
 The team had done the first half of this in the summer, with the passbook photograph and its flattened table. The new work was in two parts. First, make the guard able to act on what it found in a picture. Then make it hear.
 
@@ -41,7 +43,9 @@ The picture was the simpler job, and the one Anaya feared more. A rule can hide 
 The answer was to separate two jobs. A capable model is shown the image and asked where the personal details are. It answers with positions, a box around each number. Then ordinary code, not the model, paints over those boxes. The model finds, and the program erases. So the guard cannot be talked into leaving a number visible, because the erasing doesn’t depend on its judgement.
 
 ::: key Evidence for visual claims must trace to the picture
-Vision is probabilistic like everything else. A blurry card, a glare across the number or a hand over a corner can each make it miss. For every box the record showed the image, the region and the question, and in the early weeks a person checked each result. Anaya added a rule to the specification: if a card photograph is blurred or partly covered, do not guess; hide the whole image and ask for a clearer one.
+Vision is probabilistic like everything else. A blurry card, a glare across the number or a hand over a corner can each make it miss. For every box the record showed the image, the region and the question, and in the early weeks a person checked each result.
+
+Anaya added a rule to the specification: if a card photograph is blurred or partly covered, do not guess; hide the whole image and ask for a clearer one.
 :::
 
 ## The voice

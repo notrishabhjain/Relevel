@@ -17,7 +17,7 @@ window.PROJECT = {
   why: {
     title: 'Why this project, and why not just use Rampart',
     paras: [
-      'Rampart is an existing open tool that finds personal details in text. It was built and tested on English and six other European languages, all written in the Latin alphabet. Its own published model card says it does poorly on Hindi written in Devanagari script. It reports finding only about 14 out of every 100 personal details there. Chapter A2 asks you to check that number yourself, not just trust this page.',
+      'Rampart is an existing open tool that finds personal details in text. It was built and tested on English and six other European languages, all written in the Latin alphabet. Its own published model card says it does poorly on Hindi written in Devanagari script. When this page was written, it reported finding only about 14 out of every 100 personal details there. That model card may have changed since, and other tools for Hindi may exist. So Chapter A2 asks you to check the number yourself, not just trust this page.',
       'People in India type in English, in Hindi, and in Hinglish, which is Hindi written in English letters. Often they switch between them inside one sentence. They also type things a European tool was never built to recognise: Aadhaar numbers, PAN cards, UPI IDs, mobile numbers that begin with 98. A tool that handles only one kind of writing leaves most of the problem untouched.',
       'So this project isn’t a copy of Rampart. It asks one question. Can a small tool, light enough to run inside a browser or on a phone, find personal details in English, Hindi and Hinglish, and be honest about what it misses?'
     ]

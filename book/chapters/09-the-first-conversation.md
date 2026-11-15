@@ -61,7 +61,9 @@ Every request carries something else. Imran turned the monitor slightly away bef
 It was a long string of letters and digits called an *API key*. A key tells the provider who is asking and whom to bill. Anyone who holds it can send requests and spend the owner's money, and the provider's records will say that the owner did it.
 
 ::: watch Where a key must never be
-A key must not appear in the code of an app, where anyone who opens the page can read it. It must not sit in a shared folder or in a message to a colleague. Imran told her about a developer who pasted his key into a public project by accident. The next morning he found a bill for several lakh rupees. A key is the key to the till, and you don't leave it on the counter.
+A key must not appear in the code of an app, where anyone who opens the page can read it. It must not sit in a shared folder or in a message to a colleague.
+
+Imran told her about a developer who pasted his key into a public project by accident. The next morning he found a bill for several lakh rupees. A key is the key to the till, and you don't leave it on the counter.
 :::
 
 ## The reply and its receipt

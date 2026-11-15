@@ -14,7 +14,9 @@ terms:
 
 On the third Monday of July, Lakshmi Iyer put three documents on her desk and lined up their edges. One of them, she told Anaya, she would send to anyone. One she would never send. About the third she did not know. Then she asked Anaya to say which was which, and why. Anaya could tell this was a test, and she wasn’t sure of the subject.
 
-The first document was the Late Payment and Refund Policy. It was the twelve-page policy that had spent a day on the glass-room floor in pieces. It was published on Sahaj’s website, so anyone could read it. The second was a spreadsheet of loan applications, with names, addresses, identity numbers and monthly incomes in its columns. The third was a set of fifty support chats. They had been exported for analysis and cleaned by hand, or so the cover note said.
+The first document was the Late Payment and Refund Policy. It was the twelve-page policy that had spent a day on the glass-room floor in pieces. It was published on Sahaj’s website, so anyone could read it.
+
+The second was a spreadsheet of loan applications, with names, addresses, identity numbers and monthly incomes in its columns. The third was a set of fifty support chats. They had been exported for analysis and cleaned by hand, or so the cover note said.
 
 ## The case: three documents
 
@@ -66,7 +68,9 @@ The chats were the interesting case. They didn’t clearly fail any question, an
 
 So the honest answer was this. The chats might contain people. They might contain a bank’s confidential information. And they would go to a vendor whose terms were now on the page in front of them. They were not safe to send, or at least not yet.
 
-Then Lakshmi asked for a rule that a new joiner could follow without asking anyone. Anaya had been thinking about its shape on the way in. A rule people can follow does three things. It settles the common cases in plain words. It names a category that is never sent. And it gives a specific route for the uncertain cases. A rule that says “use your discretion” fails. A person who is unsure and in a hurry reads that as permission.
+Then Lakshmi asked for a rule that a new joiner could follow without asking anyone. Anaya had been thinking about its shape on the way in. A rule people can follow does three things. It settles the common cases in plain words.
+
+It names a category that is never sent. And it gives a specific route for the uncertain cases. A rule that says “use your discretion” fails. A person who is unsure and in a hurry reads that as permission.
 
 ::: example The rule Anaya wrote
 You may send: Sahaj's published help pages and policies.
@@ -81,15 +85,21 @@ Lakshmi read the four lines twice and changed one word. She said it was a rule s
 
 Later in the week Imran noticed one more thing. Afterwards it seemed obvious.
 
-The chatbot’s store of documents had been chosen with care, and only the policies and help pages went in. But remember how the chatbot works. It finds the few pieces that are relevant to a question, and it sends them to the outside company with every request. Whatever is in the store can be found, and whatever is found is sent. “Our decision about the store,” said Imran, “is a decision about every question that will ever be asked.”
+The chatbot’s store of documents had been chosen with care, and only the policies and help pages went in. But remember how the chatbot works. It finds the few pieces that are relevant to a question, and it sends them to the outside company with every request.
 
-Anaya hadn’t understood this from the diagrams. A choice made once, when someone dragged a folder into the system, was being repeated hundreds of thousands of times, at the speed of the chat. If the store held something that should not travel, it would travel. The labels on each piece, which were the work of June, offered a way to stop it. But the first choice was still what to put in at all, and that choice belonged to a person.
+Whatever is in the store can be found, and whatever is found is sent. “Our decision about the store,” said Imran, “is a decision about every question that will ever be asked.”
+
+Anaya hadn’t understood this from the diagrams. A choice made once, when someone dragged a folder into the system, was being repeated hundreds of thousands of times, at the speed of the chat. If the store held something that should not travel, it would travel.
+
+The labels on each piece, which were the work of June, offered a way to stop it. But the first choice was still what to put in at all, and that choice belonged to a person.
 
 ::: key A rule that depends on memory is a wish
 The guard enforces the written rule. The rule says never to send an identity number, and the guard is what stops anyone from doing so by accident. Lakshmi said that a rule that depends on people remembering it is only a wish.
 :::
 
-Anaya then added a line to the specification about where the careful judge would run, using the answer the rule had already given. The judge reads sentences that might contain an identity number. So it could not be read by anyone outside the building, unless the terms said otherwise in writing, and at present they did not. That meant it would have to be a model that Sahaj ran itself. There were such models, she understood, and later chapters would show how that worked.
+Anaya then added a line to the specification about where the careful judge would run, using the answer the rule had already given. The judge reads sentences that might contain an identity number.
+
+So it could not be read by anyone outside the building, unless the terms said otherwise in writing, and at present they did not. That meant it would have to be a model that Sahaj ran itself. There were such models, she understood, and later chapters would show how that worked.
 
 ## Summary
 

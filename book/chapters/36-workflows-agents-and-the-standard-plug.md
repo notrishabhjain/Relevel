@@ -15,9 +15,13 @@ terms:
   - MCP | Model Context Protocol: a standard for connecting AI applications to tools and data, so that any compliant tool fits any compliant application, like a plug and a socket | Model Context Protocol
 ---
 
-In the first week of October, with the pilot running, Farah Sheikh made a request that sounded entirely reasonable. She wanted the support console to have an assistant of its own. It would help an agent work faster. It would look up orders. It would show a hidden detail again if the agent had a good reason. And if it seemed right, it would send a customer a payment link. All of this would happen by itself, in one smooth step.
+In the first week of October, with the pilot running, Farah Sheikh made a request that sounded entirely reasonable. She wanted the support console to have an assistant of its own. It would help an agent work faster.
 
-Imran Qureshi opened a design review that nobody had asked for, and he began with a comparison. A bank teller can look at your balance, he said, but cannot send your money somewhere on your say-so. Tellers are not untrustworthy. Some actions have consequences outside the bank, and the rule is about the action, not the person. He wrote Farah’s three requests on the board, under a heading in capitals: what may it do, with what data, and who checks?
+It would look up orders. It would show a hidden detail again if the agent had a good reason. And if it seemed right, it would send a customer a payment link. All of this would happen by itself, in one smooth step.
+
+Imran Qureshi opened a design review that nobody had asked for, and he began with a comparison. A bank teller can look at your balance, he said, but cannot send your money somewhere on your say-so. Tellers are not untrustworthy.
+
+Some actions have consequences outside the bank, and the rule is about the action, not the person. He wrote Farah’s three requests on the board, under a heading in capitals: what may it do, with what data, and who checks?
 
 ## The case: an assistant that does everything
 
@@ -57,7 +61,9 @@ Table: The crossing-out exercise
 | Show a hidden detail again | No: another button, with a reason typed in a box | Crossed out |
 | Send a payment link | No: a person decides, always | Crossed out |
 
-The list that remained was blank. The answer was a **fixed workflow**. The steps are known, so they are fixed in code, and the model does the part that needs judgement and nothing else. Most real products are built this way. It is safer than letting a model choose its own path, because every step is visible and every failure has a location. A model should get a tool only if its choice adds value, since each tool adds a new way to be attacked and a new source of delay, cost and breakage.
+The list that remained was blank. The answer was a **fixed workflow**. The steps are known, so they are fixed in code, and the model does the part that needs judgement and nothing else. Most real products are built this way.
+
+It is safer than letting a model choose its own path, because every step is visible and every failure has a location. A model should get a tool only if its choice adds value, since each tool adds a new way to be attacked and a new source of delay, cost and breakage.
 
 Fixed workflows usually take a few shapes. There is a sequence. There is a router that sends a message down one of several paths. There are steps run side by side when they don’t depend on each other. And there is a pair in which one step writes and another checks it. The rule for all of them is to use the simplest shape that meets the acceptance criteria.
 
