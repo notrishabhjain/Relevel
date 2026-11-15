@@ -1357,6 +1357,30 @@ console.log('\n— figures: every portal draws its diagrams, and they answer to 
   await pg.click('#ws-journey [data-t="t5"]');
   await pg.waitForSelector('#t5 details.tp[open] .wsfig .fx-svg');
   ok(true, 'tapping a topic on the path opens it, with its pictures');
+  /* the second round: pictures for the newer ideas, a caption on every figure, motion that stays out of the way */
+  await boot(pg, '#/ch/ch9');
+  await pg.locator('[data-fig="traj-eval"]').scrollIntoViewIfNeeded();
+  await pg.waitForSelector('[data-fx="traj-eval"] .fx-cmp');
+  ok(/Run B/.test(await pg.evaluate(() => document.querySelector('[data-fx="traj-eval"]').textContent)), 'Chapter 9 shows one answer reached by two different tool paths');
+  const noCap = await pg.evaluate(() => Object.entries(window.FIGS.data).filter(([, d]) => !(d.cap && d.cap[0] && d.cap[1])).map(([k]) => k));
+  ok(!noCap.length, 'every figure carries a caption in both languages', noCap.join());
+  await pg.waitForTimeout(1300);
+  ok(await pg.evaluate(() => { const e = document.querySelector('[data-fx="traj-eval"]'); return !e.classList.contains('fx-pre') && !e.classList.contains('fx-in') && getComputedStyle(e.querySelector('.fx-ch')).opacity === '1'; }),
+     'a figure draws in when it scrolls into view, then rests with everything showing');
+  await boot(pg, '#/ch/ch16e');
+  await pg.locator('[data-fig="release-gate"]').scrollIntoViewIfNeeded();
+  await pg.waitForSelector('[data-fx="release-gate"] .fx-svg');
+  await pg.waitForTimeout(1300);
+  const popped = await pg.evaluate(() => { document.querySelector('[data-fx="release-gate"] [data-a="next"]').click(); const e = document.querySelector('[data-fx="release-gate"]'); return e.querySelectorAll('.fx-node.pop').length + e.querySelectorAll('.fx-ln.pop').length; });
+  ok(popped >= 2, 'stepping on a figure animates the change: the chosen box and its arrow respond', popped);
+  /* reduced motion: nothing is hidden, nothing animates, the content is the same */
+  await pg.emulateMedia({ reducedMotion: 'reduce' });
+  await boot(pg, '#/ch/ch23');
+  await pg.locator('[data-fig="model-or-not"]').scrollIntoViewIfNeeded();
+  await pg.waitForSelector('[data-fx="model-or-not"] .fx-svg');
+  const calm = await pg.evaluate(() => { const e = document.querySelector('[data-fx="model-or-not"]'); e.querySelector('[data-a="next"]').click(); return { pre: e.classList.contains('fx-pre'), pop: e.querySelectorAll('.pop').length, anim: getComputedStyle(e.querySelector('.fx-node')).animationName }; });
+  ok(!calm.pre && !calm.pop && calm.anim === 'none', 'with reduced motion a figure does not hide, pop or animate', JSON.stringify(calm));
+  await pg.emulateMedia({ reducedMotion: 'no-preference' });
   await fg.ctx.close();
 }
 
