@@ -83,3 +83,5 @@ Keyword search sawaal ke words ko documents ke words se milakar text dhoondhti h
 - Woh spelling compare karti hai, matlab nahi. Isliye jahan users document ke nahi, apne words use karte hain wahan woh fail hoti hai. Matlab woh unhi logon ko fail karti hai jinhe sabse zyada madad chahiye.
 - Digits dhoondhne wala rule us number ko nahi dekh paata jo bola gaya ho ya words mein likha ho.
 - Woh hamesha apna sabse kam bura match wapas deti hai, aur kabhi nahi kehti ki use kuch nahi mila. Isliye jo bhi us match ko padhta hai, woh use saboot maan sakta hai.
+
+Agle chapter mein Anaya text ko uske matlab se dhoondhne ka tareeka talaashti hai, kyunki spelling milana us customer ke kaam nahi aaya jo apne shabdon mein likhti hai.

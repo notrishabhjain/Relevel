@@ -119,3 +119,5 @@ Reading a few outputs and choosing the one that feels right is unreliable, howev
 - A scoreboard counts what each version found, missed and wrongly flagged. It makes progress visible and keeps opinions out of it.
 - Change one thing at a time, or you won't know what helped.
 - Name the task type before choosing a method. Classifying and extracting can be graded by a program. Summarising, rewriting and generating need a person, and a request that mixes types should be split.
+
+Next, Anaya uses the answer key on two everyday jobs for a model: sorting messages into boxes and summarising them.

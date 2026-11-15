@@ -105,4 +105,4 @@ Jawaab ko marks dene ke teen tareeke hain. Program lagbhag free hai, aur jitna h
 - Judges lambe jawaab aur do mein se pehle ko pasand karte hain. Ilaaj hain: ek khaas cheez ko grade karna, order badalna aur quotation maangna.
 - Error analysis ka matlab hai 100 asli outputs padhna, categories chunne se pehle apne words mein likhna ki kya galat hua, group karna aur ginna, aur sabse bade groups ko naye test cases mein badalna.
 
-Agle chapter mein aap finance director ke saath ek baatcheet mein dekhenge ki yeh sab chalane mein kitna kharch aata hai.
+Agle chapter mein Anaya finance director ko plan dikhati hai, jo poochhti hain ki guard ko chalane mein har mahine kitna kharch aayega.

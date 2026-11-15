@@ -71,6 +71,7 @@ window.PROJECT = {
       'Eleven kinds of ID that have a fixed shape: PAN, Aadhaar, mobile number, email, IFSC code, bank account number, UPI ID, GSTIN, passport number, vehicle registration and PIN code.',
       'Six kinds of detail that have no fixed shape: a person’s name, an address, an organisation, a date of birth, a family relationship and a profession.',
       'A risk score for sentences that point to one person without any ID in them.',
+      'A rule-keeper that decides what to do with each finding, built twice (a fixed workflow and a bounded agent), with a person approving the risky actions and a measured comparison of the two.',
       'One finished product: a developer kit (SDK), meaning a small library plus a demo page where you paste text and see it cleaned.'
     ],
     designedTitle: 'You design this on paper',
@@ -106,7 +107,7 @@ window.PROJECT = {
 
   samples: {
     title: 'The starter sentences',
-    intro: 'Here are ten made-up sentences you can use from your very first chapter. They’re the first ten rows of your answer key (more on that below). Copy them into a spreadsheet. Then use them whenever a capstone says “the starter sentences”.',
+    intro: 'Here are ten made-up sentences you can use from your very first chapter. They’re the first ten rows of your answer key (more on that below). Version 1 adds two messy sentences of your own. Copy them into a spreadsheet. Then use them whenever a capstone says “the starter sentences”.',
     head: ['No.', 'Kind of writing', 'Sentence', 'What is hidden inside it'],
     rows: [
       [1, 'English', 'Hi, I am Rahul Verma. My mobile number is 9876543210 and my email is rahul.verma@example.com.', 'a name, a mobile number, an email'],
@@ -130,7 +131,7 @@ window.PROJECT = {
     ],
     versionsHead: ['Version', 'Where you make it', 'Size', 'What goes in'],
     versions: [
-      ['Version 1', 'Chapter 2.2', '10 rows', 'The ten starter sentences, labelled by you.'],
+      ['Version 1', 'Chapter 2.2', '12 rows', 'The ten starter sentences, labelled by you, plus two messy sentences of your own.'],
       ['Version 2', 'Chapter 6', 'about 30 rows', 'Sentences you write yourself, spread evenly across English, Hindi and Hinglish, plus some tricky ones.'],
       ['Version 3', 'Chapter 14.5', 'about 50 rows', 'The mistakes you find while reading the tool’s output by hand.'],
       ['Version 4', 'Chapter 16', '50 rows plus scanned text', 'Text read from photos of ID cards, with the spelling mistakes that scanning causes.'],
@@ -157,7 +158,7 @@ window.PROJECT = {
   },
 
   stagesTitle: 'The thirteen stages of the project',
-  stagesIntro: 'Work through the stages in order. Each stage lists its chapters, says what the stage is for, and tells you what you’ll have when it’s finished.',
+  stagesIntro: 'Work through the stages in order. Each stage lists its chapters, says what the stage is for, and tells you what you’ll have when it’s finished. Chapter 34 has its own eleven stages, from discover to defend. Together they make up stage 12 here.',
 
   stages: [
     { id: 's1', title: 'Decide what you are building, and why',
@@ -182,7 +183,7 @@ window.PROJECT = {
       chapters: ['ch22', 'ch23', 'ch24', 'ch25'],
       plain: 'You build the answer key, the test file the whole project depends on. Then you break the big job into small tasks. You also build a sorter that says whether a piece of text is a PAN, an Aadhaar number or a mobile number.',
       endWith: [
-        'Answer key version 1, with ten labelled rows',
+        'Answer key version 1, with twelve labelled rows',
         'A task breakdown of the whole tool',
         'A tested sorter for the kind of ID',
         'A privacy summary that has been checked against the facts'

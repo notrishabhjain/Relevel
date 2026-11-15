@@ -109,3 +109,5 @@ Kuch chalte hue examples ka demonstration yeh lagbhag kuch nahi batata ki system
 - Ek tool do tareekon se fail ho sakta hai. Woh un cheezon ko miss kar sakta hai jo zaroori thi, yaani kharab recall. Ya woh unhe wapas la sakta hai jo zaroori nahi thi, yaani kharab precision. Ek ko badhane se aam taur par doosra kam hota hai.
 - Kise favour karna hai, yeh is par depend karta hai ki jab har failure hoti hai toh ek asli insaan ke saath kya hota hai. Yeh faisla product ke owner ka hai, banane wale ka nahi.
 - Kisi aur ka bataya hua figure tab tak saboot nahi hai jab tak woh test dikh na jaaye jisse woh aaya.
+
+Agle chapter mein Imran Anaya se poore chatbot ka naksha yaad se banwata hai, aur use pata chalta hai ki uske kitne hisse bina awaaz kiye fail ho sakte hain.

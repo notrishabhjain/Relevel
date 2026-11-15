@@ -25,12 +25,14 @@ Anaya had spent a year learning to answer "does it work?" with a number. "What d
 
 The first task was to find out who Mr. Menon was. In a company that buys software for others to use, three different people usually matter, and they are rarely the same person. The table names them, and says who each one was at the partner.
 
+A second prospect had come up in the same week. The IT cell of the state electricity distribution company, whose bills Sahaj already collected, had asked whether the guard could clean its own helpdesk chats. The table has a column for each, because the same three roles looked quite different there.
+
 Table: User, buyer and blocker
-| Role | Who they are | At the partner | What they want |
-| --- | --- | --- | --- |
-| User | The person who works with the product every day | A developer who would add the kit to a chat system | To add it easily on a Friday |
-| Buyer | The person who holds the budget and answers to someone for the spend | A head of engineering or compliance | A number to show his own manager |
-| Blocker | The person who can say no and doesn't have to say why | A security lead whom Mr. Menon, ruefully, called "the Wall" | To know where the text goes and who can read it |
+| Role | Who they are | At the partner | At the electricity company | What they want |
+| --- | --- | --- | --- | --- |
+| User | The person who works with the product every day | A developer who would add the kit to a chat system | A helpdesk contractor's team, who did not choose the tool | To add it easily on a Friday |
+| Buyer | The person who holds the budget and answers to someone for the spend | A head of engineering or compliance | A department that buys through a tender and picks the lowest price that meets the terms | A number to show his own manager |
+| Blocker | The person who can say no and doesn't have to say why | A security lead whom Mr. Menon, ruefully, called "the Wall" | A security audit, and a clause on where the data may be kept | To know where the text goes and who can read it |
 
 The blocker's question had been worked out the previous July, in the longest meeting of Anaya's year.
 
@@ -74,6 +76,14 @@ The margin she was working out is called the *contribution margin*. It is what a
 Imran's rule was to model low, base and high every time, because most margin problems only show up in the last row.
 
 So she rebuilt the price as a hybrid. Twenty-four thousand rupees a month would include a hundred thousand messages. Each further hundred thousand would cost nine thousand. At a million messages, a customer would pay a little over a lakh, and her margin would be forty-four percent. The bill now followed the value the customer received, and her margin stopped sliding as the customer grew.
+
+## The buyer who writes a tender
+
+Anaya saw that the electricity company's column changed what she could sell. A *tender* is a published request that asks suppliers to bid. The buyer there did not choose a product. It wrote the terms and took the lowest price among the bids that met them, so a feature nobody had listed counted for nothing.
+
+That changed the price. Usage pricing does not fit a fixed-price contract, because the buyer must state the total in advance and cannot accept a bill that grows with festival traffic. A hybrid plan with a large included volume came nearest, but only if the tender allowed it. She did not know whether it did, and wrote "ask" beside it. A small paid pilot, sized below the amount at which the company's rules call for a full tender, was a sensible first step. She did not know that amount either, and she did not guess it.
+
+The audit and the data clause matched the condition Lakshmi had set in March: the cleaning happens inside the company, before anything leaves. For this buyer that was no longer a constraint to explain. It was the one part of the product the audit would not argue with.
 
 ## The wheel that turns by itself
 

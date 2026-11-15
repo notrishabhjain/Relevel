@@ -152,6 +152,8 @@ Table: The state machine and the bounded agent on twenty weeks
 | Finding the cause of a failure | Minutes: the failing step is in the log | Much longer: the whole trace must be read |
 | An unusual week | Needs a code change | Often adapts on its own |
 
+The trace is also what a reviewer marks to grade an agent's path as well as its answer, the way Anaya had marked the night-queue run, one step to a row. An agent whose steps nobody reads cannot be improved on purpose.
+
 For a fixed process such as a weekly report, Imran said, the machine with fixed steps wins. It is more accurate, faster, and it fails in a place that can be seen. The agent earns its keep when the steps really do vary from case to case. He asked where that would be here. Tanvi suggested looking into why one customer's count suddenly doubled. He agreed, and said to use the agent for that, in a corner, with a short budget.
 
 ## Letting it out

@@ -161,6 +161,8 @@ Table: The scale used for each area
 
 She gave herself a 2 for finding problems, because she now had a count. She gave herself a 1 for strategy, because no colleague had ever acted on one of her strategies.
 
+Both scores had a history. Before Sahaj, Anaya had managed the rollout of a state electricity utility's bill-payment system: dates, status reports and a monthly meeting with senior officials. She was good at it, and for turning a decision into something others can build she gave herself a 3. Nobody on that project had asked her which problem the rollout should solve. That had been decided before she arrived.
+
 For understanding the technology, she first wrote a 1, then crossed it out and wrote a lower, honest figure. She could say in a meeting that the chatbot was powered by AI. She could not have explained that sentence to a curious twelve-year-old.
 
 The scores stay in her notes, and she revisits them at the end of the book. Her working rule, written at the top of the page, was simple: nothing counts until someone else could check it.

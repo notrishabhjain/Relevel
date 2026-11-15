@@ -112,3 +112,5 @@ When someone offers to sell what your team could build, neither the price nor th
 - At the top of the AI value chain the model is rarely the advantage. Unique data, workflow and trust are.
 - An open-weight model can be run on the company’s own machines. Lock-in is a cost to be measured.
 - When a model falls short, there are four kinds of failure to tell apart. Fine-tuning teaches behaviour and not facts. It comes after instructions, evidence and a smaller model, and it needs a separate test set.
+
+Next, Farah asks the question that decides whether a tool gets used: what should she tell her team about the tenth answer?

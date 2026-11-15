@@ -99,6 +99,13 @@ Anaya ne answer key mein ek column joda, jiska heading tha "quote kaisa hona cha
 
 Phir usne naam diya ki design ab bhi kya nahi pakad sakta: ek aisi quote jo sach mein message mein hai, sahi shape mein hai, lekin bilkul personal nahi hai, jaise order number. Form yeh nahi jaan sakta. Imran ne kaha ki answer key isi kaam ke liye hai.
 
+::: key Ab aap yeh keh sakte hain
+Dhoondhne aur structure ke baare mein teen sentences. Jahan N aur M likha hai, wahan apne numbers rakhiye.
+- Maine apne sawaalon par retrieval naapi: dus mein se N ko sahi passage mila, aur main bata sakta hoon ki chhoote hue sawaalon mein kya common tha.
+- Main apne tool ka recall aur precision batata hoon, aur yeh bhi ki maine kisko tarjeeh di aur kyun.
+- Mere tool ka output aise fields hain jinhe program check kar sakta hai, aur validation ne M mein se N kharab outputs pakde.
+:::
+
 ## Summary
 
 Jab koi program model ka output padhta hai, toh output fields mein hona chahiye, paragraph mein nahi. JSON ke liye pyaar se kehna lagbhag 100 mein se 97 baar kaam karta hai. Bade scale par iska matlab hai roz saikdon chupchaap failures.
@@ -107,3 +114,5 @@ Jab koi program model ka output padhta hai, toh output fields mein hona chahiye,
 - Schema jawaab ki shape ki guarantee deta hai, uske sach hone ki nahi. Aur required field tab invention karwata hai jab input chup ho.
 - Achhe forms mein fixed choices hote hain, "not stated" kehne ki ijaazat hoti hai, aur har value ke liye woh exact words maange jaate hain jinse woh aayi.
 - Baad mein validation neeche ka jaal hai. Fields, allowed values aur quotations check kijiye, ek baar dobara try kijiye, phir kisi insaan ko de dijiye.
+
+Agle chapter mein 12 digits ka ek number, jo order number bhi ho sakta hai aur Aadhaar number bhi, team ko aisa tareeka dhoondhne par majboor karta hai jisse model look-up maang sake.

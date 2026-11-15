@@ -114,3 +114,5 @@ A specification for something that does not behave the same way twice describes 
 - A rollback returns to earlier code. When the model itself has changed, both versions share the problem, so you also need a pinned model version and a kill switch. The kill switch sends traffic to a simple path immediately, and that path must exist and be tested.
 - When a provider retires a model, everything measured against it must be rerun, including the judge.
 - Feedback is useful only when it arrives with the full record of what happened. In a privacy tool, that record must itself be stored cleaned.
+
+Next, a vendor sends two people to Sahaj, and Anaya has to decide whether to build the next piece or buy it.

@@ -106,7 +106,7 @@
 <header class="chead">
 <p class="eyebrow"><span class="num">18</span><span>Chapter 18 <i>·</i> Finding things, and the whole machine</span></p>
 <h1 data-s="0">The Whole Machine</h1><p class="dek">Every part of the chatbot has now been built and broken by hand, so the whole can be drawn from memory and given a name. This chapter introduces retrieval-augmented generation, the ways it fails silently, and the places a customer's words travel.</p>
-<p class="meta"><span>6 min read</span><span>3 new words</span><button type="button" class="listen" id="listen" hidden><span class="li" aria-hidden="true">▶</span><span class="lt">Listen</span></button></p>
+<p class="meta"><span>7 min read</span><span>3 new words</span><button type="button" class="listen" id="listen" hidden><span class="li" aria-hidden="true">▶</span><span class="lt">Listen</span></button></p>
 </header>
 <aside class="goals"><h2>In this chapter</h2><ul><li>describe retrieval-augmented generation as a sequence of steps</li><li>say what a grounded answer is, and why grounding reduces invention</li><li>find the places where a retrieval-based system can give a wrong answer without any error</li><li>list every place a customer's words are copied on the way to an answer</li></ul></aside>
 <div class="prose">
@@ -151,6 +151,7 @@
 <aside class="carry"><h2 data-s="36">Chapter summary</h2>
 <p data-s="37">The standard design for answering questions about your own documents is this. Cut the documents into chunks, give each one an embedding, find the ones nearest a question, and give them to a model along with the question. This is retrieval-augmented generation, and the answer it writes is grounded in evidence the system supplied.</p>
 <ul data-s="38"><li>Almost every step can go wrong without any error appearing. The system doesn't break. It becomes wrong, quietly.</li><li>When answers are bad, the cause is usually the evidence that reached the model. Cleaning documents and fixing the cutting beat buying a bigger model.</li><li>A customer's words pass through several places on the way to an answer, and each one keeps a copy. A privacy tool belongs at the door.</li></ul>
+<p data-s="39">Next, the rule-keeper fails on the first reply it is given, and Anaya learns that a program needs fields, not paragraphs.</p>
 </aside>
 </div>
 <aside class="wordsbox" aria-label="Key terms"><h2>Key terms</h2><p class="sub">Plain meanings, in the order you meet them.</p><dl><div><dt id="w-retrieval-augmented-generation">retrieval-augmented generation</dt><dd>RAG: a design in which a system first finds the pieces of your documents that look relevant to a question, then gives them to a model along with the question so it writes its answer from them</dd></div><div><dt id="w-retrieval">retrieval</dt><dd>the step of finding the pieces of your documents that look relevant to a question</dd></div><div><dt id="w-grounded-answer">grounded answer</dt><dd>an answer written from evidence the system supplied, and traceable to it, instead of from what the model happens to remember</dd></div></dl></aside>

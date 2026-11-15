@@ -20,11 +20,13 @@ terms:
   - dependency | anything you need from outside your own team in order to finish: another team's work, a supplier, access to data, an approval | dependencies
 ---
 
-Anaya's first manager taught her to make plans that looked like railway timetables. Features went down the side and months went across the top. Each feature got a bar that began on one date and ended on another. She had made about a dozen of these. She couldn't remember one that had come true.
+In her years of delivery work on the utility rollout, Anaya made plans that looked like railway timetables. Her first manager had taught her how. Features went down the side and months went across the top. Each feature got a bar that began on one date and ended on another. She had made about a dozen of these. She couldn't remember one that had come true.
 
 The dates were usually wrong, but that wasn't the main flaw. Each bar was a promise to build something, and none of them was a promise that the thing would help. When the dates slipped, the plan turned into a list of broken commitments. When a feature turned out not to matter, it became a list of broken commitments to the wrong thing.
 
 After the founders agreed in principle to the privacy tool, Anaya started a new plan on a clean page, with a different structure. In this chapter we look at that structure and the goals attached to it. We also meet the people who could stop it, and a meeting that tested the plan before it began.
+
+If you have run delivery, you already know many of the words below: stakeholder, dependency, risk list. Read for what changes. In delivery you own the date. Here you own the outcome.
 
 ## The case: a plan with no dates
 
@@ -56,6 +58,13 @@ The last line was new to her. A *kill criterion* is a condition, decided in adva
 It works for a psychological reason. After three weeks of effort, nobody is the right person to judge whether the work is going badly, because everyone has a reason to say it's going well. Written at the start, before anyone is attached to the result, the condition describes failure in words that nobody has to argue about later.
 
 Kill criteria matter even more when the work involves software that reads and writes text. You can't know its accuracy in advance. You find it out by trying the software. So a date promised before the first test is a guess dressed up as a commitment.
+
+::: key What changes when you own the outcome
+Delivery and product ask for different promises. A delivery plan promises a date, and the work is judged on whether it arrived. A product plan promises an outcome, and the work is judged on whether something changed for the people who use it.
+- The date promised becomes the outcome promised.
+- The scope delivered becomes the number moved.
+- A risk escalated becomes a kill criterion written down in advance.
+:::
 
 ## Goals and the numbers beneath them
 
@@ -91,7 +100,7 @@ Table: Stakeholders by power and interest
 
 Beside each name she wrote what the person was measured on, which tells you how they will react. She also wrote what they could decide: whether they chose, advised or could veto.
 
-Lakshmi was in the wrong corner. She had real power and, as far as Anaya could tell, little interest. That combination is the most dangerous. People in security, legal and compliance often hold a veto while taking little part in the daily work. They stay quiet until the day before launch, and then they say no. They are usually right to.
+Lakshmi was in the wrong corner. She had real power and, as far as Anaya could tell, little interest. That combination is the most dangerous. People in security, legal and compliance often hold a veto while taking little part in the daily work. They stay quiet until the day before launch, and then they say no. They are usually right to. On a government project the same corner is usually held by audit, finance or the security assessor.
 
 The remedy was ordinary. Anaya moved her to the second column by visiting her every week and asking what she would need.
 

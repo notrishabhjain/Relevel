@@ -26,6 +26,19 @@ Table: What a reader of each part should now be able to do
 | 6. Under the hood | 33 to 39 | Read the ordinary software around a model, choose a model on your own cases, review a retrieval system, bound an agent, release through a gate, and assume the worst |
 | 7. A real product, and a job | 40 to 47 | Turn a prototype into a service, price it, help people find it and stay, count what they do without recording what they write, work with the tools of a team, learn from real users, and show the work to an employer |
 
+## Eight sentences you can now say
+
+Each sentence below has a blank for a number from your own project. A sentence you cannot fill in yet is the next piece of work. It is not a reason to change the sentence.
+
+- I counted before I chose: N of N conversations in a week held an identity number.
+- I can say what a model is and what it costs: one request of N tokens costs about N rupees, and the memory is held by my application.
+- My retrieval finds the right passage N times in ten on my own questions, and I chose between recall and precision on purpose.
+- My model uses tools within limits: N steps at most, and a person approves anything that cannot be undone.
+- My specification has a threshold of N, and my pilot had a failure threshold that I wrote before it began.
+- No change ships unless the gate passes on N rows, and I timed a rollback at N minutes.
+- One message costs N rupees to serve, and the margin is N percent at base use.
+- Here is what failed, N things, and here is the number that moved, from N to N.
+
 ## What the project still does not know
 
 A textbook that ends with certainty has usually left something out. So here is what the guard hadn't been tested on. It had been measured in English, in Hindi and in the mixture of the two, on messages the team had written itself. It had not been measured in Tamil, Bengali or Telugu. It had not been measured on the writing of customers outside two cities, or against an attacker with more patience than Imran.
@@ -42,7 +55,7 @@ Nearly everything in this field has a name. Much of the difficulty of learning i
 
 A book can give you the picture. It can't give you the habit, and the habit is most of the skill. The material here becomes your own through practice. Write the plain description of a problem and find that it doesn't hold together. Build a small answer key and see how often you were wrong. Break a system on purpose and watch what it does.
 
-The course app is built for that practice. Every chapter of the book has a companion in the app, linked beneath the chapter. It has the same ideas in the same order, with tasks to do and questions to answer and check. You can read a chapter here and then do the work there, or work in the other order. The two were written to be used together.
+The course app is built for that practice. Every chapter of the book has a companion in the app, linked beneath the chapter. It has the same ideas in the same order, with tasks to do and questions to answer and check. Read the chapter here, then do its work there. The course's weekly route is laid out in that order, and the two were written to be used together.
 
 If the book and the course disagree, or a term is used before it has been explained, please report it. The book was checked for exactly that, line by line, but a checker is no substitute for a reader.
 

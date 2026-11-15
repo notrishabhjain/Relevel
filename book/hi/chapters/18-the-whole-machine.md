@@ -110,3 +110,5 @@ Apne documents ke baare mein jawaab dene ka standard design yeh hai. Documents k
 - Lagbhag har step bina kisi error ke galat ho sakta hai. System toot-ta nahi. Woh chupchaap galat ho jaata hai.
 - Jab jawaab bure hote hain, toh wajah aam taur par woh saboot hota hai jo model tak pahunchta hai. Documents saaf karna aur kaatna theek karna, bada model kharidne se behtar hai.
 - Jawaab tak pahunchne ke raaste mein customer ke words kai jagahon se guzarte hain, aur har jagah ek copy rakhti hai. Privacy tool ki jagah darwaaze par hai.
+
+Agle chapter mein rule-keeper apne pehle jawaab par hi fail ho jaata hai, aur Anaya seekhti hai ki program ko paragraph nahi, fields chahiye.

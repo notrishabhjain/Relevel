@@ -38,7 +38,7 @@ Table: Four levels of risk
 | Tell the user | Chatbots, generated images | It is enough to say that the user is dealing with a machine |
 | Minimal | Most internal tools | Good ordinary practice |
 
-Rules like these started in Europe. Since then they have reached the purchasing departments of a growing number of companies elsewhere. They work as a **risk tier**, which is a level set by the harm a wrong answer could do. The tier decides how much a system must show.
+Rules like these started in Europe, with the EU AI Act. Since then they have reached the purchasing departments of a growing number of companies elsewhere. They work as a **risk tier**, which is a level set by the harm a wrong answer could do. The tier decides how much a system must show.
 
 Two things about tiers surprise people. First, the use sets the tier, not the model. The same system can be low-risk as an internal answer-finder, and high-risk if someone starts using it to decide who gets a loan. Second, the tier changes when the use changes. That often happens after launch, and nobody updates the documents.
 
@@ -123,3 +123,5 @@ How much a system must show depends on how much harm a wrong answer could do. Th
 - A deletion drill finds the places where a person’s data lives that you cannot reach. The forgotten ones are usually copies made for a good reason.
 - Human oversight works only if the reviewer sees the evidence and can say no.
 - Where people already use tools that have not been approved, the cure is an approved alternative that is better.
+
+Next, an email arrives at ten past two in the morning: the model the guard depends on will be retired in thirty days.

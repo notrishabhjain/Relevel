@@ -18,7 +18,7 @@ terms:
   - cost of delay | jo aap har us hafte khote hain jab tak koi option intezaar karta hai | 
 ---
 
-Har Sunday subah Anaya Dr. Meenakshi Rao ko phone karti thi. Meenakshi ne Anaya ko linguistics padhayi thi, aur ab woh Bengaluru mein retire ho chuki thi. March ke teesre hafte mein Anaya ne apne kaam ki list unhe padhkar sunayi.
+Har Sunday subah Anaya Dr. Meenakshi Rao ko phone karti thi. Meenakshi ne Anaya ko linguistics padhayi thi, aur ab woh Bengaluru mein retire ho chuki thi. March ke aakhri hafte mein Anaya ne apne kaam ki list unhe padhkar sunayi.
 
 Chatbot ka greeting dobara likho. Pehchaan ke numbers dhoondhne ka tool banao. Use naam aur pate tak badhao. Hindi mein chalao. Hinglish mein chalao. Photos padho. Voice notes padho. Doosri companies ko becho. Browser mein chalne wala chhota version banao.
 

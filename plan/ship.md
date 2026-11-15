@@ -21,8 +21,8 @@ If you run out of time, publish at 80%. A decent page that is public beats a per
 Every week on the route is a few steps in order: a book chapter, then the playbook chapter that practises it, sometimes a small try, and a look back on Friday. Read the story first and do its chapter the same day or the next, while the story is fresh. Here is how to take each kind.
 
 1. **A book chapter.** Read it in the book, in English or Hinglish. It ticks itself when you reach the end, on every page of the site and in your account. A chapter split over two days ticks its first half when you reach the second.
-2. **A playbook chapter.** Read it and answer the boxes as you go. Do the hands-on steps that run in the browser. Then press “Mark chapter complete” at the end; that is what ticks the step.
-3. **A first pass.** Track A and Track B have long “Build it” sections. On the route you read the chapter, answer its boxes and mark it complete. Write “later” next to the Build in your notepad and come back to it when you have time.
+2. **A playbook chapter.** Read it and answer the boxes as you go. Do the hands-on steps that run in the browser. Then do the short version of its project task, a few lines in your notes. The minutes on the route include it. Then press “Mark chapter complete” at the end; that is what ticks the step.
+3. **A first pass.** Track A and Track B have long “Build it” sections. On the route you read the chapter, answer its boxes and mark it complete. Write “later” next to the Build in your notepad and come back to it when you have time. For a core chapter, a first pass is the same idea: read it, answer the boxes, run the page’s own tools, and write “later” beside the project task.
 4. **A try.** A small task off the page. Do it, then tick it on the route page or on this tab.
 5. **The look back.** Three lines in your notepad: what made sense, what didn’t, and one question. If you keep a photo log, take the photo now. Tick it.
 
@@ -42,9 +42,9 @@ The setup lives in one place: the [setup page in the playbook](../app/#/setup). 
 
 ## Publish a project {#publish}
 
-**Weeks 12 and 25. Ships:** a public write-up with a link anyone can open. **Time:** 2 hours, strictly time-boxed.
+**Week 25. Ships:** a public write-up with a link anyone can open. **Time:** 2 hours, strictly time-boxed.
 
-Publishing is what turns finished work into something other people can see. In Week 12 you publish version 0 of the findings page; in Week 25, the capstone. Keep to the two hours, and stop when the time is up.
+Publishing is what turns finished work into something other people can see. In Weeks 8, 12, 15 and 21 you publish a small version ([small publish](#small-publish)). In Week 25 you publish the capstone in full. Keep to the two hours, and stop when the time is up.
 
 1. Put the write-up in the repo README (or `docs/report.md`), in this order: **Result** (one headline number), **Problem**, **What I built** (one diagram or screenshot), **How I evaluated it** (data, metrics, method), **What failed** (two examples and the counts), **Cost and latency**, **What I would do next**, **Reproduce**.
 2. Tag a release (`v1.0`), so the version you describe stays frozen.
@@ -54,6 +54,20 @@ Publishing is what turns finished work into something other people can see. In W
 6. Add the Sunday ship-log line ([ship-log](#ship-log)).
 
 **Done when:** you can send one link to a stranger and they can understand the result in 60 seconds.
+
+## Small publish: three sentences and a link {#small-publish}
+
+**Weeks 8, 12, 15 and 21. Ships:** one short public post or a README. **Time:** 20 to 30 minutes.
+
+A small publish is not a launch. It shows one result with its number, early, so that a recruiter could see it today. No `v1.0` tag and no video.
+
+1. Write three sentences: the result with its number, one thing that surprised you, and a link. Write in English, with a Hinglish example if it helps.
+2. Put them in the README of your repository, or in a LinkedIn post, or both.
+3. Check that every example uses made-up data. Search the history of the repository for keys and real personal details before you make it public. If you find one, remove it and ask for help on rotating it.
+4. In Week 12 only: move the findings page from the notes box into the README, and make the repository public.
+5. Add the Sunday ship-log line ([ship-log](#ship-log)).
+
+**Done when:** a stranger can open one link and read the number in 30 seconds.
 
 ## Demo video: three minutes, no editing {#demo-video}
 
@@ -68,9 +82,9 @@ Upload it as unlisted, and link it at the top of the README.
 
 ## Portfolio site {#portfolio-site}
 
-**Week 26. Ships:** a live page for Bharat Privacy Guard. **Time:** 3–4 hours.
+**Weeks 25 and 26. Ships:** a live page for Bharat Privacy Guard. **Time:** about 2 hours in Week 26, after the 60-minute start in Week 25.
 
-This is the front door to your work. Keep it plain, quick to read, and honest about numbers.
+This is the front door to your work. Keep it plain, quick to read, and honest about numbers. Week 25 puts the project where people can see it; Week 26 finishes the page.
 
 1. Create a repo named `<your-username>.github.io`, or any repo with Pages enabled ([quickstart](https://docs.github.com/en/pages/quickstart)). Plain HTML or Markdown is enough.
 2. Give the project one page, in this order: problem, approach, evals, result number, failure example, what you would do next, and links to the findings document and demo video.
@@ -81,22 +95,23 @@ This is the front door to your work. Keep it plain, quick to read, and honest ab
 
 ## Mock interviews {#mock-interviews}
 
-**Week 26. Ships:** three practice interviews with written answers, then eight stories from your own career. **Time:** about 90 minutes for the three, and more after the route if you are interviewing.
+**Weeks 13, 22 and 26. Ships:** practice answers spoken aloud, six career stories written on the look backs, and a timed build. **Time:** 15 minutes in Weeks 13 and 22, about two hours in Week 26.
 
-You’ll practise out loud, because answering in your head is much easier than answering in words. Start with product-sense and evaluation questions, then stories from your own career.
+You’ll practise out loud, because answering in your head is much easier than answering in words. Week 13 and Week 22 each give you one question. By Week 26 you have written most of your stories, so the week goes to speaking them. The questions are the nineteen on the Curriculum tab.
 
 1. Use the [question bank](https://github.com/landedjobs/ai-pm-interview-prep) and [Exponent's product sense guide](https://www.tryexponent.com/blog/product-sense-interview). Pick questions you would find hard. Ask Claude or Gemini to interview you with a rubric (problem framing, why AI, metrics, evals, failure handling, cost) and to score you. Then repeat your worst answer.
 2. Answer out loud, and record yourself. Write your final answer to each question in your own words. The written answers are the deliverable.
 3. Use this structure: user and problem, why AI or not, approach, behavior in failure, metrics (product, model, guardrail), evals, cost and latency, risks, launch plan.
-4. Then write 8 STAR stories from your own career (Situation, Task, Action, Result with a number). Cover a killed feature, a disagreement with a senior stakeholder, shipping under ambiguity, a failure and recovery, and a time you used data to change a decision.
+4. Write your career stories as STAR stories (Situation, Task, Action, Result with a number), one on each look back in Weeks 4, 8, 12, 16, 20 and 24. Cover a killed feature, a disagreement with a senior stakeholder, shipping under ambiguity, a failure and recovery, and a time you used data to change a decision. Week 9 adds one government project written in product words.
 5. Prepare a direct answer to "why AI PM, given your project-management background?" Start it with what you shipped and evaluated on this route.
-6. Do one mock take-home: a 3-hour product exercise, written up in 2 pages.
+6. Week 23 gives you a 45-minute timed requirements document. If you are interviewing, add one mock take-home after the route: a 3-hour product exercise, written up in 2 pages.
+7. Week 26 adds a 45-minute timed build: make a paste-and-clean screen for Bharat Privacy Guard in a free prototyping tool, talking aloud. Say what you will not ship, and test one failure case. Record it.
 
-**Done when:** three practice answers are written down. The stories and the take-home can follow after the route.
+**Done when:** you have spoken at least four answers aloud, with the career stories written, and the timed build recorded.
 
 ## Retro: review the six months {#retro}
 
-**Week 26. Ships:** a one-page review and the next learning loop. **Time:** about 3 hours.
+**Week 26. Ships:** a one-page review and the next learning loop. **Time:** about 90 minutes.
 
 This is the last week. Look back at what you did, take what worked forward, and decide what comes next.
 
@@ -109,7 +124,7 @@ This is the last week. Look back at what you did, take what worked forward, and 
 
 ## Ship log: one line every Sunday {#ship-log}
 
-Keep the log wherever you write every day: your notepad, a private note, or a `SHIPLOG.md` file. It looks like this:
+Keep the log wherever you write every day. The simplest place is the Note field of the week on the plan; your notepad, a private note or a `SHIPLOG.md` file work too. It looks like this:
 
 ```
 2026-10-25  W1  Start here, the preface and book chapters 1-2. First three lines.

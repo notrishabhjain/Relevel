@@ -130,3 +130,5 @@ A prompt is whatever is sent to a model. The standing part, repeated with every 
 - A model asked for something it doesn't have will often invent it, in the same calm voice it uses for the truth. This is hallucination.
 - In order of strength, the techniques are a worked example, naming the job and the reader, breaking the work into steps, and forbidding failures you have already seen.
 - None of them removes the cause of a failure. They make it rarer. And every word of instruction is paid for each time it is sent.
+
+Next, Lakshmi's question comes back, and Anaya still has no way to say whether the tool works.

@@ -89,4 +89,4 @@ Plain search can be improved in four ways, and each is worth measuring against t
 
 A good answer key grows from real failures, and the best new row is the one a customer wrote.
 
-Next, you’ll meet a much nastier problem, in which the text a model reads starts giving it orders.
+Next, the tenth sentence in the answer key, which had always looked like a joke, turns out to be a real attack.

@@ -83,3 +83,5 @@ Text vendor ko bhejna theek hai ya nahi, yeh teen sawaal order mein poochh kar t
 - Jo rule log follow kar sakte hain, woh common cases ko saaf shabdon mein tay karta hai, kabhi na bheji jaane wali cheez ka naam leta hai, aur shak wale cases ke liye ek khaas raasta deta hai.
 - Retrieval jo kuch dhoondhta hai woh bhej deta hai. Isliye store mein kya jaayega, yeh faisla us store se poochhe gaye har sawaal ka faisla hai.
 - Jo rule logon ke yaad rakhne par tika hai, woh sirf ichchha hai. Jo tool use lagu karta hai, woh ek control hai.
+
+Agle chapter mein Lakshmi August ki ek lambi dopahar is baat se shuru karti hai ki jo likha nahi gaya woh hua hi nahi, aur Anaya se guard ke peechhe ka kaagaz maangti hai.

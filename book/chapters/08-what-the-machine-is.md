@@ -21,7 +21,7 @@ terms:
   - attention | the part of a transformer that works out, for each token, which other tokens matter most for predicting what comes next | 
 ---
 
-On the third Sunday of March, Anaya told Dr. Meenakshi Rao something. She had said "it's powered by AI" in meetings for two years, and she'd like to stop until she knew what she meant. Meenakshi laughed, briefly and without unkindness. Then she asked Anaya to say what she thought the phrase meant.
+On the first Sunday of April, Anaya told Dr. Meenakshi Rao something. She had said "it's powered by AI" in meetings for two years, and she'd like to stop until she knew what she meant. Meenakshi laughed, briefly and without unkindness. Then she asked Anaya to say what she thought the phrase meant.
 
 Anaya said it was software that had read the internet, understood questions, and had a sort of brain that was trained. She noticed that each sentence was vaguer than the one before.
 
@@ -62,7 +62,7 @@ Table: One sentence, three spellings, three token counts on one tool
 
 The sentence means the same thing each time, and yet the machine sees three different amounts of text. These figures belong to one tool on one day. Another tool would give other numbers, so don't carry a rule of thumb away from this table. If someone tells you Hindi costs twice as much as English, ask three questions: which tool, which sentence, and which day? The answer is to measure.
 
-The count matters because providers charge by the token, both for what you send and for what comes back. Let's use a made-up price, chosen to keep the arithmetic easy. Suppose a provider charges three hundred rupees for every million tokens. A chat of six hundred tokens costs about eighteen paise. A chat in Devanagari that comes to fifteen hundred tokens costs forty-five paise.
+The count matters because providers charge by the token, both for what you send and for what comes back. Let's use a made-up price, chosen to keep the arithmetic easy. Suppose a provider charges two hundred and fifty rupees for every million tokens. A chat of six hundred tokens costs about fifteen paise. A chat in Devanagari that comes to fifteen hundred tokens costs about thirty-eight paise.
 
 Neither figure is alarming on its own. But for a company that handles a hundred thousand chats a month, the difference is between a rounding error and a line in the budget.
 

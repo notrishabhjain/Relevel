@@ -109,3 +109,5 @@ A demonstration of a few working examples says almost nothing about how often a 
 - A tool can fail by missing things that mattered, which is poor recall. It can also fail by returning things that didn't, which is poor precision. Raising one usually lowers the other.
 - Which to favour depends on what happens to a real person when each failure occurs. That decision belongs to whoever owns the product, not to the person who built it.
 - A figure quoted by someone else is not evidence until the test it came from is visible.
+
+Next, Imran asks Anaya to draw the whole chatbot from memory, and she finds how many of its parts can fail without a sound.

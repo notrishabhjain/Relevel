@@ -45,6 +45,7 @@ window.PART5 = [
   ],
   story:[
     ['c','Before you start','Open the <a href="#/workbench">Workbench</a>, or a local folder if you prefer. In this chapter you’ll build an experiment harness, and you’ll keep adding to it until Chapter 34.'],
+    ['c','On your route','Do units 8.4 and 8.5, then the capstone. The browser-only path is this: write and run your code in the <a href="#/workbench">Workbench</a>, and keep your files in the repository you made in Chapter A1 by using <strong>Add file</strong>, then <strong>Upload files</strong>, on the GitHub website. A virtual environment, a requirements file and CI are read-only this pass. You need to know what they are, not to set them up.'],
     ['p','Part V goes back over everything you built in Parts I to IV, this time at the depth a real launch needs. It starts with the ordinary software around the model. So far you’ve spent most of your time looking at the model itself. The aim here is simple: when an engineer shows you a system diagram, you should recognise every box on it.'],
     ['p','Think about ordering food in an app. Your tap sends a message to a restaurant. A reply comes back with a price, and your screen updates. It all looks mysterious until you see the messages going back and forth. Software around an AI model works the same way.'],
     ['c','Why this matters','Applied AI work involves APIs, Python, cloud services, retrieval, evaluation and production systems. If JSON, HTTP, environment variables, tests and logs are unfamiliar, you can’t question an architecture. This chapter gives you the minimum you need.'],
@@ -193,6 +194,7 @@ window.PART5 = [
   ],
   story:[
     ['c','Before you start','Open the experiment harness you built in Chapter 21. You’ll run the same ten cases on two or three models.'],
+    ['c','On your route','Do units 9.3 and 9.6, then the capstone. Read the other units this pass.'],
     ['p','In the last chapter you built a harness that records every run in the same way. Now you’ll put it to use. A leaderboard shows how a model did on someone else’s task. In this chapter you’ll get your own numbers, on your own questions, in one afternoon.'],
     ['p','Think about buying a car. An award doesn’t tell you whether the car fits your family, suits your roads, or what it costs to run. So you take it for a test drive. Few teams test-drive their models, and that’s the gap this chapter closes.'],
     ['key','Models differ on several things at once: capability, speed, context size, tool use and cost. A model that wins on one of these can lose on another. Which one matters most depends on your use case.'],
@@ -365,6 +367,7 @@ window.PART5 = [
   ],
   story:[
     ['c','Before you start','Pick one assistant you know well, either your own or one you use. You’ll list everything that goes into its context.'],
+    ['c','On your route','Do units 10.3 and 10.6, then the capstone. Read the other units this pass.'],
     ['p','In the last chapter you chose a model. Now the question is what you send to it. You’ve thought of the prompt as the message you type, but the prompt is only one part of what the model sees. Every request can also carry instructions, examples, documents, earlier messages and results from tools.'],
     ['p','Choosing what goes into that request, and what stays out, is called <strong>context engineering</strong>. It matters for two reasons. The context window has a limit, so not everything fits. And you pay for every token you send.'],
     ['p','An everyday comparison helps here. Imagine you brief a brilliant new colleague who remembers nothing from yesterday. Each morning you hand them a folder: the standing instructions, a few examples, the file they need today, and a note about last week. What you put in that folder decides how well they do.'],
@@ -519,6 +522,7 @@ window.PART5 = [
   ],
   story:[
     ['c','Before you start','Have your Chapter 12 retrieval pipeline and your Chapter 6 answer key ready.'],
+    ['c','On your route','Do units 11.5 and 11.8, then the capstone. Read the other units this pass.'],
     ['p','In the last chapter you decided what the model should see. Now we look at where that evidence comes from when the system is real. Your Chapter 7 system works because you chose every document yourself, and you are the only user.'],
     ['p','Production is different. Scans arrive crooked. Permissions change after a document has been indexed. The same contract gets uploaded twice under two names. And your provider updates the model without telling you. This chapter is about building a retrieval system that survives all of that.'],
     ['c','Note','A production pipeline has seven stages: reading documents in, splitting them, adding labels, creating embeddings, searching, building the prompt, and checking the answer. You can tune each stage. That also means each one is a suspect when quality drops without a code change.'],
@@ -702,6 +706,7 @@ window.PART5 = [
   ],
   story:[
     ['c','Before you start','Open your experiment harness from Chapter 21 and the agent loop from Chapter 9. You’ll want both nearby for the hands-on units.'],
+    ['c','On your route','Do units 12.1 and 12.5, then run the short workflow cell below. Read the other units this pass.'],
     ['p','So far in this part, the model has read things and written answers. It has looked at documents and replied. In this chapter the model starts to <em>do</em> things, and that changes how careful you need to be.'],
     ['p','A <strong>tool</strong> is what lets the model do something real: look up an invoice, send an email or change a record. Once that’s possible, the question is no longer whether the model can act. The question is what exactly it may do, with what data, and who checks.'],
     ['p','Think of a bank teller. A teller can look up your balance. But a teller can’t approve a loan alone, or send money just because a customer says so. That rule isn’t there because tellers are untrustworthy. It’s there because some actions have consequences outside the bank.'],
@@ -786,6 +791,17 @@ window.PART5 = [
        check:'Which pattern adds real value, and which only adds complexity?',
        lens:'Use the simplest pattern that meets your acceptance criteria.'}
     ],
+    ['h','Run a workflow with an approval step'],
+    ['p','This is the fixed workflow for the rule-keeper in about thirty lines. Ordinary code finds each detail and picks the action. A risky action waits until a person approves. In Chapter 26 you give an agent the same job, so that you have something to compare it with.'],
+    ['do','Run the workflow with an approval flag',[
+      ['p','Run the cell. It checks four starter sentences. A PAN or an Aadhaar number is removed only after approval, because letting one through cannot be taken back.'],
+      ['code','import re\n\nSENTENCES = [\n    "Hi, I am Rahul Verma. My mobile number is 9876543210 and my email is rahul.verma@example.com.",\n    "Sir mera aadhaar 4321 5678 9012 hai aur ye number 98xxxxxx12 pe call kar lena",\n    "mera pan card ABCPJ1234K hai, iska photo kal bhej dunga",\n    "What documents do I need to renew my driving licence?",\n]\nPATTERNS = {\n    "PAN": r"\\b[A-Z]{5}[0-9]{4}[A-Z]\\b",\n    "AADHAAR": r"\\b[2-9][0-9]{3} ?[0-9]{4} ?[0-9]{4}\\b",\n    "MOBILE": r"(?<![0-9])[6-9][0-9]{9}(?![0-9])",\n    "EMAIL": r"[\\w.]+@[\\w.]+\\.[a-z]+",\n}\nNEEDS_APPROVAL = {"PAN", "AADHAAR"}\n\ndef run_workflow(text, approved=False):\n    results = []\n    for kind, rx in PATTERNS.items():\n        for m in re.finditer(rx, text):\n            action = "remove" if kind in NEEDS_APPROVAL else "mask"\n            if kind in NEEDS_APPROVAL and not approved:\n                status = "WAITING for approval"\n            else:\n                status = "applied"\n            results.append((kind, m.group(), action, status))\n    return results\n\nran_without_approval = 0\nfor text in SENTENCES:\n    print(text[:60])\n    for kind, value, action, status in run_workflow(text, approved=False):\n        print("   ", kind, value, "->", action, "-", status)\n        if kind in NEEDS_APPROVAL and status == "applied":\n            ran_without_approval += 1\nprint("risky actions that ran without approval:", ran_without_approval)'],
+      ['x','The first sentence is handled at once: the mobile number and the email are masked. The Aadhaar and PAN lines say WAITING for approval. The last line reads <em>risky actions that ran without approval: 0</em>. That zero is the number your capstone must report. Now change <code>approved=False</code> to <code>approved=True</code> in the loop, run it again, and watch the same lines turn to applied.'],
+      [
+        'snag',
+        ['A red box saying something <em>is not defined</em>','This cell defines everything it uses, so run the whole cell, not a part of it. If you changed a name, check the spelling and the capital letters.','A sentence shows no lines under it','That is right for the driving-licence sentence. It has nothing personal, so the workflow finds nothing and leaves it alone.','The Aadhaar number is not found in a sentence you wrote','The pattern wants twelve digits that do not start with 0 or 1. A number with dashes, or one broken across lines, is a miss. Add it to your answer key as a tricky row.']
+      ]
+    ]],
     ['h','Prefer a fixed workflow'],
     ['p','Once you’ve worked through the units, one lesson stands out. A fixed workflow is simpler to test and easier to trust than an agent. That’s why it should be your first choice.'],
     ['key','A fixed workflow is often safer than an agent. If you know the sequence of steps, fix it in code and let the model handle only the part that needs judgement.'],
@@ -853,7 +869,7 @@ window.PART5 = [
     ["Agent","A system in which the model can choose actions, look at the results, and keep going toward a goal."],
     ["Agent loop","The cycle of goal, decision, tool call, observation and updated context, followed by a choice to stop or continue. The stopping condition is the part people leave out."],
     ["Step budget","A hard limit on how many actions an agent may take before it has to give up. It is the main defence against a loop that never ends."],
-    ["Handoff","Passing a task from one agent to another, more specialised one. It is cheap to draw, and it is easy to lose context or authority on the way."]
+    ["Trajectory","The ordered list of steps an agent took, such as the tools it called. You can score it separately from the final answer."]
   ],
   takeaway:[
     'Draw the agent loop with its stopping conditions and error paths.',
@@ -862,6 +878,7 @@ window.PART5 = [
   ],
   story:[
     ['c','Before you start','Have the workflow from Chapter 25 and its twenty test tasks ready. You’ll run the same tasks through an agent and compare.'],
+    ['c','On your route','Do units 13.4 and 13.7, then run the small agent cell below. Read the other units this pass.'],
     ['p','In the last chapter you built a fixed workflow. You decided the steps in advance, and the model only did the parts that needed judgement. Now we hand the model more freedom, and see what that costs you.'],
     ['p','An <strong>agent</strong> is a system that repeats a loop on its own: decide, act, check the result, decide again. That sounds powerful, but it brings a new problem. Every loop also needs a way to stop. Most agent problems come from the stopping, not from how capable the model is.'],
     ['p','Think of sending a junior colleague to find one number. A good outcome is that they come back in ten minutes with the number, or say they couldn’t find it. A bad outcome is that three hours later they are still searching, and nobody told them when to give up.'],
@@ -958,6 +975,22 @@ window.PART5 = [
        check:'Would you still choose an agent if nobody called it “agentic AI”?',
        lens:'That question protects you from choosing a design because it is fashionable.'}
     ],
+    ['h','Score the path as well as the answer'],
+    ['p','An agent can reach the right answer by the wrong path. It may call a tool it did not need, call tools in a bad order, or call the same one twice. The final answer hides all of that. So you also score the <strong>trajectory</strong>, which is the ordered list of steps the agent took.'],
+    ['p','For each test sentence, write down in advance the tools you expect, in order. Then report two scores side by side: how often the answer was right, and how often the path matched. A wrong path on a right answer is a cost you pay for nothing. Each extra step is more tokens, more delay and one more place to fail.'],
+    ['do','Run a small agent and score its path',[
+      ['p','Run the cell. The model picks the next tool at each step, with a limit of three steps and an exit for “cannot decide”. The cell scores four sentences. Your capstone uses twenty.'],
+      ['code','import re\n\nMODEL = "meta/llama-3.1-8b-instruct"\nCASES = [\n    ("Hi, I am Rahul Verma. My mobile number is 9876543210.", {"MOBILE", "NAME"}, ["pattern_checker", "name_finder"]),\n    ("mera pan card ABCPJ1234K hai, iska photo kal bhej dunga", {"PAN"}, ["pattern_checker"]),\n    ("What documents do I need to renew my driving licence?", set(), ["pattern_checker"]),\n    ("My name is Neha. My mobile is 9123456780.", {"MOBILE", "NAME"}, ["pattern_checker", "name_finder"]),\n]\nPATTERNS = {"PAN": r"\\b[A-Z]{5}[0-9]{4}[A-Z]\\b", "MOBILE": r"(?<![0-9])[6-9][0-9]{9}(?![0-9])"}\n\ndef ask(prompt, temperature=0):\n    r = client.chat.completions.create(model=MODEL, temperature=temperature,\n                                       messages=[{"role": "user", "content": prompt}])\n    return r.choices[0].message.content\n\ndef pattern_checker(text):\n    return {kind for kind, rx in PATTERNS.items() if re.search(rx, text)}\n\ndef name_finder(text):\n    reply = ask("Does this message contain a person\'s name? Answer yes or no.\\n" + text)\n    return {"NAME"} if reply.strip().lower().startswith("yes") else set()\n\nTOOLS = {"pattern_checker": pattern_checker, "name_finder": name_finder}\n\ndef run_agent(text, max_steps=3):\n    found, trace = set(), []\n    for step in range(max_steps):\n        prompt = (f"Message: {text}\\nTools used so far: {trace}\\n"\n                  "Pick the next tool. Reply with one word: pattern_checker, name_finder or done.")\n        choice = ask(prompt).strip().lower()\n        if choice == "done":\n            return found, trace, "done"\n        if choice not in TOOLS or choice in trace:\n            return found, trace, "cannot decide"\n        trace.append(choice)\n        found |= TOOLS[choice](text)\n    return found, trace, "step limit"\n\nanswer_ok = path_ok = 0\nfor text, want_found, want_trace in CASES:\n    found, trace, why = run_agent(text)\n    a, p = found == want_found, trace == want_trace\n    answer_ok += a\n    path_ok += p\n    print("answer", "right" if a else "wrong", "| path", "right" if p else "wrong", "|", trace, "|", why)\nprint(f"final answer correct: {answer_ok}/{len(CASES)}   trajectory correct: {path_ok}/{len(CASES)}")'],
+      ['x','Each line shows two scores and the list of tools used. A small model often gets the answer right by a longer path, or stops with “cannot decide”. Your counts will differ from anyone else’s. The last line is the pair to compare: final answer correct next to trajectory correct. If the second number is lower, the agent is costing you steps it did not need.'],
+      [
+        'snag',
+        ['A red box saying something <em>is not defined</em>','This cell defines everything it uses, including the model name, so run the whole cell. The key and the connection come from the warm-up that runs before your first cell.','An authentication error, or the number 401','Your key did not reach the code. Check the name you saved it under on the <a href="#/setup">Setup</a> page, capital letters included.','Every line says cannot decide','The model did not answer with one of the three allowed words. That is the exit working. Read the reply, and make the prompt stricter or try the other model on the Setup page.']
+      ]
+    ]],
+    ['h','How much freedom to give'],
+    ['p','Choose one of four autonomy levels for each action, and write it next to the tool in your approval matrix.'],
+    ['l',['<strong>Suggests.</strong> The agent proposes an action and a person does it.','<strong>Acts with approval.</strong> The agent acts only after a person says yes.','<strong>Acts and reports.</strong> The agent acts, then tells a person what it did, so that it can be undone.','<strong>Acts alone.</strong> The agent acts and nobody checks. Keep this for actions that only read, or that are easy to undo.']],
+    ['p','In job posts and meetings you will hear the names LangChain and LangGraph. They are code libraries that people use to build loops like the one above. You do not need either for this course. Before you speak about one, look up what it does and what it hides.'],
     ['h','Agent failures are control failures'],
     ['p','After the units, a pattern shows up. When an agent goes wrong, it’s rarely because the model suddenly got worse. It’s because nothing stopped it.'],
     ['key','Most agent failures are control problems. The model did not get worse; it was given unlimited chances to be wrong.'],
@@ -1000,12 +1033,14 @@ window.PART5 = [
       'Set its limits: the most steps it may take, a time limit, and an exit for “cannot decide” that sends the sentence to a person.',
       'Run the same twenty sentences through the agent and through the fixed workflow from Chapter 25.',
       'For each run, record whether it chose the right tool, how many calls it made, how long it took and what it cost.',
+      'Before you run, write the tools you expect for each sentence, in order. Report how often the agent’s path matched, next to how often its answer was right.',
       'Write one paragraph recommending one of the two, with the numbers. Name the number that decided it.'
     ],
     done:[
       'An agent with two tools and written limits.',
       'The same twenty sentences run through both systems.',
       'Four numbers for each system: tool choice, calls, time and cost.',
+      'For the agent, the path score (trajectory) next to the answer score.',
       'A recommendation that names the number that decided it.'
     ]
   }
@@ -1040,6 +1075,7 @@ window.PART5 = [
   ],
   story:[
     ['c','Before you start','You don’t need any new setup to follow the ideas. The hands-on units show a small working example.'],
+    ['c','On your route','Do units 14.3 and 14.4, then read the printed exchange below. Read the other units this pass.'],
     ['p','In the last two chapters you gave a model tools, and then let an agent choose among them. Every one of those tools was connected by hand. In this chapter we look at a standard way to make those connections, and at what the standard does and does not protect you from.'],
     ['p','The standard is called <strong>MCP</strong>, short for Model Context Protocol. It is a common way to connect AI applications to tools and data sources. You will probably never build one yourself, but you do need to know what it covers and what it leaves out.'],
     ['p','Think of a plug socket. It’s a standard, so any appliance fits the wall. But the standard doesn’t promise that the appliance is safe, and it doesn’t decide who may switch it on. MCP is the same kind of thing.'],
@@ -1111,6 +1147,13 @@ window.PART5 = [
        check:'What does the receiving agent actually trust?',
        lens:'Keep your attention on design and governance, not on protocol trivia.'}
     ],
+    ['h','Read one real exchange'],
+    ['p','You do not need to run an MCP server to understand it. Below is what passes between a client and a server that offers the pattern checker as a tool. The messages are shortened; real ones carry a few more fields. To run a server yourself, use the free Introduction to MCP course in the plan.'],
+    ['do','Mark where consent sits',[
+      ['code','client -> server: {"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {"clientInfo": {"name": "demo-client"}}}\nserver -> client: {"jsonrpc": "2.0", "id": 1, "result": {"serverInfo": {"name": "pattern-checker"}}}\nclient -> server: {"jsonrpc": "2.0", "id": 2, "method": "tools/list"}\nserver -> client: {"jsonrpc": "2.0", "id": 2, "result": {"tools": [{"name": "find_ids", "description": "Find Indian ID numbers in text", "inputSchema": {"type": "object", "properties": {"text": {"type": "string"}}}}]}}\nclient -> server: {"jsonrpc": "2.0", "id": 3, "method": "tools/call", "params": {"name": "find_ids", "arguments": {"text": "mera pan card ABCPJ1234K hai"}}}\nserver -> client: {"jsonrpc": "2.0", "id": 3, "result": {"content": [{"type": "text", "text": "PAN: ABCPJ1234K"}]}}','read'],
+      ['n',['Mark the message where the client first learns what the server can do.','Mark the message where the user’s text leaves their screen and something is done with it.','Write one line: who must say yes before that message is sent, and what happens if nobody does?']],
+      ['x','The tools/list reply is where the client learns what exists. The tools/call message is the one to mark: the user’s own PAN is sent out. Consent belongs just before it, in the client. The server cannot grant it to itself. The protocol carried all six messages without asking anyone.']
+    ]],
     ['h','A standard does not make a tool safe'],
     ['p','The units lead to one main lesson, and it’s easy to forget when a standard looks tidy and official.'],
     ['key','A standard tool interface does not make an unsafe tool safe. The protocol carries the call; it does not decide whether the call should be allowed.'],
@@ -1182,6 +1225,7 @@ window.PART5 = [
   ],
   story:[
     ['c','Before you start','Find one real PDF with a table in it, and one short audio recording that you’re allowed to use.'],
+    ['c','On your route','Do units 15.3 and 15.4, then try the spoken-numbers cell below. Read the other units this pass.'],
     ['p','So far, almost everything in this part has been text. Now the input changes. Real work arrives as PDFs, photos of forms and voice messages. This chapter shows what happens to the same ideas when the input isn’t plain text, and where things quietly go missing.'],
     ['p','Start with a PDF. It holds text, layout, tables, images and hidden metadata. If you extract only the words, most of that is flattened, and nothing tells you it happened. No error appears.'],
     ['p','Here’s an everyday example. Photograph a railway timetable, and read only the words, in order, to someone on the phone. They hear every station name, but no useful departure times. The meaning was in the columns, and the columns didn’t survive.'],
@@ -1257,6 +1301,17 @@ window.PART5 = [
     ['key','A voice system is a pipeline, not one model. Each stage adds delay, and each stage is a place where meaning can change.'],
     ['q','I408'],
     ['p','Each stage has a name: reading text from an image (OCR), turning speech into text (transcription), and working out who said what (speaker attribution). Each is a step where meaning can be lost, so each needs its own check.'],
+    ['h','Test how spoken numbers are heard'],
+    ['p','Indian speech is often mixed Hindi and English, and a phone number is exactly where it fails. This test gives you a real number for the capstone. Check the current free tiers and languages of any speech tool yourself, and do not take a figure from this page. Practice question 13 in the plan asks which kind of speech model you would choose.'],
+    ['do','Count the digits that were heard',[
+      ['p','Use voice typing on your phone, or any free speech-to-text. Say five made-up sentences: two in Hindi, two in Hinglish and one in English. Put the made-up number 9876543210 in each one. Paste what was typed into the cell, then run it.'],
+      ['code','import re\n\nSPOKEN = "9876543210"   # the made-up number you read aloud in every sentence\nheard = {\n    ("English", 1): "my mobile number is 9876543210",\n    ("Hindi", 1): "मेरा मोबाइल नंबर 9876543210 है",\n    ("Hinglish", 1): "mera mobile number 98765 4321 hai",\n    ("Hinglish", 2): "mera number nau aath saat chhah paanch char teen do ek shunya hai",\n}   # replace these made-up transcripts with what your tool really heard\n\nright = {}\nfor (language, n), text in heard.items():\n    digits = re.sub(r"[^0-9]", "", text)\n    matched = sum(a == b for a, b in zip(digits, SPOKEN))\n    right[language] = right.get(language, 0) + matched\n    print(language, n, "->", digits or "no digits", "|", matched, "of 10 digits right")\nfor language, total in right.items():\n    print(language, "total:", total)'],
+      ['x','With the made-up transcripts, English and Hindi score 10 of 10, and the Hinglish lines score 9 and 0. The last one wrote the number as words, so a rule that looks only for digits sees nothing. With your own transcripts, expect a different pattern. Add the five sentences, and what should have been found, as new rows in your answer key.'],
+      [
+        'snag',
+        ['A red box saying something <em>is not defined</em>','This cell defines everything it uses, so run the whole cell, not a part of it.','A line says no digits','The tool wrote the number as words, such as nau aath saat. That is a real miss, not a mistake in the cell. Count it as zero digits right.','The Hindi line looks broken','Paste the transcript between the quotation marks and keep the quotation marks. Hindi letters are fine inside them.']
+      ]
+    ]],
     ['p','Speaker attribution is a good one to try yourself, because it raises questions that are not only technical.'],
     [
       'try',
@@ -1326,6 +1381,7 @@ window.PART5 = [
   ],
   story:[
     ['c','Before you start','Bring your answer key from Chapter 6, your judge from Chapter 14 and your experiment harness.'],
+    ['c','On your route','Do units 16.1 and 16.6, then run the gate cell below. Read the other units this pass.'],
     ['p','In Chapter 6 you made an answer key and learned to score against it. That was measuring. Now we make it a habit the whole team follows, and a rule that decides whether a change goes live.'],
     ['p','Here’s what you’ll build: a fixed set of test questions, one consistent way of grading them, and a pass mark agreed in advance. Once you have those, “the demo looked better” stops being an argument.'],
     ['p','Think about how a school works. It doesn’t judge a student on one good answer. Everyone sits the same paper, it is marked the same way, and the pass mark is agreed beforehand. An AI feature needs the same fairness.'],
@@ -1427,7 +1483,7 @@ window.PART5 = [
     ['h','Measure at several levels'],
     ['p','An AI system has several parts, so one score for the whole thing is not enough. The catch is that a fluent model can cover for missing evidence, and it does so often enough to look fine in a demo.'],
     ['key','Evaluate several levels at once. A good end-to-end score can hide a badly broken retriever.'],
-    ['p','The table shows five levels. Read down the right-hand column: each question is one that a release decision needs answered.'],
+    ['p','The table shows six levels. Read down the right-hand column: each question is one that a release decision needs answered.'],
     [
       'tb',
       ['Layer','Example metric','The release question it answers'],
@@ -1435,12 +1491,24 @@ window.PART5 = [
         ['Retrieval','Recall@k, Precision@k','Did we fetch the right evidence?'],
         ['Generation','Groundedness, task success','Did the answer use the evidence correctly?'],
         ['Tool use','Tool-selection accuracy','Did it call the right capability?'],
+        ['Trajectory','Step-sequence match','Did it get there the right way?'],
         ['Operations','p95 latency, cost per task','Can we afford to run it?'],
         ['Safety','Attack success rate','Can adversarial input break the controls?']
       ]
     ],
     ['p','You will meet many evaluation products. Each one is selling an answer to one of three questions.'],
     ['p','The first is <strong>what do we test on?</strong> The answer is a fixed set you keep, with real cases where possible. The second is <strong>who grades it?</strong> Use an exact check where you can, a person where it matters, and a model where neither can keep up. The third is <strong>what score lets it ship?</strong>'],
+    ['h','Run a release gate'],
+    ['p','Here is a gate you can run now. Six rows of the answer key sit inside the cell. It prints recall and precision for each kind of ID and each kind of writing, then PASS or FAIL. When your own file, saved as <code>evals/answer-key-v1.csv</code> or a later version, is ready, load its rows in place of the list.'],
+    ['do','Run the gate on six rows',[
+      ['p','Run the cell and read the last line first.'],
+      ['code','import re\n\nANSWER_KEY = [\n    (1, "English", "Hi, I am Rahul Verma. My mobile number is 9876543210 and my email is rahul.verma@example.com.", {"MOBILE", "EMAIL"}),\n    (2, "Hindi", "मेरा नाम राकेश शर्मा है और मेरा आधार नंबर 4321 5678 9012 है।", {"AADHAAR"}),\n    (3, "Hinglish", "mera naam Rishabh Jain hai, mera mobile number 9876543210 hai", {"MOBILE"}),\n    (4, "Hinglish", "Sir mera aadhaar 4321 5678 9012 hai aur ye number 98xxxxxx12 pe call kar lena", {"AADHAAR", "MOBILE"}),\n    (5, "Hinglish", "mera pan card ABCPJ1234K hai, iska photo kal bhej dunga", {"PAN"}),\n    (9, "English", "What documents do I need to renew my driving licence?", set()),\n]\nPATTERNS = {\n    "PAN": r"\\b[A-Z]{5}[0-9]{4}[A-Z]\\b",\n    "AADHAAR": r"\\b[2-9][0-9]{3} ?[0-9]{4} ?[0-9]{4}\\b",\n    "MOBILE": r"(?<![0-9])[6-9][0-9]{9}(?![0-9])",\n    "EMAIL": r"[\\w.]+@[\\w.]+\\.[a-z]+",\n}\nGATE = {"recall": 0.9, "precision": 0.9}\n\ndef find(text):\n    return {kind for kind, rx in PATTERNS.items() if re.search(rx, text)}\n\ndef rate(found, wanted, missed):\n    recall = found / (found + missed) if found + missed else 1.0\n    precision = found / wanted if wanted else 1.0\n    return recall, precision\n\ndef run_gate():\n    tally = {}\n    for _, script, text, expected in ANSWER_KEY:\n        got = find(text)\n        for kind in expected | got:\n            for group in (kind, script):\n                t = tally.setdefault(group, [0, 0, 0])\n                t[0] += kind in expected and kind in got\n                t[1] += kind in got\n                t[2] += kind in expected and kind not in got\n    passed = True\n    for group, (hit, flagged, missed) in sorted(tally.items()):\n        recall, precision = rate(hit, flagged, missed)\n        ok = recall >= GATE["recall"] and precision >= GATE["precision"]\n        passed = passed and ok\n        print(f"{group:10} recall {recall:.2f}  precision {precision:.2f}  {\'ok\' if ok else \'BELOW GATE\'}")\n    print("PASS" if passed else "FAIL")\n\nrun_gate()'],
+      ['x','Five lines say ok. Hinglish and MOBILE say BELOW GATE, because the pattern checker cannot see the partly hidden number in row 4. The last line is FAIL. That is the right result: the gate caught a real miss. Lower a threshold only after you have written down why, with a number.'],
+      [
+        'snag',
+        ['A red box saying something <em>is not defined</em>','This cell defines everything it uses, so run the whole cell, not a part of it.','All lines say ok and the last line is PASS','You may have changed a sentence or a threshold. Put row 4 back as it was, and the gate should fail again.','The Hindi row prints strange letters','Your screen font is the cause, not the code. The Hindi sentence is only data, and the finding still works.']
+      ]
+    ]],
     ['p','Now try writing that third answer yourself.'],
     [
       'try',
@@ -1507,6 +1575,7 @@ window.PART5 = [
   ],
   story:[
     ['c','Before you start','Open your experiment harness. You’ll extend its records into full traces.'],
+    ['c','On your route','Do units 17.1 and 17.6, then the capstone. Read the other units this pass.'],
     ['p','In the last chapter you built a gate that checks a change before it goes live. But the story doesn’t end at release. One day your live system will give a wrong answer, and someone will ask why. This chapter makes sure your answer is not “we can’t tell”.'],
     ['p','Think of a parcel that goes missing. The courier can tell you where it was last scanned, because every parcel is scanned at every step. Without those scans, a lost parcel can never be traced.'],
     ['key','A <strong>trace</strong> records one request’s path through the system. If you can only see the input and the output, every diagnosis is a guess.'],
@@ -1662,6 +1731,7 @@ window.PART5 = [
   ],
   story:[
     ['c','Before you start','Bring your injection audit from Chapter 13 and the tool classification from Chapter 27.'],
+    ['c','On your route','Do units 18.7 and 18.8, then the capstone. Read the other units this pass.'],
     ['p','In the last chapter you learned to watch a live system. Now we ask what happens when someone tries to misuse it. The answer starts with a plain fact: the model gives everything it reads the same level of trust.'],
     ['p','Whether that is dangerous depends on the system around the model: what it is given, and what it is allowed to do next. That’s why most of AI security is about the system, and not about the model.'],
     ['p','Here’s an everyday picture. Someone slips a note into a stack of paperwork that says “approve this one without checking”. The clerk can read perfectly well. The problem is that nothing in the process separates an instruction from a document.'],
@@ -1785,9 +1855,11 @@ window.PART5 = [
         ['Data leakage','Access-aware retrieval, redaction, log controls','Access tests and trace samples'],
         ['Excessive agency','Least privilege plus approval gates','Tool policy and approval logs'],
         ['Model drift or deprecation','Versioning plus a regression suite','Release and evaluation report'],
-        ['Unsafe output','Policy filter and human escalation','Safety test set results']
+        ['Unsafe output','Policy filter and human escalation','Safety test set results'],
+        ['Raw personal data in logs, or kept too long','Redact before logging, plus a retention limit','A log sample with no raw IDs, and a deletion test. This supports the DPDP Act duties on security safeguards and on limits to keeping data']
       ]
     ],
+    ['p','Consulting firms often call this work model risk management. They also ask for explainability: a written reason for each decision the system makes. Learn both terms. Your risk register and your system card are the evidence behind them.'],
     ['h','Test every control'],
     ['key','A safeguard nobody has tested only exists on paper. Next to each safeguard, write the test that proves it works, and run it.'],
     ['p','Try this with something from your own workplace.'],
@@ -1814,7 +1886,8 @@ window.PART5 = [
       'Include at least these eight risks: a missed Aadhaar number; a false alarm that blocks a real message; an attack hidden in the text reaching the model; the provider keeping your data; the model provider going down; the reference lists going out of date; the logs storing raw personal data; and a person with more access than they need.',
       'For every control, write the test that shows it works, and run that test wherever you can. A control with no test is only an intention.',
       'Apply least privilege to the tool. List what each part can reach, remove everything it does not need, and say what breaks.',
-      'Write two lines on why text retrieved from your own reference lists must still be treated as untrusted input.'
+      'Write two lines on why text retrieved from your own reference lists must still be treated as untrusted input.',
+      'Add the personal-data row from the table: raw personal data in logs, or kept too long. Name the DPDP Act duty it supports, and keep the project wording: the tool helps an organisation collect and share less personal data, and it does not make anyone compliant.'
     ],
     done:[
       'A register of at least eight risks with all eight columns filled in.',
@@ -1855,6 +1928,7 @@ window.PART5 = [
   ],
   story:[
     ['c','Before you start','Bring your release gate from Chapter 29 and the four interface states from Chapter 20.'],
+    ['c','On your route','Do units 19.2 and 19.7, then the capstone. Read the other units this pass.'],
     ['p','So far you’ve built, measured, watched and secured an AI system. Now you write the spec that ties it together. And the first lesson is a hard one: “it returns the right document” is a promise no probabilistic system can keep.'],
     ['p','So write down something you can keep. How often does it return the right document? Measured on which cases? And what does the system do the rest of the time? That rest is never zero.'],
     ['p','Here’s an everyday comparison. A railway can’t promise a train at exactly 9:04. So it publishes the share of trains that arrive within a few minutes of schedule, measured every month. You can plan your day around that number.'],
@@ -1989,8 +2063,8 @@ window.PART5 = [
     ['p','Next, in Chapter 33, you’ll turn the product into a production architecture and a delivery plan.']
   ],
   capstone:{
-    title:'Write the full product requirements for Bharat Privacy Guard',
-    brief:'You now write the document that an engineer can build from and that a leader can read to see exactly what trade-off is being made. In this chapter you learned to write acceptance criteria as a rate with a tolerance, to keep business results, model measures and operating measures apart, and to design the three states an AI feature needs. Now you write two pages for your own tool.',
+    title:'Bring your requirements to version 3 for Bharat Privacy Guard',
+    brief:'You now bring the requirements you wrote in Chapter 18 to version 3: the document that an engineer can build from and that a leader can read to see exactly what trade-off is being made. In this chapter you learned to write acceptance criteria as a rate with a tolerance, to keep business results, model measures and operating measures apart, and to design the three states an AI feature needs. Now you update two pages for your own tool.',
     where:'Written only. The requirements draw on evidence from earlier chapters. No new code is needed.',
     steps:[
       'State the user’s problem, and the non-AI way your tool has to beat, for example a developer’s own hand-written rules.',
@@ -2041,6 +2115,7 @@ window.PART5 = [
   ],
   story:[
     ['c','Before you start','Keep your cost measurements from Chapter 30 and your release gate from Chapter 29 open. You’ll use both.'],
+    ['c','On your route','Do units 20.7 and 20.8, then the capstone. Read the other units this pass.'],
     ['p','In the last chapter you saw how the product manager writes the spec for a system whose answers can vary. This chapter looks at the other side of the same table: what it takes to run such a system for real users.'],
     ['p','Everything you’ve built so far works because you are the only user, and you forgive it when it fails. Production removes both of those. So here you’ll list what that costs you.'],
     ['p','An everyday comparison helps. A dish you cook well for two people is not yet a restaurant menu item. The recipe stays the same. But now you also need reliable supplies, a price that works, other cooks who can make it, and a plan for the night four hundred people order it.'],
@@ -2219,8 +2294,8 @@ window.PART5 = [
   title:'Capstone: discover, build, break, measure, ship and defend a system',
   concept:'This is one capstone, not two. You take a real problem, with users you can actually reach, and carry it from discovery through a live launch to a defence in front of executives and engineers. Along the way you build one coherent applied AI system, break it on purpose, measure what you fixed, and show that it works as a product, not only as a demo.',
   plan:{
-    first:'Don’t start with slides. Find a problem with a user group you can reach. Then create the repository, the issue list, the evaluation dataset, and the smallest slice that works from start to finish.',
-    build:'Grow it into one applied AI copilot for operations or policy work. Give it retrieval that respects permissions, structured outputs, two tools, one bounded agent step, one input that isn’t text, an evaluation harness, tracing and cost tracking, and security controls. Then put it in front of five to ten real users and improve it from what you see.',
+    first:'Don’t start with slides. Your problem is Bharat Privacy Guard. Collect the repository, the issue list and the evaluation dataset you already have, and build the smallest slice that works from start to finish.',
+    build:'Grow Bharat Privacy Guard into one finished product. Give its rule-keeper two forms, a fixed workflow and a bounded agent, with a person approving risky actions. Add structured outputs, one input that isn’t text, an evaluation harness, tracing and cost tracking, and security controls. Then put it in front of real users and improve it from what you see.',
     brk:'Reproduce at least ten kinds of failure: a question with no answer, a poisoned document, prompt injection, an unauthorised tool request, a malformed tool call, a stale permission, a multilingual query, a poor scan or audio, a model swap, and a rise in traffic or cost.',
     artifact:'The running system, a live URL with real users, and an evidence pack. The pack holds the PRD, the architecture, the threat model, the evaluation plan, the dashboard, the unit economics, the decision log, the rollout and rollback plan, the vendor scorecard and an explanation for executives.',
     gate:'Show three failures you found yourself, three improvements with numbers, evidence from real users, unit economics that hold up, the risks that remain, and what you chose not to solve.'
@@ -2245,17 +2320,18 @@ window.PART5 = [
     'State what you deliberately did not solve.'
   ],
   story:[
-    ['c','Before you start','Plan for about thirty hours, spread over four to six weeks. This is the whole course brought together. The technical capstone and the product, business, real-user and defence work are one project now, not two.'],
+    ['c','Before you start','The full version takes about thirty hours, spread over four to six weeks. This is the whole course brought together. The technical capstone and the product, business, real-user and defence work are one project now, not two.'],
+    ['c','On your route','On your route the problem is chosen: Bharat Privacy Guard. Stages 34.1 to 34.3 are already in your repository, so collect them. The route gives this chapter about eight hours. Do five stages: 34.4 put the system together, 34.5 run the release gate, 34.6 break it three ways, 34.9 write the cost, and 34.11 write the findings. Show it to three to five people if you can (34.8). The rest comes after the route.'],
     ['p','In the last chapter you looked at what it takes to run an AI system for real users. Now you do the whole thing yourself, from the first conversation with a user to the final defence.'],
     ['p','Start by collecting every artifact you made in Part V. That means the harness, the model selection card, the context budget and the retrieval architecture. It also means the tool policy, the release gate, the dashboard, the risk register, the PRD and the decision pack. Every stage below reuses one of them.'],
     ['p','You may also have done some of Track B’s optional modules. If so, reuse them too. B1’s cost model fits the measure stage. B3’s tracking plan fits the ship stage, and so do B6’s user sessions. B5’s release checklist fits the observe stage. None of them is needed to start.'],
     ['p','What do you get at the end? A system you can explain without leaning on anyone’s framework. Real users who have used it. And an honest page about what broke when you tested it and what it costs to run.'],
     ['p','That matters because employers ask three things. What can you build? Did anyone want it? And what goes wrong, and what do you do about it?'],
-    ['c','The brief','Take one real problem, with a user group you can actually reach within two weeks. Then work through eleven stages: discover, define, design, build, evaluate, break, observe, ship, measure, iterate and defend.'],
+    ['c','The brief','Your problem is Bharat Privacy Guard, and you can reach its users within two weeks. Work through eleven stages: discover, define, design, build, evaluate, break, observe, ship, measure, iterate and defend.'],
     ['p','Build one applied AI system that combines at least four capabilities from Part V. A good starting set is retrieval that respects permissions, tool calling, one bounded agent step, evaluation, tracing and security tests. Ship it to real users before you defend it. It should be one coherent journey, not a set of separate demos.'],
     ['lab','redmap'],
     ['h','The eleven stages'],
-    ['p','The table below lists the eleven stages in order. For each one, the second column says what evidence you must have in hand before you move on. Read it once now, and come back to it as you work.'],
+    ['p','The table below lists the eleven stages in order. They are the detail inside stage 12 of the thirteen stages on the project page. For each one, the second column says what evidence you must have in hand before you move on. Read it once now, and come back to it as you work.'],
     [
       'tb',
       ['Stage','Required evidence'],
@@ -2295,7 +2371,7 @@ window.PART5 = [
       'Define the problem and PRD',
       {goal:'Turn the problem into a system with acceptance criteria you can measure.',
        idea:'A capstone becomes credible when the problem is clear and the cost of failure is clear too.',
-       prove:'Choose your own problem, one you can reach users for. Or choose one of these: policy and compliance intelligence for an enterprise, a workflow that makes developers more productive, or a controlled customer-operations workflow.',
+       prove:'Write the problem for Bharat Privacy Guard: who the user is, what goes wrong for them today, and the number that would show it is fixed.',
        build:'Write down the user, the pain, the baseline, the scope, the non-goals, the data, the tools, the risks and the metrics.',
        brk:'Ask “why not ordinary software that always gives the same answer?” again. This time, ask it against your actual scope, not the general case.',
        artifact:'The capstone AI PRD.',
@@ -2444,9 +2520,10 @@ window.PART5 = [
       'Add the architecture diagram and the decision log.',
       'Add the final answer key and the scoreboard before and after your fixes.',
       'Add the results of the attacks you tried in Chapter 13, and some sample traces.',
+      'Add the workflow-versus-agent table from Chapter 26 for the rule-keeper, and say which one ships, with the number that decided it.',
       'Add the cost and speed at your expected volume, and what changes at ten times the volume.',
       'Add the requirements, the risk register, the system card and the rollout and rollback plan.',
-      'Add real-user evidence: notes from sessions with five to ten people who are not your teammates, and the one change you made because of them.',
+      'Add real-user evidence: notes from sessions with three to five people who are not your teammates on the route (five to ten in the full version), and the one change you made because of them.',
       'Write the findings document: what you built, what broke, who used it and what the evidence shows. Include three failures you found yourself, each with evidence, and three fixes, each with numbers from before and after.',
       'End with what remains risky and what is deliberately out of scope, such as other Indian languages, the gateway and the browser extension.'
     ],
@@ -2454,7 +2531,8 @@ window.PART5 = [
       'A repository that works on a clean machine.',
       'Three failures you found yourself, each with evidence.',
       'Three fixes, each with before and after numbers.',
-      'Evidence from five to ten real users who are not your teammates.',
+      'A table comparing the fixed workflow and the agent, with the number that decided which one ships.',
+      'Evidence from three to five real users on the route (five to ten in the full version), who are not your teammates.',
       'The cost per message, and what happens to it at ten times the volume.',
       'A five-minute explanation a non-technical leader could repeat, and a twenty-minute one that an engineer could not easily poke holes in.'
     ]

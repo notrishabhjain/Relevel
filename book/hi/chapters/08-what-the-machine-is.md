@@ -21,7 +21,7 @@ terms:
   - attention | transformer ka woh hissa jo har token ke liye tay karta hai ki agla kya aayega yeh andaaza lagane ke liye baaki kaun se tokens sabse zyada maayne rakhte hain | 
 ---
 
-March ke teesre Sunday ko Anaya ne Dr. Meenakshi Rao se ek baat kahi. Woh do saal se meetings mein "yeh AI se chalta hai" bolti aa rahi thi. Ab woh chahti thi ki jab tak khud na samjhe ki iska matlab kya hai, tab tak yeh bolna band kar de.
+April ke pehle Sunday ko Anaya ne Dr. Meenakshi Rao se ek baat kahi. Woh do saal se meetings mein "yeh AI se chalta hai" bolti aa rahi thi. Ab woh chahti thi ki jab tak khud na samjhe ki iska matlab kya hai, tab tak yeh bolna band kar de.
 
 Meenakshi thodi der hansi, bina kisi kadvaahat ke. Phir unhone poochha ki Anaya ke hisaab se is sentence ka matlab kya hai. Anaya ne kaha ki yeh woh software hai jisne internet padha hai, jo sawaal samajhta hai, aur jiske paas ek tarah ka dimaag hai jo train kiya gaya hai. Bolte-bolte usne notice kiya ki har sentence pichhle se zyada dhundhla tha.
 
@@ -64,7 +64,7 @@ Table: Ek sentence, teen spellings, ek tool par teen token counts
 
 Sentence ka matlab har baar ek hai, lekin machine ko teen alag amount ka text dikhta hai. Yeh figures ek tool par ek din ke hain. Doosra tool doosre numbers dega. Isliye is table se koi rule of thumb mat le jaiye. Agar koi kehta hai ki Hindi English se do guna mehngi padti hai, toh teen sawaal poochhiye: kaun sa tool, kaun sa sentence, aur kaun sa din? Jawaab hai, naapna.
 
-Count isliye zaroori hai ki providers token ke hisaab se charge karte hain. Jo aap bhejte hain, uske liye bhi, aur jo wapas aata hai, uske liye bhi. Chaliye aasaan hisaab ke liye ek made-up price maan lete hain. Maan lijiye provider har 10 lakh tokens ke 300 rupaye leta hai. Toh 600 tokens ki ek chat ka cost lagbhag 18 paise hoga. Devanagari mein 1,500 tokens ki chat ka cost 45 paise hoga.
+Count isliye zaroori hai ki providers token ke hisaab se charge karte hain. Jo aap bhejte hain, uske liye bhi, aur jo wapas aata hai, uske liye bhi. Chaliye aasaan hisaab ke liye ek made-up price maan lete hain. Maan lijiye provider har 10 lakh tokens ke 250 rupaye leta hai. Toh 600 tokens ki ek chat ka cost lagbhag 15 paise hoga. Devanagari mein 1,500 tokens ki chat ka cost lagbhag 38 paise hoga.
 
 Dono figures akele dikhne mein darane wale nahi hain. Lekin jo company mahine mein ek lakh chats sambhalti hai, uske liye farq ek rounding error aur budget ki ek line ke beech ka hai.
 

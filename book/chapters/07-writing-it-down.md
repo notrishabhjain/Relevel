@@ -8,6 +8,10 @@ goals:
   - list edge cases and decide what the product does when it is unsure
   - build a thin first version, give uncertain work a time-box, and test a paper prototype with a real person
 terms:
+  - pattern checker | the first part of the guard: it finds details that always have the same shape, such as a PAN or a mobile number, using fixed rules | pattern checkers
+  - name-and-place finder | the second part of the guard: it finds details with no fixed shape, such as a person's name, an address or an employer | name-and-place finders
+  - context judge | the third part of the guard: it reads the few sentences the first two parts could not settle and decides whether they point to a person | context judges
+  - rule-keeper | the fourth part of the guard: it decides what to do with each detail found, such as remove it, mask it, let it through or ask | rule-keepers
   - PRD | product requirements document: the paper that says what to build and why, starting from the problem and its evidence | product requirements document
   - acceptance criteria | the conditions a piece of work must meet to count as done, each written so it can be tested | acceptance criterion
   - user story | one piece of value described from the user's side: who they are, what they want, and why | user stories, job story
@@ -21,10 +25,6 @@ terms:
   - quasi-identifier | a detail that is harmless alone but can point to one person when combined with others, such as age, village and a rare illness | quasi-identifiers
   - redact | to remove a detail completely, for example by replacing it with the word [PAN] | redaction
   - mask | to hide part of a detail but keep its shape, for example 98******12 | masking, masked
-  - pattern checker | the first part of the guard: it finds details that always have the same shape, such as a PAN or a mobile number, using fixed rules | pattern checkers
-  - name-and-place finder | the second part of the guard: it finds details with no fixed shape, such as a person's name, an address or an employer | name-and-place finders
-  - context judge | the third part of the guard: it reads the few sentences the first two parts could not settle and decides whether they point to a person | context judges
-  - rule-keeper | the fourth part of the guard: it decides what to do with each detail found, such as remove it, mask it, let it through or ask | rule-keepers
 ---
 
 When the founders approved the project, Imran Qureshi drew the guard on a napkin from the sweet shop below the office. The drawing took four minutes. A long box on the left was labelled "message", and a long box on the right "safe message". Between them stood four small boxes in a row, each with three words beneath it.
@@ -32,6 +32,8 @@ When the founders approved the project, Imran Qureshi drew the guard on a napkin
 A napkin sketch is a guess about structure. You can't build from it. It doesn't say what each box must do, how anyone will know the box works, or what happens when it fails.
 
 In this chapter we follow the sketch as it becomes a document that a stranger could build from. Then we see the first test of the design, done on paper.
+
+If you have delivered technology projects, you already know many of the words in this chapter: requirements, sprint, dependency, edge case. Read for what changes when the product is yours. The four parts of the guard are the words every later chapter uses, so take those with you.
 
 ## The case: four boxes on a napkin
 
@@ -44,7 +46,7 @@ The sketch gives each kind of personal detail to the part best suited to find it
 Table: The four parts of the guard
 | Part | What it does | Why it is separate |
 | --- | --- | --- |
-| Pattern checker | Finds details that always have the same shape: a PAN (five capital letters, four digits, one capital letter), an Aadhaar number (twelve digits), a mobile number (ten digits starting with 6, 7, 8 or 9) | A fixed rule finds these instantly, at no cost, the same way every time |
+| Pattern checker | Finds details that always have the same shape: a PAN (five capital letters, four digits, one capital letter), an Aadhaar number (twelve digits, not starting with 0 or 1, the last one a check digit worked out from the others), a mobile number (ten digits starting with 6, 7, 8 or 9) | A fixed rule finds these instantly, at no cost, the same way every time |
 | Name-and-place finder | Finds details with no fixed shape, such as a person's name, an address or an employer | No rule can describe "Ramesh Jain" or "14 Sector 15, Gurgaon"; something must read the sentence and recognise a person or a place |
 | Context judge | Reads the few sentences the first two parts could not settle and decides whether they point to a person | Reading in context is slow and costly, so it is asked only about what remains |
 | Rule-keeper | Decides what to do with each detail that was found | It finds nothing itself; it applies the rules for each kind of detail |
@@ -151,6 +153,13 @@ Neha picked up the second sheet and looked at it for eleven seconds. She picked 
 
 ::: key What eleven seconds found
 A test with three to five people like Neha reveals most of the serious problems in a design, and each hesitation is a finding. Anaya added a line to the PRD: an agent can see the hidden detail, for one chat, with a reason recorded. No meeting had raised it.
+:::
+
+::: key What you can now say
+Three sentences for a hiring conversation. Put your own numbers where N and M stand.
+- I counted before I decided: N of the M conversations I read held a personal detail, and I can show how I counted.
+- I wrote down what the product will not do, and what evidence would change my mind.
+- My specification defines "done" as a rate on examples marked beforehand, not as a feeling.
 :::
 
 ## Summary

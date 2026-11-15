@@ -8,6 +8,8 @@ There are two ways to learn how an AI product is made. The first is to build one
 
 The second way is to study the whole subject in order. Someone explains it to you, step by step, until the new words stop being strange and start to form a picture you can hold in your head. This book is that second way.
 
+This book is for someone who has delivered technology projects and now wants to own an AI product. It does not assume you have written code or studied statistics. The rhythm is one chapter of the book, about ten minutes of reading, followed by the app chapter named under its title, every week for twenty-six weeks. Anaya has a team around her. You have the app. Where Imran runs something, the app gives you the button. Where Lakshmi asks how she would know, the app's check questions ask you the same thing. By the end you will be able to say, with your own numbers, what you built and how you know it works.
+
 It covers the same ground as the course app, in the same order, with the same terms. There are no exercises in it and no code to type. Instead it follows one story from beginning to end. That's because an idea is easier to remember when it is tied to a decision that someone actually had to make.
 
 ## The case
@@ -60,7 +62,7 @@ You'll meet five people again and again. Here they are in one place.
 Table: The people in the case
 | Name | Role | What to know |
 | --- | --- | --- |
-| Anaya Deshmukh | Product manager | Careful with evidence, slower to admit what she does not know |
+| Anaya Deshmukh | Product manager | Careful with evidence, slower to admit what she does not know; managed a state utility's bill-payment rollout before moving to product |
 | Imran Qureshi | Lead engineer | Built the chatbot's infrastructure; distrusts any plan that contains the word "just" |
 | Lakshmi Iyer | Head of compliance | Twenty years in banking; her standard question is "how would we know?" |
 | Farah Sheikh | Support lead | Reads more customer writing than anyone else in the company |

@@ -829,14 +829,23 @@ window.PART7 = [
     ['p','In the last chapter you shipped to real users and learned from what happened. That work is the best thing you have to show an employer. But an interviewer can’t see it unless you present it well.'],
     ['p','So this chapter is about turning your project into proof. You’ll choose the right roles, write about your work, practise the interview questions you’re likely to meet, and get ready to negotiate. Let’s start with the roles.'],
 
+    ['h','The objection you will meet'],
+    ['p','One question comes up in almost every interview for you, politely or not: “You are moving over from programme management. Why should we treat you as a product person?” Some AI-native companies say outright that they screen out people who move over from project work. Do not argue with the worry. Answer it with evidence.'],
+    ['p','Start with what you shipped and measured, not with your years of experience. Then show the one thing delivery work could not teach you: you owned a decision and a number. The change from delivery to product is what happens when you own the outcome. The date you promised becomes the outcome you promised. Scope delivered becomes the number moved.'],
+    ['p','A good answer has five sentences. First, what you built. Second, the number from your release gate. Third, a decision you made by measuring two options. Fourth, a decision you owned before this course. Fifth, what you want to own next. Say it aloud until it takes under a minute.'],
+    ['try',{id:'b7-objection',mins:10,min:120,rows:6,
+      task:'Answer in five sentences: “You are moving over from programme management. Why should we treat you as a product person?” Each of the first four sentences must start with something you shipped, measured or decided.',
+      ph:'I built… It passed… I measured… Before this course I decided… Next I want to own…',
+      after:'A strong answer. <strong>I built Bharat Privacy Guard, a tool that finds Indian identity numbers before text leaves a person’s device.</strong> It passed my release gate: it found [your figure] of every 100 numbers in my answer key, with [your figure] false alarms. I measured a fixed workflow against an agent on the same cases and shipped the workflow, because it failed less and cost less. Before this course I held a district go-live by two weeks because the payment step failed twice, and I wrote down what would make me reverse that. Next I want to own the number, not only the date.'}],
+
     ['h','Idea 1: Target roles and position yourself with evidence'],
-    ['p','“AI product manager” sounds like one job. It isn’t. Companies use the title for several different jobs, and each one asks for different evidence. The table below shows four common types. As you read it, ask which row looks most like you.'],
-    ['tb',['Role type','What you build','What they look for'],[
-      ['AI features in an existing product','New AI features for current users','Product judgement, shipping, and working with ML teams'],
-      ['AI-native product','A product that only exists because of AI','Speed, prototyping, evaluation, and comfort with uncertainty'],
-      ['AI platform','Tools, APIs or models for other teams','Technical depth, developer experience, and reliability'],
-      ['Internal AI','AI tools for employees','Change management, security, and time saved that you can measure']
+    ['p','“AI product manager” sounds like one job. It isn’t. Companies use the title for several different jobs, and each one asks for different evidence. The table below shows the three doors open to you. As you read it, ask which one you will try first.'],
+    ['tb',['Door','What you build','What they look for'],[
+      ['An AI-native product company','A product that exists because of AI','Agents you built, an eval suite you run yourself, cost and latency numbers, fast prototyping. Some screen out people moving over from project work, so lead with what you shipped.'],
+      ['A consulting firm building AI systems for clients','Language-model apps, retrieval and multi-agent systems for client organisations','Model evaluation, AI governance, and proof that you can scope, measure and hand over. Delivery and consulting backgrounds are accepted.'],
+      ['A public-sector or digital-public-infrastructure body','Services that citizens and departments use at scale','Field deployment, API literacy, ministry stakeholders, Indic and voice work, open-weight options. The title may read analyst or architect, not product manager.']
     ]],
+    ['p','The plan page rates the consulting door as the most realistic first one, and the AI-native door as the hardest. The same evidence serves all three. Write down which door you will apply to first.'],
     ['p','How do you find out what the market wants? Build a <strong>role matrix</strong>. Take ten real job descriptions and list them across the top. Then list every skill they mention down the side, and tick each skill that each role asks for.'],
     ['p','The skills with the most ticks are what the market wants most. Now look at those skills and mark each one for yourself: proven, partly proven or missing. That tells you where your evidence is strong and where the gaps are.'],
     ['p','Then position yourself around what you can prove. Compare two lines. “I shipped an AI product to ten real users and improved its useful-result rate from 58% to 71%” is much stronger than “passionate about AI”.'],
@@ -867,12 +876,12 @@ window.PART7 = [
     ['h','Idea 3: Product sense, strategy, metrics and execution interviews'],
     ['p','Now for the interviews themselves. Most PM interview loops include four kinds of question. Each kind has a structure that keeps you on track, so you don’t freeze or ramble. The table gives an example question and a structure for each.'],
     ['tb',['Type','Example','Structure'],[
-      ['Product sense','Design a product for busy parents','Clarify the goal → pick a user → list problems → choose one → propose solutions → prioritise → say how you would measure it'],
-      ['Strategy','Should we enter the Indian market?','Goal → market → customer → competition → our advantage → recommendation and risks'],
+      ['Product sense','Design a voice-first grievance assistant for rural citizens who speak Bhojpuri. What do you do when it cannot understand the speech?','User and problem → why AI or not → approach → behaviour in failure → metrics (product, model, guardrail) → evals → cost and latency → risks → launch plan'],
+      ['Strategy','Build or buy an Indic-language assistant for a ministry: a frontier API, an open-weight model or a government-built platform?','Goal → options → cost, privacy and lock-in for each → what you would test first → recommendation and exit plan'],
       ['Metrics','Daily users fell 10%. Why?','Check the data → internal or external? → which segment? → which step? → hypotheses → how to test'],
       ['Execution','Two teams need the same engineer. What do you do?','Clarify impact → options → trade-offs → decision → how you tell people']
     ]],
-    ['p','Whichever question you get, say your structure out loud before you start. It lets the interviewer follow you, and redirect you early if needed. At the end, make a clear choice. Interviewers want to see you commit to a decision and explain why.'],
+    ['p','The nine parts in the product-sense row fit any AI product question, so learn them in order. Whichever question you get, say your structure out loud before you start. It lets the interviewer follow you, and redirect you early if needed. At the end, make a clear choice. Interviewers want to see you commit to a decision and explain why.'],
     ['do','Prove it now',[
       ['p','Answer the metrics example above out loud in ten minutes. Record yourself.'],
       ['x','You should end up with a recording. Listen back and check two things. Did you ask about data quality first? And did you end with a way to test your best hypothesis?']
@@ -899,6 +908,7 @@ window.PART7 = [
     ['p','The last idea covers four things that come up around the interviews. The first is behavioural questions. These ask about your past, such as “tell me about a time you disagreed with an engineer”.'],
     ['p','Prepare six to eight stories from real work. Tell each one as situation, task, action and result. Spend most of your time on the action, because that’s the part about you.'],
     ['p','Next are <strong>take-home assignments</strong>, which test how you work alone. Stick to the time limit you are given, and state your assumptions at the top. End with what you would do with more time. Reviewers value a clear, honest answer over a long one.'],
+    ['p','Some loops now include a live build round. You get a problem and about 45 minutes to show a working prototype, often with an AI coding tool. Interviewers watch how you work, not how polished it looks. Say your scope aloud first. Build the smallest version that runs. Test one failure on purpose, such as a number that looks like an Aadhaar number but is not. Say what you would not ship yet.'],
     ['p','Then there is <strong>networking</strong>. It works best when you have something to show. Share a case study with a specific person and ask one specific question. That gets more replies than asking for a referral.'],
     ['p','Finally, <strong>negotiation</strong> starts with preparation. Research the salary range for the role and location. Wait for the company to make an offer first. Then ask once, politely, with a reason, such as a competing offer or the scope of the role.'],
     ['p','Let’s turn all this into practice with one story of your own.'],
@@ -907,10 +917,15 @@ window.PART7 = [
       ph:'Situation… Task… Action (what I decided and why)… Result and what I changed…',
       after:'A strong story: <strong>Situation:</strong> Theme Finder’s first version let an agent decide the steps for the weekly report. <strong>Task:</strong> I owned getting it reliable enough for ten design partners. <strong>Action:</strong> I expected the agent to handle unusual weeks better, so I kept it at first. When 3 of 20 test weeks failed, I built the same flow as a fixed workflow and ran both on the same cases. <strong>Result:</strong> the workflow failed once in 20 and was twice as fast, so I switched. I learned to measure both options before committing, and now I do that for every major design choice.'}],
     ['q','I618'],
+    ['p','Now one story from before this course.'],
+    ['try',{id:'b7-star-gov',mins:10,min:120,rows:6,
+      task:'Write one story from a government project as situation, task, action and result. The action must say “I decided”, and the result must carry a number. Take the decision from your entry “Decisions I owned before this course”.',
+      ph:'Situation… Task… Action (I decided…)… Result with a number…',
+      after:'A strong story. <strong>Situation:</strong> a citizen portal was due to open in twelve districts on a fixed date. <strong>Task:</strong> I owned the go-live and the vendor. <strong>Action:</strong> the payment step failed two test runs. I decided to hold three districts by two weeks, against the department head’s wish, and wrote down the failure rate that would make me hold again. <strong>Result:</strong> the retest passed at 99 successful payments in 100, and no applicant was charged twice. Next time I would set that threshold before the first test. Your numbers will differ.'}],
 
     ['h','What you have learned'],
     ['p','You now have a way to show your work to an employer. You can pick the roles that fit you, write resume lines and case studies that show your decisions, and answer the four kinds of PM question with a structure. You can also work through an AI system-design question and tell honest stories about your own choices.'],
-    ['p','That finishes the learning part of the course. Next, there is one short page about the integrated capstone, which now lives in Chapter 34.']
+    ['p','That finishes the learning part of the course. The project itself lives in Chapter 34. If it is not finished yet, go back there.']
   ]
 },
 
@@ -924,8 +939,8 @@ window.PART7 = [
   ],
   needs:[['The unified capstone','Everything that used to be here is now part of it.',34]],
   story:[
-    ['c','This chapter moved','This used to be a second, separate capstone. It is not any more. Everything here is now part of one journey in Chapter 21.'],
-    ['p','In the last chapter you got ready to show your work to employers. This page is a short one, and it is about where the capstone lives now.'],
+    ['c','This chapter moved','This used to be a second, separate capstone. It is not any more. Everything here is now part of one journey in Chapter 34.'],
+    ['p','This page is a short one, and it is about where the capstone lives now.'],
     ['p','Earlier, the capstone was split in two. There was a technical capstone, and there was a second one built around five gates. Doing both felt like doing the same project twice. So the two have been joined into a single journey with eleven stages, in Chapter 34.'],
     ['p','What if you already have progress on the old five gates? Nothing is lost. Each old gate maps directly onto the new stages, as the table shows.'],
     ['tb',['Old gate','New stage(s) in Chapter 34'],[

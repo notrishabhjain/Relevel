@@ -89,4 +89,4 @@ Seedhi search ko chaar tareeke se behtar banaya ja sakta hai, aur har ek ko usi 
 
 Achhi answer key asli failures se badhti hai, aur sabse achhi nayi row woh hoti hai jo kisi customer ne likhi ho.
 
-Agle chapter mein aap ek bahut buri problem se milenge, jisme model jo text padhta hai woh use hukm dene lagta hai.
+Agle chapter mein answer key ka dasvaan sentence, jo hamesha mazaak jaisa dikhta tha, ek asli attack nikalta hai.

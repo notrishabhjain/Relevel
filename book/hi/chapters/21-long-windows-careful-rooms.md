@@ -28,7 +28,7 @@ Anaya ka irada use sharminda karne ka nahi tha. Usne yeh sawaal isliye poochhe k
 
 ## Slide galat kyun thi: do wajah
 
-Pehli wajah cost hai. Badi request ki cost badi hi hoti hai. Imran ne Sahaj ki poori policy library ka daam nikala, jo lagbhag 1,50,000 tokens ki hai, ek farzi rate par: ₹250 per million. Ek sawaal ka ₹37.50 bana. Teen sahi tukde fetch karne mein sirf 30 paise lage the. Mahine ke 1,00,000 sawaalon par farq hai ₹37.5 lakh ke saamne ₹30,000.
+Pehli wajah cost hai. Badi request ki cost badi hi hoti hai. Imran ne Sahaj ki poori policy library ka daam nikala, jo lagbhag 2 lakh tokens ki hai, ek farzi rate par: ₹250 per million. Ek sawaal ka ₹50 bana. Teen sahi tukde fetch karne mein sirf 30 paise lage the. Mahine ke 1,00,000 sawaalon par farq hai ₹50 lakh ke saamne ₹30,000.
 
 Doosri wajah thodi barik hai. Request ke andar jo kuch hai, model use kitni achhi tarah istemaal kar paata hai, yeh request ke poori bharne se bahut pehle girne lagta hai. Isse test karne ke liye Imran ne policies se ek lamba document banaya. Usne ek unusual rule ko teen jagah rakha: shuru ke paas, beech mein, aur ant ke paas. Har position ke liye usne 20 sawaal poochhe jo us rule par tike the.
 
@@ -96,4 +96,4 @@ Bahut bada context window sahi material dhoondhne ki zaroorat ko khatam nahi kar
 - Request ke stable hisse pehle rakhne se provider unhe cache kar sakta hai, aur cost kam hoti hai.
 - Compaction lambi conversation ke beech ko summarise karta hai aur specific details kho deta hai. Model jo bhi likhta hai, summary samet, woh ek aur jagah hai jahan personal detail pahunch sakti hai.
 
-Agle chapter mein aap dekhenge ki jab model ko jawaab dene se pehle sochne diya jaata hai, toh kya hota hai.
+Agle chapter mein Lonavala ke paas ruki ek train Anaya ko dikhati hai ki jis intezaar ka koi shape ho woh chhota kyun lagta hai, aur sochkar jawaab dene wale models ke liye iska kya matlab hai.

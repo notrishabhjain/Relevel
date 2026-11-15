@@ -12,7 +12,7 @@ terms:
   - document audit | counting, from a random sample, how much of a collection is clean digital text, how much is scanned, and how much has its meaning in tables and layout, before anything is built | 
 ---
 
-For the first six months of the year, Anaya’s picture of a customer’s message was a few lines of text on a phone. She had never examined it. It came from the transcripts, which are text by nature, and from the answer key, which was a column of sentences. Everything the team had built so far, every rule and every test, rested on one quiet assumption. Someone had already turned the customer’s words into characters.
+For the first four months of the project, Anaya’s picture of a customer’s message was a few lines of text on a phone. She had never examined it. It came from the transcripts, which are text by nature, and from the answer key, which was a column of sentences. Everything the team had built so far, every rule and every test, rested on one quiet assumption. Someone had already turned the customer’s words into characters.
 
 On a Friday in July, Farah Sheikh put in front of her a sheet that didn’t look like a sentence at all. It was a photograph that a customer had taken of a bank passbook on a kitchen table. It was slightly tilted, with window light across one corner, and it had been sent to the chatbot with the words "account number check karo".
 
@@ -99,4 +99,4 @@ Real documents are pages and pictures far more often than clean text.
 - Voice changes the main constraint from accuracy to time.
 - Before any document project begins, a document audit shows what is really involved. It takes fifty files picked at random and three counts.
 
-Next, you’ll look at a question that has been waiting in the background all along: what you may legally and sensibly send to a model.
+Next, Lakshmi puts three documents on her desk and asks Anaya which may be sent to a vendor, and why.

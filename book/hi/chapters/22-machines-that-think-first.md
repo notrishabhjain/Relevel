@@ -100,4 +100,4 @@ Reasoning model jawaab dene se pehle apna working likhta hai. Woh un problems me
 - Decision ko stream nahi kar sakte, kyunki decision ka aadha hissa ek khatra hai.
 - Samajhdaar design mehnge machine ko sirf unhi cases par lagata hai jinhe uski zaroorat hai, aur kabhi tab nahi jab customer intezaar kar raha ho.
 
-Agle chapter mein aap search par wapas jaayenge aur dekhenge ki use behtar kaise banate hain, aur kaun sa sudhaar sach mein result ka vaada kar sakta hai.
+Agle chapter mein Nashik ki ek customer ko late fee galat bataya jaata hai, aur Anaya wajah dhoondhne ke liye search par wapas jaati hai.

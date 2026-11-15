@@ -1,6 +1,6 @@
 ---
 title: Kaam Aur Naukri
-summary: Ek purani bank analyst ne kuch asli banaya hai aur use dikhana nahi aata. Kuch Sunday shaamon mein Anaya uski madad karti hai ki ek saal ke kaam ko woh teen cheezon mein badle: jin jobs ki use chaah hai unki tasveer, saboot ka ek page, aur un sawaalon ke jawaab dene ka ek rehearse kiya hua tareeka jo tay karte hain ki job milegi ya nahi. Chapter mein role matrix, case study, product sense, system-design interview, STAR method aur take-home aate hain.
+summary: Sarkari technology projects ki ek purani programme manager ne kuch asli banaya hai aur use dikhana nahi aata. Kuch Sunday shaamon mein Anaya uski madad karti hai ki ek saal ke kaam ko woh teen cheezon mein badle: jin jobs ki use chaah hai unki tasveer, saboot ka ek page, aur un sawaalon ke jawaab dene ka ek rehearse kiya hua tareeka jo tay karte hain ki job milegi ya nahi. Chapter mein role matrix, case study, product sense, system-design interview, STAR method aur take-home aate hain.
 course: b7
 goals:
   - ek job title ko kai jobs ka label samajhna, aur asli advertisements se ek role matrix banana
@@ -10,7 +10,7 @@ goals:
 terms:
   - role matrix | ek table jisme ek taraf woh skills hain jo asli job advertisements maangte hain aur upar roles hain, aur jisme aap har skill ko apne liye proven, partly proven ya missing mark karte hain | 
   - case study | ek project ka ek ya do page ka bayaan: problem aur uska saboot, aapke decisions aur woh options jo aapne reject kiye, trade-offs, numbers ke saath results, jo fail hua, aur aap aage kya karte | case studies
-  - product sense | ek user chunne, uski asli problem dhoondhne aur ek samajhdaar solution sujhane ki kabiliyat, jise interviewers aise sawaalon se parakhte hain jaise "busy parents ke liye ek product design kijiye" | 
+  - product sense | ek user chunne, uski asli problem dhoondhne aur ek samajhdaar solution sujhane ki kabiliyat, jise interviewers aise sawaalon se parakhte hain jaise "ek state helpline ke liye voice assistant design kijiye" | 
   - system-design interview | ek baatcheet jisme aapse ek AI feature bolkar design karne ko kaha jaata hai, aur judge approach, evaluation, failure, cost aur rollout par aapki soch se kiya jaata hai, code se nahi | system-design question
   - STAR method | apne beete hue kal ki kahani chaar hisson mein sunane ka tareeka: situation, task, action aur result, jisme zyadatar time is par jaata hai ki aapne kya kiya | 
   - take-home | employer ka diya hua kaam jo time limit ke andar akele karna hota hai, aur jo parakhta hai ki jab koi nahi dekh raha, tab aap kaise kaam karte hain | take-home assignment
@@ -18,7 +18,7 @@ terms:
 
 Rhea Kapoor ne June mein ek Sunday shaam phone kiya. Usne shuruaat wahan se ki jahan se woh log karte hain jinhone maafi rehearse ki ho, yaani uske ant se. Usne kaha ki use pata hai ki yeh Anaya ki akeli free raat hai, aur woh use zyada der nahi rokegi.
 
-Anaya Rhea se autumn mein ek meetup mein mili thi, jahan Rhea ne speaker se wahi ek sawaal poocha tha jo koi aur poochna nahi chahta tha. Rhea chhe saal ek bank mein operations analyst rahi thi. Phir ek saal usne woh sab ek-ek hissa karke seekha jo Anaya ne ek saal akele, raat mein kiya tha. Aur usne apna kuch banaya bhi tha: ek chhota tool jo customer-support tickets ka ek hafta padhta, unhe themes mein baant deta, aur woh report likhta jo uska purana manager ek din mein likhta tha. Das design partners ne use use kiya tha. Lekin usne yeh kaam kisi ko nahi dikhaya tha jo use job de sake.
+Anaya Rhea se autumn mein ek meetup mein mili thi, jahan Rhea ne speaker se wahi ek sawaal poocha tha jo koi aur poochna nahi chahta tha. Rhea ne chhe saal sarkari vibhagon ke liye technology programmes deliver kiye the, har mahine ek steering committee aur har Friday ek status report ke saath. Phir ek saal usne woh sab ek-ek hissa karke seekha jo Anaya ne ek saal akele, raat mein kiya tha. Aur usne apna kuch banaya bhi tha: ek chhota tool jo customer-support tickets ka ek hafta padhta, unhe themes mein baant deta, aur woh report likhta jo ek support lead ek din mein likhta tha. Das design partners ne use use kiya tha. Lekin usne yeh kaam kisi ko nahi dikhaya tha jo use job de sake.
 
 Rhea ke saamne das job advertisements khule the, aur sab par "AI product manager" likha tha. Use samajh nahi aa raha tha ki woh unmein se kisi ke liye sahi kyun hai. Anaya ne kaha ki woh das bhej de, aur yeh bhi bataye ki uske resume ke sabse upar kya likha hai. Thodi der ruk kar Rhea ne kaha ki usmein likha hai ki woh AI ke prati passionate hai.
 
@@ -26,19 +26,21 @@ Rhea ke saamne das job advertisements khule the, aur sab par "AI product manager
 
 Aage ke sections kuch Sunday shaamon ka kaam hain. Yeh book ke ant mein isliye aate hain kyunki yeh pehle ke sab kuch ko use karte hain. Yeh woh skill bhi sikhate hain jo zyadatar log chhod dete hain: dikhana ki aapne kya kiya hai.
 
-## Ek title, chaar jobs
+## Ek title, chhe jobs
 
-Anaya ne Rhea ko bataya ki sabse pehle yeh samajhna hai ki title ek label hai jo kam se kam chaar alag jobs par chipka diya gaya hai. Table chaaron dikhati hai, aur yeh ki har kisam ki company apne hire kiye hue insaan se kya chahti hai.
+Anaya ne Rhea ko bataya ki sabse pehle yeh samajhna hai ki title ek label hai jo kam se kam chhe alag jobs par chipka diya gaya hai. Table unhe dikhati hai, aur yeh ki har kisam ka employer apne hire kiye hue insaan se kya chahta hai.
 
-Table: Ek title ke peeche chaar jobs
-| Company ki kisam | Kya banati hai | Kya chahti hai |
+Table: Ek title ke peeche chhe jobs
+| Employer ki kisam | Kya banati hai | Kya chahti hai |
 | --- | --- | --- |
 | Ek maujooda product mein AI features jodti hai | Un users ke liye features jo uske paas pehle se hain | Judgement, ship karne ka record, aur un logon ke saath kaam karne ki kabiliyat jo models banate hain |
 | Aisi cheez banati hai jo AI ke bina hoti hi nahi | Ek naya product | Speed, prototyping, aisi cheez ke saath aaram jo kabhi-kabhi fail hoti hai, aur naapne ki aadat |
 | Doosri teams ke liye tools, interfaces aur models banati hai | Platforms | Technical depth aur is baat ki samajh ki developer ko kya takleef deta hai |
 | Apne hi employees ke liye AI banati hai | Internal tools | Koi jo logon ko unke kaam karne ka tareeka badalne par laa sake, ise secure rakhe, aur bachaye hue ghante dikha sake |
+| Ek consulting firm jo clients ke liye AI systems banati hai | Doosre organisations ke projects, aksar bade | Delivery ka anushasan, saaf likhna, evaluation aur governance, aur client ko bata paane ki himmat ki system kya nahi kar sakta |
+| Ek public-sector ya digital-public-infrastructure body | Nagrikon ke liye services, aksar kai bhashaon mein aur kabhi awaaz se | Field deployments, Indic bhashayein aur voice, ministry stakeholders, aur open-weight options |
 
-Anaya ne kaha ki chaaron alag saboot maangte hain, isliye ek resume das advertisements ke kaam nahi aa sakta. Phir usne Rhea se ek boring kaam karne ko kaha. Das advertisements ek sheet ke upar likhiye. Left side mein har woh skill likhiye jiska koi bhi zikr karta hai. Jahan koi role kisi skill ko maangta hai, wahan box tick kijiye.
+Anaya ne kaha ki chhe alag saboot maangte hain, isliye ek resume das advertisements ke kaam nahi aa sakta. Jisne technology projects deliver kiye hain, uske liye teen darwaaze khule hain: AI par bani company, clients ke liye AI systems banane wali consulting firm, aur ek public-sector body. Rhea ke chhe saal teesre ke sabse kareeb the. Phir usne Rhea se ek boring kaam karne ko kaha. Das advertisements ek sheet ke upar likhiye. Left side mein har woh skill likhiye jiska koi bhi zikr karta hai. Jahan koi role kisi skill ko maangta hai, wahan box tick kijiye.
 
 Jab sheet poori ho jaaye, toh sabse zyada ticks wali rows dikhati hain ki market kya chahta hai. Jin rows mein ek bhi nahi, woh shor hain. Yeh sheet ek *role matrix* hai. Har row ke liye Rhea ko ek aur nishaan lagana tha, aur imaandaari se: uske liye woh skill proven thi, partly proven thi, ya missing thi?
 
@@ -74,12 +76,14 @@ June ke beech mein unhone interviews shuru kiye. Anaya ne yeh bata kar shuru kiy
 Table: Interview ke chaar kisam ke sawaal
 | Kisam | Ek example | Follow karne ka shape |
 | --- | --- | --- |
-| Product sense | Busy parents ke liye ek product design kijiye | Goal clear kijiye, ek user chuniye, uski problems list kijiye, ek chuniye, solutions sujhaiye, unhe rank kijiye, batayiye ki aap ise kaise naapenge |
+| Product sense | Ek state helpline ke liye, do bhashaon mein, ek voice assistant design kijiye | Goal clear kijiye, ek user chuniye, uski problems list kijiye, ek chuniye, solutions sujhaiye, unhe rank kijiye, batayiye ki aap ise kaise naapenge |
 | Strategy | Kya hume Indian market mein jaana chahiye? | Goal, market, customer, competitors, hamara advantage, phir ek recommendation aur uske risks |
 | Metrics | Daily users 10 percent gir gaye. Kyun? | Check kijiye ki data sahi hai, internal ya external cause, kaun sa segment, kaun sa step, hypotheses, unhe test kaise karein |
 | Execution | Do teams ko wahi engineer chahiye. Aap kya karenge? | Har ek ki kya value hai, options, trade-offs, ek decision, logon ko kaise batayenge |
 
 *Product sense* ek user chunne, uski asli problem dhoondhne aur ek samajhdaar solution sujhane ki kabiliyat hai. Yeh logon ko sabse zyada daraata tha, kyunki lagta tha ki isme ek aisi inspiration chahiye jo unke paas nahi hai. Aisa nahi hai. Isme kuch sujhane se pehle ek user chunne ki aadat chahiye, aur ek saal ke kaam ke baad Rhea ki aadat achhi thi.
+
+Usne ek aisi duniya ke prompt par practice ki jise woh jaanti thi: ek state helpline ke liye, do bhashaon mein, ek voice assistant. Uske pehle teen kadam chhote the. Usne goal clear kiya, jo tha kam callers ka intezaar karna aur kisi scheme ke niyamon ke baare mein kam galat jawaab, na ki ek hoshiyaar assistant. Usne ek user chuna, ek basic phone par ek caller jo sirf apni kshetriya bhasha bolta hai aur kaam ke din ke ant mein phone karta hai. Aur kisi feature ka naam lene se pehle usne us caller ki problems list ki: yeh na jaanna ki kaun si scheme lagti hai, yeh na jaanna ki kaun se kaagaz le jaane hain, aur line kharab hone par kat jaana. Tabhi usne bataya ki in teeno mein se woh pehle kaun si solve karegi.
 
 Anaya ki salah thi ki shuru karne se pehle structure zor se bol dijiye: kuch aisa ki "main clarify karungi, ek user chunungi, problems dhoondhungi aur phir choose karungi." Isse interviewer saath chal sakta hai. Agar woh candidate ko kahin aur chahte hain, toh woh pehle minute mein bol sakte hain, chaalisve mein nahi.
 
@@ -121,6 +125,18 @@ Unhone ek kahani par ek ghanta kaam kiya. Woh ek aise decision ke baare mein thi
 
 Anaya ne kaha ki yeh achhi kahani hai, kyunki galat decision asli tha, aur sudhaar maafi maangne se nahi, naapne se aaya.
 
+## Uske title ka sawaal
+
+Doosre round mein interviewer ne script rakh di aur resume utha liya. Usne kaha ki sarkari vibhagon ke liye chhe saal programme delivery sunne mein programme management jaisa lagta hai. Woh yeh kyun maane ki Rhea ek product ki maalik ban sakti hai?
+
+Anaya ko iski ummeed thi, aur unhone ek Sunday ko iska rehearsal kiya tha. Jawaab label se behes karna nahi tha. Jawaab tha teen decisions ke naam batana jinki Rhea maalik thi. Pehla: usne kya banane se mana kiya. Uska tool report ke baare mein sawaalon ka jawaab chat box mein de sakta tha, aur usne use chhod diya kyunki woh use naap nahi sakti thi. Doosra: woh threshold jisne ek release roka. Uske fixed test set ne do versions rok liye the. Teesra: woh number jiske liye woh jawabdeh thi, useful mark hone wale themes ka share, jo 58 se 71 percent hua.
+
+Phir Rhea ne apni history ko ek asset bana diya. Ek regulated sector mein chhe saal ka matlab audits, data-location rules, aur un logon ke sign-offs jo na bol sakte the. Zyadatar candidates ko yeh ek reading list se claim karna padta. Usne yeh nahi kaha ki woh product manager rahi hai. Usne kaha ki woh ek outcome ki maalik thi, aur woh number dikha sakti hai.
+
+## Jab woh dekh rahe hon aur aap build karein
+
+Kuch loops mein ek round hota hai jisme candidate ek coding assistant ke saath, live, kuch chhota banata hai, aur interviewer dekhta hai. Yeh typing se zyada judgement ko parakhta hai. Anaya ki salah book mein pehle aaye verifier ke idea se aayi: assistant se kuch bhi maangne se pehle bataiye ki aap uska kaam kaise check karenge. Check zor se bol dijiye, jaise "result mere das sample messages ka har number chhupa dena chahiye". Chhote steps maangiye. Jo wapas aaye use padhiye, aur bataiye ki aap abhi kya par bharosa nahi karenge. Interviewer dekhte hain ki candidate us badlaav ko pehchaan paata hai ya nahi jo kaam kiya, us badlaav se jo sirf sahi dikhta hai. Ek adhoora build jiske checks pass hon, ek poore build se behtar result hai jise kisi ne check nahi kiya.
+
 ## Akele, aur doosre logon ke saath
 
 Do chhoti baatein bachi theen. Pehli *take-home* hai: employer ka diya hua kaam jo ek bataye hue time mein akele karna hota hai. Time ke andar rahiye. Apni assumptions upar rakhiye, aur ant mein likhiye ki zyada time hota toh aap kya karte. Reviewers lambe jawaab se ek saaf, imaandaar jawaab pasand karte hain. Jo insaan bata deta hai ki usne kya chhoda, us par us se zyada bharosa hota hai jo dikhaye ki kuch chhoota hi nahi.
@@ -135,12 +151,20 @@ Yeh batana achha lagta ki Rhea ko mahine ke andar job mil gayi. Nahi mili. Das m
 
 Anaya wahan nahi thi. Use baad mein ek phone call par pata chala, jisme Rhea ne sawaal bataya aur kaha ki beech mein use ehsaas hua ki woh ab rehearse nahi kar rahi thi. Woh kuch aisa samjha rahi thi jo usne banaya tha.
 
+::: key Ab aap kya keh sakte hain
+Har N apne project se bhariye.
+- Meri case study batati hai ki kya toota, N cheezein, aur woh number jo hila, N se N tak.
+- Maine price is hisaab se rakhi ki paisa kaun deta hai: ek message ko serve karne mein N rupaye lagte hain, aur base use ke das guna par bhi margin N percent se upar rehta hai.
+- Main ginta hoon ki log kya karte hain, bina yeh rakhe ki unhone kya likha: N measures, aur unmein se koi bhi message store nahi karta.
+:::
+
 ## Saar
 
-"AI product manager" kam se kam chaar alag jobs ka naam hai. Isliye kaam ka pehla kadam yeh hai ki asli job advertisements ko ek role matrix mein rakhein, har skill ko proven, partly proven ya missing mark karein, aur khud ko us par position karein jo aap saabit kar sakte hain.
+"AI product manager" kam se kam chhe alag jobs ka naam hai. Isliye kaam ka pehla kadam yeh hai ki asli job advertisements ko ek role matrix mein rakhein, har skill ko proven, partly proven ya missing mark karein, aur khud ko us par position karein jo aap saabit kar sakte hain.
 
 - Resume ki har line batati hai ki kya kiya gaya, kya decide hua aur kya result aaya. Case study mein reject kiye gaye options, trade-offs, numbers, jo fail hua aur aage kya aata hai, yeh sab jodte hain.
 - Interview loops chaar kisam ke sawaal poochte hain: product sense, strategy, metrics aur execution. Har ek ka jawaab zor se ek structure ka naam lekar aur phir ek choice par tik kar diya jaata hai.
 - System-design interview approach, evaluation, failure, cost aur rollout maangta hai, mote numbers ke saath bolkar.
+- Jo resume programme management jaisa padhta hai, uska jawaab label se behes karna nahi, teen decisions jinke aap maalik the aur ek number hai. Live build round mein assistant se kaam maangne se pehle check bata dijiye.
 - Apne beete hue kal ki kahaniyan chaar hisson mein sunayi jaati hain, zyadatar time apne action par.
 - Take-home apni assumptions aur jo woh chhodta hai, woh batata hai. Networking ek khaas sawaal aur kaam ke ek tukde se shuru hoti hai. Negotiation research se shuru hoti hai, aur ek baar maangti hai.

@@ -1,6 +1,6 @@
 ---
 title: The Work, and the Job
-summary: A former bank analyst has built something real and doesn't know how to show it. Over a few Sunday evenings Anaya helps her turn a year of work into a picture of the jobs she wants, a page of evidence, and a rehearsed way of answering the questions that decide whether she gets them. The chapter explains role matrices, case studies, product sense, system-design interviews, the STAR method and take-home assignments.
+summary: A former programme manager on government technology projects has built something real and doesn't know how to show it. Over a few Sunday evenings Anaya helps her turn a year of work into a picture of the jobs she wants, a page of evidence, and a rehearsed way of answering the questions that decide whether she gets them. The chapter explains role matrices, case studies, product sense, system-design interviews, the STAR method and take-home assignments.
 course: b7
 goals:
   - read a job title as a label for several jobs, and build a role matrix from real advertisements
@@ -10,7 +10,7 @@ goals:
 terms:
   - role matrix | a table with the skills that real job advertisements ask for down one side and the roles across the top, in which you mark each skill as proven, partly proven or missing for yourself | 
   - case study | a one- or two-page account of a project: the problem and its evidence, your decisions and the options you rejected, the trade-offs, the results with numbers, what failed, and what you would do next | case studies
-  - product sense | the ability to choose a user, find their real problem and propose a sensible solution, which interviewers test with questions such as "design a product for busy parents" | 
+  - product sense | the ability to choose a user, find their real problem and propose a sensible solution, which interviewers test with questions such as "design a voice assistant for a state helpline" | 
   - system-design interview | a conversation in which you are asked to design an AI feature aloud, and judged on your reasoning about approach, evaluation, failure, cost and rollout, not on code | system-design question
   - STAR method | a way to tell a story about your own past in four parts: situation, task, action and result, with most of the time spent on what you did | 
   - take-home | a piece of work set by an employer to be done alone within a time limit, which tests how you work when no one is watching | take-home assignment
@@ -18,7 +18,7 @@ terms:
 
 Rhea Kapoor telephoned on a Sunday evening in June. She began, as people do who have rehearsed an apology, with the end of it. She knew this was Anaya's only free night, she said, and she wouldn't keep her long.
 
-Anaya had met Rhea in the autumn at a meetup, where Rhea had asked the one question nobody else wanted to ask the speaker. Rhea had been an operations analyst in a bank for six years. Since then she had spent a year working through every part of what Anaya had spent a year doing, alone and at night. And she had built something of her own: a small tool that read a week of customer-support tickets, sorted them into themes, and wrote the report her old manager used to spend a day on. Ten design partners had used it. But she had shown the work to nobody who could give her a job.
+Anaya had met Rhea in the autumn at a meetup, where Rhea had asked the one question nobody else wanted to ask the speaker. Rhea had spent six years delivering technology programmes for government departments, with a steering committee every month and a status report every Friday. Since then she had spent a year working through every part of what Anaya had spent a year doing, alone and at night. And she had built something of her own: a small tool that read a week of customer-support tickets, sorted them into themes, and wrote the report a support lead used to spend a day on. Ten design partners had used it. But she had shown the work to nobody who could give her a job.
 
 Rhea had ten job advertisements open, and all of them said "AI product manager". She couldn't see why she would be right for any of them. Anaya asked her to send the ten, and to say what her resume said at the top. After a pause Rhea said that it said she was passionate about AI.
 
@@ -26,19 +26,21 @@ Rhea had ten job advertisements open, and all of them said "AI product manager".
 
 The sections that follow are the work of a few Sunday evenings. They come last in the book because they use everything before them. They also teach the skill that most people leave out: showing what you have done.
 
-## One title, four jobs
+## One title, six jobs
 
-The first thing to understand, Anaya told Rhea, is that the title is a label stuck onto at least four different jobs. The table shows the four, and what each kind of company wants from the person it hires.
+The first thing to understand, Anaya told Rhea, is that the title is a label stuck onto at least six different jobs. The table shows them, and what each kind of employer wants from the person it hires.
 
-Table: Four jobs behind one title
-| Kind of company | What it builds | What it wants |
+Table: Six jobs behind one title
+| Kind of employer | What it builds | What it wants |
 | --- | --- | --- |
 | Adds AI features to an existing product | Features for users it already has | Judgement, a record of shipping, and the ability to work with people who build models |
 | Builds something that would not exist without AI | A new product | Speed, prototyping, comfort with a thing that sometimes fails, and a habit of measuring |
 | Makes tools, interfaces and models for other teams | Platforms | Technical depth and an understanding of what a developer finds painful |
 | Builds AI for its own employees | Internal tools | Someone who can make people change how they work, keep it secure, and show hours saved |
+| A consulting firm that builds AI systems for clients | Projects for other organisations, often large ones | Delivery discipline, plain writing, evaluation and governance, and the nerve to tell a client what a system cannot do |
+| A public-sector or digital-public-infrastructure body | Services for citizens, often in several languages and sometimes by voice | Field deployments, Indic languages and voice, ministry stakeholders, and open-weight options |
 
-The four ask for different evidence, Anaya said, so one resume can't serve all ten advertisements. Then she asked Rhea to do something dull. Put the ten advertisements across the top of a sheet. Down the left side, write every skill any of them mentions. Tick the box wherever a role asks for a skill.
+The six ask for different evidence, Anaya said, so one resume can't serve all ten advertisements. For someone who has delivered technology projects, three are open doors: a company built on AI, a consulting firm that builds AI systems for clients, and a public-sector body. Rhea's six years sat closest to the third. Then she asked Rhea to do something dull. Put the ten advertisements across the top of a sheet. Down the left side, write every skill any of them mentions. Tick the box wherever a role asks for a skill.
 
 When the sheet is finished, the rows with the most ticks show what the market wants. The rows with none are noise. This sheet is a *role matrix*. For each row, Rhea was to make one more mark, and to make it honestly: for her, was the skill proven, partly proven or missing?
 
@@ -74,12 +76,14 @@ In the middle of June they began on the interviews. Anaya started by describing 
 Table: Four kinds of interview question
 | Kind | An example | A shape to follow |
 | --- | --- | --- |
-| Product sense | Design a product for busy parents | Clarify the goal, pick a user, list their problems, choose one, propose solutions, rank them, say how you would measure it |
+| Product sense | Design a voice assistant for a state helpline, in two languages | Clarify the goal, pick a user, list their problems, choose one, propose solutions, rank them, say how you would measure it |
 | Strategy | Should we enter the Indian market? | Goal, market, customer, competitors, our advantage, then a recommendation and its risks |
 | Metrics | Daily users fell ten percent. Why? | Check the data is right, internal or external cause, which segment, which step, hypotheses, how to test them |
 | Execution | Two teams want the same engineer. What do you do? | What each is worth, the options, the trade-offs, a decision, how you tell people |
 
 *Product sense* is the ability to choose a user, find their real problem and propose a sensible solution. It frightened people most, because it seemed to need an inspiration they didn't have. It doesn't. It needs the habit of choosing a user before proposing anything, and after a year of work, Rhea's habit was good.
+
+She practised on a prompt from a world she knew: a voice assistant for a state helpline, in two languages. Her first three moves were short. She clarified the goal, which was fewer callers waiting and fewer wrong answers about a scheme's rules, not a clever assistant. She chose one user, a caller on a basic phone who speaks only the regional language and rings at the end of a working day. And she listed that caller's problems before naming any feature: not knowing which scheme applies, not knowing which papers to bring, and being cut off when the line is bad. Only then did she say which of the three she would solve first.
 
 Anaya's advice was to say the structure aloud before starting: something like "I'll clarify, pick a user, find the problems and then choose". That way the interviewer can follow. If they want the candidate somewhere else, they can say so in the first minute and not the fortieth.
 
@@ -121,6 +125,18 @@ They worked on one story for an hour. It was about a decision that had gone wron
 
 It is a good story, Anaya said, because the wrong decision was real, and the repair came from measuring, not from apologising.
 
+## The question about her title
+
+In the second round the interviewer put down the script and picked up the resume. Six years of programme delivery for government departments, he said, sounds like programme management. Why should he believe she could own a product?
+
+Anaya had expected it, and they had rehearsed it on a Sunday. The answer was not to argue with the label. It was to name three decisions Rhea had owned. The first was what she refused to build: her tool could have answered questions about the report in a chat box, and she left that out because she could not measure it. The second was the threshold that stopped a release: her fixed test set had held back two versions. The third was the number she was accountable for, the share of themes marked useful, which went from 58 to 71 percent.
+
+Then Rhea turned the history into an asset. Six years in a regulated sector meant audits, data-location rules and sign-offs from people who could say no. Most candidates would have to claim that from a reading list. She did not say she had been a product manager. She said she had owned an outcome, and she could show the number.
+
+## Building while they watch
+
+Some loops add a round in which the candidate builds something small, live, with a coding assistant, while the interviewer watches. It tests judgement more than typing. Anaya's advice came from the verifier idea earlier in the book: before asking the assistant for anything, say how you will check its work. State the check aloud, such as "the result must hide every number in my ten sample messages". Ask for small steps. Read what comes back, and say what you would not trust yet. Interviewers watch whether the candidate can tell a change that worked from one that only looks right. A half-finished build whose checks pass is a better result than a finished one that nobody has checked.
+
 ## Alone, and with other people
 
 Two small matters remained. The first is the *take-home*: a task set by an employer to be done alone, in a stated time. Keep to the time. Put your assumptions at the top, and end with what you would do with more time. Reviewers prefer a clear, honest answer to a long one. A person who says what they left out is trusted more than one who pretends there was nothing.
@@ -135,12 +151,20 @@ It would be pleasant to report that Rhea was hired within the month. She wasn't.
 
 Anaya wasn't there. She heard about it afterwards, in a telephone call in which Rhea described the question and said that halfway through she had realised she was no longer rehearsing. She was explaining something she had made.
 
+::: key What you can now say
+Fill each N from your own project.
+- My case study names what broke, N things, and the number that moved, from N to N.
+- I priced it by who pays: one message costs N rupees to serve, and the margin stays above N percent at ten times the base use.
+- I count what people do without keeping what they wrote: N measures, and none of them stores a message.
+:::
+
 ## Summary
 
-"AI product manager" names at least four different jobs. So the useful first step is to put real job advertisements into a role matrix, mark each skill as proven, partly proven or missing, and position yourself on what you can prove.
+"AI product manager" names at least six different jobs. So the useful first step is to put real job advertisements into a role matrix, mark each skill as proven, partly proven or missing, and position yourself on what you can prove.
 
 - Each line of a resume says what was done, what was decided and what resulted. A case study adds the options rejected, the trade-offs, the numbers, what failed and what comes next.
 - Interview loops ask four kinds of question: product sense, strategy, metrics and execution. Each is answered by naming a structure aloud and then committing to a choice.
 - The system-design interview wants approach, evaluation, failure, cost and rollout, spoken with rough numbers.
+- A resume that reads like programme management is answered with three decisions you owned and a number, not by arguing about the label. In a live build round, state the check before you ask the assistant for the work.
 - Stories about your past are told in four parts, with most of the time on your own action.
 - A take-home states its assumptions and what it leaves out. Networking starts with a specific question and a piece of work. A negotiation begins with research, and asks once.

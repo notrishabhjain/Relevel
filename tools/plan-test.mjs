@@ -41,6 +41,16 @@ console.log('\n— tabs and anchors —');
     chapter: (document.querySelector('#w12 li[data-step="c:ch7"] a') || {}).getAttribute && document.querySelector('#w12 li[data-step="c:ch7"] a').getAttribute('href'),
     recipe: !!document.querySelector('#w12 a[href="#publish"]') }));
   ok(w12.steps.length >= 3 && w12.chapter === '../app/#/ch/ch7' && w12.recipe, 'week 12 lists its route steps, links each to the playbook, and links its recipe', JSON.stringify(w12));
+  const extra = await page.evaluate(() => ({
+    jobs: document.querySelectorAll('article.wk p.why b').length,
+    weeks: document.querySelectorAll('article.wk').length,
+    job12: [...document.querySelectorAll('#w12 p.why b')].map(b => b.textContent),
+    publish: !!document.querySelector('#w12 li[data-step="t:publish-v0"]'),
+    smallRecipe: !!document.querySelector('#w12 a[href="#small-publish"]'),
+    ask: document.querySelectorAll('.gate ul.small li').length }));
+  ok(extra.job12.includes('For the job') && extra.jobs === extra.weeks * 2, 'every week shows a "Why now" and a "For the job" line', JSON.stringify(extra));
+  ok(extra.publish && extra.smallRecipe, 'week 12 has a publish step and links the small publish recipe', JSON.stringify(extra));
+  ok(extra.ask === 12, 'each of the six monthly reviews asks two questions', extra.ask);
   await sleep(1200);
   await page.click('#w12 a[href="#publish"]');
   await page.waitForFunction(() => location.hash === '#publish');

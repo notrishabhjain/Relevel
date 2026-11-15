@@ -785,7 +785,9 @@ function renderChapter(c){
           h('a',{href:'/plan/#w'+rs.week,text:T('In the plan')+' \u2192'})]),
         /* why this chapter comes now: what the week builds on, and what it adds */
         (window.ROUTE.WEEKS[rs.week-1]||{}).why?h('p',{class:'rwhy'},[h('b',{text:T('Why now')+': '}),
-          h('span',{text:T(window.ROUTE.WEEKS[rs.week-1].why)})]):null]));
+          h('span',{text:T(window.ROUTE.WEEKS[rs.week-1].why)})]):null,
+        (window.ROUTE.WEEKS[rs.week-1]||{}).job?h('p',{class:'rwhy'},[h('b',{text:T('For the job')+': '}),
+          h('span',{text:T(window.ROUTE.WEEKS[rs.week-1].job)})]):null]));
     }
   }
 
@@ -1714,6 +1716,7 @@ function pageStart(){
       h('span',{class:'gwt',text:T(wk.title)}),
       h('span',{class:'gwd',text:R.datesOf(wk.n,wk.n,st)+' · '+fmtMins(wk.mins)+' · '+done+'/'+wk.steps.length})]));
     if(wk.why) det.appendChild(h('p',{class:'gwhy'},[h('b',{text:T('Why now')+': '}),h('span',{text:T(wk.why)})]));
+    if(wk.job) det.appendChild(h('p',{class:'gwhy'},[h('b',{text:T('For the job')+': '}),h('span',{text:T(wk.job)})]));
     det.appendChild(h('ol',{class:'gdays'},wk.steps.map(stepRow)));
     det.appendChild(planSide(wk));
     return det;
@@ -1735,6 +1738,7 @@ function pageStart(){
         h('span',{class:'lbl',text:T('Monthly review')+' · '+mdates.split(' – ')[1]}),
         h('p',{text:T(g.pass)}),
         h('p',{class:'small dim',text:T('If behind')+': '+T(g.cut)}),
+        h('p',{class:'small'},[h('b',{text:T('Ask yourself')+': '}),h('span',{text:(g.ask||[]).map(T).join(' ')})]),
         h('label',{class:'chk'},[cb,h('span',{text:T('Reviewed')})])]));
     }
     w.appendChild(sec);
@@ -2879,7 +2883,7 @@ function pageEvidence(){
   const secA=h('section',{class:'part'});
   secA.appendChild(sectionHead('A',T('Sixteen-week study map')));
   secA.appendChild(h('p',{class:'prose',style:'font-size:1rem',
-    html:T('Sixteen weeks is the pace this was written for, not a deadline. The useful column is the last one: a block is cleared when the evidence exists, not when the weeks have passed.')}));
+    html:T('This map was written for sixteen weeks; the route runs twenty-six. Either way the pace is not a deadline. The useful column is the last one: a block is cleared when the evidence exists, not when the weeks have passed.')}));
   const mapList=h('div',{class:'smap'});
   map.forEach((b,i)=>{
     const box=h('input',{type:'checkbox','aria-label':b.when+' — '+b.focus});

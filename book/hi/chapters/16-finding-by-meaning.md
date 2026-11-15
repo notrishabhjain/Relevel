@@ -112,3 +112,5 @@ Embedding text ke ek tukde ko meanings ke map par rakhti hai, numbers ki ek lamb
 - Doori ko similarity score ke roop mein bataya jaata hai. Jab tak aapko na pata ho ki bilkul achhe aur bilkul bure matches kitna score karte hain, iska koi matlab nahi.
 - Map utna hi achha hai jitna text jisse usne seekha. Isliye woh local vocabulary ko galat jagah rakh sakta hai. Users ke dhoondhne se pehle failures ke naam le lijiye.
 - Map par paas hona matlab aur topic ki baat hai, har woh quality nahi jo ek sentence mein ho sakti hai. Jo tareeka ek hi topic ke sentences dhoondhta hai, woh zaroori nahi ki unhe bhi dhoondhe jo kisi insaan ko pehchaante hain.
+
+Agle chapter mein founders poochhte hain ki tool achha hai ya nahi, aur team ke paas dikhane ko sirf kuch achhe runs hain.

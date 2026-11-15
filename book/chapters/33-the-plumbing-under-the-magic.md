@@ -116,3 +116,5 @@ An AI system is ordinary software with one unpredictable part, so everything tha
 - Keys belong outside the code. Work belongs in a repository that records every change. An error is read from the bottom.
 - Every part of a system makes assumptions about the data it receives. That is a data contract. A good system stops when one is broken, instead of carrying on with nothing.
 - A runner that records every experiment turns “I tried it” into “I measured it”, because a result that cannot be reproduced is only an anecdote.
+
+Next, Mr. Bhatia arrives with a bar chart and wants to switch to a model released the week before.

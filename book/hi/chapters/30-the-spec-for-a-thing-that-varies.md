@@ -114,3 +114,5 @@ Jo cheez do baar ek jaisa behave nahi karti, uski specification behaviour ki ek 
 - Rollback purane code par laut jaata hai. Jab model hi badal gaya ho, toh dono versions mein wahi problem hoti hai, isliye pinned model version aur kill switch bhi chahiye. Kill switch traffic ko turant ek saade raaste par bhejta hai, aur woh raasta maujood aur tested hona chahiye.
 - Provider model retire kare, toh uske against naapi gayi har cheez dobara chalani padti hai, judge samet.
 - Feedback tabhi kaam ka hai jab woh poore record ke saath aaye ki kya hua. Privacy tool mein woh record khud bhi saaf karke store hona chahiye.
+
+Agle chapter mein ek vendor Sahaj mein do log bhejta hai, aur Anaya ko tay karna padta hai ki agla hissa khud banana hai ya kharidna hai.

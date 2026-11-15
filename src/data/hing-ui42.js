@@ -97,8 +97,8 @@ Object.assign(window.HING = window.HING || {}, {
     'kahan rakhi hai — ek raasta ya ek link',
   'Sixteen-week study map':
     'Solah hafton ka padhai naksha',
-  'Sixteen weeks is the pace this was written for, not a deadline. The useful column is the last one: a block is cleared when the evidence exists, not when the weeks have passed.':
-    'Solah hafte woh raftaar hai jiske liye yeh likha gaya, koi aakhri taareekh nahi. Kaam ka column aakhri hai: khand tab poora hota hai jab saboot maujood ho, tab nahi jab hafte beet jaayein.',
+  'This map was written for sixteen weeks; the route runs twenty-six. Either way the pace is not a deadline. The useful column is the last one: a block is cleared when the evidence exists, not when the weeks have passed.':
+    'Yeh naksha solah hafton ke liye likha gaya tha; raasta chhabbis hafton ka hai. Dono mein raftaar koi aakhri taareekh nahi. Kaam ka column aakhri hai: khand tab poora hota hai jab saboot maujood ho, tab nahi jab hafte beet jaayein.',
   'Final exit test':
     'Aakhri nikaas pareeksha',
   'Thirteen things, each of which is something you do rather than something you know. Tick one when you could do it in front of a stranger, with an unfamiliar system, without reaching for jargon.':

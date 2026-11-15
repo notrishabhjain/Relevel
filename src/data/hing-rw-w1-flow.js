@@ -27,8 +27,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Ab aapko pata hai ki aap kahan hain. Agla kaam hai ek jagah dhoondhna jahan aap jo banate hain woh rakh sakein. Is course mein aap lagbhag 50 artifacts banayenge: interview notes, ek strategy memo, ek PRD, test sets, dashboards aur ek deployed app.',
   'The most important file is <code>decision-log.md</code>. Each time you make a decision in this course, such as which problem to solve, which model to use or which metric matters, add an entry. Each entry has four parts: the date, the decision, the evidence, and what would make you change it.':
     'Sabse zaroori file <code>decision-log.md</code> hai. Is course mein jab bhi aap koi decision lete hain, jaise kaun si problem solve karni hai, kaun sa model use karna hai ya kaun sa metric matter karta hai, toh ek entry add kijiye. Har entry ke chaar hisse hote hain: date, decision, evidence, aur kya cheez aapko use badalne par majboor karegi.',
-  'With a place to work, the next question is time. How much should you study each week, and how should you spend it? Your route starts at about an hour a week and grows to two or three. Whatever your total, split it into four blocks and give the biggest block to building. Here is the split at a full-time pace of twelve hours; scale it to your own:':
-    'Kaam karne ki jagah mil gayi, ab agla sawaal time ka hai. Har hafte kitna padhna chahiye, aur use kaise baantna chahiye? Aapka raasta lagbhag ek ghante prati hafte se shuru hota hai aur badhkar do-teen ghante tak jaata hai. Total jo bhi ho, use chaar blocks mein baantiye aur sabse bada block build karne ko dijiye. Neeche baarah ghante ki full-time speed ka hisaab hai; ise apne ghanton ke hisaab se chhota kar lijiye:',
   'You should now have four blocks in next week’s calendar, in the same proportions, adding up to the hours you really have. Write that number in your decision log. A plan you keep beats a bigger one you don’t.':
     'Ab agle hafte ke calendar mein aapke chaar blocks hone chahiye, usi anupaat mein, aur unka total utna jitne ghante aapke paas sach mein hain. Woh number apne decision log mein likhiye. Jo plan aap nibha sakein, woh us bade plan se behtar hai jo aap na nibha sakein.',
   'On the first pass through Track A you read each chapter and answer its boxes. The gate applies when you come back to do the “Build it” work, so a first pass never has to wait for it.':
@@ -271,8 +269,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Notepad mein teen lines, aur A1 ke boxes ke jawab.',
   'Nothing is assumed. The book opens on a real finding in a week of customer chats, and A1 turns that finding into the project you will carry to the end.':
     'Kuch bhi pehle se maana nahi gaya. Kitaab customer chats ke ek hafte mein mili ek asli baat se shuru hoti hai, aur A1 usi baat ko us project mein badalta hai jise aap aakhir tak saath le jaayenge.',
-  'Read it, answer the boxes and run its hands-on steps. Press “Mark chapter complete” at the end.':
-    'Ise padhiye, boxes ke jawab dijiye aur iske hands-on steps chalaiye. Aakhir mein “Mark chapter complete” dabaiye.',
   'First pass: read it and answer the boxes, then press “Mark chapter complete”. The long “Build it” section is optional; leave it for later.':
     'First pass: padhiye aur boxes ke jawab dijiye, phir “Mark chapter complete” dabaiye. Lamba “Build it” section optional hai; use baad ke liye chhod dijiye.',
   'Is it worth building?':
@@ -383,16 +379,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Model kya dekhe, yeh soch-samajhkar tay kiya hua, aur aisa retrieval jo review mein tik jaaye.',
   'Weeks 12 to 14 built context and search for a prototype. This week does them again for real users: access rules, freshness and a budget.':
     'Weeks 12 se 14 ne ek prototype ke liye context aur search banaaye. Yeh hafta unhe asli users ke liye dobara karta hai: access rules, taazgi aur ek budget.',
-  'Workflows, agents and the standard plug':
-    'Workflows, agents aur standard plug',
   'Week 13 let a model call one tool. This week chains tools into workflows and agents, with limits on what they may do alone.':
     'Week 13 ne model ko ek tool call karne diya. Yeh hafta tools ko workflows aur agents mein jodta hai, is seema ke saath ki woh akele kya kar sakte hain.',
-  'Pictures and voice, gates and traces':
-    'Tasveerein aur aawaaz, gates aur traces',
-  'The release gate, and the watch plan.':
-    'Release gate, aur watch plan.',
-  'More kinds of input mean more ways to fail, so this week also turns your answer keys into a release gate and decides what to watch after launch.':
-    'Input ki zyada kismein matlab fail hone ke zyada tareeke, isliye yeh hafta aapki answer keys ko ek release gate mein bhi badalta hai aur tay karta hai ki launch ke baad kya dekhna hai.',
   'Security, and the product spec':
     'Security, aur product spec',
   'The risk register, the full requirements and a ten-slide decision pack.':
@@ -419,14 +407,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Pichhle hafte ka version naapa, ship kiya aur bachaaya jaata hai, phir wahan publish hota hai jahan log use dekh sakein.',
   'Second half of the capstone: measure the version you built last week, ship it and defend it. The chapter allows about thirty hours in all; the smallest version that works is enough here. Press “Mark chapter complete” when it is shipped.':
     'Capstone ka doosra aadha: pichhle hafte banaaya version naapiye, ship kijiye aur uska bachaav kijiye. Chapter kul milaakar lagbhag tees ghante deta hai; yahan chalne wala sabse chhota version kaafi hai. Ship ho jaaye toh “Mark chapter complete” dabaiye.',
-  'The business chapters on a first pass, three practice interviews and a look back over six months.':
-    'Business chapters ka first pass, teen practice interviews aur chhe mahinon par ek nazar.',
-  'You have a shipped product. The last week asks who pays for it, how people find it, how you count what matters, and how you talk about all of it in an interview.':
-    'Aapke paas ek ship hua product hai. Aakhri hafta poochhta hai ki iske paise kaun deta hai, log ise kaise dhoondhte hain, jo matter karta hai use kaise ginein, aur interview mein in sab ke baare mein kaise baat karein.',
   'Month 1: The problem and the plan':
     'Month 1: Problem aur plan',
-  'About an hour a week. The book’s first seven chapters, each followed straight away by its app chapter on a first pass. No code and nothing to install.':
-    'Hafte mein lagbhag ek ghanta. Kitaab ke pehle saat chapters, har ek ke turant baad uska app chapter first pass par. Na code, na kuch install karna.',
   'Month 2: Meet the machine':
     'Month 2: Machine se mulaqat',
   'What a model is, tokens on your own text, a model connected, just enough Python to read the code, your first call, instructions, an answer key, and the first jobs: sorting and summarising.':
@@ -447,14 +429,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Do hafton mein capstone, phir business chapters, ek portfolio page aur practice interviews.',
   'The first four weeks ticked, or nearly: the book’s first seven chapters read, and A1 to A7 done on a first pass right after each one.':
     'Pehle chaar hafte tick, ya lagbhag: kitaab ke pehle saat chapters padhe hue, aur har ek ke turant baad A1 se A7 ka first pass.',
-  'A model connected, your first model call costed, a system prompt tested, your first answer key, and a sorter with a score.':
-    'Ek model connected, aapki pehli model call ki keemat nikaali hui, ek system prompt test kiya hua, aapki pehli answer key, aur score ke saath ek sorter.',
   'Never cut the first model call. If time is short, keep the answer key and do the summary chapter on a first pass.':
     'Pehli model call kabhi mat kaatiye. Time kam ho toh answer key rakhiye aur summary wala chapter first pass par kijiye.',
-  'Search by words and by meaning compared on a scoreboard, version 0 of the findings page published with a link, and an extractor that says “not sure”.':
-    'Shabdon aur matlab se search ki scoreboard par tulna, findings page ka version 0 link ke saath publish, aur ek extractor jo “pakka nahi” kehta hai.',
-  'The attack on your own tool, a checked automatic marker, a cost model, the system card, the requirements and the build-or-buy call.':
-    'Apne tool par hamla, ek check kiya hua automatic marker, ek cost model, system card, requirements aur banaane-ya-kharidne ka faisla.',
   'Your model choice with a back-up, the tool access policy, the release gate, the risk register and the decision pack.':
     'Back-up ke saath aapka model ka chunaav, tool access policy, release gate, risk register aur decision pack.',
   'One route. The playbook, the book and this plan follow the same steps in the same order. If two of them ever disagree, the route page in the playbook wins, and that is a bug to report.':

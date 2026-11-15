@@ -25,12 +25,14 @@ Anaya ne ek saal "kya yeh kaam karta hai?" ka jawaab ek number se dena seekha th
 
 Pehla kaam yeh pata karna tha ki Mr. Menon asal mein kaun hain. Jis company mein dusron ke use ke liye software kharida jaata hai, wahan aam taur par teen alag log maayne rakhte hain, aur woh shayad hi kabhi ek hi insaan hote hain. Table unke naam batati hai, aur yeh ki partner ke yahan har ek kaun tha.
 
+Usi hafte ek doosra prospect saamne aaya tha. State electricity distribution company ki IT cell, jiske bills Sahaj pehle se collect karta tha, ne poochha tha ki kya guard unki apni helpdesk chats saaf kar sakta hai. Table mein dono ke liye ek-ek column hai, kyunki wahi teen roles wahan kaafi alag dikhte the.
+
 Table: User, buyer aur blocker
-| Role | Kaun hai | Partner ke yahan | Kya chahta hai |
-| --- | --- | --- | --- |
-| User | Jo roz product ke saath kaam karta hai | Ek developer jo kit ko ek chat system mein jodega | Ise Friday ko aasaani se jod dena |
-| Buyer | Jiske paas budget hai aur jo kharch ke liye kisi ko jawaab deta hai | Head of engineering ya compliance | Ek number jo woh apne manager ko dikha sake |
-| Blocker | Jo na bol sakta hai aur use wajah batana zaroori nahi | Ek security lead, jise Mr. Menon ne afsos ke saath "the Wall" kaha | Yeh jaanna ki text kahan jaata hai aur use kaun padh sakta hai |
+| Role | Kaun hai | Partner ke yahan | Electricity company ke yahan | Kya chahta hai |
+| --- | --- | --- | --- | --- |
+| User | Jo roz product ke saath kaam karta hai | Ek developer jo kit ko ek chat system mein jodega | Ek helpdesk contractor ki team, jisne tool khud nahi chuna | Ise Friday ko aasaani se jod dena |
+| Buyer | Jiske paas budget hai aur jo kharch ke liye kisi ko jawaab deta hai | Head of engineering ya compliance | Ek department jo tender se kharidta hai aur terms poori karne wali sabse kam price chunta hai | Ek number jo woh apne manager ko dikha sake |
+| Blocker | Jo na bol sakta hai aur use wajah batana zaroori nahi | Ek security lead, jise Mr. Menon ne afsos ke saath "the Wall" kaha | Ek security audit, aur ek clause ki data kahan rakha ja sakta hai | Yeh jaanna ki text kahan jaata hai aur use kaun padh sakta hai |
 
 Blocker ka sawaal pichhle July mein, Anaya ke saal ki sabse lambi meeting mein, nikaal liya gaya tha.
 
@@ -74,6 +76,14 @@ Jis margin ko woh nikaal rahi thi, use *contribution margin* kehte hain. Jo cost
 Imran ka rule tha ki har baar low, base aur high teeno model kijiye, kyunki margin ki zyadatar problems sirf aakhri row mein dikhti hain.
 
 Isliye usne price ko hybrid mein dobara banaya. 24,000 rupaye mahine mein 100,000 messages shamil honge. Uske baad har 100,000 ke 9,000 lagenge. 10 lakh messages par customer ek lakh se thoda zyada deta, aur uska margin 44 percent hota. Ab bill us value ke saath chalta tha jo customer ko mil rahi thi, aur customer ke badhne par uska margin phisalna band ho gaya.
+
+## Woh buyer jo tender likhta hai
+
+Anaya ne dekha ki electricity company ke column ne badal diya ki woh kya bech sakti hai. *Tender* ek published request hai jo suppliers se bid maangti hai. Wahan buyer product nahi chunta tha. Woh terms likhta tha aur unhe poora karne wali bids mein se sabse kam price leta tha, isliye jis feature ko kisi ne list nahi kiya, uski koi ginti nahi thi.
+
+Isse price badal gayi. Usage pricing fixed-price contract mein fit nahi hoti, kyunki buyer ko total pehle se likhna padta hai aur woh aisa bill nahi le sakta jo festival traffic ke saath badhta jaye. Bade included volume wala hybrid plan sabse paas tha, lekin tabhi jab tender use allow kare. Use nahi pata tha ki karta hai ya nahi, aur usne uske baju mein "poochho" likha. Ek chhota paid pilot, us raqam se neeche jahan company ke rules poora tender maangte hain, ek samajhdaar pehla kadam tha. Woh raqam bhi use nahi pata thi, aur usne andaaza nahi lagaya.
+
+Audit aur data clause us shart se mel khaate the jo Lakshmi ne March mein rakhi thi: safai company ke andar hoti hai, kuch bhi bahar jaane se pehle. Is buyer ke liye yeh ab samjhaane wali constraint nahi rahi. Yeh product ka woh akela hissa tha jis par audit behes nahi karta.
 
 ## Woh pahiya jo apne aap ghoomta hai
 

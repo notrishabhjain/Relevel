@@ -8,6 +8,8 @@ AI product kaise banta hai, yeh seekhne ke do tareeke hain. Pehla tareeka hai kh
 
 Doosra tareeka hai poore subject ko order se padhna, explanations aur examples ke saath. Dheere-dheere anjaan shabd ek saaf tasveer ban jaate hain, jo aapke dimaag mein baith jaati hai. Yeh kitaab isi doosre tareeke ke liye hai.
 
+Yeh kitaab us insaan ke liye hai jisne technology projects deliver kiye hain aur ab ek AI product ka malik banna chahta hai. Yeh maan kar nahi chalti ki aapne code likha hai ya statistics padhi hai. Rhythm yeh hai: kitaab ka ek chapter, lagbhag das minute ka padhna, phir uske title ke neeche likha app chapter, har hafte, chhabbis hafte tak. Anaya ke aas-paas ek team hai. Aapke paas app hai. Jahan Imran kuch chalata hai, wahan app aapko button deta hai. Jahan Lakshmi poochhti hai ki use kaise pata chalega, wahan app ke check questions aapse wahi poochhte hain. Ant tak aap apne numbers ke saath keh paayenge ki aapne kya banaya aur aapko kaise pata ki woh kaam karta hai.
+
 Yeh kitaab course app jitna hi hissa cover karti hai, usi order mein aur usi shabdon ke saath. Ismein koi exercise nahi hai, aur type karne ke liye koi code bhi nahi. Uski jagah ek lamba case hai. Wajah simple hai: koi idea tab zyada yaad rehta hai jab woh kisi aise decision se juda ho jo kisi ko sach mein lena pada.
 
 ## Case
@@ -58,7 +60,7 @@ Is kitaab mein kuch bhi legal advice nahi hai. Case ka tool kisi organisation ko
 Table: Case ke log
 | Naam | Role | Jaanne layak baat |
 | --- | --- | --- |
-| Anaya Deshmukh | Product manager | Evidence ke saath careful; apne ko kya nahi pata, yeh maanne mein thodi dheemi |
+| Anaya Deshmukh | Product manager | Evidence ke saath careful; apne ko kya nahi pata, yeh maanne mein thodi dheemi; product mein aane se pehle ek state utility ke bill-payment rollout ko manage kiya |
 | Imran Qureshi | Lead engineer | Chatbot ka infrastructure usne banaya; jis plan mein "bas" shabd aaye, us par bharosa nahi karta |
 | Lakshmi Iyer | Head of compliance | Bees saal banking mein rahi; uska standard sawaal hai "hum kaise jaanenge?" |
 | Farah Sheikh | Support lead | Company mein sabse zyada customers ka likha hua padhti hai |

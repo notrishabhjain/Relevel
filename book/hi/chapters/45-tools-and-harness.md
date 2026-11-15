@@ -152,6 +152,8 @@ Table: State machine aur bounded agent, bees hafton par
 | Failure ka cause dhoondhna | Minutes: fail hota step log mein hai | Kahin zyada: poora trace padhna padta hai |
 | Ek unusual hafta | Code change chahiye | Aksar khud adapt ho jaata hai |
 
+Trace ko reviewer isliye bhi mark karta hai ki agent ke raaste ko uske jawaab ke saath grade kiya ja sake, jaise Anaya ne night-queue ke run ko mark kiya tha, ek row mein ek step. Jis agent ke steps koi padhta hi nahi, use jaan-boojhkar behtar nahi banaya ja sakta.
+
 Ek fixed process ke liye, jaise weekly report, Imran ne kaha, fixed steps wali machine jeetti hai. Woh zyada accurate hai, tez hai, aur aise jagah fail hoti hai jo dikh sakti hai. Agent tab apna kharcha nikaalta hai jab steps sach mein case-ba-case badalte hain. Usne poocha ki yahan woh kahan hoga. Tanvi ne suggest kiya ki yeh dekhna ki ek customer ka count achanak doguna kyun ho gaya. Imran sahmat hua, aur kaha ki iske liye agent use karo, ek kone mein, chhote budget ke saath.
 
 ## Ise bahar jaane dena

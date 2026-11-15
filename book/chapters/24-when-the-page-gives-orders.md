@@ -111,4 +111,4 @@ Text inside material a system is asked to read can give a model instructions. Th
 - What holds is removing a capability. Take the choice of whose data to read out of the model’s hands, make sending something a thing a person does, and treat every document as untrusted.
 - No known defence is complete, so build the system on the assumption that the model will sometimes obey.
 
-Next, you’ll see how the team marks a thousand answers when marking them by hand no longer works.
+Next, the answer key passes a hundred and twenty rows, and Anaya can no longer mark it by hand.

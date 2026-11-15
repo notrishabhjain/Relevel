@@ -1411,38 +1411,12 @@ Object.assign(window.HING = window.HING || {}, {
     'Isliye yeh chapter aapke project ko proof mein badalne ke baare mein hai. Aap sahi roles chunenge, apne kaam ke baare mein likhenge, un interview sawaalon ki practice karenge jo aapko mil sakte hain, aur negotiation ke liye taiyaar honge. Shuru karte hain roles se.',
   'Idea 1: Target roles and position yourself with evidence':
     'Idea 1: Roles chuniye aur evidence ke saath khud ko position kijiye',
-  '“AI product manager” sounds like one job. It isn’t. Companies use the title for several different jobs, and each one asks for different evidence. The table below shows four common types. As you read it, ask which row looks most like you.':
-    '“AI product manager” sunne mein ek hi job lagti hai. Lekin aisa nahi hai. Companies yeh title kai alag-alag jobs ke liye istemaal karti hain, aur har job alag evidence maangti hai. Neeche ki table mein chaar common types hain. Padhte waqt sochiye ki kaunsi row aap par sabse zyada fit hoti hai.',
-  'Role type':
-    'Role type',
+  '“AI product manager” sounds like one job. It isn’t. Companies use the title for several different jobs, and each one asks for different evidence. The table below shows the three doors open to you. As you read it, ask which one you will try first.':
+    '“AI product manager” sunne mein ek hi job lagti hai. Lekin aisa nahi hai. Companies yeh title kai alag-alag jobs ke liye istemaal karti hain, aur har job alag evidence maangti hai. Neeche ki table mein woh teen darwaaze hain jo aapke liye khule hain. Padhte waqt sochiye ki aap pehle kaunsa try karenge.',
   'What you build':
     'Aap kya banate hain',
   'What they look for':
     'Woh kya dekhte hain',
-  'AI features in an existing product':
-    'Pehle se maujood product mein AI features',
-  'New AI features for current users':
-    'Current users ke liye naye AI features',
-  'Product judgement, shipping, and working with ML teams':
-    'Product judgement, shipping, aur ML teams ke saath kaam karna',
-  'AI-native product':
-    'AI-native product',
-  'A product that only exists because of AI':
-    'Aisa product jo sirf AI ki wajah se exist karta hai',
-  'Speed, prototyping, evaluation, and comfort with uncertainty':
-    'Speed, prototyping, evaluation, aur uncertainty ke saath comfortable hona',
-  'AI platform':
-    'AI platform',
-  'Tools, APIs or models for other teams':
-    'Doosri teams ke liye tools, APIs ya models',
-  'Technical depth, developer experience, and reliability':
-    'Technical depth, developer experience, aur reliability',
-  'Internal AI':
-    'Internal AI',
-  'AI tools for employees':
-    'Employees ke liye AI tools',
-  'Change management, security, and time saved that you can measure':
-    'Change management, security, aur woh time jo bachaya aur measure kiya ja sake',
   'How do you find out what the market wants? Build a <strong>role matrix</strong>. Take ten real job descriptions and list them across the top. Then list every skill they mention down the side, and tick each skill that each role asks for.':
     'Toh market asal mein kya chahta hai, yeh kaise pata chalega? Ek <strong>role matrix</strong> banaiye. 10 asli job descriptions lijiye aur unhe upar ki taraf likhiye. Phir har skill jo woh mention karti hain, use side mein list kijiye, aur jo skill jis role ko chahiye, usse tick kijiye.',
   'The skills with the most ticks are what the market wants most. Now look at those skills and mark each one for yourself: proven, partly proven or missing. That tells you where your evidence is strong and where the gaps are.':
@@ -1487,16 +1461,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Structure',
   'Product sense':
     'Product sense',
-  'Design a product for busy parents':
-    'Busy parents ke liye ek product design kijiye',
-  'Clarify the goal → pick a user → list problems → choose one → propose solutions → prioritise → say how you would measure it':
-    'Goal clarify kijiye → ek user chuniye → problems list kijiye → ek chuniye → solutions propose kijiye → prioritise kijiye → bataiye ki aap ise kaise measure karenge',
   'Strategy':
     'Strategy',
-  'Should we enter the Indian market?':
-    'Kya hamein Indian market mein aana chahiye?',
-  'Goal → market → customer → competition → our advantage → recommendation and risks':
-    'Goal → market → customer → competition → hamara advantage → recommendation aur risks',
   'Metrics':
     'Metrics',
   'Daily users fell 10%. Why?':
@@ -1509,8 +1475,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Do teams ko ek hi engineer chahiye. Aap kya karenge?',
   'Clarify impact → options → trade-offs → decision → how you tell people':
     'Impact clarify kijiye → options → trade-offs → decision → logon ko kaise batayenge',
-  'Whichever question you get, say your structure out loud before you start. It lets the interviewer follow you, and redirect you early if needed. At the end, make a clear choice. Interviewers want to see you commit to a decision and explain why.':
-    'Aapko jo bhi sawaal mile, shuru karne se pehle apna structure zor se bol dijiye. Isse interviewer aapko follow kar paata hai, aur zaroorat ho toh pehle hi aapko redirect kar sakta hai. Aakhir mein ek saaf choice kijiye. Interviewers dekhna chahte hain ki aap ek decision par tik kar bata sakte hain ki kyun.',
   'Answer the metrics example above out loud in ten minutes. Record yourself.':
     'Upar wale metrics example ka jawaab 10 minute mein zor se bolkar dijiye. Apni recording kijiye.',
   'You should end up with a recording. Listen back and check two things. Did you ask about data quality first? And did you end with a way to test your best hypothesis?':
@@ -1559,8 +1523,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek strong story: <strong>Situation:</strong> Theme Finder ke pehle version mein ek agent weekly report ke steps khud decide karta tha. <strong>Task:</strong> Use 10 design partners ke liye kaafi reliable banana mere zimme tha. <strong>Action:</strong> Mujhe lagta tha ki agent unusual weeks ko behtar sambhalega, isliye maine shuru mein use rakha. Jab 20 test weeks mein se 3 fail hue, toh maine wahi flow ek fixed workflow ke roop mein banaya aur dono ko same cases par chalaya. <strong>Result:</strong> workflow 20 mein sirf 1 baar fail hua aur 2 guna tez tha, isliye maine switch kar liya. Maine seekha ki commit karne se pehle dono options measure karne chahiye, aur ab main har bade design choice ke liye aisa hi karta hoon.',
   'You now have a way to show your work to an employer. You can pick the roles that fit you, write resume lines and case studies that show your decisions, and answer the four kinds of PM question with a structure. You can also work through an AI system-design question and tell honest stories about your own choices.':
     'Ab aapke paas apna kaam employer ko dikhane ka ek tareeka hai. Aap apne liye sahi roles chun sakte hain, aise resume lines aur case studies likh sakte hain jo aapke decisions dikhayein, aur PM ke chaaron tarah ke sawaalon ka jawaab ek structure ke saath de sakte hain. Aap ek AI system-design sawaal bhi solve kar sakte hain aur apne choices ki imaandaar stories suna sakte hain.',
-  'That finishes the learning part of the course. Next, there is one short page about the integrated capstone, which now lives in Chapter 34.':
-    'Course ka seekhne wala hissa yahan poora hota hai. Aage ek chhota sa page hai integrated capstone ke baare mein, jo ab Chapter 34 mein hai.',
   'Turn the project into evidence for your next job':
     'Apne project ko agli job ke liye evidence banaiye',
   'You started this course to get ready for a job, and the project is now your best evidence. In this chapter you learned to build a role matrix from real job descriptions. You also learned to write case studies and resume lines that show your decisions and their results, and to answer interview questions with a clear structure. Now you turn Bharat Privacy Guard into the proof you will show.':
@@ -1605,10 +1567,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Yeh page purane chapter ka ek exercise rakhta hai, taaki yahan save kiya hua aapka jawaab bacha rahe.',
   'This chapter moved':
     'Yeh chapter shift ho gaya hai',
-  'This used to be a second, separate capstone. It is not any more. Everything here is now part of one journey in Chapter 21.':
-    'Yeh pehle ek doosra, alag capstone tha. Ab nahi hai. Yahan ki har cheez ab Chapter 21 ki ek journey ka hissa hai.',
-  'In the last chapter you got ready to show your work to employers. This page is a short one, and it is about where the capstone lives now.':
-    'Pichhle chapter mein aap employers ko apna kaam dikhane ke liye taiyaar hue. Yeh page chhota hai, aur yeh batata hai ki capstone ab kahan hai.',
   'Earlier, the capstone was split in two. There was a technical capstone, and there was a second one built around five gates. Doing both felt like doing the same project twice. So the two have been joined into a single journey with eleven stages, in Chapter 34.':
     'Pehle capstone do hisson mein bata hua tha. Ek technical capstone tha, aur doosra paanch gates par bana tha. Dono karna ek hi project do baar karne jaisa lagta tha. Isliye dono ko jodkar ek journey bana diya gaya hai, jisme 11 stages hain, Chapter 34 mein.',
   'What if you already have progress on the old five gates? Nothing is lost. Each old gate maps directly onto the new stages, as the table shows.':

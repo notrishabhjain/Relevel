@@ -39,11 +39,6 @@ Object.assign(window.HING = window.HING || {}, {
   /* tries */
   'The one-time setup': 'Ek baar ka setup',
   'Put the project where people can see it': 'Project ko wahan rakhiye jahan log dekh sakein',
-  'Publish your findings page and the capstone write-up as one page with a link. Keep it plain. A page that exists beats a page that is pretty.':
-    'Apna findings page aur capstone write-up ek page par, link ke saath, publish kijiye. Saada rakhiye. Jo page maujood hai, woh sundar page se behtar hai.',
-  'Three practice interviews': 'Teen practice interview',
-  'Use the interview practice in Chapter B7. Answer three questions out loud, record yourself, and write down one thing to say better next time.':
-    'Chapter B7 ki interview practice use kijiye. Teen sawaalon ke jawaab bol kar dijiye, khud ko record kijiye, aur ek baat likhiye jo agli baar behtar kahenge.',
 
   /* week titles and what each week leaves you with */
   'Meet the machine': 'Machine se mulaqat',
@@ -51,7 +46,6 @@ Object.assign(window.HING = window.HING || {}, {
   'The scoreboard: words against meaning, with a ship-or-not note.': 'Scoreboard: words banaam matlab, ship karein ya nahi ke note ke saath.',
   'Your first complete system': 'Aapka pehla poora system',
   'Version 0 of the findings page, published.': 'Findings page ka version 0, publish kiya hua.',
-  'A workflow that cannot make risky changes alone, and the tool access policy.': 'Ek workflow jo akele jokhim bhare badlaav nahi kar sakta, aur tool access policy.',
   'Bharat Privacy Guard shipped, with its findings document and a short demo.': 'Bharat Privacy Guard ship hua, findings document aur ek chhote demo ke saath.',
   'The business, and the job': 'Business, aur naukri',
   /* the one-view page */
@@ -93,12 +87,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Agar din chhoot gaye, to ek saath poora mat kijiye. Pehle khule step se aage badhiye aur tareekhon ko khisakne dijiye.',
   'Publish the findings page with whatever numbers you have. An honest short page beats a perfect missing one.':
     'Jo bhi numbers hain unke saath findings page publish kijiye. Imaandaar chhota page, gayab perfect page se behtar hai.',
-  'Do the chapters on a first pass and keep one hands-on result per week.':
-    'Chapters pehli baar ki tarah kijiye aur har hafte ek hands-on nateeja rakhiye.',
   'If time is short, keep the release gate and the risk register; the others can be one page each.':
     'Agar samay kam hai, to release gate aur risk register rakhiye; baaki ek-ek page ke ho sakte hain.',
-  'Bharat Privacy Guard shipped with its findings document and demo, a portfolio page, and three practice interviews.':
-    'Bharat Privacy Guard findings document aur demo ke saath ship, ek portfolio page, aur teen practice interview.',
   'Do not cut this one. Move it into May rather than skip it.':
     'Ise mat kaatiye. Chhodne ke bajaye May tak khisaa dijiye.'
 });

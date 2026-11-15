@@ -26,7 +26,7 @@ This talk is worth studying because it put everything the year had produced in f
 
 ## The eleven stages
 
-The thing Anaya had built had a shape she hadn't seen until she described it. The shape turned out to be the shape of the year. The table shows the eleven stages, and what each one meant for the guard.
+The thing Anaya had built had a shape she hadn't seen until she described it. The shape turned out to be the shape of the year. The table shows the eleven stages, and what each one meant for the guard. These are the eleven stages of the capstone chapter in the course app. The project page there groups the same work into thirteen.
 
 Table: The eleven stages
 | Stage | What it meant for the guard |
@@ -73,7 +73,7 @@ The partner's technical lead was the first to speak. He pointed out that she had
 
 For the middle of the talk Anaya had prepared nothing clever. She suspected the evidence would carry it.
 
-The product that had gone out was the developer kit: a small library and a demonstration page where a developer pastes a message and watches the guard clean it. A kit like this is called an *SDK*. It lets another team add the feature to their own product without building it themselves. Hers sat at a stable address, on a machine that wasn't hers, with monitoring, a privacy notice and a button for reporting problems.
+The product that had gone out was the developer kit the team had agreed to offer on 20 November: a small library and a demonstration page where a developer pastes a message and watches the guard clean it. A kit like this is called an *SDK*. It lets another team add the feature to their own product without building it themselves. Hers sat at a stable address, on a machine that wasn't hers, with monitoring, a privacy notice and a button for reporting problems.
 
 Before it went live, Imran had done what she insisted on. He deployed a harmless change, rolled it back, and timed it with a stopwatch: four minutes and ten seconds. A rollback that has never been tried, she told the room, is only a plan.
 
@@ -113,6 +113,23 @@ In the corridor afterwards, the partner's technical lead asked what he could loo
 It held the repository, the specification, the answer key and its history, the results of the gate, the risk register, the findings, the dashboard and the cost model. It also held the decision log that had begun on the night of the fourteenth of March, with its first line still at the top: nothing counts until someone else could check it.
 
 She said that you are done when anyone can rerun the work and get the same numbers. He nodded slowly and said he would like to see the answer key. She smiled. It was a request she had hoped to hear for nine months.
+
+## The page from March
+
+That night Anaya opened the page of scores from the fourteenth of March. Three were still in her handwriting: 2 for finding problems, 1 for choosing which to solve, and a crossed-out figure below 1 for understanding the technology. She scored all seven areas again on the same scale, with one line of evidence beside each, by her own rule that nothing counts until someone else could check it.
+
+Table: The seven areas, scored again
+| Area | Score | Evidence someone else can check |
+| --- | --- | --- |
+| Finding real problems | 3 | Five interviews, a count of 37 in 400, and monthly sweeps run by Lakshmi |
+| Choosing which problems to solve | 2 | The Won't list, and a reversal written with its evidence |
+| Understanding the technology | 3 | The findings document, with its failure classes and what is left |
+| Turning a decision into something others can build | 3 | A specification whose numbers Imran's gate tested |
+| Measuring results | 3 | The answer key of 231 rows, with its history |
+| Paying for itself | 2 | The cost model, and a price for one customer who had not yet signed |
+| Getting people to move together | 2 | Lakshmi's sweeps and Farah's team, but no one outside the company |
+
+The technology score had moved furthest, from below 1 to 3, and the document she could name was the one in the table. The two 2s were where she had least to show.
 
 ## Summary
 

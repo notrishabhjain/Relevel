@@ -112,3 +112,5 @@ An embedding places a piece of text on a map of meanings, as a long list of numb
 - The distance is reported as a similarity score. It means nothing until you know what clearly good and clearly bad matches score.
 - The map is only as good as the text it learned from, so it can place local vocabulary badly. Name the failures before a user finds them.
 - Closeness on the map is about meaning and topic, not every quality a sentence might have. A method that finds sentences on the same topic won't necessarily find the ones that identify a person.
+
+Next, the founders ask whether the tool is good, and the team has only a few good runs to show.

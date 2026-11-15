@@ -116,3 +116,5 @@ AI system aam software hai jisme ek hissa anpredictable hai, isliye jo kuch aam 
 - Keys code ke bahar rehti hain. Kaam ek repository mein rehta hai jo har badlaav record karti hai. Error ko neeche se padha jaata hai.
 - System ka har hissa us data ke baare mein kuch maanta hai jo use milta hai. Yahi data contract hai. Achha system tab ruk jaata hai jab koi toot jaaye, kuch na milne par bhi chalta nahi rehta.
 - Jo runner har experiment record karta hai, woh "maine try kiya" ko "maine naapa" bana deta hai, kyunki jo result reproduce nahi ho sakta, woh sirf ek kissa hai.
+
+Agle chapter mein Mr. Bhatia ek bar chart lekar aate hain, aur pichhle hafte aaye ek model par switch karna chahte hain.

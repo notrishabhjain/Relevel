@@ -18,7 +18,7 @@ terms:
   - cost of delay | what you lose for every week an option waits | 
 ---
 
-On Sunday mornings, Anaya telephoned Dr. Meenakshi Rao. Meenakshi had taught her linguistics and was now retired in Bengaluru. In the third week of March, Anaya read out her list of work.
+On Sunday mornings, Anaya telephoned Dr. Meenakshi Rao. Meenakshi had taught her linguistics and was now retired in Bengaluru. In the last week of March, Anaya read out her list of work.
 
 Rewrite the chatbot's greeting. Build a tool to find identity numbers. Extend it to names and addresses. Make it work in Hindi. Make it work in Hinglish. Read photographs. Read voice notes. Sell it to other companies. Build a small version that runs in a browser.
 

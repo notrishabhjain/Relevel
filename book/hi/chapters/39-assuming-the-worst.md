@@ -90,6 +90,13 @@ Har safeguard ke saath woh test likhiye jo saabit karta hai ki woh kaam karta ha
 
 Anaya ne bahut der tak daayein column ko dekha. Usmein kahin "none" nahi likha tha. Use pata chala ki use yehi pasand hai.
 
+::: key Ab aap kya keh sakte hain
+Har N apne project se bhariye.
+- Maine model apne N cases par chuna, runs ke beech sirf model badal kar, aur choice ko saboot ke saath ek card par likha.
+- Mera agent bounded hai: N steps, N minutes, ek cost ceiling aur ek "cannot resolve" ending. Main uske raaste ko uske jawaab ke saath grade karta hoon.
+- Gate pass hue bina kuch ship nahi hota. Maine apne product par N tareeko se hamla kiya, aur risk register har safeguard ke baju mein ek test rakhta hai.
+:::
+
 ## Saar
 
 Model jo kuch bhi use diya jaata hai, sabko ek jaise bharose se padhta hai. Isliye AI product ki zyadatar security model ke aas-paas ke system mein hoti hai. Attack surface woh har jagah hai jahan koi bahar wala usme kuch daal sakta hai, ya woh jo kuch kar sakta hai usse chhu sakta hai.

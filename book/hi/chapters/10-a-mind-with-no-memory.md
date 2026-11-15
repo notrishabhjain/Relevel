@@ -81,3 +81,5 @@ Language model stateless hai. Woh requests ke beech kuch nahi rakhta, aur har ca
 - History dobara bheji jaati hai, isliye har message pichhle se zyada mehnga padta hai. Isliye baatcheet ka kul kharcha uski lambai se kaafi tezi se badhta hai.
 - Baatcheet context window se badi ho jaaye, toh application ko tay karna padta hai ki purane messages hataaye, unki summary banaye, saved facts dhoondhe, ya kaam ka state rakhe. Yeh chunaav application ka hota hai.
 - Ek baar type ki gayi detail har agle message ke saath dobara jaati hai, jab tak use store karne se pehle saaf na kiya jaaye.
+
+Agle chapter mein Anaya un shabdon par aati hai jinhe woh khud badal sakti hai: woh model ko kya karne ko kehti hai, aur kaise kehti hai.

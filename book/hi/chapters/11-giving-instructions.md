@@ -106,3 +106,5 @@ Prompt woh sab hai jo model ko bheja jaata hai. Uska standing hissa, jo har requ
 - Jo cheez model ke paas nahi hai, woh maango toh woh aksar use gadh deta hai, usi shaant awaaz mein jisme woh sach bolta hai. Isi ko hallucination kehte hain.
 - Taakat ke order mein tareeke yeh hain: worked example, kaam aur reader ka naam batana, kaam ko steps mein todna, aur dekhi hui failures ko mana karna.
 - Inmein se koi bhi failure ki wajah ko nahi hataata. Woh failure ko kam karte hain. Aur instruction ka har word jitni baar bheja jaata hai, utni baar uska paisa lagta hai.
+
+Agle chapter mein Lakshmi ka sawaal phir aata hai, aur Anaya ke paas ab bhi yeh kehne ka koi tareeka nahi ki tool kaam karta hai ya nahi.

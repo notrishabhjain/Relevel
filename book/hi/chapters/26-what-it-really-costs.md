@@ -94,6 +94,13 @@ Usne pehle aadhe hisse ki keemat dhyaan se nikali thi aur doosre ke liye koi num
 
 Usne director se kaha ki woh pata karegi, ya pata karegi ki kisi ko nahi pata, aur yeh bol degi. Director ne yeh maan liya aur pen ka cap wapas laga diya. Anaya ne specification mein, jo abhi tak nahi pata uske section mein, ek line jodi: leak ki cost kya hai? Lakshmi se poochhna.
 
+::: key Ab aap yeh keh sakte hain
+Model ko kaam dene ke baare mein teen sentences. Jahan N likha hai, wahan apna number rakhiye.
+- Mere agent ka step limit sabse pehle likha gaya, aur jo action undo nahi ho sakta use ek insaan approve karta hai.
+- Maine apne judge ko apni marking se check kiya: N percent agreement, aur maine disagreements padhe.
+- Mere cost sum mein retries, loops aur hidden thinking shaamil hain: N rupaye mahina, ek saaf call ka figure nahi.
+:::
+
 ## Summary
 
 Seedha cost ka hisaab hai tokens andar aur bahar, unke prices se guna. Yeh sahi hai, aur aksar 3 se 20 guna kam nikalta hai, kyunki yeh ek saaf call ki keemat batata hai.
@@ -103,4 +110,4 @@ Seedha cost ka hisaab hai tokens andar aur bahar, unke prices se guna. Yeh sahi 
 - Cost ko speed ke saath report kijiye, dheeme cases samet.
 - Jis value ko cost bachati hai uske bina, cost sirf aadha hisaab hai.
 
-Agle chapter mein aap plain text ko peeche chhodkar dekhenge ki jab customers photographs bhejte hain toh kya hota hai.
+Agle chapter mein Farah Anaya ke saamne ek bank passbook ki photograph rakhti hai, aur team plain text ko peeche chhod deti hai.
