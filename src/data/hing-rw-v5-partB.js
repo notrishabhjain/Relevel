@@ -1533,8 +1533,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Jin roles ke liye aap apply karenge, unki 10 asli job descriptions jama kijiye. Ek table banaiye jisme side mein woh skills hon jo woh maangti hain aur upar descriptions. Mark kijiye ki kaunsi skills baar-baar aati hain, aur har ek ko apne liye proven, partly proven ya missing mark kijiye.',
   'Write two case studies. One is Bharat Privacy Guard. Each must show the problem and your evidence for it, your decisions, the trade-offs, the numbers, the failures and what you learned. Include at least one decision that turned out wrong and what you did about it.':
     '2 case studies likhiye. Ek Bharat Privacy Guard hai. Har ek mein problem aur uska evidence, aapke decisions, trade-offs, numbers, failures aur aapne kya seekha, yeh sab dikhna chahiye. Kam se kam ek aisa decision shamil kijiye jo galat nikla, aur batayiye ki aapne uske baare mein kya kiya.',
-  'Rewrite your resume lines as action, decision and result, and give each one a number. For example: “Chose rules over a model for fixed-shape IDs, which cut the cost of checking a message by 80%.”':
-    'Apni resume lines ko action, decision aur result ke roop mein dobara likhiye, aur har ek ko ek number dijiye. Jaise: “Fixed-shape IDs ke liye model ki jagah rules chune, jisse ek message check karne ki cost 80% kam hui.”',
+  'Rewrite your resume lines as action, decision and result, and give each one a number. For example: “Chose a fixed workflow over an agent after measuring both on the same cases, which cut failures by half.”':
+    'Apni resume lines ko action, decision aur result ke roop mein dobara likhiye, aur har ek ko ek number dijiye. Jaise: “Same cases par dono napne ke baad agent ki jagah fixed workflow chuna, jisse failures aadhe ho gaye.”',
   'Answer this system-design question aloud in twenty-five minutes, and record yourself: “Design a privacy layer for Indian websites and AI chatbots.” Cover the users and the task, the approach, how you test it, how it fails, the cost and speed, and the rollout.':
     'Yeh system-design sawaal 25 minute mein zor se bolkar hal kijiye aur apni recording kijiye: “Indian websites aur AI chatbots ke liye ek privacy layer design kijiye.” Users aur task, approach, aap ise kaise test karenge, yeh kaise fail hota hai, cost aur speed, aur rollout, sab cover kijiye.',
   'Record three more mock interviews, one each on product sense, metrics and a story about a decision of yours that went wrong. Score all four with a rubric.':
@@ -1567,8 +1567,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Yeh page purane chapter ka ek exercise rakhta hai, taaki yahan save kiya hua aapka jawaab bacha rahe.',
   'This chapter moved':
     'Yeh chapter shift ho gaya hai',
-  'Earlier, the capstone was split in two. There was a technical capstone, and there was a second one built around five gates. Doing both felt like doing the same project twice. So the two have been joined into a single journey with eleven stages, in Chapter 34.':
-    'Pehle capstone do hisson mein bata hua tha. Ek technical capstone tha, aur doosra paanch gates par bana tha. Dono karna ek hi project do baar karne jaisa lagta tha. Isliye dono ko jodkar ek journey bana diya gaya hai, jisme 11 stages hain, Chapter 34 mein.',
+  'Earlier, the capstone was split in two. There was a technical capstone, and there was a second one built around five gates. Doing both felt like doing the same project twice. So the two have been joined into a single journey in Chapter 34. Its eleven stages are the detail inside stage 12 of the project’s thirteen.':
+    'Pehle capstone do hisson mein bata hua tha. Ek technical capstone tha, aur doosra paanch gates par bana tha. Dono karna ek hi project do baar karne jaisa lagta tha. Isliye dono ko jodkar Chapter 34 mein ek journey bana diya gaya hai. Uske gyarah stages project ke terah stages mein se stage 12 ka detail hain.',
   'What if you already have progress on the old five gates? Nothing is lost. Each old gate maps directly onto the new stages, as the table shows.':
     'Agar aapne purane paanch gates par pehle se progress kar rakhi hai toh? Kuch bhi nahi khoya. Har purana gate naye stages se seedha map hota hai, jaise table mein dikhaya hai.',
   'Old gate':

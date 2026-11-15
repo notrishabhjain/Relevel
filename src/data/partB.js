@@ -800,7 +800,7 @@ window.PART7 = [
     steps:[
       'Collect ten real job descriptions for roles you would apply for. Make a table with the skills they ask for down the side and the descriptions across the top. Mark which skills appear again and again, and mark each as proven, partly proven or missing for you.',
       'Write two case studies. One is Bharat Privacy Guard. Each must show the problem and your evidence for it, your decisions, the trade-offs, the numbers, the failures and what you learned. Include at least one decision that turned out wrong and what you did about it.',
-      'Rewrite your resume lines as action, decision and result, and give each one a number. For example: “Chose rules over a model for fixed-shape IDs, which cut the cost of checking a message by 80%.”',
+      'Rewrite your resume lines as action, decision and result, and give each one a number. For example: “Chose a fixed workflow over an agent after measuring both on the same cases, which cut failures by half.”',
       'Answer this system-design question aloud in twenty-five minutes, and record yourself: “Design a privacy layer for Indian websites and AI chatbots.” Cover the users and the task, the approach, how you test it, how it fails, the cost and speed, and the rollout.',
       'Record three more mock interviews, one each on product sense, metrics and a story about a decision of yours that went wrong. Score all four with a rubric.',
       'Do one 48-hour take-home task within the time limit, and then write a critique of your own answer.'
@@ -941,7 +941,7 @@ window.PART7 = [
   story:[
     ['c','This chapter moved','This used to be a second, separate capstone. It is not any more. Everything here is now part of one journey in Chapter 34.'],
     ['p','This page is a short one, and it is about where the capstone lives now.'],
-    ['p','Earlier, the capstone was split in two. There was a technical capstone, and there was a second one built around five gates. Doing both felt like doing the same project twice. So the two have been joined into a single journey with eleven stages, in Chapter 34.'],
+    ['p','Earlier, the capstone was split in two. There was a technical capstone, and there was a second one built around five gates. Doing both felt like doing the same project twice. So the two have been joined into a single journey in Chapter 34. Its eleven stages are the detail inside stage 12 of the project’s thirteen.'],
     ['p','What if you already have progress on the old five gates? Nothing is lost. Each old gate maps directly onto the new stages, as the table shows.'],
     ['tb',['Old gate','New stage(s) in Chapter 34'],[
       ['Gate 1, Discovery','34.1 Discover'],
