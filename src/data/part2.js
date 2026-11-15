@@ -61,6 +61,7 @@ window.PART2 = [
     ]],
     ['p','Here is the map from the last chapter once more. Now that you know the four gaps, see where each one sits on it.'],
     ['lab','redmap'],
+    ['q','I046'],
     ['h','What comes next'],
     ['p','You now have a clear picture. Your system works, you know how to measure it, and you know the four things it cannot do yet. Each chapter in Part II closes one of these gaps, and says at the top which one.'],
     ['p','The first gap is the one most people hit soonest: an answer that your code cannot use. Next, you’ll fix that by getting structured output you can trust.']

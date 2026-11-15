@@ -184,8 +184,6 @@ Object.assign(window.HING = window.HING || {}, {
     '“Kaise measure kiya, kinke sawaalon par, kin languages mein?”',
   'Accept it as a sign of quality':
     'Ise quality ka signal maan lijiye',
-  'Two texts have a cosine similarity of 0.78, and a third pair scores 0.19. Roughly how many of these pairs would you expect to be near-synonyms in the same professional field? Answer with a count (0, 1 or 2).':
-    'Do texts ki cosine similarity 0.78 hai, aur ek teesre pair ka score 0.19 hai. Aap lagbhag kitne pairs se umeed karenge ki woh ek hi professional field ke near-synonyms hon? Count se jawaab dijiye (0, 1 ya 2).',
   'You can’t work out a count from cosine values alone. How similarity scores spread out depends on the model, the corpus and the task. Label examples from your own retrieval task, and set a threshold or ranking rule from those.':
     'Sirf cosine values se count nahi nikala ja sakta. Similarity scores kaise failte hain, yeh model, corpus aur task par depend karta hai. Apne retrieval task ke examples label kijiye, aur unse threshold ya ranking rule tay kijiye.',
   'What does reciprocal rank fusion do, in plain words?':
