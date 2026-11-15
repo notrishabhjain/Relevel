@@ -258,7 +258,7 @@
     });
     M.forEach(function (m, i) {
       var y = top + i * rowH + 28, x1 = xs[m.a], x2 = xs[m.b], self = m.a === m.b, left = self && m.a === k - 1, sd = left ? -1 : 1;
-      var lb = wrap(tx(m.l, L), Math.max(90, Math.abs(x2 - x1) - 10), fs).slice(0, 2);
+      var lb = wrap(tx(m.l, L), Math.max(90, Math.abs(x2 - x1) - 10), fs); if (lb.length > 2) { lb = lb.slice(0, 2); lb[1] += '…'; }
       out += '<g class="fx-msg" data-i="' + i + '" tabindex="0" role="button" aria-label="' + esc(tx(m.l, L)) + '">' +
         '<rect class="fx-hit" x="' + r1(Math.min(x1, x2) - 6 - (left ? 150 : 0)) + '" y="' + (y - 30) + '" width="' + r1(Math.abs(x2 - x1) + 12 + (self ? 150 : 0)) + '" height="40" rx="6"/>' +
         (self ? '<path class="fx-ln" d="M' + r1(x1) + ' ' + (y - 8) + 'h' + 40 * sd + 'v14h' + -36 * sd + '" marker-end="url(#' + f.uid + 'a)"/>'
@@ -684,7 +684,10 @@
     out += '<path class="fx-path" d="' + d + '"/>';
     N.forEach(function (nd, i) {
       var p = pts[i], pc = Math.max(0, Math.min(1, nd.pct || 0)), R = 21, C = 2 * Math.PI * R;
-      var ls = wrap(nd.label, Math.min(cw - 14, 150), 11.5).slice(0, 3);
+      var jw = Math.min(cw - 14, 150), ls = wrap(nd.label, jw, 11.5);
+      /* a title that will not fit in three lines is cut at its colon, then with a dot, never mid-phrase without a sign */
+      if (ls.length > 3 && nd.label.indexOf(':') > 0) ls = wrap(nd.label.split(':')[0], jw, 11.5);
+      if (ls.length > 3) { ls = ls.slice(0, 3); ls[2] = ls[2].replace(/[ ,;:]+$/, '') + '…'; }
       out += '<g class="fx-jn' + (pc >= 1 ? ' done' : pc > 0 ? ' part' : '') + (nd.can ? ' can' : '') + (nd.here ? ' here' : '') + '" data-t="' + esc(nd.id) + '" tabindex="0" role="button" aria-label="' + esc(nd.n + '. ' + nd.label + ' · ' + Math.round(pc * 100) + '%') + '">' +
         '<circle class="bg" cx="' + r1(p.x) + '" cy="' + r1(p.y) + '" r="' + R + '"/>' +
         (pc > 0 ? '<circle class="pr" cx="' + r1(p.x) + '" cy="' + r1(p.y) + '" r="' + R + '" stroke-dasharray="' + r1(C * pc) + ' ' + r1(C) + '" transform="rotate(-90 ' + r1(p.x) + ' ' + r1(p.y) + ')"/>' : '') +

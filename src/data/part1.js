@@ -689,11 +689,12 @@ window.PART1 = [
     ['p','A test set doesn’t need to be fancy. Ten rows are enough to start. What matters is that the inputs are real and that you write down what “good” means before you look at the results.'],
     ['c','You already know this','A test set is the user acceptance cases you wrote before go-live. The difference is that you rerun it every time the prompt or the model changes, not once before sign-off.'],
     ['do','Build a ten-row test set',[
-      ['p','Collect ten real inputs for your task, including the two messiest you can find. Don’t invent them. For each one, write down the two or three things a good answer must contain. You don’t need the exact words. Aim for this mix: No inputs you can use? Take ten of the starter sentences from the project page instead, and the capstone is then your chapter work.'],
+      ['p','Collect ten real inputs for your task, including the two messiest you can find. Don’t invent them. For each one, write down the two or three things a good answer must contain. You don’t need the exact words. Aim for this mix:'],
       [
         'n',
         ['Six ordinary cases, chosen without looking at how the prompt does on them.','Two awkward ones, with missing information, an unusual format or the wrong language.','Two that should be refused or escalated rather than answered.']
       ],
+      ['p','No inputs you can use? Take ten of the starter sentences from the project page instead, and the capstone is then your chapter work.'],
       ['x','You now have a ten-row table: each input, and what a good answer must contain. This table is the most useful thing you’ll make in this chapter. The rest of the chapter runs prompts against it.']
     ]],
     ['p','With the table ready, you can finally compare your four versions fairly.'],

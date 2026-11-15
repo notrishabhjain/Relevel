@@ -49,6 +49,7 @@ export function weekReading(w, n = 2) {
     if (s.kind === 'chapter') ids.push(s.ch);
     else if (s.kind === 'read') ids.push(...(BOOK_COURSE[s.book] || []));
   }
+  if (!ids.length) ids.push('b7'); /* a week of tries only (the interview week) shows the career chapter's reading, as it does its picture */
   const seen = new Set(), rows = [];
   for (const id of ids) for (const r of READING[id] || []) if (!seen.has(r[3])) { seen.add(r[3]); rows.push(r); }
   return [...rows.filter(r => r[0] === 'case').slice(0, n), ...rows.filter(r => r[0] === 'paper').slice(0, n)];

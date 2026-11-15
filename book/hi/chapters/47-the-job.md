@@ -18,7 +18,9 @@ terms:
 
 Rhea Kapoor ne June mein ek Sunday shaam phone kiya. Usne shuruaat wahan se ki jahan se woh log karte hain jinhone maafi rehearse ki ho, yaani uske ant se. Usne kaha ki use pata hai ki yeh Anaya ki akeli free raat hai, aur woh use zyada der nahi rokegi.
 
-Anaya Rhea se autumn mein ek meetup mein mili thi, jahan Rhea ne speaker se wahi ek sawaal poocha tha jo koi aur poochna nahi chahta tha. Rhea ne chhe saal sarkari vibhagon ke liye technology programmes deliver kiye the, har mahine ek steering committee aur har Friday ek status report ke saath. Phir ek saal usne woh sab ek-ek hissa karke seekha jo Anaya ne ek saal akele, raat mein kiya tha. Aur usne apna kuch banaya bhi tha: ek chhota tool jo customer-support tickets ka ek hafta padhta, unhe themes mein baant deta, aur woh report likhta jo ek support lead ek din mein likhta tha. Das design partners ne use use kiya tha. Lekin usne yeh kaam kisi ko nahi dikhaya tha jo use job de sake.
+Anaya Rhea se autumn mein ek meetup mein mili thi, jahan Rhea ne speaker se wahi ek sawaal poocha tha jo koi aur poochna nahi chahta tha. Rhea ne chhe saal sarkari vibhagon ke liye technology programmes deliver kiye the, har mahine ek steering committee aur har Friday ek status report ke saath. Phir ek saal usne woh sab ek-ek hissa karke seekha jo Anaya ne ek saal akele, raat mein kiya tha.
+
+Aur usne apna kuch banaya bhi tha: ek chhota tool jo customer-support tickets ka ek hafta padhta, unhe themes mein baant deta, aur woh report likhta jo ek support lead ek din mein likhta tha. Das design partners ne use use kiya tha. Lekin usne yeh kaam kisi ko nahi dikhaya tha jo use job de sake.
 
 Rhea ke saamne das job advertisements khule the, aur sab par "AI product manager" likha tha. Use samajh nahi aa raha tha ki woh unmein se kisi ke liye sahi kyun hai. Anaya ne kaha ki woh das bhej de, aur yeh bhi bataye ki uske resume ke sabse upar kya likha hai. Thodi der ruk kar Rhea ne kaha ki usmein likha hai ki woh AI ke prati passionate hai.
 
@@ -135,7 +137,9 @@ Phir Rhea ne apni history ko ek asset bana diya. Ek regulated sector mein chhe s
 
 ## Jab woh dekh rahe hon aur aap build karein
 
-Kuch loops mein ek round hota hai jisme candidate ek coding assistant ke saath, live, kuch chhota banata hai, aur interviewer dekhta hai. Yeh typing se zyada judgement ko parakhta hai. Anaya ki salah book mein pehle aaye verifier ke idea se aayi: assistant se kuch bhi maangne se pehle bataiye ki aap uska kaam kaise check karenge. Check zor se bol dijiye, jaise "result mere das sample messages ka har number chhupa dena chahiye". Chhote steps maangiye. Jo wapas aaye use padhiye, aur bataiye ki aap abhi kya par bharosa nahi karenge. Interviewer dekhte hain ki candidate us badlaav ko pehchaan paata hai ya nahi jo kaam kiya, us badlaav se jo sirf sahi dikhta hai. Ek adhoora build jiske checks pass hon, ek poore build se behtar result hai jise kisi ne check nahi kiya.
+Kuch loops mein ek round hota hai jisme candidate ek coding assistant ke saath, live, kuch chhota banata hai, aur interviewer dekhta hai. Yeh typing se zyada judgement ko parakhta hai.
+
+Anaya ki salah book mein pehle aaye verifier ke idea se aayi: assistant se kuch bhi maangne se pehle bataiye ki aap uska kaam kaise check karenge. Check zor se bol dijiye, jaise "result mere das sample messages ka har number chhupa dena chahiye". Chhote steps maangiye. Jo wapas aaye use padhiye, aur bataiye ki aap abhi kya par bharosa nahi karenge. Interviewer dekhte hain ki candidate us badlaav ko pehchaan paata hai ya nahi jo kaam kiya, us badlaav se jo sirf sahi dikhta hai. Ek adhoora build jiske checks pass hon, ek poore build se behtar result hai jise kisi ne check nahi kiya.
 
 ## Akele, aur doosre logon ke saath
 

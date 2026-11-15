@@ -18,7 +18,9 @@ terms:
 
 Rhea Kapoor telephoned on a Sunday evening in June. She began, as people do who have rehearsed an apology, with the end of it. She knew this was Anaya's only free night, she said, and she wouldn't keep her long.
 
-Anaya had met Rhea in the autumn at a meetup, where Rhea had asked the one question nobody else wanted to ask the speaker. Rhea had spent six years delivering technology programmes for government departments, with a steering committee every month and a status report every Friday. Since then she had spent a year working through every part of what Anaya had spent a year doing, alone and at night. And she had built something of her own: a small tool that read a week of customer-support tickets, sorted them into themes, and wrote the report a support lead used to spend a day on. Ten design partners had used it. But she had shown the work to nobody who could give her a job.
+Anaya had met Rhea in the autumn at a meetup, where Rhea had asked the one question nobody else wanted to ask the speaker. Rhea had spent six years delivering technology programmes for government departments, with a steering committee every month and a status report every Friday. Since then she had spent a year working through every part of what Anaya had spent a year doing, alone and at night.
+
+And she had built something of her own: a small tool that read a week of customer-support tickets, sorted them into themes, and wrote the report a support lead used to spend a day on. Ten design partners had used it. But she had shown the work to nobody who could give her a job.
 
 Rhea had ten job advertisements open, and all of them said "AI product manager". She couldn't see why she would be right for any of them. Anaya asked her to send the ten, and to say what her resume said at the top. After a pause Rhea said that it said she was passionate about AI.
 
@@ -135,7 +137,9 @@ Then Rhea turned the history into an asset. Six years in a regulated sector mean
 
 ## Building while they watch
 
-Some loops add a round in which the candidate builds something small, live, with a coding assistant, while the interviewer watches. It tests judgement more than typing. Anaya's advice came from the verifier idea earlier in the book: before asking the assistant for anything, say how you will check its work. State the check aloud, such as "the result must hide every number in my ten sample messages". Ask for small steps. Read what comes back, and say what you would not trust yet. Interviewers watch whether the candidate can tell a change that worked from one that only looks right. A half-finished build whose checks pass is a better result than a finished one that nobody has checked.
+Some loops add a round in which the candidate builds something small, live, with a coding assistant, while the interviewer watches. It tests judgement more than typing.
+
+Anaya's advice came from the verifier idea earlier in the book: before asking the assistant for anything, say how you will check its work. State the check aloud, such as "the result must hide every number in my ten sample messages". Ask for small steps. Read what comes back, and say what you would not trust yet. Interviewers watch whether the candidate can tell a change that worked from one that only looks right. A half-finished build whose checks pass is a better result than a finished one that nobody has checked.
 
 ## Alone, and with other people
 

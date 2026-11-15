@@ -223,6 +223,8 @@ function render(M, lang) {
     const tryBy = Object.fromEntries(t.tries.map(x => [x.id, x])), weekBy = Object.fromEntries(t.weeks.map(w => [w.n, w]));
     const parts = [];
     parts.push(`<p class="intro">${esc(pick(t.intro, t.introHi))}</p>`);
+    /* one picture of the topic, right under the intro so it is seen before the steps; the rest are in the extras */
+    if (t.figs.length) parts.push(`<div class="wsfigs"><div class="wsfig" data-fig="${t.figs[0]}"></div></div>`);
     /* 1. the steps, one list, in the order to do them */
     let lastWeek = null;
     const rows = t.path.map(e => {
@@ -232,8 +234,6 @@ function render(M, lang) {
       return head + row;
     }).join('');
     parts.push(`<h3>${L.pathTitle}</h3><ol class="items path">${rows}</ol>`);
-    /* one picture of the topic after the steps; the rest are in the extras */
-    if (t.figs.length) parts.push(`<div class="wsfigs"><div class="wsfig" data-fig="${t.figs[0]}"></div></div>`);
     /* 2. finishing the topic: the project step, what you should be able to say, your own words */
     const fin = [];
     if (t.n === 0) fin.push(`<p class="sm">${L.readyLead}</p>` + before());

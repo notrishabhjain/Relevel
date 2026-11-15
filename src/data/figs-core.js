@@ -171,7 +171,7 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     ],
     cap: ['Each gap is a different kind of break, and each is closed in a later chapter.', 'Har gap ek alag tarah ki toot hai, aur har ek aage ke kisi chapter mein bhara jaata hai.'] },
 
-  'schema-loop': { t: 'flow', loop: true, loopL: ['invalid: ask again with the error', 'galat: error ke saath dobara poochhiye'],
+  'schema-loop': { t: 'flow', loop: true, loopL: ['invalid: ask again with the error', 'galat: error dikha kar poochhiye'],
     title: ['Getting JSON you can trust', 'Bharose layak JSON paana'],
     steps: [
       { l: ['Prompt + schema', 'Prompt + schema'], ic: 'code', d: ['The schema names every field and its type.', 'Schema har field aur uska type batata hai.'] },
@@ -467,7 +467,7 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
       { a: 1, b: 2, l: ['Message to provider', 'Provider ko message'], d: ['The provider works on your behalf, so the duty stays with you. Read its terms on storage and training.', 'Provider aapki taraf se kaam karta hai, isliye zimmedari aapki rehti hai. Storage aur training par uski shartein padhiye.'] },
       { a: 2, b: 1, l: ['Reply, maybe a copy', 'Jawaab, shayad copy'], dash: true, d: ['A copy held by the provider is still your responsibility.', 'Provider ke paas rakhi copy ki zimmedari bhi aapki hai.'] },
       { a: 0, b: 1, l: ['Asks to erase data', 'Data mitane ki maang'], d: ['You must be able to do it, including where an outside provider holds a copy.', 'Aapko yeh kar paana chahiye, wahan bhi jahan bahari provider ke paas copy ho.'] },
-      { a: 1, b: 0, l: ['Leak: tell person and regulator', 'Leak: vyakti aur regulator ko batayein'], d: ['If personal data leaks, the regulator and the people affected must both be told.', 'Personal data leak ho jaye to regulator aur prabhavit log, dono ko batana zaroori hai.'] }
+      { a: 1, b: 0, l: ['Leak: report it', 'Leak: report karein'], d: ['If personal data leaks, the regulator and the people affected must both be told.', 'Personal data leak ho jaye to regulator aur prabhavit log, dono ko batana zaroori hai.'] }
     ],
     cap: ['The duty stays with your app, even when the provider is the one holding the data.', 'Zimmedari aapke app ki rehti hai, chahe data provider ke paas ho.'] }
 });
