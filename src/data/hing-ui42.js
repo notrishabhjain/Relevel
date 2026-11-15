@@ -23,8 +23,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Parishisht A aur B',
   'The evidence pack':
     'Saboot ka pack',
-  'The sixteen-week map, and the twenty-two artifacts you finish holding — each linked to the chapter that produces it.':
-    'Solah hafton ka naksha, aur woh baais cheezein jo aap aakhir mein haath mein rakhte hain — har ek us chapter se judi hui jo use banata hai.',
+  'The sixteen-week map, and the twenty-nine artifacts you finish holding — each linked to the chapter that produces it.':
+    'Solah hafton ka naksha, aur woh untees cheezein jo aap aakhir mein haath mein rakhte hain — har ek us chapter se judi hui jo use banata hai.',
   'finished':
     'poore hue',
   'Appendix C':
@@ -91,8 +91,8 @@ Object.assign(window.HING = window.HING || {}, {
     'aakhri pareeksha',
   'Master artifact index':
     'Cheezon ki mukhya soochi',
-  'Twenty-two artifacts. Mark one finished only when someone else could pick it up and see what you did — the measurement, not the claim. <em>Where it lives</em> is for the repository path or the link, so that the pack assembles itself.':
-    'Baais cheezein. Kisi ko poora tabhi nishaan lagaiye jab koi aur use uthakar dekh sake ki aapne kya kiya — maap, daawa nahi. <em>Kahan rakhi hai</em> mein repository ka raasta ya link likhiye, taaki pack apne-aap judta jaaye.',
+  'Twenty-nine artifacts. Mark one finished only when someone else could pick it up and see what you did — the measurement, not the claim. <em>Where it lives</em> is for the repository path or the link, so that the pack assembles itself.':
+    'Untees cheezein. Kisi ko poora tabhi nishaan lagaiye jab koi aur use uthakar dekh sake ki aapne kya kiya — maap, daawa nahi. <em>Kahan rakhi hai</em> mein repository ka raasta ya link likhiye, taaki pack apne-aap judta jaaye.',
   'where it lives — a path or a link':
     'kahan rakhi hai — ek raasta ya ek link',
   'Sixteen-week study map':

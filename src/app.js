@@ -1938,7 +1938,7 @@ function pageAppendix(){
     h('div',{class:'eyebrow'},[h('span',{text:T('Appendices A and B')})]),
     h('h3',{text:T('The evidence pack')}),
     h('p',{class:'dim',style:'font-size:.85rem',
-      html:T('The sixteen-week map, and the twenty-two artifacts you finish holding — each linked to the chapter that produces it.')}),
+      html:T('The sixteen-week map, and the twenty-nine artifacts you finish holding — each linked to the chapter that produces it.')}),
     h('span',{class:'mono dim',style:'font-size:.75rem',
       text:artsDone+' / '+(A.artifacts||[]).length+' '+T('finished')})]));
   doors.appendChild(h('a',{class:'card door',href:'#/templates'},[
@@ -2826,7 +2826,7 @@ function pageEvidence(){
   w.appendChild(h('header',{class:'phead'},[
     h('div',{class:'eyebrow'},[h('span',{text:T('Appendices A and B')})]),
     h('h1',{text:T('The Artifact Vault')}),
-    h('p',{html:T('Everywhere the course tells you to build, break or decide something, it lands here: twenty-two artifacts, each one an experiment, a piece of engineering, a decision, or evidence. This page holds the running list, the sixteen-week map, and the thirteen things you should be able to do at the end. Your decisions and your failures also get a page of their own — they are the two kinds of artifact worth reading as a log rather than a list.')})]));
+    h('p',{html:T('Everywhere the course tells you to build, break or decide something, it lands here: twenty-nine artifacts, each one an experiment, a piece of engineering, a decision, or evidence. This page holds the running list, the sixteen-week map, and the thirteen things you should be able to do at the end. Your decisions and your failures also get a page of their own — they are the two kinds of artifact worth reading as a log rather than a list.')})]));
   w.appendChild(h('div',{class:'chiprow',style:'margin:0 0 1.2rem'},[
     h('a',{class:'chip',href:'#/decisions',text:T('→ Decision Log')}),
     h('a',{class:'chip',href:'#/failures',text:T('→ Failure Log')})]));
@@ -2848,7 +2848,7 @@ function pageEvidence(){
   const secB=h('section',{class:'part'});
   secB.appendChild(sectionHead('B',T('Master artifact index')));
   secB.appendChild(h('p',{class:'prose',style:'font-size:1rem',
-    html:T('Twenty-two artifacts. Mark one finished only when someone else could pick it up and see what you did — the measurement, not the claim. <em>Where it lives</em> is for the repository path or the link, so that the pack assembles itself.')}));
+    html:T('Twenty-nine artifacts. Mark one finished only when someone else could pick it up and see what you did — the measurement, not the claim. <em>Where it lives</em> is for the repository path or the link, so that the pack assembles itself.')}));
   const artList=h('div',{class:'arts'});
   arts.forEach(([n,title,detail,chId,tplKey,cls])=>{
     const st=S.arts[n]=S.arts[n]||{s:0,where:''};
@@ -3080,7 +3080,7 @@ function buildIndex(){
     {k:'page',t:'Glossary',h:'#/glossary'},
     {k:'page',t:'Where You Are',h:'#/progress'},
     {k:'page',t:'Appendices',h:'#/appendix'},
-    {k:'page',t:'The Artifact Vault \u2014 22 artifacts and the study map',h:'#/evidence'},
+    {k:'page',t:'The Artifact Vault \u2014 29 artifacts and the study map',h:'#/evidence'},
     {k:'page',t:'Decision Log \u2014 every ADR I have written',h:'#/decisions'},
     {k:'page',t:'Failure Log \u2014 what broke, and what I did about it',h:'#/failures'},
     {k:'page',t:'The Workbench \u2014 fill-in templates',h:'#/templates'});

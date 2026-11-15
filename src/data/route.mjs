@@ -514,7 +514,7 @@ export const WEEKS = [
   "light": false,
   "why": "Instructions only help if you can tell whether they worked. So you build a small answer key, then use it on the job a model does most: sorting messages into kinds.",
   "job": "Owning the evaluation is the strongest sign in a product interview. An answer key you built by hand is the smallest honest version.",
-  "mins": 161,
+  "mins": 166,
   "steps": [
    {
     "id": "b:12-knowing-whether-it-works.html",
@@ -541,7 +541,7 @@ export const WEEKS = [
     "ch": "ch23",
     "num": "2.3",
     "title": "The five task types: classify, extract, summarise, rewrite, generate",
-    "mins": 35,
+    "mins": 40,
     "what": "Read it, answer the boxes and run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. Press “Mark chapter complete” at the end."
    },
    {
@@ -591,7 +591,7 @@ export const WEEKS = [
   "light": false,
   "why": "The answer key now tests summaries too. Then a new problem: real documents are too long to send at once, so you learn to cut them up and to find the right piece by its words.",
   "job": "Many roles ask when not to use a model. A pattern rule that beats a model on some cases is your example.",
-  "mins": 148,
+  "mins": 183,
   "steps": [
    {
     "id": "c:ch25",
@@ -618,7 +618,7 @@ export const WEEKS = [
     "ch": "ch3",
     "num": "3",
     "title": "Chunking: splitting documents into pieces",
-    "mins": 35,
+    "mins": 55,
     "what": "Read it, answer the boxes and run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. Press “Mark chapter complete” at the end."
    },
    {
@@ -637,7 +637,7 @@ export const WEEKS = [
     "ch": "ch4",
     "num": "4",
     "title": "Keyword search: matching words, and where it fails",
-    "mins": 35,
+    "mins": 50,
     "what": "Read it, answer the boxes and run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. Press “Mark chapter complete” at the end."
    },
    {
@@ -668,7 +668,7 @@ export const WEEKS = [
   "light": true,
   "why": "Last week’s word search missed things written differently. This week’s search goes by meaning instead. It is a short week on purpose.",
   "job": "Search by meaning matters most for Indian-language text, where the words differ and the idea is the same.",
-  "mins": 53,
+  "mins": 73,
   "steps": [
    {
     "id": "b:16-finding-by-meaning.html",
@@ -686,7 +686,7 @@ export const WEEKS = [
     "ch": "ch5",
     "num": "5",
     "title": "Embeddings: searching by meaning",
-    "mins": 40,
+    "mins": 60,
     "what": "Read it, answer the boxes and run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. Press “Mark chapter complete” at the end."
    },
    {
@@ -831,7 +831,7 @@ export const WEEKS = [
   "light": false,
   "why": "Structured answers make two things possible: a model that can trigger an action, and careful choices about what it sees. Both build directly on last week.",
   "job": "Agents and tool use are on most postings. A model that calls one tool and says “not sure” is the smallest honest case.",
-  "mins": 181,
+  "mins": 186,
   "steps": [
    {
     "id": "c:ch85",
@@ -858,7 +858,7 @@ export const WEEKS = [
     "ch": "ch9",
     "num": "9",
     "title": "Tool calling and agents: letting the model take actions",
-    "mins": 55,
+    "mins": 60,
     "what": "Read it, answer the boxes and run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. Press “Mark chapter complete” at the end."
    },
    {
@@ -909,7 +909,7 @@ export const WEEKS = [
   "light": false,
   "why": "Some models think before they answer, which costs time and money. You decide when that is worth it, then improve the search from Weeks 9 to 11 with your scoreboard as the judge.",
   "job": "AI-native postings name latency and cost per task. This week you set a budget and design for the wait.",
-  "mins": 154,
+  "mins": 184,
   "steps": [
    {
     "id": "b:22-machines-that-think-first.html",
@@ -955,7 +955,7 @@ export const WEEKS = [
     "ch": "ch12",
     "num": "12",
     "title": "Better retrieval: hybrid search, reranking, context and filters",
-    "mins": 60,
+    "mins": 90,
     "what": "Read it, answer the boxes and run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. Press “Mark chapter complete” at the end."
    },
    {
@@ -980,7 +980,7 @@ export const WEEKS = [
   "light": false,
   "why": "Your system reads documents, and a document can carry hidden instructions. After you attack your own tool, you grade a thousand answers the same way you graded ten.",
   "job": "Interviewers ask how you would attack your own product. After this week you have done it, with a number.",
-  "mins": 186,
+  "mins": 236,
   "steps": [
    {
     "id": "b:24-when-the-page-gives-orders.html",
@@ -1017,7 +1017,7 @@ export const WEEKS = [
     "ch": "ch14",
     "num": "14",
     "title": "Evaluation at scale: code checks and LLM judges",
-    "mins": 50,
+    "mins": 65,
     "what": "Read it, answer the boxes and run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. Press “Mark chapter complete” at the end."
    },
    {
@@ -1026,7 +1026,7 @@ export const WEEKS = [
     "ch": "ch145",
     "num": "14.5",
     "title": "Error analysis: reading failures by hand",
-    "mins": 40,
+    "mins": 75,
     "what": "Read it, answer the boxes and run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. Press “Mark chapter complete” at the end."
    },
    {
@@ -1057,7 +1057,7 @@ export const WEEKS = [
   "light": false,
   "why": "You can now measure quality at scale. This week you put a price on it, handle paper and photos, and decide which data may leave your hands at all.",
   "job": "A consulting firm or a public body is asked for cost estimates. This week’s cost model is how you would produce one.",
-  "mins": 179,
+  "mins": 189,
   "steps": [
    {
     "id": "b:26-what-it-really-costs.html",
@@ -1094,7 +1094,7 @@ export const WEEKS = [
     "ch": "ch16",
     "num": "16",
     "title": "Document extraction: tables, scans and images",
-    "mins": 40,
+    "mins": 45,
     "what": "Read it, answer the boxes and run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. Press “Mark chapter complete” at the end."
    },
    {
@@ -1113,7 +1113,7 @@ export const WEEKS = [
     "ch": "ch165",
     "num": "16.5",
     "title": "Data handling: what you are allowed to send",
-    "mins": 35,
+    "mins": 40,
     "what": "Read it, answer the boxes and run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. Press “Mark chapter complete” at the end."
    },
    {

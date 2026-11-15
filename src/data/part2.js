@@ -265,7 +265,7 @@ window.PART2 = [
   ],
 },
 {
-  id:'ch9', num:9, part:2, curriculumTier:'selective', phase:2, prerequisites:['ch75','ch1','ch8'], nextUnits:['ch13'], minutes:40, labs:['agentloop'],
+  id:'ch9', num:9, part:2, curriculumTier:'selective', phase:2, prerequisites:['ch75','ch1','ch8'], nextUnits:['ch13'], minutes:45, labs:['agentloop'],
   title:'Tool calling and agents: letting the model take actions',
   concept:'An agent is a loop. The model asks for a tool, your code runs it, and the result goes back to the model, until the model finishes. You’ll build that loop yourself, and then break it four ways to see what an agent does on a bad day.',
   needs:[
@@ -281,14 +281,15 @@ window.PART2 = [
   capstone:{
     title:'Specify the rule-keeper, starting with what it must never do',
     brief:'The rule-keeper looks at what was found and decides what to do: remove it, mask it, let it through or ask the person. Because it takes actions, you start with its limits. In this chapter you built the loop that lets a model use tools. You saw what a vague tool description does, fed the loop an error, and removed its step limit. Now you’ll write the rule-keeper’s specification, and then build and break a small version of it.',
-    where:'Your notebook for this chapter. Build and break the rule-keeper there. Write the worst-case paragraph in the notes box below. Short version for the route, about 20 minutes: steps 1, 2 and 5.',
+    where:'Your notebook for this chapter. Build and break the rule-keeper there. Write the worst-case paragraph in the notes box below. Short version for the route, about 20 minutes: steps 1, 2 and 7.',
     steps:[
       'Write the worst-case paragraph first. It describes the worst thing the rule-keeper could do if every decision it made were wrong. For example: “It lets a full Aadhaar number through to an outside AI provider.”',
       'Write the limits: the most steps it may take for one message, the most it may spend, and what it does when either runs out. The safe answer is usually to remove the detail and stop.',
       'Write three rules in plain words for choosing the action. For example: “Always remove an Aadhaar number unless the purpose is identity checking.” “Mask a mobile number to its first two and last two digits when a person must recognise it.” “If unsure, ask the person.”',
       'Write which actions need a person to approve them, as a clear condition. For example: “Letting any ID number through always needs a person’s approval.”',
       'Build a small version in your notebook. Give the model two tools, one that hides a detail and one that asks the person. Describe each tool as if the description were the only documentation.',
-      'Break it on purpose. Make one description vague, force one error, and run starter sentence 10 (the one with the order hidden inside it). Record what the tool said it did and what it really did.'
+      'Break it on purpose. Make one description vague, force one error, and run starter sentence 10 (the one with the order hidden inside it). Record what the tool said it did and what it really did.',
+      'Save the six cases from the chapter as <code>evals/agent-cases-v1.csv</code> in your repository, with three columns: the question, the words a right answer contains, and the tools it should call. Write your two scores, final answer and path, under the file name in the notes box. Chapter 26 scores a longer list the same way.'
     ],
     done:[
       'The worst-case paragraph, written before the rest.',
@@ -322,8 +323,8 @@ window.PART2 = [
       ]
     ]],
     ['do','Write the loop',[
-      ['p','Type this rather than pasting it. It is short, and it is the whole mechanism of an agent.'],
-      ['code','import json\n\ndef agent(question, max_steps=5, verbose=True):\n    msgs = [{"role":"system","content":\n             "Use the tools when a fact is needed. Never guess a number."},\n            {"role":"user","content":question}]\n    for step in range(max_steps):\n        r = client.chat.completions.create(\n            model="meta/llama-3.1-8b-instruct",\n            temperature=0, messages=msgs, tools=tools\n        ).choices[0].message\n\n        if not getattr(r, "tool_calls", None):\n            if verbose: print(f"[step {step}] final answer")\n            return r.content\n\n        msgs.append(r)\n        for call in r.tool_calls:\n            args = json.loads(call.function.arguments)\n            result = run_tool(call.function.name, args)\n            if verbose:\n                print(f"[step {step}] {call.function.name}({args}) -> {result}")\n            msgs.append({"role":"tool","tool_call_id":call.id,\n                         "content":json.dumps(result)})\n    return "STOPPED: step budget exhausted"\n\nprint(agent("I spent USD 300 on equipment. Am I within the policy limit in INR?"))'],
+      ['p','Type this rather than pasting it. It is short, and it is the whole mechanism of an agent. The list called <code>tools_used</code> keeps the names of the tools the agent calls. You will use it in a minute.'],
+      ['code','import json\n\ntools_used = []   # the names of the tools the agent called, in order\n\ndef agent(question, max_steps=5, verbose=True):\n    tools_used.clear()\n    msgs = [{"role":"system","content":\n             "Use the tools when a fact is needed. Never guess a number."},\n            {"role":"user","content":question}]\n    for step in range(max_steps):\n        r = client.chat.completions.create(\n            model="meta/llama-3.1-8b-instruct",\n            temperature=0, messages=msgs, tools=tools\n        ).choices[0].message\n\n        if not getattr(r, "tool_calls", None):\n            if verbose: print(f"[step {step}] final answer")\n            return r.content\n\n        msgs.append(r)\n        for call in r.tool_calls:\n            args = json.loads(call.function.arguments)\n            tools_used.append(call.function.name)\n            result = run_tool(call.function.name, args)\n            if verbose:\n                print(f"[step {step}] {call.function.name}({args}) -> {result}")\n            msgs.append({"role":"tool","tool_call_id":call.id,\n                         "content":json.dumps(result)})\n    return "STOPPED: step budget exhausted"\n\nprint(agent("I spent USD 300 on equipment. Am I within the policy limit in INR?"))'],
       ['x','You see a trace: <code>get_exchange_rate</code>, then <code>get_policy_limit</code>, then a final answer that combines both. The model split the question into two lookups and then combined the results. The loop itself is simple code. It’s the model that decides which tool to ask for next.'],
       [
         'snag',
@@ -332,6 +333,11 @@ window.PART2 = [
     ]],
     ['p','You can also watch a run in this tool, one step at a time. See where it can go wrong.'],
     ['lab','agentloop'],
+    ['h','Score the path, not only the answer'],
+    ['p','So far you have judged an agent by reading its final answer. But an agent can reach the right answer by the wrong path. It may call a tool it did not need, skip one it did, or call the same one twice. A correct answer hides all of that, and a wrong path costs money on every run.'],
+    ['p','Checking the steps is called a <strong>trajectory evaluation</strong>: you score the ordered list of tool calls separately from the final answer. For each task you ask two questions. Was the answer right? Did the agent call the tools you expected? Chapter 26 does this on a longer list. Here is a small version.'],
+    ['do','Score six tasks',[['p','Run this cell. It asks the agent six questions, each with the words a right answer must contain and the tools it should call. The sixth question cannot be answered, so the right behaviour is to say so.'],['code','cases = [\n    ("What is the policy limit for meals?", ["1500"], ["get_policy_limit"]),\n    ("Convert USD 100 to INR.", ["8820"], ["get_exchange_rate"]),\n    ("What is the travel limit in USD?", ["283"], ["get_policy_limit", "get_exchange_rate"]),\n    ("What is the equipment limit in USD?", ["680"], ["get_policy_limit", "get_exchange_rate"]),\n    ("What is 2 plus 2?", ["4"], []),\n    ("What is the policy limit for interstellar travel?", ["not", "no ", "unable", "cannot", "n\'t"], ["get_policy_limit"]),\n]\n\nanswer_score = 0\npath_score = 0\nfor question, words, want in cases:\n    reply = agent(question, verbose=False) or ""\n    answer_ok = any(w in reply.lower().replace(",", "") for w in words)\n    path_ok = sorted(tools_used) == sorted(want)\n    answer_score += answer_ok\n    path_score += path_ok\n    print(answer_ok, path_ok, tools_used)\n\nprint("final answer right:", answer_score, "of", len(cases))\nprint("path right:", path_score, "of", len(cases))'],['x','Each line shows whether the answer was right, whether the path was right, and the tools called. Your two totals will differ from anyone else’s. Look at the rows where the two scores disagree. A right answer on the wrong path is the case that checking only the final answer never sees. The word match is crude, so read any row it marks wrong before you trust it.']]],
+    ['q','I620'],
     ['h','Tool descriptions are code'],
     ['p','You may have wondered how the model decides which function to ask for. It reads the description. There is no other way for it to choose.'],
     ['p','This means a vague description leads to the wrong function being called. That is a writing bug, not a failure of the model. Let’s try writing a good one.'],
@@ -358,7 +364,7 @@ window.PART2 = [
       {id:'ch9-cost',
        short:true,
        ph:'A multiple, like 4×',
-       ask:'Make a guess first. A single call sends about 1,200 tokens. A six-step agent sends a growing conversation at every step. Roughly how many times the cost of a single call is the whole run?',
+       ask:'The book worked out one case. Now make your own guess. A single call sends about 1,200 tokens, and a six-step agent sends a growing conversation at every step. Roughly how many times the cost of a single call is the whole run?',
        reveal:'It depends on the messages, tool outputs, summaries, caching and pricing. If the loop sends a growing transcript each time, the input grows faster than the number of steps. So measure the actual input and output tokens for each step, instead of relying on a rule of thumb.',
        then:'This means an agent that “only” adds two more steps can double the bill. The number of steps is a product decision, and it has a cost attached.'}
     ],
@@ -372,6 +378,7 @@ window.PART2 = [
     ['h','Reading versus acting'],
     ['p','Not all tools carry the same risk. A function that reads data is recoverable. At worst you get bad information and you try again.'],
     ['p','But a function that sends, pays, deletes or books cannot be undone. The email has gone, and the refund has been issued. That difference should decide where a person approves actions in the loop. It is a product decision, and it is yours to make.'],
+    ['c','You already know this','A step limit and an approval point are delegation of powers and maker-checker. Nobody gets unlimited authority, and anything that cannot be undone needs a second person to sign. The agent gets the same rules you would write for an officer.'],
     ['q','I067','I065'],
     ['h','Always set a step limit'],
     ['p','There is one more way a loop goes wrong, and it is the simplest. If nothing tells the loop to stop, it may never stop. Let’s remove the limit and see.'],
@@ -427,7 +434,7 @@ window.PART2 = [
       {id:'ch10-window',
        rows:3,
        ph:'True or not, and what you would ask',
-       ask:'A vendor says their large context window makes your retrieval layer unnecessary: just send the whole document set with every request. Is that true, and what would you ask to find out?',
+       ask:'You met this claim in the book. Before you test it, write your own answer. A vendor says a large context window makes your retrieval layer unnecessary. Is that true for your documents, and what would you ask to find out?',
        reveal:'No, for two separate reasons. First, cost: sending a million tokens costs a million tokens on every query. Second, a model’s ability to use what is in the request drops well before the request is full, especially for content in the middle.',
        then:'The question that settles it: <em>show me your accuracy on a fact placed halfway through a full context window, compared with the same fact retrieved into a short one.</em>'}
     ],
@@ -444,6 +451,7 @@ window.PART2 = [
     ['do','Hide a fact at three depths',[
       ['p','First run this starter cell. It sets up the helper and the working values that the cells in this chapter use. Change them later if you like.'],
       ['code','MODEL = "meta/llama-3.1-8b-instruct"\n\ndef ask(prompt, temperature=0):\n    r = client.chat.completions.create(\n        model=MODEL, temperature=temperature,\n        messages=[{"role": "user", "content": prompt}])\n    return r.choices[0].message.content\n\nimport numpy as np\n\ndef embed(texts, input_type):\n    resp = client.embeddings.create(\n        model="nvidia/nv-embedqa-e5-v5", input=texts,\n        extra_body={"input_type": input_type, "truncate": "END"})\n    return [np.array(d.embedding) for d in resp.data]\n\ndef cosine(a, b):\n    return float(np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b)))\n\n# Eight made-up cards about ID formats. Replace them with your own cards.\nchunks = [\n    "A PAN has five capital letters, then four digits, then one capital letter.",\n    "An Aadhaar number has twelve digits, often written in groups of four. It does not start with 0 or 1.",\n    "An Indian mobile number has ten digits. The first digit is 6, 7, 8 or 9.",\n    "A PIN code has six digits. The first digit is not zero.",\n    "An IFSC code has four letters, then a zero, then six letters or digits.",\n    "A bank account number has nine to eighteen digits. A nearby word such as account helps to be sure.",\n    "A GSTIN has fifteen characters. It contains the holder\'s PAN.",\n    "A vehicle registration has state letters, a number, series letters and four digits.",\n]\nchunk_vecs = embed(chunks, "passage")\n\ndef rag_answer(question, k=3):\n    q = embed([question], "query")[0]\n    scores = [cosine(q, cv) for cv in chunk_vecs]\n    ranked = sorted(range(len(chunks)), key=lambda i: scores[i], reverse=True)\n    context = "\\n\\n".join(chunks[i] for i in ranked[:k])\n    r = client.chat.completions.create(\n        model=MODEL, temperature=0,\n        messages=[\n            {"role": "system", "content": ("Answer ONLY from the provided context. If the answer is not in the "\n             "context, reply exactly: \'Not found in the provided documents.\' "\n             "Never invent details.")},\n            {"role": "user", "content":\n                f"Context:\\n{context}\\n\\nQuestion: {question}"}])\n    return r.choices[0].message.content\n\ndef stuff_answer(question):\n    context = "\\n\\n".join(chunks)\n    r = client.chat.completions.create(\n        model=MODEL, temperature=0,\n        messages=[\n            {"role": "system", "content": "Answer ONLY from the provided context."},\n            {"role": "user", "content":\n                f"Context:\\n{context}\\n\\nQuestion: {question}"}])\n    return r.choices[0].message.content\n\n# Replace this with 8-12k words of your own text.\nfiller = " ".join(chunks * 70)\n\nground_truth_questions = [\n    "How many digits does an Aadhaar number have?",\n    "What does an IFSC code look like?",\n    "Which digit can an Indian mobile number start with?",\n    "What does this document say about cricket?",\n]'],
+    ['p','No long text of your own? Instead of repeating the cards, paste the public text of the Digital Personal Data Protection Act, 2023 into <code>filler</code>. If it is under eight thousand words, repeat it.'],
       ['p','Before you run anything, guess how often the model will find the fact at each depth: start, middle and end. Write down three percentages. Most people guess 100% for all three.'],
       ['code','NEEDLE = "The internal reference code for the Q3 audit exception is ZX-4417."\nQUESTION = "What is the internal reference code for the Q3 audit exception?"\n\n# filler: paste ~8-12k words of your own corpus text into `filler`\nwords = filler.split()\n\ndef haystack(depth_pct):\n    cut = int(len(words) * depth_pct)\n    return " ".join(words[:cut]) + " " + NEEDLE + " " + " ".join(words[cut:])\n\nfor depth in (0.05, 0.50, 0.95):\n    hits = 0\n    for trial in range(5):\n        r = client.chat.completions.create(\n            model=MODEL, temperature=0,\n            messages=[{"role":"system","content":"Answer only from the text provided."},\n                      {"role":"user","content":haystack(depth) + "\\n\\nQ: " + QUESTION}]\n        )\n        if "ZX-4417" in r.choices[0].message.content:\n            hits += 1\n    print(f"depth {int(depth*100):>2}% -> {hits}/5 recovered")'],
       ['x','A common result is 5/5 at 5%, 5/5 at 95%, and lower, often 2/5 or 3/5, at 50%. Your numbers are your finding. If you get 5/5 everywhere, add more filler text until you do not. The effect depends on length, and finding the length where it breaks for your model is the point of the exercise.'],
@@ -918,6 +926,7 @@ window.PART2 = [
       ]
     ]],
     ['p','So what just happened? Nothing was broken into. The model simply read a sentence that looked like an instruction, and it obeyed.'],
+    ['c','You already know this','A circular asking staff to behave is a filter. Role-based access is a control. The circular lowers the odds of a mistake, and the access rule removes the ability to make it. This chapter draws the same line for a model.'],
     ['h','The lethal trifecta'],
     ['p','A wrong answer is bad, but it’s not the worst that can happen. Once you add the tools from Chapter 9, injection can do much more than give a wrong answer.'],
     ['c','Why this matters','A system is dangerous when it has all three of these: access to private data, exposure to text that outsiders can influence, and a way to send something out. Any two are usually manageable. With all three, one hidden instruction can read your data and send it somewhere. This combination is called the <strong>lethal trifecta</strong>.'],
@@ -971,7 +980,7 @@ window.PART2 = [
       {id:'ch13-prompt',
        short:true,
        ph:'What it changes, in one line',
-       ask:'You add a strongly worded instruction, and successful attacks fall from eight in ten to two in ten. What have you bought?',
+       ask:'The book showed a louder instruction helping a little. Predict what yours buys. You add a strongly worded instruction, and successful attacks fall from eight in ten to two in ten. What have you bought?',
        reveal:'A lower success rate against the attacks you thought of, and nothing more. The system is harder to attack casually, but it is not secure. An attacker can try as many times as they like, for free, and a message written for your defence can bring the rate back to eight in ten.',
        then:'This distinction matters in any risk discussion: a filter lowers a probability, and a control removes a capability. Only a control holds up against someone who keeps trying.'}
     ],

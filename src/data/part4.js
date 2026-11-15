@@ -24,6 +24,7 @@ window.PART4 = [
     ['p','In the last chapter you wrote a full requirements document and planned for the day a model is retired. Now imagine a colleague walks in and says, “There’s a product that already does this. Why are we building it?”'],
     ['p','That question will come up sooner or later. The discussion usually turns to price and to how good the demo looked. Neither one decides the matter.'],
     ['key','You are rarely buying the model, because most vendors use the same models. You are buying the connectors, the permissions, the audit trail, the support contract, and someone else handling incidents.'],
+    ['c','You already know this','Testing a vendor on your own answer key is technical evaluation with your own test cases, not the vendor’s demo data. The exit clause is the question every tender should ask: what would it take to leave?'],
     ['h','Test the vendor with your answer key'],
     ['p','A demo is built to look good. To see what a vendor can really do, you need a test the vendor didn’t design. Luckily, you already have one.'],
     ['do','Run your answer key against the vendor',[
@@ -332,6 +333,7 @@ window.PART4 = [
       ['<strong>The number.</strong> Choose one measure the business already tracks, such as handling time, first-contact resolution, backlog age or error rate. Don’t invent a new metric for the pilot.','<strong>The comparison.</strong> Looking at the same team before and after is weak evidence. Comparing two similar groups over the same period is much stronger, and it is usually possible.','<strong>The failure threshold.</strong> This is the change below which you will call the pilot a failure. Write it down before you start.','<strong>The time window.</strong> Make it long enough for the novelty to wear off. Any new tool looks better than it really is in its first two weeks.']
     ],
     ['p','The failure threshold is the part people skip. So let’s practise it.'],
+    ['c','You already know this','A pilot that could fail is a pilot district. You agree the success threshold with the steering committee before rollout, not after the numbers come in.'],
     ['do','Write the disappointing result in advance',[
       ['p','Before running anything, write the sentence you would have to say if the pilot showed no effect. Use the words you would say to the person who funded it.'],
       ['x','This shows you two things. First, whether you really have a failure threshold, because many pilots don’t. Second, whether the pilot could ever produce that sentence, or whether every outcome would be reported as a success.'],

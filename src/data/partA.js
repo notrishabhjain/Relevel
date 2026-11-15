@@ -199,7 +199,7 @@ window.PART6 = [
     ]],
 
     ['h','Idea 3: Build first, then check whether you are ready'],
-    ['p','With a place to work, the next question is time. How much should you study each week, and how should you spend it? Your route starts at about an hour to an hour and a half a week and reaches four or five in the capstone weeks. Whatever your total, split it into four blocks and give the biggest block to building. Here is the split at a full-time pace of twelve hours; scale it to your own:'],
+    ['p','With a place to work, the next question is time. How much should you study each week, and on what? Your route starts at about an hour to an hour and a half a week and reaches four or five in the capstone weeks. Split it into four blocks and give the biggest block to building. Here is the split at a full-time pace of twelve hours; scale it to your own:'],
     ['tb',['Block','Hours','What you produce'],[
       ['Learn and prove','3','Experiments, notes and quiz answers'],
       ['Build','5','An artifact, prototype or code'],

@@ -259,7 +259,7 @@ window.PART1 = [
       {id:'ch1-guess',
        short:true,
        ph:'One line: what do you think it does?',
-       ask:'Predict: you ask the model about the refund policy of a company that does not exist. It has never seen anything about it. What comes back?',
+       ask:'You saw this in the book. Now predict what your own model returns when you ask about the refund policy of a company you invent, which it has never seen anything about. What comes back?',
        reveal:'Usually a confident, well-written, invented policy. The model predicts likely text, and “I have no information about this” is often not the most likely continuation. Saying <em>I don’t know</em> is a behaviour that has to be added and tested, and it does not always hold.',
        then:'So you cannot judge an answer by how confident it sounds. A correct answer and an invented one read the same way. In Chapter 2 you will make a model invent an answer on purpose.'}
     ],
@@ -672,7 +672,7 @@ window.PART1 = [
     'Explain why a prompt that looked better in a demo often is not.'
   ],
   story:[
-    ['c','Before you start','Bring the four prompt versions from the last chapter. They are still in your notebook session, or press <strong>Restore</strong> after a reload. You’ll find out which one is actually better, and it may not be the one that felt better.'],
+    ['c','Before you start','Bring the four prompt versions from the last chapter. They are still in your notebook session, or press <strong>Restore</strong> after a reload. You’ll find out which one is actually better, and it may not be the one that felt better. No document you can use? Use the text of the Digital Personal Data Protection Act, 2023. It is public, and it is full of rules with exceptions.'],
     ['p','At the end of the last chapter you had four versions of a prompt and a feeling about which was best. This chapter turns that feeling into something you can check. You’ll build a small test set, score every version against it, and then improve the best one carefully.'],
     ['h','Why reading a few outputs misleads you'],
     ['p','First, let’s see the problem for yourself. You’ll run one prompt on the same input several times and look at what comes back.'],
@@ -687,8 +687,9 @@ window.PART1 = [
     ['p','The fix is a small test set. It’s a handful of real inputs, and for each one, a note on what a good answer looks like. People in AI teams call running a set like this an <strong>eval</strong>, short for evaluation. Chapter 6 builds a bigger version for retrieval. This one takes about twenty minutes.'],
     ['h','Build the test set'],
     ['p','A test set doesn’t need to be fancy. Ten rows are enough to start. What matters is that the inputs are real and that you write down what “good” means before you look at the results.'],
+    ['c','You already know this','A test set is the user acceptance cases you wrote before go-live. The difference is that you rerun it every time the prompt or the model changes, not once before sign-off.'],
     ['do','Build a ten-row test set',[
-      ['p','Collect ten real inputs for your task, including the two messiest you can find. Don’t invent them. For each one, write down the two or three things a good answer must contain. You don’t need the exact words. Aim for this mix:'],
+      ['p','Collect ten real inputs for your task, including the two messiest you can find. Don’t invent them. For each one, write down the two or three things a good answer must contain. You don’t need the exact words. Aim for this mix: No inputs you can use? Take ten of the starter sentences from the project page instead, and the capstone is then your chapter work.'],
       [
         'n',
         ['Six ordinary cases, chosen without looking at how the prompt does on them.','Two awkward ones, with missing information, an unusual format or the wrong language.','Two that should be refused or escalated rather than answered.']
@@ -734,7 +735,8 @@ window.PART1 = [
       'Run your improved prompt from Chapter 2.1 on all twelve rows. Give one point for each row where the tool found everything and nothing extra. Write the score out of twelve. This is your baseline.',
       'Make three changes to the prompt, one at a time, and score again after each. Write all four scores in a small table.',
       'Find one change that made no difference and remove it. Write how much that saves per call. Then run the best prompt with a cheaper, smaller model and note which rows now fail.',
-      'Write half a page for a colleague: your prompt, its score, and the two rows it still gets wrong.'
+      'Write half a page for a colleague: your prompt, its score, and the two rows it still gets wrong.',
+      'Save the four prompts and their four scores as <code>docs/prompt-and-scores.md</code> in your repository.'
     ],
     done:[
       'The answer key, version 1, with twelve labelled rows, saved in your repository.',
@@ -749,7 +751,7 @@ window.PART1 = [
      paste. That is still true here, deliberately: before the course spends
      five chapters teaching retrieval, it is worth knowing that a large share
      of real requests never needed it. */
-  id:'ch23', num:2.3, part:1, curriculumTier:'core', phase:1, prerequisites:['ch21','ch22'], nextUnits:['ch24','ch25'], minutes:20, labs:[],
+  id:'ch23', num:2.3, part:1, curriculumTier:'core', phase:1, prerequisites:['ch21','ch22'], nextUnits:['ch24','ch25'], minutes:25, labs:[],
   title:'The five task types: classify, extract, summarise, rewrite, generate',
   concept:'Almost every request for AI falls into one of five task types. The type decides whether you can measure the result automatically, so name it before you design anything.',
   needs:[
@@ -766,6 +768,10 @@ window.PART1 = [
     ['p','In the last chapter you built a test set and used it to compare prompts. Its rows were easy to mark pass or fail. That wasn’t luck. It depended on the kind of task you gave the model, and this chapter shows you how to tell the kinds apart.'],
     ['p','People usually describe AI requests as outcomes: <em>Can the AI handle our inbox? Can it help with contracts? Can it make the team faster?</em> None of those is a task yet. Underneath almost every one is one of five task types. And the type matters more than which model you pick.'],
     ['key','Choose the task type first. It takes one sentence, and it’s the design decision most often skipped.'],
+    ['h','First: should this be a model at all?'],
+    ['p','Before you pick a task type, ask four questions about the request. Stop at the first one that settles it.'],
+    ['n',['Can a fixed rule do it? Then write the rule.','Can a lookup do it? Then look it up.','Is a wrong answer cheap to fix? If not, keep a person in the loop.','Does anyone need it at all? If not, do not build it.']],
+    ['try',{id:'ch23-nomodel',mins:4,min:40,rows:3,task:'Name one request at your work that should not be a model, and say which of the four questions settles it.',ph:'The request … should not be a model because …',after:'A good answer names one specific request and one question. “Check that a PAN has the right shape” is settled by the first question: a rule does it for free, and it is the first thing Bharat Privacy Guard runs. Knowing where a model is the wrong tool is what an interviewer in a product-sense round listens for.'}],
     ['h','The five types'],
     ['p','Here are the five types. Read the last column closely, because it’s the one that matters most for your work. It tells you whether a program can mark the answer, or whether a person has to.'],
     [
@@ -787,7 +793,7 @@ window.PART1 = [
       ['key','If a request doesn’t fit one type, split it into steps until each step does.']
     ]],
     ['h','Split mixed requests into steps'],
-    ['p','Take “handle the inbox”. It usually hides three tasks. You <em>classify</em> the message by type, you <em>extract</em> the account number, and you <em>generate</em> a draft reply. Each step fails in a different way, and only the first two can be measured without a person reading the output.'],
+    ['p','Take “handle the grievance inbox” at a state portal. It usually hides three tasks. You <em>classify</em> each grievance by department, you <em>extract</em> the application number, and you <em>generate</em> a draft acknowledgement. Each step fails in a different way, and only the first two can be measured without a person reading the output.'],
     ['do','Split the request that did not fit',[
       ['p','Take the request that didn’t fit a single type. Break it into steps, each with exactly one type, in the order they would run.'],
       ['x','You get three or four steps. Usually only the last step is hard to measure. The earlier steps are classification and extraction, which are cheap and checkable. When they’re reliable, the last step has an easier job.'],
@@ -843,7 +849,7 @@ window.PART1 = [
     'Explain why an overall accuracy figure often hides the failure that matters.'
   ],
   story:[
-    ['c','Before you start','The code runs right here, in order. Bring twenty real examples of something at your work that gets sorted into categories. It could be tickets by type, documents by department or requests by urgency. Paste them into a cell, or add them as a file.'],
+    ['c','Before you start','The code runs right here, in order. Bring twenty real examples of something at your work that gets sorted into categories. It could be tickets by type, documents by department or requests by urgency. Paste them into a cell, or add them as a file. No examples you can use? Use the starter sentences from the project page, sorted by kind of detail, and the capstone is then your chapter work.'],
     ['p','In the last chapter you met the five task types. One of them, classification, is the easiest to grade, because each answer is either right or wrong. In this chapter you’ll build a small classifier and measure it properly. You’ll also learn why one overall score can fool you, and that matters whenever you judge an AI feature.'],
     ['do','Look again at your test set',[
       ['p','First, open the ten-row test set you made in Chapter 2.2. Look at the “good answer contains” column.'],
@@ -869,6 +875,7 @@ window.PART1 = [
     ['p','Now fix the format. Use the technique from Chapter 2.1: show an example instead of describing it. Add two worked examples, and make one of them an awkward case. The format stops varying. Chapter 8 shows how to make other formats impossible, but two examples get you most of the way.'],
     ['h','Measure each category separately'],
     ['p','Next comes the important step. It’s tempting to count how many answers were right out of twenty and stop there. But that single number can hide a lot, so you’ll count for each category instead.'],
+    ['c','You already know this','Per-category accuracy is the district table behind a state average. One failing district hides inside a good total. You would not report only the state figure to a ministry, so do not report only the overall accuracy.'],
     ['do','Score each category',[
       ['p','Grade all twenty against the answers you know. Count the results for each category, not just overall.'],
       ['code','from collections import Counter\nhit, miss = Counter(), Counter()\nfor row in examples:\n    got = classify(row["text"])\n    (hit if got == row["truth"] else miss)[row["truth"]] += 1\nfor c in LABELS:\n    n = hit[c] + miss[c]\n    if n: print(c, hit[c], "/", n)'],
@@ -926,7 +933,7 @@ window.PART1 = [
     'Explain why “it reads well” tells you almost nothing about a summary.'
   ],
   story:[
-    ['c','Before you start','Bring one real document with something important buried in it. It could be a deadline, an exception, a liability or a number that someone would be upset to miss. Add it with the Files panel, or paste it into a cell.'],
+    ['c','Before you start','Bring one real document with something important buried in it. It could be a deadline, an exception, a liability or a number that someone would be upset to miss. Add it with the Files panel, or paste it into a cell. No document you can use? Use the Digital Personal Data Protection Act, 2023. It is public.'],
     ['p','In the last chapter you graded a classifier, where every answer was plainly right or wrong. Summaries are different. There is no single right answer, so it’s much harder to say whether one is good. In this chapter you’ll see how a summary can fail without anyone noticing, and then you’ll build a simple way to catch that failure.'],
     ['h','How summaries fail'],
     ['p','Let’s start by watching a summary go wrong. Summarise a document the simplest way you can, and then look for the detail you buried in it.'],
@@ -1025,7 +1032,7 @@ window.PART1 = [
     ]
   },
   story:[
-    ['c','Before you start','There’s no code in this chapter. Print one real document you know well, such as a policy, a contract or a procedure of five to fifteen pages. Get a pair of scissors and a pen too. You’ll do every step by hand.'],
+    ['c','Before you start','There’s no code in this chapter. Print one real document you know well, such as a policy, a contract or a procedure of five to fifteen pages. Get a pair of scissors and a pen too. You’ll do every step by hand. No document you can use? Print up to fifteen pages of the Digital Personal Data Protection Act, 2023. It is public and full of rules with exceptions. Later chapters can reuse it.'],
     ['p','So far, every document you gave a model was short enough to paste into the request. Real work isn’t like that. Companies have handbooks, policies and years of contracts. In this chapter you’ll see why we can’t just send all of that to a model, and what happens when we cut it into pieces instead.'],
     ['p','It’s a quick, hands-on chapter, and it sets up everything that follows.'],
     ['do','Write your test questions first',[
@@ -1189,7 +1196,7 @@ window.PART1 = [
       {id:'ch4-norank',
        short:true,
        ph:'One line',
-       ask:'Predict: a user asks something your documents do not cover at all. What does the search step return?',
+       ask:'The book showed this once. Predict what your own search step returns when you ask something your documents do not cover at all, then run it.',
        reveal:'Twenty chunks, ranked, with one at the top. Search has no idea of “nothing here”. It scores everything and sorts the list. For an unanswerable question, the top result is just the least bad of a bad set.',
        then:'Now put that together with Chapter 2. The irrelevant chunk is passed to the model as if it were evidence, and the model writes a fluent answer from it. No step reports an error. You get a confident, wrong answer, and nothing in the system notices.'}
     ],
@@ -1231,7 +1238,7 @@ window.PART1 = [
     brief:'So far your rules are written on paper. In this chapter you learned that a computer can compare the meaning of sentences, not just their words, by turning them into lists of numbers called embeddings. Now you’ll turn your pattern rules into code. Then you’ll use meaning to find the sentences the rules can’t, and compare the two approaches on your answer key.',
     where:'Your notebook for this chapter, for the code and the comparison, next to your hand-scored results from Chapter 4. Write up the comparison in the notes box below. Short version for the route, about 20 minutes: steps 1 and 2.',
     steps:[
-      'In your notebook for this chapter, turn your plain-word rules for PAN, Aadhaar, mobile number and email into code. Each one is a short pattern. Run them over the twelve rows of the answer key and print what each finds.',
+      'In your notebook for this chapter, turn your plain-word rules for PAN, Aadhaar, mobile number and email into code. Each one is a short pattern. Run them over the twelve rows of the answer key and print what each finds. A finished pattern checker also applies the Aadhaar check-digit rule (the Verhoeff scheme; a number never starts with 0 or 1), which removes about nine in ten twelve-digit look-alikes at no cost. Use the start rule now and note the check digit as the next rule to add.',
       'Score the code. In how many of the twelve rows did it give exactly the right answer? Which rows did it miss or get wrong? Compare this with your by-hand result from Chapter 4. Are they the same?',
       'Write five sentences that give away a person without any ID, such as “I am the only diabetic patient in my village who had a transplant last year”. Also write five harmless sentences, such as “What documents do I need to renew my driving licence?”.',
       'Use the embedding function from the chapter to turn all ten sentences into numbers. For each of the ten sentences, find the closest of your five giveaway examples and print the similarity score.',
@@ -1349,7 +1356,8 @@ window.PART1 = [
       'Calculate recall (the share of real items that were found) and precision (the share of reported items that were real) for each kind of ID, and for each kind of writing. Put the results in two small tables.',
       'Run it at two settings of your choice, for example strict matching and loose matching. Record the numbers for both.',
       'Decide which failure is worse for this tool, a missed detail or a false alarm, and explain why in two sentences. Think about what happens to a real person in each case.',
-      'Write the note. Recommend one setting, say which failure you’ve decided to accept and who made that decision, and say whether this version is good enough to use.'
+      'Write the note. Recommend one setting, say which failure you’ve decided to accept and who made that decision, and say whether this version is good enough to use.',
+      'Save the note as <code>docs/scoreboard-v0.md</code> in your repository.'
     ],
     done:[
       'The answer key, version 2, with about 30 rows, saved in your repository.',
@@ -1378,7 +1386,7 @@ window.PART1 = [
       {id:'ch6-first',
        short:true,
        ph:'A fraction, like 6/10',
-       ask:'Predict: you build a search step, write ten honest questions and run them. How many will find the right chunk on the first try?',
+       ask:'The book gave one team’s result. Predict your own number: out of your ten honest questions, how many will find the right chunk on the first try? Write it before you run.',
        reveal:'Six or seven out of ten is a normal, healthy first result for a working system.',
        then:'If you got nine or ten, the likely reason is that you wrote the questions after reading the documents. That tests whether search can find text using its own words, and that’s not what users do.'}
     ],
@@ -1401,6 +1409,7 @@ window.PART1 = [
     ['p','Imagine you ask an assistant to fetch the files for a meeting. They can go wrong in two ways. They can leave out something that mattered, or they can bring you a huge pile of things that didn’t.'],
     ['p','Leaving out what mattered is poor <strong>recall</strong>. Bringing lots of irrelevant material is poor <strong>precision</strong>. In search, the setting that sits between the two is how many chunks you fetch per question. It’s usually called <strong>k</strong>.'],
     ['p','A higher k usually improves recall and lowers precision. A lower k does the reverse. These are tendencies, not guarantees, so measure them on your own questions.'],
+    ['c','You already know this','Precision and recall are the inclusion and exclusion errors in beneficiary targeting. Low precision lets ineligible people in. Low recall leaves eligible people out. You have already had to decide which error a scheme can live with.'],
     ['p','You usually can’t maximise both at once. Try changing k and watch what happens:'],
     ['do','Change k and compare',[
       ['p','Grade the same ten questions again at <code>k=1</code> and at <code>k=8</code>, and fill in this table by hand:'],
@@ -1467,7 +1476,8 @@ window.PART1 = [
       'Write the scoreboard numbers from Chapter 6 on the page.',
       'List the four biggest gaps you have seen. For each one, write what you saw when you triggered it.',
       'Rank the four gaps for a real user. In one line each, say what the failure would cost a real person.',
-      'Write what you will fix first and what it would take, in two sentences.'
+      'Write what you will fix first and what it would take, in two sentences.',
+      'Save the page as <code>docs/findings-v0.md</code> in your repository. Before you make the repository public, search it for keys and real personal details. Then switch on the repository’s public page (Pages, in its settings) if you want a link anyone can open.'
     ],
     done:[
       'A one-page drawing of the tool with the existing boxes marked.',

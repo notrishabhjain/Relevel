@@ -163,8 +163,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Ab ek sawaal. Aapko kya lagta hai, jab model ke paas jawaab banane ke liye kuch hai hi nahi, toh kya hoga? Aage padhne se pehle ek andaaza lagaiye.',
   'One line: what do you think it does?':
     'Ek line mein: aapko kya lagta hai woh kya karega?',
-  'Predict: you ask the model about the refund policy of a company that does not exist. It has never seen anything about it. What comes back?':
-    'Andaaza lagaiye: aap model se ek aisi company ki refund policy ke baare mein poochhte hain jo exist hi nahi karti. Usne uske baare mein kuch kabhi dekha hi nahi. Phir kya wapas aata hai?',
+  'You saw this in the book. Now predict what your own model returns when you ask about the refund policy of a company you invent, which it has never seen anything about. What comes back?':
+    'Yeh aapne book mein dekha. Ab apne model ke liye anumaan lagaiye ki jab aap ek aisi company ki refund policy poochhte hain jo aapne khud gadhi hai aur jiske baare mein usne kabhi kuch nahi dekha, to kya wapas aata hai?',
   'Usually a confident, well-written, invented policy. The model predicts likely text, and “I have no information about this” is often not the most likely continuation. Saying <em>I don’t know</em> is a behaviour that has to be added and tested, and it does not always hold.':
     'Aksar ek confident, achhi likhi hui, banayi hui policy. Model likely text predict karta hai, aur “mere paas is baare mein koi information nahi hai” aksar sabse likely agla hissa nahi hota. <em>Mujhe nahi pata</em> kehna ek behaviour hai jo alag se add karna aur test karna padta hai, aur woh hamesha kaam nahi karta.',
   'So you cannot judge an answer by how confident it sounds. A correct answer and an invented one read the same way. In Chapter 2 you will make a model invent an answer on purpose.':
@@ -645,8 +645,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Test set ko fancy hone ki zaroorat nahi. Shuru karne ke liye 10 rows kaafi hain. Zaroori yeh hai ki inputs asli hon, aur result dekhne se pehle aap likh lein ki “achha” ka matlab kya hai.',
   'Build a ten-row test set':
     '10 rows ka test set banaiye',
-  'Collect ten real inputs for your task, including the two messiest you can find. Don’t invent them. For each one, write down the two or three things a good answer must contain. You don’t need the exact words. Aim for this mix:':
-    'Apne task ke liye 10 asli inputs jama kijiye, jisme sabse gande-uljhe do inputs bhi hon. Unhe khud se mat banaiye. Har ek ke liye woh do-teen cheezein likhiye jo ek achhe jawaab mein honi chahiye. Exact words ki zaroorat nahi. Is mix ka dhyaan rakhiye:',
+  'Collect ten real inputs for your task, including the two messiest you can find. Don’t invent them. For each one, write down the two or three things a good answer must contain. You don’t need the exact words. Aim for this mix: No inputs you can use? Take ten of the starter sentences from the project page instead, and the capstone is then your chapter work.':
+    'Apne task ke liye 10 asli inputs jama kijiye, jisme sabse gande-uljhe do inputs bhi hon. Unhe khud se mat banaiye. Har ek ke liye woh do-teen cheezein likhiye jo ek achhe jawaab mein honi chahiye. Exact words ki zaroorat nahi. Is mix ka dhyaan rakhiye: Koi inputs use nahi kar sakte? Iske bajaye project page ke das starter sentences lijiye, aur tab capstone hi aapka chapter ka kaam hai.',
   'Six ordinary cases, chosen without looking at how the prompt does on them.':
     'Chhe aam cases, jinhe aapne yeh dekhe bina chuna ki prompt unpar kaisa chal raha hai.',
   'Two awkward ones, with missing information, an unusual format or the wrong language.':
@@ -797,8 +797,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Agar koi request ek type mein fit nahi hoti, toh use steps mein todiye jab tak har step fit na ho jaaye.',
   'Split mixed requests into steps':
     'Mixed requests ko steps mein todiye',
-  'Take “handle the inbox”. It usually hides three tasks. You <em>classify</em> the message by type, you <em>extract</em> the account number, and you <em>generate</em> a draft reply. Each step fails in a different way, and only the first two can be measured without a person reading the output.':
-    '“Inbox sambhalo” ko lijiye. Isme aksar teen tasks chhupe hote hain. Aap message ko type ke hisaab se <em>classify</em> karte hain, account number <em>extract</em> karte hain, aur reply ka ek draft <em>generate</em> karte hain. Har step alag tarah se fail hota hai, aur sirf pehle do ko bina kisi insaan ke output padhe measure kiya ja sakta hai.',
+  'Take “handle the grievance inbox” at a state portal. It usually hides three tasks. You <em>classify</em> each grievance by department, you <em>extract</em> the application number, and you <em>generate</em> a draft acknowledgement. Each step fails in a different way, and only the first two can be measured without a person reading the output.':
+    'Ek state portal ke “grievance inbox sambhalo” ko lijiye. Isme aksar teen tasks chhupe hote hain. Aap har grievance ko department ke hisaab se <em>classify</em> karte hain, application number <em>extract</em> karte hain, aur acknowledgement ka ek draft <em>generate</em> karte hain. Har step alag tarah se fail hota hai, aur sirf pehle do ko bina kisi insaan ke output padhe measure kiya ja sakta hai.',
   'Split the request that did not fit':
     'Jo request fit nahi hui, use todiye',
   'Take the request that didn’t fit a single type. Break it into steps, each with exactly one type, in the order they would run.':
@@ -1081,8 +1081,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek concrete example ke saath samjha paana ki document ko chunks mein todne par kya khota hai.',
   'Choose a chunking approach by naming the failure you accept, since no chunk size is right for every document.':
     'Woh failure naam lekar chunking approach chun paana jo aap accept karte hain, kyunki koi ek chunk size har document ke liye sahi nahi hota.',
-  'There’s no code in this chapter. Print one real document you know well, such as a policy, a contract or a procedure of five to fifteen pages. Get a pair of scissors and a pen too. You’ll do every step by hand.':
-    'Is chapter mein koi code nahi hai. Ek asli document print kijiye jise aap achhi tarah jaante hain, jaise policy, contract ya paanch se pandrah pages ki ek procedure. Saath mein ek kainchi aur ek pen bhi le lijiye. Har step aap haath se karenge.',
+  'There’s no code in this chapter. Print one real document you know well, such as a policy, a contract or a procedure of five to fifteen pages. Get a pair of scissors and a pen too. You’ll do every step by hand. No document you can use? Print up to fifteen pages of the Digital Personal Data Protection Act, 2023. It is public and full of rules with exceptions. Later chapters can reuse it.':
+    'Is chapter mein koi code nahi hai. Ek asli document print kijiye jise aap achhi tarah jaante hain, jaise policy, contract ya paanch se pandrah pages ki ek procedure. Saath mein ek kainchi aur ek pen bhi le lijiye. Har step aap haath se karenge. Koi document use nahi kar sakte? Digital Personal Data Protection Act, 2023 ke paandrah pages tak print kijiye. Yeh public hai aur apwaadon wale niyamon se bhara hai. Aage ke chapters ise dobara use kar sakte hain.',
   'So far, every document you gave a model was short enough to paste into the request. Real work isn’t like that. Companies have handbooks, policies and years of contracts. In this chapter you’ll see why we can’t just send all of that to a model, and what happens when we cut it into pieces instead.':
     'Ab tak jo bhi document aapne model ko diya, woh itna chhota tha ki request mein paste ho jaata tha. Asli kaam aisa nahi hota. Companies ke paas handbooks, policies aur saalon ke contracts hote hain. Is chapter mein aap dekhenge ki yeh sab model ko seedha kyun nahi bhej sakte, aur jab hum use pieces mein kaat dete hain toh kya hota hai.',
   'It’s a quick, hands-on chapter, and it sets up everything that follows.':
@@ -1301,8 +1301,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Search ki ek aur khaasiyat hai, aur woh aage chalkar badi problem karti hai. Uska naam lene se pehle, ek andaaza lagaiye.',
   'One line':
     'Ek line',
-  'Predict: a user asks something your documents do not cover at all. What does the search step return?':
-    'Andaaza lagaiye: ek user aisa kuch poochta hai jo aapke documents mein bilkul nahi hai. Search step kya wapas karta hai?',
+  'The book showed this once. Predict what your own search step returns when you ask something your documents do not cover at all, then run it.':
+    'Book ne yeh ek baar dikhaya. Anumaan lagaiye ki aapka apna search step kya wapas karta hai jab aap aisa kuch poochhte hain jo aapke documents bilkul cover nahi karte, phir use chalaiye.',
   'Twenty chunks, ranked, with one at the top. Search has no idea of “nothing here”. It scores everything and sorts the list. For an unanswerable question, the top result is just the least bad of a bad set.':
     'Bees chunks, rank kiye hue, ek sabse upar. Search ko “yahan kuch nahi hai” ka koi idea hi nahi hota. Woh sab ko score karta hai aur list sort kar deta hai. Jis sawaal ka jawaab hai hi nahi, uske liye top result bas ek kharab set ka sabse kam kharab chunk hota hai.',
   'Now put that together with Chapter 2. The irrelevant chunk is passed to the model as if it were evidence, and the model writes a fluent answer from it. No step reports an error. You get a confident, wrong answer, and nothing in the system notices.':
@@ -1517,8 +1517,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Kuch bhi naapne se pehle, ek andaaza lagaiye. Isme thoda hi time lagta hai, aur isse aap kuch seekhte hain.',
   'A fraction, like 6/10':
     'Ek fraction, jaise 6/10',
-  'Predict: you build a search step, write ten honest questions and run them. How many will find the right chunk on the first try?':
-    'Andaaza lagaiye: aap ek search step banate hain, das imaandaar sawaal likhte hain aur unhe chalate hain. Pehli koshish mein kitne sahi chunk dhoondhenge?',
+  'The book gave one team’s result. Predict your own number: out of your ten honest questions, how many will find the right chunk on the first try? Write it before you run.':
+    'Book ne ek team ka result diya. Apna number anumaan lagaiye: aapke das imaandaar sawaalon mein se kitne pehli koshish mein sahi chunk dhoondhenge? Chalaane se pehle likhiye.',
   'Six or seven out of ten is a normal, healthy first result for a working system.':
     'Das mein se chhe ya saat ek chalte hue system ka normal, healthy pehla result hai.',
   'If you got nine or ten, the likely reason is that you wrote the questions after reading the documents. That tests whether search can find text using its own words, and that’s not what users do.':

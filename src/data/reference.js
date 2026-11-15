@@ -604,7 +604,14 @@ Object.assign(window.APPENDIX, {
     [19,'Architecture Decision Records','The major decisions, their alternatives, the evidence, and what would reopen them.','ch20d','adr','decision'],
     [20,'Production architecture','A system diagram, the trust boundaries, deployment and operations.','ch20d','adr','engineering'],
     [21,'Final capstone repository','Reproducible code, tests, evaluation, real-user evidence and documentation.','ch21cap','gate','engineering'],
-    [22,'Executive briefing deck','Five minutes on the outcome, twenty minutes of technical defence, and a public case study.','ch21cap','prd','decision']
+    [22,'Executive briefing deck','Five minutes on the outcome, twenty minutes of technical defence, and a public case study.','ch21cap','prd','decision'],
+    [23,'Prompt and scores page','Your four prompt versions and a score for each, run on the same ten inputs.','ch22','exp','experiment'],
+    [24,'Scoreboard v0','Recall, precision and the failure you chose to accept, on an answer key of about thirty rows.','ch6','exp','experiment'],
+    [25,'Findings page v0','The gaps in your first system, ranked by what each would cost a real user.','ch7','fail','evidence'],
+    [26,'Agent test cases','Six agent tasks with the expected answer and the expected tool path, and two scores.','ch9','evalcase','evidence'],
+    [27,'Judge check','How often your marker agrees with your own marking, and where it leans.','ch14','exp','experiment'],
+    [28,'Cost model','Cost per message, per thousand and per month, and the cost if the cheap path stops working.','ch15','gate','decision'],
+    [29,'System card','Risk level, data, measured quality, known failures, limits and human oversight for the tool.','ch17','risk','decision']
   ],
 
   /* Appendix C — the reusable templates. Fields marked 'long' get a text area

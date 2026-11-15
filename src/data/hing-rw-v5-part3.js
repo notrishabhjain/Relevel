@@ -111,8 +111,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Toh judge ko check kaise karein? Aap <strong>agreement</strong> naapte hain. Bees jawaab khud grade kijiye, judge se wahi bees grade karwaiye, aur ginti kijiye ki kitni baar aap dono sehmat hue. Agar agreement kam hai, toh judge ke scores reliable nahi hain.',
   'A fraction, like 7/10':
     'Ek fraction, jaise 7/10',
-  'Predict: you write a judge prompt, grade twenty answers by hand, and have the judge grade the same twenty. How often will it agree with you on the first attempt?':
-    'Andaaza lagaiye: aap ek judge prompt likhte hain, bees jawaab haath se grade karte hain, aur judge se wahi bees grade karwate hain. Pehli koshish mein woh kitni baar aapse sehmat hoga?',
+  'The book gave one team’s agreement. Predict your own: you grade twenty answers by hand and the judge grades the same twenty. How often will it agree with you on the first attempt?':
+    'Book ne ek team ka agreement diya. Apna anumaan lagaiye: aap bees answers haath se grade karte hain aur judge wahi bees grade karta hai. Pehli koshish mein woh kitni baar aapse sehmat hoga?',
   'Six or seven out of ten is normal for a first attempt. The pattern of disagreements matters more than the number. If they cluster, for example the judge marks every hedged answer as correct, you have found something you can fix. If they are scattered with no pattern, your own definition of a good answer is probably unclear, and changing the judge prompt will not help.':
     'Pehli koshish mein das mein se chhe ya saat normal hain. Number se zyada zaroori hai disagreements ka pattern. Agar woh ek jagah jama hain, jaise judge har hedged jawaab ko correct maan leta hai, toh aapko kuch aisa mila hai jo aap theek kar sakte hain. Agar woh bikhre hue hain aur koi pattern nahi hai, toh shayad achhe jawaab ki aapki apni definition saaf nahi hai, aur judge prompt badalne se kuch nahi hoga.',
   'So check whether disagreements are clustered or scattered. That tells you whether to fix the judge or your own definition.':

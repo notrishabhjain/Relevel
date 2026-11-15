@@ -28,7 +28,8 @@ window.PART3 = [
       'Build the model-based marker from your rules and let it mark twenty cleaned outputs. Mark the same twenty yourself, by hand.',
       'Calculate how often the marker agrees with you. Look at the disagreements: is the marker too strict, too lenient, or both?',
       'Test it for a bias towards length: take ten outputs and make each one twice as long without changing its meaning. Does the mark change?',
-      'Write the range of marks in which you would read the output yourself instead of trusting the marker.'
+      'Write the range of marks in which you would read the output yourself instead of trusting the marker.',
+      'Save the marking rules, the agreement figure and the disagreements as <code>docs/judge-check.md</code> in your repository.'
     ],
     done:[
       'Your marking rules.',
@@ -73,6 +74,7 @@ window.PART3 = [
     ['h','Build an LLM judge'],
     ['p','An <strong>LLM judge</strong> is a model that grades another model’s output. It’s cheap and fast, but you must check it before you trust it.'],
     ['key','Check an LLM judge against your own grading before you trust it. Unchecked, it is just another guess from the same kind of system that produced the answer.'],
+    ['c','You already know this','Checking a judge against your own marking is checking a second evaluator on a tender committee. If two evaluators score the same bids differently, you find out why before you trust either one’s scores.'],
     ['p','You can see a judge at work in the lab below.'],
     ['lab','judge'],
     ['q','I048'],
@@ -92,7 +94,7 @@ window.PART3 = [
       {id:'ch14-agree',
        short:true,
        ph:'A fraction, like 7/10',
-       ask:'Predict: you write a judge prompt, grade twenty answers by hand, and have the judge grade the same twenty. How often will it agree with you on the first attempt?',
+       ask:'The book gave one team’s agreement. Predict your own: you grade twenty answers by hand and the judge grades the same twenty. How often will it agree with you on the first attempt?',
        reveal:'Six or seven out of ten is normal for a first attempt. The pattern of disagreements matters more than the number. If they cluster, for example the judge marks every hedged answer as correct, you have found something you can fix. If they are scattered with no pattern, your own definition of a good answer is probably unclear, and changing the judge prompt will not help.',
        then:'So check whether disagreements are clustered or scattered. That tells you whether to fix the judge or your own definition.'}
     ],
@@ -166,6 +168,7 @@ window.PART3 = [
     ['p','Start with a picture. Imagine a teacher who gets a pile of exam papers back with a score on each. The scores say who did badly, but not why. So she sits down, reads the wrong answers, and notices that half the class made the same mistake in the same question.'],
     ['p','Error analysis works the same way, on your system’s outputs.'],
     ['key','Read thirty real outputs. For each one that went wrong, write down what went wrong in your own words. Then group the notes and name the groups. This is called <strong>error analysis</strong>, and it is the most valuable quality work in this field.'],
+    ['c','You already know this','Error analysis is grievance categorisation. You read the complaints first, then name the groups, and only then count. Nobody designs the categories before reading the complaints, and you should not here either.'],
     ['q','I052','I125'],
     ['p','Let’s try a small version right now.'],
     [
@@ -220,7 +223,8 @@ window.PART3 = [
       'Work out the cost per message, per thousand messages, and per month at a volume you would really expect. Say how many messages you assume and why.',
       'Build a cascade: send every message to the pattern checker first (it is free), and send only the unsure ones on to the model. Measure what share needs the model.',
       'Produce three numbers: the cost today, the cost at ten times the volume, and the cost if the cheap path stops working and everything goes to the model.',
-      'Answer the margin question: if a company paid you a fixed price per message, at what price and volume would the tool stop making money?'
+      'Answer the margin question: if a company paid you a fixed price per message, at what price and volume would the tool stop making money?',
+      'Save the three cost numbers and the table behind them as <code>docs/cost-model.md</code> in your repository.'
     ],
     done:[
       'The average number of tokens from twenty real messages.',
@@ -238,6 +242,7 @@ window.PART3 = [
     ['p','Let’s start with the simple version. The cost of one query is the tokens you send in times the input price, plus the tokens that come out times the output price. Multiply that by the number of queries in a month, and you have a monthly bill.'],
     ['code','cost per query = (tokens in  × rate for input)\n              + (tokens out × rate for output)\n\nmonthly = cost per query × queries per month'],
     ['p','Most business cases stop here. The trouble is that their number is often three to twenty times too low. The formula itself is right. It’s just applied to the wrong quantities.'],
+    ['c','You already know this','The loaded cost model is total cost of ownership in a project report, worked out per transaction. The licence is one line. Support, review and retries are the rest, and the four multipliers below are those lines.'],
     [
       'pred',
       {id:'ch15-mult',
@@ -325,14 +330,15 @@ window.PART3 = [
       ['p','For each configuration you have built (simple, k=8, cascade, reasoning always on), record these numbers.'],
       [
         'tb',
-        ['Configuration','Cost / query','p50','p95','Accuracy (of 9)'],
+        ['Configuration','Cost / query','p50','p95','Accuracy (of 9)','Cost per correct answer'],
         [
-          ['Baseline k=3','','','',''],
-          ['k=8','','','',''],
-          ['Cascade','','','',''],
-          ['Reasoning always on','','','','']
+          ['Baseline k=3','','','','',''],
+          ['k=8','','','','',''],
+          ['Cascade','','','','',''],
+          ['Reasoning always on','','','','','']
         ]
       ],
+      ['p','Fill the last column from the others. Cost per correct answer is the cost per query divided by the share of answers that were right, so 6 right out of 9 is a share of 0.67. A cheap setting that is often wrong can cost more per correct answer than a dearer one that is right.'],
       ['x','This table is the main thing you take away from this chapter. It turns an argument about architecture into a decision based on evidence, and it fits on one slide.']
     ]],
     ['h','The margin question'],
@@ -350,7 +356,7 @@ window.PART3 = [
 },
 {
 
-  id:'ch16', num:16, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch3','ch11'], nextUnits:['ch165','ch15mm'], minutes:25, labs:[],
+  id:'ch16', num:16, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch3','ch11'], nextUnits:['ch165','ch15mm'], minutes:30, labs:[],
   title:'Document extraction: tables, scans and images',
   concept:'Real documents are often scans, tables and forms, not clean text. Turning them into text is where many document projects fail without anyone noticing. In this chapter you’ll find an extraction error in your own documents, and compare text extraction with giving the model the page image.',
   needs:[
@@ -445,6 +451,8 @@ window.PART3 = [
     ['h','Voice: a different constraint'],
     ['p','So far we’ve talked about pages. Voice is a different case, because it changes the main constraint from accuracy to time. In text, a two-second wait is fine. In speech, two seconds of silence breaks the conversation, and people start talking over it. The whole round trip has to fit in that time: speech in, model, speech out.'],
     ['p','This means voice problems are about conversation. You need to know when the person has finished speaking, handle interruptions, and decide what to say while the system works. The reasoning models from Chapter 11 are usually too slow for voice, however accurate they are.'],
+    ['do','Dictate three sentences',[['p','Open any free speech-to-text tool, such as the dictation on your phone. Say three starter sentences from the project page aloud in Hinglish, including the one with the Aadhaar-style number, and paste the transcripts into your notebook. Use only the made-up sentences, never a real number.'],['p','Run each transcript through the pattern checker from Chapter 5 (press <strong>Restore</strong> if you reloaded). Write down what broke: digits written as words, a number split into groups, a name respelled.'],['x','Speech can turn a twelve-digit number into something a pattern rule cannot see. Add two rows to your answer key. The input is the transcript, and the expected result is what you write by hand. Voice problems are found by testing, not by reading.']]],
+    ['c','Look these up','India has public bodies for Indian-language speech and text. BHASHINI, the government’s language platform, is one, and the reading list names it. Look up what it offers today and on what terms before you rely on it. Chapter 28 turns this idea into a spoken-numbers test.'],
     ['h','Audit your documents before you build'],
     ['p','All of this leads to one habit. Before you design anything, find out what your documents actually look like.'],
     ['c','Tip','Before any document-AI project, get three numbers. What share of the documents is clean digital text? What share is scanned? And what share of the <em>answers people need</em> is inside tables and figures? The third is usually the largest, and it is rarely asked. It decides the architecture, and one afternoon with fifty documents is enough to estimate it.'],
@@ -469,7 +477,7 @@ window.PART3 = [
 {
   /* Arc 5. Governance in ch17 is about the file you produce. This is the
      question that actually stops people on a Tuesday. */
-  id:'ch165', num:16.5, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch1','ch16'], nextUnits:[], minutes:20, labs:[],
+  id:'ch165', num:16.5, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch1','ch16'], nextUnits:[], minutes:25, labs:[],
   title:'Data handling: what you are allowed to send',
   concept:'Before you send a document to a model, you need to know whether you’re allowed to. Three questions settle most cases. You’ll sort real documents, read a vendor’s actual terms, and write a rule your colleagues can follow.',
   needs:[
@@ -505,6 +513,11 @@ window.PART3 = [
       ['x','Two of the three are usually easy to find, and one takes real searching. Note which plan the answers apply to. Free and paid plans often differ on exactly this question, and people often sign up on the free one.'],
       ['p','Write the three answers down with the date. This starts the vendor file that Chapter 17 asks for.']
     ]],
+    ['h','The Indian rule, in the words you will be asked about'],
+    ['p','India’s Digital Personal Data Protection Act, 2023 has a small vocabulary, and interviewers use it. These are the words to know. Read the Act’s own text for the exact duties.'],
+    ['l',['<strong>Data Principal.</strong> The person the data is about. When a bank customer types a message into your app, the customer is the Data Principal.','<strong>Data Fiduciary.</strong> The organisation that decides why and how the data is used. Your company is the Data Fiduciary. A model provider that handles the message for you works on your behalf, so the duty stays with you.','<strong>Notice and consent.</strong> Tell the person in plain words what you collect and why, and ask for their agreement. Use the data only for the purpose you stated.','<strong>Erasure.</strong> The person can ask you to erase their data, and you must be able to do it, including where an outside provider holds a copy.','<strong>Breach reporting.</strong> If personal data leaks, the regulator and the people affected must be told.','<strong>Sending data abroad.</strong> The Act allows it except where the government restricts it. Look up the current position.']],
+    ['p','This is vocabulary, not legal advice. Check which parts of the Act are in force today. The plan’s dated list of regulatory milestones is the place to look.'],
+    ['do','Match each kind of text to a duty',[['p','Take six kinds of text the project tool might send to an outside model: a sentence with no personal detail; a sentence with a name; a sentence with an Aadhaar number; a cleaned sentence with the details replaced by tags; a whole chat history; a log line that keeps the original message. For each one, write the duty it touches: consent, purpose, erasure, breach or sending data abroad.'],['x','Two things usually show. The cleaned sentence touches almost no duty, which is the case for building the tool. The chat history and the log line touch several, and the log line is the one nobody thought about. The capstone asks for the same kind of table.']]],
     ['h','Write a rule people can follow'],
     ['p','Knowing the answers is only half the job. The other half is making sure your colleagues act on them, even when you aren’t in the room.'],
     [
@@ -570,7 +583,8 @@ window.PART3 = [
       'Run a deletion drill. Someone asks you to delete everything about them. Follow the request through every place the tool stores or logs anything, and time it. Write down where you could not tell.',
       'Design the human oversight: who can overrule the tool, how they find out there is something to overrule, and what they see on their screen.',
       'Write what you would need from an outside provider to answer all of the above about their part of the system.',
-      'Give the card to someone who did not build the tool and ask what is still unclear. Fix those parts.'
+      'Give the card to someone who did not build the tool and ask what is still unclear. Fix those parts.',
+      'Save the card as <code>docs/system-card.md</code> in your repository. The system card tool above has an “Export system card” button that gives you the file.'
     ],
     done:[
       'A risk level with a reason.',
@@ -604,6 +618,8 @@ window.PART3 = [
     ],
     ['p','Two things from this table often surprise teams. First, <strong>the use sets the risk level, not the model.</strong> Your Chapter 7 system is minimal risk as an internal FAQ. The very same system is high risk if it decides who is eligible for a benefit.'],
     ['p','Second, <strong>the level changes when the use changes</strong>. That often happens after launch, and nobody updates the documents.'],
+    ['p','Two more points on the EU AI Act. Duties differ for whoever <em>provides</em> a system and whoever <em>deploys</em> it, so find out which one you are. And transparency duties apply to chatbots and to generated media: people must be told they are dealing with an AI, and generated images and audio must be labelled.'],
+    ['c','Dates to check before any interview','Rules and deadlines change, and this course does not hold dates. The plan keeps one dated list of regulatory milestones on its Curriculum page, with the DPDP and EU dates. Open it before an interview, check each date against the official source, and quote only what you checked.'],
     ['do','Assign a risk tier to your system',[
       ['p','Take your Chapter 7 RAG system and place it in a real use case from your organisation. Assign a tier and justify it in one sentence. Then change the use case, for example from internal FAQ to customer eligibility, and assign the tier again.'],
       ['x','The same code moves to a different tier. That is why risk tiering is a product decision, not an engineering one.']
@@ -611,6 +627,7 @@ window.PART3 = [
     ['q','I091','I092'],
     ['h','Write a system card'],
     ['p','Once you know the tier, you need a way to show your work. That is what a <strong>system card</strong> is for. It is a one-page description of an AI system: what it is for, what data it uses, how it was tested, and what it gets wrong. For anything above minimal risk, you need one.'],
+    ['c','You already know this','A system card is the security-audit and sign-off file for one system. The difference is that you write the limitations section yourself, with evidence, instead of leaving it for the auditor to find.'],
     ['do','Write the system card',[
       ['p','Use the generator on this page, or write it by hand under these headings.'],
       [
@@ -624,6 +641,7 @@ window.PART3 = [
     ['h','Run a deletion drill'],
     ['p','Now a very practical test. Suppose someone asks you to delete their data. Where would you have to look?'],
     ['p','The answer is that it may be in seven places. These are the original documents, the chunks, the search copy, the cache, the provider’s logs, your own logs, and any test set built from real traffic. Many teams find at least two that they cannot reach.'],
+    ['p','This is the erasure duty from Chapter 16.5 in practice. Under the Indian Act a person can ask you to erase their data, and the places you cannot reach are where you would fail them.'],
     ['do','Trace one document',[
       ['p','Pick one document from your collection. List every place a copy of it, or something made from it, exists. Next to each, write how you would remove it.'],
       [
@@ -819,6 +837,7 @@ window.PART3 = [
     ['h','A kill switch is not a rollback'],
     ['p','You already roll out changes in stages, as with any product. For AI, add one more thing: a <strong>kill switch</strong>.'],
     ['p','The difference is speed. A rollback needs a new deployment. A kill switch is a flag that sends traffic to the non-AI path immediately. That only works if the non-AI path still exists and someone has tested it recently.'],
+    ['c','You already know this','The kill switch is the manual fallback in a continuity plan: the paper process you can go back to the same day. Model retirement is vendor end-of-support, and you plan for it the same way.'],
     ['q','I108'],
     ['h','Summary'],
     ['p','You’re nearly done with this part of the course. The last job is to look back at everything you’ve built and say, honestly, what you know and what you don’t.'],
