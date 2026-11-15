@@ -152,7 +152,7 @@ console.log('\n— plan tracker —');
   ok(r.status === 200 && /^[0-9a-f]{32}$/.test(sid), 'sharing creates an unguessable id', r.body);
   cookie = '';
   r = await api('/api/plan-status?id=' + sid);
-  ok(r.status === 200 && r.body.of === 26 && r.body.steps > 100 && !('link' in r.body) && !JSON.stringify(r.body).includes('learn Rust') && !JSON.stringify(r.body).includes('zq-worksheet-note'), 'the status link shows route counts only', r.body);
+  ok(r.status === 200 && r.body.of === 28 && r.body.steps > 100 && !('link' in r.body) && !JSON.stringify(r.body).includes('learn Rust') && !JSON.stringify(r.body).includes('zq-worksheet-note'), 'the status link shows route counts only', r.body);
   cookie = saved;
   r = await api('/api/plan', { method: 'POST', body: { share: false } });
   cookie = '';

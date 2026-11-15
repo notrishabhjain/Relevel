@@ -84,9 +84,12 @@ export const TRY_TOPIC = {
   't:aloud-2': 't10',
   't:timed-prd': 't11',
   't:finish': 't13',
+  't:role-matrix': 't13',
+  't:case-study': 't13',
+  't:retro': 't13',
   't:capstone-plan': 't12',
   't:capstone-build': 't12',
-  't:portfolio': 't12',
+  't:portfolio': 't13',
   't:interviews': 't13'
 };
 
@@ -158,7 +161,7 @@ export const UI = {
     lead: 'One step at a time. Press the big button, do what it says, come back. The order is already worked out for you. The route page in the playbook, the plan and this worksheet show the same steps in the same order.',
     how: ['Press the button on the card below. The book chapter or app lesson opens right beside this page.', 'Read it or do it. A book chapter ticks itself when you reach the end. In the app, press “Mark chapter complete”.', 'Close the panel. The next step appears. Repeat.'],
     howTitle: 'How this page works', toolsTitle: 'Tools: save as PDF, spreadsheet, open every topic',
-    nextLbl: 'Your next step', startBtn: 'Start', seeTopic: 'See this topic',
+    nextLbl: 'Your next step', forJob: 'For the job', startBtn: 'Start', seeTopic: 'See this topic',
     go_read: 'Start reading', go_chapter: 'Open the lesson', go_try: 'Open it', go_look: 'Open the week',
     how_read: 'Read it in the book. It ticks itself when you reach the end.', how_chapter: 'Work through it in the app. Press “Mark chapter complete” at the end.',
     how_try: 'Do it in the app. It ticks when you finish.', how_look: 'Five minutes on the plan: look back over the week and tick it off.',
@@ -188,7 +191,7 @@ export const UI = {
     lead: 'Ek samay par ek step. Bada button dabaiye, jo likha hai woh kijiye, phir wapas aaiye. Kram pehle se tay hai. Playbook ka route page, plan aur yeh worksheet wahi steps usi kram mein dikhate hain.',
     how: ['Neeche wale card ka button dabaiye. Kitaab ka chapter ya app ka lesson isi page ke bagal mein khulta hai.', 'Use padhiye ya kijiye. Kitaab ka chapter ant tak pahunchte hi khud tick ho jaata hai. App mein “Mark chapter complete” dabaiye.', 'Panel band kijiye. Agla step dikhega. Phir dohraiye.'],
     howTitle: 'Yeh page kaise kaam karta hai', toolsTitle: 'Tools: PDF, spreadsheet, har topic kholna',
-    nextLbl: 'Aapka agla step', startBtn: 'Shuru kijiye', seeTopic: 'Yeh topic dekhiye',
+    nextLbl: 'Aapka agla step', forJob: 'Naukri ke liye', startBtn: 'Shuru kijiye', seeTopic: 'Yeh topic dekhiye',
     go_read: 'Padhna shuru kijiye', go_chapter: 'Lesson kholiye', go_try: 'Kholiye', go_look: 'Hafta kholiye',
     how_read: 'Ise kitaab mein padhiye. Ant tak pahunchte hi khud tick ho jaata hai.', how_chapter: 'Ise app mein poora kijiye. Ant mein “Mark chapter complete” dabaiye.',
     how_try: 'Ise app mein kijiye. Poora hote hi tick ho jaata hai.', how_look: 'Plan par paanch minute: hafte ko peechhe dekhiye aur tick kijiye.',

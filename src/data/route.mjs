@@ -1459,13 +1459,12 @@ export const WEEKS = [
   "title": "The standard plug, pictures and voice, gates and traces",
   "ship": "The tool access policy, the release gate and the watch plan.",
   "how": [
-   "first-pass",
-   "mock-interviews"
+   "first-pass"
   ],
   "light": false,
   "why": "Last week’s agents need a standard way to reach tools, so this week starts with that plug. More kinds of input mean more ways to fail, so it also turns your answer keys into a release gate and decides what to watch after launch.",
   "job": "Release gates and standard tool connections show you can run AI, not only specify it. Both are in this week.",
-  "mins": 307,
+  "mins": 292,
   "steps": [
    {
     "id": "c:ch14p",
@@ -1524,14 +1523,6 @@ export const WEEKS = [
     "what": "Read it, answer the boxes and run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. Press “Mark chapter complete” at the end."
    },
    {
-    "id": "t:aloud-2",
-    "kind": "try",
-    "title": "Answer one more question aloud",
-    "mins": 15,
-    "app": "#/ch/b7",
-    "what": "Take practice question 11 on the Curriculum tab, on MCP and its risks. Answer it aloud for two minutes and record it. Write one line on what to fix."
-   },
-   {
     "id": "t:review-22",
     "kind": "look",
     "title": "Look back",
@@ -1547,12 +1538,13 @@ export const WEEKS = [
   "title": "Security, and the product spec",
   "ship": "The risk register, the full requirements and a ten-slide decision pack.",
   "how": [
-   "first-pass"
+   "first-pass",
+   "mock-interviews"
   ],
   "light": false,
   "why": "You assume the worst about the model, then write the spec and the decision pack that the capstone will be judged against.",
   "job": "The case or PRD round gives you a prompt and a clock. The risk register, the spec and the decision pack are your practice.",
-  "mins": 279,
+  "mins": 294,
   "steps": [
    {
     "id": "b:39-assuming-the-worst.html",
@@ -1600,6 +1592,14 @@ export const WEEKS = [
     "title": "Production architecture, delivery and vendor strategy",
     "mins": 70,
     "what": "Read it, answer the boxes and run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. Press “Mark chapter complete” at the end."
+   },
+   {
+    "id": "t:aloud-2",
+    "kind": "try",
+    "title": "Answer one more question aloud",
+    "mins": 15,
+    "app": "#/ch/b7",
+    "what": "Take practice question 11 on the Curriculum tab, on MCP and its risks. Answer it aloud for two minutes and record it. Write one line on what to fix."
    },
    {
     "id": "t:timed-prd",
@@ -1674,13 +1674,12 @@ export const WEEKS = [
   "ship": "Bharat Privacy Guard shipped, with its findings document and a short demo.",
   "how": [
    "publish",
-   "demo-video",
-   "portfolio-site"
+   "demo-video"
   ],
   "light": false,
-  "why": "Last week’s version gets measured, shipped and defended, then published where people can see it.",
-  "job": "Artifacts over claims. This week turns the build into a page, with a number, that a recruiter can open.",
-  "mins": 315,
+  "why": "Last week’s version gets measured, shipped and defended. It is the heaviest week on the route, so nothing else is added to it.",
+  "job": "Artifacts over claims. This week turns the build into a shipped product with a number and a demo that a recruiter can open.",
+  "mins": 255,
   "steps": [
    {
     "id": "c:ch21cap",
@@ -1703,14 +1702,6 @@ export const WEEKS = [
     "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. The long “Build it” section is optional; leave it for later."
    },
    {
-    "id": "t:portfolio",
-    "kind": "try",
-    "title": "Put the project where people can see it",
-    "mins": 60,
-    "app": "#/project",
-    "what": "Publish your findings page and the capstone write-up as one page with a link. Keep it plain. A page that exists beats a page that is pretty. If the repository is still private, check its history for keys and real personal details, make it public, and link the one command that runs your answer key."
-   },
-   {
     "id": "t:review-25",
     "kind": "look",
     "title": "Look back",
@@ -1722,18 +1713,17 @@ export const WEEKS = [
  {
   "n": 26,
   "start": "2027-04-12",
-  "dates": "12 Apr – 18 Apr 2027",
-  "title": "The business, and the job",
-  "ship": "The business chapters on a first pass, a portfolio page, practice interviews and a review of the six months.",
+  "dates": "12 Apr – 18 Apr",
+  "title": "The business",
+  "ship": "First-pass notes on the business chapters, and the project put on a page people can open.",
   "how": [
-   "portfolio-site",
-   "mock-interviews",
-   "retro"
+   "first-pass",
+   "portfolio-site"
   ],
   "light": false,
-  "why": "You have a shipped product. The last week asks who pays for it and how you talk about all of it in an interview. The business chapters B2 to B5 may wait until May; the portfolio page and the interviews may not.",
-  "job": "Three doors, one story. This week you finish the portfolio and practise telling the story aloud.",
-  "mins": 556,
+  "why": "You have a shipped product. Now the questions a client or a ministry asks next: who pays for it, how do people find it and stay, and how will you know it works. This is a first pass; the long builds can wait for May.",
+  "job": "Consulting and public-sector roles ask who pays and how you would measure success. This week you can answer both for your own project.",
+  "mins": 237,
   "steps": [
    {
     "id": "b:42-who-pays-and-how-much.html",
@@ -1846,6 +1836,37 @@ export const WEEKS = [
     "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. The long “Build it” section is optional; leave it for later."
    },
    {
+    "id": "t:portfolio",
+    "kind": "try",
+    "title": "Put the project where people can see it",
+    "mins": 60,
+    "app": "#/project",
+    "what": "Publish your findings page and the capstone write-up as one page with a link. Keep it plain. A page that exists beats a page that is pretty. If the repository is still private, check its history for keys and real personal details, make it public, and link the one command that runs your answer key."
+   },
+   {
+    "id": "t:review-26",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 27,
+  "start": "2027-04-19",
+  "dates": "19 Apr – 25 Apr",
+  "title": "The job",
+  "ship": "A role matrix from ten postings, a case study with real numbers, and a finished portfolio page.",
+  "how": [
+   "portfolio-site"
+  ],
+  "light": false,
+  "why": "With the business side in view, this week turns the project into evidence for the job: what ten postings ask for, a case study with your numbers, and one page that carries both.",
+  "job": "A recruiter reads one page. The matrix shows that you know what the role asks, and the case study shows a number you moved.",
+  "mins": 279,
+  "steps": [
+   {
     "id": "b:47-the-job.html",
     "kind": "read",
     "book": "47-the-job.html",
@@ -1866,6 +1887,53 @@ export const WEEKS = [
     "what": "First pass: read it and answer the boxes, then press “Mark chapter complete”. The long “Build it” section is optional; leave it for later."
    },
    {
+    "id": "t:role-matrix",
+    "kind": "try",
+    "title": "A role matrix from ten postings",
+    "mins": 45,
+    "app": "#/ch/b7",
+    "what": "Build the role matrix that Chapter B7 describes. Take ten real postings and list the skills they ask for. Mark each skill as proven, partly proven or missing. Pick the three gaps that matter most for your first door, and write what you will do about each."
+   },
+   {
+    "id": "t:case-study",
+    "kind": "try",
+    "title": "The Bharat Privacy Guard case study",
+    "mins": 75,
+    "app": "#/ch/b7",
+    "what": "Write the case study in the form Chapter B7 shows, on one or two pages: the problem, your decisions, the numbers from your findings page, one honest failure and what you would do next. Real numbers from your own runs only. Save it in your repository as docs/case-study.md."
+   },
+   {
+    "id": "t:finish",
+    "kind": "try",
+    "title": "Finish the portfolio page",
+    "mins": 120,
+    "what": "Do the portfolio site recipe on the plan, about two hours. The page you started in Week 26 is the first draft. Add a link to the case study, and the three lines from your role matrix that say what you can show today."
+   },
+   {
+    "id": "t:review-27",
+    "kind": "look",
+    "title": "Look back",
+    "mins": 5,
+    "what": "Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log."
+   }
+  ]
+ },
+ {
+  "n": 28,
+  "start": "2027-04-26",
+  "dates": "26 Apr – 2 May 2027",
+  "title": "Interviews",
+  "ship": "Practice answers recorded, a timed build recorded, and a review of the 28 weeks.",
+  "how": [
+   "mock-interviews",
+   "retro"
+  ],
+  "light": false,
+  "why": "Everything is written down. This last week is for saying it aloud under a clock, and then for looking back over the 28 weeks to decide what comes next.",
+  "job": "Interviews test whether you can say your story aloud and build while talking. You practise both, then set the loop that keeps you current after the route.",
+  "mins": 230,
+  "steps": [
+   {
     "id": "t:interviews",
     "kind": "try",
     "title": "Practice interviews and a timed build",
@@ -1874,14 +1942,14 @@ export const WEEKS = [
     "what": "Use the interview practice in Chapter B7 and the nineteen practice questions on the Curriculum tab. Answer two questions aloud and record them. Ask a model to score each against the rubric, and repeat your worst answer. Then, in 45 minutes, build a paste-and-clean screen for Bharat Privacy Guard in a free prototyping tool while talking aloud, and record it."
    },
    {
-    "id": "t:finish",
+    "id": "t:retro",
     "kind": "try",
-    "title": "Finish the portfolio page, then review the six months",
-    "mins": 210,
-    "what": "Do the portfolio site recipe on the plan, about two hours, then the retro recipe, about 90 minutes. The page you started in Week 25 is the first draft."
+    "title": "Review the 28 weeks and set the next loop",
+    "mins": 90,
+    "what": "Do the retro recipe on the plan, about 90 minutes: count what shipped, what slipped and what you cut, write what you would change, and set the weekly loop for after the route."
    },
    {
-    "id": "t:review-26",
+    "id": "t:review-28",
     "kind": "look",
     "title": "Look back",
     "mins": 5,
@@ -1935,9 +2003,9 @@ export const MONTHS = [
   "n": 6,
   "name": "Month 6: Ship it, and get the job",
   "from": 24,
-  "to": 26,
-  "goal": "The capstone over two weeks, then the business chapters, a portfolio page and practice interviews.",
-  "dates": "29 Mar – 18 Apr 2027"
+  "to": 28,
+  "goal": "The capstone over two weeks, then the business chapters, the job (a role matrix, a case study and a portfolio page) and practice interviews.",
+  "dates": "29 Mar – 2 May 2027"
  }
 ];
 
@@ -1965,7 +2033,7 @@ export function startOf(S) {
   const v = S && S.routeStart;
   return typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v) && !isNaN(Date.parse(v + 'T00:00:00Z')) ? v : START;
 }
-/* Week number (1-26) for an India-time date string, 0 before the start, 27 after. */
+/* Week number (1-28) for an India-time date string, 0 before the start, 29 after. */
 export function weekOf(date, start) {
   const d = Math.floor((Date.parse(date + 'T00:00:00Z') - Date.parse((start || START) + 'T00:00:00Z')) / 864e5);
   return d < 0 ? 0 : Math.min(WEEKS.length + 1, Math.floor(d / 7) + 1);

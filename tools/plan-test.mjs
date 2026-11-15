@@ -106,7 +106,7 @@ console.log('\n— tracker in an account —');
   await b.page.waitForFunction(() => /api\/plan-status\?id=/.test(document.querySelector('#sync').textContent));
   const url = await b.page.evaluate(() => document.querySelector('#sync code').textContent);
   const s = await (await fetch(url)).json();
-  ok(s.of === 26 && s.stepsDone >= 1 && !JSON.stringify(s).includes('embeddings'), 'the check-in link returns route counts and no notes', s);
+  ok(s.of === 28 && s.stepsDone >= 1 && !JSON.stringify(s).includes('embeddings'), 'the check-in link returns route counts and no notes', s);
   await b.page.uncheck('#share-on');
   await sleep(500);
   ok((await fetch(url)).status === 404, 'switching sharing off kills the link');

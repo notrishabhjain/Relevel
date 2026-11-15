@@ -1,4 +1,4 @@
-# Applied AI PM: the route, week by week (19 Oct 2026 – 18 Apr 2027)
+# Applied AI PM: the route, week by week (19 Oct 2026 – 2 May 2027)
 
 Start from the [route page in the playbook](../app/#/start). This plan shows the same course, with dates, notes and monthly reviews. It has one row for each week, and each row lists the steps of the route in order: a book chapter to read, then the playbook chapter that practises it, sometimes a small try, and a look back on Friday. The same steps, in the same order, are on the [route page in the playbook](../app/#/start) and at the end of each chapter in the [book](../book/).
 
@@ -8,7 +8,7 @@ Progress is shared too. Mark a chapter complete in the playbook, or read a book 
 
 <!-- sync -->
 
-**North star:** by 18 April 2027, Bharat Privacy Guard is shipped and evaluated, with a findings document and a demo you can take into an interview.
+**North star:** by 2 May 2027, Bharat Privacy Guard is shipped and evaluated, with a findings document and a demo you can take into an interview.
 
 ## How a week works
 
@@ -24,7 +24,7 @@ A week is a handful of steps. Most take ten to twenty minutes, so most days need
 
 ### How to read the weekly rows
 
-- **Time:** the total for the week’s steps, including the short version of each chapter’s project task. Month 1 is an hour to an hour and a half a week, and it builds to about four or five hours in each of the two capstone weeks. Week 26 is about nine hours: the portfolio page and the review are steps there.
+- **Time:** the total for the week’s steps, including the short version of each chapter’s project task. Month 1 is an hour to an hour and a half a week, and it builds to about four or five hours in each of the two capstone weeks. No week after Week 21 is over about five hours. The portfolio page, the case study and the review are steps in Weeks 26 to 28.
 - **Why now** and **For the job:** the first says what the week builds on. The second says what it is worth for the role you are aiming at.
 - **By Sunday:** the thing the week leaves you with. Put a link or a note in the row if you want a record. The Note field is your ship log ([how](#ship-log)).
 - **How to:** links to the [How to build tab](#build).

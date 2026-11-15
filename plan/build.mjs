@@ -405,6 +405,7 @@ export function weekFig(w) {
   const add = ch => (FIG.place[ch] || []).forEach(([id]) => { if (!ids.includes(id)) ids.push(id); });
   for (const s of w.steps) if (s.kind === 'chapter') add(s.ch);
   for (const s of w.steps) if (s.kind === 'read') (BOOK_COURSE[s.book] || []).forEach(add);
+  if (!ids.length) add('b7'); /* a week of tries only (the interview week) shows the career chapter's picture */
   const id = ids.find(x => x !== lastFig) || ids[0] || null;
   lastFig = id;
   return id;
@@ -477,7 +478,7 @@ const RECIPES_NOT_IN_A_WEEK = new Set(['ship-log']);
 export function check(pages, recipeWeeks) {
   const errs = [];
   const ids = WEEKS.map(w => w.n);
-  if (ids.join() !== Array.from({ length: 26 }, (_, i) => i + 1).join()) errs.push('data.mjs must define weeks 1..26 in order');
+  if (ids.join() !== Array.from({ length: 28 }, (_, i) => i + 1).join()) errs.push('data.mjs must define weeks 1..28 in order');
   for (const w of WEEKS) {
     for (const k of w.further) {
       if (!RESOURCES[k]) errs.push(`W${w.n}: unknown resource "${k}"`);
@@ -501,9 +502,9 @@ export function check(pages, recipeWeeks) {
     if (want !== got) errs.push(`ship.md: recipe "${id}" says weeks [${got}] but data.mjs uses it in [${want}]`);
   }
   const s = [...pages.weeksSeen].sort((a, b) => a - b).join();
-  if (s !== ids.join()) errs.push(`weekly.md: month blocks must cover W1-W26 exactly once (got ${s})`);
+  if (s !== ids.join()) errs.push(`weekly.md: month blocks must cover W1-W28 exactly once (got ${s})`);
   const cw = [...pages.text['curriculum.md'].matchAll(/<!--\s*weeklinks\s+(\d+)-(\d+)\s*-->/g)].flatMap(m => Array.from({ length: m[2] - m[1] + 1 }, (_, i) => +m[1] + i));
-  if (cw.sort((a, b) => a - b).join() !== ids.join()) errs.push(`curriculum.md: weeklinks blocks must cover W1-W26 exactly once (got ${cw.join()})`);
+  if (cw.sort((a, b) => a - b).join() !== ids.join()) errs.push(`curriculum.md: weeklinks blocks must cover W1-W28 exactly once (got ${cw.join()})`);
   for (const m of MONTHS) if (!pages.text['curriculum.md'].includes(m.dates)) errs.push(`curriculum.md never mentions "${m.dates}" (${m.name})`);
   /* one page: ids unique, every link lands */
   const all = pages.html;
@@ -554,7 +555,7 @@ export function buildPlan(root, outDir) {
   check({ html: panels, text, weeksSeen: new Set(seen.length === new Set(seen).size ? seen : [...seen, -1]) }, recipeWeeks);
   fs.writeFileSync(p.join(outDir, 'index.html'), page({
     title: 'Applied AI PM plan | AI From Zero',
-    desc: 'The 26-week route to becoming an Applied AI product manager, week by week: the same steps as the playbook and the book, with shared progress.',
+    desc: 'The 28-week route to becoming an Applied AI product manager, week by week: the same steps as the playbook and the book, with shared progress.',
     panels
   }));
   fs.writeFileSync(p.join(outDir, 'curriculum.html'), stub('curriculum'));

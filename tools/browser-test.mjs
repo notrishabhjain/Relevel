@@ -1015,8 +1015,8 @@ console.log('\n— one route: the playbook, the book and the plan agree —');
     next: (document.querySelector('.gday.today') || {}).id,
     w: document.documentElement.scrollWidth <= innerWidth
   }));
-  ok(pg.steps === pg.all && pg.weeks === 26 && pg.next === 'step-c_ch0' && pg.open.includes('week-1') && pg.w,
-     'the route page lists all 26 weeks and every step, with week 1 open and Start here next', JSON.stringify(pg));
+  ok(pg.steps === pg.all && pg.weeks === 28 && pg.next === 'step-c_ch0' && pg.open.includes('week-1') && pg.w,
+     'the route page lists all 28 weeks and every step, with week 1 open and Start here next', JSON.stringify(pg));
   /* finish Start here the way a reader does, then the next step is the preface */
   await gs.page.evaluate(() => { window.STORE.S.done.ch0 = 1; window.STORE.flush(); });
   await gs.page.reload();
@@ -1229,7 +1229,7 @@ console.log('\n— restart the calendar: week 1 from any day —');
   await rs.page.waitForTimeout(300);
   const plan = await rs.page.evaluate(() => ({ head: document.querySelector('#status .stat .v').textContent,
     w1: document.querySelector('#w1 .dates').textContent, undo: !document.getElementById('rs-undo').hidden }));
-  ok(/^Week 1 of 26/.test(plan.head) && plan.w1.startsWith(short) && plan.undo, 'the plan counts the weeks from the same day', JSON.stringify(plan));
+  ok(/^Week 1 of 28/.test(plan.head) && plan.w1.startsWith(short) && plan.undo, 'the plan counts the weeks from the same day', JSON.stringify(plan));
   /* back to the original dates, from the plan */
   await rs.page.evaluate(() => { document.getElementById('restart').open = true; });
   await rs.page.click('#rs-undo');
@@ -1324,9 +1324,9 @@ console.log('\n— figures: every portal draws its diagrams, and they answer to 
   /* every chapter has at least one */
   const placed = await pg.evaluate(() => window.CHAPTERS.filter(c => window.withFigs(c).some(b => b[0] === 'fig')).length);
   ok(placed === N.chapters, `all ${N.chapters} chapters carry a figure`, placed);
-  /* the home page: the 26 weeks as one strip */
+  /* the home page: the 28 weeks as one strip */
   await boot(pg, '#/');
-  ok(await pg.locator('.weekstrip .fx-wk').count() === 26, 'the home page shows the 26 weeks as one strip');
+  ok(await pg.locator('.weekstrip .fx-wk').count() === 28, 'the home page shows the 28 weeks as one strip');
   await boot(pg, '#/project');
   ok(await pg.locator('.pagevis .fx-jn').count() === 13, 'the project page shows its 13 stages as one path');
   await boot(pg, '#/setup');
@@ -1349,7 +1349,7 @@ console.log('\n— figures: every portal draws its diagrams, and they answer to 
   await pg.waitForSelector('#w12 details.idea');
   await pg.evaluate(() => { const d = document.querySelector('#w12 details.idea'); d.open = true; d.scrollIntoView(); });
   await pg.waitForSelector('#w12 .ideafig .fx-svg');
-  ok(await pg.locator('details.idea').count() === 26, 'every plan week has a picture of its idea, drawn when opened');
+  ok(await pg.locator('details.idea').count() === 28, 'every plan week has a picture of its idea, drawn when opened');
   /* the worksheet */
   await pg.goto(B + '/worksheet/');
   await pg.waitForSelector('#ws-journey .fx-jn');

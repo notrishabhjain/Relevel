@@ -1,6 +1,6 @@
-# Applied AI PM Curriculum (Oct 2026 – Apr 2027)
+# Applied AI PM Curriculum (Oct 2026 – May 2027)
 
-This is a 26-week route to becoming a believable Applied AI Product Manager by April 2027. It runs from Monday 19 October 2026 to Sunday 18 April 2027. It starts at about an hour a week and builds slowly from there. Everything runs in the browser, and no local machine is needed.
+This is a 28-week route to becoming a believable Applied AI Product Manager by early May 2027. It runs from Monday 19 October 2026 to Sunday 2 May 2027. It starts at about an hour a week and builds slowly from there. Everything runs in the browser, and no local machine is needed.
 
 There is one route, and three places show it. The [playbook](../) is where you do each chapter. The [book](../book/) tells the same chapters as one story, in the same order. This plan shows the route as weeks, with notes and monthly reviews. All three read the same list and the same progress, so a chapter you mark complete in the playbook, or a book chapter you finish, is ticked everywhere.
 
@@ -8,7 +8,7 @@ There are three tabs here. The [Plan & tracker tab](#plan) is the route week by 
 
 ## Bottom line
 
-You can be a believable Applied AI PM candidate by April 2027, on one condition. You need to come across as someone who owns technical products and delivery, and who has built and tested working AI. Someone who has only read about AI won’t get the same hearing.
+You can be a believable Applied AI PM candidate by early May 2027, on one condition. You need to come across as someone who owns technical products and delivery, and who has built and tested working AI. Someone who has only read about AI won’t get the same hearing.
 
 So the route ends with one shipped, evaluated product: **Bharat Privacy Guard**, the course’s project. You build it a piece at a time, chapter by chapter, and publish it with its numbers in Week 25.
 
@@ -16,7 +16,7 @@ So the route ends with one shipped, evaluated product: **Bharat Privacy Guard**,
 
 **The route in one paragraph:** the route follows the book’s order, and every week pairs a book chapter (the story) with the playbook chapter that practises it, so the two are never weeks apart. Month 1 is the product half: the problem, its users, its market, a plan and a spec, with no code. Month 2 meets the machine: tokens, a model connected, just enough Python to read the code, the first call, instructions, an answer key, sorting and summarising. Months 3 and 4 build and measure the core: search, the first complete system, dependable output, attacks, grading at scale, cost, the rules and the spec. Month 5 goes over the same ideas at production depth. Month 6 ships the capstone, covers the business and gets you ready for interviews.
 
-## Six-month route at a glance
+## The route at a glance
 
 Each month ends with a review on the Plan tab. Read the table row by row. The last column is what you should have in hand before the review.
 
@@ -27,11 +27,11 @@ Each month ends with a review on the Plan tab. Read the table row by row. The la
 | 3 (W10–13) | 21 Dec 2026 – 17 Jan 2027 | Finding, and your first system | Search by words and by meaning on a scoreboard; the findings page v0 published |
 | 4 (W14–18) | 18 Jan – 21 Feb 2027 | What real systems add | Your own tool attacked, a checked marker, a cost model, the system card, the requirements |
 | 5 (W19–23) | 22 Feb – 28 Mar 2027 | The same ideas, at production depth | Model choice, the release gate, the risk register, the decision pack |
-| 6 (W24–26) | 29 Mar – 18 Apr 2027 | Ship it, and get the job | Bharat Privacy Guard shipped with its findings and demo; a portfolio page; practice interviews |
+| 6 (W24–28) | 29 Mar – 2 May 2027 | Ship it, and get the job | Bharat Privacy Guard shipped with its findings and demo; the business chapters; a role matrix, a case study and a portfolio page; practice interviews |
 
 ### Weekly time
 
-The route starts small on purpose. The minutes on each step include the short version of the chapter’s project task. Month 1 is 1 to 1¾ hours a week. Month 2 is 1½ to 2¾ hours. Month 3 has two holiday weeks of under an hour, then two weeks of about three hours. Month 4 is 2 to 4 hours. Month 5 is 3 to 5 hours. The two capstone weeks ask for about five hours each, and the last week for about nine. If you have more time, carry on to the next step. The route never stops you going ahead, and the dates are a guide, not a judge.
+The route starts small on purpose. The minutes on each step include the short version of the chapter’s project task. Month 1 is 1 to 1¾ hours a week. Month 2 is 1½ to 2¾ hours. Month 3 has two holiday weeks of under an hour, then two weeks of about three hours. Month 4 is 2 to 4 hours. Month 5 is 3 to 5 hours. The two capstone weeks ask for about four and a half hours each. No week after Week 21 asks for more than about five hours, and the last three weeks (the business, the job, interviews) are about four, four and a half, and four hours. If you have more time, carry on to the next step. The route never stops you going ahead, and the dates are a guide, not a judge.
 
 ## Job-market grounding
 
@@ -189,11 +189,11 @@ Part V goes over Parts I to IV again, at the depth a real launch needs. Nothing 
 
 [This month in one view, in the playbook](../app/#/start#month-5): every week with its chapters, book pages and your notes.
 
-### Month 6: Ship it, and get the job (W24–26, 29 Mar – 18 Apr 2027) {#m6}
+### Month 6: Ship it, and get the job (W24–28, 29 Mar – 2 May 2027) {#m6}
 
-The capstone gets two weeks: build it and break it, then measure it, ship it and defend it. The last week is the business chapters on a first pass, a portfolio page, practice interviews and a look back over six months.
+The capstone gets two weeks: build it and break it, then measure it, ship it and defend it. Then three lighter weeks. Week 26 is the business chapters on a first pass, with the project put on a page. Week 27 is the job: a role matrix from ten postings, a case study with your numbers and a finished portfolio page. Week 28 is practice interviews, a timed build and a look back over the 28 weeks. March is year-end for much government work: if Weeks 23 to 25 will not fit, slide the rest by two weeks rather than skip a step.
 
-<!-- weeklinks 24-26 -->
+<!-- weeklinks 24-28 -->
 
 [This month in one view, in the playbook](../app/#/start#month-6): every week with its chapters, book pages and your notes.
 
@@ -209,7 +209,7 @@ It is a good portfolio project for a GovTech product manager for three reasons. 
 
 Use one shape for your AI product-sense answers. Go through these in order: the user and problem; why AI (or why not); the model approach; behavior in failure and trust moments; metrics (product, model, guardrail); evals; cost and latency; risks; and the launch plan. Drill with the [question bank](https://github.com/landedjobs/ai-pm-interview-prep) and your own projects, and follow the [mock-interview recipe](#mock-interviews).
 
-Here are 19 practice questions, in five groups. The route asks you to answer question 10 aloud in Week 13 and question 11 in Week 22, and gives the rest to Week 26.
+Here are 19 practice questions, in five groups. The route asks you to answer question 10 aloud in Week 13 and question 11 in Week 23, and gives the rest to Week 28.
 
 **AI product sense**
 
@@ -262,7 +262,7 @@ These are forecasts, not facts. Treat them as the direction of travel.
 
 ### After the route (about 3 hours a week)
 
-After April you don’t stop. You keep a light loop going, at four speeds.
+After the route you don’t stop. You keep a light loop going, at four speeds.
 
 1. **Weekly (60 min):** Read Lenny's Newsletter, Hamel's blog, the MCP changelog, DeepLearning.AI's The Batch, and the release notes from Anthropic, OpenAI and Google.
 2. **Monthly (90 min):** Re-run your capstone test set on the newest models and write down what changed. Do the second pass on one Track A or Track B “Build it”. A benchmark you keep alive builds your credibility over time.

@@ -2,8 +2,8 @@
 Object.assign(window.HING = window.HING || {}, {
   /* the page */
   'Your route': 'Aapka raasta',
-  'Your route: 26 weeks, one order': 'Aapka raasta: 26 hafte, ek hi order',
-  '26 weeks, one order': '26 hafte, ek hi order',
+  'Your route: 28 weeks, one order': 'Aapka raasta: 28 hafte, ek hi order',
+  '28 weeks, one order': '28 hafte, ek hi order',
   'steps done': 'steps poore',
   'Every step is done. Well done.': 'Har step poora ho gaya. Shabaash.',
   'This is calendar week {cal}, and you are on week {at}. That is fine: carry on from the first open step, and never miss twice.':
@@ -47,7 +47,6 @@ Object.assign(window.HING = window.HING || {}, {
   'Your first complete system': 'Aapka pehla poora system',
   'Version 0 of the findings page, published.': 'Findings page ka version 0, publish kiya hua.',
   'Bharat Privacy Guard shipped, with its findings document and a short demo.': 'Bharat Privacy Guard ship hua, findings document aur ek chhote demo ke saath.',
-  'The business, and the job': 'Business, aur naukri',
   /* the one-view page */
   'One view of everything': 'Sab kuch ek jagah',
   'the playbook, the book, the plan and the curriculum, week by week': 'playbook, kitaab, plan aur curriculum, hafte-dar-hafte',
@@ -79,7 +78,6 @@ Object.assign(window.HING = window.HING || {}, {
   'Demo video: three minutes, no editing': 'Demo video: teen minute, bina editing',
   'Portfolio site': 'Portfolio site',
   'Mock interviews': 'Practice interview',
-  'Retro: review the six months': 'Retro: chhe mahinon ka review',
   /* months (src/data/route.mjs) */
   'Month 4: What real systems add': 'Mahina 4: asli systems mein kya judta hai',
   /* monthly reviews (plan/data.mjs) */

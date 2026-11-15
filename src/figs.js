@@ -8,9 +8,12 @@
    phone rather than a desktop drawing shrunk until the words cannot be read.
 
    FIGS.render(el, id, {lang, bare, nocap})   draw figure `id` into el
-   FIGS.weeks(el, {weeks, months, onPick})     the 26 weeks as one strip
+   FIGS.weeks(el, {weeks, months, onPick})     the weeks of the route as one strip
    FIGS.journey(el, {nodes, onPick})           the topics as one path
    FIGS.mount(root)                            draw every [data-fig] under root
+   Motion is small and optional: a figure draws in once when it first scrolls
+   into view, a step or a tap animates the change, and nothing moves when the
+   reader asks for reduced motion or prints (see the end of the style below).
    Colours come from the page's own tokens (see .fx in the style below), so a
    figure follows the light and dark themes of whichever page it is on. */
 (function () {
@@ -47,6 +50,51 @@
       ls.map(function (l, i) { return '<tspan x="' + x + '" dy="' + (i ? lh : 0) + '">' + esc(l) + '</tspan>'; }).join('') + '</text>';
   }
   function r1(n) { return Math.round(n * 10) / 10; }
+
+  /* ---------- motion: restrained, under 600 ms, never blocks a tap ---------- */
+  function calm() { try { return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches); } catch (e) { return false; } }
+  /* give each part its place in the draw-in order, and each line its length */
+  function decorate(root) {
+    if (!root) return;
+    var k = 0, j = 0;
+    root.querySelectorAll('.fx-svg>g,.fx-svg>text,.fx-svg>rect,.fx-svg>circle,.fx-svg>line:not(.fx-ln),.fx-cmp>*').forEach(function (n) { n.style.setProperty('--k', Math.min(k++, 10)); });
+    root.querySelectorAll('.fx-ln').forEach(function (n) {
+      try { n.style.setProperty('--len', Math.ceil(n.getTotalLength() + 2)); } catch (e) { }
+      n.style.setProperty('--k', Math.min(j++, 10));
+    });
+  }
+  /* hide the figure until it is on screen, then let it draw in once */
+  var revealer = null;
+  function reveal(el) {
+    if (el._rv || calm() || !('IntersectionObserver' in window)) return;
+    el._rv = true;
+    el.classList.add('fx-pre');
+    if (!revealer) revealer = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var t = e.target; revealer.unobserve(t);
+        t.classList.remove('fx-pre'); t.classList.add('fx-in');
+        setTimeout(function () { t.classList.remove('fx-in'); }, 1000);
+      });
+    }, { threshold: 0.12 });
+    revealer.observe(el);
+  }
+  /* a part that was just chosen answers: the ring pulses, the arrow draws */
+  function bump(n) {
+    if (calm()) return;
+    n.classList.remove('pop'); n.getBoundingClientRect(); n.classList.add('pop');
+    setTimeout(function () { n.classList.remove('pop'); }, 500);
+  }
+  /* bars that change case grow or shrink from where they were */
+  function snap(stage) { return Array.prototype.map.call(stage.querySelectorAll('.fx-bar rect'), function (r) { return parseFloat(r.style.width) || 0; }); }
+  function glide(stage, prev) {
+    var rs = stage.querySelectorAll('.fx-bar rect'), vs = stage.querySelectorAll('.fx-bar .fx-val');
+    if (calm() || rs.length !== prev.length) return;
+    var to = [];
+    rs.forEach(function (r, i) { to[i] = parseFloat(r.style.width) || 0; r.style.width = prev[i] + 'px'; if (vs[i]) vs[i].style.transform = 'translateX(' + r1(prev[i] - to[i]) + 'px)'; });
+    stage.getBoundingClientRect();
+    rs.forEach(function (r, i) { r.style.width = to[i] + 'px'; if (vs[i]) vs[i].style.transform = 'translateX(0)'; });
+  }
 
   /* ---------- icons: 24-unit line drawings. "O x,y,r" is a circle. ---------- */
   var ICONS = {
@@ -437,6 +485,7 @@
         '<div class="fx-stage"></div><div class="fx-ctl"></div><div class="fx-detail" aria-live="polite"></div>' + cap);
     }
     draw(f);
+    reveal(el);
     if (!f.ro && window.ResizeObserver) {
       f.w = 0;
       f.ro = new ResizeObserver(function () { var w = Math.round(el.clientWidth); if (Math.abs(w - f.w) > 24) { clearTimeout(f.rt); f.rt = setTimeout(function () { draw(f); }, 60); } });
@@ -457,7 +506,10 @@
     var r = TPL[f.def.t](f, W);
     f.r = r;
     var stage = el.querySelector(':scope > .fx-stage'), ctl = el.querySelector(':scope > .fx-ctl');
+    var prev = f.glide ? snap(stage) : null; f.glide = false;
     stage.innerHTML = r.svg || r.html;
+    decorate(stage);
+    if (prev) glide(stage, prev);
     /* controls */
     var c = '';
     if (r.step && r.n > 1) c += '<button type="button" class="fx-b" data-a="back" aria-label="' + L.back + '">◀ ' + L.back + '</button><span class="fx-pos"></span><button type="button" class="fx-b" data-a="next" aria-label="' + L.next + '">' + L.next + ' ▶</button><button type="button" class="fx-b fx-play" data-a="play">▷ ' + L.play + '</button>';
@@ -469,7 +521,7 @@
       return '<label class="fx-sl"><span>' + esc(tx(x.l, f.lang)) + ' <b>' + esc(x.rate ? v + '%' : fmt(v, x.fmt)) + '</b></span><input type="range" data-a="' + (x.rate ? 'rate' : 'in') + '" data-k="' + x.id + '" min="' + x.min + '" max="' + x.max + '" step="' + x.step + '" value="' + v + '"></label>';
     }).join('') + '</div>';
     if (r.drag) c += '<span class="fx-hint">' + L.drag + '</span>';
-    else if (!r.step && r.n > 1 && !f.def.cap) c += '<span class="fx-hint">' + L.tap + '</span>';
+    else if (!r.step && r.n > 1) c += '<span class="fx-hint">' + L.tap + '</span>';
     ctl.innerHTML = c;
     el.classList.toggle('fx-tog', !!f.tog);
     if (f.sel >= r.n) f.sel = 0;
@@ -482,14 +534,15 @@
     var r = f.r, el = f.el, L = UI[f.lang] || UI.en;
     f.sel = i;
     var on = i < 0 ? [] : r.path ? r.path(i) : [i];
+    var turn = function (n, now) { var was = n.classList.contains('on'); n.classList.toggle('on', now); if (!quiet && now && !was) bump(n); };
     el.querySelectorAll('.fx-stage [data-i]').forEach(function (n) {
       var k = +n.getAttribute('data-i');
-      n.classList.toggle('on', on.indexOf(k) >= 0);
+      turn(n, on.indexOf(k) >= 0);
       if (r.past) n.classList.toggle('past', k < i);
       if (r.past) n.classList.toggle('later', k > i);
     });
-    el.querySelectorAll('.fx-stage [data-c]').forEach(function (n) { n.classList.toggle('on', +n.getAttribute('data-c') === i); });
-    el.querySelectorAll('.fx-stage [data-e]').forEach(function (n) { var k = +n.getAttribute('data-e'); n.classList.toggle('on', r.path ? on.indexOf(k) >= 0 : (f.def.t === 'flow' || f.def.t === 'cycle') && k === i - 1 || (f.def.t === 'cycle' && i === 0 && k === r.n - 1)); });
+    el.querySelectorAll('.fx-stage [data-c]').forEach(function (n) { turn(n, +n.getAttribute('data-c') === i); });
+    el.querySelectorAll('.fx-stage [data-e]').forEach(function (n) { var k = +n.getAttribute('data-e'); turn(n, r.path ? on.indexOf(k) >= 0 : (f.def.t === 'flow' || f.def.t === 'cycle') && k === i - 1 || (f.def.t === 'cycle' && i === 0 && k === r.n - 1)); });
     if (r.regions) {
       var ss = i >= 0 ? r.regions(i) : [];
       el.querySelectorAll('.fx-set').forEach(function (c, j) { c.classList.toggle('on', ss.indexOf(j) >= 0); });
@@ -498,7 +551,7 @@
     var pos = el.querySelector('.fx-pos'); if (pos) pos.textContent = (i + 1) + ' ' + L.of + ' ' + r.n;
     var det = el.querySelector(':scope > .fx-detail');
     var html = i >= 0 || !r.n ? r.detail(i) : '';
-    if (det.innerHTML !== html) det.innerHTML = html;
+    if (det.innerHTML !== html) { det.innerHTML = html; if (!quiet && !calm()) { det.classList.remove('swap'); det.getBoundingClientRect(); det.classList.add('swap'); } }
     if (!quiet && typeof f.opts.onSelect === 'function') f.opts.onSelect(i);
   }
 
@@ -520,7 +573,7 @@
           if (f.sel >= f.r.n - 1) select(f, 0);
           f.play = setInterval(function () { if (f.sel >= f.r.n - 1) return stopPlay(f); select(f, f.sel + 1); }, 1700);
         }
-        else if (a === 'set') { f.set = +b.getAttribute('data-v'); draw(f); }
+        else if (a === 'set') { f.set = +b.getAttribute('data-v'); f.glide = true; draw(f); }
         else if (a === 'tog') { f.tog = !f.tog; draw(f); }
         else if (b.hasAttribute('data-i') && !f.dragged) { stopPlay(f); select(f, +b.getAttribute('data-i')); }
         f.dragged = false;
@@ -567,6 +620,7 @@
     var r = TPL[f.def.t](f, stageWidth(f));
     f.r = r;
     f.el.querySelector(':scope > .fx-stage').innerHTML = r.svg || r.html;
+    decorate(f.el.querySelector(':scope > .fx-stage'));
     f.el.querySelectorAll('.fx-ins .fx-sl').forEach(function (lab) {
       var inp = lab.querySelector('input'), b = lab.querySelector('b'); if (!b) return;
       var k = inp.getAttribute('data-k'), rate = inp.getAttribute('data-a') === 'rate', x = (r.inputs || []).filter(function (q) { return String(q.id) === k; })[0];
@@ -575,10 +629,10 @@
     select(f, r.n ? Math.min(f.sel, r.n - 1) : -1, true);
   }
 
-  /* ---------- the route as one strip: 26 weeks, coloured by where you are ---------- */
+  /* ---------- the route as one strip, coloured by where you are ---------- */
   function weeks(el, o) {
-    o = o || {}; var W = Math.max(300, Math.min(980, el.clientWidth || 640)), ws = o.weeks || [], n = ws.length || 26, lang = o.lang || docLang();
-    var perRow = W < 560 ? 13 : 26, rows = Math.ceil(n / perRow), cw = (W - 4) / perRow, ch = 30, out = '', mh = 18;
+    o = o || {}; var W = Math.max(300, Math.min(980, el.clientWidth || 640)), ws = o.weeks || [], n = ws.length || 28, lang = o.lang || docLang();
+    var perRow = W < 560 ? 14 : 28, rows = Math.ceil(n / perRow), cw = (W - 4) / perRow, ch = 30, out = '', mh = 18;
     var months = o.months || [];
     for (var r = 0; r < rows; r++) {
       var y0 = r * (ch + mh + 26) + mh + 2;
@@ -609,6 +663,7 @@
       if (window.ResizeObserver) { var last = W; new ResizeObserver(function () { var w = el.clientWidth; if (Math.abs(w - last) > 40) { last = w; weeks(el, o); } }).observe(el); }
     }
     el._wo = o;
+    decorate(el); reveal(el);
   }
 
   /* ---------- the topics as one path, each with how much is done ---------- */
@@ -646,6 +701,7 @@
       if (window.ResizeObserver) { var last = W; new ResizeObserver(function () { var w = el.clientWidth; if (Math.abs(w - last) > 40) { last = w; journey(el, el._jo); } }).observe(el); }
     }
     el._jo = o;
+    decorate(el); reveal(el);
   }
 
   /* draw every placeholder under root; lazily, when it comes near the screen */
@@ -693,8 +749,24 @@
     '.fx-legend{display:flex;flex-wrap:wrap;gap:.3rem 1rem;margin-top:.4rem;font-size:.76rem;color:var(--fm)}.fx-lg i{display:inline-block;width:.8rem;height:.8rem;border-radius:3px;margin-right:.3rem;vertical-align:-.1rem;background:var(--fs);border:1px solid var(--fl)}.fx-lg.s-done i{background:var(--fg);border-color:var(--fg)}.fx-lg.s-now i{border:2px solid var(--fa)}.fx-lg.s-behind i{border:2px solid var(--fr)}.fx-lg.s-part i{background:color-mix(in srgb,var(--fg) 25%,var(--fs))}' +
     '.fx-path{fill:none;stroke:var(--fl);stroke-width:5;stroke-linecap:round;stroke-dasharray:1 10}.fx-jn{cursor:pointer;outline:none}.fx-jn .bg{fill:var(--fb);stroke:var(--fl);stroke-width:5}.fx-jn .pr{fill:none;stroke:var(--fg);stroke-width:5;stroke-linecap:round}.fx-jn .nn{fill:var(--fm)!important;font-weight:700;font-family:var(--mono,monospace)}' +
     '.fx-jn.done .bg{fill:color-mix(in srgb,var(--fg) 16%,var(--fb))}.fx-jn.can .nn{fill:var(--fg)!important}.fx-jn.here .bg{stroke:var(--fa)}.fx-jn.here .nn{fill:var(--fa)!important}.fx-jn:hover .bg,.fx-jn:focus-visible .bg{stroke:var(--fa)}.fx-jn .fx-lb{font-weight:500}' +
-    '@media (prefers-reduced-motion:reduce){.fx *{transition:none!important}}' +
-    '@media print{.fx-ctl{display:none}.fx{break-inside:avoid}}';
+    '.fx-val{transition:transform .4s ease}' +
+    '@media screen and (prefers-reduced-motion:no-preference){' +
+    '.fx-svg>*{transform-box:fill-box;transform-origin:center}' +
+    '.fx-pre .fx-svg>*:not(defs),.fx-pre .fx-cmp>*{opacity:0}' +
+    '.fx-in .fx-svg>*:not(defs):not(.fx-ln):not(.fx-axl){animation:fx-pop .34s ease-out backwards;animation-delay:calc(var(--k,0)*26ms)}' +
+    '.fx-in .fx-ln{animation:fx-draw .4s ease-out backwards;animation-delay:calc(var(--k,0)*26ms + 120ms)}' +
+    '.fx-in .fx-ah{animation:fx-fade .2s ease-out .4s backwards}' +
+    '.fx-in .fx-bar rect,.fx-in .fx-out rect{transform-box:fill-box;transform-origin:0 50%;animation:fx-grow .4s ease-out backwards;animation-delay:calc(var(--k,0)*26ms + 80ms)}' +
+    '.fx-in .fx-cmp>*{animation:fx-pop .34s ease-out backwards;animation-delay:calc(var(--k,0)*22ms)}' +
+    '.fx-node.pop>rect,.fx-node.pop>circle,.fx-pt.pop>circle{transform-box:fill-box;transform-origin:center;animation:fx-ping .36s ease-out}' +
+    '.fx-ln.pop,.fx-msg.pop .fx-ln{animation:fx-draw .4s ease-out}' +
+    '.fx-cr.pop,.fx-card.pop,.fx-ch.pop{animation:fx-ping .36s ease-out}' +
+    '.fx-detail.swap{animation:fx-fade .28s ease-out}' +
+    '.fx-node:active>rect,.fx-node:active>circle{transform-box:fill-box;transform-origin:center;transform:scale(.97)}.fx-ch:active,.fx-b:active{transform:scale(.97)}' +
+    '@keyframes fx-pop{from{opacity:0;transform:translateY(6px) scale(.97)}}@keyframes fx-fade{from{opacity:0}}@keyframes fx-grow{from{transform:scaleX(0)}}@keyframes fx-ping{40%{transform:scale(1.045)}}' +
+    '@keyframes fx-draw{from{stroke-dasharray:var(--len,200);stroke-dashoffset:var(--len,200)}to{stroke-dasharray:var(--len,200);stroke-dashoffset:0}}}' +
+    '@media (prefers-reduced-motion:reduce){.fx *{transition:none!important;animation:none!important}}' +
+    '@media print{.fx-ctl{display:none}.fx{break-inside:avoid}.fx *{transition:none!important;animation:none!important}}';
   function style() {
     if (document.getElementById('fx-css')) return;
     var s = document.createElement('style'); s.id = 'fx-css'; s.textContent = CSS;

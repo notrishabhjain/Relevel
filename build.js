@@ -534,7 +534,7 @@ const SITE_ORIGIN = (process.env.SITE_ORIGIN
    service worker (scope "/"), which keeps pages for reading offline. */
 for (const [dir, name, short, desc, bg, theme, d] of [
   ['book', 'AI From Zero: the book', 'AFZ Book', 'The reading edition: the course told as one story, in English and Hinglish.', '#F7F2E8', '#F7F2E8', BOOK_ICON],
-  ['plan', 'Applied AI PM plan', 'AI PM Plan', 'The 26-week route, week by week, with shared progress.', '#ECEEEA', '#ECEEEA', PLAN_ICON]
+  ['plan', 'Applied AI PM plan', 'AI PM Plan', 'The 28-week route, week by week, with shared progress.', '#ECEEEA', '#ECEEEA', PLAN_ICON]
 ]) {
   outBin(`dist/site/${dir}/icon-180.png`, png(180, false, d));
   outBin(`dist/site/${dir}/icon-192.png`, png(192, false, d));

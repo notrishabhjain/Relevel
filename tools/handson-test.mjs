@@ -277,7 +277,7 @@ ok(/Asli duniya mein/i.test(await page.locator('#reading').innerText()), 'and th
 const bookFiles = fs.readdirSync(p.join(ROOT, 'dist/site/book')).filter(f => /^\d\d-.*\.html$/.test(f));
 ok(bookFiles.filter(f => fs.readFileSync(p.join(ROOT, 'dist/site/book', f), 'utf8').includes('class="deeper"')).length === bookFiles.length,
   'every book chapter ends with its reading list');
-ok((fs.readFileSync(p.join(ROOT, 'dist/site/plan/index.html'), 'utf8').match(/Research and the real world/g) || []).length === 26, 'and every week of the plan has one');
+ok((fs.readFileSync(p.join(ROOT, 'dist/site/plan/index.html'), 'utf8').match(/Research and the real world/g) || []).length === 28, 'and every week of the plan has one');
 ok(!errors.length, 'no page errors', errors.slice(0, 3).join(' | '));
 
 await browser.close();
