@@ -28,7 +28,7 @@ Anaya hadn’t meant to embarrass him. She asked because the whole claim depende
 
 ## Two reasons the slide was wrong
 
-The first reason is cost. A large request costs what a large request costs. Imran priced Sahaj’s whole policy library, about a hundred and fifty thousand tokens, at a made-up rate of ₹250 a million. One question came to ₹37.50. Fetching the three relevant pieces had cost thirty paise. At a hundred thousand questions a month, that is ₹37.5 lakh against ₹30,000.
+The first reason is cost. A large request costs what a large request costs. Imran priced Sahaj’s whole policy library, about two hundred thousand tokens, at a made-up rate of ₹250 a million. One question came to ₹50. Fetching the three relevant pieces had cost thirty paise. At a hundred thousand questions a month, that is ₹50 lakh against ₹30,000.
 
 The second reason is subtler. A model’s ability to use what is in the request starts to fall long before the request is full. To test this, Imran built a long document from the policies. He placed one unusual rule at three positions: near the start, in the middle and near the end. For each position he asked twenty questions that depended on that rule.
 
@@ -98,4 +98,4 @@ A very large context window doesn’t remove the need to find the right material
 - Putting the stable parts of a request first lets the provider cache them, which cuts the cost.
 - Compaction summarises the middle of a long conversation and loses specific details. Anything a model writes, including a summary, is another place a personal detail can end up.
 
-Next, you’ll see what happens when a model is allowed to work out its answer before it gives it.
+Next, a train stopped near Lonavala shows Anaya why a wait with a shape feels shorter, and what that means for models that think before they answer.

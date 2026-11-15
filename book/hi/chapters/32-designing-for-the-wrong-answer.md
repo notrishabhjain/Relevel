@@ -94,6 +94,13 @@ Raat ka job raw table se copy karta tha, jo guard se pehle se maujood tha. Guard
 
 Guard ko raw table ke aage le jaane mein use do din lage. Teesre hafte mein Pune ka sweep count paanch sau mein nau par aa gaya, jabki Nashik ka bayaalis par raha. Yeh dekhne ke baad Anaya corridor mein bahut der khadi rahi. Uske paas ek number tha, aur woh hila tha. Woh isliye hila kyunki usne ek aisa test likha tha jo fail ho sakta tha, aur jab woh fail hua toh usne use maanne par zid ki.
 
+::: key Ab aap kya keh sakte hain
+Har N apne project se bhariye.
+- Meri feature ki specification mein ek table hai: measurement, N rows ki answer key, N ka threshold, aur number kam padne par kya action hoga.
+- Vendor ke message dekhne se pehle main teen sawaal order mein poochhta hoon, aur mere likhe rule mein N cheezein hain jo kabhi nahi bheji jaatin.
+- Maine ek aise number par pilot chalaya jise business pehle se track karta tha, ek comparison group aur shuru hone se pehle likhe failure threshold ke saath. Number N se N tak gaya.
+:::
+
 ## Saaraansh
 
 90 percent accuracy par das mein se ek jawaab galat hota hai, aur us par screen kya karegi, yeh product owner tay karta hai.
@@ -102,3 +109,5 @@ Guard ko raw table ke aage le jaane mein use do din lage. Teesre hafte mein Pune
 - Refusal ek jaanboojh kar design ki gayi screen hai, jo kisi insaan ke raaste par khatam hoti hai. AI band hone par dikhne wali screen bhi waise hi design hoti hai.
 - Yeh jaanne ke liye ki system se business ko madad milti hai ya nahi, pehle slow hissa dhoondhiye. Phir ek pilot chalaiye jisme ek aisa number ho jise business pehle se track karta hai, ek comparison group, pehle se likhi failure threshold, aur itna lamba window ki novelty khatam ho jaaye.
 - Jab kaam karta hai par number nahi hilta, toh order mein poochhiye: kya use hota hai, kya uska output wahan tak pahunchta hai jahan faisla hota hai, aur kya wahi step slow tha?
+
+Agle chapter mein September mein do ghante ke liye guard Pune ka har order number chhupa deta hai, aur dashboard hara hi rehta hai.

@@ -95,3 +95,5 @@ Har sawaal ke saath model ko poori library nahi di ja sakti. Woh fit nahi hogi, 
 - Bade chunks mehnge aur dhundhle hote hain. Chhote chunks saaf hote hain lekin context kho dete hain. Jo chunk pichhle tukde ki kisi cheez ki baat karta hai, woh orphan hai, aur model us gap ko andaaze se bhar dega.
 - Chunk ka koi sahi size nahi hota. Har choice kahin na kahin fail hoti hai, isliye jo failure aap maante hain, uska naam lijiye aur use jaan-boojh kar test kijiye.
 - Wahi savdhaani us text par bhi lagti hai jise guard ko khud kaatna padta hai. Identity number ko kabhi beech se mat todiye, aur bagal ke tukdon ko thoda overlap karne dijiye.
+
+Agle chapter mein Anaya khud search engine ban jaati hai, bees index cards ke saath, aur Farah customer banti hai.

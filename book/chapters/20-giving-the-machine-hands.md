@@ -1,6 +1,6 @@
 ---
 title: Giving the Machine Hands
-summary: A twelve-digit order number looks exactly like an Aadhaar number, and the only way to tell them apart is to look it up. This chapter introduces tool calling, tool descriptions, AI agents and step limits, shows how the cost of a loop climbs, and separates actions that read from actions that do.
+summary: A twelve-digit order number looks like an Aadhaar number, and once a check-digit rule has ruled out most look-alikes, the only way to tell the rest apart is to look it up. This chapter introduces tool calling, tool descriptions, AI agents and step limits, shows how the cost of a loop climbs, and separates actions that read from actions that do.
 course: ch9
 goals:
   - describe how tool calling works as a loop between a model and a program
@@ -16,9 +16,11 @@ terms:
 
 One twelve-digit order number kept coming back into the team’s work. It showed up in the sorting test, where four order numbers were called Aadhaar numbers and the guard would have hidden them. It showed up again in the list of edge cases. Farah’s agents needed to see order numbers to do their jobs, and customers typed them all the time.
 
-The trouble was that, to the eye and to any rule, an order number and an Aadhaar number looked the same. Both are twelve digits, sometimes in groups of four, and nothing in the digits says which is which.
+The trouble was that, to the eye and to any rule that looked only at shape, an order number and an Aadhaar number looked the same. Both are twelve digits, sometimes in groups of four, and nothing the eye can see in the digits says which is which.
 
-On a Tuesday, Imran Qureshi said there was only one way to know. You ask the order system. In this chapter you’ll see how a model is allowed to do that, what it costs, and where you have to stop it.
+One rule narrows it, at no cost. A real Aadhaar number does not start with 0 or 1, and its last digit is a check digit, worked out from the other eleven by a fixed sum called the Verhoeff scheme. The pattern checker can run that sum before anything else. It rules out about nine in ten look-alikes, order numbers included. What remains is the one in ten that passes by chance.
+
+On a Tuesday, Imran Qureshi said that for the numbers that passed the rule there was only one way to know. You ask the order system. In this chapter you’ll see how a model is allowed to do that, what it costs, and where you have to stop it.
 
 ## The case: a number that is either of two things
 
@@ -123,4 +125,4 @@ A model can’t run anything; it can only ask. In tool calling, the program desc
 - Most agent failures are failures of control and not of intelligence, so a step limit set by the program is the first thing to write.
 - Functions that only read can be left to run. Functions that act can’t be undone, and a human, or a fixed message written in advance, belongs there.
 
-Next, you’ll see what happens when you try to fix all this by simply sending the model much more to read.
+Next, a vendor’s slide claims that the whole library can go with every question, and Anaya tests the claim.

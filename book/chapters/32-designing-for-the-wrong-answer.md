@@ -94,6 +94,13 @@ The nightly job copied from the raw table, which existed before the guard did. T
 
 It took him two days to move the guard in front of the raw table. In the third week, Pune’s sweep count fell to nine in five hundred, while Nashik’s stayed at forty-two. Anaya stood in the corridor for a long time after she saw it. She had a number, and it had moved. It had moved because she had written a test that could fail, and had insisted on believing it when it did.
 
+::: key What you can now say
+Fill each N from your own project.
+- My feature has a specification with one table: the measurement, an answer key of N rows, a threshold of N, and the action when a number falls short.
+- Before a vendor sees a message, I ask three questions in order, and my written rule names N things that are never sent.
+- I ran a pilot on one number the business already tracked, with a comparison group and a failure threshold written before it began. The number moved from N to N.
+:::
+
 ## Summary
 
 At ninety percent accuracy, one answer in ten is wrong, and the product owner decides what the screen does about it.
@@ -102,3 +109,5 @@ At ninety percent accuracy, one answer in ten is wrong, and the product owner de
 - A refusal is a screen designed on purpose, and it ends in a route to a person. So is the screen for when the AI is switched off.
 - To learn whether a system helps the business, find the slow part first. Then run a pilot with one number the business already tracks, a comparison group, a failure threshold written in advance and a window long enough for novelty to fade.
 - When it works and the number does not move, ask in order: is it used, does its output reach where the decision is made, and was that step the slow one?
+
+Next, for two hours in September the guard hides every order number in Pune, and the dashboard stays green.

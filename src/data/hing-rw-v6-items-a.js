@@ -2,8 +2,8 @@
 Object.assign(window.HING = window.HING || {}, {
   'A handy rule: 1 token is about ¾ of an English word, so you multiply the words by 1.33. That makes 300 words about 400 tokens. Watch the trap answer, 225. It comes from dividing when you should have multiplied.':
     'Ek kaam ka rule: 1 token lagbhag English word ke ¾ ke barabar hota hai, isliye words ko 1.33 se multiply kijiye. Matlab 300 words lagbhag 400 tokens hue. Trap wale jawaab 225 se bachiye. Woh tab aata hai jab aap multiply karne ki jagah divide kar dete hain.',
-  'A RAG query sends 1,800 input tokens and produces 240 output tokens. Input costs ₹0.20 per million tokens and output costs ₹0.60 per million. What does one query cost, in paise (1 rupee = 100 paise)?':
-    'Ek RAG query 1,800 input tokens bhejti hai aur 240 output tokens banati hai. Input ka ₹0.20 per million tokens hai aur output ka ₹0.60 per million. Ek query ki cost paise mein kitni hai (1 rupee = 100 paise)?',
+  'A RAG query sends 1,800 input tokens and produces 240 output tokens. Input costs ₹0.20 per million tokens and output costs ₹0.60 per million. These prices are made up, so look up today’s price before you use a number at work. What does one query cost, in paise (1 rupee = 100 paise)?':
+    'Ek RAG query 1,800 input tokens bhejti hai aur 240 output tokens banati hai. Input ka ₹0.20 per million tokens hai aur output ka ₹0.60 per million. Yeh prices banaye hue hain, isliye kaam mein koi number use karne se pehle aaj ki price dekh lijiye. Ek query ki cost paise mein kitni hai (1 rupee = 100 paise)?',
   'Work out the input and output parts separately, then add them: (1800/1,000,000 × 0.20) + (240/1,000,000 × 0.60) = 0.00036 + 0.000144 = ₹0.000504, which is about 0.05 paise. The sum is easy. The real lesson is that a cost per query looks tiny until you multiply it by volume and by the four multipliers.':
     'Input aur output ka hissa alag-alag nikaliye, phir jod dijiye: (1800/1,000,000 × 0.20) + (240/1,000,000 × 0.60) = 0.00036 + 0.000144 = ₹0.000504, yaani lagbhag 0.05 paise. Hisaab aasaan hai. Asli seekh yeh hai ki per query cost bahut chhoti lagti hai, jab tak aap use volume aur un chaar multipliers se multiply na karein.',
   'A business case says each query costs ₹0.30, worked out as input tokens × rate + output tokens × rate. Which of these would push the real bill above that figure?':
@@ -184,8 +184,6 @@ Object.assign(window.HING = window.HING || {}, {
     '“Kaise measure kiya, kinke sawaalon par, kin languages mein?”',
   'Accept it as a sign of quality':
     'Ise quality ka signal maan lijiye',
-  'Two texts have a cosine similarity of 0.78, and a third pair scores 0.19. Roughly how many of these pairs would you expect to be near-synonyms in the same professional field? Answer with a count (0, 1 or 2).':
-    'Do texts ki cosine similarity 0.78 hai, aur ek teesre pair ka score 0.19 hai. Aap lagbhag kitne pairs se umeed karenge ki woh ek hi professional field ke near-synonyms hon? Count se jawaab dijiye (0, 1 ya 2).',
   'You can’t work out a count from cosine values alone. How similarity scores spread out depends on the model, the corpus and the task. Label examples from your own retrieval task, and set a threshold or ranking rule from those.':
     'Sirf cosine values se count nahi nikala ja sakta. Similarity scores kaise failte hain, yeh model, corpus aur task par depend karta hai. Apne retrieval task ke examples label kijiye, aur unse threshold ya ranking rule tay kijiye.',
   'What does reciprocal rank fusion do, in plain words?':

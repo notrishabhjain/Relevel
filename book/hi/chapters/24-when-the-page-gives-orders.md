@@ -111,4 +111,4 @@ Jis material ko padhne ke liye system ko diya gaya hai, uske andar ka text model
 - Jo tikta hai woh hai capability hata dena. Kiska data padhna hai, yeh chunav model ke haath se nikaliye, kuch bhejna ek aisi cheez banaiye jo insaan karta hai, aur har document ko untrusted maniye.
 - Koi jaani hui defence poori nahi hai, isliye system is maan kar banaiye ki model kabhi-kabhi hukm maanega.
 
-Agle chapter mein aap dekhenge ki jab haath se hazaar jawaab check karna mumkin nahi rehta, toh team unhe kaise marks deti hai.
+Agle chapter mein answer key 120 rows se aage nikal jaati hai, aur Anaya ab use haath se mark nahi kar sakti.

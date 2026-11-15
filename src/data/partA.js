@@ -171,8 +171,14 @@ window.PART6 = [
     ['try',{id:'a1-evidence',mins:5,min:60,rows:4,
       task:'Write one score with its evidence. Then write one score you would have given yourself on confidence alone, and explain why the evidence changes it.',
       ph:'Area, score, evidence…',
-      after:'Here is an answer that works. <strong>Analytics: 2.</strong> Evidence: I built my team’s weekly retention dashboard and used it to argue for changing onboarding. <strong>Strategy: I would have said 2, but it is a 1.</strong> I have opinions about strategy, but I have never written one that someone else acted on. The difference is whether an artifact exists that another person could check.'}],
+      after:'Here is an answer that works. <strong>Delivery: 2.</strong> Evidence: I ran the rollout of a citizen-services portal across several districts, and kept the weekly status log the department used to set go-live dates. <strong>Strategy: I would have said 2, but it is a 1.</strong> I have opinions about strategy, but I have never written one that someone else acted on. The difference is whether an artifact exists that another person could check.'}],
+    ['c','From delivery to product','You do not start at zero. Delivery and Leadership can start at 2, with evidence from your government projects: a rollout plan, a steering-committee note, a stakeholder you brought round. Discovery, Strategy and Analytics are different. “I delivered what was specified” does not count there. The evidence is a decision you made when nobody told you what to build, and a number you moved.'],
     ['q','I501'],
+    ['p','One more, this time from your own past.'],
+    ['try',{id:'a1-owned',mins:6,min:60,rows:4,
+      task:'Name one decision on a past project that was yours. What would have happened if you had decided otherwise? Save the answer in decision-log.md under the heading “Decisions I owned before this course”.',
+      ph:'The decision, who disagreed, what would have happened otherwise…',
+      after:'Here is an answer that works. <strong>Decision:</strong> I held go-live of a citizen-services portal by two weeks, because the payment step had failed two test runs. <strong>If I had decided otherwise:</strong> the portal would have opened on the promised date, and applicants in three districts would have been charged twice. Keep this entry. Chapter B7 asks you to turn it into an interview story.'}],
 
     ['h','Idea 2: Keep all your work in one place'],
     ['p','You now know where you stand. Next, you need somewhere to keep what you make. You’ll make around fifty artifacts in this course: interview notes, a strategy memo, a PRD, test sets, dashboards and a deployed app.'],
@@ -184,16 +190,16 @@ window.PART6 = [
     ]],
     ['p','Use this folder structure in the repository:'],
     ['code','/research      interview notes, market research\n/product       strategy, roadmaps, PRDs\n/experiments   notebooks and prototype code\n/evals         test sets and evaluation results\n/analytics     tracking plans and dashboards\n/security      threat models and risk registers\n/portfolio     case studies\ndecision-log.md'],
-    ['c','Tip','No GitHub account yet? Start with a folder on your computer or in Google Drive, using the same structure. You can move it to GitHub later, in Chapter 21, when you set up version control properly.'],
+    ['c','Tip','No GitHub account yet? Start with a folder on your computer or in Google Drive, using the same structure. The next page, A1.5, shows you how to move it to GitHub in about twenty minutes.'],
     ['p','The most important file is <code>decision-log.md</code>. Each time you make a decision in this course, such as which problem to solve, which model to use or which metric matters, add an entry. Each entry has four parts: the date, the decision, the evidence, and what would make you change it.'],
     ['do','Prove it now',[
       ['p','Create the folders. Then add your first entry to <code>decision-log.md</code>. For example:'],
-      ['code','2026-09-23\nDecision: I will study three hours a week, on Tuesday and Thursday evenings and Saturday morning.\nEvidence: my calendar for the last four weeks.\nRevisit if: I miss two sessions in a row.'],
+      ['code','2026-10-19\nDecision: I will study one hour a week in month 1, on Sunday morning.\nEvidence: my calendar for the last four weeks.\nRevisit if: I miss two weeks in a row.'],
       ['x','You should now have a folder structure anyone could navigate, and one decision with its evidence. Test it: could someone else find your interview notes in under two minutes?']
     ]],
 
     ['h','Idea 3: Build first, then check whether you are ready'],
-    ['p','With a place to work, the next question is time. How much should you study each week, and how should you spend it? Your route starts at about an hour a week and grows to two or three. Whatever your total, split it into four blocks and give the biggest block to building. Here is the split at a full-time pace of twelve hours; scale it to your own:'],
+    ['p','With a place to work, the next question is time. How much should you study each week, and on what? Your route starts at about an hour to an hour and a half a week and reaches four or five in the capstone weeks. Split it into four blocks and give the biggest block to building. Here is the split at a full-time pace of twelve hours; scale it to your own:'],
     ['tb',['Block','Hours','What you produce'],[
       ['Learn and prove','3','Experiments, notes and quiz answers'],
       ['Build','5','An artifact, prototype or code'],
@@ -510,6 +516,7 @@ window.PART6 = [
     ['p','Look at the third question in the left column. It hints at the answer you want to hear. And people tend to agree with whoever is asking. A question like this is called a <strong>leading question</strong>.'],
     ['p','Now look at the right column. Every question there asks about something that already happened. A person can’t easily be polite about that. They just tell you what they did.'],
     ['key','Opinions about the future are weak evidence. Specific stories about the past are strong evidence.'],
+    ['c','From delivery to product','You have run requirement workshops with departments. Keep that skill. The change: a requirement is what someone asked for, and discovery is what they did last Tuesday. Ask an officer to walk you through the last time a file got stuck, one step at a time. You will hear what the requirements document never said.'],
     ['do','Prove it now',[
       ['p','Write three questions you might have asked about your capstone problem. Then rewrite each one so it asks about something specific the person did in the past.'],
       ['x','You should have three before-and-after pairs. Check each rewrite with one question: could the person answer it with a story about something that really happened?']
@@ -856,6 +863,7 @@ window.PART6 = [
       ['Plan','What are we doing next?','This quarter','Ship theme grouping for one help desk to ten design partners.']
     ]],
     ['p','The strategy is the hard part, because it means choosing. A vision can be inspiring, and a plan can be busy. But only a strategy says which customers you will serve and which ones you will turn away.'],
+    ['c','From delivery to product','On a government project, the scope reached you in a tender document or a project report, and your job was to deliver it. As the product manager you write the scope. That includes the “not doing” list, and you defend it when a senior asks for one more feature. Write that list first, then ask what you would say to the person who wants an item back.'],
     ['do','Prove it now',[
       ['p','Write one sentence each for your capstone’s vision, strategy and plan.'],
       ['x','You should now have three sentences. Look hard at the strategy one. Does it name a specific user and a specific way you will win? If it could describe any company, rewrite it.']
@@ -1061,6 +1069,12 @@ window.PART6 = [
       ['Precision stays below 85%','Medium','High','PM and engineer','Time-box to three weeks, then narrow the use case']
     ]],
     ['p','AI products carry a few risks of their own. The model’s quality may never reach the bar. The provider may change the model underneath you. And data approvals can take months.'],
+    ['c','From delivery to product','You already keep a risk and issue log and a stakeholder register. Keep both. What changes is the first column. A delivery log starts with the milestone and its date. A product log starts with the outcome and its kill criterion. In the stakeholder grid, add each person’s incentive and whether they can veto. Your government experience will fill it faster than most readers can.'],
+    ['p','Now translate one thing you delivered.'],
+    ['try',{id:'a6-translate',mins:10,min:120,rows:6,
+      task:'Take one milestone you delivered on a government project. Rewrite it as an outcome with evidence, an owner and a kill criterion. Then write what you would have had to decide, not deliver.',
+      ph:'Milestone… outcome… evidence… owner… kill criterion… what I would have decided…',
+      after:'A strong answer. <strong>Milestone:</strong> citizen portal live in all districts by 31 March. <strong>Outcome:</strong> at least 60% of grievance applications in the pilot districts are filed online within eight weeks of go-live. <strong>Evidence:</strong> the help-desk log shows most applicants still walk to the block office, which costs them a day’s wage. <strong>Owner:</strong> me, with the district nodal officer. <strong>Kill criterion:</strong> if fewer than 20% file online after eight weeks, stop adding districts and fix the form first. <strong>What I would have had to decide:</strong> whether to go live in districts with weak connectivity, instead of delivering to the date. Your numbers will differ.'}],
     ['try',{id:'a6-memo',mins:12,min:150,rows:7,
       task:'Write the first paragraph of your decision memo to leadership. Start with the decision or ask, then give the evidence, the cost and the biggest risk.',
       ph:'The ask, why now, the cost, the biggest risk…',
@@ -1142,6 +1156,7 @@ window.PART6 = [
       ['It is fast','The weekly report is ready within 2 minutes for up to 1,000 tickets'],
       ['It handles bad input','If fewer than 20 tickets are imported, it says so and does not produce themes']
     ]],
+    ['c','From delivery to product','Government projects often start from a requirements specification: a long list of what the system must do. It says what to build. A PRD starts one step earlier, with the problem and the evidence, and ends with a pass rate you can test. If you have signed off a specification, rewrite one line of it as a testable criterion.'],
     ['c','Tip','There is a fillable AI PRD template in the <a href="#/templates/prd">workbench</a>. Use it for the Build it task.'],
     ['do','Prove it now',[
       ['p','Write three acceptance criteria for your capstone’s first feature. Make each one testable: a number, a test set or a specific condition.'],

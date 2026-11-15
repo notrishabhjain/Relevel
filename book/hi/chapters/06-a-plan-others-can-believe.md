@@ -20,13 +20,15 @@ terms:
   - dependency | koi bhi cheez jo aapko khatam karne ke liye apni team ke bahar se chahiye: doosri team ka kaam, supplier, data ka access, koi approval | dependencies
 ---
 
-Anaya ke pehle manager ne use aise plans banana sikhaya tha jo railway timetable jaise dikhte the. Ek taraf features, upar mahine, aur har feature ke liye ek bar, jo ek date par shuru hota aur doosri par khatam. Anaya ne aise lagbhag ek darjan plans banaye the. Use yaad nahi tha ki unmein se koi ek bhi sach hua ho.
+Utility rollout ki delivery ke saalon mein Anaya ne aise plans banaye jo railway timetable jaise dikhte the. Use yeh banana uske pehle manager ne sikhaya tha. Ek taraf features, upar mahine, aur har feature ke liye ek bar, jo ek date par shuru hota aur doosri par khatam. Anaya ne aise lagbhag ek darjan plans banaye the. Use yaad nahi tha ki unmein se koi ek bhi sach hua ho.
 
 Dates aksar galat hoti thi, lekin yahi sabse badi kami nahi thi. Har bar kuch banane ka waada tha. Kisi bhi bar ne yeh waada nahi kiya tha ki woh cheez madad karegi.
 
 Jab dates khisakti thi, plan toot-te waadon ki list ban jaata. Aur jab koi feature kaam ka nahi nikalta, toh woh galat cheez ke toot-te waadon ki list ban jaata.
 
 Founders ne privacy tool ko principle mein maan liya. Uske baad Anaya ne ek saaf page par naya plan shuru kiya, ek alag dhaanche ke saath. Is chapter mein hum us dhaanche ko dekhenge, aur uske saath jude goals ko. Phir un logon se milenge jo use rok sakte the, aur ek aisi meeting se, jisne plan ko shuru hone se pehle parkha.
+
+Agar aapne delivery chalayi hai, toh neeche ke kai shabd aap pehle se jaante hain: stakeholder, dependency, risk list. Yeh dekhte hue padhiye ki kya badalta hai. Delivery mein date aapki hoti hai. Yahan outcome aapka hota hai.
 
 ## Case: bina dates ka plan
 
@@ -58,6 +60,13 @@ Aakhri line Anaya ke liye nayi thi. *Kill criterion* ek aisi shart hai jo pehle 
 Yeh ek psychological wajah se kaam karta hai. Teen hafte ki mehnat ke baad koi bhi yeh judge karne ke liye sahi insaan nahi hota ki kaam kharab chal raha hai. Kyunki sabke paas yeh kehne ki wajah hoti hai ki sab theek hai. Shuru mein likhi hui shart, jab koi result se juda nahi hota, failure ko aise shabdon mein batati hai jin par baad mein behas nahi karni padti.
 
 Jab kaam aise software ka ho jo text padhta aur likhta hai, tab kill criteria aur zyada zaroori ho jaate hain. Uski accuracy pehle se nahi pata hoti. Woh software ko aazma kar hi pata chalti hai. Isliye pehle test se pehle di gayi date ek andaaza hai, jise waade ki tarah pesh kiya gaya hai.
+
+::: key Jab aap outcome ke malik hote hain, toh kya badalta hai
+Delivery aur product alag-alag waade maangte hain. Delivery plan date ka waada karta hai, aur kaam tab judge hota hai jab dekha jaaye ki woh pahuncha ya nahi. Product plan outcome ka waada karta hai, aur kaam tab judge hota hai jab dekha jaaye ki use karne walon ke liye kuch badla ya nahi.
+- Waade ki date ban jaati hai waade ka outcome.
+- Deliver kiya gaya scope ban jaata hai woh number jo aapne hilaya.
+- Escalate kiya gaya risk ban jaata hai pehle se likha gaya kill criterion.
+:::
 
 ## Goals aur unke neeche ke numbers
 
@@ -93,7 +102,7 @@ Table: Power aur interest ke hisaab se stakeholders
 
 Har naam ke paas Anaya ne likha ki us insaan ko kis cheez par naapa jaata hai. Isse pata chalta hai ki woh kaise react karega. Usne yeh bhi likha ki woh kya decide kar sakta hai: woh chunta hai, salah deta hai, ya veto kar sakta hai.
 
-Lakshmi galat corner mein thi. Uske paas asli power thi, aur Anaya ke dekhne mein parwaah kam. Yeh jodi sabse khatarnaak hai. Security, legal aur compliance ke logon ke paas aksar veto hota hai, jabki woh roz ke kaam mein kam hissa lete hain. Woh launch se ek din pehle tak chup rehte hain, aur phir "na" kehte hain. Aur aam taur par woh sahi hote hain.
+Lakshmi galat corner mein thi. Uske paas asli power thi, aur Anaya ke dekhne mein parwaah kam. Yeh jodi sabse khatarnaak hai. Security, legal aur compliance ke logon ke paas aksar veto hota hai, jabki woh roz ke kaam mein kam hissa lete hain. Woh launch se ek din pehle tak chup rehte hain, aur phir "na" kehte hain. Aur aam taur par woh sahi hote hain. Sarkari project mein yahi corner aam taur par audit, finance ya security assessor ke paas hota hai.
 
 Ilaaj saadharan tha. Anaya ne har hafte Lakshmi se milna shuru kiya aur poochha ki use kya chahiye. Is tarah woh doosre column mein aa gayi.
 

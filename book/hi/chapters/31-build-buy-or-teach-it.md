@@ -112,3 +112,5 @@ Jab koi woh bechne aaye jo aapki team khud bana sakti hai, toh na price faisla k
 - AI value chain ke upar model shayad hi advantage hota hai. Unique data, workflow aur bharosa hota hai.
 - Open-weight model company ki apni machines par chalaya ja sakta hai. Lock-in ek cost hai, jise naapna chahiye.
 - Jab model kam pade, toh failure ki chaar kismon ko alag pehchaniye. Fine-tuning behaviour sikhati hai, facts nahi. Woh instructions, evidence aur chhote model ke baad aati hai, aur use alag test set chahiye.
+
+Agle chapter mein Farah woh sawaal poochhti hai jo tay karta hai ki tool use hoga ya nahi: daswein jawaab ke baare mein woh apni team ko kya bataye?

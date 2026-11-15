@@ -90,6 +90,13 @@ Next to each safeguard, write the test that proves it works, and run it. What is
 
 Anaya looked at the right-hand column for a long time. Nothing in it said "none". She found that she preferred it that way.
 
+::: key What you can now say
+Fill each N from your own project.
+- I chose the model on N of my own cases, with only the model changing between runs, and wrote the choice on a card with its evidence.
+- My agent is bounded: N steps, N minutes, a cost ceiling and a "cannot resolve" ending. I grade its path as well as its answer.
+- Nothing ships unless the gate passes. I attacked my own product in N ways, and the risk register puts a test beside each safeguard.
+:::
+
 ## Summary
 
 A model reads everything it is given with the same trust. So most of the security of an AI product lies in the system around the model. The attack surface is every place where an outsider can feed it something or reach something it can do.

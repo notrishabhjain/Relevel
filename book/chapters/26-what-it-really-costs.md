@@ -94,6 +94,13 @@ She had priced the first half carefully and had no number for the second. What d
 
 She told the director she would find out, or would find out that nobody knew, and say so. The director accepted that and put the cap back on her pen. Anaya added a line to the specification, in the section on what was not yet known: what does a leak cost? Ask Lakshmi.
 
+::: key What you can now say
+Three sentences about giving a model work. Put your own numbers where N stands.
+- My agent has a step limit written before anything else, and a person approves every action that cannot be undone.
+- I checked my judge against my own marking: N percent agreement, and I read the disagreements.
+- My cost sum includes retries, loops and hidden thinking: N rupees a month, not the figure for one clean call.
+:::
+
 ## Summary
 
 The simple cost sum is tokens in and out times their prices. It is correct, and usually three to twenty times too low, because it prices one clean call.
@@ -103,4 +110,4 @@ The simple cost sum is tokens in and out times their prices. It is correct, and 
 - Report cost together with speed, including the slow cases.
 - A cost without the value it protects is only half a sum.
 
-Next, you’ll leave plain text behind and look at what happens when customers send photographs.
+Next, Farah puts a photograph of a bank passbook in front of Anaya, and the team leaves plain text behind.

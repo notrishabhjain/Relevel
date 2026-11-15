@@ -119,3 +119,5 @@ Kuch outputs padhna aur jo sahi lage use chun lena, bharose ka tareeka nahi hai,
 - Scoreboard ginta hai ki har version ne kya dhoondha, kya chhoda aur kya galat flag kiya. Isse progress dikhti hai, aur raay beech mein nahi aati.
 - Ek baar mein ek hi cheez badaliye, warna pata nahi chalega ki kisne madad ki.
 - Method chunne se pehle task type ka naam lijiye. Classify aur extract ko program grade kar sakta hai. Summarise, rewrite aur generate ke liye insaan chahiye. Aur jis request mein kai types mile hon, use todna chahiye.
+
+Agle chapter mein Anaya answer key ko model ke do rozmarra ke kaamon par lagati hai: messages ko dabbon mein baantna, aur unki summary banana.

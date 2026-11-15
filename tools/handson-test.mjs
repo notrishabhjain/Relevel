@@ -171,6 +171,25 @@ await type('print(undefined_name)');
 out = await runCell(wb);
 ok(/NameError/.test(out) && /Restore/.test(out), 'an error says what to do', out.slice(0, 200));
 
+console.log('\n— a chapter’s starter cell makes the rest of its code run —');
+{
+  /* Each chapter named here is opened on its own, with nothing from earlier chapters, and its
+     first cells are run in order. The starter cell must run without an error, and the next
+     cell, which used to read names nobody had defined, must run too. */
+  const status = async (loc) => { await loc.locator('.pyrun').click(); await loc.locator('.pystat.ok, .pystat.bad').waitFor({ timeout: 120000 }); return { good: await loc.locator('.pystat.ok').count() === 1, out: await loc.locator('.pyout').innerText() }; };
+  const cases = [['ch21', 2, /echo:/], ['ch22', 2, /echo:/], ['ch24', 2, /\|/], ['ch25', 2, /echo:/], ['ch115', 2, /whole answer/], ['ch11', 2, /fast:/]];
+  /* The chapters that start from the retrieval cards (6, 7, 10, 12 to 15) import numpy, which the
+     page fetches when it first runs; the offline copy of Pyodide used here does not have it. */
+  for (const [id, n, want] of cases) {
+    await page.goto(BASE + '/app/#/ch/' + id);
+    await page.waitForSelector('.prose .pycell');
+    const cells = page.locator('.prose .pycell');
+    let r = null;
+    for (let i = 0; i < n; i++) { r = await status(cells.nth(i)); if (!r.good) break; }
+    ok(r && r.good && want.test(r.out), id + ': the starter cell and the cell after it run from a fresh chapter', r && r.out.slice(0, 200));
+  }
+}
+
 console.log('\n— a reload keeps your work —');
 await type('print(helper(41), len(CARDS))');
 await page.reload();

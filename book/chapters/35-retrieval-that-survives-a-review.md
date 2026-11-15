@@ -113,3 +113,5 @@ A prototype works because the builder chose every document and is the only user.
 - May this user see what was found? This must be enforced by labels and filters in the application, not by asking the model. It also means deciding on purpose how quickly a withdrawn document disappears.
 - Was the right piece found? Combine exact and meaning-based search, test the cutting rule, prove the value of any re-ordering step, and design what the system does when there is no answer.
 - Can the answer be traced to the exact page it came from?
+
+Next, Farah asks for an assistant in the support console that does everything, and Imran asks what it may do, with what data, and who checks.

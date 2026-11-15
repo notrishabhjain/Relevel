@@ -151,6 +151,8 @@ Table: Har area ke liye istemaal hui scale
 
 Problems dhoondhne ko usne 2 diya, kyunki ab uske paas ek ginti thi. Strategy ko 1 diya, kyunki uski kisi strategy par kisi colleague ne kabhi amal nahi kiya tha.
 
+Dono scores ki ek kahani thi. Sahaj se pehle Anaya ne ek state electricity utility ke bill-payment system ka rollout manage kiya tha: dates, status reports aur senior officials ke saath mahine ki meeting. Woh is kaam mein achhi thi, aur "decision ko aisi cheez mein badalna jise doosre bana sakein" ke liye usne khud ko 3 diya. Us project par kisi ne use nahi poochha tha ki rollout ko kaun si problem solve karni chahiye. Woh uske aane se pehle hi tay ho chuka tha.
+
 Technology samajhne ko pehle 1 diya, phir use kaata aur ek kam, zyada imaandaar number likha. Woh meeting mein keh sakti thi ki chatbot AI se chalta hai. Lekin yeh sentence woh ek jigyaasu 12 saal ke bachche ko samjha nahi sakti thi.
 
 Yeh scores uske notes mein rahenge, aur kitaab ke ant mein dobara dekhe jaayenge. Page ke sabse upar uska apna rule likha tha: jab tak koi aur check na kar sake, tab tak kuch bhi count nahi hota.

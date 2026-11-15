@@ -26,6 +26,19 @@ Table: Har part padhne ke baad reader kya kar paaye
 | 6. Parde ke peechhe | 33 se 39 | Model ke aas-paas ka normal software padhna, apne cases par model chunna, ek retrieval system ka review karna, ek agent ko bound karna, ek gate ke zariye release karna, aur sabse bura maan kar chalna |
 | 7. Ek asli product, aur ek job | 40 se 47 | Ek prototype ko service banana, uski price tay karna, logon ko use dhoondhne aur tikne mein madad karna, jo woh karte hain use bina yeh record kiye ginna ki woh kya likhte hain, ek team ke tools ke saath kaam karna, asli users se seekhna, aur kaam ek employer ko dikhana |
 
+## Aath sentences jo ab aap keh sakte hain
+
+Neeche har sentence mein aapke apne project ke ek number ki jagah khaali hai. Jo sentence abhi aap bhar nahi paate, woh agla kaam hai. Sentence badalne ki wajah nahi.
+
+- Maine chunne se pehle ginti ki: ek hafte ki N conversations mein se N mein ek identity number tha.
+- Main bata sakta hoon ki model kya hai aur kitne ka padta hai: N tokens ki ek request lagbhag N rupaye ki padti hai, aur memory meri application ke paas hoti hai.
+- Mera retrieval mere apne sawaalon par das mein se N baar sahi passage dhoondhta hai, aur recall aur precision mein maine soch-samajhkar chuna.
+- Mera model limits ke andar tools use karta hai: zyada se zyada N steps, aur jo kuch undo nahi ho sakta use insaan approve karta hai.
+- Meri specification mein N ka threshold hai, aur mere pilot ka failure threshold maine shuru hone se pehle likha tha.
+- Gate N rows par pass hue bina kuch ship nahi hota, aur maine ek rollback ko N minute mein time kiya.
+- Ek message ko serve karne mein N rupaye lagte hain, aur base use par margin N percent hai.
+- Yeh hai jo toota, N cheezein, aur yeh hai woh number jo hila, N se N tak.
+
 ## Project ko abhi bhi kya nahi pata
 
 Jo textbook pakke yakeen par khatam hoti hai, usne aksar kuch chhod diya hota hai. Isliye yahan likha hai ki guard ko kis par test nahi kiya gaya tha. Use English mein, Hindi mein aur dono ki milavat mein naapa gaya tha, un messages par jo team ne khud likhe the. Use Tamil, Bengali ya Telugu mein nahi naapa gaya tha. Do shehron ke bahar ke customers ki likhai par nahi naapa gaya tha, aur Imran se zyada sabr wale hamlawar ke khilaaf bhi nahi.
@@ -42,7 +55,7 @@ Is field mein lagbhag har cheez ka ek naam hai. Seekhne ki mushkil ka bada hissa
 
 Ek book aapko tasveer de sakti hai. Woh aadat nahi de sakti, aur aadat hi zyadatar skill hai. Yahan ka material tab aapka apna banta hai jab aap practice karte hain. Ek problem ka saada description likhiye aur dekhiye ki woh jud nahi rahi. Ek chhoti answer key banaiye aur dekhiye ki aap kitni baar galat the. Ek system ko jaan-boojhkar todiye aur dekhiye ki woh kya karta hai.
 
-Course app isi practice ke liye bana hai. Book ke har chapter ka app mein ek saathi hai, jo chapter ke neeche link hai. Usmein wahi ideas usi order mein hain, aur kaam karne ke liye tasks, aur jawaab dene aur check karne ke liye sawaal hain. Aap yahan ek chapter padh sakte hain aur phir wahan kaam kar sakte hain, ya ulte order mein. Dono saath use karne ke liye likhe gaye the.
+Course app isi practice ke liye bana hai. Book ke har chapter ka app mein ek saathi hai, jo chapter ke neeche link hai. Usmein wahi ideas usi order mein hain, aur kaam karne ke liye tasks, aur jawaab dene aur check karne ke liye sawaal hain. Yahan chapter padhiye, phir wahan uska kaam kijiye. Course ka weekly route isi order mein laga hai, aur dono saath use karne ke liye likhe gaye the.
 
 Agar book aur course ek doosre se alag bolein, ya koi term samjhaye jaane se pehle use ho gaya ho, toh please report kijiye. Book ko theek isi ke liye line-by-line check kiya gaya tha, lekin ek checker reader ka option nahi hota.
 

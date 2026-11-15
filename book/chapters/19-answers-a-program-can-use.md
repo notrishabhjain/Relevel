@@ -101,6 +101,13 @@ Anaya added a column to the answer key headed "what a quote should be". She also
 
 Then she named what the design still could not catch: a quote that really is in the message, in the right shape, but is not personal at all, such as an order number. The form can’t know that. Imran said that this is what the answer key is for.
 
+::: key What you can now say
+Three sentences about finding and structure. Put your own numbers where N and M stand.
+- I measured retrieval on my own questions: N of ten found the right passage, and I can say what the misses had in common.
+- I state recall and precision for my tool, and I say which one I favoured and why.
+- My tool’s output is fields a program can check, and validation caught N bad outputs out of M.
+:::
+
 ## Summary
 
 When a program reads a model’s output, the output must be fields and not a paragraph. Asking politely for JSON works about ninety-seven times in a hundred. At scale, that means hundreds of silent failures a day.
@@ -109,3 +116,5 @@ When a program reads a model’s output, the output must be fields and not a par
 - A schema guarantees the shape of an answer, not its truth. A required field forces the model to invent something whenever the input is silent.
 - Good forms use fixed choices, allow "not stated", and ask for the exact words each value came from.
 - Validation after the fact is the net underneath. Check the fields, the permitted values and the quotations, retry once, and then hand over to a person.
+
+Next, a twelve-digit number that might be an order or an Aadhaar number sends the team looking for a way to let the model ask for a lookup.

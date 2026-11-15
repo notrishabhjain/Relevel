@@ -118,6 +118,27 @@ Table: Vendors ko kaise score kiya gaya
 
 Aakhri row woh hai jo zyadatar sheets chhod deti hain. Ek provider quality mein aur data controls mein jeet sakta hai, aur phir bhi use chhodne mein ek saal lag sakta hai. Aisa company ko us se zyada lambe waqt ke liye baandh sakta hai jitna uska business plan chalta hai. Yehi *exit cost* hai. Sheet ke bagal mein Anaya ne woh aadat likhi jo baaki sab se zyada tikne wali thi: ek decision ek hypothesis hai jiski ek keemat hai, isliye pehle se likh dijiye ki aap use kab dobara dekhenge.
 
+## Ek Won't, palta hua
+
+Log ki ek entry ulti disha mein gayi. November ke beech mein lending partner ke technical lead ne poochha ki kya unki team guard ko apne chat system par try kar sakti hai. Isse March ki Won't list ke do items chhue gaye, ek browser version aur Sahaj ke bahar kisi ko bhi bechna. Anaya ne unhe chupchaap nahi chhoda. Usne palatna pehli entry ke format mein likha.
+
+::: example Decision log, 20 November
+```
+20 November
+Decision:  Reverse two Won'ts from March. Offer the guard to other
+           companies as a small library, with a demonstration page
+           where a developer pastes a message and sees it cleaned.
+Evidence:  The lending partner asked for it. Pune's sweep fell from
+           46 in 500 to 9. Farah's team still paste Hinglish into a
+           translation site, so people want a safe paste box.
+I would change my mind if:  fewer than half of the developers who
+           try it get it working in an hour, or Lakshmi finds that
+           the page keeps what people paste.
+```
+:::
+
+Won't ek waada hai ki dayra chhota rahega. Use todne ke liye wahi chahiye jo banane ke liye chahiye tha: saboot, aur wapas jaane ka likha hua raasta.
+
 ## Saar
 
 Jo cheez text padhti aur likhti hai, uske liye "done" ka matlab hai ek measured success rate, ek tolerance ke andar, named cases par naapa hua, aur baaki waqt ke liye ek plan ke saath.
@@ -127,5 +148,6 @@ Jo cheez text padhti aur likhti hai, uske liye "done" ka matlab hai ek measured 
 - Har task customer aur reply ke beech ke raaste mein nahi hona chahiye. Dheema kaam queue mein ruk sakta hai. Jab koi hissa fail ho, toh system ko graceful degradation ke saath chhote, safe mode mein aa jaana chahiye.
 - Badlaav pehle live system ki ek copy par try hote hain, aur response time ek budget hai jo stages mein baanta jaata hai.
 - Bade decisions alternatives aur dobara dekhne ke ek trigger ke saath likhe jaate hain. Vendor ko sirf quality aur price par nahi, balki chhodne ke cost par bhi score kiya jaata hai.
+- Ek Won't ko saboot par palta ja sakta hai, agar entry mein likha ho ki kya use wapas palat dega.
 
 Ab team yeh sab lekar poori cheez ship karti hai.

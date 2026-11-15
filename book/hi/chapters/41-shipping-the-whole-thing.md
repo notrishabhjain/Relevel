@@ -26,7 +26,7 @@ Is talk ko samajhna isliye kaam ka hai ki isne saal bhar ki sari kamayi un logon
 
 ## Gyarah stages
 
-Anaya ne jo banaya tha, uski ek shape thi jo use tab tak dikhi nahi thi jab tak usne use bayaan nahi kiya. Pata chala ki woh shape poore saal ki shape thi. Table mein gyarah stages hain, aur guard ke liye har ek ka kya matlab tha.
+Anaya ne jo banaya tha, uski ek shape thi jo use tab tak dikhi nahi thi jab tak usne use bayaan nahi kiya. Pata chala ki woh shape poore saal ki shape thi. Table mein gyarah stages hain, aur guard ke liye har ek ka kya matlab tha. Yeh course app ke capstone chapter ke gyarah stages hain. Wahan ka project page isi kaam ko terah mein baantta hai.
 
 Table: Gyarah stages
 | Stage | Guard ke liye iska matlab |
@@ -73,7 +73,7 @@ Partner ke technical lead ne sabse pehle bola. Usne dhyaan dilaya ki Anaya ne fa
 
 Beech ke hisse ke liye Anaya ne kuch hoshiyaar taiyaar nahi kiya tha. Use shak tha ki saboot hi kaam kar dega.
 
-Jo product bahar gaya tha, woh developer kit tha: ek chhoti library aur ek demo page, jahan developer ek message paste karta hai aur dekhta hai ki guard use kaise saaf karta hai. Aise kit ko *SDK* kehte hain. Isse doosri team yeh feature apne product mein bina khud banaye jod sakti hai. Uska kit ek stable address par tha, ek aisi machine par jo uski nahi thi, monitoring, privacy notice aur problem report karne ke button ke saath.
+Jo product bahar gaya tha, woh developer kit tha jise team ne 20 November ko offer karne par haami bhari thi: ek chhoti library aur ek demo page, jahan developer ek message paste karta hai aur dekhta hai ki guard use kaise saaf karta hai. Aise kit ko *SDK* kehte hain. Isse doosri team yeh feature apne product mein bina khud banaye jod sakti hai. Uska kit ek stable address par tha, ek aisi machine par jo uski nahi thi, monitoring, privacy notice aur problem report karne ke button ke saath.
 
 Live jaane se pehle Imran ne woh kiya tha jiski Anaya ne zid ki thi. Usne ek harmless badlaav deploy kiya, use rollback kiya, aur stopwatch se time kiya: 4 minute 10 second. Anaya ne room ko bataya ki jis rollback ko kabhi try nahi kiya gaya, woh sirf ek plan hai.
 
@@ -113,6 +113,23 @@ Baad mein corridor mein partner ke technical lead ne poocha ki woh khud Anaya ke
 Usmein repository thi, specification, answer key aur uski history, gate ke results, risk register, findings, dashboard aur cost model. Usmein woh decision log bhi tha jo 14 March ki raat shuru hua tha, aur uski pehli line ab bhi sabse upar thi: jab tak koi aur check na kar sake, kuch bhi count nahi karta.
 
 Anaya ne kaha ki aap tab done hain jab koi bhi aapka kaam dobara chalaye aur wahi numbers paaye. Usne dheere se sar hilaya aur kaha ki woh answer key dekhna chahega. Anaya muskuraayi. Yeh woh request thi jiska use nau mahine se intezaar tha.
+
+## March wala page
+
+Us raat Anaya ne 14 March ke scores wala page kholkar dekha. Teen ab bhi uski likhai mein the: problems dhoondhne ke liye 2, kaunsi solve karni hai yeh chunne ke liye 1, aur technology samajhne ke liye 1 se neeche ka ek kata hua figure. Usne saare saat areas ko usi scale par phir se score kiya, har ek ke baju mein saboot ki ek line ke saath, apne hi rule se ki jab tak koi aur check na kar sake, kuch bhi count nahi karta.
+
+Table: Saat areas, dobara score kiye hue
+| Area | Score | Saboot jo koi aur check kar sake |
+| --- | --- | --- |
+| Asli problems dhoondhna | 3 | Paanch interviews, 400 mein 37 ka count, aur Lakshmi ke chalaye mahine ke sweeps |
+| Kaunsi problems solve karni hain yeh chunna | 2 | Won't list, aur saboot ke saath likha hua ek palatna |
+| Technology samajhna | 3 | Findings document, uski failure classes aur jo bacha hai uske saath |
+| Ek decision ko aisi cheez banana jo doosre bana saken | 3 | Ek specification jiske numbers Imran ke gate ne test kiye |
+| Results naapna | 3 | 231 rows ki answer key, apni history ke saath |
+| Apna kharcha khud nikaalna | 2 | Cost model, aur ek aise customer ki price jisne abhi sign nahi kiya tha |
+| Logon ko saath chalana | 2 | Lakshmi ke sweeps aur Farah ki team, lekin company ke bahar koi nahi |
+
+Technology wala score sabse zyada badla tha, 1 se neeche se 3 tak, aur jis document ka woh naam le sakti thi woh table mein tha. Do 2 wahan the jahan uske paas dikhane ko sabse kam tha.
 
 ## Saar
 

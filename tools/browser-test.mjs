@@ -1470,10 +1470,10 @@ ok((await text(wb.page, '#t-exp details.tplcopy summary .pill')).startsWith('2 /
 console.log('\n— the artifact index is a tracker, not a list —');
 await boot(wb.page, '#/evidence');
 const arts = await wb.page.locator('.art').count();
-ok(arts === 22, 'all twenty-two artifacts are listed', String(arts));
-ok(await wb.page.locator('.art .chiprow a[href^="#/ch/"]').count() === 22,
+ok(arts === 29, 'all twenty-nine artifacts are listed', String(arts));
+ok(await wb.page.locator('.art .chiprow a[href^="#/ch/"]').count() === 29,
    'each one links to the chapter that produces it');
-ok(await wb.page.locator('.art .chiprow a[href^="#/templates/"]').count() === 22,
+ok(await wb.page.locator('.art .chiprow a[href^="#/templates/"]').count() === 29,
    'and to the template that shapes it');
 ok(await wb.page.locator('.smaprow').count() === 10, 'the sixteen-week map has all ten blocks');
 ok(await wb.page.locator('.xtest li').count() === 13, 'and the exit test has thirteen capabilities');

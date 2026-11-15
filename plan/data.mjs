@@ -38,20 +38,13 @@ export const RESOURCES = {
   dlai_agentic: ['DeepLearning.AI: Agentic AI (Andrew Ng)', 'https://www.deeplearning.ai/courses/agentic-ai'],
   dlai_eval_agents: ['DeepLearning.AI: Evaluating AI Agents', 'https://learn.deeplearning.ai/courses/evaluating-ai-agents'],
   dlai_catalog: ['DeepLearning.AI short courses', 'https://learn.deeplearning.ai'],
-  /* Google: Colab and Gemini */
-  colab: ['Google Colab', 'https://colab.research.google.com/'],
-  colab_secrets: ['Colab Secrets: store and read an API key (guide)', 'https://www.analyticsvidhya.com/blog/2024/12/api-keys-in-google-colab/'],
+  /* Google: Gemini */
   ai_studio: ['Google AI Studio (get a Gemini API key, try prompts)', 'https://aistudio.google.com/'],
   gemini_quickstart: ['Gemini API quickstart', 'https://ai.google.dev/gemini-api/docs/quickstart'],
   gemini_structured: ['Gemini API: structured output', 'https://ai.google.dev/gemini-api/docs/structured-output'],
   gemini_functions: ['Gemini API: function calling', 'https://ai.google.dev/gemini-api/docs/function-calling'],
   gemini_pricing: ['Gemini API: models, free tier and pricing', 'https://ai.google.dev/gemini-api/docs/pricing'],
-  gemini_cli: ['Gemini CLI (GitHub)', 'https://github.com/google-gemini/gemini-cli'],
-  gemini_cli_mcp: ['Gemini CLI: MCP servers', 'https://geminicli.com/docs/tools/mcp-server/'],
   /* Tooling */
-  gh_codespaces: ['GitHub Codespaces docs', 'https://docs.github.com/en/codespaces'],
-  gh_devcontainer: ['Dev containers (GitHub Docs)', 'https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/introduction-to-dev-containers'],
-  gh_cs_billing: ['Codespaces billing and free quota', 'https://docs.github.com/en/billing/managing-billing-for-github-codespaces/about-billing-for-github-codespaces'],
   gh_actions: ['GitHub Actions quickstart', 'https://docs.github.com/en/actions/writing-workflows/quickstart'],
   gh_secrets: ['Using secrets in GitHub Actions', 'https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions'],
   gh_pages: ['GitHub Pages quickstart', 'https://docs.github.com/en/pages/quickstart'],
@@ -112,8 +105,8 @@ export const FURTHER = {
   18: ['pair'],
   19: ['gh_actions'],
   20: ['huyen'],
-  21: ['dlai_agentic', 'academy_mcp', 'mcp_docs'],
-  22: ['dlai_eval_agents', 'phoenix', 'promptfoo_gha'],
+  21: ['dlai_agentic', 'dlai_eval_agents'],
+  22: ['academy_mcp', 'mcp_docs', 'phoenix', 'promptfoo_gha'],
   23: ['eu_ai_act', 'india_ai_guide'],
   25: ['gh_pages', 'hf_spaces'],
   26: ['interview_bank', 'exponent_ps', 'lenny_market']
@@ -124,12 +117,18 @@ export const MONTHS = ROUTE_MONTHS;
 export const WEEKS = ROUTE_WEEKS.map(w => ({ ...w, further: FURTHER[w.n] || [] }));
 
 export const GATES = [
-  { id: 'M1', month: 1, pass: 'The first four weeks ticked, or nearly: the book’s first seven chapters read, and A1 to A7 done on a first pass right after each one.', cut: 'If you missed days, do not catch up in one go. Carry on from the first open step and let the dates slide.' },
-  { id: 'M2', month: 2, pass: 'A model connected, your first model call costed, a system prompt tested, your first answer key, and a sorter with a score.', cut: 'Never cut the first model call. If time is short, keep the answer key and do the summary chapter on a first pass.' },
-  { id: 'M3', month: 3, pass: 'Search by words and by meaning compared on a scoreboard, version 0 of the findings page published with a link, and an extractor that says “not sure”.', cut: 'Publish the findings page with whatever numbers you have. An honest short page beats a perfect missing one.' },
-  { id: 'M4', month: 4, pass: 'The attack on your own tool, a checked automatic marker, a cost model, the system card, the requirements and the build-or-buy call.', cut: 'Do the chapters on a first pass and keep one hands-on result per week.' },
-  { id: 'M5', month: 5, pass: 'Your model choice with a back-up, the tool access policy, the release gate, the risk register and the decision pack.', cut: 'If time is short, keep the release gate and the risk register; the others can be one page each.' },
-  { id: 'M6', month: 6, pass: 'Bharat Privacy Guard shipped with its findings document and demo, a portfolio page, and three practice interviews.', cut: 'Do not cut this one. Move it into May rather than skip it.' }
+  { id: 'M1', month: 1, pass: 'The first four weeks ticked, or nearly: the book’s first seven chapters read, and A1 to A7 done on a first pass right after each one.', cut: 'If you missed days, do not catch up in one go. Carry on from the first open step and let the dates slide.',
+    ask: ['What could you show a recruiter today? Paste the link.', 'What does one of your three postings ask for that you cannot yet show?'] },
+  { id: 'M2', month: 2, pass: 'A model connected, your first model call costed, a system prompt tested, your first answer key, a sorter with a score, and your first door chosen with five named employers written down.', cut: 'Never cut the first model call. If time is short, keep the answer key and do the summary chapter on a first pass.',
+    ask: ['What could you show a recruiter today? Paste the link.', 'Re-read one posting from your table. What changed in what you can prove?'] },
+  { id: 'M3', month: 3, pass: 'Search by words and by meaning compared on a scoreboard, version 0 of the findings page published with a link and the repository public, and an extractor that says “not sure”.', cut: 'Publish the findings page with whatever numbers you have. An honest short page beats a perfect missing one.',
+    ask: ['What could you show a recruiter today? Paste the link.', 'What would a stranger change first on your findings page?'] },
+  { id: 'M4', month: 4, pass: 'The attack on your own tool, a checked automatic marker, a cost model, the system card, the requirements, the build-or-buy call, and your first two applications or conversations started.', cut: 'Do the chapters on a first pass, which means: read it, answer the boxes, run the page’s own tools, and write “later” beside the project task. Keep one hands-on result per week.',
+    ask: ['What could you show a recruiter today? Paste the link.', 'Re-read one posting from your table. What changed in what you can prove?'] },
+  { id: 'M5', month: 5, pass: 'Your model choice with a back-up, the tool access policy, the release gate, the risk register and the decision pack.', cut: 'If time is short, keep the release gate and the risk register; the others can be one page each.',
+    ask: ['What could you show a recruiter today? Paste the link.', 'Which posting from your table could you now answer in full, and which part is still missing?'] },
+  { id: 'M6', month: 6, pass: 'Bharat Privacy Guard shipped with its findings document and demo, a public portfolio page, six career stories written, and practice interviews recorded.', cut: 'Do not cut this one. Move it into May rather than skip it.',
+    ask: ['What could you show a recruiter today? Paste the link.', 'Re-read one posting from your table. What changed in what you can prove?'] }
 ].map(g => ({ ...g, date: ROUTE_MONTHS[g.month - 1].dates.split(' – ')[1] }));
 
 export const RULES = [

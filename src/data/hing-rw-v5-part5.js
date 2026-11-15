@@ -1215,8 +1215,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek pakki limit ki agent haar maanne se pehle kitni actions le sakta hai. Jo loop kabhi khatam nahi hota, uske khilaaf yeh sabse main bachav hai.',
   'Handoff':
     'Handoff',
-  'Passing a task from one agent to another, more specialised one. It is cheap to draw, and it is easy to lose context or authority on the way.':
-    'Ek task ko ek agent se doosre, zyada specialised agent ko dena. Isse draw karna sasta hai, lekin raaste mein context ya authority kho dena aasaan hai.',
   'Draw the agent loop with its stopping conditions and error paths.':
     'Agent loop ko uski stopping conditions aur error paths ke saath draw kar paana.',
   'Explain why most agent failures are control problems, not intelligence problems.':
@@ -2023,8 +2021,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek AI system ke kai parts hote hain, isliye poore system ka ek score kaafi nahi hai. Dikkat yeh hai ki ek fluent model missing evidence ko chhupa leta hai, aur itni baar chhupa leta hai ki demo mein sab theek lagta hai.',
   'Evaluate several levels at once. A good end-to-end score can hide a badly broken retriever.':
     'Kai levels ek saath evaluate kijiye. Ek achha end-to-end score ek bahut kharab retriever ko chhupa sakta hai.',
-  'The table shows five levels. Read down the right-hand column: each question is one that a release decision needs answered.':
-    'Table mein paanch levels hain. Right wale column ko upar se neeche padhiye: har sawaal aisa hai jiska jawaab release decision ko chahiye.',
   'Layer':
     'Layer',
   'Example metric':
@@ -2855,10 +2851,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Toh ek AI spec kuch seedhe ideas par tiki hoti hai. Perfect output ka nahi, tolerance wale rate ka vaada kijiye. Business, quality aur operating metrics ko alag rakhiye. Un pal ke liye design kijiye jab AI unsure ya galat hota hai. Aur aisa rollback trigger likhiye jis par koi aapse pooche bina action le sake.',
   'Next, in Chapter 33, you’ll turn the product into a production architecture and a delivery plan.':
     'Agle Chapter 33 mein aap product ko ek production architecture aur delivery plan mein badlenge.',
-  'Write the full product requirements for Bharat Privacy Guard':
-    'Bharat Privacy Guard ke poore product requirements likhiye',
-  'You now write the document that an engineer can build from and that a leader can read to see exactly what trade-off is being made. In this chapter you learned to write acceptance criteria as a rate with a tolerance, to keep business results, model measures and operating measures apart, and to design the three states an AI feature needs. Now you write two pages for your own tool.':
-    'Ab aap woh document likhenge jisse ek engineer build kar sake aur jise ek leader padhkar bilkul dekh sake ki kaun sa trade-off liya ja raha hai. Is chapter mein aapne seekha ki acceptance criteria ko tolerance wale rate ki tarah kaise likhte hain, business results, model measures aur operating measures ko alag kaise rakhte hain, aur ek AI feature ko jo teen states chahiye unhe kaise design karte hain. Ab aap apne tool ke liye do pages likhenge.',
   'Written only. The requirements draw on evidence from earlier chapters. No new code is needed.':
     'Sirf likhna hai. Requirements pichhle chapters ke evidence par tiki hain. Naya code nahi chahiye.',
   'State the user’s problem, and the non-AI way your tool has to beat, for example a developer’s own hand-written rules.':
@@ -3203,10 +3195,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Capstone: ek system ko discover, build, break, measure, ship aur defend kijiye',
   'This is one capstone, not two. You take a real problem, with users you can actually reach, and carry it from discovery through a live launch to a defence in front of executives and engineers. Along the way you build one coherent applied AI system, break it on purpose, measure what you fixed, and show that it works as a product, not only as a demo.':
     'Yeh do nahi, ek hi capstone hai. Aap ek asli problem lete hain, aise users ke saath jinse aap sach mein mil sakte hain, aur use discovery se live launch tak, aur phir executives aur engineers ke saamne defence tak le jaate hain. Is poore safar mein aap ek coherent applied AI system banate hain, use jaanbujhkar todte hain, jo fix kiya use measure karte hain, aur dikhate hain ki yeh sirf demo nahi, ek product ki tarah bhi kaam karta hai.',
-  'Don’t start with slides. Find a problem with a user group you can reach. Then create the repository, the issue list, the evaluation dataset, and the smallest slice that works from start to finish.':
-    'Slides se shuru mat kijiye. Aisi problem dhoondhiye jiske user group tak aap pahunch sakte hain. Phir repository, issue list, evaluation dataset, aur sabse chhota woh hissa banaiye jo shuru se aakhir tak chalta ho.',
-  'Grow it into one applied AI copilot for operations or policy work. Give it retrieval that respects permissions, structured outputs, two tools, one bounded agent step, one input that isn’t text, an evaluation harness, tracing and cost tracking, and security controls. Then put it in front of five to ten real users and improve it from what you see.':
-    'Ise operations ya policy ke kaam ke ek applied AI copilot mein badhaiye. Ismein permissions ka dhyaan rakhne wala retrieval, structured outputs, do tools, ek bounded agent step, ek aisa input jo text nahi hai, ek evaluation harness, tracing aur cost tracking, aur security controls daaliye. Phir ise 5 se 10 asli users ke saamne rakhiye aur jo dikhe, usse behtar banaiye.',
   'Reproduce at least ten kinds of failure: a question with no answer, a poisoned document, prompt injection, an unauthorised tool request, a malformed tool call, a stale permission, a multilingual query, a poor scan or audio, a model swap, and a rise in traffic or cost.':
     'Kam se kam 10 tarah ke failures reproduce kijiye: jis sawaal ka jawaab hi nahi hai, ek poisoned document, prompt injection, bina ijaazat wali tool request, ek malformed tool call, ek stale permission, ek multilingual query, kharab scan ya audio, ek model swap, aur traffic ya cost mein badhottari.',
   'The running system, a live URL with real users, and an evidence pack. The pack holds the PRD, the architecture, the threat model, the evaluation plan, the dashboard, the unit economics, the decision log, the rollout and rollback plan, the vendor scorecard and an explanation for executives.':
@@ -3255,8 +3243,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Business case ko, yaani unit economics, growth aur vendor risk ko, utni hi dhyaan se defend kar paana jitna architecture ko.',
   'State what you deliberately did not solve.':
     'Bata paana ki aapne jaanbujhkar kya solve nahi kiya.',
-  'Plan for about thirty hours, spread over four to six weeks. This is the whole course brought together. The technical capstone and the product, business, real-user and defence work are one project now, not two.':
-    'Lagbhag 30 ghante ka plan rakhiye, jo 4 se 6 hafton mein phaile. Yeh poore course ko ek saath laata hai. Technical capstone aur product, business, real-user aur defence ka kaam ab ek hi project hain, do nahi.',
   'In the last chapter you looked at what it takes to run an AI system for real users. Now you do the whole thing yourself, from the first conversation with a user to the final defence.':
     'Pichhle chapter mein aapne dekha ki asli users ke liye ek AI system chalane mein kya lagta hai. Ab aap poori cheez khud karte hain, user se pehli baat-cheet se lekar aakhri defence tak.',
   'Start by collecting every artifact you made in Part V. That means the harness, the model selection card, the context budget and the retrieval architecture. It also means the tool policy, the release gate, the dashboard, the risk register, the PRD and the decision pack. Every stage below reuses one of them.':
@@ -3269,14 +3255,10 @@ Object.assign(window.HING = window.HING || {}, {
     'Yeh isliye zaroori hai kyunki employers teen cheezein poochte hain. Aap kya bana sakte hain? Kya kisi ko woh chahiye tha? Aur kya galat hota hai, aur aap uske baare mein kya karte hain?',
   'The brief':
     'Brief',
-  'Take one real problem, with a user group you can actually reach within two weeks. Then work through eleven stages: discover, define, design, build, evaluate, break, observe, ship, measure, iterate and defend.':
-    'Ek asli problem lijiye, aisi user group ke saath jisse aap do hafte ke andar sach mein mil sakte hain. Phir gyarah stages se guzariye: discover, define, design, build, evaluate, break, observe, ship, measure, iterate aur defend.',
   'Build one applied AI system that combines at least four capabilities from Part V. A good starting set is retrieval that respects permissions, tool calling, one bounded agent step, evaluation, tracing and security tests. Ship it to real users before you defend it. It should be one coherent journey, not a set of separate demos.':
     'Ek applied AI system banaiye jo Part V ki kam se kam 4 capabilities ko jode. Ek achha starting set hai permissions ka dhyaan rakhne wala retrieval, tool calling, ek bounded agent step, evaluation, tracing aur security tests. Defend karne se pehle ise asli users tak ship kijiye. Yeh ek coherent journey honi chahiye, alag-alag demos ka set nahi.',
   'The eleven stages':
     'Gyarah stages',
-  'The table below lists the eleven stages in order. For each one, the second column says what evidence you must have in hand before you move on. Read it once now, and come back to it as you work.':
-    'Neeche ki table gyarah stages ko order mein dikhati hai. Har stage ke liye, doosra column batata hai ki aage badhne se pehle aapke paas kaun sa evidence hona chahiye. Ise ek baar abhi padh lijiye, aur kaam karte waqt wapas aate rahiye.',
   'Stage':
     'Stage',
   'Required evidence':
@@ -3353,8 +3335,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Problem ko ek aise system mein badaliye jiske acceptance criteria aap measure kar sakein.',
   'A capstone becomes credible when the problem is clear and the cost of failure is clear too.':
     'Capstone tab credible banta hai jab problem saaf ho aur failure ka cost bhi saaf ho.',
-  'Choose your own problem, one you can reach users for. Or choose one of these: policy and compliance intelligence for an enterprise, a workflow that makes developers more productive, or a controlled customer-operations workflow.':
-    'Apni khud ki problem chuniye, jiske users tak aap pahunch sakte hon. Ya inmein se ek chuniye: kisi enterprise ke liye policy aur compliance intelligence, developers ko zyada productive banane wala workflow, ya ek controlled customer-operations workflow.',
   'Write down the user, the pain, the baseline, the scope, the non-goals, the data, the tools, the risks and the metrics.':
     'User, pain, baseline, scope, non-goals, data, tools, risks aur metrics likhiye.',
   'Ask “why not ordinary software that always gives the same answer?” again. This time, ask it against your actual scope, not the general case.':
@@ -3599,8 +3579,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Apne expected volume par cost aur speed jodiye, aur yeh bhi ki 10 guna volume par kya badalta hai.',
   'Add the requirements, the risk register, the system card and the rollout and rollback plan.':
     'Requirements, risk register, system card aur rollout aur rollback plan jodiye.',
-  'Add real-user evidence: notes from sessions with five to ten people who are not your teammates, and the one change you made because of them.':
-    'Asli users ka evidence jodiye: 5 se 10 aise logon ke saath sessions ke notes jo aapke teammates nahi hain, aur woh ek change jo aapne unki wajah se kiya.',
   'Write the findings document: what you built, what broke, who used it and what the evidence shows. Include three failures you found yourself, each with evidence, and three fixes, each with numbers from before and after.':
     'Findings document likhiye: aapne kya banaya, kya toota, kisne use kiya aur evidence kya dikhata hai. Teen failures shaamil kijiye jo aapne khud dhoondhe, har ek evidence ke saath, aur teen fixes, har ek ke before aur after numbers ke saath.',
   'End with what remains risky and what is deliberately out of scope, such as other Indian languages, the gateway and the browser extension.':
@@ -3611,8 +3589,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Teen failures jo aapne khud dhoondhe, har ek evidence ke saath.',
   'Three fixes, each with before and after numbers.':
     'Teen fixes, har ek ke before aur after numbers ke saath.',
-  'Evidence from five to ten real users who are not your teammates.':
-    '5 se 10 asli users ka evidence jo aapke teammates nahi hain.',
   'The cost per message, and what happens to it at ten times the volume.':
     'Cost per message, aur 10 guna volume par uska kya hota hai.',
   'A five-minute explanation a non-technical leader could repeat, and a twenty-minute one that an engineer could not easily poke holes in.':

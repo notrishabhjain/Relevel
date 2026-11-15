@@ -118,6 +118,27 @@ Table: How vendors were scored
 
 The last row is the one most sheets leave out. A provider might win on quality and on data controls, yet take a year to leave. That can lock a company in for longer than its business plan lasts. This is what *exit cost* means. Beside the sheet, Anaya wrote the habit that would outlast everything else: a decision is a hypothesis with a price, so say when you would revisit it.
 
+## A Won't, reversed
+
+One entry in the log went the other way. In the middle of November the lending partner's technical lead asked whether his team could try the guard on their own chat system. That touched two items on the Won't list from March, a browser version and selling to anyone outside Sahaj. Anaya did not drop them quietly. She wrote the reversal in the format of the first entry.
+
+::: example The decision log, 20 November
+```
+20 November
+Decision:  Reverse two Won'ts from March. Offer the guard to other
+           companies as a small library, with a demonstration page
+           where a developer pastes a message and sees it cleaned.
+Evidence:  The lending partner asked for it. Pune's sweep fell from
+           46 in 500 to 9. Farah's team still paste Hinglish into a
+           translation site, so people want a safe paste box.
+I would change my mind if:  fewer than half of the developers who
+           try it get it working in an hour, or Lakshmi finds that
+           the page keeps what people paste.
+```
+:::
+
+A Won't is a promise to stay narrow. Breaking it needs what making it needed: evidence, and a stated way back.
+
 ## Summary
 
 For anything that reads and writes text, "done" means a measured success rate within a tolerance, measured on named cases, with a plan for the rest of the time.
@@ -127,5 +148,6 @@ For anything that reads and writes text, "done" means a measured success rate wi
 - Not every task belongs in the path between a customer and a reply. Slow work can wait on a queue. When a part fails, the system should degrade gracefully into a smaller, safe mode.
 - Changes are tried first on a copy of the live system, and response time is a budget divided among stages.
 - Significant decisions are written down with the alternatives and a trigger for revisiting them. A vendor is scored on more than quality and price, including what it would cost to leave.
+- A Won't can be reversed on evidence, if the entry says what would reverse it back.
 
 Next, the team takes all of this and ships the whole thing.

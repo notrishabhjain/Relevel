@@ -40,7 +40,7 @@ Table: Sorter ka result, box ke hisaab se
 | Aadhaar | 9 | 1 |
 | Inmein se koi nahi | 6 | 4 |
 
-Dikkat sabse neeche wali row mein thi. "Inmein se koi nahi" wali 10 parchiyon mein se 4 ko sorter ne Aadhaar number bata diya tha. Woh order numbers, account numbers aur reference codes the. Un sabme 12 digits the, aur sorter ne bas shape dekhi aur wahin ruk gaya.
+Dikkat sabse neeche wali row mein thi. "Inmein se koi nahi" wali 10 parchiyon mein se 4 ko sorter ne Aadhaar number bata diya tha. Woh order numbers, account numbers aur reference codes the. Un sabme 12 digits the, aur sorter ne bas shape dekhi aur wahin ruk gaya. Ek rule inmein se zyadatar look-alikes ko pakad leta. Asli Aadhaar number 0 ya 1 se shuru nahi hota, aur uska aakhri digit ek check digit hota hai jo baaki gyarah digits se nikala jaata hai.
 
 Ek galti doosri taraf bhi thi. Ek asli Aadhaar number ko "inmein se koi nahi" bata diya gaya, kyunki customer ne dash aur space galat jagah laga diye the.
 
@@ -95,6 +95,13 @@ Pehle test mein team ne tay kiya tha ki failure kise maanenge: galat box. Unhone
 
 Meenakshi ne kaha ki is field ki zyadatar skill machine ke baare mein hai hi nahi. Woh is baare mein hai ki aap apne darr ke baare mein kitne exact ho.
 
+::: key Ab aap yeh keh sakte hain
+Naapne ke baare mein teen sentences. Jahan N aur M likha hai, wahan apne numbers rakhiye.
+- Maine tool chalane se pehle answer key likhi: N rows, numbered versions mein rakhi hui.
+- Maine ek baar mein ek hi cheez badli, aur scoreboard ne dikhaya ki har version ne kya dhoondha, kya chhoda, aur kya galat flag kiya.
+- Maine tay kiya ki kis galti ki taraf jhukna hai, un logon ke saath jo uski keemat uthate: N chhoote hue ke saamne M false alarms.
+:::
+
 ## Summary
 
 Classifier har input ko pehle se tay dabbon mein se kisi ek mein daalta hai. Kyunki sahi jawaab hota hai, isliye use naapa ja sakta hai.
@@ -103,3 +110,5 @@ Classifier har input ko pehle se tay dabbon mein se kisi ek mein daalta hai. Kyu
 - Galti ki do directions ki keemat shayad hi kabhi barabar hoti hai. Kis taraf jhukna hai, yeh product ka faisla hai. Yeh un logon ke saath mil kar liya jaata hai jo har keemat uthate hain, aur yeh kisi doosre target se takra sakta hai, jaise false alarms ki limit.
 - Summary ka koi ek sahi jawaab nahi hota. Use test karne ke liye har document ke liye ek must-keep list likhiye, jisme woh facts hon jo padhne wale ko khone nahi chahiye, aur har summary ko usse check kijiye.
 - System jo kuch bhi likhta hai, woh personal details ke rehne ki ek aur jagah hai. Isliye jo andar jaata hai, uske saath-saath jo bahar aata hai, use bhi saaf karna padta hai.
+
+Agle chapter mein Imran poochhta hai ki chatbot ko Sahaj ke baare mein jaankari kahan se milti hai, aur jawaab hai documents ki ek aisi library jo ek saath padhne ke liye bahut lambi hai.

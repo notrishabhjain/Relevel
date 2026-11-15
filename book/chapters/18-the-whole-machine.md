@@ -110,3 +110,5 @@ The standard design for answering questions about your own documents is this. Cu
 - Almost every step can go wrong without any error appearing. The system doesn't break. It becomes wrong, quietly.
 - When answers are bad, the cause is usually the evidence that reached the model. Cleaning documents and fixing the cutting beat buying a bigger model.
 - A customer's words pass through several places on the way to an answer, and each one keeps a copy. A privacy tool belongs at the door.
+
+Next, the rule-keeper fails on the first reply it is given, and Anaya learns that a program needs fields, not paragraphs.

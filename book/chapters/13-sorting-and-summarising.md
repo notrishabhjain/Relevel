@@ -40,7 +40,7 @@ Table: The sorter's results by box
 | Aadhaar | 9 | 1 |
 | None of these | 6 | 4 |
 
-The trouble was in the bottom row. Four of the ten "none of these" slips had been sorted as Aadhaar numbers. They were order numbers, account numbers and reference codes. All of them were twelve digits long, and the sorter had judged by shape and stopped there.
+The trouble was in the bottom row. Four of the ten "none of these" slips had been sorted as Aadhaar numbers. They were order numbers, account numbers and reference codes. All of them were twelve digits long, and the sorter had judged by shape and stopped there. A rule would have caught most look-alikes like these. A real Aadhaar number does not start with 0 or 1, and its last digit is a check digit worked out from the other eleven.
 
 There was one error the other way as well. A real Aadhaar number had been sorted as "none of these", because the customer had put the dash and the space in the wrong places.
 
@@ -95,6 +95,13 @@ In the first test, the team had decided what counted as a failure: a wrong box. 
 
 Most of the skill in this field, Meenakshi said, isn't about the machine. It is about being exact about what you are afraid of.
 
+::: key What you can now say
+Three sentences about measuring. Put your own numbers where N and M stand.
+- I wrote the answer key before I ran the tool: N rows, kept in numbered versions.
+- I changed one thing at a time, and the scoreboard showed what each version found, missed and wrongly flagged.
+- I decided which error to lean towards, with the people who would bear it: N missed against M false alarms.
+:::
+
 ## Summary
 
 A classifier puts each input into one of a fixed set of boxes. Because there is a right answer, you can measure it.
@@ -103,3 +110,5 @@ A classifier puts each input into one of a fixed set of boxes. Because there is 
 - The two directions of error rarely cost the same. Deciding which to lean towards is a product decision. It is made with the people who bear each cost, and it can pull against another target, such as a limit on false alarms.
 - A summary has no single right answer. To test it, write a must-keep list for each document, with the facts a reader must not lose, and check every summary against it.
 - Whatever a system writes is another place personal details can live. So what comes out needs cleaning as well as what goes in.
+
+Next, Imran asks where the chatbot gets its knowledge of Sahaj, and the answer is a library of documents too long to read at once.

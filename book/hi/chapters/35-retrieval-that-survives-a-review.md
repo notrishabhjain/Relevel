@@ -113,3 +113,5 @@ Prototype isliye chalta hai kyunki banane wale ne har document chuna hai aur woh
 - Kya yeh user jo mila use dekh sakta hai? Yeh application ke labels aur filters se lagu karna hai, model se poochh kar nahi. Iska matlab yeh bhi hai ki jaanboojh kar tay karna ki wapas liya hua document kitni jaldi gayab ho.
 - Kya sahi tukda mila? Exact aur meaning-based search ko milaiye, cutting rule test kijiye, kisi bhi re-ordering step ki value saabit kijiye, aur design kijiye ki jawaab na ho toh system kya karta hai.
 - Kya jawaab ko us exact page tak trace kiya ja sakta hai jahan se woh aaya?
+
+Agle chapter mein Farah support console mein ek aisa assistant maangti hai jo sab kuch khud kare, aur Imran poochhta hai ki woh kya kar sakta hai, kis data ke saath, aur kaun check karega.

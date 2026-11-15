@@ -411,8 +411,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Abhi koi output nahi hai. Aapne tools define kiye hain, lekin abhi use nahi kiye.',
   'Write the loop':
     'Loop likhiye',
-  'Type this rather than pasting it. It is short, and it is the whole mechanism of an agent.':
-    'Ise paste karne ki jagah khud type kijiye. Yeh chhota hai, aur yahi agent ka poora mechanism hai.',
+  'Type this rather than pasting it. It is short, and it is the whole mechanism of an agent. The list called <code>tools_used</code> keeps the names of the tools the agent calls. You will use it in a minute.':
+    'Ise paste karne ki jagah khud type kijiye. Yeh chhota hai, aur yahi agent ka poora mechanism hai. Isme <code>tools_used</code> naam ki ek list hai jo agent ke bulaaye tools ke naam rakhti hai. Aap ise thodi der mein use karenge.',
   'You see a trace: <code>get_exchange_rate</code>, then <code>get_policy_limit</code>, then a final answer that combines both. The model split the question into two lookups and then combined the results. The loop itself is simple code. It’s the model that decides which tool to ask for next.':
     'Aapko ek trace dikhega: <code>get_exchange_rate</code>, phir <code>get_policy_limit</code>, phir ek final jawaab jo dono ko jodta hai. Model ne sawaal ko 2 lookups mein tod diya aur phir results ko jod diya. Loop khud simple code hai. Agla kaunsa tool maangna hai, yeh model decide karta hai.',
   'You can also watch a run in this tool, one step at a time. See where it can go wrong.':
@@ -443,8 +443,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Chapter 1 ne dikhaya tha ki har request mein woh context hota hai jo aapka app bhejta hai. Loop mein iska ek asar hota hai. Agar aapka code har step par badhti hui conversation bhejta hai, toh cost tezi se badh sakti hai.',
   'A multiple, like 4×':
     'Ek multiple, jaise 4×',
-  'Make a guess first. A single call sends about 1,200 tokens. A six-step agent sends a growing conversation at every step. Roughly how many times the cost of a single call is the whole run?':
-    'Pehle ek andaaza lagaiye. Ek single call lagbhag 1,200 tokens bhejti hai. 6 steps wala agent har step par badhti hui conversation bhejta hai. Poora run ek single call ki cost ka lagbhag kitna guna hai?',
+  'The book worked out one case. Now make your own guess. A single call sends about 1,200 tokens, and a six-step agent sends a growing conversation at every step. Roughly how many times the cost of a single call is the whole run?':
+    'Book ne ek case nikaala. Ab apna anumaan lagaiye. Ek call lagbhag 1,200 tokens bhejti hai, aur chhe-step ka agent har step par badhti hui conversation bhejta hai. Poora run ek call ki cost ka lagbhag kitna guna hai?',
   'It depends on the messages, tool outputs, summaries, caching and pricing. If the loop sends a growing transcript each time, the input grows faster than the number of steps. So measure the actual input and output tokens for each step, instead of relying on a rule of thumb.':
     'Yeh messages, tool outputs, summaries, caching aur pricing par depend karta hai. Agar loop har baar badhta hua transcript bhejta hai, toh input steps ki ginti se zyada tezi se badhta hai. Isliye rule of thumb par bharosa karne ki jagah, har step ke asli input aur output tokens naapiye.',
   'This means an agent that “only” adds two more steps can double the bill. The number of steps is a product decision, and it has a cost attached.':
@@ -535,8 +535,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Kya yeh sach hai? Aage padhne se pehle ek andaaza lagaiye.',
   'True or not, and what you would ask':
     'Sach hai ya nahi, aur aap kya poochhenge',
-  'A vendor says their large context window makes your retrieval layer unnecessary: just send the whole document set with every request. Is that true, and what would you ask to find out?':
-    'Ek vendor kehta hai ki unka bada context window aapke retrieval layer ko unnecessary bana deta hai: bas har request ke saath poora document set bhej dijiye. Kya yeh sach hai, aur yeh jaanne ke liye aap kya poochhenge?',
+  'You met this claim in the book. Before you test it, write your own answer. A vendor says a large context window makes your retrieval layer unnecessary. Is that true for your documents, and what would you ask to find out?':
+    'Yeh daava aap book mein mil chuke hain. Test karne se pehle apna jawab likhiye. Vendor kehta hai ki bada context window aapki retrieval layer ko gair-zaroori bana deta hai. Kya yeh aapke documents ke liye sach hai, aur jaanne ke liye aap kya poochhenge?',
   'No, for two separate reasons. First, cost: sending a million tokens costs a million tokens on every query. Second, a model’s ability to use what is in the request drops well before the request is full, especially for content in the middle.':
     'Nahi, 2 alag wajah se. Pehli, cost: ek million tokens bhejne ka matlab har query par ek million tokens ka paisa. Doosri, request poori bharne se bahut pehle hi model ki request ke andar ki cheezein use karne ki ability gir jaati hai, khaaskar beech ke content ke liye.',
   'The question that settles it: <em>show me your accuracy on a fact placed halfway through a full context window, compared with the same fact retrieved into a short one.</em>':
@@ -549,8 +549,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Pehli wajah seedhi hai. Ek badi request ki cost badi hi hoti hai, har query par, har user ke liye. Retrieval har request ko chhota rakhta hai, aur isse cost control mein rehti hai.',
   'Reason 2: the model does not use everything equally':
     'Wajah 2: model har cheez ko barabar use nahi karta',
-  'The second reason is less obvious. A model’s ability to use what you sent drops well before the limit. A fact near the start of the request is found reliably. The same fact in the middle of a long request is missed much more often.':
-    'Doosri wajah thodi kam dikhti hai. Aapne jo bheja, model use kitna kaam mein le paata hai, yeh limit aane se bahut pehle girne lagta hai. Request ki shuruaat ke paas rakha fact bharose ke saath mil jaata hai. Wahi fact lambi request ke beech mein hone par kaafi zyada baar chhoot jaata hai.',
+  'The second reason is less obvious. A model’s ability to use what you sent drops well before the limit. A fact near the start of the request is usually found. The same fact in the middle of a long request can be missed more often, more so as the request grows or the question needs several facts.':
+    'Doosri wajah thodi kam dikhti hai. Aapne jo bheja, model use kitna kaam mein le paata hai, yeh limit aane se bahut pehle girne lagta hai. Request ki shuruaat ke paas rakha fact aam taur par mil jaata hai. Wahi fact lambi request ke beech mein hone par zyada baar chhoot sakta hai, aur request badhne par ya sawaal mein kai facts chahiye hone par aur bhi zyada.',
   'The worrying part is that there is no error. The model just gives an answer, and the answer is wrong. You can see how this works in the tool below.':
     'Chinta ki baat yeh hai ki koi error nahi aata. Model bas ek jawaab de deta hai, aur woh jawaab galat hota hai. Yeh kaise kaam karta hai, neeche wale tool mein dekh sakte hain.',
   'Now you’ll test it on a real model. You’ll hide one fact inside a long text, at three different depths, and see whether the model finds it.':
@@ -737,8 +737,8 @@ Object.assign(window.HING = window.HING || {}, {
     '<strong>Reasoning evidence paida nahi karti.</strong> Reasoning model ko galat document dijiye, toh woh us galat document se hi dhyaan se aur lambe tareeke se reason karega. Result ek aisa galat jawaab hota hai jo sasta model dene wale jawaab se zyada convincing lagta hai.',
   '<strong>Waiting time is a product problem.</strong> Reasoning takes seconds, sometimes tens of seconds. In a chat screen, that delay can be a problem however good the answer is.':
     '<strong>Waiting time ek product problem hai.</strong> Reasoning mein seconds lagte hain, kabhi-kabhi dus-dus seconds. Chat screen par yeh delay ek problem ban sakta hai, jawaab chahe kitna bhi achha ho.',
-  '<strong>It is not all or nothing.</strong> Most providers let you choose how much reasoning to use. So decide for each type of request, not once for the whole product.':
-    '<strong>Yeh sab ya kuch nahi wala maamla nahi hai.</strong> Zyadatar providers aapko chunne dete hain ki kitni reasoning use karni hai. Isliye har type ki request ke liye alag decide kijiye, poore product ke liye ek baar nahi.',
+  '<strong>It is not all or nothing.</strong> Decide for each type of request how much reasoning to use, not once for the whole product.':
+    '<strong>Yeh sab ya kuch nahi wala maamla nahi hai.</strong> Har type ki request ke liye alag decide kijiye ki kitni reasoning use karni hai, poore product ke liye ek baar nahi.',
   'The first caution is the easiest to underrate, so let’s see it happen.':
     'Pehli savdhaani ko log sabse aasaani se kam aankte hain, isliye ise hote hue dekhte hain.',
   'Give a reasoning model the wrong evidence':
@@ -1179,8 +1179,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Aisi koi known defence nahi hai jo prompt injection ko poori tarah rok de. System ko is maan kar design kijiye ki model kabhi-kabhi injected instruction follow kar lega, aur controls model ke bahar rakhiye.',
   'What it changes, in one line':
     'Yeh kya badalta hai, ek line mein',
-  'You add a strongly worded instruction, and successful attacks fall from eight in ten to two in ten. What have you bought?':
-    'Aap ek zordaar wording wala instruction jodte hain, aur successful attacks das mein se aath se girkar das mein se do reh jaate hain. Aapne kya kharida?',
+  'The book showed a louder instruction helping a little. Predict what yours buys. You add a strongly worded instruction, and successful attacks fall from eight in ten to two in ten. What have you bought?':
+    'Book ne dikhaya ki zyada zordaar instruction thoda madad karta hai. Anumaan lagaiye ki aapka kya kharidta hai. Aap ek zordaar instruction jodte hain, aur safal attacks das mein se aath se ghatkar das mein se do reh jaate hain. Aapne kya kharida?',
   'A lower success rate against the attacks you thought of, and nothing more. The system is harder to attack casually, but it is not secure. An attacker can try as many times as they like, for free, and a message written for your defence can bring the rate back to eight in ten.':
     'Un attacks ke against kam success rate jo aapne socha tha, aur bas itna hi. System ko aaram se attack karna mushkil ho gaya, lekin woh secure nahi hai. Attacker jitni baar chahe, free mein try kar sakta hai, aur aapki defence ko dhyaan mein rakh kar likha hua message rate ko phir das mein se aath par la sakta hai.',
   'This distinction matters in any risk discussion: a filter lowers a probability, and a control removes a capability. Only a control holds up against someone who keeps trying.':

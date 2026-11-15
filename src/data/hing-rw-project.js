@@ -251,11 +251,7 @@ Object.assign(window.HING = window.HING || {}, {
   'What goes in':
     'Isme kya jaata hai',
 
-  '10 rows':
-    'das rows',
 
-  'The ten starter sentences, labelled by you.':
-    'Das shuruaati sentences, aapke dwara label kiye hue.',
 
   'about 30 rows':
     'lagbhag 30 rows',
@@ -344,8 +340,6 @@ Object.assign(window.HING = window.HING || {}, {
   'The answer key and the first sorter':
     'Answer key aur pehla sorter',
 
-  'Answer key version 1, with ten labelled rows':
-    'Answer key version 1, das label ki hui rows ke saath',
 
   'A task breakdown of the whole tool':
     'Poore tool ka ek task breakdown',

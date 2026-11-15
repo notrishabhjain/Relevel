@@ -85,6 +85,36 @@ Mark every action as read-only, as a write that can be undone, or as a write tha
 
 For the night queue, every action was read-only. The agent proposed, and a person decided in the morning.
 
+Read-only did not mean the agent could be left alone. Imran added a second scale, for how much a person stays in the loop, and the team agreed on four levels.
+
+Table: Four levels of autonomy
+| Level | What the agent does | Where the person comes in |
+| --- | --- | --- |
+| Suggests | Proposes an action and stops | The person does it |
+| Acts with approval | Prepares the action and waits | The person approves that exact action |
+| Acts and reports | Does it, then tells someone | The person can undo it afterwards |
+| Acts alone | Does it and says nothing | Nobody, unless something breaks |
+
+The night queue sat at the first level. An action that could not be undone never went above the second.
+
+### Marking the path, not only the answer
+
+Imran then showed her a night that had gone wrong although the answer was right. The held case was a twelve-digit number that might be an order number or an Aadhaar number. This is the agent's run, one step to a row.
+
+Table: One night-queue run, marked step by step
+| Step | What the agent asked for | What came back | What the reviewer marks |
+| --- | --- | --- | --- |
+| 1 | Look up the number as an order | No such order | Right first step |
+| 2 | Look up the same number again | No such order | Needless repeat |
+| 3 | Look up the same number again | No such order | Needless repeat |
+| 4 | Read the customer's earlier messages | Two messages, no order mentioned | Right tool, useful result |
+| 5 | No tool: it wrote "probably an Aadhaar number" | Nothing | A guess that no step supports |
+| 6 | Ended the run with "keep hidden" | Run over | Should have ended with "cannot resolve" |
+
+"Keep hidden" was the correct answer, so a check on the answer alone would have passed the run. Three of the six steps were waste or guesswork, and the agent had not used the ending it was given. A different number could go the same way and end wrong.
+
+So the team marked the path as well as the answer. Scoring the ordered list of steps an agent took, separately from its final answer, is *trajectory evaluation*. Four questions cover it: did the agent use the right tool, take needless steps, stop properly, and stay inside its bounds? Anaya added the run to the answer key as a case, with the correct path written beside the correct answer.
+
 Anaya asked whether an agent would still be chosen if nobody had called it that. Imran had run twenty test nights three ways: a single call, a fixed sequence and the bounded agent. On the ordinary nights, the sequence did nearly as well as the agent, at a quarter of the cost. The agent did better only on the strange nights. So the agent would be used for the strange ones.
 
 She asked whether a second agent might help. Extra complexity must buy something measurable, Imran said, and no second agent had yet been asked to.
@@ -100,7 +130,7 @@ Anaya asked what the standard promises. Imran answered that it promises the plug
 Anaya asked whether the agent had permission. That, he said, is the question. Whether a tool can be discovered and whether you are allowed to use it are different matters. The first is the protocol’s business. The second is the company’s, to be decided on the server from who is logged in, and not by asking the model.
 
 ::: watch A standard interface to an unsafe tool is still an unsafe tool
-Whatever comes back through a connector is also text that a stranger could have written. Anaya added this to the list from the summer, beneath the rule about treating every document as untrusted. There is also a protocol for agents talking to agents, with the same shape of problem, using identity and delegation in place of tools. It solves how they talk. It does not solve whether to trust what they say.
+Whatever comes back through a connector is also text that a stranger could have written. Anaya added this to the list from the summer, beneath the rule about treating every document as untrusted. There is also a protocol for agents talking to agents, called A2A, with the same shape of problem, using identity and delegation in place of tools. It solves how they talk. It does not solve whether to trust what they say.
 :::
 
 By the end of the week, the console had no assistant of its own. It had a night queue with a bounded agent that proposed and did not act, and a connector with the refund tool switched off. Anaya said this was less than Farah had asked for. Imran said it was what she had needed, and that it was easier to build.
@@ -113,3 +143,5 @@ A tool is a function a model may ask for. Each one needs a tool contract that sa
 - Many features that seem to call for an agent are better as a fixed workflow, with a model used only where words must be understood. A quick test is to cross out every tool that a plain rule would choose correctly nearly all the time.
 - When an agent is really needed, it should be bounded: limited steps, time and cost, explicit state, and a “cannot resolve” ending. A person approves anything that cannot be undone.
 - MCP is a standard plug. It promises that things fit and says nothing about their safety, and a tool that can be discovered is not thereby authorised.
+
+Next, Farah plays a voice note twice, and Anaya sees that the guard has only ever been tested on typed text.

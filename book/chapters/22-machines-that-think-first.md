@@ -100,4 +100,4 @@ A reasoning model writes out its working before it answers. It is better at prob
 - A decision can’t be streamed, because half of a decision is a hazard.
 - The sensible design uses the expensive machine only on the cases that need it, and never while a customer is waiting.
 
-Next, you’ll go back to search and see how to make it better, and which improvement can actually promise a result.
+Next, a customer in Nashik is quoted the wrong late fee, and Anaya goes back to search to find out why.

@@ -69,7 +69,21 @@ export const TOPICS = [
 /* Try steps on the route are not chapters, so they say here which topic they
    practise. build.mjs fails if the route gains a try step that is not listed. */
 export const TRY_TOPIC = {
+  't:tokens': 't1',
+  't:conversation': 't1',
+  't:postings': 't1',
   't:setup': 't2',
+  't:post-key': 't3',
+  't:gov-project': 't4',
+  't:publish-v0': 't5',
+  't:aloud-1': 't6',
+  't:post-attack': 't7',
+  't:cv-lines': 't8',
+  't:conversations': 't9',
+  't:post-agent': 't10',
+  't:aloud-2': 't10',
+  't:timed-prd': 't11',
+  't:finish': 't13',
   't:capstone-plan': 't12',
   't:capstone-build': 't12',
   't:portfolio': 't12',
@@ -81,8 +95,8 @@ export const TRY_TOPIC = {
 export const BEFORE = [
   { group: 'Time', groupHi: 'Samay', items: [
     { id: 'pre-time',
-      text: 'Block the time. About an hour a week in month 1, rising to four or five hours a week in the last month. Every week on the plan shows its minutes.',
-      hi: 'Samay nikaaliye. Month 1 mein hafte mein lagbhag ek ghanta, jo aakhri mahine tak badhkar hafte mein chaar-paanch ghante ho jaata hai. Plan ka har week apne minute dikhata hai.',
+      text: 'Block the time. An hour to an hour and a half a week in month 1, rising to about five hours a week in the capstone weeks. Every week on the plan shows its minutes.',
+      hi: 'Samay nikaaliye. Month 1 mein hafte mein ek se derh ghanta, jo capstone ke hafton mein badhkar hafte mein lagbhag paanch ghante ho jaata hai. Plan ka har week apne minute dikhata hai.',
       links: [['The plan', 'Plan', '/plan/']] },
     { id: 'pre-restart',
       text: 'Know the way back. If life gets in the way, restart the calendar on the plan. Your ticks stay as they are; only the dates move.',
@@ -123,8 +137,8 @@ export const BEFORE = [
   ] },
   { group: 'People', groupHi: 'Log', items: [
     { id: 'pre-people',
-      text: 'Five people to interview, lined up by week 2. A3 asks you to talk to five people who have the problem you chose in A1, about what they actually did. Start asking in week 1.',
-      hi: 'Interview ke liye paanch log, week 2 tak tay. A3 kehta hai ki A1 mein chuni problem jinhe hai, aise paanch logon se baat kijiye ki unhone asal mein kya kiya. Week 1 mein hi poochhna shuru kar dijiye.',
+      text: 'One person to talk to by week 3, and two more by week 18. The route asks for one real conversation in week 3 and two more in week 18, about what people actually did. Start thinking of who in week 1. The full five-interview plan in A3 is a later, optional build.',
+      hi: 'Week 3 tak baat karne ke liye ek insaan, aur week 18 tak do aur. Raasta week 3 mein ek asli baatcheet maangta hai aur week 18 mein do aur, is baare mein ki logon ne asal mein kya kiya. Kisse poochhenge, yeh week 1 mein sochna shuru kijiye. A3 ka paanch interview wala poora plan baad ka, optional build hai.',
       how: 'Where to find them: former colleagues, friends of friends, LinkedIn, or an online group where such people gather. Ask for twenty minutes. Say you are not selling anything, and that you want to hear about the last time the problem happened.',
       howHi: 'Unhe kahan dhoondhein: purane saathi, doston ke dost, LinkedIn, ya koi online group jahan aise log milte hain. Bees minute maangiye. Bataiye ki aap kuch bech nahi rahe, aur aap pichhli baar jab yeh problem hui uske baare mein sunna chahte hain.',
       links: [['A3', 'A3', '/app/#/ch/a3']] }
@@ -141,7 +155,7 @@ export const UI = {
   en: {
     lang: 'en', title: 'The worksheet', brand: 'AI From Zero worksheet',
     desc: 'The whole course as one path: read, do, check, one step at a time, with your next step always on top.',
-    lead: 'One step at a time. Press the big button, do what it says, come back. The order is already worked out for you.',
+    lead: 'One step at a time. Press the big button, do what it says, come back. The order is already worked out for you. The route page in the playbook, the plan and this worksheet show the same steps in the same order.',
     how: ['Press the button on the card below. The book chapter or app lesson opens right beside this page.', 'Read it or do it. A book chapter ticks itself when you reach the end. In the app, press “Mark chapter complete”.', 'Close the panel. The next step appears. Repeat.'],
     howTitle: 'How this page works', toolsTitle: 'Tools: save as PDF, spreadsheet, open every topic',
     nextLbl: 'Your next step', startBtn: 'Start', seeTopic: 'See this topic',
@@ -171,7 +185,7 @@ export const UI = {
   hi: {
     lang: 'hi', title: 'Worksheet', brand: 'AI From Zero worksheet',
     desc: 'Poora course ek raaste ki tarah: padho, karo, parakho, ek samay par ek step, aur aapka agla step hamesha upar.',
-    lead: 'Ek samay par ek step. Bada button dabaiye, jo likha hai woh kijiye, phir wapas aaiye. Kram pehle se tay hai.',
+    lead: 'Ek samay par ek step. Bada button dabaiye, jo likha hai woh kijiye, phir wapas aaiye. Kram pehle se tay hai. Playbook ka route page, plan aur yeh worksheet wahi steps usi kram mein dikhate hain.',
     how: ['Neeche wale card ka button dabaiye. Kitaab ka chapter ya app ka lesson isi page ke bagal mein khulta hai.', 'Use padhiye ya kijiye. Kitaab ka chapter ant tak pahunchte hi khud tick ho jaata hai. App mein “Mark chapter complete” dabaiye.', 'Panel band kijiye. Agla step dikhega. Phir dohraiye.'],
     howTitle: 'Yeh page kaise kaam karta hai', toolsTitle: 'Tools: PDF, spreadsheet, har topic kholna',
     nextLbl: 'Aapka agla step', startBtn: 'Shuru kijiye', seeTopic: 'Yeh topic dekhiye',

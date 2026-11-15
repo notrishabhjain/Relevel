@@ -20,7 +20,7 @@ It lasted about nine seconds. It came from a woman in Kolhapur, speaking to a ph
 
 “Haan, mera Aadhaar number hai char teen do ek, paanch chhe saat aath, nau shunya ek do. Loan ka status bata do.”
 
-Farah said there had been four of these that week. She had put voice notes on the Won’t list in April, and she had been right to. But they were arriving anyway, and customers didn’t know they were a Won’t.
+Farah said there had been four of these that week. Anaya had put voice notes on the Won’t list in March, and she had been right to. But they were arriving anyway, and customers didn’t know they were a Won’t.
 
 ## The case: a number spoken in words
 
@@ -116,3 +116,5 @@ A system that takes in pages, pictures and speech cannot treat them as text. Ext
 - A voice system is a pipeline of separate stages, from capture through transcription and tidying to action. Each is a place where meaning can change and time is spent, and the slowest is the one to look at.
 - Who said what is a privacy decision, not a technical detail.
 - A test made only of text hides every failure in the other forms. Score each kind of input at several levels, and it will show which stage broke.
+
+Next, an engineer from another team softens one line of the guard's instructions at ten to eleven on a Friday night.

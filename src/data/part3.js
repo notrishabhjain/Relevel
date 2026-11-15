@@ -5,7 +5,7 @@
 window.PART3 = [
 {
 
-  id:'ch14', num:14, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch6'], nextUnits:['ch145','ch17','ch18','ch19'], minutes:35, labs:['judge'],
+  id:'ch14', num:14, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch6'], nextUnits:['ch145','ch17','ch18','ch19'], minutes:50, labs:['judge'],
   title:'Evaluation at scale: code checks and LLM judges',
   concept:'Grading by hand stops working at around fifty questions. You’ll combine free code checks with an LLM judge, then measure how often the judge agrees with you before you trust its scores.',
   needs:[
@@ -21,19 +21,20 @@ window.PART3 = [
   capstone:{
     title:'Build an automatic marker, and check how far to trust it',
     brief:'Marking every output by hand doesn’t scale, so you’ll want a model to mark the tool’s output. But a marker nobody has checked is not a measurement. In this chapter you learned the three ways to grade an answer. You also learned that a judge must be tested against your own marking and against its known biases. Now you’ll build a marker for the tool’s cleaned text, and check it.',
-    where:'Your notebook for this chapter, to build and run the marker. Mark the fifty outputs by hand as well, and write the agreement figure in the notes box below.',
+    where:'Your notebook for this chapter, to build and run the marker. Mark the twenty outputs by hand as well, and write the agreement figure in the notes box below. Short version for the route, about 20 minutes: steps 1, 3 and 4.',
     steps:[
       'Write the marking rules a careful person would use for one question: “Is the cleaned text safe and still readable?” Spell out what counts as safe (every personal detail removed or masked) and what counts as readable (the sentence still makes sense).',
       'Run the free checks first. Does any text shaped like a PAN or an Aadhaar number still appear in the cleaned text? Does the text still have its main words? Count how many outputs fail these checks without needing a model.',
-      'Build the model-based marker from your rules and let it mark fifty cleaned outputs. Mark the same fifty yourself, by hand.',
+      'Build the model-based marker from your rules and let it mark twenty cleaned outputs. Mark the same twenty yourself, by hand.',
       'Calculate how often the marker agrees with you. Look at the disagreements: is the marker too strict, too lenient, or both?',
       'Test it for a bias towards length: take ten outputs and make each one twice as long without changing its meaning. Does the mark change?',
-      'Write the range of marks in which you would read the output yourself instead of trusting the marker.'
+      'Write the range of marks in which you would read the output yourself instead of trusting the marker.',
+      'Save the marking rules, the agreement figure and the disagreements as <code>docs/judge-check.md</code> in your repository.'
     ],
     done:[
       'Your marking rules.',
       'The number of outputs that failed the free checks.',
-      'The agreement between the marker and you on the same fifty outputs.',
+      'The agreement between the marker and you on the same twenty outputs.',
       'The result of the length test.',
       'The range of marks where you would not trust the marker.'
     ]
@@ -59,50 +60,54 @@ window.PART3 = [
     ['p','Each of these checks is only a few lines of code, and it can run on every change you make.'],
     ['q','I041','I042'],
     ['do','Write the code checks',[
+      ['p','First run this starter cell. It sets up the helper and the working values that the cells in this chapter use. Change them later if you like.'],
+      ['code','import json\n\nMODEL = "meta/llama-3.1-8b-instruct"\n\nimport numpy as np\n\ndef embed(texts, input_type):\n    resp = client.embeddings.create(\n        model="nvidia/nv-embedqa-e5-v5", input=texts,\n        extra_body={"input_type": input_type, "truncate": "END"})\n    return [np.array(d.embedding) for d in resp.data]\n\ndef cosine(a, b):\n    return float(np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b)))\n\n# Eight made-up cards about ID formats. Replace them with your own cards.\nchunks = [\n    "A PAN has five capital letters, then four digits, then one capital letter.",\n    "An Aadhaar number has twelve digits, often written in groups of four. It does not start with 0 or 1.",\n    "An Indian mobile number has ten digits. The first digit is 6, 7, 8 or 9.",\n    "A PIN code has six digits. The first digit is not zero.",\n    "An IFSC code has four letters, then a zero, then six letters or digits.",\n    "A bank account number has nine to eighteen digits. A nearby word such as account helps to be sure.",\n    "A GSTIN has fifteen characters. It contains the holder\'s PAN.",\n    "A vehicle registration has state letters, a number, series letters and four digits.",\n]\nchunk_vecs = embed(chunks, "passage")\n\nground_truth_questions = [\n    "How many digits does an Aadhaar number have?",\n    "What does an IFSC code look like?",\n    "Which digit can an Indian mobile number start with?",\n    "What does this document say about cricket?",\n]\n\ndef rag_answer(question, k=3, model=MODEL):\n    q = embed([question], "query")[0]\n    scores = [cosine(q, cv) for cv in chunk_vecs]\n    ids = sorted(range(len(chunks)), key=lambda i: scores[i], reverse=True)[:k]\n    context = "\\n\\n".join(f"[{i}] {chunks[i]}" for i in ids)\n    r = client.chat.completions.create(\n        model=model, temperature=0,\n        messages=[\n            {"role": "system", "content": ("Answer ONLY from the provided context. If the answer is not in the "\n             "context, reply exactly: \'Not found in the provided documents.\' "\n             "Never invent details.")},\n            {"role": "user", "content":\n                f"Context:\\n{context}\\n\\nQuestion: {question}"}])\n    text = r.choices[0].message.content\n    found = "Not found" not in text\n    return {"answer": text, "found": found,\n            "source_chunk_ids": ids if found else [],\n            "supporting_quote": "", "usage": r.usage}'],
       ['p','Before you build any judge, write the checks that your structured output from Chapter 8 makes possible.'],
       ['code','def programmatic_checks(record, retrieved_ids):\n    issues = []\n    if record["found"] and not record.get("source_chunk_ids"):\n        issues.append("claimed found but cited nothing")\n    for cid in record.get("source_chunk_ids", []):\n        if cid not in retrieved_ids:\n            issues.append(f"cited chunk {cid} that was never retrieved")\n    q = record.get("supporting_quote", "")\n    if q and not any(q[:40] in chunks[i] for i in retrieved_ids):\n        issues.append("quote not found verbatim in any retrieved chunk")\n    return issues'],
       ['x','Run it on your ten Chapter 6 answers. The last check tests whether the quote appears word for word in the source. It catches invented citations for free on every release, which makes it the cheapest quality control in the course.'],
       [
         'snag',
-        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Run the cells above it in order, or press <strong>Restore</strong> in the notebook bar if you ran them before a reload. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
+        ['A red box saying something <em>is not defined</em>','This chapter’s starter cell has not run. Run it first, then run the cell that failed. After a reload, press <strong>Restore</strong> in the notebook bar before you start.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
       ]
     ]],
     ['p','Code can’t judge everything, though. It can’t tell you whether an answer is actually supported by its source. For that kind of question, we bring in a model as the grader.'],
     ['h','Build an LLM judge'],
     ['p','An <strong>LLM judge</strong> is a model that grades another model’s output. It’s cheap and fast, but you must check it before you trust it.'],
     ['key','Check an LLM judge against your own grading before you trust it. Unchecked, it is just another guess from the same kind of system that produced the answer.'],
+    ['c','You already know this','Checking a judge against your own marking is checking a second evaluator on a tender committee. If two evaluators score the same bids differently, you find out why before you trust either one’s scores.'],
     ['p','You can see a judge at work in the lab below.'],
     ['lab','judge'],
     ['q','I048'],
     ['p','Now let’s write one yourself.'],
     ['do','Write a judge with a rubric',[
-      ['code','JUDGE = """You are grading an answer against a source passage.\n\nPassage:\n{ctx}\n\nQuestion: {q}\nAnswer: {a}\n\nGrade GROUNDEDNESS only — is every claim in the answer supported by the passage?\nRespond as JSON:\n{{"verdict": "grounded" | "partially_grounded" | "unsupported",\n  "unsupported_claim": "<quote the first unsupported claim, or empty>"}}\nDo not reward length, fluency, or confidence."""\n\ndef judge(q, a, ctx):\n    r = client.chat.completions.create(\n        model="meta/llama-3.1-8b-instruct", temperature=0,\n        messages=[{"role":"user","content":JUDGE.format(ctx=ctx, q=q, a=a)}]\n    )\n    return json.loads(r.choices[0].message.content)'],
+      ['code','JUDGE = """You are grading an answer against a source passage.\n\nPassage:\n{ctx}\n\nQuestion: {q}\nAnswer: {a}\n\nGrade GROUNDEDNESS only — is every claim in the answer supported by the passage?\nRespond as JSON:\n{{"verdict": "grounded" | "partially_grounded" | "unsupported",\n  "unsupported_claim": "<quote the first unsupported claim, or empty>"}}\nDo not reward length, fluency, or confidence."""\n\ndef judge(q, a, ctx):\n    schema = {\n        "type": "object",\n        "properties": {\n            "verdict": {"type": "string",\n                        "enum": ["grounded", "partially_grounded", "unsupported"]},\n            "unsupported_claim": {"type": "string"}},\n        "required": ["verdict", "unsupported_claim"],\n        "additionalProperties": False}\n    r = client.chat.completions.create(\n        model=MODEL, temperature=0,\n        messages=[{"role": "user", "content": JUDGE.format(ctx=ctx, q=q, a=a)}],\n        response_format={"type": "json_schema",\n                         "json_schema": {"name": "verdict", "schema": schema}})\n    return json.loads(r.choices[0].message.content)'],
       ['x','Look at how this judge is designed. It grades one narrow thing. It must quote the claim it objects to. And it’s told to ignore known biases. A judge asked to “rate quality from 1 to 10” produces numbers you can’t act on.'],
       [
         'snag',
-        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Run the cells above it in order, or press <strong>Restore</strong> in the notebook bar if you ran them before a reload. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
+        ['A red box saying something <em>is not defined</em>','This chapter’s starter cell has not run. Run it first, then run the cell that failed. After a reload, press <strong>Restore</strong> in the notebook bar before you start.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
       ]
     ]],
     ['h','Measure agreement'],
-    ['p','So how do you check a judge? You measure <strong>agreement</strong>. Grade fifty answers yourself, have the judge grade the same fifty, and count how often you agree. If agreement is low, the judge’s scores aren’t reliable.'],
+    ['p','So how do you check a judge? You measure <strong>agreement</strong>. Grade twenty answers yourself, have the judge grade the same twenty, and count how often you agree. If agreement is low, the judge’s scores aren’t reliable.'],
     [
       'pred',
       {id:'ch14-agree',
        short:true,
        ph:'A fraction, like 7/10',
-       ask:'Predict: you write a judge prompt, grade fifty answers by hand, and have the judge grade the same fifty. How often will it agree with you on the first attempt?',
+       ask:'The book gave one team’s agreement. Predict your own: you grade twenty answers by hand and the judge grades the same twenty. How often will it agree with you on the first attempt?',
        reveal:'Six or seven out of ten is normal for a first attempt. The pattern of disagreements matters more than the number. If they cluster, for example the judge marks every hedged answer as correct, you have found something you can fix. If they are scattered with no pattern, your own definition of a good answer is probably unclear, and changing the judge prompt will not help.',
        then:'So check whether disagreements are clustered or scattered. That tells you whether to fix the judge or your own definition.'}
     ],
     ['q','I051'],
     ['do','Grade the judge',[
       ['p','Most teams skip this step. Label all ten of your Chapter 6 answers by hand as grounded, partly grounded or unsupported. Then run the judge on the same ten and compare.'],
-      ['code','agree = sum(1 for i in range(10) if human_labels[i] == judge_labels[i])\nprint(f"agreement: {agree}/10")\nfor i in range(10):\n    if human_labels[i] != judge_labels[i]:\n        print(f"  Q{i}: human={human_labels[i]} judge={judge_labels[i]}")'],
+      ['code','# Your own marks, one per question, written before you look at the judge\'s.\n# These four are placeholders. Replace them with yours.\nhuman_labels = ["grounded", "grounded", "grounded", "unsupported"]\n\njudge_labels = []\nfor q in ground_truth_questions:\n    rec = rag_answer(q)\n    ctx = "\\n".join(chunks[i] for i in rec["source_chunk_ids"])\n    judge_labels.append(judge(q, rec["answer"], ctx)["verdict"])\n\nn = len(human_labels)\nagree = sum(1 for i in range(n) if human_labels[i] == judge_labels[i])\nprint(f"agreement: {agree}/{n}")\nfor i in range(n):\n    if human_labels[i] != judge_labels[i]:\n        print(f"  Q{i}: human={human_labels[i]} judge={judge_labels[i]}")'],
       ['x','Look closely at the disagreements, because they tell you more than the score. A judge that is consistently lenient on one type of failure is usable, as long as you know about it. A judge whose errors are random is not usable.'],
       ['c','Tip','Before running, predict your agreement out of 10. Afterwards, note whether the disagreements are consistent or scattered.'],
+      ['c','Caution','Count two things separately: how often the judge catches the answers you marked as fails, and how often it passes the answers you marked as passes. When most answers pass, raw agreement can look high while the judge misses most of the real failures.'],
       [
         'snag',
-        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Run the cells above it in order, or press <strong>Restore</strong> in the notebook bar if you ran them before a reload. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
+        ['A red box saying something <em>is not defined</em>','This chapter’s starter cell has not run. Run it first, then run the cell that failed. After a reload, press <strong>Restore</strong> in the notebook bar before you start.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
       ]
     ]],
     ['h','Known judge biases'],
@@ -124,7 +129,7 @@ window.PART3 = [
   /* ch14 carried seven new terms and did two different jobs: building a
      grader that scales, and reading failures by hand, which scales to
      nothing and produces most of the improvement. They are two chapters. */
-  id:'ch145', num:14.5, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch14','ch6'], nextUnits:['ch16e','b6'], minutes:25, labs:[],
+  id:'ch145', num:14.5, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch14','ch6'], nextUnits:['ch16e','b6'], minutes:60, labs:[],
   title:'Error analysis: reading failures by hand',
   concept:'Reading real outputs and naming what went wrong is the most useful quality activity there is, and it needs no model or budget. You’ll read failures, group them, count them, and turn the biggest groups into test cases.',
   needs:[
@@ -137,11 +142,11 @@ window.PART3 = [
     'Explain why a generic benchmark cannot do this for your product.'
   ],
   capstone:{
-    title:'Read a hundred real outputs, and name the ways the tool fails',
+    title:'Read a thirty real outputs, and name the ways the tool fails',
     brief:'A scoreboard says how many mistakes the tool makes. It doesn’t say why. In this chapter you learned to read real failures by hand, describe them in your own words, and only then group and count them. Now you’ll do that for Bharat Privacy Guard, and use the result to grow the answer key.',
-    where:'Written only. No code and no notebook. Work on paper or in a spreadsheet.',
+    where:'Written only. No code and no notebook. Work on paper or in a spreadsheet. Short version for the route, about 20 minutes: steps 1, 2, 3 and 6.',
     steps:[
-      'Collect a hundred outputs from the tool. Use sentences you or your interviewees wrote (made up, or with every real detail changed), not only the ones you already know it handles.',
+      'Collect thirty outputs from the tool. Use sentences you or your interviewees wrote (made up, or with every real detail changed), not only the ones you already know it handles.',
       'Read each output. Whenever the tool got something wrong, write one line in your own words about what went wrong. Do not group them yet, because grouping too early hides surprises.',
       'Now group your notes. Give each group a name, for example “number split by a space”, “name in Devanagari missed” or “order number mistaken for Aadhaar”. Count each group.',
       'Rank the groups by the count multiplied by how badly each failure hurts a real person.',
@@ -149,7 +154,7 @@ window.PART3 = [
       'Add the top two groups as new rows to the answer key. Save it as <code>evals/answer-key-v3.csv</code>, with about 50 rows.'
     ],
     done:[
-      'A hundred outputs with a note on every one that went wrong.',
+      'Thirty outputs with a note on every one that went wrong.',
       'A named, counted and ranked list of failure groups.',
       'A note on what would need to change for the top group.',
       'The answer key, version 3, with about 50 rows.'
@@ -162,7 +167,8 @@ window.PART3 = [
     ['h','What error analysis is'],
     ['p','Start with a picture. Imagine a teacher who gets a pile of exam papers back with a score on each. The scores say who did badly, but not why. So she sits down, reads the wrong answers, and notices that half the class made the same mistake in the same question.'],
     ['p','Error analysis works the same way, on your system’s outputs.'],
-    ['key','Read a hundred real outputs. For each one that went wrong, write down what went wrong in your own words. Then group the notes and name the groups. This is called <strong>error analysis</strong>, and it is the most valuable quality work in this field.'],
+    ['key','Read thirty real outputs. For each one that went wrong, write down what went wrong in your own words. Then group the notes and name the groups. This is called <strong>error analysis</strong>, and it is the most valuable quality work in this field.'],
+    ['c','You already know this','Error analysis is grievance categorisation. You read the complaints first, then name the groups, and only then count. Nobody designs the categories before reading the complaints, and you should not here either.'],
     ['q','I052','I125'],
     ['p','Let’s try a small version right now.'],
     [
@@ -210,14 +216,15 @@ window.PART3 = [
   capstone:{
     title:'Build a cost model from measurements',
     brief:'Many teams never ask, “What does this cost at real volume, and what happens to our margin if it succeeds?” In this chapter you learned the four things that make a simple cost estimate wrong. You also learned how a cascade, which tries the cheap option first and uses the expensive one only when needed, saves money. Now you’ll build the cost model for Bharat Privacy Guard from your own measurements, not from guesses.',
-    where:'Your notebook for this chapter, to measure the tokens and build the cascade. Write the three cost numbers in the notes box below.',
+    where:'Your notebook for this chapter, to measure the tokens and build the cascade. Write the three cost numbers in the notes box below. Short version for the route, about 20 minutes: steps 1, 3 and 5.',
     steps:[
       'Choose the feature: a bank chat in which every customer message is checked. Measure the tokens your tool uses on twenty realistic messages from your answer key, and take the average.',
       'Add the things people forget: retries, the policy text sent every time, the conversation history, and requests that fail and are sent again.',
       'Work out the cost per message, per thousand messages, and per month at a volume you would really expect. Say how many messages you assume and why.',
       'Build a cascade: send every message to the pattern checker first (it is free), and send only the unsure ones on to the model. Measure what share needs the model.',
       'Produce three numbers: the cost today, the cost at ten times the volume, and the cost if the cheap path stops working and everything goes to the model.',
-      'Answer the margin question: if a company paid you a fixed price per message, at what price and volume would the tool stop making money?'
+      'Answer the margin question: if a company paid you a fixed price per message, at what price and volume would the tool stop making money?',
+      'Save the three cost numbers and the table behind them as <code>docs/cost-model.md</code> in your repository.'
     ],
     done:[
       'The average number of tokens from twenty real messages.',
@@ -235,6 +242,7 @@ window.PART3 = [
     ['p','Let’s start with the simple version. The cost of one query is the tokens you send in times the input price, plus the tokens that come out times the output price. Multiply that by the number of queries in a month, and you have a monthly bill.'],
     ['code','cost per query = (tokens in  × rate for input)\n              + (tokens out × rate for output)\n\nmonthly = cost per query × queries per month'],
     ['p','Most business cases stop here. The trouble is that their number is often three to twenty times too low. The formula itself is right. It’s just applied to the wrong quantities.'],
+    ['c','You already know this','The loaded cost model is total cost of ownership in a project report, worked out per transaction. The licence is one line. Support, review and retries are the rest, and the four multipliers below are those lines.'],
     [
       'pred',
       {id:'ch15-mult',
@@ -262,12 +270,14 @@ window.PART3 = [
     ['h','Measure your own token counts'],
     ['p','Numbers from a calculator are a start. Numbers from your own documents are better. So next you’ll measure what your pipeline really uses.'],
     ['do','Measure real token counts',[
+      ['p','First run this starter cell. It sets up the helper and the working values that the cells in this chapter use. Change them later if you like.'],
+      ['code','MODEL = "meta/llama-3.1-8b-instruct"\nSTRONG = "meta/llama-3.3-70b-instruct"\n\nCHEAP_MODEL = MODEL\nSTRONG_MODEL = STRONG\n\nimport numpy as np\n\ndef embed(texts, input_type):\n    resp = client.embeddings.create(\n        model="nvidia/nv-embedqa-e5-v5", input=texts,\n        extra_body={"input_type": input_type, "truncate": "END"})\n    return [np.array(d.embedding) for d in resp.data]\n\ndef cosine(a, b):\n    return float(np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b)))\n\n# Eight made-up cards about ID formats. Replace them with your own cards.\nchunks = [\n    "A PAN has five capital letters, then four digits, then one capital letter.",\n    "An Aadhaar number has twelve digits, often written in groups of four. It does not start with 0 or 1.",\n    "An Indian mobile number has ten digits. The first digit is 6, 7, 8 or 9.",\n    "A PIN code has six digits. The first digit is not zero.",\n    "An IFSC code has four letters, then a zero, then six letters or digits.",\n    "A bank account number has nine to eighteen digits. A nearby word such as account helps to be sure.",\n    "A GSTIN has fifteen characters. It contains the holder\'s PAN.",\n    "A vehicle registration has state letters, a number, series letters and four digits.",\n]\nchunk_vecs = embed(chunks, "passage")\n\nground_truth_questions = [\n    "How many digits does an Aadhaar number have?",\n    "What does an IFSC code look like?",\n    "Which digit can an Indian mobile number start with?",\n    "What does this document say about cricket?",\n]\n\ndef rag_answer(question, k=3, model=MODEL):\n    q = embed([question], "query")[0]\n    scores = [cosine(q, cv) for cv in chunk_vecs]\n    ids = sorted(range(len(chunks)), key=lambda i: scores[i], reverse=True)[:k]\n    context = "\\n\\n".join(f"[{i}] {chunks[i]}" for i in ids)\n    r = client.chat.completions.create(\n        model=model, temperature=0,\n        messages=[\n            {"role": "system", "content": ("Answer ONLY from the provided context. If the answer is not in the "\n             "context, reply exactly: \'Not found in the provided documents.\' "\n             "Never invent details.")},\n            {"role": "user", "content":\n                f"Context:\\n{context}\\n\\nQuestion: {question}"}])\n    text = r.choices[0].message.content\n    found = "Not found" not in text\n    return {"answer": text, "found": found,\n            "source_chunk_ids": ids if found else [],\n            "supporting_quote": "", "usage": r.usage}\n\ndef programmatic_checks(record, retrieved_ids):\n    issues = []\n    if record["found"] and not record.get("source_chunk_ids"):\n        issues.append("claimed found but cited nothing")\n    for cid in record.get("source_chunk_ids", []):\n        if cid not in retrieved_ids:\n            issues.append(f"cited chunk {cid} that was never retrieved")\n    return issues'],
       ['p','Run your Chapter 12 pipeline on the ten questions in your answer key, and record the real token counts.'],
-      ['code','rows = []\nfor q in ground_truth_questions:\n    r = rag_answer_instrumented(q, k=3)   # returns .usage alongside the answer\n    rows.append({"q": q, "in": r.usage.prompt_tokens,\n                 "out": r.usage.completion_tokens})\n\navg_in  = sum(r["in"]  for r in rows) / len(rows)\navg_out = sum(r["out"] for r in rows) / len(rows)\nprint(f"avg in {avg_in:.0f} / avg out {avg_out:.0f} tokens per query")'],
+      ['code','rows = []\nfor q in ground_truth_questions:\n    r = rag_answer(q, k=3)["usage"]   # the record carries .usage alongside the answer\n    rows.append({"q": q, "in": r.prompt_tokens,\n                 "out": r.completion_tokens})\n\navg_in  = sum(r["in"]  for r in rows) / len(rows)\navg_out = sum(r["out"] for r in rows) / len(rows)\nprint(f"avg in {avg_in:.0f} / avg out {avg_out:.0f} tokens per query")'],
       ['x','You now have real numbers from your own documents. Everything after this is arithmetic on measured values instead of guesses.'],
       [
         'snag',
-        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Run the cells above it in order, or press <strong>Restore</strong> in the notebook bar if you ran them before a reload. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
+        ['A red box saying something <em>is not defined</em>','This chapter’s starter cell has not run. Run it first, then run the cell that failed. After a reload, press <strong>Restore</strong> in the notebook bar before you start.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
       ]
     ]],
     ['p','Let’s see why this matters with an example. Say a feature is quoted at 40 paise per query. It retrieves eight documents, retries one time in eight, takes four steps, and uses reasoning by default. That feature does not cost 50 paise. It costs several rupees. A gap like that can decide whether a feature survives.'],
@@ -276,11 +286,11 @@ window.PART3 = [
     ['p','Now you’ll put the four multipliers into code, so you can see the gap between the simple estimate and the real one.'],
     ['do','Add the multipliers',[
       ['c','Tip','Before you run this step, guess how many times higher the full cost will be than the simple estimate.'],
-      ['code','def monthly_cost(avg_in, avg_out, queries,\n                 in_rate, out_rate,           # per 1M tokens\n                 retry_rate=0.0, agent_steps=1,\n                 reasoning_ratio=0.0, cache_hit=0.0):\n    eff_in  = avg_in * agent_steps * (1 - cache_hit * 0.9)\n    eff_out = avg_out * agent_steps * (1 + reasoning_ratio)\n    per_q = (eff_in/1e6)*in_rate + (eff_out/1e6)*out_rate\n    per_q *= (1 + retry_rate)\n    return per_q, per_q * queries\n\nbase = monthly_cost(avg_in, avg_out, 10_000, 0.20, 0.60)\nreal = monthly_cost(avg_in, avg_out, 10_000, 0.20, 0.60,\n                    retry_rate=0.10, agent_steps=4,\n                    reasoning_ratio=2.0, cache_hit=0.0)\nprint(f"naive: {base[1]:.2f}   with multipliers: {real[1]:.2f}   ratio {real[1]/base[1]:.1f}x")'],
+      ['code','def monthly_cost(avg_in, avg_out, queries,\n                 in_rate, out_rate,           # per 1M tokens (made-up prices: look up the real ones)\n                 retry_rate=0.0, agent_steps=1,\n                 reasoning_ratio=0.0, cache_hit=0.0):\n    eff_in  = avg_in * agent_steps * (1 - cache_hit * 0.9)\n    eff_out = avg_out * agent_steps * (1 + reasoning_ratio)\n    per_q = (eff_in/1e6)*in_rate + (eff_out/1e6)*out_rate\n    per_q *= (1 + retry_rate)\n    return per_q, per_q * queries\n\nbase = monthly_cost(avg_in, avg_out, 10_000, 0.20, 0.60)\nreal = monthly_cost(avg_in, avg_out, 10_000, 0.20, 0.60,\n                    retry_rate=0.10, agent_steps=4,\n                    reasoning_ratio=2.0, cache_hit=0.0)\nprint(f"naive: {base[1]:.2f}   with multipliers: {real[1]:.2f}   ratio {real[1]/base[1]:.1f}x")'],
       ['x','The ratio is often between 8× and 20×. Write it down. It shows why “we estimated the token cost” is not the same as “we estimated the cost”.'],
       [
         'snag',
-        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Run the cells above it in order, or press <strong>Restore</strong> in the notebook bar if you ran them before a reload. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
+        ['A red box saying something <em>is not defined</em>','This chapter’s starter cell has not run. Run it first, then run the cell that failed. After a reload, press <strong>Restore</strong> in the notebook bar before you start.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
       ]
     ]],
     ['h','Five ways to lower the cost'],
@@ -298,7 +308,7 @@ window.PART3 = [
       ['x','You get an escalation rate, often 20–40%. Work out the blended cost, and grade accuracy again against your Chapter 6 answer key. Now you have both sides of the trade-off: what the cascade saved, and what it cost in quality, if anything.'],
       [
         'snag',
-        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Run the cells above it in order, or press <strong>Restore</strong> in the notebook bar if you ran them before a reload. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
+        ['A red box saying something <em>is not defined</em>','This chapter’s starter cell has not run. Run it first, then run the cell that failed. After a reload, press <strong>Restore</strong> in the notebook bar before you start.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
       ]
     ]],
     [
@@ -320,14 +330,15 @@ window.PART3 = [
       ['p','For each configuration you have built (simple, k=8, cascade, reasoning always on), record these numbers.'],
       [
         'tb',
-        ['Configuration','Cost / query','p50','p95','Accuracy (of 9)'],
+        ['Configuration','Cost / query','p50','p95','Accuracy (of 9)','Cost per correct answer'],
         [
-          ['Baseline k=3','','','',''],
-          ['k=8','','','',''],
-          ['Cascade','','','',''],
-          ['Reasoning always on','','','','']
+          ['Baseline k=3','','','','',''],
+          ['k=8','','','','',''],
+          ['Cascade','','','','',''],
+          ['Reasoning always on','','','','','']
         ]
       ],
+      ['p','Fill the last column from the others. Cost per correct answer is the cost per query divided by the share of answers that were right, so 6 right out of 9 is a share of 0.67. A cheap setting that is often wrong can cost more per correct answer than a dearer one that is right.'],
       ['x','This table is the main thing you take away from this chapter. It turns an argument about architecture into a decision based on evidence, and it fits on one slide.']
     ]],
     ['h','The margin question'],
@@ -345,7 +356,7 @@ window.PART3 = [
 },
 {
 
-  id:'ch16', num:16, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch3','ch11'], nextUnits:['ch165','ch15mm'], minutes:25, labs:[],
+  id:'ch16', num:16, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch3','ch11'], nextUnits:['ch165','ch15mm'], minutes:30, labs:[],
   title:'Document extraction: tables, scans and images',
   concept:'Real documents are often scans, tables and forms, not clean text. Turning them into text is where many document projects fail without anyone noticing. In this chapter you’ll find an extraction error in your own documents, and compare text extraction with giving the model the page image.',
   needs:[
@@ -361,7 +372,7 @@ window.PART3 = [
   capstone:{
     title:'Test the tool on photos of ID cards',
     brief:'Many personal details reach a website as photos, not as typed text. Reading text out of an image makes mistakes, and no error message warns you. In this chapter you learned why tables and scans are the weakest part of a document pipeline, and why no metric catches the problem. Now you’ll test the tool on text read from images of ID cards.',
-    where:'Your notebook for this chapter, to read the images and compare. Write the error rate in the notes box below.',
+    where:'Your notebook for this chapter, to read the images and compare. Write the error rate in the notes box below. Short version for the route, about 20 minutes: steps 1, 2, 3 and 6.',
     steps:[
       'Collect ten images. Make them yourself: mock ID cards with made-up details, printed or handwritten and photographed. Never use a photo of a real person’s card.',
       'Turn each image into text with an OCR tool (software that reads text from pictures). Compare the text with the original and mark every reading mistake.',
@@ -424,11 +435,11 @@ window.PART3 = [
     ['p','Now try the second approach on the same page and the same question.'],
     ['do','Give the model the page image',[
       ['p','Save the same page as an image, and give it to a vision-capable model with the same question.'],
-      ['code','import base64\nwith open("page.png","rb") as f:\n    b64 = base64.b64encode(f.read()).decode()\n\nr = client.chat.completions.create(\n    model=VISION_MODEL, temperature=0,\n    messages=[{"role":"user","content":[\n        {"type":"text","text":"Answer only from this page. "\n                              "Quote the row and column labels you used."},\n        {"type":"image_url",\n         "image_url":{"url":f"data:image/png;base64,{b64}"}}\n    ]}]\n)\nprint(r.choices[0].message.content)'],
+      ['code','VISION_MODEL = "meta/llama-3.2-11b-vision-instruct"\n\nimport base64\nwith open("page.png","rb") as f:\n    b64 = base64.b64encode(f.read()).decode()\n\nr = client.chat.completions.create(\n    model=VISION_MODEL, temperature=0,\n    messages=[{"role":"user","content":[\n        {"type":"text","text":"Answer only from this page. "\n                              "Quote the row and column labels you used."},\n        {"type":"image_url",\n         "image_url":{"url":f"data:image/png;base64,{b64}"}}\n    ]}]\n)\nprint(r.choices[0].message.content)'],
       ['x','The answer is usually correct. You also asked for the row and column labels, so you can check it in seconds. This is the supporting-quote idea from Chapter 8, applied to tables.'],
       [
         'snag',
-        ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Run the cells above it in order, or press <strong>Restore</strong> in the notebook bar if you ran them before a reload. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
+        ['A red box saying something <em>is not defined</em>','This chapter’s starter cell has not run. Run it first, then run the cell that failed. After a reload, press <strong>Restore</strong> in the notebook bar before you start.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
       ]
     ]],
     ['p','In practice, teams often combine both. They extract text for searching. Then, when the question is about a table, a figure or a form, they give the model the <em>page image</em> for the final answer.'],
@@ -440,7 +451,8 @@ window.PART3 = [
     ['h','Voice: a different constraint'],
     ['p','So far we’ve talked about pages. Voice is a different case, because it changes the main constraint from accuracy to time. In text, a two-second wait is fine. In speech, two seconds of silence breaks the conversation, and people start talking over it. The whole round trip has to fit in that time: speech in, model, speech out.'],
     ['p','This means voice problems are about conversation. You need to know when the person has finished speaking, handle interruptions, and decide what to say while the system works. The reasoning models from Chapter 11 are usually too slow for voice, however accurate they are.'],
-    ['q','I076'],
+    ['do','Dictate three sentences',[['p','Open any free speech-to-text tool, such as the dictation on your phone. Say three starter sentences from the project page aloud in Hinglish, including the one with the Aadhaar-style number, and paste the transcripts into your notebook. Use only the made-up sentences, never a real number.'],['p','Run each transcript through the pattern checker from Chapter 5 (press <strong>Restore</strong> if you reloaded). Write down what broke: digits written as words, a number split into groups, a name respelled.'],['x','Speech can turn a twelve-digit number into something a pattern rule cannot see. Add two rows to your answer key. The input is the transcript, and the expected result is what you write by hand. Voice problems are found by testing, not by reading.']]],
+    ['c','Look these up','India has public bodies for Indian-language speech and text. BHASHINI, the government’s language platform, is one, and the reading list names it. Look up what it offers today and on what terms before you rely on it. Chapter 28 turns this idea into a spoken-numbers test.'],
     ['h','Audit your documents before you build'],
     ['p','All of this leads to one habit. Before you design anything, find out what your documents actually look like.'],
     ['c','Tip','Before any document-AI project, get three numbers. What share of the documents is clean digital text? What share is scanned? And what share of the <em>answers people need</em> is inside tables and figures? The third is usually the largest, and it is rarely asked. It decides the architecture, and one afternoon with fifty documents is enough to estimate it.'],
@@ -465,7 +477,7 @@ window.PART3 = [
 {
   /* Arc 5. Governance in ch17 is about the file you produce. This is the
      question that actually stops people on a Tuesday. */
-  id:'ch165', num:16.5, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch1','ch16'], nextUnits:[], minutes:20, labs:[],
+  id:'ch165', num:16.5, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch1','ch16'], nextUnits:[], minutes:25, labs:[],
   title:'Data handling: what you are allowed to send',
   concept:'Before you send a document to a model, you need to know whether you’re allowed to. Three questions settle most cases. You’ll sort real documents, read a vendor’s actual terms, and write a rule your colleagues can follow.',
   needs:[
@@ -501,6 +513,11 @@ window.PART3 = [
       ['x','Two of the three are usually easy to find, and one takes real searching. Note which plan the answers apply to. Free and paid plans often differ on exactly this question, and people often sign up on the free one.'],
       ['p','Write the three answers down with the date. This starts the vendor file that Chapter 17 asks for.']
     ]],
+    ['h','The Indian rule, in the words you will be asked about'],
+    ['p','India’s Digital Personal Data Protection Act, 2023 has a small vocabulary, and interviewers use it. These are the words to know. Read the Act’s own text for the exact duties.'],
+    ['l',['<strong>Data Principal.</strong> The person the data is about. When a bank customer types a message into your app, the customer is the Data Principal.','<strong>Data Fiduciary.</strong> The organisation that decides why and how the data is used. Your company is the Data Fiduciary. A model provider that handles the message for you works on your behalf, so the duty stays with you.','<strong>Notice and consent.</strong> Tell the person in plain words what you collect and why, and ask for their agreement. Use the data only for the purpose you stated.','<strong>Erasure.</strong> The person can ask you to erase their data, and you must be able to do it, including where an outside provider holds a copy.','<strong>Breach reporting.</strong> If personal data leaks, the regulator and the people affected must be told.','<strong>Sending data abroad.</strong> The Act allows it except where the government restricts it. Look up the current position.']],
+    ['p','This is vocabulary, not legal advice. Check which parts of the Act are in force today. The plan’s dated list of regulatory milestones is the place to look.'],
+    ['do','Match each kind of text to a duty',[['p','Take six kinds of text the project tool might send to an outside model: a sentence with no personal detail; a sentence with a name; a sentence with an Aadhaar number; a cleaned sentence with the details replaced by tags; a whole chat history; a log line that keeps the original message. For each one, write the duty it touches: consent, purpose, erasure, breach or sending data abroad.'],['x','Two things usually show. The cleaned sentence touches almost no duty, which is the case for building the tool. The chat history and the log line touch several, and the log line is the one nobody thought about. The capstone asks for the same kind of table.']]],
     ['h','Write a rule people can follow'],
     ['p','Knowing the answers is only half the job. The other half is making sure your colleagues act on them, even when you aren’t in the room.'],
     [
@@ -522,7 +539,7 @@ window.PART3 = [
   capstone:{
     title:'Write the rule for what the tool may send to an outside provider',
     brief:'Bharat Privacy Guard exists to protect people’s data, so it must not leak data itself. When the context judge calls an outside AI model, the text it sends is a risk. This chapter gave you three questions that settle whether a document may be sent. The answer must come from what the provider actually says, not from what everyone assumes. Now you’ll write that rule for your tool.',
-    where:'Written, no code. Use the three questions from the chapter. Write the one-page rule in the notes box below.',
+    where:'Written, no code. Use the three questions from the chapter. Write the one-page rule in the notes box below. Short version for the route, about 20 minutes: steps 1, 2 and 6.',
     steps:[
       'List six to ten kinds of text the tool might send to the outside model: for example a sentence with no personal detail, a sentence with a name, a sentence with an Aadhaar number, a cleaned sentence with the details replaced by tags, and a whole chat history.',
       'Take each kind through the three questions from the chapter, and mark it: may send, never send, or ask first.',
@@ -558,7 +575,7 @@ window.PART3 = [
   capstone:{
     title:'Write the system card for Bharat Privacy Guard',
     brief:'Almost every compliance question turns out to be a product question. A system card is the document that answers those questions for one system. In this chapter you saw that the same system can be low risk for one use and high risk for another. You also saw which section of a governance document is hardest to fake, and what human oversight must include before it counts as oversight. Now you write the system card for your own tool.',
-    where:'Written only. Gather the numbers and notes from earlier chapters, then write the card in the notes box below.',
+    where:'Written only. Gather the numbers and notes from earlier chapters, then write the card in the notes box below. Short version for the route, about 20 minutes: steps 2, 3 and 4.',
     steps:[
       'Give the tool a risk level and say why. Ask: what could it affect, how badly, and who bears the harm? A tool that decides what is hidden before data goes to an AI is not low risk if it can miss an Aadhaar number.',
       'Write the card with five headings: what it is for; what data it handles; what it can do, with its measured quality from your scoreboard; the failures you know about; and what it must never be used for.',
@@ -566,7 +583,8 @@ window.PART3 = [
       'Run a deletion drill. Someone asks you to delete everything about them. Follow the request through every place the tool stores or logs anything, and time it. Write down where you could not tell.',
       'Design the human oversight: who can overrule the tool, how they find out there is something to overrule, and what they see on their screen.',
       'Write what you would need from an outside provider to answer all of the above about their part of the system.',
-      'Give the card to someone who did not build the tool and ask what is still unclear. Fix those parts.'
+      'Give the card to someone who did not build the tool and ask what is still unclear. Fix those parts.',
+      'Save the card as <code>docs/system-card.md</code> in your repository. The system card tool above has an “Export system card” button that gives you the file.'
     ],
     done:[
       'A risk level with a reason.',
@@ -600,6 +618,8 @@ window.PART3 = [
     ],
     ['p','Two things from this table often surprise teams. First, <strong>the use sets the risk level, not the model.</strong> Your Chapter 7 system is minimal risk as an internal FAQ. The very same system is high risk if it decides who is eligible for a benefit.'],
     ['p','Second, <strong>the level changes when the use changes</strong>. That often happens after launch, and nobody updates the documents.'],
+    ['p','Two more points on the EU AI Act. Duties differ for whoever <em>provides</em> a system and whoever <em>deploys</em> it, so find out which one you are. And transparency duties apply to chatbots and to generated media: people must be told they are dealing with an AI, and generated images and audio must be labelled.'],
+    ['c','Dates to check before any interview','Rules and deadlines change, and this course does not hold dates. The plan keeps one dated list of regulatory milestones on its Curriculum page, with the DPDP and EU dates. Open it before an interview, check each date against the official source, and quote only what you checked.'],
     ['do','Assign a risk tier to your system',[
       ['p','Take your Chapter 7 RAG system and place it in a real use case from your organisation. Assign a tier and justify it in one sentence. Then change the use case, for example from internal FAQ to customer eligibility, and assign the tier again.'],
       ['x','The same code moves to a different tier. That is why risk tiering is a product decision, not an engineering one.']
@@ -607,6 +627,7 @@ window.PART3 = [
     ['q','I091','I092'],
     ['h','Write a system card'],
     ['p','Once you know the tier, you need a way to show your work. That is what a <strong>system card</strong> is for. It is a one-page description of an AI system: what it is for, what data it uses, how it was tested, and what it gets wrong. For anything above minimal risk, you need one.'],
+    ['c','You already know this','A system card is the security-audit and sign-off file for one system. The difference is that you write the limitations section yourself, with evidence, instead of leaving it for the auditor to find.'],
     ['do','Write the system card',[
       ['p','Use the generator on this page, or write it by hand under these headings.'],
       [
@@ -620,6 +641,7 @@ window.PART3 = [
     ['h','Run a deletion drill'],
     ['p','Now a very practical test. Suppose someone asks you to delete their data. Where would you have to look?'],
     ['p','The answer is that it may be in seven places. These are the original documents, the chunks, the search copy, the cache, the provider’s logs, your own logs, and any test set built from real traffic. Many teams find at least two that they cannot reach.'],
+    ['p','This is the erasure duty from Chapter 16.5 in practice. Under the Indian Act a person can ask you to erase their data, and the places you cannot reach are where you would fail them.'],
     ['do','Trace one document',[
       ['p','Pick one document from your collection. List every place a copy of it, or something made from it, exists. Next to each, write how you would remove it.'],
       [
@@ -698,7 +720,7 @@ window.PART3 = [
   capstone:{
     title:'Write a requirements document that survives a change of model',
     brief:'An AI requirements document describes a measured range of quality, and what happens outside that range. In this chapter you saw what replaces pass or fail in an AI specification. You also saw what to rerun when a provider retires your model, and why a kill switch is different from a rollback. Now you write the requirements for Bharat Privacy Guard and rehearse the day its model changes.',
-    where:'Written only. Collect the notes and numbers named in the chapter, then write the document in the notes box below.',
+    where:'Written only. Collect the notes and numbers named in the chapter, then write the document in the notes box below. Short version for the route, about 20 minutes: steps 2, 4 and 6.',
     steps:[
       'Draw the whole system from memory first, without looking at your earlier diagrams. Then compare with your records and mark what you had forgotten.',
       'Write the requirements document. In the quality section use ranges, not promises, for example: “finds at least 95 of every 100 Aadhaar numbers on the answer key, give or take 3.” For each failure, write what the user sees.',
@@ -815,6 +837,7 @@ window.PART3 = [
     ['h','A kill switch is not a rollback'],
     ['p','You already roll out changes in stages, as with any product. For AI, add one more thing: a <strong>kill switch</strong>.'],
     ['p','The difference is speed. A rollback needs a new deployment. A kill switch is a flag that sends traffic to the non-AI path immediately. That only works if the non-AI path still exists and someone has tested it recently.'],
+    ['c','You already know this','The kill switch is the manual fallback in a continuity plan: the paper process you can go back to the same day. Model retirement is vendor end-of-support, and you plan for it the same way.'],
     ['q','I108'],
     ['h','Summary'],
     ['p','You’re nearly done with this part of the course. The last job is to look back at everything you’ve built and say, honestly, what you know and what you don’t.'],

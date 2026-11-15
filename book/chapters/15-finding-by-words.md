@@ -83,3 +83,5 @@ Keyword search finds text by matching the words of a question against the words 
 - It compares spelling, not meaning. So it fails where users use their own words instead of the document's, which means it fails the people who most need help.
 - A rule that looks for digits can't see a number that is spoken or spelled out in words.
 - It always returns its least bad match and never reports that it found nothing. So whatever reads the match may take it for evidence.
+
+Next, Anaya looks for a way to find text by what it means, because matching spelling has failed the customer who writes in her own words.

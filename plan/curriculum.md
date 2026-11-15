@@ -12,6 +12,8 @@ You can be a believable Applied AI PM candidate by April 2027, on one condition.
 
 So the route ends with one shipped, evaluated product: **Bharat Privacy Guard**, the course’s project. You build it a piece at a time, chapter by chapter, and publish it with its numbers in Week 25.
 
+**From delivery to product:** what changes when you own the outcome. The date you promised becomes the outcome you promised. The scope you delivered becomes the number that moved. The risk you escalated becomes the kill criterion you write. Week 9 asks you to rewrite one project of yours this way, and a look back each month adds a story from your career.
+
 **The route in one paragraph:** the route follows the book’s order, and every week pairs a book chapter (the story) with the playbook chapter that practises it, so the two are never weeks apart. Month 1 is the product half: the problem, its users, its market, a plan and a spec, with no code. Month 2 meets the machine: tokens, a model connected, just enough Python to read the code, the first call, instructions, an answer key, sorting and summarising. Months 3 and 4 build and measure the core: search, the first complete system, dependable output, attacks, grading at scale, cost, the rules and the spec. Month 5 goes over the same ideas at production depth. Month 6 ships the capstone, covers the business and gets you ready for interviews.
 
 ## Six-month route at a glance
@@ -29,7 +31,7 @@ Each month ends with a review on the Plan tab. Read the table row by row. The la
 
 ### Weekly time
 
-The route starts small on purpose. Month 1 is about an hour a week. Months 2 to 4 are one and a half to two hours. Month 5 is about three. The two capstone weeks ask for about four or five hours each. If you have more time, carry on to the next step. The route never stops you going ahead, and the dates are a guide, not a judge.
+The route starts small on purpose. The minutes on each step include the short version of the chapter’s project task. Month 1 is 1 to 1¾ hours a week. Month 2 is 1½ to 2¾ hours. Month 3 has two holiday weeks of under an hour, then two weeks of about three hours. Month 4 is 2 to 4 hours. Month 5 is 3 to 5 hours. The two capstone weeks ask for about five hours each, and the last week for about nine. If you have more time, carry on to the next step. The route never stops you going ahead, and the dates are a guide, not a judge.
 
 ## Job-market grounding
 
@@ -71,6 +73,10 @@ Across all those postings, five things keep coming up. Here they are, in the ord
 3. **Knowing when not to use a model.** [KORE1's interview rubric](https://www.kore1.com/ai-product-manager-interview-questions-2026/) grades this instinct as seriously as the design itself.
 4. **Failure-mode design.** Decide how much hallucination each product can tolerate. Measure it all the time, and design fallbacks.
 5. **Owning cost per task and latency.** [Field guides](https://pmtoolkit.ai/learn/ai-modern-pm/ai-product-management-2026-field-guide) now describe this as part of the AI PM's job.
+
+### Which door first
+
+Choose a first door before Month 2 ends. The Week 4 try asks for it, and the M2 review checks it. The postings above point one way. The AI-native product company is the hardest filter: one posting says in so many words that it is not for people moving over from project or programme management. Treat it as the second hop, once you hold a product title or your published work is hard to ignore. The first hop is the consulting door or the public-sector door. Titles to search: GenAI product manager, AI solutions manager, a product analyst role under a government AI mission, a solution manager at a digital public infrastructure body. Check each posting on the employer’s own page, because they change.
 
 ### Interview formats in 2026
 
@@ -118,7 +124,7 @@ The table shows each resource, what to use it for, what it costs and my verdict.
 ### Books (buy at most two)
 
 - **Chip Huyen, *AI Engineering*** (O'Reilly, 2025). This is the best single reference if you want technical depth as a PM. Read the chapters on evaluation, RAG and agents, inference optimization and the feedback loop.
-- **Hamel Husain and Shreya Shankar, *Evals for AI Engineers*** (O'Reilly, listed for late October 2026, about 225 pages). It was not out yet on 7 Oct 2026. So pre-order it, or read it on O'Reilly when it arrives.
+- **Hamel Husain and Shreya Shankar, *Evals for AI Engineers*** (O'Reilly, listed for late October 2026, about 225 pages). Check whether it is out yet, and read it on O'Reilly if it is.
 - **Marily Nika's AI PM books** are useful for framing, but lighter on technical depth. They are optional.
 
 ### Paid cohorts
@@ -203,7 +209,7 @@ It is a good portfolio project for a GovTech product manager for three reasons. 
 
 Use one shape for your AI product-sense answers. Go through these in order: the user and problem; why AI (or why not); the model approach; behavior in failure and trust moments; metrics (product, model, guardrail); evals; cost and latency; risks; and the launch plan. Drill with the [question bank](https://github.com/landedjobs/ai-pm-interview-prep) and your own projects, and follow the [mock-interview recipe](#mock-interviews).
 
-Here are 19 practice questions, in five groups.
+Here are 19 practice questions, in five groups. The route asks you to answer question 10 aloud in Week 13 and question 11 in Week 22, and gives the rest to Week 26.
 
 **AI product sense**
 
@@ -249,9 +255,9 @@ These are forecasts, not facts. Treat them as the direction of travel.
 
 - **Agents become the default unit of product.** MCP now sits under neutral governance at the Linux Foundation's Agentic AI Foundation, and A2A covers agent-to-agent work. PMs will specify autonomy levels, approval flows and agent evals.
 - **Evals become a standing function, not a project.** Expect eval CI, production trace review and judge validation to appear in more job descriptions.
-- **Regulatory milestones in and just after your window:** DPDP Consent Managers (13 Nov 2026), EU Article 50(2) watermarking (2 Dec 2026), full DPDP compliance (13 May 2027), and EU high-risk Annex III obligations (2 Dec 2027). India's proposed AI governance institutions may be set up, but neither is final.
+- **Regulatory milestones in and just after your window:** DPDP Consent Managers (13 Nov 2026, now passed; look up what changed), EU Article 50(2) watermarking (2 Dec 2026), full DPDP compliance (13 May 2027), and EU high-risk Annex III obligations (2 Dec 2027). India's proposed AI governance institutions may be set up, but neither is final.
 - **Sovereign and Indic AI deepens.** The IndiaAI Mission is [funding 12 organisations](https://www.medianama.com/2026/04/223-centre-funds-12-ai-projects-sovereign-models-bharatgen-4x-next-highest-allocation-rs-1000-crore/) that are building indigenous models. BHASHINI now runs on [sovereign cloud](https://www.newsonair.gov.in/yotta-data-services-deploys-bhashinis-end-to-end-sovereign-ai-cloud-on-government-platforms). Expect more government RFPs that ask for Indic, on-prem or open-weight options. That plays to your GovTech background.
-- **Free API tiers keep shrinking.** Budget for a little paid usage, and keep your projects model-agnostic.
+- **Free API tiers keep shrinking.** The route needs only the free tier today, so pay for nothing. If a limit changes, a little paid usage is the fallback, and keeping your projects model-agnostic makes the switch easy.
 - **Interviews will include live building.** Keep a weekly 45-minute prototyping habit.
 
 ### After the route (about 3 hours a week)
@@ -271,7 +277,7 @@ Some of the research above is weaker than the rest. Treat these items with care.
 - **Salary data:** India AI PM salary data is thin (27 Glassdoor reports), and some aggregator estimates are clearly wrong.
 - **Job postings:** Several come from aggregators (Instahyre, Weekday, DreamWorkHQ) and may be closed or mislabeled. The PhonePe listing's description looks mismatched. Check postings on the employers' own career pages.
 - **Course details:** Claude Academy course counts vary by source because the catalog grew during 2026. Maven prices and dates change with each cohort. Marily Nika's "#1" and alumni figures are self-reported.
-- **Unpublished book:** *Evals for AI Engineers* was listed for late October 2026, and was not out yet on 7 Oct 2026.
+- **Unpublished book:** *Evals for AI Engineers* was listed for late October 2026. Check whether it is out.
 - **Regulatory dates:** The EU AI Act dates follow Regulation (EU) 2026/1744, as law-firm sources report it. India's AI Governance Guidelines are voluntary. The proposed institutions had not been set up in the reports I found.
 - **Free tiers:** Gemini free-tier limits vary by source and change without notice. Check the live limits in AI Studio.
 - **Interview loops:** Reports on Meta, OpenAI and Anthropic interviews come from prep companies and candidate accounts, not from the employers' own documents.

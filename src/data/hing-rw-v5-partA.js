@@ -181,8 +181,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek score evidence ke saath likhiye. Phir ek aisa score likhiye jo aap sirf confidence ke bharose khud ko dete, aur samjhaiye ki evidence ne use kyun badal diya.',
   'Area, score, evidence…':
     'Area, score, evidence…',
-  'Here is an answer that works. <strong>Analytics: 2.</strong> Evidence: I built my team’s weekly retention dashboard and used it to argue for changing onboarding. <strong>Strategy: I would have said 2, but it is a 1.</strong> I have opinions about strategy, but I have never written one that someone else acted on. The difference is whether an artifact exists that another person could check.':
-    'Yeh ek aisa jawaab hai jo kaam karta hai. <strong>Analytics: 2.</strong> Evidence: maine apni team ka weekly retention dashboard banaya aur use onboarding badalne ki baat ke liye istemaal kiya. <strong>Strategy: main 2 kehta, lekin yeh 1 hai.</strong> Strategy par meri raay hai, lekin maine aisi strategy kabhi nahi likhi jis par kisi aur ne action liya ho. Farq is baat ka hai ki kya koi aisa artifact maujood hai jise doosra insaan check kar sake.',
   'Idea 2: Keep all your work in one place':
     'Idea 2: Apna saara kaam ek jagah rakhiye',
   'If they’re scattered across different tools, you won’t be able to find them when you need them. That could be in the capstone, or in a job interview.':
@@ -197,8 +195,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Repository mein yeh folder structure use kijiye:',
   'Tip':
     'Tip',
-  'No GitHub account yet? Start with a folder on your computer or in Google Drive, using the same structure. You can move it to GitHub later, in Chapter 21, when you set up version control properly.':
-    'Abhi tak GitHub account nahi hai? Apne computer ya Google Drive mein ek folder se shuru kijiye, wahi structure rakhkar. Aap use baad mein GitHub par le ja sakte hain, Chapter 21 mein, jab aap version control theek se set up karenge.',
   'Create the folders. Then add your first entry to <code>decision-log.md</code>. For example:':
     'Folders banaiye. Phir <code>decision-log.md</code> mein apni pehli entry add kijiye. For example:',
   'You should now have a folder structure anyone could navigate, and one decision with its evidence. Test it: could someone else find your interview notes in under two minutes?':

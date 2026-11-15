@@ -99,3 +99,5 @@ Whether a piece of text may be sent to a vendor comes down to three questions, a
 - A rule people can follow settles the common cases plainly, names what is never sent, and gives a specific route for doubtful ones.
 - Retrieval sends whatever it finds, so the decision about what goes into a store is a decision about every question asked of it.
 - A rule that depends on people remembering it is only a wish. A tool that enforces it is a control.
+
+Next, Lakshmi opens a long August afternoon with the rule that what is not written down did not happen, and asks Anaya for the paper behind the guard.

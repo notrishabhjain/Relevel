@@ -1,6 +1,6 @@
 ---
 title: Machine Ko Haath Dena
-summary: 12 digits ka order number bilkul Aadhaar number jaisa dikhta hai, aur dono mein farq karne ka ek hi tareeka hai, use look up karna. Is chapter mein tool calling, tool descriptions, AI agents aur step limits aate hain, dikhta hai ki ek loop ki cost kaise badhti hai, aur woh actions alag kiye jaate hain jo padhte hain aur woh jo kuch karte hain.
+summary: 12 digits ka order number Aadhaar number jaisa dikhta hai, aur jab check-digit rule zyadatar look-alikes ko hata deta hai, tab baaki ko alag karne ka ek hi tareeka hai, use look up karna. Is chapter mein tool calling, tool descriptions, AI agents aur step limits aate hain, dikhta hai ki ek loop ki cost kaise badhti hai, aur woh actions alag kiye jaate hain jo padhte hain aur woh jo kuch karte hain.
 course: ch9
 goals:
   - bata paana ki tool calling ek model aur ek program ke beech ka loop kaise hai
@@ -16,9 +16,11 @@ terms:
 
 12 digits ka ek order number team ke kaam mein baar-baar laut kar aa raha tha. Woh sorting test mein aaya, jahan chaar order numbers ko Aadhaar number kaha gaya tha aur guard unhe chhupa deta. Woh edge cases ki list mein dobara aaya. Farah ke agents ko apna kaam karne ke liye order numbers dekhne padte the, aur customers unhe hamesha type karte the.
 
-Dikkat yeh thi ki aankh ko bhi aur kisi bhi rule ko bhi, order number aur Aadhaar number ek jaise dikhte the. Dono 12 digits ke hote hain, kabhi 4-4 ke groups mein, aur digits mein kuch bhi nahi batata ki kaun sa kaun hai.
+Dikkat yeh thi ki aankh ko bhi aur sirf shape dekhne wale kisi bhi rule ko bhi, order number aur Aadhaar number ek jaise dikhte the. Dono 12 digits ke hote hain, kabhi 4-4 ke groups mein, aur aankh ko digits mein kuch nahi dikhta jo batae ki kaun sa kaun hai.
 
-Ek Tuesday ko Imran Qureshi ne kaha ki jaanne ka sirf ek tareeka hai. Order system se poochhiye. Is chapter mein aap dekhenge ki model ko yeh karne kaise diya jaata hai, isme kya kharch lagta hai, aur use kahan rokna padta hai.
+Ek rule bina cost ke isse chhota kar deta hai. Asli Aadhaar number 0 ya 1 se shuru nahi hota, aur uska aakhri digit ek check digit hota hai, jo baaki gyarah digits se ek fixed sum se nikala jaata hai, jise Verhoeff scheme kehte hain. Pattern checker yeh sum sabse pehle chala sakta hai. Woh lagbhag das mein se nau look-alikes ko hata deta hai, order numbers samet. Jo bachta hai woh das mein se ek hai jo ittefaq se guzar jaata hai.
+
+Ek Tuesday ko Imran Qureshi ne kaha ki jo numbers rule se guzar gaye, unke liye jaanne ka sirf ek tareeka hai. Order system se poochhiye. Is chapter mein aap dekhenge ki model ko yeh karne kaise diya jaata hai, isme kya kharch lagta hai, aur use kahan rokna padta hai.
 
 ## Case: ek number jo do cheezon mein se kuch bhi ho sakta hai
 
@@ -123,4 +125,4 @@ Model kuch chala nahi sakta; woh sirf maang sakta hai. Tool calling mein program
 - Zyadatar agent failures control ki failures hain, intelligence ki nahi, isliye program ka tay kiya hua step limit sabse pehle likhne ki cheez hai.
 - Jo functions sirf padhte hain unhe chalne diya ja sakta hai. Jo functions kuch karte hain unhe undo nahi kiya ja sakta, aur wahan ek insaan, ya pehle se likha fixed message, hona chahiye.
 
-Agle chapter mein aap dekhenge ki jab aap is sab ko model ko bahut zyada padhne ke liye bhejkar hal karne ki koshish karte hain, toh kya hota hai.
+Agle chapter mein ek vendor ki slide kehti hai ki poori library har sawaal ke saath bheji ja sakti hai, aur Anaya is daave ko parakhti hai.

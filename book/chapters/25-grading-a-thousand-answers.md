@@ -105,4 +105,4 @@ There are three ways to mark an answer. A program is nearly free, and should be 
 - Judges favour long answers and the first of two. The remedies are to grade one specific thing, swap the order and ask for a quotation.
 - Error analysis means reading a hundred real outputs, writing what went wrong in your own words before choosing categories, grouping and counting, and turning the biggest groups into new test cases.
 
-Next, you’ll look at what all this costs to run, in a conversation with the finance director.
+Next, Anaya presents the plan to the finance director, who asks what the guard will cost to run each month.

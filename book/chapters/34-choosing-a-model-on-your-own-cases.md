@@ -109,3 +109,5 @@ A leaderboard shows how a model did on someone else’s task. Models differ in s
 - The decision belongs on a model selection card, because without the evidence it dissolves into opinion in seconds.
 - What each model sees is a design in its own right. The instructions are a versioned contract. There is an order of removal when the budget is tight. And memory is at least three separate stores, each with an owner, a retention period and a way to delete.
 - Every decision should carry its provenance, so that it can be traced to the code and the evidence that produced it.
+
+Next, eleven people meet in the large room to ask whether the retrieval can survive the questions of someone who did not build it.

@@ -95,3 +95,5 @@ A model can't be given a whole library for each question. It won't fit, and ever
 - Large chunks are costly and blurred. Small chunks are sharp but lose context. A chunk that refers to something in the piece before it is an orphan, and the model will fill the gap with a guess.
 - There is no correct chunk size. Each choice fails somewhere, so name the failure you accept and test it on purpose.
 - The same care applies to text the guard itself has to cut. Never split an identity number in half, and let neighbouring pieces overlap.
+
+Next, Anaya plays the search engine herself, with twenty index cards and Farah as the customer.

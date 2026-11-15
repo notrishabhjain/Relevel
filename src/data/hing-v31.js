@@ -8,8 +8,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Fixed candidate set par yeh simplified sampling illustration hai. Lower temperature probability ko concentrate karta hai aur higher temperature use spread karta hai. Provider decoding settings phir bhi variation la sakti hain, isliye yeh direction samjhata hai, determinism guarantee nahi.',
   'Move k and inspect Hit@k, judged relevance density, and the retrieved-text estimate. This toy ranking illustrates a common trade-off; a real corpus needs explicit relevance judgments and measured prompt tokens, latency, and cost.':
     'k badal kar Hit@k, judged relevance density aur retrieved-text estimate dekhiye. Yeh toy ranking ek common trade-off dikhati hai; real corpus ko explicit relevance judgments aur measured prompt tokens, latency aur cost chahiye.',
-  'The application chooses what prior context, summary, memory or task state to send':
-    'Application choose karta hai ki prior context, summary, memory ya task state mein se kya bhejna hai',
+  'Each new message re-sends the earlier ones, unless the app trims or summarises them.':
+    'Har naya message pichhle messages ko dobara bhejta hai, jab tak app unhe trim ya summarise na kar de.',
   'Coverage may improve and relevance density may fall; measure Hit@k, Recall@k where defined, Precision@k, prompt tokens, latency and cost':
     'Coverage improve aur relevance density kam ho sakti hai; Hit@k, jahan defined ho Recall@k, Precision@k, prompt tokens, latency aur cost measure kijiye',
   'Nine answerable questions with the correct chunks planted at realistic depths. Move k and inspect Hit@k, judged relevance density, and the retrieved-text estimate. This toy ranking illustrates a common trade-off; a real corpus needs explicit relevance judgments and measured prompt tokens, latency, and cost.':

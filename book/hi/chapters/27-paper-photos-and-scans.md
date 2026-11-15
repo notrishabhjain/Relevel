@@ -12,7 +12,7 @@ terms:
   - document audit | kuch banane se pehle, ek random sample se ginna ki collection ka kitna hissa saaf digital text hai, kitna scan hai, aur kitne mein matlab tables aur layout mein chhupa hai | 
 ---
 
-Saal ke pehle chhe mahine, Anaya ke dimaag mein customer ke message ki tasveer phone par kuch lines ka text thi. Usne kabhi use gaur se dekha nahi tha. Woh transcripts se aati thi, jo apne aap mein text hote hain, aur answer key se, jo sentences ka ek column thi. Team ne ab tak jo bhi banaya tha, har rule aur har test, ek chhupi hui dhaarna par tika tha. Kisi ne pehle hi customer ke words ko characters mein badal diya hai.
+Project ke pehle chaar mahine, Anaya ke dimaag mein customer ke message ki tasveer phone par kuch lines ka text thi. Usne kabhi use gaur se dekha nahi tha. Woh transcripts se aati thi, jo apne aap mein text hote hain, aur answer key se, jo sentences ka ek column thi. Team ne ab tak jo bhi banaya tha, har rule aur har test, ek chhupi hui dhaarna par tika tha. Kisi ne pehle hi customer ke words ko characters mein badal diya hai.
 
 July ke ek Friday ko Farah Sheikh ne uske saamne ek aisi sheet rakhi jo bilkul sentence jaisi nahi dikhti thi. Woh ek photograph thi jo ek customer ne kitchen table par rakhi bank passbook ki khichi thi. Woh thodi tedhi thi, ek kone par khidki ki roshni padi thi, aur use chatbot ko "account number check karo" likhkar bheja gaya tha.
 
@@ -99,4 +99,4 @@ Asli documents saaf text se kahin zyada baar pages aur pictures hote hain.
 - Voice main constraint ko accuracy se time par le jaati hai.
 - Kisi bhi document project ke shuru hone se pehle, document audit dikhata hai ki asal mein kya shaamil hai. Ismein 50 random files aur teen ginti lagti hain.
 
-Agle chapter mein aap ek sawaal dekhenge jo shuru se hi background mein intezaar kar raha tha: model ko kya bhejna aapke liye legal aur samajhdaari dono nazar se theek hai.
+Agle chapter mein Lakshmi teen documents Anaya ki desk par rakhti hai aur poochhti hai ki vendor ko kaun sa bheja ja sakta hai, aur kyun.

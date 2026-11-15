@@ -2,7 +2,7 @@
   "title": "AI From Zero",
   "edition": "The reading edition",
   "subtitle": "How a small team in Pune built a privacy guard, and learned how AI products are really made",
-  "tagline": "A book to read, not a course to do. Same ideas, same order, same words as the course app, told as one story.",
+  "tagline": "The story to read before each chapter of the course. Same ideas, same order, same words as the course app, told as one story.",
   "language": "en",
   "sections": [
     { "from": 1, "to": 7, "title": "The problem worth solving", "blurb": "Anaya notices something odd in the chat, and learns how a product person decides what to build, and what to leave alone." },

@@ -1,6 +1,6 @@
 # Applied AI PM: the route, week by week (19 Oct 2026 – 18 Apr 2027)
 
-This plan is the course. It has one row for each week, and each row lists the steps of the route in order: a book chapter to read, then the playbook chapter that practises it, sometimes a small try, and a look back on Friday. The same steps, in the same order, are on the [route page in the playbook](../app/#/start) and at the end of each chapter in the [book](../book/).
+Start from the [route page in the playbook](../app/#/start). This plan shows the same course, with dates, notes and monthly reviews. It has one row for each week, and each row lists the steps of the route in order: a book chapter to read, then the playbook chapter that practises it, sometimes a small try, and a look back on Friday. The same steps, in the same order, are on the [route page in the playbook](../app/#/start) and at the end of each chapter in the [book](../book/).
 
 Progress is shared too. Mark a chapter complete in the playbook, or read a book chapter to its end, and the tick shows up here. Tick a try or a look back here, and it shows up in the playbook. Sign in once and the ticks follow you to every device. The reasons behind the route are on the [Curriculum tab](#curriculum), and how to take each kind of step is on the [How to build tab](#build).
 
@@ -24,8 +24,9 @@ A week is a handful of steps. Most take ten to twenty minutes, so most days need
 
 ### How to read the weekly rows
 
-- **Time:** the total for the week’s steps. Month 1 is about an hour a week, and it builds slowly to about four or five hours in each of the two capstone weeks.
-- **By Sunday:** the thing the week leaves you with. Put a link or a note in the row if you want a record.
+- **Time:** the total for the week’s steps, including the short version of each chapter’s project task. Month 1 is an hour to an hour and a half a week, and it builds to about four or five hours in each of the two capstone weeks. Week 26 is about nine hours: the portfolio page and the review are steps there.
+- **Why now** and **For the job:** the first says what the week builds on. The second says what it is worth for the role you are aiming at.
+- **By Sunday:** the thing the week leaves you with. Put a link or a note in the row if you want a record. The Note field is your ship log ([how](#ship-log)).
 - **How to:** links to the [How to build tab](#build).
 - **Going further:** optional outside reading for a week with spare energy. It is never required.
 - **Holiday weeks (W10 and W11):** about half an hour each, by design.
@@ -81,7 +82,7 @@ A tripwire is a warning sign you decide on in advance. Here is what to do for ea
 
 ## Monthly reviews
 
-At the end of each month, spend 20 minutes on the review. Check the month against its line below, tick it, and look through the parking lot.
+At the end of each month, spend 20 minutes on the review. Check the month against its line below, answer its two questions, tick it, and look through the parking lot.
 
 <!-- gates -->
 

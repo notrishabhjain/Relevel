@@ -20,7 +20,7 @@ Woh lagbhag nau second ka tha. Kolhapur ki ek mahila ka, jo phone ko mooh se tho
 
 "Haan, mera Aadhaar number hai char teen do ek, paanch chhe saat aath, nau shunya ek do. Loan ka status bata do."
 
-Farah ne kaha, is hafte aise chaar aaye the. April mein usne voice notes ko Won't list mein rakha tha, aur sahi kiya tha. Lekin woh aa phir bhi rahe the, aur customers ko pata nahi tha ki woh Won't mein hain.
+Farah ne kaha, is hafte aise chaar aaye the. March mein Anaya ne voice notes ko Won't list mein rakha tha, aur sahi kiya tha. Lekin woh aa phir bhi rahe the, aur customers ko pata nahi tha ki woh Won't mein hain.
 
 ## Case: shabdon mein bola gaya number
 
@@ -116,3 +116,5 @@ Jo system pages, tasveerein aur speech leta hai, woh unhe text ki tarah nahi dek
 - Voice system alag-alag stages ki ek pipeline hai, capture se transcription aur tidying se lekar action tak. Har stage ek jagah hai jahan matlab badal sakta hai aur time jaata hai, aur jo sabse slow hai, use dekhna chahiye.
 - Kisne kya kaha, yeh privacy decision hai, technical detail nahi.
 - Sirf text se bana test baaki forms ki har failure chhupa leta hai. Har tarah ke input ko kai levels par score kijiye, aur dikhega ki kaun sa stage toota.
+
+Agle chapter mein doosri team ka ek engineer Friday raat paune gyarah baje guard ki instructions ki ek line narm kar deta hai.

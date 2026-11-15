@@ -85,6 +85,36 @@ Har action ko mark kijiye: read-only, aisa write jo undo ho sakta hai, ya aisa w
 
 Night queue ke liye har action read-only tha. Agent propose karta tha, aur subah insaan faisla karta tha.
 
+Read-only ka matlab yeh nahi tha ki agent ko akela chhoda ja sakta hai. Imran ne ek doosra scale joda, ki insaan loop mein kitna rehta hai, aur team ne chaar levels par haami bhari.
+
+Table: Autonomy ke chaar levels
+| Level | Agent kya karta hai | Insaan kahan aata hai |
+| --- | --- | --- |
+| Suggests | Ek action propose karta hai aur ruk jaata hai | Insaan use karta hai |
+| Acts with approval | Action taiyaar karta hai aur intezaar karta hai | Insaan wahi exact action approve karta hai |
+| Acts and reports | Action kar deta hai, phir kisi ko bata deta hai | Insaan baad mein use undo kar sakta hai |
+| Acts alone | Action kar deta hai aur kuch nahi kehta | Koi nahi, jab tak kuch toot na jaye |
+
+Night queue pehle level par thi. Jo action undo nahi ho sakta tha, woh doosre level se upar kabhi nahi gaya.
+
+### Raaste ko mark karna, sirf jawaab ko nahi
+
+Imran ne phir use ek aisi raat dikhayi jo galat gayi thi, haalaanki jawaab sahi tha. Rok kar rakha hua case ek barah-digit number tha, jo order number bhi ho sakta tha aur Aadhaar number bhi. Yeh agent ka run hai, ek row mein ek step.
+
+Table: Night queue ka ek run, step-by-step mark kiya hua
+| Step | Agent ne kya maanga | Kya wapas aaya | Reviewer kya mark karta hai |
+| --- | --- | --- | --- |
+| 1 | Number ko order ki tarah look up kiya | Aisa koi order nahi | Sahi pehla step |
+| 2 | Wahi number phir se look up kiya | Aisa koi order nahi | Bekaar repeat |
+| 3 | Wahi number phir se look up kiya | Aisa koi order nahi | Bekaar repeat |
+| 4 | Customer ke pehle ke messages padhe | Do messages, koi order zikr nahi | Sahi tool, kaam ka result |
+| 5 | Koi tool nahi: usne likha "shayad Aadhaar number hai" | Kuch nahi | Ek andaaza jise koi step support nahi karta |
+| 6 | Run ko "keep hidden" ke saath khatam kiya | Run khatam | "Cannot resolve" ke saath khatam hona chahiye tha |
+
+"Keep hidden" sahi jawaab tha, isliye sirf jawaab ki jaanch is run ko pass kar deti. Chhe mein se teen steps bekaar ya andaaza the, aur agent ne woh ending use nahi ki jo use di gayi thi. Koi doosra number isi tarah chalkar galat jagah khatam ho sakta hai.
+
+Isliye team ne jawaab ke saath raaste ko bhi mark kiya. Agent ne jo steps kiye, unki kram wali list ko uske final jawaab se alag score karna *trajectory evaluation* hai. Chaar sawaal ise cover karte hain: kya agent ne sahi tool use kiya, bekaar steps liye, theek se ruka, aur apni bounds ke andar raha? Anaya ne run ko answer key mein ek case ki tarah joda, sahi jawaab ke baju mein sahi raasta likhkar.
+
 Anaya ne poochha, agar kisi ne ise agent kaha hi na hota, toh kya phir bhi agent chuna jaata? Imran ne bees test raatein teen tareeke se chalayi thi: ek single call, ek fixed sequence aur bounded agent. Aam raaton mein sequence agent ke lagbhag barabar raha, chauthai cost par. Agent sirf ajeeb raaton mein behtar raha. Isliye agent ajeeb raaton ke liye use hoga.
 
 Usne poochha, kya doosra agent madad karega? Imran ne kaha, extra complexity ko kuch naapne layak kharidna padta hai, aur abhi tak kisi doosre agent se yeh maanga nahi gaya.
@@ -100,7 +130,7 @@ Anaya ne poochha ki standard kya vaada karta hai. Imran ne kaha, woh vaada karta
 Anaya ne poochha, kya agent ke paas permission hai? Imran ne kaha, sawaal yahi hai. Tool ko discover kiya ja sakta hai, aur use aapko use karne ki ijaazat hai, yeh alag baatein hain. Pehla protocol ka kaam hai. Doosra company ka, jo server par tay hota hai ki kaun logged in hai, model se poochh kar nahi.
 
 ::: watch Unsafe tool ka standard interface bhi unsafe tool hi hai
-Connector se jo kuch bhi wapas aata hai, woh bhi aisa text hai jo koi ajnabi likh sakta tha. Anaya ne yeh garmiyon wali list mein joda, har document ko untrusted maanne wale rule ke neeche. Agents ke aapas mein baat karne ka bhi ek protocol hai, jiski problem usi shape ki hai, tools ki jagah identity aur delegation ke saath. Woh yeh suljhata hai ki woh baat kaise karte hain. Yeh nahi suljhata ki woh jo kehte hain us par bharosa karna chahiye ya nahi.
+Connector se jo kuch bhi wapas aata hai, woh bhi aisa text hai jo koi ajnabi likh sakta tha. Anaya ne yeh garmiyon wali list mein joda, har document ko untrusted maanne wale rule ke neeche. Agents ke aapas mein baat karne ka bhi ek protocol hai, jise A2A kehte hain, jiski problem usi shape ki hai, tools ki jagah identity aur delegation ke saath. Woh yeh suljhata hai ki woh baat kaise karte hain. Yeh nahi suljhata ki woh jo kehte hain us par bharosa karna chahiye ya nahi.
 :::
 
 Hafte ke ant tak console ka apna koi assistant nahi tha. Uske paas ek night queue thi jisme bounded agent propose karta tha aur act nahi karta tha, aur ek connector jisme refund tool band tha. Anaya ne kaha ki yeh Farah ne jo maanga tha usse kam hai. Imran ne kaha, yeh wahi hai jo use chahiye tha, aur banane mein aasaan bhi.
@@ -113,3 +143,5 @@ Tool ek function hai jo model maang sakta hai. Har ek ko ek tool contract chahiy
 - Bahut se features jo agent maangte lagte hain, fixed workflow ke roop mein behtar hote hain, jisme model sirf wahan lagta hai jahan words samajhne padte hain. Ek tez test hai: har us tool ko kaat dijiye jise ek saada rule lagbhag hamesha sahi chunta hai.
 - Jab sach mein agent chahiye, toh use bound kijiye: limited steps, time aur cost, explicit state, aur ek "cannot resolve" ending. Jo cheez undo nahi ho sakti, use ek insaan approve karta hai.
 - MCP ek standard plug hai. Woh vaada karta hai ki cheezein fit hongi, aur unki safety ke baare mein kuch nahi kehta, aur jo tool discover ho sakta hai woh isliye authorised nahi ho jaata.
+
+Agle chapter mein Farah ek voice note do baar bajati hai, aur Anaya dekhti hai ki guard ko ab tak sirf type kiye hue text par hi parkha gaya hai.

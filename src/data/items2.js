@@ -38,6 +38,10 @@ window.ITEMS2 = [
  ['tokens','Sum the growing envelope across 6 steps'],[13200,20],
  'Add up each step: 1200 + 1600 + 2000 + 2400 + 2800 + 3200 = 13,200. That’s about 11 times a single call, not 6 times, because each step carries all the context so far. This is the most underestimated line in AI business cases.'],
 
+['I620','S17',3,'mcq','An agent answers six test questions correctly, but on two of them it called the exchange-rate tool when it did not need to. What does a score on the final answers alone tell you?',
+ ['That nothing is wrong, because every answer was right','That the agent calls its tools efficiently','Only the answers. The two extra calls cost money on every run, and only a trajectory evaluation shows them','That the tool descriptions are well written'],2,
+ 'The final answer hides the route. Scoring the ordered list of tool calls, separately from the answer, is called trajectory evaluation. An agent can reach the right answer by the wrong path, and the wrong path is where the cost and the risk sit.'],
+
 /* ================= S18 Context engineering ================= */
 ['I069','S18',2,'mcq','How do prompt engineering and context engineering differ?',
  ['They are the same discipline','Prompt engineering is how the instruction is worded; context engineering is what material is let in, in what order, and what is pushed out','Context engineering only applies to agents','Prompt engineering is for chat, context engineering for APIs'],1,

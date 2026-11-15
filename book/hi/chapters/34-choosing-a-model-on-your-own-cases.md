@@ -109,3 +109,5 @@ Leaderboard dikhata hai ki model ne kisi aur ke kaam par kaisa kiya. Models kai 
 - Faisla model selection card par hona chahiye, kyunki evidence ke bina woh seconds mein raay mein ghul jaata hai.
 - Har model ko kya dikhta hai, yeh apne aap mein ek design hai. Instructions ek versioned contract hain. Budget kam pade toh cheezein hatane ka ek order hota hai. Aur memory kam se kam teen alag stores hain, har ek ka owner, retention period aur delete karne ka tareeka.
 - Har faisle ke saath uska provenance hona chahiye, taaki use us code aur evidence tak trace kiya ja sake jisne use banaya.
+
+Agle chapter mein gyarah log bade room mein baithte hain yeh poochhne ke liye ki retrieval un logon ke sawaal jhel sakta hai ya nahi jinhone use banaya nahi.

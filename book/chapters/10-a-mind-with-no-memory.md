@@ -93,3 +93,5 @@ A language model is stateless. It keeps nothing between requests, and every call
 - Because the history is sent again, each message costs more than the one before. The total cost of a conversation grows much faster than its length.
 - When a conversation outgrows the context window, the application has to drop old messages, summarise them, look up stored facts, or keep the state of the task. The choice belongs to the application.
 - A detail typed once is sent again with every later message, unless it is cleaned before it is stored.
+
+Next, Anaya turns to the words she can control: what she tells the model to do, and how she says it.

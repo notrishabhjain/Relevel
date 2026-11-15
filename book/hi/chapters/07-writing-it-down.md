@@ -8,6 +8,10 @@ goals:
   - edge cases ki list banana, aur tay karna ki jab product ko shak ho toh woh kya kare
   - ek patla pehla version banana, uncertain kaam ko time-box dena, aur kisi asli insaan ke saath kaagaz ka prototype test karna
 terms:
+  - pattern checker | guard ka pehla hissa: yeh un details ko dhoondhta hai jo hamesha ek hi shape ki hoti hain, jaise PAN ya mobile number, fixed rules se | pattern checkers
+  - name-and-place finder | guard ka doosra hissa: yeh un details ko dhoondhta hai jinki koi fixed shape nahi, jaise kisi insaan ka naam, pata ya employer | name-and-place finders
+  - context judge | guard ka teesra hissa: yeh un chhote sentences ko padhta hai jinhe pehle do hisse tay nahi kar paaye, aur decide karta hai ki woh kisi insaan ki taraf ishaara karte hain ya nahi | context judges
+  - rule-keeper | guard ka chautha hissa: yeh tay karta hai ki mili hui har detail ke saath kya karna hai, jaise hata do, mask karo, jaane do ya poochho | rule-keepers
   - PRD | product requirements document: woh kaagaz jo batata hai ki kya banana hai aur kyun, problem aur uske saboot se shuru karke | product requirements document
   - acceptance criteria | woh shartein jo kaam ke ek tukde ko "ho gaya" maane jaane ke liye poori karni hoti hain, har ek aise likhi gayi ki jaanchi ja sake | acceptance criterion
   - user story | value ka ek hissa user ki taraf se bataya gaya: woh kaun hain, kya chahte hain, aur kyun | user stories, job story
@@ -21,10 +25,6 @@ terms:
   - quasi-identifier | aisi detail jo akeli nirdosh hai par doosron ke saath milkar ek insaan ki taraf ishaara kar sakti hai, jaise umar, gaon aur ek rare bimari | quasi-identifiers
   - redact | kisi detail ko poori tarah hata dena, jaise use [PAN] shabd se badal kar | redaction
   - mask | kisi detail ka ek hissa chhupana par uski shape rakhna, jaise 98******12 | masking, masked
-  - pattern checker | guard ka pehla hissa: yeh un details ko dhoondhta hai jo hamesha ek hi shape ki hoti hain, jaise PAN ya mobile number, fixed rules se | pattern checkers
-  - name-and-place finder | guard ka doosra hissa: yeh un details ko dhoondhta hai jinki koi fixed shape nahi, jaise kisi insaan ka naam, pata ya employer | name-and-place finders
-  - context judge | guard ka teesra hissa: yeh un chhote sentences ko padhta hai jinhe pehle do hisse tay nahi kar paaye, aur decide karta hai ki woh kisi insaan ki taraf ishaara karte hain ya nahi | context judges
-  - rule-keeper | guard ka chautha hissa: yeh tay karta hai ki mili hui har detail ke saath kya karna hai, jaise hata do, mask karo, jaane do ya poochho | rule-keepers
 ---
 
 Founders ne project approve kiya, toh Imran Qureshi ne guard ko ek napkin par bana diya. Napkin office ke neeche wali mithai ki dukaan ka tha. Drawing mein chaar minute lage. Baayein taraf ek lamba dabba tha, jis par likha tha "message". Daayein taraf ek aur, "safe message". Beech mein chaar chhote dabbe ek line mein the, aur har dabbe ke neeche teen shabd.
@@ -32,6 +32,8 @@ Founders ne project approve kiya, toh Imran Qureshi ne guard ko ek napkin par ba
 Napkin ka sketch structure ke baare mein ek andaaza hota hai. Isse aap kuch bana nahi sakte. Woh yeh nahi batata ki har dabba kya karega, kaise pata chalega ki dabba kaam karta hai, ya jab woh fail ho toh kya hoga.
 
 Is chapter mein hum dekhenge ki woh sketch kaise ek aise document mein badalta hai jisse koi ajnabi bana sake. Phir hum design ki pehli jaanch dekhenge, jo kaagaz par hui.
+
+Agar aapne technology projects deliver kiye hain, toh is chapter ke kai shabd aap pehle se jaante hain: requirements, sprint, dependency, edge case. Yeh dekhte hue padhiye ki product aapka ho toh kya badalta hai. Guard ke chaar hisson ke naam woh shabd hain jo aage ke har chapter mein kaam aate hain, isliye unhe saath le jaiye.
 
 ## Case: napkin par chaar dabbe
 
@@ -44,7 +46,7 @@ Sketch har tarah ki personal detail us hisse ko deta hai jo use dhoondhne mein s
 Table: Guard ke chaar hisse
 | Hissa | Kya karta hai | Alag kyun hai |
 | --- | --- | --- |
-| Pattern checker | Woh details dhoondhta hai jinki shape hamesha ek jaisi hoti hai: PAN (5 capital letters, 4 digits, 1 capital letter), Aadhaar number (12 digits), mobile number (10 digits jo 6, 7, 8 ya 9 se shuru hon) | Ek fixed rule inhe turant, bina cost ke, har baar ek hi tarah dhoondh leta hai |
+| Pattern checker | Woh details dhoondhta hai jinki shape hamesha ek jaisi hoti hai: PAN (5 capital letters, 4 digits, 1 capital letter), Aadhaar number (12 digits jo 0 ya 1 se shuru nahi hote, aur aakhri digit ek check digit hota hai jo baaki digits se nikala jaata hai), mobile number (10 digits jo 6, 7, 8 ya 9 se shuru hon) | Ek fixed rule inhe turant, bina cost ke, har baar ek hi tarah dhoondh leta hai |
 | Name-and-place finder | Woh details dhoondhta hai jinki koi fixed shape nahi: kisi insaan ka naam, pata ya employer | Koi rule "Ramesh Jain" ya "14 Sector 15, Gurgaon" ko describe nahi kar sakta; kisi ko sentence padhkar insaan ya jagah pehchaanni padegi |
 | Context judge | Woh kuch sentences padhta hai jinhe pehle do hisse tay nahi kar paaye, aur decide karta hai ki woh kisi insaan ki taraf ishaara karte hain ya nahi | Context mein padhna slow aur mehnga hai, isliye usse sirf bachi hui cheezon ke baare mein poochha jaata hai |
 | Rule-keeper | Jo detail mili hai, uske saath kya karna hai, yeh tay karta hai | Woh khud kuch nahi dhoondhta; woh har tarah ki detail ke liye rules lagata hai |
@@ -151,6 +153,13 @@ Neha ne doosra kaagaz uthaya, aur gyarah second tak use dekhti rahi. Phir usne t
 
 ::: key Gyarah second ne kya dhoondha
 Neha jaise teen se paanch logon ke saath ek test design ki zyadatar serious problems dikha deta hai, aur har hichkichahat ek finding hai. Anaya ne PRD mein ek line joda: agent ek chat ke liye chhupi hui detail dekh sakta hai, wajah record karke. Kisi meeting ne yeh baat uthayi nahi thi.
+:::
+
+::: key Ab aap yeh keh sakte hain
+Hiring ki baat ke liye teen sentences. Jahan N aur M likha hai, wahan apne numbers rakhiye.
+- Maine decide karne se pehle gina: jo M conversations maine padhin, unmein se N mein personal detail thi, aur main dikha sakta hoon ki maine kaise gina.
+- Maine likha ki product kya nahi karega, aur kaun sa saboot mera mann badal dega.
+- Meri specification "done" ko pehle se mark kiye gaye examples par ek rate ki tarah likhti hai, ehsaas ki tarah nahi.
 :::
 
 ## Saaraansh

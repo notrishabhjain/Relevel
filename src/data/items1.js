@@ -10,9 +10,9 @@ window.ITEMS1 = [
 
 /* ================= S01 Token & cost arithmetic ================= */
 ['I001','S01',1,'mcq','A 300-word English answer is roughly how many tokens?',
- ['About 150','About 225','About 400','Exactly 300'],1,
+ ['About 150','About 225','About 400','Exactly 300'],2,
  'A handy rule: 1 token is about ¾ of an English word, so you multiply the words by 1.33. That makes 300 words about 400 tokens. Watch the trap answer, 225. It comes from dividing when you should have multiplied.'],
-['I002','S01',2,'num','A RAG query sends 1,800 input tokens and produces 240 output tokens. Input costs ₹0.20 per million tokens and output costs ₹0.60 per million. What does one query cost, in paise (1 rupee = 100 paise)?',
+['I002','S01',2,'num','A RAG query sends 1,800 input tokens and produces 240 output tokens. Input costs ₹0.20 per million tokens and output costs ₹0.60 per million. These prices are made up, so look up today’s price before you use a number at work. What does one query cost, in paise (1 rupee = 100 paise)?',
  ['paise','(1800/1e6)×0.20 + (240/1e6)×0.60, converted to paise'],[0.0504,15],
  'Work out the input and output parts separately, then add them: (1800/1,000,000 × 0.20) + (240/1,000,000 × 0.60) = 0.00036 + 0.000144 = ₹0.000504, which is about 0.05 paise. The sum is easy. The real lesson is that a cost per query looks tiny until you multiply it by volume and by the four multipliers.'],
 ['I003','S01',3,'multi','A business case says each query costs ₹0.30, worked out as input tokens × rate + output tokens × rate. Which of these would push the real bill above that figure?',
@@ -43,7 +43,7 @@ window.ITEMS1 = [
  ['Your conversation history','Nothing','A summary of prior turns','Your preferences only'],1,
  'Nothing. The model starts fresh every time. When a chat seems to remember you, the application is simply sending the history again inside a bigger envelope.'],
 ['I011','S03',2,'mcq','Why does the 50th message in a chat cost far more than the 2nd?',
- ['Later messages are longer','The application chooses what prior context, summary, memory or task state to send','The model works harder as context builds','Rate limits raise the price'],1,
+ ['Later messages are longer','Each new message re-sends the earlier ones, unless the app trims or summarises them.','The model works harder as context builds','Rate limits raise the price'],1,
  'Message 50 has to pay to re-read messages 1 to 49. So cost follows the length of the whole conversation so far, not the number of messages.'],
 ['I012','S03',3,'multi','A vendor says, “Our assistant remembers each user’s full history.” Which questions actually test that claim?',
  ['Where is that history stored, and who controls it?','What does re-sending it cost per query at scale?','How is it chosen for the envelope when it is bigger than the budget?','How many parameters does the model have?'],[0,1,2],
@@ -113,8 +113,8 @@ window.ITEMS1 = [
 ['I031','S08',3,'mcq','A vendor slide says, “1024-dimensional state-of-the-art embeddings.” What is the only useful response?',
  ['Ask for 2048 dimensions','“Measured how, on whose questions, in which languages?”','Ask which GPU they run on','Accept it as a sign of quality'],1,
  'The number of dimensions is a spec, not proof. The claim that needs numbers is how well retrieval works on your documents and in your users’ own words.'],
-['I032','S08',3,'num','Two texts have a cosine similarity of 0.78, and a third pair scores 0.19. Roughly how many of these pairs would you expect to be near-synonyms in the same professional field? Answer with a count (0, 1 or 2).',
- ['pairs','Judge from the scores'],[1,1],
+['I032','S08',3,'mcq','Two text pairs have cosine similarities of 0.78 and 0.19. Which statement is safe to make from these two numbers alone?',
+ ['The first pair are near-synonyms and the second pair are not','You cannot tell from the scores alone, because how scores spread out depends on the model, the corpus and the task','Both pairs are related, because both scores are above zero','The second pair is unrelated, because 0.19 is below 0.5'],1,
  'You can’t work out a count from cosine values alone. How similarity scores spread out depends on the model, the corpus and the task. Label examples from your own retrieval task, and set a threshold or ranking rule from those.'],
 
 /* ================= S09 Hybrid / rerank ================= */

@@ -420,6 +420,7 @@ function weekCard(w, recipes) {
     `<header><span class="wn">W${w.n}</span><span class="dates" data-w="${w.n}">${esc(w.dates)}</span><span class="cx">~${fmtMins(w.mins)}</span>${w.light ? '<span class="tag">light holiday week</span>' : ''}<span class="wstate"></span></header>` +
     `<h4>${inline(w.title)}</h4>` +
     (w.why ? `<p class="why"><b>Why now</b>${inline(w.why)}</p>` : '') +
+    (w.job ? `<p class="why"><b>For the job</b>${inline(w.job)}</p>` : '') +
     `<ol class="steps">${w.steps.map(stepRow).join('')}</ol>` +
     `<p><b>By Sunday</b>${inline(w.ship)}</p><p><b>How to</b>${how}</p>${further}${deeper}` +
     ((fid => fid ? `<details class="idea"><summary>See the idea: ${esc(FIG.data[fid].title[0])}</summary><div class="ideafig" data-fig="${fid}" data-bare></div></details>` : '')(weekFig(w))) +
@@ -451,6 +452,7 @@ function makeExpand(recipes, seen) {
       return { html: `<p><strong id="gate-count"></strong></p>` + GATES.map(g =>
         `<div class="gate" data-gate="${g.id}"><div class="row"><span class="wn">${g.id}</span><span class="dates" data-g="${MONTHS[g.month - 1].from}-${MONTHS[g.month - 1].to}">${esc(g.date)}</span></div>` +
         `<p>${inline(g.pass)}</p><p class="small">If behind: ${inline(g.cut)}</p>` +
+        `<p class="small"><b>Ask yourself</b></p><ul class="small">${g.ask.map(q => `<li>${inline(q)}</li>`).join('')}</ul>` +
         `<label class="chk"><input type="checkbox" data-f="passed"><span>Reviewed</span></label>` +
         `<div class="fields"><label>What you cut or decided<input type="text" data-f="note" autocomplete="off"></label></div></div>`).join('') };
     }

@@ -38,7 +38,7 @@ Table: Risk ke chaar levels
 | User ko batao | Chatbots, generated images | Itna batana kaafi hai ki user ek machine se baat kar raha hai |
 | Minimal | Zyadatar internal tools | Achhi aam practice |
 
-Aise rules Europe mein shuru hue. Ab woh doosri jagah ki bahut si companies ke purchasing departments tak pahunch gaye hain. Yeh ek **risk tier** ki tarah kaam karte hain, yaani ek level jo is se tay hota hai ki galat jawaab kitna nuksaan kar sakta hai. Tier tay karta hai ki system ko kitna kuch dikhana padega.
+Aise rules Europe mein EU AI Act ke saath shuru hue. Ab woh doosri jagah ki bahut si companies ke purchasing departments tak pahunch gaye hain. Yeh ek **risk tier** ki tarah kaam karte hain, yaani ek level jo is se tay hota hai ki galat jawaab kitna nuksaan kar sakta hai. Tier tay karta hai ki system ko kitna kuch dikhana padega.
 
 Tiers ke baare mein do baatein logon ko hairaan karti hain. Pehli, tier model se nahi, istemaal se tay hota hai. Wahi system ek internal answer-finder ki tarah low-risk ho sakta hai, aur agar koi use yeh tay karne mein lagaye ki loan kise milega, toh woh high-risk ho jaata hai. Doosri, istemaal badalta hai toh tier bhi badalta hai. Aksar yeh launch ke baad hota hai, aur documents koi update nahi karta.
 
@@ -123,3 +123,5 @@ Ek system ko kitna dikhana padega, yeh is par tikta hai ki galat jawaab kitna nu
 - Deletion drill un jagahon ko dhoondhta hai jahan insaan ka data rehta hai aur jahan aap pahunch nahi sakte. Bhoole hue aksar woh copies hote hain jo kisi achhi wajah se bani thi.
 - Human oversight tabhi kaam karta hai jab reviewer saboot dekhe aur na keh sake.
 - Jahan log pehle se unapproved tools use kar rahe hain, wahan ilaaj ek behtar approved alternative hai.
+
+Agle chapter mein raat ke do bajkar das minute par ek email aata hai: jis model par guard tika hai, woh tees din mein retire ho jayega.
