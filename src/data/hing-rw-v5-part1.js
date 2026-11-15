@@ -645,8 +645,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Test set ko fancy hone ki zaroorat nahi. Shuru karne ke liye 10 rows kaafi hain. Zaroori yeh hai ki inputs asli hon, aur result dekhne se pehle aap likh lein ki “achha” ka matlab kya hai.',
   'Build a ten-row test set':
     '10 rows ka test set banaiye',
-  'Collect ten real inputs for your task, including the two messiest you can find. Don’t invent them. For each one, write down the two or three things a good answer must contain. You don’t need the exact words. Aim for this mix: No inputs you can use? Take ten of the starter sentences from the project page instead, and the capstone is then your chapter work.':
-    'Apne task ke liye 10 asli inputs jama kijiye, jisme sabse gande-uljhe do inputs bhi hon. Unhe khud se mat banaiye. Har ek ke liye woh do-teen cheezein likhiye jo ek achhe jawaab mein honi chahiye. Exact words ki zaroorat nahi. Is mix ka dhyaan rakhiye: Koi inputs use nahi kar sakte? Iske bajaye project page ke das starter sentences lijiye, aur tab capstone hi aapka chapter ka kaam hai.',
+  'Collect ten real inputs for your task, including the two messiest you can find. Don’t invent them. For each one, write down the two or three things a good answer must contain. You don’t need the exact words. Aim for this mix:':
+    'Apne task ke liye 10 asli inputs jama kijiye, jisme sabse gande-uljhe do inputs bhi hon. Unhe khud se mat banaiye. Har ek ke liye woh do-teen cheezein likhiye jo ek achhe jawaab mein honi chahiye. Exact words ki zaroorat nahi. Is mix ka dhyaan rakhiye:',
   'Six ordinary cases, chosen without looking at how the prompt does on them.':
     'Chhe aam cases, jinhe aapne yeh dekhe bina chuna ki prompt unpar kaisa chal raha hai.',
   'Two awkward ones, with missing information, an unusual format or the wrong language.':

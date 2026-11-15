@@ -50,7 +50,9 @@ Request messages ki ek list hai, aur har message ka ek role hota hai. Abhi ke li
 
 Parchi par aur kuch nahi hai. Jis cheez ko Anaya ne dimaag samjha tha, woh ek list nikli. Aur woh list sirf ek line nikli.
 
-Program ke andar yeh parchi Python ki kuch lines thi. Anaya ne kabhi code nahi padha tha, aur Imran ne use kuch likhne ko kaha bhi nahi. Usne kaha ki ise waise hi padho jaise koi form padhte ho. Square brackets mein ek list thi: kai cheezein, ek kram mein. Curly braces mein labels aur unki values thi, parchi ke khaanon jaisi. Barabar ke nishaan ke saath likha naam kisi cheez ko naam deta tha, taaki agli line use use kar sake. Dot kisi cheez ke andar pahunchta tha, isliye `response.usage` ka matlab tha jawaab ki rasid wala hissa. Screen ki lagbhag har line inhi chaar shapes se bani thi, aur inme se kisi ko samjhane ke liye programmer ki zaroorat nahi thi.
+Program ke andar yeh parchi Python ki kuch lines thi. Anaya ne kabhi code nahi padha tha, aur Imran ne use kuch likhne ko kaha bhi nahi. Usne kaha ki ise waise hi padho jaise koi form padhte ho.
+
+Square brackets mein ek list thi: kai cheezein, ek kram mein. Curly braces mein labels aur unki values thi, parchi ke khaanon jaisi. Barabar ke nishaan ke saath likha naam kisi cheez ko naam deta tha, taaki agli line use use kar sake. Dot kisi cheez ke andar pahunchta tha, isliye `response.usage` ka matlab tha jawaab ki rasid wala hissa. Screen ki lagbhag har line inhi chaar shapes se bani thi, aur inme se kisi ko samjhane ke liye programmer ki zaroorat nahi thi.
 
 ## Till ki chaabi
 

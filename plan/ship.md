@@ -16,7 +16,7 @@ If you run out of time, publish at 80%. A decent page that is public beats a per
 
 ## A chapter on its first pass {#first-pass}
 
-**Weeks 1–24. Ships:** the week’s steps ticked. **Time:** what the route says for each step.
+**Weeks 1–24 and 26. Ships:** the week’s steps ticked. **Time:** what the route says for each step.
 
 Every week on the route is a few steps in order: a book chapter, then the playbook chapter that practises it, sometimes a small try, and a look back on Friday. Read the story first and do its chapter the same day or the next, while the story is fresh. Here is how to take each kind.
 
@@ -82,9 +82,9 @@ Upload it as unlisted, and link it at the top of the README.
 
 ## Portfolio site {#portfolio-site}
 
-**Weeks 25 and 26. Ships:** a live page for Bharat Privacy Guard. **Time:** about 2 hours in Week 26, after the 60-minute start in Week 25.
+**Weeks 26 and 27. Ships:** a live page for Bharat Privacy Guard. **Time:** about 2 hours in Week 27, after the 60-minute start in Week 26.
 
-This is the front door to your work. Keep it plain, quick to read, and honest about numbers. Week 25 puts the project where people can see it; Week 26 finishes the page.
+This is the front door to your work. Keep it plain, quick to read, and honest about numbers. Week 26 puts the project where people can see it; Week 27 finishes the page and links the case study from it.
 
 1. Create a repo named `<your-username>.github.io`, or any repo with Pages enabled ([quickstart](https://docs.github.com/en/pages/quickstart)). Plain HTML or Markdown is enough.
 2. Give the project one page, in this order: problem, approach, evals, result number, failure example, what you would do next, and links to the findings document and demo video.
@@ -95,9 +95,9 @@ This is the front door to your work. Keep it plain, quick to read, and honest ab
 
 ## Mock interviews {#mock-interviews}
 
-**Weeks 13, 22 and 26. Ships:** practice answers spoken aloud, six career stories written on the look backs, and a timed build. **Time:** 15 minutes in Weeks 13 and 22, about two hours in Week 26.
+**Weeks 13, 23 and 28. Ships:** practice answers spoken aloud, six career stories written on the look backs, and a timed build. **Time:** 15 minutes in Weeks 13 and 23, about two hours in Week 28.
 
-You’ll practise out loud, because answering in your head is much easier than answering in words. Week 13 and Week 22 each give you one question. By Week 26 you have written most of your stories, so the week goes to speaking them. The questions are the nineteen on the Curriculum tab.
+You’ll practise out loud, because answering in your head is much easier than answering in words. Week 13 and Week 23 each give you one question. By Week 28 you have written most of your stories, so the week goes to speaking them. The questions are the nineteen on the Curriculum tab.
 
 1. Use the [question bank](https://github.com/landedjobs/ai-pm-interview-prep) and [Exponent's product sense guide](https://www.tryexponent.com/blog/product-sense-interview). Pick questions you would find hard. Ask Claude or Gemini to interview you with a rubric (problem framing, why AI, metrics, evals, failure handling, cost) and to score you. Then repeat your worst answer.
 2. Answer out loud, and record yourself. Write your final answer to each question in your own words. The written answers are the deliverable.
@@ -105,19 +105,19 @@ You’ll practise out loud, because answering in your head is much easier than a
 4. Write your career stories as STAR stories (Situation, Task, Action, Result with a number), one on each look back in Weeks 4, 8, 12, 16, 20 and 24. Cover a killed feature, a disagreement with a senior stakeholder, shipping under ambiguity, a failure and recovery, and a time you used data to change a decision. Week 9 adds one government project written in product words.
 5. Prepare a direct answer to "why AI PM, given your project-management background?" Start it with what you shipped and evaluated on this route.
 6. Week 23 gives you a 45-minute timed requirements document. If you are interviewing, add one mock take-home after the route: a 3-hour product exercise, written up in 2 pages.
-7. Week 26 adds a 45-minute timed build: make a paste-and-clean screen for Bharat Privacy Guard in a free prototyping tool, talking aloud. Say what you will not ship, and test one failure case. Record it.
+7. Week 28 adds a 45-minute timed build: make a paste-and-clean screen for Bharat Privacy Guard in a free prototyping tool, talking aloud. Say what you will not ship, and test one failure case. Record it.
 
 **Done when:** you have spoken at least four answers aloud, with the career stories written, and the timed build recorded.
 
-## Retro: review the six months {#retro}
+## Retro: review the 28 weeks {#retro}
 
-**Week 26. Ships:** a one-page review and the next learning loop. **Time:** about 90 minutes.
+**Week 28. Ships:** a one-page review and the next learning loop. **Time:** about 90 minutes.
 
 This is the last week. Look back at what you did, take what worked forward, and decide what comes next.
 
 1. Read your ship log. Count what shipped, what slipped and what you cut.
 2. Update the portfolio site with any metric that changed.
-3. Write down what worked, and what you would change for the next six months.
+3. Write down what worked, and what you would change for the next 28 weeks.
 4. Set the after-the-route loop at 3 hours a week: 60 minutes of reading release notes, a monthly session re-running your capstone test set on a new model and writing down the difference, and the second pass on one Track A or Track B “Build it” each month.
 
 **Done when:** the review is written and the next three Sundays are decided.

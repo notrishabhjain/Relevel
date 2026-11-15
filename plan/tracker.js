@@ -70,7 +70,7 @@
 
   /* ---------- route progress ---------- */
   var S = P ? P.load() : {};
-  var WEEKS = $$('article.wk').length || 26;
+  var WEEKS = $$('article.wk').length || 28;
   function stepOf(li) {
     return { id: li.getAttribute('data-step'), kind: li.getAttribute('data-kind'), ch: li.getAttribute('data-ch') || undefined,
       book: li.getAttribute('data-book') || undefined, part: li.getAttribute('data-part') ? +li.getAttribute('data-part') : undefined };
@@ -121,7 +121,7 @@
     $$('[data-w]').forEach(function (el) { var n = +el.getAttribute('data-w'); set(el, datesOf(n, n)); });
     $$('[data-m]').forEach(function (el) { var r = el.getAttribute('data-m').split('-'); set(el, datesOf(+r[0], +r[1], true) + '.'); });
     $$('[data-g]').forEach(function (el) { var r = el.getAttribute('data-g').split('-'); set(el, datesOf(+r[0], +r[1], true).split(' – ')[1]); });
-    /* the Plan tab's title carries the whole span: "(19 Oct 2026 – 18 Apr 2027)" */
+    /* the Plan tab's title carries the whole span: "(19 Oct 2026 – 2 May 2027)" */
     var h1 = $('[data-tab="plan"] h1');
     if (h1) { var t0 = h1.getAttribute('data-orig') || h1.textContent; set(h1, t0.replace(/\([^()]*\)\s*$/, '(' + datesOf(1, WEEKS, true) + ')')); }
     var box = $('#restart'); if (!box) return;
@@ -153,7 +153,7 @@
       msg = 'The route starts on ' + new Date(sd).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }) + '.';
       lvl = 0;
     }
-    else if (s.cur > WEEKS) { head = 'Route window over'; msg = s.next ? 'The 26 weeks are over, but steps are still open. Carry on from the first one; the route never closes.' : 'Every step is done. Keep the three-hours-a-week loop from the Curriculum tab.'; lvl = 0; }
+    else if (s.cur > WEEKS) { head = 'Route window over'; msg = s.next ? 'The 28 weeks are over, but steps are still open. Carry on from the first one; the route never closes.' : 'Every step is done. Keep the three-hours-a-week loop from the Curriculum tab.'; lvl = 0; }
     else { head = 'Week ' + s.cur + ' of ' + WEEKS; msg = LEVELS[lvl]; }
     var nx = s.next ? s.next.querySelector('a, b') : null;
     var nextLine = s.next ? '<p class="msg">Next step (week ' + s.at + '): ' + (nx && nx.tagName === 'A' ? '<a href="' + esc(nx.getAttribute('href')) + '">' + esc(nx.textContent) + '</a>' : esc(nx ? nx.textContent : '')) + '</p>' : '';

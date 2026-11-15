@@ -1356,7 +1356,7 @@ function pageHome(){
       h('span',{class:'cpbar big'},h('i',{style:'width:'+pctDone+'%'})),
       h('span',{class:'dim',text:doneN+' / '+CH.length+' '+T('chapters finished')})])]));
   w.appendChild(h('div',{class:'chiprow cmaplinks'},[
-    h('a',{class:'chip',href:'#/start',text:T('Your route: 26 weeks, one order')}),
+    h('a',{class:'chip',href:'#/start',text:T('Your route: 28 weeks, one order')}),
     h('a',{class:'chip',href:'#/project',text:T('Your project: Bharat Privacy Guard')}),
     bookHere()?h('a',{class:'chip',href:bookBase(),text:T('Read it as a book')}):null,
     h('a',{class:'chip',href:'#/setup',text:T('Connect a model')}),
@@ -1559,7 +1559,7 @@ function pageLedger(){
 function ctlL(l,n){return h('div',{},[h('label',{text:l}),n]);}
 
 /* ---------------- your route: everything in one view ----------------
-   The 26 weeks of src/data/route.mjs with all three views of each week side
+   The 28 weeks of src/data/route.mjs with all three views of each week side
    by side: the playbook chapters (what each covers), the book chapters (their
    summaries), and the plan's side of the week (what to have by Sunday, the
    how-to, optional reading, your note and link). Months carry the
@@ -2354,7 +2354,7 @@ function renderRail(){
      you do want the code, and a reader who cannot find it concludes the course
      expects an environment they were never told how to build. */
   r.appendChild(sec('Help',[
-    ['#/start','\u25b8','Your route: 26 weeks, one order'],
+    ['#/start','\u25b8','Your route: 28 weeks, one order'],
     [S.lang==='hi'?'/worksheet/hi/':'/worksheet/','\u25a4','Worksheet: the whole course by topic'],
     ['#/setup','\u2699','Connect a model'],
     ['#/workbench','\u25b7','Workbench: run code here'],
@@ -2496,7 +2496,7 @@ function pageInstall(){
     h('p',{text:'Each installs as its own app with its own icon, next to this one. Open it, tap Install app, done. All three show the same progress.'}),
     h('ul',{},[
       h('li',{},[h('a',{href:'/book/',text:'The book'}),h('span',{text:': the course told as one story, in English and Hinglish. Installs as AFZ Book.'})]),
-      h('li',{},[h('a',{href:'/plan/',text:'The plan'}),h('span',{text:': the 26 weeks, week by week. Installs as AI PM Plan.'})])])]));
+      h('li',{},[h('a',{href:'/plan/',text:'The plan'}),h('span',{text:': the 28 weeks, week by week. Installs as AI PM Plan.'})])])]));
   w.appendChild(three);
 
   const sec=h('section',{class:'part'});
@@ -3015,7 +3015,7 @@ function route(){
 }
 
 /* ---------------- pictures on the other pages ----------------
-   The home page and the route show the 26 weeks as one strip, coloured by
+   The home page and the route show the 28 weeks as one strip, coloured by
    what is done; the course map and the project page show their parts as one
    path with how far along each is; the tool pages each get the diagram of the
    idea they serve. */
@@ -3030,7 +3030,7 @@ function weekStrip(){
     return {n:w.n,title:T(w.title),status:s,statusL:L[s],pct:d/n};
   });
   const el=h('div',{class:'pagevis weekstrip'});
-  el._draw=()=>window.FIGS.weeks(el,{weeks,lang:hi?'hi':'en',label:T('Your 26 weeks'),
+  el._draw=()=>window.FIGS.weeks(el,{weeks,lang:hi?'hi':'en',label:T('Your 28 weeks'),
     months:R.MONTHS.map(m=>({from:m.from,to:m.to,l:T(m.name).replace(/^Month \d+: /,'')})),
     legend:[['done',L.done],['now',L.now],['behind',L.behind],['part',L.part]],
     onPick:n=>{ const t=document.getElementById('week-'+n); if(t) t.scrollIntoView({behavior:'smooth',block:'start'}); else location.hash='#/start#week-'+n; }});
@@ -3068,7 +3068,7 @@ function buildIndex(){
     {k:'page',t:'Exercises',h:'#/exercises'},{k:'page',t:'Processes',h:'#/processes'},
     {k:'page',t:'The course map — '+CH.length+' chapters, in order',h:'#/library'},{k:'page',t:'Your project: Bharat Privacy Guard',h:'#/project'},
     {k:'page',t:'Progress & Backup',h:'#/data'},
-    {k:'page',t:'Your route: 26 weeks, one order',h:'#/start'},
+    {k:'page',t:'Your route: 28 weeks, one order',h:'#/start'},
     {k:'page',t:'Content Studio — edit the curriculum',h:'#/studio'},
     {k:'page',t:'Setup: connect a model',h:'#/setup'},
     {k:'page',t:'Workbench: run Python in the page',h:'#/workbench'},

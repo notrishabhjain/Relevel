@@ -198,7 +198,8 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     cols: [
       { l: ['Predictive', 'Predictive'], ic: 'chart', v: [['A label or a number', 'Ek label ya number'], ['Will this ticket be urgent?', 'Kya yeh ticket urgent hoga?'], ['Accuracy on known answers', 'Jaane hue jawaabon par accuracy']], d: ['Learns one narrow task from labelled examples.', 'Label kiye udaharanon se ek chhota kaam seekhta hai.'] },
       { l: ['Generative', 'Generative'], ic: 'chat', v: [['New text, images or code', 'Naya text, tasveer ya code'], ['Summarise this ticket', 'Is ticket ka saar likhiye'], ['Harder: many right answers', 'Mushkil: kai sahi jawaab']], d: ['Predicts the next piece of text, over and over.', 'Baar-baar text ka agla tukda predict karta hai.'] }
-    ] },
+    ],
+    cap: ['Notice the last row: a predictive model can be marked against known answers, a generative one is harder to mark.', 'Aakhri row dekhiye: predictive model ko jaane hue jawaabon se jaancha ja sakta hai, generative ko jaanchna mushkil hai.'] },
 
   'prompt-rag-ft': { t: 'compare',
     title: ['Prompting, RAG or fine-tuning', 'Prompting, RAG ya fine-tuning'],
@@ -207,7 +208,8 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
       { l: ['Prompting', 'Prompting'], tone: 'good', ic: 'pen', v: [['The instructions', 'Instructions'], ['Format, tone, steps', 'Format, lehja, steps'], ['Minutes', 'Kuch minute'], ['Always first', 'Hamesha pehle']], d: ['Cheapest and fastest. Most problems end here.', 'Sabse sasta aur tez. Zyadatar problems yahin khatam.'] },
       { l: ['RAG', 'RAG'], ic: 'search', v: [['What the model can read', 'Model kya padh sakta hai'], ['Missing or fresh facts', 'Gayab ya naye facts'], ['Days', 'Kuch din'], ['When it lacks your facts', 'Jab use aapke facts nahi pata']], d: ['Gives the model your documents at question time.', 'Sawaal ke waqt model ko aapke documents deta hai.'] },
       { l: ['Fine-tuning', 'Fine-tuning'], tone: 'warn', ic: 'gear', v: [['The model’s weights', 'Model ke weights'], ['A style or narrow skill', 'Ek style ya chhoti skill'], ['Weeks and data', 'Hafte aur data'], ['Last, with evidence', 'Aakhir mein, saboot ke saath']], d: ['Teaches behaviour, not facts. Rarely the first fix.', 'Bartaav sikhata hai, facts nahi. Shayad hi pehla ilaaj.'] }
-    ] },
+    ],
+    cap: ['Read the last row: try prompting first, RAG when facts are missing, fine-tuning last.', 'Aakhri row padhiye: pehle prompting, facts kam hon to RAG, fine-tuning sabse baad mein.'] },
 
   'ai-stack': { t: 'stack',
     title: ['The AI market in one picture', 'AI market ek tasveer mein'],
@@ -218,7 +220,16 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
       { l: ['Cloud', 'Cloud'], ic: 'cloud', s: ['Data centres', 'Data centres'], d: ['Where training and serving run.', 'Jahan training aur serving chalti hai.'] },
       { l: ['Chips', 'Chips'], ic: 'bolt', s: ['GPUs and accelerators', 'GPUs aur accelerators'], d: ['The scarcest layer, and the most expensive.', 'Sabse kam milne wali layer, aur sabse mehngi.'] }
     ],
-    cap: ['Each layer depends on the one below it, and charges for it.', 'Har layer neeche wali par tiki hai, aur uske paise leti hai.'] }
+    cap: ['Each layer depends on the one below it, and charges for it.', 'Har layer neeche wali par tiki hai, aur uske paise leti hai.'] },
+
+  'delivery-to-product': { t: 'compare',
+    title: ['From delivery to product: three pairs', 'Delivery se product tak: teen jodiyaan'],
+    rows: [['What you promise', 'Aap kya vaada karte hain'], ['What you report', 'Aap kya report karte hain'], ['When a risk appears', 'Jab koi risk aata hai']],
+    cols: [
+      { l: ['Delivery manager', 'Delivery manager'], ic: 'calendar', v: [['A date', 'Ek tareekh'], ['Scope delivered', 'Scope poora kiya'], ['Escalate the risk', 'Risk ko upar bhejiye']], d: ['You are judged on whether the agreed thing arrived on time. Keep these skills.', 'Aapko is par parkha jaata hai ki tay cheez samay par aayi ya nahi. Yeh hunar rakhiye.'] },
+      { l: ['Product manager', 'Product manager'], tone: 'good', ic: 'target', v: [['An outcome', 'Ek nateeja'], ['A number moved', 'Ek number jo hila'], ['Write the kill criterion', 'Kill criterion likhiye']], d: ['You own what changed for users, and you say in advance when you will stop.', 'Aap us badlaav ke maalik hain jo users ne dekha, aur pehle bata dete hain ki kab rukenge.'] }
+    ],
+    cap: ['The skills carry over; what changes is what goes in the first column of your plan and your risk log.', 'Hunar saath aate hain; badalta yeh hai ki aapke plan aur risk log ke pehle column mein kya jaata hai.'] }
 });
 
 window.FIGPLACE = Object.assign(window.FIGPLACE || {}, {
@@ -230,7 +241,7 @@ window.FIGPLACE = Object.assign(window.FIGPLACE || {}, {
   a4s: [['tickets-calc', 'h:2']],
   a4: [['market-size', 'h:1'], ['opp-tree', 'h:5']],
   a5: [['impact-effort', 'h:4']],
-  a6: [['now-next-later', 'h:1'], ['stakeholder-map', 'h:3']],
+  a6: [['delivery-to-product', 'key'], ['now-next-later', 'h:1'], ['stakeholder-map', 'h:3']],
   a7: [['thin-slice', 'h:3']],
   a8: [['pred-vs-gen', 'h:1'], ['prompt-rag-ft', 'h:4'], ['ai-stack', 'h:5']]
 });

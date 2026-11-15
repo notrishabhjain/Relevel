@@ -116,24 +116,12 @@ Object.assign(window.HING = window.HING || {}, {
     'Kisi model se ek line ka product idea maangiye jo aapne dekha na ho. 45 minute ka timer lagaiye aur Chapter 18 ke dhaanche se ek page ka requirements document likhiye. Timer bajte hi ruk jaiye.',
   'A shipped product is what separates you from someone who has read about AI. This week you build the first version.':
     'Ek shipped product wahi cheez hai jo aapko us insaan se alag karti hai jisne sirf AI ke baare mein padha hai. Is hafte aap pehla version banate hain.',
-  'Artifacts over claims. This week turns the build into a page, with a number, that a recruiter can open.':
-    'Daawon se zyada artifacts. Is hafte build ek page ban jaata hai, number ke saath, jise recruiter khol sake.',
   'Publish your findings page and the capstone write-up as one page with a link. Keep it plain. A page that exists beats a page that is pretty. If the repository is still private, check its history for keys and real personal details, make it public, and link the one command that runs your answer key.':
     'Apna findings page aur capstone write-up ek page par, link ke saath, publish kijiye. Saada rakhiye. Jo page maujood hai, woh sundar page se behtar hai. Agar repository abhi bhi private hai, to uski history mein keys aur asli nijee jaankari jaanchiye, use public kijiye, aur woh ek command link kijiye jo aapki answer key chalati hai.',
-  'The business chapters on a first pass, a portfolio page, practice interviews and a review of the six months.':
-    'Business chapters pehli baar ki tarah, ek portfolio page, practice interviews aur chhah mahine ka review.',
-  'You have a shipped product. The last week asks who pays for it and how you talk about all of it in an interview. The business chapters B2 to B5 may wait until May; the portfolio page and the interviews may not.':
-    'Aapke paas ek shipped product hai. Aakhri hafta poochhta hai ki uska paisa kaun dega aur interview mein aap sab kuch kaise batayenge. Business chapters B2 se B5 May tak ruk sakte hain; portfolio page aur interviews nahi.',
-  'Three doors, one story. This week you finish the portfolio and practise telling the story aloud.':
-    'Teen door, ek kahani. Is hafte aap portfolio poora karte hain aur kahani bol kar sunane ka abhyaas karte hain.',
   'Practice interviews and a timed build':
     'Practice interviews aur ek samay-baddh build',
   'Use the interview practice in Chapter B7 and the nineteen practice questions on the Curriculum tab. Answer two questions aloud and record them. Ask a model to score each against the rubric, and repeat your worst answer. Then, in 45 minutes, build a paste-and-clean screen for Bharat Privacy Guard in a free prototyping tool while talking aloud, and record it.':
     'Chapter B7 ki interview practice aur Curriculum tab ke unnees practice questions use kijiye. Do sawaalon ke jawaab bol kar dijiye aur record kijiye. Kisi model se har jawaab ko rubric ke hisaab se score karwaiye, aur apna sabse kamzor jawaab dohraiye. Phir 45 minute mein, bolte hue, ek free prototyping tool mein Bharat Privacy Guard ke liye paste-and-clean screen banaiye aur record kijiye.',
-  'Finish the portfolio page, then review the six months':
-    'Portfolio page poora kijiye, phir chhah mahine ka review kijiye',
-  'Do the portfolio site recipe on the plan, about two hours, then the retro recipe, about 90 minutes. The page you started in Week 25 is the first draft.':
-    'Plan par portfolio site recipe kijiye, lagbhag do ghante, phir retro recipe, lagbhag 90 minute. Week 25 mein shuru kiya page pehla draft hai.',
   'An hour to an hour and a half a week. The book’s first seven chapters, each followed straight away by its app chapter on a first pass. No code and nothing to install.':
     'Hafte mein ek se derh ghanta. Kitaab ke pehle saat chapters, har ek ke turant baad uska app chapter first pass par. Koi code nahi aur kuch install nahi karna.',
   'What could you show a recruiter today? Paste the link.':
@@ -154,8 +142,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Chapters pehli baar ki tarah kijiye, yaani: padhiye, boxes ke jawaab dijiye, page ke apne tools chalaiye, aur project task ke bagal mein “later” likhiye. Har hafte ek hands-on nateeja rakhiye.',
   'Which posting from your table could you now answer in full, and which part is still missing?':
     'Apni table ki kaunsi posting ka jawaab aap ab poora de sakte hain, aur kaunsa hissa abhi baaki hai?',
-  'Bharat Privacy Guard shipped with its findings document and demo, a public portfolio page, six career stories written, and practice interviews recorded.':
-    'Bharat Privacy Guard findings document aur demo ke saath ship, ek public portfolio page, chhah career kahaniyan likhi hui, aur practice interviews record kiye hue.',
   'For the job':
     'Naukri ke liye',
   'Ask yourself':

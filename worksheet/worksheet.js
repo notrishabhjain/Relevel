@@ -21,7 +21,7 @@
   /* ---------- progress ---------- */
   var S = P ? P.load() : {};
   var byId = {};
-  STEPS.forEach(function (s, i) { byId[s[0]] = { id: s[0], kind: s[1], ch: s[1] === 'chapter' ? s[2] : undefined, book: s[1] === 'read' ? s[2] : undefined, t: s[3], title: s[4], href: s[5], mins: s[6] || 0, i: i }; });
+  STEPS.forEach(function (s, i) { byId[s[0]] = { id: s[0], kind: s[1], ch: s[1] === 'chapter' ? s[2] : undefined, book: s[1] === 'read' ? s[2] : undefined, t: s[3], title: s[4], href: s[5], mins: s[6] || 0, w: s[7], i: i }; });
   function done(id) { var s = byId[id]; return !!(s && P && P.stepDone(s, S)); }
   function paint() {
     var total = 0, got = 0, per = {};
@@ -66,6 +66,8 @@
     meta.appendChild(document.createTextNode((nx.mins ? '~' + (nx.mins >= 90 ? (Math.round(nx.mins / 30) / 2) + ' ' + L.h : nx.mins + ' ' + L.min) : '') + (tp ? ' · ' + L.topic + ' ' + tp[0].slice(1) + ': ' + tp[1] : '')));
     box.appendChild(meta);
     box.appendChild(el('span', 'nc-how', L['how_' + kind]));
+    var job = (window.WS_JOBS || {})[nx.w];
+    if (job) { var jb = el('span', 'nc-job'); jb.appendChild(el('b', null, L.forJob + ': ')); jb.appendChild(document.createTextNode(job)); box.appendChild(jb); }
     var act = el('div', 'nc-act'), go = el('a', 'nc-go', L['go_' + kind] + ' →');
     go.href = base + nx.href; go.setAttribute('data-title', nx.title); act.appendChild(go);
     if (tp) { var more = el('a', 'nc-more', L.seeTopic); more.href = '#' + tp[0]; act.appendChild(more); }

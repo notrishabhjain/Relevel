@@ -48,8 +48,14 @@ const TRY = {
     what: 'Take practice question 11 on the Curriculum tab, on MCP and its risks. Answer it aloud for two minutes and record it. Write one line on what to fix.' },
   'timed-prd': { title: 'A 45-minute timed PRD', mins: 45, app: '#/ch/ch18',
     what: 'Ask a model for a one-line product idea you have not seen. Set a timer for 45 minutes and write a one-page requirements document from the Chapter 18 skeleton. Stop when the timer rings.' },
-  'finish': { title: 'Finish the portfolio page, then review the six months', mins: 210,
-    what: 'Do the portfolio site recipe on the plan, about two hours, then the retro recipe, about 90 minutes. The page you started in Week 25 is the first draft.' },
+  'role-matrix': { title: 'A role matrix from ten postings', mins: 45, app: '#/ch/b7',
+    what: 'Build the role matrix that Chapter B7 describes. Take ten real postings and list the skills they ask for. Mark each skill as proven, partly proven or missing. Pick the three gaps that matter most for your first door, and write what you will do about each.' },
+  'case-study': { title: 'The Bharat Privacy Guard case study', mins: 75, app: '#/ch/b7',
+    what: 'Write the case study in the form Chapter B7 shows, on one or two pages: the problem, your decisions, the numbers from your findings page, one honest failure and what you would do next. Real numbers from your own runs only. Save it in your repository as docs/case-study.md.' },
+  'finish': { title: 'Finish the portfolio page', mins: 120,
+    what: 'Do the portfolio site recipe on the plan, about two hours. The page you started in Week 26 is the first draft. Add a link to the case study, and the three lines from your role matrix that say what you can show today.' },
+  'retro': { title: 'Review the 28 weeks and set the next loop', mins: 90,
+    what: 'Do the retro recipe on the plan, about 90 minutes: count what shipped, what slipped and what you cut, write what you would change, and set the weekly loop for after the route.' },
   'setup':   { title: 'Connect a model, once', mins: 15, app: '#/setup',
     what: 'Do the Connect page, one section at a time: get a free key, paste it in, and run the test call. You saw tokens and cost in Chapter 0.5, so you know what the key pays for. If a step fails, the page says why; copy the exact error into your notes.' },
   'capstone-plan': { title: 'Plan your capstone', mins: 15,
@@ -168,33 +174,41 @@ const W = [
     ['bk:36', 'ch:ch12t', 'ch:ch13a', 'try:post-agent', 'review'], false,
     'Week 13 let a model call one tool. This week chains tools into workflows and agents, with limits on what they may do alone.',
     'Built agents are the evidence the hardest door asks for. You build a workflow and an agent and publish the numbers.'],
-  ['The standard plug, pictures and voice, gates and traces', 'The tool access policy, the release gate and the watch plan.', ['first-pass', 'mock-interviews'],
-    ['ch:ch14p', 'bk:37', 'ch:ch15mm', 'bk:38', 'ch:ch16e', 'ch:ch17o', 'try:aloud-2', 'review'], false,
+  ['The standard plug, pictures and voice, gates and traces', 'The tool access policy, the release gate and the watch plan.', ['first-pass'],
+    ['ch:ch14p', 'bk:37', 'ch:ch15mm', 'bk:38', 'ch:ch16e', 'ch:ch17o', 'review'], false,
     'Last week’s agents need a standard way to reach tools, so this week starts with that plug. More kinds of input mean more ways to fail, so it also turns your answer keys into a release gate and decides what to watch after launch.',
     'Release gates and standard tool connections show you can run AI, not only specify it. Both are in this week.'],
-  ['Security, and the product spec', 'The risk register, the full requirements and a ten-slide decision pack.', ['first-pass'],
-    ['bk:39', 'ch:ch18s', 'bk:40', 'ch:ch19pm', 'ch:ch20d', 'try:timed-prd', 'review'], false,
+  ['Security, and the product spec', 'The risk register, the full requirements and a ten-slide decision pack.', ['first-pass', 'mock-interviews'],
+    ['bk:39', 'ch:ch18s', 'bk:40', 'ch:ch19pm', 'ch:ch20d', 'try:aloud-2', 'try:timed-prd', 'review'], false,
     'You assume the worst about the model, then write the spec and the decision pack that the capstone will be judged against.',
     'The case or PRD round gives you a prompt and a clock. The risk register, the spec and the decision pack are your practice.'],
   ['Capstone, part 1: build it and break it', 'The capstone plan, and a first version you have tried to break.', ['first-pass'],
     ['bk:41', 'try:capstone-plan', 'try:capstone-build', 'review'], false,
     'Every chapter so far built one piece of Bharat Privacy Guard. These two weeks put the pieces together. This week you plan the smallest version and build it.',
     'A shipped product is what separates you from someone who has read about AI. This week you build the first version.'],
-  ['Capstone, part 2: ship it and defend it', 'Bharat Privacy Guard shipped, with its findings document and a short demo.', ['publish', 'demo-video', 'portfolio-site'],
-    ['ch:ch21cap', 'ch:b8', 'try:portfolio', 'review'], false,
-    'Last week’s version gets measured, shipped and defended, then published where people can see it.',
-    'Artifacts over claims. This week turns the build into a page, with a number, that a recruiter can open.'],
-  ['The business, and the job', 'The business chapters on a first pass, a portfolio page, practice interviews and a review of the six months.', ['portfolio-site', 'mock-interviews', 'retro'],
-    ['bk:42', 'ch:b1', 'bk:43', 'ch:b2', 'bk:44', 'ch:b3', 'bk:45', 'ch:b4', 'ch:b5', 'bk:46', 'ch:b6', 'bk:47', 'ch:b7', 'try:interviews', 'try:finish', 'review'], false,
-    'You have a shipped product. The last week asks who pays for it and how you talk about all of it in an interview. The business chapters B2 to B5 may wait until May; the portfolio page and the interviews may not.',
-    'Three doors, one story. This week you finish the portfolio and practise telling the story aloud.'],
+  ['Capstone, part 2: ship it and defend it', 'Bharat Privacy Guard shipped, with its findings document and a short demo.', ['publish', 'demo-video'],
+    ['ch:ch21cap', 'ch:b8', 'review'], false,
+    'Last week’s version gets measured, shipped and defended. It is the heaviest week on the route, so nothing else is added to it.',
+    'Artifacts over claims. This week turns the build into a shipped product with a number and a demo that a recruiter can open.'],
+  ['The business', 'First-pass notes on the business chapters, and the project put on a page people can open.', ['first-pass', 'portfolio-site'],
+    ['bk:42', 'ch:b1', 'bk:43', 'ch:b2', 'bk:44', 'ch:b3', 'bk:45', 'ch:b4', 'ch:b5', 'bk:46', 'ch:b6', 'try:portfolio', 'review'], false,
+    'You have a shipped product. Now the questions a client or a ministry asks next: who pays for it, how do people find it and stay, and how will you know it works. This is a first pass; the long builds can wait for May.',
+    'Consulting and public-sector roles ask who pays and how you would measure success. This week you can answer both for your own project.'],
+  ['The job', 'A role matrix from ten postings, a case study with real numbers, and a finished portfolio page.', ['portfolio-site'],
+    ['bk:47', 'ch:b7', 'try:role-matrix', 'try:case-study', 'try:finish', 'review'], false,
+    'With the business side in view, this week turns the project into evidence for the job: what ten postings ask for, a case study with your numbers, and one page that carries both.',
+    'A recruiter reads one page. The matrix shows that you know what the role asks, and the case study shows a number you moved.'],
+  ['Interviews', 'Practice answers recorded, a timed build recorded, and a review of the 28 weeks.', ['mock-interviews', 'retro'],
+    ['try:interviews', 'try:retro', 'review'], false,
+    'Everything is written down. This last week is for saying it aloud under a clock, and then for looking back over the 28 weeks to decide what comes next.',
+    'Interviews test whether you can say your story aloud and build while talking. You practise both, then set the loop that keeps you current after the route.'],
 ];
 
 const START = Date.UTC(2026, 9, 19);
 const fmt = (ms, withYear) => new Date(ms).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC', ...(withYear ? { year: 'numeric' } : {}) });
 const weeks = W.map(([title, ship, how, items, light, why, job], i) => {
   const a = START + i * 7 * 864e5, b = a + 6 * 864e5;
-  const dates = fmt(a) + ' – ' + fmt(b, new Date(a).getUTCFullYear() !== new Date(b).getUTCFullYear() || i === 25);
+  const dates = fmt(a) + ' – ' + fmt(b, new Date(a).getUTCFullYear() !== new Date(b).getUTCFullYear() || i === 27);
   const steps = items.map(it => {
     const [k, ref, part] = it.split(':');
     if (k === 'ch') {
@@ -246,8 +260,8 @@ const MONTHS = [
     goal: 'Thinking models, better search, attacks, grading at scale, cost, documents, the rules, the spec, build or buy, and designing for wrong answers.' },
   { n: 5, name: 'Month 5: The same ideas, at production depth', from: 19, to: 23,
     goal: 'Part V goes over everything again, deeper: the plumbing, model choice, context, retrieval, workflows and agents, pictures and voice, release gates, watching, security and the product spec.' },
-  { n: 6, name: 'Month 6: Ship it, and get the job', from: 24, to: 26,
-    goal: 'The capstone over two weeks, then the business chapters, a portfolio page and practice interviews.' },
+  { n: 6, name: 'Month 6: Ship it, and get the job', from: 24, to: 28,
+    goal: 'The capstone over two weeks, then the business chapters, the job (a role matrix, a case study and a portfolio page) and practice interviews.' },
 ].map(m => {
   const a = Date.parse(weeks[m.from - 1].start), b = Date.parse(weeks[m.to - 1].start) + 6 * 864e5;
   const ya = new Date(a).getUTCFullYear(), yb = new Date(b).getUTCFullYear();
@@ -294,7 +308,7 @@ export function startOf(S) {
   const v = S && S.routeStart;
   return typeof v === 'string' && /^\\d{4}-\\d{2}-\\d{2}$/.test(v) && !isNaN(Date.parse(v + 'T00:00:00Z')) ? v : START;
 }
-/* Week number (1-26) for an India-time date string, 0 before the start, 27 after. */
+/* Week number (1-28) for an India-time date string, 0 before the start, 29 after. */
 export function weekOf(date, start) {
   const d = Math.floor((Date.parse(date + 'T00:00:00Z') - Date.parse((start || START) + 'T00:00:00Z')) / 864e5);
   return d < 0 ? 0 : Math.min(WEEKS.length + 1, Math.floor(d / 7) + 1);

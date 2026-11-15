@@ -50,7 +50,9 @@ The request is a list of messages, and each message has a role. For now there ar
 
 Nothing else is on the slip. The thing Anaya had pictured as a mind came down to a list, and the list came down to one line.
 
-In the program itself, the slip was a few lines of Python. Anaya had never read code, and Imran did not ask her to write any. He asked her to read it the way she would read a form. Square brackets held a list: several things, in order. Curly braces held labels and their values, like the boxes on the slip. A name followed by an equals sign gave something a name, so the next line could use it. A dot reached inside something, so `response.usage` meant the receipt part of the reply. Four shapes covered almost every line on the screen, and none of them needed a programmer to explain.
+In the program itself, the slip was a few lines of Python. Anaya had never read code, and Imran did not ask her to write any. He asked her to read it the way she would read a form.
+
+Square brackets held a list: several things, in order. Curly braces held labels and their values, like the boxes on the slip. A name followed by an equals sign gave something a name, so the next line could use it. A dot reached inside something, so `response.usage` meant the receipt part of the reply. Four shapes covered almost every line on the screen, and none of them needed a programmer to explain.
 
 ## The key to the till
 

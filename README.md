@@ -129,7 +129,7 @@ the machine.
 
 ## The Applied AI PM plan
 
-A 26-week plan (7 Oct 2026 – 6 Apr 2027) for moving into an Applied AI product manager
+A 28-week plan (19 Oct 2026 – 2 May 2027) for moving into an Applied AI product manager
 role, kept beside the course it complements. It is **one page, `/plan/`**, with three tabs:
 
 | Tab | What it is |
@@ -184,8 +184,8 @@ file, `src/figs.js`, and so the same picture means the same thing wherever it ap
 
 | Where | What it shows |
 | --- | --- |
-| App chapters | 77 figures across all 68 chapters, placed under the heading they explain |
-| App pages | Home and route: the 26 weeks as one strip, coloured by what is done. Course map and project: the parts and stages as one path with progress. Setup, practice, workbench, playground, sheets: the idea each one serves |
+| App chapters | 91 figures across all 68 chapters, placed under the heading they explain |
+| App pages | Home and route: the 28 weeks as one strip, coloured by what is done. Course map and project: the parts and stages as one path with progress. Setup, practice, workbench, playground, sheets: the idea each one serves |
 | Book | Each chapter shows the figures of the course chapters it retells, numbered (Figure 7.1), in the chapter's hue, in English and Hinglish. The Listen player skips them |
 | Plan | Every week card has "See the idea", drawn when opened |
 | Worksheet | The 14 topics as one path, two pictures in each topic and the rest a tap away; all of them print in "Save as PDF" |
@@ -195,12 +195,16 @@ slice, trees, Venn diagrams with tappable regions, two-by-two matrices with drag
 charts with switchable cases, dials, calculators with sliders, funnels with adjustable rates, and
 side-by-side comparisons. Each is redrawn for the width it has (a phone gets a phone layout),
 takes its colours from the page it is on (light and dark), and works from the keyboard.
+Motion is small: a figure draws in once when it first scrolls into view, a step, a tap or a change of
+case animates the change (the highlight moves, the arrow draws, the bars grow), and nothing moves
+for readers who ask for reduced motion, or in print. Every figure carries a short caption that says
+what to notice, and every part you can step to carries a sentence of its own.
 
 What each figure says lives in `src/data/figs-a.js` (Track A), `figs-core.js` (Parts I–IV) and
 `figs-b.js` (Part V, Track B, the app's pages), as `[English, Hinglish]` pairs; `FIGPLACE` there
 says which chapter shows it and under which heading (`'h:3'`). `tools/fig-check.mjs` fails the
-build unless every figure is complete in both languages, every calculator works out a number, and
-every chapter, book chapter, plan week and worksheet topic has at least one figure.
+build unless every figure is complete in both languages, has a caption and a sentence for each
+step, every calculator works out a number, and every chapter, book chapter, plan week and worksheet topic has at least one figure.
 
 ## Live site (GitHub Pages)
 
@@ -357,7 +361,7 @@ built from, and it is the reason nothing needs redeploying to change what the ap
 | `GET /api/history`, `POST /api/restore` | recent versions, roll back |
 | `GET /api/content` | the curriculum — public, so the app works signed out |
 | `PUT /api/content`, `POST /api/content?reset=` | publish or reset a kind — editors only |
-| `GET /api/plan`, `PUT /api/plan`, `POST /api/plan` | the 26-week plan tracker: read, merge-save, turn the status link on or off |
+| `GET /api/plan`, `PUT /api/plan`, `POST /api/plan` | the 28-week plan tracker: read, merge-save, turn the status link on or off |
 | `GET /api/plan-status?id=` | counts-only progress for a check-in; needs the unguessable id; no sign-in |
 
 Sessions are cookies (`HttpOnly`, `SameSite=Lax`); the token is stored **hashed**, so a

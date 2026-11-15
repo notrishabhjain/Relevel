@@ -223,6 +223,8 @@ function render(M, lang) {
     const tryBy = Object.fromEntries(t.tries.map(x => [x.id, x])), weekBy = Object.fromEntries(t.weeks.map(w => [w.n, w]));
     const parts = [];
     parts.push(`<p class="intro">${esc(pick(t.intro, t.introHi))}</p>`);
+    /* one picture of the topic, right under the intro so it is seen before the steps; the rest are in the extras */
+    if (t.figs.length) parts.push(`<div class="wsfigs"><div class="wsfig" data-fig="${t.figs[0]}"></div></div>`);
     /* 1. the steps, one list, in the order to do them */
     let lastWeek = null;
     const rows = t.path.map(e => {
@@ -232,8 +234,6 @@ function render(M, lang) {
       return head + row;
     }).join('');
     parts.push(`<h3>${L.pathTitle}</h3><ol class="items path">${rows}</ol>`);
-    /* one picture of the topic after the steps; the rest are in the extras */
-    if (t.figs.length) parts.push(`<div class="wsfigs"><div class="wsfig" data-fig="${t.figs[0]}"></div></div>`);
     /* 2. finishing the topic: the project step, what you should be able to say, your own words */
     const fin = [];
     if (t.n === 0) fin.push(`<p class="sm">${L.readyLead}</p>` + before());
@@ -260,7 +260,8 @@ function render(M, lang) {
       `<div class="tbody">${parts.join('')}</div></details></section>`;
   };
 
-  const steps = M.steps.map(s => [s.id, s.k, s.ch || s.book || '', s.t, pick(s.title, s.titleHi), s.href.replace(/^BOOK/, hi ? 'book/hi/' : 'book/'), s.mins]);
+  const steps = M.steps.map(s => [s.id, s.k, s.ch || s.book || '', s.t, pick(s.title, s.titleHi), s.href.replace(/^BOOK/, hi ? 'book/hi/' : 'book/'), s.mins, s.w]);
+  const jobs = Object.fromEntries(WEEKS.map(w => [w.n, hi ? (M.H[w.job] || w.job) : w.job]));
 
   const body = `
 <header class="bar">
@@ -295,7 +296,7 @@ ${M.topics.map(topic).join('\n')}
 <aside id="ws-reader" class="reader" role="dialog" aria-label="${esc(L.rdLabel)}" hidden>
   <div class="rd-bar"><span class="rd-title"></span><a class="rd-new" href="#" target="_blank" rel="noopener">${esc(L.rdNew)} &#8599;</a><button type="button" class="rd-close" aria-label="${esc(L.rdClose)}">&#10005;<span> ${esc(L.rdClose)}</span></button></div>
 </aside>`;
-  return { body, steps };
+  return { body, steps, jobs };
 }
 
 /* the plan's colour tokens, light and dark, so the two pages look like one site */
@@ -371,6 +372,7 @@ ol.items,ul.ticks,.builds ul,ul.rd{list-style:none;margin:0;padding:0}
 .nc-title{font:600 clamp(1.25rem,3.4vw,1.6rem)/1.25 var(--serif)}
 .nc-meta{font-size:.88rem;color:var(--muted)}
 .nc-how{color:var(--ink-2)}
+.nc-job{font-size:.92rem;color:var(--ink-2)}.nc-job b{font-weight:600;color:var(--accent)}
 .nc-act{display:flex;flex-wrap:wrap;gap:.6rem 1rem;align-items:center;margin-top:.4rem}
 a.nc-go{display:inline-block;background:var(--accent);color:var(--raised);text-decoration:none;font:600 1.05rem var(--sans);padding:.75rem 1.5rem;border-radius:6px}
 a.nc-go:hover{filter:brightness(1.1)}
@@ -445,7 +447,7 @@ body.reading header.bar{position:sticky}
 }
 `;
 
-function page(lang, body, steps, M) {
+function page(lang, body, steps, M, jobs) {
   const L = UI[lang], hi = lang === 'hi', base = hi ? '../../' : '../';
   return `<!doctype html>
 <html lang="${hi ? 'hi-Latn' : 'en'}">
@@ -468,7 +470,7 @@ function page(lang, body, steps, M) {
 </head>
 <body data-start="${START}" data-base="${base}" data-lang="${lang}">
 ${body}
-<script>window.WS_STEPS=${JSON.stringify(steps).replace(/</g, '\\u003c')};window.WS_UI=${JSON.stringify(L).replace(/</g, '\\u003c')};window.WS_TOPICS=${JSON.stringify(M.topics.map(t => [t.id, hi ? t.hi : t.title])).replace(/</g, '\\u003c')};</script>
+<script>window.WS_STEPS=${JSON.stringify(steps).replace(/</g, '\\u003c')};window.WS_JOBS=${JSON.stringify(jobs).replace(/</g, '\\u003c')};window.WS_UI=${JSON.stringify(L).replace(/</g, '\\u003c')};window.WS_TOPICS=${JSON.stringify(M.topics.map(t => [t.id, hi ? t.hi : t.title])).replace(/</g, '\\u003c')};</script>
 <script src="${base}figs.js"></script>
 <script src="${base}progress.js"></script>
 <script>
@@ -485,11 +487,11 @@ export function buildWorksheet(root, outDir, C) {
   const M = model(root, C);
   let words = 0;
   for (const lang of ['en', 'hi']) {
-    const { body, steps } = render(M, lang);
+    const { body, steps, jobs } = render(M, lang);
     check(M, body);
     const dir = lang === 'hi' ? p.join(outDir, 'hi') : outDir;
     fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(p.join(dir, 'index.html'), page(lang, body, steps, M));
+    fs.writeFileSync(p.join(dir, 'index.html'), page(lang, body, steps, M, jobs));
     if (lang === 'en') words = plain(body).split(/\s+/).length;
   }
   return {

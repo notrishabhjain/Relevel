@@ -109,7 +109,8 @@ export const FURTHER = {
   22: ['academy_mcp', 'mcp_docs', 'phoenix', 'promptfoo_gha'],
   23: ['eu_ai_act', 'india_ai_guide'],
   25: ['gh_pages', 'hf_spaces'],
-  26: ['interview_bank', 'exponent_ps', 'lenny_market']
+  27: ['lenny_market'],
+  28: ['interview_bank', 'exponent_ps']
 };
 
 export { START };
@@ -127,7 +128,7 @@ export const GATES = [
     ask: ['What could you show a recruiter today? Paste the link.', 'Re-read one posting from your table. What changed in what you can prove?'] },
   { id: 'M5', month: 5, pass: 'Your model choice with a back-up, the tool access policy, the release gate, the risk register and the decision pack.', cut: 'If time is short, keep the release gate and the risk register; the others can be one page each.',
     ask: ['What could you show a recruiter today? Paste the link.', 'Which posting from your table could you now answer in full, and which part is still missing?'] },
-  { id: 'M6', month: 6, pass: 'Bharat Privacy Guard shipped with its findings document and demo, a public portfolio page, six career stories written, and practice interviews recorded.', cut: 'Do not cut this one. Move it into May rather than skip it.',
+  { id: 'M6', month: 6, pass: 'Bharat Privacy Guard shipped with its findings document and demo, a role matrix from ten postings, a case study with real numbers, a public portfolio page, six career stories written, and practice interviews recorded.', cut: 'Do not cut this one. Move it into May rather than skip it.',
     ask: ['What could you show a recruiter today? Paste the link.', 'Re-read one posting from your table. What changed in what you can prove?'] }
 ].map(g => ({ ...g, date: ROUTE_MONTHS[g.month - 1].dates.split(' – ')[1] }));
 

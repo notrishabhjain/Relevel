@@ -4,6 +4,8 @@
 
    - each figure uses a known kind and has what that kind needs
    - every line it shows is an [English, Hinglish] pair, both filled in
+   - it has a short caption that says what to notice, and every part you can
+     step to has a sentence of its own, both in both languages
    - a calculator works out a real number from its starting values
    - every app chapter has at least one figure, placed at a heading it has
    - every book chapter, plan week and worksheet topic shows at least one
@@ -46,6 +48,15 @@ for (const [id, f] of Object.entries(D)) {
   if (!isPair(f.title)) fail(`${id}: needs a title in both languages`);
   for (const k of NEEDS[f.t]) if (f[k] == null) fail(`${id}: a ${f.t} needs ${k}`);
   walk(f, '', id);
+  /* a caption that says what to notice, and a sentence for every part you can step to */
+  if (!isPair(f.cap)) fail(`${id}: needs a one-sentence caption (cap) in both languages that says what to notice`);
+  else for (const [i, c] of f.cap.entries()) {
+    const n = c.trim().split(/\s+/).length, sentences = (c.match(/[.!?](\s+["“A-Z]|\s*$)/g) || []).length;
+    if (n > 40 || sentences > 2) fail(`${id}: the ${i ? 'Hinglish' : 'English'} caption must be short (one or two sentences, at most 40 words) (${sentences} sentences, ${n} words)`);
+  }
+  const parts = { flow: f.steps, cycle: f.steps, seq: f.msgs, stack: f.layers, funnel: f.stages, compare: f.cols, matrix: f.pts, scale: f.zones, bars: f.sets, venn: f.regions && Object.values(f.regions) }[f.t];
+  if (f.t === 'tree') (function t(n, path) { if (!isPair(n.d)) fail(`${id}: ${path} has no sentence explaining it (d)`); (n.kids || []).forEach((k, i) => t(k, path + '.kids[' + i + ']')); })(f.root, 'root');
+  else if (parts) parts.forEach((x, i) => { if (!isPair(x.d)) fail(`${id}: part ${i + 1} has no sentence explaining it (d)`); });
   if (f.t === 'calc') {
     const v = {}; f.inputs.forEach(x => { v[x.id] = x.v; if (!(x.min <= x.v && x.v <= x.max)) fail(`${id}: input ${x.id} starts outside its range`); });
     f.outputs.forEach((o, i) => { const r = o.f(v); if (!Number.isFinite(r)) fail(`${id}: output ${i} is not a number at the start`); });
@@ -91,7 +102,7 @@ if (fs.existsSync(p.join(site, 'figs.js'))) {
   }
   const plan = fs.readFileSync(p.join(site, 'plan/index.html'), 'utf8');
   planN = (plan.match(/class="ideafig" data-fig="/g) || []).length;
-  if (planN !== 26) fail(`the plan shows a figure in ${planN} of 26 weeks`);
+  if (planN !== 28) fail(`the plan shows a figure in ${planN} of 28 weeks`);
   const ws = fs.readFileSync(p.join(site, 'worksheet/index.html'), 'utf8');
   for (const t of ws.split('<section class="topic"').slice(1)) { wsN++; if (!/data-fig="/.test(t)) fail(`worksheet topic ${(t.match(/id="(t\d+)"/) || [])[1]} has no figure`); }
 } else fail('dist/site/figs.js is missing: run node build.js first');

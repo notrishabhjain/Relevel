@@ -403,8 +403,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Capstone chapter ko uske naapne wale step tak kijiye: pichhle chapters mein banaaye tukdon ko jodiye, phir use todne ki koshish kijiye. Lagbhag chaar ghante par ruk jaaiye, chahe aage badhne ka mann ho. Agle hafte aap use naapte hain, ship karte hain aur uska bachaav karte hain.',
   'Capstone, part 2: ship it and defend it':
     'Capstone, part 2: ship kijiye aur bachaav kijiye',
-  'Last week’s version gets measured, shipped and defended, then published where people can see it.':
-    'Pichhle hafte ka version naapa, ship kiya aur bachaaya jaata hai, phir wahan publish hota hai jahan log use dekh sakein.',
   'Second half of the capstone: measure the version you built last week, ship it and defend it. The chapter allows about thirty hours in all; the smallest version that works is enough here. Press “Mark chapter complete” when it is shipped.':
     'Capstone ka doosra aadha: pichhle hafte banaaya version naapiye, ship kijiye aur uska bachaav kijiye. Chapter kul milaakar lagbhag tees ghante deta hai; yahan chalne wala sabse chhota version kaafi hai. Ship ho jaaye toh “Mark chapter complete” dabaiye.',
   'Month 1: The problem and the plan':
@@ -425,8 +423,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Part V sab kuch phir se, aur gehraai se leta hai: plumbing, model ka chunaav, context, retrieval, workflows aur agents, tasveerein aur aawaaz, release gates, nigraani, security aur product spec.',
   'Month 6: Ship it, and get the job':
     'Month 6: Ship kijiye, aur naukri paaiye',
-  'The capstone over two weeks, then the business chapters, a portfolio page and practice interviews.':
-    'Do hafton mein capstone, phir business chapters, ek portfolio page aur practice interviews.',
   'The first four weeks ticked, or nearly: the book’s first seven chapters read, and A1 to A7 done on a first pass right after each one.':
     'Pehle chaar hafte tick, ya lagbhag: kitaab ke pehle saat chapters padhe hue, aur har ek ke turant baad A1 se A7 ka first pass.',
   'Never cut the first model call. If time is short, keep the answer key and do the summary chapter on a first pass.':
@@ -668,13 +664,13 @@ Object.assign(window.HING = window.HING || {}, {
   'Worksheet: the whole course by topic':
     'Worksheet: poora course topic ke hisaab se',
 
-  /* the 26-week strip on the home and route pages */
+  /* the 28-week strip on the home and route pages */
   'This week':
     'Is hafte',
   'Behind':
     'Peechhe',
   'Started':
     'Shuru hua',
-  'Your 26 weeks':
-    'Aapke 26 hafte',
+  'Your 28 weeks':
+    'Aapke 28 hafte',
 });

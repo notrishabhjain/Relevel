@@ -3,7 +3,7 @@ import { query, send, readJson } from './_lib/db.js';
 import { guard } from './_lib/auth.js';
 import { clean, merge } from './_lib/plan.js';
 
-/* Tracker for the 26-week plan, one document per signed-in person.
+/* Tracker for the 28-week plan, one document per signed-in person.
    GET  -> { data, updatedAt, shareId }
    PUT  { data }           merges the device's copy into the stored one, returns the result
    POST { share: true }    creates an unguessable id for the read-only status link

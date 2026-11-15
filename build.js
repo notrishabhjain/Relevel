@@ -496,7 +496,7 @@ for (const c of defaults.chapters) courseTitles[c.id] = c.title;
 const HI_ROOT = p.join(R, 'book/hi');
 const hasHi = fs.existsSync(p.join(HI_ROOT, 'book.json'));
 /* Each book chapter shows the diagrams of the course chapters it retells (at
-   most two, and not the ones the chapter before it just showed); the preface
+   most three, and not the ones the chapter before it just showed); the preface
    shows how a week of the course works, the afterword the loop that goes on. */
 const bookFigs = (() => {
   const FP = W.FIGPLACE || {}, bk = loadBook(p.join(R, 'book')), used = new Set(), map = {};
@@ -505,7 +505,7 @@ const bookFigs = (() => {
     if (c === bk.preface) ids = ['how-course-works'];
     else if (c === bk.afterword) ids = ['learning-loop'];
     else for (const cid of c.course || []) for (const [id] of FP[cid] || []) if (!ids.includes(id)) ids.push(id);
-    const fresh = ids.filter(id => !used.has(id)), pick = (fresh.length ? fresh : ids).slice(0, 2);
+    const fresh = ids.filter(id => !used.has(id)), pick = (fresh.length ? fresh : ids).slice(0, 3);
     pick.forEach(id => used.add(id));
     map[c.file] = pick;
   }
@@ -534,7 +534,7 @@ const SITE_ORIGIN = (process.env.SITE_ORIGIN
    service worker (scope "/"), which keeps pages for reading offline. */
 for (const [dir, name, short, desc, bg, theme, d] of [
   ['book', 'AI From Zero: the book', 'AFZ Book', 'The reading edition: the course told as one story, in English and Hinglish.', '#F7F2E8', '#F7F2E8', BOOK_ICON],
-  ['plan', 'Applied AI PM plan', 'AI PM Plan', 'The 26-week route, week by week, with shared progress.', '#ECEEEA', '#ECEEEA', PLAN_ICON]
+  ['plan', 'Applied AI PM plan', 'AI PM Plan', 'The 28-week route, week by week, with shared progress.', '#ECEEEA', '#ECEEEA', PLAN_ICON]
 ]) {
   outBin(`dist/site/${dir}/icon-180.png`, png(180, false, d));
   outBin(`dist/site/${dir}/icon-192.png`, png(192, false, d));

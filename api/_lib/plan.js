@@ -1,4 +1,4 @@
-/* The 26-week plan: merge rules for its notes, and the public status summary.
+/* The 28-week plan: merge rules for its notes, and the public status summary.
 
    Progress itself is the route's (src/data/route.mjs), read from the one
    progress record the playbook keeps. The plan page keeps only its own notes:
@@ -17,7 +17,7 @@ import { WEEKS as ROUTE_WEEKS, START as ROUTE_START, stepDone, nextStep, startOf
 
 export const START = Date.parse(ROUTE_START + 'T00:00:00Z');  // week 1 starts Mon 19 Oct 2026
 export const DAY = 86400000;
-export const WEEKS = 26;
+export const WEEKS = ROUTE_WEEKS.length;
 const GATE_IDS = new Set(['M1', 'M2', 'M3', 'M4', 'M5', 'M6']);
 const str = (v, n) => (typeof v === 'string' ? v.slice(0, n) : '');
 const num = v => (Number.isFinite(v) ? Math.max(0, Math.min(v, 8.64e15)) : 0);
@@ -68,7 +68,7 @@ export function merge(a, b) {
   return out;
 }
 
-/* Week number for a moment: 0 before the plan starts, 1-26 during it, 27 after.
+/* Week number for a moment: 0 before the plan starts, 1-28 during it, 29 after.
    Days are counted in India time, because that is when the person is awake. */
 export function weekAt(now, start = START) {
   const ist = new Date(now + 5.5 * 3600000);
