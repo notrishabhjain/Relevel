@@ -43,7 +43,9 @@ On the hard cases, reasoning was a big improvement. On the easy cases, it bought
 
 That evening, Anaya wrote down what she had understood on the back of her train ticket. Reasoning is a purchase you make on every request, and you pay for it in money and in time. For many jobs it buys nothing.
 
-It helps when the answer has to be worked out. Examples are steps that depend on one another, sums, plans, code, and a real ambiguity that needs resolving. It is wasted when the answer is already in the input and only needs finding or reshaping. That covers looking something up, pulling out a field, sorting into a category, formatting, and summarising a passage you supplied. The twelve digits spoken as words needed working out. The ordinary message with a mobile number and an email did not.
+It helps when the answer has to be worked out. Examples are steps that depend on one another, sums, plans, code, and a real ambiguity that needs resolving. It is wasted when the answer is already in the input and only needs finding or reshaping.
+
+That covers looking something up, pulling out a field, sorting into a category, formatting, and summarising a passage you supplied. The twelve digits spoken as words needed working out. The ordinary message with a mobile number and an email did not.
 
 Imran sent three cautions in a message.
 
@@ -83,7 +85,9 @@ This is why the schema had to come first. It is only safe to show part of a repl
 
 The team spent the afternoon on the design that followed. It used everything they had learned that month.
 
-The quick parts would run live on every message: the pattern checker and the name-and-place finder. Between them they handled the great majority of messages in a fraction of a second. For the few messages they couldn’t decide, the guard would not wait for the slow, careful judge. It would lean towards the cheaper mistake, as the team had settled in April, and mask the doubtful part at once so the chat could carry on safely.
+The quick parts would run live on every message: the pattern checker and the name-and-place finder. Between them they handled the great majority of messages in a fraction of a second.
+
+For the few messages they couldn’t decide, the guard would not wait for the slow, careful judge. It would lean towards the cheaper mistake, as the team had settled in April, and mask the doubtful part at once so the chat could carry on safely.
 
 The reasoning model would look at those cases afterwards, in the background, and decide what should have happened. If a masked piece turned out to be harmless, a person could see it restored. If it turned out to be a leak, it was already covered.
 

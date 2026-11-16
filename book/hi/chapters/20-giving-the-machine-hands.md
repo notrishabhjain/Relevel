@@ -18,7 +18,9 @@ terms:
 
 Dikkat yeh thi ki aankh ko bhi aur sirf shape dekhne wale kisi bhi rule ko bhi, order number aur Aadhaar number ek jaise dikhte the. Dono 12 digits ke hote hain, kabhi 4-4 ke groups mein, aur aankh ko digits mein kuch nahi dikhta jo batae ki kaun sa kaun hai.
 
-Ek rule bina cost ke isse chhota kar deta hai. Asli Aadhaar number 0 ya 1 se shuru nahi hota, aur uska aakhri digit ek check digit hota hai, jo baaki gyarah digits se ek fixed sum se nikala jaata hai, jise Verhoeff scheme kehte hain. Pattern checker yeh sum sabse pehle chala sakta hai. Woh lagbhag das mein se nau look-alikes ko hata deta hai, order numbers samet. Jo bachta hai woh das mein se ek hai jo ittefaq se guzar jaata hai.
+Ek rule bina cost ke isse chhota kar deta hai. Asli Aadhaar number 0 ya 1 se shuru nahi hota, aur uska aakhri digit ek check digit hota hai, jo baaki gyarah digits se ek fixed sum se nikala jaata hai, jise Verhoeff scheme kehte hain.
+
+Pattern checker yeh sum sabse pehle chala sakta hai. Woh lagbhag das mein se nau look-alikes ko hata deta hai, order numbers samet. Jo bachta hai woh das mein se ek hai jo ittefaq se guzar jaata hai.
 
 Ek Tuesday ko Imran Qureshi ne kaha ki jo numbers rule se guzar gaye, unke liye jaanne ka sirf ek tareeka hai. Order system se poochhiye. Is chapter mein aap dekhenge ki model ko yeh karne kaise diya jaata hai, isme kya kharch lagta hai, aur use kahan rokna padta hai.
 

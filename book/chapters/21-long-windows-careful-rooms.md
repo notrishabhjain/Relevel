@@ -18,7 +18,9 @@ In May, a solutions architect from a model vendor came to present to the team in
 
 His argument went like this. The old approach is finished. Cutting documents into pieces and fetching the right ones was only a workaround for small windows. His vendor’s window held a million tokens, so you could send the whole library with every question. No cutting, no embeddings, no finding. It would be simpler, cheaper and better.
 
-If he was right, the previous six weeks had been unnecessary. Anaya raised her hand and asked two questions. First, what would one question cost if the whole library were sent every time? Second, could he show how well the model answered when the needed fact lay halfway through a full window, compared with the same fact in a short request? He said he would need to look into that. She asked him to send it when he had it. He never did.
+If he was right, the previous six weeks had been unnecessary. Anaya raised her hand and asked two questions. First, what would one question cost if the whole library were sent every time?
+
+Second, could he show how well the model answered when the needed fact lay halfway through a full window, compared with the same fact in a short request? He said he would need to look into that. She asked him to send it when he had it. He never did.
 
 In this chapter you’ll see the answers Imran found, and what they teach about deciding what a model should be shown.
 
@@ -40,7 +42,9 @@ Table: Questions answered correctly, by where the rule sat
 | Near the end | 18 of 20 |
 | The same rule, fetched into a short request | 20 of 20 |
 
-This result belongs to one model on one day. Another model will differ, but the shape is common. Imran compared it with an open-book examination. A student can carry the whole library into the hall, but she has only an hour. She finds what is at the front of the book and what is at the back. What lies in the middle, she skims past. And no one tells her which answers she lost because of it.
+This result belongs to one model on one day. Another model will differ, but the shape is common. Imran compared it with an open-book examination. A student can carry the whole library into the hall, but she has only an hour.
+
+She finds what is at the front of the book and what is at the back. What lies in the middle, she skims past. And no one tells her which answers she lost because of it.
 
 The same happens here. No error is reported. The answers are simply wrong.
 
@@ -68,7 +72,9 @@ Table: A token budget for one chatbot request
 
 Then Imran asked her to suppose the bill doubled. What would she cut first?
 
-The pieces of policy were the biggest part and the easiest to shrink. She could fetch two instead of three, or order the results better so that fewer pieces carried the right content. But cutting them risked answers that need several sections at once. The conversation history came next, and cutting it broke follow-up questions. The function descriptions could go only if she removed things the machine was able to do. Anaya noticed that everything she could cut broke something.
+The pieces of policy were the biggest part and the easiest to shrink. She could fetch two instead of three, or order the results better so that fewer pieces carried the right content. But cutting them risked answers that need several sections at once.
+
+The conversation history came next, and cutting it broke follow-up questions. The function descriptions could go only if she removed things the machine was able to do. Anaya noticed that everything she could cut broke something.
 
 ::: key A budget needs an owner
 Name what each cut puts at risk, and then measure it with the answer key. A budget with no owner grows.
@@ -86,7 +92,9 @@ The last idea came up when Anaya asked what happens to a twenty-message chat tha
 
 It works, but it reliably loses specific details from the middle. Anaya gave a promised callback as an example. Imran agreed that this was exactly the kind of detail at risk, and that was why the must-keep list had been written in April. Whatever the summary keeps, the thing that must not be lost belongs on that list.
 
-There was a second, quieter problem. A summary is new text, written by a model. Suppose the middle of the conversation held an identity number. If the guard had hidden it on the way in, the summary carries the hidden version. If it hadn’t been hidden, the summary copies it. Either way, the guard has to sit in front of the summary as well. Anaya added a second small box to the diagram, on the way out of the summariser.
+There was a second, quieter problem. A summary is new text, written by a model. Suppose the middle of the conversation held an identity number. If the guard had hidden it on the way in, the summary carries the hidden version.
+
+If it hadn’t been hidden, the summary copies it. Either way, the guard has to sit in front of the summary as well. Anaya added a second small box to the diagram, on the way out of the summariser.
 
 She also drew a conclusion for conversations with vendors. When someone says that their assistant remembers a user, ask where the memory is stored. It is a store that the application maintains, sent with each message and paid for each time.
 

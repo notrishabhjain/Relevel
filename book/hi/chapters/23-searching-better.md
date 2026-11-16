@@ -54,7 +54,9 @@ Anaya ne samjha ki score kyun nahi hila. Answer key mein yeh sawaal tha hi nahi.
 Toh Imran ne use gyarahvi row ki tarah joda: bijli bill par late fee kitni hai? Sahi jawaab tha 150 rupaye. Filter ke bina system ne 100 bataya. Filter lagakar usne 150 bataya. Imran ne pakka karne ke liye ise 100 baar chalaya, aur har baar result wahi aaya.
 
 ::: key Akeli technique jo kuch guarantee karti hai
-Hybrid search se sahi chunk ke aane ke chance badhte hain. Reranking se uske upar aane ke chance badhte hain. Extra sentence se uske samjhe jaane ke chance badhte hain. Koi bhi ranking technique ek radd ki hui policy ko current policy se upar aane se nahi rok sakti, kyunki ranking relevance ki baat hai aur yeh correctness ki. Filter scoring se pehle kaam karta hai. Woh galat cheez ko kam mumkin nahi banata. Use na-mumkin bana deta hai.
+Hybrid search se sahi chunk ke aane ke chance badhte hain. Reranking se uske upar aane ke chance badhte hain. Extra sentence se uske samjhe jaane ke chance badhte hain.
+
+Koi bhi ranking technique ek radd ki hui policy ko current policy se upar aane se nahi rok sakti, kyunki ranking relevance ki baat hai aur yeh correctness ki. Filter scoring se pehle kaam karta hai. Woh galat cheez ko kam mumkin nahi banata. Use na-mumkin bana deta hai.
 :::
 
 Anaya ne woh farq pehchana jo woh ab har cheez mein dhoondhne lagi thi. Ek tarah ke tareeke kisi failure ko kam kar dete hain. Doosri tarah ke tareeke uski wajah hi hata dete hain. Usne whiteboard par kaali ink se "row eleven" likha, purani laal line ke neeche. Yeh answer key ki pehli row thi jo kisi customer se aayi thi.

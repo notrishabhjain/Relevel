@@ -71,7 +71,9 @@ Anaya ne poochha ki kya woh Diwali ke din credit card se apna bill bhar sakti ha
 Card 6 late payments par credit-card interest ke baare mein tha. Uska Diwali se koi lena-dena nahi tha, aur is baat se bhi nahi ki card se payment ki ijaazat hai ya nahi.
 
 ::: watch Woh search jo kabhi "yahan kuch nahi hai" nahi kehti
-Keyword search har document ko score karti hai aur unhe sort karti hai, isliye woh hamesha kuch na kuch wapas deti hai. Sabse upar wala card bas bure cards mein se sabse kam bura hota hai. Chatbot us card ko uthakar use saboot maan leta hai. Search kabhi nahi kehti ki use kuch nahi mila, aur result padhne wala model farq nahi bata sakta. Woh sabse kam kaam ke card se ek flowing jawaab likh deta hai, aise insaan ki awaaz mein jisne sahi card padha ho. Kisi step par koi error nahi aata.
+Keyword search har document ko score karti hai aur unhe sort karti hai, isliye woh hamesha kuch na kuch wapas deti hai. Sabse upar wala card bas bure cards mein se sabse kam bura hota hai. Chatbot us card ko uthakar use saboot maan leta hai.
+
+Search kabhi nahi kehti ki use kuch nahi mila, aur result padhne wala model farq nahi bata sakta. Woh sabse kam kaam ke card se ek flowing jawaab likh deta hai, aise insaan ki awaaz mein jisne sahi card padha ho. Kisi step par koi error nahi aata.
 :::
 
 Anaya ne cards wapas unke numbered order mein rakh diye. Usne kaha ki team ko iska measure karne ka tareeka chahiye hoga. Imran sehmat hua. Usne jodd diya ki pehle woh yeh dekh le ki problem ke doosre aadhe hisse ko kya theek karta hai.

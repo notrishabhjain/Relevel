@@ -73,7 +73,9 @@ On the back of her hand, as she hadn't done since school, Anaya wrote a sentence
 
 Lakshmi Iyer came in unannounced, with her glass of water. Farah had told her the whole system was on the board. Lakshmi read it from the end, the way she read documents. She asked where the customer's words go, and took the marker, which nobody had offered.
 
-She started at "customer asks" and circled each place where the words were copied. She circled the box where the question was given an embedding, and wrote "outside service?". Imran said it was a separate company's. She circled the box where the nearest pieces were sent with the question to the model, and wrote "outside company". She circled the box where the answer came back and the customer saw it, and the line to the support system that saved the conversation. She circled the logs and the analytics. Then she wrote a number in the corner.
+She started at "customer asks" and circled each place where the words were copied. She circled the box where the question was given an embedding, and wrote "outside service?". Imran said it was a separate company's. She circled the box where the nearest pieces were sent with the question to the model, and wrote "outside company".
+
+She circled the box where the answer came back and the customer saw it, and the line to the support system that saved the conversation. She circled the logs and the analytics. Then she wrote a number in the corner.
 
 "Six places," she said. "And I find out about it on a whiteboard."
 

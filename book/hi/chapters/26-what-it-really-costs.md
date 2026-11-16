@@ -45,9 +45,13 @@ Us raat usne hisaab dobara lagaya, aur use ek ki jagah teen jawaab mile. Teeno s
 
 Pehla woh figure tha jo usne director ko diya tha. Careful judge ko ek saaf call, 23 paise, 3,00,000 messages mein se har ek ke liye, yaani mahine ka lagbhag ₹69,000. Yeh ek aise tool ki keemat thi jo wujood mein tha hi nahi.
 
-Doosra woh guard tha jo seedhe tareeke se banaya jaye. Har message careful judge ke paas jaata hai, jo 4 rounds ke lookups aur chhupe hue reasoning se guzarta hai. 23 paise ko rounds ke liye 5.5 se, aur thinking ke liye 6 se multiply kijiye. Yeh lagbhag ₹7.60 per message hai, yaani mahine ka ₹22.8 lakh. Yeh pehle figure se 33 guna hai. Aur yeh wahi cheez hai jo koi team, agar usne is baare mein socha nahi, apne aap bana leti hai.
+Doosra woh guard tha jo seedhe tareeke se banaya jaye. Har message careful judge ke paas jaata hai, jo 4 rounds ke lookups aur chhupe hue reasoning se guzarta hai. 23 paise ko rounds ke liye 5.5 se, aur thinking ke liye 6 se multiply kijiye.
 
-Teesra woh guard tha jo asal mein tha. Pattern checker har us cheez ko pakadta tha jiski ek fixed shape hoti, aur uski cost kuch nahi thi. Names aur places dhoondhne wala finder ek chhoti model thi, lagbhag 4 paise per message. Extra tukdon aur retries ke saath yeh 5 paise se thoda upar nikla. Sirf unsure messages, har 100 mein lagbhag 6, kabhi careful judge tak pahunchte the, aur unke liye poore ₹7.60 dene padte. ₹7.60 ka 6 percent 46 paise hai. 5 paise aur 46 paise milakar lagbhag 51 paise per message, yaani mahine ka ₹1.53 lakh.
+Yeh lagbhag ₹7.60 per message hai, yaani mahine ka ₹22.8 lakh. Yeh pehle figure se 33 guna hai. Aur yeh wahi cheez hai jo koi team, agar usne is baare mein socha nahi, apne aap bana leti hai.
+
+Teesra woh guard tha jo asal mein tha. Pattern checker har us cheez ko pakadta tha jiski ek fixed shape hoti, aur uski cost kuch nahi thi. Names aur places dhoondhne wala finder ek chhoti model thi, lagbhag 4 paise per message. Extra tukdon aur retries ke saath yeh 5 paise se thoda upar nikla.
+
+Sirf unsure messages, har 100 mein lagbhag 6, kabhi careful judge tak pahunchte the, aur unke liye poore ₹7.60 dene padte. ₹7.60 ka 6 percent 46 paise hai. 5 paise aur 46 paise milakar lagbhag 51 paise per message, yaani mahine ka ₹1.53 lakh.
 
 Table: Ek hi tool ke teen designs
 | Design | Per message | Per month |
@@ -78,7 +82,9 @@ Table: Cost kam karne ke aur tareeke, bachat ke lagbhag order mein
 
 ## Ek nahi, teen number
 
-Tuesday ko Anaya table aur ek ghante mein likhe gaye ek statement ke saath director ke paas wapas gayi. Tool ki cost mahine ke lagbhag 1,50,000 rupaye hai, 3,00,000 messages par, lagbhag 51 paise har ek. Cost zyadatar careful judge se aati hai, jo 100 mein se 6 messages dekhta hai. Agar yeh 6 badhkar 10 se upar jaata hai, ya retries 5 mein se 1 se upar jaate hain, ya provider apne prices badal deta hai, toh yeh figure galat ho jaayega.
+Tuesday ko Anaya table aur ek ghante mein likhe gaye ek statement ke saath director ke paas wapas gayi. Tool ki cost mahine ke lagbhag 1,50,000 rupaye hai, 3,00,000 messages par, lagbhag 51 paise har ek.
+
+Cost zyadatar careful judge se aati hai, jo 100 mein se 6 messages dekhta hai. Agar yeh 6 badhkar 10 se upar jaata hai, ya retries 5 mein se 1 se upar jaate hain, ya provider apne prices badal deta hai, toh yeh figure galat ho jaayega.
 
 Director ne kaha ki woh is number ka bachaav kar sakti hai.
 

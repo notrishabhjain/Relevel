@@ -47,7 +47,9 @@ Kit ko pehli baar try karne wale ajnabi nahi the. Woh Anaya ki behen ki dost, do
 
 Kuch dinon mein Anaya ne dekha ki unmein se kisi ke kehne par product mein kuch nahi badla. Dost itne tameezdaar hote hain ki kaam ke nahi hote. Woh banane wale ko woh batate hain jo banane wala sunna chahta hai, aur phir woh cheez dobara use nahi karte.
 
-Isliye usne woh kiya jo usne doosre mahine mein seekha tha. Woh un logon ke paas gayi jinke interviews usne spring mein kiye the, aur unke jaan-pehchaan walon ke paas. Usne woh logon ko dhoondha jinke paas problem abhi thi aur jo usi kisam ka software use karte the. Use chhe teams mili: Kochi ki ek travel company jiski chat passport numbers se bhari thi, Indore ka ek clinic-booking service, Bengaluru ka ek chhota tutoring business, aur teen aur.
+Isliye usne woh kiya jo usne doosre mahine mein seekha tha. Woh un logon ke paas gayi jinke interviews usne spring mein kiye the, aur unke jaan-pehchaan walon ke paas.
+
+Usne woh logon ko dhoondha jinke paas problem abhi thi aur jo usi kisam ka software use karte the. Use chhe teams mili: Kochi ki ek travel company jiski chat passport numbers se bhari thi, Indore ka ek clinic-booking service, Bengaluru ka ek chhota tutoring business, aur teen aur.
 
 Unhe usne *design partners* kaha. Design partner ek early user hai jo ek adhoore product ko use karne aur banane wale ko imaandaari se bataane par raazi hota hai ki use kya mila. Woh abhi customers nahi hain, aur woh sirf ek test audience bhi nahi hain.
 
@@ -76,10 +78,14 @@ May ke pehle hafte mein Anaya ne chhe logon ko kit use karte dekha, jaise usne J
 
 Use yeh lagbhag jismani dard jaisa laga. Indore ka ek aadmi chaalis second tak us setting ko ghoorta raha jo tay karti thi ki kaun si kisam ki detail hide ho. Saaf tha ki use pata nahi tha ki woh kya karti hai. Anaya bolna itna chahti thi ki usne gaal ka andar ka hissa kaat liya.
 
-Hafte ke ant tak use woh cheez mil gayi jiska use bahut pehle se shak tha lekin jo woh saabit nahi kar sakti thi. Log jo kehte hain aur jo karte hain, woh do alag sources hain, aur woh ek doosre se sahmat nahi hote. Kochi ke Joseph ne call par kaha ki guard "bahut aggressive" hai aur bahut saari cheezein hide karta hai. Analytics dikha rahe the ki uski team ne teen hafton mein restore button do baar dabaya tha. Ek aur partner ne kaha ki use yeh bahut pasand hai, aur usne baarah dinon mein kit ko ek call ki thi.
+Hafte ke ant tak use woh cheez mil gayi jiska use bahut pehle se shak tha lekin jo woh saabit nahi kar sakti thi. Log jo kehte hain aur jo karte hain, woh do alag sources hain, aur woh ek doosre se sahmat nahi hote.
+
+Kochi ke Joseph ne call par kaha ki guard "bahut aggressive" hai aur bahut saari cheezein hide karta hai. Analytics dikha rahe the ki uski team ne teen hafton mein restore button do baar dabaya tha. Ek aur partner ne kaha ki use yeh bahut pasand hai, aur usne baarah dinon mein kit ko ek call ki thi.
 
 ::: key Jab dono alag hon, toh behaviour par bharosa kijiye
-Karan, jo uske saath boring hisse ke liye jud gaya tha, ne rule is tarah rakha: pehle behaviour par bharosa kijiye, phir poochiye kyun. Behaviour aapko batata hai ki sach kya hai. Wajah aapko poochni padti hai. Jab Anaya ne Joseph se poocha ki use kyun laga ki woh bahut zyada hide karta hai, toh woh hans pada. "Mujhe lagta hai maine ek baar ek postcode hide hota dekha tha," usne kaha, "aur maan liya ki yeh josh mein hai."
+Karan, jo uske saath boring hisse ke liye jud gaya tha, ne rule is tarah rakha: pehle behaviour par bharosa kijiye, phir poochiye kyun. Behaviour aapko batata hai ki sach kya hai. Wajah aapko poochni padti hai.
+
+Jab Anaya ne Joseph se poocha ki use kyun laga ki woh bahut zyada hide karta hai, toh woh hans pada. "Mujhe lagta hai maine ek baar ek postcode hide hota dekha tha," usne kaha, "aur maan liya ki yeh josh mein hai."
 :::
 
 ## Samay se zyada problems
@@ -103,7 +109,9 @@ Table ko dekhna taza kar dene wala tha. Jo cheez ek customer ko poori tarah rok 
 Sabse upar wali row kehni aasaan thi aur sahi tarah karni mushkil. Chhe mein se chaar teams ne, kisi na kisi roop mein, poocha tha ki detail kyun hide hui. Guard ko wajah pata thi aur usne kabhi bataya nahi tha. Anaya ne plan ek card par likha, us form mein jo Imran ne use sabhi plans ke liye sikhaya tha.
 
 ::: example Card
-Humne dekha ki chhe mein se chaar teams ne poocha ki detail kyun hide hui, aur reviewers ne hide hui details mein se sirf 100 mein 58 ko sahi mark kiya. Hum ek "yeh kyun hide hua" link jodenge jo woh teen phrases dikhata hai jinhone decide kiya. Hum ummeed karte hain ki do hafte ke andar sahi mark hone wala share 65 se upar jaayega, bina har message ke extra time ke. Agar woh nahi hilta, toh dikkat shayad explanation mein nahi decision mein hai, aur kuch aur badalne se pehle hum 50 disputed cases haath se padhenge.
+Humne dekha ki chhe mein se chaar teams ne poocha ki detail kyun hide hui, aur reviewers ne hide hui details mein se sirf 100 mein 58 ko sahi mark kiya. Hum ek "yeh kyun hide hua" link jodenge jo woh teen phrases dikhata hai jinhone decide kiya.
+
+Hum ummeed karte hain ki do hafte ke andar sahi mark hone wala share 65 se upar jaayega, bina har message ke extra time ke. Agar woh nahi hilta, toh dikkat shayad explanation mein nahi decision mein hai, aur kuch aur badalne se pehle hum 50 disputed cases haath se padhenge.
 :::
 
 Anaya ko aakhri sentence par sabse zyada garv tha, aur is par ki usne use kisi result se pehle likha tha. Matlab agar number nahi hilta, toh use pehle se pata tha ki woh kya karegi. Number 67 tak badh gaya.

@@ -29,7 +29,9 @@ Wajah aam thi, aur yahi sabak tha. Guard har baarah digit ke number ko order sys
 Guard ne "order_id" maanga aur use kuch nahi mila. Woh ruka nahi, chillaya nahi. Use sahi tareeke se yeh sikhaya gaya tha ki khaali jawaab ka matlab hai "aisa koi order nahi". Isliye usne tameez se, lagbhag chaar sau baar, yeh nateeja nikala ki is number ka koi order maujood nahi hai. Aur phir har ek ko shak wale identity number ki tarah chhupa diya.
 
 ::: def Data contract
-Woh bina kahe maani hui baatein jo system ka ek hissa us data ke baare mein maan leta hai jo use milta hai: ki field maujood hogi, ki woh number hogi, ki list khaali nahi hogi. Har data contract production mein kabhi na kabhi tootta hai. Achha bana system dekh leta hai ki ek toot gaya hai aur ruk jaata hai. Kharab bana system chalta rehta hai, aur uska jawaab missing data par tika hota hai.
+Woh bina kahe maani hui baatein jo system ka ek hissa us data ke baare mein maan leta hai jo use milta hai: ki field maujood hogi, ki woh number hogi, ki list khaali nahi hogi.
+
+Har data contract production mein kabhi na kabhi tootta hai. Achha bana system dekh leta hai ki ek toot gaya hai aur ruk jaata hai. Kharab bana system chalta rehta hai, aur uska jawaab missing data par tika hota hai.
 :::
 
 Is field ke bahut se asli incidents bilkul aise hi dikhte hain. Koi error nahi, dashboard green, aur result chupchaap galat. Imran ne kaha ki yeh machine-learning ki problem nahi thi. Machine theek thi. Yeh ek aam software failure thi jo bas ek machine ke bagal mein baithi thi. Aur is par sahi sawaal tabhi poochha ja sakta hai jab aap diagram padh sakein.
@@ -104,9 +106,13 @@ Anaya ne uski screen par folder dekha. Usme ek README tha, chalane ke liye kya c
 
 ## Kitna kaafi hota hai
 
-Paanch baje Imran ne poochha ki usne kya seekha. Usne terms ki list nahi di. Diagram ke peeche usne likha ki ab woh kya kar sakti hai. Request, reply aur status code padh sakti hai. Jaanti hai ki key kahan rehti hai. Poochh sakti hai ki kya badla, aur pata laga sakti hai. Error ko neeche se padh sakti hai. Jaanti hai ki test ek baar fail hona chahiye. Aur jab koi kahe "API fail ho gayi", toh poochh sakti hai ki kis tarah.
+Paanch baje Imran ne poochha ki usne kya seekha. Usne terms ki list nahi di. Diagram ke peeche usne likha ki ab woh kya kar sakti hai. Request, reply aur status code padh sakti hai. Jaanti hai ki key kahan rehti hai.
 
-Yeh chhoti list thi, lekin kuch nahi se bahut zyada thi. Iska matlab tha ki jab koi engineer use diagram dikhaye, toh woh uske hisse pehchaan legi. Page ke upar usne woh sentence likh diya jo Imran ne shuru mein kaha tha, kyunki woh use rakhna chahti thi. AI system ek software system hai jisme ek hissa anpredictable hai. Aam software mein jo kuch bhi galat ho sakta hai, woh ab bhi ho sakta hai. Aur ek failure aur hai, sabse khaamosh, jo koi error nahi deti.
+Poochh sakti hai ki kya badla, aur pata laga sakti hai. Error ko neeche se padh sakti hai. Jaanti hai ki test ek baar fail hona chahiye. Aur jab koi kahe "API fail ho gayi", toh poochh sakti hai ki kis tarah.
+
+Yeh chhoti list thi, lekin kuch nahi se bahut zyada thi. Iska matlab tha ki jab koi engineer use diagram dikhaye, toh woh uske hisse pehchaan legi. Page ke upar usne woh sentence likh diya jo Imran ne shuru mein kaha tha, kyunki woh use rakhna chahti thi.
+
+AI system ek software system hai jisme ek hissa anpredictable hai. Aam software mein jo kuch bhi galat ho sakta hai, woh ab bhi ho sakta hai. Aur ek failure aur hai, sabse khaamosh, jo koi error nahi deti.
 
 ## Saaraansh
 

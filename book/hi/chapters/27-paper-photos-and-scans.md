@@ -12,7 +12,9 @@ terms:
   - document audit | kuch banane se pehle, ek random sample se ginna ki collection ka kitna hissa saaf digital text hai, kitna scan hai, aur kitne mein matlab tables aur layout mein chhupa hai | 
 ---
 
-Project ke pehle chaar mahine, Anaya ke dimaag mein customer ke message ki tasveer phone par kuch lines ka text thi. Usne kabhi use gaur se dekha nahi tha. Woh transcripts se aati thi, jo apne aap mein text hote hain, aur answer key se, jo sentences ka ek column thi. Team ne ab tak jo bhi banaya tha, har rule aur har test, ek chhupi hui dhaarna par tika tha. Kisi ne pehle hi customer ke words ko characters mein badal diya hai.
+Project ke pehle chaar mahine, Anaya ke dimaag mein customer ke message ki tasveer phone par kuch lines ka text thi. Usne kabhi use gaur se dekha nahi tha. Woh transcripts se aati thi, jo apne aap mein text hote hain, aur answer key se, jo sentences ka ek column thi.
+
+Team ne ab tak jo bhi banaya tha, har rule aur har test, ek chhupi hui dhaarna par tika tha. Kisi ne pehle hi customer ke words ko characters mein badal diya hai.
 
 July ke ek Friday ko Farah Sheikh ne uske saamne ek aisi sheet rakhi jo bilkul sentence jaisi nahi dikhti thi. Woh ek photograph thi jo ek customer ne kitchen table par rakhi bank passbook ki khichi thi. Woh thodi tedhi thi, ek kone par khidki ki roshni padi thi, aur use chatbot ko "account number check karo" likhkar bheja gaya tha.
 
@@ -27,7 +29,9 @@ Anaya ne samajhdaari wala kaam kiya aur ek random sample maanga. Is chapter mein
 Usne Farah se kaha ki pichhle mahine ki chats mein se 50 attachments random nikaalein. Woh dilchasp wale nahi hone the, ya woh jo koi utsahi colleague chunta. Ek number generator ne asli traffic mein se saare 50 chune. Anaya ne Saturday subah, garmi se bachne ke liye aadhi band shutters ke peeche, ek-ek karke unhe dekha.
 
 ::: def Document audit
-Jis bhi project mein documents par bharosa karna ho, usse pehle teen numbers jaanna zaroori hai. Documents ka kitna hissa saaf digital text hai jise jaisa hai waisa padha ja sakta hai? Kitna scan ya photograph kiya hua hai, jise pehle text mein badalna padega? Aur logon ko jo jaankari chahiye uska kitna hissa tables, forms aur layouts ke andar band hai, jahan matlab is par tika hai ki kaun sa box kiske baju mein hai? Ek random sample se yeh pata karna *document audit* hai. Ismein ek dopahar lagti hai, aur lagbhag koi nahi karta.
+Jis bhi project mein documents par bharosa karna ho, usse pehle teen numbers jaanna zaroori hai. Documents ka kitna hissa saaf digital text hai jise jaisa hai waisa padha ja sakta hai? Kitna scan ya photograph kiya hua hai, jise pehle text mein badalna padega?
+
+Aur logon ko jo jaankari chahiye uska kitna hissa tables, forms aur layouts ke andar band hai, jahan matlab is par tika hai ki kaun sa box kiske baju mein hai? Ek random sample se yeh pata karna *document audit* hai. Ismein ek dopahar lagti hai, aur lagbhag koi nahi karta.
 :::
 
 Unhone 50 ko dheron mein baant diya.
@@ -41,7 +45,9 @@ Table: 50 random attachments kya the
 
 50 mein se 31, yaani 10 mein se 6 se thode zyada, photographs the. Lagbhag sab mein, pehli line mein hi woh detail thi jise dhoondhne ke liye guard bana hai.
 
-Anaya ne kaha ki yahi woh hissa tha jisme woh galat thi. April mein usne cards ki photographs ko "Could" ke neeche rakha tha, kyunki use lagta tha ki woh kam aati hain. Imran ne kaha ki uske paas number nahi tha. Anaya ne kaha ki uske paas ek ehsaas tha. Usne line "Could" se "Should" mein kar di aur baju mein wajah likhi: random sample ka 62 percent, 12 July ko check kiya. Ek aise document mein jo bahut had tak itminaan wali impressions ki failure ke baare mein tha, yeh ek chhoti si nijee jeet thi.
+Anaya ne kaha ki yahi woh hissa tha jisme woh galat thi. April mein usne cards ki photographs ko "Could" ke neeche rakha tha, kyunki use lagta tha ki woh kam aati hain. Imran ne kaha ki uske paas number nahi tha. Anaya ne kaha ki uske paas ek ehsaas tha.
+
+Usne line "Could" se "Should" mein kar di aur baju mein wajah likhi: random sample ka 62 percent, 12 July ko check kiya. Ek aise document mein jo bahut had tak itminaan wali impressions ki failure ke baare mein tha, yeh ek chhoti si nijee jeet thi.
 
 ## Step se pehle ka step
 
@@ -85,7 +91,9 @@ Voice mainly accuracy ka sawaal bhi nahi hai. Woh is baat ka sawaal hai ki insaa
 
 ## Kya badla
 
-Us raat Anaya ne board par, purani laal line ke baju mein aur nayi row ke neeche, likha ki audit ki cost kya thi aur usne kya diya. Cost thi ek dopahar, 50 files aur bahut saari chai. Usne photographs ko "Could" se "Should" mein pahunchaya, rules ko milte-julte characters ke baare mein sikhaya, aur use aage ke liye ek thumb rule diya: jis bhi project mein documents par bharosa karna ho, usse pehle saaf wale ginye.
+Us raat Anaya ne board par, purani laal line ke baju mein aur nayi row ke neeche, likha ki audit ki cost kya thi aur usne kya diya. Cost thi ek dopahar, 50 files aur bahut saari chai.
+
+Usne photographs ko "Could" se "Should" mein pahunchaya, rules ko milte-julte characters ke baare mein sikhaya, aur use aage ke liye ek thumb rule diya: jis bhi project mein documents par bharosa karna ho, usse pehle saaf wale ginye.
 
 Imran ne kaha ki chhe hafte baad ek project ke fail hone se bachne ka yeh sabse sasta tareeka hai. Saath hi yeh sabse zyada anadekha kiya jaata hai, kyunki Imran se kisi ne ise kabhi ek baar bhi nahi maanga.
 

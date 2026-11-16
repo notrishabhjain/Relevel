@@ -90,7 +90,9 @@ Writing the limits next to the number is a habit worth copying. A figure that tr
 
 Anaya now had three possible projects.
 
-The first was a tool that read each week's support tickets and reported the main themes. It would save Farah a Monday morning of sorting by hand. The second was a feature that read photographs of salary slips, to speed up the checks that loan officers make. The third was the problem in the chats. She hadn't chosen this one. It had found her, and she took that as a reason to be suspicious of it.
+The first was a tool that read each week's support tickets and reported the main themes. It would save Farah a Monday morning of sorting by hand. The second was a feature that read photographs of salary slips, to speed up the checks that loan officers make.
+
+The third was the problem in the chats. She hadn't chosen this one. It had found her, and she took that as a reason to be suspicious of it.
 
 To compare the three fairly, she used four questions that fit almost any proposal.
 
@@ -135,7 +137,9 @@ I would change my mind if:  Lakshmi says this is a known, accepted risk, or
 
 The last line is what gives the log its value. A decision with no stated way out tends to harden into a belief, and then the people who made it defend it out of pride. A decision that names its own reversal conditions can be reopened calmly. The question to ask is already written down.
 
-She didn't keep the page on her laptop. Imran showed her where the engineers kept their work: a *repository* on GitHub, an online folder that remembers every version of every file. Each time she saved a change, she wrote one line saying what had changed and why, and the old version stayed beside the new one. A decision log kept there cannot quietly change its mind. Every earlier version is still there for anyone to read.
+She didn't keep the page on her laptop. Imran showed her where the engineers kept their work: a *repository* on GitHub, an online folder that remembers every version of every file.
+
+Each time she saved a change, she wrote one line saying what had changed and why, and the old version stayed beside the new one. A decision log kept there cannot quietly change its mind. Every earlier version is still there for anyone to read.
 
 ## Measuring yourself
 

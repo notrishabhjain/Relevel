@@ -8,7 +8,9 @@ AI product kaise banta hai, yeh seekhne ke do tareeke hain. Pehla tareeka hai kh
 
 Doosra tareeka hai poore subject ko order se padhna, explanations aur examples ke saath. Dheere-dheere anjaan shabd ek saaf tasveer ban jaate hain, jo aapke dimaag mein baith jaati hai. Yeh kitaab isi doosre tareeke ke liye hai.
 
-Yeh kitaab us insaan ke liye hai jisne technology projects deliver kiye hain aur ab ek AI product ka malik banna chahta hai. Yeh maan kar nahi chalti ki aapne code likha hai ya statistics padhi hai. Rhythm yeh hai: kitaab ka ek chapter, lagbhag das minute ka padhna, phir uske title ke neeche likha app chapter, har hafte, chhabbis hafte tak. Anaya ke aas-paas ek team hai. Aapke paas app hai. Jahan Imran kuch chalata hai, wahan app aapko button deta hai. Jahan Lakshmi poochhti hai ki use kaise pata chalega, wahan app ke check questions aapse wahi poochhte hain. Ant tak aap apne numbers ke saath keh paayenge ki aapne kya banaya aur aapko kaise pata ki woh kaam karta hai.
+Yeh kitaab us insaan ke liye hai jisne technology projects deliver kiye hain aur ab ek AI product ka malik banna chahta hai. Yeh maan kar nahi chalti ki aapne code likha hai ya statistics padhi hai. Rhythm yeh hai: kitaab ka ek chapter, lagbhag das minute ka padhna, phir uske title ke neeche likha app chapter, har hafte, chhabbis hafte tak.
+
+Anaya ke aas-paas ek team hai. Aapke paas app hai. Jahan Imran kuch chalata hai, wahan app aapko button deta hai. Jahan Lakshmi poochhti hai ki use kaise pata chalega, wahan app ke check questions aapse wahi poochhte hain. Ant tak aap apne numbers ke saath keh paayenge ki aapne kya banaya aur aapko kaise pata ki woh kaam karta hai.
 
 Yeh kitaab course app jitna hi hissa cover karti hai, usi order mein aur usi shabdon ke saath. Ismein koi exercise nahi hai, aur type karne ke liye koi code bhi nahi. Uski jagah ek lamba case hai. Wajah simple hai: koi idea tab zyada yaad rehta hai jab woh kisi aise decision se juda ho jo kisi ko sach mein lena pada.
 
@@ -20,7 +22,9 @@ March mein product manager Anaya Deshmukh ek cheez dekhti hai. Customers chatbot
 
 Aage ke 47 chapters mein woh aur uske colleagues ek chhota tool banate hain, Bharat Privacy Guard. Yeh tool English, Hindi, aur dono ke mix mein likhe gaye personal details pehchanta hai. Phir woh un details ko zaroorat se aage jaane se rokta hai.
 
-Yeh project ek bahana hai, asli maksad subject sikhana hai. Tool banane ke liye Anaya ko kai kaam karne padte hain. Use tay karna hai ki kya banana worth it hai, aur samajhna hai ki ek AI system kin cheezon se bana hota hai. Use check karna hai ki woh kaam karta hai ya nahi, aur uska cost jodna hai. Use pehle se sochna hai ki woh kaise fail hoga, aur yeh limit karna hai ki use akele kya karne diya jaaye. Aakhir mein use isse asli users ke saamne rakhna hai. Har chapter in mein se ek problem uthata hai, theek wahan jahan project ko uski zaroorat padti hai.
+Yeh project ek bahana hai, asli maksad subject sikhana hai. Tool banane ke liye Anaya ko kai kaam karne padte hain. Use tay karna hai ki kya banana worth it hai, aur samajhna hai ki ek AI system kin cheezon se bana hota hai. Use check karna hai ki woh kaam karta hai ya nahi, aur uska cost jodna hai.
+
+Use pehle se sochna hai ki woh kaise fail hoga, aur yeh limit karna hai ki use akele kya karne diya jaaye. Aakhir mein use isse asli users ke saamne rakhna hai. Har chapter in mein se ek problem uthata hai, theek wahan jahan project ko uski zaroorat padti hai.
 
 ## Kitaab kaise baanti gayi hai
 

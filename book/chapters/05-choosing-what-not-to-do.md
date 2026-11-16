@@ -49,14 +49,18 @@ A vision is allowed to be grand, and a plan is easy to write. The strategy is th
 
 A strategy has three parts, and each one is there for a reason.
 
-The first is the *diagnosis*. It's an honest account of the real challenge, written so that someone could disagree with it. "We have a privacy problem" is not a diagnosis. Anaya's version said this: personal details reach places they shouldn't, because customers type them freely, the chatbot invites them, nobody has the means to remove them, and existing tools are built for one writing system and fail on the way people here write. It took four drafts before it stopped sounding like a pitch.
+The first is the *diagnosis*. It's an honest account of the real challenge, written so that someone could disagree with it. "We have a privacy problem" is not a diagnosis.
+
+Anaya's version said this: personal details reach places they shouldn't, because customers type them freely, the chatbot invites them, nobody has the means to remove them, and existing tools are built for one writing system and fail on the way people here write. It took four drafts before it stopped sounding like a pitch.
 
 The second is the *guiding policy*. This is the overall approach to the challenge, and it includes what you will refuse to do. Hers said: catch details by their shape first, because that is cheap and certain. Handle names and addresses next, because that is where other tools fail. Do all of it inside the company, and in the way people actually write. And don't try to solve everything that could be called privacy.
 
 The third part is a set of coherent actions: a few steps that carry out the policy and support one another. She wrote four, noticed that two didn't depend on the others, and cut them.
 
 ::: watch A goal is not a strategy
-"Become the leading privacy platform in India" is a goal. It has no diagnosis in it, and it tells nobody what to do on Monday. Here is a quick test. Remove the company's name from the strategy, and ask whether a competitor could paste it into their own document without anyone noticing. A sentence such as "use best-in-class technology to protect customer privacy at scale" passes that test, so it isn't yet a strategy. A version of it had crept into Anaya's second paragraph, and she deleted it.
+"Become the leading privacy platform in India" is a goal. It has no diagnosis in it, and it tells nobody what to do on Monday. Here is a quick test. Remove the company's name from the strategy, and ask whether a competitor could paste it into their own document without anyone noticing.
+
+A sentence such as "use best-in-class technology to protect customer privacy at scale" passes that test, so it isn't yet a strategy. A version of it had crept into Anaya's second paragraph, and she deleted it.
 :::
 
 ## Whom it serves, and where to begin

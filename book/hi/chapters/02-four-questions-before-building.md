@@ -23,7 +23,9 @@ Chat export wali shaam ke agle din Anaya ne Imran Qureshi ko ek printout dikhaya
 
 Ek flag ek customer ka tha, jisne attachment mein cheque ki photo bheji thi. "Attachments sambhalne wala hissa maine likha tha," Imran ne kaha, "aur maine kabhi socha hi nahi ki log usmein kya daalenge."
 
-Anaya ne seedha sawaal poochha. Is problem ko theek karne ke liye tool banana kya achha idea hai? Aur kya Imran bata sakta hai ki shayad kyun nahi? Imran ne jawaab ek aise feature se shuru kiya jo company ne dedh saal pehle banaya tha, aur jise kisi ne dhoondha hi nahi. Is chapter mein hum usi feature se dekhenge ki product kaise banta hai, kaise fail hota hai, aur kaam shuru karne se pehle ek idea ko kin sawaalon se guzarna chahiye.
+Anaya ne seedha sawaal poochha. Is problem ko theek karne ke liye tool banana kya achha idea hai? Aur kya Imran bata sakta hai ki shayad kyun nahi? Imran ne jawaab ek aise feature se shuru kiya jo company ne dedh saal pehle banaya tha, aur jise kisi ne dhoondha hi nahi.
+
+Is chapter mein hum usi feature se dekhenge ki product kaise banta hai, kaise fail hota hai, aur kaam shuru karne se pehle ek idea ko kin sawaalon se guzarna chahiye.
 
 ## Case: woh reminder jo kisi ko nahi mila
 
@@ -75,7 +77,9 @@ Kai fail hue features us test mein paas hue jis par team ka dhyaan tha, aur us t
 
 Jo software text padhta aur likhta hai, usmein feasibility ke saath ek aur sawaal judta hai, aur viability ke saath ek aur.
 
-Feasibility ka sawaal yeh hai ki software kitni baar sahi hota hai. Jo tool paanch mein se chaar baar sahi hai, woh birthday card ka title sujhane ke liye bilkul theek hai. Lekin jahan ek galti kisi customer ki saari jama-poonji kha sakti hai, wahan woh kaam ka nahi. Yaani same accuracy ek kaam ke liye kaafi ho sakti hai aur doosre ke liye bekaar. Aur tool khud nahi batata ki kaun sa kaam kaisa hai.
+Feasibility ka sawaal yeh hai ki software kitni baar sahi hota hai. Jo tool paanch mein se chaar baar sahi hai, woh birthday card ka title sujhane ke liye bilkul theek hai.
+
+Lekin jahan ek galti kisi customer ki saari jama-poonji kha sakti hai, wahan woh kaam ka nahi. Yaani same accuracy ek kaam ke liye kaafi ho sakti hai aur doosre ke liye bekaar. Aur tool khud nahi batata ki kaun sa kaam kaisa hai.
 
 Viability ka sawaal cost ka hai. Aam feature par har click ka cost lagbhag zero hota hai. Lekin jo feature text padhta aur likhta hai, use har baar chalane par asli paisa lagta hai. Isliye viability is par tikti hai ki log feature ko kitni baar use karte hain, aur har use ke liye aap kitna charge kar sakte hain.
 

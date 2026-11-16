@@ -15,7 +15,9 @@ terms:
   - worked example | a finished sample of the output you want, shown to the model so that it copies the format instead of imitating your description | worked examples
 ---
 
-On the Monday after the first demonstration, Farah Sheikh brought three messages to the glass meeting room, written on a card. Her team had made them up the evening before, in the style of real customers. None of them was real. Anaya had insisted on that. When Lakshmi Iyer heard, she said it was the first sensible thing she had heard about the project. A privacy tool tested on real people's secrets would have been a small scandal of its own.
+On the Monday after the first demonstration, Farah Sheikh brought three messages to the glass meeting room, written on a card. Her team had made them up the evening before, in the style of real customers. None of them was real.
+
+Anaya had insisted on that. When Lakshmi Iyer heard, she said it was the first sensible thing she had heard about the project. A privacy tool tested on real people's secrets would have been a small scandal of its own.
 
 The first message read: "My name is Amit Sharma. My PAN is ABCDE1234F and I transferred ₹4 lakh from my HDFC account ending 4521. Why was my loan rejected?"
 
@@ -56,7 +58,9 @@ The second message was in Hinglish. Farah typed it quickly, like someone who wri
 
 The model found the Aadhaar number. But it also listed "98xxxxxx12" as a mobile number, even though an agent had already hidden it by typing the x's. If the guard reported that, it would hide the same number twice.
 
-The fix for a problem like this is an instruction. And because the model remembers nothing, the instruction has to go with every request. Imran opened a second box and typed a short paragraph. Standing instructions like these say who the assistant is and what it must and must not do. They are called the *system prompt*. It is ordinary text, the same kind of thing as the customer's message. The application simply sends it first, every time.
+The fix for a problem like this is an instruction. And because the model remembers nothing, the instruction has to go with every request. Imran opened a second box and typed a short paragraph.
+
+Standing instructions like these say who the assistant is and what it must and must not do. They are called the *system prompt*. It is ordinary text, the same kind of thing as the customer's message. The application simply sends it first, every time.
 
 ::: def Prompt and system prompt
 A *prompt* is anything sent to a model: instructions, examples, and the material it is to work on. The *system prompt* is the part that stays the same from one request to the next.
@@ -76,7 +80,9 @@ Personal information: the customer's city of residence, likely Pune.
 
 Farah pointed out that there was no Pune in the message. Imran agreed. The model knew nothing about the customer's city. It had been asked for the personal information in a message, so it behaved as if an answer was expected. After that question, the most likely text is a list. And a list has to contain something.
 
-This kind of failure has an unfortunate name. A *hallucination* is a confident, well-formed answer that is invented, and it looks exactly like a true one. The name makes it sound like a fault in the machine. But the machine is working as designed. It is predicting likely text in a situation that called for silence. A model can't reliably tell you when it doesn't know. Saying "I do not know" has to be trained in separately, and even then it doesn't always hold.
+This kind of failure has an unfortunate name. A *hallucination* is a confident, well-formed answer that is invented, and it looks exactly like a true one. The name makes it sound like a fault in the machine. But the machine is working as designed.
+
+It is predicting likely text in a situation that called for silence. A model can't reliably tell you when it doesn't know. Saying "I do not know" has to be trained in separately, and even then it doesn't always hold.
 
 For the guard, the consequence was specific. If the model invents a detail, the guard hides something that was never there. And if the invention is wrong, nobody notices, because there is nothing to compare it with.
 

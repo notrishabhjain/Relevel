@@ -3,13 +3,17 @@ title: Book Ke Baad
 summary: Case kahan khatam hua, book ke saat parts milkar kya banate hain, project ko abhi bhi kya nahi pata, aur book ko course app ke saath kaise use karein.
 ---
 
-September mein, us raat ke dedh saal baad jab usne yeh sab shuru kiya tha, Anaya Deshmukh ne decision log ke sabse upar scroll kiya aur pehli entry padhi. Woh 14 March ki thi. Decision yeh tha ki pehle personal-details wali problem par kaam karna hai, aur ticket themes par doosre number par. Saboot yeh tha ki ek hafte ki 400 conversations mein se 37 mein ek identity number, tax number, bank account ya poora address tha. Yeh uski apni ginti thi, jise Farah check kar sakti thi.
+September mein, us raat ke dedh saal baad jab usne yeh sab shuru kiya tha, Anaya Deshmukh ne decision log ke sabse upar scroll kiya aur pehli entry padhi. Woh 14 March ki thi. Decision yeh tha ki pehle personal-details wali problem par kaam karna hai, aur ticket themes par doosre number par.
+
+Saboot yeh tha ki ek hafte ki 400 conversations mein se 37 mein ek identity number, tax number, bank account ya poora address tha. Yeh uski apni ginti thi, jise Farah check kar sakti thi.
 
 Usne aakhri line do baar padhi: "Main apna man badal doongi agar". Us saal ne use jo kuch sikhaya, usmein woh line sabse sasti thi, aur usne sabse zyada kaam kiya.
 
 ## Case kahan khatam hota hai
 
-September tak guard do support teams ki har chat par chal raha tha, aur ek lending partner ke trial mein bhi. Anaya ke peeche whiteboard par Imran ne teen rangon mein ek drawing chhodi thi, jisme woh sab tha jo ab ek customer ke keyboard aur jawaab padhne wale insaan ke beech khada tha. Guard ke har kaam ke liye usmein ek shape thi, har us jagah ke liye ek teer jahan decision hota hai, aur har us jagah ke bagal mein ek taara jahan galat jawaab sabse mehnga padta. Woh khoobsurat nahi thi. Lekin jo banaya gaya tha, uska woh sahi hisaab thi.
+September tak guard do support teams ki har chat par chal raha tha, aur ek lending partner ke trial mein bhi. Anaya ke peeche whiteboard par Imran ne teen rangon mein ek drawing chhodi thi, jisme woh sab tha jo ab ek customer ke keyboard aur jawaab padhne wale insaan ke beech khada tha.
+
+Guard ke har kaam ke liye usmein ek shape thi, har us jagah ke liye ek teer jahan decision hota hai, aur har us jagah ke bagal mein ek taara jahan galat jawaab sabse mehnga padta. Woh khoobsurat nahi thi. Lekin jo banaya gaya tha, uska woh sahi hisaab thi.
 
 ## Saat parts milkar kya banate hain
 
@@ -41,7 +45,9 @@ Neeche har sentence mein aapke apne project ke ek number ki jagah khaali hai. Jo
 
 ## Project ko abhi bhi kya nahi pata
 
-Jo textbook pakke yakeen par khatam hoti hai, usne aksar kuch chhod diya hota hai. Isliye yahan likha hai ki guard ko kis par test nahi kiya gaya tha. Use English mein, Hindi mein aur dono ki milavat mein naapa gaya tha, un messages par jo team ne khud likhe the. Use Tamil, Bengali ya Telugu mein nahi naapa gaya tha. Do shehron ke bahar ke customers ki likhai par nahi naapa gaya tha, aur Imran se zyada sabr wale hamlawar ke khilaaf bhi nahi.
+Jo textbook pakke yakeen par khatam hoti hai, usne aksar kuch chhod diya hota hai. Isliye yahan likha hai ki guard ko kis par test nahi kiya gaya tha. Use English mein, Hindi mein aur dono ki milavat mein naapa gaya tha, un messages par jo team ne khud likhe the.
+
+Use Tamil, Bengali ya Telugu mein nahi naapa gaya tha. Do shehron ke bahar ke customers ki likhai par nahi naapa gaya tha, aur Imran se zyada sabr wale hamlawar ke khilaaf bhi nahi.
 
 Jisne bhi "compliant" shabd ko samjha hai, usne guard ko compliant nahi kaha tha, aur kisi ke liye bhi uski taraf se aisa kehna galti hogi. Woh imaandaar numbers wala ek saavdhaan tool tha, aur woh bas itna hi hone ka daava karta tha.
 
@@ -49,7 +55,9 @@ Yahi saavdhaani book par bhi lagti hai. Sahaj, uske log, uski prices aur uske fi
 
 ## Words
 
-Is field mein lagbhag har cheez ka ek naam hai. Seekhne ki mushkil ka bada hissa yeh hai ki naam un cheezon se tez aate hain jinke liye woh khade hain. Isliye har chapter ne kuch terms jode, aur unhe usi chapter mein aur baad ke har chapter mein usi matlab mein use kiya. Book ke peechhe ka glossary har term ko ek chhoti definition ke saath deta hai, aur us chapter ke saath jahan woh pehli baar aaya.
+Is field mein lagbhag har cheez ka ek naam hai. Seekhne ki mushkil ka bada hissa yeh hai ki naam un cheezon se tez aate hain jinke liye woh khade hain.
+
+Isliye har chapter ne kuch terms jode, aur unhe usi chapter mein aur baad ke har chapter mein usi matlab mein use kiya. Book ke peechhe ka glossary har term ko ek chhoti definition ke saath deta hai, aur us chapter ke saath jahan woh pehli baar aaya.
 
 ## Book ko course app ke saath use karna
 

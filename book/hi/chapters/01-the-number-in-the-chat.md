@@ -133,7 +133,9 @@ Log ki asli keemat aakhri line mein hai. Jis decision mein nikalne ka koi raasta
 
 Jo decision apne palatne ki shart khud likhta hai, use shaanti se dobara kholna asaan hota hai. Kyunki poochhne wala sawaal pehle se likha hua hai.
 
-Usne yeh page apne laptop par nahi rakha. Imran ne use woh jagah dikhayi jahan engineers apna kaam rakhte the: GitHub par ek *repository*, ek online folder jo har file ka har version yaad rakhta hai. Har baar badlaav save karte waqt woh ek line likhti ki kya badla aur kyun, aur purana version naye ke saath hi rehta. Wahan rakha decision log chupchaap apna mann nahi badal sakta. Har pichhla version kisi ke bhi padhne ke liye wahin rehta hai.
+Usne yeh page apne laptop par nahi rakha. Imran ne use woh jagah dikhayi jahan engineers apna kaam rakhte the: GitHub par ek *repository*, ek online folder jo har file ka har version yaad rakhta hai.
+
+Har baar badlaav save karte waqt woh ek line likhti ki kya badla aur kyun, aur purana version naye ke saath hi rehta. Wahan rakha decision log chupchaap apna mann nahi badal sakta. Har pichhla version kisi ke bhi padhne ke liye wahin rehta hai.
 
 ## Khud ko naapna
 
@@ -151,7 +153,9 @@ Table: Har area ke liye istemaal hui scale
 
 Problems dhoondhne ko usne 2 diya, kyunki ab uske paas ek ginti thi. Strategy ko 1 diya, kyunki uski kisi strategy par kisi colleague ne kabhi amal nahi kiya tha.
 
-Dono scores ki ek kahani thi. Sahaj se pehle Anaya ne ek state electricity utility ke bill-payment system ka rollout manage kiya tha: dates, status reports aur senior officials ke saath mahine ki meeting. Woh is kaam mein achhi thi, aur "decision ko aisi cheez mein badalna jise doosre bana sakein" ke liye usne khud ko 3 diya. Us project par kisi ne use nahi poochha tha ki rollout ko kaun si problem solve karni chahiye. Woh uske aane se pehle hi tay ho chuka tha.
+Dono scores ki ek kahani thi. Sahaj se pehle Anaya ne ek state electricity utility ke bill-payment system ka rollout manage kiya tha: dates, status reports aur senior officials ke saath mahine ki meeting.
+
+Woh is kaam mein achhi thi, aur "decision ko aisi cheez mein badalna jise doosre bana sakein" ke liye usne khud ko 3 diya. Us project par kisi ne use nahi poochha tha ki rollout ko kaun si problem solve karni chahiye. Woh uske aane se pehle hi tay ho chuka tha.
 
 Technology samajhne ko pehle 1 diya, phir use kaata aur ek kam, zyada imaandaar number likha. Woh meeting mein keh sakti thi ki chatbot AI se chalta hai. Lekin yeh sentence woh ek jigyaasu 12 saal ke bachche ko samjha nahi sakti thi.
 

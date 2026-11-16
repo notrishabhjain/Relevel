@@ -187,6 +187,10 @@ function render(M, lang) {
   const bookBase = base + (hi ? 'book/hi/' : 'book/');
   const href = h => (h.startsWith('/') ? base + h.slice(1) : h).replace('next=/worksheet/', hi ? 'next=/worksheet/hi/' : 'next=/worksheet/');
   const pick = (en, h) => hi ? h : en;
+  /* The Hinglish book titles are Title Cased word by word ("Search Ko Behtar Banana").
+     In a list of steps that reads like shouting, so show them in sentence case,
+     keeping acronyms and anything with a digit as they are. */
+  const sc = t => !hi ? t : String(t).split(' ').map((w, i) => i === 0 || /^[A-Z0-9]{2,}$/.test(w) || /\d/.test(w) ? w : w.toLowerCase()).join(' ');
   const fm = m => !m ? '' : m >= 90 ? (Math.round(m / 30) / 2) + ' ' + L.h : m + ' ' + L.min;
   const ext = u => `href="${esc(u)}" target="_blank" rel="noopener noreferrer"`;
   const status = `<span class="st" aria-hidden="true"></span>`;
@@ -202,7 +206,7 @@ function render(M, lang) {
       (sub.length ? `<span class="sw">${sub.join(' · ')}</span>` : '') + `</span></li>`;
   };
   const readRow = b => `<li class="it k-read" data-k="read" data-book="${esc(b.file)}" data-steps="${b.steps.join(' ')}">${status}<span class="ib">${chip('read')}` +
-    `<a href="${bookBase}${esc(b.file)}"><b>${b.n ? (hi ? 'Kitaab ' : 'Book ') + b.n : (b.file === 'preface.html' ? (hi ? 'Bhumika' : 'Preface') : (hi ? 'Upsanhaar' : 'Afterword'))}</b> ${esc(pick(b.title, b.titleHi))}</a>` +
+    `<a href="${bookBase}${esc(b.file)}"><b>${b.n ? (hi ? 'Kitaab ' : 'Book ') + b.n : (b.file === 'preface.html' ? (hi ? 'Bhumika' : 'Preface') : (hi ? 'Upsanhaar' : 'Afterword'))}</b> ${esc(pick(b.title, sc(b.titleHi)))}</a>` +
     ` <span class="sm">~${fm(b.mins)}</span>` + (b.summary ? `<span class="sw">${esc(plain(pick(b.summary, b.summaryHi)))}</span>` : '') + `</span></li>`;
   const tryRow = s => `<li class="it k-try" data-k="try" data-steps="${esc(s.id)}">${status}<span class="ib">${chip('try')}` +
     `<a href="${s.app ? base + 'app/' + esc(s.app) : base + 'plan/'}"><b>Try</b> ${esc(pick(s.title, s.titleHi))}</a> <span class="sm">~${fm(s.mins)}</span>` +
@@ -260,7 +264,7 @@ function render(M, lang) {
       `<div class="tbody">${parts.join('')}</div></details></section>`;
   };
 
-  const steps = M.steps.map(s => [s.id, s.k, s.ch || s.book || '', s.t, pick(s.title, s.titleHi), s.href.replace(/^BOOK/, hi ? 'book/hi/' : 'book/'), s.mins, s.w]);
+  const steps = M.steps.map(s => [s.id, s.k, s.ch || s.book || '', s.t, pick(s.title, s.k === 'read' ? sc(s.titleHi) : s.titleHi), s.href.replace(/^BOOK/, hi ? 'book/hi/' : 'book/'), s.mins, s.w]);
   const jobs = Object.fromEntries(WEEKS.map(w => [w.n, hi ? (M.H[w.job] || w.job) : w.job]));
 
   const body = `

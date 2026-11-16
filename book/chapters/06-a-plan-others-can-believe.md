@@ -84,7 +84,9 @@ An *input metric* is a number the team can move directly, which you expect to mo
 
 A *guardrail metric* is a number that must not get worse while the team chases the others. It stops you from winning in a way that does damage. Hers was the false-alarm rate: the share of hidden items that weren't personal at all. A tool that blanked every number in every message would score perfectly on the first key result and be unusable. So she set the limit at three in a hundred.
 
-There was one more distinction, and it was easy to lose once the work became technical. The tool would have its own score on its own test, and that measures the tool. The key results measure what happens to people. A tool can do well on its own test and still be ignored by agents who find it irritating, or arrive too late to matter. Both kinds of number were needed, and each had to be labelled as one or the other.
+There was one more distinction, and it was easy to lose once the work became technical. The tool would have its own score on its own test, and that measures the tool. The key results measure what happens to people.
+
+A tool can do well on its own test and still be ignored by agents who find it irritating, or arrive too late to matter. Both kinds of number were needed, and each had to be labelled as one or the other.
 
 ## The people who can say no
 
@@ -100,7 +102,9 @@ Table: Stakeholders by power and interest
 
 Beside each name she wrote what the person was measured on, which tells you how they will react. She also wrote what they could decide: whether they chose, advised or could veto.
 
-Lakshmi was in the wrong corner. She had real power and, as far as Anaya could tell, little interest. That combination is the most dangerous. People in security, legal and compliance often hold a veto while taking little part in the daily work. They stay quiet until the day before launch, and then they say no. They are usually right to. On a government project the same corner is usually held by audit, finance or the security assessor.
+Lakshmi was in the wrong corner. She had real power and, as far as Anaya could tell, little interest. That combination is the most dangerous. People in security, legal and compliance often hold a veto while taking little part in the daily work.
+
+They stay quiet until the day before launch, and then they say no. They are usually right to. On a government project the same corner is usually held by audit, finance or the security assessor.
 
 The remedy was ordinary. Anaya moved her to the second column by visiting her every week and asking what she would need.
 
@@ -111,7 +115,9 @@ The founders wouldn't read a plan. They would read the first paragraph of a memo
 A *decision memo* is written so that a busy person can act after reading only its opening. The order is: the request, the reason, the cost, the biggest risk, and the alternatives, including doing nothing. Here is Anaya's opening paragraph.
 
 ::: example Anaya's opening paragraph
-I am asking for Imran for half his time for eight weeks, and about forty thousand rupees in cloud costs, to build a small tool that hides personal details in our support chat before they travel any further. In one week of chats, 37 of 400 conversations contained an identity number, a tax number, a bank account or an address, and nothing removes them from our logs, exports or the outside company's systems. The biggest risk is that the tool misses things written in Hinglish. We will test it on real examples before it touches a live chat, and we will stop if agents turn it off in more than two of ten chats.
+I am asking for Imran for half his time for eight weeks, and about forty thousand rupees in cloud costs, to build a small tool that hides personal details in our support chat before they travel any further. In one week of chats, 37 of 400 conversations contained an identity number, a tax number, a bank account or an address, and nothing removes them from our logs, exports or the outside company's systems.
+
+The biggest risk is that the tool misses things written in Hinglish. We will test it on real examples before it touches a live chat, and we will stop if agents turn it off in more than two of ten chats.
 :::
 
 In four sentences, it states the ask, the evidence, the main risk and the stopping condition.
@@ -122,7 +128,9 @@ Before the founders' meeting, Anaya held a gathering that Imran had dreaded and 
 
 This is a *pre-mortem*, and it works for a simple reason. People will name risks in an imagined failure that they wouldn't raise against a plan they're expected to support.
 
-Farah wrote that agents had switched the tool off. It had hidden a customer's callback number in mid-conversation, and nobody had told them how to get it back. Lakshmi wrote that it had missed an address written in Hinglish, a screenshot had gone out in an export, and a regulator had asked how that was possible. Imran wrote that it had added a second to every reply, and customers had complained that the chatbot felt slow. Anaya wrote that the file of test examples had never been kept up to date, so nobody could tell whether the fourth version was better than the third.
+Farah wrote that agents had switched the tool off. It had hidden a customer's callback number in mid-conversation, and nobody had told them how to get it back. Lakshmi wrote that it had missed an address written in Hinglish, a screenshot had gone out in an export, and a regulator had asked how that was possible.
+
+Imran wrote that it had added a second to every reply, and customers had complained that the chatbot felt slow. Anaya wrote that the file of test examples had never been kept up to date, so nobody could tell whether the fourth version was better than the third.
 
 Anaya turned all of this into a risk list.
 

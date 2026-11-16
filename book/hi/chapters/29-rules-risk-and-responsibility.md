@@ -18,7 +18,9 @@ terms:
 
 August ke pehle Tuesday ko Lakshmi Iyer ne ek lambi dopahar ki shuruaat apne bank ke dinon ki ek kahawat se ki: agar likha nahi gaya, toh hua hi nahi. Imran Qureshi laptop laya tha. Anaya answer key laayi thi, jisme ab do sau chaar rows ho chuki thi. Farah Sheikh bhune hue peanuts ka ek packet lekar aayi thi, bina kisi khaas wajah ke, aur use rukne di gayi thi.
 
-Lakshmi ne kaha ki woh bees saal tak woh insaan rahi hai jo paperwork maangta hai. Log sochte the ki woh kaam dheema kar rahi hai. Asal mein woh yeh pakka kar rahi thi ki jab kuch galat ho, toh koi bata sake ki system kis kaam ke liye tha, use kya karna chahiye tha, aur kya test hua tha. Regulator ko failure se dikkat nahi hoti. Dikkat us failure se hoti hai jise koi samjha na sake.
+Lakshmi ne kaha ki woh bees saal tak woh insaan rahi hai jo paperwork maangta hai. Log sochte the ki woh kaam dheema kar rahi hai.
+
+Asal mein woh yeh pakka kar rahi thi ki jab kuch galat ho, toh koi bata sake ki system kis kaam ke liye tha, use kya karna chahiye tha, aur kya test hua tha. Regulator ko failure se dikkat nahi hoti. Dikkat us failure se hoti hai jise koi samjha na sake.
 
 Aaj text padhne aur likhne wali machine ek aise hi sawaalon ke folder ke saath aati hai. Zyadatar log maan lete hain ki jawaab legal team likhegi. Lekin us folder ke lagbhag har sawaal ek product ka sawaal hai. Lakshmi sentences likh sakti thi, lekin sawaalon ke jawaab nahi de sakti thi.
 
@@ -42,7 +44,9 @@ Aise rules Europe mein EU AI Act ke saath shuru hue. Ab woh doosri jagah ki bahu
 
 Tiers ke baare mein do baatein logon ko hairaan karti hain. Pehli, tier model se nahi, istemaal se tay hota hai. Wahi system ek internal answer-finder ki tarah low-risk ho sakta hai, aur agar koi use yeh tay karne mein lagaye ki loan kise milega, toh woh high-risk ho jaata hai. Doosri, istemaal badalta hai toh tier bhi badalta hai. Aksar yeh launch ke baad hota hai, aur documents koi update nahi karta.
 
-Anaya ne poochha ki guard kahan baithta hai. Lakshmi ne kaha, chat mein identity numbers chhupane wale helper ki tarah woh minimal hai. Uske peeche jo chatbot hai, use bas batana hoga ki woh ek machine hai. Lekin agar koi guard ke findings se yeh tay karne lage ki customer bharose ke laayak hai ya nahi, toh woh kuch aur hi cheez ban jaayega. Usne Anaya se kaha ki yeh likh le. Pure folder ka sabse kaam ka sentence yahi tha.
+Anaya ne poochha ki guard kahan baithta hai. Lakshmi ne kaha, chat mein identity numbers chhupane wale helper ki tarah woh minimal hai. Uske peeche jo chatbot hai, use bas batana hoga ki woh ek machine hai.
+
+Lekin agar koi guard ke findings se yeh tay karne lage ki customer bharose ke laayak hai ya nahi, toh woh kuch aur hi cheez ban jaayega. Usne Anaya se kaha ki yeh likh le. Pure folder ka sabse kaam ka sentence yahi tha.
 
 ## India ka law, aur guard kya nahi hai
 
@@ -53,7 +57,9 @@ Usne samjhaya ki **DPDP Act** matlab Digital Personal Data Protection Act, 2023 
 Personal details dhoondhna aur chhupana madad zaroor karta hai. Isse organisation kam collect karti hai aur kam aage bhejti hai. Lekin yeh sirf ek technical hissa hai. Yeh compliance nahi hai, aur koi bhi tool compliance nahi hota.
 
 ::: watch Kabhi "compliant" mat kahiye
-Guard ke baare mein jo bhi document likha jaaye, usme use ek privacy tool kaha jaaye jo organisation ko kam personal data collect aur share karne mein madad karta hai. Use kabhi aisa nahi kaha jaayega ki woh kisi ko compliant banata hai, chahe Sahaj ho, koi customer ho, ya koi aur. Lakshmi ne kaha, agar kisi salesman ne guard ke baare mein yeh sentence kabhi likha, toh use pata chal jaayega. Anaya ne yeh rule ek page ki pehli line mein rakha, aur baad mein specification, system card aur ek aisi website ke front par bhi, jo abhi bani nahi thi.
+Guard ke baare mein jo bhi document likha jaaye, usme use ek privacy tool kaha jaaye jo organisation ko kam personal data collect aur share karne mein madad karta hai. Use kabhi aisa nahi kaha jaayega ki woh kisi ko compliant banata hai, chahe Sahaj ho, koi customer ho, ya koi aur.
+
+Lakshmi ne kaha, agar kisi salesman ne guard ke baare mein yeh sentence kabhi likha, toh use pata chal jaayega. Anaya ne yeh rule ek page ki pehli line mein rakha, aur baad mein specification, system card aur ek aisi website ke front par bhi, jo abhi bani nahi thi.
 :::
 
 ## Ek page
@@ -82,7 +88,9 @@ Out-of-scope wali line sabse kaam ki hai. Woh istemaal ko chupke se ek upar ke t
 
 Phir Lakshmi ne ek drill di. Usne table par ek card sarkaya, jis par ek asli customer ka naam tha. Mr. Deshpande Satara ke ek bujurg the. June mein unhone Sahaj ko likha tha ki unka data hata diya jaaye, aur unse vaada kiya gaya tha ki hata diya jaayega. Abhi tak hua nahi tha. Anaya ko maan lena tha ki request abhi-abhi aayi hai, aur dhoondhna tha ki woh kahan-kahan rehte hain.
 
-Isse **deletion drill** kehte hain. Aap woh har jagah dhoondhte hain jahan ek insaan ka data store hai, taaki pata chale ki kin jagahon tak aap pahunch nahi sakte. Ek insaan ka data saat jagah ho sakta hai: original documents, unse kaate gaye chunks, search index, cache, provider ke logs, company ke apne logs, aur asli traffic se bana koi bhi test set. Bahut si teams ko pata chalta hai ki inme se kam se kam do jagah unki pahunch ke bahar hain.
+Isse **deletion drill** kehte hain. Aap woh har jagah dhoondhte hain jahan ek insaan ka data store hai, taaki pata chale ki kin jagahon tak aap pahunch nahi sakte.
+
+Ek insaan ka data saat jagah ho sakta hai: original documents, unse kaate gaye chunks, search index, cache, provider ke logs, company ke apne logs, aur asli traffic se bana koi bhi test set. Bahut si teams ko pata chalta hai ki inme se kam se kam do jagah unki pahunch ke bahar hain.
 
 Table: Mr. Deshpande ka data kahan ho sakta tha
 | Jagah | Kya Sahaj ise delete kar sakta tha? |
@@ -104,9 +112,13 @@ Anaya ne usi shaam Farah ko witness banakar printouts shred kiye, aur log mein d
 
 Lakshmi ke paas do baatein aur thi, aur usne unhe jaldi se nipta diya.
 
-Pehli thi **human oversight**. Sab likhte hain "har output ko ek insaan review karta hai", aur Anaya ne bhi PRD ke pehle draft mein yahi likha tha. Lakshmi ne poochha, ek reviewer chaar hazaar outputs roz ke saath kitne din tikega? Uske tajurbe mein, lagbhag do hafte. Uske baad reviewer bina padhe approve karna shuru kar deta hai. Document tab bhi kehta rehta hai ki insaan sab kuch check karta hai, jabki asal mein koi nahi karta. Yeh us dave ko na karne se bhi zyada bura hai.
+Pehli thi **human oversight**. Sab likhte hain "har output ko ek insaan review karta hai", aur Anaya ne bhi PRD ke pehle draft mein yahi likha tha. Lakshmi ne poochha, ek reviewer chaar hazaar outputs roz ke saath kitne din tikega?
 
-Jo oversight kaam karta hai woh targeted hota hai. Woh insaan ko wohi outputs bhejta hai jo uncertain hain, ya jinse sabse zyada nuksaan ho sakta hai, ya jahan jo mila aur jo jawaab diya gaya woh match nahi karte. Woh reviewer ko jawaab ke saath saboot bhi dikhata hai. Aur reviewer ko reject karne deta hai, sirf dekhne nahi. Jo insaan dekh bhi sake aur mana bhi kar sake, woh human oversight hai. Jo insaan cheezein guzarte dekhta hai, woh sajawat hai. Guard ke liye iska matlab tha unsure cases, sau mein kuch hi, sentence aur proposed action side by side, aur do buttons.
+Uske tajurbe mein, lagbhag do hafte. Uske baad reviewer bina padhe approve karna shuru kar deta hai. Document tab bhi kehta rehta hai ki insaan sab kuch check karta hai, jabki asal mein koi nahi karta. Yeh us dave ko na karne se bhi zyada bura hai.
+
+Jo oversight kaam karta hai woh targeted hota hai. Woh insaan ko wohi outputs bhejta hai jo uncertain hain, ya jinse sabse zyada nuksaan ho sakta hai, ya jahan jo mila aur jo jawaab diya gaya woh match nahi karte. Woh reviewer ko jawaab ke saath saboot bhi dikhata hai.
+
+Aur reviewer ko reject karne deta hai, sirf dekhne nahi. Jo insaan dekh bhi sake aur mana bhi kar sake, woh human oversight hai. Jo insaan cheezein guzarte dekhta hai, woh sajawat hai. Guard ke liye iska matlab tha unsure cases, sau mein kuch hi, sentence aur proposed action side by side, aur do buttons.
 
 Doosri baat woh thi jo Lakshmi ne har company mein dekhi thi jahan usne kaam kiya. Staff apni marzi se consumer AI tools use karta hai, aksar internal documents paste karke. Woh isliye karte hain kyunki tools kaam ke hain aur company ka diya hua koi bhi tool utna achha nahi. Isse **shadow AI** kehte hain. Ban lagane se aksar kuch nahi badalta, kyunki ban policy badalta hai, behaviour nahi.
 

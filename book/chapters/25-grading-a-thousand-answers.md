@@ -44,7 +44,9 @@ Before trusting it, said Imran, you should check it. Grade fifty yourself. Have 
 
 Anaya and Farah graded fifty cleaned messages on Saturday, separately, and then compared. They agreed with each other on forty-eight of the fifty. The judge, run on the same fifty, agreed with them on thirty-three. That is sixty-six percent.
 
-Imran said that six or seven in ten is a very normal first result. What matters more than the figure is the pattern of the disagreements. Anaya laid out the seventeen of them. In fourteen, the judge had said "clean" about a message that still held something personal. In nearly all of those, the message was a long one with a mask in it. The judge saw the mask, and the longer the message, the more satisfied it seemed to be.
+Imran said that six or seven in ten is a very normal first result. What matters more than the figure is the pattern of the disagreements. Anaya laid out the seventeen of them.
+
+In fourteen, the judge had said "clean" about a message that still held something personal. In nearly all of those, the message was a long one with a mask in it. The judge saw the mask, and the longer the message, the more satisfied it seemed to be.
 
 ::: key Clustered mistakes can be fixed
 If the errors had been scattered, it would have meant that Anaya and Farah didn’t themselves agree about what "clean" meant, and no change to the judge could help. Because the errors clustered, she knew she had found something she could correct.

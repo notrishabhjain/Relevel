@@ -32,7 +32,9 @@ The reply also contained a second answer, and Lakshmi read it three times. The s
 
 ## What you are really buying
 
-Imran stayed calm. A vendor was acceptable, he said, as long as everyone understood what the money was for. You are rarely buying the model, because most vendors use the same models. You are buying the connectors, the permissions, the record of who did what, a support contract, and a person who gets out of bed when it breaks at two in the morning. That last item is usually worth more than the licence. It is also usually left out of the sum.
+Imran stayed calm. A vendor was acceptable, he said, as long as everyone understood what the money was for. You are rarely buying the model, because most vendors use the same models.
+
+You are buying the connectors, the permissions, the record of who did what, a support contract, and a person who gets out of bed when it breaks at two in the morning. That last item is usually worth more than the licence. It is also usually left out of the sum.
 
 He wrote four questions on the board. In his experience, these decide the matter.
 
@@ -98,7 +100,9 @@ Table: Four kinds of failure and their cures
 
 Her answer to Mr. Bhatia on Friday was that fine-tuning teaches behaviour, not facts. If the complaint were that the model didn’t know Sahaj’s policy, fine-tuning would be the wrong tool. But Sahaj’s complaints were behaviours. And the team hadn’t yet tried the cheap cures. The first two could be undone in hours.
 
-She also listed the costs that proposals leave out. Someone must create the examples and keep them current. A test set is needed first, or no one can tell whether the tuning helped, and it must never be the same as the examples the model learned from. The tuning must be redone each time the base model is retired. And the improvement lives inside one provider’s system, instead of in the instructions and the index. That is a form of lock-in.
+She also listed the costs that proposals leave out. Someone must create the examples and keep them current. A test set is needed first, or no one can tell whether the tuning helped, and it must never be the same as the examples the model learned from.
+
+The tuning must be redone each time the base model is retired. And the improvement lives inside one provider’s system, instead of in the instructions and the index. That is a form of lock-in.
 
 Mr. Bhatia asked whether the answer was no. It was “not yet”, she said, and she gave the order: the instructions, then the evidence, then a smaller model, then fine-tuning. If the names with “ji” still failed after the first three, the team would teach the model. And it would know, because it had a key.
 

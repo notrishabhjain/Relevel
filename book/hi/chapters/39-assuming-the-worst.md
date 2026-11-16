@@ -18,7 +18,9 @@ terms:
 
 Lakshmi Iyer ki chatbot par report ek Friday ko aayi, chaar page ki. Pehla page Anaya ki ummeed se zyada narm tha. Retrieval ka design theek tha, access labels wahin lage the jahan lagne chahiye the, aur team ne yeh batane mein khaas imaandaari dikhayi thi ki system kya nahi karta.
 
-Doosre page par, ek saadhi si heading ke neeche, do cheezein theek karne ko thi. Pehli, trace records mein raw message text ek aise store mein pada tha jise koi bhi khol sakta tha. Imran Qureshi ne naye records ke liye ise theek kar diya tha, lekin puraane records mein ab bhi sab kuch tha. Doosri, Lakshmi chahti thi ki koi aisa insaan system ko todne ki koshish kare jisne use banane mein haath na lagaya ho.
+Doosre page par, ek saadhi si heading ke neeche, do cheezein theek karne ko thi. Pehli, trace records mein raw message text ek aise store mein pada tha jise koi bhi khol sakta tha.
+
+Imran Qureshi ne naye records ke liye ise theek kar diya tha, lekin puraane records mein ab bhi sab kuch tha. Doosri, Lakshmi chahti thi ki koi aisa insaan system ko todne ki koshish kare jisne use banane mein haath na lagaya ho.
 
 ## Case: kaagzon mein ek note
 
@@ -26,7 +28,9 @@ Imran ne situation ek baar aur samjhayi, aur is baar Anaya ko laga ki tasveer sa
 
 Model bhi isi haalat mein hai. Use jo kuch diya jaata hai, woh sab ko ek jaise bharose se padhta hai. Isliye woh khatarnaak hai ya nahi, yeh uske aas-paas ke system par depend karta hai: use kya diya jaata hai, aur aage use kya karne ki ijaazat hai.
 
-Matlab AI product ki zyadatar security model ke andar nahi hoti. Woh hoti hai is mein ki product model ko kya khilata hai, jawaab ke saath kya karta hai, aur kahan tak pahunch sakta hai. Imran ne kaha ki instruction mein pyaar se kehna koi boundary nahi hai. Phir usne Anaya ko woh principle diya jo baaki sab principles ke neeche hai, aur Anaya ne use tareekh ke saath log mein likha: maan ke chaliye ki model ko behkaya jaayega, aur application, retrieved text, tools, identity layer aur data pipeline, sabko attack surface ka hissa maniye.
+Matlab AI product ki zyadatar security model ke andar nahi hoti. Woh hoti hai is mein ki product model ko kya khilata hai, jawaab ke saath kya karta hai, aur kahan tak pahunch sakta hai. Imran ne kaha ki instruction mein pyaar se kehna koi boundary nahi hai.
+
+Phir usne Anaya ko woh principle diya jo baaki sab principles ke neeche hai, aur Anaya ne use tareekh ke saath log mein likha: maan ke chaliye ki model ko behkaya jaayega, aur application, retrieved text, tools, identity layer aur data pipeline, sabko attack surface ka hissa maniye.
 
 ::: def Attack surface
 Woh har jagah jahan koi bahar wala system mein kuch daal sakta hai, ya system jo kuch kar sakta hai usse chhu sakta hai. Har tool ise badhata hai, aur har input aur doosri service se har connection bhi.
@@ -34,7 +38,9 @@ Woh har jagah jahan koi bahar wala system mein kuch daal sakta hai, ya system jo
 
 ## Ek Saturday
 
-Test Farah ne organise kiya. Us autumn mein yehi ek event tha jisse sabko bina kisi shikayat ke maza aaya. Ek Saturday ko, bade room mein, biscuits wapas aa gaye the, aur das log ek-ek laptop lekar baithe. Aath log support teams se the. Do project ke bahar se the: Imran ka ek dost jo ek bank ke liye security karta tha, aur Lakshmi ka ek purana colleague. Har kisi ke paas guard ki ek test copy thi aur ek hi instruction: ise leak karwao. Inaam neeche wali dukaan ki ek darjan jalebi thi, aur canteen mein sheekhi maarne ka haq.
+Test Farah ne organise kiya. Us autumn mein yehi ek event tha jisse sabko bina kisi shikayat ke maza aaya. Ek Saturday ko, bade room mein, biscuits wapas aa gaye the, aur das log ek-ek laptop lekar baithe. Aath log support teams se the.
+
+Do project ke bahar se the: Imran ka ek dost jo ek bank ke liye security karta tha, aur Lakshmi ka ek purana colleague. Har kisi ke paas guard ki ek test copy thi aur ek hi instruction: ise leak karwao. Inaam neeche wali dukaan ki ek darjan jalebi thi, aur canteen mein sheekhi maarne ka haq.
 
 Jo group jaan-boojhkar kisi system par hamla karta hai, use *red team* kehte hain. Woh aisa isliye karte hain ki kamzoriyan koi aur dhoondhe, usse pehle woh dhoondh lein. Yeh test poori dopahar chala, aur isne chaar cheezein dhoondhi. Table ko row-by-row padhiye: kya mila, kya hua, aur team ne uska kya kiya.
 
@@ -65,7 +71,9 @@ Table: Agar model galat hota, toh har function kya kar sakta tha
 
 Jitne zyada tools usne hataye, system ki usefulness utni zyada nahi giri. Do jagah toh bilkul nahi giri.
 
-Usne woh record bhi banaya jo Lakshmi August se maang rahi thi. *Audit trail* batata hai ki kisne kya kiya, kab, kis rule ke tahat, kis tool se, aur result kya raha. Ise kaam se alag rakha jaata hai, taaki incident ki jaanch karne wala jod kar samajh sake ki kya hua tha. Approvals aur executions alag events ki tarah likhe gaye. Har executed action ke saath us exact payload ka fingerprint tha jo approve hua tha. Imran ne approval ke baad payload badal kar test kiya, aur mismatch ek laal line ban kar saamne aa gaya.
+Usne woh record bhi banaya jo Lakshmi August se maang rahi thi. *Audit trail* batata hai ki kisne kya kiya, kab, kis rule ke tahat, kis tool se, aur result kya raha. Ise kaam se alag rakha jaata hai, taaki incident ki jaanch karne wala jod kar samajh sake ki kya hua tha.
+
+Approvals aur executions alag events ki tarah likhe gaye. Har executed action ke saath us exact payload ka fingerprint tha jo approve hua tha. Imran ne approval ke baad payload badal kar test kiya, aur mismatch ek laal line ban kar saamne aa gaya.
 
 ## Saboot wali table
 

@@ -96,7 +96,9 @@ The smallest change worth detecting is the *minimum detectable effect*, and it s
 Activation is thirty percent, and she wanted to find out whether the preview takes it to forty. Sixteen times 0.30 times 0.70, divided by 0.01 (the change of ten points, squared), comes to 336 in each group, or 672 in all. The company gets about forty new teams a month. At that rate the test would take about a year and a half.
 :::
 
-That was the honest answer, Karan said. An early company has forty accounts, not two thousand, and it can't run this test. It says so, and then uses other evidence. It watches five developers use the feature. It compares before and after with care. It looks for large effects, and it states that the evidence is weaker. A test that is too small, with its result reported, is worse than no test, because it reports noise as news.
+That was the honest answer, Karan said. An early company has forty accounts, not two thousand, and it can't run this test. It says so, and then uses other evidence. It watches five developers use the feature.
+
+It compares before and after with care. It looks for large effects, and it states that the evidence is weaker. A test that is too small, with its result reported, is worse than no test, because it reports noise as news.
 
 Anaya ran the observation with five developers that week. Four finished with the preview. Of the five who had used the old flow, three had. It was not proof, and she labelled it as an indication.
 

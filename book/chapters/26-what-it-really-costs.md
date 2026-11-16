@@ -45,9 +45,13 @@ That night she did the sum again, and she arrived at three answers instead of on
 
 The first was the figure she had given the director. It was one clean call to the careful judge at twenty-three paise, for each of three hundred thousand messages, or about ₹69,000 a month. It priced a tool that didn’t exist.
 
-The second was the guard built the obvious way. Every message goes to the careful judge, which works through four rounds of lookups and hidden reasoning. Take twenty-three paise, multiply by five and a half for the rounds, and by six for the thinking. That is about ₹7.60 a message, or ₹22.8 lakh a month. It is thirty-three times the first figure. It is also a natural thing for a team to build if it hasn’t thought about the matter.
+The second was the guard built the obvious way. Every message goes to the careful judge, which works through four rounds of lookups and hidden reasoning. Take twenty-three paise, multiply by five and a half for the rounds, and by six for the thinking.
 
-The third was the guard as it actually was. The pattern checker found everything with a fixed shape, and it cost nothing. The finder of names and places was a small model, priced at about four paise a message. With the extra pieces and the retries, it came to a little over five. Only the unsure messages, about six in every hundred, ever reached the careful judge, and for those she paid the full ₹7.60. Six percent of ₹7.60 is forty-six paise. Five paise plus forty-six comes to about fifty-one paise a message, or ₹1.53 lakh a month.
+That is about ₹7.60 a message, or ₹22.8 lakh a month. It is thirty-three times the first figure. It is also a natural thing for a team to build if it hasn’t thought about the matter.
+
+The third was the guard as it actually was. The pattern checker found everything with a fixed shape, and it cost nothing. The finder of names and places was a small model, priced at about four paise a message. With the extra pieces and the retries, it came to a little over five.
+
+Only the unsure messages, about six in every hundred, ever reached the careful judge, and for those she paid the full ₹7.60. Six percent of ₹7.60 is forty-six paise. Five paise plus forty-six comes to about fifty-one paise a message, or ₹1.53 lakh a month.
 
 Table: Three designs for the same tool
 | Design | Per message | Per month |
@@ -78,11 +82,15 @@ Table: Other ways to lower cost, in rough order of saving
 
 ## Three numbers, not one
 
-On Tuesday, Anaya went back to the director with the table and a statement she had spent an hour writing. The tool costs about one lakh fifty thousand rupees a month at three hundred thousand messages, at about fifty-one paise each. The cost is dominated by the careful judge, which sees six messages in a hundred. The figure is wrong if that six rises above ten, if retries go above one in five, or if the provider changes its prices.
+On Tuesday, Anaya went back to the director with the table and a statement she had spent an hour writing. The tool costs about one lakh fifty thousand rupees a month at three hundred thousand messages, at about fifty-one paise each.
+
+The cost is dominated by the careful judge, which sees six messages in a hundred. The figure is wrong if that six rises above ten, if retries go above one in five, or if the provider changes its prices.
 
 The director said she could defend that number.
 
-Anaya added that speed is a cost too. A cheap tool that is slow can fail as badly as a fast one that is dear. So she would always report three things together. The first is the cost. The second is how long a message typically took, which was a fraction of a second. The third is how long the slow ones took, which were the ones that went to the background. A single average would hide the slow tail.
+Anaya added that speed is a cost too. A cheap tool that is slow can fail as badly as a fast one that is dear. So she would always report three things together. The first is the cost.
+
+The second is how long a message typically took, which was a fraction of a second. The third is how long the slow ones took, which were the ones that went to the background. A single average would hide the slow tail.
 
 ## The other half of the sum
 

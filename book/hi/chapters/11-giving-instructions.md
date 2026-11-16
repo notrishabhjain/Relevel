@@ -15,9 +15,13 @@ terms:
   - worked example | aap jaisa output chahte hain, uska ek poora bana hua sample, jo model ko dikhaya jaata hai, taaki woh aapke description ki nakal karne ki jagah format ko copy kare | worked examples
 ---
 
-Pehle demonstration ke baad wale Monday ko Farah Sheikh ek card par teen messages likhkar glass meeting room mein aayi. Unki team ne yeh messages pichhli shaam asli customers ke andaaz mein likhe the, lekin koi bhi asli nahi tha. Anaya ne is baat par zor diya tha. Lakshmi Iyer ko pata chala toh unhone kaha ki project ke baare mein yeh pehli samajhdaar baat hai. Kyunki asli logon ke raazon par privacy tool ko test karna, apne aap mein ek chhota sa scandal hota.
+Pehle demonstration ke baad wale Monday ko Farah Sheikh ek card par teen messages likhkar glass meeting room mein aayi. Unki team ne yeh messages pichhli shaam asli customers ke andaaz mein likhe the, lekin koi bhi asli nahi tha.
 
-Pehla message yeh tha: "My name is Amit Sharma. My PAN is ABCDE1234F and I transferred ₹4 lakh from my HDFC account ending 4521. Why was my loan rejected?" Imran Qureshi ne ise ek window mein type kiya, aur uske upar apni ek line likhi: "List every piece of personal information in this message." Yeh chapter uske baad ke teen ghanton ki kahani hai. Model se guard ka ek hissa karwaya gaya tha, aur uski galtiyon ne team ko uski kaamyabi se zyada sikhaya.
+Anaya ne is baat par zor diya tha. Lakshmi Iyer ko pata chala toh unhone kaha ki project ke baare mein yeh pehli samajhdaar baat hai. Kyunki asli logon ke raazon par privacy tool ko test karna, apne aap mein ek chhota sa scandal hota.
+
+Pehla message yeh tha: "My name is Amit Sharma. My PAN is ABCDE1234F and I transferred ₹4 lakh from my HDFC account ending 4521. Why was my loan rejected?" Imran Qureshi ne ise ek window mein type kiya, aur uske upar apni ek line likhi: "List every piece of personal information in this message."
+
+Yeh chapter uske baad ke teen ghanton ki kahani hai. Model se guard ka ek hissa karwaya gaya tha, aur uski galtiyon ne team ko uski kaamyabi se zyada sikhaya.
 
 ## Case: pehli list
 
@@ -32,11 +36,15 @@ Jawaab do second mein aa gaya.
 6. Loan rejection
 ```
 
-Anaya ne pencil lekar padha aur 4 cheezein sahi ginin: naam, PAN, bank, aur account ke aakhri digits. Amount sirf ek number hai, usse kisi insaan ki pehchaan nahi hoti. Aur loan reject hone se bhi kisi ko dhoondha nahi ja sakta. Matlab model ne 2 aisi cheezein list kar di thi jinhe chhupane ki zaroorat nahi thi. Imran ne kaha ki list karna aur chhupana alag cheezein hain, chhupana baad ka step hai. Phir usne wahi message dobara chalaya. Is baar list mein 6 nahi, 4 items aaye. Teesri baar 7 items aaye, aur surname ek alag entry ban kar dobara aa gaya. Farah ne poochha, jawaab badal kyun jaata hai?
+Anaya ne pencil lekar padha aur 4 cheezein sahi ginin: naam, PAN, bank, aur account ke aakhri digits. Amount sirf ek number hai, usse kisi insaan ki pehchaan nahi hoti. Aur loan reject hone se bhi kisi ko dhoondha nahi ja sakta. Matlab model ne 2 aisi cheezein list kar di thi jinhe chhupane ki zaroorat nahi thi.
+
+Imran ne kaha ki list karna aur chhupana alag cheezein hain, chhupana baad ka step hai. Phir usne wahi message dobara chalaya. Is baar list mein 6 nahi, 4 items aaye. Teesri baar 7 items aaye, aur surname ek alag entry ban kar dobara aa gaya. Farah ne poochha, jawaab badal kyun jaata hai?
 
 ## Temperature: variety ka dial
 
-Model har step par kuch likely agle tokens ke beech chunta hai, aur har token ki ek probability hoti hai. *Temperature* naam ki setting tay karti hai ki model kam likely tokens mein se kisi ek ko chunne ke liye kitna taiyaar hai. Temperature high ho toh model door-door tak jaata hai, aur alag-alag, jaandaar jawaab deta hai. Kavita likhne ya pet ka naam sochne ke liye yeh badhiya hai. Temperature low ho, zero ke aas-paas, toh model lagbhag hamesha sabse likely token leta hai. Isliye wahi sawaal poochho toh lagbhag wahi jawaab milta hai.
+Model har step par kuch likely agle tokens ke beech chunta hai, aur har token ki ek probability hoti hai. *Temperature* naam ki setting tay karti hai ki model kam likely tokens mein se kisi ek ko chunne ke liye kitna taiyaar hai.
+
+Temperature high ho toh model door-door tak jaata hai, aur alag-alag, jaandaar jawaab deta hai. Kavita likhne ya pet ka naam sochne ke liye yeh badhiya hai. Temperature low ho, zero ke aas-paas, toh model lagbhag hamesha sabse likely token leta hai. Isliye wahi sawaal poochho toh lagbhag wahi jawaab milta hai.
 
 Imran ne setting kam ki aur message 5 baar chalaya. Paanchon lists lagbhag ek jaisi thi. Anaya ko is kaam ke liye low temperature hi chahiye tha. Kyunki jo sawaal Monday ko poochha, uska jawaab Tuesday ko bhi wahi milna chahiye.
 
@@ -46,9 +54,13 @@ Low temperature jawaab ko consistent banata hai. Sahi nahi banata. Jo model zero
 
 ## Standing instructions
 
-Doosra message Hinglish mein tha. Farah ne use itni tezi se type kiya, jaise koi insaan roz aise 40 messages likhta ho: "Sir mera aadhaar 4321 5678 9012 hai aur ye number 98xxxxxx12 pe call kar lena." Model ko Aadhaar number mil gaya. Lekin usne "98xxxxxx12" ko bhi mobile number ki tarah list kar diya, jabki ek agent x type karke use pehle hi chhupa chuka tha. Agar model ise bhi report kare, toh guard ise do baar chhupayega.
+Doosra message Hinglish mein tha. Farah ne use itni tezi se type kiya, jaise koi insaan roz aise 40 messages likhta ho: "Sir mera aadhaar 4321 5678 9012 hai aur ye number 98xxxxxx12 pe call kar lena."
 
-Iska ilaaj ek instruction hai. Aur woh instruction har request ke saath bhejna padega, kyunki model ko kuch yaad nahi rehta. Imran ne ek doosra box kholkar ek chhota sa paragraph type kiya. Is tarah ki standing instructions, yaani jo batati hain ki assistant kaun hai aur use kya karna hai aur kya nahi, unhe *system prompt* kehte hain. Yeh bhi aam text hi hai, message se kuch alag nahi. Bas application ise har request mein sabse pehle bhejta hai.
+Model ko Aadhaar number mil gaya. Lekin usne "98xxxxxx12" ko bhi mobile number ki tarah list kar diya, jabki ek agent x type karke use pehle hi chhupa chuka tha. Agar model ise bhi report kare, toh guard ise do baar chhupayega.
+
+Iska ilaaj ek instruction hai. Aur woh instruction har request ke saath bhejna padega, kyunki model ko kuch yaad nahi rehta. Imran ne ek doosra box kholkar ek chhota sa paragraph type kiya.
+
+Is tarah ki standing instructions, yaani jo batati hain ki assistant kaun hai aur use kya karna hai aur kya nahi, unhe *system prompt* kehte hain. Yeh bhi aam text hi hai, message se kuch alag nahi. Bas application ise har request mein sabse pehle bhejta hai.
 
 ::: def Prompt aur system prompt
 *Prompt* woh sab kuch hai jo model ko bheja jaata hai: instructions, examples, aur woh material jis par model ko kaam karna hai. *System prompt* us prompt ka woh hissa hai jo ek request se doosri request tak same rehta hai.
@@ -66,7 +78,9 @@ Personal information: the customer's city of residence, likely Pune.
 
 Farah ne dhyaan dilaya ki message mein Pune kahin hai hi nahi. Imran ne kaha ki model ko customer ke shehar ke baare mein kuch pata hi nahi hai. Usse kaha gaya tha ki message ki personal information batao, toh woh aise chal pada jaise koi jawaab dena zaroori ho. Is sawaal ke baad sabse likely text ek list hota hai, aur list mein kuch na kuch toh hona hi chahiye.
 
-Is failure ka naam thoda ajeeb hai. *Hallucination* ka matlab hai ek aisa jawaab jo poore confidence se, saaf-suthre tareeke se diya gaya ho, lekin gadha hua ho. Aur woh bilkul sach jaisa dikhta hai. Naam sunkar lagta hai ki machine kharab ho gayi, lekin machine apne design ke hisaab se hi kaam kar rahi hai. Woh likely text predict kar rahi hai, ek aisi jagah jahan chup rehna chahiye tha. Model hamesha nahi bata paata ki use kuch nahi pata. Kyunki "mujhe nahi pata" kehna usse alag se sikhana padta hai, aur woh har baar tikta bhi nahi.
+Is failure ka naam thoda ajeeb hai. *Hallucination* ka matlab hai ek aisa jawaab jo poore confidence se, saaf-suthre tareeke se diya gaya ho, lekin gadha hua ho. Aur woh bilkul sach jaisa dikhta hai. Naam sunkar lagta hai ki machine kharab ho gayi, lekin machine apne design ke hisaab se hi kaam kar rahi hai.
+
+Woh likely text predict kar rahi hai, ek aisi jagah jahan chup rehna chahiye tha. Model hamesha nahi bata paata ki use kuch nahi pata. Kyunki "mujhe nahi pata" kehna usse alag se sikhana padta hai, aur woh har baar tikta bhi nahi.
 
 Guard ke liye iska seedha matlab tha. Agar model koi detail gadh de, toh guard woh cheez chhupayega jo kabhi thi hi nahi. Aur agar gadhi hui detail galat hai, toh kisi ko pata bhi nahi chalega, kyunki us detail ko milane ke liye kuch hai hi nahi.
 
@@ -82,11 +96,15 @@ Table: Prompt behtar banane ke 4 tareeke, sabse taakatwar pehle
 | Kaam ko steps mein todo | Model se hisse order mein karwata hai, taaki kaam ko check kiya ja sake | "Pehle, message padho. Doosre, har detail list karo aur batao woh kahan hai. Teesre, jo cheez kisi insaan ke baare mein nahi hai, use hata do" |
 | Jo galat ho chuka hai, use mana karo | Jo failure pehle dekhi ja chuki hai, uska naam leta hai | "Aisi detail mat gadho jo message mein nahi hai" |
 
-*Worked example* sabse taakatwar hai, aur log ise sabse aakhir mein try karte hain. Agar output ko shabdon mein describe karein, toh model un shabdon ki nakal karta hai. Agar ek poora example dikha dein, toh woh format ko copy karta hai. Anaya ne ek typical example aur ek mushkil example likha. Do examples, ek typical aur ek mushkil, 6 ek jaise examples se behtar hain, aur bhejne mein kaafi kam tokens lete hain. Chautha tareeka sabse kamzor hai. Use un failures ke liye ek-do baar istemaal karna theek hai jo aap pehle dekh chuke hain. Lambi list banana theek nahi, kyunki yeh utna kaam nahi karta jitna log sochte hain.
+*Worked example* sabse taakatwar hai, aur log ise sabse aakhir mein try karte hain. Agar output ko shabdon mein describe karein, toh model un shabdon ki nakal karta hai. Agar ek poora example dikha dein, toh woh format ko copy karta hai. Anaya ne ek typical example aur ek mushkil example likha.
+
+Do examples, ek typical aur ek mushkil, 6 ek jaise examples se behtar hain, aur bhejne mein kaafi kam tokens lete hain. Chautha tareeka sabse kamzor hai. Use un failures ke liye ek-do baar istemaal karna theek hai jo aap pehle dekh chuke hain. Lambi list banana theek nahi, kyunki yeh utna kaam nahi karta jitna log sochte hain.
 
 ## Kam hona, theek hona nahi hai
 
-Is aakhri baat ki wajah hi is chapter ka sabse zaroori idea hai, aur team ne ise khud hi saabit kar diya. Anaya ne mana karne wali line jodi, aur Pune gadhna ek din ke liye ruk gaya. Tuesday ko Farah ne ek cousin ke baare mein message likha, jo "station ke paas wale bank" mein kaam karta tha. Model ne baat maani aur koi shehar nahi gadha. Uski jagah usne ek aisi bank branch ka naam gadh diya jo exist hi nahi karti thi.
+Is aakhri baat ki wajah hi is chapter ka sabse zaroori idea hai, aur team ne ise khud hi saabit kar diya. Anaya ne mana karne wali line jodi, aur Pune gadhna ek din ke liye ruk gaya.
+
+Tuesday ko Farah ne ek cousin ke baare mein message likha, jo "station ke paas wale bank" mein kaam karta tha. Model ne baat maani aur koi shehar nahi gadha. Uski jagah usne ek aisi bank branch ka naam gadh diya jo exist hi nahi karti thi.
 
 "Yeh ab bhi karta hai," Anaya ne kaha. "Kam karta hai," Imran ne kaha. Ek instruction failure ko kam kar deta hai. Lekin failure ki wajah ko nahi hataata. Wajah yeh hai ki machine text ko aage badhane ke liye bani hai, aur kabhi-kabhi likely agla text jhooth hota hai.
 
@@ -96,7 +114,9 @@ Jab koi kahe ki ek rule jodne se problem solve ho gayi, toh yeh poochiye: rule n
 
 ## Lambi instruction ki keemat
 
-Examples, steps aur warning judne se system prompt ek line se badhkar 400 tokens ka ho gaya tha. Aur woh har message ke saath bheja jaana tha. Maheene mein 1 lakh chats hon, toh instructions ke 4 crore tokens (40 million) ho gaye. Customer ek word likhe ya ek hazaar, yeh kharcha lagta hi hai. Imran ne kaha ki yeh kharcha dena theek hai, lekin yeh ek soch-samajh kar liya hua decision hona chahiye, ittefaq nahi.
+Examples, steps aur warning judne se system prompt ek line se badhkar 400 tokens ka ho gaya tha. Aur woh har message ke saath bheja jaana tha. Maheene mein 1 lakh chats hon, toh instructions ke 4 crore tokens (40 million) ho gaye.
+
+Customer ek word likhe ya ek hazaar, yeh kharcha lagta hi hai. Imran ne kaha ki yeh kharcha dena theek hai, lekin yeh ek soch-samajh kar liya hua decision hona chahiye, ittefaq nahi.
 
 ## Summary
 

@@ -28,7 +28,9 @@ Aage ke sections mein teen cheezein hain. Pehli, woh list ki guard mein ek servi
 
 ## Sirf ek rule kyun nahi?
 
-Baat ek sawaal se shuru hui jo Anaya ko bilkul shuru mein poochhne ko kaha gaya tha: yeh ordinary software kyun nahi hai? Jawaab safe mode ne diya. Sirf rules wala woh version, jo emergency ke liye bana tha, bina kisi model ke, fixed-shape numbers mein se 100 mein lagbhag 96 dhoondh leta tha. Anaya ne yeh figure saal bhar apne saamne baseline ki tarah rakha tha, woh cheez jise har doosre hisse ko harana tha. Ab yeh bata paana achha tha ki kitne se.
+Baat ek sawaal se shuru hui jo Anaya ko bilkul shuru mein poochhne ko kaha gaya tha: yeh ordinary software kyun nahi hai? Jawaab safe mode ne diya. Sirf rules wala woh version, jo emergency ke liye bana tha, bina kisi model ke, fixed-shape numbers mein se 100 mein lagbhag 96 dhoondh leta tha.
+
+Anaya ne yeh figure saal bhar apne saamne baseline ki tarah rakha tha, woh cheez jise har doosre hisse ko harana tha. Ab yeh bata paana achha tha ki kitne se.
 
 Model ne jo jodha, woh tha naam, addresses, Hinglish, aur woh sentences jo kisi ki taraf ishara karte hain bina bataye ki kaun. Inke bina guard sirf ek rule tha. Anaya ne yeh farq, figures ke saath, product requirements ke pehle page par likha: model ne kya kharida, aur uski keemat kya thi.
 
@@ -74,7 +76,9 @@ Festival week asli test hota. Farah ke records dikhate the ki pichhli Diwali ke 
 
 10 guna volume par sawaal yeh tha ki pehle kaun sa hissa fail hoga. Jawaab tha careful judge. Woh 100 mein se 6 messages sambhalta tha, aur har ek mein baaki se zyada time lagta tha. 10 guna load par uske saamne queue lag jaati, aur live chat mein queue ka matlab hai ek delay jo customer mehsoos karta hai.
 
-Har kaam us raaste mein nahi hona chahiye jo customer ke send dabane se reply milne tak jaata hai. Isliye judge ko us raaste se bahar nikal diya gaya. Tez hisse live decide karte the. Unsure messages pehle ki tarah safe side par hide kar diye jaate the aur queue mein daal diye jaate the. Judge apni raftaar se queue nipatata tha, aur verdict aate hi agent ki screen update ho jaati thi. Naya policy document lene wale dheemi kaam ke saath bhi yehi kiya gaya. Upload, processing, indexing aur status report karna alag steps hain, aur inmein se koi bhi customer ko rokna nahi chahiye.
+Har kaam us raaste mein nahi hona chahiye jo customer ke send dabane se reply milne tak jaata hai. Isliye judge ko us raaste se bahar nikal diya gaya. Tez hisse live decide karte the. Unsure messages pehle ki tarah safe side par hide kar diye jaate the aur queue mein daal diye jaate the.
+
+Judge apni raftaar se queue nipatata tha, aur verdict aate hi agent ki screen update ho jaati thi. Naya policy document lene wale dheemi kaam ke saath bhi yehi kiya gaya. Upload, processing, indexing aur status report karna alag steps hain, aur inmein se koi bhi customer ko rokna nahi chahiye.
 
 Kuch failures toh pakke aane the. Unke liye team ne ek table likhi jise Imran reliability matrix kehta tha. Har dependency ke liye usmein likha tha ki agar woh dheemi ho, band ho, ya rate-limited ho jaye toh kya hoga. Neeche uska ek hissa hai.
 
@@ -91,11 +95,15 @@ Aksar ek bade model se zyada kaam ka hota hai ek achha reduced mode. *Graceful d
 
 ## Pehle ek copy par try karna
 
-List ka aakhri ek-tihaai is par tha ki badlaav duniya tak kaise pahunchte hain. Yahan Friday raat wale edit ne team ko sabse zyada sikhaya tha. Unhone ek *staging* system banaya, jo live system ki ek copy hai jahan badlaav pehle try hota hai. Aur ek rule tay kiya. Jo bhi cheez behaviour badal sakti hai, chahe prompt ho, model ka naam, index ya configuration, woh staging mein jaati hai, gate paas karti hai, aur tabhi production tak pahunchti hai.
+List ka aakhri ek-tihaai is par tha ki badlaav duniya tak kaise pahunchte hain. Yahan Friday raat wale edit ne team ko sabse zyada sikhaya tha. Unhone ek *staging* system banaya, jo live system ki ek copy hai jahan badlaav pehle try hota hai.
+
+Aur ek rule tay kiya. Jo bhi cheez behaviour badal sakti hai, chahe prompt ho, model ka naam, index ya configuration, woh staging mein jaati hai, gate paas karti hai, aur tabhi production tak pahunchti hai.
 
 Imran ne rule ko ek chhote game se saabit kiya. Usne jaan-boojhkar ek kharab instruction staging mein bheji aur check kiya ki production nahi hili. Phir usne ek model ka naam badla aur dekha ki gate ne use rok diya.
 
-Response time ka budget ek sheet par gaya. *Latency budget* us time ko baant deta hai jo ek request le sakti hai, un stages mein jinse woh guzarti hai. Yahan total ek second ka teesra hissa hona tha. Jab Anaya ne numbers bhare, toh usne dekha ki jis stage ki use fikr thi, yaani model, woh umeed se kam time le raha tha. Jis stage ka kisi ne zikr hi nahi kiya tha, yaani company ke apne do servers ke beech ka network, woh zyada le raha tha. Imran ne kaha ki delay ka sabse bada hissa aksar us stage mein nahi hota jise log pehle tune karte hain.
+Response time ka budget ek sheet par gaya. *Latency budget* us time ko baant deta hai jo ek request le sakti hai, un stages mein jinse woh guzarti hai. Yahan total ek second ka teesra hissa hona tha. Jab Anaya ne numbers bhare, toh usne dekha ki jis stage ki use fikr thi, yaani model, woh umeed se kam time le raha tha.
+
+Jis stage ka kisi ne zikr hi nahi kiya tha, yaani company ke apne do servers ke beech ka network, woh zyada le raha tha. Imran ne kaha ki delay ka sabse bada hissa aksar us stage mein nahi hota jise log pehle tune karte hain.
 
 ## Wajah likh kar rakhna
 
@@ -116,7 +124,9 @@ Table: Vendors ko kaise score kiya gaya
 | Support |
 | Exit cost: chhodne mein paise, time aur risk mein kya lagega |
 
-Aakhri row woh hai jo zyadatar sheets chhod deti hain. Ek provider quality mein aur data controls mein jeet sakta hai, aur phir bhi use chhodne mein ek saal lag sakta hai. Aisa company ko us se zyada lambe waqt ke liye baandh sakta hai jitna uska business plan chalta hai. Yehi *exit cost* hai. Sheet ke bagal mein Anaya ne woh aadat likhi jo baaki sab se zyada tikne wali thi: ek decision ek hypothesis hai jiski ek keemat hai, isliye pehle se likh dijiye ki aap use kab dobara dekhenge.
+Aakhri row woh hai jo zyadatar sheets chhod deti hain. Ek provider quality mein aur data controls mein jeet sakta hai, aur phir bhi use chhodne mein ek saal lag sakta hai. Aisa company ko us se zyada lambe waqt ke liye baandh sakta hai jitna uska business plan chalta hai.
+
+Yehi *exit cost* hai. Sheet ke bagal mein Anaya ne woh aadat likhi jo baaki sab se zyada tikne wali thi: ek decision ek hypothesis hai jiski ek keemat hai, isliye pehle se likh dijiye ki aap use kab dobara dekhenge.
 
 ## Ek Won't, palta hua
 

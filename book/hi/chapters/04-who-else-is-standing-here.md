@@ -128,7 +128,9 @@ Page ke sabse upar usne woh result likha jo woh chahti thi: chat se kam personal
 
 Har branch ke neeche usne kuch ideas likhe jo madad kar sakte the.
 
-Is tarah ki drawing ko *opportunity tree* kehte hain. Yeh us result se shuru hoti hai jo aap chahte hain, logon ki batayi zaroorton mein branch karti hai, aur possible solutions par khatam hoti hai. Phir Anaya ne branches ko chaar sawaalon par rank kiya. Zaroorat kitne logon ko chhuti hai? Kitna dukhati hai? Saboot kitna mazboot hai? Aur kya woh sabse upar ke result ko hilati hai? Usne dhyaan rakha ki rank saboot ke hisaab se ho, josh ke hisaab se nahi.
+Is tarah ki drawing ko *opportunity tree* kehte hain. Yeh us result se shuru hoti hai jo aap chahte hain, logon ki batayi zaroorton mein branch karti hai, aur possible solutions par khatam hoti hai. Phir Anaya ne branches ko chaar sawaalon par rank kiya.
+
+Zaroorat kitne logon ko chhuti hai? Kitna dukhati hai? Saboot kitna mazboot hai? Aur kya woh sabse upar ke result ko hilati hai? Usne dhyaan rakha ki rank saboot ke hisaab se ho, josh ke hisaab se nahi.
 
 Jo tool woh sabse zyada banana chahti thi, woh nahi jeeta. Greeting jeeta. Uske paas do baatcheeton ka saboot tha, ek free fix tha, aur result par seedha asar tha. Anaya ne hashiye mein likha "is hafte greeting dobara likho", aur usi dopahar Farah ko message kar diya.
 

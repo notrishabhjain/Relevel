@@ -52,7 +52,9 @@ Table: Eleven jobs, and what each must do
 
 Thinking of tools as slots like this gives you a *toolchain*: the set of tools that builds and runs the product. Each slot has a job. For each job the team had picked one tool that quarter, because it did the job well enough and the team knew it. Next year the name in the slot might differ. The slot would still be there.
 
-Tanvi asked why they didn't keep the choice open and use them all. Imran said she would then learn the interfaces and not the jobs. Most projects use five or six of the eleven. The mistake is to treat each box as a subject to master. A box is a place to put a tool. Ask what the job must do and what must never go wrong when it does it. Then choose the tool, and learn the job.
+Tanvi asked why they didn't keep the choice open and use them all. Imran said she would then learn the interfaces and not the jobs. Most projects use five or six of the eleven.
+
+The mistake is to treat each box as a subject to master. A box is a place to put a tool. Ask what the job must do and what must never go wrong when it does it. Then choose the tool, and learn the job.
 
 Anaya, listening from her desk, recognised the lesson she had been given in her first week about requirements: describe the job before you name the tool.
 
@@ -60,7 +62,9 @@ Anaya, listening from her desk, recognised the lesson she had been given in her 
 
 Imran gave Tanvi two habits to carry from job to job. The first came from a mistake of Anaya's.
 
-The month before, Anaya had uploaded Mr. Menon's security questionnaire, forty pages long, to a research assistant that answers only from the documents it is given. It wrote a tidy summary and attached a source to every sentence. She had been rather proud of it. Imran asked her to carry out a *claim audit*. You pick ten claims from the summary, check each one against the page it cites, and mark it supported, partly supported or unsupported.
+The month before, Anaya had uploaded Mr. Menon's security questionnaire, forty pages long, to a research assistant that answers only from the documents it is given. It wrote a tidy summary and attached a source to every sentence.
+
+She had been rather proud of it. Imran asked her to carry out a *claim audit*. You pick ten claims from the summary, check each one against the page it cites, and mark it supported, partly supported or unsupported.
 
 It took forty minutes. Seven claims were supported. Two were partly supported, because the page said something similar but narrower. One was unsupported: the summary said the lender required a particular certificate, and nothing in the document said so.
 
@@ -81,7 +85,9 @@ Table: The secrets-and-data audit
 
 Then Tanvi, who had been quiet, opened the demonstration page in her browser, pressed a key and went very still. In the script on the page she saw a long string that looked like a key. It was the key.
 
-The tool that had turned a description into a screen in January had put the model provider's secret into code that is sent to every visitor. Anyone with a browser could read it. It had also created a database with no rule on who could read what. Imran changed the key within the hour, moved the call behind the server and wrote both findings in the log. Prototypes tend to do this, he said, so check before you share a link.
+The tool that had turned a description into a screen in January had put the model provider's secret into code that is sent to every visitor. Anyone with a browser could read it. It had also created a database with no rule on who could read what.
+
+Imran changed the key within the hour, moved the call behind the server and wrote both findings in the log. Prototypes tend to do this, he said, so check before you share a link.
 
 ## What is around the model
 
@@ -154,7 +160,9 @@ Table: The state machine and the bounded agent on twenty weeks
 
 The trace is also what a reviewer marks to grade an agent's path as well as its answer, the way Anaya had marked the night-queue run, one step to a row. An agent whose steps nobody reads cannot be improved on purpose.
 
-For a fixed process such as a weekly report, Imran said, the machine with fixed steps wins. It is more accurate, faster, and it fails in a place that can be seen. The agent earns its keep when the steps really do vary from case to case. He asked where that would be here. Tanvi suggested looking into why one customer's count suddenly doubled. He agreed, and said to use the agent for that, in a corner, with a short budget.
+For a fixed process such as a weekly report, Imran said, the machine with fixed steps wins. It is more accurate, faster, and it fails in a place that can be seen. The agent earns its keep when the steps really do vary from case to case.
+
+He asked where that would be here. Tanvi suggested looking into why one customer's count suddenly doubled. He agreed, and said to use the agent for that, in a corner, with a short budget.
 
 ## Letting it out
 
@@ -166,7 +174,9 @@ The last part of the task frightened her. A report that goes to customers needs 
 - The change goes first to one account in ten, behind a *feature flag*. That is a switch in the running system that turns a change on for some users and off for others, without a new release.
 - A rollback trigger and the owner of an incident are written down.
 
-A *rollback trigger* is a condition, written beforehand and measurable, that obliges someone to undo the release. Tanvi wrote hers: roll back if the share of reports that a customer marks as useful falls more than ten points below last week, or if any report goes to the wrong recipient. The person who decides was the engineer on call, who needed nobody's permission. The method was to switch the flag, and it would take under five minutes. They tested it once before launch, with a stopwatch.
+A *rollback trigger* is a condition, written beforehand and measurable, that obliges someone to undo the release. Tanvi wrote hers: roll back if the share of reports that a customer marks as useful falls more than ten points below last week, or if any report goes to the wrong recipient.
+
+The person who decides was the engineer on call, who needed nobody's permission. The method was to switch the flag, and it would take under five minutes. They tested it once before launch, with a stopwatch.
 
 They also wrote down how the system should respond to each kind of failure.
 

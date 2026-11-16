@@ -45,7 +45,9 @@ The first link was the one Imran trusted least, and he gave the reason in one se
 Imran had done what Anaya had once been told to do, and had not enjoyed. He took three of the partner documents and placed the extracted text beside what a person saw. The first two were fine. The third was a rate card, a table with four columns of rates by loan amount and term. The parser had read it as a single line of numbers.
 
 ::: watch Every figure survived and no relationship did
-Ask this system what the rate is for a four-year loan of two lakh rupees and it would pick a number from somewhere in the line and state it with perfect confidence. Nothing would have caught it, because every part would have reported success. Imran fixed the parser so that it read tables as tables, and added a check that compared the number of figures in the output with the number on the page. His lesson for every project was that when retrieval is poor, one should ask about the quality of the parser before blaming the maps of meaning.
+Ask this system what the rate is for a four-year loan of two lakh rupees and it would pick a number from somewhere in the line and state it with perfect confidence. Nothing would have caught it, because every part would have reported success.
+
+Imran fixed the parser so that it read tables as tables, and added a check that compared the number of figures in the output with the number on the page. His lesson for every project was that when retrieval is poor, one should ask about the quality of the parser before blaming the maps of meaning.
 :::
 
 ## Is this user allowed to see it?
@@ -54,7 +56,9 @@ This was Lakshmi’s question. A correct answer taken from a document the user m
 
 Imran showed her the change. Every piece of text now carried a label with an identity that did not change. The label named the document, the version, the section, the language, and a date from which it was in force. New that autumn was one more item: who was allowed to see it. That could be partner one, partner two, all customers or staff only.
 
-This is **access control**. The point Imran made twice was about where it lives. It cannot be a sentence in an instruction, such as “only answer from this lender’s documents”. An instruction is a request, and the model may not honour it. It has to be a filter in the application, applied before any search. Then a customer of the first lender cannot reach a piece of the second lender’s text, even by asking for it by name.
+This is **access control**. The point Imran made twice was about where it lives. It cannot be a sentence in an instruction, such as “only answer from this lender’s documents”. An instruction is a request, and the model may not honour it.
+
+It has to be a filter in the application, applied before any search. Then a customer of the first lender cannot reach a piece of the second lender’s text, even by asking for it by name.
 
 He had a test. A customer of partner one asked, first politely and then rudely, for the interest rate that partner two charged. The chatbot said it could not help. He then switched the test user to a role with no access at all and asked about partner one’s rate. The chatbot said nothing was available.
 

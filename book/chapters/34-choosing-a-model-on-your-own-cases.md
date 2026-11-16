@@ -18,7 +18,9 @@ On the fourth Monday of September, the founder, Mr. Bhatia, came into the office
 
 Anaya asked what it had been tested on. Reasoning, mathematics, coding and many other things, he said. She asked whether it had been tested on Hinglish names. He laughed and said he supposed it had not.
 
-That chart is a **leaderboard**. It shows how a model did on someone else’s task. The result can be honest and still tell you nothing about your own task. Think of buying a car because it won an award. The award tells you nothing about whether the car fits your family, copes with your roads or is affordable to run. You would take the car for a drive. Very few teams take a model for a drive.
+That chart is a **leaderboard**. It shows how a model did on someone else’s task. The result can be honest and still tell you nothing about your own task. Think of buying a car because it won an award.
+
+The award tells you nothing about whether the car fits your family, copes with your roads or is affordable to run. You would take the car for a drive. Very few teams take a model for a drive.
 
 ## The case: a tall bar on a chart
 
@@ -40,7 +42,9 @@ Table: What the finder needed
 
 ## Three for a drive
 
-The benchmark was a set of sixty cases that Anaya had built over a weekend. A **benchmark** is a fixed set of cases with the expected answers, used to compare options fairly on the same task. It was not the answer key. It was drawn from it, and built on purpose to be hard in the ways that mattered. There were twenty English messages, twenty in Hinglish and ten in Devanagari. The last ten were the kinds that a naive test would never include: messages with no answer at all, ambiguous messages, and messages with an injected instruction.
+The benchmark was a set of sixty cases that Anaya had built over a weekend. A **benchmark** is a fixed set of cases with the expected answers, used to compare options fairly on the same task. It was not the answer key.
+
+It was drawn from it, and built on purpose to be hard in the ways that mattered. There were twenty English messages, twenty in Hinglish and ten in Devanagari. The last ten were the kinds that a naive test would never include: messages with no answer at all, ambiguous messages, and messages with an injected instruction.
 
 ::: key Challenge the test set before the score
 A benchmark is a measuring instrument, and an instrument built from easy cases produces easy conclusions. A product manager's job is to challenge the test set before challenging the score. Anaya asked whether her benchmark would detect the failure she most feared, and made sure that it would.
@@ -67,7 +71,9 @@ The numbers pointed to a method the team already used. **Routing** sends each re
 
 Anaya tried it on the benchmark. Together, the two found ninety-three in a hundred overall and eighty-nine in a hundred in Hinglish. The typical time was 0.17 seconds, at about four paise a message. It wasn’t as good as Model C. But it was good enough to meet the specification, and it was allowed.
 
-Then she did something Imran had taught her. She turned the decision into a piece of paper. A **model selection card** is a short, versioned page. It records the task, the quality target, the limits on data, speed and cost, the options tried, the evidence and the fallback. A reviewer can then see exactly why a model was chosen. Hers fitted on one page. At the bottom she completed the fallback line: rules-only safe mode, as in the specification.
+Then she did something Imran had taught her. She turned the decision into a piece of paper. A **model selection card** is a short, versioned page. It records the task, the quality target, the limits on data, speed and cost, the options tried, the evidence and the fallback.
+
+A reviewer can then see exactly why a model was chosen. Hers fitted on one page. At the bottom she completed the fallback line: rules-only safe mode, as in the specification.
 
 Imran asked her to cover the table and try to make the decision. She did, and found herself reaching for the model that topped the chart. That was exactly what she had told Mr. Bhatia not to do. Without the numbers, the decision had turned into opinion within thirty seconds. “That is why it is on a card,” said Imran.
 

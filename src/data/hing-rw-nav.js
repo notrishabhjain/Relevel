@@ -11,7 +11,6 @@ Object.assign(window.HING = window.HING || {}, {
   'Home': 'Home',
   'Practice': 'Practice',
   'My progress': 'Meri progress',
-  'Help': 'Madad',
   'More': 'Aur',
   'draft': 'draft',
   'drafts': 'drafts',

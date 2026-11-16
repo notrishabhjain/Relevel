@@ -13,7 +13,9 @@ terms:
   - orphaned chunk | woh chunk jiska document se kaat dene ke baad koi matlab nahi nikalta, kyunki woh kisi aisi cheez ki baat karta hai jo pichhle tukde mein thi | orphaned chunks, orphan chunk
 ---
 
-April ke aakhir mein ek Friday Imran Qureshi ne Anaya se kaha ki guard banane se pehle use yeh jaanna chahiye ki chatbot ko kuch pata kaise chalta hai. Yeh sawaal Anaya ke dimaag mein bus mein hi aa chuka tha. Chatbot ko Sahaj ke late-fee rules kisi ne kabhi sikhaye nahi the. Aur pehle hafte mein usne dekha tha ki jab model ko jawaab nahi pata hota, toh woh gadh deta hai. Phir bhi zyadatar baar chatbot sahi policy hi bata deta tha.
+April ke aakhir mein ek Friday Imran Qureshi ne Anaya se kaha ki guard banane se pehle use yeh jaanna chahiye ki chatbot ko kuch pata kaise chalta hai. Yeh sawaal Anaya ke dimaag mein bus mein hi aa chuka tha.
+
+Chatbot ko Sahaj ke late-fee rules kisi ne kabhi sikhaye nahi the. Aur pehle hafte mein usne dekha tha ki jab model ko jawaab nahi pata hota, toh woh gadh deta hai. Phir bhi zyadatar baar chatbot sahi policy hi bata deta tha.
 
 "Use sahi pages dikhaye jaate hain," Imran ne kaha. "Poori trick yahi hai. Sunne mein yeh jitna lagta hai, dekhne mein usse mushkil hai, aur achhe se karne mein toh kaafi mushkil."
 

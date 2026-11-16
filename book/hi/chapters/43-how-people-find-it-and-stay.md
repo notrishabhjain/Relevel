@@ -21,7 +21,9 @@ terms:
 
 January ke teesre hafte mein paanch developers ek table ke ek taraf, ek line mein baithe the, har ek ke saamne laptop. Har kisi ke chehre par halka sa doshi bhaav tha, un logon jaisa jinhe kisi experiment mein hissa lene ko kaha gaya ho aur jinhe pata nahi ki kya naapa ja raha hai.
 
-Anaya ne unhe kaagaz ka ek hi page diya tha: README, jo developer kit ka pehla instructions wala page hota hai. Uske alawa unke paas kuch nahi tha. Na demo, na call, na madad. Table par ek stopwatch rakha tha. Usne kaha tha: ise ek chhote chat program mein jodiye, ek message saaf kijiye, aur jab ho jaye toh mujhe bataiye. Main madad nahi karungi. Phir woh khidki ke paas peeche haath baandh kar khadi ho gayi, kyunki haathon ko rokne ka yehi ek tareeka tha.
+Anaya ne unhe kaagaz ka ek hi page diya tha: README, jo developer kit ka pehla instructions wala page hota hai. Uske alawa unke paas kuch nahi tha. Na demo, na call, na madad. Table par ek stopwatch rakha tha.
+
+Usne kaha tha: ise ek chhote chat program mein jodiye, ek message saaf kijiye, aur jab ho jaye toh mujhe bataiye. Main madad nahi karungi. Phir woh khidki ke paas peeche haath baandh kar khadi ho gayi, kyunki haathon ko rokne ka yehi ek tareeka tha.
 
 Kit live tha, aur Mr. Menon ki company ne ek trial sign kar liya tha. Ab asli baat yeh thi ki koi aur ise use kar sakta hai ya nahi. Yeh chapter batata hai ki stopwatch ne kya dikhaya, aur isne yeh kya sikhaya ki log product ko kaise dhoondhte hain aur uske saath kaise tikte hain.
 
@@ -42,13 +44,17 @@ Table: Paanch stages aur har ek ke liye guard ka event
 | Referral | Kya woh doosron ko laaye? | Doosri company ka ek colleague share kiye gaye link se demo page kholta hai |
 | Revenue | Kya unhone paisa diya? | Woh trial se ek plan par jaate hain |
 
-Anaya jaanti thi ki yeh tasveer cheezon ko saral banati hai. Yeh ek seedhi line ka ehsaas deti hai, jabki asli log shared links se aate hain aur mahino baad wapas aate hain. Yeh team ko funnel ke upar se cheezein theek karna shuru karne ke liye bhi bulaati hai. Lekin jo stage aam taur par tay karta hai ki product chalta hai ya nahi, woh retention hai, aur funnel use chauthe number par rakhta hai.
+Anaya jaanti thi ki yeh tasveer cheezon ko saral banati hai. Yeh ek seedhi line ka ehsaas deti hai, jabki asli log shared links se aate hain aur mahino baad wapas aate hain.
+
+Yeh team ko funnel ke upar se cheezein theek karna shuru karne ke liye bhi bulaati hai. Lekin jo stage aam taur par tay karta hai ki product chalta hai ya nahi, woh retention hai, aur funnel use chauthe number par rakhta hai.
 
 ## Value ka pehla pal
 
 Us subah Anaya ko jo measure sabse zyada maayne rakhta tha, woh woh tha jo tay karta hai ki koi aage ke stages tak kabhi pahunchega ya nahi. Yeh hai *activation moment*: woh pehli baar jab user ko woh value milti hai jiska product waada karta hai.
 
-Guard ke liye yeh woh pal tha jab developer apna message, jisme Aadhaar number tha, doosri taraf se is tarah nikalta dekhta ki number gayab hai. Us pal se pehle ka sab kuch user ke liye cost hai. Yeh woh mehnat hai jo kuch achha hone se pehle lag rahi hai. Is pal tak pahunchne mein kitna time lagta hai, ise *time-to-value* kehte hain, aur ise us pal se naapte hain jab insaan shuru karta hai.
+Guard ke liye yeh woh pal tha jab developer apna message, jisme Aadhaar number tha, doosri taraf se is tarah nikalta dekhta ki number gayab hai. Us pal se pehle ka sab kuch user ke liye cost hai.
+
+Yeh woh mehnat hai jo kuch achha hone se pehle lag rahi hai. Is pal tak pahunchne mein kitna time lagta hai, ise *time-to-value* kehte hain, aur ise us pal se naapte hain jab insaan shuru karta hai.
 
 Stopwatch ne use times de diye, aur usne unhe aate hi likh liya.
 
@@ -88,7 +94,9 @@ Retention ke liye Anaya ek model ki taraf mudi jo Dr. Meenakshi Rao ne behaviour
 
 Iska rule kaam ka hai. Jab koi behaviour nahi ho raha, toh in teeno ko ulte order mein check kijiye. Prompt ka na hona sabse sasta theek hota hai. Phir ability aati hai. Aakhir mein motivation, jo hilana sabse mushkil hai.
 
-Ek compliance buyer ke liye prompt dekhna aasaan tha. Woh Monday ka ek email tha jisme ek line hoti, jaise "Is hafte guard ne 87,000 messages mein 1,204 details hide kiye. Do ko review ke liye flag kiya gaya." Ise kholne mein koi mehnat nahi lagti, aur yeh buyer ko yaad dilata ki unke paas yeh tool kyun hai. Ek developer ke liye prompt ab tak ka sabse achha README tha, aur ability yeh thi ki karne ko kitna kam bacha tha.
+Ek compliance buyer ke liye prompt dekhna aasaan tha. Woh Monday ka ek email tha jisme ek line hoti, jaise "Is hafte guard ne 87,000 messages mein 1,204 details hide kiye. Do ko review ke liye flag kiya gaya."
+
+Ise kholne mein koi mehnat nahi lagti, aur yeh buyer ko yaad dilata ki unke paas yeh tool kyun hai. Ek developer ke liye prompt ab tak ka sabse achha README tha, aur ability yeh thi ki karne ko kitna kam bacha tha.
 
 Team ne har hafte ke naye users ka retention curve bhi dekha. Jo line girti hai aur phir chapti ho jaati hai, uska matlab kisi ko tikne wala use mil gaya hai. Jo line girkar zero ho jaati hai, uska matlab nahi mila.
 

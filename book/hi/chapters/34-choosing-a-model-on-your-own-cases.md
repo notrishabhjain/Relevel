@@ -18,7 +18,9 @@ September ke chauthe Monday ko founder, Mr. Bhatia, laptop kholkar office aaye. 
 
 Anaya ne poochha ki use kis cheez par test kiya gaya tha. Reasoning, mathematics, coding aur bahut kuch, unhone kaha. Anaya ne poochha, kya Hinglish names par bhi test hua? Woh hans diye aur bole ki shayad nahi hua.
 
-Is chart ko **leaderboard** kehte hain. Yeh dikhata hai ki model ne kisi aur ke kaam par kaisa kiya. Result imaandaar ho sakta hai, aur phir bhi aapke apne kaam ke baare mein kuch nahi batata. Ise aise sochiye ki aap koi gaadi isliye khareed lein kyunki usne award jeeta. Award yeh nahi batata ki gaadi aapke parivaar ke liye theek hai, aapki sadakon par chalegi, ya chalana afford kar sakte hain. Aap gaadi ko chala kar dekhte. Bahut kam teams model ko chala kar dekhti hain.
+Is chart ko **leaderboard** kehte hain. Yeh dikhata hai ki model ne kisi aur ke kaam par kaisa kiya. Result imaandaar ho sakta hai, aur phir bhi aapke apne kaam ke baare mein kuch nahi batata. Ise aise sochiye ki aap koi gaadi isliye khareed lein kyunki usne award jeeta.
+
+Award yeh nahi batata ki gaadi aapke parivaar ke liye theek hai, aapki sadakon par chalegi, ya chalana afford kar sakte hain. Aap gaadi ko chala kar dekhte. Bahut kam teams model ko chala kar dekhti hain.
 
 ## Case: chart ka ek lamba bar
 
@@ -26,7 +28,9 @@ Anaya ne apna sawaal us awaaz mein poochha jiski usne isi pal ke liye practice k
 
 ## Kai farq ek saath
 
-Imran isi sawaal ka intezaar kar raha tha. Model bas behtar ya kharab nahi hota. Models kai tareeke se ek saath alag hote hain: kaam kitna achha karte hain, kitni tez jawaab dete hain, kitna text le sakte hain, functions kitni bharosemand tarah se call karte hain, aur kitne mein padte hain. Jo pehle mein jeete, woh agle teen mein haar sakta hai. Aur sabse zaroori kaun sa hai, yeh use ke baare mein ek fact hai, model ke baare mein nahi.
+Imran isi sawaal ka intezaar kar raha tha. Model bas behtar ya kharab nahi hota. Models kai tareeke se ek saath alag hote hain: kaam kitna achha karte hain, kitni tez jawaab dete hain, kitna text le sakte hain, functions kitni bharosemand tarah se call karte hain, aur kitne mein padte hain.
+
+Jo pehle mein jeete, woh agle teen mein haar sakta hai. Aur sabse zaroori kaun sa hai, yeh use ke baare mein ek fact hai, model ke baare mein nahi.
 
 Isliye kaam yeh tha ki pehle tay karein ki Sahaj ke use ko kya chahiye, aur phir naapein.
 
@@ -40,7 +44,9 @@ Table: Finder ko kya chahiye tha
 
 ## Teen ko chala kar dekhna
 
-Benchmark mein 60 cases the, jo Anaya ne ek weekend mein banaye the. **Benchmark** cases ka ek fixed set hota hai, expected answers ke saath, jisse options ko ek hi kaam par barabari se compare kiya jaata hai. Yeh answer key nahi thi. Yeh us se nikali gayi thi, aur jaanboojh kar un tarah se mushkil banayi gayi thi jo kaam ki thi. Isme bees English messages the, bees Hinglish ke, aur das Devanagari ke. Aakhri das woh the jo koi naive test kabhi shamil nahi karta: aise messages jinka koi jawaab hi nahi, ambiguous messages, aur woh jinme ek injected instruction hai.
+Benchmark mein 60 cases the, jo Anaya ne ek weekend mein banaye the. **Benchmark** cases ka ek fixed set hota hai, expected answers ke saath, jisse options ko ek hi kaam par barabari se compare kiya jaata hai. Yeh answer key nahi thi.
+
+Yeh us se nikali gayi thi, aur jaanboojh kar un tarah se mushkil banayi gayi thi jo kaam ki thi. Isme bees English messages the, bees Hinglish ke, aur das Devanagari ke. Aakhri das woh the jo koi naive test kabhi shamil nahi karta: aise messages jinka koi jawaab hi nahi, ambiguous messages, aur woh jinme ek injected instruction hai.
 
 ::: key Score se pehle test set ko challenge kijiye
 Benchmark ek naapne ka instrument hai, aur aasaan cases se bana instrument aasaan conclusions deta hai. Product manager ka kaam hai ki score ko challenge karne se pehle test set ko challenge kare. Anaya ne poochha ki kya uska benchmark woh failure pakad lega jisse use sabse zyada dar tha, aur pakka kiya ki pakad le.
@@ -67,7 +73,9 @@ Numbers us tareeke ki taraf ishaara kar rahe the jo team pehle se use karti thi.
 
 Anaya ne benchmark par aazmaya. Dono saath mein overall 100 mein 93 aur Hinglish mein 100 mein 89 pakad rahe the. Aam time 0.17 second tha, lagbhag chaar paise ek message par. Yeh Model C jitna achha nahi tha. Lekin specification poori karne ke liye kaafi achha tha, aur iski ijaazat thi.
 
-Phir usne woh kiya jo Imran ne sikhaya tha. Usne faisle ko kaagaz ka ek tukda bana diya. **Model selection card** ek chhota, versioned page hota hai. Usme kaam, quality target, data, speed aur cost ki limits, try kiye gaye options, evidence aur fallback likhe jaate hain. Phir reviewer dekh sakta hai ki model kyun chuna gaya. Uska card ek page mein aa gaya. Neeche usne fallback wali line poori ki: rules-only safe mode, jaise specification mein tha.
+Phir usne woh kiya jo Imran ne sikhaya tha. Usne faisle ko kaagaz ka ek tukda bana diya. **Model selection card** ek chhota, versioned page hota hai. Usme kaam, quality target, data, speed aur cost ki limits, try kiye gaye options, evidence aur fallback likhe jaate hain.
+
+Phir reviewer dekh sakta hai ki model kyun chuna gaya. Uska card ek page mein aa gaya. Neeche usne fallback wali line poori ki: rules-only safe mode, jaise specification mein tha.
 
 Imran ne use table dhakne ko kaha aur faisla karne ko kaha. Usne kiya, aur khud ko us model ki taraf haath badhate paya jo chart mein sabse upar tha. Wahi cheez jo usne Mr. Bhatia se na karne ko kaha tha. Numbers ke bina, tees second ke andar faisla ek raay ban gaya tha. "Isiliye yeh card par hai," Imran ne kaha.
 
@@ -97,7 +105,9 @@ Session history ke liye Anaya us cell par ruki jisme likha tha ki default se kya
 
 ## Yeh kahan se aaya
 
-Aakhri baat ek shaant si thi. Jab guard koi detail chhupata tha, toh woh likh deta tha ki kyun. Har record mein message ka number hota tha, guard ka woh hissa jisne faisla kiya, aur us hisse ka version. Baad mein koi bhi dekh kar faisle ko uske source tak trace kar sakta tha: woh code jisne faisla kiya, aur woh instructions jo us waqt lagu thi. Yeh hai **provenance**, yaani is baat ka record ki koi cheez kahan se aayi.
+Aakhri baat ek shaant si thi. Jab guard koi detail chhupata tha, toh woh likh deta tha ki kyun. Har record mein message ka number hota tha, guard ka woh hissa jisne faisla kiya, aur us hisse ka version.
+
+Baad mein koi bhi dekh kar faisle ko uske source tak trace kar sakta tha: woh code jisne faisla kiya, aur woh instructions jo us waqt lagu thi. Yeh hai **provenance**, yaani is baat ka record ki koi cheez kahan se aayi.
 
 Yeh uski umeed se zyada zaroori nikla. Citation tabhi kaam ka hai jab padhne wala evidence tak pahunch sake. Aur jo faisla reproduce nahi ho sakta, uska bachaav nahi kiya ja sakta. September mein Lakshmi ne poochha ki August ke ek Tuesday ko ek khaas naam kyun chhupaya gaya tha. Anaya ko jawaab chaalis second mein mil gaya. Usne yeh nahi kaha ki pehle kisi ne poochha hi nahi tha.
 

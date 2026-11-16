@@ -106,7 +106,9 @@ Anaya looked at the folder on his screen. It had a README, a list of what was ne
 
 At five o’clock Imran asked what she had learned. She didn’t give him a list of terms. On the back of the diagram, she wrote what she could now do. Read a request, a reply and a status code. Know where a key belongs. Ask what changed, and find out. Read an error from the bottom. Know that a test should fail once. And when someone says “the API failed”, ask in which way.
 
-It was a short list, and it was not nothing. It meant that when an engineer showed her a diagram, she would recognise the parts. At the top of the page she added the sentence Imran had said at the start, because she wanted to keep it. An AI system is a software system with one unpredictable part. Everything that goes wrong in ordinary software can still go wrong. And there is one more failure, the quietest, which produces no error.
+It was a short list, and it was not nothing. It meant that when an engineer showed her a diagram, she would recognise the parts. At the top of the page she added the sentence Imran had said at the start, because she wanted to keep it.
+
+An AI system is a software system with one unpredictable part. Everything that goes wrong in ordinary software can still go wrong. And there is one more failure, the quietest, which produces no error.
 
 ## Summary
 

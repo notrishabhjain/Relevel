@@ -40,7 +40,9 @@ Table: The sorter's results by box
 | Aadhaar | 9 | 1 |
 | None of these | 6 | 4 |
 
-The trouble was in the bottom row. Four of the ten "none of these" slips had been sorted as Aadhaar numbers. They were order numbers, account numbers and reference codes. All of them were twelve digits long, and the sorter had judged by shape and stopped there. A rule would have caught most look-alikes like these. A real Aadhaar number does not start with 0 or 1, and its last digit is a check digit worked out from the other eleven.
+The trouble was in the bottom row. Four of the ten "none of these" slips had been sorted as Aadhaar numbers. They were order numbers, account numbers and reference codes. All of them were twelve digits long, and the sorter had judged by shape and stopped there.
+
+A rule would have caught most look-alikes like these. A real Aadhaar number does not start with 0 or 1, and its last digit is a check digit worked out from the other eleven.
 
 There was one error the other way as well. A real Aadhaar number had been sorted as "none of these", because the customer had put the dash and the space in the wrong places.
 

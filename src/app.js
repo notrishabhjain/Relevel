@@ -784,10 +784,12 @@ function renderChapter(c){
           bk?h('a',{href:(S.lang==='hi'?'/book/hi/':'/book/')+bk.file,text:T('The story')+(bk.n?': '+T('Book')+' '+bk.n:'')+' \u2192'}):null,
           h('a',{href:'/plan/#w'+rs.week,text:T('In the plan')+' \u2192'})]),
         /* why this chapter comes now: what the week builds on, and what it adds */
-        (window.ROUTE.WEEKS[rs.week-1]||{}).why?h('p',{class:'rwhy'},[h('b',{text:T('Why now')+': '}),
-          h('span',{text:T(window.ROUTE.WEEKS[rs.week-1].why)})]):null,
-        (window.ROUTE.WEEKS[rs.week-1]||{}).job?h('p',{class:'rwhy'},[h('b',{text:T('For the job')+': '}),
-          h('span',{text:T(window.ROUTE.WEEKS[rs.week-1].job)})]):null]));
+        ((window.ROUTE.WEEKS[rs.week-1]||{}).why||(window.ROUTE.WEEKS[rs.week-1]||{}).job)?h('details',{class:'rwhyd'},[
+          h('summary',{text:T('Why this comes now, and what it is for')}),
+          (window.ROUTE.WEEKS[rs.week-1]||{}).why?h('p',{class:'rwhy'},[h('b',{text:T('Why now')+': '}),
+            h('span',{text:T(window.ROUTE.WEEKS[rs.week-1].why)})]):null,
+          (window.ROUTE.WEEKS[rs.week-1]||{}).job?h('p',{class:'rwhy'},[h('b',{text:T('For the job')+': '}),
+            h('span',{text:T(window.ROUTE.WEEKS[rs.week-1].job)})]):null]):null]));
     }
   }
 
@@ -1138,7 +1140,7 @@ function renderChapter(c){
   const hasUnits=(c.story||[]).some(b=>Array.isArray(b)&&b[0]==='unit');
   if(!hasUnits) cs.appendChild(masteryControl(c.id,'Read it (1) → tried the exercises (2) → could defend it cold (3)'));
   const doneRow=h('div',{style:'display:flex;gap:.6rem;align-items:center;margin-top:1.2rem;flex-wrap:wrap'});
-  const db=h('button',{class:'primary',onclick:()=>{
+  const db=h('button',{class:'primary',id:'chdone',onclick:()=>{
     S.done[c.id]=!S.done[c.id];
     if(S.done[c.id])S.sittings.push({ch:c.id,at:Date.now()});
     save();updateProgress();renderRail();
@@ -2337,29 +2339,32 @@ function renderRail(){
     return s;};
   const dueN=window.ENG?window.ENG.dueList(S).length:0;
 
-  /* The five you use every day. */
-  r.appendChild(sec('',[
-    ['#/','\u25c9','Home'],
-    ['#/library','\u25a4','The course map'],
-    ['#/project','\u25c8','Your project'],
-    ['#/practice','\u25b6','Practice'],
-    ['#/skills','\u25a6','My progress']]));
+  /* Four short groups, each named for what you are doing. The route and the
+     worksheet are at the top because they say what to do next; the 68-chapter
+     outline is a reference and sits below them. */
+  r.appendChild(sec('Follow the course',[
+    ['#/','\u25c9','Home: today\u2019s step'],
+    ['#/start','\u25b8','Your route: 28 weeks'],
+    [S.lang==='hi'?'/worksheet/hi/':'/worksheet/','\u25a4','Worksheet: the course by topic'],
+    ['#/project','\u25c8','Your project']]));
+
+  r.appendChild(sec('Read',[
+    ...(bookHere()?[[bookBase(),'\u275d','The book: the course as a story']]:[]),
+    ['#/library','\u25a4','The course map: every chapter']]));
 
   /* The course, as an outline: every chapter one click away, with a tick on
      the ones you have finished. */
   r.appendChild(railOutline());
 
-  /* Setup was in the drawer with everything else, on the reasoning that it is
-     optional. It is, but it is also the one thing you cannot start without if
-     you do want the code, and a reader who cannot find it concludes the course
-     expects an environment they were never told how to build. */
-  r.appendChild(sec('Help',[
-    ['#/start','\u25b8','Your route: 28 weeks, one order'],
-    [S.lang==='hi'?'/worksheet/hi/':'/worksheet/','\u25a4','Worksheet: the whole course by topic'],
+  r.appendChild(sec('Try it',[
+    ['#/practice','\u25b6','Practice: questions'],
     ['#/setup','\u2699','Connect a model'],
     ['#/workbench','\u25b7','Workbench: run code here'],
     ['#/playground','\u25cc','Playground: try prompts'],
-    ['#/sheets','\u25a6','Sheets: spreadsheets here'],
+    ['#/sheets','\u25a6','Sheets: spreadsheets here']]));
+
+  r.appendChild(sec('Me',[
+    ['#/skills','\u25a6','My progress'],
     ['#/later','\u25d4','Not yet \u2014 what to ignore for now'],
     ['#/install','\u25a2','Install on iPad or phone']]));
 
@@ -2394,7 +2399,6 @@ function renderRail(){
       ['#/evidence','\u25a4','Artifact vault']]);
     group('Look things up',[
       ['#/glossary','\u220e','Glossary of every term'],
-      ...(bookHere()?[[bookBase(),'\u275d','The book: the course as a story']]:[]),
       ['#/appendix','\u2261','Worksheet, question bank, sources']]);
     group('Settings',[
       ['#/language','\u0905','Language: English or Hinglish'],
@@ -2405,6 +2409,7 @@ function renderRail(){
 }
 
 function updateProgress(){
+  try{renderNextBar();}catch(e){}
   const m=window.ENG?window.ENG.overall(S):0;
   const tested=window.ENG?window.SKILLS.filter(s=>window.ENG.skillState(S,s.id).n>0).length:0;
   const b=$('.brand .bar i'),p=$('.brand .pct');
@@ -3012,6 +3017,7 @@ function route(){
     if(el){el.scrollIntoView({block:'start'});return;}}
   window.scrollTo(0,0);
   $('#rail').classList.remove('open');
+  try{renderNextBar();}catch(e){}
 }
 
 /* ---------------- pictures on the other pages ----------------
@@ -3221,6 +3227,43 @@ function hingCoverage(){
     have:o.strings.filter(k=>H[k]!==undefined).length}));
   const have=groups.reduce((a,o)=>a+o.have,0), total=groups.reduce((a,o)=>a+o.total,0);
   return {groups,have,total,pct:total?Math.round(have*100/total):0};
+}
+
+/* ---------------- the next-step bar ----------------
+   One thing to do next, on every page, so you never have to hunt for it.
+   It names the next step on the route and carries one button that changes with
+   where you are: on that chapter's own page the button takes you to "Mark
+   chapter complete"; anywhere else it opens the step. It follows progress, so
+   the moment a step is ticked the bar moves on. */
+function renderNextBar(){
+  const R=window.ROUTE; let bar=$('#nextbar');
+  if(!R||!window.ENG){ if(bar) bar.hidden=true; return; }
+  S.steps=S.steps||{}; S.read=S.read||{};
+  const nx=R.nextStep(S), hi=S.lang==='hi';
+  if(!bar){
+    bar=h('div',{class:'nextbar',id:'nextbar',role:'region','aria-label':T('Your next step')});
+    document.body.appendChild(bar);
+  }
+  bar.innerHTML='';
+  document.body.classList.toggle('hasnext',!!nx);
+  if(!nx){ bar.hidden=true; return; }
+  bar.hidden=false;
+  const title=nx.kind==='chapter'?nx.num+'. '+T(nx.title):(hi&&nx.titleHi?nx.titleHi:T(nx.title));
+  const kind={chapter:T('Chapter'),read:T('Book'),try:T('Try'),look:T('Look back')}[nx.kind]||'';
+  const here=location.hash.replace(/^#\/?/,'').split('#')[0];
+  const onIt=nx.kind==='chapter'&&here==='ch/'+nx.ch;
+  bar.appendChild(h('div',{class:'nbtext'},[
+    h('span',{class:'nblbl',text:T('Your next step')+' · '+T('Week')+' '+nx.week}),
+    h('span',{class:'nbtitle',text:title}),
+    h('span',{class:'nbmeta',text:kind+(nx.mins?' · ~'+nx.mins+' '+T('min'):'')})]));
+  if(onIt){
+    bar.appendChild(h('button',{class:'primary nbgo',onclick:()=>{
+      const d=$('#chdone'); if(d){ d.scrollIntoView({block:'center',behavior:'smooth'}); d.focus({preventScroll:true}); }
+    }},T('Finished? Mark it complete')+' ↓'));
+  } else {
+    bar.appendChild(h('a',{class:'primary nbgo',href:R.stepHref(nx,hi).replace(/^\/app\/(#\/)/,'$1')},
+      T(nx.kind==='read'?'Read it':nx.kind==='chapter'?'Do it':'Open it')+' →'));
+  }
 }
 
 /* ---------------- boot ---------------- */

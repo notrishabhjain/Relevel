@@ -32,7 +32,9 @@ Is tareeke mein teen ideas hain. Pehla yeh hai ki test karne se pehle jawaab lik
 
 Aap kisi system se sawaal poochh kar aur yeh dekh kar usse judge nahi kar sakte ki jawaab sahi lagte hain ya nahi. Woh sahi lagenge. Machine wahi toh banati hai, plausible text. Isliye kaam asli sawaalon ki list se shuru hota hai, aur har ek ke verified sahi jawaab se. Yeh wahi answer key hai jo Anaya pehle hi bana chuki thi, jo test se pehle likhi gayi, baad mein nahi.
 
-Farah ne chatbot ki search ke liye 10 sawaal likhe, un words mein jo uske customers use karte hain. Usne unhe policy document kholne se pehle likha. Jo sawaal document padhne ke baad likha jaata hai, woh document ke hi words use karne lagta hai, aur isse search asal se zyada achhi dikhti hai. Uske sawaalon mein "Paisa kab milega", "Double charge hua hai" aur "Mera loan reject kyun hua" the. Uske baad hi usne aur Imran ne pages dekhe aur har sawaal ke liye mark kiya ki jawaab kis page par hai.
+Farah ne chatbot ki search ke liye 10 sawaal likhe, un words mein jo uske customers use karte hain. Usne unhe policy document kholne se pehle likha. Jo sawaal document padhne ke baad likha jaata hai, woh document ke hi words use karne lagta hai, aur isse search asal se zyada achhi dikhti hai.
+
+Uske sawaalon mein "Paisa kab milega", "Double charge hua hai" aur "Mera loan reject kyun hua" the. Uske baad hi usne aur Imran ne pages dekhe aur har sawaal ke liye mark kiya ki jawaab kis page par hai.
 
 Unhone test chalaya. 10 mein se 6 sawaalon ne pehli koshish mein sahi page dhoondh liya. Imran ne ise ek aise system ka bilkul normal pehla result kaha jo kaam karta hai. Usne jodd diya ki agar yeh 9 ya 10 hota, toh woh jaanna chahta ki kisi ne cheating toh nahi ki.
 

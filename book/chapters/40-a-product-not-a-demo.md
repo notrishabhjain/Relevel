@@ -28,7 +28,9 @@ The sections that follow cover three things. They list what the guard still lack
 
 ## Why not just a rule?
 
-The discussion began with a question Anaya had been told to ask at the very start: why is this not ordinary software? The safe mode gave the answer. That rules-only version, built for emergencies, found about ninety-six in a hundred fixed-shape numbers with no model at all. She had kept that figure in front of her all year as a baseline, the thing every other part had to beat. It was good to be able to say by how much.
+The discussion began with a question Anaya had been told to ask at the very start: why is this not ordinary software? The safe mode gave the answer. That rules-only version, built for emergencies, found about ninety-six in a hundred fixed-shape numbers with no model at all.
+
+She had kept that figure in front of her all year as a baseline, the thing every other part had to beat. It was good to be able to say by how much.
 
 What the model added was names, addresses, Hinglish, and the sentences that point to someone without saying who. Without those, the guard was only a rule. She wrote the difference, with figures, on the first page of the product requirements: what the model bought, and what it cost.
 
@@ -74,7 +76,9 @@ Festival week would be the real test. Farah's records showed that in the week of
 
 At ten times the volume, the question was which part would fail first. The answer was the careful judge. It handled six in a hundred messages, and each one took longer than the rest. At ten times the load, it would have a queue, and a queue in a live chat is a delay the customer feels.
 
-Not every job belongs in the path between a customer pressing send and getting a reply. So the judge was moved out of that path. The quick parts decided live. The unsure messages were hidden to be safe, as before, and put on a queue. The judge worked through the queue at its own pace, and the agent's screen was updated when a verdict came. The slow job of taking in a new policy document got the same treatment. Uploading, processing, indexing and reporting status are separate steps, and none of them should hold up a customer.
+Not every job belongs in the path between a customer pressing send and getting a reply. So the judge was moved out of that path. The quick parts decided live. The unsure messages were hidden to be safe, as before, and put on a queue.
+
+The judge worked through the queue at its own pace, and the agent's screen was updated when a verdict came. The slow job of taking in a new policy document got the same treatment. Uploading, processing, indexing and reporting status are separate steps, and none of them should hold up a customer.
 
 Some failures were certain to come. For those, the team wrote a table that Imran called the reliability matrix. For each dependency, it said what would happen if that dependency was slow, down or rate-limited. Here is part of it.
 
@@ -91,11 +95,15 @@ A graceful reduced mode is often worth more than a bigger model. *Graceful degra
 
 ## Trying it on a copy
 
-The last third of the list was about how changes reach the world. This was where the Friday-night edit had taught the team the most. They set up a *staging* system, which is a copy of the live one where a change is tried first. And they agreed a rule. Anything that can change behaviour, whether a prompt, a model name, an index or a configuration, goes to staging, passes the gate, and only then reaches production.
+The last third of the list was about how changes reach the world. This was where the Friday-night edit had taught the team the most. They set up a *staging* system, which is a copy of the live one where a change is tried first.
+
+And they agreed a rule. Anything that can change behaviour, whether a prompt, a model name, an index or a configuration, goes to staging, passes the gate, and only then reaches production.
 
 Imran proved the rule with a small game. He deliberately pushed a bad instruction to staging and checked that production did not move. Then he changed a model name and watched the gate stop it.
 
-The budget for response time went onto a sheet. A *latency budget* divides the time a request may take among the stages it passes through. Here the total had to come to a third of a second. When Anaya filled in the numbers, she found that the stage she had worried about, the model, used less than she expected. A stage nobody had mentioned, the network between two of the company's own servers, used more. The biggest share of the delay, Imran said, is rarely in the stage people tune first.
+The budget for response time went onto a sheet. A *latency budget* divides the time a request may take among the stages it passes through. Here the total had to come to a third of a second.
+
+When Anaya filled in the numbers, she found that the stage she had worried about, the model, used less than she expected. A stage nobody had mentioned, the network between two of the company's own servers, used more. The biggest share of the delay, Imran said, is rarely in the stage people tune first.
 
 ## Writing down the reasons
 

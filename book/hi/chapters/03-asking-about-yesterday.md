@@ -43,7 +43,9 @@ Kitaab ne teen rules diye the. Anaya ne unhe ek index card par utaar liya.
 Unki zindagi ke baare mein baat kijiye, apne idea ke baare mein nahi. Beete hue kal ki khaas baatein poochhiye, yeh nahi ki woh aage kya kar sakte hain. Kam boliye aur zyada suniye.
 :::
 
-Achhe aur kharab sawaal mein farq aksar tense ka hota hai. Future ke sawaal ("kya aap ise use karenge?", "aap kitna dene ko taiyaar hain?") se aapko sirf shishtaachaar bhari kahani milti hai. Beete kal ke sawaal ("mujhe us aakhri baar ke baare mein bataiye jab...") se pata chalta hai ki sach mein kya hua. Aur kahani mein aksar woh baatein nikalti hain jo bolne wale ko khud nahi pata thi ki woh bolne wala hai.
+Achhe aur kharab sawaal mein farq aksar tense ka hota hai. Future ke sawaal ("kya aap ise use karenge?", "aap kitna dene ko taiyaar hain?") se aapko sirf shishtaachaar bhari kahani milti hai.
+
+Beete kal ke sawaal ("mujhe us aakhri baar ke baare mein bataiye jab...") se pata chalta hai ki sach mein kya hua. Aur kahani mein aksar woh baatein nikalti hain jo bolne wale ko khud nahi pata thi ki woh bolne wala hai.
 
 Dekhiye Anaya ne apne sawaal kaise badle.
 
@@ -126,7 +128,9 @@ Hafte ke ant tak Anaya ke paas aise notes the jin par use bharosa tha. Ab usne w
 
 Support team ka uska description chhe line ka tha. Har line ke ant mein un baatcheeton ke numbers the jinse woh juda tha, jaise "Agents ke paas kya karna hai uska koi rule nahi (1, 5)".
 
-Aise description ko *persona* kehte hain. Yeh ek tarah ke user ka chhota sa account hai, aur woh tabhi kaam ka hai jab uski har line kisi baatcheet tak jaaye. Baatcheeton se pehle likha persona research ke kapde pehna hua andaaza hai. AI assistant ka likha persona toh aur kharab hai, kyunki woh ek banaye hue naam aur pasandeeda rang ke saath aata hai. Anaya ka rule tha ki jis line ka reference nahi, use mita do.
+Aise description ko *persona* kehte hain. Yeh ek tarah ke user ka chhota sa account hai, aur woh tabhi kaam ka hai jab uski har line kisi baatcheet tak jaaye. Baatcheeton se pehle likha persona research ke kapde pehna hua andaaza hai.
+
+AI assistant ka likha persona toh aur kharab hai, kyunki woh ek banaye hue naam aur pasandeeda rang ke saath aata hai. Anaya ka rule tha ki jis line ka reference nahi, use mita do.
 
 Phir usne *problem statement* likha. Woh batata hai ki problem kiski hai, kya hai, aur aaj unhe uski kya keemat padti hai. Ise do sentences mein samaane mein usse teen koshishein lagi.
 

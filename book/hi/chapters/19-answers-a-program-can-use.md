@@ -13,13 +13,19 @@ terms:
   - validation | jawaab aane ke baad use rules se check karna, jaise kya zaroori field maujood hai, ya kya quote kiya hua phrase sach mein message mein hai | validate, validated
 ---
 
-Teen hafte tak team ne jitne bhi jawaab dekhe, sab paragraph the, aur woh chal gaya kyunki padhne wala insaan tha. Phir Imran Qureshi ne finder ko rule-keeper se jod diya. Rule-keeper aam code ki kuch sau lines hai, aur woh bilkul pehli reply par fail ho gaya. Reply yeh thi: "I found the following personal details in this message. The customer's name appears to be Amit Sharma. There is also a PAN, which looks like ABCDE1234F. I would also consider the bank name, HDFC, to be potentially sensitive."
+Teen hafte tak team ne jitne bhi jawaab dekhe, sab paragraph the, aur woh chal gaya kyunki padhne wala insaan tha. Phir Imran Qureshi ne finder ko rule-keeper se jod diya. Rule-keeper aam code ki kuch sau lines hai, aur woh bilkul pehli reply par fail ho gaya.
 
-Imran bola ki paragraph bahut pyaara hai. Lekin uske code ko jaanna hai ki PAN hai ya nahi, woh kahan shuru aur kahan khatam hota hai, aur uska kya karna hai. "Appears to be" code ko samajh nahi aata. Is chapter mein aap dekhenge ki program ko model se asal mein kya chahiye. Phir pehla aisa fix, jo problem ko sirf chhota nahi karta, balki hata deta hai. Aur yeh bhi ki aise fix ke baad bhi jawaab kaise galat reh sakta hai.
+Reply yeh thi: "I found the following personal details in this message. The customer's name appears to be Amit Sharma. There is also a PAN, which looks like ABCDE1234F. I would also consider the bank name, HDFC, to be potentially sensitive."
+
+Imran bola ki paragraph bahut pyaara hai. Lekin uske code ko jaanna hai ki PAN hai ya nahi, woh kahan shuru aur kahan khatam hota hai, aur uska kya karna hai. "Appears to be" code ko samajh nahi aata.
+
+Is chapter mein aap dekhenge ki program ko model se asal mein kya chahiye. Phir pehla aisa fix, jo problem ko sirf chhota nahi karta, balki hata deta hai. Aur yeh bhi ki aise fix ke baad bhi jawaab kaise galat reh sakta hai.
 
 ## Case: ek paragraph jo program padh nahi sakta
 
-Pehle ek jaani-pehchani cheez se shuru karte hain. Bank mein form bharte waqt har box ka ek naam hota hai, aur zaroori boxes aap khaali nahi chhod sakte. Program ko model se yahi chahiye. Jab model ka output kisi doosre system ko jaata hai, jaise us system ko jo tay karta hai ki kya chhupana hai, toh program ko fields chahiye: ek kind, ek value, ek position aur ek decision. Har field ka ek naam aur ek type hota hai, aur woh har baar maujood hona chahiye.
+Pehle ek jaani-pehchani cheez se shuru karte hain. Bank mein form bharte waqt har box ka ek naam hota hai, aur zaroori boxes aap khaali nahi chhod sakte. Program ko model se yahi chahiye.
+
+Jab model ka output kisi doosre system ko jaata hai, jaise us system ko jo tay karta hai ki kya chhupana hai, toh program ko fields chahiye: ek kind, ek value, ek position aur ek decision. Har field ka ek naam aur ek type hota hai, aur woh har baar maujood hona chahiye.
 
 Paragraph chahe kitna bhi achha likha ho, usme inme se kuch nahi hota. Insaan usme se PAN dhoondh leta hai. Program nahi dhoondh sakta.
 
@@ -95,7 +101,9 @@ Imran ko phir bhi poora bharosa nahi tha. Har provider ka model likhte waqt sche
 
 Rules seedhe sawaal hain. Kya har zaroori field maujood hai? Kya kind allowed list mein se hai? Kya har quotation message mein milti hai? Agar kuch bhi fail ho, toh system ek baar error bata kar dobara poochhta hai. Agar woh bhi fail ho, toh message kisi insaan ko de diya jaata hai. Imran ne ise tar ke neeche ka jaal kaha, aur bola ki use umeed hai ki yeh jaal kabhi kuch nahi pakdega.
 
-Anaya ne answer key mein ek column joda, jiska heading tha "quote kaisa hona chahiye". Saath mein ek nayi row jodi, us message ke liye jisme address jaisa phrase quotation marks ke andar tha. Maan lijiye ek customer kisi aur baat ke sentence mein likhta hai ki building "Sector 15" ke paas hai. Jo tool ise pakadega, use tay karna padega ki ab kya karna hai. Ek mahine pehle yeh edge case Anaya ke dhyaan mein bhi nahi aata.
+Anaya ne answer key mein ek column joda, jiska heading tha "quote kaisa hona chahiye". Saath mein ek nayi row jodi, us message ke liye jisme address jaisa phrase quotation marks ke andar tha.
+
+Maan lijiye ek customer kisi aur baat ke sentence mein likhta hai ki building "Sector 15" ke paas hai. Jo tool ise pakadega, use tay karna padega ki ab kya karna hai. Ek mahine pehle yeh edge case Anaya ke dhyaan mein bhi nahi aata.
 
 Phir usne naam diya ki design ab bhi kya nahi pakad sakta: ek aisi quote jo sach mein message mein hai, sahi shape mein hai, lekin bilkul personal nahi hai, jaise order number. Form yeh nahi jaan sakta. Imran ne kaha ki answer key isi kaam ke liye hai.
 

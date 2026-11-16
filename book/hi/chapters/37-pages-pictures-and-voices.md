@@ -30,7 +30,9 @@ Anaya ne bola hua number pehchaan liya. Usne June mein use answer key mein ek al
 
 Imran ne ek cheez se shuru kiya. Railway timetable ki photo kheenchiye, usne kaha, aur use phone par kisi dost ko padh kar sunaiye. Sirf words, order mein. Dost har station sunta hai, har time sunta hai, phir bhi use nahi pata ki train kab chhootti hai. Matlab columns mein tha, aur padhne wala seedha unke upar se guzar gaya.
 
-Yeh kisi bhi **multimodal** cheez ka pehla sabak hai. Is shabd ka matlab hai woh system jo sirf plain text se zyada leta hai: pages, tasveerein, tables aur speech. PDF text file nahi hai. Woh ek page hai, jisme layout hai, columns, headings, images, aur woh jaankari jo aap jo dekhte hain uske peeche chhupi hai. Agar aap sirf words nikaalte hain, toh bina awaaz kiye aap zyadatar structure hata dete hain. Isliye aise kaam ke liye bane system ko badalna padta hai ki woh evidence kise kehta hai, aur use wapas kaise trace karta hai.
+Yeh kisi bhi **multimodal** cheez ka pehla sabak hai. Is shabd ka matlab hai woh system jo sirf plain text se zyada leta hai: pages, tasveerein, tables aur speech. PDF text file nahi hai. Woh ek page hai, jisme layout hai, columns, headings, images, aur woh jaankari jo aap jo dekhte hain uske peeche chhupi hai.
+
+Agar aap sirf words nikaalte hain, toh bina awaaz kiye aap zyadatar structure hata dete hain. Isliye aise kaam ke liye bane system ko badalna padta hai ki woh evidence kise kehta hai, aur use wapas kaise trace karta hai.
 
 Team iska pehla aadha hissa garmiyon mein kar chuki thi, passbook ki photograph aur uski flatten hui table ke saath. Naya kaam do hisson mein tha. Pehle, guard ko woh kaabil banana ki tasveer mein jo mile, us par action le sake. Phir use sunna sikhana.
 
@@ -38,10 +40,14 @@ Team iska pehla aadha hissa garmiyon mein kar chuki thi, passbook ki photograph 
 
 Tasveer aasaan kaam thi, aur Anaya ko ussi se zyada dar tha. Rule text ki ek line mein characters chhupa sakta hai. Photograph mein unhe kaise chhupayein, yeh saaf nahi tha.
 
-Jawaab tha do kaam alag karna. Ek capable model ko image dikhayi jaati hai aur poochha jaata hai ki personal details kahan hain. Woh positions se jawaab deta hai, har number ke aas-paas ek box. Phir ordinary code, model nahi, un boxes par rang chadha deta hai. Model dhoondhta hai, aur program mitata hai. Isliye guard ko samjha kar number dikhta chhodne par razi nahi kiya ja sakta, kyunki mitana uske judgement par tika hi nahi.
+Jawaab tha do kaam alag karna. Ek capable model ko image dikhayi jaati hai aur poochha jaata hai ki personal details kahan hain. Woh positions se jawaab deta hai, har number ke aas-paas ek box.
+
+Phir ordinary code, model nahi, un boxes par rang chadha deta hai. Model dhoondhta hai, aur program mitata hai. Isliye guard ko samjha kar number dikhta chhodne par razi nahi kiya ja sakta, kyunki mitana uske judgement par tika hi nahi.
 
 ::: key Visual claims ka evidence tasveer tak trace hona chahiye
-Vision bhi baaki sab ki tarah probabilistic hai. Blurry card, number par glare, ya kone par haath, inme se koi bhi use miss karwa sakta hai. Har box ke liye record mein image, region aur sawaal dikhte the, aur shuruaati hafton mein ek insaan har result check karta tha. Anaya ne specification mein ek rule joda: agar card ki photograph blurred hai ya aadhi dhaki hui hai, toh andaaza mat lagao; poori image chhupa do aur saaf image maango.
+Vision bhi baaki sab ki tarah probabilistic hai. Blurry card, number par glare, ya kone par haath, inme se koi bhi use miss karwa sakta hai. Har box ke liye record mein image, region aur sawaal dikhte the, aur shuruaati hafton mein ek insaan har result check karta tha.
+
+Anaya ne specification mein ek rule joda: agar card ki photograph blurred hai ya aadhi dhaki hui hai, toh andaaza mat lagao; poori image chhupa do aur saaf image maango.
 :::
 
 ## Awaaz

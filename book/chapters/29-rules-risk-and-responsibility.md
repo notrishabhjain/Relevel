@@ -53,7 +53,9 @@ She explained that the **DPDP Act** is the Digital Personal Data Protection Act 
 Finding and hiding personal details does help. It lets an organisation collect and pass on less. But it is one technical piece. It is not compliance, and no tool is.
 
 ::: watch Never say "compliant"
-In every document written about the guard, it is described as a privacy tool that helps an organisation collect and share less personal data. It is never described as making anyone compliant, whether Sahaj, a customer or anyone else. Lakshmi said that if a salesman ever wrote that sentence about the guard, she would find out. Anaya put the rule on the first line of a page, and later in the specification, the system card and the front of a website that did not yet exist.
+In every document written about the guard, it is described as a privacy tool that helps an organisation collect and share less personal data. It is never described as making anyone compliant, whether Sahaj, a customer or anyone else.
+
+Lakshmi said that if a salesman ever wrote that sentence about the guard, she would find out. Anaya put the rule on the first line of a page, and later in the specification, the system card and the front of a website that did not yet exist.
 :::
 
 ## One page
@@ -106,7 +108,9 @@ Lakshmi had two more matters, and she took them briskly.
 
 The first was **human oversight**. Everyone writes “a human reviews every output”, and Anaya had written it in the first draft of the PRD. Lakshmi asked how long one reviewer would last with four thousand outputs a day. In her experience, about two weeks. After that the reviewer starts approving without reading. The document still claims that a human checks everything, when really nobody does. That is worse than not making the claim.
 
-Oversight that works is targeted. It sends a person the outputs that are uncertain, or that would do the most harm, or where what was found does not match what was answered. It shows the reviewer the evidence as well as the answer. And it lets the reviewer reject, not just watch. A person who can see and refuse is human oversight. A person who watches things go by is decoration. For the guard, this meant the unsure cases, a few in a hundred, with the sentence and the proposed action side by side and two buttons.
+Oversight that works is targeted. It sends a person the outputs that are uncertain, or that would do the most harm, or where what was found does not match what was answered. It shows the reviewer the evidence as well as the answer. And it lets the reviewer reject, not just watch.
+
+A person who can see and refuse is human oversight. A person who watches things go by is decoration. For the guard, this meant the unsure cases, a few in a hundred, with the sentence and the proposed action side by side and two buttons.
 
 The second matter was something Lakshmi had seen in every company she had worked in. Staff use consumer AI tools on their own, usually by pasting in internal documents. They do it because the tools are useful and nothing the company provides is as good. This is **shadow AI**. Banning it rarely works, because a ban changes the policy and not the behaviour.
 

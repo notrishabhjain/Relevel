@@ -71,7 +71,9 @@ Anaya asked whether she could pay her bill with a credit card on Diwali. The wor
 Card six was about credit-card interest on late payments. It had nothing to do with Diwali, or with whether paying by card was allowed.
 
 ::: watch A search that never says "nothing here"
-Keyword search scores every document and sorts them, so it always returns something. The top card is simply the least bad of a bad set. The chatbot takes that card and treats it as evidence. The search never reports that it found nothing, and the model that reads the result can't tell the difference. It writes a fluent answer from the least relevant card, in the voice of someone who has read the right one. No step reports an error.
+Keyword search scores every document and sorts them, so it always returns something. The top card is simply the least bad of a bad set. The chatbot takes that card and treats it as evidence.
+
+The search never reports that it found nothing, and the model that reads the result can't tell the difference. It writes a fluent answer from the least relevant card, in the voice of someone who has read the right one. No step reports an error.
 :::
 
 Anaya put the cards back in their numbered order. The team would need a way to measure this, she said. Imran agreed. He added that she should first see what fixes the other half of the problem.

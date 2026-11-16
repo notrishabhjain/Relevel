@@ -39,7 +39,9 @@ Imran ran the message ten times. In seven runs, the model found the name and the
 
 Farah asked why it happened. The team had told the model what to do, in writing, at the top. Imran answered that there is no top.
 
-The model receives one long piece of text. Part of it is the team’s instruction, and part is the customer’s message. To the model, these are words in a single sequence. No separate channel marks one set as orders and the other as material to read. So the model can’t reliably tell them apart. When the material contains something that reads like an instruction, the model may follow it, especially if it is written with confidence.
+The model receives one long piece of text. Part of it is the team’s instruction, and part is the customer’s message. To the model, these are words in a single sequence.
+
+No separate channel marks one set as orders and the other as material to read. So the model can’t reliably tell them apart. When the material contains something that reads like an instruction, the model may follow it, especially if it is written with confidence.
 
 ::: def Prompt injection
 Text inside material a system is asked to read that gives the model instructions, which the model may follow because it can’t reliably tell the system’s instructions from words it was asked to read.

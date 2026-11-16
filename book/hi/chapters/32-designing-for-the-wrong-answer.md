@@ -39,7 +39,9 @@ Farah ne phir poochha ki dasve ke baare mein kya kahe. Anaya ka jawaab yeh tha. 
 
 Ek screen se Anaya bachti aa rahi thi, aur usne ek Tuesday use design karne mein lagaya. Har system tab achha dikhta hai jab woh kaam kar raha ho. Bharosa us screen par banta hai jo kehti hai "main nahi kar sakta", aur bahut se products use sabse aakhir mein design karte hain, ya kabhi nahi.
 
-Guard ke liye, **refusal** un lamhon ko cover karta hai jab woh yeh kaam safely nahi kar sakta. Maan lijiye ek customer free chat mein Aadhaar card ki photograph attach karta hai. Guard abhi tasveer ke andar ka number kaala nahi kar sakta. Imaandaar design yeh tha ki dikhawa na kiya jaaye. Chat teeno languages mein kahegi, Farah ke likhe aur Lakshmi ke approve kiye words mein: please yahan identity cards share mat kijiye; secure upload use kijiye, ya kisi insaan se baat karne ke liye yeh button dabaiye.
+Guard ke liye, **refusal** un lamhon ko cover karta hai jab woh yeh kaam safely nahi kar sakta. Maan lijiye ek customer free chat mein Aadhaar card ki photograph attach karta hai. Guard abhi tasveer ke andar ka number kaala nahi kar sakta.
+
+Imaandaar design yeh tha ki dikhawa na kiya jaaye. Chat teeno languages mein kahegi, Farah ke likhe aur Lakshmi ke approve kiye words mein: please yahan identity cards share mat kijiye; secure upload use kijiye, ya kisi insaan se baat karne ke liye yeh button dabaiye.
 
 ::: key Jo refusal insaan tak le jaaye, woh bharosa kamata hai
 Jo refusal kisi insaan tak ka raasta deta hai, woh us system se zyada bharosa kamata hai jo hamesha kuch na kuch bana deta hai. Kyunki users system ko is se bhi judge karte hain ki woh kya mana karta hai. Jo feature kabhi mana nahi karta, woh unhe sikhata hai ki uske confidence ka koi matlab nahi.
@@ -51,7 +53,9 @@ Aakhri screen tab ki thi jab machine band ho. Anaya safe mode pehle hi bana chuk
 
 Mahine ke ant tak screens taiyaar thi, aur Lakshmi ne pilot maanga. Use launch nahi chahiye tha. Use test chahiye tha, aur woh chahti thi ki Anaya pehle hi bata de ki use kya nirash karega.
 
-Ab tak team ne jo kuch naapa tha, woh system ke baare mein tha. Kya finder sahi tha? Kya judge par bharosa kiya ja sakta tha? Kya sorter har box mein kaam karta tha? In mein se kisi ne us sawaal ka jawaab nahi diya jo tay karta hai ki agli quarter ka paisa milega ya nahi: kya feature se business ko madad mili? Ek system 94 percent accurate ho sakta hai aur phir bhi kuch nahi badalta. Ho sakta hai koi use hi na kare. Ya jis step ko woh tez karta hai, woh kabhi slow hissa tha hi nahi.
+Ab tak team ne jo kuch naapa tha, woh system ke baare mein tha. Kya finder sahi tha? Kya judge par bharosa kiya ja sakta tha? Kya sorter har box mein kaam karta tha? In mein se kisi ne us sawaal ka jawaab nahi diya jo tay karta hai ki agli quarter ka paisa milega ya nahi: kya feature se business ko madad mili?
+
+Ek system 94 percent accurate ho sakta hai aur phir bhi kuch nahi badalta. Ho sakta hai koi use hi na kare. Ya jis step ko woh tez karta hai, woh kabhi slow hissa tha hi nahi.
 
 Isliye pehla kaam slow hissa dhoondhna tha. Anaya aur Farah ne support office mein ek hafte ka kaam time kiya, bina kuch badle. Agents ne identity numbers par lagbhag koi time nahi lagaya. Na padha, na copy kiya, na parwaah ki.
 
@@ -88,11 +92,15 @@ Table: Jab kaam karta hai par number nahi hilta, tab teen sawaal
 
 Doosre sawaal mein use gyarah minute lage. Usne Imran se poochha ki sweep apne paanch sau chats kahan se leta hai. Imran ne bhaunhein sikodi, ek diagram kholi aur chup ho gaya.
 
-Raat ka job raw table se copy karta tha, jo guard se pehle se maujood tha. Guard un messages ko saaf karta tha jo agents dekhte the, aur aage bheji jaane wali history ko. Lekin sweep jo logs padhta tha, woh original messages se bane the, jo guard ke chalne se pehle likhe gaye the. Us table ko kisi ne chhua nahi tha. Guard har cheez ko bacha raha tha, siwaye us ek jagah ke jahan Lakshmi dekhti thi.
+Raat ka job raw table se copy karta tha, jo guard se pehle se maujood tha. Guard un messages ko saaf karta tha jo agents dekhte the, aur aage bheji jaane wali history ko.
+
+Lekin sweep jo logs padhta tha, woh original messages se bane the, jo guard ke chalne se pehle likhe gaye the. Us table ko kisi ne chhua nahi tha. Guard har cheez ko bacha raha tha, siwaye us ek jagah ke jahan Lakshmi dekhti thi.
 
 "Store karne se pehle saaf karo," Anaya ne kaha. "Yeh maine April mein likha tha." Imran ne kaha, tumne yeh history ke liye likha tha, aur maine ise log par lagaya nahi.
 
-Guard ko raw table ke aage le jaane mein use do din lage. Teesre hafte mein Pune ka sweep count paanch sau mein nau par aa gaya, jabki Nashik ka bayaalis par raha. Yeh dekhne ke baad Anaya corridor mein bahut der khadi rahi. Uske paas ek number tha, aur woh hila tha. Woh isliye hila kyunki usne ek aisa test likha tha jo fail ho sakta tha, aur jab woh fail hua toh usne use maanne par zid ki.
+Guard ko raw table ke aage le jaane mein use do din lage. Teesre hafte mein Pune ka sweep count paanch sau mein nau par aa gaya, jabki Nashik ka bayaalis par raha. Yeh dekhne ke baad Anaya corridor mein bahut der khadi rahi.
+
+Uske paas ek number tha, aur woh hila tha. Woh isliye hila kyunki usne ek aisa test likha tha jo fail ho sakta tha, aur jab woh fail hua toh usne use maanne par zid ki.
 
 ::: key Ab aap kya keh sakte hain
 Har N apne project se bhariye.

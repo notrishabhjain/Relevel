@@ -32,7 +32,9 @@ Reply mein ek doosra jawaab bhi tha, jise Lakshmi ne teen baar padha. Standard p
 
 ## Aap asal mein kya khareed rahe hain
 
-Imran shaant raha. Usne kaha, vendor theek hai, bas sabko pata ho ki paise kis cheez ke hain. Aap model shayad hi khareedte hain, kyunki zyadatar vendors wahi models use karte hain. Aap connectors khareedte hain, permissions, kisne kya kiya uska record, ek support contract, aur ek insaan jo raat ke do baje utha jab kuch toot jaaye. Yeh aakhri cheez aksar licence se zyada keemti hoti hai. Aur aksar hisaab se bahar rakh di jaati hai.
+Imran shaant raha. Usne kaha, vendor theek hai, bas sabko pata ho ki paise kis cheez ke hain. Aap model shayad hi khareedte hain, kyunki zyadatar vendors wahi models use karte hain.
+
+Aap connectors khareedte hain, permissions, kisne kya kiya uska record, ek support contract, aur ek insaan jo raat ke do baje utha jab kuch toot jaaye. Yeh aakhri cheez aksar licence se zyada keemti hoti hai. Aur aksar hisaab se bahar rakh di jaati hai.
 
 Usne board par chaar sawaal likhe. Uske tajurbe mein, faisla inhi se hota hai.
 
@@ -98,7 +100,9 @@ Table: Failure ki chaar kismein aur unke ilaaj
 
 Friday ko Mr. Bhatia ko uska jawaab yeh tha ki fine-tuning behaviour sikhati hai, facts nahi. Agar shikayat yeh hoti ki model Sahaj ki policy nahi jaanta, toh fine-tuning galat tool hota. Lekin Sahaj ki shikayatein behaviours ki thi. Aur team ne abhi sasta ilaaj try hi nahi kiya tha. Pehle do cheezein ghanton mein undo ho sakte the.
 
-Usne woh costs bhi gini jo proposals chhod dete hain. Kisi ko examples banane padenge aur unhe current rakhna padega. Pehle ek test set chahiye, warna koi nahi bata sakta ki tuning se madad mili ya nahi, aur woh test set kabhi bhi un examples jaisa nahi hona chahiye jin se model ne seekha. Har baar base model retire hone par tuning dobara karni padegi. Aur sudhar ek hi provider ke system ke andar rehta hai, instructions aur index mein nahi. Yeh bhi lock-in ka ek roop hai.
+Usne woh costs bhi gini jo proposals chhod dete hain. Kisi ko examples banane padenge aur unhe current rakhna padega. Pehle ek test set chahiye, warna koi nahi bata sakta ki tuning se madad mili ya nahi, aur woh test set kabhi bhi un examples jaisa nahi hona chahiye jin se model ne seekha.
+
+Har baar base model retire hone par tuning dobara karni padegi. Aur sudhar ek hi provider ke system ke andar rehta hai, instructions aur index mein nahi. Yeh bhi lock-in ka ek roop hai.
 
 Mr. Bhatia ne poochha, kya jawaab na hai? Anaya ne kaha, "abhi nahi", aur order bataya: pehle instructions, phir evidence, phir ek chhota model, phir fine-tuning. Agar "ji" wale naam pehle teen ke baad bhi fail hote rahe, toh team model ko sikhayegi. Aur use pata chal jaayega, kyunki uske paas key hai.
 

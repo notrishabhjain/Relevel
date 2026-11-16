@@ -13,7 +13,9 @@ terms:
   - pinned version | model ka woh version jise aapne naam se tay kar diya hai, taaki provider aapko bataye bina use aapke neeche se badal na sake | 
 ---
 
-Ek raat ke do bajkar das minute par ek email aaya. Imran Qureshi ne use "Read this" subject ke saath forward kiya tha. Email us bahari company ka tha jo chatbot ke jawaab likhti thi. Bank ki chitthi jaise lahje mein likha tha ki jo model abhi use ho raha hai, woh tees din mein retire ho jaayega. Uske baad us par bheji gayi requests fail hongi. Company ne salah di thi ki uske naye model par chale jaayein, jo behtar capability deta hai.
+Ek raat ke do bajkar das minute par ek email aaya. Imran Qureshi ne use "Read this" subject ke saath forward kiya tha. Email us bahari company ka tha jo chatbot ke jawaab likhti thi.
+
+Bank ki chitthi jaise lahje mein likha tha ki jo model abhi use ho raha hai, woh tees din mein retire ho jaayega. Uske baad us par bheji gayi requests fail hongi. Company ne salah di thi ki uske naye model par chale jaayein, jo behtar capability deta hai.
 
 Anaya ne use letkar padha, phone ko haath bhar door pakad kar. Usne andar se ek thanda sa hisaab mehsoos kiya. Waisa hi jaisa tab lagta jab koi bole ki aap jis seedhi se roz upar-neeche jaate ho, woh ek tay tarikh ko hata di jaayegi. Bees minute baad woh uthi, chai banayi aur specification kholi. Use lag raha tha ki ab iska imtihaan hone wala hai.
 
@@ -56,7 +58,9 @@ Table ke neeche, alag type mein, usne woh line likhi jo zyadatar specifications 
 
 ## Wapas jaane se alag
 
-Is line par use umeed se zyada sochna pada, aur Imran ne madad ki. Usne pehle change ko undo karne ka aam tareeka samjhaya. **Rollback** purane code par wapas le jaata hai. Yeh ek nayi deployment hai, isliye time lagta hai. Aur yeh tab kaam nahi aata jab dono versions mein ek jaisi kharabi ho. Aisa tab hota hai jab provider model ko hi unke neeche se badal deta hai, kyunki naye model par purana code utna hi galat hai.
+Is line par use umeed se zyada sochna pada, aur Imran ne madad ki. Usne pehle change ko undo karne ka aam tareeka samjhaya. **Rollback** purane code par wapas le jaata hai. Yeh ek nayi deployment hai, isliye time lagta hai.
+
+Aur yeh tab kaam nahi aata jab dono versions mein ek jaisi kharabi ho. Aisa tab hota hai jab provider model ko hi unke neeche se badal deta hai, kyunki naye model par purana code utna hi galat hai.
 
 Aise mein kuch tez aur seedha chahiye. Configuration file mein ek flag, jo traffic ko turant ek saade raaste par bhej de jo machine use hi nahi karta. Yeh hai **kill switch**.
 
@@ -66,7 +70,9 @@ Woh tabhi chalta hai jab saada raasta abhi bhi maujood ho aur kisi ne haal hi me
 
 Anaya ne poochha ki switch traffic ko kahan bhejega. Chatbot ke liye jawaab use pata tha: Farah ki team haath se jawaab degi. Lekin guard alag tha. Agar guard poori tarah band ho jaaye, toh kuch bhi chhupaya nahi jaayega, aur yeh sabse bura nateeja hai. Isliye Imran is nateeje par pahuncha ki kill switch guard ko band nahi kar sakta. Woh models ko band karta hai.
 
-Safe mode sirf pattern checker chalayega, jo saade rules hain aur drift nahi kar sakte. Usme ek jaanboojh kar rukhi rule judegi: nau ya usse zyada digits ki koi bhi run chhupa do, chahe woh kuch bhi ho. Yeh har naam aur pate ko miss karegi. Answer key par yeh fixed shape wale numbers mein se lagbhag 100 mein 96 pakad legi. Isse bahut false alarms aayenge, aur ise use karna kisi ko achha nahi lagega.
+Safe mode sirf pattern checker chalayega, jo saade rules hain aur drift nahi kar sakte. Usme ek jaanboojh kar rukhi rule judegi: nau ya usse zyada digits ki koi bhi run chhupa do, chahe woh kuch bhi ho.
+
+Yeh har naam aur pate ko miss karegi. Answer key par yeh fixed shape wale numbers mein se lagbhag 100 mein 96 pakad legi. Isse bahut false alarms aayenge, aur ise use karna kisi ko achha nahi lagega.
 
 Lekin woh wahan hoga. Provider kuch bhi kare, use chhu nahi sakta, aur jisne code kabhi dekha bhi nahi, woh bhi use raat ke teen baje on kar sakta hai. Anaya ne use specification mein numbers ke saath likha: sirf rules, fixed-shape numbers mein lagbhag 100 mein 96, naam ya pate nahi, bahut false alarms, har hafte test. "Har hafte" par usne line kheench di.
 
@@ -93,9 +99,13 @@ Unhe problem ek dopahar mein, ek key ki madad se mil gayi, September mein kisi c
 
 Specification mein ek cheez aur thi, jo Farah ki thi. Uske agents ke paas har chat par ek button tha, jis par likha tha "guard ne woh chhupa diya jo mujhe chahiye tha". Ab tak usse ek click ke siva kuch nahi bacha tha.
 
-Imran ne kaha, akela thumbs-down lagbhag bekaar hota hai. Aap use reproduce nahi kar sakte. Aur woh galat jawaab aur aise sahi jawaab mein farq nahi bata sakta jo user ko bas pasand nahi aaya. Lekin jo thumbs-down poore record ke saath aaye ki kya hua, woh ek taiyaar test case hai. Record mein message, guard ne kya paya, usne kya decide kiya, aur har cheez ke kaun se versions chal rahe the, yeh sab hota hai. Dono buttons ke beech ka farq lagbhag do din ki engineering tha.
+Imran ne kaha, akela thumbs-down lagbhag bekaar hota hai. Aap use reproduce nahi kar sakte. Aur woh galat jawaab aur aise sahi jawaab mein farq nahi bata sakta jo user ko bas pasand nahi aaya. Lekin jo thumbs-down poore record ke saath aaye ki kya hua, woh ek taiyaar test case hai.
 
-Haan kehne se pehle Anaya ko ek dikkat dikhi. Record mein message hoga. Agar guard us message par fail hua tha, toh record mein wahi cheez hogi jise chhupana guard ka kaam tha. Isliye Imran is nateeje par pahuncha ki record saaf karke store karna hoga. System chhupaya hua version aur positions save karta hai. Raw version sirf aisi jagah rakhta hai jahan bahut kam log pahunch sakte hain, thodi der ke liye, aur ek note ke saath ki kisne dekha.
+Record mein message, guard ne kya paya, usne kya decide kiya, aur har cheez ke kaun se versions chal rahe the, yeh sab hota hai. Dono buttons ke beech ka farq lagbhag do din ki engineering tha.
+
+Haan kehne se pehle Anaya ko ek dikkat dikhi. Record mein message hoga. Agar guard us message par fail hua tha, toh record mein wahi cheez hogi jise chhupana guard ka kaam tha. Isliye Imran is nateeje par pahuncha ki record saaf karke store karna hoga.
+
+System chhupaya hua version aur positions save karta hai. Raw version sirf aisi jagah rakhta hai jahan bahut kam log pahunch sakte hain, thodi der ke liye, aur ek note ke saath ki kisne dekha.
 
 ::: watch Debugging ka saadhan wahi problem dobara bana sakta hai
 Jo debugging aid secrets store karta hai, woh usi problem ko dobara bana deta hai jise suljhane ke liye woh bana hai. Record ko uske saaf kiye hue roop mein hi store karna hoga.
