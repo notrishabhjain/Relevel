@@ -1450,3 +1450,21 @@ ul.reclist audio{height:2rem;max-width:100%}
 .fx{--fx-accent:var(--verified);--fx-accent2:var(--amber)}
 .pagevis{margin:0 0 1.6rem}
 .chfig{max-width:var(--measure,66ch)}
+
+/* ---------- the next-step bar: always on screen ---------- */
+.nextbar{position:fixed;left:var(--rail);right:0;bottom:0;z-index:30;display:flex;align-items:center;gap:.9rem;
+  padding:.6rem 1.4rem calc(.6rem + env(safe-area-inset-bottom));background:var(--raised);
+  border-top:2px solid var(--verified);box-shadow:0 -6px 18px -12px #0005}
+.nextbar[hidden]{display:none}
+.nbtext{display:flex;flex-direction:column;min-width:0;flex:1;line-height:1.25}
+.nblbl{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--verified)}
+.nbtitle{font-weight:600;font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nbmeta{font-size:.74rem;color:var(--muted)}
+.nbgo{flex:none;text-decoration:none;white-space:nowrap}
+a.nbgo{display:inline-block;padding:.55rem 1.05rem;border-radius:var(--r);font-size:.9rem}
+body.hasnext .main{padding-bottom:7rem}
+@media (max-width:900px){.nextbar{left:0;padding:.5rem 1rem calc(.5rem + env(safe-area-inset-bottom))}}
+@media (max-width:480px){.nbmeta{display:none}.nbgo{font-size:.85rem;padding:.5rem .8rem}}
+@media print{.nextbar{display:none!important}}
+.nextbar a.primary{background:var(--ink);color:var(--paper);border:1px solid var(--ink)}
+.nextbar a.primary:hover{opacity:.9}
