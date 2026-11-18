@@ -87,6 +87,17 @@ The build rasterises the mark to real PNGs, because iOS ignores an SVG in
 On iOS an installed app gets its own storage, so you sign in once inside it — progress
 lives on the account, not in the browser.
 
+There are four apps, each with its own icon, scope and `Install app` button: the
+playbook (`/app/`), the book (`/book/`), the plan (`/plan/`) and the worksheet
+(`/worksheet/`, English and Hinglish). No scope contains another, so a phone keeps all
+four side by side, and they share one progress record. The installed worksheet opens at
+`/worksheet/?source=pwa`; if you read in Hinglish it carries on in Hinglish.
+
+Signing in from the worksheet: its header shows **Sign in with GitHub** (or who you are
+signed in as). GitHub will not load inside a frame, so a sign-in link inside the
+worksheet's reading panel signs in with the whole window and comes back to the
+worksheet.
+
 ## Curriculum
 
 | Part | Chapters | Subject |

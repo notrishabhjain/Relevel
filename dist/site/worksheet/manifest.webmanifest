@@ -1,0 +1,39 @@
+{
+  "id": "/worksheet/",
+  "name": "AI From Zero: worksheet",
+  "short_name": "AFZ Worksheet",
+  "description": "The whole course by topic: your next step, your notes and shared progress, in English and Hinglish.",
+  "start_url": "/worksheet/?source=pwa",
+  "scope": "/worksheet/",
+  "display": "standalone",
+  "orientation": "any",
+  "related_applications": [
+    {
+      "platform": "webapp",
+      "url": "https://relevel-ai.vercel.app/worksheet/manifest.webmanifest"
+    }
+  ],
+  "prefer_related_applications": false,
+  "background_color": "#ECEEEA",
+  "theme_color": "#ECEEEA",
+  "icons": [
+    {
+      "src": "/worksheet/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/worksheet/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/worksheet/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

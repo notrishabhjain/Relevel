@@ -10,33 +10,34 @@
 (function () {
   if (window.__aifzInstall) return; window.__aifzInstall = 1;
   var hi = document.body && document.body.getAttribute('data-lang') === 'hi';
-  var app = /^\/plan\//.test(location.pathname) ? 'plan' : 'book';
+  var app = /^\/plan\//.test(location.pathname) ? 'plan' : /^\/worksheet\//.test(location.pathname) ? 'worksheet' : 'book';
+  var NAME = { book: 'AFZ Book', plan: 'AI PM Plan', worksheet: 'AFZ Worksheet' }[app];
   var L = hi ? {
-    btn: 'App banaiye', title: app === 'book' ? 'Kitaab ko app ki tarah rakhiye' : 'Plan ko app ki tarah rakhiye',
+    btn: 'App banaiye', title: { book: 'Kitaab ko app ki tarah rakhiye', plan: 'Plan ko app ki tarah rakhiye', worksheet: 'Worksheet ko app ki tarah rakhiye' }[app],
     why: 'Yeh home screen par apne icon ke saath khulta hai, bina address bar ke, aur padhe hue page bina internet ke bhi khulte hain.',
     ios: ['Ise <b>Safari</b> mein kholiye.', '<b>Share</b> button dabaiye (upar teer wala chaukor).', '<b>Add to Home Screen</b> chuniye, phir <b>Add</b>.'],
     and: ['Ise <b>Chrome</b> mein kholiye.', '<b>⋮</b> menu kholiye.', '<b>Install app</b> (ya <b>Add to Home screen</b>) chuniye.'],
     desk: ['<b>Chrome</b> ya <b>Edge</b> mein address bar ke daayein install icon dabaiye, ya menu mein <b>Install</b> chuniye.'],
     sync: 'iPhone par installed app ka storage alag hota hai: app ke andar ek baar sign in kar lijiye, taaki ticks har jagah ek jaise rahein.',
     close: 'Band kijiye', done: 'Yeh app installed hai.',
-    have: 'Installed ✓', haveTitle: app === 'book' ? 'Kitaab ka app pehle se installed hai' : 'Plan ka app pehle se installed hai',
+    have: 'Installed ✓', haveTitle: { book: 'Kitaab ka app pehle se installed hai', plan: 'Plan ka app pehle se installed hai', worksheet: 'Worksheet ka app pehle se installed hai' }[app],
     haveWhy: 'Aap abhi browser mein hain. App kholne ke liye:',
-    haveSteps: ['Home screen ya app list mein <b>' + (app === 'book' ? 'AFZ Book' : 'AI PM Plan') + '</b> dhoondhiye aur use tap kijiye.', 'Ya Chrome ke <b>⋮</b> menu mein <b>Open in app</b> chuniye.'],
+    haveSteps: ['Home screen ya app list mein <b>' + NAME + '</b> dhoondhiye aur use tap kijiye.', 'Ya Chrome ke <b>⋮</b> menu mein <b>Open in app</b> chuniye.'],
     lost: 'App list mein nahi dikh raha? Phone ki Settings → Apps → Chrome → Other permissions mein <b>Home screen shortcuts</b> allow kijiye, phir Chrome ke menu se dobara install kijiye.',
-    old: 'Chrome phir bhi “This app is already installed” bole, aur phone par sirf <b>AI From Zero</b> ka app ho? To woh 27 October se pehle ka install hai, jo poori site ko apna maanta tha, kitaab aur plan samet. Use ek baar hataiye (icon ko der tak dabaiye → App info → Uninstall), yeh page reload kijiye aur yahin se install kijiye. Phir AI From Zero ko bhi uske apne page se dobara install kar lijiye. Teenon app ek hi progress dikhate hain.'
+    old: 'Chrome phir bhi “This app is already installed” bole, aur phone par sirf <b>AI From Zero</b> ka app ho? To woh 27 October se pehle ka install hai, jo poori site ko apna maanta tha, kitaab aur plan samet. Use ek baar hataiye (icon ko der tak dabaiye → App info → Uninstall), yeh page reload kijiye aur yahin se install kijiye. Phir AI From Zero ko bhi uske apne page se dobara install kar lijiye. Chaaron app ek hi progress dikhate hain.'
   } : {
-    btn: 'Install app', title: app === 'book' ? 'Keep the book as an app' : 'Keep the plan as an app',
+    btn: 'Install app', title: { book: 'Keep the book as an app', plan: 'Keep the plan as an app', worksheet: 'Keep the worksheet as an app' }[app],
     why: 'It opens from its own icon on your home screen, without the address bar, and pages you have read open without internet.',
     ios: ['Open this page in <b>Safari</b>.', 'Tap <b>Share</b> (the square with an arrow).', 'Choose <b>Add to Home Screen</b>, then <b>Add</b>.'],
     and: ['Open this page in <b>Chrome</b>.', 'Open the <b>⋮</b> menu.', 'Choose <b>Install app</b> (or <b>Add to Home screen</b>).'],
     desk: ['In <b>Chrome</b> or <b>Edge</b>, use the install icon at the right of the address bar, or choose <b>Install</b> in the menu.'],
     sync: 'On an iPhone an installed app keeps its own storage: sign in once inside the app so your ticks stay the same everywhere.',
     close: 'Close', done: 'This is installed as an app.',
-    have: 'Installed ✓', haveTitle: app === 'book' ? 'The book app is already installed' : 'The plan app is already installed',
+    have: 'Installed ✓', haveTitle: { book: 'The book app is already installed', plan: 'The plan app is already installed', worksheet: 'The worksheet app is already installed' }[app],
     haveWhy: 'You are reading it in the browser right now. To open the app:',
-    haveSteps: ['Find <b>' + (app === 'book' ? 'AFZ Book' : 'AI PM Plan') + '</b> on your home screen or in the app list, and tap it.', 'Or choose <b>Open in app</b> in Chrome’s <b>⋮</b> menu.'],
+    haveSteps: ['Find <b>' + NAME + '</b> on your home screen or in the app list, and tap it.', 'Or choose <b>Open in app</b> in Chrome’s <b>⋮</b> menu.'],
     lost: 'Not in the app list? In the phone’s Settings → Apps → Chrome → Other permissions, allow <b>Home screen shortcuts</b>, then install again from Chrome’s menu.',
-    old: 'Chrome still says “This app is already installed”, and the only app on your phone is <b>AI From Zero</b>? That is an install from before 27 October, which claimed the whole site, the book and the plan included. Remove it once (long-press its icon → App info → Uninstall), reload this page and install from here. Then install AI From Zero again from its own page. All three apps show the same progress.'
+    old: 'Chrome still says “This app is already installed”, and the only app on your phone is <b>AI From Zero</b>? That is an install from before 27 October, which claimed the whole site, the book and the plan included. Remove it once (long-press its icon → App info → Uninstall), reload this page and install from here. Then install AI From Zero again from its own page. All four apps show the same progress.'
   };
 
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(function () {});

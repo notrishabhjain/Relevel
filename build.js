@@ -255,6 +255,13 @@ const PLAN_ICON = design('#1F6F5C', [
   ...[29, 35, 41].flatMap((y, ri) => [18, 28, 38].map((x, ci) => [x, y, 8, 4,
     ri * 3 + ci < 4 ? '#4FB89A' : ri * 3 + ci === 4 ? '#B33A2B' : '#C9CDC5']))
 ]);
+/* the worksheet: a sheet of paper with a ticked list, on a blue-grey ground */
+const WORKSHEET_ICON = design('#2F5D8A', [
+  [16, 12, 32, 42, '#F6F7F4'],
+  [20, 19, 5, 5, '#4FB89A'], [28, 20, 16, 3, '#14181C'],
+  [20, 29, 5, 5, '#4FB89A'], [28, 30, 16, 3, '#14181C'],
+  [20, 39, 5, 5, '#C9CDC5'], [28, 40, 16, 3, '#C9CDC5']
+]);
 function png(size, maskable, d) {
   const px = iconPixels(size, maskable, d);
   const raw = Buffer.alloc((size * 4 + 1) * size);
@@ -528,13 +535,14 @@ const builtWs = buildWorksheet(R, p.join(R, 'dist/site/worksheet'), defaults);
 const SITE_ORIGIN = (process.env.SITE_ORIGIN
   || (process.env.VERCEL_PROJECT_PRODUCTION_URL && 'https://' + process.env.VERCEL_PROJECT_PRODUCTION_URL)
   || 'https://relevel-ai.vercel.app').replace(/\/+$/, '');
-/* ---- the book and the plan as installable apps ----
+/* ---- the book, the plan and the worksheet as installable apps ----
    Each has its own manifest, scope and icon, so a phone can keep them as
    three separate apps next to the playbook. They share the site's one
    service worker (scope "/"), which keeps pages for reading offline. */
 for (const [dir, name, short, desc, bg, theme, d] of [
   ['book', 'AI From Zero: the book', 'AFZ Book', 'The reading edition: the course told as one story, in English and Hinglish.', '#F7F2E8', '#F7F2E8', BOOK_ICON],
-  ['plan', 'Applied AI PM plan', 'AI PM Plan', 'The 28-week route, week by week, with shared progress.', '#ECEEEA', '#ECEEEA', PLAN_ICON]
+  ['plan', 'Applied AI PM plan', 'AI PM Plan', 'The 28-week route, week by week, with shared progress.', '#ECEEEA', '#ECEEEA', PLAN_ICON],
+  ['worksheet', 'AI From Zero: worksheet', 'AFZ Worksheet', 'The whole course by topic: your next step, your notes and shared progress, in English and Hinglish.', '#ECEEEA', '#ECEEEA', WORKSHEET_ICON]
 ]) {
   outBin(`dist/site/${dir}/icon-180.png`, png(180, false, d));
   outBin(`dist/site/${dir}/icon-192.png`, png(192, false, d));
@@ -542,7 +550,7 @@ for (const [dir, name, short, desc, bg, theme, d] of [
   outBin(`dist/site/${dir}/icon-maskable-512.png`, png(512, true, d));
   out(`dist/site/${dir}/manifest.webmanifest`, JSON.stringify({
     id: `/${dir}/`, name, short_name: short, description: desc,
-    start_url: `/${dir}/`, scope: `/${dir}/`, display: 'standalone', orientation: 'any',
+    start_url: dir === 'worksheet' ? `/${dir}/?source=pwa` : `/${dir}/`, scope: `/${dir}/`, display: 'standalone', orientation: 'any',
     /* naming itself lets a browser tab ask "is this app already installed?"
        (navigator.getInstalledRelatedApps), so the page can say so instead of
        offering to install it again */
