@@ -40915,7 +40915,7 @@ function accountPanel(){
         'Open the site on any device, sign in, and it is simply there — no files, no tokens, no copying.'}));
     if(configured){
       box.appendChild(h('div',{style:'display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin-top:1rem'},[
-        h('a',{class:'btnlink',href:R.loginUrl()},'Sign in with GitHub'),
+        h('a',{class:'btnlink',href:R.loginUrl(),target:window.self!==window.top?'_top':null},'Sign in with GitHub'),
         h('span',{class:'dim',style:'font-size:.82rem',
           text:'Reads your username only. No repository access.'})]));
     } else {

@@ -274,6 +274,8 @@ function render(M, lang) {
   <a class="nav" href="${bookBase}">${L.book} &rarr;</a>
   <a class="nav" href="${base}plan/">${L.plan} &rarr;</a>
   <a class="nav" href="${L.otherHref}" hreflang="${hi ? 'en' : 'hi'}">${L.other}</a>
+  <a class="nav acct" id="ws-acct" href="${base}api/auth/login?next=${hi ? '/worksheet/hi/' : '/worksheet/'}" hidden>${esc(L.signIn)}</a>
+  <button type="button" class="nav inst" data-install hidden></button>
   <button id="theme" type="button" aria-label="Switch colour theme">&#9680;</button>
 </header>
 <main>
@@ -315,6 +317,10 @@ header.bar{position:sticky;top:0;z-index:5;background:var(--raised);border-botto
 header.bar .brand{font-weight:600;color:var(--ink);text-decoration:none;margin-right:auto}
 header.bar a.nav{color:var(--ink-2);text-decoration:none;padding:.3rem .1rem}
 header.bar a.nav:hover{color:var(--ink)}
+button.nav.inst{font:inherit;background:none;border:1px solid var(--rule);border-radius:999px;padding:.15rem .7rem;cursor:pointer;color:var(--ink)}
+button.nav.inst.ready{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+header.bar a.nav.acct{border:1px solid var(--rule);border-radius:999px;padding:.15rem .7rem;color:var(--ink)}
+header.bar a.nav.acct.on{border-color:var(--good);color:var(--good)}
 button{font:inherit;font-size:.9rem;background:var(--raised);border:1px solid var(--rule);color:var(--ink);border-radius:4px;padding:.4rem .75rem;cursor:pointer}
 button:hover{border-color:var(--accent)}
 button.quiet{background:none;color:var(--ink-2)}
@@ -464,6 +470,11 @@ function page(lang, body, steps, M, jobs) {
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="${base}icon.svg" type="image/svg+xml">
 <link rel="alternate" hreflang="${hi ? 'en' : 'hi'}" href="${L.otherHref}">
+<link rel="manifest" href="/worksheet/manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="/worksheet/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AFZ Worksheet">
 <meta name="theme-color" content="#ECEEEA" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#121517" media="(prefers-color-scheme: dark)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -477,6 +488,7 @@ ${body}
 <script>window.WS_STEPS=${JSON.stringify(steps).replace(/</g, '\\u003c')};window.WS_JOBS=${JSON.stringify(jobs).replace(/</g, '\\u003c')};window.WS_UI=${JSON.stringify(L).replace(/</g, '\\u003c')};window.WS_TOPICS=${JSON.stringify(M.topics.map(t => [t.id, hi ? t.hi : t.title])).replace(/</g, '\\u003c')};</script>
 <script src="${base}figs.js"></script>
 <script src="${base}progress.js"></script>
+<script src="/install.js" defer></script>
 <script>
 ${CLIENT}
 </script>

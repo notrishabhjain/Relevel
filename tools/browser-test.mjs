@@ -1173,7 +1173,7 @@ console.log('\n— the book’s cover on a phone: the menu, the buttons, an app 
   await ctx.close();
 }
 
-console.log('\n— the book and the plan install as apps, and read offline —');
+console.log('\n— the app, the book, the plan and the worksheet install as apps, and read offline —');
 {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'aifz-pwa-'));
   const pc = await chromium.launchPersistentContext(dir, fs.existsSync(HERE) ? { executablePath: HERE } : {});
@@ -1181,7 +1181,7 @@ console.log('\n— the book and the plan install as apps, and read offline —')
   const pg = pc.pages()[0] || await pc.newPage();
   const cdp = await pc.newCDPSession(pg);
   const apps = {};
-  for (const [u, want] of [['/app/', '/app/'], ['/book/', '/book/'], ['/book/hi/', '/book/'], ['/plan/', '/plan/']]) {
+  for (const [u, want] of [['/app/', '/app/'], ['/book/', '/book/'], ['/book/hi/', '/book/'], ['/plan/', '/plan/'], ['/worksheet/', '/worksheet/'], ['/worksheet/hi/', '/worksheet/']]) {
     await pg.goto(B + u); await pg.waitForTimeout(1200); await pg.reload(); await pg.waitForTimeout(600);
     const m = await cdp.send('Page.getAppManifest');
     const man = JSON.parse(m.data || '{}');
@@ -1196,10 +1196,16 @@ console.log('\n— the book and the plan install as apps, and read offline —')
      inner one ("This app is already installed"). */
   const scopes = Object.values(apps).map(a => a.sc);
   ok(scopes.every(a => scopes.every(b => a === b || !b.startsWith(a))) && !scopes.includes('/'),
-     'no app’s scope contains another’s, so all three install side by side', JSON.stringify(scopes));
-  ok(new Set(Object.values(apps).map(a => a.id)).size === 3 && apps['/app/'].id === '/',
-     'three different app ids, and the playbook keeps the id it had at the site root', JSON.stringify(apps));
+     'no app’s scope contains another’s, so all four install side by side', JSON.stringify(scopes));
+  ok(new Set(Object.values(apps).map(a => a.id)).size === 4 && apps['/app/'].id === '/',
+     'four different app ids, and the playbook keeps the id it had at the site root', JSON.stringify(apps));
   ok(await pg.evaluate(() => !!navigator.serviceWorker.controller), 'the site’s service worker looks after the plan and the book');
+  /* the installed worksheet opens without internet once it has been opened */
+  await pg.goto(B + '/worksheet/'); await pg.waitForTimeout(1200); await pg.reload(); await pg.waitForTimeout(800);
+  await pc.setOffline(true);
+  await pg.goto(B + '/worksheet/').catch(() => {});
+  ok(/worksheet/i.test(await pg.title()) && await pg.locator('#ov-next').count() === 1, 'the worksheet opens without internet after it has been visited', await pg.title());
+  await pc.setOffline(false);
   await pg.goto(B + '/book/'); await pg.waitForTimeout(800);
   await pg.click('#offline');
   await pg.waitForFunction(() => /pages saved/.test(document.querySelector('#offmsg').textContent), null, { timeout: 15000 }).catch(() => {});
@@ -1462,6 +1468,28 @@ console.log('\n— the worksheet opens the app, the book and the plan beside its
   await pg.waitForFunction(() => document.getElementById('ws-reader').hidden);
   ok(/\/worksheet\/(#t1)?$/.test(pg.url()), 'Back closes the panel instead of leaving the worksheet');
   await rd.ctx.close();
+}
+
+console.log('\n— the worksheet and the app agree about who you are —');
+{
+  const si = await newDevice(true, 'wssignin');
+  const pg = si.page;
+  await pg.goto(B + '/worksheet/#t1');
+  await pg.waitForFunction(() => { const a = document.getElementById('ws-acct'); return a && !a.hidden && /wssignin/.test(a.textContent); });
+  ok(true, 'the worksheet says who is signed in');
+  await pg.waitForSelector('#t1 [data-ch="a3"] a');
+  await pg.click('#t1 [data-ch="a3"] a');
+  await pg.waitForFunction(() => !document.getElementById('ws-reader').hidden && /\/app\//.test(document.querySelector('#ws-reader .rd-frame').src));
+  const fr = pg.frame({ url: /\/app\// });
+  await fr.waitForFunction(() => window.REMOTE && window.CONTENT && document.querySelector('#main'));
+  await pg.waitForTimeout(1500);
+  ok(await fr.evaluate(async () => { const u = await window.REMOTE.me(); return !!u && u.login === 'wssignin'; }),
+     'the app inside the reading panel is signed in as the same person');
+  /* GitHub refuses to load inside a frame, so a sign-in link in the panel must leave it */
+  await fr.evaluate(() => { const a = document.createElement('a'); a.id = 'tsi'; a.href = '/api/auth/login'; a.textContent = 'sign in'; document.body.prepend(a); });
+  await Promise.all([pg.waitForURL(/\/api\/auth\/login\?next=\/worksheet\//), fr.click('#tsi')]);
+  ok(true, 'a sign-in link in the panel signs in with the whole window, and comes back to the worksheet');
+  await si.ctx.close();
 }
 
 console.log('\n— the course map shows where you are —');

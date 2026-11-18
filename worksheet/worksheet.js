@@ -20,6 +20,12 @@
 
   /* ---------- progress ---------- */
   var S = P ? P.load() : {};
+  /* An installed worksheet always opens the English page (its start address). If
+     you read in Hinglish, carry on in Hinglish. Only on a launch from the
+     installed app, so choosing English from the menu still works. */
+  if (/[?&]source=pwa/.test(location.search) && !/\/hi\/$/.test(location.pathname) && S && S.lang === 'hi') {
+    location.replace('hi/' + location.search); return;
+  }
   var byId = {};
   STEPS.forEach(function (s, i) { byId[s[0]] = { id: s[0], kind: s[1], ch: s[1] === 'chapter' ? s[2] : undefined, book: s[1] === 'read' ? s[2] : undefined, t: s[3], title: s[4], href: s[5], mins: s[6] || 0, w: s[7], i: i }; });
   function done(id) { var s = byId[id]; return !!(s && P && P.stepDone(s, S)); }
@@ -139,6 +145,13 @@
     $$('[data-note]').forEach(function (el) { if (document.activeElement !== el) el.value = (mine.topics[el.getAttribute('data-note')] || {}).note || ''; });
   }
   var signedIn = false, putT = null;
+  /* Who you are signed in as, or a way to sign in. The link goes to the page
+     you are on afterwards, so signing in never costs you your place. */
+  function acct(user) {
+    var a = $('#ws-acct'); if (!a) return;
+    if (user) { a.hidden = false; a.classList.add('on'); a.textContent = fill(L.signedIn, { u: user.login }); a.href = base + 'app/#/data'; return; }
+    call('api/health').then(function (h) { if (h.status === 200 && h.body && h.body.signIn) a.hidden = false; }, function () { });
+  }
   function saved(msg) { var el = $('#ws-saved'); if (el) el.textContent = msg; }
   function edit(part, key, fields) {
     var cur = mine[part][key] || {}, next = {};
@@ -164,8 +177,8 @@
   }
   function sync() {
     return call('api/me').then(function (r) {
-      if (!(r.status === 200 && r.body && r.body.user)) { saved(L.savedHere); return; }
-      signedIn = true;
+      if (!(r.status === 200 && r.body && r.body.user)) { saved(L.savedHere); acct(null); return; }
+      signedIn = true; acct(r.body.user);
       return call('api/plan').then(function (g) {
         if (g.status !== 200 || !g.body || !g.body.data) return;
         var srv = { topics: g.body.data.topics || {}, ticks: g.body.data.ticks || {} };
@@ -323,6 +336,13 @@
               var a = ev.target.closest && ev.target.closest('a[href]');
               if (!a || a.target === '_blank' || a.hasAttribute('download')) return;
               var u; try { u = new URL(a.getAttribute('href'), w.location.href); } catch (er) { return; }
+              /* GitHub will not load inside a frame, so signing in from the panel has
+                 to happen in the whole window. It comes back to this worksheet. */
+              if (u.origin === location.origin && /\/api\/auth\/login/.test(u.pathname)) {
+                ev.preventDefault();
+                location.href = base + 'api/auth/login?next=' + location.pathname;
+                return;
+              }
               if (u.origin !== location.origin || /\/api\//.test(u.pathname)) return;
               ev.preventDefault();
               if (/\/worksheet\//.test(u.pathname)) { hideReader(false); return; }
