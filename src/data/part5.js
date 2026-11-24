@@ -1683,7 +1683,7 @@ window.PART5 = [
   ],
   capstone:{
     title:'Plan how you will keep watching the tool once real people use it',
-    brief:'A tool in use can go wrong in ways your tests never saw. You only know if you are watching. You learned to design a trace (the scan list of one request) that says why an answer was wrong. You learned to treat cost as an engineering number. And you learned what must be versioned, so a change can be undone. Now you plan six panels, six dials, for Bharat Privacy Guard.',
+    brief:'A tool in use can go wrong in ways your tests never saw. You only know if you are watching. You learned to design a trace (the scan list of one request) that explains a wrong answer. You learned to treat cost as an engineering number. And you learned what to version, so a change can be undone. Now you plan six panels (six dials) for Bharat Privacy Guard.',
     where:'Use your test harness (your test rig) from Chapter 21, and extend it in code so it saves full traces. Then write the plan in the notes box below.',
     steps:[
       'Extend your harness so every run saves a full trace: the input, each step, each finding, the time, the tokens, the cost and any error. Never put real personal details into a trace that is shown on a dashboard (one screen of numbers).',
@@ -1705,151 +1705,151 @@ window.PART5 = [
 {
   id:'ch18s', num:31, part:5, curriculumTier:'core', phase:4, prerequisites:['ch13','ch12t','ch75'], nextUnits:['ch19pm','ch21cap','b5'], minutes:55, labs:['injection','trifecta'],
   title:'Security and governance: controls around an untrusted model',
-  concept:'Assume the model will be manipulated. The application, the retrieved content, the tools, the identity layer and the data pipeline are all part of the attack surface. You’ll apply least privilege, and build a risk register in which every control has a test.',
+  concept:'Assume someone will fool the model. Everything around it can be attacked: the app, the retrieved content, the tools, the identity layer (who is who) and the data pipeline (the path data travels). You will apply least privilege (only the keys that are needed). And you will build a risk register where every control has a test.',
   plan:{
-    first:'Put a malicious instruction inside a document that your own system retrieves. Then test whether it can override the task or pull out a secret.',
-    build:'Add trust boundaries, least privilege, input validation, secret isolation, audit logging and confirmation steps.',
-    brk:'Run tests for prompt injection, indirect injection, tool abuse, data leakage and excessive agency.',
-    artifact:'A security report and an AI risk register.',
-    gate:'Explain why retrieved content is untrusted input, to someone who thinks it is simply their own data.'
+    first:'Hide a bad instruction (a trick note) inside a document that your own system fetches. Then test whether it can override the task, or pull out a secret.',
+    build:'Add these: trust boundaries (a fence between safe and unsafe text). Least privilege (give only the keys that are needed). Input validation (check what comes in). Secret isolation (keep secrets in a locked drawer). Audit logging (a diary of who did what). Confirmation steps (ask “are you sure?”).',
+    brk:'Run tests for prompt injection (a trick note typed in), indirect injection (a trick note hidden in fetched text), tool abuse, data leakage and excessive agency (giving the system too much power).',
+    artifact:'A security report and an AI risk register (a table of what could go wrong, and a test for each).',
+    gate:'Explain why retrieved content (text the system fetches) is untrusted input, to someone who thinks it is simply their own data.'
   },
   needs:[
-    ['Prompt injection has no complete fix','Chapter 13 showed you this. This chapter builds the controls around the problem.',13],
-    ['Tools are a security boundary','You learned this in Chapter 25. Least privilege puts it into practice.',25],
-    ['Retrieved text can carry attacks','In Chapter 7.5 you planted one in your own system.',7.5]
+    ['Prompt injection (the hidden trick note) has no complete fix','Chapter 13 showed you this. This chapter builds the controls around the problem, like a fence around a pit.',13],
+    ['Tools are a security boundary, like a door in a wall','You learned this in Chapter 25. Least privilege (only the keys that are needed) puts it into practice.',25],
+    ['Retrieved text (text the system fetches) can carry attacks','In Chapter 7.5 you planted a trick note in your own system.',7.5]
   ],
   words:[
-    ["Prompt injection","Text that reaches the model as data and gets followed as an instruction. The model cannot reliably tell the two apart, so the boundary has to be enforced around it."],
-    ["Indirect injection","The same attack, arriving through content the system retrieved and not through what the user typed."],
-    ["Excessive agency","Giving a system more permission, reach or independence than its task needs."],
-    ["Risk register","A table in which every row ends in a test that has been run, and not just in a control that has been described."]
+    ["Prompt injection",'Prompt injection is a trick note. Text reaches the model as plain data, but the model follows it like an order. The model cannot reliably tell the two apart. So the fence has to be built around it, by the system.'],
+    ["Indirect injection",'The same trick, but the note arrives hidden inside content the system fetched, not in what the user typed. Think of a slip hidden inside a stack of papers.'],
+    ["Excessive agency",'Excessive agency means giving a system more permission, reach or freedom than its task needs, like handing a guest the keys to every room.'],
+    ["Risk register",'A risk register is a table in which every row ends in a test that has been run. It is not enough to describe a control (a safety measure). The test is the proof.']
   ],
   takeaway:[
-    'Explain why retrieved content is untrusted input, whoever owns the document.',
-    'Apply least privilege to an agent, and show what breaks.',
-    'Produce a risk register in which every control has evidence next to it.'
+    'Explain why retrieved content (fetched text) is untrusted input, whoever owns the document.',
+    'Apply least privilege (give only the keys that are needed) to an agent, and show what breaks.',
+    'Produce a risk register (a table of what could go wrong) in which every control has evidence next to it.'
   ],
   story:[
-    ['c','Before you start','Bring your injection audit from Chapter 13 and the tool classification from Chapter 27.'],
-    ['c','On your route','Do units 18.7 and 18.8, then the capstone. Read the other units this pass.'],
-    ['p','In the last chapter you learned to watch a live system. Now we ask what happens when someone tries to misuse it. The answer starts with a plain fact: the model gives everything it reads the same level of trust.'],
-    ['p','Whether that is dangerous depends on the system around the model: what it is given, and what it is allowed to do next. That’s why most of AI security is about the system, and not about the model.'],
-    ['p','Here’s an everyday picture. Someone slips a note into a stack of paperwork that says “approve this one without checking”. The clerk can read perfectly well. The problem is that nothing in the process separates an instruction from a document.'],
-    ['key','Prompt injection is an input trust problem. The model cannot reliably tell an instruction from data, so the system that assembles the context must enforce the boundary. Asking nicely in the system prompt is not enough.'],
+    ['c','Before you start','Bring your injection audit (your list of trick-note tests) from Chapter 13, and the tool classification (which tools are risky) from Chapter 27.'],
+    ['c','On your route','Do units 18.7 and 18.8, then the capstone (the chapter’s project). Only read the other units this time.'],
+    ['p','In the last chapter you learned to watch a live system, like a guard watching a shop. Now ask: what if someone tries to misuse it? The answer starts with a plain fact. The model trusts everything it reads, the same amount.'],
+    ['p','Whether that is dangerous depends on the system around the model: what it is given, and what it is allowed to do next. So most of AI security is about the system, not the model. Think of a good clerk in a badly run office.'],
+    ['p','Here is a picture. Someone slips a note into a stack of paperwork that says “approve this one without checking”. The clerk reads perfectly well. The trouble is that nothing in the process keeps an instruction apart from a document.'],
+    ['key','Prompt injection is an input trust problem: the hidden trick note. The model cannot reliably tell an instruction from data. So the system that puts the context together (the model’s desk) must build the fence. Asking nicely in the system prompt (the rules on the shop wall) is not enough.'],
     ['h','Hands-on units'],
-    ['p','The eight units below go from the first attack, through the controls that stop it, to the checklist that decides a release.'],
+    ['p','The eight units below start with the first attack, move through the controls that stop it, and end at the checklist that decides a release, like walking from the thief to the lock to the guard’s list.'],
     [
       'unit',
       '18.1',
       'Prompt injection',
-      {goal:'Understand direct and indirect prompt injection as attacks that use input you cannot trust.',
-       idea:'Instructions hidden in what the user typed, or in retrieved content, can compete with your application’s own instructions.',
-       prove:'Place malicious instructions in a document, and test the RAG assistant with it.',
-       build:'Keep your trusted control instructions apart from untrusted evidence.',
-       brk:'Try to make the model reveal a secret, or use a tool, through retrieved text.',
+      {goal:'Understand direct and indirect prompt injection as attacks that use text you cannot trust, like a stranger’s note.',
+       idea:'Instructions hidden in what the user typed, or in retrieved content, can fight with your application’s own instructions, like two people shouting orders at a clerk.',
+       prove:'Put bad instructions in a document, and test the RAG assistant (the open-book helper) with it.',
+       build:'Keep your trusted control instructions apart from untrusted evidence, like keeping the rule book away from the pile of letters.',
+       brk:'Try to make the model give up a secret, or use a tool, through retrieved text.',
        artifact:'Prompt Injection Test Report.',
-       check:'What stopped the attack: the model’s own behaviour, or a policy in the application?',
-       lens:'Never describe the prompt text alone as a security boundary.'}
+       check:'What stopped the attack: the model’s own behaviour, or a rule in the application?',
+       lens:'Never call the prompt text alone a security boundary. A request written on a note is not a locked door.'}
     ],
     [
       'unit',
       '18.2',
       'Sensitive information disclosure',
-      {goal:'Protect secrets, PII and confidential data in prompts, in retrieval and in traces.',
-       idea:'A model can protect information only if the application controls what the model receives and what it can return.',
-       prove:'Create a test collection of documents with made-up sensitive fields.',
-       build:'Filter or redact before the model sees anything, and log each access decision.',
-       brk:'Ask for another user’s data, in plain language and through tool calls.',
+      {goal:'Protect secrets, PII (personal details) and confidential data in prompts, in retrieval and in traces (the trip records of requests).',
+       idea:'A model can only protect information if the application controls what the model receives and what it can send back, like a shopkeeper who decides what goes on the counter.',
+       prove:'Make a test collection of documents with made-up sensitive fields, so no real person’s diary is used.',
+       build:'Filter or redact (black out) before the model sees anything, and log each access decision.',
+       brk:'Ask for another user’s data, in plain words and through tool calls (asking a tool to act).',
        artifact:'Data Leakage Test Matrix.',
-       check:'Where is authorization enforced?',
-       lens:'Map privacy requirements to the paths the data actually takes. Policy documents alone are not enough.'}
+       check:'Where is authorization (who is allowed) checked?',
+       lens:'Match privacy requirements to the paths the data really takes, like tracing the pipes in a house. Policy documents alone are not enough.'}
     ],
     [
       'unit',
       '18.3',
       'Improper output handling',
-      {goal:'Check the model’s output before you pass it on to other systems.',
-       idea:'Generated text becomes dangerous when another system treats it as a trusted command, as SQL, as HTML or as business data.',
-       prove:'Create a structured output, and validate it against a list of allowed values.',
-       build:'Use allowlists and typed interfaces before anything is executed.',
-       brk:'Inject malicious strings into the generated fields.',
+      {goal:'Check the model’s output before you pass it on to other systems, like looking at a letter before you post it.',
+       idea:'Generated text turns dangerous when another system treats it as a trusted command, as SQL (database orders), as HTML (web page code) or as business data.',
+       prove:'Create a structured output (a filled form with fixed boxes), and check it against a list of allowed values.',
+       build:'Use allowlists (a list of what is allowed) and typed interfaces (boxes that accept only one kind of thing) before anything is run.',
+       brk:'Slip bad strings (trick text) into the generated fields.',
        artifact:'Output Validation Checklist plus tests.',
-       check:'Which downstream component could interpret the output as an instruction?',
-       lens:'Treat model output as untrusted input.'}
+       check:'Which downstream part (the next step in the chain) could read the output as an instruction?',
+       lens:'Treat model output as untrusted input, like a letter from a stranger.'}
     ],
     [
       'unit',
       '18.4',
       'Excessive agency',
-      {goal:'Limit the tools and actions that an autonomous system can use.',
-       idea:'The more permissions a system has, the bigger the damage when something goes wrong.',
-       prove:'Classify each tool by how much privilege it needs and whether its actions can be undone.',
-       build:'Remove the tools it does not need, and compare task success before and after.',
-       brk:'Try a task that asks for an action that cannot be undone.',
+      {goal:'Limit the tools and actions that an autonomous system (one that acts on its own) can use.',
+       idea:'The more permissions a system has, the bigger the damage when something goes wrong, like a bunch of master keys.',
+       prove:'Sort each tool by how much privilege it needs, and whether its actions can be undone.',
+       build:'Take away the tools it does not need, and compare task success before and after.',
+       brk:'Try a task that asks for an action that cannot be undone, like sending a letter you cannot take back.',
        artifact:'Agency Permission Matrix.',
        check:'What is the worst damage if the model is wrong?',
-       lens:'How much freedom the system gets should depend on the business risk.'}
+       lens:'How much freedom the system gets should depend on the business risk, like a new helper who first gets small errands.'}
     ],
     [
       'unit',
       '18.5',
       'Retrieval authorization',
-      {goal:'Enforce ACLs (who may see what) and tenant boundaries before evidence reaches the model.',
-       idea:'Retrieving the right content for the wrong tenant is still a security breach.',
+      {goal:'Enforce ACLs (lists of who may see what) and tenant boundaries (a wall between one customer and another) before evidence reaches the model.',
+       idea:'Fetching the right content for the wrong tenant (customer) is still a security breach, like handing one person’s letter to a neighbour.',
        prove:'Create two users and two groups of documents.',
-       build:'Apply the metadata filters on the server side.',
-       brk:'Try to retrieve across tenants, and to retrieve with permissions that are out of date.',
+       build:'Apply the metadata filters (labels on documents that sort them) on the server side, where the user cannot change them.',
+       brk:'Try to fetch across tenants, and to fetch with permissions that are out of date.',
        artifact:'ACL Retrieval Test Report.',
-       check:'Can the model ever see evidence it is not authorized to access?',
-       lens:'Don’t make “remembering” the authorization rules the model’s job, as your only control.'}
+       check:'Can the model ever see evidence it is not allowed to see?',
+       lens:'Do not make “remembering” the authorization rules the model’s job, as your only control. A guard should not rely on one person’s memory.'}
     ],
     [
       'unit',
       '18.6',
       'Audit logging',
-      {goal:'Capture enough evidence to rebuild what happened in any action that matters for security.',
-       idea:'An audit trail should show who did what, when, under which policy, with which tool, and what happened.',
-       prove:'Design an audit record for one tool action.',
-       build:'Write the approval event and the execution event separately.',
-       brk:'Change the payload after it was approved, and check that the mismatch is visible.',
+      {goal:'Capture enough evidence to rebuild what happened in any action that matters for security, like a CCTV recording.',
+       idea:'An audit trail (a diary of actions) should show who did what, when, under which rule, with which tool, and what happened.',
+       prove:'Design an audit record (one diary entry) for one tool action.',
+       build:'Write the approval event (“yes, go ahead”) and the execution event (“it was done”) separately.',
+       brk:'Change the payload (the thing being sent) after it was approved, and check that the mismatch shows up.',
        artifact:'Audit Log Schema plus a sample trail.',
-       check:'Could someone responding to an incident reconstruct the action?',
-       lens:'Being able to audit is part of being ready for production.'}
+       check:'Could someone dealing with an incident rebuild what the action was?',
+       lens:'Being able to audit (look back at the diary) is part of being ready for production, real use.'}
     ],
     [
       'unit',
       '18.7',
       'Governance and risk register',
-      {goal:'Turn security and AI risks into owners, controls and evidence.',
-       idea:'Governance becomes useful when every risk has a control you can test, and an owner.',
-       prove:'Create fields for the risk, the impact, the likelihood, the control, the owner, the evidence and the remaining risk.',
-       build:'Review the register against the architecture of your capstone.',
-       brk:'Mark one control “policy only”, and ask what evidence is missing.',
+      {goal:'Turn security and AI risks into owners, controls and evidence, like giving each problem a name, a lock and a receipt.',
+       idea:'Governance (the rules for who decides what) becomes useful when every risk has a control you can test, and an owner.',
+       prove:'Make fields (boxes) for the risk, the impact, the likelihood, the control, the owner, the evidence and the remaining risk.',
+       build:'Check the register against the architecture of your capstone (how its parts fit together).',
+       brk:'Mark one control “policy only” (written down, never tested), and ask what evidence is missing.',
        artifact:'AI Risk Register.',
        check:'Which risks are still left after the controls?',
-       lens:'A risk register is a working tool, not a compliance decoration.'}
+       lens:'A risk register is a working tool, not a decoration for the rule-checkers.'}
     ],
     [
       'unit',
       '18.8',
       'Security release gate',
-      {goal:'Turn red-team findings into release criteria.',
-       idea:'Security tests must block a release when the remaining risk is above the agreed threshold.',
-       prove:'Define the mandatory checks for injection, leakage, authorization and unsafe actions.',
-       build:'Run the test suite before and after a change of prompt or model.',
-       brk:'Create a change that improves quality but weakens security.',
+      {goal:'Turn red-team findings (what the friendly attackers found) into release criteria (what must be true before launch).',
+       idea:'Security tests must stop a release when the risk that remains is above the line you agreed on, like a red signal for the train.',
+       prove:'Decide the must-pass checks for injection, leakage, authorization and unsafe actions.',
+       build:'Run the test suite (all the tests together) before and after you change the prompt or the model.',
+       brk:'Make a change that improves quality but weakens security, and see the gate say stop.',
        artifact:'Security Go/No-Go Checklist.',
-       check:'What counts as an automatic blocker?',
-       lens:'Security belongs in the same release process as quality and cost.'}
+       check:'What counts as an automatic blocker (a stop sign that needs no debate)?',
+       lens:'Security belongs in the same release process as quality and cost, not in a separate room.'}
     ],
     ['q','I411'],
     ['h','Least privilege for agents'],
-    ['p','Least privilege means giving something only the access it needs to do its job, and nothing more. For an agent, that mostly means tools.'],
-    ['key','Apply least privilege to agents. If an agent has a tool it never needs, an attacker can persuade it to use that tool.'],
-    ['p','Controls are only half the story, because each one needs proof. The table pairs each risk with a control, and with the evidence that shows the control works.'],
+    ['p','Least privilege means giving someone only the keys they need to do their job, and no more. Think of a school peon who gets the classroom key but not the exam paper cupboard. For an agent (a helper that uses tools), that mostly means tools.'],
+    ['key','Apply least privilege to agents. If an agent has a tool it never needs, an attacker can talk it into using that tool.'],
+    ['p','Controls are only half the story, because each one needs proof. The table pairs each risk with a control, and with the evidence that shows the control works, like a lock with a record of the test.'],
     [
       'tb',
-      ['Risk','Example control','The evidence that it works'],
+      ['Risk','Example control (the safety measure)','The evidence that it works (the proof)'],
       [
         ['Prompt injection','Content separation, tool allowlist, confirmation','Red-team test results'],
         ['Data leakage','Access-aware retrieval, redaction, log controls','Access tests and trace samples'],
@@ -1859,9 +1859,9 @@ window.PART5 = [
         ['Raw personal data in logs, or kept too long','Redact before logging, plus a retention limit','A log sample with no raw IDs, and a deletion test. This supports the DPDP Act duties on security safeguards and on limits to keeping data']
       ]
     ],
-    ['p','Consulting firms often call this work model risk management. They also ask for explainability: a written reason for each decision the system makes. Learn both terms. Your risk register and your system card are the evidence behind them.'],
+    ['p','Consulting firms often call this work model risk management. They also ask for explainability: a written reason for each decision the system makes. Learn both words. Your risk register and your system card are the evidence behind them, like the file behind a bank’s loan decision.'],
     ['h','Test every control'],
-    ['key','A safeguard nobody has tested only exists on paper. Next to each safeguard, write the test that proves it works, and run it.'],
+    ['key','A safeguard nobody has tested only exists on paper, like a fire exit nobody has opened. Next to each safeguard, write the test that proves it works, and run it.'],
     ['p','Try this with something from your own workplace.'],
     [
       'try',
@@ -1871,29 +1871,29 @@ window.PART5 = [
        rows:4,
        task:'Pick one control your organisation says it has. Write what evidence would prove it works, and whether that evidence exists.',
        ph:'The control … the evidence would be … it exists / does not exist because …',
-       after:'The gap between the claim and the evidence is your real risk. A risk register exists to track that gap.'}
+       after:'The gap between what is claimed and the evidence is your real risk. A risk register is there to track that gap.'}
     ],
     ['h','Summary'],
-    ['p','To sum up: the model trusts everything it reads, so the system around it has to draw the lines. Retrieved content is untrusted input. Give every agent only the tools it needs. And write a test next to every control, so that your register holds evidence and not just good intentions.'],
-    ['p','Next, in Chapter 32, you’ll turn this technical system into a product specification.']
+    ['p','To sum up: the model trusts everything it reads, so the system around it has to build the fence. Retrieved content is untrusted input. Give every agent only the tools it needs. And write a test next to every control, so your register holds evidence, not just good intentions.'],
+    ['p','Next, in Chapter 32, you will turn this technical system into a product specification, a recipe card for the product.']
   ],
   capstone:{
-    title:'Write the risk register, with a test for every control',
-    brief:'A risk register that ends in controls is only a list of good intentions. In this chapter you learned why retrieved text is untrusted input whoever owns it, how to apply least privilege to an agent, and to put evidence next to every control. Now you write the risk register for Bharat Privacy Guard.',
-    where:'Written only. The register draws on evidence from your earlier chapters. No new code is needed.',
+    title:'Write the risk register, with a test beside every control',
+    brief:'A risk register that stops at controls is only a list of good intentions. You learned why fetched text is untrusted input, whoever owns it. You learned to apply least privilege to an agent. And you learned to put evidence beside every control. Now you write the risk register for Bharat Privacy Guard.',
+    where:'Writing only. The register rests on evidence from your earlier chapters, like a case file. You need no new code.',
     steps:[
-      'For each risk, write eight things: the asset (what is at stake), the threat, the impact, how likely it is, the control, the owner, the test, and the risk that remains.',
-      'Include at least these eight risks: a missed Aadhaar number; a false alarm that blocks a real message; an attack hidden in the text reaching the model; the provider keeping your data; the model provider going down; the reference lists going out of date; the logs storing raw personal data; and a person with more access than they need.',
-      'For every control, write the test that shows it works, and run that test wherever you can. A control with no test is only an intention.',
-      'Apply least privilege to the tool. List what each part can reach, remove everything it does not need, and say what breaks.',
-      'Write two lines on why text retrieved from your own reference lists must still be treated as untrusted input.',
-      'Add the personal-data row from the table: raw personal data in logs, or kept too long. Name the DPDP Act duty it supports, and keep the project wording: the tool helps an organisation collect and share less personal data, and it does not make anyone compliant.'
+      'For each risk, write eight things: the asset (what is at stake), the threat (what could hurt it), the impact (how bad), how likely it is, the control (the safety measure), the owner (who looks after it), the test, and the risk that remains.',
+      'Include at least these eight risks. A missed Aadhaar number. A false alarm that blocks a real message. An attack hidden in the text reaching the model. The provider keeping your data. The model provider going down. The reference lists going out of date. The logs storing raw personal data. A person with more access than they need.',
+      'For every control, write the test that shows it works, and run that test wherever you can. A control with no test is only an intention, like a lock nobody has tried.',
+      'Apply least privilege to the tool. List what each part can reach, take away everything it does not need, and say what breaks.',
+      'Write two lines on why text fetched from your own reference lists must still be treated as untrusted input.',
+      'Add the personal-data row from the table: raw personal data in logs (the diary of what happened), or kept too long. Name the DPDP Act duty it supports. Keep the project wording: the tool helps an organisation collect and share less personal data, and it does not make anyone compliant.'
     ],
     done:[
-      'A register of at least eight risks with all eight columns filled in.',
+      'A register of at least eight risks, with all eight columns filled in, like a form with no empty boxes.',
       'A test for every control, with the results of those you ran.',
-      'A least-privilege list and what broke when you removed access.',
-      'Two lines on why retrieved text is untrusted.'
+      'A least-privilege list (only the keys that are needed), and what broke when you removed access.',
+      'Two lines on why retrieved (fetched) text is untrusted.'
     ]
   }
 },

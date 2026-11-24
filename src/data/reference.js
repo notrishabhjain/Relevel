@@ -2,55 +2,55 @@
 
 window.SETUP = {
   title: 'Setup: connect a model',
-  blurb: 'Every chapter’s interactive tools work without this. Do it once, when you reach Chapter 1, so that the code in the chapters can call a real model. The code runs right here in the page, so there is no other window to open.',
-  oneline: 'You need one free thing from outside this site: an API key, which lets the code in the chapters talk to a model. You paste it here once. The code itself runs in this page, in Python that starts inside your browser, so there is nothing to install and no notebook to open elsewhere.',
+  blurb: 'Every chapter’s interactive tools work without this step. Do it once, when you reach Chapter 1. Then the code in the chapters can talk to a real model. The code runs right here on this page. You do not open any other window.',
+  oneline: 'You need one free thing from outside this site: an API key (a secret password for the model). It lets the code in the chapters talk to a model. You paste it here once. The code runs on this page, in Python that starts inside your browser. So you install nothing, and you open no notebook anywhere else.',
   sections: [
     {h:'A1. Connect a model', t:'~5 min', b:[
-      ['p','A model runs on a provider’s computers, and the provider needs to know who is asking. The API key is how it knows. The course was written against NVIDIA Build, which is free and doesn’t ask for a credit card. Google Gemini works too, and so do the others in the list.'],
-      ['n',['Choose NVIDIA Build below, unless you have a reason not to.','Open the key page from the link. Sign up or log in with any email, search for <code>llama-3.1-8b-instruct</code> and press <strong>Get API Key</strong>. On some pages it is under <em>Build with this NIM → Generate Key</em>.','Copy the long code that starts with <code>nvapi-</code>, paste it below and press <strong>Save key</strong>. Treat it like an ATM PIN.','Press <strong>Run the test call</strong>.']],
+      ['p','A model runs on a provider’s computers (the company that hosts it, like a shop owner). The provider must know who is asking. The API key tells it. This course was written with NVIDIA Build. It is free and does not ask for a credit card. Google Gemini works too. So do the others in the list.'],
+      ['n',['Choose NVIDIA Build below. Pick another only if you have a reason.','Open the key page from the link. Sign up or log in with any email. Search for <code>llama-3.1-8b-instruct</code>. Press <strong>Get API Key</strong>. On some pages it is under <em>Build with this NIM → Generate Key</em>.','Copy the long code that starts with <code>nvapi-</code>. Paste it below. Press <strong>Save key</strong>. Keep it safe, like an ATM PIN.','Press <strong>Run the test call</strong>.']],
       ['connect'],
-      ['x','You see <code>setup works</code>, the model’s name and a receipt: the tokens it read, the tokens it wrote and the seconds it took.'],
-      ['c','Why this matters professionally','Keys that sit inside code get copied, shared and leaked. It is one of the most common security failures in software. Here the key never appears in your code: the page adds it to each request. If you know how to store keys properly, and why, you can speak with confidence in a meeting.']
+      ['x','You see <code>setup works</code>, the model’s name and a receipt. The receipt shows the tokens (small pieces of words) it read, the tokens it wrote and the seconds it took.'],
+      ['c','Why this matters professionally','Keys that sit inside code get copied, shared and leaked. This is one of the most common security failures in software. Here the key never appears in your code. The page adds it to each request. Learn how to store keys properly, and why. Then you can speak with confidence in a meeting.']
     ]},
     {h:'A2. Python, in this page', t:'~5 min', b:[
-      ['p','Every code block in a chapter has a <strong>Run</strong> button. The first time you press one, Python starts inside your browser. It downloads about 10 MB, once. After that it starts in a few seconds.'],
-      ['p','Try it now. Press <strong>Run</strong> on the cell below, or click in it and press <kbd>Shift</kbd>+<kbd>Enter</kbd>.'],
+      ['p','Every code block in a chapter has a <strong>Run</strong> button. The first time you press one, Python starts inside your browser. It downloads about 10 MB, only once. After that it starts in a few seconds.'],
+      ['p','Try it now. Press <strong>Run</strong> on the cell below (one box of code). Or click in it and press <kbd>Shift</kbd>+<kbd>Enter</kbd>.'],
       ['code','print("hello")'],
       ['x','The word <code>hello</code> appears below the cell, with a green tick. That was a program. You wrote it and you ran it.'],
-      ['l',['Cells run from top to bottom, and they remember each other. A value you make in one cell can be used in any later one, in this chapter or the next. One Python session runs the whole course.','A reload, or closing the tab, ends the session. The cells you typed stay, and the page remembers which ones you ran. Press <strong>Restore</strong> in the notebook bar to put your functions and data back without calling the model again.','You can change any code before you run it. <strong>Undo edits</strong> puts the chapter’s version back.']]
+      ['l',['Cells run from top to bottom, and they remember each other. A value you make in one cell works in any later cell. That holds in this chapter and the next. One Python session runs the whole course.','A reload, or closing the tab, ends the session. Your typed cells stay. The page remembers which ones you ran. Press <strong>Restore</strong> in the notebook bar. Your functions and data come back, and the model is not called again.','You can change any code before you run it. <strong>Undo edits</strong> brings back the chapter’s version.']]
     ]},
     {h:'A3. The warm-up the page does for you', t:'~5 min', b:[
-      ['p','Before code can call a model it needs three things: the key, the library and a client. The page does these for you before your first cell. Here they are, as you would write them anywhere else. Run each one.'],
+      ['p','Code needs three things before it can call a model: the key, the library (ready-made code someone else wrote) and a client (the messenger that carries your note to the model). The page does all three for you before your first cell. Here they are, as you would write them anywhere else. Run each one.'],
       ['code','from google.colab import userdata\nkey = userdata.get("NVIDIA_API_KEY")\nprint("Key loaded, starts with:", key[:8])'],
-      ['x','You’ll see <code>Key loaded, starts with: nvapi-xx</code>. We print only the first 8 characters, so the full key never shows on your screen.'],
+      ['x','You see <code>Key loaded, starts with: nvapi-xx</code>. We print only the first 8 characters. So the full key never shows on your screen.'],
       ['code','!pip -q install openai'],
       ['x','Here it says the library is already built in. On your own computer, this line installs it.'],
       ['code','from openai import OpenAI\n\nclient = OpenAI(\n    base_url="https://integrate.api.nvidia.com/v1",\n    api_key=key\n)\n\nresponse = client.chat.completions.create(\n    model="meta/llama-3.1-8b-instruct",\n    messages=[{"role": "user", "content": "Reply with exactly: setup works"}]\n)\nprint(response.choices[0].message.content)'],
-      ['x','You’ll see <code>setup works</code>. Your setup is complete.'],
-      ['p','One thing is worth knowing. The library is called <code>openai</code>, but we are not using OpenAI’s service. OpenAI published the first request format that many people adopted, and much of the industry copied it. So one library works with many providers. Later, switching providers may need only a one-line change. Knowing this earns you respect in conversations with vendors.'],
-      ['p','The same three cells run unchanged in Google Colab, in Jupyter or on your own computer, where <code>userdata</code> reads the secret you stored there. The code you write here goes with you. The <a href="#/workbench">Workbench</a> can download every cell you have run as a notebook file.']
+      ['x','You see <code>setup works</code>. Your setup is complete.'],
+      ['p','One thing is worth knowing. The library is called <code>openai</code>, but we do not use OpenAI’s service. OpenAI published the first request format that many people liked. Much of the industry copied it. So one library works with many providers. Later, you may switch providers by changing one line. Knowing this earns you respect when you talk to vendors.'],
+      ['p','The same three cells run unchanged in Google Colab, in Jupyter or on your own computer. There, <code>userdata</code> reads the secret you stored. The code you write here goes with you. The <a href="#/workbench">Workbench</a> can download every cell you ran as a notebook file.']
     ]},
     {h:'A4. Collect your raw material', t:'~10 min', b:[
-      ['p','The second half of the course builds a system that answers questions from documents. Add 10–15 documents you know well from your own work with <strong>Add files</strong> below. For example: policies, SOPs, product manuals, contracts, handbooks or published standards. They stay in this browser, and your code opens them by name, like this: <code>open("leave-policy.txt").read()</code>.'],
+      ['p','The second half of the course builds a system that answers questions from documents. Press <strong>Add files</strong> below. Add 10–15 documents you know well from your own work. For example: policies, SOPs, product manuals, contracts, handbooks or published standards. They stay in this browser. Your code opens them by name, like this: <code>open("leave-policy.txt").read()</code>.'],
       ['files'],
-      ['c','Why your own documents matter','The second half of this book builds a system that answers questions from your corpus. Sometimes it will answer wrongly, and you need to catch that at once, without anyone’s help. Your own domain knowledge is your quality check. With documents you don’t know, you would need an expert on call. With your own, you are the expert.'],
+      ['c','Why your own documents matter','The second half of this book builds a system that answers questions from your corpus (your pile of documents). Sometimes it will answer wrongly. You must catch that at once, without anyone’s help. Your own domain knowledge is your quality check, like a teacher who knows the answer key. With documents you do not know, you would need an expert on call. With your own, you are the expert.'],
       ['p','<strong>For Part II, add some deliberately awkward material:</strong> at least two scanned pages, one document with a real table in it, and, if you can, an old version of a policy next to its current one. Chapters 12 and 16 need these. A corpus that is too clean will make you think everything works.'],
       ['p','Text files (.txt and .md) open straight away. For a PDF or a Word file, copy its text into a .txt file for now. Chapter 16 covers scans and images.']
     ]},
     {h:'A5. Part II additions', t:'~5 min', b:[
-      ['p','Before Chapter 9, check that your model catalogue offers the models below. If one is missing, that chapter’s <em>If Something Goes Wrong</em> section shows a way around it.'],
-      ['l',['A <strong>tool-calling</strong> capable instruct model (Ch. 9)','A <strong>reasoning</strong> model, or simply two models of clearly different size and price (Ch. 11)','A <strong>vision</strong> capable model (Ch. 16)','A model that supports <code>response_format</code> / JSON schema (Ch. 8). If you don’t have one, the validation loop is the fallback.']],
-      ['p','<em>Models and routing</em>, in the Connect panel above, shows which model each kind of call uses, and lets you change it.']
+      ['p','Before Chapter 9, check your model catalogue (the menu of models you can use). It should offer the models below. If one is missing, that chapter’s <em>If Something Goes Wrong</em> section shows a way around it.'],
+      ['l',['A <strong>tool-calling</strong> model (one that can ask you to press a button for it), of the instruct kind (Ch. 9)','A <strong>reasoning</strong> model (one that thinks on rough paper first), or two models of clearly different size and price (Ch. 11)','A <strong>vision</strong> model (one that can look at pictures) (Ch. 16)','A model that supports <code>response_format</code> / JSON schema (a form with fixed boxes for the answer) (Ch. 8). If you do not have one, the validation loop is the fallback.']],
+      ['p','<em>Models and routing</em>, in the Connect panel above, shows which model each kind of call uses. You can change it there.']
     ]}
   ],
   trouble: [
-    ['401 Unauthorized','The key was not loaded','Open the Connect panel above, paste the key again, save it and press <strong>Run the test call</strong>'],
+    ['401 Unauthorized','The key was not loaded','Open the Connect panel above. Paste the key again. Save it. Press <strong>Run the test call</strong>'],
     ['NameError: key not defined','The page was reloaded, so the Python session started again','Press <strong>Restore</strong> in the notebook bar, or run the cells above again'],
-    ['404 model not found','The model name has a typo','Use the exact string. Copy it from the model page on build.nvidia.com'],
-    ['429 Too Many Requests','Your loop hit the per-minute rate limit','Add <code>import time; time.sleep(2)</code> inside the loop'],
-    ['4xx on embeddings','<code>extra_body</code> is missing','The embedding model must have <code>extra_body={"input_type": …}</code>'],
+    ['404 model not found','The model name has a typo','Use the exact name. Copy it from the model page on build.nvidia.com'],
+    ['429 Too Many Requests','Your loop (a step done again and again) hit the per-minute rate limit (too many requests too fast)','Wait a little. Add <code>import time; time.sleep(2)</code> inside the loop'],
+    ['4xx on embeddings','<code>extra_body</code> is missing','The embedding model needs <code>extra_body={"input_type": …}</code>'],
     ['Python could not start','The browser could not download Python from cdn.jsdelivr.net','Check your connection, or try another network. Some office networks block it'],
-    ['Anything else','A temporary or unknown problem','Note down the exact red text, and come back with fresh eyes tomorrow']
+    ['Anything else','A temporary or unknown problem','Write down the exact red text. Come back with fresh eyes tomorrow']
   ]
 };
 

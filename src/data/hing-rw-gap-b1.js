@@ -76,18 +76,12 @@ Object.assign(window.HING = window.HING || {}, {
     'Hindi row mein ajeeb akshar print hote hain',
   'Your screen font is the cause, not the code. The Hindi sentence is only data, and the finding still works.':
     'Wajah aapki screen ka font hai, code nahi. Hindi sentence sirf data hai, aur finding phir bhi kaam karti hai.',
-  'Add the personal-data row from the table: raw personal data in logs, or kept too long. Name the DPDP Act duty it supports, and keep the project wording: the tool helps an organisation collect and share less personal data, and it does not make anyone compliant.':
-    'Table ki personal-data row jodiye: logs mein raw personal data, ya zyada der tak rakha hua. Naam dijiye ki yeh kaun si DPDP Act duty ko support karti hai, aur project wali wording rakhiye: tool kisi organisation ko kam personal data collect aur share karne mein madad karta hai, aur yeh kisi ko compliant nahi banata.',
-  'Do units 18.7 and 18.8, then the capstone. Read the other units this pass.':
-    'Units 18.7 aur 18.8 kijiye, phir capstone. Baaki units is baar sirf padh lijiye.',
   'Raw personal data in logs, or kept too long':
     'Logs mein raw personal data, ya zyada der tak rakha hua',
   'Redact before logging, plus a retention limit':
     'Log karne se pehle redact kijiye, saath mein retention limit',
   'A log sample with no raw IDs, and a deletion test. This supports the DPDP Act duties on security safeguards and on limits to keeping data':
     'Aisa log sample jisme koi raw ID nahi, aur ek deletion test. Yeh DPDP Act ki security safeguards aur data kitni der rakha jaaye is par limits wali duties ko support karta hai',
-  'Consulting firms often call this work model risk management. They also ask for explainability: a written reason for each decision the system makes. Learn both terms. Your risk register and your system card are the evidence behind them.':
-    'Consulting firms aksar is kaam ko model risk management kehti hain. Woh explainability bhi maangti hain: system ke har decision ki ek likhi hui wajah. Dono terms seekh lijiye. Aapka risk register aur aapka system card inke peeche ka evidence hain.',
   'Do units 20.7 and 20.8, then the capstone. Read the other units this pass.':
     'Units 20.7 aur 20.8 kijiye, phir capstone. Baaki units is baar sirf padh lijiye.',
   'Don’t start with slides. Your problem is Bharat Privacy Guard. Collect the repository, the issue list and the evaluation dataset you already have, and build the smallest slice that works from start to finish.':
@@ -112,16 +106,10 @@ Object.assign(window.HING = window.HING || {}, {
     'Neeche ki table gyarah stages ko order mein dikhati hai. Yeh project page ke terah stages mein se stage 12 ke andar ki detail hain. Har stage ke liye, doosra column batata hai ki aage badhne se pehle aapke paas kaun sa evidence hona chahiye. Ise ek baar abhi padh lijiye, aur kaam karte waqt wapas aate rahiye.',
   'Write the problem for Bharat Privacy Guard: who the user is, what goes wrong for them today, and the number that would show it is fixed.':
     'Bharat Privacy Guard ki problem likhiye: user kaun hai, aaj unke saath kya galat hota hai, aur woh number jo dikhayega ki yeh theek ho gayi.',
-  'A rule-keeper that decides what to do with each finding, built twice (a fixed workflow and a bounded agent), with a person approving the risky actions and a measured comparison of the two.':
-    'Ek rule-keeper jo har finding ke saath kya karna hai yeh tay karta hai, do baar banaya gaya (ek fixed workflow aur ek bounded agent), jisme risky actions ko ek insaan approve karta hai, aur dono ki naapi hui tulna.',
-  'Here are ten made-up sentences you can use from your very first chapter. They’re the first ten rows of your answer key (more on that below). Version 1 adds two messy sentences of your own. Copy them into a spreadsheet. Then use them whenever a capstone says “the starter sentences”.':
-    'Yeh 10 banaye hue sentences hain jo aap bilkul pehle chapter se use kar sakte hain. Yeh aapke answer key ki pehli 10 rows hain (is par neeche aur baat hogi). Version 1 mein aapke apne do messy sentences jodte hain. Inhe ek spreadsheet mein copy kar lijiye. Phir jab bhi koi capstone “the starter sentences” kahe, inhe use kijiye.',
   '12 rows':
     '12 rows',
   'The ten starter sentences, labelled by you, plus two messy sentences of your own.':
     'Das shuruaati sentences, aapke dwara label kiye hue, aur saath mein aapke do apne messy sentences.',
-  'Work through the stages in order. Each stage lists its chapters, says what the stage is for, and tells you what you’ll have when it’s finished. Chapter 34 has its own eleven stages, from discover to defend. Together they make up stage 12 here.':
-    'Stages ko order mein kijiye. Har stage mein uske chapters likhe hain, yeh bataya gaya hai ki stage kis kaam ka hai, aur yeh bhi ki khatam hone par aapke paas kya hoga. Chapter 34 ke apne gyarah stages hain, discover se defend tak. Milkar woh yahan stage 12 banate hain.',
   'Answer key version 1, with twelve labelled rows':
     'Answer key version 1, baarah label ki hui rows ke saath',
 

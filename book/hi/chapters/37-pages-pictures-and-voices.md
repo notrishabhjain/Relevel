@@ -91,7 +91,7 @@ Table: Nau second ke note ke liye har stage ka time
 | The guard | 0.15 second |
 | Model, agar zaroorat ho | Lagbhag ek second |
 
-Uska rule saadha tha. Sabse tez hisse ko tez mat kijiye jab insaan kisi aur hisse ka intezaar kar raha ho. Yeh aisa hai jaise queue gate par atki ho aur aap samne ka darwaza chamka rahe hon. Time transcription mein ja raha tha.
+Uska rule saadha tha. Sabse tez hisse ko tez mat kijiye jab insaan kisi aur hisse ka intezaar kar raha ho. Yeh aisa hai jaise queue turnstile par atki ho aur aap samne ka darwaza chamka rahe hon. Time transcription mein ja raha tha.
 
 ## Toote hue link ko dhoondhne wala test
 

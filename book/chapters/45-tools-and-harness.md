@@ -1,39 +1,39 @@
 ---
 title: The Tools and the Harness
-summary: A new engineer asks which tool is for what, and an experienced one answers with a drawing of slots, not a list of brands. The same engineer then builds a weekly report twice, once with fixed steps and once with an agent, and the two are measured on the same twenty weeks. The chapter explains toolchains, claim audits, the harness, project memory, allowlists, verifiers, sub-agents, state machines, feature flags, rollback triggers and incident reviews.
+summary: A new engineer asks which tool is for what. A senior engineer answers with a drawing of empty slots, not a list of brands. Then the new engineer builds a weekly report twice, once with fixed steps and once with an agent, and the two are scored on the same twenty weeks. The chapter teaches toolchains, claim audits, the harness, project memory, allowlists, verifiers, sub-agents, state machines, feature flags, rollback triggers and incident reviews.
 course: b4 b5
 goals:
-  - think of tools as slots to be filled by job, and run a claim audit and a secrets-and-data audit
+  - see tools as slots to fill by job, and run a claim audit and a secrets-and-data audit
   - name the seven parts of a harness and find a quality problem in the right part
-  - describe how coding assistants are built, and set an allowlist with scope and approvals
+  - say how coding assistants are built, and set an allowlist with scope and approvals
   - compare a state machine with a bounded agent on the same cases, and release a change behind a gate, a flag and a rollback trigger
 terms:
-  - toolchain | the set of tools a team uses to build and run a product, thought of as slots to be filled, each with a job to do | tool chain
-  - claim audit | taking ten claims from an AI-written summary and checking each against its source, marking each supported, partly supported or unsupported | 
-  - harness | everything around the model that makes it a product: the code that builds its context, runs its tools, keeps state, enforces rules, checks quality and records what happened | harnesses
-  - project memory | a plain file kept with the code, holding the rules and habits of the project, loaded at the start of every run of a coding assistant | 
-  - allowlist | a list of the only things a system is permitted to do; anything not on it is refused | allowlists
-  - verifier | a check, such as a test, that tells an agent whether its own change worked, without a person reading every line | verifiers
-  - sub-agent | a helper given one part of a large task, which works in its own separate context so that the main one stays small | sub-agents
-  - state machine | a workflow in which your code fixes every step and every allowed move from one step to the next | state machines
-  - feature flag | a switch in the running system that turns a change on for some users and off for others, without a new release | feature flags
-  - rollback trigger | a measurable condition, written down beforehand, that obliges someone to undo a release | rollback triggers
-  - incident review | a short written account, made after something goes wrong, of what happened, why, and which check would have caught it | post-incident review
+  - toolchain | the toolbox slots of a team: the set of tools used to build and run a product, each slot holding one tool for one job | tool chain
+  - claim audit | spot-checking an AI summary: pick ten claims, check each against its source, and mark it supported, partly supported or unsupported | 
+  - harness | the saddle and reins around a horse: everything around the model that makes it a product, meaning the code that builds its context, runs its tools, keeps state, enforces rules, checks quality and records what happened | harnesses
+  - project memory | a note pinned to the project wall: a plain file kept with the code, holding the project's rules and habits, read at the start of every run of a coding assistant | 
+  - allowlist | the guest list at a wedding gate: the only things a system may do; anything not on it is refused | allowlists
+  - verifier | the answer key for a coder: a check, such as a test, that tells an agent whether its own change worked, so a person need not read every line | verifiers
+  - sub-agent | a helper given one part of a big job, who works at a separate desk so the main desk stays tidy | sub-agents
+  - state machine | a board game with fixed squares: your code fixes every step and every allowed move from one step to the next | state machines
+  - feature flag | a light switch in the running system: it turns a change on for some users and off for others, without a new release | feature flags
+  - rollback trigger | a fire alarm set in advance: a measurable condition, written down beforehand, that makes someone undo a release | rollback triggers
+  - incident review | a short note written after something goes wrong: what happened, why, and which check would have caught it | post-incident review
 ---
 
-Tanvi Kulkarni joined Imran Qureshi's team on a Monday in March. By Wednesday she had a question she was embarrassed to ask. At the whiteboard, in the voice of someone confessing, she said there were about seventeen tools in the team channel, and everybody mentioned them as if she already knew them. Which ones did she need to learn?
+Tanvi Kulkarni joined Imran Qureshi's team on a Monday in March. By Wednesday she had a question she was shy to ask. She stood at the whiteboard and spoke like someone confessing. There were about seventeen tools in the team channel, she said. Everybody named them as if she already knew them. Which ones must she learn?
 
 Imran capped his pen and put it down. For the first time Anaya had seen, he looked pleased by a question. "None of them," he said. "Not yet. Learn the slots."
 
-This chapter follows Tanvi's first month. It starts with a way of thinking about tools and ends with a weekly report that went to customers. Between the two, it explains the structure around a model that turns it into a product.
+This chapter follows Tanvi's first month. It starts with a way to think about tools. It ends with a weekly report that went to customers. In between, it explains the structure around a model that turns it into a product.
 
 ## The case: seventeen tools in a channel
 
-The names that worried Tanvi would change within a year. What would not change was the set of jobs those names were hired to do. So Imran's answer was to teach the jobs first.
+The names that worried Tanvi would change within a year. The jobs they were hired for would not. Think of a toolbox with labelled slots: hammer, saw, tape. The brand of the hammer changes. The slot stays. So Imran taught the jobs first.
 
 ## Slots, not brands
 
-Imran drew a column of boxes. In each he wrote a verb phrase instead of the name of a product. Tanvi copied them into a notebook and saw that most of the names she had been worried about had vanished. An AI product, he said, needs about eleven things done for it, from the first idea to the last complaint.
+Imran drew a column of boxes. In each he wrote a verb phrase, not a product name. Tanvi copied them into a notebook. Most of the names she feared had vanished. An AI product, he said, needs about eleven jobs done, from the first idea to the last complaint.
 
 Table: Eleven jobs, and what each must do
 | Job | What it must do |
@@ -50,29 +50,29 @@ Table: Eleven jobs, and what each must do
 | Record events | Record events and draw funnels |
 | Follow a request | Follow one request from end to end, with what it cost and how long it took |
 
-Thinking of tools as slots like this gives you a *toolchain*: the set of tools that builds and runs the product. Each slot has a job. For each job the team had picked one tool that quarter, because it did the job well enough and the team knew it. Next year the name in the slot might differ. The slot would still be there.
+This way of seeing tools gives you a *toolchain*. It is the set of tools that builds and runs the product. Each slot has a job. For each job the team had picked one tool that quarter, because it did the job well and the team knew it. Next year the name in the slot might differ. The slot would still be there.
 
-Tanvi asked why they didn't keep the choice open and use them all. Imran said she would then learn the interfaces and not the jobs. Most projects use five or six of the eleven.
+Tanvi asked why they did not keep every choice open and use them all. Imran said she would then learn buttons, not jobs. Most projects use five or six of the eleven.
 
-The mistake is to treat each box as a subject to master. A box is a place to put a tool. Ask what the job must do and what must never go wrong when it does it. Then choose the tool, and learn the job.
+The mistake is to treat each box as a subject to master. A box is only a place to put a tool. Ask what the job must do and what must never go wrong. Then choose the tool, and learn the job.
 
-Anaya, listening from her desk, recognised the lesson she had been given in her first week about requirements: describe the job before you name the tool.
+Anaya listened from her desk. She remembered a lesson from her first week, about requirements. Describe the job before you name the tool.
 
 ## Two audits
 
 Imran gave Tanvi two habits to carry from job to job. The first came from a mistake of Anaya's.
 
-The month before, Anaya had uploaded Mr. Menon's security questionnaire, forty pages long, to a research assistant that answers only from the documents it is given. It wrote a tidy summary and attached a source to every sentence.
+The month before, Anaya had uploaded Mr. Menon's security questionnaire, forty pages long. She gave it to a research assistant that answers only from the documents it is given. It wrote a tidy summary and put a source beside every sentence. She was rather proud of it.
 
-She had been rather proud of it. Imran asked her to carry out a *claim audit*. You pick ten claims from the summary, check each one against the page it cites, and mark it supported, partly supported or unsupported.
+Imran asked her to run a *claim audit*. It is like a teacher spot-checking homework. Pick ten claims from the summary. Check each one against the page it cites. Mark it supported, partly supported or unsupported.
 
-It took forty minutes. Seven claims were supported. Two were partly supported, because the page said something similar but narrower. One was unsupported: the summary said the lender required a particular certificate, and nothing in the document said so.
+It took forty minutes. Seven claims were supported. Two were partly supported, because the page said something similar but narrower. One was unsupported. The summary said the lender required a certain certificate. Nothing in the document said so.
 
 ::: key One in ten is the limit
-If more than one or two claims in ten are unsupported, stop trusting that process for decisions, whichever tool produced it. If fewer, you may use it, and the team has learned what to check by hand.
+Say more than one or two claims in ten are unsupported. Then stop trusting that process for decisions, whichever tool made it. Say fewer are. Then you may use it, and the team has learned what to check by hand.
 :::
 
-The second habit was the secrets-and-data audit. For every tool in the stack, write down what it stores and where its keys live. The list that afternoon was longer than Anaya liked.
+The second habit was the secrets-and-data audit. Think of a list of every cupboard in the house and what sits inside it. For every tool in the stack, write down what it stores and where its keys live. The list that afternoon was longer than Anaya liked.
 
 Table: The secrets-and-data audit
 | Tool | What it holds |
@@ -83,17 +83,17 @@ Table: The secrets-and-data audit
 | Analytics tool | Events and account numbers and no message text, which Karan had already confirmed |
 | Model provider | The text of every message sent for checking, so its retention policy mattered, and Anaya had read it twice |
 
-Then Tanvi, who had been quiet, opened the demonstration page in her browser, pressed a key and went very still. In the script on the page she saw a long string that looked like a key. It was the key.
+Then Tanvi, who had been quiet, opened the demonstration page in her browser. She pressed a key and went very still. In the script on the page she saw a long string that looked like a key. It was the key.
 
-The tool that had turned a description into a screen in January had put the model provider's secret into code that is sent to every visitor. Anyone with a browser could read it. It had also created a database with no rule on who could read what.
+The tool that turned a description into a screen in January had made a mistake. It had put the model provider's secret into code that goes to every visitor. Anyone with a browser could read it. It had also made a database with no rule on who could read what.
 
-Imran changed the key within the hour, moved the call behind the server and wrote both findings in the log. Prototypes tend to do this, he said, so check before you share a link.
+Imran changed the key within the hour. He moved the call behind the server, which is the private back room. He wrote both findings in the log. Prototypes tend to do this, he said, so check before you share a link.
 
 ## What is around the model
 
-On Thursday Imran gave Tanvi her first real task. He began by taking away a phrase she was about to use: "the AI does it". The model takes in text and gives out text, he said, and that is all it does. Everything else that makes a product work is built around it.
+On Thursday Imran gave Tanvi her first real task. First he took away a phrase she was about to use: "the AI does it". The model takes in text and gives out text, he said. That is all it does. Everything else that makes a product work is built around it.
 
-That surrounding structure is the *harness*. It has seven parts, and a person debugging a product should be able to find each one. The table names them, with the Monday report as the example.
+That surrounding structure is the *harness*. Think of the saddle and reins around a horse. The horse is strong, but the harness makes it useful. A harness has seven parts. A person fixing a product should be able to find each one. The table names them, with the Monday report as the example.
 
 Table: The seven parts of a harness, with the Monday report as the example
 | Part | What it does | In the Monday report |
@@ -106,27 +106,27 @@ Table: The seven parts of a harness, with the Monday report as the example
 | Evals | Checks quality before and after a change | Twenty past weeks, with reports a person wrote |
 | Observability | Records what happened | A trace per run, with tokens, cost and time |
 
-Two products can use the same model and behave nothing alike, Imran said, because of this table. Nearly every quality problem you chase is in the table, not in the model.
+Two products can use the same model and act nothing alike, Imran said. The table is the reason. Nearly every quality problem you chase is in the table, not in the model.
 
-The task itself was the Monday email Anaya had described in the winter, the one line telling a compliance buyer how many details the guard had hidden. It was to become a proper weekly report, with a count, a trend and a short list of unsure cases.
+The task was the Monday email Anaya had described in the winter. It was one line telling a compliance buyer how many details the guard had hidden. Now it had to become a proper weekly report. It needed a count, a trend and a short list of unsure cases.
 
 ## How coding assistants are built
 
-To do the work, Tanvi was to use a coding assistant. This is a program that reads a repository, edits files and runs commands while a person watches. Imran said it was worth understanding how these are made. They are the most widely used agents, and their design holds patterns that any product can borrow.
+To do the work, Tanvi would use a coding assistant. This is a program that reads a repository (an online folder that remembers every change), edits files and runs commands while a person watches. Imran said it was worth knowing how these are made. They are the most used agents. Their design holds patterns that any product can borrow.
 
-At the centre is a simple loop. The model chooses a tool. The harness runs it. The result goes back to the model, and the cycle repeats until the work is done. The tools are few and general: read a file, change a file, search, run a command. A handful of flexible tools turns out to beat dozens of narrow ones.
+At the centre is a simple loop, like a helper running errands. The model chooses a tool. The harness runs it. The result goes back to the model. The cycle repeats until the work is done. The tools are few and general: read a file, change a file, search, run a command. A handful of flexible tools beats dozens of narrow ones.
 
-The rules of the project live in a plain file kept with the code, which the assistant reads at the start of every run. This is the *project memory*. Tanvi's first act was to open it and add a line: never write message text to a log.
+The project's rules live in a plain file kept with the code. The assistant reads it at the start of every run. This is the *project memory*. It is like a note pinned to the project wall. Tanvi opened it first and added a line: never write message text to a log.
 
-There are also permission modes. Reading is allowed freely, while changing a file or running a command can require someone to say yes.
+There are also permission modes. Reading is allowed freely. Changing a file or running a command can need someone to say yes.
 
-Imran called the most important part the verifier. A *verifier* is a check, such as a test or a type check, that tells the assistant whether its change worked, without a person reading every line. An assistant with a reliable way to check its own work can be given much larger jobs. One without it needs a human at every step, and then no speed has been gained.
+Imran called the most important part the verifier. A *verifier* is a check, such as a test or a type check. It tells the assistant if its change worked, so a person need not read every line. It is like the answer key at the back of a maths book. An assistant that can check its own work can take much larger jobs. One that cannot needs a human at every step, and then no speed is gained.
 
-When a job is large, the work can be divided. A *sub-agent* takes one part, works in its own separate context and returns only the result. That keeps the main conversation small and clear. None of this, Imran said, is about intelligence. It is about the loop, the memory and the check, and all of it could be used in the report.
+When a job is large, the work can be shared. A *sub-agent* takes one part. It works at its own separate desk (its own context) and hands back only the result. That keeps the main desk small and clear. None of this, Imran said, is about intelligence. It is about the loop, the memory and the check. All of it could be used in the report.
 
 ## Where the fences go
 
-The next lesson came from a story in the news that week. An assistant ran on someone's own computer, with the run of their files, their messages and their shell. It could do almost anything, which made it useful. It could also do almost anything, which made it dangerous. Tanvi drew four questions on the whiteboard as Imran gave them, and the table shows each question with the control that answers it.
+The next lesson came from a story in the news that week. An assistant ran on someone's own computer. It had the run of their files, their messages and their shell (the command line). It could do almost anything, and that made it useful. It could do almost anything, and that made it dangerous. Tanvi drew four questions on the whiteboard as Imran gave them. The table shows each question with the control that answers it.
 
 Table: Four questions about a tool's reach
 | Question | The control |
@@ -136,19 +136,19 @@ Table: Four questions about a tool's reach
 | Which calls need a person's approval? | Anything that sends, deletes, pays or cannot be undone |
 | What can reach it? | Any text it reads, such as tickets, email or a web page, may contain orders written by an attacker |
 
-Anaya recognised the last question as the trifecta of Chapter 24: private data, text from outsiders and a way to send. For every combination of tools, she said, at least one of the three must be removed.
+Think of an allowlist as the guest list at a wedding gate. If your name is not on it, you do not go in. Anaya knew the last question. It was the trifecta of Chapter 24: private data, text from outsiders and a way to send. For every combination of tools, she said, remove at least one of the three.
 
-Imran added that the team should start narrow and widen only on evidence chosen in advance. "It has been fine for a month" is not evidence. "It was right on all forty approvals and the log shows nothing blocked" is.
+Imran added a rule. Start narrow. Widen only on evidence chosen in advance. "It has been fine for a month" is not evidence. "It was right on all forty approvals and the log shows nothing blocked" is.
 
 ## One report, built twice
 
-Tanvi's task had a catch, of the kind Imran liked best. She was to build the report twice.
+Tanvi's task had a catch, the kind Imran liked best. She was to build the report twice.
 
-The first version was a *state machine*. In this kind of workflow, her code fixed every step and every permitted move from one step to the next. It gathered the numbers, asked the model to draft, checked the draft against the numbers and sent it for approval. If the check failed, it tried once more, then stopped and said so.
+The first version was a *state machine*. It is like a board game with fixed squares. Her code fixed every step and every allowed move from one step to the next. It gathered the numbers. It asked the model to draft. It checked the draft against the numbers. Then it sent the draft for approval. If the check failed, it tried once more. Then it stopped and said so.
 
-The second version was a bounded agent. It was given a list of tools, a budget of steps and the task, and the model chose what to do.
+The second version was a bounded agent. It got a list of tools, a budget of steps and the task. The model chose what to do.
 
-They ran both on the same twenty past weeks, for which a person had already written the report.
+They ran both on the same twenty past weeks. A person had already written the report for each of those weeks.
 
 Table: The state machine and the bounded agent on twenty weeks
 | Measure | State machine | Bounded agent |
@@ -158,25 +158,25 @@ Table: The state machine and the bounded agent on twenty weeks
 | Finding the cause of a failure | Minutes: the failing step is in the log | Much longer: the whole trace must be read |
 | An unusual week | Needs a code change | Often adapts on its own |
 
-The trace is also what a reviewer marks to grade an agent's path as well as its answer, the way Anaya had marked the night-queue run, one step to a row. An agent whose steps nobody reads cannot be improved on purpose.
+A reviewer marks the trace to grade an agent's path as well as its answer. Anaya had done this for the night-queue run, one step to a row. An agent whose steps nobody reads cannot be improved on purpose.
 
-For a fixed process such as a weekly report, Imran said, the machine with fixed steps wins. It is more accurate, faster, and it fails in a place that can be seen. The agent earns its keep when the steps really do vary from case to case.
+For a fixed process such as a weekly report, Imran said, the machine with fixed steps wins. It is more accurate and faster. It also fails in a place you can see. The agent earns its keep when the steps truly vary from case to case.
 
-He asked where that would be here. Tanvi suggested looking into why one customer's count suddenly doubled. He agreed, and said to use the agent for that, in a corner, with a short budget.
+He asked where that would be here. Tanvi said: find out why one customer's count suddenly doubled. He agreed. Use the agent for that, in a corner, with a short budget.
 
 ## Letting it out
 
-The last part of the task frightened her. A report that goes to customers needs a release gate, and Imran gave her the list.
+The last part of the task frightened her. A report that goes to customers needs a release gate. It is like a railway signal that stays red until everything is checked. Imran gave her the list.
 
 - The ordinary tests pass.
 - The twenty weeks score at or above the line, with nothing new failing in the safety cases.
 - Cost and time per run are within budget.
-- The change goes first to one account in ten, behind a *feature flag*. That is a switch in the running system that turns a change on for some users and off for others, without a new release.
+- The change goes first to one account in ten, behind a *feature flag*. That is a light switch in the running system. It turns a change on for some users and off for others, without a new release.
 - A rollback trigger and the owner of an incident are written down.
 
-A *rollback trigger* is a condition, written beforehand and measurable, that obliges someone to undo the release. Tanvi wrote hers: roll back if the share of reports that a customer marks as useful falls more than ten points below last week, or if any report goes to the wrong recipient.
+A *rollback trigger* is like a fire alarm set in advance. It is a measurable condition, written beforehand, that makes someone undo the release. Tanvi wrote hers. Roll back if the share of reports that a customer marks as useful falls more than ten points below last week. Roll back if any report goes to the wrong recipient.
 
-The person who decides was the engineer on call, who needed nobody's permission. The method was to switch the flag, and it would take under five minutes. They tested it once before launch, with a stopwatch.
+The person who decides was the engineer on call, who needed nobody's permission. The method was to switch the flag, and that took under five minutes. They tested it once before launch, with a stopwatch.
 
 They also wrote down how the system should respond to each kind of failure.
 
@@ -188,20 +188,20 @@ Table: Responses to failure
 | Escalate | The output cannot be trusted | The draft fails its check twice |
 | Stop | An irreversible action looks wrong | A report would go to five hundred people instead of five |
 
-Imran stopped her pen at the last row. If the machine is about to do something it cannot take back, and the action looks wrong, it stops. A delayed report is an annoyance. A report sent to the wrong five hundred is a letter from a lawyer.
+Imran stopped her pen at the last row. The machine may be about to do something it cannot take back. If the action looks wrong, it stops. A late report is an annoyance. A report sent to the wrong five hundred is a letter from a lawyer.
 
-And if something did go wrong, someone would write an *incident review* within two days. It is a page saying what happened, why, and which check would have caught it. It names a check, not a person to blame.
+If something did go wrong, someone would write an *incident review* within two days. It is a page saying what happened, why, and which check would have caught it. Think of the note a school writes after a fire drill goes wrong. It names a check, not a person to blame.
 
-Tanvi finished on a Friday. The first report went to a single account, behind the flag, at four in the afternoon, and Imran walked past her desk three times without saying anything. It arrived, and it was right. She switched the flag off, and then on again, to prove that she could.
+Tanvi finished on a Friday. The first report went to a single account, behind the flag, at four in the afternoon. Imran walked past her desk three times and said nothing. It arrived, and it was right. She switched the flag off, then on again, to prove that she could.
 
 ## Summary
 
-An AI product needs about eleven jobs done for it. The useful way to think of tools is as slots to fill, choosing one tool per job by what it must do and what must never go wrong.
+An AI product needs about eleven jobs done for it. Think of tools as slots to fill. Choose one tool per job by what it must do and what must never go wrong.
 
-- Two audits belong to every stack: check ten claims from any AI summary against their sources, and write down for every tool what it stores and where its keys live.
-- The model is one part of a product. The rest, the harness, has seven parts: context, tools, state, orchestration, policy, evals and observability. Most quality problems live there.
-- Coding assistants run a simple loop, use a few general tools, keep project rules in a file, ask permission for risky acts and rely above all on a verifier.
-- Tool access should be an allowlist, narrow in scope, with approval for anything that cannot be undone, and widened only on evidence chosen beforehand.
-- For a fixed process a state machine usually beats an agent, and the choice should be measured on the same cases. A change goes out behind a gate and a flag, with a rollback trigger, a named owner and a plan for each kind of failure.
+- Two audits belong to every stack. Check ten claims from any AI summary against their sources. Write down, for every tool, what it stores and where its keys live.
+- The model is one part of a product. The rest is the harness, with seven parts: context, tools, state, orchestration, policy, evals and observability. Most quality problems live there.
+- Coding assistants run a simple loop. They use a few general tools and keep project rules in a file. They ask permission for risky acts and rely above all on a verifier.
+- Tool access should be an allowlist, narrow in scope. Anything that cannot be undone needs approval. Widen it only on evidence chosen beforehand.
+- For a fixed process a state machine usually beats an agent. Measure the choice on the same cases. A change goes out behind a gate and a flag, with a rollback trigger, a named owner and a plan for each kind of failure.
 
 With the tools in place, the team can put the product in front of real people.

@@ -645,218 +645,52 @@ Object.assign(window.HING = window.HING || {}, {
   /* ---- ch18s: Security and governance: controls around an untrusted model ---- */
   'Security and governance: controls around an untrusted model':
     'Security aur governance: ek untrusted model ke aas-paas controls',
-  'Assume the model will be manipulated. The application, the retrieved content, the tools, the identity layer and the data pipeline are all part of the attack surface. You’ll apply least privilege, and build a risk register in which every control has a test.':
-    'Maan lijiye ki model ko manipulate kiya jayega. Application, retrieved content, tools, identity layer aur data pipeline, sab attack surface ka hissa hain. Aap least privilege lagayenge, aur ek risk register banayenge jismein har control ka ek test hoga.',
-  'Put a malicious instruction inside a document that your own system retrieves. Then test whether it can override the task or pull out a secret.':
-    'Ek malicious instruction ko aise document ke andar daaliye jo aapka apna system retrieve karta hai. Phir test kijiye ki kya woh task ko override kar sakti hai ya koi secret nikal sakti hai.',
-  'Add trust boundaries, least privilege, input validation, secret isolation, audit logging and confirmation steps.':
-    'Trust boundaries, least privilege, input validation, secret isolation, audit logging aur confirmation steps jodiye.',
-  'Run tests for prompt injection, indirect injection, tool abuse, data leakage and excessive agency.':
-    'Prompt injection, indirect injection, tool abuse, data leakage aur excessive agency ke tests chalaiye.',
-  'A security report and an AI risk register.':
-    'Ek security report aur ek AI risk register.',
-  'Explain why retrieved content is untrusted input, to someone who thinks it is simply their own data.':
-    'Kisi aise insaan ko samjhaiye jo retrieved content ko bas apna data maanta hai, ki woh untrusted input kyun hai.',
-  'Prompt injection has no complete fix':
-    'Prompt injection ka koi poora fix nahi hai',
-  'Chapter 13 showed you this. This chapter builds the controls around the problem.':
-    'Chapter 13 mein aapne yeh dekha tha. Yeh chapter is problem ke aas-paas controls banata hai.',
-  'Tools are a security boundary':
-    'Tools ek security boundary hain',
-  'You learned this in Chapter 25. Least privilege puts it into practice.':
-    'Yeh aapne Chapter 25 mein seekha tha. Least privilege ise practice mein laata hai.',
-  'Retrieved text can carry attacks':
-    'Retrieved text mein attacks aa sakte hain',
-  'In Chapter 7.5 you planted one in your own system.':
-    'Chapter 7.5 mein aapne apne hi system mein ek attack daala tha.',
   'Prompt injection':
     'Prompt injection',
-  'Text that reaches the model as data and gets followed as an instruction. The model cannot reliably tell the two apart, so the boundary has to be enforced around it.':
-    'Aisa text jo model tak data ki tarah pahunchta hai aur instruction ki tarah follow ho jaata hai. Model in dono ko bharose se alag nahi kar sakta, isliye boundary ko uske aas-paas enforce karna padta hai.',
   'Indirect injection':
     'Indirect injection',
-  'The same attack, arriving through content the system retrieved and not through what the user typed.':
-    'Wahi attack, lekin user ke type kiye hue text se nahi, balki system ke retrieve kiye hue content ke raaste se aata hua.',
   'Excessive agency':
     'Excessive agency',
-  'Giving a system more permission, reach or independence than its task needs.':
-    'Kisi system ko uske task ki zaroorat se zyada permission, reach ya independence dena.',
   'Risk register':
     'Risk register',
-  'A table in which every row ends in a test that has been run, and not just in a control that has been described.':
-    'Ek table jismein har row ek aise test par khatam hota hai jo chalaya ja chuka hai, sirf ek aise control par nahi jo bas describe kiya gaya hai.',
-  'Explain why retrieved content is untrusted input, whoever owns the document.':
-    'Samjha paana ki retrieved content untrusted input kyun hai, document ka owner koi bhi ho.',
-  'Apply least privilege to an agent, and show what breaks.':
-    'Ek agent par least privilege lagana, aur dikha paana ki kya toot-ta hai.',
-  'Produce a risk register in which every control has evidence next to it.':
-    'Aisa risk register banana jismein har control ke saath evidence ho.',
-  'Bring your injection audit from Chapter 13 and the tool classification from Chapter 27.':
-    'Chapter 13 ka apna injection audit aur Chapter 27 ki tool classification saath rakhiye.',
-  'In the last chapter you learned to watch a live system. Now we ask what happens when someone tries to misuse it. The answer starts with a plain fact: the model gives everything it reads the same level of trust.':
-    'Pichhle chapter mein aapne seekha ki live system ko kaise watch karte hain. Ab hum poochte hain ki koi use galat tareeke se use karne ki koshish kare toh kya hoga. Jawaab ek saade fact se shuru hota hai: model jo bhi padhta hai, us sab par barabar bharosa karta hai.',
-  'Whether that is dangerous depends on the system around the model: what it is given, and what it is allowed to do next. That’s why most of AI security is about the system, and not about the model.':
-    'Yeh khatarnak hai ya nahi, yeh model ke aas-paas ke system par depend karta hai: use kya diya jaata hai, aur aage use kya karne ki ijaazat hai. Isliye AI security ka zyadatar hissa system ke baare mein hota hai, model ke baare mein nahi.',
-  'Here’s an everyday picture. Someone slips a note into a stack of paperwork that says “approve this one without checking”. The clerk can read perfectly well. The problem is that nothing in the process separates an instruction from a document.':
-    'Ek roz ki tasveer dekhiye. Kisi ne kaagzaat ke dher mein ek parchi sarka di jis par likha hai “ise bina check kiye approve kar do”. Clerk bilkul achhe se padh sakta hai. Dikkat yeh hai ki process mein kuch bhi instruction ko document se alag nahi karta.',
-  'Prompt injection is an input trust problem. The model cannot reliably tell an instruction from data, so the system that assembles the context must enforce the boundary. Asking nicely in the system prompt is not enough.':
-    'Prompt injection ek input trust problem hai. Model bharose se instruction aur data mein farq nahi kar sakta, isliye jo system context assemble karta hai, usi ko boundary enforce karni padegi. System prompt mein pyaar se maang lena kaafi nahi hai.',
-  'The eight units below go from the first attack, through the controls that stop it, to the checklist that decides a release.':
-    'Neeche ke aath units pehle attack se shuru hote hain, use rokne wale controls se guzarte hain, aur us checklist par khatam hote hain jo release ka faisla karti hai.',
-  'Understand direct and indirect prompt injection as attacks that use input you cannot trust.':
-    'Direct aur indirect prompt injection ko aise attacks ki tarah samjhiye jo aise input ka use karte hain jis par bharosa nahi kiya ja sakta.',
-  'Instructions hidden in what the user typed, or in retrieved content, can compete with your application’s own instructions.':
-    'User ke type kiye hue text mein, ya retrieved content mein chhupi instructions aapki application ki apni instructions se takra sakti hain.',
-  'Place malicious instructions in a document, and test the RAG assistant with it.':
-    'Ek document mein malicious instructions daaliye, aur RAG assistant ko usi se test kijiye.',
-  'Keep your trusted control instructions apart from untrusted evidence.':
-    'Apni trusted control instructions ko untrusted evidence se alag rakhiye.',
-  'Try to make the model reveal a secret, or use a tool, through retrieved text.':
-    'Retrieved text ke zariye model se koi secret reveal karwane ya koi tool chalwane ki koshish kijiye.',
   'Prompt Injection Test Report.':
     'Prompt Injection Test Report.',
-  'What stopped the attack: the model’s own behaviour, or a policy in the application?':
-    'Attack ko kisne roka: model ke apne behaviour ne, ya application ki policy ne?',
-  'Never describe the prompt text alone as a security boundary.':
-    'Sirf prompt text ko kabhi security boundary mat kahiye.',
   'Sensitive information disclosure':
     'Sensitive information disclosure',
-  'Protect secrets, PII and confidential data in prompts, in retrieval and in traces.':
-    'Secrets, PII aur confidential data ko prompts mein, retrieval mein aur traces mein protect kijiye.',
-  'A model can protect information only if the application controls what the model receives and what it can return.':
-    'Model information ko tabhi protect kar sakta hai jab application control kare ki model ko kya milta hai aur woh kya return kar sakta hai.',
-  'Create a test collection of documents with made-up sensitive fields.':
-    'Made-up sensitive fields wale documents ka ek test collection banaiye.',
-  'Filter or redact before the model sees anything, and log each access decision.':
-    'Model kuch bhi dekhe, usse pehle filter ya redact kijiye, aur har access decision ko log kijiye.',
-  'Ask for another user’s data, in plain language and through tool calls.':
-    'Kisi doosre user ka data maangiye, plain language mein bhi aur tool calls ke zariye bhi.',
   'Data Leakage Test Matrix.':
     'Data Leakage Test Matrix.',
-  'Where is authorization enforced?':
-    'Authorization kahan enforce hoti hai?',
-  'Map privacy requirements to the paths the data actually takes. Policy documents alone are not enough.':
-    'Privacy requirements ko un raaston se map kijiye jin par data asal mein chalta hai. Sirf policy documents kaafi nahi hain.',
   'Improper output handling':
     'Improper output handling',
-  'Check the model’s output before you pass it on to other systems.':
-    'Model ke output ko doosre systems tak bhejne se pehle check kijiye.',
-  'Generated text becomes dangerous when another system treats it as a trusted command, as SQL, as HTML or as business data.':
-    'Generated text tab khatarnak ho jaata hai jab koi doosra system use trusted command, SQL, HTML ya business data maan leta hai.',
-  'Create a structured output, and validate it against a list of allowed values.':
-    'Ek structured output banaiye, aur use allowed values ki list ke against validate kijiye.',
-  'Use allowlists and typed interfaces before anything is executed.':
-    'Kuch bhi execute hone se pehle allowlists aur typed interfaces ka use kijiye.',
-  'Inject malicious strings into the generated fields.':
-    'Generated fields mein malicious strings daaliye.',
   'Output Validation Checklist plus tests.':
     'Output Validation Checklist aur tests.',
-  'Which downstream component could interpret the output as an instruction?':
-    'Kaun sa downstream component output ko instruction ki tarah padh sakta hai?',
-  'Treat model output as untrusted input.':
-    'Model output ko untrusted input maniye.',
-  'Limit the tools and actions that an autonomous system can use.':
-    'Un tools aur actions ko limit kijiye jo ek autonomous system use kar sakta hai.',
-  'The more permissions a system has, the bigger the damage when something goes wrong.':
-    'System ke paas jitni zyada permissions hongi, kuch galat hone par nuksaan utna bada hoga.',
-  'Classify each tool by how much privilege it needs and whether its actions can be undone.':
-    'Har tool ko classify kijiye ki use kitne privilege chahiye aur uske actions undo ho sakte hain ya nahi.',
-  'Remove the tools it does not need, and compare task success before and after.':
-    'Jo tools zaroori nahi hain unhe hataiye, aur pehle aur baad task success compare kijiye.',
-  'Try a task that asks for an action that cannot be undone.':
-    'Aisa task try kijiye jo aisi action maangta hai jo undo nahi ho sakti.',
   'Agency Permission Matrix.':
     'Agency Permission Matrix.',
   'What is the worst damage if the model is wrong?':
     'Agar model galat ho toh sabse bada nuksaan kya hoga?',
-  'How much freedom the system gets should depend on the business risk.':
-    'System ko kitni azaadi milti hai, yeh business risk par depend karna chahiye.',
   'Retrieval authorization':
     'Retrieval authorization',
-  'Enforce ACLs (who may see what) and tenant boundaries before evidence reaches the model.':
-    'Evidence model tak pahunchne se pehle ACLs (kaun kya dekh sakta hai) aur tenant boundaries enforce kijiye.',
-  'Retrieving the right content for the wrong tenant is still a security breach.':
-    'Galat tenant ke liye sahi content retrieve karna bhi ek security breach hai.',
   'Create two users and two groups of documents.':
     'Do users aur documents ke do groups banaiye.',
-  'Apply the metadata filters on the server side.':
-    'Metadata filters server side par lagaiye.',
-  'Try to retrieve across tenants, and to retrieve with permissions that are out of date.':
-    'Tenants ke beech retrieve karne ki koshish kijiye, aur purani permissions ke saath retrieve karne ki bhi.',
   'ACL Retrieval Test Report.':
     'ACL Retrieval Test Report.',
-  'Can the model ever see evidence it is not authorized to access?':
-    'Kya model kabhi aisa evidence dekh sakta hai jise dekhne ki use authorization nahi hai?',
-  'Don’t make “remembering” the authorization rules the model’s job, as your only control.':
-    'Authorization rules “yaad rakhna” model ka kaam mat banaiye, jab woh aapka akela control ho.',
   'Audit logging':
     'Audit logging',
-  'Capture enough evidence to rebuild what happened in any action that matters for security.':
-    'Itna evidence capture kijiye ki security ke liye zaroori kisi bhi action mein jo hua, use dobara banaya ja sake.',
-  'An audit trail should show who did what, when, under which policy, with which tool, and what happened.':
-    'Audit trail ko dikhana chahiye ki kisne kya kiya, kab, kaun si policy ke tahat, kaun se tool se, aur kya hua.',
-  'Design an audit record for one tool action.':
-    'Ek tool action ke liye ek audit record design kijiye.',
-  'Write the approval event and the execution event separately.':
-    'Approval event aur execution event ko alag-alag likhiye.',
-  'Change the payload after it was approved, and check that the mismatch is visible.':
-    'Approval ke baad payload badaliye, aur check kijiye ki mismatch dikhta hai.',
   'Audit Log Schema plus a sample trail.':
     'Audit Log Schema aur ek sample trail.',
-  'Could someone responding to an incident reconstruct the action?':
-    'Kya incident par kaam karne wala koi insaan us action ko reconstruct kar sakta hai?',
-  'Being able to audit is part of being ready for production.':
-    'Audit kar paana production ke liye ready hone ka hissa hai.',
   'Governance and risk register':
     'Governance aur risk register',
-  'Turn security and AI risks into owners, controls and evidence.':
-    'Security aur AI risks ko owners, controls aur evidence mein badaliye.',
-  'Governance becomes useful when every risk has a control you can test, and an owner.':
-    'Governance tab kaam ki ban jaati hai jab har risk ka ek aisa control ho jise test kiya ja sake, aur ek owner ho.',
-  'Create fields for the risk, the impact, the likelihood, the control, the owner, the evidence and the remaining risk.':
-    'Risk, impact, likelihood, control, owner, evidence aur bache hue risk ke liye fields banaiye.',
-  'Review the register against the architecture of your capstone.':
-    'Register ko apne capstone ke architecture ke saath review kijiye.',
-  'Mark one control “policy only”, and ask what evidence is missing.':
-    'Ek control ko “policy only” mark kijiye, aur poochhiye ki kaun sa evidence missing hai.',
   'AI Risk Register.':
     'AI Risk Register.',
   'Which risks are still left after the controls?':
     'Controls ke baad kaun se risks abhi bhi bache hain?',
-  'A risk register is a working tool, not a compliance decoration.':
-    'Risk register ek kaam ka tool hai, compliance ki sajaavat nahi.',
   'Security release gate':
     'Security release gate',
-  'Turn red-team findings into release criteria.':
-    'Red-team findings ko release criteria mein badaliye.',
-  'Security tests must block a release when the remaining risk is above the agreed threshold.':
-    'Jab bacha hua risk tay kiye hue threshold se upar ho, tab security tests ko release rokna chahiye.',
-  'Define the mandatory checks for injection, leakage, authorization and unsafe actions.':
-    'Injection, leakage, authorization aur unsafe actions ke liye mandatory checks tay kijiye.',
-  'Run the test suite before and after a change of prompt or model.':
-    'Prompt ya model badalne se pehle aur baad test suite chalaiye.',
-  'Create a change that improves quality but weakens security.':
-    'Aisa change banaiye jo quality badhaye lekin security kamzor kare.',
   'Security Go/No-Go Checklist.':
     'Security Go/No-Go Checklist.',
-  'What counts as an automatic blocker?':
-    'Automatic blocker kise maana jaayega?',
-  'Security belongs in the same release process as quality and cost.':
-    'Security ko wahi release process chahiye jismein quality aur cost hain.',
   'Least privilege for agents':
     'Agents ke liye least privilege',
-  'Least privilege means giving something only the access it needs to do its job, and nothing more. For an agent, that mostly means tools.':
-    'Least privilege ka matlab hai kisi ko sirf utna access dena jitna uske kaam ke liye zaroori hai, aur usse zyada nahi. Ek agent ke liye iska matlab zyadatar tools hota hai.',
-  'Apply least privilege to agents. If an agent has a tool it never needs, an attacker can persuade it to use that tool.':
-    'Agents par least privilege lagaiye. Agar kisi agent ke paas aisa tool hai jiski use kabhi zaroorat nahi, toh attacker use us tool ko use karne ke liye manwa sakta hai.',
-  'Controls are only half the story, because each one needs proof. The table pairs each risk with a control, and with the evidence that shows the control works.':
-    'Controls kahani ka sirf aadha hissa hain, kyunki har control ko saboot chahiye. Table har risk ko ek control ke saath jodta hai, aur us evidence ke saath jo dikhata hai ki control kaam karta hai.',
   'Risk':
     'Risk',
-  'Example control':
-    'Example control',
-  'The evidence that it works':
-    'Woh evidence jo dikhata hai ki control kaam karta hai',
   'Content separation, tool allowlist, confirmation':
     'Content separation, tool allowlist, confirmation',
   'Red-team test results':
@@ -885,44 +719,14 @@ Object.assign(window.HING = window.HING || {}, {
     'Safety test set results',
   'Test every control':
     'Har control ko test kijiye',
-  'A safeguard nobody has tested only exists on paper. Next to each safeguard, write the test that proves it works, and run it.':
-    'Jis safeguard ko kisi ne test nahi kiya, woh sirf kaagaz par hai. Har safeguard ke saath woh test likhiye jo saabit kare ki woh kaam karta hai, aur use chalaiye.',
   'Try this with something from your own workplace.':
     'Yeh apne hi workplace ki kisi cheez ke saath try kijiye.',
   'Pick one control your organisation says it has. Write what evidence would prove it works, and whether that evidence exists.':
     'Ek aisa control chuniye jo aapka organisation kehta hai ki uske paas hai. Likhiye ki kaun sa evidence saabit karega ki woh kaam karta hai, aur woh evidence hai ya nahi.',
   'The control … the evidence would be … it exists / does not exist because …':
     'Control … evidence yeh hoga … woh hai / nahi hai kyunki …',
-  'The gap between the claim and the evidence is your real risk. A risk register exists to track that gap.':
-    'Daave aur evidence ke beech ka gap hi aapka asli risk hai. Risk register isi gap ko track karne ke liye hota hai.',
-  'To sum up: the model trusts everything it reads, so the system around it has to draw the lines. Retrieved content is untrusted input. Give every agent only the tools it needs. And write a test next to every control, so that your register holds evidence and not just good intentions.':
-    'Toh seedhi baat yeh hai: model jo bhi padhta hai us par bharosa karta hai, isliye uske aas-paas ka system hi lakeerein khinchta hai. Retrieved content untrusted input hai. Har agent ko sirf utne tools dijiye jitne uski zaroorat hai. Aur har control ke saath ek test likhiye, taaki aapke register mein sirf achhi niyat nahi, evidence bhi ho.',
-  'Next, in Chapter 32, you’ll turn this technical system into a product specification.':
-    'Agle Chapter 32 mein aap is technical system ko ek product specification mein badlenge.',
-  'Write the risk register, with a test for every control':
-    'Risk register likhiye, har control ke test ke saath',
-  'A risk register that ends in controls is only a list of good intentions. In this chapter you learned why retrieved text is untrusted input whoever owns it, how to apply least privilege to an agent, and to put evidence next to every control. Now you write the risk register for Bharat Privacy Guard.':
-    'Jo risk register sirf controls par khatam ho, woh bas achhe iraadon ki list hai. Is chapter mein aapne seekha ki retrieved text untrusted input kyun hai, chahe uska owner koi bhi ho, agent par least privilege kaise lagate hain, aur har control ke saath evidence kaise rakhte hain. Ab aap Bharat Privacy Guard ke liye risk register likhenge.',
-  'Written only. The register draws on evidence from your earlier chapters. No new code is needed.':
-    'Sirf likhna hai. Register aapke pichhle chapters ke evidence par tika hai. Naya code nahi chahiye.',
-  'For each risk, write eight things: the asset (what is at stake), the threat, the impact, how likely it is, the control, the owner, the test, and the risk that remains.':
-    'Har risk ke liye aath cheezein likhiye: asset (kya daav par hai), threat, impact, kitna likely hai, control, owner, test, aur jo risk bacha rehta hai.',
-  'Include at least these eight risks: a missed Aadhaar number; a false alarm that blocks a real message; an attack hidden in the text reaching the model; the provider keeping your data; the model provider going down; the reference lists going out of date; the logs storing raw personal data; and a person with more access than they need.':
-    'Kam se kam yeh aath risks rakhiye: ek chhoota hua Aadhaar number; ek false alarm jo asli message ko block kar de; text mein chhupa ek attack jo model tak pahunch jaaye; provider ka aapka data rakh lena; model provider ka down ho jaana; reference lists ka purani ho jaana; logs mein raw personal data store hona; aur kisi insaan ke paas zaroorat se zyada access hona.',
-  'For every control, write the test that shows it works, and run that test wherever you can. A control with no test is only an intention.':
-    'Har control ke liye woh test likhiye jo dikhaye ki woh kaam karta hai, aur jahan ho sake woh test chalaiye. Jis control ka test nahi, woh sirf ek iraada hai.',
-  'Apply least privilege to the tool. List what each part can reach, remove everything it does not need, and say what breaks.':
-    'Tool par least privilege lagaiye. Likhiye ki har part kya-kya reach kar sakta hai, jo zaroori nahi use hataiye, aur bataiye ki kya toot-ta hai.',
-  'Write two lines on why text retrieved from your own reference lists must still be treated as untrusted input.':
-    'Do lines likhiye ki aapki apni reference lists se retrieve hua text bhi untrusted input kyun maana jaana chahiye.',
-  'A register of at least eight risks with all eight columns filled in.':
-    'Kam se kam aath risks ka ek register, jismein aathon columns bhare hon.',
   'A test for every control, with the results of those you ran.':
     'Har control ke liye ek test, aur jo tests aapne chalaye unke results.',
-  'A least-privilege list and what broke when you removed access.':
-    'Ek least-privilege list, aur access hatane par kya toota.',
-  'Two lines on why retrieved text is untrusted.':
-    'Do lines ki retrieved text untrusted kyun hai.',
 
   /* ---- ch19pm: AI product management: specs for a probabilistic system ---- */
   'AI product management: specs for a probabilistic system':

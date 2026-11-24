@@ -7,60 +7,24 @@ Object.assign(window.HING = window.HING || {}, {
   /* Setup page */
   'Setup: connect a model':
     'Setup: ek model connect kijiye',
-  'Every chapter’s interactive tools work without this. Do it once, when you reach Chapter 1, so that the code in the chapters can call a real model. The code runs right here in the page, so there is no other window to open.':
-    'Har chapter ke interactive tools iske bina bhi chalte hain. Ise ek baar kijiye, jab aap Chapter 1 par pahunchein, taaki chapters ka code ek asli model ko call kar sake. Code yahin isi page mein chalta hai, isliye koi doosri window kholne ki zaroorat nahi.',
-  'You need one free thing from outside this site: an API key, which lets the code in the chapters talk to a model. You paste it here once. The code itself runs in this page, in Python that starts inside your browser, so there is nothing to install and no notebook to open elsewhere.':
-    'Aapko is site ke bahar se sirf ek free cheez chahiye: ek API key, jisse chapters ka code model se baat kar pata hai. Aap ise yahan ek baar paste karte hain. Code khud isi page mein chalta hai, us Python mein jo aapke browser ke andar start hota hai, isliye na kuch install karna hai, na kahin aur notebook kholni hai.',
   'A1. Connect a model':
     'A1. Ek model connect kijiye',
-  'A model runs on a provider’s computers, and the provider needs to know who is asking. The API key is how it knows. The course was written against NVIDIA Build, which is free and doesn’t ask for a credit card. Google Gemini works too, and so do the others in the list.':
-    'Model ek provider ke computers par chalta hai, aur provider ko pata hona chahiye ki kaun pooch raha hai. API key se use yeh pata chalta hai. Yeh course NVIDIA Build ke saath likha gaya tha, jo free hai aur credit card nahi maangta. Google Gemini bhi chalta hai, aur list ke baaki providers bhi.',
-  'Choose NVIDIA Build below, unless you have a reason not to.':
-    'Neeche NVIDIA Build chuniye, jab tak aapke paas na chunne ki koi wajah na ho.',
-  'Open the key page from the link. Sign up or log in with any email, search for <code>llama-3.1-8b-instruct</code> and press <strong>Get API Key</strong>. On some pages it is under <em>Build with this NIM → Generate Key</em>.':
-    'Link se key wala page kholiye. Kisi bhi email se sign up ya log in kijiye, <code>llama-3.1-8b-instruct</code> search kijiye aur <strong>Get API Key</strong> dabaiye. Kuch pages par yeh <em>Build with this NIM → Generate Key</em> ke neeche hota hai.',
-  'Copy the long code that starts with <code>nvapi-</code>, paste it below and press <strong>Save key</strong>. Treat it like an ATM PIN.':
-    '<code>nvapi-</code> se shuru hone wala lamba code copy kijiye, neeche paste kijiye aur <strong>Save key</strong> dabaiye. Ise ATM PIN ki tarah sambhaal kar rakhiye.',
   'Press <strong>Run the test call</strong>.':
     '<strong>Run the test call</strong> dabaiye.',
-  'You see <code>setup works</code>, the model’s name and a receipt: the tokens it read, the tokens it wrote and the seconds it took.':
-    'Aapko <code>setup works</code>, model ka naam aur ek receipt dikhegi: usne kitne tokens padhe, kitne likhe aur kitne second lage.',
-  'Keys that sit inside code get copied, shared and leaked. It is one of the most common security failures in software. Here the key never appears in your code: the page adds it to each request. If you know how to store keys properly, and why, you can speak with confidence in a meeting.':
-    'Code ke andar rakhi keys copy hoti hain, share hoti hain aur leak ho jaati hain. Software mein yeh sabse aam security failures mein se ek hai. Yahan key aapke code mein kabhi nahi dikhti: page use har request ke saath jod deta hai. Agar aap jaante hain ki keys theek se kaise rakhi jaati hain, aur kyun, toh aap meeting mein bharose se baat kar sakte hain.',
   'A2. Python, in this page':
     'A2. Python, isi page mein',
-  'Every code block in a chapter has a <strong>Run</strong> button. The first time you press one, Python starts inside your browser. It downloads about 10 MB, once. After that it starts in a few seconds.':
-    'Chapter ke har code block mein ek <strong>Run</strong> button hai. Pehli baar dabane par Python aapke browser ke andar start hota hai. Yeh lagbhag 10 MB download karta hai, sirf ek baar. Uske baad yeh kuch second mein start ho jaata hai.',
-  'Try it now. Press <strong>Run</strong> on the cell below, or click in it and press <kbd>Shift</kbd>+<kbd>Enter</kbd>.':
-    'Abhi try kijiye. Neeche wale cell par <strong>Run</strong> dabaiye, ya usme click karke <kbd>Shift</kbd>+<kbd>Enter</kbd> dabaiye.',
   'The word <code>hello</code> appears below the cell, with a green tick. That was a program. You wrote it and you ran it.':
     'Cell ke neeche <code>hello</code> shabd dikhta hai, ek hare tick ke saath. Woh ek program tha. Aapne use likha aur chalaya.',
-  'Cells run from top to bottom, and they remember each other. A value you make in one cell can be used in any later one, in this chapter or the next. One Python session runs the whole course.':
-    'Cells upar se neeche chalte hain, aur ek doosre ko yaad rakhte hain. Ek cell mein banayi value baad ke kisi bhi cell mein use ho sakti hai, isi chapter mein ya agle mein. Poora course ek hi Python session mein chalta hai.',
-  'A reload, or closing the tab, ends the session. The cells you typed stay, and the page remembers which ones you ran. Press <strong>Restore</strong> in the notebook bar to put your functions and data back without calling the model again.':
-    'Page reload karne ya tab band karne se session khatam ho jaata hai. Aapke likhe cells bache rehte hain, aur page yaad rakhta hai ki aapne kaun se chalaye the. Notebook bar mein <strong>Restore</strong> dabaiye, aapke functions aur data model ko dobara call kiye bina wapas aa jaayenge.',
-  'You can change any code before you run it. <strong>Undo edits</strong> puts the chapter’s version back.':
-    'Chalane se pehle aap koi bhi code badal sakte hain. <strong>Undo edits</strong> chapter wala version wapas le aata hai.',
   'A3. The warm-up the page does for you':
     'A3. Woh warm-up jo page aapke liye karta hai',
-  'Before code can call a model it needs three things: the key, the library and a client. The page does these for you before your first cell. Here they are, as you would write them anywhere else. Run each one.':
-    'Model ko call karne se pehle code ko teen cheezein chahiye: key, library aur ek client. Page aapke pehle cell se pehle yeh khud kar deta hai. Yeh rahe woh, waise hi jaise aap kahin aur likhte. Har ek ko chalaiye.',
   'Here it says the library is already built in. On your own computer, this line installs it.':
     'Yahan yeh batata hai ki library pehle se built-in hai. Aapke apne computer par yeh line use install karti hai.',
-  'The same three cells run unchanged in Google Colab, in Jupyter or on your own computer, where <code>userdata</code> reads the secret you stored there. The code you write here goes with you. The <a href="#/workbench">Workbench</a> can download every cell you have run as a notebook file.':
-    'Yahi teen cells bina badle Google Colab mein, Jupyter mein ya aapke apne computer par chalte hain, jahan <code>userdata</code> wahan rakha secret padhta hai. Jo code aap yahan likhte hain woh aapke saath jaata hai. <a href="#/workbench">Workbench</a> aapke chalaye har cell ko ek notebook file ke roop mein download kar sakta hai.',
   'A4. Collect your raw material':
     'A4. Apna raw material ikattha kijiye',
-  'The second half of the course builds a system that answers questions from documents. Add 10–15 documents you know well from your own work with <strong>Add files</strong> below. For example: policies, SOPs, product manuals, contracts, handbooks or published standards. They stay in this browser, and your code opens them by name, like this: <code>open("leave-policy.txt").read()</code>.':
-    'Course ka doosra hissa ek aisa system banata hai jo documents se sawaalon ke jawab deta hai. Neeche <strong>Add files</strong> se apne kaam ke 10–15 aise documents jodiye jinhe aap achhi tarah jaante hain. Jaise: policies, SOPs, product manuals, contracts, handbooks ya published standards. Yeh isi browser mein rehte hain, aur aapka code inhe naam se kholta hai, aise: <code>open("leave-policy.txt").read()</code>.',
   'Text files (.txt and .md) open straight away. For a PDF or a Word file, copy its text into a .txt file for now. Chapter 16 covers scans and images.':
     'Text files (.txt aur .md) seedhe khul jaati hain. PDF ya Word file ke liye, abhi uska text ek .txt file mein copy kar lijiye. Scans aur images Chapter 16 mein aate hain.',
   'A5. Part II additions':
     'A5. Part II ke liye kuch aur',
-  '<em>Models and routing</em>, in the Connect panel above, shows which model each kind of call uses, and lets you change it.':
-    'Upar Connect panel mein <em>Models and routing</em> dikhata hai ki har tarah ki call kaun sa model use karti hai, aur aap use badal sakte hain.',
-  'Open the Connect panel above, paste the key again, save it and press <strong>Run the test call</strong>':
-    'Upar Connect panel kholiye, key dobara paste kijiye, save kijiye aur <strong>Run the test call</strong> dabaiye',
   'The page was reloaded, so the Python session started again':
     'Page reload hua, isliye Python session phir se shuru hua',
   'Press <strong>Restore</strong> in the notebook bar, or run the cells above again':
@@ -71,8 +35,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Browser cdn.jsdelivr.net se Python download nahi kar paaya',
   'Check your connection, or try another network. Some office networks block it':
     'Apna connection check kijiye, ya koi doosra network try kijiye. Kuch office networks ise block karte hain',
-  'Note down the exact red text, and come back with fresh eyes tomorrow':
-    'Laal text bilkul waisa ka waisa note kar lijiye, aur kal taaza nazar se wapas aaiye',
   /* chapters: the code runs in the page */
   'Working prototype: the Playground, Lovable or Google AI Studio':
     'Working prototype: Playground, Lovable ya Google AI Studio',

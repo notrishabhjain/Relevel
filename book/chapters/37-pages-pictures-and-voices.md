@@ -91,7 +91,7 @@ Table: Time per stage for the nine-second note
 | The guard | 0.15 seconds |
 | The model, if needed | About a second |
 
-His rule was simple. Do not speed up the fastest part while the person is waiting on a different one. It is like polishing the front door while the queue is stuck at the gate. The transcription was where the time went.
+His rule was simple. Do not speed up the fastest part while the person is waiting on a different one. It is like polishing the front door while the queue is stuck at the turnstile. The transcription was where the time went.
 
 ## A test that finds the broken link
 
