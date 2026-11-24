@@ -95,8 +95,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Aise har check mein bas kuch lines ka code hota hai. Woh aap har badlaav ke baad chala sakte hain.',
   'Write the code checks':
     'Code checks likhiye',
-  'Before you build any judge, write the checks that your Chapter 8 form-style output makes possible. Its fixed boxes are easy for a program to read.':
-    'Judge banane se pehle woh checks likhiye jo Chapter 8 ka form-style output possible banata hai. Uske fixed khaane program ke liye padhna aasaan banate hain.',
+  'Before you build any judge, write the checks that your Chapter 8 structured output (the form-style reply) makes possible. Its fixed boxes are easy for a program to read.':
+    'Judge banane se pehle woh checks likhiye jo Chapter 8 ka structured output (form-style reply) possible banata hai. Uske fixed khaane program ke liye padhna aasaan banate hain.',
   'Run it on your ten Chapter 6 answers. The last check sees if the quote is in the source, word for word. It catches made-up quotes for free on every release (every new version you ship). This is the cheapest quality check in the course.':
     'Ise apne Chapter 6 ke das jawaabon par chalaiye. Aakhri check dekhta hai ki quote source mein word-for-word hai ya nahi. Yeh har release par (har naye version par) banawati quotes ko free mein pakad leta hai. Yeh course ka sabse sasta quality check hai.',
   'Code cannot mark everything. It cannot tell you if an answer is really backed by its source. For that kind of question, we ask a model to be the marker.':
@@ -125,8 +125,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek fraction, jaise 7/10',
   'The book gave one team\'s agreement. Now guess your own. You mark twenty answers by hand, and the judge marks the same twenty. How often will it match you on the first try?':
     'Book ne ek team ka agreement diya. Ab apna andaaza lagaiye. Aap bees jawaab haath se mark karte hain, aur judge wahi bees mark karta hai. Pehli koshish mein woh kitni baar aapse milega?',
-  'Six or seven out of ten is normal on a first try. How the mismatches look matters more than the number. If they bunch together, you have found something to fix. For example, the judge may pass every answer that sounds unsure. If they are spread out with no pattern, your own idea of a good answer is probably blurry. Changing the judge\'s note will not help.':
-    'Pehli koshish mein das mein se chhe ya saat normal hain. Number se zyada zaroori hai ki mismatch kaise dikhte hain. Agar woh ek jagah jama hain, toh aapko theek karne layak cheez mili. Jaise judge har us jawaab ko pass kar de jo jhijhakta hua lagta hai. Agar woh bikhre hain aur koi pattern nahi, toh achhe jawaab ki aapki apni soch shayad dhundhli hai. Judge ka note badalne se kuch nahi hoga.',
+  'Six or seven out of ten is normal on a first try. How the mismatches look matters more than the number. If they bunch together, you have found something to fix. For example, the judge may pass every answer that sounds unsure. If they are spread out with no pattern, your own idea of a good answer is probably blurry. Changing the judge prompt (its note) will not help.':
+    'Pehli koshish mein das mein se chhe ya saat normal hain. Number se zyada zaroori hai ki mismatch kaise dikhte hain. Agar woh ek jagah jama hain, toh aapko theek karne layak cheez mili. Jaise judge har us jawaab ko pass kar de jo jhijhakta hua lagta hai. Agar woh bikhre hain aur koi pattern nahi, toh achhe jawaab ki aapki apni soch shayad dhundhli hai. Judge prompt (uska note) badalne se kuch nahi hoga.',
   'So look at whether the mismatches bunch up or spread out. That tells you whether to fix the judge or your own idea of “good”.':
     'Isliye dekhiye ki mismatch ek jagah jama hain ya bikhre hain. Isse pata chalta hai ki judge ko theek karna hai ya apni “achha” ki soch ko.',
   'Mark the judge':

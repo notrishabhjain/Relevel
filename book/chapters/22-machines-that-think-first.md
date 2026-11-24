@@ -89,7 +89,7 @@ The team spent the afternoon on the design that followed. It used everything the
 
 The quick parts run live on every message. These are the pattern checker and the name-and-place finder. Between them they handle most messages in a tiny fraction of a second.
 
-A few messages stay unclear. For these, the guard does not wait for the slow, careful judge. It leans towards the cheaper mistake, as the team had agreed in April. It masks (covers up) the doubtful part at once. So the chat carries on safely.
+A few messages stay unclear. For these, the guard does not wait for the slow, careful judge. It leans towards the cheaper mistake, as the team had agreed in April. It will mask (cover up) the doubtful part at once. So the chat carries on safely.
 
 The reasoning model looks at those cases later, in the background. It decides what should have happened. If a masked piece was harmless, a person can see it put back. If it was a leak, it is already covered.
 

@@ -168,16 +168,16 @@ window.PART5 = [
 {
   id:'ch9m', num:22, part:5, curriculumTier:'core', phase:3, prerequisites:['ch2','ch6','ch8f'], nextUnits:['ch10c'], minutes:55, labs:['costmodel'],
   title:'Choosing a model: benchmark on your own cases',
-  concept:'A leaderboard (a ranking list) shows how models did on someone else\'s task. It is like a topper list from another school. In this chapter you see what really changes when you change the model. Then you test models on your own ten cases. You write a model selection card with the proof for your choice.',
+  concept:'A leaderboard (a ranking list) shows how models did on someone else\'s task. It is like a topper list from another school. In this chapter you see what really changes when you change the model. Then you run a benchmark of your own ten cases. You write a model selection card with the proof for your choice.',
   plan:{
     first:'Pick two models you can use. Before you test, write your guess. Which model wins on quality? Which on speed? Which on cost? It is like guessing the winner before a race.',
-    build:'Run a ten-case benchmark (ten fixed questions you give every model). Cover remembering facts, reasoning, pulling out details, many languages, and saying no.',
+    build:'Run a ten-case benchmark (ten fixed questions you give every model). Cover factual recall (remembering facts), reasoning, pulling out details, many languages, and saying no.',
     brk:'Change one thing at a time: the model, the sampling (how the model picks its next word), or the prompt (your note). Then see which change caused which effect.',
     artifact:'A Model Selection Card. It is a one-page note of quality, latency (waiting time) and cost. It also names the back-up model, for the day your first choice is not available.',
     gate:'Recommend a model, and show the proof. Then defend your choice to someone who likes a different model, like a lawyer with evidence.'
   },
   needs:[
-    ['Temperature controls variation','You tested it in Chapter 2. Here it is one setting among several, like one dial on a panel.',2],
+    ['Temperature controls variation','You tested it in Chapter 2. Here it is one variable (one dial you can turn) among several.',2],
     ['Write the answer key before measuring','Without an answer key, a benchmark tells you little. It is like marking papers with no teacher\'s key.',6],
     ['An experiment harness that records runs','You built it in Chapter 21. This chapter is the first to use it.',21]
   ],
@@ -218,7 +218,7 @@ window.PART5 = [
       '9.2',
       'Sampling and output variability',
       {goal:'You will see the sampling controls as ways to shape the odds of each next word. They are not “creativity sliders.”',
-       idea:'Lower sampling settings usually give less variation. But they do not make the model fully predictable or always true.',
+       idea:'Lower sampling settings usually give less variation. But they do not make the model deterministic (always giving the same answer) or always true.',
        prove:'Run the same prompt several times under two sampling settings your provider supports.',
        build:'Count how many different outputs you got. Note how the wording differs.',
        brk:'Use one factual task and one creative task. Check if the change matters equally in both.',
@@ -246,7 +246,7 @@ window.PART5 = [
       {goal:'You will tell three tools apart: prompting, context or RAG (finding the right page, then answering from it), and fine-tuning. Each one pulls a different lever.',
        idea:'Use context when the model needs facts that keep changing. Use prompting for instructions and behaviour. Use fine-tuning when a habit repeats and stays the same, so it is worth building into the model\'s weights (its inner numbers).',
        prove:'Take one task. Write three plans: prompt only, retrieval or context, and a fine-tuning guess.',
-       build:'For each plan, write the data it needs, the benefit you expect, the cost to keep it going, and the test it would need.',
+       build:'For each plan, write the data it needs, the benefit you expect, the cost to keep it going, and the evaluation (the test of how well it works) it would need.',
        brk:'Invent a case where fine-tuning looks good, but retrieval costs less because the facts change every week.',
        artifact:'A decision grid: Prompt vs Context/RAG vs Fine-tune.',
        check:'Is the gap about knowledge, about behaviour, or both?',
@@ -317,7 +317,7 @@ window.PART5 = [
   ],
   capstone:{
     title:'Choose the model, with a back-up, and write it on one page',
-    brief:'The name-and-place finder and the context judge both need a model. Your choice changes quality, cost, speed and privacy. You learned that a new model changes more than a score. You also learned that a recommendation must answer “measured how?”. Now test some models on your own answer key (questions with known right answers). Then write the one-page card with your choice.',
+    brief:'The name-and-place finder and the context judge both need a model. Your choice changes quality, cost, speed and privacy. You learned that a new model changes more than a benchmark score. You also learned that a recommendation must answer “measured how?”. Now test some models on your own answer key (questions with known right answers). Then write the one-page card with your choice.',
     where:'Use your test harness from Chapter 21 (the tool that records every run) to run the models. Write the one-page card in the notes box below.',
     steps:[
       'Write the job and the quality bar as numbers. For example: “find at least 90 of every 100 names on the answer key, with no more than 5 false alarms in 100 sentences”.',

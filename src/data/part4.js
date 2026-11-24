@@ -303,77 +303,77 @@ window.PART4 = [
 {
   id:'ch205', num:20.5, part:4, curriculumTier:'selective', phase:2, prerequisites:['ch14','ch20'], nextUnits:[], minutes:25, labs:[],
   title:'Measuring business impact: designing a pilot',
-  concept:'A system can be accurate and still change nothing for the business. In this chapter you’ll find the slow part of a workflow, then design a pilot with a business metric, a comparison, a failure threshold and a time window.',
+  concept:'A tool can be right most of the time and still change nothing for the business. Think of a fast new lift in a building where people wait three days for a signature. Today you find the slow part of a workflow (the steps of a job, start to end). Then you design a pilot (a small, fair test run). It has four parts: a business metric (one number the business watches), a comparison, a failure threshold and a time window.',
   needs:[
-    ['You can measure the system','That means recall, precision, judges and per-category scores.',14],
-    ['The interface has four states','What the user sees decides whether quality reaches them.',20]
+    ['You can measure the system','That means recall, precision, judges and per-category scores. Recall is how many of the fish in the pond your net caught. Precision is how much of the net is really fish.',14],
+    ['The screen has four states','What the user sees decides if the quality reaches them. A good answer on a bad screen is like hot food dropped on the floor.',20]
   ],
   takeaway:[
-    'Design a pilot that could actually show the feature did not help.',
-    'Name the one number the business cares about, and how the feature would move it.',
-    'Explain why a system that measures well can still produce no business benefit.'
+    'Design a pilot that could really show the feature did not help.',
+    'Name the one number the business cares about, and say how the feature would move it.',
+    'Explain why a system that scores well in tests can still bring no business gain.'
   ],
   story:[
-    ['c','Before you start','You don’t need any code for this chapter. Bring a feature you have measured, yours or one from the course, and the name of whoever pays for it.'],
-    ['p','So far the course has measured the system itself. Is retrieval right? Can the judge be trusted? Is the classifier accurate in each category? All of that is necessary.'],
-    ['p','But none of it answers the question that decides future funding: did it help the business? That is what this chapter is about, and it ends with a pilot you can actually design.'],
-    ['key','A system can be 94% accurate and change nothing, because nobody uses it, or because the step it speeds up was never the slow part.'],
+    ['c','Before you start','You don’t need any code for this chapter. Bring a feature you have measured, yours or one from the course, and the name of the person who pays for it.'],
+    ['p','So far the course has measured the system itself. Is retrieval (finding the right page before answering) right? Can the judge (a second model that marks answers) be trusted? Is the classifier (the sorter that puts items in piles) right in each category? All of that is needed.'],
+    ['p','But none of it answers the question that decides future funding: did it help the business? This chapter is about that question. It ends with a pilot you can really design.'],
+    ['key','A system can be right 94 times out of 100 and still change nothing. Maybe nobody uses it. Maybe the step it speeds up was never the slow part.'],
     ['h','Find the slow part first'],
-    ['p','Before you design anything, check that you are speeding up the right step. The way to do that is to time the whole workflow.'],
+    ['p','Before you design anything, check that you are speeding up the right step. It is like fixing a slow queue at the wrong counter. To check, time the whole workflow.'],
     ['do','Time the whole workflow',[
-      ['p','Take the workflow your feature is part of and time it honestly from start to finish. Include every step, including the time spent waiting for other people.'],
-      ['x','The AI step is rarely the largest. Often the biggest block is waiting for a person, or a handover between two systems. If you turn a four-minute step into a one-minute step inside a three-day process, nobody will notice.'],
-      ['key','This is the cheapest study in the course, and the one most often skipped, because it can show that you should not build the feature.']
+      ['p','Take the workflow your feature is part of. Time it honestly from start to finish. Count every step, including the time you spend waiting for other people.'],
+      ['x','The AI step is rarely the biggest. Often the biggest block is waiting for a person, or a hand-off between two systems. Make a four-minute step take one minute inside a three-day process, and nobody will notice.'],
+      ['key','This is the cheapest study in the course. It is also the one most often skipped, because it can show that you should not build the feature.']
     ]],
     ['h','Four parts of a pilot'],
-    ['p','Suppose the step you are speeding up really is on the critical path. Then you can design a pilot. Think of a pilot as a test that states in advance what result would disappoint you, not as a small launch.'],
-    ['p','A pilot has four parts. Here they are in order.'],
+    ['p','Say the step you are speeding up really is on the critical path. Then you can design a pilot. Think of a pilot as a test that says in advance which result would let you down. It is not a small launch.'],
+    ['p','A pilot has four parts. Here they are, in order.'],
     [
       'n',
-      ['<strong>The number.</strong> Choose one measure the business already tracks, such as handling time, first-contact resolution, backlog age or error rate. Don’t invent a new metric for the pilot.','<strong>The comparison.</strong> Looking at the same team before and after is weak evidence. Comparing two similar groups over the same period is much stronger, and it is usually possible.','<strong>The failure threshold.</strong> This is the change below which you will call the pilot a failure. Write it down before you start.','<strong>The time window.</strong> Make it long enough for the novelty to wear off. Any new tool looks better than it really is in its first two weeks.']
+      ['<strong>The number.</strong> Choose one measure the business already tracks, such as handling time, first-contact resolution (solved in the first call), backlog age or error rate. Do not invent a new number for the pilot.','<strong>The comparison.</strong> Looking at the same team before and after is weak proof. Comparing two similar groups in the same period is much stronger. It is like testing two plants with the same sun, one with new fertiliser. It is usually possible.','<strong>The failure threshold.</strong> This is the change below which you will call the pilot a failure. Write it down before you start.','<strong>The time window.</strong> Make it long enough for the newness to wear off. Any new tool looks better than it is in its first two weeks.']
     ],
-    ['p','The failure threshold is the part people skip. So let’s practise it.'],
-    ['c','You already know this','A pilot that could fail is a pilot district. You agree the success threshold with the steering committee before rollout, not after the numbers come in.'],
+    ['p','The failure threshold is the part people skip. So let us practise it.'],
+    ['c','You already know this','A pilot that could fail is like a pilot district. You agree the success mark with the steering committee (the senior group that guides the project) before the rollout, not after the numbers come in.'],
     ['do','Write the disappointing result in advance',[
-      ['p','Before running anything, write the sentence you would have to say if the pilot showed no effect. Use the words you would say to the person who funded it.'],
-      ['x','This shows you two things. First, whether you really have a failure threshold, because many pilots don’t. Second, whether the pilot could ever produce that sentence, or whether every outcome would be reported as a success.'],
+      ['p','Before you run anything, write the sentence you would have to say if the pilot showed no effect. Use the words you would say to the person who paid for it.'],
+      ['x','This shows you two things. One: do you really have a failure threshold? Many pilots do not. Two: could the pilot ever give you that sentence? Or would every result be called a success?'],
       ['key','If a pilot cannot fail, it is really a launch.']
     ]],
     ['h','When the system works but the number does not move'],
-    ['p','Sometimes you run a careful pilot and the system works, yet the business number stays where it was. Where do you look first?'],
+    ['p','Sometimes you run a careful pilot and the system works, yet the business number stays where it was. It is like a new pump that works well but the tap upstairs still runs dry. Where do you look first?'],
     [
       'try',
       {id:'ch205-adopt',
        mins:5,
        min:50,
        rows:3,
-       task:'Your pilot shows the system works well, but the business number does not move. Write the three explanations you would investigate first, in order.',
+       task:'Your pilot shows the system works well, but the business number does not move. Write the three reasons you would check first, in order.',
        ph:'1 … 2 … 3 …',
-       after:'This order usually works best. First, are people using it? Low adoption is the most common cause and the easiest to check. Second, does the output reach the place where the decision is made, or is it in a separate tool someone has to remember to open? Third, was the step you sped up actually on the critical path? Only after these three should you question the quality of the system. Teams usually check quality first because they know how to measure it.'}
+       after:'This order usually works best. First: are people using it? Low use is the most common cause, and the easiest to check. Second: does the output reach the place where the decision is made, or is it in a separate tool someone must remember to open? Third: was the step you sped up really on the critical path? Only after these three should you doubt the quality of the system. Teams usually check quality first, because they know how to measure it.'}
     ],
     ['q','I102'],
     ['h','Summary'],
-    ['p','The whole course repeats one idea at a larger and larger scale. Decide what counts as failure, then measure that specific thing, instead of looking at outputs and forming an impression. You have done this for a prompt, a retriever, a judge, a cost model and now a business case.'],
-    ['key','The techniques will change as models change. The habit of defining failure first and then measuring it is what carries over.'],
-    ['p','Next, you’ll move to the building blocks you need to work with AI systems yourself: Python, HTTP, Git and tests.']
+    ['p','The whole course repeats one idea, in bigger and bigger sizes. First decide what counts as failure. Then measure exactly that. Do not look at outputs and form a feeling. You have done this for a prompt, a retriever, a judge, a cost model and now a business case (the reasons a project is worth its money).'],
+    ['key','The tricks will change as models change. The habit of deciding what failure is first, and then measuring it, is what stays with you.'],
+    ['p','Next, you will learn the building blocks you need to work with AI systems yourself: Python, HTTP, Git and tests.']
   ],
   capstone:{
     title:'Design a pilot that could fail',
-    brief:'A pilot that cannot fail proves nothing. In this chapter you learned to pick one number the business already tracks, to compare two groups, and to agree a failure threshold before the pilot starts. Now you’ll design a pilot of the developer kit with five to ten real developers.',
-    where:'This task is written, with no code. Design on paper, then write it up and get it agreed before anything runs. Short version for the route, about 20 minutes: steps 2, 4 and 6.',
+    brief:'A pilot that cannot fail proves nothing. In this chapter you learned to pick one number the business already tracks, to compare two groups, and to agree on a failure threshold (the result below which you call it a failure) before the pilot starts. Now you design a pilot of the developer kit with five to ten real developers.',
+    where:'This task is written, with no code. Plan it on paper, then write it up, and get it agreed before anything runs. Short version for the route, about 20 minutes: steps 2, 4 and 6.',
     steps:[
-      'Time the whole workflow of a developer who handles user text, and mark where the kit fits. If it is not on the critical path, say so and stop here.',
-      'Choose the business number. It must already exist and someone must already look at it, for example the number of support tickets that mention personal data being pasted into a chat.',
-      'Design the comparison. Say which two groups of developers or which two periods you will compare, and why they are comparable.',
-      'Write the failure threshold, which is the change below which you will call the pilot a failure. Also write the time window you will wait before you judge.',
-      'Write the disappointing result in advance, in the words you would say to whoever funded it.',
-      'Get the person who funds it to agree the threshold in writing before the pilot runs.'
+      'Time the whole workflow of a developer who handles user text. Mark where the kit fits. If it is not on the critical path (the chain of steps that sets the total time), say so and stop here.',
+      'Choose the business number. It must already exist, and someone must already look at it. For example: the number of support tickets that say someone pasted personal data into a chat.',
+      'Design the comparison. Say which two groups of developers, or which two periods, you will compare. Say why they are fair to compare.',
+      'Write the failure threshold: the change below which you will call the pilot a failure. Also write the time window, which is how long you will wait before you judge.',
+      'Write the disappointing result in advance, in the words you would say to whoever paid for it.',
+      'Get the person who pays for it to agree to the threshold in writing, before the pilot runs.'
     ],
     done:[
       'A business number that was already being tracked before the pilot.',
-      'A comparison between two groups or periods, with a reason they are fair.',
-      'A failure threshold agreed in writing by the person who would be disappointed by it.',
-      'A description of a result that would make you recommend switching the kit off.'
+      'A comparison between two groups or periods, with a reason why it is fair.',
+      'A failure threshold agreed in writing by the person who would be let down by it.',
+      'A description of a result that would make you advise switching the kit off.'
     ]
   }
 }

@@ -29,8 +29,6 @@ Object.assign(window.HING = window.HING || {}, {
     '<strong>Data Fiduciary.</strong> Woh sanstha jo tay karti hai ki data kyun aur kaise use hoga. Aapki company Data Fiduciary hai. Jo model provider aapke liye message sambhalta hai woh aapki taraf se kaam karta hai, isliye zimmedari aapki hi rehti hai.',
   'Match each kind of text to a duty':
     'Har tarah ke text ko ek duty se milaiye',
-  'A pilot that could fail is a pilot district. You agree the success threshold with the steering committee before rollout, not after the numbers come in.':
-    'Jo pilot fail ho sakta hai woh pilot district hai. Success threshold aap steering committee ke saath rollout se pehle tay karte hain, numbers aane ke baad nahi.',
   'Can a fixed rule do it? Then write the rule.':
     'Kya ek fixed rule yeh kar sakta hai? To rule likhiye.',
   'Does anyone need it at all? If not, do not build it.':

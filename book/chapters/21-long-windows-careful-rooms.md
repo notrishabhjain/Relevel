@@ -74,7 +74,7 @@ Then Imran asked her to suppose the bill doubled. What would she cut first?
 
 The pieces of policy were the biggest part. They were also the easiest to shrink. She could fetch two instead of three. Or she could order the results better, so fewer pieces held the right facts. But cutting them risked answers that need several sections at once.
 
-The chat history came next. Cutting it broke follow-up questions. The function descriptions could go only if she took away things the machine could do. Anaya saw that everything she could cut broke something.
+The conversation history (the chat so far) came next. Cutting it broke follow-up questions. The function descriptions could go only if she took away things the machine could do. Anaya saw that everything she could cut broke something.
 
 ::: key A budget needs an owner
 Name what each cut puts at risk. Then measure it with the answer key (the teacher’s list of questions and right answers). A budget with no owner keeps growing.

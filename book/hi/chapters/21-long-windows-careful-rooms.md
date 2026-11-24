@@ -74,7 +74,7 @@ Phir Imran ne use maan lene ko kaha ki bill double ho gaya. Woh pehle kya kaateg
 
 Policy ke tukde sabse bada hissa the. Woh sabse aasaani se chhote bhi ho sakte the. Woh 3 ki jagah 2 la sakti thi. Ya results ko behtar order kar sakti thi, taaki kam tukdon mein sahi facts hon. Lekin unhe kaatne se un jawaabon ka risk tha jinhe ek saath kai sections chahiye.
 
-Chat history agli thi. Use kaatne se follow-up sawaal toot jaate. Function descriptions tabhi ja sakte the jab woh machine ke kuch kaam hata de. Anaya ne dekha ki jo kuch woh kaat sakti thi, woh kuch na kuch tod deta tha.
+Conversation history (chat ka ab tak ka hissa) agli thi. Use kaatne se follow-up sawaal toot jaate. Function descriptions tabhi ja sakte the jab woh machine ke kuch kaam hata de. Anaya ne dekha ki jo kuch woh kaat sakti thi, woh kuch na kuch tod deta tha.
 
 ::: key Budget ka ek owner chahiye
 Naam lijiye ki har kaat se kya risk mein padta hai. Phir answer key se use naapiye (teacher ki sawaal aur sahi jawaab ki list). Bina owner ka budget badhta hi rehta hai.

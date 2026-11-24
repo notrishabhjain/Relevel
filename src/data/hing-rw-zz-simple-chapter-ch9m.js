@@ -3,8 +3,8 @@
 Object.assign(window.HING = window.HING || {}, {
   'Pick two models you can use. Before you test, write your guess. Which model wins on quality? Which on speed? Which on cost? It is like guessing the winner before a race.':
     'Do models chuniye jo aap use kar sakte hain. Test se pehle apna andaza likhiye. Quality mein kaun jeetega? Speed mein kaun? Cost mein kaun? Yeh race se pehle winner ka andaza lagane jaisa hai.',
-  'Run a ten-case benchmark (ten fixed questions you give every model). Cover remembering facts, reasoning, pulling out details, many languages, and saying no.':
-    'Das cases ka benchmark chalaiye (das fixed sawaal jo aap har model ko dete hain). Facts yaad rakhna, reasoning, details nikaalna, kai bhashayein, aur na kehna, sab shaamil kijiye.',
+  'Run a ten-case benchmark (ten fixed questions you give every model). Cover factual recall (remembering facts), reasoning, pulling out details, many languages, and saying no.':
+    'Das cases ka benchmark chalaiye (das fixed sawaal jo aap har model ko dete hain). Factual recall (facts yaad rakhna), reasoning, details nikaalna, kai bhashayein, aur na kehna, sab shaamil kijiye.',
   'Change one thing at a time: the model, the sampling (how the model picks its next word), or the prompt (your note). Then see which change caused which effect.':
     'Ek baar mein sirf ek cheez badaliye: model, sampling (model agla shabd kaise chunta hai), ya prompt (aapki parchi). Phir dekhiye ki kaunse change se kya asar hua.',
   'A Model Selection Card. It is a one-page note of quality, latency (waiting time) and cost. It also names the back-up model, for the day your first choice is not available.':
@@ -25,8 +25,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Model selection card',
   'A one-page note. It says which model you chose, what proof you used, what limit applied (like cost or privacy), and which model runs when the first one is not available.':
     'Ek page ka note. Isme likha hai ki aapne kaunsa model chuna, kaunsa saboot use kiya, kaunsi seema lagi (jaise cost ya privacy), aur pehla model na mile to kaunsa model chalega.',
-  'A leaderboard (a ranking list) shows how models did on someone else\'s task. It is like a topper list from another school. In this chapter you see what really changes when you change the model. Then you test models on your own ten cases. You write a model selection card with the proof for your choice.':
-    'Leaderboard (ranking ki list) dikhata hai ki models ne kisi aur ke kaam par kaisa kiya. Yeh doosre school ki topper list jaisa hai. Is chapter mein aap dekhenge ki model badalne par asal mein kya badalta hai. Phir apne das cases par models ko test karenge. Aur ek model selection card likhenge jisme aapki pasand ka saboot hoga.',
+  'A leaderboard (a ranking list) shows how models did on someone else\'s task. It is like a topper list from another school. In this chapter you see what really changes when you change the model. Then you run a benchmark of your own ten cases. You write a model selection card with the proof for your choice.':
+    'Leaderboard (ranking ki list) dikhata hai ki models ne kisi aur ke kaam par kaisa kiya. Yeh doosre school ki topper list jaisa hai. Is chapter mein aap dekhenge ki model badalne par asal mein kya badalta hai. Phir apne das cases ka benchmark chalayenge. Aur ek model selection card likhenge jisme aapki pasand ka saboot hoga.',
   'Explain what changes when you change the model. It is more than a benchmark score.':
     'Samjhaiye ki model badalne par kya badalta hai. Yeh sirf benchmark score se kahin zyada hai.',
   'Say when to use retrieval (finding the right page first), prompting (giving clear instructions) and fine-tuning (coaching the model on many examples).':
@@ -35,8 +35,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Aisi model recommendation likhiye jo is sawaal ka jawaab de: “measured how?” (kaise napa?).',
   'Choose the model, with a back-up, and write it on one page':
     'Model chuniye, back-up ke saath, aur use ek page par likhiye',
-  'The name-and-place finder and the context judge both need a model. Your choice changes quality, cost, speed and privacy. You learned that a new model changes more than a score. You also learned that a recommendation must answer “measured how?”. Now test some models on your own answer key (questions with known right answers). Then write the one-page card with your choice.':
-    'Name-and-place finder aur context judge, dono ko ek model chahiye. Aapki pasand se quality, cost, speed aur privacy badalti hain. Aapne seekha ki naya model sirf score se zyada badalta hai. Yeh bhi seekha ki recommendation ko “measured how?” ka jawaab dena hoga. Ab apni answer key (jin sawaalon ke sahi jawaab pata hain) par kuch models test kijiye. Phir apni pasand ka ek page ka card likhiye.',
+  'The name-and-place finder and the context judge both need a model. Your choice changes quality, cost, speed and privacy. You learned that a new model changes more than a benchmark score. You also learned that a recommendation must answer “measured how?”. Now test some models on your own answer key (questions with known right answers). Then write the one-page card with your choice.':
+    'Name-and-place finder aur context judge, dono ko ek model chahiye. Aapki pasand se quality, cost, speed aur privacy badalti hain. Aapne seekha ki naya model sirf benchmark score se zyada badalta hai. Yeh bhi seekha ki recommendation ko “measured how?” ka jawaab dena hoga. Ab apni answer key (jin sawaalon ke sahi jawaab pata hain) par kuch models test kijiye. Phir apni pasand ka ek page ka card likhiye.',
   'Use your test harness from Chapter 21 (the tool that records every run) to run the models. Write the one-page card in the notes box below.':
     'Models chalane ke liye Chapter 21 ka apna test harness use kijiye (jo har run ko record karta hai). Ek page ka card neeche notes box mein likhiye.',
   'Write the job and the quality bar as numbers. For example: “find at least 90 of every 100 names on the answer key, with no more than 5 false alarms in 100 sentences”.':
@@ -63,8 +63,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek page ka card. Har daawa aapke harness ke kisi run tak wapas jaata hai.',
   'Temperature controls variation':
     'Temperature badlav ko control karta hai',
-  'You tested it in Chapter 2. Here it is one setting among several, like one dial on a panel.':
-    'Aapne ise Chapter 2 mein test kiya tha. Yahan yeh kai settings mein se ek hai, panel ke ek dial jaisa.',
+  'You tested it in Chapter 2. Here it is one variable (one dial you can turn) among several.':
+    'Aapne ise Chapter 2 mein test kiya tha. Yahan yeh kai variables mein se ek hai (ek dial jise aap ghuma sakte hain).',
   'Write the answer key before measuring':
     'Napne se pehle answer key likhiye',
   'Without an answer key, a benchmark tells you little. It is like marking papers with no teacher\'s key.':
@@ -107,8 +107,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Sampling and output variability',
   'You will see the sampling controls as ways to shape the odds of each next word. They are not “creativity sliders.”':
     'Aap sampling controls ko aise dekhenge ki woh har agle shabd ke chance ko dhaalte hain. Woh “creativity sliders” nahin hain.',
-  'Lower sampling settings usually give less variation. But they do not make the model fully predictable or always true.':
-    'Kam sampling settings se aam taur par badlav kam hota hai. Lekin isse model poori tarah ek-jaisa ya hamesha sach nahin ban jaata.',
+  'Lower sampling settings usually give less variation. But they do not make the model deterministic (always giving the same answer) or always true.':
+    'Kam sampling settings se aam taur par badlav kam hota hai. Lekin isse model deterministic nahin ban jaata (hamesha ek hi jawaab de), aur na hamesha sach.',
   'Run the same prompt several times under two sampling settings your provider supports.':
     'Ek hi prompt ko kai baar chalaiye, do sampling settings ke saath jo aapka provider deta hai.',
   'Count how many different outputs you got. Note how the wording differs.':
@@ -147,8 +147,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Context tab use kijiye jab model ko badalte rehne wale facts chahiye. Prompting nirdesh aur vyavahar ke liye. Fine-tuning tab jab koi aadat baar-baar aaye aur wahi rahe, jisse use model ke weights (andar ke numbers) mein daalna theek ho.',
   'Take one task. Write three plans: prompt only, retrieval or context, and a fine-tuning guess.':
     'Ek kaam lijiye. Teen yojanayein likhiye: sirf prompt, retrieval ya context, aur fine-tuning ka andaza.',
-  'For each plan, write the data it needs, the benefit you expect, the cost to keep it going, and the test it would need.':
-    'Har yojana ke liye likhiye: use kaunsa data chahiye, kya fayda aap umeed karte hain, use chalate rakhne ka kharch, aur kaunsa test chahiye.',
+  'For each plan, write the data it needs, the benefit you expect, the cost to keep it going, and the evaluation (the test of how well it works) it would need.':
+    'Har yojana ke liye likhiye: use kaunsa data chahiye, kya fayda aap umeed karte hain, use chalate rakhne ka kharch, aur kaunsi evaluation (kitna achha chalta hai, iska test) chahiye.',
   'Invent a case where fine-tuning looks good, but retrieval costs less because the facts change every week.':
     'Ek aisa case banaiye jahan fine-tuning achha lagta hai, lekin retrieval sasta padta hai kyunki facts har hafte badalte hain.',
   'A decision grid: Prompt vs Context/RAG vs Fine-tune.':
