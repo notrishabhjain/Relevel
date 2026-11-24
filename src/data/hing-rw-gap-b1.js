@@ -1,7 +1,5 @@
 /* Hinglish: gap package B1 (Part V runnable beats, the project page, route callouts). Keyed on the exact English line. */
 Object.assign(window.HING = window.HING || {}, {
-  'Do units 8.4 and 8.5, then the capstone. The browser-only path is this: write and run your code in the <a href="#/workbench">Workbench</a>, and keep your files in the repository you made in Chapter A1 by using <strong>Add file</strong>, then <strong>Upload files</strong>, on the GitHub website. A virtual environment, a requirements file and CI are read-only this pass. You need to know what they are, not to set them up.':
-    'Units 8.4 aur 8.5 kijiye, phir capstone. Browser-only raasta yeh hai: apna code <a href="#/workbench">Workbench</a> mein likhiye aur chalaiye, aur apni files ko us repository mein rakhiye jo aapne Chapter A1 mein banayi thi, GitHub website par <strong>Add file</strong> ke baad <strong>Upload files</strong> dabakar. Virtual environment, requirements file aur CI is baar sirf padhne ke liye hain. Aapko bas yeh jaanna hai ki woh kya hain, unhe set up karna zaroori nahi.',
   'Do units 9.3 and 9.6, then the capstone. Read the other units this pass.':
     'Units 9.3 aur 9.6 kijiye, phir capstone. Baaki units is baar sirf padh lijiye.',
   'Do units 10.3 and 10.6, then the capstone. Read the other units this pass.':
@@ -20,28 +18,14 @@ Object.assign(window.HING = window.HING || {}, {
     'Aapke likhe sentence mein Aadhaar number nahi mila',
   'Trajectory':
     'Trajectory',
-  'The ordered list of steps an agent took, such as the tools it called. You can score it separately from the final answer.':
-    'Agent ne jo steps liye unki order wali list, jaise usne kaun se tools call kiye. Ise final answer se alag score kiya ja sakta hai.',
-  'Before you run, write the tools you expect for each sentence, in order. Report how often the agent’s path matched, next to how often its answer was right.':
-    'Chalane se pehle, har sentence ke liye order mein woh tools likhiye jinki aap ummeed karte hain. Report kijiye ki agent ka path kitni baar match hua, aur uska answer kitni baar sahi tha.',
   'For the agent, the path score (trajectory) next to the answer score.':
     'Agent ke liye, answer score ke saath path score (trajectory).',
-  'Do units 13.4 and 13.7, then run the small agent cell below. Read the other units this pass.':
-    'Units 13.4 aur 13.7 kijiye, phir neeche ka chhota agent cell chalaiye. Baaki units is baar sirf padh lijiye.',
   'Score the path as well as the answer':
     'Answer ke saath path ko bhi score kijiye',
-  'An agent can reach the right answer by the wrong path. It may call a tool it did not need, call tools in a bad order, or call the same one twice. The final answer hides all of that. So you also score the <strong>trajectory</strong>, which is the ordered list of steps the agent took.':
-    'Agent galat raaste se bhi sahi answer tak pahunch sakta hai. Woh aisa tool call kar sakta hai jiski zaroorat nahi thi, tools ko bure order mein chala sakta hai, ya ek hi tool do baar call kar sakta hai. Final answer yeh sab chhupa leta hai. Isliye aap <strong>trajectory</strong> ko bhi score karte hain, yaani agent ke liye gaye steps ki order wali list.',
-  'For each test sentence, write down in advance the tools you expect, in order. Then report two scores side by side: how often the answer was right, and how often the path matched. A wrong path on a right answer is a cost you pay for nothing. Each extra step is more tokens, more delay and one more place to fail.':
-    'Har test sentence ke liye pehle se likh lijiye ki aap kaun se tools, kis order mein, expect karte hain. Phir do scores saath-saath report kijiye: answer kitni baar sahi tha, aur path kitni baar match hua. Sahi answer par galat path woh cost hai jo aap bekaar mein dete hain. Har extra step zyada tokens, zyada delay, aur fail hone ki ek aur jagah hai.',
   'Run a small agent and score its path':
     'Ek chhota agent chalaiye aur uska path score kijiye',
-  'Run the cell. The model picks the next tool at each step, with a limit of three steps and an exit for “cannot decide”. The cell scores four sentences. Your capstone uses twenty.':
-    'Cell chalaiye. Model har step par agla tool chunta hai, teen steps ki limit ke saath, aur “cannot decide” ke liye ek exit ke saath. Cell chaar sentences score karta hai. Aapka capstone bees use karta hai.',
   'Each line shows two scores and the list of tools used. A small model often gets the answer right by a longer path, or stops with “cannot decide”. Your counts will differ from anyone else’s. The last line is the pair to compare: final answer correct next to trajectory correct. If the second number is lower, the agent is costing you steps it did not need.':
     'Har line do scores aur use hue tools ki list dikhati hai. Ek chhota model aksar lambe raaste se sahi answer deta hai, ya “cannot decide” par ruk jaata hai. Aapki counts doosron se alag hongi. Aakhri line woh jodi hai jise compare karna hai: final answer correct, trajectory correct ke saath. Agar doosra number kam hai, toh agent aise steps le raha hai jinki zaroorat nahi thi.',
-  'This cell defines everything it uses, including the model name, so run the whole cell. The key and the connection come from the warm-up that runs before your first cell.':
-    'Yeh cell jo kuch use karta hai woh khud define karta hai, model ka naam bhi, isliye poora cell chalaiye. Key aur connection us warm-up se aate hain jo aapke pehle cell se pehle chalta hai.',
   'Your key did not reach the code. Check the name you saved it under on the <a href="#/setup">Setup</a> page, capital letters included.':
     'Aapki key code tak nahi pahunchi. <a href="#/setup">Setup</a> page par jis naam se aapne ise save kiya tha woh check kijiye, capital letters samet.',
   'Every line says cannot decide':
@@ -50,18 +34,12 @@ Object.assign(window.HING = window.HING || {}, {
     'Model ne teen allowed shabdon mein se kisi ek se jawaab nahi diya. Yeh exit ka kaam karna hai. Reply padhiye, aur prompt ko zyada sakht kijiye ya Setup page par doosra model try kijiye.',
   'How much freedom to give':
     'Kitni freedom deni hai',
-  'Choose one of four autonomy levels for each action, and write it next to the tool in your approval matrix.':
-    'Har action ke liye chaar autonomy levels mein se ek chuniye, aur use apne approval matrix mein tool ke saamne likhiye.',
   '<strong>Suggests.</strong> The agent proposes an action and a person does it.':
     '<strong>Suggests.</strong> Agent ek action propose karta hai aur insaan use karta hai.',
   '<strong>Acts with approval.</strong> The agent acts only after a person says yes.':
     '<strong>Acts with approval.</strong> Agent tabhi act karta hai jab insaan haan kehta hai.',
-  '<strong>Acts and reports.</strong> The agent acts, then tells a person what it did, so that it can be undone.':
-    '<strong>Acts and reports.</strong> Agent act karta hai, phir insaan ko batata hai ki usne kya kiya, taaki use undo kiya ja sake.',
   '<strong>Acts alone.</strong> The agent acts and nobody checks. Keep this for actions that only read, or that are easy to undo.':
     '<strong>Acts alone.</strong> Agent act karta hai aur koi check nahi karta. Ise un actions ke liye rakhiye jo sirf padhte hain, ya jinhe undo karna aasaan hai.',
-  'In job posts and meetings you will hear the names LangChain and LangGraph. They are code libraries that people use to build loops like the one above. You do not need either for this course. Before you speak about one, look up what it does and what it hides.':
-    'Job posts aur meetings mein aap LangChain aur LangGraph ke naam sunenge. Yeh code libraries hain jinse log upar jaise loops banate hain. Is course ke liye aapko inmein se kisi ki zaroorat nahi. Inke baare mein kuch kehne se pehle dekh lijiye ki yeh kya karti hain aur kya chhupati hain.',
   'Do units 14.3 and 14.4, then read the printed exchange below. Read the other units this pass.':
     'Units 14.3 aur 14.4 kijiye, phir neeche ka printed exchange padhiye. Baaki units is baar sirf padh lijiye.',
   'Read one real exchange':

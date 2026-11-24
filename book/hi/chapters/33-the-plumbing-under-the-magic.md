@@ -1,6 +1,6 @@
 ---
 title: Jaadu Ke Neeche Ki Plumbing
-summary: Do ghante tak guard se galti hui, aur kahin koi error nahi dikha. Isliye Anaya us ek anpredictable hisse ke aas-paas ka aam software padhna seekhti hai, jaise plumber ka pipes ka naqsha. Aap data contracts, Python, HTTP aur status codes, environment variables, Git aur experiment runners se milte hain.
+summary: Do ghante tak guard se galti hui, aur kahin koi error nahi dikha. Isliye Anaya us ek unpredictable hisse ke aas-paas ka aam software padhna seekhti hai, jaise plumber ka pipes ka naqsha. Aap data contracts, Python, HTTP aur status codes, environment variables, Git aur experiment runners se milte hain.
 course: ch8f
 goals:
   - data contract samjhana, aur yeh ki chupchaap toot jaana sabse khatarnaak kyun hai
@@ -20,7 +20,7 @@ September ke doosre Thursday ko guard ne Pune ke har order number ko do ghante t
 
 Farah Sheikh ke agents pehle pareshaan hue, phir chidh gaye, phir jugaadu ban gaye. Lagbhag chaalis minute tak unhone customers se phone par order number bol kar sunane ko kaha. Dashboard (ek screen par saare numbers) hara hi raha.
 
-Imran Qureshi ne yeh sunkar bahut kam kaha. Usne pen uthaya aur drawing banane lagi. "Kisi ne error nahi diya," usne diagram poora hone par kaha. "Isiliye do ghante lage."
+Imran Qureshi ne yeh sunkar bahut kam kaha. Usne pen uthaya aur drawing banane laga. "Kisi ne error nahi diya," usne diagram poora hone par kaha. "Isiliye do ghante lage."
 
 Yeh chapter batata hai ki kya hua. Phir woh wahi karta hai jo Imran ne agle kiya. Usne Anaya ko diagram padhna sikhaya.
 
@@ -69,7 +69,7 @@ Imran ne kaha, "API fail ho gayi" koi explanation nahi hai. Woh bas poochhna shu
 
 ## Error ko kaise padhein
 
-Phir usne error padhna seekha. Dus minute lage. Shaayad woh us dopahar ke sabse kaam ke dus minute the.
+Phir Anaya ne error padhna seekha. Dus minute lage. Shaayad woh us dopahar ke sabse kaam ke dus minute the.
 
 Jab program zor se fail hota hai, toh woh ek lamba block chhapta hai jise trace kehte hain. Paon ke nishaanon ki line socho. Man karta hai upar se padhna. Lekin upar ka hissa sabse kam kaam ka hai. Asli wajah lagbhag hamesha neeche hoti hai.
 
@@ -92,7 +92,7 @@ Anaya ko laga ki use ruk kar kehna chahiye ki order system mein kuch galat hai, 
 
 Yeh fire alarm ko ek baar dabane jaisa hai, ki dekho woh bajta hai. Jo alarm kabhi bajaa hi nahi, usne kabhi saabit nahi kiya ki woh kaam karta hai.
 
-Usne test likha aur chalaya. Woh ek santusht karne wali laal line ke saath fail hua. Usne code theek kiya taaki woh missing field check kare aur aage chalne se mana kar de. Usne use phir chalaya. Woh pass hua.
+Usne test likha aur chalaya. Woh ek tasalli dene wali laal line ke saath fail hua. Usne code theek kiya taaki woh missing field check kare aur aage chalne se mana kar de. Usne use phir chalaya. Woh pass hua.
 
 ::: key Jis test ko kabhi fail hote nahi dekha, usne kabhi saabit nahi kiya ki woh kuch check karta hai
 Use ek baar fail hote dekhiye. Phir code theek kijiye aur use pass hote dekhiye. Tabhi aap jaante hain ki test farq pehchaan sakta hai.
@@ -123,11 +123,11 @@ Paanch baje Imran ne poochha ki usne kya seekha. Usne terms ki list nahi di. Dia
 
 Yeh chhoti list thi, aur kuch nahi, aisa bhi nahi tha. Jab koi engineer use diagram dikhayega, woh hisson ko pehchaan legi. Ek naye driver ko socho jo ab road signs padh sakta hai. Page ke upar usne woh vaakya joda jo Imran ne shuru mein kaha tha. Woh use rakhna chahti thi.
 
-AI system ek software system hai jisme ek hissa anpredictable hai. Aam software mein jo kuch galat ho sakta hai, woh ab bhi ho sakta hai. Aur ek aur failure hai, sabse chupchaap, jisme koi error nahi dikhta.
+AI system ek software system hai jisme ek hissa unpredictable hai. Aam software mein jo kuch galat ho sakta hai, woh ab bhi ho sakta hai. Aur ek aur failure hai, sabse chupchaap, jisme koi error nahi dikhta.
 
 ## Saaraansh
 
-AI system aam software hai jisme ek hissa anpredictable hai. Isliye jo kuch aam software ko tod sakta hai, woh ise bhi tod sakta hai. Engineering ka khatra interfaces, errors, secrets aur retries mein utna hi hai jitna model mein, kam se kam.
+AI system aam software hai jisme ek hissa unpredictable hai. Isliye jo kuch aam software ko tod sakta hai, woh ise bhi tod sakta hai. Engineering ka khatra interfaces, errors, secrets aur retries mein utna hi hai jitna model mein, kam se kam.
 
 - Programs requests aur replies se baat karte hain. Reply par ka status code batata hai ki request galat thi ya doosri taraf fail hua.
 - Keys code ke bahar rehti hain. Kaam us repository mein rehta hai jo har badlaav record karti hai. Error ko neeche se padhte hain.

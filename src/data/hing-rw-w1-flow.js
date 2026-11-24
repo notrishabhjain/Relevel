@@ -17,12 +17,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Capstone ke baad: pricing aur unit economics, growth aur onboarding, product analytics aur experiments, AI PM toolchain, harness engineering, asli users tak ship karna, aur naukri paana.',
   'Tokens on your own text, just enough Python to read the code, your first API call, then system prompts and temperature, writing and testing prompts, and the five task types. You finish by building a complete RAG system: chunking, keyword and embedding search, and evaluation.':
     'Apne text par tokens, code padhne bhar ka Python, aapki pehli API call, phir system prompts aur temperature, prompts likhna aur test karna, aur paanch task types. Aakhir mein aap ek poora RAG system banate hain: chunking, keyword aur embedding search, aur evaluation.',
-  'Chapter 0.8 taught you to read a cell: names, lists, dictionaries, jobs and dots. This chapter writes a little more of it.':
-    'Chapter 0.8 ne aapko ek cell padhna sikhaya: names, lists, dictionaries, jobs aur dots. Is chapter mein aap usse thoda zyada likhenge.',
   'Reading Python':
     'Python padhna',
-  'Part V goes back over everything you built in Parts I to IV, this time at the depth a real launch needs. It starts with the ordinary software around the model. So far you’ve spent most of your time looking at the model itself. The aim here is simple: when an engineer shows you a system diagram, you should recognise every box on it.':
-    'Part V un sab cheezon par wapas jaata hai jo aapne Parts I se IV mein banayi, is baar us gehraai par jo asli launch ko chahiye. Shuruaat model ke aas-paas ke saadharan software se hoti hai. Ab tak aapne zyadatar time khud model ko dekhne mein lagaya hai. Yahan maqsad seedha hai: jab koi engineer aapko system diagram dikhaye, toh aap uska har box pehchaan sakein.',
   'In full, this chapter takes about fourteen hours. Create a free account with PostHog, Mixpanel or Google Analytics. If your capstone has no users yet, you will seed some data, and the chapter shows how.':
     'Poora karne par, is chapter mein lagbhag 14 ghante lagte hain. PostHog, Mixpanel ya Google Analytics mein ek free account bana lijiye. Agar aapke capstone ke paas abhi users nahi hain, toh aap kuch data seed karenge, aur chapter dikhata hai ki kaise.',
   'In full, this chapter takes about two and a half hours. Tools change every few months. The brands named below are one current example each, not a requirement. If a named tool is gone by the time you read this, pick a replacement that does the same job.':

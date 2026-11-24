@@ -5,212 +5,64 @@ Object.assign(window.HING = window.HING || {}, {
   /* ---- ch8f: Software basics for AI work: Python, HTTP, Git and tests ---- */
   'Software basics for AI work: Python, HTTP, Git and tests':
     'AI kaam ke liye software basics: Python, HTTP, Git aur tests',
-  'An AI system is a software system with one unpredictable part. In this chapter you’ll learn the software that sits around that part: Python, HTTP and JSON, secrets, Git, logs and tests. Along the way you’ll build an experiment harness, a small tool you’ll reuse for the rest of Part V.':
-    'AI system ek software system hai, jisme ek hissa kaafi unpredictable hota hai. Is chapter mein aap us hisse ke aas-paas ka software seekhenge: Python, HTTP aur JSON, secrets, Git, logs aur tests. Saath mein aap ek experiment harness banayenge, ek chhota sa tool, jo Part V ke baaki chapters mein bhi kaam aayega.',
-  'Before you read any further, open a notebook and write a short Python program. It should read some JSON, call an HTTP endpoint, handle a failure status and write JSON back out.':
-    'Aage padhne se pehle ek notebook kholiye aur ek chhota Python program likhiye. Woh kuch JSON padhe, ek HTTP endpoint ko call kare, failure status ko handle kare, aur JSON wapas likh de.',
-  'Turn that program into an experiment harness. For every run, it should record an id, a timestamp, the model, the prompt, the response, the latency, the usage and any errors.':
-    'Is program ko experiment harness bana dijiye. Har run ke liye woh ek id, timestamp, model, prompt, response, latency, usage aur koi bhi errors record kare.',
-  'Now try to break it. Feed it malformed JSON, a missing field and a timeout, then a 429 and a 500. Watch which of these it survives.':
-    'Ab ise todne ki koshish kijiye. Ise malformed JSON dijiye, ek missing field dijiye aur ek timeout, phir ek 429 aur ek 500. Dekhiye inmein se kaun-kaun si cheezein yeh jhel paata hai.',
-  'A Git repository that holds the harness and its tests.':
-    'Ek Git repository, jisme harness aur uske tests hon.',
-  'Pick one failure and trace it from the input that caused it all the way to the error it produced.':
-    'Koi ek failure chuniye aur use us input se shuru karke, jisne use paida kiya, us error tak trace kijiye jo aakhir mein aaya.',
   'An API call is a request and a reply':
     'API call ek request aur ek reply hoti hai',
-  'You’ve been making these since Chapter 1. This chapter looks at the software around them.':
-    'Aap Chapter 1 se yeh calls kar rahe hain. Yeh chapter unke aas-paas ke software ko dekhta hai.',
   'You pay for everything you send':
     'Aap jo bhi bhejte hain, uska paisa lagta hai',
-  'So it’s worth building, once, a harness that records usage.':
-    'Isliye ek aisa harness ek baar banana theek rehta hai jo usage record kare.',
   'Contract':
     'Contract',
-  'An assumption your code makes about the data it receives. For example, that a field exists, that it’s a number, or that a list isn’t empty. Each of these assumptions will be wrong one day.':
-    'Woh andaaza jo aapka code us data ke baare mein lagata hai jo use milta hai. Jaise yeh ki koi field maujood hai, woh ek number hai, ya list khaali nahi hai. Inmein se har andaaza kisi din galat nikalta hai.',
   'Status code':
     'Status code',
-  'The number a server sends back to say what happened. 200 means it worked, 4xx means you got something wrong, and 5xx means the server did.':
-    'Woh number jo server wapas bhejta hai yeh batane ke liye ki kya hua. 200 matlab kaam ho gaya, 4xx matlab aapse kuch galat hua, aur 5xx matlab server se galti hui.',
   'Stack trace':
     'Stack trace',
-  'The list of calls that were in progress when something failed, with the innermost call first. It tells you where the failure happened, not why.':
-    'Un calls ki list jo failure ke waqt chal rahi thi, sabse andar wali call sabse pehle. Yeh batati hai ki failure kahan hua, kyun hua yeh nahi batati.',
   'Experiment harness':
     'Experiment harness',
-  'A small tool that records every run in exactly the same way: the request, the response, the latency, the usage and any error. That way two runs can really be compared.':
-    'Ek chhota tool jo har run ko bilkul ek hi tareeke se record karta hai: request, response, latency, usage aur koi bhi error. Isse do runs ko sach mein compare kiya ja sakta hai.',
-  'Read a request, a response, a status code and a stack trace with confidence.':
-    'Request, response, status code aur stack trace ko aaram se padh paana.',
-  'Explain why an AI system is a software system with one probabilistic part.':
-    'Samjha paana ki AI system ek aisa software system kyun hai jisme ek hissa probabilistic hota hai.',
-  'Name where the engineering risk in an AI feature really sits.':
-    'Bata paana ki kisi AI feature mein engineering ka risk asal mein kahan baitha hota hai.',
   'Before you start':
     'Shuru karne se pehle',
-  'Think about ordering food in an app. Your tap sends a message to a restaurant. A reply comes back with a price, and your screen updates. It all looks mysterious until you see the messages going back and forth. Software around an AI model works the same way.':
-    'Ek app mein khana order karne ko yaad kijiye. Aapka ek tap restaurant ko message bhejta hai. Wapas ek reply aata hai jisme price hota hai, aur aapki screen update ho jaati hai. Jab tak aap in messages ko aate-jaate nahi dekhte, sab kuch jaadu jaisa lagta hai. AI model ke aas-paas ka software bhi isi tarah kaam karta hai.',
   'Why this matters':
     'Yeh kyun zaroori hai',
-  'Applied AI work involves APIs, Python, cloud services, retrieval, evaluation and production systems. If JSON, HTTP, environment variables, tests and logs are unfamiliar, you can’t question an architecture. This chapter gives you the minimum you need.':
-    'Applied AI ke kaam mein APIs, Python, cloud services, retrieval, evaluation aur production systems aate hain. Agar JSON, HTTP, environment variables, tests aur logs aapke liye anjaan hain, toh aap kisi architecture par sawaal nahi utha sakte. Yeh chapter aapko kam se kam jitna chahiye, utna deta hai.',
-  'An AI system is a software system with a probabilistic part. Everything that goes wrong in normal software can still go wrong here. On top of that, there’s one more kind of failure, and it produces no error at all.':
-    'AI system ek software system hai jisme ek probabilistic hissa hota hai. Normal software mein jo kuch bhi galat ho sakta hai, woh yahan bhi ho sakta hai. Uske upar ek aur kism ka failure hota hai, aur usme koi error aata hi nahi.',
   'Hands-on units':
     'Hands-on units',
-  'There are five small units below. Each one has a goal, an idea, something to prove to yourself, something to build, a way to break it, and something to keep. Work through them in order, because each one builds on the one before.':
-    'Neeche paanch chhote units hain. Har unit mein ek goal hai, ek idea, kuch jo aapko khud prove karna hai, kuch jo banana hai, use todne ka ek tareeka, aur kuch jo aapko sambhal kar rakhna hai. Inhe order mein kijiye, kyunki har unit pichhle par bana hai.',
   'Python as an experiment instrument':
     'Python ek experiment instrument ki tarah',
-  'You’ll learn to write small Python programs with functions, lists, dictionaries and loops. You should know them well enough to change an experiment yourself, without depending on code someone else generated.':
-    'Aap functions, lists, dictionaries aur loops ke saath chhote Python programs likhna seekhenge. Inhe itna achhe se jaan lijiye ki aap kisi experiment ko khud badal sakein, kisi aur ke generate kiye hue code par depend kiye bina.',
-  'Think of Python as your lab notebook. The goal is to describe an experiment precisely, not to master the language.':
-    'Python ko apni lab notebook samajhiye. Goal yeh hai ki aap experiment ko precisely likh sakein, language mein master banna goal nahi hai.',
-  'Create a few variables, a function, a loop and a dictionary. Print each result along the way so you can see what’s happening.':
-    'Kuch variables, ek function, ek loop aur ek dictionary banaiye. Beech-beech mein har result print kijiye, taaki aap dekh sakein ki kya ho raha hai.',
-  'Write a script that reads ten questions from a list and records a result object for each one.':
-    'Ek script likhiye jo ek list se das sawaal padhe aur har sawaal ke liye ek result object record kare.',
-  'Pass in a missing key, an empty list and a value of the wrong type, on purpose. Look at the errors you get.':
-    'Jaan-boojh kar ek missing key, ek khaali list aur galat type ki value pass kijiye. Jo errors aate hain unhe dekhiye.',
   'A file called <code>chapter-8/python-basics.py</code>, plus a one-page log of the errors you saw.':
     'Ek file <code>chapter-8/python-basics.py</code>, aur saath mein jo errors aapne dekhe unka ek page ka log.',
-  'Can you explain a function, a dictionary, a loop and an exception without opening any documentation?':
-    'Kya aap bina kisi documentation ko khole function, dictionary, loop aur exception samjha sakte hain?',
-  'Write the harness in your own code first, before you bring in a framework.':
-    'Pehle harness ko apne hi code mein likhiye, kisi framework ko lane se pehle.',
   'HTTP, JSON and API contracts':
     'HTTP, JSON aur API contracts',
-  'You’ll understand requests and responses, status codes, headers, JSON payloads, and what it means when a contract fails.':
-    'Aap requests aur responses, status codes, headers, JSON payloads, aur contract fail hone ka matlab samjhenge.',
-  'An AI API is still just an API. The model is probabilistic, but the network interface around it is ordinary software engineering.':
-    'AI API bhi aakhir ek API hi hai. Model probabilistic hai, lekin uske aas-paas ka network interface aam software engineering hai.',
-  'Call a safe public JSON endpoint. Print the status code and two of the fields it returns.':
-    'Ek safe public JSON endpoint ko call kijiye. Status code aur woh jo fields wapas deta hai unmein se do print kijiye.',
-  'Make a fake endpoint response that has missing fields and unexpected fields, and handle both cases.':
-    'Ek nakli endpoint response banaiye jisme kuch fields missing hon aur kuch unexpected fields hon, aur dono cases ko handle kijiye.',
-  'Simulate a 401, a 404, a 429 and a 500. For each one, decide whether it’s worth trying again.':
-    '401, 404, 429 aur 500 simulate kijiye. Har ek ke liye decide kijiye ki dobara try karna theek rahega ya nahi.',
-  'An API contract sheet that lists the request, the response, the errors and the retry policy.':
-    'Ek API contract sheet jisme request, response, errors aur retry policy likhi ho.',
-  'What’s the difference between a bad request, an unavailable dependency and a server failure?':
-    'Bad request, unavailable dependency aur server failure mein kya farq hai?',
-  'This is the vocabulary you need when someone says “the API failed” and expects that to be the whole explanation. It lets you ask what actually happened.':
-    'Jab koi kahe “API fail ho gayi” aur maan le ki yahi poori wajah hai, tab yeh vocabulary aapke kaam aati hai. Isse aap pooch sakte hain ki asal mein hua kya.',
   'Environments, secrets and Git':
     'Environments, secrets aur Git',
-  'You’ll use environment variables and secrets, set up a virtual environment, and follow a basic Git workflow.':
-    'Aap environment variables aur secrets use karenge, ek virtual environment set up karenge, aur ek basic Git workflow follow karenge.',
-  'A prototype that leaks a key, or that nobody else can reproduce, isn’t something an engineer can take seriously.':
-    'Jo prototype key leak kar de, ya jise koi aur dobara chala hi na sake, use koi engineer serious nahi leta.',
-  'Store a secret outside your source code. Print only a masked prefix of it, never the whole thing.':
-    'Ek secret ko apne source code ke bahar store kijiye. Uska sirf ek masked prefix print kijiye, poora kabhi nahi.',
   'Create a repository with a README, a requirements file and one command that runs the experiment the same way every time.':
     'Ek repository banaiye jisme README ho, ek requirements file ho, aur ek command ho jo experiment ko har baar ek hi tareeke se chalaye.',
-  'Commit a change that you know is broken. Find it, and then go back to the last version that worked.':
-    'Ek aisa change commit kijiye jo aapko pata hai ki galat hai. Use dhoondhiye, phir pichhle chalte hue version par wapas jaiye.',
-  'A repository skeleton that anyone can reproduce, with a <code>.gitignore</code>, a README and an experiment log.':
-    'Ek repository skeleton jise koi bhi dobara bana sake, jisme <code>.gitignore</code>, ek README aur ek experiment log ho.',
   'Could another person run your experiment without asking you what you did by hand?':
     'Kya koi doosra insaan aapka experiment chala sakta hai, yeh poochhe bina ki aapne haath se kya kiya tha?',
-  'Reproducibility matters to a PM because it turns a demo into evidence.':
-    'Reproducibility PM ke liye isliye matter karti hai ki woh demo ko evidence bana deti hai.',
   'Errors, logging and tests':
     'Errors, logging aur tests',
-  'You’ll learn to read stack traces, add structured logs, and write small tests.':
-    'Aap stack traces padhna, structured logs jodna, aur chhote tests likhna seekhenge.',
-  'You judge an AI system by what happens when things go wrong, not only when everything goes smoothly.':
-    'AI system ko aap is baat se parakhte hain ki jab cheezein galat hoti hain tab kya hota hai, sirf tab nahi jab sab kuch smoothly chal raha ho.',
-  'Write three tests: one for an expected answer, one for missing input, and one for a malformed response.':
-    'Teen tests likhiye: ek expected jawaab ke liye, ek missing input ke liye, aur ek malformed response ke liye.',
   'Add a request ID, a timestamp, the model and the status to every experiment record.':
     'Har experiment record mein ek request ID, timestamp, model aur status jodiye.',
-  'Force a timeout, and force a malformed output. Trace each failure from the input to the exception it caused.':
-    'Ek timeout force kijiye, aur ek malformed output bhi force kijiye. Har failure ko input se us exception tak trace kijiye jo usne paida kiya.',
-  'A mini test suite, plus a failure log that notes the root cause and the fix for each failure.':
-    'Ek mini test suite, aur saath mein ek failure log jisme har failure ka root cause aur fix likha ho.',
-  'Can you tell an application bug apart from a failure on the provider’s side or in the model?':
-    'Kya aap application bug aur provider ya model ki taraf ke failure mein farq bata sakte hain?',
-  'This becomes the base for evaluation and observability later in the course.':
-    'Aage course mein evaluation aur observability isi par tikti hain.',
   'Build the experiment harness':
     'Experiment harness banaiye',
-  'You’ll create a reusable runner that records the inputs, the outputs, the configuration, the latency and any errors.':
-    'Aap ek reusable runner banayenge jo inputs, outputs, configuration, latency aur errors record kare.',
   'The harness is the bridge between “I tried it” and “I measured it.”':
     'Harness “maine try kiya” aur “maine measure kiya” ke beech ka pul hai.',
-  'Run one prompt twice, and save both runs as structured JSON.':
-    'Ek prompt ko do baar chalaiye, aur dono runs ko structured JSON mein save kijiye.',
-  'Add the experiment name, the version, the model, the prompt version, the input and output tokens when they’re available, the latency, and a field for notes.':
-    'Experiment ka naam, version, model, prompt version, input aur output tokens (jab available hon), latency, aur notes ke liye ek field jodiye.',
-  'Change one thing, and check that the logs make the comparison between the two runs obvious.':
-    'Ek cheez badaliye, aur check kijiye ki logs dono runs ka comparison saaf dikhate hain.',
-  'A folder called <code>experiment_runner/</code> with a schema, the runner, some sample runs and a README.':
-    'Ek folder <code>experiment_runner/</code> jisme schema, runner, kuch sample runs aur ek README ho.',
-  'Can you reproduce yesterday’s result, and explain what changed since then?':
-    'Kya aap kal ka result dobara la sakte hain, aur bata sakte hain ki tab se kya badla?',
-  'Every later chapter should plug into this harness. None of them should invent its own way of recording evidence.':
-    'Aage ka har chapter isi harness mein judna chahiye. Kisi ko bhi evidence record karne ka apna naya tareeka nahi banana chahiye.',
   'Contracts fail silently':
     'Contracts chupke se fail hote hain',
-  'Every AI application leans on a lot of small assumptions about its data. This field will be there. That value will be a number. This list won’t be empty. Each of these is a <strong>contract</strong>, and in production every one of them will be broken sooner or later.':
-    'Har AI application apne data ke baare mein bahut saare chhote andaazon par tiki hoti hai. Yeh field maujood hogi. Woh value number hogi. Yeh list khaali nahi hogi. Inmein se har ek ek <strong>contract</strong> hai, aur production mein inme se har ek kabhi na kabhi toot jaata hai.',
-  'A production system has to notice when a contract is broken, instead of carrying on. Many real AI incidents look like this: nothing raised an error, and the answer was built on missing data.':
-    'Production system ko yeh pakadna aana chahiye ki contract toot gaya hai, aage chalte rehna nahi. Kai asli AI incidents aise dikhte hain: kisi ne koi error nahi diya, aur jawaab missing data par bana tha.',
   'What “enough” means':
     '“Kaafi” ka matlab kya hai',
-  'You don’t need to become a backend engineer. You have enough when you’re comfortable with all of the following.':
-    'Aapko backend engineer banne ki zaroorat nahi hai. Aapke paas kaafi tab hai jab aap neeche likhi sab cheezon mein comfortable hon.',
   'You can write a small function, and keep a few labelled values together in a dictionary.':
     'Aap ek chhota function likh sakte hain, aur kuch labelled values ko ek dictionary mein ek saath rakh sakte hain.',
   'You know your <strong>status codes</strong>: 200 means it worked, 4xx means the request was wrong, and 5xx means the server failed.':
     'Aap apne <strong>status codes</strong> jaante hain: 200 matlab kaam ho gaya, 4xx matlab request galat thi, aur 5xx matlab server fail hua.',
-  'You know what <strong>JSON</strong> is: labels and values, which is the format most systems use to exchange data.':
-    'Aap jaante hain ki <strong>JSON</strong> kya hai: labels aur values, jo zyadatar systems ke beech data exchange karne ka format hai.',
-  'You keep a password or API key out of your code, in an environment variable instead.':
-    'Aap password ya API key ko code ke bahar, ek environment variable mein rakhte hain.',
-  'You save your work in Git, so you can go back to an earlier version.':
-    'Aap apna kaam Git mein save karte hain, taaki aap kisi pichhle version par wapas ja sakein.',
-  'You read an error message from the bottom up, because that’s where the real cause usually is.':
-    'Aap error message ko neeche se upar ki taraf padhte hain, kyunki asli wajah aksar wahin hoti hai.',
   'You can write a test that fails on purpose, so you know it really does check something.':
     'Aap aisa test likh sakte hain jo jaan-boojh kar fail ho, taaki aapko pata chale ki woh sach mein kuch check karta hai.',
-  'There are two more ideas that are useful to understand, though you don’t need to write them yourself. One is background jobs. The other is queues, which hold work until something is free to process it.':
-    'Do aur ideas samajhna kaam ka hai, lekin unhe khud likhna zaroori nahi. Ek hai background jobs. Doosra hai queues, jo kaam ko tab tak rokkar rakhti hain jab tak use process karne ke liye koi free na ho.',
-  'Let’s test how much you already understand about a real feature.':
-    'Chaliye dekhte hain ki ek asli feature ke baare mein aap abhi kitna samajhte hain.',
-  'Think of the last AI feature you saw demonstrated. In plain words, write down what its request probably contained and what its response probably looked like. Where are you guessing?':
-    'Us aakhri AI feature ke baare mein sochiye jiska demo aapne dekha tha. Seedhe shabdon mein likhiye ki uski request mein shayad kya tha aur uska response shayad kaisa dikhta tha. Aap kahan andaaza laga rahe hain?',
   'The request probably contained … The response probably … I am guessing about …':
     'Request mein shayad yeh tha … Response shayad … Mujhe andaaza lagana pada …',
-  'The places where you had to guess are the questions to ask the team that built it. Being able to produce that list is the main skill this chapter teaches.':
-    'Jahan aapko andaaza lagana pada, wahi sawaal hain jo aapko us team se poochhne chahiye jisne yeh banaya. Yeh list bana paana hi is chapter ka sabse bada skill hai.',
   'Summary':
     'Summary',
-  'A model API call is a normal software dependency. The engineering risk sits in the interfaces, the error handling, the secrets, the retries, the monitoring and the contracts, at least as much as it sits in the model.':
-    'Model API call ek normal software dependency hai. Engineering ka risk interfaces, error handling, secrets, retries, monitoring aur contracts mein baitha hota hai, kam se kam utna jitna model mein.',
-  'You now know the everyday software that surrounds a model, and you have a harness that records each run the same way. Next, in Chapter 22, you’ll use that harness to compare models.':
-    'Ab aap model ke aas-paas ke roz ke software ko jaante hain, aur aapke paas ek harness hai jo har run ko ek hi tareeke se record karta hai. Agla chapter, Chapter 22, isi harness se models ko compare karega.',
   'Build the test harness and keep it in Git':
     'Test harness banaiye aur use Git mein rakhiye',
-  'From here on, almost every chapter asks you to run the tool on the answer key and compare the result with last time. If you set the test up again each time, the comparisons stop being fair. In this chapter you learned to read requests, responses and errors, and that an AI system is a software system with one unpredictable part. Now you’ll build the harness once, put it in Git, and keep adding to it for the rest of the course.':
-    'Ab se lagbhag har chapter aapse kehta hai ki tool ko answer key par chalaiye aur result ko pichhli baar se compare kijiye. Agar aap har baar test dobara set up karenge, toh comparisons fair nahi rahenge. Is chapter mein aapne requests, responses aur errors padhna seekha, aur yeh bhi ki AI system ek aisa software system hai jisme ek hissa unpredictable hota hai. Ab aap harness ek baar banayenge, use Git mein rakhenge, aur course ke baaki hisse mein ismein cheezein jodte rahenge.',
-  'Write a function of about twenty lines that reads your answer key (a CSV file) and returns its rows. Let it filter by one column, for example “only the Hinglish rows”.':
-    'Lagbhag 20 lines ka ek function likhiye jo aapki answer key (ek CSV file) padhe aur uski rows wapas de. Use ek column se filter karne dijiye, jaise “sirf Hinglish wali rows”.',
-  'Add three tests for it: one with a normal file, one with a row that has a missing field, and one with an empty file.':
-    'Iske liye teen tests jodiye: ek normal file ke saath, ek aisi row ke saath jisme ek field missing ho, aur ek khaali file ke saath.',
   'Write a function that runs one sentence through your current pipeline and saves a JSON record of the run. The record holds the sentence, the findings, the time, the tokens and any error.':
     'Ek function likhiye jo ek sentence ko aapki maujooda pipeline se chalaye aur us run ka ek JSON record save kare. Record mein sentence, findings, time, tokens aur koi bhi error hota hai.',
-  'Write a function that compares the findings with the answer key and prints recall and precision for each kind of ID and each kind of writing. This is the scoreboard you made by hand in Chapter 6.':
-    'Ek function likhiye jo findings ko answer key se compare kare aur har ID type aur har writing type ke liye recall aur precision print kare. Yeh wahi scoreboard hai jo aapne Chapter 6 mein haath se banaya tha.',
-  'Create a Git repository, commit the harness, and write a README that explains how to run it on a clean machine.':
-    'Ek Git repository banaiye, harness commit kijiye, aur ek README likhiye jo samjhaye ki ise ek saaf machine par kaise chalana hai.',
   'Break one thing on purpose, such as a bad key, a time-out or a broken reply. Then check that the record is still written, with the error in it.':
     'Jaan-boojh kar ek cheez todiye, jaise galat key, time-out ya toota hua reply. Phir check kijiye ki record phir bhi likha jaata hai, aur usme error likha hai.',
-  'A repository that someone else can clone and run.':
-    'Ek repository jise koi doosra insaan clone karke chala sake.',
-  'Three tests that pass, one of which covers a failure.':
-    'Teen tests jo pass hote hain, jinme se ek failure ko cover karta hai.',
   'A scoreboard printed from the answer key.':
     'Answer key se print kiya hua ek scoreboard.',
   'One saved record from a run that failed.':
@@ -291,212 +143,58 @@ Object.assign(window.HING = window.HING || {}, {
   /* ---- ch10c: Context engineering: deciding what the model sees ---- */
   'Context engineering: deciding what the model sees':
     'Context engineering: model ko kya dikhana hai, yeh tay karna',
-  'Context engineering means deciding what goes into each request: the instructions, examples, evidence, history and tool results, and the format they come in. In this chapter you’ll treat the prompt as a contract, set a context budget, and decide where memory is stored.':
-    'Context engineering matlab yeh tay karna ki har request mein kya jaayega: instructions, examples, evidence, history aur tool results, aur woh kis format mein aayenge. Is chapter mein aap prompt ko ek contract ki tarah dekhenge, ek context budget set karenge, aur tay karenge ki memory kahan store hogi.',
-  'Write a vague prompt that makes a downstream parser fail, and keep the failure so you can look at it later.':
-    'Ek vague prompt likhiye jo downstream parser ko fail kara de, aur us failure ko sambhal kar rakhiye taaki baad mein dekh sakein.',
-  'Redesign the prompt as an interface. Give it structured output, validation, examples, a refusal state, provenance, and a limit on how much history it carries.':
-    'Prompt ko ek interface ki tarah dobara design kijiye. Usme structured output, validation, examples, ek refusal state, provenance, aur history par ek limit dijiye.',
-  'Now break it on purpose. Remove required fields, add contradictory instructions, overflow the context, and inject irrelevant history.':
-    'Ab ise jaan-boojh kar todiye. Required fields hata dijiye, contradictory instructions jodiye, context ko overflow kijiye, aur irrelevant history daaliye.',
-  'A context budget, a schema, and a design for memory and state.':
-    'Ek context budget, ek schema, aur memory aur state ka ek design.',
-  'Explain the difference between context, state and persistent memory, without blurring the three together.':
-    'Context, state aur persistent memory ka farq samjhaiye, teeno ko ek-doosre mein ghuse bina.',
   'A system prompt is a standing instruction':
     'System prompt ek standing instruction hota hai',
-  'You met this in Chapter 2. Here it’s one part of a designed context.':
-    'Yeh aapne Chapter 2 mein dekha tha. Yahan yeh ek designed context ka sirf ek hissa hai.',
   'The context window has a limit':
     'Context window ki ek limit hoti hai',
-  'You saw this in Chapter 1.5. The budget is real, so something has to be removed first.':
-    'Yeh aapne Chapter 1.5 mein dekha tha. Budget asli hai, isliye kuch na kuch pehle hatana hi padta hai.',
   'Structured output can be required':
     'Structured output ko required banaya ja sakta hai',
-  'Chapter 8 made the format reliable. This chapter places it inside a wider design.':
-    'Chapter 8 ne format ko reliable banaya. Yeh chapter use ek bade design ke andar rakhta hai.',
   'Context engineering':
     'Context engineering',
-  'Deciding what the model receives at all: instructions, examples, evidence, history and tool results, and the shape they come in. Retrieval is one part of it.':
-    'Yeh tay karna ki model ko aakhir milega kya: instructions, examples, evidence, history aur tool results, aur woh kis shape mein aayenge. Retrieval ismein ek hissa hai.',
   'Context budget':
     'Context budget',
-  'A token allowance for each part of the context, together with a stated order in which things are dropped when the total won’t fit.':
-    'Context ke har hisse ke liye tokens ka ek allowance, saath mein ek tay order ki jab total fit na ho toh cheezein kis order mein hataayi jaayengi.',
   'Schema validation':
     'Schema validation',
-  'Checking the data that comes back against a declared shape, before anything downstream uses it.':
-    'Wapas aaye data ko ek declared shape se check karna, isse pehle ki aage koi use use kare.',
   'Provenance':
     'Provenance',
-  'The record of where a piece of information came from. It travels with the information, so an answer can be traced back to a source.':
-    'Is baat ka record ki koi information kahan se aayi. Yeh information ke saath chalta hai, taaki kisi jawaab ko wapas uske source tak trace kiya ja sake.',
-  'Treat a prompt as an interface contract, not as a paragraph of requests.':
-    'Prompt ko requests ke paragraph ki tarah nahi, ek interface contract ki tarah dekh paana.',
-  'Say what gets removed first when the context budget is tight, and why.':
-    'Bata paana ki context budget tight ho toh sabse pehle kya hataya jaata hai, aur kyun.',
-  'Tell conversation history, user profile and task state apart as three different stores.':
-    'Conversation history, user profile aur task state ko teen alag stores ki tarah pehchaan paana.',
-  'Pick one assistant you know well, either your own or one you use. You’ll list everything that goes into its context.':
-    'Ek aisa assistant chuniye jise aap achhe se jaante hain, aapka apna ya koi jo aap use karte hain. Aap uske context mein jo kuch bhi jaata hai, sab ki list banayenge.',
-  'In the last chapter you chose a model. Now the question is what you send to it. You’ve thought of the prompt as the message you type, but the prompt is only one part of what the model sees. Every request can also carry instructions, examples, documents, earlier messages and results from tools.':
-    'Pichhle chapter mein aapne ek model chuna. Ab sawaal yeh hai ki aap use bhejte kya hain. Aap prompt ko ab tak woh message samajhte aaye hain jo aap type karte hain, lekin prompt model ko dikhne wali cheezon ka sirf ek hissa hai. Har request ke saath instructions, examples, documents, pichhle messages aur tools ke results bhi ja sakte hain.',
-  'Choosing what goes into that request, and what stays out, is called <strong>context engineering</strong>. It matters for two reasons. The context window has a limit, so not everything fits. And you pay for every token you send.':
-    'Is request mein kya jaayega aur kya bahar rahega, yeh chunna <strong>context engineering</strong> kehlata hai. Yeh do wajah se zaroori hai. Context window ki ek limit hoti hai, isliye sab kuch fit nahi hota. Aur aap jo bhi token bhejte hain, uska paisa lagta hai.',
-  'An everyday comparison helps here. Imagine you brief a brilliant new colleague who remembers nothing from yesterday. Each morning you hand them a folder: the standing instructions, a few examples, the file they need today, and a note about last week. What you put in that folder decides how well they do.':
-    'Ise roz ki zindagi se samajhiye. Maan lijiye aapki team mein ek bahut smart naya colleague aaya hai, lekin woh kal ki koi baat yaad nahi rakhta. Isliye aap roz subah use ek folder dete hain: hamesha wali instructions, kuch examples, aaj ki zaroori file, aur pichhle hafte ka ek note. Us folder mein aap kya rakhte hain, wahi tay karta hai ki woh kitna achha kaam karega.',
-  'Treat a prompt as an interface contract. It has a role, a task, constraints, examples, an output schema and a refusal behaviour, and the code downstream depends on each of these.':
-    'Prompt ko ek interface contract ki tarah dekhiye. Usme ek role, ek task, constraints, examples, ek output schema aur ek refusal behaviour hota hai, aur downstream code inmein se har ek par depend karta hai.',
-  'The six units below take you from a single prompt to a whole context design. Each one gives you something small to build, and something to break on purpose.':
-    'Neeche ke chhe units aapko ek akele prompt se poore context design tak le jaate hain. Har unit mein banane ke liye kuch chhota hai, aur jaan-boojh kar todne ke liye bhi kuch.',
   'Prompt as an interface contract':
     'Prompt ek interface contract ki tarah',
-  'You’ll design prompts that spell out the task, the constraints, the inputs, what you expect back, and what should happen when something fails.':
-    'Aap aise prompts design karenge jinmein task, constraints, inputs, kya wapas chahiye, aur kuch fail ho toh kya hona chahiye, sab saaf likha ho.',
-  'A prompt works like a contract between your app and the model. Your app promises to send certain things, and the model is asked to send back certain things.':
-    'Prompt aapke app aur model ke beech ek contract ki tarah kaam karta hai. Aapka app kuch cheezein bhejne ka vaada karta hai, aur model se kuch cheezein wapas bhejne ko kaha jaata hai.',
-  'Take a vague instruction and rewrite it into a role, a task, constraints, examples and output requirements.':
-    'Ek vague instruction lijiye aur use role, task, constraints, examples aur output requirements mein dobara likhiye.',
   'Run the old and the new version on the same 10 cases.':
     'Purana aur naya version, dono ko wahi 10 cases par chalaiye.',
-  'Add two instructions that contradict each other. Watch which behaviour stays steady and which starts to wobble.':
-    'Do aise instructions jodiye jo ek-doosre ko kaat dein. Dekhiye ki kaunsa behaviour steady rehta hai aur kaunsa dagmagane lagta hai.',
-  'A side-by-side view of the old and new prompt, plus the results of your 10-case test.':
-    'Purane aur naye prompt ka side-by-side view, aur saath mein aapke 10-case test ke results.',
   'Which requirement became something you can measure after the rewrite?':
     'Rewrite ke baad kaunsi requirement aisi ban gayi jise aap measure kar sakte hain?',
   'Keep versions of your prompt changes, the way engineers do with code.':
     'Prompt ke changes ke versions rakhiye, jaise engineers code ke saath karte hain.',
   'Structured outputs and schemas':
     'Structured outputs aur schemas',
-  'You’ll make the model’s output something a machine can read, and you’ll check it before anything downstream uses it.':
-    'Aap model ke output ko aisa banayenge jise machine padh sake, aur aage koi use use kare usse pehle aap use check karenge.',
-  'Output in natural language is flexible, but the interfaces in an application need a predictable structure.':
-    'Natural language mein output flexible hota hai, lekin app ke interfaces ko ek predictable structure chahiye.',
-  'Define a small JSON schema for an object that holds one extracted task.':
-    'Ek chhota JSON schema define kijiye, ek aise object ke liye jisme ek extracted task ho.',
-  'Generate some outputs, parse them, and reject any that have an invalid structure.':
-    'Kuch outputs generate kijiye, unhe parse kijiye, aur jinka structure invalid ho unhe reject kijiye.',
-  'Remove a required field, and put in a value of the wrong type. Check that your application catches both.':
-    'Ek required field hata dijiye, aur ek galat type ki value daal dijiye. Check kijiye ki aapka application dono pakadta hai.',
-  'The schema, the validation tests, and sample payloads that are valid and invalid.':
-    'Schema, validation tests, aur valid aur invalid, dono tarah ke sample payloads.',
-  'Does the schema stop unsafe values, or only formatting mistakes?':
-    'Kya schema unsafe values rokta hai, ya sirf formatting ki galtiyan?',
-  'Structured output controls the interface. It doesn’t guarantee that the content is true.':
-    'Structured output interface ko control karta hai. Yeh guarantee nahi deta ki content sach hai.',
-  'You’ll measure how much of the context is instructions, how much is history, how much is retrieved text, and how much is tool output.':
-    'Aap measure karenge ki context ka kitna hissa instructions hai, kitna history, kitna retrieved text, aur kitna tool output.',
-  'Context is a limited resource, and it affects quality, latency and cost.':
-    'Context ek limited resource hai, aur uska asar quality, latency aur cost par padta hai.',
-  'Record the token count for each part of the context, where your provider shows it. Where it doesn’t, estimate in the same way every time.':
-    'Context ke har hisse ka token count record kijiye, jahan aapka provider dikhata hai. Jahan nahi dikhata, wahan har baar ek hi tareeke se estimate kijiye.',
-  'Write a budget policy that says what you keep, what you summarise and what you drop first.':
-    'Ek budget policy likhiye jo bataye ki kya rakhna hai, kya summarise karna hai aur sabse pehle kya hataana hai.',
-  'Flood the context with irrelevant history, and compare the answer quality and the cost.':
-    'Context ko irrelevant history se bhar dijiye, aur answer quality aur cost compare kijiye.',
   'A Context Budget Worksheet.':
     'Ek Context Budget Worksheet.',
-  'What is the first thing you would remove under pressure?':
-    'Dabav mein sabse pehle aap kya hataayenge?',
-  'A PM should be able to ask “what is in the context?” and get an exact answer.':
-    'PM ko yeh poochh paana chahiye ki “context mein kya hai?” aur ek exact jawaab milna chahiye.',
   'State, history and memory':
     'State, history aur memory',
-  'You’ll separate four things that people often mix up: the context of one request, the conversation history, the data kept about a user, and the state of a task.':
-    'Aap chaar aisi cheezein alag karenge jo log aksar mila dete hain: ek request ka context, conversation history, user ke baare mein rakha gaya data, aur ek task ka state.',
-  '“Memory” isn’t a single feature. It’s an application architecture, with storage, retention rules and authorisation.':
-    '“Memory” koi ek feature nahi hai. Yeh ek application architecture hai, jisme storage, retention rules aur authorisation hote hain.',
-  'Draw three stores: the session history, the user profile and the task state.':
-    'Teen stores banaiye: session history, user profile aur task state.',
-  'For each store, write down the fields, who owns it, how long it’s kept, who can access it, and how it gets deleted.':
-    'Har store ke liye likhiye ki usme kaunse fields hain, woh kiska hai, kitne time tak rakha jaata hai, kaun access kar sakta hai, aur woh delete kaise hota hai.',
-  'Bring in memory that is stale or that conflicts with other memory, and define rules for which one wins.':
-    'Aisi memory laaiye jo purani ho ya doosri memory se takraati ho, aur tay kijiye ki kaun jeetega.',
   'A Memory and State Design Sheet.':
     'Ek Memory aur State Design Sheet.',
-  'Which data should never be put into a prompt by default?':
-    'Kaunsa data default mein kabhi prompt mein nahi daalna chahiye?',
   'This is where privacy and product design meet context engineering.':
     'Yahin privacy aur product design, context engineering se milte hain.',
   'Provenance and citations':
     'Provenance aur citations',
-  'You’ll make the evidence traceable, so you can follow it from the answer back to the source, the chunk and the version.':
-    'Aap evidence ko traceable banayenge, taaki aap use jawaab se wapas source, chunk aur version tak follow kar sakein.',
-  'A citation is useful only if it lets the user, or an auditor, trace the claim back to its evidence.':
-    'Citation tabhi kaam ki hai jab woh user ya auditor ko claim ko wapas uske evidence tak trace karne de.',
   'Attach a source ID, a section and a chunk ID to every passage you retrieve.':
     'Har retrieve kiye gaye passage ke saath ek source ID, ek section aur ek chunk ID jodiye.',
-  'Generate an answer that cites those identifiers.':
-    'Ek aisa jawaab generate kijiye jo in identifiers ko cite kare.',
-  'Delete a source version or change it, and test whether the old citations are still valid.':
-    'Ek source version delete kijiye ya badaliye, aur test kijiye ki purane citations ab bhi valid hain ya nahi.',
   'A provenance schema, with some example citations.':
     'Ek provenance schema, kuch example citations ke saath.',
-  'Can you reproduce the exact source that was used for an answer?':
-    'Kya aap woh exact source dobara la sakte hain jo kisi jawaab mein use hua tha?',
-  'Traceability is essential in systems that are regulated or full of policy.':
-    'Jin systems par regulation ho ya jo policy se bhare hon, unmein traceability zaroori hai.',
   'Context failure clinic':
     'Context failure clinic',
-  'You’ll diagnose wrong answers that come from context that is missing, stale, irrelevant, contradictory or malicious.':
-    'Aap aise galat jawaabon ko diagnose karenge jo missing, purane, irrelevant, contradictory ya malicious context se aate hain.',
-  'Many failures that people blame on “the model” are really failures in how the context was put together.':
-    'Jin failures ka ilzaam log “model” par lagate hain, unmein se kaafi asal mein is baat ke failures hote hain ki context kaise jodha gaya.',
-  'Create five context packages that are bad on purpose, and predict how each one will fail.':
-    'Paanch aise context packages banaiye jo jaan-boojh kar kharab hon, aur pehle se andaaza lagaiye ki har ek kaise fail hoga.',
-  'Fix one problem at a time, and rerun the same test set each time.':
-    'Ek baar mein ek problem theek kijiye, aur har baar wahi test set dobara chalaiye.',
-  'Mix a stale policy, some unrelated text and a prompt injection into the context.':
-    'Context mein ek purani policy, kuch unrelated text aur ek prompt injection mila dijiye.',
-  'A Context Failure Taxonomy.':
-    'Ek Context Failure Taxonomy.',
-  'What failed: retrieval, assembly, authorisation, the order of instructions, or generation?':
-    'Kya fail hua: retrieval, assembly, authorisation, instructions ka order, ya generation?',
-  'This prepares you for production RAG and for security.':
-    'Yeh aapko production RAG aur security ke liye taiyaar karta hai.',
-  'One more thing about structured output. It removes ambiguity for the code that reads the reply, and that code usually can’t handle prose.':
-    'Structured output ke baare mein ek aur baat. Woh us code ke liye ambiguity hata deta hai jo reply padhta hai, aur woh code aksar prose sambhal nahi paata.',
   'Memory is an architecture choice':
     'Memory ek architecture choice hai',
-  'A model does not have memory. Every product that offers memory has built a store for it, and the kind of store decides what it can delete when someone asks.':
-    'Model ke paas memory nahi hoti. Jis bhi product mein memory dikhti hai, usne uske liye ek store banaya hai, aur store ka type tay karta hai ki koi kahe toh woh kya delete kar sakta hai.',
-  'You’ll hear many names for parts of the context: caching, compression, few-shot examples, instruction hierarchy. They all answer the same two questions. What goes in? And what is removed first when it doesn’t fit?':
-    'Aap context ke hisson ke bahut saare naam sunenge: caching, compression, few-shot examples, instruction hierarchy. Yeh sab do hi sawaalon ka jawaab dete hain. Kya andar jaayega? Aur jab sab fit na ho, toh sabse pehle kya hataya jaayega?',
-  'Let’s try that with an assistant you know.':
-    'Chaliye ise ek aise assistant par try karte hain jise aap jaante hain.',
-  'For one assistant you know, estimate the tokens spent on system instructions, history, retrieved passages and tool output. Then decide what gets removed first when the budget is tight.':
-    'Ek aisa assistant lijiye jise aap jaante hain, aur andaaza lagaiye ki system instructions, history, retrieved passages aur tool output par kitne tokens kharch hote hain. Phir tay kijiye ki budget tight ho toh sabse pehle kya hataya jaayega.',
   'instructions … history … retrieved … tool output … remove first: …':
     'instructions … history … retrieved … tool output … sabse pehle hataayenge: …',
   'Most people remove history first and evidence last. If your order is different, write down why. That reasoning is the design.':
     'Zyadatar log history pehle hataate hain aur evidence sabse aakhir mein. Agar aapka order alag hai, toh likhiye kyun. Wahi reasoning design hai.',
-  'So, to bring it together: the prompt is one part of the context, the context has a budget, and memory is something you design and store. Next, in Chapter 24, you’ll use this context design as the input to a production retrieval system.':
-    'Toh sab ko jodkar dekhein: prompt context ka sirf ek hissa hai, context ka ek budget hota hai, aur memory woh cheez hai jise aap design karte hain aur store karte hain. Agle chapter, Chapter 24, mein aap is context design ko ek production retrieval system ke input ki tarah use karenge.',
   'Plan exactly what the model gets to see':
     'Tay kijiye ki model ko bilkul kya dikhna hai',
-  'Every call to the context judge sends the model a bundle of text, and the bundle is limited and costs money. In this chapter you learned to treat a prompt as a contract, to decide what is removed first when space runs short, and to keep conversation history, user settings and task state apart. Now you’ll write the one-page plan for the context judge’s call.':
-    'Context judge ki har call model ko text ka ek bundle bhejti hai, aur woh bundle limited hota hai aur paisa lagata hai. Is chapter mein aapne seekha ki prompt ko ek contract ki tarah dekhna hai, jagah kam padne par sabse pehle kya hataana hai yeh tay karna hai, aur conversation history, user settings aur task state ko alag rakhna hai. Ab aap context judge ki call ke liye ek page ka plan likhenge.',
-  'Written, using real token counts from a run of your harness. Write the page in the notes box below.':
-    'Likhkar, apne harness ke ek run ke asli token counts ke saath. Page neeche wale notes box mein likhiye.',
   'List everything that goes into one call to the context judge: the instructions, the worked examples, the sentence to check, any earlier messages and any reference list.':
     'Context judge ki ek call mein jo kuch bhi jaata hai uski list banaiye: instructions, worked examples, check karne wala sentence, pichhle messages aur koi reference list.',
-  'Next to each item, write a token count from a real run, not a guess.':
-    'Har item ke saamne ek asli run ka token count likhiye, andaaza nahi.',
-  'Set a total limit for the call and show how much room is left.':
-    'Call ke liye ek total limit set kijiye aur dikhaiye ki kitni jagah bachi hai.',
   'Write the order in which things are removed when space runs out, and the rule behind it. The sentence to check is never removed.':
     'Woh order likhiye jisme jagah khatam hone par cheezein hataayi jaati hain, aur uske peeche ka rule bhi. Check karne wala sentence kabhi nahi hataya jaata.',
-  'Write the exact shape the reply must have, which is your finding format, and what happens when a reply does not match.':
-    'Reply ka bilkul sahi shape likhiye, yaani aapka finding format, aur yeh bhi ki reply match na kare toh kya hota hai.',
-  'For each piece of stored data (the chat so far, a user’s settings, the state of the current task), say which of the three kinds of memory it belongs to.':
-    'Store kiye gaye data ke har hisse ke liye (ab tak ki chat, user ki settings, current task ka state), batayiye ki woh teen tarah ki memory mein se kaunsi mein aata hai.',
-  'A list of everything in the call with a real token count beside each item.':
-    'Call mein jo kuch hai uski list, har item ke saamne ek asli token count ke saath.',
-  'A total limit and the room left.':
-    'Ek total limit aur bachi hui jagah.',
-  'The removal order and the rule behind it.':
-    'Hataane ka order aur uske peeche ka rule.',
   'The reply shape, and the three kinds of stored data sorted.':
     'Reply ka shape, aur store kiye gaye data ke teen types, alag-alag kiye hue.',
 
@@ -823,256 +521,76 @@ Object.assign(window.HING = window.HING || {}, {
   /* ---- ch13a: Agents: loops, stopping conditions and control ---- */
   'Agents: loops, stopping conditions and control':
     'Agents: loops, stopping conditions aur control',
-  'An agent chooses actions, checks the results and keeps going toward a goal. The hard part is control, not intelligence. You’ll build an agent with firm limits, add stopping conditions, and measure it against the fixed workflow from Chapter 25.':
-    'Agent khud actions chunta hai, results check karta hai, aur goal ki taraf badhta rehta hai. Mushkil hissa control hai, intelligence nahi. Aap pakke limits wala ek agent banayenge, stopping conditions jodenge, aur use Chapter 25 ke fixed workflow ke saamne measure karenge.',
-  'Build the smallest loop you can: propose → call one approved tool → look at the result → continue or stop.':
-    'Sabse chhota loop banaiye: propose karo → ek approved tool call karo → result dekho → aage badho ya ruk jao.',
-  'Add a list of allowed tools, a maximum number of steps, state that you can see, stopping conditions, and a point where a person must approve.':
-    'Allowed tools ki ek list jodiye, steps ki ek maximum limit, aisa state jo aap dekh sakein, stopping conditions, aur ek jagah jahan kisi insaan ko approve karna padta hai.',
-  'Make the agent loop forever. Feed it confusing tool output. Ask it to use a tool it is not allowed to use.':
-    'Agent ko loop mein phasa dijiye jo kabhi khatam na ho. Use confusing tool output khilaiye. Use aisa tool use karne ko kahiye jiski use ijaazat nahi hai.',
-  'A comparison of the agent against the deterministic workflow across twenty tasks.':
-    'Agent aur deterministic workflow ka twenty tasks par comparison.',
-  'Prove that the extra freedom adds measurable value. If it does not, ship the workflow.':
-    'Saabit kijiye ki extra freedom se measurable value judti hai. Agar nahi judti, toh workflow ship kijiye.',
   'Tool contracts and fixed workflows':
     'Tool contracts aur fixed workflows',
-  'Chapter 25 built the workflow that the agent is compared against.':
-    'Chapter 25 ne woh workflow banaya jiske saamne agent ko compare kiya jaata hai.',
-  'Every step costs tokens':
-    'Har step mein tokens lagte hain',
-  'From Chapter 1. A loop multiplies that cost by the number of steps.':
-    'Chapter 1 se. Loop us cost ko steps ki ginti se multiply kar deta hai.',
   'Agent':
     'Agent',
-  'A system in which the model can choose actions, look at the results, and keep going toward a goal.':
-    'Ek aisa system jisme model khud actions chun sakta hai, results dekh sakta hai, aur goal ki taraf badhta rehta hai.',
   'Agent loop':
     'Agent loop',
-  'The cycle of goal, decision, tool call, observation and updated context, followed by a choice to stop or continue. The stopping condition is the part people leave out.':
-    'Goal, decision, tool call, observation aur updated context ka cycle, jiske baad rukne ya aage badhne ka choice hota hai. Stopping condition woh hissa hai jo log chhod dete hain.',
   'Step budget':
     'Step budget',
-  'A hard limit on how many actions an agent may take before it has to give up. It is the main defence against a loop that never ends.':
-    'Ek pakki limit ki agent haar maanne se pehle kitni actions le sakta hai. Jo loop kabhi khatam nahi hota, uske khilaaf yeh sabse main bachav hai.',
-  'Handoff':
-    'Handoff',
   'Draw the agent loop with its stopping conditions and error paths.':
     'Agent loop ko uski stopping conditions aur error paths ke saath draw kar paana.',
   'Explain why most agent failures are control problems, not intelligence problems.':
     'Samjha paana ki zyadatar agent failures control ki problems kyun hain, intelligence ki nahi.',
   'Say when to add a second agent, and when not to.':
     'Bata paana ki doosra agent kab jodna hai, aur kab nahi.',
-  'Have the workflow from Chapter 25 and its twenty test tasks ready. You’ll run the same tasks through an agent and compare.':
-    'Chapter 25 ka workflow aur uske twenty test tasks taiyaar rakhiye. Aap wahi tasks ek agent se chalakar compare karenge.',
-  'In the last chapter you built a fixed workflow. You decided the steps in advance, and the model only did the parts that needed judgement. Now we hand the model more freedom, and see what that costs you.':
-    'Pichhle chapter mein aapne ek fixed workflow banaya. Steps aapne pehle se tay kiye, aur model ne sirf woh hisse kiye jahan judgement chahiye tha. Ab hum model ko zyada freedom dete hain, aur dekhte hain ki uski keemat kya padti hai.',
-  'An <strong>agent</strong> is a system that repeats a loop on its own: decide, act, check the result, decide again. That sounds powerful, but it brings a new problem. Every loop also needs a way to stop. Most agent problems come from the stopping, not from how capable the model is.':
-    '<strong>Agent</strong> ek aisa system hai jo apne aap ek loop dohrata hai: decide karo, act karo, result check karo, phir se decide karo. Yeh bahut powerful lagta hai, lekin ek nayi problem laata hai. Har loop ko rukne ka ek tareeka bhi chahiye. Agent ki zyadatar problems rukne se aati hain, is baat se nahi ki model kitna capable hai.',
-  'Think of sending a junior colleague to find one number. A good outcome is that they come back in ten minutes with the number, or say they couldn’t find it. A bad outcome is that three hours later they are still searching, and nobody told them when to give up.':
-    'Ek junior colleague ko ek number dhoondhne bhejne ki baat sochiye. Achha result yeh hai ki woh das minute mein number lekar aa jaye, ya bole ki mujhe mila nahi. Bura result yeh hai ki teen ghante baad bhi woh dhoondh raha hai, aur kisi ne use bataya hi nahi ki kab chhod dena hai.',
-  'There are seven units here, and they build on each other. You start by drawing the loop, then you add planning, state, limits and human checkpoints. The last two ask whether you need several agents, and whether you need an agent at all.':
-    'Yahan saat units hain, aur woh ek doosre par bante hain. Aap loop draw karne se shuru karte hain, phir planning, state, limits aur human checkpoints jodte hain. Aakhir ke do units poochte hain ki kya aapko kai agents chahiye, aur kya aapko agent chahiye bhi.',
-  'The agent loop':
-    'Agent loop',
   'Understand the whole cycle: goal, then the model’s decision, then a tool call, then what it sees back, then updated context, then stop or continue.':
     'Poora cycle samajhiye: goal, phir model ka decision, phir tool call, phir jo wapas dikhta hai, phir updated context, phir rukna ya aage badhna.',
   'An agent is a loop, and the loop itself is the design of the system.':
     'Agent ek loop hai, aur woh loop hi system ka design hai.',
-  'Before you write any code, draw the loop and label every state and every move from one state to the next.':
-    'Koi bhi code likhne se pehle loop draw kijiye, aur har state aur ek state se doosri state tak ki har move ko label kijiye.',
   'Build a toy loop with three steps and a clear record of its state.':
     'Teen steps ka ek toy loop banaiye, jisme state ka saaf record ho.',
-  'Force a tool to fail, and look at whether the loop recovers or spirals out of control.':
-    'Ek tool ko fail karwaiye, aur dekhiye ki loop sambhal jaata hai ya control se bahar ghoomne lagta hai.',
-  'An Agent State Diagram.':
-    'Ek Agent State Diagram.',
   'Where can the loop stop safely?':
     'Loop safely kahan ruk sakta hai?',
   'If you cannot draw the loop, you cannot defend the design.':
     'Agar aap loop draw nahi kar sakte, toh aap design ka bachav nahi kar sakte.',
-  'Planning and tool choice':
-    'Planning aur tool choice',
-  'Understand how a model makes its own plan, and when that is actually useful.':
-    'Samjhiye ki model apna plan kaise banata hai, aur woh asal mein kab kaam ka hota hai.',
-  'An agent gives up some predictability and gets flexibility in return.':
-    'Agent kuch predictability chhodta hai aur badle mein flexibility paata hai.',
-  'Give the agent three tools and 20 tasks, and record which tool it picks each time.':
-    'Agent ko teen tools aur 20 tasks dijiye, aur har baar record kijiye ki woh kaun sa tool chunta hai.',
   'Compare one fixed workflow against the agent on the same tasks.':
     'Ek fixed workflow ko agent ke saamne rakhkar, wahi tasks par compare kijiye.',
   'Include tasks that need no tool at all, and tasks where it is unclear which tool to use.':
     'Aise tasks shaamil kijiye jinmein koi tool chahiye hi nahi, aur aise jinmein saaf nahi ki kaun sa tool use karna hai.',
-  'An Agent vs Workflow Comparison.':
-    'Ek Agent vs Workflow Comparison.',
-  'Did the extra freedom improve your acceptance measure enough to be worth it?':
-    'Kya extra freedom ne aapka acceptance measure itna behtar kiya ki woh sahi thehre?',
   'A workflow that passes the test may be better than an agent that only looks impressive.':
     'Jo workflow test pass kar leta hai, woh us agent se behtar ho sakta hai jo sirf impressive dikhta hai.',
-  'State and context management':
-    'State aur context management',
-  'Keep the state of the task in plain view, and keep control of how much context piles up.':
-    'Task ka state saaf nazar mein rakhiye, aur context kitna jama ho raha hai, us par control rakhiye.',
-  'A loop that runs for a long time can collect old, irrelevant or contradictory context.':
-    'Der tak chalne wala loop purana, irrelevant ya ek doosre se takrata context jama kar sakta hai.',
-  'Define a state object that holds the goal, the steps taken, what was observed, the approvals and the status.':
-    'Ek state object define kijiye jisme goal, liye gaye steps, jo observe hua, approvals aur status ho.',
-  'Save the state between rounds of the loop, and summarise only when you really have to.':
-    'Loop ke har round ke beech state save kijiye, aur summary tabhi banaiye jab sach mein zaroori ho.',
-  'Add repeated observations and irrelevant tool output, and measure how fast the context grows.':
-    'Baar-baar wale observations aur irrelevant tool output jodiye, aur measure kijiye ki context kitni tezi se badhta hai.',
-  'An Agent State Schema, plus a Context Policy.':
-    'Ek Agent State Schema, aur saath mein ek Context Policy.',
-  'Which fields can you trust as the final word?':
-    'Kaun se fields par aap aakhri baat ke taur par bharosa kar sakte hain?',
-  'When the state is explicit, you can explain an incident afterwards.':
-    'Jab state saaf hota hai, toh aap baad mein kisi incident ko explain kar sakte hain.',
-  'Stopping conditions':
-    'Stopping conditions',
   'Put limits on the number of steps, the time, the cost and the kinds of action that are unsafe.':
     'Steps ki ginti, time, cost aur unsafe actions ke kinds par limits lagaiye.',
-  'An agent with no stopping conditions is a production dependency with no upper limit.':
-    'Jis agent mein stopping conditions nahi hain, woh ek aisi production dependency hai jiski koi upar ki limit nahi.',
-  'Set a maximum number of steps, a timeout, a cost ceiling, and a “cannot resolve” state.':
-    'Steps ki maximum limit, ek timeout, ek cost ceiling, aur ek “cannot resolve” state set kijiye.',
-  'Log the reason each run stopped.':
-    'Har run kyun ruka, uski wajah log kijiye.',
-  'Create a loop that never finds an answer, and prove that it still ends.':
-    'Ek aisa loop banaiye jise kabhi jawaab nahi milta, aur saabit kijiye ki woh phir bhi khatam hota hai.',
-  'An Agent Control Policy.':
-    'Ek Agent Control Policy.',
   'Can you prove that the system ends, even when things fail?':
     'Kya aap saabit kar sakte hain ki system khatam hota hai, chahe cheezein fail ho jayein?',
-  'This is a requirement for reliability and cost, not just an engineering detail.':
-    'Yeh reliability aur cost ki requirement hai, sirf ek engineering detail nahi.',
-  'Human checkpoints':
-    'Human checkpoints',
-  'Bring a person in when something is unclear, when the impact is high, and when a step cannot be undone.':
-    'Jab kuch saaf na ho, jab impact zyada ho, aur jab koi step undo na ho sake, tab ek insaan ko beech mein laaiye.',
-  'The more an action can be reversed, and the more confident you are, the more freedom the agent can have.':
-    'Jitni zyada action ko palta ja sake, aur jitna zyada aapko confidence ho, agent ko utni zyada freedom di ja sakti hai.',
   'Mark each tool or action as read-only, a write that can be reversed, or a write that cannot be reversed.':
     'Har tool ya action ko read-only, palti ja sakne wali write, ya na palti ja sakne wali write ke taur par mark kijiye.',
   'Require approval for the last group.':
     'Aakhri group ke liye approval zaroori kijiye.',
-  'Try to get around the approval through the prompt or through a tool input.':
-    'Prompt ya tool input ke zariye approval ko bypass karne ki koshish kijiye.',
-  'An Agent Approval Matrix.':
-    'Ek Agent Approval Matrix.',
   'Which actions are never allowed to run on their own?':
     'Kaun si actions ko kabhi apne aap chalne ki ijaazat nahi hai?',
-  'The business owner should be the one who approves where the agent’s freedom ends.':
-    'Agent ki freedom kahan khatam hoti hai, yeh business owner ko approve karna chahiye.',
-  'Multi-agent patterns':
-    'Multi-agent patterns',
-  'Understand handoffs, an orchestrator with workers, and several agents working together, without assuming they are better.':
-    'Handoffs, ek orchestrator aur workers, aur kai agents ka saath kaam karna samajhiye, yeh maane bina ki woh behtar hain.',
-  'Every extra agent adds more state, more delay, more cost and more places to fail.':
-    'Har extra agent zyada state, zyada delay, zyada cost aur fail hone ki zyada jagahein jodta hai.',
   'Solve a task with one agent first. Then build a version where the work is split between two roles.':
     'Pehle ek task ek agent se solve kijiye. Phir ek aisa version banaiye jisme kaam do roles mein bata ho.',
-  'Compare how many tasks succeed and how complicated each version is to run.':
-    'Compare kijiye ki kitne tasks succeed hue aur har version ko chalana kitna complicated hai.',
-  'Make the two agents give conflicting answers, and leave it unclear who owns the result.':
-    'Dono agents se aise jawaab dilwaiye jo ek doosre se takraein, aur yeh saaf mat rakhiye ki result kiska hai.',
-  'A Multi-Agent Decision Record.':
-    'Ek Multi-Agent Decision Record.',
-  'What measurable problem did the second agent solve?':
-    'Doosre agent ne kaun si measurable problem solve ki?',
-  'Added complexity must buy you a capability you can measure.':
-    'Jodi hui complexity se aapko aisi capability milni chahiye jise aap measure kar sakein.',
-  'Agent exit gate':
-    'Agent exit gate',
-  'Treat “use an agent” as an idea that needs evidence, not as a decision you have already made.':
-    '“Agent use karo” ko ek aisa idea maniye jise evidence chahiye, aisa decision nahi jo aap pehle hi le chuke hain.',
-  'The right design is the simplest one that meets your requirements.':
-    'Sahi design wahi hai jo sabse simple ho aur aapki requirements poori kare.',
-  'Create a 20-task benchmark that compares a single direct call, a workflow and an agent.':
-    'Ek 20-task benchmark banaiye jo ek seedhi call, ek workflow aur ek agent ko compare kare.',
-  'Score each one on quality, tool accuracy, delay, cost and safety.':
-    'Har ek ko quality, tool accuracy, delay, cost aur safety par score kijiye.',
-  'Take away one capability at a time, and see whether the agent still adds value.':
-    'Ek-ek capability hatate jaiye, aur dekhiye ki agent phir bhi value jodta hai ya nahi.',
-  'An Agent Architecture Decision Record.':
-    'Ek Agent Architecture Decision Record.',
   'Would you still choose an agent if nobody called it “agentic AI”?':
     'Agar koi use “agentic AI” na kehta, toh kya aap phir bhi agent chunte?',
-  'That question protects you from choosing a design because it is fashionable.':
-    'Yeh sawaal aapko isse bachata hai ki aap koi design sirf isliye chun lein kyunki woh fashion mein hai.',
   'Agent failures are control failures':
     'Agent failures asal mein control failures hain',
-  'After the units, a pattern shows up. When an agent goes wrong, it’s rarely because the model suddenly got worse. It’s because nothing stopped it.':
-    'Units ke baad ek pattern dikhta hai. Jab agent galat jaata hai, toh aksar isliye nahi ki model achanak kharab ho gaya. Isliye ki use kisi ne roka nahi.',
-  'Most agent failures are control problems. The model did not get worse; it was given unlimited chances to be wrong.':
-    'Zyadatar agent failures control ki problems hain. Model kharab nahi hua; use galat hone ke unlimited mauke mile.',
-  'Agent patterns':
-    'Agent patterns',
-  'Agents and workflows come in a few common shapes. Before you read the table, notice that each row pairs a pattern with the situation where it fits and the main way it goes wrong. Use it to choose, not to collect patterns.':
-    'Agents aur workflows kuch common shapes mein aate hain. Table padhne se pehle dekhiye ki har row ek pattern ko jodti hai us situation se jahan woh fit hota hai, aur us main tareeke se jisme woh galat jaata hai. Ise chunne ke liye use kijiye, patterns jama karne ke liye nahi.',
   'Pattern':
     'Pattern',
   'Use it when':
     'Kab use karein',
   'Main risk':
     'Main risk',
-  'Sequential workflow':
-    'Sequential workflow',
   'The steps are known':
     'Steps pehle se pata hain',
-  'Rigid when the problem shifts':
-    'Problem badalne par rigid ho jaata hai',
-  'Routing':
-    'Routing',
-  'One of several specialised paths fits':
-    'Kai specialised raaston mein se ek fit baithta hai',
   'The router picks wrong':
     'Router galat raasta chun leta hai',
-  'Parallel':
-    'Parallel',
-  'Subtasks are genuinely independent':
-    'Subtasks sach mein ek doosre se independent hain',
-  'Coordination and aggregation':
-    'Coordination aur aggregation',
   'A specialist should take over':
     'Koi specialist ko kaam sambhalna chahiye',
-  'Lost context, unclear authority':
-    'Context kho jaata hai, authority saaf nahi',
-  'Orchestrator-worker':
-    'Orchestrator-worker',
-  'The plan decomposes into subtasks':
-    'Plan subtasks mein toot jaata hai',
-  'Cost, loops, state complexity':
-    'Cost, loops, state ki complexity',
-  'Start with one model and a short list of tools. Add a second agent only when you have measured something the simpler version cannot do. Extra complexity is a cost, not an achievement.':
-    'Ek model aur tools ki chhoti si list se shuru kijiye. Doosra agent tabhi jodiye jab aapne aisi cheez measure ki ho jo simple version nahi kar sakta. Extra complexity ek cost hai, koi achievement nahi.',
-  'Now it’s time to put your agent up against the workflow you already built.':
-    'Ab waqt hai ki aap apne agent ko us workflow ke saamne khada karein jo aap pehle bana chuke hain.',
   'Run the twenty tasks from your Chapter 25 workflow through the agent. Count how many it got right, how many tool calls it made, and what it cost.':
     'Apne Chapter 25 workflow ke twenty tasks agent se chalaiye. Gin-iye ki usne kitne sahi kiye, kitni tool calls ki, aur cost kitna aaya.',
   'Correct: … Tool calls: … Cost: … Compared with the workflow: …':
     'Sahi: … Tool calls: … Cost: … Workflow ke saath compare karke: …',
-  'If the agent is not clearly better on a measure you care about, the workflow wins. That is a valid and respectable result to bring to a review.':
-    'Agar agent aise measure par saaf taur par behtar nahi hai jiski aapko parwah hai, toh workflow jeet jaata hai. Review mein laane ke liye yeh ek jaayaz aur respectable result hai.',
-  'Here’s what to take away. An agent is a loop, and a loop needs limits: a step budget, a timeout, a cost ceiling and a place where a person steps in. Most failures come from missing control. And a second agent, or even a first one, has to earn its place with numbers.':
-    'Yeh saath le jaaiye. Agent ek loop hai, aur loop ko limits chahiye: ek step budget, ek timeout, ek cost ceiling, aur ek jagah jahan insaan beech mein aata hai. Zyadatar failures control ki kami se aati hain. Aur doosra agent, ya pehla bhi, numbers ke saath apni jagah kamaata hai.',
-  'Next, Chapter 27 looks at the standards for connecting tools and agents to the things they use.':
-    'Aage Chapter 27 un standards ko dekhta hai jinse tools aur agents ko unki cheezon se jodte hain.',
   'Test a fixed workflow against an agent':
     'Ek fixed workflow ko agent ke saamne test kijiye',
-  'You can build the rule-keeper as a fixed set of steps, or as an agent that chooses its own steps. In this chapter you learned to draw the agent loop with its stopping conditions, that most agent failures are control problems and not a lack of intelligence, and when to add a second agent and when not to. Here you build the agent and test whether it beats the fixed workflow from Chapter 25.':
-    'Aap rule-keeper ko steps ke ek fixed set ki tarah bana sakte hain, ya ek agent ki tarah jo apne steps khud chunta hai. Is chapter mein aapne seekha ki agent loop ko uski stopping conditions ke saath kaise draw karein, ki zyadatar agent failures control ki problems hain aur intelligence ki kami nahi, aur doosra agent kab jodna hai aur kab nahi. Yahan aap agent banate hain aur test karte hain ki kya woh Chapter 25 ke fixed workflow se behtar hai.',
-  'Your test harness from Chapter 21, extended in code. Write the recommendation in the notes box below.':
-    'Chapter 21 ka aapka test harness, code mein extend kiya hua. Recommendation neeche notes box mein likhiye.',
   'Give the agent exactly two tools: the pattern checker and the model-based finder. Write an explicit list of what it may use, and nothing else.':
     'Agent ko exactly do tools dijiye: pattern checker aur model-based finder. Ek saaf list likhiye ki woh kya use kar sakta hai, aur kuch nahi.',
   'Set its limits: the most steps it may take, a time limit, and an exit for “cannot decide” that sends the sentence to a person.':
     'Uski limits set kijiye: zyada se zyada kitne steps le sakta hai, ek time limit, aur “cannot decide” ke liye ek exit jo sentence ko kisi insaan ke paas bhej de.',
   'Run the same twenty sentences through the agent and through the fixed workflow from Chapter 25.':
     'Wahi twenty sentences agent se chalaiye aur Chapter 25 ke fixed workflow se bhi.',
-  'For each run, record whether it chose the right tool, how many calls it made, how long it took and what it cost.':
-    'Har run ke liye record kijiye ki usne sahi tool chuna ya nahi, kitni calls ki, kitna time laga aur cost kitna aaya.',
-  'Write one paragraph recommending one of the two, with the numbers. Name the number that decided it.':
-    'Ek paragraph likhiye jo numbers ke saath dono mein se ek ko recommend kare. Woh number bataiye jisne decide kiya.',
   'An agent with two tools and written limits.':
     'Do tools aur likhi hui limits wala ek agent.',
   'The same twenty sentences run through both systems.':

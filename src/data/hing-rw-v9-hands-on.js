@@ -84,10 +84,6 @@ Object.assign(window.HING = window.HING || {}, {
     '<a href="#/playground">Playground</a> kholiye aur <em>Keep the conversation</em> tick kijiye. Use ek banayi hui baat bataiye, jaise “Meri company ki refund window 17 din ki hai.” Refund window ke baare mein poochiye. Phir <em>Clear</em> dabaiye, jisse ek bilkul nayi conversation shuru hoti hai, aur dobara poochiye.',
   'A model connected on the setup page':
     'Setup page par ek model connect ho',
-  'The <a href="#/workbench">Workbench</a> in this app, or a local folder if you prefer. This is the harness you build in code and keep extending through Chapter 34. The notes box below is for what surprised you, not for the code.':
-    'Is app ka <a href="#/workbench">Workbench</a>, ya agar aap chahein toh ek local folder. Yeh woh harness hai jo aap code mein banate hain aur Chapter 34 tak badhate rehte hain. Neeche wala notes box is baat ke liye hai ki aapko kya hairaan kar gaya, code ke liye nahi.',
-  'Open the <a href="#/workbench">Workbench</a>, or a local folder if you prefer. In this chapter you’ll build an experiment harness, and you’ll keep adding to it until Chapter 34.':
-    '<a href="#/workbench">Workbench</a> kholiye, ya agar aap chahein toh ek local folder. Is chapter mein aap ek experiment harness banayenge, aur Chapter 34 tak ismein cheezein jodte jaayenge.',
   'The machine actually running your code. In this app it is Python inside your browser tab, so a reload starts a fresh one, and Restore puts your definitions back. A hosted notebook such as Colab lends you a machine for a few hours and then takes it back.':
     'Woh machine jo aapka code sach mein chala rahi hai. Is app mein yeh aapke browser tab ke andar ka Python hai, isliye reload karne par naya shuru hota hai, aur Restore aapki definitions wapas le aata hai. Colab jaisa hosted notebook aapko kuch ghanton ke liye ek machine deta hai aur phir wapas le leta hai.',
   /* the notebook, Connect and the Playground (chrome) */

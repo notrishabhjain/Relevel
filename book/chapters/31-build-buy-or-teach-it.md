@@ -34,7 +34,7 @@ The reply held a second answer too, and Lakshmi read it three times. The standar
 
 Imran stayed calm. A vendor is fine, he said, as long as everyone knows what the money is for. You are rarely buying the model, because most vendors use the same models.
 
-You are buying the connectors and the permissions. You are buying the record of who did what, a support contract, and a person who gets out of bed when it breaks at two in the morning. That last item is usually worth more than the licence. It is also usually left out of the sum. Think of buying a lift. You also pay for the man who comes when it sticks.
+You are buying the connectors and the permissions. You are buying the record of who did what, and a support contract. You are buying a person who gets out of bed when it breaks at two in the morning. That last item is usually worth more than the licence. It is also usually left out of the sum. Think of buying a lift. You also pay for the man who comes when it sticks.
 
 He wrote four questions on the board. In his experience, these decide it.
 

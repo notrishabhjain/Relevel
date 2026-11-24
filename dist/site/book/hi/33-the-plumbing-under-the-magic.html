@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Jaadu Ke Neeche Ki Plumbing · Chapter 33 · AI From Zero</title>
-<meta name="description" content="Do ghante tak guard se galti hui, aur kahin koi error nahi dikha. Isliye Anaya us ek anpredictable hisse ke aas-paas ka aam software padhna seekhti hai, jaise plumber ka pipes ka naqsha. Aap data contracts, Python, HTTP aur status codes, environment variables, Git aur experiment runners se milte hain.">
+<meta name="description" content="Do ghante tak guard se galti hui, aur kahin koi error nahi dikha. Isliye Anaya us ek unpredictable hisse ke aas-paas ka aam software padhna seekhti hai, jaise plumber ka pipes ka naqsha. Aap data contracts, Python, HTTP aur status codes, environment variables, Git aur experiment runners se milte hain.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
@@ -75,7 +75,7 @@
 <li style="--hue:#3f7a4a" data-t="aap kya bhej sakte hain"><a href="/book/hi/28-what-you-may-send.html" data-file="28-what-you-may-send.html"><span class="n">28</span><span class="t">Aap Kya Bhej Sakte Hain</span></a></li>
 <li style="--hue:#3f7a4a" data-t="rules, risk aur zimmedaari"><a href="/book/hi/29-rules-risk-and-responsibility.html" data-file="29-rules-risk-and-responsibility.html"><span class="n">29</span><span class="t">Rules, Risk Aur Zimmedaari</span></a></li>
 <li style="--hue:#3f7a4a" data-t="the spec for a thing that varies"><a href="/book/hi/30-the-spec-for-a-thing-that-varies.html" data-file="30-the-spec-for-a-thing-that-varies.html"><span class="n">30</span><span class="t">The Spec for a Thing That Varies</span></a></li>
-<li style="--hue:#3f7a4a" data-t="banao, kharido ya sikhao"><a href="/book/hi/31-build-buy-or-teach-it.html" data-file="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Banao, Kharido Ya Sikhao</span></a></li>
+<li style="--hue:#3f7a4a" data-t="build, buy or teach it"><a href="/book/hi/31-build-buy-or-teach-it.html" data-file="31-build-buy-or-teach-it.html"><span class="n">31</span><span class="t">Build, Buy or Teach It</span></a></li>
 <li style="--hue:#3f7a4a" data-t="galat jawaab ke liye design"><a href="/book/hi/32-designing-for-the-wrong-answer.html" data-file="32-designing-for-the-wrong-answer.html"><span class="n">32</span><span class="t">Galat Jawaab Ke Liye Design</span></a></li>
 <li class="sec" style="--hue:#a2455e"><span>Bonnet ke neeche</span></li>
 <li style="--hue:#a2455e" class="here" data-t="jaadu ke neeche ki plumbing"><a href="/book/hi/33-the-plumbing-under-the-magic.html" aria-current="page" data-file="33-the-plumbing-under-the-magic.html"><span class="n">33</span><span class="t">Jaadu Ke Neeche Ki Plumbing</span></a></li>
@@ -105,14 +105,14 @@
 <article class="chapter" data-file="33-the-plumbing-under-the-magic.html" data-title="Jaadu Ke Neeche Ki Plumbing" data-n="33">
 <header class="chead">
 <p class="eyebrow"><span class="num">33</span><span>Chapter 33 <i>·</i> Bonnet ke neeche</span></p>
-<h1 data-s="0">Jaadu Ke Neeche Ki Plumbing</h1><p class="dek">Do ghante tak guard se galti hui, aur kahin koi error nahi dikha. Isliye Anaya us ek anpredictable hisse ke aas-paas ka aam software padhna seekhti hai, jaise plumber ka pipes ka naqsha. Aap data contracts, Python, HTTP aur status codes, environment variables, Git aur experiment runners se milte hain.</p>
+<h1 data-s="0">Jaadu Ke Neeche Ki Plumbing</h1><p class="dek">Do ghante tak guard se galti hui, aur kahin koi error nahi dikha. Isliye Anaya us ek unpredictable hisse ke aas-paas ka aam software padhna seekhti hai, jaise plumber ka pipes ka naqsha. Aap data contracts, Python, HTTP aur status codes, environment variables, Git aur experiment runners se milte hain.</p>
 <p class="meta"><span>9 min padhai</span><span>6 naye shabd</span><button type="button" class="listen" id="listen" hidden><span class="li" aria-hidden="true">▶</span><span class="lt">Suniye</span></button></p>
 </header>
 <aside class="goals"><h2>Is chapter mein</h2><ul><li>data contract samjhana, aur yeh ki chupchaap toot jaana sabse khatarnaak kyun hai</li><li>ek request aur ek reply padhna, aur status code se pehchaanna ki kaun si taraf fail hui</li><li>batana ki secrets kahan rakhne chahiye, repository kya record karti hai, aur error ko neeche se kaise padhte hain</li><li>samjhana ki test ko ek baar fail hote dekhna kyun zaroori hai, aur experiment runner se kya mumkin hota hai</li></ul></aside>
 <div class="prose">
 <p data-s="1">September ke doosre Thursday ko guard ne Pune ke har order number ko do ghante tak chhupa diya. Kisi ko pata nahi chala, jab tak ek customer ne likha nahi. Usne poochha ki uske order number ko kya hua.</p>
 <p data-s="2">Farah Sheikh ke agents pehle pareshaan hue, phir chidh gaye, phir jugaadu ban gaye. Lagbhag chaalis minute tak unhone customers se phone par order number bol kar sunane ko kaha. Dashboard (ek screen par saare numbers) hara hi raha.</p>
-<p data-s="3">Imran Qureshi ne yeh sunkar bahut kam kaha. Usne pen uthaya aur drawing banane lagi. &quot;Kisi ne error nahi diya,&quot; usne diagram poora hone par kaha. &quot;Isiliye do ghante lage.&quot;</p>
+<p data-s="3">Imran Qureshi ne yeh sunkar bahut kam kaha. Usne pen uthaya aur drawing banane laga. &quot;Kisi ne error nahi diya,&quot; usne diagram poora hone par kaha. &quot;Isiliye do ghante lage.&quot;</p>
 <p data-s="4">Yeh chapter batata hai ki kya hua. Phir woh wahi karta hai jo Imran ne agle kiya. Usne Anaya ko diagram padhna sikhaya.</p>
 <h2 id="s-33-1" data-s="5"><span class="sn">33.1</span>Case: woh field jisne naam badal liya</h2>
 <p data-s="6">Wajah aam thi, aur wahi sabak tha. Guard har barah-ankon wale number ko order system mein dhoondhta tha, jaise use sikhaya gaya tha. Doosri team ne us subah order system update kiya tha. Purane version mein reply us field ko &quot;order_id&quot; kehti thi. Naye mein woh &quot;orderId&quot; tha, capital I ke saath.</p>
@@ -131,7 +131,7 @@
 <figure class="tblfig" data-s="17"><figcaption><b>Table 33.2.</b> Status codes</figcaption><div class="tblwrap"><table><thead><tr><th>Code</th><th>Matlab</th></tr></thead><tbody><tr><td>200</td><td>Kaam hua</td></tr><tr><td>401</td><td>Request aise insaan ki hai jo woh nahi hai jo woh kehta hai</td></tr><tr><td>404</td><td>Yahan kuch nahi hai</td></tr><tr><td>429</td><td>Call karne wala bahut tez maang raha hai, use dheere hona chahiye</td></tr><tr><td>Koi bhi 4xx</td><td>Request galat thi</td></tr><tr><td>Koi bhi 5xx</td><td>Doosri taraf fail hua</td></tr></tbody></table></div></figure>
 <p data-s="18">Imran ne kaha, &quot;API fail ho gayi&quot; koi explanation nahi hai. Woh bas poochhna shuru karne ki jagah hai. Kya request kharab thi? Koi dependency (jis cheez par yeh tika hai) missing thi? Ya unki taraf fail hua? Har ek ka ilaaj alag hai. Sabko dobara try karna theek nahi.</p>
 <h2 id="s-33-3" data-s="19"><span class="sn">33.3</span>Error ko kaise padhein</h2>
-<p data-s="20">Phir usne error padhna seekha. Dus minute lage. Shaayad woh us dopahar ke sabse kaam ke dus minute the.</p>
+<p data-s="20">Phir Anaya ne error padhna seekha. Dus minute lage. Shaayad woh us dopahar ke sabse kaam ke dus minute the.</p>
 <p data-s="21">Jab program zor se fail hota hai, toh woh ek lamba block chhapta hai jise trace kehte hain. Paon ke nishaanon ki line socho. Man karta hai upar se padhna. Lekin upar ka hissa sabse kam kaam ka hai. Asli wajah lagbhag hamesha neeche hoti hai.</p>
 <pre class="transcript" data-s="22">Traceback (most recent call last):
   File &quot;guard.py&quot;, line 41, in clean_message
@@ -143,7 +143,7 @@ KeyError: 'order_id'</pre>
 <p data-s="26">Imran ne aakhri hissa ek khel ki tarah sikhaya. Pehle ek chhota test likho. Function ko ek order reply do jisme &quot;order_id&quot; ho. Dekho ki woh pehchaani gayi. Woh pass hota hai. Ab use &quot;orderId&quot; wali reply do. Kya hona chahiye?</p>
 <p data-s="27">Anaya ko laga ki use ruk kar kehna chahiye ki order system mein kuch galat hai, number mein nahi. &quot;Toh use test ki tarah likho,&quot; Imran ne kaha. &quot;Pehle use fail karwao, taaki pata ho ki woh fail ho sakta hai.&quot;</p>
 <p data-s="28">Yeh fire alarm ko ek baar dabane jaisa hai, ki dekho woh bajta hai. Jo alarm kabhi bajaa hi nahi, usne kabhi saabit nahi kiya ki woh kaam karta hai.</p>
-<p data-s="29">Usne test likha aur chalaya. Woh ek santusht karne wali laal line ke saath fail hua. Usne code theek kiya taaki woh missing field check kare aur aage chalne se mana kar de. Usne use phir chalaya. Woh pass hua.</p>
+<p data-s="29">Usne test likha aur chalaya. Woh ek tasalli dene wali laal line ke saath fail hua. Usne code theek kiya taaki woh missing field check kare aur aage chalne se mana kar de. Usne use phir chalaya. Woh pass hua.</p>
 <aside class="box box-key"><p class="boxlabel" data-s="30">Mukhya vichaar</p><h4>Jis test ko kabhi fail hote nahi dekha, usne kabhi saabit nahi kiya ki woh kuch check karta hai</h4>
 <p data-s="31">Use ek baar fail hote dekhiye. Phir code theek kijiye aur use pass hote dekhiye. Tabhi aap jaante hain ki test farq pehchaan sakta hai.</p>
 </aside>
@@ -157,9 +157,9 @@ KeyError: 'order_id'</pre>
 <p data-s="39">Paanch baje Imran ne poochha ki usne kya seekha. Usne terms ki list nahi di. Diagram ke peeche usne likha ki ab woh kya kar sakti hai.</p>
 <ul data-s="40"><li>Request, reply aur status code padhna.</li><li>Jaanna ki key kahan rehti hai.</li><li>Poochhna ki kya badla, aur pata lagana.</li><li>Error ko neeche se padhna.</li><li>Jaanna ki test ko ek baar fail hona chahiye.</li><li>Koi kahe &quot;API fail ho gayi&quot;, toh poochhna ki kis tarah.</li></ul>
 <p data-s="41">Yeh chhoti list thi, aur kuch nahi, aisa bhi nahi tha. Jab koi engineer use diagram dikhayega, woh hisson ko pehchaan legi. Ek naye driver ko socho jo ab road signs padh sakta hai. Page ke upar usne woh vaakya joda jo Imran ne shuru mein kaha tha. Woh use rakhna chahti thi.</p>
-<p data-s="42">AI system ek software system hai jisme ek hissa anpredictable hai. Aam software mein jo kuch galat ho sakta hai, woh ab bhi ho sakta hai. Aur ek aur failure hai, sabse chupchaap, jisme koi error nahi dikhta.</p>
+<p data-s="42">AI system ek software system hai jisme ek hissa unpredictable hai. Aam software mein jo kuch galat ho sakta hai, woh ab bhi ho sakta hai. Aur ek aur failure hai, sabse chupchaap, jisme koi error nahi dikhta.</p>
 <h2 id="s-33-7" data-s="43"><span class="sn">33.7</span>Saaraansh</h2>
-<p data-s="44">AI system aam software hai jisme ek hissa anpredictable hai. Isliye jo kuch aam software ko tod sakta hai, woh ise bhi tod sakta hai. Engineering ka khatra interfaces, errors, secrets aur retries mein utna hi hai jitna model mein, kam se kam.</p>
+<p data-s="44">AI system aam software hai jisme ek hissa unpredictable hai. Isliye jo kuch aam software ko tod sakta hai, woh ise bhi tod sakta hai. Engineering ka khatra interfaces, errors, secrets aur retries mein utna hi hai jitna model mein, kam se kam.</p>
 <ul data-s="45"><li>Programs requests aur replies se baat karte hain. Reply par ka status code batata hai ki request galat thi ya doosri taraf fail hua.</li><li>Keys code ke bahar rehti hain. Kaam us repository mein rehta hai jo har badlaav record karti hai. Error ko neeche se padhte hain.</li><li>Har system apne mil rahe data ke baare mein kuch maanta hai. Yahi data contract hai. Achha system tab rukta hai jab woh toot jaaye. Woh khaali haath chalta nahi rehta.</li><li>Jo runner har experiment record karta hai, woh &quot;maine try kiya&quot; ko &quot;maine naapa&quot; bana deta hai. Jo result aap dohra nahi sakte, woh bas ek kahani hai.</li></ul>
 <p data-s="46">Agle chapter mein Mr. Bhatia ek bar chart ke saath aate hain. Woh ek aise model par switch karna chahte hain jo pichhle hafte aaya tha.</p>
 </div>
