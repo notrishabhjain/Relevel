@@ -29,7 +29,7 @@ Bori se chaawal chakhne ko sochiye. Aap alag-alag jagah se mutthi bhar lete hain
 Usne Farah se kaha ki pichhle mahine ki chats se pachaas attachments random nikaale jaayein. Woh dilchasp wale nahi hone the. Kisi josheele colleague ke chune hue bhi nahi. Ek number generator ne asli traffic se saare pachaas chune. Saturday subah Anaya ne ek-ek karke unhe dekha. Garmi se bachne ke liye shutters aadhe gire the.
 
 ::: def Document audit
-Documents par tika kisi bhi project se pehle teen number nikaaliye. Pehla, kitna saaf digital text hai jo jaisa hai waisa padha ja sakta hai? Doosra, kitna scanned ya photographed hai, jise pehle text mein badalna padega?
+Documents par nirbhar kisi bhi project se pehle teen number nikaaliye. Pehla, kitna saaf digital text hai jo jaisa hai waisa padha ja sakta hai? Doosra, kitna scanned ya photographed hai, jise pehle text mein badalna padega?
 
 Teesra, logon ko jo chahiye uska kitna hissa tables, forms aur layouts ke andar hai? Wahan matlab is par depend karta hai ki kaun sa dabba kiske bagal mein hai. Random sample se yeh ginna *document audit* hai. Ismein ek dopahar lagti hai. Lagbhag koi nahi karta.
 :::

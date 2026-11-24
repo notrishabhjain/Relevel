@@ -13,7 +13,7 @@ terms:
 
 July ke pehle hafte mein Anaya ne guard ka plan Sahaj ki finance director ko dikhaya. Woh bahut dhyaan se kaam karti thi aur fountain pen se likhti thi. Woh bahut kam bolti thi. Das minute baad usne pen ka cap laga diya. Phir poochha ki company ke volume par guard ko chalane mein mahine ka kitna kharch aayega.
 
-Anaya ne kaha, lagbhag sattar hazaar rupaye. Yaani teen lakh messages par har message ke lagbhag teisi paise.
+Anaya ne kaha, lagbhag 70,000 rupaye. Yaani 3,00,000 messages par har message ke lagbhag 23 paise.
 
 "Yeh model call ki cost hai," director ne kaha. "Kya yeh poore system ki cost hai?"
 
@@ -29,7 +29,7 @@ Taxi ke meter ki tarah sochiye. Woh doori ginta hai, lekin red light par ruka hu
 
 Cost ke har case ki shuruaat usi hisaab se hoti hai, aur woh hisaab sahi hai. Andar jaane wale tokens ginye (text ke chhote tukde jo aap bhejte hain). Unhe andar ke per-token price se guna kijiye. Bahar aane wale tokens ginye. Unhe bahar ke per-token price se guna kijiye. Dono jod dijiye.
 
-Careful judge (woh mazboot model jo unsure cases check karta hai) ko ek saaf call dijiye. 600 tokens andar, 80 bahar. Prices wahi banaye hue hain jo saal bhar use hue. Jawaab hai teisi paise.
+Careful judge (woh mazboot model jo unsure cases check karta hai) ko ek saaf call dijiye. 600 tokens andar, 80 bahar. Prices wahi banaye hue hain jo saal bhar use hue. Jawaab hai 23 paise.
 
 Hisaab galat nahi hai. Galti is mein hai ki woh kis par lagaya gaya. Woh ek saaf call ki keemat batata hai. Asli feature lagbhag kabhi ek saaf call nahi hota. Is tarah ke business cases aksar 3 se 20 guna kam hote hain. Iski chaar wajah hain. Anaya in chaaron se pehle ke chapters mein mil chuki thi.
 
@@ -47,7 +47,7 @@ In mein se har ek Anaya ki apni choice thi. Isliye har ek badli ja sakti thi.
 
 Us raat usne hisaab dobara lagaya. Use ek nahi, teen jawaab mile. Teeno sach the. Har ek alag tool ke baare mein tha.
 
-Pehla woh number tha jo usne director ko diya tha. Careful judge ko ek saaf call, teisi paise. Yeh 3,00,000 messages mein se har ek ke liye ginna, toh mahine ka lagbhag ₹69,000. Yeh ek aise tool ki keemat thi jo wujood mein tha hi nahi.
+Pehla woh number tha jo usne director ko diya tha. Careful judge ko ek saaf call, 23 paise. Yeh 3,00,000 messages mein se har ek ke liye ginna, toh mahine ka lagbhag ₹69,000. Yeh ek aise tool ki keemat thi jo wujood mein tha hi nahi.
 
 Doosra woh guard tha jo seedhe tareeke se banaya jaye. Har message careful judge ke paas jaata hai. Judge 4 rounds ke lookups aur chhupe reasoning karta hai. Teisi paise lijiye. Rounds ke liye 5.5 se guna kijiye. Thinking ke liye 6 se guna kijiye.
 

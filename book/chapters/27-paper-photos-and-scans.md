@@ -14,7 +14,7 @@ terms:
 
 For four months, Anaya pictured a customer's message as a few lines of text on a phone. She had never checked. The picture came from the transcripts (the saved chats), which are text. It also came from the answer key, which was a column of sentences. Everything the team had built stood on one quiet guess. Someone had already turned the customer's words into characters.
 
-On a Friday in July, Farah Sheikh put a sheet in front of her. It did not look like a sentence at all. It was a photograph of a bank passbook (the small book a bank gives you) on a kitchen table. It was slightly tilted. Window light fell across one corner. A customer had sent it to the chatbot with the words "account number check karo".
+On a Friday in July, Farah Sheikh put a sheet in front of her. It did not look like a sentence at all. It was a photograph of a bank passbook (the small book a bank gives you). It lay on a kitchen table. It was slightly tilted. Window light fell across one corner. A customer had sent it to the chatbot with the words "account number check karo".
 
 Nothing in it was text. It was a grid of tiny coloured dots called pixels. To a person, it looked like a table with a name, an account number and a branch. "We get a lot of these," said Farah. Anaya asked how many. Farah did not know. She had thought Anaya would want to find out.
 
@@ -91,7 +91,7 @@ Voice is also not mainly about being right. It is about knowing when a person ha
 
 ## What changed
 
-That night, Anaya wrote on the board. She put it beside the old red line, below the new row. She wrote what the audit had cost and what it had bought. It had cost an afternoon, fifty files and a lot of tea. It had moved photographs from "Could" to "Should". It had taught the rules about look-alikes. And it gave her a rule of thumb for later: before any project that depends on documents, count the clean ones.
+That night, Anaya wrote on the board. She put it beside the old red line, below the new row. She wrote what the audit had cost and what it had bought. It had cost an afternoon, fifty files and a lot of tea. It had moved photographs from "Could" to "Should". It had taught the rules about look-alikes. It also gave her a rule of thumb: before any project that depends on documents, count the clean ones.
 
 Imran said it was the cheapest way to stop a project from failing six weeks in. It was also the most ignored. In all his years, nobody had once asked him for it.
 
@@ -99,7 +99,7 @@ Imran said it was the cheapest way to stop a project from failing six weeks in. 
 
 Real documents are pages and pictures far more often than clean text.
 
-- The step that turns a picture into characters is OCR. Its mistakes are of one kind, such as a letter O for a zero or an l for a one. They can slip an identity number past a rule that looks for digits.
+- The step that turns a picture into characters is OCR. Its mistakes are of one kind. A letter O stands in for a zero, or an l for a one. They can slip an identity number past a rule that looks for digits.
 - Tables suffer most, and quietly. The values survive. The links between them do not.
 - You can turn a page into text first, which is cheap. Or you can show it to a capable model as a picture, which keeps the layout. Many systems do both.
 - Voice changes the main limit from being right to being on time.

@@ -13,7 +13,7 @@ terms:
   - pinned version | model ka woh version jo uske poore naam se fix kiya gaya hai, taaki provider use bina bataye badal na sake | 
 ---
 
-Ek raat das minute upar do baje ek email aaya. Imran Qureshi ne use subject line "Read this" ke saath forward kiya tha. Woh us bahar ki company se tha jo chatbot ke jawaab likhti thi. Jo model use ho raha tha, woh tees din mein retire ho jaayega, usme likha tha. Lehja bank ke patra jaisa tha. Us tareekh ke baad us model ko bheji requests fail ho jaayengi. Company ne agle model par jaane ki salaah di, jisme "behtar capability" thi.
+Ek raat do bajkar das minute par ek email aaya. Imran Qureshi ne use subject line "Read this" ke saath forward kiya tha. Woh us bahar ki company se tha jo chatbot ke jawaab likhti thi. Jo model use ho raha tha, woh tees din mein retire ho jaayega, usme likha tha. Lehja bank ke patra jaisa tha. Us tareekh ke baad us model ko bheji requests fail ho jaayengi. Company ne agle model par jaane ki salaah di, jisme "behtar capability" thi.
 
 Anaya ne use letkar padha, phone haath bhar door rakhkar. Use thandi ginti mehsoos hui. Jaise koi bataye ki jis seedhi par aap rehte hain, woh ek tay tareekh ko hata di jaayegi. Bees minute baad woh uthi, chai banayi aur spec kholi. Spec product ka recipe card hota hai. Use laga ki ab uski pariksha hone wali hai.
 
@@ -66,7 +66,7 @@ Woh tabhi chalta hai jab saada raasta abhi bhi ho aur kisi ne haal mein use chal
 
 Anaya ne poocha ki switch traffic ko kahan bhejega. Chatbot ke liye use pata tha. Farah ki team haath se jawaab degi. Lekin guard alag tha. Agar guard poora band ho jaaye, toh kuch bhi nahi chhupega. Yeh sabse bura nateeja hai. Isliye Imran ne tay kiya ki kill switch guard ko band nahi karega. Woh models ko band karta hai.
 
-Safe mode sirf pattern checker chalayega (saade rules ka set jo drift nahi karta). Usme ek seedha rule judega: nau ya zyada digits ki koi bhi ladi chhupa do, chahe woh kuch bhi ho. Woh har naam aur address chhod dega. Answer key par woh fixed-shape numbers mein se lagbhag sau mein chhiyanve pakdega. Woh bahut false alarms dega. Use chalane mein kisi ko maza nahi aayega.
+Safe mode sirf pattern checker chalayega (saade rules ka set jo drift nahi karta). Usme ek seedha rule jod diya jaayega: nau ya zyada digits ki koi bhi ladi chhupa do, chahe woh kuch bhi ho. Woh har naam aur address chhod dega. Answer key par woh fixed-shape numbers mein se lagbhag sau mein chhiyanve pakdega. Woh bahut false alarms dega. Use chalane mein kisi ko maza nahi aayega.
 
 Lekin woh wahan hoga. Provider ka koi kadam use chhoo nahi sakta. Jis insaan ne code kabhi nahi dekha, woh bhi use raat ke teen baje chalu kar sakta hai. Anaya ne use spec mein uske numbers ke saath likha. Sirf rules. Fixed-shape numbers mein se lagbhag 96 in 100. Koi naam ya address nahi. Bahut false alarms. Har hafte test. Usne "har hafte" par line kheenchi.
 
@@ -85,7 +85,7 @@ Table: Model retire hone par kya dobara chalana hai
 
 "Kuch bhi mat chhodo," Imran ne kaha. Jin teams ke paas test set nahi hota, unhe yeh problems tees din mein nahi milti. Unhe woh production mein milti hain (live, asli customers ke saath).
 
-Kaam mein dono ko ek dopahar lagi. Imran ne ise saboot maana ki vasant bekaar nahi gaya. Naye model ne apne summaries thodi alag style mein likhe. Usne phone numbers aise format mein daale jo purane ne kabhi nahi use kiya. Usme plus sign, country code aur dashes the, jaise +91-98765-43210. Pattern checker ne yeh format kabhi nahi dekha tha. Answer key ki gyarah rows laal ho gayi.
+Kaam mein dono ko ek dopahar lagi. Imran ne ise saboot maana ki pichle mahino ki mehnat bekaar nahi gayi. Naye model ne apne summaries thodi alag style mein likhe. Usne phone numbers aise format mein daale jo purane ne kabhi nahi use kiya. Usme plus sign, country code aur dashes the, jaise +91-98765-43210. Pattern checker ne yeh format kabhi nahi dekha tha. Answer key ki gyarah rows laal ho gayi.
 
 Unhone problem ek dopahar mein dhoondh li, ek key ke saath. September mein kisi customer se nahi mili. Imran ne kaha ki answer key launch ke liye likha kaagaz nahi hai. Woh infrastructure hai (product ke neeche ke pipe aur taar).
 
