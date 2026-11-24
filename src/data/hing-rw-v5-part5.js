@@ -219,192 +219,46 @@ Object.assign(window.HING = window.HING || {}, {
   /* ---- ch9m: Choosing a model: benchmark on your own cases ---- */
   'Choosing a model: benchmark on your own cases':
     'Model chunna: apne hi cases par benchmark kijiye',
-  'A leaderboard measures someone else’s task. In this chapter you’ll learn what really changes when you change the model. Then you’ll benchmark models on your own ten cases, and write a model selection card that records the evidence for your choice.':
-    'Leaderboard kisi aur ke task ko measure karta hai. Is chapter mein aap seekhenge ki model badalne par asal mein kya badalta hai. Phir aap apne hi das cases par models ko benchmark karenge, aur ek model selection card likhenge jisme aapke choice ka evidence likha ho.',
-  'Pick two models that you can use. Before you test anything, write down which one you expect to win on quality, which on speed, and which on cost.':
-    'Do models chuniye jo aap use kar sakte hain. Kuch bhi test karne se pehle likhiye ki quality mein kaun jeetega, speed mein kaun, aur cost mein kaun.',
-  'Run a ten-case benchmark. It should cover factual recall, reasoning, extraction, multilingual text and refusal behaviour.':
-    'Das cases ka ek benchmark chalaiye. Usme factual recall, reasoning, extraction, multilingual text aur refusal behaviour, sab aane chahiye.',
-  'Change one thing at a time: the model, the sampling, or the prompt. Then work out which change really caused which effect.':
-    'Ek baar mein sirf ek cheez badaliye: model, sampling, ya prompt. Phir dekhiye ki kaunse change se kya asar hua.',
-  'A Model Selection Card. It records quality, latency and cost, and it names the fallback for when your first choice is unavailable.':
-    'Ek Model Selection Card. Usme quality, latency aur cost likhi ho, aur yeh bhi ki agar aapka pehla choice available na ho toh kya chalega.',
-  'Recommend a model based on evidence, and defend your choice against someone who prefers a different one.':
-    'Evidence ke basis par ek model recommend kijiye, aur us insaan ke saamne apne choice ka bachaav kijiye jo koi aur model pasand karta hai.',
   'Temperature controls variation':
     'Temperature variation ko control karta hai',
-  'You tested it in Chapter 2. Here it’s just one variable among several.':
-    'Aapne ise Chapter 2 mein test kiya tha. Yahan yeh bahut saare variables mein se sirf ek hai.',
   'Write the answer key before measuring':
     'Measure karne se pehle answer key likhiye',
-  'Without an answer key, a benchmark doesn’t tell you much.':
-    'Answer key ke bina benchmark se zyada kuch pata nahi chalta.',
   'An experiment harness that records runs':
     'Ek experiment harness jo runs record karta hai',
-  'You built it in Chapter 21, and this chapter is the first to use it.':
-    'Aapne ise Chapter 21 mein banaya tha, aur yeh chapter ise pehli baar use karta hai.',
   'Inference':
     'Inference',
-  'Running a trained model to get an answer. It’s different from training, which is the work that produced the model in the first place. Inference is the part you pay for, on every request, for as long as the product runs.':
-    'Ek trained model ko chalana taaki jawaab mile. Yeh training se alag hai, jo woh kaam hai jisse model pehli jagah bana tha. Inference woh hissa hai jiska paisa aap har request par dete hain, jab tak product chalta rahe.',
   'Sampling':
     'Sampling',
-  'The way the model picks the next word-piece from the several that it thinks are plausible. Temperature is one way to control it.':
-    'Woh tareeka jisse model agla word-piece chunta hai, un kai options mein se jo use plausible lagte hain. Temperature isse control karne ka ek tareeka hai.',
   'Benchmark':
     'Benchmark',
-  'A fixed set of cases that you run against more than one option, so that the comparison means something. Somebody else’s benchmark will predict how your task goes only by coincidence.':
-    'Cases ka ek fixed set jise aap ek se zyada options par chalate hain, taaki comparison ka kuch matlab ho. Kisi aur ka benchmark aapke task ke baare mein sirf ittefaq se sahi nikalta hai.',
   'Model selection card':
     'Model selection card',
-  'A one-page record of which model you chose, what evidence you chose it on, what constraint applied, and what runs instead when that model is unavailable.':
-    'Ek page ka record: aapne kaunsa model chuna, kis evidence par chuna, kaunsi constraint lagi, aur jab woh model available na ho toh uski jagah kya chalega.',
-  'Explain what changes when you change the model, beyond a benchmark score.':
-    'Samjha paana ki model badalne par benchmark score ke alawa aur kya badalta hai.',
-  'Say when retrieval, prompting and fine-tuning are each the right choice.':
-    'Bata paana ki retrieval, prompting aur fine-tuning har ek kab sahi choice hai.',
   'Write a model recommendation that answers the question “measured how?”.':
     'Aisi model recommendation likh paana jo “measured how?” sawaal ka jawaab de.',
-  'Open the experiment harness you built in Chapter 21. You’ll run the same ten cases on two or three models.':
-    'Chapter 21 mein jo experiment harness aapne banaya tha, use kholiye. Aap wahi das cases do ya teen models par chalayenge.',
-  'In the last chapter you built a harness that records every run in the same way. Now you’ll put it to use. A leaderboard shows how a model did on someone else’s task. In this chapter you’ll get your own numbers, on your own questions, in one afternoon.':
-    'Pichhle chapter mein aapne ek harness banaya jo har run ko ek hi tareeke se record karta hai. Ab aap use kaam mein layenge. Leaderboard dikhata hai ki koi model kisi aur ke task par kaisa chala. Is chapter mein aap ek hi dopahar mein, apne sawaalon par, apne khud ke numbers nikaalenge.',
-  'Think about buying a car. An award doesn’t tell you whether the car fits your family, suits your roads, or what it costs to run. So you take it for a test drive. Few teams test-drive their models, and that’s the gap this chapter closes.':
-    'Gaadi kharidne ke baare mein sochiye. Kisi award se yeh pata nahi chalta ki gaadi aapke parivaar ke liye theek hai, aapki sadkon par chalegi, ya uska running cost kitna hai. Isliye aap test drive lete hain. Bahut kam teams apne models ki test drive leti hain, aur yeh chapter isi kami ko bharta hai.',
-  'Models differ on several things at once: capability, speed, context size, tool use and cost. A model that wins on one of these can lose on another. Which one matters most depends on your use case.':
-    'Models kai cheezon mein ek saath alag hote hain: capability, speed, context size, tool use aur cost. Jo model inmein se ek mein jeetta hai, woh doosre mein haar sakta hai. Kaunsi cheez sabse zyada matter karti hai, yeh aapke use case par depend karta hai.',
-  'There are six short units below. They start with what a model does when it answers, and they end with the one-page card that records your decision. Go through them in order.':
-    'Neeche chhe chhote units hain. Pehla unit batata hai ki model jawaab dete waqt kya karta hai, aur aakhri unit us ek page ke card tak le jaata hai jisme aapka decision likha hota hai. Inhe order mein kijiye.',
   'What an LLM is doing at inference':
     'Inference ke waqt LLM kya kar raha hota hai',
-  'You’ll be able to explain tokens, how a transformer-based model processes its context, how it generates an answer, and the difference between training and inference.':
-    'Aap samjha paayenge ki tokens kya hain, transformer-based model apna context kaise process karta hai, woh jawaab kaise generate karta hai, aur training aur inference mein kya farq hai.',
-  'Inference is the stage where the model does its work. It receives the context and generates the output. Training is different, because training is what changes the model’s parameters.':
-    'Inference woh stage hai jahan model apna kaam karta hai. Woh context receive karta hai aur output generate karta hai. Training alag hai, kyunki training model ke parameters ko badalti hai.',
-  'Compare two prompts with different context lengths. Record the input and output token counts and the latency for each.':
-    'Alag-alag context length wale do prompts compare kijiye. Har ek ke liye input aur output token count aur latency record kijiye.',
-  'Make a small table of context length against the latency and cost you observed.':
-    'Context length ke saamne aapne jo latency aur cost dekhi, uski ek chhoti table banaiye.',
-  'Add some irrelevant context. See whether the cost, the latency or the quality of the answer changes.':
-    'Thoda irrelevant context jodiye. Dekhiye ki cost, latency ya jawaab ki quality badalti hai ya nahi.',
-  'An inference observation sheet.':
-    'Ek inference observation sheet.',
-  'Why isn’t a larger prompt automatically a better prompt?':
-    'Bada prompt apne aap better prompt kyun nahi hota?',
-  'Before anyone debates which model brand is better, ask the engineers where the cost and the latency are really coming from.':
-    'Koi bhi yeh bahas kare ki kaunsa model brand better hai, usse pehle engineers se poochhiye ki cost aur latency asal mein kahan se aa rahi hai.',
   'Sampling and output variability':
     'Sampling aur output ka variation',
-  'You’ll understand the sampling controls as ways of shaping a probability distribution, not as “creativity sliders.”':
-    'Aap sampling controls ko probability distribution ko shape dene ke tareeke ki tarah samjhenge, “creativity sliders” ki tarah nahi.',
-  'Lower sampling settings generally reduce variation. But they don’t turn a model into a system that is guaranteed to be deterministic or factual.':
-    'Kam sampling settings aam taur par variation kam karti hain. Lekin woh model ko aisa system nahi bana deti jiske deterministic ya factual hone ki guarantee ho.',
-  'Run the same prompt several times under two sampling settings that your provider supports.':
-    'Ek hi prompt ko kai baar chalaiye, do aisi sampling settings ke saath jo aapka provider support karta hai.',
-  'Count how many different outputs you got, and note the differences you can see in how they read.':
-    'Gin kar dekhiye ki kitne alag outputs mile, aur note kijiye ki padhne mein woh kaise alag the.',
-  'Use one factual task and one creative task. Compare whether the variation matters equally in both.':
-    'Ek factual task aur ek creative task lijiye. Compare kijiye ki kya variation dono mein barabar matter karta hai.',
-  'A table of your sampling experiment, with the raw outputs.':
-    'Aapke sampling experiment ki ek table, raw outputs ke saath.',
-  'What actually changed: the facts, the diversity, or only the variation?':
-    'Asal mein kya badla: facts, diversity, ya sirf variation?',
-  'Never promise that “temperature zero means always identical.” Measure what your provider’s model really does.':
-    'Kabhi yeh promise mat kijiye ki “temperature zero ka matlab hamesha ek jaisa output”. Dekhiye ki aapke provider ka model asal mein kya karta hai.',
   'Model tiers and routing':
     'Model tiers aur routing',
-  'You’ll understand why a smaller, faster and cheaper model may be right for some tasks, while a larger model is right for others.':
-    'Aap samjhenge ki chhota, tez aur sasta model kuch tasks ke liye kyun theek ho sakta hai, jabki bada model doosre tasks ke liye.',
-  'Choosing a model means balancing many things at once: quality, latency, cost, context, how reliably it uses tools, and your operating constraints.':
-    'Model chunna matlab bahut saari cheezon ko ek saath balance karna: quality, latency, cost, context, woh tools ko kitni bharosemand tarah se use karta hai, aur aapki operating constraints.',
-  'Create a 10-case benchmark that spans extraction, reasoning, multilingual and refusal tasks.':
-    'Das cases ka ek benchmark banaiye jo extraction, reasoning, multilingual aur refusal tasks ko cover kare.',
-  'Run two models, or two configurations of one model, through the same cases.':
-    'Do models, ya ek model ki do configurations, ko wahi cases chalaiye.',
-  'Send the easy cases to the cheaper model and the hard cases to the stronger one. Compare the cost and the quality.':
-    'Aasaan cases sasta model ko bhejiye aur mushkil cases zyada strong model ko. Cost aur quality compare kijiye.',
   'A Model Selection Card.':
     'Ek Model Selection Card.',
-  'Which acceptance metric justified your choice?':
-    'Kaunse acceptance metric ne aapke choice ko sahi thehraya?',
-  'There’s no such thing as the “best model” until you’ve defined the task, the quality bar and the cost ceiling.':
-    '“Sabse achha model” jaisi koi cheez tab tak nahi hoti jab tak aap task, quality bar aur cost ceiling define nahi kar lete.',
   'Reasoning, context and fine-tuning boundaries':
     'Reasoning, context aur fine-tuning ke daayre',
-  'You’ll learn to tell prompting, context or RAG, and fine-tuning apart, because each is a different lever.':
-    'Aap prompting, context ya RAG, aur fine-tuning mein farq karna seekhenge, kyunki har ek alag lever hai.',
-  'Use context when the system needs knowledge that keeps changing. Use prompting for instructions and behaviour. Use fine-tuning when a repeated, stable behaviour is worth encoding in the model’s weights.':
-    'Context tab use kijiye jab system ko aisa knowledge chahiye jo badalta rehta hai. Instructions aur behaviour ke liye prompting. Aur fine-tuning tab jab ek baar-baar aane wala, stable behaviour model ke weights mein daalna sahi lage.',
-  'Take one task and write three proposed solutions: prompt only, retrieval or context, and a fine-tuning hypothesis.':
-    'Ek task lijiye aur uske teen solutions likhiye: sirf prompt, retrieval ya context, aur ek fine-tuning hypothesis.',
-  'For each solution, note the data it needs, the benefit you expect, the cost of maintaining it, and the evaluation it would need.':
-    'Har solution ke liye note kijiye ki use kaunsa data chahiye, aapko kya fayda expect hai, use maintain karne ki cost kya hai, aur kaunsi evaluation chahiye hogi.',
-  'Invent a case where fine-tuning looks attractive, but retrieval is cheaper because the knowledge changes every week.':
-    'Ek aisa case sochiye jahan fine-tuning attractive lagti hai, lekin retrieval sasta hai kyunki knowledge har hafte badalta hai.',
-  'A decision matrix: Prompt vs Context/RAG vs Fine-tune.':
-    'Ek decision matrix: Prompt vs Context/RAG vs Fine-tune.',
   'Is the gap about knowledge, about behaviour, or both?':
     'Gap knowledge ka hai, behaviour ka hai, ya dono ka?',
-  'This stops every architecture discussion from collapsing into “let’s fine-tune it.”':
-    'Isse har architecture discussion “chaliye fine-tune kar dete hain” par aakar nahi atakti.',
   'Benchmarking without fooling yourself':
     'Khud ko dhokha diye bina benchmark karna',
-  'You’ll learn why small demos can lead to misleading conclusions, and how to design a balanced set of tasks.':
-    'Aap seekhenge ki chhote demos se galat conclusions kyun nikal sakte hain, aur ek balanced task set kaise design kiya jaata hai.',
-  'A benchmark is a measuring instrument. If the cases are biased, the decisions you make from them will be biased too.':
-    'Benchmark ek measuring instrument hai. Agar cases biased hain, toh unse liye gaye decisions bhi biased honge.',
-  'Before you test anything, create the categories, pick the sample cases and write down the expected outputs.':
-    'Kuch bhi test karne se pehle categories banaiye, sample cases chuniye aur expected outputs likh lijiye.',
-  'Where it’s practical, compare the models blind, or at least in the same order every time.':
-    'Jahan practical ho, models ko blind compare kijiye, ya kam se kam har baar ek hi order mein.',
-  'Add some adversarial cases, some ambiguous ones and some that have no answer. See whether the ranking changes.':
-    'Kuch adversarial cases jodiye, kuch ambiguous, aur kuch aise jinka koi jawaab nahi hai. Dekhiye ki ranking badalti hai ya nahi.',
-  'A model benchmark of 10 to 30 cases, with a breakdown by category.':
-    '10 se 30 cases ka ek model benchmark, category ke hisaab se breakdown ke saath.',
-  'Would your benchmark catch the failure you care about most?':
-    'Kya aapka benchmark woh failure pakad paayega jiski aapko sabse zyada fikr hai?',
-  'A PM should question the test set before questioning the score.':
-    'PM ko score par sawaal uthane se pehle test set par sawaal uthana chahiye.',
   'Model Selection Card':
     'Model Selection Card',
-  'You’ll turn your evidence into a decision that engineers and stakeholders can review.':
-    'Aap apne evidence ko ek aisa decision bana denge jise engineers aur stakeholders review kar sakein.',
-  'The card records the constraints, the evidence, the fallback and any risks that are still open, all in one place.':
-    'Card mein constraints, evidence, fallback aur woh risks, jo abhi bhi khule hain, sab ek hi jagah likhe hote hain.',
-  'Fill in the task, the quality target, how sensitive the data is, the latency target and the cost ceiling.':
-    'Task, quality target, data kitna sensitive hai, latency target aur cost ceiling bhariye.',
-  'Add the model options, the benchmark evidence and the fallback strategy.':
-    'Model options, benchmark evidence aur fallback strategy jodiye.',
-  'Take away the benchmark results and try to make the decision anyway. Notice how much of it turns into opinion.':
-    'Benchmark results hata dijiye aur phir bhi decision lene ki koshish kijiye. Dekhiye ki uska kitna hissa sirf raay ban jaata hai.',
-  'A Model Selection Card with a version history.':
-    'Version history wala ek Model Selection Card.',
   'Can a reviewer see exactly why you chose this model?':
     'Kya koi reviewer bilkul dekh sakta hai ki aapne yeh model kyun chuna?',
-  'This is evidence of your technical judgment for your portfolio, and it’s worth far more than a screenshot of a leaderboard.':
-    'Yeh aapke portfolio ke liye aapki technical judgment ka evidence hai, aur leaderboard ke screenshot se kahin zyada kaam ka hai.',
   'Change one thing at a time':
     'Ek baar mein ek hi cheez badaliye',
-  'Here’s the most important habit in this chapter. When you compare models, change only the model. Suppose you change the model and the prompt together, and the result improves. Then you can’t say which of the two changes helped.':
-    'Is chapter ki sabse zaroori aadat yahi hai. Models compare karte waqt sirf model badaliye. Maan lijiye aapne model aur prompt ek saath badal diye, aur result behtar ho gaya. Toh aap nahi bata sakte ki dono mein se kaunse change ne madad ki.',
   'What you need to know about models':
     'Models ke baare mein aapko kya jaanna zaroori hai',
-  'The knowledge you need is specific, and it’s limited. It covers supervised and unsupervised learning, classification and regression, and training, validation and test sets. It also covers overfitting, precision and recall, and embeddings.':
-    'Jo knowledge aapko chahiye woh khaas hai, aur limited hai. Isme supervised aur unsupervised learning, classification aur regression, aur training, validation aur test sets aate hain. Saath hi overfitting, precision aur recall, aur embeddings.',
-  'Then add transformers and attention, but only at the level of the idea. Add the difference between inference and training, and between pre-training, fine-tuning and retrieval. That is enough for you to take part in an architecture discussion.':
-    'Phir transformers aur attention jodiye, lekin sirf idea ke level par. Inference aur training ka farq, aur pre-training, fine-tuning aur retrieval ka farq bhi jodiye. Itna architecture discussion mein hissa lene ke liye kaafi hai.',
   'Fine-tune, prompt or retrieve?':
     'Fine-tune karein, prompt karein ya retrieve karein?',
-  'The most common question in these discussions is whether to fine-tune. Here’s a rule of thumb. Treat it as a hypothesis to test, not as a law.':
-    'In discussions mein sabse common sawaal yahi hota hai ki fine-tune karein ya nahi. Yeh ek rule of thumb hai. Ise test karne wali hypothesis samajhiye, kanoon nahi.',
-  'Use <strong>retrieval</strong> when the problem is knowledge that changes, or private data.':
-    'Jab problem aisa knowledge ho jo badalta rehta hai, ya private data ho, tab <strong>retrieval</strong> use kijiye.',
-  'Use <strong>prompting</strong> when you can steer the behaviour with instructions and examples.':
-    'Jab aap instructions aur examples se behaviour ko steer kar sakte hain, tab <strong>prompting</strong> use kijiye.',
-  'Use <strong>fine-tuning</strong> when the behaviour, the style or the pattern of the task is stable, comes up again and again, and is worth changing the model’s weights for.':
-    'Jab behaviour, style ya task ka pattern stable ho, baar-baar aata ho, aur model ke weights badalna uske laayak ho, tab <strong>fine-tuning</strong> use kijiye.',
-  'The table below turns this into four decisions you’ll face. For each one, look at the question to ask first, and then at the mistake teams most often make.':
-    'Neeche wali table is baat ko chaar decisions mein badal deti hai jo aapke saamne aayenge. Har ek mein dekhiye ki pehle kaunsa sawaal poochhna hai, aur phir teams sabse zyada kaunsi galti karti hain.',
   'Decision':
     'Decision',
   'Ask first':
@@ -413,66 +267,26 @@ Object.assign(window.HING = window.HING || {}, {
     'Aam galti',
   'Model choice':
     'Model choice',
-  'Which constraint binds hardest: quality, latency or cost?':
-    'Kaunsi constraint sabse zyada kas rahi hai: quality, latency ya cost?',
-  'Picking the “smartest” model because of its reputation.':
-    'Sirf reputation ki wajah se “sabse smart” model chun lena.',
   'Fine-tune':
     'Fine-tune',
   'Is the gap about knowledge, or about behaviour?':
     'Gap knowledge ka hai, ya behaviour ka?',
-  'Fine-tuning a model to teach it documents that change every month.':
-    'Model ko aise documents sikhane ke liye fine-tune karna jo har mahine badalte hain.',
   'Reasoning level':
     'Reasoning level',
-  'Does more reasoning improve the acceptance metric?':
-    'Kya zyada reasoning se acceptance metric behtar hota hai?',
-  'Paying for more reasoning without measuring whether it helps.':
-    'Zyada reasoning ka paisa dena, bina measure kiye ki usse fayda hota hai ya nahi.',
   'Context size':
     'Context size',
-  'Do we genuinely need the larger window?':
-    'Kya hamein sach mein bada window chahiye?',
-  'Treating a big window as a substitute for retrieval.':
-    'Bade window ko retrieval ka substitute samajh lena.',
-  'Now try this in your own words.':
-    'Ab ise apne shabdon mein try kijiye.',
   'Write the one sentence you would say if a stakeholder asked you to switch to the model that just topped a leaderboard.':
     'Woh ek sentence likhiye jo aap tab kahenge jab koi stakeholder aapse us model par switch karne ko kahe jo abhi leaderboard par sabse upar aaya hai.',
   'Before we switch, …':
     'Switch karne se pehle, …',
-  'A good answer asks: on which of our cases, and at what speed and cost? A leaderboard is a result on someone else’s test set.':
-    'Achha jawaab yeh poochhta hai: hamare kaunse cases par, aur kitni speed aur cost par? Leaderboard kisi aur ke test set par ek result hai.',
-  'So the habit to carry forward is simple. Measure on your own cases, change one thing at a time, and write down the evidence for your choice. Next, in Chapter 23, you’ll look at how to design the context you send to whichever model you chose.':
-    'Toh jo aadat aage le jaani hai woh seedhi hai. Apne hi cases par measure kijiye, ek baar mein ek cheez badaliye, aur apne choice ka evidence likh kar rakhiye. Agle chapter, Chapter 23, mein aap dekhenge ki jo model aapne chuna, use bheje jaane wala context kaise design kiya jaata hai.',
   'Choose the model, with a back-up, and write it on one page':
     'Model chuniye, ek back-up ke saath, aur use ek page par likhiye',
-  'The name-and-place finder and the context judge both need a model, and the choice affects quality, cost, speed and privacy. In this chapter you learned that changing the model changes more than a benchmark score, and that a recommendation must answer “measured how?”. Now you’ll test candidate models on your own answer key, and write the one-page card that records your choice.':
-    'Name-and-place finder aur context judge, dono ko ek model chahiye, aur is choice ka asar quality, cost, speed aur privacy par padta hai. Is chapter mein aapne seekha ki model badalne se benchmark score ke alawa bhi kuch badalta hai, aur recommendation ko “measured how?” ka jawaab dena hi padta hai. Ab aap candidate models ko apni answer key par test karenge, aur woh ek page ka card likhenge jisme aapka choice record ho.',
-  'Your test harness from Chapter 21, to run the models. Write the one-page card in the notes box below.':
-    'Models chalane ke liye Chapter 21 ka aapka test harness. Ek page ka card neeche wale notes box mein likhiye.',
-  'State the job and the quality bar in numbers. For example: “find at least 90 of every 100 names on the answer key, with no more than 5 false alarms in 100 sentences”.':
-    'Job aur quality bar ko numbers mein likhiye. Jaise: “answer key ke har 100 names mein se kam se kam 90 dhoondhna, aur 100 sentences mein 5 se zyada false alarms nahi”.',
-  'State how sensitive the text is, and what that rules out straight away. For example, a provider that trains on what you send is ruled out if sentences may contain real Aadhaar numbers.':
-    'Likhiye ki text kitna sensitive hai, aur usse turant kya rule out ho jaata hai. Jaise, agar sentences mein asli Aadhaar numbers ho sakte hain, toh woh provider rule out ho jaata hai jo aapke bheje hue data par train karta hai.',
   'Set a time limit and a cost limit for one message.':
     'Ek message ke liye time limit aur cost limit set kijiye.',
-  'Choose two or three models. Run your harness on the answer key for each one, and put the results side by side. Show the Hindi and Hinglish results separately from the English ones.':
-    'Do ya teen models chuniye. Har ek ke liye answer key par apna harness chalaiye, aur results ko saath-saath rakhiye. Hindi aur Hinglish ke results ko English ke results se alag dikhaiye.',
-  'Name the back-up: what runs if the first choice is down, slow or more expensive. Try the back-up at least once.':
-    'Back-up ka naam likhiye: agar pehla choice down ho, slow ho ya mehnga ho jaaye toh kya chalega. Back-up ko kam se kam ek baar try kijiye.',
-  'Name the test set you will use to recheck this choice in three months.':
-    'Us test set ka naam likhiye jisse aap teen mahine baad is choice ko dobara check karenge.',
-  'Put it all on one page, the model selection card, so that a manager can read it and an engineer can act on it.':
-    'Sab kuch ek page par likhiye, yaani model selection card, taaki manager use padh sake aur engineer us par kaam kar sake.',
   'Numbers for the quality bar, the time limit and the cost limit.':
     'Quality bar, time limit aur cost limit ke numbers.',
-  'A side-by-side table of the models, with Hindi and Hinglish shown separately.':
-    'Models ki side-by-side table, jisme Hindi aur Hinglish alag dikhaye gaye hon.',
   'A named back-up that you have tried once.':
     'Ek naam wala back-up jise aapne ek baar try kiya ho.',
-  'The one-page card, where every claim traces back to a run in your harness.':
-    'Ek page ka card, jisme har claim aapke harness ke kisi run tak wapas jaata hai.',
 
   /* ---- ch10c: Context engineering: deciding what the model sees ---- */
   'Context engineering: deciding what the model sees':
@@ -947,232 +761,62 @@ Object.assign(window.HING = window.HING || {}, {
   /* ---- ch12t: Tool calling and workflows: contracts before agents ---- */
   'Tool calling and workflows: contracts before agents':
     'Tool calling aur workflows: agents se pehle contracts',
-  'A tool lets the model do something real, so you have to decide exactly what it may do and who checks it. You’ll write tool contracts, enforce permissions on the server, and choose a fixed workflow before you allow an agent.':
-    'Tool model ko kuch asli kaam karne deta hai, isliye aapko tay karna padta hai ki woh exactly kya kar sakta hai aur kaun check karega. Aap tool contracts likhenge, permissions ko server par enforce karenge, aur agent allow karne se pehle fixed workflow chunenge.',
-  'Pick one action that happens outside the model, and write its tool schema before you write any model logic.':
-    'Aisi ek action chuniye jo model ke bahar hoti hai, aur model ka koi bhi logic likhne se pehle uska tool schema likhiye.',
-  'Build the flow classify → retrieve → tool → validate → respond, with a confirmation step for anything that has consequences.':
-    'Yeh flow banaiye: classify → retrieve → tool → validate → respond. Jis bhi action ka asar padta hai, uske liye ek confirmation step rakhiye.',
-  'Test four things: badly formed arguments, a timeout, a call the user is not allowed to make, and a tool that confidently returns the wrong thing.':
-    'Chaar cheezein test kijiye: galat banaye hue arguments, ek timeout, aisi call jo user ko karne ki ijaazat nahi, aur aisa tool jo poore confidence ke saath galat cheez lautata hai.',
-  'A tool contract, a workflow diagram, and a table of the ways each step can fail.':
-    'Ek tool contract, ek workflow diagram, aur ek table jisme har step ke fail hone ke tareeke likhe hon.',
-  'Point to every place in the flow where ordinary, fixed code stays in control.':
-    'Flow mein har woh jagah dikhaiye jahan control ordinary, fixed code ke haath mein rehta hai.',
-  'A schema makes the format reliable':
-    'Schema se format reliable ban jaata hai',
-  'From Chapter 8. A tool contract takes the same idea and applies it to actions.':
-    'Chapter 8 se. Tool contract wahi idea leta hai aur use actions par laagu karta hai.',
   'The model invents when it has no evidence':
     'Evidence na ho toh model cheezein invent kar deta hai',
-  'From Chapter 2. Now the model can invent the inputs to a real action.':
-    'Chapter 2 se. Ab model ek asli action ke inputs bhi invent kar sakta hai.',
   'Tool contract':
     'Tool contract',
-  'A written description of one outside capability: its name, what it does, the inputs it accepts and how tightly they are limited, the errors it can return, who may use it, and what it changes.':
-    'Ek bahar ki capability ka likha hua description: uska naam, woh kya karti hai, kaun se inputs leti hai aur woh kitne tight limit mein hain, kaun se errors de sakti hai, kaun use kar sakta hai, aur woh kya badalti hai.',
   'Deterministic workflow':
     'Deterministic workflow',
-  'A fixed sequence of steps, where only the parts that really need judgement are left to the model.':
-    'Steps ka ek fixed sequence, jisme sirf woh hisse model ko diye jaate hain jahan sach mein judgement chahiye.',
   'Idempotency':
     'Idempotency',
-  'The property that doing the same operation twice has the same effect as doing it once. It matters the moment anything retries.':
-    'Yeh woh property hai jisme ek hi operation ko do baar karne ka wahi asar hota hai jo ek baar karne ka. Yeh tab zaroori ho jaata hai jab kuch bhi retry hota hai.',
   'Confirmation step':
     'Confirmation step',
-  'A point where a person must say yes before an action with consequences is allowed to run.':
-    'Woh jagah jahan koi insaan haan bole, uske baad hi asar daalne wali action chalti hai.',
   'Write a tool contract that a reviewer could sign off.':
     'Aisa tool contract likh paana jise koi reviewer sign off kar sake.',
   'Say when a fixed workflow is better than letting the model decide.':
     'Bata paana ki fixed workflow kab model ko decide karne dene se behtar hai.',
   'Name the checks that must happen before an important action runs.':
     'Woh checks bata paana jo kisi zaroori action ke chalne se pehle hone chahiye.',
-  'Open your experiment harness from Chapter 21 and the agent loop from Chapter 9. You’ll want both nearby for the hands-on units.':
-    'Chapter 21 ka apna experiment harness kholiye, aur Chapter 9 ka agent loop bhi. Hands-on units ke liye dono paas mein chahiye honge.',
-  'So far in this part, the model has read things and written answers. It has looked at documents and replied. In this chapter the model starts to <em>do</em> things, and that changes how careful you need to be.':
-    'Is part mein ab tak model ne cheezein padhi hain aur jawaab likhe hain. Usne documents dekhe aur reply diya. Is chapter se model cheezein <em>karna</em> shuru karta hai, aur isse aapko kitna dhyaan rakhna hai, woh badal jaata hai.',
-  'A <strong>tool</strong> is what lets the model do something real: look up an invoice, send an email or change a record. Once that’s possible, the question is no longer whether the model can act. The question is what exactly it may do, with what data, and who checks.':
-    '<strong>Tool</strong> woh cheez hai jo model ko kuch asli kaam karne deti hai: ek invoice dekhna, email bhejna, ya record badalna. Jab yeh possible ho jaata hai, toh sawaal yeh nahi rehta ki model kar sakta hai ya nahi. Sawaal yeh hai ki woh exactly kya kar sakta hai, kis data ke saath, aur check kaun karega.',
-  'Think of a bank teller. A teller can look up your balance. But a teller can’t approve a loan alone, or send money just because a customer says so. That rule isn’t there because tellers are untrustworthy. It’s there because some actions have consequences outside the bank.':
-    'Ek bank teller ko dekhiye. Teller aapka balance dekh sakta hai. Lekin woh akele loan approve nahi kar sakta, aur sirf customer ke kehne par paise bhi nahi bhej sakta. Yeh rule isliye nahi ki teller par bharosa nahi hai. Yeh isliye hai ki kuch actions ka asar bank ke bahar tak jaata hai.',
-  'A model with tools is in the same position. In this chapter you’ll learn to write down what each tool may do, and to keep the checks in ordinary code. You’ll also learn to prefer a fixed workflow until an agent has earned its place.':
-    'Tools wala model bhi isi jagah par hai. Is chapter mein aap likhna seekhenge ki har tool kya kar sakta hai, aur checks ko ordinary code mein rakhna seekhenge. Aap yeh bhi seekhenge ki jab tak agent apni jagah kamaa na le, fixed workflow ko pehle chunna hai.',
-  'There are six units, and they go in order. Each one has a short goal, an idea behind it, something to try, something to break on purpose, and something to hand in. The checking question and the product lens at the end tell you what to take away from it.':
-    'Yahan chhe units hain, aur woh order mein chalte hain. Har unit mein ek chhota goal hai, uske peeche ek idea, kuch karke dekhne ko, kuch jaan-boojhkar todne ko, aur kuch jama karne ko. Aakhir ka checking sawaal aur product lens batate hain ki aapko isse kya saath le jaana hai.',
-  'Tool schemas':
-    'Tool schemas',
-  'Define a tool as a tightly limited contract. It has a name, a description, inputs, errors and permissions.':
-    'Tool ko ek tight limit wale contract ki tarah define kijiye. Usmein naam, description, inputs, errors aur permissions hote hain.',
-  'The way you define a tool is part of what the model sees when it works. A clear definition helps the model use the tool well.':
-    'Aap tool ko jaise define karte hain, woh model ko kaam karte waqt dikhne wali cheezon ka hissa hota hai. Saaf definition se model tool ko behtar use karta hai.',
-  'Write a schema for <code>get_invoice_status(invoice_id)</code>.':
-    '<code>get_invoice_status(invoice_id)</code> ke liye ek schema likhiye.',
-  'Add the fields that are required, the formats that are allowed, and a clear error for each thing that can go wrong.':
-    'Zaroori fields, allowed formats, aur har galti ke liye ek saaf error jodiye.',
   'Try a missing ID, an ID in the wrong format, and an invoice the user is not allowed to see.':
     'Ek missing ID try kijiye, galat format wali ID, aur aisa invoice jo user ko dekhne ki ijaazat nahi hai.',
-  'A written Tool Contract Specification.':
-    'Ek likha hua Tool Contract Specification.',
   'Could a new engineer read it and know exactly what the tool can and cannot do?':
     'Kya ek naya engineer ise padhkar exactly jaan sakta hai ki tool kya kar sakta hai aur kya nahi?',
-  'Tool descriptions deserve the same care as the documentation for an API.':
-    'Tool descriptions ko utni hi care chahiye jitni ek API ke documentation ko.',
-  'Tool selection':
-    'Tool selection',
-  'Measure whether the model picks the right tool for each task.':
-    'Measure kijiye ki model har task ke liye sahi tool chunta hai ya nahi.',
-  'Give the model a tool only when using it adds real value, not because tools feel new and exciting.':
-    'Model ko tool tabhi dijiye jab use karne se asli value judti ho, isliye nahi ki tools naye aur exciting lagte hain.',
-  'Create 20 test cases that use two or three tools between them.':
-    '20 test cases banaiye jinme do ya teen tools shaamil hon.',
-  'For each case, record which tool the model chose, which inputs it gave, and which tool you expected.':
-    'Har case mein note kijiye ki model ne kaun sa tool chuna, kaun se inputs diye, aur aapne kaun sa tool expect kiya tha.',
   'Add tools with names that are almost the same, and requests that could mean more than one thing.':
     'Aise tools jodiye jinke naam lagbhag ek jaise hain, aur aise requests jinke ek se zyada matlab ho sakte hain.',
-  'A Tool Selection Benchmark.':
-    'Ek Tool Selection Benchmark.',
-  'What share of the calls were correct, what share were unnecessary, and what share were unsafe?':
-    'Kitni calls sahi thi, kitni unnecessary thi, aur kitni unsafe thi?',
-  'Later, in agent systems, this becomes one of the quality measures you can track.':
-    'Aage jaakar agent systems mein yeh ek aisa quality measure ban jaata hai jise aap track kar sakte hain.',
-  'Validation, retries and timeouts':
-    'Validation, retries aur timeouts',
-  'Keep the inputs the model writes separate from the controls that decide whether to run them.':
-    'Model jo inputs likhta hai, unhe un controls se alag rakhiye jo tay karte hain ki unhe chalana hai ya nahi.',
-  'The model is not the one who decides what is allowed. Ordinary code does that.':
-    'Kya allowed hai, yeh model tay nahi karta. Yeh ordinary code tay karta hai.',
-  'Check every input before the tool runs. Then add a rule for timeouts and retries.':
-    'Tool chalne se pehle har input check kijiye. Phir timeouts aur retries ka ek rule jodiye.',
-  'Simulate failures that go away on their own, and failures that never will.':
-    'Aisi failures simulate kijiye jo apne aap theek ho jaati hain, aur aisi jo kabhi theek nahi hongi.',
   'Make the tool return a badly formed result, and watch what the next step does with it.':
     'Tool se ek galat bana hua result lautvaiye, aur dekhiye agla step usse kya karta hai.',
-  'A Tool Failure-State Table.':
-    'Ek Tool Failure-State Table.',
-  'Which failures are worth retrying, and which need a person to step in?':
-    'Kaun si failures ko retry karna theek hai, aur kinke liye kisi insaan ko aana padega?',
-  'For every outside service your product depends on, a PM should ask what happens on a timeout, what gets retried and what counts as a failure.':
-    'Aapka product jis bhi bahar ki service par depend karta hai, uske liye PM ko poochna chahiye ki timeout par kya hota hai, kya retry hota hai, aur kya failure maana jaata hai.',
-  'Idempotency and side effects':
-    'Idempotency aur side effects',
-  'Understand why calling a tool twice can repeat an action.':
-    'Samajhiye ki tool ko do baar call karne se action dobara kyun ho sakti hai.',
-  'A retry is safe only when the operation is safe to repeat, or when something protects it from running twice. That protection is called an idempotency mechanism.':
-    'Retry tabhi safe hai jab operation ko dohrana safe ho, ya jab koi cheez use do baar chalne se bachaye. Us bachav ko idempotency mechanism kehte hain.',
-  'Design an idempotency key for submitting a purchase or a request.':
-    'Ek purchase ya request submit karne ke liye ek idempotency key design kijiye.',
   'Run the same action twice, and check that only one real effect happens.':
     'Wahi action do baar chalaiye, aur check kijiye ki sirf ek asli asar hua.',
-  'Simulate a network timeout that happens after the server has already accepted the request.':
-    'Ek network timeout simulate kijiye jo tab hota hai jab server request accept kar chuka ho.',
-  'A Side-Effect Safety Checklist.':
-    'Ek Side-Effect Safety Checklist.',
-  'What happens if the caller never receives the message saying it worked?':
-    'Agar caller ko kabhi woh message mile hi nahi ki kaam ho gaya, toh kya hoga?',
-  'This matters most when AI can trigger payments, tickets, messages or records.':
-    'Yeh sabse zyada tab zaroori hai jab AI payments, tickets, messages ya records trigger kar sakta ho.',
-  'Human approval':
-    'Human approval',
-  'Put a clear confirmation step before any action that has consequences or cannot be undone.':
-    'Aisi har action se pehle ek saaf confirmation step rakhiye jiska asar padta hai ya jise undo nahi kiya ja sakta.',
-  'A person in the loop is a boundary the system enforces. It is more than a confirmation popup.':
-    'Loop mein ek insaan hona ek aisi boundary hai jise system enforce karta hai. Yeh sirf ek confirmation popup se zyada hai.',
   'Build the flow draft, review, approve, execute.':
     'Yeh flow banaiye: draft, review, approve, execute.',
-  'Log who approved, what they approved, and exactly which request was run.':
-    'Log kijiye ki kisne approve kiya, unhone kya approve kiya, aur exactly kaun si request chalayi gayi.',
   'Change the request after it was approved, and check that running it is blocked.':
     'Approval ke baad request badal dijiye, aur check kijiye ki use chalna block ho jaata hai.',
-  'An Approval Workflow Diagram, plus a design for the audit record.':
-    'Ek Approval Workflow Diagram, aur saath mein audit record ka design.',
   'What exactly did the person approve?':
     'Insaan ne exactly kya approve kiya?',
-  'An approval has to be tied to one specific action, not to a loose conversation.':
-    'Approval ek khaas action se bandha hona chahiye, kisi dhundhli si conversation se nahi.',
-  'Workflow patterns':
-    'Workflow patterns',
-  'Build four kinds of workflow: one step after another, routing, steps in parallel, and one where a second check improves the first answer.':
-    'Chaar tarah ke workflow banaiye: ek step ke baad doosra, routing, ek saath chalte steps, aur ek jisme doosra check pehle jawaab ko behtar banata hai.',
-  'A workflow is a path that is fixed in advance. The model is called at certain points along it.':
-    'Workflow ek aisa raasta hai jo pehle se fixed hota hai. Model ko us raaste mein kuch jagahon par bulaya jaata hai.',
   'Build one simple workflow where steps run in order, and one that routes each request to the right path.':
     'Ek simple workflow banaiye jisme steps order mein chalte hain, aur ek aisa jo har request ko sahi raaste par bhejta hai.',
-  'Measure the time it takes, the cost and how many tasks succeed.':
-    'Lagne wala time, cost, aur kitne tasks succeed hue, yeh measure kijiye.',
-  'Send a request down the wrong route, and watch the failure appear in the steps after it.':
-    'Ek request ko galat route par bhej dijiye, aur dekhiye ki uske baad ke steps mein failure kaise dikhti hai.',
-  'A Workflow Pattern Comparison.':
-    'Ek Workflow Pattern Comparison.',
-  'Which pattern adds real value, and which only adds complexity?':
-    'Kaun sa pattern asli value jodta hai, aur kaun sirf complexity badhata hai?',
-  'Use the simplest pattern that meets your acceptance criteria.':
-    'Sabse simple pattern use kijiye jo aapke acceptance criteria poore karta ho.',
   'Prefer a fixed workflow':
     'Fixed workflow ko pehle chuniye',
-  'Once you’ve worked through the units, one lesson stands out. A fixed workflow is simpler to test and easier to trust than an agent. That’s why it should be your first choice.':
-    'Units karne ke baad ek seekh saaf dikhti hai. Fixed workflow ko test karna aasaan hai aur uspar bharosa karna agent se aasaan hai. Isliye woh aapki pehli pasand honi chahiye.',
-  'A fixed workflow is often safer than an agent. If you know the sequence of steps, fix it in code and let the model handle only the part that needs judgement.':
-    'Fixed workflow aksar agent se zyada safe hota hai. Agar aapko steps ka sequence pata hai, toh use code mein fix kar dijiye aur model ko sirf woh hissa dijiye jahan judgement chahiye.',
-  'Tool checklist':
-    'Tool checklist',
-  'Before any tool goes live, run it through this checklist. Each line is here because it has caused a real incident somewhere.':
-    'Koi bhi tool live jaane se pehle use is checklist se guzariye. Har line isliye hai kyunki kahin na kahin isse asli incident ho chuka hai.',
-  'The name is clear and the description is accurate. The model reads both.':
-    'Naam saaf hai aur description sahi hai. Model dono padhta hai.',
   'The inputs are tightly limited. Use a fixed list of choices instead of free text wherever you can.':
     'Inputs tight limit mein hain. Jahan ho sake, free text ki jagah choices ki ek fixed list rakhiye.',
   'Anything the tool changes is stated clearly.':
     'Tool jo bhi badalta hai, woh saaf likha hua hai.',
-  'Permissions are enforced on the server, not by asking the model to behave.':
-    'Permissions server par enforce hoti hain, model se behave karne ko kehkar nahi.',
   'You have thought about idempotency, which means what happens if the call runs twice.':
     'Aapne idempotency ke baare mein socha hai, matlab yeh ki call do baar chale toh kya hoga.',
-  'Errors come back in a structured format.':
-    'Errors structured format mein aate hain.',
-  'Audit data is recorded.':
-    'Audit data record hota hai.',
-  'Actions that destroy or delete something need confirmation.':
-    'Jo actions kuch destroy ya delete karti hain, unke liye confirmation chahiye.',
-  'Give the model a tool only when its choice adds value. Every tool adds a way to attack the system, extra delay, extra cost and new ways to fail.':
-    'Model ko tool tabhi dijiye jab uska choice value jodta ho. Har tool system par attack karne ka ek naya raasta, extra delay, extra cost aur fail hone ke naye tareeke jodta hai.',
-  'The last idea in the checklist leads to a useful exercise. It asks you to look at your own list of tools, and see how many of them really need the model.':
-    'Checklist ki aakhri baat se ek kaam ki exercise nikalti hai. Isme aap apne tools ki list dekhte hain, aur gin-te hain ki kitno ko sach mein model chahiye.',
   'List the tools you would give a support assistant. Then cross out every tool where a fixed rule would choose correctly more than 95% of the time.':
     'Un tools ki list banaiye jo aap ek support assistant ko denge. Phir har woh tool kaat dijiye jahan ek fixed rule 95% se zyada baar sahi chunega.',
   'Tools: … Crossed out: … Left: …':
     'Tools: … Kaate: … Bache: …',
-  'What remains is the set of tools where the model’s judgement is worth the risk. It is usually much shorter than the first list.':
-    'Jo bachta hai, wahi tools ka woh set hai jahan model ka judgement risk ke laayak hai. Yeh aksar pehli list se bahut chhota hota hai.',
-  'Let’s pull it together. A tool lets a model act, so every tool needs a written contract that says what it may do. The checks belong in ordinary code, not in the model. And when you already know the steps, a fixed workflow beats an agent.':
-    'Chaliye sab ek jagah jodte hain. Tool model ko act karne deta hai, isliye har tool ko ek likha hua contract chahiye jo bataye ki woh kya kar sakta hai. Checks ordinary code mein rehte hain, model mein nahi. Aur jab aapko steps pehle se pata hon, toh fixed workflow agent se behtar hai.',
-  'Next, Chapter 26 takes the opposite step. It lets the model control the sequence of steps itself, which is what we call an agent.':
-    'Aage Chapter 26 ulta kadam uthata hai. Woh steps ka sequence khud model ko control karne deta hai, jise hum agent kehte hain.',
   'Build a workflow that proposes changes but cannot make risky ones alone':
     'Aisa workflow banaiye jo changes propose kare lekin risky changes akele na kar sake',
-  'Before you let a model act on its own, you write the contract for each action and decide which actions need a person. In this chapter you learned to write a tool contract a reviewer could sign, when a fixed workflow beats an agent, and which checks must happen before an important action runs. Here you build a workflow for the rule-keeper in which the model proposes what to do with each finding, but a person must approve the risky ones.':
-    'Model ko khud kaam karne dene se pehle aap har action ka contract likhte hain aur tay karte hain ki kin actions ke liye insaan chahiye. Is chapter mein aapne seekha ki aisa tool contract kaise likhein jise reviewer sign kar sake, fixed workflow agent se kab behtar hai, aur kisi zaroori action se pehle kaun se checks hone chahiye. Yahan aap rule-keeper ke liye ek workflow banate hain jisme model har finding ke liye propose karta hai ki kya karna hai, lekin risky wali ko ek insaan ko approve karna padta hai.',
-  'Your test harness from Chapter 21 and the agent loop from Chapter 9, extended in code. Write the measured numbers in the notes box below.':
-    'Chapter 21 ka aapka test harness aur Chapter 9 ka agent loop, code mein extend kiye hue. Measure kiye hue numbers neeche notes box mein likhiye.',
-  'Write the contract for the action “hide this detail”: its name, what it needs, what it returns, what it may change, and what it can never change. A reviewer should be able to sign it.':
-    '“Hide this detail” action ka contract likhiye: uska naam, use kya chahiye, woh kya lautati hai, woh kya badal sakti hai, aur woh kya kabhi nahi badal sakti. Ek reviewer ise sign kar sake.',
   'Decide which actions are risky enough to need approval. For example, letting any ID number through, or deleting a stored copy, always needs approval.':
     'Tay kijiye ki kaun si actions itni risky hain ki approval chahiye. Jaise, koi bhi ID number guzarne dena, ya stored copy delete karna, hamesha approval maangta hai.',
-  'Build a fixed workflow: check the sentence, list the findings, propose an action for each finding, wait for approval on the risky ones, then apply the actions.':
-    'Ek fixed workflow banaiye: sentence check kijiye, findings ki list banaiye, har finding ke liye ek action propose kijiye, risky wali par approval ka intezaar kijiye, phir actions apply kijiye.',
-  'Prepare twenty test messages and decide in advance what the right proposal is for each.':
-    'Twenty test messages taiyaar kijiye aur pehle se tay kijiye ki har ek ka sahi proposal kya hai.',
   'Run them. Count how often the model proposes the correct action when it is not allowed to act on its own. Also count how many risky actions would have been applied without approval. That number must be zero.':
     'Inhe run kijiye. Gin-iye ki jab model ko akele act karne ki ijaazat nahi hai, tab woh kitni baar sahi action propose karta hai. Yeh bhi gin-iye ki kitni risky actions bina approval ke apply ho jaati. Woh number zero hona chahiye.',
   'Write the checks that must happen before an important action runs.':
     'Woh checks likhiye jo kisi zaroori action ke chalne se pehle hone chahiye.',
-  'A signed-off contract for the hide action.':
-    'Hide action ke liye ek sign-off hua contract.',
   'A list of the actions that need approval.':
     'Un actions ki list jinke liye approval chahiye.',
-  'A working workflow in which risky actions wait for approval.':
-    'Ek chalta hua workflow jisme risky actions approval ka intezaar karti hain.',
   'Two numbers from twenty messages: how often the proposal was right, and how many risky actions ran without approval (zero).':
     'Twenty messages se do numbers: proposal kitni baar sahi tha, aur kitni risky actions bina approval ke chali (zero).',
 

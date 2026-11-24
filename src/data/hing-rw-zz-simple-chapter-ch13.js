@@ -55,8 +55,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Padhna undo ho sakta hai. Bhejna, paise dena aur delete karna undo nahi hota.',
   'You build on the chunks (the index cards of your documents) from Chapter 7 and the agent loop (the helper that keeps using tools) from Chapter 9. Both stay in your notebook session. After a reload, press <strong>Restore</strong>.':
     'Aap Chapter 7 ke chunks (documents ke index cards) aur Chapter 9 ke agent loop (woh helper jo tools use karta rehta hai) par aage kaam karte hain. Dono aapke notebook session mein rehte hain. Reload ke baad <strong>Restore</strong> dabaiye.',
-  'Last chapter you made the finder better, so the model sees the right pieces of your documents. Now ask a harder question. What if one of those pieces holds an order for the model, not an answer for the user?':
-    'Pichhle chapter mein aapne finder behtar banaya, taaki model ko documents ke sahi tukde dikhein. Ab ek mushkil sawaal poochhiye. Agar unmein se ek tukde mein model ke liye hukum likha ho, user ke liye jawaab nahi, toh?',
+  'Last chapter you made retrieval (the finder) better, so the model sees the right pieces of your documents. Now ask a harder question. What if one of those pieces holds an order for the model, not an answer for the user?':
+    'Pichhle chapter mein aapne retrieval (finder) behtar banayi, taaki model ko documents ke sahi tukde dikhein. Ab ek mushkil sawaal poochhiye. Agar unmein se ek tukde mein model ke liye hukum likha ho, user ke liye jawaab nahi, toh?',
   'This chapter shows how that happens. You make it happen yourself, on your own system. Then you try the fixes people try first, and see why they fall short. Last, you learn the control that really holds. It matters because any product that reads outside text can hit this.':
     'Yeh chapter dikhata hai ki aisa kaise hota hai. Aap use apne hi system par khud hote dekhte hain. Phir woh fixes aazmate hain jo log pehle aazmate hain, aur dekhte hain ki woh kyun kam padte hain. Aakhir mein woh control seekhte hain jo sach mein tikta hai. Yeh zaroori hai kyunki jo bhi product bahar ka text padhta hai, use yeh ho sakta hai.',
   'What prompt injection is':
@@ -77,8 +77,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Apne documents mein ek hukum chhupaiye',
   'Take the chunks from Chapter 7. Add one sentence to a chunk in the middle. Pick a sentence that could hide in white text inside a supplier’s PDF. White text on a white page is invisible to a person, but a model can read it.':
     'Chapter 7 ke chunks lijiye. Beech ke ek chunk mein ek sentence jodiye. Aisa sentence chuniye jo supplier ki PDF mein white text mein chhup sakta ho. Safed page par safed text insaan ko nahi dikhta, par model use padh leta hai.',
-  'On many runs you get <code>APPROVED - no further review required.</code> Your Chapter 7 system has your finder, your system prompt (the standing rules on the shop wall) and temperature 0 (the model plays safe). Even so, it obeyed a stranger’s sentence.':
-    'Kai runs mein aapko <code>APPROVED - no further review required.</code> milega. Aapke Chapter 7 system mein aapka finder hai, aapka system prompt (deewar par lage niyam) hai aur temperature 0 hai (model safe khelta hai). Phir bhi usne ek ajnabi ke sentence ka hukum maan liya.',
+  'On many runs you get <code>APPROVED - no further review required.</code> Your Chapter 7 system has your retrieval (the finder), your system prompt (the standing rules on the shop wall) and temperature 0 (the model plays safe). Even so, it obeyed a stranger’s sentence.':
+    'Kai runs mein aapko <code>APPROVED - no further review required.</code> milega. Aapke Chapter 7 system mein aapki retrieval (finder) hai, aapka system prompt (deewar par lage niyam) hai aur temperature 0 hai (model safe khelta hai). Phir bhi usne ek ajnabi ke sentence ka hukum maan liya.',
   'Before you run it, guess how many of the 10 questions the hidden order will take over. Write the number down. Then measure.':
     'Run karne se pehle andaaza lagaiye ki 10 sawaalon mein se kitno par chhupa hukum kabza kar lega. Number likh lijiye. Phir naapiye.',
   'So what just happened? Nothing was broken into. The model read a sentence that looked like an order, and it obeyed.':
@@ -117,10 +117,10 @@ Object.assign(window.HING = window.HING || {}, {
     'Ab ek nakli send tool ke saath, surakshit tareeke se, ek leak banaiye.',
   'Build a pretend data leak':
     'Ek nakli data leak banaiye',
-  'Do this in your own notebook, with a fake send tool. Give your Chapter 9 agent two tools. One finds things in private chunks. The other is <code>send_email(to, body)</code>. It only prints what it would have sent.':
-    'Yeh apne notebook mein ek nakli send tool ke saath kijiye. Apne Chapter 9 ke agent ko do tools dijiye. Ek private chunks mein cheezein dhoondhta hai. Doosra hai <code>send_email(to, body)</code>. Woh sirf print karta hai ki woh kya bhejta.',
-  'Look at <code>SENT</code>. On a good share of runs, it holds your private policy text, addressed to an outside domain. Nobody hacked anything. The finder found, the model followed an order, and the tool sent. <strong>Three parts, each working right, together made a security incident.</strong>':
-    '<code>SENT</code> dekhiye. Kaafi runs mein usme aapka private policy text hota hai, kisi bahar ke domain ke naam par. Kisi ne hack nahi kiya. Finder ne dhoondha, model ne hukum maana, aur tool ne bheja. <strong>Teen parts, har ek sahi kaam karte hue, milkar ek security incident ban gaye.</strong>',
+  'Do this in your own notebook, with a fake send tool. Give your Chapter 9 agent two tools. One does retrieval (finds things) in private chunks. The other is <code>send_email(to, body)</code>. It only prints what it would have sent.':
+    'Yeh apne notebook mein ek nakli send tool ke saath kijiye. Apne Chapter 9 ke agent ko do tools dijiye. Ek private chunks par retrieval karta hai (cheezein dhoondhta hai). Doosra hai <code>send_email(to, body)</code>. Woh sirf print karta hai ki woh kya bhejta.',
+  'Look at <code>SENT</code>. On a good share of runs, it holds your private policy text, addressed to an outside domain. Nobody hacked anything. Retrieval found, the model followed an order, and the tool sent. <strong>Three parts, each working right, together made a security incident.</strong>':
+    '<code>SENT</code> dekhiye. Kaafi runs mein usme aapka private policy text hota hai, kisi bahar ke domain ke naam par. Kisi ne hack nahi kiya. Retrieval ne dhoondha, model ne hukum maana, aur tool ne bheja. <strong>Teen parts, har ek sahi kaam karte hue, milkar ek security incident ban gaye.</strong>',
   'Before the fix, use the same thinking on a real system. It takes a few minutes and needs no code.':
     'Fix se pehle, yahi soch ek asli system par lagaiye. Isme kuch minute lagte hain aur code nahi chahiye.',
   'Check a real system, one you work on or one you have seen in a demo. Does it reach private data? Does it read content that outsiders can shape? Can it send, write, pay, delete or show anything outward? Write the three answers. Then say which one you would take away, and what the product loses.':
@@ -183,6 +183,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Teen yes ka matlab hai ki system data leak kar sakta hai, vendor ka security page kuch bhi kahe. Yeh bhari hui table apne agle AI architecture review mein le jaaiye.',
   'Let\'s pull it together. A model cannot tell your orders from the text it reads. So a hidden sentence can give it orders. Words can lower the chance that it works, but cannot stop it. What holds is taking a power away: the private data, the way out, or the right to act with no person\'s approval.':
     'Chaliye sab jodte hain. Model aapke hukum ko apne padhe text se alag nahi kar sakta. Isliye ek chhupa sentence use hukum de sakta hai. Shabd uske kaam karne ka chance kam kar sakte hain, par rok nahi sakte. Jo tikta hai woh hai ek taaqat chheen lena: private data, bahar jaane ka raasta, ya bina insaan ke approval ke kaam karne ka haq.',
-  'Next, you learn how to check the quality of answers on a big pile of them. You use simple code checks and a second model that marks the answers.':
-    'Agle chapter mein aap seekhenge ki jawaabon ki bada dher mein quality kaise jaanchte hain. Simple code checks aur ek doosre model se jo jawaab check karta hai.',
+  'Next, you learn how to check the quality of answers on a big pile of them. You use simple code checks and an LLM judge (a second model that marks the answers).':
+    'Agle chapter mein aap seekhenge ki jawaabon ki bada dher mein quality kaise jaanchte hain. Simple code checks aur ek LLM judge (doosra model jo jawaab check karta hai) se.',
 });

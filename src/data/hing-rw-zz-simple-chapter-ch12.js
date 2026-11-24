@@ -1,8 +1,8 @@
 /* Hinglish for Better retrieval: hybrid search, reranking, context and filters (chapter:ch12), in simple words.
    Written by tools/sheet.mjs apply; keyed on the English line. Loads last, so it wins. */
 Object.assign(window.HING = window.HING || {}, {
-  'In Part I you built a finder. It looks up the right pieces of your documents. It works, but it is the plainest kind. Now you add four upgrades. You test each one with the same answer key (the teacher\'s list of right answers). The dullest upgrade, metadata filtering, stops mistakes that the other three cannot.':
-    'Part I mein aapne ek finder banaya. Woh aapke documents ke sahi tukde dhoondhta hai. Woh kaam karta hai, par sabse saada waala hai. Ab aap chaar upgrade jodenge. Har ek ko usi answer key (teacher ki sahi jawaabon ki list) se parakhenge. Sabse feeka upgrade, metadata filtering, aisi galtiyan rokta hai jo baaki teen nahi rok sakte.',
+  'In Part I you built retrieval (a finder). It looks up the right pieces of your documents. It works, but it is the plainest kind. Now you add four upgrades. You test each one with the same answer key (the teacher\'s list of right answers). The dullest upgrade, metadata filtering, stops mistakes that the other three cannot.':
+    'Part I mein aapne retrieval (ek finder) banayi. Woh aapke documents ke sahi tukde dhoondhti hai. Woh kaam karti hai, par sabse saada waali hai. Ab aap chaar upgrade jodenge. Har ek ko usi answer key (teacher ki sahi jawaabon ki list) se parakhenge. Sabse feeka upgrade, metadata filtering, aisi galtiyan rokta hai jo baaki teen nahi rok sakte.',
   'Mix keyword search (like Ctrl+F) with meaning search. Do not pick only one.':
     'Keyword search (jaise Ctrl+F) aur meaning search ko mila dena. Sirf ek ko mat chuniye.',
   'Say which upgrade helps both recall (fish caught) and precision (how much of the net is fish) at once, and what it costs.':
@@ -37,8 +37,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek table jisme chaaron changes ke baad ka result dikhe.',
   'A ranking of the changes: by benefit, and by cost.':
     'Changes ki ranking: fayde ke hisaab se, aur keemat ke hisaab se.',
-  'Your finder was the plainest kind that works':
-    'Aapka finder sabse saada waala tha jo kaam karta hai',
+  'Your retrieval (finder) was the plainest kind that works':
+    'Aapki retrieval (finder) sabse saada waali thi jo kaam karti hai',
   'You saw its limit in Chapter 7.5. This chapter makes it better.':
     'Aapne Chapter 7.5 mein iski limit dekhi thi. Yeh chapter use behtar banata hai.',
   'One misses the meaning. The other misses the exact word.':

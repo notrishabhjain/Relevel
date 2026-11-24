@@ -107,8 +107,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Reasoning galat',
   'Reasoning hurt, so look into it.':
     'Reasoning ne nuksaan kiya, isliye jaanch kijiye.',
-  'Neither works. The problem is the pages found or the data, not the thinking.':
-    'Dono kaam nahi karte. Problem dhoondhe gaye pages ya data ki hai, sochne ki nahi.',
+  'Neither works. The problem is retrieval (the pages found) or the data, not the thinking.':
+    'Dono kaam nahi karte. Problem retrieval (dhoondhe gaye pages) ya data ki hai, sochne ki nahi.',
   'Count how many of your ten land in the top-right box. In most document work it is one or two. Take that number with you to any talk about price.':
     'Ginye ki aapki 10 mein se kitni upar-daayein box mein aati hain. Zyadatar document kaam mein yeh ek ya do hoti hain. Price ki baatcheet mein yahi number saath le jaaiye.',
   'Three things to watch for':
@@ -125,8 +125,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Log pehli chetavani ko sabse zyada kam aankte hain, isliye ise hote hue dekhte hain.',
   'Give a reasoning model the wrong evidence':
     'Reasoning model ko galat evidence dijiye',
-  'Take your Chapter 7 pipeline (the chain of steps from question to answer). Set k=1, so it hands over only one card. Choose a question that you know finds the <em>wrong</em> card. Answer it with the fast model first. Then answer it with the reasoning model.':
-    'Apni Chapter 7 wali pipeline lijiye (sawaal se jawaab tak ke steps ki zanjeer). k=1 set kijiye, taaki woh sirf ek card de. Ek aisa sawaal chuniye jisme aapko pata hai ki woh <em>galat</em> card laata hai. Pehle fast model se jawaab dilwaiye. Phir reasoning model se.',
+  'Take your Chapter 7 pipeline (the chain of steps from question to answer). Set k=1, so it hands over only one chunk (card). Choose a question that you know finds the <em>wrong</em> chunk. Answer it with the fast model first. Then answer it with the reasoning model.':
+    'Apni Chapter 7 wali pipeline lijiye (sawaal se jawaab tak ke steps ki zanjeer). k=1 set kijiye, taaki woh sirf ek chunk (card) de. Ek aisa sawaal chuniye jisme aapko pata hai ki woh <em>galat</em> chunk laata hai. Pehle fast model se jawaab dilwaiye. Phir reasoning model se.',
   'Both answers are wrong. But the reasoning model’s answer is longer and gives better reasons, so a reviewer is more likely to believe it. Write one sentence on what this means for how you check answers.':
     'Dono answers galat hain. Lekin reasoning model ka jawaab lamba hai aur uske kaaran behtar hain, isliye reviewer ke use sach maan lene ke chance zyada hain. Ek sentence likhiye ki isse answers jaanchne par kya asar padta hai.',
   'The second warning is about time. An average hides the slow cases, so let’s look at them directly.':
@@ -143,8 +143,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek routing rule likhiye. Apna ek feature chuniye. Kin requests ko reasoning milegi? Kinko nahi? Kaun si measurement dikhayegi ki rule galat hai?',
   'Reasoning when … not when … I would know I was wrong if …':
     'Reasoning tab jab … tab nahi jab … Mujhe pata chalega ki main galat tha agar …',
-  'A strong rule sorts requests by something you can see <em>before</em> answering. That could be the kind of question, how many items it names, whether it has arithmetic, or whether the cards found disagree with each other. A strong rule also says what would prove it wrong. For example, the group without reasoning scores lower than the reasoning group on the same questions. Or the thinking replies take longer than your screen can bear.':
-    'Ek achha rule requests ko aisi cheez se baantta hai jo aap jawaab dene se <em>pehle</em> dekh sakte hain. Woh sawaal ki kism ho sakti hai, usme kitni cheezein hain, usme hisaab hai ya nahi, ya dhoondhe gaye cards aapas mein alag baat kehte hain ya nahi. Achha rule yeh bhi batata hai ki kya usse galat saabit karega. Jaise, bina reasoning wala group usi sawaal par reasoning wale group se kam score kare. Ya sochne wale replies itna time lein jitna aapki screen jhel nahi sakti.',
+  'A strong rule sorts requests by something you can see <em>before</em> answering. That could be the kind of question, how many items it names, whether it has arithmetic, or whether the chunks (cards) that retrieval found disagree with each other. A strong rule also says what would prove it wrong. For example, the group without reasoning scores lower than the reasoning group on the same questions. Or the thinking replies take longer than your screen can bear.':
+    'Ek achha rule requests ko aisi cheez se baantta hai jo aap jawaab dene se <em>pehle</em> dekh sakte hain. Woh sawaal ki kism ho sakti hai, usme kitni cheezein hain, usme hisaab hai ya nahi, ya retrieval ne jo chunks (cards) dhoondhe woh aapas mein alag baat kehte hain ya nahi. Achha rule yeh bhi batata hai ki kya usse galat saabit karega. Jaise, bina reasoning wala group usi sawaal par reasoning wale group se kam score kare. Ya sochne wale replies itna time lein jitna aapki screen jhel nahi sakti.',
   'One last experiment. So far you saw thinking wasted on easy tasks. Now you will see it do harm.':
     'Ek aakhri experiment. Ab tak aapne dekha ki aasaan tasks par sochna bekaar jaata hai. Ab aap dekhenge ki woh nuksaan bhi karta hai.',
   'Use reasoning on a trivial task':

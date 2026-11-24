@@ -168,140 +168,140 @@ window.PART5 = [
 {
   id:'ch9m', num:22, part:5, curriculumTier:'core', phase:3, prerequisites:['ch2','ch6','ch8f'], nextUnits:['ch10c'], minutes:55, labs:['costmodel'],
   title:'Choosing a model: benchmark on your own cases',
-  concept:'A leaderboard measures someone else’s task. In this chapter you’ll learn what really changes when you change the model. Then you’ll benchmark models on your own ten cases, and write a model selection card that records the evidence for your choice.',
+  concept:'A leaderboard (a ranking list) shows how models did on someone else\'s task. It is like a topper list from another school. In this chapter you see what really changes when you change the model. Then you test models on your own ten cases. You write a model selection card with the proof for your choice.',
   plan:{
-    first:'Pick two models that you can use. Before you test anything, write down which one you expect to win on quality, which on speed, and which on cost.',
-    build:'Run a ten-case benchmark. It should cover factual recall, reasoning, extraction, multilingual text and refusal behaviour.',
-    brk:'Change one thing at a time: the model, the sampling, or the prompt. Then work out which change really caused which effect.',
-    artifact:'A Model Selection Card. It records quality, latency and cost, and it names the fallback for when your first choice is unavailable.',
-    gate:'Recommend a model based on evidence, and defend your choice against someone who prefers a different one.'
+    first:'Pick two models you can use. Before you test, write your guess. Which model wins on quality? Which on speed? Which on cost? It is like guessing the winner before a race.',
+    build:'Run a ten-case benchmark (ten fixed questions you give every model). Cover remembering facts, reasoning, pulling out details, many languages, and saying no.',
+    brk:'Change one thing at a time: the model, the sampling (how the model picks its next word), or the prompt (your note). Then see which change caused which effect.',
+    artifact:'A Model Selection Card. It is a one-page note of quality, latency (waiting time) and cost. It also names the back-up model, for the day your first choice is not available.',
+    gate:'Recommend a model, and show the proof. Then defend your choice to someone who likes a different model, like a lawyer with evidence.'
   },
   needs:[
-    ['Temperature controls variation','You tested it in Chapter 2. Here it’s just one variable among several.',2],
-    ['Write the answer key before measuring','Without an answer key, a benchmark doesn’t tell you much.',6],
-    ['An experiment harness that records runs','You built it in Chapter 21, and this chapter is the first to use it.',21]
+    ['Temperature controls variation','You tested it in Chapter 2. Here it is one setting among several, like one dial on a panel.',2],
+    ['Write the answer key before measuring','Without an answer key, a benchmark tells you little. It is like marking papers with no teacher\'s key.',6],
+    ['An experiment harness that records runs','You built it in Chapter 21. This chapter is the first to use it.',21]
   ],
   words:[
-    ["Inference","Running a trained model to get an answer. It’s different from training, which is the work that produced the model in the first place. Inference is the part you pay for, on every request, for as long as the product runs."],
-    ["Sampling","The way the model picks the next word-piece from the several that it thinks are plausible. Temperature is one way to control it."],
-    ["Benchmark","A fixed set of cases that you run against more than one option, so that the comparison means something. Somebody else’s benchmark will predict how your task goes only by coincidence."],
-    ["Model selection card","A one-page record of which model you chose, what evidence you chose it on, what constraint applied, and what runs instead when that model is unavailable."]
+    ["Inference",'Inference means using a trained model to get an answer. Training is the earlier work that made the model, like a student studying. Inference is the exam day. You pay for it on every request, for as long as the product runs.'],
+    ["Sampling",'Sampling is how the model picks its next word-piece (token) from a few likely ones. Think of picking one sweet from a few good ones. Temperature (how adventurous the model is) is one way to control it.'],
+    ["Benchmark",'A benchmark is a fixed set of questions that you give to every option, so the comparison is fair. It is like one question paper for every student. Someone else\'s benchmark predicts your task only by luck.'],
+    ["Model selection card",'A one-page note. It says which model you chose, what proof you used, what limit applied (like cost or privacy), and which model runs when the first one is not available.']
   ],
   takeaway:[
-    'Explain what changes when you change the model, beyond a benchmark score.',
-    'Say when retrieval, prompting and fine-tuning are each the right choice.',
+    'Explain what changes when you change the model. It is more than a benchmark score.',
+    'Say when to use retrieval (finding the right page first), prompting (giving clear instructions) and fine-tuning (coaching the model on many examples).',
     'Write a model recommendation that answers the question “measured how?”.'
   ],
   story:[
-    ['c','Before you start','Open the experiment harness you built in Chapter 21. You’ll run the same ten cases on two or three models.'],
+    ['c','Before you start','Open the experiment harness you built in Chapter 21. You will run the same ten cases on two or three models.'],
     ['c','On your route','Do units 9.3 and 9.6, then the capstone. Read the other units this pass.'],
-    ['p','In the last chapter you built a harness that records every run in the same way. Now you’ll put it to use. A leaderboard shows how a model did on someone else’s task. In this chapter you’ll get your own numbers, on your own questions, in one afternoon.'],
-    ['p','Think about buying a car. An award doesn’t tell you whether the car fits your family, suits your roads, or what it costs to run. So you take it for a test drive. Few teams test-drive their models, and that’s the gap this chapter closes.'],
-    ['key','Models differ on several things at once: capability, speed, context size, tool use and cost. A model that wins on one of these can lose on another. Which one matters most depends on your use case.'],
+    ['p','Last chapter you built a harness. It records every run in the same way, like a school register. Now you use it. A leaderboard shows how a model did on someone else\'s task. Today you get your own numbers, on your own questions, in one afternoon.'],
+    ['p','Think of buying a car. An award does not tell you if the car fits your family. It does not tell you if it suits your roads or what it costs to run. So you take a test drive. Few teams test-drive their models. This chapter closes that gap.'],
+    ['key','Models differ in many ways at once: skill, speed, desk size (the context window), button-pressing (tool use) and cost. A model that wins on one can lose on another. What matters most depends on your use case, like choosing a bike or a bus for your trip.'],
     ['h','Hands-on units'],
-    ['p','There are six short units below. They start with what a model does when it answers, and they end with the one-page card that records your decision. Go through them in order.'],
+    ['p','There are six short units below. They start with what a model does when it answers. They end with the one-page card that records your decision. Go in order.'],
     [
       'unit',
       '9.1',
       'What an LLM is doing at inference',
-      {goal:'You’ll be able to explain tokens, how a transformer-based model processes its context, how it generates an answer, and the difference between training and inference.',
-       idea:'Inference is the stage where the model does its work. It receives the context and generates the output. Training is different, because training is what changes the model’s parameters.',
-       prove:'Compare two prompts with different context lengths. Record the input and output token counts and the latency for each.',
-       build:'Make a small table of context length against the latency and cost you observed.',
-       brk:'Add some irrelevant context. See whether the cost, the latency or the quality of the answer changes.',
-       artifact:'An inference observation sheet.',
-       check:'Why isn’t a larger prompt automatically a better prompt?',
-       lens:'Before anyone debates which model brand is better, ask the engineers where the cost and the latency are really coming from.'}
+      {goal:'You will explain tokens (small pieces of a word, like Lego bricks of text). You will explain how a transformer-based model reads its context (its desk). You will explain how it writes an answer. And you will say how training differs from inference.',
+       idea:'Inference is when the model does its work. It gets the context and writes the output. Training is different. Training is what changes the model\'s parameters (its inner settings), like a student learning.',
+       prove:'Give two prompts with different context lengths. For each, write down the input and output token counts and the latency (waiting time).',
+       build:'Make a small table of context length against the latency and cost you saw.',
+       brk:'Add some context that does not matter. See if the cost, the latency or the answer quality changes.',
+       artifact:'An inference observation sheet (a page where you note what you saw).',
+       check:'Why is a bigger prompt not always a better prompt?',
+       lens:'Before anyone argues about which model brand is better, ask the engineers where the cost and the waiting time really come from.'}
     ],
     [
       'unit',
       '9.2',
       'Sampling and output variability',
-      {goal:'You’ll understand the sampling controls as ways of shaping a probability distribution, not as “creativity sliders.”',
-       idea:'Lower sampling settings generally reduce variation. But they don’t turn a model into a system that is guaranteed to be deterministic or factual.',
-       prove:'Run the same prompt several times under two sampling settings that your provider supports.',
-       build:'Count how many different outputs you got, and note the differences you can see in how they read.',
-       brk:'Use one factual task and one creative task. Compare whether the variation matters equally in both.',
-       artifact:'A table of your sampling experiment, with the raw outputs.',
-       check:'What actually changed: the facts, the diversity, or only the variation?',
-       lens:'Never promise that “temperature zero means always identical.” Measure what your provider’s model really does.'}
+      {goal:'You will see the sampling controls as ways to shape the odds of each next word. They are not “creativity sliders.”',
+       idea:'Lower sampling settings usually give less variation. But they do not make the model fully predictable or always true.',
+       prove:'Run the same prompt several times under two sampling settings your provider supports.',
+       build:'Count how many different outputs you got. Note how the wording differs.',
+       brk:'Use one factual task and one creative task. Check if the change matters equally in both.',
+       artifact:'A table of your sampling experiment, with the raw outputs (exactly what the model wrote).',
+       check:'What really changed: the facts, the variety, or only the wording?',
+       lens:'Never promise that “temperature zero means always identical.” Measure what your provider\'s model really does.'}
     ],
     [
       'unit',
       '9.3',
       'Model tiers and routing',
-      {goal:'You’ll understand why a smaller, faster and cheaper model may be right for some tasks, while a larger model is right for others.',
-       idea:'Choosing a model means balancing many things at once: quality, latency, cost, context, how reliably it uses tools, and your operating constraints.',
-       prove:'Create a 10-case benchmark that spans extraction, reasoning, multilingual and refusal tasks.',
-       build:'Run two models, or two configurations of one model, through the same cases.',
-       brk:'Send the easy cases to the cheaper model and the hard cases to the stronger one. Compare the cost and the quality.',
+      {goal:'You will see why a smaller, faster, cheaper model can suit some tasks, and a bigger model suits others. It is like a cycle for the corner shop and a truck for heavy loads.',
+       idea:'Choosing a model means balancing many things: quality, latency, cost, context, how well it uses tools, and your own limits.',
+       prove:'Make a 10-case benchmark. Include pulling out details, reasoning, many languages and saying no.',
+       build:'Run two models, or two settings of one model, on the same cases.',
+       brk:'Send the easy cases to the cheaper model. Send the hard cases to the stronger one. Compare cost and quality.',
        artifact:'A Model Selection Card.',
-       check:'Which acceptance metric justified your choice?',
-       lens:'There’s no such thing as the “best model” until you’ve defined the task, the quality bar and the cost ceiling.'}
+       check:'Which pass mark (acceptance metric, the number a model must reach) made you choose?',
+       lens:'There is no “best model” until you fix the task, the quality bar and the cost ceiling.'}
     ],
     [
       'unit',
       '9.4',
       'Reasoning, context and fine-tuning boundaries',
-      {goal:'You’ll learn to tell prompting, context or RAG, and fine-tuning apart, because each is a different lever.',
-       idea:'Use context when the system needs knowledge that keeps changing. Use prompting for instructions and behaviour. Use fine-tuning when a repeated, stable behaviour is worth encoding in the model’s weights.',
-       prove:'Take one task and write three proposed solutions: prompt only, retrieval or context, and a fine-tuning hypothesis.',
-       build:'For each solution, note the data it needs, the benefit you expect, the cost of maintaining it, and the evaluation it would need.',
-       brk:'Invent a case where fine-tuning looks attractive, but retrieval is cheaper because the knowledge changes every week.',
-       artifact:'A decision matrix: Prompt vs Context/RAG vs Fine-tune.',
+      {goal:'You will tell three tools apart: prompting, context or RAG (finding the right page, then answering from it), and fine-tuning. Each one pulls a different lever.',
+       idea:'Use context when the model needs facts that keep changing. Use prompting for instructions and behaviour. Use fine-tuning when a habit repeats and stays the same, so it is worth building into the model\'s weights (its inner numbers).',
+       prove:'Take one task. Write three plans: prompt only, retrieval or context, and a fine-tuning guess.',
+       build:'For each plan, write the data it needs, the benefit you expect, the cost to keep it going, and the test it would need.',
+       brk:'Invent a case where fine-tuning looks good, but retrieval costs less because the facts change every week.',
+       artifact:'A decision grid: Prompt vs Context/RAG vs Fine-tune.',
        check:'Is the gap about knowledge, about behaviour, or both?',
-       lens:'This stops every architecture discussion from collapsing into “let’s fine-tune it.”'}
+       lens:'This stops every design talk from ending in “let\'s fine-tune it.”'}
     ],
     [
       'unit',
       '9.5',
       'Benchmarking without fooling yourself',
-      {goal:'You’ll learn why small demos can lead to misleading conclusions, and how to design a balanced set of tasks.',
-       idea:'A benchmark is a measuring instrument. If the cases are biased, the decisions you make from them will be biased too.',
-       prove:'Before you test anything, create the categories, pick the sample cases and write down the expected outputs.',
-       build:'Where it’s practical, compare the models blind, or at least in the same order every time.',
-       brk:'Add some adversarial cases, some ambiguous ones and some that have no answer. See whether the ranking changes.',
-       artifact:'A model benchmark of 10 to 30 cases, with a breakdown by category.',
-       check:'Would your benchmark catch the failure you care about most?',
-       lens:'A PM should question the test set before questioning the score.'}
+      {goal:'You will see why small demos can lead you to wrong answers. You will learn to build a fair mix of tasks.',
+       idea:'A benchmark is a measuring tape. If the cases lean one way, your decisions will lean that way too.',
+       prove:'Before you test, make the groups of cases, pick the sample cases and write the right answers.',
+       build:'Where you can, hide which model is which (compare blind). At least keep the same order every time.',
+       brk:'Add tricky cases, unclear cases and cases with no answer. See if the ranking changes.',
+       artifact:'A model benchmark of 10 to 30 cases, with results for each group.',
+       check:'Would your benchmark catch the failure you worry about most?',
+       lens:'A PM (product manager) should question the test set before questioning the score.'}
     ],
     [
       'unit',
       '9.6',
       'Model Selection Card',
-      {goal:'You’ll turn your evidence into a decision that engineers and stakeholders can review.',
-       idea:'The card records the constraints, the evidence, the fallback and any risks that are still open, all in one place.',
-       prove:'Fill in the task, the quality target, how sensitive the data is, the latency target and the cost ceiling.',
-       build:'Add the model options, the benchmark evidence and the fallback strategy.',
-       brk:'Take away the benchmark results and try to make the decision anyway. Notice how much of it turns into opinion.',
-       artifact:'A Model Selection Card with a version history.',
+      {goal:'You will turn your proof into a decision that engineers and stakeholders (people who care about the result) can review.',
+       idea:'The card puts the limits, the proof, the back-up and any open worries all in one place.',
+       prove:'Fill in the task, the quality target, how private the data is, the waiting-time target and the cost ceiling.',
+       build:'Add the model options, the benchmark proof and the back-up plan.',
+       brk:'Take away the benchmark results and try to decide anyway. See how much turns into opinion.',
+       artifact:'A Model Selection Card with a version history (a list of every change).',
        check:'Can a reviewer see exactly why you chose this model?',
-       lens:'This is evidence of your technical judgment for your portfolio, and it’s worth far more than a screenshot of a leaderboard.'}
+       lens:'This shows your technical judgment in your portfolio. It is worth far more than a screenshot of a leaderboard.'}
     ],
     ['q','I402'],
     ['h','Change one thing at a time'],
-    ['p','Here’s the most important habit in this chapter. When you compare models, change only the model. Suppose you change the model and the prompt together, and the result improves. Then you can’t say which of the two changes helped.'],
+    ['p','Here is the most important habit in this chapter. When you compare models, change only the model. Say you change the model and the prompt together, and the result gets better. Now you cannot tell which change helped.'],
     ['h','What you need to know about models'],
-    ['p','The knowledge you need is specific, and it’s limited. It covers supervised and unsupervised learning, classification and regression, and training, validation and test sets. It also covers overfitting, precision and recall, and embeddings.'],
-    ['p','Then add transformers and attention, but only at the level of the idea. Add the difference between inference and training, and between pre-training, fine-tuning and retrieval. That is enough for you to take part in an architecture discussion.'],
+    ['p','You need only a little, and it is specific. Know supervised and unsupervised learning, classification and regression, and training, validation and test sets. Know overfitting (learning the answers by heart), precision and recall, and embeddings (an address for meaning).'],
+    ['p','Then add transformers and attention, only as an idea. Add how inference differs from training, and how pre-training, fine-tuning and retrieval differ. That is enough to join a design talk.'],
     ['h','Fine-tune, prompt or retrieve?'],
-    ['p','The most common question in these discussions is whether to fine-tune. Here’s a rule of thumb. Treat it as a hypothesis to test, not as a law.'],
+    ['p','The most common question in these talks is whether to fine-tune. Here is a rule of thumb. Treat it as a guess to test, not as a law.'],
     [
       'l',
-      ['Use <strong>retrieval</strong> when the problem is knowledge that changes, or private data.','Use <strong>prompting</strong> when you can steer the behaviour with instructions and examples.','Use <strong>fine-tuning</strong> when the behaviour, the style or the pattern of the task is stable, comes up again and again, and is worth changing the model’s weights for.']
+      ['Use <strong>retrieval</strong> when the problem is facts that change, or private data.','Use <strong>prompting</strong> when clear instructions and examples can steer the behaviour.','Use <strong>fine-tuning</strong> when the behaviour, style or pattern stays the same, comes up again and again, and is worth building into the model\'s weights.']
     ],
-    ['p','The table below turns this into four decisions you’ll face. For each one, look at the question to ask first, and then at the mistake teams most often make.'],
+    ['p','The table below shows four decisions you will face. For each, see the question to ask first, then the mistake teams make most often.'],
     [
       'tb',
       ['Decision','Ask first','The common mistake'],
       [
-        ['Model choice','Which constraint binds hardest: quality, latency or cost?','Picking the “smartest” model because of its reputation.'],
-        ['Fine-tune','Is the gap about knowledge, or about behaviour?','Fine-tuning a model to teach it documents that change every month.'],
-        ['Reasoning level','Does more reasoning improve the acceptance metric?','Paying for more reasoning without measuring whether it helps.'],
-        ['Context size','Do we genuinely need the larger window?','Treating a big window as a substitute for retrieval.']
+        ['Model choice','Which limit is tightest: quality, latency or cost?','Picking the “smartest” model because of its name.'],
+        ['Fine-tune','Is the gap about knowledge, or about behaviour?','Fine-tuning a model on documents that change every month.'],
+        ['Reasoning level','Does more thinking raise the pass mark (acceptance metric)?','Paying for more thinking without checking if it helps.'],
+        ['Context size','Do we really need the bigger desk (window)?','Treating a big window as a replacement for retrieval.']
       ]
     ],
-    ['p','Now try this in your own words.'],
+    ['p','Now try it in your own words.'],
     [
       'try',
       {id:'ch22-leader',
@@ -310,29 +310,29 @@ window.PART5 = [
        rows:4,
        task:'Write the one sentence you would say if a stakeholder asked you to switch to the model that just topped a leaderboard.',
        ph:'Before we switch, …',
-       after:'A good answer asks: on which of our cases, and at what speed and cost? A leaderboard is a result on someone else’s test set.'}
+       after:'A good answer asks: on which of our cases, and at what speed and cost? A leaderboard is a result on someone else\'s test set, like another school\'s marks.'}
     ],
     ['h','Summary'],
-    ['p','So the habit to carry forward is simple. Measure on your own cases, change one thing at a time, and write down the evidence for your choice. Next, in Chapter 23, you’ll look at how to design the context you send to whichever model you chose.']
+    ['p','Here is the habit to carry forward. Measure on your own cases. Change one thing at a time. Write down the proof for your choice. Next, in Chapter 23, you will design the context you send to the model you chose.']
   ],
   capstone:{
     title:'Choose the model, with a back-up, and write it on one page',
-    brief:'The name-and-place finder and the context judge both need a model, and the choice affects quality, cost, speed and privacy. In this chapter you learned that changing the model changes more than a benchmark score, and that a recommendation must answer “measured how?”. Now you’ll test candidate models on your own answer key, and write the one-page card that records your choice.',
-    where:'Your test harness from Chapter 21, to run the models. Write the one-page card in the notes box below.',
+    brief:'The name-and-place finder and the context judge both need a model. Your choice changes quality, cost, speed and privacy. You learned that a new model changes more than a score. You also learned that a recommendation must answer “measured how?”. Now test some models on your own answer key (questions with known right answers). Then write the one-page card with your choice.',
+    where:'Use your test harness from Chapter 21 (the tool that records every run) to run the models. Write the one-page card in the notes box below.',
     steps:[
-      'State the job and the quality bar in numbers. For example: “find at least 90 of every 100 names on the answer key, with no more than 5 false alarms in 100 sentences”.',
-      'State how sensitive the text is, and what that rules out straight away. For example, a provider that trains on what you send is ruled out if sentences may contain real Aadhaar numbers.',
+      'Write the job and the quality bar as numbers. For example: “find at least 90 of every 100 names on the answer key, with no more than 5 false alarms in 100 sentences”.',
+      'Write how private the text is, and what that rules out at once. For example: a provider that trains on what you send is out, if sentences may hold real Aadhaar numbers.',
       'Set a time limit and a cost limit for one message.',
-      'Choose two or three models. Run your harness on the answer key for each one, and put the results side by side. Show the Hindi and Hinglish results separately from the English ones.',
-      'Name the back-up: what runs if the first choice is down, slow or more expensive. Try the back-up at least once.',
-      'Name the test set you will use to recheck this choice in three months.',
-      'Put it all on one page, the model selection card, so that a manager can read it and an engineer can act on it.'
+      'Choose two or three models. Run your harness on the answer key for each one. Put the results side by side. Show the Hindi and Hinglish results apart from the English ones.',
+      'Name the back-up: what runs if the first choice is down, slow or costs more. Try the back-up at least once.',
+      'Name the test set (your set of questions) you will use to check this choice again in three months.',
+      'Put it all on one page, the model selection card. A manager should be able to read it. An engineer should be able to act on it.'
     ],
     done:[
       'Numbers for the quality bar, the time limit and the cost limit.',
-      'A side-by-side table of the models, with Hindi and Hinglish shown separately.',
+      'A table with the models side by side. Hindi and Hinglish are shown apart.',
       'A named back-up that you have tried once.',
-      'The one-page card, where every claim traces back to a run in your harness.'
+      'The one-page card. Every claim traces back to a run in your harness.'
     ]
   }
 },
@@ -681,23 +681,23 @@ window.PART5 = [
 {
   id:'ch12t', num:25, part:5, curriculumTier:'core', phase:3, prerequisites:['ch8','ch2','ch11r'], nextUnits:['ch13a','ch14p','ch18s','b4'], minutes:50, labs:['schema'],
   title:'Tool calling and workflows: contracts before agents',
-  concept:'A tool lets the model do something real, so you have to decide exactly what it may do and who checks it. You’ll write tool contracts, enforce permissions on the server, and choose a fixed workflow before you allow an agent.',
+  concept:'A tool (a button the model can press) lets the model do something real. So you decide exactly what it may do and who checks. You will write tool contracts, make the server enforce permissions (the server, not the model, says who may do what), and pick a fixed workflow before you allow an agent.',
   plan:{
-    first:'Pick one action that happens outside the model, and write its tool schema before you write any model logic.',
-    build:'Build the flow classify → retrieve → tool → validate → respond, with a confirmation step for anything that has consequences.',
-    brk:'Test four things: badly formed arguments, a timeout, a call the user is not allowed to make, and a tool that confidently returns the wrong thing.',
-    artifact:'A tool contract, a workflow diagram, and a table of the ways each step can fail.',
-    gate:'Point to every place in the flow where ordinary, fixed code stays in control.'
+    first:'Pick one action that happens outside the model. Write its tool schema (a form that lists exactly what the tool takes in) before you write any model logic.',
+    build:'Build the flow classify → retrieve → tool → validate → respond. Think of a train that stops at fixed stations. Add a confirmation step for anything that has consequences.',
+    brk:'Test four things. First, badly filled arguments (the values you hand to the tool). Second, a timeout (the tool takes too long). Third, a call the user is not allowed to make. Fourth, a tool that returns the wrong thing with a straight face.',
+    artifact:'Three things to hand in: a tool contract (the rule sheet for one tool), a workflow diagram (a map of the steps), and a table of how each step can fail.',
+    gate:'Point to every place in the flow where ordinary, fixed code stays in control, like the guard at the gate who never gets tired.'
   },
   needs:[
-    ['A schema makes the format reliable','From Chapter 8. A tool contract takes the same idea and applies it to actions.',8],
-    ['The model invents when it has no evidence','From Chapter 2. Now the model can invent the inputs to a real action.',2]
+    ['A schema (a form with fixed boxes) makes the format reliable','From Chapter 8. A tool contract uses the same idea for actions: fixed boxes, not a free letter.',8],
+    ['The model invents when it has no evidence','From Chapter 2. Like a parrot making things up, the model can now invent the inputs to a real action.',2]
   ],
   words:[
-    ["Tool contract","A written description of one outside capability: its name, what it does, the inputs it accepts and how tightly they are limited, the errors it can return, who may use it, and what it changes."],
-    ["Deterministic workflow","A fixed sequence of steps, where only the parts that really need judgement are left to the model."],
-    ["Idempotency","The property that doing the same operation twice has the same effect as doing it once. It matters the moment anything retries."],
-    ["Confirmation step","A point where a person must say yes before an action with consequences is allowed to run."]
+    ["Tool contract",'A written rule sheet for one outside action, like the terms on a bank form. It lists the name, what the tool does, what it takes in and how tightly that is limited, the errors it can give back, who may use it, and what it changes.'],
+    ["Deterministic workflow",'A fixed list of steps, like a recipe. The model is called only for the parts that really need judgement (a thoughtful choice).'],
+    ["Idempotency",'Doing the same thing twice has the same result as doing it once, like pressing a lift button two times. It matters the moment anything retries (tries again).'],
+    ["Confirmation step",'A stop sign: a person must say yes before an action with consequences can run.']
   ],
   takeaway:[
     'Write a tool contract that a reviewer could sign off.',
@@ -705,115 +705,115 @@ window.PART5 = [
     'Name the checks that must happen before an important action runs.'
   ],
   story:[
-    ['c','Before you start','Open your experiment harness from Chapter 21 and the agent loop from Chapter 9. You’ll want both nearby for the hands-on units.'],
-    ['c','On your route','Do units 12.1 and 12.5, then run the short workflow cell below. Read the other units this pass.'],
-    ['p','So far in this part, the model has read things and written answers. It has looked at documents and replied. In this chapter the model starts to <em>do</em> things, and that changes how careful you need to be.'],
-    ['p','A <strong>tool</strong> is what lets the model do something real: look up an invoice, send an email or change a record. Once that’s possible, the question is no longer whether the model can act. The question is what exactly it may do, with what data, and who checks.'],
-    ['p','Think of a bank teller. A teller can look up your balance. But a teller can’t approve a loan alone, or send money just because a customer says so. That rule isn’t there because tellers are untrustworthy. It’s there because some actions have consequences outside the bank.'],
-    ['p','A model with tools is in the same position. In this chapter you’ll learn to write down what each tool may do, and to keep the checks in ordinary code. You’ll also learn to prefer a fixed workflow until an agent has earned its place.'],
+    ['c','Before you start','Open your experiment harness (your test set-up) from Chapter 21 and the agent loop from Chapter 9. Keep both close by for the hands-on units.'],
+    ['c','On your route','Do units 12.1 and 12.5. Then run the short workflow cell (one box of code) below. Read the other units this time.'],
+    ['p','So far in this part, the model has read things and written answers. Think of a student who only reads and writes. In this chapter the model starts to <em>do</em> things. That means you must be more careful.'],
+    ['p','A <strong>tool</strong> is a button the model can press to do something real. It can look up an invoice (a bill), send an email or change a record. Now the question is not whether the model can act. The question is what exactly it may do, with what data, and who checks.'],
+    ['p','Think of a bank teller. A teller can look up your balance. But a teller cannot approve a loan alone. A teller cannot send money just because a customer asks. That rule is not there because tellers are bad. It is there because some actions have effects outside the bank.'],
+    ['p','A model with tools is in the same spot. In this chapter you will write down what each tool may do. You will keep the checks in ordinary code (plain code that always does the same thing). And you will pick a fixed workflow first, until an agent (a helper that decides its own steps) has earned its place.'],
     ['h','Hands-on units'],
-    ['p','There are six units, and they go in order. Each one has a short goal, an idea behind it, something to try, something to break on purpose, and something to hand in. The checking question and the product lens at the end tell you what to take away from it.'],
+    ['p','There are six units. Do them in order. Each has a short goal, an idea, something to try, something to break on purpose, and something to hand in. The checking question and the product lens at the end say what to take away.'],
     [
       'unit',
       '12.1',
-      'Tool schemas',
-      {goal:'Define a tool as a tightly limited contract. It has a name, a description, inputs, errors and permissions.',
-       idea:'The way you define a tool is part of what the model sees when it works. A clear definition helps the model use the tool well.',
-       prove:'Write a schema for <code>get_invoice_status(invoice_id)</code>.',
-       build:'Add the fields that are required, the formats that are allowed, and a clear error for each thing that can go wrong.',
+      'Tool schemas: the form for a tool',
+      {goal:'Write a tool as a tightly limited contract (a rule sheet). It has a name, a description, inputs, errors and permissions.',
+       idea:'The model sees how you define the tool, and it uses that to work. Think of the label on a medicine bottle. A clear label helps the model use the tool well.',
+       prove:'Write a schema (a form with fixed boxes) for <code>get_invoice_status(invoice_id)</code>.',
+       build:'Add the boxes that must be filled, the shapes that are allowed, and a clear error for each thing that can go wrong.',
        brk:'Try a missing ID, an ID in the wrong format, and an invoice the user is not allowed to see.',
-       artifact:'A written Tool Contract Specification.',
+       artifact:'A written Tool Contract Specification (the full rule sheet).',
        check:'Could a new engineer read it and know exactly what the tool can and cannot do?',
-       lens:'Tool descriptions deserve the same care as the documentation for an API.'}
+       lens:'Write tool descriptions with the same care as the guide for an API (the way programs talk to each other).'}
     ],
     [
       'unit',
       '12.2',
-      'Tool selection',
-      {goal:'Measure whether the model picks the right tool for each task.',
-       idea:'Give the model a tool only when using it adds real value, not because tools feel new and exciting.',
-       prove:'Create 20 test cases that use two or three tools between them.',
-       build:'For each case, record which tool the model chose, which inputs it gave, and which tool you expected.',
+      'Tool selection: picking the right button',
+      {goal:'Measure whether the model picks the right tool for each task, like checking if a helper grabs the right spanner.',
+       idea:'Give the model a tool only when it adds real value. Do not add one just because tools feel new and exciting.',
+       prove:'Make 20 test cases that use two or three tools between them.',
+       build:'For each case, write down which tool the model chose, which inputs it gave, and which tool you expected.',
        brk:'Add tools with names that are almost the same, and requests that could mean more than one thing.',
-       artifact:'A Tool Selection Benchmark.',
-       check:'What share of the calls were correct, what share were unnecessary, and what share were unsafe?',
-       lens:'Later, in agent systems, this becomes one of the quality measures you can track.'}
+       artifact:'A Tool Selection Benchmark (a score sheet for picking tools).',
+       check:'What share of the calls were correct, what share were not needed, and what share were unsafe?',
+       lens:'Later, with agents, this becomes one of the quality numbers you can watch.'}
     ],
     [
       'unit',
       '12.3',
-      'Validation, retries and timeouts',
-      {goal:'Keep the inputs the model writes separate from the controls that decide whether to run them.',
-       idea:'The model is not the one who decides what is allowed. Ordinary code does that.',
-       prove:'Check every input before the tool runs. Then add a rule for timeouts and retries.',
-       build:'Simulate failures that go away on their own, and failures that never will.',
+      'Validation, retries and timeouts: check, try again, stop waiting',
+      {goal:'Keep the inputs the model writes apart from the controls that decide whether to run them, like a note and the guard who reads it.',
+       idea:'The model does not decide what is allowed. Ordinary code does.',
+       prove:'Check every input before the tool runs. Then add a rule for timeouts (how long to wait) and retries (how many times to try again).',
+       build:'Pretend failures happen. Some go away on their own, like a busy phone line. Some never will.',
        brk:'Make the tool return a badly formed result, and watch what the next step does with it.',
-       artifact:'A Tool Failure-State Table.',
-       check:'Which failures are worth retrying, and which need a person to step in?',
-       lens:'For every outside service your product depends on, a PM should ask what happens on a timeout, what gets retried and what counts as a failure.'}
+       artifact:'A Tool Failure-State Table (a list of how the tool can fail and what happens next).',
+       check:'Which failures are worth trying again, and which need a person to step in?',
+       lens:'For every outside service your product depends on, a PM (product manager) should ask three things. What happens on a timeout? What gets retried? What counts as a failure?'}
     ],
     [
       'unit',
       '12.4',
-      'Idempotency and side effects',
-      {goal:'Understand why calling a tool twice can repeat an action.',
-       idea:'A retry is safe only when the operation is safe to repeat, or when something protects it from running twice. That protection is called an idempotency mechanism.',
-       prove:'Design an idempotency key for submitting a purchase or a request.',
+      'Idempotency and side effects: pressing twice is safe',
+      {goal:'Understand why calling a tool twice can repeat an action, like paying a bill twice by mistake.',
+       idea:'A retry is safe only when the action is safe to repeat, or when something stops it from running twice. That protection is called an idempotency mechanism.',
+       prove:'Design an idempotency key (a unique token stamped on each request, like a receipt number) for submitting a purchase or a request.',
        build:'Run the same action twice, and check that only one real effect happens.',
-       brk:'Simulate a network timeout that happens after the server has already accepted the request.',
-       artifact:'A Side-Effect Safety Checklist.',
-       check:'What happens if the caller never receives the message saying it worked?',
-       lens:'This matters most when AI can trigger payments, tickets, messages or records.'}
+       brk:'Pretend a network timeout happens after the server has already accepted the request. The reply got lost on the way back.',
+       artifact:'A Side-Effect Safety Checklist (a list to tick before anything changes the outside world).',
+       check:'What happens if the caller never gets the message saying it worked?',
+       lens:'This matters most when AI can start payments, tickets, messages or records.'}
     ],
     [
       'unit',
       '12.5',
-      'Human approval',
-      {goal:'Put a clear confirmation step before any action that has consequences or cannot be undone.',
-       idea:'A person in the loop is a boundary the system enforces. It is more than a confirmation popup.',
+      'Human approval: a person says yes first',
+      {goal:'Put a clear confirmation step (a stop sign where a person says yes) before any action that has consequences or cannot be undone.',
+       idea:'Having a person in the loop is a wall the system enforces, like a gate that really locks. It is more than a popup that asks “Sure?”.',
        prove:'Build the flow draft, review, approve, execute.',
-       build:'Log who approved, what they approved, and exactly which request was run.',
+       build:'Write down who approved, what they approved, and exactly which request was run.',
        brk:'Change the request after it was approved, and check that running it is blocked.',
-       artifact:'An Approval Workflow Diagram, plus a design for the audit record.',
+       artifact:'An Approval Workflow Diagram (a map of who says yes and when), plus a design for the audit record (the log book of what happened).',
        check:'What exactly did the person approve?',
-       lens:'An approval has to be tied to one specific action, not to a loose conversation.'}
+       lens:'An approval must be tied to one specific action, not to a loose chat.'}
     ],
     [
       'unit',
       '12.6',
-      'Workflow patterns',
-      {goal:'Build four kinds of workflow: one step after another, routing, steps in parallel, and one where a second check improves the first answer.',
-       idea:'A workflow is a path that is fixed in advance. The model is called at certain points along it.',
+      'Workflow patterns: four ways to line up the steps',
+      {goal:'Build four kinds of workflow. One: steps one after another. Two: routing, like a traffic cop sending each car down a road. Three: steps in parallel, side by side. Four: a second check that improves the first answer.',
+       idea:'A workflow is a path fixed in advance, like a train line. The model is called at certain stops along it.',
        prove:'Build one simple workflow where steps run in order, and one that routes each request to the right path.',
-       build:'Measure the time it takes, the cost and how many tasks succeed.',
-       brk:'Send a request down the wrong route, and watch the failure appear in the steps after it.',
-       artifact:'A Workflow Pattern Comparison.',
-       check:'Which pattern adds real value, and which only adds complexity?',
-       lens:'Use the simplest pattern that meets your acceptance criteria.'}
+       build:'Measure how long it takes, what it costs and how many tasks succeed.',
+       brk:'Send a request down the wrong route, and watch the failure show up in the steps after it.',
+       artifact:'A Workflow Pattern Comparison (the four ways side by side).',
+       check:'Which pattern adds real value, and which only makes things harder?',
+       lens:'Use the simplest pattern that meets your acceptance criteria (the tests that say the work is good enough).'}
     ],
     ['h','Run a workflow with an approval step'],
-    ['p','This is the fixed workflow for the rule-keeper in about thirty lines. Ordinary code finds each detail and picks the action. A risky action waits until a person approves. In Chapter 26 you give an agent the same job, so that you have something to compare it with.'],
+    ['p','This is the fixed workflow for the rule-keeper, in about thirty lines. Ordinary code finds each detail and picks the action. A risky action waits until a person approves. In Chapter 26 you give an agent the same job, so you have something to compare it with.'],
     ['do','Run the workflow with an approval flag',[
-      ['p','Run the cell. It checks four starter sentences. A PAN or an Aadhaar number is removed only after approval, because letting one through cannot be taken back.'],
+      ['p','Press Run on the cell (one box of code). It checks four starter sentences. A PAN or an Aadhaar number is removed only after approval, because letting one through cannot be taken back.'],
       ['code','import re\n\nSENTENCES = [\n    "Hi, I am Rahul Verma. My mobile number is 9876543210 and my email is rahul.verma@example.com.",\n    "Sir mera aadhaar 4321 5678 9012 hai aur ye number 98xxxxxx12 pe call kar lena",\n    "mera pan card ABCPJ1234K hai, iska photo kal bhej dunga",\n    "What documents do I need to renew my driving licence?",\n]\nPATTERNS = {\n    "PAN": r"\\b[A-Z]{5}[0-9]{4}[A-Z]\\b",\n    "AADHAAR": r"\\b[2-9][0-9]{3} ?[0-9]{4} ?[0-9]{4}\\b",\n    "MOBILE": r"(?<![0-9])[6-9][0-9]{9}(?![0-9])",\n    "EMAIL": r"[\\w.]+@[\\w.]+\\.[a-z]+",\n}\nNEEDS_APPROVAL = {"PAN", "AADHAAR"}\n\ndef run_workflow(text, approved=False):\n    results = []\n    for kind, rx in PATTERNS.items():\n        for m in re.finditer(rx, text):\n            action = "remove" if kind in NEEDS_APPROVAL else "mask"\n            if kind in NEEDS_APPROVAL and not approved:\n                status = "WAITING for approval"\n            else:\n                status = "applied"\n            results.append((kind, m.group(), action, status))\n    return results\n\nran_without_approval = 0\nfor text in SENTENCES:\n    print(text[:60])\n    for kind, value, action, status in run_workflow(text, approved=False):\n        print("   ", kind, value, "->", action, "-", status)\n        if kind in NEEDS_APPROVAL and status == "applied":\n            ran_without_approval += 1\nprint("risky actions that ran without approval:", ran_without_approval)'],
-      ['x','The first sentence is handled at once: the mobile number and the email are masked. The Aadhaar and PAN lines say WAITING for approval. The last line reads <em>risky actions that ran without approval: 0</em>. That zero is the number your capstone must report. Now change <code>approved=False</code> to <code>approved=True</code> in the loop, run it again, and watch the same lines turn to applied.'],
+      ['x','The first sentence is handled at once: the mobile number and the email are masked (hidden). The Aadhaar and PAN lines say WAITING for approval. The last line reads <em>risky actions that ran without approval: 0</em>. That zero is the number your capstone must report. Now change <code>approved=False</code> to <code>approved=True</code> in the loop, run it again, and watch the same lines turn to applied.'],
       [
         'snag',
-        ['A red box saying something <em>is not defined</em>','This cell defines everything it uses, so run the whole cell, not a part of it. If you changed a name, check the spelling and the capital letters.','A sentence shows no lines under it','That is right for the driving-licence sentence. It has nothing personal, so the workflow finds nothing and leaves it alone.','The Aadhaar number is not found in a sentence you wrote','The pattern wants twelve digits that do not start with 0 or 1. A number with dashes, or one broken across lines, is a miss. Add it to your answer key as a tricky row.']
+        ['A red box saying something <em>is not defined</em>','This cell has everything it needs inside it, so run the whole cell, not a part. If you changed a name, check the spelling and the capital letters.','A sentence shows no lines under it','That is right for the driving-licence sentence. It has nothing personal, so the workflow finds nothing and leaves it alone.','The Aadhaar number is not found in a sentence you wrote','The pattern looks for twelve digits that do not start with 0 or 1. A number with dashes, or one split across lines, is missed. Add it to your answer key (the list of right answers) as a tricky row.']
       ]
     ]],
     ['h','Prefer a fixed workflow'],
-    ['p','Once you’ve worked through the units, one lesson stands out. A fixed workflow is simpler to test and easier to trust than an agent. That’s why it should be your first choice.'],
-    ['key','A fixed workflow is often safer than an agent. If you know the sequence of steps, fix it in code and let the model handle only the part that needs judgement.'],
+    ['p','After the units, one lesson stands out. A fixed workflow is simpler to test and easier to trust than an agent, like a bus on a set route next to a taxi that picks its own way. So make it your first choice.'],
+    ['key','A fixed workflow is often safer than an agent. If you know the steps, fix them in code and let the model handle only the part that needs judgement.'],
     ['q','I405'],
-    ['h','Tool checklist'],
-    ['p','Before any tool goes live, run it through this checklist. Each line is here because it has caused a real incident somewhere.'],
+    ['h','Tool checklist: tick before you go live'],
+    ['p','Before any tool goes live, run it through this checklist, like a pilot before take-off. Every line is here because it caused a real incident somewhere.'],
     [
       'l',
-      ['The name is clear and the description is accurate. The model reads both.','The inputs are tightly limited. Use a fixed list of choices instead of free text wherever you can.','Anything the tool changes is stated clearly.','Permissions are enforced on the server, not by asking the model to behave.','You have thought about idempotency, which means what happens if the call runs twice.','Errors come back in a structured format.','Audit data is recorded.','Actions that destroy or delete something need confirmation.']
+      ['The name is clear and the description is true. The model reads both.','The inputs are tightly limited. Use a fixed list of choices instead of free text wherever you can.','Anything the tool changes is stated clearly.','The server enforces permissions. Do not just ask the model to behave.','You have thought about idempotency, which means what happens if the call runs twice.','Errors come back in a fixed form, like a form with labelled boxes.','Audit data (a log book of what happened) is recorded.','Actions that destroy or delete something need confirmation (a person says yes first).']
     ],
-    ['key','Give the model a tool only when its choice adds value. Every tool adds a way to attack the system, extra delay, extra cost and new ways to fail.'],
-    ['p','The last idea in the checklist leads to a useful exercise. It asks you to look at your own list of tools, and see how many of them really need the model.'],
+    ['key','Give the model a tool only when its choice adds value. Every tool adds a way to attack the system, extra waiting, extra cost and new ways to fail.'],
+    ['p','The last idea in the checklist leads to a useful exercise. Look at your own list of tools, and count how many really need the model.'],
     [
       'try',
       {id:'ch25-cross',
@@ -822,28 +822,28 @@ window.PART5 = [
        rows:4,
        task:'List the tools you would give a support assistant. Then cross out every tool where a fixed rule would choose correctly more than 95% of the time.',
        ph:'Tools: … Crossed out: … Left: …',
-       after:'What remains is the set of tools where the model’s judgement is worth the risk. It is usually much shorter than the first list.'}
+       after:'What is left is the set of tools where the model’s judgement is worth the risk. It is usually much shorter than the first list.'}
     ],
     ['h','Summary'],
-    ['p','Let’s pull it together. A tool lets a model act, so every tool needs a written contract that says what it may do. The checks belong in ordinary code, not in the model. And when you already know the steps, a fixed workflow beats an agent.'],
-    ['p','Next, Chapter 26 takes the opposite step. It lets the model control the sequence of steps itself, which is what we call an agent.']
+    ['p','Let us pull it together. A tool lets a model act, so every tool needs a written contract that says what it may do. The checks belong in ordinary code, not in the model. And when you already know the steps, a fixed workflow beats an agent.'],
+    ['p','Next, Chapter 26 takes the opposite step. It lets the model choose the order of steps by itself. We call that an agent.']
   ],
   capstone:{
     title:'Build a workflow that proposes changes but cannot make risky ones alone',
-    brief:'Before you let a model act on its own, you write the contract for each action and decide which actions need a person. In this chapter you learned to write a tool contract a reviewer could sign, when a fixed workflow beats an agent, and which checks must happen before an important action runs. Here you build a workflow for the rule-keeper in which the model proposes what to do with each finding, but a person must approve the risky ones.',
-    where:'Your test harness from Chapter 21 and the agent loop from Chapter 9, extended in code. Write the measured numbers in the notes box below.',
+    brief:'Before you let a model act on its own, you write the contract for each action and decide which actions need a person. In this chapter you learned to write a tool contract a reviewer could sign, when a fixed workflow beats an agent, and which checks must happen before an important action runs. Now you build a workflow for the rule-keeper. The model proposes what to do with each finding. A person must approve the risky ones.',
+    where:'Use your test harness (your test set-up) from Chapter 21 and the agent loop from Chapter 9, and add to them in code. Write the numbers you measure in the notes box below.',
     steps:[
-      'Write the contract for the action “hide this detail”: its name, what it needs, what it returns, what it may change, and what it can never change. A reviewer should be able to sign it.',
+      'Write the contract for the action “hide this detail”. Give its name, what it needs, what it returns, what it may change, and what it can never change. A reviewer should be able to sign it.',
       'Decide which actions are risky enough to need approval. For example, letting any ID number through, or deleting a stored copy, always needs approval.',
-      'Build a fixed workflow: check the sentence, list the findings, propose an action for each finding, wait for approval on the risky ones, then apply the actions.',
-      'Prepare twenty test messages and decide in advance what the right proposal is for each.',
+      'Build a fixed workflow with these steps. Check the sentence. List the findings. Propose an action for each finding. Wait for approval on the risky ones. Then apply the actions.',
+      'Prepare twenty test messages. For each one, write down the right proposal before you run anything.',
       'Run them. Count how often the model proposes the correct action when it is not allowed to act on its own. Also count how many risky actions would have been applied without approval. That number must be zero.',
       'Write the checks that must happen before an important action runs.'
     ],
     done:[
-      'A signed-off contract for the hide action.',
+      'A contract for the hide action that a reviewer has signed off.',
       'A list of the actions that need approval.',
-      'A working workflow in which risky actions wait for approval.',
+      'A working workflow where risky actions wait for approval.',
       'Two numbers from twenty messages: how often the proposal was right, and how many risky actions ran without approval (zero).'
     ]
   }

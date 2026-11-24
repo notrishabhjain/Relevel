@@ -201,103 +201,103 @@ window.PART4 = [
 
   id:'ch20', num:20, part:4, curriculumTier:'selective', phase:2, prerequisites:['ch8','ch11','ch18'], nextUnits:['ch205','ch19pm'], minutes:30, labs:[],
   title:'Designing for wrong answers: evidence, confidence and refusals',
-  concept:'At 90% accuracy, one answer in ten is wrong. Whether the feature is usable depends on what the screen does about that one. In this chapter you’ll audit a real product, design four interface states, time a correction and design the refusal.',
+  concept:'Say a feature is right 90 times out of 100. Then 10 answers are wrong. Can people still use it? That depends on what the screen does for those 10. Today you check a real product, design four screens, time a correction with a stopwatch, and design the refusal (the screen that says “I cannot answer”).',
   needs:[
-    ['A required quote makes checking cheap','A quote is more useful than a confidence number.',8],
-    ['Users notice the slow responses','They notice the slowest ones, not the average response time.',11],
-    ['A kill switch (an off button) is not a rollback (going back to the old version)','Rolling back code does not undo behaviour that both versions share.',18]
+    ['A required quote makes checking cheap','A quote is more use than a confidence number. It is like a page number in the book: you can go and look.',8],
+    ['Users notice the slow responses','They notice the slowest ones, not the average response time. It is like the one late train, not the ten on-time ones.',11],
+    ['A kill switch (an off button) is not a rollback (going back to the old version)','Rolling back code does not undo behaviour that both versions share. It is like going back to the old recipe card when both cards have the same mistake.',18]
   ],
   takeaway:[
-    'Explain how a feature that is wrong one time in ten can still be trusted.',
-    'Say what to do with a confidence score, and why displaying it as a number is usually wrong.',
-    'Explain what must exist underneath a kill switch for it to be usable.'
+    'Say how a feature that is wrong 1 time in 10 can still be trusted.',
+    'Say what to do with a confidence score (a number for how sure the model is), and why showing it as a number is usually wrong.',
+    'Say what must sit underneath a kill switch (the big OFF button for the AI), so that it can really be used.'
   ],
   red:['An uncertain answer shown with a certain interface','Citations that do not open the passage','A feedback button that collects nothing usable'],
   capstone:{
     title:'Design the four answers the tool can give',
-    brief:'Many AI features use the same screen when they are sure, when they are unsure, when they are wrong and when they cannot answer. So a confident wrong answer looks exactly like a confident right one. In this chapter you learned how a feature that is wrong one time in ten can still be trusted, and why a confidence number is usually the wrong thing to show. Now you’ll design the four states for the developer kit.',
-    where:'This task is written, with no code. Design on paper, time one correction with a stopwatch, and write your design in the notes box below. Short version for the route, about 20 minutes: steps 2, 3 and 5.',
+    brief:'Many AI features show the same screen when they are sure, unsure, wrong, or unable to answer. So a wrong answer said with a straight face looks just like a right one. In this chapter you learned how a feature wrong 1 time in 10 can still be trusted, and why a confidence number is usually the wrong thing to show. Now you design the four states (four kinds of screen) for the developer kit.',
+    where:'This task is written, with no code. Draw your design on paper. Time one correction with a stopwatch. Write your design in the notes box below. Short version for the route, about 20 minutes: steps 2, 3 and 5.',
     steps:[
-      'Look at an AI feature you use every day. Note what it shows when it is confident, when it is unsure, when it is wrong and when it cannot answer.',
-      'Now design the four states for Bharat Privacy Guard: found and removed with confidence, found but unsure, wrongly removed (a false alarm), and unable to decide. For each state, write what the developer’s program receives, what the end user sees, and what each of them can do next.',
-      'Design the “unable to decide” state as a real way to reach a person, not a dead end. Say who the person is and how long they take.',
-      'Decide what the tool shows when it is only half sure, so that the uncertainty is visible without being noisy. Don’t show a bare confidence number.',
-      'Time one correction from start to finish. Start when a user notices that a harmless word was hidden, and stop when the rule is fixed. Count every step and every hand-off.',
-      'Write down which of the four states your current design merges together, and what that costs the user.'
+      'Pick an AI feature you use every day. Write what it shows when it is sure, when it is unsure, when it is wrong, and when it cannot answer.',
+      'Now design the four states for Bharat Privacy Guard. One: found and removed, and it is sure. Two: found, but unsure. Three: removed by mistake (a false alarm). Four: unable to decide. For each state, write three things: what the developer’s program receives, what the end user sees, and what each of them can do next.',
+      'Design the “unable to decide” state as a real road to a person, not a dead end. Say who the person is and how long they take.',
+      'Decide what the tool shows when it is only half sure. The doubt should be easy to see, but not noisy. Do not show a bare confidence number.',
+      'Time one correction from start to finish. Start the clock when a user sees that a harmless word was hidden. Stop it when the rule is fixed. Count every step and every hand-off (one person passing the job to another).',
+      'Write down which of the four states your design mixes into one screen, and what that costs the user.'
     ],
     done:[
       'All four states written out, including what each person can do in each one.',
-      'The “unable to decide” route to a real person.',
-      'The correction path, timed from start to finish, with the slowest step marked.',
+      'The “unable to decide” road to a real person.',
+      'The correction path (the steps a user takes to fix a wrong answer), timed from start to finish, with the slowest step marked.',
       'The state your product handles worst, and the first thing you would change.'
     ]
   },
   story:[
-    ['c','Before you start','You don’t need any code for this chapter. Pick an AI feature you use every day, and one feature you own or could own.'],
-    ['p','In the last chapter you decided whether to change the model or something around it. Until now the course has been about making the model right more often. This chapter is about the rest of the time.'],
-    ['p','At 90% accuracy, one interaction in ten is wrong, and no amount of engineering removes that completely. So what the screen does in that case decides whether the feature is usable.'],
-    ['p','This is a design decision, and it belongs to the product owner. An engineer can tell you that a confidence score exists. The product owner decides what the user sees when that score is low.'],
-    ['key','Do not show an uncertain answer in a confident interface. Many AI features feel untrustworthy because they show a wrong answer exactly the way they show a right one, not because they are less accurate.'],
-    ['p','There are four things to get right. A feature that does all four can be wrong one time in ten and still be trusted. One that does none of them will be distrusted even at 95% accuracy. Let’s take them one by one.'],
+    ['c','Before you start','You don’t need any code for this chapter. Pick an AI feature you use every day. Pick one more that you own or could own.'],
+    ['p','In the last chapter you decided whether to change the model or the things around it. So far the course has been about making the model right more often. This chapter is about the times it is still wrong.'],
+    ['p','Say the model is right 90 times out of 100. Then 10 answers are wrong, and no amount of engineering takes that to zero. So what the screen does for those 10 decides if people can use the feature.'],
+    ['p','This is a design choice, and it belongs to the product owner (the person in charge of the feature). An engineer can tell you a confidence score exists. The product owner decides what the user sees when that score is low.'],
+    ['key','Do not show an unsure answer on a screen that looks sure. Many AI features feel unreliable not because they are less right, but because a wrong answer looks exactly like a right one.'],
+    ['p','There are four things to get right. A feature that does all four can be wrong 1 time in 10 and still be trusted. A feature that does none will not be trusted, even at 95 right out of 100. Let us take them one at a time.'],
     ['h','1. Show the evidence'],
-    ['p','Start with a simple idea. If a user can check a claim in a few seconds, a wrong answer costs much less. A link that opens the actual source passage makes that possible. That is why Chapter 8 required the model to quote its source.'],
-    ['p','A citation that names a document but does not open it is worse than nothing. It looks checkable, but the user can’t check it, and they won’t find that out until it matters.'],
+    ['p','Start with a small idea. If a user can check a claim in a few seconds, a wrong answer costs much less. A link that opens the real source page makes that possible. That is why Chapter 8 made the model quote its source. It is like a book that gives the page number.'],
+    ['p','A citation (a note saying where the answer came from) that names a document but does not open it is worse than nothing. It looks checkable, but the user cannot check it. They only find out when it matters.'],
     ['q','I144'],
     ['p','Now try this on a product you already use.'],
     ['do','Audit an AI feature you use every day',[
-      ['p','Pick one, such as a search assistant, an email drafter or a coding assistant. Ask it something it will get wrong, at the edge of what it knows.'],
-      ['p','Then answer four questions in writing. Could you check the claim, and how many seconds did it take? Did the interface show the wrong answer any differently from a right one? What could you do about it? And what happened to your correction?'],
-      ['x','Most well-known products fail at least two of the four. Note which ones. Your users will hold your feature to the same standard.']
+      ['p','Pick one, such as a search assistant, an email writer or a coding helper. Ask it something it will get wrong, something at the edge of what it knows.'],
+      ['p','Then answer four questions in writing. Could you check the claim, and how many seconds did it take? Did the screen show the wrong answer any differently from a right one? What could you do about it? What happened to your correction?'],
+      ['x','Most well-known products fail at least two of the four. Write down which ones. Your users will judge your feature by the same measure.']
     ]],
     ['h','2. Design for speed'],
-    ['p','In Chapter 11, slow responses were a cost. Here they become a design problem. Streaming, where the answer appears piece by piece, works well for prose, because a half-arrived paragraph is already useful.'],
-    ['p','It doesn’t work for everything. A number that appears and then changes while the answer is still being generated is worse than a spinner. The user has already read it and may have acted on it.'],
+    ['p','In Chapter 11, slow responses were a cost. Here they become a design problem. Streaming (words showing up one by one, like the chai-wala saying “two minutes”) works well for paragraphs. A half-arrived paragraph is already useful.'],
+    ['p','It does not work for everything. Picture a number that shows up and then changes while the answer is still being made. That is worse than a spinner (the little wheel that says “wait”). The user has already read it, and may have acted on it.'],
     ['q','I145'],
     ['h','3. Use confidence to choose behaviour'],
-    ['p','Many models can also give a confidence score along with an answer. It’s tempting to show it. Before you read on, think about what you would do with it.'],
+    ['p','Many models can also give a confidence score with an answer. It is tempting to show it. Before you read on, think: what would you do with it?'],
     [
       'pred',
       {id:'ch20-conf',
        short:true,
        ph:'What you would do with it',
-       ask:'Predict: your model returns a confidence score with every answer. What should the interface do with it?',
-       reveal:'Use it to decide what the product does, and do not display it as a number. A percentage next to an answer asks the user to judge something they cannot calibrate, and the model’s own confidence is often badly calibrated anyway. Used internally, it can change the behaviour: answer directly, show the evidence first, ask a clarifying question, or pass the case to a person.',
-       then:'Turn confidence into interface choices. Use an editable field instead of a fixed one, a draft instead of a sent message, or a question instead of a guess.'}
+       ask:'Predict: your model gives a confidence score with every answer. What should the screen do with it?',
+       reveal:'Use it to decide what the product does. Do not show it as a number. A percentage next to an answer asks the user to judge something they cannot judge. The model’s own sureness is often off anyway, like a student who is sure and wrong. Used quietly inside, the score can change what happens: answer straight away, show the evidence first, ask a question back, or pass the case to a person.',
+       then:'Turn confidence into screen choices. Use a box the user can edit instead of a fixed one. Use a draft instead of a sent message. Use a question instead of a guess.'}
     ],
     ['q','I146'],
-    ['p','Now put that into practice on a feature of your own.'],
+    ['p','Now try this on a feature of your own.'],
     ['do','Write the four states',[
-      ['p','For one feature you own, write what the user sees in four states: a confident answer, a low-confidence answer, a refusal, and the AI turned off. Write the actual screen content.'],
-      ['x','The third and fourth states are the hard ones, and most specs leave them out. If you can’t write them, the product doesn’t have them either. It just does whatever the code happens to do.']
+      ['p','Take one feature you own. Write what the user sees in four states: a sure answer, an unsure answer, a refusal, and the AI turned off. Write the real words on the screen.'],
+      ['x','The third and fourth states are the hard ones, and most specs (the written plan for a feature) leave them out. If you cannot write them, the product does not have them. It just does whatever the code happens to do.']
     ]],
     ['h','4. Make correcting it easy'],
-    ['p','When the system is wrong, what the user does next is your most valuable data, and most products throw it away. A thumbs-down records that something was wrong, but not what.'],
-    ['p','A good correction path does three things. It captures what the user expected <em>instead</em>. It keeps the evidence the system used. And it is faster than giving up and doing the task by hand. If correcting takes longer than the manual workaround, nobody corrects, and an empty feedback table looks like satisfaction.'],
+    ['p','When the system is wrong, what the user does next is your most valuable data, and most products throw it away. A thumbs-down says something was wrong. It does not say what.'],
+    ['p','A good correction path does three things. It captures what the user expected <em>instead</em>. It keeps the evidence the system used. And it is faster than giving up and doing the task by hand. If correcting takes longer than doing it by hand, nobody corrects. Then an empty feedback table looks like happy users.'],
     ['q','I147'],
     ['do','Time a correction',[
-      ['p','Use a clock. How long does it take to correct a wrong output, compared with doing the task by hand from scratch? Do it three times.'],
-      ['x','If correcting is slower, your feedback table will stay empty, and you may wrongly read that as satisfaction. This one measurement explains most of the “our users never give feedback” complaints.']
+      ['p','Use a clock. How long does it take to fix a wrong output, compared with doing the whole task by hand? Do it three times.'],
+      ['x','If fixing is slower, your feedback table will stay empty, and you may read that as happy users. This one measurement explains most “our users never give feedback” complaints.']
     ]],
-    ['c','Example','Take two products that use the same model and the same retrieval. One logs a thumbs-down. The other logs the answer, the retrieved chunks and the question. It also asks one more thing: “what did you expect instead?” Within two weeks, the second has a list of real failure types and a roadmap built from its own traffic. The first has a falling number and no idea why.'],
+    ['c','Example','Take two products that use the same model and the same retrieval (finding the right page before answering). One saves only a thumbs-down. The other saves the answer, the chunks (the small cut-out pieces of text it looked at) and the question. It also asks: “what did you expect instead?” Within two weeks, the second has a list of real failure types and a roadmap built from its own traffic. The first has a falling number and no idea why.'],
     [
       'try',
       {id:'ch20-correct',
        mins:6,
        min:60,
        rows:5,
-       task:'Design the correction path for a feature you know. What does the user do when the output is wrong, what does that action record, and how long does it take compared with doing the task by hand? Then write the test case it would produce.',
+       task:'Design the correction path for a feature you know. What does the user do when the output is wrong? What does that action record? How long does it take, compared with doing the task by hand? Then write the test case it would give you (one question with its right answer).',
        ph:'the user … we capture … it takes … versus … the test case would be …',
-       after:'A good design makes correcting the fastest option. Let the user edit the output in place, and treat the edit as the feedback. They were going to fix it anyway, so it costs them nothing, and you learn the expected answer exactly. Record the question, the evidence, the output and the correction together. Without the evidence, you know the answer was wrong but not whether retrieval or generation caused it, which is the distinction Chapter 19 needs.'}
+       after:'A good design makes fixing the fastest choice. Let the user edit the output right there, and treat the edit as the feedback. They were going to fix it anyway, so it costs them nothing, and you learn the right answer exactly. Save the question, the evidence, the output and the fix together. Without the evidence, you know the answer was wrong, but not if finding the page or writing the answer broke. Chapter 19 needs that difference.'}
     ],
     ['h','Design the refusal'],
-    ['p','Every system looks good when it works. Trust is built on the screen that says <em>I do not have that</em>. Many AI products design that screen last, or not at all.'],
-    ['key','A system that says “I cannot answer this” and offers a route to a person earns more trust than one that always produces something. Users judge a system partly by its refusals. A feature that never refuses teaches them that its confidence means nothing.'],
+    ['p','Every system looks good when it works. Trust is built on the screen that says <em>I do not have that</em>. Many AI products design that screen last, or never.'],
+    ['key','A system that says “I cannot answer this” and shows a way to a person earns more trust than one that always gives something. People judge a system partly by its refusals, like a shopkeeper who says “not in stock” and tells you who has it. A feature that never refuses teaches users that its sureness means nothing.'],
     ['q','I148'],
     ['h','What happens when the AI is off'],
-    ['p','Finally, decide what the feature does when the AI is switched off. In Chapter 18 you saw that a rollback and a kill switch are different things.'],
-    ['p','A kill switch is only usable if there is something underneath it. That could be search without generated answers, a form without extraction, or a queue without routing. If turning the AI off leaves a blank screen, the switch just replaces one failure with another.'],
+    ['p','Last, decide what the feature does when the AI is switched off. In Chapter 18 you saw that a rollback (going back to the old version) and a kill switch are different things.'],
+    ['p','A kill switch can only be used if something works underneath it. That could be search without written answers, a form without the AI filling it in, or a queue without the AI sorting it. It is like the plain stairs under a lift: if the lift stops, people can still climb. If turning the AI off leaves a blank screen, the switch only swaps one failure for another.'],
     ['q','I149'],
-    ['p','To sum up, a feature earns trust by showing its evidence, staying quick, using confidence to choose what it does, and making corrections easy. Add a refusal that leads to a person, and a fallback for when the AI is off. Next, you’ll learn how to find out whether all this actually helped the business, by designing a pilot.']
+    ['p','To sum up, a feature earns trust by showing its evidence, staying quick, using confidence to choose what it does, and making fixes easy. Add a refusal that leads to a person, and a fallback for when the AI is off. Next, you will learn how to tell if all this helped the business, by designing a pilot (a small test run).']
   ],
 },
 {

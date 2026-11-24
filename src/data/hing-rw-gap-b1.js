@@ -8,28 +8,16 @@ Object.assign(window.HING = window.HING || {}, {
     'Units 10.3 aur 10.6 kijiye, phir capstone. Baaki units is baar sirf padh lijiye.',
   'Do units 11.5 and 11.8, then the capstone. Read the other units this pass.':
     'Units 11.5 aur 11.8 kijiye, phir capstone. Baaki units is baar sirf padh lijiye.',
-  'Do units 12.1 and 12.5, then run the short workflow cell below. Read the other units this pass.':
-    'Units 12.1 aur 12.5 kijiye, phir neeche ka chhota workflow cell chalaiye. Baaki units is baar sirf padh lijiye.',
   'Run a workflow with an approval step':
     'Approval step ke saath ek workflow chalaiye',
-  'This is the fixed workflow for the rule-keeper in about thirty lines. Ordinary code finds each detail and picks the action. A risky action waits until a person approves. In Chapter 26 you give an agent the same job, so that you have something to compare it with.':
-    'Yeh rule-keeper ka fixed workflow hai, lagbhag tees lines mein. Aam code har detail dhoondhta hai aur action chunta hai. Risky action tab tak ruka rehta hai jab tak koi insaan approve na kar de. Chapter 26 mein aap ek agent ko yahi kaam denge, taaki aapke paas compare karne ke liye kuch ho.',
   'Run the workflow with an approval flag':
     'Approval flag ke saath workflow chalaiye',
-  'Run the cell. It checks four starter sentences. A PAN or an Aadhaar number is removed only after approval, because letting one through cannot be taken back.':
-    'Cell chalaiye. Yeh chaar starter sentences check karta hai. PAN ya Aadhaar number sirf approval ke baad hataya jaata hai, kyunki ek baar nikal gaya toh wapas nahi aata.',
-  'The first sentence is handled at once: the mobile number and the email are masked. The Aadhaar and PAN lines say WAITING for approval. The last line reads <em>risky actions that ran without approval: 0</em>. That zero is the number your capstone must report. Now change <code>approved=False</code> to <code>approved=True</code> in the loop, run it again, and watch the same lines turn to applied.':
-    'Pehla sentence turant handle ho jaata hai: mobile number aur email mask ho jaate hain. Aadhaar aur PAN wali lines mein WAITING for approval likha aata hai. Aakhri line hai <em>risky actions that ran without approval: 0</em>. Yeh zero woh number hai jo aapke capstone ko report karna hai. Ab loop mein <code>approved=False</code> ko <code>approved=True</code> kar dijiye, phir chalaiye, aur dekhiye ki wahi lines applied ho jaati hain.',
-  'This cell defines everything it uses, so run the whole cell, not a part of it. If you changed a name, check the spelling and the capital letters.':
-    'Yeh cell jo kuch use karta hai woh khud define karta hai, isliye poora cell chalaiye, uska ek hissa nahi. Agar aapne koi naam badla hai, toh spelling aur capital letters check kijiye.',
   'A sentence shows no lines under it':
     'Ek sentence ke neeche koi line nahi dikhti',
   'That is right for the driving-licence sentence. It has nothing personal, so the workflow finds nothing and leaves it alone.':
     'Driving-licence wale sentence ke liye yeh sahi hai. Usmein kuch personal nahi hai, isliye workflow kuch nahi dhoondhta aur use chhod deta hai.',
   'The Aadhaar number is not found in a sentence you wrote':
     'Aapke likhe sentence mein Aadhaar number nahi mila',
-  'The pattern wants twelve digits that do not start with 0 or 1. A number with dashes, or one broken across lines, is a miss. Add it to your answer key as a tricky row.':
-    'Pattern ko baarah digits chahiye jo 0 ya 1 se shuru na hon. Dash wala number, ya do lines mein toota hua number, miss ho jaata hai. Ise answer key mein tricky row ki tarah jod dijiye.',
   'Trajectory':
     'Trajectory',
   'The ordered list of steps an agent took, such as the tools it called. You can score it separately from the final answer.':
