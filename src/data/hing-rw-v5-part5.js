@@ -603,502 +603,106 @@ Object.assign(window.HING = window.HING || {}, {
   /* ---- ch14p: MCP and interoperability: standard connections to tools ---- */
   'MCP and interoperability: standard connections to tools':
     'MCP aur interoperability: tools se jodne ke standard connections',
-  'MCP is a standard way for AI applications to connect to tools and data. You’ll map how it works, see what a standard does not make safe, and sort tools by what they are allowed to change.':
-    'MCP AI applications ko tools aur data se jodne ka ek standard tareeka hai. Aap dekhenge ki woh kaise kaam karta hai, ki standard kis cheez ko safe nahi banata, aur tools ko is hisaab se sort karenge ki woh kya badal sakte hain.',
-  'Use a real implementation or a local mock to discover and call one tool or resource, and read the actual exchange of messages.':
-    'Ek asli implementation ya local mock use kijiye taaki ek tool ya resource ko discover karke call kar sakein, aur messages ka asli exchange padhiye.',
-  'Expose two tools and one resource. Test how they are discovered and called, how errors show up, and how consent and authorisation work.':
-    'Do tools aur ek resource expose kijiye. Test kijiye ki woh kaise discover aur call hote hain, errors kaise dikhte hain, aur consent aur authorisation kaise kaam karte hain.',
-  'Try access you are not allowed, badly formed arguments, resource content that has been poisoned, and permissions wider than the task needs.':
-    'Aisa access try kijiye jo aapko allowed nahi hai, galat bane hue arguments, poisoned resource content, aur task se zyada wide permissions.',
-  'A trust-boundary diagram and an authorisation matrix.':
-    'Ek trust-boundary diagram aur ek authorisation matrix.',
-  'Explain what interoperability standardises, and what it leaves exactly as dangerous as it was.':
-    'Samjhaiye ki interoperability kya standardise karti hai, aur kya ko utna hi khatarnaak chhod deti hai jitna woh pehle tha.',
-  'A tool has a typed contract':
-    'Tool ka ek typed contract hota hai',
-  'From Chapter 25. MCP standardises how that contract is published.':
-    'Chapter 25 se. MCP standardise karta hai ki woh contract kaise publish hota hai.',
-  'Permissions are enforced on the server':
-    'Permissions server par enforce hoti hain',
-  'Also from Chapter 25, and still true when the call crosses a protocol.':
-    'Yeh bhi Chapter 25 se, aur tab bhi sach hai jab call kisi protocol ke paar jaati hai.',
   'MCP':
     'MCP',
-  'A protocol that standardises how a host, a client and a server offer and call tools, resources and prompts. It is a protocol, not a framework for building agents.':
-    'Ek protocol jo standardise karta hai ki host, client aur server tools, resources aur prompts kaise offer karte aur call karte hain. Yeh ek protocol hai, agents banane ka framework nahi.',
   'Trust boundary':
     'Trust boundary',
-  'The line across which input stops being yours and becomes something you must check.':
-    'Woh line jiske paar input aapka nahi rehta aur woh cheez ban jaata hai jise aapko check karna padta hai.',
   'Least privilege':
     'Least privilege',
-  'Giving a tool exactly the permissions the task needs and no more. That way, a tool that is never needed can never be misused.':
-    'Tool ko exactly utni permissions dena jitni task ko chahiye, aur ek bhi zyada nahi. Isse jis tool ki kabhi zaroorat hi nahi, uska galat use kabhi ho hi nahi sakta.',
   'Capability negotiation':
     'Capability negotiation',
-  'The way two sides of a protocol agree on what each of them can do, before any work begins.':
-    'Protocol ke do sides ka yeh tay karna ki dono kya kar sakte hain, koi bhi kaam shuru hone se pehle.',
-  'Draw the host, client, server and resource flow, and mark where consent and authorisation happen.':
-    'Host, client, server aur resource ka flow draw kar paana, aur mark kar paana ki consent aur authorisation kahan hote hain.',
-  'Explain why a standard interface to an unsafe tool is still unsafe.':
-    'Samjha paana ki unsafe tool ka standard interface bhi unsafe kyun rehta hai.',
-  'Classify tools by what they are allowed to change.':
-    'Tools ko is hisaab se classify kar paana ki woh kya badal sakte hain.',
-  'You don’t need any new setup to follow the ideas. The hands-on units show a small working example.':
-    'Ideas samajhne ke liye aapko koi naya setup nahi chahiye. Hands-on units ek chhota sa chalta hua example dikhate hain.',
-  'In the last two chapters you gave a model tools, and then let an agent choose among them. Every one of those tools was connected by hand. In this chapter we look at a standard way to make those connections, and at what the standard does and does not protect you from.':
-    'Pichhle do chapters mein aapne model ko tools diye, aur phir ek agent ko unmein se chunne diya. Un sabhi tools ko haath se connect kiya gaya tha. Is chapter mein hum in connections ko banane ka ek standard tareeka dekhte hain, aur yeh bhi ki standard aapko kis cheez se bachata hai aur kis se nahi.',
-  'The standard is called <strong>MCP</strong>, short for Model Context Protocol. It is a common way to connect AI applications to tools and data sources. You will probably never build one yourself, but you do need to know what it covers and what it leaves out.':
-    'Is standard ka naam <strong>MCP</strong> hai, yaani Model Context Protocol. Yeh AI applications ko tools aur data sources se jodne ka ek common tareeka hai. Aap shayad kabhi khud ek nahi banayenge, lekin aapko pata hona chahiye ki woh kya cover karta hai aur kya chhod deta hai.',
-  'Think of a plug socket. It’s a standard, so any appliance fits the wall. But the standard doesn’t promise that the appliance is safe, and it doesn’t decide who may switch it on. MCP is the same kind of thing.':
-    'Ek plug socket ko sochiye. Woh ek standard hai, isliye koi bhi appliance deewar mein lag jaata hai. Lekin standard yeh promise nahi karta ki appliance safe hai, aur woh yeh bhi tay nahi karta ki use kaun on kar sakta hai. MCP bhi isi tarah ki cheez hai.',
-  'The specification defines a host, a client and a server, and gives them standard building blocks: resources, prompts and tools. It also talks about security and user consent in plain terms, which is worth reading. Agent-to-agent protocols are being developed separately. They are for agents that exchange tasks, not for a model that calls a tool.':
-    'Specification ek host, ek client aur ek server define karti hai, aur unhe standard building blocks deti hai: resources, prompts aur tools. Woh security aur user consent ke baare mein bhi saaf shabdon mein baat karti hai, jo padhne layak hai. Agent-to-agent protocols alag se develop ho rahe hain. Woh un agents ke liye hain jo tasks exchange karte hain, us model ke liye nahi jo ek tool call karta hai.',
-  'There are five units. The first draws the whole picture. The next three build a tiny example, then add consent and authorisation, then test it against attacks. The last one looks at how agents talk to other agents.':
-    'Yahan paanch units hain. Pehla poori tasveer draw karta hai. Agle teen ek chhota example banate hain, phir consent aur authorisation jodte hain, phir use attacks ke khilaaf test karte hain. Aakhri dekhta hai ki agents doosre agents se kaise baat karte hain.',
   'MCP mental model':
     'MCP mental model',
-  'Explain the host, the client, the server, tools, resources, prompts and capability negotiation.':
-    'Host, client, server, tools, resources, prompts aur capability negotiation ko samjhaiye.',
-  'A protocol standardises how two sides talk to each other. It does not remove the need for authorisation or for a safe design.':
-    'Protocol standardise karta hai ki do sides ek doosre se kaise baat karte hain. Woh authorisation ya safe design ki zaroorat ko khatam nahi karta.',
-  'Draw the flow from the host to the client to the server, and then to the tool or resource.':
-    'Host se client, phir server, phir tool ya resource tak ka flow draw kijiye.',
-  'Look closely at one real or local exchange of messages.':
-    'Messages ke ek asli ya local exchange ko dhyaan se dekhiye.',
-  'Ask what happens when a server says it offers a capability that the user is not authorised to use.':
-    'Poochiye ki kya hoga jab ek server aisi capability offer karne ka daava kare jise use karne ki user ko authorisation nahi hai.',
   'An MCP Trust-Boundary Diagram.':
     'Ek MCP Trust-Boundary Diagram.',
-  'Where does the user’s identity live, and where is authorisation enforced?':
-    'User ki identity kahan rehti hai, aur authorisation kahan enforce hoti hai?',
-  'Once you know the protocol, you can challenge anyone who says “MCP makes it secure”.':
-    'Protocol jaan lene ke baad, jo bhi bole “MCP se sab secure ho jaata hai”, aap use challenge kar sakte hain.',
   'Expose a tiny capability':
     'Ek chhoti si capability expose kijiye',
-  'Build a tiny local provider that offers one safe tool or resource.':
-    'Ek chhota local provider banaiye jo ek safe tool ya resource offer kare.',
-  'The best way to understand a protocol is to look inside a small working example of it.':
-    'Protocol ko samajhne ka sabse achha tareeka hai uska ek chhota chalta hua example andar se dekhna.',
-  'Expose a read-only function, such as looking up a record on your own machine.':
-    'Ek read-only function expose kijiye, jaise apni hi machine par kisi record ko look up karna.',
-  'Call it from a compatible client, or from a local mock.':
-    'Use ek compatible client se, ya ek local mock se call kijiye.',
-  'Send badly formed arguments, and make the server return errors.':
-    'Galat bane hue arguments bhejiye, aur server se errors lautwaiye.',
-  'An MCP Mini-Demo repository.':
-    'Ek MCP Mini-Demo repository.',
-  'Can you trace the whole path: discovery, the call, and the response?':
-    'Kya aap poora raasta trace kar sakte hain: discovery, call, aur response?',
-  'Keep the demo read-only, so your attention stays on how the protocol works.':
-    'Demo ko read-only rakhiye, taaki aapka dhyaan protocol kaise kaam karta hai us par rahe.',
   'Consent and authorization':
     'Consent aur authorization',
-  'Keep two things apart: finding out what a tool can do, and being allowed to use it.':
-    'Do cheezon ko alag rakhiye: yeh pata lagana ki tool kya kar sakta hai, aur use use karne ki ijaazat hona.',
-  'A tool that can be discovered is not automatically a tool you are authorised to use.':
-    'Jo tool discover ho sakta hai, woh apne aap aisa tool nahi ban jaata jise use karne ki aapko authorisation ho.',
-  'Create an authorisation matrix for read, write and privileged tools.':
-    'Read, write aur privileged tools ke liye ek authorisation matrix banaiye.',
-  'Add a policy check before any tool is called.':
-    'Kisi bhi tool ko call karne se pehle ek policy check jodiye.',
-  'Try a call you are not authorised to make, and record that it was refused.':
-    'Aisi call try kijiye jiski aapko authorisation nahi hai, aur record kijiye ki use mana kar diya gaya.',
-  'An Authorization Matrix, plus test evidence.':
-    'Ek Authorization Matrix, saath mein test evidence.',
-  'Who makes the final decision on authorisation?':
-    'Authorisation ka aakhri decision kaun leta hai?',
-  'Authorisation on the server must never depend on the model following instructions.':
-    'Server par authorisation kabhi is baat par depend nahi karni chahiye ki model instructions follow karta hai.',
   'MCP security and prompt injection':
     'MCP security aur prompt injection',
-  'Treat resources and tool outputs as content you cannot trust.':
-    'Resources aur tool outputs ko aisa content maniye jis par bharosa nahi kiya ja sakta.',
-  'When more things can connect, you also get more outside trust boundaries.':
-    'Jab zyada cheezein connect ho sakti hain, toh bahar ki trust boundaries bhi zyada ho jaati hain.',
-  'Hide a malicious instruction inside a resource, and test how the client’s workflow handles it.':
-    'Ek resource ke andar ek malicious instruction chhupaiye, aur test kijiye ki client ka workflow use kaise sambhalta hai.',
-  'Keep data apart from instructions that control the system, and enforce the tool policies.':
-    'Data ko un instructions se alag rakhiye jo system ko control karte hain, aur tool policies enforce kijiye.',
-  'Try an indirect injection, where the bad instruction arrives inside a resource that was retrieved.':
-    'Indirect injection try kijiye, jisme buri instruction ek retrieve kiye hue resource ke andar aati hai.',
   'An MCP Security Test Sheet.':
     'Ek MCP Security Test Sheet.',
-  'Can content you don’t trust cause an action that needs special privilege?':
-    'Kya jis content par aapko bharosa nahi, woh aisi action karwa sakta hai jisme special privilege chahiye?',
-  'This connects directly to the security chapter.':
-    'Yeh seedha security chapter se judta hai.',
   'Agent-to-agent interoperability':
     'Agent-to-agent interoperability',
-  'Understand the ideas behind A2A-style protocols: identity, delegation, exchanging tasks, trust and observability.':
-    'A2A-style protocols ke peeche ke ideas samajhiye: identity, delegation, tasks ka exchange, trust aur observability.',
-  'Protocols between agents solve the problem of connecting them. They do not remove the basic risks of autonomy.':
-    'Agents ke beech ke protocols unhe jodne ki problem solve karte hain. Woh autonomy ke buniyadi risks ko khatam nahi karte.',
-  'Draw an exchange between two agents, with the boundaries of identity and delegation marked.':
-    'Do agents ke beech ka ek exchange draw kijiye, jisme identity aur delegation ki boundaries mark hon.',
-  'Define which data and which authority may cross the boundary.':
-    'Tay kijiye ki kaun sa data aur kaun si authority is boundary ko paar kar sakti hai.',
-  'Create a handoff that is malicious or confused, and name the control that should stop it.':
-    'Ek malicious ya confused handoff banaiye, aur us control ka naam bataiye jo use rokega.',
   'An Agent Interoperability Trust Model.':
     'Ek Agent Interoperability Trust Model.',
-  'What does the receiving agent actually trust?':
-    'Receiving agent asal mein kis par bharosa karta hai?',
-  'Keep your attention on design and governance, not on protocol trivia.':
-    'Apna dhyaan design aur governance par rakhiye, protocol ki chhoti-chhoti baaton par nahi.',
   'A standard does not make a tool safe':
     'Standard se tool safe nahi ban jaata',
-  'The units lead to one main lesson, and it’s easy to forget when a standard looks tidy and official.':
-    'Units se ek main seekh nikalti hai, aur jab koi standard saaf-suthra aur official lagta hai, tab use bhool jaana aasaan hai.',
-  'A standard tool interface does not make an unsafe tool safe. The protocol carries the call; it does not decide whether the call should be allowed.':
-    'Standard tool interface se unsafe tool safe nahi ban jaata. Protocol call ko le jaata hai; woh yeh tay nahi karta ki call allow honi chahiye ya nahi.',
-  'There’s a common mix-up here. MCP is a <strong>protocol</strong>, not a framework that builds agents. It standardises the connection. What gets connected, and who may use it, is still your design.':
-    'Yahan ek common galatfehmi hai. MCP ek <strong>protocol</strong> hai, agents banane wala framework nahi. Woh connection ko standardise karta hai. Kya connect hota hai, aur use kaun use kar sakta hai, yeh abhi bhi aapka design hai.',
-  'Agent-to-agent protocols add one more layer. They let agents find each other and exchange tasks and results. For product decisions, focus on identity, delegation, trust, permissions, error handling and observability, rather than on the fields inside each message.':
-    'Agent-to-agent protocols ek aur layer jodte hain. Woh agents ko ek doosre ko dhoondhne aur tasks aur results exchange karne dete hain. Product decisions ke liye identity, delegation, trust, permissions, error handling aur observability par dhyaan dijiye, har message ke andar ke fields par nahi.',
-  'Now let’s turn this into something you can use. You’ll sort tools from a system you already know into groups, by what each one is allowed to change.':
-    'Ab ise kuch kaam ki cheez mein badalte hain. Aap ek jaane-pehchaane system ke tools ko groups mein sort karenge, is hisaab se ki har ek kya badal sakta hai.',
-  'Classify five tools from a system you know as read-only, reversible write, irreversible write, privileged or prohibited.':
-    'Kisi jaane-pehchaane system ke paanch tools ko read-only, reversible write, irreversible write, privileged ya prohibited mein classify kijiye.',
   'Tool — class — why':
     'Tool — class — kyun',
-  'The line between reversible and irreversible is where human confirmation belongs. If a tool was hard to place, it probably needs a smaller scope.':
-    'Reversible aur irreversible ke beech ki line wahi hai jahan human confirmation ki jagah hai. Agar kisi tool ko rakhna mushkil tha, toh shayad use chhota scope chahiye.',
-  'To sum up. MCP is a standard way to connect tools, in the same way a plug socket is a standard. It makes things easier to plug in, but it doesn’t make an unsafe tool safe. Consent, authorisation and trust boundaries are still your job.':
-    'Chaliye samet lete hain. MCP tools ko jodne ka ek standard tareeka hai, bilkul waise hi jaise plug socket ek standard hai. Isse cheezein plug karna aasaan ho jaata hai, lekin unsafe tool safe nahi ban jaata. Consent, authorisation aur trust boundaries ab bhi aapka kaam hain.',
-  'Next, Chapter 28 changes the type of input, from text to documents, images and audio, while keeping the same context and evaluation design.':
-    'Aage Chapter 28 input ka type badalta hai, text se documents, images aur audio tak, aur wahi context aur evaluation design rakhta hai.',
   'Write the tool access policy':
     'Tool access policy likhiye',
-  'The gateway and the browser extension would be allowed to read forms, change text, call outside models and write logs. A standard connection to a tool makes things easier to plug in, but it does not make an unsafe tool safe. In this chapter you learned to mark where consent and authorisation happen and to classify tools by what they are allowed to change. Here you write the access policy for the gateway and the extension.':
-    'Gateway aur browser extension ko forms padhne, text badalne, bahar ke models call karne aur logs likhne ki ijaazat hogi. Tool se standard connection jodna cheezein plug karna aasaan banata hai, lekin unsafe tool ko safe nahi banata. Is chapter mein aapne seekha ki consent aur authorisation kahan hote hain yeh mark karna, aur tools ko is hisaab se classify karna ki woh kya badal sakte hain. Yahan aap gateway aur extension ke liye access policy likhte hain.',
-  'Written only. The policy is what you hand in. Classifying the tools is the thinking. No new code is needed.':
-    'Sirf likhna hai. Policy hi woh cheez hai jo aap jama karte hain. Tools ko classify karna hi sochne ka kaam hai. Koi naya code nahi chahiye.',
   'List every tool or action the gateway or the browser extension would need: read a form field, read a request body, write to a log, call an outside model, replace text, block a request, send an alert.':
     'Har woh tool ya action list kijiye jo gateway ya browser extension ko chahiye hogi: form field padhna, request body padhna, log mein likhna, bahar ke model ko call karna, text replace karna, request block karna, alert bhejna.',
-  'Sort each one into a class: read only; a change that can be undone; a change that cannot be undone; special permission needed; or forbidden.':
-    'Har ek ko ek class mein daliye: read only; aisa change jo undo ho sakta hai; aisa change jo undo nahi ho sakta; special permission chahiye; ya forbidden.',
-  'For each class, write what authorisation it needs and whether a person must confirm.':
-    'Har class ke liye likhiye ki use kaun si authorisation chahiye aur kya kisi insaan ko confirm karna hoga.',
-  'Draw a table with roles down the side (the developer, the compliance reviewer, the end user and the tool itself) and the classes across the top. Mark who may do what.':
-    'Ek table banaiye jisme side mein roles hon (developer, compliance reviewer, end user aur khud tool) aur upar classes. Mark kijiye ki kaun kya kar sakta hai.',
-  'Mark on a diagram where trust stops, and say which part enforces it.':
-    'Ek diagram par mark kijiye ki trust kahan khatam hota hai, aur likhiye ki kaun sa hissa use enforce karta hai.',
-  'Write what is recorded for an action that cannot be undone.':
-    'Likhiye ki jo action undo nahi ho sakti, uske liye kya record kiya jaata hai.',
-  'Every tool sorted into one of the five classes.':
-    'Har tool paanch classes mein se ek mein sort hua.',
   'A table of roles against classes.':
     'Roles aur classes ki ek table.',
-  'A diagram with the trust boundary and the part that enforces it.':
-    'Ek diagram jisme trust boundary hai aur woh hissa jo use enforce karta hai.',
-  'A description of the record kept for an action that cannot be undone.':
-    'Us record ka description jo undo na ho sakne wali action ke liye rakha jaata hai.',
 
   /* ---- ch15mm: Multimodal AI: documents, images and voice ---- */
   'Multimodal AI: documents, images and voice':
     'Multimodal AI: documents, images aur voice',
-  'When the input is a PDF, an image or audio, the design stays the same: context, tools, retrieval and evaluation. What changes is what counts as evidence and how you trace it. You’ll find out what text extraction loses, and design a voice pipeline.':
-    'Jab input PDF, image ya audio ho, tab bhi design wahi rehta hai: context, tools, retrieval aur evaluation. Jo badalta hai woh yeh ki evidence kise maana jaata hai aur use trace kaise karte hain. Aap dekhenge ki text extraction kya kho deta hai, aur ek voice pipeline design karenge.',
-  'Feed in one PDF with a table, one image, and one short audio clip. Predict what plain text extraction will lose.':
-    'Ek table wala PDF, ek image, aur ek chhota audio clip dijiye. Pehle andaaza lagaiye ki plain text extraction kya kho dega.',
-  'Pull out structured facts together with where each one came from, including timestamps when the source is audio.':
-    'Structured facts nikaliye, saath mein yeh bhi ki har ek kahan se aaya, aur jab source audio ho tab timestamps bhi.',
-  'Try a poor scan, a difficult table, speakers who overlap, and input that mixes languages.':
-    'Kharab scan try kijiye, mushkil table, ek doosre par bolte speakers, aur aisa input jisme languages mili hui ho.',
-  'A multimodal pipeline and an evaluation set for each kind of input.':
-    'Ek multimodal pipeline, aur har tarah ke input ke liye ek evaluation set.',
-  'State where knowing the source and having a person verify are mandatory, not just nice to have.':
-    'Likhiye ki source jaanna aur kisi insaan se verify karwana kahan mandatory hai, sirf achha hone wali baat nahi.',
-  'Scanned documents need images, not just text':
-    'Scanned documents ko images chahiye, sirf text nahi',
-  'Chapter 16 covered this for images of text.':
-    'Chapter 16 ne yeh text ki images ke liye cover kiya tha.',
   'The answer key has to come from somewhere':
     'Answer key kahin se toh aani hi chahiye',
-  'From Chapter 6. For a table or an image, it comes from a person.':
-    'Chapter 6 se. Table ya image ke liye, woh kisi insaan se aati hai.',
   'OCR':
     'OCR',
-  'Reading text out of an image of text. The quality of the scan sets a floor, and OCR fails quietly on bad input.':
-    'Text ki image mein se text padhna. Scan ki quality ek floor tay karti hai, aur OCR kharab input par chupchaap fail ho jaata hai.',
   'Diarization':
     'Diarization',
-  'Working out who spoke which part of an audio recording. It looks like a technical detail, but it behaves like a privacy decision.':
-    'Yeh pata lagana ki audio recording ka kaun sa hissa kisne bola. Yeh technical detail jaisa dikhta hai, lekin kaam privacy decision ki tarah karta hai.',
   'Document understanding':
     'Document understanding',
-  'Pulling out meaning that depends on layout, such as tables, headings and position, and not only the words.':
-    'Aisa matlab nikalna jo layout par depend karta hai, jaise tables, headings aur position, sirf words par nahi.',
   'Media provenance':
     'Media provenance',
-  'Knowing where a piece of media came from, and what has been done to it since.':
-    'Yeh jaanna ki media ka ek tukda kahan se aaya, aur tab se uske saath kya kiya gaya hai.',
-  'Name three things plain-text extraction loses from a real PDF.':
-    'Bata paana ki ek asli PDF se plain-text extraction kaun si teen cheezein kho deta hai.',
-  'Draw a voice pipeline and mark the steps that affect response time.':
-    'Voice pipeline draw kar paana aur woh steps mark kar paana jo response time par asar daalte hain.',
-  'Say where the answer key for a multimodal question must come from.':
-    'Bata paana ki multimodal sawaal ki answer key kahan se aani chahiye.',
-  'Find one real PDF with a table in it, and one short audio recording that you’re allowed to use.':
-    'Ek asli PDF dhoondhiye jisme table ho, aur ek chhoti audio recording jo aap use kar sakte hain.',
-  'So far, almost everything in this part has been text. Now the input changes. Real work arrives as PDFs, photos of forms and voice messages. This chapter shows what happens to the same ideas when the input isn’t plain text, and where things quietly go missing.':
-    'Is part mein ab tak lagbhag sab kuch text tha. Ab input badalta hai. Asli kaam mein PDFs, forms ki photos aur voice messages aate hain. Yeh chapter dikhata hai ki jab input plain text nahi hota, tab wahi ideas kaise chalte hain, aur cheezein chupchaap kahan kho jaati hain.',
-  'Start with a PDF. It holds text, layout, tables, images and hidden metadata. If you extract only the words, most of that is flattened, and nothing tells you it happened. No error appears.':
-    'Pehle ek PDF se shuru kijiye. Usmein text, layout, tables, images aur chhupa hua metadata hota hai. Agar aap sirf words nikalte hain, toh usmein se zyadatar chapta ho jaata hai, aur aapko kuch batata bhi nahi. Koi error nahi aata.',
-  'Here’s an everyday example. Photograph a railway timetable, and read only the words, in order, to someone on the phone. They hear every station name, but no useful departure times. The meaning was in the columns, and the columns didn’t survive.':
-    'Ek roz ka example dekhiye. Ek railway timetable ki photo lijiye, aur phone par kisi ko sirf words, order mein, padhkar sunaiye. Unhe har station ka naam sunai dega, lekin departure times ka koi kaam ka matlab nahi. Matlab columns mein tha, aur columns bache nahi.',
-  'There are five units. The first looks at documents, the second at images, and the third at voice. The fourth looks at speed, and the fifth shows how to test all of it properly.':
-    'Yahan paanch units hain. Pehla documents dekhta hai, doosra images, aur teesra voice. Chautha speed dekhta hai, aur paanchva dikhata hai ki in sab ko sahi tareeke se test kaise karein.',
-  'Understand why a PDF is a page with a layout, not just a text file.':
-    'Samjhiye ki PDF ek layout wala page kyun hai, sirf text file nahi.',
-  'Pulling out only the text can lose tables, reading order, images, headers and the meaning that comes from where things sit on the page.':
-    'Sirf text nikalne se tables, reading order, images, headers, aur woh matlab kho sakte hain jo cheezein page par kahan baithi hain us se aata hai.',
-  'Put the extracted text next to the page as it is displayed, and compare the two.':
-    'Nikale hue text ko display hue page ke saamne rakhiye, aur dono ko compare kijiye.',
-  'Write down the information that was lost, and design a fallback.':
-    'Likhiye ki kaun si information kho gayi, aur ek fallback design kijiye.',
   'Use a scanned page and a page with a lot of tables.':
     'Ek scanned page aur ek aisa page use kijiye jisme bahut saari tables hon.',
   'A Document Understanding Gap Report.':
     'Ek Document Understanding Gap Report.',
-  'Which questions cannot be answered from plain text?':
-    'Kaun se sawaal plain text se answer nahi ho sakte?',
-  'This is a problem with the quality of retrieval before it is ever a problem with the LLM.':
-    'Yeh LLM ki problem hone se pehle retrieval ki quality ki problem hai.',
   'Vision and image evidence':
     'Vision aur image evidence',
-  'Use evidence from images, with a clear record of where it came from and a way to evaluate it.':
-    'Images se evidence use kijiye, saath mein saaf record ki woh kahan se aaya aur use evaluate karne ka tareeka.',
-  'Vision models can read what an image shows, but their reading is still a probable guess, not a certainty.':
-    'Vision models samajh sakte hain ki image mein kya dikh raha hai, lekin unka padhna phir bhi ek probable andaaza hai, pakki baat nahi.',
-  'Ask five questions about an image or a table, and mark the region of the image that is the evidence.':
-    'Ek image ya table ke baare mein paanch sawaal poochhiye, aur image ka woh hissa mark kijiye jo evidence hai.',
-  'Record the source image, the question, the answer, and whether a person verified it.':
-    'Source image, sawaal, jawaab, aur yeh record kijiye ki kisi insaan ne verify kiya ya nahi.',
-  'Use images that are low-resolution or unclear.':
-    'Aisi images use kijiye jo low-resolution ho ya saaf na ho.',
   'A Vision Evaluation Set.':
     'Ek Vision Evaluation Set.',
-  'Which outputs need a person to verify them?':
-    'Kaun se outputs ko verify karne ke liye insaan chahiye?',
-  'Any claim about what an image shows should be traceable back to the source image.':
-    'Image kya dikhati hai, is baare mein har claim ko source image tak trace kiya ja sakna chahiye.',
   'Audio and speech pipelines':
     'Audio aur speech pipelines',
-  'Understand the whole path: capture, then ASR (speech to text), then cleaning up the text, then extraction, then confirmation, then action.':
-    'Poora raasta samjhiye: capture, phir ASR (speech se text), phir text ko saaf karna, phir extraction, phir confirmation, phir action.',
-  'Voice AI is a pipeline with several places where it can fail. It is not a single call to a model.':
-    'Voice AI ek pipeline hai jisme fail hone ki kai jagahein hain. Yeh model ki ek single call nahi hai.',
-  'Use a short audio sample and check how good the transcript is.':
-    'Ek chhota audio sample use kijiye aur check kijiye ki transcript kitna achha hai.',
-  'Pull the tasks out of the transcript into structured JSON.':
-    'Transcript mein se tasks nikaliye, structured JSON mein.',
   'Test accents, people talking over each other, names, and content that mixes languages.':
     'Accents, ek doosre par bolte logon, names, aur mili hui languages wale content ko test kijiye.',
-  'A Voice Pipeline Spec, plus a 10-case audio eval set.':
-    'Ek Voice Pipeline Spec, saath mein ek 10-case audio eval set.',
-  'Where can an error first enter the pipeline?':
-    'Pipeline mein error sabse pehle kahan ghus sakta hai?',
-  'For meeting and task automation, confirmation and privacy are part of the product.':
-    'Meeting aur task automation ke liye confirmation aur privacy product ka hissa hain.',
   'Streaming and latency':
     'Streaming aur latency',
-  'Understand why voice and other interactive multimodal systems care about partial results and about the time to the first response.':
-    'Samjhiye ki voice aur doosre interactive multimodal systems partial results aur pehle response ke time ki parwah kyun karte hain.',
-  'Users feel delay differently from servers. Streaming can make a system feel faster without reducing the total work.':
-    'Users delay ko servers se alag mehsoos karte hain. Streaming system ko tez mehsoos karwa sakti hai, bina total kaam kam kiye.',
-  'Measure the delay at each stage for one sample request.':
-    'Ek sample request ke liye har stage ka delay measure kijiye.',
-  'Keep the delays for capture, transcription, the model and the action separate.':
-    'Capture, transcription, model aur action ke delays ko alag rakhiye.',
-  'Add an artificial delay to one stage, and see what it does to the experience.':
-    'Ek stage mein banavati delay jodiye, aur dekhiye ki experience par kya asar padta hai.',
   'A Latency Budget for the Multimodal Flow.':
     'Multimodal Flow ke liye ek Latency Budget.',
-  'Which delay target will the user actually notice?':
-    'User ko asal mein kaun sa delay target mehsoos hoga?',
-  'Don’t speed up the fastest part while the user is waiting on another one.':
-    'Sabse tez hisse ko aur tez mat kijiye, jab user kisi doosre hisse ka intezaar kar raha ho.',
   'Multimodal RAG evaluation':
     'Multimodal RAG evaluation',
-  'Design tests where the answer depends on evidence that comes from one specific kind of input.':
-    'Aise tests design kijiye jahan jawaab ek khaas tarah ke input se aane wale evidence par depend karta ho.',
-  'An evaluation set made only of text can hide failures that happen with images and audio.':
-    'Sirf text ka bana evaluation set un failures ko chhupa sakta hai jo images aur audio ke saath hoti hain.',
-  'Create five text-only cases, five visual or table cases, and five audio cases.':
-    'Paanch text-only cases, paanch visual ya table cases, aur paanch audio cases banaiye.',
-  'Score three things: whether the evidence is correct, whether the extraction is correct, and whether the whole task succeeds.':
-    'Teen cheezein score kijiye: evidence sahi hai ya nahi, extraction sahi hai ya nahi, aur poora task succeed hua ya nahi.',
   'Add a poor scan, noisy audio and a case in more than one language.':
     'Ek kharab scan, shor wala audio, aur ek aisa case jisme ek se zyada languages hon, jodiye.',
-  'An Evaluation Matrix for each kind of input.':
-    'Har tarah ke input ke liye ek Evaluation Matrix.',
-  'Which failure belongs to extraction, and which belongs to reasoning?':
-    'Kaun si failure extraction ki hai, aur kaun si reasoning ki?',
-  'Your set of measures should show you which component is broken, not just that the final answer was wrong.':
-    'Aapke measures ka set aapko dikhana chahiye ki kaun sa component toot gaya hai, sirf yeh nahi ki aakhri jawaab galat tha.',
   'Voice is a pipeline':
     'Voice ek pipeline hai',
-  'Voice is the clearest case of something with many stages. It feels like one thing when you use it, but it isn’t.':
-    'Voice ek aisi cheez ka sabse saaf example hai jisme kai stages hote hain. Use karte waqt woh ek hi cheez lagti hai, lekin hai nahi.',
-  'A voice system is a pipeline, not one model. Each stage adds delay, and each stage is a place where meaning can change.':
-    'Voice system ek pipeline hai, ek model nahi. Har stage delay jodta hai, aur har stage ek aisi jagah hai jahan matlab badal sakta hai.',
-  'Each stage has a name: reading text from an image (OCR), turning speech into text (transcription), and working out who said what (speaker attribution). Each is a step where meaning can be lost, so each needs its own check.':
-    'Har stage ka ek naam hai: image se text padhna (OCR), speech ko text mein badalna (transcription), aur yeh pata lagana ki kisne kya kaha (speaker attribution). Har ek aisa step hai jahan matlab kho sakta hai, isliye har ek ka apna check chahiye.',
-  'Speaker attribution is a good one to try yourself, because it raises questions that are not only technical.':
-    'Speaker attribution khud try karne ke liye achha example hai, kyunki isse aise sawaal uthte hain jo sirf technical nahi hain.',
-  'For a meeting assistant: who said what, how long is the transcript kept, and what happens when two people talk at once?':
-    'Ek meeting assistant ke liye: kisne kya kaha, transcript kitne time tak rakha jaata hai, aur jab do log ek saath bolein toh kya hota hai?',
-  'Attribution … retention … overlapping speech …':
-    'Attribution … retention … overlapping speech …',
-  'Speaker attribution looks like a technical detail, but it behaves like a privacy decision.':
-    'Speaker attribution technical detail jaisa dikhta hai, lekin kaam privacy decision ki tarah karta hai.',
-  'Let’s pull it together. A PDF is a page with layout, so extracting only the words loses things without any warning.':
-    'Chaliye sab jodte hain. PDF layout wala page hai, isliye sirf words nikalne se bina kisi warning ke cheezein kho jaati hain.',
-  'An image gives you probable readings, not certainties, so you keep track of the source. A voice system is a pipeline, and each stage needs its own check. For a table or an image, the answer key comes from a person.':
-    'Image aapko probable readings deti hai, pakki baatein nahi, isliye aap source ka track rakhte hain. Voice system ek pipeline hai, aur har stage ko apna check chahiye. Table ya image ke liye, answer key kisi insaan se aati hai.',
-  'Next, Chapter 29 builds a systematic way to prove whether all these components work.':
-    'Aage Chapter 29 ek systematic tareeka banata hai yeh saabit karne ka ki yeh saare components kaam karte hain ya nahi.',
   'Specify how the tool handles images and voice':
     'Tool images aur voice ko kaise handle karta hai, yeh specify kijiye',
-  'Personal details arrive as photos of cards and as spoken words as well as typed text. In this chapter you learned what plain-text extraction loses from a real document, how a voice pipeline is put together, and where the answer key for a multimodal question must come from. Here you specify how Bharat Privacy Guard deals with scanned IDs and with typed-by-voice sentences.':
-    'Personal details typed text ke saath-saath cards ki photos aur bole hue words ke roop mein bhi aate hain. Is chapter mein aapne seekha ki ek asli document se plain-text extraction kya kho deta hai, voice pipeline kaise banti hai, aur multimodal sawaal ki answer key kahan se aani chahiye. Yahan aap specify karte hain ki Bharat Privacy Guard scanned IDs aur voice se type kiye gaye sentences ko kaise handle karta hai.',
-  'Written only. A specification. No code needed.':
-    'Sirf likhna hai. Ek specification. Code ki zaroorat nahi.',
-  'Name three things that are lost when text is simply pulled out of a scanned ID card or a PDF. For example: where the text sits on the page, a stamp, and a handwritten note.':
-    'Teen cheezein bataiye jo tab kho jaati hain jab ek scanned ID card ya PDF se text sirf kheench liya jaata hai. Jaise: text page par kahan baitha hai, ek stamp, aur haath se likha hua note.',
-  'Draw the path for a voice message: speech turned into text, then the tool, then the safe text. Mark the steps that add delay.':
-    'Voice message ka raasta draw kijiye: speech se text, phir tool, phir safe text. Woh steps mark kijiye jo delay jodte hain.',
-  'Write the privacy boundary: whose voice is recorded, where it is recorded, and what notice the person gets.':
-    'Privacy boundary likhiye: kiski voice record hoti hai, kahan record hoti hai, aur us insaan ko kaun sa notice milta hai.',
-  'Write how long the typed-out speech is kept and how it is deleted.':
-    'Likhiye ki typed-out speech kitne time tak rakhi jaati hai aur kaise delete hoti hai.',
-  'Write what happens when the speech-to-text is unsure of a number, for example a digit it heard twice. Write the rule.':
-    'Likhiye ki jab speech-to-text kisi number ke baare mein pakka na ho, toh kya hota hai, jaise ek digit jo usne do tarah se suna. Rule likhiye.',
-  'Say where the answer key for voice and images comes from, and write three made-up voice-typed sentences with no punctuation to add to it.':
-    'Bataiye ki voice aur images ki answer key kahan se aati hai, aur usmein jodne ke liye bina punctuation ke teen banaye hue voice-typed sentences likhiye.',
-  'Write the measures you will track, including one for how often a spoken number is heard correctly.':
-    'Woh measures likhiye jo aap track karenge, jisme ek yeh bhi ho ki bola hua number kitni baar sahi suna gaya.',
-  'Three things lost by plain text extraction.':
-    'Plain text extraction se kho jaane wali teen cheezein.',
-  'A voice path with the delays marked.':
-    'Delays mark kiya hua ek voice path.',
-  'The privacy boundary and the keep-and-delete rule.':
-    'Privacy boundary aur rakhne-aur-delete karne ka rule.',
-  'A rule for unsure numbers, three new answer-key rows, and the measures to track.':
-    'Unsure numbers ka ek rule, answer key ki teen nayi rows, aur track karne ke measures.',
 
   /* ---- ch16e: Evaluation engineering: test sets and release gates ---- */
   'Evaluation engineering: test sets and release gates':
     'Evaluation engineering: test sets aur release gates',
-  'In Chapter 6 you learned to measure. Now you turn that measuring into a release process: a test set with a version number, scores at several levels, and a gate that decides whether a change goes live.':
-    'Chapter 6 mein aapne measure karna seekha tha. Ab hum us measuring ko ek release process bana denge: version number wala test set, kai levels par scores, aur ek gate jo tay karta hai ki koi change live jayega ya nahi.',
   'Before you improve anything, write twenty tests. Include normal questions, reworded ones, unclear ones, ones with no answer, other languages, tricky attacks and cases where the tool must be used.':
     'Kuch bhi improve karne se pehle 20 tests likhiye. Usmein normal sawaal rakhiye, doosre tareeke se pooche hue sawaal, unclear sawaal, jinka koi jawaab nahi hai woh sawaal, doosri languages, tricky attacks, aur woh cases jahan tool ka use karna padta hai.',
-  'Automate the checks for retrieval, structure, tool use and the final answer. Use a model as judge only where a simple exact check cannot do the job.':
-    'Retrieval, structure, tool use aur final jawaab ke checks automate kijiye. Model ko judge tabhi banaiye jahan ek simple exact check se kaam nahi chalta.',
-  'Change the prompt, then the model, then the index, one at a time, and run the regression test each time. Then compare the judge’s labels with human labels on a small sample.':
-    'Prompt badaliye, phir model, phir index, ek-ek karke, aur har baar regression test chalaiye. Uske baad ek chhote sample par judge ke labels ko insaanon ke labels se compare kijiye.',
-  'A working evaluation harness and a release gate.':
-    'Ek chalta hua evaluation harness aur ek release gate.',
-  'No change goes live because a demo looked better. It goes live because it passed the gate.':
-    'Koi change sirf isliye live nahi jaata ki demo achha lag raha tha. Woh tab jaata hai jab woh gate pass kar leta hai.',
   'Answer keys, recall and precision':
     'Answer keys, recall aur precision',
-  'Chapter 6 built the measuring that this chapter scales up.':
-    'Chapter 6 mein jo measuring banayi thi, yeh chapter use bade scale par le jaata hai.',
-  'A model can grade output at scale':
-    'Model bade scale par output ko grade kar sakta hai',
-  'Chapter 14 introduced the judge, and the ways it can be biased.':
-    'Chapter 14 mein judge aur uske bias ka zikr aaya tha.',
-  'Improvement comes from reading failures by hand':
-    'Failures ko haath se padhne se improvement aati hai',
-  'You learned this in Chapter 14.5. Automation does not replace it.':
-    'Yeh aapne Chapter 14.5 mein seekha tha. Automation iski jagah nahi leta.',
   'Golden set':
     'Golden set',
-  'The carefully chosen cases, with a version number, that every change is measured against.':
-    'Woh sochkar chune hue cases, version number ke saath, jinke against har change ko measure kiya jaata hai.',
   'LLM-as-judge':
     'LLM-as-judge',
-  'Using a model to score another model’s output. It is a scorer, not an oracle, so you should know how often it disagrees with human labels.':
-    'Ek model se doosre model ke output ko score karwana. Woh ek scorer hai, oracle nahi, isliye aapko pata hona chahiye ki woh insaanon ke labels se kitni baar alag jaata hai.',
   'Regression test':
     'Regression test',
-  'A case that passed before and must still pass now.':
-    'Ek aisa case jo pehle pass hota tha aur ab bhi pass hona chahiye.',
   'Release gate':
     'Release gate',
-  'The thresholds a change has to clear before it goes live, however good the demo looked.':
-    'Woh thresholds jo kisi change ko live jaane se pehle clear karne padte hain, demo chahe kitna bhi achha laga ho.',
-  'Build a test set with a version number that still works after a prompt, model or index change.':
-    'Version number wala test set banana paana jo prompt, model ya index badalne ke baad bhi kaam kare.',
-  'Score the system at several levels, so that a good final number cannot hide a broken part.':
-    'System ko kai levels par score kar paana, taaki ek achha final number kisi toote hue part ko chhupa na sake.',
-  'Say where an LLM judge is fine to use and where it is not.':
-    'Bata paana ki LLM judge kahan theek hai aur kahan nahi.',
-  'Bring your answer key from Chapter 6, your judge from Chapter 14 and your experiment harness.':
-    'Chapter 6 ka apna answer key, Chapter 14 ka judge aur apna experiment harness saath rakhiye.',
-  'In Chapter 6 you made an answer key and learned to score against it. That was measuring. Now we make it a habit the whole team follows, and a rule that decides whether a change goes live.':
-    'Chapter 6 mein aapne ek answer key banaya tha aur uske against score karna seekha tha. Woh measuring thi. Ab hum use poori team ki aadat bana denge, aur ek aisa rule bhi, jo tay karta hai ki change live jayega ya nahi.',
-  'Here’s what you’ll build: a fixed set of test questions, one consistent way of grading them, and a pass mark agreed in advance. Once you have those, “the demo looked better” stops being an argument.':
-    'Aap yeh banayenge: test sawaalon ka ek fixed set, unhe grade karne ka ek hi consistent tareeka, aur pehle se tay kiya hua pass mark. Yeh teeno hone ke baad “demo achha lag raha tha” koi argument nahi rehta.',
-  'Think about how a school works. It doesn’t judge a student on one good answer. Everyone sits the same paper, it is marked the same way, and the pass mark is agreed beforehand. An AI feature needs the same fairness.':
-    'Ek school ko dekhiye. Woh student ko ek achhe jawaab par judge nahi karta. Sab ek hi paper dete hain, sabka paper ek hi tareeke se check hota hai, aur pass mark pehle se tay hota hai. AI feature ko bhi aisi hi fairness chahiye.',
-  'Every AI feature needs a test set, and the test set needs a version number. If you cannot rerun an evaluation after a change, it is only an anecdote.':
-    'Har AI feature ko ek test set chahiye, aur test set ko ek version number. Agar aap change ke baad evaluation dobara chala nahi sakte, toh woh sirf ek kissa hai.',
   'The seven units below take you from the test set to the final release decision. Each one builds on the one before.':
     'Neeche ke saat units aapko test set se final release decision tak le jaate hain. Har unit pichhle unit par bana hai.',
   'Golden datasets':
     'Golden datasets',
-  'Create a set of cases, with a version number, that includes typical cases, edge cases and cases where the system has failed.':
-    'Cases ka ek set banaiye, version number ke saath, jismein typical cases, edge cases aur woh cases ho jahan system fail hua hai.',
-  'A golden dataset is the team’s memory of what “good” means for your application.':
-    'Golden dataset team ki yaaddasht hai ki aapki application ke liye “good” ka matlab kya hai.',
-  'Create at least 30 cases. Cover the normal path, reworded questions, unclear questions, questions with no answer, other languages, attacks and cases that need a tool.':
-    'Kam se kam 30 cases banaiye. Normal path, doosre tareeke se pooche hue sawaal, unclear sawaal, jinka jawaab nahi hai woh sawaal, doosri languages, attacks, aur woh cases jinhe tool chahiye, sab cover kijiye.',
-  'For each case, store the behaviour you expect. Where you can, also store the IDs of the evidence it should use.':
-    'Har case ke liye woh behaviour store kijiye jo aap expect karte hain. Jahan ho sake, un evidence ke IDs bhi store kijiye jinka use hona chahiye.',
-  'Remove one category of cases. See which regressions you can no longer notice.':
-    'Cases ki ek category hata dijiye. Dekhiye ki kaun se regressions ab aapko dikhna band ho gaye.',
   'Golden Dataset v1.0.':
     'Golden Dataset v1.0.',
-  'Does the set reflect the risks real users face, or only the easy demos?':
-    'Kya yeh set asli users ke risks dikhata hai, ya sirf aasaan demos ko?',
-  'The dataset becomes the contract for product quality.':
-    'Dataset product quality ka contract ban jaata hai.',
   'Error taxonomy':
     'Error taxonomy',
-  'Sort failures into kinds, so that you fix causes and not just symptoms.':
-    'Failures ko kinds mein baant dijiye, taaki aap sirf symptoms nahi, causes ko fix karein.',
-  '“Wrong answer” is too broad to tell engineers what to fix.':
-    '“Wrong answer” itna broad hai ki engineers ko pata nahi chalta kya fix karna hai.',
-  'Create the categories: retrieval miss, wrong chunk, stale data, instruction failure, schema failure, tool failure, authorization failure and hallucination.':
-    'Yeh categories banaiye: retrieval miss, wrong chunk, stale data, instruction failure, schema failure, tool failure, authorization failure aur hallucination.',
-  'Label 20 real failures with these categories.':
-    'Is categories ke saath 20 asli failures ko label kijiye.',
-  'Ask two people to label the same failures. Then compare where they disagree.':
-    'Do logon se wahi failures label karwaiye. Phir dekhiye ki woh kahan alag-alag label karte hain.',
-  'Error Taxonomy plus labelled examples.':
-    'Error Taxonomy aur labelled examples.',
-  'Which categories lead to a clear action?':
-    'Kaun si categories se saaf action nikalta hai?',
-  'A useful set of categories changes what the team does next.':
-    'Kaam ki categories team ka agla kadam badal deti hain.',
   'Retrieval metrics':
     'Retrieval metrics',
-  'Measure Recall@k, Precision@k and similar ranking measures, using clear labels for what counts as relevant.':
-    'Recall@k, Precision@k aur isi tarah ke ranking measures measure kijiye, aur saaf labels rakhiye ki relevant ka matlab kya hai.',
-  'A metric means something only when the definition of “relevant” is clear.':
-    'Metric tabhi kuch batata hai jab “relevant” ki definition saaf ho.',
-  'For each query, mark which chunks are relevant. Then calculate Recall@k and Precision@k.':
-    'Har query ke liye mark kijiye ki kaun se chunks relevant hain. Phir Recall@k aur Precision@k calculate kijiye.',
   'Compare what you get at k=1, 3, 5 and 10.':
     'k=1, 3, 5 aur 10 par kya milta hai, compare kijiye.',
-  'Add some distractor chunks, which look related but are not, and watch how the metrics change.':
-    'Kuch distractor chunks daaliye, jo related lagte hain lekin hain nahi, aur dekhiye ki metrics kaise badalte hain.',
   'Retrieval Evaluation Notebook.':
     'Retrieval Evaluation Notebook.',
   'What exactly counts as relevant?':
@@ -1107,84 +711,24 @@ Object.assign(window.HING = window.HING || {}, {
     'Retrieval metric tab tak report mat kijiye jab tak aap yeh na bata dein ki relevant kaise tay kiya.',
   'Generation and task success':
     'Generation aur task success',
-  'Check whether the final answer is correct, grounded in the evidence, complete and useful for the task.':
-    'Check kijiye ki final jawaab correct hai, evidence par tika hai, complete hai, aur task ke liye kaam ka hai.',
-  'A system can have a good retrieval score and still give a bad answer.':
-    'Ek system ka retrieval score achha ho sakta hai aur phir bhi jawaab kharab ho sakta hai.',
-  'Write yes-or-no or graded criteria for whether an answer is correct and grounded.':
-    'Haan-ya-na wale ya graded criteria likhiye ki jawaab kab correct aur grounded maana jaayega.',
-  'Score a fixed sample, using labels from people.':
-    'Ek fixed sample ko score kijiye, insaanon ke labels ke saath.',
-  'Include answers that are only partly correct, and answers that sound too sure of themselves.':
-    'Aise jawaab bhi rakhiye jo sirf aadhe sahi hain, aur woh jawaab bhi jo zaroorat se zyada confident lagte hain.',
-  'Generation Rubric plus a labelled sample.':
-    'Generation Rubric aur ek labelled sample.',
-  'Can two reviewers apply the rubric and reach the same result?':
-    'Kya do reviewers rubric lagakar ek hi result tak pahunch sakte hain?',
-  'Acceptance criteria should be something you can observe, not just “it sounds good”.':
-    'Acceptance criteria aisi cheez honi chahiye jo aap dekh sakein, sirf “achha lag raha hai” nahi.',
-  'Use a model as judge where an exact check is not enough, and then check the judge against human labels.':
-    'Jahan exact check kaafi nahi hai, wahan model ko judge banaiye, aur phir judge ko insaanon ke labels se check kijiye.',
-  'A judge is one more component that can be wrong, so measure how often it agrees with people.':
-    'Judge bhi ek aur component hai jo galat ho sakta hai, isliye measure kijiye ki woh insaanon se kitni baar sehmat hota hai.',
-  'Have a judge score 20 examples for groundedness or relevance.':
-    'Ek judge se 20 examples ko groundedness ya relevance ke liye score karwaiye.',
-  'Compare the judge’s decisions with the human labels, and calculate how often they disagree.':
-    'Judge ke decisions ko insaanon ke labels se compare kijiye, aur calculate kijiye ki woh kitni baar alag jaate hain.',
-  'Swap the order of the answers, or make them longer or shorter. See whether the judge favours position or length.':
-    'Jawaabon ka order badaliye, ya unhe lamba ya chhota kijiye. Dekhiye ki judge position ya length ko pasand toh nahi karta.',
   'Judge Validation Report.':
     'Judge Validation Report.',
   'Where does the judge disagree with people, and why?':
     'Judge insaanon se kahan alag jaata hai, aur kyun?',
-  'Never let a judge you have not checked quietly become the authority on whether you release.':
-    'Jis judge ko aapne check nahi kiya, use kabhi chupchaap release ka faisla karne wala mat banne dijiye.',
   'Regression and CI gates':
     'Regression aur CI gates',
-  'Run the evaluation automatically whenever a prompt, model, index or tool changes.':
-    'Jab bhi prompt, model, index ya tool badle, evaluation apne aap chalaiye.',
-  'An AI system can get worse without any error showing up when the code is built.':
-    'Ek AI system bina kisi error ke bhi kharab ho sakta hai, jabki code build ho jaata hai.',
-  'Create one command that runs the golden set and prints a summary.':
-    'Ek aisa command banaiye jo golden set chalaye aur summary print kare.',
-  'Set thresholds, and make the run fail when quality or safety drops below them.':
-    'Thresholds set kijiye, aur run ko fail karwaiye jab quality ya safety unse neeche aaye.',
-  'Change a prompt, and check that CI catches the regression.':
-    'Ek prompt badaliye, aur check kijiye ki CI regression pakad leta hai.',
   'Automated Evaluation Suite plus Release Gate.':
     'Automated Evaluation Suite aur Release Gate.',
   'What exact condition blocks a release?':
     'Kaun si exact condition release rokti hai?',
-  'This is the AI version of a test suite, for software whose behaviour can vary.':
-    'Yeh test suite ka AI version hai, aise software ke liye jiska behaviour badal sakta hai.',
   'Evaluation release decision':
     'Evaluation release decision',
-  'Bring quality, safety, latency and cost together into one release decision, without hiding any trade-off.':
-    'Quality, safety, latency aur cost ko milakar ek release decision banaiye, bina kisi trade-off ko chhupaye.',
-  'Shipping is a decision with several dimensions. A single overall score can hide failures you cannot accept.':
-    'Ship karna ek aisa decision hai jismein kai dimensions hain. Ek overall score aise failures chhupa sakta hai jo aap accept nahi kar sakte.',
-  'Define a quality threshold, a safety threshold, a latency SLO (the response time you promise), a cost ceiling and a rollback trigger.':
-    'Ek quality threshold, ek safety threshold, ek latency SLO (jis response time ka aap vaada karte hain), ek cost ceiling aur ek rollback trigger tay kijiye.',
-  'Run a candidate release through the gate.':
-    'Ek candidate release ko gate se guzaariye.',
-  'Create a model that improves quality but breaks the cost limit or the safety limit.':
-    'Ek aisa model banaiye jo quality improve kare lekin cost limit ya safety limit tod de.',
   'Release Decision Record.':
     'Release Decision Record.',
-  'Which threshold can never be negotiated?':
-    'Kaun sa threshold kabhi negotiate nahi ho sakta?',
-  'A PM owns the framework for the decision, even when engineers build it.':
-    'PM decision ke framework ka owner hota hai, chahe engineers use banayein.',
   'Measure at several levels':
     'Kai levels par measure kijiye',
-  'An AI system has several parts, so one score for the whole thing is not enough. The catch is that a fluent model can cover for missing evidence, and it does so often enough to look fine in a demo.':
-    'Ek AI system ke kai parts hote hain, isliye poore system ka ek score kaafi nahi hai. Dikkat yeh hai ki ek fluent model missing evidence ko chhupa leta hai, aur itni baar chhupa leta hai ki demo mein sab theek lagta hai.',
-  'Evaluate several levels at once. A good end-to-end score can hide a badly broken retriever.':
-    'Kai levels ek saath evaluate kijiye. Ek achha end-to-end score ek bahut kharab retriever ko chhupa sakta hai.',
   'Layer':
     'Layer',
-  'Example metric':
-    'Example metric',
   'The release question it answers':
     'Release ka woh sawaal jiska yeh jawaab deta hai',
   'Retrieval':
@@ -1203,8 +747,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Tool use',
   'Tool-selection accuracy':
     'Tool-selection accuracy',
-  'Did it call the right capability?':
-    'Kya usne sahi capability call ki?',
   'Operations':
     'Operations',
   'p95 latency, cost per task':
@@ -1215,264 +757,62 @@ Object.assign(window.HING = window.HING || {}, {
     'Safety',
   'Attack success rate':
     'Attack success rate',
-  'Can adversarial input break the controls?':
-    'Kya adversarial input controls ko tod sakta hai?',
   'You will meet many evaluation products. Each one is selling an answer to one of three questions.':
     'Aapko bahut saare evaluation products milenge. Har ek teen sawaalon mein se kisi ek ka jawaab bech raha hota hai.',
-  'The first is <strong>what do we test on?</strong> The answer is a fixed set you keep, with real cases where possible. The second is <strong>who grades it?</strong> Use an exact check where you can, a person where it matters, and a model where neither can keep up. The third is <strong>what score lets it ship?</strong>':
-    'Pehla hai <strong>hum kis par test karte hain?</strong> Jawaab hai ek fixed set jo aap rakhte hain, jahan ho sake asli cases ke saath. Doosra hai <strong>grade kaun karta hai?</strong> Jahan ho sake exact check, jahan zaroori ho insaan, aur jahan dono ke bas ka na ho wahan model. Teesra hai <strong>kitna score aaye toh ship ho?</strong>',
   'Now try writing that third answer yourself.':
     'Ab woh teesra jawaab aap khud likhkar dekhiye.',
-  'Write the sentence that stops a release. Not a policy: the actual sentence, with numbers, that you would say in the meeting.':
-    'Woh sentence likhiye jo release rokta hai. Policy nahi: asli sentence, numbers ke saath, jo aap meeting mein bolenge.',
   'We are not shipping because …':
     'Hum ship nahi kar rahe kyunki …',
-  'If your sentence contains the word “seems”, it will not stop anything. Thresholds stop releases; impressions do not.':
-    'Agar aapke sentence mein “lagta hai” jaisa word hai, toh woh kuch nahi rokega. Release thresholds rokte hain; impressions nahi.',
-  'So here is the whole chapter in a few lines. You keep a test set with a version number. You score at several levels, so a good total cannot hide a broken part. You use a model as judge only after checking it against people. And you agree the pass mark before you look at the results.':
-    'Toh poora chapter chand lines mein yeh hai. Aap version number wala test set rakhte hain. Aap kai levels par score karte hain, taaki ek achha total kisi toote hue part ko na chhupa sake. Aap model ko judge tabhi banate hain jab use insaanon ke against check kar lein. Aur pass mark aap results dekhne se pehle tay karte hain.',
-  'Next, in Chapter 30, you’ll look at how to watch the system continuously once it is live.':
-    'Agle Chapter 30 mein aap dekhenge ki system live hone ke baad use lagaatar kaise watch kiya jaata hai.',
   'Build the release gate':
     'Release gate banaiye',
-  'Without a release gate, measuring just produces a report that nobody has to act on. In this chapter you learned to build a test set that still works after a change of prompt, model or index. You also learned to score at several levels, so that a good total cannot hide a broken part, and where an automatic marker is acceptable. Now you build the gate that every new version of the tool must pass before it ships.':
-    'Release gate ke bina measuring sirf ek report bana deti hai jis par kisi ko action nahi lena padta. Is chapter mein aapne seekha ki aisa test set kaise banate hain jo prompt, model ya index badalne ke baad bhi kaam kare. Aapne yeh bhi seekha ki kai levels par score kaise karte hain, taaki ek achha total kisi toote hue part ko na chhupa sake, aur automatic marker kahan theek hai. Ab aap woh gate banayenge jo tool ke har naye version ko ship hone se pehle pass karna hoga.',
-  'Your test harness from Chapter 21, extended in code.':
-    'Chapter 21 ka aapka test harness, code mein extend kiya hua.',
-  'Open your harness. Turn your answer key into a test set with a version number: a file that carries the number and a note listing what changed since the last version. Call it the final version for now.':
-    'Apna harness kholiye. Apne answer key ko version number wale test set mein badaliye: ek file jismein number ho aur ek note ho ki pichhle version se kya badla. Abhi ke liye use final version kahiye.',
-  'Score at three levels: each finder on its own, the whole tool on whole sentences, and the cleaned text marked by your automatic marker from Chapter 14.':
-    'Teen levels par score kijiye: har finder akela, poora tool poore sentences par, aur Chapter 14 ke aapke automatic marker se marked cleaned text.',
-  'Write the gate. For each score, write the lowest number a new version may have in order to be released. Add a rule that the score for any single kind of ID may not drop, even if the overall score goes up.':
-    'Gate likhiye. Har score ke liye woh sabse kam number likhiye jo naye version ko release hone ke liye chahiye. Ek rule bhi jodiye ki kisi ek kisam ki ID ka score gir nahi sakta, chahe overall score badh jaaye.',
-  'Make the gate run with one command that prints PASS or FAIL.':
-    'Gate ko ek command se chalne wala banaiye jo PASS ya FAIL print kare.',
-  'Prove it works. Change one rule so that it breaks Aadhaar finding, run the gate, and show that it says FAIL.':
-    'Ab prove kijiye ki yeh kaam karta hai. Ek rule badaliye taaki Aadhaar finding toot jaaye, gate chalaiye, aur dikhaiye ki woh FAIL bolta hai.',
-  'Say where the automatic marker is acceptable in the gate and where only your own marking will do.':
-    'Bataiye ki gate mein automatic marker kahan theek hai aur kahan sirf aapki apni marking chalegi.',
-  'A test set with a version number and a change note.':
-    'Version number wala ek test set aur ek change note.',
   'Scores at three levels.':
     'Teen levels par scores.',
-  'A gate with a minimum for every score and a rule for each kind of ID.':
-    'Har score ke liye minimum wala gate, aur har kisam ki ID ke liye ek rule.',
   'A one-command run that prints PASS or FAIL, and proof that it fails a broken change.':
     'Ek command wala run jo PASS ya FAIL print kare, aur saboot ki woh kharab change ko fail karta hai.',
 
   /* ---- ch17o: Observability and LLMOps: traces, cost and rollback ---- */
   'Observability and LLMOps: traces, cost and rollback':
     'Observability aur LLMOps: traces, cost aur rollback',
-  'When an answer is wrong, slow or expensive, you need to find out why without guessing. You’ll design a trace record, treat cost as an architecture metric, and give every part a version, so that any change can be rolled back.':
-    'Jab koi jawaab galat, slow ya mehnga ho, toh aapko andaaze lagaye bina pata karna hota hai ki kyun. Aap ek trace record design karenge, cost ko architecture metric ki tarah dekhenge, aur har part ko ek version denge, taaki koi bhi change rollback ho sake.',
-  'Trace one request by hand, and time every stage with a stopwatch.':
-    'Ek request ko haath se trace kijiye, aur har stage ko stopwatch se time kijiye.',
-  'Record the request id, the model and prompt version, the retrieval ids, the tool calls, the latency, the tokens, the status and the evaluation result.':
-    'Request id, model aur prompt version, retrieval ids, tool calls, latency, tokens, status aur evaluation result record kijiye.',
-  'Deliberately create a slow request, an expensive one and a low-quality one. Then work out what went wrong in each, using only its trace.':
-    'Jaan-boojhkar ek slow request, ek mehngi request aur ek low-quality request banaiye. Phir har ek mein kya galat hua, yeh sirf uske trace se pata kijiye.',
-  'A specification for a six-panel view of the running system.':
-    'Chalte hue system ke six-panel view ki specification.',
-  'Say which signals should start an investigation, which should trigger a rollback, and which are just noise.':
-    'Bataiye kaun se signals investigation shuru karwate hain, kaun se rollback karwate hain, aur kaun se sirf noise hain.',
-  'Users notice response time':
-    'Users ko response time dikhta hai',
-  'You saw this in Chapter 11.5. A trace shows where the time went.':
-    'Yeh aapne Chapter 11.5 mein dekha tha. Trace dikhata hai ki time kahan gaya.',
-  'Cost can be measured per request':
-    'Cost har request ke hisaab se measure ho sakti hai',
-  'Chapter 15 built the arithmetic that this chapter records.':
-    'Chapter 15 mein jo hisaab banaya tha, yeh chapter use record karta hai.',
-  'A release gate needs evidence':
-    'Release gate ko evidence chahiye',
-  'This comes from Chapter 29. Once you are live, traces provide that evidence.':
-    'Yeh Chapter 29 se aata hai. Live hone ke baad yeh evidence traces dete hain.',
   'Trace':
     'Trace',
-  'The record of one request’s journey through the system: what was retrieved, which prompt version ran, and what each stage cost in time and tokens.':
-    'Ek request ke system mein safar ka record: kya retrieve hua, kaun sa prompt version chala, aur har stage mein time aur tokens kitne lage.',
   'Telemetry':
     'Telemetry',
-  'The measurements a running system sends out about itself, such as timings, counts, errors and usage. They let somebody see what the system is doing without reading the code.':
-    'Chalta hua system apne baare mein jo measurements bhejta hai, jaise timings, counts, errors aur usage. Inse koi bhi code padhe bina dekh sakta hai ki system kya kar raha hai.',
   'Canary release':
     'Canary release',
-  'Sending a small share of real traffic to a change before all of it.':
-    'Kisi change ko sabke paas bhejne se pehle asli traffic ke ek chhote hisse ko bhejna.',
   'Drift':
     'Drift',
-  'Quality moving without anybody deploying anything, because the inputs, the documents or the provider changed underneath you.':
-    'Quality ka badal jaana jabki kisi ne kuch deploy nahi kiya, kyunki inputs, documents ya provider aapke neeche badal gaye.',
-  'Design a trace record that can answer “why was this answer wrong?” after the fact.':
-    'Aisa trace record design kar paana jo baad mein bata sake ki “yeh jawaab galat kyun tha?”',
-  'Treat cost as an architecture metric rather than a finance report.':
-    'Cost ko finance report ki tarah nahi, architecture metric ki tarah dekh paana.',
-  'Name what must be versioned so that a change can be rolled back.':
-    'Bata paana ki kis cheez ka version hona zaroori hai, taaki change rollback ho sake.',
-  'Open your experiment harness. You’ll extend its records into full traces.':
-    'Apna experiment harness kholiye. Aap uske records ko full traces mein badlenge.',
-  'In the last chapter you built a gate that checks a change before it goes live. But the story doesn’t end at release. One day your live system will give a wrong answer, and someone will ask why. This chapter makes sure your answer is not “we can’t tell”.':
-    'Pichhle chapter mein aapne ek gate banaya tha jo kisi change ko live jaane se pehle check karta hai. Lekin kahani release par khatam nahi hoti. Ek din aapka live system galat jawaab dega, aur koi poochega ki kyun. Yeh chapter yeh pakka karta hai ki aapka jawaab “humein nahi pata” na ho.',
-  'Think of a parcel that goes missing. The courier can tell you where it was last scanned, because every parcel is scanned at every step. Without those scans, a lost parcel can never be traced.':
-    'Ek aise parcel ke baare mein sochiye jo kho gaya. Courier bata sakta hai ki woh aakhri baar kahan scan hua tha, kyunki har parcel har step par scan hota hai. In scans ke bina kho gaya parcel kabhi trace nahi ho sakta.',
-  'A <strong>trace</strong> records one request’s path through the system. If you can only see the input and the output, every diagnosis is a guess.':
-    'Ek <strong>trace</strong> ek request ka system mein poora raasta record karta hai. Agar aap sirf input aur output dekh sakte hain, toh har diagnosis ek andaaza hai.',
-  'The six units below start with a single trace and end with a full view of the system. Each one adds a layer to the one before.':
-    'Neeche ke chhe units ek akele trace se shuru hote hain aur system ke poore view par khatam hote hain. Har unit pichhle unit par ek layer jodta hai.',
   'Trace one request':
     'Trace one request',
-  'Build a structured trace for one AI request.':
-    'Ek AI request ke liye ek structured trace banaiye.',
-  'A trace is a timeline of one run, together with the evidence about it.':
-    'Trace ek run ki timeline hai, uske saath uske baare mein evidence bhi.',
-  'Record the request ID, the model, the prompt version, the retrieved IDs, the tools used, the latency, the tokens and the outcome.':
-    'Request ID, model, prompt version, retrieved IDs, use hue tools, latency, tokens aur outcome record kijiye.',
-  'Save the trace as JSON.':
-    'Trace ko JSON mein save kijiye.',
-  'Remove one field. Then ask yourself whether you could still reproduce the incident.':
-    'Ek field hata dijiye. Phir sochiye ki kya aap tab bhi incident ko dobara reproduce kar paate.',
   'Trace Schema v1.0.':
     'Trace Schema v1.0.',
-  'What is the least evidence you need in order to debug a problem?':
-    'Problem debug karne ke liye kam se kam kitna evidence chahiye?',
-  'Write down what you need to observe before the production incidents happen, not after.':
-    'Production incidents hone se pehle likh lijiye ki aapko kya observe karna hai, baad mein nahi.',
   'Latency and throughput':
     'Latency aur throughput',
-  'Measure the latency of each stage, and learn the difference between p50 and p95.':
-    'Har stage ki latency measure kijiye, aur p50 aur p95 ka farq samajhiye.',
-  'The average latency can hide the slow cases that some users really experience.':
-    'Average latency un slow cases ko chhupa sakti hai jo kuch users ko sach mein jhelne padte hain.',
-  'Measure the retrieval, reranking, model and tool stages separately.':
-    'Retrieval, reranking, model aur tool stages ko alag-alag measure kijiye.',
-  'Calculate p50 and p95 for a small run, or for a larger sample if you have one.':
-    'Ek chhote run ke liye p50 aur p95 calculate kijiye, ya agar bada sample ho toh uske liye.',
-  'Add an artificially slow dependency, and see how it changes p95.':
-    'Ek jaan-boojhkar slow dependency jodiye, aur dekhiye ki p95 par uska kya asar padta hai.',
   'Latency Budget plus a p50/p95 report.':
     'Latency Budget aur ek p50/p95 report.',
-  'Which stage is responsible for the slowest cases?':
-    'Sabse slow cases ke liye kaun sa stage zimmedaar hai?',
-  'Service-level objectives (SLOs) should match what users experience, not just what servers report.':
-    'Service-level objectives (SLOs) ka match users ke experience se hona chahiye, sirf servers ki report se nahi.',
   'Token and cost telemetry':
     'Token aur cost telemetry',
-  'Track input and output tokens, and other costs that vary, for each task.':
-    'Har task ke liye input aur output tokens, aur doosre badalne wale costs track kijiye.',
-  'Cost is an architecture metric, because the context, the model, the retries and the routing all change what you spend.':
-    'Cost ek architecture metric hai, kyunki context, model, retries aur routing sab milkar tay karte hain ki aap kitna kharch karte hain.',
-  'When you build the lab, calculate the cost per request using the provider’s current pricing.':
-    'Lab banate waqt provider ki abhi ki pricing se har request ki cost calculate kijiye.',
-  'Compare two strategies for the model and the context.':
-    'Model aur context ki do strategies compare kijiye.',
-  'Add retries and a large context, and watch the cost grow.':
-    'Retries aur bada context jodiye, aur dekhiye ki cost kaise badhti hai.',
   'Unit Economics Model v1.0.':
     'Unit Economics Model v1.0.',
-  'What is the cost per successful task, and not just the cost per call?':
-    'Har successful task ki cost kya hai, sirf har call ki nahi?',
-  'Conversations with finance get easier when every architecture choice has a cost you can measure.':
-    'Finance ke saath baat aasaan ho jaati hai jab har architecture choice ki ek aisi cost ho jise aap measure kar sakein.',
   'Drift and feedback':
     'Drift aur feedback',
-  'Notice when quality changes after a change in the data, prompt, model or user behaviour.':
-    'Pata lagaiye jab data, prompt, model ya user behaviour badalne ke baad quality badal jaaye.',
-  'An AI system can get worse even when no one has changed the code.':
-    'Ek AI system tab bhi kharab ho sakta hai jab kisi ne code nahi badla.',
-  'Create a baseline evaluation, and compare a later sample against it.':
-    'Ek baseline evaluation banaiye, aur baad ke ek sample ko uske saath compare kijiye.',
-  'Track the type of complaint, the no-answer rate, escalations and task success.':
-    'Complaint ka type, no-answer rate, escalations aur task success track kijiye.',
-  'Introduce a changed document format, or a new way users phrase things.':
-    'Document ka format badal dijiye, ya users ke baat karne ka koi naya tareeka daaliye.',
   'Drift/Feedback Report.':
     'Drift/Feedback Report.',
-  'Which signal tells you that quality has changed, before the complaints pile up?':
-    'Kaun sa signal aapko bata deta hai ki quality badli hai, complaints ke dher lagne se pehle?',
-  'Signals from live use complement the offline evaluation you did before release.':
-    'Live use ke signals us offline evaluation ke saath jude hote hain jo aapne release se pehle kiya tha.',
   'Versioning and rollback':
     'Versioning aur rollback',
-  'Give versions to the prompts, models, indexes, schemas and tool contracts.':
-    'Prompts, models, indexes, schemas aur tool contracts ko versions dijiye.',
-  'If you cannot roll back one component at a time, debugging turns into guesswork.':
-    'Agar aap ek-ek component ko rollback nahi kar sakte, toh debugging andaaze ka khel ban jaata hai.',
-  'Create version IDs for the prompt, the model, the index and the tool schema.':
-    'Prompt, model, index aur tool schema ke liye version IDs banaiye.',
-  'Run two versions side by side.':
-    'Do versions ko saath-saath chalaiye.',
-  'Simulate a bad prompt release, and roll it back.':
-    'Ek kharab prompt release simulate kijiye, aur use rollback kijiye.',
   'Version Matrix plus Rollback Procedure.':
     'Version Matrix aur Rollback Procedure.',
   'Can you say exactly what changed?':
     'Kya aap bilkul bata sakte hain ki kya badla?',
-  'Versioning is how you control delivery. It is not paperwork.':
-    'Versioning se aap delivery ko control karte hain. Yeh paperwork nahi hai.',
   'Production dashboard':
     'Production dashboard',
-  'Turn the telemetry into a six-panel view of operations: quality, safety, latency, cost, traffic and failures.':
-    'Telemetry ko operations ke six-panel view mein badaliye: quality, safety, latency, cost, traffic aur failures.',
-  'A dashboard should answer two questions: “is the system healthy?” and “where do I look next?”':
-    'Dashboard ko do sawaalon ka jawaab dena chahiye: “kya system healthy hai?” aur “agla kahan dekhun?”',
-  'For each panel, define the metric, the source, the owner and the threshold.':
-    'Har panel ke liye metric, source, owner aur threshold tay kijiye.',
-  'Create a mock dashboard or a spreadsheet.':
-    'Ek mock dashboard ya spreadsheet banaiye.',
-  'Remove one signal at a time, and see which incident becomes harder to diagnose.':
-    'Ek-ek signal hataiye, aur dekhiye ki kaun sa incident diagnose karna mushkil ho jaata hai.',
   'Six-Panel Observability Specification.':
     'Six-Panel Observability Specification.',
   'Which alerts should wake up a person, and which should only be watched?':
     'Kaun se alerts ko kisi insaan ko jagana chahiye, aur kaun se sirf watch hone chahiye?',
-  'A PM is responsible for clarity in operations, just as much as the platform team is.':
-    'Operations mein clarity ki zimmedaari PM ki bhi utni hi hai jitni platform team ki.',
   'Cost is an architecture metric':
     'Cost ek architecture metric hai',
-  'You can see where the time goes from a trace. The same is true of money. Every token, every search and every call to a tool adds to the bill, so cost is part of how you design the system. It isn’t only something finance checks at the end of the month.':
-    'Trace se aap dekh sakte hain ki time kahan jaata hai. Paise ke saath bhi yahi sach hai. Har token, har search aur har tool call bill mein jodta hai, isliye cost system ko design karne ka hissa hai. Woh sirf aisi cheez nahi hai jo finance mahine ke aakhir mein check karta hai.',
-  'Model the cost of one user task from start to finish: input tokens, output tokens, embeddings, retrieval, and tool and API calls. Then you can compare two designs before building either.':
-    'Ek user task ki cost shuru se aakhir tak model kijiye: input tokens, output tokens, embeddings, retrieval, aur tool aur API calls. Phir aap do designs ko banane se pehle hi compare kar sakte hain.',
-  'Some terms you’ll hear are canary release, shadow traffic, rollback and drift. They all come from the same practice, and it’s simple to describe. Change one thing at a time. Let a few users see it first. Keep the old version ready. And keep watching after the release.':
-    'Aap kuch terms sunenge, jaise canary release, shadow traffic, rollback aur drift. Yeh sab ek hi practice se aate hain, aur use batana aasaan hai. Ek baar mein ek hi cheez badaliye. Pehle thode se users ko use dikhaiye. Purana version ready rakhiye. Aur release ke baad bhi watch karte rahiye.',
-  'Most incidents can be prevented in four ways. Change one variable at a time. Give versions to prompts, models, indexes and tool contracts. Make sure every part can be rolled back. And never let a prompt change skip evaluation. Teams break that last rule most often, because editing a prompt does not feel like a deployment.':
-    'Zyadatar incidents chaar tareekon se roke ja sakte hain. Ek baar mein ek hi variable badaliye. Prompts, models, indexes aur tool contracts ko versions dijiye. Pakka kijiye ki har part rollback ho sake. Aur prompt change ko kabhi evaluation skip mat karne dijiye. Teams yeh aakhri rule sabse zyada todti hain, kyunki prompt edit karna deployment jaisa nahi lagta.',
-  'Here’s a puzzle to test the idea of drift. Take a moment with it.':
-    'Drift ka idea parakhne ke liye ek paheli hai. Thoda waqt lekar sochiye.',
-  'Your assistant got slower this week, and nobody deployed anything. Name three things that could have changed.':
-    'Aapka assistant is hafte slow ho gaya, aur kisi ne kuch deploy nahi kiya. Teen cheezein bataiye jo badal sakti hain.',
   '1 … 2 … 3 …':
     '1 … 2 … 3 …',
-  'Traffic mix, document volume, and the provider’s own response time. None of these are in your repository, which is why they need to be on your dashboard.':
-    'Traffic ka mix, document volume, aur provider ka apna response time. Inmein se kuch bhi aapki repository mein nahi hai, isliye inhe aapke dashboard par hona chahiye.',
-  'So a wrong answer should never leave you saying “we can’t tell”. A trace shows you the path of each request. Cost is something you design and measure. And a version on every part means any change can be rolled back.':
-    'Toh galat jawaab ke baad aapko kabhi “humein nahi pata” nahi kehna padna chahiye. Trace har request ka raasta dikhata hai. Cost aisi cheez hai jise aap design aur measure karte hain. Aur har part ka version hone se koi bhi change rollback ho sakta hai.',
-  'Next, in Chapter 31, you’ll look at the same system from an attacker’s side.':
-    'Agle Chapter 31 mein aap usi system ko ek attacker ki nazar se dekhenge.',
-  'Plan how to watch the tool once it is live':
-    'Tool live hone ke baad use watch karne ka plan banaiye',
-  'A tool in use can go wrong in ways your tests never saw, and you will only know if you are watching. In this chapter you learned to design a trace that can answer “why was this answer wrong?” afterwards, to treat cost as an engineering number, and to name what must be versioned so a change can be undone. Now you plan six panels for watching Bharat Privacy Guard.':
-    'Istemaal mein aaya tool aise tareeke se galat ja sakta hai jo aapke tests ne kabhi dekha hi nahi, aur aapko tabhi pata chalega jab aap watch kar rahe honge. Is chapter mein aapne seekha ki aisa trace kaise design karte hain jo baad mein bata sake ki “yeh jawaab galat kyun tha?”, cost ko engineering number ki tarah kaise dekhte hain, aur kis cheez ka version hona zaroori hai taaki change undo ho sake. Ab aap Bharat Privacy Guard ko watch karne ke liye six panels ka plan banayenge.',
-  'Your test harness from Chapter 21, extended in code to save full traces. Then write the plan in the notes box below.':
-    'Chapter 21 ka aapka test harness, code mein extend kiya hua taaki woh full traces save kare. Phir plan neeche notes box mein likhiye.',
-  'Extend your harness so that every run saves a full trace: the input, each step, each finding, the time, the tokens, the cost and any error. Never put the real personal details into a trace that is shown on a dashboard.':
-    'Apna harness extend kijiye taaki har run ek full trace save kare: input, har step, har finding, time, tokens, cost aur koi bhi error. Asli personal details ko kabhi aise trace mein mat daaliye jo dashboard par dikhta hai.',
-  'Design six panels: quality, safety, response time, cost, traffic and failures. For every panel, write which data feeds it and how often it is worked out. A panel with no data source is only a wish.':
-    'Six panels design kijiye: quality, safety, response time, cost, traffic aur failures. Har panel ke liye likhiye ki use kaun sa data feed karta hai aur woh kitni baar calculate hota hai. Jis panel ka koi data source nahi, woh sirf ek khwaahish hai.',
-  'Fill in what each panel shows. Quality: which number, worked out from what. Safety: how often an attack from Chapter 13 gets through. Response time: the median and the slowest, split by stage. Cost: per message and per day, with the parts visible. Traffic: how many messages, and the mix of English, Hindi and Hinglish. Failures: counts by type, not one error rate.':
-    'Har panel kya dikhata hai, yeh bhariye. Quality: kaun sa number, kis se calculate hua. Safety: Chapter 13 ka koi attack kitni baar nikal jaata hai. Response time: median aur sabse slow, stage ke hisaab se alag. Cost: har message aur har din ki, parts dikhte hue. Traffic: kitne messages, aur English, Hindi aur Hinglish ka mix. Failures: type ke hisaab se counts, ek akela error rate nahi.',
-  'For each panel, write the level that makes you investigate and the level that makes you roll back.':
-    'Har panel ke liye woh level likhiye jahan aap investigate karenge aur woh level jahan aap rollback karenge.',
-  'List what must be versioned so that a change can be undone: the rules, the model, the instructions, the reference lists and the answer key.':
-    'Likhiye ki kis cheez ka version hona zaroori hai taaki change undo ho sake: rules, model, instructions, reference lists aur answer key.',
-  'Traces saved by your harness.':
-    'Aapke harness ke save kiye hue traces.',
-  'Six panels, each with a named data source.':
-    'Six panels, har ek ka ek named data source.',
-  'An investigation level and a rollback level for every panel.':
-    'Har panel ke liye ek investigation level aur ek rollback level.',
-  'A list of what is versioned.':
-    'Jin cheezon ke versions hain, unki list.',
 
   /* ---- ch18s: Security and governance: controls around an untrusted model ---- */
   'Security and governance: controls around an untrusted model':

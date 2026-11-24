@@ -215,7 +215,7 @@ window.PART4 = [
   red:['An uncertain answer shown with a certain interface','Citations that do not open the passage','A feedback button that collects nothing usable'],
   capstone:{
     title:'Design the four answers the tool can give',
-    brief:'Many AI features show the same screen when they are sure, unsure, wrong, or unable to answer. So a wrong answer said with a straight face looks just like a right one. In this chapter you learned how a feature wrong 1 time in 10 can still be trusted, and why a confidence number is usually the wrong thing to show. Now you design the four states (four kinds of screen) for the developer kit.',
+    brief:'Many AI features show one screen whether they are sure, unsure, wrong or unable to answer. So a wrong answer said with a straight face looks like a right one. You learned how a feature wrong 1 time in 10 can still be trusted, and why a confidence number is usually the wrong thing to show. Now you design the four states (four kinds of screen) for the developer kit.',
     where:'This task is written, with no code. Draw your design on paper. Time one correction with a stopwatch. Write your design in the notes box below. Short version for the route, about 20 minutes: steps 2, 3 and 5.',
     steps:[
       'Pick an AI feature you use every day. Write what it shows when it is sure, when it is unsure, when it is wrong, and when it cannot answer.',
@@ -261,7 +261,7 @@ window.PART4 = [
        short:true,
        ph:'What you would do with it',
        ask:'Predict: your model gives a confidence score with every answer. What should the screen do with it?',
-       reveal:'Use it to decide what the product does. Do not show it as a number. A percentage next to an answer asks the user to judge something they cannot judge. The model’s own sureness is often off anyway, like a student who is sure and wrong. Used quietly inside, the score can change what happens: answer straight away, show the evidence first, ask a question back, or pass the case to a person.',
+       reveal:'Use it to decide what the product does. Do not show it as a number. A percentage next to an answer asks the user to judge what they cannot judge. The model’s own sureness is often off, like a student who is sure and wrong. Kept inside, the score can pick the action: answer now, show evidence first, ask a question back, or pass the case to a person.',
        then:'Turn confidence into screen choices. Use a box the user can edit instead of a fixed one. Use a draft instead of a sent message. Use a question instead of a guess.'}
     ],
     ['q','I146'],
@@ -278,7 +278,7 @@ window.PART4 = [
       ['p','Use a clock. How long does it take to fix a wrong output, compared with doing the whole task by hand? Do it three times.'],
       ['x','If fixing is slower, your feedback table will stay empty, and you may read that as happy users. This one measurement explains most “our users never give feedback” complaints.']
     ]],
-    ['c','Example','Take two products that use the same model and the same retrieval (finding the right page before answering). One saves only a thumbs-down. The other saves the answer, the chunks (the small cut-out pieces of text it looked at) and the question. It also asks: “what did you expect instead?” Within two weeks, the second has a list of real failure types and a roadmap built from its own traffic. The first has a falling number and no idea why.'],
+    ['c','Example','Take two products with the same model and the same retrieval (finding the right page before answering). One saves a thumbs-down. The other saves the answer, the chunks (small pieces of text it looked at) and the question, and asks “what did you expect instead?” In two weeks, the second has a list of real failure types and a roadmap from its own traffic. The first has a falling number and no idea why.'],
     [
       'try',
       {id:'ch20-correct',
@@ -287,7 +287,7 @@ window.PART4 = [
        rows:5,
        task:'Design the correction path for a feature you know. What does the user do when the output is wrong? What does that action record? How long does it take, compared with doing the task by hand? Then write the test case it would give you (one question with its right answer).',
        ph:'the user … we capture … it takes … versus … the test case would be …',
-       after:'A good design makes fixing the fastest choice. Let the user edit the output right there, and treat the edit as the feedback. They were going to fix it anyway, so it costs them nothing, and you learn the right answer exactly. Save the question, the evidence, the output and the fix together. Without the evidence, you know the answer was wrong, but not if finding the page or writing the answer broke. Chapter 19 needs that difference.'}
+       after:'A good design makes fixing the fastest choice. Let the user edit the output right there, and treat the edit as the feedback. They were going to fix it anyway, so it costs them nothing, and you learn the right answer exactly. Save the question, the evidence, the output and the fix together. Without the evidence, you cannot tell if finding the page or writing the answer broke. Chapter 19 needs that difference.'}
     ],
     ['h','Design the refusal'],
     ['p','Every system looks good when it works. Trust is built on the screen that says <em>I do not have that</em>. Many AI products design that screen last, or never.'],
@@ -303,7 +303,7 @@ window.PART4 = [
 {
   id:'ch205', num:20.5, part:4, curriculumTier:'selective', phase:2, prerequisites:['ch14','ch20'], nextUnits:[], minutes:25, labs:[],
   title:'Measuring business impact: designing a pilot',
-  concept:'A tool can be right most of the time and still change nothing for the business. Think of a fast new lift in a building where people wait three days for a signature. Today you find the slow part of a workflow (the steps of a job, start to end). Then you design a pilot (a small, fair test run). It has four parts: a business metric (one number the business watches), a comparison, a failure threshold and a time window.',
+  concept:'A tool can be right most of the time and still change nothing for the business. Think of a fast new lift in a building where people wait three days for a signature. Today you find the slow part of a workflow (a job’s steps). Then you design a pilot (a small, fair test run) with a business metric (the one number the business watches), a comparison, a failure threshold and a time window.',
   needs:[
     ['You can measure the system','That means recall, precision, judges and per-category scores. Recall is how many of the fish in the pond your net caught. Precision is how much of the net is really fish.',14],
     ['The screen has four states','What the user sees decides if the quality reaches them. A good answer on a bad screen is like hot food dropped on the floor.',20]
@@ -349,7 +349,7 @@ window.PART4 = [
        rows:3,
        task:'Your pilot shows the system works well, but the business number does not move. Write the three reasons you would check first, in order.',
        ph:'1 … 2 … 3 …',
-       after:'This order usually works best. First: are people using it? Low use is the most common cause, and the easiest to check. Second: does the output reach the place where the decision is made, or is it in a separate tool someone must remember to open? Third: was the step you sped up really on the critical path? Only after these three should you doubt the quality of the system. Teams usually check quality first, because they know how to measure it.'}
+       after:'This order usually works best. First: are people using it? Low use is the most common cause, and the easiest to check. Second: does the output reach the place where the decision is made, or is it in a tool someone must remember to open? Third: was the step you sped up really on the critical path? Only then doubt the quality. Teams check quality first, because they know how to measure it.'}
     ],
     ['q','I102'],
     ['h','Summary'],

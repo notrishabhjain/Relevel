@@ -40,32 +40,16 @@ Object.assign(window.HING = window.HING || {}, {
     '<strong>Acts with approval.</strong> Agent tabhi act karta hai jab insaan haan kehta hai.',
   '<strong>Acts alone.</strong> The agent acts and nobody checks. Keep this for actions that only read, or that are easy to undo.':
     '<strong>Acts alone.</strong> Agent act karta hai aur koi check nahi karta. Ise un actions ke liye rakhiye jo sirf padhte hain, ya jinhe undo karna aasaan hai.',
-  'Do units 14.3 and 14.4, then read the printed exchange below. Read the other units this pass.':
-    'Units 14.3 aur 14.4 kijiye, phir neeche ka printed exchange padhiye. Baaki units is baar sirf padh lijiye.',
   'Read one real exchange':
     'Ek asli exchange padhiye',
-  'You do not need a real MCP server to understand it. The cell below is a toy: a few lines of Python that answer in the same message shapes, with the pattern checker offered as a tool. Run it and read the six lines it prints. Real messages carry a few more fields. To run a real server, use the free Introduction to MCP course in the plan.':
-    'Ise samajhne ke liye asli MCP server zaroori nahi. Neeche wala cell ek khilauna hai: Python ki kuch lines jo wahi message shapes mein jawaab deti hain, aur pattern checker ek tool ki tarah offer hota hai. Ise chalaiye aur jo chhah lines print hoti hain unhe padhiye. Asli messages mein kuch fields aur hoti hain. Asli server chalane ke liye plan mein diya free Introduction to MCP course use kijiye.',
   'Mark where consent sits':
     'Nishaan lagaiye ki consent kahan baithta hai',
   'Mark the message where the client first learns what the server can do.':
     'Woh message mark kijiye jahan client ko pehli baar pata chalta hai ki server kya kar sakta hai.',
-  'Mark the message where the user’s text leaves their screen and something is done with it.':
-    'Woh message mark kijiye jahan user ka text unki screen se bahar jaata hai aur uske saath kuch kiya jaata hai.',
-  'Write one line: who must say yes before that message is sent, and what happens if nobody does?':
-    'Ek line likhiye: woh message bhejne se pehle kise haan kehna hai, aur agar koi nahi kehta toh kya hota hai?',
-  'The tools/list reply is where the client learns what exists. The tools/call message is the one to mark: the user’s own PAN is sent out. Consent belongs just before it, in the client. The server cannot grant it to itself. The protocol carried all six messages without asking anyone.':
-    'tools/list ka reply woh jagah hai jahan client ko pata chalta hai ki kya kya maujood hai. tools/call wala message mark karne layak hai: user ka apna PAN bahar bheja ja raha hai. Consent uske theek pehle chahiye, client mein. Server khud ko consent nahi de sakta. Protocol ne chhahon messages bina kisi se poochhe aage badha diye.',
-  'Do units 15.3 and 15.4, then try the spoken-numbers cell below. Read the other units this pass.':
-    'Units 15.3 aur 15.4 kijiye, phir neeche ka spoken-numbers cell try kijiye. Baaki units is baar sirf padh lijiye.',
   'Test how spoken numbers are heard':
     'Test kijiye ki bole gaye numbers kaise sune jaate hain',
-  'Indian speech is often mixed Hindi and English, and a phone number is exactly where it fails. This test gives you a real number for the capstone. Check the current free tiers and languages of any speech tool yourself, and do not take a figure from this page. Practice question 13 in the plan asks which kind of speech model you would choose.':
-    'Bhartiya bolchaal aksar Hindi aur English ka mix hoti hai, aur phone number bilkul wahi jagah hai jahan yeh fail hota hai. Yeh test aapke capstone ke liye ek asli number deta hai. Kisi bhi speech tool ke abhi ke free tiers aur languages khud check kijiye; is page ka koi figure mat maniye. Plan ka practice question 13 poochta hai ki aap kis tarah ka speech model chunenge.',
   'Count the digits that were heard':
     'Gino ki kitne digits sahi sune gaye',
-  'Use voice typing on your phone, or any free speech-to-text. Say five made-up sentences: two in Hindi, two in Hinglish and one in English. Put the made-up number 9876543210 in each one. Paste what was typed into the cell, then run it.':
-    'Apne phone par voice typing, ya koi bhi free speech-to-text use kijiye. Paanch banaye hue sentences boliye: do Hindi mein, do Hinglish mein aur ek English mein. Har ek mein banaya hua number 9876543210 rakhiye. Jo type hua use cell mein paste kijiye, phir chalaiye.',
   'With the made-up transcripts, English and Hindi score 10 of 10, and the Hinglish lines score 9 and 0. The last one wrote the number as words, so a rule that looks only for digits sees nothing. With your own transcripts, expect a different pattern. Add the five sentences, and what should have been found, as new rows in your answer key.':
     'Banaye hue transcripts ke saath, English aur Hindi 10 mein se 10 laate hain, aur Hinglish lines 9 aur 0. Aakhri line mein number shabdon mein likha tha, isliye sirf digits dhoondhne wala rule kuch nahi dekhta. Aapke apne transcripts ke saath pattern alag hoga. Paanchon sentences, aur kya milna chahiye tha, answer key mein nayi rows ki tarah jod dijiye.',
   'A line says no digits':
@@ -76,22 +60,12 @@ Object.assign(window.HING = window.HING || {}, {
     'Hindi wali line toot-ti hui dikhti hai',
   'Paste the transcript between the quotation marks and keep the quotation marks. Hindi letters are fine inside them.':
     'Transcript ko quotation marks ke beech paste kijiye aur quotation marks rehne dijiye. Hindi akshar unke andar theek hain.',
-  'Do units 16.1 and 16.6, then run the gate cell below. Read the other units this pass.':
-    'Units 16.1 aur 16.6 kijiye, phir neeche ka gate cell chalaiye. Baaki units is baar sirf padh lijiye.',
-  'The table shows six levels. Read down the right-hand column: each question is one that a release decision needs answered.':
-    'Table mein chhah levels hain. Right wale column ko upar se neeche padhiye: har sawaal aisa hai jiska jawaab release decision ko chahiye.',
   'Step-sequence match':
     'Step-sequence match',
-  'Did it get there the right way?':
-    'Kya woh sahi raaste se wahan pahuncha?',
   'Run a release gate':
     'Ek release gate chalaiye',
-  'Here is a gate you can run now. Six rows of the answer key sit inside the cell. It prints recall and precision for each kind of ID and each kind of writing, then PASS or FAIL. When your own file, saved as <code>evals/answer-key-v1.csv</code> or a later version, is ready, load its rows in place of the list.':
-    'Yeh ek gate hai jo aap abhi chala sakte hain. Answer key ki chhah rows cell ke andar hain. Yeh har ID kind aur har writing kind ke liye recall aur precision print karta hai, phir PASS ya FAIL. Jab aapki apni file, <code>evals/answer-key-v1.csv</code> ya uska agla version, taiyaar ho, toh list ki jagah uski rows load kijiye.',
   'Run the gate on six rows':
     'Gate ko chhah rows par chalaiye',
-  'Run the cell and read the last line first.':
-    'Cell chalaiye aur sabse pehle aakhri line padhiye.',
   'Five lines say ok. Hinglish and MOBILE say BELOW GATE, because the pattern checker cannot see the partly hidden number in row 4. The last line is FAIL. That is the right result: the gate caught a real miss. Lower a threshold only after you have written down why, with a number.':
     'Paanch lines mein ok aata hai. Hinglish aur MOBILE mein BELOW GATE aata hai, kyunki pattern checker row 4 ka aadha chhupa hua number nahi dekh paata. Aakhri line FAIL hai. Yahi sahi result hai: gate ne ek asli miss pakda. Threshold tabhi kam kijiye jab aapne number ke saath likh liya ho ki kyun.',
   'All lines say ok and the last line is PASS':
@@ -102,8 +76,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Hindi row mein ajeeb akshar print hote hain',
   'Your screen font is the cause, not the code. The Hindi sentence is only data, and the finding still works.':
     'Wajah aapki screen ka font hai, code nahi. Hindi sentence sirf data hai, aur finding phir bhi kaam karti hai.',
-  'Do units 17.1 and 17.6, then the capstone. Read the other units this pass.':
-    'Units 17.1 aur 17.6 kijiye, phir capstone. Baaki units is baar sirf padh lijiye.',
   'Add the personal-data row from the table: raw personal data in logs, or kept too long. Name the DPDP Act duty it supports, and keep the project wording: the tool helps an organisation collect and share less personal data, and it does not make anyone compliant.':
     'Table ki personal-data row jodiye: logs mein raw personal data, ya zyada der tak rakha hua. Naam dijiye ki yeh kaun si DPDP Act duty ko support karti hai, aur project wali wording rakhiye: tool kisi organisation ko kam personal data collect aur share karne mein madad karta hai, aur yeh kisi ko compliant nahi banata.',
   'Do units 18.7 and 18.8, then the capstone. Read the other units this pass.':

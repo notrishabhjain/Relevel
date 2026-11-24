@@ -25,7 +25,7 @@ window.PART5 = [
     build:'Turn that program into an experiment harness. For every run, it saves an id, a timestamp, the model, the prompt, the response, the latency (the waiting time), the usage (bricks in and out) and any errors.',
     brk:'Now try to break it. Feed it bad JSON, a missing field and a timeout. Then try a 429 and a 500. Watch which of these it survives.',
     artifact:'A Git repository (an online folder that remembers every change) that holds the harness and its tests.',
-    gate:'Pick one failure. Follow it from the input that caused it to the error it gave.'
+    gate:'Pick one failure. Follow it from the input that caused it to the error it gave. This is how you trace a failure.'
   },
   needs:[
     ['Reading Python','Chapter 0.8 taught you to read a cell (one box of code): names, lists, dictionaries, jobs and dots. This chapter writes a little more of it.',0.8],
@@ -45,7 +45,7 @@ window.PART5 = [
   ],
   story:[
     ['c','Before you start','Open the <a href="#/workbench">Workbench</a>, or a local folder if you prefer. In this chapter you build an experiment harness (a small tool that records every run the same way). You keep adding to it until Chapter 34.'],
-    ['c','On your route','Do units 8.4 and 8.5, then the capstone. The browser-only path is this: write and run your code in the <a href="#/workbench">Workbench</a>. Keep your files in the repository you made in Chapter A1. Use <strong>Add file</strong>, then <strong>Upload files</strong>, on the GitHub website. A virtual environment (a private toolbox for one project), a requirements file (a shopping list of libraries) and CI (a robot that runs your tests) are read-only this pass. You need to know what they are, not set them up.'],
+    ['c','On your route','Do units 8.4 and 8.5, then the capstone. The browser-only path: write and run your code in the <a href="#/workbench">Workbench</a>. Keep your files in the repository you made in Chapter A1, using <strong>Add file</strong>, then <strong>Upload files</strong>, on the GitHub website. A virtual environment (a private toolbox), a requirements file (a list of libraries) and CI (a robot that runs tests) are read-only this pass. Know what they are. Do not set them up.'],
     ['p','Part V goes back over everything you built in Parts I to IV, this time at the depth a real launch needs. It starts with the ordinary software around the model. So far you have mostly looked at the model itself. The aim is small: when an engineer shows you a system diagram, you know every box on it.'],
     ['p','Think of ordering food in an app. Your tap sends a message to a restaurant. A reply comes back with a price, and your screen changes. It looks mysterious until you see the messages going back and forth. The software around an AI model works the same way.'],
     ['c','Why this matters','Applied AI work uses APIs, Python, cloud services, retrieval, evaluation and production systems. If JSON, HTTP, environment variables (settings kept outside your code), tests and logs are new to you, you cannot question an architecture (the plan of how the parts fit). This chapter gives you the least you need.'],
@@ -83,7 +83,7 @@ window.PART5 = [
       '8.3',
       'Environments, secrets and Git',
       {goal:'You use environment variables and secrets, set up a virtual environment, and follow a basic Git workflow (change, save with a note, share).',
-       idea:'A prototype that leaks a key, or that nobody else can run again, is not something an engineer will take seriously. It is like a recipe that only works in your own kitchen.',
+       idea:'A prototype that leaks a key, or that nobody else can run again, will not be taken seriously by an engineer. It is like a recipe that only works in your own kitchen.',
        prove:'Keep a secret outside your source code. Print only a masked prefix (the first few letters, rest hidden), never the whole thing.',
        build:'Create a repository with a README, a requirements file and one command that runs the experiment the same way every time.',
        brk:'Commit a change that you know is broken. Find it, then go back to the last version that worked.',
@@ -145,7 +145,7 @@ window.PART5 = [
   ],
   capstone:{
     title:'Build the test harness and keep it in Git',
-    brief:'From here on, almost every chapter asks you to run the tool on the answer key (the questions with right answers) and compare the result with last time. If you set the test up again each time, the comparisons are not fair. In this chapter you learned to read requests, responses and errors, and that an AI system is ordinary software with one unpredictable part. Now you build the harness once, put it in Git, and keep adding to it for the rest of the course.',
+    brief:'From here on, almost every chapter asks you to run the tool on the answer key (questions with right answers) and compare with last time. If you set the test up again each time, the comparison is not fair. You learned to read requests, responses and errors. Now you build the harness once, put it in Git, and keep adding to it for the rest of the course.',
     where:'The <a href="#/workbench">Workbench</a> in this app, or a local folder if you prefer. This is the harness you build in code and keep adding to through Chapter 34. The notes box below is for what surprised you, not for the code.',
     steps:[
       'Write a function (a recipe with a name) of about twenty lines. It reads your answer key (a CSV file, a spreadsheet saved as plain text) and gives back its rows. Let it filter by one column, for example “only the Hinglish rows”.',
@@ -1050,148 +1050,148 @@ window.PART5 = [
 {
   id:'ch14p', num:27, part:5, curriculumTier:'core', phase:3, prerequisites:['ch12t','ch13a'], nextUnits:['ch15mm'], minutes:45, labs:[],
   title:'MCP and interoperability: standard connections to tools',
-  concept:'MCP is a standard way for AI applications to connect to tools and data. You’ll map how it works, see what a standard does not make safe, and sort tools by what they are allowed to change.',
+  concept:'MCP is a standard way to connect AI apps to tools and data. Think of a plug socket: any plug fits. You will see how it works. You will see what a standard does not make safe. You will sort tools by what they may change.',
   plan:{
-    first:'Use a real implementation or a local mock to discover and call one tool or resource, and read the actual exchange of messages.',
-    build:'Expose two tools and one resource. Test how they are discovered and called, how errors show up, and how consent and authorisation work.',
-    brk:'Try access you are not allowed, badly formed arguments, resource content that has been poisoned, and permissions wider than the task needs.',
-    artifact:'A trust-boundary diagram and an authorisation matrix.',
-    gate:'Explain what interoperability standardises, and what it leaves exactly as dangerous as it was.'
+    first:'Use a real implementation or a local mock (a pretend copy on your own computer) to find one tool or resource and call it. Then read the real messages that go back and forth.',
+    build:'Offer two tools and one resource (a file or record the model can read). Test how they are found and called. See how errors show up. See how consent (asking the person first) and authorisation (checking who is allowed) work.',
+    brk:'Try to get in where you are not allowed. Send arguments (the details you hand a tool) that are badly formed. Use resource content that has been poisoned (a bad note hidden inside). Give permissions wider than the task needs.',
+    artifact:'A trust-boundary diagram (a map of the line where you stop trusting what comes in) and an authorisation matrix (a table of who may do what).',
+    gate:'Explain what interoperability (different tools plugging into each other) makes standard, and what it leaves exactly as dangerous as before.'
   },
   needs:[
-    ['A tool has a typed contract','From Chapter 25. MCP standardises how that contract is published.',25],
-    ['Permissions are enforced on the server','Also from Chapter 25, and still true when the call crosses a protocol.',25]
+    ['A tool has a typed contract (a written promise of what goes in and what comes out)','From Chapter 25. MCP makes the way that contract is published the same everywhere.',25],
+    ['Permissions are checked on the server (the computer that owns the tool)','Also from Chapter 25. It is still true when the call travels through a protocol.',25]
   ],
   words:[
-    ["MCP","A protocol that standardises how a host, a client and a server offer and call tools, resources and prompts. It is a protocol, not a framework for building agents."],
-    ["Trust boundary","The line across which input stops being yours and becomes something you must check."],
-    ["Least privilege","Giving a tool exactly the permissions the task needs and no more. That way, a tool that is never needed can never be misused."],
-    ["Capability negotiation","The way two sides of a protocol agree on what each of them can do, before any work begins."]
+    ["MCP",'A plug-socket rule for AI. It says how a host, a client and a server offer tools, resources and prompts, and how they call them. It is a protocol (an agreed way to talk), not a framework for building agents.'],
+    ["Trust boundary",'A line on the map. Past it, what comes in is no longer yours, so you must check it, like a guard at a gate.'],
+    ["Least privilege",'Give a tool only the permissions the task needs, and not one more. Then a tool that is never needed can never be misused, like a spare key that was never made.'],
+    ["Capability negotiation",'Before any work starts, the two sides say what each can do, like two people agreeing who brings the tea and who brings the snacks.']
   ],
   takeaway:[
-    'Draw the host, client, server and resource flow, and mark where consent and authorisation happen.',
-    'Explain why a standard interface to an unsafe tool is still unsafe.',
-    'Classify tools by what they are allowed to change.'
+    'Draw the flow of host, client, server and resource, and mark where consent (asking the person first) and authorisation (checking who is allowed) happen.',
+    'Explain why a standard interface (the plug socket) to an unsafe tool is still unsafe.',
+    'Classify tools (put each in a group) by what they are allowed to change.'
   ],
   story:[
-    ['c','Before you start','You don’t need any new setup to follow the ideas. The hands-on units show a small working example.'],
-    ['c','On your route','Do units 14.3 and 14.4, then read the printed exchange below. Read the other units this pass.'],
-    ['p','In the last two chapters you gave a model tools, and then let an agent choose among them. Every one of those tools was connected by hand. In this chapter we look at a standard way to make those connections, and at what the standard does and does not protect you from.'],
-    ['p','The standard is called <strong>MCP</strong>, short for Model Context Protocol. It is a common way to connect AI applications to tools and data sources. You will probably never build one yourself, but you do need to know what it covers and what it leaves out.'],
-    ['p','Think of a plug socket. It’s a standard, so any appliance fits the wall. But the standard doesn’t promise that the appliance is safe, and it doesn’t decide who may switch it on. MCP is the same kind of thing.'],
-    ['c','Note','The specification defines a host, a client and a server, and gives them standard building blocks: resources, prompts and tools. It also talks about security and user consent in plain terms, which is worth reading. Agent-to-agent protocols are being developed separately. They are for agents that exchange tasks, not for a model that calls a tool.'],
+    ['c','Before you start','You do not need any new setup to follow the ideas. The hands-on units show a small example that really runs.'],
+    ['c','On your route','Do units 14.3 and 14.4. Then read the printed messages below. This time, only read the other units.'],
+    ['p','In the last two chapters you gave a model tools. Then you let an agent (a helper that picks tools by itself) choose among them. You joined every tool by hand. Now you will see a standard way to join them. You will also see what the standard protects you from, and what it does not.'],
+    ['p','The standard is called <strong>MCP</strong>, short for Model Context Protocol. It is one shared way to connect AI apps to tools and data sources. You will probably never build one yourself. You do need to know what it covers and what it leaves out.'],
+    ['p','Think of a plug socket. It is a standard, so any appliance fits the wall. But the standard does not promise the appliance is safe. It does not decide who may switch it on. MCP is the same kind of thing.'],
+    ['c','Note','The specification (the official rulebook) names a host, a client and a server. It gives them standard building blocks: resources, prompts and tools. It also talks about security and user consent in plain words, and it is worth reading. Agent-to-agent protocols are made separately. They are for agents that hand tasks to each other, not for a model that calls a tool.'],
     ['h','Hands-on units'],
-    ['p','There are five units. The first draws the whole picture. The next three build a tiny example, then add consent and authorisation, then test it against attacks. The last one looks at how agents talk to other agents.'],
+    ['p','There are five units. The first draws the whole picture. The next three build a tiny example, add consent and authorisation, and then test it against attacks. The last one looks at how agents talk to other agents.'],
     [
       'unit',
       '14.1',
       'MCP mental model',
-      {goal:'Explain the host, the client, the server, tools, resources, prompts and capability negotiation.',
-       idea:'A protocol standardises how two sides talk to each other. It does not remove the need for authorisation or for a safe design.',
-       prove:'Draw the flow from the host to the client to the server, and then to the tool or resource.',
-       build:'Look closely at one real or local exchange of messages.',
-       brk:'Ask what happens when a server says it offers a capability that the user is not authorised to use.',
+      {goal:'Explain the host (the app you use), the client (its messenger), the server (the one holding the tools), tools, resources, prompts and capability negotiation.',
+       idea:'A protocol is an agreed way for two sides to talk. It does not take away the need to check who is allowed. It does not take away the need for a safe design.',
+       prove:'Draw the path from the host to the client to the server, and then to the tool or resource.',
+       build:'Look closely at one real or local exchange of messages, like reading a chat between two people.',
+       brk:'Ask what happens when a server says it offers a power that the user is not allowed to use.',
        artifact:'An MCP Trust-Boundary Diagram.',
-       check:'Where does the user’s identity live, and where is authorisation enforced?',
-       lens:'Once you know the protocol, you can challenge anyone who says “MCP makes it secure”.'}
+       check:'Where does the user\'s identity (who they are) live, and where is authorisation checked?',
+       lens:'Once you know the protocol, you can question anyone who says “MCP makes it secure”.'}
     ],
     [
       'unit',
       '14.2',
       'Expose a tiny capability',
-      {goal:'Build a tiny local provider that offers one safe tool or resource.',
-       idea:'The best way to understand a protocol is to look inside a small working example of it.',
-       prove:'Expose a read-only function, such as looking up a record on your own machine.',
-       build:'Call it from a compatible client, or from a local mock.',
-       brk:'Send badly formed arguments, and make the server return errors.',
-       artifact:'An MCP Mini-Demo repository.',
-       check:'Can you trace the whole path: discovery, the call, and the response?',
-       lens:'Keep the demo read-only, so your attention stays on how the protocol works.'}
+      {goal:'Build a tiny provider on your own computer that offers one safe tool or resource.',
+       idea:'The best way to understand a protocol is to open up a small example that really works.',
+       prove:'Offer a read-only function (a recipe that only looks, never changes), such as looking up a record on your own computer.',
+       build:'Call it from a client that fits, or from a local mock (a pretend copy).',
+       brk:'Send badly formed arguments (messy details), and make the server send back errors.',
+       artifact:'An MCP Mini-Demo repository (an online folder that remembers every change).',
+       check:'Can you follow the whole path: finding the tool, the call, and the reply?',
+       lens:'Keep the demo read-only. Then your eyes stay on how the protocol works.'}
     ],
     [
       'unit',
       '14.3',
       'Consent and authorization',
-      {goal:'Keep two things apart: finding out what a tool can do, and being allowed to use it.',
-       idea:'A tool that can be discovered is not automatically a tool you are authorised to use.',
-       prove:'Create an authorisation matrix for read, write and privileged tools.',
-       build:'Add a policy check before any tool is called.',
-       brk:'Try a call you are not authorised to make, and record that it was refused.',
-       artifact:'An Authorization Matrix, plus test evidence.',
-       check:'Who makes the final decision on authorisation?',
-       lens:'Authorisation on the server must never depend on the model following instructions.'}
+      {goal:'Keep two things apart: finding out what a tool can do, and being allowed to use it. It is like seeing a locked cupboard and having its key.',
+       idea:'If you can see a tool, that does not mean you may use it.',
+       prove:'Make an authorisation matrix (a table of who may do what) for read, write and privileged tools (tools with special power).',
+       build:'Add a policy check, like a guard at the door, before any tool is called.',
+       brk:'Try a call you are not allowed to make, and write down that it was refused.',
+       artifact:'An Authorization Matrix, with proof from your tests.',
+       check:'Who makes the last call on who is allowed?',
+       lens:'The server checks who is allowed. That check must never depend on the model following instructions.'}
     ],
     [
       'unit',
       '14.4',
       'MCP security and prompt injection',
-      {goal:'Treat resources and tool outputs as content you cannot trust.',
-       idea:'When more things can connect, you also get more outside trust boundaries.',
-       prove:'Hide a malicious instruction inside a resource, and test how the client’s workflow handles it.',
-       build:'Keep data apart from instructions that control the system, and enforce the tool policies.',
-       brk:'Try an indirect injection, where the bad instruction arrives inside a resource that was retrieved.',
+      {goal:'Treat resources and tool outputs as content you cannot trust, like a note from a stranger.',
+       idea:'When more things can plug in, there are also more places where trust has to stop.',
+       prove:'Hide a bad instruction inside a resource. Then test how the client\'s workflow handles it.',
+       build:'Keep data apart from the instructions that control the system. Make the tool rules really hold.',
+       brk:'Try an indirect injection: the bad instruction comes hidden inside a resource that was fetched, like a note slipped inside a borrowed book.',
        artifact:'An MCP Security Test Sheet.',
-       check:'Can content you don’t trust cause an action that needs special privilege?',
-       lens:'This connects directly to the security chapter.'}
+       check:'Can content you do not trust make something happen that needs special permission?',
+       lens:'This links straight to the security chapter.'}
     ],
     [
       'unit',
       '14.5',
       'Agent-to-agent interoperability',
-      {goal:'Understand the ideas behind A2A-style protocols: identity, delegation, exchanging tasks, trust and observability.',
-       idea:'Protocols between agents solve the problem of connecting them. They do not remove the basic risks of autonomy.',
-       prove:'Draw an exchange between two agents, with the boundaries of identity and delegation marked.',
-       build:'Define which data and which authority may cross the boundary.',
-       brk:'Create a handoff that is malicious or confused, and name the control that should stop it.',
+      {goal:'Understand the ideas behind A2A-style protocols (ways for agents to talk to agents): identity, delegation (handing a job over), swapping tasks, trust and observability (being able to see what happened).',
+       idea:'Protocols between agents solve the problem of joining them. They do not remove the basic risks of letting agents act on their own.',
+       prove:'Draw an exchange between two agents. Mark the lines of identity and delegation.',
+       build:'Decide which data and which powers may cross the line.',
+       brk:'Make a handoff that is bad or confused, and name the control that should stop it.',
        artifact:'An Agent Interoperability Trust Model.',
-       check:'What does the receiving agent actually trust?',
-       lens:'Keep your attention on design and governance, not on protocol trivia.'}
+       check:'What does the agent that receives the job really trust?',
+       lens:'Keep your eyes on design and rules, not on tiny protocol details.'}
     ],
     ['h','Read one real exchange'],
-    ['p','You do not need a real MCP server to understand it. The cell below is a toy: a few lines of Python that answer in the same message shapes, with the pattern checker offered as a tool. Run it and read the six lines it prints. Real messages carry a few more fields. To run a real server, use the free Introduction to MCP course in the plan.'],
+    ['p','You do not need a real MCP server to understand this. The code cell (a box of code) below is a toy. A few lines of Python answer in the same message shapes. The pattern checker is offered as a tool. Press Run and read the six lines it prints. Real messages carry a few more fields. To run a real server, use the free Introduction to MCP course in the plan.'],
     ['do','Mark where consent sits',[
       ['code','import json, re\n\ndef server(msg):\n    if msg["method"] == "initialize":\n        return {"serverInfo": {"name": "pattern-checker"}}\n    if msg["method"] == "tools/list":\n        return {"tools": [{"name": "find_ids", "description": "Find Indian ID numbers in text"}]}\n    if msg["method"] == "tools/call":\n        text = msg["params"]["arguments"]["text"]\n        found = re.findall(r"[A-Z]{5}[0-9]{4}[A-Z]", text)\n        return {"content": [{"type": "text", "text": "PAN: " + ", ".join(found)}]}\n\ndef send(id, method, params=None):\n    msg = {"jsonrpc": "2.0", "id": id, "method": method}\n    if params:\n        msg["params"] = params\n    print("client -> server:", json.dumps(msg))\n    print("server -> client:", json.dumps({"jsonrpc": "2.0", "id": id, "result": server(msg)}))\n\nsend(1, "initialize", {"clientInfo": {"name": "demo-client"}})\nsend(2, "tools/list")\nsend(3, "tools/call", {"name": "find_ids", "arguments": {"text": "mera pan card ABCPJ1234K hai"}})'],
-      ['n',['Mark the message where the client first learns what the server can do.','Mark the message where the user’s text leaves their screen and something is done with it.','Write one line: who must say yes before that message is sent, and what happens if nobody does?']],
-      ['x','The tools/list reply is where the client learns what exists. The tools/call message is the one to mark: the user’s own PAN is sent out. Consent belongs just before it, in the client. The server cannot grant it to itself. The protocol carried all six messages without asking anyone.']
+      ['n',['Mark the message where the client first learns what the server can do.','Mark the message where the user\'s text leaves their screen and something is done with it.','Write one line. Who must say yes before that message is sent? What happens if nobody does?']],
+      ['x','The tools/list reply is where the client learns what exists. The tools/call message is the one to mark: the user\'s own PAN is sent out. Consent belongs just before it, in the client. The server cannot give it to itself. The protocol carried all six messages and asked nobody.']
     ]],
     ['h','A standard does not make a tool safe'],
-    ['p','The units lead to one main lesson, and it’s easy to forget when a standard looks tidy and official.'],
-    ['key','A standard tool interface does not make an unsafe tool safe. The protocol carries the call; it does not decide whether the call should be allowed.'],
+    ['p','The units lead to one big lesson. It is easy to forget when a standard looks neat and official.'],
+    ['key','A standard tool interface (the plug socket) does not make an unsafe tool safe. The protocol carries the call. It does not decide if the call should be allowed.'],
     ['q','I407'],
-    ['p','There’s a common mix-up here. MCP is a <strong>protocol</strong>, not a framework that builds agents. It standardises the connection. What gets connected, and who may use it, is still your design.'],
-    ['p','Agent-to-agent protocols add one more layer. They let agents find each other and exchange tasks and results. For product decisions, focus on identity, delegation, trust, permissions, error handling and observability, rather than on the fields inside each message.'],
-    ['p','Now let’s turn this into something you can use. You’ll sort tools from a system you already know into groups, by what each one is allowed to change.'],
+    ['p','Many people mix this up. MCP is a <strong>protocol</strong>, not a framework that builds agents. It makes the connection standard. What gets connected, and who may use it, is still your design.'],
+    ['p','Agent-to-agent protocols add one more layer. They let agents find each other and swap tasks and results. For product decisions, look at identity, delegation, trust, permissions, error handling and observability. Do not look at the fields inside each message.'],
+    ['p','Now let us make this useful. You will take tools from a system you already know. You will sort them into groups by what each one may change.'],
     [
       'try',
       {id:'ch27-classify',
        mins:6,
        min:60,
        rows:4,
-       task:'Classify five tools from a system you know as read-only, reversible write, irreversible write, privileged or prohibited.',
+       task:'Take five tools from a system you know. Put each in one class: read-only, reversible write (a change you can undo), irreversible write (a change you cannot undo), privileged (special power) or prohibited (not allowed at all).',
        ph:'Tool — class — why',
-       after:'The line between reversible and irreversible is where human confirmation belongs. If a tool was hard to place, it probably needs a smaller scope.'}
+       after:'The line between reversible and irreversible is where a person should confirm. If a tool was hard to place, give it a smaller scope (a smaller area of power).'}
     ],
     ['h','Summary'],
-    ['p','To sum up. MCP is a standard way to connect tools, in the same way a plug socket is a standard. It makes things easier to plug in, but it doesn’t make an unsafe tool safe. Consent, authorisation and trust boundaries are still your job.'],
-    ['p','Next, Chapter 28 changes the type of input, from text to documents, images and audio, while keeping the same context and evaluation design.']
+    ['p','To sum up. MCP is a standard way to connect tools, just as a plug socket is a standard. It makes tools easy to plug in. It does not make an unsafe tool safe. Consent, authorisation and trust boundaries are still your job.'],
+    ['p','Next, Chapter 28 changes the kind of input: from text to documents, images and audio. The same context and evaluation design stay.']
   ],
   capstone:{
     title:'Write the tool access policy',
-    brief:'The gateway and the browser extension would be allowed to read forms, change text, call outside models and write logs. A standard connection to a tool makes things easier to plug in, but it does not make an unsafe tool safe. In this chapter you learned to mark where consent and authorisation happen and to classify tools by what they are allowed to change. Here you write the access policy for the gateway and the extension.',
-    where:'Written only. The policy is what you hand in. Classifying the tools is the thinking. No new code is needed.',
+    brief:'The gateway and the browser extension may read forms, change text, call outside models and write logs. A standard plug makes tools easy to connect. It does not make an unsafe tool safe. You learned to mark where consent and authorisation happen, and to group tools by what they may change. Now you write the access policy (the rulebook of who may use what) for the gateway and the extension.',
+    where:'You only write. The policy is what you hand in. Sorting the tools is the thinking part. You need no new code.',
     steps:[
       'List every tool or action the gateway or the browser extension would need: read a form field, read a request body, write to a log, call an outside model, replace text, block a request, send an alert.',
-      'Sort each one into a class: read only; a change that can be undone; a change that cannot be undone; special permission needed; or forbidden.',
-      'For each class, write what authorisation it needs and whether a person must confirm.',
-      'Draw a table with roles down the side (the developer, the compliance reviewer, the end user and the tool itself) and the classes across the top. Mark who may do what.',
-      'Mark on a diagram where trust stops, and say which part enforces it.',
-      'Write what is recorded for an action that cannot be undone.'
+      'Put each one in a class (a group): read only; a change that can be undone; a change that cannot be undone; special permission needed; or forbidden.',
+      'For each class, write what authorisation (permission check) it needs. Write whether a person must say yes first.',
+      'Draw a table. Put the roles down the side: the developer, the compliance reviewer, the end user and the tool itself. Put the classes across the top. Mark who may do what.',
+      'Draw a diagram and mark where trust stops. Say which part makes that rule happen.',
+      'Write down what is recorded when someone does something that cannot be undone, like a receipt kept for a sale.'
     ],
     done:[
-      'Every tool sorted into one of the five classes.',
+      'Every tool put into one of the five classes.',
       'A table of roles against classes.',
-      'A diagram with the trust boundary and the part that enforces it.',
-      'A description of the record kept for an action that cannot be undone.'
+      'A diagram that shows the trust boundary and the part that holds the line.',
+      'A note on the record kept for an action that cannot be undone.'
     ]
   }
 },
@@ -1200,111 +1200,111 @@ window.PART5 = [
 {
   id:'ch15mm', num:28, part:5, curriculumTier:'core', phase:3, prerequisites:['ch16','ch6','ch14p'], nextUnits:['ch16e'], minutes:50, labs:[],
   title:'Multimodal AI: documents, images and voice',
-  concept:'When the input is a PDF, an image or audio, the design stays the same: context, tools, retrieval and evaluation. What changes is what counts as evidence and how you trace it. You’ll find out what text extraction loses, and design a voice pipeline.',
+  concept:'The input can be a PDF, an image or audio. The design stays the same: context (the model\'s desk), tools, retrieval (an open-book exam) and evaluation (tests with an answer key). What changes is what counts as evidence and how you trace it. You will see what text extraction loses. You will design a voice pipeline.',
   plan:{
-    first:'Feed in one PDF with a table, one image, and one short audio clip. Predict what plain text extraction will lose.',
-    build:'Pull out structured facts together with where each one came from, including timestamps when the source is audio.',
-    brk:'Try a poor scan, a difficult table, speakers who overlap, and input that mixes languages.',
-    artifact:'A multimodal pipeline and an evaluation set for each kind of input.',
-    gate:'State where knowing the source and having a person verify are mandatory, not just nice to have.'
+    first:'Feed in one PDF with a table, one image, and one short audio clip. Guess first what plain text extraction (pulling out only the words) will lose.',
+    build:'Pull out structured facts (facts in neat boxes) and note where each one came from. If the source is audio, note the timestamps (the minute and second).',
+    brk:'Try a poor scan, a hard table, speakers who talk over each other, and input that mixes languages.',
+    artifact:'A multimodal pipeline (a line of steps for text, pictures and sound) and an evaluation set (a set of test questions with an answer key) for each kind of input.',
+    gate:'Say where knowing the source and having a person check are a must, not just nice to have.'
   },
   needs:[
-    ['Scanned documents need images, not just text','Chapter 16 covered this for images of text.',16],
-    ['The answer key has to come from somewhere','From Chapter 6. For a table or an image, it comes from a person.',6]
+    ['Scanned documents need pictures, not just text','Chapter 16 covered this for pictures of text.',16],
+    ['The answer key has to come from somewhere','From Chapter 6. For a table or a picture, it comes from a person.',6]
   ],
   words:[
-    ["OCR","Reading text out of an image of text. The quality of the scan sets a floor, and OCR fails quietly on bad input."],
-    ["Diarization","Working out who spoke which part of an audio recording. It looks like a technical detail, but it behaves like a privacy decision."],
-    ["Document understanding","Pulling out meaning that depends on layout, such as tables, headings and position, and not only the words."],
-    ["Media provenance","Knowing where a piece of media came from, and what has been done to it since."]
+    ["OCR",'Reading the text out of a picture of text, like reading a photo of a notice board. A poor scan limits how well it can read, and OCR fails quietly when the input is bad.'],
+    ["Diarization",'Working out who spoke which part of a recording. It looks like a small technical detail, but it acts like a privacy decision.'],
+    ["Document understanding",'Getting the meaning that comes from the layout, such as tables, headings and where things sit. It is not only the words.'],
+    ["Media provenance",'Knowing where a photo, a recording or a video came from, and what has been done to it since, like a receipt trail.']
   ],
   takeaway:[
-    'Name three things plain-text extraction loses from a real PDF.',
-    'Draw a voice pipeline and mark the steps that affect response time.',
-    'Say where the answer key for a multimodal question must come from.'
+    'Name three things that plain-text extraction (pulling out only the words) loses from a real PDF.',
+    'Draw a voice pipeline (a line of steps for sound). Mark the steps that add waiting time before the reply.',
+    'Say where the answer key (the teacher\'s list of right answers) for a multimodal question must come from.'
   ],
   story:[
-    ['c','Before you start','Find one real PDF with a table in it, and one short audio recording that you’re allowed to use.'],
-    ['c','On your route','Do units 15.3 and 15.4, then try the spoken-numbers cell below. Read the other units this pass.'],
-    ['p','So far, almost everything in this part has been text. Now the input changes. Real work arrives as PDFs, photos of forms and voice messages. This chapter shows what happens to the same ideas when the input isn’t plain text, and where things quietly go missing.'],
-    ['p','Start with a PDF. It holds text, layout, tables, images and hidden metadata. If you extract only the words, most of that is flattened, and nothing tells you it happened. No error appears.'],
-    ['p','Here’s an everyday example. Photograph a railway timetable, and read only the words, in order, to someone on the phone. They hear every station name, but no useful departure times. The meaning was in the columns, and the columns didn’t survive.'],
+    ['c','Before you start','Find one real PDF with a table in it. Find one short audio recording that you are allowed to use.'],
+    ['c','On your route','Do units 15.3 and 15.4. Then try the spoken-numbers cell (the box of code) below. This time, only read the other units.'],
+    ['p','Until now, almost everything in this part was text. Now the input changes. Real work comes as PDFs, photos of forms and voice messages. See what happens to the same ideas when the input is not plain text. See where things quietly go missing.'],
+    ['p','Start with a PDF. It holds text, layout, tables, pictures and hidden metadata (extra facts about the file). If you pull out only the words, most of that is squashed flat. Nothing tells you. No error appears.'],
+    ['p','Here is an everyday picture. Photograph a railway timetable. Read only the words, in order, to someone on the phone. They hear every station name. They get no useful departure times. The meaning sat in the columns, and the columns did not survive.'],
     ['h','Hands-on units'],
-    ['p','There are five units. The first looks at documents, the second at images, and the third at voice. The fourth looks at speed, and the fifth shows how to test all of it properly.'],
+    ['p','There are five units. The first looks at documents, the second at images, and the third at voice. The fourth looks at speed. The fifth shows how to test all of it the right way.'],
     [
       'unit',
       '15.1',
       'Document understanding',
-      {goal:'Understand why a PDF is a page with a layout, not just a text file.',
-       idea:'Pulling out only the text can lose tables, reading order, images, headers and the meaning that comes from where things sit on the page.',
-       prove:'Put the extracted text next to the page as it is displayed, and compare the two.',
-       build:'Write down the information that was lost, and design a fallback.',
+      {goal:'Understand why a PDF is a page with a layout, not just a text file. It is like a poster, not a plain list.',
+       idea:'Pulling out only the text can lose tables, reading order, images, headers, and the meaning that comes from where things sit on the page.',
+       prove:'Put the pulled-out text next to the page as it looks on screen. Compare the two.',
+       build:'Write down what information was lost. Then design a fallback (a plan B).',
        brk:'Use a scanned page and a page with a lot of tables.',
        artifact:'A Document Understanding Gap Report.',
-       check:'Which questions cannot be answered from plain text?',
-       lens:'This is a problem with the quality of retrieval before it is ever a problem with the LLM.'}
+       check:'Which questions cannot be answered from plain text alone?',
+       lens:'This is a problem with the quality of retrieval (finding the right page) before it is ever a problem with the LLM (the parrot that has read a library).'}
     ],
     [
       'unit',
       '15.2',
       'Vision and image evidence',
-      {goal:'Use evidence from images, with a clear record of where it came from and a way to evaluate it.',
-       idea:'Vision models can read what an image shows, but their reading is still a probable guess, not a certainty.',
-       prove:'Ask five questions about an image or a table, and mark the region of the image that is the evidence.',
-       build:'Record the source image, the question, the answer, and whether a person verified it.',
-       brk:'Use images that are low-resolution or unclear.',
+      {goal:'Use evidence from images. Keep a clear record of where it came from. Have a way to test it.',
+       idea:'Vision models (models that look at pictures) can read what an image shows. But their reading is still a likely guess, not a sure thing.',
+       prove:'Ask five questions about an image or a table. Mark the part of the image that is the evidence.',
+       build:'Write down the source image, the question, the answer, and whether a person checked it.',
+       brk:'Use images that are small and fuzzy or hard to see.',
        artifact:'A Vision Evaluation Set.',
-       check:'Which outputs need a person to verify them?',
-       lens:'Any claim about what an image shows should be traceable back to the source image.'}
+       check:'Which answers need a person to check them?',
+       lens:'Any claim about what an image shows should lead back to the source image, like a footnote.'}
     ],
     [
       'unit',
       '15.3',
       'Audio and speech pipelines',
-      {goal:'Understand the whole path: capture, then ASR (speech to text), then cleaning up the text, then extraction, then confirmation, then action.',
-       idea:'Voice AI is a pipeline with several places where it can fail. It is not a single call to a model.',
-       prove:'Use a short audio sample and check how good the transcript is.',
-       build:'Pull the tasks out of the transcript into structured JSON.',
+      {goal:'Understand the whole path: capture (record the sound), then ASR (speech turned into text), then clean up the text, then extraction (pull out the facts), then confirmation, then action.',
+       idea:'Voice AI is a pipeline: a chain with several places where it can break. It is not one single call to a model.',
+       prove:'Use a short audio sample. Check how good the transcript (the typed-out speech) is.',
+       build:'Pull the tasks out of the transcript into structured JSON (a form written as labels and values).',
        brk:'Test accents, people talking over each other, names, and content that mixes languages.',
-       artifact:'A Voice Pipeline Spec, plus a 10-case audio eval set.',
-       check:'Where can an error first enter the pipeline?',
-       lens:'For meeting and task automation, confirmation and privacy are part of the product.'}
+       artifact:'A Voice Pipeline Spec, plus an audio eval set (a set of tests) of 10 cases.',
+       check:'Where can a mistake first get into the pipeline?',
+       lens:'When you automate meetings and tasks, confirmation and privacy are part of the product.'}
     ],
     [
       'unit',
       '15.4',
       'Streaming and latency',
-      {goal:'Understand why voice and other interactive multimodal systems care about partial results and about the time to the first response.',
-       idea:'Users feel delay differently from servers. Streaming can make a system feel faster without reducing the total work.',
-       prove:'Measure the delay at each stage for one sample request.',
-       build:'Keep the delays for capture, transcription, the model and the action separate.',
-       brk:'Add an artificial delay to one stage, and see what it does to the experience.',
+      {goal:'Understand why voice and other interactive systems care about partial results and about the waiting time before the first reply. It is like the chai-wala saying "two minutes" while he makes your tea.',
+       idea:'Users feel waiting differently from servers. Streaming (words arriving as they are made) can make a system feel faster. The total work stays the same.',
+       prove:'Measure the waiting time at each stage for one sample request.',
+       build:'Keep the waiting time for capture, transcription, the model and the action apart, each on its own line.',
+       brk:'Add an artificial (made-up) delay to one stage. See what it does to the user\'s experience.',
        artifact:'A Latency Budget for the Multimodal Flow.',
-       check:'Which delay target will the user actually notice?',
-       lens:'Don’t speed up the fastest part while the user is waiting on another one.'}
+       check:'Which waiting time will the user really notice?',
+       lens:'Do not speed up the fastest part while the user is waiting on a different part.'}
     ],
     [
       'unit',
       '15.5',
       'Multimodal RAG evaluation',
-      {goal:'Design tests where the answer depends on evidence that comes from one specific kind of input.',
-       idea:'An evaluation set made only of text can hide failures that happen with images and audio.',
-       prove:'Create five text-only cases, five visual or table cases, and five audio cases.',
-       build:'Score three things: whether the evidence is correct, whether the extraction is correct, and whether the whole task succeeds.',
+      {goal:'Design tests where the answer depends on evidence from one kind of input.',
+       idea:'An evaluation set made only of text can hide the failures that happen with images and audio.',
+       prove:'Make five text-only cases, five picture or table cases, and five audio cases.',
+       build:'Score three things: is the evidence right, is the extraction right, and did the whole task work?',
        brk:'Add a poor scan, noisy audio and a case in more than one language.',
-       artifact:'An Evaluation Matrix for each kind of input.',
-       check:'Which failure belongs to extraction, and which belongs to reasoning?',
-       lens:'Your set of measures should show you which component is broken, not just that the final answer was wrong.'}
+       artifact:'An Evaluation Matrix (a table of scores) for each kind of input.',
+       check:'Which failure belongs to extraction, and which belongs to reasoning (the model\'s thinking)?',
+       lens:'Your measures should show which part is broken, not only that the last answer was wrong. Think of a doctor who finds which organ hurts.'}
     ],
     ['h','Voice is a pipeline'],
-    ['p','Voice is the clearest case of something with many stages. It feels like one thing when you use it, but it isn’t.'],
-    ['key','A voice system is a pipeline, not one model. Each stage adds delay, and each stage is a place where meaning can change.'],
+    ['p','Voice is the clearest case of something with many stages. When you use it, it feels like one thing. It is not.'],
+    ['key','A voice system is a pipeline, not one model. Each stage adds waiting time. Each stage is a place where the meaning can change.'],
     ['q','I408'],
-    ['p','Each stage has a name: reading text from an image (OCR), turning speech into text (transcription), and working out who said what (speaker attribution). Each is a step where meaning can be lost, so each needs its own check.'],
+    ['p','Each stage has a name. Reading text from an image is OCR. Turning speech into text is transcription. Working out who said what is speaker attribution. Meaning can be lost at each step, so each step needs its own check.'],
     ['h','Test how spoken numbers are heard'],
-    ['p','Indian speech is often mixed Hindi and English, and a phone number is exactly where it fails. This test gives you a real number for the capstone. Check the current free tiers and languages of any speech tool yourself, and do not take a figure from this page. Practice question 13 in the plan asks which kind of speech model you would choose.'],
+    ['p','Indian speech is often a mix of Hindi and English. A phone number is exactly where that mix breaks. This test gives you a real number for the capstone. Check the free tiers and languages of any speech tool yourself. Do not trust a figure from this page. Practice question 13 in the plan asks which kind of speech model you would choose.'],
     ['do','Count the digits that were heard',[
-      ['p','Use voice typing on your phone, or any free speech-to-text. Say five made-up sentences: two in Hindi, two in Hinglish and one in English. Put the made-up number 9876543210 in each one. Paste what was typed into the cell, then run it.'],
+      ['p','Use voice typing on your phone, or any free speech-to-text. Say five made-up sentences: two in Hindi, two in Hinglish and one in English. Put the made-up number 9876543210 in each one. Paste what was typed into the cell (the box of code), then press Run.'],
       ['code','import re\n\nSPOKEN = "9876543210"   # the made-up number you read aloud in every sentence\nheard = {\n    ("English", 1): "my mobile number is 9876543210",\n    ("Hindi", 1): "मेरा मोबाइल नंबर 9876543210 है",\n    ("Hinglish", 1): "mera mobile number 98765 4321 hai",\n    ("Hinglish", 2): "mera number nau aath saat chhah paanch char teen do ek shunya hai",\n}   # replace these made-up transcripts with what your tool really heard\n\nright = {}\nfor (language, n), text in heard.items():\n    digits = re.sub(r"[^0-9]", "", text)\n    matched = sum(a == b for a, b in zip(digits, SPOKEN))\n    right[language] = right.get(language, 0) + matched\n    print(language, n, "->", digits or "no digits", "|", matched, "of 10 digits right")\nfor language, total in right.items():\n    print(language, "total:", total)'],
       ['x','With the made-up transcripts, English and Hindi score 10 of 10, and the Hinglish lines score 9 and 0. The last one wrote the number as words, so a rule that looks only for digits sees nothing. With your own transcripts, expect a different pattern. Add the five sentences, and what should have been found, as new rows in your answer key.'],
       [
@@ -1312,40 +1312,40 @@ window.PART5 = [
         ['A red box saying something <em>is not defined</em>','This cell sets up everything it uses. So run the whole cell, not a part of it.','A line says no digits','The tool wrote the number as words, such as nau aath saat. That is a real miss, not a mistake in the cell. Count it as zero digits right.','The Hindi line looks broken','Paste the transcript between the quotation marks and keep the quotation marks. Hindi letters are fine inside them.']
       ]
     ]],
-    ['p','Speaker attribution is a good one to try yourself, because it raises questions that are not only technical.'],
+    ['p','Try speaker attribution yourself. It raises questions that are not only technical.'],
     [
       'try',
       {id:'ch28-attrib',
        mins:6,
        min:60,
        rows:4,
-       task:'For a meeting assistant: who said what, how long is the transcript kept, and what happens when two people talk at once?',
-       ph:'Attribution … retention … overlapping speech …',
-       after:'Speaker attribution looks like a technical detail, but it behaves like a privacy decision.'}
+       task:'For a meeting assistant: who said what? How long is the transcript kept? What happens when two people talk at once?',
+       ph:'Attribution (who said it) … retention (how long it is kept) … overlapping speech (two voices at once) …',
+       after:'Speaker attribution looks like a small technical detail, but it acts like a privacy decision.'}
     ],
     ['h','Summary'],
-    ['p','Let’s pull it together. A PDF is a page with layout, so extracting only the words loses things without any warning.'],
-    ['p','An image gives you probable readings, not certainties, so you keep track of the source. A voice system is a pipeline, and each stage needs its own check. For a table or an image, the answer key comes from a person.'],
-    ['p','Next, Chapter 29 builds a systematic way to prove whether all these components work.']
+    ['p','Let us pull it together. A PDF is a page with layout. So if you pull out only the words, things are lost without any warning.'],
+    ['p','An image gives you likely readings, not sure ones, so you keep track of the source. A voice system is a pipeline, and each stage needs its own check. For a table or an image, the answer key comes from a person.'],
+    ['p','Next, Chapter 29 builds a step-by-step way to prove whether all these parts work.']
   ],
   capstone:{
     title:'Specify how the tool handles images and voice',
-    brief:'Personal details arrive as photos of cards and as spoken words as well as typed text. In this chapter you learned what plain-text extraction loses from a real document, how a voice pipeline is put together, and where the answer key for a multimodal question must come from. Here you specify how Bharat Privacy Guard deals with scanned IDs and with typed-by-voice sentences.',
-    where:'Written only. A specification. No code needed.',
+    brief:'Personal details come as typed text, as photos of cards, and as spoken words. You learned what plain-text extraction loses from a real document. You learned how a voice pipeline is put together. You learned where the answer key for a multimodal question must come from. Now you write the specification (a plan that says exactly what to do) for how Bharat Privacy Guard handles scanned IDs and sentences typed by voice.',
+    where:'You only write. It is a specification. You need no code.',
     steps:[
-      'Name three things that are lost when text is simply pulled out of a scanned ID card or a PDF. For example: where the text sits on the page, a stamp, and a handwritten note.',
-      'Draw the path for a voice message: speech turned into text, then the tool, then the safe text. Mark the steps that add delay.',
-      'Write the privacy boundary: whose voice is recorded, where it is recorded, and what notice the person gets.',
-      'Write how long the typed-out speech is kept and how it is deleted.',
-      'Write what happens when the speech-to-text is unsure of a number, for example a digit it heard twice. Write the rule.',
-      'Say where the answer key for voice and images comes from, and write three made-up voice-typed sentences with no punctuation to add to it.',
-      'Write the measures you will track, including one for how often a spoken number is heard correctly.'
+      'Name three things lost when the words are just pulled out of a scanned ID card or a PDF. For example: where the text sits on the page, a stamp, and a handwritten note.',
+      'Draw the path of a voice message: speech turned into text, then the tool, then the safe text. Mark the steps that add waiting time.',
+      'Write the privacy boundary (the line around what you may record). Whose voice is recorded? Where is it recorded? What notice does the person get?',
+      'Write how long the words typed from speech are kept, and how they are deleted.',
+      'Write what happens when the speech-to-text is not sure of a number, for example a digit it heard two ways. Write the rule.',
+      'Say where the answer key for voice and images comes from. Then write three made-up sentences, typed by voice with no punctuation, to add to it.',
+      'Write the measures you will track (the numbers you will watch). Include one for how often a spoken number is heard right.'
     ],
     done:[
-      'Three things lost by plain text extraction.',
-      'A voice path with the delays marked.',
-      'The privacy boundary and the keep-and-delete rule.',
-      'A rule for unsure numbers, three new answer-key rows, and the measures to track.'
+      'Three things lost when only the words are pulled out.',
+      'A voice path with the waiting steps marked.',
+      'The privacy boundary, and the rule for how long to keep the text and how to delete it.',
+      'A rule for numbers it is unsure of, three new answer-key rows, and the measures to track.'
     ]
   }
 }
@@ -1355,74 +1355,74 @@ window.PART5 = [
 {
   id:'ch16e', num:29, part:5, curriculumTier:'core', phase:4, prerequisites:['ch6','ch14','ch145'], nextUnits:['ch17o','ch19pm','ch20d','b3'], minutes:60, labs:['judge'],
   title:'Evaluation engineering: test sets and release gates',
-  concept:'In Chapter 6 you learned to measure. Now you turn that measuring into a release process: a test set with a version number, scores at several levels, and a gate that decides whether a change goes live.',
+  concept:'In Chapter 6 you learned to measure. Now you turn that measuring into a release process. It has a test set with a version number, scores at several levels, and a gate that decides if a change goes live.',
   plan:{
     first:'Before you improve anything, write twenty tests. Include normal questions, reworded ones, unclear ones, ones with no answer, other languages, tricky attacks and cases where the tool must be used.',
-    build:'Automate the checks for retrieval, structure, tool use and the final answer. Use a model as judge only where a simple exact check cannot do the job.',
-    brk:'Change the prompt, then the model, then the index, one at a time, and run the regression test each time. Then compare the judge’s labels with human labels on a small sample.',
-    artifact:'A working evaluation harness and a release gate.',
-    gate:'No change goes live because a demo looked better. It goes live because it passed the gate.'
+    build:'Make the checks run by themselves for retrieval (finding the right page), structure (the form\'s boxes), tool use and the final answer. Use a model as judge (a second student marking homework) only where a simple exact check cannot do the job.',
+    brk:'Change the prompt, then the model, then the index, one at a time. Run the regression test (the old cases that must still pass) each time. Then compare the judge\'s labels with human labels on a small sample.',
+    artifact:'A working evaluation harness (code that runs your tests) and a release gate (the pass mark before going live).',
+    gate:'No change goes live because a demo looked better. It goes live because it passed the gate, like a student who passed the exam.'
   },
   needs:[
-    ['Answer keys, recall and precision','Chapter 6 built the measuring that this chapter scales up.',6],
-    ['A model can grade output at scale','Chapter 14 introduced the judge, and the ways it can be biased.',14],
-    ['Improvement comes from reading failures by hand','You learned this in Chapter 14.5. Automation does not replace it.',14.5]
+    ['Answer keys, recall and precision','Chapter 6 built the measuring. This chapter makes it bigger.',6],
+    ['A model can mark many answers fast','Chapter 14 introduced the judge, and the ways it can lean unfairly (bias).',14],
+    ['You get better by reading the wrong answers one by one','You learned this in Chapter 14.5. Automation does not take its place.',14.5]
   ],
   words:[
-    ["Golden set","The carefully chosen cases, with a version number, that every change is measured against."],
-    ["LLM-as-judge","Using a model to score another model’s output. It is a scorer, not an oracle, so you should know how often it disagrees with human labels."],
-    ["Regression test","A case that passed before and must still pass now."],
-    ["Release gate","The thresholds a change has to clear before it goes live, however good the demo looked."]
+    ["Golden set",'The cases you chose with care, with a version number. Every change is measured against them, like the same exam paper for every student.'],
+    ["LLM-as-judge",'Using a model to score another model\'s output. It is a marker, not an all-knowing oracle. So find out how often it disagrees with human labels.'],
+    ["Regression test",'A case that passed before and must still pass now. If it breaks, the change made something worse.'],
+    ["Release gate",'The pass marks a change must reach before it goes live, however good the demo looked, like the railing at a level crossing.']
   ],
   takeaway:[
-    'Build a test set with a version number that still works after a prompt, model or index change.',
-    'Score the system at several levels, so that a good final number cannot hide a broken part.',
-    'Say where an LLM judge is fine to use and where it is not.'
+    'Build a test set with a version number that still works after you change a prompt, a model or an index (the search shelf).',
+    'Score the system at several levels, so one good final number cannot hide a part that is broken.',
+    'Say where an LLM judge (a model that marks answers) is fine to use and where it is not.'
   ],
   story:[
-    ['c','Before you start','Bring your answer key from Chapter 6, your judge from Chapter 14 and your experiment harness.'],
-    ['c','On your route','Do units 16.1 and 16.6, then run the gate cell below. Read the other units this pass.'],
-    ['p','In Chapter 6 you made an answer key and learned to score against it. That was measuring. Now we make it a habit the whole team follows, and a rule that decides whether a change goes live.'],
-    ['p','Here’s what you’ll build: a fixed set of test questions, one consistent way of grading them, and a pass mark agreed in advance. Once you have those, “the demo looked better” stops being an argument.'],
-    ['p','Think about how a school works. It doesn’t judge a student on one good answer. Everyone sits the same paper, it is marked the same way, and the pass mark is agreed beforehand. An AI feature needs the same fairness.'],
-    ['key','Every AI feature needs a test set, and the test set needs a version number. If you cannot rerun an evaluation after a change, it is only an anecdote.'],
+    ['c','Before you start','Keep your answer key from Chapter 6, your judge from Chapter 14 and your experiment harness (the code that runs your tests) ready.'],
+    ['c','On your route','Do units 16.1 and 16.6. Then run the gate cell (the box of code) below. This time, only read the other units.'],
+    ['p','In Chapter 6 you made an answer key and learned to score against it. That was measuring. Now the whole team makes it a habit. You also add a rule that decides if a change goes live.'],
+    ['p','You will build three things. One is a fixed set of test questions. One is a single steady way to mark them. One is a pass mark agreed in advance. After that, "the demo looked better" is no longer an argument.'],
+    ['p','Think of a school. It does not judge a student on one good answer. Everyone sits the same paper. It is marked the same way. The pass mark is agreed first. An AI feature needs the same fairness.'],
+    ['key','Every AI feature needs a test set, and the test set needs a version number. If you cannot run the test again after a change, it is only a story.'],
     ['h','Hands-on units'],
     ['p','The seven units below take you from the test set to the final release decision. Each one builds on the one before.'],
     [
       'unit',
       '16.1',
       'Golden datasets',
-      {goal:'Create a set of cases, with a version number, that includes typical cases, edge cases and cases where the system has failed.',
-       idea:'A golden dataset is the team’s memory of what “good” means for your application.',
-       prove:'Create at least 30 cases. Cover the normal path, reworded questions, unclear questions, questions with no answer, other languages, attacks and cases that need a tool.',
-       build:'For each case, store the behaviour you expect. Where you can, also store the IDs of the evidence it should use.',
-       brk:'Remove one category of cases. See which regressions you can no longer notice.',
+      {goal:'Make a set of cases with a version number. Include normal cases, edge cases (odd, rare cases) and cases where the system has failed.',
+       idea:'A golden dataset is the team\'s memory of what "good" means for your app.',
+       prove:'Make at least 30 cases. Cover the normal path, reworded questions, unclear questions, questions with no answer, other languages, attacks and cases that need a tool.',
+       build:'For each case, write down the behaviour you expect. Where you can, also write down the IDs of the evidence it should use.',
+       brk:'Take away one group of cases. See which regressions (things that got worse) you can no longer notice.',
        artifact:'Golden Dataset v1.0.',
-       check:'Does the set reflect the risks real users face, or only the easy demos?',
-       lens:'The dataset becomes the contract for product quality.'}
+       check:'Does the set show the risks real users face, or only the easy demos?',
+       lens:'The dataset becomes the promise you make about product quality.'}
     ],
     [
       'unit',
       '16.2',
       'Error taxonomy',
-      {goal:'Sort failures into kinds, so that you fix causes and not just symptoms.',
-       idea:'“Wrong answer” is too broad to tell engineers what to fix.',
-       prove:'Create the categories: retrieval miss, wrong chunk, stale data, instruction failure, schema failure, tool failure, authorization failure and hallucination.',
-       build:'Label 20 real failures with these categories.',
-       brk:'Ask two people to label the same failures. Then compare where they disagree.',
-       artifact:'Error Taxonomy plus labelled examples.',
-       check:'Which categories lead to a clear action?',
-       lens:'A useful set of categories changes what the team does next.'}
+      {goal:'Sort failures into kinds, like sorting complaints into piles. Then you fix the causes, not just the symptoms.',
+       idea:'"Wrong answer" is too broad. It does not tell engineers what to fix.',
+       prove:'Make the categories: retrieval miss (the right page was not found), wrong chunk, stale data (old data), instruction failure, schema failure (the form was not filled right), tool failure, authorization failure and hallucination (confident make-believe).',
+       build:'Put one of these category labels on 20 real failures.',
+       brk:'Ask two people to label the same failures. Then see where they disagree.',
+       artifact:'Error Taxonomy (a sorted list of mistake kinds) plus labelled examples.',
+       check:'Which categories lead to a clear next step?',
+       lens:'Good categories change what the team does next.'}
     ],
     [
       'unit',
       '16.3',
       'Retrieval metrics',
-      {goal:'Measure Recall@k, Precision@k and similar ranking measures, using clear labels for what counts as relevant.',
-       idea:'A metric means something only when the definition of “relevant” is clear.',
-       prove:'For each query, mark which chunks are relevant. Then calculate Recall@k and Precision@k.',
+      {goal:'Measure Recall@k, Precision@k and similar ranking measures. Recall asks how many of the right pages your net caught. Precision asks how much of the net is really fish. Use clear labels for what counts as relevant.',
+       idea:'A metric (a number you watch) tells you something only when "relevant" is clearly defined.',
+       prove:'For each query, mark which chunks (index cards) are relevant. Then work out Recall@k and Precision@k.',
        build:'Compare what you get at k=1, 3, 5 and 10.',
-       brk:'Add some distractor chunks, which look related but are not, and watch how the metrics change.',
+       brk:'Add some distractor chunks. They look related but are not. Watch how the metrics change.',
        artifact:'Retrieval Evaluation Notebook.',
        check:'What exactly counts as relevant?',
        lens:'Never report a retrieval metric without saying how you decided what is relevant.'}
@@ -1431,77 +1431,77 @@ window.PART5 = [
       'unit',
       '16.4',
       'Generation and task success',
-      {goal:'Check whether the final answer is correct, grounded in the evidence, complete and useful for the task.',
-       idea:'A system can have a good retrieval score and still give a bad answer.',
-       prove:'Write yes-or-no or graded criteria for whether an answer is correct and grounded.',
-       build:'Score a fixed sample, using labels from people.',
-       brk:'Include answers that are only partly correct, and answers that sound too sure of themselves.',
-       artifact:'Generation Rubric plus a labelled sample.',
-       check:'Can two reviewers apply the rubric and reach the same result?',
-       lens:'Acceptance criteria should be something you can observe, not just “it sounds good”.'}
+      {goal:'Check if the final answer is correct, is based on the evidence (grounded), is complete, and is useful for the task.',
+       idea:'A system can score well on retrieval and still give a bad answer.',
+       prove:'Write yes-or-no or graded rules for when an answer counts as correct and grounded.',
+       build:'Score a fixed sample, using labels that people gave.',
+       brk:'Include answers that are only partly right, and answers that sound too sure of themselves.',
+       artifact:'Generation Rubric (a marking guide) plus a labelled sample.',
+       check:'Can two reviewers use the rubric and reach the same result?',
+       lens:'Acceptance criteria (the rules for "good enough") should be something you can see, not just "it sounds good".'}
     ],
     [
       'unit',
       '16.5',
       'LLM-as-judge',
-      {goal:'Use a model as judge where an exact check is not enough, and then check the judge against human labels.',
-       idea:'A judge is one more component that can be wrong, so measure how often it agrees with people.',
-       prove:'Have a judge score 20 examples for groundedness or relevance.',
-       build:'Compare the judge’s decisions with the human labels, and calculate how often they disagree.',
-       brk:'Swap the order of the answers, or make them longer or shorter. See whether the judge favours position or length.',
+      {goal:'Use a model as judge where an exact check is not enough. Then check the judge against human labels, like checking the marker against the teacher.',
+       idea:'A judge is one more part that can be wrong. So measure how often it agrees with people.',
+       prove:'Have a judge score 20 examples for groundedness (is the answer based on the evidence?) or relevance.',
+       build:'Compare the judge\'s decisions with the human labels. Work out how often they disagree.',
+       brk:'Swap the order of the answers, or make them longer or shorter. See if the judge likes a certain position or length.',
        artifact:'Judge Validation Report.',
        check:'Where does the judge disagree with people, and why?',
-       lens:'Never let a judge you have not checked quietly become the authority on whether you release.'}
+       lens:'Never let a judge you have not checked quietly become the one who decides if you release.'}
     ],
     [
       'unit',
       '16.6',
       'Regression and CI gates',
-      {goal:'Run the evaluation automatically whenever a prompt, model, index or tool changes.',
-       idea:'An AI system can get worse without any error showing up when the code is built.',
-       prove:'Create one command that runs the golden set and prints a summary.',
-       build:'Set thresholds, and make the run fail when quality or safety drops below them.',
-       brk:'Change a prompt, and check that CI catches the regression.',
+      {goal:'Run the evaluation by itself whenever a prompt, model, index or tool changes.',
+       idea:'An AI system can get worse with no error showing, even when the code builds fine.',
+       prove:'Make one command that runs the golden set and prints a summary.',
+       build:'Set thresholds (lowest allowed numbers). Make the run fail when quality or safety drops below them.',
+       brk:'Change a prompt. Check that CI (the automatic checker that runs your tests) catches the regression.',
        artifact:'Automated Evaluation Suite plus Release Gate.',
        check:'What exact condition blocks a release?',
-       lens:'This is the AI version of a test suite, for software whose behaviour can vary.'}
+       lens:'This is the AI version of a test suite, for software that does not always behave the same way.'}
     ],
     [
       'unit',
       '16.7',
       'Evaluation release decision',
-      {goal:'Bring quality, safety, latency and cost together into one release decision, without hiding any trade-off.',
-       idea:'Shipping is a decision with several dimensions. A single overall score can hide failures you cannot accept.',
-       prove:'Define a quality threshold, a safety threshold, a latency SLO (the response time you promise), a cost ceiling and a rollback trigger.',
-       build:'Run a candidate release through the gate.',
-       brk:'Create a model that improves quality but breaks the cost limit or the safety limit.',
+      {goal:'Bring quality, safety, latency (waiting time) and cost together into one release decision. Hide no trade-off.',
+       idea:'Shipping is a decision with several sides. One overall score can hide failures you cannot accept.',
+       prove:'Set a quality threshold, a safety threshold, a latency SLO (the response time you promise), a cost ceiling (the most you will pay) and a rollback trigger (the sign that says go back to the old version).',
+       build:'Run a candidate release (a new version waiting for approval) through the gate.',
+       brk:'Make a model that gets better on quality but breaks the cost limit or the safety limit.',
        artifact:'Release Decision Record.',
-       check:'Which threshold can never be negotiated?',
-       lens:'A PM owns the framework for the decision, even when engineers build it.'}
+       check:'Which threshold can never be bargained over?',
+       lens:'A PM (product manager) owns the plan for the decision, even when engineers build it.'}
     ],
     ['q','I409'],
     ['h','Measure at several levels'],
-    ['p','An AI system has several parts, so one score for the whole thing is not enough. The catch is that a fluent model can cover for missing evidence, and it does so often enough to look fine in a demo.'],
-    ['key','Evaluate several levels at once. A good end-to-end score can hide a badly broken retriever.'],
-    ['p','The table shows six levels. Read down the right-hand column: each question is one that a release decision needs answered.'],
+    ['p','An AI system has several parts, so one score for the whole thing is not enough. The catch is that a smooth-talking model can cover for missing evidence. It does this often enough to look fine in a demo.'],
+    ['key','Check several levels at once. A good end-to-end score (for the whole path) can hide a retriever (the page-finder) that is badly broken.'],
+    ['p','The table shows six levels. Read down the right-hand column. Each question is one that a release decision needs answered.'],
     [
       'tb',
-      ['Layer','Example metric','The release question it answers'],
+      ['Layer','Example metric (a number to watch)','The release question it answers'],
       [
         ['Retrieval','Recall@k, Precision@k','Did we fetch the right evidence?'],
         ['Generation','Groundedness, task success','Did the answer use the evidence correctly?'],
-        ['Tool use','Tool-selection accuracy','Did it call the right capability?'],
-        ['Trajectory','Step-sequence match','Did it get there the right way?'],
+        ['Tool use','Tool-selection accuracy','Did it call the right tool?'],
+        ['Trajectory','Step-sequence match','Did it reach the answer the right way?'],
         ['Operations','p95 latency, cost per task','Can we afford to run it?'],
-        ['Safety','Attack success rate','Can adversarial input break the controls?']
+        ['Safety','Attack success rate','Can a hostile input break our controls?']
       ]
     ],
     ['p','You will meet many evaluation products. Each one is selling an answer to one of three questions.'],
-    ['p','The first is <strong>what do we test on?</strong> The answer is a fixed set you keep, with real cases where possible. The second is <strong>who grades it?</strong> Use an exact check where you can, a person where it matters, and a model where neither can keep up. The third is <strong>what score lets it ship?</strong>'],
+    ['p','The first is <strong>what do we test on?</strong> The answer is a fixed set you keep, with real cases where you can. The second is <strong>who marks it?</strong> Use an exact check where you can, a person where it matters, and a model where neither can keep up. The third is <strong>what score lets it ship?</strong>'],
     ['h','Run a release gate'],
-    ['p','Here is a gate you can run now. Six rows of the answer key sit inside the cell. It prints recall and precision for each kind of ID and each kind of writing, then PASS or FAIL. When your own file, saved as <code>evals/answer-key-v1.csv</code> or a later version, is ready, load its rows in place of the list.'],
+    ['p','Here is a gate you can run now. Six rows of the answer key sit inside the cell (the box of code). It prints recall and precision for each kind of ID and each kind of writing. Then it prints PASS or FAIL. When your own file is ready, saved as <code>evals/answer-key-v1.csv</code> or a later version, load its rows in place of the list.'],
     ['do','Run the gate on six rows',[
-      ['p','Run the cell and read the last line first.'],
+      ['p','Press Run and read the last line first.'],
       ['code','import re\n\nANSWER_KEY = [\n    (1, "English", "Hi, I am Rahul Verma. My mobile number is 9876543210 and my email is rahul.verma@example.com.", {"MOBILE", "EMAIL"}),\n    (2, "Hindi", "मेरा नाम राकेश शर्मा है और मेरा आधार नंबर 4321 5678 9012 है।", {"AADHAAR"}),\n    (3, "Hinglish", "mera naam Rishabh Jain hai, mera mobile number 9876543210 hai", {"MOBILE"}),\n    (4, "Hinglish", "Sir mera aadhaar 4321 5678 9012 hai aur ye number 98xxxxxx12 pe call kar lena", {"AADHAAR", "MOBILE"}),\n    (5, "Hinglish", "mera pan card ABCPJ1234K hai, iska photo kal bhej dunga", {"PAN"}),\n    (9, "English", "What documents do I need to renew my driving licence?", set()),\n]\nPATTERNS = {\n    "PAN": r"\\b[A-Z]{5}[0-9]{4}[A-Z]\\b",\n    "AADHAAR": r"\\b[2-9][0-9]{3} ?[0-9]{4} ?[0-9]{4}\\b",\n    "MOBILE": r"(?<![0-9])[6-9][0-9]{9}(?![0-9])",\n    "EMAIL": r"[\\w.]+@[\\w.]+\\.[a-z]+",\n}\nGATE = {"recall": 0.9, "precision": 0.9}\n\ndef find(text):\n    return {kind for kind, rx in PATTERNS.items() if re.search(rx, text)}\n\ndef rate(found, wanted, missed):\n    recall = found / (found + missed) if found + missed else 1.0\n    precision = found / wanted if wanted else 1.0\n    return recall, precision\n\ndef run_gate():\n    tally = {}\n    for _, script, text, expected in ANSWER_KEY:\n        got = find(text)\n        for kind in expected | got:\n            for group in (kind, script):\n                t = tally.setdefault(group, [0, 0, 0])\n                t[0] += kind in expected and kind in got\n                t[1] += kind in got\n                t[2] += kind in expected and kind not in got\n    passed = True\n    for group, (hit, flagged, missed) in sorted(tally.items()):\n        recall, precision = rate(hit, flagged, missed)\n        ok = recall >= GATE["recall"] and precision >= GATE["precision"]\n        passed = passed and ok\n        print(f"{group:10} recall {recall:.2f}  precision {precision:.2f}  {\'ok\' if ok else \'BELOW GATE\'}")\n    print("PASS" if passed else "FAIL")\n\nrun_gate()'],
       ['x','Five lines say ok. Hinglish and MOBILE say BELOW GATE, because the pattern checker cannot see the partly hidden number in row 4. The last line is FAIL. That is the right result: the gate caught a real miss. Lower a threshold only after you have written down why, with a number.'],
       [
@@ -1516,30 +1516,30 @@ window.PART5 = [
        mins:6,
        min:60,
        rows:4,
-       task:'Write the sentence that stops a release. Not a policy: the actual sentence, with numbers, that you would say in the meeting.',
+       task:'Write the sentence that stops a release. Not a policy: the real sentence, with numbers, that you would say in the meeting.',
        ph:'We are not shipping because …',
-       after:'If your sentence contains the word “seems”, it will not stop anything. Thresholds stop releases; impressions do not.'}
+       after:'If your sentence has the word "seems", it will not stop anything. Thresholds stop releases. Impressions do not.'}
     ],
     ['h','Summary'],
-    ['p','So here is the whole chapter in a few lines. You keep a test set with a version number. You score at several levels, so a good total cannot hide a broken part. You use a model as judge only after checking it against people. And you agree the pass mark before you look at the results.'],
-    ['p','Next, in Chapter 30, you’ll look at how to watch the system continuously once it is live.']
+    ['p','So here is the whole chapter in a few lines. Keep a test set with a version number. Score at several levels, so a good total cannot hide a broken part. Use a model as judge only after you check it against people. Agree the pass mark before you look at the results.'],
+    ['p','Next, in Chapter 30, you will see how to keep watching the system once it is live.']
   ],
   capstone:{
     title:'Build the release gate',
-    brief:'Without a release gate, measuring just produces a report that nobody has to act on. In this chapter you learned to build a test set that still works after a change of prompt, model or index. You also learned to score at several levels, so that a good total cannot hide a broken part, and where an automatic marker is acceptable. Now you build the gate that every new version of the tool must pass before it ships.',
-    where:'Your test harness from Chapter 21, extended in code.',
+    brief:'Without a release gate, measuring only makes a report that nobody has to act on. You learned to build a test set that still works after a change of prompt, model or index. You learned to score at several levels, so a good total cannot hide a broken part. You learned where an automatic marker is fine. Now you build the gate that every new version of the tool must pass before it ships.',
+    where:'Your test harness from Chapter 21, with more code added.',
     steps:[
-      'Open your harness. Turn your answer key into a test set with a version number: a file that carries the number and a note listing what changed since the last version. Call it the final version for now.',
-      'Score at three levels: each finder on its own, the whole tool on whole sentences, and the cleaned text marked by your automatic marker from Chapter 14.',
-      'Write the gate. For each score, write the lowest number a new version may have in order to be released. Add a rule that the score for any single kind of ID may not drop, even if the overall score goes up.',
-      'Make the gate run with one command that prints PASS or FAIL.',
-      'Prove it works. Change one rule so that it breaks Aadhaar finding, run the gate, and show that it says FAIL.',
-      'Say where the automatic marker is acceptable in the gate and where only your own marking will do.'
+      'Open your harness. Turn your answer key into a test set with a version number. Make a file that holds the number, plus a note that lists what changed since the last version. Call it the final version for now.',
+      'Score at three levels. First, each finder on its own. Second, the whole tool on whole sentences. Third, the cleaned text, marked by your automatic marker from Chapter 14.',
+      'Write the gate. For each score, write the lowest number a new version may have to be released. Add a rule: the score for any single kind of ID may not drop, even if the overall score goes up.',
+      'Make the gate run with one command (one line you type) that prints PASS or FAIL.',
+      'Prove it works. Change one rule so it breaks Aadhaar finding. Run the gate. Show that it says FAIL.',
+      'Say where the automatic marker is fine in the gate, and where only your own marking will do.'
     ],
     done:[
-      'A test set with a version number and a change note.',
+      'A test set with a version number and a note on what changed.',
       'Scores at three levels.',
-      'A gate with a minimum for every score and a rule for each kind of ID.',
+      'A gate with a lowest number for every score, and a rule for each kind of ID.',
       'A one-command run that prints PASS or FAIL, and proof that it fails a broken change.'
     ]
   }
@@ -1549,154 +1549,154 @@ window.PART5 = [
 {
   id:'ch17o', num:30, part:5, curriculumTier:'core', phase:4, prerequisites:['ch115','ch15','ch16e'], nextUnits:['ch18s','ch20d','b5'], minutes:55, labs:['cache'],
   title:'Observability and LLMOps: traces, cost and rollback',
-  concept:'When an answer is wrong, slow or expensive, you need to find out why without guessing. You’ll design a trace record, treat cost as an architecture metric, and give every part a version, so that any change can be rolled back.',
+  concept:'When an answer is wrong, slow or expensive, you want to know why, without guessing. Think of a lost parcel: the scan list shows where it got stuck. You will design a trace record. You will treat cost as an architecture metric (a number you watch while you design). And you will give every part a version number, so any change can be rolled back (undone).',
   plan:{
-    first:'Trace one request by hand, and time every stage with a stopwatch.',
-    build:'Record the request id, the model and prompt version, the retrieval ids, the tool calls, the latency, the tokens, the status and the evaluation result.',
-    brk:'Deliberately create a slow request, an expensive one and a low-quality one. Then work out what went wrong in each, using only its trace.',
-    artifact:'A specification for a six-panel view of the running system.',
-    gate:'Say which signals should start an investigation, which should trigger a rollback, and which are just noise.'
+    first:'Trace one request by hand. A trace is the trip record of one request, like the scan list of a parcel. Time every stage with a stopwatch.',
+    build:'Write down these things for the request. Its request id (its parcel number). The model and prompt version. The retrieval ids (which pages were fetched). The tool calls. The latency (the waiting time). The tokens (Lego bricks of text). The status. The evaluation result.',
+    brk:'Make three bad requests on purpose: a slow one, an expensive one and a low-quality one. Then find what went wrong in each. Use only its trace, like a detective with scan records.',
+    artifact:'A specification (a written plan) for a six-panel view of the running system. Think of one screen with six dials, like a car dashboard.',
+    gate:'Say which signals should start an investigation, which should trigger a rollback (going back to the old version), and which are just noise, like a rumble that means nothing.'
   },
   needs:[
-    ['Users notice response time','You saw this in Chapter 11.5. A trace shows where the time went.',11.5],
-    ['Cost can be measured per request','Chapter 15 built the arithmetic that this chapter records.',15],
-    ['A release gate needs evidence','This comes from Chapter 29. Once you are live, traces provide that evidence.',29]
+    ['Users notice response time, the waiting time','You saw this in Chapter 11.5. A trace shows you where the time went, like a parcel scan shows where the delay was.',11.5],
+    ['Cost can be measured for each single request','Chapter 15 built the arithmetic (the sums) that this chapter now records.',15],
+    ['A release gate (the check before launch) needs evidence','This comes from Chapter 29. Once you are live, traces give you that evidence, like receipts for what happened.',29]
   ],
   words:[
-    ["Trace","The record of one request’s journey through the system: what was retrieved, which prompt version ran, and what each stage cost in time and tokens."],
-    ["Telemetry","The measurements a running system sends out about itself, such as timings, counts, errors and usage. They let somebody see what the system is doing without reading the code."],
-    ["Canary release","Sending a small share of real traffic to a change before all of it."],
-    ["Drift","Quality moving without anybody deploying anything, because the inputs, the documents or the provider changed underneath you."]
+    ["Trace",'A trace is the record of one request’s trip through the system, like the scan list of a parcel. It shows what was retrieved (fetched), which prompt version ran, and how much time and how many tokens each stage used.'],
+    ["Telemetry",'Telemetry is the numbers a running system sends out about itself, like the dials on a car dashboard. Examples are timings, counts, errors and usage. With them, anyone can see what the system is doing without reading the code.'],
+    ["Canary release",'A canary release shows a change to a small group of real users first (their real requests are the “traffic”). It is like tasting one spoon of dal before you serve the whole pot.'],
+    ["Drift",'Drift is quality sliding on its own, though nobody released anything. It is like a bicycle wheel that slowly goes out of line. The inputs, the documents or the provider (the company that runs the model) changed underneath you.']
   ],
   takeaway:[
-    'Design a trace record that can answer “why was this answer wrong?” after the fact.',
-    'Treat cost as an architecture metric rather than a finance report.',
-    'Name what must be versioned so that a change can be rolled back.'
+    'Design a trace record (a scan list for one request) that can answer “why was this answer wrong?” after the fact.',
+    'See cost as an architecture metric (a number you watch while you design), not only a finance report.',
+    'Name what must be versioned (given a number, like v1 and v2), so that a change can be rolled back (undone).'
   ],
   story:[
-    ['c','Before you start','Open your experiment harness. You’ll extend its records into full traces.'],
-    ['c','On your route','Do units 17.1 and 17.6, then the capstone. Read the other units this pass.'],
-    ['p','In the last chapter you built a gate that checks a change before it goes live. But the story doesn’t end at release. One day your live system will give a wrong answer, and someone will ask why. This chapter makes sure your answer is not “we can’t tell”.'],
-    ['p','Think of a parcel that goes missing. The courier can tell you where it was last scanned, because every parcel is scanned at every step. Without those scans, a lost parcel can never be traced.'],
-    ['key','A <strong>trace</strong> records one request’s path through the system. If you can only see the input and the output, every diagnosis is a guess.'],
+    ['c','Before you start','Open your experiment harness (your test rig). You will grow its records into full traces, like turning a short note into a full scan list.'],
+    ['c','On your route','Do units 17.1 and 17.6, then the capstone (the chapter’s project). Only read the other units this time.'],
+    ['p','In the last chapter you built a gate. It checks a change before it goes live, like a guard at a door. But the story does not end at release. One day your live system will give a wrong answer, and someone will ask why. This chapter makes sure your answer is not “we can’t tell”.'],
+    ['p','Think of a parcel that goes missing. The courier can tell you where it was last scanned, because every parcel is scanned at every step. Without those scans, nobody can ever trace a lost parcel.'],
+    ['key','A <strong>trace</strong> records one request’s path through the system, like a parcel’s scan list. If you see only the input and the output, every diagnosis is a guess.'],
     ['h','Hands-on units'],
-    ['p','The six units below start with a single trace and end with a full view of the system. Each one adds a layer to the one before.'],
+    ['p','The six units below start with a single trace and end with a full view of the system, like six steps up a staircase. Each one adds a layer to the one before.'],
     [
       'unit',
       '17.1',
       'Trace one request',
-      {goal:'Build a structured trace for one AI request.',
-       idea:'A trace is a timeline of one run, together with the evidence about it.',
-       prove:'Record the request ID, the model, the prompt version, the retrieved IDs, the tools used, the latency, the tokens and the outcome.',
-       build:'Save the trace as JSON.',
-       brk:'Remove one field. Then ask yourself whether you could still reproduce the incident.',
+      {goal:'Build a structured trace (a neat record with fixed boxes) for one AI request.',
+       idea:'A trace is a timeline of one run, like a parcel’s journey, together with the evidence about it.',
+       prove:'Write down the request ID (its parcel number), the model, the prompt version, the retrieved IDs, the tools used, the latency (waiting time), the tokens and the outcome.',
+       build:'Save the trace as JSON (a form written as labels and values inside curly brackets).',
+       brk:'Take one field (one box) out. Then ask yourself: could you still find out what happened in the incident?',
        artifact:'Trace Schema v1.0.',
-       check:'What is the least evidence you need in order to debug a problem?',
-       lens:'Write down what you need to observe before the production incidents happen, not after.'}
+       check:'What is the least evidence you need to debug (find and fix) a problem?',
+       lens:'Write down what you need to watch before problems happen in real use (production), not after.'}
     ],
     [
       'unit',
       '17.2',
       'Latency and throughput',
-      {goal:'Measure the latency of each stage, and learn the difference between p50 and p95.',
-       idea:'The average latency can hide the slow cases that some users really experience.',
-       prove:'Measure the retrieval, reranking, model and tool stages separately.',
-       build:'Calculate p50 and p95 for a small run, or for a larger sample if you have one.',
-       brk:'Add an artificially slow dependency, and see how it changes p95.',
+      {goal:'Measure the latency (waiting time) of each stage. Learn the difference between p50 (the typical wait) and p95 (the wait that only the slowest 5 in 100 are worse than).',
+       idea:'The average wait can hide the slow cases that some users really live through, like an average train time that hides the day the train came two hours late.',
+       prove:'Measure the retrieval (fetching), reranking (putting the fetched pages in order), model and tool stages one by one.',
+       build:'Work out p50 and p95 for a small run, or for a larger sample (a bigger batch) if you have one.',
+       brk:'Add a dependency (a part you rely on) that is slow on purpose, and see how it changes p95.',
        artifact:'Latency Budget plus a p50/p95 report.',
-       check:'Which stage is responsible for the slowest cases?',
-       lens:'Service-level objectives (SLOs) should match what users experience, not just what servers report.'}
+       check:'Which stage causes the slowest cases?',
+       lens:'Service-level objectives (SLOs, promises about speed and reliability) should match what users feel, not just what the servers report.'}
     ],
     [
       'unit',
       '17.3',
       'Token and cost telemetry',
-      {goal:'Track input and output tokens, and other costs that vary, for each task.',
-       idea:'Cost is an architecture metric, because the context, the model, the retries and the routing all change what you spend.',
-       prove:'When you build the lab, calculate the cost per request using the provider’s current pricing.',
-       build:'Compare two strategies for the model and the context.',
-       brk:'Add retries and a large context, and watch the cost grow.',
+      {goal:'Track the input and output tokens (the bricks you send and the bricks you get back), and other costs that change, for each task.',
+       idea:'Cost is an architecture metric. The context (the model’s desk), the model, the retries and the routing all decide how much you spend.',
+       prove:'When you build the lab, work out the cost per request using the provider’s current pricing, like a price list at a shop.',
+       build:'Compare two strategies (two ways of doing it) for the model and the context.',
+       brk:'Add retries (trying again) and a large context (a crowded desk), and watch the cost grow.',
        artifact:'Unit Economics Model v1.0.',
-       check:'What is the cost per successful task, and not just the cost per call?',
-       lens:'Conversations with finance get easier when every architecture choice has a cost you can measure.'}
+       check:'What is the cost per successful task, not just the cost per call? Think of paying for a meal that you actually finished eating.',
+       lens:'Talking to finance gets easier when every architecture choice has a cost you can measure, like a price tag.'}
     ],
     [
       'unit',
       '17.4',
       'Drift and feedback',
-      {goal:'Notice when quality changes after a change in the data, prompt, model or user behaviour.',
-       idea:'An AI system can get worse even when no one has changed the code.',
-       prove:'Create a baseline evaluation, and compare a later sample against it.',
-       build:'Track the type of complaint, the no-answer rate, escalations and task success.',
-       brk:'Introduce a changed document format, or a new way users phrase things.',
+      {goal:'Notice when quality changes after a change in the data, the prompt, the model or how users behave.',
+       idea:'An AI system can get worse even when nobody has changed the code, like a bicycle wheel that goes out of line by itself.',
+       prove:'Make a baseline evaluation (a first score to compare with), and compare a later sample against it.',
+       build:'Keep count of the type of complaint, the no-answer rate, escalations (cases passed to a person) and task success.',
+       brk:'Change the document format, or add a new way users phrase things, and see what happens.',
        artifact:'Drift/Feedback Report.',
-       check:'Which signal tells you that quality has changed, before the complaints pile up?',
-       lens:'Signals from live use complement the offline evaluation you did before release.'}
+       check:'Which signal tells you quality has changed, before the complaints pile up?',
+       lens:'Signals from live use work together with the offline evaluation (the test before release) you did earlier.'}
     ],
     [
       'unit',
       '17.5',
       'Versioning and rollback',
-      {goal:'Give versions to the prompts, models, indexes, schemas and tool contracts.',
-       idea:'If you cannot roll back one component at a time, debugging turns into guesswork.',
-       prove:'Create version IDs for the prompt, the model, the index and the tool schema.',
-       build:'Run two versions side by side.',
-       brk:'Simulate a bad prompt release, and roll it back.',
+      {goal:'Give version numbers to the prompts, models, indexes (the lookup lists), schemas (the forms with fixed boxes) and tool contracts (what each tool promises).',
+       idea:'If you cannot roll back one part at a time, finding the fault turns into guesswork, like changing five things in a recipe at once.',
+       prove:'Make a version ID for the prompt, the model, the index and the tool schema.',
+       build:'Run two versions side by side, like two shops next door.',
+       brk:'Pretend a bad prompt release happened (simulate it), and roll it back.',
        artifact:'Version Matrix plus Rollback Procedure.',
        check:'Can you say exactly what changed?',
-       lens:'Versioning is how you control delivery. It is not paperwork.'}
+       lens:'Versioning is how you stay in control of delivery. It is not paperwork.'}
     ],
     [
       'unit',
       '17.6',
       'Production dashboard',
-      {goal:'Turn the telemetry into a six-panel view of operations: quality, safety, latency, cost, traffic and failures.',
-       idea:'A dashboard should answer two questions: “is the system healthy?” and “where do I look next?”',
-       prove:'For each panel, define the metric, the source, the owner and the threshold.',
-       build:'Create a mock dashboard or a spreadsheet.',
-       brk:'Remove one signal at a time, and see which incident becomes harder to diagnose.',
+      {goal:'Turn the telemetry (the numbers the system sends out) into a six-panel view of how the system is running: quality, safety, latency, cost, traffic and failures.',
+       idea:'A dashboard should answer two questions: “is the system healthy?” and “where do I look next?” Think of a doctor’s chart.',
+       prove:'For each panel, decide the metric (the number), the source, the owner and the threshold (the line that raises an alarm).',
+       build:'Make a mock dashboard (a rough sample) or a spreadsheet.',
+       brk:'Take away one signal at a time, and see which incident becomes harder to understand.',
        artifact:'Six-Panel Observability Specification.',
        check:'Which alerts should wake up a person, and which should only be watched?',
-       lens:'A PM is responsible for clarity in operations, just as much as the platform team is.'}
+       lens:'A PM (product manager) is responsible for clarity in operations (the daily running), just as much as the platform team is.'}
     ],
     ['q','I410'],
     ['h','Cost is an architecture metric'],
-    ['p','You can see where the time goes from a trace. The same is true of money. Every token, every search and every call to a tool adds to the bill, so cost is part of how you design the system. It isn’t only something finance checks at the end of the month.'],
-    ['key','Model the cost of one user task from start to finish: input tokens, output tokens, embeddings, retrieval, and tool and API calls. Then you can compare two designs before building either.'],
+    ['p','A trace shows where the time goes. The same is true of money, like a shop till slip. Every token, every search and every call to a tool adds to the bill. So cost is part of how you design the system. It is not only something finance checks at the end of the month.'],
+    ['key','Work out the cost of one user task from start to finish: input tokens, output tokens, embeddings (addresses for meaning), retrieval, and tool and API calls (messages sent over the internet). Then you can compare two designs before building either.'],
     ['h','Change one thing at a time'],
-    ['p','Some terms you’ll hear are canary release, shadow traffic, rollback and drift. They all come from the same practice, and it’s simple to describe. Change one thing at a time. Let a few users see it first. Keep the old version ready. And keep watching after the release.'],
-    ['key','Most incidents can be prevented in four ways. Change one variable at a time. Give versions to prompts, models, indexes and tool contracts. Make sure every part can be rolled back. And never let a prompt change skip evaluation. Teams break that last rule most often, because editing a prompt does not feel like a deployment.'],
-    ['p','Here’s a puzzle to test the idea of drift. Take a moment with it.'],
+    ['p','You will hear terms like canary release, shadow traffic, rollback and drift. They all come from one habit, and it is simple. Change one thing at a time. Let a few users see it first. Keep the old version ready. And keep watching after the release.'],
+    ['key','Most incidents can be prevented in four ways. Change one thing at a time. Give version numbers to prompts, models, indexes and tool contracts. Make sure every part can be rolled back. And never let a prompt change skip evaluation. Teams break that last rule most often, because editing a prompt does not feel like a release.'],
+    ['p','Here is a puzzle about drift. Take a moment to think.'],
     [
       'try',
       {id:'ch30-slower',
        mins:6,
        min:60,
        rows:4,
-       task:'Your assistant got slower this week, and nobody deployed anything. Name three things that could have changed.',
+       task:'Your assistant got slower this week, and nobody released anything. Name three things that could have changed.',
        ph:'1 … 2 … 3 …',
-       after:'Traffic mix, document volume, and the provider’s own response time. None of these are in your repository, which is why they need to be on your dashboard.'}
+       after:'The traffic mix, how many documents there are, and the provider’s own response time. None of these sit in your repository (your online folder of code), so they must show on your dashboard.'}
     ],
     ['h','Summary'],
-    ['p','So a wrong answer should never leave you saying “we can’t tell”. A trace shows you the path of each request. Cost is something you design and measure. And a version on every part means any change can be rolled back.'],
-    ['p','Next, in Chapter 31, you’ll look at the same system from an attacker’s side.']
+    ['p','So a wrong answer should never leave you saying “we can’t tell”. A trace shows you the path of each request, like a parcel scan list. Cost is something you design and measure. And a version number on every part means any change can be rolled back.'],
+    ['p','Next, in Chapter 31, you will look at the same system as an attacker would, like a thief walking round a house.']
   ],
   capstone:{
-    title:'Plan how to watch the tool once it is live',
-    brief:'A tool in use can go wrong in ways your tests never saw, and you will only know if you are watching. In this chapter you learned to design a trace that can answer “why was this answer wrong?” afterwards, to treat cost as an engineering number, and to name what must be versioned so a change can be undone. Now you plan six panels for watching Bharat Privacy Guard.',
-    where:'Your test harness from Chapter 21, extended in code to save full traces. Then write the plan in the notes box below.',
+    title:'Plan how you will keep watching the tool once real people use it',
+    brief:'A tool in use can go wrong in ways your tests never saw. You only know if you are watching. You learned to design a trace (the scan list of one request) that says why an answer was wrong. You learned to treat cost as an engineering number. And you learned what must be versioned, so a change can be undone. Now you plan six panels, six dials, for Bharat Privacy Guard.',
+    where:'Use your test harness (your test rig) from Chapter 21, and extend it in code so it saves full traces. Then write the plan in the notes box below.',
     steps:[
-      'Extend your harness so that every run saves a full trace: the input, each step, each finding, the time, the tokens, the cost and any error. Never put the real personal details into a trace that is shown on a dashboard.',
-      'Design six panels: quality, safety, response time, cost, traffic and failures. For every panel, write which data feeds it and how often it is worked out. A panel with no data source is only a wish.',
-      'Fill in what each panel shows. Quality: which number, worked out from what. Safety: how often an attack from Chapter 13 gets through. Response time: the median and the slowest, split by stage. Cost: per message and per day, with the parts visible. Traffic: how many messages, and the mix of English, Hindi and Hinglish. Failures: counts by type, not one error rate.',
-      'For each panel, write the level that makes you investigate and the level that makes you roll back.',
-      'List what must be versioned so that a change can be undone: the rules, the model, the instructions, the reference lists and the answer key.'
+      'Extend your harness so every run saves a full trace: the input, each step, each finding, the time, the tokens, the cost and any error. Never put real personal details into a trace that is shown on a dashboard (one screen of numbers).',
+      'Design six panels, like six dials: quality, safety, response time, cost, traffic and failures. For every panel, write which data feeds it and how often it is worked out. A panel with no data source is only a wish.',
+      'Fill in what each panel shows. Quality: which number, worked out from what. Safety: how often an attack from Chapter 13 gets through. Response time: the median (the middle one) and the slowest, split by stage. Cost: per message and per day, with the parts visible. Traffic: how many messages, and the mix of English, Hindi and Hinglish. Failures: counts by type, not one error rate.',
+      'For each panel, write the level that makes you investigate (look closely) and the level that makes you roll back (go back to the old version).',
+      'List what must be versioned (given a number) so a change can be undone: the rules, the model, the instructions, the reference lists and the answer key (the questions with right answers).'
     ],
     done:[
-      'Traces saved by your harness.',
-      'Six panels, each with a named data source.',
-      'An investigation level and a rollback level for every panel.',
-      'A list of what is versioned.'
+      'Traces saved by your harness, one for every run.',
+      'Six panels, each with a named data source (where its numbers come from).',
+      'For every panel, one level that makes you investigate and one that makes you roll back.',
+      'A list of what is versioned, like a list of numbered editions.'
     ]
   }
 },
