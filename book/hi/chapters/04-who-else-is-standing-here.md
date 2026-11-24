@@ -34,7 +34,7 @@ Yeh chapter aage ka kaam dekhta hai. Anaya check karti hai ki tool pehle se mauj
 
 Yeh aise dukaandaar jaisa hai jo kahe, "Yahan dukaan kholo, par meri taraf ki sadak par." Is "haan, lekin" ne do kaam kiye.
 
-Pehla, usne pichhle chapter ka sabse risky andaaza pakka kar diya. Sahaj saaf kiya hua text bahar ki company ko bhej sakta tha, bas ek shart poori ho.
+Pehla, usne pichhle chapter ka riskiest assumption (woh andaaza jo plan ko sabse zyada doba sakta hai) pakka kar diya. Sahaj saaf kiya hua text bahar ki company ko bhej sakta tha, bas ek shart poori ho.
 
 Doosra, usne kisi design ke bante se pehle hi design ka ek niyam tay kar diya. Tool ko Sahaj ki apni deewar ke andar chalna tha. Isse kai aasaan designs hat gaye. Woh har service bhi hat gayi jo cleaning ke liye kaccha message leti hai.
 

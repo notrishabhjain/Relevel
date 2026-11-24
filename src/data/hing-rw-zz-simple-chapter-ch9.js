@@ -47,8 +47,8 @@ Object.assign(window.HING = window.HING || {}, {
     'To jo bhi loop mein chalta hai, jaldi mehnga ho jaata hai.',
   'A schema (a form with fixed boxes) fixes the format':
     'Schema (fixed khaanon wala form) format tay karta hai',
-  'You can require a form-shaped reply instead of asking for one.':
-    'Aap form jaisa reply maang nahi, zaroori kar sakte hain.',
+  'You can require structured output (a form-shaped reply) instead of asking for one.':
+    'Aap structured output (form jaisa reply) maang nahi, zaroori kar sakte hain.',
   'Until now, the model only wrote things. It wrote words for a person, or boxes for your code to store. In this chapter it starts to do things. It looks something up, sends an email, books a slot or changes a record.':
     'Ab tak model sirf likhta tha. Woh kisi insaan ke liye shabd likhta tha, ya aapke code ke store karne ke liye khaane. Is chapter mein woh kaam karna shuru karta hai. Woh kuchh dhoondhta hai, email bhejta hai, slot book karta hai ya record badalta hai.',
   'This is a big change. A mistake no longer sits on a screen. It can touch the real world. So first you see exactly how it works. Then you build it yourself.':

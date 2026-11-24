@@ -5,10 +5,10 @@ Object.assign(window.HING = window.HING || {}, {
     'Kuch seekhne se pehle, aap tay karte hain ki aap kaise seekhenge. Aap applied AI PM ke kaam ke liye apne skills ko number dete hain (PM yaani product manager). Aap apne saare kaam ke liye ek jagah banate hain. Aur us asli problem se milte hain jis par aap poore course mein kaam karenge.',
   'Give yourself a score for each of the seven parts of the applied AI PM job. Write proof for each score.':
     'Applied AI PM ke kaam ke saat hisson mein se har ek ko apna score dijiye. Har score ke saath saboot likhiye.',
-  'Set up one notebook (a place for notes) and one repository (an online folder that remembers every change). Keep everything you make in them.':
-    'Ek notebook (notes ki jagah) aur ek repository (online folder jo har badlav yaad rakhta hai) banaiye. Jo kuch banaiye, unhi mein rakhiye.',
-  'Plan one week of study. Build first. Then use the 0–3 score to decide when to move on.':
-    'Ek hafte ki padhai ka plan banaiye. Pehle banaiye. Phir 0–3 ke score se tay kijiye ki aage kab badhna hai.',
+  'Set up one notebook (a place for notes) and one repository (an online folder that remembers every change). Keep every artifact (each thing you make) in them.':
+    'Ek notebook (notes ki jagah) aur ek repository (online folder jo har badlav yaad rakhta hai) banaiye. Har artifact (jo cheez aap banate hain) unhi mein rakhiye.',
+  'Plan one week of study. Build first. Then use the 0–3 score, the mastery gate (the score you must reach), to decide when to move on.':
+    'Ek hafte ki padhai ka plan banaiye. Pehle banaiye. Phir 0–3 ke score, yaani mastery gate (woh score jo aapko chhuna hai), se tay kijiye ki aage kab badhna hai.',
   'Pick three project ideas. For each one, say why AI may help or may not help.':
     'Teen project ideas chuniye. Har ek ke liye bataiye ki AI kyun madad kar sakta hai ya kyun nahi.',
   'Set up your workspace and name your project':
@@ -51,8 +51,8 @@ Object.assign(window.HING = window.HING || {}, {
     '<strong>Idea.</strong> Ek idea, saaf shabdon mein.',
   '<strong>Prove it now.</strong> A quick example, and a counterexample (a case where the idea fails). You write both right away.':
     '<strong>Prove it now.</strong> Ek chhota example, aur ek counterexample (aisa case jahan idea fail ho jata hai). Dono aap turant likhte hain.',
-  '<strong>Build it.</strong> A real thing you make: a document, an interview, a prototype (a rough first model of a product) or some code.':
-    '<strong>Build it.</strong> Ek asli cheez jo aap banate hain: document, interview, prototype (product ka kaccha pehla namoona) ya kuch code.',
+  '<strong>Build it.</strong> A real artifact (a thing you make): a document, an interview, a prototype (a rough first model of a product) or some code.':
+    '<strong>Build it.</strong> Ek asli artifact (jo cheez aap banate hain): document, interview, prototype (product ka kaccha pehla namoona) ya kuch code.',
   '<strong>Check yourself.</strong> Questions, and a 0–3 score for what you built.':
     '<strong>Check yourself.</strong> Sawaal, aur aapne jo banaya uske liye 0–3 ka score.',
   '<strong>Close the sitting.</strong> Three lines: what confused you, what changed your mind, and what you will test next.':
@@ -105,8 +105,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Leadership',
   'Getting people with different goals to agree and act.':
     'Alag-alag lakshya wale logon ko ek raay par laakar kaam karwana.',
-  'You give each part a score from 0 to 3. The course uses this same scale for everything you make. Learn it now. It is like marks on a report card.':
-    'Aap har hisse ko 0 se 3 ka score dete hain. Course aap jo bhi banate hain, usme yahi scale lagata hai. Ise abhi seekh lijiye. Yeh report card ke number jaisa hai.',
+  'You give each part a score from 0 to 3. The course uses this same scale for every artifact you make. Learn it now. It is like marks on a report card.':
+    'Aap har hisse ko 0 se 3 ka score dete hain. Course aap jo bhi artifact banate hain, usme yahi scale lagata hai. Ise abhi seekh lijiye. Yeh report card ke number jaisa hai.',
   'Nothing made, or only theory you copied.':
     'Kuch banaya nahi, ya sirf copy kiya hua theory.',
   'You tried, but have no proof, or nobody can repeat it.':

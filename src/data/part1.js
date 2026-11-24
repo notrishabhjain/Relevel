@@ -419,9 +419,9 @@ window.PART1 = [
   concept:'You have two main dials to steer a model: the system prompt (the rules on the shop wall) and temperature (how adventurous it is). You will use both. You will make a model invent an answer. You will hold it back with a rule. Then you will break your own rule.',
   plan:{
     first:'Ask about a policy or paper that you know is made up. Save exactly what the model says about it.',
-    build:'Compare three runs. Run one has no safety rule. Run two has a rule that asks the model to check itself. Run three says: use only the facts given. Then try a low and a high temperature (how adventurous the model is).',
-    brk:'Push hard on the safety rule that worked, the way a pushy customer would. Then hand the model the real text.',
-    artifact:'A test table that shows the made-up answers and the rules you tried.',
+    build:'Compare three runs. Run one has no guardrail (a safety rule). Run two has a guardrail that asks the model to check itself. Run three says: use only the facts given. Then try a low and a high temperature (how adventurous the model is).',
+    brk:'Push hard on the guardrail that worked, the way a pushy customer would. Then hand the model the real text.',
+    artifact:'A test table of hallucinations (made-up answers) and the guardrails you tried.',
     gate:'Explain why a prompt can nudge the model but cannot lock it. It is a note, not a lock.'
   },
   needs:[
@@ -519,7 +519,7 @@ window.PART1 = [
         ['A red box saying something <em>is not defined</em>','This cell (one box of code) needs something from a cell above it. That cell has not run yet. It is like doing step 3 of a recipe before step 2. Run the cells above it in order, from the top. If you ran them before the page reloaded, press <strong>Restore</strong> in the notebook bar. This is the most common notebook problem. It happens to everyone, and it does not mean your code is wrong.','An authentication error, or the number 401 (your key was not accepted)','Your key (your secret password for the model) did not reach the code. Run the cell that loads the key again. Then check the name you saved it under. It must match <a href="#/setup">Setup</a> exactly, like a password. Capital letters count.','A message that a module (a piece of ready-made code) was not found','The code imports (brings in) a library this page does not have. A library is ready-made code someone else wrote, like a borrowed recipe book. <code>openai</code> is built in. numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch cannot run inside a web page. The chapter tells you when that happens.','It runs, but your numbers are different from the ones printed above','That is normal, not a mistake. Models change over time, and your text is not the same as ours. It is like two cooks making the same dish: the taste is close, never exactly the same. Look at which way your numbers move, and roughly by how much. You do not need the exact number. If your numbers move the same way, the experiment worked.']
       ]
     ]],
-    ['p','Now it is your turn. Write a rule, then try to beat it.'],
+    ['p','Now it is your turn. Write a guardrail, then try to beat it.'],
     [
       'try',
       {id:'ch2-guard',
@@ -1000,8 +1000,8 @@ window.PART1 = [
     first:'Pick a document of five to fifteen pages. Write five questions about it. Cut it into three giant pieces. Guess which piece will hold each answer.',
     build:'Cut it again into fifteen or twenty equal pieces. Then cut it into pieces a person would choose. Each time, note two things: is the answer whole, and did a cut tear something apart?',
     brk:'Find a rule that got cut away from its exception. Or find steps that got cut away from their warning.',
-    artifact:'A sheet with your three rounds of cutting, and the rule you learned from them.',
-    gate:'Explain why you chose your way of cutting, using what you saw, not a ready-made setting.'
+    artifact:'A chunking sheet (how you cut text into pieces) with your three rounds, and the rule you learned from them.',
+    gate:'Explain why you chose your chunking strategy, using what you saw, not a ready-made setting.'
   },
   needs:[
     ['Models have a size limit','Everything you send in one call must fit on the model\'s desk (the context window).',1],
@@ -1011,7 +1011,7 @@ window.PART1 = [
   takeaway:[
     'Give the two reasons you cannot send a model every document you have.',
     'Say what gets lost when you cut a document into chunks. Give one real example.',
-    'Pick how to cut by naming the failure you accept. No piece size is right for every document.'
+    'Pick a chunking approach by naming the failure you accept. No chunk size is right for every document.'
   ],
   capstone:{
     title:'Decide how to cut long text without splitting an ID in half',
@@ -1103,11 +1103,11 @@ window.PART1 = [
 {
   id:'ch4', num:4, part:1, curriculumTier:'core', phase:1, prerequisites:['ch3'], nextUnits:['ch5','ch6'], minutes:35, labs:[],
   title:'Keyword search: matching words, and where it fails',
-  concept:'The first way to find the right chunk is to match the words in the question, like Ctrl+F. You will do this by hand on your own chunks. You will see exactly where it fails. And you will meet the one kind of question where it wins.',
+  concept:'The first way to find the right chunk is keyword search: match the words in the question, like Ctrl+F. You will do this by hand on your own chunks. You will see exactly where it fails. And you will meet the one kind of question where it wins.',
   plan:{
-    first:'Use only Ctrl-F and your eyes. Rank the cards for your Chapter 3 questions. Do not use common sense. Let the word matches decide, like a machine would.',
+    first:'Use only Ctrl-F and your eyes. Rank the chunks (cards) for your Chapter 3 questions. Do not use common sense. Let the word matches decide, like a machine would.',
     build:'Add four new questions. One uses a synonym (another word for the same thing). One is in plain everyday language. One is in a second language. One has an exact ID in it.',
-    brk:'Ask something the document cannot answer at all. Then find the card that still comes out on top.',
+    brk:'Ask something the document cannot answer at all. Then find the chunk (card) that still comes out on top.',
     artifact:'A map of the places where your search went wrong.',
     gate:"Explain why getting a result back does not mean an answer exists."
   },
@@ -1335,7 +1335,7 @@ window.PART1 = [
     first:'Guess first: out of ten questions, how many will find the right chunk (a small piece of the document) at k=3? Write the number down and circle it.',
     build:'Build your ground truth (your answer key), with one question that has no answer. Then measure at k=1, k=3 and k=8.',
     brk:'Change one thing in how search works. Then run the whole set of questions again.',
-    artifact:'A results table, a list of pass rules (acceptance criteria), and a score line (threshold) that decides: release or not.',
+    artifact:'A results table (an evaluation), a list of pass rules (acceptance criteria), and a score line (threshold) that decides: release or not.',
     gate:'Explain why the quality bar depends on what a failure costs a person, not on the technology.'
   },
   needs:[
@@ -1509,10 +1509,10 @@ window.PART1 = [
     ['q','I116'],
     ['h','Mark where it fails'],
     ['p','That last point is the heart of this chapter. A normal program fails loudly, with a red error. A RAG system usually fails politely. It gives a smooth, sure-sounding answer that is wrong, like a parrot that sounds certain. So build one habit: know where each failure hides.'],
-    ['do','Draw the path and mark the failures',[
+    ['do','Draw the pipeline (the path) and mark the failures',[
       ['p','Close everything. On paper, draw the whole path: documents → chunks → embeddings → storage → question → question embedding → nearest chunks → prompt put together → answer. Next to each arrow, write what happens there.'],
       ['p','Then, in red, mark each place where you have seen it fail yourself.'],
-      ['x','You should find at least six. Some to look for: the made-up answer, the standing instructions giving way under pressure, the answer cut in two, and the chunk left alone. Others: word search missing the meaning, search never saying “nothing”, the question-versus-passage mix-up, quality that felt good but measured poorly, and the cost of every token (Lego brick of text). If you have fewer than six, look at the earlier chapters again.']
+      ['x','You should find at least six. Some to look for: the made-up answer, the standing instructions giving way under pressure, the answer cut in two, and the chunk left alone. Others: keyword search missing the meaning, search never saying “nothing”, the query-versus-passage mix-up, quality that felt good but measured poorly, and the cost of every token (Lego brick of text). If you have fewer than six, look at the earlier chapters again.']
     ]],
     ['h','Assemble the system'],
     ['p','Now build the whole thing as one function (a named recipe). Nothing here is new. Each line comes from an earlier chapter. The comments beside the code (notes for people, not for the computer) say which one.'],
@@ -1523,7 +1523,7 @@ window.PART1 = [
       ['code','def rag_answer(question, k=3):\n    q = embed([question], "query")[0]          # Ch 5\n    scores = [cosine(q, cv) for cv in chunk_vecs]\n    ranked = sorted(range(len(chunks)),\n                    key=lambda i: scores[i], reverse=True)\n    context = "\\n\\n".join(              # Ch 3 and 6 — the k dial\n        chunks[i] for i in ranked[:k])\n    resp = client.chat.completions.create(     # Ch 1\n        model=MODEL,\n        temperature=0,                         # Ch 2\n        messages=[\n          {"role": "system", "content":         # Ch 2 briefing\n            "Answer ONLY from the provided context. If the "\n            "answer is not in the context, reply exactly: "\n            "\'Not found in the provided documents.\' "\n            "Never invent details."},\n          {"role": "user", "content":\n            f"Context:\\n{context}\\n\\nQuestion: {question}"}\n        ]\n    )\n    return resp.choices[0].message.content'],
       ['p','Run it three times, with three kinds of question:'],
       ['code','print(rag_answer("something your document CAN answer"))\nprint(rag_answer("your Chapter 4 synonym assassin"))\nprint(rag_answer("what does this say about cricket?"))'],
-      ['x','Check the first answer against your source document. The second tests if search-by-meaning found evidence that word search missed. The third tests what happens when there is no answer. A refusal is not promised, so write down what really happens. Retrieval plus instructions can reduce unsupported answers, not eliminate them.'],
+      ['x','Check the first answer against your source document. The second tests if search-by-meaning found evidence that keyword search missed. The third tests what happens when there is no answer. A refusal is not promised, so write down what really happens. Retrieval plus instructions can reduce unsupported answers, not eliminate them.'],
       ['key','Treat the third run as one test result. It is not proof that you are safe. Keep that question in your test set. Run it again each time the model, the prompt, the search or the documents change.'],
       [
         'snag',

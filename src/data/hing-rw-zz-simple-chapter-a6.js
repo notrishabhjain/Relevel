@@ -3,14 +3,14 @@
 Object.assign(window.HING = window.HING || {}, {
   'You have a strategy, which is your plan for what to build and why. Now you turn it into something a team can follow and bosses can back. You will make a roadmap (a map of what to do, in order), write OKRs (goals with numbers), draw who can say no, and run a pre-mortem (a failure rehearsal).':
     'Aapke paas strategy hai, yaani kya banana hai aur kyun, iski yojana. Ab aap ise aisi cheez banayenge jise team follow kar sake aur bade log support karein. Aap roadmap banayenge (kya kab karna hai, uska naksha), OKRs likhenge (numbers wale goals), dekhenge ki kaun “nahi” bol sakta hai, aur ek pre-mortem karenge (fail hone ki riharsal).',
-  'Make a now/next/later roadmap (a map of what to do first, next and later). Each item says what should change, and when to stop.':
-    'Now/next/later roadmap banaiye (kya pehle, phir, aur baad mein karna hai, uska naksha). Har item batata hai ki kya badalna chahiye, aur kab rukna hai.',
+  'Make a now/next/later roadmap (a map of what to do first, next and later). Each item says what should change, and its kill criterion (when to stop).':
+    'Now/next/later roadmap banaiye (kya pehle, phir, aur baad mein karna hai, uska naksha). Har item batata hai ki kya badalna chahiye, aur uska kill criterion (kab rukna hai).',
   'Write one goal in words. Then add key results (numbers that show you got there), input metrics and guardrail metrics. A guardrail is like the railing on a bridge.':
     'Ek goal shabdon mein likhiye. Phir key results jodiye (woh numbers jo dikhate hain ki aap wahan pahunche), input metrics aur guardrail metrics. Guardrail pul ki railing jaisa hota hai.',
   'Draw a grid of people. Mark who has power and who cares. Name the person who can say no and stop the plan.':
     'Logon ka ek grid banaiye. Likhiye kiske paas taakat hai aur kise parwah hai. Us insaan ka naam likhiye jo “nahi” bol kar plan rok sakta hai.',
-  'Write a short memo that asks the boss for a yes or no. Before you start, imagine the project failed and ask why.':
-    'Ek chhota memo likhiye jo boss se haan ya na maangta hai. Shuru karne se pehle sochiye ki project fail ho gaya, aur poochiye kyun.',
+  'Write a short memo that asks the boss for a yes or no. Before you start, run a pre-mortem: imagine the project failed and ask why.':
+    'Ek chhota memo likhiye jo boss se haan ya na maangta hai. Shuru karne se pehle pre-mortem chalaiye: sochiye ki project fail ho gaya, aur poochiye kyun.',
   'List what you need from other people, and what could go wrong. Do it early, so nothing surprises you later.':
     'Likhiye ki aapko doosron se kya chahiye, aur kya galat ho sakta hai. Yeh jaldi kijiye, taaki baad mein koi jhatka na lage.',
   'Turn the strategy into a plan other people can back':

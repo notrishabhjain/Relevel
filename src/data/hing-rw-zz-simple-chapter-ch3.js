@@ -7,18 +7,18 @@ Object.assign(window.HING = window.HING || {}, {
     'Use phir se pandrah ya bees barabar tukdon mein kaatiye. Phir aise tukdon mein kaatiye jaise koi insaan kaatega. Har baar do cheezein likhiye: kya jawaab poora hai, aur kya kisi cut ne kuch phaad diya?',
   'Find a rule that got cut away from its exception. Or find steps that got cut away from their warning.':
     'Aisa niyam dhoondhiye jo apne apwaad (exception) se alag ho gaya. Ya aise steps dhoondhiye jo apni chetavni (warning) se alag ho gaye.',
-  'A sheet with your three rounds of cutting, and the rule you learned from them.':
-    'Ek sheet jismein aapke teeno round ke cuts hon, aur woh niyam jo aapne unse seekha.',
-  'Explain why you chose your way of cutting, using what you saw, not a ready-made setting.':
-    'Samjhaiye ki aapne cutting ka yeh tareeka kyun chuna, jo aapne dekha uske aadhar par, kisi bane-banaye setting par nahi.',
+  'A chunking sheet (how you cut text into pieces) with your three rounds, and the rule you learned from them.':
+    'Ek chunking sheet (text ko tukdon mein kaatna) jismein aapke teeno round hon, aur woh niyam jo aapne unse seekha.',
+  'Explain why you chose your chunking strategy, using what you saw, not a ready-made setting.':
+    'Samjhaiye ki aapne apni chunking strategy kyun chuni, jo aapne dekha uske aadhar par, kisi bane-banaye setting par nahi.',
   'A model can read only a small amount of text at one time, like a desk that holds only a few pages. So a long document is cut into small pieces called chunks (like index cards). Today you cut one document three ways by hand. You will see what each cut loses.':
     'Model ek baar mein thoda sa text hi padh sakta hai, jaise ek mez par kuch hi page aate hain. Isliye lambe document ko chhote tukdon mein kaatte hain, jinhe chunks kehte hain (index cards jaisa). Aaj aap ek document ko haath se teen tareeke se kaatenge. Dekhenge ki har cut mein kya kho jata hai.',
   'Give the two reasons you cannot send a model every document you have.':
     'Woh do wajah batayiye jinki wajah se aap model ko apne saare documents nahi bhej sakte.',
   'Say what gets lost when you cut a document into chunks. Give one real example.':
     'Batayiye ki document ko chunks mein kaatne par kya kho jata hai. Ek asli example dijiye.',
-  'Pick how to cut by naming the failure you accept. No piece size is right for every document.':
-    'Cutting ka tareeka chuniye aur batayiye ki aap kaun si galti maan rahe hain. Har document ke liye koi ek size sahi nahi hota.',
+  'Pick a chunking approach by naming the failure you accept. No chunk size is right for every document.':
+    'Chunking ka tareeka chuniye aur batayiye ki aap kaun si galti maan rahe hain. Har document ke liye koi ek chunk size sahi nahi hota.',
   'Decide how to cut long text without splitting an ID in half':
     'Tay kijiye ki lambe text ko kaise kaatein ki koi ID beech se na toote',
   'People will paste long messages and whole documents into the tool. Before the tool checks a long text, it must cut it into pieces. A bad cut can break a number or a name in the middle. Then no piece holds the whole thing. You learned why we cut, what a cut loses, and that no piece size fits every document. Now you will make a cutting rule for the project, by hand.':

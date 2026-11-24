@@ -47,11 +47,11 @@ window.PART2 = [
       [
         ['The answer is plain text that your code cannot use','Make the model fill a form with fixed boxes, instead of only asking nicely','Chapter 8'],
         ['It cannot take two steps by itself','Give it buttons it can ask you to press, in a loop with a step limit, like a helper with a list of errands and a curfew','Chapter 9'],
-        ['Pasting everything is slow, costly and often worse','Learn what a big desk (how much the model can read at once) gives you, and what it does not','Chapters 10 and 11'],
+        ['Pasting everything is slow, costly and often worse','Learn what a big context window (the desk: how much the model can read at once) gives you, and what it does not','Chapters 10 and 11'],
         ['Text inside your documents can give the model orders','No complete fix exists. You limit the damage, like a railing on a bridge.','Chapter 13']
       ]
     ],
-    ['p','There is also a fifth limit. The search you built is the simplest kind that works. Chapter 12 uses the same answer key to make it better.'],
+    ['p','There is also a fifth limit. The retrieval (search) you built is the simplest kind that works. Chapter 12 uses the same answer key to make it better.'],
     ['h','Rank the gaps for your use case'],
     ['p','Not every gap hurts every product the same. So the next question is a product question: which of these four would hurt you first?'],
     ['do','Rank the gaps',[
@@ -89,7 +89,7 @@ window.PART2 = [
 {
   id:'ch8', num:8, part:2, curriculumTier:'selective', phase:2, prerequisites:['ch75','ch1','ch2'], nextUnits:['ch85','ch9','ch115','ch20'], minutes:45, labs:['schema'],
   title:'Structured output: getting JSON you can trust',
-  concept:'Other software cannot read a paragraph. It needs boxes with names and types, like a form. First you see how often a polite request for JSON (a form written as labels and values) fails. Then you add a schema (a form with fixed boxes) so a broken reply cannot happen. Last, you add a check-and-ask-again loop for models with no schema.',
+  concept:'Other software cannot read a paragraph. It needs boxes with names and types, like a form. First you see how often a polite request for JSON (a form written as labels and values) fails. Then you add a schema (a form with fixed boxes) so a broken reply cannot happen. Last, you add a validation loop (check, then ask again) for models with no schema.',
   needs:[
     ['The answer was words your code could not use','This was the first gap from Chapter 7.5. This chapter fills it.',7.5],
     ['Models guess the next piece of text','So you get whatever looked most likely, in whatever format.',1],
@@ -153,7 +153,7 @@ window.PART2 = [
     ['p','This is the first fix in the course that removes a problem. Earlier fixes only made it rarer. Chapter 2 explained the difference. Think of a railing on a bridge, not a sign that says “be careful”.'],
     ['q','I058'],
     ['do','Add the schema',[
-      ['p','Now hand the company a schema instead of a polite request. If your model does not support <code>response_format</code> (the setting where you attach the schema), skip to the next step. The check-and-ask-again loop works everywhere, and you should know it anyway.'],
+      ['p','Now hand the company a schema instead of a polite request. If your model or endpoint (the company\'s web address you call) does not support <code>response_format</code> (the setting where you attach the schema), skip to the next step. The validation loop (check, then ask again) works everywhere, and you should know it anyway.'],
       ['code','schema = {\n  "type": "object",\n  "properties": {\n    "decision": {"type": "string", "enum": ["approved", "rejected", "unclear"]},\n    "amount":   {"type": ["number", "null"]},\n    "currency": {"type": ["string", "null"]},\n    "supporting_quote": {"type": "string"}\n  },\n  "required": ["decision", "amount", "supporting_quote"],\n  "additionalProperties": False\n}\n\nr = client.chat.completions.create(\n    model="meta/llama-3.1-8b-instruct",\n    messages=[{"role":"user","content":PROMPT.format(text=sample)}],\n    response_format={"type":"json_schema",\n                     "json_schema":{"name":"claim","schema":schema}}\n)\nprint(json.loads(r.choices[0].message.content))'],
       ['x','You get a clean dictionary (a phone book: look up a name, get its value), twenty times out of twenty. Run the first loop again with the schema attached. Check that the failure count drops to zero. The format problem is solved. Only the format problem.'],
       [
@@ -166,8 +166,8 @@ window.PART2 = [
     ['key','A schema promises the shape, not the content. A form with a number box always gets a number. It may be the wrong number. The document may have had no amount at all.'],
     ['q','I018'],
     ['h','Back-up plan: check, then ask again'],
-    ['p','Plan for one more case. Not every model or company supports schemas. For those, you need a back-up plan that works everywhere. Think of a teacher who hands back a wrong answer sheet and says, “Do it again.”'],
-    ['do','Build a check-and-ask-again loop',[
+    ['p','Plan for one more case. Not every model, company or endpoint supports schemas. For those, you need a back-up plan that works everywhere. Think of a teacher who hands back a wrong answer sheet and says, “Do it again.”'],
+    ['do','Build a validation loop',[
       ['p','The back-up plan is a loop (do the same step again and again). Check the reply. If it fails, send the error back to the model as a new prompt (a new note) and ask again.'],
       ['code','def ask_validated(text, tries=3):\n    msgs = [{"role":"user","content":PROMPT.format(text=text)}]\n    for attempt in range(tries):\n        out = client.chat.completions.create(\n            model="meta/llama-3.1-8b-instruct",\n            temperature=0, messages=msgs\n        ).choices[0].message.content\n        try:\n            data = json.loads(out)\n            assert data["decision"] in ("approved","rejected","unclear")\n            return data, attempt + 1\n        except Exception as e:\n            msgs += [{"role":"assistant","content":out},\n                     {"role":"user","content":f"That was invalid: {e}. Return only valid JSON."}]\n    raise ValueError("no valid output after retries")\n\nprint(ask_validated(sample))'],
       ['x','It usually works on the first try, and sometimes on the second. Mind the cost: <strong>every retry sends the whole context again</strong> (Chapter 1). Context is everything on the model’s desk. A 10% retry rate adds at least 10% to your costs. Put it in your cost model in Chapter 15.'],
@@ -177,7 +177,7 @@ window.PART2 = [
       ]
     ]],
     ['h','Summary'],
-    ['p','Let’s put it together. A polite request for JSON works most of the time, but “most of the time” breaks when many people use it. A schema removes format errors completely. Earlier fixes, like the system prompt, only made problems rarer. When no schema is available, a check-and-ask-again loop is your back-up. It costs extra tokens (small pieces of a word, like Lego bricks of text).'],
+    ['p','Let’s put it together. A polite request for JSON works most of the time, but “most of the time” breaks when many people use it. A schema removes format errors completely. Earlier fixes, like the system prompt, only made problems rarer. When no schema is available, a validation loop (check, then ask again) is your back-up. It costs extra tokens (small pieces of a word, like Lego bricks of text).'],
     ['p','But a well-formed reply can still hold wrong values. How you design the boxes decides how often that happens. That is Chapter 8.5. There you will design boxes that do not push the model to guess.']
   ]
 },
@@ -271,7 +271,7 @@ window.PART2 = [
   needs:[
     ['It could not take two steps on its own','The second gap from Chapter 7.5. This chapter fills it.',7.5],
     ['The model sees only the notes your app sends','So anything that loops gets expensive fast.',1],
-    ['A schema (a form with fixed boxes) fixes the format','You can require a form-shaped reply instead of asking for one.',8]
+    ['A schema (a form with fixed boxes) fixes the format','You can require structured output (a form-shaped reply) instead of asking for one.',8]
   ],
   takeaway:[
     'Say what an agent is in one sentence, without the word “autonomous”.',
@@ -401,7 +401,7 @@ window.PART2 = [
     ['Chunking (cutting a book into index cards) exists because of that limit','It also exists because you pay for everything you send.',3]
   ],
   takeaway:[
-    'Give two different reasons why a big desk does not remove the need for retrieval.',
+    'Give two different reasons why a big context window (desk) does not remove the need for retrieval.',
     'Explain why a document that fits in the request may still be ignored by the model.',
     'Say what a token budget is (a spending limit counted in Lego bricks of text). Say which part you would cut first if the bill doubled.'
   ],

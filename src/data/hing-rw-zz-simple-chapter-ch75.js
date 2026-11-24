@@ -95,8 +95,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Chapter 9',
   'Pasting everything is slow, costly and often worse':
     'Sab kuch paste karna dheema, mehnga aur aksar kharab hota hai',
-  'Learn what a big desk (how much the model can read at once) gives you, and what it does not':
-    'Seekhiye ki bada mez (model ek baar mein kitna padh sakta hai) kya deta hai, aur kya nahi',
+  'Learn what a big context window (the desk: how much the model can read at once) gives you, and what it does not':
+    'Seekhiye ki bada context window (mez: model ek baar mein kitna padh sakta hai) kya deta hai, aur kya nahi',
   'Chapters 10 and 11':
     'Chapters 10 aur 11',
   'Text inside your documents can give the model orders':
@@ -105,8 +105,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Koi poora ilaaj nahi hai. Aap nuksaan ko seemit karte hain, pul ki railing ki tarah.',
   'Chapter 13':
     'Chapter 13',
-  'There is also a fifth limit. The search you built is the simplest kind that works. Chapter 12 uses the same answer key to make it better.':
-    'Ek paanchvi seema bhi hai. Aapka banaya search sabse saada kism ka hai jo kaam karta hai. Chapter 12 wahi answer key use karke ise behtar banata hai.',
+  'There is also a fifth limit. The retrieval (search) you built is the simplest kind that works. Chapter 12 uses the same answer key to make it better.':
+    'Ek paanchvi seema bhi hai. Aapki banayi retrieval (search) sabse saada kism ki hai jo kaam karti hai. Chapter 12 wahi answer key use karke ise behtar banata hai.',
   'Rank the gaps for your use case':
     'Rank the gaps for your use case',
   'Not every gap hurts every product the same. So the next question is a product question: which of these four would hurt you first?':

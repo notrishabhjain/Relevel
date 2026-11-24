@@ -1,18 +1,18 @@
 /* Hinglish for Keyword search: matching words, and where it fails (chapter:ch4), in simple words.
    Written by tools/sheet.mjs apply; keyed on the English line. Loads last, so it wins. */
 Object.assign(window.HING = window.HING || {}, {
-  'Use only Ctrl-F and your eyes. Rank the cards for your Chapter 3 questions. Do not use common sense. Let the word matches decide, like a machine would.':
-    'Sirf Ctrl-F aur apni aankhein use kijiye. Chapter 3 ke sawaalon ke liye cards ko rank kijiye. Common sense mat lagaiye. Word matches ko faisla karne dijiye, jaise machine karti hai.',
+  'Use only Ctrl-F and your eyes. Rank the chunks (cards) for your Chapter 3 questions. Do not use common sense. Let the word matches decide, like a machine would.':
+    'Sirf Ctrl-F aur apni aankhein use kijiye. Chapter 3 ke sawaalon ke liye chunks (cards) ko rank kijiye. Common sense mat lagaiye. Word matches ko faisla karne dijiye, jaise machine karti hai.',
   'Add four new questions. One uses a synonym (another word for the same thing). One is in plain everyday language. One is in a second language. One has an exact ID in it.':
     'Chaar naye sawaal jodiye. Ek mein synonym ho (ek hi cheez ka doosra shabd). Ek rozmarra ki saaf bhasha mein ho. Ek doosri bhasha mein ho. Ek mein ek exact ID ho.',
-  'Ask something the document cannot answer at all. Then find the card that still comes out on top.':
-    'Aisa kuch poochhiye jiska jawaab document mein hai hi nahi. Phir dhoondhiye ki kaun sa card phir bhi sabse upar aata hai.',
+  'Ask something the document cannot answer at all. Then find the chunk (card) that still comes out on top.':
+    'Aisa kuch poochhiye jiska jawaab document mein hai hi nahi. Phir dhoondhiye ki kaun sa chunk (card) phir bhi sabse upar aata hai.',
   'A map of the places where your search went wrong.':
     'Ek naksha jisme dikhe ki aapki search kahan-kahan galat gayi.',
   'Explain why getting a result back does not mean an answer exists.':
     'Samjhaiye ki result wapas aa jaana ka matlab yeh nahi ki jawaab maujood hai.',
-  'The first way to find the right chunk is to match the words in the question, like Ctrl+F. You will do this by hand on your own chunks. You will see exactly where it fails. And you will meet the one kind of question where it wins.':
-    'Sahi chunk dhoondhne ka pehla tareeka hai sawaal ke shabd match karna, jaise Ctrl+F. Aap yeh apne chunks par haath se karenge. Dekhenge ki woh theek kahan fail hota hai. Aur ek aisa sawaal bhi milega jahan woh jeetta hai.',
+  'The first way to find the right chunk is keyword search: match the words in the question, like Ctrl+F. You will do this by hand on your own chunks. You will see exactly where it fails. And you will meet the one kind of question where it wins.':
+    'Sahi chunk dhoondhne ka pehla tareeka keyword search hai: sawaal ke shabd match karna, jaise Ctrl+F. Aap yeh apne chunks par haath se karenge. Dekhenge ki woh theek kahan fail hota hai. Aur ek aisa sawaal bhi milega jahan woh jeetta hai.',
   'Explain why keyword search fails most for the people who need help most.':
     'Samjhaiye ki keyword search unhi logon ke liye sabse zyada fail kyun hoti hai jinhe madad ki sabse zyada zaroorat hai.',
   'Name the kind of question where keyword search beats every other method.':

@@ -125,7 +125,7 @@ That is the trouble with cutting work in layers. Nothing can be used until the l
 Anaya described the first one. It handled one kind of number, written one way. It followed that number from the moment a message arrived to the moment an agent saw it hidden. It also wrote one line in a log (a written record of what happened) saying what was done.
 
 ::: def Minimum viable product
-An *MVP* is the smallest thing that tests the riskiest guess with real users. It is not a small version of everything. It is one small version of the one thing that has to be true.
+An *MVP* is the smallest thing that tests the riskiest assumption (the guess most likely to sink the plan) with real users. It is not a small version of everything. It is one small version of the one thing that has to be true.
 :::
 
 ## Two weeks at a time

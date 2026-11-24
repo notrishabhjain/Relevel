@@ -1,8 +1,8 @@
 /* Hinglish for Structured output: getting JSON you can trust (chapter:ch8), in simple words.
    Written by tools/sheet.mjs apply; keyed on the English line. Loads last, so it wins. */
 Object.assign(window.HING = window.HING || {}, {
-  'Other software cannot read a paragraph. It needs boxes with names and types, like a form. First you see how often a polite request for JSON (a form written as labels and values) fails. Then you add a schema (a form with fixed boxes) so a broken reply cannot happen. Last, you add a check-and-ask-again loop for models with no schema.':
-    'Doosra software paragraph nahi padh sakta. Use naam aur type wale khaane chahiye, ek form jaise. Pehle aap dekhenge ki JSON (labels aur values wala form) ka polite request kitni baar fail hota hai. Phir aap schema (fixed khaanon wala form) lagayenge, taaki toota hua reply aa hi na sake. Aakhir mein check-karo-aur-dobara-pucho wala loop jodenge, un models ke liye jinmein schema nahi hota.',
+  'Other software cannot read a paragraph. It needs boxes with names and types, like a form. First you see how often a polite request for JSON (a form written as labels and values) fails. Then you add a schema (a form with fixed boxes) so a broken reply cannot happen. Last, you add a validation loop (check, then ask again) for models with no schema.':
+    'Doosra software paragraph nahi padh sakta. Use naam aur type wale khaane chahiye, ek form jaise. Pehle aap dekhenge ki JSON (labels aur values wala form) ka polite request kitni baar fail hota hai. Phir aap schema (fixed khaanon wala form) lagayenge, taaki toota hua reply aa hi na sake. Aakhir mein validation loop (check karo, phir dobara pucho) jodenge, un models ke liye jinmein schema nahi hota.',
   'Say with simple sums why “97% valid JSON” is not good enough.':
     'Seedhe hisaab se samjhaiye ki “97% sahi JSON” kaafi kyun nahi hai.',
   'Say what a schema (the form with fixed boxes) promises, and what it does not.':
@@ -83,8 +83,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Yeh course ka pehla ilaaj hai jo dikkat ko hata deta hai. Pehle ke ilaaj use sirf kam karte the. Chapter 2 ne yeh farq samjhaya tha. Pul ki railing sochiye, “dhyaan se” likhe board nahi.',
   'Add the schema':
     'Schema jodiye',
-  'Now hand the company a schema instead of a polite request. If your model does not support <code>response_format</code> (the setting where you attach the schema), skip to the next step. The check-and-ask-again loop works everywhere, and you should know it anyway.':
-    'Ab polite request ki jagah company ko schema dijiye. Agar aapka model <code>response_format</code> (woh setting jahan schema lagta hai) support nahi karta, to agle step par jaiye. Check-aur-dobara-pucho wala loop har jagah chalta hai, aur use jaanna chahiye.',
+  'Now hand the company a schema instead of a polite request. If your model or endpoint (the company\'s web address you call) does not support <code>response_format</code> (the setting where you attach the schema), skip to the next step. The validation loop (check, then ask again) works everywhere, and you should know it anyway.':
+    'Ab polite request ki jagah company ko schema dijiye. Agar aapka model ya endpoint (company ka web address jise aap call karte hain) <code>response_format</code> (woh setting jahan schema lagta hai) support nahi karta, to agle step par jaiye. Validation loop (check karo, phir dobara pucho) har jagah chalta hai, aur use jaanna chahiye.',
   'You get a clean dictionary (a phone book: look up a name, get its value), twenty times out of twenty. Run the first loop again with the schema attached. Check that the failure count drops to zero. The format problem is solved. Only the format problem.':
     'Aapko saaf dictionary (phone book: naam dekho, value pao) milti hai, bees mein se bees baar. Pehla loop schema lagakar dobara chalaiye. Dekhiye ki failures ki ginti zero ho gayi. Format ki dikkat hal ho gayi. Sirf format ki dikkat.',
   'What a schema does not promise':
@@ -95,16 +95,16 @@ Object.assign(window.HING = window.HING || {}, {
     'Schema shape ka vaada karta hai, andar ki cheez ka nahi. Number wale khaane mein hamesha number aata hai. Woh galat number ho sakta hai. Ho sakta hai document mein amount tha hi nahi.',
   'Back-up plan: check, then ask again':
     'Back-up plan: check kijiye, phir dobara pucho',
-  'Plan for one more case. Not every model or company supports schemas. For those, you need a back-up plan that works everywhere. Think of a teacher who hands back a wrong answer sheet and says, “Do it again.”':
-    'Ek aur halat ke liye taiyaar rahiye. Har model ya company schema support nahi karti. Unke liye aisa back-up plan chahiye jo har jagah chale. Ek teacher sochiye jo galat answer sheet lauta kar kehta hai, “Dobara karo.”',
-  'Build a check-and-ask-again loop':
-    'Check-aur-dobara-pucho loop banaiye',
+  'Plan for one more case. Not every model, company or endpoint supports schemas. For those, you need a back-up plan that works everywhere. Think of a teacher who hands back a wrong answer sheet and says, “Do it again.”':
+    'Ek aur halat ke liye taiyaar rahiye. Har model, company ya endpoint schema support nahi karta. Unke liye aisa back-up plan chahiye jo har jagah chale. Ek teacher sochiye jo galat answer sheet lauta kar kehta hai, “Dobara karo.”',
+  'Build a validation loop':
+    'Validation loop banaiye',
   'The back-up plan is a loop (do the same step again and again). Check the reply. If it fails, send the error back to the model as a new prompt (a new note) and ask again.':
     'Back-up plan ek loop hai (wahi step baar baar karna). Reply check kijiye. Fail ho to error ko naye prompt (nayi parchi) ki tarah model ko wapas bhejiye aur dobara poochiye.',
   'It usually works on the first try, and sometimes on the second. Mind the cost: <strong>every retry sends the whole context again</strong> (Chapter 1). Context is everything on the model’s desk. A 10% retry rate adds at least 10% to your costs. Put it in your cost model in Chapter 15.':
     'Yeh aam taur par pehli koshish mein chalta hai, kabhi doosri mein. Kharch par dhyaan dijiye: <strong>har retry poora context dobara bhejti hai</strong> (Chapter 1). Context woh sab hai jo model ki mez par rakha hai. 10% retry rate aapke kharch mein kam se kam 10% jodta hai. Ise Chapter 15 ke cost model mein daaliye.',
-  'Let’s put it together. A polite request for JSON works most of the time, but “most of the time” breaks when many people use it. A schema removes format errors completely. Earlier fixes, like the system prompt, only made problems rarer. When no schema is available, a check-and-ask-again loop is your back-up. It costs extra tokens (small pieces of a word, like Lego bricks of text).':
-    'Chaliye sab jod lete hain. JSON ka polite request zyaadatar chalta hai, par “zyaadatar” tab toot jaata hai jab bahut log use karein. Schema format ki galtiyaan poori tarah hata deta hai. Pehle ke ilaaj, jaise system prompt, dikkat ko sirf kam karte the. Jab schema na ho, to check-aur-dobara-pucho loop aapka back-up hai. Isme extra tokens lagte hain (shabd ke chhote tukde, text ki Lego eent).',
+  'Let’s put it together. A polite request for JSON works most of the time, but “most of the time” breaks when many people use it. A schema removes format errors completely. Earlier fixes, like the system prompt, only made problems rarer. When no schema is available, a validation loop (check, then ask again) is your back-up. It costs extra tokens (small pieces of a word, like Lego bricks of text).':
+    'Chaliye sab jod lete hain. JSON ka polite request zyaadatar chalta hai, par “zyaadatar” tab toot jaata hai jab bahut log use karein. Schema format ki galtiyaan poori tarah hata deta hai. Pehle ke ilaaj, jaise system prompt, dikkat ko sirf kam karte the. Jab schema na ho, to validation loop (check karo, phir dobara pucho) aapka back-up hai. Isme extra tokens lagte hain (shabd ke chhote tukde, text ki Lego eent).',
   'But a well-formed reply can still hold wrong values. How you design the boxes decides how often that happens. That is Chapter 8.5. There you will design boxes that do not push the model to guess.':
     'Par sahi shape ke reply mein bhi galat values ho sakti hain. Aap khaane kaise banate hain, yeh tay karta hai ki aisa kitni baar hoga. Yeh Chapter 8.5 hai. Wahan aap aise khaane banayenge jo model ko guess karne par majboor na karein.',
 });

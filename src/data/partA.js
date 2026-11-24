@@ -79,8 +79,8 @@ window.PART6 = [
   concept:'Before you learn anything, you set up how you will learn. You score your skills for the applied AI PM job (PM means product manager). You make one place for all your work. And you meet the real problem you will build around, all course long.',
   takeaway:[
     'Give yourself a score for each of the seven parts of the applied AI PM job. Write proof for each score.',
-    'Set up one notebook (a place for notes) and one repository (an online folder that remembers every change). Keep everything you make in them.',
-    'Plan one week of study. Build first. Then use the 0–3 score to decide when to move on.',
+    'Set up one notebook (a place for notes) and one repository (an online folder that remembers every change). Keep every artifact (each thing you make) in them.',
+    'Plan one week of study. Build first. Then use the 0–3 score, the mastery gate (the score you must reach), to decide when to move on.',
     'Pick three project ideas. For each one, say why AI may help or may not help.'
   ],
   needs:[],
@@ -123,7 +123,7 @@ window.PART6 = [
     ['n',[
       '<strong>Idea.</strong> One idea, in plain words.',
       '<strong>Prove it now.</strong> A quick example, and a counterexample (a case where the idea fails). You write both right away.',
-      '<strong>Build it.</strong> A real thing you make: a document, an interview, a prototype (a rough first model of a product) or some code.',
+      '<strong>Build it.</strong> A real artifact (a thing you make): a document, an interview, a prototype (a rough first model of a product) or some code.',
       '<strong>Check yourself.</strong> Questions, and a 0–3 score for what you built.',
       '<strong>Close the sitting.</strong> Three lines: what confused you, what changed your mind, and what you will test next.'
     ]],
@@ -153,7 +153,7 @@ window.PART6 = [
       ['Business','Pricing, costs, and whether the product can earn money.'],
       ['Leadership','Getting people with different goals to agree and act.']
     ]],
-    ['p','You give each part a score from 0 to 3. The course uses this same scale for everything you make. Learn it now. It is like marks on a report card.'],
+    ['p','You give each part a score from 0 to 3. The course uses this same scale for every artifact you make. Learn it now. It is like marks on a report card.'],
     ['tb',['Score','Meaning'],[
       ['0','Nothing made, or only theory you copied.'],
       ['1','You tried, but have no proof, or nobody can repeat it.'],
@@ -313,7 +313,7 @@ window.PART6 = [
 {
   id:'a2', num:'A2', part:6, curriculumTier:'reference', phase:0, prerequisites:['a1'], nextUnits:['a3'], minutes:600, labs:[],
   title:'Product sense: how products win and lose',
-  concept:'Learn the few ideas behind every product decision. You map how a product reaches its users. You compare selling to businesses with selling to people. You check an idea against four risks. And you see where an AI assistant helps your thinking, and where it does not.',
+  concept:'Learn the few ideas behind every product decision. You map how a product reaches its users. You compare B2B (selling to businesses) with B2C (selling to people). You check an idea against four risks. And you see where an AI assistant helps your thinking, and where it does not.',
   takeaway:[
     'Map how a product is found, built and spread, and find its weakest link.',
     'Say how building for businesses (B2B) differs from building for people (B2C).',
@@ -777,11 +777,11 @@ window.PART6 = [
     ['tb',['Layer','Examples','Where the strength comes from'],[
       ['Infrastructure','Chips, cloud providers (companies that rent out computers)','Size and money'],
       ['Foundation models','OpenAI, Anthropic, Google, open-source models such as Llama','Research, computing power and data'],
-      ['Tooling','Helper tools that store text by meaning, check answers, and run steps in order','Developers choosing it'],
+      ['Tooling','Helper tools that store text by meaning (vector databases), check answers (evaluation), and run steps in order (orchestration)','Developers choosing it'],
       ['Applications','Products that end users work in','How it fits the work, how it reaches people, data and trust']
     ]],
     ['p','Most AI product managers work at the top layer, the application. That has one big result: <strong>the model is not your advantage</strong>. Your competitors can send messages to the same model over the same API (the doorway for sending a message to the model).'],
-    ['p','So what is hard to copy? Three things. One is being built deep into a customer’s daily work and tools. Another is data that only your product collects, like the corrections users make. The third is trust, most of all with the security teams who approve business-to-business buying.'],
+    ['p','So what is hard to copy? Three things. One is being built deep into a customer’s daily work and tools. Another is data that only your product collects, like the corrections users make. The third is trust, most of all with the security teams who approve B2B (business-to-business) buying.'],
     ['key','A data advantage is real only if three things are true. The data is yours alone. It makes the product better. And a competitor finds it hard to get.'],
     ['do','Prove it now',[
       ['p','Write which layer your capstone sits in, and which layers below it you depend on. Then write one strength you might have. Say honestly if a competitor could copy it in six months.'],
@@ -927,7 +927,7 @@ window.PART6 = [
       ['Buy','Send messages to a model over the internet through an API (OpenAI, Anthropic, Google)','Usually the right start. It is fast, the quality is high, and you pay as you go, like paying per SMS.'],
       ['Partner','Use a specialist company for the whole job','It makes sense when the job is not your main strength, like turning speech into text or reading documents.']
     ]],
-    ['p','Use six checks to compare the options. They are <strong>quality</strong> on your own test cases, <strong>speed</strong> (how long you wait for an answer), <strong>cost</strong> per task, <strong>privacy</strong> (where the data goes), <strong>lock-in</strong> (how hard it is to switch) and <strong>time to market</strong> (how soon people can use it).'],
+    ['p','Use six checks to compare the options. They are <strong>quality</strong> on your own test cases, <strong>latency</strong> (how long you wait for an answer), <strong>cost</strong> per task, <strong>privacy</strong> (where the data goes), <strong>lock-in</strong> (how hard it is to switch) and <strong>time to market</strong> (how soon people can use it).'],
     ['p','Also ask whether AI suits the task at all. AI fits when mistakes are fine or easy to catch. A wrong theme in a weekly report gets fixed at the next meeting. A wrong number in an invoice (a bill) costs money. The same model can suit one task and not the other.'],
     ['try',{id:'a5-bbp',mins:10,min:120,rows:6,
       task:'Write a short build, buy or partner decision for your capstone’s AI layer. Compare at least two options on the six checks. Then say your choice, and what would make you look at it again.',
@@ -946,10 +946,10 @@ window.PART6 = [
   title:'Roadmaps, OKRs and getting stakeholders on board',
   concept:'You have a strategy, which is your plan for what to build and why. Now you turn it into something a team can follow and bosses can back. You will make a roadmap (a map of what to do, in order), write OKRs (goals with numbers), draw who can say no, and run a pre-mortem (a failure rehearsal).',
   takeaway:[
-    'Make a now/next/later roadmap (a map of what to do first, next and later). Each item says what should change, and when to stop.',
+    'Make a now/next/later roadmap (a map of what to do first, next and later). Each item says what should change, and its kill criterion (when to stop).',
     'Write one goal in words. Then add key results (numbers that show you got there), input metrics and guardrail metrics. A guardrail is like the railing on a bridge.',
     'Draw a grid of people. Mark who has power and who cares. Name the person who can say no and stop the plan.',
-    'Write a short memo that asks the boss for a yes or no. Before you start, imagine the project failed and ask why.',
+    'Write a short memo that asks the boss for a yes or no. Before you start, run a pre-mortem: imagine the project failed and ask why.',
     'List what you need from other people, and what could go wrong. Do it early, so nothing surprises you later.'
   ],
   needs:[['A written strategy','The roadmap turns your strategy into outcomes, in a sensible order, like a list of stops on a train route.','A5'],

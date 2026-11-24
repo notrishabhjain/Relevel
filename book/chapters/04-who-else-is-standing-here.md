@@ -34,7 +34,7 @@ This chapter follows the work that came next. Anaya checks if the tool already e
 
 It is like a shopkeeper who says, "You may open here, but only on my side of the road." The "yes, but" did two things.
 
-First, it settled the riskiest guess from the last chapter. Sahaj could pass cleaned text to an outside company, if one condition was met.
+First, it settled the riskiest assumption (the guess most likely to sink the plan) from the last chapter. Sahaj could pass cleaned text to an outside company, if one condition was met.
 
 Second, it fixed a rule for the design before any design existed. The tool had to run on Sahaj's side of the wall. That ruled out many easy designs. It ruled out every service that takes the raw message in order to clean it.
 

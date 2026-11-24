@@ -3,12 +3,12 @@
 Object.assign(window.HING = window.HING || {}, {
   'Ask about a policy or paper that you know is made up. Save exactly what the model says about it.':
     'Kisi aisi policy ya paper ke baare mein poochiye jo aapko pata hai ki banawati hai. Model jo kehta hai, use bilkul waisa hi save kijiye.',
-  'Compare three runs. Run one has no safety rule. Run two has a rule that asks the model to check itself. Run three says: use only the facts given. Then try a low and a high temperature (how adventurous the model is).':
-    'Teen runs milaiye. Pehle run mein koi safety rule nahi. Doosre mein ek rule hai jo model se khud ko check karne ko kehta hai. Teesre mein likha hai: sirf di gayi baatein use karo. Phir kam aur zyada temperature (model kitna himmatwala hai) aazmaiye.',
-  'Push hard on the safety rule that worked, the way a pushy customer would. Then hand the model the real text.':
-    'Jo safety rule chala, us par zor se dabaav daaliye, jaise koi zabardasti karne wala customer karta hai. Phir model ko asli text thama dijiye.',
-  'A test table that shows the made-up answers and the rules you tried.':
-    'Ek test table jisme banawati jawaab aur aapke aazmaye hue rules dikhte hain.',
+  'Compare three runs. Run one has no guardrail (a safety rule). Run two has a guardrail that asks the model to check itself. Run three says: use only the facts given. Then try a low and a high temperature (how adventurous the model is).':
+    'Teen runs milaiye. Pehle run mein koi guardrail (safety rule) nahi. Doosre mein ek guardrail hai jo model se khud ko check karne ko kehta hai. Teesre mein likha hai: sirf di gayi baatein use karo. Phir kam aur zyada temperature (model kitna himmatwala hai) aazmaiye.',
+  'Push hard on the guardrail that worked, the way a pushy customer would. Then hand the model the real text.':
+    'Jo guardrail chala, us par zor se dabaav daaliye, jaise koi zabardasti karne wala customer karta hai. Phir model ko asli text thama dijiye.',
+  'A test table of hallucinations (made-up answers) and the guardrails you tried.':
+    'Hallucinations (banawati jawaab) aur aapke aazmaye hue guardrails ki ek test table.',
   'Explain why a prompt can nudge the model but cannot lock it. It is a note, not a lock.':
     'Samjhaiye ki prompt model ko dhakka de sakta hai, lekin taala nahi laga sakta. Woh ek parchi hai, taala nahi.',
   'You have two main dials to steer a model: the system prompt (the rules on the shop wall) and temperature (how adventurous it is). You will use both. You will make a model invent an answer. You will hold it back with a rule. Then you will break your own rule.':
@@ -117,8 +117,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Wahi system prompt rakhiye. Sirf user message badliye, aur zyada zor se dabaiye:',
   'Many models give in and make up the answer again. An instruction pushes the model strongly, but the model can still be talked out of it.':
     'Kai models maan jaate hain aur dobara banawati jawaab bana dete hain. Instruction model ko zor se dhakelti hai, lekin model ko phir bhi bahkaya ja sakta hai.',
-  'Now it is your turn. Write a rule, then try to beat it.':
-    'Ab aapki baari hai. Ek rule likhiye, phir use harane ki koshish kijiye.',
+  'Now it is your turn. Write a guardrail, then try to beat it.':
+    'Ab aapki baari hai. Ek guardrail likhiye, phir use harane ki koshish kijiye.',
   'Write one sentence you would put in a system prompt. It should stop the model from making up a policy it has not been shown. Underneath, write a question that gets around your sentence.':
     'Ek sentence likhiye jo aap system prompt mein rakhenge. Woh model ko aisi policy banane se roke jo use dikhai nahi gayi. Uske neeche ek sawaal likhiye jo aapke sentence ko chakma de.',
   'The instruction, then the question that beats it.':

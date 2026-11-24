@@ -155,8 +155,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Research, computing power aur data',
   'Tooling':
     'Tooling',
-  'Helper tools that store text by meaning, check answers, and run steps in order':
-    'Madadgaar tools jo text ko matlab ke hisaab se rakhte hain, jawaab jaanchte hain, aur steps ko kram se chalate hain',
+  'Helper tools that store text by meaning (vector databases), check answers (evaluation), and run steps in order (orchestration)':
+    'Madadgaar tools jo text ko matlab ke hisaab se rakhte hain (vector databases), jawaab jaanchte hain (evaluation), aur steps ko kram se chalate hain (orchestration)',
   'Developers choosing it':
     'Developers ka use chunna',
   'Applications':
@@ -167,8 +167,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Kaam mein kaise fit hota hai, logon tak kaise pahunchta hai, data aur bharosa',
   'Most AI product managers work at the top layer, the application. That has one big result: <strong>the model is not your advantage</strong>. Your competitors can send messages to the same model over the same API (the doorway for sending a message to the model).':
     'Zyadatar AI product managers sabse upar ki layer, application, par kaam karte hain. Iska ek bada nateeja hai: <strong>model aapki taaqat nahi hai</strong>. Aapke competitors usi API (model ko message bhejne ka darwaza) se usi model ko message bhej sakte hain.',
-  'So what is hard to copy? Three things. One is being built deep into a customer’s daily work and tools. Another is data that only your product collects, like the corrections users make. The third is trust, most of all with the security teams who approve business-to-business buying.':
-    'To nakal karna mushkil kya hai? Teen cheezein. Ek, customer ke roz ke kaam aur tools mein gehra ghul jaana. Doosra, woh data jo sirf aapka product jama karta hai, jaise users ke sudhaar. Teesra, bharosa, khaaskar un security teams ka jo business-to-business khareed manzoor karti hain.',
+  'So what is hard to copy? Three things. One is being built deep into a customer’s daily work and tools. Another is data that only your product collects, like the corrections users make. The third is trust, most of all with the security teams who approve B2B (business-to-business) buying.':
+    'To nakal karna mushkil kya hai? Teen cheezein. Ek, customer ke roz ke kaam aur tools mein gehra ghul jaana. Doosra, woh data jo sirf aapka product jama karta hai, jaise users ke sudhaar. Teesra, bharosa, khaaskar un security teams ka jo B2B (business-to-business) khareed manzoor karti hain.',
   'A data advantage is real only if three things are true. The data is yours alone. It makes the product better. And a competitor finds it hard to get.':
     'Data ki taaqat tabhi asli hai jab teen baatein sach hon. Data sirf aapka ho. Woh product ko behtar banaye. Aur competitor ke liye use paana mushkil ho.',
   'Write which layer your capstone sits in, and which layers below it you depend on. Then write one strength you might have. Say honestly if a competitor could copy it in six months.':

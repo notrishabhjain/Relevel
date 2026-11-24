@@ -1,8 +1,8 @@
 /* Hinglish for Product sense: how products win and lose (chapter:a2), in simple words.
    Written by tools/sheet.mjs apply; keyed on the English line. Loads last, so it wins. */
 Object.assign(window.HING = window.HING || {}, {
-  'Learn the few ideas behind every product decision. You map how a product reaches its users. You compare selling to businesses with selling to people. You check an idea against four risks. And you see where an AI assistant helps your thinking, and where it does not.':
-    'Un chand ideas ko seekhiye jin par har product ka faisla tika hota hai. Aap dekhte hain ki product users tak kaise pahunchta hai. Aap businesses ko bechne aur logon ko bechne ki tulna karte hain. Aap ek idea ko chaar khatron par parakhte hain. Aur dekhte hain ki AI assistant aapki soch mein kahan madad karta hai, aur kahan nahi.',
+  'Learn the few ideas behind every product decision. You map how a product reaches its users. You compare B2B (selling to businesses) with B2C (selling to people). You check an idea against four risks. And you see where an AI assistant helps your thinking, and where it does not.':
+    'Un chand ideas ko seekhiye jin par har product ka faisla tika hota hai. Aap dekhte hain ki product users tak kaise pahunchta hai. Aap B2B (businesses ko bechna) aur B2C (logon ko bechna) ki tulna karte hain. Aap ek idea ko chaar khatron par parakhte hain. Aur dekhte hain ki AI assistant aapki soch mein kahan madad karta hai, aur kahan nahi.',
   'Map how a product is found, built and spread, and find its weakest link.':
     'Dekhiye ki product kaise dhoondha jata hai, banta hai aur failta hai, aur uski sabse kamzor kadi dhoondhiye.',
   'Say how building for businesses (B2B) differs from building for people (B2C).':

@@ -3,8 +3,8 @@
 Object.assign(window.HING = window.HING || {}, {
   'The model has a desk, called the context window. It can read only what fits on the desk. Desks are now huge, and companies that sell models say you no longer need retrieval (finding the right page first). You will test that claim. You will see how the cost grows. You will find where the model stops using what you sent. Then you will learn to set a budget, to cache (reuse the start of a request) and to compact (shrink old chat).':
     'Model ki ek mez hoti hai, jise context window kehte hain. Model sirf wahi padh sakta hai jo mez par fit ho. Ab mez bahut badi ho gayi hai, aur model bechne wali companies kehti hain ki retrieval (pehle sahi page dhoondhna) ki ab zaroorat nahi. Aap is daave ko test karenge. Aap dekhenge ki cost kaise badhti hai. Aap woh jagah dhoondhenge jahan model aapka bheja hua text use karna band kar deta hai. Phir aap budget banana, cache karna (request ka shuruaati hissa dobara use karna) aur compact karna (purani chat chhoti karna) seekhenge.',
-  'Give two different reasons why a big desk does not remove the need for retrieval.':
-    '2 alag wajah bata paana ki badi mez ke baad bhi retrieval ki zaroorat kyun rehti hai.',
+  'Give two different reasons why a big context window (desk) does not remove the need for retrieval.':
+    '2 alag wajah bata paana ki badi context window (mez) ke baad bhi retrieval ki zaroorat kyun rehti hai.',
   'Explain why a document that fits in the request may still be ignored by the model.':
     'Samjha paana ki jo document request mein fit ho jaata hai, model use phir bhi andekha kar sakta hai.',
   'Say what a token budget is (a spending limit counted in Lego bricks of text). Say which part you would cut first if the bill doubled.':

@@ -7,8 +7,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Apna ground truth (apni answer key) banaiye, jisme ek aisa sawaal ho jiska jawaab hai hi nahi. Phir k=1, k=3 aur k=8 par naapiye.',
   'Change one thing in how search works. Then run the whole set of questions again.':
     'Search ke kaam karne ka sirf ek hissa badaliye. Phir saare sawaal dobara chalaiye.',
-  'A results table, a list of pass rules (acceptance criteria), and a score line (threshold) that decides: release or not.':
-    'Nateeje ki ek table, pass hone ke niyamon ki list (acceptance criteria), aur ek score line (threshold) jo tay kare: release karna hai ya nahi.',
+  'A results table (an evaluation), a list of pass rules (acceptance criteria), and a score line (threshold) that decides: release or not.':
+    'Nateeje ki ek table (evaluation), pass hone ke niyamon ki list (acceptance criteria), aur ek score line (threshold) jo tay kare: release karna hai ya nahi.',
   'Explain why the quality bar depends on what a failure costs a person, not on the technology.':
     'Samjhaiye ki quality ki line is baat par tiki hai ki galti se kisi insaan ka kitna nuksaan hota hai, technology par nahi.',
   'A good demo is not proof. You write an answer key before you test. You count how often search finds the right chunk. You see why catching more and catching cleaner pull in opposite directions (precision and recall).':
