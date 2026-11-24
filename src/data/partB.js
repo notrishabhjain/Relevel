@@ -42,7 +42,7 @@ window.PART7 = [
       'A cost table with low, base and high rows, and support time on its own line.',
       'Three pricing packages and a survey plan.',
       'A recommendation that states the margin at high usage and what a doubled model price does.',
-      'A score from 0 to 3 for each of the items above, using the scale in this chapter. Move on only when every score is at least 2 and no safety, privacy or evidence item scores 0.'
+      'A score from 0 to 3 for each item above, using this chapter’s scale, like marking your own homework. Move on only when every score is 2 or more, and no safety, privacy or evidence item scores 0.'
     ]
   },
   check:[
@@ -182,7 +182,7 @@ window.PART7 = [
       'A report of the time to first success for each of the five developers, and the step where most stopped.',
       'A growth loop that names the dark pattern it refuses to use.',
       'A teardown of one AI tool.',
-      'A score from 0 to 3 for each of the items above, using the scale in this chapter. Move on only when every score is at least 2 and no safety, privacy or evidence item scores 0.'
+      'A score from 0 to 3 for each item above, using this chapter’s scale, like marking your own homework. Move on only when every score is 2 or more, and no safety, privacy or evidence item scores 0.'
     ]
   },
   check:[
@@ -308,7 +308,7 @@ window.PART7 = [
       'An event list in which every event answers a named question and none records personal details.',
       'A funnel, a retention table and two segments, built from events you logged.',
       'An experiment design that says how many users it needs, and what you will do if you cannot get that many.',
-      'A score from 0 to 3 for each of the items above, using the scale in this chapter. Move on only when every score is at least 2 and no safety, privacy or evidence item scores 0.'
+      'A score from 0 to 3 for each item above, using this chapter’s scale, like marking your own homework. Move on only when every score is 2 or more, and no safety, privacy or evidence item scores 0.'
     ]
   },
   check:[
@@ -320,7 +320,7 @@ window.PART7 = [
      'Look at who is in the cohort and how they got there. Say your first cohort is design partners you recruited personally. They are more motivated than typical users, so their retention will look too good. Compare them with users who found the product on their own before you draw any conclusions.']
   ],
   story:[
-    ['c','On your route','Take a first pass of about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
+    ['c','On your route','First, go through it quickly, in about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
     ['c','Before you start','In full, this chapter takes about fourteen hours. Create a free account with PostHog, Mixpanel or Google Analytics. If your capstone has no users yet, you will seed some data, and the chapter shows how.'],
 
     ['p','In the last chapter you looked at how people find a product and get started with it. Now comes the next question. Once real people are using it, how do you know it is working? Opinions won’t answer that. What users actually do will.'],
@@ -447,7 +447,7 @@ window.PART7 = [
       'A claim audit of ten claims, each one marked.',
       'A note of where every key lives and what data each tool stores.',
       'A list of the places personal data could leak into by accident, and how each one is prevented.',
-      'A score from 0 to 3 for each of the items above, using the scale in this chapter. Move on only when every score is at least 2 and no safety, privacy or evidence item scores 0.'
+      'A score from 0 to 3 for each item above, using this chapter’s scale, like marking your own homework. Move on only when every score is 2 or more, and no safety, privacy or evidence item scores 0.'
     ]
   },
   check:[
@@ -461,7 +461,7 @@ window.PART7 = [
      'Pick one dependency and trace it. Say the model provider renames a field in its response. Which step fails first, and would you notice? Good answers name three things: a validation step that fails loudly, an alert, and a pinned version that gives you time to update.']
   ],
   story:[
-    ['c','On your route','Take a first pass of about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
+    ['c','On your route','First, go through it quickly, in about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
     ['c','Before you start','In full, this chapter takes about two and a half hours. Tools change every few months. The brands named below are one current example each, not a requirement. If a named tool is gone by the time you read this, pick a replacement that does the same job.'],
     ['p','By now your project probably touches several tools: one for the model, one for code, one for tracking what users do. This chapter steps back and asks a simple question. How should you choose them?'],
     ['p','Here is the idea in a few lines. An AI product workflow needs eleven capabilities, from start to finish. A capability is a job that has to get done, such as storing your code safely or showing how people use the product. A tool is whatever you pick to do that job.'],
@@ -537,7 +537,7 @@ window.PART7 = [
       'A comparison of the two builds on the same twenty sentences, with all three measures.',
       'A list of permissions and their worst cases.',
       'A release checklist with a numeric rollback trigger and a named incident owner.',
-      'A score from 0 to 3 for each of the items above, using the scale in this chapter. Move on only when every score is at least 2 and no safety, privacy or evidence item scores 0.'
+      'A score from 0 to 3 for each item above, using this chapter’s scale, like marking your own homework. Move on only when every score is 2 or more, and no safety, privacy or evidence item scores 0.'
     ]
   },
   check:[
@@ -549,7 +549,7 @@ window.PART7 = [
      'Decide it in advance. For example, before the agent can post to Slack without approval, it must complete 200 runs with approval where every post was approved unchanged. It must also pass the prompt-injection tests from Chapter 31. Write the threshold down before you look at the results.']
   ],
   story:[
-    ['c','On your route','Take a first pass of about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
+    ['c','On your route','First, go through it quickly, in about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
     ['c','Before you start','In full, this chapter takes about twelve hours. You need a working version of your capstone’s main flow, even a rough one, and a coding agent from B4.'],
 
     ['p','In the last chapter you chose the tools for your project. Now we look at what holds those tools together around the model. A model on its own only takes text in and gives text out. What makes it a dependable product is everything around it.'],
@@ -686,7 +686,7 @@ window.PART7 = [
       'Notes from at least five sessions with real target users, not friends or teammates doing you a favour.',
       'A scored problem list, and the one you chose.',
       'Before and after numbers for the change, and a change note for users.',
-      'A score from 0 to 3 for each of the items above, using the scale in this chapter. Move on only when every score is at least 2 and no safety, privacy or evidence item scores 0.'
+      'A score from 0 to 3 for each item above, using this chapter’s scale, like marking your own homework. Move on only when every score is 2 or more, and no safety, privacy or evidence item scores 0.'
     ]
   },
   check:[
@@ -698,7 +698,7 @@ window.PART7 = [
      'Name the number and the threshold before launch. For example: roll back if the error rate passes 5% for an hour, if the useful-theme rate drops 10 points, or if any data reaches the wrong account. A trigger decided in advance lets anyone on the team act quickly.']
   ],
   story:[
-    ['c','On your route','Take a first pass of about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
+    ['c','On your route','First, go through it quickly, in about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
     ['c','Before you start','In full, this chapter takes about eighteen hours, spread over two or three weeks, because users need time to come back. You need your deployed app from B4 and the release checklist from B5.'],
 
     ['p','In the last chapter you drew the system around the model and wrote a release checklist. Now you get to use it. Until real people try your product, everything you know about it is a guess.'],
@@ -811,7 +811,7 @@ window.PART7 = [
       'Resume lines that each contain a number or a concrete result.',
       'Four recorded mock interviews, each scored with a rubric.',
       'A take-home answer and your own critique of it.',
-      'A score from 0 to 3 for each of the items above, using the scale in this chapter. Move on only when every score is at least 2 and no safety, privacy or evidence item scores 0.'
+      'A score from 0 to 3 for each item above, using this chapter’s scale, like marking your own homework. Move on only when every score is 2 or more, and no safety, privacy or evidence item scores 0.'
     ]
   },
   check:[
@@ -823,7 +823,7 @@ window.PART7 = [
      'Practise it out loud. Say what you expected, what happened, what you learned and what you changed. Don’t blame the data, the team or the timeline. Interviewers are looking for the change you made, not a spotless record.']
   ],
   story:[
-    ['c','On your route','Take a first pass of about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
+    ['c','On your route','First, go through it quickly, in about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
     ['c','Before you start','In full, this chapter takes about twelve hours. Collect ten job descriptions for roles you would apply for. Have your capstone evidence pack from B6 ready, and find a friend or peer who can run mock interviews with you.'],
 
     ['p','In the last chapter you shipped to real users and learned from what happened. That work is the best thing you have to show an employer. But an interviewer can’t see it unless you present it well.'],

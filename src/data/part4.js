@@ -205,7 +205,7 @@ window.PART4 = [
   needs:[
     ['A required quote makes checking cheap','A quote is more useful than a confidence number.',8],
     ['Users notice the slow responses','They notice the slowest ones, not the average response time.',11],
-    ['A kill switch is not a rollback','Rolling back code does not undo behaviour that both versions share.',18]
+    ['A kill switch (an off button) is not a rollback (going back to the old version)','Rolling back code does not undo behaviour that both versions share.',18]
   ],
   takeaway:[
     'Explain how a feature that is wrong one time in ten can still be trusted.',

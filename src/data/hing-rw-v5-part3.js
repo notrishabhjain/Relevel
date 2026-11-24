@@ -11,8 +11,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Aapne jawaab pehle likh liye the',
   'Ten questions with correct answers, written before testing.':
     'Das sawaal aur unke sahi jawaab, testing se pehle likhe hue.',
-  'Fetching more also fetches more irrelevant chunks':
-    'Zyada fetch karne par zyada irrelevant chunks bhi aate hain',
   'This is the trade-off from Chapter 6, and the choice is yours.':
     'Yeh Chapter 6 ka trade-off hai, aur is mein choice aapki hai.',
   'Name the three ways to grade an AI answer, and say what each is good at.':
@@ -79,16 +77,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Ise apne Chapter 6 ke das jawaabon par chalaiye. Aakhri check dekhta hai ki quote source mein word-for-word maujood hai ya nahi. Yeh har release par invented citations ko free mein pakad leta hai, isliye yeh course ka sabse sasta quality control hai.',
   'A red box saying something <em>is not defined</em>':
     'Ek red box jisme likha ho ki kuch <em>is not defined</em>',
-  'An authentication error, or the number 401':
-    'Authentication error, ya 401 number',
-  'Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.':
-    'Aapki key code tak nahi pahunchi. Key load karne wala cell dobara chalaiye, aur check kijiye ki jis naam se aapne key save ki thi, woh <a href="#/setup">Setup</a> se bilkul match kare. Capital letters ka bhi farq padta hai.',
-  'A message about a module not being found':
-    'Module not found jaisa koi message',
-  'It runs, but your numbers are not the ones printed above':
-    'Code chal gaya, lekin aapke numbers upar wale numbers se alag hain',
-  'That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.':
-    'Aisa hona normal hai, yeh galti nahi hai. Models badalte rehte hain, aur aapka text hamare text jaisa nahi hai. Zaroori yeh hai ki numbers kis direction mein jaate hain aur farq lagbhag kitna hai, exact number match karna nahi. Agar aapke numbers bhi usi direction mein jaate hain, toh experiment kaam kar gaya.',
   'Code can’t judge everything, though. It can’t tell you whether an answer is actually supported by its source. For that kind of question, we bring in a model as the grader.':
     'Lekin code har cheez judge nahi kar sakta. Woh yeh nahi bata sakta ki koi jawaab asal mein apne source se support hota hai ya nahi. Aise sawaal ke liye hum grader ke taur par ek model ko lete hain.',
   'Build an LLM judge':
@@ -1121,8 +1109,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Specify kijiye ki ek thumbs-down mein exactly kya capture hona chahiye, taaki woh bina aur jaanch ke ek test case ban sake.',
   'Compare this with what your organisation captures today. The gap is usually large, and closing it is the cheapest improvement on this page.':
     'Isko aaj aapka organisation jo capture karta hai, usse compare kijiye. Gap aksar bada hota hai, aur use bharna is page ka sabse sasta improvement hai.',
-  'A kill switch is not a rollback':
-    'Kill switch rollback nahi hai',
   'You already roll out changes in stages, as with any product. For AI, add one more thing: a <strong>kill switch</strong>.':
     'Aap pehle se hi kisi bhi product ki tarah changes ko stages mein roll out karte hain. AI ke liye ek cheez aur jodiye: ek <strong>kill switch</strong>.',
   'The difference is speed. A rollback needs a new deployment. A kill switch is a flag that sends traffic to the non-AI path immediately. That only works if the non-AI path still exists and someone has tested it recently.':

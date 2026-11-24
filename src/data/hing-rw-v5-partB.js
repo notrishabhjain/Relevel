@@ -289,8 +289,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Teen pricing packages aur ek survey plan.',
   'A recommendation that states the margin at high usage and what a doubled model price does.':
     'Ek recommendation jo high usage par margin batati hai aur yeh bhi ki model price double hone par kya hota hai.',
-  'A score from 0 to 3 for each of the items above, using the scale in this chapter. Move on only when every score is at least 2 and no safety, privacy or evidence item scores 0.':
-    'Upar ke har item ke liye 0 se 3 ka ek score, is chapter ke scale se. Tabhi aage badhiye jab har score kam se kam 2 ho aur safety, privacy ya evidence ke kisi item ka score 0 na ho.',
 
   /* ---- b2: Growth, onboarding and product marketing ---- */
   'Growth, onboarding and product marketing':

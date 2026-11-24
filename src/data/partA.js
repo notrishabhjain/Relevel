@@ -76,33 +76,33 @@ window.PART6 = [
 {
   id:'a1', num:'A1', part:6, curriculumTier:'reference', phase:0, prerequisites:[], nextUnits:['a2','a8'], minutes:360, labs:[],
   title:'Your learning system: role, evidence and a capstone problem',
-  concept:'Before you learn anything else, you’ll set up how you’re going to learn. You’ll score yourself against the applied AI PM role, create one place for all your work, and meet the real problem you’ll build around for the rest of the course.',
+  concept:'Before you learn anything, you set up how you will learn. You score your skills for the applied AI PM job (PM means product manager). You make one place for all your work. And you meet the real problem you will build around, all course long.',
   takeaway:[
-    'Score yourself against the seven areas of the applied AI PM role, with evidence for each score.',
-    'Set up one notebook and one repository that hold every artifact you make in this course.',
-    'Plan a week of study in build-first blocks, and use the 0–3 mastery gate to decide when to move on.',
-    'Shortlist three capstone problems and say, for each one, why AI may or may not help.'
+    'Give yourself a score for each of the seven parts of the applied AI PM job. Write proof for each score.',
+    'Set up one notebook (a place for notes) and one repository (an online folder that remembers every change). Keep everything you make in them.',
+    'Plan one week of study. Build first. Then use the 0–3 score to decide when to move on.',
+    'Pick three project ideas. For each one, say why AI may help or may not help.'
   ],
   needs:[],
   capstone:{
     title:'Set up your workspace and name your project',
-    brief:'This is the first capstone of the course, so you start from nothing. By the end you’ll have three things: an honest picture of your own skills, a place to keep everything you make, and a clear statement of the project you’ll build all the way through. The project is Bharat Privacy Guard. It’s a tool that finds personal details such as Aadhaar and PAN numbers in English, Hindi and Hinglish text, and hides them before the text goes anywhere. Read <a href="#/project">the project page</a> first. It explains the idea in plain words.',
-    where:'You’ll write this one. Use a notes app, a document or paper for the scorecard. For everything else, use a repository, which here is just folders and text files, with no real code.',
+    brief:'This is your first capstone (the big project of the course). At the end you have three things: an honest picture of your skills, one place for your work, and a clear line about your project. The project is Bharat Privacy Guard. It finds private details like Aadhaar and PAN numbers in English, Hindi and Hinglish text. Then it hides them. Read <a href="#/project">the project page</a> first.',
+    where:'You write this one. Use a notes app, a document or paper for your scorecard. For everything else, use a repository. Here it is only folders and text files. There is no real code.',
     steps:[
-      'Write a one-page scorecard of your own skills. List the seven areas of the product manager role from this chapter: discovery, strategy, technical understanding, delivery, analytics, business and leadership. Give yourself 0, 1, 2 or 3 in each area, and write one line of evidence next to every score. “I have run five customer interviews” is evidence. “I think I am good at this” is not.',
-      'Create a repository (for example on GitHub) with these folders: <code>research</code>, <code>product</code>, <code>experiments</code>, <code>evals</code>, <code>analytics</code>, <code>security</code> and <code>portfolio</code>. Add one file at the top called <code>decision-log.md</code>.',
-      'Open the decision log and write the first two decisions in it. Each entry has three lines: what you decided, why, and what would make you change your mind. Your first decision is “My capstone project is Bharat Privacy Guard”. Your second can be any choice you’ve already made, such as which notebook tool you’ll use.',
-      'Name two other projects you thought about instead, for example a tool that summarises customer-support tickets or a tool that spots fraud in payments. For each one, write two or three lines: who would use it, what they do today, and why you didn’t choose it.',
-      'Write one paragraph, in your own words and without jargon, that explains Bharat Privacy Guard to a friend who doesn’t work in technology. Use starter sentence 7 on the project page as your example.',
-      'Write one sentence saying what would make you stop using AI for this project. For example: “If a plain rule can already find 99 out of 100 of these numbers, I do not need a model.”'
+      'Write a one-page scorecard of your own skills. List the seven parts of the product manager job from this chapter: discovery, strategy, technical understanding, delivery, analytics, business and leadership. Give yourself 0, 1, 2 or 3 for each. Next to each score, write one line of proof. “I have run five customer interviews” is proof. “I think I am good at this” is not.',
+      'Make a repository (for example on GitHub, a website where people keep their work online). Add these folders: <code>research</code>, <code>product</code>, <code>experiments</code>, <code>evals</code>, <code>analytics</code>, <code>security</code> and <code>portfolio</code>. At the top, add one file called <code>decision-log.md</code>.',
+      'Open the decision log. Write your first two decisions in it. Each one has three lines: what you decided, why, and what would make you change your mind. Decision one: “My capstone project is Bharat Privacy Guard”. Decision two can be any choice you have already made, like which notebook tool you will use.',
+      'Name two other projects you thought about. For example: a tool that sums up customer-support tickets, or a tool that spots fraud in payments. For each one, write two or three lines. Who would use it? What do they do today? Why did you not pick it?',
+      'Write one paragraph that explains Bharat Privacy Guard to a friend who does not work in technology. Use your own words. Use no jargon. For an example, look at starter sentence 7 on the project page.',
+      'Write one sentence on what would make you stop using AI for this project. For example: “If a plain rule can already find 99 out of 100 of these numbers, I do not need a model.”'
     ],
     done:[
-      'A one-page scorecard with a line of evidence next to every score.',
-      'A repository with the seven folders, and a decision log that holds two decisions.',
-      'Two rejected project ideas, each with a reason.',
-      'A one-paragraph explanation of the project that your friend could repeat back to you.',
-      'The sentence that says what would make you drop AI for this problem.',
-      'A score from 0 to 3 for each of the items above, using the scale in this chapter. Move on only when every score is at least 2.'
+      'A one-page scorecard, with a line of proof next to every score.',
+      'A repository with the seven folders, and a decision log with two decisions in it.',
+      'Two project ideas you did not pick, each with a reason.',
+      'A one-paragraph explanation of the project. Your friend should be able to say it back to you.',
+      'One sentence on what would make you drop AI for this problem.',
+      'A score from 0 to 3 for each item above, using this chapter’s scale, like marking your own homework. Move on only when every score is 2 or more.'
     ]
   },
   check:[
@@ -114,129 +114,129 @@ window.PART6 = [
      'Name the specific condition. For example: “If the tickets already have accurate category tags, a count in the help-desk tool solves this without AI.” If you can’t name one, you’re choosing AI before you understand the problem.']
   ],
   story:[
-    ['c','On your route','Take a first pass of about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
-    ['c','Before you start','In full, this chapter takes about six hours, spread over two or three sittings. Have a notes app or a paper notebook ready. You don’t need any accounts to begin, because the first task is a page of writing.'],
-    ['p','In the last chapter you learned how this site works. Now we begin the real work, and the first job isn’t about AI at all. It’s about you. Before you learn anything else, you’ll set up how you’re going to learn: where you stand today, where your work will live, and what you’ll build.'],
+    ['c','On your route','First, go through it quickly, in about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
+    ['c','Before you start','The full chapter takes about six hours, over two or three sittings. Keep a notes app or a paper notebook ready. You need no account to begin. The first task is just a page of writing.'],
+    ['p','In the last chapter you saw how this site works. Now the real work starts. The first job has nothing to do with AI. It is about you. You set up how you will learn: where you stand today, where your work will live, and what you will build.'],
 
     ['h','How this course works'],
-    ['p','This course teaches the applied AI product manager role by having you do the work, not just read about it. Every chapter follows the same five steps, in the same order, so you’ll soon know what to expect:'],
+    ['p','This course teaches the applied AI product manager job by making you do the work, not only read. Every chapter has the same five steps, in the same order. Soon you will know what comes next. It is like a recipe you cook again and again:'],
     ['n',[
-      '<strong>Idea.</strong> One concept, explained in plain language.',
-      '<strong>Prove it now.</strong> A quick example and a counterexample that you write straight away.',
-      '<strong>Build it.</strong> A real artifact: a document, an interview, a prototype or some code.',
-      '<strong>Check yourself.</strong> Questions, plus a 0–3 score for what you built.',
-      '<strong>Close the sitting.</strong> Three lines: what confused you, what changed your mind, and what you’ll test next.'
+      '<strong>Idea.</strong> One idea, in plain words.',
+      '<strong>Prove it now.</strong> A quick example, and a counterexample (a case where the idea fails). You write both right away.',
+      '<strong>Build it.</strong> A real thing you make: a document, an interview, a prototype (a rough first model of a product) or some code.',
+      '<strong>Check yourself.</strong> Questions, and a 0–3 score for what you built.',
+      '<strong>Close the sitting.</strong> Three lines: what confused you, what changed your mind, and what you will test next.'
     ]],
-    ['p','The chapters come in three groups. <strong>Track A</strong>, which you’re in now, covers the foundations of product management and the ideas behind generative AI. <strong>Parts I to V</strong> are the technical core, where you build, break and measure a real AI system.'],
-    ['p','<strong>Track B</strong> covers the business side: pricing, growth, analytics and shipping to real users. It comes after the capstone in Chapter 34, where you ship the project.'],
-    ['c','Note','You don’t have to plan the order yourself. <a href="#/start">Your route</a> takes you through it a week at a time: a chapter of the book, the story, and then the chapter here that practises it.'],
+    ['p','The chapters come in three groups. <strong>Track A</strong> is where you are now. It teaches the basics of product management and the ideas behind generative AI (AI that writes new text). <strong>Parts I to V</strong> are the technical core. There you build a real AI system, break it, and measure it.'],
+    ['p','<strong>Track B</strong> is the business side: pricing, growth, analytics (reading numbers about what users do) and shipping to real users. It comes after the capstone in Chapter 34, where you ship the project.'],
+    ['c','Note','You do not need to plan the order. <a href="#/start">Your route</a> takes you through it, one week at a time: a chapter of the book, the story, and then the chapter here that practises it.'],
 
     ['h','Five rules that keep the work honest'],
-    ['p','It’s easy to make work look finished when it isn’t. These five rules apply to every chapter, and each one blocks a shortcut that people often take.'],
+    ['p','It is easy to make work look finished when it is not. These five rules apply to every chapter. Each one blocks a shortcut that people often take. Think of them as railings on a bridge.'],
     ['l',[
-      '<strong>Talk to real users.</strong> Personas written by an AI don’t count as research. Interview people who actually have the problem.',
-      '<strong>A demo is not a launch.</strong> The final capstone needs a stable URL and people actually using it.',
-      '<strong>Track product metrics and model metrics.</strong> A model that scores 95% on your test set can still fail your users, so you need both.',
-      '<strong>Passing tests does not prove user value, and positive interviews do not prove reliability.</strong> You need evidence for both.',
-      '<strong>Keep secrets out of notebooks and repositories.</strong> Store API keys in environment variables or your platform’s secret store.'
+      '<strong>Talk to real users.</strong> Personas (made-up users) written by an AI do not count as research. Interview people who really have the problem.',
+      '<strong>A demo is not a launch.</strong> The final capstone needs a stable web address, and real people really using it.',
+      '<strong>Track product metrics and model metrics.</strong> A metric is a number you watch. A model can score 95% on your test and still fail your users. So watch both.',
+      '<strong>Passing tests does not prove users value it, and happy interviews do not prove it works reliably.</strong> You need proof for both.',
+      '<strong>Keep secrets out of notebooks and repositories.</strong> An API key is a secret password for the model; it also tells the company whom to bill. Keep it in an environment variable (a hidden setting on your computer) or your platform’s secret store.'
     ]],
 
-    ['h','Idea 1: Measure where you are, with evidence'],
-    ['p','Let’s start with you. The applied AI PM role has seven areas, and you’ll score yourself on each one now. You’ll score yourself again at the end of the course, so you can see how far you’ve come.'],
-    ['p','Here are the seven areas, and what each one covers.'],
+    ['h','Idea 1: Score yourself, with proof'],
+    ['p','Let us start with you. The applied AI PM job has seven parts. You score yourself on each one now. You score again at the end of the course, so you can see how far you came. Think of a height mark on a door frame.'],
+    ['p','Here are the seven parts, and what each one covers.'],
     ['tb',['Area','What it covers'],[
       ['Discovery','Finding real problems by talking to users and watching them work.'],
       ['Strategy','Choosing which problem to solve, for whom, and what not to do.'],
-      ['Technical fluency','Understanding AI systems well enough to make trade-offs with engineers.'],
-      ['Delivery','Turning a decision into a spec, a plan and a shipped product.'],
+      ['Technical fluency','Knowing AI systems well enough to weigh trade-offs (give a little here to gain a little there) with engineers.'],
+      ['Delivery','Turning a decision into a spec (a written plan of what to build), a schedule and a finished product.'],
       ['Analytics','Measuring what users do, and whether a change helped.'],
-      ['Business','Pricing, costs, and whether the product can make money.'],
+      ['Business','Pricing, costs, and whether the product can earn money.'],
       ['Leadership','Getting people with different goals to agree and act.']
     ]],
-    ['p','You’ll give each area a score from 0 to 3. The course uses the same scale for every artifact you make, so it’s worth learning it now.'],
+    ['p','You give each part a score from 0 to 3. The course uses this same scale for everything you make. Learn it now. It is like marks on a report card.'],
     ['tb',['Score','Meaning'],[
-      ['0','No artifact, or only theory you copied.'],
-      ['1','Attempted, but not backed by evidence or not reproducible.'],
-      ['2','Usable: backed by evidence, reviewable and reproducible.'],
-      ['3','Decision-grade: tested with users or data, limitations stated, next action clear.']
+      ['0','Nothing made, or only theory you copied.'],
+      ['1','You tried, but have no proof, or nobody can repeat it.'],
+      ['2','Usable: it has proof, others can review it, and others can repeat it.'],
+      ['3','Ready for decisions: tested with users or data, its limits written down, and the next step clear.']
     ]],
-    ['p','Notice how the higher scores all depend on evidence. That’s the heart of this scale.'],
-    ['key','A score needs evidence. “I am good at strategy” is a feeling. “I wrote the strategy memo that set our Q3 roadmap” is evidence.'],
+    ['p','See how the higher scores all need proof. That is the heart of this scale.'],
+    ['key','A score needs proof. “I am good at strategy” is a feeling. “I wrote the strategy memo that set our Q3 roadmap (the plan of what comes first, next and later)” is proof.'],
     ['do','Prove it now',[
-      ['p','Pick the area where you feel strongest. Write down the one piece of evidence that best supports that feeling.'],
-      ['p','Then pick your weakest area. Write down what evidence would move you up one point.'],
-      ['x','You should have two lines. If your strongest area has no concrete evidence behind it, such as a document, a result or a decision you made, score it 1 rather than 2.']
+      ['p','Pick the part where you feel strongest. Write the one piece of proof that best backs up that feeling.'],
+      ['p','Now pick your weakest part. Write what proof would move you up one point.'],
+      ['x','You should have two lines. Say your strongest part has no solid proof, like a document, a result or a decision you made. Then give it 1, not 2.']
     ]],
-    ['p','Now try it once more, this time with a score on the page.'],
+    ['p','Now try once more, this time with a score on the page.'],
     ['try',{id:'a1-evidence',mins:5,min:60,rows:4,
-      task:'Write one score with its evidence. Then write one score you would have given yourself on confidence alone, and explain why the evidence changes it.',
-      ph:'Area, score, evidence…',
-      after:'Here is an answer that works. <strong>Delivery: 2.</strong> Evidence: I ran the rollout of a citizen-services portal across several districts, and kept the weekly status log the department used to set go-live dates. <strong>Strategy: I would have said 2, but it is a 1.</strong> I have opinions about strategy, but I have never written one that someone else acted on. The difference is whether an artifact exists that another person could check.'}],
-    ['c','From delivery to product','You do not start at zero. Delivery and Leadership can start at 2, with evidence from your government projects: a rollout plan, a steering-committee note, a stakeholder you brought round. Discovery, Strategy and Analytics are different. “I delivered what was specified” does not count there. The evidence is a decision you made when nobody told you what to build, and a number you moved.'],
+      task:'Write one score and its proof. Then write one score you would have given yourself on confidence alone, and say why the proof changes it.',
+      ph:'Part, score, proof…',
+      after:'Here is an answer that works. <strong>Delivery: 2.</strong> Proof: I ran the rollout of a citizen-services portal across several districts. I kept the weekly status log that the department used to set go-live dates. <strong>Strategy: I would have said 2, but it is a 1.</strong> I have opinions about strategy. But I have never written one that someone else acted on. The test is simple: is there something written that another person could check?'}],
+    ['c','From delivery to product','You do not start at zero. Delivery and Leadership can start at 2, with proof from your government projects: a rollout plan, a steering-committee note, or a stakeholder (someone who cares about the result) you brought round. Discovery, Strategy and Analytics are different. “I delivered what was asked” does not count there. The proof is a decision you made when nobody told you what to build, and a number you moved.'],
     ['q','I501'],
     ['p','One more, this time from your own past.'],
     ['try',{id:'a1-owned',mins:6,min:60,rows:4,
-      task:'Name one decision on a past project that was yours. What would have happened if you had decided otherwise? Save the answer in decision-log.md under the heading “Decisions I owned before this course”.',
+      task:'Name one decision on a past project that was yours. What would have happened if you had chosen the other way? Save your answer in decision-log.md, under the heading “Decisions I owned before this course”.',
       ph:'The decision, who disagreed, what would have happened otherwise…',
-      after:'Here is an answer that works. <strong>Decision:</strong> I held go-live of a citizen-services portal by two weeks, because the payment step had failed two test runs. <strong>If I had decided otherwise:</strong> the portal would have opened on the promised date, and applicants in three districts would have been charged twice. Keep this entry. Chapter B7 asks you to turn it into an interview story.'}],
+      after:'Here is an answer that works. <strong>Decision:</strong> I held back go-live of a citizen-services portal by two weeks, because the payment step had failed two test runs. <strong>If I had decided otherwise:</strong> the portal would have opened on the promised date, and applicants in three districts would have been charged twice. Keep this entry. Chapter B7 asks you to turn it into an interview story.'}],
 
     ['h','Idea 2: Keep all your work in one place'],
-    ['p','You now know where you stand. Next, you need somewhere to keep what you make. You’ll make around fifty artifacts in this course: interview notes, a strategy memo, a PRD, test sets, dashboards and a deployed app.'],
-    ['p','If they’re scattered across different tools, you won’t be able to find them when you need them. That could be in the capstone, or in a job interview.'],
-    ['p','So set up two things, once:'],
+    ['p','Now you know where you stand. Next you need a place to keep what you make. You will make around fifty things in this course: interview notes, a strategy memo, a PRD (the recipe card for a product), test sets, dashboards (one screen of numbers) and a deployed app.'],
+    ['p','If they sit in many different tools, you cannot find them when you need them. That could be in the capstone, or in a job interview. Think of papers spread over five cupboards.'],
+    ['p','So set up two things, one time only:'],
     ['n',[
-      '<strong>A notebook of record.</strong> One running document, in Google Docs, Notion or on paper, for the predictions, results and notes from every chapter.',
-      '<strong>A repository.</strong> One folder, ideally a GitHub repository, for every artifact you build.'
+      '<strong>A notebook of record.</strong> One running document, in Google Docs, Notion or on paper. Put in it your guesses, results and notes from every chapter.',
+      '<strong>A repository.</strong> An online folder that remembers every change, ideally on GitHub. Keep everything you build in it.'
     ]],
-    ['p','Use this folder structure in the repository:'],
+    ['p','Use this folder plan in the repository:'],
     ['code','/research      interview notes, market research\n/product       strategy, roadmaps, PRDs\n/experiments   notebooks and prototype code\n/evals         test sets and evaluation results\n/analytics     tracking plans and dashboards\n/security      threat models and risk registers\n/portfolio     case studies\ndecision-log.md'],
-    ['c','Tip','No GitHub account yet? Start with a folder on your computer or in Google Drive, using the same structure. The next page, A1.5, shows you how to move it to GitHub in about twenty minutes.'],
-    ['p','The most important file is <code>decision-log.md</code>. Each time you make a decision in this course, such as which problem to solve, which model to use or which metric matters, add an entry. Each entry has four parts: the date, the decision, the evidence, and what would make you change it.'],
+    ['c','Tip','No GitHub account yet? Start with a folder on your computer or in Google Drive, with the same plan. The next page, A1.5, shows you how to move it to GitHub in about twenty minutes.'],
+    ['p','The most important file is <code>decision-log.md</code>. Whenever you decide something in this course, add an entry. It could be which problem to solve, which model to use or which metric matters. Each entry has four parts: the date, the decision, the proof, and what would make you change it. Think of a diary for choices.'],
     ['do','Prove it now',[
-      ['p','Create the folders. Then add your first entry to <code>decision-log.md</code>. For example:'],
+      ['p','Make the folders. Then add your first entry to <code>decision-log.md</code>. For example:'],
       ['code','2026-10-19\nDecision: I will study one hour a week in month 1, on Sunday morning.\nEvidence: my calendar for the last four weeks.\nRevisit if: I miss two weeks in a row.'],
-      ['x','You should now have a folder structure anyone could navigate, and one decision with its evidence. Test it: could someone else find your interview notes in under two minutes?']
+      ['x','You should now have a folder plan that anyone could find their way around, and one decision with its proof. Test it: could a stranger find your interview notes in under two minutes?']
     ]],
 
-    ['h','Idea 3: Build first, then check whether you are ready'],
-    ['p','With a place to work, the next question is time. How much should you study each week, and on what? Your route starts at about an hour to an hour and a half a week and reaches four or five in the capstone weeks. Split it into four blocks and give the biggest block to building. Here is the split at a full-time pace of twelve hours; scale it to your own:'],
+    ['h','Idea 3: Build first, then check if you are ready'],
+    ['p','You have a place to work. Next is time. How much should you study each week? Your route starts at about an hour to an hour and a half a week. It grows to four or five hours in capstone weeks. Split your time into four blocks. Give the biggest block to building. This split is for twelve hours a week. Shrink it to fit your week:'],
     ['tb',['Block','Hours','What you produce'],[
       ['Learn and prove','3','Experiments, notes and quiz answers'],
-      ['Build','5','An artifact, prototype or code'],
-      ['Users and feedback','2','Interview notes, recordings with consent, observed behaviour'],
+      ['Build','5','Something you make: a document, prototype or code'],
+      ['Users and feedback','2','Interview notes, recordings (with consent), what you saw people do'],
       ['Measure and reflect','2','Metrics, a decision-log entry and the next test']
     ]],
-    ['p','End every week with two things: an artifact that someone else could look at, and a decision written in your log.'],
-    ['p','How do you know when you’re ready to move on to the next chapter? At the end of each chapter, you score what you built on the same 0–3 scale. This is the <strong>mastery gate</strong>.'],
-    ['key','Move on only when every artifact scores at least 2, and no safety, privacy or evidence item scores 0.'],
-    ['c','Watch out','The gate scores your artifacts, not how well you understood the reading. It’s common to feel you understand a chapter and still have nothing that scores 2. That means the chapter isn’t finished yet.'],
-    ['c','On your route','On the first pass through Track A you read each chapter and answer its boxes. The gate applies when you come back to do the “Build it” work, so a first pass never has to wait for it.'],
+    ['p','End every week with two things: something that another person could look at, and a decision written in your log.'],
+    ['p','How do you know you are ready for the next chapter? At the end of each chapter, you score what you built on the same 0–3 scale. This is the <strong>mastery gate</strong>. Think of a gate at a railway crossing: it opens only when the track is clear.'],
+    ['key','Move on only when everything you made scores at least 2, and nothing about safety, privacy or proof scores 0.'],
+    ['c','Watch out','The gate scores what you made, not how well you understood the reading. Many people feel they understood a chapter and still have nothing that scores 2. Then the chapter is not finished.'],
+    ['c','On your route','On your first pass through Track A, you read each chapter and answer its boxes. The gate applies later, when you come back to do the “Build it” work. So a first pass never has to wait for it.'],
     ['do','Prove it now',[
-      ['p','Open your calendar and block out next week using the four blocks above. Put the Build block where you have the most energy, not where it is most convenient.'],
-      ['x','You should now have four blocks in next week’s calendar, in the same proportions, adding up to the hours you really have. Write that number in your decision log. A plan you keep beats a bigger one you don’t.']
+      ['p','Open your calendar and block out next week using the four blocks above. Put the Build block where you have the most energy, not where it is easiest to fit.'],
+      ['x','You should now have four blocks in next week’s calendar, in the same proportions, adding up to the hours you really have. Write that number in your decision log. A plan you keep beats a bigger plan you drop.']
     ]],
 
-    ['h','Idea 4: Choose the problem you will build around'],
-    ['p','The last piece is the most important one. Every chapter asks you to apply its ideas to one real problem that you carry through the whole course. Here that problem is already chosen: Bharat Privacy Guard, the project in the book’s story. Still, learn how to choose one, because in a job nobody hands you the problem.'],
-    ['p','A good capstone problem has four properties:'],
+    ['h','Idea 4: Pick the problem you will build around'],
+    ['p','The last piece matters most. In every chapter you apply its ideas to one real problem that stays with you all course. Here that problem is already chosen: Bharat Privacy Guard, the project in the book’s story. Still, learn how to choose one. In a job, nobody hands you the problem.'],
+    ['p','A good capstone problem has four things:'],
     ['l',[
-      '<strong>A reachable user.</strong> You can talk to at least five people who have this problem.',
-      '<strong>A workflow you can observe.</strong> You can watch how people do the task today.',
-      '<strong>A measurable pain.</strong> It costs time, money or errors that you can count.',
-      '<strong>A real reason AI might help.</strong> The task involves reading, writing, summarising, sorting or searching text, images or speech.'
+      '<strong>A user you can reach.</strong> You can talk to at least five people who have this problem.',
+      '<strong>A task you can watch.</strong> You can see how people do it today.',
+      '<strong>Pain you can measure.</strong> It costs time, money or mistakes that you can count.',
+      '<strong>A real reason AI might help.</strong> The task is about reading, writing, summing up, sorting or searching text, pictures or speech.'
     ]],
-    ['p','Take the last property seriously. Many problems are better solved with ordinary software, such as a form, a rule or a database query. Part of your job as an AI PM is to say so.'],
+    ['p','Take the last one seriously. Many problems are better solved with ordinary software, like a form, a rule or a database query (a question you ask a table of data). Saying so is part of your job as an AI PM.'],
     ['do','Prove it now',[
-      ['p','For one candidate problem, write one sentence on why AI might help, and one sentence on why ordinary software might be enough.'],
-      ['x','You should have two sentences. If you can’t write the second one, think harder, because almost every problem has a version that needs no AI.']
+      ['p','Pick one problem idea. Write one sentence on why AI might help, and one on why ordinary software might be enough.'],
+      ['x','You should have two sentences. If you cannot write the second one, think harder. Almost every problem has a version that needs no AI.']
     ]],
-    ['p','Now describe a candidate problem in full, the way a product manager would.'],
+    ['p','Now describe one problem idea in full, the way a product manager would.'],
     ['try',{id:'a1-candidate',mins:10,min:120,rows:6,
-      task:'Describe one candidate problem: the user, how they do the task today, how often, what it costs them, and why AI may or may not belong.',
-      ph:'User, current workflow, frequency, cost, AI fit…',
-      after:'Here is an example that passes. <strong>User:</strong> support leads at a 40-person software company. <strong>Today:</strong> every Monday they read about 300 tickets from the past week and pick out the top five themes for the product team. <strong>Frequency:</strong> weekly, about three hours each time. <strong>Cost:</strong> three hours of a senior person’s time, and themes are often missed. <strong>Why AI might help:</strong> reading and grouping short, messy text is a good fit. <strong>Why it might not:</strong> if tickets already carry reliable category tags, a simple count in the help-desk tool would do the job. Check that first.'}],
+      task:'Describe one problem idea: the user, how they do the task today, how often, what it costs them, and why AI may or may not belong.',
+      ph:'User, how they do it today, how often, cost, does AI fit…',
+      after:'Here is an example that passes. <strong>User:</strong> support leads at a 40-person software company. <strong>Today:</strong> every Monday they read about 300 tickets from last week. They pick the top five themes for the product team. <strong>How often:</strong> weekly, about three hours each time. <strong>Cost:</strong> three hours of a senior person’s time, and themes often get missed. <strong>Why AI might help:</strong> reading and grouping short, messy text is a good fit. <strong>Why it might not:</strong> if tickets already have reliable category tags, a simple count in the help-desk tool does the job. Check that first.'}],
     ['q','I502'],
-    ['p','That’s the setup done. You now know where you stand, you have one place for your work, a weekly plan, and a shortlist of problems. Next, in A2, you’ll look at how products win and lose, which will sharpen your sense of what makes a product succeed or fail.']
+    ['p','That is the setup done. You know where you stand. You have one place for your work, a weekly plan, and a shortlist of problems. Next, in A2, you look at how products win and lose. It will sharpen your eye for what makes a product work or fail.']
   ]
 },
 
@@ -246,66 +246,66 @@ window.PART6 = [
      version: no install, no command line, just enough for A1 to work. */
   id:'a1g', num:'A1.5', part:6, curriculumTier:'core', phase:0, prerequisites:['a1'], nextUnits:['a2'], minutes:20, labs:[],
   title:'GitHub basics: a home for your work',
-  concept:'A1 asks you to keep everything you make in one place that others can open. This short chapter sets that place up on GitHub, using only the website: an account, a repository, your first file and your first saved version. There is nothing to install and no command line.',
+  concept:'A1 asks you to keep everything you make in one place that others can open. This short chapter builds that place on GitHub, a website where people keep their work online. You use only the website. You make an account, a repository (an online folder that remembers every change), your first file and your first saved version. Nothing to install. No command line (the black box where people type commands).',
   takeaway:[
-    'Create a GitHub account and a repository, and say what a repository keeps.',
-    'Add or change a file on the website and save it as a commit with a clear message.',
-    'Explain why a key or a password must never go into a repository, even a private one.'
+    'Make a GitHub account and a repository. Say what a repository keeps.',
+    'Add or change a file on the website. Save it as a commit (one saved version) with a clear note.',
+    'Say why a key or a password must never go into a repository, even a private one.'
   ],
   needs:[
-    ['A1’s place for your work','A1 planned a set of folders and a decision log. This chapter gives them a home.','A1']
+    ['The place for your work, from A1','In A1 you planned folders and a decision log (a diary of your choices). This chapter gives them a home.','A1']
   ],
   story:[
-    ['c','Before you start','You need an email address and about twenty minutes. Everything happens on the github.com website, so there is nothing to install. GitHub is free for everything this course asks of it.'],
-    ['p','In A1 you planned a set of folders and a decision log. You could keep them on your laptop. But a laptop folder has two problems: nobody else can open it, and it forgets. When you change a file, the old version is gone.'],
-    ['p','<strong>GitHub</strong> fixes both. It is a website where software teams keep their work, and where employers look when they want to see yours. This chapter takes you from no account to your first saved version.'],
-    ['key','A repository is a folder that remembers. Every saved change is kept, with a note saying what changed and why.'],
+    ['c','Before you start','You need an email address and about twenty minutes. Everything happens on the github.com website. Nothing to install. GitHub is free for everything this course asks.'],
+    ['p','In A1 you planned a set of folders and a decision log. You could keep them on your laptop. But a laptop folder has two problems. Nobody else can open it. And it forgets: when you change a file, the old version is gone.'],
+    ['p','<strong>GitHub</strong> fixes both. It is a website where software teams keep their work, and where employers look to see yours. In this chapter you go from no account to your first saved version. Think of a locker that keeps every old copy of your papers.'],
+    ['key','A repository is a folder that remembers. It keeps every saved change, with a note on what changed and why.'],
     ['h','A repository: a folder that remembers'],
-    ['p','On GitHub, a project lives in a <strong>repository</strong>, often shortened to “repo”. It holds files and folders, like any folder. Unlike an ordinary folder, it keeps every earlier version of every file.'],
-    ['p','A repository can be <strong>public</strong>, which means anyone can read it, or <strong>private</strong>, which means only you and the people you invite. Start private. You can make it public later, when you publish your project.'],
+    ['p','On GitHub, a project lives in a <strong>repository</strong>. People often say “repo” for short. It holds files and folders, like any folder. But it also keeps every earlier version of every file. It is like a school notebook where you never use an eraser: every old line stays.'],
+    ['p','A repository can be <strong>public</strong>, so anyone can read it. Or it can be <strong>private</strong>, so only you and the people you invite can. Start private. You can make it public later, when you publish your project.'],
     ['do','Make an account and a repository',[
       ['n',[
-        'Go to <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a> and create an account. Choose a username you would be happy to show an employer, such as your name.',
-        'Turn on two-factor sign-in: your picture at the top right, then <strong>Settings</strong>, then <strong>Password and authentication</strong>. It protects your work if your password ever leaks.',
-        'Press the <strong>+</strong> at the top right, then <strong>New repository</strong>. Name it <code>ai-from-zero</code>, choose <strong>Private</strong>, and tick <strong>Add a README file</strong>. Press <strong>Create repository</strong>.'
+        'Go to <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a> and make an account. Pick a username you would be happy to show an employer, such as your name.',
+        'Turn on two-factor sign-in (a second check, like a code sent to your phone). Press your picture at the top right, then <strong>Settings</strong>, then <strong>Password and authentication</strong>. It keeps your work safe if your password ever leaks.',
+        'Press the <strong>+</strong> at the top right, then <strong>New repository</strong>. Name it <code>ai-from-zero</code>. Choose <strong>Private</strong>. Tick <strong>Add a README file</strong>. Press <strong>Create repository</strong>.'
       ]],
-      ['x','You see your new repository with one file in it, <code>README.md</code>. That file is the front page of the repository: whatever you write in it shows below the list of files.']
+      ['x','You see your new repository with one file in it, <code>README.md</code>. That file is the front page of the repository. Whatever you write in it shows below the list of files.']
     ]],
     ['h','A commit: one saved version, with a note'],
-    ['p','Each time you save a change on GitHub, you make a <strong>commit</strong>. A commit is one saved version of your files, together with a short message that says what changed. The list of commits is the repository’s history.'],
+    ['p','Every time you save a change on GitHub, you make a <strong>commit</strong>. A commit is one saved version of your files, with a short note that says what changed. The list of commits is the repository’s history. Think of one page in a diary, with its date.'],
     ['do','Add your decision log',[
       ['n',[
         'In your repository, press <strong>Add file</strong>, then <strong>Create new file</strong>.',
-        'Name the file <code>decision-log.md</code>. Write the first entry from A1: the date, the decision, the evidence, and what would make you change your mind.',
+        'Name the file <code>decision-log.md</code>. Write the first entry from A1: the date, the decision, the proof, and what would make you change your mind.',
         'Press <strong>Commit changes</strong>. In the message box, write what you did, for example <em>Start the decision log</em>. Press <strong>Commit changes</strong> again.'
       ]],
-      ['x','The file appears in the list. Open it, then press <strong>History</strong>: you see one commit, with your message and the time.']
+      ['x','The file shows up in the list. Open it and press <strong>History</strong>. You see one commit, with your message and the time.']
     ]],
-    ['p','Folders work the same way. To make one, type its name and a slash before the file name, such as <code>research/notes.md</code>, and GitHub creates the folder. To add files you already have, use <strong>Add file</strong>, then <strong>Upload files</strong>, and drag them in.'],
+    ['p','Folders work the same way. To make one, type its name and a slash before the file name, like <code>research/notes.md</code>. GitHub makes the folder for you. To add files you already have, press <strong>Add file</strong>, then <strong>Upload files</strong>, and drag them in.'],
     [
       'pred',
       {id:'a1g-history',
        short:true,
        ph:'Gone, or still there?',
-       ask:'Guess first. You commit a file with a line in it, then delete the line and commit again. Is the old line gone from the repository?',
+       ask:'Guess first. You commit a file with a line in it. Then you delete the line and commit again. Is the old line gone from the repository?',
        reveal:'No. The old line is still in the history, in the first commit. Anyone who can open the repository can find it there.',
-       then:'This is what makes a repository a good home for a decision log. It is also why some things must never go into one, as the next section explains.'}
+       then:'This is what makes a repository a good home for a decision log. It is also why some things must never go into one. The next section explains.'}
     ],
     ['h','What never goes in'],
-    ['p','Because a repository remembers everything, a mistake in it is hard to undo. Deleting a file later does not remove it from the history.'],
-    ['c','Watch out','Never put an API key, a password or real people’s personal details into a repository, even a private one. Your model key lives on the Connect page of this app, in your browser. For the project, use the made-up starter sentences, never real customer data.'],
+    ['p','A repository remembers everything, so a mistake in it is hard to undo. If you delete a file later, it is still in the history. It is like a pen: you cannot rub it out.'],
+    ['c','Watch out','Never put an API key (the secret password for the model), a password or real people’s personal details into a repository. Private does not make it safe. Your model key lives on the Connect page of this app, in your browser. For the project, use the made-up starter sentences, never real customer data.'],
     [
       'try',
       {id:'a1g-message',
        mins:2,
        min:20,
        rows:2,
-       task:'You have just added the notes from your first user interview to the <code>research</code> folder. Write the commit message you would use.',
+       task:'You have just added notes from your first user interview to the <code>research</code> folder. Write the commit message you would use.',
        ph:'One short line.',
-       after:'A good message says what changed, in a few words a stranger could follow, such as <em>Add notes from interview 1 (support lead, Pune)</em>. A message like <em>update</em> tells nobody anything when they read the history later.'}
+       after:'A good message says what changed, in a few words a stranger could follow. For example: <em>Add notes from interview 1 (support lead, Pune)</em>. A message like <em>update</em> tells nobody anything when they read the history later.'}
     ],
     ['h','What you have learned'],
-    ['p','You now have a private repository, a decision log in it, and a history that keeps every version. That is the place A1’s capstone asks for. Follow the folder plan from A1 as you add files over the coming weeks.'],
+    ['p','You now have a private repository, a decision log in it, and a history that keeps every version. That is the place A1’s capstone asks for. As you add files in the coming weeks, follow the folder plan from A1.'],
     ['p','Much later, Chapter 21 shows how engineers do the same thing from their own computer, with a tool called Git. Until then, the website is all you need.']
   ]
 },
@@ -313,33 +313,33 @@ window.PART6 = [
 {
   id:'a2', num:'A2', part:6, curriculumTier:'reference', phase:0, prerequisites:['a1'], nextUnits:['a3'], minutes:600, labs:[],
   title:'Product sense: how products win and lose',
-  concept:'Learn the few ideas that every product decision rests on. You’ll map how a product reaches its users, compare B2B with B2C, and check an idea against four risks. You’ll also see where an AI assistant helps your judgement and where it doesn’t.',
+  concept:'Learn the few ideas behind every product decision. You map how a product reaches its users. You compare selling to businesses with selling to people. You check an idea against four risks. And you see where an AI assistant helps your thinking, and where it does not.',
   takeaway:[
-    'Map a product’s discovery, delivery and distribution, and find its weakest link.',
-    'Explain how building for businesses (B2B) differs from building for consumers (B2C).',
-    'Test an idea against the four product risks: value, usability, feasibility and viability.',
-    'Use an AI assistant to draft an analysis, then check every claim against evidence.',
-    'Map the hard and soft skills the applied AI PM role needs, and where you stand on each.'
+    'Map how a product is found, built and spread, and find its weakest link.',
+    'Say how building for businesses (B2B) differs from building for people (B2C).',
+    'Test an idea against the four risks: value, usability, feasibility and viability.',
+    'Ask an AI assistant to draft an analysis. Then check every claim against proof.',
+    'List the hard skills and soft skills of the applied AI PM job, and see where you stand on each.'
   ],
-  needs:[['Your capstone','You’ll apply every idea in this chapter to your capstone, and to the product it’s closest to.','A1']],
+  needs:[['Your capstone','You apply every idea in this chapter to your capstone, and to the product closest to it.','A1']],
   capstone:{
     title:'Take Rampart apart, and check what an AI says about it',
-    brief:'Rampart is the existing tool that Bharat Privacy Guard answers. Before you build something better, you need to know exactly what Rampart does well, where it stops, and why. In this chapter you learned to map how a product wins, and to check an AI’s analysis against evidence. Here you’ll do both on Rampart.',
-    where:'Writing only. Use Rampart’s own published description and model card. No code needed.',
+    brief:'Rampart is the tool that already exists, and Bharat Privacy Guard answers it. Before you build something better, learn what Rampart does well, where it stops, and why. In this chapter you learned to map how a product wins, and to check an AI’s analysis against proof. Now you do both on Rampart.',
+    where:'Writing only. Use Rampart’s own public description and model card (the paper that says what a model can and cannot do). No code.',
     steps:[
-      'Find Rampart’s model card and its description online. Read them, and write down three things in your own words: who it’s for, what it does, and which languages it was built and tested for.',
-      'Map Rampart on the three links from this chapter: discovery (how a developer finds it), delivery (how they start using it) and distribution (how it spreads). Say which of the three is weakest, and give one piece of evidence for your answer.',
-      'Find the model card’s figure for how well Rampart finds personal details in Hindi written in Devanagari script. Write down the exact number, and copy the sentence it came from. The project page says it’s about 14 out of 100. Say whether you found the same number.',
-      'Write a teardown with seven headings: who it’s for, the job it does, the key moment of use, friction, how it makes money, its moat (what protects it from copies), and one improvement. Under “moat”, say what its language coverage protects it from, and what it doesn’t.',
-      'Ask an AI assistant to write a teardown of Rampart. Go through it line by line, and mark each claim as supported (you found the evidence), unsupported (no evidence either way) or wrong (the evidence says otherwise).',
-      'Rewrite the AI’s teardown using only claims you can back up. At the bottom, write one sentence saying which claim you were most tempted to believe without checking.'
+      'Find Rampart’s model card and its description online. Read them. Then write three things in your own words: who it is for, what it does, and which languages it was built and tested for.',
+      'Map Rampart on the three links from this chapter. Discovery: how a developer finds it. Delivery: how they start using it. Distribution: how it spreads. Say which one is weakest, with one piece of proof.',
+      'Find the model card’s number for how well Rampart finds personal details in Hindi written in Devanagari script. Write down the exact number. Copy the sentence it came from. The project page says it is about 14 out of 100. Say whether you found the same number.',
+      'Write a teardown (a close look at how a product works) with seven headings: who it is for, the job it does, the key moment of use, friction (what slows people down), how it makes money, its moat (what protects it from copies), and one improvement. Under “moat”, say what its language coverage protects it from, and what it does not.',
+      'Ask an AI assistant to write a teardown of Rampart. Go through it line by line. Mark each claim: supported (you found proof), unsupported (no proof either way) or wrong (the proof says the opposite).',
+      'Rewrite the AI’s teardown using only claims you can back up. At the bottom, write one sentence on which claim you were most tempted to believe without checking.'
     ],
     done:[
-      'Your seven-heading teardown.',
-      'The exact Hindi-script figure from the model card, with the sentence it came from.',
+      'Your teardown, with seven headings.',
+      'The exact Hindi-script number from the model card, with the sentence it came from.',
       'The AI’s teardown, with every claim marked supported, unsupported or wrong.',
-      'Your corrected version, and the one sentence about the claim you nearly believed.',
-      'A score from 0 to 3 for each item above, using the scale in this chapter. Move on only when every score is at least 2.'
+      'Your fixed version, and the one sentence about the claim you almost believed.',
+      'A score from 0 to 3 for each item above, using this chapter’s scale, like marking your own homework. Move on only when every score is 2 or more.'
     ]
   },
   check:[
@@ -351,98 +351,98 @@ window.PART6 = [
      'Name it before you build. For example: “If fewer than one in five users who see the new summary button try it within a week, the problem is not discoverability.” An idea with no evidence that could disprove it is just an opinion.']
   ],
   story:[
-    ['c','On your route','Take a first pass of about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
-    ['c','Before you start','In full, this chapter takes about ten hours, across three or four sittings. Pick one product that you use often and know well, such as Notion, Spotify, Swiggy, Slack or Canva. You’ll use it in every exercise.'],
-    ['p','In the last chapter you set up how you’ll learn and what you’ll build. Now you’ll learn how to think about a product. Why do some products win, and others quietly fade away?'],
-    ['p','There are five ideas in this chapter. Each one is small, and each ends with something you do on the product you picked. By the end, you’ll have a way to look at any product, including your own capstone, and say what is working and what isn’t.'],
+    ['c','On your route','First, go through it quickly, in about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
+    ['c','Before you start','The full chapter takes about ten hours, over three or four sittings. Pick one product you use often and know well, such as Notion, Spotify, Swiggy, Slack or Canva. You use it in every exercise.'],
+    ['p','In the last chapter you set up how you will learn and what you will build. Now you learn how to think about a product. Why do some products win, while others quietly fade away?'],
+    ['p','This chapter has five ideas. Each one is small. Each ends with something you do on your chosen product. By the end, you can look at any product, even your capstone, and say what works and what does not.'],
 
-    ['h','Idea 1: Discovery, delivery and distribution are one loop'],
-    ['p','Think of an app on your phone that you love. Before you ever used it, someone had to decide to build it. Someone had to build it well. And someone had to make sure you found it. That’s three different jobs, and a product manager owns all three.'],
-    ['p','They have names. <strong>Discovery</strong> is working out what to build. <strong>Delivery</strong> is building it. <strong>Distribution</strong> is getting it to people and keeping them. Here is each stage with the question it answers:'],
+    ['h','Idea 1: Finding, building and spreading are one loop'],
+    ['p','Think of an app on your phone that you love. Before you used it, someone had to decide to build it. Someone had to build it well. And someone had to make sure you found it. Those are three jobs, and a product manager owns all three.'],
+    ['p','They have names. <strong>Discovery</strong> is working out what to build. <strong>Delivery</strong> is building it. <strong>Distribution</strong> is getting it to people and keeping them. Here is each stage, with the question it answers:'],
     ['tb',['Stage','The question it answers','Typical work'],[
-      ['Discovery','Should we build this?','User interviews, data, prototypes, testing ideas'],
-      ['Delivery','Are we building it well?','Specs, planning, working with engineering, quality'],
-      ['Distribution','Will people find it, use it and keep using it?','Onboarding, pricing, channels, sales, adoption']
+      ['Discovery','Should we build this?','Talking to users, looking at data, rough prototypes, testing ideas'],
+      ['Delivery','Are we building it well?','Specs (written plans), scheduling, working with engineers, quality'],
+      ['Distribution','Will people find it, use it and keep using it?','Onboarding (the first steps for a new user), pricing, channels, sales, adoption']
     ]],
-    ['p','These three are a loop, not a line. What you learn in distribution, such as who stays and who leaves, feeds into the next round of discovery.'],
-    ['p','Products usually fail at the weakest of the three. Here’s a common AI example. A team builds an excellent meeting summariser, tests it carefully, and ships it. But usage stays near zero. When they run interviews, they learn that most users never noticed it. It was a small icon, and nobody had a reason to click it.'],
-    ['key','A feature nobody finds has the same impact as a feature nobody built.'],
+    ['p','These three are a loop, not a line. What you learn in distribution, like who stays and who leaves, feeds the next round of discovery. Think of a potter’s wheel that keeps turning.'],
+    ['p','Products usually fail at the weakest of the three. Here is a common AI example. A team builds an excellent meeting summariser. They test it with care and ship it. But almost nobody uses it. In interviews they learn that most users never noticed it. It was a small icon, and nobody had a reason to click it.'],
+    ['key','A feature nobody finds is as useful as a feature nobody built.'],
     ['do','Prove it now',[
-      ['p','For the product you picked, write one sentence each on how it does discovery, delivery and distribution. Then say which one is weakest.'],
-      ['x','You should have three sentences and a verdict. For the weakest link, name what you saw that made you think so. It could be a confusing sign-up, a feature you only found by accident, or a bug that keeps coming back.']
+      ['p','For your chosen product, write one sentence each on how it finds, builds and spreads. Then say which one is weakest.'],
+      ['x','You should have three sentences and a verdict. For the weakest link, name what you saw that made you think so. It could be a confusing sign-up, a feature you found only by accident, or a bug that keeps coming back.']
     ]],
     ['q','I503'],
 
     ['h','Idea 2: B2B and B2C are different jobs'],
-    ['p','Compare two products: a food delivery app on your phone, and the expense software your company uses. You chose the first one yourself. Someone else chose the second one for you. That one difference changes almost everything about how each product is built and sold.'],
-    ['p','<strong>B2C</strong> (business to consumer) products are sold to individuals. <strong>B2B</strong> (business to business) products are sold to companies. The table shows how much the PM’s work changes between them. Read down the columns and notice how often the B2B answer has more people in it.'],
+    ['p','Compare two products: a food delivery app on your phone, and the expense software your company uses. You picked the first one yourself. Someone else picked the second for you. That one difference changes almost everything about how each is built and sold. It is like a street stall versus a government contract.'],
+    ['p','<strong>B2C</strong> (business to consumer) products are sold to single people. <strong>B2B</strong> (business to business) products are sold to companies. The table shows how the PM’s work changes. Read down the columns. See how often the B2B answer has more people in it.'],
     ['tb',['','B2C','B2B'],[
       ['Who pays','The user','A budget owner, often not the user'],
-      ['Who can block the sale','Almost nobody','IT, security, legal and procurement'],
+      ['Who can block the sale','Almost nobody','IT, security, legal and procurement (the buying office)'],
       ['Number of customers','Thousands to millions','Tens to thousands'],
       ['How decisions are made','Mostly from usage data','Usage data plus direct customer requests'],
-      ['What drives growth','Onboarding, habit and word of mouth','Sales, integrations and renewals'],
-      ['What AI adds','Speed and delight, but mistakes spread fast','Productivity, but only with data controls, admin settings and audit logs']
+      ['What drives growth','Onboarding, habit and word of mouth','Sales, integrations (links to other tools) and renewals'],
+      ['What AI adds','Speed and delight, but mistakes spread fast','Productivity, but only with data controls, admin settings and audit logs (a record of who did what)']
     ]],
-    ['p','In B2B, one large customer can change your roadmap. Say their security team needs single sign-on before they’ll sign. Then single sign-on moves up your list, even if no user asked for it.'],
-    ['c','Watch out','In B2B, the person who loves your product in a demo is often not the person who approves the purchase. So always ask: who pays, who uses, and who can say no?'],
+    ['p','In B2B, one large customer can change your roadmap (the plan of what comes first, next and later). Say their security team needs single sign-on (one login for many tools) before they sign. Then single sign-on moves up your list, even if no user asked for it.'],
+    ['c','Watch out','In B2B, the person who loves your product in a demo is often not the person who approves the buying. So always ask: who pays, who uses, and who can say no?'],
     ['do','Prove it now',[
-      ['p','Decide whether your capstone is B2B or B2C. Then write down who pays, who uses, and who could block a purchase.'],
-      ['x','You should have three names or roles. If “who pays” and “who uses” are the same person, you’re probably B2C, or selling to very small businesses.']
+      ['p','Decide if your capstone is B2B or B2C. Then write down who pays, who uses, and who could block the buying.'],
+      ['x','You should have three names or roles. If who pays and who uses are the same person, you are probably B2C, or selling to very small businesses.']
     ]],
     ['q','I504'],
 
     ['h','Idea 3: Product sense means checking four risks'],
-    ['p','You’ll often hear that someone has good “product sense”. It sounds vague. But when you look closely, it comes down to a habit: checking four risks before you commit to building something.'],
+    ['p','You often hear that someone has good “product sense”. It sounds vague. But look closely: it is a habit. Before you commit to building something, you check four risks. Think of a pilot running a checklist before take-off.'],
     ['n',[
-      '<strong>Value.</strong> Will people choose to use it, over whatever they do today?',
+      '<strong>Value.</strong> Will people choose it over what they do today?',
       '<strong>Usability.</strong> Can they work out how to use it without help?',
-      '<strong>Feasibility.</strong> Can we build it with the time, skills, data and budget we have?',
-      '<strong>Viability.</strong> Does it work for the business: revenue, cost, legal and brand?'
+      '<strong>Feasibility.</strong> Can we build it with the time, skills, data and money we have?',
+      '<strong>Viability.</strong> Does it work for the business: income, cost, law and brand?'
     ]],
-    ['p','For AI features, feasibility has an extra question: <strong>is it right often enough for this use?</strong> A model that is right 80% of the time is fine for brainstorming headlines. It isn’t fine for drafting legal contracts. So the same accuracy can be feasible for one job and unusable for another.'],
-    ['p','AI also adds a cost every time someone uses it. A normal feature costs almost nothing each time a user clicks it. An AI feature costs money every time it runs. That’s why viability depends on how often people use it, and on what you can charge.'],
-    ['key','Check all four risks. Most failed features passed the one the team was focused on, and failed one they skipped.'],
+    ['p','For AI features, feasibility has one more question: <strong>is it right often enough for this job?</strong> A model that is right 80% of the time is fine for brainstorming headlines. It is not fine for drafting legal contracts. So the same accuracy can work for one job and fail for another.'],
+    ['p','AI also adds a cost each time someone uses it. A normal feature costs almost nothing per click. An AI feature costs money every time it runs. It is like paying a few paise per SMS. So viability depends on how often people use it, and on what you can charge.'],
+    ['key','Check all four risks. Most failed features passed the one the team looked at, and failed one they skipped.'],
     ['do','Prove it now',[
-      ['p','Think of one improvement you would make to your chosen product. For each of the four risks, write one line: what could go wrong, and how you would find out cheaply.'],
-      ['x','You should have four lines. The best answers name a cheap test, such as a five-user prototype test for usability, or a spreadsheet of cost per use for viability.']
+      ['p','Think of one improvement for your chosen product. For each of the four risks, write one line: what could go wrong, and how you would find out cheaply.'],
+      ['x','You should have four lines. The best answers name a cheap test. For example, a prototype test with five users for usability, or a spreadsheet of cost per use for viability.']
     ]],
     ['q','I505'],
 
-    ['h','Idea 4: AI can help your judgement, but not replace it'],
-    ['p','You’ve probably already used an AI assistant for work. It drafts documents quickly, summarises long notes, suggests questions and critiques your plans. All of that is useful in product work.'],
-    ['p','But it has one big limit. It produces text that sounds right, without evidence behind it. An assistant can’t interview your users. Its “insights” about your market are an average of what it read, not facts about your customers.'],
+    ['h','Idea 4: AI can help your thinking, but not replace it'],
+    ['p','You have probably used an AI assistant for work. It drafts documents fast, sums up long notes, suggests questions and critiques your plans. All of that helps in product work.'],
+    ['p','But it has one big limit. It writes text that sounds right, with no proof behind it. It is like a parrot that has read a whole library: it sounds sure even when it is wrong. It cannot interview your users. Its “insights” about your market are an average of what it read, not facts about your customers.'],
     ['p','So use this rule for anything an AI writes for you:'],
-    ['key','Every claim must trace to evidence, or be marked as an assumption.'],
-    ['p','Here’s what that looks like in practice. An assistant writes: “Users abandon Swiggy checkout because of high delivery fees.” That may be true, but where is the evidence? Mark the claim <em>unsupported</em>. Then note what would settle it, such as checkout drop-off data or five interviews.'],
+    ['key','Every claim must trace back to proof, or be marked as a guess.'],
+    ['p','Here is how it looks in real life. An assistant writes: “Users abandon Swiggy checkout because of high delivery fees.” It may be true. But where is the proof? Mark the claim <em>unsupported</em>. Then note what would settle it, such as checkout drop-off data or five interviews.'],
     ['do','Prove it now',[
       ['p','Ask an AI assistant: “Why do people stop using [your product]?” Copy its answer into your notes. Then label each claim <em>supported</em>, <em>unsupported</em> or <em>wrong</em>.'],
-      ['x','Most claims will turn out to be unsupported. That’s normal, because the assistant fills gaps with plausible guesses. Your job is to know which claims are guesses.']
+      ['x','Most claims will turn out unsupported. That is normal. The assistant fills gaps with believable guesses. Your job is to know which claims are guesses.']
     ]],
     ['try',{id:'a2-annotate',mins:8,min:100,rows:5,
-      task:'Take one claim from the AI’s answer. Say whether it is supported, what evidence would settle it, and how cheaply you could get that evidence.',
-      ph:'Claim, label, evidence needed, how to get it…',
-      after:'A good answer: <strong>Claim:</strong> “Users leave because the free tier is too limited.” <strong>Label:</strong> unsupported. <strong>Evidence needed:</strong> whether people who hit the free-tier limit leave more often than those who do not. <strong>How to get it:</strong> ask five people who stopped using the product what they were doing in their last week, or compare churn for users who hit the limit against those who did not, if you have the data.'}],
+      task:'Take one claim from the AI’s answer. Say if it is supported, what proof would settle it, and how cheaply you could get that proof.',
+      ph:'Claim, label, proof needed, how to get it…',
+      after:'A good answer: <strong>Claim:</strong> “Users leave because the free tier is too limited.” <strong>Label:</strong> unsupported. <strong>Proof needed:</strong> do people who hit the free-tier limit leave more often than those who do not? <strong>How to get it:</strong> ask five people who stopped using the product what they were doing in their last week. Or, if you have the data, compare churn (how many leave) for users who hit the limit and users who did not.'}],
 
-    ['h','Idea 5: Map the skills the role needs'],
-    ['p','You now have four ideas for judging a product. The last question is about you. What does the applied AI PM role ask of the person doing it?'],
+    ['h','Idea 5: List the skills the job needs'],
+    ['p','You now have four ideas for judging a product. The last question is about you. What does the applied AI PM job ask of the person doing it?'],
     ['p','It needs two kinds of skill. Hard skills are things you can practise and test, like reading data. Soft skills are about working with people. Here they are side by side:'],
     ['tb',['Hard skills','Soft skills'],[
-      ['Writing specs and acceptance criteria','Explaining trade-offs clearly'],
-      ['Reading data and basic SQL','Getting agreement without authority'],
-      ['Building and running evaluations','Prioritising when information is incomplete'],
-      ['Prototyping without engineers','Listening well in interviews'],
+      ['Writing specs and acceptance criteria (the checks a finished piece must pass)','Explaining trade-offs clearly'],
+      ['Reading data and basic SQL (a way to ask questions of a table of data)','Getting agreement without authority'],
+      ['Building and running evaluations (tests that check how good the answers are)','Choosing what comes first when you lack information'],
+      ['Making a prototype without engineers','Listening well in interviews'],
       ['Cost and pricing arithmetic','Saying no, and explaining why']
     ]],
-    ['p','AI products add one thing to both columns: being comfortable with <strong>probabilistic behaviour</strong>. In plain words, an AI feature doesn’t give the same answer every time. You need to measure that variation, design for it, and explain it to people who expect software to be predictable.'],
+    ['p','AI products add one thing to both columns: being at ease with <strong>probabilistic behaviour</strong>. In plain words: an AI feature does not give the same answer every time. It is like a dice roll, not a calculator. You must measure how much it varies, plan for it, and explain it to people who expect software to be predictable.'],
     ['do','Prove it now',[
-      ['p','Add a “hard skills” and a “soft skills” section to the scorecard you made in A1. Score yourself from 0 to 3 on each skill in the table above, and note your evidence.'],
-      ['x','You should have ten scored skills. Circle the two lowest. Those are the skills to practise on purpose in the chapters ahead.']
+      ['p','Add a “hard skills” and a “soft skills” part to the scorecard you made in A1. Give yourself 0 to 3 for each skill in the table above. Write your proof next to each score.'],
+      ['x','You should have ten scored skills. Circle the two lowest. Practise those two on purpose in the chapters ahead.']
     ]],
 
     ['h','What you have learned'],
-    ['p','You now have four lenses for looking at any product. Check its discovery, delivery and distribution. Ask who pays, who uses and who can say no. Test an idea against the four risks. And treat every claim, including the ones an AI gives you, as unproven until you find the evidence.'],
-    ['p','You also know which skills to build. Next, you’ll start collecting that evidence yourself, by talking to real users in the chapter on user discovery.']
+    ['p','You now have four ways to look at any product. Check how it is found, built and spread. Ask who pays, who uses and who can say no. Test an idea against the four risks. And treat every claim, even one from an AI, as unproven until you find the proof.'],
+    ['p','You also know which skills to build. Next, you start collecting proof yourself, by talking to real users in the chapter on user discovery.']
   ]
 },
 
@@ -490,7 +490,7 @@ window.PART6 = [
      'If nothing changed, one of two things happened. Either you asked leading questions, or you weren’t listening for surprises. Read your notes again, and look for anything that didn’t fit what you expected. That’s usually your most valuable finding.']
   ],
   story:[
-    ['c','On your route','Take a first pass of about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
+    ['c','On your route','First, go through it quickly, in about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
     ['c','Before you start','Doing it all takes about 14 hours, spread over a week or two. It takes time because finding people and fixing a time to talk is slow. So start asking people on day one. Plan 30-minute talks, on a video call or in person.'],
     ['p','In the last chapter you learned one rule. Every claim needs proof, or it must be marked as a guess (an assumption). This chapter is about where most proof comes from. It comes from talking to users.'],
     ['p','Talking to users sounds easy. But most people ask in a way that brings polite answers that help nobody. So first you learn to ask questions that bring honest answers. Then you turn what you hear into a few short pages your team can use.'],
@@ -555,7 +555,7 @@ window.PART6 = [
       'The company started in two new countries.'
     ]],
     ['p','This helps, but it has a trap. One neat chain makes it look like there is only one cause. Real problems usually have several.'],
-    ['p','In this example, themes might also be missed because tickets are tagged in different ways. That means one agent puts a label on a ticket one way, and another agent labels the same kind of ticket another way. Or the report template (the fixed layout of the report) may have no room for new issues.'],
+    ['p','In this example, themes might also be missed because tickets are tagged in different ways. That means one support worker puts a label on a ticket one way, and another labels the same kind of ticket another way. Or the report template (the fixed shape of the report) may have no room for new issues.'],
     ['c','Watch out','Do not stop at the first chain that sounds right. After a few whys, ask: “What else could cause this?” Then draw the causes as a tree with branches, not as one straight line.'],
     ['do','Prove it now',[
       ['p','Take the main pain in your capstone problem. Ask “why?” three to five times. Then go back to the first answer and look for one more cause.'],
@@ -607,109 +607,109 @@ window.PART6 = [
      the text, right where the steps use it. */
   id:'a4s', num:'A3.5', part:6, curriculumTier:'core', phase:0, prerequisites:['a3'], nextUnits:['a4'], minutes:20, labs:[],
   title:'Spreadsheet basics: the formulas this course uses',
-  concept:'A4 sizes a market and Chapter 15 works out what a feature costs, and both are done in a spreadsheet. This short chapter teaches the few formulas they need, in a sheet that sits right here in the page: cells, a formula, SUM, percentages and ROUND.',
+  concept:'A4 sizes a market, and Chapter 15 works out what a feature costs. Both are done in a spreadsheet. This short chapter teaches the few formulas they need. The sheet sits right here on this page. You learn cells, a formula, SUM, percentages and ROUND.',
   takeaway:[
-    'Point to a cell by its address, such as B2, and write a formula that uses it.',
-    'Add up a column with SUM, and work with percentages and ROUND.',
-    'Build a small estimate that updates itself when one number changes.'
+    'Point to a cell by its address, like B2, and write a formula that uses it.',
+    'Add up a column with SUM. Work with percentages and ROUND.',
+    'Build a small estimate that changes by itself when you change one number.'
   ],
   needs:[
-    ['A3’s numbers','The examples use the support numbers from A3, such as three hundred tickets a week. Adding and multiplying is all the maths you need.','A3']
+    ['The numbers from A3','The examples use the support numbers from A3, like three hundred tickets a week. All the maths you need is adding and multiplying.','A3']
   ],
   story:[
-    ['c','Before you start','You need nothing else. The sheet you work in is on this page, and it is saved with your progress. Google Sheets and Excel use the same formulas, so everything here works there too.'],
-    ['p','A spreadsheet is a grid of boxes called <strong>cells</strong>. Columns have letters and rows have numbers, so every cell has an address: <code>B2</code> is column B, row 2.'],
-    ['p','Why does this course use one? Because its numbers change. A market size or a cost model rests on guesses, and a good one lets you change a guess and watch every total change with it.'],
-    ['key','Type each number once, in its own cell. Every total is a formula that points at those cells, so changing one number updates everything.'],
+    ['c','Before you start','You need nothing else. The sheet you work in is on this page, and it is saved with your progress. Google Sheets and Excel use the same formulas, so all of this works there too.'],
+    ['p','A spreadsheet is a grid of boxes called <strong>cells</strong>. Columns have letters and rows have numbers. So every cell has an address, like a seat number in a cinema: <code>B2</code> is column B, row 2.'],
+    ['p','Why does this course use one? Because its numbers change. A market size or a cost estimate rests on guesses. A good sheet lets you change one guess and watch every total change with it.'],
+    ['key','Type each number once, in its own cell. Make every total a formula that points at those cells. Then changing one number updates everything.'],
     ['h','Your sheet'],
-    ['p','This is the sheet for the whole chapter. Click a cell to type in it, and press Enter to move down.'],
+    ['p','This is the sheet for the whole chapter. Click a cell to type in it. Press Enter to move down.'],
     ['sheet','A3.5 Spreadsheet basics'],
     ['h','A formula starts with ='],
-    ['p','When a cell starts with <code>=</code>, the sheet works it out instead of showing what you typed. <code>=B2*B3</code> means “B2 times B3”. Use <code>+</code> and <code>-</code>, <code>*</code> to multiply and <code>/</code> to divide.'],
+    ['p','When a cell starts with <code>=</code>, the sheet works out the answer. It does not show what you typed. <code>=B2*B3</code> means “B2 times B3”. Use <code>+</code> to add, <code>-</code> to take away, <code>*</code> to multiply and <code>/</code> to divide. It is like a calculator that remembers.'],
     ['do','Your first formula',[
       ['n',[
-        'In <code>A2</code> type <em>Tickets a week</em>, and in <code>B2</code> type <code>300</code>.',
-        'In <code>A3</code> type <em>Weeks a year</em>, and in <code>B3</code> type <code>52</code>.',
-        'In <code>A4</code> type <em>Tickets a year</em>, and in <code>B4</code> type <code>=B2*B3</code>.'
+        'In <code>A2</code> type <em>Tickets a week</em>. In <code>B2</code> type <code>300</code>.',
+        'In <code>A3</code> type <em>Weeks a year</em>. In <code>B3</code> type <code>52</code>.',
+        'In <code>A4</code> type <em>Tickets a year</em>. In <code>B4</code> type <code>=B2*B3</code>.'
       ]],
-      ['x','<code>B4</code> shows <code>15600</code>. Now change <code>B2</code> to <code>450</code>, and <code>B4</code> changes to <code>23400</code> by itself.']
+      ['x','<code>B4</code> shows <code>15600</code>. Now change <code>B2</code> to <code>450</code>. <code>B4</code> changes to <code>23400</code> by itself.']
     ]],
     [
       'pred',
       {id:'a4s-typed',
        short:true,
        ph:'What goes wrong?',
-       ask:'Guess first. Someone works out 300 × 52 on a calculator and types <code>15600</code> into <code>B4</code> instead of the formula. What goes wrong later?',
-       reveal:'Nothing, until a number changes. When the tickets go up to 450, <code>B4</code> still says 15600, and every total built on it is quietly wrong.',
-       then:'A typed-in total is the commonest spreadsheet mistake. If a number is worked out from others, make it a formula.'}
+       ask:'Guess first. Someone works out 300 × 52 on a calculator. They type <code>15600</code> into <code>B4</code> instead of the formula. What goes wrong later?',
+       reveal:'Nothing, until a number changes. When tickets go up to 450, <code>B4</code> still says 15600. Every total built on it is quietly wrong.',
+       then:'A total typed by hand is the most common spreadsheet mistake. If a number comes from other numbers, make it a formula.'}
     ],
     ['h','Adding up: SUM and ranges'],
-    ['p','A <strong>range</strong> is a block of cells written with a colon: <code>D2:D6</code> means D2 down to D6. <code>=SUM(D2:D6)</code> adds them all up. <code>=AVERAGE(D2:D6)</code>, <code>=MIN(D2:D6)</code> and <code>=MAX(D2:D6)</code> work the same way.'],
+    ['p','A <strong>range</strong> is a block of cells, written with a colon: <code>D2:D6</code> means D2 down to D6. <code>=SUM(D2:D6)</code> adds them all. <code>=AVERAGE(D2:D6)</code>, <code>=MIN(D2:D6)</code> and <code>=MAX(D2:D6)</code> work the same way. They give the middle value, the smallest and the biggest. Think of a row of shop bills.'],
     ['do','Add up a column',[
-      ['p','In <code>D2</code> to <code>D6</code>, type five numbers: the tickets each of five support leads handles in a week. In <code>D7</code>, type <code>=SUM(D2:D6)</code>, and in <code>D8</code>, type <code>=AVERAGE(D2:D6)</code>.'],
-      ['x','<code>D7</code> shows the total and <code>D8</code> the average. Change any one of the five numbers, and both update.']
+      ['p','In <code>D2</code> to <code>D6</code>, type five numbers: the tickets that each of five support leads handles in a week. In <code>D7</code> type <code>=SUM(D2:D6)</code>. In <code>D8</code> type <code>=AVERAGE(D2:D6)</code>.'],
+      ['x','<code>D7</code> shows the total and <code>D8</code> the average. Change any one of the five numbers. Both change.']
     ]],
     ['h','Percentages and rounding'],
-    ['p','A percentage is a fraction: 12% is the same as 0.12. You can type either <code>12%</code> or <code>0.12</code> in a cell. To take 12% of the number in <code>B4</code>, write <code>=B4*12%</code>.'],
-    ['p','<code>ROUND</code> tidies a result. <code>=ROUND(B4/7, 1)</code> divides B4 by 7 and keeps one decimal place.'],
+    ['p','A percentage is a fraction: 12% is the same as 0.12. In a cell you can type <code>12%</code> or <code>0.12</code>. To take 12% of the number in <code>B4</code>, write <code>=B4*12%</code>.'],
+    ['p','<code>ROUND</code> tidies up a result, like rounding a price to the nearest rupee. <code>=ROUND(B4/7, 1)</code> divides B4 by 7 and keeps one number after the decimal point.'],
     ['h','A small estimate, the way A4 builds one'],
-    ['p','A4 sizes a market from the bottom up: customers you can count, times what each would pay. In a sheet, each of those is its own cell.'],
+    ['p','A4 sizes a market from the bottom up: count the customers, then multiply by what each would pay. In a sheet, each of those is its own cell.'],
     ['do','Build a market estimate',[
       ['n',[
         'In <code>F2</code> type the number of firms that have the problem, for example <code>9000</code>.',
         'In <code>F3</code> type what one firm would pay in a year, in rupees, for example <code>120000</code>.',
-        'In <code>F4</code> type <code>=F2*F3</code>: that is the whole market. In <code>F5</code> type the share you could win, <code>2%</code>, and in <code>F6</code> type <code>=F4*F5</code>.'
+        'In <code>F4</code> type <code>=F2*F3</code>. That is the whole market. In <code>F5</code> type the share you could win, <code>2%</code>. In <code>F6</code> type <code>=F4*F5</code>.'
       ]],
-      ['x','<code>F4</code> shows <code>1080000000</code>, which is ₹108 crore, and <code>F6</code> shows <code>21600000</code>, which is ₹2.16 crore. Change the price in <code>F3</code> and both follow. A4 builds exactly this kind of table.']
+      ['x','<code>F4</code> shows <code>1080000000</code>, which is ₹108 crore. <code>F6</code> shows <code>21600000</code>, which is ₹2.16 crore. Change the price in <code>F3</code> and both follow. A4 builds exactly this kind of table.']
     ]],
-    ['snag',['A cell shows an error such as <em>#DIV/0</em>','The formula divides by zero or by an empty cell, or does a sum with a cell that holds words. Check that every cell it points at holds a number.']],
+    ['snag',['A cell shows an error like <em>#DIV/0</em>','The formula divides by zero or by an empty cell. Or it adds a cell that holds words. Check that every cell it points at holds a number.']],
     [
       'try',
       {id:'a4s-cost',
        mins:3,
        min:10,
        rows:2,
-       task:'A model call reads 120 tokens, and the model costs ₹20 for every million tokens. Cell <code>B10</code> holds 120, <code>B11</code> holds 20 and <code>B12</code> holds 1000. Write one formula for the cost of 1,000 calls.',
+       task:'A model call (one message sent to the model) reads 120 tokens (small pieces of text, like Lego bricks). The model costs ₹20 for every million tokens. Cell <code>B10</code> holds 120, <code>B11</code> holds 20 and <code>B12</code> holds 1000. Write one formula for the cost of 1,000 calls.',
        ph:'=…',
-       after:'<code>=B10*B12*B11/1000000</code>, which gives <code>2.4</code>, so ₹2.40: tokens per call, times the number of calls, times the price per million, divided by a million. Chapter 15 builds a full cost model from exactly this line.'}
+       after:'<code>=B10*B12*B11/1000000</code>, which gives <code>2.4</code>, so ₹2.40. Read it as: tokens per call, times the number of calls, times the price per million, divided by a million. Chapter 15 builds a full cost model from exactly this line.'}
     ],
     ['h','What you have learned'],
-    ['p','You can now read and write the formulas this course uses: a cell address, a formula that starts with <code>=</code>, <code>SUM</code>, a percentage and <code>ROUND</code>. A4 uses them to size the market, and Chapter 15 to work out what a feature costs.'],
-    ['p','<a href="#/sheets">Sheets</a> keeps every sheet you make, and the code in your notebook can read any of them.']
+    ['p','Now you can read and write the formulas this course uses: a cell address, a formula that starts with <code>=</code>, <code>SUM</code>, a percentage and <code>ROUND</code>. A4 uses them to size the market. Chapter 15 uses them to work out what a feature costs.'],
+    ['p','<a href="#/sheets">Sheets</a> keeps every sheet you make. The code in your notebook can read any of them.']
   ]
 },
 
 {
   id:'a4', num:'A4', part:6, curriculumTier:'reference', phase:0, prerequisites:['a3'], nextUnits:['a5','b1','b2'], minutes:600, labs:[],
   title:'Market research: sizing, competitors and opportunities',
-  concept:'Work out how big the opportunity is, and what you’re really competing with. You’ll size a market from the bottom up and map every alternative a customer has. Then you’ll turn your interview evidence into a ranked tree of opportunities.',
+  concept:'Find out how big the chance is, and what you are really up against. You will count the market from the bottom up, like counting shops street by street. You will list everything a customer could use instead. Then you turn your interview proof into a ranked tree of chances.',
   takeaway:[
-    'Estimate a market bottom-up, with every assumption written down.',
-    'List direct, indirect and do-nothing competitors, and explain why the status quo is hard to beat.',
-    'Write a positioning statement based on a competitor teardown.',
-    'Place a product in the AI value chain and judge whether its advantage is easy to copy.',
-    'Build an opportunity solution tree from interview evidence, and rank its branches.'
+    'Work out a market size from the bottom up. Write down every guess you used.',
+    'List three kinds of competitors: direct, indirect and do-nothing. Say why “keep doing what we do today” is so hard to beat.',
+    'Write one sentence that says why you are different, after taking a competitor apart piece by piece. This is a positioning statement.',
+    'Find where a product sits in the stack of AI layers (the AI value chain). Judge if its strength is easy to copy.',
+    'Build an opportunity solution tree from interview proof. Rank its branches.'
   ],
-  needs:[['Interview evidence','The opportunity tree is built from what users told you.','A3'],
-         ['A job statement','Competitors are anything that does the same job.','A3']],
+  needs:[['Interview proof','You build the opportunity tree from what users told you.','A3'],
+         ['A job statement (one line on what the user wants done)','A competitor is anything that does the same job.','A3']],
   capstone:{
     title:'Estimate the market and compare the alternatives',
-    brief:'You now know who has the problem. This capstone asks whether enough of them would pay for a solution, and what they use instead today. In this chapter you learned to estimate a market from the bottom up, and to treat “do nothing” as a competitor. Here you’ll do both for Bharat Privacy Guard.',
-    where:'Writing only. Research and a spreadsheet. No code needed.',
+    brief:'You now know who has the problem. This capstone asks two things. Would enough of them pay for a fix? And what do they use today instead? In this chapter you learned to count a market from the bottom up. You also learned to treat “do nothing” as a competitor. Now you do both for Bharat Privacy Guard.',
+    where:'You only write. You do some research and fill a spreadsheet. You do not write any code.',
     steps:[
-      'Make a table of at least five alternatives a developer could use today: Rampart; Microsoft Presidio (another open tool that finds personal details); at least one Indian company that sells data-protection tools; “do nothing”; and “write our own rules”. For each one, write who it’s for, its price, one strength and one weakness. For Rampart and Presidio, also write which languages they cover.',
-      'Estimate the market from the bottom up. Count how many Indian development teams handle personal data from users. Then multiply by the amount a team might realistically pay each year for a tool like this. Show the multiplication, not only the answer.',
-      'Label each number in your estimate as “known” (and name the source) or “guessed”. Then write down the three guesses that would change the answer most if they were wrong.',
-      'Draw an opportunity tree from your interviews. Put the main problem at the top, the unmet needs from your interviews under it, and possible solutions under those. Include three solutions: the developer kit, the gateway and the browser extension.',
-      'Score each of the three solutions from 1 to 5 on four things: how many people it reaches, how much pain it removes, how sure you are, and how well it fits what you can build. Then choose the one to start with, and say why.',
+      'Make a table of at least five things a developer could use today. They are: Rampart; Microsoft Presidio (another open tool that finds personal details); at least one Indian company that sells data-protection tools; “do nothing”; and “write our own rules”. For each, write who it is for, its price, one strength and one weakness. For Rampart and Presidio, also write which languages they cover.',
+      'Estimate the market from the bottom up. Count how many Indian development teams work with users’ personal data. Then multiply by what a team might really pay each year for a tool like this. Show the multiplication, not only the answer.',
+      'Mark each number in your estimate as “known” (and name where it came from) or “guessed”. Then write the three guesses that would change the answer most if they were wrong.',
+      'Draw an opportunity tree from your interviews. Put the main problem at the top. Under it, put the unmet needs from your interviews. Under those, put possible fixes. Add three fixes: the developer kit, the gateway and the browser extension.',
+      'Give each of the three fixes a score from 1 to 5 on four things. How many people does it reach? How much pain does it remove? How sure are you? How well does it fit what you can build? Then pick the one to start with, and say why.',
       'Write a one-sentence positioning statement: “For [who], who [need], Bharat Privacy Guard is a [what] that [benefit], unlike [main alternative].”'
     ],
     done:[
-      'The comparison table with at least five rows, including “do nothing”, and the language coverage of Rampart and Presidio.',
-      'A market estimate in which every number is marked known or guessed.',
-      'An opportunity tree, and the scores for the three solutions.',
+      'The table with at least five rows, including “do nothing”, and the languages Rampart and Presidio cover.',
+      'A market estimate where every number is marked known or guessed.',
+      'An opportunity tree, and the scores for the three fixes.',
       'Your positioning sentence.',
-      'A score from 0 to 3 for each item above, using the scale in this chapter. Move on only when every score is at least 2.'
+      'A score from 0 to 3 for each item above, using this chapter’s scale, like marking your own homework. Move on only when every score is 2 or more.'
     ]
   },
   check:[
@@ -721,122 +721,122 @@ window.PART6 = [
      'A well-tuned prompt, a nicer interface, or using the newest model. Any competitor can do the same in weeks. Advantages that are harder to copy come from deep integration into a workflow, data that only your product collects, and the trust of security teams and buyers.']
   ],
   story:[
-    ['c','On your route','Take a first pass of about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
-    ['c','Before you start','In full, this chapter takes about ten hours. You’ll need your five interview notes from A3, and a spreadsheet. Some numbers will take a little searching, such as the published customer counts of software vendors.'],
-    ['p','In the last chapter you talked to real users and found out who has the problem. Now comes the next question a product person must ask: is the problem big enough, and what are people doing about it today?'],
-    ['p','You’ll answer it in five steps. First you’ll estimate the size of the market. Then you’ll look at everything a customer could use instead of your product. After that you’ll learn where AI products get their strength, and finally how to organise what you learned into a tree of opportunities.'],
+    ['c','On your route','First, go through it quickly, in about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
+    ['c','Before you start','Doing it all takes about ten hours. You need your five interview notes from A3, and a spreadsheet (a grid of rows and columns for numbers). Some numbers take a little searching, like how many customers software companies say they have.'],
+    ['p','In the last chapter you talked to real users and found who has the problem. Now a product person asks the next question. Is the problem big enough? And what are people doing about it today?'],
+    ['p','You answer it in five steps. First, you work out how big the market is. Next, you list everything a customer could use instead of your product. Then you learn where AI products get their strength. Last, you put it all into a tree of chances.'],
 
     ['h','Idea 1: Size a market from the bottom up'],
-    ['p','Suppose a friend says, “India has so many small businesses, so our app has a huge market.” It sounds exciting, but it doesn’t tell you anything you can act on. There are two ways to do this better, and one is much more useful than the other.'],
-    ['p','The first is <strong>top-down</strong>. It starts from an industry report: “Customer-support software is a $10 billion market. If we get 1%, that is $100 million.” It’s quick, but it tells you nothing, because nobody knows how you would get that 1%.'],
-    ['p','The second is <strong>bottom-up</strong>. It starts from customers you can count, and uses a simple formula:'],
+    ['p','Say a friend tells you, “India has so many small businesses, so our app has a huge market.” It sounds exciting. But you cannot act on it. There are two better ways, and one is far more useful.'],
+    ['p','The first is <strong>top-down</strong>. You start from a big industry report: “Customer-support software is a $10 billion market. If we get 1%, that is $100 million.” It is quick, but it tells you nothing. Nobody knows how you would win that 1%.'],
+    ['p','The second is <strong>bottom-up</strong>. You start with customers you can count, like counting the shops on one street. Then you use a simple formula:'],
     ['code','market = number of customers × annual value per customer'],
-    ['p','You then narrow the number down in three steps. Each step has a short name, and the table shows them with our ticket-theme example:'],
+    ['p','Then you shrink the number in three steps, like a sieve. Each step has a short name. The table shows them with our ticket-theme example:'],
     ['tb',['Term','Meaning','Ticket-theme example'],[
       ['TAM','Total addressable market: everyone who has the problem.','40,000 software companies with a support team × $1,200 a year = $48M'],
-      ['SAM','Serviceable addressable market: the part you can actually serve.','8,000 of them use a help desk you integrate with and get 200+ tickets a week = $9.6M'],
-      ['SOM','Serviceable obtainable market: what you could realistically win in about three years.','2% of SAM = 160 customers = $192,000 a year']
+      ['SAM','Serviceable addressable market: the part you can really serve.','8,000 of them use a help desk you connect to and get 200+ tickets a week = $9.6M'],
+      ['SOM','Serviceable obtainable market: what you could really win in about three years.','2% of SAM = 160 customers = $192,000 a year']
     ]],
-    ['p','The final number matters less than the assumptions behind it. Every number above is a guess until you find a source. So write each one down, and mark it <em>known</em> or <em>assumed</em>.'],
-    ['key','A market estimate is only as good as its denominator: the number of customers you multiplied by.'],
+    ['p','The final number matters less than the guesses behind it. Every number above is a guess until you find a source. So write each one down. Mark it <em>known</em> or <em>assumed</em>.'],
+    ['key','A market estimate is only as good as its denominator. That is the number of customers you multiplied by.'],
     ['do','Prove it now',[
-      ['p','Write the bottom-up formula for your capstone. Put a number in each slot, even a rough one, and mark each as known or assumed.'],
-      ['x','You should have one line of arithmetic with labelled numbers. If every number is assumed, that’s fine for now. It tells you what to research first.']
+      ['p','Write the bottom-up formula for your capstone. Put a number in each slot, even a rough one. Mark each one known or assumed.'],
+      ['x','You should have one line of sums with labelled numbers. If every number is assumed, that is fine for now. It shows you what to research first.']
     ]],
     ['q','I509'],
 
     ['h','Idea 2: Your competition is everything the customer could do instead'],
-    ['p','When people hear “competitor”, they think of another company with a similar app. But a customer with a problem has more choices than that. They can use a similar product, use a different kind of product, or just carry on as they do today.'],
-    ['p','That gives three kinds of competitor. The table shows each one with the ticket-theme example:'],
+    ['p','Hear the word “competitor”, and most people think of another company with a similar app. But a customer with a problem has more choices. They can use a similar product. They can use a different kind of product. Or they can carry on as today.'],
+    ['p','That gives three kinds of competitor. The table shows each with the ticket-theme example:'],
     ['tb',['Kind','Meaning','Ticket-theme example'],[
-      ['Direct','A similar product doing the same job','Other AI tools that analyse support tickets'],
-      ['Indirect','A different product doing the same job','Built-in help-desk reports; hiring an analyst'],
+      ['Direct','A similar product doing the same job','Other AI tools that look at support tickets'],
+      ['Indirect','A different kind of product doing the same job','Built-in help-desk reports; hiring an analyst'],
       ['Status quo','Carrying on as today','Reading tickets by hand; a tagging spreadsheet; doing nothing']
     ]],
-    ['p','The status quo is usually the strongest competitor. It costs nothing, it’s familiar, and it already works well enough. People put up with a lot of pain before they change a habit.'],
-    ['c','Watch out','“We have no competitors” almost always means you haven’t looked at the status quo. If people have the problem today, they’re solving it somehow, even if badly.'],
+    ['p','The status quo is usually the strongest competitor. It costs nothing. It is familiar. It already works well enough. People put up with a lot of pain before they change a habit.'],
+    ['c','Watch out','“We have no competitors” nearly always means you have not looked at the status quo. If people have the problem today, they are solving it somehow, even if badly.'],
     ['do','Prove it now',[
-      ['p','Name one direct, one indirect and one status-quo competitor for your capstone. For the status quo, write one sentence on why people stick with it.'],
-      ['x','You should have three competitors and one reason. If you can’t name a direct competitor, search app stores, G2 or Product Hunt for the job, not for your product idea.']
+      ['p','Name one direct, one indirect and one status-quo competitor for your capstone. For the status quo, write one sentence on why people stay with it.'],
+      ['x','You should have three competitors and one reason. If you cannot name a direct competitor, search app stores, G2 or Product Hunt for the job, not for your product idea.']
     ]],
     ['q','I510'],
 
-    ['h','Idea 3: Tear down competitors, then position against them'],
-    ['p','Once you know the alternatives, look at each one closely. A <strong>competitive teardown</strong> examines every alternative in the same way: who it’s for, what job it does, what it costs, and where it’s strong and weak.'],
-    ['p','Where do you find the weaknesses? Customer reviews on G2, Capterra or app stores are the best source. Look for complaints that come up again and again.'],
-    ['p','Then you can write a <strong>positioning statement</strong>. It says who the product is for, and why it’s different. A common format is:'],
+    ['h','Idea 3: Take competitors apart, then position against them'],
+    ['p','Once you know the alternatives, look at each one closely, like opening a clock to see the parts. A <strong>competitive teardown</strong> looks at every alternative the same way. Who is it for? What job does it do? What does it cost? Where is it strong and weak?'],
+    ['p','Where do you find the weak spots? Customer reviews on G2, Capterra or app stores are the best place. Look for complaints that come up again and again.'],
+    ['p','Then you can write a <strong>positioning statement</strong>. It says who the product is for, and why it is different. A common form is:'],
     ['code','For [target customer], who [need],\n[product] is a [category] that [key benefit].\nUnlike [main alternative], it [key difference].'],
-    ['p','For the ticket example, it could read like this: <em>For support leads at growing software companies, who need to report the week’s top issues quickly, Theme Finder is a ticket-analysis tool. It finds themes in minutes. Unlike built-in help-desk reports, it reads the ticket text rather than relying on tags that agents apply inconsistently.</em>'],
+    ['p','For the ticket example, it could read like this: <em>For support leads at growing software companies, who need to report the week’s top issues quickly, Theme Finder is a ticket-analysis tool. It finds themes in minutes. Unlike built-in help-desk reports, it reads the ticket text rather than relying on tags that staff apply inconsistently.</em>'],
     ['do','Prove it now',[
-      ['p','Read ten reviews of your strongest competitor. Write down the two complaints that appear most often. Then write your positioning statement using the format above.'],
-      ['x','You should have two repeated complaints and one positioning statement. The “unlike” line should connect to one of the complaints you found.']
+      ['p','Read ten reviews of your strongest competitor. Write the two complaints you see most often. Then write your positioning statement in the form above.'],
+      ['x','You should have two repeated complaints and one positioning statement. Its “unlike” line should link to one of the complaints you found.']
     ]],
 
     ['h','Idea 4: Know where you sit in the AI value chain'],
-    ['p','So far you’ve looked at competitors from the customer’s side. Now look at your own product’s position. AI products are built in layers, and each layer depends on the one below it.'],
-    ['tb',['Layer','Examples','Where the advantage comes from'],[
-      ['Infrastructure','Chips, cloud providers','Scale and capital'],
-      ['Foundation models','OpenAI, Anthropic, Google, open-source models such as Llama','Research, compute and data'],
-      ['Tooling','Vector databases, evaluation and orchestration tools','Developer adoption'],
-      ['Applications','Products that end users work in','Workflow, distribution, data and trust']
+    ['p','Until now you looked at competitors from the customer’s side. Now look at where your own product sits. AI products are built in layers, like a cake. Each layer stands on the one below.'],
+    ['tb',['Layer','Examples','Where the strength comes from'],[
+      ['Infrastructure','Chips, cloud providers (companies that rent out computers)','Size and money'],
+      ['Foundation models','OpenAI, Anthropic, Google, open-source models such as Llama','Research, computing power and data'],
+      ['Tooling','Helper tools that store text by meaning, check answers, and run steps in order','Developers choosing it'],
+      ['Applications','Products that end users work in','How it fits the work, how it reaches people, data and trust']
     ]],
-    ['p','Most AI PMs work at the application layer. That has one important consequence: <strong>the model is not your advantage</strong>. Your competitors can call the same model through the same API.'],
-    ['p','So what is hard to copy? There are three things. One is being deeply built into a customer’s workflow and tools. Another is data that only your product collects, such as the corrections users make. The third is trust, especially with the security teams who approve B2B purchases.'],
-    ['key','A data advantage is real only if the data is unique to you, makes the product better, and is hard for a competitor to get.'],
+    ['p','Most AI product managers work at the top layer, the application. That has one big result: <strong>the model is not your advantage</strong>. Your competitors can send messages to the same model over the same API (the doorway for sending a message to the model).'],
+    ['p','So what is hard to copy? Three things. One is being built deep into a customer’s daily work and tools. Another is data that only your product collects, like the corrections users make. The third is trust, most of all with the security teams who approve business-to-business buying.'],
+    ['key','A data advantage is real only if three things are true. The data is yours alone. It makes the product better. And a competitor finds it hard to get.'],
     ['do','Prove it now',[
-      ['p','Write down which layer your capstone sits in, and which layers below it you depend on. Then write one advantage you might have, and say honestly whether a competitor could copy it within six months.'],
-      ['x','You should have the layer, your dependencies and one advantage. If the honest answer is “yes, easily”, that’s useful. It tells you to compete on workflow and trust rather than technology.']
+      ['p','Write which layer your capstone sits in, and which layers below it you depend on. Then write one strength you might have. Say honestly if a competitor could copy it in six months.'],
+      ['x','You should have the layer, what you depend on, and one strength. If the honest answer is “yes, easily”, that helps. It tells you to compete on how you fit the work, and on trust, not on technology.']
     ]],
     ['q','I511'],
 
-    ['h','Idea 5: Organise opportunities as a tree'],
-    ['p','You now know the size of the market, the alternatives, and where your product sits. It’s tempting to jump straight from a problem to a solution. An <strong>opportunity solution tree</strong>, an idea from Teresa Torres, slows you down in a useful way.'],
-    ['p','The tree has four levels: an outcome, the opportunities under it, solutions for each opportunity, and a test for each solution. Here is one for the ticket example:'],
-    ['code','Outcome:        Support leads report the week’s top issues in under 30 minutes\n├─ Opportunity:  “I miss new issues that are growing fast”        (interviews 1, 3)\n│  ├─ Solution:  Alert when a new theme doubles week on week\n│  │  └─ Test:   Show five leads a mock alert. Do they act on it?\n├─ Opportunity:  “Tags are applied inconsistently”                 (interviews 1, 2, 4)\n│  ├─ Solution:  Group tickets by their text, not their tags\n│  └─ Solution:  Suggest tag corrections to agents\n└─ Opportunity:  “Nobody reads the report”                         (interview 5)'],
-    ['p','Notice that the opportunities are the needs and pains you heard in interviews. They aren’t features. Each one should point to the interviews it came from.'],
-    ['p','Next, rank the opportunity branches on four things. <strong>Reach</strong> is how many users have the need. <strong>Pain</strong> is how bad it is. <strong>Confidence</strong> is how strong your evidence is. And <strong>strategic fit</strong> is whether it moves your outcome.'],
+    ['h','Idea 5: Put opportunities in a tree'],
+    ['p','You now know the market size, the alternatives, and where your product sits. It is tempting to jump straight from a problem to a fix. An <strong>opportunity solution tree</strong>, an idea from Teresa Torres, slows you down in a helpful way.'],
+    ['p','The tree has four levels, like a family tree. It has a goal, the chances under it, fixes for each chance, and a test for each fix. Here is one for the ticket example:'],
+    ['code','Outcome:        Support leads report the week’s top issues in under 30 minutes\n├─ Opportunity:  “I miss new issues that are growing fast”        (interviews 1, 3)\n│  ├─ Solution:  Alert when a new theme doubles week on week\n│  │  └─ Test:   Show five leads a mock alert. Do they act on it?\n├─ Opportunity:  “Tags are applied inconsistently”                 (interviews 1, 2, 4)\n│  ├─ Solution:  Group tickets by their text, not their tags\n│  └─ Solution:  Suggest tag corrections to support staff\n└─ Opportunity:  “Nobody reads the report”                         (interview 5)'],
+    ['p','See that the chances are the needs and pains you heard in interviews. They are not features. Each one should point to the interviews it came from.'],
+    ['p','Next, rank the branches on four things. <strong>Reach</strong> is how many users have the need. <strong>Pain</strong> is how bad it is. <strong>Confidence</strong> is how strong your proof is. <strong>Strategic fit</strong> is whether it moves your goal forward.'],
     ['try',{id:'a4-tree',mins:12,min:120,rows:7,
-      task:'Draw an opportunity solution tree for your capstone. Include one outcome, at least three opportunities with interview references, and one solution under your top-ranked opportunity. Say why you ranked it first.',
-      ph:'Outcome, opportunities (with interview numbers), solutions, ranking reason…',
-      after:'A strong answer ranks by evidence, not excitement. In the example above, “Tags are applied inconsistently” ranks first. Three of five interviews raised it (reach and confidence), it causes the missed themes that leads worry about (pain), and fixing it directly shortens the report (fit). “Nobody reads the report” may matter more in the end, but one interview is weak evidence, so the next step is to test it, not build for it.'}],
+      task:'Draw an opportunity solution tree for your capstone. Include one goal, at least three chances with interview numbers, and one fix under your top-ranked chance. Say why you ranked it first.',
+      ph:'Goal, chances (with interview numbers), fixes, why this ranking…',
+      after:'A strong answer ranks by proof, not by excitement. In the example above, “Tags are applied inconsistently” ranks first. Three of five interviews raised it (reach and confidence). It causes the missed themes that leads worry about (pain). Fixing it directly shortens the report (fit). “Nobody reads the report” may matter more in the end. But one interview is weak proof. So the next step is to test it, not build for it.'}],
 
     ['h','What you have learned'],
-    ['p','You can now size a market from the bottom up, and say which numbers you know and which you guessed. You can list every alternative a customer has, including doing nothing, and write a sentence that says why your product is different.'],
-    ['p','You also know that the model alone is not an advantage, and you can lay out your opportunities as a tree that points back to your interviews.'],
-    ['p','Next, you’ll use all of this to make choices. The next chapter is about strategy and prioritisation, and about deciding what not to do.']
+    ['p','You can now size a market from the bottom up, and say which numbers you know and which you guessed. You can list every alternative a customer has, even doing nothing. You can write a sentence that says why your product is different.'],
+    ['p','You also know that the model alone is not a strength. And you can lay out your chances as a tree that points back to your interviews.'],
+    ['p','Next, you use all of this to make choices. The next chapter is about strategy (your big plan) and ranking what comes first, and about deciding what not to do.']
   ]
 },
 
 {
   id:'a5', num:'A5', part:6, curriculumTier:'reference', phase:0, prerequisites:['a4'], nextUnits:['a6','a8','b3'], minutes:720, labs:[],
   title:'Strategy and prioritisation: choosing what not to do',
-  concept:'In the last chapter you did the research. Now you turn it into choices. You’ll write a strategy that says which users you serve and what you won’t do. You’ll score your options with prioritisation frameworks, while knowing where they fall short. And you’ll decide whether to build, buy or partner for the AI part of the product.',
+  concept:'In the last chapter you did the research. Now you turn it into choices. You write a strategy (a plan to win) that says which users you serve and what you will not do. You score your options with ranking methods, and you learn where they fall short. Then you decide how to get the AI part of the product: build it, buy it or team up.',
   takeaway:[
-    'Tell a vision from a strategy from a plan.',
-    'Write a strategy that has a diagnosis, a guiding policy and actions that fit together.',
-    'State what makes your product different, and the narrow wedge you will start with.',
-    'Score options with RICE, and explain when to override the score.',
-    'Decide whether to build, buy or partner for the AI part of a product.'
+    'Know the difference between a vision, a strategy and a plan.',
+    'Write a strategy with three parts that fit together: what is wrong, the main approach, and the steps. The parts are called a diagnosis, a guiding policy and actions.',
+    'Say what makes your product different. Say which small corner you will start in, called a wedge.',
+    'Score options with RICE (a score made of four numbers). Say when you should overrule the score.',
+    'Decide whether to build, buy or team up for the AI part of a product.'
   ],
-  needs:[['A market estimate and competitor map','A strategy is a choice about where to compete, and these two show you the options.','A4'],
-         ['A ranked opportunity tree','Prioritisation starts from this list of opportunities.','A4']],
+  needs:[['A market estimate and a competitor map','A strategy is a choice about where to compete. These two show you the options.','A4'],
+         ['A ranked opportunity tree','Ranking starts from this list of chances.','A4']],
   capstone:{
     title:'Write the strategy, and decide what not to do',
-    brief:'You know the problem, the people and the market. Now you decide what to do first and, just as important, what not to do. In this chapter you learned that a strategy needs a diagnosis, a guiding policy and actions that fit together. Here you write one for Bharat Privacy Guard. Then, for each part of the tool, you decide whether to build it yourself, use an existing tool, or pay a provider.',
-    where:'Written only. A memo and a scored spreadsheet. No code needed.',
+    brief:'You know the problem, the people and the market. Now you decide what to do first. Just as important, you decide what not to do. In this chapter you learned that a strategy has a diagnosis, a guiding policy and actions that fit together. Now you write one for Bharat Privacy Guard. Then, for each part of the tool, you choose: build it yourself, use an existing tool, or pay a provider.',
+    where:'You only write. You write a memo (a short note for others) and fill a scored spreadsheet. You do not write any code.',
     steps:[
-      'Write a strategy memo of one to two pages with six headings. These are: the problem as you see it (the diagnosis); who you are building for first (start with the developer); the narrow first product (the developer kit, not the gateway or the browser extension); what makes it different; the trade-offs you accept; and what you will not do.',
-      'Under “what you will not do”, write at least one tempting thing you are ruling out, and give the reason. For example: “I will not cover Tamil or Bengali in version 1, because I cannot yet test them.”',
-      'List ten possible pieces of work, including the gateway and the browser extension. Score each one with RICE. Reach is how many people it touches, Impact is how much it helps them, Confidence is how sure you are, and Effort is how much work it takes. The score is Reach × Impact × Confidence ÷ Effort.',
-      'Choose one score and override it because your strategy says so. Write one paragraph on why the strategy is a better guide than the number in this case.',
-      'The project has three finders: the pattern checker, the name-and-place finder and the context judge. For each one, decide whether to build it yourself, use an existing tool, or pay a provider. Compare the options on quality, speed, cost, privacy, lock-in and time. Write one line of reasoning for each finder.'
+      'Write a strategy memo of one to two pages with six headings. First: the problem as you see it (the diagnosis). Second: who you build for first (start with the developer). Third: the narrow first product (the developer kit, not the gateway or the browser extension). Fourth: what makes it different. Fifth: the trade-offs you accept. Sixth: what you will not do.',
+      'Under “what you will not do”, write at least one tempting thing you rule out, and say why. For example: “I will not cover Tamil or Bengali in version 1, because I cannot yet test them.”',
+      'List ten pieces of work you could do, including the gateway and the browser extension. Score each one with RICE. Reach is how many people it touches. Impact is how much it helps them. Confidence is how sure you are. Effort is how much work it takes. The score is Reach × Impact × Confidence ÷ Effort.',
+      'Pick one score and overrule it because your strategy says so. Write one paragraph on why, here, the strategy is a better guide than the number.',
+      'The project has three finders: the pattern checker, the name-and-place finder and the context judge. For each one, choose: build it yourself, use an existing tool, or pay a provider. Compare the choices on quality, speed, cost, privacy, lock-in (how hard it is to leave) and time. Write one line of reasons for each finder.'
     ],
     done:[
-      'A strategy memo with six headings, including a “will not do” section that rules something out.',
-      'A table of ten scored pieces of work, with one override explained.',
-      'A table showing the build, use or pay decision for each of the three finders.',
+      'A strategy memo with six headings, including a “will not do” part that rules something out.',
+      'A table of ten scored pieces of work, with one overrule explained.',
+      'A table showing the build, use or pay choice for each of the three finders.',
       'Every item in the memo traces back to the diagnosis.',
-      'A score from 0 to 3 for each of the items above, using the scale in this chapter. Move on only when every score is at least 2.'
+      'A score from 0 to 3 for each item above, using this chapter’s scale, like marking your own homework. Move on only when every score is 2 or more.'
     ]
   },
   check:[
@@ -848,96 +848,96 @@ window.PART6 = [
      'It can be right when it unblocks the strategy. It can also be right when it has a hard deadline, which means a high cost of delay, or when it reduces a risk that would sink everything else. For example, a data-privacy review scores low on reach and impact. But without it, no enterprise customer can buy.']
   ],
   story:[
-    ['c','On your route','Take a first pass of about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
-    ['c','Before you start','In full, this chapter takes about twelve hours. Keep your market estimate, competitor matrix and opportunity tree from A4 open next to you. Most of the work is writing, so expect to draft your strategy memo at least twice.'],
+    ['c','On your route','First, go through it quickly, in about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
+    ['c','Before you start','Doing it all takes about twelve hours. Keep your market estimate, competitor table and opportunity tree from A4 open next to you. Most of the work is writing. Plan to write your strategy memo at least twice.'],
 
-    ['p','In A4 you collected evidence: who the users are, how big the market is, and who else is already there. Evidence alone doesn’t tell you what to do on Monday morning. For that, you have to choose.'],
-    ['p','This chapter is about making those choices. You’ll write a strategy, learn to score options without fooling yourself, and decide how to get the AI part of your product. The hardest lesson here is also the most useful one: a good strategy says what you will not do.'],
+    ['p','In A4 you collected proof: who the users are, how big the market is, and who is already there. Proof alone does not tell you what to do on Monday morning. For that, you must choose.'],
+    ['p','This chapter is about making those choices. You write a strategy. You learn to score options without fooling yourself. You decide how to get the AI part of your product. The hardest lesson is also the most useful: a good strategy says what you will not do.'],
 
     ['h','Idea 1: Vision, strategy and plan are different things'],
-    ['p','People often use these three words as if they mean the same thing. They don’t. Each one answers a different question, over a different stretch of time.'],
-    ['p','The table below uses one running example, a tool that groups customer-support tickets into themes. Read across each row and see how the same product looks at three levels.'],
+    ['p','People often use these three words as if they mean the same. They do not. Each answers a different question, over a different stretch of time. Think of a trip: the vision is the city you want to reach, the strategy is the road you pick, the plan is today’s turns.'],
+    ['p','The table below uses one example all the way through: a tool that groups customer-support tickets (customers’ questions and complaints) into themes. Read across each row. You see the same product at three levels.'],
     ['tb',['','Answers','Time frame','Ticket-theme example'],[
       ['Vision','Where are we going?','3–5 years','Every product team knows what customers are struggling with, every week, without anyone reading tickets by hand.'],
       ['Strategy','How will we win?','1–2 years','Start with support leads at 50–500-person software companies on Freshdesk, and win on accuracy for fast-growing new issues.'],
       ['Plan','What are we doing next?','This quarter','Ship theme grouping for one help desk to ten design partners.']
     ]],
-    ['p','The strategy is the hard part, because it means choosing. A vision can be inspiring, and a plan can be busy. But only a strategy says which customers you will serve and which ones you will turn away.'],
-    ['c','From delivery to product','On a government project, the scope reached you in a tender document or a project report, and your job was to deliver it. As the product manager you write the scope. That includes the “not doing” list, and you defend it when a senior asks for one more feature. Write that list first, then ask what you would say to the person who wants an item back.'],
+    ['p','The strategy is the hard part, because it means choosing. A vision can inspire, and a plan can be busy. Only a strategy says which customers you serve and which you turn away.'],
+    ['c','From delivery to product','On a government project, the scope (what is in the job and what is not) came to you in a tender document or a project report. Your job was to deliver it. As the product manager, you write the scope. That includes the “not doing” list. You defend it when a senior asks for one more feature. Write that list first. Then ask what you would say to someone who wants an item back.'],
     ['do','Prove it now',[
       ['p','Write one sentence each for your capstone’s vision, strategy and plan.'],
-      ['x','You should now have three sentences. Look hard at the strategy one. Does it name a specific user and a specific way you will win? If it could describe any company, rewrite it.']
+      ['x','You should now have three sentences. Look hard at the strategy one. Does it name a specific user and a specific way to win? If it could describe any company, rewrite it.']
     ]],
     ['q','I512'],
 
     ['h','Idea 2: A strategy starts with a diagnosis'],
-    ['p','So what goes into a real strategy? In his book <em>Good Strategy Bad Strategy</em>, Richard Rumelt says every real strategy has three parts.'],
+    ['p','So what goes into a real strategy? In his book <em>Good Strategy Bad Strategy</em>, Richard Rumelt says every real strategy has three parts. Think of a doctor: find the illness, pick the treatment, give the medicines.'],
     ['n',[
-      '<strong>Diagnosis.</strong> What is the critical challenge? What is actually going on?',
-      '<strong>Guiding policy.</strong> What is our overall approach to that challenge?',
-      '<strong>Coherent actions.</strong> Which specific steps carry out the policy and support each other?'
+      '<strong>Diagnosis.</strong> What is the biggest challenge? What is really going on?',
+      '<strong>Guiding policy.</strong> What is our main approach to that challenge?',
+      '<strong>Coherent actions.</strong> Which exact steps carry out the policy and help each other?'
     ]],
-    ['p','Let’s fill in all three for the ticket example. Notice how each part follows from the one before it.'],
+    ['p','Let us fill in all three for the ticket example. See how each part follows from the one before it.'],
     ['tb',['Part','Example'],[
       ['Diagnosis','Support leads miss fast-growing new issues because tickets are tagged inconsistently, and reading them all takes hours.'],
       ['Guiding policy','Find themes from ticket text rather than tags, and focus on spotting new issues early rather than full reporting.'],
       ['Coherent actions','Integrate with one help desk; build week-on-week growth alerts; recruit ten design partners; measure missed issues against their manual reports.']
     ]],
-    ['p','Rumelt also describes <strong>bad strategy</strong>. It is a goal dressed up as a plan. “Become the leading AI support-analytics platform” is a goal. It has no diagnosis, so it gives nobody any guidance.'],
-    ['c','Tip','Here’s a quick test. Remove your company’s name from the strategy. If a competitor could paste it into their own deck unchanged, it isn’t specific enough.'],
+    ['p','Rumelt also describes <strong>bad strategy</strong>. It is a wish dressed up as a plan. “Become the leading AI support-analytics platform” is a wish. It has no diagnosis, so it guides nobody.'],
+    ['c','Tip','Try this quick test. Take your company’s name out of the strategy. If a competitor could paste it into their own slides unchanged, it is not specific enough.'],
     ['do','Prove it now',[
-      ['p','Write a one-sentence diagnosis for your capstone, based on your interview evidence. Then write the guiding policy that follows from it.'],
-      ['x','You should have two sentences. The diagnosis should name a cause, not just a symptom. “Reports are slow” is a symptom. “Reports are slow because tags are unreliable, so every ticket must be read” is a diagnosis.']
+      ['p','Write a one-sentence diagnosis for your capstone, from your interview proof. Then write the guiding policy that follows from it.'],
+      ['x','You should have two sentences. The diagnosis should name a cause, not just a sign of trouble. “Reports are slow” is only a sign. “Reports are slow because tags are unreliable, so every ticket must be read” is a diagnosis.']
     ]],
 
     ['h','Idea 3: Say why you are different, and where you will start'],
-    ['p','Once you know the problem, you need to say why you are the right one to solve it. That is your <strong>value proposition</strong>. It says who you serve, what job you do for them, and why you are better than the alternatives. You already wrote a first version as your positioning statement in A4.'],
-    ['p','Next, decide where to begin. A <strong>wedge</strong> is the narrow first use case that you can clearly win. It should be small enough for you to be excellent at, and connected to something bigger.'],
-    ['p','For the ticket example, the wedge is “spot fast-growing new issues for Freshdesk users”. It is not “AI analytics for customer support”. The first one is something a team can finish. The second is something a team can only talk about.'],
-    ['p','You can pair these with a <strong>North Star</strong>. This is one sentence describing the value customers get, and one metric that measures it. For example, “issues caught in their first week”. Chapter B3 covers North Star metrics in detail.'],
-    ['key','Start narrow enough to be the best at something. You can widen the wedge later, but you can’t recover from being average at everything.'],
+    ['p','When you know the problem, say why you are the right one to solve it. That is your <strong>value proposition</strong> (the promise of what you give). It says who you serve, what job you do for them, and why you beat the alternatives. You wrote a first version as your positioning statement in A4.'],
+    ['p','Next, choose where to begin. A <strong>wedge</strong> is the narrow first use you can clearly win, like the thin end of a wedge that goes in first. It should be small enough to be excellent at, and linked to something bigger.'],
+    ['p','For the ticket example, the wedge is “spot fast-growing new issues for Freshdesk users”. It is not “AI analytics for customer support”. A team can finish the first. A team can only talk about the second.'],
+    ['p','You can pair these with a <strong>North Star</strong> (the one guiding light you steer by). It is one sentence on the value customers get, and one number that measures it. For example, “issues caught in their first week”. Chapter B3 covers North Star metrics in detail.'],
+    ['key','Start narrow, so you can be the best at something. You can widen the wedge later. But you cannot recover from being average at everything.'],
     ['do','Prove it now',[
-      ['p','Write your capstone’s wedge in one sentence. Then write the next, wider use case it leads to.'],
-      ['x','You should have two sentences. If your wedge includes the words “all”, “any” or “platform”, it’s probably not narrow enough yet.']
+      ['p','Write your capstone’s wedge in one sentence. Then write the next, wider use it leads to.'],
+      ['x','You should have two sentences. If your wedge uses the words “all”, “any” or “platform”, it is probably not narrow enough yet.']
     ]],
 
-    ['h','Idea 4: Use prioritisation frameworks, and know their limits'],
-    ['p','By now you’ll have more good ideas than time. How do you compare them fairly? A framework helps you judge every option in the same way. The most common one is <strong>RICE</strong>. It turns four judgements into one score.'],
+    ['h','Idea 4: Use ranking methods, and know their limits'],
+    ['p','By now you have more good ideas than time. How do you compare them fairly? A framework (a fixed way of scoring) helps you judge every option the same way. The most common is <strong>RICE</strong>. It turns four judgements into one score, like marks adding up to a grade.'],
     ['code','RICE score = (Reach × Impact × Confidence) ÷ Effort\n\nReach       users affected per quarter        e.g. 400\nImpact      3 = massive, 2 = high, 1 = medium, 0.5 = low\nConfidence  100% = high, 80% = medium, 50% = low\nEffort      person-months of work'],
-    ['p','Here is how it works on three opportunities for the ticket example. Try the sum for the first row yourself: 400 × 2 × 80% ÷ 2 gives 320.'],
+    ['p','Here is how it works on three chances for the ticket example. Try the sum for the first row yourself: 400 × 2 × 80% ÷ 2 gives 320.'],
     ['tb',['Opportunity','Reach','Impact','Confidence','Effort','RICE'],[
       ['Growth alerts','400','2','80%','2','320'],
       ['Tag correction suggestions','600','1','50%','3','100'],
       ['Second help-desk integration','250','2','100%','4','125']
     ]],
-    ['p','Two other tools are useful too. <strong>MoSCoW</strong> sorts items into Must, Should, Could and Won’t, which is good for agreeing scope with other people. <strong>Cost of delay</strong> asks what you lose for every week you wait, which matters when there is a deadline.'],
-    ['c','Watch out','A framework is only as good as the numbers you put in, and those numbers are mostly guesses. Frameworks also ignore strategy and dependencies. Use them to structure a discussion, not to make the decision for you.'],
+    ['p','Two other tools help too. <strong>MoSCoW</strong> sorts items into Must, Should, Could and Won’t. It is good for agreeing on scope with other people. <strong>Cost of delay</strong> asks what you lose for every week you wait. It matters when there is a deadline.'],
+    ['c','Watch out','A framework is only as good as the numbers you put in. Those numbers are mostly guesses. Frameworks also ignore your strategy and what depends on what. Use them to shape a talk, not to make the choice for you.'],
     ['do','Prove it now',[
-      ['p','Score three of your capstone opportunities with RICE. Then find one case where you would pick a lower score over a higher one, and write down why.'],
-      ['x','You should have a three-row table and one override. A good reason to override is a dependency, a deadline or a strategic bet. “I like it more” is not a good reason.']
+      ['p','Score three of your capstone chances with RICE. Then find one case where you would pick a lower score over a higher one. Write why.'],
+      ['x','You should have a three-row table and one overrule. A good reason to overrule is something that depends on another, a deadline or a big bet on your strategy. “I like it more” is not a good reason.']
     ]],
     ['q','I513'],
     ['q','I514'],
 
-    ['h','Idea 5: Build, buy or partner for the AI layer'],
-    ['p','There is one more choice to make before you can plan the work. Where will the AI part of your product come from? You have three options.'],
-    ['p','The table gives each option in plain words, and then says when it makes sense. Read the last column first, because that is where the decision is.'],
+    ['h','Idea 5: Build, buy or team up for the AI layer'],
+    ['p','There is one more choice before you can plan the work. Where will the AI part of your product come from? You have three options, like getting a cake: bake it, buy it, or ask a bakery to do it with you.'],
+    ['p','The table gives each option in plain words, then says when it makes sense. Read the last column first, because that is where the decision is.'],
     ['tb',['Option','What it means','When it makes sense'],[
-      ['Build','Train or fine-tune your own model','Rarely early on. It makes sense when you have unique data, a narrow task and a team to maintain it.'],
-      ['Buy','Call a model through an API (OpenAI, Anthropic, Google)','Usually the right start. It is fast, the quality is high, and you pay as you go.'],
-      ['Partner','Use a specialist vendor for the whole capability','It makes sense when the capability is not your core, such as speech recognition or document parsing.']
+      ['Build','Train or fine-tune your own model (teach it with many examples)','Rarely early on. It makes sense when you have data nobody else has, a narrow task and a team to look after it.'],
+      ['Buy','Send messages to a model over the internet through an API (OpenAI, Anthropic, Google)','Usually the right start. It is fast, the quality is high, and you pay as you go, like paying per SMS.'],
+      ['Partner','Use a specialist company for the whole job','It makes sense when the job is not your main strength, like turning speech into text or reading documents.']
     ]],
-    ['p','To compare the options, use six criteria. They are <strong>quality</strong> on your own test cases, <strong>latency</strong>, <strong>cost</strong> per task, <strong>privacy</strong> (where the data goes), <strong>lock-in</strong> (how hard it is to switch) and <strong>time to market</strong>.'],
-    ['p','You should also ask whether AI suits the task at all. AI is a good fit when mistakes are acceptable or easy to catch. A wrong theme in a weekly report gets corrected at the next meeting. A wrong number in an invoice costs money. The same model can suit one task and not the other.'],
+    ['p','Use six checks to compare the options. They are <strong>quality</strong> on your own test cases, <strong>speed</strong> (how long you wait for an answer), <strong>cost</strong> per task, <strong>privacy</strong> (where the data goes), <strong>lock-in</strong> (how hard it is to switch) and <strong>time to market</strong> (how soon people can use it).'],
+    ['p','Also ask whether AI suits the task at all. AI fits when mistakes are fine or easy to catch. A wrong theme in a weekly report gets fixed at the next meeting. A wrong number in an invoice (a bill) costs money. The same model can suit one task and not the other.'],
     ['try',{id:'a5-bbp',mins:10,min:120,rows:6,
-      task:'Write a short build/buy/partner decision for your capstone’s AI layer. Compare at least two options on the six criteria, then state your choice and what would make you revisit it.',
-      ph:'Options, six criteria, decision, revisit trigger…',
-      after:'A strong answer for the ticket example would <strong>buy</strong>: use a hosted model through an API. It is fast to ship, and quality on 50 test tickets was good enough. Cost is about $0.02 per week per customer, and time to market is weeks rather than months. <strong>Build</strong> would need labelled data we do not have yet. The risks are privacy, because tickets contain customer details, and lock-in. So use a provider that does not train on customer data, and keep prompts and the test set independent of any one vendor. <strong>Revisit if:</strong> cost per customer passes $1 a month, or we have 10,000 corrected labels.'},],
+      task:'Write a short build, buy or partner decision for your capstone’s AI layer. Compare at least two options on the six checks. Then say your choice, and what would make you look at it again.',
+      ph:'Options, six checks, choice, what makes me look again…',
+      after:'A strong answer for the ticket example would <strong>buy</strong>: use a hosted model (one that runs on the provider’s computers) through an API. It is fast to ship, and on 50 test tickets the quality was good enough. Cost is about $0.02 per week per customer. Time to market is weeks, not months. <strong>Build</strong> would need examples with the right answers written on them, and we do not have those yet. The risks are privacy, because tickets hold customer details, and lock-in. So pick a provider that does not learn from customer data. Keep your instructions to the model and your test questions free of any one vendor. <strong>Look again if:</strong> cost per customer passes $1 a month, or we have 10,000 corrected labels.'},],
 
     ['h','What you have learned'],
-    ['p','Let’s pull the chapter together. A vision says where you’re going, a strategy says how you’ll win, and a plan says what happens this quarter. A real strategy starts from a diagnosis, and it is brave enough to say what you will not do.'],
-    ['p','You also have two ways to keep yourself honest. RICE gives you a score to start the discussion, and your strategy tells you when to overrule it. The build, buy or partner table keeps the AI decision grounded in six clear criteria.'],
-    ['p','Next, in A6, you’ll take this strategy and turn it into a roadmap, set goals with numbers, and work out who needs to say yes.']
+    ['p','Let us pull the chapter together. A vision says where you are going. A strategy says how you win. A plan says what happens this quarter. A real strategy starts from a diagnosis, and is brave enough to say what you will not do.'],
+    ['p','You also have two ways to stay honest. RICE gives you a score to start the talk. Your strategy tells you when to overrule it. The build, buy or partner table keeps the AI choice tied to six clear checks.'],
+    ['p','Next, in A6, you take this strategy and turn it into a roadmap (the plan of what comes first, next and later). You set goals with numbers. You work out who has to say yes.']
   ]
 },
 
@@ -973,7 +973,7 @@ window.PART6 = [
       'A map of the people involved. The person who could say no is named.',
       'A pre-mortem with five reasons for failure, and an answer to each.',
       'A one-page decision memo (a short note that asks the boss to decide).',
-      'A score from 0 to 3 for each of the items above, using the scale in this chapter. Move on only when every score is at least 2.'
+      'A score from 0 to 3 for each item above, using this chapter’s scale, like marking your own homework. Move on only when every score is 2 or more.'
     ]
   },
   check:[
@@ -985,7 +985,7 @@ window.PART6 = [
      'Name them. For an AI product in a B2B company, it is often the security or privacy lead. They need to know where the data goes and whether it is stored. Find out what they need early, because a late “no” from them costs more than any feature.']
   ],
   story:[
-    ['c','On your route','Take a first pass of about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
+    ['c','On your route','First, go through it quickly, in about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
     ['c','Before you start','In full, this chapter takes about ten hours. Keep your strategy memo and RICE scores (the scores that ranked your ideas) from A5 open next to you. Also think about the people around your capstone: who pays for it, who says yes to it and who uses it.'],
 
     ['p','In A5 you chose what to do first and what not to do. But a plan on paper is only an idea. To make it real, a team needs steps it can follow. The people who hold the money and the approvals need a reason to say yes.'],
@@ -1008,7 +1008,7 @@ window.PART6 = [
       ['Kill criterion','Stop if fewer than half of design partners act on an alert within four weeks']
     ]],
     ['p','Outcome roadmaps matter even more for AI work. You often cannot know in advance if a model will be good enough. It is like a parrot that has read a whole library: you only find out how well it answers when you test it. So a date promised before testing is only a guess.'],
-    ['key','A kill criterion (a rule for when to stop) set in advance makes it much easier to stop work that is not working. It is like agreeing before a trip when you will turn back.'],
+    ['key','A kill criterion (a rule for when to stop) set in advance makes it much easier to stop work that has gone wrong. Think of agreeing before a trip when you will turn back.'],
     ['do','Prove it now',[
       ['p','Write one “now” item for your capstone as an outcome. Fill in all five fields from the table.'],
       ['x','You should have one roadmap item. Check the kill criterion. Is it a number you can really measure within a few weeks?']
@@ -1069,7 +1069,7 @@ window.PART6 = [
       ['Precision stays below 85%','Medium','High','PM and engineer','Give it a time limit of three weeks, then narrow the use case (make the job smaller)']
     ]],
     ['p','AI products carry a few risks of their own. The model’s quality may never reach the bar, like a student who never passes. The provider may change the model underneath you. And approvals to use data can take months.'],
-    ['c','From delivery to product','You already keep a risk and issue log (a list of what could go wrong and what has) and a stakeholder register (a list of who cares). Keep both. Only the first column changes. A delivery log starts with the milestone and its date. A product log starts with the outcome and its kill criterion. In the stakeholder grid, add each person’s incentive and whether they can veto. Your government experience will fill it faster than most readers can.'],
+    ['c','From delivery to product','You already keep a risk and issue log (what could go wrong, and what has) and a stakeholder register (who cares). Keep both. Only the first column changes. A delivery log starts with the milestone and its date. A product log starts with the outcome and its kill criterion. In the stakeholder grid, add each person’s incentive and whether they can veto. Your government experience helps you fill it fast.'],
     ['p','Now turn one thing you delivered into this new style.'],
     ['try',{id:'a6-translate',mins:10,min:120,rows:6,
       task:'Take one milestone you delivered on a government project. Rewrite it as an outcome with proof, an owner and a kill criterion. Then write what you would have had to decide, not just deliver.',
@@ -1090,34 +1090,34 @@ window.PART6 = [
 {
   id:'a7', num:'A7', part:6, curriculumTier:'reference', phase:0, prerequisites:['a6','a3'], nextUnits:['b2','b4','b8'], minutes:840, labs:[],
   title:'Specs, stories and prototypes: from decision to delivery',
-  concept:'You have a plan. Now you turn one decision from it into something engineering can build and users can test. You’ll write a PRD that starts from the problem and break it into user stories with edge cases. Then you’ll slice an MVP from end to end, plan two sprints, and test a clickable prototype with real users.',
+  concept:'You have a plan. Now you take one decision from it and turn it into something engineers can build and users can try. You will write a PRD (a recipe card for the product) that starts from the problem. You will break it into user stories (short notes about what a user wants), with edge cases (odd situations). Then you will cut an MVP (the smallest first version), plan two sprints (short work rounds), and test a clickable prototype (a rough model of the screens) with real users.',
   takeaway:[
-    'Write a PRD that starts from the problem and has measurable acceptance criteria.',
-    'Write user stories and job stories that cover edge cases, including AI failure states.',
-    'Slice an MVP into a thin end-to-end version that tests your riskiest assumption.',
-    'Plan sprints, estimate uncertain AI work with time-boxes, and run a retrospective.',
-    'Choose the right prototype fidelity and run a usability test without leading the user.'
+    'Write a PRD that starts from the problem. Give it acceptance criteria (tests that say when it is done) that you can measure.',
+    'Write user stories and job stories. Cover the odd cases, including what the user sees when the AI gets it wrong.',
+    'Cut an MVP into one thin slice that works from start to end. It tests the thing you are most afraid of getting wrong.',
+    'Plan sprints. For AI work you cannot guess, set a time limit (a time-box). Then hold a retrospective (a look back at what happened).',
+    'Pick how rough or polished the prototype should be. Run a usability test (watching people try it) without hinting.'
   ],
-  needs:[['An outcome roadmap','The PRD describes the first item in its “now” column.','A6'],
-         ['Your riskiest unknown','The MVP should test it.','A3']],
+  needs:[['An outcome roadmap (a map of changes you want, in order)','The PRD describes the first item in its “now” column, like a recipe card for the first dish on the menu.','A6'],
+         ['Your riskiest unknown (the thing you are least sure about)','The MVP should test it, like tasting the soup before you cook the whole meal.','A3']],
   capstone:{
     title:'Write the requirements, test a first prototype and plan two sprints',
-    brief:'Now you describe exactly what version 1 of the developer kit must do, show a rough version to real people, and plan the work. In this chapter you learned to write a requirements document (a PRD) that starts from the problem, to choose how detailed a prototype should be, and to plan sprints that include uncertain work. Here you do all three.',
-    where:'Written for the requirements and the plan, plus a no-code prototype. The <a href="#/playground">Playground</a> in this app is enough for a first version; Google AI Studio or Lovable can turn it into a clickable screen. No Python needed.',
+    brief:'Now you describe exactly what version 1 of the developer kit must do. You show a rough version to real people. And you plan the work. In this chapter you learned to write a requirements document (a PRD), which starts from the problem. You learned to choose how polished a prototype should be. You learned to plan sprints that include work you cannot guess. Here you do all three.',
+    where:'Written only for the requirements and the plan, plus a prototype with no code. The <a href="#/playground">Playground</a> in this app is enough for a first version. Google AI Studio or Lovable can turn it into a clickable screen. No Python needed.',
     steps:[
-      'Write a requirements document (a PRD) with these headings: the problem and the evidence for it; who it is for; what is in version 1; what is not in version 1; what the user sees in each situation, including when the tool is unsure or wrong; how the AI behaves; how you will test it; how you will measure success; how it will be released; security; and open questions.',
-      'In “what is in version 1” and “what is not in version 1”, draw the line clearly. Say which kinds of writing, which IDs, and which of the kit, the gateway and the extension you will really build.',
-      'Write six user stories in the form “As a [who], I want [what], so that [why]”. At least two must describe a failure. For example: “As a developer, I want to be told when the tool is unsure, so that I can ask the user.”',
-      'Build a clickable prototype. It is a page with a text box, a button and a result area that shows the text with personal details replaced. The quickest first version is the <a href="#/playground">Playground</a> in this app: the system prompt is your detector, and the message box is the text box. For a screen you can hand to a user, Google AI Studio or Lovable will generate one. The detection can be fake at this stage, because you are testing the screen, not the accuracy.',
-      'Ask three real people to try it. Give each the same task, such as “paste this message and tell me what you think happened to it”, and do not help them. Write down where each person got stuck.',
-      'Plan two one-week sprints in a spreadsheet or in Jira. For each story, write what counts as done, what it depends on, and what you will demonstrate at the end. After the first sprint, hold a short review and write down what you will change.'
+      'Write a requirements document (a PRD) with these headings: the problem and the proof for it; who it is for; what is in version 1; what is not in version 1; what the user sees in each situation, including when the tool is unsure or wrong; how the AI behaves; how you will test it; how you will measure success; how it will be released; security; and open questions.',
+      'Under “what is in version 1” and “what is not in version 1”, draw a clear line. Say which kinds of writing, which IDs, and which of the kit, the gateway and the extension you will really build.',
+      'Write six user stories in the form “As a [who], I want [what], so that [why]”. At least two must be about something going wrong. For example: “As a developer, I want to be told when the tool is unsure, so that I can ask the user.”',
+      'Build a clickable prototype. It is a page with a text box, a button and a result area. The result shows the text with personal details swapped out. The quickest first version is the <a href="#/playground">Playground</a> in this app: the system prompt (the standing instructions on the shop wall) is your detector, and the message box is the text box. For a screen you can hand to a user, Google AI Studio or Lovable will make one. The detection can be fake for now, because you are testing the screen, not how right it is.',
+      'Ask three real people to try it. Give each the same task, such as “paste this message and tell me what you think happened to it”. Do not help them. Write down where each person got stuck.',
+      'Plan two one-week sprints in a spreadsheet or in Jira (a tool teams use to track work). For each story, write what counts as done, what it needs from others, and what you will show at the end. After the first sprint, hold a short review. Write down what you will change.'
     ],
     done:[
-      'A requirements document that an engineer could estimate without asking you what success means.',
-      'Six user stories, at least two about things going wrong.',
+      'A requirements document that an engineer could size up without asking you what success means.',
+      'Six user stories. At least two are about things going wrong.',
       'A clickable prototype, and notes from three people who tried it.',
-      'A two-sprint plan with a review after the first.',
-      'A score from 0 to 3 for each of the items above, using the scale in this chapter. Move on only when every score is at least 2.'
+      'A two-sprint plan, with a review after the first sprint.',
+      'A score from 0 to 3 for each item above, using this chapter’s scale, like marking your own homework. Move on only when every score is 2 or more.'
     ]
   },
   check:[
@@ -1129,99 +1129,99 @@ window.PART6 = [
      'Check for criteria like these. “If no theme has more than five tickets, say so instead of inventing one.” “If the model times out, show last week’s report with a notice.” “Tickets in other languages are grouped or flagged, never dropped silently.” If criteria like these are missing, the product will fail in production in ways nobody planned for.']
   ],
   story:[
-    ['c','On your route','Take a first pass of about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
-    ['c','Before you start','In full, this chapter takes about 14 hours, spread across a week or more because of the user tests. For the prototype, the <a href="#/playground">Playground</a> in this app is enough to start; a free account on Figma, Lovable or Google AI Studio gives you a nicer screen. For the sprint plan you need Jira (free tier) or a spreadsheet. Core chapter 18 goes deeper on AI PRDs. This chapter covers the product-management basics.'],
+    ['c','On your route','First, go through it quickly, in about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
+    ['c','Before you start','In full, this chapter takes about 14 hours, spread across a week or more because of the user tests. For the prototype, the <a href="#/playground">Playground</a> in this app is enough to start. A free account on Figma, Lovable or Google AI Studio gives you a nicer screen. For the sprint plan you need Jira (free tier) or a spreadsheet. Core chapter 18 goes deeper on AI PRDs. This chapter covers the basics of managing a product.'],
 
-    ['p','In A6 you made a plan: a roadmap, goals with numbers, and a map of the people involved. A plan still isn’t something an engineer can start building on Monday. For that, the first item on your roadmap has to be described in detail.'],
-    ['p','This chapter shows you how. You’ll write the description, cut the work into small pieces, build a rough prototype, and watch real people use it.'],
+    ['p','In A6 you made a plan: a roadmap, goals with numbers, and a map of the people involved. But an engineer still cannot start building from it on Monday. For that, the first item on your roadmap needs a detailed description, like a recipe a cook can follow.'],
+    ['p','This chapter shows you how. You will write that description. You will cut the work into small pieces. You will build a rough model of the screens. And you will watch real people use it.'],
 
     ['h','Idea 1: Start the PRD from the problem'],
-    ['p','Let’s start with the description itself. It is called a <strong>PRD</strong>, short for product requirements document, and it explains what to build and why.'],
-    ['p','A good PRD starts with the problem and the evidence for it, and only then describes the solution. Why this order? Because engineers make better decisions when they know the problem they are solving.'],
-    ['p','A PRD for an AI feature has these sections, in this order.'],
+    ['p','Let us start with the description itself. It is called a <strong>PRD</strong>, short for product requirements document. Think of it as the recipe card for a dish: it says what to build and why.'],
+    ['p','A good PRD starts with the problem and the proof for it. Only then does it describe the answer. Why this order? Engineers decide better when they know the problem they are solving.'],
+    ['p','A PRD for an AI feature has these parts, in this order.'],
     ['n',[
       '<strong>Problem and evidence.</strong> What is wrong today, for whom, and how you know.',
       '<strong>Users.</strong> Who this is for, and who it is not for.',
-      '<strong>Scope and non-goals.</strong> What is included, and what is deliberately left out.',
+      '<strong>Scope and non-goals.</strong> What is in, and what you leave out on purpose.',
       '<strong>UX states.</strong> What the user sees when it works, when it is unsure, when it fails and when it refuses.',
-      '<strong>AI behaviour.</strong> What the model does, what it is given, and what it must never do.',
-      '<strong>Evaluations.</strong> The test set and the pass threshold.',
-      '<strong>Metrics, rollout and security.</strong> How you will measure success, release safely and protect data.',
+      '<strong>AI behaviour.</strong> What the model does, what you hand it, and what it must never do.',
+      '<strong>Evaluations.</strong> The test set (questions with known answers) and the pass mark.',
+      '<strong>Metrics, rollout and security.</strong> How you will measure success, release step by step, and keep data safe.',
       '<strong>Open questions.</strong> What you do not know yet.'
     ]],
-    ['p','The most important part is the <strong>acceptance criteria</strong>. These are the conditions that tell you the feature is done, and each one must be something you can test.'],
-    ['p','AI features give slightly different answers each time. So their criteria describe a rate across a test set, not a single correct output. The table puts vague wishes next to criteria you can actually test.'],
-    ['tb',['Not testable','Testable'],[
-      ['Themes are accurate','On the 50-ticket test set, at least 85% of themes match the lead’s own grouping'],
+    ['p','The most important part is the <strong>acceptance criteria</strong>. They are the tests that tell you the feature is done, like the answer key for a homework. Each one must be something you can check.'],
+    ['p','An AI feature gives slightly different answers each time. So its criteria describe a rate over a test set, not one right answer. The table puts vague wishes next to criteria you can really check.'],
+    ['tb',['Cannot be checked','Can be checked'],[
+      ['Themes (topic labels) are accurate','On the 50-ticket test set, at least 85% of themes match the lead’s own grouping'],
       ['It is fast','The weekly report is ready within 2 minutes for up to 1,000 tickets'],
-      ['It handles bad input','If fewer than 20 tickets are imported, it says so and does not produce themes']
+      ['It handles bad input','If fewer than 20 tickets are imported, it says so and does not make themes']
     ]],
-    ['c','From delivery to product','Government projects often start from a requirements specification: a long list of what the system must do. It says what to build. A PRD starts one step earlier, with the problem and the evidence, and ends with a pass rate you can test. If you have signed off a specification, rewrite one line of it as a testable criterion.'],
-    ['c','Tip','There is a fillable AI PRD template in the <a href="#/templates/prd">workbench</a>. Use it for the Build it task.'],
+    ['c','From delivery to product','Government projects often start from a requirements specification: a long list of what the system must do. It says what to build. A PRD starts one step earlier, with the problem and the proof. It ends with a pass rate you can check. If you have signed off a specification, rewrite one line of it as a criterion you can check.'],
+    ['c','Tip','There is a fillable AI PRD template (a blank form) in the <a href="#/templates/prd">workbench</a>. Use it for the Build it task.'],
     ['do','Prove it now',[
-      ['p','Write three acceptance criteria for your capstone’s first feature. Make each one testable: a number, a test set or a specific condition.'],
-      ['x','You should have three criteria. For each one, ask yourself whether two people could disagree about whether it passed. If they could, it is not testable yet.']
+      ['p','Write three acceptance criteria for your capstone’s first feature. Make each one checkable: a number, a test set or a clear condition.'],
+      ['x','You should have three criteria. For each one, ask yourself: could two people disagree about whether it passed? If yes, it cannot be checked yet.']
     ]],
     ['q','I518'],
 
-    ['h','Idea 2: Break the work into stories, including the edge cases'],
-    ['p','A PRD describes the whole feature. To build it, the team needs smaller pieces. The usual piece is a <strong>user story</strong>, which describes one bit of value from the user’s point of view.'],
+    ['h','Idea 2: Break the work into stories, including the odd cases'],
+    ['p','A PRD describes the whole feature. To build it, the team needs smaller pieces, like cutting a big roti into bites. The usual piece is a <strong>user story</strong>. It describes one bit of value from the user’s point of view.'],
     ['code','As a [role], I want [action], so that [benefit].\n\nAs a support lead, I want to see the five biggest themes from last week,\nso that I can tell the product team what to fix first.'],
-    ['p','There is a second form too. A <strong>job story</strong> starts from the situation instead of the role. This often gives engineers more useful context.'],
+    ['p','There is a second kind. A <strong>job story</strong> starts from the situation, not the role. This often gives engineers more useful context.'],
     ['code','When I open the report on Monday morning, I want to see what is new\nsince last week, so I can raise it before it grows.'],
-    ['p','Every story needs acceptance criteria, and it also needs <strong>edge cases</strong>. These are the unusual inputs and states that break things. AI features have extra edge cases that ordinary software does not. The table lists the common ones, with what should happen in each.'],
-    ['tb',['Edge case','What should happen'],[
-      ['No clear themes this week','Say so, rather than inventing themes'],
-      ['Tickets in another language','Group them, or flag them clearly; never drop them silently'],
-      ['Model times out','Show last week’s report with a notice'],
+    ['p','Every story needs acceptance criteria. It also needs <strong>edge cases</strong>. These are the unusual inputs and states that break things, like a rainy day that breaks the cricket match plan. AI features have extra edge cases that ordinary software does not. The table lists the common ones, with what should happen in each.'],
+    ['tb',['Edge case (an odd situation)','What should happen'],[
+      ['No clear themes this week','Say so. Do not make up themes.'],
+      ['Tickets in another language','Group them, or mark them clearly. Never drop them without telling anyone.'],
+      ['Model takes too long and gives up (times out)','Show last week’s report with a notice'],
       ['Model is unsure','Mark the theme as low confidence'],
-      ['Ticket contains personal data','Remove it before sending the text to the model']
+      ['Ticket has personal data (someone’s private details)','Take it out before you send the text to the model']
     ]],
     ['do','Prove it now',[
-      ['p','Write one user story for your capstone, with two acceptance criteria and three edge cases. Make at least one edge case specific to AI.'],
-      ['x','You should have one story, two criteria and three edge cases. The AI-specific one is usually about uncertainty, wrong answers or refusals.']
+      ['p','Write one user story for your capstone, with two acceptance criteria and three edge cases. Make at least one edge case about AI.'],
+      ['x','You should have one story, two criteria and three edge cases. The AI one is usually about doubt, wrong answers or the model saying no.']
     ]],
 
-    ['h','Idea 3: Build a thin slice that works end to end'],
-    ['p','Now that you have stories, which one do you build first? The answer is an <strong>MVP</strong>, a minimum viable product. It is the smallest thing that tests your riskiest assumption with real users. It is not a small version of the whole product.'],
-    ['p','The way you cut the work makes a big difference. There are two ways to do it.'],
+    ['h','Idea 3: Build a thin slice that works from start to end'],
+    ['p','You have stories. Which one do you build first? The answer is an <strong>MVP</strong>, a minimum viable product. It is the smallest thing that tests your riskiest guess with real users. It is not a small copy of the whole product.'],
+    ['p','How you cut the work makes a big difference. There are two ways.'],
     ['l',[
-      '<strong>Horizontal slices</strong> build one layer at a time: all the data import, then all the processing, then all the interface. Nothing works for a user until the last layer is done.',
-      '<strong>Vertical slices</strong> build a thin version of every layer, so a user can try something from the first week.'
+      '<strong>Horizontal slices</strong> build one layer at a time, like laying one floor of a building at a time. First all the data import, then all the processing, then all the screen. Nothing works for a user until the last layer is done.',
+      '<strong>Vertical slices</strong> build a thin version of every layer, like a thin slice of layered cake. A user can try something from the first week.'
     ]],
     ['p','Vertical slices are the better choice here. For the ticket example, the first vertical slice looks like this.'],
     ['code','One help desk  →  last week’s tickets  →  group into themes  →  show top 5  →  email one lead\n\nLeft out for now: other help desks, history, settings, alerts, sharing'],
     ['key','Build the thinnest slice that lets a real user try the core value. Everything else can wait until you know it works.'],
     ['do','Prove it now',[
-      ['p','Draw your capstone’s first vertical slice as one line, like the example above. Then list what you are deliberately leaving out.'],
-      ['x','You should have one line from input to user value, and a list of exclusions. If the line has more than six steps, look for a step you can do by hand for the first version.']
+      ['p','Draw your capstone’s first vertical slice as one line, like the example above. Then list what you are leaving out on purpose.'],
+      ['x','You should have one line from input to user value, and a list of things left out. If the line has more than six steps, look for a step you can do by hand in the first version.']
     ]],
     ['q','I519'],
 
-    ['h','Idea 4: Plan sprints, estimate honestly, and review each one'],
-    ['p','Once you know what to build first, you need a rhythm for building it. Many teams work in <strong>sprints</strong>, which are fixed periods of one or two weeks. Each sprint starts with planning and ends with a demo and a retrospective.'],
+    ['h','Idea 4: Plan sprints, guess honestly, and look back after each one'],
+    ['p','Once you know what to build first, you need a rhythm for building it. Many teams work in <strong>sprints</strong>, which are fixed work rounds of one or two weeks, like a school term. Each sprint starts with planning. It ends with a demo (showing what works) and a retrospective (looking back).'],
     ['n',[
-      '<strong>Planning.</strong> Choose the stories that fit the team’s capacity, starting with the highest priority.',
-      '<strong>Estimation.</strong> Size stories relative to each other, using points or T-shirt sizes (S, M, L). Relative sizes are easier to agree on than hours.',
-      '<strong>Demo.</strong> Show working software, not slides.',
+      '<strong>Planning.</strong> Pick the stories that fit what the team can do. Start with the most important.',
+      '<strong>Estimation.</strong> Size stories against each other, using points or T-shirt sizes (S, M, L). It is easier to agree on small, medium and large than on hours.',
+      '<strong>Demo.</strong> Show software that works, not slides.',
       '<strong>Retrospective.</strong> Ask three questions: what went well, what did not, and what will we change next sprint?'
     ]],
-    ['p','AI work is hard to estimate, because you do not know how good the model will be until you try. So <strong>time-box</strong> the uncertain work instead. For example: “Spend three days. If precision on the test set is below 70%, stop and rethink the approach.”'],
-    ['p','A time-box turns an estimate you cannot make into a decision point you can plan around.'],
+    ['p','AI work is hard to guess, because you do not know how good the model will be until you try. So <strong>time-box</strong> the unsure work instead. A time-box is a fixed amount of time, like a timer on a kitchen counter. For example: “Spend three days. If precision on the test set is below 70%, stop and rethink the approach.”'],
+    ['p','A time-box turns a guess you cannot make into a stop-and-decide point you can plan around.'],
     ['do','Prove it now',[
-      ['p','Pick the most uncertain story in your plan. Write a time-box for it: how long you will spend, what result counts as success, and what you will do if you do not reach it.'],
-      ['x','You should have one time-box with a duration, a threshold and a fallback. The fallback matters most, because it turns a failed experiment into a decision.']
+      ['p','Pick the most unsure story in your plan. Write a time-box for it: how long you will spend, what result counts as success, and what you will do if you do not reach it.'],
+      ['x','You should have one time-box with a length of time, a pass mark and a fallback (what you do instead). The fallback matters most, because it turns a failed try into a decision.']
     ]],
 
-    ['h','Idea 5: Prototype at the right fidelity, and test without helping'],
-    ['p','Before the team builds anything real, it helps to show people a rough version. How rough? That depends on what you want to learn. <strong>Fidelity</strong> is how close a prototype is to the real thing, and you should match it to your question.'],
-    ['tb',['Fidelity','Tool','Good for testing'],[
-      ['Low','Paper sketch','Whether the flow makes sense'],
-      ['Medium','Clickable mock-up in Figma','Whether users can find their way around'],
-      ['High','Working prototype: the Playground, Lovable or Google AI Studio','Whether users trust and act on the real AI output']
+    ['h','Idea 5: Make the prototype as polished as you need, and test without helping'],
+    ['p','Before the team builds anything real, it helps to show people a rough version, like a paper model of a house. How rough? That depends on what you want to learn. <strong>Fidelity</strong> is how close a prototype is to the real thing. Match it to your question.'],
+    ['tb',['Fidelity (how close to real)','Tool (what you make it with)','Good for testing'],[
+      ['Low','Paper sketch','Whether the steps make sense'],
+      ['Medium','Clickable mock-up in Figma (a design tool)','Whether users can find their way around'],
+      ['High','Working prototype: the Playground, Lovable or Google AI Studio','Whether users trust the real AI answer and act on it']
     ]],
-    ['c','Watch out','For AI features, use real model output in your prototype, not perfect made-up examples. Users react differently to answers that are sometimes wrong, and that reaction is exactly what you need to learn about.'],
-    ['p','Then you run a <strong>usability test</strong>. Give the user a task, not instructions. For example: “It is Monday morning. Find the biggest new problem from last week.” Then watch and stay quiet. Note where they hesitate, click the wrong thing or look confused.'],
+    ['c','Watch out','For AI features, use real model replies in your prototype, not perfect made-up ones. Users react differently to answers that are sometimes wrong. That reaction is exactly what you need to learn about.'],
+    ['p','Then you run a <strong>usability test</strong>. That means you watch a person try your prototype. Give the user a task, not instructions. For example: “It is Monday morning. Find the biggest new problem from last week.” Then watch and stay quiet. Note where they pause, click the wrong thing or look lost.'],
     ['p','The hardest part is not helping. When a user gets stuck, that is your finding. Three to five users will show you most of the serious problems.'],
     ['try',{id:'a7-test',mins:10,min:100,rows:5,
       task:'Write a usability test plan for your prototype: two task prompts, what you will watch for, and the one thing you most want to learn.',
@@ -1230,43 +1230,43 @@ window.PART6 = [
     ['q','I520'],
 
     ['h','What you have learned'],
-    ['p','Let’s pull the chapter together. A PRD starts from the problem and has acceptance criteria you can test. User stories and edge cases break it into pieces, and the AI-specific edge cases are the ones teams most often forget.'],
-    ['p','You also learned to build a thin vertical slice first, to time-box uncertain AI work, and to test a prototype by watching quietly instead of helping.'],
-    ['p','Next, in A8, you’ll step back from product management and learn how generative AI models actually work.']
+    ['p','Let us pull the chapter together. A PRD starts from the problem and has acceptance criteria you can check. User stories and edge cases break it into pieces. The AI edge cases are the ones teams forget most often.'],
+    ['p','You also learned three more things. Build a thin vertical slice first. Put a time-box on AI work you cannot guess. Test a prototype by watching quietly, not by helping.'],
+    ['p','Next, in A8, you will step back from product management. You will learn how generative AI models (models that write new words for you) really work.']
   ]
 },
 
 {
   id:'a8', num:'A8', part:6, curriculumTier:'selective', phase:3, prerequisites:['a1','a5'], nextUnits:[], minutes:720, labs:[],
   title:'Generative AI foundations: how the models work',
-  concept:'Until now you’ve looked at products. In this chapter you look inside the engine. You’ll learn how large language models are made and how they produce text, at the level a PM needs to make good decisions. You’ll see attention at work, compare prompting with RAG and fine-tuning, and test two models on the same ten cases.',
+  concept:'Until now you have looked at products. In this chapter you look inside the engine. You will learn how large language models are made and how they write text. Think of a model as a parrot that has read a whole library. You will learn only as much as a PM needs to make good calls. You will see attention at work. You will compare three ways to improve a model: prompting, RAG and fine-tuning. And you will test two models on the same ten cases.',
   takeaway:[
-    'Explain the difference between predictive and generative AI, and when each fits.',
-    'Describe tokens, context windows, transformers and attention in plain words.',
-    'Explain the three stages of training a model, and how they differ from inference.',
-    'Choose between prompting, RAG and fine-tuning for a given problem.',
-    'Describe the AI market: model providers, open-weight models, infrastructure and applications.'
+    'Say how predictive AI (AI that picks a label or a number) differs from generative AI (AI that writes new things), and when each fits.',
+    'Explain tokens, context windows, transformers and attention in plain words, using pictures from daily life.',
+    'Explain the three stages of training a model. Say how they differ from inference, which is using the finished model.',
+    'Pick between prompting, RAG and fine-tuning for a given problem.',
+    'Describe the AI market: model providers, open-weight models (models you can download), the machines underneath, and the apps on top.'
   ],
-  needs:[['A candidate problem with an AI fit','This chapter helps you decide which AI technique suits it.','A1'],
-         ['A build, buy or partner decision','This chapter explains what you are buying.','A5']],
+  needs:[['A candidate problem with an AI fit (a problem that AI might suit)','This chapter helps you decide which AI method suits it, like choosing the right tool from a toolbox.','A1'],
+         ['A build, buy or partner decision (make it yourself, pay for it, or team up)','This chapter explains what you are buying.','A5']],
   capstone:{
     title:'Run three experiments on how models treat Indian text',
-    brief:'Before you build, see for yourself how AI models behave on the kind of text your tool must handle. In this chapter you learned what tokens and attention are, and how to choose between prompting, retrieval and fine-tuning. Here you run three small experiments on English, Hindi and Hinglish sentences and write down what you saw.',
-    where:'The attention viewer embedded in this chapter, for the attention demo. Write what you saw in the notes box below.',
+    brief:'Before you build, see for yourself how AI models behave on the kind of text your tool must handle. In this chapter you learned what tokens and attention are. You also learned how to choose between prompting, retrieval (looking up the right page first) and fine-tuning. Here you run three small experiments on English, Hindi and Hinglish sentences. Then you write down what you saw.',
+    where:'The attention viewer inside this chapter, for the attention demo. Write what you saw in the notes box below.',
     steps:[
-      'Take starter sentences 1, 2 and 3 from the project page. They are the same kind of message in English, Hindi and Hinglish. Paste each one in turn into the attention viewer in this chapter.',
-      'For each sentence, write down how many pieces the text is cut into. Also write down which words the model pays most attention to when it reaches the name and the number. Then write two or three lines on what differs between the three sentences, and one line on what this viewer does not prove.',
-      'Fill in a table that compares three ways of making a model find personal details. You can just ask it with a prompt, let it look things up in your documents (retrieval), or train it further (fine-tuning). Compare them on freshness, private data, writing style, cost, speed and how easy they are to test. Fill it in for the third part of the tool, the context judge, and end with the option you choose and why.',
+      'Take starter sentences 1, 2 and 3 from the project page. They are the same kind of message in English, Hindi and Hinglish. Paste each one, one at a time, into the attention viewer in this chapter.',
+      'For each sentence, write down how many pieces the text is cut into. Also write down which words the model pays most attention to when it reaches the name and the number. Then write two or three lines on what is different between the three sentences. Add one line on what this viewer does not prove.',
+      'Fill in a table that compares three ways of making a model find personal details. You can ask it with a prompt. You can let it look things up in your documents (retrieval). Or you can train it more (fine-tuning). Compare them on how fresh the facts are, private data, writing style, cost, speed and how easy they are to test. Fill it in for the third part of the tool, the context judge. End with the option you choose and why.',
       'Run starter sentences 1 to 8 through two different AI models in the <a href="#/playground">Playground</a>. Fill in <em>Compare with</em>, so that each message goes to both. Use the same instruction for both: “List every piece of personal information in this sentence.”',
-      'For each model, record how many items it found correctly, how many it missed, how long it took and what it cost. Note which sentences it missed, and whether most of the misses were Hindi or Hinglish.',
-      'Write one paragraph. Which model would you start with for this project, and what is the one thing you would test next before trusting it?'
+      'For each model, write down how many items it found correctly, how many it missed, how long it took and what it cost. Note which sentences it missed. Note whether most of the misses were Hindi or Hinglish.',
+      'Write one paragraph. Which model would you start with for this project? What is the one thing you would test next before you trust it?'
     ],
     done:[
-      'An attention write-up that names a specific difference you saw between the English, Hindi and Hinglish sentences.',
-      'A decision table for the context judge, ending in a choice and a reason.',
-      'A comparison of two models on the same eight sentences, with found, missed, time and cost for each.',
-      'One paragraph naming the model you would start with and the one thing you would test next.',
-      'A score from 0 to 3 for each of the items above, using the scale in this chapter. Move on only when every score is at least 2.'
+      'An attention write-up that names one clear difference you saw between the English, Hindi and Hinglish sentences.',
+      'A decision table for the context judge. It ends with a choice and a reason.',
+      'A comparison of two models on the same eight sentences. Show found, missed, time and cost for each.',
+      'One paragraph naming the model you would start with, and the one thing you would test next.',
+      'A score from 0 to 3 for each item above, using this chapter’s scale, like marking your own homework. Move on only when every score is 2 or more.'
     ]
   },
   check:[
@@ -1278,105 +1278,105 @@ window.PART6 = [
      'Training changes the model’s weights permanently, for every future request. Context-time conditioning means putting instructions, examples or documents into one request. It shapes that one answer and is forgotten afterwards. Almost everything you do as an application builder is context-time.']
   ],
   story:[
-    ['c','On your route','Take a first pass of about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
-    ['c','Before you start','In full, this chapter takes about twelve hours. You need nothing outside this site: the attention viewer is embedded in the chapter, and the <a href="#/playground">Playground</a> compares two models side by side once you have connected one on the <a href="#/setup">setup page</a>. The technical core, from Chapter 1 onwards, builds on everything here with hands-on code. So treat this chapter as the map before the journey.'],
+    ['c','On your route','First, go through it quickly, in about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
+    ['c','Before you start','In full, this chapter takes about twelve hours. You need nothing outside this site. The attention viewer is inside the chapter. The <a href="#/playground">Playground</a> compares two models side by side once you have connected one on the <a href="#/setup">setup page</a>. The hands-on code chapters, from Chapter 1 onwards, build on everything here. So treat this chapter as the map before the journey.'],
 
-    ['p','In A7 you turned a decision into specs, stories and a prototype. Throughout this part you’ve used AI models as tools. Now it is worth knowing a little about what is inside them.'],
-    ['p','You don’t need the maths. You need enough to make good calls: when a model is the right tool, why it behaves the way it does, and which way of improving it to try first.'],
+    ['p','In A7 you turned a decision into a written plan, short user stories and a rough model. All through this part you have used AI models as tools. Now it is worth knowing a little about what is inside them, like peeking under a car bonnet.'],
+    ['p','You do not need the maths. You need enough to make good calls. When is a model the right tool? Why does it act the way it does? Which way of improving it should you try first?'],
 
     ['h','Idea 1: Predictive AI and generative AI'],
-    ['p','Let’s start with a split you’ll hear often. Both kinds of AI learn patterns from data and make predictions. The difference is what they predict. The table puts the two side by side.'],
-    ['tb',['','Predictive AI','Generative AI'],[
-      ['Output','A label or a number','New content: text, images, code or audio'],
-      ['Examples','Spam or not spam; the chance a customer cancels; next month’s sales','Drafting an email; summarising a call; answering a question'],
-      ['Training','Labelled examples for one task','Huge amounts of general data, then adapted to follow instructions'],
-      ['Tasks per model','Usually one','Many, chosen by the instructions you give'],
+    ['p','Let us start with a split you will hear often. Both kinds of AI learn patterns from data and make predictions (guesses about what comes next). What differs is what they guess. The table puts the two side by side.'],
+    ['tb',['','Predictive AI (picks a label or number)','Generative AI (makes new things)'],[
+      ['Output (what comes out)','A label or a number','New content: text, images, code or audio'],
+      ['Examples','Spam or not spam; the chance a customer cancels; next month’s sales','Writing a first draft of an email; summarising a call; answering a question'],
+      ['Training (how it learns)','Examples with labels, for one task','A huge amount of general data, then adapted to follow instructions'],
+      ['Tasks per model (jobs one model does)','Usually one','Many, chosen by the instructions you give'],
       ['Typical cost per use','Very low','Higher, and it grows with the length of input and output']
     ]],
-    ['p','A large language model, or <strong>LLM</strong>, is generative AI for text. It predicts the next piece of text, over and over, and that is how it writes whole answers.'],
-    ['c','Why this matters','Not every AI problem needs generative AI. Predicting which customers will cancel is a predictive task, and a small classic model does it more cheaply and reliably. Chapter 2.4 shows how far a simple classifier can go.'],
+    ['p','A large language model, or <strong>LLM</strong>, is generative AI for text. Picture a parrot that has read a whole library. It guesses the next piece of text, again and again, and that is how it writes whole answers.'],
+    ['c','Why this matters','Not every AI problem needs generative AI. Guessing which customers will cancel is a predictive job. A small classic model (an older, simpler kind) does it more cheaply and more reliably. Chapter 2.4 shows how far a simple sorter can go.'],
     ['do','Prove it now',[
-      ['p','List three AI features you have used recently. Label each as predictive or generative.'],
-      ['x','You should have three labelled features. Recommendations, fraud alerts and spam filters are predictive. Chat assistants, image generators and meeting summaries are generative.']
+      ['p','List three AI features you have used lately. Label each one as predictive or generative.'],
+      ['x','You should have three labelled features. Recommendations, fraud alerts and spam filters are predictive. Chat assistants, image makers and meeting summaries are generative.']
     ]],
     ['q','I523'],
 
     ['h','Idea 2: Tokens, context windows, transformers and attention'],
-    ['p','So how does an LLM actually read your text? It does not read words. It reads <strong>tokens</strong>, which are pieces of text. A token is often a whole word and sometimes only part of one. In English, one token is about three-quarters of a word on average.'],
-    ['p','Each request has a limit on how many tokens it can include, counting both your input and the model’s answer. This limit is the <strong>context window</strong>. Everything the model uses to answer must fit inside it.'],
-    ['p','Modern LLMs are built on an architecture called the <strong>transformer</strong>. Its key part is <strong>attention</strong>. For each token, the model works out which other tokens in the context matter most for predicting what comes next.'],
-    ['p','Here is a classic example. Take the sentence <em>“The trophy did not fit in the suitcase because it was too big”</em>. You know that “it” means the trophy. Attention is how the model links “it” to “trophy” rather than to “suitcase”.'],
-    ['p','You can see attention for yourself, right here. The viewer below runs a small real model, GPT-2, inside your browser. Type a sentence, then pick a word to see which earlier words it pays attention to.'],
+    ['p','So how does an LLM read your text? It does not read words. It reads <strong>tokens</strong>, which are small pieces of text, like Lego bricks. A token is often a whole word and sometimes only part of one. In English, one token is about three-quarters of a word on average.'],
+    ['p','Each request can hold only so many tokens, counting both your message and the model’s answer. This limit is the <strong>context window</strong>. Think of it as the model’s desk: everything it uses to answer must fit on the desk.'],
+    ['p','Modern LLMs are built on a design called the <strong>transformer</strong>. Its key part is <strong>attention</strong>. For each token, the model works out which other tokens in the context matter most for guessing what comes next. It is like a student who underlines the key words in a question.'],
+    ['p','Here is a classic example. Take the sentence <em>“The trophy did not fit in the suitcase because it was too big”</em>. You know that “it” means the trophy. Attention is how the model links “it” to “trophy” and not to “suitcase”.'],
+    ['p','You can see attention for yourself, right here. The viewer below runs a small real model, GPT-2, inside your browser. Type a sentence. Then pick a word to see which earlier words it pays attention to.'],
     ['embed','https://poloclub.github.io/transformer-explainer/','Transformer Explainer · Polo Club of Data Science, Georgia Tech',680],
-    ['x','You’ll see your sentence split into tokens and passed through the model. Open an attention head to see which earlier tokens each token pays attention to. Try the trophy sentence and look at “it”: in some heads it links strongly to “trophy”.'],
-    ['p','On your own computer, with PyTorch installed, the same picture comes from a few lines of code. PyTorch cannot run inside a web page, so this block has no Run button here.'],
+    ['x','You will see your sentence cut into tokens and passed through the model. Open an attention head (one of the model’s many small spotlights) to see which earlier tokens each token looks at. Try the trophy sentence and look at “it”. In some heads it links strongly to “trophy”.'],
+    ['p','On your own computer, with PyTorch (a free toolbox for building AI models) installed, the same picture comes from a few lines of code. PyTorch cannot run inside a web page, so this block has no Run button here.'],
     ['code','!pip install -q transformers bertviz\n\nfrom transformers import AutoTokenizer, AutoModel\nfrom bertviz import head_view\n\nname = "bert-base-uncased"\ntok = AutoTokenizer.from_pretrained(name)\nmodel = AutoModel.from_pretrained(name, output_attentions=True)\n\ntext = "The trophy did not fit in the suitcase because it was too big."\ninputs = tok(text, return_tensors="pt")\noutputs = model(**inputs)\ntokens = tok.convert_ids_to_tokens(inputs["input_ids"][0])\n\nhead_view(outputs.attentions, tokens)','local'],
-    ['x','You’ll see an interactive diagram with the sentence’s tokens on each side and lines between them. Click the token “it” and switch between layers. In some layers and heads, “it” links strongly to “trophy”.'],
+    ['x','You will see an interactive diagram with the sentence’s tokens on each side and lines between them. Click the token “it” and switch between layers (the model’s stacked steps). In some layers and heads, “it” links strongly to “trophy”.'],
     ['snag',[
-      'An error saying a module was not found',
-      'The install line did not run. Run the first cell again and wait for it to finish before you run the rest.',
+      'An error saying a module (a ready-made piece of code) was not found',
+      'The install line did not run. Run the first cell (the first box of code) again. Wait for it to finish before you run the rest.',
       'The diagram does not appear',
       'Some browsers and office networks block the embedded viewer. Try Chrome, or open the viewer on its own with the link under it. It shows attention without any setup.',
       'It runs, but “it” does not link to “trophy” in the layer you picked',
-      'That’s expected. Different layers and heads learn different patterns. Click through several layers. Seeing that the pattern appears in only some places is part of the lesson.'
+      'That is expected. Different layers and heads learn different patterns. Click through several layers. Seeing the pattern in only some places is part of the lesson.'
     ]],
-    ['c','Watch out','Attention is a clue, not an explanation. A model has many layers, each with many attention heads, and the final answer comes from all of them. Never present an attention map as proof of why a model gave an answer.'],
+    ['c','Watch out','Attention is a clue, not an explanation. A model has many layers, each with many attention heads, and the final answer comes from all of them together. Never show an attention map as proof of why a model gave an answer.'],
     ['q','I522'],
 
     ['h','Idea 3: How a model is trained, and what inference means'],
-    ['p','Now you know what a model reads. Where does its skill come from? A chat model like the ones you use is made in three stages.'],
+    ['p','Now you know what a model reads. Where does its skill come from? A chat model like the ones you use is made in three stages, like a child going from reading, to following instructions, to learning manners.'],
     ['n',[
-      '<strong>Pre-training.</strong> The model learns to predict the next token on a vast amount of text from the web, books and code. This takes months and costs millions of dollars. The result is a <em>base model</em>, which can continue any text but does not reliably follow instructions.',
-      '<strong>Instruction tuning.</strong> The model is trained further on examples of instructions paired with good answers. Now it follows instructions.',
-      '<strong>Learning from human feedback.</strong> People compare pairs of answers and pick the better one. The model is trained to prefer answers like the ones people chose. This is often called <strong>RLHF</strong>, short for reinforcement learning from human feedback. It makes the model more helpful and more careful.'
+      '<strong>Pre-training.</strong> The model learns to guess the next token from a vast amount of text from the web, books and code. This takes months and costs millions of dollars. The result is a <em>base model</em>. It can continue any text but does not reliably follow instructions.',
+      '<strong>Instruction tuning.</strong> The model is trained more on examples of instructions paired with good answers. Now it follows instructions.',
+      '<strong>Learning from human feedback.</strong> People look at pairs of answers and pick the better one. The model is trained to prefer answers like the ones people chose. This is often called <strong>RLHF</strong>, short for reinforcement learning from human feedback. It makes the model more helpful and more careful.'
     ]],
-    ['p','All three stages change the model’s <strong>weights</strong>. These are the billions of numbers inside the model that hold what it has learned.'],
-    ['p','<strong>Inference</strong> is different. It means using the finished model to answer a request. Inference does not change the weights. When you use an AI API, you are paying for inference, and the charge is by the token.'],
-    ['key','Training changes the model, permanently, for everyone. What you put in a prompt shapes one answer and is then forgotten.'],
+    ['p','All three stages change the model’s <strong>weights</strong>. These are the billions of numbers inside the model that hold what it has learned, like the settings on a huge mixing board.'],
+    ['p','<strong>Inference</strong> is different. It means using the finished model to answer a request. Inference does not change the weights. When you use an AI API (sending a message to the model over the internet), you pay for inference, and the charge is by the token.'],
+    ['key','Training changes the model for good, for everyone. What you put in a prompt (the note you hand the model) shapes one answer and is then forgotten, like a goldfish.'],
     ['do','Prove it now',[
       ['p','Open the <a href="#/playground">Playground</a> and tick <em>Keep the conversation</em>. Tell it a made-up fact, such as “My company’s refund window is 17 days.” Ask it about the refund window. Then press <em>Clear</em>, which starts a brand-new conversation, and ask again.'],
-      ['x','It remembers within the conversation, but not in the new one. The fact was context, not training. Chapter 1.5 shows why: the app resends the conversation with every message.']
+      ['x','It remembers within the conversation, but not in the new one. The fact was context (what you put on its desk), not training. Chapter 1.5 shows why: the app sends the whole conversation again with every message.']
     ]],
 
     ['h','Idea 4: Prompting, RAG or fine-tuning'],
-    ['p','Sooner or later, a model won’t do what you need. When that happens, you have three main tools to try. The table compares them on the points a PM cares about.'],
-    ['tb',['','Prompting','RAG','Fine-tuning'],[
-      ['What it is','Instructions and examples in the request','Retrieve relevant documents and add them to the request','Train the model further on your own examples'],
-      ['Up-to-date facts','No','Yes, as fresh as your documents','No, fixed at training time'],
-      ['Private data','Only what fits in the prompt','Yes, from your own sources','Baked in, which is hard to remove later'],
-      ['Style and format','Good','Not its purpose','Very good for consistent behaviour'],
+    ['p','Sooner or later, a model will not do what you need. Then you have three main tools to try. The table compares them on the points a PM cares about.'],
+    ['tb',['','Prompting (writing better instructions)','RAG','Fine-tuning'],[
+      ['What it is','Put instructions and examples in the request','Find the right documents and add them to the request, like an open-book exam','Train the model more on your own examples, like coaching'],
+      ['Up-to-date facts (the newest information)','No','Yes, as fresh as your documents','No, fixed on the day of training'],
+      ['Private data','Only what fits in the prompt','Yes, from your own sources','Baked in, so it is hard to remove later'],
+      ['Style and format (how the answer sounds and looks)','Good','Not what it is for','Very good for steady behaviour'],
       ['Cost to set up','Very low','Medium','High'],
-      ['Speed per request','Fast','Slower, because retrieval adds a step','Fast'],
-      ['How to evaluate','Test cases','Retrieval and answer quality separately','Test cases before and after training']
+      ['Speed per request','Fast','Slower, because finding the documents adds a step','Fast'],
+      ['How to check it','Test cases (questions with known answers)','Check finding the documents and the answer quality separately','Test cases before and after training']
     ]],
-    ['p','<strong>RAG</strong> stands for retrieval-augmented generation. You will build a complete RAG system by hand in Chapters 3 to 7.'],
-    ['key','If the model is missing facts, give it the facts with RAG. Fine-tuning teaches behaviour, not knowledge.'],
-    ['p','So what should you try first? Start with prompting. Add RAG when the model needs information it does not have. Consider fine-tuning only when you need very consistent behaviour, or when you want a smaller, cheaper model to do a narrow job well. Chapter 19 covers this decision in depth.'],
+    ['p','<strong>RAG</strong> stands for retrieval-augmented generation. Think of an open-book exam: first find the right page, then answer from it. You will build a complete RAG system by hand in Chapters 3 to 7.'],
+    ['key','If the model is missing facts, give it the facts with RAG. Fine-tuning teaches habits, not facts.'],
+    ['p','So what should you try first? Start with prompting. Add RAG when the model needs facts it does not have. Think about fine-tuning only when you need very steady behaviour. Also think about it when you want a smaller, cheaper model to do one narrow job well. Chapter 19 covers this choice in depth.'],
     ['do','Prove it now',[
-      ['p','For your capstone, fill in the decision table above with one row per criterion, and circle the best choice for each.'],
-      ['x','You should have a filled table and a choice. For most capstones in this course the answer is prompting plus RAG. If you chose fine-tuning, name the specific behaviour that prompting could not produce.']
+      ['p','For your capstone, fill in the decision table above with one row for each point, and circle the best choice for each.'],
+      ['x','You should have a filled table and a choice. For most capstones in this course the answer is prompting plus RAG. If you chose fine-tuning, name the exact behaviour that prompting could not give.']
     ]],
     ['q','I521'],
 
     ['h','Idea 5: The AI market in one picture'],
-    ['p','The last step is to see where all this fits in the market. You met the AI value chain in A4: infrastructure, foundation models, tooling and applications. At the model layer, there are two kinds of provider, and the table compares them.'],
-    ['tb',['','Closed models','Open-weight models'],[
+    ['p','The last step is to see where all this fits in the market. You met the AI value chain in A4: the machines underneath, the foundation models, the tools and the apps. At the model layer there are two kinds of provider. The table compares them.'],
+    ['tb',['','Closed models (you cannot see inside)','Open-weight models (you can download them)'],[
       ['Examples','OpenAI GPT, Anthropic Claude, Google Gemini','Meta Llama, Mistral, Qwen, DeepSeek'],
-      ['How you use them','Through the provider’s API','Download and run them yourself, or use a host'],
-      ['Strengths','Usually the highest quality; nothing to run','More control over data and cost; can be fine-tuned freely'],
-      ['Trade-offs','Data leaves your systems; prices and models can change','You pay for hosting and do the maintenance']
+      ['How you use them','Through the provider’s API (you send messages over the internet)','Download and run them yourself, or use a company that runs them for you'],
+      ['Strengths (what they are good at)','Usually the best quality; nothing for you to run','More control over data and cost; can be fine-tuned freely'],
+      ['Trade-offs (what you give up)','Your data leaves your systems; prices and models can change','You pay for hosting (a computer to run it on) and you do the upkeep']
     ]],
-    ['p','Services such as <strong>OpenRouter</strong> let you call many models, closed and open, through one API. That makes it easy to compare them on your own test cases, which is the only comparison that counts.'],
-    ['p','Two trends shape AI product strategy. Model prices keep falling, and good models become available from many providers. Both push value up to the application layer, where workflow, data and trust decide who wins.'],
+    ['p','Services such as <strong>OpenRouter</strong> let you call many models, closed and open, through one API. That makes it easy to compare them on your own test cases. That is the only comparison that counts.'],
+    ['p','Two trends shape AI product strategy. Model prices keep falling. Good models come from many providers. Both push the value up to the app layer, where the workflow, the data and trust decide who wins.'],
     ['try',{id:'a8-compare',mins:15,min:120,rows:6,
-      task:'Run three of your capstone test cases through two different models, for example one closed and one open-weight model. The <a href="#/playground">Playground</a> does this side by side when you fill in <em>Compare with</em>. Record which gave better answers, how long each took, and what each cost.',
+      task:'Run three of your capstone test cases through two different models, for example one closed and one open-weight model. The <a href="#/playground">Playground</a> does this side by side when you fill in <em>Compare with</em>. Write down which gave better answers, how long each took, and what each cost.',
       ph:'Case, model A result, model B result, time, cost, verdict…',
       after:'A strong write-up is specific. For example: “Three ticket batches. Model A found the main theme in all three; model B missed the smallest theme twice. A took about 4 seconds per batch, B about 2. A cost about $0.012 per batch, B about $0.002.” Then the verdict: “For the weekly report, A is worth six times the cost, because a missed theme is the failure users fear most. For a real-time alert, speed matters more, so test B on the alert cases.” Three cases is enough to learn the method. The Build it task asks for ten.'}],
 
     ['h','What you have learned'],
-    ['p','Let’s pull the chapter together. Predictive AI gives a label or a number, and generative AI makes new content. An LLM reads tokens inside a context window, and attention is how it decides which tokens matter to each other.'],
-    ['p','A model is trained in three stages, and training changes it for everyone. Inference only uses it, and a prompt shapes just one answer. When a model falls short, you try prompting first, then RAG for missing facts, and fine-tuning only for behaviour.'],
-    ['p','Next, you’ll leave the map and start the hands-on part. You’ll run your first small experiments in the browser, on tokens, cost and temperature.']
+    ['p','Let us pull the chapter together. Predictive AI gives a label or a number. Generative AI makes new content. An LLM reads tokens inside a context window (its desk). Attention is how it decides which tokens matter to each other.'],
+    ['p','A model is trained in three stages, and training changes it for everyone. Inference only uses it, and a prompt shapes just one answer. When a model falls short, try prompting first. Then RAG for missing facts. Use fine-tuning only for habits.'],
+    ['p','Next, you will leave the map and start the hands-on part. You will run your first small experiments in the browser, on tokens, cost and temperature (how adventurous the model is with its next word).']
   ]
 }
 ];

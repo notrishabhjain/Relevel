@@ -3,22 +3,10 @@
 Object.assign(window.HING = window.HING || {}, {
   'Score the path, not only the answer':
     'Sirf answer nahi, raasta bhi score kijiye',
-  'So far you have judged an agent by reading its final answer. But an agent can reach the right answer by the wrong path. It may call a tool it did not need, skip one it did, or call the same one twice. A correct answer hides all of that, and a wrong path costs money on every run.':
-    'Ab tak aapne agent ko uska final answer padhkar parkha hai. Lekin agent galat raaste se sahi answer tak pahunch sakta hai. Woh aisa tool bula sakta hai jiski zaroorat nahi thi, zaroori tool chhod sakta hai, ya ek hi tool do baar bula sakta hai. Sahi answer yeh sab chhupa leta hai, aur galat raasta har run par paisa kharch karta hai.',
-  'Checking the steps is called a <strong>trajectory evaluation</strong>: you score the ordered list of tool calls separately from the final answer. For each task you ask two questions. Was the answer right? Did the agent call the tools you expected? Chapter 26 does this on a longer list. Here is a small version.':
-    'Steps ki jaanch ko <strong>trajectory evaluation</strong> kehte hain: aap tool calls ki ordered list ko final answer se alag score karte hain. Har task ke liye do sawaal poochte hain. Kya answer sahi tha? Kya agent ne wahi tools bulaaye jo aap expect kar rahe the? Chapter 26 yeh ek lambi list par karta hai. Yeh uska chhota version hai.',
   'Score six tasks':
     'Chhe tasks score kijiye',
-  'Run this cell. It asks the agent six questions, each with the words a right answer must contain and the tools it should call. The sixth question cannot be answered, so the right behaviour is to say so.':
-    'Yeh cell chalaiye. Yeh agent se chhe sawaal poochta hai, har ek ke saath woh shabd jo sahi answer mein hone chahiye aur woh tools jo bulaane chahiye. Chhatha sawaal answer nahi ho sakta, isliye sahi vyavhaar yeh kehna hai ki answer nahi hai.',
-  'Each line shows whether the answer was right, whether the path was right, and the tools called. Your two totals will differ from anyone else’s. Look at the rows where the two scores disagree. A right answer on the wrong path is the case that checking only the final answer never sees. The word match is crude, so read any row it marks wrong before you trust it.':
-    'Har line dikhati hai ki answer sahi tha ya nahi, raasta sahi tha ya nahi, aur kaun se tools bulaaye gaye. Aapke do totals kisi aur ke totals se alag honge. Un rows ko dekhiye jahan dono scores alag hain. Galat raaste par sahi answer woh case hai jo sirf final answer jaanchne se kabhi nahi dikhta. Word match mota hai, isliye jo row galat mark ho use bharosa karne se pehle padhiye.',
-  'A step limit and an approval point are delegation of powers and maker-checker. Nobody gets unlimited authority, and anything that cannot be undone needs a second person to sign. The agent gets the same rules you would write for an officer.':
-    'Step limit aur approval point wahi hain jo adhikaron ka delegation aur maker-checker hain. Kisi ko bhi asimit adhikar nahi milta, aur jo kaam wapas nahi ho sakta use doosre vyakti ke sign ki zaroorat hoti hai. Agent par wahi niyam lagte hain jo aap kisi adhikari ke liye likhte.',
   'You already know this':
     'Yeh aap pehle se jaante hain',
-  'Save the six cases from the chapter as <code>evals/agent-cases-v1.csv</code> in your repository, with three columns: the question, the words a right answer contains, and the tools it should call. Write your two scores, final answer and path, under the file name in the notes box. Chapter 26 scores a longer list the same way.':
-    'Chapter ke chhe cases ko apni repository mein <code>evals/agent-cases-v1.csv</code> ke roop mein save kijiye, teen columns ke saath: sawaal, woh shabd jo sahi answer mein hon, aur woh tools jo bulaane chahiye. Notes box mein file ke naam ke neeche apne do scores likhiye, final answer aur raasta. Chapter 26 isi tarah ek lambi list score karta hai.',
   'An agent answers six test questions correctly, but on two of them it called the exchange-rate tool when it did not need to. What does a score on the final answers alone tell you?':
     'Ek agent chhe test sawaalon ke sahi jawab deta hai, lekin do mein usne exchange-rate tool bulaaya jabki zaroorat nahi thi. Sirf final answers ka score aapko kya batata hai?',
   'That nothing is wrong, because every answer was right':
@@ -33,8 +21,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Final answer raasta chhupa leta hai. Tool calls ki ordered list ko answer se alag score karna trajectory evaluation kehlata hai. Agent galat raaste se sahi answer tak pahunch sakta hai, aur cost aur risk galat raaste mein hi baithte hain.',
   'Save the four prompts and their four scores as <code>docs/prompt-and-scores.md</code> in your repository.':
     'Chaaron prompts aur unke chaaron scores ko apni repository mein <code>docs/prompt-and-scores.md</code> ke roop mein save kijiye.',
-  'Save the page as <code>docs/findings-v0.md</code> in your repository. Before you make the repository public, search it for keys and real personal details. Then switch on the repository’s public page (Pages, in its settings) if you want a link anyone can open.':
-    'Page ko apni repository mein <code>docs/findings-v0.md</code> ke roop mein save kijiye. Repository ko public karne se pehle usme keys aur asli personal details khoj lijiye. Phir, agar aap aisa link chahte hain jo koi bhi khol sake, to repository ka public page (settings mein Pages) chalu kijiye.',
   'Save the marking rules, the agreement figure and the disagreements as <code>docs/judge-check.md</code> in your repository.':
     'Marking rules, agreement ka figure aur disagreements ko apni repository mein <code>docs/judge-check.md</code> ke roop mein save kijiye.',
   'Save the three cost numbers and the table behind them as <code>docs/cost-model.md</code> in your repository.':
@@ -87,34 +73,16 @@ Object.assign(window.HING = window.HING || {}, {
     'Chhe tarah ke text lijiye jo project tool kisi outside model ko bhej sakta hai: bina personal detail wala ek sentence; naam wala sentence; Aadhaar number wala sentence; ek saaf kiya hua sentence jisme details tags se badal di gayi hain; poori chat history; aur ek log line jo asli message rakhti hai. Har ek ke liye likhiye ki woh kaun si duty chhoota hai: consent, purpose, erasure, breach ya data bahar bhejna.',
   'Two things usually show. The cleaned sentence touches almost no duty, which is the case for building the tool. The chat history and the log line touch several, and the log line is the one nobody thought about. The capstone asks for the same kind of table.':
     'Aamtaur par do baatein dikhti hain. Saaf kiya hua sentence lagbhag koi duty nahi chhoota, jo tool banane ka case hai. Chat history aur log line kai chhoote hain, aur log line ke baare mein kisi ne socha nahi tha. Capstone isi tarah ki table maangta hai.',
-  'Per-category accuracy is the district table behind a state average. One failing district hides inside a good total. You would not report only the state figure to a ministry, so do not report only the overall accuracy.':
-    'Per-category accuracy state average ke peeche ki district table hai. Ek fail hota district achhe total mein chhup jaata hai. Aap ministry ko sirf state ka figure nahi dete, to sirf overall accuracy mat bataiye.',
   'A circular asking staff to behave is a filter. Role-based access is a control. The circular lowers the odds of a mistake, and the access rule removes the ability to make it. This chapter draws the same line for a model.':
     'Staff se vyavhaar karne ko kehne wala circular ek filter hai. Role-based access ek control hai. Circular galti ki sambhavna ghatata hai, aur access rule galti karne ki kshamta hata deta hai. Yeh chapter model ke liye wahi rekha kheenchta hai.',
   'Testing a vendor on your own answer key is technical evaluation with your own test cases, not the vendor’s demo data. The exit clause is the question every tender should ask: what would it take to leave?':
     'Vendor ko apni answer key par parkhna apne test cases ke saath technical evaluation hai, vendor ke demo data ke saath nahi. Exit clause woh sawaal hai jo har tender ko poochna chahiye: chhodne ke liye kya karna padega?',
   'A pilot that could fail is a pilot district. You agree the success threshold with the steering committee before rollout, not after the numbers come in.':
     'Jo pilot fail ho sakta hai woh pilot district hai. Success threshold aap steering committee ke saath rollout se pehle tay karte hain, numbers aane ke baad nahi.',
-  'No long text of your own? Instead of repeating the cards, paste the public text of the Digital Personal Data Protection Act, 2023 into <code>filler</code>. If it is under eight thousand words, repeat it.':
-    'Apna koi lamba text nahi hai? Cards ko dohraane ke bajaye Digital Personal Data Protection Act, 2023 ka public text <code>filler</code> mein paste kijiye. Agar woh aath hazaar shabdon se kam hai, to use dohra lijiye.',
-  'First: should this be a model at all?':
-    'Pehle: kya yeh model hona bhi chahiye?',
-  'Before you pick a task type, ask four questions about the request. Stop at the first one that settles it.':
-    'Task type chunne se pehle, request ke baare mein chaar sawaal poochhiye. Jo pehla sawaal baat tay kar de, wahin ruk jaaiye.',
   'Can a fixed rule do it? Then write the rule.':
     'Kya ek fixed rule yeh kar sakta hai? To rule likhiye.',
-  'Can a lookup do it? Then look it up.':
-    'Kya ek lookup yeh kar sakta hai? To lookup kijiye.',
-  'Is a wrong answer cheap to fix? If not, keep a person in the loop.':
-    'Kya galat answer ko theek karna sasta hai? Agar nahi, to loop mein insaan rakhiye.',
   'Does anyone need it at all? If not, do not build it.':
     'Kya ise kisi ko zaroorat hai bhi? Agar nahi, to mat banaiye.',
-  'Name one request at your work that should not be a model, and say which of the four questions settles it.':
-    'Apne kaam ki ek aisi request ka naam likhiye jo model nahi honi chahiye, aur batayiye chaar mein se kaun sa sawaal use tay karta hai.',
-  'The request … should not be a model because …':
-    'Request … model nahi honi chahiye kyunki …',
-  'A good answer names one specific request and one question. “Check that a PAN has the right shape” is settled by the first question: a rule does it for free, and it is the first thing Bharat Privacy Guard runs. Knowing where a model is the wrong tool is what an interviewer in a product-sense round listens for.':
-    'Ek achha answer ek khaas request aur ek sawaal ka naam leta hai. “Check kijiye ki PAN ka shape sahi hai” pehle sawaal se tay ho jaata hai: ek rule yeh muft mein kar deta hai, aur Bharat Privacy Guard yahi sabse pehle chalata hai. Yeh jaanna ki model kahan galat tool hai, wahi hai jo product-sense round ka interviewer sunna chahta hai.',
   'Dictate three sentences':
     'Teen sentences bolkar likhwaiye',
   'Open any free speech-to-text tool, such as the dictation on your phone. Say three starter sentences from the project page aloud in Hinglish, including the one with the Aadhaar-style number, and paste the transcripts into your notebook. Use only the made-up sentences, never a real number.':

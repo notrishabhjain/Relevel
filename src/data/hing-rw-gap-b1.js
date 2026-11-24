@@ -102,8 +102,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Apne phone par voice typing, ya koi bhi free speech-to-text use kijiye. Paanch banaye hue sentences boliye: do Hindi mein, do Hinglish mein aur ek English mein. Har ek mein banaya hua number 9876543210 rakhiye. Jo type hua use cell mein paste kijiye, phir chalaiye.',
   'With the made-up transcripts, English and Hindi score 10 of 10, and the Hinglish lines score 9 and 0. The last one wrote the number as words, so a rule that looks only for digits sees nothing. With your own transcripts, expect a different pattern. Add the five sentences, and what should have been found, as new rows in your answer key.':
     'Banaye hue transcripts ke saath, English aur Hindi 10 mein se 10 laate hain, aur Hinglish lines 9 aur 0. Aakhri line mein number shabdon mein likha tha, isliye sirf digits dhoondhne wala rule kuch nahi dekhta. Aapke apne transcripts ke saath pattern alag hoga. Paanchon sentences, aur kya milna chahiye tha, answer key mein nayi rows ki tarah jod dijiye.',
-  'This cell defines everything it uses, so run the whole cell, not a part of it.':
-    'Yeh cell jo kuch use karta hai woh khud define karta hai, isliye poora cell chalaiye, uska ek hissa nahi.',
   'A line says no digits':
     'Ek line mein no digits aata hai',
   'The tool wrote the number as words, such as nau aath saat. That is a real miss, not a mistake in the cell. Count it as zero digits right.':

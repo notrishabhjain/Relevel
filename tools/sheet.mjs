@@ -27,7 +27,9 @@
    glossary, project, setup.
 
    Lines used in more than one place (a callout label shared by many chapters)
-   are marked "shared" and are not changed by apply; change them centrally.
+   are marked "shared" and are not changed by apply; change them centrally
+   with the "shared" target, which lists each such line once and replaces it
+   everywhere it appears.
    Lines that the technical guard (tools/v31-content-check.mjs) requires are
    listed under "keep" and must survive the rewrite word for word. */
 
@@ -100,6 +102,11 @@ function itemLines(items) {
 /* ---------- targets ---------- */
 const PARTFILES = ['partA', 'part1', 'part2', 'part3', 'part4', 'part5', 'partB'].map(f => 'src/data/' + f + '.js');
 const idRe = id => new RegExp('\\bid:\\s*[\'"]' + id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '[\'"]');
+const PROJECT_IDS = /\.chapters\[|\.ids\.rows|\.samples\.rows|\.answerKey\.versions\[|\.tech$/;
+/* where the shared target replaces a line: every file whose text the usage map reads */
+const SHARED_FILES = [...PARTFILES, 'src/data/reference.js', 'src/data/project.js', 'src/data/skills.js',
+  ...[1, 2, 3, 4, 5, 6, 7].map(n => 'src/data/items' + n + '.js')];
+const OTHER_FILES = ['src/data/work.js', 'src/data/exercises5.js', 'src/data/reading.js', 'src/data/figs-a.js', 'src/data/figs-b.js', 'src/data/figs-core.js'];
 function target(spec, D) {
   const [kind, arg] = spec.split(':');
   if (kind === 'chapter') {
@@ -135,7 +142,7 @@ function target(spec, D) {
     w.walk('project', D.W.PROJECT);
     return { file, start: 0, end: rd(file).length, title: 'Project page', lines: w.list, locked: new Set(),
       /* identifiers and sample data, not prose */
-      lockWhere: /\.chapters\[|\.ids\.rows|\.samples\.rows|\.answerKey\.versions\[|\.tech$/ };
+      lockWhere: PROJECT_IDS };
   }
   if (kind === 'setup') {
     const file = 'src/data/reference.js', src = rd(file);
@@ -145,6 +152,24 @@ function target(spec, D) {
     (SU.sections || []).forEach((x, i) => { w.add('section[' + i + '].h', x.h); (x.b || []).forEach((b, j) => w.prose('section[' + i + '].b[' + j + ']', b)); });
     w.walk('trouble', SU.trouble);
     return { file, start, end: end < 0 ? src.length : end, title: 'Setup page', lines: w.list, locked: new Set() };
+  }
+  if (kind === 'shared') {
+    /* Lines used in two or more places, rewritten once and replaced everywhere.
+       Left out: chapter titles, anything the app's own code contains (it may
+       match on it), the project page's identifiers and sample data, and short
+       labels (under five words), which are already plain. */
+    const U = usage(D);
+    const titles = new Set(D.chapters.map(c => String(c.title).trim()));
+    const pw = walker(); pw.walk('project', D.W.PROJECT);
+    const ids = new Set(pw.list.filter(l => PROJECT_IDS.test(l.where)).map(l => l.en.trim()));
+    const w = walker();
+    for (const [s, scopes] of U.count) {
+      if (scopes.size < 2 || titles.has(s) || ids.has(s) || U.chrome.includes(s)) continue;
+      if (s.split(/\s+/).length < 5) continue;
+      const sc = [...scopes];
+      w.add('used in ' + sc.length + ': ' + sc.slice(0, 6).join(', ') + (sc.length > 6 ? ', …' : ''), s);
+    }
+    return { files: SHARED_FILES, multi: true, title: 'Shared lines', lines: w.list, locked: new Set() };
   }
   throw new Error('unknown target ' + spec);
 }
@@ -182,13 +207,13 @@ function extract(spec, out) {
     if (seen.has(l.en)) continue;
     seen.add(l.en);
     const key = l.en.trim(), uses = U.count.get(key) || new Set();
-    const shared = T.locked.has(l.en) || (T.lockWhere && T.lockWhere.test(l.where)) || [...uses].some(s => s !== scopeOf && s !== 'items' && scopeOf) ||
-      (scopeOf && uses.has('items')) || (!scopeOf && uses.size > 1) || (key.length < 60 && U.chrome.includes(key));
+    const shared = !T.multi && (T.locked.has(l.en) || (T.lockWhere && T.lockWhere.test(l.where)) || [...uses].some(s => s !== scopeOf && s !== 'items' && scopeOf) ||
+      (scopeOf && uses.has('items')) || (!scopeOf && uses.size > 1) || (key.length < 60 && U.chrome.includes(key)));
     entries.push({ n: entries.length, where: l.where, ...(shared ? { shared: true } : {}), en: l.en, hi: D.HING[key] ?? null });
   }
   const text = T.lines.map(l => l.en).join('\n');
   const keep = guardPhrases().filter(r => r.test(text)).map(r => r.source);
-  const sheet = { target: spec, file: T.file, title: T.title, keep, entries };
+  const sheet = { target: spec, file: T.file || T.files.join(' '), title: T.title, keep, entries };
   fs.mkdirSync(path.dirname(path.resolve(out)), { recursive: true });
   fs.writeFileSync(out, JSON.stringify(sheet, null, 1));
   fs.writeFileSync(out.replace(/\.json$/, '') + '.orig.json', JSON.stringify(sheet, null, 1));
@@ -240,23 +265,35 @@ function apply(spec, file) {
   for (const k of orig.keep || []) if (!new RegExp(k, 'i').test(after)) problems.push(`a required phrase is gone: /${k}/ — keep it word for word`);
   if (problems.length) { console.error('Not applied:\n  - ' + problems.join('\n  - ')); process.exit(1); }
 
-  /* replace the literals inside the target's span only */
-  let src = rd(T.file);
-  const lits = literals(src).filter(l => l.start >= T.start && l.end <= T.end);
-  const found = new Map();
-  let out = '', at = 0;
-  for (const l of lits) {
-    if (!changes.has(l.value)) continue;
-    out += src.slice(at, l.start) + encode(changes.get(l.value));
-    at = l.end;
-    found.set(l.value, (found.get(l.value) || 0) + 1);
+  /* replace the literals inside the target's span only (the shared target:
+     every literal with that text, in every file it covers) */
+  const spans = T.multi ? T.files.map(file => ({ file, start: 0, end: Infinity })) : [{ file: T.file, start: T.start, end: T.end }];
+  const found = new Map(), outs = [];
+  for (const sp of spans) {
+    const src = rd(sp.file);
+    const lits = literals(src).filter(l => l.start >= sp.start && l.end <= sp.end);
+    let out = '', at = 0, n = 0;
+    for (const l of lits) {
+      const v = T.multi ? l.value.trim() : l.value;
+      if (!changes.has(v)) continue;
+      out += src.slice(at, l.start) + encode(changes.get(v));
+      at = l.end; n++;
+      found.set(v, (found.get(v) || 0) + 1);
+    }
+    out += src.slice(at);
+    if (n) outs.push([sp.file, out]);
   }
-  out += src.slice(at);
   const missing = [...changes.keys()].filter(k => !found.has(k));
-  if (missing.length) { console.error('Not applied: could not find these lines as plain strings in ' + T.file + ':\n  - ' + missing.map(m => m.slice(0, 80)).join('\n  - ')); process.exit(1); }
-  /* the file must still evaluate */
-  try { new Function('window', out)({}); } catch (e) { console.error('Not applied: the edited file does not run: ' + e.message); process.exit(1); }
-  fs.writeFileSync(path.join(ROOT, T.file), out);
+  if (missing.length) { console.error('Not applied: could not find these lines as plain strings in ' + (T.file || 'the content files') + ':\n  - ' + missing.map(m => m.slice(0, 80)).join('\n  - ')); process.exit(1); }
+  /* every edited file must still evaluate */
+  for (const [f, out] of outs) {
+    try { new Function('window', out)({}); } catch (e) { console.error('Not applied: ' + f + ' would not run: ' + e.message); process.exit(1); }
+  }
+  for (const [f, out] of outs) fs.writeFileSync(path.join(ROOT, f), out);
+  if (T.multi) {
+    const left = OTHER_FILES.filter(f => fs.existsSync(path.join(ROOT, f)) && literals(rd(f)).some(l => changes.has(l.value.trim())));
+    if (left.length) warnings.push('the old text of some lines also appears in ' + left.join(', ') + ' (not changed there)');
+  }
 
   const slug = spec.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '').toLowerCase();
   const hf = 'src/data/hing-rw-zz-simple-' + slug + '.js';
@@ -266,7 +303,7 @@ function apply(spec, file) {
     `Object.assign(window.HING = window.HING || {}, {\n${body}\n});\n`);
   fs.writeFileSync(appliedFile, JSON.stringify({ ...edit, entries: orig.entries.map(o => { const e = byN.get(o.n);
     return o.shared ? o : { ...o, en: e.en, hi: typeof e.hi === 'string' ? e.hi : o.hi }; }) }, null, 1));
-  console.log(`${spec}: ${changes.size} English lines changed in ${T.file}; ${hi.size} Hinglish lines → ${hf}`);
+  console.log(`${spec}: ${changes.size} English lines changed in ${outs.map(o => o[0]).join(', ') || T.file}; ${hi.size} Hinglish lines → ${hf}`);
   if (warnings.length) console.log('Notes:\n  - ' + warnings.slice(0, 30).join('\n  - ') + (warnings.length > 30 ? `\n  - …and ${warnings.length - 30} more` : ''));
 }
 

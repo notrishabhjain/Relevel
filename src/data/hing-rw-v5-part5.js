@@ -705,8 +705,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Aapne retrieval haath se banaya',
   'You did this in Chapters 3 to 7. This chapter turns it into an architecture.':
     'Yeh aapne Chapters 3 se 7 mein kiya. Yeh chapter use ek architecture mein badalta hai.',
-  'Keyword and meaning search fail differently':
-    'Keyword aur meaning search alag tarah se fail hote hain',
   'Chapter 12 measured the difference. Here it becomes a decision about ingestion and indexing.':
     'Chapter 12 ne is farq ko measure kiya. Yahan yeh ingestion aur indexing ka decision ban jaata hai.',
   'The answer key is your measuring tool':

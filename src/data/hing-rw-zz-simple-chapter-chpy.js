@@ -23,8 +23,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Is course ke liye aapko Python likhna nahi hai. Aap use padhte hain, ek cheez badalte hain, aur dobara chalate hain. Yeh train ka time-table padhne jaisa hai: train banani nahi padti.',
   'A cell, and the Run button':
     'Ek cell, aur Run button',
-  'Code here sits in boxes called <strong>cells</strong>. One cell is one box of code on the page. Press <strong>Run</strong> and the page runs the cell. Whatever the code prints (shows) appears just below it. That is the <em>output</em>. It is like pressing the button on a lift: you press, and something happens.':
-    'Yahan code jin dibbon mein hota hai unhe <strong>cells</strong> kehte hain. Ek cell page par code ka ek dabba hai. <strong>Run</strong> dabaiye aur page us cell ko chalata hai. Code jo bhi print karta hai (dikhata hai), woh theek uske neeche aata hai. Use <em>output</em> kehte hain. Yeh lift ka button dabane jaisa hai: dabaya, aur kuch hua.',
+  'Code here sits in boxes called <strong>cells</strong>. One cell is one box of code on the page. Press <strong>Run</strong> and the page runs the cell. Whatever the code prints (shows) appears just below it. That is the output. It is like pressing the button on a lift: you press, and something happens.':
+    'Yahan code jin dibbon mein hota hai unhe <strong>cells</strong> kehte hain. Ek cell page par code ka ek dabba hai. <strong>Run</strong> dabaiye aur page us cell ko chalata hai. Code jo bhi print karta hai (dikhata hai), woh theek uske neeche aata hai. Use output kehte hain. Yeh lift ka button dabane jaisa hai: dabaya, aur kuch hua.',
   'The first run takes a few seconds, because the page has to load Python first. After that, runs are quick.':
     'Pehla run kuch second leta hai, kyunki page ko pehle Python load karna padta hai. Uske baad runs jaldi hote hain.',
   'Run your first cell':

@@ -66,8 +66,8 @@ You will meet five people again and again. Here they are in one place. Think of 
 Table: The people in the case
 | Name | Role | What to know |
 | --- | --- | --- |
-| Anaya Deshmukh | Product manager | Careful with evidence; slow to admit what she does not know; ran a state utility's bill-payment rollout before she moved to product |
-| Imran Qureshi | Lead engineer | Built the chatbot's infrastructure; does not trust any plan that has the word "just" in it |
-| Lakshmi Iyer | Head of compliance | Twenty years in banking; her favourite question is "how would we know?" |
-| Farah Sheikh | Support lead | Reads more customer writing than anyone else in the company |
-| Dr. Meenakshi Rao | Retired linguist | Anaya's old teacher; Anaya phones her on Sunday mornings for advice |
+| Anaya Deshmukh | Product manager | Checks the facts first; slow to admit what she does not know; launched a state electricity company's bill-payment system before she moved to product |
+| Imran Qureshi | Lead engineer | Built the machinery behind the chatbot; does not trust any plan with the word "just" in it |
+| Lakshmi Iyer | Head of compliance (keeps the company inside the rules) | Twenty years in banking; her favourite question is "how would we know?" |
+| Farah Sheikh | Support lead (runs the team that answers customers) | Reads more customer writing than anyone else in the company |
+| Dr. Meenakshi Rao | Retired linguist (a language expert) | Anaya's old teacher; Anaya phones her on Sunday mornings for advice |

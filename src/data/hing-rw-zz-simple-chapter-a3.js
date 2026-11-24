@@ -173,8 +173,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Company ne do naye deshon mein kaam shuru kiya.',
   'This helps, but it has a trap. One neat chain makes it look like there is only one cause. Real problems usually have several.':
     'Yeh madad karta hai, par ismein ek jaal hai. Ek saaf zanjeer se lagta hai ki sirf ek wajah hai. Asli problems mein aksar kai wajahein hoti hain.',
-  'In this example, themes might also be missed because tickets are tagged in different ways. That means one agent puts a label on a ticket one way, and another agent labels the same kind of ticket another way. Or the report template (the fixed layout of the report) may have no room for new issues.':
-    'Is example mein themes isliye bhi chhoot sakte hain kyunki tickets alag alag tarah se tag hote hain. Matlab ek agent ticket par ek tarah ka label lagata hai, aur doosra agent usi tarah ke ticket par alag label lagata hai. Ya report template (report ka tay kiya hua dhancha) mein nayi problems ke liye jagah nahi hoti.',
+  'In this example, themes might also be missed because tickets are tagged in different ways. That means one support worker puts a label on a ticket one way, and another labels the same kind of ticket another way. Or the report template (the fixed shape of the report) may have no room for new issues.':
+    'Is example mein themes isliye bhi chhoot sakte hain kyunki tickets alag alag tarah se tag hote hain. Matlab ek support worker ticket par ek tarah ka label lagata hai, aur doosra usi tarah ke ticket par alag label lagata hai. Ya report template (report ka tay kiya hua roop) mein nayi problems ke liye jagah nahi hoti.',
   'Do not stop at the first chain that sounds right. After a few whys, ask: “What else could cause this?” Then draw the causes as a tree with branches, not as one straight line.':
     'Pehli sahi lagne wali zanjeer par mat rukiye. Kuch kyun ke baad poochhiye: “What else could cause this?” Phir wajahon ko ek ped ki tarah shaakhaon ke saath banaiye, ek seedhi line ki tarah nahi.',
   'Take the main pain in your capstone problem. Ask “why?” three to five times. Then go back to the first answer and look for one more cause.':

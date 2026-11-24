@@ -307,8 +307,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Users ko slow responses yaad rehte hain',
   'They notice the slowest ones, not the average response time.':
     'Unhe sabse slow wale yaad rehte hain, average response time nahi.',
-  'A kill switch is not a rollback':
-    'Kill switch rollback nahi hota',
   'Rolling back code does not undo behaviour that both versions share.':
     'Code rollback karne se woh behaviour wapas nahi hota jo dono versions mein ek jaisa hai.',
   'Explain how a feature that is wrong one time in ten can still be trusted.':

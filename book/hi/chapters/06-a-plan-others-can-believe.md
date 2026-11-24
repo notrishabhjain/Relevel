@@ -1,6 +1,6 @@
 ---
 title: Aisa Plan Jis Par Doosre Bharosa Karein
-summary: Strategy tab tak sirf ek sentence hai jab tak doosre log us par kaam na kar sakein. Aap seekhenge ki dates ke bajaye outcomes ka waada kaise karein, goals ko naapne laayak results mein kaise likhein, kaun "na" keh sakta hai yeh kaise map karein, aur yeh maan kar kaise chalein ki project pehle hi fail ho chuka hai.
+summary: Strategy tab tak sirf ek sentence hai jab tak doosre log us par kaam na kar sakein. Anaya dates ki jagah results ka waada karna seekhti hai. Woh goals ko naape ja sakne wale numbers mein likhti hai. Woh dekhti hai ki kaun "na" keh sakta hai. Woh ek aisi meeting bhi karti hai jo maanti hai ki project pehle hi fail ho chuka hai.
 course: a6
 goals:
   - kill criterion ke saath ek outcome roadmap banana
@@ -8,41 +8,39 @@ goals:
   - stakeholders ko power aur interest ke hisaab se map karna, aur khatarnaak corner par kaam karna
   - decision memo likhna, pre-mortem karna aur dependencies ki list banana
 terms:
-  - roadmap | aisa plan jo dikhata hai ki team kis par kaam karegi aur lagbhag kab; kaam ka roadmap dates ki jagah teen column mein outcomes ka waada karta hai: Now, Next aur Later | outcome roadmap
-  - kill criterion | pehle se likhi hui ek shart, jiske poora hone ka matlab hai ki aap kaam rok dete hain | kill criteria
-  - OKR | objectives and key results: shabdon mein likha ek goal, kuch numbers ke saath jo dikhate hain ki aap wahan pahunche | OKRs, objectives and key results
-  - key result | ek objective ke neeche ke teen-chaar numbers mein se ek jo dikhata hai ki aap wahan pahunche ya nahi; woh naapta hai ki logon ke liye kya badla, yeh nahi ki aapne kya ship kiya | key results
-  - input metric | aisa number jise team seedha badal sakti hai aur jisse aap umeed karte hain ki outcome hilega | input metrics
-  - guardrail metric | aisa number jo key results ke peeche bhaagte hue kharab nahi hona chahiye | guardrail metrics, guardrail
-  - stakeholder | koi bhi jo project ki madad ya rok kar sakta hai, ya jis par uska asar padta hai | stakeholders
-  - decision memo | ek chhota document jo is tarah likha jaata hai ki vyast insaan uska pehla paragraph padh kar decision le sake | memo
-  - pre-mortem | ek meeting jismein sab imagine karte hain ki project fail ho gaya, aur shuru hone se pehle likhte hain ki kyun | 
-  - dependency | koi bhi cheez jo aapko khatam karne ke liye apni team ke bahar se chahiye: doosri team ka kaam, supplier, data ka access, koi approval | dependencies
+  - roadmap | jaise parivaar ka hafte ka plan: aaj raat ka khaana pakka, agle hafte ki kharidari mumkin, kabhi ki chhutti ek khwaab; woh dikhata hai ki team kis par kaam karegi aur lagbhag kab, teen column mein, Now, Next aur Later, dates ki jagah results ka waada karke | outcome roadmap
+  - kill criterion | jaise trek ka niyam, "agar dopahar tak pul tak nahi pahunche toh wapas mudo"; pehle se likhi hui shart jiske poora hone par kaam rok diya jaata hai | kill criteria
+  - OKR | jaise report card ka goal aur uske saath marks: objectives and key results, shabdon mein likha goal aur kuch numbers jo dikhate hain ki aap wahan pahunche | OKRs, objectives and key results
+  - key result | jaise woh marks jo dikhate hain ki aap paas hue; goal ke neeche ke teen-chaar numbers mein se ek. Woh naapta hai ki logon ke liye kya badla, yeh nahi ki aapne kya ship kiya | key results
+  - input metric | jaise wazan ghatane ke liye roz ke kadam ginna; aisa number jise team seedha badal sakti hai, aur jisse aap result hilne ki ummeed karte hain | input metrics
+  - guardrail metric | jaise pul ki railing; aisa number jo key results ke peeche bhaagte hue kharab nahi hona chahiye | guardrail metrics, guardrail
+  - stakeholder | jaise shaadi mein woh log jo shaadi chalwa ya rok sakte hain, jaise halwai aur hall ka malik; koi bhi jo project ki madad ya rok kar sakta hai, ya jis par uska asar padta hai | stakeholders
+  - decision memo | jaise akhbaar ki khabar jiska pehla paragraph sab bata deta hai; ek chhota note jise vyast insaan uski shuruaat padh kar act kar sake | memo
+  - pre-mortem | jaise pakane se pehle dimaag mein dish chakh kar dekhna ki jal gayi hai; ek meeting jismein sab maan lete hain ki project fail ho gaya aur likhte hain ki kyun | 
+  - dependency | jaise deewar rangne se pehle plumber ka intezaar; koi bhi cheez jo aapko khatam karne ke liye apni team ke bahar se chahiye | dependencies
 ---
 
-Utility rollout ki delivery ke saalon mein Anaya ne aise plans banaye jo railway timetable jaise dikhte the. Use yeh banana uske pehle manager ne sikhaya tha. Ek taraf features, upar mahine, aur har feature ke liye ek bar, jo ek date par shuru hota aur doosri par khatam. Anaya ne aise lagbhag ek darjan plans banaye the. Use yaad nahi tha ki unmein se koi ek bhi sach hua ho.
+Anaya ne saalon utility rollout ki delivery ka kaam kiya. Uske plans railway timetable jaise dikhte the. Use yeh banana uske pehle manager ne sikhaya tha. Ek taraf features. Upar mahine. Har feature ke liye ek bar, jo ek date par shuru hota aur doosri par khatam. Anaya ne aise lagbhag ek darjan plans banaye the. Use yaad nahi tha ki unmein se koi ek bhi sach hua ho.
 
-Dates aksar galat hoti thi, lekin yahi sabse badi kami nahi thi. Har bar kuch banane ka waada tha. Kisi bhi bar ne yeh waada nahi kiya tha ki woh cheez madad karegi.
+Dates aksar galat hoti thi. Lekin yahi sabse badi kami nahi thi. Har bar kuch banane ka waada tha. Kisi bar ne yeh waada nahi kiya tha ki woh cheez madad karegi. Jab dates khisakti thi, plan toote waadon ki list ban jaata. Aur jab koi feature kaam ka nahi nikalta, toh woh galat cheez ke toote waadon ki list ban jaata.
 
-Jab dates khisakti thi, plan toot-te waadon ki list ban jaata. Aur jab koi feature kaam ka nahi nikalta, toh woh galat cheez ke toot-te waadon ki list ban jaata.
+Founders ne privacy tool ko principle mein maan liya. Phir Anaya ne ek saaf page par naya plan shuru kiya, ek alag shakl ke saath. Yeh chapter us shakl ko dekhta hai, aur uske saath jude goals ko. Hum un logon se bhi milte hain jo use rok sakte the. Aur ek aisi meeting dekhte hain jisne plan ko shuru hone se pehle parkha.
 
-Founders ne privacy tool ko principle mein maan liya. Uske baad Anaya ne ek saaf page par naya plan shuru kiya, ek alag dhaanche ke saath. Is chapter mein hum us dhaanche ko dekhenge, aur uske saath jude goals ko. Phir un logon se milenge jo use rok sakte the, aur ek aisi meeting se, jisne plan ko shuru hone se pehle parkha.
-
-Agar aapne delivery chalayi hai, toh neeche ke kai shabd aap pehle se jaante hain: stakeholder, dependency, risk list. Yeh dekhte hue padhiye ki kya badalta hai. Delivery mein date aapki hoti hai. Yahan outcome aapka hota hai.
+Agar aapne delivery chalayi hai, toh neeche ke kai shabd aap jaante hain. Stakeholder, dependency aur risk list purane jaan-pehchaan wale hain. Yeh dekhte hue padhiye ki kya badalta hai. Delivery mein date aapki hoti hai. Yahan result aapka hota hai.
 
 ## Case: bina dates ka plan
 
-Pichhle chapter ki strategy abhi bhi sirf ek sentence thi. Engineers, compliance staff aur founders usse kaam kar sakein, iske liye teen cheezein chahiye thi. Kaam ka ek order. Yeh jaanne ka tareeka ki kaam safal hua ya nahi. Aur is baat ka account ki raaste mein kaun aa sakta hai.
+Pichhle chapter ki strategy abhi bhi sirf ek sentence thi. Naqshe par ek manzil socho. Logon ko phir bhi raasta chahiye. Engineers, compliance staff aur founders usse kaam kar sakein, iske liye teen cheezein chahiye thi. Pehli, kaam ka ek order. Doosri, yeh jaanne ka tareeka ki kaam safal hua ya nahi. Teesri, is baat ka hisaab ki raaste mein kaun aa sakta hai.
 
-Neeche ke sections in teen zaroorton ko ek-ek karke dekhte hain. Phir chautha step aata hai: ek meeting, jismein colleagues se kaha gaya ki maan lo project pehle hi fail ho chuka hai.
+Neeche ke sections in teeno ko ek-ek karke dekhte hain. Phir chautha step aata hai. Yeh ek meeting hai jismein colleagues se kaha gaya ki maan lo project pehle hi fail ho chuka hai.
 
 ## Outcome roadmap
 
-Anaya ne jis form ka *roadmap* apnaya, usmein teen column hain aur calendar nahi hai.
+*Roadmap* ek plan hai ki team kis par kaam karegi, aur lagbhag kab. Yeh parivaar ke hafte ke plan jaisa hai. Aaj raat ka khaana pakka hai. Agle hafte ki kharidari mumkin hai. Kabhi ki chhutti ek khwaab hai. Anaya ke roadmap mein teen column hain aur calendar nahi hai.
 
 - *Now* mein woh kaam hai jo team abhi kar rahi hai. Yeh pakka waada hai.
-- *Next* mein woh hai jo team uske baad karne ki ummeed rakhti hai. Yeh likely hai, lekin badal sakta hai.
-- *Later* mein woh hai jo team tatol rahi hai. Yeh abhi ki soch ke hisaab se order mein hai, aur kisi se iska waada nahi kiya gaya.
+- *Next* mein woh hai jo team uske baad karne ki ummeed rakhti hai. Yeh mumkin hai, lekin badal sakta hai.
+- *Later* mein woh hai jo team tatol rahi hai. Yeh aaj ki soch ke hisaab se order mein hai. Yeh kisi se promise nahi hai.
 
 Har item ek outcome ke roop mein likha jaata hai, yaani logon ke kuch kar paane mein badlaav. Feature ke roop mein nahi. Har item ke neeche kuch lines ki detail hoti hai. Table mein pehle item ki entry dekhiye.
 
@@ -55,50 +53,46 @@ Table: Pehle item ke liye Anaya ki roadmap entry
 | Depends on | Chat system ka read access; Lakshmi ka sign-off |
 | Kill criterion | Agar chaar hafton mein agents 10 mein se 2 se zyada chats mein ise band kar dein, toh ruk jaao |
 
-Aakhri line Anaya ke liye nayi thi. *Kill criterion* ek aisi shart hai jo pehle se tay ki jaati hai, aur jiske poora hone par kaam rok diya jaata hai.
+Aakhri line Anaya ke liye nayi thi. *Kill criterion* trek ke niyam jaisa hai: "Agar dopahar tak pul tak nahi pahunche, toh wapas mudo." Yeh ek shart hai, pehle se tay ki hui, jiske poora hone par kaam rukta hai.
 
-Yeh ek psychological wajah se kaam karta hai. Teen hafte ki mehnat ke baad koi bhi yeh judge karne ke liye sahi insaan nahi hota ki kaam kharab chal raha hai. Kyunki sabke paas yeh kehne ki wajah hoti hai ki sab theek hai. Shuru mein likhi hui shart, jab koi result se juda nahi hota, failure ko aise shabdon mein batati hai jin par baad mein behas nahi karni padti.
+Yeh insaani wajah se kaam karta hai. Teen hafte ki mehnat ke baad koi bhi theek se judge nahi kar sakta ki kaam kharab chal raha hai. Sabke paas yeh kehne ki wajah hoti hai ki sab theek hai. Niyam shuru mein likha jaata hai, jab koi result se juda nahi hota. Woh failure ko aise shabdon mein batata hai jin par baad mein behas nahi karni padti.
 
-Jab kaam aise software ka ho jo text padhta aur likhta hai, tab kill criteria aur zyada zaroori ho jaate hain. Uski accuracy pehle se nahi pata hoti. Woh software ko aazma kar hi pata chalti hai. Isliye pehle test se pehle di gayi date ek andaaza hai, jise waade ki tarah pesh kiya gaya hai.
+Jab kaam aise software ka ho jo text padhta aur likhta hai, tab kill criteria aur zyada zaroori ho jaate hain. Uski accuracy pehle se nahi pata hoti. Woh use aazma kar hi pata chalti hai. Isliye pehle test se pehle di gayi date ek andaaza hai, jo waade ki tarah pesh kiya gaya hai.
 
 ::: key Jab aap outcome ke malik hote hain, toh kya badalta hai
-Delivery aur product alag-alag waade maangte hain. Delivery plan date ka waada karta hai, aur kaam tab judge hota hai jab dekha jaaye ki woh pahuncha ya nahi. Product plan outcome ka waada karta hai, aur kaam tab judge hota hai jab dekha jaaye ki use karne walon ke liye kuch badla ya nahi.
-- Waade ki date ban jaati hai waade ka outcome.
+Delivery aur product alag-alag waade maangte hain. Delivery plan date ka waada karta hai. Kaam tab judge hota hai jab dekha jaaye ki woh pahuncha ya nahi. Product plan result ka waada karta hai. Kaam tab judge hota hai jab dekha jaaye ki use karne walon ke liye kuch badla ya nahi.
+- Waade ki date ban jaati hai waade ka result.
 - Deliver kiya gaya scope ban jaata hai woh number jo aapne hilaya.
-- Escalate kiya gaya risk ban jaata hai pehle se likha gaya kill criterion.
+- Escalate kiya gaya risk (bade boss tak pahunchaya gaya risk) ban jaata hai pehle se likha gaya kill criterion.
 :::
 
 ## Goals aur unke neeche ke numbers
 
 Lakshmi ka sawaal abhi bhi Anaya ke desk par ek sticky note mein chipka tha. Use kaise pata chalega ki tool kaam karta hai?
 
-Companies is tarah ke sawaal ka jawaab *objectives and key results* se deti hain, jinhe aam taur par *OKR* kehte hain. Objective shabdon mein batata hai ki aap kya chahte hain. Uske neeche ke *key results* teen-chaar numbers hote hain, jo dikhate hain ki aap wahan pahunche.
+Companies iska jawaab *objectives and key results* se deti hain, jinhe chhote mein *OKR* kehte hain. Report card socho. Objective shabdon mein batata hai ki aap kya chahte hain. *Key results* uske saath ke marks hain. Yeh teen-chaar numbers hain jo dikhate hain ki aap wahan pahunche.
 
 ::: key Outcomes, outputs nahi
-Key result ek outcome naapta hai, yaani logon ke liye kya badla. Woh output nahi naapta, yaani yeh nahi ki kya ship hua. "Privacy tool release karo" ek output hai: yeh ho sakta hai aur kuch na badle. "Kam conversations personal detail ke saath chat se nikalti hain" ek outcome hai.
+Key result ek outcome naapta hai, yaani logon ke liye kya badla. Woh output nahi naapta, yaani yeh nahi ki kya ship hua. "Privacy tool release karo" ek output hai. Yeh ho sakta hai aur kuch na badle. "Kam conversations personal detail ke saath chat se nikalti hain" ek outcome hai.
 :::
 
-Anaya ne ek objective aur do key results likhe. Objective tha: Sahaj ki support chat ko export karne ke liye safe banana. Pehla key result tha ki jin conversations mein chat se nikalte waqt koi unhidden personal detail nahi bachti, unka share 91 percent se badhkar 99 percent ho jaayega.
-
-Doosra key result tha ki support agents report karenge ki 50 mein se 1 se kam chat mein tool ne woh cheez chhupayi jo unhe chahiye thi.
+Anaya ne ek objective aur do key results likhe. Objective tha: Sahaj ki support chat ko export karne ke liye safe banana. Export matlab data ko ek system se bahar copy karna. Pehla key result un conversations ke baare mein tha jo bina kisi unhidden personal detail ke chat se nikalti hain. Unka share 91 percent se badhkar 99 percent ho jaayega. Doosra key result yeh tha. Support agents report karenge ki 50 mein se 1 se kam chat mein tool ne woh cheez chhupayi jo unhe chahiye thi.
 
 Key results ke saath do aur tarah ke numbers chalte hain.
 
-*Input metric* woh number hai jise team seedha hila sakti hai, aur jisse aap ummeed karte hain ki outcome hilega. Anaya ke liye yeh tha: fixed-shape numbers ka woh share jo tool ne pakda. Outcome ko aap hukum nahi de sakte, lekin input ko behtar kar sakte hain.
+*Input metric* wazan ghatane ke liye roz ke kadam ginne jaisa hai. Yeh woh number hai jise team seedha hila sakti hai, aur jisse aap result hilne ki ummeed karte hain. Anaya ke liye yeh tha: fixed-shape numbers ka woh share jo tool ne pakda. Result ko aap hukum nahi de sakte. Lekin input ko behtar kar sakte hain.
 
-*Guardrail metric* woh number hai jo baaki numbers ke peeche bhaagte waqt kharab nahi hona chahiye. Yeh aapko aise jeetne se rokta hai jisse nuksaan ho. Anaya ka guardrail false-alarm rate tha: chhupaye gaye items mein se woh share jo personal the hi nahi.
+*Guardrail metric* pul ki railing jaisa hai. Yeh woh number hai jo baaki numbers ke peeche bhaagte waqt kharab nahi hona chahiye. Yeh aapko aise jeetne se rokta hai jisse nuksaan ho. Anaya ka guardrail false-alarm rate tha. Yaani chhupaye gaye items mein se woh share jo personal the hi nahi. Jo tool har message ka har number blank kar de, woh pehle key result par poora score karega. Aur woh bekaar hoga. Isliye usne limit 100 mein 3 rakhi.
 
-Jo tool har message ka har number blank kar de, woh pehle key result par poora score karega, aur phir bhi kisi kaam ka nahi hoga. Isliye usne limit 100 mein 3 rakhi.
+Ek aur farq tha, aur technical kaam shuru hone par ise bhoolna aasaan tha. Tool ka apna score uski apni test par hoga. Woh score tool ko naapta hai. Key results naapte hain ki logon ke saath kya hota hai.
 
-Ek aur farq tha, aur technical kaam shuru hone par ise bhoolna aasaan tha. Tool ka apna score uski apni test par hota hai, aur woh tool ko naapta hai. Key results naapte hain ki logon ke saath kya hota hai.
-
-Tool apni test mein achha kar sakta hai, aur phir bhi agents use ignore kar sakte hain, kyunki woh unhe chidhata hai. Ya woh itni der se aaye ki farq hi na pade. Dono tarah ke numbers chahiye the, aur har number par label lagana tha ki woh kaun sa hai.
+Tool apni test mein achha kar sakta hai, aur phir bhi agents use ignore kar sakte hain, kyunki woh unhe chidhata hai. Ya woh itni der se aaye ki farq hi na pade. Dono tarah ke numbers chahiye the. Har number par label lagana tha ki woh kaun sa hai.
 
 ## Jo "na" keh sakte hain
 
 Imran ne poochha, plan sach mein padhega kaun? Anaya ko nahi pata tha.
 
-Jo bhi project ki madad kar sakta hai ya use rok sakta hai, ya jis par project ka asar padta hai, woh *stakeholder* hai. Aur sab stakeholders barabar nahi hote. Toh Anaya ne ek square banaya, jismein do axes the. Ek, insaan ke paas project par kitni power hai. Doosra, use project ki kitni parwaah hai. Phir usne usmein naam rakhe.
+Shaadi ke logon ko socho. Halwai, pandit aur hall ka malik, har ek shaadi chalwa bhi sakta hai aur rok bhi sakta hai. Jo bhi project ki madad kar sakta hai ya use rok sakta hai, ya jis par project ka asar padta hai, woh *stakeholder* hai. Sab stakeholders barabar nahi hote. Toh Anaya ne do lakeeron wala ek square banaya. Ek lakeer dikhati thi ki insaan ke paas project par kitni power hai. Doosri dikhati thi ki use project ki kitni parwaah hai. Phir usne usmein naam rakhe.
 
 Table: Power aur interest ke hisaab se stakeholders
 | | Kam parwaah | Bahut parwaah |
@@ -106,19 +100,19 @@ Table: Power aur interest ke hisaab se stakeholders
 | Power hai | Santusht rakho: founders, Lakshmi | Nazdeek se kaam karo: Imran, support head |
 | Power kam hai | Informed rakho: doosri product teams | Involved rakho: Farah ke agents, customers |
 
-Har naam ke paas Anaya ne likha ki us insaan ko kis cheez par naapa jaata hai. Isse pata chalta hai ki woh kaise react karega. Usne yeh bhi likha ki woh kya decide kar sakta hai: woh chunta hai, salah deta hai, ya veto kar sakta hai.
+Har naam ke paas Anaya ne likha ki us insaan ko kis cheez par naapa jaata hai. Isse pata chalta hai ki woh kaise react karega. Usne yeh bhi likha ki woh kya decide kar sakta hai. Woh chunta hai, salah deta hai, ya veto kar sakta hai (na kehne aur rokne ka haq)?
 
-Lakshmi galat corner mein thi. Uske paas asli power thi, aur Anaya ke dekhne mein parwaah kam. Yeh jodi sabse khatarnaak hai. Security, legal aur compliance ke logon ke paas aksar veto hota hai, jabki woh roz ke kaam mein kam hissa lete hain.
+Lakshmi galat corner mein thi. Uske paas asli power thi. Anaya ke dekhne mein parwaah kam thi. Yeh jodi sabse khatarnaak hai. Security, legal aur compliance ke logon ke paas aksar veto hota hai, jabki woh roz ke kaam mein kam hissa lete hain.
 
-Woh launch se ek din pehle tak chup rehte hain, aur phir "na" kehte hain. Aur aam taur par woh sahi hote hain. Sarkari project mein yahi corner aam taur par audit, finance ya security assessor ke paas hota hai.
+Woh launch se ek din pehle tak chup rehte hain. Phir "na" kehte hain. Aur aam taur par woh sahi hote hain. Sarkari project mein yahi corner aam taur par audit (jo hisaab-kitaab jaanchte hain), finance ya security assessor ke paas hota hai.
 
-Ilaaj saadharan tha. Anaya ne har hafte Lakshmi se milna shuru kiya aur poochha ki use kya chahiye. Is tarah woh doosre column mein aa gayi.
+Ilaaj saadharan tha. Anaya har hafte Lakshmi se milti aur poochhti ki use kya chahiye. Is tarah woh doosre column mein aa gayi.
 
 ## Decision memo
 
 Founders plan nahi padhenge. Woh memo ka pehla paragraph padhenge, aur shayad doosra.
 
-*Decision memo* aise likha jaata hai ki vyast insaan sirf uski shuruaat padhkar action le sake. Order yeh hai: maang, wajah, cost, sabse bada risk, aur alternatives, kuch na karna bhi. Anaya ka pehla paragraph dekhiye.
+*Decision memo* akhbaar ki khabar jaisa hai. Pehla paragraph sab bata deta hai. Ise aise likha jaata hai ki vyast insaan sirf shuruaat padhkar action le sake. Order yeh hai: maang, wajah, cost, sabse bada risk, aur doosre raaste, kuch na karna bhi. Anaya ka pehla paragraph dekhiye.
 
 ::: example Anaya ka pehla paragraph
 Main Imran ka aadha time aath hafte ke liye aur cloud mein lagbhag 40,000 rupaye maang rahi hoon, ek chhota tool banane ke liye jo hamari support chat mein personal details ko aage jaane se pehle chhupa de. Ek hafte ki chats mein 400 mein se 37 conversations mein pehchaan ka number, tax number, bank account ya pata tha, aur kuch bhi unhe hamare logs, exports ya bahar ki company ke systems se nahi hatata.
@@ -126,17 +120,17 @@ Main Imran ka aadha time aath hafte ke liye aur cloud mein lagbhag 40,000 rupaye
 Sabse bada risk yeh hai ki tool Hinglish mein likhi cheezein chhod sakta hai. Hum ise live chat ko chhune se pehle asli examples par test karenge, aur agar agents 10 mein se 2 se zyada chats mein ise band karte hain toh ruk jaayenge.
 :::
 
-Sirf chaar sentences mein yeh paragraph maang, saboot, main risk aur rukne ki shart bata deta hai.
+Sirf chaar sentences mein yeh paragraph maang, saboot, main risk aur rukne ka niyam bata deta hai.
 
-## Fail ho chuke project ko imagine karna
+## Maan lo woh fail ho gaya
 
-Founders ki meeting se pehle Anaya ne ek gathering rakhi. Imran ko us se darr lag raha tha, aur Farah ko us ka intezaar tha. Sabko maan lena tha ki chhe mahine baad ka waqt hai, aur project fail ho chuka hai. Phir har insaan ko alag-alag, bina baat kiye, likhna tha ki fail kyun hua.
+Founders ki meeting se pehle Anaya ne ek gathering rakhi. Imran ko us se darr lag raha tha. Farah ko us ka intezaar tha. Sabko maan lena tha ki chhe mahine baad ka waqt hai, aur project fail ho chuka hai. Phir har insaan ko alag-alag, bina baat kiye, likhna tha ki fail kyun hua.
 
-Ise *pre-mortem* kehte hain, aur yeh ek seedhi wajah se kaam karta hai. Imagined failure mein log woh risks bata dete hain jo woh aise plan ke khilaaf nahi uthate jiska samarthan karne ki unse ummeed ho.
+Ise *pre-mortem* kehte hain. Yeh pakane se pehle dimaag mein dish chakh kar dekhne jaisa hai, aur use jala hua paana. Yeh ek seedhi wajah se kaam karta hai. Maane hue failure mein log woh risks bata dete hain jo woh aise plan ke khilaaf nahi uthate jiska samarthan karne ki unse ummeed ho.
 
-Farah ne likha ki agents ne tool band kar diya. Tool ne baatcheet ke beech ek customer ka callback number chhupa diya, aur kisi ne nahi bataya ki use wapas kaise laayein. Lakshmi ne likha ki tool Hinglish mein likha ek pata chhod gaya, ek screenshot export mein chala gaya, aur ek regulator ne poochha ki aisa kaise hua.
+Farah ne likha ki agents ne tool band kar diya. Tool ne baatcheet ke beech ek customer ka callback number chhupa diya. Kisi ne agents ko nahi bataya ki use wapas kaise laayein. Lakshmi ne likha ki tool Hinglish mein likha ek pata chhod gaya. Ek screenshot export mein chala gaya. Ek regulator ne poochha ki aisa kaise hua. Regulator woh sarkari sanstha hai jo dekhti hai ki firms kanoon maan rahi hain.
 
-Imran ne likha ki tool ne har reply mein ek second jod diya, aur customers ne shikayat ki ki chatbot slow lagta hai. Anaya ne likha ki test examples ki file kabhi update nahi hui, isliye koi nahi bata sakta tha ki chautha version teesre se behtar hai ya nahi.
+Imran ne likha ki tool ne har reply mein ek second jod diya. Customers ne shikayat ki ki chatbot slow lagta hai. Anaya ne likha ki test examples ki file kabhi update nahi hui. Isliye koi nahi bata sakta tha ki chautha version teesre se behtar hai ya nahi.
 
 Anaya ne yeh sab ek risk list mein badal diya.
 
@@ -148,25 +142,25 @@ Table: Pre-mortem se nikli risk list
 | Replies slow karta hai | Medium | Medium | Imran | Pehle hafte se hi jodi gayi der naapo |
 | Test file puraani ho jaati hai | High | Medium | Anaya | Ek insaan ki zimmedaari; har badlaav par update |
 
-Is list ke saath Anaya ne ek chhoti list rakhi, un cheezon ki jo use doosre logon se chahiye thi. *Dependency* woh hai jo project ko apni team ke bahar se chahiye: kisi aur ka kaam, supplier ka sahyog, data ka access, ya koi approval. Plans dependencies mein hi khisakte hain, kyunki team ka un par koi control nahi hota.
+Is list ke saath Anaya ne ek chhoti list rakhi, un cheezon ki jo use doosre logon se chahiye thi. *Dependency* deewar rangne se pehle plumber ka intezaar karne jaisi hai. Yeh woh hai jo project ko apni team ke bahar se chahiye. Yeh kisi aur ka kaam ho sakta hai, supplier ki madad, data ka access, ya koi approval. Plans dependencies mein hi khisakte hain, kyunki team ka un par koi control nahi hota.
 
-Anaya ki teen dependencies thi. Chat system ka read access. Kuch bhi live jaane se pehle Lakshmi ka sign-off. Aur bahar ki company ka waada ki uska software text lene ka tareeka nahi badlega. Pehla use Friday tak mil sakta tha. Teesre ke baare mein woh kam pakki thi.
+Anaya ki teen dependencies thi. Chat system ka read access. Kuch bhi live jaane se pehle Lakshmi ka sign-off (uski likhi hui haan). Aur bahar ki company ka waada ki uska software text lene ka tareeka nahi badlega. Pehla use Friday tak mil sakta tha. Teesre ke baare mein woh kam pakki thi.
 
 ## Result
 
 Founders ne memo par gyarah minute lagaye. Unhone poochha ki kitna time lagega, kitna cost aayega, aur kya Lakshmi maan gayi hain. Anaya ne teesre sawaal ka jawaab pehle diya.
 
-Decision us log mein gaya jo Anaya ne pehli raat shuru kiya tha, uske neeche ek nayi line ke saath: agar Imran ka aadha time teesre hafte ke baad nahi mil paaya, toh woh apni raay badal degi.
+Decision us log mein gaya jo Anaya ne pehli raat shuru kiya tha. Usne uske neeche ek nayi line jodi. Agar Imran ka aadha time teesre hafte ke baad nahi mil paaya, toh woh apni raay badal degi.
 
-Aisa plan jis par doosre bharosa kar sakein, woh nahi hota jo confident sunai de. Woh hota hai jo unhe pehle hi bata de ki woh kaise fail ho sakta hai.
+Ek doctor socho jo operation se pehle aapko risks bata deta hai. Aap us par kam nahi, zyada bharosa karte hain. Jis plan par doosre bharosa kar sakein, woh sabse confident nahi sunai deta. Woh unhe pehle hi bata chuka hota hai ki woh kaise fail ho sakta hai.
 
 ## Saaraansh
 
-Jo roadmap Now, Next aur Later columns mein outcomes ka waada karta hai, woh dates par features ka waada karne wale roadmap se kam tootta hai. Shuru mein likhi kill criterion rukna aasaan bana deti hai.
+Jo roadmap Now, Next aur Later columns mein results ka waada karta hai, woh dates par features ka waada karne wale roadmap se kam tootta hai. Shuru mein likhi kill criterion rukna aasaan bana deti hai.
 
-- Objective goal ko shabdon mein batata hai, aur key results naapte hain ki logon ke liye kya badla. Input metric woh number hai jise team seedha hila sakti hai, aur guardrail metric kharab nahi hona chahiye. Tool ka apna test score key result se alag cheez hai.
+- Objective goal ko shabdon mein batata hai, aur key results naapte hain ki logon ke liye kya badla. Input metric woh number hai jise team seedha hila sakti hai. Guardrail metric kharab nahi hona chahiye. Tool ka apna test score key result se alag cheez hai.
 - Stakeholders mein power aur interest alag hoti hai. Jis insaan ke paas power ho aur interest na ho, woh project ko der se rokne ki sabse zyada sambhavna rakhta hai.
-- Decision memo maang, saboot, main risk aur rukne ki shart se shuru hota hai.
-- Pre-mortem sabse pehle failure ki imagination se shuru karwata hai, aur uska result owners ke saath ek risk list hota hai. Dependencies, jin par team ka control nahi hota, alag likhi jaati hain.
+- Decision memo maang, saboot, main risk aur rukne ke niyam se shuru hota hai.
+- Pre-mortem sabse pehle failure maan lene se shuru karwata hai. Uska result owners ke saath ek risk list hota hai. Dependencies, jin par team ka control nahi hota, alag likhi jaati hain.
 
 Agle chapter mein Anaya yeh sab likh kar rakhti hai, taaki engineers uske hisaab se bana sakein.

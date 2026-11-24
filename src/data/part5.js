@@ -506,7 +506,7 @@ window.PART5 = [
   },
   needs:[
     ['You built retrieval by hand','You did this in Chapters 3 to 7. This chapter turns it into an architecture.',7],
-    ['Keyword and meaning search fail differently','Chapter 12 measured the difference. Here it becomes a decision about ingestion and indexing.',12],
+    ['Keyword search and meaning search fail in different ways','Chapter 12 measured the difference. Here it becomes a decision about ingestion and indexing.',12],
     ['The answer key is your measuring tool','Every claim in this chapter is measured against it.',6]
   ],
   words:[
@@ -984,7 +984,7 @@ window.PART5 = [
       ['x','Each line shows two scores and the list of tools used. A small model often gets the answer right by a longer path, or stops with “cannot decide”. Your counts will differ from anyone else’s. The last line is the pair to compare: final answer correct next to trajectory correct. If the second number is lower, the agent is costing you steps it did not need.'],
       [
         'snag',
-        ['A red box saying something <em>is not defined</em>','This cell defines everything it uses, including the model name, so run the whole cell. The key and the connection come from the warm-up that runs before your first cell.','An authentication error, or the number 401','Your key did not reach the code. Check the name you saved it under on the <a href="#/setup">Setup</a> page, capital letters included.','Every line says cannot decide','The model did not answer with one of the three allowed words. That is the exit working. Read the reply, and make the prompt stricter or try the other model on the Setup page.']
+        ['A red box saying something <em>is not defined</em>','This cell defines everything it uses, including the model name, so run the whole cell. The key and the connection come from the warm-up that runs before your first cell.','An authentication error, or the number 401 (your key was not accepted)','Your key did not reach the code. Check the name you saved it under on the <a href="#/setup">Setup</a> page, capital letters included.','Every line says cannot decide','The model did not answer with one of the three allowed words. That is the exit working. Read the reply, and make the prompt stricter or try the other model on the Setup page.']
       ]
     ]],
     ['h','How much freedom to give'],
@@ -1309,7 +1309,7 @@ window.PART5 = [
       ['x','With the made-up transcripts, English and Hindi score 10 of 10, and the Hinglish lines score 9 and 0. The last one wrote the number as words, so a rule that looks only for digits sees nothing. With your own transcripts, expect a different pattern. Add the five sentences, and what should have been found, as new rows in your answer key.'],
       [
         'snag',
-        ['A red box saying something <em>is not defined</em>','This cell defines everything it uses, so run the whole cell, not a part of it.','A line says no digits','The tool wrote the number as words, such as nau aath saat. That is a real miss, not a mistake in the cell. Count it as zero digits right.','The Hindi line looks broken','Paste the transcript between the quotation marks and keep the quotation marks. Hindi letters are fine inside them.']
+        ['A red box saying something <em>is not defined</em>','This cell sets up everything it uses. So run the whole cell, not a part of it.','A line says no digits','The tool wrote the number as words, such as nau aath saat. That is a real miss, not a mistake in the cell. Count it as zero digits right.','The Hindi line looks broken','Paste the transcript between the quotation marks and keep the quotation marks. Hindi letters are fine inside them.']
       ]
     ]],
     ['p','Speaker attribution is a good one to try yourself, because it raises questions that are not only technical.'],
@@ -1506,7 +1506,7 @@ window.PART5 = [
       ['x','Five lines say ok. Hinglish and MOBILE say BELOW GATE, because the pattern checker cannot see the partly hidden number in row 4. The last line is FAIL. That is the right result: the gate caught a real miss. Lower a threshold only after you have written down why, with a number.'],
       [
         'snag',
-        ['A red box saying something <em>is not defined</em>','This cell defines everything it uses, so run the whole cell, not a part of it.','All lines say ok and the last line is PASS','You may have changed a sentence or a threshold. Put row 4 back as it was, and the gate should fail again.','The Hindi row prints strange letters','Your screen font is the cause, not the code. The Hindi sentence is only data, and the finding still works.']
+        ['A red box saying something <em>is not defined</em>','This cell sets up everything it uses. So run the whole cell, not a part of it.','All lines say ok and the last line is PASS','You may have changed a sentence or a threshold. Put row 4 back as it was, and the gate should fail again.','The Hindi row prints strange letters','Your screen font is the cause, not the code. The Hindi sentence is only data, and the finding still works.']
       ]
     ]],
     ['p','Now try writing that third answer yourself.'],
