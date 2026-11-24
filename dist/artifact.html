@@ -3080,7 +3080,7 @@ window.PART1 = [
 {
   id:'ch1', num:1, part:1, curriculumTier:'core', phase:1, prerequisites:['ch05','chpy'], nextUnits:['ch15b','ch2','ch3','ch8'], minutes:45, labs:[],
   title:'Your first API call: how a model answers',
-  concept:'You send a model a message, and it sends text back. In this chapter you’ll make your first API call, read what it cost, and see why a confident answer can still be wrong.',
+  concept:'You send the model a note, and it writes back. Today: your first note.',
   plan:{
     first:'Press <strong>Run</strong> on the first code block in this chapter before you read anything else. Make a guess first: is the model finding an answer somewhere, or writing one?',
     build:'Run a short question, then a long piece of text. From each run, save the full response and the usage block.',
@@ -18453,8 +18453,6 @@ Object.assign(window.HING = window.HING || {}, {
   /* ---- ch1: Your first API call: how a model answers ---- */
   'Your first API call: how a model answers':
     'Aapki pehli API call: model jawaab kaise deta hai',
-  'You send a model a message, and it sends text back. In this chapter you’ll make your first API call, read what it cost, and see why a confident answer can still be wrong.':
-    'Aap model ko ek message bhejte hain, aur woh text wapas bhejta hai. Is chapter mein aap apni pehli API call karenge, dekhenge ki usmein kitna kharch hua, aur samjhenge ki ek confident jawaab bhi galat kyun ho sakta hai.',
   'Run a short question, then a long piece of text. From each run, save the full response and the usage block.':
     'Pehle ek chhota sawaal run kijiye, phir ek lamba text. Har run se poora response aur usage block save kar lijiye.',
   'Ask for something the model cannot possibly know, and see what comes back anyway.':
@@ -33606,6 +33604,127 @@ Object.assign(window.HING = window.HING || {}, {
     'Shuru hua',
   'Your 28 weeks':
     'Aapke 28 hafte',
+});
+
+/* Hinglish for Your first API call: how a model answers (chapter:ch1), in simple words.
+   Written by tools/sheet.mjs apply; keyed on the English line. Loads last, so it wins. */
+Object.assign(window.HING = window.HING || {}, {
+  'Press <strong>Run</strong> on the first code block in this chapter before you read anything else. Make a guess first: is the model finding an answer somewhere, or writing one?':
+    'Kuch aur padhne se pehle is chapter ke pehle code block par <strong>Run</strong> dabaiye. Pehle andaaza lagaiye: model kahin se jawaab dhoondh raha hai, ya khud likh raha hai?',
+  'Run a short question, then a long piece of text. From each run, save the full response and the usage block.':
+    'Pehle ek chhota sawaal run kijiye, phir ek lamba text. Har run se poora response aur usage block save kar lijiye.',
+  'Ask for something the model cannot possibly know, and see what comes back anyway.':
+    'Model se aisi cheez poochhiye jo woh jaan hi nahi sakta, aur dekhiye ki phir bhi kya aata hai.',
+  'A one-page picture of a request, from start to finish: input, model, output, tokens, cost.':
+    'Ek request ki ek page ki tasveer, shuru se aakhir tak: input, model, output, tokens, cost.',
+  'Explain what happens during a request without once saying “the AI just knows”.':
+    'Request ke dauraan kya hota hai, yeh samjhaiye, aur ek baar bhi yeh mat kahiye ki “AI ko sab pata hai”.',
+  'You send the model a note, and it writes back. Today: your first note.':
+    'Aap model ko note bhejte hain, aur woh jawaab likhta hai. Aaj: aapka pehla note.',
+  'Explain why a model can sound certain and still be wrong.':
+    'Samjha paana ki model poore bharose se bolkar bhi galat kyun ho sakta hai.',
+  'Read the usage block on a response and say what you are billed for.':
+    'Response ka usage block padh paana aur bata paana ki aapse kis cheez ka paisa liya jaata hai.',
+  'Estimate the cost of a request from its token counts.':
+    'Token counts dekhkar ek request ki cost ka andaaza laga paana.',
+  'Make your first call and measure what it costs':
+    'Apni pehli call kijiye aur dekhiye ki usmein kitna kharch hota hai',
+  'Now you move from the browser tools to a real model. In this chapter you learned to read the usage block that comes back with every answer, and to see exactly what you’re billed for. Here you ask a real model to find the personal details in some of the starter sentences, check its answers yourself, and measure the cost.':
+    'Ab aap browser tools se nikalkar ek asli model par aate hain. Is chapter mein aapne har jawaab ke saath aane wala usage block padhna seekha, aur yeh bhi ki aapse theek-theek kis cheez ka paisa liya jaata hai. Yahan aap ek asli model se kuch starter sentences mein personal details dhoondhne ko kahenge, uske jawaab khud check karenge, aur cost naapenge.',
+  'Your notebook for this chapter, at the end of the page. The numbers you print are what counts. The notes box below is for a short reflection, not a long write-up. Short version for the route, about 20 minutes: steps 1, 2 and 5.':
+    'Is chapter ka aapka notebook, page ke aakhir mein. Jo numbers aap print karte hain, wahi asli cheez hain. Neeche ka notes box ek chhote reflection ke liye hai, lamba likhne ke liye nahi. Route ke liye chhota version, lagbhag 20 minute: step 1, 2 aur 5.',
+  'In your notebook for this chapter, send starter sentence 7 (the one with Amit Sharma, the PAN and the HDFC account) to the model with the instruction: “List every piece of personal information in this message.”':
+    'Is chapter ke apne notebook mein starter sentence 7 (jisme Amit Sharma, PAN aur HDFC account hai) model ko yeh instruction dekar bhejiye: “List every piece of personal information in this message.”',
+  'Print the whole answer and the usage block. Write down the prompt_tokens and the completion_tokens.':
+    'Poora jawaab aur usage block print kijiye. prompt_tokens aur completion_tokens likh lijiye.',
+  'Check the answer by hand. List what the model found correctly, what it missed, and anything it listed that is not personal. Don’t trust it just because it sounds sure.':
+    'Jawaab ko haath se check kijiye. Likhiye ki model ne kya sahi dhoondha, kya chhoda, aur kya aisa list kar diya jo personal hai hi nahi. Sirf isliye bharosa mat kijiye ki woh sure lagta hai.',
+  'Repeat with starter sentences 4 and 9, so that you have three runs in total. Starter sentence 9 contains nothing personal, so a good answer says so. Average the token counts of the three runs.':
+    'Starter sentences 4 aur 9 ke saath dobara kijiye, taaki kul teen runs ho jaayein. Starter sentence 9 mein kuch personal nahi hai, isliye ek achha jawaab yahi bataega. Teeno runs ke token counts ka average nikaliye.',
+  'Look up your provider’s price per million tokens and work out the cost of one check.':
+    'Apne provider ki price per million tokens dekhiye aur ek check ki cost nikaliye.',
+  'Add a paragraph of extra instructions to the prompt, for example “Answer as a table with the columns Item and Type”, and run starter sentence 7 again. Note how much that paragraph adds to the cost of every call, and what it would add to a thousand calls.':
+    'Prompt mein extra instructions ka ek paragraph jodiye, jaise “Answer as a table with the columns Item and Type”, aur starter sentence 7 dobara run kijiye. Note kijiye ki woh paragraph har call ki cost mein kitna jodta hai, aur ek hazaar calls mein kitna jodega.',
+  'Three runs on real starter sentences, with the token counts printed and averaged.':
+    'Asli starter sentences par teen runs, token counts print kiye hue aur average nikale hue.',
+  'Your hand-check of each answer: what it found, what it missed and what it listed wrongly.':
+    'Har jawaab ki aapki hand-check: model ne kya dhoondha, kya chhoda, aur kya galat list kiya.',
+  'The cost of one check, calculated from your own numbers.':
+    'Ek check ki cost, aapke apne numbers se nikali hui.',
+  'The extra cost of one added paragraph at a thousand calls.':
+    'Ek hazaar calls par ek jodi gayi paragraph ki extra cost.',
+  'Chapter 0.8':
+    'Chapter 0.8',
+  'You can read a short piece of Python: a name for a value, a list, a dictionary and a dot. The first model call below uses all four.':
+    'Aap Python ka ek chhota tukda padh sakte hain: value ka naam, list, dictionary aur dot. Neeche ki pehli model call charon use karti hai.',
+  'A model connected on the setup page':
+    'Setup page par ek model connect ho',
+  'The five minutes of setup, done once. Chapter 1 is the first chapter that uses it.':
+    'Setup ke woh paanch minute, jo sirf ek baar karne hote hain. Chapter 1 pehla chapter hai jo isse kaam leta hai.',
+  'The code in this chapter runs right here in the page. Press <strong>Run</strong> under each block, top to bottom. Before your first cell runs, the page does the three warm-up steps from <a href="#/setup">Setup</a> for you: the key, the library and the client. After each idea in this chapter, you’ll find a little code that shows it. Run each block before you read on.':
+    'Is chapter ka code yahin page mein chalta hai. Har block ke neeche <strong>Run</strong> dabaiye, upar se neeche. Aapka pehla cell chalne se pehle page <a href="#/setup">Setup</a> ke teeno warm-up steps khud kar deta hai: key, library aur client. Is chapter mein har idea ke baad thoda code aayega jo use dikhata hai. Aage padhne se pehle har block ko run kijiye.',
+  'In Chapter 0.5 you tried tokens, cost and temperature right here in the browser. In the last chapter you learned to read a few lines of Python. Now you’ll put both to work with a real model. You’ll send it a message, look at what it sends back, and see what that exchange costs.':
+    'Chapter 0.5 mein aapne tokens, cost aur temperature browser mein hi try kiye the. Pichhle chapter mein aapne Python ki kuch lines padhna seekha. Ab aap dono ko ek asli model ke saath kaam mein laayenge. Aap use ek message bhejenge, dekhenge ki woh kya wapas bhejta hai, aur yeh ki is lena-dena mein kitna kharch hota hai.',
+  'Along the way you’ll learn one thing that matters for every AI product you’ll ever work on: a model can sound completely sure and still be wrong.':
+    'Saath hi aap ek aisi baat seekhenge jo har AI product ke liye zaroori hai: model poori tarah sure sunayi de sakta hai aur phir bhi galat ho sakta hai.',
+  'A model predicts the next piece of text':
+    'Model agla text predict karta hai',
+  'Start with something you already use every day. When you type <em>See you at the</em> on your phone, the keyboard suggests <em>office</em>, <em>station</em> or <em>airport</em>. It makes those suggestions from what people usually type next.':
+    'Ek aisi cheez se shuru karte hain jo aap roz istemaal karte hain. Jab aap phone par <em>See you at the</em> type karte hain, toh keyboard <em>office</em>, <em>station</em> ya <em>airport</em> suggest karta hai. Woh yeh suggestions is hisaab se deta hai ki log aksar uske baad kya type karte hain.',
+  'A language model does the same thing, only at a much larger scale. It was trained on a huge amount of writing. It builds a reply by predicting one small piece of text at a time. It does not look anything up.':
+    'Ek language model bhi yahi karta hai, bas bahut bade scale par. Use likhe hue text ki bahut saare text par train kiya gaya hai. Woh reply ko ek-ek chhote text ke tukde ko predict karke banata hai. Woh kuch bhi look up nahi karta.',
+  'A model generates its answer from patterns. It does not look the answer up, so a fluent answer is not necessarily a correct one.':
+    'Model apna jawaab patterns se banata hai. Woh jawaab ko kahin se look up nahi karta, isliye ek fluent jawaab zaroori nahi ki sahi bhi ho.',
+  'Let’s see that for ourselves. You’ll ask a simple question, and then think about where the answer came from.':
+    'Chaliye ise khud dekhte hain. Aap ek simple sawaal poochhenge, aur phir sochenge ki jawaab aaya kahan se.',
+  'Make your first call':
+    'Apni pehli call kijiye',
+  'You get a fluent two-sentence answer. Notice that you didn’t give the model anything to search. It wrote the answer from patterns it learned in training.':
+    'Aapko do sentence ka ek fluent jawaab milta hai. Dhyaan dijiye ki aapne model ko search karne ke liye kuch diya hi nahi. Usne jawaab un patterns se likha jo usne training mein seekhe the.',
+  'Now a question. What do you think happens when the model has nothing to base its answer on? Make a guess before you read on.':
+    'Ab ek sawaal. Aapko kya lagta hai, jab model ke paas jawaab banane ke liye kuch hai hi nahi, toh kya hoga? Aage padhne se pehle ek andaaza lagaiye.',
+  'One line: what do you think it does?':
+    'Ek line mein: aapko kya lagta hai woh kya karega?',
+  'You saw this in the book. Now predict what your own model returns when you ask about the refund policy of a company you invent, which it has never seen anything about. What comes back?':
+    'Yeh aapne book mein dekha. Ab apne model ke liye anumaan lagaiye ki jab aap ek aisi company ki refund policy poochhte hain jo aapne khud gadhi hai aur jiske baare mein usne kabhi kuch nahi dekha, to kya wapas aata hai?',
+  'Usually a confident, well-written, invented policy. The model predicts likely text, and “I have no information about this” is often not the most likely continuation. Saying <em>I don’t know</em> is a behaviour that has to be added and tested, and it does not always hold.':
+    'Aksar ek confident, achhi likhi hui, banayi hui policy. Model likely text predict karta hai, aur “mere paas is baare mein koi information nahi hai” aksar sabse likely agla hissa nahi hota. <em>Mujhe nahi pata</em> kehna ek behaviour hai jo alag se add karna aur test karna padta hai, aur woh hamesha kaam nahi karta.',
+  'So you cannot judge an answer by how confident it sounds. A correct answer and an invented one read the same way. In Chapter 2 you will make a model invent an answer on purpose.':
+    'Isliye aap kisi jawaab ko is se nahi parakh sakte ki woh kitna confident lagta hai. Sahi jawaab aur banaya hua jawaab padhne mein ek jaise lagte hain. Chapter 2 mein aap ek model se jaanbujhkar ek jawaab banwayenge.',
+  'What you send, and what you pay for':
+    'Aap kya bhejte hain, aur kis cheez ka paisa dete hain',
+  'You’ve seen what comes back. Now let’s look at what goes out. Your request is sent as <strong>JSON</strong>, which is just labels and values written inside curly braces.':
+    'Aapne dekh liya ki wapas kya aata hai. Ab dekhte hain ki bahar kya jaata hai. Aapki request <strong>JSON</strong> mein bheji jaati hai, jo bas curly braces ke andar likhe labels aur values hote hain.',
+  'The request carries a list called <code>messages</code>. Each message has a role: <code>user</code> for you, and <code>assistant</code> for the model’s reply. And here’s the part that touches your budget: you pay for the text you send, and you pay for the text you get back.':
+    'Request mein <code>messages</code> naam ki ek list hoti hai. Har message ka ek role hota hai: aapke liye <code>user</code>, aur model ke reply ke liye <code>assistant</code>. Aur budget se judi baat yeh hai: aap jo text bhejte hain uska bhi paisa dete hain, aur jo text wapas aata hai uska bhi.',
+  'Read the usage block':
+    'Usage block padhiye',
+  'Every response comes with a block called <code>usage</code>. It tells you how much text went in and out. Add these lines to the same cell:':
+    'Har response ke saath <code>usage</code> naam ka ek block aata hai. Woh batata hai ki kitna text andar gaya aur kitna bahar aaya. Isi cell mein yeh lines jodiye:',
+  'You’ll see two numbers, such as <code>tokens read: 18</code> and <code>tokens written: 55</code>. These are the counts you’re billed for, and every response includes them.':
+    'Aapko do numbers dikhenge, jaise <code>tokens read: 18</code> aur <code>tokens written: 55</code>. Yahi woh counts hain jinke hisaab se aapse paisa liya jaata hai, aur har response mein yeh aate hain.',
+  'Tokens: the unit you are billed in':
+    'Tokens: woh unit jisme aapse paisa liya jaata hai',
+  'You may have noticed that those counts are not in words. They are in <strong>tokens</strong>. A token is a small piece of text, about three-quarters of an English word on average.':
+    'Shayad aapne dekha hoga ki yeh counts words mein nahi hain. Yeh <strong>tokens</strong> mein hain. Ek token text ka ek chhota tukda hota hai, ausat mein English word ka lagbhag teen-chauthai hissa.',
+  'Common words are usually one token. Rare words, and text in other scripts, get split into several. You can see this for yourself with the tool below. It needs no setup.':
+    'Aam words aksar ek token hote hain. Rare words, aur doosri scripts ka text, kayi tokens mein split ho jaata hai. Neeche wale tool se aap yeh khud dekh sakte hain. Isme koi setup nahi chahiye.',
+  'Now let’s watch the token count change in your own notebook. First you’ll send more text, and then you’ll ask for more text back.':
+    'Ab apne notebook mein token count ko badalte dekhte hain. Pehle aap zyada text bhejenge, aur phir zyada text wapas maangenge.',
+  'Watch the token count change':
+    'Token count badalte hue dekhiye',
+  'Paste a long paragraph from one of your own documents and ask for a summary:':
+    'Apne kisi document ka ek lamba paragraph paste kijiye aur uska summary maangiye:',
+  '<code>prompt_tokens</code> rises into the hundreds, because you sent more text. Now try the opposite: ask a short question, but request a long answer, such as “explain in 400 words”. This time <code>completion_tokens</code> rises instead.':
+    '<code>prompt_tokens</code> sainkdon mein pahunch jaata hai, kyunki aapne zyada text bheja. Ab ulta try kijiye: ek chhota sawaal poochhiye, lekin lamba jawaab maangiye, jaise “explain in 400 words”. Is baar <code>completion_tokens</code> badhta hai.',
+  'What this means for your product':
+    'Yeh aapke product ke liye kya matlab rakhta hai',
+  'Let’s put the two ideas of this chapter side by side. The first is about trust. The second is about money.':
+    'Chaliye is chapter ke dono ideas ek saath rakhte hain. Pehla bharose ke baare mein hai. Doosra paise ke baare mein.',
+  'A model generates text, so a confident tone is not evidence that it is right. And you pay per token, so every line of instruction you add is charged again on every call.':
+    'Model text generate karta hai, isliye confident tone is baat ka saboot nahi ki jawaab sahi hai. Aur aap har token ka paisa dete hain, isliye instruction ki jo bhi nayi line aap jodte hain, woh har call mein dobara charge hoti hai.',
+  'So far you know that a model writes its answers from patterns, and that you pay for every token that goes in and comes out. Next, you’ll meet a third fact: the model does not remember anything between calls. That explains why a long chat costs more than a short one, and how chat “memory” features work.':
+    'Ab tak aap jaan gaye hain ki model apne jawaab patterns se likhta hai, aur jo token andar jaata hai ya bahar aata hai, har ek ka paisa lagta hai. Agle chapter mein aap teesra fact dekhenge: model calls ke beech kuch yaad nahi rakhta. Isi se samajh aata hai ki lambi chat chhoti chat se mehngi kyun padti hai, aur chat ke “memory” features kaise kaam karte hain.',
 });
 
 /* Account-backed storage.

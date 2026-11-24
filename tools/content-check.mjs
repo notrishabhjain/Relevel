@@ -494,6 +494,8 @@ const unescapeU = s => s.replace(/\\u([0-9a-fA-F]{4})/g,
 const chrome = ['src/labs.js', 'src/app.js', 'src/views.js', 'src/studio.js', 'src/engine.js', 'src/pyrun.js', 'src/playground.js', 'src/llm.js', 'src/sheets.js', 'src/recorder.js', 'src/data/route.mjs', 'plan/data.mjs', 'plan/ship.md']
   .map(f => unescapeU(fs.readFileSync(path.join(ROOT, f), 'utf8'))).join('');
 const stale = Object.keys(hing).filter(k => !need.has(k) && !chrome.includes(k));
+/* tools/hing-prune.mjs asks for the list, to remove those keys from the source */
+if (process.env.HING_STALE_OUT) fs.writeFileSync(process.env.HING_STALE_OUT, JSON.stringify(stale));
 if (stale.length) {
   fail(`${stale.length} Hinglish translation(s) key off English that no longer appears in the course` +
        ` — first: "${stale[0].slice(0, 70)}…"`);
