@@ -113,40 +113,10 @@ Object.assign(window.HING = window.HING || {}, {
   /* ---- ch1: Your first API call: how a model answers ---- */
   'Your first API call: how a model answers':
     'Aapki pehli API call: model jawaab kaise deta hai',
-  'You send a model a message, and it sends text back. In this chapter you’ll make your first API call, read what it cost, and see why a confident answer can still be wrong.':
-    'Aap model ko ek message bhejte hain, aur woh text wapas bhejta hai. Is chapter mein aap apni pehli API call karenge, dekhenge ki usmein kitna kharch hua, aur samjhenge ki ek confident jawaab bhi galat kyun ho sakta hai.',
-  'Run a short question, then a long piece of text. From each run, save the full response and the usage block.':
-    'Pehle ek chhota sawaal run kijiye, phir ek lamba text. Har run se poora response aur usage block save kar lijiye.',
-  'Ask for something the model cannot possibly know, and see what comes back anyway.':
-    'Model se aisi cheez poochhiye jo woh jaan hi nahi sakta, aur dekhiye ki phir bhi kya aata hai.',
-  'A one-page picture of a request, from start to finish: input, model, output, tokens, cost.':
-    'Ek request ki ek page ki tasveer, shuru se aakhir tak: input, model, output, tokens, cost.',
-  'Explain what happens during a request without once saying “the AI just knows”.':
-    'Request ke dauraan kya hota hai, yeh samjhaiye, aur ek baar bhi yeh mat kahiye ki “AI ko sab pata hai”.',
   'The five minutes of setup, done once. Chapter 1 is the first chapter that uses it.':
     'Setup ke woh paanch minute, jo sirf ek baar karne hote hain. Chapter 1 pehla chapter hai jo isse kaam leta hai.',
-  'Explain why a model can sound certain and still be wrong.':
-    'Samjha paana ki model poore bharose se bolkar bhi galat kyun ho sakta hai.',
-  'Read the usage block on a response and say what you are billed for.':
-    'Response ka usage block padh paana aur bata paana ki aapse kis cheez ka paisa liya jaata hai.',
-  'Estimate the cost of a request from its token counts.':
-    'Token counts dekhkar ek request ki cost ka andaaza laga paana.',
-  'Along the way you’ll learn one thing that matters for every AI product you’ll ever work on: a model can sound completely sure and still be wrong.':
-    'Saath hi aap ek aisi baat seekhenge jo har AI product ke liye zaroori hai: model poori tarah sure sunayi de sakta hai aur phir bhi galat ho sakta hai.',
-  'A model predicts the next piece of text':
-    'Model agla text predict karta hai',
-  'Start with something you already use every day. When you type <em>See you at the</em> on your phone, the keyboard suggests <em>office</em>, <em>station</em> or <em>airport</em>. It makes those suggestions from what people usually type next.':
-    'Ek aisi cheez se shuru karte hain jo aap roz istemaal karte hain. Jab aap phone par <em>See you at the</em> type karte hain, toh keyboard <em>office</em>, <em>station</em> ya <em>airport</em> suggest karta hai. Woh yeh suggestions is hisaab se deta hai ki log aksar uske baad kya type karte hain.',
-  'A language model does the same thing, only at a much larger scale. It was trained on a huge amount of writing. It builds a reply by predicting one small piece of text at a time. It does not look anything up.':
-    'Ek language model bhi yahi karta hai, bas bahut bade scale par. Use likhe hue text ki bahut saare text par train kiya gaya hai. Woh reply ko ek-ek chhote text ke tukde ko predict karke banata hai. Woh kuch bhi look up nahi karta.',
-  'A model generates its answer from patterns. It does not look the answer up, so a fluent answer is not necessarily a correct one.':
-    'Model apna jawaab patterns se banata hai. Woh jawaab ko kahin se look up nahi karta, isliye ek fluent jawaab zaroori nahi ki sahi bhi ho.',
-  'Let’s see that for ourselves. You’ll ask a simple question, and then think about where the answer came from.':
-    'Chaliye ise khud dekhte hain. Aap ek simple sawaal poochhenge, aur phir sochenge ki jawaab aaya kahan se.',
   'Make your first call':
     'Apni pehli call kijiye',
-  'You get a fluent two-sentence answer. Notice that you didn’t give the model anything to search. It wrote the answer from patterns it learned in training.':
-    'Aapko do sentence ka ek fluent jawaab milta hai. Dhyaan dijiye ki aapne model ko search karne ke liye kuch diya hi nahi. Usne jawaab un patterns se likha jo usne training mein seekhe the.',
   'A red box saying something <em>is not defined</em>':
     'Ek red box jisme likha ho ki kuch <em>is not defined</em>',
   'An authentication error, or the number 401':
@@ -159,72 +129,20 @@ Object.assign(window.HING = window.HING || {}, {
     'Code chal gaya, lekin aapke numbers upar wale numbers se alag hain',
   'That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.':
     'Aisa hona normal hai, yeh galti nahi hai. Models badalte rehte hain, aur aapka text hamare text jaisa nahi hai. Zaroori yeh hai ki numbers kis direction mein jaate hain aur farq lagbhag kitna hai, exact number match karna nahi. Agar aapke numbers bhi usi direction mein jaate hain, toh experiment kaam kar gaya.',
-  'Now a question. What do you think happens when the model has nothing to base its answer on? Make a guess before you read on.':
-    'Ab ek sawaal. Aapko kya lagta hai, jab model ke paas jawaab banane ke liye kuch hai hi nahi, toh kya hoga? Aage padhne se pehle ek andaaza lagaiye.',
   'One line: what do you think it does?':
     'Ek line mein: aapko kya lagta hai woh kya karega?',
-  'You saw this in the book. Now predict what your own model returns when you ask about the refund policy of a company you invent, which it has never seen anything about. What comes back?':
-    'Yeh aapne book mein dekha. Ab apne model ke liye anumaan lagaiye ki jab aap ek aisi company ki refund policy poochhte hain jo aapne khud gadhi hai aur jiske baare mein usne kabhi kuch nahi dekha, to kya wapas aata hai?',
-  'Usually a confident, well-written, invented policy. The model predicts likely text, and “I have no information about this” is often not the most likely continuation. Saying <em>I don’t know</em> is a behaviour that has to be added and tested, and it does not always hold.':
-    'Aksar ek confident, achhi likhi hui, banayi hui policy. Model likely text predict karta hai, aur “mere paas is baare mein koi information nahi hai” aksar sabse likely agla hissa nahi hota. <em>Mujhe nahi pata</em> kehna ek behaviour hai jo alag se add karna aur test karna padta hai, aur woh hamesha kaam nahi karta.',
-  'So you cannot judge an answer by how confident it sounds. A correct answer and an invented one read the same way. In Chapter 2 you will make a model invent an answer on purpose.':
-    'Isliye aap kisi jawaab ko is se nahi parakh sakte ki woh kitna confident lagta hai. Sahi jawaab aur banaya hua jawaab padhne mein ek jaise lagte hain. Chapter 2 mein aap ek model se jaanbujhkar ek jawaab banwayenge.',
   'What you send, and what you pay for':
     'Aap kya bhejte hain, aur kis cheez ka paisa dete hain',
-  'You’ve seen what comes back. Now let’s look at what goes out. Your request is sent as <strong>JSON</strong>, which is just labels and values written inside curly braces.':
-    'Aapne dekh liya ki wapas kya aata hai. Ab dekhte hain ki bahar kya jaata hai. Aapki request <strong>JSON</strong> mein bheji jaati hai, jo bas curly braces ke andar likhe labels aur values hote hain.',
-  'The request carries a list called <code>messages</code>. Each message has a role: <code>user</code> for you, and <code>assistant</code> for the model’s reply. And here’s the part that touches your budget: you pay for the text you send, and you pay for the text you get back.':
-    'Request mein <code>messages</code> naam ki ek list hoti hai. Har message ka ek role hota hai: aapke liye <code>user</code>, aur model ke reply ke liye <code>assistant</code>. Aur budget se judi baat yeh hai: aap jo text bhejte hain uska bhi paisa dete hain, aur jo text wapas aata hai uska bhi.',
   'Read the usage block':
     'Usage block padhiye',
-  'Every response comes with a block called <code>usage</code>. It tells you how much text went in and out. Add these lines to the same cell:':
-    'Har response ke saath <code>usage</code> naam ka ek block aata hai. Woh batata hai ki kitna text andar gaya aur kitna bahar aaya. Isi cell mein yeh lines jodiye:',
-  'You’ll see two numbers, such as <code>tokens read: 18</code> and <code>tokens written: 55</code>. These are the counts you’re billed for, and every response includes them.':
-    'Aapko do numbers dikhenge, jaise <code>tokens read: 18</code> aur <code>tokens written: 55</code>. Yahi woh counts hain jinke hisaab se aapse paisa liya jaata hai, aur har response mein yeh aate hain.',
   'Tokens: the unit you are billed in':
     'Tokens: woh unit jisme aapse paisa liya jaata hai',
-  'You may have noticed that those counts are not in words. They are in <strong>tokens</strong>. A token is a small piece of text, about three-quarters of an English word on average.':
-    'Shayad aapne dekha hoga ki yeh counts words mein nahi hain. Yeh <strong>tokens</strong> mein hain. Ek token text ka ek chhota tukda hota hai, ausat mein English word ka lagbhag teen-chauthai hissa.',
-  'Common words are usually one token. Rare words, and text in other scripts, get split into several. You can see this for yourself with the tool below. It needs no setup.':
-    'Aam words aksar ek token hote hain. Rare words, aur doosri scripts ka text, kayi tokens mein split ho jaata hai. Neeche wale tool se aap yeh khud dekh sakte hain. Isme koi setup nahi chahiye.',
-  'Now let’s watch the token count change in your own notebook. First you’ll send more text, and then you’ll ask for more text back.':
-    'Ab apne notebook mein token count ko badalte dekhte hain. Pehle aap zyada text bhejenge, aur phir zyada text wapas maangenge.',
   'Watch the token count change':
     'Token count badalte hue dekhiye',
-  'Paste a long paragraph from one of your own documents and ask for a summary:':
-    'Apne kisi document ka ek lamba paragraph paste kijiye aur uska summary maangiye:',
-  '<code>prompt_tokens</code> rises into the hundreds, because you sent more text. Now try the opposite: ask a short question, but request a long answer, such as “explain in 400 words”. This time <code>completion_tokens</code> rises instead.':
-    '<code>prompt_tokens</code> sainkdon mein pahunch jaata hai, kyunki aapne zyada text bheja. Ab ulta try kijiye: ek chhota sawaal poochhiye, lekin lamba jawaab maangiye, jaise “explain in 400 words”. Is baar <code>completion_tokens</code> badhta hai.',
   'What this means for your product':
     'Yeh aapke product ke liye kya matlab rakhta hai',
-  'Let’s put the two ideas of this chapter side by side. The first is about trust. The second is about money.':
-    'Chaliye is chapter ke dono ideas ek saath rakhte hain. Pehla bharose ke baare mein hai. Doosra paise ke baare mein.',
-  'A model generates text, so a confident tone is not evidence that it is right. And you pay per token, so every line of instruction you add is charged again on every call.':
-    'Model text generate karta hai, isliye confident tone is baat ka saboot nahi ki jawaab sahi hai. Aur aap har token ka paisa dete hain, isliye instruction ki jo bhi nayi line aap jodte hain, woh har call mein dobara charge hoti hai.',
-  'So far you know that a model writes its answers from patterns, and that you pay for every token that goes in and comes out. Next, you’ll meet a third fact: the model does not remember anything between calls. That explains why a long chat costs more than a short one, and how chat “memory” features work.':
-    'Ab tak aap jaan gaye hain ki model apne jawaab patterns se likhta hai, aur jo token andar jaata hai ya bahar aata hai, har ek ka paisa lagta hai. Agle chapter mein aap teesra fact dekhenge: model calls ke beech kuch yaad nahi rakhta. Isi se samajh aata hai ki lambi chat chhoti chat se mehngi kyun padti hai, aur chat ke “memory” features kaise kaam karte hain.',
-  'Make your first call and measure what it costs':
-    'Apni pehli call kijiye aur dekhiye ki usmein kitna kharch hota hai',
-  'Now you move from the browser tools to a real model. In this chapter you learned to read the usage block that comes back with every answer, and to see exactly what you’re billed for. Here you ask a real model to find the personal details in some of the starter sentences, check its answers yourself, and measure the cost.':
-    'Ab aap browser tools se nikalkar ek asli model par aate hain. Is chapter mein aapne har jawaab ke saath aane wala usage block padhna seekha, aur yeh bhi ki aapse theek-theek kis cheez ka paisa liya jaata hai. Yahan aap ek asli model se kuch starter sentences mein personal details dhoondhne ko kahenge, uske jawaab khud check karenge, aur cost naapenge.',
-  'Print the whole answer and the usage block. Write down the prompt_tokens and the completion_tokens.':
-    'Poora jawaab aur usage block print kijiye. prompt_tokens aur completion_tokens likh lijiye.',
-  'Check the answer by hand. List what the model found correctly, what it missed, and anything it listed that is not personal. Don’t trust it just because it sounds sure.':
-    'Jawaab ko haath se check kijiye. Likhiye ki model ne kya sahi dhoondha, kya chhoda, aur kya aisa list kar diya jo personal hai hi nahi. Sirf isliye bharosa mat kijiye ki woh sure lagta hai.',
-  'Repeat with starter sentences 4 and 9, so that you have three runs in total. Starter sentence 9 contains nothing personal, so a good answer says so. Average the token counts of the three runs.':
-    'Starter sentences 4 aur 9 ke saath dobara kijiye, taaki kul teen runs ho jaayein. Starter sentence 9 mein kuch personal nahi hai, isliye ek achha jawaab yahi bataega. Teeno runs ke token counts ka average nikaliye.',
-  'Look up your provider’s price per million tokens and work out the cost of one check.':
-    'Apne provider ki price per million tokens dekhiye aur ek check ki cost nikaliye.',
-  'Add a paragraph of extra instructions to the prompt, for example “Answer as a table with the columns Item and Type”, and run starter sentence 7 again. Note how much that paragraph adds to the cost of every call, and what it would add to a thousand calls.':
-    'Prompt mein extra instructions ka ek paragraph jodiye, jaise “Answer as a table with the columns Item and Type”, aur starter sentence 7 dobara run kijiye. Note kijiye ki woh paragraph har call ki cost mein kitna jodta hai, aur ek hazaar calls mein kitna jodega.',
   'Three runs on real starter sentences, with the token counts printed and averaged.':
     'Asli starter sentences par teen runs, token counts print kiye hue aur average nikale hue.',
-  'Your hand-check of each answer: what it found, what it missed and what it listed wrongly.':
-    'Har jawaab ki aapki hand-check: model ne kya dhoondha, kya chhoda, aur kya galat list kiya.',
-  'The cost of one check, calculated from your own numbers.':
-    'Ek check ki cost, aapke apne numbers se nikali hui.',
-  'The extra cost of one added paragraph at a thousand calls.':
-    'Ek hazaar calls par ek jodi gayi paragraph ki extra cost.',
 
   /* ---- ch15b: Context windows and statelessness: why models forget ---- */
   'Context windows and statelessness: why models forget':
@@ -607,114 +525,22 @@ Object.assign(window.HING = window.HING || {}, {
   /* ---- ch22: Testing prompts: build a small test set ---- */
   'Testing prompts: build a small test set':
     'Prompts ko test kijiye: ek chhota test set banaiye',
-  'Reading a few outputs is not a reliable way to choose between prompts. In this chapter you’ll build a ten-row test set from real inputs, score each prompt version against it, and change one thing at a time.':
-    'Kuch outputs padhkar prompts ke beech chunna bharosemand tareeka nahi hai. Is chapter mein aap asli inputs se 10 rows ka test set banayenge, har prompt version ko uske against score karenge, aur ek baar mein sirf ek cheez badlenge.',
-  'Four prompt techniques':
-    'Prompt ki chaar techniques',
-  'You have four versions of one prompt, and no way yet to choose between them.':
-    'Aapke paas ek prompt ke chaar versions hain, aur abhi inme se chunne ka koi tareeka nahi hai.',
-  'A confident answer is not evidence':
-    'Confident jawaab saboot nahi hota',
-  'Fluent text is not proof of a correct answer.':
-    'Fluent text ka matlab yeh nahi ki jawaab sahi hai.',
-  'You’ll run one prompt many times.':
-    'Aap ek hi prompt ko kai baar chalayenge.',
-  'Build a small test set for a prompt in under half an hour, from real inputs.':
-    'Asli inputs se, aadhe ghante se kam mein, kisi prompt ke liye ek chhota test set bana paana.',
-  'Change one thing at a time and measure whether it helped.':
-    'Ek baar mein ek hi cheez badal paana aur measure kar paana ki usse madad mili ya nahi.',
-  'Explain why a prompt that looked better in a demo often is not.':
-    'Samjha paana ki demo mein behtar dikhne wala prompt aksar behtar kyun nahi hota.',
-  'At the end of the last chapter you had four versions of a prompt and a feeling about which was best. This chapter turns that feeling into something you can check. You’ll build a small test set, score every version against it, and then improve the best one carefully.':
-    'Pichhle chapter ke end mein aapke paas prompt ke chaar versions the aur ek ehsaas ki kaun sa sabse achha hai. Yeh chapter us ehsaas ko aisi cheez banata hai jise aap check kar sakte hain. Aap ek chhota test set banayenge, har version ko usse score karenge, aur phir sabse achhe version ko dhyaan se behtar karenge.',
-  'Why reading a few outputs misleads you':
-    'Kuch outputs padhna aapko galat raaste par kyun le jaata hai',
-  'First, let’s see the problem for yourself. You’ll run one prompt on the same input several times and look at what comes back.':
-    'Pehle problem ko khud dekhiye. Aap ek hi prompt ko ek hi input par kai baar chalayenge aur dekhenge ki kya wapas aata hai.',
   'Run one prompt five times':
     'Ek prompt ko paanch baar chalaiye',
-  'Take your best prompt from the last chapter and run it on the <em>same input</em> five times. Print all five outputs.':
-    'Pichhle chapter ka apna sabse achha prompt lijiye aur use <em>ek hi input</em> par paanch baar chalaiye. Paanchon outputs print kijiye.',
-  'The five outputs differ. The wording changes, sometimes the emphasis changes, and occasionally the answer itself is different. If one prompt varies this much, then comparing two prompts on one output each tells you very little.':
-    'Paanchon outputs alag hote hain. Wording badalti hai, kabhi emphasis badalta hai, aur kabhi jawaab hi alag aa jaata hai. Agar ek hi prompt itna badalta hai, toh do prompts ko sirf ek-ek output par compare karne se bahut kam pata chalta hai.',
-  'Each output is one sample from a range of possible outputs. Judging a prompt from one sample is not reliable.':
-    'Har output possible outputs ki range mein se sirf ek sample hai. Sirf ek sample dekhkar kisi prompt ko judge karna bharosemand nahi hai.',
   'Build the test set':
     'Test set banaiye',
-  'A test set doesn’t need to be fancy. Ten rows are enough to start. What matters is that the inputs are real and that you write down what “good” means before you look at the results.':
-    'Test set ko fancy hone ki zaroorat nahi. Shuru karne ke liye 10 rows kaafi hain. Zaroori yeh hai ki inputs asli hon, aur result dekhne se pehle aap likh lein ki “achha” ka matlab kya hai.',
   'Build a ten-row test set':
     '10 rows ka test set banaiye',
-  'Collect ten real inputs for your task, including the two messiest you can find. Don’t invent them. For each one, write down the two or three things a good answer must contain. You don’t need the exact words. Aim for this mix:':
-    'Apne task ke liye 10 asli inputs jama kijiye, jisme sabse gande-uljhe do inputs bhi hon. Unhe khud se mat banaiye. Har ek ke liye woh do-teen cheezein likhiye jo ek achhe jawaab mein honi chahiye. Exact words ki zaroorat nahi. Is mix ka dhyaan rakhiye:',
-  'Six ordinary cases, chosen without looking at how the prompt does on them.':
-    'Chhe aam cases, jinhe aapne yeh dekhe bina chuna ki prompt unpar kaisa chal raha hai.',
-  'Two awkward ones, with missing information, an unusual format or the wrong language.':
-    'Do mushkil cases, jinme koi information missing ho, format ajeeb ho ya language galat ho.',
-  'Two that should be refused or escalated rather than answered.':
-    'Do cases jinka jawaab dene ki jagah unhe mana ya escalate kiya jaana chahiye.',
-  'You now have a ten-row table: each input, and what a good answer must contain. This table is the most useful thing you’ll make in this chapter. The rest of the chapter runs prompts against it.':
-    'Ab aapke paas 10 rows ki ek table hai: har input, aur ek achhe jawaab mein kya hona chahiye. Is chapter mein aap jo banayenge, usme yeh table sabse kaam ki cheez hai. Chapter ka baaki hissa prompts ko isi table par chalata hai.',
-  'With the table ready, you can finally compare your four versions fairly.':
-    'Table taiyaar hai, toh ab aap apne chaaron versions ko sahi tareeke se compare kar sakte hain.',
   'Score all four versions':
     'Chaaron versions ko score kijiye',
-  'Run each of your four prompt versions on all ten inputs. Mark each output pass or fail against what you wrote down. That’s forty quick judgements by hand.':
-    'Apne chaaron prompt versions ko saare 10 inputs par chalaiye. Jo aapne likha tha, uske against har output ko pass ya fail mark kijiye. Yeh haath se 40 tez judgements hain.',
-  'The ranking is often not the one you expected, and the gap between best and worst is often smaller than it felt. The versions differ most on the two refusal rows, and those are the cases people rarely show in a demo.':
-    'Ranking aksar woh nahi hoti jo aapne socha tha, aur sabse achhe aur sabse kharab ke beech ka gap aksar utna bada nahi hota jitna lagta tha. Versions mein sabse zyada farq do refusal rows par dikhta hai, aur yahi woh cases hain jo log demo mein shaayad hi dikhate hain.',
   'Change one thing at a time':
     'Ek baar mein ek hi cheez badaliye',
-  'Once you have a best version, you’ll want to improve it. Here the temptation is to fix everything at once. Before you do, think about what that would tell you.':
-    'Jab aapke paas ek best version aa jaaye, toh aap use behtar karna chahenge. Yahan lalach hota hai ki sab kuch ek saath theek kar do. Aisa karne se pehle sochiye ki usse aapko kya pata chalega.',
   'What goes wrong':
     'Kya galat hota hai',
-  'Make a prediction. You change the job description, add a third example and drop a prohibition, all at once. The score improves. What have you learned?':
-    'Ek andaaza lagaiye. Aap job description badalte hain, teesra example jodte hain aur ek prohibition hata dete hain, sab ek saath. Score behtar ho jaata hai. Aapne kya seekha?',
-  'Only that the combination is better. You don’t know which change helped. One of the three may even be making things worse while the other two make up for it.':
-    'Sirf yeh ki combination behtar hai. Aapko nahi pata ki kaun si change se madad mili. Ho sakta hai teen mein se ek change cheezein bigaad rahi ho aur baaki do usse bharpai kar rahi hon.',
-  'So change one thing, rerun and record the score. It’s slower, but it’s the only way to know what helped. When someone says they “tuned the prompt”, ask how many things they changed at once.':
-    'Isliye ek cheez badaliye, dobara chalaiye aur score note kijiye. Yeh dheema hai, lekin yahi ek tareeka hai jisse pata chalta hai ki kya kaam aaya. Jab koi kahe ki unhone “prompt tune kiya”, toh poochhiye ki ek saath kitni cheezein badli thi.',
-  'Make one change and rescore':
-    'Ek change kijiye aur dobara score kijiye',
-  'Take the best version. Make exactly one change, such as swapping one example for a better one. Rerun all ten inputs and record the new score next to the old one.':
-    'Sabse achha version lijiye. Bilkul ek change kijiye, jaise ek example ko behtar example se badalna. Saare 10 inputs dobara chalaiye aur naya score purane score ke saath note kijiye.',
-  'The score moved, or it didn’t. Both are useful results. If a change doesn’t move the score on ten real inputs, you can remove it, and that makes the prompt cheaper on every call.':
-    'Score hila, ya nahi hila. Dono hi kaam ke results hain. Agar 10 asli inputs par koi change score nahi hilati, toh aap use hata sakte hain, aur isse prompt har call par sasta ho jaata hai.',
-  'Keep the table. When your provider updates the model, rerun it. You’ll find out in an afternoon whether anything broke, instead of hearing about it from a customer.':
-    'Table sambhaal kar rakhiye. Jab aapka provider model update kare, toh ise dobara chalaiye. Aapko ek dopahar mein pata chal jayega ki kuch toota ya nahi, kisi customer se sunne ki jagah.',
-  'You now have a prompt chosen on evidence, and a way to recheck it whenever something changes. Many teams that ship AI features don’t have this.':
-    'Ab aapke paas saboot ke saath chuna hua prompt hai, aur jab bhi kuch badle toh use dobara check karne ka tareeka. AI features ship karne wali bahut si teams ke paas yeh nahi hota.',
-  'There is one limit, though. Everything so far works on text you paste into the prompt. Sometimes the answer depends on a document that’s too big to paste, such as a policy, a contract or a handbook. Then none of these techniques help, because the model never sees the document. Chapter 3 starts on that problem.':
-    'Ek limit zaroor hai. Ab tak sab kuch us text par chalta hai jo aap prompt mein paste karte hain. Kabhi jawaab ek aise document par depend karta hai jo paste karne ke liye bahut bada hai, jaise policy, contract ya handbook. Tab inme se koi technique madad nahi karti, kyunki model ko woh document kabhi dikhta hi nahi. Chapter 3 isi problem se shuru hota hai.',
   'Build the answer key (version 1)':
     'Answer key banaiye (version 1)',
-  'Everything in this project is measured against one test file, the answer key. In this chapter you learned to build a small test set from real inputs, to change one thing at a time, and to score each change. Now you’ll build version 1 of the answer key from the ten starter sentences, and use it to choose between versions of your prompt.':
-    'Is project mein sab kuch ek test file ke against measure hota hai, yaani answer key. Is chapter mein aapne seekha ki asli inputs se ek chhota test set kaise banate hain, ek baar mein ek cheez kaise badalte hain, aur har change ko kaise score karte hain. Ab aap 10 starter sentences se answer key ka version 1 banayenge, aur use apne prompt ke versions ke beech chunne ke liye use karenge.',
-  'Open the project page and copy the ten starter sentences into a spreadsheet. Add the columns described under “The answer key”: number, kind of writing, sentence, what should be found, what should happen, and a note.':
-    'Project page kholiye aur 10 starter sentences ko ek spreadsheet mein copy kijiye. “The answer key” ke neeche bataye gaye columns jodiye: number, kind of writing, sentence, kya milna chahiye, kya hona chahiye, aur ek note.',
-  'For each row, write by hand what should be found (the kind and the exact words) and what should happen to it: remove it, mask it, or leave the sentence alone. Starter sentence 9 should say “nothing found”.':
-    'Har row ke liye haath se likhiye ki kya milna chahiye (uska kind aur exact words) aur uske saath kya hona chahiye: hata dena, mask kar dena, ya sentence ko waise hi chhod dena. Starter sentence 9 mein “nothing found” likha hona chahiye.',
-  'Add two more rows of your own that are messy. For example, a sentence with a spelling mistake in the word “Aadhaar”, and a sentence in which a number is split by spaces. Now you have twelve rows.':
-    'Apni taraf se 2 aur uljhi hui rows jodiye. Jaise, ek sentence jisme “Aadhaar” word ki spelling galat ho, aur ek sentence jisme koi number spaces se toot gaya ho. Ab aapke paas 12 rows hain.',
-  'Save the spreadsheet as <code>evals/answer-key-v1.csv</code> in your repository.':
-    'Spreadsheet ko apne repository mein <code>evals/answer-key-v1.csv</code> naam se save kijiye.',
-  'Run your improved prompt from Chapter 2.1 on all twelve rows. Give one point for each row where the tool found everything and nothing extra. Write the score out of twelve. This is your baseline.':
-    'Chapter 2.1 ka apna improved prompt saari 12 rows par chalaiye. Har us row ke liye 1 point dijiye jahan tool ne sab kuch dhoondha aur kuch extra nahi dhoondha. Score 12 mein se likhiye. Yeh aapki baseline hai.',
-  'Make three changes to the prompt, one at a time, and score again after each. Write all four scores in a small table.':
-    'Prompt mein teen changes kijiye, ek-ek karke, aur har change ke baad dobara score kijiye. Chaaron scores ek chhoti table mein likhiye.',
-  'Find one change that made no difference and remove it. Write how much that saves per call. Then run the best prompt with a cheaper, smaller model and note which rows now fail.':
-    'Ek aisi change dhoondhiye jisse koi farq nahi pada, aur use hata dijiye. Likhiye ki isse har call par kitni bachat hui. Phir sabse achha prompt ek sasste, chhote model ke saath chalaiye aur note kijiye ki ab kaun si rows fail hoti hain.',
-  'Write half a page for a colleague: your prompt, its score, and the two rows it still gets wrong.':
-    'Ek colleague ke liye aadha page likhiye: aapka prompt, uska score, aur woh do rows jo woh ab bhi galat karta hai.',
-  'The answer key, version 1, with twelve labelled rows, saved in your repository.':
-    'Answer key, version 1, 12 labelled rows ke saath, aapke repository mein save.',
   'A table with the baseline score and the three changes.':
     'Ek table jisme baseline score aur teen changes hon.',
-  'The result with a cheaper model, and the rows that failed.':
-    'Sasta model ke saath ka result, aur jo rows fail huin.',
-  'A half-page note with the prompt, the score and the two rows it still gets wrong.':
-    'Aadhe page ka note jisme prompt, score aur woh do rows hon jo woh ab bhi galat karta hai.',
 
   /* ---- ch23: The five task types: classify, extract, summarise, rewrite, generate ---- */
   'The five task types: classify, extract, summarise, rewrite, generate':
@@ -1051,300 +877,74 @@ Object.assign(window.HING = window.HING || {}, {
   /* ---- ch3: Chunking: splitting documents into pieces ---- */
   'Chunking: splitting documents into pieces':
     'Chunking: documents ko pieces mein todna',
-  'Models can only read a limited amount of text at once, so long documents are split into smaller pieces called chunks. In this chapter you’ll split one document three ways by hand and see what each split loses.':
-    'Model ek baar mein sirf limited text padh sakta hai, isliye lambe documents ko chhote pieces mein todte hain, jinhe chunks kehte hain. Is chapter mein aap ek document ko haath se teen tareeke se todenge aur dekhenge ki har tareeke mein kya khota hai.',
-  'Pick a document of five to fifteen pages and write five questions. Cut it into three giant pieces and predict what retrieval will do.':
-    'Paanch se pandrah pages ka ek document chuniye aur paanch sawaal likhiye. Use teen bade pieces mein kaatiye aur andaaza lagaiye ki retrieval kya karega.',
-  'Re-cut into fifteen or twenty fixed-size pieces, then into human-sized ones. Record completeness and boundary damage each time.':
-    'Phir use pandrah ya bees fixed-size pieces mein kaatiye, aur uske baad insaano jaise size ke pieces mein. Har baar completeness aur boundary damage note kijiye.',
-  'Find a rule severed from its exception, or a procedure severed from its warning.':
-    'Aisa rule dhoondhiye jo apne exception se alag ho gaya ho, ya aisi procedure jo apni warning se alag ho gayi ho.',
-  'A three-round chunking experiment sheet, and the rule you derived from it.':
-    'Teen rounds ki chunking experiment sheet, aur us se nikla hua rule.',
-  'Defend your chunking strategy from the evidence, not from a default.':
-    'Apni chunking strategy ko evidence ke saath defend kijiye, kisi default ke saath nahi.',
-  'There is a size limit':
-    'Ek size limit hoti hai',
-  'Everything sent in one call has to fit in the context window.':
-    'Ek call mein jo bhi bheja jaata hai, woh context window mein fit hona chahiye.',
   'You pay for everything you send':
     'Aap jo bhi bhejte hain, uske paise lagte hain',
-  'You pay per token, on every call.':
-    'Har call par, per token paise lagte hain.',
-  'Models invent answers when they have no evidence':
-    'Jab model ke paas evidence nahi hota, woh jawaab gadh deta hai',
-  'So the fix is to give them real evidence.':
-    'Isliye solution yeh hai ki use asli evidence diya jaye.',
   'Give the two reasons you cannot send a model every document you have.':
     'Woh do wajah bata paana ki aap model ko apne saare documents kyun nahi bhej sakte.',
-  'Explain what is lost when a document is split into chunks, with a concrete example.':
-    'Ek concrete example ke saath samjha paana ki document ko chunks mein todne par kya khota hai.',
-  'Choose a chunking approach by naming the failure you accept, since no chunk size is right for every document.':
-    'Woh failure naam lekar chunking approach chun paana jo aap accept karte hain, kyunki koi ek chunk size har document ke liye sahi nahi hota.',
-  'There’s no code in this chapter. Print one real document you know well, such as a policy, a contract or a procedure of five to fifteen pages. Get a pair of scissors and a pen too. You’ll do every step by hand. No document you can use? Print up to fifteen pages of the Digital Personal Data Protection Act, 2023. It is public and full of rules with exceptions. Later chapters can reuse it.':
-    'Is chapter mein koi code nahi hai. Ek asli document print kijiye jise aap achhi tarah jaante hain, jaise policy, contract ya paanch se pandrah pages ki ek procedure. Saath mein ek kainchi aur ek pen bhi le lijiye. Har step aap haath se karenge. Koi document use nahi kar sakte? Digital Personal Data Protection Act, 2023 ke paandrah pages tak print kijiye. Yeh public hai aur apwaadon wale niyamon se bhara hai. Aage ke chapters ise dobara use kar sakte hain.',
-  'So far, every document you gave a model was short enough to paste into the request. Real work isn’t like that. Companies have handbooks, policies and years of contracts. In this chapter you’ll see why we can’t just send all of that to a model, and what happens when we cut it into pieces instead.':
-    'Ab tak jo bhi document aapne model ko diya, woh itna chhota tha ki request mein paste ho jaata tha. Asli kaam aisa nahi hota. Companies ke paas handbooks, policies aur saalon ke contracts hote hain. Is chapter mein aap dekhenge ki yeh sab model ko seedha kyun nahi bhej sakte, aur jab hum use pieces mein kaat dete hain toh kya hota hai.',
-  'It’s a quick, hands-on chapter, and it sets up everything that follows.':
-    'Yeh ek chhota, hands-on chapter hai, aur aage ki har cheez isi par tikti hai.',
   'Write your test questions first':
     'Pehle apne test questions likhiye',
-  'Before you cut anything, write five specific questions a real user would ask about this document. Write real questions, the kind someone types when they’re in a hurry, not topics.':
-    'Kuch bhi kaatne se pehle, paanch khaas sawaal likhiye jo ek asli user is document ke baare mein poochega. Asli sawaal likhiye, jaise koi jaldi mein type karta hai, topics nahi.',
-  'Now you have five questions on paper. You’ll score every experiment in this chapter against them. Write them before cutting, so you can’t choose questions that suit your cuts.':
-    'Ab aapke paas paper par paanch sawaal hain. Is chapter ke har experiment ko aap inhi ke saamne score karenge. Kaatne se pehle likhiye, taaki aap aise sawaal na chun lein jo aapke cuts ke hisaab se theek baithein.',
   'Why you cannot send everything':
     'Sab kuch kyun nahi bhej sakte',
-  'Suppose you want a model to answer questions about your company’s documents. The obvious approach is to send it the documents. That fails for two reasons you already know.':
-    'Maan lijiye aap chahte hain ki model aapki company ke documents ke baare mein sawaalon ke jawaab de. Sabse seedha tareeka hai ki use documents bhej do. Lekin yeh do wajahon se fail hota hai, jo aap pehle se jaante hain.',
-  'First, they won’t fit, because each request has a size limit. Second, you pay for every token you send, on every question. Even when a large document would fit, sending your whole library to answer one question costs far too much.':
-    'Pehli wajah, woh fit nahi honge, kyunki har request ki ek size limit hoti hai. Doosri wajah, aap jitne bhi tokens bhejte hain, har sawaal par unke paise lagte hain. Bada document fit ho bhi jaye, toh ek sawaal ke jawaab ke liye poori library bhejna bahut mehnga padta hai.',
-  'So the standard approach is to split documents into pieces, store the pieces, and send only the few that look relevant to each question. The pieces are called <strong>chunks</strong>, and splitting them is called <strong>chunking</strong>.':
-    'Isliye standard tareeka yeh hai ki documents ko pieces mein todo, pieces ko store karo, aur har sawaal ke liye sirf woh thode se bhejo jo relevant lagte hain. In pieces ko <strong>chunks</strong> kehte hain, aur unhe todne ko <strong>chunking</strong> kehte hain.',
-  'The hard part is deciding where to split. Try splitting a document three ways in this tool, and see what breaks.':
-    'Mushkil hissa yeh tay karna hai ki kahan todna hai. Is tool mein ek document ko teen tareeke se todkar dekhiye, aur dekhiye ki kya toot-ta hai.',
-  'Now let’s do the same thing by hand, on your own document, in three rounds.':
-    'Ab yahi cheez haath se, apne document par, teen rounds mein karte hain.',
   'Round 1: three large chunks':
     'Round 1: teen bade chunks',
   'Cut the document into thirds':
     'Document ko teen hisson mein kaatiye',
-  'Cut your document into three rough pieces. Ignore its structure. Then take your five questions one at a time and find which piece holds each answer.':
-    'Apne document ko teen mote pieces mein kaatiye. Uske structure ko ignore kijiye. Phir apne paanch sawaal ek-ek karke lijiye aur dekhiye ki har jawaab kis piece mein hai.',
-  'Every answer is complete. But to deliver a two-line answer, you send a third of the document. Note roughly how much irrelevant text comes with each answer. You would pay for that text on every question.':
-    'Har jawaab poora milta hai. Lekin do line ka jawaab dene ke liye aap document ka ek tihaai hissa bhej rahe hain. Note kijiye ki har jawaab ke saath lagbhag kitna faltu text aa raha hai. Us text ke paise aapko har sawaal par dene padenge.',
   'Round 2: twenty small chunks':
     'Round 2: bees chhote chunks',
-  'Big pieces are wasteful, so the next thing to try is small ones.':
-    'Bade pieces mein bahut barbaadi hoti hai, isliye ab chhote pieces try karte hain.',
   'Cut the document into small pieces':
     'Document ko chhote pieces mein kaatiye',
-  'Cut a fresh copy into fifteen or twenty pieces, roughly every 150 words, even if that splits a sentence. Run your five questions again, and look for two specific problems.':
-    'Ek nayi copy ko pandrah ya bees pieces mein kaatiye, lagbhag har 150 words par, chahe sentence beech mein hi kyun na toote. Apne paanch sawaal dobara chalaiye, aur do khaas problems dhoondhiye.',
-  '<strong>A split answer:</strong> the answer is now spread across two pieces, such as a rule on one card and its exception on the next.':
-    '<strong>Split jawaab:</strong> jawaab ab do pieces mein bikhar gaya hai, jaise ek card par rule aur agle card par uska exception.',
-  '<strong>An orphan:</strong> a piece that means nothing on its own, such as “The aforesaid amount shall lapse.” Which amount?':
-    '<strong>Orphan:</strong> aisa piece jiska akele mein koi matlab nahi, jaise “The aforesaid amount shall lapse.” Kaunsi amount?',
-  'You’ll find both problems in a document you chose yourself. Keep these cards. Chapters 4 and 5 use these exact pieces.':
-    'Aapko yeh dono problems us document mein bhi milengi jo aapne khud chuna hai. Yeh cards sambhal kar rakhiye. Chapters 4 aur 5 inhi pieces ko use karte hain.',
   'Your rule, and what it will get wrong':
     'Aapka rule, aur woh kya galat karega',
-  'Take a document you know well, such as a policy, a contract or a spec. Write the rule you would give someone for splitting it. Then name one question your rule will answer badly.':
-    'Ek aisa document lijiye jise aap achhi tarah jaante hain, jaise policy, contract ya spec. Woh rule likhiye jo aap kisi ko use todne ke liye denge. Phir ek aisa sawaal likhiye jiska jawaab aapka rule kharab dega.',
-  'Most sensible rules, such as splitting at paragraphs, headings or numbered clauses, fail in the same place: a rule and its exception end up in different pieces. If only the rule is retrieved, the answer is confident and incomplete, which is worse than no answer.':
-    'Zyadatar samajhdaar rules, jaise paragraphs, headings ya numbered clauses par todna, ek hi jagah fail hote hain: rule aur uska exception alag pieces mein pahunch jaate hain. Agar sirf rule retrieve hota hai, toh jawaab confident hota hai lekin adhoora, aur woh jawaab na hone se bhi bura hai.',
-  'You cannot find a rule with no failures. Instead, know which questions your rule handles badly, and test those questions on purpose.':
-    'Aisa rule nahi mil sakta jisme koi failure na ho. Isliye yeh jaaniye ki aapka rule kin sawaalon par kharab chalta hai, aur un sawaalon ko jaan-boojhkar test kijiye.',
   'Orphaned chunks lose their meaning':
     'Orphan chunks apna matlab kho dete hain',
-  'The second problem is harder to spot. Some pieces stop making sense once they are cut out. Take a chunk that starts <em>the aforesaid amount shall be disbursed within sixty days</em>. On its own, it’s useless. Which amount? Paid to whom? The answer is in the previous piece.':
-    'Doosri problem pakadna zyada mushkil hai. Kuch pieces kaat kar alag hote hi samajh se bahar ho jaate hain. Ek aisa chunk lijiye jo shuru hota hai <em>the aforesaid amount shall be disbursed within sixty days</em> se. Akele mein yeh bekaar hai. Kaunsi amount? Kisko di jaayegi? Jawaab pichhle piece mein hai.',
-  'Documents are full of these references, especially legal text. But so is anything that says “the above”, “this scheme” or “such cases”. A person reading the document has the previous paragraph in mind. A chunk doesn’t.':
-    'Documents mein aisi references bhari hoti hain, khaaskar legal text mein. Lekin jahan bhi “the above”, “this scheme” ya “such cases” likha ho, wahan bhi. Document padhne wale insaan ke dimaag mein pichhla paragraph hota hai. Chunk ke paas woh nahi hota.',
   'Round 3: cut along the structure':
     'Round 3: structure ke saath kaatiye',
-  'You’ve now seen what goes wrong with cuts that ignore the document. So for the last round, cut the way a sensible person would.':
-    'Aapne ab dekh liya ki document ko ignore karke kaatne par kya galat hota hai. Isliye aakhri round mein waise kaatiye jaise ek samajhdaar insaan kaatega.',
   'Cut the way you think it should be cut':
     'Jaise aapko theek lage, waise kaatiye',
-  'Cut a fresh copy the way you think it should be cut. Don’t overthink it. Then look at what you did.':
-    'Ek nayi copy ko waise kaatiye jaise aapko lagta hai ki kaatna chahiye. Zyada mat sochiye. Phir dekhiye ki aapne kya kiya.',
-  'You probably followed headings and clause numbers, and made pieces of very different sizes that each make sense on their own. Write one sentence describing the rule you used. This is <strong>structure-aware chunking</strong>, which follows the document’s layout. Semantic chunking is a different approach, which splits text where the topic changes.':
-    'Aapne shayad headings aur clause numbers ko follow kiya, aur bahut alag-alag size ke pieces banaye jo har ek akele mein bhi samajh aate hain. Jo rule aapne use kiya, use ek sentence mein likhiye. Yeh <strong>structure-aware chunking</strong> hai, jo document ke layout ko follow karti hai. Semantic chunking ek alag approach hai, jo text ko wahan todti hai jahan topic badalta hai.',
-  'No chunk size is correct for every document. Each size fails in a different way, so choose based on what your documents look like and what your users ask.':
-    'Koi bhi chunk size har document ke liye sahi nahi hota. Har size alag tareeke se fail hota hai, isliye is hisaab se chuniye ki aapke documents kaise dikhte hain aur aapke users kya poochte hain.',
-  'In a design review, say which failure you chose and why. People often want a single correct chunk size, and there isn’t one.':
-    'Design review mein bataiye ki aapne kaunsa failure chuna aur kyun. Log aksar ek hi sahi chunk size chahte hain, aur aisa koi size hota hi nahi.',
-  'State your trade-off. For your document: what size are you cutting at, what does that gain, and what does it lose? Write the sentence you would say in a meeting.':
-    'Apna trade-off likhiye. Aapke document ke liye: aap kis size par kaat rahe hain, usse kya milta hai, aur kya khota hai? Woh sentence likhiye jo aap meeting mein bolenge.',
   'We are cutting at … which gains … and loses …':
     'Hum … par kaat rahe hain, jisse … milta hai aur … khota hai.',
-  'A strong answer names a real loss, specific to your documents. For example: “Clause by clause, with a couple of sentences of overlap. That gives precise answers to questions about one clause, but loses answers that span a clause and its exception, so we test those on purpose.” If you cannot name the loss, you have accepted a default rather than made a choice.':
-    'Ek achha jawaab ek asli nuksaan batata hai, jo aapke documents ke liye khaas ho. Jaise: “Clause by clause, with a couple of sentences of overlap. That gives precise answers to questions about one clause, but loses answers that span a clause and its exception, so we test those on purpose.” Agar aap nuksaan nahi bata paate, toh aapne choice nahi ki, bas ek default accept kar liya.',
-  'You can’t send a model everything, because of the size limit and the cost. So documents are cut into chunks. Every way of cutting loses something, whether it’s an answer split in two or a piece that means nothing alone. That’s why you choose a chunking approach by naming the failure you accept.':
-    'Aap model ko sab kuch nahi bhej sakte, kyunki size limit hai aur cost bhi. Isliye documents ko chunks mein todte hain. Todne ka har tareeka kuch na kuch khota hai, chahe jawaab do hisson mein bat jaye ya koi piece akele mein matlab hi na rakhe. Isi wajah se aap chunking approach us failure ka naam lekar chunte hain jise aap accept karte hain.',
-  'Next, in Chapter 4, you’ll look at the simplest way to find the right chunk for a question, which is matching keywords, and see where it fails.':
-    'Aage Chapter 4 mein aap dekhenge ki kisi sawaal ke liye sahi chunk dhoondhne ka sabse simple tareeka kya hai, yaani keywords match karna, aur woh kahan fail hota hai.',
   'Decide how to cut long text without splitting an ID in half':
     'Lambe text ko kaise kaatein ki koi ID beech se na toote',
-  'People will paste long messages and whole documents into the tool. A long text has to be cut into pieces before it is checked. A bad cut can split a number or a name in the middle, so that no piece contains the whole thing. In this chapter you learned why text must be cut, what a cut loses, and that no piece size suits every document. Here you work out a cutting rule for the project, by hand.':
-    'Log tool mein lambe messages aur poore documents paste karenge. Lambe text ko check hone se pehle pieces mein kaatna padta hai. Ek kharab cut kisi number ya naam ko beech mein tod sakta hai, taaki kisi bhi piece mein woh poora na ho. Is chapter mein aapne seekha ki text ko kyun kaatna padta hai, cut mein kya khota hai, aur koi ek piece size har document ke liye sahi nahi hota. Ab aap project ke liye ek cutting rule haath se nikaaliye.',
-  'Written, no code: pen, paper and scissors, as in the chapter. Write the rule in the notes box below. Short version for the route, about 20 minutes: steps 1, 2 and 3.':
-    'Likha hua kaam, koi code nahi: pen, paper aur kainchi, jaise chapter mein. Rule neeche notes box mein likhiye. Route ke liye chhota version, lagbhag 20 minute: step 1, 2 aur 3.',
-  'Write a realistic long message of about 15 lines, such as a customer complaint. Include a name, an address, an Aadhaar number written in groups of four (4321 5678 9012) and a mobile number, spread over different lines. Use made-up details. Print it.':
-    'Lagbhag 15 lines ka ek realistic lamba message likhiye, jaise ek customer complaint. Usmein ek naam, ek address, chaar-chaar ke groups mein likha Aadhaar number (4321 5678 9012) aur ek mobile number rakhiye, alag-alag lines mein bikhre hue. Made-up details use kijiye. Ise print kijiye.',
-  'Cut it into pieces in three ways: every five lines, at every full stop, and at every blank line or paragraph. Use scissors.':
-    'Use teen tareeke se pieces mein kaatiye: har paanch lines par, har full stop par, aur har blank line ya paragraph par. Kainchi use kijiye.',
-  'For each way of cutting, check every piece. Is any ID or name split across two pieces, so that neither piece contains the whole thing? Write down which cuts break what.':
-    'Kaatne ke har tareeke ke liye har piece check kijiye. Kya koi ID ya naam do pieces mein bat gaya hai, taaki kisi bhi piece mein woh poora na ho? Likhiye ki kaun si cuts kya tod rahi hain.',
-  'Try one more way: pieces that overlap, so that the last two lines of each piece are repeated at the start of the next one. Does it fix the broken IDs? What does it cost?':
-    'Ek aur tareeka try kijiye: overlapping pieces, jisme har piece ki aakhri do lines agle piece ki shuruaat mein dobara aati hain. Kya isse toote hue IDs theek hote hain? Uski keemat kya hai?',
-  'Write your cutting rule in three lines that someone else could follow on thousands of messages without asking you: the size of each piece, where a cut is allowed, and how much overlap to use.':
-    'Apna cutting rule teen lines mein likhiye, jo koi aur hazaaron messages par bina aapse poochhe follow kar sake: har piece ka size, kahan cut ki ijaazat hai, aur kitna overlap rakhna hai.',
-  'Test the rule on the messiest message you can make, for example one with a number broken across two lines. Say what still goes wrong.':
-    'Rule ko sabse uljhe hue message par test kijiye jo aap bana sakte hain, jaise woh jisme ek number do lines mein toota ho. Batayiye ki phir bhi kya galat hota hai.',
-  'Your long message, printed and cut in three ways.':
-    'Aapka lamba message, print kiya hua aur teen tareeke se kata hua.',
-  'A note on which cuts broke which details.':
-    'Ek note ki kaun si cuts ne kaunsi details todi.',
-  'The overlap experiment and what it costs.':
-    'Overlap wala experiment aur uski keemat.',
   'A three-line cutting rule, and the one case it still gets wrong.':
     'Teen lines ka ek cutting rule, aur woh ek case jo woh abhi bhi galat karta hai.',
 
   /* ---- ch4: Keyword search: matching words, and where it fails ---- */
   'Keyword search: matching words, and where it fails':
     'Keyword search: words match karna, aur woh kahan fail hota hai',
-  'The first way to find the right chunk is to match the words in the question. You’ll run keyword search by hand on your own chunks, see exactly where it fails, and meet the one kind of question where it wins.':
-    'Sahi chunk dhoondhne ka pehla tareeka hai sawaal ke words ko match karna. Aap apne chunks par keyword search haath se chalayenge, dekhenge ki woh bilkul kahan fail hota hai, aur woh ek tarah ka sawaal bhi dekhenge jahan woh jeet jaata hai.',
-  'Using only Ctrl-F and your own eyes, rank your Chapter 3 questions against your chunks. Don’t use common sense. Let the word matches decide.':
-    'Sirf Ctrl-F aur apni aankhon se, Chapter 3 ke apne sawaalon ko apne chunks ke saath rank kijiye. Common sense mat lagaiye. Word match ko hi faisla karne dijiye.',
-  'Add four new questions: one that uses a synonym, one in plain everyday language, one in a second language, and one that contains an exact identifier.':
-    'Chaar naye sawaal jodiye: ek jisme synonym ho, ek aam bol-chaal ki language mein, ek doosri language mein, aur ek jisme exact identifier ho.',
-  'Ask something the document truly cannot answer, and find the chunk that still comes out on top.':
-    'Aisa kuch poochiye jiska jawaab document mein hai hi nahi, aur dekhiye ki phir bhi kaun sa chunk sabse upar aata hai.',
-  'A map of where your search went wrong.':
-    'Ek map jisme dikhe ki aapka search kahan-kahan galat gaya.',
   'Explain why getting a result back does not mean an answer exists.':
     'Samjha paana ki result wapas aane ka matlab yeh nahi ki jawaab maujood hai.',
   'Documents are split into chunks':
     'Documents chunks mein split hote hain',
-  'You store the chunks and send only the relevant few.':
-    'Aap chunks ko store karte hain aur model ko sirf kaam ke kuch chunks bhejte hain.',
-  'Some chunks lose their meaning':
-    'Kuch chunks apna matlab kho dete hain',
   '“The aforesaid amount” no longer says which amount.':
     '“The aforesaid amount” se ab yeh pata nahi chalta ki kaun si amount.',
-  'Explain why keyword search fails most for the users who need help the most.':
-    'Samjha paana ki keyword search un users ke liye sabse zyada kyun fail hota hai jinhe madad ki sabse zyada zaroorat hai.',
-  'Name the kind of question that keyword search handles better than any other method.':
-    'Bata paana ki keyword search kis tarah ke sawaal ko baaki sab tareekon se behtar sambhalta hai.',
-  'Explain what search returns when the answer is not in your documents, and why that is dangerous.':
-    'Samjha paana ki jab jawaab aapke documents mein nahi hota, toh search kya wapas karta hai, aur woh khatarnaak kyun hai.',
-  'There’s no code in this chapter yet. Bring the twenty cards you cut in Chapter 3 and the five questions you wrote before cutting. Here, you’ll act as the search engine yourself.':
-    'Is chapter mein abhi koi code nahi hai. Chapter 3 mein aapne jo bees cards kaate the, aur kaatne se pehle jo paanch sawaal likhe the, woh saath rakhiye. Yahan aap khud search engine ban kar kaam karenge.',
-  'In the last chapter you split a document into twenty chunks. Now picture the next moment. A question arrives, and something has to decide which of those chunks to send to the model.':
-    'Pichhle chapter mein aapne ek document ko bees chunks mein split kiya tha. Ab agla pal sochiye. Ek sawaal aata hai, aur kisi ko tay karna hai ki un chunks mein se kaun se model ko bhejne hain.',
-  'The obvious method is to match words. Search boxes have worked this way for decades. If the question says <em>refund</em>, you find the chunks that contain <em>refund</em>. It’s fast and cheap, and it’s called <strong>keyword search</strong>.':
-    'Sabse seedha tareeka hai words match karna. Search boxes kai saalon se aise hi kaam karte aaye hain. Agar sawaal mein <em>refund</em> likha hai, toh aap woh chunks dhoondhte hain jinme <em>refund</em> hai. Yeh tez hai, sasta hai, aur ise <strong>keyword search</strong> kehte hain.',
-  'It sounds like it should just work. This chapter shows you where it does, and where it quietly lets people down.':
-    'Sunne mein lagta hai ki yeh toh kaam kar hi jayega. Yeh chapter aapko dikhata hai ki woh kahan kaam karta hai, aur kahan chupke se logon ko dhokha deta hai.',
   'Keyword search matches spelling, not meaning':
     'Keyword search spelling match karta hai, matlab nahi',
-  'Let’s start with a small problem. Suppose a user is looking for their money, and your document is a company policy. Will the two speak the same language?':
-    'Chaliye ek chhoti si problem se shuru karte hain. Maan lijiye ek user apne paise dhoondh raha hai, aur aapka document ek company policy hai. Kya dono ek hi zabaan bolenge?',
-  'Try it by hand first. A user types: <em>when do I get my money back?</em> Your document is a company policy. Write down the words keyword search would look for. Then write down the words the policy probably uses instead.':
-    'Pehle haath se try kijiye. Ek user type karta hai: <em>when do I get my money back?</em> Aapka document ek company policy hai. Woh words likhiye jo keyword search dhoondhega. Phir woh words likhiye jo policy shaayad unki jagah use karti hai.',
   'What the user typed → what the document says':
     'User ne kya type kiya → document mein kya likha hai',
-  'The user wrote <em>money</em>, <em>back</em> and <em>get</em>. The policy says <em>reimbursement</em>, <em>disbursement</em>, <em>credited to the registered account</em> and <em>the aforesaid amount</em>. The two lists share no words at all. Yet the question is perfectly clear, and the paragraph answers it.':
-    'User ne likha <em>money</em>, <em>back</em> aur <em>get</em>. Policy mein likha hai <em>reimbursement</em>, <em>disbursement</em>, <em>credited to the registered account</em> aur <em>the aforesaid amount</em>. Dono lists mein ek bhi word common nahi. Phir bhi sawaal bilkul saaf hai, aur paragraph uska jawaab deta hai.',
-  'Keyword search compares spelling, not meaning. Two sentences that mean the same thing but share no words do not match.':
-    'Keyword search spelling compare karta hai, matlab nahi. Do sentences ka matlab ek ho, lekin words common na hon, toh woh match nahi hote.',
   'Run keyword search by hand':
     'Keyword search haath se chalaiye',
-  'The best way to feel this is to be the search engine yourself. You’ll follow one simple rule: count matching words, and nothing else.':
-    'Ise mehsoos karne ka sabse accha tareeka hai khud search engine ban jaana. Aap ek hi simple rule maanenge: matching words ginte jaaiye, aur kuch nahi.',
   'Act as the search engine':
     'Search engine ban kar dekhiye',
-  'Run keyword search by hand on all five questions against all twenty cards. First underline the important words in each question. Then find those words in the cards and give one point for every match. Finally, rank the cards by score.':
-    'Paanchon sawaalon par, bees ke bees cards ke against, keyword search haath se chalaiye. Pehle har sawaal ke zaroori words ko underline kijiye. Phir cards mein woh words dhoondhiye aur har match par ek point dijiye. Aakhir mein cards ko score ke hisaab se rank kijiye.',
   'Watch out':
     'Dhyaan rakhiye',
-  'Don’t use your own understanding of the document. Only the scores count.':
-    'Document ke baare mein apni samajh mat lagaiye. Sirf scores ginte hain.',
-  'For each question, record two things. Did the top-scoring card contain the answer? And if not, what rank did the right card get?':
-    'Har sawaal ke liye do cheezein note kijiye. Kya sabse zyada score wale card mein jawaab tha? Aur agar nahi, toh sahi card ko kaun sa rank mila?',
-  'You’ll probably find that clearly worded questions do surprisingly well. Don’t trust that result. You wrote these questions after reading the document, so you used its own vocabulary. Real users usually haven’t read it.':
-    'Aapko shaayad lagega ki saaf words mein likhe sawaal kaafi acha kaam karte hain. Is result par bharosa mat kijiye. Aapne yeh sawaal document padhne ke baad likhe the, isliye aapne usi ke words use kiye. Asli users ne aksar woh document padha hi nahi hota.',
-  'So let’s make the test fairer. We’ll write questions the way real users would, and see what happens.':
-    'Toh chaliye test ko thoda fair banate hain. Hum sawaal waise likhenge jaise asli users likhte hain, aur dekhenge kya hota hai.',
   'Write three harder questions':
     'Teen mushkil sawaal likhiye',
-  'Write three new questions about the same document. Each one should be designed to make keyword search fail.':
-    'Usi document ke baare mein teen naye sawaal likhiye. Har sawaal aisa ho ki keyword search fail ho jaaye.',
-  '<strong>A synonym question:</strong> take a formal term from the document and reword it the way most people would say it.':
-    '<strong>Synonym wala sawaal:</strong> document ka koi formal term lijiye aur use waise likhiye jaise zyadatar log bolte hain.',
-  '<strong>A plain-language question:</strong> write it the way a first-time user would type it, someone who doesn’t know the document’s vocabulary.':
-    '<strong>Aam bol-chaal wala sawaal:</strong> use waise likhiye jaise koi pehli baar aaya user type karega, jise document ki vocabulary nahi pata.',
-  '<strong>A second-language question:</strong> ask the same thing in another language your users actually use.':
-    '<strong>Doosri language wala sawaal:</strong> wahi baat kisi doosri language mein poochiye jo aapke users asal mein bolte hain.',
-  'Score all three by hand, in the same way as before.':
-    'Teeno ko pehle ki tarah haath se score kijiye.',
-  'You should see that the cards which clearly hold the answer score close to zero. And yet some card still comes out on top. For each question, write one sentence: what information did the scoring not have?':
-    'Aapko dikhna chahiye ki jin cards mein jawaab saaf maujood hai, unka score zero ke aas-paas hai. Phir bhi koi na koi card sabse upar aa jaata hai. Har sawaal ke liye ek sentence likhiye: scoring ke paas kaun si information nahi thi?',
   'Where keyword search fails':
     'Keyword search kahan fail hota hai',
-  'You’ve just seen the failure happen. It isn’t random, either. It shows up in three predictable places, and all three matter to a business.':
-    'Aapne abhi yeh failure hote dekha. Aur yeh random bhi nahi hai. Yeh teen jaani-pehchani jagahon par dikhta hai, aur teeno ek business ke liye zaroori hain.',
-  'The first is the gap between formal and everyday language. Documents say <em>termination for convenience</em>, while people say <em>cancel</em>. Specialists write the documents, and everyone else writes the questions.':
-    'Pehli hai formal aur roz ki language ke beech ka farq. Documents mein likha hota hai <em>termination for convenience</em>, jabki log kehte hain <em>cancel</em>. Documents specialist log likhte hain, aur sawaal baaki sab log likhte hain.',
-  'The second is the most uncomfortable one. Keyword search fails the users who most need help. Someone who knows your product uses your vocabulary, so they find what they need. Someone who is confused uses their own words and finds nothing. So it works worst for the people with the biggest problems.':
-    'Doosri baat sabse takleef dene wali hai. Keyword search un users ko fail karta hai jinhe madad ki sabse zyada zaroorat hai. Jo aapka product jaanta hai, woh aapki vocabulary use karta hai, isliye use cheez mil jaati hai. Jo confused hai, woh apne words use karta hai aur use kuch nahi milta. Matlab sabse badi problem wale logon ke liye yeh sabse kharab kaam karta hai.',
-  'The third is plain questions. <em>Why was I charged twice?</em> shares almost no words with the paragraph that explains duplicate authorisation holds. The user asks in their own words, and the document answers in its own.':
-    'Teesri hai seedhe sawaal. <em>Why was I charged twice?</em> ke words us paragraph se lagbhag match nahi karte jo duplicate authorisation holds samjhata hai. User apne words mein poochta hai, aur document apne words mein jawaab deta hai.',
   'Where keyword search wins':
     'Keyword search kahan jeet jaata hai',
-  'It would be unfair to stop here, because keyword search is excellent at some things. Think of exact codes, section numbers, policy IDs, part numbers and names.':
-    'Yahin ruk jaana unfair hoga, kyunki kuch cheezon mein keyword search bahut accha hai. Exact codes, section numbers, policy IDs, part numbers aur naam sochiye.',
-  'If a user types <em>clause 14.2</em>, they want clause 14.2. Finding that exact text is the right approach, and spelling is all you need.':
-    'Agar koi user <em>clause 14.2</em> type karta hai, toh use clause 14.2 hi chahiye. Wahi exact text dhoondhna sahi tareeka hai, aur wahan spelling hi kaafi hai.',
   'Search for an exact code':
     'Exact code search kijiye',
-  'Ask a question that contains an exact code, section number or defined term, copied straight from the document.':
-    'Aisa sawaal poochiye jisme document se seedha copy kiya hua exact code, section number ya defined term ho.',
-  'An exact code or defined term usually ranks high with keyword search. Record its actual rank instead of assuming. This is the strength that meaning-based search, in the next chapter, adds to rather than replaces.':
-    'Exact code ya defined term keyword search mein aksar upar rank hota hai. Maan kar mat chaliye, uska asli rank note kijiye. Meaning par chalne wala search, agle chapter mein, is khoobi ki jagah nahi leta, balki ispar kuch jodta hai.',
   'Search always returns something':
     'Search hamesha kuch na kuch wapas karta hai',
-  'There’s one more property of search, and it causes serious problems later. Before we name it, try a guess.':
-    'Search ki ek aur khaasiyat hai, aur woh aage chalkar badi problem karti hai. Uska naam lene se pehle, ek andaaza lagaiye.',
   'One line':
     'Ek line',
-  'The book showed this once. Predict what your own search step returns when you ask something your documents do not cover at all, then run it.':
-    'Book ne yeh ek baar dikhaya. Anumaan lagaiye ki aapka apna search step kya wapas karta hai jab aap aisa kuch poochhte hain jo aapke documents bilkul cover nahi karte, phir use chalaiye.',
-  'Twenty chunks, ranked, with one at the top. Search has no idea of “nothing here”. It scores everything and sorts the list. For an unanswerable question, the top result is just the least bad of a bad set.':
-    'Bees chunks, rank kiye hue, ek sabse upar. Search ko “yahan kuch nahi hai” ka koi idea hi nahi hota. Woh sab ko score karta hai aur list sort kar deta hai. Jis sawaal ka jawaab hai hi nahi, uske liye top result bas ek kharab set ka sabse kam kharab chunk hota hai.',
-  'Now put that together with Chapter 2. The irrelevant chunk is passed to the model as if it were evidence, and the model writes a fluent answer from it. No step reports an error. You get a confident, wrong answer, and nothing in the system notices.':
-    'Ab ise Chapter 2 ke saath jodiye. Woh irrelevant chunk model ko evidence ki tarah bhej diya jaata hai, aur model usse ek fluent jawaab likh deta hai. Koi bhi step error report nahi karta. Aapko ek confident, galat jawaab milta hai, aur system mein kisi ko pata nahi chalta.',
-  'This is why a result coming back never proves an answer exists. Hold on to that thought. One last small exercise will pull the chapter together.':
-    'Isliye result wapas aana kabhi yeh saabit nahi karta ki jawaab maujood hai. Yeh baat yaad rakhiye. Ek chhota sa aakhri exercise chapter ko samet dega.',
-  'Name the missing capability':
-    'Jo ability missing hai, uska naam likhiye',
-  'Look at your three harder questions. Write one sentence describing the ability that keyword search is missing. Describe the gap, not the fix.':
-    'Apne teen mushkil sawaalon ko dekhiye. Ek sentence likhiye jo batata ho ki keyword search mein kaun si ability missing hai. Gap likhiye, uska fix nahi.',
   'Something like: <em>it can compare spellings but not meanings.</em> Keep that sentence. Chapter 5 fills this gap. If you can, wait a day before reading it.':
     'Kuch aisa: <em>woh spellings compare kar sakta hai, lekin matlab nahi.</em> Yeh sentence sambhal kar rakhiye. Chapter 5 is gap ko bharta hai. Ho sake toh ise padhne se pehle ek din ruk jaaiye.',
-  'Keyword search has two weaknesses. It can’t see meaning, and it never tells you that it found nothing.':
-    'Keyword search ki do kamzoriyan hain. Woh matlab nahi dekh sakta, aur woh kabhi nahi bolta ki use kuch mila hi nahi.',
-  'Next, in Chapter 5, you’ll fix the first one by teaching search to compare meaning instead of spelling. Chapter 6 then deals with the second weakness, which is harder and more important.':
-    'Agle chapter, Chapter 5 mein, aap pehli kamzori theek karenge: search ko spelling ki jagah matlab compare karna sikhayenge. Chapter 6 doosri kamzori sambhalta hai, jo zyada mushkil aur zyada zaroori hai.',
   'Write the pattern rules, and score them by hand':
     'Pattern rules likhiye, aur unhe haath se score kijiye',
-  'The pattern checker is the first and cheapest part of the tool. It looks for details that always have the same shape, such as a PAN. In this chapter you played the search engine yourself, matching words by hand and seeing where that breaks. Now you’ll write the pattern checker’s rules in plain words, apply them by hand to your answer key, and record exactly where they fail.':
-    'Pattern checker tool ka pehla aur sabse sasta hissa hai. Woh un details ko dhoondhta hai jinki shape hamesha ek jaisi rehti hai, jaise PAN. Is chapter mein aapne khud search engine ban kar words haath se match kiye aur dekha ki woh kahan toot-ta hai. Ab aap pattern checker ke rules saade words mein likhenge, unhe apne answer key par haath se lagayenge, aur note karenge ki woh bilkul kahan fail hote hain.',
-  'Written work, with no code yet. You apply the rules by hand, just as you did in the chapter. In Chapter 5 you’ll turn them into code. Short version for the route, about 20 minutes: steps 1, 3 and 4.':
-    'Yeh likhne ka kaam hai, abhi koi code nahi. Rules aap haath se lagayenge, bilkul waise jaise chapter mein kiya tha. Chapter 5 mein aap unhe code mein badlenge. Route ke liye chhota version, lagbhag 20 minute: step 1, 3 aur 4.',
-  'Open the table of the eleven kinds of ID on the project page. For each kind, write a rule in plain words that someone could apply without thinking. For example: “A PAN is five capital letters, then four digits, then one capital letter.”':
-    'Project page par gyaarah tarah ki ID wali table kholiye. Har tarah ke liye saade words mein ek rule likhiye jise koi bina soche laga sake. Jaise: “A PAN is five capital letters, then four digits, then one capital letter.”',
-  'Add to each rule one thing it must not match. For example: “A PIN code is six digits, but a six-digit number straight after the word ‘account’ is not a PIN code.”':
-    'Har rule mein ek aisi cheez jodiye jo woh match nahi karna chahiye. Jaise: “A PIN code is six digits, but a six-digit number straight after the word ‘account’ is not a PIN code.”',
-  'Take the twelve rows of your answer key (version 1). Read each sentence the way a machine would, applying your rules strictly. In a new column, write the items your rules would find.':
-    'Apne answer key (version 1) ki baarah rows lijiye. Har sentence ko waise padhiye jaise ek machine padhegi, aur apne rules ko sakhti se lagaiye. Ek nayi column mein woh items likhiye jo aapke rules dhoondhenge.',
-  'Compare your new column with the correct answers. Mark each row as one of three things: everything found, something missed, or something wrongly found.':
-    'Apni nayi column ko sahi jawaabon se compare kijiye. Har row ko teen mein se ek tarah mark kijiye: sab mil gaya, kuch chhoot gaya, ya kuch galat mil gaya.',
-  'Pick the three failures that teach you the most. For each one, describe the sentence and say why a fixed rule cannot cope. Look especially at starter sentence 4 (the partly hidden number), starter sentence 6 (names and addresses) and starter sentence 8 (no ID at all).':
-    'Woh teen failures chuniye jinse aap sabse zyada seekhte hain. Har ek ke liye sentence describe kijiye aur batayiye ki ek fixed rule uska saamna kyun nahi kar sakta. Khaas taur par starter sentence 4 (aadha chhupa number), starter sentence 6 (naam aur addresses) aur starter sentence 8 (koi ID hai hi nahi) dekhiye.',
-  'Write a short paragraph. For which kinds of detail do fixed rules work well, and for which should another approach take over?':
-    'Ek chhota paragraph likhiye. Kin tarah ki details ke liye fixed rules accha kaam karte hain, aur kin ke liye koi doosra tareeka sambhalna chahiye?',
-  'A plain-words rule for each of the eleven kinds of ID, each with something it must not match.':
-    'Gyaarah tarah ki ID mein se har ek ke liye saade words mein ek rule, aur har rule ke saath ek aisi cheez jo woh match nahi karna chahiye.',
   'Your answer key with a new column of what the rules would find, and each row marked.':
     'Aapka answer key, ek nayi column ke saath jisme woh hai jo rules dhoondhenge, aur har row mark ki hui.',
-  'Three failures described, each with the reason a fixed rule cannot cope.':
-    'Teen failures describe kiye hue, har ek ke saath yeh reason ki fixed rule uska saamna kyun nahi kar sakta.',
-  'The paragraph on where rules work and where something else must take over.':
-    'Woh paragraph jisme likha ho ki rules kahan kaam karte hain aur kahan koi aur cheez sambhalni chahiye.',
 
   /* ---- ch5: Embeddings: searching by meaning ---- */
   'Embeddings: searching by meaning':
@@ -1469,92 +1069,20 @@ Object.assign(window.HING = window.HING || {}, {
   /* ---- ch6: Evaluation: measuring whether search works ---- */
   'Evaluation: measuring whether search works':
     'Evaluation: search kaam karta hai ya nahi, yeh naapna',
-  'A good demo is not evidence. You’ll write an answer key before testing, measure how often search finds the right chunk, and see how precision and recall pull against each other.':
-    'Ek achha demo evidence nahi hota. Aap test karne se pehle ek answer key likhenge, naapenge ki search kitni baar sahi chunk dhoondhta hai, aur dekhenge ki precision aur recall ek-doosre ke khilaaf kaise khinchte hain.',
-  'Predict how many of ten questions will find the right chunk at k=3. Write the number down and circle it.':
-    'Andaaza lagaiye ki das mein se kitne sawaal k=3 par sahi chunk dhoondhenge. Number likhiye aur uske gird circle bana dijiye.',
-  'Build your ground truth, including one question that can’t be answered. Then measure at k=1, k=3 and k=8.':
-    'Apna ground truth banaiye, jisme ek aisa sawaal ho jiska jawaab nahi diya ja sakta. Phir k=1, k=3 aur k=8 par naapiye.',
-  'Change one thing about how search works, and run the whole set again.':
-    'Search ke kaam karne ke tareeke mein ek cheez badaliye, aur poora set dobara chalaiye.',
-  'An evaluation table, a list of acceptance criteria, and a threshold that decides whether you release.':
-    'Ek evaluation table, acceptance criteria ki ek list, aur ek threshold jo tay kare ki release karna hai ya nahi.',
-  'Defend why the quality bar depends on what a failure costs, not on the technology.':
-    'Samjhaiye ki quality ka bar technology par nahi, is par depend karta hai ki failure ki cost kya hai.',
-  'It returns a ranked list whatever you ask.':
-    'Chahe aap kuch bhi poochiye, woh ek ranked list wapas karta hai.',
-  'Embeddings find the nearest chunks':
-    'Embeddings sabse paas wale chunks dhoondhte hain',
-  'Which is not the same as finding the right answer.':
-    'Jo sahi jawaab dhoondhne jaisa nahi hai.',
-  'Explain what a team must build before it can honestly claim an accuracy number.':
-    'Samjha paana ki ek team ko accuracy ka number claim karne se pehle imaandaari se kya banana padta hai.',
-  'Describe the two ways a search step fails, and why fixing one tends to make the other worse.':
-    'Samjha paana ki search step do tareeke se fail hota hai, aur ek ko theek karne par doosra aksar kharab kyun ho jaata hai.',
-  'Decide which failure is worse for a feature you work on, and defend the choice.':
-    'Aap jis feature par kaam karte hain, uske liye tay kar paana ki kaun sa failure zyada kharab hai, aur apne faisle ko defend kar paana.',
-  'By now you have a search step that finds chunks by meaning, and it seems to work. But sooner or later, someone senior will ask: is it good? Often the answer is a demo of three questions that work. That doesn’t tell you how often the system is right.':
-    'Ab tak aapke paas ek aisa search step hai jo meaning se chunks dhoondhta hai, aur woh kaam karta hua lagta hai. Lekin aaj nahi toh kal, koi senior poochega: kya yeh achha hai? Aksar jawaab hota hai teen sawaalon ka ek demo jo chal jaata hai. Isse yeh nahi pata chalta ki system kitni baar sahi hai.',
-  'In this chapter you’ll learn how to measure it properly. It isn’t complicated. If you’ve ever written acceptance criteria, you already know most of it. It comes down to three ideas.':
-    'Is chapter mein aap seekhenge ki ise sahi tareeke se kaise naapte hain. Yeh mushkil nahi hai. Agar aapne kabhi acceptance criteria likhe hain, toh aap zyadatar jaante hain. Yeh teen ideas par aata hai.',
   'Idea 1: Write the answers before you test':
     'Idea 1: Test karne se pehle jawaab likhiye',
-  'Suppose you test a system by asking it questions and checking whether the answers look right. They will look right, because plausible text is exactly what a model produces. That test tells you nothing.':
-    'Maan lijiye aap kisi system ko sawaal pooch kar test karte hain aur dekhte hain ki jawaab sahi lagte hain ya nahi. Woh sahi hi lagenge, kyunki model jo banata hai woh tarah-tarah ka plausible text hi hota hai. Aise test se kuch pata nahi chalta.',
-  'So first write a list of real questions, each with its verified correct answer. This list is called <strong>ground truth</strong>. It’s simply an answer key, written before the test.':
-    'Isliye pehle asli sawaalon ki ek list likhiye, har sawaal ke saath uska verified sahi jawaab. Is list ko <strong>ground truth</strong> kehte hain. Yeh bas ek answer key hai, jo test se pehle likhi gayi.',
-  'Ten to thirty questions is enough to start. Use real questions, in the words users actually use. Questions written after reading the documents will use the documents’ words, and they make search look better than it is.':
-    'Shuru karne ke liye das se tees sawaal kaafi hain. Asli sawaal lijiye, un words mein jo users asal mein use karte hain. Documents padhne ke baad likhe sawaal documents ke hi words use karte hain, aur search ko asli se behtar dikhate hain.',
   'Write the answer key':
     'Answer key likhiye',
-  'Using your Chapter 3 document, write ten questions: the eight you already have, plus two new ones. One of the new questions must be unanswerable, about something the document doesn’t cover.':
-    'Apne Chapter 3 ke document ke liye das sawaal likhiye: jo aath aapke paas pehle se hain, aur do naye. Naye sawaalon mein se ek aisa hona chahiye jiska jawaab nahi diya ja sakta, kisi aisi cheez ke baare mein jo document mein hai hi nahi.',
-  'For each question, record the verified answer and the number of the card or cards that contain it. Verified means you checked, not that you remembered.':
-    'Har sawaal ke liye verified jawaab note kijiye, aur us card ya cards ka number jisme woh hai. Verified matlab aapne check kiya, yaad se nahi likha.',
-  'You now have a ten-row table, written before any measurement. This is your ground truth. Include an unanswerable row in every answer key you write.':
-    'Ab aapke paas das rows ki ek table hai, jo kisi bhi measurement se pehle likhi gayi. Yahi aapka ground truth hai. Har answer key mein ek unanswerable row zaroor rakhiye.',
-  'Before you measure anything, make one prediction. It’s quick, and it teaches you something.':
-    'Kuch bhi naapne se pehle, ek andaaza lagaiye. Isme thoda hi time lagta hai, aur isse aap kuch seekhte hain.',
   'A fraction, like 6/10':
     'Ek fraction, jaise 6/10',
-  'The book gave one team’s result. Predict your own number: out of your ten honest questions, how many will find the right chunk on the first try? Write it before you run.':
-    'Book ne ek team ka result diya. Apna number anumaan lagaiye: aapke das imaandaar sawaalon mein se kitne pehli koshish mein sahi chunk dhoondhenge? Chalaane se pehle likhiye.',
-  'Six or seven out of ten is a normal, healthy first result for a working system.':
-    'Das mein se chhe ya saat ek chalte hue system ka normal, healthy pehla result hai.',
-  'If you got nine or ten, the likely reason is that you wrote the questions after reading the documents. That tests whether search can find text using its own words, and that’s not what users do.':
-    'Agar aapko nau ya das mile, toh sabse mumkin reason yeh hai ki aapne sawaal documents padhne ke baad likhe. Isse yeh test hota hai ki search text ko usi ke words se dhoondh sakta hai ya nahi, aur users aisa nahi karte.',
-  'When a vendor quotes an accuracy number, ask: <em>against which answer key, written by whom, and can I see the questions?</em> If they can’t show you, the number is not evidence.':
-    'Jab koi vendor accuracy ka number batata hai, toh poochiye: <em>kaun si answer key ke against, kisne likhi, aur kya main sawaal dekh sakta hoon?</em> Agar woh dikha nahi sakte, toh woh number evidence nahi hai.',
-  'Now let’s put your own search to the test, starting with a guess.':
-    'Ab chaliye apne search ko test karte hain, ek andaaze se shuru karke.',
   'Predict, then measure':
     'Pehle andaaza, phir measurement',
-  'Before you run anything, predict: of the nine answerable questions, how many will return the right card with <code>k=3</code>? Write the number down.':
-    'Kuch bhi chalane se pehle andaaza lagaiye: nau answerable sawaalon mein se kitne <code>k=3</code> par sahi card wapas karenge? Number likh lijiye.',
-  'Grade the run against your answer key. Count how many of the nine succeeded. Count how many of the twenty-seven returned cards were relevant. Then look at what came back for the unanswerable question, and note its top score.':
-    'Run ko apni answer key ke against grade kijiye. Ginti kijiye ki nau mein se kitne sahi nikle. Ginti kijiye ki wapas aaye 27 cards mein se kitne relevant the. Phir dekhiye ki unanswerable sawaal ke liye kya wapas aaya, aur uska top score note kijiye.',
-  'Compare the result with your prediction. Most people predict too high. Write one sentence about the size of your gap. That gap is the reason a demo should not decide whether a system ships.':
-    'Result ko apne andaaze se compare kijiye. Zyadatar log zyada andaaza lagate hain. Apne gap ki size ke baare mein ek sentence likhiye. Isi gap ki wajah se demo ko yeh tay nahi karna chahiye ki system ship hoga ya nahi.',
   'Idea 2: Precision and recall trade against each other':
     'Idea 2: Precision aur recall ek-doosre ke khilaaf kaam karte hain',
-  'Imagine you ask an assistant to fetch the files for a meeting. They can go wrong in two ways. They can leave out something that mattered, or they can bring you a huge pile of things that didn’t.':
-    'Sochiye aap kisi assistant se meeting ki files laane ko kehte hain. Woh do tareeke se galti kar sakte hain. Woh kuch zaroori cheez chhod sakte hain, ya woh aapke saamne cheezon ka dher laga sakte hain jo kaam ki nahi thin.',
-  'Leaving out what mattered is poor <strong>recall</strong>. Bringing lots of irrelevant material is poor <strong>precision</strong>. In search, the setting that sits between the two is how many chunks you fetch per question. It’s usually called <strong>k</strong>.':
-    'Jo zaroori tha use chhod dena kharab <strong>recall</strong> hai. Bahut saari irrelevant cheezein le aana kharab <strong>precision</strong> hai. Search mein, dono ke beech ki setting yeh hai ki aap har sawaal par kitne chunks laate hain. Ise aam taur par <strong>k</strong> kehte hain.',
-  'A higher k usually improves recall and lowers precision. A lower k does the reverse. These are tendencies, not guarantees, so measure them on your own questions.':
-    'Zyada k se aam taur par recall behtar hota hai aur precision kam. Kam k se ulta hota hai. Yeh jhukaav hain, guarantee nahi, isliye ise apne sawaalon par naapiye.',
-  'You usually can’t maximise both at once. Try changing k and watch what happens:':
-    'Aap aam taur par dono ko ek saath maximum nahi kar sakte. k badal kar dekhiye ki kya hota hai:',
   'Change k and compare':
     'k badaliye aur compare kijiye',
-  'Grade the same ten questions again at <code>k=1</code> and at <code>k=8</code>, and fill in this table by hand:':
-    'Wahi das sawaal <code>k=1</code> aur <code>k=8</code> par dobara grade kijiye, aur yeh table haath se bhariye:',
   'k':
     'k',
-  'correct-card hits (of 9)':
-    'sahi card mile (9 mein se)',
-  'relevant / total fetched':
-    'relevant / kul laye gaye',
   '1':
     '1',
   '… / 9':
@@ -1567,52 +1095,14 @@ Object.assign(window.HING = window.HING || {}, {
     '8',
   '… / 72':
     '… / 72',
-  'A higher k often finds more correct cards, but a smaller share of what it returns is relevant. Measure both on your documents. More chunks also means more tokens per request, and the actual cost also depends on chunk sizes, prompt length, output length, caching and pricing. Record real token counts and latency before deciding.':
-    'Zyada k se aksar zyada sahi cards mil jaate hain, lekin jo wapas aata hai usme relevant ka hissa kam ho jaata hai. Dono ko apne documents par naapiye. Zyada chunks ka matlab har request mein zyada tokens bhi hai, aur asli cost chunk sizes, prompt length, output length, caching aur pricing par bhi depend karti hai. Faisla karne se pehle asli token counts aur latency record kijiye.',
   'Idea 3: Which failure is worse depends on the product':
     'Idea 3: Kaun sa failure zyada kharab hai, yeh product par depend karta hai',
-  'So if you can’t have both, which one should you protect? That’s a product decision, not an engineering one.':
-    'Toh agar aap dono nahi paa sakte, toh kise bachana chahiye? Yeh product ka faisla hai, engineering ka nahi.',
-  'Take a customer-facing bot that answers policy questions. Here, low precision is the dangerous failure. The model builds a confident, wrong answer from irrelevant material, and a wrong policy given to a customer is a liability. Missing an answer only creates a support ticket.':
-    'Ek customer-facing bot lijiye jo policy ke sawaalon ka jawaab deta hai. Yahan kam precision khatarnaak failure hai. Model irrelevant material se ek confident, galat jawaab bana deta hai, aur customer ko di gayi galat policy ek liability hai. Jawaab chhoot jaane se bas ek support ticket banta hai.',
-  'Now take a tool that helps a lawyer find precedents. It’s the opposite. A missed precedent can lose a case, while an extra irrelevant result costs thirty seconds of reading.':
-    'Ab ek aisa tool lijiye jo vakeel ko precedents dhoondhne mein madad karta hai. Yahan ulta hai. Ek chhoota hua precedent case haraa sakta hai, jabki ek extra irrelevant result sirf 30 second ki padhai ka kharch hai.',
-  'Choose the failure to minimise based on what happens to a real person when each one occurs. The product owner makes this decision, not the person who built the system.':
-    'Jis failure se ek asli insaan ko zyada nuksaan hota hai, use kam karne ka target rakhiye. Yeh faisla product owner karta hai, system banane wala nahi.',
-  'Think of something you work on. Which failure is cheap, and which is dangerous? Explain it in terms of what happens to a real user. Then say how many chunks you would fetch as a starting point.':
-    'Aap jis cheez par kaam karte hain, uske baare mein sochiye. Kaun sa failure sasta hai, aur kaun sa khatarnaak? Ise ek asli user ke saath kya hota hai, is hisaab se samjhaiye. Phir batayiye ki shuruaat ke liye aap kitne chunks laayenge.',
   'For … the dangerous failure is … because … so I would start at k = …':
     '… ke liye khatarnaak failure … hai kyunki … isliye main k = … se shuru karunga',
-  'A strong answer links the choice to a consequence. For example: “For our support assistant, irrelevant results are dangerous, because a wrong policy quoted to a customer creates a liability we then have to honour. Missing an answer only creates a ticket we were already getting. So we prioritise precision, start with a low k, and give the assistant a clear way to say it does not know.” The reasoning matters more than the number.':
-    'Ek achhe jawaab mein choice ko ek nateeje se jod kar dikhaya jaata hai. Jaise: “Hamare support assistant ke liye irrelevant results khatarnaak hain, kyunki customer ko batayi galat policy ek liability banati hai jise humein nibhana padta hai. Jawaab chhoot jaane se bas ek ticket banta hai jo humein pehle se milta tha. Isliye hum precision ko pehle rakhte hain, kam k se shuru karte hain, aur assistant ko “mujhe nahi pata” kehne ka saaf tareeka dete hain.” Reasoning number se zyada zaroori hai.',
-  'Most people discussing an AI feature don’t have an answer key. With one, you can say whether the system works, and back it with a number you measured yourself.':
-    'AI feature par baat karne wale zyadatar logon ke paas answer key nahi hoti. Answer key ke saath aap bata sakte hain ki system kaam karta hai ya nahi, aur woh bhi ek aise number ke saath jo aapne khud naapa.',
-  'You’ve now seen the whole search step: finding chunks by words, finding them by meaning, and measuring how well either one works. Next, in Chapter 7, you’ll put the pieces together with a model, and build your first retrieval-augmented generation (RAG) system.':
-    'Ab tak aapne poora search step dekh liya: words se chunks dhoondhna, meaning se dhoondhna, aur naapna ki dono kitna accha kaam karte hain. Agle chapter, Chapter 7 mein, aap in sab ko ek model ke saath jodenge aur apna pehla retrieval-augmented generation (RAG) system banayenge.',
   'Build the scoreboard, and write a ship-or-not note':
     'Scoreboard banaiye, aur ek ship-karna-hai-ya-nahi ka note likhiye',
-  'Until now you’ve judged the tool by looking at it. Now you’ll give it a number. In this chapter you learned that a search can fail in two ways: it can miss something that was there, or return something that wasn’t. For Bharat Privacy Guard, a missed detail is a leak, and a false alarm is an annoyance. Here you’ll measure both, for each kind of ID and each kind of writing, and decide whether this version is good enough to use.':
-    'Ab tak aapne tool ko dekh kar judge kiya hai. Ab aap use ek number denge. Aapne seekha ki search do tareeke se fail hota hai: jo wahan tha woh chhod deta hai, ya jo wahan nahi tha woh wapas kar deta hai. Bharat Privacy Guard mein chhoota hua detail ek leak hai, aur false alarm ek pareshaani. Dono ko naapiye, har tarah ki ID aur writing ke liye, aur tay kijiye ki yeh version use karne layak hai ya nahi.',
-  'Grow the answer key to version 2, with about 30 rows spread evenly across English, Hindi and Hinglish. Include at least five tricky rows from the list on the project page. Save it as <code>evals/answer-key-v2.csv</code>.':
-    'Answer key ko version 2 tak badhaiye, jisme lagbhag 30 rows English, Hindi aur Hinglish mein barabar baanti hui hon. Project page ki list mein se kam se kam paanch tricky rows rakhiye. Ise <code>evals/answer-key-v2.csv</code> ke naam se save kijiye.',
-  'Run the pattern checker from Chapter 5 on all 30 rows. For every item that should be found, mark it found or missed. For every item the tool reported, mark it correct or a false alarm.':
-    'Chapter 5 ka pattern checker saari 30 rows par chalaiye. Jo item milna chahiye tha, use found ya missed mark kijiye. Jo item tool ne report kiya, use correct ya false alarm mark kijiye.',
-  'Calculate recall (the share of real items that were found) and precision (the share of reported items that were real) for each kind of ID, and for each kind of writing. Put the results in two small tables.':
-    'Har tarah ki ID ke liye, aur har tarah ki writing ke liye, recall (asli items mein se kitne mile) aur precision (report kiye items mein se kitne asli the) nikaliye. Results ko do chhoti tables mein rakhiye.',
-  'Run it at two settings of your choice, for example strict matching and loose matching. Record the numbers for both.':
-    'Ise apni pasand ki do settings par chalaiye, jaise strict matching aur loose matching. Dono ke numbers record kijiye.',
-  'Decide which failure is worse for this tool, a missed detail or a false alarm, and explain why in two sentences. Think about what happens to a real person in each case.':
-    'Tay kijiye ki is tool ke liye kaun sa failure zyada kharab hai, chhoota hua detail ya false alarm, aur do sentences mein bataiye kyun. Sochiye ki har case mein ek asli insaan ke saath kya hota hai.',
-  'Write the note. Recommend one setting, say which failure you’ve decided to accept and who made that decision, and say whether this version is good enough to use.':
-    'Note likhiye. Ek setting recommend kijiye, bataiye ki aapne kaun sa failure accept karne ka faisla kiya hai aur yeh faisla kisne kiya, aur yeh bhi bataiye ki yeh version use karne ke liye kaafi accha hai ya nahi.',
   'The answer key, version 2, with about 30 rows, saved in your repository.':
     'Answer key, version 2, lagbhag 30 rows ke saath, aapki repository mein save ki hui.',
-  'Two tables of recall and precision: one for each kind of ID and one for each kind of writing.':
-    'Recall aur precision ki do tables: ek har tarah ki ID ke liye aur ek har tarah ki writing ke liye.',
-  'The numbers for two settings.':
-    'Do settings ke numbers.',
-  'A note that recommends a setting, names the failure you accept and says whether this version is good enough.':
-    'Ek note jo ek setting recommend kare, jis failure ko aap accept karte hain uska naam le, aur bataye ki yeh version kaafi accha hai ya nahi.',
 
   /* ---- ch7: Putting it together: retrieval-augmented generation (RAG) ---- */
   'Putting it together: retrieval-augmented generation (RAG)':

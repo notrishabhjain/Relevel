@@ -5,8 +5,6 @@
    Keyed on the English line exactly, like every other file here. */
 Object.assign(window.HING = window.HING || {}, {
 
-  'You don’t need the notebook or an API key yet. The setup comes in Week 5 of <a href="#/start">your route</a>, right after you have seen what a key pays for.':
-    'Abhi aapko na notebook chahiye na API key. Setup <a href="#/start">aapke raaste</a> ke Week 5 mein aata hai, theek tab jab aap dekh chuke honge ki key kis cheez ka paisa deti hai.',
   'Before you learn anything else, you’ll set up how you’re going to learn. You’ll score yourself against the applied AI PM role, create one place for all your work, and meet the real problem you’ll build around for the rest of the course.':
     'Kuch bhi aur seekhne se pehle, aap yeh set up karenge ki aap seekhenge kaise. Aap khud ko applied AI PM role ke hisaab se score karenge, apne saare kaam ke liye ek jagah banayenge, aur us asli problem se milenge jiske aas-paas aap poore course mein build karenge.',
   'Set up one notebook and one repository that hold every artifact you make in this course.':
@@ -37,8 +35,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Aakhri hissa sabse zaroori hai. Har chapter aapse kehta hai ki uske ideas aap ek asli problem par lagayein, jise aap poore course mein saath le jaate hain. Yahan woh problem pehle se chuni hui hai: Bharat Privacy Guard, kitaab ki kahani wala project. Phir bhi problem chunna seekhiye, kyunki naukri mein koi aapko problem haath mein nahi deta.',
   'You should have a filled table and a choice. For most capstones in this course the answer is prompting plus RAG. If you chose fine-tuning, name the specific behaviour that prompting could not produce.':
     'Aapke paas ek bhari hui table aur ek choice honi chahiye. Is course ke zyadatar capstones ke liye jawaab prompting plus RAG hai. Agar aapne fine-tuning chuni, toh woh specific behaviour likhiye jo prompting nahi de paayi.',
-  'The book tells this method through Bharat Privacy Guard. Here you see it work on a different product, which we’ll call Theme Finder. Seeing one method on two products is how you tell the method apart from the example. At the end of each chapter you apply it to Bharat Privacy Guard yourself.':
-    'Kitaab yeh method Bharat Privacy Guard ke zariye batati hai. Yahan aap ise ek alag product par kaam karte dekhenge, jise hum Theme Finder kahenge. Ek hi method ko do products par dekhkar hi aap method aur example ka farq samajh paate hain. Har chapter ke end mein aap ise khud Bharat Privacy Guard par lagaate hain.',
   'Why a second example':
     'Doosra example kyun',
   'A second, deeper pass over the ideas of Parts I to IV, at the level a real launch needs. Nothing here is new as an idea: software basics, choosing a model, context engineering, production RAG, tools and workflows, agents, MCP, multimodal input, release gates, observability, security, AI product specs, production architecture, and a capstone system you can defend.':
@@ -57,14 +53,10 @@ Object.assign(window.HING = window.HING || {}, {
     'Poora karne par, is chapter mein lagbhag 6 ghante lagte hain, jo aap do-teen baithakon mein baant sakte hain. Ek notes app ya paper notebook paas rakhiye. Shuru karne ke liye kisi account ki zaroorat nahi, kyunki pehla kaam ek page likhna hai.',
   'In full, this chapter takes about ten hours, across three or four sittings. Pick one product that you use often and know well, such as Notion, Spotify, Swiggy, Slack or Canva. You’ll use it in every exercise.':
     'Poora karne par, is chapter mein lagbhag 10 ghante lagte hain, teen-chaar baithakon mein. Ek aisa product chuniye jise aap aksar use karte hain aur achhe se jaante hain, jaise Notion, Spotify, Swiggy, Slack ya Canva. Har exercise mein aap yahi product use karenge.',
-  'In full, this chapter takes about 14 hours, spread over a week or two. It’s spread out because finding people and fixing a time to talk takes a while. So start recruiting on day one. Aim for 30-minute conversations, by video call or in person.':
-    'Poora karne par, is chapter mein lagbhag 14 ghante lagte hain, ek-do hafton mein phaile hue. Isliye phaile hue hain kyunki logon ko dhoondhne aur baat karne ka time tay karne mein waqt lagta hai. Toh pehle din se hi recruit karna shuru kijiye. 30 minute ki baatchit rakhiye, video call par ya saamne baithkar.',
   'In full, this chapter takes about ten hours. You’ll need your five interview notes from A3, and a spreadsheet. Some numbers will take a little searching, such as the published customer counts of software vendors.':
     'Poora karne par, is chapter mein lagbhag 10 ghante lagte hain. Aapko A3 ke apne paanch interview notes aur ek spreadsheet chahiye. Kuch numbers dhoondhne mein thoda time lagega, jaise software vendors ke published customer counts.',
   'In full, this chapter takes about twelve hours. Keep your market estimate, competitor matrix and opportunity tree from A4 open next to you. Most of the work is writing, so expect to draft your strategy memo at least twice.':
     'Poora karne par, is chapter mein lagbhag 12 ghante lagte hain. A4 ka market estimate, competitor matrix aur opportunity tree apne saath khula rakhiye. Zyadatar kaam likhna hai, isliye strategy memo ka draft kam se kam do baar likhne ke liye taiyaar rahiye.',
-  'In full, this chapter takes about ten hours. Keep your strategy memo and RICE scores from A5 open next to you. You’ll also need to think about the people around your capstone: who funds it, who approves it and who uses it.':
-    'Poora karne par, is chapter mein lagbhag 10 ghante lagte hain. A5 ka strategy memo aur RICE scores apne saath khule rakhiye. Aapko apne capstone ke aas-paas ke logon ke baare mein bhi sochna hoga: use fund kaun karta hai, approve kaun karta hai aur use karta kaun hai.',
   'In full, this chapter takes about 14 hours, spread across a week or more because of the user tests. For the prototype, the <a href="#/playground">Playground</a> in this app is enough to start; a free account on Figma, Lovable or Google AI Studio gives you a nicer screen. For the sprint plan you need Jira (free tier) or a spreadsheet. Core chapter 18 goes deeper on AI PRDs. This chapter covers the product-management basics.':
     'Poora karne par, is chapter mein lagbhag 14 ghante lagte hain, jo user tests ki wajah se ek hafte ya usse zyada mein phailte hain. Prototype shuru karne ke liye is app ka <a href="#/playground">Playground</a> kaafi hai; Figma, Lovable ya Google AI Studio par free account se screen aur achhi banti hai. Sprint plan ke liye Jira (free tier) ya ek spreadsheet chahiye. Core chapter 18 AI PRDs par aur gehraai mein jaata hai. Yeh chapter product-management ki basics cover karta hai.',
   'In full, this chapter takes about twelve hours. You need nothing outside this site: the attention viewer is embedded in the chapter, and the <a href="#/playground">Playground</a> compares two models side by side once you have connected one on the <a href="#/setup">setup page</a>. The technical core, from Chapter 1 onwards, builds on everything here with hands-on code. So treat this chapter as the map before the journey.':
@@ -85,64 +77,26 @@ Object.assign(window.HING = window.HING || {}, {
     'Aage ek chhota chapter hai Python padhne par, jisme key ki bilkul zaroorat nahi. Uske baad Chapter 1 aapka pehla message ek asli model ko bhejta hai.',
   'Reading Python: just enough for this course':
     'Python padhna: is course ke liye bas jitna chahiye',
-  'From the next chapter on, the hands-on steps are short pieces of Python that run right here in the page. You don’t have to write code from scratch. You have to read it, change one thing and run it again. This chapter teaches the few shapes you will meet, one at a time, with no key and no account.':
-    'Agle chapter se hands-on steps Python ke chhote tukde hain jo yahin page mein chalte hain. Aapko shuru se code likhna nahi hai. Aapko use padhna hai, ek cheez badalni hai aur dobara chalana hai. Yeh chapter woh thode se shapes ek-ek karke sikhata hai jo aapko milenge, bina key aur bina account ke.',
   'Read a line like <code>city = "Pune"</code> and say what it stores.':
     '<code>city = "Pune"</code> jaisi line padhkar bata paana ki woh kya store karti hai.',
-  'Tell a list from a dictionary, and pick one item out of each.':
-    'List aur dictionary mein farq bata paana, aur dono mein se ek item nikaal paana.',
-  'Read every line of the next chapter’s first model call before you run it.':
-    'Agle chapter ki pehli model call ki har line, chalaane se pehle, padh paana.',
   'Chapter 0.5':
     'Chapter 0.5',
-  'You have seen tokens and cost in the browser. Nothing else is needed: Python runs inside this page, with no key and no account.':
-    'Aap browser mein tokens aur cost dekh chuke hain. Aur kuch nahi chahiye: Python isi page ke andar chalta hai, bina key aur bina account ke.',
-  'You need nothing for this chapter: no key, no account, no download. Python runs inside this page. Press <strong>Run</strong> under a block and the result appears below it. Nothing you type here can break anything.':
-    'Is chapter ke liye aapko kuch nahi chahiye: na key, na account, na download. Python isi page ke andar chalta hai. Kisi block ke neeche <strong>Run</strong> dabaiye aur result uske neeche aa jaata hai. Aap yahan jo bhi type karein, usse kuch nahi tootega.',
-  'In the next chapter you send your first message to a real model. The message goes out as a few lines of Python. If you have never read code, those lines look like a wall of brackets and quotes.':
-    'Agle chapter mein aap apna pehla message ek asli model ko bhejte hain. Woh message Python ki kuch lines ke roop mein jaata hai. Agar aapne kabhi code nahi padha, toh woh lines brackets aur quotes ki ek deewar jaisi lagti hain.',
-  'This chapter takes the wall apart, one brick at a time. Each section shows one small piece, runs it, and asks you to change one thing. By the end, you can read every line of the next chapter’s first example.':
-    'Yeh chapter us deewar ko ek-ek eent karke kholta hai. Har section ek chhota hissa dikhata hai, use chalata hai, aur aapse ek cheez badalne ko kehta hai. Aakhir tak aap agle chapter ke pehle example ki har line padh payenge.',
-  'You don’t need to write Python for this course. You need to read it, change one thing, and run it again.':
-    'Is course ke liye aapko Python likhna nahi hai. Aapko use padhna hai, ek cheez badalni hai, aur dobara chalana hai.',
   'A cell, and the Run button':
     'Ek cell, aur Run button',
-  'Code here sits in boxes called <strong>cells</strong>. Press <strong>Run</strong> and the page runs the cell. Whatever the code prints appears just below it.':
-    'Yahan code jin boxes mein hota hai unhe <strong>cells</strong> kehte hain. <strong>Run</strong> dabaiye aur page us cell ko chalata hai. Code jo bhi print karta hai, woh theek uske neeche dikhta hai.',
-  'The first run takes a few seconds, because the page has to load Python. After that, runs are quick.':
-    'Pehla run kuch second leta hai, kyunki page ko Python load karna padta hai. Uske baad runs jaldi hote hain.',
   'Run your first cell':
     'Apna pehla cell chalaiye',
   'The words <code>Hello from Python</code> appear under the cell. <code>print</code> means “show this”. The text inside the quotes is shown exactly as written.':
     'Cell ke neeche <code>Hello from Python</code> shabd aate hain. <code>print</code> ka matlab hai “yeh dikhao”. Quotes ke andar ka text bilkul waisa hi dikhta hai jaisa likha hai.',
-  'Now change the words inside the quotes to your own name and press Run again. Keep the quotes.':
-    'Ab quotes ke andar ke shabd badalkar apna naam likhiye aur dobara Run dabaiye. Quotes rehne dijiye.',
   'A name for a value':
     'Ek value ka naam',
-  'The most common line in this course looks like <code>name = something</code>. It gives a value a name, so that later lines can use it. Programmers call the name a <strong>variable</strong>.':
-    'Is course mein sabse common line <code>name = something</code> jaisi dikhti hai. Yeh ek value ko naam deti hai, taaki aage ki lines use use kar sakein. Programmers us naam ko <strong>variable</strong> kehte hain.',
   'Read the equals sign as “is now”. So <code>city = "Pune"</code> reads as “city is now Pune”.':
     'Barabar ke nishaan ko “ab hai” padhiye. Toh <code>city = "Pune"</code> ka matlab hai “city ab Pune hai”.',
   'Store something and use it':
     'Kuch store kijiye aur use use kijiye',
-  'You see <code>Pune</code> and then <code>120</code>. Text goes inside quotes. Numbers don’t. Python did the sum because <code>price</code> holds a number.':
-    'Aapko <code>Pune</code> aur phir <code>120</code> dikhta hai. Text quotes ke andar jaata hai. Numbers nahi. Python ne jod-ghataav isliye kiya kyunki <code>price</code> mein ek number hai.',
-  'A name was used before any line gave it a value. Check the spelling too: <code>City</code> and <code>city</code> are two different names to Python.':
-    'Kisi naam ko use kiya gaya jabki kisi line ne use abhi value di hi nahi thi. Spelling bhi check kijiye: Python ke liye <code>City</code> aur <code>city</code> do alag naam hain.',
   'What do you expect to see?':
     'Aapko kya dikhne ki ummeed hai?',
-  'Guess first. After the cell above, what would <code>print("price")</code> show, with quotes around the word?':
-    'Pehle andaaza lagaiye. Upar wale cell ke baad, <code>print("price")</code> kya dikhayega, jab shabd ke chaaron taraf quotes hain?',
-  'It shows the word <code>price</code>, not 40. Quotes mean “this exact text”. Without quotes, Python looks up the name and shows its value.':
-    'Yeh shabd <code>price</code> dikhata hai, 40 nahi. Quotes ka matlab hai “bilkul yahi text”. Quotes ke bina Python naam dhoondhta hai aur uski value dikhata hai.',
-  'Quotes are the difference between a word and a name. Many first errors in code come from a missing or an extra quote.':
-    'Quotes hi shabd aur naam ka farq hain. Code ki bahut si shuruaati galtiyan ek chhoote hue ya ek faltu quote se aati hain.',
   'A list: several things in order':
     'List: kram mein kai cheezein',
-  'Square brackets hold a <strong>list</strong>: several values in order, with commas between them.':
-    'Square brackets mein ek <strong>list</strong> hoti hai: kram mein kai values, beech mein commas ke saath.',
-  'To pick one item, put its position in square brackets after the name. Python counts from 0, so <code>[0]</code> is the first item.':
-    'Ek item nikaalne ke liye, naam ke baad square brackets mein uski position likhiye. Python 0 se ginta hai, isliye <code>[0]</code> pehla item hai.',
   'Pick an item from a list':
     'List se ek item nikaaliye',
   'You see <code>Pune</code>, the first item, and then <code>3</code>, the number of items. <code>len</code> is short for length.':
@@ -151,34 +105,18 @@ Object.assign(window.HING = window.HING || {}, {
     '<code>[0]</code> ko <code>[2]</code> kar dijiye aur dobara chalaiye. Kaun sa shehar aata hai?',
   'A dictionary: labels and values':
     'Dictionary: labels aur values',
-  'Curly braces hold a <strong>dictionary</strong>: pairs of a label and a value, like a small form. The label goes in quotes, then a colon, then the value.':
-    'Curly braces mein ek <strong>dictionary</strong> hoti hai: label aur value ki jodiyan, ek chhote form jaisi. Label quotes mein jaata hai, phir colon, phir value.',
   'To read one value, put its label in square brackets after the name.':
     'Ek value padhne ke liye, naam ke baad square brackets mein uska label likhiye.',
   'Read a value by its label':
     'Label se value padhiye',
-  'You see <code>user</code> and then the question. This exact shape, a role and some content, is how every message to a model is written.':
-    'Aapko <code>user</code> aur phir sawaal dikhta hai. Yahi shape, ek role aur kuch content, model ko har message likhne ka tareeka hai.',
-  'A message to a model is just this: who is speaking, and what they say. A conversation is a list of these messages, in order.':
-    'Model ko bheja gaya message bas itna hai: kaun bol raha hai, aur kya keh raha hai. Ek conversation in messages ki kram mein bani list hai.',
   'A list of dictionaries: a conversation':
     'Dictionaries ki list: ek conversation',
-  'You see <code>3</code> and then <code>What is my name?</code>. Read <code>messages[2]["content"]</code> from left to right: the list, then its third item, then that item’s content.':
-    'Aapko <code>3</code> aur phir <code>What is my name?</code> dikhta hai. <code>messages[2]["content"]</code> ko baayein se daayein padhiye: list, phir uska teesra item, phir us item ka content.',
   'Asking Python to do a job':
     'Python se ek kaam karwana',
-  'A word followed by round brackets, like <code>print(...)</code> or <code>len(...)</code>, asks Python to do a job with whatever is inside the brackets. That is called a <strong>function</strong> call.':
-    'Gol brackets ke saath koi shabd, jaise <code>print(...)</code> ya <code>len(...)</code>, Python se brackets ke andar jo hai uske saath ek kaam karwata hai. Ise <strong>function</strong> call kehte hain.',
-  'Some jobs take named settings, written as <code>name=value</code> inside the brackets. Their order doesn’t matter, because each one carries its own label.':
-    'Kuch kaam naam wali settings lete hain, jo brackets ke andar <code>name=value</code> ki tarah likhi jaati hain. Unka kram matter nahi karta, kyunki har ek apna label saath rakhti hai.',
   'Use named settings':
     'Naam wali settings use kijiye',
-  'You see <code>Pune and Delhi</code> and then <code>3.14</code>. <code>sep</code> is a named setting of print: what to put between the items. <code>ndigits</code> says how many decimal places to keep.':
-    'Aapko <code>Pune and Delhi</code> aur phir <code>3.14</code> dikhta hai. <code>sep</code> print ki ek naam wali setting hai: items ke beech kya rakhna hai. <code>ndigits</code> batata hai ki decimal ke baad kitne ank rakhne hain.',
   'A dot reaches inside':
     'Dot andar tak pahunchta hai',
-  'A dot reaches inside something. <code>response.usage</code> reads as “the usage part of the response”. Dots can be chained, like folders inside folders.':
-    'Dot kisi cheez ke andar tak pahunchta hai. <code>response.usage</code> ko “response ka usage wala hissa” padhiye. Dots ko jodkar aage badha sakte hain, jaise folders ke andar folders.',
   'Text has jobs of its own, reached the same way. <code>city.upper()</code> asks the text in <code>city</code> for a copy in capital letters.':
     'Text ke apne kaam hote hain, jinhe isi tarah pahuncha jaata hai. <code>city.upper()</code> <code>city</code> ke text se capital letters wali ek copy maangta hai.',
   'Reach inside with a dot':
@@ -187,62 +125,32 @@ Object.assign(window.HING = window.HING || {}, {
     'Aapko <code>PUNE</code> aur phir <code>Pune</code> dikhta hai. Dot se pehle wala hissa batata hai ki kaam kiska hai. Brackets batate hain ki kis cheez ke saath karna hai.',
   'Now read the real thing':
     'Ab asli cheez padhiye',
-  'Here is the first call you will make in the next chapter. Don’t run it here. Read it with what you now know.':
-    'Yeh woh pehli call hai jo aap agle chapter mein karenge. Ise yahan mat chalaiye. Jo aapne abhi seekha, uske saath ise padhiye.',
   '<code>response = …</code> gives the answer a name, so the next line can use it.':
     '<code>response = …</code> jawaab ko ek naam deta hai, taaki agli line use use kar sake.',
-  '<code>client.chat.completions.create(…)</code> asks for a job. The dots reach inside <code>client</code>, your connection to the model, for its “write a chat reply” job.':
-    '<code>client.chat.completions.create(…)</code> ek kaam maangta hai. Dots <code>client</code> ke andar pahunchte hain, jo model se aapka connection hai, aur uska “chat ka jawaab likho” wala kaam lete hain.',
-  '<code>model="…"</code> and <code>messages=[…]</code> are named settings: which model to ask, and the conversation so far.':
-    '<code>model="…"</code> aur <code>messages=[…]</code> naam wali settings hain: kis model se poochhna hai, aur ab tak ki conversation.',
   'The conversation is a list with one dictionary in it: a single message from the user.':
     'Conversation ek list hai jisme ek dictionary hai: user ka ek akela message.',
-  '<code>response.choices[0].message.content</code> reaches inside the answer: its first choice, that choice’s message, and the message’s text.':
-    '<code>response.choices[0].message.content</code> jawaab ke andar pahunchta hai: uska pehla choice, us choice ka message, aur us message ka text.',
   'That is the whole of it. Every model call in this course has this shape. Only the words inside change.':
     'Bas itna hi hai. Is course ki har model call ka yahi shape hai. Sirf andar ke shabd badalte hain.',
   'Write, in plain words, what this line would show: <code>print(response.usage.prompt_tokens)</code>':
     'Saadhe shabdon mein likhiye ki yeh line kya dikhayegi: <code>print(response.usage.prompt_tokens)</code>',
   'One sentence.':
     'Ek sentence.',
-  'It shows how many tokens of your text the model read. Read it left to right: the response, its usage part, and in that, the count of prompt tokens. You will run exactly this line in Chapter 1.':
-    'Yeh dikhata hai ki model ne aapke text ke kitne tokens padhe. Ise baayein se daayein padhiye: response, uska usage wala hissa, aur usmein prompt tokens ki ginti. Chapter 1 mein aap theek yahi line chalayenge.',
   'Three shapes you will meet later':
     'Teen shapes jo aapko baad mein milenge',
-  'Three more shapes appear from Chapter 2.2 on. You don’t need them today. Seeing them once now means they won’t surprise you later.':
-    'Teen aur shapes Chapter 2.2 se aate hain. Aaj aapko inki zaroorat nahi. Abhi ek baar dekh lene se baad mein yeh aapko chaunkaayenge nahi.',
   'A loop, a check and a recipe':
     'Ek loop, ek check aur ek recipe',
-  'You see two “Checking” lines, then <code>not yet</code>, then <code>DONE!</code>. A <code>for</code> line repeats the indented lines once for each item. An <code>if</code> line runs its indented lines only when the test is true. A <code>def</code> line names a small recipe you can use again.':
-    'Aapko do “Checking” lines, phir <code>not yet</code>, phir <code>DONE!</code> dikhta hai. <code>for</code> wali line andar khiski hui lines ko har item ke liye ek baar dohraati hai. <code>if</code> wali line apni andar khiski lines tabhi chalaati hai jab test sach ho. <code>def</code> wali line ek chhoti recipe ko naam deti hai jise aap dobara use kar sakte hain.',
   'Change <code>score = 7</code> to <code>score = 9</code> and run it again.':
     '<code>score = 7</code> ko <code>score = 9</code> kar dijiye aur dobara chalaiye.',
   'The spaces matter':
     'Spaces matter karte hain',
-  'The spaces at the start of a line tell Python which lines belong to a <code>for</code>, an <code>if</code> or a <code>def</code>. If you edit a cell, keep those spaces as they are.':
-    'Line ki shuruaat ke spaces Python ko batate hain ki kaun si lines kisi <code>for</code>, <code>if</code> ya <code>def</code> ki hain. Agar aap cell edit karein, toh woh spaces jaise hain waise hi rehne dijiye.',
   'When a cell goes red':
     'Jab cell laal ho jaaye',
-  'Sooner or later a cell will show a red box. That is Python saying which line it could not follow, and why. It is normal, and it costs nothing.':
-    'Kabhi na kabhi koi cell ek red box dikhayega. Yeh Python bata raha hota hai ki woh kaun si line follow nahi kar paaya, aur kyun. Yeh normal hai, aur iski koi keemat nahi.',
   '<strong>is not defined</strong>: a name was used before a line gave it a value. Run the cells above first, or check the spelling.':
     '<strong>is not defined</strong>: kisi naam ko use kiya gaya jabki kisi line ne use value di hi nahi thi. Pehle upar ke cells chalaiye, ya spelling check kijiye.',
-  '<strong>SyntaxError</strong>: a bracket or a quote is missing. Count them: every opening one needs a closing one.':
-    '<strong>SyntaxError</strong>: koi bracket ya quote chhoot gaya hai. Ginti kijiye: har khulne wale ko ek band hone wala chahiye.',
   '<strong>IndentationError</strong>: the spaces at the start of a line have moved. Press <strong>Undo edits</strong> to get the original back.':
     '<strong>IndentationError</strong>: line ki shuruaat ke spaces khisak gaye hain. Original wapas paane ke liye <strong>Undo edits</strong> dabaiye.',
-  'You can now read the five shapes behind almost every cell in this course: a name for a value, a list, a dictionary, a job with named settings, and a dot that reaches inside.':
-    'Ab aap woh paanch shapes padh sakte hain jo is course ke lagbhag har cell ke peeche hain: value ka naam, list, dictionary, naam wali settings ke saath ek kaam, aur andar tak pahunchne wala dot.',
-  'In the next chapter you run the real call. You won’t have to take any line on trust, because you can read each one. To run it you need a model connected, which is the <a href="#/setup">Connect</a> page, once.':
-    'Agle chapter mein aap asli call chalate hain. Aapko kisi line par aankh band karke bharosa nahi karna padega, kyunki aap har line padh sakte hain. Use chalane ke liye ek model connect hona chahiye, jo <a href="#/setup">Connect</a> page par ek baar hota hai.',
   'Chapter 0.8':
     'Chapter 0.8',
-  'You can read a short piece of Python: a name for a value, a list, a dictionary and a dot. The first model call below uses all four.':
-    'Aap Python ka ek chhota tukda padh sakte hain: value ka naam, list, dictionary aur dot. Neeche ki pehli model call charon use karti hai.',
-  'In Chapter 0.5 you tried tokens, cost and temperature right here in the browser. In the last chapter you learned to read a few lines of Python. Now you’ll put both to work with a real model. You’ll send it a message, look at what it sends back, and see what that exchange costs.':
-    'Chapter 0.5 mein aapne tokens, cost aur temperature browser mein hi try kiye the. Pichhle chapter mein aapne Python ki kuch lines padhna seekha. Ab aap dono ko ek asli model ke saath kaam mein laayenge. Aap use ek message bhejenge, dekhenge ki woh kya wapas bhejta hai, aur yeh ki is lena-dena mein kitna kharch hota hai.',
-  'The fix is a small test set. It’s a handful of real inputs, and for each one, a note on what a good answer looks like. People in AI teams call running a set like this an <strong>eval</strong>, short for evaluation. Chapter 6 builds a bigger version for retrieval. This one takes about twenty minutes.':
-    'Iska hal ek chhota test set hai. Yeh kuch asli inputs ka set hota hai, aur har input ke saath ek note ki achha jawaab kaisa dikhta hai. AI teams mein aise set ko chalaane ko <strong>eval</strong> kehte hain, jo evaluation ka chhota roop hai. Chapter 6 retrieval ke liye isse bada version banata hai. Yeh wala lagbhag 20 minute leta hai.',
   'Then turn your answers into a rule that others can follow without you. Rules like this are one part of what companies call <strong>governance</strong>. Next, in Chapter 17, you’ll see how a team writes all of it down for a whole AI system, through risk tiers, system cards and oversight.':
     'Phir apne jawaabon ko ek aise rule mein badaliye jise doosre aapke bina follow kar sakein. Aise rules us cheez ka ek hissa hain jise companies <strong>governance</strong> kehti hain. Agle Chapter 17 mein aap dekhenge ki ek team poore AI system ke liye yeh sab kaise likhti hai, risk tiers, system cards aur oversight ke zariye.',
   'A name that holds a value, so later lines of code can use it. In city = "Pune", the name city is the variable. Read the equals sign as “is now”.':

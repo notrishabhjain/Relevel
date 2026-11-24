@@ -1,34 +1,34 @@
 ---
 title: Shuru karne se pehle
-summary: Yeh kitaab kya sikhati hai, kaise baanti gayi hai, aur kis company aur kin logon ka project poori kitaab mein chalta hai.
+summary: Yeh kitaab kis baare mein hai, kaise baanti gayi hai, aur kis company aur kin logon ka project poori kitaab mein chalta hai.
 course: ch0
 ---
 
-AI product kaise banta hai, yeh seekhne ke do tareeke hain. Pehla tareeka hai khud ek banana. Thodi code likhiye, machine ko ek sawaal bhejiye, dekhiye ki kya toota, aur naapiye ki kitna toota. Course app isi ke liye bana hai, aur is kitaab se uski jagah nahi bharti.
+AI product kaise banta hai, yeh seekhne ke do tareeke hain. Pehla tareeka hai khud ek banana. Aap thodi code likhte hain. Machine ko ek sawaal bhejte hain. Dekhte hain ki kya toota, aur naapte hain ki kitna toota. Course app isi tareeke ke liye bana hai. Yeh kitaab uski jagah nahi leti.
 
-Doosra tareeka hai poore subject ko order se padhna, explanations aur examples ke saath. Dheere-dheere anjaan shabd ek saaf tasveer ban jaate hain, jo aapke dimaag mein baith jaati hai. Yeh kitaab isi doosre tareeke ke liye hai.
+Doosra tareeka hai poora subject order se seekhna. Koi aapko step by step samjhata hai. Naye shabd anjaane nahi lagte. Dheere-dheere woh ek tasveer ban jaate hain, jo aapke dimaag mein baith jaati hai. Yeh kitaab isi doosre tareeke ke liye hai.
 
-Yeh kitaab us insaan ke liye hai jisne technology projects deliver kiye hain aur ab ek AI product ka malik banna chahta hai. Yeh maan kar nahi chalti ki aapne code likha hai ya statistics padhi hai. Rhythm yeh hai: kitaab ka ek chapter, lagbhag das minute ka padhna, phir uske title ke neeche likha app chapter, har hafte, chhabbis hafte tak.
+Yeh kitaab us insaan ke liye hai jisne technology projects deliver kiye hain, aur ab ek AI product ka malik banna chahta hai. Aapko code likhna aana zaroori nahi. Statistics aana bhi zaroori nahi. Rhythm yeh hai. Har hafte, chhabbis hafte tak, aap kitaab ka ek chapter padhte hain. Usmein lagbhag das minute lagte hain. Phir aap uske title ke neeche likha app chapter karte hain.
 
-Anaya ke aas-paas ek team hai. Aapke paas app hai. Jahan Imran kuch chalata hai, wahan app aapko button deta hai. Jahan Lakshmi poochhti hai ki use kaise pata chalega, wahan app ke check questions aapse wahi poochhte hain. Ant tak aap apne numbers ke saath keh paayenge ki aapne kya banaya aur aapko kaise pata ki woh kaam karta hai.
+Anaya ke aas-paas ek team hai. Aapke paas app hai. Jab Imran kuch chalata hai, app aapko uska button deta hai. Jab Lakshmi poochhti hai ki use kaise pata chalega, app ke check questions aapse wahi sawaal poochhte hain. Ant tak aap bata paayenge ki aapne kya banaya aur aapko kaise pata ki woh kaam karta hai. Aap yeh apne numbers ke saath bata paayenge.
 
-Yeh kitaab course app jitna hi hissa cover karti hai, usi order mein aur usi shabdon ke saath. Ismein koi exercise nahi hai, aur type karne ke liye koi code bhi nahi. Uski jagah ek lamba case hai. Wajah simple hai: koi idea tab zyada yaad rehta hai jab woh kisi aise decision se juda ho jo kisi ko sach mein lena pada.
+Kitaab wahi cheezein sikhati hai jo app sikhata hai, usi order mein, usi shabdon ke saath. Ismein koi exercise nahi hai. Type karne ke liye koi code bhi nahi hai. Uski jagah ek hi kahani shuru se ant tak chalti hai. Aisa isliye, kyunki koi idea tab zyada yaad rehta hai jab woh kisi aise decision se juda ho jo kisi ko sach mein lena pada.
 
 ## Case
 
-Sahaj Pune ki ek company hai. Uske app mein log bijli ka bill bharte hain, aur haal hi mein chhote loan ke liye apply bhi karte hain. App ke andar ek chatbot hai jo customers ke sawaalon ke jawaab deta hai.
+Sahaj Pune ki ek company hai. Uske app mein log bijli ka bill bharte hain. Haal hi mein woh chhote loan ke liye apply bhi kar sakte hain. App ke andar ek chatbot hai. Woh customers ke sawaalon ka jawaab deta hai.
 
-March mein product manager Anaya Deshmukh ek cheez dekhti hai. Customers chatbot mein apne Aadhaar number type kar dete hain, jabki kisi ne unse maanga nahi tha.
+March ke ek din, product manager Anaya Deshmukh ko ek ajeeb baat dikhti hai. Customers chatbot mein apne Aadhaar number type karte rehte hain. Kisi ne unse maanga nahi tha.
 
-Aage ke 47 chapters mein woh aur uske colleagues ek chhota tool banate hain, Bharat Privacy Guard. Yeh tool English, Hindi, aur dono ke mix mein likhe gaye personal details pehchanta hai. Phir woh un details ko zaroorat se aage jaane se rokta hai.
+Kitaab mein 47 chapters hain. In chapters mein Anaya aur uske colleagues ek chhota tool banate hain, jiska naam hai Bharat Privacy Guard. Yeh tool personal details pehchanta hai. Woh yeh English mein kar leta hai, Hindi mein bhi, aur dono ke us mix mein bhi jo zyadatar log type karte hain. Phir woh in details ko zaroorat se aage jaane se rokta hai.
 
-Yeh project ek bahana hai, asli maksad subject sikhana hai. Tool banane ke liye Anaya ko kai kaam karne padte hain. Use tay karna hai ki kya banana worth it hai, aur samajhna hai ki ek AI system kin cheezon se bana hota hai. Use check karna hai ki woh kaam karta hai ya nahi, aur uska cost jodna hai.
+Tool sirf kahani sunane ka ek zariya hai. Asli subject woh sab hai jo Anaya ko raaste mein karna padta hai. Use tay karna hai ki kya banana worth it hai. Use samajhna hai ki ek AI system kin cheezon se bana hota hai. Use check karna hai ki woh kaam karta hai ya nahi.
 
-Use pehle se sochna hai ki woh kaise fail hoga, aur yeh limit karna hai ki use akele kya karne diya jaaye. Aakhir mein use isse asli users ke saamne rakhna hai. Har chapter in mein se ek problem uthata hai, theek wahan jahan project ko uski zaroorat padti hai.
+Use jodna hai ki isme kitna kharch aayega, aur woh kaise fail ho sakta hai. Use tay karna hai ki tool ko kya karne ki chhoot hai. Aakhir mein use tool ko asli users ke saamne rakhna hai. Har chapter in mein se ek problem uthata hai, theek wahan jahan project ko uski zaroorat padti hai.
 
 ## Kitaab kaise baanti gayi hai
 
-Saare chapters ek hi numbered sequence mein hain, aur saat parts mein baante gaye hain.
+Saare chapters ek hi numbered line mein hain. Unhe saat parts mein baanta gaya hai. Neeche ki table batati hai ki har part kis baare mein hai.
 
 Table: Kitaab ke saat parts
 | Part | Chapters | Subject |
@@ -36,36 +36,38 @@ Table: Kitaab ke saat parts
 | 1 | 1 se 7 | Problem chunna aur kaam ka plan banana |
 | 2 | 8 se 13 | Aaj ka AI system kya hai, aur usse baat kaise karein |
 | 3 | 14 se 19 | Machine ko documents dena, aur poora system jodna |
-| 4 | 20 se 26 | Tools, sochna, bade scale par evaluation aur cost |
-| 5 | 27 se 32 | Uljha hua data, privacy, rules aur galti ke liye design |
-| 6 | 33 se 39 | Machine ke andar kya chalta hai, aur use secure kaise karein |
-| 7 | 40 se 47 | Product ko ship karna, usse kamaana, aur is field mein kaam karna |
+| 4 | 20 se 26 | Tools, sochna, bade scale par testing aur cost |
+| 5 | 27 se 32 | Uljha hua data, privacy, rules aur galti ke liye plan |
+| 6 | 33 se 39 | Machine ke andar kya chalta hai, aur use surakshit kaise rakhein |
+| 7 | 40 se 47 | Product ko bahar nikaalna, usse kamaana, aur is field mein kaam karna |
 
-Har chapter ka layout ek jaisa hai. Sabse upar ek chhoti list batati hai ki chapter mein kya hai. Shuruaati paragraphs project ka ek hissa sunate hain. Phir numbered sections us ke peeche ke ideas samjhate hain. Definitions, illustrations aur tables alag dabbon mein rakhe gaye hain. Ant mein ek summary aati hai, aur uske baad key terms ki list.
+Har chapter ka layout ek jaisa hai, taaki aapko hamesha pata rahe ki aap kahan hain. Sabse upar ek chhoti list batati hai ki chapter mein kya hai. Shuru ke paragraphs kahani ka ek hissa sunate hain. Phir numbered sections aate hain, jo uske peeche ke ideas samjhate hain. Definitions, examples aur tables alag dabbon mein rakhe gaye hain. Ant mein ek summary aati hai. Uske baad key terms ki list aati hai.
 
 ## Kaise padhein
 
-Chapters ko order se padhiye. Har chapter wahin se shuru hota hai jahan pichhla ruka tha, aur sirf wahi shabd use karta hai jo pehle ke chapters mein samjhaaye ja chuke hain. Kitaab isi baat ke liye check ki gayi hai. Agar koi term apne chapter se pehle aa jaaye, toh use error maana jaata hai.
+Chapters ko order se padhiye. Har chapter wahin se shuru hota hai jahan pichhla ruka tha. Har chapter sirf wahi shabd use karta hai jo pehle ke chapters mein samjhaaye ja chuke hain. Kitaab isi baat ke liye check ki gayi hai. Agar koi term apne chapter se pehle aa jaaye, toh use galti maana jaata hai.
 
-Naya term jis chapter mein samjhaaya jaata hai, wahan uska pehla use highlight hota hai. Uske upar pointer rakhiye, toh matlab dikh jaata hai. Har chapter ke ant ki key terms list wahi definitions dobara deti hai. Kitaab ke peeche glossary mein har term alphabet order mein hai, us chapter ke number ke saath jahan woh pehli baar aaya.
+Naya term pehli baar jis chapter mein samjhaaya jaata hai, wahin highlight hota hai. Uske upar pointer rakhiye, toh matlab khul jaata hai. Har chapter ke ant ki key terms list wahi matlab dobara deti hai. Kitaab ke peeche glossary mein har term alphabet order mein hai. Har term ke saath us chapter ka number hai jahan woh pehli baar aaya.
 
-Har chapter ke title ke neeche likha hai ki course app ke kaun se chapters usi topic ko cover karte hain. Practice karne ke liye wahin jaiye.
+Har chapter ke title ke neeche likha hai ki course app ke kaun se chapters usi topic ko cover karte hain. Practice karni ho, toh wahin jaiye.
 
-AI, programming ya business ka koi pehle se knowledge maan ke nahi chala gaya hai.
+Shuru karne ke liye aapko AI, programming ya business ke baare mein kuch bhi jaanna zaroori nahi.
 
 ## Case ke baare mein ek baat
 
-Sahaj, Anaya, uske colleagues aur customers invented hain, aur unke figures bhi. Tools aur techniques asli hain, aur jo failures dikhaaye gaye hain, woh asli systems mein hote hain.
+Sahaj, Anaya, uske colleagues aur customers sab banaye hue hain. Unke numbers bhi banaye hue hain. Tools aur tareeke asli hain. Kahani mein jo galtiyan dikhti hain, woh bhi asli systems mein hoti hain.
 
-Is kitaab mein kuch bhi legal advice nahi hai. Case ka tool kisi organisation ko kam private information collect karne aur aage bhejne mein madad karta hai. Use kahin bhi aisa nahi kaha gaya ki woh kisi ko kisi kanoon ke hisaab se compliant bana deta hai, kyunki aisa koi tool nahi kar sakta.
+Is kitaab mein kuch bhi legal advice nahi hai. Kahani ka tool kisi organisation ko kam private information collect karne aur aage bhejne mein madad karta hai. Kitaab kahin nahi kehti ki yeh tool kisi ko kanoon ka paalan karwa deta hai. Aisa koi tool nahi kar sakta.
 
 ## Log
+
+Aap paanch logon se baar-baar milenge. Woh sab yahan ek jagah hain.
 
 Table: Case ke log
 | Naam | Role | Jaanne layak baat |
 | --- | --- | --- |
-| Anaya Deshmukh | Product manager | Evidence ke saath careful; apne ko kya nahi pata, yeh maanne mein thodi dheemi; product mein aane se pehle ek state utility ke bill-payment rollout ko manage kiya |
+| Anaya Deshmukh | Product manager | Saboot ke saath careful; apni kami maanne mein dheemi; product mein aane se pehle ek state utility ka bill-payment rollout chalaya |
 | Imran Qureshi | Lead engineer | Chatbot ka infrastructure usne banaya; jis plan mein "bas" shabd aaye, us par bharosa nahi karta |
-| Lakshmi Iyer | Head of compliance | Bees saal banking mein rahi; uska standard sawaal hai "hum kaise jaanenge?" |
+| Lakshmi Iyer | Head of compliance | Bees saal banking mein rahi; uska pasandeeda sawaal hai "hum kaise jaanenge?" |
 | Farah Sheikh | Support lead | Company mein sabse zyada customers ka likha hua padhti hai |
-| Dr. Meenakshi Rao | Retired linguist | Anaya ki purani teacher; Sunday subah phone par unse salah li jaati hai |
+| Dr. Meenakshi Rao | Retired linguist | Anaya ki purani teacher; Anaya Sunday subah phone karke unse salah leti hai |

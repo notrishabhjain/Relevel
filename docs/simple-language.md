@@ -78,6 +78,54 @@ Use these, in this wording or close to it. Hinglish in brackets.
 | PRD / spec | The recipe card for a dish: what it is, who it is for, how you know it came out right. |
 | Product manager vs project manager | A project manager makes sure the train leaves on time. A product manager decides where the train should go, and checks that people actually got there. |
 
+## The five-year-old test (every line)
+
+Run each line through these four questions. Most lines should change.
+
+1. **Would a ten-year-old know every word?** If a word is technical (key,
+   client, library, cell, output, error 401, CSV, repository, usage block…),
+   put two to six plain words right after it the first time it appears in the
+   chapter, in brackets or with "that is": "the client (the messenger that
+   carries your note to the model)". Do this even if an earlier chapter
+   explained it. A short reminder costs nothing; a lost reader costs the
+   chapter.
+2. **Is there a picture?** Every section (every heading) gets at least one
+   picture from the table: "It is like…", "Think of it as…".
+3. **Is any sentence over 15 words?** Split it.
+4. **Does the reader know what to do and why?** Steps start with a verb:
+   "Press Run." "Copy the line." Then one short line of why.
+
+A line is left unchanged only if it already passes all four.
+
+## Small everyday words
+
+These come up in every chapter. Gloss them like this the first time each
+appears in a chapter (Hinglish in brackets where it differs).
+
+| Word | Plain words |
+|---|---|
+| API key | a secret password for the model; it also tells the company whom to bill |
+| client | the messenger in your code that carries your note to the model |
+| library | ready-made code someone else wrote, like a recipe book you borrow |
+| function | a recipe with a name: you give it things, it gives back a result |
+| variable / a name for a value | a labelled box that holds one thing |
+| list | a row of boxes, in order |
+| dictionary | a phone book: look up a name, get its value |
+| loop | do the same step for every item, like checking every plate |
+| run / output | press Run, and what the code prints is the output |
+| cell / block | one box of code on the page |
+| error 401 | the model did not recognise your key |
+| error 429 | too many requests too fast; wait a minute and try again |
+| CSV file | a spreadsheet saved as plain text, one row per line |
+| JSON | a form written as labels and values inside curly brackets |
+| usage block | the bill that comes with each reply: bricks in, bricks out |
+| repository (repo) | an online folder that remembers every change you make |
+| commit | saving one change in the repository, with a short note |
+| dashboard | one screen of numbers that shows how things are going |
+| metric | a number you watch to see if things are getting better |
+| stakeholder | anyone who cares about the result and can help or block it |
+| roadmap | the plan of what comes first, next and later |
+
 ## Before and after
 
 **English**

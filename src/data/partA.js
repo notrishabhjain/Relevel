@@ -22,54 +22,54 @@ window.PART6 = [
 {
   id:'ch0', num:0, part:6, curriculumTier:'core', phase:1, prerequisites:[], nextUnits:['ch05'], minutes:10, labs:[],
   title:'Start here: how this course works',
-  concept:'This chapter takes about ten minutes and shows you how to use the site. You don’t need to install anything or create an account, and you don’t need to know anything about AI yet.',
+  concept:'This chapter takes about ten minutes. It shows you how this site works, like the first page of a school diary. You install nothing. You make no account. You need no AI knowledge yet.',
   takeaway:[
-    'Tell the difference between the app and the model.',
-    'Tap any underlined word to see what it means, without leaving the page.',
-    'Plan what you’ll do on a day when you don’t feel like studying.'
+    'Say how an app is different from a model.',
+    'Tap a word with an underline to see what it means. You stay on the same page.',
+    'Make a plan for a day when you do not feel like studying.'
   ],
   story:[
-    ['p','Welcome. This course is made for people who haven’t studied AI before, so you can start from zero. Before anything else, here’s how the site works and how to get the most out of it.'],
-    ['p','Many people give up on a technical subject for a simple reason. An unfamiliar word goes past early on, they keep reading without it, and a few pages later nothing makes sense. This site has two features that stop that from happening.'],
-    ['h','Tap any underlined word'],
-    ['p','The first time a technical term appears in a chapter, it has a dotted underline. Tap it, and a short explanation opens right there. You don’t leave the page, and you don’t lose your place.'],
-    ['p','Let’s try it on a sentence that has four such words: an <strong>app</strong> sends a <strong>prompt</strong> to a <strong>model</strong> and is billed in <strong>tokens</strong>. Tap each one now.'],
-    ['p','Some explanations say <em>you build this in Chapter 9</em>. That just means the term is introduced early on purpose. The one-line version is all you need for now.'],
+    ['p','Welcome. This course is for people who have never studied AI. You can start from zero. First, see how the site works. It helps you learn more.'],
+    ['p','Many people quit a hard subject for one reason. An odd word goes by early on. They read on without knowing it. A few pages later, nothing makes sense. It is like missing one step of a staircase in the dark. This site has two helpers to stop that.'],
+    ['h','Tap a word with an underline'],
+    ['p','The first time a hard word shows up in a chapter, it has a dotted line under it. A technical term (a grown-up word for a tool or idea) is such a word. Tap it. A short note opens right there. You stay on the page. You do not lose your place.'],
+    ['p','Try it on a sentence with four such words. An <strong>app</strong> (the screens and code people use) sends a <strong>prompt</strong> (a note with what you want) to a <strong>model</strong> (the program that writes the reply). The bill comes in <strong>tokens</strong> (small pieces of words). Tap each one now.'],
+    ['p','Some notes say <em>you build this in Chapter 9</em>. That means the word comes early on purpose, like a trailer before the film. For now, the one-line note is all you need.'],
     [
       'try',
       {id:'ch0-tap',
        mins:2,
        min:12,
        rows:2,
-       task:'Now say it back in your own words. What is the difference between the <em>app</em> and the <em>model</em>? Two lines are enough. It’s fine if you get it partly wrong, because writing before you read the answer is the whole point.',
+       task:'Now say it in your own words. How is the <em>app</em> different from the <em>model</em>? Two lines are enough. A partly wrong answer is fine. Write first, then read the answer. That is the whole point.',
        ph:'The app is … the model is …',
-       after:'The model is a program that runs on someone else’s computers. It takes text in and sends text back. It has no buttons, no memory, and no idea that a person is involved. The app is your product: the screens and code that decide what to send to the model and what to do with the reply. What users call “the AI” is mostly your app arranging things around a model that does one narrow job. Keeping these two apart is the basis of most design discussions about AI features.'}
+       after:'The model is a program on someone else’s computers. Think of a parrot that has read a whole library. Words go in, words come out. It has no buttons. It does not remember you. It does not know a person is there. The app is your product: the screens and code that pick what goes to the model, and what happens to the reply. Think of the app as the shop, and the model as the cook in the back. People say “the AI”, but most of it is your app. The model has one narrow job. Keep the two apart when you talk about AI design.'}
     ],
     ['h','The course asks you questions'],
-    ['p','That box you just used isn’t a one-off. Every few paragraphs you’ll find another one. Some ask you to predict something before you’re told the answer. Some ask you to write a few lines. Some are graded questions.'],
-    ['p','Why so many? Because reading and understanding feel the same while you’re doing them, but only understanding lasts. And a wrong answer you were sure about is useful, because it shows you a belief that wasn’t true. Nobody else sees your answers, and there is no pass mark.'],
+    ['p','The box you just used shows up again and again. You will find another every few paragraphs. It is like a teacher asking a question in class. Some boxes ask you to guess before you see the answer. Some ask you to write a few lines. Some have marks.'],
+    ['p','Why so many? Reading and understanding feel the same while you do them. Only understanding stays with you. A wrong answer you were sure about helps too. It shows you an idea in your head that was not true. Nobody else sees your answers. There is no pass mark.'],
     ['h','How to use the course'],
-    ['p','Four things will make the course easier. Here they are.'],
+    ['p','Four tips make the course smoother. Here they are, like four rules on a classroom wall.'],
     [
       'l',
-      ['<strong>You don’t need to install anything.</strong> Everything runs in your browser, on these pages. That includes the tools built into each chapter and the code in the chapters that have code: it runs right here, with a <strong>Run</strong> button under each block. The one thing you bring from outside is a free API key, which takes about ten minutes to get, once. The setup page walks you through it.','<strong>Do the hands-on steps.</strong> Each chapter goes back and forth between an idea and a step that shows it, marked <em>Do this</em> or <em>Prove it now</em>. Most of the learning happens in those steps.','<strong>Do one chapter per sitting.</strong> Every chapter shows how long it should take. If one takes longer, that’s about the chapter, not about you. And if you stop while you still have some energy, it’s easier to come back tomorrow.','<strong>Your progress is saved.</strong> When you sign in, your progress is stored in your account. So you can read on your phone and carry on from the same place on your computer.']
+      ['<strong>You do not install anything.</strong> Everything runs in your browser (the app you use to open websites), on these pages. That covers the tools in each chapter and the code in chapters that have code. Each code block (one box of code) has a <strong>Run</strong> button under it. You bring one thing from outside: a free API key. It is a secret password for the model. It also tells the company whom to bill. It takes about ten minutes to get, once. The setup page walks you through it.','<strong>Do the hands-on steps.</strong> Each chapter swings between an idea and a step that shows it. It is like learning to ride a cycle: you must pedal. The steps are marked <em>Do this</em> or <em>Prove it now</em>. Most of your learning happens in those steps.','<strong>Do one chapter per sitting.</strong> Each chapter shows how long it takes. If one takes longer, that is about the chapter, not about you. Stop while you still have some energy, like leaving the table a little hungry. Then it is easier to come back tomorrow.','<strong>Your progress is saved.</strong> When you sign in (log in with your account), the site keeps your place, like a bookmark. Read on your phone. Carry on from the same place on your computer.']
     ],
     ['h','Plan for the hard days'],
-    ['p','Even with a good plan, some days will be harder than others.'],
-    ['key','Some chapters will feel too hard, and that’s normal. When it happens, do the smallest step you can and stop for the day. Every question also has a “Stuck?” button that shows you the answer without counting against you.'],
-    ['p','The best time to decide what to do on a bad day is now, while it’s easy.'],
+    ['p','Some days will be harder than others, even with a good plan. It is like a rainy day on a trip you planned well.'],
+    ['key','Some chapters will feel too hard. That is normal. When it happens, do the smallest step you can. Then stop for the day. Every question also has a “Stuck?” button. It shows the answer. It does not count against you.'],
+    ['p','The best time to decide what to do on a bad day is now, while it is easy. It is like keeping an umbrella by the door before the rain.'],
     [
       'try',
       {id:'ch0-quit',
        mins:3,
        min:40,
        rows:3,
-       task:'Decide now, while it’s easy. What will you do on an evening when you don’t want to open this? What is the smallest step you would still take? And what will you tell yourself about a day you skip?',
+       task:'Decide now, while it is easy. What will you do on an evening when you do not want to open this? What is the smallest step you would still take? What will you tell yourself about a day you skip?',
        ph:'When I do not want to open this, I will …',
-       after:'Plans that work have three things in common. First, the smallest step is really tiny: one question, two minutes, not a whole chapter. Second, you know where to restart without having to decide, because deciding is hard when you’re tired. Third, you’ve already decided what a missed day means: nothing. It doesn’t mean starting again. Everyone misses days, and the people who finish expected that.'}
+       after:'Plans that work share three things. First, the smallest step is tiny: one question, two minutes, not a whole chapter. Second, you know where to restart without deciding. Deciding is hard when you are tired. Third, you have already decided that a missed day means nothing. It does not mean starting again. Everyone misses days. People who finish expected that.'}
     ],
-    ['c','No setup yet','You don’t need the notebook or an API key yet. The setup comes in Week 5 of <a href="#/start">your route</a>, right after you have seen what a key pays for.'],
-    ['p','That’s all for this chapter. Press “Mark chapter complete” below, and <a href="#/start">your route</a> moves on to the book. Tomorrow’s ten minutes are waiting there.']
+    ['c','No setup yet','You do not need the notebook (a page where you run code) or an API key (your secret password for the model) yet. Setup comes in Week 5 of <a href="#/start">your route</a>. That is right after you see what a key pays for.'],
+    ['p','That is all for this chapter. Press “Mark chapter complete” below. <a href="#/start">Your route</a> then moves on to the book. Tomorrow’s ten minutes wait there.']
   ]
 },
 
@@ -449,36 +449,36 @@ window.PART6 = [
 {
   id:'a3', num:'A3', part:6, curriculumTier:'reference', phase:0, prerequisites:['a2'], nextUnits:['a4','a7','b2','b6'], minutes:840, labs:[],
   title:'User discovery: interviews, jobs and problem statements',
-  concept:'Find out what users really do and need, by talking to them. You’ll write an interview guide and hold five interviews. Then you’ll turn what you heard into three things: a job statement, a persona where every line is backed by your notes, and a problem brief with your assumptions ranked.',
+  concept:'Find out what users really do and need. Do it by talking to them. You will write a list of questions and talk to five people. Then you turn their words into three things. First, a one-line job statement. Second, a persona (a made-up user, built only from what real people told you). Third, a problem brief where you rank your guesses.',
   takeaway:[
-    'Write interview questions about what people did in the past, instead of asking for opinions or guesses about the future.',
-    'Describe what users are trying to get done, as a jobs-to-be-done statement.',
-    'Use the five whys to find the causes of a problem, without forcing everything into one root cause.',
-    'Build personas and journey maps in which every line points back to an interview note.',
-    'Write a problem statement, list your assumptions, and test the riskiest one first.'
+    'Ask people what they did in the past. Do not ask for opinions, and do not ask them to guess the future.',
+    'Write down what users are trying to get done, in one line. This is called a jobs-to-be-done statement.',
+    'Keep asking “why?” to find what causes a problem. This is called the five whys. Do not squeeze everything into one cause.',
+    'Build personas and journey maps (a drawing of the steps a user goes through). Every line must point back to an interview note.',
+    'Write the problem in two sentences. List your guesses (assumptions). Test the scariest guess first.'
   ],
-  needs:[['Who pays, who uses and who can block a sale','You’ll need this to choose the right people to interview.','A2'],
-         ['Every claim needs evidence','Interviews are where you collect that evidence.','A2']],
+  needs:[['Who pays, who uses and who can block a sale','You need this to pick the right people to interview.','A2'],
+         ['Every claim needs proof','Interviews are where you collect that proof.','A2']],
   capstone:{
     title:'Interview five people and write up what you learned',
-    brief:'So far, the project is only your idea. Now you’ll find out whether other people really have the problem. In this chapter you learned to ask people what they did in the past, instead of what they might do. You also learned to turn their answers into a short problem statement. Here you’ll hold five real interviews.',
-    where:'Writing only. Real conversations with real people, and then a written summary. No code needed.',
+    brief:'Until now, the project is only your idea. Now you find out if other people really have the problem. In this chapter you learned to ask what people did, not what they might do. You also learned to turn their answers into a short problem statement. Now you talk to five real people.',
+    where:'You only write. You talk to real people, then you write a summary. You do not write any code.',
     steps:[
-      'Choose five people, one from each of these groups. First, a developer who handles information that users type in. Second, someone in a compliance or legal role. Third, a support agent who has seen customers type personal details into a chat. Fourth, an ordinary user of Indian websites and apps. Fifth, a founder who has had to decide whether to build or buy privacy tools. Don’t use an AI to play any of these people.',
-      'Write three to five screening questions. These are short questions that tell you whether someone really belongs to their group. For the support agent, for example: “In the last month, how many times did a customer type an ID number into a chat with you?”',
-      'Write twelve interview questions. Ask only about the past, for example “Tell me about the last time…”. If a question suggests an answer, such as “Don’t you find it annoying when…?”, rewrite it.',
-      'Hold each interview for about thirty minutes. For each person, write down six things: their exact words, the steps they follow today, any workaround they use, how often the problem happens, how bad it is, and what they spend on it.',
-      'For each of the five, write a short profile. Every sentence in it should point back to a specific interview note, such as “(interview 3)”. Don’t write anything that nobody told you.',
-      'Write the problem statement in two sentences. Say who has the problem, what it costs them, and what your evidence is. Then list your assumptions and mark the riskiest one. Say what you’ll do this week to test it.',
-      'Write down at least one thing you expected that the interviews contradicted. Then say what you changed because of it.'
+      'Pick five people, one from each group. One: a developer who works with things users type in. Two: someone in a compliance or legal job (the person who checks that rules are followed). Three: a support agent who has seen customers type personal details into a chat. Four: an ordinary user of Indian websites and apps. Five: a founder who had to choose whether to build or buy privacy tools. Do not use an AI to play any of them.',
+      'Write three to five screening questions. These are short questions that show if a person really belongs to the group. For the support agent, ask: “In the last month, how many times did a customer type an ID number into a chat with you?”',
+      'Write twelve interview questions. Ask only about the past, like “Tell me about the last time…”. If a question hints at the answer, such as “Don’t you find it annoying when…?”, rewrite it.',
+      'Talk to each person for about thirty minutes. Write down six things for each: their exact words, the steps they follow today, any workaround (a trick they use to get by), how often the problem happens, how bad it is, and what they spend on it.',
+      'Write a short profile for each of the five people. Every sentence must point to one interview note, like “(interview 3)”. Do not write anything that nobody told you.',
+      'Write the problem in two sentences. Say who has the problem, what it costs them, and what proof you have. Then list your guesses (assumptions) and mark the scariest one. Say what you will do this week to test it.',
+      'Write at least one thing you expected that the interviews proved wrong. Then say what you changed because of it.'
     ],
     done:[
       'Your screening questions and your twelve interview questions.',
       'Notes from five interviews with real people.',
-      'Five short profiles, with every sentence pointing to an interview note.',
-      'A two-sentence problem statement, and a list of assumptions with the riskiest one marked.',
-      'One expectation that turned out to be wrong, and what you changed because of it.',
-      'A score from 0 to 3 for each item above, using the scale in this chapter. Move on only when every score is at least 2, and no evidence item scores 0.'
+      'Five short profiles. Every sentence points to an interview note.',
+      'A two-sentence problem statement, and a list of guesses (assumptions) with the scariest one marked.',
+      'One thing you expected that was wrong, and what you changed because of it.',
+      'Give each item above a score from 0 to 3, using the scale in this chapter. Move on only when every score is at least 2, and no proof item scores 0.'
     ]
   },
   check:[
@@ -491,113 +491,113 @@ window.PART6 = [
   ],
   story:[
     ['c','On your route','Take a first pass of about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
-    ['c','Before you start','In full, this chapter takes about 14 hours, spread over a week or two. It’s spread out because finding people and fixing a time to talk takes a while. So start recruiting on day one. Aim for 30-minute conversations, by video call or in person.'],
-    ['p','In the last chapter you learned a simple rule: every claim must trace to evidence, or be marked as an assumption. This chapter is about where most of that evidence comes from. It comes from talking to users.'],
-    ['p','Talking to users sounds easy, but most people do it in a way that gets them polite, useless answers. So first you’ll learn how to ask questions that get honest ones. Then you’ll turn what you hear into a few short documents your team can act on.'],
+    ['c','Before you start','Doing it all takes about 14 hours, spread over a week or two. It takes time because finding people and fixing a time to talk is slow. So start asking people on day one. Plan 30-minute talks, on a video call or in person.'],
+    ['p','In the last chapter you learned one rule. Every claim needs proof, or it must be marked as a guess (an assumption). This chapter is about where most proof comes from. It comes from talking to users.'],
+    ['p','Talking to users sounds easy. But most people ask in a way that brings polite answers that help nobody. So first you learn to ask questions that bring honest answers. Then you turn what you hear into a few short pages your team can use.'],
 
     ['h','Idea 1: Ask about the past, not about your idea'],
-    ['p','Imagine telling your mother about a business idea. She’ll almost certainly say it’s wonderful. She loves you, and she wants to be kind.'],
-    ['p','Users in an interview behave in much the same way. The most common mistake is asking people what they think of your idea. They’ll be polite and say it sounds useful. That tells you nothing.'],
-    ['p','A short book by Rob Fitzpatrick, <em>The Mom Test</em>, shows a way around this. Its name comes from the goal: ask questions that even your mother couldn’t answer with a kind lie. The book has three rules:'],
+    ['p','Think of telling your mother about your business idea. She will almost surely say it is wonderful. She loves you and wants to be kind.'],
+    ['p','Users in an interview act the same way. The biggest mistake is asking what they think of your idea. They stay polite and say it sounds useful. That tells you nothing.'],
+    ['p','A short book, <em>The Mom Test</em> by Rob Fitzpatrick, shows a way out. The name comes from its goal. Ask questions that even your mother could not answer with a kind lie. The book has three rules:'],
     ['n',[
       '<strong>Talk about their life, not your idea.</strong>',
       '<strong>Ask about specific things they did in the past, not what they might do in the future.</strong>',
       '<strong>Talk less and listen more.</strong>'
     ]],
-    ['p','Let’s see the rules at work. Here’s the example we’ll use in this chapter and the next few. Say you want to build a tool for support leads. A support lead reads the week’s customer support tickets and writes a short report on the biggest problems. Your tool would group those tickets into themes.'],
-    ['c','Why a second example','The book tells this method through Bharat Privacy Guard. Here you see it work on a different product, which we’ll call Theme Finder. Seeing one method on two products is how you tell the method apart from the example. At the end of each chapter you apply it to Bharat Privacy Guard yourself.'],
-    ['p','Here are four questions you might be tempted to ask that lead, and a better version of each:'],
+    ['p','Let us see the rules at work. We use one example here and in the next few chapters. Say you want to build a tool for support leads. A support lead reads the week’s customer support tickets (the complaints and questions customers send in). Then the lead writes a short report on the biggest problems. Your tool would sort those tickets into themes, like piles of the same kind.'],
+    ['c','Why a second example','The book teaches this method with Bharat Privacy Guard. Here you see it work on a different product, which we call Theme Finder. Seeing one method on two products shows you the method, not just the example. At the end of each chapter you try it on Bharat Privacy Guard yourself.'],
+    ['p','Here are four questions you might want to ask that lead. Next to each is a better version:'],
     ['tb',['Instead of','Ask'],[
       ['Would you use a tool that groups support tickets into themes?','Tell me about the last time you prepared the weekly ticket summary. What did you do first?'],
       ['How much would you pay for this?','What do you use for this today? What does it cost you?'],
       ['Isn’t it frustrating to read hundreds of tickets?','What was the hardest part of last week’s summary?'],
       ['Do you think AI could help here?','Have you tried anything to speed this up? What happened?']
     ]],
-    ['p','Look at the third question in the left column. It hints at the answer you want to hear. And people tend to agree with whoever is asking. A question like this is called a <strong>leading question</strong>.'],
-    ['p','Now look at the right column. Every question there asks about something that already happened. A person can’t easily be polite about that. They just tell you what they did.'],
-    ['key','Opinions about the future are weak evidence. Specific stories about the past are strong evidence.'],
-    ['c','From delivery to product','You have run requirement workshops with departments. Keep that skill. The change: a requirement is what someone asked for, and discovery is what they did last Tuesday. Ask an officer to walk you through the last time a file got stuck, one step at a time. You will hear what the requirements document never said.'],
+    ['p','Look at the third question in the left column. It hints at the answer you want. People like to agree with whoever asks. A question like this is called a <strong>leading question</strong> (it leads the person to your answer).'],
+    ['p','Now look at the right column. Each question asks about something that already happened. It is hard to be polite about that. The person just tells you what they did.'],
+    ['key','What people think will happen is weak proof. True stories about the past are strong proof.'],
+    ['c','From delivery to product','You have run requirement workshops with departments. Keep that skill. Here is the change. A requirement is what someone asked for. Discovery is what they did last Tuesday. Ask an officer to walk you through the last time a file got stuck, one step at a time. You will hear what the requirements document never said.'],
     ['do','Prove it now',[
-      ['p','Write three questions you might have asked about your capstone problem. Then rewrite each one so it asks about something specific the person did in the past.'],
-      ['x','You should have three before-and-after pairs. Check each rewrite with one question: could the person answer it with a story about something that really happened?']
+      ['p','Write three questions you could have asked about your capstone problem (the project you build in this course). Then rewrite each one to ask about something specific the person did in the past.'],
+      ['x','You should have three pairs, a before and an after. Check each new question with this test: could the person answer with a story about something that really happened?']
     ]],
     ['q','I506'],
     ['q','I507'],
 
     ['h','Idea 2: Describe the job users are trying to get done'],
-    ['p','Think about why someone orders food on an app at ten at night, after a long day at work. The app itself isn’t what they want. They want a hot meal without having to cook.'],
-    ['p','Your users are the same. They want to make progress on something in their life, and a product is one way to get there. The <strong>jobs to be done</strong> idea puts it like this: people “hire” a product to do a job for them.'],
-    ['p','You can write a job as one sentence, in this format:'],
+    ['p','Think why someone orders food on an app at ten at night after a long day. They do not want the app. They want a hot meal without cooking.'],
+    ['p','Your users are the same. They want to get something done in their life, and a product is one way to do it. The <strong>jobs to be done</strong> idea says it like this. People “hire” a product to do a job for them.'],
+    ['p','You can write a job as one sentence, in this form:'],
     ['code','When [situation], I want to [motivation], so I can [outcome].'],
-    ['p','Here’s the job for our support lead:'],
+    ['p','Here is the job for our support lead:'],
     ['p','<em>When I prepare the Monday report, I want to see the week’s biggest problems without reading every ticket, so I can tell the product team what to fix first.</em>'],
-    ['p','Notice that the sentence doesn’t mention your tool at all. It describes the situation, what the lead wants, and why.'],
-    ['p','Jobs also help explain why people switch to a new product, or don’t. Four forces are at work. Two of them push people towards change, and two hold them back:'],
+    ['p','See that the sentence never names your tool. It tells the moment, what the lead wants, and why.'],
+    ['p','Jobs also explain why people switch to a new product, or do not. Four forces are at work, like four people pulling a rope. Two pull towards change. Two pull back:'],
     ['tb',['Force','Direction','Example'],[
       ['Push of the current situation','Towards change','“Reading 300 tickets takes my whole morning.”'],
       ['Pull of the new solution','Towards change','“A summary I could check in ten minutes.”'],
       ['Anxiety about the new solution','Against change','“What if it misses something important?”'],
       ['Habit of the present','Against change','“I know my spreadsheet. It works.”']
     ]],
-    ['p','People switch only when the push and the pull are stronger than the anxiety and the habit. For AI products, anxiety is often the biggest force, because users worry about wrong answers.'],
+    ['p','People switch only when the push and the pull beat the worry and the habit. For AI products, worry is often the biggest force. Users fear wrong answers.'],
     ['do','Prove it now',[
-      ['p','Write a job statement for your capstone problem. Then write one example of each of the four forces.'],
-      ['x','You should have one sentence in the “When… I want to… so I can…” format, and four short lines. If you don’t know the anxiety force yet, write it as a question to ask in your interviews.']
+      ['p','Write a job statement for your capstone problem. Then write one example for each of the four forces.'],
+      ['x','You should have one sentence in the “When… I want to… so I can…” form, and four short lines. If you do not know the worry force yet, write it as a question to ask in your interviews.']
     ]],
 
     ['h','Idea 3: Ask “why” to find causes, but don’t force one answer'],
-    ['p','When you see a doctor about a fever, a good doctor doesn’t only treat the fever. They ask what’s causing it. Product problems work the same way. What you notice first is usually a symptom.'],
-    ['p','The <strong>five whys</strong> is a simple way to get from a symptom to its causes. You ask “why?” about each answer, one after another. Here’s how it goes for the support lead:'],
+    ['p','When you see a doctor about a fever, a good doctor does not only treat the fever. She asks what is causing it. Product problems work the same way. What you see first is usually only a sign of the real trouble.'],
+    ['p','The <strong>five whys</strong> is a simple way to get from that sign to the causes. You ask “why?” after each answer, one by one, like peeling an onion. Here it is for the support lead:'],
     ['n',[
       'Important themes get missed in the weekly report. <em>Why?</em>',
       'The support lead does not have time to read every ticket. <em>Why?</em>',
-      'Ticket volume doubled this year, but the team did not grow. <em>Why?</em>',
-      'The company launched in two new countries.'
+      'There are twice as many tickets this year, but the team did not grow. <em>Why?</em>',
+      'The company started in two new countries.'
     ]],
-    ['p','This is useful, but it has a trap. One neat chain makes it look as if there’s only one cause. Real problems usually have several.'],
-    ['p','In this example, themes might also be missed because tickets are tagged inconsistently. That means different agents label the same kind of ticket in different ways. Or the report template might have no space for new issues.'],
-    ['c','Watch out','Don’t stop at the first chain that sounds convincing. After a few whys, ask: “What else could cause this?” Then draw the causes as a tree, with branches, rather than as a single line.'],
+    ['p','This helps, but it has a trap. One neat chain makes it look like there is only one cause. Real problems usually have several.'],
+    ['p','In this example, themes might also be missed because tickets are tagged in different ways. That means one agent puts a label on a ticket one way, and another agent labels the same kind of ticket another way. Or the report template (the fixed layout of the report) may have no room for new issues.'],
+    ['c','Watch out','Do not stop at the first chain that sounds right. After a few whys, ask: “What else could cause this?” Then draw the causes as a tree with branches, not as one straight line.'],
     ['do','Prove it now',[
       ['p','Take the main pain in your capstone problem. Ask “why?” three to five times. Then go back to the first answer and look for one more cause.'],
-      ['x','You should have a short tree with at least two branches. Mark which causes you have evidence for, and which are guesses you’ll check in your interviews.']
+      ['x','You should have a short tree with at least two branches. Mark which causes you have proof for, and which are guesses you will check in your interviews.']
     ]],
 
-    ['h','Idea 4: Personas and journey maps summarise evidence'],
-    ['p','After your interviews, you’ll want a quick way to share what you learned with your team. Two tools are common.'],
-    ['p','A <strong>persona</strong> describes one type of user: their goals, their workflow (how they get the work done today) and their pains. A <strong>journey map</strong> shows the steps they go through. At each step, it shows what they do, think and feel.'],
-    ['p','Both are useful, but only as <strong>summaries of evidence</strong>. A persona written before any interviews is a guess dressed up as research. A persona generated by an AI is even worse. It looks detailed, but it’s based on nothing.'],
-    ['p','So add a source to every line. For example:'],
+    ['h','Idea 4: Personas and journey maps sum up your proof'],
+    ['p','After your interviews, you want a quick way to share what you learned with your team. Two tools are common.'],
+    ['p','A <strong>persona</strong> describes one kind of user: their goals, their workflow (the steps they follow today to get the work done) and their pains. A <strong>journey map</strong> draws the steps they go through, like a route map. At each step it shows what they do, think and feel.'],
+    ['p','Both help, but only as <strong>summaries of proof</strong>. A persona written before any interviews is a guess dressed up as research. A persona made by an AI is worse. It looks full of detail, but it stands on nothing.'],
+    ['p','So put a source on every line. For example:'],
     ['code','Priya, support lead (interviews 1, 3, 4)\n- Prepares the weekly report every Monday morning   [1, 3, 4]\n- Reads about 300 tickets; skims most of them        [1, 4]\n- Worries most about missing a new, fast-growing issue [3]\n- Uses a spreadsheet with manual tags               [1, 3]'],
     ['p','The numbers in brackets are interview numbers. Anyone on your team can see where each line came from, and check it.'],
-    ['key','If a persona line has no interview number next to it, delete it.'],
+    ['key','If a persona line has no interview number, delete it.'],
     ['do','Prove it now',[
-      ['p','Draft a journey map for your capstone user, with four to six steps. For each step, write what they do and one pain. Leave a blank for the interview number. You’ll fill it in after your interviews.'],
-      ['x','You should have four to six steps. If a step is still blank after five interviews, that blank shows you a gap in your research.']
+      ['p','Draw a first journey map for your capstone user, with four to six steps. For each step, write what they do and one pain. Leave a blank for the interview number. You fill it in after your interviews.'],
+      ['x','You should have four to six steps. If a step is still blank after five interviews, that blank shows a hole in your research.']
     ]],
     ['q','I508'],
 
-    ['h','Idea 5: Write the problem, list your assumptions, test the riskiest'],
-    ['p','Once your interviews are done, you can say clearly what the problem is. Write it as a <strong>problem statement</strong>, in this format:'],
+    ['h','Idea 5: Write the problem, list your guesses, test the scariest'],
+    ['p','When your interviews are done, you can say clearly what the problem is. Write it as a <strong>problem statement</strong>, in this form:'],
     ['code','[User] needs a way to [job] because [evidence of pain].\nToday they [workaround], which costs [measure].'],
-    ['p','Next, list your <strong>assumptions</strong>. These are the things that must be true for your solution to work. Here they are for the ticket example:'],
+    ['p','Next, list your <strong>assumptions</strong>. These are the guesses that must be true for your solution to work. Here they are for the ticket example:'],
     ['l',[
       'Support leads trust an AI summary enough to act on it.',
-      'Ticket text contains enough detail to find the theme.',
+      'Ticket text has enough detail to find the theme.',
       'The product team reads the weekly report.',
-      'The company allows ticket data to be sent to an AI provider.'
+      'The company lets ticket data go to an AI provider (the company that runs the AI model).'
     ]],
-    ['p','You can’t test everything at once, so rank each assumption on two things. First, how bad would it be if it’s wrong? Second, how unsure are you about it?'],
-    ['p','The assumption that would hurt most, and that you’re least sure of, is your <strong>riskiest unknown</strong>. Test that one first.'],
-    ['p','In this list, the last assumption might be the riskiest. If the company’s policy forbids sending ticket data outside, nothing else matters. And it’s cheap to check: one email to the security team will tell you.'],
+    ['p','You cannot test everything at once. So rank each guess on two questions. First, how bad is it if the guess is wrong? Second, how unsure are you about it?'],
+    ['p','The guess that would hurt most, and that you are least sure of, is your <strong>riskiest unknown</strong>. Test that one first.'],
+    ['p','In this list, the last guess may be the riskiest. If the company’s rule forbids sending ticket data outside, nothing else matters. And it is cheap to check. One email to the security team will tell you.'],
     ['try',{id:'a3-problem',mins:10,min:120,rows:6,
       task:'Write a problem statement for your capstone. Then list three assumptions. Say which one is your riskiest unknown, and why.',
       ph:'Problem statement, three assumptions, the riskiest and why…',
-      after:'Here’s a strong answer for the ticket example. <strong>Problem:</strong> Support leads at mid-sized software companies need a way to see the week’s top issues. Right now they skim 300+ tickets, and they say they miss new problems (interviews 1, 3, 4). Today they tag tickets by hand in a spreadsheet, which takes about three hours each Monday. <strong>Assumptions:</strong> (1) Leads will act on an AI summary. (2) Ticket text has enough detail. (3) The company allows ticket data to go to an AI provider. <strong>Riskiest:</strong> number 3. If it’s false, the product can’t exist. And one email to the security team can answer it this week.'}],
+      after:'Here is a strong answer for the ticket example. <strong>Problem:</strong> Support leads at mid-sized software companies need a way to see the week’s top issues. Right now they skim 300+ tickets, and they say they miss new problems (interviews 1, 3, 4). Today they tag tickets by hand in a spreadsheet, which takes about three hours each Monday. <strong>Assumptions:</strong> (1) Leads will act on an AI summary. (2) Ticket text has enough detail. (3) The company allows ticket data to go to an AI provider. <strong>Riskiest:</strong> number 3. If it’s false, the product can’t exist. And one email to the security team can answer it this week.'}],
 
     ['h','What you have learned'],
-    ['p','You now have a way to find out what users really need. Ask about what they did, and let them tell the story. Write down the job they’re trying to get done. When you look for causes, look for more than one.'],
-    ['p','Then sum up what you heard, with an interview number on every line. Write the problem in two sentences, and test your riskiest assumption first.'],
-    ['p','You know who has the problem now. In the next chapter you’ll ask how many people have it, and what they use instead today.']
+    ['p','You now know how to find what users really need. Ask what they did, and let them tell the story. Write down the job they want done. When you look for causes, look for more than one.'],
+    ['p','Then sum up what you heard, with an interview number on every line. Write the problem in two sentences. Test your scariest guess first.'],
+    ['p','Now you know who has the problem. In the next chapter you ask how many people have it, and what they use today instead.']
   ]
 },
 
@@ -944,35 +944,35 @@ window.PART6 = [
 {
   id:'a6', num:'A6', part:6, curriculumTier:'reference', phase:0, prerequisites:['a5'], nextUnits:['a7','b3'], minutes:600, labs:[],
   title:'Roadmaps, OKRs and getting stakeholders on board',
-  concept:'You have a strategy. Now you turn it into something a team can carry out and leaders can support. You’ll build a roadmap made of outcomes, write OKRs that keep product outcomes apart from model metrics, map the people who can say no, and run a pre-mortem.',
+  concept:'You have a strategy, which is your plan for what to build and why. Now you turn it into something a team can follow and bosses can back. You will make a roadmap (a map of what to do, in order), write OKRs (goals with numbers), draw who can say no, and run a pre-mortem (a failure rehearsal).',
   takeaway:[
-    'Build a now/next/later roadmap where each item is an outcome with a kill criterion.',
-    'Write an objective with measurable key results, input metrics and guardrail metrics.',
-    'Map stakeholders by influence and interest, and name who can veto a decision.',
-    'Write a decision memo for leadership and run a pre-mortem before you start.',
-    'Track dependencies and risks before they turn into surprises.'
+    'Make a now/next/later roadmap (a map of what to do first, next and later). Each item says what should change, and when to stop.',
+    'Write one goal in words. Then add key results (numbers that show you got there), input metrics and guardrail metrics. A guardrail is like the railing on a bridge.',
+    'Draw a grid of people. Mark who has power and who cares. Name the person who can say no and stop the plan.',
+    'Write a short memo that asks the boss for a yes or no. Before you start, imagine the project failed and ask why.',
+    'List what you need from other people, and what could go wrong. Do it early, so nothing surprises you later.'
   ],
-  needs:[['A written strategy','The roadmap turns your strategy into outcomes in a sensible order.','A5'],
-         ['A prioritised list','It decides what goes in the “now” column.','A5']],
+  needs:[['A written strategy','The roadmap turns your strategy into outcomes, in a sensible order, like a list of stops on a train route.','A5'],
+         ['A prioritised list (a list sorted by what matters most)','It decides what goes in the “now” column, like choosing which errand to do first.','A5']],
   capstone:{
     title:'Turn the strategy into a plan other people can back',
-    brief:'A strategy that nobody can follow changes nothing. So now you turn yours into a plan with dates and numbers, and you work out who has to agree to it. In this chapter you learned to write a roadmap of outcomes, objectives with measurable key results, and a decision memo. Here you do all three, and you end the plan at the point where the developer kit is ready to demonstrate.',
+    brief:'A strategy that nobody can follow changes nothing. So you turn yours into a plan with dates and numbers, and you find out who must agree to it. In this chapter you learned to write a roadmap of outcomes (changes you want to see), goals with measurable key results, and a decision memo. Here you do all three. You end the plan at the point where the developer kit is ready to show.',
     where:'Written only. A plan, a memo and a map of people. No code needed.',
     steps:[
-      'Draw a roadmap with three columns: Now, Next and Later. Fit it to the rest of this course, so that Now is the next few chapters and Later ends with a working demo of the developer kit at the Part V capstone. Each item must be an outcome, such as “a developer can paste text and see it cleaned”, and not just the name of a feature.',
-      'For every roadmap item, write an owner, the evidence that it matters, what it depends on, and a stopping rule. The stopping rule is the result that would make you give up on it. For example: “Stop if fewer than half of the pattern checker’s results are right on my answer key.”',
-      'Write one objective in words, and three or four key results that are numbers. Keep two kinds apart. Product results are things like “five developers add the kit in under ten minutes”. Quality results are things like “the tool finds at least 90 of every 100 Aadhaar numbers”.',
-      'Add one guardrail. This is a number you refuse to let get worse while you chase the others. For example: “False alarms stay below 5 in every 100 sentences.”',
-      'Make a map of the people who will judge or be affected by the project. These are the developer who adds the kit, the compliance reviewer, the end user and an employer reading your portfolio. Mark each one as high or low on influence, and high or low on interest. Then name who could say no.',
-      'Imagine it is a year from now and the project has failed. Write five reasons why. This is called a pre-mortem. For each reason, write one thing you will do now to make it less likely.',
-      'Write a one-page memo to a decision-maker, asking for a yes or a no on the plan.'
+      'Draw a roadmap with three columns: Now, Next and Later. Fit it to the rest of this course. Now is the next few chapters. Later ends with a working demo of the developer kit at the Part V capstone. Each item must be an outcome, such as “a developer can paste text and see it cleaned”. A feature name alone is not enough.',
+      'For every roadmap item, write four things: an owner, the proof that it matters, what it needs from others, and a stopping rule. The stopping rule is the result that would make you give up. For example: “Stop if fewer than half of the pattern checker’s results are right on my answer key.”',
+      'Write one objective (the goal, in words). Then write three or four key results (the goal’s numbers). Keep two kinds apart. Product results are about people, like “five developers add the kit in under ten minutes”. Quality results are about the tool, like “the tool finds at least 90 of every 100 Aadhaar numbers”.',
+      'Add one guardrail. It is a number you refuse to let get worse while you chase the others, like the railing on a bridge. For example: “False alarms stay below 5 in every 100 sentences.”',
+      'Make a map of the people who will judge the project or be affected by it. They are: the developer who adds the kit, the compliance reviewer, the end user and an employer reading your portfolio. Mark each one high or low on influence (how much power they have). Mark each one high or low on interest (how much they care). Then name who could say no.',
+      'Imagine it is a year from now and the project has failed. Write five reasons why. This is called a pre-mortem (a rehearsal of failure). For each reason, write one thing you will do now to make it less likely.',
+      'Write a one-page memo to the person who decides. Ask for a yes or a no on the plan.'
     ],
     done:[
-      'A now, next and later roadmap in which every item is an outcome with a stopping rule.',
+      'A now, next and later roadmap. Every item is an outcome with a stopping rule.',
       'One objective with three or four key results, and one guardrail.',
-      'A map of the people involved, with the person who could say no named.',
-      'A pre-mortem with five reasons and a response to each.',
-      'A one-page decision memo.',
+      'A map of the people involved. The person who could say no is named.',
+      'A pre-mortem with five reasons for failure, and an answer to each.',
+      'A one-page decision memo (a short note that asks the boss to decide).',
       'A score from 0 to 3 for each of the items above, using the scale in this chapter. Move on only when every score is at least 2.'
     ]
   },
@@ -986,104 +986,104 @@ window.PART6 = [
   ],
   story:[
     ['c','On your route','Take a first pass of about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
-    ['c','Before you start','In full, this chapter takes about ten hours. Keep your strategy memo and RICE scores from A5 open next to you. You’ll also need to think about the people around your capstone: who funds it, who approves it and who uses it.'],
+    ['c','Before you start','In full, this chapter takes about ten hours. Keep your strategy memo and RICE scores (the scores that ranked your ideas) from A5 open next to you. Also think about the people around your capstone: who pays for it, who says yes to it and who uses it.'],
 
-    ['p','In A5 you decided what to do first and what not to do. A strategy on paper is still just an idea, though. To make it real, a team needs a plan it can follow, and the people who control money and approvals need a reason to say yes.'],
-    ['p','This chapter takes you from strategy to that plan. You’ll build a roadmap, set goals with numbers, find the people who can help or stop you, and imagine failure before it happens.'],
+    ['p','In A5 you chose what to do first and what not to do. But a plan on paper is only an idea. To make it real, a team needs steps it can follow. The people who hold the money and the approvals need a reason to say yes.'],
+    ['p','This chapter takes you from strategy to that plan. You will build a roadmap. You will set goals with numbers. You will find the people who can help or stop you. And you will imagine failure before it happens, like a fire drill.'],
 
     ['h','Idea 1: Roadmaps should promise outcomes, not dates'],
-    ['p','You have probably seen a roadmap that is a list of features with delivery dates. It looks precise. But the dates are guesses, and the features are assumptions about what will help. When either one turns out wrong, the roadmap becomes a list of broken promises.'],
-    ['p','There is a better way. An <strong>outcome roadmap</strong> drops the dates and uses three columns instead. The table shows what each column means and how sure you can be about it.'],
-    ['tb',['Column','Meaning','How certain'],[
-      ['Now','What we are working on','Committed'],
+    ['p','You have probably seen a roadmap that is a list of features with delivery dates. It looks sure. But the dates are guesses, and the features are hopes about what will help. When either one is wrong, the roadmap becomes a list of broken promises, like a train timetable that is always late.'],
+    ['p','There is a better way. An <strong>outcome roadmap</strong> (a map of changes you want, not dates) uses three columns instead of dates. The table shows what each column means and how sure you can be.'],
+    ['tb',['Column','Meaning','How sure we are'],[
+      ['Now','What we are doing now','Promised'],
       ['Next','What we expect to do after that','Likely, but may change'],
-      ['Later','What we are exploring','Ideas, ordered by current thinking']
+      ['Later','What we are looking into','Ideas, sorted by what we think today']
     ]],
-    ['p','Each item in a column is an outcome, which means a change you want to see. Along with it, you write down the details you need to manage it. Here is one item filled in.'],
+    ['p','Each item in a column is an outcome, which means a change you want to see. Next to it you write the details that help you manage it, like the label on a file folder. Here is one item filled in.'],
     ['tb',['Field','Example'],[
-      ['Outcome','Support leads spot new issues within their first week'],
+      ['Outcome','Support leads (the people who run the help desk) spot new issues within their first week'],
       ['Evidence','3 of 5 interviews described missing a fast-growing issue'],
       ['Owner','Product manager and one engineer'],
-      ['Dependency','Read access to the Freshdesk API'],
+      ['Dependency (something you need from others)','Read access to the Freshdesk API (a way for programs to talk to Freshdesk)'],
       ['Kill criterion','Stop if fewer than half of design partners act on an alert within four weeks']
     ]],
-    ['p','Outcome roadmaps matter even more for AI work. You often cannot know in advance whether a model will be accurate enough. So a date promised before testing is only a guess.'],
-    ['key','A kill criterion decided in advance makes it much easier to stop work that is not working.'],
+    ['p','Outcome roadmaps matter even more for AI work. You often cannot know in advance if a model will be good enough. It is like a parrot that has read a whole library: you only find out how well it answers when you test it. So a date promised before testing is only a guess.'],
+    ['key','A kill criterion (a rule for when to stop) set in advance makes it much easier to stop work that is not working. It is like agreeing before a trip when you will turn back.'],
     ['do','Prove it now',[
-      ['p','Write one “now” item for your capstone as an outcome, with all five fields.'],
-      ['x','You should have one roadmap item. Check the kill criterion. Is it a number you will actually be able to measure within a few weeks?']
+      ['p','Write one “now” item for your capstone as an outcome. Fill in all five fields from the table.'],
+      ['x','You should have one roadmap item. Check the kill criterion. Is it a number you can really measure within a few weeks?']
     ]],
 
     ['h','Idea 2: OKRs, input metrics and guardrails'],
-    ['p','A roadmap tells you what you’ll work on. Next you need a way to say what success looks like. A common way is <strong>OKRs</strong>, which stands for objectives and key results.'],
-    ['p','The <strong>objective</strong> says what you want, in words. The <strong>key results</strong> are three or four numbers that show you got there. Here is an example for the ticket tool.'],
+    ['p','A roadmap tells you what you will work on. Next you need a way to say what winning looks like. A common way is <strong>OKRs</strong>. The letters stand for objectives and key results.'],
+    ['p','The <strong>objective</strong> says what you want, in words. The <strong>key results</strong> are three or four numbers that show you got there. Think of it like a school report: the goal is “do well”, and the marks prove it. Here is an example for the ticket tool.'],
     ['code','Objective: Support leads trust Theme Finder for their weekly report\n\nKR1  8 of 10 design partners use it for 4 weeks in a row          (product outcome)\nKR2  Report preparation drops from ~3 hours to under 30 minutes  (product outcome)\nKR3  Theme precision on the 50-ticket test set is at least 85%    (model metric)\n\nGuardrail metric  Fewer than 1 in 5 alerts are dismissed as not useful'],
-    ['p','Notice that KR1 and KR2 are about people, and KR3 is about the model. Good key results are <strong>outcomes</strong>, meaning what changes for users. They are not <strong>outputs</strong>, meaning what you ship. “Ship growth alerts” is an output. “Leads catch new issues in their first week” is an outcome.'],
-    ['p','Two more kinds of metric support your OKRs. The first is an <strong>input metric</strong>. This is something the team can change directly, which you expect to move the outcome. For example, the share of tickets assigned to some theme.'],
-    ['p','The second is a <strong>guardrail metric</strong>. This is a number that must not get worse while you chase the key results. For example, the false-alarm rate or the cost per customer.'],
-    ['c','Why this matters','Keep model metrics and product outcomes separate. A model can reach 95% precision while users still ignore the report because it arrives too late. You need both kinds of number, but only the product outcome tells you whether users are better off.'],
+    ['p','Notice that KR1 and KR2 are about people. KR3 is about the model. Good key results are <strong>outcomes</strong>, meaning what changes for users. They are not <strong>outputs</strong>, meaning what you ship. “Ship growth alerts” is an output. “Leads catch new issues in their first week” is an outcome.'],
+    ['p','Two more kinds of number help your OKRs. The first is an <strong>input metric</strong>. It is something the team can change directly, and you expect it to move the outcome. For example, the share of tickets given a theme (a topic label).'],
+    ['p','The second is a <strong>guardrail metric</strong>. It is a number that must not get worse while you chase the key results, like the railing on a bridge. For example, the false-alarm rate or the cost per customer.'],
+    ['c','Why this matters','Keep model numbers and product outcomes apart. A model can score 95% precision (of what it flags, 95% is right) while users still ignore the report because it comes too late. You need both kinds of number. But only the product outcome tells you if users are better off.'],
     ['do','Prove it now',[
-      ['p','Write one objective and three key results for your capstone. Label each key result as a product outcome or a model metric. Add one guardrail metric.'],
-      ['x','You should have one objective, three labelled key results and a guardrail metric. Now try to game each key result. How could a team hit it while making things worse for users?']
+      ['p','Write one objective and three key results for your capstone. Label each key result as a product outcome or a model number. Add one guardrail metric.'],
+      ['x','You should have one objective, three labelled key results and a guardrail metric. Now try to cheat each key result. How could a team hit the number and still make things worse for users?']
     ]],
     ['q','I515'],
     ['q','I516'],
 
     ['h','Idea 3: Map the people who can help or stop you'],
-    ['p','So far you have been thinking about the work. But a product decision involves many people, and they want different things. A <strong>stakeholder map</strong> helps you see who matters. It puts each person on two axes: how much influence they have over the project, and how much they care about it.'],
-    ['p','The grid tells you how to treat each group. Read the examples in each box to get the feel of it.'],
-    ['tb',['','Low interest','High interest'],[
-      ['High influence','Keep satisfied (e.g. CFO, security lead)','Work closely with (e.g. head of support, your manager)'],
-      ['Low influence','Keep informed (e.g. other product teams)','Keep involved (e.g. support agents, design partners)']
+    ['p','So far you have been thinking about the work. But a product decision involves many people, and they want different things. A <strong>stakeholder map</strong> (a picture of everyone who cares about the result) helps you see who matters. It puts each person on two lines: how much influence (power) they have over the project, and how much they care about it.'],
+    ['p','The grid tells you how to treat each group. Read the examples in each box to get a feel for it.'],
+    ['tb',['','Low interest (cares little)','High interest (cares a lot)'],[
+      ['High influence (lots of power)','Keep satisfied (e.g. CFO, security lead)','Work closely with (e.g. head of support, your manager)'],
+      ['Low influence (little power)','Keep informed (e.g. other product teams)','Keep involved (e.g. support agents, design partners)']
     ]],
-    ['p','For each important stakeholder, write down two more things. The first is their <strong>incentive</strong>, which is what they are measured on. It explains how they will react. The second is their <strong>decision right</strong>. Do they decide, do they advise, or do they have a veto?'],
-    ['c','Watch out','In AI products, security, legal and privacy leads often have a veto but little day-to-day interest. They sit in the “keep satisfied” corner until the day before launch, when they say no. Talk to them early.'],
+    ['p','For each important stakeholder, write two more things. The first is their <strong>incentive</strong>, which is what they are judged on, like marks in an exam. It tells you how they will react. The second is their <strong>decision right</strong>. Do they decide, do they advise, or can they block it with a veto (a power to say no)?'],
+    ['c','Watch out','In AI products, the security, legal and privacy leads often have a veto but little day-to-day interest. They sit in the “keep satisfied” box until the day before launch, when they say no. Talk to them early.'],
     ['do','Prove it now',[
       ['p','Place at least five stakeholders for your capstone on the grid. Circle anyone who can veto the project.'],
-      ['x','You should have a filled grid with at least one person circled. If nobody can veto your project, you have probably missed someone. Ask who has to approve new software or new data flows.']
+      ['x','You should have a filled grid with at least one person circled. If nobody can veto your project, you have probably missed someone. Ask who has to approve new software or new data flows (new ways that data moves around).']
     ]],
 
-    ['h','Idea 4: Write for executives, and imagine failure first'],
-    ['p','Once you know who matters, you have to persuade them. Executives read quickly and decide a lot. So write in a way that lets them act after the first paragraph. A good decision memo follows this order.'],
+    ['h','Idea 4: Write for bosses, and imagine failure first'],
+    ['p','Once you know who matters, you have to win them over. Executives (senior bosses) read fast and decide a lot. So write so they can act after the first paragraph. A good decision memo follows this order.'],
     ['n',[
       '<strong>The decision or ask</strong>, in the first sentence.',
-      '<strong>Why now</strong>: the problem and its evidence, in two or three sentences.',
-      '<strong>Options</strong> you considered, including doing nothing.',
+      '<strong>Why now</strong>: the problem and the proof, in two or three sentences.',
+      '<strong>Options</strong> you thought about, including doing nothing.',
       '<strong>Your recommendation</strong> and what it costs.',
       '<strong>Risks</strong>, and what would make you change course.'
     ]],
-    ['p','Before you send the memo, run a <strong>pre-mortem</strong>. Imagine it is six months from now and the project has failed. Everyone writes down, separately, why it failed. Then you plan to prevent the most likely causes.'],
-    ['p','Why does this work? Because people will name risks about an imagined failure that they would never raise about a plan that is still alive.'],
+    ['p','Before you send the memo, run a <strong>pre-mortem</strong>. Imagine it is six months from now and the project has failed. Everyone writes down, alone, why it failed. Then you plan to stop the most likely causes.'],
+    ['p','Why does this work? Because people will name risks about a pretend failure that they would never mention about a plan that is still alive. It is like a fire drill: you find the blocked door before the fire.'],
     ['do','Prove it now',[
-      ['p','Write three reasons your capstone might fail six months from now. For each one, write one thing you could do this month to make it less likely.'],
-      ['x','You should have three failure reasons, each with a prevention step. The most useful reasons are specific, like “the security review took four months”. General ones, like “we ran out of time”, help much less.']
+      ['p','Write three reasons your capstone might fail six months from now. For each one, write one thing you can do this month to make it less likely.'],
+      ['x','You should have three reasons for failure, each with a step to prevent it. The best reasons are specific, like “the security review took four months”. Vague ones, like “we ran out of time”, help much less.']
     ]],
     ['q','I517'],
 
     ['h','Idea 5: Track dependencies and risks'],
-    ['p','The last piece is keeping the plan on track. A <strong>dependency</strong> is anything you need from outside your team. It could be another team’s work, a vendor, access to data, or an approval. Dependencies are where plans slip, because you do not control them.'],
-    ['p','The best defence is a simple risk list. For each risk, write down how likely it is, how much damage it would do, who owns it, and what you are doing about it. The table shows three examples.'],
+    ['p','The last piece is keeping the plan on track. A <strong>dependency</strong> is anything you need from outside your team. It could be another team’s work, a vendor (a company you buy from), access to data, or an approval. Plans slip here, because you do not control these things. It is like waiting for a friend who has your ticket.'],
+    ['p','The best defence is a simple risk list. For each risk, write how likely it is, how much damage it would do, who owns it, and what you are doing about it. The table shows three examples.'],
     ['tb',['Risk','Likelihood','Impact','Owner','Mitigation'],[
-      ['Security review delays access to ticket data','High','High','PM','Start the review in week 1; prepare the data-flow diagram now'],
-      ['Model provider changes pricing','Medium','Medium','Engineering lead','Keep the test set vendor-neutral so switching takes days'],
-      ['Precision stays below 85%','Medium','High','PM and engineer','Time-box to three weeks, then narrow the use case']
+      ['Security review delays access to ticket data','High','High','PM','Start the review in week 1. Prepare the data-flow diagram (a drawing of where data goes) now.'],
+      ['Model provider (the company that runs the model) changes its pricing','Medium','Medium','Engineering lead','Keep the test set (your list of questions with known answers) free of any one vendor, so switching takes days'],
+      ['Precision stays below 85%','Medium','High','PM and engineer','Give it a time limit of three weeks, then narrow the use case (make the job smaller)']
     ]],
-    ['p','AI products carry a few risks of their own. The model’s quality may never reach the bar. The provider may change the model underneath you. And data approvals can take months.'],
-    ['c','From delivery to product','You already keep a risk and issue log and a stakeholder register. Keep both. What changes is the first column. A delivery log starts with the milestone and its date. A product log starts with the outcome and its kill criterion. In the stakeholder grid, add each person’s incentive and whether they can veto. Your government experience will fill it faster than most readers can.'],
-    ['p','Now translate one thing you delivered.'],
+    ['p','AI products carry a few risks of their own. The model’s quality may never reach the bar, like a student who never passes. The provider may change the model underneath you. And approvals to use data can take months.'],
+    ['c','From delivery to product','You already keep a risk and issue log (a list of what could go wrong and what has) and a stakeholder register (a list of who cares). Keep both. Only the first column changes. A delivery log starts with the milestone and its date. A product log starts with the outcome and its kill criterion. In the stakeholder grid, add each person’s incentive and whether they can veto. Your government experience will fill it faster than most readers can.'],
+    ['p','Now turn one thing you delivered into this new style.'],
     ['try',{id:'a6-translate',mins:10,min:120,rows:6,
-      task:'Take one milestone you delivered on a government project. Rewrite it as an outcome with evidence, an owner and a kill criterion. Then write what you would have had to decide, not deliver.',
+      task:'Take one milestone you delivered on a government project. Rewrite it as an outcome with proof, an owner and a kill criterion. Then write what you would have had to decide, not just deliver.',
       ph:'Milestone… outcome… evidence… owner… kill criterion… what I would have decided…',
-      after:'A strong answer. <strong>Milestone:</strong> citizen portal live in all districts by 31 March. <strong>Outcome:</strong> at least 60% of grievance applications in the pilot districts are filed online within eight weeks of go-live. <strong>Evidence:</strong> the help-desk log shows most applicants still walk to the block office, which costs them a day’s wage. <strong>Owner:</strong> me, with the district nodal officer. <strong>Kill criterion:</strong> if fewer than 20% file online after eight weeks, stop adding districts and fix the form first. <strong>What I would have had to decide:</strong> whether to go live in districts with weak connectivity, instead of delivering to the date. Your numbers will differ.'}],
+      after:'A strong answer. <strong>Milestone:</strong> citizen portal live in all districts by 31 March. <strong>Outcome:</strong> at least 60% of grievance applications (complaints) in the pilot districts are filed online within eight weeks of go-live. <strong>Evidence:</strong> the help-desk log shows most applicants still walk to the block office, which costs them a day’s wage. <strong>Owner:</strong> me, with the district nodal officer. <strong>Kill criterion:</strong> if fewer than 20% file online after eight weeks, stop adding districts and fix the form first. <strong>What I would have had to decide:</strong> whether to go live in districts with weak connectivity, instead of delivering to the date. Your numbers will differ.'}],
     ['try',{id:'a6-memo',mins:12,min:150,rows:7,
-      task:'Write the first paragraph of your decision memo to leadership. Start with the decision or ask, then give the evidence, the cost and the biggest risk.',
+      task:'Write the first paragraph of your decision memo to leadership. Start with the decision or ask. Then give the proof, the cost and the biggest risk.',
       ph:'The ask, why now, the cost, the biggest risk…',
       after:'A strong opening: <strong>I am asking for one engineer for eight weeks to pilot Theme Finder with ten support teams.</strong> Three of five support leads we interviewed miss fast-growing issues because tickets are tagged inconsistently, and each spends about three hours every Monday on the report. The pilot costs one engineer and about $200 in model usage. The biggest risk is the security review of sending ticket data to a model provider. We have started it this week, and we will stop the pilot if precision on our test set stays below 85% after three weeks.'}],
 
     ['h','What you have learned'],
-    ['p','Let’s pull the chapter together. A good roadmap promises outcomes, not dates, and every item carries a kill criterion so you know when to stop. OKRs give you numbers to aim at, and guardrails stop you from winning in a way that hurts users.'],
-    ['p','You also saw that plans fail because of people and surprises. A stakeholder map shows who can say no, a decision memo makes it easy for them to say yes, and a pre-mortem and a risk list catch problems early.'],
-    ['p','Next, in A7, you’ll take one decision from this plan and turn it into specs, user stories and a prototype that a team can build.']
+    ['p','Let us pull the chapter together. A good roadmap promises outcomes, not dates. Every item carries a kill criterion, so you know when to stop. OKRs give you numbers to aim at. Guardrails stop you from winning in a way that hurts users, like a railing on a bridge.'],
+    ['p','You also saw that plans fail because of people and surprises. A stakeholder map shows who can say no. A decision memo makes it easy for them to say yes. A pre-mortem and a risk list catch problems early.'],
+    ['p','Next, in A7, you will take one decision from this plan and turn it into a written plan for what to build, short stories about users, and a rough model. A team can build from these.']
   ]
 },
 

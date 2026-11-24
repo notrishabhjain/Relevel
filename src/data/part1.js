@@ -99,37 +99,37 @@ window.PART1 = [
      almost every cell in the course, one at a time, with nothing to connect. */
   id:'chpy', num:0.8, part:1, curriculumTier:'core', phase:1, prerequisites:['ch05'], nextUnits:['ch1'], minutes:25, labs:[], noModel:true,
   title:'Reading Python: just enough for this course',
-  concept:'From the next chapter on, the hands-on steps are short pieces of Python that run right here in the page. You don’t have to write code from scratch. You have to read it, change one thing and run it again. This chapter teaches the few shapes you will meet, one at a time, with no key and no account.',
+  concept:'From the next chapter on, the hands-on steps are short pieces of Python (a language for giving a computer instructions). They run right here in the page. You do not write code from scratch. You read it, change one thing and run it again, like tweaking a recipe. This chapter teaches the few shapes you will meet, one at a time. It needs no key (a secret password for the model) and no account.',
   needs:[
-    ['Chapter 0.5','You have seen tokens and cost in the browser. Nothing else is needed: Python runs inside this page, with no key and no account.',0.5],
+    ['Chapter 0.5','You have seen tokens (small pieces of words) and cost in the browser. Nothing else is needed. Python runs inside this page. No key, no account.',0.5],
   ],
   takeaway:[
     'Read a line like <code>city = "Pune"</code> and say what it stores.',
-    'Tell a list from a dictionary, and pick one item out of each.',
-    'Read every line of the next chapter’s first model call before you run it.'
+    'Tell a list (a row of boxes) from a dictionary (a phone book), and pick one item out of each.',
+    'Read every line of the first model call in the next chapter before you run it. A call is one message sent to the model.'
   ],
   story:[
-    ['c','Before you start','You need nothing for this chapter: no key, no account, no download. Python runs inside this page. Press <strong>Run</strong> under a block and the result appears below it. Nothing you type here can break anything.'],
-    ['p','In the next chapter you send your first message to a real model. The message goes out as a few lines of Python. If you have never read code, those lines look like a wall of brackets and quotes.'],
-    ['p','This chapter takes the wall apart, one brick at a time. Each section shows one small piece, runs it, and asks you to change one thing. By the end, you can read every line of the next chapter’s first example.'],
-    ['key','You don’t need to write Python for this course. You need to read it, change one thing, and run it again.'],
+    ['c','Before you start','You need nothing for this chapter. No key, no account, no download. Python runs inside this page. Press <strong>Run</strong> under a block (one box of code) and the result appears below it. Nothing you type here can break anything. It is like a practice page you can rub out.'],
+    ['p','In the next chapter you send your first message to a real model (a program that writes replies). The message goes out as a few lines of Python. If you have never read code, those lines look like a wall of brackets and quotes.'],
+    ['p','This chapter takes the wall apart, one brick at a time. Each section shows one small piece. It runs the piece. Then it asks you to change one thing. By the end, you can read every line of the first example in the next chapter.'],
+    ['key','You do not need to write Python for this course. You read it, change one thing, and run it again. It is like reading a train timetable: you do not have to build the train.'],
     ['h','A cell, and the Run button'],
-    ['p','Code here sits in boxes called <strong>cells</strong>. Press <strong>Run</strong> and the page runs the cell. Whatever the code prints appears just below it.'],
-    ['p','The first run takes a few seconds, because the page has to load Python. After that, runs are quick.'],
+    ['p','Code here sits in boxes called <strong>cells</strong>. One cell is one box of code on the page. Press <strong>Run</strong> and the page runs the cell. Whatever the code prints (shows) appears just below it. That is the <em>output</em>. It is like pressing the button on a lift: you press, and something happens.'],
+    ['p','The first run takes a few seconds, because the page has to load Python first. After that, runs are quick.'],
     ['do','Run your first cell',[
       ['code','print("Hello from Python")'],
       ['x','The words <code>Hello from Python</code> appear under the cell. <code>print</code> means “show this”. The text inside the quotes is shown exactly as written.'],
-      ['p','Now change the words inside the quotes to your own name and press Run again. Keep the quotes.']
+      ['p','Now change the words inside the quotes to your own name. Press Run again. Keep the quotes.']
     ]],
     ['h','A name for a value'],
-    ['p','The most common line in this course looks like <code>name = something</code>. It gives a value a name, so that later lines can use it. Programmers call the name a <strong>variable</strong>.'],
+    ['p','The most common line in this course looks like <code>name = something</code>. It gives a value a name, so that later lines can use it. Think of a labelled box that holds one thing. Programmers call the name a <strong>variable</strong>.'],
     ['p','Read the equals sign as “is now”. So <code>city = "Pune"</code> reads as “city is now Pune”.'],
     ['do','Store something and use it',[
       ['code','city = "Pune"\nprice = 40\nprint(city)\nprint(price * 3)'],
-      ['x','You see <code>Pune</code> and then <code>120</code>. Text goes inside quotes. Numbers don’t. Python did the sum because <code>price</code> holds a number.'],
+      ['x','You see <code>Pune</code> and then <code>120</code>. Text goes inside quotes. Numbers do not. Python did the sum because <code>price</code> holds a number.'],
       [
         'snag',
-        ['A red box saying something <em>is not defined</em>','A name was used before any line gave it a value. Check the spelling too: <code>City</code> and <code>city</code> are two different names to Python.']
+        ['A red box saying something <em>is not defined</em>','A name was used before any line gave it a value. It is like asking for a box nobody has made yet. Check the spelling too. <code>City</code> and <code>city</code> are two different names to Python.']
       ]
     ]],
     [
@@ -137,53 +137,53 @@ window.PART1 = [
       {id:'chpy-quotes',
        short:true,
        ph:'What do you expect to see?',
-       ask:'Guess first. After the cell above, what would <code>print("price")</code> show, with quotes around the word?',
-       reveal:'It shows the word <code>price</code>, not 40. Quotes mean “this exact text”. Without quotes, Python looks up the name and shows its value.',
-       then:'Quotes are the difference between a word and a name. Many first errors in code come from a missing or an extra quote.'}
+       ask:'Guess first. After the cell above, what would <code>print("price")</code> show? Note that the word has quotes around it.',
+       reveal:'It shows the word <code>price</code>, not 40. Quotes mean “this exact text”. Without quotes, Python looks for the box with that name and shows what is inside.',
+       then:'Quotes are the difference between a word and a name. Many first errors (mistakes that make the code stop) come from a missing or extra quote.'}
     ],
     ['h','A list: several things in order'],
-    ['p','Square brackets hold a <strong>list</strong>: several values in order, with commas between them.'],
-    ['p','To pick one item, put its position in square brackets after the name. Python counts from 0, so <code>[0]</code> is the first item.'],
+    ['p','Square brackets hold a <strong>list</strong>. It is a row of boxes, in order, with commas between them, like seats in a train coach.'],
+    ['p','To pick one item, put its place number in square brackets after the name. Python counts from 0, so <code>[0]</code> is the first item.'],
     ['do','Pick an item from a list',[
       ['code','cities = ["Pune", "Delhi", "Kochi"]\nprint(cities[0])\nprint(len(cities))'],
       ['x','You see <code>Pune</code>, the first item, and then <code>3</code>, the number of items. <code>len</code> is short for length.'],
       ['p','Change <code>[0]</code> to <code>[2]</code> and run it again. Which city do you get?']
     ]],
     ['h','A dictionary: labels and values'],
-    ['p','Curly braces hold a <strong>dictionary</strong>: pairs of a label and a value, like a small form. The label goes in quotes, then a colon, then the value.'],
+    ['p','Curly braces hold a <strong>dictionary</strong>. It is like a phone book: you look up a name and get its value. It holds pairs of a label and a value, like a small form. The label goes in quotes, then a colon, then the value.'],
     ['p','To read one value, put its label in square brackets after the name.'],
     ['do','Read a value by its label',[
       ['code','message = {"role": "user", "content": "What is a token?"}\nprint(message["role"])\nprint(message["content"])'],
-      ['x','You see <code>user</code> and then the question. This exact shape, a role and some content, is how every message to a model is written.']
+      ['x','You see <code>user</code> and then the question. This exact shape is how every message to a model is written: a role (who is speaking) and some content (what they say).']
     ]],
-    ['p','A message to a model is just this: who is speaking, and what they say. A conversation is a list of these messages, in order.'],
+    ['p','A message to a model is only this: who is speaking, and what they say. A conversation is a list of these messages, in order, like a chat on your phone.'],
     ['do','A list of dictionaries: a conversation',[
       ['code','messages = [\n    {"role": "user", "content": "My name is Asha."},\n    {"role": "assistant", "content": "Nice to meet you, Asha."},\n    {"role": "user", "content": "What is my name?"}\n]\nprint(len(messages))\nprint(messages[2]["content"])'],
-      ['x','You see <code>3</code> and then <code>What is my name?</code>. Read <code>messages[2]["content"]</code> from left to right: the list, then its third item, then that item’s content.']
+      ['x','You see <code>3</code> and then <code>What is my name?</code>. Read <code>messages[2]["content"]</code> from left to right. First the list. Then its third item. Then that item’s content.']
     ]],
     ['h','Asking Python to do a job'],
-    ['p','A word followed by round brackets, like <code>print(...)</code> or <code>len(...)</code>, asks Python to do a job with whatever is inside the brackets. That is called a <strong>function</strong> call.'],
-    ['p','Some jobs take named settings, written as <code>name=value</code> inside the brackets. Their order doesn’t matter, because each one carries its own label.'],
+    ['p','A word followed by round brackets, like <code>print(...)</code> or <code>len(...)</code>, asks Python to do a job with whatever is inside the brackets. That is a <strong>function</strong> call. A function is a recipe with a name: you give it things, it gives back a result.'],
+    ['p','Some jobs take named settings, written as <code>name=value</code> inside the brackets. Their order does not matter, because each one carries its own label, like name tags on a table.'],
     ['do','Use named settings',[
       ['code','print("Pune", "Delhi", sep=" and ")\nprint(round(3.14159, ndigits=2))'],
-      ['x','You see <code>Pune and Delhi</code> and then <code>3.14</code>. <code>sep</code> is a named setting of print: what to put between the items. <code>ndigits</code> says how many decimal places to keep.']
+      ['x','You see <code>Pune and Delhi</code> and then <code>3.14</code>. <code>sep</code> is a named setting of print: what to put between the items. <code>ndigits</code> says how many places to keep after the decimal point.']
     ]],
     ['h','A dot reaches inside'],
-    ['p','A dot reaches inside something. <code>response.usage</code> reads as “the usage part of the response”. Dots can be chained, like folders inside folders.'],
+    ['p','A dot reaches inside something, like opening a drawer. <code>response.usage</code> reads as “the usage part of the response”. Dots can be chained, like folders inside folders.'],
     ['p','Text has jobs of its own, reached the same way. <code>city.upper()</code> asks the text in <code>city</code> for a copy in capital letters.'],
     ['do','Reach inside with a dot',[
       ['code','city = "pune"\nprint(city.upper())\nprint(city.replace("p", "P"))'],
       ['x','You see <code>PUNE</code> and then <code>Pune</code>. The part before the dot says whose job it is. The brackets say what to do it with.']
     ]],
     ['h','Now read the real thing'],
-    ['p','Here is the first call you will make in the next chapter. Don’t run it here. Read it with what you now know.'],
+    ['p','Here is the first call you will make in the next chapter. Do not run it here. Read it with what you now know.'],
     ['code','response = client.chat.completions.create(\n    model="meta/llama-3.1-8b-instruct",\n    messages=[{"role": "user", "content": "What is compound interest?"}]\n)\nprint(response.choices[0].message.content)','read'],
     ['l',[
       '<code>response = …</code> gives the answer a name, so the next line can use it.',
-      '<code>client.chat.completions.create(…)</code> asks for a job. The dots reach inside <code>client</code>, your connection to the model, for its “write a chat reply” job.',
-      '<code>model="…"</code> and <code>messages=[…]</code> are named settings: which model to ask, and the conversation so far.',
+      '<code>client.chat.completions.create(…)</code> asks for a job. The dots reach inside <code>client</code> (the messenger that carries your note to the model) for its “write a chat reply” job.',
+      '<code>model="…"</code> and <code>messages=[…]</code> are named settings. They say which model to ask, and what the conversation is so far.',
       'The conversation is a list with one dictionary in it: a single message from the user.',
-      '<code>response.choices[0].message.content</code> reaches inside the answer: its first choice, that choice’s message, and the message’s text.'
+      '<code>response.choices[0].message.content</code> reaches inside the answer. It takes the first choice, then that choice’s message, then the message’s text.'
     ]],
     ['p','That is the whole of it. Every model call in this course has this shape. Only the words inside change.'],
     [
@@ -194,96 +194,96 @@ window.PART1 = [
        rows:2,
        task:'Write, in plain words, what this line would show: <code>print(response.usage.prompt_tokens)</code>',
        ph:'One sentence.',
-       after:'It shows how many tokens of your text the model read. Read it left to right: the response, its usage part, and in that, the count of prompt tokens. You will run exactly this line in Chapter 1.'}
+       after:'It shows how many tokens (small pieces of words) of your text the model read. Read it left to right. First the response. Then its usage part, which is the bill that comes with each reply. Then the count of prompt tokens in it. You will run exactly this line in Chapter 1.'}
     ],
     ['h','Three shapes you will meet later'],
-    ['p','Three more shapes appear from Chapter 2.2 on. You don’t need them today. Seeing them once now means they won’t surprise you later.'],
+    ['p','Three more shapes appear from Chapter 2.2 on. You do not need them today. Seeing them once now means they will not surprise you later.'],
     ['do','A loop, a check and a recipe',[
       ['code','for city in ["Pune", "Delhi"]:\n    print("Checking", city)\n\nscore = 7\nif score >= 8:\n    print("ship it")\nelse:\n    print("not yet")\n\ndef shout(text):\n    return text.upper() + "!"\n\nprint(shout("done"))'],
-      ['x','You see two “Checking” lines, then <code>not yet</code>, then <code>DONE!</code>. A <code>for</code> line repeats the indented lines once for each item. An <code>if</code> line runs its indented lines only when the test is true. A <code>def</code> line names a small recipe you can use again.'],
+      ['x','You see two “Checking” lines, then <code>not yet</code>, then <code>DONE!</code>. A <code>for</code> line is a loop: it repeats the indented lines (lines pushed in from the left) once for each item, like checking every plate. An <code>if</code> line runs its indented lines only when the test is true. A <code>def</code> line gives a small recipe a name, so you can use it again.'],
       ['p','Change <code>score = 7</code> to <code>score = 9</code> and run it again.']
     ]],
-    ['c','The spaces matter','The spaces at the start of a line tell Python which lines belong to a <code>for</code>, an <code>if</code> or a <code>def</code>. If you edit a cell, keep those spaces as they are.'],
+    ['c','The spaces matter','The spaces at the start of a line tell Python which lines belong to a <code>for</code>, an <code>if</code> or a <code>def</code>. It is like the way a list is pushed in under its heading. If you edit a cell, keep those spaces as they are.'],
     ['h','When a cell goes red'],
-    ['p','Sooner or later a cell will show a red box. That is Python saying which line it could not follow, and why. It is normal, and it costs nothing.'],
+    ['p','Sooner or later a cell will show a red box. That is Python telling you which line it could not follow, and why. It is normal, and it costs nothing.'],
     ['l',[
       '<strong>is not defined</strong>: a name was used before a line gave it a value. Run the cells above first, or check the spelling.',
-      '<strong>SyntaxError</strong>: a bracket or a quote is missing. Count them: every opening one needs a closing one.',
+      '<strong>SyntaxError</strong>: a bracket or a quote is missing. The code is not written in a way Python can read. Count them: every opening one needs a closing one.',
       '<strong>IndentationError</strong>: the spaces at the start of a line have moved. Press <strong>Undo edits</strong> to get the original back.'
     ]],
     ['h','What you have learned'],
-    ['p','You can now read the five shapes behind almost every cell in this course: a name for a value, a list, a dictionary, a job with named settings, and a dot that reaches inside.'],
-    ['p','In the next chapter you run the real call. You won’t have to take any line on trust, because you can read each one. To run it you need a model connected, which is the <a href="#/setup">Connect</a> page, once.']
+    ['p','You can now read the five shapes behind almost every cell in this course. A name for a value. A list. A dictionary. A job with named settings. A dot that reaches inside.'],
+    ['p','In the next chapter you run the real call. You will not have to take any line on trust, because you can read each one. To run it, you need a model connected. That happens once, on the <a href="#/setup">Connect</a> page.']
   ]
 },
 {
   id:'ch1', num:1, part:1, curriculumTier:'core', phase:1, prerequisites:['ch05','chpy'], nextUnits:['ch15b','ch2','ch3','ch8'], minutes:45, labs:[],
   title:'Your first API call: how a model answers',
-  concept:'You send a model a message, and it sends text back. In this chapter you’ll make your first API call, read what it cost, and see why a confident answer can still be wrong.',
+  concept:'A model is like a parrot that has read a whole library. You send it a message. It sends words back. In this chapter you send your first message. Sending a message to a model over the internet and getting a reply is called an API call. It is like an SMS that costs a few paise. You will see what it cost. You will also see why an answer that sounds sure can still be wrong.',
   plan:{
-    first:'Press <strong>Run</strong> on the first code block in this chapter before you read anything else. Make a guess first: is the model finding an answer somewhere, or writing one?',
-    build:'Run a short question, then a long piece of text. From each run, save the full response and the usage block.',
-    brk:'Ask for something the model cannot possibly know, and see what comes back anyway.',
-    artifact:'A one-page picture of a request, from start to finish: input, model, output, tokens, cost.',
-    gate:'Explain what happens during a request without once saying “the AI just knows”.'
+    first:'Before you read anything, press <strong>Run</strong> on the first code block (one box of code) in this chapter. Guess first. Does the model (the program that writes replies) find an answer somewhere, or write one itself?',
+    build:'Run a short question. Then run a long piece of text. For each run, save the full response (the reply that comes back) and the usage block (the bill that comes with each reply: bricks in, bricks out).',
+    brk:'Ask the model for something it cannot possibly know. See what comes back anyway.',
+    artifact:'A one-page picture of one request (one message sent to the model), start to finish: input, model, output, tokens, cost.',
+    gate:'Explain what happens in one request. Do not say “the AI just knows” even once.'
   },
   needs:[
-    ['Chapter 0.8','You can read a short piece of Python: a name for a value, a list, a dictionary and a dot. The first model call below uses all four.',0.8],
+    ['Chapter 0.8','You can read a short piece of Python (a language for giving a computer instructions). You know a name for a value (a labelled box), a list (a row of boxes), a dictionary (a phone book) and a dot (it reaches inside a thing). The first model call below uses all four.',0.8],
     ['A model connected on the setup page','The five minutes of setup, done once. Chapter 1 is the first chapter that uses it.','setup'],
   ],
   takeaway:[
-    'Explain why a model can sound certain and still be wrong.',
-    'Read the usage block on a response and say what you are billed for.',
-    'Estimate the cost of a request from its token counts.'
+    'Say why a model can sound sure and still be wrong.',
+    'Read the usage block (the bill that comes with each reply) on a response. Say what you pay for.',
+    'Work out what a request costs, using its token counts (how many small pieces of words went in and out).'
   ],
   story:[
-    ['c','Before you start','The code in this chapter runs right here in the page. Press <strong>Run</strong> under each block, top to bottom. Before your first cell runs, the page does the three warm-up steps from <a href="#/setup">Setup</a> for you: the key, the library and the client. After each idea in this chapter, you’ll find a little code that shows it. Run each block before you read on.'],
-    ['p','In Chapter 0.5 you tried tokens, cost and temperature right here in the browser. In the last chapter you learned to read a few lines of Python. Now you’ll put both to work with a real model. You’ll send it a message, look at what it sends back, and see what that exchange costs.'],
-    ['p','Along the way you’ll learn one thing that matters for every AI product you’ll ever work on: a model can sound completely sure and still be wrong.'],
-    ['h','A model predicts the next piece of text'],
-    ['p','Start with something you already use every day. When you type <em>See you at the</em> on your phone, the keyboard suggests <em>office</em>, <em>station</em> or <em>airport</em>. It makes those suggestions from what people usually type next.'],
-    ['p','A language model does the same thing, only at a much larger scale. It was trained on a huge amount of writing. It builds a reply by predicting one small piece of text at a time. It does not look anything up.'],
-    ['key','A model generates its answer from patterns. It does not look the answer up, so a fluent answer is not necessarily a correct one.'],
-    ['p','Let’s see that for ourselves. You’ll ask a simple question, and then think about where the answer came from.'],
+    ['c','Before you start','The code in this chapter runs right here in the page. Press <strong>Run</strong> under each block, from top to bottom. Before your first block runs, the page does the three warm-up steps from <a href="#/setup">Setup</a> for you. First, the key (a secret password for the model; it also tells the company whom to bill). Second, the library (ready-made code someone else wrote, like a recipe book you borrow). Third, the client (the messenger in your code that carries your note to the model). After each idea, a little code shows it. Run each block before you read on.'],
+    ['p','In Chapter 0.5 you tried tokens, cost and temperature right in the browser. In the last chapter you learned to read a few lines of Python. Now you use both with a real model. You send it a message. You look at what comes back. You see what that costs.'],
+    ['p','Along the way you learn one thing that matters in every AI product you will work on. A model can sound completely sure and still be wrong. It is like a parrot that says a wrong thing in a calm voice.'],
+    ['h','A model guesses the next piece of text'],
+    ['p','Start with something you use every day. Type <em>See you at the</em> on your phone. The keyboard suggests <em>office</em>, <em>station</em> or <em>airport</em>. It picks these from what people usually type next.'],
+    ['p','A language model does the same, at a much bigger size. Think of a parrot that has read a whole library. It learned from a huge amount of writing. That learning is called training. It builds a reply one small piece of text at a time. Each time it guesses the next piece. It does not look anything up.'],
+    ['key','A model makes its answer from patterns. It does not look the answer up, like a book. So a smooth-sounding answer is not always a correct one.'],
+    ['p','Let us see this for ourselves. You ask a simple question. Then you think about where the answer came from.'],
     ['do','Make your first call',[
       ['code','response = client.chat.completions.create(\n    model="meta/llama-3.1-8b-instruct",\n    messages=[{\n        "role": "user",\n        "content": "What is compound interest, in two sentences?"\n    }]\n)\nprint(response.choices[0].message.content)'],
-      ['x','You get a fluent two-sentence answer. Notice that you didn’t give the model anything to search. It wrote the answer from patterns it learned in training.'],
+      ['x','You get a smooth two-sentence answer. You gave the model nothing to search. It wrote the answer from patterns it learned in training.'],
       [
         'snag',
         ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Run the cells above it in order, or press <strong>Restore</strong> in the notebook bar if you ran them before a reload. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
       ]
     ]],
-    ['p','Now a question. What do you think happens when the model has nothing to base its answer on? Make a guess before you read on.'],
+    ['p','Now a question. What happens when the model has nothing to base its answer on? Guess before you read on.'],
     [
       'pred',
       {id:'ch1-guess',
        short:true,
        ph:'One line: what do you think it does?',
-       ask:'You saw this in the book. Now predict what your own model returns when you ask about the refund policy of a company you invent, which it has never seen anything about. What comes back?',
-       reveal:'Usually a confident, well-written, invented policy. The model predicts likely text, and “I have no information about this” is often not the most likely continuation. Saying <em>I don’t know</em> is a behaviour that has to be added and tested, and it does not always hold.',
-       then:'So you cannot judge an answer by how confident it sounds. A correct answer and an invented one read the same way. In Chapter 2 you will make a model invent an answer on purpose.'}
+       ask:'You saw this in the book. Now guess what your own model sends back. Ask it about the refund policy of a company you made up. It has never seen anything about that company. What comes back?',
+       reveal:'Usually a confident, well-written, made-up policy. It is like a parrot saying a made-up thing with a straight face. The model guesses likely text. “I have no information about this” is often not the most likely next piece. Saying <em>I don’t know</em> is a habit that has to be added and tested. It does not always hold.',
+       then:'So you cannot judge an answer by how sure it sounds. A correct answer and a made-up one read the same. In Chapter 2 you make a model invent an answer on purpose.'}
     ],
     ['h','What you send, and what you pay for'],
-    ['p','You’ve seen what comes back. Now let’s look at what goes out. Your request is sent as <strong>JSON</strong>, which is just labels and values written inside curly braces.'],
-    ['p','The request carries a list called <code>messages</code>. Each message has a role: <code>user</code> for you, and <code>assistant</code> for the model’s reply. And here’s the part that touches your budget: you pay for the text you send, and you pay for the text you get back.'],
+    ['p','You have seen what comes back. Now look at what goes out. Your request is sent as <strong>JSON</strong>. That is a form written as labels and values inside curly braces, like a form with fixed boxes.'],
+    ['p','The request carries a list called <code>messages</code>. Each message has a role (who is speaking). <code>user</code> is you. <code>assistant</code> is the model’s reply. The message you send is the prompt, the note you hand the model. Now the part that touches your budget. You pay for the text you send. You also pay for the text you get back, like an SMS billed both ways.'],
     ['do','Read the usage block',[
-      ['p','Every response comes with a block called <code>usage</code>. It tells you how much text went in and out. Add these lines to the same cell:'],
+      ['p','Every response comes with a block called <code>usage</code>. It is the bill for that reply. It tells you how much text went in and how much came out. Add these lines to the same cell:'],
       ['code','print("---")\nprint("tokens read:   ", response.usage.prompt_tokens)\nprint("tokens written:", response.usage.completion_tokens)'],
-      ['x','You’ll see two numbers, such as <code>tokens read: 18</code> and <code>tokens written: 55</code>. These are the counts you’re billed for, and every response includes them.'],
+      ['x','You see two numbers, such as <code>tokens read: 18</code> and <code>tokens written: 55</code>. These are the counts you are billed for. Every response includes them.'],
       [
         'snag',
         ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Run the cells above it in order, or press <strong>Restore</strong> in the notebook bar if you ran them before a reload. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
       ]
     ]],
     ['h','Tokens: the unit you are billed in'],
-    ['p','You may have noticed that those counts are not in words. They are in <strong>tokens</strong>. A token is a small piece of text, about three-quarters of an English word on average.'],
-    ['p','Common words are usually one token. Rare words, and text in other scripts, get split into several. You can see this for yourself with the tool below. It needs no setup.'],
+    ['p','Those counts are not in words. They are in <strong>tokens</strong>. A token is a small piece of text, like one Lego brick of text. On average, it is about three-quarters of an English word. You pay per brick.'],
+    ['p','Common words are usually one brick. Rare words break into several. So does text in other scripts. See it yourself with the tool below. It needs no setup.'],
     ['lab','tokenizer'],
-    ['p','Now let’s watch the token count change in your own notebook. First you’ll send more text, and then you’ll ask for more text back.'],
+    ['p','Now watch the token count change in your own notebook. First you send more text. Then you ask for more text back.'],
     ['do','Watch the token count change',[
-      ['p','Paste a long paragraph from one of your own documents and ask for a summary:'],
+      ['p','Paste a long paragraph from one of your own documents. Ask for a summary (a short version):'],
       ['code','response = client.chat.completions.create(\n    model="meta/llama-3.1-8b-instruct",\n    messages=[{\n        "role": "user",\n        "content": "Summarize this: [paste a paragraph]"\n    }]\n)\nprint("tokens read:", response.usage.prompt_tokens)'],
-      ['x','<code>prompt_tokens</code> rises into the hundreds, because you sent more text. Now try the opposite: ask a short question, but request a long answer, such as “explain in 400 words”. This time <code>completion_tokens</code> rises instead.'],
+      ['x','<code>prompt_tokens</code> (the bricks you send) rises into the hundreds, because you sent more text. Now try the opposite. Ask a short question, but ask for a long answer, such as “explain in 400 words”. This time <code>completion_tokens</code> (the bricks you get back) rises instead.'],
       [
         'snag',
         ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Run the cells above it in order, or press <strong>Restore</strong> in the notebook bar if you ran them before a reload. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
@@ -291,27 +291,27 @@ window.PART1 = [
     ]],
     ['q','I001'],
     ['h','What this means for your product'],
-    ['p','Let’s put the two ideas of this chapter side by side. The first is about trust. The second is about money.'],
-    ['key','A model generates text, so a confident tone is not evidence that it is right. And you pay per token, so every line of instruction you add is charged again on every call.'],
-    ['p','So far you know that a model writes its answers from patterns, and that you pay for every token that goes in and comes out. Next, you’ll meet a third fact: the model does not remember anything between calls. That explains why a long chat costs more than a short one, and how chat “memory” features work.']
+    ['p','Put the two ideas of this chapter side by side. The first is about trust. The second is about money.'],
+    ['key','A model writes text, so a sure tone is no proof that it is right. And you pay per token, so every line of instruction you add is charged again on every call. It is like paying per SMS: a longer message costs more, every time.'],
+    ['p','So far you know two things. A model writes its answers from patterns. You pay for every token that goes in and comes out. Next comes a third fact. The model does not remember anything between calls, like a goldfish. That explains why a long chat costs more than a short one. It also shows how chat “memory” features work.']
   ],
   capstone:{
-    title:'Make your first call and measure what it costs',
-    brief:'Now you move from the browser tools to a real model. In this chapter you learned to read the usage block that comes back with every answer, and to see exactly what you’re billed for. Here you ask a real model to find the personal details in some of the starter sentences, check its answers yourself, and measure the cost.',
-    where:'Your notebook for this chapter, at the end of the page. The numbers you print are what counts. The notes box below is for a short reflection, not a long write-up. Short version for the route, about 20 minutes: steps 1, 2 and 5.',
+    title:'Make your first call and see what it costs',
+    brief:'Now you move from the browser tools to a real model. Every answer comes with a usage block, which is a small bill. You learned to read it. It shows exactly what you pay for. Here you ask a real model to find personal details (like names and ID numbers) in some starter sentences. You check its answers yourself, like a teacher marking homework. Then you work out the cost.',
+    where:'Your notebook (a page where you run code) for this chapter is at the end of the page. The numbers you print are what count. The notes box below is for a short thought, not a long write-up. Short version for the route, about 20 minutes: steps 1, 2 and 5.',
     steps:[
-      'In your notebook for this chapter, send starter sentence 7 (the one with Amit Sharma, the PAN and the HDFC account) to the model with the instruction: “List every piece of personal information in this message.”',
-      'Print the whole answer and the usage block. Write down the prompt_tokens and the completion_tokens.',
-      'Check the answer by hand. List what the model found correctly, what it missed, and anything it listed that is not personal. Don’t trust it just because it sounds sure.',
-      'Repeat with starter sentences 4 and 9, so that you have three runs in total. Starter sentence 9 contains nothing personal, so a good answer says so. Average the token counts of the three runs.',
-      'Look up your provider’s price per million tokens and work out the cost of one check.',
-      'Add a paragraph of extra instructions to the prompt, for example “Answer as a table with the columns Item and Type”, and run starter sentence 7 again. Note how much that paragraph adds to the cost of every call, and what it would add to a thousand calls.'
+      'In your notebook for this chapter, send starter sentence 7 to the model. It is the one with Amit Sharma, the PAN and the HDFC account. Give this instruction: “List every piece of personal information in this message.”',
+      'Print the whole answer and the usage block. Write down the prompt_tokens (bricks you sent) and the completion_tokens (bricks you got back).',
+      'Check the answer by hand, line by line. Write what the model found correctly. Write what it missed. Write anything it listed that is not personal. Do not trust it only because it sounds sure.',
+      'Repeat with starter sentences 4 and 9. Now you have three runs in all. Starter sentence 9 has nothing personal in it, so a good answer says so. Add up the token counts of the three runs and divide by three. That is the average.',
+      'Look up your provider’s price per million tokens. A provider is the company whose model you use. Work out the cost of one check.',
+      'Add a paragraph of extra instructions to the prompt (the note you hand the model), for example “Answer as a table with the columns Item and Type”. Run starter sentence 7 again. Note how much that paragraph adds to the cost of every call. Then note what it adds over a thousand calls.'
     ],
     done:[
       'Three runs on real starter sentences, with the token counts printed and averaged.',
-      'Your hand-check of each answer: what it found, what it missed and what it listed wrongly.',
-      'The cost of one check, calculated from your own numbers.',
-      'The extra cost of one added paragraph at a thousand calls.'
+      'Your hand-check of each answer: what the model found, what it missed and what it listed wrongly.',
+      'The cost of one check, worked out from your own numbers.',
+      'The extra cost of one added paragraph over a thousand calls.'
     ]
   }
 },
@@ -660,90 +660,90 @@ window.PART1 = [
      Three new terms. The whole chapter is one hands-on loop. */
   id:'ch22', num:2.2, part:1, curriculumTier:'core', phase:1, prerequisites:['ch21','ch2'], nextUnits:['ch23','ch24'], minutes:25, labs:[],
   title:'Testing prompts: build a small test set',
-  concept:'Reading a few outputs is not a reliable way to choose between prompts. In this chapter you’ll build a ten-row test set from real inputs, score each prompt version against it, and change one thing at a time.',
+  concept:'Reading a few answers is a weak way to pick the better prompt (the note you hand the model). So you make a test: ten real inputs, like a teacher’s answer key. You score each prompt version against it. You change one thing at a time.',
   needs:[
-    ['Four prompt techniques','You have four versions of one prompt, and no way yet to choose between them.',2.1],
-    ['A confident answer is not evidence','Fluent text is not proof of a correct answer.',2],
-    ['A notebook and a key','You’ll run one prompt many times.','setup']
+    ['Four ways to write a prompt','You have four versions of one prompt. You have no way yet to pick the best one.',2.1],
+    ['A sure-sounding answer is not proof','Smooth words do not prove the answer is right. The parrot sounds sure even when it is wrong.',2],
+    ['A notebook and a key','You will run one prompt many times.','setup']
   ],
   takeaway:[
-    'Build a small test set for a prompt in under half an hour, from real inputs.',
-    'Change one thing at a time and measure whether it helped.',
-    'Explain why a prompt that looked better in a demo often is not.'
+    'Build a small test set (a short list of questions with known good answers) for a prompt, from real inputs, in under half an hour.',
+    'Change one thing at a time. Then measure: did it help?',
+    'Say why a prompt that looked better in a demo often is not better.'
   ],
   story:[
-    ['c','Before you start','Bring the four prompt versions from the last chapter. They are still in your notebook session, or press <strong>Restore</strong> after a reload. You’ll find out which one is actually better, and it may not be the one that felt better. No document you can use? Use the text of the Digital Personal Data Protection Act, 2023. It is public, and it is full of rules with exceptions.'],
-    ['p','At the end of the last chapter you had four versions of a prompt and a feeling about which was best. This chapter turns that feeling into something you can check. You’ll build a small test set, score every version against it, and then improve the best one carefully.'],
-    ['h','Why reading a few outputs misleads you'],
-    ['p','First, let’s see the problem for yourself. You’ll run one prompt on the same input several times and look at what comes back.'],
+    ['c','Before you start','Bring the four prompt versions from the last chapter. They are still in your notebook session. After a page reload, press <strong>Restore</strong>. You will find out which one is really better. It may not be the one that felt better. No document of your own? Use the text of the Digital Personal Data Protection Act, 2023. It is public, and full of rules with exceptions.'],
+    ['p','Last chapter ended with four versions of a prompt. You had a feeling about which was best. Now you turn that feeling into something you can check. You build a small test set. You score every version against it. Then you improve the best one with care.'],
+    ['h','Why a few answers can fool you'],
+    ['p','First, see the problem yourself. Run one prompt on the same input a few times. Look at what comes back each time.'],
     ['do','Run one prompt five times',[
       ['p','First run this starter cell. It sets up the helper and the working values that the cells in this chapter use. Change them later if you like.'],
       ['code','MODEL = "meta/llama-3.1-8b-instruct"\n\ndef ask(prompt, temperature=0):\n    r = client.chat.completions.create(\n        model=MODEL, temperature=temperature,\n        messages=[{"role": "user", "content": prompt}])\n    return r.choices[0].message.content\n\n# Starter values from the starter sentences. Replace them with your own.\nsample = "Hi, I am Rahul Verma. My mobile number is 9876543210 and my email is rahul.verma@example.com."\nversions = {\n    "plain": "List the personal details in this message.\\n\\n{text}",\n    "job": ("You check messages before they are sent to a chatbot. "\n            "List every personal detail as kind: value, one per line. "\n            "If there is none, reply NONE.\\n\\n{text}"),\n}\nbest_prompt = versions["job"]\ntestset = [\n    {"id": 1, "input": sample},\n    {"id": 3, "input": "mera naam Rishabh Jain hai, mera mobile number 9876543210 hai"},\n    {"id": 9, "input": "What documents do I need to renew my driving licence?"},\n]'],
-      ['p','Take your best prompt from the last chapter and run it on the <em>same input</em> five times. Print all five outputs.'],
+      ['p','Take your best prompt from the last chapter. Run it on the <em>same input</em> five times. Print all five answers.'],
       ['code','for i in range(5):\n    out = ask(best_prompt.format(text=sample))\n    print(i, "|", out[:120])'],
-      ['x','The five outputs differ. The wording changes, sometimes the emphasis changes, and occasionally the answer itself is different. If one prompt varies this much, then comparing two prompts on one output each tells you very little.'],
-      ['key','Each output is one sample from a range of possible outputs. Judging a prompt from one sample is not reliable.']
+      ['x','The five answers differ. The words change. Sometimes the focus changes. Now and then the answer itself changes. It is like asking five people the same question. So if you judge two prompts by one answer each, you learn very little.'],
+      ['key','Each answer is one pick from many possible answers. Judging a prompt from one pick is not safe.']
     ]],
-    ['p','The fix is a small test set. It’s a handful of real inputs, and for each one, a note on what a good answer looks like. People in AI teams call running a set like this an <strong>eval</strong>, short for evaluation. Chapter 6 builds a bigger version for retrieval. This one takes about twenty minutes.'],
+    ['p','The fix is a small test set. It is a handful of real inputs. For each one, you write what a good answer looks like. It is the teacher’s answer key, written before the exam. People in AI teams call running a set like this an <strong>eval</strong>, short for evaluation. Chapter 6 builds a bigger one. This one takes about twenty minutes.'],
     ['h','Build the test set'],
-    ['p','A test set doesn’t need to be fancy. Ten rows are enough to start. What matters is that the inputs are real and that you write down what “good” means before you look at the results.'],
-    ['c','You already know this','A test set is the user acceptance cases you wrote before go-live. The difference is that you rerun it every time the prompt or the model changes, not once before sign-off.'],
+    ['p','A test set does not need to be fancy. Ten rows are enough to start. Two things matter. The inputs must be real. And you write what “good” means before you see any results.'],
+    ['c','You already know this','A test set is the user acceptance cases you wrote before go-live. The only change: you run it again every time the prompt or the model changes, not just once before sign-off.'],
     ['do','Build a ten-row test set',[
-      ['p','Collect ten real inputs for your task, including the two messiest you can find. Don’t invent them. For each one, write down the two or three things a good answer must contain. You don’t need the exact words. Aim for this mix:'],
+      ['p','Collect ten real inputs for your task. Include the two messiest ones you can find. Do not make them up. For each one, write the two or three things a good answer must contain. You do not need the exact words. Aim for this mix:'],
       [
         'n',
-        ['Six ordinary cases, chosen without looking at how the prompt does on them.','Two awkward ones, with missing information, an unusual format or the wrong language.','Two that should be refused or escalated rather than answered.']
+        ['Six ordinary cases. Pick them before you see how the prompt does on them.','Two awkward ones. They may miss some information, use an odd format, or be in the wrong language.','Two that the model should refuse, or pass to a person, instead of answering.']
       ],
-      ['p','No inputs you can use? Take ten of the starter sentences from the project page instead, and the capstone is then your chapter work.'],
-      ['x','You now have a ten-row table: each input, and what a good answer must contain. This table is the most useful thing you’ll make in this chapter. The rest of the chapter runs prompts against it.']
+      ['p','No inputs you can use? Take ten of the starter sentences from the project page instead. Then the capstone (your chapter project) is also your chapter work.'],
+      ['x','You now have a ten-row table. Each row has an input and what a good answer must contain. This table is the most useful thing you make in this chapter. The rest of the chapter runs prompts against it.']
     ]],
-    ['p','With the table ready, you can finally compare your four versions fairly.'],
+    ['p','The table is ready. Now you can compare your four versions fairly.'],
     ['do','Score all four versions',[
-      ['p','Run each of your four prompt versions on all ten inputs. Mark each output pass or fail against what you wrote down. That’s forty quick judgements by hand.'],
+      ['p','Run each of your four prompt versions on all ten inputs. Mark each answer pass or fail against what you wrote down. That is forty quick checks by hand. It is like marking forty answer sheets.'],
       ['code','for name, prompt in versions.items():\n    for row in testset:\n        out = ask(prompt.format(text=row["input"]))\n        print(name, "|", row["id"], "|", out[:90])'],
-      ['x','The ranking is often not the one you expected, and the gap between best and worst is often smaller than it felt. The versions differ most on the two refusal rows, and those are the cases people rarely show in a demo.']
+      ['x','The order is often not what you expected. The gap between best and worst is often smaller than it felt. The versions differ most on the two refusal rows. Those are the cases people rarely show in a demo.']
     ]],
     ['h','Change one thing at a time'],
-    ['p','Once you have a best version, you’ll want to improve it. Here the temptation is to fix everything at once. Before you do, think about what that would tell you.'],
+    ['p','Once you have a best version, you will want to make it better. The pull is to fix everything at once. Stop and think about what you would learn from that.'],
     [
       'pred',
       {id:'ch22-one',
        short:true,
        ph:'What goes wrong',
-       ask:'Make a prediction. You change the job description, add a third example and drop a prohibition, all at once. The score improves. What have you learned?',
-       reveal:'Only that the combination is better. You don’t know which change helped. One of the three may even be making things worse while the other two make up for it.',
-       then:'So change one thing, rerun and record the score. It’s slower, but it’s the only way to know what helped. When someone says they “tuned the prompt”, ask how many things they changed at once.'}
+       ask:'Make a guess. In one go, you change the job description, add a third example, and drop one “never do this” rule. The score goes up. What have you learned?',
+       reveal:'Only that the whole bundle is better. You do not know which change helped. One of the three may even hurt, while the other two cover for it. It is like taking three medicines at once and not knowing which one worked.',
+       then:'So change one thing. Run again. Write down the score. It is slower, but it is the only way to know what helped. When someone says they “tuned the prompt”, ask how many things they changed at once.'}
     ],
-    ['do','Make one change and rescore',[
-      ['p','Take the best version. Make exactly one change, such as swapping one example for a better one. Rerun all ten inputs and record the new score next to the old one.'],
-      ['x','The score moved, or it didn’t. Both are useful results. If a change doesn’t move the score on ten real inputs, you can remove it, and that makes the prompt cheaper on every call.'],
-      ['c','Tip','Keep the table. When your provider updates the model, rerun it. You’ll find out in an afternoon whether anything broke, instead of hearing about it from a customer.']
+    ['do','Make one change and score again',[
+      ['p','Take the best version. Make exactly one change, such as swapping one example for a better one. Run all ten inputs again. Write the new score next to the old one.'],
+      ['x','The score moved, or it did not. Both are useful. If a change does not move the score on ten real inputs, you can remove it. That makes the prompt cheaper every time you send a message to the model.'],
+      ['c','Tip','Keep the table. When your provider (the company that runs the model) updates the model, run it again. In one afternoon you will know if anything broke. You will not have to hear it from a customer.']
     ]],
     ['q','I015','I020'],
     ['h','Summary'],
-    ['p','You now have a prompt chosen on evidence, and a way to recheck it whenever something changes. Many teams that ship AI features don’t have this.'],
-    ['p','There is one limit, though. Everything so far works on text you paste into the prompt. Sometimes the answer depends on a document that’s too big to paste, such as a policy, a contract or a handbook. Then none of these techniques help, because the model never sees the document. Chapter 3 starts on that problem.']
+    ['p','You now have a prompt chosen on evidence. You also have a way to check it again whenever something changes. Many teams that ship AI features do not have this.'],
+    ['p','There is one limit. Everything so far works on text you paste into the prompt. Sometimes the answer depends on a document too big to paste, like a policy, a contract or a handbook. Then these tricks do not help, because the model never sees the document. Chapter 3 starts on that problem.']
   ],
   capstone:{
     title:'Build the answer key (version 1)',
-    brief:'Everything in this project is measured against one test file, the answer key. In this chapter you learned to build a small test set from real inputs, to change one thing at a time, and to score each change. Now you’ll build version 1 of the answer key from the ten starter sentences, and use it to choose between versions of your prompt.',
-    where:'Your notebook for this chapter, for scoring. The answer key itself is a spreadsheet that you save in your repository. Short version for the route, about 20 minutes: steps 1, 2, 4 and 5.',
+    brief:'Your whole project is marked against one test file. That file is the answer key. In this chapter you learned three things: build a small test set from real inputs, change one thing at a time, and score each change. Now you build version 1 of the answer key from the ten starter sentences. Then you use it to pick between versions of your prompt.',
+    where:'Use your notebook (the page where you run code in boxes) for this chapter, for scoring. The answer key itself is a spreadsheet. You save it in your repository (an online folder that remembers every change). Short version for the route, about 20 minutes: steps 1, 2, 4 and 5.',
     steps:[
-      'Open the project page and copy the ten starter sentences into a spreadsheet. Add the columns described under “The answer key”: number, kind of writing, sentence, what should be found, what should happen, and a note.',
-      'For each row, write by hand what should be found (the kind and the exact words) and what should happen to it: remove it, mask it, or leave the sentence alone. Starter sentence 9 should say “nothing found”.',
-      'Add two more rows of your own that are messy. For example, a sentence with a spelling mistake in the word “Aadhaar”, and a sentence in which a number is split by spaces. Now you have twelve rows.',
-      'Save the spreadsheet as <code>evals/answer-key-v1.csv</code> in your repository.',
-      'Run your improved prompt from Chapter 2.1 on all twelve rows. Give one point for each row where the tool found everything and nothing extra. Write the score out of twelve. This is your baseline.',
-      'Make three changes to the prompt, one at a time, and score again after each. Write all four scores in a small table.',
-      'Find one change that made no difference and remove it. Write how much that saves per call. Then run the best prompt with a cheaper, smaller model and note which rows now fail.',
-      'Write half a page for a colleague: your prompt, its score, and the two rows it still gets wrong.',
+      'Open the project page. Copy the ten starter sentences into a spreadsheet. Add the columns listed under “The answer key”: number, kind of writing, sentence, what should be found, what should happen, and a note.',
+      'For each row, write by hand what should be found: the kind, and the exact words. Then write what should happen to it: remove it, hide it, or leave the sentence alone. Starter sentence 9 should say “nothing found”.',
+      'Add two more messy rows of your own. For example, a sentence with a spelling mistake in the word “Aadhaar”. And a sentence where a number is split by spaces. Now you have twelve rows.',
+      'Save the spreadsheet as <code>evals/answer-key-v1.csv</code> in your repository. A CSV file is a spreadsheet saved as plain text, one row per line.',
+      'Run your improved prompt from Chapter 2.1 on all twelve rows. Give one point for each row where the tool found everything and nothing extra. Write the score out of twelve. This is your baseline (the starting score to beat).',
+      'Change the prompt three times, one change at a time. Score again after each change. Write all four scores in a small table.',
+      'Find one change that made no difference. Remove it. Write how much money that saves each time you send a message to the model (each call). Then run the best prompt on a cheaper, smaller model. Note which rows now fail.',
+      'Write half a page for a colleague. Say what your prompt is, what score it gets, and which two rows it still gets wrong.',
       'Save the four prompts and their four scores as <code>docs/prompt-and-scores.md</code> in your repository.'
     ],
     done:[
-      'The answer key, version 1, with twelve labelled rows, saved in your repository.',
+      'The answer key, version 1: twelve rows with labels, saved in your repository.',
       'A table with the baseline score and the three changes.',
-      'The result with a cheaper model, and the rows that failed.',
-      'A half-page note with the prompt, the score and the two rows it still gets wrong.'
+      'The result from a cheaper model, and the rows that failed.',
+      'A half-page note with your prompt, its score, and the two rows it still gets wrong.'
     ]
   }
 },
@@ -995,221 +995,221 @@ window.PART1 = [
 {
   id:'ch3', num:3, part:1, curriculumTier:'core', phase:1, prerequisites:['ch1','ch2','ch25'], nextUnits:['ch4','ch7','ch10','ch13'], minutes:40, labs:['chunker'],
   title:'Chunking: splitting documents into pieces',
-  concept:'Models can only read a limited amount of text at once, so long documents are split into smaller pieces called chunks. In this chapter you’ll split one document three ways by hand and see what each split loses.',
+  concept:'A model can read only a small amount of text at one time, like a desk that holds only a few pages. So a long document is cut into small pieces called chunks (like index cards). Today you cut one document three ways by hand. You will see what each cut loses.',
   plan:{
-    first:"Pick a document of five to fifteen pages and write five questions. Cut it into three giant pieces and predict what retrieval will do.",
-    build:"Re-cut into fifteen or twenty fixed-size pieces, then into human-sized ones. Record completeness and boundary damage each time.",
-    brk:"Find a rule severed from its exception, or a procedure severed from its warning.",
-    artifact:"A three-round chunking experiment sheet, and the rule you derived from it.",
-    gate:"Defend your chunking strategy from the evidence, not from a default."
+    first:'Pick a document of five to fifteen pages. Write five questions about it. Cut it into three giant pieces. Guess which piece will hold each answer.',
+    build:'Cut it again into fifteen or twenty equal pieces. Then cut it into pieces a person would choose. Each time, note two things: is the answer whole, and did a cut tear something apart?',
+    brk:'Find a rule that got cut away from its exception. Or find steps that got cut away from their warning.',
+    artifact:'A sheet with your three rounds of cutting, and the rule you learned from them.',
+    gate:'Explain why you chose your way of cutting, using what you saw, not a ready-made setting.'
   },
   needs:[
-    ['There is a size limit','Everything sent in one call has to fit in the context window.',1],
-    ['You pay for everything you send','You pay per token, on every call.',1],
-    ['Models invent answers when they have no evidence','So the fix is to give them real evidence.',2]
+    ['Models have a size limit','Everything you send in one call must fit on the model\'s desk (the context window).',1],
+    ['You pay for everything you send','You pay for every token (every small brick of text) on every call.',1],
+    ['Models make up answers when they have no proof in front of them','So the fix is to put the real pages in front of them.',2]
   ],
   takeaway:[
     'Give the two reasons you cannot send a model every document you have.',
-    'Explain what is lost when a document is split into chunks, with a concrete example.',
-    'Choose a chunking approach by naming the failure you accept, since no chunk size is right for every document.'
+    'Say what gets lost when you cut a document into chunks. Give one real example.',
+    'Pick how to cut by naming the failure you accept. No piece size is right for every document.'
   ],
   capstone:{
     title:'Decide how to cut long text without splitting an ID in half',
-    brief:'People will paste long messages and whole documents into the tool. A long text has to be cut into pieces before it is checked. A bad cut can split a number or a name in the middle, so that no piece contains the whole thing. In this chapter you learned why text must be cut, what a cut loses, and that no piece size suits every document. Here you work out a cutting rule for the project, by hand.',
-    where:'Written, no code: pen, paper and scissors, as in the chapter. Write the rule in the notes box below. Short version for the route, about 20 minutes: steps 1, 2 and 3.',
+    brief:'People will paste long messages and whole documents into the tool. Before the tool checks a long text, it must cut it into pieces. A bad cut can break a number or a name in the middle. Then no piece holds the whole thing. You learned why we cut, what a cut loses, and that no piece size fits every document. Now you will make a cutting rule for the project, by hand.',
+    where:'You write by hand. No code. You need pen, paper and scissors, just like in the chapter. Write your rule in the notes box below. Short version for the route, about 20 minutes: steps 1, 2 and 3.',
     steps:[
-      'Write a realistic long message of about 15 lines, such as a customer complaint. Include a name, an address, an Aadhaar number written in groups of four (4321 5678 9012) and a mobile number, spread over different lines. Use made-up details. Print it.',
-      'Cut it into pieces in three ways: every five lines, at every full stop, and at every blank line or paragraph. Use scissors.',
-      'For each way of cutting, check every piece. Is any ID or name split across two pieces, so that neither piece contains the whole thing? Write down which cuts break what.',
-      'Try one more way: pieces that overlap, so that the last two lines of each piece are repeated at the start of the next one. Does it fix the broken IDs? What does it cost?',
-      'Write your cutting rule in three lines that someone else could follow on thousands of messages without asking you: the size of each piece, where a cut is allowed, and how much overlap to use.',
-      'Test the rule on the messiest message you can make, for example one with a number broken across two lines. Say what still goes wrong.'
+      'Write a long message of about 15 lines, like a customer complaint. Put in a name, an address, an Aadhaar number in groups of four (4321 5678 9012) and a mobile number. Spread them over different lines. Use made-up details. Print it.',
+      'Cut it three ways: every five lines, at every full stop, and at every blank line (a new paragraph). Use scissors.',
+      'After each way of cutting, look at every piece. Did an ID or a name get torn across two pieces, so neither piece has the whole thing? Write down which cut broke what.',
+      'Try one more way: overlapping pieces. Repeat the last two lines of each piece at the start of the next one. Does this mend the broken IDs? What does it cost?',
+      'Write your cutting rule in three lines. Someone else should be able to use it on thousands of messages without asking you. Say: how big each piece is, where a cut is allowed, and how much overlap to keep.',
+      'Test your rule on the messiest message you can make. For example, a number broken across two lines. Say what still goes wrong.'
     ],
     done:[
-      'Your long message, printed and cut in three ways.',
-      'A note on which cuts broke which details.',
-      'The overlap experiment and what it costs.',
+      'Your long message, printed and cut three ways.',
+      'A note on which cut broke which detail.',
+      'The overlap test, and what it costs.',
       'A three-line cutting rule, and the one case it still gets wrong.'
     ]
   },
   story:[
-    ['c','Before you start','There’s no code in this chapter. Print one real document you know well, such as a policy, a contract or a procedure of five to fifteen pages. Get a pair of scissors and a pen too. You’ll do every step by hand. No document you can use? Print up to fifteen pages of the Digital Personal Data Protection Act, 2023. It is public and full of rules with exceptions. Later chapters can reuse it.'],
-    ['p','So far, every document you gave a model was short enough to paste into the request. Real work isn’t like that. Companies have handbooks, policies and years of contracts. In this chapter you’ll see why we can’t just send all of that to a model, and what happens when we cut it into pieces instead.'],
-    ['p','It’s a quick, hands-on chapter, and it sets up everything that follows.'],
+    ['c','Before you start','This chapter has no code. Print one real document you know well, like a policy, a contract or a set of steps, five to fifteen pages long. Keep scissors and a pen close. You do every step by hand. No document to use? Print up to fifteen pages of the Digital Personal Data Protection Act, 2023. It is public and full of rules with exceptions. Later chapters can use it again.'],
+    ['p','Until now, every document you gave a model was short. You could paste it right into your message. Real work is not like that. Companies have handbooks, policies and years of contracts. Today you see why you cannot hand all of that to a model. Then you see what happens when you cut it into pieces.'],
+    ['p','This is a short chapter where you work with your hands. Everything after it builds on it.'],
     ['do','Write your test questions first',[
-      ['p','Before you cut anything, write five specific questions a real user would ask about this document. Write real questions, the kind someone types when they’re in a hurry, not topics.'],
-      ['x','Now you have five questions on paper. You’ll score every experiment in this chapter against them. Write them before cutting, so you can’t choose questions that suit your cuts.']
+      ['p','Do this before you cut anything. Write five questions a real user would ask about this document. Write them like someone in a hurry types them, not as topics.'],
+      ['x','You now have five questions on paper. You will check every cut in this chapter against them. You wrote them first, so you cannot pick questions that make your cuts look good.']
     ]],
     ['h','Why you cannot send everything'],
-    ['p','Suppose you want a model to answer questions about your company’s documents. The obvious approach is to send it the documents. That fails for two reasons you already know.'],
-    ['p','First, they won’t fit, because each request has a size limit. Second, you pay for every token you send, on every question. Even when a large document would fit, sending your whole library to answer one question costs far too much.'],
+    ['p','Say you want a model to answer questions about your company\'s documents. The easy idea is to send it all the documents, like handing a student the whole cupboard of files. This fails for two reasons you already know.'],
+    ['p','First, it will not fit. Every request has a size limit, like a desk that holds only so many pages. Second, you pay for every token you send, on every question. Even if a big document fits, sending your whole library for one question costs far too much.'],
     ['q','I021'],
-    ['p','So the standard approach is to split documents into pieces, store the pieces, and send only the few that look relevant to each question. The pieces are called <strong>chunks</strong>, and splitting them is called <strong>chunking</strong>.'],
-    ['p','The hard part is deciding where to split. Try splitting a document three ways in this tool, and see what breaks.'],
+    ['p','So the usual way is this. Cut each document into pieces. Keep the pieces. For each question, send only the few that look right. It is like giving a student three index cards, not the whole book. The pieces are called <strong>chunks</strong>. Cutting is called <strong>chunking</strong>.'],
+    ['p','The hard part is deciding where to cut. Try three ways of cutting in this tool, and watch what breaks.'],
     ['lab','chunker'],
-    ['p','Now let’s do the same thing by hand, on your own document, in three rounds.'],
+    ['p','Now do the same by hand, on your own document, in three rounds.'],
     ['h','Round 1: three large chunks'],
     ['do','Cut the document into thirds',[
-      ['p','Cut your document into three rough pieces. Ignore its structure. Then take your five questions one at a time and find which piece holds each answer.'],
-      ['x','Every answer is complete. But to deliver a two-line answer, you send a third of the document. Note roughly how much irrelevant text comes with each answer. You would pay for that text on every question.']
+      ['p','Cut your document into three rough pieces. Do not care about headings or topics. Then take your five questions, one at a time. Find which piece holds each answer.'],
+      ['x','Every answer is whole. But for a two-line answer, you send a third of the document. Note how much extra text comes along with each answer. You pay for that extra text on every question.']
     ]],
     ['h','Round 2: twenty small chunks'],
-    ['p','Big pieces are wasteful, so the next thing to try is small ones.'],
+    ['p','Big pieces waste money, so try small ones next.'],
     ['do','Cut the document into small pieces',[
-      ['p','Cut a fresh copy into fifteen or twenty pieces, roughly every 150 words, even if that splits a sentence. Run your five questions again, and look for two specific problems.'],
+      ['p','Take a fresh copy. Cut it into fifteen or twenty pieces, about every 150 words, even if a cut lands in the middle of a sentence. Ask your five questions again. Look for two problems.'],
       [
         'l',
-        ['<strong>A split answer:</strong> the answer is now spread across two pieces, such as a rule on one card and its exception on the next.','<strong>An orphan:</strong> a piece that means nothing on its own, such as “The aforesaid amount shall lapse.” Which amount?']
+        ['<strong>A split answer:</strong> the answer is now in two pieces. For example, a rule is on one card and its exception is on the next.','<strong>An orphan:</strong> a piece that makes no sense alone, like “The aforesaid amount shall lapse.” Which amount?']
       ],
-      ['x','You’ll find both problems in a document you chose yourself. Keep these cards. Chapters 4 and 5 use these exact pieces.']
+      ['x','You will find both problems in a document you picked yourself. Keep these cards. Chapters 4 and 5 use these exact pieces.']
     ]],
     [
       'pred',
       {id:'ch3-cut',
        rows:3,
        ph:'Your rule, and what it will get wrong',
-       ask:'Take a document you know well, such as a policy, a contract or a spec. Write the rule you would give someone for splitting it. Then name one question your rule will answer badly.',
-       reveal:'Most sensible rules, such as splitting at paragraphs, headings or numbered clauses, fail in the same place: a rule and its exception end up in different pieces. If only the rule is retrieved, the answer is confident and incomplete, which is worse than no answer.',
-       then:'You cannot find a rule with no failures. Instead, know which questions your rule handles badly, and test those questions on purpose.'}
+       ask:'Think of a document you know well, like a policy, a contract or a spec. Write the rule you would give a helper for cutting it. Then name one question your rule will answer badly.',
+       reveal:'Most sensible rules fail in the same place. Think of cutting at paragraphs, headings or numbered clauses. A rule and its exception land in different pieces. If only the rule is picked, the answer sounds sure but is incomplete. That is worse than no answer.',
+       then:'No rule is free of failures. So know which questions your rule handles badly, and test those questions on purpose.'}
     ],
     ['q','I022','I023'],
     ['h','Orphaned chunks lose their meaning'],
-    ['p','The second problem is harder to spot. Some pieces stop making sense once they are cut out. Take a chunk that starts <em>the aforesaid amount shall be disbursed within sixty days</em>. On its own, it’s useless. Which amount? Paid to whom? The answer is in the previous piece.'],
-    ['p','Documents are full of these references, especially legal text. But so is anything that says “the above”, “this scheme” or “such cases”. A person reading the document has the previous paragraph in mind. A chunk doesn’t.'],
+    ['p','The second problem is harder to see. Some pieces stop making sense once you cut them out. Take a chunk that starts <em>the aforesaid amount shall be disbursed within sixty days</em>. Alone, it is useless. Which amount? Paid to whom? The answer sits in the piece before it.'],
+    ['p','Documents are full of such pointers, especially legal text. Words like “the above”, “this scheme” or “such cases” do the same. A person reading remembers the paragraph before. A chunk does not remember anything.'],
     ['h','Round 3: cut along the structure'],
-    ['p','You’ve now seen what goes wrong with cuts that ignore the document. So for the last round, cut the way a sensible person would.'],
+    ['p','You have seen what goes wrong when cuts ignore the document. So in the last round, cut the way a sensible person would.'],
     ['do','Cut the way you think it should be cut',[
-      ['p','Cut a fresh copy the way you think it should be cut. Don’t overthink it. Then look at what you did.'],
-      ['x','You probably followed headings and clause numbers, and made pieces of very different sizes that each make sense on their own. Write one sentence describing the rule you used. This is <strong>structure-aware chunking</strong>, which follows the document’s layout. Semantic chunking is a different approach, which splits text where the topic changes.']
+      ['p','Take a fresh copy. Cut it the way you think is right. Do not overthink. Then look at what you did.'],
+      ['x','You probably followed headings and clause numbers. Your pieces have very different sizes, but each one makes sense alone. Write one sentence about the rule you used. This is <strong>structure-aware chunking</strong>: cutting where the document\'s own layout says to. There is another way, called semantic chunking: cutting where the topic changes.']
     ]],
-    ['key','No chunk size is correct for every document. Each size fails in a different way, so choose based on what your documents look like and what your users ask.'],
-    ['p','In a design review, say which failure you chose and why. People often want a single correct chunk size, and there isn’t one.'],
+    ['key','No chunk size is right for every document. Each size fails in its own way. So choose by looking at your documents and at what your users ask.'],
+    ['p','In a design review, say which failure you picked and why. People keep asking for the one right chunk size. There is none.'],
     [
       'try',
       {id:'ch3-scissors',
        mins:4,
        min:50,
        rows:3,
-       task:'State your trade-off. For your document: what size are you cutting at, what does that gain, and what does it lose? Write the sentence you would say in a meeting.',
+       task:'Say your trade-off (what you give up to get something). For your document: how big are your pieces, what do you gain, and what do you lose? Write the sentence you would say in a meeting.',
        ph:'We are cutting at … which gains … and loses …',
-       after:'A strong answer names a real loss, specific to your documents. For example: “Clause by clause, with a couple of sentences of overlap. That gives precise answers to questions about one clause, but loses answers that span a clause and its exception, so we test those on purpose.” If you cannot name the loss, you have accepted a default rather than made a choice.'}
+       after:'A strong answer names a real loss for your documents. For example: “Clause by clause, with a couple of sentences of overlap. That gives exact answers to questions about one clause. But it loses answers that need a clause and its exception together, so we test those on purpose.” If you cannot name the loss, you took a ready-made setting. You did not choose.'}
     ],
     ['q','I024'],
     ['h','Summary'],
-    ['p','You can’t send a model everything, because of the size limit and the cost. So documents are cut into chunks. Every way of cutting loses something, whether it’s an answer split in two or a piece that means nothing alone. That’s why you choose a chunking approach by naming the failure you accept.'],
-    ['p','Next, in Chapter 4, you’ll look at the simplest way to find the right chunk for a question, which is matching keywords, and see where it fails.']
+    ['p','You cannot send a model everything, because of the size limit and the cost. So you cut documents into chunks, like index cards from a book. Every way of cutting loses something. An answer may split in two, or a piece may mean nothing alone. So choose how to cut by naming the failure you accept.'],
+    ['p','Next, in Chapter 4, you will look at the simplest way to find the right chunk for a question: matching the same words. You will see where it fails.']
   ]
 },
 {
   id:'ch4', num:4, part:1, curriculumTier:'core', phase:1, prerequisites:['ch3'], nextUnits:['ch5','ch6'], minutes:35, labs:[],
   title:'Keyword search: matching words, and where it fails',
-  concept:'The first way to find the right chunk is to match the words in the question. You’ll run keyword search by hand on your own chunks, see exactly where it fails, and meet the one kind of question where it wins.',
+  concept:'The first way to find the right chunk is to match the words in the question, like Ctrl+F. You will do this by hand on your own chunks. You will see exactly where it fails. And you will meet the one kind of question where it wins.',
   plan:{
-    first:"Using only Ctrl-F and your own eyes, rank your Chapter 3 questions against your chunks. Don’t use common sense. Let the word matches decide.",
-    build:"Add four new questions: one that uses a synonym, one in plain everyday language, one in a second language, and one that contains an exact identifier.",
-    brk:"Ask something the document truly cannot answer, and find the chunk that still comes out on top.",
-    artifact:"A map of where your search went wrong.",
+    first:'Use only Ctrl-F and your eyes. Rank the cards for your Chapter 3 questions. Do not use common sense. Let the word matches decide, like a machine would.',
+    build:'Add four new questions. One uses a synonym (another word for the same thing). One is in plain everyday language. One is in a second language. One has an exact ID in it.',
+    brk:'Ask something the document cannot answer at all. Then find the card that still comes out on top.',
+    artifact:'A map of the places where your search went wrong.',
     gate:"Explain why getting a result back does not mean an answer exists."
   },
   needs:[
-    ['Documents are split into chunks','You store the chunks and send only the relevant few.',3],
-    ['Some chunks lose their meaning','“The aforesaid amount” no longer says which amount.',3]
+    ['Documents are split into chunks','You keep the chunks, and send the model only the few that matter, like a few index cards from the stack.',3],
+    ['Some chunks make no sense alone','“The aforesaid amount” no longer says which amount.',3]
   ],
   takeaway:[
-    'Explain why keyword search fails most for the users who need help the most.',
-    'Name the kind of question that keyword search handles better than any other method.',
-    'Explain what search returns when the answer is not in your documents, and why that is dangerous.'
+    'Explain why keyword search fails most for the people who need help most.',
+    'Name the kind of question where keyword search beats every other method.',
+    'Say what search gives back when the answer is not in your documents, and why that is dangerous.'
   ],
   capstone:{
     title:'Write the pattern rules, and score them by hand',
-    brief:'The pattern checker is the first and cheapest part of the tool. It looks for details that always have the same shape, such as a PAN. In this chapter you played the search engine yourself, matching words by hand and seeing where that breaks. Now you’ll write the pattern checker’s rules in plain words, apply them by hand to your answer key, and record exactly where they fail.',
-    where:'Written work, with no code yet. You apply the rules by hand, just as you did in the chapter. In Chapter 5 you’ll turn them into code. Short version for the route, about 20 minutes: steps 1, 3 and 4.',
+    brief:'The pattern checker is the first and cheapest part of the tool. It looks for details that always have the same shape, such as a PAN. In this chapter you played the search engine yourself. You matched words by hand and saw where that breaks. Now write the pattern checker\'s rules in plain words. Apply them by hand to your answer key (the questions with the right answers written down). Record exactly where they fail.',
+    where:'This is written work. No code yet. You apply the rules by hand, like you did in the chapter. In Chapter 5 you turn them into code. Short version for the route, about 20 minutes: steps 1, 3 and 4.',
     steps:[
-      'Open the table of the eleven kinds of ID on the project page. For each kind, write a rule in plain words that someone could apply without thinking. For example: “A PAN is five capital letters, then four digits, then one capital letter.”',
-      'Add to each rule one thing it must not match. For example: “A PIN code is six digits, but a six-digit number straight after the word ‘account’ is not a PIN code.”',
-      'Take the twelve rows of your answer key (version 1). Read each sentence the way a machine would, applying your rules strictly. In a new column, write the items your rules would find.',
-      'Compare your new column with the correct answers. Mark each row as one of three things: everything found, something missed, or something wrongly found.',
-      'Pick the three failures that teach you the most. For each one, describe the sentence and say why a fixed rule cannot cope. Look especially at starter sentence 4 (the partly hidden number), starter sentence 6 (names and addresses) and starter sentence 8 (no ID at all).',
-      'Write a short paragraph. For which kinds of detail do fixed rules work well, and for which should another approach take over?'
+      'Open the table of the eleven kinds of ID on the project page. For each kind, write a rule in plain words that anyone could follow without thinking. For example: “A PAN is five capital letters, then four digits, then one capital letter.”',
+      'Add one thing each rule must not match. For example: “A PIN code is six digits, but a six-digit number right after the word ‘account’ is not a PIN code.”',
+      'Take the twelve rows of your answer key (version 1). Read each sentence like a machine would, using your rules strictly. In a new column, write down what your rules would find.',
+      'Compare your new column with the right answers. Mark each row with one of three marks: found everything, missed something, or found something wrong.',
+      'Pick the three failures that teach you the most. For each, describe the sentence. Say why a fixed rule cannot handle it. Look hardest at starter sentence 4 (the half-hidden number), starter sentence 6 (names and addresses) and starter sentence 8 (no ID at all).',
+      'Write a short paragraph. For which kinds of detail do fixed rules work well? For which should another approach take over?'
     ],
     done:[
-      'A plain-words rule for each of the eleven kinds of ID, each with something it must not match.',
+      'A plain-words rule for each of the eleven kinds of ID, each with one thing it must not match.',
       'Your answer key with a new column of what the rules would find, and each row marked.',
-      'Three failures described, each with the reason a fixed rule cannot cope.',
-      'The paragraph on where rules work and where something else must take over.'
+      'Three failures described, each with the reason a fixed rule cannot handle it.',
+      'A paragraph on where rules work and where something else must take over.'
     ]
   },
   story:[
-    ['c','Before you start','There’s no code in this chapter yet. Bring the twenty cards you cut in Chapter 3 and the five questions you wrote before cutting. Here, you’ll act as the search engine yourself.'],
-    ['p','In the last chapter you split a document into twenty chunks. Now picture the next moment. A question arrives, and something has to decide which of those chunks to send to the model.'],
-    ['p','The obvious method is to match words. Search boxes have worked this way for decades. If the question says <em>refund</em>, you find the chunks that contain <em>refund</em>. It’s fast and cheap, and it’s called <strong>keyword search</strong>.'],
-    ['p','It sounds like it should just work. This chapter shows you where it does, and where it quietly lets people down.'],
+    ['c','Before you start','There is no code in this chapter yet. Bring the twenty cards you cut in Chapter 3 and the five questions you wrote before cutting. Today you play the search engine yourself.'],
+    ['p','Last chapter you cut a document into twenty chunks, like twenty index cards. Now picture this. A question arrives. Something has to pick which cards to send to the model.'],
+    ['p','The obvious way is to match words. Search boxes have worked like this for many years. If the question says <em>refund</em>, find the chunks that contain <em>refund</em>. It is fast and cheap. It is called <strong>keyword search</strong>, like pressing Ctrl+F.'],
+    ['p','It sounds like it must work. This chapter shows you where it does work, and where it quietly lets people down.'],
     ['h','Keyword search matches spelling, not meaning'],
-    ['p','Let’s start with a small problem. Suppose a user is looking for their money, and your document is a company policy. Will the two speak the same language?'],
+    ['p','Start with a small puzzle. A user wants their money back. Your document is a company policy. Do the two use the same words?'],
     [
       'try',
       {id:'ch4-terms',
        mins:3,
        min:20,
        rows:2,
-       task:'Try it by hand first. A user types: <em>when do I get my money back?</em> Your document is a company policy. Write down the words keyword search would look for. Then write down the words the policy probably uses instead.',
+       task:'First try it by hand. A user types: <em>when do I get my money back?</em> Your document is a company policy. Write down the words keyword search would look for. Then write down the words the policy probably uses instead.',
        ph:'What the user typed → what the document says',
-       after:'The user wrote <em>money</em>, <em>back</em> and <em>get</em>. The policy says <em>reimbursement</em>, <em>disbursement</em>, <em>credited to the registered account</em> and <em>the aforesaid amount</em>. The two lists share no words at all. Yet the question is perfectly clear, and the paragraph answers it.'}
+       after:'The user wrote <em>money</em>, <em>back</em> and <em>get</em>. The policy says <em>reimbursement</em>, <em>disbursement</em>, <em>credited to the registered account</em> and <em>the aforesaid amount</em>. The two lists share no word at all. Yet the question is clear, and the paragraph answers it.'}
     ],
-    ['key','Keyword search compares spelling, not meaning. Two sentences that mean the same thing but share no words do not match.'],
+    ['key','Keyword search compares spelling, not meaning. Two sentences that mean the same thing but share no words do not match. It is like looking for “mummy” in a book that only says “mother”.'],
     ['q','I025'],
     ['h','Run keyword search by hand'],
-    ['p','The best way to feel this is to be the search engine yourself. You’ll follow one simple rule: count matching words, and nothing else.'],
+    ['p','The best way to feel this is to be the search engine yourself. You follow one simple rule: count the matching words, and nothing else.'],
     ['do','Act as the search engine',[
-      ['p','Run keyword search by hand on all five questions against all twenty cards. First underline the important words in each question. Then find those words in the cards and give one point for every match. Finally, rank the cards by score.'],
-      ['c','Watch out','Don’t use your own understanding of the document. Only the scores count.'],
-      ['p','For each question, record two things. Did the top-scoring card contain the answer? And if not, what rank did the right card get?'],
-      ['x','You’ll probably find that clearly worded questions do surprisingly well. Don’t trust that result. You wrote these questions after reading the document, so you used its own vocabulary. Real users usually haven’t read it.']
+      ['p','Run keyword search by hand: all five questions against all twenty cards. First underline the key words in each question. Then find those words in the cards. Give one point for each match. Last, rank the cards by score.'],
+      ['c','Watch out','Do not use your own understanding of the document. Only the scores count.'],
+      ['p','For each question, write down two things. Did the top card hold the answer? If not, at what rank was the right card?'],
+      ['x','Clearly worded questions will probably do surprisingly well. Do not trust that. You wrote these questions after reading the document, so you used its own words. Real users have usually not read it.']
     ]],
-    ['p','So let’s make the test fairer. We’ll write questions the way real users would, and see what happens.'],
+    ['p','So let\'s make the test fair. Write questions the way real users would, and see what happens.'],
     ['do','Write three harder questions',[
-      ['p','Write three new questions about the same document. Each one should be designed to make keyword search fail.'],
+      ['p','Write three new questions about the same document. Make each one so that keyword search will fail.'],
       [
         'n',
-        ['<strong>A synonym question:</strong> take a formal term from the document and reword it the way most people would say it.','<strong>A plain-language question:</strong> write it the way a first-time user would type it, someone who doesn’t know the document’s vocabulary.','<strong>A second-language question:</strong> ask the same thing in another language your users actually use.']
+        ['<strong>A synonym question:</strong> take a formal word from the document and say it the way most people would.','<strong>A plain-language question:</strong> write it like a first-time user would type it, someone who does not know the document\'s words.','<strong>A second-language question:</strong> ask the same thing in another language your users really use.']
       ],
-      ['p','Score all three by hand, in the same way as before.'],
-      ['x','You should see that the cards which clearly hold the answer score close to zero. And yet some card still comes out on top. For each question, write one sentence: what information did the scoring not have?']
+      ['p','Score all three by hand, the same way as before.'],
+      ['x','You will see that the cards that clearly hold the answer score close to zero. Yet some card still comes out on top. For each question, write one sentence: what did the scoring not know?']
     ]],
     ['h','Where keyword search fails'],
-    ['p','You’ve just seen the failure happen. It isn’t random, either. It shows up in three predictable places, and all three matter to a business.'],
-    ['p','The first is the gap between formal and everyday language. Documents say <em>termination for convenience</em>, while people say <em>cancel</em>. Specialists write the documents, and everyone else writes the questions.'],
-    ['p','The second is the most uncomfortable one. Keyword search fails the users who most need help. Someone who knows your product uses your vocabulary, so they find what they need. Someone who is confused uses their own words and finds nothing. So it works worst for the people with the biggest problems.'],
-    ['p','The third is plain questions. <em>Why was I charged twice?</em> shares almost no words with the paragraph that explains duplicate authorisation holds. The user asks in their own words, and the document answers in its own.'],
+    ['p','You have just seen it fail. It is not luck either. It fails in three places you can predict, and all three cost a business money.'],
+    ['p','The first is the gap between formal and everyday words. Documents say <em>termination for convenience</em>, but people say <em>cancel</em>. Experts write the documents. Everyone else writes the questions.'],
+    ['p','The second is the most uncomfortable. Keyword search fails the people who need help most. Someone who knows your product uses your words, so they find what they need. Someone who is confused uses their own words and finds nothing. It works worst for people with the biggest problems.'],
+    ['p','The third is plain questions. <em>Why was I charged twice?</em> shares almost no words with the paragraph that explains duplicate authorisation holds. The user asks in their own words. The document answers in its own.'],
     ['q','I027'],
     ['h','Where keyword search wins'],
-    ['p','It would be unfair to stop here, because keyword search is excellent at some things. Think of exact codes, section numbers, policy IDs, part numbers and names.'],
-    ['p','If a user types <em>clause 14.2</em>, they want clause 14.2. Finding that exact text is the right approach, and spelling is all you need.'],
+    ['p','It would be unfair to stop here. Keyword search is great at some things. Think of exact codes, section numbers, policy IDs, part numbers and names.'],
+    ['p','If a user types <em>clause 14.2</em>, they want clause 14.2. Finding that exact text is the right way. All you need is spelling, like finding a house by its door number.'],
     ['do','Search for an exact code',[
-      ['p','Ask a question that contains an exact code, section number or defined term, copied straight from the document.'],
-      ['x','An exact code or defined term usually ranks high with keyword search. Record its actual rank instead of assuming. This is the strength that meaning-based search, in the next chapter, adds to rather than replaces.']
+      ['p','Ask a question that has an exact code, section number or defined term in it. Copy it straight from the document.'],
+      ['x','Keyword search usually ranks an exact code or defined term high. Write down its real rank. Do not assume. This is the strength that search by meaning, in the next chapter, adds to and does not replace.']
     ]],
     ['q','I026'],
     ['h','Search always returns something'],
-    ['p','There’s one more property of search, and it causes serious problems later. Before we name it, try a guess.'],
+    ['p','Search has one more habit that causes serious trouble later. Before we name it, make a guess.'],
     [
       'pred',
       {id:'ch4-norank',
        short:true,
        ph:'One line',
-       ask:'The book showed this once. Predict what your own search step returns when you ask something your documents do not cover at all, then run it.',
-       reveal:'Twenty chunks, ranked, with one at the top. Search has no idea of “nothing here”. It scores everything and sorts the list. For an unanswerable question, the top result is just the least bad of a bad set.',
-       then:'Now put that together with Chapter 2. The irrelevant chunk is passed to the model as if it were evidence, and the model writes a fluent answer from it. No step reports an error. You get a confident, wrong answer, and nothing in the system notices.'}
+       ask:'The book showed this once. Guess what your own search returns when you ask something your documents do not cover at all. Then run it.',
+       reveal:'Twenty chunks, ranked, with one on top. Search has no idea of “nothing here”. It scores everything and sorts the list, like a teacher who must give every student a rank, even in an exam nobody took. For a question with no answer, the top result is just the least bad one.',
+       then:'Now join this with Chapter 2. The wrong chunk goes to the model as if it were proof. The model writes a smooth answer from it. No step shows an error. You get a sure-sounding wrong answer, and nothing in the system notices.'}
     ],
     ['q','I028'],
-    ['p','This is why a result coming back never proves an answer exists. Hold on to that thought. One last small exercise will pull the chapter together.'],
-    ['do','Name the missing capability',[
-      ['p','Look at your three harder questions. Write one sentence describing the ability that keyword search is missing. Describe the gap, not the fix.'],
+    ['p','This is why getting a result back never proves an answer exists. Remember that. One last small exercise ties the chapter together.'],
+    ['do','Name the missing ability',[
+      ['p','Look at your three harder questions. Write one sentence about the ability keyword search does not have. Describe the gap, not the fix.'],
       ['x','Something like: <em>it can compare spellings but not meanings.</em> Keep that sentence. Chapter 5 fills this gap. If you can, wait a day before reading it.']
     ]],
     ['h','Summary'],
-    ['p','Keyword search has two weaknesses. It can’t see meaning, and it never tells you that it found nothing.'],
-    ['p','Next, in Chapter 5, you’ll fix the first one by teaching search to compare meaning instead of spelling. Chapter 6 then deals with the second weakness, which is harder and more important.']
+    ['p','Keyword search has two weak spots. It cannot see meaning. And it never tells you it found nothing.'],
+    ['p','Next, in Chapter 5, you fix the first one by teaching search to compare meaning, not spelling. Chapter 6 then takes on the second weak spot. It is harder and matters more.']
   ]
 },
 
@@ -1330,118 +1330,118 @@ window.PART1 = [
 {
   id:'ch6', num:6, part:1, curriculumTier:'core', phase:1, prerequisites:['ch4','ch5'], nextUnits:['ch7','ch75','ch12','ch14'], minutes:25, labs:['prdial'],
   title:'Evaluation: measuring whether search works',
-  concept:'A good demo is not evidence. You’ll write an answer key before testing, measure how often search finds the right chunk, and see how precision and recall pull against each other.',
+  concept:'A good demo is not proof. You write an answer key before you test. You count how often search finds the right chunk. You see why catching more and catching cleaner pull in opposite directions (precision and recall).',
   plan:{
-    first:"Predict how many of ten questions will find the right chunk at k=3. Write the number down and circle it.",
-    build:"Build your ground truth, including one question that can’t be answered. Then measure at k=1, k=3 and k=8.",
-    brk:"Change one thing about how search works, and run the whole set again.",
-    artifact:"An evaluation table, a list of acceptance criteria, and a threshold that decides whether you release.",
-    gate:"Defend why the quality bar depends on what a failure costs, not on the technology."
+    first:'Guess first: out of ten questions, how many will find the right chunk (a small piece of the document) at k=3? Write the number down and circle it.',
+    build:'Build your ground truth (your answer key), with one question that has no answer. Then measure at k=1, k=3 and k=8.',
+    brk:'Change one thing in how search works. Then run the whole set of questions again.',
+    artifact:'A results table, a list of pass rules (acceptance criteria), and a score line (threshold) that decides: release or not.',
+    gate:'Explain why the quality bar depends on what a failure costs a person, not on the technology.'
   },
   needs:[
-    ['Search always returns something','It returns a ranked list whatever you ask.',4],
-    ['Embeddings find the nearest chunks','Which is not the same as finding the right answer.',5]
+    ['Search always returns something','Ask anything, and it hands back a ranked list. It never says "nothing found".',4],
+    ['Embeddings find the nearest chunks (an embedding is an address for meaning)','Nearest is not the same as right. A near chunk can still be the wrong answer.',5]
   ],
   takeaway:[
-    'Explain what a team must build before it can honestly claim an accuracy number.',
-    'Describe the two ways a search step fails, and why fixing one tends to make the other worse.',
-    'Decide which failure is worse for a feature you work on, and defend the choice.'
+    'Say what a team must build before it can honestly quote an accuracy number.',
+    'Name the two ways a search step fails. Say why fixing one often makes the other worse.',
+    'Pick which failure is worse for a feature you work on, and give your reason.'
   ],
   capstone:{
     title:'Build the scoreboard, and write a ship-or-not note',
-    brief:'Until now you’ve judged the tool by looking at it. Now you’ll give it a number. In this chapter you learned that a search can fail in two ways: it can miss something that was there, or return something that wasn’t. For Bharat Privacy Guard, a missed detail is a leak, and a false alarm is an annoyance. Here you’ll measure both, for each kind of ID and each kind of writing, and decide whether this version is good enough to use.',
-    where:'Pen and paper for the thinking, plus the notebook for the measurements. Write the note itself in the notes box below. Short version for the route, about 20 minutes: steps 1, 2 and 3.',
+    brief:'Until now you judged the tool by looking at it. Now you give it a number. Search can fail in two ways. It can miss something that was there. Or it can report something that was not there. For Bharat Privacy Guard, a missed detail is a leak. A false alarm is only an annoyance. You will count both, for each kind of ID and each kind of writing. Then you decide: is this version good enough to use?',
+    where:'Pen and paper for the thinking. The notebook (the page where you run code) for the counting. Write the note in the notes box below. Short route, about 20 minutes: steps 1, 2 and 3.',
     steps:[
-      'Grow the answer key to version 2, with about 30 rows spread evenly across English, Hindi and Hinglish. Include at least five tricky rows from the list on the project page. Save it as <code>evals/answer-key-v2.csv</code>.',
-      'Run the pattern checker from Chapter 5 on all 30 rows. For every item that should be found, mark it found or missed. For every item the tool reported, mark it correct or a false alarm.',
-      'Calculate recall (the share of real items that were found) and precision (the share of reported items that were real) for each kind of ID, and for each kind of writing. Put the results in two small tables.',
-      'Run it at two settings of your choice, for example strict matching and loose matching. Record the numbers for both.',
-      'Decide which failure is worse for this tool, a missed detail or a false alarm, and explain why in two sentences. Think about what happens to a real person in each case.',
-      'Write the note. Recommend one setting, say which failure you’ve decided to accept and who made that decision, and say whether this version is good enough to use.',
-      'Save the note as <code>docs/scoreboard-v0.md</code> in your repository.'
+      'Grow your answer key (the sheet of questions with right answers) to version 2. Use about 30 rows, spread evenly across English, Hindi and Hinglish. Add at least five tricky rows from the list on the project page. Save it as <code>evals/answer-key-v2.csv</code> (a spreadsheet saved as plain text).',
+      'Run the pattern checker from Chapter 5 on all 30 rows. For each item that should be found, mark it found or missed. For each item the tool reported, mark it correct or a false alarm.',
+      'Work out recall and precision for each kind of ID and each kind of writing. Recall: of all the fish in the pond, how many did your net catch? Precision: of what is in your net, how much is really fish? Put the results in two small tables.',
+      'Run the check at two settings you pick, for example strict matching and loose matching. Write down the numbers for both.',
+      'Decide which failure is worse for this tool: a missed detail or a false alarm. Say why in two sentences. Think about what happens to a real person each time.',
+      'Write the note. Pick one setting. Say which failure you accept, and who made that call. Say if this version is good enough to use.',
+      'Save the note as <code>docs/scoreboard-v0.md</code> in your repository (an online folder that remembers every change).'
     ],
     done:[
       'The answer key, version 2, with about 30 rows, saved in your repository.',
-      'Two tables of recall and precision: one for each kind of ID and one for each kind of writing.',
-      'The numbers for two settings.',
-      'A note that recommends a setting, names the failure you accept and says whether this version is good enough.'
+      'Two tables of recall and precision: one by kind of ID, one by kind of writing.',
+      'The numbers for both settings.',
+      'A note that picks one setting, names the failure you accept, and says if this version is good enough.'
     ]
   },
   story:[
-    ['c','Before you start','You need a pen and paper, plus the notebook for the measurements. Bring the document from Chapter 3. The <code>retrieve</code> function from Chapter 5 is still in your session, or press <strong>Restore</strong> after a reload.'],
-    ['p','By now you have a search step that finds chunks by meaning, and it seems to work. But sooner or later, someone senior will ask: is it good? Often the answer is a demo of three questions that work. That doesn’t tell you how often the system is right.'],
-    ['p','In this chapter you’ll learn how to measure it properly. It isn’t complicated. If you’ve ever written acceptance criteria, you already know most of it. It comes down to three ideas.'],
+    ['c','Before you start','You need a pen and paper, and the notebook (the page where you run code) for counting. Bring the document from Chapter 3. Your <code>retrieve</code> function (a named recipe: give it a question, it gives back chunks) from Chapter 5 is still in your session. After a reload, press <strong>Restore</strong>.'],
+    ['p','You now have a search step that finds chunks (small pieces of your document) by meaning. It seems to work. But soon someone senior will ask: is it good? Often the reply is a demo of three questions that worked. Three wins do not tell you how often it is right.'],
+    ['p','In this chapter you learn to measure it. It is not hard. If you have ever written acceptance criteria (rules that say what counts as a pass), you know most of it already. There are three ideas.'],
     ['h','Idea 1: Write the answers before you test'],
-    ['p','Suppose you test a system by asking it questions and checking whether the answers look right. They will look right, because plausible text is exactly what a model produces. That test tells you nothing.'],
-    ['p','So first write a list of real questions, each with its verified correct answer. This list is called <strong>ground truth</strong>. It’s simply an answer key, written before the test.'],
-    ['p','Ten to thirty questions is enough to start. Use real questions, in the words users actually use. Questions written after reading the documents will use the documents’ words, and they make search look better than it is.'],
+    ['p','Say you ask a system questions and check if the answers look right. They will look right. A model is a parrot that has read a whole library, and it always sounds sure. So this test tells you nothing.'],
+    ['p','So first write real questions, each with its checked right answer. This list is called <strong>ground truth</strong>. It is an answer key, written before the test, like the teacher\'s key.'],
+    ['p','Ten to thirty questions is enough to start. Use real questions, in the words users really use. If you write questions after reading the documents, you copy the documents\' words. That makes search look better than it is.'],
     ['q','I040'],
     ['do','Write the answer key',[
-      ['p','Using your Chapter 3 document, write ten questions: the eight you already have, plus two new ones. One of the new questions must be unanswerable, about something the document doesn’t cover.'],
-      ['p','For each question, record the verified answer and the number of the card or cards that contain it. Verified means you checked, not that you remembered.'],
-      ['x','You now have a ten-row table, written before any measurement. This is your ground truth. Include an unanswerable row in every answer key you write.']
+      ['p','Open your Chapter 3 document. Write ten questions: the eight you already have, plus two new ones. One new question must have no answer: ask about something the document does not cover.'],
+      ['p','For each question, write the checked answer and the number of the card (chunk) that holds it. Checked means you looked it up. It does not mean you remember it.'],
+      ['x','You now have a table with ten rows, written before any counting. This is your ground truth. Put one no-answer row in every answer key you write.']
     ]],
-    ['p','Before you measure anything, make one prediction. It’s quick, and it teaches you something.'],
+    ['p','Before you measure, make one guess. It takes a minute, and it teaches you something.'],
     [
       'pred',
       {id:'ch6-first',
        short:true,
        ph:'A fraction, like 6/10',
-       ask:'The book gave one team’s result. Predict your own number: out of your ten honest questions, how many will find the right chunk on the first try? Write it before you run.',
-       reveal:'Six or seven out of ten is a normal, healthy first result for a working system.',
-       then:'If you got nine or ten, the likely reason is that you wrote the questions after reading the documents. That tests whether search can find text using its own words, and that’s not what users do.'}
+       ask:'The book shows one team\'s result. Now guess your own: of your ten honest questions, how many find the right chunk on the first try? Write it before you run.',
+       reveal:'Six or seven out of ten is a normal, healthy first score for a system that works.',
+       then:'If you got nine or ten, you probably wrote the questions after reading the documents. Then search only has to match text to its own words. Real users do not do that.'}
     ],
-    ['c','Tip','When a vendor quotes an accuracy number, ask: <em>against which answer key, written by whom, and can I see the questions?</em> If they can’t show you, the number is not evidence.'],
+    ['c','Tip','A company says "our accuracy is 95%". Ask: <em>on which answer key, written by whom, and may I see the questions?</em> If they cannot show you, the number is not proof.'],
     ['q','I103'],
-    ['p','Now let’s put your own search to the test, starting with a guess.'],
+    ['p','Now test your own search. Start with a guess.'],
     ['do','Predict, then measure',[
       ['p','First run this starter cell. It sets up the helper and the working values that the cells in this chapter use. Change them later if you like.'],
       ['code','MODEL = "meta/llama-3.1-8b-instruct"\n\ndef ask(prompt, temperature=0):\n    r = client.chat.completions.create(\n        model=MODEL, temperature=temperature,\n        messages=[{"role": "user", "content": prompt}])\n    return r.choices[0].message.content\n\nimport numpy as np\n\ndef embed(texts, input_type):\n    resp = client.embeddings.create(\n        model="nvidia/nv-embedqa-e5-v5", input=texts,\n        extra_body={"input_type": input_type, "truncate": "END"})\n    return [np.array(d.embedding) for d in resp.data]\n\ndef cosine(a, b):\n    return float(np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b)))\n\n# Eight made-up cards about ID formats. Replace them with your own cards.\nchunks = [\n    "A PAN has five capital letters, then four digits, then one capital letter.",\n    "An Aadhaar number has twelve digits, often written in groups of four. It does not start with 0 or 1.",\n    "An Indian mobile number has ten digits. The first digit is 6, 7, 8 or 9.",\n    "A PIN code has six digits. The first digit is not zero.",\n    "An IFSC code has four letters, then a zero, then six letters or digits.",\n    "A bank account number has nine to eighteen digits. A nearby word such as account helps to be sure.",\n    "A GSTIN has fifteen characters. It contains the holder\'s PAN.",\n    "A vehicle registration has state letters, a number, series letters and four digits.",\n]\nchunk_vecs = embed(chunks, "passage")\n\nquestions = [\n    "How many digits does an Aadhaar number have?",\n    "What does an IFSC code look like?",\n    "Which digit can an Indian mobile number start with?",\n    "Can a PIN code start with zero?",\n    "What does this document say about cricket?",\n]\n\ndef retrieve(question, k=3):\n    q = embed([question], "query")[0]\n    scores = [cosine(q, cv) for cv in chunk_vecs]\n    ranked = sorted(range(len(chunks)), key=lambda i: scores[i], reverse=True)\n    for i in ranked[:k]:\n        print(round(scores[i], 3), "| chunk", i, "|", chunks[i][:80])'],
-      ['p','Before you run anything, predict: of the nine answerable questions, how many will return the right card with <code>k=3</code>? Write the number down.'],
+      ['p','Before you run anything, guess: of the nine questions that have an answer, how many will bring back the right card with <code>k=3</code> (k is how many chunks you fetch each time)? Write the number down.'],
       ['code','for q in questions:          # all ten\n    print("—", q)\n    retrieve(q, k=3)'],
-      ['p','Grade the run against your answer key. Count how many of the nine succeeded. Count how many of the twenty-seven returned cards were relevant. Then look at what came back for the unanswerable question, and note its top score.'],
-      ['x','Compare the result with your prediction. Most people predict too high. Write one sentence about the size of your gap. That gap is the reason a demo should not decide whether a system ships.'],
+      ['p','Mark the run against your answer key. Count how many of the nine got the right card. Count how many of the twenty-seven cards that came back were useful. Then look at what came back for the no-answer question, and note its top score.'],
+      ['x','Compare the result with your guess. Most people guess too high. Write one sentence about how big your gap is. That gap is why a demo should never decide if a system goes live.'],
       [
         'snag',
         ['A red box saying something <em>is not defined</em>','You ran a cell that needs something from an earlier cell, but the earlier cell hasn’t run yet. Run the cells above it in order, or press <strong>Restore</strong> in the notebook bar if you ran them before a reload. This is the most common problem in a notebook. It happens to everyone, and it doesn’t mean your code is wrong.','An authentication error, or the number 401','Your key didn’t reach the code. Run the cell that loads the key again, and check that the name you saved it under matches <a href="#/setup">Setup</a> exactly. Capital letters count.','A message about a module not being found','The code imports a library this page doesn’t have. <code>openai</code> is built in, and numpy and the other common libraries load by themselves the first time a cell imports them. A library that needs PyTorch can’t run inside a web page, and the chapter says so where that happens.','It runs, but your numbers are not the ones printed above','That’s expected, not a mistake. Models change, and your text isn’t the same as ours. What matters is the direction and the rough size of the difference, not matching a number exactly. If your numbers move the same way, the experiment worked.']
       ]
     ]],
     ['h','Idea 2: Precision and recall trade against each other'],
-    ['p','Imagine you ask an assistant to fetch the files for a meeting. They can go wrong in two ways. They can leave out something that mattered, or they can bring you a huge pile of things that didn’t.'],
-    ['p','Leaving out what mattered is poor <strong>recall</strong>. Bringing lots of irrelevant material is poor <strong>precision</strong>. In search, the setting that sits between the two is how many chunks you fetch per question. It’s usually called <strong>k</strong>.'],
-    ['p','A higher k usually improves recall and lowers precision. A lower k does the reverse. These are tendencies, not guarantees, so measure them on your own questions.'],
-    ['c','You already know this','Precision and recall are the inclusion and exclusion errors in beneficiary targeting. Low precision lets ineligible people in. Low recall leaves eligible people out. You have already had to decide which error a scheme can live with.'],
-    ['p','You usually can’t maximise both at once. Try changing k and watch what happens:'],
+    ['p','Say you send a helper to fetch files for a meeting. They can go wrong in two ways. They may leave out a file that mattered. Or they may bring a huge pile of files you did not need.'],
+    ['p','Leaving out what mattered is low <strong>recall</strong> (your net missed fish). Bringing a pile you did not need is low <strong>precision</strong> (your net is full of weeds). One setting sits between the two: how many chunks you fetch for each question. It is called <strong>k</strong>.'],
+    ['p','A bigger k usually raises recall and lowers precision. A smaller k does the opposite. This is a habit, not a law. So measure it on your own questions.'],
+    ['c','You already know this','Precision and recall are the inclusion and exclusion errors in beneficiary targeting. Low precision lets ineligible people in. Low recall leaves eligible people out. You have already had to choose which error a scheme can live with.'],
+    ['p','You rarely get both at their best. Change k and watch what happens:'],
     ['do','Change k and compare',[
-      ['p','Grade the same ten questions again at <code>k=1</code> and at <code>k=8</code>, and fill in this table by hand:'],
+      ['p','Mark the same ten questions again at <code>k=1</code> and at <code>k=8</code>. Fill in this table by hand:'],
       [
         'tb',
-        ['k','correct-card hits (of 9)','relevant / total fetched'],
+        ['k','right-card hits (out of 9)','useful cards / all cards fetched'],
         [['1','… / 9','… / 9'],['3','… / 9','… / 27'],['8','… / 9','… / 72']]
       ],
-      ['x','A higher k often finds more correct cards, but a smaller share of what it returns is relevant. Measure both on your documents. More chunks also means more tokens per request, and the actual cost also depends on chunk sizes, prompt length, output length, caching and pricing. Record real token counts and latency before deciding.']
+      ['x','A bigger k often finds more right cards. But a smaller share of what comes back is useful. Measure both on your own documents. More chunks also means more tokens (Lego bricks of text) in each request, and the actual cost also depends on chunk sizes, prompt length, output length, caching and pricing. Write down real token counts and latency (waiting time) before you decide.']
     ]],
     ['lab','prdial'],
     ['q','I044','I045'],
     ['h','Idea 3: Which failure is worse depends on the product'],
-    ['p','So if you can’t have both, which one should you protect? That’s a product decision, not an engineering one.'],
-    ['p','Take a customer-facing bot that answers policy questions. Here, low precision is the dangerous failure. The model builds a confident, wrong answer from irrelevant material, and a wrong policy given to a customer is a liability. Missing an answer only creates a support ticket.'],
-    ['p','Now take a tool that helps a lawyer find precedents. It’s the opposite. A missed precedent can lose a case, while an extra irrelevant result costs thirty seconds of reading.'],
-    ['key','Choose the failure to minimise based on what happens to a real person when each one occurs. The product owner makes this decision, not the person who built the system.'],
+    ['p','If you cannot have both, which one do you guard? That is a product choice, not a technical one.'],
+    ['p','Take a bot that answers customers\' policy questions. Here low precision is the danger. The model builds a sure-sounding wrong answer from stuff that does not fit. A wrong policy told to a customer is a liability. A missed answer only makes a support ticket.'],
+    ['p','Now take a tool that helps a lawyer find old cases. It is the other way round. A missed case can lose the trial. An extra useless result costs thirty seconds of reading.'],
+    ['key','Pick which failure to cut down by asking what happens to a real person each time. The product owner makes this call, not the person who built the system.'],
     [
       'try',
       {id:'ch6-fatal',
        mins:5,
        min:50,
        rows:4,
-       task:'Think of something you work on. Which failure is cheap, and which is dangerous? Explain it in terms of what happens to a real user. Then say how many chunks you would fetch as a starting point.',
+       task:'Think of something you work on. Which failure is cheap, and which is dangerous? Say it in terms of what happens to a real user. Then say how many chunks you would fetch to start with.',
        ph:'For … the dangerous failure is … because … so I would start at k = …',
-       after:'A strong answer links the choice to a consequence. For example: “For our support assistant, irrelevant results are dangerous, because a wrong policy quoted to a customer creates a liability we then have to honour. Missing an answer only creates a ticket we were already getting. So we prioritise precision, start with a low k, and give the assistant a clear way to say it does not know.” The reasoning matters more than the number.'}
+       after:'A strong answer ties the choice to what happens next. For example: “For our support assistant, irrelevant results are dangerous. A wrong policy told to a customer is a promise we must keep. A missed answer only makes a ticket we already get. So we protect precision, start with a low k, and teach the assistant to say it does not know.” The reasoning matters more than the number.'}
     ],
     ['q','I046'],
     ['h','Summary'],
-    ['p','Most people discussing an AI feature don’t have an answer key. With one, you can say whether the system works, and back it with a number you measured yourself.'],
-    ['p','You’ve now seen the whole search step: finding chunks by words, finding them by meaning, and measuring how well either one works. Next, in Chapter 7, you’ll put the pieces together with a model, and build your first retrieval-augmented generation (RAG) system.']
+    ['p','Most people who talk about an AI feature have no answer key. With one, you can say if the system works, and show a number you measured yourself.'],
+    ['p','You have now seen the whole search step: finding chunks by words, finding them by meaning, and measuring how well each one works. Next, in Chapter 7, you join the pieces with a model. You build your first retrieval-augmented generation (RAG) system: an open-book exam, where you first find the right page, then answer from it.']
   ]
 },
 

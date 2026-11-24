@@ -5,66 +5,18 @@ Object.assign(window.HING = window.HING || {}, {
   /* ---- ch0: Start here: how this course works ---- */
   'Start here: how this course works':
     'Yahan se shuru kijiye: yeh course kaise kaam karta hai',
-  'This chapter takes about ten minutes and shows you how to use the site. You don’t need to install anything or create an account, and you don’t need to know anything about AI yet.':
-    'Is chapter mein lagbhag 10 minute lagenge, aur yeh batata hai ki site ko kaise use karna hai. Aapko kuch install nahi karna, account nahi banana, aur AI ke baare mein pehle se kuch jaanna bhi zaroori nahi.',
-  'Tell the difference between the app and the model.':
-    'App aur model ka farq bata paana.',
-  'Tap any underlined word to see what it means, without leaving the page.':
-    'Kisi bhi underline wale word par tap karke, page chhode bina, uska matlab dekh paana.',
-  'Plan what you’ll do on a day when you don’t feel like studying.':
-    'Aise din ka plan bana paana jab padhne ka mann na ho.',
-  'Welcome. This course is made for people who haven’t studied AI before, so you can start from zero. Before anything else, here’s how the site works and how to get the most out of it.':
-    'Aapka swagat hai. Yeh course un logon ke liye bana hai jinhone pehle kabhi AI nahi padha, isliye aap bilkul zero se shuru kar sakte hain. Sabse pehle yeh samajh lijiye ki site kaise kaam karti hai, aur isse zyada se zyada faayda kaise uthayein.',
-  'Many people give up on a technical subject for a simple reason. An unfamiliar word goes past early on, they keep reading without it, and a few pages later nothing makes sense. This site has two features that stop that from happening.':
-    'Bahut se log kisi technical subject ko ek simple wajah se chhod dete hain. Shuru mein koi anjaana word nikal jaata hai, woh bina uska matlab jaane aage padhte rehte hain, aur kuch pages baad kuch samajh nahi aata. Is site mein do features hain jo aisa hone se rokte hain.',
-  'Tap any underlined word':
-    'Kisi bhi underline wale word par tap kijiye',
-  'The first time a technical term appears in a chapter, it has a dotted underline. Tap it, and a short explanation opens right there. You don’t leave the page, and you don’t lose your place.':
-    'Chapter mein jab pehli baar koi technical term aata hai, toh uske neeche dotted underline hoti hai. Us par tap kijiye, aur wahin ek chhota sa explanation khul jaata hai. Aap page se bahar nahi jaate, aur aapki jagah bhi nahi khoti.',
-  'Let’s try it on a sentence that has four such words: an <strong>app</strong> sends a <strong>prompt</strong> to a <strong>model</strong> and is billed in <strong>tokens</strong>. Tap each one now.':
-    'Chaliye ek sentence par try karte hain jisme aise chaar words hain: ek <strong>app</strong> ek <strong>prompt</strong> ek <strong>model</strong> ko bhejta hai, aur uska bill <strong>tokens</strong> mein banta hai. Abhi har ek par tap kijiye.',
-  'Some explanations say <em>you build this in Chapter 9</em>. That just means the term is introduced early on purpose. The one-line version is all you need for now.':
-    'Kuch explanations mein likha hota hai <em>you build this in Chapter 9</em>. Iska matlab bas itna hai ki woh term jaan-boojhkar pehle hi introduce kar diya gaya hai. Abhi ke liye aapko sirf uska ek line wala version samajhna hai.',
-  'Now say it back in your own words. What is the difference between the <em>app</em> and the <em>model</em>? Two lines are enough. It’s fine if you get it partly wrong, because writing before you read the answer is the whole point.':
-    'Ab ise apne words mein likhiye. <em>App</em> aur <em>model</em> mein kya farq hai? Do lines kaafi hain. Agar aap thoda galat bhi likh dein toh koi baat nahi, kyunki jawaab padhne se pehle khud likhna hi asli maksad hai.',
   'The app is … the model is …':
     'App ... hai, model ... hai',
-  'The model is a program that runs on someone else’s computers. It takes text in and sends text back. It has no buttons, no memory, and no idea that a person is involved. The app is your product: the screens and code that decide what to send to the model and what to do with the reply. What users call “the AI” is mostly your app arranging things around a model that does one narrow job. Keeping these two apart is the basis of most design discussions about AI features.':
-    'Model ek program hai jo kisi aur ke computers par chalta hai. Woh text andar leta hai aur text wapas bhejta hai. Uske paas na buttons hote hain, na memory, aur use pata bhi nahi hota ki koi insaan involved hai. App aapka product hai: woh screens aur code jo tay karte hain ki model ko kya bhejna hai aur uske reply ka kya karna hai. Users jise “the AI” kehte hain, woh zyadatar aapka app hai, aur model bas ek chhota sa kaam karta hai. In dono ko alag rakhna AI features ke design discussions ki buniyaad hai.',
   'The course asks you questions':
     'Course aapse sawaal poochta hai',
-  'That box you just used isn’t a one-off. Every few paragraphs you’ll find another one. Some ask you to predict something before you’re told the answer. Some ask you to write a few lines. Some are graded questions.':
-    'Abhi aapne jo box use kiya, woh sirf ek baar ke liye nahi tha. Har kuch paragraphs ke baad aapko aisa ek aur box milega. Kuch mein aapko jawaab bataye jaane se pehle andaaza lagana hota hai. Kuch mein aapko kuch lines likhni hoti hain. Kuch graded sawaal hote hain.',
-  'Why so many? Because reading and understanding feel the same while you’re doing them, but only understanding lasts. And a wrong answer you were sure about is useful, because it shows you a belief that wasn’t true. Nobody else sees your answers, and there is no pass mark.':
-    'Itne saare kyun? Kyunki padhte waqt padhna aur samajhna ek jaisa lagta hai, lekin yaad sirf samajhi hui cheez rehti hai. Aur jis jawaab par aapko poora yakeen tha aur woh galat nikla, woh bhi kaam ka hai, kyunki woh aapko ek aisi soch dikhata hai jo sach nahi thi. Aapke jawaab aur koi nahi dekhta, aur koi pass mark nahi hai.',
   'How to use the course':
     'Course ko kaise use karein',
-  'Four things will make the course easier. Here they are.':
-    'Chaar baatein course ko aasaan bana dengi. Woh yeh hain.',
-  '<strong>Do the hands-on steps.</strong> Each chapter goes back and forth between an idea and a step that shows it, marked <em>Do this</em> or <em>Prove it now</em>. Most of the learning happens in those steps.':
-    '<strong>Hands-on steps zaroor kijiye.</strong> Har chapter mein ek idea aur use dikhane wala ek step baari-baari se aate hain, jinpar <em>Do this</em> ya <em>Prove it now</em> likha hota hai. Zyadatar seekhna inhi steps mein hota hai.',
-  '<strong>Do one chapter per sitting.</strong> Every chapter shows how long it should take. If one takes longer, that’s about the chapter, not about you. And if you stop while you still have some energy, it’s easier to come back tomorrow.':
-    '<strong>Ek baithak mein ek chapter kijiye.</strong> Har chapter par likha hota hai ki usme kitna time lagega. Agar kisi chapter mein zyada time lage, toh woh chapter ki baat hai, aapki nahi. Aur agar aap thodi energy bachi hone par ruk jaate hain, toh kal wapas aana aasaan hota hai.',
-  '<strong>Your progress is saved.</strong> When you sign in, your progress is stored in your account. So you can read on your phone and carry on from the same place on your computer.':
-    '<strong>Aapki progress save hoti hai.</strong> Jab aap sign in karte hain, toh aapki progress aapke account mein store ho jaati hai. Isliye aap phone par padh sakte hain aur computer par wahin se aage badh sakte hain.',
   'Plan for the hard days':
     'Mushkil dinon ke liye plan',
-  'Even with a good plan, some days will be harder than others.':
-    'Achhe plan ke baad bhi kuch din doosre dino se mushkil honge.',
-  'Some chapters will feel too hard, and that’s normal. When it happens, do the smallest step you can and stop for the day. Every question also has a “Stuck?” button that shows you the answer without counting against you.':
-    'Kuch chapters bahut mushkil lagenge, aur yeh normal hai. Aisa ho toh jitna chhota step ho sake utna kijiye aur us din ke liye ruk jaiye. Har sawaal ke saath ek “Stuck?” button bhi hota hai, jo aapko jawaab dikha deta hai aur aapke khilaaf count nahi hota.',
-  'The best time to decide what to do on a bad day is now, while it’s easy.':
-    'Kharab din par kya karna hai, yeh tay karne ka sabse achha time abhi hai, jab sab kuch aasaan hai.',
-  'Decide now, while it’s easy. What will you do on an evening when you don’t want to open this? What is the smallest step you would still take? And what will you tell yourself about a day you skip?':
-    'Abhi tay kijiye, jab yeh aasaan hai. Jis shaam aapka isse kholne ka mann na ho, tab aap kya karenge? Sabse chhota kaun sa step aap phir bhi lenge? Aur jo din aap skip kar dein, uske baare mein khud se kya kahenge?',
   'When I do not want to open this, I will …':
     'Jab mera isse kholne ka mann nahi hoga, tab main ...',
-  'Plans that work have three things in common. First, the smallest step is really tiny: one question, two minutes, not a whole chapter. Second, you know where to restart without having to decide, because deciding is hard when you’re tired. Third, you’ve already decided what a missed day means: nothing. It doesn’t mean starting again. Everyone misses days, and the people who finish expected that.':
-    'Jo plans kaam karte hain, unmein teen baatein common hoti hain. Pehli, sabse chhota step sach mein chhota hota hai: ek sawaal, 2 minute, poora chapter nahi. Doosri, aapko pata hota hai ki dobara kahan se shuru karna hai, kyunki thake hone par tay karna mushkil hota hai. Teesri, aap pehle hi tay kar chuke hote hain ki chhoota hua din matlab kya hai: kuch nahi. Iska matlab dobara shuru se shuru karna nahi hai. Din toh sabke chhootte hain, aur jo log course khatam karte hain, unhe yeh pehle se pata hota hai.',
   'Before you start':
     'Shuru karne se pehle',
-  'That’s all for this chapter. Press “Mark chapter complete” below, and <a href="#/start">your route</a> moves on to the book. Tomorrow’s ten minutes are waiting there.':
-    'Is chapter mein bas itna hi. Neeche “Mark chapter complete” dabaiye, aur <a href="#/start">aapka raasta</a> kitaab ki taraf aage badh jaata hai. Kal ke das minute wahin aapka intezaar kar rahe hain.',
   'No setup yet':
     'Abhi koi setup nahi',
 
@@ -527,48 +479,16 @@ Object.assign(window.HING = window.HING || {}, {
   /* ---- a3: User discovery: interviews, jobs and problem statements ---- */
   'User discovery: interviews, jobs and problem statements':
     'User discovery: interviews, jobs aur problem statements',
-  'Find out what users really do and need, by talking to them. You’ll write an interview guide and hold five interviews. Then you’ll turn what you heard into three things: a job statement, a persona where every line is backed by your notes, and a problem brief with your assumptions ranked.':
-    'Users asal mein kya karte hain aur unhe kya chahiye, yeh unse baat karke pata kijiye. Aap ek interview guide likhenge aur paanch interviews karenge. Phir jo sunenge, usse teen cheezein banayenge: ek job statement, ek persona jiski har line aapke notes se juda ho, aur ek problem brief jismein aapke assumptions rank kiye hon.',
   'Who pays, who uses and who can block a sale':
     'Paise kaun deta hai, use kaun karta hai aur sale kaun rok sakta hai',
-  'You’ll need this to choose the right people to interview.':
-    'Sahi logon ko interview ke liye chunne mein yeh aapke kaam aayega.',
-  'Every claim needs evidence':
-    'Har claim ko evidence chahiye',
-  'Interviews are where you collect that evidence.':
-    'Evidence aap interviews mein hi ikattha karte hain.',
-  'Write interview questions about what people did in the past, instead of asking for opinions or guesses about the future.':
-    'Aise interview questions likh paana jo logon ne past mein kya kiya yeh poochhein, opinions ya future ke andaazon ke bajaye.',
-  'Describe what users are trying to get done, as a jobs-to-be-done statement.':
-    'Users kya karwana chahte hain, yeh jobs-to-be-done statement ke roop mein bata paana.',
-  'Use the five whys to find the causes of a problem, without forcing everything into one root cause.':
-    'Five whys se kisi problem ke causes dhoondh paana, bina sab kuch ek hi root cause mein thoose.',
-  'Build personas and journey maps in which every line points back to an interview note.':
-    'Aise personas aur journey maps bana paana jinki har line kisi interview note se juda ho.',
-  'Write a problem statement, list your assumptions, and test the riskiest one first.':
-    'Problem statement likh paana, assumptions ki list banana, aur sabse risky assumption ko pehle test kar paana.',
-  'In the last chapter you learned a simple rule: every claim must trace to evidence, or be marked as an assumption. This chapter is about where most of that evidence comes from. It comes from talking to users.':
-    'Pichhle chapter mein aapne ek simple rule seekha tha: har claim ko evidence se jodna hai, ya assumption ke roop mein mark karna hai. Zyadatar evidence kahan se aata hai? Users se baat karke. Yeh chapter usi ke baare mein hai.',
-  'Talking to users sounds easy, but most people do it in a way that gets them polite, useless answers. So first you’ll learn how to ask questions that get honest ones. Then you’ll turn what you hear into a few short documents your team can act on.':
-    'Users se baat karna aasaan lagta hai, lekin zyadatar log aise karte hain ki unhe sirf meethe aur bekaar jawaab milte hain. Isliye pehle aap seekhenge ki aise sawaal kaise poochhein jinke jawaab honest hon. Phir jo sunenge, use kuch chhote documents mein badlenge jin par aapki team kaam kar sake.',
   'Idea 1: Ask about the past, not about your idea':
     'Idea 1: Past ke baare mein poochhiye, apne idea ke baare mein nahi',
-  'Imagine telling your mother about a business idea. She’ll almost certainly say it’s wonderful. She loves you, and she wants to be kind.':
-    'Maan lijiye aap apni maa ko apna business idea sunate hain. Woh lagbhag pakka kahengi ki bahut badhiya hai. Woh aapse pyaar karti hain, aur woh aapse achha bolna chahti hain.',
-  'Users in an interview behave in much the same way. The most common mistake is asking people what they think of your idea. They’ll be polite and say it sounds useful. That tells you nothing.':
-    'Interview mein users bhi lagbhag waisa hi karte hain. Sabse common galti hai logon se poochhna ki unhe aapka idea kaisa lagta hai. Woh tameez se kahenge ki useful lagta hai. Isse aapko kuch pata nahi chalta.',
-  'A short book by Rob Fitzpatrick, <em>The Mom Test</em>, shows a way around this. Its name comes from the goal: ask questions that even your mother couldn’t answer with a kind lie. The book has three rules:':
-    'Rob Fitzpatrick ki ek chhoti si kitaab, <em>The Mom Test</em>, ismein raasta dikhati hai. Uska naam uske goal se aaya hai: aise sawaal poochhiye jinka jawaab aapki maa bhi pyaar mein jhooth bolkar na de sake. Kitaab ke teen rules hain:',
   '<strong>Talk about their life, not your idea.</strong>':
     '<strong>Unki zindagi ke baare mein baat kijiye, apne idea ke baare mein nahi.</strong>',
   '<strong>Ask about specific things they did in the past, not what they might do in the future.</strong>':
     '<strong>Unhone past mein kya khaas kiya, woh poochhiye, future mein woh kya kar sakte hain yeh nahi.</strong>',
   '<strong>Talk less and listen more.</strong>':
     '<strong>Kam boliye aur zyada suniye.</strong>',
-  'Let’s see the rules at work. Here’s the example we’ll use in this chapter and the next few. Say you want to build a tool for support leads. A support lead reads the week’s customer support tickets and writes a short report on the biggest problems. Your tool would group those tickets into themes.':
-    'Chaliye in rules ko kaam karte dekhte hain. Is chapter aur aage ke kuch chapters mein hum yahi example use karenge. Maan lijiye aap support leads ke liye ek tool banana chahte hain. Ek support lead hafte ke customer support tickets padhta hai aur sabse badi problems par ek chhota report likhta hai. Aapka tool un tickets ko themes mein group karega.',
-  'Here are four questions you might be tempted to ask that lead, and a better version of each:':
-    'Aise chaar sawaal dekhiye jo aap us lead se poochhne ke liye lalachaayenge, aur har ek ka ek behtar version:',
   'Instead of':
     'Iske bajaye',
   'Ask':
@@ -589,32 +509,10 @@ Object.assign(window.HING = window.HING || {}, {
     'Kya aapko lagta hai ki AI yahan madad kar sakta hai?',
   'Have you tried anything to speed this up? What happened?':
     'Kya aapne ise tez karne ke liye kuch try kiya hai? Kya hua?',
-  'Look at the third question in the left column. It hints at the answer you want to hear. And people tend to agree with whoever is asking. A question like this is called a <strong>leading question</strong>.':
-    'Left column ka teesra sawaal dekhiye. Woh us jawaab ki taraf ishaara karta hai jo aap sunna chahte hain. Aur log aksar poochhne wale se sehmat ho jaate hain. Aise sawaal ko <strong>leading question</strong> kehte hain.',
-  'Now look at the right column. Every question there asks about something that already happened. A person can’t easily be polite about that. They just tell you what they did.':
-    'Ab right column dekhiye. Wahan har sawaal kisi aisi cheez ke baare mein hai jo pehle ho chuki hai. Us par insaan aasaani se tameez nahi dikha sakta. Woh bas bata deta hai ki usne kya kiya.',
-  'Opinions about the future are weak evidence. Specific stories about the past are strong evidence.':
-    'Future ke baare mein opinions kamzor evidence hain. Past ki khaas kahaniyan mazboot evidence hain.',
-  'Write three questions you might have asked about your capstone problem. Then rewrite each one so it asks about something specific the person did in the past.':
-    'Apne capstone problem ke baare mein teen sawaal likhiye jo aap poochh sakte the. Phir har ek ko aise rewrite kijiye ki woh us insaan ne past mein kiye kisi khaas kaam ke baare mein ho.',
-  'You should have three before-and-after pairs. Check each rewrite with one question: could the person answer it with a story about something that really happened?':
-    'Aapke paas teen before-and-after pairs hone chahiye. Har rewrite ko ek sawaal se check kijiye: kya woh insaan ise kisi aisi kahani se jawaab de sakta hai jo sach mein hui ho?',
   'Idea 2: Describe the job users are trying to get done':
     'Idea 2: Dekhiye ki users kaun sa kaam karwana chahte hain',
-  'Think about why someone orders food on an app at ten at night, after a long day at work. The app itself isn’t what they want. They want a hot meal without having to cook.':
-    'Sochiye ki raat ke 10 baje, din bhar ke kaam ke baad, koi insaan app par khaana kyun order karta hai. Use app nahi chahiye. Use bina pakaye garam khaana chahiye.',
-  'Your users are the same. They want to make progress on something in their life, and a product is one way to get there. The <strong>jobs to be done</strong> idea puts it like this: people “hire” a product to do a job for them.':
-    'Aapke users bhi aise hi hain. Woh apni zindagi mein kisi cheez par aage badhna chahte hain, aur product us tak pahunchne ka ek tareeka hai. <strong>Jobs to be done</strong> ka idea yeh kehta hai: log product ko apna ek kaam karwane ke liye "hire" karte hain.',
-  'You can write a job as one sentence, in this format:':
-    'Aap ek job ko ek sentence mein is format mein likh sakte hain:',
-  'Here’s the job for our support lead:':
-    'Hamare support lead ke liye job yeh hai:',
   '<em>When I prepare the Monday report, I want to see the week’s biggest problems without reading every ticket, so I can tell the product team what to fix first.</em>':
     '<em>Jab main Monday ka report banata hoon, main hafte ki sabse badi problems dekhna chahta hoon bina har ticket padhe, taaki main product team ko bata sakoon ki pehle kya theek karna hai.</em>',
-  'Notice that the sentence doesn’t mention your tool at all. It describes the situation, what the lead wants, and why.':
-    'Dhyaan dijiye, is sentence mein aapke tool ka zikr hi nahi hai. Yeh situation batata hai, lead kya chahta hai, aur kyun.',
-  'Jobs also help explain why people switch to a new product, or don’t. Four forces are at work. Two of them push people towards change, and two hold them back:':
-    'Jobs yeh samajhne mein bhi madad karte hain ki log naye product par switch kyun karte hain, ya kyun nahi karte. Chaar forces kaam karte hain. Do logon ko change ki taraf dhakelte hain, aur do unhe rokte hain:',
   'Force':
     'Force',
   'Direction':
@@ -641,118 +539,30 @@ Object.assign(window.HING = window.HING || {}, {
     'Maujooda aadat',
   '“I know my spreadsheet. It works.”':
     '"Mujhe apni spreadsheet aati hai. Woh kaam karti hai."',
-  'People switch only when the push and the pull are stronger than the anxiety and the habit. For AI products, anxiety is often the biggest force, because users worry about wrong answers.':
-    'Log tabhi switch karte hain jab dhakka aur khinchaav chinta aur aadat se zyada mazboot hon. AI products mein chinta aksar sabse badi force hoti hai, kyunki users ko galat jawaabon ka dar rehta hai.',
-  'Write a job statement for your capstone problem. Then write one example of each of the four forces.':
-    'Apne capstone problem ke liye ek job statement likhiye. Phir chaaron forces ka ek-ek example likhiye.',
-  'You should have one sentence in the “When… I want to… so I can…” format, and four short lines. If you don’t know the anxiety force yet, write it as a question to ask in your interviews.':
-    'Aapke paas "Jab… main chahta hoon… taaki main…" format mein ek sentence aur chaar chhoti lines hone chahiye. Agar aapko chinta wali force abhi nahi pata, toh use ek sawaal ke roop mein likhiye jo aap interviews mein poochhenge.',
   'Idea 3: Ask “why” to find causes, but don’t force one answer':
     'Idea 3: Causes dhoondhne ke liye "kyun" poochhiye, lekin sirf ek jawaab par mat atkiye',
-  'When you see a doctor about a fever, a good doctor doesn’t only treat the fever. They ask what’s causing it. Product problems work the same way. What you notice first is usually a symptom.':
-    'Jab aap bukhaar ke liye doctor ke paas jaate hain, toh achha doctor sirf bukhaar ka ilaaj nahi karta. Woh poochhta hai ki bukhaar kyun aaya. Product problems bhi aise hi kaam karte hain. Jo cheez aapko pehle dikhti hai, woh aksar sirf ek symptom hoti hai.',
-  'The <strong>five whys</strong> is a simple way to get from a symptom to its causes. You ask “why?” about each answer, one after another. Here’s how it goes for the support lead:':
-    '<strong>Five whys</strong> symptom se uske causes tak pahunchne ka ek simple tareeka hai. Aap har jawaab par "kyun?" poochhte jaate hain, ek ke baad ek. Support lead ke liye yeh aise chalta hai:',
   'Important themes get missed in the weekly report. <em>Why?</em>':
     'Weekly report mein zaroori themes chhoot jaate hain. <em>Kyun?</em>',
   'The support lead does not have time to read every ticket. <em>Why?</em>':
     'Support lead ke paas har ticket padhne ka time nahi hai. <em>Kyun?</em>',
-  'Ticket volume doubled this year, but the team did not grow. <em>Why?</em>':
-    'Is saal ticket volume double ho gaya, lekin team nahi badhi. <em>Kyun?</em>',
-  'The company launched in two new countries.':
-    'Company ne do naye deshon mein launch kiya.',
-  'This is useful, but it has a trap. One neat chain makes it look as if there’s only one cause. Real problems usually have several.':
-    'Yeh kaam ka hai, lekin ismein ek jaal hai. Ek saaf chain dekh kar lagta hai ki cause sirf ek hi hai. Asli problems mein aam taur par kai causes hote hain.',
-  'In this example, themes might also be missed because tickets are tagged inconsistently. That means different agents label the same kind of ticket in different ways. Or the report template might have no space for new issues.':
-    'Is example mein, themes is wajah se bhi chhoot sakte hain ki tickets inconsistent tareeke se tag hote hain. Matlab alag-alag agents ek jaise tickets ko alag-alag label dete hain. Ya ho sakta hai report template mein naye issues ke liye jagah hi na ho.',
-  'Don’t stop at the first chain that sounds convincing. After a few whys, ask: “What else could cause this?” Then draw the causes as a tree, with branches, rather than as a single line.':
-    'Pehli chain par ruk mat jaaiye sirf isliye ki woh convincing lagti hai. Kuch whys ke baad poochhiye: "Aur kya iska cause ho sakta hai?" Phir causes ko ek seedhi line ke bajaye ek tree ki tarah, branches ke saath banaiye.',
   'Take the main pain in your capstone problem. Ask “why?” three to five times. Then go back to the first answer and look for one more cause.':
     'Apne capstone problem ka sabse bada pain lijiye. 3 se 5 baar "kyun?" poochhiye. Phir pehle jawaab par wapas jaakar ek aur cause dhoondhiye.',
-  'You should have a short tree with at least two branches. Mark which causes you have evidence for, and which are guesses you’ll check in your interviews.':
-    'Aapke paas kam se kam do branches wala ek chhota tree hona chahiye. Mark kijiye ki kin causes ka aapke paas evidence hai, aur kaun se andaaze hain jinhe aap interviews mein check karenge.',
-  'Idea 4: Personas and journey maps summarise evidence':
-    'Idea 4: Personas aur journey maps evidence ka summary hote hain',
-  'After your interviews, you’ll want a quick way to share what you learned with your team. Two tools are common.':
-    'Interviews ke baad aap chahenge ki jo seekha hai woh team ke saath jaldi share ho jaye. Iske liye do tools common hain.',
-  'A <strong>persona</strong> describes one type of user: their goals, their workflow (how they get the work done today) and their pains. A <strong>journey map</strong> shows the steps they go through. At each step, it shows what they do, think and feel.':
-    '<strong>Persona</strong> ek tarah ke user ko describe karta hai: uske goals, uska workflow (woh aaj kaam kaise karta hai) aur uske pains. <strong>Journey map</strong> unke steps dikhata hai. Har step par woh kya karte hain, sochte hain aur mehsoos karte hain, yeh dikhata hai.',
-  'Both are useful, but only as <strong>summaries of evidence</strong>. A persona written before any interviews is a guess dressed up as research. A persona generated by an AI is even worse. It looks detailed, but it’s based on nothing.':
-    'Dono kaam ke hain, lekin sirf <strong>evidence ke summary</strong> ke roop mein. Interviews se pehle likha persona research ke kapde pehna hua andaaza hai. AI se banwaya persona aur bhi bura hai. Woh detailed dikhta hai, lekin uski neev mein kuch nahi hota.',
-  'So add a source to every line. For example:':
-    'Isliye har line ke saath uska source likhiye. Jaise:',
   'The numbers in brackets are interview numbers. Anyone on your team can see where each line came from, and check it.':
     'Brackets ke numbers interview numbers hain. Aapki team mein koi bhi dekh sakta hai ki har line kahan se aayi, aur use check kar sakta hai.',
-  'If a persona line has no interview number next to it, delete it.':
-    'Agar kisi persona line ke saath interview number nahi hai, toh use delete kijiye.',
-  'Draft a journey map for your capstone user, with four to six steps. For each step, write what they do and one pain. Leave a blank for the interview number. You’ll fill it in after your interviews.':
-    'Apne capstone user ke liye 4 se 6 steps ka journey map ka draft banaiye. Har step ke liye likhiye ki woh kya karte hain aur ek pain. Interview number ke liye jagah khaali chhodiye. Interviews ke baad use bharenge.',
-  'You should have four to six steps. If a step is still blank after five interviews, that blank shows you a gap in your research.':
-    'Aapke paas 4 se 6 steps hone chahiye. Agar paanch interviews ke baad bhi koi step khaali hai, toh woh khaali jagah aapki research ki kami dikhati hai.',
-  'Idea 5: Write the problem, list your assumptions, test the riskiest':
-    'Idea 5: Problem likhiye, assumptions ki list banaiye, sabse risky ko test kijiye',
-  'Once your interviews are done, you can say clearly what the problem is. Write it as a <strong>problem statement</strong>, in this format:':
-    'Interviews ho jaane ke baad aap saaf bol sakte hain ki problem kya hai. Use <strong>problem statement</strong> ke roop mein is format mein likhiye:',
-  'Next, list your <strong>assumptions</strong>. These are the things that must be true for your solution to work. Here they are for the ticket example:':
-    'Phir apne <strong>assumptions</strong> ki list banaiye. Yeh woh cheezein hain jo sach honi chahiye taaki aapka solution kaam kare. Ticket example ke liye yeh rahe:',
   'Support leads trust an AI summary enough to act on it.':
     'Support leads AI summary par itna bharosa karte hain ki us par kaam kar sakein.',
-  'Ticket text contains enough detail to find the theme.':
-    'Ticket text mein theme dhoondhne ke liye kaafi details hoti hain.',
   'The product team reads the weekly report.':
     'Product team weekly report padhti hai.',
-  'The company allows ticket data to be sent to an AI provider.':
-    'Company ko ticket data AI provider ko bhejne ki ijaazat hai.',
-  'You can’t test everything at once, so rank each assumption on two things. First, how bad would it be if it’s wrong? Second, how unsure are you about it?':
-    'Aap sab kuch ek saath test nahi kar sakte, isliye har assumption ko do cheezon par rank kijiye. Pehla, agar woh galat nikla toh kitna bura hoga? Doosra, aap us baare mein kitne unsure hain?',
-  'The assumption that would hurt most, and that you’re least sure of, is your <strong>riskiest unknown</strong>. Test that one first.':
-    'Jo assumption sabse zyada nuksaan karega aur jis par aap sabse kam sure hain, wahi aapka <strong>riskiest unknown</strong> hai. Use pehle test kijiye.',
-  'In this list, the last assumption might be the riskiest. If the company’s policy forbids sending ticket data outside, nothing else matters. And it’s cheap to check: one email to the security team will tell you.':
-    'Is list mein aakhri assumption sabse risky ho sakta hai. Agar company ki policy ticket data ko bahar bhejne se rokti hai, toh baaki kuch matter nahi karta. Aur ise check karna sasta hai: security team ko ek email se pata chal jayega.',
   'Write a problem statement for your capstone. Then list three assumptions. Say which one is your riskiest unknown, and why.':
     'Apne capstone ke liye ek problem statement likhiye. Phir teen assumptions ki list banaiye. Bataiye ki aapka riskiest unknown kaun sa hai, aur kyun.',
   'Problem statement, three assumptions, the riskiest and why…':
     'Problem statement, teen assumptions, sabse risky aur kyun…',
-  'Here’s a strong answer for the ticket example. <strong>Problem:</strong> Support leads at mid-sized software companies need a way to see the week’s top issues. Right now they skim 300+ tickets, and they say they miss new problems (interviews 1, 3, 4). Today they tag tickets by hand in a spreadsheet, which takes about three hours each Monday. <strong>Assumptions:</strong> (1) Leads will act on an AI summary. (2) Ticket text has enough detail. (3) The company allows ticket data to go to an AI provider. <strong>Riskiest:</strong> number 3. If it’s false, the product can’t exist. And one email to the security team can answer it this week.':
-    'Ticket example ke liye ek mazboot jawaab yeh hai. <strong>Problem:</strong> Mid-sized software companies ke support leads ko hafte ke top issues dekhne ka tareeka chahiye. Abhi woh 300+ tickets skim karte hain, aur kehte hain ki naye problems miss ho jaate hain (interviews 1, 3, 4). Aaj woh spreadsheet mein tickets haath se tag karte hain, jismein har Monday lagbhag 3 ghante lagte hain. <strong>Assumptions:</strong> (1) Leads AI summary par kaam karenge. (2) Ticket text mein kaafi details hoti hain. (3) Company ko ticket data AI provider ko bhejne ki ijaazat hai. <strong>Riskiest:</strong> number 3. Agar yeh galat hai, toh product ban hi nahi sakta. Aur security team ko ek email se yeh isi hafte pata chal sakta hai.',
-  'You now have a way to find out what users really need. Ask about what they did, and let them tell the story. Write down the job they’re trying to get done. When you look for causes, look for more than one.':
-    'Ab aapke paas yeh pata karne ka tareeka hai ki users ko asal mein kya chahiye. Unse poochhiye ki unhone kya kiya, aur unhe kahani sunane dijiye. Likhiye ki woh kaun sa kaam karwana chahte hain. Causes dhoondhte waqt ek se zyada cause dhoondhiye.',
-  'Then sum up what you heard, with an interview number on every line. Write the problem in two sentences, and test your riskiest assumption first.':
-    'Phir jo suna uska summary banaiye, har line par ek interview number ke saath. Problem ko do sentences mein likhiye, aur apne sabse risky assumption ko pehle test kijiye.',
-  'You know who has the problem now. In the next chapter you’ll ask how many people have it, and what they use instead today.':
-    'Ab aap jaante hain ki problem kiske paas hai. Agle chapter mein aap poochhenge ki kitne logon ke paas yeh problem hai, aur woh aaj iske bajaye kya use karte hain.',
   'Interview five people and write up what you learned':
     'Paanch logon ka interview lijiye aur jo seekha woh likhiye',
-  'So far, the project is only your idea. Now you’ll find out whether other people really have the problem. In this chapter you learned to ask people what they did in the past, instead of what they might do. You also learned to turn their answers into a short problem statement. Here you’ll hold five real interviews.':
-    'Abhi tak project sirf aapka idea hai. Ab aap pata lagayenge ki kya doosre logon ke paas sach mein yeh problem hai. Is chapter mein aapne seekha ki logon se poochhiye ki unhone past mein kya kiya, yeh nahi ki woh aage kya karenge. Aapne yeh bhi seekha ki unke jawaabon ko ek chhote problem statement mein kaise badlein. Yahan aap paanch asli interviews karenge.',
-  'Writing only. Real conversations with real people, and then a written summary. No code needed.':
-    'Sirf likhna hai. Asli logon se asli baatchit, phir ek likha hua summary. Code ki zaroorat nahi.',
-  'Choose five people, one from each of these groups. First, a developer who handles information that users type in. Second, someone in a compliance or legal role. Third, a support agent who has seen customers type personal details into a chat. Fourth, an ordinary user of Indian websites and apps. Fifth, a founder who has had to decide whether to build or buy privacy tools. Don’t use an AI to play any of these people.':
-    'Paanch log chuniye, in groups mein se har ek se ek. Pehla, ek developer jo users ki type ki hui information handle karta hai. Doosra, compliance ya legal role mein koi. Teesra, ek support agent jisne customers ko chat mein personal details type karte dekha hai. Chautha, Indian websites aur apps ka ek aam user. Paanchva, ek founder jise decide karna pada ho ki privacy tools khud banane hain ya kharidne hain. In mein se kisi ka role play karne ke liye AI use mat kijiye.',
-  'Write three to five screening questions. These are short questions that tell you whether someone really belongs to their group. For the support agent, for example: “In the last month, how many times did a customer type an ID number into a chat with you?”':
-    'Teen se paanch screening questions likhiye. Yeh chhote sawaal hote hain jo batate hain ki koi insaan sach mein apne group se hai ya nahi. Support agent ke liye, jaise: "Pichhle mahine mein kitni baar kisi customer ne aapke saath chat mein ID number type kiya?"',
-  'Write twelve interview questions. Ask only about the past, for example “Tell me about the last time…”. If a question suggests an answer, such as “Don’t you find it annoying when…?”, rewrite it.':
-    'Barah interview questions likhiye. Sirf past ke baare mein poochhiye, jaise "Mujhe batayiye pichhli baar jab…". Agar koi sawaal jawaab suggest karta hai, jaise "Kya aapko yeh annoying nahi lagta jab…?", toh use rewrite kijiye.',
-  'Hold each interview for about thirty minutes. For each person, write down six things: their exact words, the steps they follow today, any workaround they use, how often the problem happens, how bad it is, and what they spend on it.':
-    'Har interview lagbhag 30 minute ka rakhiye. Har insaan ke liye chhe cheezein likhiye: unke exact words, aaj woh kaun se steps follow karte hain, koi workaround jo woh use karte hain, problem kitni baar hoti hai, kitni buri hai, aur us par woh kitna kharch karte hain.',
-  'For each of the five, write a short profile. Every sentence in it should point back to a specific interview note, such as “(interview 3)”. Don’t write anything that nobody told you.':
-    'Paanchon mein se har ek ke liye ek chhota profile likhiye. Uska har sentence kisi khaas interview note se juda hona chahiye, jaise "(interview 3)". Aisa kuch mat likhiye jo kisi ne aapse kaha hi nahi.',
-  'Write the problem statement in two sentences. Say who has the problem, what it costs them, and what your evidence is. Then list your assumptions and mark the riskiest one. Say what you’ll do this week to test it.':
-    'Problem statement do sentences mein likhiye. Bataiye ki problem kiske paas hai, use kitna nuksaan hota hai, aur aapka evidence kya hai. Phir apne assumptions ki list banaiye aur sabse risky ko mark kijiye. Likhiye ki ise test karne ke liye aap is hafte kya karenge.',
-  'Write down at least one thing you expected that the interviews contradicted. Then say what you changed because of it.':
-    'Kam se kam ek aisi cheez likhiye jo aapne socha tha aur interviews mein ulti nikli. Phir likhiye ki uski wajah se aapne kya badla.',
   'Your screening questions and your twelve interview questions.':
     'Aapke screening questions aur aapke barah interview questions.',
   'Notes from five interviews with real people.':
     'Asli logon ke paanch interviews ke notes.',
-  'Five short profiles, with every sentence pointing to an interview note.':
-    'Paanch chhote profiles, jinke har sentence mein ek interview note ka reference hai.',
-  'A two-sentence problem statement, and a list of assumptions with the riskiest one marked.':
-    'Do sentences ka problem statement, aur assumptions ki list jismein sabse risky wala mark hai.',
-  'One expectation that turned out to be wrong, and what you changed because of it.':
-    'Ek expectation jo galat nikli, aur uski wajah se aapne kya badla.',
-  'A score from 0 to 3 for each item above, using the scale in this chapter. Move on only when every score is at least 2, and no evidence item scores 0.':
-    'Upar ke har item ke liye 0 se 3 tak ka ek score, is chapter ki scale se. Tabhi aage badhiye jab har score kam se kam 2 ho, aur koi bhi evidence item 0 par na ho.',
 
   /* ---- a4: Market research: sizing, competitors and opportunities ---- */
   'Market research: sizing, competitors and opportunities':
@@ -1201,46 +1011,14 @@ Object.assign(window.HING = window.HING || {}, {
   /* ---- a6: Roadmaps, OKRs and getting stakeholders on board ---- */
   'Roadmaps, OKRs and getting stakeholders on board':
     'Roadmaps, OKRs aur stakeholders ko saath lena',
-  'You have a strategy. Now you turn it into something a team can carry out and leaders can support. You’ll build a roadmap made of outcomes, write OKRs that keep product outcomes apart from model metrics, map the people who can say no, and run a pre-mortem.':
-    'Aapke paas ek strategy hai. Ab aap use aisi cheez mein badalte hain jise team carry out kar sake aur leaders support kar saken. Aap outcomes se bana ek roadmap banayenge, aise OKRs likhenge jo product outcomes ko model metrics se alag rakhte hain, un logon ka map banayenge jo “nahi” keh sakte hain, aur ek pre-mortem chalayenge.',
   'A written strategy':
     'Likhi hui strategy',
-  'The roadmap turns your strategy into outcomes in a sensible order.':
-    'Roadmap aapki strategy ko sahi order mein outcomes mein badalta hai.',
-  'A prioritised list':
-    'Ek prioritised list',
-  'It decides what goes in the “now” column.':
-    'Yeh tay karti hai ki “now” column mein kya jaayega.',
-  'Build a now/next/later roadmap where each item is an outcome with a kill criterion.':
-    'Ek now/next/later roadmap banana jismein har item ek outcome ho aur uska ek kill criterion ho.',
-  'Write an objective with measurable key results, input metrics and guardrail metrics.':
-    'Ek objective likh paana, measurable key results, input metrics aur guardrail metrics ke saath.',
-  'Map stakeholders by influence and interest, and name who can veto a decision.':
-    'Stakeholders ko influence aur interest ke hisaab se map kar paana, aur bata paana ki decision par veto kaun laga sakta hai.',
-  'Write a decision memo for leadership and run a pre-mortem before you start.':
-    'Leadership ke liye decision memo likh paana aur shuru karne se pehle pre-mortem chala paana.',
-  'Track dependencies and risks before they turn into surprises.':
-    'Dependencies aur risks ko surprise banne se pehle track kar paana.',
-  'In A5 you decided what to do first and what not to do. A strategy on paper is still just an idea, though. To make it real, a team needs a plan it can follow, and the people who control money and approvals need a reason to say yes.':
-    'A5 mein aapne tay kiya ki pehle kya karna hai aur kya nahi karna hai. Lekin kaagaz par likhi strategy abhi bhi sirf ek idea hai. Use asli banane ke liye team ko ek plan chahiye jise woh follow kar sake, aur jo log paise aur approvals sambhalte hain unhe “haan” kehne ki wajah chahiye.',
-  'This chapter takes you from strategy to that plan. You’ll build a roadmap, set goals with numbers, find the people who can help or stop you, and imagine failure before it happens.':
-    'Yeh chapter aapko strategy se us plan tak le jaata hai. Aap ek roadmap banayenge, numbers ke saath goals set karenge, un logon ko dhoondhenge jo aapki madad ya rukawat kar sakte hain, aur failure ko hone se pehle hi imagine karenge.',
   'Idea 1: Roadmaps should promise outcomes, not dates':
     'Idea 1: Roadmap dates ka nahi, outcomes ka waada kare',
-  'You have probably seen a roadmap that is a list of features with delivery dates. It looks precise. But the dates are guesses, and the features are assumptions about what will help. When either one turns out wrong, the roadmap becomes a list of broken promises.':
-    'Aapne shayad aisa roadmap dekha hoga jo delivery dates ke saath features ki list hota hai. Woh bahut exact lagta hai. Lekin dates andaaze hoti hain, aur features sirf andaaze hain ki kya madad karega. Inmein se koi bhi galat nikle, toh roadmap toote hue waadon ki list ban jaata hai.',
-  'There is a better way. An <strong>outcome roadmap</strong> drops the dates and uses three columns instead. The table shows what each column means and how sure you can be about it.':
-    'Ek behtar tareeka hai. <strong>Outcome roadmap</strong> dates hata deta hai aur uski jagah teen columns use karta hai. Table batati hai ki har column ka matlab kya hai aur aap usse kitne sure ho sakte hain.',
   'Column':
     'Column',
-  'How certain':
-    'Kitna pakka',
   'Now':
     'Now',
-  'What we are working on':
-    'Hum abhi kis par kaam kar rahe hain',
-  'Committed':
-    'Committed',
   'Next':
     'Next',
   'What we expect to do after that':
@@ -1249,18 +1027,10 @@ Object.assign(window.HING = window.HING || {}, {
     'Likely, lekin badal sakta hai',
   'Later':
     'Later',
-  'What we are exploring':
-    'Hum kya explore kar rahe hain',
-  'Ideas, ordered by current thinking':
-    'Ideas, jo abhi ki soch ke hisaab se order mein hain',
-  'Each item in a column is an outcome, which means a change you want to see. Along with it, you write down the details you need to manage it. Here is one item filled in.':
-    'Column ka har item ek outcome hota hai, matlab ek badlaav jo aap dekhna chahte hain. Uske saath aap woh details bhi likhte hain jo use manage karne ke liye chahiye. Yahan ek item bhar kar dikhaya gaya hai.',
   'Field':
     'Field',
   'Outcome':
     'Outcome',
-  'Support leads spot new issues within their first week':
-    'Support leads apne pehle hafte mein naye issues pakadte hain',
   'Evidence':
     'Evidence',
   '3 of 5 interviews described missing a fast-growing issue':
@@ -1269,100 +1039,34 @@ Object.assign(window.HING = window.HING || {}, {
     'Owner',
   'Product manager and one engineer':
     'Product manager aur ek engineer',
-  'Dependency':
-    'Dependency',
-  'Read access to the Freshdesk API':
-    'Freshdesk API tak read access',
   'Kill criterion':
     'Kill criterion',
   'Stop if fewer than half of design partners act on an alert within four weeks':
     'Agar chaar hafte mein aadhe se kam design partners alert par action lete hain, toh ruk jaaiye',
-  'Outcome roadmaps matter even more for AI work. You often cannot know in advance whether a model will be accurate enough. So a date promised before testing is only a guess.':
-    'AI ke kaam mein outcome roadmap aur bhi zaroori hai. Aksar aap pehle se nahi jaan sakte ki model kaafi accurate hoga ya nahi. Isliye testing se pehle di gayi date sirf ek andaaza hai.',
-  'A kill criterion decided in advance makes it much easier to stop work that is not working.':
-    'Pehle se tay kiya hua kill criterion us kaam ko rokna bahut aasaan bana deta hai jo chal nahi raha.',
-  'Write one “now” item for your capstone as an outcome, with all five fields.':
-    'Apne capstone ke liye ek “now” item outcome ke roop mein likhiye, saare paanch fields ke saath.',
-  'You should have one roadmap item. Check the kill criterion. Is it a number you will actually be able to measure within a few weeks?':
-    'Aapke paas ek roadmap item hoga. Kill criterion check kijiye. Kya woh aisa number hai jise aap sach mein kuch hafton ke andar naap sakenge?',
   'Idea 2: OKRs, input metrics and guardrails':
     'Idea 2: OKRs, input metrics aur guardrails',
-  'A roadmap tells you what you’ll work on. Next you need a way to say what success looks like. A common way is <strong>OKRs</strong>, which stands for objectives and key results.':
-    'Roadmap batata hai ki aap kis par kaam karenge. Ab aapko yeh kehne ka tareeka chahiye ki success kaisi dikhti hai. Iska ek common tareeka <strong>OKRs</strong> hai, jiska matlab hai objectives aur key results.',
-  'The <strong>objective</strong> says what you want, in words. The <strong>key results</strong> are three or four numbers that show you got there. Here is an example for the ticket tool.':
-    '<strong>Objective</strong> words mein batata hai ki aap kya chahte hain. <strong>Key results</strong> teen-chaar numbers hote hain jo dikhate hain ki aap wahan pahunch gaye. Yeh ticket tool ka ek example hai.',
-  'Notice that KR1 and KR2 are about people, and KR3 is about the model. Good key results are <strong>outcomes</strong>, meaning what changes for users. They are not <strong>outputs</strong>, meaning what you ship. “Ship growth alerts” is an output. “Leads catch new issues in their first week” is an outcome.':
-    'Dekhiye ki KR1 aur KR2 logon ke baare mein hain, aur KR3 model ke baare mein. Achhe key results <strong>outcomes</strong> hote hain, matlab users ke liye kya badalta hai. Woh <strong>outputs</strong> nahi hote, matlab aap kya ship karte hain. “Growth alerts ship karna” ek output hai. “Leads pehle hafte mein naye issues pakadte hain” ek outcome hai.',
-  'Two more kinds of metric support your OKRs. The first is an <strong>input metric</strong>. This is something the team can change directly, which you expect to move the outcome. For example, the share of tickets assigned to some theme.':
-    'Do aur tarah ke metric aapke OKRs ko support karte hain. Pehla hai <strong>input metric</strong>. Yeh aisi cheez hai jise team seedha badal sakti hai, aur jisse aap outcome ke hilne ki ummeed rakhte hain. Jaise, un tickets ka hissa jo kisi theme mein daale gaye.',
-  'The second is a <strong>guardrail metric</strong>. This is a number that must not get worse while you chase the key results. For example, the false-alarm rate or the cost per customer.':
-    'Doosra hai <strong>guardrail metric</strong>. Yeh woh number hai jo key results ke peeche bhaagte hue bigadna nahi chahiye. Jaise, false-alarm rate ya per customer cost.',
   'Why this matters':
     'Yeh kyun zaroori hai',
-  'Keep model metrics and product outcomes separate. A model can reach 95% precision while users still ignore the report because it arrives too late. You need both kinds of number, but only the product outcome tells you whether users are better off.':
-    'Model metrics aur product outcomes ko alag rakhiye. Ek model 95% precision tak pahunch sakta hai, phir bhi users report ko ignore kar sakte hain kyunki woh bahut der se aati hai. Aapko dono tarah ke numbers chahiye, lekin sirf product outcome batata hai ki users ka sach mein bhala hua ya nahi.',
-  'Write one objective and three key results for your capstone. Label each key result as a product outcome or a model metric. Add one guardrail metric.':
-    'Apne capstone ke liye ek objective aur teen key results likhiye. Har key result ko product outcome ya model metric ke roop mein label kijiye. Ek guardrail metric bhi jodiye.',
-  'You should have one objective, three labelled key results and a guardrail metric. Now try to game each key result. How could a team hit it while making things worse for users?':
-    'Aapke paas ek objective, teen labelled key results aur ek guardrail metric hoga. Ab har key result ko game karne ki koshish kijiye. Ek team use kaise hit kar sakti hai aur phir bhi users ke liye cheezein kharab kar sakti hai?',
   'Idea 3: Map the people who can help or stop you':
     'Idea 3: Un logon ka map banaiye jo aapki madad ya rukawat kar sakte hain',
-  'So far you have been thinking about the work. But a product decision involves many people, and they want different things. A <strong>stakeholder map</strong> helps you see who matters. It puts each person on two axes: how much influence they have over the project, and how much they care about it.':
-    'Ab tak aap kaam ke baare mein soch rahe the. Lekin ek product decision mein bahut se log hote hain, aur sabki chahat alag hoti hai. <strong>Stakeholder map</strong> dekhne mein madad karta hai ki kaun zaroori hai. Yeh har insaan ko do axes par rakhta hai: project par unka kitna influence hai, aur unhe project ki kitni parwah hai.',
-  'The grid tells you how to treat each group. Read the examples in each box to get the feel of it.':
-    'Grid batata hai ki har group ke saath kaise deal karna hai. Har box ke examples padhiye taaki andaaza ho jaaye.',
-  'Low interest':
-    'Low interest',
-  'High interest':
-    'High interest',
-  'High influence':
-    'High influence',
   'Keep satisfied (e.g. CFO, security lead)':
     'Keep satisfied (jaise CFO, security lead)',
   'Work closely with (e.g. head of support, your manager)':
     'Work closely with (jaise head of support, aapke manager)',
-  'Low influence':
-    'Low influence',
   'Keep informed (e.g. other product teams)':
     'Keep informed (jaise doosri product teams)',
   'Keep involved (e.g. support agents, design partners)':
     'Keep involved (jaise support agents, design partners)',
-  'For each important stakeholder, write down two more things. The first is their <strong>incentive</strong>, which is what they are measured on. It explains how they will react. The second is their <strong>decision right</strong>. Do they decide, do they advise, or do they have a veto?':
-    'Har zaroori stakeholder ke liye do cheezein aur likhiye. Pehli hai unka <strong>incentive</strong>, matlab unhe kis par naapa jaata hai. Isse samajh aata hai ki woh kaise react karenge. Doosri hai unka <strong>decision right</strong>. Kya woh decide karte hain, advise karte hain, ya unke paas veto hai?',
-  'In AI products, security, legal and privacy leads often have a veto but little day-to-day interest. They sit in the “keep satisfied” corner until the day before launch, when they say no. Talk to them early.':
-    'AI products mein security, legal aur privacy leads ke paas aksar veto hota hai, lekin roz ki dilchaspi kam hoti hai. Woh “keep satisfied” corner mein tab tak baithe rehte hain jab tak launch se ek din pehle woh “nahi” nahi bol dete. Unse jaldi baat kijiye.',
   'Place at least five stakeholders for your capstone on the grid. Circle anyone who can veto the project.':
     'Apne capstone ke kam se kam paanch stakeholders ko grid par rakhiye. Jo bhi project par veto laga sakta hai, uske aas-paas circle banaiye.',
-  'You should have a filled grid with at least one person circled. If nobody can veto your project, you have probably missed someone. Ask who has to approve new software or new data flows.':
-    'Aapke paas ek bhara hua grid hoga jismein kam se kam ek insaan circle mein hoga. Agar aapke project par koi veto nahi laga sakta, toh shayad aapse koi chhoot gaya hai. Poochiye ki naya software ya naye data flows kaun approve karta hai.',
-  'Idea 4: Write for executives, and imagine failure first':
-    'Idea 4: Executives ke liye likhiye, aur pehle failure imagine kijiye',
-  'Once you know who matters, you have to persuade them. Executives read quickly and decide a lot. So write in a way that lets them act after the first paragraph. A good decision memo follows this order.':
-    'Jab aap jaan jaate hain ki kaun zaroori hai, toh unhe manana padta hai. Executives tezi se padhte hain aur bahut decisions lete hain. Isliye aise likhiye ki woh pehle paragraph ke baad hi action le saken. Ek achha decision memo is order mein chalta hai.',
   '<strong>The decision or ask</strong>, in the first sentence.':
     '<strong>Decision ya ask</strong>, pehle sentence mein.',
-  '<strong>Why now</strong>: the problem and its evidence, in two or three sentences.':
-    '<strong>Abhi kyun</strong>: problem aur uska evidence, do-teen sentences mein.',
-  '<strong>Options</strong> you considered, including doing nothing.':
-    'Aapke dekhe hue <strong>options</strong>, kuch na karna bhi shamil karke.',
   '<strong>Your recommendation</strong> and what it costs.':
     '<strong>Aapki recommendation</strong> aur uski cost.',
   '<strong>Risks</strong>, and what would make you change course.':
     '<strong>Risks</strong>, aur kya hone par aap apna raasta badlenge.',
-  'Before you send the memo, run a <strong>pre-mortem</strong>. Imagine it is six months from now and the project has failed. Everyone writes down, separately, why it failed. Then you plan to prevent the most likely causes.':
-    'Memo bhejne se pehle ek <strong>pre-mortem</strong> chalaiye. Imagine kijiye ki chhe mahine baad project fail ho chuka hai. Sab log alag-alag likhte hain ki woh kyun fail hua. Phir aap sabse likely wajahon ko rokne ka plan banate hain.',
-  'Why does this work? Because people will name risks about an imagined failure that they would never raise about a plan that is still alive.':
-    'Yeh kaam kyun karta hai? Kyunki log imagined failure ke baare mein woh risks bata dete hain jo woh ek zinda plan ke baare mein kabhi nahi uthate.',
-  'Write three reasons your capstone might fail six months from now. For each one, write one thing you could do this month to make it less likely.':
-    'Apne capstone ke chhe mahine baad fail hone ki teen wajahein likhiye. Har ek ke liye ek aisi cheez likhiye jo aap isi mahine kar sakte hain taaki woh kam likely ho.',
-  'You should have three failure reasons, each with a prevention step. The most useful reasons are specific, like “the security review took four months”. General ones, like “we ran out of time”, help much less.':
-    'Aapke paas teen failure wajahein hongi, har ek ke saath ek prevention step. Sabse kaam ki wajahein specific hoti hain, jaise “security review mein chaar mahine lag gaye”. “Hamara time khatam ho gaya” jaisi general wajahein bahut kam madad karti hain.',
   'Idea 5: Track dependencies and risks':
     'Idea 5: Dependencies aur risks ko track kijiye',
-  'The last piece is keeping the plan on track. A <strong>dependency</strong> is anything you need from outside your team. It could be another team’s work, a vendor, access to data, or an approval. Dependencies are where plans slip, because you do not control them.':
-    'Aakhri hissa plan ko patri par rakhna hai. <strong>Dependency</strong> woh har cheez hai jo aapko apni team ke bahar se chahiye. Woh kisi doosri team ka kaam, ek vendor, data ka access, ya ek approval ho sakti hai. Plans dependencies mein hi phisalte hain, kyunki unpar aapka control nahi hota.',
-  'The best defence is a simple risk list. For each risk, write down how likely it is, how much damage it would do, who owns it, and what you are doing about it. The table shows three examples.':
-    'Sabse achha bachaav ek simple risk list hai. Har risk ke liye likhiye ki woh kitna likely hai, kitna nuksaan karega, uska owner kaun hai, aur aap uske baare mein kya kar rahe hain. Table mein teen examples hain.',
   'Risk':
     'Risk',
   'Likelihood':
@@ -1375,66 +1079,24 @@ Object.assign(window.HING = window.HING || {}, {
     'High',
   'PM':
     'PM',
-  'Start the review in week 1; prepare the data-flow diagram now':
-    'Review week 1 mein shuru kijiye; data-flow diagram abhi taiyaar kijiye',
-  'Model provider changes pricing':
-    'Model provider pricing badal deta hai',
   'Medium':
     'Medium',
   'Engineering lead':
     'Engineering lead',
-  'Keep the test set vendor-neutral so switching takes days':
-    'Test set ko vendor-neutral rakhiye taaki switch karne mein sirf kuch din lagein',
   'Precision stays below 85%':
     'Precision 85% se neeche rehti hai',
   'PM and engineer':
     'PM aur engineer',
-  'Time-box to three weeks, then narrow the use case':
-    'Teen hafte ka time-box rakhiye, phir use case ko narrow kijiye',
-  'AI products carry a few risks of their own. The model’s quality may never reach the bar. The provider may change the model underneath you. And data approvals can take months.':
-    'AI products ke apne kuch risks bhi hote hain. Model ki quality kabhi zaroori level tak pahunch hi na paaye. Provider aapke neeche se model badal de. Aur data approvals mein mahine lag sakte hain.',
-  'Write the first paragraph of your decision memo to leadership. Start with the decision or ask, then give the evidence, the cost and the biggest risk.':
-    'Leadership ko apne decision memo ka pehla paragraph likhiye. Decision ya ask se shuru kijiye, phir evidence, cost aur sabse bada risk dijiye.',
   'The ask, why now, the cost, the biggest risk…':
     'Ask, abhi kyun, cost, sabse bada risk…',
   'A strong opening: <strong>I am asking for one engineer for eight weeks to pilot Theme Finder with ten support teams.</strong> Three of five support leads we interviewed miss fast-growing issues because tickets are tagged inconsistently, and each spends about three hours every Monday on the report. The pilot costs one engineer and about $200 in model usage. The biggest risk is the security review of sending ticket data to a model provider. We have started it this week, and we will stop the pilot if precision on our test set stays below 85% after three weeks.':
     'Ek achhi shuruaat: <strong>Main das support teams ke saath Theme Finder ka pilot karne ke liye aath hafte ke liye ek engineer maangta hoon.</strong> Humne jin paanch support leads ka interview kiya, unmein se teen tezi se badhte issues miss kar dete hain kyunki tickets ka tagging ek jaisa nahi hota, aur har ek lead Monday ko report par lagbhag teen ghante lagata hai. Pilot mein ek engineer aur model usage ke lagbhag $200 lagenge. Sabse bada risk ticket data ko model provider ko bhejne ka security review hai. Humne use isi hafte shuru kar diya hai, aur agar teen hafte baad bhi hamare test set par precision 85% se neeche rahi, toh hum pilot rok denge.',
-  'Let’s pull the chapter together. A good roadmap promises outcomes, not dates, and every item carries a kill criterion so you know when to stop. OKRs give you numbers to aim at, and guardrails stop you from winning in a way that hurts users.':
-    'Chaliye chapter ko samet lete hain. Ek achha roadmap dates nahi, outcomes ka waada karta hai, aur har item ka ek kill criterion hota hai taaki aapko pata ho kab rukna hai. OKRs aapko aim karne ke liye numbers dete hain, aur guardrails aapko aise jeetne se rokte hain jo users ko nuksaan pahunchaye.',
-  'You also saw that plans fail because of people and surprises. A stakeholder map shows who can say no, a decision memo makes it easy for them to say yes, and a pre-mortem and a risk list catch problems early.':
-    'Aapne yeh bhi dekha ki plans logon aur surprises ki wajah se fail hote hain. Stakeholder map dikhata hai ki “nahi” kaun bol sakta hai, decision memo unke liye “haan” kehna aasaan banata hai, aur pre-mortem aur risk list problems ko jaldi pakad leti hain.',
-  'Next, in A7, you’ll take one decision from this plan and turn it into specs, user stories and a prototype that a team can build.':
-    'Aage A7 mein aap is plan se ek decision lekar use specs, user stories aur ek prototype mein badlenge jise team build kar sake.',
   'Turn the strategy into a plan other people can back':
     'Strategy ko aisa plan banaiye jise doosre log back karein',
-  'A strategy that nobody can follow changes nothing. So now you turn yours into a plan with dates and numbers, and you work out who has to agree to it. In this chapter you learned to write a roadmap of outcomes, objectives with measurable key results, and a decision memo. Here you do all three, and you end the plan at the point where the developer kit is ready to demonstrate.':
-    'Jis strategy ko koi follow na kar sake, woh kuch nahi badalti. Isliye ab aap apni strategy ko dates aur numbers wale plan mein badalte hain, aur dekhte hain ki kiski “haan” zaroori hai. Is chapter mein aapne outcomes ka roadmap, measurable key results wale objectives, aur decision memo likhna seekha. Yahan aap teeno karte hain, aur plan ko us jagah par khatam karte hain jahan developer kit demonstrate karne ke liye taiyaar hai.',
   'Written only. A plan, a memo and a map of people. No code needed.':
     'Sirf likhna hai. Ek plan, ek memo aur logon ka ek map. Code ki zaroorat nahi.',
-  'Draw a roadmap with three columns: Now, Next and Later. Fit it to the rest of this course, so that Now is the next few chapters and Later ends with a working demo of the developer kit at the Part V capstone. Each item must be an outcome, such as “a developer can paste text and see it cleaned”, and not just the name of a feature.':
-    'Teen columns wala roadmap banaiye: Now, Next aur Later. Use is course ke baaki hisse se jodiye, taaki Now agle kuch chapters ho aur Later Part V capstone par developer kit ke working demo par khatam ho. Har item ek outcome ho, jaise “ek developer text paste karke use clean hota dekh sakta hai”, sirf kisi feature ka naam nahi.',
-  'For every roadmap item, write an owner, the evidence that it matters, what it depends on, and a stopping rule. The stopping rule is the result that would make you give up on it. For example: “Stop if fewer than half of the pattern checker’s results are right on my answer key.”':
-    'Roadmap ke har item ke liye ek owner, evidence ki woh kyun zaroori hai, woh kis par depend karta hai, aur ek stopping rule likhiye. Stopping rule woh result hai jisse aap use chhod denge. Jaise: “Agar mere answer key par pattern checker ke aadhe se kam results sahi hain, toh ruk jaaiye.”',
-  'Write one objective in words, and three or four key results that are numbers. Keep two kinds apart. Product results are things like “five developers add the kit in under ten minutes”. Quality results are things like “the tool finds at least 90 of every 100 Aadhaar numbers”.':
-    'Words mein ek objective aur numbers mein teen ya chaar key results likhiye. Do tarah ke results alag rakhiye. Product results jaise “paanch developers das minute ke andar kit add kar lete hain”. Quality results jaise “tool har 100 Aadhaar numbers mein se kam se kam 90 dhoondhta hai”.',
-  'Add one guardrail. This is a number you refuse to let get worse while you chase the others. For example: “False alarms stay below 5 in every 100 sentences.”':
-    'Ek guardrail jodiye. Yeh woh number hai jise aap doosron ke peeche bhaagte hue bigadne nahi dete. Jaise: “False alarms har 100 sentences mein 5 se kam rahein.”',
-  'Make a map of the people who will judge or be affected by the project. These are the developer who adds the kit, the compliance reviewer, the end user and an employer reading your portfolio. Mark each one as high or low on influence, and high or low on interest. Then name who could say no.':
-    'Un logon ka ek map banaiye jo project ko judge karenge ya jinpar uska asar padega. Yeh hain: kit add karne wala developer, compliance reviewer, end user aur aapka portfolio padhne wala employer. Har ek ko influence par high ya low, aur interest par high ya low mark kijiye. Phir batayiye ki “nahi” kaun bol sakta hai.',
-  'Imagine it is a year from now and the project has failed. Write five reasons why. This is called a pre-mortem. For each reason, write one thing you will do now to make it less likely.':
-    'Imagine kijiye ki ek saal baad project fail ho chuka hai. Iski paanch wajahein likhiye. Ise pre-mortem kehte hain. Har wajah ke liye ek cheez likhiye jo aap abhi karenge taaki woh kam likely ho.',
-  'Write a one-page memo to a decision-maker, asking for a yes or a no on the plan.':
-    'Kisi decision-maker ko ek page ka memo likhiye, jismein plan par haan ya na maangi gayi ho.',
-  'A now, next and later roadmap in which every item is an outcome with a stopping rule.':
-    'Ek now, next aur later roadmap jismein har item ek outcome ho aur uska ek stopping rule ho.',
   'One objective with three or four key results, and one guardrail.':
     'Ek objective teen ya chaar key results ke saath, aur ek guardrail.',
-  'A map of the people involved, with the person who could say no named.':
-    'Shamil logon ka ek map, jismein “nahi” bol sakne wale insaan ka naam likha ho.',
-  'A pre-mortem with five reasons and a response to each.':
-    'Paanch wajahon aur har ek ke jawaab ke saath ek pre-mortem.',
-  'A one-page decision memo.':
-    'Ek page ka decision memo.',
 
   /* ---- a7: Specs, stories and prototypes: from decision to delivery ---- */
   'Specs, stories and prototypes: from decision to delivery':
