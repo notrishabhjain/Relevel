@@ -496,181 +496,181 @@ window.PART5 = [
 {
   id:'ch11r', num:24, part:5, curriculumTier:'core', phase:3, prerequisites:['ch7','ch12','ch6'], nextUnits:['ch12t'], minutes:60, labs:['fusion'],
   title:'Production RAG: ingestion, access control and freshness',
-  concept:'A production retrieval system has several stages that you can tune, from reading documents in to checking the answer. In this chapter you’ll walk through each stage, including permissions, deletion and rollback. By the end, you’ll have designed an architecture that you could defend in a review.',
+  concept:'A production retrieval system (the open-book exam for real use) has many stages you can tune, from reading documents in to checking the answer. In this chapter you walk through each stage, including permissions, deletion and rollback. At the end you have a design you could defend in a review.',
   plan:{
-    first:'Take three real documents and make an inventory of each: its id, its sections, its language, its metadata and its access label. Then predict which metadata will turn out to be worth keeping.',
-    build:'Compare lexical, semantic and hybrid retrieval. Then add reranking, or write down a measured reason for leaving it out.',
-    brk:'Test what happens when a document is deleted, when a permission changes, when there are duplicates, and when the index version changes.',
-    artifact:'A production RAG architecture with access control, provenance, versioning, a no-answer policy and a rollback path.',
-    gate:'Name the first production retrieval failure you would investigate, and say why you would look at that one first.'
+    first:'Take three real documents. For each, make a list: its id, its sections, its language, its metadata (labels about the document) and its access label (who may read it). Then guess which metadata will be worth keeping.',
+    build:'Compare lexical (exact word), semantic (same meaning) and hybrid (both) retrieval. Then add reranking (putting the found pages in a better order), or write a measured reason for leaving it out.',
+    brk:'Test four things: a document is deleted, a permission changes, there are duplicates, and the index version changes. The index is like the catalogue of a library.',
+    artifact:'A production RAG architecture (a real, live system that finds pages first and answers from them). It has access control, provenance, versioning, a no-answer policy and a rollback path (a way back).',
+    gate:'Name the first production retrieval failure you would look into, and say why that one comes first. It is like a doctor choosing which symptom to check first.'
   },
   needs:[
-    ['You built retrieval by hand','You did this in Chapters 3 to 7. This chapter turns it into an architecture.',7],
+    ['You built retrieval by hand','You did this in Chapters 3 to 7. This chapter turns it into a full design.',7],
     ['Keyword search and meaning search fail in different ways','Chapter 12 measured the difference. Here it becomes a decision about ingestion and indexing.',12],
-    ['The answer key is your measuring tool','Every claim in this chapter is measured against it.',6]
+    ['The answer key is your measuring tool','Like a teacher\'s key, every claim in this chapter is checked against it.',6]
   ],
   words:[
-    ["Ingestion","Everything that happens to a document before it can be retrieved: parsing, extraction, enrichment, chunking and embedding. It sets a ceiling on quality, and nothing later in the chain can raise that ceiling."],
-    ["Query rewriting","Turning what the user typed into what should really be searched for, before the retrieval runs."],
-    ["Access-control-aware retrieval","Filtering by who is asking as part of the search itself, instead of hiding results afterwards in the interface."],
-    ["Embedding versioning","Keeping track of which model produced which stored vectors, so that a change of model doesn’t quietly corrupt an index."]
+    ["Ingestion",'Ingestion is everything that happens to a document before it can be found: parsing (reading it), extraction (pulling the text out), enrichment (adding labels), chunking (cutting into index cards) and embedding (an address for meaning). It sets a ceiling on quality. Nothing later can raise that ceiling.'],
+    ["Query rewriting",'Turning what the user typed into what should really be searched, before the search runs. It is like a librarian who rewords your question first.'],
+    ["Access-control-aware retrieval",'Filtering by who is asking, as part of the search itself. The other way is to hide results later on the screen. Think of a locked cupboard versus a curtain.'],
+    ["Embedding versioning",'Keeping track of which model made which stored vectors (the numbers that are the addresses for meaning). Then a change of model cannot quietly spoil an index.']
   ],
   takeaway:[
-    'Name the stages of a production retrieval pipeline, and say which of them can be tuned.',
+    'Name the stages of a production retrieval pipeline. Say which of them can be tuned.',
     'Explain why the quality of ingestion sets an upper limit on the quality of retrieval.',
     'Say what must happen to your index when a document is deleted or a permission changes.'
   ],
   story:[
-    ['c','Before you start','Have your Chapter 12 retrieval pipeline and your Chapter 6 answer key ready.'],
+    ['c','Before you start','Keep two things ready: your Chapter 12 retrieval pipeline and your Chapter 6 answer key.'],
     ['c','On your route','Do units 11.5 and 11.8, then the capstone. Read the other units this pass.'],
-    ['p','In the last chapter you decided what the model should see. Now we look at where that evidence comes from when the system is real. Your Chapter 7 system works because you chose every document yourself, and you are the only user.'],
-    ['p','Production is different. Scans arrive crooked. Permissions change after a document has been indexed. The same contract gets uploaded twice under two names. And your provider updates the model without telling you. This chapter is about building a retrieval system that survives all of that.'],
-    ['c','Note','A production pipeline has seven stages: reading documents in, splitting them, adding labels, creating embeddings, searching, building the prompt, and checking the answer. You can tune each stage. That also means each one is a suspect when quality drops without a code change.'],
-    ['key','Anything lost while reading documents in is lost for good. Better search can’t bring back a table that the parser flattened, or a page that it skipped.'],
+    ['p','Last chapter you decided what the model should see. Now we ask where that evidence comes from in a real system. Your Chapter 7 system works because you chose every document yourself. And you are its only user.'],
+    ['p','Real use is different. Scans arrive crooked. Permissions change after a document is indexed (added to the library catalogue). The same contract is uploaded twice under two names. And your provider updates the model without telling you. This chapter is about a retrieval system that survives all of that.'],
+    ['c','Note','A production pipeline has seven stages: reading documents in, splitting them, adding labels, creating embeddings (addresses for meaning), searching, building the prompt, and checking the answer. You can tune each stage. So each one is a suspect when quality drops and the code has not changed.'],
+    ['key','Anything lost while reading documents in is lost for good. Better search cannot bring back a table that the parser flattened, or a page that it skipped. It is like a photocopy that missed a page.'],
     ['h','Hands-on units'],
-    ['p','There are eight units below. They follow a document on its journey: first it’s read, then labelled and split, then searched, and finally it’s protected, refreshed and, if needed, rolled back. Each unit has something to build and something to break.'],
+    ['p','There are eight units below. They follow one document on its journey. First it is read. Then it is labelled and split. Then it is searched. Last, it is protected, refreshed and, if needed, rolled back. Each unit has something to build and something to break.'],
     [
       'unit',
       '11.1',
       'Parsing and document ingestion',
-      {goal:'You’ll treat document ingestion as an engineering pipeline, not as a matter of “upload PDF.”',
-       idea:'If you get garbage in at ingestion, or lose the structure of the document, you’ll get garbage out of retrieval later.',
-       prove:'Take three PDFs or documents. Compare the extracted text with what a person sees in the source.',
-       build:'Record the page, the section, the table, the language and your notes on the parser.',
-       brk:'Use a scanned page, a page full of tables, and a malformed document. Record what gets lost.',
+      {goal:'You will treat ingestion as an engineering pipeline, like a factory line. It is more than “upload PDF.”',
+       idea:'If bad data goes in, or the document loses its shape, bad results come out of retrieval later.',
+       prove:'Take three PDFs or documents. Compare the text that was pulled out with what a person sees in the source.',
+       build:'Write down the page, the section, the table, the language and your notes on the parser.',
+       brk:'Use a scanned page, a page full of tables, and a broken document. Write down what gets lost.',
        artifact:'An Ingestion Quality Report.',
        check:'Which information disappeared before retrieval even started?',
-       lens:'Ask how good the parser or OCR is before you blame the embeddings.'}
+       lens:'Ask how good the parser or OCR (the tool that reads text from pictures) is before you blame the embeddings.'}
     ],
     [
       'unit',
       '11.2',
       'Metadata and document identity',
-      {goal:'You’ll design stable identifiers for documents and chunks, plus the metadata you need for filtering and provenance.',
-       idea:'Metadata is part of the retrieval logic. It’s not decoration.',
-       prove:'Create these fields: document_id, version, section, language, access_label and effective_date.',
-       build:'Give every chunk a stable ID, and keep the link to its parent.',
-       brk:'Create duplicate versions and superseded versions of a document, and test your retrieval filters.',
+      {goal:'You will give documents and chunks stable IDs, like roll numbers. You will add the metadata (labels) you need for filtering and provenance (where a fact came from).',
+       idea:'Metadata is part of how retrieval works. It is not decoration.',
+       prove:'Make these fields: document_id, version, section, language, access_label and effective_date.',
+       build:'Give every chunk a stable ID. Keep the link to its parent document.',
+       brk:'Make duplicate versions and old, replaced versions of a document. Test your retrieval filters.',
        artifact:'A Document Metadata Contract.',
-       check:'Can the system tell current evidence from obsolete evidence?',
-       lens:'Versioning and identity become critical the moment a policy changes.'}
+       check:'Can the system tell current evidence from out-of-date evidence?',
+       lens:'Versioning and identity matter a lot the moment a policy changes.'}
     ],
     [
       'unit',
       '11.3',
       'Chunking families',
-      {goal:'You’ll compare fixed, recursive or structure-aware, semantic and hierarchical chunking, without treating any of them as the best in every case.',
-       idea:'A chunking choice is a hypothesis about what unit of evidence your users will need.',
-       prove:'Chunk the same document in three ways, and look at where the boundaries fall.',
-       build:'Write 10 questions that each need a different amount of evidence.',
-       brk:'Test a question whose answer crosses a chunk boundary.',
+      {goal:'You will compare fixed, recursive or structure-aware, semantic and hierarchical chunking. None of them is best in every case.',
+       idea:'A chunking choice is a guess about what size of evidence your users will need.',
+       prove:'Cut the same document into chunks in three ways. Look at where the edges fall.',
+       build:'Write 10 questions. Each needs a different amount of evidence.',
+       brk:'Test a question whose answer crosses a chunk edge.',
        artifact:'A Chunking Experiment, with before and after examples.',
-       check:'Which chunking strategy matched your set of questions, and why?',
-       lens:'The right question isn’t “which chunking is best?” It’s “best for what corpus, and for what kinds of queries?”'}
+       check:'Which chunking matched your set of questions, and why?',
+       lens:'Do not ask “which chunking is best?” Ask “best for what documents, and for what kinds of questions?”'}
     ],
     [
       'unit',
       '11.4',
       'Sparse retrieval',
-      {goal:'You’ll understand exact lexical retrieval, and why it’s still valuable.',
-       idea:'Identifiers, names, codes and exact phrases are often where lexical methods are strongest.',
-       prove:'Build a small keyword or BM25-style search experiment. Or use a library, once you understand the idea behind the scoring.',
-       build:'Measure the rank of passages that you know are the right answer.',
-       brk:'Use paraphrased questions, and questions full of synonyms, to expose where it’s weak.',
+      {goal:'You will learn exact-word search (lexical retrieval), like Ctrl+F, and why it is still useful.',
+       idea:'Exact methods are often strongest for IDs, names, codes and exact phrases.',
+       prove:'Build a small keyword or BM25-style search (a way to score pages by their words). Or use a library (ready-made code), once you understand the idea behind the scoring.',
+       build:'Measure the rank of the passages you know are the right answer.',
+       brk:'Use rephrased questions and questions full of synonyms. See where it is weak.',
        artifact:'A Sparse Retrieval Benchmark.',
        check:'Where did exact matching win?',
-       lens:'Don’t replace a strong, predictable signal just because embeddings are fashionable.'}
+       lens:'Do not throw away a strong, predictable signal just because embeddings are in fashion.'}
     ],
     [
       'unit',
       '11.5',
       'Dense, hybrid and vector search',
-      {goal:'You’ll understand embeddings as a representation that can be indexed, and you’ll combine sparse and dense evidence.',
-       idea:'Dense retrieval helps when two texts mean the same thing but use different words. Hybrid retrieval combines methods that fail in different ways.',
+      {goal:'You will see embeddings as a way to store meaning that can be indexed. You will combine exact-word evidence with meaning evidence.',
+       idea:'Dense retrieval (search by meaning) helps when two texts mean the same thing in different words. Hybrid retrieval joins methods that fail in different ways, like two nets with different holes.',
        prove:'Run the question set from Chapters 4 and 5 through lexical, dense and hybrid retrieval.',
-       build:'Record the rank of the relevant evidence for each query.',
-       brk:'Create cases with an exact ID, a synonym, several languages, and an ambiguous question.',
-       artifact:'A Retrieval Benchmark with the evidence for each query.',
-       check:'Which categories of query do best with which retriever?',
-       lens:'Your architecture decisions should follow the pattern of your errors.'}
+       build:'Write down the rank of the right evidence for each question.',
+       brk:'Make cases with an exact ID, a synonym, several languages, and an unclear question.',
+       artifact:'A Retrieval Benchmark with the evidence for each question.',
+       check:'Which kinds of question work best with which retriever?',
+       lens:'Let the pattern of your mistakes guide your design.'}
     ],
     [
       'unit',
       '11.6',
       'Reranking',
-      {goal:'You’ll understand a second-stage relevance model, and you’ll measure whether its benefit justifies the cost and the latency.',
-       idea:'The first stage tries to find all the good candidates. Reranking can then improve the order among those candidates.',
-       prove:'Retrieve 10 candidates and apply a second scoring stage. Use a reranker that’s available to you, or a substitute you’ve measured.',
-       build:'Compare Recall@10, Precision@3 and latency, before and after.',
-       brk:'Include cases where the reranker puts the evidence in the wrong order, and does so with confidence.',
+      {goal:'You will learn a second-stage relevance model (a second judge that re-orders the found pages). You will measure whether its benefit is worth the cost and the waiting time.',
+       idea:'The first stage tries to find every good candidate. Reranking can then improve the order among those candidates, like re-sorting a shortlist.',
+       prove:'Fetch 10 candidates and add a second scoring stage. Use a reranker you have, or a stand-in you have measured.',
+       build:'Compare Recall@10 (how many right pages are in the top 10), Precision@3 (how many of the top 3 are right) and latency (waiting time), before and after.',
+       brk:'Include cases where the reranker puts the evidence in the wrong order, and does it with confidence.',
        artifact:'A Reranking Experiment Report.',
-       check:'Did the improvement reach the final task, or only a metric in the middle?',
-       lens:'Never add reranking just because a reference architecture has it. Prove that it’s worth it.'}
+       check:'Did the gain reach the final task, or only a number in the middle?',
+       lens:'Never add reranking just because a sample design has it. Prove that it is worth it.'}
     ],
     [
       'unit',
       '11.7',
       'Query rewriting, parent-child retrieval and abstention',
-      {goal:'You’ll improve the retrieval query and the size of the context, while keeping what the user meant.',
-       idea:'Retrieval is a pipeline of steps: forming the query, searching for candidates, filtering, ranking, putting the context together, and the policy for the answer.',
-       prove:'Rewrite ambiguous questions as explicit search queries, and compare the results.',
-       build:'Retrieve small child chunks, but return the larger parent context so the answer reads well.',
-       brk:'Test a query that can’t be answered, and a query where the rewrite changes what the user meant.',
-       artifact:'A Query Strategy and an Abstention Test Set.',
-       check:'When should the system ask a clarifying question instead of retrieving?',
-       lens:'Abstention is a product behaviour. It’s not just a sentence in a prompt.'}
+      {goal:'You will improve the search question and the size of the context, and still keep what the user meant.',
+       idea:'Retrieval is a pipeline of steps: forming the query, finding candidates, filtering, ranking, putting the context together, and the policy for the answer.',
+       prove:'Rewrite unclear questions as clear search queries. Compare the results.',
+       build:'Find small child chunks, but hand back the bigger parent text, so the answer reads well.',
+       brk:'Test a question that has no answer, and a question where the rewrite changes what the user meant.',
+       artifact:'A Query Strategy and an Abstention Test Set (questions where the system should say “I do not know”).',
+       check:'When should the system ask a question back instead of searching?',
+       lens:'Saying “I do not know” is a product behaviour. It is more than one sentence in a prompt.'}
     ],
     [
       'unit',
       '11.8',
       'Authorization, freshness and rollback',
-      {goal:'You’ll make retrieval aware of permissions, and you’ll make it possible to undo changes safely.',
-       idea:'A correct answer that comes from data the user wasn’t allowed to see is still a security failure.',
-       prove:'Add an access label to your chunks, and filter by the role of a test user.',
-       build:'Simulate a document being deleted, a permission changing, and the index being rebuilt.',
-       brk:'Query immediately after a permission is revoked, and check that stale content in the index can’t be reached.',
+      {goal:'You will make retrieval respect permissions (who may see what). You will make it safe to undo changes.',
+       idea:'A correct answer taken from data the user may not see is still a security failure.',
+       prove:'Add an access label to your chunks. Filter by the role of a test user.',
+       build:'Pretend a document is deleted, a permission changes, and the index is rebuilt.',
+       brk:'Ask a question right after a permission is taken away. Check that old content left in the index cannot be reached.',
        artifact:'A production RAG architecture, plus a checklist for permissions, freshness and rollback.',
-       check:'Can you prove that a user who isn’t authorised cannot retrieve the chunk?',
-       lens:'Authorisation belongs in the application and data layer. It’s not enough to put it only in the model’s instructions.'}
+       check:'Can you prove that a user who is not allowed cannot get the chunk?',
+       lens:'Keep permission checks in the application and the data, like a lock on the door. Putting them only in the model\'s instructions is not enough.'}
     ],
     ['q','I404'],
     ['h','Reranking has a cost'],
-    ['key','Reranking improves the order of results, but it adds cost. Fetch ten candidates and rescore them. Then check whether recall at ten and precision at three improved enough to justify the extra time and cost.'],
+    ['key','Reranking improves the order of results, but it adds cost. Fetch ten candidates and score them again. Then check if recall at ten and precision at three improved enough to be worth the extra time and cost.'],
     ['h','Four questions to ask about any retrieval product'],
-    ['p','Production retrieval has a long list of concerns, and you don’t need to memorise it. Every item on that list fits under one of four questions.'],
+    ['p','A real retrieval system has a long list of worries. You do not need to memorise it. Every item fits under one of four questions.'],
     [
       'n',
       ['<strong>Did we read the document correctly?</strong> This covers scans, tables, and content that a parser drops.','<strong>Is this user allowed to see it?</strong> This covers permissions, separate customers, and deleted documents.','<strong>Did we find the right chunk?</strong> This covers keyword search, meaning search, query rewriting and reranking.','<strong>Can we show where the answer came from?</strong> This covers chunk IDs, citations, and what happens when there is no answer.']
     ],
-    ['p','Use these four questions whenever someone demonstrates a retrieval product to you. Then try them on a case of your own.'],
+    ['p','Use these four questions whenever someone shows you a retrieval product. Then try them on a case of your own.'],
     [
       'try',
       {id:'ch24-delete',
        mins:6,
        min:60,
        rows:4,
-       task:'A document is deleted from the source system at 10am. Describe what must happen for the assistant to stop quoting it, and by when.',
+       task:'A document is deleted from the source system at 10am. Write what must happen so the assistant stops quoting it, and by when.',
        ph:'At 10am … then … by …',
-       after:'If your answer depends on a nightly rebuild, your system quotes a deleted document from 10am until the rebuild. That window is a decision, so make it on purpose.'}
+       after:'If your answer depends on a nightly rebuild, your system keeps quoting the deleted document from 10am until the rebuild. That gap is a decision, so make it on purpose.'}
     ],
     ['h','Summary'],
-    ['p','To sum up: ingestion sets the ceiling, permissions and deletions have to reach the index, and every added stage has to prove it’s worth its cost. Next, in Chapter 25, you’ll give the model controlled access to actions, not only to evidence.']
+    ['p','In short: ingestion sets the ceiling. Permissions and deletions must reach the index. Every extra stage must prove it is worth its cost. Next, in Chapter 25, you will give the model controlled access to actions, not only to evidence.']
   ],
   capstone:{
     title:'Draw the gateway on one page',
-    brief:'The gateway is the version of Bharat Privacy Guard that sits in front of a company’s servers, logs and AI traffic. You won’t build it, but you must be able to design it, so that an engineer could build from your page and a security reviewer could challenge it. In this chapter you learned the stages of a production search pipeline, why the quality of the first stage caps everything after it, and what must happen to an index when a document is deleted or a permission changes. Now you’ll apply all of that to the gateway’s rules and reference lists.',
-    where:'Written only. A one-page design. No code needed.',
+    brief:'The gateway is the version of Bharat Privacy Guard that sits in front of a company\'s servers, logs and AI traffic. Think of a gatekeeper at the door. You will not build it. But you must be able to design it, so an engineer can build from your page and a security reviewer can challenge it. You learned the stages of a production search pipeline. You learned why the first stage caps everything after it. You learned what must happen to an index when a document is deleted or a permission changes. Now use all of this on the gateway\'s rules and reference lists.',
+    where:'Write only. One page of design. No code needed.',
     steps:[
-      'Draw these stages as separate boxes: how a company’s rules and reference lists are loaded, where they are stored, how they are searched, how the right rule is chosen for a request, how the result is reordered if needed, and how the decision is applied.',
+      'Draw these stages as separate boxes: how a company\'s rules and reference lists are loaded, where they are stored, how they are searched, how the right rule is picked for a request, how the result is put in order again if needed, and how the decision is applied.',
       'Add who may do what: who can change a rule, who can read the logs, and who can switch the gateway off. Mark where the permission check happens.',
-      'Mark how an answer can be traced back. Every decision should record which rule, in which version, produced it.',
+      'Show how an answer can be traced back. Every decision should record which rule, in which version, produced it.',
       'Write the “no answer” rule: what the gateway does when no rule applies, and what the user sees.',
       'Write how the rules and the reference lists are versioned, and what happens to old decisions when a rule changes.',
       'Write the rollback: what you do when a new rule version makes things worse.'
     ],
     done:[
-      'A one-page drawing with the stages as separate boxes and the permission check marked.',
-      'The trace from a decision back to a rule and version.',
+      'A one-page drawing. The stages are separate boxes. The permission check is marked.',
+      'A trace from a decision back to a rule and a version.',
       'The “no rule applies” behaviour, the versioning plan and the rollback.',
       'The page really fits on one page. If it does not, you have not made enough decisions yet.'
     ]
@@ -1105,7 +1105,7 @@ window.PART5 = [
        build:'Call it from a client that fits, or from a local mock (a pretend copy).',
        brk:'Send badly formed arguments (messy details), and make the server send back errors.',
        artifact:'An MCP Mini-Demo repository (an online folder that remembers every change).',
-       check:'Can you follow the whole path: finding the tool, the call, and the reply?',
+       check:'Can you trace the whole path (follow it step by step): finding the tool, the call, and the reply?',
        lens:'Keep the demo read-only. Then your eyes stay on how the protocol works.'}
     ],
     [
@@ -1145,7 +1145,7 @@ window.PART5 = [
        brk:'Make a handoff that is bad or confused, and name the control that should stop it.',
        artifact:'An Agent Interoperability Trust Model.',
        check:'What does the agent that receives the job really trust?',
-       lens:'Keep your eyes on design and rules, not on tiny protocol details.'}
+       lens:'Keep your eyes on design and governance (the rules for who decides), not on tiny protocol details.'}
     ],
     ['h','Read one real exchange'],
     ['p','You do not need a real MCP server to understand this. The code cell (a box of code) below is a toy. A few lines of Python answer in the same message shapes. The pattern checker is offered as a tool. Press Run and read the six lines it prints. Real messages carry a few more fields. To run a real server, use the free Introduction to MCP course in the plan.'],

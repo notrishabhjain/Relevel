@@ -115,8 +115,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Galat bane hue arguments (bigde hue details) bhejiye, aur server se errors wapas mangwaiye.',
   'An MCP Mini-Demo repository (an online folder that remembers every change).':
     'Ek MCP Mini-Demo repository (ek online folder jo har change yaad rakhta hai).',
-  'Can you follow the whole path: finding the tool, the call, and the reply?':
-    'Kya aap poora raasta follow kar sakte hain: tool dhoondhna, call, aur reply?',
+  'Can you trace the whole path (follow it step by step): finding the tool, the call, and the reply?':
+    'Kya aap poora raasta trace kar sakte hain (qadam-dar-qadam follow kar sakte hain): tool dhoondhna, call, aur reply?',
   'Keep the demo read-only. Then your eyes stay on how the protocol works.':
     'Demo ko read-only rakhiye. Phir aapka dhyaan is par rahega ki protocol kaise kaam karta hai.',
   'Consent and authorization':
@@ -171,8 +171,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek Agent Interoperability Trust Model.',
   'What does the agent that receives the job really trust?':
     'Jo agent kaam receive karta hai, woh asal mein kis par bharosa karta hai?',
-  'Keep your eyes on design and rules, not on tiny protocol details.':
-    'Apni nazar design aur rules par rakhiye, protocol ki chhoti-chhoti baaton par nahi.',
+  'Keep your eyes on design and governance (the rules for who decides), not on tiny protocol details.':
+    'Apni nazar design aur governance par rakhiye (kaun faisla leta hai, uske rules), protocol ki chhoti-chhoti baaton par nahi.',
   'Read one real exchange':
     'Ek asli exchange padhiye',
   'You do not need a real MCP server to understand this. The code cell (a box of code) below is a toy. A few lines of Python answer in the same message shapes. The pattern checker is offered as a tool. Press Run and read the six lines it prints. Real messages carry a few more fields. To run a real server, use the free Introduction to MCP course in the plan.':

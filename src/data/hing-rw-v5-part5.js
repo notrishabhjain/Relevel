@@ -201,216 +201,64 @@ Object.assign(window.HING = window.HING || {}, {
   /* ---- ch11r: Production RAG: ingestion, access control and freshness ---- */
   'Production RAG: ingestion, access control and freshness':
     'Production RAG: ingestion, access control aur freshness',
-  'A production retrieval system has several stages that you can tune, from reading documents in to checking the answer. In this chapter you’ll walk through each stage, including permissions, deletion and rollback. By the end, you’ll have designed an architecture that you could defend in a review.':
-    'Ek production retrieval system mein kai stages hote hain jinhe aap tune kar sakte hain, documents ko andar padhne se lekar jawaab ko check karne tak. Is chapter mein aap har stage se guzrenge, jismein permissions, deletion aur rollback bhi aate hain. Aakhir tak aap ek aisa architecture design kar chuke honge jiska aap review mein bachaav kar sakein.',
-  'Take three real documents and make an inventory of each: its id, its sections, its language, its metadata and its access label. Then predict which metadata will turn out to be worth keeping.':
-    'Teen asli documents lijiye aur har ek ki inventory banaiye: uski id, sections, language, metadata aur access label. Phir andaaza lagaiye ki kaunsa metadata kaam ka nikalega.',
-  'Compare lexical, semantic and hybrid retrieval. Then add reranking, or write down a measured reason for leaving it out.':
-    'Lexical, semantic aur hybrid retrieval ko compare kijiye. Phir reranking jodiye, ya use chhodne ki ek measured wajah likh dijiye.',
-  'Test what happens when a document is deleted, when a permission changes, when there are duplicates, and when the index version changes.':
-    'Test kijiye ki kya hota hai jab koi document delete hota hai, jab koi permission badalti hai, jab duplicates hote hain, aur jab index ka version badalta hai.',
-  'A production RAG architecture with access control, provenance, versioning, a no-answer policy and a rollback path.':
-    'Ek production RAG architecture jisme access control, provenance, versioning, ek no-answer policy aur ek rollback path ho.',
-  'Name the first production retrieval failure you would investigate, and say why you would look at that one first.':
-    'Production retrieval ki woh pehli failure batayiye jiski aap jaanch karenge, aur kahiye ki aap use hi pehle kyun dekhenge.',
   'You built retrieval by hand':
     'Aapne retrieval haath se banaya',
-  'You did this in Chapters 3 to 7. This chapter turns it into an architecture.':
-    'Yeh aapne Chapters 3 se 7 mein kiya. Yeh chapter use ek architecture mein badalta hai.',
   'Chapter 12 measured the difference. Here it becomes a decision about ingestion and indexing.':
     'Chapter 12 ne is farq ko measure kiya. Yahan yeh ingestion aur indexing ka decision ban jaata hai.',
   'The answer key is your measuring tool':
     'Answer key aapka measuring tool hai',
-  'Every claim in this chapter is measured against it.':
-    'Is chapter ka har claim isi ke against measure hota hai.',
   'Ingestion':
     'Ingestion',
-  'Everything that happens to a document before it can be retrieved: parsing, extraction, enrichment, chunking and embedding. It sets a ceiling on quality, and nothing later in the chain can raise that ceiling.':
-    'Kisi document ke saath retrieve hone se pehle jo kuch bhi hota hai: parsing, extraction, enrichment, chunking aur embedding. Yeh quality par ek ceiling laga deta hai, aur aage chain mein koi bhi us ceiling ko upar nahi utha sakta.',
   'Query rewriting':
     'Query rewriting',
-  'Turning what the user typed into what should really be searched for, before the retrieval runs.':
-    'User ne jo type kiya use us cheez mein badalna jo asal mein search honi chahiye, retrieval chalne se pehle.',
   'Access-control-aware retrieval':
     'Access-control-aware retrieval',
-  'Filtering by who is asking as part of the search itself, instead of hiding results afterwards in the interface.':
-    'Search ke andar hi yeh filter karna ki poochh kaun raha hai, na ki baad mein interface mein results chhupana.',
   'Embedding versioning':
     'Embedding versioning',
-  'Keeping track of which model produced which stored vectors, so that a change of model doesn’t quietly corrupt an index.':
-    'Yeh track rakhna ki kaunsa model kaunse stored vectors banaya, taaki model badalne se index chupke se kharab na ho jaaye.',
-  'Name the stages of a production retrieval pipeline, and say which of them can be tuned.':
-    'Production retrieval pipeline ke stages ke naam bata paana, aur yeh bhi ki inmein se kaunse tune kiye ja sakte hain.',
   'Explain why the quality of ingestion sets an upper limit on the quality of retrieval.':
     'Samjha paana ki ingestion ki quality retrieval ki quality par upper limit kyun lagati hai.',
   'Say what must happen to your index when a document is deleted or a permission changes.':
     'Bata paana ki jab koi document delete ho ya koi permission badle toh aapke index ke saath kya hona chahiye.',
-  'Have your Chapter 12 retrieval pipeline and your Chapter 6 answer key ready.':
-    'Chapter 12 ki apni retrieval pipeline aur Chapter 6 ki apni answer key taiyaar rakhiye.',
-  'In the last chapter you decided what the model should see. Now we look at where that evidence comes from when the system is real. Your Chapter 7 system works because you chose every document yourself, and you are the only user.':
-    'Pichhle chapter mein aapne tay kiya ki model ko kya dikhna chahiye. Ab hum dekhte hain ki jab system asli ho, tab woh evidence kahan se aata hai. Aapka Chapter 7 wala system isliye chalta hai kyunki har document aapne khud chuna tha, aur user sirf aap hain.',
-  'Production is different. Scans arrive crooked. Permissions change after a document has been indexed. The same contract gets uploaded twice under two names. And your provider updates the model without telling you. This chapter is about building a retrieval system that survives all of that.':
-    'Production alag hota hai. Scans tedhe aate hain. Document index hone ke baad permissions badal jaati hain. Wahi contract do alag naamon se do baar upload ho jaata hai. Aur aapka provider aapko bataye bina model update kar deta hai. Yeh chapter aisa retrieval system banane ke baare mein hai jo in sab ko jhel jaaye.',
   'Note':
     'Note',
-  'A production pipeline has seven stages: reading documents in, splitting them, adding labels, creating embeddings, searching, building the prompt, and checking the answer. You can tune each stage. That also means each one is a suspect when quality drops without a code change.':
-    'Ek production pipeline mein saat stages hote hain: documents ko andar padhna, unhe split karna, labels jodna, embeddings banana, search karna, prompt banana, aur jawaab ko check karna. Aap har stage ko tune kar sakte hain. Isliye jab code badle bina quality girti hai, toh har stage par shak jaata hai.',
-  'Anything lost while reading documents in is lost for good. Better search can’t bring back a table that the parser flattened, or a page that it skipped.':
-    'Documents ko andar padhte waqt jo kuch kho gaya, woh hamesha ke liye kho gaya. Behtar search us table ko wapas nahi la sakti jo parser ne flatten kar di, ya us page ko jo usne chhod diya.',
-  'There are eight units below. They follow a document on its journey: first it’s read, then labelled and split, then searched, and finally it’s protected, refreshed and, if needed, rolled back. Each unit has something to build and something to break.':
-    'Neeche aath units hain. Yeh ek document ke safar ko follow karte hain: pehle woh padha jaata hai, phir label aur split hota hai, phir search hota hai, aur aakhir mein woh protect hota hai, fresh rakha jaata hai aur zaroorat padne par rollback hota hai. Har unit mein banane ke liye kuch hai aur todne ke liye bhi.',
   'Parsing and document ingestion':
     'Parsing aur document ingestion',
-  'You’ll treat document ingestion as an engineering pipeline, not as a matter of “upload PDF.”':
-    'Aap document ingestion ko ek engineering pipeline ki tarah dekhenge, “PDF upload kar do” ki tarah nahi.',
-  'If you get garbage in at ingestion, or lose the structure of the document, you’ll get garbage out of retrieval later.':
-    'Agar ingestion par garbage andar gaya, ya document ka structure kho gaya, toh baad mein retrieval se bhi garbage hi niklega.',
-  'Take three PDFs or documents. Compare the extracted text with what a person sees in the source.':
-    'Teen PDFs ya documents lijiye. Nikaale gaye text ko us se compare kijiye jo ek insaan source mein dekhta hai.',
-  'Record the page, the section, the table, the language and your notes on the parser.':
-    'Page, section, table, language aur parser ke baare mein apne notes record kijiye.',
-  'Use a scanned page, a page full of tables, and a malformed document. Record what gets lost.':
-    'Ek scanned page, tables se bhara page, aur ek malformed document use kijiye. Record kijiye ki kya kho jaata hai.',
   'An Ingestion Quality Report.':
     'Ek Ingestion Quality Report.',
   'Which information disappeared before retrieval even started?':
     'Retrieval shuru hone se pehle hi kaunsi information gayab ho gayi?',
-  'Ask how good the parser or OCR is before you blame the embeddings.':
-    'Embeddings ko dosh dene se pehle poochhiye ki parser ya OCR kitna achha hai.',
   'Metadata and document identity':
     'Metadata aur document identity',
-  'You’ll design stable identifiers for documents and chunks, plus the metadata you need for filtering and provenance.':
-    'Aap documents aur chunks ke liye stable identifiers design karenge, saath mein woh metadata jo filtering aur provenance ke liye chahiye.',
-  'Metadata is part of the retrieval logic. It’s not decoration.':
-    'Metadata retrieval logic ka hissa hai. Yeh sajaavat nahi hai.',
-  'Create these fields: document_id, version, section, language, access_label and effective_date.':
-    'Yeh fields banaiye: document_id, version, section, language, access_label aur effective_date.',
-  'Give every chunk a stable ID, and keep the link to its parent.':
-    'Har chunk ko ek stable ID dijiye, aur uske parent se link bana rehne dijiye.',
-  'Create duplicate versions and superseded versions of a document, and test your retrieval filters.':
-    'Document ke duplicate versions aur superseded versions banaiye, aur apne retrieval filters ko test kijiye.',
   'A Document Metadata Contract.':
     'Ek Document Metadata Contract.',
-  'Can the system tell current evidence from obsolete evidence?':
-    'Kya system current evidence ko obsolete evidence se alag pehchaan sakta hai?',
-  'Versioning and identity become critical the moment a policy changes.':
-    'Jis pal policy badalti hai, usi pal versioning aur identity bahut zaroori ho jaate hain.',
   'Chunking families':
     'Chunking families',
-  'You’ll compare fixed, recursive or structure-aware, semantic and hierarchical chunking, without treating any of them as the best in every case.':
-    'Aap fixed, recursive ya structure-aware, semantic aur hierarchical chunking ko compare karenge, bina kisi ko har case mein sabse achha maane.',
-  'A chunking choice is a hypothesis about what unit of evidence your users will need.':
-    'Chunking ka choice ek hypothesis hai ki aapke users ko evidence ki kaunsi unit chahiye hogi.',
-  'Chunk the same document in three ways, and look at where the boundaries fall.':
-    'Ek hi document ko teen tareekon se chunk kijiye, aur dekhiye ki boundaries kahan padti hain.',
-  'Write 10 questions that each need a different amount of evidence.':
-    '10 sawaal likhiye jinme se har ek ko alag kitna evidence chahiye.',
-  'Test a question whose answer crosses a chunk boundary.':
-    'Ek aisa sawaal test kijiye jiska jawaab ek chunk boundary ke paar jaata hai.',
   'A Chunking Experiment, with before and after examples.':
     'Ek Chunking Experiment, before aur after examples ke saath.',
-  'Which chunking strategy matched your set of questions, and why?':
-    'Kaunsi chunking strategy aapke sawaalon ke set se match hui, aur kyun?',
-  'The right question isn’t “which chunking is best?” It’s “best for what corpus, and for what kinds of queries?”':
-    'Sahi sawaal “kaunsi chunking sabse achhi hai?” nahi hai. Sahi sawaal hai “kis corpus ke liye, aur kis tarah ki queries ke liye sabse achhi?”',
   'Sparse retrieval':
     'Sparse retrieval',
-  'You’ll understand exact lexical retrieval, and why it’s still valuable.':
-    'Aap exact lexical retrieval ko samjhenge, aur yeh bhi ki woh ab bhi kaam ki kyun hai.',
-  'Identifiers, names, codes and exact phrases are often where lexical methods are strongest.':
-    'Identifiers, names, codes aur exact phrases aksar wahi jagah hoti hain jahan lexical methods sabse strong hote hain.',
-  'Build a small keyword or BM25-style search experiment. Or use a library, once you understand the idea behind the scoring.':
-    'Ek chhota keyword ya BM25-style search experiment banaiye. Ya scoring ka idea samajhne ke baad koi library use kijiye.',
-  'Measure the rank of passages that you know are the right answer.':
-    'Un passages ka rank measure kijiye jinke baare mein aap jaante hain ki wahi sahi jawaab hain.',
-  'Use paraphrased questions, and questions full of synonyms, to expose where it’s weak.':
-    'Paraphrased sawaal, aur synonyms se bhare sawaal use kijiye, taaki pata chale ki yeh kahan kamzor hai.',
   'A Sparse Retrieval Benchmark.':
     'Ek Sparse Retrieval Benchmark.',
   'Where did exact matching win?':
     'Exact matching kahan jeeti?',
-  'Don’t replace a strong, predictable signal just because embeddings are fashionable.':
-    'Ek strong, predictable signal ko sirf isliye mat badaliye ki embeddings fashion mein hain.',
   'Dense, hybrid and vector search':
     'Dense, hybrid aur vector search',
-  'You’ll understand embeddings as a representation that can be indexed, and you’ll combine sparse and dense evidence.':
-    'Aap embeddings ko ek aisi representation ki tarah samjhenge jise index kiya ja sakta hai, aur sparse aur dense evidence ko jodenge.',
-  'Dense retrieval helps when two texts mean the same thing but use different words. Hybrid retrieval combines methods that fail in different ways.':
-    'Dense retrieval tab madad karta hai jab do texts ka matlab ek ho lekin words alag hon. Hybrid retrieval aise methods ko jodta hai jo alag-alag tarah se fail hote hain.',
   'Run the question set from Chapters 4 and 5 through lexical, dense and hybrid retrieval.':
     'Chapters 4 aur 5 ka question set lexical, dense aur hybrid retrieval se chalaiye.',
-  'Record the rank of the relevant evidence for each query.':
-    'Har query ke liye relevant evidence ka rank record kijiye.',
-  'Create cases with an exact ID, a synonym, several languages, and an ambiguous question.':
-    'Aise cases banaiye jinme ek exact ID ho, ek synonym ho, kai languages hon, aur ek ambiguous sawaal ho.',
-  'A Retrieval Benchmark with the evidence for each query.':
-    'Ek Retrieval Benchmark, har query ke evidence ke saath.',
-  'Which categories of query do best with which retriever?':
-    'Queries ki kaunsi categories ko kaunse retriever se fayda hota hai?',
-  'Your architecture decisions should follow the pattern of your errors.':
-    'Aapke architecture decisions aapki galtiyon ke pattern ko follow karne chahiye.',
   'Reranking':
     'Reranking',
-  'You’ll understand a second-stage relevance model, and you’ll measure whether its benefit justifies the cost and the latency.':
-    'Aap ek second-stage relevance model ko samjhenge, aur measure karenge ki uska fayda cost aur latency ko justify karta hai ya nahi.',
-  'The first stage tries to find all the good candidates. Reranking can then improve the order among those candidates.':
-    'Pehla stage saare achhe candidates dhoondhne ki koshish karta hai. Reranking phir un candidates ke beech ka order behtar kar sakti hai.',
-  'Retrieve 10 candidates and apply a second scoring stage. Use a reranker that’s available to you, or a substitute you’ve measured.':
-    '10 candidates retrieve kijiye aur ek second scoring stage lagaiye. Woh reranker use kijiye jo aapko available ho, ya koi aisa substitute jise aapne measure kiya ho.',
-  'Compare Recall@10, Precision@3 and latency, before and after.':
-    'Recall@10, Precision@3 aur latency ko before aur after compare kijiye.',
-  'Include cases where the reranker puts the evidence in the wrong order, and does so with confidence.':
-    'Aise cases shamil kijiye jahan reranker evidence ko galat order mein rakhta hai, aur woh bhi poore confidence ke saath.',
   'A Reranking Experiment Report.':
     'Ek Reranking Experiment Report.',
-  'Did the improvement reach the final task, or only a metric in the middle?':
-    'Kya sudhaar final task tak pahuncha, ya sirf beech ke ek metric tak?',
-  'Never add reranking just because a reference architecture has it. Prove that it’s worth it.':
-    'Reranking sirf isliye mat jodiye ki kisi reference architecture mein hai. Prove kijiye ki woh kaam ki hai.',
   'Query rewriting, parent-child retrieval and abstention':
     'Query rewriting, parent-child retrieval aur abstention',
-  'You’ll improve the retrieval query and the size of the context, while keeping what the user meant.':
-    'Aap retrieval query aur context ke size ko behtar banayenge, user ne jo kaha tha woh sambhaal kar.',
-  'Retrieval is a pipeline of steps: forming the query, searching for candidates, filtering, ranking, putting the context together, and the policy for the answer.':
-    'Retrieval steps ki ek pipeline hai: query banana, candidates search karna, filter karna, rank karna, context jodna, aur jawaab ki policy.',
-  'Rewrite ambiguous questions as explicit search queries, and compare the results.':
-    'Ambiguous sawaalon ko explicit search queries mein likhiye, aur results compare kijiye.',
-  'Retrieve small child chunks, but return the larger parent context so the answer reads well.':
-    'Chhote child chunks retrieve kijiye, lekin bada parent context return kijiye taaki jawaab padhne mein achha lage.',
-  'Test a query that can’t be answered, and a query where the rewrite changes what the user meant.':
-    'Ek aisi query test kijiye jiska jawaab nahi ho sakta, aur ek aisi query jisme rewrite user ke matlab ko badal deta hai.',
-  'A Query Strategy and an Abstention Test Set.':
-    'Ek Query Strategy aur ek Abstention Test Set.',
-  'When should the system ask a clarifying question instead of retrieving?':
-    'System ko retrieve karne ki jagah clarifying sawaal kab poochhna chahiye?',
-  'Abstention is a product behaviour. It’s not just a sentence in a prompt.':
-    'Abstention ek product behaviour hai. Yeh sirf prompt ka ek sentence nahi hai.',
   'Authorization, freshness and rollback':
     'Authorization, freshness aur rollback',
-  'You’ll make retrieval aware of permissions, and you’ll make it possible to undo changes safely.':
-    'Aap retrieval ko permissions ke baare mein aware banayenge, aur changes ko safely undo karna possible banayenge.',
-  'A correct answer that comes from data the user wasn’t allowed to see is still a security failure.':
-    'Jis data ko dekhne ki user ko ijazat nahi thi, usse aaya sahi jawaab bhi ek security failure hai.',
-  'Add an access label to your chunks, and filter by the role of a test user.':
-    'Apne chunks mein ek access label jodiye, aur ek test user ke role ke hisaab se filter kijiye.',
-  'Simulate a document being deleted, a permission changing, and the index being rebuilt.':
-    'Simulate kijiye ki ek document delete ho raha hai, ek permission badal rahi hai, aur index dobara ban raha hai.',
-  'Query immediately after a permission is revoked, and check that stale content in the index can’t be reached.':
-    'Permission revoke hote hi turant query kijiye, aur check kijiye ki index mein jo purana content bacha hai woh pahunch se bahar hai.',
   'A production RAG architecture, plus a checklist for permissions, freshness and rollback.':
     'Ek production RAG architecture, saath mein permissions, freshness aur rollback ki ek checklist.',
-  'Can you prove that a user who isn’t authorised cannot retrieve the chunk?':
-    'Kya aap prove kar sakte hain ki jis user ko ijazat nahi hai woh us chunk ko retrieve nahi kar sakta?',
-  'Authorisation belongs in the application and data layer. It’s not enough to put it only in the model’s instructions.':
-    'Authorisation application aur data layer mein honi chahiye. Sirf model ki instructions mein rakhna kaafi nahi hai.',
   'Reranking has a cost':
     'Reranking ki ek cost hoti hai',
-  'Reranking improves the order of results, but it adds cost. Fetch ten candidates and rescore them. Then check whether recall at ten and precision at three improved enough to justify the extra time and cost.':
-    'Reranking results ka order behtar karti hai, lekin cost jodti hai. Das candidates laaiye aur unhe dobara score kijiye. Phir check kijiye ki recall at ten aur precision at three itne behtar hue ya nahi ki extra time aur cost sahi thehre.',
   'Four questions to ask about any retrieval product':
     'Kisi bhi retrieval product ke baare mein poochhne ke chaar sawaal',
-  'Production retrieval has a long list of concerns, and you don’t need to memorise it. Every item on that list fits under one of four questions.':
-    'Production retrieval mein fikr ki cheezon ki ek lambi list hoti hai, aur aapko use ratna zaroori nahi. Us list ka har item in chaar sawaalon mein se kisi ek ke andar aa jaata hai.',
   '<strong>Did we read the document correctly?</strong> This covers scans, tables, and content that a parser drops.':
     '<strong>Kya hamne document sahi padha?</strong> Isme scans, tables, aur woh content aata hai jo parser chhod deta hai.',
   '<strong>Is this user allowed to see it?</strong> This covers permissions, separate customers, and deleted documents.':
@@ -419,38 +267,18 @@ Object.assign(window.HING = window.HING || {}, {
     '<strong>Kya hamne sahi chunk dhoondha?</strong> Isme keyword search, meaning search, query rewriting aur reranking aate hain.',
   '<strong>Can we show where the answer came from?</strong> This covers chunk IDs, citations, and what happens when there is no answer.':
     '<strong>Kya hum dikha sakte hain ki jawaab kahan se aaya?</strong> Isme chunk IDs, citations, aur yeh aata hai ki jawaab na ho toh kya hota hai.',
-  'Use these four questions whenever someone demonstrates a retrieval product to you. Then try them on a case of your own.':
-    'Jab bhi koi aapko retrieval product ka demo dikhaye, yeh chaar sawaal poochhiye. Phir inhe apne ek case par try kijiye.',
-  'A document is deleted from the source system at 10am. Describe what must happen for the assistant to stop quoting it, and by when.':
-    'Source system se subah 10 baje ek document delete hota hai. Batayiye ki assistant ko use quote karna band karne ke liye kya hona chahiye, aur kab tak.',
   'At 10am … then … by …':
     'Subah 10 baje … phir … tak …',
-  'If your answer depends on a nightly rebuild, your system quotes a deleted document from 10am until the rebuild. That window is a decision, so make it on purpose.':
-    'Agar aapka jawaab raat ke rebuild par depend karta hai, toh aapka system 10 baje se rebuild tak ek deleted document ko quote karta rahega. Yeh window ek decision hai, isliye ise soch-samajh kar rakhiye.',
-  'To sum up: ingestion sets the ceiling, permissions and deletions have to reach the index, and every added stage has to prove it’s worth its cost. Next, in Chapter 25, you’ll give the model controlled access to actions, not only to evidence.':
-    'Toh sab ko jodkar dekhein: ingestion ceiling tay karta hai, permissions aur deletions ko index tak pahunchna hi hoga, aur har naya stage apni cost ko justify kare yeh prove karna hoga. Agle chapter, Chapter 25, mein aap model ko actions tak controlled access denge, sirf evidence tak nahi.',
   'Draw the gateway on one page':
     'Gateway ko ek page par banaiye',
-  'The gateway is the version of Bharat Privacy Guard that sits in front of a company’s servers, logs and AI traffic. You won’t build it, but you must be able to design it, so that an engineer could build from your page and a security reviewer could challenge it. In this chapter you learned the stages of a production search pipeline, why the quality of the first stage caps everything after it, and what must happen to an index when a document is deleted or a permission changes. Now you’ll apply all of that to the gateway’s rules and reference lists.':
-    'Gateway Bharat Privacy Guard ka woh version hai jo kisi company ke servers, logs aur AI traffic ke saamne baitha hota hai. Aap ise banayenge nahi, lekin ise aise design karna hai ki engineer aapke page se build kar sake aur security reviewer us par sawaal utha sake. Is chapter mein aapne production search ke stages seekhe, yeh bhi ki pehle stage ki quality baaki sab par cap kyun lagati hai, aur document delete ya permission change hone par index ke saath kya hona chahiye. Ab yeh sab gateway ke rules aur reference lists par lagaiye.',
-  'Written only. A one-page design. No code needed.':
-    'Sirf likhna hai. Ek page ka design. Code ki zaroorat nahi.',
-  'Draw these stages as separate boxes: how a company’s rules and reference lists are loaded, where they are stored, how they are searched, how the right rule is chosen for a request, how the result is reordered if needed, and how the decision is applied.':
-    'In stages ko alag-alag boxes ki tarah banaiye: company ke rules aur reference lists kaise load hote hain, woh kahan store hote hain, unhe kaise search kiya jaata hai, ek request ke liye sahi rule kaise chuna jaata hai, zaroorat ho toh result ka order kaise badla jaata hai, aur decision kaise apply hota hai.',
   'Add who may do what: who can change a rule, who can read the logs, and who can switch the gateway off. Mark where the permission check happens.':
     'Yeh jodiye ki kaun kya kar sakta hai: rule kaun badal sakta hai, logs kaun padh sakta hai, aur gateway ko kaun band kar sakta hai. Mark kijiye ki permission check kahan hota hai.',
-  'Mark how an answer can be traced back. Every decision should record which rule, in which version, produced it.':
-    'Mark kijiye ki jawaab ko wapas kaise trace kiya ja sakta hai. Har decision mein record hona chahiye ki kaunse rule ne, kaunse version mein, use paida kiya.',
   'Write the “no answer” rule: what the gateway does when no rule applies, and what the user sees.':
     '“No answer” rule likhiye: jab koi rule apply na ho toh gateway kya karta hai, aur user ko kya dikhta hai.',
   'Write how the rules and the reference lists are versioned, and what happens to old decisions when a rule changes.':
     'Likhiye ki rules aur reference lists ka versioning kaise hota hai, aur jab koi rule badalta hai toh purane decisions ke saath kya hota hai.',
   'Write the rollback: what you do when a new rule version makes things worse.':
     'Rollback likhiye: jab rule ka naya version cheezein aur kharab kar de, toh aap kya karte hain.',
-  'A one-page drawing with the stages as separate boxes and the permission check marked.':
-    'Ek page ki drawing jisme stages alag-alag boxes mein hon aur permission check mark ho.',
-  'The trace from a decision back to a rule and version.':
-    'Ek decision se wapas ek rule aur version tak ka trace.',
   'The “no rule applies” behaviour, the versioning plan and the rollback.':
     '“Koi rule apply nahi hota” wala behaviour, versioning ka plan aur rollback.',
   'The page really fits on one page. If it does not, you have not made enough decisions yet.':
