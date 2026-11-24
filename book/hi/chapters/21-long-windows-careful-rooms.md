@@ -1,107 +1,109 @@
 ---
 title: Lambi Windows, Sambhal Kar Bhare Kamre
-summary: Ek vendor ka daava hai ki bahut bada context window retrieval ki zaroorat hi khatam kar deta hai, aur ek product manager do sawaal poochhti hai jinse meeting wahin khatam ho jaati hai. Chapter dikhata hai ki request mein kitna fit hota hai us se zyada zaroori hai ki usme kya jaata hai, aur context engineering, token budget, caching aur compaction samjhata hai.
+summary: Ek vendor kehta hai ki bahut bada context window ho toh retrieval ki zaroorat nahi. Ek product manager do sawaal poochhti hai, aur meeting wahin khatam ho jaati hai. Aap dekhte hain ki request mein kya jaata hai, yeh is se zyada zaroori hai ki kitna fit hota hai. Aap context engineering, token budgets, caching aur compaction se milte hain.
 course: ch10
 goals:
-  - do wajah bata paana ki bahut bada context window sahi material dhoondhne ki zaroorat ko khatam kyun nahi karta
-  - context engineering kya hai yeh samjha paana, aur ek owner ke saath token budget likh paana
+  - do wajah bata paana ki bahut bada context window ho tab bhi sahi material dhoondhna zaroori hai
+  - bata paana ki context engineering kya hai, aur ek owner ke saath token budget likh paana
   - samjha paana ki caching us request ko sasta kaise banati hai jo har baar ek jaise shuru hoti hai
-  - compaction aur uske risks bata paana, personal data ke risk samet
+  - bata paana ki compaction kya hai aur uska risk kya hai, personal data ke liye bhi
 terms:
-  - context engineering | yeh tay karna ki har request mein kya jaayega, kis order mein jaayega, aur kya bahar rahega: instructions, examples, evidence, history aur tool results | 
-  - token budget | ek plan jo request ke har hisse ko tokens ka uska share deta hai, aur jisme koi ek insaan total ka owner hota hai aur jaanta hai ki sabse pehle kya kaatna hai | token budgets
-  - caching | provider se request ka processed start yaad rakhwana, taaki agli baar woh start bilkul same ho toh baad ki request sasti aur tez ho | cache
-  - compaction | lambi conversation ko chhota karna: beech ka hissa summary mein badal dena, aur shuruaat aur ant ko jyon ka tyon rakhna | compact
+  - context engineering | model ki mez ko sambhal kar bharna. Aap tay karte hain ki har request mein kya jaayega, kis order mein, aur kya bahar rahega: instructions, examples, saboot, chat history aur tool ke results | 
+  - token budget | text ki eenton ke liye kharche ka budget. Ek plan jo request ke har hisse ko tokens ka uska hissa deta hai, aur ek insaan jo total ka owner hai aur jaanta hai ki pehle kya kaatna hai | token budgets
+  - caching | dukaan jaisi jo aapka roz ka order taiyaar rakhti hai. Provider request ka woh shuruaati hissa yaad rakhta hai jo woh padh chuka hai. Agli baar shuru wahi ho toh request sasti aur tez hoti hai | cache
+  - compaction | lambi chat ko chhota karna. Beech ka hissa summarise karte hain, shuru aur aakhir rakhte hain | compact
 ---
 
-May mein ek model vendor ka solutions architect team ke saamne glass room mein presentation dene aaya. Use ek founder ne bulaya tha, jo use ek conference mein mile the. Uski slides ka title tha "Context is Everything". Ek slide par numbers ki seedhi thi: 32,000, 1,00,000, 10 lakh.
+May mein ek model vendor ka solutions architect glass room mein presentation dene aaya. Vendor woh company hai jo aapko product bechti hai. Use ek founder ne bulaya tha, jo use ek conference mein mile the. Uski slides ka title tha "Context is Everything". Ek slide par numbers ki seedhi thi: 32 hazaar, ek lakh, ek million.
 
-Uski baat kuch aisi thi. Purana tareeka ab khatam ho chuka hai. Documents ko tukdon mein kaatna aur sahi tukde dhoondh kar laana, yeh sirf chhoti windows ka jugaad tha. Uske vendor ki window mein 10 lakh tokens aate hain, toh poori library har sawaal ke saath bhej do. Na cutting, na embeddings, na dhoondhna. Sab kuch simple, sasta aur behtar.
+Uski daleel yeh thi. Purana tareeka khatam. Documents ko tukdon mein kaatna aur sahi tukde laana sirf chhoti windows ka jugaad tha. Window model ki mez hai, aur ek baar mein sirf wahi padha ja sakta hai jo mez par fit ho. Uske vendor ki mez par ek million tokens aate the. Toh har sawaal ke saath poori library bheji ja sakti thi. Na kaatna, na embeddings, na dhoondhna. Yeh aasaan, sasta aur behtar hota.
 
-Agar woh sahi tha, toh pichhle chhe hafte ka kaam bekaar tha. Anaya ne haath uthaya aur do sawaal poochhe. Pehla: agar poori library har baar bhejein, toh ek sawaal ki cost kitni aayegi?
+Agar woh sahi tha, toh pichhle 6 hafte bekaar gaye. Anaya ne haath uthaya. Usne do sawaal poochhe. Pehla, agar har baar poori library jaaye, toh ek sawaal ka kharch kitna hoga?
 
-Doosra: kya woh dikha sakta hai ki jab zaroori fact ek bhari hui window ke beech mein ho, toh model kitna achha jawaab deta hai, us fact ke muqable jo ek chhoti request mein ho? Usne kaha ki use dekhna padega. Anaya ne kaha ki jab mil jaye toh bhej dijiye. Usne kabhi nahi bheja.
+Doosra, kya woh dikha sakta hai ki jab zaroori fact poori bhari window ke beech mein ho, toh model kitna achha jawaab deta hai? Phir usse wahi fact ek chhoti request mein rakh kar milaiye. Usne kaha ki use yeh dekhna padega. Anaya ne kaha ki jab ho jaaye toh bhej dena. Usne kabhi nahi bheja.
 
-Is chapter mein aap dekhenge ki Imran ko kya jawaab mile, aur woh yeh sikhate hain ki model ko kya dikhana chahiye.
+Is chapter mein aap woh jawaab dekhte hain jo Imran ne dhoondhe. Woh sikhate hain ki model ko kya dikhana hai, yeh kaise tay karein.
 
-## Case: woh slide jiski keemat nikal nahi sakti thi
+## Case: woh slide jiska daam nahi lag sakta tha
 
-Anaya ka irada use sharminda karne ka nahi tha. Usne yeh sawaal isliye poochhe kyunki poora daava inhi do jawaabon par tika tha. Vendor ke jaane ke baad Imran Qureshi ne yeh kaam kiya aur Friday ko natije Anaya ke paas laaya.
+Anaya ka use sharminda karne ka irada nahi tha. Usne isliye poochha kyunki poora daava un do jawaabon par tika tha. Uske jaane ke baad Imran Qureshi ne kaam kiya. Usne Friday ko results laaye.
 
-## Slide galat kyun thi: do wajah
+## Slide ke galat hone ki do wajah
 
-Pehli wajah cost hai. Badi request ki cost badi hi hoti hai. Imran ne Sahaj ki poori policy library ka daam nikala, jo lagbhag 2 lakh tokens ki hai, ek farzi rate par: ₹250 per million. Ek sawaal ka ₹50 bana. Teen sahi tukde fetch karne mein sirf 30 paise lage the. Mahine ke 1,00,000 sawaalon par farq hai ₹50 lakh ke saamne ₹30,000.
+Pehli wajah kharch hai. Badi request ka wahi kharch hota hai jo badi request ka hota hai. Aap text ki har eent ke paise dete hain. Imran ne Sahaj ki poori policy library ka daam lagaya, lagbhag 2 lakh tokens. Usne ₹250 per million ka ek banaya hua rate liya. Ek sawaal ₹50 ka pada. Sahi 3 tukde laane mein 30 paise lage the. Mahine ke ek lakh sawaalon par yeh ₹50 lakh banam ₹30,000 hai.
 
-Doosri wajah thodi barik hai. Request ke andar jo kuch hai, model use kitni achhi tarah istemaal kar paata hai, yeh request ke poori bharne se bahut pehle girne lagta hai. Isse test karne ke liye Imran ne policies se ek lamba document banaya. Usne ek unusual rule ko teen jagah rakha: shuru ke paas, beech mein, aur ant ke paas. Har position ke liye usne 20 sawaal poochhe jo us rule par tike the.
+Doosri wajah dekhne mein mushkil hai. Model apni mez ko mez bhari hone se bahut pehle hi kharab tareeke se use karne lagta hai. Imran ne ise parkha. Usne policies se ek lamba document banaya. Usne ek anokha rule teen jagah rakha: shuru ke paas, beech mein aur aakhir ke paas. Har jagah ke liye usne 20 sawaal poochhe jo us rule par tike the.
 
 Table: Sahi jawaab, rule kahan tha uske hisaab se
 | Rule kahan tha | Sahi jawaab |
 | --- | --- |
 | Shuru ke paas | 20 mein se 19 |
 | Beech mein | 20 mein se 11 |
-| Ant ke paas | 20 mein se 18 |
-| Wahi rule, ek chhoti request mein fetch karke | 20 mein se 20 |
+| Aakhir ke paas | 20 mein se 18 |
+| Wahi rule, ek chhoti request mein laaya gaya | 20 mein se 20 |
 
-Yeh result ek model ka hai, ek din ka. Doosra model alag nikalega, lekin is tarah ka pattern aam hai. Imran ne ise open-book exam se compare kiya. Ek student poori library hall mein le jaa sakti hai, lekin uske paas bas ek ghanta hai.
+Yeh result ek model ka hai, ek din ka. Doosra model alag hoga. Lekin shape aam hai. Imran ne ise open-book exam se jodha. Student poori library hall mein le jaa sakti hai. Par uske paas sirf ek ghanta hai.
 
-Use kitaab ke shuru ki cheezein mil jaati hain aur ant ki bhi. Beech wali cheezein woh bas nazar fer kar nikal jaati hai. Aur koi use yeh nahi batata ki kaun se jawaab isi wajah se gaye.
+Use kitaab ke aage ka hissa mil jaata hai. Peeche ka hissa mil jaata hai. Beech ka hissa woh chhod kar aage nikal jaati hai. Aur koi use nahi batata ki kaun se jawaab gaye.
 
-Yahan bhi yahi hota hai. Koi error report nahi hota. Jawaab bas galat hote hain.
+Yahan bhi yahi hota hai. Koi error nahi dikhta. Jawaab bas galat hote hain.
 
-::: key Capacity aur use ek cheez nahi hain
-Document window mein fit ho gaya, iska yeh matlab nahi ki model use istemaal bhi karega. Vendors capacity batate hain. Use ko team ko khud measure karna padta hai.
+::: key Capacity matlab use nahi
+Document window mein fit ho jaata hai. Iska matlab yeh nahi ki model use use karega. Vendors batate hain ki kitna fit hota hai. Team ko naapna hota hai ki kitna use hota hai.
 :::
 
 ## Kamre mein kya jaata hai
 
-Agar bada kamra problem hal nahi karta, toh poora sawaal yahi ban jaata hai ki kamre mein kya rakha jaye. Imran ne is kaam ko ek naam diya. *Context engineering* ka matlab hai yeh tay karna ki har request mein kya jaayega, kis order mein jaayega, aur kya bahar rahega.
+Bada kamra problem hal nahi karta. Isliye kamre mein kya rakha jaata hai, wahi poora sawaal hai. Imran ne is kaam ko ek naam diya. *Context engineering* ka matlab hai mez ko sambhal kar bharna. Aap tay karte hain ki har request mein kya jaayega, kis order mein, aur kya bahar rahega.
 
-Isme hote hain instructions, examples, evidence, pichhle messages aur tools ke jawaab. Aksar yeh kisi ek instruction ke wording se zyada maayne rakhte hain. Aur inme se bahut se choices technical hain hi nahi. Kitni history rakhni hai? Customer ki purani complaints daalni hain? Payment ki request mein policy ka page chahiye? Yeh sab product decisions hain, aur har ek ki ek technical keemat hoti hai.
+Hisse hain instructions, examples, saboot, pichhle messages aur tools ke jawaab. Yeh aksar kisi ek instruction ke words se zyada maayne rakhte hain. In mein se bahut se faisle technical nahi hain. Kitni history rakhni hai? Kya customer ki pichhli complaints daalni hain? Kya policy ka ek page payment ki request mein jaana chahiye? Yeh product ke faisle hain. Har ek ki ek technical keemat hai.
 
-Phir Imran ne Anaya ko ek bina glamour wala kaam diya, jisme ek ghanta laga. Anaya ne chatbot ki ek request ke liye *token budget* likha. Token budget ek plan hai jo request ke har hisse ko uska share deta hai.
+Phir Imran ne Anaya ko ek saadha kaam diya jisme ek ghanta laga. Usne chatbot ki ek request ke liye *token budget* likha. Ise kharche ka budget sochiye, par text ki eenton ke liye. Token budget ek plan hai jo request ke har hisse ko uska hissa deta hai.
 
 Table: Chatbot ki ek request ka token budget
 | Request ka hissa | Tokens |
 | --- | --- |
 | Standing instructions | 400 |
-| Un functions ke descriptions jo woh call kar sakta hai | 300 |
-| Policy ke teen tukde | 1,200 |
+| Un functions ke descriptions jinhe woh bula sakta hai | 300 |
+| Policy ke 3 tukde | 1,200 |
 | Ab tak ki conversation | 600 |
 | Jawaab | 200 |
 | Total | 2,700 |
 
-Phir Imran ne kaha ki maan lijiye bill double ho gaya. Sabse pehle kya kaatengi? Policy ke tukde sabse bada hissa the aur sabse aasani se chhote ho sakte the. Ya toh teen ki jagah do fetch karo, ya results ko behtar order mein rakho taaki kam tukdon mein sahi content aa jaye.
+Phir Imran ne use maan lene ko kaha ki bill double ho gaya. Woh pehle kya kaategi?
 
-Lekin ise kaatne mein risk tha ki jin jawaabon ko ek saath kai sections chahiye, woh bigad jaayein. Uske baad conversation history aati thi, aur use kaatne se follow-up sawaal toot jaate. Function descriptions tabhi hat sakte the jab woh cheezein hi hata di jaayein jo machine kar sakti hai. Anaya ne dekha ki jo kuch bhi woh kaat sakti thi, usse kuch na kuch toot jaata tha.
+Policy ke tukde sabse bada hissa the. Woh sabse aasaani se chhote bhi ho sakte the. Woh 3 ki jagah 2 la sakti thi. Ya results ko behtar order kar sakti thi, taaki kam tukdon mein sahi facts hon. Lekin unhe kaatne se un jawaabon ka risk tha jinhe ek saath kai sections chahiye.
 
-::: key Budget ka ek owner hona chahiye
-Likhiye ki har cut se kya risk mein padta hai, phir answer key se use measure kijiye. Jis budget ka koi owner nahi hota, woh badhta jaata hai.
+Chat history agli thi. Use kaatne se follow-up sawaal toot jaate. Function descriptions tabhi ja sakte the jab woh machine ke kuch kaam hata de. Anaya ne dekha ki jo kuch woh kaat sakti thi, woh kuch na kuch tod deta tha.
+
+::: key Budget ka ek owner chahiye
+Naam lijiye ki har kaat se kya risk mein padta hai. Phir answer key se use naapiye (teacher ki sawaal aur sahi jawaab ki list). Bina owner ka budget badhta hi rehta hai.
 :::
 
-## Wahi start, sasta bill
+## Wahi shuruaat, sasta bill
 
-Ek technique Anaya ko isliye pasand aayi kyunki woh lagbhag free thi. Providers request ka processed start yaad rakh sakte hain. Agar saamne ka hissa har baar bilkul same ho, toh baad ki requests sasti aur tez ho jaati hain. Isse *caching* kehte hain.
+Ek technique Anaya ko pasand aayi kyunki woh lagbhag muft thi. Providers (model chalane wali companies) request ka woh shuruaati hissa yaad rakh sakte hain jo woh padh chuke hain. Agar aage ka hissa har baar wahi ho, toh baad ki requests sasti aur tez hoti hain. Yeh *caching* hai. Yeh us dukaan jaisa hai jo aapka roz ka order taiyaar rakhti hai.
 
-Yeh ek seedhi aadat ko inaam deti hai. Jo hisse badalte nahi, jaise standing instructions aur reference text, unhe pehle rakhiye. Jo hisse badalte hain, jaise customer ka sawaal, unhe aakhir mein. Caching se guard ki lambi instructions bhi Anaya ke darr se sasti nikli. 400 tokens, har call mein same, aur sabse aage. Cache ka yeh achha istemaal hai.
+Yeh ek saadi aadat ko inaam deta hai. Jo hissa kabhi nahi badalta, use pehle rakhiye. Yeh standing instructions aur reference text hain. Jo hissa badalta hai, use aakhir mein rakhiye, jaise customer ka sawaal. Caching ne guard ke lambe instructions ko uske darr se sasta bana diya. 400 tokens aage rakhe hain, har call par wahi. Cache ka yeh achha use hai.
 
 ## Conversation ko chhota karna
 
-Aakhri idea tab aaya jab Anaya ne poochha ki 20 messages wali chat, jo apne budget se bahar nikal jaaye, uska kya hota hai. Aam jawaab hai *compaction*. Conversation ke beech ka hissa summarise kijiye, shuruaat aur ant rakhiye, aur wahi bhejiye.
+Aakhri idea tab aaya jab Anaya ne ek sawaal poochha. 20 messages ki chat jab budget se bahar badh jaaye, toh uska kya hota hai? Aam jawaab *compaction* hai. Aap chat ke beech ka hissa summarise karte hain. Shuru aur aakhir rakhte hain. Wahi bhejte hain.
 
-Yeh kaam karta hai, lekin beech ki specific details ko pakka kho deta hai. Anaya ne misaal di ki customer ko callback ka jo vaada kiya gaya tha. Imran ne kaha ki bilkul isi tarah ki detail khatre mein rehti hai, aur isiliye April mein must-keep list likhi gayi thi. Summary jo bhi rakhe, jo cheez khoni nahi chahiye woh list mein honi chahiye.
+Yeh kaam karta hai. Lekin yeh beech ki chhoti details pakka kho deta hai. Anaya ne ek example diya: kiya hua callback ka waada. Imran ne maana ki aisi hi detail risk mein hoti hai. Isliye must-keep list April mein likhi gayi thi. Summary jo bhi rakhe, jo cheez khoni nahi chahiye woh us list mein honi chahiye.
 
-Ek doosri, chupchaap wali problem bhi thi. Summary ek model ka likha hua naya text hai. Maan lijiye conversation ke beech mein koi identity number tha. Agar guard ne use andar aate waqt chhupa diya tha, toh summary mein chhupa hua version jaayega.
+Ek doosri, chupi problem thi. Summary naya text hai, jo ek model likhta hai. Maan lijiye chat ke beech mein ek identity number tha. Agar guard ne use andar aate waqt chhupa diya tha, toh summary chhupa hua version le jaati hai.
 
-Agar chhupaya nahi gaya tha, toh summary use copy kar degi. Dono surat mein guard ko summary ke saamne bhi lagana padta tha. Anaya ne diagram mein ek doosra chhota box joda, summariser se bahar jaane ke raaste par.
+Agar woh chhupa nahi tha, toh summary use copy kar leti hai. Dono hi surat mein guard ko summary ke aage bhi baithna padega. Anaya ne diagram mein ek doosra chhota box joda. Woh summariser se bahar jaane ke raaste par tha.
 
-Usne vendors se baat karne ke liye ek natija bhi nikala. Jab koi kahe ki unka assistant user ko yaad rakhta hai, toh poochhiye ki yaad kahan store hoti hai. Woh ek store hai jo application sambhalti hai, har message ke saath bheji jaati hai, aur har baar uske paise lagte hain.
+Usne vendors se baat ke liye ek seekh bhi likhi. Koi kehta hai ki unka assistant user ko yaad rakhta hai. Poochhiye ki yaad kahan rakhi jaati hai. Woh ek store hai jo application rakhti hai. Woh har message ke saath bheja jaata hai, aur har baar uske paise lagte hain. Goldfish yaad rakhiye. Model har message ke baad bhool jaata hai, jab tak aap purani chat dobara na bhejein.
 
 ## Summary
 
-Bahut bada context window sahi material dhoondhne ki zaroorat ko khatam nahi karta, aur iski do wajah hain. Badi request bhejne ki wahi badi cost har sawaal par lagti hai. Aur window ke poori bharne se bahut pehle hi model ki bheje gaye material ko istemaal karne ki ability girne lagti hai, khaaskar beech ke material ke liye.
+Bahut bada context window sahi material dhoondhne ki zaroorat nahi hatata. Iski do wajah hain. Badi request har sawaal par wahi badi keemat leti hai. Aur model ko jo bheja gaya, use woh window bhar jaane se bahut pehle kam achha use karta hai, khaaskar beech ke material ko.
 
-- Zaroori yeh hai ki har request mein kya jaata hai. Yahi context engineering hai, aur ise sabse achha token budget ki tarah sambhala jaata hai, ek aise owner ke saath jo jaanta ho ki pehle kya kaatna hai aur har cut se kya toot jayega.
-- Request ke stable hisse pehle rakhne se provider unhe cache kar sakta hai, aur cost kam hoti hai.
-- Compaction lambi conversation ke beech ko summarise karta hai aur specific details kho deta hai. Model jo bhi likhta hai, summary samet, woh ek aur jagah hai jahan personal detail pahunch sakti hai.
+- Jo matter karta hai woh yeh hai ki har request mein kya jaata hai. Yeh context engineering hai. Ise owner ke saath token budget ki tarah sambhaliye. Owner jaanta hai ki pehle kya kaatna hai aur har kaat kya todegi.
+- Jo hissa wahi rehta hai, use aage rakhiye. Tab provider use cache kar sakta hai, aur kharch ghat jaata hai.
+- Compaction lambi chat ke beech ko summarise karta hai aur chhoti details kho deta hai. Model jo bhi likhe, summary bhi, woh ek aur jagah hai jahan personal detail pahunch sakti hai.
 
-Agle chapter mein Lonavala ke paas ruki ek train Anaya ko dikhati hai ki jis intezaar ka koi shape ho woh chhota kyun lagta hai, aur sochkar jawaab dene wale models ke liye iska kya matlab hai.
+Agle chapter mein Lonavala ke paas ruki ek train Anaya ko dikhati hai ki shape wala intezaar chhota kyun lagta hai. Yeh bhi dikhata hai ki jo models jawaab dene se pehle sochte hain, unke liye iska kya matlab hai.

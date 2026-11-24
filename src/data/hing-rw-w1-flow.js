@@ -109,8 +109,6 @@ Object.assign(window.HING = window.HING || {}, {
     '<strong>IndentationError</strong>: line ki shuruaat ke spaces khisak gaye hain. Original wapas paane ke liye <strong>Undo edits</strong> dabaiye.',
   'Chapter 0.8':
     'Chapter 0.8',
-  'Then turn your answers into a rule that others can follow without you. Rules like this are one part of what companies call <strong>governance</strong>. Next, in Chapter 17, you’ll see how a team writes all of it down for a whole AI system, through risk tiers, system cards and oversight.':
-    'Phir apne jawaabon ko ek aise rule mein badaliye jise doosre aapke bina follow kar sakein. Aise rules us cheez ka ek hissa hain jise companies <strong>governance</strong> kehti hain. Agle Chapter 17 mein aap dekhenge ki ek team poore AI system ke liye yeh sab kaise likhti hai, risk tiers, system cards aur oversight ke zariye.',
   'A name that holds a value, so later lines of code can use it. In city = "Pune", the name city is the variable. Read the equals sign as “is now”.':
     'Ek naam jo ek value rakhta hai, taaki code ki aage ki lines use use kar sakein. city = "Pune" mein naam city variable hai. Barabar ke nishaan ko “ab hai” padhiye.',
   'In Python, pairs of a label and a value inside curly braces, like a small form: {"role": "user", "content": "hello"}. Every message to a model is written this way.':

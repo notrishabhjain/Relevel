@@ -84,22 +84,6 @@ Object.assign(window.HING = window.HING || {}, {
     '<a href="#/playground">Playground</a> kholiye aur <em>Keep the conversation</em> tick kijiye. Use ek banayi hui baat bataiye, jaise “Meri company ki refund window 17 din ki hai.” Refund window ke baare mein poochiye. Phir <em>Clear</em> dabaiye, jisse ek bilkul nayi conversation shuru hoti hai, aur dobara poochiye.',
   'A model connected on the setup page':
     'Setup page par ek model connect ho',
-  'Your notebook for this chapter, to try the attack and the wording fix. Write the exposure note in the notes box below. Short version for the route, about 20 minutes: steps 2, 3 and 4.':
-    'Is chapter ka aapka notebook, attack aur wording fix try karne ke liye. Exposure note neeche notes box mein likhiye. Route ke liye chhota version, lagbhag 20 minute: step 2, 3 aur 4.',
-  'You’ll build on the chunks from Chapter 7 and the agent loop from Chapter 9. Both are in your notebook session; press <strong>Restore</strong> after a reload.':
-    'Aap Chapter 7 ke chunks aur Chapter 9 ke agent loop par aage kaam karenge. Dono aapke notebook session mein hain; reload ke baad <strong>Restore</strong> dabaiye.',
-  'Your notebook for this chapter, to build and run the marker. Mark the twenty outputs by hand as well, and write the agreement figure in the notes box below. Short version for the route, about 20 minutes: steps 1, 3 and 4.':
-    'Is chapter ka aapka notebook, marker banane aur chalane ke liye. Bees outputs ko haath se bhi mark kijiye, aur agreement ka figure neeche notes box mein likhiye. Route ke liye chhota version, lagbhag 20 minute: step 1, 3 aur 4.',
-  'You’ll use your structured RAG output from Chapter 8.5 and your Chapter 6 answer key. Both carry over in the notebook session.':
-    'Aap Chapter 8.5 ka apna structured RAG output aur Chapter 6 ki answer key use karenge. Dono notebook session mein aage chalte hain.',
-  'Your notebook for this chapter, to measure the tokens and build the cascade. Write the three cost numbers in the notes box below. Short version for the route, about 20 minutes: steps 1, 3 and 5.':
-    'Is chapter ka aapka notebook, tokens measure karne aur cascade banane ke liye. Teen cost numbers neeche notes box mein likhiye. Route ke liye chhota version, lagbhag 20 minute: step 1, 3 aur 5.',
-  'You’ll need your Chapter 12 pipeline and your Chapter 6 answer key, because you’ll run both of them here. They carry over in the notebook session; press <strong>Restore</strong> after a reload.':
-    'Aapko apni Chapter 12 wali pipeline aur Chapter 6 wali answer key chahiye hogi, kyunki dono ko aap yahan chalayenge. Dono notebook session mein aage chalte hain; reload ke baad <strong>Restore</strong> dabaiye.',
-  'Your notebook for this chapter, to read the images and compare. Write the error rate in the notes box below. Short version for the route, about 20 minutes: steps 1, 2, 3 and 6.':
-    'Is chapter ka aapka notebook, images padhne aur compare karne ke liye. Error rate neeche notes box mein likhiye. Route ke liye chhota version, lagbhag 20 minute: step 1, 2, 3 aur 6.',
-  'Find one page from your own documents that contains a real table, such as financial figures, eligibility bands or a rate card. Add a photo or scan of it with the Files panel.':
-    'Apne documents mein se ek aisa page dhoondhiye jisme asli table ho, jaise financial figures, eligibility bands ya rate card. Uski photo ya scan Files panel se jodiye.',
   'The <a href="#/workbench">Workbench</a> in this app, or a local folder if you prefer. This is the harness you build in code and keep extending through Chapter 34. The notes box below is for what surprised you, not for the code.':
     'Is app ka <a href="#/workbench">Workbench</a>, ya agar aap chahein toh ek local folder. Yeh woh harness hai jo aap code mein banate hain aur Chapter 34 tak badhate rehte hain. Neeche wala notes box is baat ke liye hai ki aapko kya hairaan kar gaya, code ke liye nahi.',
   'Open the <a href="#/workbench">Workbench</a>, or a local folder if you prefer. In this chapter you’ll build an experiment harness, and you’ll keep adding to it until Chapter 34.':

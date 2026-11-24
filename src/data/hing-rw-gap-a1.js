@@ -13,8 +13,4 @@ Object.assign(window.HING = window.HING || {}, {
     'Dono pair related hain, kyunki dono scores zero se upar hain',
   'The second pair is unrelated, because 0.19 is below 0.5':
     'Doosra pair unrelated hai, kyunki 0.19, 0.5 se neeche hai',
-  'Caution':
-    'Savdhani',
-  'Count two things separately: how often the judge catches the answers you marked as fails, and how often it passes the answers you marked as passes. When most answers pass, raw agreement can look high while the judge misses most of the real failures.':
-    'Do cheezein alag ginye: jin jawaabon ko aapne fail mark kiya unhe judge kitni baar pakadta hai, aur jinhe aapne pass mark kiya unhe woh kitni baar pass karta hai. Jab zyadatar jawaab pass hote hain, tab raw agreement ooncha dikh sakta hai jabki judge asli failures ka zyadatar hissa chhod deta hai.',
 });

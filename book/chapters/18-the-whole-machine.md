@@ -89,7 +89,7 @@ Imran said they had not hidden it.
 
 She asked for the guard to be drawn too. She asked where it sat. She wanted it before the first circle.
 
-Then Anaya saw what the machine really was. It was a row of rooms. The customer's words passed through every room, and each room made a copy. A guard in the middle would protect only the rooms after it. Think of a gate at the door of a building. The only safe place was the door.
+Then Anaya saw what the machine really was. It was a row of rooms. The customer's words passed through every room, and each room made a copy. A guard in the middle would protect only the rooms after it. Think of the front door of a building. The only safe place was the door.
 
 ## What it cannot yet do
 

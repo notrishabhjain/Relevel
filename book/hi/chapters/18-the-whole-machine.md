@@ -87,7 +87,7 @@ Imran ne kaha ki unhone ise chhupaya nahi tha.
 
 Usne guard ko bhi draw karne ko kaha. Usne poochha ki woh kahan baitha hai. Use woh pehle circle se pehle chahiye tha.
 
-Tab Anaya ne dekha ki machine asal mein kya hai. Woh kamron ki ek qatar thi. Customer ke words har kamre se guzarte the, aur har kamre mein ek copy ban jaati thi. Beech mein baitha guard sirf unhi kamron ko bacha sakta tha jo uske baad aate hain. Imarat ke gate ko sochiye. Sirf ek jagah surakshit thi, darwaaze par.
+Tab Anaya ne dekha ki machine asal mein kya hai. Woh kamron ki ek qatar thi. Customer ke words har kamre se guzarte the, aur har kamre mein ek copy ban jaati thi. Beech mein baitha guard sirf unhi kamron ko bacha sakta tha jo uske baad aate hain. Imarat ke mukhya darwaaze ko sochiye. Sirf ek jagah surakshit thi, darwaaze par.
 
 ## Jo woh abhi nahi kar sakti
 
