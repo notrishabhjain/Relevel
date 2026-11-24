@@ -511,7 +511,7 @@ window.PART5 = [
   ],
   words:[
     ["Ingestion",'Ingestion is everything that happens to a document before it can be found: parsing (reading it), extraction (pulling the text out), enrichment (adding labels), chunking (cutting into index cards) and embedding (an address for meaning). It sets a ceiling on quality. Nothing later can raise that ceiling.'],
-    ["Query rewriting",'Turning what the user typed into what should really be searched, before the search runs. It is like a librarian who rewords your question first.'],
+    ["Query rewriting",'Turning what the user typed into what should really be searched, before the retrieval runs. It is like a librarian who rewords your question first.'],
     ["Access-control-aware retrieval",'Filtering by who is asking, as part of the search itself. The other way is to hide results later on the screen. Think of a locked cupboard versus a curtain.'],
     ["Embedding versioning",'Keeping track of which model made which stored vectors (the numbers that are the addresses for meaning). Then a change of model cannot quietly spoil an index.']
   ],
@@ -534,7 +534,7 @@ window.PART5 = [
       '11.1',
       'Parsing and document ingestion',
       {goal:'You will treat ingestion as an engineering pipeline, like a factory line. It is more than “upload PDF.”',
-       idea:'If bad data goes in, or the document loses its shape, bad results come out of retrieval later.',
+       idea:'If bad data goes in, or the document loses its shape at ingestion, bad results come out of retrieval later.',
        prove:'Take three PDFs or documents. Compare the text that was pulled out with what a person sees in the source.',
        build:'Write down the page, the section, the table, the language and your notes on the parser.',
        brk:'Use a scanned page, a page full of tables, and a broken document. Write down what gets lost.',
@@ -566,7 +566,7 @@ window.PART5 = [
        brk:'Test a question whose answer crosses a chunk edge.',
        artifact:'A Chunking Experiment, with before and after examples.',
        check:'Which chunking matched your set of questions, and why?',
-       lens:'Do not ask “which chunking is best?” Ask “best for what documents, and for what kinds of questions?”'}
+       lens:'Do not ask “which chunking is best?” Ask “best for what corpus (your pile of documents), and for what kinds of questions?”'}
     ],
     [
       'unit',
@@ -1399,7 +1399,7 @@ window.PART5 = [
        brk:'Take away one group of cases. See which regressions (things that got worse) you can no longer notice.',
        artifact:'Golden Dataset v1.0.',
        check:'Does the set show the risks real users face, or only the easy demos?',
-       lens:'The dataset becomes the promise you make about product quality.'}
+       lens:'The dataset becomes the contract (the written promise) for product quality.'}
     ],
     [
       'unit',
@@ -1902,149 +1902,149 @@ window.PART5 = [
 {
   id:'ch19pm', num:32, part:5, curriculumTier:'core', phase:5, prerequisites:['ch16e','ch6','ch20'], nextUnits:['ch20d','b7'], minutes:55, labs:['prdial'],
   title:'AI product management: specs for a probabilistic system',
-  concept:'An AI feature cannot promise the same output every time. So its spec must say how often it succeeds, on which test set, and what happens the rest of the time. You’ll write acceptance criteria as ranges, keep different kinds of metrics apart, and design the interface states.',
+  concept:'An AI feature cannot promise the same answer every time. It is like a parrot that has read a whole library: it guesses. So the spec must say how often it gets it right, on which test set (your answer key), and what happens the rest of the time. You will write acceptance criteria as ranges. You will keep different kinds of metrics apart. You will design the interface states, the screens the user can land on.',
   plan:{
-    first:'Take “return the correct document” and turn it into an acceptance criterion that you could actually test.',
-    build:'Write a compact AI PRD. Cover the problem, the baseline, the scope, the context, the tools, the failure modes, the human role, evaluation, safety, latency, cost, rollout and rollback.',
-    brk:'Attack it with three scenarios: a wrong answer, an over-refusal, and a harmful action.',
-    artifact:'An AI PRD, a release gate and a metric map.',
-    gate:'An engineer can build from it, and a leader can understand the trade-off it makes.'
+    first:'Pick the line “return the correct document”. Turn it into an acceptance criterion (a pass mark) that you can really test.',
+    build:'Write a short AI PRD (the recipe card for your feature). Cover the problem, the baseline, the scope, the context, the tools, the failure modes, the human role, evaluation, safety, latency, cost, rollout and rollback.',
+    brk:'Try to break it with three cases: a wrong answer, a refusal that was not needed (an over-refusal), and a harmful action.',
+    artifact:'An AI PRD, a release gate (the check before launch) and a metric map (a picture of which number means what).',
+    gate:'An engineer can build from it. A leader can see the trade-off it makes, like a shop owner seeing what you give up to get something.'
   },
   needs:[
-    ['Quality is a measured number against a test set','Chapter 29 built the gate that this PRD refers to.',29],
-    ['Failure costs differ by use case','You saw this in Chapter 6. Choosing which failure to accept is a product decision.',6],
-    ['What the user sees when it is wrong','Chapter 20 designed the failure states.',20]
+    ['Quality is a number you measure on a test set','In Chapter 29 you built the gate (the check before launch) that this PRD points to.',29],
+    ['Failure costs differ by use case','You saw this in Chapter 6. Choosing which failure you can live with is a product decision.',6],
+    ['What the user sees when it is wrong','In Chapter 20 you designed the failure screens.',20]
   ],
   words:[
-    ["AI acceptance criterion","A metric, a named test set and a stated tolerance. “Always correct” is not something you can hold a probabilistic system to."],
-    ["Product metric","What the user achieved. Keep it separate from system quality metrics and from operating cost, because mixing them leaves a dashboard unable to answer anything."],
-    ["Rollback trigger","The specific, observable condition that causes a change to be withdrawn. Write it so that someone can act on it without you."],
-    ["Non-goal","Something you have deliberately decided not to do, written down so that nobody can assume it back in later."]
+    ["AI acceptance criterion",'A pass mark with three parts: a metric (a number you watch), a named test set (your answer key) and a stated tolerance (how far off is still fine). “Always correct” is a promise a guessing machine cannot keep.'],
+    ["Product metric",'What the user got done. Keep it apart from quality numbers and from running-cost numbers. If you mix them on one screen, the screen cannot answer anything.'],
+    ["Rollback trigger",'The exact thing you can see that makes you pull a change back. Write it so that someone can act on it without calling you.'],
+    ["Non-goal",'Something you chose not to do. Write it down, so nobody sneaks it back in later, like a line you draw on the map.']
   ],
   takeaway:[
     'Write an acceptance criterion as a rate with a tolerance, not as a promise.',
-    'Keep business outcomes, model metrics and operating metrics apart.',
-    'Design the three interface states that an AI feature needs.'
+    'Keep business results, model quality numbers and running-cost numbers in separate piles.',
+    'Design the three interface states an AI feature needs: sure, unsure and error.'
   ],
   story:[
-    ['c','Before you start','Bring your release gate from Chapter 29 and the four interface states from Chapter 20.'],
-    ['c','On your route','Do units 19.2 and 19.7, then the capstone. Read the other units this pass.'],
-    ['p','So far you’ve built, measured, watched and secured an AI system. Now you write the spec that ties it together. And the first lesson is a hard one: “it returns the right document” is a promise no probabilistic system can keep.'],
-    ['p','So write down something you can keep. How often does it return the right document? Measured on which cases? And what does the system do the rest of the time? That rest is never zero.'],
-    ['p','Here’s an everyday comparison. A railway can’t promise a train at exactly 9:04. So it publishes the share of trains that arrive within a few minutes of schedule, measured every month. You can plan your day around that number.'],
-    ['key','For an AI feature, “done” means a measured success rate within a tolerance, not one fixed output.'],
+    ['c','Before you start','Bring your release gate from Chapter 29 and your four interface states (the screens a user can land on) from Chapter 20.'],
+    ['c','On your route','Do units 19.2 and 19.7, then the capstone (the project at the end). Read the other units this time.'],
+    ['p','So far you have built, measured, watched and protected an AI system. Now you write the spec (the recipe card) that holds it all together. The first lesson is hard. “It returns the right document” is a promise no probabilistic system (one that guesses, so it can differ each time) can keep.'],
+    ['p','So write a promise you can keep. How often does it return the right document? On which cases? And what does it do the rest of the time? That rest is never zero.'],
+    ['p','Think of the railway. It cannot promise a train at exactly 9:04. So it tells you how many trains arrive within a few minutes of the time, counted every month. You can plan your day around that number.'],
+    ['key','For an AI feature, “done” means a measured success rate inside a tolerance. It does not mean one fixed answer.'],
     ['h','Hands-on units'],
-    ['p','The seven units below start from the problem and end with the full PRD. Each one gives you something you’ll use in the next.'],
+    ['p','The seven units below start at the problem and end at the full PRD. Each one gives you something you use in the next.'],
     [
       'unit',
       '19.1',
       'AI problem framing',
-      {goal:'Decide whether AI is justified, and define the outcome the user wants.',
-       idea:'Start from the workflow and the pain, not from the model.',
-       prove:'Write down the current process, the user’s pain, the baseline and an outcome you can measure.',
-       build:'Where you can, build a baseline that does not use AI.',
-       brk:'Compare your AI idea with a deterministic alternative, one that always gives the same output for the same input.',
+      {goal:'Decide if AI is worth it here. Say what outcome the user wants.',
+       idea:'Start from the work the user does and where it hurts. Do not start from the model.',
+       prove:'Write down how it is done today, what hurts the user, the baseline (today’s result, to beat) and an outcome you can measure.',
+       build:'If you can, build a baseline that does not use AI.',
+       brk:'Put your AI idea next to a deterministic option (a fixed-rule way that gives the same output for the same input, like a calculator).',
        artifact:'Problem Framing One-Pager.',
        check:'Why AI, and not ordinary software?',
-       lens:'This stops you from starting with “AI-first” solutions.'}
+       lens:'This stops you from starting with an “AI-first” answer, like buying a hammer before you look at the nail.'}
     ],
     [
       'unit',
       '19.2',
       'AI acceptance criteria',
-      {goal:'Turn a vague idea of “correctness” into thresholds you can measure.',
-       idea:'AI output varies, so “done” must describe a spread of results and a tolerance.',
-       prove:'Write criteria for retrieval, generation, safety, latency and cost.',
-       build:'Link each criterion to a test set and a way of measuring.',
-       brk:'Create a case where quality improves but latency breaks the SLO, the response time you promised.',
+      {goal:'Turn a fuzzy idea of “correct” into pass marks you can measure.',
+       idea:'AI answers change from run to run. So “done” must describe a spread of results and a tolerance (how far off is fine).',
+       prove:'Write pass marks for retrieval (finding the right page), generation (writing the answer), safety, latency (waiting time) and cost.',
+       build:'Link each pass mark to a test set and to a way of measuring.',
+       brk:'Make a case where quality gets better but latency breaks the SLO (the wait time you promised, like “chai in five minutes”).',
        artifact:'AI Acceptance Criteria Sheet.',
-       check:'Can engineering run the test without asking what “good” means?',
-       lens:'Acceptance criteria are the contract between product and engineering.'}
+       check:'Can engineering run the test without asking you what “good” means?',
+       lens:'Acceptance criteria are the contract between product and engineering, like a written deal.'}
     ],
     [
       'unit',
       '19.3',
       'Failure-first UX',
-      {goal:'Design around uncertainty, ambiguity and failure, instead of hiding them.',
-       idea:'A good AI experience helps users understand the system’s limits, and what to do about them.',
-       prove:'Design a confident state, an uncertain state and a failed state.',
-       build:'Add citations, a way to ask for clarification, and fallback paths.',
-       brk:'Remove the citations and the uncertainty cues, and compare how users interpret the answers.',
+      {goal:'Design for the moments the AI is unsure, unclear or wrong. Do not hide them.',
+       idea:'A good AI screen shows the user where the system stops being reliable, and what to do next, like a sign that says “bridge closed, take the left road”.',
+       prove:'Design a sure state, an unsure state and a failed state.',
+       build:'Add citations (a note saying where the answer came from), a way to ask a follow-up question, and fallback paths (a second road when the first is shut).',
+       brk:'Take out the citations and the unsure signs. Then compare how users understand the answers.',
        artifact:'Failure-First UX Flow.',
        check:'What does the user do when the AI cannot answer?',
-       lens:'The fallback is part of the feature, not an afterthought.'}
+       lens:'The fallback is part of the feature. It is not something you add at the end.'}
     ],
     [
       'unit',
       '19.4',
       'Human-in-the-loop UX',
-      {goal:'Specify when a person reviews, approves, edits or overrides the AI’s output.',
-       idea:'Human involvement should be aimed at the high-risk or unclear moments.',
-       prove:'Map the decision points and what the person is asked to approve.',
-       build:'Measure how long reviews take and how often people override the AI.',
-       brk:'Create an approval that no longer matches the action it approves.',
+      {goal:'Say when a person checks, approves, edits or overrides what the AI produced.',
+       idea:'Put the person where the risk is high or things are unclear, like a teacher checking only the hard questions.',
+       prove:'Mark the points where someone decides. Write what the person is asked to approve.',
+       build:'Measure how long a review takes and how often people override the AI.',
+       brk:'Make an approval that no longer matches the action it approves, like signing a form that was changed after you read it.',
        artifact:'HITL Decision Map.',
        check:'What does the human add that nothing else can?',
-       lens:'Human review should reduce risk without turning into meaningless rubber-stamping.'}
+       lens:'Human review should lower the risk. It should not become a rubber stamp that means nothing.'}
     ],
     [
       'unit',
       '19.5',
       'Metrics and experimentation',
-      {goal:'Keep business outcomes apart from model metrics and operating metrics.',
-       idea:'Task completion is not the same as groundedness, and both are different from cost.',
-       prove:'Create a metric tree with layers for business, quality, safety, latency and cost.',
-       build:'Where it fits, define an A/B test or another controlled comparison.',
-       brk:'Improve a model metric while making the business outcome worse.',
+      {goal:'Keep business results apart from model quality numbers and running-cost numbers.',
+       idea:'A task getting finished is not the same as an answer being grounded (backed by the real page). And both are different from cost.',
+       prove:'Draw a metric tree (a tree of numbers) with one layer each for business, quality, safety, latency and cost.',
+       build:'Where it fits, set up an A/B test (two versions side by side, to see which wins) or another fair comparison.',
+       brk:'Make a model number go up while the business result gets worse.',
        artifact:'Metric Map plus Experiment Plan.',
-       check:'Which metric decides whether the product is useful?',
-       lens:'A PM must stop teams from optimizing a stand-in for the real goal.'}
+       check:'Which number tells you the product is useful?',
+       lens:'A PM must stop teams from chasing a stand-in number instead of the real goal, like a student chasing marks instead of learning.'}
     ],
     [
       'unit',
       '19.6',
       'Unit economics',
-      {goal:'Model the costs of tokens, retrieval, tools, infrastructure and human review.',
-       idea:'The real unit is often the cost of a successful task, not the cost of a request.',
-       prove:'Create a spreadsheet with volume, token usage, model cost, retries, tools and review time.',
-       build:'Compare scenarios for model routing and for caching.',
-       brk:'Increase the context or the retry rate, and see what happens to the margin.',
+      {goal:'Work out the cost of tokens (small pieces of text you pay for), retrieval, tools, infrastructure and human review.',
+       idea:'The real unit is often the cost of one task that worked, not the cost of one request.',
+       prove:'Make a spreadsheet with volume, token use, model cost, retries, tools and review time.',
+       build:'Compare cases for model routing (sending easy jobs to a cheaper model) and for caching (keeping an answer to reuse it).',
+       brk:'Raise the context size or the retry rate, and watch what happens to your margin (what you keep after costs).',
        artifact:'AI Unit Economics Model.',
        check:'What happens at 10× volume?',
-       lens:'Cost belongs in architecture decisions from day one.'}
+       lens:'Think about cost when you choose the design, from day one.'}
     ],
     [
       'unit',
       '19.7',
       'AI PRD and release plan',
-      {goal:'Write a PRD that an engineer can implement and a leader can evaluate.',
-       idea:'An AI PRD must specify the context, the behaviour when it fails, the evaluation and the operating limits.',
-       prove:'Complete the problem, scope, inputs, context, tools, model behaviour, failures, human role, metrics, safety, latency, cost, rollout and rollback.',
-       build:'Review the PRD against the system you built.',
-       brk:'Ask a reviewer to find a failure your PRD did not specify.',
+      {goal:'Write a PRD that an engineer can build and a leader can judge.',
+       idea:'An AI PRD must say what the context is, what happens when it fails, how you evaluate it, and what its limits are while running.',
+       prove:'Fill in all of these: problem, scope, inputs, context, tools, how the model behaves, failures, the human role, metrics, safety, latency, cost, rollout and rollback.',
+       build:'Check the PRD against the system you built.',
+       brk:'Ask a reviewer to find a failure your PRD did not cover.',
        artifact:'AI PRD plus Release Gate plus Metric Map.',
        check:'Can the PRD answer “what happens when it is wrong?”',
-       lens:'This becomes one of the strongest artifacts in your portfolio.'}
+       lens:'This becomes one of the best pieces in your portfolio (the folder of your work you show to employers).'}
     ],
     ['q','I412'],
     ['h','A spec outline'],
-    ['p','Here is an outline you can copy. Each line is a question that someone will ask you later, and it’s cheaper to answer it now.'],
+    ['p','Here is an outline you can copy. Every line is a question someone will ask you later. It is cheaper to answer it now, like packing your bag the night before.'],
     [
       'n',
-      ['The user’s problem, and how it is handled today without AI.','Why AI is the right answer to it — and what is explicitly out of scope.','What goes in: the inputs, the context, the tools it may call.','How it fails, and what a person does when it does.','The test set, and the scores that count as good enough.','Safety limits, the speed it must hold, the cost it must stay under.','How it rolls out, what you watch afterwards, and what triggers pulling it back.','Whose name is on it.']
+      ['The user’s problem, and how it is done today without AI.','Why AI is the right answer — and what is clearly out of scope.','What goes in: the inputs, the context, and the tools it may call.','How it fails, and what a person does when it does.','The test set, and the scores that count as good enough.','Safety limits, the speed it must keep, and the cost it must stay under.','How it rolls out, what you watch afterwards, and what makes you pull it back.','Whose name is on it.']
     ],
     ['h','Keep metric types separate'],
-    ['p','Once the outline is filled in, the next trap is the metrics. They look alike on a dashboard, but they answer different questions.'],
-    ['key','Keep the metric types apart. Task completion rate is a product outcome. Groundedness is a system quality metric. Token cost is an operating metric. Complaint rate is a user signal. A dashboard that mixes them cannot answer any question clearly.'],
-    ['p','Metrics also feed the big decisions. The table lists four of them, the business question behind each, and the AI evidence that settles it.'],
+    ['p','Once the outline is filled in, the next trap is the metrics (numbers you watch). They look alike on a dashboard (one screen of numbers), but they answer different questions.'],
+    ['key','Keep the metric types apart, like sorting rice, dal and sugar into separate jars. Task completion rate is a product outcome. Groundedness is a system quality metric. Token cost is an operating metric. Complaint rate is a user signal. A dashboard that mixes them cannot answer any question clearly.'],
+    ['p','Metrics also help with big decisions. The table shows four of them, the business question behind each, and the AI proof that settles it.'],
     [
       'tb',
-      ['Decision','The business question','The AI evidence that settles it'],
+      ['Decision','The business question','The AI proof that settles it'],
       [
-        ['Build or buy','Will it create enough value?','Capability, evaluation and total cost of ownership'],
-        ['Ship or hold','Is failure cheap enough?','Quality, safety and incident readiness'],
-        ['Model A or B','Which wins for this task?','A task-specific benchmark'],
-        ['Human in the loop','Where is autonomy unsafe?','Error cost and reversibility']
+        ['Build or buy','Will it create enough value?','What it can do, how you test it, and the total cost of owning it (total cost of ownership)'],
+        ['Ship or hold','Is failure cheap enough?','Quality, safety and being ready for incidents (when something goes wrong)'],
+        ['Model A or B','Which one wins for this task?','A benchmark (a fair test) made for this task'],
+        ['Human in the loop','Where is it unsafe to let the AI act alone?','What a mistake costs, and whether it can be undone']
       ]
     ],
     ['p','Now try writing one of the hardest lines in the spec.'],
@@ -2054,31 +2054,31 @@ window.PART5 = [
        mins:6,
        min:60,
        rows:4,
-       task:'Write a one-line rollback trigger for a feature you want to ship. It must be specific enough that someone could act on it at 2am without calling you.',
+       task:'Write a one-line rollback trigger for a feature you want to ship. Make it clear enough that someone could act on it at 2am without calling you.',
        ph:'Roll back if …',
-       after:'If someone needs your judgement to interpret it, it is not a trigger yet. Make it a number and a threshold.'}
+       after:'If someone needs your opinion to read it, it is not a trigger yet. Make it a number and a threshold (the line where you act).'}
     ],
     ['h','Summary'],
-    ['p','So an AI spec is built on a few honest ideas. Promise a rate with a tolerance, not a perfect output. Keep business, quality and operating metrics apart. Design for the moments when the AI is unsure or wrong. And write a rollback trigger that someone can act on without asking you.'],
-    ['p','Next, in Chapter 33, you’ll turn the product into a production architecture and a delivery plan.']
+    ['p','So an AI spec stands on a few simple ideas. Promise a rate with a tolerance, not a perfect answer. Keep business, quality and running-cost metrics apart. Plan for the moments the AI is unsure or wrong. And write a rollback trigger that someone can act on without asking you.'],
+    ['p','Next, in Chapter 33, you turn the product into a production architecture (the plan for how all the parts fit) and a delivery plan.']
   ],
   capstone:{
-    title:'Bring your requirements to version 3 for Bharat Privacy Guard',
-    brief:'You now bring the requirements you wrote in Chapter 18 to version 3: the document that an engineer can build from and that a leader can read to see exactly what trade-off is being made. In this chapter you learned to write acceptance criteria as a rate with a tolerance, to keep business results, model measures and operating measures apart, and to design the three states an AI feature needs. Now you update two pages for your own tool.',
-    where:'Written only. The requirements draw on evidence from earlier chapters. No new code is needed.',
+    title:'Take your requirements to version 3 for Bharat Privacy Guard',
+    brief:'Now you take the requirements you wrote in Chapter 18 to version 3. It is a document an engineer can build from. A leader can read it and see exactly what trade-off is being made. In this chapter you learned three things. Write acceptance criteria as a rate with a tolerance. Keep business results, model measures and running-cost measures apart. Design the three states an AI feature needs. Now you update two pages for your own tool.',
+    where:'Written work only. The requirements use proof from earlier chapters. You do not write any new code.',
     steps:[
-      'State the user’s problem, and the non-AI way your tool has to beat, for example a developer’s own hand-written rules.',
-      'Define the scope and, clearly, what is out of scope.',
-      'Specify what the models see, which tools they may use and what role a person plays.',
+      'Say what the user’s problem is. Then name the non-AI way your tool has to beat, for example a developer’s own hand-written rules.',
+      'Draw the scope (the fence around your project). Say clearly what is outside the fence.',
+      'Say what the models can see. Say which tools they may use. Say what job a person has.',
       'List the failures you have really seen in this course.',
-      'Name the test set, and write a five-line test plan.',
-      'Set quality, safety, speed and cost targets as rates with a tolerance, for example: “finds 95 of every 100 Aadhaar numbers, give or take 3, on the answer key”.',
+      'Name the test set. Write a test plan in five lines.',
+      'Set targets for quality, safety, speed and cost. Write each as a rate with a tolerance. For example: “finds 95 of every 100 Aadhaar numbers, give or take 3, on the answer key”.',
       'Design the three screens the tool needs: sure, unsure and error.',
-      'Write the release plan, a one-line rollback trigger, and the name of the owner.'
+      'Write the release plan, a one-line rollback trigger (the sign that says “undo it”), and the name of the owner.'
     ],
     done:[
-      'Two pages that an engineer could build from.',
-      'Every quality claim written as a number against a named test set.',
+      'Two pages an engineer could build from.',
+      'Every quality claim written as a number, against a named test set.',
       'What is out of scope, written down.',
       'A rollback trigger that someone could act on without asking you.'
     ]

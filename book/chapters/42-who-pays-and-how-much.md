@@ -17,13 +17,13 @@ terms:
   - gross margin | like a shopkeeper's profit after paying for the stock. It is income minus the direct cost of delivering the product. For AI products, much of that cost is a model or hosting bill | 
 ---
 
-The partner's technical lead, Mr. Menon, spoke on the stairs after the defence. He had one hand on the rail. He asked, "What would the guard cost me?" In the three weeks since the defence he had come back twice to look at the demo page. Once he had brought two colleagues. He asked like a man who had held the question all afternoon.
+The partner's technical lead, Mr. Menon, spoke on the stairs after the defence. He had one hand on the rail. He asked, "What would the guard cost me?" Since the defence, three weeks ago, he had come back twice to see the demo page. Once he had brought two colleagues. He asked like a man who had held the question all afternoon.
 
 For a year, Anaya had learned to answer "does it work?" with a number. "What does it cost?" was a different kind of question. She had no number she trusted. So she asked for a week. She promised to bring a real number. This chapter tells what she found.
 
 ## The case: three different people
 
-Think of buying a school bus. The child who rides it, the principal who pays for it, and the officer who must approve it are three different people. Anaya first had to find out who Mr. Menon was.
+Think of buying a school bus. The child who rides it is one person. The principal who pays is another. The officer who approves it is a third. Anaya first had to find out who Mr. Menon was.
 
 In a company that buys software for others to use, three people usually matter. They are rarely the same person. The table names them. It also says who each one was at the partner.
 
@@ -42,9 +42,9 @@ Next she asked Mr. Menon what a price would be worth to him. Then she stopped. S
 
 In the first month of the project she had read why that question is wrong. People say yes to be polite. The answer predicts nothing. So she asked something else. What did he use today for this problem? What did it cost? Who had approved the spend?
 
-He paid a vendor (a company that sells him a service) about thirty-five thousand rupees a month. The tool blanked card numbers in chat logs (the saved copies of chats) and did nothing else. An analyst spent about a quarter of her time on a weekly sweep (a regular check of sample chats) much like Lakshmi's. At her pay, that came to about thirty thousand rupees a month.
+He paid a vendor (a company that sells him a service) about thirty-five thousand rupees a month. The tool blanked card numbers in chat logs (the saved copies of chats) and did nothing else. An analyst spent about a quarter of her time on a weekly sweep much like Lakshmi's. A sweep is a regular check of sample chats. At her pay, that came to about thirty thousand rupees a month.
 
-The head of compliance (the person who makes sure the rules are followed) had signed the approval for the vendor. All of this was fact. Past spending is evidence. A future wish is not.
+The head of compliance had signed the approval for the vendor. That person makes sure the rules are followed. All of this was fact. Past spending is evidence. A future wish is not.
 
 ## The ceiling and the floor
 
@@ -52,7 +52,7 @@ Think of haggling in a market. The seller will not go below what the goods cost 
 
 She wrote the two figures on a card. Under them she wrote what she had not understood until that afternoon. The price a customer will pay comes from their other choice, not from the seller's costs. That other choice sets the ceiling. The seller's own costs set the floor.
 
-Think of what this meant for her. A tool that saves most of an analyst's quarter-time is worth a good deal less than thirty thousand to the buyer. Adopting it takes effort too. But it is worth a good deal more than a few thousand.
+Think of what this meant for her. A tool that saves most of an analyst's quarter-time is worth less than thirty thousand to the buyer. Adopting it takes effort too. But it is worth a good deal more than a few thousand.
 
 She found the middle on the same card. A fair price lay between two figures. One was ten thousand rupees, which would cover her costs. The other was about twenty thousand. Beyond that, Mr. Menon would start asking whether the old way was cheaper. She chose twenty-four thousand as a first guess, to see what happened to it.
 
@@ -79,7 +79,7 @@ Table: Cost to serve and margin at a flat ₹24,000
 | Base | 100,000 | ₹10,500 | 56% |
 | High | 1,000,000 | ₹58,500 | A loss of 144% |
 
-The margin she was working out is called the *contribution margin*. It is what a customer leaves you after the costs that grow with them. It is shown as a share of what they pay. At the base row it was a respectable fifty-six percent. At the high row it was a loss. A customer with a busy chat system on a flat price would cost her more than twice what they paid.
+The margin she was working out is called the *contribution margin*. It is what a customer leaves you after the costs that grow with them. It is shown as a share of what they pay. At the base row it was a respectable fifty-six percent. At the high row it was a loss. A customer with a busy chat system on a flat price would cost her over twice what they paid.
 
 Imran's rule was to model low, base and high every time. Most margin problems only show up in the last row.
 
@@ -114,20 +114,20 @@ She added a warning she had put in a dozen documents by then. A flywheel that re
 
 ## What a supplier can do to you
 
-Think of a shop that buys all its milk from one dairy. If the dairy raises its price, the shop has no say. Anaya had learned of this kind of risk in September. If a product runs on another company's computers or models, that company can change its prices and its quality without asking you.
+Think of a shop that buys all its milk from one dairy. If the dairy raises its price, the shop has no say. Anaya had learned of this kind of risk in September. Your product may run on another company's computers or models. That company can change its prices and quality without asking you.
 
 For an AI product, much of the cost of delivery is somebody else's bill. That cost sits inside the *gross margin*. Gross margin is income minus the direct cost of delivering the product.
 
 She could not remove the risk. She could put a price on it. Her recommendation said what would happen if the hosting price doubled. The base margin would fall from fifty-six percent to about thirty-seven. A tested second host would take about a week to switch to.
 
-It said what she would do if a model were retired. She would use pinned versions (a fixed model version that does not change) and the gate (the check before release). And it said what she would do if a rival launched the same feature. She would own the workflow and the relationship.
+It said what she would do if a model were retired. She would use pinned versions, which are fixed model versions that do not change. She would also use the gate, the check before release. And it said what she would do if a rival launched the same feature. She would own the workflow and the relationship.
 
 She sent Mr. Menon the page the next Thursday. The first paragraph was at the top. She had rewritten it four times.
 
 ::: example Anaya's recommendation to Mr. Menon
-I recommend a hybrid plan at ₹24,000 per month, including 100,000 messages, with ₹9,000 for each further 100,000. Your alternative costs you about ₹65,000 a month between the vendor and the analyst's time, so the price is well under the value.
+I recommend a hybrid plan at ₹24,000 per month, including 100,000 messages, with ₹9,000 for each further 100,000. Your alternative costs you about ₹65,000 a month. That is the vendor plus the analyst's time. The price is well under the value.
 
-Our margin is 56 percent at base use and stays above 40 percent at ten times that. The biggest risk is the price of hosting. If it doubled, our base margin would fall to about 37 percent, and switching to our tested second host takes about a week.
+Our margin is 56 percent at base use and stays above 40 percent at ten times that. The biggest risk is the price of hosting. If it doubled, our base margin would fall to about 37 percent. Switching to our tested second host takes about a week.
 :::
 
 ## Summary
@@ -137,6 +137,6 @@ Think of the market again. A customer pays when your product does the job better
 - In a company, the user, the buyer and the blocker are usually three different people. To learn what something is worth, ask what they use today, what it costs and who approved it. Past spending is evidence. Promises are not.
 - Seat, usage, outcome and hybrid pricing each put a different risk on a different side. A flat seat price is dangerous when each run costs money.
 - Work out the full cost of serving a customer at low, base and high usage. The margin problem is usually in the last row.
-- State what happens to the margin if a supplier doubles its price, and how long it would take to switch.
+- Say what happens to the margin if a supplier doubles its price. Say how long switching would take.
 
 Once a price is agreed, the next question is how people find the product, and why they stay.

@@ -99,8 +99,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Golden Dataset v1.0.',
   'Does the set show the risks real users face, or only the easy demos?':
     'Kya yeh set asli users ke risks dikhata hai, ya sirf aasaan demos ko?',
-  'The dataset becomes the promise you make about product quality.':
-    'Dataset product quality ke baare mein aapka vaada ban jaata hai.',
+  'The dataset becomes the contract (the written promise) for product quality.':
+    'Dataset product quality ka contract ban jaata hai (likha hua vaada).',
   'Sort failures into kinds, like sorting complaints into piles. Then you fix the causes, not just the symptoms.':
     'Failures ko kinds mein baantiye, jaise shikayaton ke dher banate hain. Phir aap sirf symptoms nahi, causes ko fix karte hain.',
   '"Wrong answer" is too broad. It does not tell engineers what to fix.':

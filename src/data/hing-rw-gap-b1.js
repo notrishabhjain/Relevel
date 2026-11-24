@@ -88,12 +88,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Aisa log sample jisme koi raw ID nahi, aur ek deletion test. Yeh DPDP Act ki security safeguards aur data kitni der rakha jaaye is par limits wali duties ko support karta hai',
   'Consulting firms often call this work model risk management. They also ask for explainability: a written reason for each decision the system makes. Learn both terms. Your risk register and your system card are the evidence behind them.':
     'Consulting firms aksar is kaam ko model risk management kehti hain. Woh explainability bhi maangti hain: system ke har decision ki ek likhi hui wajah. Dono terms seekh lijiye. Aapka risk register aur aapka system card inke peeche ka evidence hain.',
-  'Bring your requirements to version 3 for Bharat Privacy Guard':
-    'Bharat Privacy Guard ke liye apne requirements ko version 3 tak laiye',
-  'You now bring the requirements you wrote in Chapter 18 to version 3: the document that an engineer can build from and that a leader can read to see exactly what trade-off is being made. In this chapter you learned to write acceptance criteria as a rate with a tolerance, to keep business results, model measures and operating measures apart, and to design the three states an AI feature needs. Now you update two pages for your own tool.':
-    'Ab aap Chapter 18 mein likhe apne requirements ko version 3 tak laate hain: woh document jisse ek engineer build kar sake aur jise ek leader padhkar bilkul dekh sake ki kaun sa trade-off liya ja raha hai. Is chapter mein aapne seekha ki acceptance criteria ko tolerance wale rate ki tarah kaise likhte hain, business results, model measures aur operating measures ko alag kaise rakhte hain, aur ek AI feature ko jo teen states chahiye unhe kaise design karte hain. Ab aap apne tool ke liye do pages update karte hain.',
-  'Do units 19.2 and 19.7, then the capstone. Read the other units this pass.':
-    'Units 19.2 aur 19.7 kijiye, phir capstone. Baaki units is baar sirf padh lijiye.',
   'Do units 20.7 and 20.8, then the capstone. Read the other units this pass.':
     'Units 20.7 aur 20.8 kijiye, phir capstone. Baaki units is baar sirf padh lijiye.',
   'Don’t start with slides. Your problem is Bharat Privacy Guard. Collect the repository, the issue list and the evaluation dataset you already have, and build the smallest slice that works from start to finish.':

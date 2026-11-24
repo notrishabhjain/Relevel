@@ -84,8 +84,6 @@ Object.assign(window.HING = window.HING || {}, {
     '<a href="#/playground">Playground</a> kholiye aur <em>Keep the conversation</em> tick kijiye. Use ek banayi hui baat bataiye, jaise “Meri company ki refund window 17 din ki hai.” Refund window ke baare mein poochiye. Phir <em>Clear</em> dabaiye, jisse ek bilkul nayi conversation shuru hoti hai, aur dobara poochiye.',
   'A model connected on the setup page':
     'Setup page par ek model connect ho',
-  'The machine actually running your code. In this app it is Python inside your browser tab, so a reload starts a fresh one, and Restore puts your definitions back. A hosted notebook such as Colab lends you a machine for a few hours and then takes it back.':
-    'Woh machine jo aapka code sach mein chala rahi hai. Is app mein yeh aapke browser tab ke andar ka Python hai, isliye reload karne par naya shuru hota hai, aur Restore aapki definitions wapas le aata hai. Colab jaisa hosted notebook aapko kuch ghanton ke liye ek machine deta hai aur phir wapas le leta hai.',
   /* the notebook, Connect and the Playground (chrome) */
   'Python code':
     'Python code',

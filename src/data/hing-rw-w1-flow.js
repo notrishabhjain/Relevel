@@ -105,24 +105,6 @@ Object.assign(window.HING = window.HING || {}, {
     '<strong>IndentationError</strong>: line ki shuruaat ke spaces khisak gaye hain. Original wapas paane ke liye <strong>Undo edits</strong> dabaiye.',
   'Chapter 0.8':
     'Chapter 0.8',
-  'A name that holds a value, so later lines of code can use it. In city = "Pune", the name city is the variable. Read the equals sign as “is now”.':
-    'Ek naam jo ek value rakhta hai, taaki code ki aage ki lines use use kar sakein. city = "Pune" mein naam city variable hai. Barabar ke nishaan ko “ab hai” padhiye.',
-  'In Python, pairs of a label and a value inside curly braces, like a small form: {"role": "user", "content": "hello"}. Every message to a model is written this way.':
-    'Python mein curly braces ke andar label aur value ki jodiyan, ek chhote form jaisi: {"role": "user", "content": "hello"}. Model ko har message isi tarah likha jaata hai.',
-  'Putting two or three worked examples of the task inside the prompt, so the model copies their pattern. Zero-shot means asking with no examples at all.':
-    'Prompt ke andar kaam ke do-teen bane-banaaye examples rakhna, taaki model unka pattern copy kare. Zero-shot ka matlab hai bina kisi example ke poochhna.',
-  'Short for evaluation: running a system on cases whose right answers you already know, and counting how many it gets right. The cases together are an eval set.':
-    'Evaluation ka chhota roop: system ko aise cases par chalana jinke sahi jawaab aapko pehle se pata hain, aur ginna ki kitne sahi aaye. Saare cases milkar eval set kehlaate hain.',
-  'A written description of the exact shape a piece of JSON must have: which fields, of what type, and which are required. A program checks each answer against it.':
-    'Is baat ka likha hua varnan ki JSON ka ek tukda theek kis shape ka hona chahiye: kaun se fields, kis type ke, aur kaun se zaroori hain. Program har jawaab ko isse milaakar check karta hai.',
-  'India’s Digital Personal Data Protection Act, 2023, with its Rules from 2025. It says what an organisation must do before it collects, uses or shares personal data, such as asking for consent.':
-    'Bharat ka Digital Personal Data Protection Act, 2023, aur 2025 ke uske Rules. Yeh batata hai ki koi sanstha personal data ikattha karne, use karne ya share karne se pehle kya kare, jaise consent lena.',
-  'The rules, documents and named people that decide how an AI system may be used, who checks it, and who answers for it when it goes wrong.':
-    'Woh rules, documents aur naam wale log jo tay karte hain ki ek AI system kaise use ho sakta hai, use kaun check karta hai, aur galat hone par jawaab kaun deta hai.',
-  'How much work a system gets through in a given time, such as requests per minute. Latency is how long one request waits; throughput is how many get done.':
-    'Ek system diye gaye time mein kitna kaam nipta leta hai, jaise har minute kitni requests. Latency yeh hai ki ek request kitna intezaar karti hai; throughput yeh hai ki kitni poori hoti hain.',
-  'Showing two versions to two random groups of users at the same time and comparing one number between them, so you can tell which version caused the difference.':
-    'Do versions ko users ke do random groups ko ek hi samay dikhana aur unke beech ek number ki tulna karna, taaki pata chale ki farq kis version ne paida kiya.',
   'Start: a problem worth solving':
     'Shuruaat: ek problem jo hal karne laayak hai',
   'Three lines in your notepad, and the boxes in A1 answered.':

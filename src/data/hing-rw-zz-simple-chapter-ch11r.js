@@ -15,8 +15,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Ingestion',
   'Ingestion is everything that happens to a document before it can be found: parsing (reading it), extraction (pulling the text out), enrichment (adding labels), chunking (cutting into index cards) and embedding (an address for meaning). It sets a ceiling on quality. Nothing later can raise that ceiling.':
     'Ingestion woh sab hai jo document ke saath hota hai usse pehle ki use dhoondha ja sake: parsing (padhna), extraction (text nikaalna), enrichment (labels jodna), chunking (index cards mein kaatna) aur embedding (matlab ka pata). Yeh quality ki chhat tay karta hai. Baad ka koi kadam us chhat ko uncha nahin kar sakta.',
-  'Turning what the user typed into what should really be searched, before the search runs. It is like a librarian who rewords your question first.':
-    'User ne jo type kiya use woh banana jo asal mein dhoondhna chahiye, search chalne se pehle. Yeh librarian jaisa hai jo pehle aapka sawaal sudhaar deta hai.',
+  'Turning what the user typed into what should really be searched, before the retrieval runs. It is like a librarian who rewords your question first.':
+    'User ne jo type kiya use woh banana jo asal mein dhoondhna chahiye, retrieval chalne se pehle. Yeh librarian jaisa hai jo pehle aapka sawaal sudhaar deta hai.',
   'Access-control-aware retrieval':
     'Access-control-aware retrieval',
   'Filtering by who is asking, as part of the search itself. The other way is to hide results later on the screen. Think of a locked cupboard versus a curtain.':
@@ -87,8 +87,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Parsing and document ingestion',
   'You will treat ingestion as an engineering pipeline, like a factory line. It is more than “upload PDF.”':
     'Aap ingestion ko engineering pipeline maanenge, factory line ki tarah. Yeh “PDF upload karna” se kahin zyada hai.',
-  'If bad data goes in, or the document loses its shape, bad results come out of retrieval later.':
-    'Agar kharab data andar gaya, ya document ka dhaancha kho gaya, to baad mein retrieval se kharab results nikalte hain.',
+  'If bad data goes in, or the document loses its shape at ingestion, bad results come out of retrieval later.':
+    'Agar kharab data andar gaya, ya ingestion mein document ka dhaancha kho gaya, to baad mein retrieval se kharab results nikalte hain.',
   'Take three PDFs or documents. Compare the text that was pulled out with what a person sees in the source.':
     'Teen PDF ya documents lijiye. Nikaale gaye text ko us se milaiye jo insaan source mein dekhta hai.',
   'Write down the page, the section, the table, the language and your notes on the parser.':
@@ -135,8 +135,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek Chunking Experiment, pehle aur baad ke examples ke saath.',
   'Which chunking matched your set of questions, and why?':
     'Kaunsi chunking aapke sawaalon ke set se mili, aur kyun?',
-  'Do not ask “which chunking is best?” Ask “best for what documents, and for what kinds of questions?”':
-    'Yeh mat poochiye “kaunsi chunking sabse achhi?” Poochiye “kin documents ke liye, aur kis tarah ke sawaalon ke liye sabse achhi?”',
+  'Do not ask “which chunking is best?” Ask “best for what corpus (your pile of documents), and for what kinds of questions?”':
+    'Yeh mat poochiye “kaunsi chunking sabse achhi?” Poochiye “kis corpus (aapke documents ke dher) ke liye, aur kis tarah ke sawaalon ke liye sabse achhi?”',
   'Sparse retrieval':
     'Sparse retrieval',
   'You will learn exact-word search (lexical retrieval), like Ctrl+F, and why it is still useful.':

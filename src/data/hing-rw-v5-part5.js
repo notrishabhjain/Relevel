@@ -927,280 +927,90 @@ Object.assign(window.HING = window.HING || {}, {
   /* ---- ch19pm: AI product management: specs for a probabilistic system ---- */
   'AI product management: specs for a probabilistic system':
     'AI product management: ek probabilistic system ke liye specs',
-  'An AI feature cannot promise the same output every time. So its spec must say how often it succeeds, on which test set, and what happens the rest of the time. You’ll write acceptance criteria as ranges, keep different kinds of metrics apart, and design the interface states.':
-    'Ek AI feature har baar same output ka vaada nahi kar sakta. Isliye uski spec mein likhna padta hai ki woh kitni baar succeed karta hai, kis test set par, aur baaki waqt kya hota hai. Aap acceptance criteria ko ranges ki tarah likhenge, alag-alag tarah ke metrics ko alag rakhenge, aur interface states design karenge.',
-  'Take “return the correct document” and turn it into an acceptance criterion that you could actually test.':
-    '“Sahi document return karo” ko ek aise acceptance criterion mein badaliye jise aap sach mein test kar sakein.',
-  'Write a compact AI PRD. Cover the problem, the baseline, the scope, the context, the tools, the failure modes, the human role, evaluation, safety, latency, cost, rollout and rollback.':
-    'Ek compact AI PRD likhiye. Usmein problem, baseline, scope, context, tools, failure modes, human role, evaluation, safety, latency, cost, rollout aur rollback cover kijiye.',
-  'Attack it with three scenarios: a wrong answer, an over-refusal, and a harmful action.':
-    'Ispar teen scenarios se attack kijiye: ek galat jawaab, ek over-refusal, aur ek harmful action.',
-  'An AI PRD, a release gate and a metric map.':
-    'Ek AI PRD, ek release gate aur ek metric map.',
-  'An engineer can build from it, and a leader can understand the trade-off it makes.':
-    'Ek engineer isse build kar sake, aur ek leader samajh sake ki yeh kaun sa trade-off kar rahi hai.',
-  'Quality is a measured number against a test set':
-    'Quality ek test set ke against measure kiya hua number hai',
-  'Chapter 29 built the gate that this PRD refers to.':
-    'Chapter 29 ne woh gate banaya tha jiska yeh PRD zikr karta hai.',
   'Failure costs differ by use case':
     'Failure ki cost har use case mein alag hoti hai',
-  'You saw this in Chapter 6. Choosing which failure to accept is a product decision.':
-    'Yeh aapne Chapter 6 mein dekha tha. Kaun sa failure accept karna hai, yeh ek product decision hai.',
   'What the user sees when it is wrong':
     'Galat hone par user ko kya dikhta hai',
-  'Chapter 20 designed the failure states.':
-    'Chapter 20 ne failure states design kiye the.',
   'AI acceptance criterion':
     'AI acceptance criterion',
-  'A metric, a named test set and a stated tolerance. “Always correct” is not something you can hold a probabilistic system to.':
-    'Ek metric, ek named test set aur ek tolerance jo likhi gayi ho. “Hamesha sahi” aisi cheez nahi hai jiske liye aap ek probabilistic system ko zimmedaar thehra sakein.',
   'Product metric':
     'Product metric',
-  'What the user achieved. Keep it separate from system quality metrics and from operating cost, because mixing them leaves a dashboard unable to answer anything.':
-    'User ne kya haasil kiya. Ise system quality metrics aur operating cost se alag rakhiye, kyunki inhe milane se dashboard kisi sawaal ka jawaab nahi de paata.',
   'Rollback trigger':
     'Rollback trigger',
-  'The specific, observable condition that causes a change to be withdrawn. Write it so that someone can act on it without you.':
-    'Woh khaas, dekhi ja sakne wali condition jiske hone par kisi change ko wapas le liya jaata hai. Ise aise likhiye ki koi aapke bina bhi us par action le sake.',
   'Non-goal':
     'Non-goal',
-  'Something you have deliberately decided not to do, written down so that nobody can assume it back in later.':
-    'Ek cheez jise aapne jaan-boojhkar na karne ka faisla kiya hai, aur likh di hai, taaki koi baad mein use chupke se maan na le.',
   'Write an acceptance criterion as a rate with a tolerance, not as a promise.':
     'Acceptance criterion ko vaade ki tarah nahi, tolerance wale rate ki tarah likh paana.',
-  'Keep business outcomes, model metrics and operating metrics apart.':
-    'Business outcomes, model metrics aur operating metrics ko alag rakh paana.',
-  'Design the three interface states that an AI feature needs.':
-    'Un teen interface states ko design kar paana jo ek AI feature ko chahiye.',
-  'Bring your release gate from Chapter 29 and the four interface states from Chapter 20.':
-    'Chapter 29 ka apna release gate aur Chapter 20 ke chaar interface states saath rakhiye.',
-  'So far you’ve built, measured, watched and secured an AI system. Now you write the spec that ties it together. And the first lesson is a hard one: “it returns the right document” is a promise no probabilistic system can keep.':
-    'Ab tak aapne ek AI system banaya, measure kiya, watch kiya aur secure kiya. Ab aap woh spec likhenge jo sab kuch jodti hai. Aur pehla sabak thoda kadva hai: “yeh sahi document return karta hai” ek aisa vaada hai jo koi probabilistic system nahi nibha sakta.',
-  'So write down something you can keep. How often does it return the right document? Measured on which cases? And what does the system do the rest of the time? That rest is never zero.':
-    'Toh woh likhiye jo aap nibha sakein. Yeh sahi document kitni baar return karta hai? Kin cases par measure karke? Aur baaki waqt system kya karta hai? Woh baaki waqt kabhi zero nahi hota.',
-  'Here’s an everyday comparison. A railway can’t promise a train at exactly 9:04. So it publishes the share of trains that arrive within a few minutes of schedule, measured every month. You can plan your day around that number.':
-    'Ek roz ki misaal lijiye. Ek railway yeh vaada nahi kar sakti ki train theek 9:04 par aayegi. Isliye woh har mahine yeh publish karti hai ki kitni trains schedule se kuch minute ke andar pahunchi. Us number ke hisaab se aap apna din plan kar sakte hain.',
-  'For an AI feature, “done” means a measured success rate within a tolerance, not one fixed output.':
-    'Ek AI feature ke liye “done” ka matlab hai ek tolerance ke andar measure kiya hua success rate, ek fixed output nahi.',
-  'The seven units below start from the problem and end with the full PRD. Each one gives you something you’ll use in the next.':
-    'Neeche ke saat units problem se shuru hote hain aur poore PRD par khatam hote hain. Har unit aapko kuch aisa deta hai jo agle mein kaam aata hai.',
   'AI problem framing':
     'AI problem framing',
-  'Decide whether AI is justified, and define the outcome the user wants.':
-    'Tay kijiye ki AI ka use theek hai ya nahi, aur user ko kya outcome chahiye woh define kijiye.',
-  'Start from the workflow and the pain, not from the model.':
-    'Workflow aur pain se shuru kijiye, model se nahi.',
-  'Write down the current process, the user’s pain, the baseline and an outcome you can measure.':
-    'Abhi ka process, user ka pain, baseline aur ek aisa outcome likhiye jise measure kiya ja sake.',
-  'Where you can, build a baseline that does not use AI.':
-    'Jahan ho sake, ek aisa baseline banaiye jo AI use nahi karta.',
-  'Compare your AI idea with a deterministic alternative, one that always gives the same output for the same input.':
-    'Apne AI idea ko ek deterministic alternative se compare kijiye, jo same input par hamesha same output deta hai.',
   'Problem Framing One-Pager.':
     'Problem Framing One-Pager.',
   'Why AI, and not ordinary software?':
     'AI hi kyun, aam software kyun nahi?',
-  'This stops you from starting with “AI-first” solutions.':
-    'Isse aap “AI-first” solutions se shuru karne se bachte hain.',
   'AI acceptance criteria':
     'AI acceptance criteria',
-  'Turn a vague idea of “correctness” into thresholds you can measure.':
-    '“Correctness” ke dhundhle idea ko aise thresholds mein badaliye jinhe measure kiya ja sake.',
-  'AI output varies, so “done” must describe a spread of results and a tolerance.':
-    'AI output badalta rehta hai, isliye “done” mein results ka ek spread aur ek tolerance likhna padta hai.',
-  'Write criteria for retrieval, generation, safety, latency and cost.':
-    'Retrieval, generation, safety, latency aur cost ke liye criteria likhiye.',
-  'Link each criterion to a test set and a way of measuring.':
-    'Har criterion ko ek test set aur measure karne ke ek tareeke se jodiye.',
-  'Create a case where quality improves but latency breaks the SLO, the response time you promised.':
-    'Aisa case banaiye jismein quality improve ho lekin latency SLO tod de, jis response time ka aapne vaada kiya tha.',
   'AI Acceptance Criteria Sheet.':
     'AI Acceptance Criteria Sheet.',
-  'Can engineering run the test without asking what “good” means?':
-    'Kya engineering yeh pooche bina test chala sakti hai ki “good” ka matlab kya hai?',
-  'Acceptance criteria are the contract between product and engineering.':
-    'Acceptance criteria product aur engineering ke beech ka contract hain.',
   'Failure-first UX':
     'Failure-first UX',
-  'Design around uncertainty, ambiguity and failure, instead of hiding them.':
-    'Uncertainty, ambiguity aur failure ko chhupane ke bajaye unke aas-paas design kijiye.',
-  'A good AI experience helps users understand the system’s limits, and what to do about them.':
-    'Ek achha AI experience users ko system ki limits samajhne mein madad karta hai, aur yeh bhi ki unka kya karna hai.',
-  'Design a confident state, an uncertain state and a failed state.':
-    'Ek confident state, ek uncertain state aur ek failed state design kijiye.',
-  'Add citations, a way to ask for clarification, and fallback paths.':
-    'Citations, clarification maangne ka tareeka, aur fallback paths jodiye.',
-  'Remove the citations and the uncertainty cues, and compare how users interpret the answers.':
-    'Citations aur uncertainty cues hataiye, aur compare kijiye ki users jawaab ko kaise samajhte hain.',
   'Failure-First UX Flow.':
     'Failure-First UX Flow.',
   'What does the user do when the AI cannot answer?':
     'Jab AI jawaab nahi de paata, tab user kya karta hai?',
-  'The fallback is part of the feature, not an afterthought.':
-    'Fallback feature ka hissa hai, baad mein socha hua kaam nahi.',
   'Human-in-the-loop UX':
     'Human-in-the-loop UX',
-  'Specify when a person reviews, approves, edits or overrides the AI’s output.':
-    'Likhiye ki kab ek insaan AI ke output ko review, approve, edit ya override karta hai.',
-  'Human involvement should be aimed at the high-risk or unclear moments.':
-    'Insaan ko high-risk ya unclear moments par involve karna chahiye.',
-  'Map the decision points and what the person is asked to approve.':
-    'Decision points map kijiye, aur yeh bhi ki insaan se kya approve karwaya ja raha hai.',
-  'Measure how long reviews take and how often people override the AI.':
-    'Measure kijiye ki reviews mein kitna time lagta hai aur log kitni baar AI ko override karte hain.',
-  'Create an approval that no longer matches the action it approves.':
-    'Aisa approval banaiye jo us action se ab match nahi karta jise woh approve karta hai.',
   'HITL Decision Map.':
     'HITL Decision Map.',
   'What does the human add that nothing else can?':
     'Insaan aisa kya deta hai jo aur koi nahi de sakta?',
-  'Human review should reduce risk without turning into meaningless rubber-stamping.':
-    'Human review ko risk kam karna chahiye, bina bekaar rubber-stamping bane.',
   'Metrics and experimentation':
     'Metrics aur experimentation',
-  'Keep business outcomes apart from model metrics and operating metrics.':
-    'Business outcomes ko model metrics aur operating metrics se alag rakhiye.',
-  'Task completion is not the same as groundedness, and both are different from cost.':
-    'Task completion groundedness jaisa nahi hai, aur dono cost se alag hain.',
-  'Create a metric tree with layers for business, quality, safety, latency and cost.':
-    'Business, quality, safety, latency aur cost ki layers wala ek metric tree banaiye.',
-  'Where it fits, define an A/B test or another controlled comparison.':
-    'Jahan fit ho, ek A/B test ya koi aur controlled comparison define kijiye.',
-  'Improve a model metric while making the business outcome worse.':
-    'Model metric ko improve kijiye, jabki business outcome kharab ho raha ho.',
   'Metric Map plus Experiment Plan.':
     'Metric Map aur Experiment Plan.',
-  'Which metric decides whether the product is useful?':
-    'Kaun sa metric tay karta hai ki product kaam ka hai ya nahi?',
-  'A PM must stop teams from optimizing a stand-in for the real goal.':
-    'Ek PM ko teams ko asli goal ke badle uske kisi stand-in ko optimize karne se rokna padta hai.',
   'Unit economics':
     'Unit economics',
-  'Model the costs of tokens, retrieval, tools, infrastructure and human review.':
-    'Tokens, retrieval, tools, infrastructure aur human review ki costs ko model kijiye.',
-  'The real unit is often the cost of a successful task, not the cost of a request.':
-    'Asli unit aksar ek successful task ki cost hoti hai, ek request ki nahi.',
-  'Create a spreadsheet with volume, token usage, model cost, retries, tools and review time.':
-    'Ek spreadsheet banaiye jismein volume, token usage, model cost, retries, tools aur review time ho.',
-  'Compare scenarios for model routing and for caching.':
-    'Model routing aur caching ke scenarios compare kijiye.',
-  'Increase the context or the retry rate, and see what happens to the margin.':
-    'Context ya retry rate badhaiye, aur dekhiye ki margin par kya asar padta hai.',
   'AI Unit Economics Model.':
     'AI Unit Economics Model.',
   'What happens at 10× volume?':
     '10× volume par kya hota hai?',
-  'Cost belongs in architecture decisions from day one.':
-    'Cost ko pehle din se architecture decisions mein hona chahiye.',
   'AI PRD and release plan':
     'AI PRD aur release plan',
-  'Write a PRD that an engineer can implement and a leader can evaluate.':
-    'Aisa PRD likhiye jise ek engineer implement kar sake aur ek leader evaluate kar sake.',
-  'An AI PRD must specify the context, the behaviour when it fails, the evaluation and the operating limits.':
-    'Ek AI PRD mein context, fail hone par behaviour, evaluation aur operating limits likhni padti hain.',
-  'Complete the problem, scope, inputs, context, tools, model behaviour, failures, human role, metrics, safety, latency, cost, rollout and rollback.':
-    'Problem, scope, inputs, context, tools, model behaviour, failures, human role, metrics, safety, latency, cost, rollout aur rollback poore kijiye.',
-  'Review the PRD against the system you built.':
-    'PRD ko us system ke against review kijiye jo aapne banaya.',
-  'Ask a reviewer to find a failure your PRD did not specify.':
-    'Kisi reviewer se kahiye ki woh aisa failure dhundhe jo aapke PRD mein likha nahi tha.',
   'AI PRD plus Release Gate plus Metric Map.':
     'AI PRD, Release Gate aur Metric Map.',
   'Can the PRD answer “what happens when it is wrong?”':
     'Kya PRD “jab yeh galat ho toh kya hota hai?” ka jawaab de sakta hai?',
-  'This becomes one of the strongest artifacts in your portfolio.':
-    'Yeh aapke portfolio ke sabse mazboot artifacts mein se ek ban jaata hai.',
   'A spec outline':
     'Spec ka outline',
-  'Here is an outline you can copy. Each line is a question that someone will ask you later, and it’s cheaper to answer it now.':
-    'Yeh ek outline hai jise aap copy kar sakte hain. Har line ek aisa sawaal hai jo koi aapse baad mein poochega, aur use abhi jawaab dena sasta padta hai.',
-  'The user’s problem, and how it is handled today without AI.':
-    'User ki problem, aur AI ke bina aaj yeh kaise handle hoti hai.',
-  'Why AI is the right answer to it — and what is explicitly out of scope.':
-    'AI iska sahi jawaab kyun hai — aur kya saaf taur par scope ke bahar hai.',
-  'What goes in: the inputs, the context, the tools it may call.':
-    'Andar kya jaata hai: inputs, context, aur woh tools jinhe woh call kar sakta hai.',
   'How it fails, and what a person does when it does.':
     'Yeh kaise fail hota hai, aur jab hota hai toh insaan kya karta hai.',
   'The test set, and the scores that count as good enough.':
     'Test set, aur woh scores jo kaafi achhe maane jaate hain.',
-  'Safety limits, the speed it must hold, the cost it must stay under.':
-    'Safety limits, jis speed ko use banaye rakhna hai, aur jis cost ke neeche rehna hai.',
-  'How it rolls out, what you watch afterwards, and what triggers pulling it back.':
-    'Yeh kaise roll out hota hai, uske baad aap kya watch karte hain, aur use wapas kheenchne ka trigger kya hai.',
   'Whose name is on it.':
     'Isse kiska naam juda hai.',
   'Keep metric types separate':
     'Metric types ko alag rakhiye',
-  'Once the outline is filled in, the next trap is the metrics. They look alike on a dashboard, but they answer different questions.':
-    'Outline bhar jaane ke baad agla jaal metrics ka hai. Dashboard par woh ek jaise dikhte hain, lekin woh alag-alag sawaalon ka jawaab dete hain.',
-  'Keep the metric types apart. Task completion rate is a product outcome. Groundedness is a system quality metric. Token cost is an operating metric. Complaint rate is a user signal. A dashboard that mixes them cannot answer any question clearly.':
-    'Metric types ko alag rakhiye. Task completion rate ek product outcome hai. Groundedness ek system quality metric hai. Token cost ek operating metric hai. Complaint rate ek user signal hai. Jo dashboard inhe milata hai woh kisi bhi sawaal ka saaf jawaab nahi de sakta.',
-  'Metrics also feed the big decisions. The table lists four of them, the business question behind each, and the AI evidence that settles it.':
-    'Metrics bade decisions mein bhi kaam aate hain. Table mein chaar decisions hain, har ek ke peeche ka business sawaal, aur woh AI evidence jo use tay karta hai.',
   'The business question':
     'Business ka sawaal',
-  'The AI evidence that settles it':
-    'Woh AI evidence jo ise tay karta hai',
   'Build or buy':
     'Build ya buy',
   'Will it create enough value?':
     'Kya yeh kaafi value banayega?',
-  'Capability, evaluation and total cost of ownership':
-    'Capability, evaluation aur total cost of ownership',
   'Ship or hold':
     'Ship karein ya rokein',
   'Is failure cheap enough?':
     'Kya failure ki cost kaafi kam hai?',
-  'Quality, safety and incident readiness':
-    'Quality, safety aur incident ki taiyaari',
   'Model A or B':
     'Model A ya B',
-  'Which wins for this task?':
-    'Is task ke liye kaun jeetta hai?',
-  'A task-specific benchmark':
-    'Task-specific benchmark',
   'Human in the loop':
     'Human in the loop',
-  'Where is autonomy unsafe?':
-    'Autonomy kahan unsafe hai?',
-  'Error cost and reversibility':
-    'Error ki cost aur reversibility',
   'Now try writing one of the hardest lines in the spec.':
     'Ab spec ki sabse mushkil lines mein se ek likhkar dekhiye.',
-  'Write a one-line rollback trigger for a feature you want to ship. It must be specific enough that someone could act on it at 2am without calling you.':
-    'Kisi aise feature ke liye ek-line ka rollback trigger likhiye jise aap ship karna chahte hain. Woh itna khaas ho ki koi raat 2 baje bina aapko call kiye us par action le sake.',
   'Roll back if …':
     'Roll back kijiye agar …',
-  'If someone needs your judgement to interpret it, it is not a trigger yet. Make it a number and a threshold.':
-    'Agar kisi ko use samajhne ke liye aapki judgement chahiye, toh woh abhi trigger nahi hai. Use ek number aur ek threshold banaiye.',
-  'So an AI spec is built on a few honest ideas. Promise a rate with a tolerance, not a perfect output. Keep business, quality and operating metrics apart. Design for the moments when the AI is unsure or wrong. And write a rollback trigger that someone can act on without asking you.':
-    'Toh ek AI spec kuch seedhe ideas par tiki hoti hai. Perfect output ka nahi, tolerance wale rate ka vaada kijiye. Business, quality aur operating metrics ko alag rakhiye. Un pal ke liye design kijiye jab AI unsure ya galat hota hai. Aur aisa rollback trigger likhiye jis par koi aapse pooche bina action le sake.',
-  'Next, in Chapter 33, you’ll turn the product into a production architecture and a delivery plan.':
-    'Agle Chapter 33 mein aap product ko ek production architecture aur delivery plan mein badlenge.',
-  'Written only. The requirements draw on evidence from earlier chapters. No new code is needed.':
-    'Sirf likhna hai. Requirements pichhle chapters ke evidence par tiki hain. Naya code nahi chahiye.',
-  'State the user’s problem, and the non-AI way your tool has to beat, for example a developer’s own hand-written rules.':
-    'User ki problem likhiye, aur woh non-AI tareeka bhi jise aapke tool ko harana hai, jaise ek developer ke haath se likhe hue rules.',
-  'Define the scope and, clearly, what is out of scope.':
-    'Scope define kijiye, aur saaf taur par yeh bhi ki kya scope ke bahar hai.',
-  'Specify what the models see, which tools they may use and what role a person plays.':
-    'Likhiye ki models kya dekhte hain, woh kaun se tools use kar sakte hain, aur insaan ka kya role hai.',
   'List the failures you have really seen in this course.':
     'Un failures ki list banaiye jo aapne is course mein asal mein dekhe.',
-  'Name the test set, and write a five-line test plan.':
-    'Test set ka naam likhiye, aur paanch lines ka test plan likhiye.',
-  'Set quality, safety, speed and cost targets as rates with a tolerance, for example: “finds 95 of every 100 Aadhaar numbers, give or take 3, on the answer key”.':
-    'Quality, safety, speed aur cost ke targets ko tolerance wale rates ki tarah set kijiye, jaise: “answer key par har 100 Aadhaar numbers mein se 95 dhoondhta hai, 3 upar-neeche”.',
   'Design the three screens the tool needs: sure, unsure and error.':
     'Tool ko jo teen screens chahiye woh design kijiye: sure, unsure aur error.',
-  'Write the release plan, a one-line rollback trigger, and the name of the owner.':
-    'Release plan likhiye, ek-line ka rollback trigger, aur owner ka naam.',
-  'Two pages that an engineer could build from.':
-    'Do pages jinse ek engineer build kar sake.',
-  'Every quality claim written as a number against a named test set.':
-    'Har quality claim ek named test set ke against ek number ki tarah likhi hui.',
   'What is out of scope, written down.':
     'Kya scope ke bahar hai, likha hua.',
   'A rollback trigger that someone could act on without asking you.':
