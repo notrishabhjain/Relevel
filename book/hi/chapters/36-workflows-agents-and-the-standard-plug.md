@@ -1,161 +1,153 @@
 ---
 title: Workflows, Agents Aur Standard Plug
-summary: Bank ka teller balance dekh sakta hai, lekin kisi ke kehne par paisa kahin nahi bhej sakta. Support console ke teen sawaal cheezein kaat kar tay hote hain: model ko kitna tay karne dein, use kaise rokein, aur ek standard plug kya vaada karta hai aur kya nahi. Chapter mein tool contracts, idempotency, fixed workflows, bounded agents aur MCP aate hain.
+summary: Bank ka teller balance dekh sakta hai, lekin kisi ke kehne par paisa nahi bhej sakta. Support console ke teen sawaal cheezein kaatkar tay hote hain. Model ko kitna tay karne dein? Use kaise rokein? Standard plug kya vaada karta hai, aur kya nahi? Chapter mein tool contracts, idempotency, fixed workflows, bounded agents aur MCP aate hain.
 course: ch12t ch13a ch14p
 goals:
-  - tool contract likhna, aur samjhana ki permissions server lagata hai, model nahi
+  - tool contract likhna, aur samajhna ki permissions server tay karta hai, model nahi
   - idempotency samjhana, aur yeh ki retry tabhi safe hai jab action safe ho
-  - crossing-out test se agent ke bajaay fixed workflow chunna, aur jab sach mein agent chahiye ho toh use bound karna
+  - crossing-out test se agent ke bajaay fixed workflow chunna, aur jab sach mein agent chahiye ho toh uspar limits lagana
   - batana ki MCP kya vaada karta hai aur kya nahi
 terms:
-  - tool contract | ek function, jo model bula sakta hai, uska theek-theek likha hua agreement: uska naam, woh kya karta hai aur kya nahi, uske parameters, errors, side effects, aur use kaun bula sakta hai | tool contracts
-  - idempotency | kisi action ki woh khoobi ki use do baar chalana safe hai, ya use aise protect kiya gaya hai ki do baar chalne ka sirf ek hi asar ho; yeh tay karti hai ki retry safe hai ya nahi | idempotent
-  - fixed workflow | pehle se tay steps ka ek sequence, jo code mein likha hota hai, aur model sirf un steps mein use hota hai jinhe judgement chahiye | fixed workflows
-  - bounded agent | aisa AI agent jise steps, time aur cost par hard limits di gayi hon, ek state jo woh saaf-saaf rakhta hai, aur ek "cannot resolve" ending, taaki woh hamesha ruke | bounded agents
-  - MCP | Model Context Protocol: AI applications ko tools aur data se jodne ka ek standard, jisse koi bhi compliant tool kisi bhi compliant application mein lag jaata hai, plug aur socket ki tarah | Model Context Protocol
+  - tool contract | machine par chhape niyamon jaisa: ek function, jo model bula sakta hai, uska theek-theek likha hua agreement, jisme uska naam, woh kya karta hai aur kya nahi, parameters, errors, side effects, aur use kaun bula sakta hai likha hota hai | tool contracts
+  - idempotency | lift ka button do baar dabane jaisa: aisa action jo do baar chalana safe hai, ya aise protect kiya gaya hai ki do baar chalne ka sirf ek hi asar ho; yeh tay karta hai ki retry safe hai ya nahi | idempotent
+  - fixed workflow | kram se likhi recipe jaisa: steps pehle se tay hote hain aur code mein likhe hote hain, aur model sirf un steps mein use hota hai jinhe judgement chahiye | fixed workflows
+  - bounded agent | errands ki list aur curfew wale helper jaisa: aisa AI agent jiske steps, time aur cost par hard limits hain, ek state jo woh saaf dikhata rakhta hai, aur ek "cannot resolve" ending, taaki woh hamesha ruke | bounded agents
+  - MCP | Model Context Protocol: plug aur socket jaisa, AI applications ko tools aur data se jodne ka ek standard, jisse standard par bana koi bhi tool standard par bani kisi bhi application mein lag jaata hai | Model Context Protocol
 ---
 
-October ke pehle hafte mein, jab pilot chal raha tha, Farah Sheikh ne ek request ki jo bilkul vajib lagti thi. Woh chahti thi ki support console ka apna ek assistant ho. Woh agent ko tez kaam karne mein madad kare.
+October ke pehle hafte mein pilot chal raha tha. Farah Sheikh ne ek request ki jo bilkul vajib lagti thi. Woh chahti thi ki support console ka apna ek assistant ho. Console woh screen hai jahan support agents customers ko jawaab dete hain. Assistant agent ko tez kaam karne mein madad karega.
 
-Orders look up kare. Agar agent ke paas achhi wajah ho, toh kisi hidden detail ko dobara dikhaye. Aur agar theek lage, toh customer ko payment link bhej de. Yeh sab apne aap, ek smooth step mein.
+Woh orders look up karega. Agar agent ke paas achhi wajah ho, toh woh kisi hidden detail ko dobara dikhayega. Aur agar theek lage, toh customer ko payment link bhej dega. Yeh sab apne aap, ek smooth step mein.
 
-Imran Qureshi ne ek design review bulayi jo kisi ne maangi nahi thi, aur ek misaal se shuru kiya. Bank ka teller aapka balance dekh sakta hai, usne kaha, lekin aapke kehne par aapka paisa kahin nahi bhej sakta. Teller par bharosa kam nahi hai.
+Imran Qureshi ne ek design review kholi jo kisi ne maangi nahi thi. Usne ek misaal se shuru kiya. Bank ka teller aapka balance dekh sakta hai, usne kaha. Lekin woh aapke kehne par aapka paisa kahin nahi bhej sakta. Teller bharose ke laayak nahi hote, aisa nahi hai.
 
-Bas kuch actions ke nateeje bank ke bahar tak jaate hain, aur rule action ke baare mein hai, insaan ke baare mein nahi. Usne Farah ki teen requests board par likhi, ek capital letters wali heading ke neeche: yeh kya kar sakta hai, kis data ke saath, aur check kaun karta hai?
+Kuch actions ka asar bank ke bahar tak jaata hai. Rule action ke baare mein hai, insaan ke baare mein nahi. Usne board par Farah ki teen requests likhi. Unke upar bade akshron mein teen sawaal likhe: woh kya kar sakta hai, kis data ke saath, aur kaun check karega?
 
 ## Case: ek assistant jo sab kuch kare
 
-Farah ki requests mein alag-alag kism ke actions mile hue the. Yeh chapter unhe teen steps mein suljhata hai. Pehla, har function ke liye ek likhit agreement. Doosra, ek test ki model ko kitna tay karna chahiye. Aur teesra, yeh check ki standard connector kya guarantee karta hai aur kya nahi.
+Farah ki requests mein bilkul alag-alag kism ke actions mile hue the. Chitthiyon ke dher ko teen thaliyon mein baantne jaisa sochiye. Yeh chapter unhe teen steps mein baantta hai. Pehla, har function ke liye likha hua agreement. Doosra, yeh test ki model ko kitna tay karne dein. Teesra, yeh jaanch ki standard connector kya vaada karta hai, aur kya nahi.
 
 ## Ek function, likha hua
 
-Agar machine ko asli kuch karna hai, toh pehle use ek function chahiye jo woh maang sake. Phir us function ke baare mein ek likha hua agreement, itna exact ki koi ajnabi bhi bata sake ki function kya kar sakta hai aur kya nahi. Yeh hai **tool contract**.
+Model sirf ek function ke zariye kuch asli kar sakta hai, jo woh maang sake. Function ek naam wali recipe hai. Phir us function ka ek likha hua agreement chahiye. Woh itna theek hona chahiye ki koi ajnabi bata sake ki function kya kar sakta hai aur kya nahi. Yeh hai **tool contract**. Yeh machine par chhape niyamon jaisa hai.
 
-Anaya spring mein iska ek roop dekh chuki thi, jab ek dhundhli description ki wajah se model ne galat function chun liya tha. Contract usse kaafi aage jaata hai.
+Anaya ek chhota roop vasant mein dekh chuki thi. Ek dhundhli description ne model se galat function chunwa diya tha. Contract isse bahut aage jaata hai.
 
-Table: Tool contract mein kya likha hota hai
-| Hissa | Yeh kya kehta hai |
+Table: Tool contract kya batata hai
+| Element | Yeh kya kehta hai |
 | --- | --- |
-| Naam aur purpose | Function kya lautata hai aur kya nahi |
-| Parameters | Tight rakha hua, taaki jis field ki kuch hi legal values hon woh sirf wahi le |
-| Errors | Aise form mein listed jise program padh sake |
-| Side effects | Ise call karne se kya badalta hai |
-| Kaun call kar sakta hai | Server tay karta hai, logged-in session ke hisaab se, model ke kuch kehne ke hisaab se nahi |
+| Naam aur maqsad | Function kya lautata hai aur kya nahi |
+| Parameters | Kass ke tay kiye jaate hain, taaki kuch legal values wala field sirf wahi le |
+| Errors | Aise form mein likhe jaate hain jo program padh sake |
+| Side effects | Use bulane se kya badalta hai |
+| Use kaun bula sakta hai | Server tay karta hai, logged-in session ke aadhaar par, model ke kehne par nahi |
 
-Imran ne aakhri row par sabse zyada time lagaya. Model authorisation layer nahi hai. Maan lijiye lookup function order number leta hai. Server tay karta hai ki yeh agent yeh order dekh sakta hai ya nahi, logged-in session ke aadhaar par. Team garmiyon mein yeh kar chuki thi, aur contract bas use likh deta hai.
+Imran ne aakhri row par sabse zyada waqt diya. Model authorisation layer nahi hai. Authorisation matlab yeh tay karna ki kise ijaazat hai. Maan lijiye lookup function order number leta hai. Server tay karta hai ki yeh agent yeh order dekh sakta hai ya nahi. Woh logged-in session se tay karta hai. Team garmiyon mein yeh kar chuki thi. Contract ise sirf likh deta hai.
 
-### Do baar chal jaaye toh
+### Do baar chal gaya toh kya hoga
 
-Phir Imran ne poochha ki agar ek call do baar chal jaaye toh kya hota hai. Anaya ne socha: ek customer button dabata hai aur network lad-khada raha hai. Request server tak pahunch gayi, reply wapas nahi aaya, aur app ne dobara try kiya. Agar action "yeh detail dobara dikhao" tha, toh doosri koshish se koi nuksaan nahi hua. Agar "payment link bhejo" tha, toh customer ko do mile.
+Phir Imran ne poochha ki agar ek call do baar chal jaaye toh kya hoga. Anaya ne socha: network ladkhada raha hai aur customer button dabata hai. Request server tak pahunchi. Jawaab kabhi wapas nahi aaya. Toh app ne dobara koshish ki. Maan lijiye action tha "yeh detail dobara dikhao". Doosri koshish se koi nuksaan nahi hua. Maan lijiye action tha "payment link bhejo". Customer ko do mil gaye.
 
-Jo action do baar chalaya jaaye toh bhi safe ho, uska ek naam hai: **idempotency**. Kuch actions apne aap idempotent hote hain. Baaki ko aise banaya jaata hai ki har request ko ek unique number diya jaaye.
+Jo action do baar chalana safe hai, uska ek naam hai: **idempotency**. Yeh lift ka button do baar dabane jaisa hai. Lift phir bhi ek hi baar aati hai. Kuch actions swabhaav se idempotent hote hain. Baaki ko har request ko ek anokha number dekar aisa banaya jaata hai. Tab server dohrav pehchaan leta hai aur kuch nahi karta. Retry tabhi safe hai jab action safe ho. Isliye Imran ne contract mein ek rule joda. Jo bhi action kuch badalta hai, use batana hoga ki dohraye jaane par kya hoga.
 
-Phir server repeat pehchaan leta hai aur kuch nahi karta. Retry tabhi safe hai jab action safe ho. Isliye Imran ne contract mein ek rule joda: jo bhi action kuch badalta hai, usse likhna hoga ki repeat hone par kya hota hai.
+## Jo rule kar sakta hai, use kaat do
 
-## Woh kaato jo rule kar sakta hai
+Phir Imran ne poochha ki Farah ki teen requests mein se kaun si model ki choice honi chahiye. Usne ek exercise rakhi. Usme paanch minute lage aur project ka ek mahina bacha. Assistant ke jitne bhi function ho sakte hain, sab likho. Phir har woh function kaat do jo ek seedha rule sau mein se paanchanve baar se zyada sahi chunta hai. Seedha rule railway signal jaisa hai: laal ka matlab ruko, har baar.
 
-Phir Imran ne poochha ki Farah ki teen requests mein se kaun si model ki choice honi chahiye. Usne ek exercise di jisme paanch minute lage aur project ek mahina chhota ho gaya. Un sab functions ko likho jo assistant ke paas ho sakte hain. Phir har us function ko kaat do jise ek saada rule 100 mein se 95 baar se zyada sahi chunta hai.
-
-Table: Kaatne wali exercise
-| Function | Judgement chahiye? | Result |
+Table: Cross out karne ki exercise
+| Function | Kya judgement chahiye? | Natija |
 | --- | --- | --- |
-| Order look up karna | Nahi: agent ek button dabata hai | Kat gaya |
-| Hidden detail dobara dikhana | Nahi: ek aur button, jisme reason box mein type hota hai | Kat gaya |
-| Payment link bhejna | Nahi: hamesha insaan tay karta hai | Kat gaya |
+| Order look up karna | Nahi: agent button dabata hai | Kat gaya |
+| Hidden detail dobara dikhana | Nahi: ek aur button, jisme box mein wajah likhi jaati hai | Kat gaya |
+| Payment link bhejna | Nahi: insaan hi tay karta hai, hamesha | Kat gaya |
 
-Jo list bachi, woh khaali thi. Jawaab tha **fixed workflow**. Steps pata hain, isliye woh code mein fix kar diye jaate hain, aur model sirf wahi hissa karta hai jisme judgement chahiye, aur kuch nahi. Zyadatar asli products aise hi bante hain.
+List mein kuch nahi bacha. Jawaab tha **fixed workflow**. Yeh kram se likhi recipe jaisa hai. Steps maloom hain, isliye woh code mein fixed hain. Model sirf wahi hissa karta hai jisme judgement chahiye. Zyadatar asli products aise hi bante hain.
 
-Yeh model ko apna raasta khud chunne dene se safe hai, kyunki har step dikhta hai aur har failure ki ek jagah hoti hai. Model ko tool tabhi milna chahiye jab uski choice se value judti ho, kyunki har tool attack hone ka ek naya tareeka, aur delay, cost aur toot-phoot ka ek naya source jodta hai.
+Yeh model ko apna raasta khud chunne dene se zyada safe hai. Har step dikhta hai. Har failure ki ek jagah hoti hai. Model ko tool tabhi dijiye jab uski choice se kuch faayda ho. Har tool hamle ka ek naya raasta jodta hai. Woh deri, kharch aur toot-phoot ka naya source bhi jodta hai.
 
-Fixed workflows aam taur par kuch shape mein aate hain. Ek sequence hota hai. Ek router jo message ko kai raaston mein se ek par bhejta hai. Steps jo saath-saath chalte hain jab ek doosre par nirbhar nahi. Aur ek jodi jisme ek step likhta hai aur doosra check karta hai. Sab ka rule yahi hai ki sabse saada shape lijiye jo acceptance criteria poore kare.
+Fixed workflows aam taur par kuch shakl ke hote hain. Ek hai sequence. Ek hai router, jo message ko kai raaston mein se ek par bhejta hai. Ek mein steps saath-saath chalte hain jab woh ek doosre par nirbhar nahi. Ek jodi hai, jisme ek step likhta hai aur doosra use check karta hai. Sab ka rule ek hi hai. Sabse saadi shakl chuniye jo acceptance criteria poore kare.
 
 ## Woh ek kaam jo alag tha
 
-Sahaj mein ek kaam fixed raaste mein fit nahi hota tha, aur Anaya ek mahine se uske aas-paas ghoom rahi thi. Har raat guard unsure cases ki ek queue chhod deta tha, woh sau mein se kuch jinhe usne safe rehne ke liye chhupa diya tha. Har subah kisi ko ek-ek karke tay karna hota tha ki kya hona chahiye tha. Har case mein alag-alag kitna look-up chahiye tha. Fixed sequence yahan nahi jamta tha.
+Sahaj ka ek kaam fixed raaste mein nahi baitha. Anaya ek mahine se uske chakkar kaat rahi thi. Har raat guard ek queue chhodta tha, un cases ki jinke baare mein woh pakka nahi tha. Yeh sau mein se woh kuch the jo usne surakshit rehne ke liye hide kar diye the. Har subah kisi ko ek-ek karke tay karna padta tha ki kya hona chahiye tha. Har case mein alag-alag look up lagta tha. Fixed sequence ismein fit nahi baithi.
 
-Isliye unhone ek model ko limits ke andar yeh sambhalne diya. AI agent ek loop hai: decide, act, check, phir decide. Loop use flexible banata hai, aur khatarnaak bhi, kyunki aise kisi bhi cheez mein jo kuch galat hota hai woh zyadatar rukne par galat hota hai. **Bounded agent** ki limits shuru hone se pehle likhi hoti hain.
+Toh unhone ek model ko limits ke andar yeh sambhalne diya. AI agent ek loop hai: tay karo, karo, check karo, phir tay karo. Yeh errands ki list nipatate helper jaisa hai. Loop use lachila banata hai. Yeh use khatarnak bhi banata hai. Aisi cheez mein jo kuch bigadta hai, zyadatar rukne par bigadta hai. **Bounded agent** ki limits shuru hone se pehle likh di jaati hain. Helper ke curfew jaisa sochiye.
 
-Table: Agent ko kya bound karta hai
-| Bound | Detail |
+Table: Agent ko kya bandhta hai
+| Bound | Vivaran |
 | --- | --- |
-| Steps | Ek maximum number |
-| Time | Ek maximum duration |
-| Cost | Ek ceiling |
-| Ending | "Cannot resolve" naam ka ek explicit result, jo use andaaza lagane ki jagah dena hoga |
-| State | Goal, liye gaye steps, jo dekha, aur status ka ek dikhne wala record, na ki text ka badhta dhera jo use dobara padhna pade |
+| Steps | Ek maximum ginti |
+| Time | Ek maximum samay |
+| Cost | Ek chhat |
+| Ending | "Cannot resolve" naam ka ek saaf natija, jo use andaaza lagane ki jagah istemaal karna hai |
+| State | Goal, liye gaye steps, jo usne dekha aur uski status ka dikhta hua record, na ki badhta hua text ka dher jo use dobara padhna pade |
 | Logging | Har run kyun khatam hua |
 
-Imran ne kaha, yeh jaanne ke liye ki limits kaam karti hain, saabit kijiye. Aisa loop banaiye jise jawaab kabhi mil hi nahi sakta, aur dekhiye ki woh ruk jaata hai. Phir usne woh baat kahi jo Anaya ko chapter ka centre lagi.
+Limits kaam karti hain, yeh kaise pata chale? Saabit kijiye, Imran ne kaha. Aisa loop banaiye jo apna jawaab kabhi na dhoondh sake. Phir use rukta dekhiye. Uske baad usne wahi baat kahi jise Anaya chapter ka kendra maanne lagi.
 
-::: key Har action ko mark kijiye, aur aakhri kism ke liye insaan ko zaroori banaiye
-Har action ko mark kijiye: read-only, aisa write jo undo ho sakta hai, ya aisa write jo undo nahi ho sakta. Aakhri kism ke liye insaan ki approval zaroori rakhiye. Jo insaan approve kare, use kuch exact approve karna chahiye, aur agar approval ke baad payload badal jaaye toh action block hona chahiye. Warna approval ek popup hai, control nahi.
+::: key Har action ko mark kijiye, aur aakhri kism ke liye insaan zaroori kijiye
+Har action ko teen kismon mein se ek mark kijiye. Woh read-only hai. Ya woh aisa write hai jo undo ho sakta hai. Ya woh aisa write hai jo undo nahi ho sakta. Aakhri kism ke liye insaan zaroori kijiye. Jo insaan approve karta hai, use kuch exact approve karna chahiye. Agar approval ke baad payload badal jaaye, toh action rok dijiye. Payload woh exact cheez hai jo bheji ja rahi hai. Iske bina approval ek popup hai, control nahi.
 :::
 
-Night queue ke liye har action read-only tha. Agent propose karta tha, aur subah insaan faisla karta tha.
+Night queue ke liye har action read-only tha. Agent ne propose kiya. Insaan ne subah tay kiya.
 
-Read-only ka matlab yeh nahi tha ki agent ko akela chhoda ja sakta hai. Imran ne ek doosra scale joda, ki insaan loop mein kitna rehta hai, aur team ne chaar levels par haami bhari.
+Read-only ka matlab yeh nahi tha ki agent ko akela chhoda ja sakta hai. Imran ne ek doosra paimana joda. Yeh naapta hai ki insaan kitna loop mein rehta hai. Team chaar levels par raazi hui.
 
 Table: Autonomy ke chaar levels
 | Level | Agent kya karta hai | Insaan kahan aata hai |
 | --- | --- | --- |
-| Suggests | Ek action propose karta hai aur ruk jaata hai | Insaan use karta hai |
-| Acts with approval | Action taiyaar karta hai aur intezaar karta hai | Insaan wahi exact action approve karta hai |
-| Acts and reports | Action kar deta hai, phir kisi ko bata deta hai | Insaan baad mein use undo kar sakta hai |
-| Acts alone | Action kar deta hai aur kuch nahi kehta | Koi nahi, jab tak kuch toot na jaye |
+| Suggests | Action propose karta hai aur ruk jaata hai | Insaan use karta hai |
+| Acts with approval | Action taiyaar karta hai aur intezaar karta hai | Insaan usi exact action ko approve karta hai |
+| Acts and reports | Karta hai, phir kisi ko batata hai | Insaan baad mein use undo kar sakta hai |
+| Acts alone | Karta hai aur kuch nahi kehta | Koi nahi, jab tak kuch toote nahi |
 
 Night queue pehle level par thi. Jo action undo nahi ho sakta tha, woh doosre level se upar kabhi nahi gaya.
 
 ### Raaste ko mark karna, sirf jawaab ko nahi
 
-Imran ne phir use ek aisi raat dikhayi jo galat gayi thi, haalaanki jawaab sahi tha. Rok kar rakha hua case ek barah-digit number tha, jo order number bhi ho sakta tha aur Aadhaar number bhi. Yeh agent ka run hai, ek row mein ek step.
+Phir Imran ne use ek raat dikhayi jo galat gayi, jabki jawaab sahi tha. Roka hua case ek barah ankon ka number tha. Woh order number ho sakta tha ya Aadhaar number. Yeh hai agent ka run, har row mein ek step.
 
-Table: Night queue ka ek run, step-by-step mark kiya hua
+Table: Night-queue ka ek run, step-by-step mark kiya hua
 | Step | Agent ne kya maanga | Kya wapas aaya | Reviewer kya mark karta hai |
 | --- | --- | --- | --- |
 | 1 | Number ko order ki tarah look up kiya | Aisa koi order nahi | Sahi pehla step |
-| 2 | Wahi number phir se look up kiya | Aisa koi order nahi | Bekaar repeat |
-| 3 | Wahi number phir se look up kiya | Aisa koi order nahi | Bekaar repeat |
-| 4 | Customer ke pehle ke messages padhe | Do messages, koi order zikr nahi | Sahi tool, kaam ka result |
+| 2 | Wahi number dobara look up kiya | Aisa koi order nahi | Faltu dohrav |
+| 3 | Wahi number dobara look up kiya | Aisa koi order nahi | Faltu dohrav |
+| 4 | Customer ke pehle ke messages padhe | Do messages, koi order ka zikr nahi | Sahi tool, kaam ka result |
 | 5 | Koi tool nahi: usne likha "shayad Aadhaar number hai" | Kuch nahi | Ek andaaza jise koi step support nahi karta |
-| 6 | Run ko "keep hidden" ke saath khatam kiya | Run khatam | "Cannot resolve" ke saath khatam hona chahiye tha |
+| 6 | Run ko "keep hidden" par khatam kiya | Run khatam | "Cannot resolve" par khatam hona chahiye tha |
 
-"Keep hidden" sahi jawaab tha, isliye sirf jawaab ki jaanch is run ko pass kar deti. Chhe mein se teen steps bekaar ya andaaza the, aur agent ne woh ending use nahi ki jo use di gayi thi. Koi doosra number isi tarah chalkar galat jagah khatam ho sakta hai.
+"Keep hidden" sahi jawaab tha. Sirf jawaab ki jaanch yeh run paas kar deti. Lekin chhe mein se teen steps bekaar ya andaaze the. Agent ne woh ending istemaal nahi ki jo use di gayi thi. Koi doosra number isi tarah ja sakta tha aur galat khatam ho sakta tha.
 
-Isliye team ne jawaab ke saath raaste ko bhi mark kiya. Agent ne jo steps kiye, unki kram wali list ko uske final jawaab se alag score karna *trajectory evaluation* hai.
+Isliye team ne jawaab ke saath raasta bhi mark kiya. Agent ne jo steps liye, unki kram se list uski trajectory hai. Yeh helper ka liya hua raasta hai, sirf yeh nahi ki woh kahan pahuncha. Ise final jawaab se alag score karna *trajectory evaluation* hai. Chaar sawaal ise cover karte hain. Kya agent ne sahi tool use kiya? Kya usne faltu steps liye? Kya woh sahi tareeke se ruka? Kya woh apni bounds ke andar raha? Anaya ne run ko answer key mein ek case ki tarah jod diya. Sahi raasta sahi jawaab ke bagal mein likha tha.
 
-Chaar sawaal ise cover karte hain: kya agent ne sahi tool use kiya, bekaar steps liye, theek se ruka, aur apni bounds ke andar raha? Anaya ne run ko answer key mein ek case ki tarah joda, sahi jawaab ke baju mein sahi raasta likhkar.
+Anaya ne poochha ki agar koi use agent na kehta, toh bhi kya agent chuna jaata? Imran ne bees test raatein teen tareeke se chalayi thi. Ek tareeka ek single call tha. Ek fixed sequence tha. Ek bounded agent tha. Aam raaton mein sequence ne lagbhag agent jitna achha kiya. Uska kharch chauthai tha. Agent sirf ajeeb raaton mein behtar nikla. Toh agent ajeeb raaton ke liye use hoga.
 
-Anaya ne poochha, agar kisi ne ise agent kaha hi na hota, toh kya phir bhi agent chuna jaata? Imran ne bees test raatein teen tareeke se chalayi thi: ek single call, ek fixed sequence aur bounded agent. Aam raaton mein sequence agent ke lagbhag barabar raha, chauthai cost par. Agent sirf ajeeb raaton mein behtar raha. Isliye agent ajeeb raaton ke liye use hoga.
+Usne poochha ki kya doosra agent madad karega. Extra jatilta se kuch napne layak milna chahiye, Imran ne kaha. Kisi doosre agent se abhi tak yeh nahi maanga gaya tha.
 
-Usne poochha, kya doosra agent madad karega? Imran ne kaha, extra complexity ko kuch naapne layak kharidna padta hai, aur abhi tak kisi doosre agent se yeh maanga nahi gaya.
+## Deewar par plug
 
-## Deewar ka plug
+Guruwar ko console vendor ne ek elaan kiya. Vendor woh company hai jo aapko product bechti hai. Uska product ab MCP ke zariye AI assistants se jud sakta tha. **MCP**, yaani Model Context Protocol, AI application ko tools aur data se jodne ka ek standard tareeka hai. Deewar ke socket jaisa sochiye. Standard par bana koi bhi appliance usme lag jaata hai. Isi tarah MCP standard par bana koi bhi tool, usi par bani kisi bhi application mein lag jaata hai.
 
-Thursday ko console vendor ne announce kiya ki uska product ab MCP ke zariye AI assistants se joda ja sakta hai. **MCP**, yaani Model Context Protocol, AI application ko tools aur data se jodne ka ek standard tareeka hai.
+Iske teen hisse hain. Pehla woh application hai jo baatcheet sambhalti hai. Doosra uske andar ek chhota connector hai. Teesra doosri taraf ek alag program hai. Woh batata hai ki woh kya kar sakta hai: uske tools, uske documents aur uske taiyaar instructions.
 
-Deewar ke socket ke baare mein sochiye. Jo bhi appliance standard follow karta hai, usme lag jaata hai. Waise hi, MCP standard par bana koi bhi tool us par bani kisi bhi application mein lag jaata hai.
+Anaya ne poochha ki standard kya vaada karta hai. Imran ne kaha, woh vaada karta hai ki plug fit hoga. Woh yeh vaada nahi karta ki tool safe hai. Woh yeh tay nahi karta ki use kaun chalu kar sakta hai. Usne vendor ka description kholaa ki uska connector kya offer karta hai. Order look up karo. Customer ki payments ki list lo. Refund jaari karo. "Yeh dekhiye," usne kaha. "Yeh refund ka vigyapan karta hai."
 
-Isme teen hisse hain. Pehla woh application jo conversation sambhalti hai. Doosra uske andar ek chhota connector. Teesra doosri taraf ek alag program jo batata hai ki woh kya kar sakta hai: uske tools, uske documents aur uske pehle se tayyar instructions.
-
-Anaya ne poochha ki standard kya vaada karta hai. Imran ne kaha, woh vaada karta hai ki plug fit hoga. Woh yeh vaada nahi karta ki tool safe hai, aur yeh tay nahi karta ki use on kaun karega. Usne vendor ka description kholi ki uska connector kya offer karta hai: order look up karo, customer ke payments list karo, refund issue karo. "Dekhiye," usne kaha. "Woh refund ka vaada kar raha hai."
-
-Anaya ne poochha, kya agent ke paas permission hai? Imran ne kaha, sawaal yahi hai. Tool ko discover kiya ja sakta hai, aur use aapko use karne ki ijaazat hai, yeh alag baatein hain. Pehla protocol ka kaam hai. Doosra company ka, jo server par tay hota hai ki kaun logged in hai, model se poochh kar nahi.
+Anaya ne poochha ki kya agent ke paas permission thi. Wahi toh sawaal hai, usne kaha. Kya tool khoja ja sakta hai? Kya aapko use karne ki ijaazat hai? Yeh alag baatein hain. Pehli protocol ka kaam hai. Doosri company ka kaam hai. Yeh server par tay hoti hai, ki kaun logged in hai. Model se poochhkar tay nahi hoti.
 
 ::: watch Unsafe tool ka standard interface bhi unsafe tool hi hai
-Connector se jo kuch bhi wapas aata hai, woh bhi aisa text hai jo koi ajnabi likh sakta tha. Anaya ne yeh garmiyon wali list mein joda, har document ko untrusted maanne wale rule ke neeche.
-
-Agents ke aapas mein baat karne ka bhi ek protocol hai, jise A2A kehte hain, jiski problem usi shape ki hai, tools ki jagah identity aur delegation ke saath. Woh yeh suljhata hai ki woh baat kaise karte hain. Yeh nahi suljhata ki woh jo kehte hain us par bharosa karna chahiye ya nahi.
+Connector ke zariye jo bhi wapas aata hai, woh bhi aisa text hai jo koi ajnabi likh sakta tha. Anaya ne ise garmiyon ki list mein joda. Usne ise us rule ke neeche rakha jo kehta hai ki har document ko untrusted maano. Agents ke aapas mein baat karne ka bhi ek protocol hai, jise A2A kehte hain. Uski bhi isi tarah ki samasya hai, tools ki jagah identity aur delegation ke saath. Woh yeh suljhata hai ki woh kaise baat karein. Woh yeh nahi suljhata ki unki baat par bharosa karein ya nahi.
 :::
 
-Hafte ke ant tak console ka apna koi assistant nahi tha. Uske paas ek night queue thi jisme bounded agent propose karta tha aur act nahi karta tha, aur ek connector jisme refund tool band tha. Anaya ne kaha ki yeh Farah ne jo maanga tha usse kam hai. Imran ne kaha, yeh wahi hai jo use chahiye tha, aur banane mein aasaan bhi.
+Hafte ke ant tak console ka apna koi assistant nahi tha. Uske paas ek night queue thi jisme bounded agent tha. Agent propose karta tha, action nahi leta tha. Uske paas ek connector bhi tha jisme refund tool band tha. Anaya ne kaha ki yeh Farah ki maang se kam hai. Imran ne kaha ki yahi use chahiye tha. Yeh banana bhi aasaan tha.
 
 ## Saaraansh
 
-Tool ek function hai jo model maang sakta hai. Har ek ko ek tool contract chahiye jo exactly bataye ki woh kya karta hai aur kya nahi, kya leta hai, kaun si errors deta hai, kya badalta hai aur use kaun call kar sakta hai.
+Tool ek function hai jo model maang sakta hai. Har tool ko ek tool contract chahiye. Contract theek-theek batata hai ki tool kya karta hai aur kya nahi. Woh batata hai ki woh kya leta hai, kaun se errors lautata hai, kya badalta hai, aur use kaun bula sakta hai.
 
-- Permissions server lagata hai, model ke bharose kabhi nahi chhodte. Jo action kuch badalta hai, use batana hoga ki do baar chalne par kya hota hai, yahi idempotency hai.
-- Bahut se features jo agent maangte lagte hain, fixed workflow ke roop mein behtar hote hain, jisme model sirf wahan lagta hai jahan words samajhne padte hain. Ek tez test hai: har us tool ko kaat dijiye jise ek saada rule lagbhag hamesha sahi chunta hai.
-- Jab sach mein agent chahiye, toh use bound kijiye: limited steps, time aur cost, explicit state, aur ek "cannot resolve" ending. Jo cheez undo nahi ho sakti, use ek insaan approve karta hai.
-- MCP ek standard plug hai. Woh vaada karta hai ki cheezein fit hongi, aur unki safety ke baare mein kuch nahi kehta, aur jo tool discover ho sakta hai woh isliye authorised nahi ho jaata.
+- Permissions server lagata hai. Unhe kabhi model ke bharose mat chhodiye. Jo action kuch badalta hai, use batana hoga ki do baar chalne par kya hoga. Yahi idempotency hai.
+- Agent jaisi lagne wali kai features fixed workflow mein behtar hoti hain. Model sirf wahan use hota hai jahan shabd samajhne padte hain. Ek tez test hai: har woh tool kaat do jo ek seedha rule lagbhag har baar sahi chunta hai.
+- Jab sach mein agent chahiye, use bound kijiye. Steps, time aur cost par limit lagaiye. Explicit state rakhiye. Use ek "cannot resolve" ending dijiye. Jo action undo nahi ho sakta, use insaan approve karta hai.
+- MCP ek standard plug hai. Woh vaada karta hai ki cheezein fit hongi. Woh unki safety ke baare mein kuch nahi kehta. Jo tool khoja ja sake, woh isi wajah se authorised nahi ho jaata.
 
-Agle chapter mein Farah ek voice note do baar bajati hai, aur Anaya dekhti hai ki guard ko ab tak sirf type kiye hue text par hi parkha gaya hai.
+Agle chapter mein Farah ek voice note do baar bajaati hai. Anaya dekhti hai ki guard ko ab tak sirf typed text par test kiya gaya hai.

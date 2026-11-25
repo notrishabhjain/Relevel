@@ -22,7 +22,7 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     steps: [
       { l: ['Score yourself', 'Khud ko score kijiye'], ic: 'chart', d: ['Rate each skill 0 to 3, with a piece of evidence for every score.', 'Har skill ko 0 se 3 tak rate kijiye, har score ke liye ek saboot ke saath.'] },
       { l: ['Pick a weak spot', 'Kamzor jagah chuniye'], ic: 'target', d: ['Practice aimed at your weakest skill moves you fastest.', 'Sabse kamzor skill par nishana lagakar kiya abhyaas sabse tez aage badhata hai.'] },
-      { l: ['Make an artifact', 'Ek artifact banaiye'], ic: 'doc', d: ['A document, sheet or prototype someone else can open and check.', 'Aisa document, sheet ya prototype jise koi aur khol kar jaanch sake.'] },
+      { l: ['Make an artifact', 'Ek artifact banaiye'], ic: 'doc', d: ['A document, sheet or prototype (a rough first version) that someone else can open and check.', 'Aisa document, sheet ya prototype (pehla kaccha roop) jise koi aur khol kar jaanch sake.'] },
       { l: ['Check it at the gate', 'Gate par jaanchiye'], ic: 'check', d: ['Score it 0 to 3. Move on only when every part scores at least 2.', 'Use 0 se 3 tak score kijiye. Aage tabhi badhiye jab har hissa kam se kam 2 ho.'] },
       { l: ['Log the decision', 'Faisla log kijiye'], ic: 'list', d: ['Date, decision, evidence, and what would change your mind.', 'Tareekh, faisla, saboot, aur kya aapka mann badal dega.'] }
     ],
@@ -46,7 +46,7 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     cap: ['Drag each idea to where you think it belongs. A1 asks you to choose a problem in the top-right.', 'Har idea ko wahan kheenchiye jahan aapko lagta hai. A1 upar-daayin wali problem chunne ko kehta hai.'] },
 
   'repo-history': { t: 'flow',
-    title: ['A repository remembers every version', 'Repository har version yaad rakhti hai'],
+    title: ['A repository (an online folder) remembers every version', 'Repository (ek online folder) har version yaad rakhti hai'],
     steps: [
       { l: ['Create the repo', 'Repo banaiye'], ic: 'flag', d: ['Commit 1: README.md, the front page.', 'Commit 1: README.md, pehla panna.'] },
       { l: ['Add the decision log', 'Decision log jodiye'], ic: 'doc', d: ['Commit 2: "Start the decision log".', 'Commit 2: "Start the decision log".'] },
@@ -54,7 +54,7 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
       { l: ['Delete a line', 'Ek line mitaiye'], ic: 'pen', d: ['Commit 4: the line is gone from the file, not from the history.', 'Commit 4: line file se gayi, history se nahi.'] },
       { l: ['Open History', 'History kholiye'], ic: 'clock', d: ['Every commit, its message and its time. Nothing is lost.', 'Har commit, uska message aur samay. Kuch nahi khota.'] }
     ],
-    cap: ['Each box is one commit. That is why a key or a password must never go in.', 'Har box ek commit hai. Isi liye key ya password kabhi andar nahi jaana chahiye.'] },
+    cap: ['Each box is one commit (one saved change). That is why a key or a password must never go in.', 'Har box ek commit hai (ek save kiya badlaav). Isi liye key ya password kabhi andar nahi jaana chahiye.'] },
 
   'four-risks': { t: 'flow',
     title: ['Four questions before you build', 'Banane se pehle chaar sawaal'],
@@ -63,7 +63,7 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
       { l: ['Usability', 'Usability'], ic: 'person', d: ['Can they work out how to use it without help?', 'Kya woh bina madad ke samajh lenge ki ise kaise chalana hai?'] },
       { l: ['Feasibility', 'Feasibility'], ic: 'tool', d: ['Can the team build it, with this data and this model, in time?', 'Kya team ise is data aur is model ke saath, samay par bana sakti hai?'] },
       { l: ['Viability', 'Viability'], ic: 'money', d: ['Does it work for the business: cost, law, sales, support?', 'Kya yeh business ke liye chalta hai: kharch, kaanoon, sales, support?'] },
-      { l: ['Build', 'Banaiye'], ic: 'rocket', d: ['Only an idea that passes all four is worth a sprint.', 'Sirf chaaron paar karne wala idea ek sprint ke layak hai.'] }
+      { l: ['Build', 'Banaiye'], ic: 'rocket', d: ['Only an idea that passes all four is worth a sprint (a short work round of one or two weeks).', 'Sirf chaaron paar karne wala idea ek sprint (ek-do hafte ka chhota kaam-daur) ke layak hai.'] }
     ],
     cap: ['Most launches fail on the first question, which is the one nobody tests.', 'Zyadatar launches pehle sawaal par girte hain, jise koi nahi parakhta.'] },
 
@@ -94,7 +94,7 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
       { l: ['Write the report', 'Report likhna'], ic: 'pen', d: ['Top five themes with example tickets. 40 minutes.', 'Udaharan tickets ke saath top paanch themes. 40 minute.'] },
       { l: ['Send to product', 'Product ko bhejna'], ic: 'send', d: ['Product reads it on Tuesday, if at all.', 'Product ise Tuesday ko padhta hai, agar padhe to.'] }
     ],
-    cap: ['A journey map shows where the time and the frustration really go.', 'Journey map dikhata hai ki samay aur jhunjhlahat asal mein kahan jaati hai.'] },
+    cap: ['A journey map (a drawing of one person’s day) shows where the time and the frustration really go.', 'Journey map (ek insaan ke din ka chitra) dikhata hai ki samay aur jhunjhlahat asal mein kahan jaati hai.'] },
 
   'tickets-calc': { t: 'calc',
     title: ['A formula updates itself', 'Formula khud update hota hai'],
@@ -110,7 +110,7 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     cap: ['Move B2 or B3. Every total follows, because each is a formula, not a typed number.', 'B2 ya B3 ko khiskaiye. Har total saath badalta hai, kyunki har ek formula hai, likha hua number nahi.'] },
 
   'market-size': { t: 'calc',
-    title: ['Size a market from the bottom up', 'Market ka size neeche se upar'],
+    title: ['Size a market from the bottom up: count the firms, then multiply', 'Market ka size neeche se upar: firms gino, phir guna kijiye'],
     inputs: [
       { id: 'firms', l: ['Firms with the problem', 'Problem wali firms'], min: 1000, max: 30000, step: 500, v: 9000 },
       { id: 'price', l: ['What one firm pays a year (₹)', 'Ek firm saal mein kitna degi (₹)'], min: 20000, max: 400000, step: 10000, v: 120000, fmt: 'inr' },
@@ -125,19 +125,19 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     cap: ['Each line is a guess you can argue with. Change one and watch the rest follow.', 'Har line ek andaaza hai jis par behas ho sakti hai. Ek badliye aur baaki ko saath chalte dekhiye.'] },
 
   'opp-tree': { t: 'tree',
-    title: ['An opportunity tree', 'Opportunity tree'],
+    title: ['An opportunity tree: one goal, and branches of ways to reach it', 'Opportunity tree: ek lakshya, aur use paane ke raaste ki shaakhayein'],
     root: { l: ['Outcome: weekly themes in 30 minutes', 'Nateeja: hafte ke themes 30 minute mein'], d: ['The result you want, measured. Everything below serves it.', 'Jo nateeja chahiye, naapa hua. Neeche sab isi ke liye hai.'], kids: [
       { l: ['Reading takes too long', 'Padhne mein bahut samay'], d: ['Heard in 5 of 5 interviews.', '5 mein se 5 interviews mein suna.'], kids: [
         { l: ['Auto-group tickets', 'Tickets apne aap group'], tone: 'good', d: ['Strong fit for a model. Test first.', 'Model ke liye achha fit. Pehle parkhiye.'] },
         { l: ['Read a sample only', 'Sirf ek sample padhna'], d: ['Cheap, but misses rare themes.', 'Sasta, par kam aane wale themes chhootenge.'] } ] },
       { l: ['Themes get missed', 'Themes chhoot jaate hain'], d: ['Heard in 3 of 5.', '5 mein se 3 mein suna.'], kids: [
-        { l: ['Show every theme with counts', 'Har theme ginti ke saath'], d: ['Makes the long tail visible.', 'Lambi poonchh dikh jaati hai.'] } ] },
+        { l: ['Show every theme with counts', 'Har theme ginti ke saath'], d: ['Shows the rare themes too, not just the common ones.', 'Kam aane wale themes bhi dikhte hain, sirf aam wale nahi.'] } ] },
       { l: ['Report format varies', 'Report ka format badalta hai'], d: ['Heard in 2 of 5.', '5 mein se 2 mein suna.'], kids: [
         { l: ['One template', 'Ek template'], tone: 'warn', d: ['No AI needed. Do this anyway.', 'AI ki zaroorat nahi. Phir bhi kijiye.'] } ] } ] },
     cap: ['Tap a box to light its path back to the outcome.', 'Kisi box par tap kijiye, nateeje tak uska raasta jal uthega.'] },
 
   'impact-effort': { t: 'matrix',
-    title: ['Prioritise: impact against effort', 'Prioritise: asar banaam mehnat'],
+    title: ['Prioritise (decide what comes first): impact against effort', 'Prioritise (kya pehle ho, yeh tay kijiye): asar banaam mehnat'],
     xl: ['Effort', 'Mehnat'], yl: ['Impact', 'Asar'],
     q: [
       { l: ['Quick wins', 'Jaldi jeet'], d: ['Do these first.', 'Inhe pehle kijiye.'] },
@@ -151,14 +151,14 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
       { l: ['Export to Slack', 'Slack mein export'], x: 0.22, y: 0.32, d: ['Nice, not why anyone buys.', 'Achha hai, par isliye koi nahi khareedta.'] },
       { l: ['Custom dashboards', 'Custom dashboards'], x: 0.82, y: 0.25, d: ['Weeks of work, rarely asked for.', 'Hafton ka kaam, kam maanga gaya.'] }
     ],
-    cap: ['A framework orders the list; it does not decide for you. Drag the dots and argue.', 'Framework list ko kram deta hai; faisla aapke liye nahi karta. Dots kheenchiye aur behas kijiye.'] },
+    cap: ['A framework (a ready-made way to sort ideas) orders the list; it does not decide for you. Drag the dots and argue.', 'Framework (idea chhaantne ka bana-banaya tareeka) list ko kram deta hai; faisla aapke liye nahi karta. Dots kheenchiye aur behas kijiye.'] },
 
   'now-next-later': { t: 'compare',
-    title: ['A roadmap promises outcomes, not dates', 'Roadmap nateeje ka vaada karta hai, tareekh ka nahi'],
+    title: ['A roadmap (the plan of what comes first, next and later) promises outcomes, not dates', 'Roadmap (pehle, phir, baad mein ka plan) nateeje ka vaada karta hai, tareekh ka nahi'],
     rows: [['The outcome', 'Nateeja'], ['How sure we are', 'Kitna pakka'], ['Example', 'Udaharan']],
     cols: [
       { l: ['Now', 'Abhi'], tone: 'good', ic: 'bolt', v: [['Leads see top themes in 30 min', 'Leads 30 min mein top themes dekhein'], ['Committed', 'Pakka'], ['Theme grouping v1', 'Theme grouping v1']], d: ['Work that is planned, staffed and measured.', 'Aisa kaam jo plan, staff aur naapa hua hai.'] },
-      { l: ['Next', 'Agla'], ic: 'flag', v: [['Hindi tickets grouped as well', 'Hindi tickets bhi group hon'], ['Likely', 'Shayad'], ['Mixed-language support', 'Mili-juli bhasha ka support']], d: ['Shaped, but waiting on what Now teaches us.', 'Aakaar mein, par Abhi se kya seekhte hain uske intezaar mein.'] },
+      { l: ['Next', 'Agla'], ic: 'flag', v: [['Hindi tickets grouped as well', 'Hindi tickets bhi group hon'], ['Likely', 'Shayad'], ['Mixed-language support', 'Mili-juli bhasha ka support']], d: ['Roughly planned, waiting for what Now teaches us.', 'Mota-mota plan hai, Abhi se jo seekhenge uska intezaar.'] },
       { l: ['Later', 'Baad mein'], tone: 'warn', ic: 'idea', v: [['Product team acts on themes faster', 'Product team themes par jaldi kaam kare'], ['A bet', 'Ek daav'], ['Themes straight into planning', 'Themes seedhe planning mein']], d: ['A direction, kept loose on purpose.', 'Ek disha, jaan-boojhkar dheeli rakhi gayi.'] }
     ],
     cap: ['Certainty falls from left to right, and the roadmap says so.', 'Baayen se daayen pakkapan ghatta hai, aur roadmap yeh saaf kehta hai.'] },
@@ -199,7 +199,7 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
       { l: ['Predictive', 'Predictive'], ic: 'chart', v: [['A label or a number', 'Ek label ya number'], ['Will this ticket be urgent?', 'Kya yeh ticket urgent hoga?'], ['Accuracy on known answers', 'Jaane hue jawaabon par accuracy']], d: ['Learns one narrow task from labelled examples.', 'Label kiye udaharanon se ek chhota kaam seekhta hai.'] },
       { l: ['Generative', 'Generative'], ic: 'chat', v: [['New text, images or code', 'Naya text, tasveer ya code'], ['Summarise this ticket', 'Is ticket ka saar likhiye'], ['Harder: many right answers', 'Mushkil: kai sahi jawaab']], d: ['Predicts the next piece of text, over and over.', 'Baar-baar text ka agla tukda predict karta hai.'] }
     ],
-    cap: ['Notice the last row: a predictive model can be marked against known answers, a generative one is harder to mark.', 'Aakhri row dekhiye: predictive model ko jaane hue jawaabon se jaancha ja sakta hai, generative ko jaanchna mushkil hai.'] },
+    cap: ['Look at the last row: a predictive model is checked against known answers. A generative one is harder to check.', 'Aakhri row dekhiye: predictive model ko jaane hue jawaabon se jaancha jaata hai. Generative ko jaanchna mushkil hai.'] },
 
   'prompt-rag-ft': { t: 'compare',
     title: ['Prompting, RAG or fine-tuning', 'Prompting, RAG ya fine-tuning'],
@@ -215,9 +215,9 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     title: ['The AI market in one picture', 'AI market ek tasveer mein'],
     layers: [
       { l: ['Applications', 'Applications'], ic: 'image', s: ['Products people use', 'Products jo log use karte hain'], d: ['Where your product sits. Most value is won or lost here.', 'Aapka product yahan baithta hai. Zyada value yahin jeeti ya haari jaati hai.'] },
-      { l: ['Model APIs and platforms', 'Model APIs aur platforms'], ic: 'link', s: ['Access to models', 'Models tak pahunch'], d: ['You rent intelligence by the token.', 'Aap token ke hisaab se samajh kiraye par lete hain.'] },
+      { l: ['Model APIs and platforms', 'Model APIs aur platforms'], ic: 'link', s: ['Access to models', 'Models tak pahunch'], d: ['You rent the model’s brainpower and pay per token (a small piece of a word).', 'Aap model ki samajh kiraye par lete hain, token (shabd ka chhota tukda) ke hisaab se paise dekar.'] },
       { l: ['Model labs', 'Model labs'], ic: 'chip', s: ['Train the models', 'Models train karte hain'], d: ['A few companies, huge costs.', 'Kuch companies, bahut bada kharch.'] },
-      { l: ['Cloud', 'Cloud'], ic: 'cloud', s: ['Data centres', 'Data centres'], d: ['Where training and serving run.', 'Jahan training aur serving chalti hai.'] },
+      { l: ['Cloud', 'Cloud'], ic: 'cloud', s: ['Data centres', 'Data centres'], d: ['Where models are trained, and where they run for users (serving).', 'Jahan models train hote hain, aur users ke liye chalte hain (serving).'] },
       { l: ['Chips', 'Chips'], ic: 'bolt', s: ['GPUs and accelerators', 'GPUs aur accelerators'], d: ['The scarcest layer, and the most expensive.', 'Sabse kam milne wali layer, aur sabse mehngi.'] }
     ],
     cap: ['Each layer depends on the one below it, and charges for it.', 'Har layer neeche wali par tiki hai, aur uske paise leti hai.'] },
@@ -227,9 +227,9 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     rows: [['What you promise', 'Aap kya vaada karte hain'], ['What you report', 'Aap kya report karte hain'], ['When a risk appears', 'Jab koi risk aata hai']],
     cols: [
       { l: ['Delivery manager', 'Delivery manager'], ic: 'calendar', v: [['A date', 'Ek tareekh'], ['Scope delivered', 'Scope poora kiya'], ['Escalate the risk', 'Risk ko upar bhejiye']], d: ['You are judged on whether the agreed thing arrived on time. Keep these skills.', 'Aapko is par parkha jaata hai ki tay cheez samay par aayi ya nahi. Yeh hunar rakhiye.'] },
-      { l: ['Product manager', 'Product manager'], tone: 'good', ic: 'target', v: [['An outcome', 'Ek nateeja'], ['A number moved', 'Ek number jo hila'], ['Write the kill criterion', 'Kill criterion likhiye']], d: ['You own what changed for users, and you say in advance when you will stop.', 'Aap us badlaav ke maalik hain jo users ne dekha, aur pehle bata dete hain ki kab rukenge.'] }
+      { l: ['Product manager', 'Product manager'], tone: 'good', ic: 'target', v: [['An outcome', 'Ek nateeja'], ['A number moved', 'Ek number jo hila'], ['Write the kill criterion (when you will stop)', 'Kill criterion likhiye (kab rukenge)']], d: ['You own what changed for users, and you say in advance when you will stop.', 'Aap us badlaav ke maalik hain jo users ne dekha, aur pehle bata dete hain ki kab rukenge.'] }
     ],
-    cap: ['The skills carry over; what changes is what goes in the first column of your plan and your risk log.', 'Hunar saath aate hain; badalta yeh hai ki aapke plan aur risk log ke pehle column mein kya jaata hai.'] }
+    cap: ['Your skills carry over. What changes is the first column of your plan and your risk log.', 'Aapke hunar saath aate hain. Badalta yeh hai ki aapke plan aur risk log ke pehle column mein kya jaata hai.'] }
 });
 
 window.FIGPLACE = Object.assign(window.FIGPLACE || {}, {

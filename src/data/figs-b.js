@@ -3,13 +3,13 @@
 window.FIGDATA = Object.assign(window.FIGDATA || {}, {
 
   'http-call': { t: 'seq',
-    title: ['An HTTP call, and the contract inside it', 'Ek HTTP call, aur uske andar ka contract'],
+    title: ['An HTTP call (a message to a server, and its reply), and the contract inside it', 'Ek HTTP call (server ko message, aur uska jawaab), aur uske andar ka contract'],
     actors: [{ l: ['Your client', 'Aapka client'] }, { l: ['API server', 'API server'] }],
     msgs: [
-      { a: 0, b: 1, l: ['POST /v1/chat + JSON', 'POST /v1/chat + JSON'], d: ['Headers carry the key; the body carries the messages.', 'Headers mein key; body mein messages.'] },
-      { a: 1, b: 0, l: ['429 Too Many Requests', '429 Too Many Requests'], d: ['Rate limited. Wait and retry, with a growing pause.', 'Rate limit. Rukiye aur dobara, badhte hue intezaar ke saath.'] },
+      { a: 0, b: 1, l: ['POST /v1/chat + JSON', 'POST /v1/chat + JSON'], d: ['Headers (the label on the envelope) carry the key. The body (the letter inside) carries the messages.', 'Headers (lifaafe par likha) mein key. Body (andar ki chitthi) mein messages.'] },
+      { a: 1, b: 0, l: ['429 Too Many Requests', '429 Too Many Requests'], d: ['Too many requests too fast (rate limited). Wait, then try again, waiting longer each time.', 'Bahut tez, bahut saare requests (rate limit). Rukiye, phir dobara koshish kijiye, har baar zyada rukkar.'] },
       { a: 0, b: 1, l: ['retry after 2 s', '2 s baad dobara'], d: ['Retries multiply cost: count them.', 'Retries kharch badhate hain: unhe giniye.'] },
-      { a: 1, b: 0, l: ['200 OK + JSON', '200 OK + JSON'], d: ['Check the shape before you trust it. A missing field fails silently.', 'Bharosa karne se pehle shape jaanchiye. Gayab field chupchaap fail hota hai.'] }
+      { a: 1, b: 0, l: ['200 OK + JSON', '200 OK + JSON'], d: ['Check the shape of the reply before you trust it. A missing field fails without any warning.', 'Bharosa karne se pehle reply ka shape jaanchiye. Gayab field bina chetavni ke fail hota hai.'] }
     ],
     cap: ['The reply code tells your app what to do next: here, wait and try again.', 'Jawaab ka code batata hai ki app ko aage kya karna hai: yahan, ruk kar phir koshish.'] },
 
@@ -22,7 +22,7 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
       { l: ['Seconds per answer', 'Har jawaab ke second'], v: [0.6, 1.4, 3.8], hi: 1, d: ['Speed is part of quality for a person waiting.', 'Intezaar karte insaan ke liye raftaar bhi quality hai.'] }
     ],
     fmt: 'dec',
-    cap: ['Switch the measure. The best model depends on which one you are optimising.', 'Maap badliye. Sabse achha model is par nirbhar hai ki aap kya behtar kar rahe hain.'] },
+    cap: ['Switch the measure. The best model depends on what you want most.', 'Maap badliye. Sabse achha model is par nirbhar hai ki aap sabse zyada kya chahte hain.'] },
 
   'memory-arch': { t: 'compare',
     title: ['Three ways to give a model memory', 'Model ko yaadasht dene ke teen tareeke'],
@@ -30,17 +30,17 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     cols: [
       { l: ['Full history', 'Poori history'], ic: 'list', v: [['Every turn', 'Har baat'], ['Grows every turn', 'Har baat ke saath badhta'], ['Lost in the middle', 'Beech mein kho jaata hai']], d: ['Simple, fine for short chats.', 'Saadha, chhoti baatcheet ke liye theek.'] },
       { l: ['Rolling summary', 'Chalta hua saar'], ic: 'pen', v: [['A summary plus recent turns', 'Saar aur haal ki baatein'], ['Flat', 'Seedha'], ['The summary drops a detail', 'Saar koi detail chhod deta hai']], d: ['Good default for long conversations.', 'Lambi baatcheet ke liye achha default.'] },
-      { l: ['Retrieved memory', 'Laayi gayi yaadasht'], ic: 'db', v: [['Facts stored, fetched when relevant', 'Facts rakhe, zaroorat par laaye'], ['Low per call', 'Har call par kam'], ['Fetches the wrong memory', 'Galat yaad laata hai']], d: ['Memory as a search problem.', 'Yaadasht ek search problem ki tarah.'] }
+      { l: ['Retrieved memory', 'Laayi gayi yaadasht'], ic: 'db', v: [['Facts stored, fetched when relevant', 'Facts rakhe, zaroorat par laaye'], ['Low per call', 'Har call par kam'], ['Fetches the wrong memory', 'Galat yaad laata hai']], d: ['Memory treated like a search: find the right fact, then use it.', 'Yaadasht ko search ki tarah dekhna: sahi fact dhoondhiye, phir use kijiye.'] }
     ],
     cap: ['Only full history keeps getting dearer as the chat grows.', 'Chat lambi hone par sirf poori history har baar mehngi hoti jaati hai.'] },
 
   'ingest': { t: 'flow',
-    title: ['Production RAG starts with ingestion', 'Production RAG ingestion se shuru hota hai'],
+    title: ['Production RAG starts with ingestion: getting your documents ready', 'Production RAG ingestion se shuru hota hai: documents ko taiyaar karna'],
     steps: [
       { l: ['Sources', 'Sources'], ic: 'db', d: ['Help centre, policies, past tickets.', 'Help centre, policies, purane tickets.'] },
       { l: ['Parse', 'Parse'], ic: 'doc', d: ['Pages, tables and scans into clean text.', 'Pages, tables aur scans se saaf text.'] },
       { l: ['Chunk', 'Chunk'], ic: 'scissors', d: ['Along headings, with the title kept on each piece.', 'Headings par, har tukde par title ke saath.'] },
-      { l: ['Embed', 'Embed'], ic: 'chip', d: ['A vector per chunk.', 'Har chunk ka ek vector.'] },
+      { l: ['Embed', 'Embed'], ic: 'chip', d: ['Each chunk (index card) gets a vector: an address for its meaning.', 'Har chunk (index card) ko ek vector milta hai: uske matlab ka pata.'] },
       { l: ['Index with access tags', 'Access tags ke saath index'], ic: 'lock', d: ['Who may see each chunk travels with it.', 'Har chunk ko kaun dekh sakta hai, yeh uske saath chalta hai.'] },
       { l: ['Refresh', 'Refresh'], ic: 'loop', d: ['Changed and deleted documents must leave the index.', 'Badle aur mitaye documents index se bahar jaane chahiye.'] }
     ],
@@ -60,7 +60,7 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     steps: [
       { l: ['Plan', 'Plan'], ic: 'idea', d: ['The model chooses the next action.', 'Model agla kaam chunta hai.'] },
       { l: ['Act', 'Kaam'], ic: 'tool', d: ['A tool runs, with only the permissions it needs.', 'Ek tool chalta hai, sirf zaroori permissions ke saath.'] },
-      { l: ['Observe', 'Dekhiye'], ic: 'eye', d: ['The result goes back into context.', 'Nateeja wapas context mein jaata hai.'] },
+      { l: ['Observe', 'Dekhiye'], ic: 'eye', d: ['The result goes back into the context (the model’s desk).', 'Nateeja wapas context (model ki mez) mein jaata hai.'] },
       { l: ['Check: stop?', 'Jaanch: rukein?'], ic: 'stop', d: ['Goal met, step limit, budget spent, or a person must approve.', 'Lakshya poora, step seema, budget khatam, ya kisi insaan ki manzoori.'] }
     ],
     cap: ['Agent failures are control failures: a loop with no stop is the bug.', 'Agent ki galtiyan control ki galtiyan hain: bina rukne wala loop hi bug hai.'] },
@@ -70,9 +70,9 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     actors: [{ l: ['Your app (MCP client)', 'Aapka app (MCP client)'] }, { l: ['MCP server', 'MCP server'] }, { l: ['Ticket system', 'Ticket system'] }],
     msgs: [
       { a: 0, b: 1, l: ['list tools', 'tools ki list'], d: ['Any MCP client can ask any MCP server what it offers.', 'Koi bhi MCP client kisi bhi MCP server se poochh sakta hai ki woh kya deta hai.'] },
-      { a: 1, b: 0, l: ['search_tickets, add_note', 'search_tickets, add_note'], d: ['Names, descriptions and input schemas.', 'Naam, varnan aur input schemas.'] },
+      { a: 1, b: 0, l: ['search_tickets, add_note', 'search_tickets, add_note'], d: ['Names, descriptions and input schemas (the form of boxes each tool fills).', 'Naam, varnan aur input schemas (har tool ke bharne wale khaanon ka form).'] },
       { a: 0, b: 1, l: ['call search_tickets', 'call search_tickets'], d: ['The model picked it; your app sends it.', 'Model ne chuna; aapka app bhejta hai.'] },
-      { a: 1, b: 2, l: ['query', 'query'], d: ['The server holds the credentials, not the model.', 'Credentials server ke paas hain, model ke paas nahi.'] },
+      { a: 1, b: 2, l: ['query', 'query'], d: ['The server holds the credentials (the keys), not the model.', 'Credentials (chaabiyan) server ke paas hain, model ke paas nahi.'] },
       { a: 2, b: 0, l: ['results', 'nateeje'], d: ['A standard plug does not make a tool safe. Review every server you connect.', 'Standard plug tool ko surakshit nahi banata. Har jode gaye server ko jaanchiye.'], dash: true }
     ],
     cap: ['The client asks the server what it can do before it calls anything.', 'Client kuch call karne se pehle server se poochhta hai ki woh kya kar sakta hai.'] },
@@ -81,10 +81,10 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     title: ['Voice is a pipeline, and every step adds delay', 'Awaaz ek pipeline hai, har step deri jodta hai'],
     steps: [
       { l: ['Speech in', 'Awaaz andar'], ic: 'mic', d: ['The caller speaks, in Hindi, English or both.', 'Caller Hindi, English ya dono mein bolta hai.'] },
-      { l: ['Speech to text', 'Awaaz se text'], ic: 'doc', d: ['About 300 ms. Accents and noise cause errors here.', 'Lagbhag 300 ms. Lehje aur shor se yahan galtiyan.'] },
-      { l: ['Model', 'Model'], ic: 'chip', d: ['About 700 ms to the first words, if streamed.', 'Stream ho to pehle shabdon tak lagbhag 700 ms.'] },
+      { l: ['Speech to text', 'Awaaz se text'], ic: 'doc', d: ['About 300 ms (milliseconds, thousandths of a second). Accents and noise cause errors here.', 'Lagbhag 300 ms (millisecond, second ka hazaarvaan hissa). Lehje aur shor se yahan galtiyan.'] },
+      { l: ['Model', 'Model'], ic: 'chip', d: ['About 700 ms to the first words, if streamed (sent word by word).', 'Stream ho (shabd-shabd karke bheja jaaye) to pehle shabdon tak lagbhag 700 ms.'] },
       { l: ['Text to speech', 'Text se awaaz'], ic: 'chat', d: ['About 200 ms to the first sound.', 'Pehli awaaz tak lagbhag 200 ms.'] },
-      { l: ['Speech out', 'Awaaz bahar'], ic: 'send', d: ['Over about 1.5 s in all, a pause starts to feel rude.', 'Kul lagbhag 1.5 s se zyada, ruk-na asabhya lagne lagta hai.'] }
+      { l: ['Speech out', 'Awaaz bahar'], ic: 'send', d: ['Over about 1.5 s in all, a pause starts to feel rude.', 'Kul lagbhag 1.5 s se zyada, khamoshi asabhya lagne lagti hai.'] }
     ],
     cap: ['Every box adds delay, so the wait a caller feels is the sum of all five.', 'Har dabba deri jodta hai, isliye bolne wale ko jo intezaar lagta hai woh paancho ka jod hai.'] },
 
@@ -100,11 +100,11 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     cap: ['A good score at the top can hide a broken part lower down.', 'Upar ka achha score neeche ke kharab hisse ko chhupa sakta hai.'] },
 
   'trace': { t: 'bars',
-    title: ['Inside one trace: where the time goes', 'Ek trace ke andar: samay kahan jaata hai'],
+    title: ['Inside one trace (the diary of one request): where the time goes', 'Ek trace (ek request ki diary) ke andar: samay kahan jaata hai'],
     items: [['Retrieve', 'Retrieve'], ['Rerank', 'Rerank'], ['Model call', 'Model call'], ['Tool call', 'Tool call'], ['Check output', 'Output jaanch']],
     sets: [
       { l: ['Milliseconds', 'Milliseconds'], v: [120, 180, 2100, 340, 15], hi: 2, d: ['The model call is most of the wait. That is where to look first.', 'Zyadatar intezaar model call mein. Pehle wahin dekhiye.'] },
-      { l: ['Cost share %', 'Kharch ka hissa %'], v: [3, 9, 78, 8, 2], hi: 2, d: ['Cost and time point at the same span here. They do not always.', 'Yahan kharch aur samay ek hi span dikhate hain. Hamesha nahi.'] }
+      { l: ['Cost share %', 'Kharch ka hissa %'], v: [3, 9, 78, 8, 2], hi: 2, d: ['Cost and time point at the same step (span) here. They do not always.', 'Yahan kharch aur samay ek hi step (span) dikhate hain. Hamesha nahi.'] }
     ],
     cap: ['A trace records every step of one request, so a slow or costly answer can be explained.', 'Trace ek request ka har step likhta hai, taaki dheema ya mehnga jawaab samjhaya ja sake.'] },
 
@@ -115,7 +115,7 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
       { l: ['Least privilege', 'Kam se kam adhikaar'], ic: 'key', s: ['Remove capability', 'Kshamata hataate'], d: ['Each tool gets only what it needs: read, not write; one table, not all.', 'Har tool ko sirf zaroori: padhna, likhna nahi; ek table, sab nahi.'] },
       { l: ['Human approval', 'Insaani manzoori'], ic: 'person', s: ['For risky actions', 'Jokhim wale kaam ke liye'], d: ['Sending, paying and deleting wait for a person.', 'Bhejna, bhugtaan aur mitaana insaan ka intezaar karte hain.'] },
       { l: ['Output checks', 'Output checks'], ic: 'eye', s: ['Before it leaves', 'Bahar jaane se pehle'], d: ['Block personal data and links to unknown sites.', 'Personal data aur anjaan sites ke links rokiye.'] },
-      { l: ['Logs', 'Logs'], ic: 'list', s: ['Prove what happened', 'Kya hua saabit karte'], d: ['Every tool call recorded, and tested by a red team.', 'Har tool call likha hua, aur red team se parkha hua.'] }
+      { l: ['Logs', 'Logs'], ic: 'list', s: ['Prove what happened', 'Kya hua saabit karte'], d: ['Every tool call is written down. A red team (people who try to break it) tests it.', 'Har tool call likha jaata hai. Red team (jo ise todne ki koshish karte hain) ise parakhti hai.'] }
     ],
     cap: ['No single control is trusted alone: each layer catches what the one before it missed.', 'Akele kisi ek control par bharosa nahi: har layer woh pakadti hai jo pichhli chhod gayi.'] },
 
@@ -131,7 +131,7 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     cap: ['Each kind answers a different person: the team, the PM, leadership and everyone.', 'Har kism ka metric alag vyakti ko jawaab deta hai: team, PM, leadership aur sab.'] },
 
   'latency-budget': { t: 'calc',
-    title: ['Response time is a budget', 'Jawaab ka samay ek budget hai'],
+    title: ['Response time is a budget: waiting time you spend step by step', 'Jawaab ka samay ek budget hai: intezaar ka samay, jo step-step kharch hota hai'],
     inputs: [
       { id: 'net', l: ['Network', 'Network'], min: 50, max: 800, step: 10, v: 150, fmt: 'ms' },
       { id: 'ret', l: ['Retrieval and rerank', 'Retrieval aur rerank'], min: 50, max: 1500, step: 10, v: 300, fmt: 'ms' },
@@ -150,9 +150,9 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     title: ['The capstone, start to finish', 'Capstone, shuru se ant tak'],
     steps: [
       { l: ['Discover', 'Discover'], ic: 'people', d: ['Real users, a real problem, evidence written down.', 'Asli users, asli problem, likha hua saboot.'] },
-      { l: ['Specify', 'Spec'], ic: 'doc', d: ['A PRD with an answer key and a kill switch.', 'Answer key aur kill switch ke saath PRD.'] },
+      { l: ['Specify', 'Spec'], ic: 'doc', d: ['A PRD (the recipe card for your product) with an answer key and a kill switch (a way to stop it).', 'PRD (product ka recipe card), answer key aur kill switch (ise rokne ka tareeka) ke saath.'] },
       { l: ['Build', 'Banaiye'], ic: 'tool', d: ['A thin slice that works end to end.', 'Patli slice jo shuru se ant tak chale.'] },
-      { l: ['Break', 'Todiye'], ic: 'warn', d: ['Attack it: injection, bad inputs, edge cases.', 'Hamla kijiye: injection, bure inputs, kinaare ke cases.'] },
+      { l: ['Break', 'Todiye'], ic: 'warn', d: ['Attack it: injection (hidden orders in the input), bad inputs, edge cases (odd, rare inputs).', 'Hamla kijiye: injection (input mein chhupe aadesh), bure inputs, kinaare ke cases (ajeeb, kam aane wale inputs).'] },
       { l: ['Measure', 'Naapiye'], ic: 'chart', d: ['Quality, cost and speed, reported together.', 'Quality, kharch aur raftaar, ek saath.'] },
       { l: ['Ship', 'Ship'], ic: 'rocket', d: ['Somewhere real people can use it.', 'Wahan jahan asli log use kar sakein.'] },
       { l: ['Defend', 'Bachaav'], ic: 'shield', d: ['Explain every choice as you would to a review panel.', 'Har faisla waise samjhaiye jaise review panel ko.'] }
@@ -163,7 +163,7 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     title: ['Four ways to charge for an AI product', 'AI product ke paise lene ke chaar tareeke'],
     rows: [['You charge for', 'Paise kiske'], ['Good when', 'Kab achha'], ['Risk', 'Jokhim']],
     cols: [
-      { l: ['Per seat', 'Har seat'], ic: 'person', v: [['Each user', 'Har user'], ['Use is steady', 'Use sthir ho'], ['Heavy users cost you money', 'Bhaari users nuksaan karate']], d: ['Familiar to buyers; margins can vanish.', 'Khareedaaron ko jaana-pehchana; margin gayab ho sakta hai.'] },
+      { l: ['Per seat', 'Har seat'], ic: 'person', v: [['Each user', 'Har user'], ['Use is steady', 'Use sthir ho'], ['Heavy users cost you money', 'Bhaari users nuksaan karate']], d: ['Buyers know it well, but the margin (your profit) can vanish.', 'Khareedaar ise jaante hain, par margin (aapka munafa) gayab ho sakta hai.'] },
       { l: ['Usage', 'Usage'], ic: 'bolt', v: [['Calls or tokens', 'Calls ya tokens'], ['Use varies a lot', 'Use bahut badle'], ['Bills scare buyers', 'Bills khareedaaron ko daraate']], d: ['Matches your cost; hard to budget for.', 'Aapke kharch se milta; budget banana mushkil.'] },
       { l: ['Outcome', 'Nateeja'], ic: 'target', v: [['Each resolved ticket', 'Har hal hua ticket'], ['Outcomes are clear', 'Nateeje saaf hon'], ['Arguments about credit', 'Shrey par behas']], d: ['Sells value directly; needs trusted measurement.', 'Seedhe value bechta; bharose layak naap chahiye.'] },
       { l: ['Hybrid', 'Hybrid'], ic: 'layers', v: [['A base plus usage', 'Base aur usage'], ['Most AI products', 'Zyadatar AI products'], ['Complex to explain', 'Samjhaana mushkil']], d: ['Common, because it shares the risk.', 'Aam, kyunki jokhim baant-ta hai.'] }
@@ -171,7 +171,7 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     cap: ['Read the Risk row: each way of charging has its own way of going wrong.', 'Risk wali row padhiye: kamaai ke har tareeke ka galat hone ka apna ek tareeka hai.'] },
 
   'unit-econ': { t: 'calc',
-    title: ['Unit economics of one customer', 'Ek customer ki unit economics'],
+    title: ['Unit economics: what one customer earns you, after costs', 'Unit economics: ek customer se kamaai, kharch ke baad'],
     inputs: [
       { id: 'price', l: ['Price per user a month (₹)', 'Har user har mahine daam (₹)'], min: 200, max: 5000, step: 50, v: 1500, fmt: 'inr' },
       { id: 'ai', l: ['AI cost per user a month (₹)', 'Har user AI kharch mahine (₹)'], min: 10, max: 2000, step: 10, v: 350, fmt: 'inr' },
@@ -186,7 +186,7 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     cap: ['AI cost grows with use. Push it up and watch the margin go.', 'AI kharch use ke saath badhta hai. Ise badhaiye aur margin ghatte dekhiye.'] },
 
   'aarrr': { t: 'funnel',
-    title: ['The growth funnel (AARRR)', 'Growth funnel (AARRR)'],
+    title: ['The growth funnel (AARRR): many people enter, fewer stay', 'Growth funnel (AARRR): bahut log aate hain, kam rukte hain'],
     start: 10000, fmt: 'int',
     stages: [
       { l: ['Acquisition: visit', 'Acquisition: aaye'], d: ['People who arrive at the site.', 'Jo log site par aate hain.'] },
@@ -207,7 +207,7 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     cap: ['One number sits on top, the inputs move it, and the guardrail must not get worse.', 'Sabse upar ek number, neeche ke inputs use hilate hain, aur guardrail kharab nahi hona chahiye.'] },
 
   'ab-calc': { t: 'calc',
-    title: ['How many users an A/B test needs', 'A/B test ko kitne users chahiye'],
+    title: ['How many users an A/B test (two versions, compared) needs', 'A/B test (do versions ki tulna) ko kitne users chahiye'],
     inputs: [
       { id: 'p', l: ['Today’s conversion %', 'Aaj ka conversion %'], min: 1, max: 60, step: 1, v: 10 },
       { id: 'lift', l: ['Smallest change worth seeing (points)', 'Dekhne layak sabse chhota badlaav (points)'], min: 0.5, max: 10, step: 0.5, v: 2, fmt: 'dec' },
@@ -220,13 +220,13 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     cap: ['A rule of thumb: about 16 × p(1−p) ÷ change² per group. Halve the change and you need four times the users.', 'Thumb rule: har group lagbhag 16 × p(1−p) ÷ badlaav². Badlaav aadha kijiye, users chaar guna chahiye.'] },
 
   'toolchain': { t: 'stack',
-    title: ['An AI product toolchain, by job', 'AI product ki toolchain, kaam ke hisaab se'],
+    title: ['An AI product toolchain (the set of tools you use), by job', 'AI product ki toolchain (aapke tools ka set), kaam ke hisaab se'],
     layers: [
-      { l: ['Code and history', 'Code aur history'], ic: 'code', s: ['GitHub', 'GitHub'], d: ['Never secrets. Every change reviewable.', 'Raaz kabhi nahi. Har badlaav dekhne layak.'] },
+      { l: ['Code and history', 'Code aur history'], ic: 'code', s: ['GitHub', 'GitHub'], d: ['Never store secrets here. Every change can be reviewed.', 'Yahan raaz kabhi mat rakhiye. Har badlaav dekha ja sakta hai.'] },
       { l: ['Deploy and roll back', 'Deploy aur rollback'], ic: 'rocket', s: ['Vercel', 'Vercel'], d: ['Every push previewed; a bad release undone in minutes.', 'Har push ka preview; buri release minuton mein wapas.'] },
       { l: ['Data and sign-in', 'Data aur sign-in'], ic: 'db', s: ['Supabase', 'Supabase'], d: ['Row-level rules so one customer never sees another’s data.', 'Row-level niyam taaki ek customer doosre ka data kabhi na dekhe.'] },
-      { l: ['Analytics', 'Analytics'], ic: 'chart', s: ['PostHog', 'PostHog'], d: ['Events, funnels and cohorts from real use.', 'Asli use se events, funnels aur cohorts.'] },
-      { l: ['Model provider', 'Model provider'], ic: 'chip', s: ['Any, behind your own interface', 'Koi bhi, aapke apne interface ke peeche'], d: ['Swappable, because models are retired.', 'Badla ja sake, kyunki models retire hote hain.'] }
+      { l: ['Analytics', 'Analytics'], ic: 'chart', s: ['PostHog', 'PostHog'], d: ['Events, funnels and cohorts (groups of users who started together) from real use.', 'Asli use se events, funnels aur cohorts (saath shuru karne wale users ke groups).'] },
+      { l: ['Model provider', 'Model provider'], ic: 'chip', s: ['Any, behind your own interface', 'Koi bhi, aapke apne interface ke peeche'], d: ['You can swap it, because old models get switched off (retired).', 'Badla ja sake, kyunki purane models band (retire) ho jaate hain.'] }
     ],
     cap: ['Choose tools by the job they do. The names will change; the jobs will not.', 'Tools unke kaam se chuniye. Naam badlenge; kaam nahi.'] },
 
@@ -247,7 +247,7 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     steps: [
       { l: ['Ship a small release', 'Chhoti release'], ic: 'rocket', d: ['With an owner and a way back.', 'Ek maalik aur wapsi ke raaste ke saath.'] },
       { l: ['Watch what they do', 'Dekhiye woh kya karte'], ic: 'eye', d: ['Behaviour beats opinions.', 'Bartaav raay se behtar.'] },
-      { l: ['Ask why', 'Kyun poochhiye'], ic: 'chat', d: ['Talk to design partners about the moments you saw.', 'Design partners se dekhe hue pal ke baare mein baat kijiye.'] },
+      { l: ['Ask why', 'Kyun poochhiye'], ic: 'chat', d: ['Talk to design partners (early users who help shape the product) about what you saw.', 'Design partners (jo shuruaati users product banane mein madad karte hain) se dekhe hue pal ke baare mein baat kijiye.'] },
       { l: ['Rank the failures', 'Galtiyon ko kram dijiye'], ic: 'list', d: ['By harm and by how often, not by who shouted.', 'Nuksaan aur baar-baar hone se, kaun chillaya us se nahi.'] },
       { l: ['Tell them what changed', 'Bataiye kya badla'], ic: 'send', d: ['Release notes close the loop and earn the next interview.', 'Release notes chakra poora karte aur agla interview kamaate.'] }
     ],
@@ -269,7 +269,7 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     items: [['After 1 day', '1 din baad'], ['After 1 week', '1 hafte baad'], ['After 1 month', '1 mahine baad']],
     sets: [
       { l: ['Read once', 'Ek baar padha'], v: [60, 30, 15], hi: 2, d: ['Most of what you read once is gone within a month.', 'Ek baar padha zyadatar mahine bhar mein chala jaata hai.'] },
-      { l: ['Asked again, spaced out', 'Thahar-thahar kar dobara poochha'], v: [85, 75, 65], hi: 2, d: ['Each well-timed question resets the curve higher.', 'Har sahi samay ka sawaal curve ko upar le jaata hai.'] }
+      { l: ['Asked again, spaced out', 'Thahar-thahar kar dobara poochha'], v: [85, 75, 65], hi: 2, d: ['Each question asked at the right time lifts the curve higher.', 'Sahi samay par poochha har sawaal curve ko upar uthata hai.'] }
     ],
     unit: ['% remembered', '% yaad'], max: 100,
     cap: ['Illustrative curves. That is why Practice brings back questions on a schedule.', 'Udaharan ke curves. Isi liye Practice sawaalon ko ek schedule par wapas laata hai.'] },
@@ -283,7 +283,7 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
       { l: ['Acts alone', 'Akela karta hai'], ic: 'bolt', s: ['Who approves: nobody', 'Manzoori: koi nahi'], d: ['The agent acts and nobody checks. Keep this for actions that only read, or that are easy to undo.', 'Agent karta hai aur koi nahi jaanchta. Ise un kaamon ke liye rakhiye jo sirf padhte hain ya aasaani se palte ja sakte hain.'] }
     ],
     arrow: ['More freedom, less checking', 'Zyada azaadi, kam jaanch'],
-    cap: ['Choose one level for each action and write it next to the tool in your approval matrix.', 'Har kaam ke liye ek star chuniye aur use tool ke bagal mein apni approval matrix mein likhiye.'] },
+    cap: ['Choose one level for each action and write it next to the tool in your approval matrix (a table of who approves what).', 'Har kaam ke liye ek star chuniye aur use tool ke bagal mein apni approval matrix (kaun kya manzoor karega, ek table) mein likhiye.'] },
 
   'three-doors': { t: 'compare',
     title: ['Three doors, and what each asks to see', 'Teen darwaze, aur har ek kya dekhna chahta hai'],
@@ -323,7 +323,7 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     steps: [
       { l: ['Model decides', 'Model tay karta hai'], ic: 'idea', d: ['It reads the message and picks a tool, or decides it is done.', 'Woh message padhta hai aur ek tool chunta hai, ya tay karta hai ki kaam ho gaya.'] },
       { l: ['Tool runs', 'Tool chalta hai'], ic: 'tool', d: ['Your code runs the chosen tool, such as a pattern checker.', 'Aapka code chuna hua tool chalata hai, jaise pattern checker.'] },
-      { l: ['Result goes back', 'Nateeja wapas jaata hai'], ic: 'eye', d: ['The result is added to the context, so each step costs more tokens than the last.', 'Nateeja context mein jud jaata hai, isliye har step pichhle se zyada tokens leta hai.'] },
+      { l: ['Result goes back', 'Nateeja wapas jaata hai'], ic: 'eye', d: ['The result is added to the context (the model’s desk), so each step costs more tokens (small pieces of text) than the last.', 'Nateeja context (model ki mez) mein jud jaata hai, isliye har step pichhle se zyada tokens (text ke chhote tukde) leta hai.'] },
       { l: ['Stop check', 'Rukne ki jaanch'], ic: 'stop', d: ['Stop when done, at the step limit, or when the model cannot decide. With no limit the loop can run on.', 'Kaam ho jaye, step seema aaye, ya model tay na kar paye to ruk jaiye. Seema na ho to loop chalta reh sakta hai.'] }
     ],
     cap: ['Because the model picks each step, the step limit is what keeps the loop from running on.', 'Kyunki har step model chunta hai, step seema hi loop ko chalte rehne se rokti hai.'] }

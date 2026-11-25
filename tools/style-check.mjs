@@ -28,11 +28,14 @@ const argv = new Set(process.argv.slice(2));
 
 /* ---- the limits ----
    Chosen from what the chapters that read best already do, not from a
-   readability formula: a formula scores "The cat sat." as ideal prose. */
+   readability formula: a formula scores "The cat sat." as ideal prose.
+   After the simple-words rewrite (docs/simple-language.md) every chapter
+   averages 9 to 15 words a sentence and none has a sentence past 32 words;
+   the limits sit just above that, so the text cannot drift back. */
 const LIMIT = {
-  avgSentence: 18,     // words per sentence, averaged over a chapter's prose
+  avgSentence: 16,     // words per sentence, averaged over a chapter's prose
   longSentence: 32,    // any single sentence past this is flagged
-  longShare: 0.06,     // at most 6% of a chapter's sentences may be that long
+  longShare: 0.02,     // at most 2% of a chapter's sentences may be that long
   paragraph: 75,       // words in one paragraph block
   dashesPerPara: 2,    // em dashes in one paragraph
   inversions: 0        // "That is not X. It is Y." and its relatives

@@ -1,23 +1,23 @@
 ---
 title: After the Book
-summary: What the case ended with, what the seven parts of the book add up to, what the project still doesn't know, and how to use the book together with the course app.
+summary: How the case ended, what the seven parts add up to, what the project still does not know, and how to use the book with the course app.
 ---
 
-In September, a year and a half after the night she began it, Anaya Deshmukh scrolled to the top of the decision log and read the first entry. It was dated 14 March. The decision was to work on the personal-details problem first and ticket themes second.
+It was September, a year and a half after the night she began. Anaya Deshmukh scrolled to the top of the decision log. (That is the notebook where she wrote down each big choice and why.) She read the first entry. It was dated 14 March. The decision was to work on the personal-details problem first and ticket themes second.
 
-The evidence was that 37 of 400 conversations in one week contained an identity number, a tax number, a bank account or a full address. That was her own count, and Farah could check it.
+The evidence was a count. In one week, 37 of 400 conversations held an identity number, a tax number, a bank account or a full address. That was her own count, and Farah could check it.
 
-She read the last line twice: "I would change my mind if". Of all the things the year had taught her, that line had been the cheapest, and it had done the most work.
+She read the last line twice: "I would change my mind if". Of all the things the year had taught her, that line was the cheapest. It had done the most work.
 
 ## Where the case ends
 
-By September the guard ran on every chat in two support teams, and in the trial of a lending partner. Behind Anaya, on the whiteboard, Imran had left a drawing in three colours of everything that now stood between a customer's keyboard and the person who read the reply.
+By September the guard ran on every chat in two support teams. It was also in the trial of a lending partner. Behind Anaya, on the whiteboard, Imran had left a drawing in three colours. It showed everything that now stood between a customer's keyboard and the person who read the reply.
 
-It had a shape for each thing the guard did, an arrow for each place where a decision was made, and a star beside each place where a wrong answer would cost the most. It wasn't elegant. It was an accurate account of what had been built.
+It had a shape for each thing the guard did. It had an arrow for each place where a decision was made. It had a star beside each place where a wrong answer would cost the most. It was not pretty. It was a true account of what had been built. It was like a map of a train line, drawn by the people who laid the track.
 
 ## What the seven parts add up to
 
-The book had seven parts, and each one added a kind of ability. Here they are in a table, the way a reader might check them off.
+The book had seven parts. Each part added one kind of ability. Here they are in a table, like a checklist a reader can tick off.
 
 Table: What a reader of each part should now be able to do
 | Part | Chapters | The reader can |
@@ -32,7 +32,7 @@ Table: What a reader of each part should now be able to do
 
 ## Eight sentences you can now say
 
-Each sentence below has a blank for a number from your own project. A sentence you cannot fill in yet is the next piece of work. It is not a reason to change the sentence.
+Each sentence below has a blank for a number from your own project. If you cannot fill one in yet, that is your next piece of work. It is not a reason to change the sentence.
 
 - I counted before I chose: N of N conversations in a week held an identity number.
 - I can say what a model is and what it costs: one request of N tokens costs about N rupees, and the memory is held by my application.
@@ -45,22 +45,22 @@ Each sentence below has a blank for a number from your own project. A sentence y
 
 ## What the project still does not know
 
-A textbook that ends with certainty has usually left something out. So here is what the guard hadn't been tested on. It had been measured in English, in Hindi and in the mixture of the two, on messages the team had written itself. It had not been measured in Tamil, Bengali or Telugu. It had not been measured on the writing of customers outside two cities, or against an attacker with more patience than Imran.
+A textbook that ends in certainty has usually left something out. So here is what the guard had not been tested on. It was measured in English, in Hindi and in the mix of the two. The messages were ones the team had written itself. It was not measured in Tamil, Bengali or Telugu. It was not measured on the writing of customers outside two cities. It was not tested against an attacker with more patience than Imran.
 
-Nobody who understood the word had called it compliant, and it would be a mistake for anyone to say so on its behalf. It was a careful tool with honest numbers, which was all it had claimed to be.
+Nobody who understood the word had called it compliant. It would be wrong for anyone to say so for it. It was a careful tool with honest numbers. That was all it had claimed to be.
 
-The same caution applies to the book. Sahaj, its people, its prices and its figures are invented. The tools and techniques are real, and the failures are of the kind that happen in real systems. Where a number matters, it is there to show how a number is reasoned about. Check it against your own cases before you borrow it.
+The same care applies to the book. Sahaj, its people, its prices and its figures are made up. The tools and techniques are real. The failures are the kind that happen in real systems. Where a number matters, it shows how to reason about a number. Check it against your own cases before you borrow it.
 
 ## Words
 
-Nearly everything in this field has a name. Much of the difficulty of learning it is that the names arrive faster than the things they stand for. So each chapter introduced a few terms, and then used them in the same sense in that chapter and in every later one. The glossary at the back lists every term with a short definition, and the chapter where it first appeared.
+Almost everything in this field has a name. Learning is hard partly because the names arrive faster than the things they stand for. It is like moving to a new city where every shop sign is in a language you are still learning. So each chapter brought in a few terms. Then it used them in the same sense in that chapter and every later one. The glossary at the back lists every term with a short meaning, and the chapter where it first appeared.
 
 ## Using the book with the course app
 
-A book can give you the picture. It can't give you the habit, and the habit is most of the skill. The material here becomes your own through practice. Write the plain description of a problem and find that it doesn't hold together. Build a small answer key and see how often you were wrong. Break a system on purpose and watch what it does.
+A book can give you the picture. It cannot give you the habit, and the habit is most of the skill. It is like cycling. Reading about it does not keep you upright. The material here becomes yours through practice. Write the plain description of a problem and find that it does not hold together. Build a small answer key and see how often you were wrong. Break a system on purpose and watch what it does.
 
-The course app is built for that practice. Every chapter of the book has a companion in the app, linked beneath the chapter. It has the same ideas in the same order, with tasks to do and questions to answer and check. Read the chapter here, then do its work there. The course's weekly route is laid out in that order, and the two were written to be used together.
+The course app is built for that practice. Every chapter of the book has a partner in the app, linked beneath the chapter. It has the same ideas in the same order. It also has tasks to do and questions to answer and check. Read the chapter here, then do its work there. The course's weekly route follows that order. The two were written to be used together.
 
-If the book and the course disagree, or a term is used before it has been explained, please report it. The book was checked for exactly that, line by line, but a checker is no substitute for a reader.
+Please report it if the book and the course disagree. Please report it too if a term is used before it has been explained. The book was checked for exactly that, line by line. But a checker is no substitute for a reader.
 
-And if you are, as Anaya was, the person in the room who has been asked to make sense of something nobody quite understands, here is the advice. Begin a notebook with one line about what you noticed. Everything else follows from that.
+You may be like Anaya. You may be the person in the room who is asked to make sense of something nobody quite understands. If so, here is the advice. Begin a notebook with one line about what you noticed. Everything else follows from that.

@@ -14,8 +14,6 @@ Object.assign(window.HING = window.HING || {}, {
   'What this project is not':
     'Yeh project kya nahi hai',
 
-  'So in every document you write in this course, describe the project as “a privacy tool that helps an organisation collect and share less personal data”. Never write that it makes anyone compliant. The system card in Chapter 17 and the product requirements in Chapter 18 both ask you to write this limit down.':
-    'Isliye is course mein aap jo bhi document likhein, usmein project ko “ek privacy tool jo kisi sanstha ko kam nijee data ikattha karne aur baantne mein madad karta hai” likhiye. Kabhi mat likhiye ki yeh kisi ko compliant bana deta hai. Chapter 17 ka system card aur Chapter 18 ki product requirements, dono aapse yeh seema likhne ko kehte hain.',
 
   'How the tool works: three finders and a rule-keeper':
     'Tool kaise kaam karta hai: teen finders aur ek rule-keeper',
@@ -44,8 +42,6 @@ Object.assign(window.HING = window.HING || {}, {
   'Technical name: deterministic recognisers (regular expressions)':
     'Technical naam: deterministic recognisers (regular expressions)',
 
-  'Finds details that always have the same shape.':
-    'Woh details dhoondhta hai jinki shakl hamesha ek jaisi hoti hai.',
 
   'The name-and-place finder':
     'Name-and-place finder',
@@ -53,8 +49,6 @@ Object.assign(window.HING = window.HING || {}, {
   'Technical name: named-entity recognition (NER)':
     'Technical naam: named-entity recognition (NER)',
 
-  'Finds details that have no fixed shape.':
-    'Woh details dhoondhta hai jinki koi tay shakl nahi hoti.',
 
   'The context judge':
     'Context judge',
@@ -62,8 +56,6 @@ Object.assign(window.HING = window.HING || {}, {
   'Technical name: contextual risk scoring (quasi-identifiers)':
     'Technical naam: contextual risk scoring (quasi-identifiers)',
 
-  'Notices sentences that point to one person even though they contain no ID.':
-    'Aise sentences pakadta hai jo kisi ID ke bina bhi ek insaan ki taraf ishaara karte hain.',
 
   'The rule-keeper':
     'Rule-keeper',
@@ -71,8 +63,6 @@ Object.assign(window.HING = window.HING || {}, {
   'Technical name: policy engine (redaction and masking)':
     'Technical naam: policy engine (redaction aur masking)',
 
-  'Decides what to do with everything that was found.':
-    'Tay karta hai ki jo kuchh mila uska kya karna hai.',
 
   'What you build, and what you only plan':
     'Aap kya banate hain, aur kya sirf plan karte hain',
@@ -89,17 +79,11 @@ Object.assign(window.HING = window.HING || {}, {
   'Six kinds of detail that have no fixed shape: a person’s name, an address, an organisation, a date of birth, a family relationship and a profession.':
     'Chhe tarah ki details jinki koi tay shakl nahi hoti: kisi insaan ka naam, pata, sanstha, janm tithi, parivaar ka rishta aur peshha.',
 
-  'A risk score for sentences that point to one person without any ID in them.':
-    'Un sentences ke liye risk score jo bina kisi ID ke ek insaan ki taraf ishaara karte hain.',
 
-  'One finished product: a developer kit (SDK), meaning a small library plus a demo page where you paste text and see it cleaned.':
-    'Ek poora product: ek developer kit (SDK), yaani ek chhoti library aur ek demo page jahan aap text paste karke use saaf hota dekhte hain.',
 
   'You design this on paper':
     'Yeh aap kaagaz par design karte hain',
 
-  'The browser extension: a version that warns a person before they submit a form. Also designed on paper only.':
-    'Browser extension: ek version jo form submit karne se pehle insaan ko chetavni deta hai. Yeh bhi sirf kaagaz par design hota hai.',
 
   'You leave this for later, and say so':
     'Yeh aap baad ke liye chhodte hain, aur kehte hain ki chhoda hai',
@@ -295,8 +279,6 @@ Object.assign(window.HING = window.HING || {}, {
   'Speech typed by voice, with no punctuation at all.':
     'Awaaz se type kiya gaya text, jisme koi punctuation hi nahi.',
 
-  'A sentence that changes between Hindi script and English letters halfway through.':
-    'Ek sentence jo beech mein Hindi script se English letters mein badal jaata hai.',
 
   'An invisible character hidden inside a number.':
     'Ek number ke andar chhipa hua invisible character.',
@@ -512,8 +494,6 @@ Object.assign(window.HING = window.HING || {}, {
   'Personally identifiable information: any detail that can point to one real person, such as a name, a phone number or an Aadhaar number.':
     'Personally identifiable information: koi bhi detail jo ek asli insaan ki taraf ishaara kar sakti hai, jaise naam, phone number ya Aadhaar number.',
 
-  'A detail that is harmless alone but can point to one person when combined with others, such as age, village and a rare illness.':
-    'Ek detail jo akeli nirdosh hai lekin doosri details ke saath milkar ek insaan ki taraf ishaara kar sakti hai, jaise umar, gaon aur koi durlabh bimari.',
 
   'To remove a detail completely, for example by replacing it with [PAN].':
     'Ek detail ko poori tarah hata dena, jaise use [PAN] se badal dena.',
@@ -524,14 +504,8 @@ Object.assign(window.HING = window.HING || {}, {
   'Found means the tool caught a real detail. Missed means a real detail got through. False alarm means the tool flagged something that is not personal.':
     'Found ka matlab tool ne ek asli detail pakdi. Missed ka matlab ek asli detail nikal gayi. False alarm ka matlab tool ne aisi cheez flag ki jo nijee nahi hai.',
 
-  'Out of all the real personal details, the share the tool found. If there are 100 and it finds 90, recall is 90%.':
-    'Sabhi asli nijee details mein se, tool ne jitne ka hissa dhoondha. Agar 100 hain aur woh 90 dhoondhta hai, to recall 90% hai.',
 
-  'Out of everything the tool flagged, the share that really was personal. If it flags 100 and 80 are real, precision is 80%.':
-    'Tool ne jo kuchh flag kiya uske andar, jitna sach mein nijee tha uska hissa. Agar woh 100 flag karta hai aur 80 asli hain, to precision 80% hai.',
 
-  'A small ready-made library that a developer adds to their own website or app, so they do not have to build the feature themselves.':
-    'Ek chhoti taiyaar library jise developer apni website ya app mein jodta hai, taaki use woh feature khud na banana pade.',
 
   'Hindi written in English letters, often mixed with English words.':
     'English letters mein likhi Hindi, aksar English shabdon ke saath mili hui.',

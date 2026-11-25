@@ -1,34 +1,34 @@
 ---
 title: Shipping the Whole Thing
-summary: In December Anaya stands before the people who doubted the idea and tells them what she built, what broke, who used it, what it costs and what she doesn't know. The eleven stages she followed are the year she has just lived. The chapter explains SDKs, findings documents, failure classes and evidence packs.
+summary: In December Anaya stands before the people who doubted her idea. Think of it as an oral exam at school. She tells them what she built, what broke, who used it, what it costs and what she does not know. The eleven stages she followed are the year she has just lived. You meet SDKs, findings documents, failure classes and evidence packs.
 course: ch21cap b8
 goals:
   - name the eleven stages of a project, from discovery to defence
-  - write a findings document organised by failure class, with the evidence, the fix and what remains
-  - say what a developer kit is, and what shipping one takes beyond building it
-  - present what is known, what is not known and what would be done next, and put together an evidence pack
+  - write a findings document sorted by failure class, with the proof, the fix and what is left
+  - say what a developer kit is, and what it takes to ship one, not only build it
+  - say what you know, what you do not know and what you would do next, and put together an evidence pack
 terms:
-  - SDK | software development kit: a small library plus a demo that another developer can add to their own product without building the feature themselves | developer kit
-  - findings document | a plain, factual record of what broke, the evidence, the root cause, the fix, and what was deliberately left unsolved; the opposite of a brochure | findings documents
-  - failure class | a kind of failure, not a single instance of one; it is what makes ten tests meaningful instead of ten stories | failure classes
-  - evidence pack | the set of things that lets somebody else check your claims instead of just trusting them | 
+  - SDK | software development kit: like a toolbox you hand to another builder. It is a small library (ready-made code) plus a demo, so they can add your feature to their own product without building it | developer kit
+  - findings document | like a mechanic's repair log. It plainly lists what broke, the proof, the root cause, the fix, and what was left unsolved on purpose. It is the opposite of a brochure | findings documents
+  - failure class | like a type of fault, not one single fault. Ten tests then mean something, and not ten stories | failure classes
+  - evidence pack | like a box of receipts. It holds what lets someone else check your claims, so they need not just trust you | 
 ---
 
-On the second Friday of December, in the large room on the second floor, Anaya stood up in front of nine people. She held a clicker she didn't need. She said she would tell them what she thought she knew, and then what she didn't.
+On the second Friday of December, Anaya stood up in the big room on the second floor. Nine people sat in front of her. She held a clicker she did not need. She said she would first tell them what she thought she knew. Then she would tell them what she did not.
 
-At the table were both founders, Lakshmi Iyer, the finance director, Farah Sheikh and two of her agents, and a technical lead from one of the lending partners, who had come to see whether the thing was real.
+Both founders were at the table. So was Lakshmi Iyer, the finance director. Farah Sheikh sat there with two of her agents. A technical lead from one of the lending partners had also come. He wanted to see whether the thing was real.
 
-In the corner, arms folded, sat Imran Qureshi. By prior agreement, his job was to be the hardest person in the room. On the speakerphone, brought in at Anaya's request, were a retired teacher in Bengaluru and a cat.
+Imran Qureshi sat in the corner with his arms folded. They had agreed it beforehand. His job was to be the hardest person in the room. A retired teacher in Bengaluru and a cat were on the speakerphone. Anaya had asked for them to be there.
 
-Anaya had prepared two versions of the talk. One ran five minutes, for the people who would decide. The other ran twenty, for the people who would doubt. She would give the first, and then, if she were allowed, the second.
+Anaya had two versions of the talk. One ran five minutes, for the people who would decide. The other ran twenty, for the people who would doubt. She would give the short one first. If they let her, she would give the long one.
 
 ## The case: the defence
 
-This talk is worth studying because it put everything the year had produced in front of people with reason to disagree. This chapter follows it, because the stages Anaya describes are the structure of the whole project.
+Think of an oral exam at school. The teacher asks questions, and you must answer in your own words. This talk was like that. It put the whole year in front of people who had reason to disagree. The chapter follows the talk. The stages Anaya describes are the shape of the whole project.
 
 ## The eleven stages
 
-The thing Anaya had built had a shape she hadn't seen until she described it. The shape turned out to be the shape of the year. The table shows the eleven stages, and what each one meant for the guard. These are the eleven stages of the capstone chapter in the course app. The project page there groups the same work into thirteen.
+Anaya had not seen the shape of her work until she said it aloud. It was the shape of the year. Think of a train journey with eleven stops. The table shows each stop, and what it meant for the guard. These are the eleven stages of the capstone chapter (the final project) in the course app. The project page there groups the same work into thirteen.
 
 Table: The eleven stages
 | Stage | What it meant for the guard |
@@ -45,15 +45,15 @@ Table: The eleven stages
 | Iterate | One improvement, aimed at the lowest-scoring row |
 | Defend | The stage she was in now |
 
-None of these stages was a separate project. Together they made one journey. And the final test of that journey was not whether she could build something. It was whether she could explain and defend what she had built.
+No stop was a separate trip. Together they made one journey. The last test of the journey was not whether she could build something. It was whether she could explain what she had built, and stand behind it.
 
 ## What broke
 
-Anaya told the room she would start with the part that mattered most, which was what had gone wrong. A portfolio is more believable when its owner can say what broke.
+Anaya said she would start with the part that mattered most. That part was what had gone wrong. A portfolio (a showcase of your work) is easier to believe when its owner can say what broke.
 
-The form this takes is a *findings document*. It is a plain, factual record of what failed, the evidence, the root cause, the fix, and what was deliberately left unsolved. It is the opposite of a brochure.
+The tool for this is a *findings document*. Think of a mechanic's repair log. It is a plain record of what failed. It lists the proof, the root cause (the real reason it failed), the fix, and what was left unsolved on purpose. It is the opposite of a brochure.
 
-Her table did not list the failures themselves, of which there had been dozens. It listed their *failure classes*. A class is a kind of failure, not one instance of it. That is what makes ten tests meaningful instead of ten stories. Read the table by row: each class, what happened, what stops it now, and what is still left.
+Her table did not list every failure. There had been dozens. It listed *failure classes*. A class is a kind of failure, like a type of fault in a machine. It is not one single fault. That is why ten tests mean something, and not ten stories. Read the table row by row. Each row gives the class, what happened, what stops it now, and what is left.
 
 Table: Failure classes in the guard
 | Failure class | What happened | What stops it now | What is left |
@@ -69,27 +69,31 @@ Table: Failure classes in the guard
 | A dependency changed | A field was renamed and every order number was hidden for two hours | Detect broken contracts and stop | Unknown unknowns |
 | A well-meant edit | An instruction was softened on a Friday night | The release gate | A gate with a gap |
 
-The partner's technical lead was the first to speak. He pointed out that she had put the failures in the same table as the fixes. She said it was the only honest way to do it. He said that most people give him the other table.
+The technical lead from the partner spoke first. He saw that she had put the failures and the fixes in one table. She said it was the only honest way. He said most people give him the other table.
 
 ## Who used it
 
-For the middle of the talk Anaya had prepared nothing clever. She suspected the evidence would carry it.
+For the middle of the talk, Anaya had prepared nothing clever. She thought the evidence would speak for itself.
 
-The product that had gone out was the developer kit the team had agreed to offer on 20 November: a small library and a demonstration page where a developer pastes a message and watches the guard clean it.
+The product that went out was a developer kit. The team had agreed on 20 November to offer it. It was a small library (ready-made code) and a demo page. On the page, a developer pastes a message and watches the guard clean it.
 
-A kit like this is called an *SDK*. It lets another team add the feature to their own product without building it themselves. Hers sat at a stable address, on a machine that wasn't hers, with monitoring, a privacy notice and a button for reporting problems.
+Such a kit is called an *SDK*. Think of a toolbox you hand to another builder. It lets another team add the feature to their own product, without building it. Her kit sat at a steady web address, on a machine that was not hers. It had monitoring (a watch on how it runs), a privacy notice and a button for reporting problems.
 
-Before it went live, Imran had done what she insisted on. He deployed a harmless change, rolled it back, and timed it with a stopwatch: four minutes and ten seconds. A rollback that has never been tried, she told the room, is only a plan.
+Before it went live, Imran did what she had insisted on. He put out a harmless change. Then he rolled it back (put the old version back) and timed it with a stopwatch. It took four minutes and ten seconds. A rollback nobody has tried, she told the room, is only a plan.
 
-Seven developers from four companies had used the kit, and she had watched five of them in person. Three got it working in under an hour. One stopped at the sign-in screen and wrote "I'd have left here", which she had put on the wall. For the last four weeks the support team in Pune had run the guard on every chat, and Lakshmi's sweep had held between eight and eleven in five hundred.
+Seven developers from four companies had used the kit. She had watched five of them in person. Three got it working in under an hour. One stopped at the sign-in screen. He wrote "I'd have left here". She had put that note on the wall.
 
-The finance director observed that seven developers at four companies was not many. Anaya agreed. It was a start. It was enough to say she had seen real people use it, and not enough to say it would scale.
+For the last four weeks, the support team in Pune had run the guard on every chat. Lakshmi's sweep (her regular check of sample chats) had held between eight and eleven in five hundred.
+
+The finance director said seven developers at four companies was not many. Anaya agreed. It was a start. It was enough to say that real people had used it. It was not enough to say it would work at a bigger size.
 
 ## What she does not know
 
-The cost figures were in a spreadsheet, which she showed quickly. They gave the cost per message cleaned, with retries and review time counted, at a low, a base and a high volume. At the highest, ten times festival load, the margin held. She had checked.
+Think of a map with blank patches. A good map-maker marks them. Anaya did the same.
 
-Then she did what she had said at the start she would do. She put up a slide with three columns: what is known, what is not known yet, and what she would do next.
+The cost figures sat in a spreadsheet, which she showed quickly. They gave the cost of cleaning one message. Retries and review time were counted. There was a low, a base and a high volume. At the highest, ten times the festival load, the margin held. She had checked.
+
+Then she did what she had promised at the start. She put up a slide with three columns. The first was what is known. The second was what is not known yet. The third was what she would do next.
 
 Table: What is known, what is not, and what next
 | What we know | What we don't know yet | What we would do next |
@@ -98,31 +102,33 @@ Table: What is known, what is not, and what next
 | It leaves nine in five hundred unhidden where it used to leave forty-six | Whether it works on customers' writing outside the two cities | A customer outside Pune |
 | What it costs | What a leak actually costs the company | A figure for the cost of a leak, from Lakshmi's records |
 
-It was, she thought, the only slide of the day that nobody would want to argue with.
+She thought it was the only slide that day nobody would want to argue with.
 
 ## The hardest question
 
-At the twenty-minute point Imran unfolded his arms. Why should the room believe the guard works beyond the Pune and Nashik teams, he asked? It worked on messages the company had collected, and the people who used the kit were her friends. Why was she not fooling herself?
+At the twenty-minute point, Imran unfolded his arms. He asked why the room should believe the guard works beyond the Pune and Nashik teams. It worked on messages the company had collected. The people who used the kit were her friends. Why was she not fooling herself?
 
-It was the question she had expected. She had been rehearsing the answer on trains since October. She said she was not claiming it worked beyond them. She was saying that she knew how she would find out.
+She had expected this question. She had practised the answer on trains since October. She said she was not claiming it worked beyond them. She was saying she knew how she would find out.
 
-The answer key had been written before the results were seen. The sweeps were run by Lakshmi, who did not work for her. The developers were people she had never met, and one of them had said he would have left.
+Think of the teacher's answer key. It is written before the test, so nobody can bend it to fit the answers. Her answer key was written before she saw the results. Lakshmi ran the sweeps, and Lakshmi did not work for her. The developers were people she had never met. One of them had said he would have left.
 
-Everything she had said about what the guard finds was measured on messages the team had written itself, because she would not use a real customer's message for a test. That was the limit of what she knew, and she had said it aloud so that someone could push on it.
+Everything she had said about what the guard finds was measured on messages the team wrote itself. She would not use a real customer's message for a test. That was the edge of what she knew. She said it aloud so that someone could push on it.
 
-Nobody spoke. Then Meenakshi's voice came thinly from the speaker, with a clatter behind it that was probably the cat. It was a very good answer, she said, and she would like it noted that she had not helped. The founders laughed. Lakshmi did not, but she wrote something down.
+Nobody spoke. Then Meenakshi's voice came thinly from the speaker. Behind it was a clatter, probably the cat. It was a very good answer, she said. She wanted it noted that she had not helped. The founders laughed. Lakshmi did not, but she wrote something down.
 
 ## What the pack is for
 
-In the corridor afterwards, the partner's technical lead asked what he could look at to check her claims for himself. She had spent a week putting that together. It is called an *evidence pack*: the set of things that lets someone else check, not merely trust.
+Afterwards, in the corridor, the partner's technical lead asked a question. What could he look at, to check her claims himself? She had spent a week putting that together. It is called an *evidence pack*. Think of a box of receipts. It holds what lets someone else check, so they need not just trust.
 
-It held the repository, the specification, the answer key and its history, the results of the gate, the risk register, the findings, the dashboard and the cost model. It also held the decision log that had begun on the night of the fourteenth of March, with its first line still at the top: nothing counts until someone else could check it.
+The box held the repository (the online folder that remembers every change), the specification, the answer key and its history, and the results of the gate. It also held the risk register, the findings, the dashboard and the cost model. And it held the decision log (the diary of choices) that began on the night of the fourteenth of March. Its first line was still at the top: nothing counts until someone else could check it.
 
-She said that you are done when anyone can rerun the work and get the same numbers. He nodded slowly and said he would like to see the answer key. She smiled. It was a request she had hoped to hear for nine months.
+She said you are done when anyone can rerun the work and get the same numbers. He nodded slowly. He said he would like to see the answer key. She smiled. She had hoped to hear that request for nine months.
 
 ## The page from March
 
-That night Anaya opened the page of scores from the fourteenth of March. Three were still in her handwriting: 2 for finding problems, 1 for choosing which to solve, and a crossed-out figure below 1 for understanding the technology. She scored all seven areas again on the same scale, with one line of evidence beside each, by her own rule that nothing counts until someone else could check it.
+That night Anaya opened the page of scores from the fourteenth of March. Think of an old school report card. Three marks were still in her handwriting. Finding problems had a 2. Choosing which to solve had a 1. Understanding the technology had a crossed-out figure below 1.
+
+She scored all seven areas again on the same scale. Beside each score she wrote one line of evidence. This followed her own rule: nothing counts until someone else could check it.
 
 Table: The seven areas, scored again
 | Area | Score | Evidence someone else can check |
@@ -135,15 +141,15 @@ Table: The seven areas, scored again
 | Paying for itself | 2 | The cost model, and a price for one customer who had not yet signed |
 | Getting people to move together | 2 | Lakshmi's sweeps and Farah's team, but no one outside the company |
 
-The technology score had moved furthest, from below 1 to 3, and the document she could name was the one in the table. The two 2s were where she had least to show.
+The technology score had moved the most, from below 1 to 3. The document she could name was the one in the table. The two 2s were where she had the least to show.
 
 ## Summary
 
-A system is ready to be defended when it runs somewhere that isn't the builder's machine, and anyone can rerun the tests and get the same numbers. It should have been broken on purpose in several ways, with before-and-after figures for each fix. Its safeguards should have been attacked, its rollback timed, and real people should have used it.
+Think of a bridge before it opens. Engineers test it and load it. Then they let people walk across. A system is ready to be defended in the same way. It runs somewhere that is not the builder's machine. Anyone can rerun the tests and get the same numbers. It has been broken on purpose in several ways, with before-and-after figures for each fix. Its safeguards have been attacked. Its rollback has been timed. Real people have used it.
 
 - The eleven stages that lead there are discovering, defining, designing, building, evaluating, breaking, observing, shipping, measuring, iterating and defending.
-- The findings document records failures by class, with the evidence, the fix and what remains. That is more convincing than a demonstration.
-- A plain account of what is known, what is not known yet and what would be done next answers the hardest question better than confidence does.
-- The evidence pack is what turns a claim into something another person can check.
+- The findings document lists failures by class, with the evidence, the fix and what is left. That convinces more than a demo.
+- A plain account of what is known, what is not known yet and what comes next answers the hardest question better than confidence does.
+- The evidence pack turns a claim into something another person can check.
 
-A shipped product has to pay for itself. The next chapter turns to who pays, and how much.
+A shipped product has to pay for itself. The next chapter looks at who pays, and how much.

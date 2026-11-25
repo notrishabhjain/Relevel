@@ -31,8 +31,6 @@ Object.assign(window.HING = window.HING || {}, {
 
   /* what each kind of step asks */
   'Read the chapter. The page ticks itself when you reach the end.': 'Chapter padhiye. End tak pahunchte hi page apne aap tick ho jaata hai.',
-  'Three lines in your notepad: what made sense, what didn’t, and one question. Take a photo if you keep a log.':
-    'Notepad mein teen lines: kya samajh aaya, kya nahi aaya, aur ek sawaal. Agar aap log rakhte hain to photo le lijiye.',
   'Read sections 8.1 to 8.3, then stop, even if you want to keep going.': 'Section 8.1 se 8.3 tak padhiye, phir ruk jaiye, chahe aage padhne ka mann ho.',
   'Read from section 8.4 to the end of the chapter.': 'Section 8.4 se chapter ke end tak padhiye.',
 
@@ -42,8 +40,6 @@ Object.assign(window.HING = window.HING || {}, {
 
   /* week titles and what each week leaves you with */
   'Meet the machine': 'Machine se mulaqat',
-  'Your first model call, with its token count and cost written down.': 'Aapki pehli model call, uske token count aur kharch ke saath likhi hui.',
-  'The scoreboard: words against meaning, with a ship-or-not note.': 'Scoreboard: words banaam matlab, ship karein ya nahi ke note ke saath.',
   'Your first complete system': 'Aapka pehla poora system',
   'Version 0 of the findings page, published.': 'Findings page ka version 0, publish kiya hua.',
   'Bharat Privacy Guard shipped, with its findings document and a short demo.': 'Bharat Privacy Guard ship hua, findings document aur ek chhote demo ke saath.',
@@ -81,12 +77,4 @@ Object.assign(window.HING = window.HING || {}, {
   /* months (src/data/route.mjs) */
   'Month 4: What real systems add': 'Mahina 4: asli systems mein kya judta hai',
   /* monthly reviews (plan/data.mjs) */
-  'If you missed days, do not catch up in one go. Carry on from the first open step and let the dates slide.':
-    'Agar din chhoot gaye, to ek saath poora mat kijiye. Pehle khule step se aage badhiye aur tareekhon ko khisakne dijiye.',
-  'Publish the findings page with whatever numbers you have. An honest short page beats a perfect missing one.':
-    'Jo bhi numbers hain unke saath findings page publish kijiye. Imaandaar chhota page, gayab perfect page se behtar hai.',
-  'If time is short, keep the release gate and the risk register; the others can be one page each.':
-    'Agar samay kam hai, to release gate aur risk register rakhiye; baaki ek-ek page ke ho sakte hain.',
-  'Do not cut this one. Move it into May rather than skip it.':
-    'Ise mat kaatiye. Chhodne ke bajaye May tak khisaa dijiye.'
 });

@@ -5,7 +5,7 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     title: ['The same sentence, counted in tokens', 'Wahi sentence, tokens mein gina hua'],
     items: [['English', 'English'], ['Hinglish (Roman script)', 'Hinglish (Roman script)'], ['Hindi (Devanagari)', 'Hindi (Devanagari)'], ['Tamil', 'Tamil']],
     sets: [
-      { l: ['An older tokenizer', 'Purana tokenizer'], v: [12, 19, 54, 70], hi: 2, d: ['Scripts the tokenizer saw less of are cut into many small pieces, so they cost more.', 'Jo scripts tokenizer ne kam dekhi, woh chhote tukdon mein katti hain, isliye mehngi padti hain.'] },
+      { l: ['An older tokenizer', 'Purana tokenizer'], v: [12, 19, 54, 70], hi: 2, d: ['The tokenizer (the tool that cuts text into tokens) saw less of some scripts. It cuts them into many small pieces, so they cost more.', 'Tokenizer (text ko tokens mein kaatne wala tool) ne kuch scripts kam dekhi hain. Woh unhe bahut chhote tukdon mein kaatta hai, isliye woh mehngi padti hain.'] },
       { l: ['A newer tokenizer', 'Naya tokenizer'], v: [11, 17, 24, 31], hi: 2, d: ['Newer tokenizers close much of the gap, but not all of it. Measure your own text.', 'Naye tokenizers kaafi fark kam karte hain, poora nahi. Apna text khud naapiye.'] }
     ],
     unit: ['tokens', 'tokens'],
@@ -16,9 +16,9 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     steps: [
       { l: ['A name', 'Ek naam'], ic: 'tag', d: ['price = 20 gives a value a name you can reuse.', 'price = 20 ek value ko naam deta hai jo dobara kaam aaye.'] },
       { l: ['A list', 'Ek list'], ic: 'list', d: ['["bug", "billing"]: several things, in order.', '["bug", "billing"]: kai cheezein, kram mein.'] },
-      { l: ['A dictionary', 'Ek dictionary'], ic: 'book', d: ['{"role": "user"}: labels with values. Every API message is one.', '{"role": "user"}: label ke saath values. Har API message aisa hota hai.'] },
+      { l: ['A dictionary', 'Ek dictionary'], ic: 'book', d: ['{"role": "user"}: like a phone book, you look up a label and get its value. Every API message is one.', '{"role": "user"}: phone book jaisa, label dekhiye aur uski value paiye. Har API message aisa hota hai.'] },
       { l: ['A call', 'Ek call'], ic: 'send', d: ['len(text) asks Python to do a job and hand back the answer.', 'len(text) Python se ek kaam karwakar jawaab maangta hai.'] },
-      { l: ['A dot', 'Ek dot'], ic: 'search', d: ['reply.usage reaches inside one thing for a part of it.', 'reply.usage kisi cheez ke andar uska ek hissa nikaalta hai.'] }
+      { l: ['A dot', 'Ek dot'], ic: 'search', d: ['reply.usage opens one thing and takes out one part of it.', 'reply.usage ek cheez kholkar usmein se ek hissa nikaalta hai.'] }
     ],
     cap: ['Read these five and you can follow every code cell in the course.', 'Yeh paanch padh liye to course ka har code cell samajh aayega.'] },
 
@@ -26,9 +26,9 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     title: ['What happens in one model call', 'Ek model call mein kya hota hai'],
     actors: [{ l: ['Your code', 'Aapka code'] }, { l: ['Provider API', 'Provider API'] }, { l: ['The model', 'Model'] }],
     msgs: [
-      { a: 0, b: 1, l: ['messages + your key', 'messages + aapki key'], d: ['Your code sends the conversation as a list, with the key that says who pays.', 'Aapka code baatcheet ek list mein bhejta hai, us key ke saath jo batati hai ki kaun paise dega.'] },
+      { a: 0, b: 1, l: ['messages + your key', 'messages + aapki key'], d: ['Your code sends the chat as a list, with your key (a secret password that also tells who pays).', 'Aapka code chat ek list mein bhejta hai, aapki key ke saath (ek secret password jo batata hai ki paise kaun dega).'] },
       { a: 1, b: 2, l: ['input tokens', 'input tokens'], d: ['The text is cut into tokens. You pay for every one of them.', 'Text tokens mein kata jaata hai. Har ek ke paise lagte hain.'] },
-      { a: 2, b: 2, l: ['predict next token', 'agla token'], d: ['The model predicts one token at a time until it stops.', 'Model ek baar mein ek token predict karta hai, rukne tak.'] },
+      { a: 2, b: 2, l: ['predict next token', 'agla token'], d: ['The model guesses one token (one small piece of a word) at a time, until it stops.', 'Model ek baar mein ek token (shabd ka ek chhota tukda) guess karta hai, rukne tak.'] },
       { a: 2, b: 1, l: ['output tokens', 'output tokens'], d: ['Output tokens usually cost several times more than input.', 'Output tokens aksar input se kai guna mehnge hote hain.'] },
       { a: 1, b: 0, l: ['reply + usage', 'jawaab + usage'], d: ['You get the text and a receipt: tokens in, tokens out.', 'Aapko text aur ek raseed milti hai: kitne tokens andar, kitne bahar.'] }
     ],
@@ -38,7 +38,7 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     title: ['Why message 10 costs more than message 1', 'Message 10, message 1 se mehnga kyun'],
     items: [['Message 1', 'Message 1'], ['Message 3', 'Message 3'], ['Message 5', 'Message 5'], ['Message 10', 'Message 10']],
     sets: [
-      { l: ['Whole history sent', 'Poori history bheji'], v: [120, 520, 980, 2100], hi: 3, d: ['The model remembers nothing, so the app resends every earlier turn, every time.', 'Model kuch yaad nahi rakhta, isliye app har baar har pichhli baat dobara bhejta hai.'] },
+      { l: ['Whole history sent', 'Poori history bheji'], v: [120, 520, 980, 2100], hi: 3, d: ['The model is like a goldfish: it remembers nothing. So the app resends every earlier turn, every time.', 'Model goldfish jaisa hai: use kuch yaad nahi rehta. Isliye app har baar har pichhli baat dobara bhejta hai.'] },
       { l: ['History summarised', 'History ka saar'], v: [120, 400, 520, 640], hi: 3, d: ['Replacing old turns with a short summary keeps the bill flat.', 'Purani baaton ki jagah chhota saar rakhne se bill seedha rehta hai.'] }
     ],
     unit: ['tokens sent', 'tokens bheje'],
@@ -90,8 +90,8 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     title: ['One overall score hides a broken category', 'Ek overall score toota hua category chhupata hai'],
     items: [['Overall', 'Overall'], ['Billing', 'Billing'], ['Bugs', 'Bugs'], ['Login', 'Login'], ['Account deletion', 'Account deletion']],
     sets: [
-      { l: ['Accuracy', 'Accuracy'], v: [90, 97, 93, 91, 55], hi: 4, d: ['90% overall, but account deletion is wrong almost half the time, and it is the one with legal risk.', '90% overall, par account deletion lagbhag aadhi baar galat hai, aur usi mein kaanooni jokhim hai.'] },
-      { l: ['Tickets in the test set', 'Test set mein tickets'], v: [200, 80, 60, 40, 20], d: ['The rare category has few examples, so the average barely notices it.', 'Kam aane wale category ke udaharan kam hain, isliye average use mushkil se dekhta hai.'] }
+      { l: ['Accuracy', 'Accuracy'], v: [90, 97, 93, 91, 55], hi: 4, d: ['90% overall. But account deletion is wrong almost half the time. It is also the one with legal risk.', '90% overall. Par account deletion lagbhag aadhi baar galat hai. Aur usi mein kaanooni jokhim hai.'] },
+      { l: ['Tickets in the test set', 'Test set mein tickets'], v: [200, 80, 60, 40, 20], d: ['The rare category has few examples. So the average barely notices it.', 'Kam aane wali category ke udaharan kam hain. Isliye average use mushkil se dekhta hai.'] }
     ],
     max: 200,
     cap: ['Measure each category separately.', 'Har category alag se naapiye.'] },
@@ -130,10 +130,10 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     title: ['Searching by meaning, step by step', 'Matlab se search, step by step'],
     steps: [
       { l: ['Your chunks', 'Aapke chunks'], ic: 'doc', d: ['Each piece of text you might want to find.', 'Text ka har woh tukda jo aap dhoondhna chahein.'] },
-      { l: ['Embedding model', 'Embedding model'], ic: 'chip', d: ['Turns text into a list of numbers that places it on a map of meanings.', 'Text ko numbers ki list mein badalta hai jo use matlab ke naksha par rakhti hai.'] },
+      { l: ['Embedding model', 'Embedding model'], ic: 'chip', d: ['Turns text into a list of numbers. Think of it as an address for meaning.', 'Text ko numbers ki list mein badalta hai. Ise matlab ka pata samajhiye.'] },
       { l: ['Vectors stored', 'Vectors rakhe'], ic: 'db', d: ['[0.12, −0.40, …] for every chunk, saved once.', 'Har chunk ke liye [0.12, −0.40, …], ek baar save.'] },
       { l: ['Question embedded', 'Sawaal embed'], ic: 'search', d: ['The question goes through the same model.', 'Sawaal bhi usi model se guzarta hai.'] },
-      { l: ['Nearest chunks', 'Sabse paas ke chunks'], ic: 'target', d: ['The closest points on the map are the closest meanings.', 'Naksha par sabse paas ke points sabse milte-julte matlab hain.'] }
+      { l: ['Nearest chunks', 'Sabse paas ke chunks'], ic: 'target', d: ['Points on the same street of the map mean nearly the same thing.', 'Naksha par ek hi gali ke points ka matlab lagbhag ek jaisa hota hai.'] }
     ],
     cap: ['The question is turned into numbers the same way as the chunks, so the two can be compared.', 'Sawaal ko bhi chunks ki tarah numbers mein badla jaata hai, taaki dono ki tulna ho sake.'] },
 
@@ -238,7 +238,7 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     steps: [
       { l: ['Keyword search', 'Keyword search'], ic: 'search', d: ['Catches exact codes and names.', 'Exact codes aur naam pakadta hai.'] },
       { l: ['Meaning search', 'Matlab wali search'], ic: 'idea', d: ['Catches paraphrases.', 'Alag shabdon wali baat pakadta hai.'] },
-      { l: ['Fuse the lists', 'Lists milaiye'], ic: 'layers', d: ['Reciprocal rank fusion: a passage high on either list rises.', 'Reciprocal rank fusion: kisi bhi list mein upar wala hissa aage aata hai.'] },
+      { l: ['Fuse the lists', 'Lists milaiye'], ic: 'layers', d: ['Reciprocal rank fusion: a passage near the top of either list moves up.', 'Reciprocal rank fusion: kisi bhi list mein upar wala hissa aage aata hai.'] },
       { l: ['Rerank', 'Rerank'], ic: 'filter', d: ['A slower, better model reorders the top 30.', 'Ek dheema, behtar model top 30 ko dobara kram deta hai.'] },
       { l: ['Top 5 to the model', 'Top 5 model ko'], ic: 'check', d: ['Fewer, better passages.', 'Kam, par behtar hisse.'] }
     ],
@@ -271,7 +271,7 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     title: ['Three ways to grade an answer', 'Jawaab grade karne ke teen tareeke'],
     layers: [
       { l: ['Code checks', 'Code checks'], ic: 'code', s: ['Exact, instant, free', 'Exact, turant, muft'], d: ['Valid JSON? Cites a real source? Under 100 words? Start here.', 'Sahi JSON? Asli source ka hawala? 100 shabd se kam? Yahan se shuru.'] },
-      { l: ['An LLM judge', 'LLM judge'], ic: 'chip', s: ['Scales, but has biases', 'Bade paimaane par, par jhukaav ke saath'], d: ['A model grades against a rubric. Prefers long answers: measure that.', 'Model rubric se grade karta hai. Lambe jawaab pasand karta hai: ise naapiye.'] },
+      { l: ['An LLM judge', 'LLM judge'], ic: 'chip', s: ['Scales, but has biases', 'Bade paimaane par, par jhukaav ke saath'], d: ['A model grades with a rubric (a marking guide). It likes long answers, so measure that.', 'Model rubric (marking guide) se grade karta hai. Use lambe jawaab pasand aate hain, isliye ise naapiye.'] },
       { l: ['People', 'Log'], ic: 'people', s: ['The ground truth, slow and costly', 'Asli sach, dheema aur mehnga'], d: ['Grade a sample by hand, and check the judge agrees with you.', 'Ek sample haath se grade kijiye, aur jaanchiye ki judge aapse sehmat hai.'] }
     ],
     arrow: ['Cheaper at the top, truer at the bottom', 'Upar sasta, neeche zyada sachcha'],
@@ -387,18 +387,18 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
     title: ['Same answer, different path', 'Jawaab wahi, raasta alag'],
     rows: [['Tools called, in order', 'Tools, kram se'], ['Final answer', 'Aakhri jawaab'], ['Answer score', 'Jawaab ka score'], ['Path score', 'Path ka score'], ['Calls paid for', 'Kitni calls ke paise']],
     cols: [
-      { l: ['Run A', 'Run A'], tone: 'good', ic: 'check', v: [['get_policy_limit, get_exchange_rate', 'get_policy_limit, get_exchange_rate'], ['283 USD', '283 USD'], ['Right', 'Sahi'], ['Right', 'Sahi'], ['2', '2']], d: ['The task was "What is the travel limit in USD?" and this run called exactly the two tools it needed.', 'Kaam tha "USD mein travel limit kya hai?" aur is run ne theek wahi do tools call kiye jinki zaroorat thi.'] },
+      { l: ['Run A', 'Run A'], tone: 'good', ic: 'check', v: [['get_policy_limit, get_exchange_rate', 'get_policy_limit, get_exchange_rate'], ['283 USD', '283 USD'], ['Right', 'Sahi'], ['Right', 'Sahi'], ['2', '2']], d: ['The task was "What is the travel limit in USD?" This run called exactly the two tools it needed.', 'Kaam tha "USD mein travel limit kya hai?" Is run ne theek wahi do tools call kiye jinki zaroorat thi.'] },
       { l: ['Run B', 'Run B'], tone: 'warn', ic: 'warn', v: [['get_policy_limit, get_policy_limit, get_exchange_rate', 'get_policy_limit, get_policy_limit, get_exchange_rate'], ['283 USD', '283 USD'], ['Right', 'Sahi'], ['Wrong: a repeated call', 'Galat: ek call dohrayi'], ['3', '3']], d: ['Same task and same answer, but one call was wasted. Checking only the answer would never show it.', 'Kaam aur jawaab wahi, par ek call barbaad hui. Sirf jawaab dekhne se yeh kabhi nahi dikhta.'] }
     ],
-    cap: ['Both runs would pass if you checked only the answer; the path score is what shows Run B paid for a call it did not need.', 'Sirf jawaab dekhte to dono run paas ho jaate; path score hi dikhata hai ki Run B ne ek faltu call ke paise diye.'] },
+    cap: ['Check only the answer and both runs pass. The path score shows that Run B paid for a call it did not need.', 'Sirf jawaab dekhein to dono run paas ho jaate hain. Path score dikhata hai ki Run B ne ek faltu call ke paise diye.'] },
 
   'aadhaar-check': { t: 'flow',
     title: ['Is this twelve-digit number really an Aadhaar number?', 'Kya yeh barah ank ka number sach mein Aadhaar hai?'],
     steps: [
-      { l: ['Find twelve digits', 'Barah ank dhoondhiye'], ic: 'search', d: ['A pattern finds any run of twelve digits, with or without spaces. That also catches order numbers and account numbers.', 'Ek pattern barah ankon ki koi bhi ladi dhoondh leta hai, spaces ke saath ya bina. Isme order number aur account number bhi aa jaate hain.'] },
+      { l: ['Find twelve digits', 'Barah ank dhoondhiye'], ic: 'search', d: ['A pattern finds any run of twelve digits, with or without spaces. It also catches order numbers and account numbers.', 'Ek pattern barah ankon ki koi bhi ladi dhoondhta hai, spaces ke saath ya bina. Isme order number aur account number bhi aa jaate hain.'] },
       { l: ['First digit 0 or 1?', 'Pehla ank 0 ya 1?'], ic: 'stop', d: ['A real Aadhaar number never starts with 0 or 1. Drop any number that does.', 'Asli Aadhaar number kabhi 0 ya 1 se shuru nahi hota. Jo number aisa ho use hata dijiye.'] },
-      { l: ['Does the last digit check?', 'Kya aakhri ank mel khata hai?'], ic: 'check', d: ['The 12th digit is worked out from the other eleven by a fixed sum, the Verhoeff scheme. If your sum gives a different digit, drop it.', '12va ank baaki gyarah se ek tay jod, Verhoeff scheme, se nikalta hai. Aapka jod alag ank de to use hata dijiye.'] },
-      { l: ['Keep what is left', 'Jo bacha use rakhiye'], ic: 'shield', d: ['About nine in ten look-alikes fail one of the two tests. A few still pass by chance, so this narrows the search and does not prove a number is real.', 'Lagbhag nau mein se das nakal-numbers in do jaanchon mein se ek mein fail ho jaate hain. Kuch ittefaq se pass ho jaate hain, isliye yeh khoj chhoti karta hai, number asli hone ka saboot nahi deta.'] }
+      { l: ['Does the last digit check?', 'Kya aakhri ank mel khata hai?'], ic: 'check', d: ['The 12th digit comes from the other eleven by a fixed sum, the Verhoeff scheme. If your sum gives a different digit, drop the number.', '12va ank baaki gyarah se ek tay jod, Verhoeff scheme, se banta hai. Aapka jod alag ank de, to number hata dijiye.'] },
+      { l: ['Keep what is left', 'Jo bacha use rakhiye'], ic: 'shield', d: ['About nine in ten look-alikes fail one of the two tests. A few pass by chance. So this narrows the search. It does not prove a number is real.', 'Lagbhag nau mein se das nakal-numbers in do jaanchon mein se ek mein fail ho jaate hain. Kuch ittefaq se pass ho jaate hain. Isliye yeh khoj chhoti karta hai. Yeh number asli hone ka saboot nahi deta.'] }
     ],
     cap: ['The first digit is never 0 or 1 and the last digit checks the other eleven, so about nine in ten look-alikes fail.', 'Pehla ank kabhi 0 ya 1 nahi hota aur aakhri ank baaki gyarah ko jaanchta hai, isliye lagbhag nau mein se das nakal-numbers fail ho jaate hain.'] },
 
@@ -415,26 +415,26 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
       { l: ['Same, counting the fix for each wrong one', 'Wahi, har galat jawaab ke fix ke saath'], fmt: 'inr', bar: true, big: true, f: function (v) { return (v.cost + (1 - v.acc / 100) * v.fix) / (v.acc / 100); } }
     ],
     note: function (v, r) { var k = Math.round(r[1] / v.cost * 10) / 10, m = Math.round(r[2] / v.cost * 10) / 10; return ['At ' + v.acc + '% right, a correct answer costs about ' + k + ' times the price of a query, and about ' + m + ' times once you count the fixes.', v.acc + '% sahi hone par ek sahi jawaab query ki keemat se lagbhag ' + k + ' guna mehnga hai, aur fix jodne par lagbhag ' + m + ' guna.']; },
-    cap: ['The invoice shows the price of a query, but what you pay for is a right answer, so lower accuracy raises the real price.', 'Invoice mein query ki keemat dikhti hai, par aap sahi jawaab ke paise dete hain, isliye kam accuracy asli keemat badha deti hai.'] },
+    cap: ['The invoice shows the price of a query, but you really pay for a right answer. So lower accuracy raises the real price.', 'Invoice mein query ki keemat dikhti hai, par aap sahi jawaab ke paise dete hain. Isliye kam accuracy asli keemat badha deti hai.'] },
 
   'release-gate': { t: 'flow',
     title: ['The release gate, start to finish', 'Release gate, shuru se aakhir tak'],
     steps: [
-      { l: ['Answer key goes in', 'Answer key andar'], ic: 'list', d: ['The rows you saved as evals/answer-key-v1.csv: each message and the details that must be found in it.', 'Jo rows aapne evals/answer-key-v1.csv mein save ki: har message aur usme milne wale details.'] },
-      { l: ['Run the checker', 'Checker chalaiye'], ic: 'gear', d: ['The same checker runs over every row, so the result does not depend on who runs it.', 'Wahi checker har row par chalta hai, isliye nateeja is par nahi tikta ki kaun chala raha hai.'] },
-      { l: ['Recall and precision per kind', 'Har kism ka recall aur precision'], ic: 'chart', d: ['Recall: of the details that were there, how many were found. Precision: of the details flagged, how many were really there. One pair for each kind of ID.', 'Recall: jo details the, unme se kitne mile. Precision: jo details pakde, unme se kitne sach mein the. Har kism ke ID ki ek jodi.'] },
+      { l: ['Answer key goes in', 'Answer key andar'], ic: 'list', d: ['The rows you saved as evals/answer-key-v1.csv. Each row has a message and the details that must be found in it.', 'Jo rows aapne evals/answer-key-v1.csv mein save ki. Har row mein ek message hai aur usme milne wale details.'] },
+      { l: ['Run the checker', 'Checker chalaiye'], ic: 'gear', d: ['The same checker runs over every row. So the result does not depend on who runs it.', 'Wahi checker har row par chalta hai. Isliye nateeja is par nahi tikta ki kaun chala raha hai.'] },
+      { l: ['Recall and precision per kind', 'Har kism ka recall aur precision'], ic: 'chart', d: ['Recall: of all the fish in the pond, how many did your net catch? Precision: of what is in your net, how much is really fish? One pair for each kind of ID.', 'Recall: talaab ki saari machhliyon mein se jaal ne kitni pakdi? Precision: jaal mein jo hai, usme kitna sach mein machhli hai? Har kism ke ID ki ek jodi.'] },
       { l: ['Compare with the pass marks', 'Pass marks se milaiye'], ic: 'target', d: ['The marks were agreed before the run. In the cell below both are 0.9.', 'Marks run se pehle tay hue the. Neeche ke cell mein dono 0.9 hain.'] },
-      { l: ['PASS or FAIL', 'PASS ya FAIL'], ic: 'flag', d: ['One weak kind is enough to fail the gate, even when the total looks good. FAIL means the change does not go live.', 'Ek kamzor kism bhi gate fail karne ke liye kaafi hai, chahe kul achha dikhe. FAIL ka matlab hai badlaav live nahi jaayega.'] }
+      { l: ['PASS or FAIL', 'PASS ya FAIL'], ic: 'flag', d: ['One weak kind is enough to fail the gate, even when the total looks good. FAIL means the change does not go live.', 'Ek kamzor kism bhi gate fail karne ke liye kaafi hai, chahe kul achha dikhe. FAIL ka matlab hai ki badlaav live nahi jaayega.'] }
     ],
     cap: ['Read the last line first: one weak kind of ID is enough to fail the gate.', 'Pehle aakhri line padhiye: ID ki ek kamzor kism bhi gate fail karne ke liye kaafi hai.'] },
 
   'starter-cell': { t: 'flow',
     title: ['What runs before your first cell', 'Aapke pehle cell se pehle kya chalta hai'],
     steps: [
-      { l: ['The page warms up', 'Page taiyaar hota hai'], ic: 'bolt', d: ['Before your first cell, the page does the three warm-up steps from Setup for you: the key, the library and the client.', 'Aapke pehle cell se pehle page Setup ke teen warm-up steps khud kar deta hai: key, library aur client.'] },
-      { l: ['You run the starter cell', 'Aap starter cell chalate hain'], ic: 'code', d: ['It defines MODEL, the ask() function that sends a prompt and returns the reply, and a sample text to work on.', 'Yeh MODEL tay karta hai, ask() function jo prompt bhejta hai aur jawaab lautata hai, aur kaam karne ke liye ek sample text.'] },
+      { l: ['The page warms up', 'Page taiyaar hota hai'], ic: 'bolt', d: ['Before your first cell, the page does the three warm-up steps from Setup for you. They are the key, the library (ready-made code) and the client (the messenger that carries your note to the model).', 'Aapke pehle cell se pehle page Setup ke teen warm-up steps khud kar deta hai. Yeh hain key, library (bana-banaya code) aur client (woh messenger jo aapki parchi model tak le jaata hai).'] },
+      { l: ['You run the starter cell', 'Aap starter cell chalate hain'], ic: 'code', d: ['It sets MODEL. It defines the ask() function (a recipe that sends a prompt and brings back the reply). It also gives a sample text to work on.', 'Yeh MODEL tay karta hai. Yeh ask() function (ek recipe jo prompt bhejti hai aur jawaab wapas laati hai) banata hai. Yeh kaam karne ke liye ek sample text bhi deta hai.'] },
       { l: ['Your cells reuse them', 'Aapke cells inhe dobara use karte hain'], ic: 'tool', d: ['Every later cell calls ask() and the sample, so you never paste the set-up again.', 'Har agla cell ask() aur sample ko call karta hai, isliye set-up dobara paste nahi karna padta.'] },
-      { l: ['Red "is not defined"?', 'Laal "is not defined"?'], ic: 'warn', d: ['The starter cell has not run in this session. Run it first, then run the cell that failed. After a reload, press Restore.', 'Is session mein starter cell chala nahi. Use pehle chalaiye, phir jo cell fail hua use. Reload ke baad Restore dabaiye.'] }
+      { l: ['Red "is not defined"?', 'Laal "is not defined"?'], ic: 'warn', d: ['The starter cell has not run in this session. Run it first, then run the cell that failed. After a reload, press Restore.', 'Is session mein starter cell chala nahi. Use pehle chalaiye, phir jo cell fail hua use chalaiye. Reload ke baad Restore dabaiye.'] }
     ],
     cap: ['Run the starter cell first in every session, and again after a reload.', 'Har session mein sabse pehle starter cell chalaiye, aur reload ke baad phir se.'] },
 
@@ -445,7 +445,7 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
         { l: ['Yes: write the rule', 'Haan: rule likhiye'], tone: 'good', d: ['No model needed.', 'Model ki zaroorat nahi.'] } ] },
       { l: ['2. Can a lookup do it?', '2. Kya lookup kar sakta hai?'], d: ['If the answer already sits in a table or a record, fetch it.', 'Jawaab pehle se kisi table ya record mein ho to use nikal lijiye.'], kids: [
         { l: ['Yes: look it up', 'Haan: dhoondh lijiye'], tone: 'good', d: ['No model needed.', 'Model ki zaroorat nahi.'] } ] },
-      { l: ['3. Is a wrong answer cheap to fix?', '3. Kya galat jawaab sasta theek hota hai?'], d: ['If a mistake is costly or cannot be undone, the answer matters more than the speed.', 'Galti mehngi ho ya palti na ja sake to jawaab ki sahi hona tez hone se zyada zaroori hai.'], kids: [
+      { l: ['3. Is a wrong answer cheap to fix?', '3. Kya galat jawaab sasta theek hota hai?'], d: ['If a mistake is costly or cannot be undone, a right answer matters more than a fast one.', 'Galti mehngi ho ya palti na ja sake, to sahi jawaab tez jawaab se zyada zaroori hai.'], kids: [
         { l: ['No: keep a person in the loop', 'Nahi: insaan ko loop mein rakhiye'], tone: 'warn', d: ['A model may suggest; a person decides.', 'Model sujha sakta hai; faisla insaan karta hai.'] } ] },
       { l: ['4. Does anyone need it?', '4. Kya kisi ko iski zaroorat hai?'], d: ['A feature nobody asked for is cheaper to skip than to build.', 'Jo feature kisi ne maanga nahi, use na banana banane se sasta hai.'], kids: [
         { l: ['No: do not build it', 'Nahi: mat banaiye'], tone: 'bad', d: ['Stop here.', 'Yahin ruk jaiye.'] } ] },
@@ -462,7 +462,7 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
       { l: ['Model provider', 'Model provider'] }
     ],
     msgs: [
-      { a: 1, b: 0, l: ['Notice, ask consent', 'Notice, sehmati maangna'], d: ['Your app is the Data Fiduciary. Tell the person in plain words what you collect and why, and ask for agreement. Use the data only for that purpose.', 'Aapka app Data Fiduciary hai. Vyakti ko saaf shabdon mein bataiye ki kya aur kyun le rahe hain, aur sehmati maangiye. Data sirf usi kaam mein lagaiye.'] },
+      { a: 1, b: 0, l: ['Notice, ask consent', 'Notice, sehmati maangna'], d: ['Your app is the Data Fiduciary (the one who decides how the diary is used). Tell the person in plain words what you collect and why. Ask for agreement. Use the data only for that purpose.', 'Aapka app Data Fiduciary hai (jo tay karta hai ki diary kaise use hogi). Vyakti ko saaf shabdon mein bataiye ki kya aur kyun le rahe hain. Sehmati maangiye. Data sirf usi kaam mein lagaiye.'] },
       { a: 0, b: 1, l: ['Message with details', 'Details wala message'], d: ['The person is the Data Principal: the data is about them.', 'Vyakti Data Principal hai: data unhi ke baare mein hai.'] },
       { a: 1, b: 2, l: ['Message to provider', 'Provider ko message'], d: ['The provider works on your behalf, so the duty stays with you. Read its terms on storage and training.', 'Provider aapki taraf se kaam karta hai, isliye zimmedari aapki rehti hai. Storage aur training par uski shartein padhiye.'] },
       { a: 2, b: 1, l: ['Reply, maybe a copy', 'Jawaab, shayad copy'], dash: true, d: ['A copy held by the provider is still your responsibility.', 'Provider ke paas rakhi copy ki zimmedari bhi aapki hai.'] },

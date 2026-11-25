@@ -1,57 +1,61 @@
 ---
 title: What It Really Costs
-summary: "It depends on tokens" is not an answer to a finance director. A product manager prices the guard properly, finds three very different totals for the same tool, and sees that the order in which the guard’s parts run is the cheapest design decision available. This chapter introduces the cascade.
+summary: "It depends on tokens" is not an answer for a finance director. Anaya works out the true price of the guard. She finds three very different totals for the same tool. The cheapest fix is the order in which the guard's parts run. This chapter teaches the cascade.
 course: ch15
 goals:
-  - explain why the simple cost sum is usually too low
-  - list the four multipliers that a real design adds, and say why each is a choice
-  - compare three designs for the same tool and explain what a cascade saves
-  - report cost together with speed, and say what a cost figure leaves out when you don’t know the value it protects
+  - see why the simple cost sum is usually too low
+  - name the four things that make a real bill bigger, and see that each one is a choice
+  - compare three designs of the same tool, and see what a cascade saves
+  - report cost together with speed, and say what a cost leaves out when you do not know the value it protects
 terms:
-  - cascade | a design that sends every request to the cheapest thing that might work, and passes on to the next, dearer one only what fails a check | cascades
+  - cascade | like a clinic where the nurse sees everyone first and the specialist sees only the hard cases; each request goes to the cheapest step that might work, and only what fails a check moves to a dearer step | cascades
 ---
 
-In the first week of July, Anaya presented the plan for the guard to Sahaj’s finance director. She was a precise woman who wrote with a fountain pen and said very little. After ten minutes, the director put the cap on her pen and asked what the guard would cost to run per month at the company’s volume.
+In the first week of July, Anaya showed the guard's plan to Sahaj's finance director. She was careful and wrote with a fountain pen. She said very little. After ten minutes she put the cap on her pen. Then she asked what the guard would cost to run each month at the company's volume.
 
-Anaya answered that it would cost about seventy thousand rupees. That was roughly twenty-three paise a message, at three hundred thousand messages.
+Anaya said about seventy thousand rupees. That is about twenty-three paise a message, for three hundred thousand messages.
 
-"That is the cost of the model call," said the director. "Is it the cost of the system?" Anaya paused for as long as it takes to realise that you’ve used a word carelessly. She said she needed to find out. In this chapter you’ll see what she found.
+"That is the cost of the model call," said the director. "Is it the cost of the system?"
 
-## The case: one number requested, two given
+Anaya went quiet. It felt like using a word without thinking. She said she would find out. In this chapter you see what she found.
 
-Anaya had given the director two figures, a cost per message and a monthly total. She spent the evening feeling they were the wrong two. So she worked them out again.
+## The case: one number asked for, two given
+
+Anaya had given the director two numbers. One was the cost per message. The other was the total for a month. All evening she felt they were the wrong two. So she did the sum again.
 
 ## The simple sum, and why it is too low
 
-Every cost case starts with the same sum, and it is correct. Take the tokens going in and multiply by the price per token in. Then take the tokens coming out and multiply by the price per token out. Add the two.
+Think of a taxi meter. It counts the distance, but not the waiting at red lights, or the road you took twice. The simple sum is like that.
 
-For one clean call to the careful judge, with six hundred tokens in and eighty out, at the made-up prices used throughout the year, it came to twenty-three paise.
+Every cost case starts with the same sum, and the sum is correct. Count the tokens going in (the small pieces of text you send). Multiply by the price for each token in. Count the tokens coming out. Multiply by the price for each token out. Add the two.
 
-The error isn’t in the sum. It is in what the sum is applied to. It prices one clean call, and a real feature is almost never one clean call. Business cases built this way are typically between three and twenty times too low. There are four reasons, and Anaya had met them all in earlier chapters.
+Take one clean call to the careful judge (the strong model that checks the unsure cases). It has six hundred tokens in and eighty out. The prices are the made-up ones used all year. The answer is twenty-three paise.
+
+The sum is not wrong. The mistake is what it is used on. It prices one clean call. A real feature is almost never one clean call. Business cases built this way are often three to twenty times too low. There are four reasons. Anaya had met all four in earlier chapters.
 
 Table: Four multipliers that the simple sum leaves out
 | Multiplier | Why it matters | The guard’s figure |
 | --- | --- | --- |
-| How much is sent | Eight pieces of text instead of three nearly triples the input. The guard fetched nothing, but long messages had to be cut into pieces, and a message cut in two costs twice as much to read | A message was on average about one and a fifth pieces |
-| Retries | When an answer fails its check and is asked for again, the whole request is sent a second time | About one message in twelve was retried |
-| Steps | A loop sends the whole conversation again at each round, so six rounds cost nearer ten times a single call than six | An unsure message took about four rounds, or about five and a half times one call |
-| Hidden thinking | A reasoning model’s working is charged like output, and there is usually far more of it than of the visible answer | About six times as much for the careful judge |
+| How much is sent | Eight pieces of text instead of three nearly triples the input. The guard fetched nothing. But long messages were cut into pieces, and a message cut in two costs twice as much to read | A message was on average about one and a fifth pieces |
+| Retries | An answer fails its check, so it is asked for again. The whole request is sent a second time | About one message in twelve was retried |
+| Steps | A loop (the same step done again and again) sends the whole conversation again at each round. So six rounds cost nearer ten times one call, not six times | An unsure message took about four rounds, or about five and a half times one call |
+| Hidden thinking | A reasoning model's rough work is charged like output. There is usually far more of it than of the visible answer | About six times as much for the careful judge |
 
-Each of these was a choice Anaya had made. That meant each could be changed.
+Each of these was a choice Anaya had made. So each could be changed.
 
 ## Three numbers for one tool
 
-That night she did the sum again, and she arrived at three answers instead of one. Each was true, and each described a different tool.
+That night she did the sum again. She got three answers, not one. All three were true. Each one described a different tool.
 
-The first was the figure she had given the director. It was one clean call to the careful judge at twenty-three paise, for each of three hundred thousand messages, or about ₹69,000 a month. It priced a tool that didn’t exist.
+The first was the number she had given the director. It was one clean call to the careful judge, at twenty-three paise. It was counted for each of three hundred thousand messages, so about ₹69,000 a month. It priced a tool that did not exist.
 
-The second was the guard built the obvious way. Every message goes to the careful judge, which works through four rounds of lookups and hidden reasoning. Take twenty-three paise, multiply by five and a half for the rounds, and by six for the thinking.
+The second was the guard built the obvious way. Every message goes to the careful judge. The judge does four rounds of lookups and hidden reasoning. Take twenty-three paise. Multiply by five and a half for the rounds. Multiply by six for the thinking.
 
-That is about ₹7.60 a message, or ₹22.8 lakh a month. It is thirty-three times the first figure. It is also a natural thing for a team to build if it hasn’t thought about the matter.
+That is about ₹7.60 a message. It is ₹22.8 lakh a month. It is thirty-three times the first number. A team that has not thought about cost would build exactly this.
 
-The third was the guard as it actually was. The pattern checker found everything with a fixed shape, and it cost nothing. The finder of names and places was a small model, priced at about four paise a message. With the extra pieces and the retries, it came to a little over five.
+The third was the guard as it really was. The pattern checker found everything with a fixed shape, and it cost nothing. The finder of names and places was a small model. It cost about four paise a message. With the extra pieces and the retries, it came to a little over five.
 
-Only the unsure messages, about six in every hundred, ever reached the careful judge, and for those she paid the full ₹7.60. Six percent of ₹7.60 is forty-six paise. Five paise plus forty-six comes to about fifty-one paise a message, or ₹1.53 lakh a month.
+Only the unsure messages, about six in every hundred, ever reached the careful judge. For those, she paid the full ₹7.60. Six percent of ₹7.60 is forty-six paise. Five paise plus forty-six is about fifty-one paise a message. That is ₹1.53 lakh a month.
 
 Table: Three designs for the same tool
 | Design | Per message | Per month |
@@ -60,62 +64,64 @@ Table: Three designs for the same tool
 | Everything to the careful judge | about ₹7.60 | about ₹22.8 lakh |
 | The guard as built, with the cheap parts first | about 51 paise | about ₹1.53 lakh |
 
-The first figure was less than half the truth. The second was fifteen times the truth. And the only difference between the second and the third was the order in which the parts ran.
+The first number was less than half the truth. The second was fifteen times the truth. The only difference between the second and the third was the order in which the parts ran.
 
 ## The cheap thing first
 
-That ordering has a name. A *cascade* sends every request to the cheapest thing that might work, and passes on to the next, dearer one only what fails a check. The guard was a cascade. The team had built it that way for a different reason: speed, and keeping the careful judge for the cases that needed working out. The saving came along uninvited.
+Think of a clinic. The nurse sees everyone first. The specialist sees only the hard cases. The clinic stays cheap and fast.
+
+That order has a name. A *cascade* sends every request to the cheapest step that might work. Only what fails a check moves on to the next, dearer step. The guard was a cascade. The team had built it that way for another reason. They wanted speed, and they wanted to keep the careful judge for cases that needed real thinking. The saving came along without being asked.
 
 ::: key Why cascades work
-Most real requests are simple. A small model, or in the guard’s case a plain rule, handles them well. The dear one is kept for the hard few. Imran called this the single most effective thing a team can do about cost.
+Most real requests are simple. A small model handles them well. In the guard, a plain rule handles them. The dear model is kept for the hard few. Imran said this is the best single thing a team can do about cost.
 :::
 
-He listed four other measures, in rough order of what they save.
+He listed four more ways to cut cost, in rough order of what they save.
 
 Table: Other ways to lower cost, in rough order of saving
 | Measure | Comment |
 | --- | --- |
-| Choose the model | Prices across one provider’s range differ by ten or a hundred times, which matters more than anything else on the list |
-| Send less | A token that is not sent costs nothing, and a better-ordered shortlist lets fewer pieces be sent |
-| Cache the unchanging front of a request | The same start, a cheaper bill |
-| Do the work that can wait | Work done overnight, in batches, is cheaper. The careful judge’s second look, which already ran in the background, could be batched |
+| Choose the model | Prices across one provider's range (one company's models) differ by ten or a hundred times. This matters more than anything else on the list |
+| Send less | A token that is not sent costs nothing. A better-ordered shortlist means fewer pieces are sent |
+| Cache the unchanging front of a request | Cache means keep a copy for reuse. The same start, a cheaper bill |
+| Do the work that can wait | Work done overnight, in batches (many together), is cheaper. The careful judge's second look already ran in the background, so it could be batched |
 
 ## Three numbers, not one
 
-On Tuesday, Anaya went back to the director with the table and a statement she had spent an hour writing. The tool costs about one lakh fifty thousand rupees a month at three hundred thousand messages, at about fifty-one paise each.
+On Tuesday, Anaya went back to the director. She brought the table and a short statement that took her an hour to write. The tool costs about one lakh fifty thousand rupees a month. That is at three hundred thousand messages, at about fifty-one paise each.
 
-The cost is dominated by the careful judge, which sees six messages in a hundred. The figure is wrong if that six rises above ten, if retries go above one in five, or if the provider changes its prices.
+Most of the cost comes from the careful judge, who sees six messages in a hundred. The number is wrong if that six rises above ten. It is wrong if retries go above one in five. It is wrong if the provider changes its prices.
 
 The director said she could defend that number.
 
-Anaya added that speed is a cost too. A cheap tool that is slow can fail as badly as a fast one that is dear. So she would always report three things together. The first is the cost.
+Anaya added one more thing. Speed is a cost too. Think of waiting for chai. A cheap shop that is very slow can fail as badly as a quick one that is dear. So she would always report three things together. The first is the cost.
 
-The second is how long a message typically took, which was a fraction of a second. The third is how long the slow ones took, which were the ones that went to the background. A single average would hide the slow tail.
+The second is how long a message usually took. It was a fraction of a second. The third is how long the slow ones took. These were the ones that went to the background. One average alone would hide the slow tail.
 
 ## The other half of the sum
 
-Then the director asked what the tool saved, and Anaya had no answer. She had a cost and no benefit. That was the real point of the afternoon.
+Then the director asked what the tool saved. Anaya had no answer. She had a cost and no benefit. That was the real lesson of the afternoon.
 
-The question that decides most features like this has nothing to do with tokens. It is whether the feature makes sense at scale. If a query costs three rupees and the value it protects is two, no amount of tuning will rescue it.
+Think of buying a lock. The price of the lock is only half the sum. You also need to know what is inside the cupboard. The question that decides most features like this has nothing to do with tokens. It is whether the feature makes sense at scale. Say a query costs three rupees and the value it protects is two. No tuning will save it.
 
-She had priced the first half carefully and had no number for the second. What does it cost Sahaj when an identity number leaks? There would be an investigation, a notice, perhaps a customer who left, and a regulator’s attention if things went badly. She had no figures, and she suspected nobody did.
+She had priced the first half with care. She had no number for the second. What does it cost Sahaj when an identity number leaks? There would be an investigation and a notice. Perhaps a customer would leave. The regulator's attention too, if things went badly. She had no figures. She suspected nobody did.
 
-She told the director she would find out, or would find out that nobody knew, and say so. The director accepted that and put the cap back on her pen. Anaya added a line to the specification, in the section on what was not yet known: what does a leak cost? Ask Lakshmi.
+She told the director she would find out. Or she would find out that nobody knew, and say so. The director accepted that and put the cap back on her pen. Anaya added a line to the specification (the written plan for the tool). It went in the part about what was not yet known: what does a leak cost? Ask Lakshmi.
 
 ::: key What you can now say
 Three sentences about giving a model work. Put your own numbers where N stands.
-- My agent has a step limit written before anything else, and a person approves every action that cannot be undone.
-- I checked my judge against my own marking: N percent agreement, and I read the disagreements.
-- My cost sum includes retries, loops and hidden thinking: N rupees a month, not the figure for one clean call.
+- My agent has a step limit written first, and a person approves every action that cannot be undone.
+- I checked my judge against my own marking: N percent agreement. I read the disagreements.
+- My cost sum includes retries, loops and hidden thinking: N rupees a month, not the number for one clean call.
 :::
 
 ## Summary
 
-The simple cost sum is tokens in and out times their prices. It is correct, and usually three to twenty times too low, because it prices one clean call.
+The simple cost sum is tokens in and out, times their prices. It is correct. But it is usually three to twenty times too low, because it prices one clean call.
 
-- A real design multiplies it by how much is sent each time, how often a request is retried, how many rounds a loop takes, and how much hidden thinking a reasoning model does. Each is a design choice and can be changed.
-- A cascade runs the cheapest method first and passes only the failures to a dearer one. It can make the difference between a tool that costs a lakh and one that costs twenty.
-- Report cost together with speed, including the slow cases.
+- A real design makes it bigger. It depends on how much is sent each time, how often a request is retried, how many rounds a loop takes, and how much hidden thinking a reasoning model does. Each one is a design choice and can be changed.
+- A cascade (the clinic order) runs the cheapest step first. Only the failures go to a dearer step. It can be the gap between a tool that costs a lakh and one that costs twenty.
+- Report cost together with speed, and include the slow cases.
 - A cost without the value it protects is only half a sum.
 
-Next, Farah puts a photograph of a bank passbook in front of Anaya, and the team leaves plain text behind.
+Next, Farah puts a photograph of a bank passbook in front of Anaya. The team leaves plain text behind.

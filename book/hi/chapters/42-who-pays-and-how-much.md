@@ -1,31 +1,33 @@
 ---
 title: Kaun Paisa Deta Hai, Aur Kitna
-summary: Ek lender ka technical lead poochta hai ki guard use kitne ka padega. Jawaab teen alag logon, charge karne ke chaar tareekon, aur ek table ki ek aisi row par tikta hai jo zyadatar price lists mein hoti hi nahi. Chapter mein seat, usage, outcome aur hybrid pricing, contribution margin, flywheel aur gross margin aate hain.
+summary: Ek lender ka technical lead poochta hai ki guard use kitne ka padega. Jawaab teen alag logon aur charge karne ke chaar tareekon par tikta hai. Ek aisi row par bhi, jo zyadatar price lists mein hoti hi nahi. Aap seat, usage, outcome aur hybrid pricing, contribution margin, flywheel aur gross margin se milte hain.
 course: b1
 goals:
   - user, buyer aur blocker ko alag pehchaan paana, aur pichhle kharch se jaanna ki product ki value kya hai
-  - apne costs se bane floor aur customer ke alternative se bane ceiling ke beech price tay karna
+  - ek floor (aapke costs) aur ek ceiling (customer ka doosra raasta) ke beech price tay karna
   - seat, usage, outcome aur hybrid pricing ko is nazar se compare karna ki har ek kis taraf kitna risk daalti hai
   - low, base aur high usage par contribution margin nikaalna, teen kisam ke flywheel pehchaanna, aur supplier ke risk ki keemat lagana
 terms:
-  - seat pricing | product ke har user ke liye, har mahine, charge karna; buyer ke liye budget karna aasaan, lekin tab unfair jab heavy users ko serve karna light users se kahin zyada mehnga ho | per-seat
-  - usage pricing | jitna use hua, har unit ke liye charge karna, jaise har message ya call, taaki revenue cost ke saath chale; buyer bill ka andaaza nahi laga paata aur use ration kar sakta hai | usage-based
-  - outcome pricing | har successful result ke liye charge karna, taaki price value ke saath chale; iske liye success ki ek tay, naapne layak definition chahiye | outcome-based
-  - hybrid pricing | ek platform fee jisme kuch usage shamil ho, aur uske upar jo jaaye uska alag charge; buyer ke liye predictable aur aapke margin ki hifaazat karne wala | hybrid plan
-  - contribution margin | jo costs customer ke saath badhte hain, unke baad customer aapke paas kitna chhodta hai, jo woh deta hai uske share ke roop mein | 
-  - flywheel | ek loop jisme product use karne se product behtar hota hai, jo aur zyada use laata hai; workflow wala kisam aksar sabse mazboot hota hai | flywheels
-  - gross margin | revenue minus product deliver karne ka direct cost; AI products mein is cost ka bada hissa aksar model ya hosting ka bill hota hai | 
+  - seat pricing | cinema ke har ticket jaisa. Har user ke liye, har mahine, charge karte hain. Buyer ke liye plan karna aasaan hai. Lekin tab unfair hai jab heavy users ko serve karna light users se kahin zyada mehnga ho | per-seat
+  - usage pricing | taxi ke meter jaisa. Jitna use hua, har unit ka charge, jaise har message ya call, taaki aapki kamayi cost ke saath chale. Buyer bill ka andaaza nahi laga paata, aur paisa bachane ke liye kam use kar sakta hai | usage-based
+  - outcome pricing | sirf pakdi hui machhli ka paisa dene jaisa. Har achhe result ka charge, taaki price value ke saath chale. Dono taraf ko number mein tay karna padta hai ki achha result kya hai | outcome-based
+  - hybrid pricing | data wale phone plan jaisa. Ek tay fee mein kuch use shamil hota hai, aur uske upar ka alag dena padta hai. Buyer plan kar sakta hai, aur aapka margin surakshit rehta hai | hybrid plan
+  - contribution margin | customer ke diye har rupaye mein se, customer ke saath badhne wale costs ke baad, jo bachta hai. Samajhiye khane ki plate, saamaan ka paisa dene ke baad | 
+  - flywheel | ek bhaari pahiye jaisa jo ek baar dhakka dene par ghoomta rehta hai. Product use karne se behtar hota hai, aur isse aur use aata hai. Workflow wala kisam aksar sabse mazboot hota hai | flywheels
+  - gross margin | dukaandaar ke munafe jaisa, maal ka paisa dene ke baad. Yeh kamayi minus product deliver karne ka seedha cost hai. AI products mein is cost ka bada hissa aksar model ya hosting ka bill hota hai | 
 ---
 
-Defence ke baad lending partner ka technical lead, Mr. Menon, seedhiyon par ek sawaal le kar aaya, ek haath railing par rakhe. Guard use kitne ka padega? Defence ke baad ke teen hafton mein woh do baar demo page dekhne wapas aaya tha, aur ek baar apne do colleagues ko laaya tha. Usne woh sawaal aise poocha jaise log tab poochte hain jab unhone use poori dopahar se dabaa kar rakha ho.
+Defence ke baad partner ka technical lead, Mr. Menon, seedhiyon par bola. Uska ek haath railing par tha. Usne poochha, "Guard mujhe kitne ka padega?" Defence ke baad ke teen hafton mein woh do baar demo page dekhne wapas aaya tha. Ek baar apne do colleagues ko bhi laaya tha. Usne woh sawaal aise poocha jaise koi poori dopahar use dabaye baitha ho.
 
-Anaya ne ek saal "kya yeh kaam karta hai?" ka jawaab ek number se dena seekha tha. "Isme kitna cost aata hai?" ek alag kisam ka sawaal tha, aur uske paas koi aisa number nahi tha jis par use bharosa ho. Isliye usne ek hafta maanga aur ek asli number laane ka waada kiya. Yeh chapter batata hai ki use kya mila.
+Ek saal se Anaya "kya yeh kaam karta hai?" ka jawaab ek number se dena seekh rahi thi. "Isme kitna cost aata hai?" ek alag kisam ka sawaal tha. Uske paas koi aisa number nahi tha jis par use bharosa ho. Isliye usne ek hafta maanga. Usne ek asli number laane ka waada kiya. Yeh chapter batata hai ki use kya mila.
 
 ## Case: teen alag log
 
-Pehla kaam yeh pata karna tha ki Mr. Menon asal mein kaun hain. Jis company mein dusron ke use ke liye software kharida jaata hai, wahan aam taur par teen alag log maayne rakhte hain, aur woh shayad hi kabhi ek hi insaan hote hain. Table unke naam batati hai, aur yeh ki partner ke yahan har ek kaun tha.
+School bus kharidne ko sochiye. Jo bachcha usme baithta hai, jo principal paisa deta hai, aur jo officer manzoor karta hai, teeno alag log hain. Anaya ko pehle yeh pata karna tha ki Mr. Menon asal mein kaun hain.
 
-Usi hafte ek doosra prospect saamne aaya tha. State electricity distribution company ki IT cell, jiske bills Sahaj pehle se collect karta tha, ne poochha tha ki kya guard unki apni helpdesk chats saaf kar sakta hai. Table mein dono ke liye ek-ek column hai, kyunki wahi teen roles wahan kaafi alag dikhte the.
+Jis company mein dusron ke use ke liye software kharida jaata hai, wahan aam taur par teen log maayne rakhte hain. Woh shayad hi kabhi ek insaan hote hain. Table unke naam batati hai. Yeh bhi batati hai ki partner ke yahan har ek kaun tha.
+
+Usi hafte ek doosra prospect saamne aaya tha (aisi company jo kharid sakti hai). Woh state electricity distribution company ki IT cell thi. Uske bills Sahaj pehle se collect karta tha. Cell ne poochha ki kya guard unki apni helpdesk chats saaf kar sakta hai. Table mein dono ke liye ek-ek column hai, kyunki wahi teen roles wahan kaafi alag dikhte the.
 
 Table: User, buyer aur blocker
 | Role | Kaun hai | Partner ke yahan | Electricity company ke yahan | Kya chahta hai |
@@ -34,27 +36,29 @@ Table: User, buyer aur blocker
 | Buyer | Jiske paas budget hai aur jo kharch ke liye kisi ko jawaab deta hai | Head of engineering ya compliance | Ek department jo tender se kharidta hai aur terms poori karne wali sabse kam price chunta hai | Ek number jo woh apne manager ko dikha sake |
 | Blocker | Jo na bol sakta hai aur use wajah batana zaroori nahi | Ek security lead, jise Mr. Menon ne afsos ke saath "the Wall" kaha | Ek security audit, aur ek clause ki data kahan rakha ja sakta hai | Yeh jaanna ki text kahan jaata hai aur use kaun padh sakta hai |
 
-Blocker ka sawaal pichhle July mein, Anaya ke saal ki sabse lambi meeting mein, nikaal liya gaya tha.
+Blocker ka sawaal pichhle July mein nikaal liya gaya tha. Woh Anaya ke saal ki sabse lambi meeting mein aaya tha.
 
-Phir usne Mr. Menon se poocha ki ek price unke liye kitni value rakhegi. Lekin phir woh ruk gayi, kyunki woh yeh poochne wali thi ki kya woh ise kharidenge.
+Phir usne Mr. Menon se poochha ki ek price unke liye kitni value rakhegi. Lekin phir woh ruk gayi. Woh yeh poochne wali thi ki kya woh ise kharidenge.
 
-Project ke pehle mahine mein hi usne padh liya tha ki yeh galat sawaal kyun hai: log tameez mein haan kehte hain, aur us jawaab se kuch predict nahi hota. Isliye usne kuch aur poocha. Aaj woh is problem se nipatne ke liye kya use karte hain, uska cost kya hai, aur kharch kisne approve kiya?
+Project ke pehle mahine mein usne padha tha ki yeh sawaal galat kyun hai. Log tameez mein haan kehte hain. Us jawaab se kuch predict nahi hota. Isliye usne kuch aur poochha. Aaj is problem ke liye woh kya use karte hain? Uska cost kya hai? Kharch kisne approve kiya?
 
-Woh ek vendor ko lagbhag 35,000 rupaye mahine ka deta tha, ek aise tool ke liye jo chat logs mein card numbers blank karta tha aur aur kuch nahi karta tha.
+Woh ek vendor ko lagbhag 35,000 rupaye mahine deta tha. Vendor woh company hai jo use ek service bechti hai. Woh tool chat logs (chats ki saved copies) mein card numbers blank karta tha, aur kuch nahi karta tha. Ek analyst apna lagbhag chauthai time Lakshmi jaise ek weekly sweep mein lagati thi. Sweep sample chats ki niyamit jaanch hai. Uski salary ke hisaab se yeh lagbhag 30,000 rupaye mahine banta tha.
 
-Ek analyst apna lagbhag chauthai time Lakshmi ke jaise ek weekly sweep mein lagati thi, jo uski salary ke hisaab se lagbhag 30,000 rupaye mahine banta tha. Vendor ka approval head of compliance ne sign kiya tha. Yeh sab facts the. Pichhla kharch saboot hai. Aage ka iraada saboot nahi hai.
+Vendor ka approval head of compliance ne sign kiya tha. Yeh woh insaan hai jo dekhta hai ki rules maane jaa rahe hain. Yeh sab facts the. Pichhla kharch saboot hai. Aage ki chaah saboot nahi hai.
 
 ## Ceiling aur floor
 
-Anaya ne dono figures ek card par likhe. Unke neeche usne woh likha jo use us dopahar tak samajh nahi aaya tha: customer jo price dega, woh uske alternative se aata hai, seller ke costs se nahi. Alternative ceiling tay karta hai. Seller ke apne costs floor tay karte hain.
+Bazaar mein mol-bhaav ko sochiye. Dukaandaar apne maal ki laagat se neeche nahi jaayega. Grahak agli dukaan se zyada nahi dega. Anaya ki price in dono ke beech honi thi.
 
-Sochiye iska uske liye kya matlab tha. Jo tool analyst ke quarter-time ka zyadatar hissa bacha deta hai, woh buyer ke liye 30,000 se kaafi kam ka hai, kyunki ise apnaane mein bhi mehnat lagti hai. Lekin woh kuch hazaar se kaafi zyada ka bhi hai.
+Anaya ne dono figures ek card par likhe. Unke neeche usne woh likha jo use us dopahar tak samajh nahi aaya tha. Customer jo price dega, woh uske doosre raaste se aati hai, seller ke costs se nahi. Woh doosra raasta ceiling tay karta hai. Seller ke apne costs floor tay karte hain.
 
-Usne beech ka raasta usi card par nikala. Ek theek price 10,000 rupaye ke beech tha, jo uske costs cover karta, aur lagbhag 20,000 ke, jiske upar Mr. Menon poochne lagte ki purana tareeka sasta toh nahi. Usne pehle andaaze ke taur par 24,000 chuna, yeh dekhne ke liye ki uska kya hota hai.
+Sochiye iska uske liye kya matlab tha. Jo tool analyst ke chauthai time ka zyadatar hissa bacha deta hai, woh buyer ke liye 30,000 se kam ka hai. Ise apnaane mein bhi mehnat lagti hai. Lekin woh kuch hazaar se kaafi zyada ka bhi hai.
+
+Beech ka raasta usne usi card par nikala. Ek theek price do figures ke beech thi. Ek 10,000 rupaye, jo uske costs cover karta. Doosra lagbhag 20,000. Uske upar Mr. Menon poochne lagte ki purana tareeka sasta toh nahi. Usne pehle andaaze ke taur par 24,000 chuna, yeh dekhne ke liye ki uska kya hota hai.
 
 ## Charge karne ke chaar tareeke
 
-Imran ne kaha ki AI product ke liye charge karne ke chaar aam tareeke hain, aur har ek alag taraf alag risk daalta hai. Table dikhati hai ki har ek kaise kaam karta hai, kahan mazboot hai aur kahan kamzor.
+Sawaari ka kiraya dene ke chaar tareeke sochiye. Aap seat kharid sakte hain. Aap meter se de sakte hain. Aap tabhi de sakte hain jab pahunch jaayen. Ya mahine ka pass le sakte hain, jisme kuch sawaariyan shamil hon. Imran ne kaha ki AI product ke liye charge karne ke chaar aam tareeke hain. Har ek alag taraf alag risk daalta hai. Table dikhati hai ki har ek kaise kaam karta hai, kahan mazboot hai aur kahan kamzor.
 
 Table: Charge karne ke chaar tareeke
 | Method | Kaise kaam karta hai | Taakat | Kamzori |
@@ -66,9 +70,7 @@ Table: Charge karne ke chaar tareeke
 
 ## Woh row jo zyadatar price lists mein nahi hoti
 
-Anaya ke paas Imran ke cost figures the. Usne ek customer ko ek mahine serve karne ka poora cost likha, sirf model ka bill nahi. Usmein model aur hosting thi, records aur traces ki storage, aur customer ko onboard karne aur sawaalon ka jawaab dene wale insaan ka time.
-
-Jaisa use seekhne ko mil raha tha, support ka cost aksar machine se zyada hota hai. Usne hisaab teen baar kiya, low, base aur high usage par.
+Chai ki tapri ko sochiye. Chai-patti laagat ka sirf ek hissa hai. Doodh, gas, cups aur chai dene wala ladka bhi hai. Anaya ne sab ginaa. Uske paas Imran ke cost figures the. Usne ek customer ko ek mahine serve karne ka poora cost likha, sirf model ka bill nahi. Usmein model aur hosting thi (woh computers jo product chalate hain). Records aur traces ki storage thi (har step ke logs). Aur customer ko onboard karne (set up karne) aur sawaalon ka jawaab dene wale insaan ka time bhi tha. Use samajh aa raha tha ki support ka cost aksar machine se zyada hota hai. Usne hisaab teen baar kiya, low, base aur high usage par.
 
 Table: Serve karne ka cost aur ₹24,000 flat par margin
 | Usage | Mahine ke messages | Serve karne ka cost | ₹24,000 flat par margin |
@@ -77,27 +79,29 @@ Table: Serve karne ka cost aur ₹24,000 flat par margin
 | Base | 100,000 | ₹10,500 | 56% |
 | High | 1,000,000 | ₹58,500 | 144% ka loss |
 
-Jis margin ko woh nikaal rahi thi, use *contribution margin* kehte hain. Jo costs customer ke saath badhte hain, unke baad customer aapke paas kitna chhodta hai, woh jo woh deta hai uske share ke roop mein. Base row par yeh theek-thaak 56 percent tha. High row par loss tha. Ek busy chat system wala customer flat price par use, jo woh deta, uske doguna se zyada ka padta.
+Jis margin ko woh nikaal rahi thi, use *contribution margin* kehte hain. Customer ke saath badhne wale costs ke baad customer aapke paas jo chhodta hai, yahi hai. Ise customer ke diye paise ke share ke roop mein dikhate hain. Base row par yeh theek-thaak 56 percent tha. High row par loss tha. Ek busy chat system wala customer flat price par use, jo woh deta, uske doguna se zyada ka padta.
 
-Imran ka rule tha ki har baar low, base aur high teeno model kijiye, kyunki margin ki zyadatar problems sirf aakhri row mein dikhti hain.
+Imran ka rule tha ki har baar low, base aur high teeno model kijiye. Margin ki zyadatar problems sirf aakhri row mein dikhti hain.
 
-Isliye usne price ko hybrid mein dobara banaya. 24,000 rupaye mahine mein 100,000 messages shamil honge. Uske baad har 100,000 ke 9,000 lagenge. 10 lakh messages par customer ek lakh se thoda zyada deta, aur uska margin 44 percent hota. Ab bill us value ke saath chalta tha jo customer ko mil rahi thi, aur customer ke badhne par uska margin phisalna band ho gaya.
+Isliye usne price ko hybrid mein dobara banaya. 24,000 rupaye mahine mein 100,000 messages shamil honge. Uske baad har 100,000 ke 9,000 lagenge. 10 lakh messages par customer ek lakh se thoda zyada deta. Uska margin 44 percent hota. Ab bill us value ke saath chalta tha jo customer ko mil rahi thi. Customer ke badhne par uska margin phisalna band ho gaya.
 
 ## Woh buyer jo tender likhta hai
 
-Anaya ne dekha ki electricity company ke column ne badal diya ki woh kya bech sakti hai. *Tender* ek published request hai jo suppliers se bid maangti hai. Wahan buyer product nahi chunta tha. Woh terms likhta tha aur unhe poora karne wali bids mein se sabse kam price leta tha, isliye jis feature ko kisi ne list nahi kiya, uski koi ginti nahi thi.
+School ka ek notice sochiye: "Hamein 500 copies chahiye. Apni price bhejiye." School apni pasand ki copy nahi chunta. Woh list poori karne wali sabse sasti offer leta hai. Anaya ne dekha ki electricity company ke column ne badal diya ki woh kya bech sakti hai.
 
-Isse price badal gayi. Usage pricing fixed-price contract mein fit nahi hoti, kyunki buyer ko total pehle se likhna padta hai aur woh aisa bill nahi le sakta jo festival traffic ke saath badhta jaye. Bade included volume wala hybrid plan sabse paas tha, lekin tabhi jab tender use allow kare.
+*Tender* ek published request hai jo suppliers se bid maangti hai. Wahan buyer product nahi chunta tha. Woh terms likhta tha. Phir un terms ko poora karne wali bids mein se sabse kam price leta tha. Isliye jis feature ko kisi ne list nahi kiya, uski koi ginti nahi thi.
 
-Use nahi pata tha ki karta hai ya nahi, aur usne uske baju mein "poochho" likha. Ek chhota paid pilot, us raqam se neeche jahan company ke rules poora tender maangte hain, ek samajhdaar pehla kadam tha. Woh raqam bhi use nahi pata thi, aur usne andaaza nahi lagaya.
+Isse price badal gayi. Usage pricing fixed-price contract mein fit nahi hoti. Buyer ko total pehle se likhna padta hai. Woh aisa bill nahi le sakta jo festival traffic ke saath badhta jaye. Bade included volume wala hybrid plan sabse paas tha. Lekin woh tabhi chalta jab tender use allow kare.
 
-Audit aur data clause us shart se mel khaate the jo Lakshmi ne March mein rakhi thi: safai company ke andar hoti hai, kuch bhi bahar jaane se pehle. Is buyer ke liye yeh ab samjhaane wali constraint nahi rahi. Yeh product ka woh akela hissa tha jis par audit behes nahi karta.
+Use nahi pata tha ki karta hai ya nahi. Usne uske baju mein "poochho" likha. Ek chhota paid pilot (chhota trial) ek samajhdaar pehla kadam tha. Use us raqam se neeche rakhna tha jahan company ke rules poora tender maangte hain. Woh raqam bhi use nahi pata thi, aur usne andaaza nahi lagaya.
+
+Audit aur data clause us shart se mel khaate the jo Lakshmi ne March mein rakhi thi. Safai company ke andar hoti hai, kuch bhi bahar jaane se pehle. Is buyer ke liye yeh ab samjhaane wali limit nahi rahi. Yeh product ka woh akela hissa tha jis par audit behes nahi karta.
 
 ## Woh pahiya jo apne aap ghoomta hai
 
-Finance director ne, jise Anaya ne table dikhayi, ek alag sawaal poocha. Company ke badhne par product ko behtar kya banayega?
+Kumhaar ke bhaari chaak ko sochiye. Kuch baar dhakka do, toh woh ghoomta rehta hai. Finance director ne table dekhi aur ek alag sawaal poochha. Company ke badhne par product ko behtar kya banayega?
 
-Is sawaal ke peeche ka idea hai *flywheel*: ek loop jisme product use karne se product behtar hota hai, jo aur zyada use laata hai. Anaya ne un teen kisam ke flywheel dekhe jo AI mein aate hain. Table unhe batati hai, ki har ek kaise ghoomta hai aur aam taur par kitna mazboot hai.
+Is sawaal ke peeche ka idea hai *flywheel*. Yeh ek loop hai jisme product use karne se product behtar hota hai, aur isse aur zyada use aata hai. Anaya ne un teen kisam ke flywheel dekhe jo AI mein aate hain. Table dikhati hai ki har ek kaise ghoomta hai aur aam taur par kitna mazboot hai.
 
 Table: Teen kisam ke flywheel
 | Kisam | Kaise ghoomta hai | Taakat |
@@ -112,29 +116,29 @@ Isliye seller ko batana chahiye ki kya store hota hai, usse kya seekha jaata hai
 
 ## Supplier aapke saath kya kar sakta hai
 
-Sheet ki aakhri row ek aise risk ki thi jiske baare mein Anaya ko September mein pata chala tha. Agar koi product doosri company ke computers ya models par chalta hai, toh woh company aapse poochhe bina apni prices aur quality badal sakti hai.
+Ek dukaan sochiye jo saara doodh ek hi dairy se leti hai. Dairy price badha de, toh dukaan ki koi sunwaayi nahi. Anaya ko is tarah ke risk ka September mein pata chala tha. Aapka product kisi doosri company ke computers ya models par chal sakta hai. Woh company aapse poochhe bina apni prices aur quality badal sakti hai.
 
-AI product mein delivery ke cost ka bada hissa kisi aur ka bill hota hai. Yeh cost *gross margin* ke andar baitha hai, jo revenue minus product deliver karne ka direct cost hai.
+AI product mein delivery ke cost ka bada hissa kisi aur ka bill hota hai. Yeh cost *gross margin* ke andar baitha hai. Gross margin kamayi minus product deliver karne ka seedha cost hai.
 
-Woh risk hata nahi sakti thi, lekin uski keemat laga sakti thi. Uski recommendation mein likha tha ki agar hosting ki price doguni ho jaye toh kya hoga. Base margin 56 percent se girkar lagbhag 37 ho jaata, aur ek tested doosre host par switch karne mein lagbhag ek hafta lagta.
+Woh risk hata nahi sakti thi. Lekin uski keemat laga sakti thi. Uski recommendation mein likha tha ki agar hosting ki price doguni ho jaye toh kya hoga. Base margin 56 percent se girkar lagbhag 37 ho jaata. Ek tested doosre host par switch karne mein lagbhag ek hafta lagta.
 
-Usmein likha tha ki agar koi model retire ho jaye toh woh kya karegi: pinned versions aur gate. Aur yeh bhi ki agar koi rival wahi feature launch kar de toh woh kya karegi: workflow aur relationship apne paas rakhegi.
+Usmein likha tha ki agar koi model retire ho jaye toh woh kya karegi. Woh pinned versions use karegi, yaani tay kiye hue model versions jo badalte nahi. Saath mein gate bhi, yaani release se pehle ki jaanch. Aur yeh bhi likha tha ki agar koi rival wahi feature launch kar de toh woh kya karegi. Woh workflow aur relationship apne paas rakhegi.
 
-Usne agle Thursday Mr. Menon ko woh page bhej diya, upar pehle paragraph ke saath, jo usne chaar baar likha tha.
+Usne agle Thursday Mr. Menon ko woh page bhej diya. Pehla paragraph sabse upar tha. Usne use chaar baar likha tha.
 
 ::: example Mr. Menon ko Anaya ki recommendation
-Meri recommendation hai ₹24,000 per month ka ek hybrid plan, jisme 100,000 messages shamil hon, aur har agle 100,000 ke ₹9,000. Aapka alternative vendor aur analyst ke time ko milakar aapko lagbhag ₹65,000 mahina padta hai, isliye price value se kaafi neeche hai.
+Meri recommendation hai ₹24,000 per month ka ek hybrid plan, jisme 100,000 messages shamil hon, aur har agle 100,000 ke ₹9,000. Aapka alternative aapko lagbhag ₹65,000 mahina padta hai. Yeh vendor aur analyst ke time ka milaa hua hai. Price value se kaafi neeche hai.
 
-Hamara margin base use par 56 percent hai, aur us se 10 guna use par bhi 40 percent se upar rehta hai. Sabse bada risk hosting ki price hai. Agar woh doguni ho jaye, toh hamara base margin girkar lagbhag 37 percent ho jaayega, aur hamare tested doosre host par switch karne mein lagbhag ek hafta lagta hai.
+Hamara margin base use par 56 percent hai, aur us se 10 guna use par bhi 40 percent se upar rehta hai. Sabse bada risk hosting ki price hai. Agar woh doguni ho jaye, toh hamara base margin girkar lagbhag 37 percent ho jaayega. Hamare tested doosre host par switch karne mein lagbhag ek hafta lagta hai.
 :::
 
 ## Saar
 
-Customer kisi product ke liye tab paisa deta hai jab woh uske alternative se ek kaam behtar ya sasta karta hai. Isliye alternative price ki ceiling tay karta hai, aur seller ke apne costs floor.
+Phir bazaar ko sochiye. Customer tab paisa deta hai jab aapka product kaam ko uske doosre raaste se behtar ya sasta karta hai. Woh doosra raasta price ki ceiling tay karta hai. Aapke apne costs floor tay karte hain.
 
-- Ek company mein user, buyer aur blocker aam taur par teen alag log hote hain. Kisi cheez ki value jaanne ke liye poochiye ki woh aaj kya use karte hain, uska cost kya hai, aur use kisne approve kiya. Pichhla kharch saboot hai, waade nahi.
-- Seat, usage, outcome aur hybrid pricing, har ek alag taraf alag risk daalti hai. Jis cheez ko har baar chalane mein paisa lagta hai, uske liye flat seat price khatarnaak hai.
-- Ek customer ko serve karne ka poora cost low, base aur high usage par nikaaliye, kyunki margin ki problem aam taur par aakhri row mein hoti hai.
-- Likhiye ki agar supplier apni price doguni kar de toh margin ka kya hoga, aur switch karne mein kitna time lagega.
+- Ek company mein user, buyer aur blocker aam taur par teen alag log hote hain. Kisi cheez ki value jaanne ke liye poochiye ki woh aaj kya use karte hain, uska cost kya hai, aur use kisne approve kiya. Pichhla kharch saboot hai. Waade saboot nahi hain.
+- Seat, usage, outcome aur hybrid pricing, har ek alag taraf alag risk daalti hai. Jab har run mein paisa lagta ho, tab flat seat price khatarnaak hai.
+- Ek customer ko serve karne ka poora cost low, base aur high usage par nikaaliye. Margin ki problem aam taur par aakhri row mein hoti hai.
+- Likhiye ki agar supplier apni price doguni kar de toh margin ka kya hoga. Yeh bhi likhiye ki switch karne mein kitna time lagega.
 
 Jab price tay ho jaye, toh agla sawaal yeh hai ki log product ko kaise dhoondhte hain, aur kyun tikte hain.

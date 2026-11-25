@@ -9,31 +9,31 @@ window.PROJECT = {
   eyebrow: 'The one thing you build across the whole course',
   title: 'Your project: Bharat Privacy Guard',
   lead: [
-    'From the first chapter to the last, every capstone question is about one real project. So you don’t end up with sixty small exercises that have nothing to do with each other. You end up with one piece of work that you can show an employer, and that you understand from the inside.',
-    'The project is called <strong>Bharat Privacy Guard</strong>. It’s a small tool that sits between a person and a website, an app or an AI chatbot. Say someone types “my Aadhaar number is 4321 5678 9012”. The tool notices it. Then, before the number travels anywhere, the website can hide it, mask it, or ask whether it really needs it.',
-    'This page explains the project once, in plain words. Every capstone links back to one stage on this page. So you always know which piece you’re building, and why.'
+    'From the first chapter to the last, every capstone question (the big exercise at the end of a chapter) is about one real project. So you do not end up with sixty small exercises that have nothing to do with each other. You end up with one piece of work. You can show it to an employer, and you understand it from the inside.',
+    'The project is called <strong>Bharat Privacy Guard</strong>. Think of a guard at a society gate. This small tool stands between a person and a website, an app or an AI chatbot. Say someone types “my Aadhaar number is 4321 5678 9012”. The tool notices it. Before the number goes anywhere, the website can hide it, mask it, or ask if it really needs it.',
+    'This page explains the project once, in plain words. Every capstone links back to one stage on this page. So you always know which piece you are building, and why.'
   ],
 
   why: {
     title: 'Why this project, and why not just use Rampart',
     paras: [
-      'Rampart is an existing open tool that finds personal details in text. It was built and tested on English and six other European languages, all written in the Latin alphabet. Its own published model card says it does poorly on Hindi written in Devanagari script. When this page was written, it reported finding only about 14 out of every 100 personal details there. That model card may have changed since, and other tools for Hindi may exist. So Chapter A2 asks you to check the number yourself, not just trust this page.',
-      'People in India type in English, in Hindi, and in Hinglish, which is Hindi written in English letters. Often they switch between them inside one sentence. They also type things a European tool was never built to recognise: Aadhaar numbers, PAN cards, UPI IDs, mobile numbers that begin with 98. A tool that handles only one kind of writing leaves most of the problem untouched.',
-      'So this project isn’t a copy of Rampart. It asks one question. Can a small tool, light enough to run inside a browser or on a phone, find personal details in English, Hindi and Hinglish, and be honest about what it misses?'
+      'Rampart is an existing open tool (anyone can use it) that finds personal details in text. It was built and tested on English and six other European languages. All of them use the Latin alphabet. Its own published model card (the tool’s report card) says it does poorly on Hindi in Devanagari script. When this page was written, it found only about 14 out of every 100 personal details there. That model card may have changed since. Other tools for Hindi may exist. So in Chapter A2 you check the number yourself. Do not just trust this page.',
+      'People in India type in English, in Hindi, and in Hinglish. Hinglish is Hindi written in English letters. Often they switch inside one sentence. They also type things a European tool was never built to know: Aadhaar numbers, PAN cards, UPI IDs, mobile numbers that start with 98. A tool that handles only one kind of writing leaves most of the problem untouched.',
+      'So this project is not a copy of Rampart. It asks one question. Can a small tool find personal details in English, Hindi and Hinglish, and say honestly what it misses? The tool must be light enough to run inside a browser or on a phone.'
     ]
   },
 
   notThis: {
     title: 'What this project is not',
     paras: [
-      'It is not a “DPDP compliance engine”. India’s data protection law (the Digital Personal Data Protection Act, 2023, and the Rules notified in 2025) asks an organisation for much more than a tool that finds personal details. It asks for clear notices, consent, security safeguards, limits on how long data is kept, a way to handle breaches, and more. Finding and hiding personal details is one technical piece. It helps an organisation collect and pass on less data.',
-      'So in every document you write in this course, describe the project as “a privacy tool that helps an organisation collect and share less personal data”. Never write that it makes anyone compliant. The system card in Chapter 17 and the product requirements in Chapter 18 both ask you to write this limit down.'
+      'It is not a “DPDP compliance engine”. India’s data protection law (the Digital Personal Data Protection Act, 2023, and the Rules notified in 2025) is like a thick rulebook. It asks an organisation for much more than a tool that finds personal details. It asks for clear notices, consent, security safeguards, limits on how long data is kept, a way to handle breaches, and more. Finding and hiding personal details is one technical piece. It helps an organisation collect and pass on less data.',
+      'So in every document you write in this course, describe the project as “a privacy tool that helps an organisation collect and share less personal data”. Never write that it makes anyone compliant. Chapter 17’s system card and Chapter 18’s product requirements both ask you to write this limit down.'
     ]
   },
 
   how: {
     title: 'How the tool works: three finders and a rule-keeper',
-    intro: 'Text goes through the parts below in order. The first two are cheap and fast. The third costs more, so it only looks at the sentences the first two couldn’t settle. Then the rule-keeper decides what to do with everything that was found.',
+    intro: 'Text goes through the parts below in order, like a parcel passing a row of checkpoints. The first two are cheap and fast. The third costs more. So it only looks at the sentences the first two could not settle. Then the rule-keeper decides what to do with everything that was found.',
     flow: [
       'The person types or uploads',
       'Pattern checker',
@@ -45,50 +45,50 @@ window.PROJECT = {
     parts: [
       { name: 'The pattern checker',
         tech: 'Technical name: deterministic recognisers (regular expressions)',
-        plain: 'Finds details that always have the same shape.',
-        body: 'A PAN is always five capital letters, four digits and one capital letter. An Aadhaar number is twelve digits. A mobile number is ten digits that start with 6, 7, 8 or 9. Fixed rules can find all of these, with no AI at all. So the check is fast, free, and gives the same answer every time.' },
+        plain: 'Finds details that always have the same shape, like a train ticket number.',
+        body: 'A PAN is always five capital letters, four digits and one capital letter. An Aadhaar number is twelve digits. A mobile number is ten digits that start with 6, 7, 8 or 9. Fixed rules can find all of these. No AI is needed. So the check is fast and free. It gives the same answer every time.' },
       { name: 'The name-and-place finder',
         tech: 'Technical name: named-entity recognition (NER)',
-        plain: 'Finds details that have no fixed shape.',
-        body: 'Nothing about “Ramesh Jain”, “14 Sector 15, Gurgaon” or “Acme Bank” follows a pattern, so fixed rules can’t find them. Instead, a small language model reads the sentence. It marks people, addresses, workplaces, dates of birth and family relationships. It’s small enough to run on a phone or in a browser.' },
+        plain: 'Finds details that have no fixed shape, like a name in a crowd.',
+        body: 'Nothing about “Ramesh Jain”, “14 Sector 15, Gurgaon” or “Acme Bank” follows a pattern. So fixed rules cannot find them. Instead, a small language model reads the sentence. It marks people, addresses, workplaces, dates of birth and family relationships. It is small enough to run on a phone or in a browser.' },
       { name: 'The context judge',
         tech: 'Technical name: contextual risk scoring (quasi-identifiers)',
-        plain: 'Notices sentences that point to one person even though they contain no ID.',
-        body: '“I am the only diabetic patient in my village who had a transplant last year” has no name and no number, yet it points to one person. So a larger AI model is asked to judge sentences like this. But it only sees the few that the first two parts couldn’t settle, because it costs more and is slower.' },
+        plain: 'Notices sentences that point to one person even with no ID in them.',
+        body: '“I am the only diabetic patient in my village who had a transplant last year” has no name and no number. Yet it points to one person. So a larger AI model is asked to judge sentences like this. It sees only the few sentences the first two parts could not settle. It costs more and is slower.' },
       { name: 'The rule-keeper',
         tech: 'Technical name: policy engine (redaction and masking)',
-        plain: 'Decides what to do with everything that was found.',
-        body: 'For each detail it picks one action: remove it, mask it (98******12), let it through, or ask the person. The choice depends on why the website is collecting the data. A delivery address is needed for a delivery. An Aadhaar number isn’t needed to subscribe to a newsletter.' }
+        plain: 'Decides what to do with everything that was found, like a guard with a rulebook.',
+        body: 'For each detail it picks one action: remove it, mask it (98******12), let it through, or ask the person. The choice depends on why the website collects the data. A delivery address is needed for a delivery. An Aadhaar number is not needed to subscribe to a newsletter.' }
     ]
   },
 
   scope: {
     title: 'What you build, and what you only plan',
-    intro: 'One learner can’t build everything in the full idea during one course. So the course draws a line. In your own documents, say clearly which side of the line each piece is on.',
+    intro: 'One learner cannot build the whole idea in one course. So the course draws a line, like a chalk line on a playground. In your own documents, say clearly which side of the line each piece is on.',
     inTitle: 'You build this',
     inItems: [
       'Three kinds of writing: English, Hindi (Devanagari script) and Hinglish.',
       'Eleven kinds of ID that have a fixed shape: PAN, Aadhaar, mobile number, email, IFSC code, bank account number, UPI ID, GSTIN, passport number, vehicle registration and PIN code.',
       'Six kinds of detail that have no fixed shape: a person’s name, an address, an organisation, a date of birth, a family relationship and a profession.',
-      'A risk score for sentences that point to one person without any ID in them.',
-      'A rule-keeper that decides what to do with each finding, built twice (a fixed workflow and a bounded agent), with a person approving the risky actions and a measured comparison of the two.',
-      'One finished product: a developer kit (SDK), meaning a small library plus a demo page where you paste text and see it cleaned.'
+      'A risk score for sentences that point to one person with no ID in them.',
+      'A rule-keeper that decides what to do with each finding. You build it twice: as a fixed workflow and as a bounded agent (a helper with a step limit). A person approves the risky actions. You measure and compare the two.',
+      'One finished product: a developer kit (SDK). It is a small library (ready-made code others can borrow) plus a demo page. You paste text on the page and see it cleaned.'
     ],
     designedTitle: 'You design this on paper',
     designedItems: [
-      'The gateway: a version that sits in front of a company’s servers, logs and AI traffic. You write its plan, its architecture and its risks, but you don’t have to build it.',
-      'The browser extension: a version that warns a person before they submit a form. Also designed on paper only.'
+      'The gateway: a version that sits in front of a company’s servers, logs and AI traffic. You write its plan, its architecture and its risks. You do not have to build it.',
+      'The browser extension: a version that warns a person before they submit a form. You design this on paper only.'
     ],
     laterTitle: 'You leave this for later, and say so',
     laterItems: [
-      'Other Indian languages such as Tamil, Bengali, Telugu, Marathi and Gujarati. In your documents, say plainly that these aren’t covered yet.',
+      'Other Indian languages such as Tamil, Bengali, Telugu, Marathi and Gujarati. In your documents, say plainly that these are not covered yet.',
       'A phone app version of the developer kit.'
     ]
   },
 
   ids: {
     title: 'The eleven kinds of ID the pattern checker looks for',
-    intro: 'Every example below is made up. Use made-up values like these in your own work, and never put a real person’s details into a test file.',
+    intro: 'Every example below is made up. Use made-up values like these in your own work. Never put a real person’s details into a test file.',
     head: ['Kind of ID', 'Made-up example', 'The shape the rule looks for'],
     rows: [
       ['PAN', 'ABCDE1234F', 'five capital letters, four digits, one capital letter'],
@@ -107,7 +107,7 @@ window.PROJECT = {
 
   samples: {
     title: 'The starter sentences',
-    intro: 'Here are ten made-up sentences you can use from your very first chapter. They’re the first ten rows of your answer key (more on that below). Version 1 adds two messy sentences of your own. Copy them into a spreadsheet. Then use them whenever a capstone says “the starter sentences”.',
+    intro: 'Here are ten made-up sentences you can use from your very first chapter. They are the first ten rows of your answer key (the teacher’s list of right answers, explained below). Version 1 adds two messy sentences of your own. Copy them into a spreadsheet. Whenever a capstone says “the starter sentences”, use these.',
     head: ['No.', 'Kind of writing', 'Sentence', 'What is hidden inside it'],
     rows: [
       [1, 'English', 'Hi, I am Rahul Verma. My mobile number is 9876543210 and my email is rahul.verma@example.com.', 'a name, a mobile number, an email'],
@@ -126,8 +126,8 @@ window.PROJECT = {
   answerKey: {
     title: 'The answer key: one test file that grows through the whole course',
     paras: [
-      'A tool like this is only as good as its test. The answer key is a spreadsheet of sentences where you have already written down, by hand, what the tool should find. You run the tool, compare its answers with yours, and count the mistakes. You start the answer key in Chapter 2.2 and add to it in later chapters. Each time, save it as a new version of the same file instead of starting a new file.',
-      'Every row has six columns. First comes a number, then the kind of writing (English, Hindi or Hinglish), and then the sentence. After that come what should be found (the kind and the exact words), what should happen to it (remove, mask or leave alone), and a note.'
+      'A tool like this is only as good as its test. The answer key is a spreadsheet of sentences. For each one, you have already written down by hand what the tool should find, like a teacher’s answer key. You run the tool. You compare its answers with yours. You count the mistakes. You start the answer key in Chapter 2.2 and add to it in later chapters. Each time, save it as a new version of the same file. Do not start a new file.',
+      'Every row has six columns. First comes a number. Then the kind of writing (English, Hindi or Hinglish). Then the sentence. After that come what should be found (the kind and the exact words), what should happen to it (remove, mask or leave alone), and a note.'
     ],
     versionsHead: ['Version', 'Where you make it', 'Size', 'What goes in'],
     versions: [
@@ -144,7 +144,7 @@ window.PROJECT = {
       'A spelling mistake in the word next to an ID, such as “adhar” or “mobil”.',
       'Text that came out of a photo scan, where the letter O is mixed up with the digit 0.',
       'Speech typed by voice, with no punctuation at all.',
-      'A sentence that changes between Hindi script and English letters halfway through.',
+      'A sentence that changes from Hindi script to English letters halfway through.',
       'An invisible character hidden inside a number.'
     ]
   },
@@ -152,18 +152,18 @@ window.PROJECT = {
   reading: {
     title: 'How the capstone questions work',
     paras: [
-      'Each chapter ends with a capstone, written like an exam question. It has four parts. <strong>The situation</strong> tells you where you are in the project and what you already have. <strong>Your task</strong> is a numbered list, so do the steps in order. <strong>What to hand in</strong> lists exactly what you must have at the end. <strong>Where you do this</strong> says whether the work happens in a notebook (code) or on paper or in a document (writing).',
-      'Every capstone also shows which stage of the project it belongs to, with a link back to this page. Keep everything you make in the repository you set up in Chapter A1, in the folders that chapter asks for. By the last chapter, that repository is the project.'
+      'Each chapter ends with a capstone, written like an exam question. It has four parts. <strong>The situation</strong> tells you where you are in the project and what you already have. <strong>Your task</strong> is a numbered list. Do the steps in order. <strong>What to hand in</strong> lists exactly what you must have at the end. <strong>Where you do this</strong> says if the work happens in a notebook (code) or on paper or in a document (writing).',
+      'Every capstone also shows which stage of the project it belongs to, with a link back to this page. Keep everything you make in the repository (an online folder that remembers every change) you set up in Chapter A1. Use the folders that chapter asks for. By the last chapter, that repository is the project.'
     ]
   },
 
   stagesTitle: 'The thirteen stages of the project',
-  stagesIntro: 'Work through the stages in order. Each stage lists its chapters, says what the stage is for, and tells you what you’ll have when it’s finished. Chapter 34 has its own eleven stages, from discover to defend. Together they make up stage 12 here.',
+  stagesIntro: 'Work through the stages in order. Each stage lists its chapters, says what the stage is for, and tells you what you will have when it is finished. Chapter 34 has its own eleven stages, from discover to defend. Together they make up stage 12 here.',
 
   stages: [
     { id: 's1', title: 'Decide what you are building, and why',
       chapters: ['a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7', 'a8'],
-      plain: 'Before any code, you do the work a product manager does first. You name the problem and study the existing tool. You talk to real people, size the market and choose a strategy. Then you plan the work and write the requirements. You also run first experiments to see how AI models behave on Indian text.',
+      plain: 'Before any code, you do the work a product manager does first. You name the problem and study the existing tool. You talk to real people, size the market and choose a strategy. Then you plan the work and write the requirements. You also run first experiments. They show how AI models behave on Indian text.',
       endWith: [
         'A scorecard of your own skills, and a repository with a decision log',
         'A written teardown of Rampart, checked against its own model card',
@@ -173,7 +173,7 @@ window.PROJECT = {
       ] },
     { id: 's2', title: 'First contact: what does an AI model do with Indian text?',
       chapters: ['ch05', 'ch1', 'ch15b', 'ch2', 'ch21'],
-      plain: 'You try ready-made AI models on the starter sentences. You see how text is cut into small pieces and what one check costs. Then you learn to write clear instructions that get a model to find personal details.',
+      plain: 'You try ready-made AI models on the starter sentences. You see how text is cut into small pieces (tokens, like Lego bricks) and what one check costs. Then you learn to write clear instructions that get a model to find personal details.',
       endWith: [
         'Token counts for English, Hindi and Hinglish side by side',
         'The measured cost of checking one message, and a thousand',
@@ -181,7 +181,7 @@ window.PROJECT = {
       ] },
     { id: 's3', title: 'The answer key and the first sorter',
       chapters: ['ch22', 'ch23', 'ch24', 'ch25'],
-      plain: 'You build the answer key, the test file the whole project depends on. Then you break the big job into small tasks. You also build a sorter that says whether a piece of text is a PAN, an Aadhaar number or a mobile number.',
+      plain: 'You build the answer key, the test file the whole project depends on. Then you break the big job into small tasks. You also build a sorter. It says whether a piece of text is a PAN, an Aadhaar number or a mobile number.',
       endWith: [
         'Answer key version 1, with twelve labelled rows',
         'A task breakdown of the whole tool',
@@ -190,7 +190,7 @@ window.PROJECT = {
       ] },
     { id: 's4', title: 'The pattern checker and the meaning finder',
       chapters: ['ch3', 'ch4', 'ch5'],
-      plain: 'You build the first real part of the tool, the pattern checker, and find out where fixed rules fail. Then you try finding things by their meaning instead of their exact shape.',
+      plain: 'You build the first real part of the tool, the pattern checker. You find where fixed rules fail. Then you try finding things by their meaning, not their exact shape.',
       endWith: [
         'A rule for cutting long text without splitting an ID in half',
         'A working pattern checker for the eleven kinds of ID, with its failures written down',
@@ -198,7 +198,7 @@ window.PROJECT = {
       ] },
     { id: 's5', title: 'Measure it, then take stock',
       chapters: ['ch6', 'ch7', 'ch75'],
-      plain: 'You put a number on how good the tool is. Then you write an honest page about what it can’t do yet.',
+      plain: 'You put a number on how good the tool is. Then you write an honest page about what it cannot do yet.',
       endWith: [
         'A scoreboard: how many details were found, missed or wrongly flagged, for each kind of ID and each kind of writing',
         'A note saying whether this version is good enough to ship',
@@ -217,7 +217,7 @@ window.PROJECT = {
       ] },
     { id: 's7', title: 'Make it better, then attack it',
       chapters: ['ch12', 'ch13', 'ch14', 'ch145'],
-      plain: 'You improve the tool one change at a time and measure each change. Then you try to break it. Can a sentence hidden in the text give orders to the AI? You build an automatic marker to check the tool’s work. And you read a hundred real outputs by hand, to learn what goes wrong.',
+      plain: 'You improve the tool one change at a time and measure each change. Then you try to break it. Can a sentence hidden in the text give orders to the AI? You build an automatic marker (a second student who marks the homework) to check the tool’s work. And you read a hundred real outputs by hand, to learn what goes wrong.',
       endWith: [
         'A table showing which improvement helped and what it cost',
         'A security audit of your own tool',
@@ -234,7 +234,7 @@ window.PROJECT = {
       ] },
     { id: 's9', title: 'Write the plan and the paperwork',
       chapters: ['ch17', 'ch18', 'ch185', 'ch19', 'ch20', 'ch205'],
-      plain: 'You write the documents a real team would ask for. These are a system card, a requirements document and a build-or-buy recommendation. You also write an answer on whether to fine-tune a model, the screens for the four ways the tool can answer, and a pilot plan.',
+      plain: 'You write the documents a real team would ask for. These are a system card, a requirements document and a build-or-buy recommendation. You also write an answer on whether to fine-tune a model (coach it on many examples). You design the screens for the four ways the tool can answer, and write a pilot plan.',
       endWith: [
         'A system card that says what the tool can and cannot do',
         'A requirements document that survives a change of model',
@@ -245,7 +245,7 @@ window.PROJECT = {
       ] },
     { id: 's10', title: 'Build it properly',
       chapters: ['ch8f', 'ch9m', 'ch10c', 'ch11r', 'ch12t', 'ch13a', 'ch14p', 'ch15mm', 'ch16e'],
-      plain: 'You move from experiments to engineering. You set up one test harness kept in Git, and choose a model with a back-up. You plan what the model sees and design the gateway. Then you build a workflow that can propose but not act alone, and compare it with an agent. After that you write an access policy for tools and plan for images and voice. Last, you build a release gate.',
+      plain: 'You move from experiments to engineering. You set up one test harness (a ready test rig) kept in Git, and choose a model with a back-up. You plan what the model sees and design the gateway. Then you build a workflow that can propose but not act alone, and compare it with an agent. After that you write an access policy for tools and plan for images and voice. Last, you build a release gate.',
       endWith: [
         'A test harness in Git that runs the answer key and prints the scoreboard',
         'A model choice with a named back-up',
@@ -255,7 +255,7 @@ window.PROJECT = {
       ] },
     { id: 's11', title: 'Run it safely',
       chapters: ['ch17o', 'ch18s', 'ch19pm', 'ch20d'],
-      plain: 'You decide how to watch the tool once it’s live. You list what can go wrong and how you would notice. Then you write the full product requirements and pull everything into a ten-slide decision pack.',
+      plain: 'You decide how to watch the tool once it is live. You list what can go wrong and how you would notice. Then you write the full product requirements. You pull everything into a ten-slide decision pack.',
       endWith: [
         'A six-panel plan for watching the tool in use',
         'A risk register in which every risk ends with a test',
@@ -264,7 +264,7 @@ window.PROJECT = {
       ] },
     { id: 's12', title: 'Ship it and defend it',
       chapters: ['ch21cap'],
-      plain: 'You put everything together: the working tool, its evidence and its limits. You write one findings document. Then you prepare to explain it to a non-technical leader, and to an engineer who will try to find holes in it.',
+      plain: 'You put everything together: the working tool, its evidence and its limits. You write one findings document. Then you prepare to explain it to a non-technical leader. You also prepare for an engineer who will try to find holes in it.',
       endWith: [
         'A repository that works on a clean machine',
         'A findings document: what you built, what broke, who used it and what the evidence shows',
@@ -284,13 +284,13 @@ window.PROJECT = {
   wordsTitle: 'Words this project uses',
   words: [
     ['PII', 'Personally identifiable information: any detail that can point to one real person, such as a name, a phone number or an Aadhaar number.'],
-    ['Quasi-identifier', 'A detail that is harmless alone but can point to one person when combined with others, such as age, village and a rare illness.'],
+    ['Quasi-identifier', 'A detail that is harmless alone but can point to one person when you put it together with others, such as age, village and a rare illness.'],
     ['Redact', 'To remove a detail completely, for example by replacing it with [PAN].'],
     ['Mask', 'To hide part of a detail but keep its shape, for example 98******12.'],
     ['Found, missed, false alarm', 'Found means the tool caught a real detail. Missed means a real detail got through. False alarm means the tool flagged something that is not personal.'],
-    ['Recall', 'Out of all the real personal details, the share the tool found. If there are 100 and it finds 90, recall is 90%.'],
-    ['Precision', 'Out of everything the tool flagged, the share that really was personal. If it flags 100 and 80 are real, precision is 80%.'],
-    ['SDK', 'A small ready-made library that a developer adds to their own website or app, so they do not have to build the feature themselves.'],
+    ['Recall', 'Recall: of all the fish in the pond, how many did your net catch? Here, of all the real personal details, the share the tool found. If there are 100 and it finds 90, recall is 90%.'],
+    ['Precision', 'Precision: of what is in your net, how much is really fish? Here, of everything the tool flagged, the share that really was personal. If it flags 100 and 80 are real, precision is 80%.'],
+    ['SDK', 'A small ready-made library (code others wrote) that a developer adds to their own website or app. Then they do not have to build the feature themselves.'],
     ['Hinglish', 'Hindi written in English letters, often mixed with English words.']
   ]
 };

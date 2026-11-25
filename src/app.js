@@ -1124,7 +1124,7 @@ function renderChapter(c){
   const cs=h('section',{class:'part',id:'close'});
   if(!plain){
     cs.appendChild(sectionHead(c.num+'.'+n++,'Close the sitting'));
-    cs.appendChild(h('p',{class:'prose',html:T('Write three short lines, then stop, even if you want to keep going. Stopping with energy left makes it easier to come back next time.')}));
+    cs.appendChild(h('p',{class:'prose',html:T('Write three short lines, then stop, even if you want to keep going. If you stop while you still have energy, it is easier to come back next time.')}));
     cs.appendChild(notebookBlock(c,'close','Three lines: what confused me / what clicked / what to try next',
       'Three minutes. Then close it.'));
   }
@@ -2808,8 +2808,8 @@ function pageDecisionLog(){
   return pageLog('adr',{
     eyebrow:T('Decision Log'),
     title:T('Every decision you would not want to re-argue'),
-    blurb:T('One entry per Architecture Decision Record you have written — model choice, retrieval strategy, workflow versus agent, build versus buy, vendor risk, anything expensive to reverse. The same form the workbench uses; this page just reads it as a log instead of a template.'),
-    empty:T('No decisions logged yet. Write one the first time you catch yourself defending a choice out loud — that is the sign it belongs here.'),
+    blurb:T('One entry for each Architecture Decision Record you have written: a note of one big choice, and why you made it. For example: the model, the retrieval strategy, workflow or agent, build or buy, vendor risk, or anything costly to undo. It is the same form the workbench uses. This page shows it as a log, not a template.'),
+    empty:T('No decisions logged yet. Write one the first time you hear yourself defending a choice out loud. That is the sign it belongs here.'),
     cta:T('+ Log a decision')
   });
 }
@@ -2817,8 +2817,8 @@ function pageFailureLog(){
   return pageLog('fail',{
     eyebrow:T('Failure Log'),
     title:T('What broke, and what you did about it'),
-    blurb:T('One entry per Failure Finding — the build-break-measure-fix loop this course keeps returning to, written down instead of just fixed and forgotten. A full failure log is often the most convincing thing you bring to a review.'),
-    empty:T('No failures logged yet. The first one you deliberately break in Chapter 21’s Break stage is a good place to start.'),
+    blurb:T('One entry for each Failure Finding. It is the build, break, measure and fix loop this course keeps coming back to, written down instead of fixed and forgotten. A full failure log is often the most convincing thing you bring to a review.'),
+    empty:T('No failures logged yet. A good first one: the thing you break on purpose in the Break stage of Chapter 21.'),
     cta:T('+ Log a failure')
   });
 }
@@ -2831,7 +2831,7 @@ function pageEvidence(){
   w.appendChild(h('header',{class:'phead'},[
     h('div',{class:'eyebrow'},[h('span',{text:T('Appendices A and B')})]),
     h('h1',{text:T('The Artifact Vault')}),
-    h('p',{html:T('Everywhere the course tells you to build, break or decide something, it lands here: twenty-nine artifacts, each one an experiment, a piece of engineering, a decision, or evidence. This page holds the running list, the sixteen-week map, and the thirteen things you should be able to do at the end. Your decisions and your failures also get a page of their own — they are the two kinds of artifact worth reading as a log rather than a list.')})]));
+    h('p',{html:T('Every time the course asks you to build, break or decide something, the result lands here. There are twenty-nine artifacts (pieces of work). Each is an experiment, a piece of engineering, a decision, or evidence. This page holds the running list, the sixteen-week map, and the thirteen things you should be able to do at the end. Your decisions and your failures also get a page each. Those two are worth reading as a log, not a list.')})]));
   w.appendChild(h('div',{class:'chiprow',style:'margin:0 0 1.2rem'},[
     h('a',{class:'chip',href:'#/decisions',text:T('→ Decision Log')}),
     h('a',{class:'chip',href:'#/failures',text:T('→ Failure Log')})]));
@@ -2888,7 +2888,7 @@ function pageEvidence(){
   const secA=h('section',{class:'part'});
   secA.appendChild(sectionHead('A',T('Sixteen-week study map')));
   secA.appendChild(h('p',{class:'prose',style:'font-size:1rem',
-    html:T('This map was written for sixteen weeks; the route runs twenty-six. Either way the pace is not a deadline. The useful column is the last one: a block is cleared when the evidence exists, not when the weeks have passed.')}));
+    html:T('This map was written for sixteen weeks. The route runs twenty-eight. Either way, the pace is not a deadline. Look at the last column: a block is done when the evidence exists, not when the weeks have passed.')}));
   const mapList=h('div',{class:'smap'});
   map.forEach((b,i)=>{
     const box=h('input',{type:'checkbox','aria-label':b.when+' — '+b.focus});

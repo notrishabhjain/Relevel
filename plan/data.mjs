@@ -118,27 +118,27 @@ export const MONTHS = ROUTE_MONTHS;
 export const WEEKS = ROUTE_WEEKS.map(w => ({ ...w, further: FURTHER[w.n] || [] }));
 
 export const GATES = [
-  { id: 'M1', month: 1, pass: 'The first four weeks ticked, or nearly: the book’s first seven chapters read, and A1 to A7 done on a first pass right after each one.', cut: 'If you missed days, do not catch up in one go. Carry on from the first open step and let the dates slide.',
+  { id: 'M1', month: 1, pass: 'The first four weeks ticked, or nearly. You read the book’s first seven chapters. After each one, you did A1 to A7 on a first pass.', cut: 'If you missed days, do not catch up all at once. Carry on from the first open step and let the dates slide.',
     ask: ['What could you show a recruiter today? Paste the link.', 'What does one of your three postings ask for that you cannot yet show?'] },
-  { id: 'M2', month: 2, pass: 'A model connected, your first model call costed, a system prompt tested, your first answer key, a sorter with a score, and your first door chosen with five named employers written down.', cut: 'Never cut the first model call. If time is short, keep the answer key and do the summary chapter on a first pass.',
+  { id: 'M2', month: 2, pass: 'A model connected. Your first model call, with its cost worked out. A system prompt (the standing instructions) that you tested. Your first answer key. A sorter with a score. Your first door chosen, with five employers written down by name.', cut: 'Never cut the first model call. If time is short, keep the answer key. Do the summary chapter on a first pass.',
     ask: ['What could you show a recruiter today? Paste the link.', 'Re-read one posting from your table. What changed in what you can prove?'] },
-  { id: 'M3', month: 3, pass: 'Search by words and by meaning compared on a scoreboard, version 0 of the findings page published with a link and the repository public, and an extractor that says “not sure”.', cut: 'Publish the findings page with whatever numbers you have. An honest short page beats a perfect missing one.',
+  { id: 'M3', month: 3, pass: 'Search by words and search by meaning, compared on a scoreboard. Version 0 of the findings page, published with a link, and the repository made public. An extractor (code that pulls out details) that can say “not sure”.', cut: 'Publish the findings page with the numbers you have. A short, honest page is better than a perfect page that does not exist.',
     ask: ['What could you show a recruiter today? Paste the link.', 'What would a stranger change first on your findings page?'] },
-  { id: 'M4', month: 4, pass: 'The attack on your own tool, a checked automatic marker, a cost model, the system card, the requirements, the build-or-buy call, and your first two applications or conversations started.', cut: 'Do the chapters on a first pass, which means: read it, answer the boxes, run the page’s own tools, and write “later” beside the project task. Keep one hands-on result per week.',
+  { id: 'M4', month: 4, pass: 'The attack on your own tool. An automatic marker that you have checked. A cost model. The system card. The requirements. The build-or-buy decision. Your first two applications or conversations, started.', cut: 'Do the chapters on a first pass. That means: read it, answer the boxes, run the page’s own tools, and write “later” beside the project task. Keep one hands-on result each week.',
     ask: ['What could you show a recruiter today? Paste the link.', 'Re-read one posting from your table. What changed in what you can prove?'] },
-  { id: 'M5', month: 5, pass: 'Your model choice with a back-up, the tool access policy, the release gate, the risk register and the decision pack.', cut: 'If time is short, keep the release gate and the risk register; the others can be one page each.',
-    ask: ['What could you show a recruiter today? Paste the link.', 'Which posting from your table could you now answer in full, and which part is still missing?'] },
-  { id: 'M6', month: 6, pass: 'Bharat Privacy Guard shipped with its findings document and demo, a role matrix from ten postings, a case study with real numbers, a public portfolio page, six career stories written, and practice interviews recorded.', cut: 'Do not cut this one. Move it into May rather than skip it.',
+  { id: 'M5', month: 5, pass: 'Your model choice, with a back-up. The tool access policy (which tools the model may use). The release gate (the check before launch). The risk register (a list of what could go wrong). The decision pack.', cut: 'If time is short, keep the release gate and the risk register. The others can be one page each.',
+    ask: ['What could you show a recruiter today? Paste the link.', 'Which posting from your table could you now answer in full? Which part is still missing?'] },
+  { id: 'M6', month: 6, pass: 'Bharat Privacy Guard shipped, with its findings document and demo. A role matrix from ten postings. A case study with real numbers. A public portfolio page. Six career stories written. Practice interviews recorded.', cut: 'Do not cut this one. Move it into May. Do not skip it.',
     ask: ['What could you show a recruiter today? Paste the link.', 'Re-read one posting from your table. What changed in what you can prove?'] }
 ].map(g => ({ ...g, date: ROUTE_MONTHS[g.month - 1].dates.split(' – ')[1] }));
 
 export const RULES = [
-  'One route. The playbook, the book and this plan follow the same steps in the same order. If two of them ever disagree, the route page in the playbook wins, and that is a bug to report.',
-  'Story first, then the chapter. Read a chapter’s story in the book before you do the chapter in the playbook.',
-  'Ten minutes is a real day. On a bad day do one page and tick it. A small day counts; a zero day does not.',
-  'Never miss twice. One missed day is life. Two in a row is a new habit.',
-  'Behind is fine. Carry on from the first open step; the dates are a guide, not a judge. Never skip a step to catch up.',
+  'One route. The playbook, the book and this plan follow the same steps in the same order. If two of them ever disagree, the route page in the playbook is right. Report the mismatch as a bug.',
+  'Story first, then the chapter. Read a chapter’s story in the book. Then do the chapter in the playbook.',
+  'Ten minutes is a real day. On a bad day, do one page and tick it. A small day counts. A zero day does not.',
+  'Never miss twice. One missed day is normal life. Two in a row starts a new habit.',
+  'Behind is fine. Carry on from the first open step. The dates are a guide, not a judge. Never skip a step to catch up.',
   'First pass now, the long build later. The “Build it” sections in Track A and Track B are optional on the route. Write “later” next to them and move on.',
-  'Parking lot, not action. New courses, tools and side projects go in the parking lot and wait for the monthly review.',
-  'Friday look back. Three lines in your notepad every week: what made sense, what didn’t, one question.'
+  'Parking lot, not action. Put new courses, tools and side projects in the parking lot. They wait for the monthly review.',
+  'Friday look back. Write three lines in your notepad every week: what made sense, what did not, one question.'
 ];
