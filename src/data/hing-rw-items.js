@@ -19,22 +19,16 @@ Object.assign(window.HING = window.HING || {}, {
     'Har region ke liye monthly sales tax calculate karna',
   'Letting employees book meeting rooms':
     'Employees ko meeting rooms book karne dena',
-  'A team ships an AI meeting summariser that tested well. Usage stays near zero, and interviews show most users never noticed it. Which part of the product loop failed?':
-    'Ek team ek AI meeting summariser ship karti hai jo achha test hua. Usage zero ke kareeb rehta hai, aur interviews dikhate hain zyadatar users ne kabhi notice hi nahi kiya. Product loop ka kaunsa hissa fail hua?',
   'Discovery: nobody wanted a summariser':
     'Discovery: kisi ko summariser nahi chahiye tha',
   'Distribution: users never found or tried the feature':
     'Distribution: users ne feature kabhi dhoondha ya try nahi kiya',
-  'Users at a large company love your AI writing tool during a pilot. Who is most likely to block the purchase?':
-    'Ek badi company mein users pilot ke dauraan aapke AI writing tool se pyaar karte hain. Purchase block karne ki sambhavna sabse zyada kiski hai?',
   'The end users who tried it':
     'Woh end users jinhone isey try kiya',
   'Your own engineering team':
     'Aapki apni engineering team',
   'The AI model provider':
     'AI model provider',
-  'Which of these are feasibility risks for an AI feature?':
-    'Inme se kaunse ek AI feature ke liye feasibility risks hain?',
   'Whether the model is right often enough on your own data':
     'Kya model aapke apne data par kaafi baar sahi hai',
   'Whether responses come back fast enough for the task':
@@ -51,8 +45,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Mujhe bataiye pichhli baar jab aapne report taiyaar ki, aapne sabse pehle kya kiya?',
   'Do you think AI could make this easier?':
     'Kya aapko lagta hai AI isey aasaan bana sakta hai?',
-  'Which of these is a leading question?':
-    'Inme se kaunsa ek leading question hai?',
   'What happened the last time a customer complaint was missed?':
     'Pichhli baar jab ek customer complaint miss hui to kya hua?',
   'Isn’t it frustrating to read hundreds of tickets every week?':
@@ -63,8 +55,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Iske liye aaj aap kaunse tools use karte hain?',
   'It should mention the manager’s age and location':
     'Ismein manager ki age aur location mention honi chahiye',
-  'Which of these market estimates is bottom-up?':
-    'Inme se kaunsa market estimate bottom-up hai?',
   'Analysts expect AI support tools to grow 30% a year':
     'Analysts expect karte hain AI support tools 30% saal mein badhenge',
   '8,000 companies use the help desk we integrate with, and each would pay about $1,200 a year':
@@ -117,8 +107,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Report preparation 10 mein se 8 design partners ke liye lagbhag 3 ghante se 30 minute se kam ho jaata hai',
   'Hold weekly meetings with the support team':
     'Support team ke saath weekly meetings rakhiye',
-  'Your key result is “alerts sent per week”. Which guardrail metric best stops a team from gaming it?':
-    'Aapka key result hai "alerts sent per week". Kaunsa guardrail metric ek team ko isey game karne se sabse achhe se rokta hai?',
   'Model latency stays below 2 seconds':
     'Model latency 2 second se neeche rehti hai',
   'Fewer than 1 in 5 alerts are dismissed as not useful':
@@ -127,8 +115,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Alerts sent per week har mahine 10% badhta hai',
   'Engineering velocity stays constant':
     'Engineering velocity constant rehti hai',
-  'What is a pre-mortem?':
-    'Pre-mortem kya hai?',
   'A review held after a project fails, to find out what went wrong':
     'Ek project fail hone ke baad hone wala review, yeh pata lagane ke liye ki kya galat hua',
   'Imagining that the project has already failed, and writing down why, before you start':
@@ -137,8 +123,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Security team ke paas rakha ek risk register',
   'A final test run just before launch':
     'Launch se thodi pehle chalaya gaya ek final test run',
-  'Which acceptance criterion could an engineer actually test for an AI feature?':
-    'Ek AI feature ke liye kaunsa acceptance criterion ek engineer asal mein test kar sakta hai?',
   'The summaries are accurate and helpful':
     'Summaries accurate aur helpful hain',
   'The model never makes a mistake':
@@ -147,8 +131,6 @@ Object.assign(window.HING = window.HING || {}, {
     '50-ticket test set par, kam se kam 85% themes support lead ki apni grouping se match karti hain',
   'Users are happy with the themes':
     'Users themes se khush hain',
-  'Which of these is a vertical slice?':
-    'Inme se kaunsa ek vertical slice hai?',
   'Build the full data import for all five help desks first':
     'Pehle saaron paanch help desks ka poora data import banayiye',
   'Design every screen of the product before writing any code':
@@ -169,8 +151,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Current policy retrieve kijiye aur har relevant sawaal ke context mein daaliye',
   'Add “always be accurate about policy” to the system prompt':
     'System prompt mein "hamesha policy ke baare mein accurate raho" jodiye',
-  'You paste your company’s style guide into a prompt. Which statement is true?':
-    'Aap apni company ka style guide ek prompt mein paste karte hain. Kaunsa statement sach hai?',
   'The model learns the style guide permanently':
     'Model style guide ko permanently seekh leta hai',
   'Every other user of the model now follows your style guide':
@@ -201,8 +181,6 @@ Object.assign(window.HING = window.HING || {}, {
     '$12.00',
   '$48.00':
     '$48.00',
-  'Your AI product is priced per seat. Which change most directly protects your margin from heavy users?':
-    'Aapka AI product per seat priced hai. Kaunsa change heavy users se aapka margin sabse seedhe protect karta hai?',
   'Lower the seat price to win more customers':
     'Zyada customers jeetne ke liye seat price kam kijiye',
   'Include a usage allowance per seat, and charge for usage above it':
@@ -211,8 +189,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Free trial hataiye',
   'Switch to a cheaper hosting provider':
     'Ek sasta hosting provider par switch kijiye',
-  'For an AI note-taking app, which event is the best definition of activation?':
-    'Ek AI note-taking app ke liye, activation ki sabse achhi definition kaunsa event hai?',
   'The user creates an account':
     'User ek account banata hai',
   'The user installs the browser extension':
@@ -239,8 +215,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Har naye team ke corrections theme grouping ko har doosri team ke liye behtar banate hain, unki consent ke saath',
   'Users post screenshots of the product on social media':
     'Users social media par product ke screenshots post karte hain',
-  'Your North Star is “weekly teams that act on a theme”. Which is a good input metric?':
-    'Aapka North Star hai "weekly teams jo ek theme par action lete hain". Kaunsa ek achha input metric hai?',
   'Total revenue this quarter':
     'Is quarter ka total revenue',
   'Share of themes that users mark as useful':
@@ -285,8 +259,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Agent ke bheje har message ko log kijiye',
   'The agent, because agents are more advanced':
     'Agent, kyunki agents zyada advanced hain',
-  'The workflow, because it is more reliable, faster and easier to debug for a fixed process':
-    'Workflow, kyunki yeh ek fixed process ke liye zyada reliable, tez aur debug karna aasaan hai',
   'Both, and let users choose':
     'Dono, aur users ko chunne dijiye',
   'Neither until both score 20/20':
@@ -301,8 +273,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek pricing page',
   'Support for every browser':
     'Har browser ke liye support',
-  'In interviews, users say a feature is essential. Analytics show fewer than 5% use it. What should you do next?':
-    'Interviews mein, users kehte hain ek feature essential hai. Analytics dikhate hain 5% se kam use karte hain. Aapko aage kya karna chahiye?',
   'Trust the interviews and invest more in the feature':
     'Interviews par trust kijiye aur feature mein zyada invest kijiye',
   'Trust the analytics and delete the feature immediately':
@@ -319,8 +289,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Dono test karne ke baad ek agent ki jagah ek fixed workflow chuna, failed runs 15% se 5% tak kaat diye',
   'Responsible for the AI roadmap':
     'AI roadmap ke liye responsible',
-  'In a metrics interview you hear: “Daily active users fell 10% yesterday. Why?” What should you do first?':
-    'Ek metrics interview mein aap sunte hain: "Daily active users kal 10% gir gaye. Kyun?" Aapko sabse pehle kya karna chahiye?',
   'Propose a new feature to win users back':
     'Users ko wapas jeetne ke liye ek naya feature propose kijiye',
   'Check whether the drop is real: data or logging problems, and known events such as a holiday':
@@ -337,8 +305,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Bataiye aapne kya expect kiya, kya hua, aapne kya seekha aur baad mein kya badla',
   'Describe the project’s successes instead':
     'Iski jagah project ki successes describe kijiye',
-  'Your capstone has an excellent eval set and a strong security review, but no pricing or cost model. Which gate will it fail?':
-    'Aapke capstone mein ek excellent eval set aur ek strong security review hai, lekin koi pricing ya cost model nahi. Yeh kaunsa gate fail karega?',
   'Technical':
     'Technical',
   'None; strong technical evidence is enough':

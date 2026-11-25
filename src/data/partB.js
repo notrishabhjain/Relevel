@@ -15,31 +15,31 @@ window.PART7 = [
 {
   id:'b1', num:'B1', part:7, curriculumTier:'selective', phase:6, prerequisites:['a4','ch15','ch185'], nextUnits:['b8'], minutes:720, labs:[],
   title:'Business models, pricing and unit economics',
-  concept:'In this chapter you’ll work out who pays for your product, how to charge them, and whether each customer makes you money or loses it. You’ll model the real cost of an AI task, compare pricing models, and write a pricing recommendation that names its risks.',
+  concept:'In this chapter you find out who pays for your product and how much to charge. You also check if each customer earns you money or costs you money. You work out the real cost of one AI task, like paying per SMS. Then you compare pricing models (ways to set a price) and write a pricing recommendation that names its risks.',
   takeaway:[
-    'Separate the person who pays from the person who uses the product and the person who can block the purchase.',
-    'Compare seat, usage, outcome and hybrid pricing, and say which risk each one moves to whom.',
-    'Calculate the cost per successful task, including retries, human review and support.',
-    'Tell a real flywheel from a hopeful one, and keep it within what users agreed to.',
-    'Name the ways a model vendor can squeeze your margin, and what you would do about each.'
+    'Tell three people apart: the one who pays, the one who uses the product, and the one who can stop the purchase. Think of a parent who pays, a child who uses, and a school that can say no.',
+    'Compare seat pricing (a fixed fee per user), usage pricing (pay per use), outcome pricing (pay per result) and hybrid pricing (a mix). Say which risk each one hands to whom.',
+    'Work out the cost per successful task. Count the retries (tries done again), the human review (a person checking the work) and the support time too.',
+    'Tell a real flywheel from a hopeful one. A flywheel is a loop where use makes the product better, and that brings more use. Keep it inside what users agreed to.',
+    'Name the ways a model vendor (the company that sells you the model) can squeeze your margin (what is left after costs). Say what you would do about each one.'
   ],
-  needs:[['A sized market and named alternatives','You set a price against what the customer would do instead.','A4'],
-         ['Cost per query','The cost stack in Idea 3 starts from it.',15],
-         ['Build or buy','Depending on a vendor is the other side of that decision.',18.5]],
+  needs:[['A sized market (how many buyers there are) and named alternatives','You set a price by asking what the customer would do instead.','A4'],
+         ['Cost per query','Idea 3 builds the cost stack (every cost, piled up in a list) from it.',15],
+         ['Build or buy','Relying on a vendor is the other side of that decision.',18.5]],
   capstone:{
-    title:'Decide how to charge, and prove the numbers',
-    brief:'A tool that people love can still fail if it loses money on every message. In this chapter you learned to separate the person who pays from the person who uses and the person who can block. You also learned to compare ways of pricing, and to work out the cost of one successful task, including retries, human review and support. Here you decide how Bharat Privacy Guard should be priced.',
-    where:'Written work. Interviews and a cost spreadsheet. No code is needed.',
+    title:'Decide the price, and show your numbers are right',
+    brief:'A tool people love can still fail if it loses money on every message, like a chai stall that sells below cost. You learned to tell the payer, the user and the blocker apart. You compared ways to price. You worked out the cost of one successful task, with retries, human review and support. Now you decide how Bharat Privacy Guard should be priced.',
+    where:'Written work. Interviews and a cost spreadsheet (a grid of numbers). No code is needed.',
     steps:[
-      'Interview five possible buyers, a mix of developers and compliance people. Ask what they use today, who owns the budget, and what the problem costs them. Don’t ask “would you pay?”.',
-      'Build a cost table for one successfully cleaned message at low, base and high usage. Include retries, human review of unsure cases and support time as their own lines, not only the model calls.',
-      'Design three pricing packages, for example a free open-source kit, a paid hosted service, and a gateway for companies. For each, say who pays, what is counted, and who carries the risk if usage jumps.',
-      'Plan a short survey that asks people at what price the tool is too cheap, fair, expensive and too expensive.',
-      'Write a one-page pricing recommendation: the price, the margin at high usage, what happens to the margin if the model provider doubles its price, and the risks.'
+      'Interview five possible buyers. Pick a mix of developers and compliance people. Ask what they use today, who owns the budget, and what the problem costs them. Do not ask “would you pay?”.',
+      'Build a cost table for one successfully cleaned message at low, base and high usage. Give retries, human review of unsure cases and support time their own lines. Do not count only the model calls.',
+      'Design three pricing packages. For example: a free open-source kit, a paid hosted service, and a gateway for companies. For each one, say who pays, what is counted, and who carries the risk if usage jumps.',
+      'Plan a short survey. It asks at what price the tool is too cheap, fair, expensive and too expensive.',
+      'Write a one-page pricing recommendation. Put in the price and the margin at high usage. Say what happens to the margin if the model provider doubles its price. Name the risks.'
     ],
     done:[
-      'Five interviews, each naming the current alternative and who signs off the spend.',
-      'A cost table with low, base and high rows, and support time on its own line.',
+      'Five interviews. Each one names the current alternative and who signs off the spend.',
+      'A cost table with low, base and high rows. Support time sits on its own line.',
       'Three pricing packages and a survey plan.',
       'A recommendation that states the margin at high usage and what a doubled model price does.',
       'A score from 0 to 3 for each item above, using this chapter’s scale, like marking your own homework. Move on only when every score is 2 or more, and no safety, privacy or evidence item scores 0.'
@@ -54,131 +54,131 @@ window.PART7 = [
      'For Theme Finder, the behaviour is a lead correcting a theme label. That improves the customer’s own results straight away. Using one customer’s tickets to improve results for another customer is a different matter. It needs their contract and their consent. So the safe default is to keep each customer’s corrections inside their own account.']
   ],
   story:[
-    ['c','Before you start','Plan for about twelve hours, spread over several sittings. Keep your market sizing from A4 open, along with the cost per query numbers from Chapter 15. You’ll need five prospects to interview, so start booking them now.'],
-    ['p','So far you’ve been asking whether an AI system works. This chapter asks a different question: if it works, can it pay for itself? We’ll go through it in five ideas, and at the end you’ll write a pricing recommendation you can defend.'],
+    ['c','Before you start','Plan for about twelve hours, over several sittings. Keep your market sizing from A4 open. Keep the cost per query numbers from Chapter 15 open too. You need five prospects (people who might buy) to interview, so start booking them now.'],
+    ['p','So far you asked: does the AI system work? Now you ask a new question. If it works, can it pay for itself? Think of a chai stall that must earn more than it spends. We go through five ideas. At the end you write a pricing recommendation you can defend.'],
 
     ['h','Idea 1: Value and willingness to pay'],
-    ['p','Start with a simple question. Why would anyone pay for your product? Because it does a job better or cheaper than what they do today. So the price ceiling comes from that alternative, not from your costs. Your costs only set the floor.'],
-    ['p','In products sold to businesses, three different people usually matter. The table below shows them, using the Theme Finder example. Notice that each one cares about something different.'],
-    ['tb',['Role','Theme Finder example','What they care about'],[
-      ['User','Support lead','Getting Monday morning back'],
-      ['Buyer','Head of support','A number to show their own manager'],
-      ['Blocker','Security lead','Where ticket data goes and who can see it']
+    ['p','Start with one question. Why would anyone pay for your product? Because it does a job better or cheaper than what they do today. So the top of the price (the ceiling) comes from that other way, not from your costs. Your costs only set the bottom of the price (the floor).'],
+    ['p','In products sold to businesses, three people usually matter. The table shows them for the Theme Finder example. Each one cares about something different.'],
+    ['tb',['Who','Theme Finder example','What they care about'],[
+      ['User','Support lead (the person who runs the help desk)','Getting Monday morning back'],
+      ['Buyer (the one who pays)','Head of support','A number to show their own manager'],
+      ['Blocker (the one who can say no)','Security lead','Where ticket data goes and who can see it']
     ]],
-    ['p','Now let’s work out value from the alternative. A support lead spends about three hours a week building the ticket report by hand. At $40 an hour, that is about $520 a month for one lead.'],
-    ['p','A tool that saves most of that time is worth a lot less than $520 to the buyer, because adopting it also costs them effort. But it is still worth far more than a few dollars. That gap between the two is where your price lives.'],
-    ['c','Watch out','Don’t ask “would you pay for this?”. People say yes to be polite, and the answer tells you nothing. Ask what they use today, what it costs them, and who approved that spend. Past spending is evidence. Future intentions are not.'],
+    ['p','Now work out the value from the other way. A support lead spends about three hours a week making the ticket report by hand. At $40 an hour, that is about $520 a month for one lead.'],
+    ['p','A tool that saves most of that time is worth less than $520 to the buyer, because adopting it costs them effort too. But it is still worth far more than a few dollars. Your price lives in the gap between the two.'],
+    ['c','Watch out','Do not ask “would you pay for this?”. People say yes to be polite, and the answer tells you nothing. Ask what they use today, what it costs them, and who approved that spend. Money already spent is proof. Plans to spend are not.'],
     ['do','Prove it now',[
-      ['p','Fill in the user, the buyer and the blocker for your capstone. Then estimate what the current alternative costs one customer per month.'],
-      ['x','Three roles and one monthly cost, with your working shown. Then write one counterexample: a customer for whom your product saves nothing, because their alternative is already cheap.']
+      ['p','Write down the user, the buyer and the blocker for your capstone (your final project). Then guess what the current alternative costs one customer each month.'],
+      ['x','Three roles and one monthly cost, with your working shown. Then write one counterexample (a case that breaks the rule): a customer your product saves nothing for, because their alternative is already cheap.']
     ]],
     ['q','I601'],
 
     ['h','Idea 2: Seat, usage, outcome and hybrid pricing'],
-    ['p','Once you know the value, the next question is how to charge for it. There are four common ways to charge for an AI product. Each one moves a different risk onto a different party.'],
-    ['p','As you read the table, look at the last column. It tells you what can go wrong with each model.'],
+    ['p','Once you know the value, the next question is how to charge for it. There are four common ways to charge for an AI product. Each one hands a different risk to a different person.'],
+    ['p','Read the last column of the table. It tells you what can go wrong with each way.'],
     ['tb',['Model','You charge for','Good because','Risk'],[
-      ['Seat','Each user, per month','Easy for the buyer to budget','Heavy users cost you more but pay the same'],
-      ['Usage','Each ticket, call or credit','Revenue follows your cost','Buyers cannot predict the bill, so they ration use'],
-      ['Outcome','Each successful result, such as a resolved ticket','Price follows value','You need an agreed, measurable definition of success'],
-      ['Hybrid','A platform fee with some usage included, then a charge for going over it','Predictable, and protects your margin','More complex to explain and sell']
+      ['Seat (a fixed fee per user)','Each user, per month','Easy for the buyer to plan the budget','Heavy users cost you more but pay the same'],
+      ['Usage (pay per use)','Each ticket, call or credit','Your income moves with your cost','Buyers cannot guess the bill, so they use it less'],
+      ['Outcome','Each successful result, such as a resolved ticket','Price follows the value','You both need to agree on what success means, and be able to measure it'],
+      ['Hybrid (a mix)','A platform fee with some usage included, then a charge for going over it','Easy to predict, and it protects your margin','Harder to explain and sell']
     ]],
-    ['p','AI products break the usual seat model. Traditional software costs almost nothing for each extra use, so a flat seat price is safe. An AI feature has a real cost every time it runs. So one heavy customer on a seat price can wipe out the margin from ten light ones.'],
-    ['p','Outcome pricing is attractive, and some support tools already charge per resolved conversation. But it only works if you and the customer agree on what counts as an outcome. You also need to measure it without arguments.'],
+    ['p','AI breaks the usual seat idea. Old software costs almost nothing each time someone uses it, so a flat seat price is safe. An AI feature costs real money every time it runs. So one heavy customer on a seat price can wipe out the margin from ten light ones.'],
+    ['p','Outcome pricing sounds good, and some support tools already charge per resolved conversation. But it works only if you and the customer agree on what counts as an outcome. You also need to measure it without fights.'],
     ['do','Prove it now',[
-      ['p','Pick the pricing model you would start with for your capstone. Write one sentence on why, and one on the risk it leaves you with.'],
-      ['x','One model, one reason and one risk. Counterexample: describe a customer for whom that model would feel unfair.']
+      ['p','Pick the pricing model you would start with for your capstone. Write one sentence on why. Write one on the risk it leaves you with.'],
+      ['x','One model, one reason and one risk. Counterexample: describe a customer who would find that model unfair.']
     ]],
 
     ['h','Idea 3: The AI cost stack and contribution margin'],
-    ['p','Now let’s look at your side of the price. The cost of an AI feature is more than the model bill. To see all of it, build the full stack for one customer for one month.'],
-    ['p','Here is the base case for Theme Finder, at 300 tickets a week. Read it line by line, and notice where the biggest number sits.'],
+    ['p','Now look at your side of the price. An AI feature costs more than the model bill. To see all of it, build the full stack (a list of every cost) for one customer for one month.'],
+    ['p','Here is the base case for Theme Finder, at 300 tickets a week. Read it line by line. See where the biggest number sits.'],
     ['code','One customer, one month, 300 tickets a week\n\nModel: classify 1,300 tickets x $0.0004      $0.52\nModel: 4 weekly summaries x $0.05            $0.20\nRetries and re-runs (+15%)                   $0.11\nHosting, database, logging                   $2.00\nSupport: 20 minutes x $30/hour               $10.00\n                                             ------\nTotal cost to serve                          $12.83\n\nReports the lead accepted: 4.3 x 85%          3.7\nCost per successful report                   $3.47'],
-    ['p','Two things stand out. First, support time costs more than ten times as much as the model. Second, the useful unit is the <strong>cost per successful task</strong>. A report the lead rejects still cost you money, so you divide by the reports that worked.'],
-    ['p','Next, how much does each customer leave you? That is the <strong>contribution margin</strong>, which is what remains after the costs that grow with that customer. At $49 a month, it is ($49 − $12.83) ÷ $49, or about 74%.'],
-    ['p','But that is only the base case. What happens when a customer uses the product more, or less? The table shows the same customer at three levels of use.'],
-    ['tb',['Usage','Tickets a week','Cost to serve','Margin at $49'],[
+    ['p','Two things stand out. First, support time costs more than ten times as much as the model. Second, the number to watch is the <strong>cost per successful task</strong>. A report the lead rejects still cost you money, so you divide by the reports that worked.'],
+    ['p','Next: how much does each customer leave you? That is the <strong>contribution margin</strong>. It is what is left after the costs that grow with that customer, like what a shopkeeper keeps after paying for the goods. At $49 a month, it is ($49 − $12.83) ÷ $49, or about 74%.'],
+    ['p','But that is only the base case. What if a customer uses the product more, or less? The table shows the same customer at three levels of use.'],
+    ['tb',['Usage (pay per use)','Tickets a week','Cost to serve (what each customer costs you)','Margin at $49'],[
       ['Low','100','$12.43','75%'],
       ['Base','300','$12.83','74%'],
       ['High','3,000','$19.21','61%']
     ]],
-    ['key','Always model low, base and high usage. Most margin problems only show up in the high row.'],
+    ['key','Always work out low, base and high use. Most margin problems only show up in the high row.'],
     ['do','Prove it now',[
-      ['p','Build the base-case cost stack for your capstone, with every line from the example above. Then work out the cost per successful task.'],
-      ['x','A cost stack with at least five lines. Counterexample: which line would you be most likely to forget, and how much would it change the total?']
+      ['p','Build the base-case cost stack for your capstone. Use every line from the example above. Then work out the cost per successful task.'],
+      ['x','A cost stack with at least five lines. Counterexample: which line would you most likely forget, and how much would it change the total?']
     ]],
-    ['p','Now try a harder case yourself. Take your time, and show your working.'],
+    ['p','Now try a harder case yourself. Take your time. Show your working.'],
     ['try',{id:'b1-margin',mins:10,min:100,rows:6,
-      task:'A customer on Theme Finder grows from 300 to 3,000 tickets a week. They stay on the $49 seat plan. Model cost scales with tickets, and support time goes from 20 to 30 minutes a month. Work out their new cost to serve and margin, and say what you would change.',
+      task:'A Theme Finder customer grows from 300 to 3,000 tickets a week. They stay on the $49 seat plan. Model cost grows with tickets. Support time goes from 20 to 30 minutes a month. Work out their new cost to serve and margin, and say what you would change.',
       ph:'Model cost… support… total… margin… what I would change…',
-      after:'Classification becomes 13,000 tickets × $0.0004 = $5.20, plus about $1 for summaries and retries. Hosting rises to about $3 with ten times the data. Support is 30 minutes × $30 = $15. The total is roughly $24, so the margin falls to about 51%. That is still positive, but it keeps falling as they grow. A reasonable fix is a hybrid plan: $49 includes 1,000 tickets a week, and each extra 1,000 tickets a week adds $10 a month. At 3,000 tickets a week they pay $69, so the margin is back to about 65%. The customer’s bill still follows the value they get, and your margin stops falling as they grow.'}],
+      after:'Classification becomes 13,000 tickets × $0.0004 = $5.20, plus about $1 for summaries and retries. Hosting rises to about $3 with ten times the data. Support is 30 minutes × $30 = $15. The total is roughly $24, so the margin falls to about 51%. That is still above zero, but it keeps falling as they grow. A good fix is a hybrid plan: $49 includes 1,000 tickets a week, and each extra 1,000 tickets a week adds $10 a month. At 3,000 tickets a week they pay $69, so the margin is back to about 65%. The customer’s bill still follows the value they get. Your margin stops falling as they grow.'}],
     ['q','I602'],
 
     ['h','Idea 4: Data, workflow and platform flywheels'],
-    ['p','A good business gets stronger as more people use it. A <strong>flywheel</strong> is the loop behind that: using the product makes the product better, which brings more use. Three kinds show up in AI products, and they are not equally strong.'],
-    ['p','The first is the data flywheel. User corrections improve the model, so results get better with use. This is often weaker than people claim. Improvements flatten out after a few thousand examples, and contracts may stop you pooling data across customers.'],
+    ['p','A good business gets stronger as more people use it. A <strong>flywheel</strong> is the loop behind that, like a heavy wheel that spins easier the more you push it. Using the product makes it better, and that brings more use. Three kinds show up in AI products. They are not equally strong.'],
+    ['p','The first is the data flywheel. Users fix the model’s mistakes, so results get better with use. This is often weaker than people claim. Gains flatten after a few thousand examples. Contracts may also stop you from pooling data across customers.'],
     ['p','The second is the workflow flywheel. The product becomes part of a weekly routine, and other work starts to depend on it. For Theme Finder, the Monday report feeds the product team’s planning meeting. This is usually the strongest kind.'],
     ['p','The third is the platform flywheel. Other people build on your product, which makes it more useful to everyone. It is rare, and it needs a lot of users first.'],
-    ['c','Why this matters','A flywheel that relies on customer data only works while customers trust you with it. Say clearly what you store, what you train on and who can see it. Get consent before using one customer’s data to improve results for another.'],
+    ['c','Why this matters','A flywheel that depends on customer data works only while customers trust you with it. Say clearly what you store, what you train on and who can see it. Ask for consent (their clear yes) before using one customer’s data to improve results for another.'],
     ['do','Prove it now',[
-      ['p','Name the one user behaviour that would make your capstone better with use. Say which type of flywheel it drives.'],
-      ['x','One behaviour and its flywheel type. Counterexample: a situation where that behaviour would make the product worse, such as corrections from a careless user.']
+      ['p','Name the one user action that would make your capstone better the more it happens. Say which kind of flywheel it drives.'],
+      ['x','One action and its flywheel type. Counterexample: a case where that action makes the product worse, such as fixes from a careless user.']
     ]],
 
     ['h','Idea 5: Vendor dependence and gross-margin risk'],
-    ['p','The last idea is about something outside your control. If your product runs on another company’s model, that company can change your costs and your quality without asking you.'],
-    ['p','This shows up in your <strong>gross margin</strong>, which is revenue minus the direct cost of delivering the product. For AI products, a big part of that cost is the model vendor’s bill. The table lists four things a vendor can do, what each does to you, and what you can do about it today.'],
+    ['p','The last idea is about something you do not control. If your product runs on another company’s model, that company can change your costs and your quality without asking you. It is like a shop that depends on one wholesaler.'],
+    ['p','This shows up in your <strong>gross margin</strong>. That is revenue (money coming in) minus the direct cost of delivering the product. For AI products, a big part of that cost is the model vendor’s bill. The table lists four things a vendor can do, what each does to you, and what you can do about it today.'],
     ['tb',['What the vendor can do','What it does to you','What you can do now'],[
-      ['Raise prices','Margin falls overnight','Keep a second model tested on your eval set'],
-      ['Retire a model','Quality changes when you migrate','Pin model versions; plan migrations early'],
-      ['Change rate limits','Customers hit errors at busy times','Add queues and a fallback model'],
-      ['Launch a competing feature','Your product looks redundant','Own the workflow and the customer relationship']
+      ['Raise prices','Margin falls overnight','Keep a second model tested on your eval set (your answer key of test questions)'],
+      ['Retire a model (switch it off)','Quality changes when you move to the new one','Pin model versions (stick to one named version); plan the move early'],
+      ['Change rate limits (how many requests you may send)','Customers hit errors at busy times','Add queues (a waiting line) and a fallback model (a spare)'],
+      ['Launch a competing feature','Your product looks like it is not needed','Own the workflow and the customer relationship']
     ]],
-    ['p','You can’t remove this risk, but you can price it in. Your recommendation should say what happens to your margin if the model price doubles, and how long it would take you to switch.'],
+    ['p','You cannot remove this risk, but you can price it in. Your recommendation should say what happens to your margin if the model price doubles. It should also say how long it would take you to switch.'],
     ['do','Prove it now',[
-      ['p','Recalculate your base-case margin with the model price doubled. Then estimate how many days it would take to switch to a second vendor.'],
-      ['x','One new margin figure and one switching estimate. If you can’t estimate the switch, you are missing an eval set that works with any vendor. Chapter 33 covers vendor exit.']
+      ['p','Work out your base-case margin again with the model price doubled. Then guess how many days it would take to switch to a second vendor.'],
+      ['x','One new margin figure and one switching estimate. If you cannot estimate the switch, you are missing an eval set that works with any vendor. Chapter 33 covers vendor exit.']
     ]],
     ['q','I603'],
-    ['p','You now have everything for a recommendation. Write the opening paragraph, the one a busy reader will read first.'],
+    ['p','You now have everything for a recommendation. Write the opening paragraph. A busy reader reads that one first.'],
     ['try',{id:'b1-rec',mins:12,min:150,rows:7,
       task:'Write the first paragraph of your pricing recommendation. Include the price, the pricing model, the margin at high usage and the biggest risk.',
       ph:'I recommend… because… at high usage… the biggest risk is…',
-      after:'A strong opening: <strong>I recommend a hybrid plan at $49 per team per month, including 1,000 tickets a week, with $10 a month for each extra 1,000 tickets a week.</strong> Our alternative is three hours of a support lead’s time a week, about $520 a month, so the price is well under the value. The contribution margin is 74% at base usage and stays above 60% at high usage because of the overage. The biggest risk is model price. If it doubles, the base margin falls to about 72%, and switching to our tested second model takes about a week.'}],
+      after:'A strong opening: <strong>I recommend a hybrid plan at $49 per team per month, including 1,000 tickets a week, with $10 a month for each extra 1,000 tickets a week.</strong> Our alternative is three hours of a support lead’s time a week, about $520 a month, so the price is well under the value. The contribution margin is 74% at base usage and stays above 60% at high usage because of the extra charge for going over. The biggest risk is model price. If it doubles, the base margin falls to about 72%, and switching to our tested second model takes about a week.'}],
     ['h','What you have learned'],
-    ['p','Let’s pull the five ideas together. A price is set by the value of the customer’s alternative, and by who pays, who uses and who can block. There are four ways to charge, and each one moves risk to someone different.'],
-    ['p','The real cost of a task includes retries, review and support, so you measure the cost per successful task at low, base and high usage. You also saw that a flywheel needs trust, and that a model vendor can squeeze your margin, so you price that risk in.'],
-    ['p','Next, B2 looks at growth, onboarding and product marketing: how people find your product, and how you get them to the moment where it works for them.']
+    ['p','Let’s pull the five ideas together. Value sets the price: what the customer would do instead, and who pays, who uses and who can block. There are four ways to charge. Each one hands the risk to someone different.'],
+    ['p','The real cost of a task includes retries, review and support. So you measure the cost per successful task at low, base and high usage. You also saw that a flywheel needs trust, and that a model vendor can squeeze your margin, so you price that risk in.'],
+    ['p','Next, B2 looks at growth, onboarding and product marketing: how people find your product, and how you help them reach the moment where it works for them.']
   ]
 },
 
 {
   id:'b2', num:'B2', part:7, curriculumTier:'reference', phase:0, prerequisites:['a3','a4','a7'], nextUnits:['b3'], minutes:720, labs:[],
   title:'Growth, onboarding and product marketing',
-  concept:'In this chapter you’ll work out how people find your product, how they get value from it quickly, and why they come back. You’ll define the events for each growth stage, test onboarding with real users, and design one growth loop you’d be comfortable defending in public.',
+  concept:'In this chapter you find out how people find your product, how fast they get value from it, and why they come back. You write down the events for each growth stage. You test onboarding (the first steps a new user takes) with real users. You design one growth loop you would be happy to explain in public.',
   takeaway:[
-    'Define acquisition, activation, retention, referral and revenue events, and know where the funnel model misleads.',
-    'Name the activation moment for your product and measure time-to-value.',
+    'Write one event for each stage: acquisition (they arrive), activation (they get value), retention (they stay), referral (they bring others) and revenue (they pay). Know where the funnel model, a picture of people moving down a pipe, misleads.',
+    'Name the activation moment for your product, the first time users get what you promised. Measure time-to-value, the time it takes to reach that moment.',
     'Use the Fogg behaviour model to explain why a user did or did not act.',
-    'Choose between product-led, sales-led and product-led sales motions.',
-    'Tell a network effect from virality, and design an ethical growth loop.'
+    'Choose between product-led (users try it alone), sales-led (a salesperson guides them) and product-led sales (a mix) motions.',
+    'Tell a network effect (more users make it better for everyone) from virality (users bring in other users). Design a growth loop that treats users fairly.'
   ],
-  needs:[['Interview skills','You’ll watch five people go through onboarding.','A3'],
-         ['A positioning statement','Idea 5 builds on it.','A4'],
-         ['A prototype','The onboarding test uses one.','A7']],
+  needs:[['Interview skills','You watch five people go through onboarding.','A3'],
+         ['A positioning statement (one line on who it is for and why it is different)','Idea 5 builds on it.','A4'],
+         ['A prototype (a rough working first version)','The onboarding test uses one.','A7']],
   capstone:{
     title:'Plan how the tool grows, and test the first five minutes',
-    brief:'A good tool still needs a way for people to find it, try it and stay. In this chapter you learned to define the events of a growth funnel, to find the moment a user first gets value, and to tell a network effect from simple sharing. Here you plan growth for the developer kit and test the first five minutes with real developers.',
-    where:'Written work, plus a short test with real people. For the teardown, use a no-code AI tool for a few days. No code of your own is needed.',
+    brief:'A good tool still needs a way for people to find it, try it and stay, like a shop that needs a board on the road. You learned to write the events of a growth funnel. You found the moment a user first gets value. You told a network effect from simple sharing. Now you plan growth for the developer kit and test the first five minutes with real developers.',
+    where:'Written work, plus a short test with real people. For the teardown (taking a product apart to see how it works), use a no-code AI tool for a few days. You need no code of your own.',
     steps:[
-      'For each stage of the funnel write one event you could log: acquisition (a developer visits the kit’s page), activation (the first successful cleaning), retention (still using it a week later), referral (shares it) and revenue (starts paying).',
-      'Name the activation moment for the kit and write the steps a new developer takes to reach it.',
-      'Test the first five minutes. Give five developers only the kit’s README and ask each to clean one message. Measure how long each takes to the first success, and note the step where most of them stopped.',
-      'Design one growth loop you would be happy to explain to your users, for example a small “protected by” badge that links to the tool. Name one dark pattern you refuse to use.',
-      'Write a teardown of how one AI tool (Cursor, Lovable, Grammarly or Notion AI) wins its users, covering acquisition, activation, retention and money.'
+      'For each stage of the funnel, write one event you could log (record). Acquisition: a developer visits the kit’s page. Activation: the first successful cleaning. Retention: still using it a week later. Referral: shares it. Revenue: starts paying.',
+      'Name the activation moment for the kit. Write the steps a new developer takes to reach it.',
+      'Test the first five minutes. Give five developers only the kit’s README (its instruction sheet). Ask each one to clean one message. Time how long each takes to the first success. Note the step where most of them stopped.',
+      'Design one growth loop you would be happy to explain to your users. For example, a small “protected by” badge that links to the tool. Name one dark pattern (a trick design) you refuse to use.',
+      'Write a teardown of how one AI tool wins its users: Cursor, Lovable, Grammarly or Notion AI. Cover acquisition, activation, retention and money.'
     ],
     done:[
-      'One loggable event for each of the five funnel stages.',
+      'One event you could log for each of the five funnel stages.',
       'A report of the time to first success for each of the five developers, and the step where most stopped.',
       'A growth loop that names the dark pattern it refuses to use.',
       'A teardown of one AI tool.',
@@ -194,118 +194,118 @@ window.PART7 = [
      'Be specific. For example: we will not send invitations from a user’s account without showing them each one first. Or: we will not hide the cancel button. Write it into the plan, so the decision is already made when growth targets get tight.']
   ],
   story:[
-    ['c','Before you start','Plan for about twelve hours. You need your prototype from A7 and five people from your target users. Pick one of Cursor, Lovable, Grammarly or Notion AI for the teardown, and use it for a few days first.'],
-    ['p','In the last chapter you worked out who pays for your product and how to charge them. But a good price means little if nobody finds the product, or if people try it once and leave. This chapter is about those two problems: how people find your product, and how they come to need it.'],
+    ['c','Before you start','Plan for about twelve hours. You need your prototype from A7 and five people from your target users (the people the tool is for). Pick one of Cursor, Lovable, Grammarly or Notion AI for the teardown, and use it for a few days first.'],
+    ['p','Last chapter you worked out who pays and how to charge them. But a good price means little if nobody finds the product. It also means little if people try it once and leave, like a shop with no walk-in customers. This chapter solves those two problems: how people find your product, and how they come to need it.'],
 
     ['h','Idea 1: AARRR, and where funnels mislead'],
-    ['p','Let’s start with a way of splitting growth into stages. <strong>AARRR</strong> names five of them: acquisition, activation, retention, referral and revenue. The first job is to define one event for each stage, so you can count it.'],
-    ['p','The table gives an example for Theme Finder. Each event is something a product could actually log.'],
+    ['p','Start by splitting growth into stages, like the stations on a train line. <strong>AARRR</strong> names five: acquisition, activation, retention, referral and revenue. Your first job is to define one event for each stage, so you can count it.'],
+    ['p','The table gives an example for Theme Finder. Each event is something the product could really log.'],
     ['tb',['Stage','Question','Theme Finder event'],[
       ['Acquisition','Did they arrive?','Signed up with a work email'],
-      ['Activation','Did they get value?','Viewed their first theme report'],
-      ['Retention','Did they come back?','Viewed a report in 3 of the next 4 weeks'],
+      ['Activation','Did they get value?','Saw their first theme report'],
+      ['Retention','Did they come back?','Saw a report in 3 of the next 4 weeks'],
       ['Referral','Did they bring others?','Shared a report with a colleague who signed up'],
       ['Revenue','Did they pay?','Started a paid plan']
     ]],
-    ['p','The funnel is a good start, but it has limits. It suggests people move in a straight line, when many come back through referrals and shared reports. It also tempts you to fix the top of the funnel first. Most of the time, retention is the stage that decides whether a product works.'],
-    ['key','If users do not stay, more sign-ups only means losing people faster.'],
+    ['p','The funnel is a good start, but it has limits. It suggests people walk in a straight line. Many really come back through referrals and shared reports. It also tempts you to fix the top of the funnel first. Most of the time, retention decides whether a product works.'],
+    ['key','If users do not stay, more sign-ups only means losing people faster, like pouring water into a bucket with a hole.'],
     ['do','Prove it now',[
-      ['p','Write one event for each of the five stages for your capstone.'],
-      ['x','Five events, each something your code could log. Counterexample: a stage where your product’s users would not move in funnel order.']
+      ['p','Write one event for each of the five stages for your capstone (your final project).'],
+      ['x','Five events, each one your code could log. Counterexample (a case that breaks the rule): a stage where your product’s users would not move in funnel order.']
     ]],
     ['q','I604'],
 
     ['h','Idea 2: Activation moments and time-to-value'],
-    ['p','Now let’s look closely at the second stage. The <strong>activation moment</strong> is the first time a user gets the value your product promises. For Theme Finder, it is seeing a theme the lead didn’t know about. Everything before that moment is cost to the user.'],
-    ['p','So how do you know if the road to that moment is too long? You measure <strong>time-to-value</strong>, which is how long it takes to get there, counted from sign-up. Here is a first onboarding test with five support leads. Read down the table, and see where people drop off.'],
+    ['p','Now look closely at the second stage. The <strong>activation moment</strong> is the first time a user gets the value your product promises, like the first sip of chai after the wait. For Theme Finder, it is seeing a theme the lead did not know about. Everything before that moment is a cost to the user.'],
+    ['p','How do you know if the road to that moment is too long? Measure <strong>time-to-value</strong>: the time it takes to get there, counted from sign-up. Here is a first onboarding test with five support leads. Read down the table and see where people drop off (leave).'],
     ['tb',['Step','Users who finished','Median time'],[
       ['Sign up','5 of 5','1 min'],
-      ['Connect Freshdesk','3 of 5','6 min'],
-      ['Wait for first import','3 of 5','12 min'],
-      ['View first theme report','3 of 5','20 min total']
+      ['Connect Freshdesk (link their help-desk tool)','3 of 5','6 min'],
+      ['Wait for first import (the tickets to load)','3 of 5','12 min'],
+      ['See first theme report','3 of 5','20 min total']
     ]],
-    ['p','The drop-off is at connecting Freshdesk. Two users needed an admin to approve access. A fix could be a sample report built from twenty tickets the user pastes in. That puts the activation moment before the hard step.'],
+    ['p','The drop-off is at connecting Freshdesk. Two users needed an admin to approve access. One fix is a sample report built from twenty tickets the user pastes in. That puts the activation moment before the hard step.'],
     ['do','Prove it now',[
       ['p','Write your capstone’s activation moment in one sentence. List every step a new user takes before reaching it.'],
-      ['x','One moment and a list of steps. Circle the step most likely to lose people. Counterexample: a user who reaches the moment but still doesn’t see the value.']
+      ['x','One moment and a list of steps. Circle the step most likely to lose people. Counterexample: a user who reaches the moment but still does not see the value.']
     ]],
 
     ['h','Idea 3: Retention, habits and the Fogg model'],
-    ['p','Getting someone to the activation moment once is not enough. Do they come back? The best way to see this is a curve. Take everyone who signed up in the same week, and plot the share still active in each week after.'],
-    ['p','A healthy curve drops, then flattens. A curve that keeps falling to zero means the product hasn’t found a lasting use.'],
-    ['p','BJ Fogg’s behaviour model explains why a person does or doesn’t act. It says a behaviour happens when three things meet at the same moment:'],
+    ['p','Getting someone to the activation moment once is not enough. Do they come back? A curve shows this best. Take everyone who signed up in the same week. Plot (draw as a line) the share still active in each week after.'],
+    ['p','A healthy curve drops, then flattens, like a ball that rolls down and then rests on flat ground. A curve that keeps falling to zero means the product has not found a lasting use.'],
+    ['p','BJ Fogg’s behaviour model explains why a person does or does not act. A behaviour happens when three things meet at the same moment:'],
     ['code','Behaviour = Motivation + Ability + Prompt\n\nMotivation  Does the lead want to do it right now?\nAbility     Is it easy enough at that moment?\nPrompt      Does something remind them to do it?'],
-    ['p','If a behaviour isn’t happening, check the three from the bottom up: prompt first, then ability, then motivation. Missing prompts are the cheapest fix. For Theme Finder, a Monday 9am email with the top three themes is the prompt. The report opening in one click keeps ability high.'],
+    ['p','If a behaviour is not happening, check the three from the bottom up: prompt (a nudge to act) first, then ability (how easy it is), then motivation (how much they want it). A missing prompt is the cheapest fix. For Theme Finder, a Monday 9am email with the top three themes is the prompt. The report opening in one click keeps ability high.'],
     ['do','Prove it now',[
-      ['p','Pick the behaviour you most want users to repeat. Write its motivation, ability and prompt.'],
-      ['x','Three short lines. Counterexample: a user with strong motivation who still doesn’t act. Which of the three is missing for them?']
+      ['p','Pick the behaviour you most want users to repeat. Write down its motivation, ability and prompt.'],
+      ['x','Three short lines. Counterexample: a user with strong motivation who still does not act. Which of the three is missing for them?']
     ]],
     ['q','I605'],
 
     ['h','Idea 4: Product-led, sales-led and product-led sales'],
-    ['p','Next, how does a customer actually get from hearing about you to paying? A <strong>go-to-market motion</strong> is that path. There are three common ones. The last column of the table says when each one fits.'],
+    ['p','How does a customer get from hearing about you to paying? A <strong>go-to-market motion</strong> is that path, like the road from the shop window to the till. There are three common ones. The last column of the table says when each one fits.'],
     ['tb',['Motion','How it works','Fits when'],[
       ['Product-led growth (PLG)','Users sign up and get value on their own; some upgrade','Value shows in minutes and the price is low'],
-      ['Sales-led','A salesperson runs demos, a trial and a contract','The deal is large, or security review is required'],
-      ['Product-led sales','Users start on their own; sales steps in when a team grows','Individuals adopt first, but companies buy']
+      ['Sales-led','A salesperson runs demos (live shows of the tool), a trial and a contract','The deal is big, or a security review is needed'],
+      ['Product-led sales','Users start on their own; sales steps in when a team grows','People adopt it first, but companies buy']
     ]],
-    ['p','Theme Finder fits product-led sales. A single support lead can try it with pasted tickets. Connecting the whole helpdesk needs the security lead, and that is when a salesperson helps.'],
+    ['p','Theme Finder fits product-led sales. One support lead can try it with pasted tickets. Connecting the whole help desk needs the security lead, and that is when a salesperson helps.'],
     ['do','Prove it now',[
-      ['p','Choose a motion for your capstone and give two reasons from your pricing and your buyer.'],
+      ['p','Choose a motion for your capstone. Give two reasons, one from your pricing and one from your buyer.'],
       ['x','One motion and two reasons. Counterexample: the kind of customer for whom that motion would fail.']
     ]],
 
     ['h','Idea 5: Growth loops, network effects and positioning'],
-    ['p','A funnel ends when the customer pays. Some products do better than that, because each customer brings in the next one. A <strong>growth loop</strong> is a cycle where one user’s actions bring in the next user. Unlike a funnel, the output feeds back into the input.'],
+    ['p','A funnel ends when the customer pays. Some products do better, because each customer brings the next one. A <strong>growth loop</strong> is a cycle where one user’s actions bring in the next user, like a ring road that keeps feeding traffic back in. Unlike a funnel, the output feeds back into the input.'],
     ['code','Lead views weekly report\n  → shares the top theme with the product team\n    → a product manager sees it and asks for their own view\n      → they sign up and connect their own queue\n        → they share their report with their team ...'],
-    ['p','Be careful with two terms that sound alike. <strong>Virality</strong> means users bring in other users. A <strong>network effect</strong> means the product gets better for everyone as more people use it. Many products have the first without the second.'],
-    ['p','Positioning decides which loop can work. If you are positioned as “the weekly report for support leads”, sharing with product managers makes sense. Reuse the positioning statement you wrote in A4.'],
-    ['c','Watch out','A <strong>dark pattern</strong> is a design that tricks users into acting against their own interest. Examples are pre-ticked invitation boxes, fake scarcity and hidden cancellation. They can lift your numbers for a quarter. But they also destroy the trust that retention depends on.'],
+    ['p','Take care with two terms that sound alike. <strong>Virality</strong> means users bring in other users. A <strong>network effect</strong> means the product gets better for everyone as more people use it, like a phone line that is more useful when more friends have one. Many products have the first without the second.'],
+    ['p','Positioning decides which loop can work. Suppose you are “the weekly report for support leads”. Then sharing with product managers makes sense. Reuse the positioning statement you wrote in A4.'],
+    ['c','Watch out','A <strong>dark pattern</strong> is a design that tricks users into acting against their own interest. Examples are pre-ticked invitation boxes, fake scarcity (“only 2 left!”) and hidden cancellation. They can lift your numbers for a quarter. But they also destroy the trust that retention depends on.'],
     ['do','Prove it now',[
       ['p','Draw your capstone’s growth loop as four or five arrows. Mark the step where a user decides to share.'],
       ['x','One loop, and one sentence on why a user would choose to share. Counterexample: what would make your loop feel like spam?']
     ]],
     ['q','I606'],
-    ['p','You’ve now seen all five ideas on one product. To finish, look at how a real AI tool does it.'],
+    ['p','You have now seen all five ideas on one product. To finish, see how a real AI tool does it.'],
     ['try',{id:'b2-teardown',mins:15,min:150,rows:7,
-      task:'Start your teardown. Pick one of Cursor, Lovable, Grammarly or Notion AI. For each of acquisition, activation, retention and monetisation, write one line about how it works and one thing you would copy.',
+      task:'Start your teardown. Pick one of Cursor, Lovable, Grammarly or Notion AI. For each of acquisition, activation, retention and monetisation (making money), write one line on how it works and one thing you would copy.',
       ph:'Acquisition… Activation… Retention… Monetisation…',
-      after:'A good teardown line is specific and checkable. For example, for Grammarly: <strong>Acquisition</strong> comes from people seeing its suggestions inside everyday tools, and the free plan spreads it. <strong>Activation</strong> is the first underlined suggestion in your own writing, which arrives within seconds. <strong>Retention</strong> comes from living where people already write, so there is no new habit to form. <strong>Monetisation</strong> gates the more advanced suggestions behind a paid plan. The thing to copy: activation happens inside the user’s existing work, not on a separate page.'}],
+      after:'A good teardown line is specific and can be checked. Here is one for Grammarly. <strong>Acquisition</strong>: people see its suggestions inside everyday tools, and the free plan spreads it. <strong>Activation</strong>: the first underlined suggestion in your own writing, which arrives within seconds. <strong>Retention</strong>: it lives where people already write, so there is no new habit to form. <strong>Monetisation</strong>: the more advanced suggestions sit behind a paid plan. The thing to copy: activation happens inside the user’s existing work, not on a separate page.'}],
     ['h','What you have learned'],
-    ['p','Let’s recap. Growth has five stages, and you can count each one with an event, but the funnel hides loops, and retention matters most. Your product has one activation moment, and the shorter the time-to-value, the fewer users you lose on the way.'],
-    ['p','The Fogg model tells you why people do or don’t act. You can reach customers by product-led, sales-led or product-led sales motions. And a growth loop works best when it’s a real network effect and doesn’t rely on dark patterns.'],
+    ['p','Let’s recap. Growth has five stages, and you can count each with an event. But the funnel hides loops, and retention matters most. Your product has one activation moment. The shorter the time-to-value, the fewer users you lose on the way.'],
+    ['p','The Fogg model tells you why people do or do not act. You can reach customers with product-led, sales-led or product-led sales motions. A growth loop works best when it is a real network effect and does not rely on dark patterns.'],
     ['p','Next, B3 looks at product analytics and experiments: how to turn these events into numbers you can trust, and how to test a change before you roll it out to everyone.']
   ]
 },
 {
   id:'b3', num:'B3', part:7, curriculumTier:'selective', phase:6, prerequisites:['a5','a6','b2'], nextUnits:['b4'], minutes:840, labs:[],
   title:'Product analytics and experiments',
-  concept:'Real users are now using your product, so the next question is what they actually do, and which changes helped. You’ll write a tracking plan, build a funnel and a retention cohort, and design an experiment that can give a clear answer.',
+  concept:'Real people now use your product. What do they actually do? And which changes helped? You will write a tracking plan (a list of what to record). You will build a funnel (the steps people walk through) and a retention cohort (a group you follow week after week). Then you will design an experiment (a fair test) that gives a clear answer.',
   takeaway:[
-    'Pick a North Star metric, and the input metrics that move it.',
-    'Write an event taxonomy with clear names, properties and user identity.',
-    'Build a funnel, a retention cohort and segments, and read them correctly.',
-    'Design an A/B test with a guardrail, a minimum detectable effect and a stopping rule.',
-    'Check your data before you trust it, and avoid claiming causes you have not shown.'
+    'Pick a North Star metric (the one number that shows real value), and the input metrics (smaller numbers) that move it.',
+    'Write an event taxonomy (a neat list of event names) with clear names, properties and user identity.',
+    'Build a funnel, a retention cohort and segments (slices of users), and read them correctly.',
+    'Design an A/B test (a fair test with two groups) with a guardrail (a number that must not get worse), a minimum detectable effect (the smallest change worth spotting) and a stopping rule (when to stop).',
+    'Check your data before you trust it, and do not say one thing caused another unless you have shown it.'
   ],
-  needs:[['A North Star metric','Idea 1 turns it into something you can measure.','A5'],
-         ['OKRs and guardrail metrics','Experiments use the same guardrails.','A6'],
-         ['Growth events','The tracking plan records them.','B2'],
-         ['Evaluation engineering','Idea 5 keeps model quality and product analytics apart.',29]],
+  needs:[['A North Star metric (the one number that shows real value)','Idea 1 turns it into something you can measure.','A5'],
+         ['OKRs and guardrail metrics (goals, and numbers that must not get worse)','Experiments use the same guardrails.','A6'],
+         ['Growth events (the steps where users join and spread the word)','The tracking plan records them.','B2'],
+         ['Evaluation engineering (testing the model against an answer key)','Idea 5 keeps model quality and product analytics apart.',29]],
   capstone:{
     title:'Plan the measurements, and design one experiment',
-    brief:'Once real people use the tool, you need to know what they do. In this chapter you learned to pick the one number that matters most, to write clear event names, to read a funnel and a retention table, and to design a test with a guardrail and a stopping rule. Now you’ll do all of that for Bharat Privacy Guard.',
-    where:'A real analytics tool (PostHog, Mixpanel or Google Analytics) for the tracking code and the charts. Then write the experiment design in the notes box below.',
+    brief:'Once real people use the tool, you need to know what they do. Think of a shopkeeper who watches which shelf people visit. In this chapter you learned to pick the one number that matters most, to write clear event names, to read a funnel and a retention table, and to design a test with a guardrail and a stopping rule. Now you will do all of that for Bharat Privacy Guard.',
+    where:'Use a real analytics tool (a tool that counts what users do) such as PostHog, Mixpanel or Google Analytics for the tracking code and the charts. Then write the experiment design in the notes box below.',
     steps:[
       'Choose the one number that matters most for the kit, for example “messages cleaned correctly per week by active developers”. Then choose three input numbers that move it.',
-      'Write an event list with names in the form object_action, for example text_checked, detail_found, detail_masked and review_requested. For each event, write the properties it carries (such as the kind of writing and the kind of ID) and the question it answers. Never record the personal details themselves.',
-      'Put the events into an analytics tool with a few lines of tracking code. If you have no users yet, use made-up data and say so.',
-      'Build one funnel (visit, first check, first success), one weekly retention table and two segments, for example English users against Hinglish users.',
-      'Design one experiment, for example: “showing a preview of what will be hidden makes more developers finish setup”. Write the hypothesis, who is randomly assigned, the main number, a guardrail, the smallest change you care about, how many users you need, and when you will stop.'
+      'Write an event list (the list of things you record). Name each event as object_action, for example text_checked, detail_found, detail_masked and review_requested. For each event, write its properties (extra details it carries, such as the kind of writing and the kind of ID). Also write the question it answers. Never record the personal details themselves.',
+      'Send the events to an analytics tool with a few lines of tracking code. If you have no users yet, use made-up data and say so.',
+      'Build one funnel (visit, first check, first success), one weekly retention table and two segments. For example, compare English users with Hinglish users.',
+      'Design one experiment, for example: “showing a preview of what will be hidden makes more developers finish setup”. Write the hypothesis (your guess to test). Write who is randomly assigned, the main number, a guardrail, the smallest change you care about, how many users you need, and when you will stop.'
     ],
     done:[
       'One main number, with three input numbers.',
-      'An event list in which every event answers a named question and none records personal details.',
+      'An event list in which every event answers a named question, and none records personal details.',
       'A funnel, a retention table and two segments, built from events you logged.',
       'An experiment design that says how many users it needs, and what you will do if you cannot get that many.',
       'A score from 0 to 3 for each item above, using this chapter’s scale, like marking your own homework. Move on only when every score is 2 or more, and no safety, privacy or evidence item scores 0.'
@@ -321,56 +321,56 @@ window.PART7 = [
   ],
   story:[
     ['c','On your route','First, go through it quickly, in about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
-    ['c','Before you start','In full, this chapter takes about fourteen hours. Create a free account with PostHog, Mixpanel or Google Analytics. If your capstone has no users yet, you will seed some data, and the chapter shows how.'],
+    ['c','Before you start','In full, this chapter takes about fourteen hours. Make a free account with PostHog, Mixpanel or Google Analytics. If your capstone has no users yet, you will add some made-up data, and the chapter shows how.'],
 
-    ['p','In the last chapter you looked at how people find a product and get started with it. Now comes the next question. Once real people are using it, how do you know it is working? Opinions won’t answer that. What users actually do will.'],
-    ['p','This chapter gives you five ideas to answer it. You’ll pick the one number that matters, decide which events to record, read the three views that answer most questions, run a fair test, and check that your data can be trusted. '],
-    ['p','Along the way you’ll use Theme Finder, an example product that turns support tickets into themes a team can act on.'],
+    ['p','In the last chapter you saw how people find a product and start using it. Now the next question. Real people are using it. How do you know it works? Opinions will not tell you. What users actually do will. It is like a shopkeeper who counts who buys, not who says nice things.'],
+    ['p','This chapter gives you five ideas. You will pick the one number that matters. You will decide which events to record. You will read the three views that answer most questions. You will run a fair test. And you will check that your data can be trusted.'],
+    ['p','Along the way you will use Theme Finder. It is an example product that turns support tickets (messages from unhappy customers) into themes a team can act on.'],
 
     ['h','Idea 1: North Star and input metrics'],
-    ['p','Suppose you could watch only one number to tell whether users get real value from your product. Which one would you pick? That number is the North Star metric, and you met it in A5.'],
+    ['p','Suppose you could watch only one number to see if users get real value. Which would you pick? Think of a tea stall owner who counts only the cups sold. That number is the North Star metric, the star sailors steer by. You met it in A5.'],
     ['p','For Theme Finder, it is <strong>weekly teams that act on a theme</strong>. Acting on a theme means something like filing a bug or changing a help article.'],
-    ['p','The catch is that you cannot move a North Star directly. You move it through smaller numbers that a team can change this quarter. These are called <strong>input metrics</strong>. Here are four for Theme Finder:'],
+    ['p','Here is the catch. You cannot push a North Star directly. You push it through smaller numbers that a team can change this quarter. These are called <strong>input metrics</strong>. They are like the pedals that turn the wheel. Here are four for Theme Finder:'],
     ['code','North Star: weekly teams that act on a theme\n\nInput metrics\n  1. Teams that view a report each week        (habit)\n  2. Share of tickets assigned to a theme      (coverage)\n  3. Share of themes marked "useful"           (quality)\n  4. Minutes from import to first report       (speed)'],
-    ['p','Each input should be something one team owns, with a clear link to the North Star. Now suppose an input goes up and the North Star does not. Then your link is wrong. That is useful to learn, because now you know which assumption to fix.'],
+    ['p','Each input should belong to one team, with a clear link to the North Star. Now say an input goes up, but the North Star does not. Then your link is wrong. That is good news, because now you know which guess to fix.'],
     ['do','Prove it now',[
       ['p','Write your capstone’s North Star and three input metrics. Then name the team or person who could move each input.'],
-      ['x','One North Star, three inputs and an owner for each. Counterexample: an input that could rise while the North Star falls.']
+      ['x','One North Star, three inputs and an owner for each. Plus a counterexample (a case that proves you wrong): an input that could rise while the North Star falls.']
     ]],
     ['q','I607'],
 
     ['h','Idea 2: Event taxonomies, properties and identity'],
-    ['p','To measure anything, you first have to record it. Each time a user does something in your product, such as signing up or opening a report, the product can write down a small note about it. That note is called an <strong>event</strong>.'],
-    ['p','If everyone names events in their own way, the data turns into a mess. So teams agree on one naming rule. The list of events, together with that rule, is called an <strong>event taxonomy</strong>. A common rule is <code>object_action</code>, in lower case and past tense.'],
-    ['p','Here are five events for Theme Finder. Look at the last column. Every event exists to answer one question.'],
-    ['tb',['Event','Properties','Question it answers'],[
+    ['p','To measure anything, you first have to record it. Each time a user does something, like signing up or opening a report, the product can write a small note. Think of a shop’s tally book. That note is called an <strong>event</strong>.'],
+    ['p','If everyone names events in their own way, the data becomes a mess. So teams agree on one naming rule. The list of events plus that rule is called an <strong>event taxonomy</strong>. A common rule is <code>object_action</code>, in lower case and past tense.'],
+    ['p','Here are five events for Theme Finder. Look at the last column. Every event is there to answer one question.'],
+    ['tb',['Event','Properties (extra details)','Question it answers'],[
       ['account_created','plan, signup_source','Where do new teams come from?'],
       ['helpdesk_connected','helpdesk, ticket_count','How many teams get through the hard step?'],
       ['report_viewed','week, themes_shown','Do leads come back each week?'],
       ['theme_marked_useful','theme_id, useful','Is the grouping any good?'],
       ['theme_shared','channel','Does the growth loop run?']
     ]],
-    ['p','An event alone only says that something happened. <strong>Properties</strong> add detail to it, so you can split the results later. Keep them to what you need. And never put ticket text or personal data in them.'],
-    ['p','You also need to know who did it. <strong>Identity</strong> links events to a person. A visitor starts with an anonymous ID. When they sign up, you link it to a user ID, so their earlier visits join their history. In B2B products, also attach a company or account ID. Your buyer cares about teams, not single users.'],
-    ['p','Finally, write all of this down in one place. A <strong>tracking plan</strong> is the shared document that lists every event, its properties, when it fires and who owns it. Engineers build from it, and analysts can trust the data because of it.'],
+    ['p','An event alone only says that something happened. <strong>Properties</strong> add detail, like labels on a parcel, so you can split the results later. Keep only what you need. And never put ticket text or personal data in them.'],
+    ['p','You also need to know who did it. <strong>Identity</strong> ties events to one person, like a name tag. A visitor starts with an anonymous ID. When they sign up, you link it to a user ID, so their earlier visits join their history. In B2B products (products sold to companies), also add a company or account ID. Your buyer cares about teams, not single users.'],
+    ['p','Last, write all this down in one place. A <strong>tracking plan</strong> is the shared document that lists every event, its properties, when it fires (is sent) and who owns it. Engineers build from it. Analysts trust the data because of it. It is like a recipe card everyone follows.'],
     ['do','Prove it now',[
-      ['p','Write five events for your capstone using <code>object_action</code> names. Add the question each one answers.'],
-      ['x','Five events with questions. Counterexample: an event you were tempted to add that answers no question.']
+      ['p','Write five events for your capstone with <code>object_action</code> names. Add the question each one answers.'],
+      ['x','Five events with questions. Plus a counterexample: one event you wanted to add that answers no question.']
     ]],
 
     ['h','Idea 3: Funnels, cohorts, segments and retention'],
-    ['p','Once events start arriving, three views answer most product questions. Let’s take them one at a time.'],
-    ['p','The first is the <strong>funnel</strong>. It shows the share of users who complete each step in order, so you can see where people drop off.'],
-    ['p','The second is the <strong>cohort</strong>, which is a group of users who started in the same period. A retention table follows each cohort over time and shows how many of them keep coming back.'],
-    ['p','The third is the <strong>segment</strong>, a slice of users who share a property, such as plan or helpdesk. Comparing segments shows who the product works for.'],
+    ['p','Once events start arriving, three views answer most product questions. Think of three windows into one shop. Let us take them one by one.'],
+    ['p','The first is the <strong>funnel</strong>. Picture a funnel from the kitchen: many drops go in, few come out. It shows the share of users who finish each step in order, so you can see where people drop off.'],
+    ['p','The second is the <strong>cohort</strong>, a group of users who started in the same period, like one school batch. A retention table follows each cohort over time. It shows how many keep coming back.'],
+    ['p','The third is the <strong>segment</strong>, a slice of users who share a property, such as plan or helpdesk. Compare segments to see who the product works for.'],
     ['p','Here is a weekly retention table. Each row is a cohort. Each cell is the share still viewing reports that many weeks later.'],
-    ['tb',['Cohort','Teams','Week 1','Week 2','Week 4','Week 8'],[
+    ['tb',['Cohort','Teams (how many)','Week 1','Week 2','Week 4','Week 8'],[
       ['1 Sep','20','70%','55%','45%','40%'],
       ['8 Sep','25','72%','60%','52%',''],
       ['15 Sep','18','78%','66%','','']
     ]],
-    ['p','You can read it in two ways. Across a row, the curve flattens around 40%, which suggests lasting use. Down a column, newer cohorts retain better, which suggests that recent changes helped.'],
-    ['p','Both readings need enough users before you trust them. With 20 teams, one team is five percentage points. So a single team leaving can move the number a lot.'],
+    ['p','You can read it two ways. Look across a row: the line flattens near 40%, so people keep using it. Look down a column: newer cohorts stay better, so recent changes probably helped.'],
+    ['p','Both readings need enough users before you trust them. With 20 teams, one team is five percentage points. So one team leaving can move the number a lot.'],
     ['do','Prove it now',[
       ['p','Sketch the retention table you expect for your capstone’s first three cohorts. Then say which segment you expect to retain best, and why.'],
       ['x','A small table and one segment prediction. Write it down now, so you can compare it with real data later.']
@@ -378,43 +378,43 @@ window.PART7 = [
     ['q','I608'],
 
     ['h','Idea 4: A/B tests, guardrails and sample size'],
-    ['p','Sometimes you want to know whether one specific change helped. Comparing numbers before and after is risky, because other things change at the same time. The fair way is an <strong>A/B test</strong>. You show the change to a random half of users and compare them with the other half.'],
-    ['p','Randomising is what lets you say the change caused the difference.'],
-    ['p','Write the design down before you start. A design also needs a guardrail, which is a number that must not get worse while you chase the main one. Here is a design for Theme Finder:'],
+    ['p','Sometimes you want to know if one change helped. Comparing before and after is risky, because other things change too. The fair way is an <strong>A/B test</strong>. Think of two identical tea stalls, one with the change and one without. You show the change to a random half of users and compare them with the other half.'],
+    ['p','Picking at random is what lets you say the change caused the difference.'],
+    ['p','Write the design down before you start. A design also needs a guardrail. That is a number that must not get worse while you chase the main one, like the railing on a bridge. Here is a design for Theme Finder:'],
     ['code','Hypothesis   A sample report before connecting the helpdesk\n             will raise activation.\nUnit         Account (not user: teammates share a report)\nPrimary      Share of accounts that view a first report\n             within 7 days\nGuardrail    Share of accounts that connect a helpdesk\n             must not fall\nMDE          +5 percentage points (from 20% to 25%)\nStop rule    Run until each group has the planned sample.\n             No early peeking.'],
-    ['p','Notice the stop rule. “No early peeking” means you don’t check the result halfway and stop the moment it looks good. You wait until each group has its planned sample.'],
-    ['p','How many users is that? It depends on the <strong>minimum detectable effect</strong> (MDE), which is the smallest change worth detecting. The smaller the change you care about, the more users you need. A rough rule for a yes/no metric, at the usual settings, is:'],
+    ['p','Notice the stop rule. “No early peeking” means you do not check halfway and stop the moment it looks good. It is like not opening the oven door every minute. Wait until each group has its planned sample (the number of users you planned for).'],
+    ['p','How many users is that? It depends on the <strong>minimum detectable effect</strong> (MDE), the smallest change worth spotting. The smaller the change you care about, the more users you need. A rough rule for a yes/no metric, at the usual settings, is:'],
     ['code','users per group ≈ 16 × p × (1 − p) ÷ MDE²\n\np = 0.20, MDE = 0.05\n16 × 0.20 × 0.80 ÷ 0.0025 = 1,024 accounts per group'],
-    ['c','Why this matters','An early B2B product may have forty accounts, not two thousand. It cannot run this test. Say so, and use other evidence instead: watch sessions, compare before and after with care, and look for large effects. Running an underpowered test, one with too few users to give a clear answer, and reporting its result is worse than not testing.'],
+    ['c','Why this matters','An early B2B product may have forty accounts, not two thousand. It cannot run this test. Say so, and use other evidence instead: watch sessions, compare before and after with care, and look for large effects. Running an underpowered test (one with too few users to give a clear answer) and reporting its result is worse than not testing.'],
     ['do','Prove it now',[
       ['p','Write the full experiment design for one change to your capstone, using the seven lines above. Then work out the sample size.'],
       ['x','A complete design and a number. If the number is bigger than your user base, write what you will do instead.']
     ]],
     ['try',{id:'b3-sample',mins:8,min:80,rows:5,
-      task:'Your activation rate is 30%. You want to detect a rise to 40%. Use the rule of thumb to estimate the users needed per group. Then say whether you would run the test with 150 new accounts a month.',
+      task:'Your activation rate (the share of new users who get started) is 30%. You want to spot a rise to 40%. Use the rule of thumb to estimate the users needed per group. Then say whether you would run the test with 150 new accounts a month.',
       ph:'16 × … × … ÷ … = … per group, so…',
-      after:'Here p = 0.30 and the MDE is 0.10. The sum is 16 × 0.30 × 0.70 ÷ 0.01 = 336 accounts per group, or 672 in total. At 150 new accounts a month, that takes about four and a half months. That is probably too slow for a product that is changing every week. You have two options. You can aim only for a larger effect, which needs fewer users. Or you can decide from session observations and a careful before-and-after comparison, and state clearly that it is weaker evidence.'}],
+      after:'Here p = 0.30 and the MDE is 0.10. The sum is 16 × 0.30 × 0.70 ÷ 0.01 = 336 accounts per group, or 672 in total. At 150 new accounts a month, that takes about four and a half months. That is probably too slow for a product that changes every week. You have two options. Aim only for a larger effect, which needs fewer users. Or decide from watching sessions and a careful before-and-after comparison, and say clearly that this is weaker evidence.'}],
     ['q','I609'],
 
     ['h','Idea 5: Data quality, QA and causal humility'],
     ['p','Here is an uncomfortable fact. Bad data looks exactly like good data on a chart. So check your tracking before you trust a single number:'],
     ['n',[
       'Trigger each event yourself and confirm it arrives once, with the right properties.',
-      'Compare an event count with your database. For example, compare accounts created with the rows in the accounts table.',
+      'Compare an event count with your database (where your app keeps its records). For example, compare accounts created with the rows in the accounts table.',
       'Filter out your own team’s traffic and test accounts.',
-      'Check that events still fire after each release.'
+      'Check that events still fire after each release (each new version you ship).'
     ]],
-    ['p','Next, keep product analytics separate from model telemetry. Telemetry means the records a system keeps about itself: traces, latency (how long a request took) and eval scores. These tell you how the model behaved (Chapter 30). Product events tell you what people did. Link the two with a shared request ID, so you can move between them.'],
-    ['p','Finally, be careful about causes. Say users who share reports retain better. Sharing might cause that. It might also be that engaged users simply do both. Only a randomised test shows cause. Everything else is a pattern worth testing.'],
+    ['p','Next, keep product analytics apart from model telemetry. Telemetry means the records a system keeps about itself: traces, latency (how long a request took) and eval scores (marks from the answer-key test). These tell you how the model behaved (Chapter 30). Product events tell you what people did. Link the two with a shared request ID (one number on both records), so you can move between them.'],
+    ['p','Last, be careful about causes. Say users who share reports stay longer. Sharing might cause that. Or keen users may simply do both. Only a random test shows cause. Everything else is a pattern worth testing.'],
     ['key','Write “users who do X also tend to do Y”, unless a controlled test shows that X causes Y.'],
     ['do','Prove it now',[
-      ['p','Run the four QA checks on one event in your capstone, and write down what you found.'],
-      ['x','Four results. Counterexample: a chart in your capstone that would look fine even if an event were firing twice.']
+      ['p','Run the four QA checks (the four checks above) on one event in your capstone, and write down what you found.'],
+      ['x','Four results. Plus a counterexample: a chart in your capstone that would look fine even if an event were firing twice.']
     ]],
 
     ['h','What you have learned'],
-    ['p','You now have a way to measure a product from end to end. You pick one number that matters and the inputs that move it. You record events with clear names. You read funnels, cohorts and segments. You test changes fairly, and you check your data before you believe it.'],
-    ['p','Next, you’ll look at the tools that make all this work, and how to choose them for an AI product workflow.']
+    ['p','You now have a way to measure a product from start to end. You pick one number that matters and the inputs that move it. You record events with clear names. You read funnels, cohorts and segments. You test changes fairly. And you check your data before you believe it.'],
+    ['p','Next, you will look at the tools that make all this work, and how to choose them for an AI product workflow.']
   ]
 },
 

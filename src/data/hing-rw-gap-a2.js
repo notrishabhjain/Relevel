@@ -7,8 +7,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Chhe tasks score kijiye',
   'You already know this':
     'Yeh aap pehle se jaante hain',
-  'An agent answers six test questions correctly, but on two of them it called the exchange-rate tool when it did not need to. What does a score on the final answers alone tell you?':
-    'Ek agent chhe test sawaalon ke sahi jawab deta hai, lekin do mein usne exchange-rate tool bulaaya jabki zaroorat nahi thi. Sirf final answers ka score aapko kya batata hai?',
   'That nothing is wrong, because every answer was right':
     'Ki kuch galat nahi hai, kyunki har answer sahi tha',
   'That the agent calls its tools efficiently':
@@ -17,8 +15,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Sirf answers. Do extra calls har run par paisa kharch karte hain, aur unhe sirf trajectory evaluation dikhata hai',
   'That the tool descriptions are well written':
     'Ki tool descriptions achhi likhi hain',
-  'The final answer hides the route. Scoring the ordered list of tool calls, separately from the answer, is called trajectory evaluation. An agent can reach the right answer by the wrong path, and the wrong path is where the cost and the risk sit.':
-    'Final answer raasta chhupa leta hai. Tool calls ki ordered list ko answer se alag score karna trajectory evaluation kehlata hai. Agent galat raaste se sahi answer tak pahunch sakta hai, aur cost aur risk galat raaste mein hi baithte hain.',
   'Save the four prompts and their four scores as <code>docs/prompt-and-scores.md</code> in your repository.':
     'Chaaron prompts aur unke chaaron scores ko apni repository mein <code>docs/prompt-and-scores.md</code> ke roop mein save kijiye.',
   'Cost per correct answer':

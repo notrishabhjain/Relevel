@@ -3,8 +3,6 @@ Object.assign(window.HING = window.HING || {}, {
 
   'Logging the raw response alongside the parsed one':
     'Saaf kiye gaye jawaab ke saath kaccha jawaab bhi record karna',
-  'Raising the model temperature':
-    'Model ka temperature badhana',
   'The system instructions':
     'System ke nirdesh',
   'The retrieved evidence':
@@ -21,8 +19,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Jab tak koi us document ke baare mein na poochhe, kuch nahi hota',
   'A truthful description, because the model reads it':
     'Sachcha description, kyunki model use padhta hai',
-  'The agent, because it will improve as models improve':
-    'Agent, kyunki models behtar honge to yeh bhi behtar hoga',
   'Nothing about whether the call should have been allowed':
     'Yeh call honi bhi chahiye thi ya nahi — iske baare mein kuch bhi nahi',
 

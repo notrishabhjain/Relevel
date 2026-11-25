@@ -160,7 +160,7 @@ Object.assign(window.HING = window.HING || {}, {
   'There are 4,000 outputs a day and you have one reviewer. What design works?':
     'Roz 4,000 outputs hain aur aapke paas ek reviewer hai. Kaun sa design kaam karta hai?',
   'Structured output (a form with fixed boxes) plus programmatic checks turn “review everything” into “review the few percent that failed a check.” One person can do that, with the authority and the time.':
-    'Structured output (fixed khaanon wala form) aur programmatic checks “sab kuch review karo” ko “jo kuch pratishat check mein fail hue unhein review karo” bana dete hain. Ek insaan yeh kar sakta hai, agar uske paas adhikaar aur samay ho.',
+    'Structured output (fixed khaanon wala form) aur programmatic checks “sab kuch review kijiye” ko “jo kuch pratishat check mein fail hue, sirf unhein review kijiye” bana dete hain. Ek insaan yeh kar sakta hai, agar uske paas adhikaar aur samay ho.',
   'Review a random 1% and hope':
     'Random 1% review kijiye aur ummeed rakhiye',
   'Send only the outputs that fail a programmatic check to review, and sample the rest':
@@ -194,7 +194,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Only the vector index matters':
     'Sirf vector index maayne rakhta hai',
   'Which of these make a deletion request hard to satisfy in a RAG system (find the page, then answer from it)?':
-    'In mein se kaun si baatein RAG system (pehle page dhundho, phir usse jawaab do) mein deletion request poori karna mushkil banati hain?',
+    'In mein se kaun si baatein RAG system (pehle page dhundhiye, phir usse jawaab dijiye) mein deletion request poori karna mushkil banati hain?',
   'The source file is the easy part. Deletion drills fail on the derived copies: vectors, third-party logs and eval sets. Nobody remembers the eval set.':
     'Source file aasaan hissa hai. Deletion drills banayi hui copies par fail hoti hain: vectors, third-party logs aur eval sets. Eval set ko koi yaad nahin rakhta.',
   'The same passage was embedded into a vector index':

@@ -5,86 +5,36 @@ Object.assign(window.HING = window.HING || {}, {
   /* ---- b1: Business models, pricing and unit economics ---- */
   'Business models, pricing and unit economics':
     'Business models, pricing aur unit economics',
-  'In this chapter you’ll work out who pays for your product, how to charge them, and whether each customer makes you money or loses it. You’ll model the real cost of an AI task, compare pricing models, and write a pricing recommendation that names its risks.':
-    'Is chapter mein aap dekhenge ki aapke product ke liye paisa kaun deta hai, unse kaise charge karna hai, aur har customer aapko kamaake deta hai ya nuksaan karwata hai. Aap ek AI task ka asli cost model karenge, pricing models compare karenge, aur ek pricing recommendation likhenge jo apne risks bhi batati ho.',
-  'A sized market and named alternatives':
-    'Ek sized market aur named alternatives',
-  'You set a price against what the customer would do instead.':
-    'Price is par tay hota hai ki customer uski jagah kya karega.',
   'Cost per query':
     'Cost per query',
-  'The cost stack in Idea 3 starts from it.':
-    'Idea 3 ka cost stack isi se shuru hota hai.',
   'Build or buy':
     'Build ya buy',
-  'Depending on a vendor is the other side of that decision.':
-    'Kisi vendor par depend karna us decision ka doosra pehlu hai.',
-  'Separate the person who pays from the person who uses the product and the person who can block the purchase.':
-    'Jo paisa deta hai, jo product use karta hai, aur jo purchase rok sakta hai, in teeno ko alag kar paana.',
-  'Compare seat, usage, outcome and hybrid pricing, and say which risk each one moves to whom.':
-    'Seat, usage, outcome aur hybrid pricing compare kar paana, aur bata paana ki har ek kaun sa risk kis par daalta hai.',
-  'Calculate the cost per successful task, including retries, human review and support.':
-    'Retries, human review aur support ko jodkar, cost per successful task nikaal paana.',
-  'Tell a real flywheel from a hopeful one, and keep it within what users agreed to.':
-    'Asli flywheel aur ummeed wale flywheel mein farq bata paana, aur use us dayre mein rakh paana jis par users ne haami bhari hai.',
-  'Name the ways a model vendor can squeeze your margin, and what you would do about each.':
-    'Bata paana ki model vendor aapka margin kin tareekon se daba sakta hai, aur har ek ke liye aap kya karenge.',
   'Before you start':
     'Shuru karne se pehle',
-  'Plan for about twelve hours, spread over several sittings. Keep your market sizing from A4 open, along with the cost per query numbers from Chapter 15. You’ll need five prospects to interview, so start booking them now.':
-    'Lagbhag 12 ghante ka plan rakhiye, jo kai sittings mein phailein. A4 ka apna market sizing aur Chapter 15 ke cost per query ke numbers paas rakhiye. Aapko interview karne ke liye 5 prospects chahiye honge, isliye unhe abhi se book karna shuru kijiye.',
-  'So far you’ve been asking whether an AI system works. This chapter asks a different question: if it works, can it pay for itself? We’ll go through it in five ideas, and at the end you’ll write a pricing recommendation you can defend.':
-    'Ab tak aap yeh poochte aaye hain ki AI system kaam karta hai ya nahi. Yeh chapter ek alag sawaal poochta hai: agar woh kaam karta hai, toh kya woh apna kharcha nikaal sakta hai? Hum ise 5 ideas mein dekhenge, aur aakhir mein aap ek pricing recommendation likhenge jise aap defend kar sakein.',
   'Idea 1: Value and willingness to pay':
     'Idea 1: Value aur willingness to pay',
-  'Start with a simple question. Why would anyone pay for your product? Because it does a job better or cheaper than what they do today. So the price ceiling comes from that alternative, not from your costs. Your costs only set the floor.':
-    'Ek seedhe sawaal se shuru kijiye. Koi aapke product ke liye paisa kyun dega? Kyunki woh ek kaam ko usse behtar ya sasta kar deta hai jo woh aaj karta hai. Isliye price ki upar ki limit us alternative se aati hai, aapke costs se nahi. Aapke costs sirf neeche ki limit tay karte hain.',
-  'In products sold to businesses, three different people usually matter. The table below shows them, using the Theme Finder example. Notice that each one cares about something different.':
-    'Businesses ko bechne wale products mein aam taur par teen alag log matter karte hain. Neeche ki table unhe Theme Finder ke example se dikhati hai. Dekhiye ki har ek ko alag cheez ki fikr hoti hai.',
-  'Role':
-    'Role',
   'Theme Finder example':
     'Theme Finder example',
   'What they care about':
     'Unhe kis ki fikr hai',
   'User':
     'User',
-  'Support lead':
-    'Support lead',
   'Getting Monday morning back':
     'Monday ki subah wapas paana',
-  'Buyer':
-    'Buyer',
   'Head of support':
     'Head of support',
   'A number to show their own manager':
     'Apne manager ko dikhane ke liye ek number',
-  'Blocker':
-    'Blocker',
   'Security lead':
     'Security lead',
   'Where ticket data goes and who can see it':
     'Ticket data kahan jaata hai aur use kaun dekh sakta hai',
-  'Now let’s work out value from the alternative. A support lead spends about three hours a week building the ticket report by hand. At $40 an hour, that is about $520 a month for one lead.':
-    'Ab alternative se value nikalte hain. Ek support lead ticket report haath se banane mein hafte mein lagbhag 3 ghante lagata hai. $40 ghante ke hisaab se, ek lead ke liye yeh mahine ka lagbhag $520 hua.',
-  'A tool that saves most of that time is worth a lot less than $520 to the buyer, because adopting it also costs them effort. But it is still worth far more than a few dollars. That gap between the two is where your price lives.':
-    'Jo tool us time ka zyadatar hissa bacha le, woh buyer ke liye $520 se kaafi kam ki cheez hai, kyunki use apnane mein bhi unki mehnat lagti hai. Lekin phir bhi woh kuch dollars se bahut zyada ki cheez hai. Dono ke beech ka yeh gap hi woh jagah hai jahan aapka price rehta hai.',
   'Watch out':
     'Dhyaan rakhiye',
-  'Don’t ask “would you pay for this?”. People say yes to be polite, and the answer tells you nothing. Ask what they use today, what it costs them, and who approved that spend. Past spending is evidence. Future intentions are not.':
-    '“Kya aap iske liye paisa denge?” yeh mat poochiye. Log tameez mein haan keh dete hain, aur us jawaab se kuch pata nahi chalta. Poochiye ki woh aaj kya use karte hain, uska unhe kitna cost aata hai, aur woh kharcha kisne approve kiya. Pehle ka kharcha evidence hai. Aage ke irade evidence nahi hain.',
   'Prove it now':
     'Abhi karke dekhiye',
-  'Fill in the user, the buyer and the blocker for your capstone. Then estimate what the current alternative costs one customer per month.':
-    'Apne capstone ke liye user, buyer aur blocker bhariye. Phir andaaza lagaiye ki maujooda alternative ek customer ko mahine ka kitna padta hai.',
-  'Three roles and one monthly cost, with your working shown. Then write one counterexample: a customer for whom your product saves nothing, because their alternative is already cheap.':
-    'Teen roles aur mahine ka ek cost, apni calculation dikhate hue. Phir ek counterexample likhiye: ek aisa customer jiske liye aapka product kuch nahi bachata, kyunki unka alternative pehle se sasta hai.',
   'Idea 2: Seat, usage, outcome and hybrid pricing':
     'Idea 2: Seat, usage, outcome aur hybrid pricing',
-  'Once you know the value, the next question is how to charge for it. There are four common ways to charge for an AI product. Each one moves a different risk onto a different party.':
-    'Value pata chalne ke baad agla sawaal hai ki uske liye charge kaise karein. Ek AI product ke liye charge karne ke chaar aam tareeke hain. Har tareeka alag party par alag risk daalta hai.',
-  'As you read the table, look at the last column. It tells you what can go wrong with each model.':
-    'Table padhte waqt aakhri column dekhiye. Woh batata hai ki har model mein kya galat ho sakta hai.',
   'Model':
     'Model',
   'You charge for':
@@ -93,62 +43,22 @@ Object.assign(window.HING = window.HING || {}, {
     'Achha kyun hai',
   'Risk':
     'Risk',
-  'Seat':
-    'Seat',
   'Each user, per month':
     'Har user ka, mahine ke hisaab se',
-  'Easy for the buyer to budget':
-    'Buyer ke liye budget karna aasaan',
   'Heavy users cost you more but pay the same':
     'Heavy users aapko zyada cost karte hain lekin barabar paisa dete hain',
-  'Usage':
-    'Usage',
   'Each ticket, call or credit':
     'Har ticket, call ya credit ka',
-  'Revenue follows your cost':
-    'Revenue aapke cost ke saath badhta hai',
-  'Buyers cannot predict the bill, so they ration use':
-    'Buyers bill ka andaaza nahi laga paate, isliye woh use ko ration karte hain',
   'Outcome':
     'Outcome',
   'Each successful result, such as a resolved ticket':
     'Har successful result ka, jaise ek resolve hua ticket',
-  'Price follows value':
-    'Price value ke saath chalta hai',
-  'You need an agreed, measurable definition of success':
-    'Success ki ek agreed, measurable definition chahiye',
-  'Hybrid':
-    'Hybrid',
   'A platform fee with some usage included, then a charge for going over it':
     'Ek platform fee, jisme kuch usage shaamil hai, aur us se zyada par alag charge',
-  'Predictable, and protects your margin':
-    'Predictable, aur aapke margin ko bachata hai',
-  'More complex to explain and sell':
-    'Samjhana aur bechna zyada complex hai',
-  'AI products break the usual seat model. Traditional software costs almost nothing for each extra use, so a flat seat price is safe. An AI feature has a real cost every time it runs. So one heavy customer on a seat price can wipe out the margin from ten light ones.':
-    'AI products usual seat model ko tod dete hain. Traditional software mein har extra use ka cost lagbhag zero hota hai, isliye flat seat price safe hai. Lekin ek AI feature jab bhi chalta hai, uska asli cost hota hai. Toh seat price par ek heavy customer 10 halke customers ka margin mita sakta hai.',
-  'Outcome pricing is attractive, and some support tools already charge per resolved conversation. But it only works if you and the customer agree on what counts as an outcome. You also need to measure it without arguments.':
-    'Outcome pricing lubhaavna hai, aur kuch support tools pehle se per resolved conversation charge karte hain. Lekin yeh tabhi chalta hai jab aap aur customer dono is par agree hon ki outcome kise maana jaayega. Aur use bina behas ke measure bhi karna padta hai.',
-  'Pick the pricing model you would start with for your capstone. Write one sentence on why, and one on the risk it leaves you with.':
-    'Apne capstone ke liye woh pricing model chuniye jisse aap shuru karenge. Ek sentence mein likhiye kyun, aur ek sentence mein woh risk jo woh aapke liye chhodta hai.',
-  'One model, one reason and one risk. Counterexample: describe a customer for whom that model would feel unfair.':
-    'Ek model, ek reason aur ek risk. Counterexample: ek aise customer ko describe kijiye jise woh model unfair lagega.',
   'Idea 3: The AI cost stack and contribution margin':
     'Idea 3: AI cost stack aur contribution margin',
-  'Now let’s look at your side of the price. The cost of an AI feature is more than the model bill. To see all of it, build the full stack for one customer for one month.':
-    'Ab price ka aapki taraf wala hissa dekhte hain. Ek AI feature ka cost sirf model ke bill se zyada hota hai. Poora dekhne ke liye, ek customer ke liye ek mahine ka poora stack banaiye.',
-  'Here is the base case for Theme Finder, at 300 tickets a week. Read it line by line, and notice where the biggest number sits.':
-    'Yeh Theme Finder ka base case hai, hafte mein 300 tickets par. Ise line-by-line padhiye, aur dekhiye ki sabse bada number kahan hai.',
-  'Two things stand out. First, support time costs more than ten times as much as the model. Second, the useful unit is the <strong>cost per successful task</strong>. A report the lead rejects still cost you money, so you divide by the reports that worked.':
-    'Do baatein saamne aati hain. Pehli, support time ka cost model se 10 guna se zyada hai. Doosri, kaam ki unit hai <strong>cost per successful task</strong>. Jo report lead reject kar deta hai, uska bhi aapko paisa laga, isliye aap un reports se divide karte hain jo kaam aayin.',
-  'Next, how much does each customer leave you? That is the <strong>contribution margin</strong>, which is what remains after the costs that grow with that customer. At $49 a month, it is ($49 − $12.83) ÷ $49, or about 74%.':
-    'Ab sawaal: har customer aapke paas kitna chhodta hai? Yahi <strong>contribution margin</strong> hai, yaani us customer ke saath badhne wale costs ke baad jo bachta hai. $49 mahine par, yeh ($49 − $12.83) ÷ $49 hai, yaani lagbhag 74%.',
-  'But that is only the base case. What happens when a customer uses the product more, or less? The table shows the same customer at three levels of use.':
-    'Lekin yeh sirf base case hai. Jab customer product ko zyada ya kam use karta hai, tab kya hota hai? Table usi customer ko use ke teen levels par dikhati hai.',
   'Tickets a week':
     'Tickets a week',
-  'Cost to serve':
-    'Cost to serve',
   'Margin at $49':
     'Margin at $49',
   'Low':
@@ -175,44 +85,18 @@ Object.assign(window.HING = window.HING || {}, {
     '$19.21',
   '61%':
     '61%',
-  'Always model low, base and high usage. Most margin problems only show up in the high row.':
-    'Hamesha low, base aur high usage model kijiye. Zyadatar margin problems sirf high row mein dikhti hain.',
-  'Build the base-case cost stack for your capstone, with every line from the example above. Then work out the cost per successful task.':
-    'Apne capstone ke liye base-case cost stack banaiye, upar ke example ki har line ke saath. Phir cost per successful task nikaliye.',
-  'A cost stack with at least five lines. Counterexample: which line would you be most likely to forget, and how much would it change the total?':
-    'Kam se kam 5 lines wala cost stack. Counterexample: kaun si line aap sabse zyada bhoolenge, aur woh total ko kitna badal degi?',
-  'Now try a harder case yourself. Take your time, and show your working.':
-    'Ab ek mushkil case khud try kijiye. Aaram se kijiye, aur apni calculation dikhaiye.',
-  'A customer on Theme Finder grows from 300 to 3,000 tickets a week. They stay on the $49 seat plan. Model cost scales with tickets, and support time goes from 20 to 30 minutes a month. Work out their new cost to serve and margin, and say what you would change.':
-    'Theme Finder par ek customer hafte mein 300 se 3,000 tickets tak badh jaata hai. Woh $49 ke seat plan par hi rehta hai. Model cost tickets ke saath badhta hai, aur support time mahine mein 20 se 30 minute ho jaata hai. Unka naya cost to serve aur margin nikaliye, aur batayiye ki aap kya badlenge.',
   'Model cost… support… total… margin… what I would change…':
     'Model cost… support… total… margin… main kya badlunga…',
-  'Classification becomes 13,000 tickets × $0.0004 = $5.20, plus about $1 for summaries and retries. Hosting rises to about $3 with ten times the data. Support is 30 minutes × $30 = $15. The total is roughly $24, so the margin falls to about 51%. That is still positive, but it keeps falling as they grow. A reasonable fix is a hybrid plan: $49 includes 1,000 tickets a week, and each extra 1,000 tickets a week adds $10 a month. At 3,000 tickets a week they pay $69, so the margin is back to about 65%. The customer’s bill still follows the value they get, and your margin stops falling as they grow.':
-    'Classification 13,000 tickets × $0.0004 = $5.20 ho jaata hai, aur summaries aur retries ke liye lagbhag $1 aur. Hosting 10 guna data ke saath lagbhag $3 tak badhti hai. Support 30 minute × $30 = $15 hai. Total lagbhag $24 hota hai, toh margin girkar lagbhag 51% reh jaata hai. Yeh abhi bhi positive hai, lekin customer ke badhne ke saath girta rehta hai. Ek theek fix hai hybrid plan: $49 mein hafte ke 1,000 tickets shaamil hon, aur har extra 1,000 tickets a week par mahine ka $10 aur jude. Hafte ke 3,000 tickets par woh $69 dete hain, toh margin wapas lagbhag 65% ho jaata hai. Customer ka bill ab bhi unki value ke saath chalta hai, aur unke badhne par aapka margin girna band ho jaata hai.',
   'Idea 4: Data, workflow and platform flywheels':
     'Idea 4: Data, workflow aur platform flywheels',
-  'A good business gets stronger as more people use it. A <strong>flywheel</strong> is the loop behind that: using the product makes the product better, which brings more use. Three kinds show up in AI products, and they are not equally strong.':
-    'Ek achha business tab mazboot hota hai jab zyada log use karte hain. <strong>Flywheel</strong> uske peeche ka loop hai: product use karne se product behtar hota hai, jisse aur use badhta hai. AI products mein teen kism ke flywheels dikhte hain, aur sab barabar mazboot nahi hote.',
-  'The first is the data flywheel. User corrections improve the model, so results get better with use. This is often weaker than people claim. Improvements flatten out after a few thousand examples, and contracts may stop you pooling data across customers.':
-    'Pehla hai data flywheel. User corrections model ko behtar banate hain, toh use ke saath results sudharte hain. Yeh aksar utna mazboot nahi hota jitna log kehte hain. Kuch hazaar examples ke baad improvements flat ho jaate hain, aur contracts aapko alag-alag customers ka data jodne se rok sakte hain.',
   'The second is the workflow flywheel. The product becomes part of a weekly routine, and other work starts to depend on it. For Theme Finder, the Monday report feeds the product team’s planning meeting. This is usually the strongest kind.':
     'Doosra hai workflow flywheel. Product hafte ki routine ka hissa ban jaata hai, aur doosra kaam us par depend karne lagta hai. Theme Finder mein Monday ki report product team ki planning meeting mein jaati hai. Aam taur par yahi sabse mazboot kism hai.',
   'The third is the platform flywheel. Other people build on your product, which makes it more useful to everyone. It is rare, and it needs a lot of users first.':
     'Teesra hai platform flywheel. Doosre log aapke product par kuch banate hain, jisse woh sabke liye zyada kaam ka ban jaata hai. Yeh rare hai, aur pehle ise bahut saare users chahiye.',
   'Why this matters':
     'Yeh kyun zaroori hai',
-  'A flywheel that relies on customer data only works while customers trust you with it. Say clearly what you store, what you train on and who can see it. Get consent before using one customer’s data to improve results for another.':
-    'Jo flywheel customer data par tika hai, woh tabhi chalta hai jab tak customers aap par data ke liye bharosa karte hain. Saaf bataiye ki aap kya store karte hain, kis par train karte hain aur use kaun dekh sakta hai. Ek customer ka data doosre ke results behtar karne ke liye use karne se pehle consent lijiye.',
-  'Name the one user behaviour that would make your capstone better with use. Say which type of flywheel it drives.':
-    'Woh ek user behaviour batayiye jo use ke saath aapke capstone ko behtar banayega. Bataiye ki woh kaun sa flywheel chalata hai.',
-  'One behaviour and its flywheel type. Counterexample: a situation where that behaviour would make the product worse, such as corrections from a careless user.':
-    'Ek behaviour aur uska flywheel type. Counterexample: ek aisi situation jahan woh behaviour product ko kharab kar dega, jaise kisi laparwah user ki corrections.',
   'Idea 5: Vendor dependence and gross-margin risk':
     'Idea 5: Vendor dependence aur gross-margin risk',
-  'The last idea is about something outside your control. If your product runs on another company’s model, that company can change your costs and your quality without asking you.':
-    'Aakhri idea aisi cheez ke baare mein hai jo aapke control se bahar hai. Agar aapka product kisi doosri company ke model par chalta hai, toh woh company aapko bina poochhe aapka cost aur aapki quality badal sakti hai.',
-  'This shows up in your <strong>gross margin</strong>, which is revenue minus the direct cost of delivering the product. For AI products, a big part of that cost is the model vendor’s bill. The table lists four things a vendor can do, what each does to you, and what you can do about it today.':
-    'Yeh aapke <strong>gross margin</strong> mein dikhta hai, yaani revenue minus product deliver karne ka seedha cost. AI products mein is cost ka bada hissa model vendor ka bill hota hai. Table chaar cheezein batati hai jo vendor kar sakta hai, har ek aap par kya asar daalti hai, aur aaj aap uske liye kya kar sakte hain.',
   'What the vendor can do':
     'Vendor kya kar sakta hai',
   'What it does to you':
@@ -223,68 +107,18 @@ Object.assign(window.HING = window.HING || {}, {
     'Prices badha de',
   'Margin falls overnight':
     'Margin raaton-raat gir jaata hai',
-  'Keep a second model tested on your eval set':
-    'Apne eval set par tested ek doosra model rakhiye',
-  'Retire a model':
-    'Koi model retire kar de',
-  'Quality changes when you migrate':
-    'Migrate karne par quality badal jaati hai',
-  'Pin model versions; plan migrations early':
-    'Model versions pin kijiye; migrations jaldi plan kijiye',
-  'Change rate limits':
-    'Rate limits badal de',
   'Customers hit errors at busy times':
     'Busy time par customers ko errors milte hain',
-  'Add queues and a fallback model':
-    'Queues aur ek fallback model jodiye',
   'Launch a competing feature':
     'Ek competing feature launch kar de',
-  'Your product looks redundant':
-    'Aapka product faltu lagne lagta hai',
   'Own the workflow and the customer relationship':
     'Workflow aur customer relationship ke maalik baniye',
-  'You can’t remove this risk, but you can price it in. Your recommendation should say what happens to your margin if the model price doubles, and how long it would take you to switch.':
-    'Aap is risk ko hata nahi sakte, lekin use price mein shaamil kar sakte hain. Aapki recommendation mein yeh hona chahiye ki model price double hone par aapke margin ka kya hoga, aur switch karne mein aapko kitna time lagega.',
-  'Recalculate your base-case margin with the model price doubled. Then estimate how many days it would take to switch to a second vendor.':
-    'Model price double karke apna base-case margin dobara nikaliye. Phir andaaza lagaiye ki doosre vendor par switch karne mein kitne din lagenge.',
-  'One new margin figure and one switching estimate. If you can’t estimate the switch, you are missing an eval set that works with any vendor. Chapter 33 covers vendor exit.':
-    'Ek naya margin figure aur ek switching estimate. Agar aap switch ka andaaza nahi laga paate, toh aapke paas aisa eval set nahi hai jo kisi bhi vendor ke saath chale. Chapter 33 vendor exit cover karta hai.',
-  'You now have everything for a recommendation. Write the opening paragraph, the one a busy reader will read first.':
-    'Ab aapke paas recommendation ke liye sab kuch hai. Opening paragraph likhiye, woh jo ek busy reader sabse pehle padhega.',
   'Write the first paragraph of your pricing recommendation. Include the price, the pricing model, the margin at high usage and the biggest risk.':
     'Apni pricing recommendation ka pehla paragraph likhiye. Usmein price, pricing model, high usage par margin aur sabse bada risk shaamil kijiye.',
   'I recommend… because… at high usage… the biggest risk is…':
     'Main recommend karta hoon… kyunki… high usage par… sabse bada risk hai…',
-  'A strong opening: <strong>I recommend a hybrid plan at $49 per team per month, including 1,000 tickets a week, with $10 a month for each extra 1,000 tickets a week.</strong> Our alternative is three hours of a support lead’s time a week, about $520 a month, so the price is well under the value. The contribution margin is 74% at base usage and stays above 60% at high usage because of the overage. The biggest risk is model price. If it doubles, the base margin falls to about 72%, and switching to our tested second model takes about a week.':
-    'Ek mazboot opening: <strong>Main $49 per team per month ka hybrid plan recommend karta hoon, jisme hafte ke 1,000 tickets shaamil hain, aur har extra 1,000 tickets a week ke liye mahine ka $10.</strong> Hamara alternative support lead ke hafte ke 3 ghante hain, yaani mahine ke lagbhag $520, isliye price value se kaafi neeche hai. Contribution margin base usage par 74% hai aur overage ki wajah se high usage par 60% se upar rehta hai. Sabse bada risk model price hai. Agar woh double ho jaaye, toh base margin girkar lagbhag 72% ho jaata hai, aur hamare tested doosre model par switch karne mein lagbhag ek hafta lagta hai.',
   'What you have learned':
     'Aapne kya seekha',
-  'Let’s pull the five ideas together. A price is set by the value of the customer’s alternative, and by who pays, who uses and who can block. There are four ways to charge, and each one moves risk to someone different.':
-    'Chaliye paanchon ideas ko jod lete hain. Price customer ke alternative ki value se tay hota hai, aur is se ki kaun pay karta hai, kaun use karta hai aur kaun rok sakta hai. Charge karne ke chaar tareeke hain, aur har ek risk ko kisi alag ke paas bhejta hai.',
-  'The real cost of a task includes retries, review and support, so you measure the cost per successful task at low, base and high usage. You also saw that a flywheel needs trust, and that a model vendor can squeeze your margin, so you price that risk in.':
-    'Ek task ke asli cost mein retries, review aur support shaamil hain, isliye aap low, base aur high usage par cost per successful task measure karte hain. Aapne yeh bhi dekha ki flywheel ko bharosa chahiye, aur model vendor aapka margin daba sakta hai, isliye us risk ko price mein shaamil kijiye.',
-  'Next, B2 looks at growth, onboarding and product marketing: how people find your product, and how you get them to the moment where it works for them.':
-    'Aage, B2 growth, onboarding aur product marketing dekhta hai: log aapka product kaise dhoondhte hain, aur aap unhe us moment tak kaise le jaate hain jahan woh unke liye kaam karne lagta hai.',
-  'Decide how to charge, and prove the numbers':
-    'Kaise charge karna hai yeh tay kijiye, aur numbers sabit kijiye',
-  'A tool that people love can still fail if it loses money on every message. In this chapter you learned to separate the person who pays from the person who uses and the person who can block. You also learned to compare ways of pricing, and to work out the cost of one successful task, including retries, human review and support. Here you decide how Bharat Privacy Guard should be priced.':
-    'Jo tool logon ko pasand hai, woh bhi fail ho sakta hai agar woh har message par paisa kho raha ho. Is chapter mein aapne paisa dene wale, use karne wale aur rok sakne wale ko alag karna seekha. Aapne pricing ke tareeke compare karna bhi seekha, aur retries, human review aur support jodkar ek successful task ka cost nikaalna. Yahan aap tay karte hain ki Bharat Privacy Guard ki pricing kaisi honi chahiye.',
-  'Written work. Interviews and a cost spreadsheet. No code is needed.':
-    'Likhne ka kaam. Interviews aur ek cost spreadsheet. Code ki zaroorat nahi.',
-  'Interview five possible buyers, a mix of developers and compliance people. Ask what they use today, who owns the budget, and what the problem costs them. Don’t ask “would you pay?”.':
-    '5 possible buyers ka interview kijiye, developers aur compliance logon ka mix. Poochiye ki woh aaj kya use karte hain, budget kiska hai, aur problem unhe kitni padti hai. “Kya aap paisa denge?” yeh mat poochiye.',
-  'Build a cost table for one successfully cleaned message at low, base and high usage. Include retries, human review of unsure cases and support time as their own lines, not only the model calls.':
-    'Ek successfully clean hue message ka cost table banaiye, low, base aur high usage par. Retries, unsure cases ka human review aur support time ko apni-apni alag lines mein rakhiye, sirf model calls nahi.',
-  'Design three pricing packages, for example a free open-source kit, a paid hosted service, and a gateway for companies. For each, say who pays, what is counted, and who carries the risk if usage jumps.':
-    'Teen pricing packages design kijiye, jaise ek free open-source kit, ek paid hosted service, aur companies ke liye ek gateway. Har ek ke liye bataiye ki kaun pay karta hai, kya count hota hai, aur usage achanak badhne par risk kaun uthata hai.',
-  'Plan a short survey that asks people at what price the tool is too cheap, fair, expensive and too expensive.':
-    'Ek chhota survey plan kijiye jo poochhe ki kis price par tool bahut sasta, theek, mehnga aur bahut mehnga lagta hai.',
-  'Write a one-page pricing recommendation: the price, the margin at high usage, what happens to the margin if the model provider doubles its price, and the risks.':
-    'Ek page ki pricing recommendation likhiye: price, high usage par margin, model provider ke price double karne par margin ka kya hoga, aur risks.',
-  'Five interviews, each naming the current alternative and who signs off the spend.':
-    '5 interviews, har ek mein maujooda alternative aur kharcha kaun sign off karta hai, yeh likha ho.',
-  'A cost table with low, base and high rows, and support time on its own line.':
-    'Low, base aur high rows wala ek cost table, aur support time apni alag line mein.',
   'Three pricing packages and a survey plan.':
     'Teen pricing packages aur ek survey plan.',
   'A recommendation that states the margin at high usage and what a doubled model price does.':
@@ -293,40 +127,16 @@ Object.assign(window.HING = window.HING || {}, {
   /* ---- b2: Growth, onboarding and product marketing ---- */
   'Growth, onboarding and product marketing':
     'Growth, onboarding aur product marketing',
-  'In this chapter you’ll work out how people find your product, how they get value from it quickly, and why they come back. You’ll define the events for each growth stage, test onboarding with real users, and design one growth loop you’d be comfortable defending in public.':
-    'Is chapter mein aap dekhenge ki log aapka product kaise dhoondhte hain, usse jaldi value kaise paate hain, aur wapas kyun aate hain. Aap har growth stage ke events define karenge, asli users ke saath onboarding test karenge, aur ek growth loop design karenge jise aap sabke saamne aaram se defend kar sakein.',
   'Interview skills':
     'Interview skills',
-  'You’ll watch five people go through onboarding.':
-    'Aap 5 logon ko onboarding se guzarte hue dekhenge.',
-  'A positioning statement':
-    'Ek positioning statement',
   'Idea 5 builds on it.':
     'Idea 5 isi par banta hai.',
-  'A prototype':
-    'Ek prototype',
   'The onboarding test uses one.':
     'Onboarding test mein ek prototype use hota hai.',
-  'Define acquisition, activation, retention, referral and revenue events, and know where the funnel model misleads.':
-    'Acquisition, activation, retention, referral aur revenue ke events define kar paana, aur jaan paana ki funnel model kahan galat raasta dikhata hai.',
-  'Name the activation moment for your product and measure time-to-value.':
-    'Apne product ka activation moment bata paana aur time-to-value measure kar paana.',
   'Use the Fogg behaviour model to explain why a user did or did not act.':
     'Fogg behaviour model se samjha paana ki user ne action kyun liya ya kyun nahi liya.',
-  'Choose between product-led, sales-led and product-led sales motions.':
-    'Product-led, sales-led aur product-led sales motions mein se chun paana.',
-  'Tell a network effect from virality, and design an ethical growth loop.':
-    'Network effect aur virality mein farq bata paana, aur ek ethical growth loop design kar paana.',
-  'Plan for about twelve hours. You need your prototype from A7 and five people from your target users. Pick one of Cursor, Lovable, Grammarly or Notion AI for the teardown, and use it for a few days first.':
-    'Lagbhag 12 ghante ka plan rakhiye. Aapko A7 ka apna prototype aur apne target users mein se 5 log chahiye. Teardown ke liye Cursor, Lovable, Grammarly ya Notion AI mein se ek chuniye, aur pehle kuch din use use kijiye.',
-  'In the last chapter you worked out who pays for your product and how to charge them. But a good price means little if nobody finds the product, or if people try it once and leave. This chapter is about those two problems: how people find your product, and how they come to need it.':
-    'Pichhle chapter mein aapne dekha ki aapke product ke liye paisa kaun deta hai aur unse charge kaise karna hai. Lekin achha price tab bahut kam kaam ka hai jab koi product ko dhoondhe hi nahi, ya log ek baar try karke chhod dein. Yeh chapter inhi do problems ke baare mein hai: log aapka product kaise dhoondhte hain, aur unhe uski zaroorat kaise padti hai.',
   'Idea 1: AARRR, and where funnels mislead':
     'Idea 1: AARRR, aur funnels kahan galat raasta dikhate hain',
-  'Let’s start with a way of splitting growth into stages. <strong>AARRR</strong> names five of them: acquisition, activation, retention, referral and revenue. The first job is to define one event for each stage, so you can count it.':
-    'Pehle growth ko stages mein baantne ka ek tareeka dekhte hain. <strong>AARRR</strong> paanch stages ke naam hain: acquisition, activation, retention, referral aur revenue. Pehla kaam hai har stage ke liye ek event define karna, taaki aap use gin sakein.',
-  'The table gives an example for Theme Finder. Each event is something a product could actually log.':
-    'Table Theme Finder ka example deti hai. Har event aisi cheez hai jo ek product sach mein log kar sakta hai.',
   'Stage':
     'Stage',
   'Question':
@@ -343,14 +153,10 @@ Object.assign(window.HING = window.HING || {}, {
     'Activation',
   'Did they get value?':
     'Kya unhe value mili?',
-  'Viewed their first theme report':
-    'Apni pehli theme report dekhi',
   'Retention':
     'Retention',
   'Did they come back?':
     'Kya woh wapas aaye?',
-  'Viewed a report in 3 of the next 4 weeks':
-    'Agle 4 hafton mein se 3 mein ek report dekhi',
   'Referral':
     'Referral',
   'Did they bring others?':
@@ -363,20 +169,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Kya unhone paisa diya?',
   'Started a paid plan':
     'Paid plan shuru kiya',
-  'The funnel is a good start, but it has limits. It suggests people move in a straight line, when many come back through referrals and shared reports. It also tempts you to fix the top of the funnel first. Most of the time, retention is the stage that decides whether a product works.':
-    'Funnel ek achhi shuruaat hai, lekin uski limits hain. Woh yeh dikhata hai ki log seedhi line mein chalte hain, jabki bahut se log referrals aur shared reports se wapas aate hain. Woh aapko funnel ke upar wale hisse ko pehle theek karne ke liye bhi lalchata hai. Zyadatar maamlon mein retention hi woh stage hai jo tay karta hai ki product chalta hai ya nahi.',
-  'If users do not stay, more sign-ups only means losing people faster.':
-    'Agar users rukte nahi, toh zyada sign-ups ka matlab sirf yeh hai ki aap logon ko aur tezi se kho rahe hain.',
-  'Write one event for each of the five stages for your capstone.':
-    'Apne capstone ke liye paanchon stages mein se har ek ka ek event likhiye.',
-  'Five events, each something your code could log. Counterexample: a stage where your product’s users would not move in funnel order.':
-    'Paanch events, har ek aisa jo aapka code log kar sake. Counterexample: ek aisa stage jahan aapke product ke users funnel ke order mein nahi chalenge.',
   'Idea 2: Activation moments and time-to-value':
     'Idea 2: Activation moments aur time-to-value',
-  'Now let’s look closely at the second stage. The <strong>activation moment</strong> is the first time a user gets the value your product promises. For Theme Finder, it is seeing a theme the lead didn’t know about. Everything before that moment is cost to the user.':
-    'Ab doosre stage ko kareeb se dekhte hain. <strong>Activation moment</strong> woh pehla waqt hai jab user ko woh value milti hai jiska aapka product waada karta hai. Theme Finder mein yeh ek aisi theme dekhna hai jiske baare mein lead ko pata nahi tha. Us moment se pehle ki har cheez user ke liye cost hai.',
-  'So how do you know if the road to that moment is too long? You measure <strong>time-to-value</strong>, which is how long it takes to get there, counted from sign-up. Here is a first onboarding test with five support leads. Read down the table, and see where people drop off.':
-    'Toh kaise pata chale ki us moment tak ka raasta bahut lamba hai? Aap <strong>time-to-value</strong> measure karte hain, yaani wahan tak pahunchne mein kitna time lagta hai, sign-up se gina hua. Yeh 5 support leads ke saath ek pehla onboarding test hai. Table mein neeche padhiye, aur dekhiye ki log kahan chhodte hain.',
   'Step':
     'Step',
   'Users who finished':
@@ -389,44 +183,20 @@ Object.assign(window.HING = window.HING || {}, {
     '5 mein se 5',
   '1 min':
     '1 min',
-  'Connect Freshdesk':
-    'Freshdesk connect karna',
   '3 of 5':
     '5 mein se 3',
   '6 min':
     '6 min',
-  'Wait for first import':
-    'Pehle import ka intezaar',
   '12 min':
     '12 min',
-  'View first theme report':
-    'Pehli theme report dekhna',
   '20 min total':
     'Kul 20 min',
-  'The drop-off is at connecting Freshdesk. Two users needed an admin to approve access. A fix could be a sample report built from twenty tickets the user pastes in. That puts the activation moment before the hard step.':
-    'Drop-off Freshdesk connect karne par hai. Do users ko access approve karne ke liye ek admin chahiye tha. Ek fix yeh ho sakta hai ki user ke paste kiye 20 tickets se ek sample report banayi jaaye. Isse activation moment mushkil step se pehle aa jaata hai.',
   'Write your capstone’s activation moment in one sentence. List every step a new user takes before reaching it.':
     'Apne capstone ka activation moment ek sentence mein likhiye. Naye user ke us tak pahunchne se pehle ke har step ki list banaiye.',
-  'One moment and a list of steps. Circle the step most likely to lose people. Counterexample: a user who reaches the moment but still doesn’t see the value.':
-    'Ek moment aur steps ki ek list. Us step par circle lagaiye jahan sabse zyada log chhodenge. Counterexample: ek user jo us moment tak pahunchta hai lekin phir bhi value nahi dekhta.',
   'Idea 3: Retention, habits and the Fogg model':
     'Idea 3: Retention, habits aur Fogg model',
-  'Getting someone to the activation moment once is not enough. Do they come back? The best way to see this is a curve. Take everyone who signed up in the same week, and plot the share still active in each week after.':
-    'Kisi ko ek baar activation moment tak pahunchana kaafi nahi hai. Kya woh wapas aate hain? Isse dekhne ka sabse achha tareeka ek curve hai. Ek hi hafte mein sign up karne waale sabhi logon ko lijiye, aur plot kijiye ki uske baad har hafte kitne percent abhi bhi active hain.',
-  'A healthy curve drops, then flattens. A curve that keeps falling to zero means the product hasn’t found a lasting use.':
-    'Ek healthy curve girti hai, phir flat ho jaati hai. Jo curve girte-girte zero tak jaati hai, uska matlab hai ki product ko abhi tak koi lambe time ka use nahi mila.',
-  'BJ Fogg’s behaviour model explains why a person does or doesn’t act. It says a behaviour happens when three things meet at the same moment:':
-    'BJ Fogg ka behaviour model samjhata hai ki ek insaan action kyun leta hai ya kyun nahi leta. Woh kehta hai ki ek behaviour tab hota hai jab teen cheezein ek hi moment par milti hain:',
-  'If a behaviour isn’t happening, check the three from the bottom up: prompt first, then ability, then motivation. Missing prompts are the cheapest fix. For Theme Finder, a Monday 9am email with the top three themes is the prompt. The report opening in one click keeps ability high.':
-    'Agar koi behaviour nahi ho raha, toh teeno ko neeche se upar check kijiye: pehle prompt, phir ability, phir motivation. Missing prompts sabse sasta fix hain. Theme Finder mein Monday subah 9 baje ka email, top 3 themes ke saath, prompt hai. Report ek click mein khulna ability ko high rakhta hai.',
-  'Pick the behaviour you most want users to repeat. Write its motivation, ability and prompt.':
-    'Woh behaviour chuniye jo aap chahte hain ki users baar-baar karein. Uski motivation, ability aur prompt likhiye.',
-  'Three short lines. Counterexample: a user with strong motivation who still doesn’t act. Which of the three is missing for them?':
-    'Teen chhoti lines. Counterexample: ek user jiski motivation strong hai lekin phir bhi action nahi leta. Uske liye teeno mein se kaun sa missing hai?',
   'Idea 4: Product-led, sales-led and product-led sales':
     'Idea 4: Product-led, sales-led aur product-led sales',
-  'Next, how does a customer actually get from hearing about you to paying? A <strong>go-to-market motion</strong> is that path. There are three common ones. The last column of the table says when each one fits.':
-    'Ab, ek customer aapke baare mein sunne se lekar paisa dene tak asal mein kaise pahunchta hai? <strong>Go-to-market motion</strong> wahi raasta hai. Teen aam motions hain. Table ka aakhri column batata hai ki har ek kab fit hota hai.',
   'Motion':
     'Motion',
   'How it works':
@@ -441,68 +211,24 @@ Object.assign(window.HING = window.HING || {}, {
     'Value kuch minute mein dikhti hai aur price kam hai',
   'Sales-led':
     'Sales-led',
-  'A salesperson runs demos, a trial and a contract':
-    'Ek salesperson demos, trial aur contract chalata hai',
-  'The deal is large, or security review is required':
-    'Deal bada hai, ya security review zaroori hai',
   'Product-led sales':
     'Product-led sales',
   'Users start on their own; sales steps in when a team grows':
     'Users khud shuru karte hain; team badhne par sales aati hai',
-  'Individuals adopt first, but companies buy':
-    'Pehle individuals apnaate hain, lekin companies kharidti hain',
-  'Theme Finder fits product-led sales. A single support lead can try it with pasted tickets. Connecting the whole helpdesk needs the security lead, and that is when a salesperson helps.':
-    'Theme Finder product-led sales mein fit hota hai. Ek akela support lead paste kiye hue tickets ke saath ise try kar sakta hai. Poora helpdesk connect karne ke liye security lead chahiye, aur tab ek salesperson madad karta hai.',
-  'Choose a motion for your capstone and give two reasons from your pricing and your buyer.':
-    'Apne capstone ke liye ek motion chuniye aur apni pricing aur apne buyer se do reasons dijiye.',
   'One motion and two reasons. Counterexample: the kind of customer for whom that motion would fail.':
     'Ek motion aur do reasons. Counterexample: aisa customer jiske liye woh motion fail hoga.',
   'Idea 5: Growth loops, network effects and positioning':
     'Idea 5: Growth loops, network effects aur positioning',
-  'A funnel ends when the customer pays. Some products do better than that, because each customer brings in the next one. A <strong>growth loop</strong> is a cycle where one user’s actions bring in the next user. Unlike a funnel, the output feeds back into the input.':
-    'Funnel tab khatam hota hai jab customer paisa deta hai. Kuch products isse behtar karte hain, kyunki har customer agle ko le aata hai. <strong>Growth loop</strong> ek cycle hai jisme ek user ke actions agle user ko laate hain. Funnel se alag, yahan output wapas input mein jaata hai.',
-  'Be careful with two terms that sound alike. <strong>Virality</strong> means users bring in other users. A <strong>network effect</strong> means the product gets better for everyone as more people use it. Many products have the first without the second.':
-    'Do terms se savdhaan rahiye jo ek jaise sunai dete hain. <strong>Virality</strong> ka matlab hai users doosre users ko laate hain. <strong>Network effect</strong> ka matlab hai ki jaise-jaise zyada log product use karte hain, woh sabke liye behtar hota jaata hai. Bahut se products mein pehla hota hai lekin doosra nahi.',
-  'Positioning decides which loop can work. If you are positioned as “the weekly report for support leads”, sharing with product managers makes sense. Reuse the positioning statement you wrote in A4.':
-    'Positioning tay karti hai ki kaun sa loop kaam kar sakta hai. Agar aapki positioning hai “support leads ke liye weekly report”, toh product managers ke saath share karna samajh mein aata hai. A4 mein jo positioning statement aapne likha tha, use dobara use kijiye.',
-  'A <strong>dark pattern</strong> is a design that tricks users into acting against their own interest. Examples are pre-ticked invitation boxes, fake scarcity and hidden cancellation. They can lift your numbers for a quarter. But they also destroy the trust that retention depends on.':
-    '<strong>Dark pattern</strong> ek aisa design hai jo users ko unke apne khilaaf action lene par bahkata hai. Examples hain pehle se tick kiye invitation boxes, jhoothi scarcity aur chhupa hua cancellation. Yeh ek quarter ke liye aapke numbers badha sakte hain. Lekin yeh us bharose ko bhi khatam kar dete hain jis par retention tika hai.',
   'Draw your capstone’s growth loop as four or five arrows. Mark the step where a user decides to share.':
     'Apne capstone ka growth loop chaar ya paanch arrows mein draw kijiye. Us step ko mark kijiye jahan user share karne ka decision leta hai.',
   'One loop, and one sentence on why a user would choose to share. Counterexample: what would make your loop feel like spam?':
     'Ek loop, aur ek sentence ki user share karna kyun chunega. Counterexample: aapka loop kis wajah se spam jaisa lagega?',
-  'You’ve now seen all five ideas on one product. To finish, look at how a real AI tool does it.':
-    'Aapne ab paanchon ideas ek hi product par dekh liye. Aakhir mein dekhiye ki ek asli AI tool yeh kaise karta hai.',
-  'Start your teardown. Pick one of Cursor, Lovable, Grammarly or Notion AI. For each of acquisition, activation, retention and monetisation, write one line about how it works and one thing you would copy.':
-    'Apna teardown shuru kijiye. Cursor, Lovable, Grammarly ya Notion AI mein se ek chuniye. Acquisition, activation, retention aur monetisation mein se har ek ke liye ek line likhiye ki woh kaise kaam karta hai aur ek cheez jo aap copy karenge.',
   'Acquisition… Activation… Retention… Monetisation…':
     'Acquisition… Activation… Retention… Monetisation…',
-  'A good teardown line is specific and checkable. For example, for Grammarly: <strong>Acquisition</strong> comes from people seeing its suggestions inside everyday tools, and the free plan spreads it. <strong>Activation</strong> is the first underlined suggestion in your own writing, which arrives within seconds. <strong>Retention</strong> comes from living where people already write, so there is no new habit to form. <strong>Monetisation</strong> gates the more advanced suggestions behind a paid plan. The thing to copy: activation happens inside the user’s existing work, not on a separate page.':
-    'Ek achhi teardown line specific hoti hai aur check ki ja sakti hai. Jaise Grammarly ke liye: <strong>Acquisition</strong> tab aata hai jab log roz ke tools ke andar uske suggestions dekhte hain, aur free plan use phailata hai. <strong>Activation</strong> aapke apne likhe mein pehla underlined suggestion hai, jo kuch seconds mein aa jaata hai. <strong>Retention</strong> isse aata hai ki woh wahin rehta hai jahan log pehle se likhte hain, isliye koi nayi aadat nahi banani padti. <strong>Monetisation</strong> zyada advanced suggestions ko paid plan ke peeche rakhti hai. Jo copy karna hai: activation user ke maujooda kaam ke andar hota hai, alag page par nahi.',
-  'Let’s recap. Growth has five stages, and you can count each one with an event, but the funnel hides loops, and retention matters most. Your product has one activation moment, and the shorter the time-to-value, the fewer users you lose on the way.':
-    'Chaliye dohra lete hain. Growth ke paanch stages hain, aur aap har ek ko ek event se gin sakte hain, lekin funnel loops ko chhupa leta hai, aur retention sabse zyada matter karta hai. Aapke product ka ek activation moment hota hai, aur time-to-value jitna chhota, raaste mein utne kam users khoyenge.',
-  'The Fogg model tells you why people do or don’t act. You can reach customers by product-led, sales-led or product-led sales motions. And a growth loop works best when it’s a real network effect and doesn’t rely on dark patterns.':
-    'Fogg model batata hai ki log action kyun lete hain ya kyun nahi lete. Aap customers tak product-led, sales-led ya product-led sales motions se pahunch sakte hain. Aur growth loop tab sabse achha chalta hai jab woh asli network effect ho aur dark patterns par na tika ho.',
   'Next, B3 looks at product analytics and experiments: how to turn these events into numbers you can trust, and how to test a change before you roll it out to everyone.':
     'Aage, B3 product analytics aur experiments dekhta hai: in events ko aise numbers mein kaise badlein jin par bharosa ho sake, aur kisi change ko sabke liye roll out karne se pehle uska test kaise karein.',
   'Plan how the tool grows, and test the first five minutes':
     'Plan kijiye ki tool kaise grow karega, aur pehle paanch minute ka test kijiye',
-  'A good tool still needs a way for people to find it, try it and stay. In this chapter you learned to define the events of a growth funnel, to find the moment a user first gets value, and to tell a network effect from simple sharing. Here you plan growth for the developer kit and test the first five minutes with real developers.':
-    'Ek achhe tool ko bhi chahiye ki log use dhoondhein, try karein aur rukein. Is chapter mein aapne growth funnel ke events define karna seekha, woh moment dhoondhna jab user ko pehli baar value milti hai, aur network effect ko simple sharing se alag karna. Yahan aap developer kit ke liye growth plan karte hain aur asli developers ke saath pehle paanch minute ka test karte hain.',
-  'Written work, plus a short test with real people. For the teardown, use a no-code AI tool for a few days. No code of your own is needed.':
-    'Likhne ka kaam, saath mein asli logon ke saath ek chhota test. Teardown ke liye kuch din ek no-code AI tool use kijiye. Aapka apna code nahi chahiye.',
-  'For each stage of the funnel write one event you could log: acquisition (a developer visits the kit’s page), activation (the first successful cleaning), retention (still using it a week later), referral (shares it) and revenue (starts paying).':
-    'Funnel ke har stage ke liye ek event likhiye jo aap log kar sakein: acquisition (ek developer kit ka page dekhta hai), activation (pehli successful cleaning), retention (ek hafta baad bhi use kar raha hai), referral (share karta hai) aur revenue (paisa dena shuru karta hai).',
-  'Name the activation moment for the kit and write the steps a new developer takes to reach it.':
-    'Kit ka activation moment bataiye aur woh steps likhiye jo ek naya developer wahan tak pahunchne ke liye leta hai.',
-  'Test the first five minutes. Give five developers only the kit’s README and ask each to clean one message. Measure how long each takes to the first success, and note the step where most of them stopped.':
-    'Pehle paanch minute ka test kijiye. 5 developers ko sirf kit ka README dijiye aur har ek se ek message clean karne ko kahiye. Measure kijiye ki har ek ko pehli success tak kitna time laga, aur woh step note kijiye jahan zyadatar ruk gaye.',
-  'Design one growth loop you would be happy to explain to your users, for example a small “protected by” badge that links to the tool. Name one dark pattern you refuse to use.':
-    'Ek aisa growth loop design kijiye jo aap apne users ko khushi se samjha sakein, jaise ek chhota “protected by” badge jo tool se link ho. Ek dark pattern bataiye jo aap use karne se mana karte hain.',
-  'Write a teardown of how one AI tool (Cursor, Lovable, Grammarly or Notion AI) wins its users, covering acquisition, activation, retention and money.':
-    'Ek AI tool (Cursor, Lovable, Grammarly ya Notion AI) apne users ko kaise jeetta hai, uska teardown likhiye, acquisition, activation, retention aur paisa cover karte hue.',
-  'One loggable event for each of the five funnel stages.':
-    'Funnel ke paanchon stages mein se har ek ke liye ek log hone laayak event.',
   'A report of the time to first success for each of the five developers, and the step where most stopped.':
     '5 developers mein se har ek ke pehli success tak ke time ki ek report, aur woh step jahan zyadatar ruke.',
   'A growth loop that names the dark pattern it refuses to use.':
@@ -513,66 +239,26 @@ Object.assign(window.HING = window.HING || {}, {
   /* ---- b3: Product analytics and experiments ---- */
   'Product analytics and experiments':
     'Product analytics aur experiments',
-  'Real users are now using your product, so the next question is what they actually do, and which changes helped. You’ll write a tracking plan, build a funnel and a retention cohort, and design an experiment that can give a clear answer.':
-    'Ab aapka product asli users use kar rahe hain, toh agla sawaal yeh hai ki woh asal mein kya karte hain, aur kaun se changes se fayda hua. Aap ek tracking plan likhenge, ek funnel aur ek retention cohort banayenge, aur ek aisa experiment design karenge jo saaf jawaab de sake.',
-  'A North Star metric':
-    'Ek North Star metric',
   'Idea 1 turns it into something you can measure.':
     'Idea 1 ise aisi cheez bana deta hai jise aap measure kar sakein.',
-  'OKRs and guardrail metrics':
-    'OKRs aur guardrail metrics',
   'Experiments use the same guardrails.':
     'Experiments mein bhi wahi guardrails kaam aate hain.',
-  'Growth events':
-    'Growth events',
   'The tracking plan records them.':
     'Tracking plan inhe record karta hai.',
   'Evaluation engineering':
     'Evaluation engineering',
   'Idea 5 keeps model quality and product analytics apart.':
     'Idea 5 model quality aur product analytics ko alag rakhta hai.',
-  'Pick a North Star metric, and the input metrics that move it.':
-    'Ek North Star metric chun paana, aur woh input metrics bhi jo use aage badhate hain.',
-  'Write an event taxonomy with clear names, properties and user identity.':
-    'Saaf naam, properties aur user identity ke saath ek event taxonomy likh paana.',
-  'Build a funnel, a retention cohort and segments, and read them correctly.':
-    'Funnel, retention cohort aur segments banana, aur unhe sahi tareeke se padh paana.',
-  'Design an A/B test with a guardrail, a minimum detectable effect and a stopping rule.':
-    'Guardrail, minimum detectable effect aur stopping rule ke saath ek A/B test design kar paana.',
-  'Check your data before you trust it, and avoid claiming causes you have not shown.':
-    'Data par bharosa karne se pehle use check kar paana, aur aise causes ka daava na karna jo aapne saabit nahi kiye.',
-  'In the last chapter you looked at how people find a product and get started with it. Now comes the next question. Once real people are using it, how do you know it is working? Opinions won’t answer that. What users actually do will.':
-    'Pichhle chapter mein aapne dekha tha ki log ek product ko kaise dhoondhte hain aur use kaise shuru karte hain. Ab agla sawaal aata hai. Jab asli log use karne lagein, toh aapko kaise pata chalega ki woh kaam kar raha hai? Iska jawaab opinions se nahi milega. Jo users asal mein karte hain, usse milega.',
-  'This chapter gives you five ideas to answer it. You’ll pick the one number that matters, decide which events to record, read the three views that answer most questions, run a fair test, and check that your data can be trusted.':
-    'Is chapter mein paanch ideas hain jo yeh jawaab dete hain. Aap woh ek number chunenge jo sabse zaroori hai, tay karenge ki kaun se events record karne hain, un teen views ko padhenge jo zyadatar sawaalon ka jawaab dete hain, ek fair test chalayenge, aur check karenge ki aapke data par bharosa kiya ja sakta hai ya nahi.',
-  'Along the way you’ll use Theme Finder, an example product that turns support tickets into themes a team can act on.':
-    'Is dauraan hum Theme Finder ka example use karenge. Yeh ek example product hai jo support tickets ko themes mein badal deta hai, jin par ek team action le sakti hai.',
   'Idea 1: North Star and input metrics':
     'Idea 1: North Star aur input metrics',
-  'Suppose you could watch only one number to tell whether users get real value from your product. Which one would you pick? That number is the North Star metric, and you met it in A5.':
-    'Maan lijiye aap sirf ek number dekh sakte hain, yeh jaanne ke liye ki users ko aapke product se asli value mil rahi hai ya nahi. Aap kaun sa number chunenge? Wahi number North Star metric hai, aur isse aap A5 mein mil chuke hain.',
   'For Theme Finder, it is <strong>weekly teams that act on a theme</strong>. Acting on a theme means something like filing a bug or changing a help article.':
     'Theme Finder ke liye yeh hai <strong>weekly teams that act on a theme</strong>. Theme par action lene ka matlab hai jaise ek bug file karna ya ek help article badalna.',
-  'The catch is that you cannot move a North Star directly. You move it through smaller numbers that a team can change this quarter. These are called <strong>input metrics</strong>. Here are four for Theme Finder:':
-    'Dikkat yeh hai ki North Star ko aap seedhe nahi hila sakte. Aap use un chhote numbers ke zariye hilate hain jinhe ek team isi quarter mein badal sakti hai. Inhe <strong>input metrics</strong> kehte hain. Theme Finder ke liye yeh chaar hain:',
-  'Each input should be something one team owns, with a clear link to the North Star. Now suppose an input goes up and the North Star does not. Then your link is wrong. That is useful to learn, because now you know which assumption to fix.':
-    'Har input aisa hona chahiye jiska ek team owner ho, aur North Star se uska saaf link ho. Ab maan lijiye ek input badh gaya lekin North Star nahi hila. Toh aapka link galat hai. Yeh jaanna kaam ki baat hai, kyunki ab aapko pata hai ki kaun si assumption theek karni hai.',
   'Write your capstone’s North Star and three input metrics. Then name the team or person who could move each input.':
     'Apne capstone ka North Star aur teen input metrics likhiye. Phir naam lijiye ki kaun si team ya kaun insaan har input ko hila sakta hai.',
-  'One North Star, three inputs and an owner for each. Counterexample: an input that could rise while the North Star falls.':
-    'Ek North Star, teen inputs, aur har ek ka owner. Counterexample: ek aisa input jo badh sakta hai jabki North Star gir jaye.',
   'Idea 2: Event taxonomies, properties and identity':
     'Idea 2: Event taxonomies, properties aur identity',
-  'To measure anything, you first have to record it. Each time a user does something in your product, such as signing up or opening a report, the product can write down a small note about it. That note is called an <strong>event</strong>.':
-    'Kuch bhi measure karne ke liye pehle use record karna padta hai. Jab bhi user aapke product mein kuch karta hai, jaise sign up karna ya report kholna, product uske baare mein ek chhota sa note likh sakta hai. Us note ko <strong>event</strong> kehte hain.',
-  'If everyone names events in their own way, the data turns into a mess. So teams agree on one naming rule. The list of events, together with that rule, is called an <strong>event taxonomy</strong>. A common rule is <code>object_action</code>, in lower case and past tense.':
-    'Agar har koi events ke naam apne tareeke se rakhe, toh data uljha hua ho jaata hai. Isliye teams ek hi naming rule tay karti hain. Events ki list aur us rule ko milakar <strong>event taxonomy</strong> kehte hain. Ek common rule hai <code>object_action</code>, lower case mein aur past tense mein.',
-  'Here are five events for Theme Finder. Look at the last column. Every event exists to answer one question.':
-    'Yeh Theme Finder ke paanch events hain. Aakhri column dekhiye. Har event ek sawaal ka jawaab dene ke liye hai.',
   'Event':
     'Event',
-  'Properties':
-    'Properties',
   'Question it answers':
     'Yeh kis sawaal ka jawaab deta hai',
   'account_created':
@@ -605,32 +291,12 @@ Object.assign(window.HING = window.HING || {}, {
     'channel',
   'Does the growth loop run?':
     'Kya growth loop chal raha hai?',
-  'An event alone only says that something happened. <strong>Properties</strong> add detail to it, so you can split the results later. Keep them to what you need. And never put ticket text or personal data in them.':
-    'Ek event akela sirf itna batata hai ki kuch hua. <strong>Properties</strong> usme detail jodti hain, taaki aap baad mein results ko alag-alag kar sakein. Sirf utni hi rakhiye jitni zaroori hain. Aur unme ticket text ya personal data kabhi mat daaliye.',
-  'You also need to know who did it. <strong>Identity</strong> links events to a person. A visitor starts with an anonymous ID. When they sign up, you link it to a user ID, so their earlier visits join their history. In B2B products, also attach a company or account ID. Your buyer cares about teams, not single users.':
-    'Aapko yeh bhi jaanna hai ki woh kisne kiya. <strong>Identity</strong> events ko ek insaan se jodti hai. Ek visitor ek anonymous ID se shuru hota hai. Jab woh sign up karta hai, aap use ek user ID se link kar dete hain, taaki uske pehle ke visits uski history mein jud jaayein. B2B products mein ek company ya account ID bhi lagaiye. Aapka buyer teams ki parwah karta hai, akele users ki nahi.',
-  'Finally, write all of this down in one place. A <strong>tracking plan</strong> is the shared document that lists every event, its properties, when it fires and who owns it. Engineers build from it, and analysts can trust the data because of it.':
-    'Aakhir mein yeh sab ek jagah likh dijiye. <strong>Tracking plan</strong> ek shared document hai jisme har event, uski properties, woh kab fire hota hai aur uska owner kaun hai, yeh sab likha hota hai. Engineers uske hisaab se build karte hain, aur analysts uski wajah se data par bharosa kar paate hain.',
-  'Write five events for your capstone using <code>object_action</code> names. Add the question each one answers.':
-    'Apne capstone ke liye <code>object_action</code> naam wale paanch events likhiye. Har ek ke saath woh sawaal likhiye jiska woh jawaab deta hai.',
-  'Five events with questions. Counterexample: an event you were tempted to add that answers no question.':
-    'Paanch events aur unke sawaal. Counterexample: ek aisa event jo aap jodna chahte the lekin jo kisi sawaal ka jawaab nahi deta.',
   'Idea 3: Funnels, cohorts, segments and retention':
     'Idea 3: Funnels, cohorts, segments aur retention',
-  'Once events start arriving, three views answer most product questions. Let’s take them one at a time.':
-    'Jab events aane lagte hain, toh teen views zyadatar product sawaalon ka jawaab de dete hain. Chaliye inhe ek-ek karke dekhte hain.',
-  'The first is the <strong>funnel</strong>. It shows the share of users who complete each step in order, so you can see where people drop off.':
-    'Pehla hai <strong>funnel</strong>. Yeh dikhata hai ki kitne users har step ko order mein poora karte hain, taaki aap dekh sakein ki log kahan chhod dete hain.',
-  'The second is the <strong>cohort</strong>, which is a group of users who started in the same period. A retention table follows each cohort over time and shows how many of them keep coming back.':
-    'Doosra hai <strong>cohort</strong>, jo un users ka group hota hai jinhone ek hi period mein shuru kiya. Retention table har cohort ko waqt ke saath follow karta hai aur dikhata hai ki unmein se kitne wapas aate rehte hain.',
-  'The third is the <strong>segment</strong>, a slice of users who share a property, such as plan or helpdesk. Comparing segments shows who the product works for.':
-    'Teesra hai <strong>segment</strong>, yaani un users ka ek hissa jinki koi property same hai, jaise plan ya helpdesk. Segments ko compare karne se pata chalta hai ki product kinke liye kaam karta hai.',
   'Here is a weekly retention table. Each row is a cohort. Each cell is the share still viewing reports that many weeks later.':
     'Yeh ek weekly retention table hai. Har row ek cohort hai. Har cell woh hissa hai jo utne hafte baad bhi reports dekh raha hai.',
   'Cohort':
     'Cohort',
-  'Teams':
-    'Teams',
   'Week 1':
     'Week 1',
   'Week 2':
@@ -669,84 +335,34 @@ Object.assign(window.HING = window.HING || {}, {
     '78%',
   '66%':
     '66%',
-  'You can read it in two ways. Across a row, the curve flattens around 40%, which suggests lasting use. Down a column, newer cohorts retain better, which suggests that recent changes helped.':
-    'Ise aap do tareeke se padh sakte hain. Ek row mein left se right dekhiye toh curve lagbhag 40% par flat ho jaata hai, jo batata hai ki product ka use lambe time tak chalega. Column mein neeche dekhiye toh naye cohorts zyada retain karte hain, jo batata hai ki haal ke changes se fayda hua hoga.',
-  'Both readings need enough users before you trust them. With 20 teams, one team is five percentage points. So a single team leaving can move the number a lot.':
-    'Dono readings par bharosa karne se pehle enough users chahiye. 20 teams mein ek team 5 percentage points ke barabar hai. Isliye ek team ke chale jaane se bhi number kaafi hil sakta hai.',
   'Sketch the retention table you expect for your capstone’s first three cohorts. Then say which segment you expect to retain best, and why.':
     'Apne capstone ke pehle teen cohorts ke liye jo retention table aap expect karte hain, uska sketch banaiye. Phir bataiye ki kaun sa segment sabse achha retain karega, aur kyun.',
   'A small table and one segment prediction. Write it down now, so you can compare it with real data later.':
     'Ek chhota table aur ek segment ki prediction. Ise abhi likh lijiye, taaki baad mein asli data se compare kar sakein.',
   'Idea 4: A/B tests, guardrails and sample size':
     'Idea 4: A/B tests, guardrails aur sample size',
-  'Sometimes you want to know whether one specific change helped. Comparing numbers before and after is risky, because other things change at the same time. The fair way is an <strong>A/B test</strong>. You show the change to a random half of users and compare them with the other half.':
-    'Kabhi-kabhi aap jaanna chahte hain ki ek khaas change se fayda hua ya nahi. Pehle aur baad ke numbers compare karna risky hai, kyunki saath mein aur cheezein bhi badalti hain. Fair tareeka hai <strong>A/B test</strong>. Aap change ko random aadhe users ko dikhate hain aur unhe baaki aadhe users se compare karte hain.',
-  'Randomising is what lets you say the change caused the difference.':
-    'Random banane se hi aap keh paate hain ki farq change ki wajah se aaya.',
-  'Write the design down before you start. A design also needs a guardrail, which is a number that must not get worse while you chase the main one. Here is a design for Theme Finder:':
-    'Test shuru karne se pehle design likh dijiye. Design mein ek guardrail bhi chahiye, jo ek aisa number hai jo main number ke peeche bhaagte hue kharab nahi hona chahiye. Yeh Theme Finder ka ek design hai:',
-  'Notice the stop rule. “No early peeking” means you don’t check the result halfway and stop the moment it looks good. You wait until each group has its planned sample.':
-    'Stop rule par dhyaan dijiye. “No early peeking” ka matlab hai ki aap beech mein result dekhkar, jaise hi achha lage, test rok nahi dete. Aap tab tak rukte hain jab tak har group ka planned sample poora na ho jaye.',
-  'How many users is that? It depends on the <strong>minimum detectable effect</strong> (MDE), which is the smallest change worth detecting. The smaller the change you care about, the more users you need. A rough rule for a yes/no metric, at the usual settings, is:':
-    'Toh kitne users chahiye? Yeh <strong>minimum detectable effect</strong> (MDE) par depend karta hai, yaani woh sabse chhota change jise pakadna zaroori hai. Jitna chhota change aapko chahiye, utne zyada users lagenge. Yes/no metric ke liye ek mota rule, usual settings par, yeh hai:',
-  'An early B2B product may have forty accounts, not two thousand. It cannot run this test. Say so, and use other evidence instead: watch sessions, compare before and after with care, and look for large effects. Running an underpowered test, one with too few users to give a clear answer, and reporting its result is worse than not testing.':
-    'Ek early B2B product ke paas 40 accounts ho sakte hain, 2,000 nahi. Woh yeh test chala hi nahi sakta. Yeh saaf bol dijiye, aur dusra evidence use kijiye: sessions dekhiye, pehle aur baad ko dhyaan se compare kijiye, aur bade effects dhoondhiye. Underpowered test chalana, yaani aisa test jisme itne kam users hon ki saaf jawaab na mile, aur phir uska result report karna, test na karne se bhi bura hai.',
   'Write the full experiment design for one change to your capstone, using the seven lines above. Then work out the sample size.':
     'Apne capstone ke ek change ke liye poora experiment design likhiye, upar ki saat lines use karke. Phir sample size nikaaliye.',
   'A complete design and a number. If the number is bigger than your user base, write what you will do instead.':
     'Ek poora design aur ek number. Agar number aapke user base se bada hai, toh likhiye ki aap uski jagah kya karenge.',
-  'Your activation rate is 30%. You want to detect a rise to 40%. Use the rule of thumb to estimate the users needed per group. Then say whether you would run the test with 150 new accounts a month.':
-    'Aapka activation rate 30% hai. Aap 40% tak ki badhat pakadna chahte hain. Rule of thumb se andaaza lagaiye ki har group mein kitne users chahiye. Phir bataiye ki kya aap 150 naye accounts per month ke saath yeh test chalayenge.',
   '16 × … × … ÷ … = … per group, so…':
     '16 × … × … ÷ … = … per group, toh…',
-  'Here p = 0.30 and the MDE is 0.10. The sum is 16 × 0.30 × 0.70 ÷ 0.01 = 336 accounts per group, or 672 in total. At 150 new accounts a month, that takes about four and a half months. That is probably too slow for a product that is changing every week. You have two options. You can aim only for a larger effect, which needs fewer users. Or you can decide from session observations and a careful before-and-after comparison, and state clearly that it is weaker evidence.':
-    'Yahan p = 0.30 hai aur MDE 0.10 hai. Hisaab hai 16 × 0.30 × 0.70 ÷ 0.01 = 336 accounts per group, yaani kul 672. 150 naye accounts per month par isme lagbhag saade chaar mahine lagenge. Jo product har hafte badal raha hai, uske liye yeh shayad bahut slow hai. Aapke paas do options hain. Aap sirf bade effect ko target kar sakte hain, jisme kam users lagte hain. Ya aap session observations aur dhyaan se kiye gaye before-and-after comparison se decide kar sakte hain, aur saaf bata sakte hain ki yeh kamzor evidence hai.',
   'Idea 5: Data quality, QA and causal humility':
     'Idea 5: Data quality, QA aur causal humility',
   'Here is an uncomfortable fact. Bad data looks exactly like good data on a chart. So check your tracking before you trust a single number:':
     'Ek baat dhyaan se suniye. Kharab data chart par bilkul achhe data jaisa dikhta hai. Isliye kisi bhi number par bharosa karne se pehle apna tracking check kijiye:',
   'Trigger each event yourself and confirm it arrives once, with the right properties.':
     'Har event ko khud trigger kijiye aur confirm kijiye ki woh ek hi baar aata hai, sahi properties ke saath.',
-  'Compare an event count with your database. For example, compare accounts created with the rows in the accounts table.':
-    'Ek event count ko apne database se compare kijiye. Jaise, bane hue accounts ko accounts table ki rows se compare kijiye.',
   'Filter out your own team’s traffic and test accounts.':
     'Apni team ka traffic aur test accounts filter kar dijiye.',
-  'Check that events still fire after each release.':
-    'Check kijiye ki har release ke baad events ab bhi fire ho rahe hain.',
-  'Next, keep product analytics separate from model telemetry. Telemetry means the records a system keeps about itself: traces, latency (how long a request took) and eval scores. These tell you how the model behaved (Chapter 30). Product events tell you what people did. Link the two with a shared request ID, so you can move between them.':
-    'Ab product analytics ko model telemetry se alag rakhiye. Telemetry ka matlab hai woh records jo ek system apne baare mein rakhta hai: traces, latency (ek request mein kitna time laga) aur eval scores. Yeh batate hain ki model ne kaisa behave kiya (Chapter 30). Product events batate hain ki logon ne kya kiya. Dono ko ek shared request ID se jodiye, taaki aap ek se doosre par ja sakein.',
-  'Finally, be careful about causes. Say users who share reports retain better. Sharing might cause that. It might also be that engaged users simply do both. Only a randomised test shows cause. Everything else is a pattern worth testing.':
-    'Aakhir mein, causes ke baare mein dhyaan rakhiye. Maan lijiye jo users reports share karte hain woh zyada retain hote hain. Ho sakta hai sharing hi wajah ho. Yeh bhi ho sakta hai ki engaged users dono kaam karte hon. Sirf ek randomised test cause dikhata hai. Baaki sab ek pattern hai jisse test karna chahiye.',
   'Write “users who do X also tend to do Y”, unless a controlled test shows that X causes Y.':
     'Likhiye “users who do X also tend to do Y”, jab tak ek controlled test yeh na dikha de ki X se Y hota hai.',
-  'Run the four QA checks on one event in your capstone, and write down what you found.':
-    'Apne capstone ke ek event par chaaron QA checks chalaiye, aur likhiye ki aapko kya mila.',
-  'Four results. Counterexample: a chart in your capstone that would look fine even if an event were firing twice.':
-    'Chaar results. Counterexample: aapke capstone ka ek aisa chart jo tab bhi theek dikhta jab koi event do baar fire ho raha hota.',
-  'You now have a way to measure a product from end to end. You pick one number that matters and the inputs that move it. You record events with clear names. You read funnels, cohorts and segments. You test changes fairly, and you check your data before you believe it.':
-    'Ab aapke paas ek product ko shuru se aakhir tak measure karne ka tareeka hai. Aap woh ek number chunte hain jo zaroori hai aur woh inputs jo use hilate hain. Aap saaf naamon ke saath events record karte hain. Aap funnels, cohorts aur segments padhte hain. Aap changes ko fair tareeke se test karte hain, aur data par yakeen karne se pehle use check karte hain.',
-  'Next, you’ll look at the tools that make all this work, and how to choose them for an AI product workflow.':
-    'Aage, aap un tools ko dekhenge jinse yeh sab kaam karta hai, aur ek AI product workflow ke liye unhe kaise chunna hai.',
   'Plan the measurements, and design one experiment':
     'Measurements plan kijiye, aur ek experiment design kijiye',
-  'Once real people use the tool, you need to know what they do. In this chapter you learned to pick the one number that matters most, to write clear event names, to read a funnel and a retention table, and to design a test with a guardrail and a stopping rule. Now you’ll do all of that for Bharat Privacy Guard.':
-    'Jab asli log tool use karte hain, tab aapko jaanna hota hai ki woh kya karte hain. Is chapter mein aapne seekha ki sabse zaroori ek number kaise chunna hai, saaf event naam kaise likhne hain, funnel aur retention table kaise padhna hai, aur guardrail aur stopping rule ke saath test kaise design karna hai. Ab aap yeh sab Bharat Privacy Guard ke liye karenge.',
-  'A real analytics tool (PostHog, Mixpanel or Google Analytics) for the tracking code and the charts. Then write the experiment design in the notes box below.':
-    'Ek asli analytics tool (PostHog, Mixpanel ya Google Analytics), tracking code aur charts ke liye. Phir experiment design neeche notes box mein likhiye.',
   'Choose the one number that matters most for the kit, for example “messages cleaned correctly per week by active developers”. Then choose three input numbers that move it.':
     'Kit ke liye sabse zaroori ek number chuniye, jaise “messages cleaned correctly per week by active developers”. Phir teen input numbers chuniye jo use hilate hain.',
-  'Write an event list with names in the form object_action, for example text_checked, detail_found, detail_masked and review_requested. For each event, write the properties it carries (such as the kind of writing and the kind of ID) and the question it answers. Never record the personal details themselves.':
-    'Ek event list likhiye jisme naam object_action ke form mein hon, jaise text_checked, detail_found, detail_masked aur review_requested. Har event ke liye woh properties likhiye jo woh carry karta hai (jaise likhne ki kism aur ID ki kism) aur woh sawaal jiska woh jawaab deta hai. Personal details ko kabhi record mat kijiye.',
-  'Put the events into an analytics tool with a few lines of tracking code. If you have no users yet, use made-up data and say so.':
-    'Events ko ek analytics tool mein daaliye, tracking code ki kuch lines ke saath. Agar abhi users nahi hain, toh made-up data use kijiye aur yeh saaf bata dijiye.',
-  'Build one funnel (visit, first check, first success), one weekly retention table and two segments, for example English users against Hinglish users.':
-    'Ek funnel banaiye (visit, pehla check, pehli success), ek weekly retention table aur do segments, jaise English users aur Hinglish users.',
-  'Design one experiment, for example: “showing a preview of what will be hidden makes more developers finish setup”. Write the hypothesis, who is randomly assigned, the main number, a guardrail, the smallest change you care about, how many users you need, and when you will stop.':
-    'Ek experiment design kijiye, jaise: “showing a preview of what will be hidden makes more developers finish setup”. Hypothesis likhiye, kise random assign kiya jaayega, main number, ek guardrail, sabse chhota change jo aapke liye matter karta hai, kitne users chahiye, aur aap kab rukenge.',
   'One main number, with three input numbers.':
     'Ek main number, teen input numbers ke saath.',
-  'An event list in which every event answers a named question and none records personal details.':
-    'Ek event list jisme har event ek named sawaal ka jawaab de aur koi bhi personal details record na kare.',
   'A funnel, a retention table and two segments, built from events you logged.':
     'Ek funnel, ek retention table aur do segments, aapke log kiye hue events se bane hue.',
   'An experiment design that says how many users it needs, and what you will do if you cannot get that many.':

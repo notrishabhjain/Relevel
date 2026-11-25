@@ -19,8 +19,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Apne text par tokens, code padhne bhar ka Python, aapki pehli API call, phir system prompts aur temperature, prompts likhna aur test karna, aur paanch task types. Aakhir mein aap ek poora RAG system banate hain: chunking, keyword aur embedding search, aur evaluation.',
   'Reading Python':
     'Python padhna',
-  'In full, this chapter takes about fourteen hours. Create a free account with PostHog, Mixpanel or Google Analytics. If your capstone has no users yet, you will seed some data, and the chapter shows how.':
-    'Poora karne par, is chapter mein lagbhag 14 ghante lagte hain. PostHog, Mixpanel ya Google Analytics mein ek free account bana lijiye. Agar aapke capstone ke paas abhi users nahi hain, toh aap kuch data seed karenge, aur chapter dikhata hai ki kaise.',
   'In full, this chapter takes about two and a half hours. Tools change every few months. The brands named below are one current example each, not a requirement. If a named tool is gone by the time you read this, pick a replacement that does the same job.':
     'Poora karne par, is chapter mein lagbhag dhai ghante lagte hain. Tools har kuch mahine mein badal jaate hain. Neeche jo brands diye hain woh sirf ek current example hain, koi requirement nahi. Agar padhte waqt koi tool band ho chuka ho, toh uski jagah woh tool chuniye jo wahi kaam karta ho.',
   'In full, this chapter takes about twelve hours. You need a working version of your capstone’s main flow, even a rough one, and a coding agent from B4.':

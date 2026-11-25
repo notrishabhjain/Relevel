@@ -369,8 +369,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Woh jo row aur column labels istemaal kiye, unhe quote kare',
   'That it output CSV':
     'Woh CSV mein output de',
-  'Before a document-AI proposal, which two percentages do you insist on measuring, and why do they decide the architecture?':
-    'Document-AI proposal se pehle aap kaunse do percentage naapne par adenge, aur woh architecture kyun tay karte hain?',
   'It was not trained for that task':
     'Use us kaam ke liye train nahi kiya gaya',
   'The system prompt is too short':
@@ -391,8 +389,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Surakshit hai, kyunki koi data nahi jaata',
   'A caching optimisation':
     'Ek caching optimisation',
-  'Your document assistant reads supplier PDFs, has access to internal pricing, and can email summaries to colleagues. Audit it.':
-    'Aapka document assistant supplier PDFs padhta hai, internal pricing tak uski pahunch hai, aur woh saathiyon ko summaries email kar sakta hai. Iska audit kijiye.',
   'Secure':
     'Surakshit hai',
   'Compliant':

@@ -10,30 +10,14 @@ Object.assign(window.HING = window.HING || {}, {
     'Jo kuch bhi tasveer ke andar tha',
   'The words in the body paragraphs':
     'Aam paragraph ke shabd',
-  'The evaluation set is too easy':
-    'Evaluation set bahut aasaan hai',
-  'The retriever is fine and the metric is miscalibrated':
-    'Retriever theek hai aur number ka hisaab galat lagaya gaya hai',
   'The ids of the chunks that were retrieved':
     'Jo chunks nikale gaye unki ids',
   'The model and model version that served it':
     'Kaun sa model aur uska kaun sa version chala',
   'The total latency for the request':
     'Us request ki kul latency',
-  'Which of these is an acceptance criterion an engineer can actually build against?':
-    'Inme se kaun si acceptance criteria hai jispar ek engineer sach mein bana sakta hai?',
-  'The assistant always returns the correct document':
-    'Assistant hamesha sahi document laata hai',
-  'The assistant returns the correct document in almost all cases':
-    'Assistant lagbhag har baar sahi document laata hai',
   'On the approved 200-case set, Recall@5 ≥ 0.90 and no-answer precision ≥ 0.98':
     'Manzoor 200-case set par, Recall@5 ≥ 0.90 aur jawaab-nahi ki precision ≥ 0.98',
-  'The assistant performs at least as well as the current manual process':
-    'Assistant kam se kam utna achcha kare jitna aaj ka haath se hone waala tareeka',
-  'An evaluation set you can re-run against a new provider':
-    'Ek evaluation set jise aap naye provider par dobara chala sakein',
-  'Prompts and configuration kept under version control':
-    'Prompts aur settings version control mein rakhe hue',
   'A framework choice that matches what the team already uses':
     'Aisa framework jo team pehle se istemaal karti hai',
   'Coverage of every topic in the book':
