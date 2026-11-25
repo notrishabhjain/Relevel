@@ -183,8 +183,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Tokens (text ke chhote tukde jinka aap paisa dete hain), retrieval, tools, infrastructure aur insaan ki review ka kharch nikaliye.',
   'The real unit is often the cost of one task that worked, not the cost of one request.':
     'Asli unit aksar ek kaam ka kharch hota hai jo sach mein hua, ek request ka kharch nahi.',
-  'Make a spreadsheet with volume, token use, model cost, retries, tools and review time.':
-    'Ek spreadsheet banaiye jisme volume, token use, model cost, retries, tools aur review time ho.',
+  'Make a spreadsheet with volume, token usage, model cost, retries, tools and review time.':
+    'Ek spreadsheet banaiye jisme volume, token usage, model cost, retries, tools aur review time ho.',
   'Compare cases for model routing (sending easy jobs to a cheaper model) and for caching (keeping an answer to reuse it).':
     'Model routing (aasaan kaam sasti model ko bhejna) aur caching (jawaab sambhal kar dobara use karna) ke cases ki tulna kijiye.',
   'Raise the context size or the retry rate, and watch what happens to your margin (what you keep after costs).':
@@ -211,8 +211,8 @@ Object.assign(window.HING = window.HING || {}, {
     'AI PRD plus Release Gate plus Metric Map.',
   'Can the PRD answer “what happens when it is wrong?”':
     'Kya PRD “jab yeh galat ho toh kya hota hai?” ka jawaab de sakta hai?',
-  'This becomes one of the best pieces in your portfolio (the folder of your work you show to employers).':
-    'Yeh aapke portfolio (aapke kaam ka folder jo aap employers ko dikhate hain) ke sabse achhe hisson mein se ek ban jaata hai.',
+  'This artifact becomes one of the best pieces in your portfolio (the folder of your work you show to employers).':
+    'Yeh artifact aapke portfolio (aapke kaam ka folder jo aap employers ko dikhate hain) ke sabse achhe hisson mein se ek ban jaata hai.',
   'A spec outline':
     'Spec ka dhaancha',
   'Here is an outline you can copy. Every line is a question someone will ask you later. It is cheaper to answer it now, like packing your bag the night before.':

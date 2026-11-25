@@ -20,7 +20,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Access-control-aware retrieval':
     'Access-control-aware retrieval',
   'Filtering by who is asking, as part of the search itself. The other way is to hide results later on the screen. Think of a locked cupboard versus a curtain.':
-    'Search ke andar hi yeh dekhna ki poochne wala kaun hai. Doosra tareeka hai baad mein screen par results chhupana. Socho taale wali almari bana parde.',
+    'Search ke andar hi yeh dekhna ki poochne wala kaun hai. Doosra tareeka hai baad mein screen par results chhupana. Sochiye taale wali almari bana parde.',
   'Embedding versioning':
     'Embedding versioning',
   'Keeping track of which model made which stored vectors (the numbers that are the addresses for meaning). Then a change of model cannot quietly spoil an index.':
@@ -36,7 +36,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Draw the gateway on one page':
     'Draw the gateway on one page',
   'The gateway is the version of Bharat Privacy Guard that sits in front of a company\'s servers, logs and AI traffic. Think of a gatekeeper at the door. You will not build it. But you must be able to design it, so an engineer can build from your page and a security reviewer can challenge it. You learned the stages of a production search pipeline. You learned why the first stage caps everything after it. You learned what must happen to an index when a document is deleted or a permission changes. Now use all of this on the gateway\'s rules and reference lists.':
-    'Gateway Bharat Privacy Guard ka woh version hai jo company ke servers, logs aur AI traffic ke aage baithta hai. Socho darwaze par chowkidar. Aap ise banayenge nahin. Par aapko ise design karna aana chahiye, taaki engineer aapke page se bana sake aur security reviewer use chunauti de sake. Aapne production search pipeline ke stages seekhe. Aapne seekha ki pehla stage uske baad ki har cheez ki seema kyun tay karta hai. Aapne seekha ki document hatne ya permission badalne par index ke saath kya hona chahiye. Ab yeh sab gateway ke rules aur reference lists par lagaiye.',
+    'Gateway Bharat Privacy Guard ka woh version hai jo company ke servers, logs aur AI traffic ke aage baithta hai. Sochiye darwaze par chowkidar. Aap ise banayenge nahin. Par aapko ise design karna aana chahiye, taaki engineer aapke page se bana sake aur security reviewer use chunauti de sake. Aapne production search pipeline ke stages seekhe. Aapne seekha ki pehla stage uske baad ki har cheez ki seema kyun tay karta hai. Aapne seekha ki document hatne ya permission badalne par index ke saath kya hona chahiye. Ab yeh sab gateway ke rules aur reference lists par lagaiye.',
   'Write only. One page of design. No code needed.':
     'Sirf likhna hai. Ek page ka design. Code ki zaroorat nahin.',
   'Draw these stages as separate boxes: how a company\'s rules and reference lists are loaded, where they are stored, how they are searched, how the right rule is picked for a request, how the result is put in order again if needed, and how the decision is applied.':

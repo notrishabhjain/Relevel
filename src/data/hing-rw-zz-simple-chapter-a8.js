@@ -90,7 +90,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Higher, and it grows with the length of input and output':
     'Zyaada, aur input aur output ki lambai ke saath badhta hai',
   'A large language model, or <strong>LLM</strong>, is generative AI for text. Picture a parrot that has read a whole library. It guesses the next piece of text, again and again, and that is how it writes whole answers.':
-    'Large language model, yaani <strong>LLM</strong>, text ke liye generative AI hai. Ek aise tote ko socho jisne poori library padh li ho. Woh agla text ka tukda guess karta hai, baar-baar, aur isi tarah poore jawaab likhta hai.',
+    'Large language model, yaani <strong>LLM</strong>, text ke liye generative AI hai. Ek aise tote ko sochiye jisne poori library padh li ho. Woh agla text ka tukda guess karta hai, baar-baar, aur isi tarah poore jawaab likhta hai.',
   'Not every AI problem needs generative AI. Guessing which customers will cancel is a predictive job. A small classic model (an older, simpler kind) does it more cheaply and more reliably. Chapter 2.4 shows how far a simple sorter can go.':
     'Har AI samasya ko generative AI nahi chahiye. Kaun se customers cancel karenge, yeh guess karna predictive kaam hai. Ek chhota classic model (purana, saada kism) ise sasta aur bharosemand tareeke se karta hai. Chapter 2.4 dikhata hai ki ek saada sorter kitni door tak ja sakta hai.',
   'List three AI features you have used lately. Label each one as predictive or generative.':
@@ -196,7 +196,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Test cases before and after training':
     'Training se pehle aur baad ke test cases',
   '<strong>RAG</strong> stands for retrieval-augmented generation. Think of an open-book exam: first find the right page, then answer from it. You will build a complete RAG system by hand in Chapters 3 to 7.':
-    '<strong>RAG</strong> ka matlab hai retrieval-augmented generation. Open-book exam socho: pehle sahi page dhoondho, phir usse jawaab do. Aap Chapters 3 se 7 mein poora RAG system khud haath se banayenge.',
+    '<strong>RAG</strong> ka matlab hai retrieval-augmented generation. Open-book exam sochiye: pehle sahi page dhoondho, phir usse jawaab do. Aap Chapters 3 se 7 mein poora RAG system khud haath se banayenge.',
   'If the model is missing facts, give it the facts with RAG. Fine-tuning teaches habits, not facts.':
     'Agar model ke paas facts nahi hain, to RAG se use facts dijiye. Fine-tuning aadatein sikhata hai, facts nahi.',
   'So what should you try first? Start with prompting. Add RAG when the model needs facts it does not have. Think about fine-tuning only when you need very steady behaviour. Also think about it when you want a smaller, cheaper model to do one narrow job well. Chapter 19 covers this choice in depth.':

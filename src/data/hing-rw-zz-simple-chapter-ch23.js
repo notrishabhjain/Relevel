@@ -2,7 +2,7 @@
    Written by tools/sheet.mjs apply; keyed on the English line. Loads last, so it wins. */
 Object.assign(window.HING = window.HING || {}, {
   'Almost every request for AI is one of five kinds of task. Think of five kinds of shop counter. The kind decides whether a computer can mark the result for you. So name the kind before you plan anything.':
-    'Almost har AI request paanch kism ke kaamon mein se ek hoti hai. Socho paanch tarah ke dukaan ke counter. Kism se tay hota hai ki computer result ko khud jaanch sakta hai ya nahin. Isliye kuch bhi plan karne se pehle kism ka naam likhiye.',
+    'Almost har AI request paanch kism ke kaamon mein se ek hoti hai. Sochiye paanch tarah ke dukaan ke counter. Kism se tay hota hai ki computer result ko khud jaanch sakta hai ya nahin. Isliye kuch bhi plan karne se pehle kism ka naam likhiye.',
   'Before you plan anything, name which of the five task types the request is.':
     'Kuch bhi plan karne se pehle batayiye ki request paanch task types mein se kaunsa hai.',
   'Say why a computer can mark two of the types, but not the other three.':
@@ -72,7 +72,7 @@ Object.assign(window.HING = window.HING || {}, {
   'The five types':
     'Paanch types',
   'Here are the five types. Think of five counters in a shop. Read the last column closely. It matters most for your work. It tells you whether a program can mark the answer, or whether a person must.':
-    'Yeh hain paanch types. Socho ek dukaan ke paanch counter. Aakhri column dhyaan se padhiye. Aapke kaam ke liye yahi sabse zaroori hai. Yeh batata hai ki program jawaab jaanch sakta hai, ya insaan ko karna padega.',
+    'Yeh hain paanch types. Sochiye ek dukaan ke paanch counter. Aakhri column dhyaan se padhiye. Aapke kaam ke liye yahi sabse zaroori hai. Yeh batata hai ki program jawaab jaanch sakta hai, ya insaan ko karna padega.',
   'Task type':
     'Task type',
   'Can a program mark it?':

@@ -2,7 +2,7 @@
    Written by tools/sheet.mjs apply; keyed on the English line. Loads last, so it wins. */
 Object.assign(window.HING = window.HING || {}, {
   'A tool can be right most of the time and still change nothing for the business. Think of a fast new lift in a building where people wait three days for a signature. Today you find the slow part of a workflow (a job’s steps). Then you design a pilot (a small, fair test run) with a business metric (the one number the business watches), a comparison, a failure threshold and a time window.':
-    'Ek tool zyadatar sahi ho sakta hai, phir bhi business ke liye kuchh nahi badalta. Socho ek nayi tez lift us building mein jahan log teen din sign ke liye rukte hain. Aaj aap workflow (kaam ke steps) ka dheema hissa dhoondhenge. Phir ek pilot (chhota, nishpaksh test run) design karenge, jismein business metric (woh ek number jo business dekhta hai), comparison, failure threshold aur time window honge.',
+    'Ek tool zyadatar sahi ho sakta hai, phir bhi business ke liye kuchh nahi badalta. Sochiye ek nayi tez lift us building mein jahan log teen din sign ke liye rukte hain. Aaj aap workflow (kaam ke steps) ka dheema hissa dhoondhenge. Phir ek pilot (chhota, nishpaksh test run) design karenge, jismein business metric (woh ek number jo business dekhta hai), comparison, failure threshold aur time window honge.',
   'Design a pilot that could really show the feature did not help.':
     'Aisa pilot design kijiye jo sach mein dikha sake ki feature se madad nahi mili.',
   'Name the one number the business cares about, and say how the feature would move it.':

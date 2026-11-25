@@ -60,7 +60,7 @@ Object.assign(window.HING = window.HING || {}, {
   'What classification is':
     'Classification kya hai',
   'Think of the person who sorts the post in an office. Every letter goes into exactly one pigeonhole. Classification is the same job. It puts each input into one of a fixed set of boxes.':
-    'Office mein dak chhantne wale ko socho. Har chitthi theek ek khaane mein jaati hai. Classification bhi yahi kaam hai. Yeh har input ko tay kiye hue dibbon mein se ek mein daalta hai.',
+    'Office mein dak chhantne wale ko sochiye. Har chitthi theek ek khaane mein jaati hai. Classification bhi yahi kaam hai. Yeh har input ko tay kiye hue dibbon mein se ek mein daalta hai.',
   'Much of what useful software does is sorting. A support ticket goes to billing or to technical help. An email is spam or not spam. The big plus: someone can say if each answer was right.':
     'Kaam ke software ka bahut kuch chhantna hi hai. Ek support ticket billing ya technical help mein jaata hai. Ek email spam hai ya nahin. Bada fayda: koi bhi bata sakta hai ki har jawaab sahi tha ya nahin.',
   'When there is a right answer, you can count mistakes. When you can count mistakes, you can improve the system on purpose.':

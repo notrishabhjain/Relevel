@@ -104,9 +104,9 @@ Object.assign(window.HING = window.HING || {}, {
   'Your rule, and what it will get wrong':
     'Aapka rule, aur woh kya galat karega',
   'Think of a document you know well, like a policy, a contract or a spec. Write the rule you would give a helper for cutting it. Then name one question your rule will answer badly.':
-    'Ek document socho jise aap achhe se jaante hain, jaise policy, contract ya spec. Woh rule likhiye jo aap kisi madadgaar ko use kaatne ke liye denge. Phir ek aisa sawaal batayiye jisse aapka rule kharaab tareeke se sambhalega.',
+    'Ek document sochiye jise aap achhe se jaante hain, jaise policy, contract ya spec. Woh rule likhiye jo aap kisi madadgaar ko use kaatne ke liye denge. Phir ek aisa sawaal batayiye jisse aapka rule kharaab tareeke se sambhalega.',
   'Most sensible rules fail in the same place. Think of cutting at paragraphs, headings or numbered clauses. A rule and its exception land in different pieces. If only the rule is picked, the answer sounds sure but is incomplete. That is worse than no answer.':
-    'Zyadatar samajhdaar rules ek hi jagah fail hote hain. Socho paragraph, headings ya numbered clauses par kaatna. Niyam aur uska apwaad alag tukdon mein pahunch jaate hain. Agar sirf niyam utha liya jaye, to jawaab pakka lagta hai par adhoora hota hai. Yeh bina jawaab se bhi bura hai.',
+    'Zyadatar samajhdaar rules ek hi jagah fail hote hain. Sochiye paragraph, headings ya numbered clauses par kaatna. Niyam aur uska apwaad alag tukdon mein pahunch jaate hain. Agar sirf niyam utha liya jaye, to jawaab pakka lagta hai par adhoora hota hai. Yeh bina jawaab se bhi bura hai.',
   'No rule is free of failures. So know which questions your rule handles badly, and test those questions on purpose.':
     'Koi bhi rule bina galti ke nahi hota. Isliye jaaniye ki aapka rule kaun se sawaal kharaab sambhalta hai, aur un sawaalon ko jaanbujhkar aazmaiye.',
   'Orphaned chunks lose their meaning':

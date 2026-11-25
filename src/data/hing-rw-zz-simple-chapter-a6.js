@@ -30,7 +30,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Make a map of the people who will judge the project or be affected by it. They are: the developer who adds the kit, the compliance reviewer, the end user and an employer reading your portfolio. Mark each one high or low on influence (how much power they have). Mark each one high or low on interest (how much they care). Then name who could say no.':
     'Un logon ka naksha banaiye jo project ko parkhenge ya jin par asar padega. Yeh hain: kit jodne wala developer, compliance reviewer (jo rules check karta hai), end user aur aapka portfolio padhne wala employer. Har ek ko influence (kitni taakat) mein high ya low likhiye. Har ek ko interest (kitni parwah) mein high ya low likhiye. Phir naam likhiye ki kaun “nahi” bol sakta hai.',
   'Imagine it is a year from now and the project has failed. Write five reasons why. This is called a pre-mortem (a rehearsal of failure). For each reason, write one thing you will do now to make it less likely.':
-    'Socho ki ek saal ho gaya hai aur project fail ho gaya. Iske paanch kaaran likhiye. Ise pre-mortem kehte hain (fail hone ki riharsal). Har kaaran ke liye ek kaam likhiye jo aap abhi karenge taaki woh kam hone ki sambhavna ho.',
+    'Sochiye ki ek saal ho gaya hai aur project fail ho gaya. Iske paanch kaaran likhiye. Ise pre-mortem kehte hain (fail hone ki riharsal). Har kaaran ke liye ek kaam likhiye jo aap abhi karenge taaki woh kam hone ki sambhavna ho.',
   'Write a one-page memo to the person who decides. Ask for a yes or a no on the plan.':
     'Faisla karne wale ko ek page ka memo likhiye. Plan par haan ya na maangiye.',
   'A now, next and later roadmap. Every item is an outcome with a stopping rule.':
@@ -94,7 +94,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Outcome roadmaps matter even more for AI work. You often cannot know in advance if a model will be good enough. It is like a parrot that has read a whole library: you only find out how well it answers when you test it. So a date promised before testing is only a guess.':
     'AI ke kaam mein outcome roadmap aur zaroori hain. Aksar pehle se pata nahi hota ki model kaafi achha hoga ya nahi. Yeh us tote jaisa hai jisne poori library padh li ho: woh kitna achha jawaab deta hai, yeh test karke hi pata chalta hai. Isliye test se pehle di gayi date sirf andaaza hai.',
   'A kill criterion (a rule for when to stop) set in advance makes it much easier to stop work that has gone wrong. Think of agreeing before a trip when you will turn back.':
-    'Pehle se tay kiya gaya kill criterion (kab rukna hai, uska niyam) bigde hue kaam ko rokna bahut aasaan bana deta hai. Socho safar se pehle tay karna ki kab laut jayenge.',
+    'Pehle se tay kiya gaya kill criterion (kab rukna hai, uska niyam) bigde hue kaam ko rokna bahut aasaan bana deta hai. Sochiye safar se pehle tay karna ki kab laut jayenge.',
   'Write one “now” item for your capstone as an outcome. Fill in all five fields from the table.':
     'Apne capstone ke liye ek “now” item outcome ki tarah likhiye. Table ke saare paanch khaane bharein.',
   'You should have one roadmap item. Check the kill criterion. Is it a number you can really measure within a few weeks?':
@@ -162,7 +162,7 @@ Object.assign(window.HING = window.HING || {}, {
   '<strong>Risks</strong>, and what would make you change course.':
     '<strong>Risks</strong>, aur kya cheez aapko raasta badalne par majboor karegi.',
   'Before you send the memo, run a <strong>pre-mortem</strong>. Imagine it is six months from now and the project has failed. Everyone writes down, alone, why it failed. Then you plan to stop the most likely causes.':
-    'Memo bhejne se pehle ek <strong>pre-mortem</strong> kijiye. Socho ki chhe mahine ho gaye hain aur project fail ho gaya. Har koi akele mein likhta hai ki yeh kyun fail hua. Phir aap sabse mumkin kaaranon ko rokne ka plan banate hain.',
+    'Memo bhejne se pehle ek <strong>pre-mortem</strong> kijiye. Sochiye ki chhe mahine ho gaye hain aur project fail ho gaya. Har koi akele mein likhta hai ki yeh kyun fail hua. Phir aap sabse mumkin kaaranon ko rokne ka plan banate hain.',
   'Why does this work? Because people will name risks about a pretend failure that they would never mention about a plan that is still alive. It is like a fire drill: you find the blocked door before the fire.':
     'Yeh kaam kyun karta hai? Kyunki log banawati fail hone ke baare mein woh risks bata dete hain jo woh zinda plan ke baare mein kabhi nahi batate. Yeh fire drill jaisa hai: aag lagne se pehle hi band darwaza mil jata hai.',
   'Write three reasons your capstone might fail six months from now. For each one, write one thing you can do this month to make it less likely.':

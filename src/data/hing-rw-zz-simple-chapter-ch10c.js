@@ -26,7 +26,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Provenance is the record of where a fact came from. It travels with the fact, like a receipt. So you can trace an answer back to its source.':
     'Provenance is baat ka record hai ki koi fact kahan se aaya. Yeh fact ke saath chalta hai, rasid ki tarah. Isse aap jawaab ko uske source tak wapas dhoondh sakte hain.',
   'Context engineering means deciding what goes into each request: instructions, examples, evidence, history, tool results, and the format they come in. Think of packing a folder for a colleague. In this chapter you treat the prompt as a contract, set a context budget, and decide where memory is stored.':
-    'Context engineering ka matlab hai tay karna ki har request mein kya jaayega: nirdesh, examples, saboot, history, tool results, aur woh kis format mein aate hain. Socho saathi ke liye folder lagana. Is chapter mein aap prompt ko contract maanenge, context budget tay karenge, aur yeh tay karenge ki memory kahan rakhi jaye.',
+    'Context engineering ka matlab hai tay karna ki har request mein kya jaayega: nirdesh, examples, saboot, history, tool results, aur woh kis format mein aate hain. Sochiye saathi ke liye folder lagana. Is chapter mein aap prompt ko contract maanenge, context budget tay karenge, aur yeh tay karenge ki memory kahan rakhi jaye.',
   'Treat a prompt as an interface contract (a clear promise between your code and the model), not as a paragraph of requests.':
     'Prompt ko interface contract maniye (aapke code aur model ke beech saaf vaada), request ke ek paragraph ki tarah nahin.',
   'Say what is removed first when the context budget is tight, and why.':
@@ -62,7 +62,7 @@ Object.assign(window.HING = window.HING || {}, {
   'A system prompt is a standing instruction':
     'System prompt ek sthayi nirdesh hai',
   'You met this in Chapter 2. Think of rules on the shop wall. Here it is one part of a designed context.':
-    'Aap isse Chapter 2 mein mile the. Socho dukaan ki deewar par lage niyam. Yahan yeh design kiye gaye context ka ek hissa hai.',
+    'Aap isse Chapter 2 mein mile the. Sochiye dukaan ki deewar par lage niyam. Yahan yeh design kiye gaye context ka ek hissa hai.',
   'The context window has a limit':
     'Context window ki ek seema hai',
   'You saw this in Chapter 1.5. The desk is only so big, so something must be removed first.':
@@ -122,7 +122,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Structured output controls the interface. It does not promise that the content is true.':
     'Structured output interface ko sambhalta hai. Yeh vaada nahin karta ki content sach hai.',
   'You will measure how much of the context is instructions, how much is history, how much is retrieved text, and how much is tool output. Think of dividing a small desk between piles.':
-    'Aap napenge ki context ka kitna hissa nirdesh hai, kitna history, kitna dhoondha hua text, aur kitna tool output. Socho ek chhoti mez ko dher mein baantna.',
+    'Aap napenge ki context ka kitna hissa nirdesh hai, kitna history, kitna dhoondha hua text, aur kitna tool output. Sochiye ek chhoti mez ko dher mein baantna.',
   'Context is limited, like space on a desk. It affects quality, latency (waiting time) and cost.':
     'Context seemit hai, mez ki jagah ki tarah. Yeh quality, latency (intezaar ka samay) aur cost par asar daalta hai.',
   'Note the token count for each part of the context, where your provider shows it. Where it does not, estimate the same way every time.':
@@ -144,7 +144,7 @@ Object.assign(window.HING = window.HING || {}, {
   '“Memory” is a whole design, not a single switch. It has storage, rules for how long to keep things, and rules for who may see them.':
     '“Memory” ek switch nahin, poora design hai. Isme storage hai, kitni der rakhna hai ke niyam hain, aur kaun dekh sakta hai ke niyam hain.',
   'Draw three stores: the session history, the user profile and the task state. Think of three cupboards.':
-    'Teen store banaiye: session history, user profile aur task state. Socho teen almariyan.',
+    'Teen store banaiye: session history, user profile aur task state. Sochiye teen almariyan.',
   'For each store, write down the fields, who owns it, how long it is kept, who can see it, and how it is deleted.':
     'Har store ke liye likhiye: uske fields, uska maalik kaun, kitni der rakha jaata hai, kaun dekh sakta hai, aur kaise hataya jaata hai.',
   'Bring in memory that is old, or that clashes with other memory. Write rules for which one wins.':
@@ -196,7 +196,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Memory is an architecture choice':
     'Memory is an architecture choice',
   'A model does not have memory. Every product that offers memory has built a store for it. The kind of store decides what it can delete when someone asks. Think of a goldfish that forgets, plus a notebook you keep for it.':
-    'Model ke paas memory nahin hoti. Jo bhi product memory deta hai, usne uske liye ek store banaya hai. Store kaisa hai, yahi tay karta hai ki koi kahe to woh kya hata sakta hai. Socho ek goldfish jo bhool jaati hai, aur ek notebook jo aap uske liye rakhte hain.',
+    'Model ke paas memory nahin hoti. Jo bhi product memory deta hai, usne uske liye ek store banaya hai. Store kaisa hai, yahi tay karta hai ki koi kahe to woh kya hata sakta hai. Sochiye ek goldfish jo bhool jaati hai, aur ek notebook jo aap uske liye rakhte hain.',
   'You will hear many names for parts of the context: caching, compression, few-shot examples, instruction hierarchy. They all answer the same two questions. What goes in? What is removed first when it does not fit?':
     'Aap context ke hisson ke kai naam sunenge: caching, compression, few-shot examples, instruction hierarchy. Sab do hi sawaalon ka jawaab dete hain. Kya andar jaye? Jagah kam ho to pehle kya hataya jaye?',
   'Let us try that with an assistant you know.':

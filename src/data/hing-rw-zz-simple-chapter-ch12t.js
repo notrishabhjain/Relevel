@@ -4,7 +4,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Pick one action that happens outside the model. Write its tool schema (a form that lists exactly what the tool takes in) before you write any model logic.':
     'Ek aisi action chuniye jo model ke bahar hoti hai. Model ka koi bhi logic likhne se pehle uska tool schema likhiye (ek form jo bataye ki tool kya-kya andar leta hai).',
   'Build the flow classify → retrieve → tool → validate → respond. Think of a train that stops at fixed stations. Add a confirmation step for anything that has consequences.':
-    'Yeh flow banaiye: classify → retrieve → tool → validate → respond. Socho ek train jo tay stations par rukti hai. Jis cheez ka asar padta hai, uske liye confirmation step (haan kehne ka pal) jodiye.',
+    'Yeh flow banaiye: classify → retrieve → tool → validate → respond. Sochiye ek train jo tay stations par rukti hai. Jis cheez ka asar padta hai, uske liye confirmation step (haan kehne ka pal) jodiye.',
   'Test four things. First, badly filled arguments (the values you hand to the tool). Second, a timeout (the tool takes too long). Third, a call the user is not allowed to make. Fourth, a tool that returns the wrong thing with a straight face.':
     'Chaar cheezein test kijiye. Pehli, galat bhare hue arguments (jo values aap tool ko dete hain). Doosri, timeout (tool bahut der laga deta hai). Teesri, aisi call jo user ko karne ki ijaazat nahi. Chauthi, tool jo seedha chehre se galat cheez wapas deta hai.',
   'Three things to hand in: a tool contract (the rule sheet for one tool), a workflow diagram (a map of the steps), and a table of how each step can fail.':
@@ -78,7 +78,7 @@ Object.assign(window.HING = window.HING || {}, {
   'A <strong>tool</strong> is a button the model can press to do something real. It can look up an invoice (a bill), send an email or change a record. Now the question is not whether the model can act. The question is what exactly it may do, with what data, and who checks.':
     '<strong>Tool</strong> ek button hai jise dabakar model asli kaam karta hai. Woh invoice (bill) dekh sakta hai, email bhej sakta hai ya record badal sakta hai. Ab sawaal yeh nahi ki model kar sakta hai ya nahi. Sawaal yeh hai ki woh kya-kya kar sakta hai, kis data ke saath, aur kaun check karega.',
   'Think of a bank teller. A teller can look up your balance. But a teller cannot approve a loan alone. A teller cannot send money just because a customer asks. The rule exists because some actions have effects outside the bank. Tellers are not the problem.':
-    'Bank ke teller ko socho. Teller aapka balance dekh sakta hai. Par woh akela loan pass nahi kar sakta. Woh sirf customer ke kehne par paise nahi bhej sakta. Yeh niyam isliye nahi ki teller bure hain. Yeh isliye hai ki kuch actions ka asar bank ke bahar tak jaata hai.',
+    'Bank ke teller ko sochiye. Teller aapka balance dekh sakta hai. Par woh akela loan pass nahi kar sakta. Woh sirf customer ke kehne par paise nahi bhej sakta. Yeh niyam isliye nahi ki teller bure hain. Yeh isliye hai ki kuch actions ka asar bank ke bahar tak jaata hai.',
   'A model with tools is in the same spot. In this chapter you will write down what each tool may do. You will keep the checks in ordinary code (plain code that always does the same thing). And you will pick a fixed workflow first, until an agent (a helper that decides its own steps) has earned its place.':
     'Tools wala model bhi isi jagah hai. Is chapter mein aap likhenge ki har tool kya kar sakta hai. Checks ko ordinary code mein rakhenge (seedha code jo hamesha ek jaisa chalta hai). Aur pehle fixed workflow chunenge, jab tak agent (ek helper jo apne steps khud chunta hai) apni jagah kamaa na le.',
   'There are six units. Do them in order. Each has a short goal, an idea, something to try, something to break on purpose, and something to hand in. The checking question and the product lens at the end say what to take away.':
@@ -88,7 +88,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Write a tool as a tightly limited contract (a rule sheet). It has a name, a description, inputs, errors and permissions.':
     'Tool ko ek sakht limit wale contract (rule sheet) ki tarah likhiye. Usme naam, description, inputs, errors aur permissions hote hain.',
   'The model sees how you define the tool, and it uses that to work. Think of the label on a medicine bottle. A clear label helps the model use the tool well.':
-    'Model dekhta hai ki aapne tool ko kaise define kiya, aur usi se kaam karta hai. Dawai ki bottle ke label ko socho. Saaf label model ko tool sahi se use karne mein madad karta hai.',
+    'Model dekhta hai ki aapne tool ko kaise define kiya, aur usi se kaam karta hai. Dawai ki bottle ke label ko sochiye. Saaf label model ko tool sahi se use karne mein madad karta hai.',
   'Write a schema (a form with fixed boxes) for <code>get_invoice_status(invoice_id)</code>.':
     '<code>get_invoice_status(invoice_id)</code> ke liye ek schema (fixed khaanon wala form) likhiye.',
   'Add the boxes that must be filled, the shapes that are allowed, and a clear error for each thing that can go wrong.':

@@ -54,7 +54,7 @@ Object.assign(window.HING = window.HING || {}, {
   'There is no code in this chapter yet. Bring the twenty cards you cut in Chapter 3 and the five questions you wrote before cutting. Today you play the search engine yourself.':
     'Is chapter mein abhi code nahi hai. Chapter 3 mein kaate hue bees cards aur kaatne se pehle likhe paanch sawaal saath rakhiye. Aaj aap khud search engine bante hain.',
   'Last chapter you cut a document into twenty chunks, like twenty index cards. Now picture this. A question arrives. Something has to pick which cards to send to the model.':
-    'Pichhle chapter mein aapne ek document ko bees chunks mein kaata, jaise bees index cards. Ab socho: ek sawaal aata hai. Kisi ko chunna hai ki model ko kaun se cards bhejne hain.',
+    'Pichhle chapter mein aapne ek document ko bees chunks mein kaata, jaise bees index cards. Ab sochiye: ek sawaal aata hai. Kisi ko chunna hai ki model ko kaun se cards bhejne hain.',
   'The obvious way is to match words. Search boxes have worked like this for many years. If the question says <em>refund</em>, find the chunks that contain <em>refund</em>. It is fast and cheap. It is called <strong>keyword search</strong>, like pressing Ctrl+F.':
     'Seedha tareeka hai shabd match karna. Search boxes kai saalon se aise hi chalte aaye hain. Agar sawaal mein <em>refund</em> hai, to woh chunks dhoondhiye jinme <em>refund</em> likha hai. Yeh tez aur sasta hai. Ise <strong>keyword search</strong> kehte hain, jaise Ctrl+F dabana.',
   'It sounds like it must work. This chapter shows you where it does work, and where it quietly lets people down.':

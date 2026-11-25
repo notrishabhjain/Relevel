@@ -82,28 +82,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Log karne se pehle redact kijiye, saath mein retention limit',
   'A log sample with no raw IDs, and a deletion test. This supports the DPDP Act duties on security safeguards and on limits to keeping data':
     'Aisa log sample jisme koi raw ID nahi, aur ek deletion test. Yeh DPDP Act ki security safeguards aur data kitni der rakha jaaye is par limits wali duties ko support karta hai',
-  'Do units 20.7 and 20.8, then the capstone. Read the other units this pass.':
-    'Units 20.7 aur 20.8 kijiye, phir capstone. Baaki units is baar sirf padh lijiye.',
-  'Don’t start with slides. Your problem is Bharat Privacy Guard. Collect the repository, the issue list and the evaluation dataset you already have, and build the smallest slice that works from start to finish.':
-    'Slides se shuru mat kijiye. Aapki problem Bharat Privacy Guard hai. Jo repository, issue list aur evaluation dataset aapke paas pehle se hain unhe ikattha kijiye, aur sabse chhota woh hissa banaiye jo shuru se aakhir tak chalta ho.',
-  'Grow Bharat Privacy Guard into one finished product. Give its rule-keeper two forms, a fixed workflow and a bounded agent, with a person approving risky actions. Add structured outputs, one input that isn’t text, an evaluation harness, tracing and cost tracking, and security controls. Then put it in front of real users and improve it from what you see.':
-    'Bharat Privacy Guard ko ek poore product tak badhaiye. Uske rule-keeper ko do roop dijiye, ek fixed workflow aur ek bounded agent, jisme risky actions ko ek insaan approve kare. Structured outputs, ek aisa input jo text nahi hai, ek evaluation harness, tracing aur cost tracking, aur security controls jodiye. Phir ise asli users ke saamne rakhiye aur jo dikhe, usse behtar banaiye.',
-  'Add the workflow-versus-agent table from Chapter 26 for the rule-keeper, and say which one ships, with the number that decided it.':
-    'Rule-keeper ke liye Chapter 26 ki workflow-versus-agent table jodiye, aur bataiye ki kaun sa ship hota hai, us number ke saath jisne faisla kiya.',
-  'Add real-user evidence: notes from sessions with three to five people who are not your teammates on the route (five to ten in the full version), and the one change you made because of them.':
-    'Asli users ka evidence jodiye: 3 se 5 aise logon ke saath sessions ke notes jo aapke teammates nahi hain (route par; poore version mein 5 se 10), aur woh ek change jo aapne unki wajah se kiya.',
-  'A table comparing the fixed workflow and the agent, with the number that decided which one ships.':
-    'Fixed workflow aur agent ki tulna karne wali table, us number ke saath jisne tay kiya ki kaun sa ship hoga.',
   'Evidence from three to five real users on the route (five to ten in the full version), who are not your teammates.':
     'Route par 3 se 5 asli users ka evidence (poore version mein 5 se 10), jo aapke teammates nahi hain.',
-  'The full version takes about thirty hours, spread over four to six weeks. This is the whole course brought together. The technical capstone and the product, business, real-user and defence work are one project now, not two.':
-    'Poora version lagbhag 30 ghante leta hai, jo 4 se 6 hafton mein phaile. Yeh poore course ko ek saath laata hai. Technical capstone aur product, business, real-user aur defence ka kaam ab ek hi project hain, do nahi.',
-  'On your route the problem is chosen: Bharat Privacy Guard. Stages 34.1 to 34.3 are already in your repository, so collect them. The route gives this chapter about eight hours. Do five stages: 34.4 put the system together, 34.5 run the release gate, 34.6 break it three ways, 34.9 write the cost, and 34.11 write the findings. Show it to three to five people if you can (34.8). The rest comes after the route.':
-    'Aapke route par problem chuni hui hai: Bharat Privacy Guard. Stages 34.1 se 34.3 aapki repository mein pehle se hain, unhe ikattha kijiye. Route is chapter ko lagbhag aath ghante deta hai. Paanch stages kijiye: 34.4 system ko jodiye, 34.5 release gate chalaiye, 34.6 use teen tarah se todiye, 34.9 cost likhiye, aur 34.11 findings likhiye. Agar ho sake toh teen se paanch logon ko dikhaiye (34.8). Baaki route ke baad aata hai.',
-  'Your problem is Bharat Privacy Guard, and you can reach its users within two weeks. Work through eleven stages: discover, define, design, build, evaluate, break, observe, ship, measure, iterate and defend.':
-    'Aapki problem Bharat Privacy Guard hai, aur aap do hafte ke andar uske users tak pahunch sakte hain. Gyarah stages se guzariye: discover, define, design, build, evaluate, break, observe, ship, measure, iterate aur defend.',
-  'The table below lists the eleven stages in order. They are the detail inside stage 12 of the thirteen stages on the project page. For each one, the second column says what evidence you must have in hand before you move on. Read it once now, and come back to it as you work.':
-    'Neeche ki table gyarah stages ko order mein dikhati hai. Yeh project page ke terah stages mein se stage 12 ke andar ki detail hain. Har stage ke liye, doosra column batata hai ki aage badhne se pehle aapke paas kaun sa evidence hona chahiye. Ise ek baar abhi padh lijiye, aur kaam karte waqt wapas aate rahiye.',
   'Write the problem for Bharat Privacy Guard: who the user is, what goes wrong for them today, and the number that would show it is fixed.':
     'Bharat Privacy Guard ki problem likhiye: user kaun hai, aaj unke saath kya galat hota hai, aur woh number jo dikhayega ki yeh theek ho gayi.',
   '12 rows':

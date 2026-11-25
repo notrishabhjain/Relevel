@@ -36,7 +36,7 @@ Object.assign(window.HING = window.HING || {}, {
   'A name for a value':
     'Ek value ka naam',
   'The most common line in this course looks like <code>name = something</code>. It gives a value a name, so that later lines can use it. Think of a labelled box that holds one thing. Programmers call the name a <strong>variable</strong>.':
-    'Is course mein sabse common line <code>name = something</code> jaisi dikhti hai. Yeh ek value ko naam deti hai, taaki aage ki lines use use kar sakein. Socho ek label laga dabba jisme ek cheez rakhi hai. Programmers us naam ko <strong>variable</strong> kehte hain.',
+    'Is course mein sabse common line <code>name = something</code> jaisi dikhti hai. Yeh ek value ko naam deti hai, taaki aage ki lines use use kar sakein. Sochiye ek label laga dabba jisme ek cheez rakhi hai. Programmers us naam ko <strong>variable</strong> kehte hain.',
   'Read the equals sign as “is now”. So <code>city = "Pune"</code> reads as “city is now Pune”.':
     'Barabar ke nishaan ko “ab hai” padhiye. Toh <code>city = "Pune"</code> ka matlab hai “city ab Pune hai”.',
   'Store something and use it':

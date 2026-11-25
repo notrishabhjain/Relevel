@@ -1665,7 +1665,7 @@ window.PART5 = [
     ['key','Work out the cost of one user task from start to finish: input tokens, output tokens, embeddings (addresses for meaning), retrieval, and tool and API calls (messages sent over the internet). Then you can compare two designs before building either.'],
     ['h','Change one thing at a time'],
     ['p','You will hear terms like canary release, shadow traffic, rollback and drift. They all come from one habit, and it is simple. Change one thing at a time. Let a few users see it first. Keep the old version ready. And keep watching after the release.'],
-    ['key','Most incidents can be prevented in four ways. Change one thing at a time. Give version numbers to prompts, models, indexes and tool contracts. Make sure every part can be rolled back. And never let a prompt change skip evaluation. Teams break that last rule most often, because editing a prompt does not feel like a release.'],
+    ['key','Most incidents can be prevented in four ways. Change one variable (one thing that can change) at a time. Give version numbers to prompts, models, indexes and tool contracts. Make sure every part can be rolled back. And never let a prompt change skip evaluation. Teams break that last rule most often, because editing a prompt does not feel like a release.'],
     ['p','Here is a puzzle about drift. Take a moment to think.'],
     [
       'try',
@@ -1695,7 +1695,7 @@ window.PART5 = [
     done:[
       'Traces saved by your harness, one for every run.',
       'Six panels, each with a named data source (where its numbers come from).',
-      'For every panel, one level that makes you investigate and one that makes you roll back.',
+      'For every panel, one level that makes you investigate and one that makes you do a rollback (go back to the old version).',
       'A list of what is versioned, like a list of numbered editions.'
     ]
   }
@@ -2006,7 +2006,7 @@ window.PART5 = [
       'Unit economics',
       {goal:'Work out the cost of tokens (small pieces of text you pay for), retrieval, tools, infrastructure and human review.',
        idea:'The real unit is often the cost of one task that worked, not the cost of one request.',
-       prove:'Make a spreadsheet with volume, token use, model cost, retries, tools and review time.',
+       prove:'Make a spreadsheet with volume, token usage, model cost, retries, tools and review time.',
        build:'Compare cases for model routing (sending easy jobs to a cheaper model) and for caching (keeping an answer to reuse it).',
        brk:'Raise the context size or the retry rate, and watch what happens to your margin (what you keep after costs).',
        artifact:'AI Unit Economics Model.',
@@ -2024,7 +2024,7 @@ window.PART5 = [
        brk:'Ask a reviewer to find a failure your PRD did not cover.',
        artifact:'AI PRD plus Release Gate plus Metric Map.',
        check:'Can the PRD answer “what happens when it is wrong?”',
-       lens:'This becomes one of the best pieces in your portfolio (the folder of your work you show to employers).'}
+       lens:'This artifact becomes one of the best pieces in your portfolio (the folder of your work you show to employers).'}
     ],
     ['q','I412'],
     ['h','A spec outline'],
@@ -2089,169 +2089,169 @@ window.PART5 = [
 {
   id:'ch20d', num:33, part:5, curriculumTier:'core', phase:5, prerequisites:['ch185','ch17o','ch16e'], nextUnits:['ch21cap','b7'], minutes:55, labs:['costmodel'],
   title:'Production architecture, delivery and vendor strategy',
-  concept:'A prototype runs because you are the only user and you forgive its failures. Production removes both. In this chapter you’ll list what a prototype is missing, think of response time as a budget shared across stages, and score vendors on more than price and quality.',
+  concept:'A prototype works because you are the only user and you forgive its mistakes, like a dish cooked at home. Production takes away both. In this chapter you list what a prototype is missing. You treat response time as a budget shared across the steps. You score vendors on more than price and quality.',
   plan:{
-    first:'Before you look anything up, write from memory the list of what your prototype is missing for production.',
-    build:'Add the decisions about architecture, the separate environments, automated checks before release, who is responsible for what, service targets, security, rolling back, and how you would leave a vendor.',
+    first:'Before you look anything up, write a list from memory: what is your prototype missing before real people can use it?',
+    build:'Add the decisions: the architecture (how the parts fit together), separate environments (practice room and real room), automated checks before release, who owns what, service targets, security, rolling back, and how you would leave a vendor (the company you buy from).',
     brk:'Work out what happens in three shocks: the provider goes down, traffic grows ten times, and the token price doubles.',
-    artifact:'A technical decision pack that covers the architecture, the alternatives, the evaluation, security, cost and rollout.',
-    gate:'Defend your build-or-buy choice and your provider choice with weighted criteria, not with personal preference.'
+    artifact:'A technical decision pack (a bundle of pages that shows your choices) that covers the architecture, the alternatives, the evaluation, security, cost and rollout.',
+    gate:'Defend your build-or-buy choice and your provider choice with weighted criteria (marks that count more or less), not with what you happen to like.'
   },
   needs:[
-    ['Build or buy is a decision with criteria','Chapter 18.5 introduced it. Here the criteria get weights.',18.5],
-    ['Cost per task can be measured','You recorded it in Chapter 30.',30],
-    ['A release gate decides what ships','You built it in Chapter 29.',29]
+    ['Build or buy is a choice made with marks','Chapter 18.5 introduced it. Here the marks (criteria) get weights, so some count more.',18.5],
+    ['You can measure the cost of one task','You wrote it down in Chapter 30.',30],
+    ['A release gate (the check before launch) decides what goes live','You built it in Chapter 29.',29]
   ],
   words:[
-    ["Production delta","The list of everything a working prototype doesn’t have yet: sign-in, limits, retries, saved data, monitoring, secrets, backups, deployment and rollback."],
-    ["Latency budget","The total time a user is willing to wait, shared out across the stages that use it up."],
-    ["Architecture decision record","A short note saying what was decided, what the other options were, and why. You write it when the decision is made, not later from memory."],
-    ["Exit cost","What it would take to leave a provider. It’s usually the least examined column in a vendor comparison, and the one you live with longest."]
+    ["Production delta",'The list of everything a working prototype does not have yet: sign-in, limits, retries (trying again), saved data, monitoring (watching it run), secrets, backups, deployment (putting it live) and rollback (going back).'],
+    ["Latency budget",'The total waiting time a user will accept, shared out across the steps that use it up, like a pocket-money budget.'],
+    ["Architecture decision record",'A short note: what was decided, what the other choices were, and why. Write it on the day you decide, not later from memory.'],
+    ["Exit cost",'What it costs to leave a provider. It is usually the column nobody reads in a vendor comparison, and the one you live with longest.']
   ],
   takeaway:[
-    'List what a prototype is missing before it can go to production.',
-    'Treat response time as a budget spent across a chain of stages.',
-    'Score providers on more criteria than price and quality.'
+    'List what a prototype is missing before it can go to production (the real, live service).',
+    'Treat response time as a budget spent across a chain of steps.',
+    'Score providers on more than price and quality.'
   ],
   story:[
-    ['c','Before you start','Keep your cost measurements from Chapter 30 and your release gate from Chapter 29 open. You’ll use both.'],
-    ['c','On your route','Do units 20.7 and 20.8, then the capstone. Read the other units this pass.'],
-    ['p','In the last chapter you saw how the product manager writes the spec for a system whose answers can vary. This chapter looks at the other side of the same table: what it takes to run such a system for real users.'],
-    ['p','Everything you’ve built so far works because you are the only user, and you forgive it when it fails. Production removes both of those. So here you’ll list what that costs you.'],
-    ['p','An everyday comparison helps. A dish you cook well for two people is not yet a restaurant menu item. The recipe stays the same. But now you also need reliable supplies, a price that works, other cooks who can make it, and a plan for the night four hundred people order it.'],
-    ['p','The units below walk through that gap one piece at a time. Each one has a goal, an idea, something to prove, something to build, something to break, something to hand in, and a question to check yourself. Take them in order.'],
+    ['c','Before you start','Keep your cost measurements from Chapter 30 and your release gate from Chapter 29 open. You will use both.'],
+    ['c','On your route','Do units 20.7 and 20.8, then the capstone (the project at the end). Read the other units this time.'],
+    ['p','In the last chapter, the product manager wrote the spec (the recipe card) for a system whose answers can change. This chapter is the other side of the same table: what it takes to run that system for real users.'],
+    ['p','Everything you have built so far works because you are the only user, and you forgive it when it fails. Production takes away both. So here you list what that costs you.'],
+    ['p','Think of cooking. A dish you cook well for two people is not yet a dish on a restaurant menu. The recipe stays the same. But now you also need steady supplies, a price that works, other cooks who can make it, and a plan for the night four hundred people order it.'],
+    ['p','The units below cross that gap one piece at a time. Each one has a goal, an idea, something to prove, something to build, something to break, something to hand in, and a question to check yourself. Take them in order.'],
     ['h','Hands-on units'],
     [
       'unit',
       '20.1',
       'Production delta',
-      {goal:'List everything that is missing between your notebook and a real service.',
-       idea:'A real service needs many things a notebook doesn’t: sign-in, saved data, retries, queues, monitoring, secrets, deployment, backups, access rules and a way to roll back.',
+      {goal:'List everything that is missing between your notebook (where you tried things out) and a real service.',
+       idea:'A real service needs many things a notebook does not: sign-in, saved data, retries (trying again), queues (a line of jobs waiting), monitoring, secrets, deployment, backups, access rules and a way to roll back.',
        prove:'Write the production delta list for your own prototype.',
-       build:'Sort the items into three groups: must-have, should-have and later.',
-       brk:'Remove one of the controls, then describe how things would fail without it.',
+       build:'Sort the items into three piles: must-have, should-have and later.',
+       brk:'Take away one of the controls, then describe how things would fail without it, like removing a brake from a cycle.',
        artifact:'A production delta checklist.',
        check:'What would stop you from going live tomorrow?',
-       lens:'This is the bridge between how a PM thinks about delivery and what engineering actually has to build.'}
+       lens:'This is the bridge between how a PM thinks about delivery and what engineering has to build.'}
     ],
     [
       'unit',
       '20.2',
       'Reliability and resilience',
-      {goal:'Plan for provider errors, failing dependencies and retries, and decide how the product slows down gracefully.',
-       idea:'An AI system leans on services you don’t control, so some of them will fail at some point.',
-       prove:'Write failure scenarios for the model, for retrieval, for the tools and for the network.',
-       build:'For each one, decide the timeout, the retries, the fallback, and what the user sees.',
-       brk:'Pretend the provider is down, then pretend it is limiting how many requests you can send.',
+      {goal:'Plan for provider errors, parts that stop working and retries. Decide how the product slows down gently instead of breaking.',
+       idea:'An AI system leans on services you do not control, so some of them will fail at some point, like a train line you do not own.',
+       prove:'Write failure stories for the model, for retrieval (finding the right page), for the tools and for the network.',
+       build:'For each one, decide the timeout (how long you wait), the retries, the fallback (the plan B) and what the user sees.',
+       brk:'Pretend the provider is down. Then pretend it is limiting how many requests you can send.',
        artifact:'A table of failures and fallbacks.',
-       check:'What does the user experience when only part of the system fails?',
-       lens:'A product that degrades gracefully can be worth more than one that uses a bigger model.'}
+       check:'What does the user feel when only part of the system fails?',
+       lens:'A product that slows down gently when something breaks can be worth more than one that uses a bigger model.'}
     ],
     [
       'unit',
       '20.3',
       'Scalability and queues',
-      {goal:'Understand the difference between work done while the user waits and work done in the background, and find where a system hits its limits as it grows.',
-       idea:'Not every AI task belongs in the path where the user sends a request and waits for the answer.',
-       prove:'Map a long-running job, such as taking in a big document.',
-       build:'Separate four things: the upload, the processing, the indexing and the status updates to the user.',
+      {goal:'Learn the difference between work done while the user waits and work done in the background. Find where a system hits its limit as it grows.',
+       idea:'Not every AI job belongs in the path where the user sends a request and waits for the answer, like standing at the counter.',
+       prove:'Draw a long-running job, such as taking in a big document.',
+       build:'Split it into four parts: the upload, the processing, the indexing (making a quick-find list) and the status updates to the user.',
        brk:'Imagine ten times the work, and find the part that gives way first.',
-       artifact:'A sketch of how the system scales, with your assumptions about capacity.',
+       artifact:'A sketch of how the system grows, with your guesses about how much it can carry.',
        check:'Which part has to grow first, and why?',
-       lens:'When you plan capacity, include the model’s own limits and the quotas set by outside providers.'}
+       lens:'When you plan how much it can carry, count the model’s own limits and the quotas (the allowed amount) set by outside providers.'}
     ],
     [
       'unit',
       '20.4',
       'Deployment and environments',
-      {goal:'Keep development, staging and production apart, each with settings you control.',
-       idea:'A production AI system needs settings you can reproduce and a safe way to release changes.',
-       prove:'For each environment, define the environment variables, the model versions, the prompts and the index versions.',
+      {goal:'Keep development (the practice room), staging (the dress rehearsal) and production (the real show) apart, each with settings you control.',
+       idea:'A live AI system needs settings you can copy exactly, and a safe way to release changes.',
+       prove:'For each environment, write down the environment variables (labelled boxes of settings), the model versions, the prompts and the index versions.',
        build:'Write a deployment checklist, and the command or steps to roll back.',
-       brk:'Release a deliberately bad prompt to staging, and check that production stays exactly as it was.',
+       brk:'Send a deliberately bad prompt to staging. Check that production stays exactly as it was.',
        artifact:'A plan for your environments, and a rollout checklist.',
        check:'What can change without anyone releasing new code?',
-       lens:'Configuration is part of the system, so it needs version control like everything else.'}
+       lens:'Settings are part of the system, so they need version control (a record of every change) like everything else.'}
     ],
     [
       'unit',
       '20.5',
       'CI/CD and AI regression',
-      {goal:'Put your software tests and your evaluation gates into the same automated checks.',
-       idea:'A green build is not enough if the model’s behaviour has got worse.',
-       prove:'Add ordinary tests, plus your golden evaluation suite, to the automated checks that run before every release.',
-       build:'Decide the thresholds that block a release.',
-       brk:'Change the model, the prompt or the index, and check that the automated checks catch the drop in quality.',
-       artifact:'A spec for the automated release checks of an AI product.',
-       check:'What evidence do you need before you release?',
-       lens:'This is how a system whose answers vary becomes something a team can deliver reliably.'}
+      {goal:'Put your software tests and your evaluation gates (pass-or-fail checks on answer quality) into the same automatic checks.',
+       idea:'A green build is not enough if the model now behaves worse.',
+       prove:'Add ordinary tests, plus your golden evaluation suite (your best answer key), to the automatic checks that run before every release.',
+       build:'Decide the thresholds (the lines) that block a release.',
+       brk:'Change the model, the prompt or the index. Check that the automatic checks catch the drop in quality.',
+       artifact:'A spec for the automatic release checks of an AI product.',
+       check:'What proof do you need before you release?',
+       lens:'This is how a system whose answers change becomes something a team can deliver again and again.'}
     ],
     [
       'unit',
       '20.6',
       'Architecture Decision Records',
-      {goal:'Record the alternatives, the decision, the evidence, the consequences, and the signs that mean you should revisit it.',
-       idea:'Treat each architecture decision as a hypothesis with trade-offs, and write down when you’ll look at it again.',
-       prove:'Write a record for each of four decisions: the model, the retrieval approach, the workflow or agent, and the storage.',
-       build:'Include the options you rejected and the evidence behind your choice.',
-       brk:'Invent a new requirement that makes one of your decisions wrong.',
+      {goal:'Write down the alternatives, the decision, the proof, the results that follow, and the signs that mean you should look again.',
+       idea:'Treat each architecture decision as a guess you are testing, with trade-offs. Write down when you will look at it again.',
+       prove:'Write a record for each of four decisions: the model, the retrieval approach, the workflow or agent (a helper that uses tools in a loop), and the storage.',
+       build:'Include the options you turned down and the proof behind your choice.',
+       brk:'Invent a new need that makes one of your decisions wrong.',
        artifact:'A set of architecture decision records.',
-       check:'What would make you revisit this decision?',
-       lens:'These records protect what the team has learned, and they make your reasoning as a technical PM easy for others to see.'}
+       check:'What would make you look at this decision again?',
+       lens:'These records keep what the team learned safe, and they let others see how you reason as a technical PM.'}
     ],
     [
       'unit',
       '20.7',
       'Vendor and TCO strategy',
-      {goal:'Compare provider and model choices on quality, cost, region, data controls, tooling and exit cost.',
+      {goal:'Compare provider and model choices on quality, cost, region (where the data sits), data controls, tooling and exit cost.',
        idea:'Choosing a vendor means balancing several goals at once, and it shapes your architecture.',
-       prove:'Score at least three realistic options, or two providers plus an idea of hosting the model yourself.',
-       build:'Estimate what it would cost to migrate away, and to exit.',
-       brk:'Work out what happens if the price doubles, or if a capability you rely on is removed.',
+       prove:'Score at least three realistic options, or two providers plus the idea of running the model yourself.',
+       build:'Work out what it would cost to move away, and to leave for good.',
+       brk:'Work out what happens if the price doubles, or if a feature you rely on is taken away.',
        artifact:'A scorecard for models and vendors, with an exit plan.',
        check:'What would it cost you to switch?',
-       lens:'Vendor lock-in is a risk to your costs and to your architecture.'}
+       lens:'Vendor lock-in (being stuck with one company) is a risk to your costs and to your architecture.'}
     ],
     [
       'unit',
       '20.8',
       'Technical decision pack',
-      {goal:'Package the whole system so that a design review can go through it.',
-       idea:'A strong artifact between PM and engineers lets different readers look at the same evidence, each at the depth they need.',
+      {goal:'Pack the whole system so that a design review (a meeting where others check your plan) can go through it.',
+       idea:'A strong artifact (a finished piece of work) between PM and engineers lets different readers look at the same proof, each as deep as they need.',
        prove:'Cover the problem, the baseline, the architecture, the alternatives, the evaluation, the security, the cost, the rollout and the risks.',
        build:'Add one architecture diagram and one table of decisions.',
        brk:'Ask a reviewer to challenge three of your assumptions.',
        artifact:'A ten-slide technical decision pack.',
        check:'Can you defend every major box and arrow?',
-       lens:'This is the bridge from your portfolio to real interviews for technical AI PM roles.'}
+       lens:'This is the bridge from your portfolio (the folder of your work) to real interviews for technical AI PM roles.'}
     ],
     ['h','Response time is a budget'],
-    ['p','Now let’s look at one idea more closely, because it surprises most people. When a user waits for an answer, the wait is really a chain of stages, one after the other.'],
-    ['key','Response time is spent across the whole chain: retrieval, reranking, tool calls, model reasoning and final generation. The largest share is rarely in the stage people optimise first.'],
-    ['p','Think of it like a courier delivery. The parcel travels in several legs, and the longest delay is often not the leg you expected. This is why the total time a user will wait is called a <strong>latency budget</strong>. You divide it across the stages, and you check which one is using the most.'],
+    ['p','Now look closely at one idea, because it surprises most people. When a user waits for an answer, the wait is a chain of steps, one after the other, like beads on a thread.'],
+    ['key','Response time is spent across the whole chain: retrieval (finding the right page), reranking (putting the found pages in a better order), tool calls, the model’s reasoning and the final writing. The biggest share is rarely in the step people speed up first.'],
+    ['p','Think of a courier delivery. The parcel travels in legs, and the longest delay is often not the leg you expected. That is why the total time a user will wait is called a <strong>latency budget</strong>. Divide it across the steps, and check which one uses the most.'],
     ['q','I413'],
-    ['p','Next, here is a way to look at the whole system, layer by layer. Read across each row. The last column gives you the question to ask about that layer when you review a design.'],
+    ['p','Next, here is a way to look at the whole system, layer by layer, like floors of a building. Read across each row. The last column gives the question to ask about that layer when you review a design.'],
     [
       'tb',
-      ['Layer','Typical responsibility','The question to ask about it'],
+      ['Layer','Typical job','The question to ask about it'],
       [
-        ['Client and UI','What the user sees and does','What uncertainty or approval must the user see?'],
-        ['Orchestrator','Keeping track of state and choosing the next step','Where would a fixed rule be safer than the model’s judgement?'],
-        ['Model layer','Reasoning and writing the answer','What evidence supports this model choice?'],
-        ['Knowledge and tools','The data it reads and the actions it takes','Who can access what, and how is it audited?'],
-        ['Evaluation','Quality gates','What blocks a release?'],
-        ['Observability','Evidence of how it behaves while running','How would we know it had got worse?'],
-        ['Platform','Deploying, scaling and securing it','How does this survive heavy traffic and failures?']
+        ['Client and UI','What the user sees and does','What doubt or approval must the user see?'],
+        ['Orchestrator','Remembering where things stand and picking the next step, like a conductor','Where would a fixed rule be safer than the model’s own judgement?'],
+        ['Model layer','Reasoning and writing the answer','What proof backs this choice of model?'],
+        ['Knowledge and tools','The data it reads and the actions it takes','Who can reach what, and how is it checked later (audited)?'],
+        ['Evaluation','Quality gates (pass-or-fail checks)','What blocks a release?'],
+        ['Observability','Proof of how it behaves while it runs','How would we know it got worse?'],
+        ['Platform','Putting it live, growing it and keeping it safe','How does it survive heavy traffic and failures?']
       ]
     ],
     ['h','Choosing a vendor'],
-    ['p','The same habit of looking at the whole picture applies when you choose a provider. Most people compare price and quality, and stop there.'],
-    ['key','Choosing a vendor means weighing quality, data controls, response time, cost, region, tooling, interoperability, support and exit cost. A provider that wins on quality and data controls but has a very high exit cost can lock you in for years.'],
-    ['p','Exit cost is the one people forget. It’s the column you read least when you compare vendors, yet it’s the one you live inside the longest.'],
-    ['p','Teams that ship AI well tend to keep four simple habits:'],
+    ['p','The same habit of looking at the whole picture works when you choose a provider. Most people compare price and quality, and stop there.'],
+    ['key','Choosing a vendor means weighing quality, data controls, response time, cost, region, tooling, interoperability (working well with your other tools), support and exit cost. A provider that wins on quality and data controls but has a very high exit cost can trap you for years.'],
+    ['p','Exit cost is the one people forget. It is the column you read least when you compare vendors, yet it is the one you live inside the longest.'],
+    ['p','Teams that ship AI well keep four simple habits:'],
     [
       'l',
-      ['<strong>Write down why you chose things</strong>, so nobody reopens the decision in six months.','<strong>Have a safe place to try changes</strong> before real users see them.','<strong>Be able to switch it off</strong> quickly, without a meeting.','<strong>Know what you would do</strong> if the provider changed its terms tomorrow.']
+      ['<strong>Write down why you chose things</strong>, so nobody reopens the decision in six months.','<strong>Have a safe place to try changes</strong> before real users see them, like a practice room.','<strong>Be able to switch it off</strong> quickly, without a meeting.','<strong>Know what you would do</strong> if the provider changed its terms tomorrow.']
     ],
     ['p','The last habit is easy to say and hard to do. So try it now, on paper.'],
     [
@@ -2262,28 +2262,28 @@ window.PART5 = [
        rows:4,
        task:'Your provider doubles its price and gives you ninety days’ notice. Write what you would do in the first week.',
        ph:'Day 1 … by the end of the week …',
-       after:'If your plan needs an evaluation you don’t have, then the evaluation set is your exit plan. That’s usually the main thing you find out.'}
+       after:'If your plan needs an evaluation you do not have, then the evaluation set (your answer key) is your exit plan. That is usually the main thing you find out.'}
     ],
     ['h','Summary'],
-    ['p','Let’s pull it together. A prototype works because you are its only user. Production needs a list of everything the prototype lacks, which is the production delta.'],
-    ['p','You also saw that response time is a budget shared across a chain of stages, and that a vendor deserves more than a price and quality check. Include data controls, region, support and, above all, the cost of leaving.'],
+    ['p','Let us pull it together. A prototype works because you are its only user. Production needs a list of everything the prototype lacks. That list is the production delta.'],
+    ['p','You also saw that response time is a budget shared across a chain of steps. And a vendor needs more than a price and quality check. Count data controls, region, support and, above all, the cost of leaving.'],
     ['p','Next, Chapter 34 brings the whole system together in one capstone project.']
   ],
   capstone:{
     title:'Make a ten-slide decision pack',
-    brief:'You now explain the whole design to the people who must approve it. In this chapter you learned what a prototype lacks before it can go live, to treat response time as a budget spent across stages, and to score providers on more than price and quality. Here you make a ten-slide pack for Bharat Privacy Guard. Draft it from memory first. The slides you can’t write from memory are the parts you don’t understand yet.',
-    where:'Written work only: a slide deck or a document that draws on your earlier measurements. No new code is needed.',
+    brief:'Now you explain the whole design to the people who must say yes. In this chapter you learned what a prototype lacks before it can go live. You learned to treat response time as a budget spent across steps. You learned to score providers on more than price and quality. Here you make a ten-slide pack for Bharat Privacy Guard. First draft it from memory. The slides you cannot write from memory are the parts you do not understand yet.',
+    where:'Written work only: a slide deck or a document that uses your earlier measurements. You write no new code.',
     steps:[
-      'Without looking at your notes, write one line for each of the ten slides saying what it will say. Mark the slides you couldn’t write from memory.',
+      'Do not look at your notes. Write one line for each of the ten slides, saying what it will say. Mark the slides you could not write from memory.',
       'Make the ten slides: (1) the problem and what it must beat; (2) the architecture on one slide; (3) two alternatives you rejected and why; (4) the test results, with the test set named; (5) security and what remains risky; (6) cost per message and at the expected volume; (7) the rollout plan and the rollback trigger; (8) three providers scored on nine weighted criteria; (9) the decision and who owns it; (10) what you did not solve.',
-      'Check each slide against your earlier documents and fix any mismatch.',
-      'Ask someone else to present the deck from the slides alone. Write down where they stopped or hesitated, and fix those slides.'
+      'Check each slide against your earlier documents. Fix anything that does not match.',
+      'Ask someone else to present the deck using only the slides. Write down where they stopped or hesitated. Fix those slides.'
     ],
     done:[
-      'The from-memory outline with the weak slides marked.',
+      'The from-memory outline, with the weak slides marked.',
       'Ten slides in the order above.',
-      'A provider scorecard that includes the cost of leaving.',
-      'Evidence that someone else could present the deck from the slides alone.'
+      'A provider scorecard that counts the cost of leaving.',
+      'Proof that someone else could present the deck from the slides alone.'
     ]
   }
 },
@@ -2292,91 +2292,91 @@ window.PART5 = [
 {
   id:'ch21cap', num:34, part:5, curriculumTier:'core', phase:6, prerequisites:['ch20d','ch18s'], nextUnits:[], minutes:1800, labs:['redmap'],
   title:'Capstone: discover, build, break, measure, ship and defend a system',
-  concept:'This is one capstone, not two. You take a real problem, with users you can actually reach, and carry it from discovery through a live launch to a defence in front of executives and engineers. Along the way you build one coherent applied AI system, break it on purpose, measure what you fixed, and show that it works as a product, not only as a demo.',
+  concept:'This is one capstone (the big final project), not two. Take a real problem with users you can reach. Carry it from the first talk with users, through a live launch, to a defence in front of executives and engineers. You build one applied AI system, break it on purpose, and measure what you fixed. Then you show it works as a product, not only as a demo.',
   plan:{
-    first:'Don’t start with slides. Your problem is Bharat Privacy Guard. Collect the repository, the issue list and the evaluation dataset you already have, and build the smallest slice that works from start to finish.',
-    build:'Grow Bharat Privacy Guard into one finished product. Give its rule-keeper two forms, a fixed workflow and a bounded agent, with a person approving risky actions. Add structured outputs, one input that isn’t text, an evaluation harness, tracing and cost tracking, and security controls. Then put it in front of real users and improve it from what you see.',
-    brk:'Reproduce at least ten kinds of failure: a question with no answer, a poisoned document, prompt injection, an unauthorised tool request, a malformed tool call, a stale permission, a multilingual query, a poor scan or audio, a model swap, and a rise in traffic or cost.',
-    artifact:'The running system, a live URL with real users, and an evidence pack. The pack holds the PRD, the architecture, the threat model, the evaluation plan, the dashboard, the unit economics, the decision log, the rollout and rollback plan, the vendor scorecard and an explanation for executives.',
-    gate:'Show three failures you found yourself, three improvements with numbers, evidence from real users, unit economics that hold up, the risks that remain, and what you chose not to solve.'
+    first:'Do not start with slides. Your problem is Bharat Privacy Guard. Gather what you already have: the repository (an online folder that remembers every change), the issue list and the evaluation dataset (your questions with right answers). Then build the smallest slice that works from start to finish, like one thin cut through a whole cake.',
+    build:'Grow Bharat Privacy Guard into one finished product. Give its rule-keeper two forms: a fixed workflow (a set recipe) and a helper that can use tools but has a step limit. A person approves risky actions. Add structured outputs (a form with fixed boxes), one input that is not text, an evaluation harness (the test rig), tracing and cost tracking. Add security controls. Then test it with real users and improve it.',
+    brk:'Break it on purpose in at least ten kinds of failure: a question with no answer, a poisoned document, prompt injection (a hidden note that says "ignore your teacher"), an unauthorised tool request, a malformed tool call, a stale permission, a multilingual query, a poor scan or audio, a model swap, and a rise in traffic or cost.',
+    artifact:'The running system, a live URL with real users, and an evidence pack (a folder of proof). The pack holds the PRD (the recipe card for the product), the architecture, the threat model, the evaluation plan, the dashboard, the unit economics, the decision log, the rollout and rollback plan, the vendor scorecard and an explanation for executives.',
+    gate:'Show three failures you found yourself, three improvements with numbers, evidence from real users, unit economics that hold up (the money maths per task), the risks that remain, and what you chose not to solve.'
   },
   needs:[
-    ['Everything in Part V','The capstone combines all of it.',33],
-    ['A release gate and a risk register','Chapters 29 and 31 give you the evidence you’ll defend with.',31],
-    ['Track A’s discovery and strategy artifacts','They help, but you can start without them. If you have them, the discovery and design stages reuse them.','A7']
+    ['Everything in Part V','The capstone brings all of it together, like the final dish made from every lesson.',33],
+    ['A release gate (a check before launch) and a risk register','Chapters 29 and 31 give you the evidence you will defend with.',31],
+    ['Track A\'s discovery and strategy artifacts (the papers you made there)','They help, but you can start without them. If you have them, the discovery and design stages reuse them.','A7']
   ],
   words:[
-    ["Findings document","A plain, factual record of what broke, the evidence, the root cause, the fix, and what you chose not to solve. It is the opposite of a brochure."],
-    ["Failure class","A kind of failure, not one single example of it. This is what makes ten tests meaningful instead of ten stories."],
-    ["Residual risk","The risk that’s left after a control is in place. You state it openly instead of leaving people to guess."],
-    ["Evidence pack","The set of artifacts that lets somebody else check your claims instead of just trusting them."],
-    ["Kill criteria","The condition you write down before you need it, which tells you when to stop. Without it, you keep working on a problem the evidence says won’t work."]
+    ["Findings document",'A plain, true record, like a repair report: what broke, the evidence, the root cause (the real reason), the fix, and what you chose not to solve. It is the opposite of a brochure.'],
+    ["Failure class",'A kind of failure, not one single example. Think of a pile in your complaint sorting. Ten classes make ten tests that mean something, instead of ten stories.'],
+    ["Residual risk",'The risk that is left after a control (a safety step) is in place. You say it out loud instead of leaving people to guess.'],
+    ["Evidence pack",'A folder of proof that lets somebody else check your claims, like showing your working in a maths exam, instead of just asking to be trusted.'],
+    ["Kill criteria",'The stop sign you write down before you need it. It tells you when to stop. Without it, you keep working on a problem the evidence says will not work.']
   ],
   takeaway:[
-    'Take a real problem, with users you can reach, from discovery all the way to a live product.',
-    'Explain a system you built from first principles, without a framework doing the explaining for you.',
-    'Show before-and-after numbers for failures you found and fixed, and for the users who used it.',
-    'Defend the business case, meaning unit economics, growth and vendor risk, as carefully as the architecture.',
-    'State what you deliberately did not solve.'
+    'Take a real problem, with users you can reach, from the first talk all the way to a live product.',
+    'Explain a system you built from the ground up, without a framework (ready-made code) doing the explaining for you.',
+    'Show before-and-after numbers for the failures you found and fixed, and for the users who used it.',
+    'Defend the business case as carefully as the architecture. That means unit economics (money per task), growth and vendor risk (what if your model company changes).',
+    'Say clearly what you chose not to solve.'
   ],
   story:[
-    ['c','Before you start','The full version takes about thirty hours, spread over four to six weeks. This is the whole course brought together. The technical capstone and the product, business, real-user and defence work are one project now, not two.'],
-    ['c','On your route','On your route the problem is chosen: Bharat Privacy Guard. Stages 34.1 to 34.3 are already in your repository, so collect them. The route gives this chapter about eight hours. Do five stages: 34.4 put the system together, 34.5 run the release gate, 34.6 break it three ways, 34.9 write the cost, and 34.11 write the findings. Show it to three to five people if you can (34.8). The rest comes after the route.'],
-    ['p','In the last chapter you looked at what it takes to run an AI system for real users. Now you do the whole thing yourself, from the first conversation with a user to the final defence.'],
-    ['p','Start by collecting every artifact you made in Part V. That means the harness, the model selection card, the context budget and the retrieval architecture. It also means the tool policy, the release gate, the dashboard, the risk register, the PRD and the decision pack. Every stage below reuses one of them.'],
-    ['p','You may also have done some of Track B’s optional modules. If so, reuse them too. B1’s cost model fits the measure stage. B3’s tracking plan fits the ship stage, and so do B6’s user sessions. B5’s release checklist fits the observe stage. None of them is needed to start.'],
-    ['p','What do you get at the end? A system you can explain without leaning on anyone’s framework. Real users who have used it. And an honest page about what broke when you tested it and what it costs to run.'],
-    ['p','That matters because employers ask three things. What can you build? Did anyone want it? And what goes wrong, and what do you do about it?'],
-    ['c','The brief','Your problem is Bharat Privacy Guard, and you can reach its users within two weeks. Work through eleven stages: discover, define, design, build, evaluate, break, observe, ship, measure, iterate and defend.'],
-    ['p','Build one applied AI system that combines at least four capabilities from Part V. A good starting set is retrieval that respects permissions, tool calling, one bounded agent step, evaluation, tracing and security tests. Ship it to real users before you defend it. It should be one coherent journey, not a set of separate demos.'],
+    ['c','Before you start','The full version takes about thirty hours, over four to six weeks. It brings the whole course together, like the final exam project of a school year. The technical capstone and the product, business, real-user and defence work are now one project, not two.'],
+    ['c','On your route','Your problem is chosen: Bharat Privacy Guard. Stages 34.1 to 34.3 are in your repository. The route gives this chapter about eight hours. Do five stages: 34.4 put the system together, 34.5 run the release gate (the check before launch), 34.6 break it three ways, 34.9 write the cost, 34.11 write the findings. Show it to three to five people if you can (34.8). The rest comes later.'],
+    ['p','In the last chapter you saw what it takes to run an AI system for real users. Now you do the whole thing yourself. You start with the first talk with a user and end with the final defence.'],
+    ['p','First, gather every artifact (every paper or file) you made in Part V. These are the harness (the test rig), the model selection card, the context budget (how much fits on the model\'s desk) and the retrieval architecture. Also the tool policy, the release gate, the dashboard, the risk register, the PRD and the decision pack. Every stage below reuses one of them.'],
+    ['p','You may have done some of Track B\'s optional modules too. If so, reuse them. B1\'s cost model fits the measure stage. B3\'s tracking plan fits the ship stage, and so do B6\'s user sessions. B5\'s release checklist fits the observe stage. You do not need any of them to start.'],
+    ['p','What do you get at the end? A system you can explain without leaning on anyone\'s framework. Real users who have used it. And an honest page about what broke when you tested it and what it costs to run.'],
+    ['p','This matters because employers ask three things. What can you build? Did anyone want it? What goes wrong, and what do you do about it?'],
+    ['c','The brief','Your problem is Bharat Privacy Guard, and you can reach its users within two weeks. Go through eleven stages, like eleven stops on a train line: discover, define, design, build, evaluate, break, observe, ship, measure, iterate and defend.'],
+    ['p','Build one applied AI system that joins at least four skills from Part V. A good start is retrieval that respects permissions, tool calling, one helper step that has a step limit, evaluation, tracing and security tests. Ship it to real users before you defend it. It should be one journey, like one trip from home to school, not a pile of separate demos.'],
     ['lab','redmap'],
     ['h','The eleven stages'],
-    ['p','The table below lists the eleven stages in order. They are the detail inside stage 12 of the thirteen stages on the project page. For each one, the second column says what evidence you must have in hand before you move on. Read it once now, and come back to it as you work.'],
+    ['p','The table below lists the eleven stages in order, like the stops on a route map. They are the detail inside stage 12 of the thirteen stages on the project page. For each one, the second column says what proof you must have before you move on. Read it once now, and come back to it as you work.'],
     [
       'tb',
       ['Stage','Required evidence'],
       [
-        ['34.1 Discover','Five interviews, a jobs-to-be-done statement, a scan of the market and competitors, and a problem brief backed by evidence.'],
-        ['34.2 Define','The user, the pain, the baseline, the scope, the non-goals, the data, the tools, the risks, and a measurable acceptance criterion. Together these are your capstone AI PRD.'],
-        ['34.3 Design','A one-page product and system design, plus the vision, strategy, roadmap and OKRs, a stakeholder map, a pricing hypothesis and your kill criteria.'],
-        ['34.4 Build','Working code, tests, versioned prompts and settings, an architecture diagram and a threat model.'],
-        ['34.5 Evaluate','30 to 50 evaluation cases, traces, and measurements of retrieval, answers, tools, safety, latency and cost.'],
+        ['34.1 Discover','Five interviews, a jobs-to-be-done statement (the job the user hires the product to do), a scan of the market and competitors, and a problem brief backed by evidence.'],
+        ['34.2 Define','The user, the pain, the baseline (where things stand today), the scope, the non-goals (what you will not do), the data, the tools, the risks, and a measurable acceptance criterion (a number that says it works). Together these are your capstone AI PRD.'],
+        ['34.3 Design','A one-page product and system design, plus the vision, strategy, roadmap (what comes first, next and later) and OKRs (goals with numbers), a stakeholder map (who cares and who can block), a pricing hypothesis (your guess at the price) and your kill criteria.'],
+        ['34.4 Build','Working code, tests, versioned prompts and settings (every change saved with a number), an architecture diagram and a threat model (a list of how someone could attack it).'],
+        ['34.5 Evaluate','30 to 50 evaluation cases (questions with right answers), traces, and measurements of retrieval, answers, tools, safety, latency (waiting time) and cost.'],
         ['34.6 Break','At least ten deliberate failure tests, saved before you fix anything.'],
-        ['34.7 Observe','A security go/no-go checklist, and a dashboard with six panels connected to real traces.'],
-        ['34.8 Ship','A live URL, monitoring, 5 to 10 real users, a support log and a timed rollback test.'],
-        ['34.9 Measure','Before-and-after numbers for your optimisations, ADRs, and a unit-economics model at base usage and at high usage.'],
-        ['34.10 Iterate','One iteration based on evidence, before-and-after product and AI metrics, and an entry in the decision log.'],
-        ['34.11 Defend','A ten-slide deck for executives, a twenty-minute technical defence and a public case study.']
+        ['34.7 Observe','A security go/no-go checklist (a list that says launch or hold), and a dashboard (one screen of numbers) with six panels connected to real traces.'],
+        ['34.8 Ship','A live URL, monitoring, 5 to 10 real users, a support log and a timed rollback test (undo a change and time it).'],
+        ['34.9 Measure','Before-and-after numbers for your optimisations, ADRs (short notes on why you chose something), and a unit-economics model at base usage and at high usage.'],
+        ['34.10 Iterate','One improvement based on evidence, before-and-after product and AI metrics (numbers you watch), and an entry in the decision log.'],
+        ['34.11 Defend','A ten-slide deck for executives, a twenty-minute technical defence and a public case study (a short story of your project).']
       ]
     ],
-    ['key','A portfolio project is credible when you can explain its failures, show that someone wanted it, and say what it costs to run. Anyone can show a system that works on the demo path.'],
+    ['key','A portfolio project is believable when you can explain its failures, show that someone wanted it, and say what it costs to run. Anyone can show a system that works on the demo path, the way a shop only shows its best shelf.'],
     ['h','Hands-on units'],
-    ['p','Now the units. Each one covers a single stage, with the same rows every time. You get the goal, the idea, what to prove, what to build and what to break. Then come what to hand in, a question to check yourself, and why it matters. Do them in order, because each one feeds the next.'],
+    ['p','Now the units. Each one covers a single stage, with the same rows every time: the goal, the idea, what to prove, what to build and what to break. Then come what to hand in, a question to check yourself, and why it matters. Do them in order, because each one feeds the next, like links in a chain.'],
     [
       'unit',
       '34.1',
       'Discover: a real problem with reachable users',
-      {goal:'Find a problem with a user group you can actually reach, and write a problem brief backed by evidence.',
+      {goal:'Find a problem with a group of users you can actually reach. Write a problem brief (a short paper about the problem) backed by evidence.',
        idea:'The best capstones come from a job you have done, a team you know or a community you belong to. Look for a problem that comes up often, costs real time or money, and is solved badly today.',
-       prove:'Score your problem against four tests. Can you reach users, meaning can you book five interviews this week? Does it happen often? Is it costly? And is it a fit for AI, rather than something a form or a formula could solve?',
-       build:'Run five interviews. Write a jobs-to-be-done statement and a journey map, and scan the market and the competitors.',
-       brk:'Challenge your idea with the question “why not ordinary software that always gives the same answer?” If a form would solve the problem, it isn’t a capstone.',
+       prove:'Score your problem on four tests. Can you reach users? That means: can you book five interviews this week? Does it happen often? Is it costly? And does it need AI, not just a form or a formula?',
+       build:'Run five interviews. Write a jobs-to-be-done statement and a journey map (the user\'s trip, step by step), and scan the market and the competitors.',
+       brk:'Challenge your idea with the question "why not ordinary software that always gives the same answer?" If a form would solve the problem, it is not a capstone.',
        artifact:'A problem brief backed by evidence, with a jobs-to-be-done statement.',
-       check:'Can you trace each claim in your problem brief back to an interview note, and name one assumption that the evidence changed?',
+       check:'Can you trace each claim in your problem brief back to an interview note? Can you name one assumption (a guess you believed) that the evidence changed?',
        lens:'If nothing you believed changed after five interviews, you may have heard only what you expected to hear.'}
     ],
     [
       'unit',
       '34.2',
       'Define the problem and PRD',
-      {goal:'Turn the problem into a system with acceptance criteria you can measure.',
-       idea:'A capstone becomes credible when the problem is clear and the cost of failure is clear too.',
+      {goal:'Turn the problem into a system with acceptance criteria (numbers that say it works) you can measure.',
+       idea:'A capstone becomes believable when the problem is clear and the cost of failure is clear too.',
        prove:'Write the problem for Bharat Privacy Guard: who the user is, what goes wrong for them today, and the number that would show it is fixed.',
-       build:'Write down the user, the pain, the baseline, the scope, the non-goals, the data, the tools, the risks and the metrics.',
-       brk:'Ask “why not ordinary software that always gives the same answer?” again. This time, ask it against your actual scope, not the general case.',
-       artifact:'The capstone AI PRD.',
-       check:'Can you state the business outcome in one sentence?',
-       lens:'This is the product anchor that everything below hangs from.'}
+       build:'Write down the user, the pain, the baseline (where things stand today), the scope, the non-goals (what you will not do), the data, the tools, the risks and the metrics (numbers you watch).',
+       brk:'Ask "why not ordinary software that always gives the same answer?" again. This time, ask it about your actual scope, not the general case.',
+       artifact:'The capstone AI PRD (the recipe card for your product).',
+       check:'Can you say the business outcome (what the business gains) in one sentence?',
+       lens:'This is the anchor (the heavy weight that holds a boat) for the product. Everything below hangs from it.'}
     ],
     [
       'unit',
@@ -2384,36 +2384,36 @@ window.PART5 = [
       'Design the product and the system together',
       {goal:'Put the product decision and the technical decision on one page, because each one limits the other.',
        idea:'Whether a user needs an answer in two seconds or by Monday decides the architecture. And whether the architecture can hit a target decides what you can promise.',
-       prove:'Fill in a design with nine lines: the user and the job, the activation moment, the AI approach, why not an agent, the evaluation, the boundaries, the cost, and the North Star.',
-       build:'Add the vision, the strategy, the roadmap, the OKRs, a stakeholder map, a pricing hypothesis, and your kill criteria, which is the condition that tells you to stop.',
+       prove:'Fill in a design with nine lines: the user and the job, the activation moment (when the user first gets value), the AI approach, why not an agent, the evaluation, the boundaries, the cost, and the North Star (the one number that guides you).',
+       build:'Add the vision, the strategy, the roadmap, the OKRs, a stakeholder map, a pricing hypothesis, and your kill criteria, which is the stop sign that tells you when to stop.',
        brk:'Find one line in your design that you chose because it was interesting, not because it was needed, and cut it.',
        artifact:'A one-page product and system design, plus a stakeholder map.',
-       check:'Does every technical choice on the page link to a product reason? And does every product choice link to something the system can actually do?',
-       lens:'Kill criteria written now, before you get attached to the idea, are the ones you’ll actually honour.'}
+       check:'Does every technical choice on the page link to a product reason? Does every product choice link to something the system can really do?',
+       lens:'Kill criteria written now, before you get attached to the idea, are the ones you will really honour.'}
     ],
     [
       'unit',
       '34.4',
       'Build the vertical slice',
       {goal:'Build the smallest system that works from start to finish, before you add anything clever.',
-       idea:'A vertical slice proves that the architecture holds across its boundaries. A threat model added afterwards is an excuse, not a control.',
-       prove:'Build the path from input, to retrieval and context, to the model, to a structured answer, to a citation. Write the threat model alongside the first version, not after it.',
-       build:'Add a tool only when you need one. Keep the repository easy to reproduce, with a README, a requirements file and a command that runs it the same way every time.',
-       brk:'Ask a question that has no answer, and record how the system fails. This is your baseline.',
+       idea:'A vertical slice (one thin cut through every layer, like a slice of layered cake) proves the architecture holds from end to end. A threat model added afterwards is an excuse, not a control.',
+       prove:'Build the path from input, to retrieval and context, to the model, to a structured answer, to a citation (a note saying where the answer came from). Write the threat model alongside the first version, not after it.',
+       build:'Add a tool only when you need one. Keep the repository easy to copy and run, with a README, a requirements file (a list of what to install) and a command that runs it the same way every time.',
+       brk:'Ask a question that has no answer, and record how the system fails. This is your baseline (where you start).',
        artifact:'A running repository, architecture v1 and a threat model.',
-       check:'Can you run the system from a clean environment? And could someone else repeat your experiment without asking what you did by hand?',
-       lens:'A small system that works beats a large diagram.'}
+       check:'Can you run the system from a clean environment? Could someone else repeat your experiment without asking what you did by hand?',
+       lens:'A small system that works beats a large diagram, like a small shop that is open beats a big plan for a shop.'}
     ],
     [
       'unit',
       '34.5',
       'Add evaluation and observability',
-      {goal:'Turn the capstone into something you can measure.',
-       idea:'Every change should leave evidence behind.',
-       prove:'Create 30 to 50 evaluation cases, and collect traces.',
-       build:'Add measurements for retrieval, answers, tools, safety, latency and cost.',
+      {goal:'Turn the capstone into something you can measure, like a child\'s height marked on the wall.',
+       idea:'Every change should leave evidence behind, like footprints.',
+       prove:'Create 30 to 50 evaluation cases (questions with right answers) and collect traces.',
+       build:'Add measurements for retrieval, answers, tools, safety, latency (waiting time) and cost.',
        brk:'Change the model, the prompt or the index, and reproduce the drop in quality.',
-       artifact:'A golden dataset, an evaluation harness and an observability report.',
+       artifact:'A golden dataset (questions with trusted right answers), an evaluation harness and an observability report.',
        check:'Can you explain why the latest version is better?',
        lens:'This is where the project turns into engineering evidence.'}
     ],
@@ -2421,120 +2421,120 @@ window.PART5 = [
       'unit',
       '34.6',
       'Break it deliberately',
-      {goal:'Reproduce at least ten failure classes.',
-       idea:'A portfolio project is more credible when you can explain what broke.',
-       prove:'Test each of these. A question with no answer. A poisoned document. Prompt injection. An unauthorised tool. A malformed tool call. A stale permission. Multilingual input. A poor scan or audio. A model swap. A rise in traffic or cost.',
-       build:'For each failure, capture the evidence, find the root cause and note the control.',
-       brk:'Don’t fix anything straight away. First, save the failure as it happened.',
-       artifact:'A security and red-team report, plus a table of failure findings.',
+      {goal:'Reproduce at least ten failure classes (ten kinds of failure).',
+       idea:'A portfolio project is more believable when you can explain what broke.',
+       prove:'Test each of these. A question with no answer. A poisoned document. Prompt injection (a hidden note that says "ignore your teacher"). An unauthorised tool. A malformed tool call. A stale permission. Multilingual input. A poor scan or audio. A model swap. A rise in traffic or cost.',
+       build:'For each failure, capture the evidence, find the root cause (the real reason) and note the control (what stops it next time).',
+       brk:'Do not fix anything straight away. First, save the failure as it happened, like a photo of the scene.',
+       artifact:'A security and red-team report (attacks you tried on your own system), plus a table of failure findings.',
        check:'Which three failures surprised you?',
-       lens:'Your failure log is often worth more than your happy-path demo.'}
+       lens:'Your failure log is often worth more than your happy-path demo (the demo where nothing goes wrong).'}
     ],
     [
       'unit',
       '34.7',
       'Observe: prove it is inspectable before real users touch it',
       {goal:'Prove that you can see inside the system, and that its risk has limits, before you ship it to a real user.',
-       idea:'If you can’t observe a system, you’re guessing about it, however good the demo looks.',
-       prove:'Run the security release-gate checks and the observability thresholds against the current build.',
+       idea:'If you cannot observe a system, you are guessing about it, however good the demo looks. It is like driving with the dashboard covered.',
+       prove:'Run the security release-gate checks and the observability thresholds (the lines you must not cross) against the current build.',
        build:'Connect a six-panel dashboard to the real traces from your evaluation and break stages. The panels are quality, safety, latency, cost, traffic and failures.',
-       brk:'Take one signal off the dashboard, and see which incident becomes invisible without it.',
+       brk:'Take one signal off the dashboard, and see which incident (a problem that happens) becomes invisible without it.',
        artifact:'A security go/no-go checklist and an observability dashboard.',
-       check:'Which alert should wake a human, and which should only be logged?',
-       lens:'A stakeholder will ask, “how would you know if this broke at 2am?” This stage is your answer.'}
+       check:'Which alert should wake a human, and which should only be written in the log?',
+       lens:'A stakeholder will ask, "how would you know if this broke at 2am?" This stage is your answer.'}
     ],
     [
       'unit',
       '34.8',
       'Ship to real users',
-      {goal:'Launch to a real user group, and prove that the rollback actually works.',
-       idea:'Real users teach you more than more theory. Five to ten observed sessions beat another week of polishing on your own.',
-       prove:'Put it on a stable live URL with monitoring, analytics, a privacy notice, a way for users to send feedback, and a rollback procedure.',
+      {goal:'Launch to a real group of users, and prove that the rollback (the undo button) really works.',
+       idea:'Real users teach you more than more theory. Five to ten watched sessions beat another week of polishing on your own.',
+       prove:'Put it on a stable live URL with monitoring, analytics (counting how people use it), a privacy notice, a way for users to send feedback, and a rollback procedure.',
        build:'Recruit five to ten real target users. Watch at least five sessions, and keep a support log from day one.',
-       brk:'Test your rollback for real before launch. Release a harmless change, roll it back, and time it. A rollback you have never tried is only a plan.',
-       artifact:'A live URL, a support log, a funnel or cohort view, and a timed rollback test.',
+       brk:'Test your rollback for real before launch. Release a harmless change, undo it, and time it. A rollback you have never tried is only a plan.',
+       artifact:'A live URL, a support log, a funnel or cohort view (how users move through, or groups of users over time), and a timed rollback test.',
        check:'Do you have evidence from real users, not just demo traffic from your teammates?',
-       lens:'A system that is beautifully evaluated but has never been used by anyone has not passed this stage yet.'}
+       lens:'A system that is beautifully evaluated but never used by anyone has not passed this stage yet.'}
     ],
     [
       'unit',
       '34.9',
       'Measure: optimize and quantify unit economics',
-      {goal:'Apply targeted fixes, measure before and after, and show that the economics work at scale.',
-       idea:'An optimisation means something only when you can see the difference it made. And viability means something only when you can also see the cost of each successful task.',
-       prove:'Try reranking, restructuring the prompt, validating against a schema, caching, routing or trimming the context, wherever it makes sense. Then work out the model cost per successful task at low, base and high usage.',
+      {goal:'Apply targeted fixes, measure before and after, and show that the money works at scale (when many people use it).',
+       idea:'An optimisation (making something better) means something only when you can see the difference it made. And the idea is viable (it can survive) only when you can also see the cost of each successful task.',
+       prove:'Try reranking (re-sorting the found pages), restructuring the prompt, validating against a schema, caching (keeping answers to reuse), routing or trimming the context, wherever it makes sense. Then work out the model cost per successful task at low, base and high usage.',
        build:'Change one thing at a time, and rerun the part of the evaluation that matters for it.',
-       brk:'Keep a fix that improves one metric but makes another worse, and write down the trade-off. Then check what happens to your margin at ten times the volume.',
+       brk:'Keep a fix that improves one metric but makes another worse, and write down the trade-off (what you gave up). Then check what happens to your margin (profit per task) at ten times the volume.',
        artifact:'A before-and-after optimisation report, ADRs and a unit-economics model.',
-       check:'Which improvement is big enough to matter, statistically or in practice? And does revenue grow faster than the cost of running the model and supporting users?',
-       lens:'Avoid “optimization theater”. Also avoid a model that works only at your current, subsidised scale.'}
+       check:'Which improvement is big enough to matter, in the numbers or in real life? Does revenue (money coming in) grow faster than the cost of running the model and supporting users?',
+       lens:'Avoid "optimization theater" (looking busy without real gains). Also avoid a model that works only at your current, subsidised scale (a price someone else is paying for you).'}
     ],
     [
       'unit',
       '34.10',
       'Iterate from evidence',
       {goal:'Ship one improvement that is based on evidence, and log the decision behind it.',
-       idea:'An iteration earns its place only when it is tied to a problem you measured, not a hunch.',
+       idea:'An iteration (one more round of improving) earns its place only when it is tied to a problem you measured, not a hunch.',
        prove:'Pick the lowest-scoring evidence question from the earlier stages, and ship one change aimed at it.',
        build:'Compare the product and AI metrics before and after. Then write the decision into the decision log: the context, the options you considered, the approach you chose, the trade-offs, and what would make you reopen it.',
-       brk:'Ask someone to push back on the iteration you shipped, and answer from the metric, not from opinion.',
-       artifact:'A changelog and one filled-in decision-log entry.',
+       brk:'Ask someone to push back on the iteration you shipped, and answer with the metric, not with opinion.',
+       artifact:'A changelog (a list of what changed) and one filled-in decision-log entry.',
        check:'Can you tie the iteration to a problem you measured, not a preference?',
-       lens:'If the decision log is still empty at this stage, then every choice so far went undocumented. That’s the first thing a reviewer will ask about.'}
+       lens:'If the decision log is still empty at this stage, then every choice so far went unwritten. That is the first thing a reviewer will ask about.'}
     ],
     [
       'unit',
       '34.11',
       'Defend the system',
-      {goal:'Present the architecture, the evidence, the security, the cost, the viability and the risk that remains, to two different audiences.',
+      {goal:'Present the architecture, the evidence, the security, the cost, the viability (can it survive) and the risk that remains, to two different audiences.',
        idea:'The last skill this course tests is explaining and defending the system you built.',
        prove:'Prepare a five-minute briefing for executives and a twenty-minute technical defence.',
-       build:'Build a ten-slide deck and a public case study. Cover the problem and the evidence that it’s real. Then say what you built, whether it works, whether it’s safe, whether people use it, and whether it makes money. Finish with what failed, the trade-offs, and what you’re asking for next.',
+       build:'Build a ten-slide deck and a public case study. Cover the problem and the evidence that it is real. Then say what you built, whether it works, whether it is safe, whether people use it, and whether it makes money. Finish with what failed, the trade-offs, and what you are asking for next.',
        brk:'Ask a peer to challenge your model choice, your agent choice, your security and your cost assumptions.',
        artifact:'The final repository, architecture, PRD, risk register, evaluation pack, observability dashboard, vendor scorecard, decision log, executive deck and public case study.',
-       check:'Can you explain every major decision without saying “the framework handles it”?',
-       lens:'This is the credential you carry into interviews and design reviews.'}
+       check:'Can you explain every major decision without saying "the framework handles it"?',
+       lens:'This is the credential (the proof of skill) you carry into interviews and design reviews.'}
     ],
     ['q','I414'],
     ['h','When you are done'],
-    ['p','How do you know you’re finished? Check this list. You’re done when every line is true.'],
+    ['p','How do you know you are finished? Check this list, like a packing list before a trip. You are done when every line is true.'],
     [
       'l',
-      ['It runs on a machine that is not yours, at a live URL.','Anyone can rerun the tests and get the same numbers.','You have broken it in at least three real ways, on purpose.','Three of your fixes have before and after numbers.','You attacked your own safeguards and recorded what happened.','You know how to roll it back if something goes wrong, and you have timed it.','Five to ten real users have used it, and you have their evidence, not a teammate’s.','You can state cost per successful task, and what happens to margin at ten times the volume.','At least one iteration is tied to measured evidence, and logged as a decision.','You can explain every major choice without saying “the framework handles that”.']
+      ['It runs on a machine that is not yours, at a live URL.','Anyone can rerun the tests and get the same numbers.','You have broken it in at least three real ways, on purpose.','Three of your fixes have before and after numbers.','You attacked your own safeguards (the things meant to protect it) and wrote down what happened.','You know how to roll it back (undo it) if something goes wrong, and you have timed it.','Five to ten real users have used it, and you have their evidence, not a teammate\'s.','You can state cost per successful task, and what happens to margin (profit per task) at ten times the volume.','At least one iteration is tied to measured evidence, and written in the decision log.','You can explain every major choice without saying "the framework handles that".']
     ],
     ['h','Final self-test'],
-    ['p','One last exercise. Answer these from memory, out loud if you can. If you get stuck on one, go back to the chapter that covers it.'],
+    ['p','One last exercise, like a quiz you give yourself. Answer these from memory, out loud if you can. If you get stuck on one, go back to the chapter that covers it.'],
     [
       'l',
-      ['Why is the model stateless?','Why can retrieval fail, and why do embeddings help?','Why does retrieval never say “nothing here” on its own?','Why is top-k a trade-off?','When does a workflow beat an agent?','Why are tools a security boundary?','Why must evaluation come before release, and why does tracing matter?','How do you calculate cost per successful task, not per call?','What makes an AI specification different from a normal one?','Who is your buyer, and does your price cover what the model costs you?','What would make you kill this project rather than keep iterating on it?']
+      ['Why is the model stateless (like a goldfish that forgets)?','Why can retrieval fail, and why do embeddings (an address for meaning) help?','Why does retrieval never say "nothing here" on its own?','Why is top-k (how many pages you pick) a trade-off?','When does a workflow beat an agent?','Why are tools a security boundary (a fence)?','Why must evaluation come before release, and why does tracing matter?','How do you work out cost per successful task, not per call?','What makes an AI specification (the spec, a recipe card) different from a normal one?','Who is your buyer, and does your price cover what the model costs you?','What would make you kill this project rather than keep iterating on it?']
     ],
-    ['p','If you can answer all of these, you’ve done what the course set out to do. You can build an AI system, break it, measure it, and stand behind it.'],
-    ['p','This was the last required chapter. Next, Track B begins with B1, on business models, pricing and unit economics. Later, B7 turns what you just built into stories for interviews. The appendices turn your artifacts into reusable portfolio templates.']
+    ['p','If you can answer all of these, you have done what the course set out to do. You can build an AI system, break it, measure it, and stand behind it.'],
+    ['p','This was the last required chapter. Next, Track B begins with B1, on business models, pricing and unit economics. Later, B7 turns what you just built into stories for interviews. The appendices turn your artifacts (the papers you made) into reusable portfolio templates.']
   ],
   capstone:{
     title:'Ship Bharat Privacy Guard, and write the findings document',
-    brief:'This is the final capstone of the technical course. Everything you have made now comes together in one repository and one document. Keep the document plain and factual. A findings document that reads like a brochure is not doing its job. Describe the project as “a privacy tool that helps an organisation collect and share less personal data”, and never as making anyone compliant.',
-    where:'Your repository, for the working system and its README, plus a written findings document. Both together are what you hand in.',
+    brief:'This is the last capstone of the technical course. Everything you made now comes together in one repository and one document. Keep the document plain and true. A findings document that reads like a brochure is not doing its job. Describe the project as "a privacy tool that helps an organisation collect and share less personal data". Never say it makes anyone compliant.',
+    where:'Your repository, with the working system and its README (the first page that says how to run it), plus a written findings document. You hand in both together.',
     steps:[
-      'Make the repository work on a clean machine. Someone else must be able to clone it, follow the README and run the answer key.',
-      'Add the architecture diagram and the decision log.',
-      'Add the final answer key and the scoreboard before and after your fixes.',
-      'Add the results of the attacks you tried in Chapter 13, and some sample traces.',
-      'Add the workflow-versus-agent table from Chapter 26 for the rule-keeper, and say which one ships, with the number that decided it.',
-      'Add the cost and speed at your expected volume, and what changes at ten times the volume.',
-      'Add the requirements, the risk register, the system card and the rollout and rollback plan.',
-      'Add real-user evidence: notes from sessions with three to five people who are not your teammates on the route (five to ten in the full version), and the one change you made because of them.',
-      'Write the findings document: what you built, what broke, who used it and what the evidence shows. Include three failures you found yourself, each with evidence, and three fixes, each with numbers from before and after.',
-      'End with what remains risky and what is deliberately out of scope, such as other Indian languages, the gateway and the browser extension.'
+      'Make the repository work on a clean machine. Someone else must be able to clone it (copy it down), follow the README and run the answer key (your questions with right answers).',
+      'Add the architecture diagram (a map of the parts) and the decision log (a diary of why you chose what).',
+      'Add the final answer key and the scoreboard from before and after your fixes.',
+      'Add the results of the attacks you tried in Chapter 13, and a few sample traces (the step-by-step record of one run).',
+      'Add the workflow-versus-agent table from Chapter 26 for the rule-keeper. Say which one ships, and name the number that decided it.',
+      'Add the cost and speed at the volume you expect. Then say what changes at ten times the volume.',
+      'Add the requirements, the risk register (a list of what could go wrong), the system card (a fact sheet about the system) and the rollout and rollback plan.',
+      'Add real-user evidence: notes from sessions with three to five people who are not your teammates on the route (five to ten in the full version). Add the one change you made because of them.',
+      'Write the findings document. Say what you built, what broke, who used it and what the evidence shows. Include three failures you found yourself, each with evidence. Include three fixes, each with numbers from before and after.',
+      'End with what is still risky and what you left out on purpose, such as other Indian languages, the gateway and the browser extension.'
     ],
     done:[
       'A repository that works on a clean machine.',
       'Three failures you found yourself, each with evidence.',
       'Three fixes, each with before and after numbers.',
-      'A table comparing the fixed workflow and the agent, with the number that decided which one ships.',
+      'A table that compares the fixed workflow and the agent, with the number that decided which one ships.',
       'Evidence from three to five real users on the route (five to ten in the full version), who are not your teammates.',
-      'The cost per message, and what happens to it at ten times the volume.',
-      'A five-minute explanation a non-technical leader could repeat, and a twenty-minute one that an engineer could not easily poke holes in.'
+      'The cost per message (like the price of one SMS), and what happens to it at ten times the volume.',
+      'A five-minute talk a non-technical leader could repeat, and a twenty-minute talk that an engineer cannot easily poke holes in.'
     ]
   }
 }

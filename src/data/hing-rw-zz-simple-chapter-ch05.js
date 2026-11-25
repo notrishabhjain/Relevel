@@ -46,7 +46,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Experiment 1: Models read tokens, not words':
     'Experiment 1: Model words nahi, tokens padhta hai',
   'When you read a sentence, you see words. A model does not. Your text is cut into small pieces before it reaches the model. Think of one Lego brick of text. These pieces are called <strong>tokens</strong>.':
-    'Jab aap ek sentence padhte hain, toh aapko words dikhte hain. Model ko nahi. Model tak pahunchne se pehle aapka text chhote tukdon mein kat jaata hai. Socho text ki ek Lego eent. In tukdon ko <strong>tokens</strong> kehte hain.',
+    'Jab aap ek sentence padhte hain, toh aapko words dikhte hain. Model ko nahi. Model tak pahunchne se pehle aapka text chhote tukdon mein kat jaata hai. Sochiye text ki ek Lego eent. In tukdon ko <strong>tokens</strong> kehte hain.',
   'A token is often a whole word, like <em>loan</em> or <em>the</em>. Sometimes it is only part of a word. A long or rare word can break into two or three bricks.':
     'Ek token aksar poora word hota hai, jaise <em>loan</em> ya <em>the</em>. Kabhi-kabhi woh word ka sirf ek hissa hota hai. Koi lamba ya anokha word do-teen eenton mein bhi toot sakta hai.',
   'Why care? Because tokens are how a model measures text. It counts your text in bricks. The company that runs it charges you for every brick, like paying per SMS.':

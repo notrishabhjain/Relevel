@@ -68,7 +68,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Start from the reader':
     'Padhne wale se shuru kijiye',
   'Think how you would summarise a long meeting. You would tell your manager one thing and a new joiner something quite different. A good summary depends on who is reading it.':
-    'Socho aap ek lambi meeting ka saransh kaise denge. Aap apne manager ko ek baat batayenge aur naye joiner ko bilkul alag. Achhi summary is par nirbhar hai ki use kaun padh raha hai.',
+    'Sochiye aap ek lambi meeting ka saransh kaise denge. Aap apne manager ko ek baat batayenge aur naye joiner ko bilkul alag. Achhi summary is par nirbhar hai ki use kaun padh raha hai.',
   'So before you write a summarising prompt, answer two questions: who reads this, and what will they do next? A summary is good or bad only for one reader and one decision.':
     'Isliye summarising prompt likhne se pehle do sawaalon ka jawaab dijiye: ise kaun padhega, aur woh aage kya karega? Summary sirf ek padhne wale aur ek faisle ke liye achhi ya buri hoti hai.',
   'Let us see that with your own document.':

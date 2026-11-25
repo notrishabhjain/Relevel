@@ -182,7 +182,7 @@ Object.assign(window.HING = window.HING || {}, {
   'The margin question':
     'Margin wala sawaal',
   'There is one more question, and it decides most AI features. It has nothing to do with tokens: <strong>does the feature make money at scale?</strong> Think of a chai stall. If each cup costs more than the price you charge, selling more cups only loses more money.':
-    'Ek sawaal aur hai, aur zyadatar AI features ka faisla wahi karta hai. Iska tokens se koi lena-dena nahi: <strong>kya feature bade scale par paise kamata hai?</strong> Chai ki tapri socho. Agar har cup ki cost aapke price se zyada hai, toh zyada cup bechne se sirf aur ghata hota hai.',
+    'Ek sawaal aur hai, aur zyadatar AI features ka faisla wahi karta hai. Iska tokens se koi lena-dena nahi: <strong>kya feature bade scale par paise kamata hai?</strong> Chai ki tapri sochiye. Agar har cup ki cost aapke price se zyada hai, toh zyada cup bechne se sirf aur ghata hota hai.',
   'Say a query costs three rupees, and the value it protects is two rupees. No amount of fine-tuning the prompt will fix that. So answer this question on day one, before the pilot (the small first trial).':
     'Maan lijiye ek query ki cost 3 rupaye hai, aur jo value woh bachati hai woh 2 rupaye ki hai. Prompt ko kitna bhi sudhaarein, yeh theek nahi hoga. Isliye is sawaal ka jawaab pehle din dijiye, pilot (chhota pehla trial) se pehle.',
   'Calculate the margin':

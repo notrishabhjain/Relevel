@@ -78,7 +78,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Part V goes back over everything you built in Parts I to IV, this time at the depth a real launch needs. It starts with the ordinary software around the model. So far you have mostly looked at the model itself. The aim is small: when an engineer shows you a system diagram, you know every box on it.':
     'Part V un sab cheezon par wapas jata hai jo aapne Parts I se IV mein banayi, is baar utni gehraai se jitni asli launch ko chahiye. Yeh model ke aas-paas ke aam software se shuru hota hai. Ab tak aapne zyadatar model ko hi dekha hai. Maqsad chhota hai: jab engineer system diagram dikhaye, to aap uska har dabba pehchaan lein.',
   'Think of ordering food in an app. Your tap sends a message to a restaurant. A reply comes back with a price, and your screen changes. It looks mysterious until you see the messages going back and forth. The software around an AI model works the same way.':
-    'Socho app mein khaana mangwana. Aapka tap restaurant ko ek message bhejta hai. Ek reply kimat ke saath wapas aata hai, aur aapki screen badal jati hai. Jab tak aap aate-jaate messages nahi dekhte, yeh rahasya lagta hai. AI model ke aas-paas ka software bhi aise hi chalta hai.',
+    'Sochiye app mein khaana mangwana. Aapka tap restaurant ko ek message bhejta hai. Ek reply kimat ke saath wapas aata hai, aur aapki screen badal jati hai. Jab tak aap aate-jaate messages nahi dekhte, yeh rahasya lagta hai. AI model ke aas-paas ka software bhi aise hi chalta hai.',
   'Applied AI work uses APIs, Python, cloud services, retrieval, evaluation and production systems. If JSON, HTTP, environment variables (settings kept outside your code), tests and logs are new to you, you cannot question an architecture (the plan of how the parts fit). This chapter gives you the least you need.':
     'Applied AI ke kaam mein APIs, Python, cloud services, retrieval, evaluation aur production systems aate hain. Agar JSON, HTTP, environment variables (code ke bahar rakhi settings), tests aur logs aapke liye naye hain, to aap architecture (parts kaise jude hain, uska naksha) par sawaal nahi utha sakte. Yeh chapter aapko kam se kam jo chahiye woh deta hai.',
   'An AI system is ordinary software with one part that guesses (a probabilistic part). Everything that goes wrong in ordinary software can still go wrong here. On top of that, there is one more kind of failure, and it gives no error at all.':
@@ -204,7 +204,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Let us test how much you already understand about a real feature.':
     'Chaliye dekhte hain ki aap ek asli feature ke baare mein pehle se kitna samajhte hain.',
   'Think of the last AI feature you saw in a demo. In plain words, write what its request probably held and what its response probably looked like. Where are you guessing?':
-    'Aakhri AI feature socho jo aapne demo mein dekha. Saade shabdon mein likhiye ki uski request mein shayad kya tha aur response kaisa dikhta hoga. Aap kahan andaaza laga rahe hain?',
+    'Aakhri AI feature sochiye jo aapne demo mein dekha. Saade shabdon mein likhiye ki uski request mein shayad kya tha aur response kaisa dikhta hoga. Aap kahan andaaza laga rahe hain?',
   'The request probably contained … The response probably … I am guessing about …':
     'Request mein shayad yeh tha … Response shayad … Mujhe andaaza lagana pada …',
   'The places where you had to guess are the questions to ask the team that built it. Being able to make that list is the main skill this chapter teaches.':

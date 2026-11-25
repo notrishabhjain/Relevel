@@ -1,39 +1,39 @@
 ---
 title: Tools Aur Harness
-summary: Ek naya engineer poochta hai ki kaun sa tool kis kaam ka hai, aur ek anubhavi engineer brands ki list nahi, slots ki ek drawing se jawaab deta hai. Wahi engineer phir ek weekly report do baar banata hai, ek baar fixed steps se aur ek baar agent se, aur dono ko wahi bees hafte par naapa jaata hai. Chapter mein toolchain, claim audit, harness, project memory, allowlist, verifier, sub-agent, state machine, feature flag, rollback trigger aur incident review aate hain.
+summary: Ek naya engineer poochta hai ki kaun sa tool kis kaam ka hai. Ek senior engineer brands ki list nahi, khaali slots ki drawing se jawaab deta hai. Phir naya engineer ek weekly report do baar banata hai, ek baar fixed steps se aur ek baar agent se. Dono ko wahi bees hafton par naapa jaata hai. Chapter mein toolchain, claim audit, harness, project memory, allowlist, verifier, sub-agent, state machine, feature flag, rollback trigger aur incident review aate hain.
 course: b4 b5
 goals:
-  - tools ko slots ki tarah sochna jinhe kaam ke hisaab se bhara jaata hai, aur ek claim audit aur ek secrets-and-data audit chalana
-  - harness ke saat hisson ke naam bata paana, aur quality problem ko sahi hisse mein dhoondhna
-  - bata paana ki coding assistants kaise bante hain, aur scope aur approvals ke saath ek allowlist lagana
-  - ek state machine aur ek bounded agent ko wahi cases par compare karna, aur badlaav ko gate, flag aur rollback trigger ke peeche release karna
+  - tools ko slots ki tarah dekhna jinhe kaam ke hisaab se bhara jaata hai, aur ek claim audit aur ek secrets-and-data audit chalana
+  - harness ke saat hisse ginna aur quality ki dikkat sahi hisse mein dhoondhna
+  - batana ki coding assistants kaise bante hain, aur scope aur approvals ke saath ek allowlist set karna
+  - ek state machine ko ek bounded agent se wahi cases par compare karna, aur badlaav ko gate, flag aur rollback trigger ke peeche release karna
 terms:
-  - toolchain | tools ka woh set jo ek team product banane aur chalane ke liye use karti hai, jise slots ki tarah dekha jaata hai, har slot ke paas ek kaam | tool chain
-  - claim audit | AI ke likhe summary se das claims uthana aur har ek ko uske source se check karna, har ek ko supported, partly supported ya unsupported mark karte hue | 
-  - harness | model ke aas-paas ki woh sab cheezein jo use product banati hain: woh code jo uska context banata hai, uske tools chalata hai, state rakhta hai, rules lagata hai, quality check karta hai aur record karta hai ki kya hua | harnesses
-  - project memory | code ke saath rakhi ek saadhi file, jisme project ke rules aur aadatein hoti hain, aur jo coding assistant ke har run ke shuru mein load hoti hai | 
-  - allowlist | un cheezon ki list jo system ko karne ki ijaazat hai, aur jo list mein nahi hai woh mana hai | allowlists
-  - verifier | ek check, jaise ek test, jo agent ko batata hai ki uska apna badlaav kaam kiya ya nahi, bina is ke ki koi insaan har line padhe | verifiers
-  - sub-agent | ek bade kaam ka ek hissa diya gaya helper, jo apne alag context mein kaam karta hai taaki main context chhota rahe | sub-agents
-  - state machine | ek workflow jisme aapka code har step aur ek step se doosre step tak har allowed move tay karta hai | state machines
-  - feature flag | chalte hue system mein ek switch jo ek badlaav ko kuch users ke liye on aur baaki ke liye off karta hai, bina nayi release ke | feature flags
-  - rollback trigger | ek naapne layak condition, pehle se likhi hui, jo kisi ko release undo karne par bound karti hai | rollback triggers
-  - incident review | kuch galat hone ke baad likha gaya ek chhota writeup ki kya hua, kyun hua, aur kaun sa check use pakad leta | post-incident review
+  - toolchain | team ke toolbox ke slots: tools ka woh set jisse product banta aur chalta hai, har slot mein ek kaam ke liye ek tool | tool chain
+  - claim audit | AI summary ki spot-check: das claims uthaiye, har ek ko uske source se milaiye, aur supported, partly supported ya unsupported mark kijiye | 
+  - harness | ghode ki zeen aur lagaam: model ke aas-paas ki woh sab cheezein jo use product banati hain, yaani woh code jo context banata hai, tools chalata hai, state rakhta hai, rules lagata hai, quality check karta hai aur record karta hai ki kya hua | harnesses
+  - project memory | project ki deewar par lagi parchi: code ke saath rakhi ek saadhi file jisme project ke rules aur aadatein hain, aur coding assistant har run ke shuru mein use padhta hai | 
+  - allowlist | shaadi ke gate ki guest list: sirf wahi cheezein jo system kar sakta hai; jo list mein nahi, woh mana | allowlists
+  - verifier | coder ki answer key: ek check, jaise ek test, jo agent ko batata hai ki uska badlaav chala ya nahi, taaki insaan ko har line na padhni pade | verifiers
+  - sub-agent | ek bade kaam ka ek hissa pane wala helper, jo alag mez par kaam karta hai taaki main mez saaf rahe | sub-agents
+  - state machine | fixed khaanon wala board game: aapka code har step aur ek step se doosre par jaane ki har allowed chaal tay karta hai | state machines
+  - feature flag | chalte system mein light ka switch: yeh badlaav ko kuch users ke liye on aur kuch ke liye off karta hai, naye release ke bina | feature flags
+  - rollback trigger | pehle se laga fire alarm: ek naapne layak condition, pehle likhi hui, jo kisi ko release wapas lene par majboor karti hai | rollback triggers
+  - incident review | kuch galat hone ke baad likhi chhoti note: kya hua, kyun hua, aur kaun sa check use pakad leta | post-incident review
 ---
 
-Tanvi Kulkarni March mein ek Monday ko Imran Qureshi ki team mein shaamil hui. Wednesday tak uske paas ek sawaal tha jo poochhne mein use sharm aa rahi thi. Whiteboard ke paas, kisi ke kabool karne wali awaaz mein, usne kaha ki team channel mein lagbhag 17 tools hain, aur sab unka zikr aise karte hain jaise use pehle se pata ho. Use kaun se seekhne hain?
+Tanvi Kulkarni March mein ek Monday ko Imran Qureshi ki team mein aayi. Budhwaar tak uske paas ek sawaal tha jo poochhne mein use sharm aa rahi thi. Woh whiteboard ke paas khadi hui aur aise boli jaise kuch maan rahi ho. Team channel mein lagbhag satrah tools the, usne kaha. Sab unka naam aise lete the jaise woh pehle se jaanti ho. Kaun se use seekhne chahiye?
 
-Imran ne pen ka cap lagaya aur use neeche rakh diya. Anaya ne pehli baar use kisi sawaal se khush dekha. "Koi nahi," usne kaha. "Abhi nahi. Slots seekho."
+Imran ne pen band karke rakh diya. Anaya ne pehli baar dekha ki use ek sawaal sunkar khushi hui. "Koi nahi," usne kaha. "Abhi nahi. Slots seekho."
 
-Yeh chapter Tanvi ke pehle mahine ke saath chalta hai. Shuruaat tools ke baare mein sochne ke ek tareeke se hoti hai, aur ant ek weekly report par hota hai jo customers ko gayi. Dono ke beech yeh samjhaya gaya hai ki model ke aas-paas ka woh structure kya hai jo use product banata hai.
+Yeh chapter Tanvi ke pehle mahine ke saath chalta hai. Yeh tools ke baare mein sochne ke ek tareeke se shuru hota hai. Yeh ek weekly report par khatam hota hai jo customers ko gayi. Beech mein yeh us dhaanche ko samjhata hai jo model ke aas-paas hota hai aur use product banata hai.
 
 ## Case: channel mein satrah tools
 
-Tanvi ko jin naamon ki fikr thi, woh ek saal ke andar badal jaayenge. Jo nahi badlega, woh un kaamon ka set hai jinke liye woh naam rakhe gaye hain. Isliye Imran ka jawaab tha ki pehle kaam sikhaye jaayein.
+Jin naamon se Tanvi ghabrayi thi, woh ek saal mein badal jaate. Jin kaamon ke liye unhe rakha gaya tha, woh nahi badalte. Sochiye ek toolbox jisme naam likhe slots hain: hathauda, aari, fita. Hathaude ka brand badalta hai. Slot wahi rehta hai. Isliye Imran ne pehle kaam sikhaye.
 
 ## Slots, brands nahi
 
-Imran ne boxes ka ek column banaya. Har box mein usne kisi product ka naam nahi, ek verb phrase likha. Tanvi ne unhe notebook mein utaara aur dekha ki jin naamon ki use chinta thi, unmein se zyadatar gayab ho gaye the. Ek AI product ke liye, Imran ne kaha, pehle idea se aakhri shikayat tak lagbhag 11 cheezein karni padti hain.
+Imran ne boxes ka ek column banaya. Har box mein usne product ka naam nahi, ek kaam likha. Tanvi ne unhe notebook mein utaara. Jin naamon se woh darti thi, un mein se zyadatar gayab ho gaye. Ek AI product ko, usne kaha, pehle idea se aakhri shikayat tak lagbhag gyarah kaam chahiye.
 
 Table: Gyarah kaam, aur har ek ko kya karna hai
 | Kaam | Use kya karna hai |
@@ -50,29 +50,29 @@ Table: Gyarah kaam, aur har ek ko kya karna hai
 | Events record karna | Events record karna aur funnels banana |
 | Request ko follow karna | Ek request ko shuru se ant tak follow karna, kitna cost hua aur kitna time laga, yeh dekhte hue |
 
-Tools ko is tarah slots ki tarah sochne se aapko ek *toolchain* milti hai: tools ka woh set jo product banata aur chalata hai. Har slot ke paas ek kaam hai. Har kaam ke liye team ne us quarter ek tool chuna tha, kyunki woh kaam theek-thaak karta tha aur team use jaanti thi. Agle saal slot mein naam alag ho sakta hai. Slot phir bhi wahan rahega.
+Tools ko is tarah dekhne se aapko ek *toolchain* milti hai. Yeh un tools ka set hai jo product banata aur chalata hai. Har slot ka ek kaam hai. Har kaam ke liye team ne is quarter ek tool chuna tha, kyunki woh kaam achha karta tha aur team use jaanti thi. Agle saal slot mein naam alag ho sakta hai. Slot wahi rahega.
 
-Tanvi ne poocha ki woh choice khuli kyun nahi rakhte aur sab use kyun nahi karte. Imran ne kaha ki phir woh interfaces seekhegi, kaam nahi. Zyadatar projects 11 mein se paanch ya chhe use karte hain.
+Tanvi ne poocha ki sab choices khuli kyun na rakhein aur sab tools use kyun na karein. Imran ne kaha tab woh buttons seekhegi, kaam nahi. Zyadatar projects gyarah mein se paanch ya chhe use karte hain.
 
-Galti yeh hai ki har box ko ek subject maan liya jaye jise master karna hai. Box ek jagah hai jahan tool rakhna hai. Poochiye ki kaam ko kya karna hai, aur jab woh yeh kare toh kya kabhi galat nahi hona chahiye. Phir tool chuniye, aur kaam seekhiye.
+Galti yeh hai ki har box ko ek vishay maan lein jise sikhna hai. Box sirf ek tool rakhne ki jagah hai. Poochhiye ki kaam ko kya karna hai aur kya kabhi galat nahi hona chahiye. Phir tool chuniye, aur kaam seekhiye.
 
-Anaya apni desk se sunte hue woh sabak pehchaan gayi jo use pehle hafte requirements ke baare mein mila tha: tool ka naam lene se pehle kaam describe kijiye.
+Anaya apni desk se sun rahi thi. Use pehle hafte ka requirements wala sabak yaad aaya. Tool ka naam lene se pehle kaam ko bataiye.
 
 ## Do audits
 
-Imran ne Tanvi ko do aadatein di jo woh har kaam mein le jaa sake. Pehli Anaya ki ek galti se nikli.
+Imran ne Tanvi ko do aadatein di jo woh har kaam mein le jaaye. Pehli Anaya ki ek galti se aayi.
 
-Pichhle mahine Anaya ne Mr. Menon ka security questionnaire, 40 page ka, ek research assistant mein upload kiya tha jo sirf diye gaye documents se jawaab deta hai. Usne ek saaf-suthra summary likhi aur har sentence ke saath ek source laga diya.
+Pichhle mahine Anaya ne Mr. Menon ki security questionnaire upload ki thi, chalis pages ki. Usne use ek research assistant ko diya jo sirf diye gaye documents se jawaab deta hai. Usne ek saaf summary likhi aur har sentence ke paas ek source laga diya. Anaya ko ispar kaafi garv tha.
 
-Anaya ko uspar kaafi garv tha. Imran ne use ek *claim audit* karne ko kaha. Summary se das claims chuniye, har ek ko us page se check kijiye jise woh cite karta hai, aur use supported, partly supported ya unsupported mark kijiye.
+Imran ne use ek *claim audit* karne ko kaha. Yeh teacher ke kuch jawaabon ki spot-check jaisa hai. Summary se das claims uthao. Har ek ko us page se milao jo woh cite karta hai. Use supported, partly supported ya unsupported mark karo.
 
-Ismein chaalis minute lage. Saat claims supported the. Do partly supported the, kyunki page par kuch milta-julta likha tha lekin zyada chhote. Ek unsupported tha: summary mein likha tha ki lender ko ek khaas certificate chahiye, aur document mein aisa kuch nahi tha.
+Ismein chalis minute lage. Saat claims supported the. Do partly supported the, kyunki page ne milta-julta par chhota kuch kaha tha. Ek unsupported tha. Summary ne kaha ki lender ko ek khaas certificate chahiye. Document mein aisa kuch nahi tha.
 
 ::: key Das mein se ek ki limit
-Agar das mein se ek ya do se zyada claims unsupported hain, toh us process par decisions ke liye bharosa karna band kijiye, chahe use kisi bhi tool ne banaya ho. Agar kam hain, toh aap use kar sakte hain, aur team ne seekh liya hai ki haath se kya check karna hai.
+Maan lijiye das mein se ek ya do se zyada claims unsupported hain. Tab us process par decisions ke liye bharosa karna band kijiye, chahe kisi bhi tool ne banaya ho. Agar kam hain, toh aap use kar sakte hain, aur team ne seekh liya ki haath se kya check karna hai.
 :::
 
-Doosri aadat secrets-and-data audit thi. Stack ke har tool ke liye likhiye ki woh kya store karta hai aur uski keys kahan rehti hain. Us dopahar ki list Anaya ki pasand se lambi thi.
+Doosri aadat secrets-and-data audit thi. Sochiye ghar ki har almari aur uske andar rakhi cheezon ki list. Stack ke har tool ke liye likhiye ki woh kya store karta hai aur uski keys kahan rehti hain. Us dopahar ki list Anaya ki pasand se lambi nikli.
 
 Table: Secrets-and-data audit
 | Tool | Isme kya hai |
@@ -83,17 +83,17 @@ Table: Secrets-and-data audit
 | Analytics tool | Events aur account numbers, message text nahi, jo Karan pehle hi confirm kar chuka tha |
 | Model provider | Check ke liye bheje gaye har message ka text, isliye uski retention policy maayne rakhti thi, aur Anaya ne use do baar padha tha |
 
-Tab Tanvi, jo chup thi, ne apne browser mein demo page kholi, ek key dabayi aur bilkul tham gayi. Page ki script mein usne ek lambi string dekhi jo key jaisi dikhti thi. Woh key hi thi.
+Phir Tanvi, jo chup thi, ne apne browser mein demonstration page kholi. Usne ek key dabayi aur bilkul sunn ho gayi. Page ki script mein usne ek lambi string dekhi jo key jaisi lagti thi. Woh wahi key thi.
 
-Jis tool ne January mein ek description ko screen mein badla tha, usne model provider ka secret us code mein daal diya tha jo har visitor ko bheja jaata hai. Browser wala koi bhi use padh sakta tha.
+January mein jis tool ne description ko screen banaya tha, usne ek galti ki thi. Usne model provider ka secret us code mein daal diya tha jo har visitor ko jaata hai. Browser wala koi bhi use padh sakta tha. Usne ek database bhi banaya tha jisme kaun kya padh sakta hai iska koi rule nahi tha.
 
-Usne ek database bhi bana diya tha jisme is baare mein koi rule nahi tha ki kaun kya padh sakta hai. Imran ne ghante ke andar key badal di, call ko server ke peeche kar diya aur dono findings log mein likh di. Prototypes aisa karte hain, usne kaha, isliye link share karne se pehle check kijiye.
+Imran ne ghante ke andar key badal di. Usne call ko server ke peeche kar diya, jo private peeche ka kamra hai. Usne dono findings log mein likhe. Prototypes aisa karte rehte hain, usne kaha, isliye link share karne se pehle check kijiye.
 
 ## Model ke aas-paas kya hai
 
-Thursday ko Imran ne Tanvi ko uska pehla asli kaam diya. Usne shuru mein ek phrase le liya jo woh bolne wali thi: "AI yeh kar deta hai". Model text leta hai aur text deta hai, usne kaha, bas yehi karta hai. Baaki jo kuch product ko chalata hai, woh uske aas-paas banaya jaata hai.
+Guruwaar ko Imran ne Tanvi ko uska pehla asal kaam diya. Pehle usne ek phrase le liya jo woh bolne wali thi: "AI karta hai". Model text leta hai aur text deta hai, usne kaha. Bas itna hi karta hai. Baaki sab jo product ko chalata hai, uske aas-paas banaya jaata hai.
 
-Woh aas-paas ka structure *harness* hai. Isme saat hisse hain, aur product debug karne wale ko har ek dhoondh paana chahiye. Table unke naam deti hai, Monday report ko example banakar.
+Woh aas-paas ka dhaancha *harness* hai. Sochiye ghode ki zeen aur lagaam. Ghoda taakatwar hai, par harness use kaam ka banata hai. Harness ke saat hisse hote hain. Product theek karne wale ko har hissa dhoondhna aana chahiye. Table unke naam deta hai, Monday report ko example banakar.
 
 Table: Harness ke saat hisse, Monday report ke example ke saath
 | Hissa | Kya karta hai | Monday report mein |
@@ -106,31 +106,27 @@ Table: Harness ke saat hisse, Monday report ke example ke saath
 | Evals | Badlaav se pehle aur baad quality check karta hai | Bees pichhle hafte, un reports ke saath jo kisi insaan ne likhi |
 | Observability | Record karta hai ki kya hua | Har run ka ek trace, tokens, cost aur time ke saath |
 
-Do products wahi model use kar sakte hain aur phir bhi bilkul alag behave kar sakte hain, Imran ne kaha, isi table ki wajah se. Lagbhag har quality problem jiske peeche aap padte hain, woh table mein hai, model mein nahi.
+Do products ek hi model use karke bilkul alag chal sakte hain, Imran ne kaha. Wajah yeh table hai. Quality ki lagbhag har dikkat jo aap dhoondhte hain, table mein hoti hai, model mein nahi.
 
-Kaam khud wahi Monday email tha jo Anaya ne sardiyon mein bataya tha, woh ek line jo compliance buyer ko batati hai ki guard ne kitni details hide ki. Use ek theek weekly report banana tha, ek count, ek trend aur unsure cases ki ek chhoti list ke saath.
+Kaam woh Monday email tha jo Anaya ne sardiyon mein bataya tha. Ek line, jo compliance buyer ko batati thi ki guard ne kitni details chhupayi. Ab use ek theek weekly report banna tha. Usmein ek count, ek trend aur unsure cases ki chhoti list chahiye thi.
 
 ## Coding assistants kaise bante hain
 
-Kaam karne ke liye Tanvi ko ek coding assistant use karna tha. Yeh ek program hai jo repository padhta hai, files edit karta hai aur commands chalata hai jab ek insaan dekh raha ho. Imran ne kaha ki yeh samajhna kaam ka hai ki yeh kaise bante hain. Yeh sabse zyada use hone wale agents hain, aur inke design mein aise patterns hain jo koi bhi product udhaar le sakta hai.
+Kaam karne ke liye Tanvi coding assistant use karegi. Yeh ek program hai jo repository padhta hai (ek online folder jo har badlaav yaad rakhta hai), files edit karta hai aur commands chalata hai, jabki ek insaan dekhta hai. Imran ne kaha ki yeh jaanna zaroori hai ki yeh kaise bante hain. Yeh sabse zyada use hone wale agents hain. Unke design mein aise patterns hain jo koi bhi product udhaar le sakta hai.
 
-Beech mein ek saada loop hai. Model ek tool chunta hai. Harness use chalata hai. Result model ke paas wapas jaata hai, aur cycle tab tak dohraata hai jab tak kaam khatam na ho. Tools kam aur general hote hain: file padhna, file badalna, search, command chalana. Kuch flexible tools darjanon chhote tools se behtar nikalte hain.
+Beech mein ek saadha loop hai, errand par bhage helper jaisa. Model ek tool chunta hai. Harness use chalata hai. Result model ke paas wapas jaata hai. Yeh chakkar tab tak chalta hai jab tak kaam poora na ho. Tools kam aur aam hain: file padho, file badlo, search karo, command chalao. Kuch lachile tools darjano chhote tools se behtar hote hain.
 
-Project ke rules code ke saath rakhi ek saadhi file mein rehte hain, jise assistant har run ke shuru mein padhta hai. Yeh *project memory* hai. Tanvi ne sabse pehle use kholi aur ek line jodi: message text kabhi log mein mat likho.
+Project ke rules code ke saath rakhi ek saadhi file mein rehte hain. Assistant har run ke shuru mein use padhta hai. Yeh *project memory* hai. Yeh project ki deewar par lagi parchi jaisi hai. Tanvi ne pehle use kholi aur ek line jodi: message text kabhi log mein mat likho.
 
-Permission modes bhi hote hain. Padhna khulkar allowed hai, jabki file badalne ya command chalane ke liye kisi ko haan kehna pad sakta hai.
+Permission modes bhi hote hain. Padhna khulkar allowed hai. File badalne ya command chalane ke liye kisi ki haan chahiye ho sakti hai.
 
-Imran ne sabse zaroori hisse ko verifier kaha. *Verifier* ek check hai, jaise ek test ya type check, jo assistant ko batata hai ki uska badlaav kaam kiya ya nahi, bina is ke ki koi insaan har line padhe.
+Imran ne sabse zaroori hissa verifier bataya. *Verifier* ek check hai, jaise ek test ya type check. Yeh assistant ko batata hai ki uska badlaav chala ya nahi, taaki insaan ko har line na padhni pade. Yeh maths ki kitaab ke peeche ki answer key jaisa hai. Jo assistant apna kaam khud check kar sake, use bahut bade kaam diye ja sakte hain. Jo nahi kar sakta, use har step par insaan chahiye, aur phir koi raftaar nahi milti.
 
-Jis assistant ke paas apna kaam check karne ka bharosemand tareeka hai, use kahin bade kaam diye ja sakte hain. Jiske paas nahi hai, use har step par ek insaan chahiye, aur tab koi speed nahi bachi.
-
-Jab kaam bada ho, toh kaam baanta ja sakta hai. Ek *sub-agent* ek hissa leta hai, apne alag context mein kaam karta hai aur sirf result wapas deta hai. Isse main conversation chhoti aur saaf rehti hai. Isme se koi cheez, Imran ne kaha, intelligence ke baare mein nahi hai. Yeh loop, memory aur check ke baare mein hai, aur yeh sab report mein use ho sakta tha.
+Jab kaam bada ho, toh use baanta ja sakta hai. *Sub-agent* ek hissa leta hai. Woh apni alag mez par (apne alag context mein) kaam karta hai aur sirf result wapas deta hai. Isse main mez chhoti aur saaf rehti hai. Imran ne kaha, yeh sab samajh ke baare mein nahi hai. Yeh loop, memory aur check ke baare mein hai. Yeh sab report mein kaam aa sakta tha.
 
 ## Fences kahan lagte hain
 
-Agla sabak us hafte ki ek khabar se aaya. Ek assistant kisi ke apne computer par chalta tha, unki files, messages aur shell ki poori chhoot ke saath. Woh lagbhag kuch bhi kar sakta tha, jo use kaam ka banata tha.
-
-Woh lagbhag kuch bhi kar sakta tha, jo use khatarnaak banata tha. Imran jaise-jaise chaar sawaal deta gaya, Tanvi unhe whiteboard par likhti gayi, aur table har sawaal ko us control ke saath dikhati hai jo uska jawaab deta hai.
+Agla sabak us hafte ki ek khabar se aaya. Ek assistant kisi ke apne computer par chalta tha. Use unki files, messages aur shell (command line) par poori chhoot thi. Woh lagbhag kuch bhi kar sakta tha, aur isliye kaam ka tha. Woh lagbhag kuch bhi kar sakta tha, aur isliye khatarnak tha. Tanvi ne whiteboard par chaar sawaal likhe jaise Imran ne diye. Table har sawaal ke saath uska control dikhata hai.
 
 Table: Tool ki pahunch ke baare mein chaar sawaal
 | Sawaal | Control |
@@ -140,19 +136,19 @@ Table: Tool ki pahunch ke baare mein chaar sawaal
 | Kin calls ko insaan ki approval chahiye? | Jo kuch bhejta, delete karta, paisa deta hai, ya undo nahi ho sakta |
 | Uske paas kya pahunch sakta hai? | Koi bhi text jo woh padhta hai, jaise tickets, email ya web page, usmein attacker ke likhe orders ho sakte hain |
 
-Anaya ne aakhri sawaal ko Chapter 24 ka trifecta pehchaan liya: private data, bahar walon ka text, aur bhejne ka ek tareeka. Tools ke har combination ke liye, usne kaha, in teeno mein se kam se kam ek hataya jaana chahiye.
+Allowlist ko shaadi ke gate ki guest list samjhiye. Naam list mein nahi, toh andar nahi. Anaya ne aakhri sawaal pehchaan liya. Yeh Chapter 24 ka trifecta tha: private data, baahar walon ka text aur bhejne ka ek raasta. Tools ke har combination mein, usne kaha, teeno mein se kam se kam ek hata do.
 
-Imran ne joda ki team ko chhote se shuru karna chahiye aur sirf pehle se chune hue saboot par chauda karna chahiye. "Ek mahine se theek chal raha hai" saboot nahi hai. "Chalees ke chaalis approvals mein sahi tha aur log mein kuch block hua nahi dikhta" saboot hai.
+Imran ne ek rule jodha. Chhote se shuru kijiye. Pehle se chune gaye saboot par hi chauda kijiye. "Ek mahine se theek chal raha hai" saboot nahi hai. "Chalis approvals sab mein sahi tha aur log mein kuch blocked nahi dikha" saboot hai.
 
 ## Ek report, do baar banayi
 
-Tanvi ke kaam mein ek pench tha, us kisam ka jo Imran ko sabse pasand tha. Use report do baar banani thi.
+Tanvi ke kaam mein ek pench tha, jo Imran ko sabse pasand tha. Use report do baar banani thi.
 
-Pehla version ek *state machine* tha. Is kisam ke workflow mein uska code har step aur ek step se doosre step tak har allowed move tay karta tha. Woh numbers jama karta, model se draft likhwata, draft ko numbers se check karta aur approval ke liye bhejta. Agar check fail hota, toh ek baar aur try karta, phir ruk jaata aur bata deta.
+Pehla version ek *state machine* tha. Yeh fixed khaanon wale board game jaisa hai. Uske code ne har step aur ek step se doosre par jaane ki har allowed chaal tay ki. Usne numbers ikatthe kiye. Usne model se draft likhwaya. Usne draft ko numbers se milaya. Phir draft approval ke liye bheja. Check fail hota, toh ek baar aur koshish karta. Phir ruk jaata aur bata deta.
 
-Doosra version ek bounded agent tha. Use tools ki ek list, steps ka ek budget aur kaam diya gaya, aur model ne tay kiya ki kya karna hai.
+Doosra version ek bounded agent tha. Use tools ki ek list, steps ka ek budget aur kaam mila. Model ne khud chuna ki kya karna hai.
 
-Dono ko usi bees pichhle hafton par chalaya gaya, jinki report ek insaan pehle hi likh chuka tha.
+Dono ko pichhle bees hafton par chalaya gaya. In sab hafton ki report ek insaan pehle hi likh chuka tha.
 
 Table: State machine aur bounded agent, bees hafton par
 | Measure | State machine | Bounded agent |
@@ -162,27 +158,27 @@ Table: State machine aur bounded agent, bees hafton par
 | Failure ka cause dhoondhna | Minutes: fail hota step log mein hai | Kahin zyada: poora trace padhna padta hai |
 | Ek unusual hafta | Code change chahiye | Aksar khud adapt ho jaata hai |
 
-Trace ko reviewer isliye bhi mark karta hai ki agent ke raaste ko uske jawaab ke saath grade kiya ja sake, jaise Anaya ne night-queue ke run ko mark kiya tha, ek row mein ek step. Jis agent ke steps koi padhta hi nahi, use jaan-boojhkar behtar nahi banaya ja sakta.
+Reviewer trace par marks lagata hai taaki agent ka raasta aur uska jawaab dono grade ho. Anaya ne night-queue run ke liye yeh kiya tha, ek step ek row mein. Jis agent ke steps koi nahi padhta, use jaan-boojh kar behtar nahi banaya ja sakta.
 
-Ek fixed process ke liye, jaise weekly report, Imran ne kaha, fixed steps wali machine jeetti hai. Woh zyada accurate hai, tez hai, aur aise jagah fail hoti hai jo dikh sakti hai. Agent tab apna kharcha nikaalta hai jab steps sach mein case-ba-case badalte hain.
+Weekly report jaise fixed process ke liye, Imran ne kaha, fixed steps wali machine jeetti hai. Woh zyada sahi aur tez hai. Woh aisi jagah fail hoti hai jo dikhti hai. Agent tab kaam aata hai jab steps sach mein case-case par alag hon.
 
-Usne poocha ki yahan woh kahan hoga. Tanvi ne suggest kiya ki yeh dekhna ki ek customer ka count achanak doguna kyun ho gaya. Imran sahmat hua, aur kaha ki iske liye agent use karo, ek kone mein, chhote budget ke saath.
+Usne poocha ki yahan woh kahan hoga. Tanvi ne kaha: pata lagana ki ek customer ka count achanak double kyun hua. Imran maan gaya. Uske liye agent use karo, ek kone mein, chhote budget ke saath.
 
 ## Ise bahar jaane dena
 
-Kaam ka aakhri hissa use dara raha tha. Jo report customers ko jaati hai, use ek release gate chahiye, aur Imran ne use list di.
+Kaam ka aakhri hissa use dara raha tha. Customers ko jaane wali report ko release gate chahiye. Yeh railway signal jaisa hai jo sab check hone tak laal rehta hai. Imran ne use list di.
 
-- Normal tests paas hon.
+- Aam tests paas ho.
 - Bees hafte line par ya usse upar score karein, aur safety cases mein kuch naya fail na ho.
 - Har run ka cost aur time budget ke andar ho.
-- Badlaav pehle das mein se ek account ko jaaye, ek *feature flag* ke peeche. Yeh chalte hue system mein ek switch hai jo badlaav ko kuch users ke liye on aur baaki ke liye off karta hai, bina nayi release ke.
-- Ek rollback trigger aur incident ka owner likhe hon.
+- Badlaav pehle das mein se ek account par jaye, ek *feature flag* ke peeche. Yeh chalte system mein light ka switch hai. Yeh badlaav ko kuch users ke liye on aur kuch ke liye off karta hai, naye release ke bina.
+- Ek rollback trigger aur incident ka owner likha ho.
 
-*Rollback trigger* ek condition hai, pehle se likhi hui aur naapne layak, jo kisi ko release undo karne par bound karti hai. Tanvi ne apna likha: rollback kijiye agar un reports ka share, jinhe customer useful mark karta hai, pichhle hafte se 10 points se zyada gir jaye, ya koi report galat recipient ko chali jaye.
+*Rollback trigger* pehle se laga fire alarm jaisa hai. Yeh ek naapne layak condition hai, pehle likhi hui, jo kisi ko release wapas lene par majboor karti hai. Tanvi ne apna likha. Agar customer jin reports ko useful mark karte hain unka share pichhle hafte se das points se zyada gir jaye, toh roll back karo. Agar koi report galat recipient ko chali jaye, toh roll back karo.
 
-Tay karne wala insaan on-call engineer tha, jise kisi ki permission nahi chahiye thi. Tareeka flag switch karna tha, aur isme paanch minute se kam lagte. Launch se pehle unhone ise stopwatch ke saath ek baar test kiya.
+Jo tay karta tha woh on-call engineer tha, jise kisi ki ijaazat nahi chahiye thi. Tareeka flag ko switch karna tha, aur ismein paanch minute se kam lagte. Launch se pehle unhone ise ek baar stopwatch se test kiya.
 
-Unhone yeh bhi likha ki system ko har kisam ke failure par kaise respond karna chahiye.
+Unhone yeh bhi likha ki system ko har tarah ki failure par kaise jawaab dena chahiye.
 
 Table: Failure par responses
 | Response | Kab | Example |
@@ -192,20 +188,20 @@ Table: Failure par responses
 | Escalate | Output par bharosa nahi kiya ja sakta | Draft apna check do baar fail kare |
 | Stop | Ek irreversible action galat dikhta hai | Ek report 5 ki jagah 500 logon ko jaane wali ho |
 
-Imran ne aakhri row par Tanvi ka pen rok diya. Agar machine kuch aisa karne wali hai jo woh wapas nahi le sakti, aur action galat dikhta hai, toh woh ruk jaati hai. Der se aayi report ek chidh hai. Galat 500 logon ko gayi report ek vakeel ka letter hai.
+Imran ne uski pen aakhri row par rok di. Machine kuch aisa karne wali ho sakti hai jo wapas nahi liya ja sakta. Agar action galat lage, woh ruk jaati hai. Der se aayi report khijh hai. Galat paanch sau logon ko gayi report ek vakeel ka khat hai.
 
-Aur agar kuch galat hota, toh koi do din ke andar ek *incident review* likhta. Yeh ek page hai jo batata hai ki kya hua, kyun hua, aur kaun sa check use pakad leta. Usmein ek check ka naam hota hai, kisi ko doshi thahrane wale insaan ka nahi.
+Agar kuch galat hota, toh koi do din ke andar ek *incident review* likhta. Yeh ek page hai jo batata hai ki kya hua, kyun hua, aur kaun sa check use pakad leta. Sochiye school ki woh note jo fire drill galat hone ke baad likhi jaati hai. Usmein ek check ka naam hota hai, kisi insaan ka dosh nahi.
 
-Tanvi ne Friday ko kaam khatam kiya. Pehli report ek account ko gayi, flag ke peeche, shaam ke chaar baje, aur Imran uski desk ke paas se teen baar kuch kahe bina guzra. Woh pahunch gayi, aur sahi thi. Tanvi ne flag off kiya, phir wapas on kiya, yeh saabit karne ke liye ki woh kar sakti hai.
+Tanvi ne Shukrawaar ko poora kiya. Pehli report sirf ek account ko gayi, flag ke peeche, shaam chaar baje. Imran teen baar uski desk ke paas se guzra aur kuch nahi bola. Report pahunchi, aur sahi thi. Usne flag off kiya, phir wapas on, yeh saabit karne ke liye ki woh kar sakti hai.
 
 ## Saar
 
-Ek AI product ke liye lagbhag 11 kaam karne padte hain. Tools ke baare mein sochne ka kaam ka tareeka hai unhe bharne wale slots ke roop mein, har kaam ke liye ek tool chunna is hisaab se ki use kya karna hai aur kya kabhi galat nahi hona chahiye.
+Ek AI product ko lagbhag gyarah kaam chahiye. Tools ko bharne ke slots ki tarah sochiye. Har kaam ke liye ek tool chuniye is hisaab se ki use kya karna hai aur kya kabhi galat nahi hona chahiye.
 
-- Har stack ke saath do audits jaate hain: kisi bhi AI summary ke das claims ko unke sources se check kijiye, aur har tool ke liye likhiye ki woh kya store karta hai aur uski keys kahan rehti hain.
-- Model product ka ek hissa hai. Baaki, yaani harness, ke saat hisse hain: context, tools, state, orchestration, policy, evals aur observability. Zyadatar quality problems wahin rehti hain.
-- Coding assistants ek saada loop chalate hain, kuch general tools use karte hain, project ke rules ek file mein rakhte hain, risky kaamon ke liye permission maangte hain, aur sabse upar ek verifier par tikte hain.
-- Tool access ek allowlist hona chahiye, scope mein chhota, jo undo na ho sake uske liye approval ke saath, aur pehle se chune hue saboot par hi chauda hona chahiye.
-- Ek fixed process ke liye state machine aksar agent se behtar hoti hai, aur yeh choice usi cases par naapi jaani chahiye. Badlaav gate aur flag ke peeche jaata hai, ek rollback trigger, ek named owner aur har kisam ke failure ke plan ke saath.
+- Har stack ko do audits chahiye. Kisi bhi AI summary ke das claims ko unke sources se milaiye. Har tool ke liye likhiye ki woh kya store karta hai aur uski keys kahan hain.
+- Model product ka ek hissa hai. Baaki harness hai, jiske saat hisse hain: context, tools, state, orchestration, policy, evals aur observability. Quality ki zyadatar dikkatein wahin hoti hain.
+- Coding assistants ek saadha loop chalate hain. Woh kuch aam tools use karte hain aur project rules ek file mein rakhte hain. Woh risky kaam ke liye permission maangte hain aur sabse zyada verifier par tikte hain.
+- Tool access ek allowlist ho, scope mein tang. Jo wapas nahi liya ja sakta, uske liye approval chahiye. Ise sirf pehle se chune saboot par chauda kijiye.
+- Fixed process ke liye state machine aam taur par agent se behtar hoti hai. Is choice ko wahi cases par naapiye. Badlaav gate aur flag ke peeche jaata hai, ek rollback trigger, ek named owner aur har tarah ki failure ke plan ke saath.
 
-Tools jagah par aa gaye, toh ab team product ko asli logon ke saamne rakh sakti hai.
+Tools taiyaar hain. Ab team product ko asli logon ke saamne rakh sakti hai.

@@ -51,8 +51,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Aapke harness ke save kiye hue traces, har run ke liye ek.',
   'Six panels, each with a named data source (where its numbers come from).':
     'Six panels, har ek ka ek named data source (uske numbers kahan se aate hain).',
-  'For every panel, one level that makes you investigate and one that makes you roll back.':
-    'Har panel ke liye ek investigation level aur ek rollback level.',
+  'For every panel, one level that makes you investigate and one that makes you do a rollback (go back to the old version).':
+    'Har panel ke liye ek investigation level aur ek rollback level (purane version par wapas jaana).',
   'A list of what is versioned, like a list of numbered editions.':
     'Jin cheezon ke versions hain, unki list, jaise numbered editions ki list.',
   'Users notice response time, the waiting time':
@@ -195,8 +195,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek user task ki cost shuru se aakhir tak nikaliye: input tokens, output tokens, embeddings (matlab ke pate), retrieval, aur tool aur API calls (internet par bheje gaye message). Phir aap do designs ko banane se pehle hi compare kar sakte hain.',
   'You will hear terms like canary release, shadow traffic, rollback and drift. They all come from one habit, and it is simple. Change one thing at a time. Let a few users see it first. Keep the old version ready. And keep watching after the release.':
     'Aap canary release, shadow traffic, rollback aur drift jaise terms sunenge. Yeh sab ek hi aadat se aate hain, aur woh saadi hai. Ek baar mein ek hi cheez badaliye. Pehle thode se users ko dikhaiye. Purana version ready rakhiye. Aur release ke baad bhi dekhte rahiye.',
-  'Most incidents can be prevented in four ways. Change one thing at a time. Give version numbers to prompts, models, indexes and tool contracts. Make sure every part can be rolled back. And never let a prompt change skip evaluation. Teams break that last rule most often, because editing a prompt does not feel like a release.':
-    'Zyadatar incidents chaar tareekon se roke ja sakte hain. Ek baar mein ek hi cheez badaliye. Prompts, models, indexes aur tool contracts ko version numbers dijiye. Pakka kijiye ki har part rollback ho sake. Aur prompt change ko kabhi evaluation skip mat karne dijiye. Teams yeh aakhri rule sabse zyada todti hain, kyunki prompt edit karna release jaisa nahi lagta.',
+  'Most incidents can be prevented in four ways. Change one variable (one thing that can change) at a time. Give version numbers to prompts, models, indexes and tool contracts. Make sure every part can be rolled back. And never let a prompt change skip evaluation. Teams break that last rule most often, because editing a prompt does not feel like a release.':
+    'Zyadatar incidents chaar tareekon se roke ja sakte hain. Ek baar mein ek hi variable (ek badalne wali cheez) badaliye. Prompts, models, indexes aur tool contracts ko version numbers dijiye. Pakka kijiye ki har part rollback ho sake. Aur prompt change ko kabhi evaluation skip mat karne dijiye. Teams yeh aakhri rule sabse zyada todti hain, kyunki prompt edit karna release jaisa nahi lagta.',
   'Here is a puzzle about drift. Take a moment to think.':
     'Drift par ek paheli hai. Thoda ruk kar sochiye.',
   'Your assistant got slower this week, and nobody released anything. Name three things that could have changed.':

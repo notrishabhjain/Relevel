@@ -56,7 +56,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Three ways to mark an answer':
     'Jawaab mark karne ke teen tareeke',
   'Good quality work uses three kinds of markers. Think of a school exam. A machine can check the spelling. A teacher can read for meaning. Each costs a different amount, and each is good at different things. The table shows where each fits.':
-    'Achhe quality kaam mein teen tarah ke marker use hote hain. School exam socho. Machine spelling check kar sakti hai. Teacher matlab padh kar mark kar sakta hai. Teeno ki cost alag hai, aur har ek alag cheez mein achha hai. Table dikhati hai ki har ek kahan fit hota hai.',
+    'Achhe quality kaam mein teen tarah ke marker use hote hain. School exam sochiye. Machine spelling check kar sakti hai. Teacher matlab padh kar mark kar sakta hai. Teeno ki cost alag hai, aur har ek alag cheez mein achha hai. Table dikhati hai ki har ek kahan fit hota hai.',
   'Marker':
     'Marker',
   'Good at':
@@ -104,7 +104,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Build an LLM judge':
     'LLM judge banaiye',
   'An <strong>LLM judge</strong> is a model that marks another model\'s answer. Think of a second student marking homework. It is cheap and quick. But you must check it before you trust it.':
-    '<strong>LLM judge</strong> ek model hai jo doosre model ke jawaab ko mark karta hai. Socho ek doosra student homework mark kar raha hai. Woh sasta aur jaldi hai. Lekin bharosa karne se pehle use check karna zaroori hai.',
+    '<strong>LLM judge</strong> ek model hai jo doosre model ke jawaab ko mark karta hai. Sochiye ek doosra student homework mark kar raha hai. Woh sasta aur jaldi hai. Lekin bharosa karne se pehle use check karna zaroori hai.',
   'Check an LLM judge against your own marks before you trust it. Unchecked, it is just another guess, from the same kind of system that wrote the answer.':
     'LLM judge par bharosa karne se pehle use apne marks se milaiye. Bina check kiye woh bas ek aur andaaza hai, usi tarah ke system se jisne woh jawaab likha tha.',
   'Checking a judge against your own marks is like checking a second evaluator on a tender committee. If two evaluators score the same bids differently, you find out why before you trust either one.':
@@ -144,7 +144,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Known judge habits (biases)':
     'Judge ki jaani-maani aadatein (biases)',
   'Even a judge that often agrees with you can lean one way, in ways you can predict. Think of a teacher who gives more marks for neat handwriting. These leanings are called biases, and LLM judges have a few well-known ones.':
-    'Jo judge aapse aksar sehmat ho, woh bhi ek taraf jhuk sakta hai, aise tareeke se jo pehle se pata ho sakta hai. Socho ek teacher jo sundar likhawat par zyada marks de. Is jhukaav ko bias kehte hain, aur LLM judges ke kuch jaane-maane biases hain.',
+    'Jo judge aapse aksar sehmat ho, woh bhi ek taraf jhuk sakta hai, aise tareeke se jo pehle se pata ho sakta hai. Sochiye ek teacher jo sundar likhawat par zyada marks de. Is jhukaav ko bias kehte hain, aur LLM judges ke kuch jaane-maane biases hain.',
   'First, they give <strong>higher marks to longer answers</strong>, even when the extra words add nothing. Second, when they compare two answers, they tend to prefer <strong>the answer they saw first</strong>.':
     'Pehla, woh <strong>lambe jawaab ko zyada marks</strong> dete hain, tab bhi jab extra words se kuch nahi judta. Doosra, jab woh do jawaab milate hain, toh woh aksar <strong>jo jawaab pehle dekha</strong> use pasand karte hain.',
   'The fixes are small, and they work. Mark one specific thing, not overall quality. Put two answers side by side instead of marking one, and swap their order. Make the judge quote the sentence its verdict rests on.':

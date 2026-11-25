@@ -64,7 +64,7 @@ Imran gave Tanvi two habits to carry from job to job. The first came from a mist
 
 The month before, Anaya had uploaded Mr. Menon's security questionnaire, forty pages long. She gave it to a research assistant that answers only from the documents it is given. It wrote a tidy summary and put a source beside every sentence. She was rather proud of it.
 
-Imran asked her to run a *claim audit*. It is like a teacher spot-checking homework. Pick ten claims from the summary. Check each one against the page it cites. Mark it supported, partly supported or unsupported.
+Imran asked her to run a *claim audit*. It is like a teacher spot-checking a few answers. Pick ten claims from the summary. Check each one against the page it cites. Mark it supported, partly supported or unsupported.
 
 It took forty minutes. Seven claims were supported. Two were partly supported, because the page said something similar but narrower. One was unsupported. The summary said the lender required a certain certificate. Nothing in the document said so.
 

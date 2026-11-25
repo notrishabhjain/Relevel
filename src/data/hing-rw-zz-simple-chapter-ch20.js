@@ -78,7 +78,7 @@ Object.assign(window.HING = window.HING || {}, {
   'In Chapter 11, slow responses were a cost. Here they become a design problem. Streaming (words showing up one by one, like the chai-wala saying “two minutes”) works well for paragraphs. A half-arrived paragraph is already useful.':
     'Chapter 11 mein dheemi responses ek kharch thi. Yahan woh design ki samasya ban jati hain. Streaming (shabd ek ek karke aate hain, jaise chai-wala “do minute” bol raha ho) paragraphs ke liye achhi hai. Aadha aaya paragraph bhi kaam ka hota hai.',
   'It does not work for everything. Picture a number that shows up and then changes while the answer is still being made. That is worse than a spinner (the little wheel that says “wait”). The user has already read it, and may have acted on it.':
-    'Yeh har cheez ke liye kaam nahi karti. Socho ek number aaya, aur jawaab banne ke dauran badal gaya. Yeh spinner (chhota ghoomta pahiya jo kehta hai “ruko”) se bhi bura hai. User use padh chuka hai, aur shayad us par kaam bhi kar chuka hai.',
+    'Yeh har cheez ke liye kaam nahi karti. Sochiye ek number aaya, aur jawaab banne ke dauran badal gaya. Yeh spinner (chhota ghoomta pahiya jo kehta hai “ruko”) se bhi bura hai. User use padh chuka hai, aur shayad us par kaam bhi kar chuka hai.',
   '3. Use confidence to choose behaviour':
     '3. Confidence se tay kijiye ki kya karna hai',
   'Many models can also give a confidence score with an answer. It is tempting to show it. Before you read on, think: what would you do with it?':

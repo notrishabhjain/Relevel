@@ -823,192 +823,58 @@ Object.assign(window.HING = window.HING || {}, {
   /* ---- ch20d: Production architecture, delivery and vendor strategy ---- */
   'Production architecture, delivery and vendor strategy':
     'Production architecture, delivery aur vendor strategy',
-  'A prototype runs because you are the only user and you forgive its failures. Production removes both. In this chapter you’ll list what a prototype is missing, think of response time as a budget shared across stages, and score vendors on more than price and quality.':
-    'Prototype isliye chalta hai kyunki uska sirf ek user hota hai, aur woh bhi uski galtiyan maaf kar deta hai. Production mein yeh dono cheezein khatam ho jaati hain. Is chapter mein aap dekhenge ki prototype mein kya-kya kam hai, response time ko ek budget ki tarah kaise sochna hai jo alag-alag stages mein baanta jaata hai, aur vendors ko sirf price aur quality par nahi balki aur kai baaton par score kaise karna hai.',
-  'Before you look anything up, write from memory the list of what your prototype is missing for production.':
-    'Kuch bhi dekhne se pehle, yaad se woh list likhiye ki production ke liye aapke prototype mein kya-kya missing hai.',
-  'Add the decisions about architecture, the separate environments, automated checks before release, who is responsible for what, service targets, security, rolling back, and how you would leave a vendor.':
-    'Architecture ke decisions, alag-alag environments, release se pehle automated checks, kiski kya zimmedari hai, service targets, security, rollback, aur vendor ko chhodne ka plan, yeh sab add kijiye.',
   'Work out what happens in three shocks: the provider goes down, traffic grows ten times, and the token price doubles.':
     'Teen shocks mein kya hota hai, yeh nikaliye: provider band ho jaaye, traffic 10 guna ho jaaye, aur token ka price double ho jaaye.',
-  'A technical decision pack that covers the architecture, the alternatives, the evaluation, security, cost and rollout.':
-    'Ek technical decision pack, jisme architecture, alternatives, evaluation, security, cost aur rollout ho.',
-  'Defend your build-or-buy choice and your provider choice with weighted criteria, not with personal preference.':
-    'Apna build-or-buy ka choice aur provider ka choice weighted criteria ke saath defend kijiye, apni pasand se nahi.',
-  'Build or buy is a decision with criteria':
-    'Build ya buy ek decision hai jiske criteria hote hain',
-  'Chapter 18.5 introduced it. Here the criteria get weights.':
-    'Chapter 18.5 mein yeh aaya tha. Yahan un criteria ko weight milta hai.',
-  'Cost per task can be measured':
-    'Cost per task ko measure kiya ja sakta hai',
-  'You recorded it in Chapter 30.':
-    'Aapne ise Chapter 30 mein record kiya tha.',
-  'A release gate decides what ships':
-    'Release gate tay karta hai ki kya ship hoga',
   'You built it in Chapter 29.':
     'Aapne ise Chapter 29 mein banaya tha.',
   'Production delta':
     'Production delta',
-  'The list of everything a working prototype doesn’t have yet: sign-in, limits, retries, saved data, monitoring, secrets, backups, deployment and rollback.':
-    'Woh list jo batati hai ki ek chalte hue prototype mein abhi kya-kya nahi hai: sign-in, limits, retries, saved data, monitoring, secrets, backups, deployment aur rollback.',
   'Latency budget':
     'Latency budget',
-  'The total time a user is willing to wait, shared out across the stages that use it up.':
-    'Woh kul time jitna user intezaar karne ko taiyaar hai, jo un stages mein baant diya jaata hai jo use kha jaate hain.',
   'Architecture decision record':
     'Architecture decision record',
-  'A short note saying what was decided, what the other options were, and why. You write it when the decision is made, not later from memory.':
-    'Ek chhota note jisme likha ho ki kya decide hua, baaki options kya the, aur kyun. Ise decision lete waqt hi likhte hain, baad mein yaad karke nahi.',
   'Exit cost':
     'Exit cost',
-  'What it would take to leave a provider. It’s usually the least examined column in a vendor comparison, and the one you live with longest.':
-    'Kisi provider ko chhodne mein kitna lagega. Vendor comparison mein yeh aksar sabse kam dekha jaane wala column hota hai, jabki aap isi ke andar sabse zyada time rehte hain.',
-  'List what a prototype is missing before it can go to production.':
-    'Samjha paana ki production tak pahunchne se pehle ek prototype mein kya missing hota hai.',
-  'Treat response time as a budget spent across a chain of stages.':
-    'Dekh paana ki response time ek budget hai jo stages ki ek chain mein kharch hota hai.',
-  'Score providers on more criteria than price and quality.':
-    'Providers ko price aur quality se zyada criteria par score kar paana.',
-  'Keep your cost measurements from Chapter 30 and your release gate from Chapter 29 open. You’ll use both.':
-    'Chapter 30 ke apne cost measurements aur Chapter 29 ka release gate paas rakhiye. Dono kaam aayenge.',
-  'In the last chapter you saw how the product manager writes the spec for a system whose answers can vary. This chapter looks at the other side of the same table: what it takes to run such a system for real users.':
-    'Pichhle chapter mein aapne dekha ki jis system ke jawaab badal sakte hain, uska spec product manager kaise likhta hai. Yeh chapter usi table ke doosri taraf ki baat karta hai: aise system ko asli users ke liye chalane mein kya lagta hai.',
-  'Everything you’ve built so far works because you are the only user, and you forgive it when it fails. Production removes both of those. So here you’ll list what that costs you.':
-    'Ab tak aapne jo bhi banaya hai woh isliye chalta hai kyunki aap hi uske akele user hain, aur fail hone par aap use maaf kar dete hain. Production mein yeh dono cheezein nahi rehtin. Toh yahan aap dekhenge ki iski keemat kya hai.',
-  'An everyday comparison helps. A dish you cook well for two people is not yet a restaurant menu item. The recipe stays the same. But now you also need reliable supplies, a price that works, other cooks who can make it, and a plan for the night four hundred people order it.':
-    'Ek roz ki misaal se samajhiye. Ek dish jo aap do logon ke liye achhi banate hain, woh abhi restaurant ke menu ki item nahi hai. Recipe wahi rehti hai. Lekin ab aapko bharosemand supplies chahiye, aisa price jo kaam kare, doosre cooks jo use bana saken, aur us raat ka plan jab chaar sau log ek saath order karein.',
-  'The units below walk through that gap one piece at a time. Each one has a goal, an idea, something to prove, something to build, something to break, something to hand in, and a question to check yourself. Take them in order.':
-    'Neeche ke units us gap ko ek-ek hisse mein paar karte hain. Har unit mein ek goal hai, ek idea, kuch prove karne ko, kuch banane ko, kuch todne ko, kuch hand in karne ko, aur khud ko check karne ka ek sawaal. Inhe order mein kijiye.',
-  'List everything that is missing between your notebook and a real service.':
-    'Aapke notebook aur ek asli service ke beech jo kuch bhi missing hai, uski poori list banaiye.',
-  'A real service needs many things a notebook doesn’t: sign-in, saved data, retries, queues, monitoring, secrets, deployment, backups, access rules and a way to roll back.':
-    'Ek asli service ko bahut kuch chahiye jo notebook ko nahi chahiye: sign-in, saved data, retries, queues, monitoring, secrets, deployment, backups, access rules aur rollback karne ka tareeka.',
   'Write the production delta list for your own prototype.':
     'Apne prototype ke liye production delta ki list likhiye.',
-  'Sort the items into three groups: must-have, should-have and later.':
-    'Items ko teen groups mein baantiye: must-have, should-have aur later.',
-  'Remove one of the controls, then describe how things would fail without it.':
-    'Ek control hata dijiye, phir batayiye ki uske bina cheezein kaise fail hongi.',
   'A production delta checklist.':
     'Ek production delta checklist.',
   'What would stop you from going live tomorrow?':
     'Kal live jaane se aapko kya rokega?',
-  'This is the bridge between how a PM thinks about delivery and what engineering actually has to build.':
-    'Yeh PM ke delivery sochne ke tareeke aur engineering ko asal mein jo banana padta hai, in dono ke beech ka pul hai.',
   'Reliability and resilience':
     'Reliability aur resilience',
-  'Plan for provider errors, failing dependencies and retries, and decide how the product slows down gracefully.':
-    'Provider errors, dependencies ke fail hone aur retries ke liye plan kijiye, aur tay kijiye ki product kaise gracefully dheema hota hai.',
-  'An AI system leans on services you don’t control, so some of them will fail at some point.':
-    'Ek AI system aisi services par tikta hai jin par aapka control nahi hai, isliye kabhi na kabhi unmein se kuch fail hongi.',
-  'Write failure scenarios for the model, for retrieval, for the tools and for the network.':
-    'Model, retrieval, tools aur network ke liye failure scenarios likhiye.',
-  'For each one, decide the timeout, the retries, the fallback, and what the user sees.':
-    'Har ek ke liye timeout, retries, fallback, aur user ko kya dikhega, yeh tay kijiye.',
-  'Pretend the provider is down, then pretend it is limiting how many requests you can send.':
-    'Maan lijiye provider band hai, phir maan lijiye woh aapko limit kar raha hai ki aap kitni requests bhej sakte hain.',
   'A table of failures and fallbacks.':
     'Failures aur fallbacks ki ek table.',
-  'What does the user experience when only part of the system fails?':
-    'Jab system ka sirf ek hissa fail hota hai, tab user ko kya dikhta hai?',
-  'A product that degrades gracefully can be worth more than one that uses a bigger model.':
-    'Jo product gracefully degrade hota hai, woh bade model wale product se zyada kaam ka ho sakta hai.',
   'Scalability and queues':
     'Scalability aur queues',
-  'Understand the difference between work done while the user waits and work done in the background, and find where a system hits its limits as it grows.':
-    'Samajhiye ki user ke intezaar karte waqt hone wale kaam aur background mein hone wale kaam mein kya farq hai, aur dhoondhiye ki system badhne par kahan apni limit tak pahunchta hai.',
-  'Not every AI task belongs in the path where the user sends a request and waits for the answer.':
-    'Har AI task us raaste mein nahi aata jahan user request bhejta hai aur jawaab ka intezaar karta hai.',
-  'Map a long-running job, such as taking in a big document.':
-    'Ek lambe chalne wale job ka map banaiye, jaise ek bada document andar lena.',
-  'Separate four things: the upload, the processing, the indexing and the status updates to the user.':
-    'Chaar cheezein alag kijiye: upload, processing, indexing aur user ko status updates.',
   'Imagine ten times the work, and find the part that gives way first.':
     '10 guna kaam ka andaaza lagaiye, aur woh hissa dhoondhiye jo sabse pehle jawaab de dega.',
-  'A sketch of how the system scales, with your assumptions about capacity.':
-    'System kaise scale hoga, uska ek sketch, capacity ke baare mein aapki assumptions ke saath.',
   'Which part has to grow first, and why?':
     'Kaun sa hissa sabse pehle badhana padega, aur kyun?',
-  'When you plan capacity, include the model’s own limits and the quotas set by outside providers.':
-    'Capacity plan karte waqt model ki apni limits aur bahar ke providers ke quotas ko bhi shaamil kijiye.',
   'Deployment and environments':
     'Deployment aur environments',
-  'Keep development, staging and production apart, each with settings you control.':
-    'Development, staging aur production ko alag rakhiye, har ek ke apne settings ke saath jo aapke control mein hon.',
-  'A production AI system needs settings you can reproduce and a safe way to release changes.':
-    'Ek production AI system ko aisi settings chahiye jinhe dobara banaya ja sake, aur changes release karne ka ek safe tareeka.',
-  'For each environment, define the environment variables, the model versions, the prompts and the index versions.':
-    'Har environment ke liye environment variables, model versions, prompts aur index versions define kijiye.',
   'Write a deployment checklist, and the command or steps to roll back.':
     'Ek deployment checklist likhiye, aur rollback karne ka command ya steps.',
-  'Release a deliberately bad prompt to staging, and check that production stays exactly as it was.':
-    'Staging mein jaanbujhkar ek kharab prompt release kijiye, aur check kijiye ki production bilkul waisa hi rehta hai.',
   'A plan for your environments, and a rollout checklist.':
     'Aapke environments ka ek plan, aur ek rollout checklist.',
   'What can change without anyone releasing new code?':
     'Bina naya code release kiye kya-kya badal sakta hai?',
-  'Configuration is part of the system, so it needs version control like everything else.':
-    'Configuration system ka hissa hai, isliye baaki sab ki tarah ise bhi version control chahiye.',
   'CI/CD and AI regression':
     'CI/CD aur AI regression',
-  'Put your software tests and your evaluation gates into the same automated checks.':
-    'Apne software tests aur evaluation gates ko ek hi automated checks mein daaliye.',
-  'A green build is not enough if the model’s behaviour has got worse.':
-    'Agar model ka behaviour bigad gaya hai, toh sirf green build kaafi nahi hai.',
-  'Add ordinary tests, plus your golden evaluation suite, to the automated checks that run before every release.':
-    'Har release se pehle chalne wale automated checks mein normal tests ke saath apni golden evaluation suite bhi jodiye.',
-  'Decide the thresholds that block a release.':
-    'Woh thresholds tay kijiye jo release ko block karte hain.',
-  'Change the model, the prompt or the index, and check that the automated checks catch the drop in quality.':
-    'Model, prompt ya index badaliye, aur check kijiye ki automated checks quality ki girawat pakad lete hain.',
-  'A spec for the automated release checks of an AI product.':
-    'Ek AI product ke automated release checks ka spec.',
-  'What evidence do you need before you release?':
-    'Release karne se pehle aapko kaun sa evidence chahiye?',
-  'This is how a system whose answers vary becomes something a team can deliver reliably.':
-    'Isi tarah woh system, jiske jawaab badalte hain, ek aisi cheez ban jaata hai jise team bharose ke saath deliver kar sakti hai.',
   'Architecture Decision Records':
     'Architecture Decision Records',
-  'Record the alternatives, the decision, the evidence, the consequences, and the signs that mean you should revisit it.':
-    'Alternatives, decision, evidence, consequences, aur woh signs jinke baad decision dobara dekhna chahiye, in sabko record kijiye.',
-  'Treat each architecture decision as a hypothesis with trade-offs, and write down when you’ll look at it again.':
-    'Har architecture decision ko trade-offs wali ek hypothesis ki tarah dekhiye, aur likhiye ki aap use dobara kab dekhenge.',
-  'Write a record for each of four decisions: the model, the retrieval approach, the workflow or agent, and the storage.':
-    'Chaar decisions ke liye ek-ek record likhiye: model, retrieval ka tareeka, workflow ya agent, aur storage.',
-  'Include the options you rejected and the evidence behind your choice.':
-    'Jo options aapne reject kiye aur aapke choice ke peeche ka evidence, dono shaamil kijiye.',
-  'Invent a new requirement that makes one of your decisions wrong.':
-    'Ek naya requirement banaiye jo aapke kisi decision ko galat bana de.',
   'A set of architecture decision records.':
     'Architecture decision records ka ek set.',
-  'What would make you revisit this decision?':
-    'Kya hoga toh aap yeh decision dobara dekhenge?',
-  'These records protect what the team has learned, and they make your reasoning as a technical PM easy for others to see.':
-    'Yeh records team ne jo seekha hai use bachate hain, aur technical PM ke roop mein aapki sochne ka tareeka doosron ko saaf dikhate hain.',
   'Vendor and TCO strategy':
     'Vendor aur TCO strategy',
-  'Compare provider and model choices on quality, cost, region, data controls, tooling and exit cost.':
-    'Provider aur model ke choices ko quality, cost, region, data controls, tooling aur exit cost par compare kijiye.',
   'Choosing a vendor means balancing several goals at once, and it shapes your architecture.':
     'Vendor chunna ek saath kai goals ko balance karna hai, aur yeh aapke architecture ko bhi shape karta hai.',
-  'Score at least three realistic options, or two providers plus an idea of hosting the model yourself.':
-    'Kam se kam teen realistic options score kijiye, ya do providers aur model ko khud host karne ka ek idea.',
-  'Estimate what it would cost to migrate away, and to exit.':
-    'Andaaza lagaiye ki migrate karke bahar nikalne mein kitna cost aayega.',
-  'Work out what happens if the price doubles, or if a capability you rely on is removed.':
-    'Nikaliye ki agar price double ho jaaye, ya aap jis capability par tikay hain woh hata di jaaye, toh kya hoga.',
   'A scorecard for models and vendors, with an exit plan.':
     'Models aur vendors ka ek scorecard, exit plan ke saath.',
   'What would it cost you to switch?':
     'Switch karne mein aapko kitna cost aayega?',
-  'Vendor lock-in is a risk to your costs and to your architecture.':
-    'Vendor lock-in aapke costs aur architecture, dono ke liye ek risk hai.',
   'Technical decision pack':
     'Technical decision pack',
-  'Package the whole system so that a design review can go through it.':
-    'Poore system ko aise package kijiye ki ek design review use dekh sake.',
-  'A strong artifact between PM and engineers lets different readers look at the same evidence, each at the depth they need.':
-    'PM aur engineers ke beech ka ek achha artifact alag-alag readers ko wahi evidence dikhata hai, har ek ko utni gehrai mein jitni use chahiye.',
   'Cover the problem, the baseline, the architecture, the alternatives, the evaluation, the security, the cost, the rollout and the risks.':
     'Problem, baseline, architecture, alternatives, evaluation, security, cost, rollout aur risks, sab cover kijiye.',
   'Add one architecture diagram and one table of decisions.':
@@ -1019,78 +885,36 @@ Object.assign(window.HING = window.HING || {}, {
     '10 slides ka ek technical decision pack.',
   'Can you defend every major box and arrow?':
     'Kya aap har bade box aur arrow ko defend kar sakte hain?',
-  'This is the bridge from your portfolio to real interviews for technical AI PM roles.':
-    'Yeh aapke portfolio se technical AI PM roles ke asli interviews tak ka pul hai.',
   'Response time is a budget':
     'Response time ek budget hai',
-  'Now let’s look at one idea more closely, because it surprises most people. When a user waits for an answer, the wait is really a chain of stages, one after the other.':
-    'Ab ek idea ko thoda kareeb se dekhte hain, kyunki yeh zyadatar logon ko hairaan karta hai. Jab user jawaab ka intezaar karta hai, toh asal mein woh intezaar stages ki ek chain hota hai, ek ke baad ek.',
-  'Response time is spent across the whole chain: retrieval, reranking, tool calls, model reasoning and final generation. The largest share is rarely in the stage people optimise first.':
-    'Response time poori chain mein kharch hota hai: retrieval, reranking, tool calls, model reasoning aur final generation. Sabse bada hissa aksar us stage mein nahi hota jise log sabse pehle optimise karte hain.',
-  'Think of it like a courier delivery. The parcel travels in several legs, and the longest delay is often not the leg you expected. This is why the total time a user will wait is called a <strong>latency budget</strong>. You divide it across the stages, and you check which one is using the most.':
-    'Ise courier delivery ki tarah sochiye. Parcel kai legs mein safar karta hai, aur sabse zyada deri aksar us leg mein nahi hoti jiski aapne ummeed ki thi. Isliye user jitna intezaar karega, uske kul time ko <strong>latency budget</strong> kehte hain. Aap use stages mein baant dete hain, aur dekhte hain ki kaun sa stage sabse zyada kha raha hai.',
-  'Next, here is a way to look at the whole system, layer by layer. Read across each row. The last column gives you the question to ask about that layer when you review a design.':
-    'Ab poore system ko layer-by-layer dekhne ka ek tareeka. Har row ko aage ki taraf padhiye. Aakhri column batata hai ki design review karte waqt us layer ke baare mein kaun sa sawaal poochna hai.',
-  'Typical responsibility':
-    'Aam taur par kiski zimmedari',
   'The question to ask about it':
     'Us ke baare mein poochne wala sawaal',
   'Client and UI':
     'Client aur UI',
   'What the user sees and does':
     'User kya dekhta aur karta hai',
-  'What uncertainty or approval must the user see?':
-    'User ko kaun si uncertainty ya approval dikhni chahiye?',
   'Orchestrator':
     'Orchestrator',
-  'Keeping track of state and choosing the next step':
-    'State ka hisaab rakhna aur agla step chunna',
-  'Where would a fixed rule be safer than the model’s judgement?':
-    'Kahan ek fixed rule model ke judgement se zyada safe hoga?',
   'Model layer':
     'Model layer',
   'Reasoning and writing the answer':
     'Reasoning aur jawaab likhna',
-  'What evidence supports this model choice?':
-    'Is model choice ke peeche kaun sa evidence hai?',
   'Knowledge and tools':
     'Knowledge aur tools',
   'The data it reads and the actions it takes':
     'Jo data woh padhta hai aur jo actions woh leta hai',
-  'Who can access what, and how is it audited?':
-    'Kaun kya access kar sakta hai, aur uska audit kaise hota hai?',
   'Evaluation':
     'Evaluation',
-  'Quality gates':
-    'Quality gates',
   'What blocks a release?':
     'Release ko kya block karta hai?',
   'Observability':
     'Observability',
-  'Evidence of how it behaves while running':
-    'Chalte waqt woh kaisa behave kar raha hai, uska evidence',
-  'How would we know it had got worse?':
-    'Humein kaise pata chalega ki woh bigad gaya hai?',
   'Platform':
     'Platform',
-  'Deploying, scaling and securing it':
-    'Ise deploy, scale aur secure karna',
-  'How does this survive heavy traffic and failures?':
-    'Yeh zyada traffic aur failures mein kaise tikega?',
   'Choosing a vendor':
     'Vendor chunna',
-  'The same habit of looking at the whole picture applies when you choose a provider. Most people compare price and quality, and stop there.':
-    'Poori tasveer dekhne ki yahi aadat provider chunte waqt bhi kaam aati hai. Zyadatar log price aur quality compare karke ruk jaate hain.',
-  'Choosing a vendor means weighing quality, data controls, response time, cost, region, tooling, interoperability, support and exit cost. A provider that wins on quality and data controls but has a very high exit cost can lock you in for years.':
-    'Vendor chunne ka matlab hai quality, data controls, response time, cost, region, tooling, interoperability, support aur exit cost, sabko tolna. Jo provider quality aur data controls mein jeet jaata hai lekin jiska exit cost bahut zyada hai, woh aapko saalon tak bandh sakta hai.',
-  'Exit cost is the one people forget. It’s the column you read least when you compare vendors, yet it’s the one you live inside the longest.':
-    'Exit cost woh cheez hai jise log bhool jaate hain. Vendors compare karte waqt aap is column ko sabse kam padhte hain, lekin isi ke andar aap sabse lambe time tak rehte hain.',
-  'Teams that ship AI well tend to keep four simple habits:':
-    'Jo teams AI achhe se ship karti hain, woh aam taur par chaar aasaan aadatein rakhti hain:',
   '<strong>Write down why you chose things</strong>, so nobody reopens the decision in six months.':
     '<strong>Likh kar rakhiye ki aapne cheezein kyun chunin</strong>, taaki chhe mahine baad koi decision dobara na khole.',
-  '<strong>Have a safe place to try changes</strong> before real users see them.':
-    '<strong>Changes try karne ki ek safe jagah rakhiye</strong>, asli users ke dekhne se pehle.',
   '<strong>Be able to switch it off</strong> quickly, without a meeting.':
     '<strong>Use jaldi band kar paana</strong>, bina kisi meeting ke.',
   '<strong>Know what you would do</strong> if the provider changed its terms tomorrow.':
@@ -1101,104 +925,34 @@ Object.assign(window.HING = window.HING || {}, {
     'Aapka provider apna price double kar deta hai aur aapko 90 din ka notice deta hai. Pehle hafte mein aap kya karenge, woh likhiye.',
   'Day 1 … by the end of the week …':
     'Day 1 … hafte ke end tak …',
-  'If your plan needs an evaluation you don’t have, then the evaluation set is your exit plan. That’s usually the main thing you find out.':
-    'Agar aapke plan ko aisi evaluation chahiye jo aapke paas nahi hai, toh evaluation set hi aapka exit plan hai. Aam taur par yahi sabse badi baat pata chalti hai.',
-  'Let’s pull it together. A prototype works because you are its only user. Production needs a list of everything the prototype lacks, which is the production delta.':
-    'Chaliye sab jodte hain. Ek prototype isliye chalta hai kyunki aap uske akele user hain. Production ke liye woh sab chahiye jo prototype mein nahi hai, yaani production delta ki list.',
-  'You also saw that response time is a budget shared across a chain of stages, and that a vendor deserves more than a price and quality check. Include data controls, region, support and, above all, the cost of leaving.':
-    'Aapne yeh bhi dekha ki response time ek budget hai jo stages ki chain mein baanta jaata hai, aur ek vendor ko sirf price aur quality se zyada parakhna chahiye. Data controls, region, support, aur sabse zyada, chhodne ki keemat, yeh sab shaamil kijiye.',
   'Next, Chapter 34 brings the whole system together in one capstone project.':
     'Aage, Chapter 34 poore system ko ek capstone project mein jodta hai.',
   'Make a ten-slide decision pack':
     '10 slides ka ek decision pack banaiye',
-  'You now explain the whole design to the people who must approve it. In this chapter you learned what a prototype lacks before it can go live, to treat response time as a budget spent across stages, and to score providers on more than price and quality. Here you make a ten-slide pack for Bharat Privacy Guard. Draft it from memory first. The slides you can’t write from memory are the parts you don’t understand yet.':
-    'Ab aap poora design un logon ko samjhate hain jinhe use approve karna hai. Is chapter mein aapne seekha ki live jaane se pehle prototype mein kya kam hota hai, response time ek budget hai, aur providers ko price aur quality se zyada par score karna hai. Yahan aap Bharat Privacy Guard ke liye 10 slides ka pack banate hain. Pehle use yaad se draft kijiye. Jo slides yaad se nahi likh paate, woh woh hisse hain jo abhi samajh nahi aaye.',
-  'Written work only: a slide deck or a document that draws on your earlier measurements. No new code is needed.':
-    'Sirf likhne ka kaam: ek slide deck ya document jo aapke pehle ke measurements par based ho. Naya code nahi chahiye.',
-  'Without looking at your notes, write one line for each of the ten slides saying what it will say. Mark the slides you couldn’t write from memory.':
-    'Apne notes dekhe bina, 10 slides mein se har ek ke liye ek line likhiye ki woh kya kahegi. Jo slides aap yaad se nahi likh paaye, unhe mark kijiye.',
   'Make the ten slides: (1) the problem and what it must beat; (2) the architecture on one slide; (3) two alternatives you rejected and why; (4) the test results, with the test set named; (5) security and what remains risky; (6) cost per message and at the expected volume; (7) the rollout plan and the rollback trigger; (8) three providers scored on nine weighted criteria; (9) the decision and who owns it; (10) what you did not solve.':
     '10 slides banaiye: (1) problem aur use kya beat karna hai; (2) ek slide par architecture; (3) do alternatives jo aapne reject kiye aur kyun; (4) test results, test set ka naam dekar; (5) security aur kya risky bacha hai; (6) cost per message aur expected volume par cost; (7) rollout plan aur rollback trigger; (8) teen providers, 9 weighted criteria par scored; (9) decision aur uska owner kaun hai; (10) jo aapne solve nahi kiya.',
-  'Check each slide against your earlier documents and fix any mismatch.':
-    'Har slide ko apne pehle ke documents se milaiye aur jo bhi mismatch ho use theek kijiye.',
-  'Ask someone else to present the deck from the slides alone. Write down where they stopped or hesitated, and fix those slides.':
-    'Kisi aur se kahiye ki woh sirf slides dekhkar deck present kare. Likhiye ki woh kahan ruke ya hichkichaye, aur un slides ko theek kijiye.',
-  'The from-memory outline with the weak slides marked.':
-    'Yaad se banaya hua outline, kamzor slides mark kiye hue.',
   'Ten slides in the order above.':
     'Upar ke order mein 10 slides.',
-  'A provider scorecard that includes the cost of leaving.':
-    'Ek provider scorecard jisme chhodne ka cost bhi shaamil ho.',
-  'Evidence that someone else could present the deck from the slides alone.':
-    'Aisa evidence ki koi aur sirf slides se deck present kar sakta hai.',
 
   /* ---- ch21cap: Capstone: discover, build, break, measure, ship and defend a system ---- */
   'Capstone: discover, build, break, measure, ship and defend a system':
     'Capstone: ek system ko discover, build, break, measure, ship aur defend kijiye',
-  'This is one capstone, not two. You take a real problem, with users you can actually reach, and carry it from discovery through a live launch to a defence in front of executives and engineers. Along the way you build one coherent applied AI system, break it on purpose, measure what you fixed, and show that it works as a product, not only as a demo.':
-    'Yeh do nahi, ek hi capstone hai. Aap ek asli problem lete hain, aise users ke saath jinse aap sach mein mil sakte hain, aur use discovery se live launch tak, aur phir executives aur engineers ke saamne defence tak le jaate hain. Is poore safar mein aap ek coherent applied AI system banate hain, use jaanbujhkar todte hain, jo fix kiya use measure karte hain, aur dikhate hain ki yeh sirf demo nahi, ek product ki tarah bhi kaam karta hai.',
-  'Reproduce at least ten kinds of failure: a question with no answer, a poisoned document, prompt injection, an unauthorised tool request, a malformed tool call, a stale permission, a multilingual query, a poor scan or audio, a model swap, and a rise in traffic or cost.':
-    'Kam se kam 10 tarah ke failures reproduce kijiye: jis sawaal ka jawaab hi nahi hai, ek poisoned document, prompt injection, bina ijaazat wali tool request, ek malformed tool call, ek stale permission, ek multilingual query, kharab scan ya audio, ek model swap, aur traffic ya cost mein badhottari.',
-  'The running system, a live URL with real users, and an evidence pack. The pack holds the PRD, the architecture, the threat model, the evaluation plan, the dashboard, the unit economics, the decision log, the rollout and rollback plan, the vendor scorecard and an explanation for executives.':
-    'Chalta hua system, asli users ke saath ek live URL, aur ek evidence pack. Is pack mein PRD, architecture, threat model, evaluation plan, dashboard, unit economics, decision log, rollout aur rollback plan, vendor scorecard aur executives ke liye ek explanation hota hai.',
-  'Show three failures you found yourself, three improvements with numbers, evidence from real users, unit economics that hold up, the risks that remain, and what you chose not to solve.':
-    'Teen failures dikhaiye jo aapne khud dhoondhe, numbers ke saath teen improvements, asli users ka evidence, aisi unit economics jo tikti ho, bache hue risks, aur woh jo aapne jaanbujhkar solve nahi kiya.',
   'Everything in Part V':
     'Part V ki har cheez',
-  'The capstone combines all of it.':
-    'Capstone un sabko jodta hai.',
-  'A release gate and a risk register':
-    'Ek release gate aur ek risk register',
-  'Chapters 29 and 31 give you the evidence you’ll defend with.':
-    'Chapters 29 aur 31 aapko woh evidence dete hain jiske saath aap defend karenge.',
-  'Track A’s discovery and strategy artifacts':
-    'Track A ke discovery aur strategy artifacts',
   'They help, but you can start without them. If you have them, the discovery and design stages reuse them.':
     'Yeh madad karte hain, lekin inke bina bhi shuru kar sakte hain. Agar aapke paas hain, toh discovery aur design stages inhe dobara use karte hain.',
   'Findings document':
     'Findings document',
-  'A plain, factual record of what broke, the evidence, the root cause, the fix, and what you chose not to solve. It is the opposite of a brochure.':
-    'Ek saaf, factual record ki kya toota, evidence kya hai, root cause kya hai, fix kya hai, aur aapne kya solve nahi kiya. Yeh brochure ka ulta hai.',
   'Failure class':
     'Failure class',
-  'A kind of failure, not one single example of it. This is what makes ten tests meaningful instead of ten stories.':
-    'Failure ki ek kism, uska koi ek example nahi. Isi se 10 tests ka matlab banta hai, warna woh 10 kahaniyan rah jaate hain.',
   'Residual risk':
     'Residual risk',
-  'The risk that’s left after a control is in place. You state it openly instead of leaving people to guess.':
-    'Control lagne ke baad jo risk bacha rehta hai. Aap use khulkar bata dete hain, logon ko andaaza lagane nahi dete.',
   'Evidence pack':
     'Evidence pack',
-  'The set of artifacts that lets somebody else check your claims instead of just trusting them.':
-    'Artifacts ka woh set jisse koi aur aapke claims check kar sake, sirf bharosa na kare.',
   'Kill criteria':
     'Kill criteria',
-  'The condition you write down before you need it, which tells you when to stop. Without it, you keep working on a problem the evidence says won’t work.':
-    'Woh condition jo aap zaroorat se pehle likh lete hain, jo batati hai ki kab rukna hai. Iske bina aap ek aisi problem par kaam karte rehte hain jise evidence kehta hai ki chalegi nahi.',
-  'Take a real problem, with users you can reach, from discovery all the way to a live product.':
-    'Ek asli problem lekar, aise users ke saath jinse aap mil sakte hain, discovery se live product tak le jaa paana.',
-  'Explain a system you built from first principles, without a framework doing the explaining for you.':
-    'Jo system aapne banaya hai use first principles se samjha paana, bina kisi framework ke aapke liye samjhaye.',
-  'Show before-and-after numbers for failures you found and fixed, and for the users who used it.':
-    'Jin failures ko aapne dhoondha aur fix kiya, unke before-and-after numbers dikha paana, aur un users ke bhi jinhone use use kiya.',
-  'Defend the business case, meaning unit economics, growth and vendor risk, as carefully as the architecture.':
-    'Business case ko, yaani unit economics, growth aur vendor risk ko, utni hi dhyaan se defend kar paana jitna architecture ko.',
-  'State what you deliberately did not solve.':
-    'Bata paana ki aapne jaanbujhkar kya solve nahi kiya.',
-  'In the last chapter you looked at what it takes to run an AI system for real users. Now you do the whole thing yourself, from the first conversation with a user to the final defence.':
-    'Pichhle chapter mein aapne dekha ki asli users ke liye ek AI system chalane mein kya lagta hai. Ab aap poori cheez khud karte hain, user se pehli baat-cheet se lekar aakhri defence tak.',
-  'Start by collecting every artifact you made in Part V. That means the harness, the model selection card, the context budget and the retrieval architecture. It also means the tool policy, the release gate, the dashboard, the risk register, the PRD and the decision pack. Every stage below reuses one of them.':
-    'Sabse pehle Part V mein aapne jo bhi artifacts banaye, woh ikatthe kijiye. Yaani harness, model selection card, context budget aur retrieval architecture. Saath mein tool policy, release gate, dashboard, risk register, PRD aur decision pack. Neeche ka har stage inmein se kisi ek ko dobara use karta hai.',
-  'You may also have done some of Track B’s optional modules. If so, reuse them too. B1’s cost model fits the measure stage. B3’s tracking plan fits the ship stage, and so do B6’s user sessions. B5’s release checklist fits the observe stage. None of them is needed to start.':
-    'Ho sakta hai aapne Track B ke kuch optional modules bhi kiye hon. Agar haan, toh unhe bhi dobara use kijiye. B1 ka cost model measure stage mein fit hota hai. B3 ka tracking plan ship stage mein fit hota hai, aur B6 ke user sessions bhi. B5 ki release checklist observe stage mein fit hoti hai. Shuru karne ke liye inmein se kisi ki zaroorat nahi hai.',
-  'What do you get at the end? A system you can explain without leaning on anyone’s framework. Real users who have used it. And an honest page about what broke when you tested it and what it costs to run.':
-    'Aakhir mein aapko kya milta hai? Ek aisa system jise aap kisi ke framework par tike bina samjha sakte hain. Asli users jinhone use use kiya hai. Aur ek imaandaar page, jisme likha ho ki test karne par kya toota aur ise chalane mein kitna cost aata hai.',
-  'That matters because employers ask three things. What can you build? Did anyone want it? And what goes wrong, and what do you do about it?':
-    'Yeh isliye zaroori hai kyunki employers teen cheezein poochte hain. Aap kya bana sakte hain? Kya kisi ko woh chahiye tha? Aur kya galat hota hai, aur aap uske baare mein kya karte hain?',
   'The brief':
     'Brief',
-  'Build one applied AI system that combines at least four capabilities from Part V. A good starting set is retrieval that respects permissions, tool calling, one bounded agent step, evaluation, tracing and security tests. Ship it to real users before you defend it. It should be one coherent journey, not a set of separate demos.':
-    'Ek applied AI system banaiye jo Part V ki kam se kam 4 capabilities ko jode. Ek achha starting set hai permissions ka dhyaan rakhne wala retrieval, tool calling, ek bounded agent step, evaluation, tracing aur security tests. Defend karne se pehle ise asli users tak ship kijiye. Yeh ek coherent journey honi chahiye, alag-alag demos ka set nahi.',
   'The eleven stages':
     'Gyarah stages',
   'Stage':
@@ -1207,252 +961,108 @@ Object.assign(window.HING = window.HING || {}, {
     'Zaroori evidence',
   '34.1 Discover':
     '34.1 Discover',
-  'Five interviews, a jobs-to-be-done statement, a scan of the market and competitors, and a problem brief backed by evidence.':
-    '5 interviews, ek jobs-to-be-done statement, market aur competitors ka scan, aur evidence par based ek problem brief.',
   '34.2 Define':
     '34.2 Define',
-  'The user, the pain, the baseline, the scope, the non-goals, the data, the tools, the risks, and a measurable acceptance criterion. Together these are your capstone AI PRD.':
-    'User, pain, baseline, scope, non-goals, data, tools, risks, aur ek measurable acceptance criterion. Yeh sab milkar aapka capstone AI PRD banate hain.',
   '34.3 Design':
     '34.3 Design',
-  'A one-page product and system design, plus the vision, strategy, roadmap and OKRs, a stakeholder map, a pricing hypothesis and your kill criteria.':
-    'Ek-page ka product aur system design, saath mein vision, strategy, roadmap aur OKRs, ek stakeholder map, ek pricing hypothesis aur aapke kill criteria.',
   '34.4 Build':
     '34.4 Build',
-  'Working code, tests, versioned prompts and settings, an architecture diagram and a threat model.':
-    'Chalta hua code, tests, versioned prompts aur settings, ek architecture diagram aur ek threat model.',
   '34.5 Evaluate':
     '34.5 Evaluate',
-  '30 to 50 evaluation cases, traces, and measurements of retrieval, answers, tools, safety, latency and cost.':
-    '30 se 50 evaluation cases, traces, aur retrieval, answers, tools, safety, latency aur cost ke measurements.',
   '34.6 Break':
     '34.6 Break',
   'At least ten deliberate failure tests, saved before you fix anything.':
     'Kam se kam 10 jaanbujhkar kiye gaye failure tests, kuch bhi fix karne se pehle save kiye hue.',
   '34.7 Observe':
     '34.7 Observe',
-  'A security go/no-go checklist, and a dashboard with six panels connected to real traces.':
-    'Ek security go/no-go checklist, aur asli traces se jodi hui 6 panels wali dashboard.',
   '34.8 Ship':
     '34.8 Ship',
-  'A live URL, monitoring, 5 to 10 real users, a support log and a timed rollback test.':
-    'Ek live URL, monitoring, 5 se 10 asli users, ek support log aur ek timed rollback test.',
   '34.9 Measure':
     '34.9 Measure',
-  'Before-and-after numbers for your optimisations, ADRs, and a unit-economics model at base usage and at high usage.':
-    'Aapke optimisations ke before-and-after numbers, ADRs, aur base usage aur high usage par ek unit-economics model.',
   '34.10 Iterate':
     '34.10 Iterate',
-  'One iteration based on evidence, before-and-after product and AI metrics, and an entry in the decision log.':
-    'Evidence par based ek iteration, before-and-after product aur AI metrics, aur decision log mein ek entry.',
   '34.11 Defend':
     '34.11 Defend',
-  'A ten-slide deck for executives, a twenty-minute technical defence and a public case study.':
-    'Executives ke liye 10 slides ka deck, 20 minute ka technical defence aur ek public case study.',
-  'A portfolio project is credible when you can explain its failures, show that someone wanted it, and say what it costs to run. Anyone can show a system that works on the demo path.':
-    'Ek portfolio project tab credible hota hai jab aap uske failures samjha sakte hain, dikha sakte hain ki kisi ko woh chahiye tha, aur bata sakte hain ki ise chalane mein kitna cost aata hai. Demo path par chalne wala system toh koi bhi dikha sakta hai.',
-  'Now the units. Each one covers a single stage, with the same rows every time. You get the goal, the idea, what to prove, what to build and what to break. Then come what to hand in, a question to check yourself, and why it matters. Do them in order, because each one feeds the next.':
-    'Ab units. Har unit ek stage ko cover karta hai, aur har baar wahi rows hoti hain. Aapko goal, idea, kya prove karna hai, kya banana hai aur kya todna hai milta hai. Phir aate hain kya hand in karna hai, khud ko check karne ka ek sawaal, aur yeh kyun zaroori hai. Inhe order mein kijiye, kyunki har unit agle ko khilata hai.',
   'Discover: a real problem with reachable users':
     'Discover: ek asli problem, aise users ke saath jinse aap mil sakein',
-  'Find a problem with a user group you can actually reach, and write a problem brief backed by evidence.':
-    'Aisi problem dhoondhiye jiske user group tak aap sach mein pahunch sakte hain, aur evidence par based ek problem brief likhiye.',
   'The best capstones come from a job you have done, a team you know or a community you belong to. Look for a problem that comes up often, costs real time or money, and is solved badly today.':
     'Sabse achhe capstones aise kaam se aate hain jo aapne kiya hai, aisi team se jise aap jaante hain, ya aisi community se jiska aap hissa hain. Aisi problem dhoondhiye jo aksar aati hai, jisme asli time ya paise lagte hain, aur jise aaj kharab tareeke se solve kiya jaata hai.',
-  'Score your problem against four tests. Can you reach users, meaning can you book five interviews this week? Does it happen often? Is it costly? And is it a fit for AI, rather than something a form or a formula could solve?':
-    'Apni problem ko chaar tests par score kijiye. Kya aap users tak pahunch sakte hain, matlab kya aap isi hafte 5 interviews book kar sakte hain? Kya yeh aksar hoti hai? Kya yeh costly hai? Aur kya yeh AI ke liye fit hai, ya ise ek form ya formula bhi solve kar leta?',
-  'Run five interviews. Write a jobs-to-be-done statement and a journey map, and scan the market and the competitors.':
-    '5 interviews kijiye. Ek jobs-to-be-done statement aur ek journey map likhiye, aur market aur competitors ko scan kijiye.',
-  'Challenge your idea with the question “why not ordinary software that always gives the same answer?” If a form would solve the problem, it isn’t a capstone.':
-    'Apne idea ko is sawaal se challenge kijiye: “ordinary software kyun nahi, jo hamesha wahi jawaab deta hai?” Agar ek form se problem solve ho jaati hai, toh woh capstone nahi hai.',
   'A problem brief backed by evidence, with a jobs-to-be-done statement.':
     'Evidence par based ek problem brief, jobs-to-be-done statement ke saath.',
-  'Can you trace each claim in your problem brief back to an interview note, and name one assumption that the evidence changed?':
-    'Kya aap apne problem brief ke har claim ko kisi interview note tak trace kar sakte hain, aur ek aisi assumption bata sakte hain jo evidence se badal gayi?',
   'If nothing you believed changed after five interviews, you may have heard only what you expected to hear.':
     'Agar 5 interviews ke baad aapka kuch bhi believe nahi badla, toh ho sakta hai aapne sirf wahi suna jo aap sunna chahte the.',
   'Define the problem and PRD':
     'Problem aur PRD define kijiye',
-  'Turn the problem into a system with acceptance criteria you can measure.':
-    'Problem ko ek aise system mein badaliye jiske acceptance criteria aap measure kar sakein.',
-  'A capstone becomes credible when the problem is clear and the cost of failure is clear too.':
-    'Capstone tab credible banta hai jab problem saaf ho aur failure ka cost bhi saaf ho.',
-  'Write down the user, the pain, the baseline, the scope, the non-goals, the data, the tools, the risks and the metrics.':
-    'User, pain, baseline, scope, non-goals, data, tools, risks aur metrics likhiye.',
-  'Ask “why not ordinary software that always gives the same answer?” again. This time, ask it against your actual scope, not the general case.':
-    'Dobara poochiye: “ordinary software kyun nahi, jo hamesha wahi jawaab deta hai?” Is baar yeh aapke asli scope ke against poochiye, general case ke nahi.',
-  'The capstone AI PRD.':
-    'Capstone AI PRD.',
-  'Can you state the business outcome in one sentence?':
-    'Kya aap business outcome ek sentence mein bata sakte hain?',
-  'This is the product anchor that everything below hangs from.':
-    'Yeh product ka woh anchor hai jis par neeche ki har cheez tiki hai.',
   'Design the product and the system together':
     'Product aur system ko saath mein design kijiye',
   'Put the product decision and the technical decision on one page, because each one limits the other.':
     'Product decision aur technical decision ko ek hi page par rakhiye, kyunki har ek doosre ko limit karta hai.',
   'Whether a user needs an answer in two seconds or by Monday decides the architecture. And whether the architecture can hit a target decides what you can promise.':
     'User ko jawaab do second mein chahiye ya Monday tak, yeh architecture tay karta hai. Aur architecture ek target hit kar sakta hai ya nahi, yeh tay karta hai ki aap kya promise kar sakte hain.',
-  'Fill in a design with nine lines: the user and the job, the activation moment, the AI approach, why not an agent, the evaluation, the boundaries, the cost, and the North Star.':
-    'Nau lines ka ek design bhariye: user aur job, activation moment, AI approach, agent kyun nahi, evaluation, boundaries, cost, aur North Star.',
-  'Add the vision, the strategy, the roadmap, the OKRs, a stakeholder map, a pricing hypothesis, and your kill criteria, which is the condition that tells you to stop.':
-    'Vision, strategy, roadmap, OKRs, ek stakeholder map, ek pricing hypothesis, aur apne kill criteria jodiye, yaani woh condition jo batati hai ki kab rukna hai.',
   'Find one line in your design that you chose because it was interesting, not because it was needed, and cut it.':
     'Apne design ki ek aisi line dhoondhiye jo aapne isliye chuni kyunki woh dilchasp thi, isliye nahi ki zaroori thi, aur use kaat dijiye.',
   'A one-page product and system design, plus a stakeholder map.':
     'Ek-page ka product aur system design, saath mein ek stakeholder map.',
-  'Does every technical choice on the page link to a product reason? And does every product choice link to something the system can actually do?':
-    'Kya page par har technical choice ek product reason se juda hai? Aur kya har product choice us cheez se juda hai jo system sach mein kar sakta hai?',
-  'Kill criteria written now, before you get attached to the idea, are the ones you’ll actually honour.':
-    'Jo kill criteria aap abhi likhte hain, idea se lagav hone se pehle, unhi ka aap sach mein maan rakhenge.',
   'Build the vertical slice':
     'Vertical slice banaiye',
   'Build the smallest system that works from start to finish, before you add anything clever.':
     'Kuch bhi clever jodne se pehle, sabse chhota system banaiye jo shuru se aakhir tak chalta ho.',
-  'A vertical slice proves that the architecture holds across its boundaries. A threat model added afterwards is an excuse, not a control.':
-    'Ek vertical slice sabit karta hai ki architecture apni boundaries ke paar bhi tikta hai. Baad mein jodi gayi threat model ek bahana hai, control nahi.',
-  'Build the path from input, to retrieval and context, to the model, to a structured answer, to a citation. Write the threat model alongside the first version, not after it.':
-    'Input se retrieval aur context tak, phir model tak, phir ek structured answer tak, phir ek citation tak ka raasta banaiye. Threat model ko pehle version ke saath likhiye, uske baad nahi.',
-  'Add a tool only when you need one. Keep the repository easy to reproduce, with a README, a requirements file and a command that runs it the same way every time.':
-    'Tool tabhi jodiye jab zaroorat ho. Repository ko reproduce karna aasaan rakhiye, ek README, ek requirements file aur ek command ke saath jo ise har baar ek hi tareeke se chalaye.',
-  'Ask a question that has no answer, and record how the system fails. This is your baseline.':
-    'Aisa sawaal poochiye jiska jawaab nahi hai, aur record kijiye ki system kaise fail hota hai. Yahi aapki baseline hai.',
   'A running repository, architecture v1 and a threat model.':
     'Ek chalti hui repository, architecture v1 aur ek threat model.',
-  'Can you run the system from a clean environment? And could someone else repeat your experiment without asking what you did by hand?':
-    'Kya aap system ko ek clean environment se chala sakte hain? Aur kya koi aur aapka experiment bina yeh poochhe dohra sakta hai ki aapne haath se kya kiya tha?',
-  'A small system that works beats a large diagram.':
-    'Chhota system jo chalta hai, bade diagram se behtar hai.',
   'Add evaluation and observability':
     'Evaluation aur observability jodiye',
-  'Turn the capstone into something you can measure.':
-    'Capstone ko aisi cheez banaiye jise aap measure kar sakein.',
-  'Every change should leave evidence behind.':
-    'Har change ke peeche evidence chhootna chahiye.',
-  'Create 30 to 50 evaluation cases, and collect traces.':
-    '30 se 50 evaluation cases banaiye, aur traces collect kijiye.',
-  'Add measurements for retrieval, answers, tools, safety, latency and cost.':
-    'Retrieval, answers, tools, safety, latency aur cost ke measurements jodiye.',
   'Change the model, the prompt or the index, and reproduce the drop in quality.':
     'Model, prompt ya index badaliye, aur quality mein aayi giraawat ko reproduce kijiye.',
-  'A golden dataset, an evaluation harness and an observability report.':
-    'Ek golden dataset, ek evaluation harness aur ek observability report.',
   'Can you explain why the latest version is better?':
     'Kya aap bata sakte hain ki latest version behtar kyun hai?',
   'This is where the project turns into engineering evidence.':
     'Yahin project engineering evidence mein badal jaata hai.',
   'Break it deliberately':
     'Ise jaanbujhkar todiye',
-  'Reproduce at least ten failure classes.':
-    'Kam se kam 10 failure classes reproduce kijiye.',
-  'A portfolio project is more credible when you can explain what broke.':
-    'Ek portfolio project tab zyada credible hota hai jab aap samjha sakte hain ki kya toota.',
-  'Test each of these. A question with no answer. A poisoned document. Prompt injection. An unauthorised tool. A malformed tool call. A stale permission. Multilingual input. A poor scan or audio. A model swap. A rise in traffic or cost.':
-    'Har ek ko test kijiye. Aisa sawaal jiska jawaab nahi. Ek poisoned document. Prompt injection. Bina ijaazat wala tool. Ek malformed tool call. Ek stale permission. Multilingual input. Kharab scan ya audio. Ek model swap. Traffic ya cost mein badhottari.',
-  'For each failure, capture the evidence, find the root cause and note the control.':
-    'Har failure ke liye evidence capture kijiye, root cause dhoondhiye aur control note kijiye.',
-  'Don’t fix anything straight away. First, save the failure as it happened.':
-    'Turant kuch fix mat kijiye. Pehle failure ko waisa hi save kar lijiye jaisa woh hua tha.',
-  'A security and red-team report, plus a table of failure findings.':
-    'Ek security aur red-team report, saath mein failure findings ki ek table.',
   'Which three failures surprised you?':
     'Kaun se teen failures ne aapko hairaan kiya?',
-  'Your failure log is often worth more than your happy-path demo.':
-    'Aapka failure log aksar aapke happy-path demo se zyada keemti hota hai.',
   'Observe: prove it is inspectable before real users touch it':
     'Observe: asli users ke haath lagane se pehle sabit kijiye ki system ko andar se dekha ja sakta hai',
   'Prove that you can see inside the system, and that its risk has limits, before you ship it to a real user.':
     'Sabit kijiye ki aap system ke andar dekh sakte hain, aur uska risk limit mein hai, kisi asli user tak ship karne se pehle.',
-  'If you can’t observe a system, you’re guessing about it, however good the demo looks.':
-    'Agar aap kisi system ko observe nahi kar sakte, toh aap uske baare mein andaaza laga rahe hain, chahe demo kitna bhi achha lage.',
-  'Run the security release-gate checks and the observability thresholds against the current build.':
-    'Security release-gate checks aur observability thresholds ko current build par chalaiye.',
   'Connect a six-panel dashboard to the real traces from your evaluation and break stages. The panels are quality, safety, latency, cost, traffic and failures.':
     '6 panels wali ek dashboard ko apne evaluation aur break stages ke asli traces se jodiye. Panels hain quality, safety, latency, cost, traffic aur failures.',
-  'Take one signal off the dashboard, and see which incident becomes invisible without it.':
-    'Dashboard se ek signal hata dijiye, aur dekhiye ki uske bina kaun sa incident dikhna band ho jaata hai.',
   'A security go/no-go checklist and an observability dashboard.':
     'Ek security go/no-go checklist aur ek observability dashboard.',
-  'Which alert should wake a human, and which should only be logged?':
-    'Kaun sa alert kisi insaan ko jagaye, aur kaun sa sirf log ho?',
-  'A stakeholder will ask, “how would you know if this broke at 2am?” This stage is your answer.':
-    'Koi stakeholder poochega, “agar yeh raat ke 2 baje toot jaaye toh aapko kaise pata chalega?” Yeh stage aapka jawaab hai.',
   'Ship to real users':
     'Asli users tak ship kijiye',
-  'Launch to a real user group, and prove that the rollback actually works.':
-    'Ek asli user group tak launch kijiye, aur sabit kijiye ki rollback sach mein kaam karta hai.',
-  'Real users teach you more than more theory. Five to ten observed sessions beat another week of polishing on your own.':
-    'Asli users aapko zyada theory se zyada sikhate hain. 5 se 10 observed sessions, akele ek aur hafta polish karne se behtar hain.',
-  'Put it on a stable live URL with monitoring, analytics, a privacy notice, a way for users to send feedback, and a rollback procedure.':
-    'Ise ek stable live URL par rakhiye, monitoring, analytics, ek privacy notice, users ke feedback bhejne ka tareeka, aur ek rollback procedure ke saath.',
   'Recruit five to ten real target users. Watch at least five sessions, and keep a support log from day one.':
     '5 se 10 asli target users recruit kijiye. Kam se kam 5 sessions dekhiye, aur pehle din se ek support log rakhiye.',
-  'Test your rollback for real before launch. Release a harmless change, roll it back, and time it. A rollback you have never tried is only a plan.':
-    'Launch se pehle apna rollback asal mein test kijiye. Ek harmless change release kijiye, use roll back kijiye, aur time kijiye. Jo rollback aapne kabhi try nahi kiya, woh sirf ek plan hai.',
-  'A live URL, a support log, a funnel or cohort view, and a timed rollback test.':
-    'Ek live URL, ek support log, ek funnel ya cohort view, aur ek timed rollback test.',
   'Do you have evidence from real users, not just demo traffic from your teammates?':
     'Kya aapke paas asli users ka evidence hai, sirf aapke teammates ka demo traffic nahi?',
-  'A system that is beautifully evaluated but has never been used by anyone has not passed this stage yet.':
-    'Jo system bahut achhe se evaluate hua hai lekin jise kisi ne use nahi kiya, woh is stage ko abhi paas nahi kar paya hai.',
   'Measure: optimize and quantify unit economics':
     'Measure: optimize kijiye aur unit economics quantify kijiye',
-  'Apply targeted fixes, measure before and after, and show that the economics work at scale.':
-    'Targeted fixes lagaiye, before aur after measure kijiye, aur dikhaiye ki economics scale par kaam karti hai.',
-  'An optimisation means something only when you can see the difference it made. And viability means something only when you can also see the cost of each successful task.':
-    'Optimisation tabhi kuch matlab rakhta hai jab aap dekh sakein ki usne kitna farq daala. Aur viability tabhi matlab rakhti hai jab aap har successful task ka cost bhi dekh sakein.',
-  'Try reranking, restructuring the prompt, validating against a schema, caching, routing or trimming the context, wherever it makes sense. Then work out the model cost per successful task at low, base and high usage.':
-    'Jahan sahi lage wahan reranking, prompt ko restructure karna, schema ke against validate karna, caching, routing ya context chhota karna try kijiye. Phir low, base aur high usage par har successful task ka model cost nikaliye.',
   'Change one thing at a time, and rerun the part of the evaluation that matters for it.':
     'Ek baar mein ek hi cheez badaliye, aur evaluation ka woh hissa dobara chalaiye jo uske liye zaroori hai.',
-  'Keep a fix that improves one metric but makes another worse, and write down the trade-off. Then check what happens to your margin at ten times the volume.':
-    'Aisa fix rakhiye jo ek metric sudhaarta hai lekin doosre ko bigaadta hai, aur trade-off likh lijiye. Phir check kijiye ki 10 guna volume par aapke margin ka kya hota hai.',
   'A before-and-after optimisation report, ADRs and a unit-economics model.':
     'Ek before-and-after optimisation report, ADRs aur ek unit-economics model.',
-  'Which improvement is big enough to matter, statistically or in practice? And does revenue grow faster than the cost of running the model and supporting users?':
-    'Kaun sa improvement itna bada hai ki matter kare, statistically ya practice mein? Aur kya revenue model chalane aur users ko support karne ke cost se tez badhta hai?',
-  'Avoid “optimization theater”. Also avoid a model that works only at your current, subsidised scale.':
-    '“Optimization theater” se bachiye. Aur aise model se bhi bachiye jo sirf aapke abhi ke subsidised scale par kaam karta hai.',
   'Iterate from evidence':
     'Evidence se iterate kijiye',
   'Ship one improvement that is based on evidence, and log the decision behind it.':
     'Evidence par based ek improvement ship kijiye, aur uske peeche ka decision mein likh dijiye.',
-  'An iteration earns its place only when it is tied to a problem you measured, not a hunch.':
-    'Ek iteration tabhi apni jagah kamata hai jab woh ek aisi problem se juda ho jise aapne measure kiya, kisi andaaze se nahi.',
   'Pick the lowest-scoring evidence question from the earlier stages, and ship one change aimed at it.':
     'Pichhle stages se sabse kam score wala evidence question chuniye, aur uske liye ek change ship kijiye.',
   'Compare the product and AI metrics before and after. Then write the decision into the decision log: the context, the options you considered, the approach you chose, the trade-offs, and what would make you reopen it.':
     'Product aur AI metrics ko before aur after compare kijiye. Phir decision ko decision log mein likhiye: context, jo options aapne socho, jo approach chuni, trade-offs, aur kya hone par aap ise dobara kholenge.',
-  'Ask someone to push back on the iteration you shipped, and answer from the metric, not from opinion.':
-    'Kisi se kahiye ki aapke ship kiye iteration par pushback kare, aur aap jawaab metric se dijiye, rai se nahi.',
-  'A changelog and one filled-in decision-log entry.':
-    'Ek changelog aur decision log ki ek bhari hui entry.',
   'Can you tie the iteration to a problem you measured, not a preference?':
     'Kya aap iteration ko ek measure ki hui problem se jod sakte hain, pasand se nahi?',
-  'If the decision log is still empty at this stage, then every choice so far went undocumented. That’s the first thing a reviewer will ask about.':
-    'Agar is stage tak bhi decision log khaali hai, toh ab tak ka har choice undocumented raha. Reviewer sabse pehle yahi poochega.',
   'Defend the system':
     'System ko defend kijiye',
-  'Present the architecture, the evidence, the security, the cost, the viability and the risk that remains, to two different audiences.':
-    'Architecture, evidence, security, cost, viability aur bacha hua risk, do alag audiences ke saamne rakhiye.',
   'The last skill this course tests is explaining and defending the system you built.':
     'Is course ka aakhri skill hai apne banaye system ko samjhana aur defend karna.',
   'Prepare a five-minute briefing for executives and a twenty-minute technical defence.':
     'Executives ke liye 5 minute ki briefing aur 20 minute ka technical defence taiyaar kijiye.',
-  'Build a ten-slide deck and a public case study. Cover the problem and the evidence that it’s real. Then say what you built, whether it works, whether it’s safe, whether people use it, and whether it makes money. Finish with what failed, the trade-offs, and what you’re asking for next.':
-    '10 slides ka deck aur ek public case study banaiye. Problem aur is baat ka evidence cover kijiye ki woh asli hai. Phir batayiye ki aapne kya banaya, kya woh kaam karta hai, kya woh safe hai, kya log use karte hain, aur kya usse paisa banta hai. Aakhir mein batayiye kya fail hua, trade-offs kya the, aur aap aage kya maang rahe hain.',
   'Ask a peer to challenge your model choice, your agent choice, your security and your cost assumptions.':
     'Kisi peer se kahiye ki woh aapka model choice, agent choice, security aur cost assumptions challenge kare.',
   'The final repository, architecture, PRD, risk register, evaluation pack, observability dashboard, vendor scorecard, decision log, executive deck and public case study.':
     'Final repository, architecture, PRD, risk register, evaluation pack, observability dashboard, vendor scorecard, decision log, executive deck aur public case study.',
-  'Can you explain every major decision without saying “the framework handles it”?':
-    'Kya aap har bade decision ko “framework sambhaal leta hai” kahe bina samjha sakte hain?',
-  'This is the credential you carry into interviews and design reviews.':
-    'Yahi woh credential hai jo aap interviews aur design reviews mein saath le jaate hain.',
   'When you are done':
     'Jab aap poora kar lein',
-  'How do you know you’re finished? Check this list. You’re done when every line is true.':
-    'Aapko kaise pata chalega ki aap khatam kar chuke hain? Yeh list check kijiye. Aap tab poora kar chuke hain jab har line sach ho.',
   'It runs on a machine that is not yours, at a live URL.':
     'Yeh ek aisi machine par chalta hai jo aapki nahi hai, ek live URL par.',
   'Anyone can rerun the tests and get the same numbers.':
@@ -1461,78 +1071,22 @@ Object.assign(window.HING = window.HING || {}, {
     'Aapne ise kam se kam teen asli tareekon se, jaanbujhkar toda hai.',
   'Three of your fixes have before and after numbers.':
     'Aapke teen fixes ke before aur after numbers hain.',
-  'You attacked your own safeguards and recorded what happened.':
-    'Aapne apne hi safeguards par attack kiya aur record kiya ki kya hua.',
-  'You know how to roll it back if something goes wrong, and you have timed it.':
-    'Aapko pata hai ki kuch galat hone par ise roll back kaise karna hai, aur aapne use time kiya hai.',
-  'Five to ten real users have used it, and you have their evidence, not a teammate’s.':
-    '5 se 10 asli users ne ise use kiya hai, aur aapke paas unka evidence hai, kisi teammate ka nahi.',
-  'You can state cost per successful task, and what happens to margin at ten times the volume.':
-    'Aap cost per successful task bata sakte hain, aur yeh bhi ki 10 guna volume par margin ka kya hota hai.',
-  'At least one iteration is tied to measured evidence, and logged as a decision.':
-    'Kam se kam ek iteration measured evidence se juda hai, aur decision ke roop mein log hua hai.',
-  'You can explain every major choice without saying “the framework handles that”.':
-    'Aap har bade choice ko “framework yeh sambhaal leta hai” kahe bina samjha sakte hain.',
   'Final self-test':
     'Aakhri self-test',
-  'One last exercise. Answer these from memory, out loud if you can. If you get stuck on one, go back to the chapter that covers it.':
-    'Ek aakhri exercise. In sawaalon ke jawaab yaad se dijiye, ho sake toh zor se bolkar. Agar kisi par atak jaayein, toh us chapter par wapas jaiye jo use cover karta hai.',
-  'Why is the model stateless?':
-    'Model stateless kyun hai?',
-  'Why can retrieval fail, and why do embeddings help?':
-    'Retrieval fail kyun ho sakta hai, aur embeddings kyun madad karte hain?',
-  'Why does retrieval never say “nothing here” on its own?':
-    'Retrieval kabhi apne aap “yahan kuch nahi hai” kyun nahi kehta?',
-  'Why is top-k a trade-off?':
-    'Top-k ek trade-off kyun hai?',
   'When does a workflow beat an agent?':
     'Workflow agent se kab behtar hota hai?',
-  'Why are tools a security boundary?':
-    'Tools ek security boundary kyun hain?',
   'Why must evaluation come before release, and why does tracing matter?':
     'Evaluation release se pehle kyun aani chahiye, aur tracing kyun matter karti hai?',
-  'How do you calculate cost per successful task, not per call?':
-    'Cost per successful task kaise nikalte hain, per call nahi?',
-  'What makes an AI specification different from a normal one?':
-    'Ek AI specification normal specification se alag kyun hota hai?',
   'Who is your buyer, and does your price cover what the model costs you?':
     'Aapka buyer kaun hai, aur kya aapka price woh cover karta hai jo model aapko cost karta hai?',
   'What would make you kill this project rather than keep iterating on it?':
     'Kya hone par aap is project ko kill kar denge, bajaye iterate karte rehne ke?',
-  'If you can answer all of these, you’ve done what the course set out to do. You can build an AI system, break it, measure it, and stand behind it.':
-    'Agar aap in sabke jawaab de sakte hain, toh aapne woh kar liya jo course karna chahta tha. Aap ek AI system bana sakte hain, use tod sakte hain, measure kar sakte hain, aur uske peeche khade ho sakte hain.',
-  'This was the last required chapter. Next, Track B begins with B1, on business models, pricing and unit economics. Later, B7 turns what you just built into stories for interviews. The appendices turn your artifacts into reusable portfolio templates.':
-    'Yeh aakhri required chapter tha. Aage Track B shuru hota hai B1 se, jo business models, pricing aur unit economics ke baare mein hai. Baad mein B7 aapne jo abhi banaya use interviews ki kahaniyon mein badalta hai. Appendices aapke artifacts ko reusable portfolio templates mein badalte hain.',
   'Ship Bharat Privacy Guard, and write the findings document':
     'Bharat Privacy Guard ship kijiye, aur findings document likhiye',
-  'This is the final capstone of the technical course. Everything you have made now comes together in one repository and one document. Keep the document plain and factual. A findings document that reads like a brochure is not doing its job. Describe the project as “a privacy tool that helps an organisation collect and share less personal data”, and never as making anyone compliant.':
-    'Yeh technical course ka final capstone hai. Aapne jo kuch bhi banaya hai, ab woh ek repository aur ek document mein ek saath aata hai. Document ko saaf aur factual rakhiye. Jo findings document brochure jaisa padhta hai, woh apna kaam nahi kar raha. Project ko is tarah describe kijiye: “ek privacy tool jo kisi organisation ko kam personal data collect aur share karne mein madad karta hai”, aur kabhi yeh mat kahiye ki yeh kisi ko compliant banata hai.',
-  'Your repository, for the working system and its README, plus a written findings document. Both together are what you hand in.':
-    'Aapki repository, chalte hue system aur uske README ke liye, aur ek likha hua findings document. Dono milkar hi aapka hand in hain.',
-  'Make the repository work on a clean machine. Someone else must be able to clone it, follow the README and run the answer key.':
-    'Repository ko ek clean machine par chalne laayak banaiye. Koi aur ise clone kar sake, README follow kar sake aur answer key chala sake.',
-  'Add the architecture diagram and the decision log.':
-    'Architecture diagram aur decision log jodiye.',
-  'Add the final answer key and the scoreboard before and after your fixes.':
-    'Final answer key aur apne fixes se pehle aur baad ka scoreboard jodiye.',
-  'Add the results of the attacks you tried in Chapter 13, and some sample traces.':
-    'Chapter 13 mein jo attacks aapne try kiye, unke results aur kuch sample traces jodiye.',
-  'Add the cost and speed at your expected volume, and what changes at ten times the volume.':
-    'Apne expected volume par cost aur speed jodiye, aur yeh bhi ki 10 guna volume par kya badalta hai.',
-  'Add the requirements, the risk register, the system card and the rollout and rollback plan.':
-    'Requirements, risk register, system card aur rollout aur rollback plan jodiye.',
-  'Write the findings document: what you built, what broke, who used it and what the evidence shows. Include three failures you found yourself, each with evidence, and three fixes, each with numbers from before and after.':
-    'Findings document likhiye: aapne kya banaya, kya toota, kisne use kiya aur evidence kya dikhata hai. Teen failures shaamil kijiye jo aapne khud dhoondhe, har ek evidence ke saath, aur teen fixes, har ek ke before aur after numbers ke saath.',
-  'End with what remains risky and what is deliberately out of scope, such as other Indian languages, the gateway and the browser extension.':
-    'End mein likhiye ki kya risky bacha hai aur kya jaanbujhkar scope se bahar hai, jaise doosri Indian languages, gateway aur browser extension.',
   'A repository that works on a clean machine.':
     'Ek repository jo clean machine par chalti hai.',
   'Three failures you found yourself, each with evidence.':
     'Teen failures jo aapne khud dhoondhe, har ek evidence ke saath.',
   'Three fixes, each with before and after numbers.':
     'Teen fixes, har ek ke before aur after numbers ke saath.',
-  'The cost per message, and what happens to it at ten times the volume.':
-    'Cost per message, aur 10 guna volume par uska kya hota hai.',
-  'A five-minute explanation a non-technical leader could repeat, and a twenty-minute one that an engineer could not easily poke holes in.':
-    'Ek 5 minute ki explanation jo koi non-technical leader dohra sake, aur ek 20 minute ki jisme koi engineer aasani se chhed na nikaal sake.'
 });

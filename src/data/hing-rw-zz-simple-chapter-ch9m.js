@@ -16,7 +16,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Sampling':
     'Sampling',
   'Sampling is how the model picks its next word-piece (token) from a few likely ones. Think of picking one sweet from a few good ones. Temperature (how adventurous the model is) is one way to control it.':
-    'Sampling woh tareeka hai jisse model kuch achhe vikalpon mein se agla tukda (token) chunta hai. Socho, kuch achhi mithaiyon mein se ek chunna. Temperature (model kitna jokhim leta hai) ise sambhalne ka ek tareeka hai.',
+    'Sampling woh tareeka hai jisse model kuch achhe vikalpon mein se agla tukda (token) chunta hai. Sochiye, kuch achhi mithaiyon mein se ek chunna. Temperature (model kitna jokhim leta hai) ise sambhalne ka ek tareeka hai.',
   'Benchmark':
     'Benchmark',
   'A benchmark is a fixed set of questions that you give to every option, so the comparison is fair. It is like one question paper for every student. Someone else\'s benchmark predicts your task only by luck.':
@@ -80,7 +80,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Last chapter you built a harness. It records every run in the same way, like a school register. Now you use it. A leaderboard shows how a model did on someone else\'s task. Today you get your own numbers, on your own questions, in one afternoon.':
     'Pichhle chapter mein aapne harness banaya. Yeh har run ko ek hi tareeke se likhta hai, school register ki tarah. Ab aap use karte hain. Leaderboard dikhata hai ki model ne kisi aur ke kaam par kaisa kiya. Aaj aap apne sawaalon par, apne numbers, ek dopahar mein paayenge.',
   'Think of buying a car. An award does not tell you if the car fits your family. It does not tell you if it suits your roads or what it costs to run. So you take a test drive. Few teams test-drive their models. This chapter closes that gap.':
-    'Socho aap gaadi khareed rahe hain. Award yeh nahin batata ki gaadi aapke parivar ke liye theek hai. Na yeh batata hai ki woh aapki sadkon par chalegi ya uska kharch kitna hoga. Isliye aap test drive lete hain. Bahut kam teams apne models ki test drive leti hain. Yeh chapter wahi kami bharta hai.',
+    'Sochiye aap gaadi khareed rahe hain. Award yeh nahin batata ki gaadi aapke parivar ke liye theek hai. Na yeh batata hai ki woh aapki sadkon par chalegi ya uska kharch kitna hoga. Isliye aap test drive lete hain. Bahut kam teams apne models ki test drive leti hain. Yeh chapter wahi kami bharta hai.',
   'Models differ in many ways at once: skill, speed, desk size (the context window), button-pressing (tool use) and cost. A model that wins on one can lose on another. What matters most depends on your use case, like choosing a bike or a bus for your trip.':
     'Models kai baaton mein ek saath alag hote hain: kaabiliyat, speed, mez ka size (context window), button dabana (tool use) aur cost. Jo model ek mein jeete, woh doosre mein haar sakta hai. Sabse zaroori kya hai, yeh aapke use case par hai, jaise safar ke liye cycle ya bus chunna.',
   'There are six short units below. They start with what a model does when it answers. They end with the one-page card that records your decision. Go in order.':
