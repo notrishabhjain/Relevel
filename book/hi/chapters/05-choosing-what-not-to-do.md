@@ -28,13 +28,13 @@ Yeh chapter dekhta hai ki strategy kin cheezon se bani hoti hai, aur team kahan 
 
 ## Case: nau achhe ideas
 
-Shaadi ki guest list socho jismein har cousin ka naam hai. Kisi ko bahar nahi rakha, toh list yeh nahi bata sakti ki aage kaun baithega. Anaya ki list ka har item theek tha, aur mushkil wahi thi. Agar list mein kisi cheez ko kabhi mana nahi kiya jaata, toh woh Monday subah ke faisle mein madad nahi kar sakti. Har kaam ka bachaav kiya ja sakta hai.
+Shaadi ki guest list sochiye jismein har cousin ka naam hai. Kisi ko bahar nahi rakha, toh list yeh nahi bata sakti ki aage kaun baithega. Anaya ki list ka har item theek tha, aur mushkil wahi thi. Agar list mein kisi cheez ko kabhi mana nahi kiya jaata, toh woh Monday subah ke faisle mein madad nahi kar sakti. Har kaam ka bachaav kiya ja sakta hai.
 
 Meenakshi kadvi nahi thi. Woh practical thi. Strategy tab shuru hoti hai jab koi cheez list se bahar hoti hai.
 
 ## Vision, strategy aur plan
 
-Meenakshi ne Anaya se kaha ki woh bataye, teen cheezon mein farq kya hai. Log aksar inhe ek hi maan lete hain. Train ke safar jaisa socho. Vision woh shehar hai jahan aap pahunchna chahte hain. Strategy woh raasta hai jo aap chunte hain, aur kyun. Plan is hafte ka timetable hai. Table mein dekhiye guard ke liye teeno kaise dikhte hain.
+Meenakshi ne Anaya se kaha ki woh bataye, teen cheezon mein farq kya hai. Log aksar inhe ek hi maan lete hain. Train ke safar jaisa sochiye. Vision woh shehar hai jahan aap pahunchna chahte hain. Strategy woh raasta hai jo aap chunte hain, aur kyun. Plan is hafte ka timetable hai. Table mein dekhiye guard ke liye teeno kaise dikhte hain.
 
 Table: Vision, strategy aur plan
 | | Kaun sa sawaal | Time horizon | Guard ka version |
@@ -53,7 +53,7 @@ Pehla hissa hai *diagnosis*. Yeh dawai se pehle doctor ki jaanch jaisa hai. Yeh 
 
 Anaya ka version yeh tha. Personal details wahan pahunch jaati hain jahan unhe nahi pahunchna chahiye. Customers unhe aazadi se type karte hain. Chatbot unhe maangta hai. Unhe hataane ka kisi ke paas koi tareeka nahi hai. Aur aaj ke tools ek hi writing system ke liye bane hain, isliye yahan log jaise likhte hain, usmein fail ho jaate hain. Ise sales pitch jaisa na lagne mein chaar drafts lage.
 
-Doosra hissa hai *guiding policy*. Ghar ke niyam socho. Yeh problem ke liye aapka poora tareeka hai, aur ismein woh bhi aata hai jo aap karne se mana karenge. Anaya ki policy yeh thi. Pehle details ko unki shakl se pakdo, kyunki woh sasta aur pakka hai. Phir naam aur pate sambhalo, kyunki doosre tools wahin fail hote hain. Sab kuch company ke andar karo, logon ke likhne ke asli tareeke mein. Aur har us cheez ko hal karne ki koshish mat karo jise privacy kaha ja sakta hai.
+Doosra hissa hai *guiding policy*. Ghar ke niyam sochiye. Yeh problem ke liye aapka poora tareeka hai, aur ismein woh bhi aata hai jo aap karne se mana karenge. Anaya ki policy yeh thi. Pehle details ko unki shakl se pakdo, kyunki woh sasta aur pakka hai. Phir naam aur pate sambhalo, kyunki doosre tools wahin fail hote hain. Sab kuch company ke andar karo, logon ke likhne ke asli tareeke mein. Aur har us cheez ko hal karne ki koshish mat karo jise privacy kaha ja sakta hai.
 
 Teesra hissa hai saath-saath chalne wale kaamon ka ek set. Matlab kuch steps jo policy ko poora karte hain aur ek doosre ki madad karte hain. Anaya ne chaar likhe. Usne dekha ki do dusron par depend hi nahi karte, aur unhe kaat diya.
 
@@ -69,7 +69,7 @@ Teesra hissa hai saath-saath chalne wale kaamon ka ek set. Matlab kuch steps jo 
 
 Kahan se shuru karna hai, yeh alag faisla hai. Meenakshi ka rule tha: itne chhote se shuru karo ki kisi ek cheez mein sabse achhe ban sako. Team baad mein faila sakti hai. Lekin har cheez mein sirf theek-thaak hone se ubarna mushkil hota hai.
 
-Product ka woh chhota pehla target, jise woh saaf taur par jeet sakta hai, uska *wedge* kehlaata hai. Lakdi mein ghusti patli nok socho. Woh itna chhota hona chahiye ki usmein behtareen ban sakein. Aur woh kisi badi cheez se juda hona chahiye, taaki use jeetne se ek darwaza khule.
+Product ka woh chhota pehla target, jise woh saaf taur par jeet sakta hai, uska *wedge* kehlaata hai. Lakdi mein ghusti patli nok sochiye. Woh itna chhota hona chahiye ki usmein behtareen ban sakein. Aur woh kisi badi cheez se juda hona chahiye, taaki use jeetne se ek darwaza khule.
 
 Guard ke liye wedge "India ki companies ke liye privacy" nahi tha. Wedge tha: Sahaj ki apni support chat mein personal details dhoondhna aur chhupana, un teen tareekon mein jinmein log likhte hain. Yeh vision se bahut chhota tha. Aur ise jeeta ja sakta tha. Company ke andar ek taiyaar customer tha aur asli messages ka bhandaar tha. Aur Farah Sheikh thi, jise ek hafte mein pata chal jaata ki woh kaam karta hai ya nahi.
 

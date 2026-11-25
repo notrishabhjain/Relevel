@@ -42,7 +42,7 @@ Imran ne kaha ki yeh machine-learning ki problem nahi thi. Model theek tha. Yeh 
 
 Anaya ko mahino se iska dar tha. Use apni engineers se baat kar paane par garv tha. Woh yeh bhi theek-theek jaanti thi ki yeh kaabiliyat kahan khatam hoti hai. Woh "the API" (ek service ka darwaaza) aur "the logs" (jo hua uska likha record) bol sakti thi. Woh asal mein kya hain, yeh use nahi pata tha.
 
-Imran ne use do ghante, ek whiteboard aur ek misaal di. App mein khana order karne ko socho. Restaurant ko ek message jaata hai. Ek reply aata hai jisme price hota hai. Jab tak aap messages dekh nahi sakte, yeh jaadu lagta hai. Us dopahar ki har cheez ya toh ek aisa message thi, ya woh jagah jahan koi message kho jaata hai.
+Imran ne use do ghante, ek whiteboard aur ek misaal di. App mein khana order karne ko sochiye. Restaurant ko ek message jaata hai. Ek reply aata hai jisme price hota hai. Jab tak aap messages dekh nahi sakte, yeh jaadu lagta hai. Us dopahar ki har cheez ya toh ek aisa message thi, ya woh jagah jahan koi message kho jaata hai.
 
 Table: Plumbing ke hisse, aur har ek se product manager ko kya chahiye
 | Hissa | Yeh kya hai | Kya zaroori hai |
@@ -71,7 +71,7 @@ Imran ne kaha, "API fail ho gayi" koi explanation nahi hai. Woh bas poochhna shu
 
 Phir Anaya ne error padhna seekha. Dus minute lage. Shaayad woh us dopahar ke sabse kaam ke dus minute the.
 
-Jab program zor se fail hota hai, toh woh ek lamba block chhapta hai jise trace kehte hain. Paon ke nishaanon ki line socho. Man karta hai upar se padhna. Lekin upar ka hissa sabse kam kaam ka hai. Asli wajah lagbhag hamesha neeche hoti hai.
+Jab program zor se fail hota hai, toh woh ek lamba block chhapta hai jise trace kehte hain. Paon ke nishaanon ki line sochiye. Man karta hai upar se padhna. Lekin upar ka hissa sabse kam kaam ka hai. Asli wajah lagbhag hamesha neeche hoti hai.
 
 ```
 Traceback (most recent call last):
@@ -102,7 +102,7 @@ Usne ek aur badlaav kiya. Guard ke sambhaale har message ke har record mein ab c
 
 ## Woh runner jo yaad rakhta hai
 
-Aakhri cheez woh thi jo Imran ne do mahine mein banayi thi aur kisi ko dikhayi nahi thi. Woh ek **experiment runner** tha. Aisi lab notebook socho jo khud bharti hai. Yeh ek dobara use hone wala program hai. Har experiment ke liye woh inputs, outputs, settings, timings aur errors record karta hai. Sab ek standard form mein.
+Aakhri cheez woh thi jo Imran ne do mahine mein banayi thi aur kisi ko dikhayi nahi thi. Woh ek **experiment runner** tha. Aisi lab notebook sochiye jo khud bharti hai. Yeh ek dobara use hone wala program hai. Har experiment ke liye woh inputs, outputs, settings, timings aur errors record karta hai. Sab ek standard form mein.
 
 Iska kaam ek khaas pul paar karna tha. "Maine try kiya" aur "maine naapa" ke beech ek khai hai. Us khai ka zyadatar hissa bookkeeping hai. Runner ke saath aap ek prompt do baar chala kar dono runs save kar sakte hain. Aap ek cheez badalte hain. Logs turant dikhate hain ki kya badla.
 
@@ -121,7 +121,7 @@ Paanch baje Imran ne poochha ki usne kya seekha. Usne terms ki list nahi di. Dia
 - Jaanna ki test ko ek baar fail hona chahiye.
 - Koi kahe "API fail ho gayi", toh poochhna ki kis tarah.
 
-Yeh chhoti list thi, aur kuch nahi, aisa bhi nahi tha. Jab koi engineer use diagram dikhayega, woh hisson ko pehchaan legi. Ek naye driver ko socho jo ab road signs padh sakta hai. Page ke upar usne woh vaakya joda jo Imran ne shuru mein kaha tha. Woh use rakhna chahti thi.
+Yeh chhoti list thi, aur kuch nahi, aisa bhi nahi tha. Jab koi engineer use diagram dikhayega, woh hisson ko pehchaan legi. Ek naye driver ko sochiye jo ab road signs padh sakta hai. Page ke upar usne woh vaakya joda jo Imran ne shuru mein kaha tha. Woh use rakhna chahti thi.
 
 AI system ek software system hai jisme ek hissa unpredictable hai. Aam software mein jo kuch galat ho sakta hai, woh ab bhi ho sakta hai. Aur ek aur failure hai, sabse chupchaap, jisme koi error nahi dikhta.
 

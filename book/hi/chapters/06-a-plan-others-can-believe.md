@@ -30,7 +30,7 @@ Agar aapne delivery chalayi hai, toh neeche ke kai shabd aap jaante hain. Stakeh
 
 ## Case: bina dates ka plan
 
-Pichhle chapter ki strategy abhi bhi sirf ek sentence thi. Naqshe par ek manzil socho. Logon ko phir bhi raasta chahiye. Engineers, compliance staff aur founders usse kaam kar sakein, iske liye teen cheezein chahiye thi. Pehli, kaam ka ek order. Doosri, yeh jaanne ka tareeka ki kaam safal hua ya nahi. Teesri, is baat ka hisaab ki raaste mein kaun aa sakta hai.
+Pichhle chapter ki strategy abhi bhi sirf ek sentence thi. Naqshe par ek manzil sochiye. Logon ko phir bhi raasta chahiye. Engineers, compliance staff aur founders usse kaam kar sakein, iske liye teen cheezein chahiye thi. Pehli, kaam ka ek order. Doosri, yeh jaanne ka tareeka ki kaam safal hua ya nahi. Teesri, is baat ka hisaab ki raaste mein kaun aa sakta hai.
 
 Neeche ke sections in teeno ko ek-ek karke dekhte hain. Phir chautha step aata hai. Yeh ek meeting hai jismein colleagues se kaha gaya ki maan lo project pehle hi fail ho chuka hai.
 
@@ -70,7 +70,7 @@ Delivery aur product alag-alag waade maangte hain. Delivery plan date ka waada k
 
 Lakshmi ka sawaal abhi bhi Anaya ke desk par ek sticky note mein chipka tha. Use kaise pata chalega ki tool kaam karta hai?
 
-Companies iska jawaab *objectives and key results* se deti hain, jinhe chhote mein *OKR* kehte hain. Report card socho. Objective shabdon mein batata hai ki aap kya chahte hain. *Key results* uske saath ke marks hain. Yeh teen-chaar numbers hain jo dikhate hain ki aap wahan pahunche.
+Companies iska jawaab *objectives and key results* se deti hain, jinhe chhote mein *OKR* kehte hain. Report card sochiye. Objective shabdon mein batata hai ki aap kya chahte hain. *Key results* uske saath ke marks hain. Yeh teen-chaar numbers hain jo dikhate hain ki aap wahan pahunche.
 
 ::: key Outcomes, outputs nahi
 Key result ek outcome naapta hai, yaani logon ke liye kya badla. Woh output nahi naapta, yaani yeh nahi ki kya ship hua. "Privacy tool release karo" ek output hai. Yeh ho sakta hai aur kuch na badle. "Kam conversations personal detail ke saath chat se nikalti hain" ek outcome hai.
@@ -92,7 +92,7 @@ Tool apni test mein achha kar sakta hai, aur phir bhi agents use ignore kar sakt
 
 Imran ne poochha, plan sach mein padhega kaun? Anaya ko nahi pata tha.
 
-Shaadi ke logon ko socho. Halwai, pandit aur hall ka malik, har ek shaadi chalwa bhi sakta hai aur rok bhi sakta hai. Jo bhi project ki madad kar sakta hai ya use rok sakta hai, ya jis par project ka asar padta hai, woh *stakeholder* hai. Sab stakeholders barabar nahi hote. Toh Anaya ne do lakeeron wala ek square banaya. Ek lakeer dikhati thi ki insaan ke paas project par kitni power hai. Doosri dikhati thi ki use project ki kitni parwaah hai. Phir usne usmein naam rakhe.
+Shaadi ke logon ko sochiye. Halwai, pandit aur hall ka malik, har ek shaadi chalwa bhi sakta hai aur rok bhi sakta hai. Jo bhi project ki madad kar sakta hai ya use rok sakta hai, ya jis par project ka asar padta hai, woh *stakeholder* hai. Sab stakeholders barabar nahi hote. Toh Anaya ne do lakeeron wala ek square banaya. Ek lakeer dikhati thi ki insaan ke paas project par kitni power hai. Doosri dikhati thi ki use project ki kitni parwaah hai. Phir usne usmein naam rakhe.
 
 Table: Power aur interest ke hisaab se stakeholders
 | | Kam parwaah | Bahut parwaah |
@@ -152,7 +152,7 @@ Founders ne memo par gyarah minute lagaye. Unhone poochha ki kitna time lagega, 
 
 Decision us log mein gaya jo Anaya ne pehli raat shuru kiya tha. Usne uske neeche ek nayi line jodi. Agar Imran ka aadha time teesre hafte ke baad nahi mil paaya, toh woh apni raay badal degi.
 
-Ek doctor socho jo operation se pehle aapko risks bata deta hai. Aap us par kam nahi, zyada bharosa karte hain. Jis plan par doosre bharosa kar sakein, woh sabse confident nahi sunai deta. Woh unhe pehle hi bata chuka hota hai ki woh kaise fail ho sakta hai.
+Ek doctor sochiye jo operation se pehle aapko risks bata deta hai. Aap us par kam nahi, zyada bharosa karte hain. Jis plan par doosre bharosa kar sakein, woh sabse confident nahi sunai deta. Woh unhe pehle hi bata chuka hota hai ki woh kaise fail ho sakta hai.
 
 ## Saaraansh
 

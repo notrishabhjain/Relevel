@@ -134,7 +134,7 @@ School mein har do hafte par unit test hota hai, yeh sochiye. Imran ki team *spr
 
 Estimates (kaam mein kitna time lagega, iska andaaza) zyada mushkil the. Imran bata sakta tha ki 12 digits ke rule mein kitna time lagega. Lekin woh yeh nahi bata sakta tha ki Hinglish mein naam dhoondhne mein kitna lagega. Use khud nahi pata tha ki yeh ho bhi sakta hai ya nahi.
 
-Isliye team ne *time-box* use kiya. Ek cook ko naya pakwaan aazmane ke liye teen din dena, aur ant mein decide karna, aisa sochiye. Time-box ek tay time hota hai, jiske ant mein ek decision hota hai. Yahan woh teen din tha. Agar tab tak asli conversations ke 100 mein se 70 se kam naam mile, toh ruko aur dobara socho. Time-box time ke andaaze ko decision ke pal mein badal deta hai.
+Isliye team ne *time-box* use kiya. Ek cook ko naya pakwaan aazmane ke liye teen din dena, aur ant mein decide karna, aisa sochiye. Time-box ek tay time hota hai, jiske ant mein ek decision hota hai. Yahan woh teen din tha. Agar tab tak asli conversations ke 100 mein se 70 se kam naam mile, toh ruko aur dobara sochiye. Time-box time ke andaaze ko decision ke pal mein badal deta hai.
 
 ## Pehle kaagaz
 

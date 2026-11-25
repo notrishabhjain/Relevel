@@ -17,7 +17,7 @@ August ke aakhri hafte mein Farah Sheikh glass room ke darwaaze par khadi thi. H
 
 Anaya hafton se is sawaal ka intezaar kar rahi thi. Yahi sawaal tay karta hai ki tool use hoga ya nahi.
 
-Ek calculator socho jo das mein se ek baar galat ho. Aap uspar bharosa chhod denge. Ab ek aisa calculator socho jo kahe "yahan main pakka nahi hoon, check kar lijiye". Aap use use karte rahenge. 90 percent par das mein se ek jawaab galat hota hai. Kitni bhi engineering ho, woh aakhri dasva hissa nahi hatta. Isliye aage kya hota hai, yeh screen tay karti hai. Yeh engineering ka faisla nahi hai. Engineer bata sakta hai ki confidence score maujood hai (ek number jo batata hai ki tool kitna pakka hai). Score kam ho toh agent ko kya dikhega, yeh product owner tay karta hai.
+Ek calculator sochiye jo das mein se ek baar galat ho. Aap uspar bharosa chhod denge. Ab ek aisa calculator sochiye jo kahe "yahan main pakka nahi hoon, check kar lijiye". Aap use use karte rahenge. 90 percent par das mein se ek jawaab galat hota hai. Kitni bhi engineering ho, woh aakhri dasva hissa nahi hatta. Isliye aage kya hota hai, yeh screen tay karti hai. Yeh engineering ka faisla nahi hai. Engineer bata sakta hai ki confidence score maujood hai (ek number jo batata hai ki tool kitna pakka hai). Score kam ho toh agent ko kya dikhega, yeh product owner tay karta hai.
 
 ## Case: dasva jawaab
 
@@ -45,7 +45,7 @@ Ek screen se Anaya bachti aa rahi thi. Usne ek Tuesday use design karne mein lag
 
 Har system tab achha dikhta hai jab woh kaam kar raha ho. Bharosa us screen par banta hai jo kehti hai "main nahi kar sakta". Bahut se products use sabse aakhir mein design karte hain, ya kabhi nahi.
 
-Guard ke liye **refusal** woh hai jo woh tab karta hai jab kaam safely nahi kar sakta. Ek dukaan ka sahayak socho jo kahe, "Yeh hamare paas nahi milta. Bagal ki dukaan try kijiye." Aap us dukaan par zyada bharosa karenge. Ek misaal lijiye. Ek customer free chat mein Aadhaar card ki photo attach karta hai. Guard abhi tasveer ke andar ka number kaala nahi kar sakta.
+Guard ke liye **refusal** woh hai jo woh tab karta hai jab kaam safely nahi kar sakta. Ek dukaan ka sahayak sochiye jo kahe, "Yeh hamare paas nahi milta. Bagal ki dukaan try kijiye." Aap us dukaan par zyada bharosa karenge. Ek misaal lijiye. Ek customer free chat mein Aadhaar card ki photo attach karta hai. Guard abhi tasveer ke andar ka number kaala nahi kar sakta.
 
 Imaandaar design yeh tha ki dikhawa na kiya jaaye. Chat teeno languages mein bolegi. Words Farah ne likhe aur Lakshmi ne approve kiye. Unmein likha tha: please yahan identity cards share mat kijiye. Secure upload use kijiye, ya kisi insaan se baat karne ke liye yeh button dabaiye.
 
@@ -53,7 +53,7 @@ Imaandaar design yeh tha ki dikhawa na kiya jaaye. Chat teeno languages mein bol
 Jo refusal kisi insaan tak ka raasta deta hai, woh us system se zyada bharosa kamata hai jo hamesha kuch na kuch jawaab de deta hai. Log system ko is se bhi judge karte hain ki woh kis cheez ko mana karta hai. Jo feature kabhi mana nahi karta, woh unhe sikhata hai ki uske confidence ka koi matlab nahi.
 :::
 
-Aakhri screen tab ki thi jab machine band ho. Anaya safe mode pehle hi bana chuki thi (woh switch jo guard ko band karta hai). Ab usne design kiya ki mode on hone par agents ko kya dikhega. Upar ek patli peeli patti hai. Us par likha hai "Safe mode: names and addresses are not being hidden". Dukaan ke darwaaze par "band hai" ka board socho. Khaali screen log ko andaaza lagane par chhod deti. Switch bas ek failure ko doosre se badal deta.
+Aakhri screen tab ki thi jab machine band ho. Anaya safe mode pehle hi bana chuki thi (woh switch jo guard ko band karta hai). Ab usne design kiya ki mode on hone par agents ko kya dikhega. Upar ek patli peeli patti hai. Us par likha hai "Safe mode: names and addresses are not being hidden". Dukaan ke darwaaze par "band hai" ka board sochiye. Khaali screen log ko andaaza lagane par chhod deti. Switch bas ek failure ko doosre se badal deta.
 
 ## Ek test jo fail ho sakta tha
 
@@ -67,7 +67,7 @@ Isliye pehla kaam slow hissa dhoondhna tha. Anaya aur Farah ne support office me
 
 Slow hissa kahin aur tha, aur usse Lakshmi ko chinta thi. Har mahine woh ek privacy sweep chalati thi. Woh logs (har chat ka likha hua record) se paanch sau chats ki spot check leti thi. Woh ginti thi ki kitnon mein abhi bhi koi unhidden identity number hai. July mein paanch sau mein se chhiyaalis mein tha.
 
-Ek **pilot** chaar faislon par tikta hai. Shaadi ke khane se pehle ki trial batch socho. Aap ek dish chunte hain, chakhne wala ek group, ek pass mark, aur kaafi din.
+Ek **pilot** chaar faislon par tikta hai. Shaadi ke khane se pehle ki trial batch sochiye. Aap ek dish chunte hain, chakhne wala ek group, ek pass mark, aur kaafi din.
 
 Table: Pilot ke chaar faisle
 | Faisla | Matlab | Sahaj ka chunaav |
@@ -115,7 +115,7 @@ Har N apne project se bhariye.
 
 90 percent accuracy par das mein se ek jawaab galat hota hai. Us par screen kya karti hai, yeh product owner tay karta hai.
 
-- Chaar cheezein zaroori hain. Aisa evidence dikhao jo khule. Speed ke baare mein socho. Confidence ko parde ke peeche use karo, taaki tay ho ki kya hoga, screen par number ki tarah nahi. Sudhaarna haath se kaam karne se tez banao.
+- Chaar cheezein zaroori hain. Aisa evidence dikhaiye jo khule. Speed ke baare mein sochiye. Confidence ko parde ke peeche use kijiye, taaki tay ho ki kya hoga, screen par number ki tarah nahi. Sudhaarna haath se kaam karne se tez banao.
 - Refusal ek aisi screen hai jo aap jaanboojh kar design karte hain, aur woh kisi insaan tak ke raaste par khatam hoti hai. AI band hone par dikhne wali screen bhi aisi hi hai.
 - Yeh jaanne ke liye ki system se business ko madad milti hai ya nahi, pehle slow hissa dhoondhiye. Phir ek pilot chalaiye. Ek aisa number lijiye jise business pehle se track karta hai, aur ek comparison group. Failure threshold pehle se likhiye. Window itna lamba rakhiye ki chamak utar jaaye.
 - Jab kaam karta hai par number nahi hilta, toh order mein poochhiye. Kya use hota hai? Kya uska output wahan tak pahunchta hai jahan faisla hota hai? Kya wahi step slow tha?

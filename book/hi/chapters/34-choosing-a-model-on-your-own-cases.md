@@ -20,7 +20,7 @@ Anaya ne poochha ki use kis cheez par test kiya gaya tha. Reasoning, mathematics
 
 Woh chart ek **leaderboard** hai. Yeh school ki rank list jaisa hai. Woh dikhata hai ki model ne kisi aur ke kaam par kaisa kiya. Result imaandaar ho sakta hai aur phir bhi aapke kaam ke baare mein kuch nahi batata.
 
-Ek car ko isliye kharidne ka socho ki usne award jeeta. Award yeh nahi batata ki car aapke parivaar ke liye theek hai ya nahi. Woh nahi batata ki woh aapki sadkon par chalegi ya aap uska kharch utha sakte hain. Aap car ko test drive par le jaate. Bahut kam teams model ko test drive par le jaati hain.
+Ek car ko isliye kharidne ka sochiye ki usne award jeeta. Award yeh nahi batata ki car aapke parivaar ke liye theek hai ya nahi. Woh nahi batata ki woh aapki sadkon par chalegi ya aap uska kharch utha sakte hain. Aap car ko test drive par le jaate. Bahut kam teams model ko test drive par le jaati hain.
 
 ## Case: chart ka ek lamba bar
 
@@ -30,7 +30,7 @@ Yeh aisa hai jaise customer dukaandaar se kahe, "Mere kitchen mein chala kar dik
 
 ## Kai farq ek saath
 
-Imran isi sawaal ka intezaar kar raha tha. Model bas behtar ya kharab nahi hota. Cricket team socho. Ek khiladi achha batting karta hai, ek tez bowling, ek achhi fielding. Models kai tareeke se ek saath alag hote hain. Kaam kitna achha karte hain. Kitni tez jawaab dete hain. Kitna text le sakte hain. Functions kitni bharosemand tarah se call karte hain (tool chalane ko kehte hain). Aur kitne mein padte hain.
+Imran isi sawaal ka intezaar kar raha tha. Model bas behtar ya kharab nahi hota. Cricket team sochiye. Ek khiladi achha batting karta hai, ek tez bowling, ek achhi fielding. Models kai tareeke se ek saath alag hote hain. Kaam kitna achha karte hain. Kitni tez jawaab dete hain. Kitna text le sakte hain. Functions kitni bharosemand tarah se call karte hain (tool chalane ko kehte hain). Aur kitne mein padte hain.
 
 Jo pehle mein jeete, woh agle teen mein haar sakta hai. Aur sabse zaroori kaun sa hai, yeh use ke baare mein ek fact hai, model ke baare mein nahi.
 
@@ -71,7 +71,7 @@ Table ne koi saaf winner nahi diya. Yahi use kaam ka banata hai. Model C kaam sa
 
 ## Sabse sasta jo kaam kar de
 
-Numbers ek aise tareeke ki taraf ishaara kar rahe the jo team pehle se jaanti thi. **Routing** har request ko us sabse sasti model ke paas bhejta hai jo use sambhal sake. Hospital ka front desk socho. Ek nurse pehle har mareez ko dekhti hai. Sirf mushkil cases senior doctor ke paas jaate hain, jo mehnga hai. Yahan Model A har message padhta, tez aur sasta. Woh bahut zyada messages nipta deta. Model B sirf unsure kuch ko dekhta.
+Numbers ek aise tareeke ki taraf ishaara kar rahe the jo team pehle se jaanti thi. **Routing** har request ko us sabse sasti model ke paas bhejta hai jo use sambhal sake. Hospital ka front desk sochiye. Ek nurse pehle har mareez ko dekhti hai. Sirf mushkil cases senior doctor ke paas jaate hain, jo mehnga hai. Yahan Model A har message padhta, tez aur sasta. Woh bahut zyada messages nipta deta. Model B sirf unsure kuch ko dekhta.
 
 Anaya ne use benchmark par aazmaya. Dono milkar overall 100 mein 93 mile. Hinglish mein 100 mein 89 mile. Aam time 0.17 second tha, lagbhag chaar paise ek message par. Yeh Model C jitna achha nahi tha. Lekin yeh specification poori karta tha, aur iski ijaazat thi.
 
@@ -94,7 +94,7 @@ Table: Folder ke teen hisse
 | Har hisse ka size | Pehle se tay kijiye ki budget kam pade toh pehle kya hatayenge. Zyadatar log history pehle hatate hain aur evidence sabse aakhir mein. Aapka design alag ho, toh wajah design hoti hai |
 | Memory | Yeh feature nahi, architecture hai. Kam se kam teen alag stores ko memory kehte hain aur unhe mix nahi karna chahiye |
 
-Teesri row ko zara gaur se dekhna padega. "Memory" shabd teen alag stores ke liye use hota hai. Ek hi mez ki teen daraazein socho.
+Teesri row ko zara gaur se dekhna padega. "Memory" shabd teen alag stores ke liye use hota hai. Ek hi mez ki teen daraazein sochiye.
 
 Table: Memory kehlane wale teen stores
 | Store | Isme kya hota hai | Har ek ke liye kaun se sawaal |
@@ -109,7 +109,7 @@ Session history ke liye Anaya us cell par ruki jisme likha tha ki default se kya
 
 Aakhri baat shaant thi. Jab guard koi detail chhupata, woh likh leta ki kyun. Har record mein message ka number hota. Usme guard ka woh hissa hota jisne faisla kiya, aur us hisse ka version. Koi bhi baad mein dekh kar faisle ko uske source tak trace kar sakta tha. Matlab woh code jisne use banaya, aur us waqt ki instructions.
 
-Yeh hai **provenance**. Yeh woh kaagazi nishaan hai jo batata hai ki koi cheez kahan se aayi. Phone ke saath aane wale bill aur warranty card ko socho.
+Yeh hai **provenance**. Yeh woh kaagazi nishaan hai jo batata hai ki koi cheez kahan se aayi. Phone ke saath aane wale bill aur warranty card ko sochiye.
 
 Yeh uski ummeed se zyada kaam ka nikla. Citation tabhi kaam ki hai jab padhne wala evidence tak pahunch sake. Aur jis faisle ko dohra nahi sakte, use bachaya nahi ja sakta. September mein Lakshmi ne poochha ki August ke ek Tuesday ko ek khaas naam kyun chhupaya gaya tha. Anaya ko jawaab chaalis second mein mil gaya. Usne yeh nahi kaha ki pehle kisi ne poochha hi nahi tha.
 

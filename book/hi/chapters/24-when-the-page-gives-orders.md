@@ -55,7 +55,7 @@ Yeh team ki likhi sabse pehli instruction ka sabak hai, jo ab zyada mehnge daam 
 
 Anaya ne poochha ki kya yeh khilauna hai, kyunki model ne sirf ek banayi hui list chhaapi thi. Imran ne kaha ki yeh utna hi bura hai jitna machine ki pahunch mein hai. Usne board par ek triangle banaya. Har kone par usne ek phrase likha: private data, aisa text jo bahar ke log likh sakte hain, aur kuch bahar bhejne ka raasta.
 
-In mein se ek ya do wale system aam taur par kaafi safe hote hain. Socho ek model jo private data padhta hai lekin sirf bharose ka text dekhta hai. Woh taale mein band kamra hai. Jo model ajnabiyon ka text padhta hai lekin kuch tak pahunch nahi sakta, woh nuksaan nahi karta.
+In mein se ek ya do wale system aam taur par kaafi safe hote hain. Sochiye ek model jo private data padhta hai lekin sirf bharose ka text dekhta hai. Woh taale mein band kamra hai. Jo model ajnabiyon ka text padhta hai lekin kuch tak pahunch nahi sakta, woh nuksaan nahi karta.
 
 Khatarnaak yeh milaan hai. Maan lijiye ek system private data padh sakta hai. Woh ajnabi ka likha text padh sakta hai. Aur uske paas kuch bahar bhejne ka koi bhi tareeka hai. Tab ajnabi ke text mein chhupa ek sentence use keh sakta hai ki data padho aur ajnabi ko bhej do. Yahi milaan *lethal trifecta* hai. Ek ghar sochiye jisme keemti saaman hai. Darwaaze par koi bhi dastak de sakta hai. Naukar har mehmaan ki baat maanta hai.
 

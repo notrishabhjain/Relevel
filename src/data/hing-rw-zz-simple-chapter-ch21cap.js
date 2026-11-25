@@ -3,8 +3,8 @@
 Object.assign(window.HING = window.HING || {}, {
   'Do not start with slides. Your problem is Bharat Privacy Guard. Gather what you already have: the repository (an online folder that remembers every change), the issue list and the evaluation dataset (your questions with right answers). Then build the smallest slice that works from start to finish, like one thin cut through a whole cake.':
     'Slides se shuru mat kijiye. Aapki problem Bharat Privacy Guard hai. Jo aapke paas pehle se hai woh ikattha kijiye: repository (ek online folder jo har badlav yaad rakhta hai), issue list aur evaluation dataset (sawaal aur unke sahi jawaab). Phir sabse chhota slice banaiye jo shuru se aakhir tak chalta ho, jaise poore cake ka ek patla tukda.',
-  'Grow Bharat Privacy Guard into one finished product. Give its rule-keeper two forms: a fixed workflow (a set recipe) and a helper that can use tools but has a step limit. A person approves risky actions. Add structured outputs (a form with fixed boxes), one input that is not text, an evaluation harness (the test rig), tracing and cost tracking. Add security controls. Then test it with real users and improve it.':
-    'Bharat Privacy Guard ko ek poora product banaiye. Uske rule-keeper ko do roop dijiye: fixed workflow (tai recipe) aur ek helper jo tools use kare par step limit ke saath. Risky kaam ko ek insaan approve kare. Structured outputs (fixed khaanon wala form), ek aisa input jo text nahi hai, evaluation harness (test ka dhancha), tracing aur cost tracking jodiye. Security controls jodiye. Phir real users se test kijiye aur behtar banaiye.',
+  'Grow Bharat Privacy Guard into one finished product. Give its rule-keeper two forms: a fixed workflow (a set recipe) and an agent (a helper that uses tools) with a step limit. A person approves risky actions. Add structured outputs (a form with fixed boxes), one input that is not text, an evaluation harness (the test rig), tracing and cost tracking. Add security controls. Then test it with real users and improve it.':
+    'Bharat Privacy Guard ko ek poora product banaiye. Uske rule-keeper ko do roop dijiye: fixed workflow (tai recipe) aur ek agent (tools use karne wala helper) step limit ke saath. Risky kaam ko ek insaan approve kare. Structured outputs (fixed khaanon wala form), ek aisa input jo text nahi hai, evaluation harness (test ka dhancha), tracing aur cost tracking jodiye. Security controls jodiye. Phir real users se test kijiye aur behtar banaiye.',
   'Break it on purpose in at least ten kinds of failure: a question with no answer, a poisoned document, prompt injection (a hidden note that says "ignore your teacher"), an unauthorised tool request, a malformed tool call, a stale permission, a multilingual query, a poor scan or audio, a model swap, and a rise in traffic or cost.':
     'Kam se kam das tarah ki failure jaan-boojhkar kijiye: aisa sawaal jiska jawaab nahi hai, poisoned document, prompt injection (chhupi hui parchi jo kehti hai "teacher ki baat mat suno"), bina ijazat ka tool request, bigdi hui tool call, purani permission, kai bhasha wala query, kharab scan ya audio, model badalna, aur traffic ya cost ka achanak badhna.',
   'The running system, a live URL with real users, and an evidence pack (a folder of proof). The pack holds the PRD (the recipe card for the product), the architecture, the threat model, the evaluation plan, the dashboard, the unit economics, the decision log, the rollout and rollback plan, the vendor scorecard and an explanation for executives.':
@@ -18,13 +18,13 @@ Object.assign(window.HING = window.HING || {}, {
   'Failure class':
     'Failure class',
   'A kind of failure, not one single example. Think of a pile in your complaint sorting. Ten classes make ten tests that mean something, instead of ten stories.':
-    'Failure ki ek tarah, koi ek example nahi. Socho jaise shikayaton ki ek dher. Das classes ka matlab das aise test jinka matlab hai, das kahaniyan nahi.',
+    'Failure ki ek tarah, koi ek example nahi. Sochiye jaise shikayaton ki ek dher. Das classes ka matlab das aise test jinka matlab hai, das kahaniyan nahi.',
   'The risk that is left after a control (a safety step) is in place. You say it out loud instead of leaving people to guess.':
     'Woh risk jo control (suraksha ka kadam) lagne ke baad bhi bacha rehta hai. Aap use khul kar batate hain, logon ko andaza lagane nahi dete.',
   'Evidence pack':
     'Evidence pack',
-  'A folder of proof that lets somebody else check your claims, like showing your working in a maths exam, instead of just asking to be trusted.':
-    'Saboot ka folder jisse koi aur aapke daavon ko jaanch sake, jaise maths exam mein apna working dikhana, bas bharosa maangna nahi.',
+  'A folder of proof (a set of artifacts) that lets somebody else check your claims, like showing your working in a maths exam, instead of just asking to be trusted.':
+    'Saboot ka folder (artifacts ka set) jisse koi aur aapke daavon ko jaanch sake, jaise maths exam mein apna working dikhana, bas bharosa maangna nahi.',
   'Kill criteria':
     'Kill criteria',
   'The stop sign you write down before you need it. It tells you when to stop. Without it, you keep working on a problem the evidence says will not work.':

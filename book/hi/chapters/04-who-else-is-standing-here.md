@@ -65,7 +65,7 @@ Usne sabse bade us group se shuru kiya jiska woh bachaav kar sakti thi. Yaani In
 Yahan se teen size baar-baar aate hain, ek doosre ke andar. Yeh rahe unke naam.
 
 ::: def Teen size, ek doosre ke andar
-Poore shehar ki dukaanein socho. *Total addressable market* (TAM) woh sab log hain jinhe problem hai, us daam par jo aap lenge. *Serviceable addressable market* (SAM) TAM ka woh hissa hai jise aap apne paas ke tareekon se sambhal sakte hain. Yeh shehar ke aapke hisse ki dukaanein hain. *Serviceable obtainable market* (SOM) SAM ka woh hissa hai jo aap lagbhag teen saal mein sach mein jeet sakte hain.
+Poore shehar ki dukaanein sochiye. *Total addressable market* (TAM) woh sab log hain jinhe problem hai, us daam par jo aap lenge. *Serviceable addressable market* (SAM) TAM ka woh hissa hai jise aap apne paas ke tareekon se sambhal sakte hain. Yeh shehar ke aapke hisse ki dukaanein hain. *Serviceable obtainable market* (SOM) SAM ka woh hissa hai jo aap lagbhag teen saal mein sach mein jeet sakte hain.
 :::
 
 Table mein Anaya ke numbers hain. Har row apne upar wali row se chhoti hai.
@@ -98,7 +98,7 @@ Export matlab ek system se nikaali gayi data ki copy. Vendor matlab woh company 
 
 *Status quo* aksar sabse mazboot rival hota hai. Yeh ghar ki purani aadat hai. Woh free hai, jaana-pehchaana hai, aur thoda-bahut kaam bhi karta hai. Naye product ko aisi dopahar ko harana padta hai jismein kuch galat nahi hua. Offices aksar aise dinon ko saboot maan lete hain ki sab theek hai. Isliye jab koi kehta hai ki uske product ka koi rival nahi, toh aam taur par usne dekha hi nahi ki log aaj kya karte hain.
 
-Har asli alternative ke liye Anaya ne ek *competitor teardown* banaya. Socho do phone mez par saath-saath rakhe hain. Usne likha ki har tool kiske liye hai, kitne ka hai, kya achha karta hai, aur uske customers kis baat ki shikayat karte hain. Shikayatein dhoondhne ki sabse achhi jagah woh reviews the jo users ne public sites par chhode the. Kaam ki cheez woh shikayat thi jo baar-baar aati thi.
+Har asli alternative ke liye Anaya ne ek *competitor teardown* banaya. Sochiye do phone mez par saath-saath rakhe hain. Usne likha ki har tool kiske liye hai, kitne ka hai, kya achha karta hai, aur uske customers kis baat ki shikayat karte hain. Shikayatein dhoondhne ki sabse achhi jagah woh reviews the jo users ne public sites par chhode the. Kaam ki cheez woh shikayat thi jo baar-baar aati thi.
 
 In tools ke baare mein teen shikayatein baar-baar aayi.
 

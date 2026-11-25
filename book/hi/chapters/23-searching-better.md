@@ -47,7 +47,7 @@ Table: Search ke chaar sudhaar, wahi das sawaalon par naape gaye
 | Contextual retrieval | Har chunk store karne se pehle, ek model ek sentence likhta hai ki chunk apne document mein kahan baitha hai ("Yeh Late Payment Policy ke refund section se hai, overpayments ke baare mein"). Sentence uske saath store hota hai. Jo tukda "the aforesaid amount" se shuru hota tha, ab uske saath ek note hai ki woh amount kya hai | 8 se 9 |
 | Metadata filtering | Har chunk par label hota hai: uska document, version, kin dates ke beech woh lagu hai, aur kaun use dekh sakta hai. Search kuch bhi score kare, usse pehle jo chunk current nahi hai woh bahar phenk diya jaata hai | Koi badlaav nahi |
 
-Hybrid search ko do doston jaisa socho. Ek exact word dhoondhta hai, Ctrl+F ki tarah. Ek matlab dhoondhta hai. Saath mein woh kam chhodte hain. Reranking shortlist aur interview jaisa hai. Contextual retrieval har card par ek sticky note hai.
+Hybrid search ko do doston jaisa sochiye. Ek exact word dhoondhta hai, Ctrl+F ki tarah. Ek matlab dhoondhta hai. Saath mein woh kam chhodte hain. Reranking shortlist aur interview jaisa hai. Contextual retrieval har card par ek sticky note hai.
 
 Chauthi technique woh hai jisse score nahi hila. Un labels ko *metadata* kehte hain (page ke baare mein jaankari, page khud nahi). Kisi bhi scoring se pehle in labels se chunks bahar karna *metadata filtering* hai.
 
@@ -61,7 +61,7 @@ Isliye Imran ne use gyarahvi row ki tarah jod diya. Bijli bill par late fee kitn
 Hybrid search se sahi chunk ke aane ka chance badhta hai. Reranking se uske upar rehne ka chance badhta hai. Extra sentence se uske samjhe jaane ka chance badhta hai. Koi ranking technique ek radd ho chuki policy ko current policy se aage nikalne se nahi rok sakti. Ranking relevance ke baare mein hai, aur yeh correctness ka mamla hai. Filter scoring se pehle kaam karta hai. Woh galat cheez ko kam likely nahi banata. Woh use namumkin bana deta hai.
 :::
 
-Anaya ne ek farq dekha jise woh ab har jagah dhoondhne lagi thi. Ek tarah ka sudhaar failure ko kam kar deta hai. Doosri tarah ka sudhaar uski wajah hata deta hai. Phir notice board ko socho. Aap logon ko dhyaan se padhne ko keh sakte ho. Ya aap purana notice utaar sakte ho. Usne whiteboard par kaale marker se "row eleven" likha, purani laal line ke neeche. Yeh answer key ki pehli row thi jo ek customer se aayi thi.
+Anaya ne ek farq dekha jise woh ab har jagah dhoondhne lagi thi. Ek tarah ka sudhaar failure ko kam kar deta hai. Doosri tarah ka sudhaar uski wajah hata deta hai. Phir notice board ko sochiye. Aap logon ko dhyaan se padhne ko keh sakte ho. Ya aap purana notice utaar sakte ho. Usne whiteboard par kaale marker se "row eleven" likha, purani laal line ke neeche. Yeh answer key ki pehli row thi jo ek customer se aayi thi.
 
 ## Labels kis liye hain
 

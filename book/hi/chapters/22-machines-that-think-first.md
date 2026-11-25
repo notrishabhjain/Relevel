@@ -43,7 +43,7 @@ Mushkil cases mein reasoning se bahut madad mili. Aasaan cases mein kuch nahi mi
 
 Us shaam Anaya ne train ticket ke peeche likha ki usne kya seekha. Reasoning har trip par taxi ka kiraya dene jaisa hai. Har baar paise bhi lagte hain aur time bhi. Bahut se kaamon mein usse kuch nahi milta.
 
-Woh tab kaam aati hai jab jawaab ko nikaalna padta hai. Socho: ek doosre par tike steps, hisaab, plans, code, ya asli paheli jise suljhana ho. Woh tab bekaar hai jab jawaab pehle se input mein hai. Tab model ko bas use dhoondhna hai ya uska roop badalna hai.
+Woh tab kaam aati hai jab jawaab ko nikaalna padta hai. Sochiye: ek doosre par tike steps, hisaab, plans, code, ya asli paheli jise suljhana ho. Woh tab bekaar hai jab jawaab pehle se input mein hai. Tab model ko bas use dhoondhna hai ya uska roop badalna hai.
 
 Isme aata hai kuch dhoondhna, ek field (jaankari ka ek naam wala tukda) nikaalna, kisi group mein daalna, aur format theek karna. Aapke diye passage ka summary banana bhi isi mein aata hai. Words mein bole gaye 12 digits ko nikaalna padta tha. Mobile number aur email wale seedhe message ko nahi.
 

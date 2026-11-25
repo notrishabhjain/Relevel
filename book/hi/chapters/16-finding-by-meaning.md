@@ -58,7 +58,7 @@ Similarity score ka matlab tab tak kam hai jab tak aap do baatein na jaanein. Bi
 
 Map utna hi achha hai jitna woh text jisse embedding model ne seekha. Woh text zyadatar internet ka English tha. Jo words us text mein kam the, woh map par ajeeb jagah pad jaate hain. Jo do cheezein users ko alag lagti hain, woh padosi ban sakti hain. Jo do cheezein users ko ek jaisi lagti hain, woh door-door pad sakti hain. Yeh ek aise naye dukaan ke naukar jaisa hai jisne bas ek hi shehar mein kaam kiya ho. Local words use confuse karte hain.
 
-Imran ne Anaya se kaha ki Sahaj ke customers jo words use karte hain, unke baare mein socho. Table batati hai ki map kahan galat ho sakta hai.
+Imran ne Anaya se kaha ki Sahaj ke customers jo words use karte hain, unke baare mein sochiye. Table batati hai ki map kahan galat ho sakta hai.
 
 Table: Sahaj ke liye map kahan galat ho sakta hai
 | Words | Yeh risky kyun hain |

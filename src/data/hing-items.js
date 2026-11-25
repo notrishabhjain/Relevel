@@ -5,8 +5,6 @@
    back to English rather than showing a translation of something else. */
 Object.assign(window.HING = window.HING || {}, {
 
-  'A 300-word English answer is roughly how many tokens?':
-    '300 shabd ka English jawaab motamoti kitne tokens ka hota hai?',
   'About 150':
     'Lagbhag 150',
   'About 225':
@@ -185,8 +183,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Version ya status par ek metadata filter',
   'Larger chunks':
     'Bade chunks',
-  'Which failures can metadata filtering prevent that no retrieval-quality technique can?':
-    'Metadata filtering kaunse failures rok sakti hai jo koi bhi retrieval-quality technique nahi rok sakti?',
   'Superseded document versions being quoted as current':
     'Purane ho chuke document versions ka current bataakar quote hona',
   'Out-of-date figures being retrieved alongside current ones':
@@ -213,8 +209,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Accuracy',
   'F1':
     'F1',
-  'You raise k from 3 to 8. What happens?':
-    'Aap k ko 3 se 8 kar dete hain. Kya hota hai?',
   'Both precision and recall rise':
     'Precision aur recall dono badhte hain',
   'Nothing changes without re-indexing':
@@ -259,8 +253,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Benchmarks mehnge hain',
   'Taxonomies are faster to build':
     'Taxonomies banane mein tez hain',
-  'Put the flywheel in order, starting from what you already have running.':
-    'Flywheel ko kram mein rakhiye, us cheez se shuru karke jo aapke paas pehle se chal rahi hai.',
   'Production traffic':
     'Production traffic',
   'Error analysis on sampled outputs':
@@ -599,8 +591,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Isse behtar documentation banti hai',
   'Categories require approval':
     'Categories ke liye manzoori chahiye hoti hai',
-  'You have a failure taxonomy with counts. How should it drive the roadmap?':
-    'Aapke paas ginti wali failure taxonomy hai. Woh roadmap kaise chalani chahiye?',
   'Fix the most technically interesting cluster':
     'Sabse technically dilchasp guchha theek kijiye',
   'Fix everything in one release':
@@ -643,16 +633,12 @@ Object.assign(window.HING = window.HING || {}, {
     'Caches expire ho jaate hain, isliye kuchh karne ki zaroorat nahi',
   'Only the vector index matters':
     'Sirf vector index maayne rakhta hai',
-  'Which of these make a deletion request hard to satisfy in a RAG system?':
-    'Inme se kaunsi cheezein RAG system mein deletion request ko sach mein mushkil bana deti hain?',
   'The same passage was embedded into a vector index':
     'Wahi passage vector index mein embed ho chuka hai',
   'Real queries and outputs were sampled into an eval set':
     'Asli queries aur outputs ka sample eval set mein le liya gaya tha',
   'The source file is in object storage':
     'Source file object storage mein hai',
-  'Which sentence would fail the explain-it-upward test?':
-    'Kaunsa sentence upar-samjhaane ka imtihaan fail karega?',
   'New facts about your business':
     'Aapke business ke naye facts',
   'To retrieve documents more accurately':

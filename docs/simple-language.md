@@ -158,6 +158,10 @@ appears in a chapter (Hinglish in brackets where it differs).
   token, prompt, test, chapter, file, button, Run.
 - Polite "aap". Warm, never formal: "kijiye", "dekhiye", not "kariye
   sunishchit".
+- Talking to the reader is always the "aap" form: Sochiye, dekhiye, kijiye,
+  likhiye, padhiye. The "tum" forms (Socho, dekho, karo) appear only inside
+  quoted speech between people in a story, or in a quoted instruction to a
+  model ("sirf di gayi baatein use karo").
 
 ## What does not change
 

@@ -17,7 +17,7 @@ terms:
 
 Karan project se judne wala pehla analyst tha. Woh February mein aaya. Pehli subah usne Anaya se kaha: "Please bataiye ki aap message text track nahi kar rahi hain." Anaya ko lagbhag bura laga. Bilkul nahi, usne kaha. Karan ne kaha ki yeh achha hai. Use yeh har hafte poochhna padega. Woh shuru ek aise insaan se karna chahta tha jo sahmat ho.
 
-Yeh mazaak tha, aur ek rule bhi. Socho ek taala banane wala jo har chaabi ki copy rakh leta hai. Jo privacy tool yeh naap kar apna kaam dekhe ki usne kya chhupaya, aur uske liye wohi record kare jo woh chhupa raha hai, woh ek hafte mein khud ko haraa deta. Yeh chapter measurement ke pehle mahine ke saath chalta hai. Karan ka kaam yeh saabit karna tha ki guard gin sakta hai ki log kya karte hain. Aur woh yeh bhi nahi rakhta ki unhone likha kya.
+Yeh mazaak tha, aur ek rule bhi. Sochiye ek taala banane wala jo har chaabi ki copy rakh leta hai. Jo privacy tool yeh naap kar apna kaam dekhe ki usne kya chhupaya, aur uske liye wohi record kare jo woh chhupa raha hai, woh ek hafte mein khud ko haraa deta. Yeh chapter measurement ke pehle mahine ke saath chalta hai. Karan ka kaam yeh saabit karna tha ki guard gin sakta hai ki log kya karte hain. Aur woh yeh bhi nahi rakhta ki unhone likha kya.
 
 ## Case: bina record kiye naapna
 

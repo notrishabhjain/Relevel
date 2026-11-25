@@ -42,7 +42,7 @@ Unhone test chalaya. 10 mein se 6 sawaalon ne pehli koshish mein sahi page dhoon
 
 Doosra idea samajhne mein Anaya ko zyada waqt laga. Woh saamne hi chhupa tha. Search step do ulte tareekon se galat ho sakta hai. Woh kuch aisa chhod sakta hai jo zaroori tha. Ya woh bahut saari aisi cheezein wapas la sakta hai jo zaroori nahi thi.
 
-Imran ne use kaha ki socho aapne apne colleague ko meeting ki files lene bheja. Maan lijiye colleague us ek file ke bina wapas aata hai jo aapko chahiye thi. Yeh ek tarah ki failure hai. Maan lijiye colleague poori almari utha laata hai. Baaki files ke beech aap wahi file dhoondh nahi paate. Yeh doosri tarah ki failure hai.
+Imran ne use kaha ki sochiye aapne apne colleague ko meeting ki files lene bheja. Maan lijiye colleague us ek file ke bina wapas aata hai jo aapko chahiye thi. Yeh ek tarah ki failure hai. Maan lijiye colleague poori almari utha laata hai. Baaki files ke beech aap wahi file dhoondh nahi paate. Yeh doosri tarah ki failure hai.
 
 ::: def Recall aur precision
 Pond mein ek jaal ki tarah sochiye. *Recall* poochhta hai: pond ki saari machhliyon mein se jaal ne kitni pakdi? Seedhe shabdon mein, jitni asli cheezein dhoondhni thi, unmein se tool ne kitni dhoondhi. Agar 100 thi aur tool ne 90 dhoondhi, toh recall 90 percent hai. *Precision* poochhta hai: jaal mein jo hai, usmein kitna sach mein machhli hai? Tool ne jo flag kiya, usmein se kitna sach mein wahi tha jo tool ne kaha. Agar usne 100 flag kiye aur 80 asli the, toh precision 80 percent hai.

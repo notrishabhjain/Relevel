@@ -3,8 +3,6 @@
 Object.assign(window.HING = window.HING || {}, {
   'Make a helper you will reuse':
     'Ek helper banaiye jo aap baar baar use karenge',
-  'Two text pairs have cosine similarities of 0.78 and 0.19. Which statement is safe to make from these two numbers alone?':
-    'Do text pairs ki cosine similarity 0.78 aur 0.19 hai. Sirf in do numbers se kaun sa statement kehna safe hai?',
   'The first pair are near-synonyms and the second pair are not':
     'Pehla pair near-synonyms hai aur doosra nahi',
   'You cannot tell from the scores alone, because how scores spread out depends on the model, the corpus and the task':

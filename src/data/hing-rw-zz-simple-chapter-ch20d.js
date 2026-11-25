@@ -126,7 +126,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Split it into four parts: the upload, the processing, the indexing (making a quick-find list) and the status updates to the user.':
     'Ise chaar hisson mein baantiye: upload, processing, indexing (jaldi dhoondhne ki list banana) aur user ko status updates.',
   'Imagine ten times the work, and find the part that gives way first.':
-    'Das guna kaam socho aur dhoondhiye ki kaun sa hissa sabse pehle jawaab de jaata hai.',
+    'Das guna kaam sochiye aur dhoondhiye ki kaun sa hissa sabse pehle jawaab de jaata hai.',
   'A sketch of how the system grows, with your guesses about how much it can carry.':
     'System kaise badhta hai uska ek khaaka, aur woh kitna bojh utha sakta hai iske aapke andaaze.',
   'Which part has to grow first, and why?':
