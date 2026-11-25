@@ -37,6 +37,4 @@ Object.assign(window.HING = window.HING || {}, {
     'Course ka seekhne wala hissa yahan khatam hota hai. Project khud Chapter 34 mein hai. Agar woh abhi poora nahi hua, to wahan wapas jaiye.',
   'This used to be a second, separate capstone. It is not any more. Everything here is now part of one journey in Chapter 34.':
     'Yeh pehle ek doosra, alag capstone tha. Ab nahi hai. Yahan ki har cheez ab Chapter 34 ki ek journey ka hissa hai.',
-  'This page is a short one, and it is about where the capstone lives now.':
-    'Yeh page chhota hai, aur yeh batata hai ki capstone ab kahan hai.',
 });

@@ -105,8 +105,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Code rakhna, har badlaav ko dekhna, aur badlaav merge hone se pehle (main code mein judne se pehle) checks chalana',
   'Deployment':
     'Deployment',
-  'Put the new version live on every push to the main branch, and go back to the old one within minutes':
-    'Main branch par har push ke saath nayi version live karna, aur kuch minutes mein purani par wapas ja paana',
+  'Deploy (put the new version live) on every push to the main branch, and go back to the old one within minutes':
+    'Main branch par har push par deploy karna (nayi version live karna), aur kuch minutes mein purani par wapas ja paana',
   'Database':
     'Database',
   'Give you sign-in, tables and row-level access rules, so one user cannot see another’s data':

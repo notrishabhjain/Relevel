@@ -8,7 +8,7 @@ Progress is shared too. Mark a chapter complete in the playbook, or read a book 
 
 <!-- sync -->
 
-**North star** (the one goal to steer by)**:** by 2 May 2027, Bharat Privacy Guard is shipped and evaluated, with a findings document and a demo you can take into an interview.
+**North star:** by 2 May 2027, Bharat Privacy Guard is shipped and tested, with a findings document and a demo you can take into an interview. This is the one goal you steer by.
 
 ## How a week works
 

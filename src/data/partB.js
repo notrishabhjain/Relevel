@@ -479,7 +479,7 @@ window.PART7 = [
         ['Automation','Join a trigger (what starts it), a call, a validation (a check) and an approval into a workflow that runs the same way every time','n8n'],
         ['API testing','Send an exact request, show the raw response, and save it as a check you can repeat','Postman'],
         ['Version control','Store code, review every change, and run checks before a change is merged (added to the main code)','GitHub'],
-        ['Deployment','Put the new version live on every push to the main branch, and go back to the old one within minutes','Vercel'],
+        ['Deployment','Deploy (put the new version live) on every push to the main branch, and go back to the old one within minutes','Vercel'],
         ['Database','Give you sign-in, tables and row-level access rules, so one user cannot see another’s data','Supabase'],
         ['Analytics','Record events, and draw funnels and cohorts from real usage','PostHog'],
         ['Observability','Trace one request from start to finish: what it cost, how long it took and what it returned','Chapter 30’s trace schema (the fixed set of fields each trace records), in whatever tool shows it']
@@ -599,7 +599,7 @@ window.PART7 = [
       '<strong>Which calls need approval?</strong> Anything that sends, deletes, pays or cannot be undone.',
       '<strong>What can reach it?</strong> Any text it reads, such as tickets, email or web pages, may hide instructions from an attacker, like a note slipped into the homework.'
     ]],
-    ['c','Watch out','Remember the lethal trifecta (three risky things together) from Chapter 13. An agent that has private data, untrusted input and a way to send data out can be tricked into leaking. For every group of tools, remove at least one of the three.'],
+    ['c','Watch out','Recall the lethal trifecta (three risky things together) from Chapter 13. An agent that has private data, untrusted input and a way to send data out can be tricked into leaking. For every group of tools, remove at least one of the three.'],
     ['p','So start with a small fence. Make it wider only when you have proof, and decide in advance what that proof is.'],
     ['do','Prove it now',[
       ['p','List every tool in your capstone. Mark each one read or write, and say whether it needs approval.'],
@@ -657,34 +657,34 @@ window.PART7 = [
 {
   id:'b6', num:'B6', part:7, curriculumTier:'selective', phase:6, prerequisites:['b4','b5','ch145'], nextUnits:['b7','b8'], minutes:1080, labs:[],
   title:'Ship to real users and run the learning loop',
-  concept:'Put your capstone in front of real users, and learn from what they do. You’ll get it ready for production, recruit people ethically, combine what they say with what they do, and ship one improvement based on evidence.',
+  concept:'Put your capstone (your project) in front of real users, and learn from what they do. You get it ready for production (the live product people use), find people honestly, join what they say with what they do, and ship one improvement based on evidence.',
   takeaway:[
-    'Check that a product is ready to run, and name who owns it when it breaks.',
-    'Recruit design partners honestly, with clear consent and data handling.',
-    'Combine what users say with what they do, and trust behaviour when the two disagree.',
-    'Prioritise the next fix by how often it happens, how bad it is and what it costs.',
+    'Check that a product is ready to run, and name who owns it when it breaks, like a shopkeeper who answers when the shutter jams.',
+    'Find design partners (early testers) honestly, with clear consent (a clear yes) and care for their data.',
+    'Join what users say with what they do. When the two do not match, trust what they do.',
+    'Pick the next fix by how often it happens, how bad it is and what it costs, like deciding which leak in the roof to fix first.',
     'Tell users what changed, and turn support requests into product evidence.'
   ],
-  needs:[['A deployed app with analytics','This chapter puts it in front of real users.','B4'],
-         ['A release checklist','You use it before launch.','B5'],
-         ['Reading failures by hand','Idea 4 builds a failure list the same way.',14.5],
-         ['Interview skills','You observe sessions with the same care.','A3']],
+  needs:[['A deployed app (one that is live online) with analytics (counting what users do)','This chapter puts it in front of real users.','B4'],
+         ['A release checklist (the list of checks before launch)','You use it before launch.','B5'],
+         ['Reading failures by hand (reading wrong answers one by one)','Idea 4 makes a list of failures the same way.',14.5],
+         ['Interview skills','You watch sessions with the same care.','A3']],
   capstone:{
-    title:'Put it in front of real users and make one improvement from what you see',
-    brief:'A demo is not a launch. In this chapter you learned to check that a product is ready to run, to recruit testers honestly, to trust what people do over what they say, and to turn support requests into evidence. Now you’ll put the developer kit demo online, watch real people use it, and make one change because of what you saw.',
-    where:'Code, to put the demo online and watch it, plus real user sessions. Then write the change note in the notes box below.',
+    title:'Put it in front of real users, and make one improvement from what you see',
+    brief:'A demo is not a launch. In this chapter you learned how to check that a product is ready to run and how to find testers honestly. You learned to trust what people do over what they say, and to turn support requests into evidence. Now you put the developer kit demo online, watch real people use it, and make one change because of what you saw.',
+    where:'Code, to put the demo online and watch it, plus real user sessions. Then write the change note (a short note on what changed) in the notes box below.',
     steps:[
-      'Put the demo on a stable web address. Add monitoring, usage tracking that never records personal details, a privacy notice, a way to send feedback and a way to roll back.',
-      'Recruit five to ten real target users, meaning developers or the people they build for. Ask for clear consent, explain what data is used, and let them stop at any time.',
-      'Watch at least five sessions. Record whether each person succeeded, how long it took, where it failed, what they said, and whether they came back.',
-      'Put the problems you saw in a list, and score each by how often it happened, how bad it was and how costly it is to fix. Choose one to fix.',
-      'Fix it, ship it, and compare the numbers before and after. Write a short change note telling users what changed, why, and what they should do differently.',
-      'Start a simple support log with the date, who asked, the category and what you did. Review it every week.'
+      'Put the demo at a stable web address (one that does not keep changing). Add monitoring (a watchman that alerts you), usage tracking that never records personal details, a privacy notice, a way to send feedback and a way to roll back (go back to the old version).',
+      'Find five to ten real target users, meaning developers or the people they build for. Ask for clear consent, explain what data is used, and let them stop at any time.',
+      'Watch at least five sessions (one person using the product while you look on). Write down whether each person succeeded, how long it took, where it failed, what they said, and whether they came back.',
+      'Make a list of the problems you saw. Score each one by how often it happened, how bad it was and how costly it is to fix. Pick one to fix.',
+      'Fix it, ship it, and compare the numbers before and after. Write a short change note that tells users what changed, why, and what they should do differently.',
+      'Start a simple support log (a notebook of help requests) with the date, who asked, the category and what you did. Read it every week.'
     ],
     done:[
-      'A live address with the safety items in place.',
+      'A live web address with the safety items in place.',
       'Notes from at least five sessions with real target users, not friends or teammates doing you a favour.',
-      'A scored problem list, and the one you chose.',
+      'A scored problem list, and the one problem you chose.',
       'Before and after numbers for the change, and a change note for users.',
       'A score from 0 to 3 for each item above, using this chapter’s scale, like marking your own homework. Move on only when every score is 2 or more, and no safety, privacy or evidence item scores 0.'
     ]
@@ -699,22 +699,22 @@ window.PART7 = [
   ],
   story:[
     ['c','On your route','First, go through it quickly, in about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
-    ['c','Before you start','In full, this chapter takes about eighteen hours, spread over two or three weeks, because users need time to come back. You need your deployed app from B4 and the release checklist from B5.'],
+    ['c','Before you start','All of it takes about eighteen hours, over two or three weeks, because users need time to come back. You need your deployed app (the live one) from B4 and the release checklist from B5.'],
 
-    ['p','In the last chapter you drew the system around the model and wrote a release checklist. Now you get to use it. Until real people try your product, everything you know about it is a guess.'],
-    ['p','Here’s what you’ll do. You’ll get the product ready to run, recruit early users honestly, and watch what they do. Then you’ll choose the next fix, and tell users what changed.'],
+    ['p','In the last chapter you drew the system around the model and wrote a release checklist. Now you use it. Until real people try your product, everything you know about it is a guess.'],
+    ['p','Here is the plan. You get the product ready to run, find early users honestly, and watch what they do. Then you pick the next fix, and tell users what changed.'],
 
     ['h','Idea 1: Ready to run, and owned'],
-    ['p','A demo works while you watch it. A product has to work while nobody is watching. So before any real user arrives, check these six areas:'],
+    ['p','A demo works while you watch it. A product has to work while nobody is watching, like a shop that stays open when the owner steps out. So before any real user arrives, check these six areas:'],
     ['tb',['Area','Ready when'],[
-      ['Monitoring','You get an alert when errors rise or the app slows down'],
-      ['Analytics','Your tracking plan events arrive from the live app'],
+      ['Monitoring (a watchman for your app)','You get an alert when errors rise or the app slows down'],
+      ['Analytics','Your tracking plan events arrive from the live app (a note arrives each time a user does something)'],
       ['Privacy','A notice says what you collect, why, and how to delete it'],
-      ['Feedback','A user can report a problem in one click'],
+      ['Feedback (a way for users to tell you)','A user can report a problem in one click'],
       ['Rollback','You have tested going back to the previous version'],
-      ['Cost','A spending limit is set with the model provider']
+      ['Cost','A spending limit is set with the model provider (the company that runs the model)']
     ]],
-    ['p','Every production system also needs an owner. That is the person who responds when it breaks at a bad time. For a capstone, that person is you. Write down how you will be alerted, and how quickly you will respond.'],
+    ['p','Every production system also needs an owner. That is the person who answers when it breaks at a bad time. For a capstone, that person is you. Write down how you will be alerted, and how fast you will respond.'],
     ['do','Prove it now',[
       ['p','Go through the six rows for your capstone. Fix anything that is not ready.'],
       ['x','Six ticks, or a list of what is missing. Counterexample: a failure your monitoring would not catch, such as the model returning plausible but wrong themes.']
@@ -722,61 +722,61 @@ window.PART7 = [
     ['q','I614'],
 
     ['h','Idea 2: Recruiting design partners ethically'],
-    ['p','Once the product is ready, you need people to try it. <strong>Design partners</strong> are early users who agree to use an unfinished product and tell you what they find. They give you their time, and sometimes their data. So recruit them honestly:'],
+    ['p','Once the product is ready, you need people to try it. <strong>Design partners</strong> are early users who agree to use an unfinished product and tell you what they find, like friends who taste a new dish before the shop opens. They give you their time, and sometimes their data. So find them honestly:'],
     ['l',[
       'Say clearly that the product is early and may be wrong.',
-      'Explain what data you collect, where it goes and how they can delete it. Get written consent.',
+      'Say what data you collect, where it goes and how they can delete it. Get their consent (a clear yes) in writing.',
       'Do not use data they did not agree to share. For Theme Finder, start with a sample of tickets they choose.',
-      'Offer something fair in return, such as early access or a discount. But do not pay so much that they feel they owe you praise.',
-      'Let them stop at any time, without any awkwardness.'
+      'Give something fair in return, such as early access or a discount. But do not pay so much that they feel they owe you praise.',
+      'Let them stop at any time, with no awkwardness.'
     ]],
-    ['p','Look for people who have the problem now and already use your target tools. Your A3 interviewees are a good place to start. Friends and colleagues are easy to recruit, but they are too polite to be useful.'],
+    ['p','Look for people who have the problem now and already use your target tools. Your A3 interviewees are a good place to start. Friends and colleagues are easy to find, but they are too polite to be useful.'],
     ['do','Prove it now',[
-      ['p','Write the recruiting message you will send. Include what the product does, what you ask of them, what data is involved and what they get.'],
-      ['x','A short message. Read it as the recipient: is anything unclear or pushy? Counterexample: a person who fits your target but should not be recruited, and why.']
+      ['p','Write the recruiting message you will send. Say what the product does, what you ask of them, what data is involved and what they get.'],
+      ['x','A short message. Read it as the person receiving it: is anything unclear or pushy? Counterexample: a person who fits your target but should not be recruited, and why.']
     ]],
 
     ['h','Idea 3: What users say, and what they do'],
-    ['p','Now your partners are using the product. Remember that users often say one thing and do another. They say a feature is great and never use it again. They complain about something and keep using the product every day. So you need both kinds of evidence.'],
-    ['p','Watch at least five sessions. Give each user a real task and stay quiet while they work. Record the same fields each time:'],
+    ['p','Now your partners are using the product. Remember that users often say one thing and do another. They say a feature is great and never use it again. They complain about something and use the product every day. So you need both kinds of evidence.'],
+    ['p','Watch at least five sessions. Give each user a real task and stay quiet while they work, like a teacher watching an exam. Write down the same fields each time:'],
     ['code','Session 3 — support lead, 40-person team, Freshdesk\n\nTask            Find this week’s fastest-growing issue\nSucceeded?      Yes, after one wrong turn\nTime            4 min 10 s\nFailures        Opened "Billing" first; theme name was vague\nQuote           "I don’t know why this ticket is in here."\nCame back?      Yes, the next two Mondays (from analytics)'],
-    ['key','When what users say and what they do disagree, trust what they do, and then ask them why.'],
+    ['key','When what users say and what they do do not match, trust what they do. Then ask them why.'],
     ['do','Prove it now',[
-      ['p','Run your first observed session and fill in the seven fields.'],
-      ['x','One complete session record. Counterexample: a situation where what the user said was more useful than what they did.']
+      ['p','Run your first watched session and fill in the seven fields.'],
+      ['x','One complete session record. Counterexample: a time when what the user said was more useful than what they did.']
     ]],
 
     ['h','Idea 4: Prioritising failures and opportunities'],
-    ['p','After five sessions and two weeks of data, you will have more problems than time. So put them all in one list, and score each one by how often it happens, how bad it is and how much it costs to fix. Here is an example:'],
+    ['p','After five sessions and two weeks of data, you will have more problems than time. So put them all in one list. Score each one by how often it happens, how bad it is and how much it costs to fix, like a doctor deciding who to see first. Here is an example:'],
     ['tb',['Problem','How often','How bad','Cost to fix','Priority'],[
       ['Unclear why a ticket is in a theme','4 of 6 users','High: they stop trusting it','Small','1'],
       ['Import fails for over 5,000 tickets','1 account','High for them','Medium','2'],
-      ['Theme names too long','3 of 6','Low','Small','3'],
-      ['Wants Zendesk support','2 prospects','Blocks them entirely','Large','Later']
+      ['Theme names are too long','3 of 6','Low','Small','3'],
+      ['Wants Zendesk support','2 prospects (people who might become users)','Blocks them completely','Large','Later']
     ]],
-    ['p','Mix AI failures and product failures in the same list. A wrong theme and a confusing button both cost users. For the AI rows, reuse the failure taxonomy you built in Chapter 14.5.'],
+    ['p','Put AI failures and product failures in the same list. A wrong theme and a confusing button both cost users. For the AI rows, reuse the failure taxonomy (the sorted piles of failure types) you built in Chapter 14.5.'],
     ['do','Prove it now',[
       ['p','Build your list with at least five problems from your sessions and data. Pick the top one.'],
-      ['x','A scored list and one choice. Write down the number you expect it to move, and by how much.']
+      ['x','A scored list and one choice. Write down which number you expect it to move, and by how much.']
     ]],
     ['try',{id:'b6-iterate',mins:10,min:120,rows:6,
-      task:'Describe the iteration you will ship. Write the problem with its evidence, the change, the metric you expect to move and by how much, and what you will do if it does not move.',
+      task:'Describe the improvement you will ship. Write the problem with its evidence, the change, the metric (the number you watch) you expect to move and by how much, and what you will do if it does not move.',
       ph:'We saw… so we will… we expect… if it does not move…',
       after:'Here is a strong answer. <strong>We saw</strong> 4 of 6 users question why a ticket was in a theme, and only 58% of themes were marked useful. <strong>We will</strong> add a “why this theme” link that shows the three phrases that matched. <strong>We expect</strong> useful themes to rise above 65% within two weeks, with no increase in time per report. <strong>If it does not move,</strong> the problem may be the grouping itself, not the explanation. We will then review 50 disputed tickets by hand before changing anything else.'}],
     ['q','I615'],
 
     ['h','Idea 5: Release notes and support loops'],
-    ['p','Each time you ship, tell users what changed. They notice a change much more easily when someone points it out. A good changelog entry is short and practical:'],
+    ['p','Each time you ship, tell users what changed. They notice a change much more easily when someone points it out. A good changelog entry (a short note on what changed) is brief and practical, like a sign on a shop door:'],
     ['code','15 October — Why is this ticket here?\n\nEach ticket in a theme now has a "why" link. It shows the\nphrases that put it there. If a ticket is in the wrong theme,\nuse "Move" and we will learn from it.\n\nKnown issue: imports over 5,000 tickets can time out.\nWe are working on it.'],
-    ['p','There is one more source of evidence, and it comes to you for free. Support requests are product research. Log each one with its category and the account, and review the log weekly with your analytics. A problem that appears in support, in sessions and in the data together is almost certainly real.'],
+    ['p','There is one more source of evidence, and it comes to you free. Support requests are product research. Write down each one with its category and the account, and read the log every week with your analytics (the counts of what users do). A problem that shows up in support, in sessions and in the data together is almost certainly real.'],
     ['do','Prove it now',[
-      ['p','Write the changelog entry for your iteration. Then set up a simple support log with date, account, category and what you did.'],
+      ['p','Write the changelog entry for your improvement. Then set up a simple support log with date, account, category and what you did.'],
       ['x','One entry and one log. Counterexample: a change that should not be announced, and why.']
     ]],
 
     ['h','What you have learned'],
-    ['p','You’ve now been through the whole learning loop. You get the product ready, find honest users, and watch what they do. Then you fix the problem that matters most, tell users, and keep listening through support.'],
-    ['p','Next, you’ll turn the work you have done into a story for the AI PM job market.']
+    ['p','You have now been through the whole learning loop. You get the product ready, find honest users, and watch what they do. Then you fix the problem that matters most, tell users, and keep listening through support.'],
+    ['p','Next, you turn the work you have done into a story for the AI PM job market.']
   ]
 },
 {
@@ -908,7 +908,7 @@ window.PART7 = [
     ['p','The last idea covers four things that come up around the interviews. The first is behavioural questions. These ask about your past, such as “tell me about a time you disagreed with an engineer”.'],
     ['p','Prepare six to eight stories from real work. Tell each one as situation, task, action and result. Spend most of your time on the action, because that is the part about you.'],
     ['p','Next are <strong>take-home assignments</strong>, which test how you work alone, like homework. Stick to the time limit you are given, and state your assumptions at the top. End with what you would do with more time. Reviewers like a clear, honest answer more than a long one.'],
-    ['p','Some loops now include a live build round. You get a problem and about 45 minutes to show a working prototype (a rough first version), often with an AI coding tool. Interviewers watch how you work, not how polished it looks. Say your scope aloud first. Build the smallest version that runs. Test one failure on purpose, such as a number that looks like an Aadhaar number but is not. Say what you would not ship yet.'],
+    ['p','Some loops have a live build round. You get a problem and about 45 minutes to show a working prototype (a rough first version), often using an AI coding tool. They watch how you work, not how it looks. Say your scope first. Build the smallest version that runs. Test one failure on purpose, such as a number that looks like an Aadhaar number but is not. Say what you would not ship yet.'],
     ['p','Then there is <strong>networking</strong> (meeting people who can help). It works best when you have something to show. Share a case study with a specific person and ask one specific question. That gets more replies than asking for a referral.'],
     ['p','Finally, <strong>negotiation</strong> (talking about your pay) starts with preparation. Find the salary range for the role and city. Wait for the company to make an offer first. Then ask once, politely, with a reason, such as a competing offer or the scope of the role.'],
     ['p','Let us turn all this into practice with one story of your own.'],
@@ -932,30 +932,30 @@ window.PART7 = [
 {
   id:'b8', num:'B8', part:7, curriculumTier:'core', phase:6, prerequisites:['ch21cap'], nextUnits:[], minutes:8, labs:[],
   title:'The integrated capstone now lives in Chapter 34',
-  concept:'This chapter used to hold a second, separate capstone. Not any more. The technical capstone and this chapter’s five gates (discovery, strategy, build, ship and defend) are now one eleven-stage journey in Chapter 34. So you do one coherent project instead of two.',
+  concept:'This chapter used to hold a second capstone (a big final project), like a second exam on the same subject. Not any more. The technical capstone and this chapter’s five gates (discovery, strategy, build, ship and defend) are now one eleven-stage journey in Chapter 34. So you do one project, not two.',
   takeaway:[
-    'Do the capstone once, in Chapter 34, and not twice.',
-    'This page keeps one exercise from the old chapter, so an answer you saved here still has a home.'
+    'Do the capstone once, in Chapter 34, not twice.',
+    'This page keeps one exercise from the old chapter, like a drawer for an old notebook, so an answer you saved here still has a home.'
   ],
-  needs:[['The unified capstone','Everything that used to be here is now part of it.',34]],
+  needs:[['The unified capstone (one joined project)','Everything that used to be here is now part of it.',34]],
   story:[
     ['c','This chapter moved','This used to be a second, separate capstone. It is not any more. Everything here is now part of one journey in Chapter 34.'],
-    ['p','This page is a short one, and it is about where the capstone lives now.'],
-    ['p','Earlier, the capstone was split in two. There was a technical capstone, and there was a second one built around five gates. Doing both felt like doing the same project twice. So the two have been joined into a single journey in Chapter 34. Its eleven stages are the detail inside stage 12 of the project’s thirteen.'],
-    ['p','What if you already have progress on the old five gates? Nothing is lost. Each old gate maps directly onto the new stages, as the table shows.'],
+    ['p','This page is short. It tells you where the capstone lives now.'],
+    ['p','Earlier, the capstone was split in two, like one project handed in twice. There was a technical capstone, and a second one built around five gates. Doing both felt like doing the same project twice. So the two are now joined into a single journey in Chapter 34. Its eleven stages are the detail inside stage 12 of the project’s thirteen.'],
+    ['p','What if you already have progress on the old five gates? Nothing is lost. Each old gate fits straight onto the new stages, as the table shows, like old keys that open new locks.'],
     ['tb',['Old gate','New stage(s) in Chapter 34'],[
-      ['Gate 1, Discovery','34.1 Discover'],
-      ['Gate 2, Strategy','34.3 Design'],
-      ['Gate 3, Build','34.4 Build – 34.5 Evaluate'],
-      ['Gate 4, Ship','34.8 Ship'],
-      ['Gate 5, Defend','34.9 Measure – 34.11 Defend']
+      ['Gate 1, Discovery (finding the real problem)','34.1 Discover'],
+      ['Gate 2, Strategy (choosing the plan)','34.3 Design'],
+      ['Gate 3, Build (making it)','34.4 Build – 34.5 Evaluate'],
+      ['Gate 4, Ship (sending it to users)','34.8 Ship'],
+      ['Gate 5, Defend (explaining and standing by your work)','34.9 Measure – 34.11 Defend']
     ]],
-    ['p','Go to <a href="#/ch/ch21cap">Chapter 34</a> and start from wherever your project actually is. There is nothing else to do on this page, except the one exercise below. We kept it here so that an answer you already wrote is not lost.'],
+    ['p','Go to <a href="#/ch/ch21cap">Chapter 34</a> and start from wherever your project is. There is nothing else to do on this page, except the one exercise below. We kept it here so that an answer you already wrote is not lost.'],
     ['try',{id:'b8-defend',mins:12,min:120,rows:6,
-      task:'Write your answer to the hardest question you expect in the defence. For example: “Why should we believe this works beyond your ten design partners?”',
+      task:'Write your answer to the hardest question you expect in the defence (the final round where you explain your work). For example: “Why should we believe this works beyond your ten design partners?”',
       ph:'What we know… what we do not know yet… what we would do next…',
-      after:'A strong answer separates what is known from what is not. For example: <strong>We know</strong> that 8 of 10 design partners used it for four weeks in a row, and that precision held at 86% on their real tickets. <strong>We do not know yet</strong> whether it holds for teams on other helpdesks, or with more than 5,000 tickets a week, because none of our partners had those. <strong>Next,</strong> we would add two partners from each missing group, with the same eval set and thresholds, before any wider launch. The answer admits uncertainty and gives a clear way to reduce it.'}],
-    ['p','That is all for this page. When you’re ready, carry on with your project in Chapter 34.']
+      after:'A strong answer keeps what is known apart from what is not, like two piles on a table. For example: <strong>We know</strong> that 8 of 10 design partners used it for four weeks in a row, and that precision held at 86% on their real tickets. <strong>We do not know yet</strong> whether it holds for teams on other helpdesks, or with more than 5,000 tickets a week, because none of our partners had those. <strong>Next,</strong> we would add two partners from each missing group, with the same eval set and thresholds, before any wider launch. The answer admits what it does not know and gives a clear way to find out.'}],
+    ['p','That is all for this page. When you are ready, carry on with your project in Chapter 34.']
   ]
 }
 

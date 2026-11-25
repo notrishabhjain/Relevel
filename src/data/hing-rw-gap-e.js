@@ -41,6 +41,4 @@ Object.assign(window.HING = window.HING || {}, {
   'The capstone over two weeks, then the business chapters, the job (a role matrix, a case study and a portfolio page) and practice interviews.':
     'Do hafton mein capstone, phir business chapters, naukri (role matrix, case study aur portfolio page) aur practice interviews.',
   'Retro: review the 28 weeks': 'Retro: 28 hafton ka review',
-  'Bharat Privacy Guard shipped with its findings document and demo, a role matrix from ten postings, a case study with real numbers, a public portfolio page, six career stories written, and practice interviews recorded.':
-    'Bharat Privacy Guard apne findings document aur demo ke saath ship hua, das postings se ek role matrix, asli numbers wali case study, ek public portfolio page, chhe career stories likhi gayi, aur practice interviews record hue.'
 });

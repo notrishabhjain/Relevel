@@ -21,8 +21,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Python padhna',
   'In full, this chapter takes about two and a half hours. Tools change every few months. The brands named below are one current example each, not a requirement. If a named tool is gone by the time you read this, pick a replacement that does the same job.':
     'Poora karne par, is chapter mein lagbhag dhai ghante lagte hain. Tools har kuch mahine mein badal jaate hain. Neeche jo brands diye hain woh sirf ek current example hain, koi requirement nahi. Agar padhte waqt koi tool band ho chuka ho, toh uski jagah woh tool chuniye jo wahi kaam karta ho.',
-  'In full, this chapter takes about eighteen hours, spread over two or three weeks, because users need time to come back. You need your deployed app from B4 and the release checklist from B5.':
-    'Poora karne par, is chapter mein lagbhag 18 ghante lagte hain, do ya teen hafton mein faile hue, kyunki users ko wapas aane mein time lagta hai. Aapko B4 se apna deployed app aur B5 se release checklist chahiye.',
   'Reading Python: just enough for this course':
     'Python padhna: is course ke liye bas jitna chahiye',
   'Read a line like <code>city = "Pune"</code> and say what it stores.':
@@ -259,28 +257,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Part V sab kuch phir se, aur gehraai se leta hai: plumbing, model ka chunaav, context, retrieval, workflows aur agents, tasveerein aur aawaaz, release gates, nigraani, security aur product spec.',
   'Month 6: Ship it, and get the job':
     'Month 6: Ship kijiye, aur naukri paaiye',
-  'The first four weeks ticked, or nearly: the book’s first seven chapters read, and A1 to A7 done on a first pass right after each one.':
-    'Pehle chaar hafte tick, ya lagbhag: kitaab ke pehle saat chapters padhe hue, aur har ek ke turant baad A1 se A7 ka first pass.',
-  'Never cut the first model call. If time is short, keep the answer key and do the summary chapter on a first pass.':
-    'Pehli model call kabhi mat kaatiye. Time kam ho toh answer key rakhiye aur summary wala chapter first pass par kijiye.',
-  'Your model choice with a back-up, the tool access policy, the release gate, the risk register and the decision pack.':
-    'Back-up ke saath aapka model ka chunaav, tool access policy, release gate, risk register aur decision pack.',
-  'One route. The playbook, the book and this plan follow the same steps in the same order. If two of them ever disagree, the route page in the playbook wins, and that is a bug to report.':
-    'Ek raasta. Playbook, kitaab aur yeh plan wahi steps usi order mein follow karte hain. Agar kabhi do aapas mein na milein, toh playbook ka route page sahi maana jaayega, aur woh ek bug hai jise report karna chahiye.',
-  'Story first, then the chapter. Read a chapter’s story in the book before you do the chapter in the playbook.':
-    'Pehle kahani, phir chapter. Playbook mein chapter karne se pehle kitaab mein uski kahani padhiye.',
-  'Ten minutes is a real day. On a bad day do one page and tick it. A small day counts; a zero day does not.':
-    'Das minute bhi ek asli din hai. Bure din ek page kijiye aur tick kar dijiye. Chhota din ginta hai; zero wala din nahi.',
-  'Never miss twice. One missed day is life. Two in a row is a new habit.':
-    'Do baar kabhi mat chookiye. Ek din chhootna zindagi hai. Lagaataar do din ek nayi aadat hai.',
-  'Behind is fine. Carry on from the first open step; the dates are a guide, not a judge. Never skip a step to catch up.':
-    'Peechhe hona theek hai. Pehle khule step se aage badhiye; dates ek guide hain, judge nahi. Pakadne ke liye kabhi koi step mat chhodiye.',
   'First pass now, the long build later. The “Build it” sections in Track A and Track B are optional on the route. Write “later” next to them and move on.':
     'Abhi first pass, lamba build baad mein. Track A aur Track B ke “Build it” sections raaste par optional hain. Unke aage “baad mein” likhiye aur aage badhiye.',
-  'Parking lot, not action. New courses, tools and side projects go in the parking lot and wait for the monthly review.':
-    'Parking lot, action nahi. Naye courses, tools aur side projects parking lot mein jaate hain aur monthly review ka intezaar karte hain.',
-  'Friday look back. Three lines in your notepad every week: what made sense, what didn’t, one question.':
-    'Shukravaar ko pichhli nazar. Har hafte notepad mein teen lines: kya samajh aaya, kya nahi, aur ek sawaal.',
   'Why now':
     'Abhi kyun',
   'Next on your route':

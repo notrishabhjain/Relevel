@@ -13,7 +13,7 @@ terms:
   - product sense | choosing a user first, like asking who the guest is before you cook. You find their real problem and suggest a sensible fix. Interviewers test it with questions such as "design a voice assistant for a state helpline" | 
   - system-design interview | thinking aloud while you plan a house, not building it. You are asked to design an AI feature, and judged on your reasoning about approach, evaluation, failure, cost and rollout, not on code | system-design question
   - STAR method | a four-box form for telling a story about your past: situation, task, action and result. Most of the time goes to what you did | 
-  - take-home | homework from an employer. You do it alone, in a set time, and it shows how you work when no one is watching | take-home assignment
+  - take-home | a task from an employer. You do it alone, in a set time, and it shows how you work when no one is watching | take-home assignment
 ---
 
 Rhea Kapoor phoned on a Sunday evening in June. She began like someone who has practised an apology. She started with the end of it. She knew this was Anaya's only free night, she said. She would not keep her long.
@@ -153,7 +153,7 @@ Read what comes back, and say what you would not trust yet. Interviewers watch w
 
 ## Alone, and with other people
 
-Two small matters remained. The first is the *take-home*. It is homework from an employer, done alone in a stated time. Keep to the time. Put your assumptions at the top. End with what you would do with more time. Reviewers prefer a clear, honest answer to a long one. A person who says what they left out is trusted more than one who pretends nothing was left out.
+Two small matters remained. The first is the *take-home*. It is a task set by an employer, done alone in a stated time. Keep to the time. Put your assumptions at the top. End with what you would do with more time. Reviewers prefer a clear, honest answer to a long one. A person who says what they left out is trusted more than one who pretends nothing was left out.
 
 The second is networking, which Rhea disliked. It worked best when she had something to show. Anaya's advice was not to ask people for a referral. Instead, send a specific person the case study and ask one specific question about it. That is a question they can answer.
 

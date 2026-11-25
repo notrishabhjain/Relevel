@@ -1,23 +1,23 @@
 ---
 title: Book Ke Baad
-summary: Case kahan khatam hua, book ke saat parts milkar kya banate hain, project ko abhi bhi kya nahi pata, aur book ko course app ke saath kaise use karein.
+summary: Case kaise khatam hua, book ke saat parts milkar kya banate hain, project ko abhi bhi kya nahi pata, aur book ko course app ke saath kaise use karein.
 ---
 
-September mein, us raat ke dedh saal baad jab usne yeh sab shuru kiya tha, Anaya Deshmukh ne decision log ke sabse upar scroll kiya aur pehli entry padhi. Woh 14 March ki thi. Decision yeh tha ki pehle personal-details wali problem par kaam karna hai, aur ticket themes par doosre number par.
+September mein, us raat ke dedh saal baad jab usne yeh sab shuru kiya tha, Anaya Deshmukh ne decision log ke sabse upar scroll kiya. (Yeh woh notebook hai jisme woh har bada faisla aur uski wajah likhti thi.) Usne pehli entry padhi. Woh 14 March ki thi. Decision yeh tha ki pehle personal-details wali problem par kaam karna hai, aur ticket themes par doosre number par.
 
-Saboot yeh tha ki ek hafte ki 400 conversations mein se 37 mein ek identity number, tax number, bank account ya poora address tha. Yeh uski apni ginti thi, jise Farah check kar sakti thi.
+Saboot ek ginti thi. Ek hafte ki 400 conversations mein se 37 mein ek identity number, tax number, bank account ya poora address tha. Yeh uski apni ginti thi, jise Farah check kar sakti thi.
 
-Usne aakhri line do baar padhi: "Main apna man badal doongi agar". Us saal ne use jo kuch sikhaya, usmein woh line sabse sasti thi, aur usne sabse zyada kaam kiya.
+Usne aakhri line do baar padhi: "Main apna man badal doongi agar". Us saal ne use jo kuch sikhaya, usmein woh line sabse sasti thi. Usne sabse zyada kaam kiya.
 
 ## Case kahan khatam hota hai
 
-September tak guard do support teams ki har chat par chal raha tha, aur ek lending partner ke trial mein bhi. Anaya ke peeche whiteboard par Imran ne teen rangon mein ek drawing chhodi thi, jisme woh sab tha jo ab ek customer ke keyboard aur jawaab padhne wale insaan ke beech khada tha.
+September tak guard do support teams ki har chat par chal raha tha. Woh ek lending partner ke trial mein bhi tha. Anaya ke peeche whiteboard par Imran ne teen rangon mein ek drawing chhodi thi. Usmein woh sab tha jo ab ek customer ke keyboard aur jawaab padhne wale insaan ke beech khada tha.
 
-Guard ke har kaam ke liye usmein ek shape thi, har us jagah ke liye ek teer jahan decision hota hai, aur har us jagah ke bagal mein ek taara jahan galat jawaab sabse mehnga padta. Woh khoobsurat nahi thi. Lekin jo banaya gaya tha, uska woh sahi hisaab thi.
+Guard ke har kaam ke liye usmein ek shape thi. Jahan decision hota hai, wahan ek teer tha. Jahan galat jawaab sabse mehnga padta, wahan ek taara tha. Woh khoobsurat nahi thi. Lekin jo banaya gaya tha, uska woh sachcha hisaab thi, jaise train line ka naksha jise patri bichhane waalon ne khud banaya ho.
 
 ## Saat parts milkar kya banate hain
 
-Book ke saat parts the, aur har part ne ek tarah ki kabiliyat jodi. Yahan woh table mein hain, jaise ek reader unhe tick karke dekh sakta hai.
+Book ke saat parts the. Har part ne ek tarah ki kabiliyat jodi. Yahan woh table mein hain, ek checklist ki tarah jise reader tick kar sake.
 
 Table: Har part padhne ke baad reader kya kar paaye
 | Part | Chapters | Reader yeh kar sakta hai |
@@ -32,7 +32,7 @@ Table: Har part padhne ke baad reader kya kar paaye
 
 ## Aath sentences jo ab aap keh sakte hain
 
-Neeche har sentence mein aapke apne project ke ek number ki jagah khaali hai. Jo sentence abhi aap bhar nahi paate, woh agla kaam hai. Sentence badalne ki wajah nahi.
+Neeche har sentence mein aapke apne project ke ek number ki jagah khaali hai. Jo sentence abhi aap bhar nahi paate, woh aapka agla kaam hai. Sentence badalne ki wajah nahi.
 
 - Maine chunne se pehle ginti ki: ek hafte ki N conversations mein se N mein ek identity number tha.
 - Main bata sakta hoon ki model kya hai aur kitne ka padta hai: N tokens ki ek request lagbhag N rupaye ki padti hai, aur memory meri application ke paas hoti hai.
@@ -45,26 +45,22 @@ Neeche har sentence mein aapke apne project ke ek number ki jagah khaali hai. Jo
 
 ## Project ko abhi bhi kya nahi pata
 
-Jo textbook pakke yakeen par khatam hoti hai, usne aksar kuch chhod diya hota hai. Isliye yahan likha hai ki guard ko kis par test nahi kiya gaya tha. Use English mein, Hindi mein aur dono ki milavat mein naapa gaya tha, un messages par jo team ne khud likhe the.
+Jo textbook pakke yakeen par khatam hoti hai, usne aksar kuch chhod diya hota hai. Isliye yahan likha hai ki guard ko kis par test nahi kiya gaya tha. Use English mein, Hindi mein aur dono ki milavat mein naapa gaya. Messages woh the jo team ne khud likhe the. Use Tamil, Bengali ya Telugu mein nahi naapa gaya. Do shehron ke bahar ke customers ki likhai par nahi naapa gaya. Aur Imran se zyada sabr wale hamlawar ke khilaaf bhi test nahi hua.
 
-Use Tamil, Bengali ya Telugu mein nahi naapa gaya tha. Do shehron ke bahar ke customers ki likhai par nahi naapa gaya tha, aur Imran se zyada sabr wale hamlawar ke khilaaf bhi nahi.
+Jisne bhi "compliant" shabd ko samjha hai, usne guard ko compliant nahi kaha tha. Kisi ke liye uski taraf se aisa kehna galti hogi. Woh imaandaar numbers wala ek saavdhaan tool tha. Woh bas itna hi hone ka daava karta tha.
 
-Jisne bhi "compliant" shabd ko samjha hai, usne guard ko compliant nahi kaha tha, aur kisi ke liye bhi uski taraf se aisa kehna galti hogi. Woh imaandaar numbers wala ek saavdhaan tool tha, aur woh bas itna hi hone ka daava karta tha.
-
-Yahi saavdhaani book par bhi lagti hai. Sahaj, uske log, uski prices aur uske figures invented hain. Tools aur techniques asli hain, aur failures us tarah ke hain jo asli systems mein hote hain. Jahan ek number maayne rakhta hai, woh yeh dikhane ke liye hai ki number ke baare mein tark kaise kiya jaata hai. Use udhaar lene se pehle apne cases par check kijiye.
+Yahi saavdhaani book par bhi lagti hai. Sahaj, uske log, uski prices aur uske figures banaye hue hain. Tools aur techniques asli hain. Failures us tarah ke hain jo asli systems mein hote hain. Jahan ek number maayne rakhta hai, woh yeh dikhane ke liye hai ki number ke baare mein tark kaise kiya jaata hai. Use udhaar lene se pehle apne cases par check kijiye.
 
 ## Words
 
-Is field mein lagbhag har cheez ka ek naam hai. Seekhne ki mushkil ka bada hissa yeh hai ki naam un cheezon se tez aate hain jinke liye woh khade hain.
-
-Isliye har chapter ne kuch terms jode, aur unhe usi chapter mein aur baad ke har chapter mein usi matlab mein use kiya. Book ke peechhe ka glossary har term ko ek chhoti definition ke saath deta hai, aur us chapter ke saath jahan woh pehli baar aaya.
+Is field mein lagbhag har cheez ka ek naam hai. Seekhna kuch is liye mushkil hai kyunki naam un cheezon se tez aate hain jinke liye woh khade hain. Yeh ek naye shehar mein jaane jaisa hai jahan har dukaan ka board aisi bhasha mein hai jo aap abhi seekh rahe hain. Isliye har chapter ne kuch terms jode. Phir unhe usi chapter mein aur baad ke har chapter mein usi matlab mein use kiya. Book ke peechhe ka glossary har term ko ek chhote matlab ke saath deta hai, aur us chapter ke saath jahan woh pehli baar aaya.
 
 ## Book ko course app ke saath use karna
 
-Ek book aapko tasveer de sakti hai. Woh aadat nahi de sakti, aur aadat hi zyadatar skill hai. Yahan ka material tab aapka apna banta hai jab aap practice karte hain. Ek problem ka saada description likhiye aur dekhiye ki woh jud nahi rahi. Ek chhoti answer key banaiye aur dekhiye ki aap kitni baar galat the. Ek system ko jaan-boojhkar todiye aur dekhiye ki woh kya karta hai.
+Ek book aapko tasveer de sakti hai. Woh aadat nahi de sakti, aur aadat hi zyadatar skill hai. Yeh cycle chalane jaisa hai. Uske baare mein padhne se aap seedhe nahi rehte. Yahan ka material practice se aapka apna banta hai. Ek problem ka saada description likhiye aur dekhiye ki woh jud nahi raha. Ek chhoti answer key banaiye aur dekhiye ki aap kitni baar galat the. Ek system ko jaan-boojhkar todiye aur dekhiye ki woh kya karta hai.
 
-Course app isi practice ke liye bana hai. Book ke har chapter ka app mein ek saathi hai, jo chapter ke neeche link hai. Usmein wahi ideas usi order mein hain, aur kaam karne ke liye tasks, aur jawaab dene aur check karne ke liye sawaal hain. Yahan chapter padhiye, phir wahan uska kaam kijiye. Course ka weekly route isi order mein laga hai, aur dono saath use karne ke liye likhe gaye the.
+Course app isi practice ke liye bana hai. Book ke har chapter ka app mein ek saathi hai, jo chapter ke neeche link hai. Usmein wahi ideas usi order mein hain. Usmein karne ke tasks hain, aur jawaab dene aur check karne ke sawaal bhi. Yahan chapter padhiye, phir wahan uska kaam kijiye. Course ka weekly route isi order mein laga hai. Dono saath use karne ke liye likhe gaye the.
 
-Agar book aur course ek doosre se alag bolein, ya koi term samjhaye jaane se pehle use ho gaya ho, toh please report kijiye. Book ko theek isi ke liye line-by-line check kiya gaya tha, lekin ek checker reader ka option nahi hota.
+Agar book aur course ek doosre se alag bolein, toh please report kijiye. Report tab bhi kijiye jab koi term samjhaye jaane se pehle use ho gaya ho. Book ko theek isi ke liye line-by-line check kiya gaya tha. Lekin ek checker, reader ki jagah nahi le sakta.
 
-Aur agar aap, Anaya ki tarah, us kamre mein woh insaan hain jisse kaha gaya hai ki kuch aisa samjho jo kisi ko theek se samajh nahi aata, toh salaah yeh hai. Ek notebook shuru kijiye aur usmein ek line likhiye ki aapne kya notice kiya. Baaki sab uske baad aata hai.
+Ho sakta hai aap, Anaya ki tarah, us kamre mein woh insaan hon jisse kaha gaya ho ki kuch aisa samjho jo kisi ko theek se samajh nahi aata. Toh salaah yeh hai. Ek notebook shuru kijiye aur usmein ek line likhiye ki aapne kya notice kiya. Baaki sab uske baad aata hai.

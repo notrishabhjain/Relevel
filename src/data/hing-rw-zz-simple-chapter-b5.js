@@ -139,7 +139,7 @@ Object.assign(window.HING = window.HING || {}, {
     '<strong>Kaun se calls ko ijaazat chahiye?</strong> Jo kuch bheje, mitaye, paisa de, ya jise wapas na kiya ja sake.',
   '<strong>What can reach it?</strong> Any text it reads, such as tickets, email or web pages, may hide instructions from an attacker, like a note slipped into the homework.':
     '<strong>Us tak kya pahunch sakta hai?</strong> Jo bhi text woh padhta hai, jaise tickets, email ya web pages, usmein hamlawar ke chhupe instructions ho sakte hain, jaise homework mein chhipayi gayi parchi.',
-  'Remember the lethal trifecta (three risky things together) from Chapter 13. An agent that has private data, untrusted input and a way to send data out can be tricked into leaking. For every group of tools, remove at least one of the three.':
+  'Recall the lethal trifecta (three risky things together) from Chapter 13. An agent that has private data, untrusted input and a way to send data out can be tricked into leaking. For every group of tools, remove at least one of the three.':
     'Chapter 13 ka lethal trifecta (teen khatarnak cheezein ek saath) yaad kijiye. Jis agent ke paas private data, untrusted input aur data bahar bhejne ka raasta ho, use behkakar leak karwaya ja sakta hai. Tools ke har group mein teeno mein se kam se kam ek hata dijiye.',
   'So start with a small fence. Make it wider only when you have proof, and decide in advance what that proof is.':
     'Isliye chhoti baad se shuru kijiye. Use badi tabhi kijiye jab saboot ho, aur pehle se tay kijiye ki woh saboot kya hoga.',

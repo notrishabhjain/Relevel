@@ -128,20 +128,10 @@ Object.assign(window.HING = window.HING || {}, {
     'Aaj aap recruiter ko kya dikha sakte hain? Link paste kijiye.',
   'What does one of your three postings ask for that you cannot yet show?':
     'Aapki teen postings mein se ek aisi cheez maangti hai jo aap abhi dikha nahi sakte?',
-  'A model connected, your first model call costed, a system prompt tested, your first answer key, a sorter with a score, and your first door chosen with five named employers written down.':
-    'Ek model connected, aapki pehli model call ki keemat nikaali hui, ek system prompt test kiya hua, aapki pehli answer key, score ke saath ek sorter, aur aapka pehla door chuna hua aur paanch employers ke naam likhe hue.',
   'Re-read one posting from your table. What changed in what you can prove?':
     'Apni table se ek posting dobara padhiye. Aap kya saabit kar sakte hain, usmein kya badla?',
-  'Search by words and by meaning compared on a scoreboard, version 0 of the findings page published with a link and the repository public, and an extractor that says “not sure”.':
-    'Shabdon aur matlab se search ki scoreboard par tulna, findings page ka version 0 link ke saath publish aur repository public, aur ek extractor jo “pakka nahi” kehta hai.',
   'What would a stranger change first on your findings page?':
     'Ek anjaan insaan aapke findings page par sabse pehle kya badlega?',
-  'The attack on your own tool, a checked automatic marker, a cost model, the system card, the requirements, the build-or-buy call, and your first two applications or conversations started.':
-    'Apne tool par hamla, ek check kiya hua automatic marker, ek cost model, system card, requirements, banaane-ya-kharidne ka faisla, aur aapki pehli do applications ya baatcheet shuru.',
-  'Do the chapters on a first pass, which means: read it, answer the boxes, run the page’s own tools, and write “later” beside the project task. Keep one hands-on result per week.':
-    'Chapters pehli baar ki tarah kijiye, yaani: padhiye, boxes ke jawaab dijiye, page ke apne tools chalaiye, aur project task ke bagal mein “later” likhiye. Har hafte ek hands-on nateeja rakhiye.',
-  'Which posting from your table could you now answer in full, and which part is still missing?':
-    'Apni table ki kaunsi posting ka jawaab aap ab poora de sakte hain, aur kaunsa hissa abhi baaki hai?',
   'For the job':
     'Naukri ke liye',
   'Ask yourself':

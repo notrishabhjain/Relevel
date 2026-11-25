@@ -81,12 +81,4 @@ Object.assign(window.HING = window.HING || {}, {
   /* months (src/data/route.mjs) */
   'Month 4: What real systems add': 'Mahina 4: asli systems mein kya judta hai',
   /* monthly reviews (plan/data.mjs) */
-  'If you missed days, do not catch up in one go. Carry on from the first open step and let the dates slide.':
-    'Agar din chhoot gaye, to ek saath poora mat kijiye. Pehle khule step se aage badhiye aur tareekhon ko khisakne dijiye.',
-  'Publish the findings page with whatever numbers you have. An honest short page beats a perfect missing one.':
-    'Jo bhi numbers hain unke saath findings page publish kijiye. Imaandaar chhota page, gayab perfect page se behtar hai.',
-  'If time is short, keep the release gate and the risk register; the others can be one page each.':
-    'Agar samay kam hai, to release gate aur risk register rakhiye; baaki ek-ek page ke ho sakte hain.',
-  'Do not cut this one. Move it into May rather than skip it.':
-    'Ise mat kaatiye. Chhodne ke bajaye May tak khisaa dijiye.'
 });

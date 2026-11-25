@@ -583,56 +583,24 @@ Object.assign(window.HING = window.HING || {}, {
   /* ---- b6: Ship to real users and run the learning loop ---- */
   'Ship to real users and run the learning loop':
     'Asli users tak pahunchiye aur learning loop chalaiye',
-  'Put your capstone in front of real users, and learn from what they do. You’ll get it ready for production, recruit people ethically, combine what they say with what they do, and ship one improvement based on evidence.':
-    'Apne capstone ko asli users ke saamne rakhiye, aur seekhiye ki woh kya karte hain. Aap use production ke liye taiyaar karenge, logon ko ethically recruit karenge, jo woh kehte hain aur jo woh karte hain unhe jodenge, aur evidence ke base par ek improvement ship karenge.',
-  'A deployed app with analytics':
-    'Analytics ke saath ek deployed app',
   'This chapter puts it in front of real users.':
     'Yeh chapter use asli users ke saamne rakhta hai.',
-  'A release checklist':
-    'Ek release checklist',
   'You use it before launch.':
     'Aap ise launch se pehle use karte hain.',
-  'Reading failures by hand':
-    'Failures ko haath se padhna',
-  'Idea 4 builds a failure list the same way.':
-    'Idea 4 usi tareeke se ek failure list banata hai.',
-  'You observe sessions with the same care.':
-    'Aap sessions ko usi dhyaan se observe karte hain.',
-  'Check that a product is ready to run, and name who owns it when it breaks.':
-    'Check kar paana ki ek product chalne ke liye taiyaar hai, aur yeh bata paana ki jab woh toote toh uska owner kaun hai.',
-  'Recruit design partners honestly, with clear consent and data handling.':
-    'Design partners ko imaandari se recruit kar paana, saaf consent aur data handling ke saath.',
-  'Combine what users say with what they do, and trust behaviour when the two disagree.':
-    'Users jo kehte hain aur jo karte hain, dono ko jod paana, aur dono mein farq ho toh behaviour par bharosa kar paana.',
-  'Prioritise the next fix by how often it happens, how bad it is and what it costs.':
-    'Agla fix prioritise kar paana is hisaab se ki woh kitni baar hota hai, kitna bura hai aur uski keemat kitni hai.',
   'Tell users what changed, and turn support requests into product evidence.':
     'Users ko bata paana ki kya badla, aur support requests ko product evidence mein badal paana.',
-  'In the last chapter you drew the system around the model and wrote a release checklist. Now you get to use it. Until real people try your product, everything you know about it is a guess.':
-    'Pichhle chapter mein aapne model ke aaspaas ka system draw kiya tha aur ek release checklist likhi thi. Ab use istemaal karne ka waqt hai. Jab tak asli log aapka product try nahi karte, uske baare mein aap jo bhi jaante hain woh andaaza hai.',
-  'Here’s what you’ll do. You’ll get the product ready to run, recruit early users honestly, and watch what they do. Then you’ll choose the next fix, and tell users what changed.':
-    'Aap yeh karenge. Aap product ko chalne ke liye taiyaar karenge, early users ko imaandari se recruit karenge, aur dekhenge ki woh kya karte hain. Phir aap agla fix chunenge, aur users ko batayenge ki kya badla.',
   'Idea 1: Ready to run, and owned':
     'Idea 1: Chalne ke liye taiyaar, aur owner ke saath',
-  'A demo works while you watch it. A product has to work while nobody is watching. So before any real user arrives, check these six areas:':
-    'Ek demo tab chalta hai jab aap use dekh rahe hote hain. Ek product ko tab bhi chalna padta hai jab koi nahi dekh raha. Isliye kisi bhi asli user ke aane se pehle, yeh chhe areas check kijiye:',
   'Area':
     'Area',
   'Ready when':
     'Taiyaar tab, jab',
-  'Monitoring':
-    'Monitoring',
   'You get an alert when errors rise or the app slows down':
     'Errors badhne par ya app slow hone par aapko alert milta hai',
-  'Your tracking plan events arrive from the live app':
-    'Aapke tracking plan ke events live app se aa rahe hain',
   'Privacy':
     'Privacy',
   'A notice says what you collect, why, and how to delete it':
     'Ek notice batata hai ki aap kya collect karte hain, kyun, aur use delete kaise karein',
-  'Feedback':
-    'Feedback',
   'A user can report a problem in one click':
     'Ek user ek click mein problem report kar sakta hai',
   'Rollback':
@@ -641,50 +609,20 @@ Object.assign(window.HING = window.HING || {}, {
     'Aapne pichhle version par wapas jaane ko test kiya hai',
   'Cost':
     'Cost',
-  'A spending limit is set with the model provider':
-    'Model provider ke saath ek spending limit set hai',
-  'Every production system also needs an owner. That is the person who responds when it breaks at a bad time. For a capstone, that person is you. Write down how you will be alerted, and how quickly you will respond.':
-    'Har production system ko ek owner bhi chahiye. Yeh woh insaan hai jo kharab time par system toote toh jawaab deta hai. Capstone ke liye, woh insaan aap hain. Likh lijiye ki aapko alert kaise milega, aur aap kitni jaldi respond karenge.',
   'Go through the six rows for your capstone. Fix anything that is not ready.':
     'Apne capstone ke liye chhe rows dekhiye. Jo taiyaar nahi hai use theek kijiye.',
   'Six ticks, or a list of what is missing. Counterexample: a failure your monitoring would not catch, such as the model returning plausible but wrong themes.':
     'Chhe ticks, ya jo kami hai uski list. Counterexample: ek aisa failure jo aapki monitoring nahi pakdegi, jaise model ka plausible lekin galat themes dena.',
   'Idea 2: Recruiting design partners ethically':
     'Idea 2: Design partners ko ethically recruit karna',
-  'Once the product is ready, you need people to try it. <strong>Design partners</strong> are early users who agree to use an unfinished product and tell you what they find. They give you their time, and sometimes their data. So recruit them honestly:':
-    'Jab product taiyaar ho, tab aapko aise log chahiye jo use try karein. <strong>Design partners</strong> woh early users hain jo ek adhoore product ko use karne aur aapko batane ko raazi hote hain ki unhe kya mila. Woh aapko apna time dete hain, aur kabhi-kabhi apna data bhi. Isliye unhe imaandari se recruit kijiye:',
   'Say clearly that the product is early and may be wrong.':
     'Saaf bataiye ki product early hai aur galat ho sakta hai.',
-  'Explain what data you collect, where it goes and how they can delete it. Get written consent.':
-    'Samjhaiye ki aap kaun sa data collect karte hain, woh kahan jaata hai aur woh use kaise delete kar sakte hain. Written consent lijiye.',
   'Do not use data they did not agree to share. For Theme Finder, start with a sample of tickets they choose.':
     'Woh data use mat kijiye jo unhone share karne ke liye haan nahi kaha. Theme Finder ke liye, unke chune hue tickets ke ek sample se shuru kijiye.',
-  'Offer something fair in return, such as early access or a discount. But do not pay so much that they feel they owe you praise.':
-    'Badle mein kuch fair offer kijiye, jaise early access ya discount. Lekin itna mat dijiye ki unhe lage ki unhe aapki taareef karni hi hai.',
-  'Let them stop at any time, without any awkwardness.':
-    'Unhe kabhi bhi, bina kisi uljhan ke, rukne dijiye.',
-  'Look for people who have the problem now and already use your target tools. Your A3 interviewees are a good place to start. Friends and colleagues are easy to recruit, but they are too polite to be useful.':
-    'Aise log dhoondhiye jinhe abhi yeh problem hai aur jo pehle se aapke target tools use karte hain. Aapke A3 ke interviewees ek achhi shuruaat hain. Dost aur colleagues recruit karna aasaan hai, lekin woh kaam aane ke liye bahut polite hote hain.',
-  'Write the recruiting message you will send. Include what the product does, what you ask of them, what data is involved and what they get.':
-    'Woh recruiting message likhiye jo aap bhejenge. Usme yeh shaamil kijiye ki product kya karta hai, aap unse kya maangte hain, kaun sa data involved hai aur unhe kya milega.',
-  'A short message. Read it as the recipient: is anything unclear or pushy? Counterexample: a person who fits your target but should not be recruited, and why.':
-    'Ek chhota message. Use receiver ki tarah padhiye: kya kuch unclear ya pushy hai? Counterexample: ek insaan jo aapke target mein fit hota hai lekin jise recruit nahi karna chahiye, aur kyun.',
   'Idea 3: What users say, and what they do':
     'Idea 3: Users kya kehte hain, aur kya karte hain',
-  'Now your partners are using the product. Remember that users often say one thing and do another. They say a feature is great and never use it again. They complain about something and keep using the product every day. So you need both kinds of evidence.':
-    'Ab aapke partners product use kar rahe hain. Yaad rakhiye ki users aksar kehte kuch hain aur karte kuch aur hain. Woh kehte hain ki feature bahut achha hai aur phir kabhi use nahi karte. Woh kisi cheez ki shikayat karte hain aur phir bhi roz product use karte rehte hain. Isliye aapko dono tarah ka evidence chahiye.',
-  'Watch at least five sessions. Give each user a real task and stay quiet while they work. Record the same fields each time:':
-    'Kam se kam paanch sessions dekhiye. Har user ko ek asli task dijiye aur jab woh kaam karein toh chup rahiye. Har baar wahi fields record kijiye:',
-  'When what users say and what they do disagree, trust what they do, and then ask them why.':
-    'Jab users jo kehte hain aur jo karte hain unme farq ho, toh jo woh karte hain us par bharosa kijiye, aur phir unse poochiye kyun.',
-  'Run your first observed session and fill in the seven fields.':
-    'Apna pehla observed session chalaiye aur saatoon fields bhariye.',
-  'One complete session record. Counterexample: a situation where what the user said was more useful than what they did.':
-    'Ek poora session record. Counterexample: ek aisi situation jahan user ne jo kaha woh uske kiye se zyada kaam ka tha.',
   'Idea 4: Prioritising failures and opportunities':
     'Idea 4: Failures aur opportunities ko prioritise karna',
-  'After five sessions and two weeks of data, you will have more problems than time. So put them all in one list, and score each one by how often it happens, how bad it is and how much it costs to fix. Here is an example:':
-    'Paanch sessions aur do hafte ke data ke baad, aapke paas time se zyada problems hongi. Isliye unhe ek hi list mein daaliye, aur har ek ko score kijiye ki woh kitni baar hoti hai, kitni bura hai aur fix karne mein kitna kharch aata hai. Yeh ek example hai:',
   'Problem':
     'Problem',
   'How often':
@@ -715,72 +653,28 @@ Object.assign(window.HING = window.HING || {}, {
     'Medium',
   '2':
     '2',
-  'Theme names too long':
-    'Theme names bahut lambe hain',
   '3 of 6':
     '6 mein se 3',
   '3':
     '3',
   'Wants Zendesk support':
     'Zendesk support chahte hain',
-  '2 prospects':
-    '2 prospects',
-  'Blocks them entirely':
-    'Unhe poori tarah rok deta hai',
   'Large':
     'Badi',
   'Later':
     'Baad mein',
-  'Mix AI failures and product failures in the same list. A wrong theme and a confusing button both cost users. For the AI rows, reuse the failure taxonomy you built in Chapter 14.5.':
-    'AI failures aur product failures ko ek hi list mein milaiye. Ek galat theme aur ek confusing button, dono users ko nuksaan karte hain. AI rows ke liye, Chapter 14.5 mein banayi gayi failure taxonomy dobara use kijiye.',
   'Build your list with at least five problems from your sessions and data. Pick the top one.':
     'Apne sessions aur data se kam se kam paanch problems ki list banaiye. Sabse upar wali chuniye.',
-  'A scored list and one choice. Write down the number you expect it to move, and by how much.':
-    'Ek scored list aur ek choice. Likhiye ki aap kaun sa number hilne ki ummeed karte hain, aur kitna.',
-  'Describe the iteration you will ship. Write the problem with its evidence, the change, the metric you expect to move and by how much, and what you will do if it does not move.':
-    'Jis iteration ko aap ship karenge use describe kijiye. Problem ko uske evidence ke saath, change, woh metric jo aap hilne ki ummeed karte hain aur kitna, aur agar woh na hile toh aap kya karenge, yeh sab likhiye.',
   'We saw… so we will… we expect… if it does not move…':
     'We saw… so we will… we expect… if it does not move…',
   'Here is a strong answer. <strong>We saw</strong> 4 of 6 users question why a ticket was in a theme, and only 58% of themes were marked useful. <strong>We will</strong> add a “why this theme” link that shows the three phrases that matched. <strong>We expect</strong> useful themes to rise above 65% within two weeks, with no increase in time per report. <strong>If it does not move,</strong> the problem may be the grouping itself, not the explanation. We will then review 50 disputed tickets by hand before changing anything else.':
     'Yeh ek mazboot jawaab hai. <strong>We saw</strong> 6 mein se 4 users ne poocha ki ek ticket ek theme mein kyun tha, aur sirf 58% themes ko useful mark kiya gaya. <strong>We will</strong> ek “why this theme” link jodenge jo woh teen phrases dikhaye jo match hue. <strong>We expect</strong> ki useful themes do hafte mein 65% se upar jaayein, aur har report ka time na badhe. <strong>If it does not move,</strong> toh problem grouping mein ho sakti hai, explanation mein nahi. Tab hum kuch aur badalne se pehle 50 disputed tickets haath se review karenge.',
   'Idea 5: Release notes and support loops':
     'Idea 5: Release notes aur support loops',
-  'Each time you ship, tell users what changed. They notice a change much more easily when someone points it out. A good changelog entry is short and practical:':
-    'Jab bhi aap ship karein, users ko batayiye ki kya badla. Jab koi unhe change dikhata hai, toh woh use bahut aasaani se notice karte hain. Ek achhi changelog entry chhoti aur kaam ki hoti hai:',
-  'There is one more source of evidence, and it comes to you for free. Support requests are product research. Log each one with its category and the account, and review the log weekly with your analytics. A problem that appears in support, in sessions and in the data together is almost certainly real.':
-    'Evidence ka ek aur source hai, aur woh aapko free mein milta hai. Support requests product research hain. Har ek ko uski category aur account ke saath log kijiye, aur log ko har hafte apne analytics ke saath review kijiye. Jo problem support, sessions aur data, teeno mein ek saath dikhe, woh lagbhag pakka asli hai.',
-  'Write the changelog entry for your iteration. Then set up a simple support log with date, account, category and what you did.':
-    'Apne iteration ke liye changelog entry likhiye. Phir date, account, category aur aapne kya kiya, in columns ke saath ek simple support log shuru kijiye.',
   'One entry and one log. Counterexample: a change that should not be announced, and why.':
     'Ek entry aur ek log. Counterexample: ek aisa change jise announce nahi karna chahiye, aur kyun.',
-  'You’ve now been through the whole learning loop. You get the product ready, find honest users, and watch what they do. Then you fix the problem that matters most, tell users, and keep listening through support.':
-    'Aap ab poore learning loop se guzar chuke hain. Aap product ko taiyaar karte hain, imaandar users dhoondhte hain, aur dekhte hain ki woh kya karte hain. Phir aap woh problem fix karte hain jo sabse zaroori hai, users ko batate hain, aur support ke zariye sunte rehte hain.',
-  'Next, you’ll turn the work you have done into a story for the AI PM job market.':
-    'Aage, aap apne kiye hue kaam ko AI PM job market ke liye ek kahani mein badlenge.',
-  'Put it in front of real users and make one improvement from what you see':
-    'Asli users ke saamne rakhiye aur jo dikhe usse ek improvement kijiye',
-  'A demo is not a launch. In this chapter you learned to check that a product is ready to run, to recruit testers honestly, to trust what people do over what they say, and to turn support requests into evidence. Now you’ll put the developer kit demo online, watch real people use it, and make one change because of what you saw.':
-    'Ek demo launch nahi hota. Is chapter mein aapne seekha ki product chalne ke liye taiyaar hai ya nahi yeh kaise check karna hai, testers ko imaandari se kaise recruit karna hai, log jo kehte hain uske bajay jo karte hain us par bharosa kaise karna hai, aur support requests ko evidence mein kaise badalna hai. Ab aap developer kit ka demo online daalenge, asli logon ko use karte dekhenge, aur jo dekha uski wajah se ek change karenge.',
-  'Code, to put the demo online and watch it, plus real user sessions. Then write the change note in the notes box below.':
-    'Code, demo ko online daalne aur dekhne ke liye, aur saath mein asli user sessions. Phir change note neeche notes box mein likhiye.',
-  'Put the demo on a stable web address. Add monitoring, usage tracking that never records personal details, a privacy notice, a way to send feedback and a way to roll back.':
-    'Demo ko ek stable web address par daaliye. Monitoring, aisa usage tracking jo personal details kabhi record na kare, ek privacy notice, feedback bhejne ka tareeka aur roll back karne ka tareeka jodiye.',
-  'Recruit five to ten real target users, meaning developers or the people they build for. Ask for clear consent, explain what data is used, and let them stop at any time.':
-    'Paanch se das asli target users recruit kijiye, yaani developers ya woh log jinke liye woh build karte hain. Saaf consent maangiye, samjhaiye ki kaun sa data use hota hai, aur unhe kabhi bhi rukne dijiye.',
-  'Watch at least five sessions. Record whether each person succeeded, how long it took, where it failed, what they said, and whether they came back.':
-    'Kam se kam paanch sessions dekhiye. Record kijiye ki har insaan succeed hua ya nahi, kitna time laga, kahan fail hua, unhone kya kaha, aur woh wapas aaye ya nahi.',
-  'Put the problems you saw in a list, and score each by how often it happened, how bad it was and how costly it is to fix. Choose one to fix.':
-    'Jo problems aapne dekhi unhe ek list mein daaliye, aur har ek ko score kijiye ki woh kitni baar hui, kitni buri thi aur fix karna kitna mehnga hai. Ek chuniye jise fix karna hai.',
-  'Fix it, ship it, and compare the numbers before and after. Write a short change note telling users what changed, why, and what they should do differently.':
-    'Use fix kijiye, ship kijiye, aur pehle aur baad ke numbers compare kijiye. Users ko batane wala ek chhota change note likhiye ki kya badla, kyun, aur unhe kya alag karna chahiye.',
-  'Start a simple support log with the date, who asked, the category and what you did. Review it every week.':
-    'Ek simple support log shuru kijiye, jisme date, kisne poocha, category aur aapne kya kiya, yeh sab ho. Use har hafte review kijiye.',
-  'A live address with the safety items in place.':
-    'Ek live address, safety items ke saath.',
   'Notes from at least five sessions with real target users, not friends or teammates doing you a favour.':
     'Kam se kam paanch sessions ke notes, asli target users ke saath, aise dost ya teammates nahi jo aap par ehsaan kar rahe hon.',
-  'A scored problem list, and the one you chose.':
-    'Ek scored problem list, aur woh jise aapne chuna.',
   'Before and after numbers for the change, and a change note for users.':
     'Change ke pehle aur baad ke numbers, aur users ke liye ek change note.',
 
@@ -865,54 +759,24 @@ Object.assign(window.HING = window.HING || {}, {
   /* ---- b8: The integrated capstone now lives in Chapter 34 ---- */
   'The integrated capstone now lives in Chapter 34':
     'Integrated capstone ab Chapter 34 mein hai',
-  'This chapter used to hold a second, separate capstone. Not any more. The technical capstone and this chapter’s five gates (discovery, strategy, build, ship and defend) are now one eleven-stage journey in Chapter 34. So you do one coherent project instead of two.':
-    'Is chapter mein pehle ek doosra, alag capstone hota tha. Ab nahi hai. Technical capstone aur is chapter ke paanch gates (discovery, strategy, build, ship aur defend) ab Chapter 34 mein ek eleven-stage journey ban gaye hain. Isliye aap 2 ki jagah ek hi coherent project karte hain.',
-  'The unified capstone':
-    'Unified capstone',
   'Everything that used to be here is now part of it.':
     'Jo kuch yahan hota tha, woh ab usi ka hissa hai.',
-  'Do the capstone once, in Chapter 34, and not twice.':
-    'Capstone ek hi baar kijiye, Chapter 34 mein, do baar nahi.',
-  'This page keeps one exercise from the old chapter, so an answer you saved here still has a home.':
-    'Yeh page purane chapter ka ek exercise rakhta hai, taaki yahan save kiya hua aapka jawaab bacha rahe.',
   'This chapter moved':
     'Yeh chapter shift ho gaya hai',
-  'Earlier, the capstone was split in two. There was a technical capstone, and there was a second one built around five gates. Doing both felt like doing the same project twice. So the two have been joined into a single journey in Chapter 34. Its eleven stages are the detail inside stage 12 of the project’s thirteen.':
-    'Pehle capstone do hisson mein bata hua tha. Ek technical capstone tha, aur doosra paanch gates par bana tha. Dono karna ek hi project do baar karne jaisa lagta tha. Isliye dono ko jodkar Chapter 34 mein ek journey bana diya gaya hai. Uske gyarah stages project ke terah stages mein se stage 12 ka detail hain.',
-  'What if you already have progress on the old five gates? Nothing is lost. Each old gate maps directly onto the new stages, as the table shows.':
-    'Agar aapne purane paanch gates par pehle se progress kar rakhi hai toh? Kuch bhi nahi khoya. Har purana gate naye stages se seedha map hota hai, jaise table mein dikhaya hai.',
   'Old gate':
     'Purana gate',
   'New stage(s) in Chapter 34':
     'Chapter 34 ke naye stage',
-  'Gate 1, Discovery':
-    'Gate 1, Discovery',
   '34.1 Discover':
     '34.1 Discover',
-  'Gate 2, Strategy':
-    'Gate 2, Strategy',
   '34.3 Design':
     '34.3 Design',
-  'Gate 3, Build':
-    'Gate 3, Build',
   '34.4 Build – 34.5 Evaluate':
     '34.4 Build – 34.5 Evaluate',
-  'Gate 4, Ship':
-    'Gate 4, Ship',
   '34.8 Ship':
     '34.8 Ship',
-  'Gate 5, Defend':
-    'Gate 5, Defend',
   '34.9 Measure – 34.11 Defend':
     '34.9 Measure – 34.11 Defend',
-  'Go to <a href="#/ch/ch21cap">Chapter 34</a> and start from wherever your project actually is. There is nothing else to do on this page, except the one exercise below. We kept it here so that an answer you already wrote is not lost.':
-    '<a href="#/ch/ch21cap">Chapter 34</a> par jaiye aur wahan se shuru kijiye jahan aapka project asal mein hai. Is page par aur kuch karne ko nahi hai, sirf neeche wale ek exercise ko chhodkar. Use yahin rakha hai, taaki jo jawaab aap pehle likh chuke hain woh kho na jaye.',
-  'Write your answer to the hardest question you expect in the defence. For example: “Why should we believe this works beyond your ten design partners?”':
-    'Defence mein jo sabse mushkil sawaal aapko expect hai, uska jawaab likhiye. Jaise: “Hum kyun maane ki yeh aapke 10 design partners ke baahar bhi kaam karta hai?”',
   'What we know… what we do not know yet… what we would do next…':
     'Hum kya jaante hain… hum abhi kya nahi jaante… hum aage kya karenge…',
-  'A strong answer separates what is known from what is not. For example: <strong>We know</strong> that 8 of 10 design partners used it for four weeks in a row, and that precision held at 86% on their real tickets. <strong>We do not know yet</strong> whether it holds for teams on other helpdesks, or with more than 5,000 tickets a week, because none of our partners had those. <strong>Next,</strong> we would add two partners from each missing group, with the same eval set and thresholds, before any wider launch. The answer admits uncertainty and gives a clear way to reduce it.':
-    'Ek strong jawaab woh hota hai jo jaani hui cheez ko anjaani cheez se alag rakhta hai. Jaise: <strong>Hum jaante hain</strong> ki 10 mein se 8 design partners ne ise lagatar chaar hafte use kiya, aur unke asli tickets par precision 86% par tika rahi. <strong>Hum abhi nahi jaante</strong> ki yeh doosre helpdesks wali teams ke liye, ya hafte mein 5,000 se zyada tickets wali teams ke liye bhi tikta hai ya nahi, kyunki hamare kisi partner ke paas yeh nahi the. <strong>Aage,</strong> kisi bhi bade launch se pehle hum har missing group se 2 partners jodenge, wahi eval set aur thresholds ke saath. Yeh jawaab uncertainty maanta hai aur use kam karne ka saaf raasta deta hai.',
-  'That is all for this page. When you’re ready, carry on with your project in Chapter 34.':
-    'Is page par bas itna hi. Jab aap taiyaar hon, toh Chapter 34 mein apne project par aage badhiye.'
 });
