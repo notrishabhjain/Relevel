@@ -490,7 +490,7 @@ window.PART7 = [
     ['p','Tools will come and go, but two habits will stay useful. The first is the <strong>claim audit</strong>. AI tools can summarise research fast, but a summary can say things the source never said. Think of a student who adds lines the book never wrote. So pick ten claims from an AI summary and check each one against its source. Mark each as supported, partly supported or unsupported.'],
     ['p','If more than one or two fail, stop trusting that workflow for decisions, whichever research tool produced it.'],
     ['p','The second habit is the <strong>secrets-and-data audit</strong>. For every tool in your stack, write what it stores and where its keys live. A key is a secret code that lets your app use a service. It is like the key to your shop’s cash box.'],
-    ['p','Generated prototypes (screens built for you by an AI tool) especially tend to put API keys in front-end code, where anyone can read them, and to ship a database with no access rules. Check both before you share a link with anyone.'],
+    ['p','Generated prototypes (screens built for you by an AI tool) especially tend to put API keys in front-end code, where anyone can read them. They also tend to ship a database with no access rules. Check both before you share a link with anyone.'],
     ['do','Prove it now',[
       ['p','Run the claim audit once, on any AI-summarised research you already have. Then list your own capstone’s stack and run the secrets-and-data audit on it.'],
       ['x','Ten claims, each one marked. A short stack list, with each row naming what the tool stores and where its secrets live. Plus a counterexample (a case where the tool fails): a claim a source-grounded tool would still get wrong, such as what users did not mention.']

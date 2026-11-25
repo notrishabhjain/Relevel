@@ -278,7 +278,7 @@ window.PART4 = [
       ['p','Use a clock. How long does it take to fix a wrong output, compared with doing the whole task by hand? Do it three times.'],
       ['x','If fixing is slower, your feedback table will stay empty, and you may read that as happy users. This one measurement explains most “our users never give feedback” complaints.']
     ]],
-    ['c','Example','Take two products with the same model and the same retrieval (finding the right page before answering). One saves a thumbs-down. The other saves the answer, the chunks (small pieces of text it looked at) and the question, and asks “what did you expect instead?” In two weeks, the second has a list of real failure types and a roadmap from its own traffic. The first has a falling number and no idea why.'],
+    ['c','Example','Take two products with the same model and the same retrieval (finding the right page before answering). One saves a thumbs-down. The other saves the answer, the chunks (small pieces of text it looked at) and the question. It also asks “what did you expect instead?” In two weeks, the second has a list of real failure types and a roadmap from its own traffic. The first has a falling number and no idea why.'],
     [
       'try',
       {id:'ch20-correct',

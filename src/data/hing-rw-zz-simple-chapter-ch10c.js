@@ -139,8 +139,8 @@ Object.assign(window.HING = window.HING || {}, {
     'PM (product manager) ko poochna aana chahiye “context mein kya hai?” aur saaf jawaab milna chahiye.',
   'State, history and memory':
     'State, history and memory',
-  'You will keep four things apart that people often mix up: the context of one request, the conversation history, the data kept about a user, and the state of a task (where the job has reached).':
-    'Aap chaar cheezein alag rakhenge jinhe log aksar mila dete hain: ek request ka context, conversation history, user ke baare mein rakha data, aur task ki state (kaam kahan tak pahuncha).',
+  'You will keep four things apart that people often mix up. They are the context of one request, the conversation history, and the data kept about a user. The fourth is the state of a task (where the job has reached).':
+    'Aap chaar cheezein alag rakhenge jinhe log aksar mila dete hain. Woh hain ek request ka context, conversation history, aur user ke baare mein rakha data. Chauthi hai task ki state (kaam kahan tak pahuncha).',
   '“Memory” is a whole design, not a single switch. It has storage, rules for how long to keep things, and rules for who may see them.':
     '“Memory” ek switch nahin, poora design hai. Isme storage hai, kitni der rakhna hai ke niyam hain, aur kaun dekh sakta hai ke niyam hain.',
   'Draw three stores: the session history, the user profile and the task state. Think of three cupboards.':

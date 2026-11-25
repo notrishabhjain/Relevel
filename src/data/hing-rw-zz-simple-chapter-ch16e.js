@@ -105,8 +105,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Failures ko kinds mein baantiye, jaise shikayaton ke dher banate hain. Phir aap sirf symptoms nahi, causes ko fix karte hain.',
   '"Wrong answer" is too broad. It does not tell engineers what to fix.':
     '"Wrong answer" bahut broad hai. Isse engineers ko pata nahi chalta kya fix karna hai.',
-  'Make the categories: retrieval miss (the right page was not found), wrong chunk, stale data (old data), instruction failure, schema failure (the form was not filled right), tool failure, authorization failure and hallucination (confident make-believe).':
-    'Yeh categories banaiye: retrieval miss (sahi page nahi mila), wrong chunk, stale data (purana data), instruction failure, schema failure (form sahi nahi bhara), tool failure, authorization failure aur hallucination (pakke yakeen se boli gayi banawati baat).',
+  'Make the categories. Start with retrieval miss (the right page was not found), wrong chunk and stale data (old data). Add instruction failure and schema failure (the form was not filled right). Add tool failure and authorization failure. Last, add hallucination (confident make-believe).':
+    'Categories banaiye. Shuru kijiye retrieval miss (sahi page nahi mila), wrong chunk aur stale data (purana data) se. Phir instruction failure aur schema failure (form sahi nahi bhara) jodiye. Phir tool failure aur authorization failure jodiye. Aakhir mein hallucination (pakke yakeen se boli gayi banawati baat) jodiye.',
   'Put one of these category labels on 20 real failures.':
     '20 asli failures par in categories mein se ek label lagaiye.',
   'Ask two people to label the same failures. Then see where they disagree.':
@@ -193,8 +193,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Quality, safety, latency (intezaar ka time) aur cost ko milakar ek release decision banaiye. Koi trade-off mat chhupaiye.',
   'Shipping is a decision with several sides. One overall score can hide failures you cannot accept.':
     'Ship karna kai pehluon wala decision hai. Ek overall score aise failures chhupa sakta hai jo aap accept nahi kar sakte.',
-  'Set a quality threshold, a safety threshold, a latency SLO (the response time you promise), a cost ceiling (the most you will pay) and a rollback trigger (the sign that says go back to the old version).':
-    'Ek quality threshold, ek safety threshold, ek latency SLO (jis response time ka aap vaada karte hain), ek cost ceiling (sabse zyada jitna aap dene ko taiyaar hain) aur ek rollback trigger (woh nishaan jo kehta hai purane version par wapas jao) tay kijiye.',
+  'Set a quality threshold and a safety threshold. Then set a latency SLO (the response time you promise) and a cost ceiling (the most you will pay). Last, set a rollback trigger (the sign that says go back to the old version).':
+    'Ek quality threshold aur ek safety threshold tay kijiye. Phir ek latency SLO (jis response time ka aap vaada karte hain) aur ek cost ceiling (sabse zyada jitna aap dene ko taiyaar hain) tay kijiye. Aakhir mein ek rollback trigger (woh nishaan jo kehta hai purane version par wapas jao) tay kijiye.',
   'Run a candidate release (a new version waiting for approval) through the gate.':
     'Ek candidate release ko (ek naya version jo manzoori ka intezaar kar raha hai) gate se guzaariye.',
   'Make a model that gets better on quality but breaks the cost limit or the safety limit.':

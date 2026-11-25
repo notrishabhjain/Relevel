@@ -517,9 +517,9 @@ window.PART3 = [
     ['p','India’s Digital Personal Data Protection Act, 2023 (the DPDP Act) has a small word list, and interviewers use it. These are the words to know. For the exact duties, read the Act’s own text.'],
     ['l',['<strong>Data Principal.</strong> The person the data is about. A bank customer types a message into your app. That customer is the Data Principal.','<strong>Data Fiduciary.</strong> The organisation that decides why and how the data is used. Your company is the Data Fiduciary. A model provider that handles the message for you works on your behalf, so the duty stays with you.','<strong>Notice and consent.</strong> Tell the person in plain words what you collect and why. Ask them to agree. Use the data only for the reason you gave.','<strong>Erasure.</strong> The person can ask you to wipe their data, and you must be able to do it. That includes any copy an outside provider holds.','<strong>Breach reporting.</strong> If personal data leaks, you must tell the regulator (the official watchdog) and the people affected.','<strong>Sending data abroad.</strong> The Act allows it, except where the government says no. Look up what is true today.']],
     ['p','This is a word list, not legal advice. Check which parts of the Act are in force today. The plan’s dated list of regulatory milestones is the place to look.'],
-    ['do','Match each kind of text to a duty',[['p','Take six kinds of text the tool might send to an outside model: a sentence with no personal detail; one with a name; one with an Aadhaar number; a cleaned sentence with tags in place of details; a whole chat history; a log line (a saved note in the tool’s record book) that keeps the original message. For each one, write the duty it touches: consent, purpose, erasure, breach or sending data abroad.'],['x','Two things usually show. The cleaned sentence touches almost no duty, which is the case for building the tool. The chat history and the log line touch several, and the log line is the one nobody thought of. The capstone asks for the same kind of table.']]],
+    ['do','Match each kind of text to a duty',[['p','Take six kinds of text the tool might send to an outside model. One is a sentence with no personal detail. Then one with a name, and one with an Aadhaar number. Then a cleaned sentence with tags in place of details, and a whole chat history. Last is a log line (a saved note in the tool’s record book) that keeps the original message. For each one, write the duty it touches: consent, purpose, erasure, breach or sending data abroad.'],['x','Two things usually show. The cleaned sentence touches almost no duty, which is the case for building the tool. The chat history and the log line touch several, and the log line is the one nobody thought of. The capstone asks for the same kind of table.']]],
     ['h','Write a rule people can follow'],
-    ['p','Knowing the answers is only half the job. The other half is making sure your colleagues act on them, even when you are not in the room, like a sign on the shop wall that works when the owner is out.'],
+    ['p','Knowing the answers is only half the job. The other half is making sure your colleagues act on them, even when you are not in the room. It is like a sign on the shop wall that works when the owner is out.'],
     [
       'try',
       {id:'ch165-rule',
@@ -560,7 +560,7 @@ window.PART3 = [
 
   id:'ch17', num:17, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch14','ch12','ch13'], nextUnits:['ch18'], minutes:30, labs:['systemcard'],
   title:'AI governance: risk tiers, system cards and oversight',
-  concept:'An AI feature now comes with governance documents (papers that show a system is safe and watched), and almost every question in them is a product choice. You put your system in a risk tier (a box for how much harm it could do), write a system card (a one-page description), run a deletion drill, and design oversight that still works at real volume.',
+  concept:'An AI feature now comes with governance documents (papers that show a system is safe and watched). Almost every question in them is a product choice. You put your system in a risk tier (a box for how much harm it could do) and write a system card (a one-page description). Then you run a deletion drill. You also design oversight that still works at real volume.',
   needs:[
     ['You measured it, so you can say it with a number','An answer key (questions with the right answers) and a list of failures turn a claim into a number.',14],
     ['Version and access filters (rules that hide what a person may not see) are applied before ranking','That is why they are the only promises you can make.',12],
@@ -640,7 +640,7 @@ window.PART3 = [
     ['q','I094','I131'],
     ['h','Run a deletion drill'],
     ['p','Now a very practical test, like a fire drill. Suppose someone asks you to delete their data. Where would you have to look?'],
-    ['p','It may sit in seven places: the original documents, the chunks (small cut-out pieces), the search copy, the cache (a quick-grab copy kept nearby), the provider’s logs, your own logs, and any test set built from real traffic. Many teams find at least two they cannot reach.'],
+    ['p','It may sit in seven places. Three hold the data itself: the original documents, the chunks (small cut-out pieces) and the search copy. Next are the cache (a quick-grab copy kept nearby), the provider’s logs and your own logs. Last is any test set built from real traffic. Many teams find at least two they cannot reach.'],
     ['p','This is the erasure duty from Chapter 16.5 in real life. Under the Indian Act a person can ask you to wipe their data. The places you cannot reach are where you would fail them.'],
     ['do','Trace one document',[
       ['p','Pick one document from your collection. List every place a copy of it, or something made from it, exists. Next to each, write how you would remove it.'],
@@ -705,7 +705,7 @@ window.PART3 = [
 
   id:'ch18', num:18, part:3, curriculumTier:'selective', phase:2, prerequisites:['ch14','ch15','ch17'], nextUnits:['ch185','ch20'], minutes:45, labs:['redmap','prd'],
   title:'The AI PRD: specs, migrations and kill switches',
-  concept:'A normal spec says what a feature must do. An AI spec says how good it is, as a measured range, because the model can answer a little differently each time. You will draw the whole system from memory, put a PRD (the recipe card for your feature) together from the artifacts (pieces of work) you made earlier, plan how to collect feedback, and plan for the day your model is retired.',
+  concept:'A normal spec says what a feature must do. An AI spec says how good it is, as a measured range, because the model can answer a little differently each time. You will draw the whole system from memory. You will put a PRD (the recipe card for your feature) together from the artifacts (pieces of work) you made earlier. You will plan how to collect feedback. You will also plan for the day your model is retired.',
   needs:[
     ['A test set (questions with known right answers) and a list of your own failures','They turn a rule like “it must work well” into a number.',14],
     ['A real cost figure','The full number, with all four things that multiply it.',15],
@@ -818,7 +818,7 @@ window.PART3 = [
     ['q','I109'],
     ['p','Now turn that into a plan you could hand to a colleague, like a recipe you pass to a friend.'],
     ['do','Write a migration runbook',[
-      ['p','Imagine your model will be retired in 30 days. Write the runbook (a list of steps for the day): which tests to run again, which numbers must match and within what gap, who signs off, and how you go back if the new model is worse.'],
+      ['p','Imagine your model will be retired in 30 days. Write the runbook (a list of steps for the day). Say which tests to run again. Say which numbers must match, and within what gap. Say who signs off. Say how you go back if the new model is worse.'],
       ['x','Guess how long it would take. If you say more than two days, you are probably missing the Chapter 6 answer key. That key turns a migration into an afternoon’s work.']
     ]],
     ['h','Collect feedback you can use'],
@@ -850,7 +850,7 @@ window.PART3 = [
       ['x','Then go back to your Chapter 1 guesses and compare them with this page.']
     ]],
     ['q','I118'],
-    ['c','Note','This course has not covered how models are trained, GPU costs and running models on your own machines, running many agents at large scale, formal proofs that code is correct, or making up practice data. Part IV covers two topics that belong to product managers: whether to fine-tune or use a smaller model, and what the user sees when the system is wrong. The LATER page on this site lists the rest.'],
+    ['c','Note','This course has not covered how models are trained, or GPU costs and running models on your own machines. It also skips running many agents at large scale, formal proofs that code is correct, and making up practice data. Part IV covers two topics that belong to product managers: whether to fine-tune or use a smaller model, and what the user sees when the system is wrong. The LATER page on this site lists the rest.'],
     ['p','Next comes a very common decision. A vendor offers to sell you what you have learned to build. Should you build it yourself or buy it?']
   ],
 }

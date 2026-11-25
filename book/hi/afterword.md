@@ -3,7 +3,7 @@ title: Book Ke Baad
 summary: Case kaise khatam hua, book ke saat parts milkar kya banate hain, project ko abhi bhi kya nahi pata, aur book ko course app ke saath kaise use karein.
 ---
 
-September mein, us raat ke dedh saal baad jab usne yeh sab shuru kiya tha, Anaya Deshmukh ne decision log ke sabse upar scroll kiya. (Yeh woh notebook hai jisme woh har bada faisla aur uski wajah likhti thi.) Usne pehli entry padhi. Woh 14 March ki thi. Decision yeh tha ki pehle personal-details wali problem par kaam karna hai, aur ticket themes par doosre number par.
+September aa gaya tha. Usne yeh sab jis raat shuru kiya tha, us baat ko dedh saal ho gaye the. Anaya Deshmukh ne decision log ke sabse upar scroll kiya. (Yeh woh notebook hai jisme woh har bada faisla aur uski wajah likhti thi.) Usne pehli entry padhi. Woh 14 March ki thi. Decision yeh tha ki pehle personal-details wali problem par kaam karna hai, aur ticket themes par doosre number par.
 
 Saboot ek ginti thi. Ek hafte ki 400 conversations mein se 37 mein ek identity number, tax number, bank account ya poora address tha. Yeh uski apni ginti thi, jise Farah check kar sakti thi.
 
@@ -13,7 +13,7 @@ Usne aakhri line do baar padhi: "Main apna man badal doongi agar". Us saal ne us
 
 September tak guard do support teams ki har chat par chal raha tha. Woh ek lending partner ke trial mein bhi tha. Anaya ke peeche whiteboard par Imran ne teen rangon mein ek drawing chhodi thi. Usmein woh sab tha jo ab ek customer ke keyboard aur jawaab padhne wale insaan ke beech khada tha.
 
-Guard ke har kaam ke liye usmein ek shape thi. Jahan decision hota hai, wahan ek teer tha. Jahan galat jawaab sabse mehnga padta, wahan ek taara tha. Woh khoobsurat nahi thi. Lekin jo banaya gaya tha, uska woh sachcha hisaab thi, jaise train line ka naksha jise patri bichhane waalon ne khud banaya ho.
+Guard ke har kaam ke liye usmein ek shape thi. Jahan decision hota hai, wahan ek teer tha. Jahan galat jawaab sabse mehnga padta, wahan ek taara tha. Woh khoobsurat nahi thi. Lekin jo banaya gaya tha, uska woh sachcha hisaab thi. Woh train line ke us nakshe jaisi thi jise patri bichhane waalon ne khud banaya ho.
 
 ## Saat parts milkar kya banate hain
 
@@ -63,4 +63,4 @@ Course app isi practice ke liye bana hai. Book ke har chapter ka app mein ek saa
 
 Agar book aur course ek doosre se alag bolein, toh please report kijiye. Report tab bhi kijiye jab koi term samjhaye jaane se pehle use ho gaya ho. Book ko theek isi ke liye line-by-line check kiya gaya tha. Lekin ek checker, reader ki jagah nahi le sakta.
 
-Ho sakta hai aap, Anaya ki tarah, us kamre mein woh insaan hon jisse kaha gaya ho ki kuch aisa samjho jo kisi ko theek se samajh nahi aata. Toh salaah yeh hai. Ek notebook shuru kijiye aur usmein ek line likhiye ki aapne kya notice kiya. Baaki sab uske baad aata hai.
+Ho sakta hai aap bhi Anaya jaise hon. Shayad aap us kamre mein woh insaan hon jisse kaha gaya ho ki kuch aisa samjhiye jo kisi ko theek se samajh nahi aata. Toh salaah yeh hai. Ek notebook shuru kijiye aur usmein ek line likhiye ki aapne kya notice kiya. Baaki sab uske baad aata hai.

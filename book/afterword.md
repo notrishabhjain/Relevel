@@ -3,7 +3,7 @@ title: After the Book
 summary: How the case ended, what the seven parts add up to, what the project still does not know, and how to use the book with the course app.
 ---
 
-In September, a year and a half after the night she began, Anaya Deshmukh scrolled to the top of the decision log. (That is the notebook where she wrote down each big choice and why.) She read the first entry. It was dated 14 March. The decision was to work on the personal-details problem first and ticket themes second.
+It was September, a year and a half after the night she began. Anaya Deshmukh scrolled to the top of the decision log. (That is the notebook where she wrote down each big choice and why.) She read the first entry. It was dated 14 March. The decision was to work on the personal-details problem first and ticket themes second.
 
 The evidence was a count. In one week, 37 of 400 conversations held an identity number, a tax number, a bank account or a full address. That was her own count, and Farah could check it.
 
@@ -13,7 +13,7 @@ She read the last line twice: "I would change my mind if". Of all the things the
 
 By September the guard ran on every chat in two support teams. It was also in the trial of a lending partner. Behind Anaya, on the whiteboard, Imran had left a drawing in three colours. It showed everything that now stood between a customer's keyboard and the person who read the reply.
 
-It had a shape for each thing the guard did. It had an arrow for each place where a decision was made. It had a star beside each place where a wrong answer would cost the most. It was not pretty. It was a true account of what had been built, like a map of a train line drawn by the people who laid the track.
+It had a shape for each thing the guard did. It had an arrow for each place where a decision was made. It had a star beside each place where a wrong answer would cost the most. It was not pretty. It was a true account of what had been built. It was like a map of a train line, drawn by the people who laid the track.
 
 ## What the seven parts add up to
 
@@ -63,4 +63,4 @@ The course app is built for that practice. Every chapter of the book has a partn
 
 Please report it if the book and the course disagree. Please report it too if a term is used before it has been explained. The book was checked for exactly that, line by line. But a checker is no substitute for a reader.
 
-You may be, as Anaya was, the person in the room who was asked to make sense of something nobody quite understands. If so, here is the advice. Begin a notebook with one line about what you noticed. Everything else follows from that.
+You may be like Anaya. You may be the person in the room who is asked to make sense of something nobody quite understands. If so, here is the advice. Begin a notebook with one line about what you noticed. Everything else follows from that.

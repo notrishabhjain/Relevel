@@ -181,7 +181,7 @@ window.PART6 = [
       after:'Here is an answer that works. <strong>Decision:</strong> I held back go-live of a citizen-services portal by two weeks, because the payment step had failed two test runs. <strong>If I had decided otherwise:</strong> the portal would have opened on the promised date, and applicants in three districts would have been charged twice. Keep this entry. Chapter B7 asks you to turn it into an interview story.'}],
 
     ['h','Idea 2: Keep all your work in one place'],
-    ['p','Now you know where you stand. Next you need a place to keep what you make. You will make around fifty things in this course: interview notes, a strategy memo, a PRD (the recipe card for a product), test sets, dashboards (one screen of numbers) and a deployed app.'],
+    ['p','Now you know where you stand. Next you need a place to keep what you make. You will make around fifty things in this course. Some are written: interview notes, a strategy memo and a PRD (the recipe card for a product). Others are test sets, dashboards (one screen of numbers) and a deployed app.'],
     ['p','If they sit in many different tools, you cannot find them when you need them. That could be in the capstone, or in a job interview. Think of papers spread over five cupboards.'],
     ['p','So set up two things, one time only:'],
     ['n',[
@@ -927,7 +927,7 @@ window.PART6 = [
       ['Buy','Send messages to a model over the internet through an API (OpenAI, Anthropic, Google)','Usually the right start. It is fast, the quality is high, and you pay as you go, like paying per SMS.'],
       ['Partner','Use a specialist company for the whole job','It makes sense when the job is not your main strength, like turning speech into text or reading documents.']
     ]],
-    ['p','Use six checks to compare the options. They are <strong>quality</strong> on your own test cases, <strong>latency</strong> (how long you wait for an answer), <strong>cost</strong> per task, <strong>privacy</strong> (where the data goes), <strong>lock-in</strong> (how hard it is to switch) and <strong>time to market</strong> (how soon people can use it).'],
+    ['p','Use six checks to compare the options. First, <strong>quality</strong> on your own test cases. Second, <strong>latency</strong> (how long you wait for an answer). Third, <strong>cost</strong> per task. Fourth, <strong>privacy</strong> (where the data goes). Fifth, <strong>lock-in</strong> (how hard it is to switch). Sixth, <strong>time to market</strong> (how soon people can use it).'],
     ['p','Also ask whether AI suits the task at all. AI fits when mistakes are fine or easy to catch. A wrong theme in a weekly report gets fixed at the next meeting. A wrong number in an invoice (a bill) costs money. The same model can suit one task and not the other.'],
     ['try',{id:'a5-bbp',mins:10,min:120,rows:6,
       task:'Write a short build, buy or partner decision for your capstone’s AI layer. Compare at least two options on the six checks. Then say your choice, and what would make you look at it again.',

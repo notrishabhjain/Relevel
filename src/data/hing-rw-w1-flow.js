@@ -97,164 +97,70 @@ Object.assign(window.HING = window.HING || {}, {
     '<strong>IndentationError</strong>: line ki shuruaat ke spaces khisak gaye hain. Original wapas paane ke liye <strong>Undo edits</strong> dabaiye.',
   'Chapter 0.8':
     'Chapter 0.8',
-  'Start: a problem worth solving':
-    'Shuruaat: ek problem jo hal karne laayak hai',
-  'Three lines in your notepad, and the boxes in A1 answered.':
-    'Notepad mein teen lines, aur A1 ke boxes ke jawab.',
-  'Nothing is assumed. The book opens on a real finding in a week of customer chats, and A1 turns that finding into the project you will carry to the end.':
-    'Kuch bhi pehle se maana nahi gaya. Kitaab customer chats ke ek hafte mein mili ek asli baat se shuru hoti hai, aur A1 usi baat ko us project mein badalta hai jise aap aakhir tak saath le jaayenge.',
-  'First pass: read it and answer the boxes, then press “Mark chapter complete”. The long “Build it” section is optional; leave it for later.':
-    'First pass: padhiye aur boxes ke jawab dijiye, phir “Mark chapter complete” dabaiye. Lamba “Build it” section optional hai; use baad ke liye chhod dijiye.',
   'Is it worth building?':
     'Kya yeh banane laayak hai?',
-  'The boxes in A2 and A3 answered: how products win, and a problem statement from what users actually did.':
-    'A2 aur A3 ke boxes ke jawab: products kaise jeette hain, aur users ne asal mein jo kiya usse bana ek problem statement.',
-  'Last week named a problem. This week tests whether it deserves building: first how products win, then how to ask people about what really happened.':
-    'Pichhle hafte ek problem ka naam mila. Is hafte jaanchte hain ki woh banane laayak hai ya nahi: pehle products kaise jeette hain, phir logon se kaise poochhein ki asal mein kya hua.',
   'The market, and what not to do':
     'Market, aur kya nahi karna',
   'A rough market size, and a short “not doing” list.':
     'Market ka ek moota andaaza, aur “yeh nahi karenge” ki ek chhoti list.',
-  'You know who has the problem. Now you look at who else serves them and how many there are, and then you choose the one thing to do first.':
-    'Aapko pata hai ki problem kiske paas hai. Ab aap dekhte hain ki unhe aur kaun serve karta hai aur woh kitne hain, aur phir sabse pehle karne wali ek cheez chunte hain.',
   'A plan, and writing it down':
     'Ek plan, aur use likhna',
   'One objective with three key results, and a one-page spec outline.':
     'Ek objective teen key results ke saath, aur ek page ki spec ki rooprekha.',
-  'With a choice made, you turn it into a plan people can believe and a spec someone could build from. That finishes the product half. Next week you meet the machine.':
-    'Choice ho gayi, ab aap use aisa plan banaate hain jis par log bharosa karein aur aisi spec jisse koi bana sake. Isse product wala aadha hissa poora hota hai. Agle hafte aap machine se milte hain.',
-  'One line on what a token is, in your own words, and a model connected.':
-    'Apne shabdon mein ek line ki token kya hai, aur ek model connected.',
-  'Your plan needs a model, so now you meet one. The book explains what it is. Chapter 0.5 shows tokens and cost on your own text, before anything is set up.':
-    'Aapke plan ko ek model chahiye, isliye ab aap ek se milte hain. Kitaab batati hai ki woh kya hai. Chapter 0.5 kuch bhi set up karne se pehle aapke apne text par tokens aur cost dikhata hai.',
   'Connect a model, once':
     'Model connect kijiye, ek baar',
-  'Do the Connect page, one section at a time: get a free key, paste it in, and run the test call. You saw tokens and cost in Chapter 0.5, so you know what the key pays for. If a step fails, the page says why; copy the exact error into your notes.':
-    'Connect page ek-ek section karke kijiye: free key lijiye, paste kijiye, aur test call chalaiye. Aap Chapter 0.5 mein tokens aur cost dekh chuke hain, isliye aapko pata hai ki key kis cheez ka paisa deti hai. Agar koi step fail ho, toh page wajah batata hai; exact error apne notes mein copy kar lijiye.',
   'Your first conversation with a model':
     'Model ke saath aapki pehli baatcheet',
-  'The course talks to a model in a few lines of Python, so first you learn to read them: five small shapes, nothing to memorise. Then you send your first real message and read its bill.':
-    'Course model se Python ki kuch lines mein baat karta hai, isliye pehle aap unhe padhna seekhte hain: paanch chhote shapes, kuch ratna nahi. Phir aap apna pehla asli message bhejte hain aur uska bill padhte hain.',
   'Why it forgets, and giving instructions':
     'Yeh bhoolta kyun hai, aur instructions dena',
-  'A system prompt that stops the model inventing, tested on one trick question.':
-    'Ek system prompt jo model ko cheezein gadhne se rokta hai, ek chaalaak sawaal par test kiya hua.',
-  'Your first call raises a question: if the model starts from zero each time, how does a chat remember? You find out, and then use the answer to give the model standing instructions.':
-    'Aapki pehli call ek sawaal khada karti hai: agar model har baar zero se shuru karta hai, toh chat yaad kaise rakhti hai? Aap jawaab dhoondhte hain, aur phir usi se model ko hamesha ke liye instructions dete hain.',
   'Checking it, and sorting':
     'Use check karna, aur sorting',
   'Your first answer key, and a sorter with a score.':
     'Aapki pehli answer key, aur score ke saath ek sorter.',
-  'Instructions only help if you can tell whether they worked. So you build a small answer key, then use it on the job a model does most: sorting messages into kinds.':
-    'Instructions tabhi kaam aati hain jab aap bata sakein ki unhone kaam kiya ya nahi. Isliye aap ek chhoti answer key banaate hain, phir use us kaam par lagaate hain jo model sabse zyada karta hai: messages ko kismon mein baantna.',
   'Summaries, long text, and finding by words':
     'Summaries, lamba text, aur shabdon se dhoondhna',
-  'A summary test, a rule for cutting text without splitting an ID, and pattern rules scored by hand.':
-    'Ek summary test, ID ko beech se kaate bina text kaatne ka ek rule, aur haath se score kiye gaye pattern rules.',
-  'The answer key now tests summaries too. Then a new problem: real documents are too long to send at once, so you learn to cut them up and to find the right piece by its words.':
-    'Answer key ab summaries bhi test karti hai. Phir ek nayi problem: asli documents ek saath bhejne ke liye bahut lambe hote hain, isliye aap unhe kaatna aur sahi tukda uske shabdon se dhoondhna seekhte hain.',
   'Holiday week, light: finding by meaning':
     'Chhutti ka hafta, halka: matlab se dhoondhna',
-  'Search by meaning tried on your own pieces of text.':
-    'Apne text ke tukdon par matlab se search try kiya hua.',
-  'Last week’s word search missed things written differently. This week’s search goes by meaning instead. It is a short week on purpose.':
-    'Pichhle hafte ki shabd wali search alag tarah likhi cheezein chook gayi. Is hafte ki search shabdon ki jagah matlab se chalti hai. Yeh hafta jaan-boojhkar chhota hai.',
   'Holiday week, light: how good is good':
     'Chhutti ka hafta, halka: kitna achha, achha hai',
-  'You now have two ways to find things. This week you measure which one finds more, with the same answer-key habit from Week 8.':
-    'Aapke paas ab cheezein dhoondhne ke do tareeke hain. Is hafte aap naapte hain ki kaun sa zyada dhoondhta hai, Week 8 wali answer-key ki aadat ke saath.',
-  'Every piece is in place: cutting, finding, measuring and instructions. This week they join into one system that answers from your documents, and its answers come back in a shape a program can use.':
-    'Har tukda apni jagah par hai: kaatna, dhoondhna, naapna aur instructions. Is hafte woh milkar ek system bante hain jo aapke documents se jawaab deta hai, aur uske jawaab aise shape mein aate hain jise ek program use kar sake.',
   'Dependable answers, and letting it act':
     'Bharose laayak jawaab, aur use kaam karne dena',
-  'An extractor that says “not sure” instead of guessing, and a model that calls one tool.':
-    'Ek extractor jo andaaza lagaane ki jagah “pakka nahi” kehta hai, aur ek model jo ek tool call karta hai.',
-  'Structured answers make two things possible: a model that can trigger an action, and careful choices about what it sees. Both build directly on last week.':
-    'Structured jawaab do cheezein mumkin banaate hain: ek model jo koi action chala sake, aur yeh soch-samajhkar chunna ki woh kya dekhe. Dono seedhe pichhle hafte par bante hain.',
   'Thinking models, the wait, and better search':
     'Sochne wale models, intezaar, aur behtar search',
-  'A budget for what is sent onward, a design for the wait, and search made better one change at a time.':
-    'Aage kya bheja jaata hai uska ek budget, intezaar ke liye ek design, aur ek-ek badlaav se behtar hui search.',
-  'Some models think before they answer, which costs time and money. You decide when that is worth it, then improve the search from Weeks 9 to 11 with your scoreboard as the judge.':
-    'Kuch models jawaab dene se pehle sochte hain, jisme time aur paisa lagta hai. Aap tay karte hain ki yeh kab faayde ka hai, phir Weeks 9 se 11 wali search ko behtar karte hain, apne scoreboard ko judge banaakar.',
   'When the page gives orders, and grading at scale':
     'Jab page hukm de, aur bade paimaane par grading',
-  'Your own tool attacked, and an automatic marker you have checked.':
-    'Aapke apne tool par hamla, aur ek automatic marker jise aapne check kiya hai.',
-  'Your system reads documents, and a document can carry hidden instructions. After you attack your own tool, you grade a thousand answers the same way you graded ten.':
-    'Aapka system documents padhta hai, aur ek document mein chhupi instructions ho sakti hain. Apne hi tool par hamla karne ke baad, aap hazaar jawaabon ko usi tarah grade karte hain jaise das ko kiya tha.',
   'What it costs, documents, and what you may send':
     'Iski keemat, documents, aur aap kya bhej sakte hain',
-  'A cost model from measurements, a reader for scanned pages, and the sharing rule.':
-    'Measurements se bana ek cost model, scan kiye pages ka ek reader, aur sharing ka rule.',
-  'You can now measure quality at scale. This week you put a price on it, handle paper and photos, and decide which data may leave your hands at all.':
-    'Ab aap quality ko bade paimaane par naap sakte hain. Is hafte aap uski keemat lagaate hain, kaagaz aur photos sambhaalte hain, aur tay karte hain ki kaun sa data aapke haath se bahar ja bhi sakta hai.',
   'The rules, and the spec':
     'Rules, aur spec',
-  'A system card, and a requirements document that survives a change of model.':
-    'Ek system card, aur ek requirements document jo model badalne par bhi tika rahe.',
-  'With quality, cost and data rules in hand, you can write down what the system must do and who is responsible when it is wrong. The spec in A7 gets its AI version.':
-    'Quality, cost aur data ke rules haath mein hone par, aap likh sakte hain ki system ko kya karna chahiye aur galat hone par zimmedaar kaun hai. A7 wali spec ko uska AI version milta hai.',
   'Build or buy, and designing for the wrong answer':
     'Banaayein ya kharidein, aur galat jawaab ke liye design',
-  'A build-or-buy call, the four answers the tool can give, and a pilot design.':
-    'Banaane-ya-kharidne ka faisla, tool ke chaar mumkin jawaab, aur ek pilot design.',
-  'The spec raises two decisions that stay yours: whether to build, buy or train, and what the product does when the model is wrong. Then you plan how to prove it helps. That closes Parts I to IV.':
-    'Spec do faisle saamne laati hai jo aapke hi rehte hain: banaana, kharidna ya train karna, aur model galat ho toh product kya kare. Phir aap plan karte hain ki kaise saabit karein ki yeh madad karta hai. Isse Parts I se IV poore hote hain.',
   'Production depth begins: the plumbing, and choosing a model':
     'Production ki gehraai shuru: plumbing, aur model chunna',
-  'A test harness in Git, and your model choice with a back-up.':
-    'Git mein ek test harness, aur back-up ke saath aapka model ka chunaav.',
-  'Part V goes over the same ideas again, this time at the depth a real launch needs. You know every idea already; now you learn the plumbing under it and pick a model on your own cases.':
-    'Part V wahi ideas phir se leta hai, is baar us gehraai par jo asli launch ko chahiye. Har idea aap pehle se jaante hain; ab aap uske neeche ki plumbing seekhte hain aur apne cases par model chunte hain.',
   'Context and retrieval, at production depth':
     'Context aur retrieval, production ki gehraai par',
-  'What the model sees, decided on purpose, and retrieval that survives a review.':
-    'Model kya dekhe, yeh soch-samajhkar tay kiya hua, aur aisa retrieval jo review mein tik jaaye.',
-  'Weeks 12 to 14 built context and search for a prototype. This week does them again for real users: access rules, freshness and a budget.':
-    'Weeks 12 se 14 ne ek prototype ke liye context aur search banaaye. Yeh hafta unhe asli users ke liye dobara karta hai: access rules, taazgi aur ek budget.',
-  'Week 13 let a model call one tool. This week chains tools into workflows and agents, with limits on what they may do alone.':
-    'Week 13 ne model ko ek tool call karne diya. Yeh hafta tools ko workflows aur agents mein jodta hai, is seema ke saath ki woh akele kya kar sakte hain.',
   'Security, and the product spec':
     'Security, aur product spec',
-  'The risk register, the full requirements and a ten-slide decision pack.':
-    'Risk register, poori requirements aur das slide ka decision pack.',
-  'You assume the worst about the model, then write the spec and the decision pack that the capstone will be judged against.':
-    'Aap model ke baare mein sabse bura maan kar chalte hain, phir woh spec aur decision pack likhte hain jinke hisaab se capstone ko parkha jaayega.',
   'Capstone, part 1: build it and break it':
     'Capstone, part 1: banaiye aur todiye',
-  'The capstone plan, and a first version you have tried to break.':
-    'Capstone ka plan, aur ek pehla version jise aapne todne ki koshish ki hai.',
   'Every chapter so far built one piece of Bharat Privacy Guard. These two weeks put the pieces together. This week you plan the smallest version and build it.':
     'Ab tak har chapter ne Bharat Privacy Guard ka ek tukda banaya. Yeh do hafte tukdon ko jodte hain. Is hafte aap sabse chhota version plan karte hain aur use banaate hain.',
   'Plan your capstone':
     'Apna capstone plan kijiye',
-  'Read the capstone chapter’s brief and write, on one page, the smallest version you can ship in about eight hours over two weeks. Everything else goes on a “later” list.':
-    'Capstone chapter ka brief padhiye aur ek page par woh sabse chhota version likhiye jise aap do hafton mein lagbhag aath ghante mein ship kar sakein. Baaki sab “baad mein” wali list mein jaata hai.',
   'Capstone, first half: build and break it':
     'Capstone, pehla aadha: banaiye aur todiye',
-  'Work through the capstone chapter up to its measuring step: put the pieces you built in earlier chapters together, then try to break it. Stop at about four hours, even if you want to keep going. Next week you measure it, ship it and defend it.':
-    'Capstone chapter ko uske naapne wale step tak kijiye: pichhle chapters mein banaaye tukdon ko jodiye, phir use todne ki koshish kijiye. Lagbhag chaar ghante par ruk jaaiye, chahe aage badhne ka mann ho. Agle hafte aap use naapte hain, ship karte hain aur uska bachaav karte hain.',
   'Capstone, part 2: ship it and defend it':
     'Capstone, part 2: ship kijiye aur bachaav kijiye',
-  'Second half of the capstone: measure the version you built last week, ship it and defend it. The chapter allows about thirty hours in all; the smallest version that works is enough here. Press “Mark chapter complete” when it is shipped.':
-    'Capstone ka doosra aadha: pichhle hafte banaaya version naapiye, ship kijiye aur uska bachaav kijiye. Chapter kul milaakar lagbhag tees ghante deta hai; yahan chalne wala sabse chhota version kaafi hai. Ship ho jaaye toh “Mark chapter complete” dabaiye.',
   'Month 1: The problem and the plan':
     'Month 1: Problem aur plan',
   'Month 2: Meet the machine':
     'Month 2: Machine se mulaqat',
-  'What a model is, tokens on your own text, a model connected, just enough Python to read the code, your first call, instructions, an answer key, and the first jobs: sorting and summarising.':
-    'Model kya hai, apne text par tokens, ek model connected, code padhne bhar ka Python, aapki pehli call, instructions, ek answer key, aur pehle kaam: sorting aur summarising.',
   'Month 3: Finding, and your first system':
     'Month 3: Dhoondhna, aur aapka pehla system',
-  'Two light holiday weeks on search by meaning and measuring it, then your first complete system, answers a program can use, and a model that can act.':
-    'Matlab se search aur use naapne par do halke chhutti ke hafte, phir aapka pehla poora system, aise jawaab jinhe program use kar sake, aur ek model jo kaam kar sake.',
   'Thinking models, better search, attacks, grading at scale, cost, documents, the rules, the spec, build or buy, and designing for wrong answers.':
     'Sochne wale models, behtar search, hamle, bade paimaane par grading, cost, documents, rules, spec, banaana ya kharidna, aur galat jawaabon ke liye design.',
   'Month 5: The same ideas, at production depth':
     'Month 5: Wahi ideas, production ki gehraai par',
-  'Part V goes over everything again, deeper: the plumbing, model choice, context, retrieval, workflows and agents, pictures and voice, release gates, watching, security and the product spec.':
-    'Part V sab kuch phir se, aur gehraai se leta hai: plumbing, model ka chunaav, context, retrieval, workflows aur agents, tasveerein aur aawaaz, release gates, nigraani, security aur product spec.',
   'Month 6: Ship it, and get the job':
     'Month 6: Ship kijiye, aur naukri paaiye',
   'First pass now, the long build later. The “Build it” sections in Track A and Track B are optional on the route. Write “later” next to them and move on.':

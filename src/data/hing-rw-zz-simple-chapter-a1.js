@@ -145,8 +145,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Yeh ek chalne wala jawaab hai. <strong>Faisla:</strong> Maine citizen-services portal ka go-live do hafte rok diya, kyunki payment wala kadam do test runs mein fail hua tha. <strong>Agar main doosra faisla leta:</strong> portal vaade ki tarikh par khul jata, aur teen zilon ke applicants se do baar paisa kat jata. Yeh entry sambhal kar rakhiye. Chapter B7 aapse ise interview ki kahani banane ko kehta hai.',
   'Idea 2: Keep all your work in one place':
     'Idea 2: Apna saara kaam ek jagah rakhiye',
-  'Now you know where you stand. Next you need a place to keep what you make. You will make around fifty things in this course: interview notes, a strategy memo, a PRD (the recipe card for a product), test sets, dashboards (one screen of numbers) and a deployed app.':
-    'Ab aap jaante hain ki aap kahan hain. Agla, aapko ek jagah chahiye jahan aap jo banate hain woh rakhein. Is course mein aap lagbhag pachaas cheezein banayenge: interview notes, strategy memo, PRD (product ka recipe card), test sets, dashboards (numbers ki ek screen) aur ek chalta hua app.',
+  'Now you know where you stand. Next you need a place to keep what you make. You will make around fifty things in this course. Some are written: interview notes, a strategy memo and a PRD (the recipe card for a product). Others are test sets, dashboards (one screen of numbers) and a deployed app.':
+    'Ab aap jaante hain ki aap kahan hain. Agla, aapko ek jagah chahiye jahan aap jo banate hain woh rakhein. Is course mein aap lagbhag pachaas cheezein banayenge. Kuch likhi hui hain: interview notes, strategy memo aur PRD (product ka recipe card). Baaki hain test sets, dashboards (numbers ki ek screen) aur ek chalta hua app.',
   'If they sit in many different tools, you cannot find them when you need them. That could be in the capstone, or in a job interview. Think of papers spread over five cupboards.':
     'Agar woh kai alag tools mein bikhre hain, toh zaroorat par woh mil nahi paayenge. Woh capstone mein ho sakta hai, ya job interview mein. Paanch almariyon mein bikhre kagaz sochiye.',
   'So set up two things, one time only:':

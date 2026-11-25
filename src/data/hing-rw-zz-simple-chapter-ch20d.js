@@ -83,8 +83,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Neeche ke units us faasle ko ek-ek tukde mein paar karte hain. Har unit mein ek goal, ek idea, kuch saabit karne ko, kuch banane ko, kuch todne ko, kuch jama karne ko, aur khud ko jaanchne ka ek sawaal hai. Inhe kram se kijiye.',
   'List everything that is missing between your notebook (where you tried things out) and a real service.':
     'Aapke notebook (jahan aapne cheezein aazmayi) aur ek asli service ke beech jo kuch kam hai, sab likhiye.',
-  'A real service needs many things a notebook does not: sign-in, saved data, retries (trying again), queues (a line of jobs waiting), monitoring, secrets, deployment, backups, access rules and a way to roll back.':
-    'Asli service ko bahut kuch chahiye jo notebook mein nahi hota: sign-in, saved data, retries (dobara koshish), queues (intezaar karte kaam ki line), monitoring, secrets, deployment, backups, access rules aur wapas jaane ka tareeka.',
+  'A real service needs many things a notebook does not. Some are about users and data: sign-in, saved data, secrets, access rules and backups. Others keep it running: retries (trying again), queues (a line of jobs waiting), monitoring, deployment and a way to roll back.':
+    'Asli service ko bahut kuch chahiye jo notebook mein nahi hota. Kuch users aur data ke liye hain: sign-in, saved data, secrets, access rules aur backups. Baaki use chalta rakhte hain: retries (dobara koshish), queues (intezaar karte kaam ki line), monitoring, deployment aur wapas jaane ka tareeka.',
   'Write the production delta list for your own prototype.':
     'Apne prototype ke liye production delta list likhiye.',
   'Sort the items into three piles: must-have, should-have and later.':

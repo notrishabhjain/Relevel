@@ -187,8 +187,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Capstone tab bharose ke laayak banta hai jab problem saaf ho aur failure ki keemat bhi saaf ho.',
   'Write the problem for Bharat Privacy Guard: who the user is, what goes wrong for them today, and the number that would show it is fixed.':
     'Bharat Privacy Guard ki problem likhiye: user kaun hai, aaj unke saath kya galat hota hai, aur woh number jo dikhayega ki yeh theek ho gaya.',
-  'Write down the user, the pain, the baseline (where things stand today), the scope, the non-goals (what you will not do), the data, the tools, the risks and the metrics (numbers you watch).':
-    'User, pain, baseline (aaj cheezein kahan hain), scope, non-goals (jo aap nahi karenge), data, tools, risks aur metrics (jo numbers aap dekhte hain) likh daliye.',
+  'Write down the user, the pain and the baseline (where things stand today). Then write the scope and the non-goals (what you will not do). Then write the data, the tools and the risks. Last, write the metrics (numbers you watch).':
+    'User, pain aur baseline (aaj cheezein kahan hain) likh daliye. Phir scope aur non-goals (jo aap nahi karenge) likhiye. Phir data, tools aur risks likhiye. Aakhir mein metrics (jo numbers aap dekhte hain) likhiye.',
   'Ask "why not ordinary software that always gives the same answer?" again. This time, ask it about your actual scope, not the general case.':
     '"Why not ordinary software that always gives the same answer?" phir poochiye. Is baar apne asli scope ke baare mein poochiye, aam case ke baare mein nahi.',
   'The capstone AI PRD (the recipe card for your product).':
@@ -203,8 +203,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Product ka faisla aur technical faisla ek page par rakhiye, kyunki ek doosre ko seemit karta hai.',
   'Whether a user needs an answer in two seconds or by Monday decides the architecture. And whether the architecture can hit a target decides what you can promise.':
     'User ko jawaab do second mein chahiye ya Monday tak, yeh architecture tay karta hai. Aur architecture target tak pahunch sakta hai ya nahi, yeh tay karta hai ki aap kya vaada kar sakte hain.',
-  'Fill in a design with nine lines: the user and the job, the activation moment (when the user first gets value), the AI approach, why not an agent, the evaluation, the boundaries, the cost, and the North Star (the one number that guides you).':
-    'Nau lines ka ek design bhariye: user aur kaam, activation moment (jab user ko pehli baar fayda milta hai), AI approach, agent kyun nahi, evaluation, boundaries, cost, aur North Star (woh ek number jo raasta dikhata hai).',
+  'Fill in a design with nine lines. The first three are the user and the job, the activation moment (when the user first gets value) and the AI approach. Then add why not an agent, the evaluation and the boundaries. Last come the cost and the North Star (the one number that guides you).':
+    'Nau lines ka ek design bhariye. Pehli teen hain user aur kaam, activation moment (jab user ko pehli baar fayda milta hai) aur AI approach. Phir agent kyun nahi, evaluation aur boundaries jodiye. Aakhir mein cost aur North Star (woh ek number jo raasta dikhata hai) aate hain.',
   'Add the vision, the strategy, the roadmap, the OKRs, a stakeholder map, a pricing hypothesis, and your kill criteria, which is the stop sign that tells you when to stop.':
     'Vision, strategy, roadmap, OKRs, stakeholder map, pricing hypothesis, aur apne kill criteria jodiye, jo rukne ka board hai jo batata hai kab rukna hai.',
   'Find one line in your design that you chose because it was interesting, not because it was needed, and cut it.':

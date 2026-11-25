@@ -1,8 +1,8 @@
 /* Hinglish for The AI PRD: specs, migrations and kill switches (chapter:ch18), in simple words.
    Written by tools/sheet.mjs apply; keyed on the English line. Loads last, so it wins. */
 Object.assign(window.HING = window.HING || {}, {
-  'A normal spec says what a feature must do. An AI spec says how good it is, as a measured range, because the model can answer a little differently each time. You will draw the whole system from memory, put a PRD (the recipe card for your feature) together from the artifacts (pieces of work) you made earlier, plan how to collect feedback, and plan for the day your model is retired.':
-    'Normal spec batata hai ki feature ko kya karna hai. AI spec batata hai ki woh kitna accha hai, ek naapi hui range mein, kyunki model har baar thoda alag jawaab de sakta hai. Aap poora system yaad se banayenge, un artifacts (bane hue kaam) se ek PRD (feature ka recipe card) jodenge jo aapne pehle banaye, feedback lene ka tareeka sochenge, aur us din ki taiyari karenge jab aapka model hata diya jayega.',
+  'A normal spec says what a feature must do. An AI spec says how good it is, as a measured range, because the model can answer a little differently each time. You will draw the whole system from memory. You will put a PRD (the recipe card for your feature) together from the artifacts (pieces of work) you made earlier. You will plan how to collect feedback. You will also plan for the day your model is retired.':
+    'Normal spec batata hai ki feature ko kya karna hai. AI spec batata hai ki woh kitna accha hai, ek naapi hui range mein, kyunki model har baar thoda alag jawaab de sakta hai. Aap poora system yaad se banayenge. Un artifacts (bane hue kaam) se ek PRD (feature ka recipe card) jodenge jo aapne pehle banaye. Feedback lene ka tareeka sochenge. Aur us din ki bhi taiyari karenge jab aapka model hata diya jayega.',
   'Say what takes the place of pass-or-fail acceptance criteria in an AI spec, and why.':
     'Batayiye ki AI spec mein pass ya fail wale acceptance criteria ki jagah kya aata hai, aur kyun.',
   'List what you test again when your provider retires the model you built on.':
@@ -175,8 +175,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Ab ise ek aisi yojana mein badaliye jo aap saathi ko de sakein, jaise dost ko recipe dena.',
   'Write a migration runbook':
     'Migration runbook likhiye',
-  'Imagine your model will be retired in 30 days. Write the runbook (a list of steps for the day): which tests to run again, which numbers must match and within what gap, who signs off, and how you go back if the new model is worse.':
-    'Maan lijiye aapka model 30 din mein hata diya jayega. Runbook likhiye (us din ke steps ki list): kaun se tests dobara chalane hain, kaun se numbers milne chahiye aur kitne fark ke andar, kaun manzoori deta hai, aur naya model kharab nikla to wapas kaise jaana hai.',
+  'Imagine your model will be retired in 30 days. Write the runbook (a list of steps for the day). Say which tests to run again. Say which numbers must match, and within what gap. Say who signs off. Say how you go back if the new model is worse.':
+    'Maan lijiye aapka model 30 din mein hata diya jayega. Runbook likhiye (us din ke steps ki list). Likhiye ki kaun se tests dobara chalane hain. Likhiye ki kaun se numbers milne chahiye, aur kitne fark ke andar. Likhiye ki kaun manzoori deta hai. Likhiye ki naya model kharab nikla to wapas kaise jaana hai.',
   'Guess how long it would take. If you say more than two days, you are probably missing the Chapter 6 answer key. That key turns a migration into an afternoon’s work.':
     'Andaza lagaiye ki kitna waqt lagega. Agar aap do din se zyaada kehte hain, to shayad aapke paas Chapter 6 ki answer key nahi hai. Wahi key migration ko ek dopahar ka kaam bana deti hai.',
   'Collect feedback you can use':
@@ -209,8 +209,8 @@ Object.assign(window.HING = window.HING || {}, {
     '<strong>Jo main abhi nahi parakh sakta.</strong> Is list ko imaandaar rakhiye. Yeh aapki agle seekhne ki yojana hai.',
   'Then go back to your Chapter 1 guesses and compare them with this page.':
     'Phir Chapter 1 ke apne andaazon par jaiye aur unhe is page se milaiye.',
-  'This course has not covered how models are trained, GPU costs and running models on your own machines, running many agents at large scale, formal proofs that code is correct, or making up practice data. Part IV covers two topics that belong to product managers: whether to fine-tune or use a smaller model, and what the user sees when the system is wrong. The LATER page on this site lists the rest.':
-    'Is course mein yeh sab nahi aaya: models kaise train hote hain, GPU ka kharch aur model ko apni machines par chalana, bahut saare agents ko bade star par chalana, code sahi hone ka formal saboot, ya banawati practice data banana. Part IV mein product managers ke do vishay hain: fine-tune karna ya chhota model lena, aur system galat hone par user ko kya dikhta hai. Baaki ki list is site ke LATER page par hai.',
+  'This course has not covered how models are trained, or GPU costs and running models on your own machines. It also skips running many agents at large scale, formal proofs that code is correct, and making up practice data. Part IV covers two topics that belong to product managers: whether to fine-tune or use a smaller model, and what the user sees when the system is wrong. The LATER page on this site lists the rest.':
+    'Is course mein yeh sab nahi aaya: models kaise train hote hain, aur GPU ka kharch aur model ko apni machines par chalana. Bahut saare agents ko bade star par chalana, code sahi hone ka formal saboot, aur banawati practice data banana bhi nahi aaya. Part IV mein product managers ke do vishay hain: fine-tune karna ya chhota model lena, aur system galat hone par user ko kya dikhta hai. Baaki ki list is site ke LATER page par hai.',
   'Next comes a very common decision. A vendor offers to sell you what you have learned to build. Should you build it yourself or buy it?':
     'Agla ek bahut aam faisla hai. Ek vendor aapko wahi bechne aata hai jo aapne banana seekha hai. Khud banayein ya kharidein?',
 });

@@ -1048,7 +1048,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Pick the lowest-scoring evidence question from the earlier stages, and ship one change aimed at it.':
     'Pichhle stages se sabse kam score wala evidence question chuniye, aur uske liye ek change ship kijiye.',
   'Compare the product and AI metrics before and after. Then write the decision into the decision log: the context, the options you considered, the approach you chose, the trade-offs, and what would make you reopen it.':
-    'Product aur AI metrics ko before aur after compare kijiye. Phir decision ko decision log mein likhiye: context, jo options aapne socho, jo approach chuni, trade-offs, aur kya hone par aap ise dobara kholenge.',
+    'Product aur AI metrics ko before aur after compare kijiye. Phir decision ko decision log mein likhiye: context, jo options aapne soche, jo approach chuni, trade-offs, aur kya hone par aap ise dobara kholenge.',
   'Can you tie the iteration to a problem you measured, not a preference?':
     'Kya aap iteration ko ek measure ki hui problem se jod sakte hain, pasand se nahi?',
   'Defend the system':

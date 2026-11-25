@@ -1,8 +1,8 @@
 /* Hinglish for AI governance: risk tiers, system cards and oversight (chapter:ch17), in simple words.
    Written by tools/sheet.mjs apply; keyed on the English line. Loads last, so it wins. */
 Object.assign(window.HING = window.HING || {}, {
-  'An AI feature now comes with governance documents (papers that show a system is safe and watched), and almost every question in them is a product choice. You put your system in a risk tier (a box for how much harm it could do), write a system card (a one-page description), run a deletion drill, and design oversight that still works at real volume.':
-    'Ab AI feature ke saath governance documents aate hain (kaagaz jo dikhate hain ki system safe hai aur us par nazar hai), aur unke lagbhag har sawaal ka jawaab ek product choice hai. Aap apne system ko risk tier mein rakhenge (ek dibba jo batata hai ki woh kitna nuksaan kar sakta hai), system card likhenge (ek page ka description), deletion drill chalayenge, aur aisi oversight design karenge jo asli volume par bhi kaam kare.',
+  'An AI feature now comes with governance documents (papers that show a system is safe and watched). Almost every question in them is a product choice. You put your system in a risk tier (a box for how much harm it could do) and write a system card (a one-page description). Then you run a deletion drill. You also design oversight that still works at real volume.':
+    'Ab AI feature ke saath governance documents aate hain (kaagaz jo dikhate hain ki system safe hai aur us par nazar hai). Unke lagbhag har sawaal ka jawaab ek product choice hai. Aap apne system ko risk tier mein rakhenge (ek dibba jo batata hai ki woh kitna nuksaan kar sakta hai) aur system card likhenge (ek page ka description). Phir deletion drill chalayenge. Aur aisi oversight design karenge jo asli volume par bhi kaam kare.',
   'Say why the same system can be low risk for one use and high risk for another.':
     'Bataiye ki ek hi system ek use ke liye kam risky aur doosre ke liye zyada risky kyun ho sakta hai.',
   'Say which part of a governance document is hardest to fake, and why that makes it worth the most.':
@@ -147,8 +147,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Deletion drill chalaiye',
   'Now a very practical test, like a fire drill. Suppose someone asks you to delete their data. Where would you have to look?':
     'Ab ek bahut kaam ka test, fire drill jaisa. Maan lijiye koi aapse apna data mitane ko kehta hai. Aapko kahan-kahan dekhna padega?',
-  'It may sit in seven places: the original documents, the chunks (small cut-out pieces), the search copy, the cache (a quick-grab copy kept nearby), the provider’s logs, your own logs, and any test set built from real traffic. Many teams find at least two they cannot reach.':
-    'Woh saat jagah ho sakta hai: asli documents, chunks (kate hue chhote tukde), search copy, cache (paas mein rakhi jaldi wali copy), provider ke logs, aapke apne logs, aur asli traffic se bana koi bhi test set. Kai teams ko kam se kam do aisi jagah milti hain jahan woh pahunch nahi paati.',
+  'It may sit in seven places. Three hold the data itself: the original documents, the chunks (small cut-out pieces) and the search copy. Next are the cache (a quick-grab copy kept nearby), the provider’s logs and your own logs. Last is any test set built from real traffic. Many teams find at least two they cannot reach.':
+    'Woh saat jagah ho sakta hai. Teen mein data khud hota hai: asli documents, chunks (kate hue chhote tukde) aur search copy. Phir hain cache (paas mein rakhi jaldi wali copy), provider ke logs aur aapke apne logs. Aakhri hai asli traffic se bana koi bhi test set. Kai teams ko kam se kam do aisi jagah milti hain jahan woh pahunch nahi paati.',
   'This is the erasure duty from Chapter 16.5 in real life. Under the Indian Act a person can ask you to wipe their data. The places you cannot reach are where you would fail them.':
     'Yeh Chapter 16.5 ki erasure duty asal zindagi mein hai. Indian Act ke tahat insaan aapse apna data mitane ko keh sakta hai. Jin jagahon tak aap pahunch nahi paate, wahin aap unhe nirash karenge.',
   'Trace one document':
