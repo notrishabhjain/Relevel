@@ -184,4 +184,25 @@ Never edit those by hand for a rewrite. Use `tools/sheet.mjs`:
     node tools/sheet.mjs apply chapter:ch1 sheet.json     # writes both back
     node tools/hing-prune.mjs                             # drops translations of old lines
 
-Lines marked `"shared": true` appear on other pages too; leave them alone.
+Lines marked `"shared": true` appear on other pages too; leave them alone in a
+chapter's sheet. Rewrite them once, for every page at the same time, with
+`node tools/sheet.mjs extract shared sheet.json` and `apply shared`.
+
+## How it is checked
+
+`npm test` holds the course to this page, so the text cannot drift back:
+
+- `tools/style-check.mjs`: a chapter's sentences average at most 16 words (the
+  rewrite brought every chapter to between 9 and 15), at most 2% of them run
+  past 32 words, and no paragraph passes 75 words.
+- `tools/book-check.mjs`: no sentence in either edition of the book passes 50
+  words, plus the book's own rules (no stock phrases, no instructions to the
+  reader, terms taught before they are used).
+- `tools/content-check.mjs`: every English line has its Hinglish, the Hinglish
+  is in Roman letters, and it never says "Socho" to the reader (always
+  "Sochiye": the course speaks to the reader as "aap").
+- `tools/jargon-check.mjs`: a technical word is not used before the chapter
+  that teaches it, unless it is a deliberate, tappable forward reference.
+
+What a check cannot see is the picture and the gloss. When you change a line,
+run the five-year-old test above by hand.

@@ -122,7 +122,10 @@ for (const un of units) {
   const sentences = un.u.body.replace(/```[\s\S]*?```/g, ' ').replace(/^\|.*$/gm, ' ').replace(/^(Table:|:::).*$/gm, ' ').replace(/[*_]/g, '').split(/(?<=[.!?]["”’']?)\s+/).filter(s => s.trim().length > 0);
   const lens = sentences.map(s => (s.match(/\S+/g) || []).length);
   const longest = Math.max(0, ...lens);
-  if (longest > 70) fail(`${un.label} has a sentence of ${longest} words; split it: "${sentences[lens.indexOf(longest)].trim().slice(0, 70)}…"`);
+  /* The book is written in simple words (docs/simple-language.md): sentences
+     average about ten words, and the longest left are quoted job statements
+     of under fifty. Fifty keeps a little room and stops the drift back. */
+  if (longest > 50) fail(`${un.label} has a sentence of ${longest} words; split it: "${sentences[lens.indexOf(longest)].trim().slice(0, 70)}…"`);
 }
 
 /* ---- links in the built pages ---- */

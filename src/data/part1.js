@@ -23,7 +23,7 @@ window.PART1 = [
     'Say what the temperature dial changes, and what it does not.'
   ],
   story:[
-    ['c','Before you start','You need nothing for this chapter. No account, no API key (a secret password for the model), no download. Everything runs inside this page. Keep a piece of your own writing ready, like an email you sent or a paragraph from a policy.'],
+    ['c','Before you start','You need nothing for this chapter: no account, no API key, no download. (An API key is a secret password for the model.) Everything runs inside this page. Keep a piece of your own writing ready, like an email you sent or a paragraph from a policy.'],
     ['p','Most courses begin with setup. Install this. Make that account. Copy this key. Only after all that do you get to learn anything. It is like cleaning the whole kitchen before you may taste one dish.'],
     ['p','We will do it the other way round. First you run three small experiments, right here on this page. Later, when you set things up, you already know what each piece is for.'],
     ['p','Each experiment shows you one idea. The rest of the course stands on these three ideas, like a house on three pillars. Take your time with them.'],
@@ -237,7 +237,7 @@ window.PART1 = [
     'Work out what a request costs, using its token counts (how many small pieces of words went in and out).'
   ],
   story:[
-    ['c','Before you start','The code here runs right in the page. Press <strong>Run</strong> under each block, top to bottom. Before your first block runs, the page does the three warm-up steps from <a href="#/setup">Setup</a> for you. They are the key (a secret password for the model), the library (ready-made code, like a borrowed recipe book) and the client (the messenger that carries your note to the model). Run each block before you read on.'],
+    ['c','Before you start','This chapter’s code runs right here in the page. Press <strong>Run</strong> under each block, top to bottom. Before your first block runs, the page does the three warm-up steps from <a href="#/setup">Setup</a> for you. They are the key (a secret password for the model), the library (ready-made code, like a borrowed recipe book) and the client (the messenger that carries your note to the model). Run each block before you read on.'],
     ['p','In Chapter 0.5 you tried tokens, cost and temperature right in the browser. In the last chapter you learned to read a few lines of Python. Now you use both with a real model. You send it a message. You look at what comes back. You see what that costs.'],
     ['p','Along the way you learn one thing that matters in every AI product you will work on. A model can sound completely sure and still be wrong. It is like a parrot that says a wrong thing in a calm voice.'],
     ['h','A model guesses the next piece of text'],

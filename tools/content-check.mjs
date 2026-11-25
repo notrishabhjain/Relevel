@@ -461,6 +461,18 @@ if (devanagari.length)
   fail(`${devanagari.length} Hinglish line(s) contain Devanagari characters` +
        ` — first: "${devanagari[0]}"`);
 
+/* The course talks to the reader as "aap" (docs/simple-language.md). The
+   slip that crept in most during the simple-words rewrite was the "tum" form
+   of "think of…", Socho, where the reader is addressed: it is always
+   Sochiye. (Other tum forms, like karo, are right inside a quoted
+   instruction to a model, so only this one is a rule.) */
+const tumForm = Object.entries(hing)
+  .filter(([, v]) => /\b[Ss]ocho\b/.test(String(v)))
+  .map(([, v]) => (String(v).match(/.{0,30}\b[Ss]ocho\b.{0,20}/) || [''])[0]);
+if (tumForm.length)
+  fail(`${tumForm.length} Hinglish line(s) say "Socho" to the reader; the course uses "aap": Sochiye` +
+       ` — first: "${tumForm[0]}"`);
+
 const untranslated = [...need].filter(k => hing[k] === undefined);
 if (untranslated.length) {
   fail(`${untranslated.length} line(s) of ${need.size} have no Hinglish translation` +

@@ -13,7 +13,7 @@ export const TOPICS = [
     intro: 'Here is what you need before week 1: some time, a device, a few free accounts and a few people to talk to. You do not need to know coding, maths or AI. Tick each line when it is done.',
     introHi: 'Week 1 se pehle aapko yeh chahiye: thoda samay, ek device, kuch free accounts aur baat karne ke liye kuch log. Aapko coding, ganit ya AI aana zaroori nahi. Har line poori ho to us par tick kijiye.' },
   { id: 't1',
-    title: 'Product basics: the problem, the people and the plan', hi: 'Product ki buniyaad: problem, log aur plan',
+    title: 'Product basics: the problem, the people and the plan', hi: 'Product ki neev: problem, log aur plan',
     intro: 'Before any code, you do a product manager’s first job. You name a problem. You talk to the people who have it. You find out how big the market is. You choose what to do first, and you write it down. Month 1 needs nothing installed.',
     introHi: 'Kisi bhi code se pehle aap product manager ka pehla kaam karte hain. Aap ek problem ka naam rakhte hain. Jinhe woh problem hai, unse baat karte hain. Market kitna bada hai, yeh dekhte hain. Pehle kya karna hai, yeh chunte hain aur use likhte hain. Month 1 mein kuch install nahi karna.' },
   { id: 't2',

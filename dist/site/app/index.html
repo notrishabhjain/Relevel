@@ -2904,7 +2904,7 @@ window.PART1 = [
     'Say what the temperature dial changes, and what it does not.'
   ],
   story:[
-    ['c','Before you start','You need nothing for this chapter. No account, no API key (a secret password for the model), no download. Everything runs inside this page. Keep a piece of your own writing ready, like an email you sent or a paragraph from a policy.'],
+    ['c','Before you start','You need nothing for this chapter: no account, no API key, no download. (An API key is a secret password for the model.) Everything runs inside this page. Keep a piece of your own writing ready, like an email you sent or a paragraph from a policy.'],
     ['p','Most courses begin with setup. Install this. Make that account. Copy this key. Only after all that do you get to learn anything. It is like cleaning the whole kitchen before you may taste one dish.'],
     ['p','We will do it the other way round. First you run three small experiments, right here on this page. Later, when you set things up, you already know what each piece is for.'],
     ['p','Each experiment shows you one idea. The rest of the course stands on these three ideas, like a house on three pillars. Take your time with them.'],
@@ -3118,7 +3118,7 @@ window.PART1 = [
     'Work out what a request costs, using its token counts (how many small pieces of words went in and out).'
   ],
   story:[
-    ['c','Before you start','The code here runs right in the page. Press <strong>Run</strong> under each block, top to bottom. Before your first block runs, the page does the three warm-up steps from <a href="#/setup">Setup</a> for you. They are the key (a secret password for the model), the library (ready-made code, like a borrowed recipe book) and the client (the messenger that carries your note to the model). Run each block before you read on.'],
+    ['c','Before you start','This chapter’s code runs right here in the page. Press <strong>Run</strong> under each block, top to bottom. Before your first block runs, the page does the three warm-up steps from <a href="#/setup">Setup</a> for you. They are the key (a secret password for the model), the library (ready-made code, like a borrowed recipe book) and the client (the messenger that carries your note to the model). Run each block before you read on.'],
     ['p','In Chapter 0.5 you tried tokens, cost and temperature right in the browser. In the last chapter you learned to read a few lines of Python. Now you use both with a real model. You send it a message. You look at what comes back. You see what that costs.'],
     ['p','Along the way you learn one thing that matters in every AI product you will work on. A model can sound completely sure and still be wrong. It is like a parrot that says a wrong thing in a calm voice.'],
     ['h','A model guesses the next piece of text'],
@@ -5986,7 +5986,7 @@ window.PART3 = [
     ['p','India’s Digital Personal Data Protection Act, 2023 (the DPDP Act) has a small word list, and interviewers use it. These are the words to know. For the exact duties, read the Act’s own text.'],
     ['l',['<strong>Data Principal.</strong> The person the data is about. A bank customer types a message into your app. That customer is the Data Principal.','<strong>Data Fiduciary.</strong> The organisation that decides why and how the data is used. Your company is the Data Fiduciary. A model provider that handles the message for you works on your behalf, so the duty stays with you.','<strong>Notice and consent.</strong> Tell the person in plain words what you collect and why. Ask them to agree. Use the data only for the reason you gave.','<strong>Erasure.</strong> The person can ask you to wipe their data, and you must be able to do it. That includes any copy an outside provider holds.','<strong>Breach reporting.</strong> If personal data leaks, you must tell the regulator (the official watchdog) and the people affected.','<strong>Sending data abroad.</strong> The Act allows it, except where the government says no. Look up what is true today.']],
     ['p','This is a word list, not legal advice. Check which parts of the Act are in force today. The plan’s dated list of regulatory milestones is the place to look.'],
-    ['do','Match each kind of text to a duty',[['p','Take six kinds of text the tool might send to an outside model. One is a sentence with no personal detail. Then one with a name, and one with an Aadhaar number. Then a cleaned sentence with tags in place of details, and a whole chat history. Last is a log line (a saved note in the tool’s record book) that keeps the original message. For each one, write the duty it touches: consent, purpose, erasure, breach or sending data abroad.'],['x','Two things usually show. The cleaned sentence touches almost no duty, which is the case for building the tool. The chat history and the log line touch several, and the log line is the one nobody thought of. The capstone asks for the same kind of table.']]],
+    ['do','Match each kind of text to a duty',[['p','Take six texts the tool might send outside. One has no personal detail. One has a name. One has an Aadhaar number. One is cleaned, with tags in place of details. One is a whole chat history. The last is a log line (a saved note in the tool’s record book) that keeps the original message. For each, name the duty it touches: consent, purpose, erasure, breach or sending data abroad.'],['x','Two things usually show. The cleaned sentence touches almost no duty, which is the case for building the tool. The chat history and the log line touch several, and the log line is the one nobody thought of. The capstone asks for the same kind of table.']]],
     ['h','Write a rule people can follow'],
     ['p','Knowing the answers is only half the job. The other half is making sure your colleagues act on them, even when you are not in the room. It is like a sign on the shop wall that works when the owner is out.'],
     [
@@ -6319,7 +6319,7 @@ window.PART3 = [
       ['x','Then go back to your Chapter 1 guesses and compare them with this page.']
     ]],
     ['q','I118'],
-    ['c','Note','This course has not covered how models are trained, or GPU costs and running models on your own machines. It also skips running many agents at large scale, formal proofs that code is correct, and making up practice data. Part IV covers two topics that belong to product managers: whether to fine-tune or use a smaller model, and what the user sees when the system is wrong. The LATER page on this site lists the rest.'],
+    ['c','Note','This course has not covered how models are trained, GPU costs, or running models on your own machines. Also skipped: many agents at large scale, formal proofs that code is correct, and making up practice data. Part IV covers two product-manager topics: whether to fine-tune or use a smaller model, and what the user sees when the system is wrong. The LATER page lists the rest.'],
     ['p','Next comes a very common decision. A vendor offers to sell you what you have learned to build. Should you build it yourself or buy it?']
   ],
 }
@@ -15184,8 +15184,6 @@ Object.assign(window.HING = window.HING || {}, {
     'kahan rakhi hai — ek raasta ya ek link',
   'Sixteen-week study map':
     'Solah hafton ka padhai naksha',
-  'This map was written for sixteen weeks; the route runs twenty-six. Either way the pace is not a deadline. The useful column is the last one: a block is cleared when the evidence exists, not when the weeks have passed.':
-    'Yeh naksha solah hafton ke liye likha gaya tha; raasta chhabbis hafton ka hai. Dono mein raftaar koi aakhri taareekh nahi. Kaam ka column aakhri hai: khand tab poora hota hai jab saboot maujood ho, tab nahi jab hafte beet jaayein.',
   'Final exit test':
     'Aakhri nikaas pareeksha',
   'Thirteen things, each of which is something you do rather than something you know. Tick one when you could do it in front of a stranger, with an unfamiliar system, without reaching for jargon.':
@@ -27022,8 +27020,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Do sentences: kharcha, aur woh cheez jo aapke andaaze ko sabse zyada galat bana sakti hai.',
   'All of it done without making a single account.':
     'Yeh sab bina ek bhi account banaye.',
-  'You need nothing for this chapter. No account, no API key (a secret password for the model), no download. Everything runs inside this page. Keep a piece of your own writing ready, like an email you sent or a paragraph from a policy.':
-    'Is chapter ke liye aapko kuch nahi chahiye. Na account, na API key (model ka secret password), na koi download. Sab kuch isi page ke andar chalta hai. Apna likha hua kuch text paas rakhiye, jaise aapka bheja hua koi email ya kisi policy ka ek paragraph.',
+  'You need nothing for this chapter: no account, no API key, no download. (An API key is a secret password for the model.) Everything runs inside this page. Keep a piece of your own writing ready, like an email you sent or a paragraph from a policy.':
+    'Is chapter ke liye aapko kuch nahi chahiye: na account, na API key, na koi download. (API key yaani model ka secret password.) Sab kuch isi page ke andar chalta hai. Apna likha hua kuch text paas rakhiye, jaise aapka bheja hua koi email ya kisi policy ka ek paragraph.',
   'Most courses begin with setup. Install this. Make that account. Copy this key. Only after all that do you get to learn anything. It is like cleaning the whole kitchen before you may taste one dish.':
     'Zyadatar courses setup se shuru hote hain. Yeh install kijiye. Woh account banaiye. Yeh key copy kijiye. Yeh sab hone ke baad hi kuch seekhne ko milta hai. Jaise ek dish chakhne se pehle poori rasoi saaf karna.',
   'We will do it the other way round. First you run three small experiments, right here on this page. Later, when you set things up, you already know what each piece is for.':
@@ -27147,7 +27145,7 @@ Object.assign(window.HING = window.HING || {}, {
     'Setup page par ek model connect ho',
   'The five minutes of setup, done once. Chapter 1 is the first chapter that uses it.':
     'Setup ke woh paanch minute, jo sirf ek baar karne hote hain. Chapter 1 pehla chapter hai jo isse kaam leta hai.',
-  'The code here runs right in the page. Press <strong>Run</strong> under each block, top to bottom. Before your first block runs, the page does the three warm-up steps from <a href="#/setup">Setup</a> for you. They are the key (a secret password for the model), the library (ready-made code, like a borrowed recipe book) and the client (the messenger that carries your note to the model). Run each block before you read on.':
+  'This chapter’s code runs right here in the page. Press <strong>Run</strong> under each block, top to bottom. Before your first block runs, the page does the three warm-up steps from <a href="#/setup">Setup</a> for you. They are the key (a secret password for the model), the library (ready-made code, like a borrowed recipe book) and the client (the messenger that carries your note to the model). Run each block before you read on.':
     'Yahan ka code seedha page mein chalta hai. Har block ke neeche <strong>Run</strong> dabaiye, upar se neeche. Pehla block chalne se pehle page <a href="#/setup">Setup</a> ke teeno warm-up steps khud kar deta hai. Woh hain key (model ka secret password), library (tayyar code, jaise udhaar li recipe ki kitaab) aur client (woh messenger jo aapki parchi model tak le jaata hai). Aage padhne se pehle har block run kijiye.',
   'In Chapter 0.5 you tried tokens, cost and temperature right in the browser. In the last chapter you learned to read a few lines of Python. Now you use both with a real model. You send it a message. You look at what comes back. You see what that costs.':
     'Chapter 0.5 mein aapne tokens, cost aur temperature browser mein hi try kiye the. Pichhle chapter mein aapne Python ki kuch lines padhna seekha. Ab aap dono ko ek asli model ke saath kaam mein laate hain. Aap use message bhejte hain. Dekhte hain ki kya wapas aata hai. Aur dekhte hain ki isme kitna kharch hota hai.',
@@ -30278,8 +30276,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Yeh shabdon ki list hai, kanooni salah nahi. Dekhiye ki Act ke kaun se hisse aaj lagoo hain. Plan ki regulatory milestones ki dated list dekhne ki jagah hai.',
   'Match each kind of text to a duty':
     'Har tarah ke text ko ek duty se milaiye',
-  'Take six kinds of text the tool might send to an outside model. One is a sentence with no personal detail. Then one with a name, and one with an Aadhaar number. Then a cleaned sentence with tags in place of details, and a whole chat history. Last is a log line (a saved note in the tool’s record book) that keeps the original message. For each one, write the duty it touches: consent, purpose, erasure, breach or sending data abroad.':
-    'Chhe tarah ke text lijiye jo tool outside model ko bhej sakta hai. Ek hai bina personal detail wala sentence. Phir naam wala, aur Aadhaar number wala. Phir saaf kiya hua sentence jisme details ki jagah tags hain, aur poori chat history. Aakhri hai log line (tool ki record-book mein saved note) jo asli message rakhti hai. Har ek ke liye likhiye ki woh kaun si duty chhoota hai: consent, purpose, erasure, breach ya data bahar bhejna.',
+  'Take six texts the tool might send outside. One has no personal detail. One has a name. One has an Aadhaar number. One is cleaned, with tags in place of details. One is a whole chat history. The last is a log line (a saved note in the tool’s record book) that keeps the original message. For each, name the duty it touches: consent, purpose, erasure, breach or sending data abroad.':
+    'Chhe text lijiye jo tool bahar bhej sakta hai. Ek mein personal detail nahi hai. Ek mein naam hai. Ek mein Aadhaar number hai. Ek saaf kiya hua hai, details ki jagah tags ke saath. Ek poori chat history hai. Aakhri log line (tool ki record-book mein saved note) hai jo asli message rakhti hai. Har ek ke liye woh duty likhiye jo chhoota hai: consent, purpose, erasure, breach ya data bahar bhejna.',
   'Two things usually show. The cleaned sentence touches almost no duty, which is the case for building the tool. The chat history and the log line touch several, and the log line is the one nobody thought of. The capstone asks for the same kind of table.':
     'Aam taur par do baatein dikhti hain. Saaf kiya hua sentence lagbhag koi duty nahi chhoota, yahi tool banane ki wajah hai. Chat history aur log line kai duties chhoote hain, aur log line ke baare mein kisi ne socha nahi tha. Capstone isi tarah ki table maangta hai.',
   'Write a rule people can follow':
@@ -31236,8 +31234,8 @@ Object.assign(window.HING = window.HING || {}, {
     '<strong>Jo main abhi nahi parakh sakta.</strong> Is list ko imaandaar rakhiye. Yeh aapki agle seekhne ki yojana hai.',
   'Then go back to your Chapter 1 guesses and compare them with this page.':
     'Phir Chapter 1 ke apne andaazon par jaiye aur unhe is page se milaiye.',
-  'This course has not covered how models are trained, or GPU costs and running models on your own machines. It also skips running many agents at large scale, formal proofs that code is correct, and making up practice data. Part IV covers two topics that belong to product managers: whether to fine-tune or use a smaller model, and what the user sees when the system is wrong. The LATER page on this site lists the rest.':
-    'Is course mein yeh sab nahi aaya: models kaise train hote hain, aur GPU ka kharch aur model ko apni machines par chalana. Bahut saare agents ko bade star par chalana, code sahi hone ka formal saboot, aur banawati practice data banana bhi nahi aaya. Part IV mein product managers ke do vishay hain: fine-tune karna ya chhota model lena, aur system galat hone par user ko kya dikhta hai. Baaki ki list is site ke LATER page par hai.',
+  'This course has not covered how models are trained, GPU costs, or running models on your own machines. Also skipped: many agents at large scale, formal proofs that code is correct, and making up practice data. Part IV covers two product-manager topics: whether to fine-tune or use a smaller model, and what the user sees when the system is wrong. The LATER page lists the rest.':
+    'Is course mein yeh nahi aaya: models kaise train hote hain, GPU ka kharch, ya model apni machines par chalana. Yeh bhi chhoota: bahut saare agents bade star par, code sahi hone ka formal saboot, aur banawati practice data. Part IV mein product managers ke do vishay hain: fine-tune karna ya chhota model lena, aur system galat hone par user ko kya dikhta hai. Baaki ki list LATER page par hai.',
   'Next comes a very common decision. A vendor offers to sell you what you have learned to build. Should you build it yourself or buy it?':
     'Agla ek bahut aam faisla hai. Ek vendor aapko wahi bechne aata hai jo aapne banana seekha hai. Khud banayein ya kharidein?',
 });
@@ -39059,6 +39057,73 @@ Object.assign(window.HING = window.HING || {}, {
     'Yeh cell jo kuch use karta hai, sab khud set karta hai. Isliye poora cell chalaiye, uska ek hissa nahi.',
   'A score from 0 to 3 for each item above, using this chapter’s scale, like marking your own homework. Move on only when every score is 2 or more, and no safety, privacy or evidence item scores 0.':
     'Upar ke har item ke liye 0 se 3 tak ka score, is chapter ke scale se, jaise apna homework khud jaanchna. Aage tabhi badhiye jab har score 2 ya usse zyada ho, aur safety, privacy ya evidence ke kisi item ka score 0 na ho.',
+});
+
+/* Hinglish for the app's own interface lines (labels and help text in src/app.js)
+   that had none, and for the ones rewritten in simple words. Keyed on the English. */
+Object.assign(window.HING = window.HING || {}, {
+  'Mastery — tap to change':
+    'Mastery (mahaarat): badalne ke liye tap kijiye',
+  'Mastery':
+    'Mastery (mahaarat)',
+  'Chapter sequence':
+    'Chapters ka kram',
+  'Before this':
+    'Isse pehle',
+  'You are here':
+    'Aap yahan hain',
+  'In this chapter':
+    'Is chapter mein',
+  'If any of these are unfamiliar, review them first. It saves time.':
+    'Inmein se koi cheez nayi lage, toh pehle use dohra lijiye. Isse samay bachta hai.',
+  'It also refers back to':
+    'Yeh in chapters ko bhi yaad karta hai',
+  'If any are unfamiliar, open them in another tab.':
+    'Koi cheez nayi lage, toh use doosre tab mein kholiye.',
+  'entries':
+    'entries',
+  'complete':
+    'poora',
+  'Usually starts in':
+    'Aam taur par yahan shuru hota hai',
+  'Untitled':
+    'Bina naam',
+  'Open as a template instead':
+    'Iski jagah template ki tarah kholiye',
+  'Decision Log':
+    'Decision Log',
+  'Every decision you would not want to re-argue':
+    'Har woh faisla jis par aap dobara behas nahi karna chahenge',
+  '+ Log a decision':
+    '+ Ek decision likhiye',
+  'Failure Log':
+    'Failure Log',
+  'What broke, and what you did about it':
+    'Kya toota, aur aapne uske liye kya kiya',
+  '+ Log a failure':
+    '+ Ek failure likhiye',
+  'The Artifact Vault':
+    'Artifact Vault (kaam ki tijori)',
+  '→ Decision Log':
+    '→ Decision Log',
+  '→ Failure Log':
+    '→ Failure Log',
+  'min':
+    'min',
+  'This map was written for sixteen weeks. The route runs twenty-eight. Either way, the pace is not a deadline. Look at the last column: a block is done when the evidence exists, not when the weeks have passed.':
+    'Yeh naksha solah hafton ke liye likha gaya tha. Route atthais hafton ka hai. Dono mein raftaar koi deadline nahi hai. Aakhri column dekhiye: block tab poora hota hai jab evidence (saboot) maujood ho, tab nahi jab hafte beet jaayein.',
+  'Write three short lines, then stop, even if you want to keep going. If you stop while you still have energy, it is easier to come back next time.':
+    'Teen chhoti lines likhiye, phir ruk jaiye, chahe aur likhne ka mann ho. Thodi energy bachi ho tab rukne se agli baar wapas aana aasaan hota hai.',
+  'One entry for each Architecture Decision Record you have written: a note of one big choice, and why you made it. For example: the model, the retrieval strategy, workflow or agent, build or buy, vendor risk, or anything costly to undo. It is the same form the workbench uses. This page shows it as a log, not a template.':
+    'Har Architecture Decision Record ke liye ek entry, jo aapne likha hai: ek bade faisle ka note, aur aapne woh kyun liya. Jaise: model, retrieval strategy, workflow ya agent, build ya buy, vendor risk, ya koi bhi cheez jise palatna mehnga ho. Yeh wahi form hai jo workbench use karta hai. Yeh page use template ki jagah log ki tarah dikhata hai.',
+  'No decisions logged yet. Write one the first time you hear yourself defending a choice out loud. That is the sign it belongs here.':
+    'Abhi koi decision log nahi hua. Pehli baar jab aap khud ko kisi choice ka bachaav zor se karte sunein, tab ek likhiye. Yahi nishaani hai ki woh yahan aana chahiye.',
+  'One entry for each Failure Finding. It is the build, break, measure and fix loop this course keeps coming back to, written down instead of fixed and forgotten. A full failure log is often the most convincing thing you bring to a review.':
+    'Har Failure Finding ke liye ek entry. Yeh woh build, break, measure aur fix wala chakra hai jis par yeh course baar-baar lautta hai. Ise likha jaata hai, theek karke bhula nahi diya jaata. Poora failure log aksar review mein aapki sabse damdaar cheez hota hai.',
+  'No failures logged yet. A good first one: the thing you break on purpose in the Break stage of Chapter 21.':
+    'Abhi koi failure log nahi hua. Ek achhi shuruaat: woh cheez jo aap Chapter 21 ke Break stage mein jaan-boojh kar todte hain.',
+  'Every time the course asks you to build, break or decide something, the result lands here. There are twenty-nine artifacts (pieces of work). Each is an experiment, a piece of engineering, a decision, or evidence. This page holds the running list, the sixteen-week map, and the thirteen things you should be able to do at the end. Your decisions and your failures also get a page each. Those two are worth reading as a log, not a list.':
+    'Jab bhi course aapse kuch banane, todne ya tay karne ko kehta hai, uska nateeja yahan aata hai. Kul unatees artifacts (kaam ke tukde) hain. Har ek ek experiment, engineering ka ek hissa, ek faisla, ya evidence hai. Is page par chalti hui list, solah hafton ka naksha, aur woh terah cheezein hain jo aap ant mein kar paayenge. Aapke faislon aur failures ka apna-apna page bhi hai. In dono ko list ki jagah log ki tarah padhna behtar hai.',
 });
 
 /* Account-backed storage.
@@ -47758,7 +47823,7 @@ function renderChapter(c){
   const cs=h('section',{class:'part',id:'close'});
   if(!plain){
     cs.appendChild(sectionHead(c.num+'.'+n++,'Close the sitting'));
-    cs.appendChild(h('p',{class:'prose',html:T('Write three short lines, then stop, even if you want to keep going. Stopping with energy left makes it easier to come back next time.')}));
+    cs.appendChild(h('p',{class:'prose',html:T('Write three short lines, then stop, even if you want to keep going. If you stop while you still have energy, it is easier to come back next time.')}));
     cs.appendChild(notebookBlock(c,'close','Three lines: what confused me / what clicked / what to try next',
       'Three minutes. Then close it.'));
   }
@@ -49442,8 +49507,8 @@ function pageDecisionLog(){
   return pageLog('adr',{
     eyebrow:T('Decision Log'),
     title:T('Every decision you would not want to re-argue'),
-    blurb:T('One entry per Architecture Decision Record you have written — model choice, retrieval strategy, workflow versus agent, build versus buy, vendor risk, anything expensive to reverse. The same form the workbench uses; this page just reads it as a log instead of a template.'),
-    empty:T('No decisions logged yet. Write one the first time you catch yourself defending a choice out loud — that is the sign it belongs here.'),
+    blurb:T('One entry for each Architecture Decision Record you have written: a note of one big choice, and why you made it. For example: the model, the retrieval strategy, workflow or agent, build or buy, vendor risk, or anything costly to undo. It is the same form the workbench uses. This page shows it as a log, not a template.'),
+    empty:T('No decisions logged yet. Write one the first time you hear yourself defending a choice out loud. That is the sign it belongs here.'),
     cta:T('+ Log a decision')
   });
 }
@@ -49451,8 +49516,8 @@ function pageFailureLog(){
   return pageLog('fail',{
     eyebrow:T('Failure Log'),
     title:T('What broke, and what you did about it'),
-    blurb:T('One entry per Failure Finding — the build-break-measure-fix loop this course keeps returning to, written down instead of just fixed and forgotten. A full failure log is often the most convincing thing you bring to a review.'),
-    empty:T('No failures logged yet. The first one you deliberately break in Chapter 21’s Break stage is a good place to start.'),
+    blurb:T('One entry for each Failure Finding. It is the build, break, measure and fix loop this course keeps coming back to, written down instead of fixed and forgotten. A full failure log is often the most convincing thing you bring to a review.'),
+    empty:T('No failures logged yet. A good first one: the thing you break on purpose in the Break stage of Chapter 21.'),
     cta:T('+ Log a failure')
   });
 }
@@ -49465,7 +49530,7 @@ function pageEvidence(){
   w.appendChild(h('header',{class:'phead'},[
     h('div',{class:'eyebrow'},[h('span',{text:T('Appendices A and B')})]),
     h('h1',{text:T('The Artifact Vault')}),
-    h('p',{html:T('Everywhere the course tells you to build, break or decide something, it lands here: twenty-nine artifacts, each one an experiment, a piece of engineering, a decision, or evidence. This page holds the running list, the sixteen-week map, and the thirteen things you should be able to do at the end. Your decisions and your failures also get a page of their own — they are the two kinds of artifact worth reading as a log rather than a list.')})]));
+    h('p',{html:T('Every time the course asks you to build, break or decide something, the result lands here. There are twenty-nine artifacts (pieces of work). Each is an experiment, a piece of engineering, a decision, or evidence. This page holds the running list, the sixteen-week map, and the thirteen things you should be able to do at the end. Your decisions and your failures also get a page each. Those two are worth reading as a log, not a list.')})]));
   w.appendChild(h('div',{class:'chiprow',style:'margin:0 0 1.2rem'},[
     h('a',{class:'chip',href:'#/decisions',text:T('→ Decision Log')}),
     h('a',{class:'chip',href:'#/failures',text:T('→ Failure Log')})]));
@@ -49522,7 +49587,7 @@ function pageEvidence(){
   const secA=h('section',{class:'part'});
   secA.appendChild(sectionHead('A',T('Sixteen-week study map')));
   secA.appendChild(h('p',{class:'prose',style:'font-size:1rem',
-    html:T('This map was written for sixteen weeks; the route runs twenty-six. Either way the pace is not a deadline. The useful column is the last one: a block is cleared when the evidence exists, not when the weeks have passed.')}));
+    html:T('This map was written for sixteen weeks. The route runs twenty-eight. Either way, the pace is not a deadline. Look at the last column: a block is done when the evidence exists, not when the weeks have passed.')}));
   const mapList=h('div',{class:'smap'});
   map.forEach((b,i)=>{
     const box=h('input',{type:'checkbox','aria-label':b.when+' — '+b.focus});

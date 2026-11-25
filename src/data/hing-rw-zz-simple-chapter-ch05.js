@@ -35,8 +35,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Do sentences: kharcha, aur woh cheez jo aapke andaaze ko sabse zyada galat bana sakti hai.',
   'All of it done without making a single account.':
     'Yeh sab bina ek bhi account banaye.',
-  'You need nothing for this chapter. No account, no API key (a secret password for the model), no download. Everything runs inside this page. Keep a piece of your own writing ready, like an email you sent or a paragraph from a policy.':
-    'Is chapter ke liye aapko kuch nahi chahiye. Na account, na API key (model ka secret password), na koi download. Sab kuch isi page ke andar chalta hai. Apna likha hua kuch text paas rakhiye, jaise aapka bheja hua koi email ya kisi policy ka ek paragraph.',
+  'You need nothing for this chapter: no account, no API key, no download. (An API key is a secret password for the model.) Everything runs inside this page. Keep a piece of your own writing ready, like an email you sent or a paragraph from a policy.':
+    'Is chapter ke liye aapko kuch nahi chahiye: na account, na API key, na koi download. (API key yaani model ka secret password.) Sab kuch isi page ke andar chalta hai. Apna likha hua kuch text paas rakhiye, jaise aapka bheja hua koi email ya kisi policy ka ek paragraph.',
   'Most courses begin with setup. Install this. Make that account. Copy this key. Only after all that do you get to learn anything. It is like cleaning the whole kitchen before you may taste one dish.':
     'Zyadatar courses setup se shuru hote hain. Yeh install kijiye. Woh account banaiye. Yeh key copy kijiye. Yeh sab hone ke baad hi kuch seekhne ko milta hai. Jaise ek dish chakhne se pehle poori rasoi saaf karna.',
   'We will do it the other way round. First you run three small experiments, right here on this page. Later, when you set things up, you already know what each piece is for.':
