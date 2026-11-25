@@ -21,12 +21,8 @@ Object.assign(window.HING = window.HING || {}, {
     'Python padhna',
   'In full, this chapter takes about two and a half hours. Tools change every few months. The brands named below are one current example each, not a requirement. If a named tool is gone by the time you read this, pick a replacement that does the same job.':
     'Poora karne par, is chapter mein lagbhag dhai ghante lagte hain. Tools har kuch mahine mein badal jaate hain. Neeche jo brands diye hain woh sirf ek current example hain, koi requirement nahi. Agar padhte waqt koi tool band ho chuka ho, toh uski jagah woh tool chuniye jo wahi kaam karta ho.',
-  'In full, this chapter takes about twelve hours. You need a working version of your capstone’s main flow, even a rough one, and a coding agent from B4.':
-    'Poora karne par, is chapter mein lagbhag 12 ghante lagte hain. Aapko apne capstone ke main flow ka ek chalta hua version chahiye, chahe woh kaccha ho, aur B4 se ek coding agent.',
   'In full, this chapter takes about eighteen hours, spread over two or three weeks, because users need time to come back. You need your deployed app from B4 and the release checklist from B5.':
     'Poora karne par, is chapter mein lagbhag 18 ghante lagte hain, do ya teen hafton mein faile hue, kyunki users ko wapas aane mein time lagta hai. Aapko B4 se apna deployed app aur B5 se release checklist chahiye.',
-  'In full, this chapter takes about twelve hours. Collect ten job descriptions for roles you would apply for. Have your capstone evidence pack from B6 ready, and find a friend or peer who can run mock interviews with you.':
-    'Poora karne par, is chapter mein lagbhag 12 ghante lagenge. Jin roles ke liye aap apply karenge, unki 10 job descriptions jama kijiye. B6 ka apna capstone evidence pack taiyaar rakhiye, aur ek dost ya peer dhoondh lijiye jo aapke saath mock interviews kar sake.',
   'Reading Python: just enough for this course':
     'Python padhna: is course ke liye bas jitna chahiye',
   'Read a line like <code>city = "Pune"</code> and say what it stores.':

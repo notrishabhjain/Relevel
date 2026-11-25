@@ -1,14 +1,14 @@
 # Applied AI PM: the route, week by week (19 Oct 2026 – 2 May 2027)
 
-Start from the [route page in the playbook](../app/#/start). This plan shows the same course with dates, notes and monthly reviews. It has one row for each week, and each row lists the steps in order: a book chapter to read, then the playbook chapter that practises it, sometimes a small try, and a look back on Friday. The same steps, in the same order, close each chapter in the [book](../book/).
+Start from the [route page in the playbook](../app/#/start). This plan shows the same course with dates, notes and monthly reviews. It has one row for each week. Each row lists the steps in order: a book chapter to read, then the playbook chapter that practises it, sometimes a small try, and a look back on Friday. The same steps, in the same order, close each chapter in the [book](../book/).
 
-Progress is shared too. Mark a chapter complete in the playbook, or read a book chapter to its end, and the tick shows up here. Tick a try or a look back here, and it shows up in the playbook. Sign in once and the ticks follow you to every device. The reasons behind the route are on the [Curriculum tab](#curriculum), and how to take each kind of step is on the [How to build tab](#build).
+Progress is shared too. Mark a chapter complete in the playbook, or read a book chapter to its end. The tick shows up here. Tick a try or a look back here. It shows up in the playbook. Sign in once, and the ticks follow you to every device. The reasons for the route are on the [Curriculum tab](#curriculum). How to take each kind of step is on the [How to build tab](#build).
 
 <!-- status -->
 
 <!-- sync -->
 
-**North star:** by 2 May 2027, Bharat Privacy Guard is shipped and evaluated, with a findings document and a demo you can take into an interview.
+**North star** (the one goal to steer by)**:** by 2 May 2027, Bharat Privacy Guard is shipped and evaluated, with a findings document and a demo you can take into an interview.
 
 ## How a week works
 
@@ -18,18 +18,18 @@ A week is a handful of steps. Most take ten to twenty minutes, so most days need
 | --- | --- | --- |
 | Book | Read the chapter in the book, in English or Hinglish | By itself, when you reach the end |
 | Chapter | Read it in the playbook, answer the boxes, do the hands-on steps | When you press “Mark chapter complete” |
-| First pass | For Track A and Track B: read and answer the boxes; the long Build waits | When you press “Mark chapter complete” |
+| First pass | For Track A and Track B: read and answer the boxes. The long Build waits | When you press “Mark chapter complete” |
 | Try | A small task off the page | When you tick it, here or on the route page |
 | Look back | Three lines in your notepad on Friday | When you tick it |
 
 ### How to read the weekly rows
 
-- **Time:** the total for the week’s steps, including the short version of each chapter’s project task. Month 1 is an hour to an hour and a half a week, and it builds to about four or five hours in each of the two capstone weeks. No week after Week 21 is over about five hours. The portfolio page, the case study and the review are steps in Weeks 26 to 28.
-- **Why now** and **For the job:** the first says what the week builds on. The second says what it is worth for the role you are aiming at.
-- **By Sunday:** the thing the week leaves you with. Put a link or a note in the row if you want a record. The Note field is your ship log ([how](#ship-log)).
+- **Time:** the total for the week’s steps. It includes the short version of each chapter’s project task. Month 1 is an hour to an hour and a half a week. It grows to about four or five hours in each of the two capstone weeks. No week after Week 21 is over about five hours. The portfolio page, the case study and the review are steps in Weeks 26 to 28.
+- **Why now** and **For the job:** the first says what the week builds on. The second says what it is worth for the job you want.
+- **By Sunday:** the thing you have at the end of the week. Put a link or a note in the row to keep a record. The Note field is your ship log ([how](#ship-log)).
 - **How to:** links to the [How to build tab](#build).
-- **Going further:** optional outside reading for a week with spare energy. It is never required.
-- **Holiday weeks (W10 and W11):** about half an hour each, by design.
+- **Going further:** optional reading from outside, for a week when you have spare energy. You never have to do it.
+- **Holiday weeks (W10 and W11):** about half an hour each, on purpose.
 
 <!-- month 1 -->
 
@@ -45,7 +45,7 @@ A week is a handful of steps. Most take ten to twenty minutes, so most days need
 
 ## Staying on the route
 
-Everyone drifts at some point. So the plan decides in advance what you will do when it happens: carry on from the first open step, smaller if you need to. Never skip steps to catch up, and never go down to zero.
+Everyone drifts off the route at some point. So the plan decides now what you will do when it happens. Carry on from the first open step, and make it smaller if you need to. Never skip steps to catch up. Never go down to zero.
 
 ### The rules
 
@@ -53,7 +53,7 @@ Everyone drifts at some point. So the plan decides in advance what you will do w
 
 ### Parking lot
 
-New ideas, courses and side projects come here first. You look at them again only at the monthly review.
+New ideas, courses and side projects come here first. Look at them again only at the monthly review.
 
 <!-- parking -->
 
@@ -62,28 +62,28 @@ New ideas, courses and side projects come here first. You look at them again onl
 Write three lines in your notepad:
 
 - What made sense this week.
-- What didn’t, yet.
+- What did not, yet.
 - One question you still have.
 
 Then tick the week’s look-back step. If you keep a photo log, take the photo now.
 
 ### Tripwires: if this happens, do this
 
-A tripwire is a warning sign you decide on in advance. Here is what to do for each one.
+A tripwire is a warning sign that you pick ahead of time, like a string across a path. Here is what to do for each one.
 
 | If this happens | Do this |
 | --- | --- |
 | You missed a day | Nothing special. Do the next open step tomorrow |
 | You missed two days in a row | Do one page today, however small, so it never becomes three |
-| You are two weeks behind the dates | Keep going from the first open step. The dates are a guide. Move the end of the plan rather than skipping steps |
+| You are two weeks behind the dates | Keep going from the first open step. The dates are a guide. Move the end of the plan. Do not skip steps |
 | You feel the urge to start a new course, app or tool | Write it in the parking lot, close the tab, and open the route |
-| A work crunch is coming | Decide on Sunday that the week will be ten minutes a day, before the crunch starts |
-| You haven’t opened anything for 7 days | Open the route page today and do the step marked next. One page counts |
+| A work crunch is coming | On Sunday, before the crunch starts, decide that the week is ten minutes a day |
+| You have not opened anything for 7 days | Open the route page today and do the step marked next. One page counts |
 
 ## Monthly reviews
 
-At the end of each month, spend 20 minutes on the review. Check the month against its line below, answer its two questions, tick it, and look through the parking lot.
+At the end of each month, spend 20 minutes on the review. Check the month against its line below. Answer its two questions. Tick it. Then look through the parking lot.
 
 <!-- gates -->
 
-**If you are a month or more behind:** stop and decide on purpose. Either carry on and move the end date, or make the next month lighter (first pass only). Quietly abandoning the route is the only option that’s ruled out.
+**If you are a month or more behind:** stop and choose on purpose. Either carry on and move the end date, or make the next month lighter (first pass only). One choice is not allowed: quietly giving up on the route.

@@ -18,7 +18,7 @@ terms:
 
 Rhea Kapoor phoned on a Sunday evening in June. She began like someone who has practised an apology. She started with the end of it. She knew this was Anaya's only free night, she said. She would not keep her long.
 
-Anaya had met Rhea at a meetup the autumn before. Rhea had asked the one question nobody else dared to ask the speaker. Rhea had spent six years delivering technology programmes for government departments. There was a steering committee (the senior group that approves the plan) every month and a status report every Friday. Then she spent a year doing everything Anaya had done in her year, alone and at night.
+Anaya had met Rhea at a meetup the autumn before. Rhea had asked the one question nobody else dared to ask the speaker. Rhea had spent six years delivering technology programmes for government departments. Every month there was a steering committee. (That is the senior group that approves the plan.) Every Friday there was a status report. Then she spent a year doing everything Anaya had done in her year, alone and at night.
 
 She had also built something of her own. It was a small tool that read a week of customer-support tickets and sorted them into themes. Then it wrote the report that a support lead used to spend a day on. Ten design partners had used it. But she had shown it to nobody who could give her a job.
 
@@ -48,7 +48,7 @@ Rhea's six years sat closest to the third. Then Anaya asked her to do something 
 
 When the sheet is full, the rows with the most ticks show what the market wants. The rows with no ticks are noise. This sheet is a *role matrix*. It is like a shopping list ticked against shops. Rhea then added one more mark per row, and it had to be honest. For her, was the skill proven, partly proven or missing?
 
-It took Rhea three evenings. She sent the sheet back with a note. She had done most of what they wanted. She had just not said it in a way anyone could check. Anaya told her to say it as what she had proved. "I shipped an AI product to ten real users and raised its useful-result rate from fifty-eight percent to seventy-one" is a sentence, she said. "Passionate about AI" is a mood.
+It took Rhea three evenings. She sent the sheet back with a note. She had done most of what they wanted. She had just not said it in a way anyone could check. Anaya told her to say it as what she had proved. "I shipped an AI product to ten real users. I raised its useful-result rate from fifty-eight percent to seventy-one." That is a sentence, she said. "Passionate about AI" is a mood.
 
 ## What goes on the page
 
@@ -73,7 +73,7 @@ Next came the *case study*. It is a one- or two-page story of one piece of work,
 
 The fifth question does the work, Anaya said. Anyone can describe a win. People hire someone who knows what broke. She advised two case studies, not six.
 
-They should sit where a recruiter will find them: a small page of Rhea's own, linked from the top of her profile. The profile's headline should name the job Rhea wanted and one thing she had proved. It should say nothing about being a lifelong learner.
+They should sit where a recruiter will find them. That is a small page of Rhea's own, linked from the top of her profile. The profile's headline should name the job Rhea wanted and one thing she had proved. It should say nothing about being a lifelong learner.
 
 ## The four questions that every loop asks
 
@@ -89,9 +89,9 @@ Table: Four kinds of interview question
 
 *Product sense* is choosing a user first, then finding their real problem and proposing a sensible fix. It is like asking who the guest is before you decide what to cook. It frightened people most, because it seemed to need a spark they did not have. It does not. It needs one habit: choose a user before you propose anything. After a year of work, Rhea's habit was good.
 
-She practised on a prompt from a world she knew: a voice assistant for a state helpline, in two languages. Her first three moves were short. She clarified the goal. It was fewer callers waiting and fewer wrong answers about a scheme's rules, not a clever assistant.
+She practised on a prompt from a world she knew. It was a voice assistant for a state helpline, in two languages. Her first three moves were short. She clarified the goal. It was fewer callers waiting and fewer wrong answers about a scheme's rules, not a clever assistant.
 
-She chose one user: a caller on a basic phone who speaks only the regional language and rings at the end of a working day. She listed that caller's problems before naming any feature. The caller does not know which scheme applies. The caller does not know which papers to bring. The caller gets cut off when the line is bad. Only then did she say which of the three she would solve first.
+She chose one user. This was a caller on a basic phone. The caller speaks only the regional language and rings at the end of a working day. She listed that caller's problems before naming any feature. The caller does not know which scheme applies. The caller does not know which papers to bring. The caller gets cut off when the line is bad. Only then did she say which of the three she would solve first.
 
 Anaya advised her to say the structure aloud before starting. For example: "I'll clarify, pick a user, find the problems and then choose." Then the interviewer can follow. If they want the candidate somewhere else, they can say so in the first minute, not the fortieth.
 
@@ -115,7 +115,7 @@ Table: Six steps for a system-design answer
 | 5. Cost and delay | A rough cost for one task, and the delay users will tolerate |
 | 6. Rollout | To whom first, what you would measure, and when you would turn it back |
 
-Use numbers, she told Rhea, even rough ones. For example: about two thousand words of context in and three hundred out for each question, so under a rupee. Numbers show the candidate knows the thing costs money every time it runs. Anaya had once watched a very good candidate lose a job by never mentioning cost.
+Use numbers, she told Rhea, even rough ones. Say, about two thousand words of context in and three hundred out for each question. That is under a rupee. Numbers show the candidate knows the thing costs money every time it runs. Anaya had once watched a very good candidate lose a job by never mentioning cost.
 
 Rhea said slowly that the whole year had been preparation for this. Anaya said it was the same year.
 
@@ -128,7 +128,7 @@ Anaya told Rhea to prepare six to eight true stories from real work. She was to 
 They worked on one story for an hour. It was about a decision that went wrong, because those make the best stories.
 
 ::: example Rhea's story in four parts
-**Situation:** the first version of my tool let an agent choose the steps for the weekly report. **Task:** I owned making it reliable enough for ten design partners. **Action:** I expected the agent to cope better with unusual weeks, so I kept it. When three of my twenty test weeks failed, I built the same flow as a fixed workflow and ran both on the same weeks. **Result:** the workflow failed once in twenty and was twice as fast, so I switched. I learned to measure both options before committing, and I do that now for every large design choice.
+**Situation:** the first version of my tool let an agent choose the steps for the weekly report. **Task:** I owned making it reliable enough for ten design partners. **Action:** I expected the agent to cope better with unusual weeks, so I kept it. Three of my twenty test weeks failed. So I built the same flow as a fixed workflow and ran both on the same weeks. **Result:** the workflow failed once in twenty and was twice as fast, so I switched. I learned to measure both options before committing, and I do that now for every large design choice.
 :::
 
 It is a good story, Anaya said. The wrong decision was real, and the fix came from measuring, not from saying sorry.
@@ -139,13 +139,13 @@ In the second round the interviewer put down the script and picked up the resume
 
 Anaya had expected it. They had rehearsed it on a Sunday. The answer was not to argue with the label. It was to name three decisions Rhea had owned. The first was what she refused to build. Her tool could have answered questions about the report in a chat box. She left that out because she could not measure it.
 
-The second was the threshold that stopped a release. Her fixed test set had held back two versions. The third was the number she answered for: the share of themes marked useful, which went from 58 to 71 percent.
+The second was the threshold that stopped a release. Her fixed test set had held back two versions. The third was the number she answered for. It was the share of themes marked useful, which went from 58 to 71 percent.
 
 Then Rhea turned her history into an asset. Six years in a regulated sector meant audits, data-location rules and sign-offs from people who could say no. Most candidates would have to claim that from a reading list. She did not say she had been a product manager. She said she had owned an outcome, and she could show the number.
 
 ## Building while they watch
 
-Some loops add a round where the candidate builds something small, live, with a coding assistant, while the interviewer watches. It tests judgement more than typing. It is like a cooking round where they taste as you go.
+Some loops add a live build round. The candidate builds something small with a coding assistant while the interviewer watches. It tests judgement more than typing. It is like a cooking round where they taste as you go.
 
 Anaya's advice came from the verifier idea earlier in the book. Before you ask the assistant for anything, say how you will check its work. Say the check aloud, such as "the result must hide every number in my ten sample messages". Ask for small steps.
 
@@ -161,9 +161,9 @@ Pay is a matter of preparation. Learn what the role usually pays in that city. L
 
 ## What happened
 
-It would be nice to say Rhea was hired within the month. She was not. Two of the ten companies asked her back for a second round, after the resume and case study had been rewritten as agreed.
+It would be nice to say Rhea was hired within the month. She was not. Two of the ten companies asked her back for a second round. By then the resume and case study had been rewritten as agreed.
 
-By the third week of July she was in a room with a woman who asked her to design a support assistant for the company's product. Rhea said aloud, a little shakily, "I'll start with who uses it and what a good outcome is."
+By the third week of July she sat in a room with a woman. The woman asked her to design a support assistant for the company's product. Rhea said aloud, a little shakily, "I'll start with who uses it and what a good outcome is."
 
 Anaya was not there. She heard about it afterwards, on a phone call. Rhea described the question. She said that halfway through she realised she was no longer rehearsing. She was explaining something she had made.
 

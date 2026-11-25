@@ -421,25 +421,25 @@ window.PART7 = [
 {
   id:'b4', num:'B4', part:7, curriculumTier:'reference', phase:0, prerequisites:['ch1','ch12t','a7'], nextUnits:['b5','b6'], minutes:150, labs:[],
   title:'Choosing tools for an AI product workflow',
-  concept:'Think of this as one decision made eleven times, not as seventeen tools to learn. For each job your workflow needs done, ask what a tool in that slot has to do for you, and what breaks if you skip it. Pick one tool per job, and learn the job, not the brand.',
+  concept:'This is one decision made eleven times, not seventeen tools to learn. For each job in your workflow, ask what a tool in that slot has to do for you, and what breaks if you skip it. Think of a toolbox: you need one hammer, not a shelf of hammers. Pick one tool per job, and learn the job, not the brand.',
   takeaway:[
-    'Name the eleven capabilities an AI product workflow needs tools for, without naming a specific brand for each.',
+    'Name the eleven capabilities (eleven jobs) an AI product workflow needs tools for, without naming a brand for each.',
     'Choose one tool per capability by what it must do and what it must never do, not by what is popular.',
-    'Know where every tool in your stack stores data and secrets, and audit what an AI research tool claims before you trust it.',
-    'Explain what breaks when a vendor changes an API, and how you would notice.'
+    'Know where every tool in your stack (the set of tools you use together) stores data and secrets. And audit (check one by one) what an AI research tool claims before you trust it.',
+    'Explain what breaks when a vendor (the company that makes the tool) changes an API, and how you would notice.'
   ],
-  needs:[['Your first API call','The capability table assumes you can already make one.',1],
+  needs:[['Your first API call','The capability table assumes you can already make one (an API call, a message sent to the model).',1],
          ['Tool calling and workflows','The automation and coding capabilities use the same ideas.',25],
          ['A prototype and a PRD','You already built one. This chapter looks again at how you chose its tool.','A7']],
   capstone:{
     title:'Choose one tool for each job, and check what each one does with your data',
-    brief:'Tools change every few months, but the jobs they do stay the same. In this chapter you learned to name the jobs first, to choose a tool by what it must do and must never do, and to know where each tool stores data and keys. Now you’ll choose the tools for Bharat Privacy Guard and audit them.',
-    where:'Written only. Name the tools and run the two audits. No code needed.',
+    brief:'Tools change every few months, but the jobs they do stay the same. Think of a kitchen: the stove changes, cooking stays. In this chapter you learned to name the jobs first, to choose a tool by what it must do and must never do, and to know where each tool stores data and keys. Now you will choose the tools for Bharat Privacy Guard and audit them.',
+    where:'Written work only. Name the tools and run the two audits. No code needed.',
     steps:[
       'List the capabilities your project really uses, from the eleven in this chapter: a language model, research, prototyping, coding help, automation, API testing, version control, deployment, a database, analytics and tracing. Most projects need five or six, not all eleven.',
       'For each capability you use, write the tool you chose, the job it does for this project, and one tool you could have chosen instead.',
-      'Run a claim audit once. Take an AI summary of your own research on this project, pick ten claims, and check each one against its source. Mark each as supported, partly supported or unsupported.',
-      'Run a secrets-and-data audit on your whole stack. For every tool, write what data it stores and where its keys live. Check that no key sits in front-end code or in your repository.',
+      'Run a claim audit once. Take an AI summary of your own research on this project. Pick ten claims (things the summary says are true). Check each one against its source. Mark each as supported, partly supported or unsupported.',
+      'Run a secrets-and-data audit on your whole stack. For every tool, write what data it stores and where its keys (secret passwords for services) live. Check that no key sits in front-end code (the code anyone can see in a browser) or in your repository (the online folder that remembers your changes).',
       'Note any place where personal data could end up in a tool by accident, such as logs or analytics, and what stops it.'
     ],
     done:[
@@ -463,23 +463,23 @@ window.PART7 = [
   story:[
     ['c','On your route','First, go through it quickly, in about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
     ['c','Before you start','In full, this chapter takes about two and a half hours. Tools change every few months. The brands named below are one current example each, not a requirement. If a named tool is gone by the time you read this, pick a replacement that does the same job.'],
-    ['p','By now your project probably touches several tools: one for the model, one for code, one for tracking what users do. This chapter steps back and asks a simple question. How should you choose them?'],
+    ['p','By now your project probably uses several tools: one for the model, one for code, one for watching what users do. This chapter steps back and asks a simple question. How should you choose them? Think of picking tools for a kitchen.'],
     ['p','Here is the idea in a few lines. An AI product workflow needs eleven capabilities, from start to finish. A capability is a job that has to get done, such as storing your code safely or showing how people use the product. A tool is whatever you pick to do that job.'],
-    ['p','Most projects use five or six of the eleven, not all of them. The mistake this chapter corrects is treating each capability as a subject to master. Think of each one as a slot to fill instead.'],
+    ['p','Most projects use five or six of the eleven, not all of them. This chapter corrects one mistake: treating each capability as a subject to master. Think of each one as a slot, like a socket on a board, and plug one tool into it.'],
     ['h','The toolchain, by capability'],
     ['p','The table below lists the eleven. Read the middle column first. It says what any tool in that slot must do for you. The last column gives one current example, and nothing more.'],
     [
       'tb',
-      ['Capability','What a tool in this slot must do for you','One current example'],
+      ['Capability (the job)','What a tool in this slot must do for you','One current example'],
       [
         ['LLM / reasoning','Answer, draft and reason over text you give it, whenever you ask','ChatGPT, Claude'],
         ['Research / source grounding','Answer only from the sources you upload, with citations you can check','NotebookLM'],
         ['Prototyping','Turn a description into a working screen quickly, so a user can try it','Lovable, Google AI Studio, or Figma for flow only'],
         ['Coding','Read your repository, edit files and run commands, with you reviewing the changes','Claude Code, Cursor'],
-        ['Automation','Connect a trigger, a call, a validation and an approval into a workflow that runs the same way every time','n8n'],
+        ['Automation','Join a trigger (what starts it), a call, a validation (a check) and an approval into a workflow that runs the same way every time','n8n'],
         ['API testing','Send an exact request, show the raw response, and save it as a check you can repeat','Postman'],
-        ['Version control','Store code, review every change, and run checks before a change is merged','GitHub'],
-        ['Deployment','Deploy on every push to the main branch, and roll back within minutes','Vercel'],
+        ['Version control','Store code, review every change, and run checks before a change is merged (added to the main code)','GitHub'],
+        ['Deployment','Put the new version live on every push to the main branch, and go back to the old one within minutes','Vercel'],
         ['Database','Give you sign-in, tables and row-level access rules, so one user cannot see another’s data','Supabase'],
         ['Analytics','Record events, and draw funnels and cohorts from real usage','PostHog'],
         ['Observability','Trace one request from start to finish: what it cost, how long it took and what it returned','Chapter 30’s trace schema (the fixed set of fields each trace records), in whatever tool shows it']
@@ -487,56 +487,56 @@ window.PART7 = [
     ],
     ['key','Pick one tool per capability, and learn what that capability must do. The brand can be replaced. The capability cannot.'],
     ['h','Two habits that outlast every tool on this list'],
-    ['p','Tools will come and go, but two habits will stay useful. The first is the <strong>claim audit</strong>. AI tools can summarise research quickly, but a summary can say things the source never said. So pick ten claims from an AI summary and check each one against its source. Mark each as supported, partly supported or unsupported.'],
+    ['p','Tools will come and go, but two habits will stay useful. The first is the <strong>claim audit</strong>. AI tools can summarise research fast, but a summary can say things the source never said. Think of a student who adds lines the book never wrote. So pick ten claims from an AI summary and check each one against its source. Mark each as supported, partly supported or unsupported.'],
     ['p','If more than one or two fail, stop trusting that workflow for decisions, whichever research tool produced it.'],
-    ['p','The second habit is the <strong>secrets-and-data audit</strong>. For every tool in your stack, write what it stores and where its keys live. A key is a secret code that lets your app use a service.'],
-    ['p','Generated prototypes especially tend to put API keys in front-end code, where anyone can read them, and to ship a database with no access rules. Check both before you share a link with anyone.'],
+    ['p','The second habit is the <strong>secrets-and-data audit</strong>. For every tool in your stack, write what it stores and where its keys live. A key is a secret code that lets your app use a service. It is like the key to your shop’s cash box.'],
+    ['p','Generated prototypes (screens built for you by an AI tool) especially tend to put API keys in front-end code, where anyone can read them, and to ship a database with no access rules. Check both before you share a link with anyone.'],
     ['do','Prove it now',[
       ['p','Run the claim audit once, on any AI-summarised research you already have. Then list your own capstone’s stack and run the secrets-and-data audit on it.'],
-      ['x','Ten claims, each one marked. A short stack list, with each row naming what the tool stores and where its secrets live. Counterexample: a claim a source-grounded tool would still get wrong, such as what users did not mention.']
+      ['x','Ten claims, each one marked. A short stack list, with each row naming what the tool stores and where its secrets live. Plus a counterexample (a case where the tool fails): a claim a source-grounded tool would still get wrong, such as what users did not mention.']
     ]],
     ['q','I610'],
     ['try',{id:'b4-stack',mins:10,min:120,rows:6,
       task:'List every tool in your capstone stack. For each one, write what data it stores or receives, and where its secrets live.',
       ph:'GitHub: … Vercel: … Supabase: … PostHog: … Model provider: …',
-      after:'Here is a complete answer for the Theme Finder stack. <strong>GitHub</strong> stores code only, with no secrets, which you check by searching the history. <strong>Vercel</strong> stores the model and Supabase keys as environment variables, and keeps request logs. <strong>Supabase</strong> stores accounts, theme results and ticket IDs, with row-level access rules. <strong>PostHog</strong> stores events with account IDs, and no ticket text. <strong>The model provider</strong> receives ticket text in each request, so check its retention and training policy. <strong>n8n</strong> stores helpdesk and Slack credentials in its credential store. Writing this list is the start of the data-flow diagram your security lead will ask for.'}],
+      after:'Here is a complete answer for the Theme Finder stack. <strong>GitHub</strong> stores code only, with no secrets, which you check by searching the history. <strong>Vercel</strong> stores the model and Supabase keys as environment variables (settings kept outside the code), and keeps request logs. <strong>Supabase</strong> stores accounts, theme results and ticket IDs, with row-level access rules. <strong>PostHog</strong> stores events with account IDs, and no ticket text. <strong>The model provider</strong> receives ticket text in each request, so check its retention and training policy (how long it keeps your text, and whether it learns from it). <strong>n8n</strong> stores helpdesk and Slack credentials in its credential store. Writing this list is the start of the data-flow diagram (a map of where data travels) your security lead will ask for.'}],
 
     ['h','What you have learned'],
     ['p','You now have a calm way to handle the tool noise. Name the job first. Pick one tool for it. Then check what that tool stores, where its keys live, and what its AI claims are really based on.'],
-    ['p','Next, you’ll look at the system that wraps around the model inside your product, which is called the harness.']
+    ['p','Next, you will look at the system that wraps around the model inside your product, which is called the harness.']
   ]
 },
 {
   id:'b5', num:'B5', part:7, curriculumTier:'selective', phase:6, prerequisites:['ch13a','ch17o','ch18s'], nextUnits:['b6'], minutes:720, labs:[],
   title:'Harness engineering: the system around the model',
-  concept:'The model is only one part of an AI product. The rest is the harness: the code that puts the request together, runs tools, keeps state, enforces rules, checks quality and records what happened. You’ll draw the harness around your capstone, build one workflow two ways, and write a release checklist.',
+  concept:'The model is only one part of an AI product. The rest is the harness: the gear around the model, like the reins and saddle on a horse. It is the code that builds the request, runs tools, keeps state, enforces rules, checks quality and records what happened. You will draw the harness around your capstone (your project), build one workflow two ways, and write a release checklist.',
   takeaway:[
-    'Name the seven parts of a harness, and find each one in your capstone.',
-    'Recognise the patterns coding agents use, and reuse them in your own product.',
-    'Set tool and permission boundaries, and say what evidence would justify widening them.',
-    'Choose between a fixed workflow and a bounded agent, using measured results.',
-    'Define release gates, a rollback trigger and who responds to an incident.'
+    'Name the seven parts of a harness (the gear around the model), and find each one in your capstone.',
+    'Spot the patterns coding agents use (helpers that write code), and reuse them in your own product.',
+    'Set tool and permission boundaries, like a fence around a garden. Say what proof would let you make the fence wider.',
+    'Choose between a fixed workflow (steps set in advance) and a bounded agent (a helper with a limit), using measured results.',
+    'Set release gates (checks before launch), a rollback trigger (the signal to go back), and who answers when something breaks.'
   ],
-  needs:[['Agents','Idea 4 compares an agent with a fixed workflow.',26],
-         ['Observability','Traces are one part of the harness.',30],
-         ['Security and governance','Idea 3 applies it to tool permissions.',31],
-         ['A coding agent','Idea 2 looks at how one works.','B4']],
+  needs:[['Agents (helpers that use tools in a loop)','Idea 4 compares an agent with a fixed workflow.',26],
+         ['Observability','Traces (the diary of one run) are one part of the harness.',30],
+         ['Security and governance (keeping things safe, and the rules for who may do what)','Idea 3 uses it for tool permissions.',31],
+         ['A coding agent (a helper that writes code)','Idea 2 shows how one works.','B4']],
   capstone:{
-    title:'Draw the harness around the model, and prepare a safe release',
-    brief:'The model is only one part of the product. Everything around it decides whether the product is dependable: how the request is built, what the model may do, what is remembered, what is checked and what is recorded. In this chapter you learned the seven parts of that system, how to choose between a fixed workflow and a limited agent using measurements, and how to define release gates and a rollback trigger. Now you’ll do that for Bharat Privacy Guard.',
-    where:'Code: build the rule-keeper both ways in your project’s own codebase. Then write the diagram and the checklist in the notes box below.',
+    title:'Draw the harness around the model, and get ready for a safe release',
+    brief:'The model is only one part of the product. Everything around it decides if you can depend on the product. That means how the request is built, what the model may do, what is remembered, what is checked and what is recorded. In this chapter you learned the seven parts of that system. You learned how to pick a fixed workflow or a limited agent by measuring, and how to set release gates and a rollback trigger. Now you do that for Bharat Privacy Guard.',
+    where:'Code: build the rule-keeper both ways in your project’s own codebase (the folder of your project’s code). Then write the diagram and the checklist in the notes box below.',
     steps:[
-      'Draw the harness around the tool: the inputs, how each request is put together, the tools, the stored state, the policies (such as your sharing rule), the test gates, the traces and the fallbacks.',
-      'Mark on the drawing every point where the model’s output turns into an action, and what checks it on the way.',
-      'Build the rule-keeper twice and run the same twenty sentences through both: once as a fixed set of steps, and once as an agent with a step limit. Compare how often each fails, how long each takes and how easy each is to debug.',
-      'List the permissions each tool has, and the worst thing that could happen if each one were misused.',
-      'Write a release checklist. It needs a rollback trigger that is a number someone can check, for example “roll back if missed Aadhaar numbers rise above 3 in 100”, and the name of the person who answers an incident.'
+      'Draw the harness around the tool. Show the inputs, how each request is put together, the tools, the stored state, the policies (such as your sharing rule), the test gates, the traces and the fallbacks (the plan B when something fails).',
+      'On the drawing, mark every point where the model’s output turns into an action. Also mark what checks it on the way.',
+      'Build the rule-keeper twice and run the same twenty sentences through both. First build it as a fixed set of steps. Then build it as an agent with a step limit. Compare how often each fails, how long each takes and how easy each is to debug (to find the cause of a fault).',
+      'List the permissions each tool has. For each one, write the worst thing that could happen if it were misused.',
+      'Write a release checklist. It needs a rollback trigger that is a number someone can check, for example “roll back if missed Aadhaar numbers rise above 3 in 100”. Rolling back means going back to the old version. Add the name of the person who answers an incident (a serious fault).'
     ],
     done:[
-      'A harness diagram that shows where the model’s output becomes an action, and what checks it.',
-      'A comparison of the two builds on the same twenty sentences, with all three measures.',
-      'A list of permissions and their worst cases.',
-      'A release checklist with a numeric rollback trigger and a named incident owner.',
+      'A harness diagram. It shows where the model’s output becomes an action, and what checks it.',
+      'A side-by-side of the two builds on the same twenty sentences, with all three measures.',
+      'A list of permissions, with the worst case for each.',
+      'A release checklist with a rollback trigger that is a number, and a named incident owner.',
       'A score from 0 to 3 for each item above, using this chapter’s scale, like marking your own homework. Move on only when every score is 2 or more, and no safety, privacy or evidence item scores 0.'
     ]
   },
@@ -550,75 +550,75 @@ window.PART7 = [
   ],
   story:[
     ['c','On your route','First, go through it quickly, in about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
-    ['c','Before you start','In full, this chapter takes about twelve hours. You need a working version of your capstone’s main flow, even a rough one, and a coding agent from B4.'],
+    ['c','Before you start','All of it takes about twelve hours. You need a working version of your capstone’s main flow, even a rough one. You also need a coding agent (a helper that writes code) from B4.'],
 
-    ['p','In the last chapter you chose the tools for your project. Now we look at what holds those tools together around the model. A model on its own only takes text in and gives text out. What makes it a dependable product is everything around it.'],
-    ['p','Here’s what you’ll do. You’ll name the seven parts of that system and learn from how coding agents are built. Then you’ll set limits on what a tool may do, compare a fixed workflow with an agent, and plan a safe release.'],
+    ['p','In the last chapter you chose the tools for your project. Now look at what holds those tools together around the model. A model on its own takes text in and gives text out. That is all. What makes it a product you can trust is everything around it.'],
+    ['p','Here is the plan. You name the seven parts of that system. You learn from how coding agents are built. Then you set limits on what a tool may do, compare a fixed workflow with an agent, and plan a safe release.'],
 
     ['h','Idea 1: What a harness is'],
-    ['p','Think of the gear that lets you steer something strong. The model is strong, but it can’t steer itself. A model only takes text in and gives text out. Everything else that makes an AI product work lives in the <strong>harness</strong> around it.'],
-    ['p','A harness has seven parts. The table below names each one, says what it does, and shows what it looks like in Theme Finder.'],
+    ['p','Think of the reins and saddle on a horse. The horse is strong, but it cannot steer itself. The model is like that horse. It takes text in and gives text out. Everything else that makes an AI product work lives in the <strong>harness</strong> (the gear around the model).'],
+    ['p','A harness has seven parts. The table below gives each part a name, says what it does, and shows what it looks like in Theme Finder.'],
     ['tb',['Part','What it does','Theme Finder example'],[
-      ['Context','Builds what the model sees on each call','Instructions, 50 tickets, the existing theme list'],
-      ['Tools','Lets the model read or act','Fetch tickets; look up a past theme'],
-      ['State','Remembers things across steps and sessions','Last week’s themes; which tickets are done'],
-      ['Orchestration','Decides what runs next','Classify, then group, then summarise'],
-      ['Policy','Sets rules the model cannot override','No email without approval; no ticket text in logs'],
-      ['Evals','Checks quality before and after release','50-ticket test set; weekly sample review'],
-      ['Observability','Records what happened','A trace per run with tokens, cost and latency']
+      ['Context','Builds what the model sees each time you call it','The instructions, 50 tickets, the existing theme list'],
+      ['Tools (the buttons the model can ask you to press)','Lets the model read or act','Fetch tickets; look up an old theme'],
+      ['State','Remembers things between steps and between visits','Last week’s themes; which tickets are done'],
+      ['Orchestration','Decides which step runs next','Sort, then group, then sum up'],
+      ['Policy','Sets rules the model cannot break','No email without approval; no ticket text in logs'],
+      ['Evals (the answer-key tests)','Checks quality before and after release','A 50-ticket test set; a sample checked every week'],
+      ['Observability','Writes down what happened','A trace per run: tokens, cost and latency (the waiting time)']
     ]],
-    ['p','Orchestration is simply the part that decides which step runs next. Evals are the tests you score the model on. Observability is the record that lets you look back and see what happened.'],
-    ['p','Two products using the same model can behave very differently because of their harnesses. In fact, most quality problems you will debug live in the harness, not in the model.'],
+    ['p','Orchestration is the part that decides which step runs next, like a train guard waving the flag. Evals are the tests you score the model on, like the teacher’s answer key. Observability is the record that lets you look back and see what happened, like a diary.'],
+    ['p','Two products can use the same model and still behave very differently. The harness is the reason. Most quality problems you will fix live in the harness, not in the model.'],
     ['do','Prove it now',[
       ['p','Fill in the seven rows for your capstone. Leave a row empty if you do not have that part yet.'],
       ['x','A seven-row table. The empty rows are your to-do list. Counterexample: a product where one of the seven parts really is not needed.']
     ]],
 
     ['h','Idea 2: How coding agents are built'],
-    ['p','Coding agents such as Claude Code are the most widely used agents today. They’re also a good place to learn from, because their design shows patterns you can reuse in your own product. There are six of them.'],
+    ['p','Coding agents such as Claude Code are the most widely used agents today. A coding agent is a helper that writes and fixes code for you. You can learn a lot from them, because their design shows patterns you can reuse in your own product. There are six.'],
     ['l',[
-      '<strong>A simple loop.</strong> The model picks a tool, the harness runs it, and the result goes back to the model. This repeats until the task is done.',
-      '<strong>A small set of general tools.</strong> These are things like read a file, edit a file, search and run a command. A few flexible tools beat dozens of narrow ones.',
-      '<strong>Project memory.</strong> A file in the repository, such as <code>CLAUDE.md</code>, holds rules and conventions, and it is loaded on every run.',
-      '<strong>Permission modes.</strong> Reading is allowed freely, but editing files or running commands can require approval.',
-      '<strong>A verifier.</strong> Tests and type checks tell the agent whether its change worked, so a person does not have to read every line.',
-      '<strong>Sub-agents.</strong> A large task is split up, and a helper works in its own context, so the main context stays small.'
+      '<strong>A simple loop.</strong> The model picks a tool. The harness runs it. The result goes back to the model. This repeats until the job is done, like a cook who tastes, adds salt, and tastes again.',
+      '<strong>A small set of general tools.</strong> These are things like read a file, edit a file, search and run a command. A few tools that fit many jobs beat dozens that fit one job, like one good knife beats twenty gadgets.',
+      '<strong>Project memory.</strong> A file in the repository (the online folder that remembers every change), such as <code>CLAUDE.md</code>, holds the rules. It is loaded every time the agent runs, like a note on the fridge.',
+      '<strong>Permission modes.</strong> Reading is free for all. But editing files or running commands can need a yes from a person first, like a shop where anyone can look but only the owner opens the till.',
+      '<strong>A verifier.</strong> Tests and type checks (a spell-check for code) tell the agent whether its change worked. A person does not have to read every line.',
+      '<strong>Sub-agents.</strong> A big job is cut into pieces. A helper does one piece on its own desk (its own context), so the main desk stays tidy.'
     ]],
-    ['key','The verifier matters most. An agent with a reliable way to check its own work can take on much larger tasks.'],
+    ['key','The verifier matters most. An agent that can check its own work reliably, like a student who checks answers against the key, can take on much bigger jobs.'],
     ['do','Prove it now',[
-      ['p','Give your coding agent one small task on your capstone, such as adding input validation. Watch which tools it calls, in order.'],
+      ['p','Give your coding agent one small job on your capstone, such as adding input validation (checking what the user types). Watch which tools it calls, in order.'],
       ['x','The list of tool calls. Mark the step where it checked its own work. If it never did, what verifier could you add?']
     ]],
 
     ['h','Idea 3: Tool and permission boundaries'],
-    ['p','Personal agents such as OpenClaw can run on your own computer, with access to your files, your messages and your shell, which is the place where commands are typed. That makes them useful. It also makes them dangerous.'],
-    ['p','The same four questions apply to any agent that uses tools:'],
+    ['p','Personal agents such as OpenClaw can run on your own computer. They can reach your files, your messages and your shell (the place where you type commands). That makes them useful. It also makes them dangerous, like giving a stranger your house keys.'],
+    ['p','Ask the same four questions of any agent that uses tools:'],
     ['n',[
-      '<strong>Which tools can it call?</strong> Use an allowlist. Anything not on the list is refused.',
-      '<strong>With what scope?</strong> Keep it read-only where possible. Limit it to one folder, one channel, one customer’s data.',
+      '<strong>Which tools can it call?</strong> Use an allowlist (a list of names that are allowed in). Anything not on the list is refused.',
+      '<strong>With what scope?</strong> Keep it read-only where you can. Limit it to one folder, one channel, one customer’s data.',
       '<strong>Which calls need approval?</strong> Anything that sends, deletes, pays or cannot be undone.',
-      '<strong>What can reach it?</strong> Any text it reads, such as tickets, email or web pages, may contain instructions from an attacker.'
+      '<strong>What can reach it?</strong> Any text it reads, such as tickets, email or web pages, may hide instructions from an attacker, like a note slipped into the homework.'
     ]],
-    ['c','Watch out','Recall the lethal trifecta from Chapter 13. An agent with private data, untrusted input and a way to send data out can be tricked into leaking. Remove at least one of the three for every tool combination.'],
-    ['p','So start narrow, and widen permissions only on evidence you defined in advance.'],
+    ['c','Watch out','Remember the lethal trifecta (three risky things together) from Chapter 13. An agent that has private data, untrusted input and a way to send data out can be tricked into leaking. For every group of tools, remove at least one of the three.'],
+    ['p','So start with a small fence. Make it wider only when you have proof, and decide in advance what that proof is.'],
     ['do','Prove it now',[
-      ['p','List every tool in your capstone. Mark each as read or write, and say whether it needs approval.'],
+      ['p','List every tool in your capstone. Mark each one read or write, and say whether it needs approval.'],
       ['x','A tool list with scopes. Check it for the lethal trifecta. Counterexample: a tool that looks read-only but can still leak data.']
     ]],
     ['q','I612'],
 
     ['h','Idea 4: Fixed workflows or bounded agents'],
-    ['p','Now here is a design choice you’ll meet often. Should your code decide every step, or should the model decide?'],
-    ['p','A <strong>state machine</strong> is a workflow where your code fixes every step and every transition. A <strong>bounded agent</strong> lets the model choose the steps, within a tool list and a step budget. Here they are side by side, for the weekly report:'],
+    ['p','Here is a choice you will meet often. Should your code decide every step, or should the model decide?'],
+    ['p','A <strong>state machine</strong> is a workflow where your code fixes every step and every move from one step to the next, like a railway track. A <strong>bounded agent</strong> lets the model pick the steps, but only within a tool list and a step budget, like a child allowed to play inside the gate. Here they are side by side, for the weekly report:'],
     ['code','State machine                       Bounded agent\n\nFETCH → CLASSIFY → GROUP            Goal: produce the weekly report\n  → SUMMARISE → APPROVE → SEND      Tools: fetch, classify, group,\n                                           summarise, request_approval\nEach step has one next step.        Max 12 steps. Must request\nErrors go to RETRY or HUMAN.        approval before sending.'],
-    ['p','Which one is better? Don’t guess. Build both and measure them on the same twenty test weeks. Here is what such a comparison can look like:'],
+    ['p','Which one is better? Do not guess. Build both and measure them on the same twenty test weeks. Here is what such a comparison can look like:'],
     ['tb',['Measure','State machine','Bounded agent'],[
-      ['Runs that produced a correct report','19 of 20','17 of 20'],
+      ['Runs that gave a correct report','19 of 20','17 of 20'],
       ['Median time','40 s','75 s'],
-      ['Time to find the cause of a failure','Minutes: the failing step is logged','Longer: read the whole trace'],
-      ['Handles an unusual week','Needs code changes','Often adapts on its own']
+      ['Time to find why it failed','Minutes: the failing step is written in the log','Longer: you must read the whole trace'],
+      ['How it handles an unusual week','Needs a code change','Often adjusts by itself']
     ]],
-    ['p','For a fixed process like a weekly report, the state machine wins. Agents earn their place when the steps really do vary from case to case.'],
+    ['p','For a fixed job like a weekly report, the state machine wins, like a train on a track. Agents earn their place when the steps really do change from case to case.'],
     ['do','Prove it now',[
       ['p','Build one small workflow from your capstone both ways. Run both on at least ten cases.'],
       ['x','A three-row table like the one above, from your own runs. Counterexample: a case in your capstone where the agent did better.']
@@ -626,31 +626,31 @@ window.PART7 = [
     ['q','I613'],
 
     ['h','Idea 5: Release gates, rollback and incidents'],
-    ['p','The last idea is about releasing safely. A <strong>release gate</strong> is a check that must pass before a change reaches users. For AI products, the gates include the eval set, which is your set of test cases for the model, as well as ordinary tests. A typical set of gates looks like this:'],
+    ['p','The last idea is about releasing safely. A <strong>release gate</strong> is a check that must pass before a change reaches users, like the ticket check at a station gate. For AI products, the gates include the eval set (your set of test cases for the model) as well as ordinary tests. Here is a typical set of gates:'],
     ['n',[
       'Unit tests and type checks pass.',
-      'The eval set scores at or above the threshold, with no new failures in safety cases.',
-      'Cost and latency per run are within budget.',
-      'The change goes to 10% of accounts first, behind a feature flag, which is a switch that turns it on for some accounts only.',
+      'The eval set scores at or above the threshold (the pass mark), with no new failures in safety cases.',
+      'Cost and latency (the waiting time) per run are within budget.',
+      'The change goes to 10% of accounts first, behind a feature flag (a switch that turns it on for some accounts only).',
       'The rollback trigger and the incident owner are written down.'
     ]],
-    ['p','Gates stop most bad changes, but things will still go wrong sometimes. So decide in advance how the system responds to each kind of failure. The more serious the problem, the more careful the response.'],
+    ['p','Gates stop most bad changes, but things will still go wrong sometimes. So decide in advance how the system answers each kind of failure. The worse the problem, the more careful the answer.'],
     ['tb',['Response','When','Example'],[
-      ['Retry','A temporary error','Rate limit; network timeout'],
-      ['Degrade','One part is down but the rest works','Send the report without the trend chart'],
-      ['Escalate','The output cannot be trusted','JSON fails validation twice'],
-      ['Stop','An irreversible action looks wrong','The report would go to 500 people instead of 5']
+      ['Retry','A short glitch','Rate limit (too many requests); network timeout'],
+      ['Degrade (work with less)','One part is down but the rest works','Send the report without the trend chart'],
+      ['Escalate (call someone senior)','You cannot trust the output','JSON (a form in curly brackets) fails validation twice'],
+      ['Stop','An action you cannot undo looks wrong','The report would go to 500 people instead of 5']
     ]],
-    ['p','When something does go wrong in production, the incident owner decides quickly, rolls back if needed and tells the affected users. Rolling back means returning to the previous version. Afterwards, write a short review: what happened, why, and what check would have caught it.'],
+    ['p','When something goes wrong in production (the live product), the incident owner acts fast. They roll back if needed, and they tell the people affected. Rolling back means going back to the previous version, like pressing undo. Afterwards, write a short review: what happened, why, and what check would have caught it.'],
     ['try',{id:'b5-rollback',mins:8,min:100,rows:5,
-      task:'Write the rollback trigger and incident plan for a new version of your capstone’s main prompt. Include a measurable trigger, who decides, how you roll back and how long it takes.',
+      task:'Write the rollback trigger and incident plan for a new version of your capstone’s main prompt (the note you hand the model). Include a trigger you can measure, who decides, how you roll back and how long it takes.',
       ph:'Roll back if… Decided by… How… Time to roll back…',
       after:'Here is a strong plan. <strong>Roll back if</strong> the share of themes marked useful drops more than 10 points below last week, or any report goes to the wrong recipient. <strong>Decided by</strong> the PM on call, who does not need anyone’s approval to roll back. <strong>How:</strong> switch the prompt version flag back to the previous version, because prompts are versioned in the repository. <strong>Time:</strong> under five minutes, and it was tested once before launch. Afterwards, the PM writes a one-page review within two days.'}],
 
     ['h','What you have learned'],
-    ['p','The model is one part of your product. The harness around it decides whether the product can be trusted.'],
-    ['p','You can now name its seven parts, borrow the patterns coding agents use, and limit what each tool may do. You can also choose between a fixed workflow and an agent by measuring, and you know how to release and roll back safely.'],
-    ['p','Next, you’ll put your project in front of real users and learn from what they do.']
+    ['p','The model is one part of your product. The harness around it (the gear that steers it) decides whether people can trust the product.'],
+    ['p','You can now name its seven parts and borrow the patterns coding agents use. You can limit what each tool may do. You can pick a fixed workflow or an agent by measuring. And you know how to release and roll back safely.'],
+    ['p','Next, you put your project in front of real users and learn from what they do.']
   ]
 },
 
@@ -782,35 +782,35 @@ window.PART7 = [
 {
   id:'b7', num:'B7', part:7, curriculumTier:'selective', phase:7, prerequisites:['b6','ch20d','ch19pm'], nextUnits:[], minutes:720, labs:[],
   title:'Getting the job: career readiness for AI PM roles',
-  concept:'You’ve built something real in this course. Now you’ll turn it into evidence an employer can see. You’ll pick the right roles to aim for, write case studies and a resume from your own work, practise each kind of interview, and finish a timed take-home.',
+  concept:'You have built something real in this course. Now you turn it into proof an employer can see, like a report card for your work. You will pick the right jobs to aim for. You will write case studies and a resume from your own work. You will practise each kind of interview. Then you will finish a timed take-home.',
   takeaway:[
-    'Build a role matrix from real job descriptions, and find the gaps in your evidence.',
-    'Write resume bullets and case studies that show your decisions and their results.',
-    'Answer product sense, strategy, metrics and execution questions with a clear structure.',
-    'Work through an AI system-design question, including evaluation, cost and failure.',
-    'Tell behavioural stories about your own decisions, and prepare to negotiate.'
+    'Build a role matrix (a grid of jobs and the skills they ask for) from real job descriptions, and find the gaps in your evidence.',
+    'Write resume bullets and case studies that show your decisions and what happened because of them.',
+    'Answer product sense, strategy, metrics and execution questions with a clear plan, like following a recipe card.',
+    'Work through an AI system-design question (how you would build an AI product) step by step. Cover evaluation, cost and failure.',
+    'Tell behavioural stories (true stories about your past choices) about your own decisions, and get ready to negotiate.'
   ],
-  needs:[['A shipped capstone with evidence','Your case studies come from it.','B6'],
-         ['Architecture and vendor strategy','System-design interviews ask about it.',33],
-         ['AI product management','Interviewers expect its vocabulary.',32]],
+  needs:[['A shipped capstone with evidence (a finished project with proof)','Your case studies come from it.','B6'],
+         ['Architecture and vendor strategy (how the parts fit, and which company you buy from)','System-design interviews ask about it.',33],
+         ['AI product management (deciding what an AI product should do)','Interviewers expect you to use its words.',32]],
   capstone:{
     title:'Turn the project into evidence for your next job',
-    brief:'You started this course to get ready for a job, and the project is now your best evidence. In this chapter you learned to build a role matrix from real job descriptions. You also learned to write case studies and resume lines that show your decisions and their results, and to answer interview questions with a clear structure. Now you turn Bharat Privacy Guard into the proof you will show.',
-    where:'Written, with recorded mock interviews. Code only if the role you apply for expects it in the take-home.',
+    brief:'You started this course to get ready for a job. Your project is now your best proof. In this chapter you learned to build a role matrix from real job descriptions. You also learned to write case studies and resume lines that show your decisions and results. And you learned to answer interview questions with a clear plan. Now you turn Bharat Privacy Guard into the proof you will show.',
+    where:'Written, with recorded mock interviews (practice interviews). Code only if the role you apply for expects it in the take-home.',
     steps:[
-      'Collect ten real job descriptions for roles you would apply for. Make a table with the skills they ask for down the side and the descriptions across the top. Mark which skills appear again and again, and mark each as proven, partly proven or missing for you.',
-      'Write two case studies. One is Bharat Privacy Guard. Each must show the problem and your evidence for it, your decisions, the trade-offs, the numbers, the failures and what you learned. Include at least one decision that turned out wrong and what you did about it.',
+      'Collect ten real job descriptions for roles you would apply for. Make a table with the skills they ask for down the side and the descriptions across the top. Mark the skills that show up again and again. Then mark each one for yourself as proven, partly proven or missing.',
+      'Write two case studies (short written stories of a project). One is Bharat Privacy Guard. Each must show the problem and your evidence for it, your decisions, the trade-offs, the numbers, the failures and what you learned. Include at least one decision that turned out wrong, and what you did about it.',
       'Rewrite your resume lines as action, decision and result, and give each one a number. For example: “Chose a fixed workflow over an agent after measuring both on the same cases, which cut failures by half.”',
-      'Answer this system-design question aloud in twenty-five minutes, and record yourself: “Design a privacy layer for Indian websites and AI chatbots.” Cover the users and the task, the approach, how you test it, how it fails, the cost and speed, and the rollout.',
-      'Record three more mock interviews, one each on product sense, metrics and a story about a decision of yours that went wrong. Score all four with a rubric.',
-      'Do one 48-hour take-home task within the time limit, and then write a critique of your own answer.'
+      'Answer this system-design question aloud in twenty-five minutes, and record yourself: “Design a privacy layer for Indian websites and AI chatbots.” Cover the users and the task, the approach, how you test it, how it fails, the cost and speed, and the rollout (how you release it step by step).',
+      'Record three more mock interviews. Do one each on product sense, on metrics, and on a story about a decision of yours that went wrong. Score all four with a rubric (a marking sheet, like a teacher\'s).',
+      'Do one 48-hour take-home task (a test you do at home) within the time limit. Then write a critique of your own answer.'
     ],
     done:[
-      'A role matrix covering ten real job descriptions, each skill marked proven, partly proven or missing.',
-      'Two case studies, each with a decision that went wrong and what you did about it.',
-      'Resume lines that each contain a number or a concrete result.',
-      'Four recorded mock interviews, each scored with a rubric.',
-      'A take-home answer and your own critique of it.',
+      'A role matrix covering ten real job descriptions, with each skill marked proven, partly proven or missing.',
+      'Two case studies. Each has a decision that went wrong and what you did about it.',
+      'Resume lines that each have a number or a clear result.',
+      'Four recorded mock interviews. Each one is scored with a rubric.',
+      'A take-home answer, and your own critique of it.',
       'A score from 0 to 3 for each item above, using this chapter’s scale, like marking your own homework. Move on only when every score is 2 or more, and no safety, privacy or evidence item scores 0.'
     ]
   },
@@ -824,79 +824,79 @@ window.PART7 = [
   ],
   story:[
     ['c','On your route','First, go through it quickly, in about twenty minutes: read it and answer the boxes. The long “Build it” work can wait until later.'],
-    ['c','Before you start','In full, this chapter takes about twelve hours. Collect ten job descriptions for roles you would apply for. Have your capstone evidence pack from B6 ready, and find a friend or peer who can run mock interviews with you.'],
+    ['c','Before you start','In full, this chapter takes about twelve hours. Collect ten job descriptions for roles you would apply for. Keep your capstone evidence pack from B6 ready (the folder of proof you made). Find a friend or peer who can run mock interviews with you.'],
 
-    ['p','In the last chapter you shipped to real users and learned from what happened. That work is the best thing you have to show an employer. But an interviewer can’t see it unless you present it well.'],
-    ['p','So this chapter is about turning your project into proof. You’ll choose the right roles, write about your work, practise the interview questions you’re likely to meet, and get ready to negotiate. Let’s start with the roles.'],
+    ['p','In the last chapter you shipped to real users. You learned from what happened. That work is the best thing you can show an employer. But an interviewer cannot see it unless you present it well.'],
+    ['p','So this chapter turns your project into proof, like a shopkeeper arranging goods in the window. You will choose the right roles and write about your work. You will practise the interview questions you are likely to meet. You will also get ready to negotiate. Let us start with the roles.'],
 
     ['h','The objection you will meet'],
-    ['p','One question comes up in almost every interview for you, politely or not: “You are moving over from programme management. Why should we treat you as a product person?” Some AI-native companies say outright that they screen out people who move over from project work. Do not argue with the worry. Answer it with evidence.'],
-    ['p','Start with what you shipped and measured, not with your years of experience. Then show the one thing delivery work could not teach you: you owned a decision and a number. The change from delivery to product is what happens when you own the outcome. The date you promised becomes the outcome you promised. Scope delivered becomes the number moved.'],
-    ['p','A good answer has five sentences. First, what you built. Second, the number from your release gate. Third, a decision you made by measuring two options. Fourth, a decision you owned before this course. Fifth, what you want to own next. Say it aloud until it takes under a minute.'],
+    ['p','One question comes up in almost every interview for you, politely or not: “You are moving over from programme management. Why should we treat you as a product person?” Some AI-native companies say outright that they screen out people who move over from project work. Do not argue with the worry. Answer it with proof.'],
+    ['p','Start with what you shipped and measured, not with your years of experience. Then show the one thing delivery work could not teach you: you owned a decision and a number. Think of a train: delivery keeps it on time, product decides where it goes. The date you promised becomes the outcome you promised. Scope delivered becomes the number moved.'],
+    ['p','A good answer has five sentences. First, what you built. Second, the number from your release gate (the test your product must pass before it goes out). Third, a decision you made by measuring two options. Fourth, a decision you owned before this course. Fifth, what you want to own next. Say it aloud until it takes under a minute.'],
     ['try',{id:'b7-objection',mins:10,min:120,rows:6,
       task:'Answer in five sentences: “You are moving over from programme management. Why should we treat you as a product person?” Each of the first four sentences must start with something you shipped, measured or decided.',
       ph:'I built… It passed… I measured… Before this course I decided… Next I want to own…',
-      after:'A strong answer. <strong>I built Bharat Privacy Guard, a tool that finds Indian identity numbers before text leaves a person’s device.</strong> It passed my release gate: it found [your figure] of every 100 numbers in my answer key, with [your figure] false alarms. I measured a fixed workflow against an agent on the same cases and shipped the workflow, because it failed less and cost less. Before this course I held a district go-live by two weeks because the payment step failed twice, and I wrote down what would make me reverse that. Next I want to own the number, not only the date.'}],
+      after:'A strong answer. <strong>I built Bharat Privacy Guard, a tool that finds Indian identity numbers before text leaves a person’s device.</strong> It passed my release gate: it found [your figure] of every 100 numbers in my answer key (my list of known right answers), with [your figure] false alarms. I measured a fixed workflow against an agent on the same cases and shipped the workflow, because it failed less and cost less. Before this course I held a district go-live by two weeks because the payment step failed twice, and I wrote down what would make me reverse that. Next I want to own the number, not only the date.'}],
 
     ['h','Idea 1: Target roles and position yourself with evidence'],
-    ['p','“AI product manager” sounds like one job. It isn’t. Companies use the title for several different jobs, and each one asks for different evidence. The table below shows the three doors open to you. As you read it, ask which one you will try first.'],
+    ['p','“AI product manager” sounds like one job. It is not. Companies use the title for several different jobs, like one word for many dishes. Each job asks for different proof. The table below shows the three doors open to you. As you read it, ask which door you will try first.'],
     ['tb',['Door','What you build','What they look for'],[
-      ['An AI-native product company','A product that exists because of AI','Agents you built, an eval suite you run yourself, cost and latency numbers, fast prototyping. Some screen out people moving over from project work, so lead with what you shipped.'],
-      ['A consulting firm building AI systems for clients','Language-model apps, retrieval and multi-agent systems for client organisations','Model evaluation, AI governance, and proof that you can scope, measure and hand over. Delivery and consulting backgrounds are accepted.'],
-      ['A public-sector or digital-public-infrastructure body','Services that citizens and departments use at scale','Field deployment, API literacy, ministry stakeholders, Indic and voice work, open-weight options. The title may read analyst or architect, not product manager.']
+      ['An AI-native product company (a company built around AI)','A product that exists because of AI','Agents you built, an eval suite (a set of tests) you run yourself, cost and latency (waiting time) numbers, fast prototyping. Some screen out people moving over from project work, so lead with what you shipped.'],
+      ['A consulting firm building AI systems for clients (a company that builds for others)','Language-model apps, retrieval (finding the right page first) and multi-agent systems for client organisations','Model evaluation, AI governance (rules for using AI safely), and proof that you can scope, measure and hand over. Delivery and consulting backgrounds are accepted.'],
+      ['A public-sector or digital-public-infrastructure body (a government office or a body that builds public digital services)','Services that citizens and departments use at scale','Field deployment (using it on the ground), API literacy, ministry stakeholders, Indic and voice work, open-weight options (models whose files you can download). The title may read analyst or architect, not product manager.']
     ]],
-    ['p','The plan page rates the consulting door as the most realistic first one, and the AI-native door as the hardest. The same evidence serves all three. Write down which door you will apply to first.'],
-    ['p','How do you find out what the market wants? Build a <strong>role matrix</strong>. Take ten real job descriptions and list them across the top. Then list every skill they mention down the side, and tick each skill that each role asks for.'],
-    ['p','The skills with the most ticks are what the market wants most. Now look at those skills and mark each one for yourself: proven, partly proven or missing. That tells you where your evidence is strong and where the gaps are.'],
-    ['p','Then position yourself around what you can prove. Compare two lines. “I shipped an AI product to ten real users and improved its useful-result rate from 58% to 71%” is much stronger than “passionate about AI”.'],
+    ['p','The plan page rates the consulting door as the most realistic first one, and the AI-native door as the hardest. The same proof works for all three doors. Write down which door you will apply to first.'],
+    ['p','How do you find out what the market wants? Build a <strong>role matrix</strong>. Think of a class timetable, with jobs across the top and skills down the side. Take ten real job descriptions and list them across the top. Then list every skill they mention down the side. Tick each skill that each job asks for.'],
+    ['p','The skills with the most ticks are what the market wants most. Now look at those skills and mark each one for yourself: proven, partly proven or missing. That shows you where your proof is strong and where the gaps are.'],
+    ['p','Then present yourself around what you can prove. Compare two lines. “I shipped an AI product to ten real users and improved its useful-result rate from 58% to 71%” is much stronger than “passionate about AI”.'],
     ['do','Prove it now',[
       ['p','Start your role matrix with three job descriptions. Mark your top three proven skills and your biggest gap.'],
-      ['x','You should end up with a small matrix and one gap. Then try a counterexample: find a skill that a job description lists but that you think does not really matter for the role.']
+      ['x','You should end up with a small matrix and one gap. Then test it: find a skill that a job description lists but that you think does not really matter for the role.']
     ]],
     ['q','I616'],
 
     ['h','Idea 2: Resume, LinkedIn and case studies'],
-    ['p','Once you know the roles, the next job is your resume. A good resume line says three things: what you did, the decision you made, and the result you measured. In short, <strong>action + decision + measurable result</strong>. Here is the same line written three ways.'],
+    ['p','Once you know the roles, the next job is your resume (the one-page list of your work). A good resume line says three things: what you did, the decision you made, and the result you measured. In short, <strong>action + decision + measurable result</strong>. Here is the same line written three ways.'],
     ['code','Weak    Worked on an AI support-ticket tool.\n\nBetter  Built an AI tool that groups support tickets into themes.\n\nStrong  Built and shipped a ticket-theming tool to 10 support teams;\n        chose a fixed workflow over an agent after testing both,\n        cutting failed runs from 15% to 5%.'],
-    ['p','A resume line is short, so it can only hint at your thinking. For the full story you need a <strong>case study</strong>. That’s a one or two page account of a project. A good one follows this structure:'],
+    ['p','A resume line is short, so it can only hint at your thinking. For the full story you need a <strong>case study</strong>. That is a one or two page story of a project, like a short report. A good one follows this order:'],
     ['n',[
-      '<strong>Problem</strong>, with the evidence that it was real.',
-      '<strong>Your decisions</strong>, and the options you rejected.',
-      '<strong>Trade-offs</strong> you made knowingly.',
+      '<strong>Problem</strong>, with the proof that it was real.',
+      '<strong>Your decisions</strong>, and the options you said no to.',
+      '<strong>Trade-offs</strong> you made knowingly (what you gave up to get something).',
       '<strong>Results</strong>, with numbers.',
       '<strong>What failed</strong>, and what you changed.',
       '<strong>What you would do next.</strong>'
     ]],
-    ['p','Don’t keep your case studies hidden on your laptop. Put your two best ones where a recruiter will find them, such as a personal site linked from your LinkedIn profile. Your LinkedIn headline should also say the role you want and one thing you have proven.'],
+    ['p','Do not keep your case studies hidden on your laptop. Put your two best ones where a recruiter will find them, such as a personal site linked from your LinkedIn profile. Your LinkedIn headline should also name the role you want and one thing you have proven.'],
     ['do','Prove it now',[
       ['p','Rewrite three of your current resume bullets in the strong form.'],
-      ['x','You should end up with three bullets, each with a decision and a number. Then try a counterexample: pick a bullet where you can’t find a number. What would you measure next time?']
+      ['x','You should end up with three bullets, each with a decision and a number. Then test it: pick a bullet where you cannot find a number. What would you measure next time?']
     ]],
 
     ['h','Idea 3: Product sense, strategy, metrics and execution interviews'],
-    ['p','Now for the interviews themselves. Most PM interview loops include four kinds of question. Each kind has a structure that keeps you on track, so you don’t freeze or ramble. The table gives an example question and a structure for each.'],
-    ['tb',['Type','Example','Structure'],[
+    ['p','Now for the interviews themselves. Most PM interview loops (the set of interview rounds) have four kinds of question. Each kind has a plan that keeps you on track, so you do not freeze or ramble. Think of a recipe card for each dish. The table gives an example question and a plan for each.'],
+    ['tb',['Type','Example','Plan'],[
       ['Product sense','Design a voice-first grievance assistant for rural citizens who speak Bhojpuri. What do you do when it cannot understand the speech?','User and problem → why AI or not → approach → behaviour in failure → metrics (product, model, guardrail) → evals → cost and latency → risks → launch plan'],
-      ['Strategy','Build or buy an Indic-language assistant for a ministry: a frontier API, an open-weight model or a government-built platform?','Goal → options → cost, privacy and lock-in for each → what you would test first → recommendation and exit plan'],
-      ['Metrics','Daily users fell 10%. Why?','Check the data → internal or external? → which segment? → which step? → hypotheses → how to test'],
+      ['Strategy','Build or buy an Indic-language assistant for a ministry: a frontier API, an open-weight model or a government-built platform?','Goal → options → cost, privacy and lock-in (being stuck with one company) for each → what you would test first → recommendation and exit plan'],
+      ['Metrics','Daily users fell 10%. Why?','Check the data → inside or outside the company? → which group of users? → which step? → guesses (hypotheses) → how to test them'],
       ['Execution','Two teams need the same engineer. What do you do?','Clarify impact → options → trade-offs → decision → how you tell people']
     ]],
-    ['p','The nine parts in the product-sense row fit any AI product question, so learn them in order. Whichever question you get, say your structure out loud before you start. It lets the interviewer follow you, and redirect you early if needed. At the end, make a clear choice. Interviewers want to see you commit to a decision and explain why.'],
+    ['p','The nine parts in the product-sense row fit any AI product question, so learn them in order. Whichever question you get, say your plan out loud before you start. It lets the interviewer follow you, and steer you early if needed. At the end, make a clear choice. Interviewers want to see you commit to a decision and say why.'],
     ['do','Prove it now',[
       ['p','Answer the metrics example above out loud in ten minutes. Record yourself.'],
-      ['x','You should end up with a recording. Listen back and check two things. Did you ask about data quality first? And did you end with a way to test your best hypothesis?']
+      ['x','You should end up with a recording. Listen back and check two things. Did you ask about data quality first? And did you end with a way to test your best guess (hypothesis)?']
     ]],
     ['q','I617'],
 
     ['h','Idea 4: AI system-design interviews'],
-    ['p','The next kind of question is special to AI roles. AI PM loops often include a question such as “design a support assistant for our product”. The interviewer isn’t asking for code. They want to see your technical judgement. Work through these steps in order:'],
+    ['p','The next kind of question is special to AI roles. AI PM loops often include a question such as “design a support assistant for our product”. The interviewer is not asking for code. They want to see how well you judge technical choices. Work through these steps in order:'],
     ['n',[
       '<strong>Users and task.</strong> Who uses it, for what, and what does success look like?',
-      '<strong>Approach.</strong> Prompt only, retrieval, a fixed workflow or an agent? Say why.',
+      '<strong>Approach.</strong> Prompt only (just a note to the model), retrieval, a fixed workflow or an agent? Say why.',
       '<strong>Evaluation.</strong> How will you know it works before and after launch?',
       '<strong>Failure modes.</strong> What happens when it is wrong, slow or attacked?',
-      '<strong>Cost and latency.</strong> A rough cost per task, and the latency users will accept.',
-      '<strong>Rollout.</strong> Who gets it first, what you measure and when you would roll back.'
+      '<strong>Cost and latency.</strong> A rough cost per task, and the waiting time users will accept.',
+      '<strong>Rollout.</strong> Who gets it first, what you measure and when you would roll back (undo the release).'
     ]],
     ['p','Use numbers wherever you can, even rough ones. “About 2,000 tokens per question, so roughly half a cent” shows you understand the system. In fact, everything in Parts I–V is preparation for this interview.'],
     ['do','Prove it now',[
@@ -906,12 +906,12 @@ window.PART7 = [
 
     ['h','Idea 5: Behavioural stories, take-homes, networking and negotiation'],
     ['p','The last idea covers four things that come up around the interviews. The first is behavioural questions. These ask about your past, such as “tell me about a time you disagreed with an engineer”.'],
-    ['p','Prepare six to eight stories from real work. Tell each one as situation, task, action and result. Spend most of your time on the action, because that’s the part about you.'],
-    ['p','Next are <strong>take-home assignments</strong>, which test how you work alone. Stick to the time limit you are given, and state your assumptions at the top. End with what you would do with more time. Reviewers value a clear, honest answer over a long one.'],
-    ['p','Some loops now include a live build round. You get a problem and about 45 minutes to show a working prototype, often with an AI coding tool. Interviewers watch how you work, not how polished it looks. Say your scope aloud first. Build the smallest version that runs. Test one failure on purpose, such as a number that looks like an Aadhaar number but is not. Say what you would not ship yet.'],
-    ['p','Then there is <strong>networking</strong>. It works best when you have something to show. Share a case study with a specific person and ask one specific question. That gets more replies than asking for a referral.'],
-    ['p','Finally, <strong>negotiation</strong> starts with preparation. Research the salary range for the role and location. Wait for the company to make an offer first. Then ask once, politely, with a reason, such as a competing offer or the scope of the role.'],
-    ['p','Let’s turn all this into practice with one story of your own.'],
+    ['p','Prepare six to eight stories from real work. Tell each one as situation, task, action and result. Spend most of your time on the action, because that is the part about you.'],
+    ['p','Next are <strong>take-home assignments</strong>, which test how you work alone, like homework. Stick to the time limit you are given, and state your assumptions at the top. End with what you would do with more time. Reviewers like a clear, honest answer more than a long one.'],
+    ['p','Some loops now include a live build round. You get a problem and about 45 minutes to show a working prototype (a rough first version), often with an AI coding tool. Interviewers watch how you work, not how polished it looks. Say your scope aloud first. Build the smallest version that runs. Test one failure on purpose, such as a number that looks like an Aadhaar number but is not. Say what you would not ship yet.'],
+    ['p','Then there is <strong>networking</strong> (meeting people who can help). It works best when you have something to show. Share a case study with a specific person and ask one specific question. That gets more replies than asking for a referral.'],
+    ['p','Finally, <strong>negotiation</strong> (talking about your pay) starts with preparation. Find the salary range for the role and city. Wait for the company to make an offer first. Then ask once, politely, with a reason, such as a competing offer or the scope of the role.'],
+    ['p','Let us turn all this into practice with one story of your own.'],
     ['try',{id:'b7-story',mins:10,min:120,rows:6,
       task:'Write one behavioural story about a decision you made in your capstone that turned out wrong. Use situation, task, action and result. Keep the focus on what you did.',
       ph:'Situation… Task… Action (what I decided and why)… Result and what I changed…',
@@ -919,12 +919,12 @@ window.PART7 = [
     ['q','I618'],
     ['p','Now one story from before this course.'],
     ['try',{id:'b7-star-gov',mins:10,min:120,rows:6,
-      task:'Write one story from a government project as situation, task, action and result. The action must say “I decided”, and the result must carry a number. Take the decision from your entry “Decisions I owned before this course”.',
+      task:'Write one story from a government project as situation, task, action and result. The action must say “I decided”, and the result must have a number. Take the decision from your entry “Decisions I owned before this course”.',
       ph:'Situation… Task… Action (I decided…)… Result with a number…',
       after:'A strong story. <strong>Situation:</strong> a citizen portal was due to open in twelve districts on a fixed date. <strong>Task:</strong> I owned the go-live and the vendor. <strong>Action:</strong> the payment step failed two test runs. I decided to hold three districts by two weeks, against the department head’s wish, and wrote down the failure rate that would make me hold again. <strong>Result:</strong> the retest passed at 99 successful payments in 100, and no applicant was charged twice. Next time I would set that threshold before the first test. Your numbers will differ.'}],
 
     ['h','What you have learned'],
-    ['p','You now have a way to show your work to an employer. You can pick the roles that fit you, write resume lines and case studies that show your decisions, and answer the four kinds of PM question with a structure. You can also work through an AI system-design question and tell honest stories about your own choices.'],
+    ['p','You now have a way to show your work to an employer. You can pick the roles that fit you. You can write resume lines and case studies that show your decisions. You can answer the four kinds of PM question with a plan. You can also work through an AI system-design question and tell honest stories about your own choices.'],
     ['p','That finishes the learning part of the course. The project itself lives in Chapter 34. If it is not finished yet, go back there.']
   ]
 },
