@@ -757,26 +757,12 @@ Object.assign(window.HING = window.HING || {}, {
     'Apni resume lines ko action, decision aur result ke roop mein dobara likhiye, aur har ek ko ek number dijiye. Jaise: “Same cases par dono napne ke baad agent ki jagah fixed workflow chuna, jisse failures aadhe ho gaye.”',
 
   /* ---- b8: The integrated capstone now lives in Chapter 34 ---- */
-  'The integrated capstone now lives in Chapter 34':
-    'Integrated capstone ab Chapter 34 mein hai',
-  'Everything that used to be here is now part of it.':
-    'Jo kuch yahan hota tha, woh ab usi ka hissa hai.',
-  'This chapter moved':
-    'Yeh chapter shift ho gaya hai',
-  'Old gate':
-    'Purana gate',
-  'New stage(s) in Chapter 34':
-    'Chapter 34 ke naye stage',
   '34.1 Discover':
     '34.1 Discover',
   '34.3 Design':
     '34.3 Design',
-  '34.4 Build – 34.5 Evaluate':
-    '34.4 Build – 34.5 Evaluate',
   '34.8 Ship':
     '34.8 Ship',
-  '34.9 Measure – 34.11 Defend':
-    '34.9 Measure – 34.11 Defend',
   'What we know… what we do not know yet… what we would do next…':
     'Hum kya jaante hain… hum abhi kya nahi jaante… hum aage kya karenge…',
 });

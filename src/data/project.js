@@ -271,7 +271,7 @@ window.PROJECT = {
         'A five-minute explanation and a twenty-minute defence'
       ] },
     { id: 's13', title: 'The business, and your career',
-      chapters: ['b1', 'b2', 'b3', 'b4', 'b5', 'b6', 'b7', 'b8'],
+      chapters: ['b1', 'b2', 'b3', 'b4', 'b5', 'b6', 'b7'],
       plain: 'You decide how to charge for it, how it spreads and how to measure it. You decide which tools to use, how to release it safely and how to put it in front of real users. Last, you turn the project into evidence for your next job.',
       endWith: [
         'A pricing recommendation with a cost model',

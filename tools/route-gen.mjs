@@ -54,7 +54,7 @@ const TRY = {
     what: 'Write the case study in the form Chapter B7 shows. Use one or two pages. Write the problem, your decisions, the numbers from your findings page, one honest failure, and what you would do next. Use real numbers from your own runs only. Save it in your repository as docs/case-study.md.' },
   'finish': { title: 'Finish the portfolio page', mins: 120,
     what: 'Do the portfolio site recipe on the plan. It takes about two hours. The page you started in Week 26 is the first draft. Add a link to the case study. Add the three lines from your role matrix that say what you can show today.' },
-  'retro': { title: 'Review the 28 weeks and set the next loop', mins: 90,
+  'retro': { title: 'Review the {weeks} weeks and set the next loop', mins: 90,
     what: 'Do the retro recipe on the plan. It takes about 90 minutes. Count what shipped, what slipped and what you cut. Write what you would change. Set the weekly loop for after the route.' },
   'setup':   { title: 'Connect a model, once', mins: 15, app: '#/setup',
     what: 'Do the Connect page, one section at a time. Get a free key, paste it in, and run the test call. A key is a secret password for the model. You saw tokens and cost in Chapter 0.5, so you know what the key pays for. If a step fails, the page says why. Copy the exact error into your notes.' },
@@ -187,7 +187,7 @@ const W = [
     'Every chapter so far built one piece of Bharat Privacy Guard. These two weeks put the pieces together. This week you plan the smallest version and build it.',
     'A shipped product is what sets you apart from someone who has only read about AI. This week you build the first version.'],
   ['Capstone, part 2: ship it and defend it', 'Bharat Privacy Guard shipped, with its findings document and a short demo.', ['publish', 'demo-video'],
-    ['ch:ch21cap', 'ch:b8', 'review'], false,
+    ['ch:ch21cap', 'review'], false,
     'Last week’s version gets measured, shipped and defended. It is the heaviest week on the route. So nothing else is added to it.',
     'Show, do not claim. This week turns the build into a shipped product. It has a number and a demo that a recruiter can open.'],
   ['The business', 'First-pass notes on the business chapters. And the project put on a page that people can open.', ['first-pass', 'portfolio-site'],
@@ -198,9 +198,9 @@ const W = [
     ['bk:47', 'ch:b7', 'try:role-matrix', 'try:case-study', 'try:finish', 'review'], false,
     'The business side is now in view. This week turns the project into proof for the job. You see what ten postings ask for. You write a case study with your numbers. And you put both on one page.',
     'A recruiter reads one page. The matrix shows that you know what the role asks. The case study shows a number you moved.'],
-  ['Interviews', 'Practice answers recorded. A timed build recorded. A review of the 28 weeks.', ['mock-interviews', 'retro'],
+  ['Interviews', 'Practice answers recorded. A timed build recorded. A review of the {weeks} weeks.', ['mock-interviews', 'retro'],
     ['try:interviews', 'try:retro', 'review'], false,
-    'Everything is written down. This last week is for saying it aloud against a clock. Then you look back over the 28 weeks and decide what comes next.',
+    'Everything is written down. This last week is for saying it aloud against a clock. Then you look back over the {weeks} weeks and decide what comes next.',
     'Interviews test whether you can tell your story aloud and build while talking. You practise both. Then you set the loop that keeps you current after the route.'],
 ];
 
@@ -214,7 +214,7 @@ const weeks = W.map(([title, ship, how, items, light, why, job], i) => {
     if (k === 'ch') {
       const c = ch(ref), fp = FIRST_PASS(ref);
       return { id: 'c:' + ref, kind: 'chapter', ch: ref, num: String(c.num), title: c.title,
-        mins: fp ? (ref === 'ch21cap' ? 240 : ref === 'b8' ? 10 : 20) : c.minutes + (c.capstone ? TASK : 0), firstPass: fp || undefined,
+        mins: fp ? (ref === 'ch21cap' ? 240 : 20) : c.minutes + (c.capstone ? TASK : 0), firstPass: fp || undefined,
         what: ref === 'ch21cap' ? 'This is the second half of the capstone. Measure the version you built last week. Then ship it and defend it. The chapter allows about thirty hours. The smallest version that works is enough here. Press “Mark chapter complete” when it is shipped.'
           : fp ? WHAT.firstPass : WHAT.chapter };
     }
@@ -268,6 +268,16 @@ const MONTHS = [
   return { ...m, dates: fmt(a) + (ya !== yb ? ' ' + ya : '') + ' – ' + fmt(b) + ' ' + yb };
 });
 
+const COUNTS = {
+  weeks: weeks.length,
+  steps: weeks.reduce((a, w) => a + w.steps.length, 0),
+  appChapters: C.chapters.length,
+  bookChapters: B.chapters.length,
+  routes: {
+    full: { coreWeeks: weeks.length, withTrackCWeeks: null },
+    experienced: { weeks: null, includesTrackC: true }
+  }
+};
 const src = `/* The route: one ordered list of steps that the playbook, the book, the plan
    and the daily reminder all read. GENERATED by tools/route-gen.mjs: edit the spec
    there, not this file, and keep it in course order.
@@ -281,6 +291,12 @@ const src = `/* The route: one ordered list of steps that the playbook, the book
    in the same week by the course chapter(s) that practise it. */
 
 export const START = '2026-10-19';
+/* Every total any page shows (weeks, steps, chapters, route lengths) comes from
+   here, so the course app, the plan, the worksheet and the book can never
+   disagree. tools/counts-check.mjs fails the build if a page types one by hand.
+   routes: the full route is the core weeks, plus optional Track C when it
+   exists; the experienced route already includes Track C (null until built). */
+export const COUNTS = ${JSON.stringify(COUNTS, null, 1)};
 export const WEEKS = ${JSON.stringify(weeks, null, 1)};
 export const MONTHS = ${JSON.stringify(MONTHS, null, 1)};
 
@@ -308,7 +324,25 @@ export function startOf(S) {
   const v = S && S.routeStart;
   return typeof v === 'string' && /^\\d{4}-\\d{2}-\\d{2}$/.test(v) && !isNaN(Date.parse(v + 'T00:00:00Z')) ? v : START;
 }
-/* Week number (1-28) for an India-time date string, 0 before the start, 29 after. */
+/* India-time today, and the Monday of the week holding a date: week 1 of a
+   new learner starts on the Monday of the week they first open the course. */
+export function todayIST() { return new Date(Date.now() + 19800000).toISOString().slice(0, 10); }
+export function mondayOf(date) {
+  const ms = Date.parse(date + 'T00:00:00Z'), back = (new Date(ms).getUTCDay() + 6) % 7;
+  return new Date(ms - back * 864e5).toISOString().slice(0, 10);
+}
+/* A progress record with nothing in it: a first visit. Settings (language,
+   theme) do not count; neither do empty lists or switches left off. */
+export function isFresh(S) {
+  return !Object.keys(S || {}).some(k => {
+    if (k === 'lang' || k === 'theme' || k === 'updatedAt') return false;
+    const v = S[k];
+    if (v == null || v === false || v === '') return false;
+    if (typeof v === 'object') return Object.keys(v).length > 0;
+    return true;
+  });
+}
+/* Week number (1-N) for an India-time date string, 0 before the start, 29 after. */
 export function weekOf(date, start) {
   const d = Math.floor((Date.parse(date + 'T00:00:00Z') - Date.parse((start || START) + 'T00:00:00Z')) / 864e5);
   return d < 0 ? 0 : Math.min(WEEKS.length + 1, Math.floor(d / 7) + 1);
@@ -323,6 +357,6 @@ export function datesOf(a, b, start, withYear) {
   return withYear ? f(x) + (ya !== yb ? ' ' + ya : '') + ' – ' + f(y) + ' ' + yb : f(x, ya !== yb) + ' – ' + f(y, ya !== yb);
 }
 `;
-fs.writeFileSync(R + '/src/data/route.mjs', src);
+fs.writeFileSync(R + '/src/data/route.mjs', src.replace(/\{weeks\}/g, String(weeks.length)));
 console.log(weeks.map(w => 'W' + w.n + ' ' + w.dates + ' ' + w.mins + 'min ' + w.steps.length + ' steps · ' + w.title).join('\n'));
 console.log(MONTHS.map(m => m.name + ' | ' + m.dates).join('\n'));

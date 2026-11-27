@@ -49,8 +49,8 @@ Object.assign(window.HING = window.HING || {}, {
     '→ Failure Log',
   'min':
     'min',
-  'This map was written for sixteen weeks. The route runs twenty-eight. Either way, the pace is not a deadline. Look at the last column: a block is done when the evidence exists, not when the weeks have passed.':
-    'Yeh naksha solah hafton ke liye likha gaya tha. Route atthais hafton ka hai. Dono mein raftaar koi deadline nahi hai. Aakhri column dekhiye: block tab poora hota hai jab evidence (saboot) maujood ho, tab nahi jab hafte beet jaayein.',
+  'This map was written for sixteen weeks. The route runs {weeks}. Either way, the pace is not a deadline. Look at the last column: a block is done when the evidence exists, not when the weeks have passed.':
+    'Yeh naksha solah hafton ke liye likha gaya tha. Route {weeks} hafton ka hai. Dono mein raftaar koi deadline nahi hai. Aakhri column dekhiye: block tab poora hota hai jab evidence (saboot) maujood ho, tab nahi jab hafte beet jaayein.',
   'Write three short lines, then stop, even if you want to keep going. If you stop while you still have energy, it is easier to come back next time.':
     'Teen chhoti lines likhiye, phir ruk jaiye, chahe aur likhne ka mann ho. Thodi energy bachi ho tab rukne se agli baar wapas aana aasaan hota hai.',
   'One entry for each Architecture Decision Record you have written: a note of one big choice, and why you made it. For example: the model, the retrieval strategy, workflow or agent, build or buy, vendor risk, or anything costly to undo. It is the same form the workbench uses. This page shows it as a log, not a template.':

@@ -5,7 +5,7 @@ Object.assign(window.HING = window.HING || {}, {
   'Try it': 'Karke dekhiye',
   'Me': 'Main',
   'Home: today’s step': 'Home: aaj ka step',
-  'Your route: 28 weeks': 'Aapka route: 28 hafte',
+  'Your route: {weeks} weeks': 'Aapka route: {weeks} hafte',
   'Worksheet: the course by topic': 'Worksheet: poora course topic ke hisaab se',
   'Your project': 'Aapka project',
   'The course map: every chapter': 'Course ka naqsha: har chapter',

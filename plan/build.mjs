@@ -18,7 +18,7 @@
 import fs from 'node:fs';
 import p from 'node:path';
 import { RESOURCES, MONTHS, WEEKS, GATES, RULES } from './data.mjs';
-import { STEPS } from '../src/data/route.mjs';
+import { STEPS, COUNTS } from '../src/data/route.mjs';
 import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
 import { loadBook } from '../book/build.mjs';
@@ -506,7 +506,9 @@ export function check(pages, recipeWeeks) {
   if (s !== ids.join()) errs.push(`weekly.md: month blocks must cover W1-W28 exactly once (got ${s})`);
   const cw = [...pages.text['curriculum.md'].matchAll(/<!--\s*weeklinks\s+(\d+)-(\d+)\s*-->/g)].flatMap(m => Array.from({ length: m[2] - m[1] + 1 }, (_, i) => +m[1] + i));
   if (cw.sort((a, b) => a - b).join() !== ids.join()) errs.push(`curriculum.md: weeklinks blocks must cover W1-W28 exactly once (got ${cw.join()})`);
-  for (const m of MONTHS) if (!pages.text['curriculum.md'].includes(m.dates)) errs.push(`curriculum.md never mentions "${m.dates}" (${m.name})`);
+  /* Dates follow each learner's own start day, so the curriculum names each
+     month by its weeks ("weeks 1–4"), which must match the route. */
+  for (const m of MONTHS) if (!pages.text['curriculum.md'].includes(`weeks ${m.from}–${m.to}`)) errs.push(`curriculum.md never mentions "weeks ${m.from}–${m.to}" (${m.name})`);
   /* one page: ids unique, every link lands */
   const all = pages.html;
   const idList = [...all.matchAll(/\sid="([^"]+)"/g)].map(m => m[1]);
@@ -526,7 +528,8 @@ export function buildPlan(root, outDir) {
   const src = p.join(root, 'plan');
   fs.mkdirSync(outDir, { recursive: true });
   const text = {};
-  for (const t of TABS) text[t.md] = fs.readFileSync(p.join(src, t.md), 'utf8');
+  /* {{weeks}} is the route length from src/data/route.mjs (COUNTS), never typed by hand. */
+  for (const t of TABS) text[t.md] = fs.readFileSync(p.join(src, t.md), 'utf8').replace(/\{\{weeks\}\}/g, String(COUNTS.weeks));
 
   /* recipes first: id -> title, and the weeks each recipe says it serves */
   const recipes = new Map(), recipeWeeks = new Map();
@@ -556,7 +559,7 @@ export function buildPlan(root, outDir) {
   check({ html: panels, text, weeksSeen: new Set(seen.length === new Set(seen).size ? seen : [...seen, -1]) }, recipeWeeks);
   fs.writeFileSync(p.join(outDir, 'index.html'), page({
     title: 'Applied AI PM plan | AI From Zero',
-    desc: 'The 28-week route to becoming an Applied AI product manager, week by week: the same steps as the playbook and the book, with shared progress.',
+    desc: 'The ' + COUNTS.weeks + '-week route to becoming an Applied AI product manager, week by week: the same steps as the playbook and the book, with shared progress.',
     panels
   }));
   fs.writeFileSync(p.join(outDir, 'curriculum.html'), stub('curriculum'));

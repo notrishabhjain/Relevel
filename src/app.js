@@ -90,7 +90,21 @@ const defaults=()=>({done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{
   py:{}, play:{}
 });
 let S=defaults();
-try{const raw=localStorage.getItem(KEY); if(raw)S=Object.assign(S,JSON.parse(raw));}catch(e){}
+let raw0=null;
+try{const raw=localStorage.getItem(KEY); if(raw){raw0=JSON.parse(raw);S=Object.assign(S,raw0);}}catch(e){}
+/* A first visit: week 1 starts on the Monday of this week, not on the course's
+   own date. A device that has synced before, or that holds any progress, keeps
+   the dates it has; signing in later brings an older record's dates back. The
+   same rule runs in src/progress.js for the plan, worksheet and book. */
+try{
+  const R0=window.ROUTE, synced=(JSON.parse(localStorage.getItem(KEY+':srv')||'null')||{}).version!=null;
+  if(R0&&!S.routeStart&&!synced&&R0.isFresh(raw0)){
+    S.routeStart=R0.mondayOf(R0.todayIST());
+    localStorage.setItem(KEY,JSON.stringify(Object.assign({},raw0||{},{routeStart:S.routeStart})));
+  }
+}catch(e){}
+/* Totals come from the route (COUNTS), never typed by hand. */
+const WK=s=>String(s).replace(/\{weeks\}/g,(window.ROUTE&&window.ROUTE.COUNTS||{}).weeks||'');
 /* Carry older ticks into the route once. The first gentle start (20 Oct 2026)
    kept day ids under S.gentle, and the book kept its own list of chapters read;
    both now live in S.steps and S.read, the ones every page reads. */
@@ -206,10 +220,12 @@ function flash(node){if(!node)return;node.classList.add('show');setTimeout(()=>n
    uses. */
 let Thit=0, Tmiss=0;
 function T(s){
-  if(S.lang!=='hi'||s==null)return s;
+  if(s==null)return s;
+  const w=x=>typeof x==='string'&&x.indexOf('{weeks}')>=0?WK(x):x;
+  if(S.lang!=='hi')return w(s);
   const v=(window.HING||{})[String(s).trim()];
-  if(v===undefined){ Tmiss++; return s; }
-  Thit++; return v;
+  if(v===undefined){ Tmiss++; return w(s); }
+  Thit++; return w(v);
 }
 function Tl(list){ return (list||[]).map(T); }
 
@@ -1358,7 +1374,7 @@ function pageHome(){
       h('span',{class:'cpbar big'},h('i',{style:'width:'+pctDone+'%'})),
       h('span',{class:'dim',text:doneN+' / '+CH.length+' '+T('chapters finished')})])]));
   w.appendChild(h('div',{class:'chiprow cmaplinks'},[
-    h('a',{class:'chip',href:'#/start',text:T('Your route: 28 weeks, one order')}),
+    h('a',{class:'chip',href:'#/start',text:WK(T('Your route: {weeks} weeks, one order'))}),
     h('a',{class:'chip',href:'#/project',text:T('Your project: Bharat Privacy Guard')}),
     bookHere()?h('a',{class:'chip',href:bookBase(),text:T('Read it as a book')}):null,
     h('a',{class:'chip',href:'#/setup',text:T('Connect a model')}),
@@ -2340,11 +2356,11 @@ function renderRail(){
   const dueN=window.ENG?window.ENG.dueList(S).length:0;
 
   /* Four short groups, each named for what you are doing. The route and the
-     worksheet are at the top because they say what to do next; the 68-chapter
+     worksheet are at the top because they say what to do next; the chapter
      outline is a reference and sits below them. */
   r.appendChild(sec('Follow the course',[
     ['#/','\u25c9','Home: today\u2019s step'],
-    ['#/start','\u25b8','Your route: 28 weeks'],
+    ['#/start','\u25b8','Your route: {weeks} weeks'],
     [S.lang==='hi'?'/worksheet/hi/':'/worksheet/','\u25a4','Worksheet: the course by topic'],
     ['#/project','\u25c8','Your project']]));
 
@@ -2501,7 +2517,7 @@ function pageInstall(){
     h('p',{text:'Each installs as its own app with its own icon, next to this one. Open it, tap Install app, done. All three show the same progress.'}),
     h('ul',{},[
       h('li',{},[h('a',{href:'/book/',text:'The book'}),h('span',{text:': the course told as one story, in English and Hinglish. Installs as AFZ Book.'})]),
-      h('li',{},[h('a',{href:'/plan/',text:'The plan'}),h('span',{text:': the 28 weeks, week by week. Installs as AI PM Plan.'})])])]));
+      h('li',{},[h('a',{href:'/plan/',text:'The plan'}),h('span',{text:WK(': the {weeks} weeks, week by week. Installs as AI PM Plan.')})])])]));
   w.appendChild(three);
 
   const sec=h('section',{class:'part'});
@@ -2888,7 +2904,7 @@ function pageEvidence(){
   const secA=h('section',{class:'part'});
   secA.appendChild(sectionHead('A',T('Sixteen-week study map')));
   secA.appendChild(h('p',{class:'prose',style:'font-size:1rem',
-    html:T('This map was written for sixteen weeks. The route runs twenty-eight. Either way, the pace is not a deadline. Look at the last column: a block is done when the evidence exists, not when the weeks have passed.')}));
+    html:WK(T('This map was written for sixteen weeks. The route runs {weeks}. Either way, the pace is not a deadline. Look at the last column: a block is done when the evidence exists, not when the weeks have passed.'))}));
   const mapList=h('div',{class:'smap'});
   map.forEach((b,i)=>{
     const box=h('input',{type:'checkbox','aria-label':b.when+' — '+b.focus});
@@ -2962,6 +2978,10 @@ function route(){
   const main=$('#main');main.innerHTML='';
   Thit=0; Tmiss=0;
   let node,crumb='Dashboard';
+  /* Chapters that moved: an old link still lands somewhere real. B8 was folded
+     into Chapter 34 (its one exercise now lives there, under the same id). */
+  const MOVED={b8:'ch21cap'};
+  if(parts[0]==='ch'&&MOVED[parts[1]]){location.replace('#/ch/'+MOVED[parts[1]]);return;}
   if(parts[0]==='ch'&&byId[parts[1]]){
     const c=byId[parts[1]];node=renderChapter(c);
     crumb=partName(c.part)+' · Chapter '+c.num;
@@ -3036,7 +3056,7 @@ function weekStrip(){
     return {n:w.n,title:T(w.title),status:s,statusL:L[s],pct:d/n};
   });
   const el=h('div',{class:'pagevis weekstrip'});
-  el._draw=()=>window.FIGS.weeks(el,{weeks,lang:hi?'hi':'en',label:T('Your 28 weeks'),
+  el._draw=()=>window.FIGS.weeks(el,{weeks,lang:hi?'hi':'en',label:WK(T('Your {weeks} weeks')),
     months:R.MONTHS.map(m=>({from:m.from,to:m.to,l:T(m.name).replace(/^Month \d+: /,'')})),
     legend:[['done',L.done],['now',L.now],['behind',L.behind],['part',L.part]],
     onPick:n=>{ const t=document.getElementById('week-'+n); if(t) t.scrollIntoView({behavior:'smooth',block:'start'}); else location.hash='#/start#week-'+n; }});
@@ -3074,7 +3094,7 @@ function buildIndex(){
     {k:'page',t:'Exercises',h:'#/exercises'},{k:'page',t:'Processes',h:'#/processes'},
     {k:'page',t:'The course map — '+CH.length+' chapters, in order',h:'#/library'},{k:'page',t:'Your project: Bharat Privacy Guard',h:'#/project'},
     {k:'page',t:'Progress & Backup',h:'#/data'},
-    {k:'page',t:'Your route: 28 weeks, one order',h:'#/start'},
+    {k:'page',t:'Your route: {weeks} weeks, one order',h:'#/start'},
     {k:'page',t:'Content Studio — edit the curriculum',h:'#/studio'},
     {k:'page',t:'Setup: connect a model',h:'#/setup'},
     {k:'page',t:'Workbench: run Python in the page',h:'#/workbench'},

@@ -154,6 +154,25 @@
   }
 
   var listeners = [];
+  /* A first visit: week 1 starts on the Monday of this week, the same rule the
+     course app applies (window.ROUTE.isFresh / mondayOf). A device that has
+     synced before, or holds any progress, keeps its dates; signing in later
+     brings an older record's dates back, because an empty device yields. */
+  (function firstDay() {
+    var S = load();
+    if (S.routeStart || meta().version != null) return;
+    var busy = Object.keys(S).some(function (k) {
+      if (k === 'lang' || k === 'theme' || k === 'updatedAt') return false;
+      var v = S[k];
+      if (v == null || v === false || v === '') return false;
+      return typeof v === 'object' ? Object.keys(v).length > 0 : true;
+    });
+    if (busy) return;
+    var d = new Date(Date.now() + 19800000), back = (d.getUTCDay() + 6) % 7;
+    S.routeStart = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()) - back * 864e5).toISOString().slice(0, 10);
+    put(KEY, S);
+  })();
+
   function emit(S) { listeners.forEach(function (f) { try { f(S); } catch (e) {} }); }
   window.addEventListener('storage', function (e) { if (e.key === KEY) emit(load()); });
 

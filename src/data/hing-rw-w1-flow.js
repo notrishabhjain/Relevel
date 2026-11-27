@@ -269,6 +269,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Peechhe',
   'Started':
     'Shuru hua',
-  'Your 28 weeks':
-    'Aapke 28 hafte',
+  'Your {weeks} weeks':
+    'Aapke {weeks} hafte',
 });

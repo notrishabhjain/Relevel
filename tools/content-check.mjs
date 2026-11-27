@@ -499,12 +499,14 @@ const { hinglish: _translations, ...contentWithoutTranslations } = C;
    built by walking the real structures, which is exactly the strings that
    render and ask for translation — and only the chrome, which is literals in
    code, falls back to a text search, with the escapes decoded first. */
+const ROUTE_WEEKS = +((fs.readFileSync(path.join(ROOT, 'src/data/route.mjs'), 'utf8').match(/"weeks": (\d+)/) || [])[1] || 0);
 const unescapeU = s => s.replace(/\\u([0-9a-fA-F]{4})/g,
   (_, h) => String.fromCharCode(parseInt(h, 16)));
 /* views.js wraps T() as TR() and studio.js carries chrome of its own; leaving
    either out reports live translations as dead. */
 const chrome = ['src/labs.js', 'src/app.js', 'src/views.js', 'src/studio.js', 'src/engine.js', 'src/pyrun.js', 'src/playground.js', 'src/llm.js', 'src/sheets.js', 'src/recorder.js', 'src/data/route.mjs', 'plan/data.mjs', 'plan/ship.md']
-  .map(f => unescapeU(fs.readFileSync(path.join(ROOT, f), 'utf8'))).join('');
+  /* the plan's Markdown writes the route length as {{weeks}}; the build fills it in */
+  .map(f => unescapeU(fs.readFileSync(path.join(ROOT, f), 'utf8')).replace(/\{\{weeks\}\}/g, String(ROUTE_WEEKS))).join('');
 const stale = Object.keys(hing).filter(k => !need.has(k) && !chrome.includes(k));
 /* tools/hing-prune.mjs asks for the list, to remove those keys from the source */
 if (process.env.HING_STALE_OUT) fs.writeFileSync(process.env.HING_STALE_OUT, JSON.stringify(stale));

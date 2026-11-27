@@ -1,6 +1,6 @@
-# Applied AI PM Curriculum (Oct 2026 – May 2027)
+# Applied AI PM Curriculum ({{weeks}} weeks)
 
-This is a 28-week route. It makes you a believable Applied AI Product Manager by early May 2027. It runs from Monday 19 October 2026 to Sunday 2 May 2027. You start with about an hour a week. The work grows slowly. Everything runs in the browser, so you need no special computer.
+This is a {{weeks}}-week route. It makes you a believable Applied AI Product Manager by the end of week {{weeks}}. Week 1 starts on the Monday of the week you begin, so the dates on the Plan tab are your own. You start with about an hour a week. The work grows slowly. Everything runs in the browser, so you need no special computer.
 
 There is one route, and three places show it. The [playbook](../) is where you do each chapter. The [book](../book/) tells the same chapters as one story, in the same order. This plan shows the route as weeks, with notes and monthly reviews. All three use the same list and the same progress. Mark a chapter complete in the playbook, or finish a book chapter. It gets a tick in all three places.
 
@@ -8,7 +8,7 @@ There are three tabs here. The [Plan & tracker tab](#plan) is the route, week by
 
 ## Bottom line
 
-You can be a believable Applied AI PM candidate by early May 2027, on one condition. You must look like a person who owns technical products and delivery. You must also have built and tested working AI. A person who has only read about AI gets a weaker hearing.
+You can be a believable Applied AI PM candidate by the end of the route, on one condition. You must look like a person who owns technical products and delivery. You must also have built and tested working AI. A person who has only read about AI gets a weaker hearing.
 
 So the route ends with one shipped product that you have tested: **Bharat Privacy Guard**, the course’s project. You build it one piece at a time, chapter by chapter. In Week 25 you publish it with its numbers.
 
@@ -20,14 +20,14 @@ So the route ends with one shipped product that you have tested: **Bharat Privac
 
 Each month ends with a review on the Plan tab. Read the table one row at a time. The last column is what you should have in hand before the review.
 
-| Month (weeks) | Dates | Theme | By the review |
-| --- | --- | --- | --- |
-| 1 (W1–4) | 19 Oct – 15 Nov 2026 | The problem and the plan | Book chapters 1–7 read, each with its playbook chapter (A1–A7) on a first pass |
-| 2 (W5–9) | 16 Nov – 20 Dec 2026 | Meet the machine | A model connected, first call costed, a tested system prompt, an answer key, a sorter with a score |
-| 3 (W10–13) | 21 Dec 2026 – 17 Jan 2027 | Finding, and your first system | Search by words and by meaning on a scoreboard; the findings page v0 published |
-| 4 (W14–18) | 18 Jan – 21 Feb 2027 | What real systems add | Your own tool attacked, a checked marker, a cost model, the system card, the requirements |
-| 5 (W19–23) | 22 Feb – 28 Mar 2027 | The same ideas, at production depth | Model choice, the release gate, the risk register, the decision pack |
-| 6 (W24–28) | 29 Mar – 2 May 2027 | Ship it, and get the job | Bharat Privacy Guard shipped with its findings and demo; the business chapters; a role matrix, a case study and a portfolio page; practice interviews |
+| Month (weeks) | Theme | By the review |
+| --- | --- | --- |
+| 1 (W1–4) | The problem and the plan | Book chapters 1–7 read, each with its playbook chapter (A1–A7) on a first pass |
+| 2 (W5–9) | Meet the machine | A model connected, first call costed, a tested system prompt, an answer key, a sorter with a score |
+| 3 (W10–13) | Finding, and your first system | Search by words and by meaning on a scoreboard; the findings page v0 published |
+| 4 (W14–18) | What real systems add | Your own tool attacked, a checked marker, a cost model, the system card, the requirements |
+| 5 (W19–23) | The same ideas, at production depth | Model choice, the release gate, the risk register, the decision pack |
+| 6 (W24–28) | Ship it, and get the job | Bharat Privacy Guard shipped with its findings and demo; the business chapters; a role matrix, a case study and a portfolio page; practice interviews |
 
 ### Weekly time
 
@@ -149,7 +149,7 @@ You learn more easily with people around you. These are good places to start.
 
 Each table lists the weeks of one month. The weeks themselves, with every step, are on the [Plan & tracker tab](#plan).
 
-### Month 1: The problem and the plan (W1–4, 19 Oct – 15 Nov 2026) {#m1}
+### Month 1: The problem and the plan (weeks 1–4) {#m1}
 
 You read the book from its first page. It tells of a product manager in Pune. He finds identity numbers in a week of customer chats. He must decide if that is worth a year of work. Each book chapter comes with its playbook chapter, A1 to A7, in the same week, on a first pass. You read the method and answer its boxes while the story is fresh. There is no code and nothing to install. By the end you have a problem, its users, its market, a plan and a short spec. All of it is for the project you will build.
 
@@ -157,7 +157,7 @@ You read the book from its first page. It tells of a product manager in Pune. He
 
 [This month in one view, in the playbook](../app/#/start#month-1): every week with its chapters, book pages and your notes.
 
-### Month 2: Meet the machine (W5–9, 16 Nov – 20 Dec 2026) {#m2}
+### Month 2: Meet the machine (weeks 5–9) {#m2}
 
 The plan needs a model, so now you meet one. You see tokens and cost on your own text. You connect a model once. You learn enough Python to read the course code. Then you make the first real call and see its bill. You see why a model forgets, and you write standing instructions. You make your first answer key. You try the first two jobs a model does: sorting and summarising. The month ends with cutting long text into pieces and finding the right piece by its words.
 
@@ -165,7 +165,7 @@ The plan needs a model, so now you meet one. You see tokens and cost on your own
 
 [This month in one view, in the playbook](../app/#/start#month-2): every week with its chapters, book pages and your notes.
 
-### Month 3: Finding, and your first system (W10–13, 21 Dec 2026 – 17 Jan 2027) {#m3}
+### Month 3: Finding, and your first system (weeks 10–13) {#m3}
 
 Two light holiday weeks cover finding by meaning and measuring which kind of search finds more. Then all the pieces join into your first complete system. You publish version 0 of the findings page. The month ends with answers that a program can use, and a model that can call a tool.
 
@@ -173,7 +173,7 @@ Two light holiday weeks cover finding by meaning and measuring which kind of sea
 
 [This month in one view, in the playbook](../app/#/start#month-3): every week with its chapters, book pages and your notes.
 
-### Month 4: What real systems add (W14–18, 18 Jan – 21 Feb 2027) {#m4}
+### Month 4: What real systems add (weeks 14–18) {#m4}
 
 You meet thinking models and the wait they cause. Then better search, an attack on your own tool, grading at scale, cost, real documents, what you may send, the rules, the spec, build or buy, and what the product does when the model is wrong. This closes Parts I to IV.
 
@@ -181,7 +181,7 @@ You meet thinking models and the wait they cause. Then better search, an attack 
 
 [This month in one view, in the playbook](../app/#/start#month-4): every week with its chapters, book pages and your notes.
 
-### Month 5: The same ideas, at production depth (W19–23, 22 Feb – 28 Mar 2027) {#m5}
+### Month 5: The same ideas, at production depth (weeks 19–23) {#m5}
 
 Part V goes over Parts I to IV again, at the depth a real launch needs. No idea in it is new, so you can go deeper. You cover the plumbing, models chosen on your own cases, context, retrieval, workflows and agents. You see the standard plug for tools, then pictures and voice. You set release gates and watch the product live. You look at security, and at the product spec with its decision pack.
 
@@ -189,9 +189,9 @@ Part V goes over Parts I to IV again, at the depth a real launch needs. No idea 
 
 [This month in one view, in the playbook](../app/#/start#month-5): every week with its chapters, book pages and your notes.
 
-### Month 6: Ship it, and get the job (W24–28, 29 Mar – 2 May 2027) {#m6}
+### Month 6: Ship it, and get the job (weeks 24–28) {#m6}
 
-The capstone gets two weeks: build it and break it, then measure it, ship it and defend it. Then come three lighter weeks. Week 26 is the business chapters on a first pass, and you put the project on a page. Week 27 is the job: a role matrix from ten postings, a case study with your numbers and a finished portfolio page. Week 28 is practice interviews, a timed build and a look back over the 28 weeks. March is year-end for much government work. If Weeks 23 to 25 do not fit, move the rest by two weeks. Do not skip a step.
+The capstone gets two weeks: build it and break it, then measure it, ship it and defend it. Then come three lighter weeks. Week 26 is the business chapters on a first pass, and you put the project on a page. Week 27 is the job: a role matrix from ten postings, a case study with your numbers and a finished portfolio page. Week 28 is practice interviews, a timed build and a look back over the {{weeks}} weeks. March is year-end for much government work. If Weeks 23 to 25 do not fit, move the rest by two weeks. Do not skip a step.
 
 <!-- weeklinks 24-28 -->
 

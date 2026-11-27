@@ -1088,7 +1088,7 @@ window.PART6 = [
 },
 
 {
-  id:'a7', num:'A7', part:6, curriculumTier:'reference', phase:0, prerequisites:['a6','a3'], nextUnits:['b2','b4','b8'], minutes:840, labs:[],
+  id:'a7', num:'A7', part:6, curriculumTier:'reference', phase:0, prerequisites:['a6','a3'], nextUnits:['b2','b4'], minutes:840, labs:[],
   title:'Specs, stories and prototypes: from decision to delivery',
   concept:'You have a plan. Now you take one decision from it and turn it into something engineers can build and users can try. You will write a PRD (a recipe card for the product) that starts from the problem. You will break it into user stories (short notes about what a user wants), with edge cases (odd situations). Then you will cut an MVP (the smallest first version), plan two sprints (short work rounds), and test a clickable prototype (a rough model of the screens) with real users.',
   takeaway:[

@@ -153,7 +153,7 @@
       msg = 'The route starts on ' + new Date(sd).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }) + '.';
       lvl = 0;
     }
-    else if (s.cur > WEEKS) { head = 'Route window over'; msg = s.next ? 'The 28 weeks are over, but steps are still open. Carry on from the first one; the route never closes.' : 'Every step is done. Keep the three-hours-a-week loop from the Curriculum tab.'; lvl = 0; }
+    else if (s.cur > WEEKS) { head = 'Route window over'; msg = s.next ? 'The ' + WEEKS + ' weeks are over, but steps are still open. Carry on from the first one; the route never closes.' : 'Every step is done. Keep the three-hours-a-week loop from the Curriculum tab.'; lvl = 0; }
     else { head = 'Week ' + s.cur + ' of ' + WEEKS; msg = LEVELS[lvl]; }
     var nx = s.next ? s.next.querySelector('a, b') : null;
     var nextLine = s.next ? '<p class="msg">Next step (week ' + s.at + '): ' + (nx && nx.tagName === 'A' ? '<a href="' + esc(nx.getAttribute('href')) + '">' + esc(nx.textContent) + '</a>' : esc(nx ? nx.textContent : '')) + '</p>' : '';

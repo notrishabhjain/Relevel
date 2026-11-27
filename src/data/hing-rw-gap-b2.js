@@ -35,6 +35,4 @@ Object.assign(window.HING = window.HING || {}, {
     'Ek strong kahani. <strong>Situation:</strong> ek citizen portal ek tay date par baarah districts mein khulna tha. <strong>Task:</strong> go-live aur vendor mere paas the. <strong>Action:</strong> payment step do test runs mein fail hua. Maine department head ki ichha ke khilaaf teen districts ko do hafte rokne ka decide kiya, aur woh failure rate likh liya jis par main phir rokta. <strong>Result:</strong> retest 100 mein se 99 successful payments par pass hua, aur kisi applicant se do baar paisa nahi kata. Agli baar main woh threshold pehle test se pehle tay karta. Aapke numbers alag honge.',
   'That finishes the learning part of the course. The project itself lives in Chapter 34. If it is not finished yet, go back there.':
     'Course ka seekhne wala hissa yahan khatam hota hai. Project khud Chapter 34 mein hai. Agar woh abhi poora nahi hua, to wahan wapas jaiye.',
-  'This used to be a second, separate capstone. It is not any more. Everything here is now part of one journey in Chapter 34.':
-    'Yeh pehle ek doosra, alag capstone tha. Ab nahi hai. Yahan ki har cheez ab Chapter 34 ki ek journey ka hissa hai.',
 });
