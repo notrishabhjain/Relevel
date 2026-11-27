@@ -401,8 +401,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Das starter sentences se answer key',
   'rows':
     'rows',
-  'No sheets yet. Start one above, or from a chapter that asks for a spreadsheet.':
-    'Abhi koi sheet nahi. Upar se ek shuru kijiye, ya kisi aise chapter se jo spreadsheet maangta hai.',
   'Sheets: spreadsheets here':
     'Sheets: spreadsheets yahin',
   'Your sheet for this chapter':

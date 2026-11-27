@@ -30,6 +30,7 @@ window.PART6 = [
   ],
   story:[
     ['p','Welcome. This course is for people who have never studied AI. You can start from zero. First, see how the site works. It helps you learn more.'],
+    ['p','This course teaches AI from two sides, and both count the same. The product side: what to build, and why. The project side: how to deliver it safely, on time and within the rules. To add AI to a real product, you need both.'],
     ['p','Many people quit a hard subject for one reason. An odd word goes by early on. They read on without knowing it. A few pages later, nothing makes sense. It is like missing one step of a staircase in the dark. This site has two helpers to stop that.'],
     ['h','Tap a word with an underline'],
     ['p','The first time a hard word shows up in a chapter, it has a dotted line under it. A technical term (a grown-up word for a tool or idea) is such a word. Tap it. A short note opens right there. You stay on the page. You do not lose your place.'],

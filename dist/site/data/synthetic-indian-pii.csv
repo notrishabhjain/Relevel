@@ -1,0 +1,26 @@
+id,message,what_should_be_found,note
+1,"My PAN is ABCDE1234F, please update it",PAN,made-up; the textbook example PAN
+2,Call me on 98765 43210 after 6,Phone,made-up
+3,Aadhaar 1234 5678 9012 is linked,Aadhaar,made-up; real Aadhaar numbers never start with 0 or 1
+4,"Account 000123456789, branch ABCD0123456",Bank account + IFSC,made-up bank code
+5,"I live at 12 Lake Road, Pune 411001",Address,made-up
+6,Mera number nau aath saat chhe paanch hai,Phone (in words),Hinglish; number written in words
+7,Refund for order 55821 please,Nothing to find,an order number is not personal data
+8,PAN: abcde1234f (small letters),PAN,made-up; lower case
+9,Email me at test.user@example.com,Email,example.com is reserved for examples
+10,"DOB 01/01/1990, name Ravi Kumar",Name + date of birth,made-up
+11,Voter ID ABC1234567 lost,Voter ID,made-up
+12,My passport is K1234567,Passport,made-up
+13,UPI id ravi@okexample,UPI ID,made-up handle
+14,"Card ending 4242, expiry 12/29",Card details,4242 is a well-known test card ending
+15,Pin code 110001 only,Nothing to find (alone),a PIN code alone does not identify a person
+16,The meeting is at 10:30 on 5 May,Nothing to find,
+17,GSTIN 27ABCDE1234F1Z5 on the invoice,GSTIN,made-up
+18,Vehicle MH12AB1234 towed,Vehicle number,made-up
+19,Mobile +91-91234-56789,Phone,made-up
+20,Aadhaar ending 9012 only,Partial Aadhaar,a partial number can still be personal data
+21,Driving licence MH0120200012345,Driving licence,made-up
+22,"Hi, I need help with my bill",Nothing to find,
+23,IFSC ABCD0123456 for NEFT,IFSC,made-up bank code
+24,Ration card 1234567890 Pune,Ration card,made-up
+25,Call 1800 123 4567 toll free,Helpline (not personal),a public helpline is not personal data

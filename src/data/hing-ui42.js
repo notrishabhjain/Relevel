@@ -23,8 +23,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Parishisht A aur B',
   'The evidence pack':
     'Saboot ka pack',
-  'The sixteen-week map, and the twenty-nine artifacts you finish holding — each linked to the chapter that produces it.':
-    'Solah hafton ka naksha, aur woh untees cheezein jo aap aakhir mein haath mein rakhte hain — har ek us chapter se judi hui jo use banata hai.',
   'finished':
     'poore hue',
   'Appendix C':
@@ -95,8 +93,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Untees cheezein. Kisi ko poora tabhi nishaan lagaiye jab koi aur use uthakar dekh sake ki aapne kya kiya — maap, daawa nahi. <em>Kahan rakhi hai</em> mein repository ka raasta ya link likhiye, taaki pack apne-aap judta jaaye.',
   'where it lives — a path or a link':
     'kahan rakhi hai — ek raasta ya ek link',
-  'Sixteen-week study map':
-    'Solah hafton ka padhai naksha',
   'Final exit test':
     'Aakhri nikaas pareeksha',
   'Thirteen things, each of which is something you do rather than something you know. Tick one when you could do it in front of a stranger, with an unfamiliar system, without reaching for jargon.':

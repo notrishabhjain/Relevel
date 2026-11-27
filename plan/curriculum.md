@@ -1,6 +1,6 @@
 # Applied AI PM Curriculum ({{weeks}} weeks)
 
-This is a {{weeks}}-week route. It makes you a believable Applied AI Product Manager by the end of week {{weeks}}. Week 1 starts on the Monday of the week you begin, so the dates on the Plan tab are your own. You start with about an hour a week. The work grows slowly. Everything runs in the browser, so you need no special computer.
+This is a {{weeks}}-week route. It makes you a believable Applied AI Product Manager by the end of week {{weeks}}. It teaches AI from two sides: the product (what to build, and why) and the project (how to deliver it safely, on time and within the rules). Week 1 starts on the Monday of the week you begin, so the dates on the Plan tab are your own. You start with about an hour a week. The work grows slowly. Everything runs in the browser, so you need no special computer.
 
 There is one route, and three places show it. The [playbook](../) is where you do each chapter. The [book](../book/) tells the same chapters as one story, in the same order. This plan shows the route as weeks, with notes and monthly reviews. All three use the same list and the same progress. Mark a chapter complete in the playbook, or finish a book chapter. It gets a tick in all three places.
 

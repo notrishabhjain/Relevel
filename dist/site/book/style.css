@@ -346,3 +346,7 @@ body.listening #aifz-rem{bottom:calc(4.9rem + env(safe-area-inset-bottom,0px))}
 .bookfig{margin:2.2rem 0}
 .bookfig.fx{--fx-accent:var(--hue);--fx-accent2:var(--accent2);--fx-bg:var(--card);--fx-sunk:var(--panel)}
 .bookfig.fx .fx-head b{font-family:var(--serif);font-size:1.08rem;font-weight:600}
+
+/* which app chapters this book chapter retells, under its title */
+.retells{margin:.5rem 0 0;font-size:.9rem;color:var(--muted)}
+.retells a{font-weight:600;color:var(--accent)}

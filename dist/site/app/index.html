@@ -1446,6 +1446,11 @@ input.shcell.hd{font-weight:600}
 .shhelp{margin:.4rem 0 0}
 .shstat{font-family:var(--mono)}
 .shnew{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1rem}
+h2.shsub{font-size:1rem;margin:1.2rem 0 .3rem}
+.shstarters{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.6rem;margin:.6rem 0 1rem}
+button.shstarter{display:flex;flex-direction:column;gap:.25rem;text-align:left;padding:.75rem .85rem;border:1px solid var(--rule);background:var(--raised);border-radius:8px;cursor:pointer;color:inherit;font:inherit}
+button.shstarter:hover,button.shstarter:focus-visible{border-color:var(--accent)}
+button.shstarter span{font-size:.85rem;color:var(--muted);line-height:1.4}
 ul.shlist{list-style:none;margin:0 0 1rem;padding:0;border-top:1px solid var(--rule-soft)}
 ul.shlist li{padding:.45rem 0;border-bottom:1px solid var(--rule-soft)}
 ul.shlist li.on a{font-weight:600}
@@ -1494,6 +1499,14 @@ body.hasnext .main{padding-bottom:7rem}
 .nextbar a.primary{background:var(--ink);color:var(--paper);border:1px solid var(--ink)}
 .nextbar a.primary:hover{opacity:.9}
 
+/* made-up data only: the warning before the first outside model call */
+aside.synth{border:1px solid var(--warn,#b45309);border-left-width:4px;background:var(--raised);border-radius:6px;padding:.7rem .9rem;margin:.8rem 0 1.2rem}
+aside.synth strong{display:block;margin-bottom:.2rem}
+aside.synth p{margin:.2rem 0 .4rem}
+
+/* the course identity, under the home heading */
+p.identity{margin:.4rem 0 1rem;font-size:.95rem;color:var(--muted)}
+
 </style>
 <script>
 /* Track A — Product foundations.
@@ -1528,6 +1541,7 @@ window.PART6 = [
   ],
   story:[
     ['p','Welcome. This course is for people who have never studied AI. You can start from zero. First, see how the site works. It helps you learn more.'],
+    ['p','This course teaches AI from two sides, and both count the same. The product side: what to build, and why. The project side: how to deliver it safely, on time and within the rules. To add AI to a real product, you need both.'],
     ['p','Many people quit a hard subject for one reason. An odd word goes by early on. They read on without knowing it. A few pages later, nothing makes sense. It is like missing one step of a staircase in the dark. This site has two helpers to stop that.'],
     ['h','Tap a word with an underline'],
     ['p','The first time a hard word shows up in a chapter, it has a dotted line under it. A technical term (a grown-up word for a tool or idea) is such a word. Tap it. A short note opens right there. You stay on the page. You do not lose your place.'],
@@ -10733,31 +10747,31 @@ Object.assign(window.APPENDIX, {
   /* Appendix A — the 16-week study map. 'from'/'to' are portal chapter ids;
      a block spanning several chapters shows them as a range of links. */
   studymap: [
-    {when:'Weeks 1–4', focus:'Foundations and the engineer’s floor',
+    {when:'Block 1', focus:'Foundations and the engineer’s floor',
      chs:['ch1','ch2','ch3','ch4','ch5','ch6','ch7','ch8f'],
      evidence:'Seven foundation notebooks, and an experiment harness you can run again.'},
-    {when:'Weeks 5–6', focus:'Model choice and context engineering',
+    {when:'Block 2', focus:'Model choice and context engineering',
      chs:['ch9m','ch10c'],
      evidence:'A Model Selection Card, a context budget, and a design for memory and state.'},
-    {when:'Weeks 7–8', focus:'Retrieval, the way real products do it',
+    {when:'Block 3', focus:'Retrieval, the way real products do it',
      chs:['ch11r'],
      evidence:'A measurement for each part of retrieval: chunking, retrieval, hybrid search, reranking, permissions and provenance.'},
-    {when:'Weeks 9–10', focus:'Tools, workflows and agents',
+    {when:'Block 4', focus:'Tools, workflows and agents',
      chs:['ch12t','ch13a'],
      evidence:'A tool contract, a workflow, and a bounded agent that you measure against that workflow.'},
-    {when:'Week 11', focus:'MCP and interoperability',
+    {when:'Block 5', focus:'MCP and interoperability',
      chs:['ch14p'],
      evidence:'An MCP mini-demo, and the authorisation matrix that says who may call what.'},
-    {when:'Week 12', focus:'Input that is not text',
+    {when:'Block 6', focus:'Input that is not text',
      chs:['ch15mm'],
      evidence:'A multimodal pipeline, and an evaluation set with cases that only this kind of input can fail.'},
-    {when:'Weeks 13–14', focus:'Evaluation and observability',
+    {when:'Block 7', focus:'Evaluation and observability',
      chs:['ch16e','ch17o'],
      evidence:'A golden set, an automated evaluation suite, judge validation, traces and a dashboard.'},
-    {when:'Week 15', focus:'Security and product',
+    {when:'Block 8', focus:'Security and product',
      chs:['ch18s','ch19pm'],
      evidence:'A risk register, a red-team report, an AI PRD, and unit economics.'},
-    {when:'Week 16', focus:'Architecture and delivery',
+    {when:'Block 9', focus:'Architecture and delivery',
      chs:['ch20d'],
      evidence:'A technical decision pack, a set of ADRs, and a rollout and rollback plan.'},
     {when:'Capstone', focus:'One capstone that takes you through discover, build, break, measure, ship and defend',
@@ -14507,42 +14521,26 @@ Object.assign(window.HING = window.HING || {}, {
     'Hiring ke sanket',
   'GenAI / LLM Top 10, 2026 edition':
     'GenAI / LLM Top 10, 2026 sanskaran',
-  'Weeks 1–4':
-    'Hafta 1–4',
   'Foundations and the engineer’s floor':
     'Buniyaad aur engineer ki zameen',
-  'Weeks 5–6':
-    'Hafta 5–6',
   'Model choice and context engineering':
     'Model ka chunaav aur context engineering',
-  'Weeks 7–8':
-    'Hafta 7–8',
-  'Weeks 9–10':
-    'Hafta 9–10',
   'Tools, workflows and agents':
     'Tool, workflow aur agent',
-  'Week 11':
-    'Hafta 11',
   'An MCP mini-demo, and the authorisation matrix that says who may call what.':
     'Ek chhota MCP demo, aur woh authorisation matrix jo batata hai kaun kya bula sakta hai.',
   'Week 12':
     'Hafta 12',
   'Input that is not text':
     'Woh input jo text nahi hai',
-  'Weeks 13–14':
-    'Hafta 13–14',
   'Evaluation and observability':
     'Evaluation aur observability',
   'A golden set, an automated evaluation suite, judge validation, traces and a dashboard.':
     'Ek golden set, ek apne-aap chalne wala evaluation suite, judge ki jaanch, trace aur ek dashboard.',
-  'Week 15':
-    'Hafta 15',
   'Security and product':
     'Security aur product',
   'A risk register, a red-team report, an AI PRD, and unit economics.':
     'Ek risk register, ek red-team report, ek AI PRD, aur unit economics.',
-  'Week 16':
-    'Hafta 16',
   'Architecture and delivery':
     'Architecture aur delivery',
   'A technical decision pack, a set of ADRs, and a rollout and rollback plan.':
@@ -15083,8 +15081,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Parishisht A aur B',
   'The evidence pack':
     'Saboot ka pack',
-  'The sixteen-week map, and the twenty-nine artifacts you finish holding — each linked to the chapter that produces it.':
-    'Solah hafton ka naksha, aur woh untees cheezein jo aap aakhir mein haath mein rakhte hain — har ek us chapter se judi hui jo use banata hai.',
   'finished':
     'poore hue',
   'Appendix C':
@@ -15155,8 +15151,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Untees cheezein. Kisi ko poora tabhi nishaan lagaiye jab koi aur use uthakar dekh sake ki aapne kya kiya — maap, daawa nahi. <em>Kahan rakhi hai</em> mein repository ka raasta ya link likhiye, taaki pack apne-aap judta jaaye.',
   'where it lives — a path or a link':
     'kahan rakhi hai — ek raasta ya ek link',
-  'Sixteen-week study map':
-    'Solah hafton ka padhai naksha',
   'Final exit test':
     'Aakhri nikaas pareeksha',
   'Thirteen things, each of which is something you do rather than something you know. Tick one when you could do it in front of a stranger, with an unfamiliar system, without reaching for jargon.':
@@ -23039,8 +23033,6 @@ Object.assign(window.HING = window.HING || {}, {
     'Das starter sentences se answer key',
   'rows':
     'rows',
-  'No sheets yet. Start one above, or from a chapter that asks for a spreadsheet.':
-    'Abhi koi sheet nahi. Upar se ek shuru kijiye, ya kisi aise chapter se jo spreadsheet maangta hai.',
   'Sheets: spreadsheets here':
     'Sheets: spreadsheets yahin',
   'Your sheet for this chapter':
@@ -38973,6 +38965,216 @@ Object.assign(window.HING = window.HING || {}, {
     'Upar ke har item ke liye 0 se 3 tak ka score, is chapter ke scale se, jaise apna homework khud jaanchna. Aage tabhi badhiye jab har score 2 ya usse zyada ho, aur safety, privacy ya evidence ke kisi item ka score 0 na ho.',
 });
 
+/* Hinglish for the Sheets page and its four worked starters (src/sheets.js). Keyed on the English. */
+Object.assign(window.HING = window.HING || {}, {
+  'Value':
+    'Value',
+  'Input tokens per call':
+    'Har call ke input tokens',
+  'the note you send, in tokens (Lego bricks of text)':
+    'aapki bheji parchi, tokens mein (text ki Lego eentein)',
+  'Output tokens per call':
+    'Har call ke output tokens',
+  'the reply, in tokens':
+    'jawaab, tokens mein',
+  'Price per 1M input tokens ($)':
+    '10 lakh input tokens ka daam ($)',
+  'made-up price: use your provider’s price page':
+    'banawati daam: apne provider ka price page dekhiye',
+  'Price per 1M output tokens ($)':
+    '10 lakh output tokens ka daam ($)',
+  'made-up price':
+    'banawati daam',
+  'Price per 1M cached input tokens ($)':
+    '10 lakh cached input tokens ka daam ($)',
+  'a cached prompt is read back cheaply':
+    'cached prompt sasta padhkar wapas aata hai',
+  'Prompt cache hit rate (%)':
+    'Prompt cache hit rate (%)',
+  'share of input served from the cache':
+    'input ka kitna hissa cache se aaya',
+  'Retry / failure rate (%)':
+    'Retry / failure rate (%)',
+  'share of calls that fail and must be sent again':
+    'kitni calls fail hoti hain aur dobara bhejni padti hain',
+  'Successful answers needed per month':
+    'Har mahine kitne safal jawaab chahiye',
+  'Rupees per dollar':
+    'Ek dollar mein rupaye',
+  'check today’s rate':
+    'aaj ka rate dekhiye',
+  'Result':
+    'Nateeja',
+  'How it is worked out':
+    'Kaise nikala',
+  'Input cost per call ($)':
+    'Har call ka input kharcha ($)',
+  'cached and uncached input, priced apart':
+    'cached aur bina-cache input, alag daam par',
+  'Output cost per call ($)':
+    'Har call ka output kharcha ($)',
+  'Cost per call ($)':
+    'Har call ka kharcha ($)',
+  'Calls per successful answer':
+    'Ek safal jawaab ke liye calls',
+  'retries mean more than one call per answer':
+    'retry ka matlab ek jawaab ke liye ek se zyada call',
+  'Cost per successful answer ($)':
+    'Ek safal jawaab ka kharcha ($)',
+  'the number to watch':
+    'is number par nazar rakhiye',
+  'Cost per month ($)':
+    'Har mahine ka kharcha ($)',
+  'Cost per month (₹)':
+    'Har mahine ka kharcha (₹)',
+  'Case':
+    'Case',
+  'Made-up message':
+    'Banawati message',
+  'Right answer (written first)':
+    'Sahi jawaab (pehle likha hua)',
+  'Model found':
+    'Model ne kya dhoondha',
+  'Pass (1) or fail (0)':
+    'Pass (1) ya fail (0)',
+  'Why it failed':
+    'Fail kyun hua',
+  'missed: write why':
+    'chhoot gaya: wajah likhiye',
+  'Passed':
+    'Pass hue',
+  'Pass rate':
+    'Pass rate',
+  'per cent':
+    'pratishat',
+  'Likelihood (1–5)':
+    'Sambhavna (1–5)',
+  'Impact (1–5)':
+    'Asar (1–5)',
+  'Regulatory trigger (DPDP / CERT-In / EU AI Act / Sectoral)':
+    'Kaunsa niyam lagta hai (DPDP / CERT-In / EU AI Act / Sectoral)',
+  'Kill-switch / fallback owner':
+    'Kill-switch / fallback ka zimmedaar',
+  'Status':
+    'Sthiti',
+  'A real Aadhaar number reaches an outside model':
+    'Ek asli Aadhaar number bahar ke model tak pahunch jaata hai',
+  'Delivery manager':
+    'Delivery manager',
+  'mask before sending; synthetic data in tests':
+    'bhejne se pehle chhupaiye; test mein banawati data',
+  'Model misses phone numbers written in words':
+    'Model shabdon mein likhe phone number chhod deta hai',
+  'Sectoral':
+    'Sectoral',
+  'AI engineer':
+    'AI engineer',
+  'add word-number cases to the answer key':
+    'answer key mein shabdon wale number ke cases jodiye',
+  'Provider retires the model we use':
+    'Provider hamara model band kar deta hai',
+  'None':
+    'Koi nahi',
+  'Project manager':
+    'Project manager',
+  'pin the version; rerun the eval on the new one':
+    'version pakka kijiye; naye par eval dobara chalaiye',
+  'A security incident in the logging system':
+    'Logging system mein security incident',
+  'CERT-In (6 hours)':
+    'CERT-In (6 ghante)',
+  'incident runbook; log retention checked':
+    'incident runbook; log kitne din rakhe, jaancha',
+  'Cost per answer doubles after launch':
+    'Launch ke baad har jawaab ka kharcha dugna',
+  'Product manager':
+    'Product manager',
+  'cache prompts; cap retries; alert on spend':
+    'prompts cache kijiye; retry ki seema; kharche par alert',
+  'Hidden instructions in a pasted document':
+    'Chipkaye document mein chhupe instructions',
+  'EU AI Act / Sectoral':
+    'EU AI Act / Sectoral',
+  'treat pasted text as data; tool permissions':
+    'chipkaye text ko data maaniye; tool ki permissions',
+  'Highest score':
+    'Sabse ooncha score',
+  'Goal':
+    'Lakshya',
+  'Experiment or task':
+    'Experiment ya kaam',
+  'Estimate (days)':
+    'Andaaza (din)',
+  'Done (days)':
+    'Ho gaya (din)',
+  'Kill criterion (written first)':
+    'Kill criterion (pehle likha hua)',
+  'Decision (go / kill / change)':
+    'Faisla (go / kill / badlaav)',
+  'Answer key ready':
+    'Answer key taiyaar',
+  'Write 25 cases with right answers':
+    'Sahi jawaab ke saath 25 cases likhiye',
+  '—':
+    '—',
+  'Go':
+    'Go',
+  'First finder':
+    'Pehla finder',
+  'Rules for PAN, Aadhaar, phone':
+    'PAN, Aadhaar, phone ke rules',
+  'Stop if recall is under 70% after 3 days':
+    '3 din baad recall 70% se kam ho to rukiye',
+  'Model finder':
+    'Model finder',
+  'Prompt a model on the same 25 cases':
+    'Unhi 25 cases par model ko prompt kijiye',
+  'Stop if it beats rules by under 10 points':
+    'Rules se 10 point se kam aage ho to rukiye',
+  'Combine':
+    'Jodiye',
+  'Rules first, model for what rules miss':
+    'Pehle rules, jo rules chhodein woh model',
+  'Stop if cost per answer is over ₹0.50':
+    'Har jawaab ka kharcha ₹0.50 se zyada ho to rukiye',
+  'Pass rate 90%+, no real data in logs':
+    'Pass rate 90%+, logs mein koi asli data nahi',
+  'Do not ship below the gate':
+    'Gate se neeche ship mat kijiye',
+  'Pilot':
+    'Pilot',
+  'Two teams, shadow mode first':
+    'Do teams, pehle shadow mode',
+  'Stop if staff override it on over 20% of cases':
+    'Staff 20% se zyada cases mein ise palat de to rukiye',
+  'Total':
+    'Kul',
+  'Done (%)':
+    'Ho gaya (%)',
+  'Worked starters':
+    'Taiyaar starter sheets',
+  'Each opens your own copy, filled with a made-up example. Change the numbers to yours.':
+    'Har ek aapki apni copy kholta hai, banawati udaharan se bhari. Numbers apne daaliye.',
+  'Your sheets':
+    'Aapki sheets',
+  'Your own sheets will appear here. Open a starter above, or start from a chapter that asks for a spreadsheet.':
+    'Aapki apni sheets yahan dikhengi. Upar se ek starter kholiye, ya us chapter se shuru kijiye jo spreadsheet maangta hai.',
+  'What one answer costs, and a month of them. Change the retry rate or the cache hit rate and watch the cost per successful answer move.':
+    'Ek jawaab ka kharcha, aur ek mahine ka. Retry rate ya cache hit rate badaliye aur ek safal jawaab ka kharcha badalte dekhiye.',
+  '25-case eval scoreboard':
+    '25 cases ka eval scoreboard',
+  'Twenty-five test messages with the right answer written first, like a teacher’s answer key. Mark each 1 (pass) or 0 (fail) and read the pass rate.':
+    'Pachchees test messages, sahi jawaab pehle likha hua, teacher ki answer key ki tarah. Har ek par 1 (pass) ya 0 (fail) lagaiye aur pass rate padhiye.',
+  'AI risk register':
+    'AI risk register',
+  'Each risk with how likely and how bad it is, the rule it could break, and the named person who pulls the kill switch.':
+    'Har risk: kitna sambhav, kitna bura, kaunsa niyam toot sakta hai, aur kaun naam se kill switch dabata hai.',
+  'Sprint / release plan':
+    'Sprint / release plan',
+  'Weeks, goals and estimates, with a kill criterion for each experiment: the rule, written before you start, that says stop.':
+    'Hafte, lakshya aur andaaze, har experiment ke saath ek kill criterion: shuru karne se pehle likha niyam jo kehta hai, ruk jaiye.',
+});
+
 /* Hinglish for the app's own interface lines (labels and help text in src/app.js)
    that had none, and for the ones rewritten in simple words. Keyed on the English. */
 Object.assign(window.HING = window.HING || {}, {
@@ -39024,8 +39226,8 @@ Object.assign(window.HING = window.HING || {}, {
     '→ Failure Log',
   'min':
     'min',
-  'This map was written for sixteen weeks. The route runs {weeks}. Either way, the pace is not a deadline. Look at the last column: a block is done when the evidence exists, not when the weeks have passed.':
-    'Yeh naksha solah hafton ke liye likha gaya tha. Route {weeks} hafton ka hai. Dono mein raftaar koi deadline nahi hai. Aakhri column dekhiye: block tab poora hota hai jab evidence (saboot) maujood ho, tab nahi jab hafte beet jaayein.',
+  'This is the course in 10 blocks: a summary of the technical chapters, not a second schedule. Your weeks and dates are on the route ({weeks} weeks). Tick a block when its evidence exists, not when time has passed.':
+    'Yeh course 10 khandon mein hai: technical chapters ka saar, doosra schedule nahi. Aapke hafte aur taareekhein route par hain ({weeks} hafte). Ek khand tab tick kijiye jab uska evidence (saboot) maujood ho, tab nahi jab samay beet jaaye.',
   'Write three short lines, then stop, even if you want to keep going. If you stop while you still have energy, it is easier to come back next time.':
     'Teen chhoti lines likhiye, phir ruk jaiye, chahe aur likhne ka mann ho. Thodi energy bachi ho tab rukne se agli baar wapas aana aasaan hota hai.',
   'One entry for each Architecture Decision Record you have written: a note of one big choice, and why you made it. For example: the model, the retrieval strategy, workflow or agent, build or buy, vendor risk, or anything costly to undo. It is the same form the workbench uses. This page shows it as a log, not a template.':
@@ -39036,8 +39238,56 @@ Object.assign(window.HING = window.HING || {}, {
     'Har Failure Finding ke liye ek entry. Yeh woh build, break, measure aur fix wala chakra hai jis par yeh course baar-baar lautta hai. Ise likha jaata hai, theek karke bhula nahi diya jaata. Poora failure log aksar review mein aapki sabse damdaar cheez hota hai.',
   'No failures logged yet. A good first one: the thing you break on purpose in the Break stage of Chapter 21.':
     'Abhi koi failure log nahi hua. Ek achhi shuruaat: woh cheez jo aap Chapter 21 ke Break stage mein jaan-boojh kar todte hain.',
-  'Every time the course asks you to build, break or decide something, the result lands here. There are twenty-nine artifacts (pieces of work). Each is an experiment, a piece of engineering, a decision, or evidence. This page holds the running list, the sixteen-week map, and the thirteen things you should be able to do at the end. Your decisions and your failures also get a page each. Those two are worth reading as a log, not a list.':
-    'Jab bhi course aapse kuch banane, todne ya tay karne ko kehta hai, uska nateeja yahan aata hai. Kul unatees artifacts (kaam ke tukde) hain. Har ek ek experiment, engineering ka ek hissa, ek faisla, ya evidence hai. Is page par chalti hui list, solah hafton ka naksha, aur woh terah cheezein hain jo aap ant mein kar paayenge. Aapke faislon aur failures ka apna-apna page bhi hai. In dono ko list ki jagah log ki tarah padhna behtar hai.',
+  'Every time the course asks you to build, break or decide something, the result lands here. There are twenty-nine artifacts (pieces of work). Each is an experiment, a piece of engineering, a decision, or evidence. This page holds the running list, the course in 10 blocks, and the thirteen things you should be able to do at the end. Your decisions and your failures also get a page each. Those two are worth reading as a log, not a list.':
+    'Jab bhi course aapse kuch banane, todne ya tay karne ko kehta hai, uska nateeja yahan aata hai. Kul unatees artifacts (kaam ke tukde) hain. Har ek ek experiment, engineering ka ek hissa, ek faisla, ya evidence hai. Is page par chalti hui list, course ke 10 khand, aur woh terah cheezein hain jo aap ant mein kar paayenge. Aapke faislon aur failures ka apna-apna page bhi hai. In dono ko list ki jagah log ki tarah padhna behtar hai.',
+  'The course in 10 blocks':
+    'Course, 10 khandon mein',
+  'The course in 10 blocks, and the twenty-nine artifacts you finish holding, each linked to the chapter that makes it.':
+    'Course 10 khandon mein, aur woh unatees artifacts jo aakhir mein aapke haath mein hote hain, har ek us chapter se juda jo use banata hai.',
+  'Block 1':
+    'Khand 1',
+  'Block 2':
+    'Khand 2',
+  'Block 3':
+    'Khand 3',
+  'Block 4':
+    'Khand 4',
+  'Block 5':
+    'Khand 5',
+  'Block 6':
+    'Khand 6',
+  'Block 7':
+    'Khand 7',
+  'Block 8':
+    'Khand 8',
+  'Block 9':
+    'Khand 9',
+  "Use made-up data only":
+    "Sirf banawati data use kijiye",
+  "Never paste a real Aadhaar, PAN, phone, bank or address into an outside AI service. Whatever you send is copied and kept by the company that runs the model. Use the made-up data provided; Chapter 16.5 explains the rules.":
+    "Kisi bahar ki AI service mein kabhi asli Aadhaar, PAN, phone, bank ya pata mat daaliye. Aap jo bhejte hain, model chalane wali company use copy karke rakhti hai. Diya gaya banawati data use kijiye; Chapter 16.5 niyam samjhata hai.",
+  "Download the made-up Indian data (CSV)":
+    "Banawati Indian data download kijiye (CSV)",
+  "Saved in this browser only":
+    "Sirf is browser mein save hai",
+  "Sign in to keep your work on every device":
+    "Sign in kijiye, taaki aapka kaam har device par rahe",
+  "Saving to your account…":
+    "Aapke account mein save ho raha hai…",
+  "Saved to your account":
+    "Aapke account mein save hai",
+  "Saved to your account: your latest work is loaded":
+    "Aapke account mein save hai: aapka naya kaam load ho gaya",
+  "Offline: it will save to your account later":
+    "Offline: baad mein aapke account mein save hoga",
+  "Another device saved first: open to choose":
+    "Doosre device ne pehle save kiya: chunne ke liye kholiye",
+  "Could not save to your account: open":
+    "Account mein save nahi ho paya: kholiye",
+  "Learn AI from both sides: the product (what to build, and why) and the project (how to deliver it safely, on time and within the rules).":
+    "AI ko dono taraf se seekhiye: product (kya banana hai, aur kyun) aur project (use surakshit, samay par aur niyamon ke andar kaise deliver karna hai).",
+  "This course teaches AI from two sides, and both count the same. The product side: what to build, and why. The project side: how to deliver it safely, on time and within the rules. To add AI to a real product, you need both.":
+    "Yeh course AI ko do taraf se sikhata hai, aur dono barabar hain. Product wali taraf: kya banana hai, aur kyun. Project wali taraf: use surakshit, samay par aur niyamon ke andar kaise deliver karna hai. Kisi asli product mein AI jodne ke liye dono chahiye.",
 });
 
 /* Account-backed storage.
@@ -40606,6 +40856,81 @@ function newAnswerKey(){
   S[id]={name:'answer-key-v'+n,rows:answerKeyRows(),at:Date.now()}; store().save(); return id;
 }
 
+/* ---------- worked starters ----------
+   Four sheets most AI work needs, each filled with a made-up example so the
+   page never opens empty and every formula has something to compute. Opening
+   one makes your own copy; the labels come out in Hinglish when the page is in
+   Hinglish. All numbers and names are invented: replace them with yours. */
+const L=s=>T(s);
+const STARTERS=[
+  {id:'cost-model', title:'Cost model', what:'What one answer costs, and a month of them. Change the retry rate or the cache hit rate and watch the cost per successful answer move.',
+   rows:()=>[
+    [L('Input'),L('Value'),L('Note')],
+    [L('Input tokens per call'),'1200',L('the note you send, in tokens (Lego bricks of text)')],
+    [L('Output tokens per call'),'300',L('the reply, in tokens')],
+    [L('Price per 1M input tokens ($)'),'3',L('made-up price: use your provider’s price page')],
+    [L('Price per 1M output tokens ($)'),'15',L('made-up price')],
+    [L('Price per 1M cached input tokens ($)'),'0.3',L('a cached prompt is read back cheaply')],
+    [L('Prompt cache hit rate (%)'),'60%',L('share of input served from the cache')],
+    [L('Retry / failure rate (%)'),'10%',L('share of calls that fail and must be sent again')],
+    [L('Successful answers needed per month'),'30000',''],
+    [L('Rupees per dollar'),'88',L('check today’s rate')],
+    ['','',''],
+    [L('Result'),L('Value'),L('How it is worked out')],
+    [L('Input cost per call ($)'),'=(B2*(1-B7)*B4+B2*B7*B6)/1000000',L('cached and uncached input, priced apart')],
+    [L('Output cost per call ($)'),'=B3*B5/1000000',''],
+    [L('Cost per call ($)'),'=B13+B14',''],
+    [L('Calls per successful answer'),'=1/(1-B8)',L('retries mean more than one call per answer')],
+    [L('Cost per successful answer ($)'),'=B15*B16',L('the number to watch')],
+    [L('Cost per month ($)'),'=B17*B9',''],
+    [L('Cost per month (₹)'),'=ROUND(B18*B10,0)','']]},
+  {id:'eval-scoreboard', title:'25-case eval scoreboard', what:'Twenty-five test messages with the right answer written first, like a teacher’s answer key. Mark each 1 (pass) or 0 (fail) and read the pass rate.',
+   rows:()=>{
+    const cases=[
+      ['My PAN is ABCDE1234F, please update it','PAN'],['Call me on 98765 43210 after 6','Phone'],['Aadhaar 1234 5678 9012 is linked','Aadhaar'],
+      ['Account 000123456789, branch ABCD0123456','Bank account + IFSC'],['I live at 12 Lake Road, Pune 411001','Address'],['Mera number nau aath saat chhe paanch hai','Phone (in words)'],
+      ['Refund for order 55821 please','Nothing to find'],['PAN: abcde1234f (small letters)','PAN'],['Email me at test.user@example.com','Email'],
+      ['DOB 01/01/1990, name Ravi Kumar','Name + date of birth'],['Voter ID ABC1234567 lost','Voter ID'],['My passport is K1234567','Passport'],
+      ['UPI id ravi@okexample','UPI ID'],['Card ending 4242, expiry 12/29','Card details'],['Pin code 110001 only','Nothing to find (alone)'],
+      ['The meeting is at 10:30 on 5 May','Nothing to find'],['GSTIN 27ABCDE1234F1Z5 on the invoice','GSTIN'],['Vehicle MH12AB1234 towed','Vehicle number'],
+      ['Mobile +91-91234-56789','Phone'],['Aadhaar ending 9012 only','Partial Aadhaar'],['Driving licence MH0120200012345','Driving licence'],
+      ['Hi, I need help with my bill','Nothing to find'],['IFSC ABCD0123456 for NEFT','IFSC'],['Ration card 1234567890 Pune','Ration card'],['Call 1800 123 4567 toll free','Helpline (not personal)']];
+    const pass=[1,1,1,1,0,0,1,1,1,0,1,1,1,1,1,1,0,1,1,0,1,1,1,0,1];
+    const out=[[L('Case'),L('Made-up message'),L('Right answer (written first)'),L('Model found'),L('Pass (1) or fail (0)'),L('Why it failed')]];
+    cases.forEach((c,i)=>out.push([String(i+1),c[0],c[1],pass[i]?c[1]:'',String(pass[i]),pass[i]?'':L('missed: write why')]));
+    out.push(['','','','','','']);
+    out.push([L('Passed'),'','','','=SUM(E2:E26)','']);
+    out.push([L('Pass rate'),'','','','=ROUND(SUM(E2:E26)/COUNT(E2:E26)*100,1)',L('per cent')]);
+    return out; }},
+  {id:'risk-register', title:'AI risk register', what:'Each risk with how likely and how bad it is, the rule it could break, and the named person who pulls the kill switch.',
+   rows:()=>[
+    [L('Risk'),L('Likelihood (1–5)'),L('Impact (1–5)'),L('Score'),L('Regulatory trigger (DPDP / CERT-In / EU AI Act / Sectoral)'),L('Kill-switch / fallback owner'),L('Mitigation'),L('Status')],
+    [L('A real Aadhaar number reaches an outside model'),'2','5','=B2*C2','DPDP',L('Delivery manager'),L('mask before sending; synthetic data in tests'),L('Open')],
+    [L('Model misses phone numbers written in words'),'4','3','=B3*C3',L('Sectoral'),L('AI engineer'),L('add word-number cases to the answer key'),L('Open')],
+    [L('Provider retires the model we use'),'3','3','=B4*C4',L('None'),L('Project manager'),L('pin the version; rerun the eval on the new one'),L('Open')],
+    [L('A security incident in the logging system'),'2','4','=B5*C5',L('CERT-In (6 hours)'),L('Security lead'),L('incident runbook; log retention checked'),L('Open')],
+    [L('Cost per answer doubles after launch'),'3','2','=B6*C6',L('None'),L('Product manager'),L('cache prompts; cap retries; alert on spend'),L('Open')],
+    [L('Hidden instructions in a pasted document'),'3','4','=B7*C7',L('EU AI Act / Sectoral'),L('AI engineer'),L('treat pasted text as data; tool permissions'),L('Open')],
+    ['','','','','','','',''],
+    [L('Highest score'),'','','=MAX(D2:D7)','','','','']]},
+  {id:'sprint-plan', title:'Sprint / release plan', what:'Weeks, goals and estimates, with a kill criterion for each experiment: the rule, written before you start, that says stop.',
+   rows:()=>[
+    [L('Week'),L('Goal'),L('Experiment or task'),L('Estimate (days)'),L('Done (days)'),L('Kill criterion (written first)'),L('Decision (go / kill / change)')],
+    ['1',L('Answer key ready'),L('Write 25 cases with right answers'),'2','2',L('—'),L('Go')],
+    ['2',L('First finder'),L('Rules for PAN, Aadhaar, phone'),'3','3',L('Stop if recall is under 70% after 3 days'),L('Go')],
+    ['3',L('Model finder'),L('Prompt a model on the same 25 cases'),'3','2',L('Stop if it beats rules by under 10 points'),'' ],
+    ['4',L('Combine'),L('Rules first, model for what rules miss'),'4','0',L('Stop if cost per answer is over ₹0.50'),'' ],
+    ['5',L('Release gate'),L('Pass rate 90%+, no real data in logs'),'2','0',L('Do not ship below the gate'),'' ],
+    ['6',L('Pilot'),L('Two teams, shadow mode first'),'5','0',L('Stop if staff override it on over 20% of cases'),'' ],
+    ['','','','','','',''],
+    [L('Total'),'','','=SUM(D2:D7)','=SUM(E2:E7)','',''],
+    [L('Done (%)'),'','','','=ROUND(E9/D9*100,0)','','']]}
+];
+function newStarter(st){
+  const S=all(); let id=st.id, n=1; while(S[id]) id=st.id+'-'+(++n);
+  S[id]={name:st.id+(n>1?'-'+n:''),rows:st.rows(),at:Date.now()}; store().save(); return id;
+}
+
 /* ---------- the Sheets page ---------- */
 function page(sel){
   const w=h('div',{class:'wrap'});
@@ -40619,10 +40944,19 @@ function page(sel){
   w.appendChild(h('div',{class:'shnew'},[
     mk('+ '+T('New sheet'),()=>{ const id='s'+Date.now().toString(36); all()[id]={name:T('Untitled sheet'),rows:blank(12,6),at:Date.now()}; store().save(); location.hash='#/sheets/'+id; }),
     mk('+ '+T('Answer key from the ten starter sentences'),()=>{ location.hash='#/sheets/'+newAnswerKey(); })]));
+  /* the worked starters are always on the shelf, so the page is never empty */
+  w.appendChild(h('h2',{class:'shsub',text:T('Worked starters')}));
+  w.appendChild(h('p',{class:'dim small',text:T('Each opens your own copy, filled with a made-up example. Change the numbers to yours.')}));
+  w.appendChild(h('div',{class:'shstarters'},STARTERS.map(st=>{
+    const b=h('button',{type:'button',class:'shstarter'},[h('strong',{text:T(st.title)}),h('span',{text:T(st.what)})]);
+    b.addEventListener('click',()=>{ location.hash='#/sheets/'+newStarter(st); });
+    return b;
+  })));
+  if(ids.length) w.appendChild(h('h2',{class:'shsub',text:T('Your sheets')}));
   if(ids.length) w.appendChild(h('ul',{class:'shlist'},ids.map(id=>h('li',{class:id===sel?'on':''},[
     h('a',{href:'#/sheets/'+id,text:S[id].name}),
     h('span',{class:'dim small',text:' · '+((S[id].rows||[]).filter(r=>r.some(x=>x!=='')).length)+' '+T('rows')+' · sheets/'+slug(S[id].name)+'.csv'})]))));
-  else w.appendChild(h('p',{class:'empty',text:T('No sheets yet. Start one above, or from a chapter that asks for a spreadsheet.')}));
+  else w.appendChild(h('p',{class:'dim small',text:T('Your own sheets will appear here. Open a starter above, or start from a chapter that asks for a spreadsheet.')}));
   const open=sel&&S[sel]?sel:null;
   if(open) w.appendChild(h('section',{class:'part'},[editor(open,null,{onDelete:()=>{ location.hash='#/sheets'; }})]));
   return w;
@@ -40631,7 +40965,7 @@ function page(sel){
 /* A chapter's own sheet, inline. */
 function panel(ch,name){ return editor('ch:'+ch,name); }
 
-return { page, panel, editor, evaluate, show, toCSV, fromCSV, files, slug, newAnswerKey, answerKeyRows };
+return { page, panel, editor, evaluate, show, toCSV, fromCSV, files, slug, newAnswerKey, answerKeyRows, STARTERS, newStarter };
 })();
 
 /* Record yourself, inside the page.
@@ -45390,6 +45724,8 @@ function dashboard(){
       h('p',{class:'dash-sub',html:fresh?TR('One step at a time, in order. Each week reads a chapter of the book and then does the chapter here that practises it. Your skill numbers fill in by themselves as you answer the questions inside the chapters.')
         :window.SKILLS.length+' tracked skills. Mastery moves on measured evidence and decays without practice — so this number is a claim about <em>now</em>, not a record of what you once read.'})]),
     fresh?null:h('div',{class:'bigring'},[ring(ov), h('span',{class:'ringlab',text:'overall mastery'})])]));
+  /* what the course is: product and project, as equal halves */
+  w.appendChild(h('p',{class:'identity',text:TR('Learn AI from both sides: the product (what to build, and why) and the project (how to deliver it safely, on time and within the rules).')}));
 
   /* The one thing to do next, named and timed.
 
@@ -47413,6 +47749,7 @@ function renderChapter(c){
     h('div',{class:'chnum',text:String(c.num).padStart(2,'0')}),
     h('h1',{text:T(c.title)}),
     h('p',{class:'concept',text:T(c.concept)})]));
+  if(SYNTH_FIRST.has(c.id)) w.appendChild(synthBanner());
   /* Where this chapter sits on the route, and what the route asks of it. */
   if(window.ROUTE){
     const rs=window.ROUTE.STEPS.find(x=>x.ch===c.id);
@@ -48457,12 +48794,23 @@ function stageOfChapter(id){
   return i<0?null:Object.assign({n:i+1,total:st.length},st[i]);
 }
 window.stageOfChapter=stageOfChapter;
+/* Made-up data only. Shown before the first call to an outside model (Chapter
+   1) and on the project page, because the project is about real identity
+   numbers and a beginner may otherwise test it with their own. */
+const SYNTH_FIRST=new Set(['ch1']);
+function synthBanner(){
+  return h('aside',{class:'synth',role:'note'},[
+    h('strong',{text:T('Use made-up data only')}),
+    h('p',{text:T('Never paste a real Aadhaar, PAN, phone, bank or address into an outside AI service. Whatever you send is copied and kept by the company that runs the model. Use the made-up data provided; Chapter 16.5 explains the rules.')}),
+    h('a',{href:'../data/synthetic-indian-pii.csv',download:'synthetic-indian-pii.csv',text:T('Download the made-up Indian data (CSV)')})]);
+}
 function pageProject(){
   const P=window.PROJECT||{};
   const w=h('div',{class:'wrap'});
   w.appendChild(h('header',{class:'phead'},[
     h('div',{class:'eyebrow'},[h('span',{text:T(P.eyebrow)})]),
     h('h1',{text:T(P.title)})].concat((P.lead||[]).map(t=>h('p',{html:T(t)})))));
+  w.appendChild(synthBanner());
 
   const tbl=(head,rows,tr)=>{
     const t=h('table');
@@ -48582,7 +48930,7 @@ function pageAppendix(){
     h('div',{class:'eyebrow'},[h('span',{text:T('Appendices A and B')})]),
     h('h3',{text:T('The evidence pack')}),
     h('p',{class:'dim',style:'font-size:.85rem',
-      html:T('The sixteen-week map, and the twenty-nine artifacts you finish holding — each linked to the chapter that produces it.')}),
+      html:T('The course in 10 blocks, and the twenty-nine artifacts you finish holding, each linked to the chapter that makes it.')}),
     h('span',{class:'mono dim',style:'font-size:.75rem',
       text:artsDone+' / '+(A.artifacts||[]).length+' '+T('finished')})]));
   doors.appendChild(h('a',{class:'card door',href:'#/templates'},[
@@ -49473,7 +49821,7 @@ function pageEvidence(){
   w.appendChild(h('header',{class:'phead'},[
     h('div',{class:'eyebrow'},[h('span',{text:T('Appendices A and B')})]),
     h('h1',{text:T('The Artifact Vault')}),
-    h('p',{html:T('Every time the course asks you to build, break or decide something, the result lands here. There are twenty-nine artifacts (pieces of work). Each is an experiment, a piece of engineering, a decision, or evidence. This page holds the running list, the sixteen-week map, and the thirteen things you should be able to do at the end. Your decisions and your failures also get a page each. Those two are worth reading as a log, not a list.')})]));
+    h('p',{html:T('Every time the course asks you to build, break or decide something, the result lands here. There are twenty-nine artifacts (pieces of work). Each is an experiment, a piece of engineering, a decision, or evidence. This page holds the running list, the course in 10 blocks, and the thirteen things you should be able to do at the end. Your decisions and your failures also get a page each. Those two are worth reading as a log, not a list.')})]));
   w.appendChild(h('div',{class:'chiprow',style:'margin:0 0 1.2rem'},[
     h('a',{class:'chip',href:'#/decisions',text:T('→ Decision Log')}),
     h('a',{class:'chip',href:'#/failures',text:T('→ Failure Log')})]));
@@ -49528,9 +49876,9 @@ function pageEvidence(){
 
   /* ---- A: the calendar the artifacts hang off ---- */
   const secA=h('section',{class:'part'});
-  secA.appendChild(sectionHead('A',T('Sixteen-week study map')));
+  secA.appendChild(sectionHead('A',T('The course in 10 blocks')));
   secA.appendChild(h('p',{class:'prose',style:'font-size:1rem',
-    html:WK(T('This map was written for sixteen weeks. The route runs {weeks}. Either way, the pace is not a deadline. Look at the last column: a block is done when the evidence exists, not when the weeks have passed.'))}));
+    html:WK(T('This is the course in 10 blocks: a summary of the technical chapters, not a second schedule. Your weeks and dates are on the route ({weeks} weeks). Tick a block when its evidence exists, not when time has passed.'))}));
   const mapList=h('div',{class:'smap'});
   map.forEach((b,i)=>{
     const box=h('input',{type:'checkbox','aria-label':b.when+' — '+b.focus});
@@ -49980,25 +50328,26 @@ const ACCOUNT=(function(){
   function paint(){
     const el=$('#syncpill'); if(!el)return;
     const map={
-      off:      null,
-      signedout:['Sign in to sync','warn'],
-      syncing:  ['syncing…','busy'],
-      ok:       ['synced','ok'],
-      pulled:   ['synced — loaded your latest','ok'],
-      offline:  ['offline — will sync later','warn'],
-      conflict: ['another device wrote first — open','warn'],
-      error:    ['sync problem — open','warn']
+      /* no account service here (the GitHub Pages copy): say where work lives */
+      off:      ['Saved in this browser only','warn'],
+      signedout:['Sign in to keep your work on every device','warn'],
+      syncing:  ['Saving to your account…','busy'],
+      ok:       ['Saved to your account','ok'],
+      pulled:   ['Saved to your account: your latest work is loaded','ok'],
+      offline:  ['Offline: it will save to your account later','warn'],
+      conflict: ['Another device saved first: open to choose','warn'],
+      error:    ['Could not save to your account: open','warn']
     };
     const v=map[state];
     if(!v){el.hidden=true;return;}
-    el.hidden=false; el.textContent=v[0]; el.className='syncpill '+v[1];
+    el.hidden=false; el.textContent=T(v[0]); el.className='syncpill '+v[1];
   }
 
   /* The page renders before this probe resolves, so any view that shows account
      state has to be redrawn once we know it. */
   function reroute(){ if(location.hash.indexOf('#/data')===0||location.hash.indexOf('#/start')===0) route(); }
   async function boot(){
-    if(!window.REMOTE) return;
+    if(!window.REMOTE){ show('off'); return; }
     const a=await window.REMOTE.probe();
     if(!a){ show('off'); reroute(); return; }
     const u=await window.REMOTE.me();

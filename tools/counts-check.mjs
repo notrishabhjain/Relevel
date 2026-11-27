@@ -74,6 +74,17 @@ for (const f of PAGES) {
   }
 }
 
+/* 4. Every book page says which app chapters it retells, and the list is the
+   chapter's own course list (book front matter), so the two never drift. */
+for (const c of B.chapters) {
+  const f = 'dist/site/book/' + c.file;
+  if (!fs.existsSync(path.join(ROOT, f)) || !c.course.length) continue;
+  const m = rd(f).match(/<p class="retells">([\s\S]*?)<\/p>/);
+  if (!m) { fail(`${f}: no "Retells app chapter" line`); continue; }
+  const ids = [...m[1].matchAll(/#\/ch\/([\w-]+)/g)].map(x => x[1]);
+  if (ids.join() !== c.course.join()) fail(`${f}: retells ${ids.join(',')} but its course list is ${c.course.join(',')}`);
+}
+
 if (fails.length) {
   console.error(fails.map(m => '  - ' + m).join('\n'));
   console.error(`\n${fails.length} total(s) out of step with COUNTS`);

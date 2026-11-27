@@ -216,6 +216,81 @@ function newAnswerKey(){
   S[id]={name:'answer-key-v'+n,rows:answerKeyRows(),at:Date.now()}; store().save(); return id;
 }
 
+/* ---------- worked starters ----------
+   Four sheets most AI work needs, each filled with a made-up example so the
+   page never opens empty and every formula has something to compute. Opening
+   one makes your own copy; the labels come out in Hinglish when the page is in
+   Hinglish. All numbers and names are invented: replace them with yours. */
+const L=s=>T(s);
+const STARTERS=[
+  {id:'cost-model', title:'Cost model', what:'What one answer costs, and a month of them. Change the retry rate or the cache hit rate and watch the cost per successful answer move.',
+   rows:()=>[
+    [L('Input'),L('Value'),L('Note')],
+    [L('Input tokens per call'),'1200',L('the note you send, in tokens (Lego bricks of text)')],
+    [L('Output tokens per call'),'300',L('the reply, in tokens')],
+    [L('Price per 1M input tokens ($)'),'3',L('made-up price: use your provider’s price page')],
+    [L('Price per 1M output tokens ($)'),'15',L('made-up price')],
+    [L('Price per 1M cached input tokens ($)'),'0.3',L('a cached prompt is read back cheaply')],
+    [L('Prompt cache hit rate (%)'),'60%',L('share of input served from the cache')],
+    [L('Retry / failure rate (%)'),'10%',L('share of calls that fail and must be sent again')],
+    [L('Successful answers needed per month'),'30000',''],
+    [L('Rupees per dollar'),'88',L('check today’s rate')],
+    ['','',''],
+    [L('Result'),L('Value'),L('How it is worked out')],
+    [L('Input cost per call ($)'),'=(B2*(1-B7)*B4+B2*B7*B6)/1000000',L('cached and uncached input, priced apart')],
+    [L('Output cost per call ($)'),'=B3*B5/1000000',''],
+    [L('Cost per call ($)'),'=B13+B14',''],
+    [L('Calls per successful answer'),'=1/(1-B8)',L('retries mean more than one call per answer')],
+    [L('Cost per successful answer ($)'),'=B15*B16',L('the number to watch')],
+    [L('Cost per month ($)'),'=B17*B9',''],
+    [L('Cost per month (₹)'),'=ROUND(B18*B10,0)','']]},
+  {id:'eval-scoreboard', title:'25-case eval scoreboard', what:'Twenty-five test messages with the right answer written first, like a teacher’s answer key. Mark each 1 (pass) or 0 (fail) and read the pass rate.',
+   rows:()=>{
+    const cases=[
+      ['My PAN is ABCDE1234F, please update it','PAN'],['Call me on 98765 43210 after 6','Phone'],['Aadhaar 1234 5678 9012 is linked','Aadhaar'],
+      ['Account 000123456789, branch ABCD0123456','Bank account + IFSC'],['I live at 12 Lake Road, Pune 411001','Address'],['Mera number nau aath saat chhe paanch hai','Phone (in words)'],
+      ['Refund for order 55821 please','Nothing to find'],['PAN: abcde1234f (small letters)','PAN'],['Email me at test.user@example.com','Email'],
+      ['DOB 01/01/1990, name Ravi Kumar','Name + date of birth'],['Voter ID ABC1234567 lost','Voter ID'],['My passport is K1234567','Passport'],
+      ['UPI id ravi@okexample','UPI ID'],['Card ending 4242, expiry 12/29','Card details'],['Pin code 110001 only','Nothing to find (alone)'],
+      ['The meeting is at 10:30 on 5 May','Nothing to find'],['GSTIN 27ABCDE1234F1Z5 on the invoice','GSTIN'],['Vehicle MH12AB1234 towed','Vehicle number'],
+      ['Mobile +91-91234-56789','Phone'],['Aadhaar ending 9012 only','Partial Aadhaar'],['Driving licence MH0120200012345','Driving licence'],
+      ['Hi, I need help with my bill','Nothing to find'],['IFSC ABCD0123456 for NEFT','IFSC'],['Ration card 1234567890 Pune','Ration card'],['Call 1800 123 4567 toll free','Helpline (not personal)']];
+    const pass=[1,1,1,1,0,0,1,1,1,0,1,1,1,1,1,1,0,1,1,0,1,1,1,0,1];
+    const out=[[L('Case'),L('Made-up message'),L('Right answer (written first)'),L('Model found'),L('Pass (1) or fail (0)'),L('Why it failed')]];
+    cases.forEach((c,i)=>out.push([String(i+1),c[0],c[1],pass[i]?c[1]:'',String(pass[i]),pass[i]?'':L('missed: write why')]));
+    out.push(['','','','','','']);
+    out.push([L('Passed'),'','','','=SUM(E2:E26)','']);
+    out.push([L('Pass rate'),'','','','=ROUND(SUM(E2:E26)/COUNT(E2:E26)*100,1)',L('per cent')]);
+    return out; }},
+  {id:'risk-register', title:'AI risk register', what:'Each risk with how likely and how bad it is, the rule it could break, and the named person who pulls the kill switch.',
+   rows:()=>[
+    [L('Risk'),L('Likelihood (1–5)'),L('Impact (1–5)'),L('Score'),L('Regulatory trigger (DPDP / CERT-In / EU AI Act / Sectoral)'),L('Kill-switch / fallback owner'),L('Mitigation'),L('Status')],
+    [L('A real Aadhaar number reaches an outside model'),'2','5','=B2*C2','DPDP',L('Delivery manager'),L('mask before sending; synthetic data in tests'),L('Open')],
+    [L('Model misses phone numbers written in words'),'4','3','=B3*C3',L('Sectoral'),L('AI engineer'),L('add word-number cases to the answer key'),L('Open')],
+    [L('Provider retires the model we use'),'3','3','=B4*C4',L('None'),L('Project manager'),L('pin the version; rerun the eval on the new one'),L('Open')],
+    [L('A security incident in the logging system'),'2','4','=B5*C5',L('CERT-In (6 hours)'),L('Security lead'),L('incident runbook; log retention checked'),L('Open')],
+    [L('Cost per answer doubles after launch'),'3','2','=B6*C6',L('None'),L('Product manager'),L('cache prompts; cap retries; alert on spend'),L('Open')],
+    [L('Hidden instructions in a pasted document'),'3','4','=B7*C7',L('EU AI Act / Sectoral'),L('AI engineer'),L('treat pasted text as data; tool permissions'),L('Open')],
+    ['','','','','','','',''],
+    [L('Highest score'),'','','=MAX(D2:D7)','','','','']]},
+  {id:'sprint-plan', title:'Sprint / release plan', what:'Weeks, goals and estimates, with a kill criterion for each experiment: the rule, written before you start, that says stop.',
+   rows:()=>[
+    [L('Week'),L('Goal'),L('Experiment or task'),L('Estimate (days)'),L('Done (days)'),L('Kill criterion (written first)'),L('Decision (go / kill / change)')],
+    ['1',L('Answer key ready'),L('Write 25 cases with right answers'),'2','2',L('—'),L('Go')],
+    ['2',L('First finder'),L('Rules for PAN, Aadhaar, phone'),'3','3',L('Stop if recall is under 70% after 3 days'),L('Go')],
+    ['3',L('Model finder'),L('Prompt a model on the same 25 cases'),'3','2',L('Stop if it beats rules by under 10 points'),'' ],
+    ['4',L('Combine'),L('Rules first, model for what rules miss'),'4','0',L('Stop if cost per answer is over ₹0.50'),'' ],
+    ['5',L('Release gate'),L('Pass rate 90%+, no real data in logs'),'2','0',L('Do not ship below the gate'),'' ],
+    ['6',L('Pilot'),L('Two teams, shadow mode first'),'5','0',L('Stop if staff override it on over 20% of cases'),'' ],
+    ['','','','','','',''],
+    [L('Total'),'','','=SUM(D2:D7)','=SUM(E2:E7)','',''],
+    [L('Done (%)'),'','','','=ROUND(E9/D9*100,0)','','']]}
+];
+function newStarter(st){
+  const S=all(); let id=st.id, n=1; while(S[id]) id=st.id+'-'+(++n);
+  S[id]={name:st.id+(n>1?'-'+n:''),rows:st.rows(),at:Date.now()}; store().save(); return id;
+}
+
 /* ---------- the Sheets page ---------- */
 function page(sel){
   const w=h('div',{class:'wrap'});
@@ -229,10 +304,19 @@ function page(sel){
   w.appendChild(h('div',{class:'shnew'},[
     mk('+ '+T('New sheet'),()=>{ const id='s'+Date.now().toString(36); all()[id]={name:T('Untitled sheet'),rows:blank(12,6),at:Date.now()}; store().save(); location.hash='#/sheets/'+id; }),
     mk('+ '+T('Answer key from the ten starter sentences'),()=>{ location.hash='#/sheets/'+newAnswerKey(); })]));
+  /* the worked starters are always on the shelf, so the page is never empty */
+  w.appendChild(h('h2',{class:'shsub',text:T('Worked starters')}));
+  w.appendChild(h('p',{class:'dim small',text:T('Each opens your own copy, filled with a made-up example. Change the numbers to yours.')}));
+  w.appendChild(h('div',{class:'shstarters'},STARTERS.map(st=>{
+    const b=h('button',{type:'button',class:'shstarter'},[h('strong',{text:T(st.title)}),h('span',{text:T(st.what)})]);
+    b.addEventListener('click',()=>{ location.hash='#/sheets/'+newStarter(st); });
+    return b;
+  })));
+  if(ids.length) w.appendChild(h('h2',{class:'shsub',text:T('Your sheets')}));
   if(ids.length) w.appendChild(h('ul',{class:'shlist'},ids.map(id=>h('li',{class:id===sel?'on':''},[
     h('a',{href:'#/sheets/'+id,text:S[id].name}),
     h('span',{class:'dim small',text:' · '+((S[id].rows||[]).filter(r=>r.some(x=>x!=='')).length)+' '+T('rows')+' · sheets/'+slug(S[id].name)+'.csv'})]))));
-  else w.appendChild(h('p',{class:'empty',text:T('No sheets yet. Start one above, or from a chapter that asks for a spreadsheet.')}));
+  else w.appendChild(h('p',{class:'dim small',text:T('Your own sheets will appear here. Open a starter above, or start from a chapter that asks for a spreadsheet.')}));
   const open=sel&&S[sel]?sel:null;
   if(open) w.appendChild(h('section',{class:'part'},[editor(open,null,{onDelete:()=>{ location.hash='#/sheets'; }})]));
   return w;
@@ -241,5 +325,5 @@ function page(sel){
 /* A chapter's own sheet, inline. */
 function panel(ch,name){ return editor('ch:'+ch,name); }
 
-return { page, panel, editor, evaluate, show, toCSV, fromCSV, files, slug, newAnswerKey, answerKeyRows };
+return { page, panel, editor, evaluate, show, toCSV, fromCSV, files, slug, newAnswerKey, answerKeyRows, STARTERS, newStarter };
 })();

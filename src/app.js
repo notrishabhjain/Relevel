@@ -787,6 +787,7 @@ function renderChapter(c){
     h('div',{class:'chnum',text:String(c.num).padStart(2,'0')}),
     h('h1',{text:T(c.title)}),
     h('p',{class:'concept',text:T(c.concept)})]));
+  if(SYNTH_FIRST.has(c.id)) w.appendChild(synthBanner());
   /* Where this chapter sits on the route, and what the route asks of it. */
   if(window.ROUTE){
     const rs=window.ROUTE.STEPS.find(x=>x.ch===c.id);
@@ -1831,12 +1832,23 @@ function stageOfChapter(id){
   return i<0?null:Object.assign({n:i+1,total:st.length},st[i]);
 }
 window.stageOfChapter=stageOfChapter;
+/* Made-up data only. Shown before the first call to an outside model (Chapter
+   1) and on the project page, because the project is about real identity
+   numbers and a beginner may otherwise test it with their own. */
+const SYNTH_FIRST=new Set(['ch1']);
+function synthBanner(){
+  return h('aside',{class:'synth',role:'note'},[
+    h('strong',{text:T('Use made-up data only')}),
+    h('p',{text:T('Never paste a real Aadhaar, PAN, phone, bank or address into an outside AI service. Whatever you send is copied and kept by the company that runs the model. Use the made-up data provided; Chapter 16.5 explains the rules.')}),
+    h('a',{href:'../data/synthetic-indian-pii.csv',download:'synthetic-indian-pii.csv',text:T('Download the made-up Indian data (CSV)')})]);
+}
 function pageProject(){
   const P=window.PROJECT||{};
   const w=h('div',{class:'wrap'});
   w.appendChild(h('header',{class:'phead'},[
     h('div',{class:'eyebrow'},[h('span',{text:T(P.eyebrow)})]),
     h('h1',{text:T(P.title)})].concat((P.lead||[]).map(t=>h('p',{html:T(t)})))));
+  w.appendChild(synthBanner());
 
   const tbl=(head,rows,tr)=>{
     const t=h('table');
@@ -1956,7 +1968,7 @@ function pageAppendix(){
     h('div',{class:'eyebrow'},[h('span',{text:T('Appendices A and B')})]),
     h('h3',{text:T('The evidence pack')}),
     h('p',{class:'dim',style:'font-size:.85rem',
-      html:T('The sixteen-week map, and the twenty-nine artifacts you finish holding — each linked to the chapter that produces it.')}),
+      html:T('The course in 10 blocks, and the twenty-nine artifacts you finish holding, each linked to the chapter that makes it.')}),
     h('span',{class:'mono dim',style:'font-size:.75rem',
       text:artsDone+' / '+(A.artifacts||[]).length+' '+T('finished')})]));
   doors.appendChild(h('a',{class:'card door',href:'#/templates'},[
@@ -2847,7 +2859,7 @@ function pageEvidence(){
   w.appendChild(h('header',{class:'phead'},[
     h('div',{class:'eyebrow'},[h('span',{text:T('Appendices A and B')})]),
     h('h1',{text:T('The Artifact Vault')}),
-    h('p',{html:T('Every time the course asks you to build, break or decide something, the result lands here. There are twenty-nine artifacts (pieces of work). Each is an experiment, a piece of engineering, a decision, or evidence. This page holds the running list, the sixteen-week map, and the thirteen things you should be able to do at the end. Your decisions and your failures also get a page each. Those two are worth reading as a log, not a list.')})]));
+    h('p',{html:T('Every time the course asks you to build, break or decide something, the result lands here. There are twenty-nine artifacts (pieces of work). Each is an experiment, a piece of engineering, a decision, or evidence. This page holds the running list, the course in 10 blocks, and the thirteen things you should be able to do at the end. Your decisions and your failures also get a page each. Those two are worth reading as a log, not a list.')})]));
   w.appendChild(h('div',{class:'chiprow',style:'margin:0 0 1.2rem'},[
     h('a',{class:'chip',href:'#/decisions',text:T('→ Decision Log')}),
     h('a',{class:'chip',href:'#/failures',text:T('→ Failure Log')})]));
@@ -2902,9 +2914,9 @@ function pageEvidence(){
 
   /* ---- A: the calendar the artifacts hang off ---- */
   const secA=h('section',{class:'part'});
-  secA.appendChild(sectionHead('A',T('Sixteen-week study map')));
+  secA.appendChild(sectionHead('A',T('The course in 10 blocks')));
   secA.appendChild(h('p',{class:'prose',style:'font-size:1rem',
-    html:WK(T('This map was written for sixteen weeks. The route runs {weeks}. Either way, the pace is not a deadline. Look at the last column: a block is done when the evidence exists, not when the weeks have passed.'))}));
+    html:WK(T('This is the course in 10 blocks: a summary of the technical chapters, not a second schedule. Your weeks and dates are on the route ({weeks} weeks). Tick a block when its evidence exists, not when time has passed.'))}));
   const mapList=h('div',{class:'smap'});
   map.forEach((b,i)=>{
     const box=h('input',{type:'checkbox','aria-label':b.when+' — '+b.focus});
@@ -3354,25 +3366,26 @@ const ACCOUNT=(function(){
   function paint(){
     const el=$('#syncpill'); if(!el)return;
     const map={
-      off:      null,
-      signedout:['Sign in to sync','warn'],
-      syncing:  ['syncing…','busy'],
-      ok:       ['synced','ok'],
-      pulled:   ['synced — loaded your latest','ok'],
-      offline:  ['offline — will sync later','warn'],
-      conflict: ['another device wrote first — open','warn'],
-      error:    ['sync problem — open','warn']
+      /* no account service here (the GitHub Pages copy): say where work lives */
+      off:      ['Saved in this browser only','warn'],
+      signedout:['Sign in to keep your work on every device','warn'],
+      syncing:  ['Saving to your account…','busy'],
+      ok:       ['Saved to your account','ok'],
+      pulled:   ['Saved to your account: your latest work is loaded','ok'],
+      offline:  ['Offline: it will save to your account later','warn'],
+      conflict: ['Another device saved first: open to choose','warn'],
+      error:    ['Could not save to your account: open','warn']
     };
     const v=map[state];
     if(!v){el.hidden=true;return;}
-    el.hidden=false; el.textContent=v[0]; el.className='syncpill '+v[1];
+    el.hidden=false; el.textContent=T(v[0]); el.className='syncpill '+v[1];
   }
 
   /* The page renders before this probe resolves, so any view that shows account
      state has to be redrawn once we know it. */
   function reroute(){ if(location.hash.indexOf('#/data')===0||location.hash.indexOf('#/start')===0) route(); }
   async function boot(){
-    if(!window.REMOTE) return;
+    if(!window.REMOTE){ show('off'); return; }
     const a=await window.REMOTE.probe();
     if(!a){ show('off'); reroute(); return; }
     const u=await window.REMOTE.me();

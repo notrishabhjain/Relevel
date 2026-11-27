@@ -95,42 +95,26 @@ Object.assign(window.HING = window.HING || {}, {
     'Hiring ke sanket',
   'GenAI / LLM Top 10, 2026 edition':
     'GenAI / LLM Top 10, 2026 sanskaran',
-  'Weeks 1–4':
-    'Hafta 1–4',
   'Foundations and the engineer’s floor':
     'Buniyaad aur engineer ki zameen',
-  'Weeks 5–6':
-    'Hafta 5–6',
   'Model choice and context engineering':
     'Model ka chunaav aur context engineering',
-  'Weeks 7–8':
-    'Hafta 7–8',
-  'Weeks 9–10':
-    'Hafta 9–10',
   'Tools, workflows and agents':
     'Tool, workflow aur agent',
-  'Week 11':
-    'Hafta 11',
   'An MCP mini-demo, and the authorisation matrix that says who may call what.':
     'Ek chhota MCP demo, aur woh authorisation matrix jo batata hai kaun kya bula sakta hai.',
   'Week 12':
     'Hafta 12',
   'Input that is not text':
     'Woh input jo text nahi hai',
-  'Weeks 13–14':
-    'Hafta 13–14',
   'Evaluation and observability':
     'Evaluation aur observability',
   'A golden set, an automated evaluation suite, judge validation, traces and a dashboard.':
     'Ek golden set, ek apne-aap chalne wala evaluation suite, judge ki jaanch, trace aur ek dashboard.',
-  'Week 15':
-    'Hafta 15',
   'Security and product':
     'Security aur product',
   'A risk register, a red-team report, an AI PRD, and unit economics.':
     'Ek risk register, ek red-team report, ek AI PRD, aur unit economics.',
-  'Week 16':
-    'Hafta 16',
   'Architecture and delivery':
     'Architecture aur delivery',
   'A technical decision pack, a set of ADRs, and a rollout and rollback plan.':

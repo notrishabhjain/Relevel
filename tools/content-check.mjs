@@ -473,6 +473,23 @@ if (tumForm.length)
   fail(`${tumForm.length} Hinglish line(s) say "Socho" to the reader; the course uses "aap": Sochiye` +
        ` — first: "${tumForm[0]}"`);
 
+/* The app's own words: every literal T('…') in the interface code needs its
+   Hinglish too. Thirty labels and help texts once showed English inside the
+   Hinglish view because nothing checked this side. */
+{
+  const UI = ['src/app.js', 'src/views.js', 'src/sheets.js', 'src/labs.js', 'src/studio.js', 'src/engine.js', 'src/playground.js', 'src/install.js'];
+  const missing = [];
+  for (const f of UI) {
+    if (!fs.existsSync(path.join(ROOT, f))) continue;
+    const src = fs.readFileSync(path.join(ROOT, f), 'utf8');
+    for (const m of src.matchAll(/\bT\(\s*'((?:[^'\\]|\\.)+)'\s*\)/g)) {
+      let k; try { k = Function("return '" + m[1] + "'")(); } catch (e) { continue; }
+      if (hing[k.trim()] === undefined) missing.push(f.replace('src/', '') + ': ' + k);
+    }
+  }
+  if (missing.length) fail(`${missing.length} interface line(s) have no Hinglish — first: "${missing[0].slice(0, 80)}"`);
+}
+
 const untranslated = [...need].filter(k => hing[k] === undefined);
 if (untranslated.length) {
   fail(`${untranslated.length} line(s) of ${need.size} have no Hinglish translation` +

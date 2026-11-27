@@ -352,6 +352,8 @@ out('dist/site/reminder.js', fs.readFileSync(p.join(R, 'src/reminder.js'), 'utf8
   const src = read('src/progress.js');
   if (!src.includes('/*STEP_DONE*/null')) throw new Error('src/progress.js lost its STEP_DONE marker');
   out('dist/site/progress.js', src.replace('/*STEP_DONE*/null', '(' + ROUTE.stepDone.toString() + ')'));
+  /* the made-up Indian data the course tests with: never real numbers */
+  out('dist/site/data/synthetic-indian-pii.csv', read('src/data/datasets/synthetic-indian-pii.csv'));
 }
 /* The figures, for the pages that are not the app: the book, the plan and
    the worksheet load this one file. */
@@ -499,7 +501,8 @@ out('content/defaults.json', JSON.stringify(defaults));
 
 /* ---- the reading edition ---- */
 const courseTitles = {};
-for (const c of defaults.chapters) courseTitles[c.id] = c.title;
+const courseNums = {};
+for (const c of defaults.chapters) { courseTitles[c.id] = c.title; courseNums[c.id] = c.num; }
 const HI_ROOT = p.join(R, 'book/hi');
 const hasHi = fs.existsSync(p.join(HI_ROOT, 'book.json'));
 /* Each book chapter shows the diagrams of the course chapters it retells (at
@@ -519,10 +522,10 @@ const bookFigs = (() => {
   return map;
 })();
 const builtBook = buildBook(p.join(R, 'book'), p.join(R, 'dist/site/book'),
-  { siteBase: '/book/', appUrl: '/' + APP_DIR + '/', hasOther: hasHi, courseTitle: id => courseTitles[id], figs: bookFigs });
+  { siteBase: '/book/', appUrl: '/' + APP_DIR + '/', hasOther: hasHi, courseTitle: id => courseTitles[id], courseNum: id => courseNums[id], figs: bookFigs });
 const hingTitles = defaults.hinglish || {};
 const builtHi = hasHi ? buildBook(HI_ROOT, p.join(R, 'dist/site/book/hi'),
-  { siteBase: '/book/', appUrl: '/' + APP_DIR + '/', hasOther: true, noAssets: true, courseTitle: id => hingTitles[courseTitles[id]] || courseTitles[id], figs: bookFigs }) : null;
+  { siteBase: '/book/', appUrl: '/' + APP_DIR + '/', hasOther: true, noAssets: true, courseTitle: id => hingTitles[courseTitles[id]] || courseTitles[id], courseNum: id => courseNums[id], figs: bookFigs }) : null;
 
 /* ---- the Applied AI PM plan (static pages at /plan/) ---- */
 const builtPlan = buildPlan(R, p.join(R, 'dist/site/plan'));

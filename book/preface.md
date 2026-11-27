@@ -8,6 +8,8 @@ There are two ways to learn how an AI product is made. The first way is to build
 
 The second way is to learn the whole subject in order. Someone explains it one step at a time. New words stop feeling strange. Slowly they turn into a picture in your head. Think of it as learning a city. The app lets you walk its lanes. The book gives you the map. This book is that second way.
 
+The course looks at AI from two sides, and both count the same. The product side asks what to build, and why. The project side asks how to deliver it safely, on time and within the rules. This book follows both, through one team.
+
 This book is for someone who has delivered technology projects. Now you want to own an AI product. You do not need to write code. You do not need to know statistics. Here is the rhythm. Every week, for twenty-six weeks, you read one chapter. That takes about ten minutes. Then you do the app chapter named under its title.
 
 Anaya has a team around her. You have the app. When Imran runs something, the app gives you the button. When Lakshmi asks how she would know, the app asks you the same question. These are the check questions. By the end, you can say what you built. You can say how you know it works. You can say it with your own numbers.
