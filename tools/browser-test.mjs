@@ -1658,6 +1658,38 @@ console.log('\n— no reminder bell on any page —');
   await ctx.close();
 }
 
+/* Phase 1 of the audit plan (Nov 2026): one route, made-up data, worked sheets. */
+console.log('\n— one route, made-up data only, worked starter sheets —');
+{
+  const d = await newDevice(false);
+  await boot(d.page, '#/ch/b8');
+  await d.page.waitForTimeout(400);
+  ok(await d.page.evaluate(() => location.hash) === '#/ch/ch21cap', 'an old link to B8 opens Chapter 34');
+  ok(await d.page.evaluate(() => !window.CHAPTERS.some(c => c.id === 'b8')), 'B8 is in no chapter list');
+  ok(/hardest question you expect in the defence/.test(await mainText(d.page)), 'and its one exercise now lives in Chapter 34');
+  const st = await d.page.evaluate(() => { const R = window.ROUTE; return { start: window.STORE.S.routeStart, monday: R.mondayOf(R.todayIST()) }; });
+  ok(st.start === st.monday, 'a first visit starts week 1 on the Monday of this week', JSON.stringify(st));
+  await boot(d.page, '#/ch/ch1');
+  ok(/Use made-up data only/.test(await mainText(d.page)), 'Chapter 1, the first call to an outside model, warns: made-up data only');
+  await boot(d.page, '#/project');
+  ok(/Use made-up data only/.test(await mainText(d.page)), 'so does the project page');
+  const csv = await d.page.evaluate(async () => (await fetch('../data/synthetic-indian-pii.csv')).text());
+  ok(/^id,message,what_should_be_found/.test(csv) && csv.trim().split('\n').length === 26, 'the made-up Indian data downloads, 25 rows');
+  await d.page.evaluate(() => { window.STORE.S.lang = 'hi'; window.STORE.flush(); });
+  await boot(d.page, '#/ch/ch1');
+  ok(/Sirf banawati data use kijiye/.test(await mainText(d.page)), 'and the warning reads in Hinglish');
+  await d.page.evaluate(() => { window.STORE.S.lang = null; window.STORE.flush(); });
+  await boot(d.page, '#/sheets');
+  ok(await d.page.locator('button.shstarter').count() === 4, 'the Sheets page never opens empty: four worked starters');
+  await d.page.locator('button.shstarter').first().click();
+  await d.page.waitForTimeout(400);
+  const cost = await d.page.evaluate(() => { const id = location.hash.split('/')[2]; const sh = window.STORE.S.sheets[id];
+    const ev = window.SHEETS.evaluate(sh.rows); return window.SHEETS.show(ev(16, 1)); });
+  ok(cost === '0.00684', 'the cost model works out the cost per successful answer', cost);
+  ok(/Sign in to keep your work on every device/.test(await text(d.page, '#syncpill')), 'a signed-out learner is told how to keep their work on every device');
+  await d.ctx.close();
+}
+
 await browser.close();
 console.log('\n' + pass + ' passed, ' + fail + ' failed\n');
 process.exit(fail ? 1 : 0);
