@@ -70,6 +70,7 @@ const defaults=()=>({done:{},notes:{},grades:{},marks:{},later:{},pred:[],card:{
      actually done the work on this lesson", set by the learner, not derived
      from quiz answers. */
   mastery:{},
+  known:{},    // chapters passed by their Check yourself quiz: id -> {at, score}
   smap:{},     // Appendix A study map: block index -> 1
   exit:{},     // final exit test: capability index -> 1
   railmore:false,   // the rest of the instruments, out of the way until wanted
@@ -286,7 +287,7 @@ function blocks(list){
     /* A section heading inside the story. Chapters were one unbroken stream of
        paragraphs; a reader who stops halfway finds their place by scanning
        headings, which is how every technical book is laid out. */
-    else if(k==='h')f.appendChild(h('h3',{class:'sh',html:T(r[0])}));
+    else if(k==='h')f.appendChild(h('h3',{class:'sh','data-sec':String(r[0]).replace(/<[^>]+>/g,''),html:T(r[0])}));
     else if(k==='key')f.appendChild(h('div',{class:'keyline',html:T(r[0])}));
     else if(k==='c')f.appendChild(h('div',{class:'callout'},[h('span',{class:'lbl',text:T(r[0])}),h('p',{html:T(r[1])})]));
     else if(k==='l')f.appendChild(h('ul',{class:'bul'},Tl(r[0]).map(i=>h('li',{html:i}))));
@@ -362,7 +363,7 @@ function blocks(list){
       const u=r[2]||{};
       const row=(lbl,val,cls)=>val?h('div',{class:'urow'+(cls?' '+cls:'')},[
         h('span',{class:'ulbl',text:T(lbl)}),h('div',{class:'uval',html:T(val)})]):null;
-      const sec=h('section',{class:'unit'},[
+      const sec=h('section',{class:'unit','data-sec':r[0]},[
         h('div',{class:'uhead'},[
           h('span',{class:'unum',text:r[0]}),
           h('h4',{html:T(r[1])})])]);
@@ -771,6 +772,92 @@ function chapterTrail(c){
     prev?h('a',{class:'tnav',href:'#/ch/'+prev.id,title:prev.num+'. '+T(prev.title),text:'\u2190 '+T('Previous')}):null,
     next?h('a',{class:'tnav',href:'#/ch/'+next.id,title:next.num+'. '+T(next.title),text:T('Next')+' \u2192'}):null]);
 }
+/* Check yourself (audit plan, Phase 3a). A learner who already knows a basics
+   chapter answers a short quiz instead of reading it. At the pass mark the
+   chapter can be marked known, which also marks it done, so every progress
+   count and the route treat it the same as a chapter read. Below the pass
+   mark, the quiz names the parts of the chapter behind each miss, and each
+   name scrolls to that part. Answers are kept, so the result survives a
+   reload; nothing here is scored into the question bank. */
+function selfCheck(c){
+  const sc=c.selfcheck, items=sc.items||[], key='self:'+c.id, refresher=sc.kind==='refresher';
+  /* Refresher (Phase 3b): a Track A or B chapter for someone who has done the
+     job before. Its pass also opens the chapter on one page, which always has
+     a section on what changes when AI is involved, so an experienced PM who
+     passes on old habits still meets the new ones. */
+  const summary=()=>sc.summary?h('div',{class:'scsum'},[
+    h('h4',{text:T('This chapter on one page')}),
+    h('ul',{},(sc.summary.core||[]).map(x=>h('li',{html:T(x)}))),
+    h('h4',{text:T('What changes when AI is involved')}),
+    h('ul',{class:'scai'},(sc.summary.ai||[]).map(x=>h('li',{html:T(x)})))]):null;
+  S.known=S.known||{};
+  const box=h('details',{class:'selfcheck'});
+  box.appendChild(h('summary',{},[h('span',{text:T(refresher?'Refresher: already know this chapter?':'Already know this? Check yourself')}),
+    h('span',{class:'pill',style:'margin-left:auto',text:items.length+' '+T('questions')})]));
+  const body=h('div',{class:'scbody'});
+  box.appendChild(body);
+  const goSec=see=>{
+    const el=see?[...document.querySelectorAll('[data-sec]')].find(x=>x.getAttribute('data-sec')===see):document.querySelector('.chead');
+    if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+  };
+  const seeName=see=>!see?T('The opening of the chapter'):/^\d+(\.\d+)*$/.test(see)?T('Unit')+' '+see:T(see);
+  function draw(){
+    body.innerHTML='';
+    const rec=S.cp[key];
+    if(S.known[c.id]){
+      body.appendChild(h('div',{class:'scres ok'},[
+        h('span',{class:'pill ok',text:T('Known: you passed the check')+' · '+S.known[c.id].score+'/'+items.length}),
+        h('button',{class:'sm',onclick:()=>{delete S.known[c.id];S.done[c.id]=false;save();updateProgress();draw();}},T('Unmark'))]));
+      if(refresher) body.appendChild(summary());
+      return;
+    }
+    body.appendChild(h('p',{class:'dim',text:T(refresher?'Pass mark 80%. Some questions ask what changes when AI is involved. If you pass, you get this chapter on one page and can mark it as known.':'Pass mark 80%. If you pass, you can mark this chapter as known and move on. If not, the check names the parts to read.')}));
+    const picks=rec&&rec.ans?rec.ans.slice():items.map(()=>-1);
+    items.forEach((it,i)=>{
+      const q=h('fieldset',{class:'scq'},[h('legend',{},[h('span',{html:(i+1)+'. '+T(it.q)}),
+        it.ai?h('span',{class:'scaitag',text:T('What changes with AI')}):null])]);
+      it.opts.forEach((o,j)=>{
+        const id='sc-'+c.id+'-'+i+'-'+j;
+        const inp=h('input',{type:'radio',name:'sc-'+c.id+'-'+i,id,value:String(j)});
+        if(picks[i]===j) inp.checked=true;
+        if(rec&&rec.ans) inp.disabled=true;
+        inp.addEventListener('change',()=>{picks[i]=j;});
+        const lab=h('label',{for:id,class:'scopt'+(rec&&rec.ans?(j===it.a?' right':picks[i]===j?' wrong':''):'')},[inp,h('span',{html:' '+T(o)})]);
+        q.appendChild(lab);
+      });
+      if(rec&&rec.ans&&picks[i]!==it.a) q.appendChild(h('p',{class:'scwhy'},[h('b',{text:T('Why')+': '}),h('span',{html:T(it.why)})]));
+      body.appendChild(q);
+    });
+    if(!rec||!rec.ans){
+      const msg=h('p',{class:'dim scmsg'});
+      body.appendChild(h('div',{class:'scact'},[h('button',{class:'sm on sccheck',onclick:()=>{
+        if(picks.some(x=>x<0)){msg.textContent=T('Answer every question first.');return;}
+        const score=items.filter((it,i)=>picks[i]===it.a).length;
+        S.cp[key]={ans:picks.slice(),score,at:Date.now()};save();draw();}},T('Check my answers')),msg]));
+      return;
+    }
+    const pass=rec.score>=Math.ceil((sc.pass||0.8)*items.length-1e-9);
+    const res=h('div',{class:'scres '+(pass?'ok':'red')},[
+      h('p',{},[h('b',{text:T('Your score')+': '+rec.score+' / '+items.length})])]);
+    if(pass){
+      res.appendChild(h('p',{text:T('You passed. This chapter can count as done.')}));
+      if(refresher) res.appendChild(summary());
+      res.appendChild(h('button',{class:'sm on scknown',onclick:()=>{
+        S.known[c.id]={at:Date.now(),score:rec.score};
+        if(!S.done[c.id]){S.done[c.id]=true;S.sittings.push({ch:c.id,at:Date.now()});}
+        save();updateProgress();draw();}},T('Mark this chapter as known')));
+    } else {
+      const seen=[...new Set(items.filter((it,i)=>rec.ans[i]!==it.a).map(it=>it.see||''))];
+      res.appendChild(h('p',{text:T('Not yet. Read these parts, then try again:')}));
+      res.appendChild(h('ul',{class:'scsee'},seen.map(see=>h('li',{},h('button',{type:'button',class:'linkish',onclick:()=>goSec(see),text:seeName(see)})))));
+    }
+    res.appendChild(h('button',{class:'sm scagain',onclick:()=>{delete S.cp[key];save();draw();}},T('Try again')));
+    body.appendChild(res);
+  }
+  draw();
+  return box;
+}
+
 function renderChapter(c){
   const w=h('div',{class:'wrap'});
   CTX={ch:c.id,i:0,bar:false,files:true,noModel:!!c.noModel};
@@ -817,6 +904,8 @@ function renderChapter(c){
     h('span',{class:'lbl',text:T('Your project')}),
     h('span',{class:'pt',text:T('Bharat Privacy Guard')+' · '+T('Stage')+' '+ps.n+'/'+ps.total+' — '+T(ps.title)}),
     h('span',{class:'go',text:T('See the whole project')+' →'})]));
+
+  if(c.selfcheck) w.appendChild(selfCheck(c));
 
   /* "Before this / You are here / Next": the v4.3 chapter graph, kept
      separate from the richer prose "Prerequisites" section below — this is

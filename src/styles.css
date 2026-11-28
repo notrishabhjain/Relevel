@@ -1481,3 +1481,29 @@ aside.synth p{margin:.2rem 0 .4rem}
 
 /* the course identity, under the home heading */
 p.identity{margin:.4rem 0 1rem;font-size:.95rem;color:var(--muted)}
+
+/* Check yourself (Phase 3a): a short quiz at the top of a basics chapter. */
+.selfcheck{margin:1.2rem 0;padding:.8rem 1rem;background:var(--raised);border:1px solid var(--rule);
+  border-left:2px solid var(--verified);border-radius:var(--r)}
+.selfcheck>summary{display:flex;align-items:center;gap:.6rem;cursor:pointer;font-weight:600}
+.selfcheck .scbody{margin-top:.8rem}
+.selfcheck .scq{border:0;margin:0 0 1rem;padding:0}
+.selfcheck .scq legend{font-family:var(--serif);font-size:1rem;line-height:1.5;margin-bottom:.4rem;padding:0}
+.selfcheck .scopt{display:flex;gap:.45rem;align-items:flex-start;padding:.3rem .4rem;border-radius:var(--r);cursor:pointer;line-height:1.45}
+.selfcheck .scopt input{margin:.25rem 0 0;flex:0 0 auto;width:auto;min-width:0;height:auto;padding:0;border:0;background:none;box-shadow:none}
+.selfcheck .scopt>span{flex:1 1 auto;min-width:0}
+.selfcheck .scopt.right{outline:1px solid var(--verified)}
+.selfcheck .scopt.wrong{outline:1px solid var(--red)}
+.selfcheck .scwhy{font-size:.88rem;margin:.3rem 0 0 .4rem}
+.selfcheck .scact{display:flex;gap:.8rem;align-items:center;flex-wrap:wrap}
+.selfcheck .scres{display:flex;flex-direction:column;align-items:flex-start;gap:.5rem;margin-top:.6rem}
+.selfcheck .scres.ok:has(.pill){flex-direction:row;align-items:center;flex-wrap:wrap}
+.selfcheck .scsee{margin:0;padding-left:1.2rem}
+.selfcheck .linkish{background:none;border:0;padding:0;color:var(--ink);text-decoration:underline;cursor:pointer;font:inherit}
+.selfcheck .scopt{font-family:var(--sans,inherit);text-transform:none;letter-spacing:normal;font-size:.95rem;color:var(--ink);font-weight:400}
+.selfcheck .scaitag{display:inline-block;margin-left:.5rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--verified);border:1px solid var(--verified);border-radius:2px;padding:.1rem .35rem;vertical-align:middle}
+.selfcheck .scsum{align-self:stretch;margin:.4rem 0;padding:.8rem 1rem;background:var(--paper);border:1px solid var(--rule);border-radius:var(--r)}
+.selfcheck .scsum h4{margin:.2rem 0 .4rem;font-size:.95rem}
+.selfcheck .scsum ul{margin:0 0 .8rem;padding-left:1.2rem;line-height:1.55}
+.selfcheck .scsum .scai li::marker{color:var(--verified)}
