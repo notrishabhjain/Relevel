@@ -19,7 +19,7 @@ export const START = '2026-10-19';
 export const COUNTS = {
  "weeks": 28,
  "steps": 166,
- "appChapters": 67,
+ "appChapters": 71,
  "bookChapters": 47,
  "routes": {
   "full": {
@@ -35,7 +35,7 @@ export const COUNTS = {
    "includesTrackC": true,
    "hours": {
     "avg": 4,
-    "max": 6
+    "max": 7
    }
   }
  }
@@ -2557,7 +2557,7 @@ export const EXP_WEEKS = [
   "light": false,
   "why": "You grade a thousand answers the way you graded ten, put a price on quality, handle paper, and decide what may leave your hands.",
   "job": "Consulting and public bodies ask for cost estimates and data rules. You make both.",
-  "mins": 275,
+  "mins": 325,
   "steps": [
    {
     "id": "c:ch14",
@@ -2605,6 +2605,15 @@ export const EXP_WEEKS = [
     "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
    },
    {
+    "id": "c:c1",
+    "kind": "chapter",
+    "ch": "c1",
+    "num": "C1",
+    "title": "The AI project lifecycle: phases, gates and who owns what",
+    "mins": 50,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
     "id": "t:xreview-9",
     "kind": "look",
     "title": "Look back",
@@ -2623,7 +2632,7 @@ export const EXP_WEEKS = [
   "light": false,
   "why": "With quality, cost and data in hand, you write what the system must do, who answers when it is wrong, and how you will prove it helps.",
   "job": "Governance and build-or-buy are the first questions a ministry or a client asks.",
-  "mins": 280,
+  "mins": 325,
   "steps": [
    {
     "id": "c:ch17",
@@ -2680,6 +2689,15 @@ export const EXP_WEEKS = [
     "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
    },
    {
+    "id": "c:c2",
+    "kind": "chapter",
+    "ch": "c2",
+    "num": "C2",
+    "title": "Discovery spikes and kill criteria: planning work that may not work",
+    "mins": 45,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
     "id": "t:xreview-10",
     "kind": "look",
     "title": "Look back",
@@ -2698,7 +2716,7 @@ export const EXP_WEEKS = [
   "light": false,
   "why": "Part V goes over the same ideas at the depth a real launch needs. If you already write software, the plumbing chapter is a quick check.",
   "job": "AI-native companies ask which model you chose and why, and what the model sees. You answer from your own cases.",
-  "mins": 235,
+  "mins": 280,
   "steps": [
    {
     "id": "c:ch8f",
@@ -2735,6 +2753,15 @@ export const EXP_WEEKS = [
     "num": "24",
     "title": "Production RAG: ingestion, access control and freshness",
     "mins": 75,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:c4",
+    "kind": "chapter",
+    "ch": "c4",
+    "num": "C4",
+    "title": "Is an LLM the right tool? Rules, classical ML or a language model",
+    "mins": 45,
     "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
    },
    {
@@ -2820,7 +2847,7 @@ export const EXP_WEEKS = [
   "light": false,
   "why": "You turn answer keys into a release gate, decide what to watch, assume the worst about the model, and write the spec the capstone is judged against.",
   "job": "Release gates and a risk register show you can run AI, not only specify it.",
-  "mins": 360,
+  "mins": 415,
   "steps": [
    {
     "id": "c:ch16e",
@@ -2865,6 +2892,15 @@ export const EXP_WEEKS = [
     "num": "33",
     "title": "Production architecture, delivery and vendor strategy",
     "mins": 70,
+    "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
+   },
+   {
+    "id": "c:c3",
+    "kind": "chapter",
+    "ch": "c3",
+    "num": "C3",
+    "title": "Rollout and Day-2 operations: adding AI to systems that already exist",
+    "mins": 55,
     "what": "Read the chapter and answer the boxes. Run its hands-on steps. Then do the short version of its project task: a few lines, not the whole build. At the end, press “Mark chapter complete”."
    },
    {

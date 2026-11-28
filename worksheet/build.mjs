@@ -51,7 +51,9 @@ const FIG = (() => {
 export function model(root, C) {
   const H = C.hinglish || {};
   const stages = C.reference.PROJECT.stages;
-  const chapters = C.chapters;
+  /* Track C (part 8) is optional. Until it gets its own place on the route and
+     the worksheet (audit plan, 4.13, second Phase 4 batch), it is left out here. */
+  const chapters = C.chapters.filter(c => c.part !== 8);
   const byId = Object.fromEntries(chapters.map(c => [c.id, c]));
   const byNum = Object.fromEntries(chapters.map(c => [String(c.num), c]));
   if (stages.length !== TOPICS.length - 1) throw new Error(`worksheet: ${TOPICS.length - 1} topics for ${stages.length} project stages`);

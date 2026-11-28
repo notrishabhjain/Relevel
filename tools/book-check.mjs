@@ -64,7 +64,11 @@ for (const un of units) {
     else home.set(id, un);
   }
 }
-const missing = C.chapters.filter(c => !home.has(c.id));
+/* Track C's book chapters (audit plan, 4.9) come in the second Phase 4 batch,
+   with C5–C8. Until then only these four may be unretold; the batch that adds
+   the book chapters removes this list, and any other chapter still fails. */
+const TRACKC_PENDING = new Set(['c1', 'c2', 'c3', 'c4']);
+const missing = C.chapters.filter(c => !home.has(c.id) && !TRACKC_PENDING.has(c.id));
 for (const c of C.chapters) {
   const mine = home.get(c.id);
   if (!mine) continue;

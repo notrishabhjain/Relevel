@@ -326,10 +326,56 @@ window.FIGDATA = Object.assign(window.FIGDATA || {}, {
       { l: ['Result goes back', 'Nateeja wapas jaata hai'], ic: 'eye', d: ['The result is added to the context (the model’s desk), so each step costs more tokens (small pieces of text) than the last.', 'Nateeja context (model ki mez) mein jud jaata hai, isliye har step pichhle se zyada tokens (text ke chhote tukde) leta hai.'] },
       { l: ['Stop check', 'Rukne ki jaanch'], ic: 'stop', d: ['Stop when done, at the step limit, or when the model cannot decide. With no limit the loop can run on.', 'Kaam ho jaye, step seema aaye, ya model tay na kar paye to ruk jaiye. Seema na ho to loop chalta reh sakta hai.'] }
     ],
-    cap: ['Because the model picks each step, the step limit is what keeps the loop from running on.', 'Kyunki har step model chunta hai, step seema hi loop ko chalte rehne se rokti hai.'] }
+    cap: ['Because the model picks each step, the step limit is what keeps the loop from running on.', 'Kyunki har step model chunta hai, step seema hi loop ko chalte rehne se rokti hai.'] },
+
+  /* Track C (Phase 4) */
+  'ai-lifecycle': { t: 'flow', loop: true, loopL: ['monitoring finds a problem: back to the data', 'monitoring ko samasya mile: data par wapas'],
+    title: ['The AI project lifecycle is a loop, with gates between the phases', 'AI project lifecycle ek loop hai, charanon ke beech gates ke saath'],
+    steps: [
+      { l: ['Business', 'Business'], ic: 'target', d: ['The problem, the people, and the score that means success.', 'Samasya, log, aur woh score jiska matlab safalta hai.'] },
+      { l: ['Data', 'Data'], ic: 'db', d: ['Gate: allowed, enough and ready.', 'Gate: anumati, kaafi aur taiyaar.'] },
+      { l: ['Build', 'Build'], ic: 'tool', d: ['Model, prompt or pipeline, chosen on your own cases.', 'Model, prompt ya pipeline, apne cases par chuna hua.'] },
+      { l: ['Evaluate', 'Evaluate'], ic: 'check', d: ['Gate: the golden dataset passes, signed off by the domain expert.', 'Gate: golden dataset paas, domain expert ke sign-off ke saath.'] },
+      { l: ['Operate', 'Operate'], ic: 'eye', d: ['Watched, refreshed, and owned by a named person.', 'Nigraani, refresh, aur ek naamit insaan ki zimmedari.'] }
+    ],
+    cap: ['Each gate can send the project back a step. That is the plan working.', 'Har gate project ko ek kadam peechhe bhej sakta hai. Yahi plan ka kaam karna hai.'] },
+
+  'spike-zones': { t: 'compare',
+    title: ['A spike ends in one of three zones, each decided before it starts', 'Spike teen kshetron mein se ek mein khatam hota hai, har ek shuru hone se pehle tay'],
+    rows: [['Score on 50 scans', '50 scans par score'], ['What happens', 'Kya hota hai']],
+    cols: [
+      { l: ['Yes', 'Haan'], ic: 'check', v: [['90% or more', '90% ya zyada'], ['Plan the feature, with an estimate as a range', 'Feature plan kijiye, range wale andaaze ke saath']], d: ['The threshold was met.', 'Threshold poora hua.'] },
+      { l: ['Grey zone', 'Dhoondhla kshetra'], ic: 'scale', v: [['70% to 89%', '70% se 89%'], ['Follow the grey-zone rule: one more box, or a smaller scope', 'Dhoondhle kshetra ka niyam: ek aur box, ya chhota scope']], d: ['Never extend week by week.', 'Kabhi hafte dar hafte mat badhaiye.'] },
+      { l: ['Stop', 'Rukiye'], ic: 'stop', v: [['Below 70%', '70% se neeche'], ['Log it, and drop it from this release', 'Log kijiye, aur is release se hataiye']], d: ['Stopping counts as progress.', 'Rukna bhi pragati hai.'] }
+    ],
+    cap: ['The numbers are written first, so the result decides, not the mood.', 'Numbers pehle likhe jaate hain, taaki faisla nateeja kare, mood nahi.'] },
+
+  'rollout-steps': { t: 'flow',
+    title: ['Rolling an AI part into a live system, with a way back at every step', 'Live system mein AI hissa roll out karna, har kadam par wapas aane ke raaste ke saath'],
+    steps: [
+      { l: ['Shadow mode', 'Shadow mode'], ic: 'eye', d: ['Runs on real traffic. Nobody sees its answers. Compare them with what happened.', 'Asli traffic par chalta hai. Jawaab koi nahi dekhta. Unhe asal se milaiye.'] },
+      { l: ['Canary, 5%', 'Canary, 5%'], ic: 'people', d: ['A few real users see it. Every number is watched, not only the one you hoped to improve.', 'Kuch asli users dekhte hain. Har number dekha jaata hai, sirf ummeed wala nahi.'] },
+      { l: ['Everyone', 'Sab'], ic: 'rocket', d: ['Only after the canary holds for the time set in advance.', 'Sirf tab jab canary pehle se tay samay tak tika rahe.'] },
+      { l: ['Fallback, always', 'Fallback, hamesha'], ic: 'shield', d: ['Rules or the old process answer when the model is slow, down or wrong.', 'Model dheema, band ya galat ho to rules ya purani prakriya jawaab deti hai.'] }
+    ],
+    cap: ['The off switch and the fallback exist before the first user sees anything.', 'Off switch aur fallback pehle user ke kuch dekhne se pehle maujood hote hain.'] },
+
+  'tool-choice': { t: 'compare',
+    title: ['Rules, classical ML or a language model: pick by the job', 'Rules, classical ML ya language model: kaam ke hisaab se chuniye'],
+    rows: [['Cost per answer', 'Har jawaab ka kharcha'], ['Speed', 'Speed'], ['Can you explain it?', 'Kya samjha sakte hain?'], ['Data it needs', 'Use kaunsa data chahiye'], ['Best for', 'Kiske liye sabse achha']],
+    cols: [
+      { l: ['Rules', 'Rules'], ic: 'list', v: [['Almost nothing', 'Lagbhag kuch nahi'], ['Instant', 'Turant'], ['Yes, line by line', 'Haan, line dar line'], ['None, only clear rules', 'Koi nahi, sirf saaf rules'], ['Fixed shapes: IDs, dates, codes', 'Pakke aakaar: IDs, taareekhein, codes']], d: ['An Aadhaar checksum is a rule.', 'Aadhaar checksum ek rule hai.'] },
+      { l: ['Classical ML', 'Classical ML'], ic: 'grid', v: [['Very low', 'Bahut kam'], ['Fast', 'Tez'], ['Partly', 'Aanshik roop se'], ['Many labelled examples', 'Kai label kiye udaharan'], ['Sorting into known groups, with many labelled examples', 'Kai label kiye udaharanon ke saath jaane-maane samoohon mein chhantna']], d: ['Grievances into 12 departments.', 'Shikayatein 12 vibhaagon mein.'] },
+      { l: ['Language model', 'Language model'], ic: 'chat', v: [['Highest, per token', 'Sabse zyada, har token par'], ['Slowest', 'Sabse dheema'], ['Hardest', 'Sabse mushkil'], ['A few examples, or none', 'Kuch udaharan, ya koi nahi'], ['Messy language and context', 'Bikhri bhasha aur sandarbh']], d: ['“My wife’s number ends in 4321.”', '“Meri patni ka number 4321 par khatam hota hai.”'] }
+    ],
+    cap: ['The best systems use rules first, and send only the unclear cases to a model.', 'Sabse achhe systems pehle rules use karte hain, aur sirf aspasht cases model ko bhejte hain.'] },
 });
 
 window.FIGPLACE = Object.assign(window.FIGPLACE || {}, {
+  c1: [['ai-lifecycle', 'h:2']],
+  c2: [['spike-zones', 'h:1']],
+  c3: [['rollout-steps', 'h:2']],
+  c4: [['tool-choice', 'h:1']],
   ch8f: [['http-call', 'h:2']],
   ch9m: [['model-bench', 'h:3']],
   ch10c: [['memory-arch', 'h:2']],

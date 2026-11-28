@@ -720,7 +720,7 @@ const outline = await nav.page.evaluate(() => ({
   chapters: document.querySelectorAll('#rail .railchs a').length,
   firstPart: (document.querySelector('#rail .railpart') || {}).textContent
 }));
-ok(outline.parts === 7, 'all seven parts are listed in order', String(outline.parts));
+ok(outline.parts === 8, 'all eight parts are listed in order', String(outline.parts));
 ok(outline.open === 1, 'only the part you are in is open', String(outline.open));
 ok(outline.chapters >= 9, 'and its chapters are one click away', String(outline.chapters));
 await nav.page.evaluate(() => { document.querySelectorAll('#rail .railpart')[3].click(); });
@@ -1025,7 +1025,7 @@ const rows = await navp.page.evaluate(() =>
     label: (a.querySelector('h3') || {}).textContent,
     href: a.getAttribute('href')
   })));
-ok(rows.filter(r => /^(Part|Track) /.test(r.label)).length === 7, 'all seven parts are on the dashboard',
+ok(rows.filter(r => /^(Part|Track) /.test(r.label)).length === 8, 'all eight parts are on the dashboard',
    rows.map(r => r.label).join(' | '));
 ok(/^Track A/.test(rows.find(r => /^(Part|Track) /.test(r.label)).label), 'in reading order, Track A first');
 ok(rows.every(r => /^#\/(ch\/|project)/.test(r.href || '')), 'and each one opens a chapter or the project, not nowhere');
@@ -1301,8 +1301,11 @@ console.log('\n— the worksheet: the whole course by topic, with notes that fol
     reading: document.querySelectorAll('#t1 ul.rd li').length, words: document.querySelectorAll('#t1 dl.words dt').length,
     weekLink: !!document.querySelector('#t1 a[href$="plan/#w3"]')
   }));
-  ok(w.topics === 14 && w.apps === N.chapters && w.books === 49 && w.before >= 8,
-     `one page holds before-you-start, ${N.chapters} app chapters and the 49 pieces of the book, in 14 topics`, JSON.stringify(w));
+  /* Track C (part 8) joins the worksheet with its route weeks in the second
+     Phase 4 batch (audit plan, 4.13); until then the worksheet holds the rest. */
+  const wsChapters = EXPECT.chapters.filter(c => c.part !== 8).length;
+  ok(w.topics === 14 && w.apps === wsChapters && w.books === 49 && w.before >= 8,
+     `one page holds before-you-start, ${wsChapters} app chapters and the 49 pieces of the book, in 14 topics`, JSON.stringify(w));
   ok(w.a1 && !w.a2 && w.t0 === '2/2' && /A1\.5/.test(w.next), 'its ticks come from the shared progress, and it names the next step', JSON.stringify(w));
   ok(w.a1g && w.a4s && w.chpy, 'the short skills chapters sit in the topic that needs them');
   ok(w.project > 0 && w.reading > 0 && w.words > 0 && w.weekLink, 'each topic carries its project step, reading, words and plan weeks', JSON.stringify(w));
@@ -1502,7 +1505,7 @@ const map = await navp.page.evaluate(() => ({
   here: !!document.querySelector('.herecard a.ht'),
   sep: !!document.querySelector('.tracksep')
 }));
-ok(map.parts === 7, 'the map has seven parts', String(map.parts));
+ok(map.parts === 8, 'the map has eight parts', String(map.parts));
 ok(map.open === 1, 'with only the current one open', String(map.open));
 ok(map.rows === N.chapters, 'every chapter is a row', String(map.rows));
 ok(map.next === 1 && map.here, 'one chapter is marked next, and the card above says so');
@@ -1838,6 +1841,31 @@ console.log('\n— Which route fits you: the starting check, switching, and hour
   await d.page.waitForTimeout(300);
   const back = await d.page.evaluate(() => ({ route: window.STORE.S.route || 'full', weeks: window.ROUTE.WEEKS.length, a1: !!window.STORE.S.done.a1, ch1: !!window.STORE.S.done.ch1 }));
   ok(back.route === 'full' && back.weeks === 28 && back.a1 && back.ch1, 'switching back keeps everything too', JSON.stringify(back));
+  await d.ctx.close();
+}
+
+/* Phase 4 of the audit plan (Nov 2026), first batch: Track C, chapters C1–C4. */
+console.log('\n— Track C: AI project and delivery, C1 to C4 —');
+{
+  const d = await newDevice(false);
+  await boot(d.page, '#/library');
+  ok(/AI project and delivery/.test(await mainText(d.page)), 'the course map lists Track C');
+  for (const [id, words] of [['c1', /AI RACI/], ['c2', /kill criterion/], ['c3', /Shadow mode/], ['c4', /classical ML|Classical ML/]]) {
+    await boot(d.page, '#/ch/' + id);
+    await d.page.waitForTimeout(300);
+    const t = await mainText(d.page);
+    const fig = await d.page.locator('.chfig').count();
+    const quiz = await d.page.locator('details.selfcheck').count();
+    ok(words.test(t) && fig >= 1 && quiz === 1, `${id} teaches its topic, with a figure and a Check yourself quiz`, `fig ${fig} quiz ${quiz}`);
+  }
+  const tpl = await d.page.evaluate(() => (window.APPENDIX.templates || []).filter(x => /^c[1-4]$/.test(x.ch)).map(x => x.key).join(','));
+  ok(tpl === 'raci,spike,rollout,toolchoice', 'each chapter has its template', tpl);
+  const exp = await d.page.evaluate(() => ['c1', 'c2', 'c3', 'c4'].every(id => window.ROUTE.EXP_STEPS.some(s => s.ch === id)));
+  ok(exp, 'the Experienced route includes C1 to C4');
+  await d.page.evaluate(() => { window.STORE.S.lang = 'hi'; window.STORE.flush(); });
+  await boot(d.page, '#/ch/c3');
+  ok(/Surakshit kadamon mein rollout/.test(await mainText(d.page)), 'and Track C reads in Hinglish');
+  await d.page.evaluate(() => { window.STORE.S.lang = null; window.STORE.flush(); });
   await d.ctx.close();
 }
 
