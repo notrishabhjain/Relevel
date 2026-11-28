@@ -59,12 +59,14 @@ const introducedIn = new Map();
 for (const c of chapters)
   for (const [term] of c.words || []) {
     /* "Model / LLM" and "Top-k (k)" name more than one form */
-    for (const t of String(term).split(/\s*[/(]\s*/).map(s => s.replace(/\)$/, '').trim()).filter(Boolean))
+    for (const t of String(term).split(/\s*[/(]\s*/).map(s => s.replace(/\)$/, '').trim()).filter(s => s.length > 1))
       if (!introducedIn.has(t.toLowerCase())) introducedIn.set(t.toLowerCase(), posOf.get(c.num));
   }
+/* A form is at least two letters: "CRISP-ML(Q)" splits into "CRISP-ML" and
+   "Q", and a lone letter is not a term (it would match any "q" in prose). */
 for (const g of C.reference.GLOSSARY || []) {
   const [term, , ch] = g;
-  for (const t of String(term).split(/\s*[/(]\s*/).map(s => s.replace(/\)$/, '').trim()).filter(Boolean)) {
+  for (const t of String(term).split(/\s*[/(]\s*/).map(s => s.replace(/\)$/, '').trim()).filter(s => s.length > 1)) {
     const k = t.toLowerCase();
     /* chapter 0 is the ground floor: available from the very first page */
     const at = (ch == null ? 9999 : (posOf.has(ch) ? posOf.get(ch) : 9999));

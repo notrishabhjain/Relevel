@@ -32,6 +32,7 @@ const js = [
   'src/data/part4.js',
   'src/data/part5.js',
   'src/data/partB.js',
+  'src/data/partC.js',
   'src/data/reference.js',
   'src/data/project.js',
   'src/data/skills.js',

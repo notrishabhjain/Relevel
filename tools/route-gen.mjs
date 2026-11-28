@@ -245,7 +245,11 @@ const weeks = W.map(([title, ship, how, items, light, why, job], i) => {
 
 /* every course chapter and every book chapter appears exactly once */
 const chs = weeks.flatMap(w => w.steps.filter(s => s.kind === 'chapter').map(s => s.ch));
-const missing = C.chapters.map(c => c.id).filter(id => !chs.includes(id));
+/* Track C (part 8) is optional on the full route. Until its weeks are placed
+   next to the core weeks (audit plan, 4.13, second Phase 4 batch), only these
+   four may be missing from it; any other chapter still fails the build. */
+const TRACKC_PENDING = new Set(['c1', 'c2', 'c3', 'c4']);
+const missing = C.chapters.map(c => c.id).filter(id => !chs.includes(id) && !TRACKC_PENDING.has(id));
 const dup = chs.filter((x, i) => chs.indexOf(x) !== i);
 const books = new Set(weeks.flatMap(w => w.steps.filter(s => s.kind === 'read').map(s => s.book)));
 const bmiss = B.chapters.map(c => c.file).filter(f => !books.has(f));
@@ -314,15 +318,15 @@ const XW = [
     'You decide when thinking is worth paying for, design the wait, improve search one change at a time, and attack your own tool.',
     'Interviewers ask about latency, cost per task and how you would attack your product. You have numbers for each.'],
   ['Grading at scale, cost, documents and data', 'A checked judge, a cost model, a reader for scanned pages, and the rule for what you may send.',
-    ['ch:ch14', 'ch:ch145', 'ch:ch15', 'ch:ch16', 'ch:ch165', 'review'],
+    ['ch:ch14', 'ch:ch145', 'ch:ch15', 'ch:ch16', 'ch:ch165', 'ch:c1', 'review'],
     'You grade a thousand answers the way you graded ten, put a price on quality, handle paper, and decide what may leave your hands.',
     'Consulting and public bodies ask for cost estimates and data rules. You make both.'],
   ['The rules, the spec, and the hard calls', 'A system card, an AI spec, a build-or-buy call and a pilot design.',
-    ['ch:ch17', 'ch:ch18', 'ch:ch185', 'ch:ch19', 'ch:ch20', 'ch:ch205', 'review'],
+    ['ch:ch17', 'ch:ch18', 'ch:ch185', 'ch:ch19', 'ch:ch20', 'ch:ch205', 'ch:c2', 'review'],
     'With quality, cost and data in hand, you write what the system must do, who answers when it is wrong, and how you will prove it helps.',
     'Governance and build-or-buy are the first questions a ministry or a client asks.'],
   ['Production depth: plumbing, model choice, context and retrieval', 'A test harness, your model choice with a back-up, and retrieval that holds up in a review.',
-    ['rf:ch8f', 'ch:ch9m', 'ch:ch10c', 'ch:ch11r', 'review'],
+    ['rf:ch8f', 'ch:ch9m', 'ch:ch10c', 'ch:ch11r', 'ch:c4', 'review'],
     'Part V goes over the same ideas at the depth a real launch needs. If you already write software, the plumbing chapter is a quick check.',
     'AI-native companies ask which model you chose and why, and what the model sees. You answer from your own cases.'],
   ['Workflows, agents, the standard plug, pictures and voice', 'A workflow, a bounded agent, a tool access policy, and the numbers you posted.',
@@ -330,7 +334,7 @@ const XW = [
     'You chain tools into workflows and agents with limits, connect them the standard way, and add more kinds of input.',
     'Built agents are the proof the hardest door asks for. You publish the numbers.'],
   ['Gates, traces, security and the spec', 'A release gate, a watch plan, a risk register, the full spec and a decision pack.',
-    ['ch:ch16e', 'ch:ch17o', 'ch:ch18s', 'ch:ch19pm', 'ch:ch20d', 'review'],
+    ['ch:ch16e', 'ch:ch17o', 'ch:ch18s', 'ch:ch19pm', 'ch:ch20d', 'ch:c3', 'review'],
     'You turn answer keys into a release gate, decide what to watch, assume the worst about the model, and write the spec the capstone is judged against.',
     'Release gates and a risk register show you can run AI, not only specify it.'],
   ['Capstone, part 1: build it and break it', 'The capstone plan, and a first version you have tried to break.',
