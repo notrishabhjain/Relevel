@@ -111,4 +111,6 @@ Object.assign(window.HING = window.HING || {}, {
     "AI ko dono taraf se seekhiye: product (kya banana hai, aur kyun) aur project (use surakshit, samay par aur niyamon ke andar kaise deliver karna hai).",
   "This course teaches AI from two sides, and both count the same. The product side: what to build, and why. The project side: how to deliver it safely, on time and within the rules. To add AI to a real product, you need both.":
     "Yeh course AI ko do taraf se sikhata hai, aur dono barabar hain. Product wali taraf: kya banana hai, aur kyun. Project wali taraf: use surakshit, samay par aur niyamon ke andar kaise deliver karna hai. Kisi asli product mein AI jodne ke liye dono chahiye.",
+  "Delivery & Governance only":
+    "Sirf Delivery & Governance",
 });

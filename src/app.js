@@ -2055,11 +2055,18 @@ function pageGlossary(){
   const drill=h('button',{onclick:()=>{mode=mode==='drill'?'list':'drill';
     drill.textContent=mode==='drill'?'Show definitions':'Drill from memory';
     drill.classList.toggle('on',mode==='drill');render();}},'Drill from memory');
+  /* Delivery & Governance: the terms a project or delivery manager is asked
+     about (rules, standards, serving and cost numbers), tagged 'dg' as the
+     glossary's fourth field. The drill can run on these alone. */
+  const isDG=g=>g[3]==='dg'||(Array.isArray(g[3])&&g[3].includes('dg'));
+  let onlyDG=false;
+  const dg=h('button',{type:'button',class:'sm',onclick:()=>{onlyDG=!onlyDG;dg.classList.toggle('on',onlyDG);render();}},
+    T('Delivery & Governance only')+' ('+window.GLOSSARY.filter(isDG).length+')');
   const body=h('div');
   let mode='list';
   function render(){
     const f=q.value.toLowerCase();
-    const items=window.GLOSSARY.filter(g=>!f||g[0].toLowerCase().includes(f)||g[1].toLowerCase().includes(f));
+    const items=window.GLOSSARY.filter(g=>(!onlyDG||isDG(g))&&(!f||g[0].toLowerCase().includes(f)||g[1].toLowerCase().includes(f)));
     body.innerHTML='';
     if(mode==='drill'){
       const known=Object.values(S.drill).filter(v=>v==='y').length;
@@ -2096,7 +2103,8 @@ function pageGlossary(){
     }
   }
   q.addEventListener('input',render);
-  w.append(h('div',{class:'ctl'},[ctlL('filter',q),h('div',{style:'flex:0'},[h('label',{text:' '}),drill])]),body);
+  w.append(h('div',{class:'ctl'},[ctlL('filter',q),h('div',{style:'flex:0'},[h('label',{text:' '}),drill]),
+    h('div',{style:'flex:0'},[h('label',{text:' '}),dg])]),body);
   render();
   return w;
 }
